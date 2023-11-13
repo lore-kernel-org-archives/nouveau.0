@@ -4,48 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 637B6C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68454C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0A2710E45E;
-	Tue, 16 Jan 2024 11:47:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAD6110E061;
- Mon,  6 Nov 2023 12:25:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699273536; x=1730809536;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=2pR8X4BMVcOGKWPNkgcioekUqSx5/pk8Jhwvb4ict+4=;
- b=i1ILJryameQME2wCRiiRbVH+TQb/wd1dauLPCNARzBp00uPXWi8Scw5z
- 1PKdTA9jabyoy9/DLJWxDsU7i/1t6mIraTua7+YHkF1YFmd08tQG/YkQV
- 6kFQqMUsV1QpBQWl/sZQgBvOhG9I/lKWHAE7A9q3mHG+T2H5qxzphMs9n
- oh6mFO4jU8hLWO/cUJbHw+mKEi5KH1u9gGVexCfS6s5eh05rAz9nATEK5
- XY4U9JB6/7PRs+pryVjUn0EXe3hOFhEAAgMNFLY2XjPWxuDS4s+2QGZyn
- voVw4s1RDMdkqSQd8ObwX6ioj8qAPohuGbclSgHI6FrqzVTsVcTLA1e58 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="420376188"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="420376188"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:25:36 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="828193825"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="828193825"
-Received: from rmstoi-mobl.ger.corp.intel.com ([10.251.216.76])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:25:27 -0800
-Date: Mon, 6 Nov 2023 14:25:24 +0200 (EET)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Subject: Re: [PATCH v2 1/9] drm/nouveau: Switch from
- pci_is_thunderbolt_attached() to dev_is_removable()
-In-Reply-To: <20231103190758.82911-2-mario.limonciello@amd.com>
-Message-ID: <55563d57-60c3-1789-1e7c-5e618fbd6253@linux.intel.com>
-References: <20231103190758.82911-1-mario.limonciello@amd.com>
- <20231103190758.82911-2-mario.limonciello@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D6510E49F;
+	Tue, 16 Jan 2024 11:47:31 +0000 (UTC)
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com
+ [IPv6:2607:f8b0:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C220410E180;
+ Mon, 13 Nov 2023 18:37:51 +0000 (UTC)
+Received: by mail-pg1-x534.google.com with SMTP id
+ 41be03b00d2f7-58962bf3f89so316435a12.0; 
+ Mon, 13 Nov 2023 10:37:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699900671; x=1700505471; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2mtmd09hFYXnVdRkrFU6g3p7HtLLyzcUAB+w/A7AON4=;
+ b=JPyMzLS9x0pfWQ+xi9ExoQq2clcrrCTSjScaTfbNHQeucb+Bv1IW5vTgDWnL7WCRwK
+ ASchlPSTXq0OIEQthdFl77WKBtUE+u/cNZLfoNAvx/A3doVWjHqi33iRyMbZXsSKiCo2
+ 4O3qUjtYEQyT9K8ViQRrM3y16PaUVnHvjZKvsyhq7Xap3NY/ghpHw0mlxZkM0pEe57sE
+ NlIOoBazAMmSQA1sDx1PFgJL2k7CTOLqZhixbmXWBv+3IUQBQad/3jr5mLtWxOc2dP6M
+ fh7HU8m2mPcgjCRtN2ZAinSvElOfYqesb/8O0JdMVqgG4h+jcKu+63cixy/RxWqeh0Ll
+ 9CYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699900671; x=1700505471;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2mtmd09hFYXnVdRkrFU6g3p7HtLLyzcUAB+w/A7AON4=;
+ b=FtwRp2FJ4Sk9IpcTwi7IGpirhy06OYwE9WpBs1fuf8aM2ozJwoKnqm+7M/QnHUI1RG
+ 7tslnbsCEXThSECXaP3M87alzVlrwGjKl/Liyp4ePmddpqKfnZwNLq4GgrrrKQpCCgF1
+ 93Y/kAz/yUB1913QOz4pUYRkPDVoQRvgHUq8ysh1hXbn68TdLPWvsCOtXEXZmcK7gtb8
+ GHPu0bWP4o3UntQBLye0GH1/ry9FuEeYLNz3eJAk6SRDzF2Tu1gRV1rkJc+7CayqIqzQ
+ baF8ObmsIbzCmi3LMyfpo+Js5CZ9SDkST696vVkX63pAtPwpwl+ISIlOtXPwqw/ZOALF
+ D7PA==
+X-Gm-Message-State: AOJu0YxZxoNW4eGPjpwWoGl0R+X6GuNjaLRACuh6yxkvALJLuiEPlFaI
+ 9kLCa13L8xAt7sE7CO6QmUY=
+X-Google-Smtp-Source: AGHT+IF8WqLZR69KCm/civDjgFUbwk1ZPnhnTXEboXMHqRlLQMHKjR9oiG6PqIPphLBYkQjDkLbheg==
+X-Received: by 2002:a05:6a21:9981:b0:17a:d292:25d1 with SMTP id
+ ve1-20020a056a21998100b0017ad29225d1mr93125pzb.6.1699900671212; 
+ Mon, 13 Nov 2023 10:37:51 -0800 (PST)
+Received: from abhinav.. ([103.75.161.208]) by smtp.gmail.com with ESMTPSA id
+ e13-20020a056a001a8d00b006b8ffc49ba5sm4058507pfv.38.2023.11.13.10.37.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 13 Nov 2023 10:37:50 -0800 (PST)
+From: Abhinav Singh <singhabhinav9051571833@gmail.com>
+To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Subject: [PATCH v2] drivers: gpu: Fixing warning directly dereferencing a rcu
+ pointer v2
+Date: Tue, 14 Nov 2023 00:07:37 +0530
+Message-Id: <20231113183737.3276419-1-singhabhinav9051571833@gmail.com>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <d33fc41b-5a1f-4186-a0b2-3c82dcb8f00b@redhat.com>
+References: <d33fc41b-5a1f-4186-a0b2-3c82dcb8f00b@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,71 +74,57 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
- Andreas Noever <andreas.noever@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?ISO-8859-15?Q?Marek_Beh=FAn?= <kabel@kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Jamet <michael.jamet@intel.com>, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Yehezkel Bernat <YehezkelShB@gmail.com>,
- =?ISO-8859-15?Q?Pali_Roh=E1r?= <pali@kernel.org>,
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
- "Maciej W . Rozycki" <macro@orcam.me.uk>
+Cc: nouveau@lists.freedesktop.org,
+ linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,
+ Abhinav Singh <singhabhinav9051571833@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 3 Nov 2023, Mario Limonciello wrote:
+This patch fixes a sparse warning with this message 
+"warning:dereference of noderef expression". In this context it means we
+are dereferencing a __rcu tagged pointer directly.
 
-> pci_is_thunderbolt_attached() only works for Intel TBT devices. Switch to
-> using dev_is_removable() to be able to detect USB4 devices as well.
+We should not be directly dereferencing a rcu pointer, rather we should
+be using rcu helper function rcu_dereferece() inside rcu read critical
+section to get a normal pointer which can be dereferenced.
 
-Please extend this with more details. I had to lookup the TBT change to 
-be able to make any guess why you're doing this (and it's still a guess 
-at best).
+I tested with qemu with this command 
+qemu-system-x86_64 \
+	-m 2G \
+	-smp 2 \
+	-kernel bzImage \
+	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
+	-drive file=bullseye.img,format=raw \
+	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
+	-net nic,model=e1000 \
+	-enable-kvm \
+	-nographic \
+	-pidfile vm.pid \
+	2>&1 | tee vm.log
+with lockdep enabled.
 
+Signed-off-by: Abhinav Singh <singhabhinav9051571833@gmail.com>
+---
+v1 -> v2 : Replaced the rcu_dereference(...) with unrcu_pointer(...) and
+also removed the rcu locking and unlocking function call.
+
+ drivers/gpu/drm/nouveau/nv04_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nv04_fence.c b/drivers/gpu/drm/nouveau/nv04_fence.c
+index 5b71a5a5cd85..cdbc75e3d1f6 100644
+--- a/drivers/gpu/drm/nouveau/nv04_fence.c
++++ b/drivers/gpu/drm/nouveau/nv04_fence.c
+@@ -39,7 +39,7 @@ struct nv04_fence_priv {
+ static int
+ nv04_fence_emit(struct nouveau_fence *fence)
+ {
+-	struct nvif_push *push = fence->channel->chan.push;
++	struct nvif_push *push = unrcu_pointer(fence->channel)->chan.push;
+ 	int ret = PUSH_WAIT(push, 2);
+ 	if (ret == 0) {
+ 		PUSH_NVSQ(push, NV_SW, 0x0150, fence->base.seqno);
 -- 
- i.
+2.39.2
 
-
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  drivers/gpu/drm/nouveau/nouveau_vga.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
-> index f8bf0ec26844..14215b7ca187 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-> @@ -94,8 +94,8 @@ nouveau_vga_init(struct nouveau_drm *drm)
->  
->  	vga_client_register(pdev, nouveau_vga_set_decode);
->  
-> -	/* don't register Thunderbolt eGPU with vga_switcheroo */
-> -	if (pci_is_thunderbolt_attached(pdev))
-> +	/* don't register USB4/Thunderbolt eGPU with vga_switcheroo */
-> +	if (dev_is_removable(&pdev->dev))
->  		return;
->  
->  	vga_switcheroo_register_client(pdev, &nouveau_switcheroo_ops, runtime);
-> @@ -118,7 +118,7 @@ nouveau_vga_fini(struct nouveau_drm *drm)
->  
->  	vga_client_unregister(pdev);
->  
-> -	if (pci_is_thunderbolt_attached(pdev))
-> +	if (dev_is_removable(&pdev->dev))
->  		return;
->  
->  	vga_switcheroo_unregister_client(pdev);
-> 
