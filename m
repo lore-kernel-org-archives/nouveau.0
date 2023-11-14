@@ -4,41 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23641C54E5B
-	for <nouveau@archiver.kernel.org>; Tue, 14 Nov 2023 20:08:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 158CDC54E69
+	for <nouveau@archiver.kernel.org>; Tue, 14 Nov 2023 20:09:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4719810E4CA;
-	Tue, 14 Nov 2023 20:08:40 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC52510E4BB;
- Tue, 14 Nov 2023 20:08:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07E0310E4CC;
+	Tue, 14 Nov 2023 20:08:43 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10ACA10E4C6;
+ Tue, 14 Nov 2023 20:08:40 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OFiNJDaxhihZZ0J3OVKDNCn+v7229ymYz+B5tRaFAgo8DPepELX0r3s72ruYmflPK+Q/L5Vaou08jlr3mwc1rYpIIqrEFt8PqW5+j1E+Mnm+r2lldTIHbVwPRw3tInIbi4UWPK3Emn/7iZJ00+WgGw3TU1EnUkEun0udUiFG2bxphOTLeIJL1xDSs47UJkZYfcCkwKdOsx3nO0WKrl31JatkcN1iz0yr0BGwTIkLPMiwVtDdkHK+DIBBS2XXtkIHoYyLBhnO19VRnupgPVO1B9moUor0gcTk8+tDV7vsLCRo/QzJV6jETRw+fUFgbEPEto2dNgMv7k6RD+86rDCWVw==
+ b=HOmeHG25DQCRssDSGJg51q2kPpNQIWzUrOCQE+sajcgcuVYGv1WUbqjJI2CiDThGEB4WW9YzX71Y9cRFebExamiJ5p8/KYeaYLC6xyHjjZx1MrJbgqSLDvLSe5E2N/rvaCG+PyyK7f4/f3eDbXD3fF5oK/lboXc52aPCgR6KsPRzp8r7z+FwMXrbfOQ5PsjpEocQXeXr6ihHyFSwng8PJeN7/mtJsTeoDBW2O4QRN+43CidgleDqhc/0iassb1f6OC5dM5qJ6dZYeIIf6UF4/6DltiG9V5QfL7f8yVKVj7X7NzjrT0u9J0QMyWRuvwOoObGsyTEJmZWJaqQwuUGSpQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f50tXfm82fTpPzfjPb9J2spMNyZ25b8PuZgayxsLEHM=;
- b=lPnc6bE6iEtDi/+uoOHKGAHeDhn4MEIKq5cUVXXuWTrvB3Lem22upl82a2EbAO+WluyFYAE/szkbLvQ3cBvhwsXOgDmp/CNJcyYfcQLVByUrhWhrj4S26FMReu6sRJDyGSZkNN6h0lpOJxDpm7ajQjGAAhVxnJsQWV2gb01/yO4p9Q7VTln1ec//Df2WZxhaKixtPqw/9fvtitYbzTwrNqo01MgXjVm+bItBYxpo+/N7/gVodbH1eeteX2rOl+Yr81wxnK7VNjMGNQkO9kCqxGR5KbkzNWsq2d2yIiMNkTqI9CNUJKYXLYzZ6zmPYLEzbzJ55w10nyG9aHPRdLEAnQ==
+ bh=l7SZF6f2ZWGFnYAXCTO9CVe3dsHy8Lp9Fi/fPR/IUHw=;
+ b=m26G1PIw21Q6ql+fuqng0g8hMIm9TqSQAh9AyooXK14I8v5uFUhwSOnNt0WoqcSOl+oi/X8UEH6QloNNjqn7rPxNMUlsN2+kqFJGh7Io7DRB5qFL7Pfa00byTVEvvNwLg5DZ3s67lbi2+5DOY5+4me5+dtCioaum+ZLDT7lhg0NWxCgeD4UtEl3YFSEsgZiQc7dbAk/pXD1TzCHgGQWT2u4KhZhoS9iZiN7VOIbduLv4Z7+lb1BP1KVJ6vQJ0N5oOH+4/kkuP+aaHxe7XeoCZgCAVWny0LtIyGlk/X3kNa/KmS6gJdtZlU1/QlNvremFo1L1fLp/lSE+1JBpy5tIkg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=redhat.com smtp.mailfrom=amd.com; dmarc=pass
  (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=f50tXfm82fTpPzfjPb9J2spMNyZ25b8PuZgayxsLEHM=;
- b=SjKciasSRoEjdJIbwKSNTE66Pn3wn1RZypXFIuIQZlrqrt27e6FLCDTPSbOS4TnmYbshoK6EIYeruv/EYwwi1/GEZP/oNv7M/HyAdpDs05ND8VWRzWnBq/z0nC4xUhT6OCb+S5vufxicobhZ+Vr4JFKiocf1cMVMRufVlc/r3zQ=
-Received: from BL1PR13CA0297.namprd13.prod.outlook.com (2603:10b6:208:2bc::32)
- by CH3PR12MB7500.namprd12.prod.outlook.com (2603:10b6:610:148::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Tue, 14 Nov
- 2023 20:08:33 +0000
-Received: from BL02EPF0001A107.namprd05.prod.outlook.com
- (2603:10b6:208:2bc:cafe::9c) by BL1PR13CA0297.outlook.office365.com
- (2603:10b6:208:2bc::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.15 via Frontend
- Transport; Tue, 14 Nov 2023 20:08:32 +0000
+ bh=l7SZF6f2ZWGFnYAXCTO9CVe3dsHy8Lp9Fi/fPR/IUHw=;
+ b=w7OKQXG/4JUEV4YHTYqzaKIsmLOoDof1tCgup4FUxh64K2n8IvpeXePuC2At+3/wJiE0PDok5iVuAe7l9jwqrnaQMuO2IqXULectPYssP6LgwJ2rryAZ2iSlSWcSQnnmJp7qjtcaXBCR8eYhfSNb8K/pT9HJZ6zjAOv8sFJTA3s=
+Received: from BLAPR03CA0151.namprd03.prod.outlook.com (2603:10b6:208:32f::15)
+ by DS7PR12MB5720.namprd12.prod.outlook.com (2603:10b6:8:73::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Tue, 14 Nov
+ 2023 20:08:37 +0000
+Received: from BL02EPF0001A103.namprd05.prod.outlook.com
+ (2603:10b6:208:32f:cafe::c2) by BLAPR03CA0151.outlook.office365.com
+ (2603:10b6:208:32f::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31 via Frontend
+ Transport; Tue, 14 Nov 2023 20:08:37 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -46,52 +45,53 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
 Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0001A107.mail.protection.outlook.com (10.167.241.136) with Microsoft
+ BL02EPF0001A103.mail.protection.outlook.com (10.167.241.133) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7002.13 via Frontend Transport; Tue, 14 Nov 2023 20:08:32 +0000
+ 15.20.7002.13 via Frontend Transport; Tue, 14 Nov 2023 20:08:37 +0000
 Received: from test-TBI1100B.amd.com (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.32; Tue, 14 Nov
- 2023 14:08:31 -0600
+ 2023 14:08:34 -0600
 From: Mario Limonciello <mario.limonciello@amd.com>
 To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, "Alex
  Deucher" <alexander.deucher@amd.com>, =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>, Bjorn Helgaas <bhelgaas@google.com>, "Mika
  Westerberg" <mika.westerberg@linux.intel.com>, Lukas Wunner <lukas@wunner.de>
-Date: Tue, 14 Nov 2023 14:07:51 -0600
-Message-ID: <20231114200755.14911-4-mario.limonciello@amd.com>
+Date: Tue, 14 Nov 2023 14:07:54 -0600
+Message-ID: <20231114200755.14911-7-mario.limonciello@amd.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231114200755.14911-1-mario.limonciello@amd.com>
 References: <20231114200755.14911-1-mario.limonciello@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-Originating-IP: [10.180.168.240]
 X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
  (10.181.40.145)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0001A107:EE_|CH3PR12MB7500:EE_
-X-MS-Office365-Filtering-Correlation-Id: b7a77f9e-31d9-48a8-0aa5-08dbe54d7a44
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A103:EE_|DS7PR12MB5720:EE_
+X-MS-Office365-Filtering-Correlation-Id: 17897260-4f72-446a-fd65-08dbe54d7d33
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: tu7+F0Yvlw0N9L4DixpqpXKchLCVSPgMRwghjqRk4ClKDjUPTtnHk00MCFqPhK4ANSgh/OrIdvb91sSc8BKJCgI/AjgZp3MRy7qCRTDL75F0/ttTH79OTINnUHvCf1gy/zKeEemb5/fyGbQo0+nrbtmDvZe9jXQuYnytq3WtPbwsh1ZT7GniggdSlwvWmG6Am1SR81ll+yWIvD9IHEHDuUqIcuS2IDVc7tD2vf41ew6VcaF5g8WTlugxvdgq77AhUqcv0ssBSi95r2tqEBdiMzzjFbGNY5LOva0ehQdPJoGblT/wyuIXWr5JEwzDSqiCAU4Nua4yaCvKAjFIxex13463RnQ4SeIyOjHHTsFJMT7S67oB7Z2y061p682lcH5E/xxlnw1+hTYJC0anw/4uBeXX3sZ8RJ9KRHpVXNIj9pTM+8+39uMdjdSsfNh8xyiOyf5V2QX9B+osDAlvfZacWtpPKeEEYNkkrZ5ntqfZp+BJjDRvb/cVzdS3ocaGaP8hexm76lGsKvss/robWNwg9Tz5ZIjADqtVxGB4JNftKbL0teuIuBf3p9NPOiuWf1bwWOl5AxsnW2NDb35I9y9XK7lLyGqaVIScan73MhvzFBfaZreYLfW/B+lJJKicAlenx4a52nr2AalQzRo49F7z6dbExTqg4YzEg09DlOvEwvNdnHcpEVrjDJKHFqIkgzcEj8V28RmMGhbNpWe0WQHCkWTUS7ggYIEv5A6ANNQQkNmby2ET+OnO8NxI+8ZgQBQ5/Ddoj1qI5LMXGO/CY7L3NQ==
+X-Microsoft-Antispam-Message-Info: HdIL6B+xxFbeG2i6btoJu2mwGxAav6nSk9t9VHeCYelwn0IODKr9Ff59Js4BaBOY88tL8nkrtJlBgOvsG6LdApVU4jlXCkcCLQOUdoWkDOG1LnvMGWX2/XtgYMtotvMieAiEKVrO6bofQ4tpAVVIw0vtFnC80DG4P/+4+rF8/jV3iKNla3yxtOEOikzTpa4ukx2kiMG1qRSbKlUTqTCD4xBrUtEQ4yaB1FnYcxYtfcnBcpnktgtyC584O4oB/KrqAQdRUGMefZf4jD3otLOOYNEIjLWN5oOyhPLaJXo6GAeWsX8pivVZwZCtzJwH30+dbRbyoik38Frspu9GJnDR01VIC73WJHYxlnyvYbARgd2bp/nET/Xg/oIY3jJqnYM8/Y+00GPa+KgRDenMyyOTR5CDWehLlhlHskDWIRD6hQDXh6Jaeb47Xj59X5+wmfCaO0801/xurYkP3I6uOWgWiurQnH/kFD5S8av2Y/RHmu/J48vWTB0mcpFryD+dArhZUFYCTSHyfMelVjvPdiEe6RBSAMXucZDPd+YSd00aqBO2NpOR8aDop5IYlfdG8yG0bRLC0bRmLbvTGHUBQsWB2hQHrkBpzVyGf7OdEicrphEWNgUZzyINTGhISwaVn/OuK4AP5fWZByyOEHX78J+Ett1CRKPyxn/T1EkGQuABLvQHUaGSYJswS7rN45NrhXIm8Pt5zq+QcO8BGs2fcxxU2RR25gmzmN74OBQSBohEeDRhMUnvGOgipfa6qPR32hzDoBFfItfZJOPityWVicSNJg==
 X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:CAL; SFV:NSPM; H:SATLEXMB04.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230031)(4636009)(346002)(376002)(39860400002)(136003)(396003)(230922051799003)(82310400011)(64100799003)(1800799009)(451199024)(186009)(46966006)(40470700004)(36840700001)(8676002)(8936002)(40480700001)(41300700001)(40460700003)(5660300002)(7416002)(2906002)(83380400001)(426003)(44832011)(316002)(4326008)(36860700001)(54906003)(36756003)(70206006)(86362001)(47076005)(7696005)(6666004)(336012)(70586007)(81166007)(1076003)(356005)(110136005)(2616005)(82740400003)(16526019)(26005)(478600001)(36900700001);
+ SFS:(13230031)(4636009)(396003)(136003)(376002)(39860400002)(346002)(230922051799003)(1800799009)(82310400011)(64100799003)(186009)(451199024)(36840700001)(40470700004)(46966006)(40480700001)(426003)(40460700003)(316002)(70586007)(110136005)(70206006)(54906003)(81166007)(26005)(356005)(82740400003)(86362001)(36756003)(83380400001)(336012)(1076003)(6666004)(16526019)(2616005)(36860700001)(478600001)(2906002)(7696005)(47076005)(5660300002)(44832011)(41300700001)(4326008)(8676002)(7416002)(8936002)(36900700001);
  DIR:OUT; SFP:1101; 
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 20:08:32.8172 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7a77f9e-31d9-48a8-0aa5-08dbe54d7a44
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Nov 2023 20:08:37.7140 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 17897260-4f72-446a-fd65-08dbe54d7d33
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
  Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A107.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BL02EPF0001A103.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7500
-Subject: [Nouveau] [PATCH v3 3/7] PCI: Drop pci_is_thunderbolt_attached()
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5720
+Subject: [Nouveau] [PATCH v3 6/7] PCI: Split up some logic in
+ pcie_bandwidth_available() to separate function
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,50 +121,105 @@ Cc: =?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-All callers have switched to dev_is_removable() for detecting
-hotpluggable PCIe devices.
+The logic to calculate bandwidth limits may be used at multiple call sites
+so split it up into its own static function instead.
 
+No intended functional changes.
+
+Suggested-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v2->v3:
- * No changes
+ * Split from previous patch version
 ---
- include/linux/pci.h | 22 ----------------------
- 1 file changed, 22 deletions(-)
+ drivers/pci/pci.c | 60 +++++++++++++++++++++++++++--------------------
+ 1 file changed, 34 insertions(+), 26 deletions(-)
 
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 60ca768bc867..1fbca2bd92e8 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -2645,28 +2645,6 @@ static inline bool pci_ari_enabled(struct pci_bus *bus)
- 	return bus->self && bus->self->ari_enabled;
+diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+index 55bc3576a985..0ff7883cc774 100644
+--- a/drivers/pci/pci.c
++++ b/drivers/pci/pci.c
+@@ -6224,6 +6224,38 @@ int pcie_set_mps(struct pci_dev *dev, int mps)
  }
+ EXPORT_SYMBOL(pcie_set_mps);
  
--/**
-- * pci_is_thunderbolt_attached - whether device is on a Thunderbolt daisy chain
-- * @pdev: PCI device to check
-- *
-- * Walk upwards from @pdev and check for each encountered bridge if it's part
-- * of a Thunderbolt controller.  Reaching the host bridge means @pdev is not
-- * Thunderbolt-attached.  (But rather soldered to the mainboard usually.)
-- */
--static inline bool pci_is_thunderbolt_attached(struct pci_dev *pdev)
--{
--	struct pci_dev *parent = pdev;
++static u32 pcie_calc_bw_limits(struct pci_dev *dev, u32 bw,
++			       struct pci_dev **limiting_dev,
++			       enum pci_bus_speed *speed,
++			       enum pcie_link_width *width)
++{
++	enum pcie_link_width next_width;
++	enum pci_bus_speed next_speed;
++	u32 next_bw;
++	u16 lnksta;
++
++	pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &lnksta);
++
++	next_speed = pcie_link_speed[FIELD_GET(PCI_EXP_LNKSTA_CLS, lnksta)];
++	next_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
++
++	next_bw = next_width * PCIE_SPEED2MBS_ENC(next_speed);
++
++	/* Check if current device limits the total bandwidth */
++	if (!bw || next_bw <= bw) {
++		bw = next_bw;
++
++		if (limiting_dev)
++			*limiting_dev = dev;
++		if (speed)
++			*speed = next_speed;
++		if (width)
++			*width = next_width;
++	}
++
++	return bw;
++}
++
+ /**
+  * pcie_bandwidth_available - determine minimum link settings of a PCIe
+  *			      device and its bandwidth limitation
+@@ -6242,39 +6274,15 @@ u32 pcie_bandwidth_available(struct pci_dev *dev, struct pci_dev **limiting_dev,
+ 			     enum pci_bus_speed *speed,
+ 			     enum pcie_link_width *width)
+ {
+-	u16 lnksta;
+-	enum pci_bus_speed next_speed;
+-	enum pcie_link_width next_width;
+-	u32 bw, next_bw;
++	u32 bw = 0;
+ 
+ 	if (speed)
+ 		*speed = PCI_SPEED_UNKNOWN;
+ 	if (width)
+ 		*width = PCIE_LNK_WIDTH_UNKNOWN;
+ 
+-	bw = 0;
 -
--	if (pdev->is_thunderbolt)
--		return true;
+ 	while (dev) {
+-		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &lnksta);
 -
--	while ((parent = pci_upstream_bridge(parent)))
--		if (parent->is_thunderbolt)
--			return true;
+-		next_speed = pcie_link_speed[FIELD_GET(PCI_EXP_LNKSTA_CLS,
+-						       lnksta)];
+-		next_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
 -
--	return false;
--}
+-		next_bw = next_width * PCIE_SPEED2MBS_ENC(next_speed);
 -
- #if defined(CONFIG_PCIEPORTBUS) || defined(CONFIG_EEH)
- void pci_uevent_ers(struct pci_dev *pdev, enum  pci_ers_result err_type);
- #endif
+-		/* Check if current device limits the total bandwidth */
+-		if (!bw || next_bw <= bw) {
+-			bw = next_bw;
+-
+-			if (limiting_dev)
+-				*limiting_dev = dev;
+-			if (speed)
+-				*speed = next_speed;
+-			if (width)
+-				*width = next_width;
+-		}
+-
++		bw = pcie_calc_bw_limits(dev, bw, limiting_dev, speed, width);
+ 		dev = pci_upstream_bridge(dev);
+ 	}
+ 
 -- 
 2.34.1
 
