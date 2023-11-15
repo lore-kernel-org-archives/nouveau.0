@@ -4,52 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6D1CC4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3FA5C47258
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EB0110E4EE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6F9110E4E6;
 	Tue, 16 Jan 2024 11:47:38 +0000 (UTC)
-X-Greylist: delayed 46993 seconds by postgrey-1.36 at gabe;
- Fri, 10 Nov 2023 16:58:29 UTC
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E41310E125;
- Fri, 10 Nov 2023 16:58:29 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E71CA10E4EF
+ for <nouveau@lists.freedesktop.org>; Wed, 15 Nov 2023 06:19:24 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4SRlQ95myqz9spj;
- Fri, 10 Nov 2023 17:58:25 +0100 (CET)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4SVY0R2gGGz9sjL;
+ Wed, 15 Nov 2023 07:19:19 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=owenh.net; s=MBO0001; 
- t=1699635505;
+ t=1700029159;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Xv0RmDooG3JgDJHA2SqaAIpBFKQ0UuIqzPA46XswMys=;
- b=0NFLEqpKQmJbLf7s0Gu6qlXSi//AhUQ95naoWkj4WMZu2Fq78Lrb32fYcpQCffzlf8RA0O
- Hc8Zj/uR3VEYWUO52IUz6PEZxdwn7pKAlS4oyVSQODoUo+0e40cwxCe5wXcLS6cFFbZxZP
- sRsYUfYj8b4g01I8bgO9sO+4pzx3+6W6oCBqwW7AaorjYgDhFRntPTKvKhvPvKveLBAMEf
- 3qEHo/6UMMtETriDJfJfR1488Y2IGRoZGmpc9fviXWw5XaxCxjZLB/EtvYXGw9/X59bO29
- op1UQfJ+OV+1sNIKwHRbI5a/Y1UFO6bcyJbXhAcCgdpDAnZk1WUtjFLz0/CCeA==
-Message-ID: <d1ac9c1e-f3fe-4d06-ba2e-2c049841d19b@owenh.net>
-Date: Fri, 10 Nov 2023 10:58:07 -0600
+ bh=0kqsb78qN/a3iPAlXT5iJSYiTM+E0/Epcwz/TQhJRiA=;
+ b=UPy5l5wNUBq0+JjXKb61Qnhcr7gqwmG4Nhh5apUKGyyYSIRfSScd3OaRPRZMC6EUgNDxHk
+ 43wSOdEinsWdWAsnbbyUaLH4LyZsiaHITgmwWqfwuGp2DDOFh/w12aFtkanpKa+zQtd+72
+ Izc8OMtSahq1c1Z0avEvOfpViBOdNlpSzwn7hX2OCraYBOSZZs8voJXHDcAsI1Bpazy6hN
+ 2cIez+g52P7zZaR3g8A+OVfcaY5JxnzjKXBpuZ8k6ztyCke3FhxxOIHcWlGHfWdPRZp6DF
+ aI1RCajc96jRP6whnzpUFZuuaEliYx0mOleDbU8tJ8eNHOoBpT5FHRXe0CULyA==
+Message-ID: <6b7a71b4-c8a2-46f4-a995-0c63e7745ca3@owenh.net>
+Date: Wed, 15 Nov 2023 00:19:07 -0600
 MIME-Version: 1.0
-From: "Owen T. Heisler" <writer@owenh.net>
-Subject: Re: [REGRESSION]: acpi/nouveau: Hardware unavailable upon resume or
- suspend fails
-To: Kai-Heng Feng <kai.heng.feng@canonical.com>,
- Hans de Goede <hdegoede@redhat.com>
-References: <9f36fb06-64c4-4264-aaeb-4e1289e764c4@owenh.net>
- <CAAd53p7BSesx=a1igTohoSkxrW+Hq8O7ArONFCK7uoDi12-T4A@mail.gmail.com>
- <a592ce0c-64f0-477d-80fa-8f5a52ba29ea@redhat.com>
- <CAAd53p608qmC3pvz=F+y2UZ9O39f2aq-pE-1_He1j8PGQmM=tg@mail.gmail.com>
+Subject: Re: [REGRESSION]: nouveau: Asynchronous wait on fence
+To: Linux regressions mailing list <regressions@lists.linux.dev>,
+ stable@vger.kernel.org
+References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
+ <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
 Content-Language: en-US
-In-Reply-To: <CAAd53p608qmC3pvz=F+y2UZ9O39f2aq-pE-1_He1j8PGQmM=tg@mail.gmail.com>
+From: "Owen T. Heisler" <writer@owenh.net>
+In-Reply-To: <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4SRlQ95myqz9spj
+X-Rspamd-Queue-Id: 4SVY0R2gGGz9sjL
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,78 +57,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: regressions@lists.linux.dev, nouveau@lists.freedesktop.org,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>, stable@vger.kernel.org,
- linux-acpi@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Len Brown <lenb@kernel.org>
+Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi everyone,
-
-On 11/10/23 06:52, Kai-Heng Feng wrote:
-> On Fri, Nov 10, 2023 at 2:19 PM Hans de Goede <hdegoede@redhat.com> wrote:
->> On 11/10/23 07:09, Kai-Heng Feng wrote:
->>> On Fri, Nov 10, 2023 at 5:55 AM Owen T. Heisler <writer@owenh.net> wrote:
->>>> #regzbot introduced: 89c290ea758911e660878e26270e084d862c03b0
->>>> #regzbot link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/273
->>>> #regzbot link: https://bugzilla.kernel.org/show_bug.cgi?id=218124
->>>
->>> Thanks for the bug report. Do you prefer to continue the discussion
->>> here, on gitlab or on bugzilla?
-
-Kai-Heng, you're welcome and thank you too. By email is fine with me.
-
->> Owen, as Kai-Heng said thank you for reporting this.
-
-Hans, you're welcome, and thanks for your help too.
-
->>>> ## Reproducing
->>>>
->>>> 1. Boot system to framebuffer console.
->>>> 2. Run `systemctl suspend`. If undocked without secondary display,
->>>> suspend fails. If docked with secondary display, suspend succeeds.
->>>> 3. Resume from suspend if applicable.
->>>> 4. System is now in a broken state.
->>>
->>> So I guess we need to put those devices to ACPI D3 for suspend. Let's
->>> discuss this on your preferred platform.
+On 10/31/23 04:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+> On 28.10.23 04:46, Owen T. Heisler wrote:
+>> #regzbot introduced: d386a4b54607cf6f76e23815c2c9a3abc1d66882
+>> #regzbot link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/180
 >>
->> Ok, so I was already sort of afraid we might see something like this
->> happening because of:
+>> ## Problem
 >>
->> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=89c290ea758911e660878e26270e084d862c03b0
->>
->> As I mentioned during the review of that, it might be better to
->> not touch the video-card ACPI power-state at all and instead
->> only do acpi_device_fix_up_power() on the child devices.
-> 
-> Or the child devices need to be put to D3 during suspend.
-> 
->> Owen, attached are 2 patches which implement only
->> calling acpi_device_fix_up_power() on the child devices,
->> can you build a v6.6 kernel with these 2 patches added
->> on top please and see if that fixes things ?
+>> 1. Connect external display to DVI port on dock and run X with both
+>>     displays in use.
+>> 2. Wait hours or days.
+>> 3. Suddenly the secondary Nvidia-connected display turns off and X stops
+>>     responding to keyboard/mouse input. In *some* cases it is possible to
+>>     switch to a virtual TTY with Ctrl+Alt+Fn and log in there.
 
-Yes, with those patches v6.6 suspend works normally. That's great, thanks!
+> You thus might want to check if the problem occurs with 6.6 -- and
+> ideally also check if reverting the culprit there fixes things for you.
 
-I tested with v6.6 with the 2 patches at 
-<https://lore.kernel.org/regressions/a592ce0c-64f0-477d-80fa-8f5a52ba29ea@redhat.com/> 
-using 
-<https://gitlab.freedesktop.org/drm/nouveau/uploads/788d7faf22ba2884dcc09d7be931e813/v6.6-config1>. 
-I tested both docked and un-docked, just in case.
+Hi Thorsten and others,
 
-Tested-by: Owen T. Heisler <writer@owenh.net>
+The problem also occurs with v6.6. Here is a decoded kernel log from an 
+untainted kernel:
 
->> Kai-Heng can you test that the issue on the HP ZBook Fury 16 G10
->> is still resolved after applying these patches ?
-> 
-> Yes. Thanks for the patch.
-> 
-> If this patch also fixes Owen's issue, then
-> Tested-by: Kai-Heng Feng <kai.heng.feng@canonical.com
+https://gitlab.freedesktop.org/drm/nouveau/uploads/c120faf09da46f9c74006df9f1d14442/async-wait-on-fence-180.log
 
-Please let me know if anything else is needed from me.
+The culprit commit does not revert cleanly on v6.6. I have not yet 
+attempted to resolve the conflicts.
 
-Many thanks,
+I have also updated the bug description at
+<https://gitlab.freedesktop.org/drm/nouveau/-/issues/180>.
+
+Thanks,
 Owen
