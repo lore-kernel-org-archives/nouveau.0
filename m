@@ -4,110 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CEC9C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 047C8C47258
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD1FA10E4B3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE1CB10E4B4;
 	Tue, 16 Jan 2024 11:47:31 +0000 (UTC)
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur04olkn080f.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe0e::80f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7CE010E320;
- Fri, 15 Dec 2023 09:59:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iOGl2IZ9AjoH/lgQdzwL07RmzjdcOTqgdmVLgKP3NtmAGneog2kl+fmlfFjr+tFK7sR9p6hlsoFiLJjqc47OvN3X3sRAlDMPeBUkaYdLZEPwzKz0Ibx8bAvP7VoRnYrr/tV0gi/FdmnSBTnBN/ZABJt+mCltpnYqCdp4KN+cRaf6bU+Q71T52dGVFi+FxgMYWAoIJW2cAmXJlZLO7cZODV4loujUQg5rCSXrzbKg0izvAKnT44TMTZYqvMsnAQeEDRiQjP3TuEzJjzuVcD8Bvrzt726ZoC3f7C9r+E2pQRdMediZYUY/oWWcwP+4/nsnsWkbwpH+HD09DUwk5BsurA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZiU73NIN1lvCWdMVrKnNstqLDp7/niE9mrXFSgWiniE=;
- b=TZ+hBCZrpGY6IJ6Dn9/5DDaOja9+K+5P0G64Bj5NIWk0CjVtMwQBehF652cQ1NLAGRDJ1dV/9aOI3dFXRr+mv7P/1d0n/tly+wLP5zbKUCGqEJqGZbG7+5t6lDQQ3CLjaiFDt5YCXlRRPH1ova5r26DaPxZ1PAdttUa2gatBqUQnOkJynh+uJU9qETboxMGG4VYMdzpxO1YvlOaedIJFeGlUEdISVq6tvJA4qnRnIqhHbRVdB7dO0XTpQm4RSCpl/Vmta8PAGGm3SWuGsQHGg/jiNMwgeVawAD+KCo51L+gfRmlWBr8sr/kwD0QnX4XhDJfEhhJAR8uhOyKiPPltlA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZiU73NIN1lvCWdMVrKnNstqLDp7/niE9mrXFSgWiniE=;
- b=DYTeMV8mWsGJ8oaHGBYp/UAeGzBQZGKAgzYaAKe4/ryFIwt5i6RN5fuC05WBI3s0V8pIPpdA5CuZSvVoe78tkR+f0uhAUh7zYcsecB14a2PAsobD68ooY6PN/5l4miUlTsCajyoBx3KSqOeW0qrt6FIAOPN/ztmycCPQP6UIOBIb5HyGqQvN3XpPow76BhaZELcmFPzHIxH4psFWQSfs2Dr34q+vedTAadx2bg02h9oKmqTmk+xjSiPOPRZPjTYsFSJevCtK9SkM9Vqz0L0MKzFCy1moSltt+pgizZiytCMQZcwz/MCRFENVNtRjjq0gNcFdWcbJPv+wQMBGQfhejQ==
-Received: from DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:4ae::7)
- by DB9PR10MB6738.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:3d2::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7091.28; Fri, 15 Dec
- 2023 09:59:56 +0000
-Received: from DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::651:ac68:2cdb:49f0]) by DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::651:ac68:2cdb:49f0%4]) with mapi id 15.20.7091.028; Fri, 15 Dec 2023
- 09:59:56 +0000
-Message-ID: <DUZPR10MB8267520A4F44DA38339969A78E93A@DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM>
-Date: Fri, 15 Dec 2023 10:59:59 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Nouveau] Kernel problem with multiseat on one card - Wil be more
- than one window manager on one card
-To: Timur Tabi <ttabi@nvidia.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "bagasdotme@gmail.com" <bagasdotme@gmail.com>
-References: <AM7PR10MB39235DD53D163910E88FDB938E82A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
- <AM7PR10MB3923E07D6024434077E95EBA8E82A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
- <ZWsuiq7zrYS-pDli@archie.me>
- <655a02097e9b49c2da7a2be60d7c154a48a916f4.camel@nvidia.com>
- <AM7PR10MB39235076485E2E3905F422508E86A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
- <e046050c7e9be5d4f816d33dd1a9dd50e2de3308.camel@nvidia.com>
-Content-Language: nl
-From: Gert Vanhaerents <gert.vanhaerents@hotmail.com>
-In-Reply-To: <e046050c7e9be5d4f816d33dd1a9dd50e2de3308.camel@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [Mpof9r8j6eSeeas/Y7h5pJyqXgLjdQ3d]
-X-ClientProxiedBy: AS4P190CA0018.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:5d0::11) To DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:10:4ae::7)
-X-Microsoft-Original-Message-ID: <d0e7f742-a980-4d3e-92f6-58700907ebb4@hotmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C45E010E5D3;
+ Thu, 16 Nov 2023 13:02:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700139740; x=1731675740;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=qni4q+MCRq+nAUIb30fVBT62T2fPU22iNzyXzheWpdg=;
+ b=QolO64CJe2TCEWToxUrLxK29Vbq4OR1al+Dv5dFGWH1zo4lKZMfAcIfV
+ FuPwkYNSzt/or0oTtZMqjVYsIvREVP9VQ3gApCCT56in/lyVF4DDpNux7
+ l5aNIkJgRyVJb8w+YECRMTQMCa5o8HkyBLqhMhZb0kw1eopgACZWw/44q
+ icTe4i7d7AQIVLy4fwhWiGdxPcbg+x/CdJphtBnMnoEW6OqCHd3k7nXVk
+ u7gs8T1T1ZIG/GqaIb9UgYSRjQBP9FSzkoogSH/W48bHhrGYR2ljrusqe
+ B7TKniPK50hOeOEw5noyIc79JFR9VSgIhZvU7OIaMvlJBiULJFpOKnLjF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="388247935"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="388247935"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 05:02:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="13550045"
+Received: from jhsteyn-mobl1.ger.corp.intel.com ([10.252.40.9])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 05:02:14 -0800
+Date: Thu, 16 Nov 2023 15:02:11 +0200 (EET)
+From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Subject: Re: [PATCH v3 6/7] PCI: Split up some logic in
+ pcie_bandwidth_available() to separate function
+In-Reply-To: <20231114200755.14911-7-mario.limonciello@amd.com>
+Message-ID: <671f5c3b-fd24-7d24-c848-1ae31cea82ff@linux.intel.com>
+References: <20231114200755.14911-1-mario.limonciello@amd.com>
+ <20231114200755.14911-7-mario.limonciello@amd.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DUZPR10MB8267:EE_|DB9PR10MB6738:EE_
-X-MS-Office365-Filtering-Correlation-Id: 17e4f1ee-e102-44d4-5a14-08dbfd549703
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: sr/f25hLW2rxYoudzAdRbqIDdXlw9i6mSgn7daWrUsnOLLRCAUSKZQL8oI/VqXkeO3/fgv+P/0mAVMEyOIvoMjOBOLlppnUrUgW9dSFmEm0iUeAIjJSWH4yqjLr2t0hsYRuyGjcGoi7L8mQujHEme8N5ky0GljaFPPodsCnmvKSjaz9VzXwiEj18TN41zKqRZo2YQf2/iZt5LXdsT4ISRY0Wz1AAe5Sh9qfReam1godRjzYQczbvHuNPBY0kb2k0adyP2ETBrcO7TJ6Fhe+CWuvHz4eYhzOZ+k7MohaYsciie3CaA6+4LrzJLLJeyWjVSM2FKoekL8hNLLqLpqXcdebzWei0dT2GURbV4yNXC9B1XzQExYPqQ4BV6apu/0b/QC1jduvSoV5O00U1Si7TRou9FYndralDd55ikG0URG1esG3jWKzGixZz+BjVSpID5ufBuwHXzWvTSdm2XRpK8Bkr4GEN3HX6CgqFmijDRNiplWMhPuUQtKX4jywfU5Yl49PC/muDPes6gJB9AlSznEmL5Hz9CiUcoUqmOisFhKss6DSL5NvJhYB/WYGb+7BB
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NC9SMk42NTRDWG1XOHIyMUtSVU5GaFFxbGhUVzhsVEk2VnVjcFJpTFRFdXdh?=
- =?utf-8?B?OFlTRnFHS1JQWUs0bk1LZTJLdTdPUWFVMmx5bjNsSDRGQ3RYVlBiRHBiem5E?=
- =?utf-8?B?S0hiVktWZnN5eUYyZlZPdXF0aUJ3ZXdGVURnZVh3VWJpNkFYNXMvNFhVUDNr?=
- =?utf-8?B?VU41WTJZSkYyR2wwT1dPUHc2VWpTdFFqOHZKQ09tU3RRWml5dnpRQUdWblhX?=
- =?utf-8?B?MDYzNyt4WDRXandqcG1QdVRkUG0rRkFSajVCV0RUUGE0bGdkR1k3TVBKWmN0?=
- =?utf-8?B?N1MyclZNMFZyZC9sR1VWaExzcFdCRUVkcHhUQ0FEZm1GUzAxUjJ5L3NUNUlS?=
- =?utf-8?B?cmlDbEUyVFZkL0dKQ3lvZWlXMlFxN1pWTGFDd1VCZmZUaWNLY1FsTnlMUFFG?=
- =?utf-8?B?R0ZRUmh1VHVRanEzdnA2bGhJNERUVlBBRTlOZUY0L0V4SUhEZlh0U0RnVmg4?=
- =?utf-8?B?WW01cWRscmkyTTVaNDV1dm1NKy9tOVBiM1I5OXowYjA5aXJPWHFwbU44U0N6?=
- =?utf-8?B?eXpLNTZMMlZnQkVrbWd5VmJmdVJyL05CQUk3VDA1N0d6cjFYZnBLRGFIUjkw?=
- =?utf-8?B?RWJBdUNzSmR3cmlnWnZ4NFNZc05MVU1RcGRUeTkwV1dGVjl2dHdGZVVwemQ5?=
- =?utf-8?B?ei9zemM0WnpWc2QyMFUrbHlUd2NHQU5jM3k0QVduakMwSzRMdTZQc1diYXhu?=
- =?utf-8?B?d01SYnpNWE9CSTdUSlljeE00V21DSlIvVFF0QlJDRTBKVGtNV2w2ekxMTWRs?=
- =?utf-8?B?aVdXTWVzQ2dudzJZYTdBRU4zdUlYV3JHdXNPenlPQktRTnlXU0RiQjZBdHg1?=
- =?utf-8?B?NzZYWm1wT3dyaDc3Z0hrNWJEY3BOWU5RWHBqQ2c4WDZTZG1jcVFyczZHTGE1?=
- =?utf-8?B?NkRyRytJczdCekorWGhCNmI0MXpXYU4zQ3VlSmdlVnVzQ0dvTW1Mck5qMCtX?=
- =?utf-8?B?RE9XOVEveDRUdFhJR09QcVdEV1JITGFkOFdMM1BTY0JCRW1oaVMzdFU2SlEr?=
- =?utf-8?B?b1hDSnJSQjNZYis3Vy9ldW9nc0d5aVRRNHFSa2M2NWYrVzRBQ3Q5allzUnEw?=
- =?utf-8?B?UzRFOVNna1NlcjNFODl1MlFlQmpYWWluUVRrSWpWaVNXVi9RNjMwc3hFaFpj?=
- =?utf-8?B?SXhPKzQ0bVpPNVVXUGF0ekNjOTBuQjhmUk96TDlVNU05WGdTNUQrLzFTek9X?=
- =?utf-8?B?SWprTzYwY0hURHo3Z0FmWmhHMkptcExETnBDYnlza1FhbHRsR3M2a3ErWUph?=
- =?utf-8?B?RWtiL05ZQlYxMnFPd1NJb2tUaytrMU1ZdFVKSzZVUktMS0lsN2cxdVcvWE8r?=
- =?utf-8?B?SkVneElEM3RmY1krOW5GbWlockt1OFhEbUQra25QZkQrdm9aa3J1dW04UlZW?=
- =?utf-8?B?MExRS2xzTUV1Rkhxd0VRTzVxendQaWFDVXhuN3Y3Uk5zdUFGbEJqUlBQcERQ?=
- =?utf-8?B?MlJ0b0dyb2Mxdkh3c1FSNTAwQm03eVFGZHRWZHRDcklFV2oyQ2xvOS9IdXdE?=
- =?utf-8?B?eTl4eUlNTTNkcG9nY21ta1BoaGNIS3BIRUdKbjk0SWhIdklLVjR4SFVTOWFq?=
- =?utf-8?B?Wmk0bUhPK1YyaHUxNnE0MW5Jbnh0eGNKNlVLSWdDZFVyV2hpMm1weUMzeGlU?=
- =?utf-8?Q?H1Fz9ovoBMTkK6Sb6pDjrmQYtHVYelCYC2egaHtlkvFU=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-6b909.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: 17e4f1ee-e102-44d4-5a14-08dbfd549703
-X-MS-Exchange-CrossTenant-AuthSource: DUZPR10MB8267.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2023 09:59:55.9562 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB6738
+Content-Type: multipart/mixed; boundary="8323329-761469376-1700139739=:1886"
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,57 +57,144 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Rafael J . Wysocki" <rafael@kernel.org>,
+ "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <dri-devel@lists.freedesktop.org>,
+ =?ISO-8859-15?Q?Marek_Beh=FAn?= <kabel@kernel.org>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:ACPI" <linux-acpi@vger.kernel.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, Manivannan Sadhasivam <mani@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
+ =?ISO-8859-15?Q?Pali_Roh=E1r?= <pali@kernel.org>,
+ =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
+ "Maciej W . Rozycki" <macro@orcam.me.uk>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Op 4/12/2023 om 15:11 schreef Timur Tabi:
-> On Mon, 2023-12-04 at 09:51 +0100, Gert Vanhaerents wrote:
->> OK  i will report it to nvidia. But with the nouveau drivers it's also not
->> working. Are you sure it's not a kernel problem?
->> Because according to systemd it would be a kernel problem.  (personaly i am
->> also thinking it's a driver problem)
-> Unfortunately, it's not easy for Nouveau to debug problems with GSP-RM.
-> However, if the problem exists in the proprietary driver, then Nvidia could
-> fix it.  That would then lead to a new version of OpenRM that Nouveau could
-> use.
+--8323329-761469376-1700139739=:1886
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-I have contacted Nvidia and now i can see the outputs such like this:
+On Tue, 14 Nov 2023, Mario Limonciello wrote:
 
-─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0
-           │ [MASTER] drm:card0
-           │ 
-├─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0/card0-DVI-D-1
-           │ │ [MASTER] drm:card0-DVI-D-1
-           │ 
-├─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0/card0-HDMI-A-1
-           │ │ [MASTER] drm:card0-HDMI-A-1
-           │ 
-└─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0/card0-VGA-1
-           │   [MASTER] drm:card0-VGA-1
+> The logic to calculate bandwidth limits may be used at multiple call sites
+> so split it up into its own static function instead.
+> 
+> No intended functional changes.
+> 
+> Suggested-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+> ---
+> v2->v3:
+>  * Split from previous patch version
+> ---
+>  drivers/pci/pci.c | 60 +++++++++++++++++++++++++++--------------------
+>  1 file changed, 34 insertions(+), 26 deletions(-)
+> 
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 55bc3576a985..0ff7883cc774 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6224,6 +6224,38 @@ int pcie_set_mps(struct pci_dev *dev, int mps)
+>  }
+>  EXPORT_SYMBOL(pcie_set_mps);
+>  
+> +static u32 pcie_calc_bw_limits(struct pci_dev *dev, u32 bw,
+> +			       struct pci_dev **limiting_dev,
+> +			       enum pci_bus_speed *speed,
+> +			       enum pcie_link_width *width)
+> +{
+> +	enum pcie_link_width next_width;
+> +	enum pci_bus_speed next_speed;
+> +	u32 next_bw;
+> +	u16 lnksta;
+> +
+> +	pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &lnksta);
+> +
+> +	next_speed = pcie_link_speed[FIELD_GET(PCI_EXP_LNKSTA_CLS, lnksta)];
+> +	next_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
+> +
+> +	next_bw = next_width * PCIE_SPEED2MBS_ENC(next_speed);
+> +
+> +	/* Check if current device limits the total bandwidth */
 
-But the problem is now the same of with the Nouveau driver. When you do 
-this:
+I'd make this a function comment instead and say:
 
-loginctl attach seat1 
-/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0/card0-VGA-1
+/* Check if @dev limits the total bandwidth. */
 
-For the seat1 (the VGA d-sub output for seat1 and the other HDMI output 
-for seat0) and of course the mouse and keyboard.
+Other than that,
 
-When you do this, all the graphics outputs are on the second seat 
-(seat1) and not anymore on the first seat. So i need to move only the 
-VGA output to seat1 and not all the outputs.
+Reviewed-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 
+-- 
+ i.
 
-The problem is that linux can not start 2 or more window managers on one 
-card (even if you don't need a multiseat, but use only one mouse and 
-keyboard).
-
-So how can i fix that i can use more than one window manager on one 
-physical graphics card? (without Xephyr or something because they are to 
-outdated and works not good).
-
-I have tried with: Linux Mint, Ubuntu and Debian all the same problem.
-
-
+> +	if (!bw || next_bw <= bw) {
+> +		bw = next_bw;
+> +
+> +		if (limiting_dev)
+> +			*limiting_dev = dev;
+> +		if (speed)
+> +			*speed = next_speed;
+> +		if (width)
+> +			*width = next_width;
+> +	}
+> +
+> +	return bw;
+> +}
+> +
+>  /**
+>   * pcie_bandwidth_available - determine minimum link settings of a PCIe
+>   *			      device and its bandwidth limitation
+> @@ -6242,39 +6274,15 @@ u32 pcie_bandwidth_available(struct pci_dev *dev, struct pci_dev **limiting_dev,
+>  			     enum pci_bus_speed *speed,
+>  			     enum pcie_link_width *width)
+>  {
+> -	u16 lnksta;
+> -	enum pci_bus_speed next_speed;
+> -	enum pcie_link_width next_width;
+> -	u32 bw, next_bw;
+> +	u32 bw = 0;
+>  
+>  	if (speed)
+>  		*speed = PCI_SPEED_UNKNOWN;
+>  	if (width)
+>  		*width = PCIE_LNK_WIDTH_UNKNOWN;
+>  
+> -	bw = 0;
+> -
+>  	while (dev) {
+> -		pcie_capability_read_word(dev, PCI_EXP_LNKSTA, &lnksta);
+> -
+> -		next_speed = pcie_link_speed[FIELD_GET(PCI_EXP_LNKSTA_CLS,
+> -						       lnksta)];
+> -		next_width = FIELD_GET(PCI_EXP_LNKSTA_NLW, lnksta);
+> -
+> -		next_bw = next_width * PCIE_SPEED2MBS_ENC(next_speed);
+> -
+> -		/* Check if current device limits the total bandwidth */
+> -		if (!bw || next_bw <= bw) {
+> -			bw = next_bw;
+> -
+> -			if (limiting_dev)
+> -				*limiting_dev = dev;
+> -			if (speed)
+> -				*speed = next_speed;
+> -			if (width)
+> -				*width = next_width;
+> -		}
+> -
+> +		bw = pcie_calc_bw_limits(dev, bw, limiting_dev, speed, width);
+>  		dev = pci_upstream_bridge(dev);
+>  	}
+>  
+> 
+--8323329-761469376-1700139739=:1886--
