@@ -4,67 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 463E7C61D97
-	for <nouveau@archiver.kernel.org>; Wed, 22 Nov 2023 00:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 257D1C61D97
+	for <nouveau@archiver.kernel.org>; Wed, 22 Nov 2023 00:52:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C329C10E5AE;
-	Wed, 22 Nov 2023 00:06:57 +0000 (UTC)
-Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
- [IPv6:2607:f8b0:4864:20::434])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A6BB10E5AE;
- Wed, 22 Nov 2023 00:06:56 +0000 (UTC)
-Received: by mail-pf1-x434.google.com with SMTP id
- d2e1a72fcca58-6b7f0170d7bso5851859b3a.2; 
- Tue, 21 Nov 2023 16:06:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700611616; x=1701216416; darn=lists.freedesktop.org;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/xKwgkeAtzmkKnSz03T4DxgRKcvAVmHnZ/2Ynp93sTY=;
- b=DHBtdzGgIB8FXOYFIEAo39VYzzrm7nBKHN6YCLBFn8GeqKPcf4xDFkE9tI9JZmUjDo
- +BMuAZmT4hrtKJ0d/NwOePKRyi6hzojz+LHbZ9hBCX/zqd9hLCAuuwZFSMZAcHMVsIsS
- /Cask/InlDAJwxq7VDNZN3IuLSbz/FYuixV5T0OjMY8rRUn2MBmeFKvKp+R3x1q4u2A6
- FWHXsFqhA+XMedw1T3EB5ztRBB1lQ0FEHTfrWvFLyTutvqKaqXa4p4SfDDcY3yyZju94
- kXPc4jNUGIX2ALNueLQItZPM/AMUcE+ltwQ2jZlugm28d/tv8gzYD0il8qYPTrlicLD4
- ILOg==
+	by gabe.freedesktop.org (Postfix) with ESMTP id A543E10E5C0;
+	Wed, 22 Nov 2023 00:52:25 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 806D510E5C0
+ for <nouveau@lists.freedesktop.org>; Wed, 22 Nov 2023 00:52:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1700614343;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=7laoJg9Xp8AklvG70yxYljtwxtLOkLS57rqSL5LIl0s=;
+ b=hLNNiPXBqmNbUbO+6LMuuryYMHEW99xRjJJQ/FA2U7mesQ2d0EjXr6cdH2fwHkeGwA/X84
+ uPu5HiTKJnKYggVev74nwlL+Dn0jo5wSLeGUVKgnhJM5CHfK4oZBvSIbDaXAEFav7OgM6B
+ 8rwqFvCBuH6uz7siFRzAD/Ja6G06YQw=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-449-M-MPfDXuPCyImRcNBNBW4Q-1; Tue, 21 Nov 2023 19:52:20 -0500
+X-MC-Unique: M-MPfDXuPCyImRcNBNBW4Q-1
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-421b4bc2a80so75064271cf.3
+ for <nouveau@lists.freedesktop.org>; Tue, 21 Nov 2023 16:52:20 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700611616; x=1701216416;
- h=content-transfer-encoding:subject:from:cc:to:content-language
- :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
- :cc:subject:date:message-id:reply-to;
- bh=/xKwgkeAtzmkKnSz03T4DxgRKcvAVmHnZ/2Ynp93sTY=;
- b=AgSEMyLZaCfBSC9KcUqcpGrkJaviGwqbO3IACq0kSp4XlAte5fF4xlqEFEnP/AlHpn
- mwASD/dKjSbgvro9XkZrAc4KxdeXin+oWubIMFIa6a4PiGfwCUyG72cw/biK6WGCB4Yk
- pKkc6B4eEI9LQhbTwuBGZ+PPehTRTmz56887+lcTgfAoqeV3dAWrxn49Z6RB21WnXaYq
- NdTUJSrgtW33QGp37+u2gYu0l/RU5DXl77if/u9k6SDxO4SMx5ECo5w3eH5qzPj/7fuA
- cZRVfhQ+t6uOWJZ1K1JgK9lACDbarj3KC5T+JEtebk7V/uI5d4sYJq1VskmqYW64kVNe
- XvRg==
-X-Gm-Message-State: AOJu0Yxe+IquWAzkJq0hhUGng3KXMTCMErDXweEsiySHAuxDLkVkqsOj
- WV0M9xee5TqvkQuADYZxUb2/5jQgLC2k5A==
-X-Google-Smtp-Source: AGHT+IGFvSNUofC0ROKmiE0mKp1xMZ8d51fhDYVhtQKX8ZN/1XWxm8S+k3uuwHWRUMjbRvHDmBVm9g==
-X-Received: by 2002:a05:6a20:431d:b0:188:f3d:ea35 with SMTP id
- h29-20020a056a20431d00b001880f3dea35mr764739pzk.50.1700611615823; 
- Tue, 21 Nov 2023 16:06:55 -0800 (PST)
-Received: from [192.168.0.106] ([103.131.18.64])
- by smtp.gmail.com with ESMTPSA id
- z14-20020aa7888e000000b006cb95c0fff4sm4424630pfe.71.2023.11.21.16.06.52
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 21 Nov 2023 16:06:55 -0800 (PST)
-Message-ID: <9057d7de-f2e0-44ba-bec7-8b0861b2a850@gmail.com>
-Date: Wed, 22 Nov 2023 07:06:50 +0700
+ d=1e100.net; s=20230601; t=1700614340; x=1701219140;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=7laoJg9Xp8AklvG70yxYljtwxtLOkLS57rqSL5LIl0s=;
+ b=U2LdXE/XKSQMfZOyTNE7VzOgcxFxlLvIyQxU0uz2IPSgKWqnyavcGFmp4DSjfnycT5
+ PvWnV486nXW8rM7BOi0NRTJLRhOAhCv6Tb8z7eYnovFs0pjCTwuCpLodoa5CLyI90ZHA
+ 2KLkSj3WKnlCFGyL7n+sMPfhJGifLC4yUlL3cJC1wo0AJ5dvVq3dL6NMFKYsPDTNHNTH
+ Ezpzy19xYon/91cVIFxql+P1i8tNUz/NNRqYcvpOf+dUeR9tXYUsIHL8103kT9+AtFTZ
+ /gqqlx5eIivyyOfHDKHiL9R2JFF2cz5sABtRI4GYV8q60k/jKSEOIuAo7Gg2wSeCr1xp
+ lTUw==
+X-Gm-Message-State: AOJu0YwltvwDpHDtaHYhTFG2OY3L2ucOdxsSh92hKHNY/73vWIyku4H6
+ UDeuT+qarLTZ1wJhRI6gRojbqXS7nOTKmgDdT0+hKJxkVxyJMHOrOPajZHk0Gw0mHM19Ui1F7K2
+ nN6LINez0azK5vugonalPr/5HkqCQX3D4QNYb4l40xg==
+X-Received: by 2002:ac8:4cdc:0:b0:423:7d72:6c8 with SMTP id
+ l28-20020ac84cdc000000b004237d7206c8mr180289qtv.53.1700614339674; 
+ Tue, 21 Nov 2023 16:52:19 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHTvd1khL9EBXRoBQIOsb7atvt3hejstP2DbWO8f/Mp9BhkMoN3CSLE5BQdAObd9F78nXh+J7DVGx/k1IMYLLg=
+X-Received: by 2002:ac8:4cdc:0:b0:423:7d72:6c8 with SMTP id
+ l28-20020ac84cdc000000b004237d7206c8mr180279qtv.53.1700614339375; Tue, 21 Nov
+ 2023 16:52:19 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Regressions <regressions@lists.linux.dev>,
- Linux Memory Management List <linux-mm@kvack.org>,
- Linux DRI Development <dri-devel@lists.freedesktop.org>,
- Linux Nouveau <nouveau@lists.freedesktop.org>
-From: Bagas Sanjaya <bagasdotme@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: [Nouveau] Fwd: Kernel 6.6.1 hangs on "loading initial ramdisk"
+References: <20231121235300.2406522-1-ttabi@nvidia.com>
+In-Reply-To: <20231121235300.2406522-1-ttabi@nvidia.com>
+From: David Airlie <airlied@redhat.com>
+Date: Wed, 22 Nov 2023 10:52:08 +1000
+Message-ID: <CAMwc25oK9xXoNW0z8A7=O+tRqUvcxAKy4rfUAzAOjOgESVhj2Q@mail.gmail.com>
+To: Timur Tabi <ttabi@nvidia.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Nouveau] [PATCH] nouveau/gsp: document some aspects of GSP-RM
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,36 +76,313 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Christian Brauner <brauner@kernel.org>, River <shibedrill1@gmail.com>,
- Randy Dunlap <rdunlap@infradead.org>,
- Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>
+Cc: nouveau@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+On Wed, Nov 22, 2023 at 9:53=E2=80=AFAM Timur Tabi <ttabi@nvidia.com> wrote=
+:
+>
+> Document a few aspects of communication with GSP-RM.  These comments
+> are derived from notes made during early development of GSP-RM
+> support in Nouveau, but were not included in the initial patch set.
+>
+> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+> ---
+>  .../common/shared/msgq/inc/msgq/msgq_priv.h   | 79 +++++++++++++++--
+>  .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 86 ++++++++++++++++++-
+>  2 files changed, 154 insertions(+), 11 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/include/nvrm/535.113.01/common/share=
+d/msgq/inc/msgq/msgq_priv.h b/drivers/gpu/drm/nouveau/include/nvrm/535.113.=
+01/common/shared/msgq/inc/msgq/msgq_priv.h
+> index 5a2f273d95c8..1e94bf087b23 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvrm/535.113.01/common/shared/msgq/=
+inc/msgq/msgq_priv.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvrm/535.113.01/common/shared/msgq/=
+inc/msgq/msgq_priv.h
+> @@ -26,21 +26,82 @@
+>   * DEALINGS IN THE SOFTWARE.
+>   */
+>
+> +#define GSP_MESSAGE_COMMAND_QUEUE_SIZE 0x40000
+> +#define GSP_MESSAGE_STATUS_QUEUE_SIZE  0x40000
+> +
+> +/**
+> + * msgqTxHeader -- TX queue data structure
+> + * @version: the version of this structure, must be 0
+> + * @size: the size of the entire queue, including this header
+> + * @msgSize: the padded size of queue element, must be power-of-2, 16 is
+> + *         minimum
 
-I notice a regression report on Bugzilla [1]. Quoting from it:
+I don't think this is true anymore, I think 4k is the minimum size
+since one of the 535 series.
 
-> After upgrading from 6.5.9 to 6.6.1 on my Dell Latitude E6420 (Intel i5-2520M) with EndeavourOS, the boot process would hang at "loading initial ramdisk". The issue is present on the 6.6.1 release of both Linux and Linux-zen, but not the 6.5.9 release, which makes me think this is somehow upstream in the kernel, rather than to do with packaging. My current workaround is using the Linux LTS kernel.
-> 
-> I have been unable to consistently reproduce this bug. Between 50 and 30 percent of the time, the "loading initial ramdisk" will display, the disk activity indicator will turn off briefly and then resume blinking, and then the kernel boots as expected. The other 50 to 70 percent of the time, the boot stops at "loading initial ramdisk" and the disk activity indicator turns off, and does not resume blinking. The disk activity light is constantly flashing during normal system operation, so I know it's not secretly booting but not updating the display. I haven't been able to replicate this issue in QEMU. I have seen similar bugs that have been solved by disabling IOMMU, but this has not had any effect. Neither has disabling graphics drivers and modesetting. I have been able to reproduce it while using Nouveau, so I don't believe it has to do with Nvidia's proprietary drivers.
-> 
-> Examining dmesg and journalctl, there doesn't appear to be ANY logs from the failed boots. I don't believe the kernel even is started on these failed boots. Enabling GRUB debug messages (linux,loader,init,fs,device,disk,partition) shows that the hang occurs after GRUB attempts to start the loaded image- it's able to load the image into memory, but the boot stalls after "Starting image" with a hex address (presumably the start addr of the kernel).  
-> 
-> I've been trying to compile the kernel myself to see if I can solve the issue, or at least aid in reproduceability, but this is not easy or fast to do on a 2012 i5 processor. I'll update if I can successfully recompile the kernel and if it yields any information.  
-> 
-> Please let me know if I should provide any additional information. This is my first time filing a bug here.
 
-See Bugzilla for the full thread and attached grub output.
+> + * @msgCount: the number of elements in this queue
+> + * @writePtr: head index of this queue
+> + * @flags: 1 =3D swap the RX pointers
+> + * @rxHdrOff: offset of readPtr in this structure
+> + * @entryOff: offset of beginning of queue (msgqRxHeader), relative to
+> + *          beginning of this structure
+> + *
+> + * The command queue is a queue of RPCs that are sent from the driver to=
+ the
+> + * GSP.  The status queue is a queue of messages/responses from the GSP =
+to the
+> + * driver.  Although the driver allocates memory for both queues (inside=
+ the
+> + * same memory block), the command queue is owned by the driver and the =
+status
+> + * queue is owned by the GSP.  In addition, the two headers must not sha=
+re the
+> + * same 4K page.
+> + *
+> + * Unfortunately, depsite the fact that the queue size is a field in thi=
+s
 
-Anyway, I'm adding this regression to regzbot:
+^ typo
 
-#regzbot introduced: v6.5..v6.6 https://bugzilla.kernel.org/show_bug.cgi?id=218173
-#regzbot title: initramfs loading hang on nouveau system (Dell Latitude E6420)
+> + * structure, the GSP has a hard-coded expectation of the sizes.  So the
+> + * command queue size must be GSP_MESSAGE_COMMAND_QUEUE_SIZE and the sta=
+tus
+> + * queue size must be GSP_MESSAGE_STATUS_QUEUE_SIZE.
+> + *
+> + * Each queue is prefixed with this data structure.  The idea is that a =
+queue
+> + * and its header are written to only by their owner.  That is, only the
+> + * driver writes to the command queue and command queue header, and only=
+ the
+> + * GSP writes to the status (receive) queue and its header.
+> + *
+> + * This is enforced by the concept of "swapping" the RX pointers.  This =
+is
+> + * why the 'flags' field must be set to 1.  'rxHdrOff' is how the GSP kn=
+ows
+> + * where the where the tail pointer of its status queue.
+> + *
+> + * When the driver writes a new RPC to the command queue, it updates wri=
+tePtr.
+> + * When it reads a new message from the status queue, it updates readPtr=
+.  In
+> + * this way, the GSP knows when a new command is in the queue (it polls
+> + * writePtr) and it knows how much free space is in the status queue (it
+> + * checks readPtr).  The driver never cares about how much free space is=
+ in
+> + * the status queue.
+> + *
+> + * As usual, producers write to the head pointer, and consumers read fro=
+m the
+> + * tail pointer.  When head =3D=3D tail, the queue is empty.
+> + *
+> + * So to summarize:
+> + * command.writePtr =3D head of command queue
+> + * command.readPtr =3D tail of status queue
+> + * status.writePtr =3D head of status queue
+> + * status.readPtr =3D tail of command queue
+> + */
+>  typedef struct
+>  {
+> -    NvU32 version;   // queue version
+> -    NvU32 size;      // bytes, page aligned
+> -    NvU32 msgSize;   // entry size, bytes, must be power-of-2, 16 is min=
+imum
+> -    NvU32 msgCount;  // number of entries in queue
+> -    NvU32 writePtr;  // message id of next slot
+> -    NvU32 flags;     // if set it means "i want to swap RX"
+> -    NvU32 rxHdrOff;  // Offset of msgqRxHeader from start of backing sto=
+re.
+> -    NvU32 entryOff;  // Offset of entries from start of backing store.
+> +       NvU32 version;
+> +       NvU32 size;
+> +       NvU32 msgSize;
+> +       NvU32 msgCount;
+> +       NvU32 writePtr;
+> +       NvU32 flags;
+> +       NvU32 rxHdrOff;
+> +       NvU32 entryOff;
+>  } msgqTxHeader;
+>
+> +/**
+> + * msgqRxHeader - RX queue data structure
+> + * @readPtr: tail index of the other queue
+> + *
+> + * Although this is a separate struct, it could easily be merged into
+> + * msgqTxHeader.  msgqTxHeader.rxHdrOff is simply the offset of readPtr
+> + * from the beginning of msgqTxHeader.
+> + */
+>  typedef struct
+>  {
+> -    NvU32 readPtr; // message id of last message read
+> +       NvU32 readPtr;
+>  } msgqRxHeader;
+>
+>  #endif
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu=
+/drm/nouveau/nvkm/subdev/gsp/r535.c
+> index dc44f5c7833f..265c0a413ea8 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
+> @@ -1379,6 +1379,13 @@ r535_gsp_msg_post_event(void *priv, u32 fn, void *=
+repv, u32 repc)
+>         return 0;
+>  }
+>
+> +/**
+> + * r535_gsp_msg_run_cpu_sequencer() -- process I/O commands from the GSP
+> + *
+> + * The GSP sequencer is a list of I/O commands that the GSP can send to
+> + * the driver to perform for various purposes.  The most common usage is=
+ to
+> + * perform a special mid-initialization reset.
+> + */
+>  static int
+>  r535_gsp_msg_run_cpu_sequencer(void *priv, u32 fn, void *repv, u32 repc)
+>  {
+> @@ -1628,8 +1635,8 @@ r535_gsp_shared_init(struct nvkm_gsp *gsp)
+>         } *cmdq, *msgq;
+>         int ret, i;
+>
+> -       gsp->shm.cmdq.size =3D 0x40000;
+> -       gsp->shm.msgq.size =3D 0x40000;
+> +       gsp->shm.cmdq.size =3D GSP_MESSAGE_COMMAND_QUEUE_SIZE;
+> +       gsp->shm.msgq.size =3D GSP_MESSAGE_STATUS_QUEUE_SIZE;
+>
+>         gsp->shm.ptes.nr  =3D (gsp->shm.cmdq.size + gsp->shm.msgq.size) >=
+> GSP_PAGE_SHIFT;
+>         gsp->shm.ptes.nr +=3D DIV_ROUND_UP(gsp->shm.ptes.nr * sizeof(u64)=
+, GSP_PAGE_SIZE);
+> @@ -1718,6 +1725,23 @@ r535_gsp_libos_id8(const char *name)
+>         return id;
+>  }
+>
+> +/**
+> + * create_pte_array() - creates a PTE array of a physically contiguous b=
+uffer
+> + * @ptes: pointer to the array
+> + * @addr: base address of physically contiguous buffer (GSP_PAGE_SIZE al=
+igned)
+> + * @size: size of the buffer
+> + *
+> + * GSP-RM sometimes expects physically-contiguous buffers to have an arr=
+ay of
+> + * "PTEs" for each page in that buffer.  Although in theory that allows =
+for
+> + * the buffer to be physically discontiguous, GSP-RM does not currently
+> + * support that.
+> + *
+> + * In this case, the PTEs are DMA addresses of each page of the buffer. =
+ Since
+> + * the buffer is physically contiguous, calculating all the PTEs is simp=
+le
+> + * math.
+> + *
+> + * See memdescGetPhysAddrsForGpu()
+> + */
+>  static void create_pte_array(u64 *ptes, dma_addr_t addr, size_t size)
+>  {
+>         unsigned int num_pages =3D DIV_ROUND_UP_ULL(size, GSP_PAGE_SIZE);
+> @@ -1727,6 +1751,35 @@ static void create_pte_array(u64 *ptes, dma_addr_t=
+ addr, size_t size)
+>                 ptes[i] =3D (u64)addr + (i << GSP_PAGE_SHIFT);
+>  }
+>
+> +/**
+> + * r535_gsp_libos_init() -- create the libos arguments structure
+> + *
+> + * The logging buffers are byte queues that contain encoded printf-like
+> + * messages from GSP-RM.  They need to be decoded by a special applicati=
+on
+> + * that can parse the buffers.
+> + *
+> + * The 'loginit' buffer contains logs from early GSP-RM init and
+> + * exception dumps.  The 'logrm' buffer contains the subsequent logs. Bo=
+th are
+> + * written to directly by GSP-RM and can be any multiple of GSP_PAGE_SIZ=
+E.
+> + *
+> + * The physical address map for the log buffer is stored in the buffer
+> + * itself, starting with offset 1. Offset 0 contains the "put" pointer.
+> + *
+> + * The GSP only understands 4K pages (GSP_PAGE_SIZE), so even if the ker=
+nel is
+> + * configured for a larger page size (e.g. 64K pages), we need to give
+> + * the GSP an array of 4K pages. Fortunately, since the buffer is
+> + * physically contiguous, it's simple math to calculate the addresses.
+> + *
+> + * The buffers must be a multiple of GSP_PAGE_SIZE.  GSP-RM also current=
+ly
+> + * ignores the @kind field for LOGINIT, LOGINTR, and LOGRM, but expects =
+the
+> + * buffers to be physically contiguous anyway.
+> + *
+> + * The memory allocated for the arguments must remain until the GSP send=
+s the
+> + * init_done RPC.
+> + *
+> + * See _kgspInitLibosLoggingStructures (allocates memory for buffers)
+> + * See kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] array)
+> + */
+>  static int
+>  r535_gsp_libos_init(struct nvkm_gsp *gsp)
+>  {
+> @@ -1837,6 +1890,35 @@ nvkm_gsp_radix3_dtor(struct nvkm_gsp *gsp, struct =
+nvkm_gsp_radix3 *rx3)
+>                 nvkm_gsp_mem_dtor(gsp, &rx3->mem[i]);
+>  }
+>
+> +/**
+> + * nvkm_gsp_radix3_sg - build a radix3 table from a S/G list
+> + *
+> + * The GSP uses a three-level page table, called radix3, to map the firm=
+ware.
+> + * Each 64-bit "pointer" in the table is either the bus address of an en=
+try in
+> + * the next table (for levels 0 and 1) or the bus address of the next pa=
+ge in
+> + * the GSP firmware image itself.
+> + *
+> + * Level 0 contains a single entry in one page that points to the first =
+page
+> + * of level 1.
+> + *
+> + * Level 1, since it's also only one page in size, contains up to 512 en=
+tries,
+> + * one for each page in Level 2.
+> + *
+> + * Level 2 can be up to 512 pages in size, and each of those entries poi=
+nts to
+> + * the next page of the firmware image.  Since there can be up to 512*51=
+2
+> + * pages, that limits the size of the firmware to 512*512*GSP_PAGE_SIZE =
+=3D 1GB.
+> + *
+> + * Internally, the GSP has its window into system memory, but the base
+> + * physical address of the aperture is not 0.  In fact, it varies depend=
+ing on
+> + * the GPU architure.  Since the GPU is a PCI device, this window is acc=
+essed
 
-Thanks.
+^ typo
 
-[1]: https://bugzilla.kernel.org/show_bug.cgi?id=218173
+> + * via DMA and is therefore bound by IOMMU translation.  The end result =
+is
+> + * that GSP-RM must translate the bus addresses in the table to GSP phys=
+ical
+> + * addresses.  All this should happen transparently.
+> + *
+> + * Returns 0 on success, or negative error code
+> + *
+> + * See kgspCreateRadix3_IMPL
+> + */
+>  static int
+>  nvkm_gsp_radix3_sg(struct nvkm_device *device, struct sg_table *sgt, u64=
+ size,
+>
 
--- 
-An old man doll... just what I always wanted! - Clara
+Otherwise seems fine, with those fixed feel free to resend and add
+
+a Reviewed-by: Dave Airlie <airlied@redhat.com> tag.
+
+Dave.
+
