@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBE5AC61D97
-	for <nouveau@archiver.kernel.org>; Wed, 22 Nov 2023 15:32:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D086C61D9B
+	for <nouveau@archiver.kernel.org>; Wed, 22 Nov 2023 15:34:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 587B810E097;
-	Wed, 22 Nov 2023 15:32:47 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org
- [IPv6:2604:1380:40e1:4800::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B733710E097;
- Wed, 22 Nov 2023 15:32:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3CDD10E659;
+	Wed, 22 Nov 2023 15:34:09 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8053A10E655;
+ Wed, 22 Nov 2023 15:34:04 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id E375ACE0EAC;
- Wed, 22 Nov 2023 15:32:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C714C433C9;
- Wed, 22 Nov 2023 15:32:37 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id AF23E61E4A;
+ Wed, 22 Nov 2023 15:34:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0120C433CC;
+ Wed, 22 Nov 2023 15:34:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1700667160;
+ s=k20201202; t=1700667243;
  bh=EpjLjyqXy9J2BjjoAI8hwuINf00k9PhkqMusJqG7GiY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=uDLshkhAVrCXSAjQEQK9dqtoIfDOLZlNdmc4ncfvg5odd3dzC/ndS5F/LIMhd54SD
- 6/kPBSlIwjKFpzHOBLqT7anE6gcFtRGUAikY2KZk2C+ANb0sTuIW3FrFal7j0BTm1k
- 9bv7onuuxXujl/67o5MAhzAYGUgMAHvrQ3hC/gL1uDuvEwy4uQ9yA7o2RUgYzgWUv9
- hL8dHo9FBMvh9y9vPBwPjMCbKRI4FDUjRKORHZJ3MYbh/ZpIFS/qkj+7fT5TSyEO3m
- wHzI4IqqhisR0f6InPMUbi9PrSPN8qh1QBlYnTGohvbv53lmay8US67hFB+27z8Wcv
- R7GRsVHXT9txA==
+ b=pP1V0iYcOqB0NbFIrZyg7hFrMsMaUVk9ESK4jg6fDo04hIgn61E4KovZbDQTgsGwa
+ 9HGBILLTFOjvCrQhzW87SXJICZvgYJFqCw9MHDrAR/DJlj1RR6T2j6RM4Ov5YLs53P
+ 4hQ0JSnmyvcFYEGu9GdRirXOx8BGYolQyU5RKZXZ51Cowt98ZlTbYZ4T/XiFwDxk+Z
+ 8A+wVsRe7PK4GwiosfgWyuG2//4l40XtU9Pis6SRhXOE5dJfz+ggLiKRJ1ilNiluSR
+ 8Cet3d5QRLbGpX5vZvj2dF6eKOwozOLN97HXnVi6dMTNDlOWaMwShNAFVxTqb5xV/Z
+ 29LAtACBTkIHA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Date: Wed, 22 Nov 2023 10:31:36 -0500
-Message-ID: <20231122153212.852040-7-sashal@kernel.org>
+Date: Wed, 22 Nov 2023 10:33:08 -0500
+Message-ID: <20231122153340.852434-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.42.0
-In-Reply-To: <20231122153212.852040-1-sashal@kernel.org>
-References: <20231122153212.852040-1-sashal@kernel.org>
+In-Reply-To: <20231122153340.852434-1-sashal@kernel.org>
+References: <20231122153340.852434-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.2
+X-stable-base: Linux 6.5.12
 Content-Transfer-Encoding: 8bit
-Subject: [Nouveau] [PATCH AUTOSEL 6.6 07/17] nouveau: use an rwlock for the
+Subject: [Nouveau] [PATCH AUTOSEL 6.5 06/15] nouveau: use an rwlock for the
  event lock.
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
