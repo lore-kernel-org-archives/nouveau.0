@@ -4,48 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D167AC4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15520C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52DE210E4DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 233CA10E4D9;
 	Tue, 16 Jan 2024 11:47:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 946B110E2D9;
- Mon,  6 Nov 2023 12:27:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699273670; x=1730809670;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=PoyeCM8Yua9sK4/tet7vyzbQ1ABy9+K2hq4FnkLDYA4=;
- b=cKnP2KpFLLMJJKrdz+6QZytwKMn7Zf0kw/UbFcFJDKNfkcJDrCHQUv8Z
- zeZfual7aBC1ow7GaclAfJ4zFlMCwPvKrzCMw4Fpw9UaMhUluvcACziBP
- CQ0qt3tAeKik9dPQ7mch0J4MSdcguQdg/9axARS9vh9tcQCArRpCs5MUm
- dFhso6FLRYc6STibv21SzOmwOhQdTv9Z71iLsm4xg98NlwLZaUigbkvTV
- qmvhEUOk0IZ51y/eEKDD1LOz8x6iGOjmxBaWcJoC1BKff3NK4iEKailO3
- UkceOIdot4kOOSdeszaaX7aVNgm5aOAcz99wa1a2JCT0hxEp9cPqkgLuk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="368600082"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="368600082"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:27:49 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="765937251"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="765937251"
-Received: from rmstoi-mobl.ger.corp.intel.com ([10.251.216.76])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 04:27:42 -0800
-Date: Mon, 6 Nov 2023 14:27:39 +0200 (EET)
-From: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Subject: Re: [PATCH v2 2/9] drm/radeon: Switch from
- pci_is_thunderbolt_attached() to dev_is_removable()
-In-Reply-To: <20231103190758.82911-3-mario.limonciello@amd.com>
-Message-ID: <71a39188-2caf-58a-1094-4773e88c111b@linux.intel.com>
-References: <20231103190758.82911-1-mario.limonciello@amd.com>
- <20231103190758.82911-3-mario.limonciello@amd.com>
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F97810E0C6;
+ Sun, 26 Nov 2023 14:57:37 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-1cfa7be5650so4568585ad.0; 
+ Sun, 26 Nov 2023 06:57:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1701010657; x=1701615457; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ds6jz8XiqF0ADftYJN+hp07WDKExgCoZRBZ98zeNhK8=;
+ b=g/RvzruNJCaCAwwDmpiKOCxii/oz3clpC0xFUQC+b/8A9/q9nDhNa59vweD+gIpfGZ
+ Plmxm0bbdxhi91JZ7VoigRZMsFgs08ZidXv5isAE3QQeMjAK4UxK8VHXhm1ryhn2nYAd
+ k32NckLsK9ZGagBghTUdt5h0w6nUxoHejtqK9KkBseUVR5kJSmHzKwpwmI2bdk2aH2bk
+ btJqIgzIoO8vTSDbn2o4Cy/Z900Li4wJ2JcYg0vK/hkvZlQc4XDV9l9KBf59Qz83h1B2
+ y+gLj4siYgk16jHvLCOaI2/6AfRp9rWGLRRBgTRK8JNBdC5E0TCbpst0ueYw65lzwzdj
+ DkqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701010657; x=1701615457;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ds6jz8XiqF0ADftYJN+hp07WDKExgCoZRBZ98zeNhK8=;
+ b=EFj+u1TDofpnpKLk80S++9+hMAKDJcH0NTnWHUfrq+84J9he53/14b8wX/3hH3CJ3B
+ Es1nGY8ndHEnm8q+xVY5Xsq9IL5bVNkHFIQFmVRqBXjE6L259/YaZ/BxmVua0zKn+maX
+ 9b7KMNQJY27JqFPxpgOdf5ww/0qeKdofF45XXSY4yKVSJQQjk4ETF0y91LOWXs6KcegK
+ I/Oa9W/YMoqOlSUmp8aUungogvhMNeMEiDqh1mOIY3AeP2s3XAODSRI9pc2KlxqqB+KM
+ m9WQloFHrBgwyzIS6OZQdp0rVHi5faz7v1qbOV3Mqn48BxedlcZvUcbRC6ShbU9nWIhB
+ 8JHw==
+X-Gm-Message-State: AOJu0YxzrQ6DTEEcO2yolZHoMpU6jz1JK02hlIwJsFUFrRkn5B30jd8s
+ HuKJN2IFq7pSDbw4MaITa3w=
+X-Google-Smtp-Source: AGHT+IHfTmf4escnImpLTzKE4gnb2lDqdXKrQ5LQmUVS/atAbTu2PTrA6K046ATTWXWsoyAbE4pjZQ==
+X-Received: by 2002:a17:903:183:b0:1ce:5b6e:bae1 with SMTP id
+ z3-20020a170903018300b001ce5b6ebae1mr10929057plg.3.1701010657137; 
+ Sun, 26 Nov 2023 06:57:37 -0800 (PST)
+Received: from abhinav.. ([103.75.161.210]) by smtp.gmail.com with ESMTPSA id
+ t8-20020a170902bc4800b001cc131c65besm6470070plz.168.2023.11.26.06.57.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 26 Nov 2023 06:57:36 -0800 (PST)
+From: Abhinav Singh <singhabhinav9051571833@gmail.com>
+To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Subject: [PATCH] driver: gpu: Fix warning directly dereferencing a rcu pointer
+Date: Sun, 26 Nov 2023 20:27:23 +0530
+Message-Id: <20231126145723.388162-1-singhabhinav9051571833@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,80 +70,69 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: "open list:THUNDERBOLT DRIVER" <linux-usb@vger.kernel.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>,
- "open list:X86 PLATFORM DRIVERS" <platform-driver-x86@vger.kernel.org>,
- Andreas Noever <andreas.noever@gmail.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?ISO-8859-15?Q?Marek_Beh=FAn?= <kabel@kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>,
- Michael Jamet <michael.jamet@intel.com>, Mark Gross <markgross@kernel.org>,
- Hans de Goede <hdegoede@redhat.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, Yehezkel Bernat <YehezkelShB@gmail.com>,
- =?ISO-8859-15?Q?Pali_Roh=E1r?= <pali@kernel.org>,
- =?ISO-8859-15?Q?Christian_K=F6nig?= <christian.koenig@amd.com>,
- "Maciej W . Rozycki" <macro@orcam.me.uk>
+Cc: nouveau@lists.freedesktop.org,
+ linux-kernel-mentees@lists.linuxfoundation.org,
+ dri-devel@lists.freedesktop.org,
+ Abhinav Singh <singhabhinav9051571833@gmail.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 3 Nov 2023, Mario Limonciello wrote:
+Fix a sparse warning with this message
+"warning:dereference of noderef expression". In this context it means we
+are dereferencing a __rcu tagged pointer directly.
 
-> pci_is_thunderbolt_attached() only works for Intel TBT devices. Switch to
-> using dev_is_removable() to be able to detect USB4 devices as well.
+We should not be directly dereferencing a rcu pointer. To get a normal
+(non __rcu tagged pointer) from a __rcu tagged pointer we are using the
+function unrcu_pointer(...). The non __rcu tagged pointer then can be
+dereferenced just like a normal pointer.
 
-Same here as with 1/9.
+I tested with qemu with this command 
+qemu-system-x86_64 \
+	-m 2G \
+	-smp 2 \
+	-kernel bzImage \
+	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
+	-drive file=bullseye.img,format=raw \
+	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
+	-net nic,model=e1000 \
+	-enable-kvm \
+	-nographic \
+	-pidfile vm.pid \
+	2>&1 | tee vm.log
+with lockdep enabled.
 
+Signed-off-by: Abhinav Singh <singhabhinav9051571833@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nv10_fence.c | 2 +-
+ drivers/gpu/drm/nouveau/nv84_fence.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
+index c6a0db5b9e21..845b64c079ed 100644
+--- a/drivers/gpu/drm/nouveau/nv10_fence.c
++++ b/drivers/gpu/drm/nouveau/nv10_fence.c
+@@ -32,7 +32,7 @@
+ int
+ nv10_fence_emit(struct nouveau_fence *fence)
+ {
+-	struct nvif_push *push = fence->channel->chan.push;
++	struct nvif_push *push = unrcu_pointer(fence->channel)->chan.push;
+ 	int ret = PUSH_WAIT(push, 2);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV06E, SET_REFERENCE, fence->base.seqno);
+diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+index 812b8c62eeba..d42e72e23dec 100644
+--- a/drivers/gpu/drm/nouveau/nv84_fence.c
++++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+@@ -85,7 +85,7 @@ nv84_fence_chid(struct nouveau_channel *chan)
+ static int
+ nv84_fence_emit(struct nouveau_fence *fence)
+ {
+-	struct nouveau_channel *chan = fence->channel;
++	struct nouveau_channel *chan = unrcu_pointer(fence->channel);
+ 	struct nv84_fence_chan *fctx = chan->fence;
+ 	u64 addr = fctx->vma->addr + nv84_fence_chid(chan) * 16;
+ 
 -- 
- i.
+2.39.2
 
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
->  drivers/gpu/drm/radeon/radeon_device.c | 4 ++--
->  drivers/gpu/drm/radeon/radeon_kms.c    | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
-> index afbb3a80c0c6..ba0ca0694d18 100644
-> --- a/drivers/gpu/drm/radeon/radeon_device.c
-> +++ b/drivers/gpu/drm/radeon/radeon_device.c
-> @@ -1429,7 +1429,7 @@ int radeon_device_init(struct radeon_device *rdev,
->  
->  	if (rdev->flags & RADEON_IS_PX)
->  		runtime = true;
-> -	if (!pci_is_thunderbolt_attached(rdev->pdev))
-> +	if (!dev_is_removable(&rdev->pdev->dev))
->  		vga_switcheroo_register_client(rdev->pdev,
->  					       &radeon_switcheroo_ops, runtime);
->  	if (runtime)
-> @@ -1519,7 +1519,7 @@ void radeon_device_fini(struct radeon_device *rdev)
->  	radeon_bo_evict_vram(rdev);
->  	radeon_audio_component_fini(rdev);
->  	radeon_fini(rdev);
-> -	if (!pci_is_thunderbolt_attached(rdev->pdev))
-> +	if (!dev_is_removable(&rdev->pdev->dev))
->  		vga_switcheroo_unregister_client(rdev->pdev);
->  	if (rdev->flags & RADEON_IS_PX)
->  		vga_switcheroo_fini_domain_pm_ops(rdev->dev);
-> diff --git a/drivers/gpu/drm/radeon/radeon_kms.c b/drivers/gpu/drm/radeon/radeon_kms.c
-> index a16590c6247f..ead912a58ab8 100644
-> --- a/drivers/gpu/drm/radeon/radeon_kms.c
-> +++ b/drivers/gpu/drm/radeon/radeon_kms.c
-> @@ -138,7 +138,7 @@ int radeon_driver_load_kms(struct drm_device *dev, unsigned long flags)
->  	if ((radeon_runtime_pm != 0) &&
->  	    radeon_has_atpx() &&
->  	    ((flags & RADEON_IS_IGP) == 0) &&
-> -	    !pci_is_thunderbolt_attached(pdev))
-> +	    !dev_is_removable(&pdev->dev))
->  		flags |= RADEON_IS_PX;
->  
->  	/* radeon_device_init should report only fatal error
-> 
