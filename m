@@ -4,64 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0528C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D2EBC4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75FEE10E49A;
-	Tue, 16 Jan 2024 11:17:13 +0000 (UTC)
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
- [209.85.128.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 301BB10E46B;
- Tue, 16 Jan 2024 11:17:12 +0000 (UTC)
-Received: by mail-wm1-f48.google.com with SMTP id
- 5b1f17b1804b1-40e86bd23d7so906075e9.1; 
- Tue, 16 Jan 2024 03:17:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1705403770; x=1706008570; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=bV4EzhRkZw5eNG7ZovPTr2GfxWsv5MIBKsQhvD/ibb8=;
- b=icUcO6vpdL2+eqz0iqbGc6rBVAlR3YlwFpQAelRx9mLVBxfV5qxUfii27FWsOpECRn
- Pxd9QB9wlmldt9EaIHCNXxjkCJ2LAVc7mA/bZxEArmIBk28jOQxsnnb7OyHZHGKqAVz/
- u7KpXqpL5ppPBIORzogfKweVj64WtoWRqfO/4DKNzlz9U1hEteAvNcz3y3o/b29lcEJI
- hKyBpLJZQEwzlese55INc8iqu4zdATsb1Gt9A0taCkGVL6uNiArRkexCwQSE6e40jkfQ
- SCNezaxFtrw+0FjctNtr5yMWUEdvsmsx1m9tAb77zT4u7EkjOWsBlAqnJQJMK3SRFTFH
- hqJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705403770; x=1706008570;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=bV4EzhRkZw5eNG7ZovPTr2GfxWsv5MIBKsQhvD/ibb8=;
- b=MXlk/xK9TMNSqMRhPts3F6XC/QKGAX4ovMeZUZtXhcYJyb8x4MYQM762H26l8Fv9Ig
- wXV9vXct0TxmOidyaG3CJnFNJ8dpttw/li98Mzv0KlqhZ1y6LVsXVBa9vk/AlT3xe3xP
- sqmFQdFS2cUGpkNS0v8eVDmLdZ3UZ5U+meJvLAtQIiDQv3vq0LMGMU2P3mL2kxQfPnoq
- rNHb3ldpS2L0D+DdfloSG3aByOVHjSOVcXNeVQH8rW0yLyMKq3L1+YyKQ6ExfggSlAPI
- 2rQavWVyyYfxytZkN8e2YtV0XoitDOKiBi+l7vwiEECtJiQ8r+xB2MYtopNTj0lxHWQ4
- Y2DQ==
-X-Gm-Message-State: AOJu0Yxaqo5cHzjURcP/J4nSD6pGieH6Ggt1+U65egadjyiCqWkqUNfr
- yEQI+UMdCIjnX3nJnI76pnc=
-X-Google-Smtp-Source: AGHT+IHM9MvVRGvEUj/8Da942kzvMhJ/jHKDIdyczZcz2JU+V7Py2yNESnBCAoWPKM+3iTd1BzZ+GA==
-X-Received: by 2002:a05:600c:3093:b0:40e:4303:df0 with SMTP id
- g19-20020a05600c309300b0040e43030df0mr2089782wmn.258.1705403770493; 
- Tue, 16 Jan 2024 03:16:10 -0800 (PST)
-Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
- [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
- n18-20020a05600c501200b0040e77ce8768sm7102765wmr.16.2024.01.16.03.16.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 16 Jan 2024 03:16:10 -0800 (PST)
-From: Colin Ian King <colin.i.king@gmail.com>
-To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: [PATCH][next] drm/nouveau/fifo/gk104: remove redundant variable ret
-Date: Tue, 16 Jan 2024 11:16:09 +0000
-Message-Id: <20240116111609.2258675-1-colin.i.king@gmail.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C83410E32F;
+	Tue, 16 Jan 2024 11:47:30 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC5B10E1CA;
+ Wed, 29 Nov 2023 12:55:24 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id C2512615B9;
+ Wed, 29 Nov 2023 12:55:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E359C433C8;
+ Wed, 29 Nov 2023 12:55:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1701262523;
+ bh=EjcKHBcdIRPeS1Jr3Xl1RByJy2jdZRnaeHgtLca5xvw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=B7LzFukE5dLDnjFimKjS9MzsDlyjw2TystsfEqKZQoF3X0ypDR27ShYPrtl8a4hDA
+ NJpjxQGGyxZWEsXW8iuNcZhKohbcA/aqSnTm0M4FaNA2iGO+NYSrUn6Py4Nri/ePlp
+ 6q+xpqSCX/D4UrdrxiaqNtzCTiHavix0EiBQCRhmLqMpgR0ZYgs/JzAEoWb+9i5JTB
+ Oe+1+75v5eXMmJzgFHrdDl81TfuAg+2NbIX93el81U7iGTeg6IV4SGN5q4PuHW91Kd
+ ubXJDdo+ZPM5cWSGL7AsbHeYdmv+aYCsKzrJkAOks6DDY5k/SnNe6msZhjyp96wYb4
+ GEiHLnbD5cmcA==
+Date: Wed, 29 Nov 2023 13:55:04 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
+Message-ID: <ZWc0qPWzNWPkL8vt@lpieralisi>
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,40 +50,129 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
+ patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
+ Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
+ Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
+ linux-mips@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The variable ret is being assigned a value but it isn't being
-read afterwards. The assignment is redundant and so ret can be
-removed.
+On Tue, Nov 28, 2023 at 08:48:06PM -0400, Jason Gunthorpe wrote:
+> The arm-smmu driver can COMPILE_TEST on x86, so expand this to also
+> enable the IORT code so it can be COMPILE_TEST'd too.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>  drivers/acpi/Kconfig        | 2 --
+>  drivers/acpi/Makefile       | 2 +-
+>  drivers/acpi/arm64/Kconfig  | 1 +
+>  drivers/acpi/arm64/Makefile | 2 +-
+>  drivers/iommu/Kconfig       | 1 +
+>  5 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
+> index f819e760ff195a..3b7f77b227d13a 100644
+> --- a/drivers/acpi/Kconfig
+> +++ b/drivers/acpi/Kconfig
+> @@ -541,9 +541,7 @@ config ACPI_PFRUT
+>  	  To compile the drivers as modules, choose M here:
+>  	  the modules will be called pfr_update and pfr_telemetry.
+>  
+> -if ARM64
+>  source "drivers/acpi/arm64/Kconfig"
+> -endif
+>  
+>  config ACPI_PPTT
+>  	bool
+> diff --git a/drivers/acpi/Makefile b/drivers/acpi/Makefile
+> index eaa09bf52f1760..4e77ae37b80726 100644
+> --- a/drivers/acpi/Makefile
+> +++ b/drivers/acpi/Makefile
+> @@ -127,7 +127,7 @@ obj-y				+= pmic/
+>  video-objs			+= acpi_video.o video_detect.o
+>  obj-y				+= dptf/
+>  
+> -obj-$(CONFIG_ARM64)		+= arm64/
+> +obj-y				+= arm64/
+>  
+>  obj-$(CONFIG_ACPI_VIOT)		+= viot.o
+>  
+> diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
+> index b3ed6212244c1e..537d49d8ace69e 100644
+> --- a/drivers/acpi/arm64/Kconfig
+> +++ b/drivers/acpi/arm64/Kconfig
+> @@ -11,6 +11,7 @@ config ACPI_GTDT
+>  
+>  config ACPI_AGDI
+>  	bool "Arm Generic Diagnostic Dump and Reset Device Interface"
+> +	depends on ARM64
+>  	depends on ARM_SDE_INTERFACE
+>  	help
+>  	  Arm Generic Diagnostic Dump and Reset Device Interface (AGDI) is
+> diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
+> index 143debc1ba4a9d..71d0e635599390 100644
+> --- a/drivers/acpi/arm64/Makefile
+> +++ b/drivers/acpi/arm64/Makefile
+> @@ -4,4 +4,4 @@ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
+>  obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
+>  obj-$(CONFIG_ACPI_APMT) 	+= apmt.o
+>  obj-$(CONFIG_ARM_AMBA)		+= amba.o
+> -obj-y				+= dma.o init.o
+> +obj-$(CONFIG_ARM64)		+= dma.o init.o
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 7673bb82945b6c..309378e76a9bc9 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -318,6 +318,7 @@ config ARM_SMMU
+>  	select IOMMU_API
+>  	select IOMMU_IO_PGTABLE_LPAE
+>  	select ARM_DMA_USE_IOMMU if ARM
+> +	select ACPI_IORT if ACPI
+>  	help
+>  	  Support for implementations of the ARM System MMU architecture
+>  	  versions 1 and 2.
+> -- 
 
-Cleans up clang scan build warning:
-warning: Although the value stored to 'ret' is used in the enclosing
-expression, the value is never actually read from 'ret'
-[deadcode.DeadStores]
+I don't think it should be done this way. Is the goal compile testing
+IORT code ? If so, why are we forcing it through the SMMU (only because
+it can be compile tested while eg SMMUv3 driver can't ?) menu entry ?
 
-Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
----
- drivers/gpu/drm/nouveau/nvif/fifo.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+This looks a bit artificial (and it is unclear from the Kconfig
+file why only that driver selects IORT, it looks like eg the SMMUv3
+does not have the same dependency - there is also the SMMUv3 perf
+driver to consider).
 
-diff --git a/drivers/gpu/drm/nouveau/nvif/fifo.c b/drivers/gpu/drm/nouveau/nvif/fifo.c
-index a463289962b2..e96de14ce87e 100644
---- a/drivers/gpu/drm/nouveau/nvif/fifo.c
-+++ b/drivers/gpu/drm/nouveau/nvif/fifo.c
-@@ -73,9 +73,9 @@ u64
- nvif_fifo_runlist(struct nvif_device *device, u64 engine)
- {
- 	u64 runm = 0;
--	int ret, i;
-+	int i;
- 
--	if ((ret = nvif_fifo_runlists(device)))
-+	if (nvif_fifo_runlists(device))
- 		return runm;
- 
- 	for (i = 0; i < device->runlists; i++) {
--- 
-2.39.2
+Maybe we can move IORT code into drivers/acpi and add a silent config
+option there with a dependency on ARM64 || COMPILE_TEST.
 
+Don't know but at least it is clearer. As for the benefits of compile
+testing IORT code - yes the previous patch is a warning to fix but
+I am not so sure about the actual benefits.
+
+Thanks,
+Lorenzo
