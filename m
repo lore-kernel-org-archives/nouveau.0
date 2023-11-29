@@ -4,47 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3FA5C47258
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AE00C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6F9110E4E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A181A10E4E2;
 	Tue, 16 Jan 2024 11:47:38 +0000 (UTC)
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E71CA10E4EF
- for <nouveau@lists.freedesktop.org>; Wed, 15 Nov 2023 06:19:24 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4SVY0R2gGGz9sjL;
- Wed, 15 Nov 2023 07:19:19 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=owenh.net; s=MBO0001; 
- t=1700029159;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=0kqsb78qN/a3iPAlXT5iJSYiTM+E0/Epcwz/TQhJRiA=;
- b=UPy5l5wNUBq0+JjXKb61Qnhcr7gqwmG4Nhh5apUKGyyYSIRfSScd3OaRPRZMC6EUgNDxHk
- 43wSOdEinsWdWAsnbbyUaLH4LyZsiaHITgmwWqfwuGp2DDOFh/w12aFtkanpKa+zQtd+72
- Izc8OMtSahq1c1Z0avEvOfpViBOdNlpSzwn7hX2OCraYBOSZZs8voJXHDcAsI1Bpazy6hN
- 2cIez+g52P7zZaR3g8A+OVfcaY5JxnzjKXBpuZ8k6ztyCke3FhxxOIHcWlGHfWdPRZp6DF
- aI1RCajc96jRP6whnzpUFZuuaEliYx0mOleDbU8tJ8eNHOoBpT5FHRXe0CULyA==
-Message-ID: <6b7a71b4-c8a2-46f4-a995-0c63e7745ca3@owenh.net>
-Date: Wed, 15 Nov 2023 00:19:07 -0600
-MIME-Version: 1.0
-Subject: Re: [REGRESSION]: nouveau: Asynchronous wait on fence
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- stable@vger.kernel.org
-References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
- <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
-Content-Language: en-US
-From: "Owen T. Heisler" <writer@owenh.net>
-In-Reply-To: <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 4SVY0R2gGGz9sjL
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
+ [IPv6:2607:f8b0:4864:20::114a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33B9B10E336
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:09:08 +0000 (UTC)
+Received: by mail-yw1-x114a.google.com with SMTP id
+ 00721157ae682-5cef61289fdso63994047b3.1
+ for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:09:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1701238147; x=1701842947;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=KtrAPaslMvSrZFznq3cpY4nyS514mOCdxUhLK1bsTtI=;
+ b=fZFuFMGTHHI+2S3GkZRdB7djsxMSSARAGmJ4f/x5HADSOOrfnNL6N67bmgpQhWFZCA
+ swq+Zx1zYMIlhQEa3OwqT2mSbUPzuNxSZkdPIVKqA2PJ86jV3YHRvWa7zyJoiwXXzZAM
+ NVUU6A0aN1DogD2azFxUv4vTS0IKnCfvMy0aYIDvtTYpjHwOBJlrOu0/e/1EYr7rp11L
+ cbsACTMlIWEBzxIPuji9npGm1ASUS2YnU0b8YnP7eicCBRdJyj4NcsBZWhhKqJ0fh40r
+ J4FzYbQm5LOu+ilUCYP2JJefo364zrPFsB7vuZ4SrMaZbtO7qo2D3afM1Jav2w1B6J2P
+ su3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701238147; x=1701842947;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=KtrAPaslMvSrZFznq3cpY4nyS514mOCdxUhLK1bsTtI=;
+ b=cfp7GVx0cyGzymxxFhq02acslWCO82m3U1G3iEXH3+WAcwcznHTMiLSiwqxFhWi6Q5
+ 1fhL6OvQMa5uvqcpP/xmzWuYea3kf+X/siDs6IdAT4NTIXXqMG1CIZ2h7xlFFTHdXQMZ
+ ciir+H8BZM86YjUMYAoVforpFN4IJeWlhE+uJm3pRQcvoRxFrl2SNpfTJsYf+LPbDNhm
+ sG0xaKUx+aMe5BtHcc5uKT1oe0tC2aybmh6yxWPkk2qm8Eurs6V7GXI34Jr3C9Qoo3uQ
+ IR0TVEuynid7Mh5YmaoLja51DhwEUV66+LNHYr18a7s+h4LHWbhtpUiHO50dgmnvjHWt
+ n5eA==
+X-Gm-Message-State: AOJu0YzXJM0SaN/JYIyLn1BA4j4HtoK1o5rbgcSinDOzDClhlDDJdvM1
+ +PmxaoweiMlcosihiql7QkJ/iBqJskXd
+X-Google-Smtp-Source: AGHT+IErKpR33sSuZDb458AGzbTTTl+rmkeUZNxvoUYyius6/ySrcsirHg/Fcs0NR9CFHutX0EyL3PHfE3h2
+X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
+ (user=moritzf job=sendgmr) by 2002:a25:3741:0:b0:db5:2a4:aef1 with
+ SMTP id
+ e62-20020a253741000000b00db502a4aef1mr107973yba.13.1701238147290; Tue, 28 Nov
+ 2023 22:09:07 -0800 (PST)
+Date: Wed, 29 Nov 2023 06:09:06 +0000
+In-Reply-To: <7-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Mime-Version: 1.0
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <7-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Message-ID: <20231129060906.qti7uztsk2u7ehlp@google.com>
+Subject: Re: [PATCH 07/10] acpi: Do not return struct iommu_ops from
+ acpi_iommu_configure_id()
+From: Moritz Fischer <moritzf@google.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -57,40 +70,145 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
+ patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
+ Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
+ Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
+ linux-mips@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 10/31/23 04:18, Linux regression tracking (Thorsten Leemhuis) wrote:
-> On 28.10.23 04:46, Owen T. Heisler wrote:
->> #regzbot introduced: d386a4b54607cf6f76e23815c2c9a3abc1d66882
->> #regzbot link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/180
->>
->> ## Problem
->>
->> 1. Connect external display to DVI port on dock and run X with both
->>     displays in use.
->> 2. Wait hours or days.
->> 3. Suddenly the secondary Nvidia-connected display turns off and X stops
->>     responding to keyboard/mouse input. In *some* cases it is possible to
->>     switch to a virtual TTY with Ctrl+Alt+Fn and log in there.
+On Tue, Nov 28, 2023 at 08:48:03PM -0400, Jason Gunthorpe wrote:
+> Nothing needs this pointer. Return a normal error code with the usual
+> IOMMU semantic that ENODEV means 'there is no IOMMU driver'.
 
-> You thus might want to check if the problem occurs with 6.6 -- and
-> ideally also check if reverting the culprit there fixes things for you.
+> Acked-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+> Tested-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>   drivers/acpi/scan.c | 29 +++++++++++++++++------------
+>   1 file changed, 17 insertions(+), 12 deletions(-)
 
-Hi Thorsten and others,
+> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+> index 444a0b3c72f2d8..340ba720c72129 100644
+> --- a/drivers/acpi/scan.c
+> +++ b/drivers/acpi/scan.c
+> @@ -1562,8 +1562,7 @@ static inline const struct iommu_ops  
+> *acpi_iommu_fwspec_ops(struct device *dev)
+>   	return fwspec ? fwspec->ops : NULL;
+>   }
 
-The problem also occurs with v6.6. Here is a decoded kernel log from an 
-untainted kernel:
+> -static const struct iommu_ops *acpi_iommu_configure_id(struct device  
+> *dev,
+> -						       const u32 *id_in)
+> +static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
+>   {
+>   	int err;
+>   	const struct iommu_ops *ops;
+> @@ -1577,7 +1576,7 @@ static const struct iommu_ops  
+> *acpi_iommu_configure_id(struct device *dev,
+>   	ops = acpi_iommu_fwspec_ops(dev);
+>   	if (ops) {
+>   		mutex_unlock(&iommu_probe_device_lock);
+> -		return ops;
+> +		return 0;
+>   	}
 
-https://gitlab.freedesktop.org/drm/nouveau/uploads/c120faf09da46f9c74006df9f1d14442/async-wait-on-fence-180.log
+>   	err = iort_iommu_configure_id(dev, id_in);
+> @@ -1594,12 +1593,14 @@ static const struct iommu_ops  
+> *acpi_iommu_configure_id(struct device *dev,
 
-The culprit commit does not revert cleanly on v6.6. I have not yet 
-attempted to resolve the conflicts.
+>   	/* Ignore all other errors apart from EPROBE_DEFER */
+>   	if (err == -EPROBE_DEFER) {
+> -		return ERR_PTR(err);
+> +		return err;
+>   	} else if (err) {
+>   		dev_dbg(dev, "Adding to IOMMU failed: %d\n", err);
+> -		return NULL;
+> +		return -ENODEV;
+>   	}
+> -	return acpi_iommu_fwspec_ops(dev);
+> +	if (!acpi_iommu_fwspec_ops(dev))
+> +		return -ENODEV;
+> +	return 0;
+>   }
 
-I have also updated the bug description at
-<https://gitlab.freedesktop.org/drm/nouveau/-/issues/180>.
+>   #else /* !CONFIG_IOMMU_API */
+> @@ -1611,10 +1612,9 @@ int acpi_iommu_fwspec_init(struct device *dev, u32  
+> id,
+>   	return -ENODEV;
+>   }
 
-Thanks,
-Owen
+> -static const struct iommu_ops *acpi_iommu_configure_id(struct device  
+> *dev,
+> -						       const u32 *id_in)
+> +static int acpi_iommu_configure_id(struct device *dev, const u32 *id_in)
+>   {
+> -	return NULL;
+> +	return -ENODEV;
+>   }
+
+>   #endif /* !CONFIG_IOMMU_API */
+> @@ -1628,7 +1628,7 @@ static const struct iommu_ops  
+> *acpi_iommu_configure_id(struct device *dev,
+>   int acpi_dma_configure_id(struct device *dev, enum dev_dma_attr attr,
+>   			  const u32 *input_id)
+>   {
+> -	const struct iommu_ops *iommu;
+> +	int ret;
+
+>   	if (attr == DEV_DMA_NOT_SUPPORTED) {
+>   		set_dma_ops(dev, &dma_dummy_ops);
+> @@ -1637,10 +1637,15 @@ int acpi_dma_configure_id(struct device *dev,  
+> enum dev_dma_attr attr,
+
+>   	acpi_arch_dma_setup(dev);
+
+> -	iommu = acpi_iommu_configure_id(dev, input_id);
+> -	if (PTR_ERR(iommu) == -EPROBE_DEFER)
+> +	ret = acpi_iommu_configure_id(dev, input_id);
+> +	if (ret == -EPROBE_DEFER)
+>   		return -EPROBE_DEFER;
+
+> +	/*
+> +	 * Historically this routine doesn't fail driver probing due to errors
+> +	 * in acpi_iommu_configure_id()
+> +	 */
+> +
+>   	arch_setup_dma_ops(dev, 0, U64_MAX, attr == DEV_DMA_COHERENT);
+
+>   	return 0;
+> --
+> 2.42.0
+
+
+Reviewed-by: Moritz Fischer <moritzf@google.com>
+
+Cheers,
+Moritz
