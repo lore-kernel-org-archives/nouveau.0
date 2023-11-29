@@ -4,46 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D433BC47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22992C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1CE010E51D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADE2B10E51C;
 	Tue, 16 Jan 2024 11:47:41 +0000 (UTC)
-X-Greylist: delayed 401 seconds by postgrey-1.36 at gabe;
- Thu, 21 Dec 2023 10:50:32 UTC
-Received: from forward203a.mail.yandex.net (forward203a.mail.yandex.net
- [IPv6:2a02:6b8:c0e:500:1:45:d181:d203])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3513010E696;
- Thu, 21 Dec 2023 10:50:32 +0000 (UTC)
-Received: from forward101a.mail.yandex.net (forward101a.mail.yandex.net
- [IPv6:2a02:6b8:c0e:500:1:45:d181:d101])
- by forward203a.mail.yandex.net (Yandex) with ESMTP id ABA616B1CF;
- Thu, 21 Dec 2023 13:43:53 +0300 (MSK)
-Received: from mail-nwsmtp-smtp-production-main-39.vla.yp-c.yandex.net
- (mail-nwsmtp-smtp-production-main-39.vla.yp-c.yandex.net
- [IPv6:2a02:6b8:c1d:3e29:0:640:6566:0])
- by forward101a.mail.yandex.net (Yandex) with ESMTP id 2052A608FC;
- Thu, 21 Dec 2023 13:43:48 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-39.vla.yp-c.yandex.net
- (smtp/Yandex) with ESMTPSA id lhLioBTTsqM0-Z4CLrQXm; 
- Thu, 21 Dec 2023 13:43:47 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex.ru; s=mail;
- t=1703155427; bh=KxttoY911M9pQ6nQTQMh2QMpx7SWhFqshPKl0r8C8w4=;
- h=Message-ID:Date:Cc:Subject:To:From;
- b=EQWEIWkfhP4quQgbPKMu9QrPVVOWh7KeMiBk7EgCwXCIe7jbesrzQJhNxAGndYdif
- vAMVx4g/T8OZAKOJkzejRGZJFe+oMZ2s/+Z6kaxF9tBBuAnz4dYp2g51NsUgTR+7FH
- FVTzCmTG392M7ZJY8pqB1DsTKL6/l98L7E1e2H8Q=
-Authentication-Results: mail-nwsmtp-smtp-production-main-39.vla.yp-c.yandex.net;
- dkim=pass header.i=@yandex.ru
-From: Dmitry Antipov <dmantipov@yandex.ru>
-To: David Airlie <airlied@gmail.com>
-Subject: [PATCH] drm/nouveau: svm: fix kvcalloc() arguments order
-Date: Thu, 21 Dec 2023 13:40:49 +0300
-Message-ID: <20231221104051.23680-1-dmantipov@yandex.ru>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
+ [IPv6:2607:f8b0:4864:20::114a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B245210E608
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:20:37 +0000 (UTC)
+Received: by mail-yw1-x114a.google.com with SMTP id
+ 00721157ae682-5c5daf2baccso84930967b3.3
+ for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:20:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1701238837; x=1701843637;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=0+OWUPjfBbVNUCejaH4Zx1SnJx7h3HvWotJzN/ystxs=;
+ b=XJV/jmxnQG7QTf+ctrWeU10+4yDNYmzO1moCBV3gGx+H/YV00ByEqpUHeUbJjj0Mak
+ ACwYVSCiqPJam62Y+oJu25BBlZkO9xeT0tsT0GLm4sTkVRH1RmiE59EBXxico52qw9lj
+ 4ukSLnRpz33vhgYh1k7Wc2rHQMuKp4gp9yoyNayC9Y+Ez1dypeaLuX7Y9JfXFAv3fTLX
+ Mzii0sLnniwvXBk9V+QVZLulP3Tw0GGuOk0f9IdKcJAY3mEycazimOuw2K69RncKgQ0s
+ tx6fGoIZjZEVQOp6E+/H3uvNwwO9RSUXeZ8Kp0QBsDTz6VwzPScRFsaLfwuYndATuNpS
+ 43pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701238837; x=1701843637;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0+OWUPjfBbVNUCejaH4Zx1SnJx7h3HvWotJzN/ystxs=;
+ b=Gd4wmxkA8XArGprT7sXXNuFHsjX1y49Ldq5mqrDl1Q15qagceXI+ZeipJKT2kMC0Uq
+ J2HjtDG7O/vjElsgnWG+bXvM9tAQi2yYScA8F54/AbvjWW03D1KPe3ACYiNNkUUOusZN
+ wAHiEbczYG25kj+Pfx6BgEk8BRVDZ0CWHgO4pSkoj/TGsnIqY0ruYNqROB+QhinbuanZ
+ GuzLw4KP2NocRP/nugAERGqio3m892tOh9FYAh1hNs9cMoy0mMzQuQxaDaPIhhkjx15+
+ +UxVNgt/1HBe3fOR0G3ROq6mRaC5wgimRwV/cT5I8adFXEVFU4TZvX3KwyPU7CODvTUv
+ JbsQ==
+X-Gm-Message-State: AOJu0YxSFtrB5AX16TDeGeOBfx7J6F29SQSduLNdjPNzHxQs4HOD1gpS
+ eE+Bk6zt5w7sWmdk8YR2nY46pARTqD96
+X-Google-Smtp-Source: AGHT+IGl2m8o4vcxyKfaevYjBuf0ZzzfYYiBjYjYyoamKSyXXxyRdZkkwSrexsSNRUrkDVXuH7e+Nb5/Bf9p
+X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
+ (user=moritzf job=sendgmr) by 2002:a05:690c:4041:b0:5ce:550:685b
+ with SMTP id
+ ga1-20020a05690c404100b005ce0550685bmr480488ywb.5.1701238836860; Tue, 28 Nov
+ 2023 22:20:36 -0800 (PST)
+Date: Wed, 29 Nov 2023 06:20:36 +0000
+In-Reply-To: <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Mime-Version: 1.0
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Message-ID: <20231129062036.urdezihvds2pkuyo@google.com>
+Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
+From: Moritz Fischer <moritzf@google.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -56,43 +69,120 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Dmitry Antipov <dmantipov@yandex.ru>,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- dri-devel@lists.freedesktop.org
+Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
+ patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
+ Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
+ Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
+ linux-mips@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-When compiling with gcc version 14.0.0 20231220 (experimental)
-and W=1, I've noticed the following warning:
+On Tue, Nov 28, 2023 at 08:48:06PM -0400, Jason Gunthorpe wrote:
+> The arm-smmu driver can COMPILE_TEST on x86, so expand this to also
+> enable the IORT code so it can be COMPILE_TEST'd too.
 
-drivers/gpu/drm/nouveau/nouveau_svm.c: In function 'nouveau_svm_fault_buffer_ctor':
-drivers/gpu/drm/nouveau/nouveau_svm.c:1014:40: warning: 'kvcalloc' sizes specified with
-'sizeof' in the earlier argument and not in the later argument [-Wcalloc-transposed-args]
- 1014 |         buffer->fault = kvcalloc(sizeof(*buffer->fault), buffer->entries, GFP_KERNEL);
-      |                                        ^
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>   drivers/acpi/Kconfig        | 2 --
+>   drivers/acpi/Makefile       | 2 +-
+>   drivers/acpi/arm64/Kconfig  | 1 +
+>   drivers/acpi/arm64/Makefile | 2 +-
+>   drivers/iommu/Kconfig       | 1 +
+>   5 files changed, 4 insertions(+), 4 deletions(-)
 
-Since 'n' and 'size' arguments of 'kvcalloc()' are multiplied to
-calculate the final size, their actual order doesn't affect the
-result and so this is not a bug. But it's still worth to fix it.
+> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
+> index f819e760ff195a..3b7f77b227d13a 100644
+> --- a/drivers/acpi/Kconfig
+> +++ b/drivers/acpi/Kconfig
+> @@ -541,9 +541,7 @@ config ACPI_PFRUT
+>   	  To compile the drivers as modules, choose M here:
+>   	  the modules will be called pfr_update and pfr_telemetry.
 
-Signed-off-by: Dmitry Antipov <dmantipov@yandex.ru>
----
- drivers/gpu/drm/nouveau/nouveau_svm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> -if ARM64
+>   source "drivers/acpi/arm64/Kconfig"
+> -endif
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouveau/nouveau_svm.c
-index cc03e0c22ff3..5e4565c5011a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-@@ -1011,7 +1011,7 @@ nouveau_svm_fault_buffer_ctor(struct nouveau_svm *svm, s32 oclass, int id)
- 	if (ret)
- 		return ret;
- 
--	buffer->fault = kvcalloc(sizeof(*buffer->fault), buffer->entries, GFP_KERNEL);
-+	buffer->fault = kvcalloc(buffer->entries, sizeof(*buffer->fault), GFP_KERNEL);
- 	if (!buffer->fault)
- 		return -ENOMEM;
- 
--- 
-2.43.0
+>   config ACPI_PPTT
+>   	bool
+> diff --git a/drivers/acpi/Makefile b/drivers/acpi/Makefile
+> index eaa09bf52f1760..4e77ae37b80726 100644
+> --- a/drivers/acpi/Makefile
+> +++ b/drivers/acpi/Makefile
+> @@ -127,7 +127,7 @@ obj-y				+= pmic/
+>   video-objs			+= acpi_video.o video_detect.o
+>   obj-y				+= dptf/
 
+> -obj-$(CONFIG_ARM64)		+= arm64/
+> +obj-y				+= arm64/
+
+>   obj-$(CONFIG_ACPI_VIOT)		+= viot.o
+
+> diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
+> index b3ed6212244c1e..537d49d8ace69e 100644
+> --- a/drivers/acpi/arm64/Kconfig
+> +++ b/drivers/acpi/arm64/Kconfig
+> @@ -11,6 +11,7 @@ config ACPI_GTDT
+
+>   config ACPI_AGDI
+>   	bool "Arm Generic Diagnostic Dump and Reset Device Interface"
+> +	depends on ARM64
+>   	depends on ARM_SDE_INTERFACE
+>   	help
+>   	  Arm Generic Diagnostic Dump and Reset Device Interface (AGDI) is
+> diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
+> index 143debc1ba4a9d..71d0e635599390 100644
+> --- a/drivers/acpi/arm64/Makefile
+> +++ b/drivers/acpi/arm64/Makefile
+> @@ -4,4 +4,4 @@ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
+>   obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
+>   obj-$(CONFIG_ACPI_APMT) 	+= apmt.o
+>   obj-$(CONFIG_ARM_AMBA)		+= amba.o
+> -obj-y				+= dma.o init.o
+> +obj-$(CONFIG_ARM64)		+= dma.o init.o
+> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
+> index 7673bb82945b6c..309378e76a9bc9 100644
+> --- a/drivers/iommu/Kconfig
+> +++ b/drivers/iommu/Kconfig
+> @@ -318,6 +318,7 @@ config ARM_SMMU
+>   	select IOMMU_API
+>   	select IOMMU_IO_PGTABLE_LPAE
+>   	select ARM_DMA_USE_IOMMU if ARM
+> +	select ACPI_IORT if ACPI
+>   	help
+>   	  Support for implementations of the ARM System MMU architecture
+>   	  versions 1 and 2.
+> --
+> 2.42.0
+
+
+Reviewed-by: Moritz Fischer <moritzf@google.com>
+
+Ok, now the previous patch makes sense :)
+
+Cheers,
+Moritz
