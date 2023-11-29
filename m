@@ -4,92 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78ED8C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39D56C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F2B10E4FD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99DCB10E502;
 	Tue, 16 Jan 2024 11:47:39 +0000 (UTC)
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com
- (mail-db5eur02olkn2028.outbound.protection.outlook.com [40.92.50.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3BBD10E6E9;
- Thu, 16 Nov 2023 20:52:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LSMMK2LpiCYIlwfEAolno/MlYPT6breerFpLbViMji27mXHJKtlVqiH7J/xkitBIv8D7aCsWpgzKsRWcAzoSZFXje7DfAHefBdSYP3LVdlDOyhYrVSX3jV4i6fH0zEvlEGXvqbrmtJU4B7MnwM73j+72Zs+JEdFzHemHAJgSXJCO2O+N5uwZiJFXlvMU6q7R/mZeZKrAHuXcX0bg2NYsjSc85wi7OXkHQ7+cSR0ij7cc77E5s7eu9r/LzAWEd2sEtfU+NWXPhTKTA41z5RCvD22xfrMTe30j8ikUPPo8dPUryDxSvlin42aOjB6ho10FXt9QKYhYmKsjnF537+j5xQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XQNshLlt0GdrtbGrvbEjdZvpIZtXhwVa1R42K7SEs30=;
- b=RrtOU6GcZHM9OduetJHhgGoBgwQ+lDULV1nALIdHlD+WNjRF2nPEjDhmIIQcGk4B/KbI87ct1NLuyjGEOxyj6TpGqQZcuk2P97ClBMZY9TgZwdXRhafHG2fxr59JVJLgXAAkTlBhsnVuiyKbfJOtjmvSnxPj7Tmky1yXhU6TEsutYliVqLJo/YsWT5kYA4NPqOySu6CyS78naLE/sDOxFjeb1iVq01l+7YXR6ym/tkgyFZAmph3ZkzHvDsgC6HnTwHrcSOrH2aAYYAqcItmbabMBg9qLE4gz9mA8sA5aCS7KcwW6htzcVzy64c3ySV7mZocRsKZ/eYh2RQPh7uhqcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XQNshLlt0GdrtbGrvbEjdZvpIZtXhwVa1R42K7SEs30=;
- b=hFAiJBMAcv87j+USEMjQx7947odItX4rfz0YDzm9ykq4d9BRtR5PE/KuqFiufgs5wJf7Xu3qrXTD/GEkLe/kWkhH0X1CDurLiCvl48Sq3I+0dDbIqJpm5rZuE2ceXQMTDgcQoeXgTC6oe18KK3lV2jRDR13Y0nG81KJVtYpbPPXJORMKbPVxFjicRPt/q9xYK4Uubv1BOxFsBn11+UIWxKT+4JwPDpvcLzIAAhdXJQ/7aNd7juZbBN+4Z7cOkMvijgbvNR6UdA5NW8qC23PvyV6sdyT7VfidYOkuUFAsAgPifMhqqojaRIzPEmb4zyiVDo8fBh7VSX0982s3dG5hkQ==
-Received: from GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:83::20)
- by GVXPR10MB8059.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:111::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Thu, 16 Nov
- 2023 20:52:28 +0000
-Received: from GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::6c45:bfdf:a384:5450]) by GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::6c45:bfdf:a384:5450%7]) with mapi id 15.20.7002.021; Thu, 16 Nov 2023
- 20:52:28 +0000
-From: Yuran Pereira <yuran.pereira@hotmail.com>
-To: nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau: Removes unnecessary args check in
- nouveau_uvmm_sm_prepare
-Date: Fri, 17 Nov 2023 02:22:00 +0530
-Message-ID: <GV1PR10MB65637F4BAABFE2D8E261E1DCE8B0A@GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TMN: [2Bib8ajI9sDOFvRIql6hWPrHGcUfuJBD]
-X-ClientProxiedBy: JN2P275CA0014.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:3::26)
- To GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:150:83::20)
-X-Microsoft-Original-Message-ID: <20231116205200.105928-1-yuran.pereira@hotmail.com>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV1PR10MB6563:EE_|GVXPR10MB8059:EE_
-X-MS-Office365-Filtering-Correlation-Id: e856e520-e34f-4b02-bbf9-08dbe6e5f1e2
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RBRw7d7RSzUQ+TL56OyqMdDZdMo9uHzAdgHgOJwHfRNPMR8ww9idT99gz8eysMVFt+rRUeoLcnoQCJPN++1nTBqVMULllU2bEQXkArvyNeiOr0yC7dczjTCMat/I2Umvq3d3t8OfuZBVX8c0//baZyEBDNs4D2bodgZ0MTGHR+mZuVSiz8noEUhHyuIwfoNMIrna1DGhoE1QZI2kacQ8NRRZZklMcNHVMZJPIqJ1srt+8hmMevZk35PzUfxL2zfdATpviuzRtcoYTROqH4rYcDmp3l/HlfnskTlI10/gFziM+qIw3q5OkZlEYANu7MQSZsSN+tOvGDZwqfAWtxU+mLrUkiVvLO03PJsnFSTgTkg+oSpLOykyWSVghMuZQR/C17cH9ICzXZgIngNsqy79qbZon9juwKqU+A7qWOsrqSdzzQJpta+Gz+KRheWXwiQARNpgE7vgXLbOFF85YNb+4Ko7Do2VUN98SJ1lGHdaorRZxTOe0Ztc+ib2lKtWlB5eW6xg21geAqwQos4rqEoOhelhVqr8FVHnAex2ssFzHHOnqHhPqoGEfvL5HJqYVwmEhxJVagp0XM8b9mrHmwgTT5UQoxP9ZSEfzcwLD4aNvbo=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PDVrgFeOfY6fiXnfuCCUJ+SCC3J2CdLX1sT0xrgTWw7vw6HcMp/VT8kTK4s3?=
- =?us-ascii?Q?1dM5GMp1uK6qHhzm2RD+IHEt4sFCDDE5D9d3boxCv564zJsdAWpzT/rC1BYv?=
- =?us-ascii?Q?V1iBj2o5mYN75gcvbfXQUjEcJZzZDLArxa2WZqs4WhvW9TzndKTUQjHiPaMU?=
- =?us-ascii?Q?Y2xo17tiwXy+QW5l/lbKRDw8HsBOCt4ST6sE6dlUFRG7OGJjAC1LYRYywfFa?=
- =?us-ascii?Q?Lr+ulBRLkyAuJ7PTJx668C8pq7bFjzLWqJli8x5tVt4iSu6X+8F16TZ7deQ2?=
- =?us-ascii?Q?noD2LwWqrv0qr/zRwDo3vJW/Py+2GD4KAh7EW6w0cItUejdCYwIaE0TlYKpz?=
- =?us-ascii?Q?0bdCE7KiiEPlyHJmedcgEd74T/qqBjHq0wtR/rhlkNuNcheTeerJQd45tRJg?=
- =?us-ascii?Q?Wcx3xj2yq792kNqQymjCEmCbVShA1WWnATOdFFua6aK8aN5lJLuugIaRFyDI?=
- =?us-ascii?Q?ibt0Ct70nBYncz0I9dxMinYtTLfjlOSa84yr2UaortIJkdkayPaCGDeYl/7+?=
- =?us-ascii?Q?qCrbMAsUucoTi9A916CVJnmQV8ilaSTc4vyoQTzFv9kJtc4Im0kBGhUvtnYi?=
- =?us-ascii?Q?hkLrWeFxDdYeKwbTmyaodMj6k6hYPeSCCquSnr2YWfKBXnWU5wynpsTDDOUv?=
- =?us-ascii?Q?HeltbFDszqoEEAQ2m1GKpLQa+AqDNi8pMo5Y6vQzdaf/ZGa10ItEBxEbUuHc?=
- =?us-ascii?Q?oHB5j1WBtJjIPiVKR2Q9Eiev2EvfHOoum0NgvUCOYqmbDBJbYkoyNdK1xuyD?=
- =?us-ascii?Q?nfwF56h+FJxselYZIZSCzCf9Q92pxnLyPgVjekzc6gzVsEqAN2TVlYVzSV5a?=
- =?us-ascii?Q?9l259N9XdJMOc1Qub9Mpwv2sKetdjaRI2RcBpQ//kqLZC5X+LYGgHvAC5ejM?=
- =?us-ascii?Q?KDSuWus0qe9iK9CiI6ecZ9StaRLAyOTfWpdiSNCRCWy79ksCRo7qrGmvgHL6?=
- =?us-ascii?Q?8pC6KZ2uBzf7GmhOeIuYpV8ih/gAaHSCQf9xTC4pw6CDdXVvC7FXptXRWYi7?=
- =?us-ascii?Q?R3Dx/rRTR61Gvi/c+B9rlPGR90xyiICJhvAAcKdpipfh2Xs0PoWB7Y2Yfto4?=
- =?us-ascii?Q?MSLK2feEYkLAt2ErSJGJBxZd+XwRLz9S1cpKm6uPD2Y/PkXQ+gG3d0Nmh3WX?=
- =?us-ascii?Q?nnmTKDp2MeKbNCQD+VA4MXJ9axhFmZ7/W0/kyBBqTxFvpHIY/eNgoLfOGrGE?=
- =?us-ascii?Q?ZUKS9XPjRjuYyeyQHqZYjy/V39Eg2blVXAPru/TzXot4tHX/LpNKHFsnufo?=
- =?us-ascii?Q?=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-6b909.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: e856e520-e34f-4b02-bbf9-08dbe6e5f1e2
-X-MS-Exchange-CrossTenant-AuthSource: GV1PR10MB6563.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 20:52:28.7181 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR10MB8059
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:30 +0000
+Received: from mail-yw1-x1149.google.com (mail-yw1-x1149.google.com
+ [IPv6:2607:f8b0:4864:20::1149])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 246CF10E336
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:05:04 +0000 (UTC)
+Received: by mail-yw1-x1149.google.com with SMTP id
+ 00721157ae682-5c5daf2baccso84782727b3.3
+ for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:05:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1701237903; x=1701842703;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=WO7CXB1mNGxZSEafQP2SArLxdW3co4lj0A5pbLIXeXc=;
+ b=0UPru3BvwJY1cYQE7ai99hbarbn5JLyYYKmCdK+14pj+Ndq1iTo2yk5rSvKxvO8kDz
+ 9i2mFb3+qnNJvqRJZjKaE8bI6Hcyj1c9QrfbrL1/0lW1+5Vo+WTqfDxfN1dgm0eU6upu
+ h/m3XOeXDZ54SE5Vh4GzKJ2Z7wPycrd+EaFy5aFUsfGssslG+9pJitzNtldSiBJHVfzv
+ z7/NDHPutdzgn4ddErxKvQ+JNkSFsFV9KzzWBOzsKzfunCc3H0chhdFQqIgcGq1CKVIU
+ gJ57PdV7oPGPoD5/fmsegmn0HL52D51ED15yxsNKABU7rqZaJ2vnIzSp3njopAnyJX7f
+ 3XIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1701237903; x=1701842703;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=WO7CXB1mNGxZSEafQP2SArLxdW3co4lj0A5pbLIXeXc=;
+ b=MWrP+88DOONY41+s1zOFTFnPxPxj/NTnJYmrqlz2x2xNo3/IQNemjvyXZgkNKa9iEp
+ mb8VCxIHVgoW1bxH3VjSgonLkgCkOKODfICw1JKks7uaDxMsb4hDdJkrnmfyC1UVlyu9
+ M0db8Lhv7Hmp8teOgLdp8NhCAxHF9l/440aig55NAF3v7MJaz81zzfnJK9qodsoSBTrY
+ JTvDOvfZ+0Vqy//nlmNealf05LESGHcMiTTAk3tS7zmIU2acmO9B5Mo3pfbXQh0nA21K
+ tk57lfH8mDXteK1Q1bkj/ROLHRTnVB5Pdx+pjmC5Qr6V3uD+VsEd+9EHmwzMSMzRVkiP
+ Ol8A==
+X-Gm-Message-State: AOJu0Yx+9+ZbaBIMM2bVSkiPP+ZeFTrEOFF76+OE9VEj3DhlyucLlR3b
+ KjI4JEpOegqWHtBtS8gaSWfz7nCkOw1r
+X-Google-Smtp-Source: AGHT+IHL7hgboFJ1jDI8fHK0ttAzMEfTsQjA7vmjwBnF03SxrfXdHuhYyFsTgeIfr3cTonrW5FaGXfJVhISd
+X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
+ (user=moritzf job=sendgmr) by 2002:a05:690c:903:b0:59b:eb63:4beb
+ with SMTP id
+ cb3-20020a05690c090300b0059beb634bebmr584543ywb.7.1701237903050; Tue, 28 Nov
+ 2023 22:05:03 -0800 (PST)
+Date: Wed, 29 Nov 2023 06:04:59 +0000
+In-Reply-To: <3-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Mime-Version: 1.0
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <3-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+Message-ID: <20231129060459.gcunam3msksainng@google.com>
+Subject: Re: [PATCH 03/10] iommu/of: Use -ENODEV consistently in
+ of_iommu_configure()
+From: Moritz Fischer <moritzf@google.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,52 +70,161 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel-mentees@lists.linuxfoundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
- Yuran Pereira <yuran.pereira@hotmail.com>
+Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
+ patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
+ Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
+ "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
+ Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
+ Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
+ linux-mips@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
+ Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Checking `args` after calling `op_map_prepare` is unnecessary since
-if `op_map_prepare` was to be called with  NULL args, it would lead
-to a NULL pointer dereference, thus never hitting that check.
+On Tue, Nov 28, 2023 at 08:47:59PM -0400, Jason Gunthorpe wrote:
+> Instead of returning 1 and trying to handle positive error codes just
+> stick to the convention of returning -ENODEV. Remove references to ops
+> from of_iommu_configure(), a NULL ops will already generate an error code.
 
-Hence this check can be removed, and a note added to remind users of
-this function to ensure that args != NULL when calling this function
-for a map operation as it was suggested  by Danilo [1]
+> There is no reason to check dev->bus, if err=0 at this point then the
+> called configure functions thought there was an iommu and we should try to
+> probe it. Remove it.
 
-[1] https://lore.kernel.org/lkml/6a1ebcef-bade-45a0-9bd9-c05f0226eb88@redhat.com
+> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
+> Tested-by: Hector Martin <marcan@marcan.st>
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> ---
+>   drivers/iommu/of_iommu.c | 49 ++++++++++++----------------------------
+>   1 file changed, 15 insertions(+), 34 deletions(-)
 
-Suggested-by: Danilo Krummrich <dakr@redhat.com>
-Signed-off-by: Yuran Pereira <yuran.pereira@hotmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> index c6510d7e7b241b..164317bfb8a81f 100644
+> --- a/drivers/iommu/of_iommu.c
+> +++ b/drivers/iommu/of_iommu.c
+> @@ -17,8 +17,6 @@
+>   #include <linux/slab.h>
+>   #include <linux/fsl/mc.h>
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 5cf892c50f43..c8c3f1b1b604 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -604,6 +604,10 @@ op_unmap_prepare(struct drm_gpuva_op_unmap *u)
- 	drm_gpuva_unmap(u);
- }
- 
-+/*
-+ * Note: @args should not be NULL when calling for
-+ * a map operation.
-+ */
- static int
- nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 			struct nouveau_uvma_prealloc *new,
-@@ -624,7 +628,7 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 			if (ret)
- 				goto unwind;
- 
--			if (args && vmm_get_range) {
-+			if (vmm_get_range) {
- 				ret = nouveau_uvmm_vmm_get(uvmm, vmm_get_start,
- 							   vmm_get_range);
- 				if (ret) {
--- 
-2.25.1
+> -#define NO_IOMMU	1
+> -
+>   static int of_iommu_xlate(struct device *dev,
+>   			  struct of_phandle_args *iommu_spec)
+>   {
+> @@ -29,7 +27,7 @@ static int of_iommu_xlate(struct device *dev,
+>   	ops = iommu_ops_from_fwnode(fwnode);
+>   	if ((ops && !ops->of_xlate) ||
+>   	    !of_device_is_available(iommu_spec->np))
+> -		return NO_IOMMU;
+> +		return -ENODEV;
 
+>   	ret = iommu_fwspec_init(dev, &iommu_spec->np->fwnode, ops);
+>   	if (ret)
+> @@ -61,7 +59,7 @@ static int of_iommu_configure_dev_id(struct device_node  
+> *master_np,
+>   			 "iommu-map-mask", &iommu_spec.np,
+>   			 iommu_spec.args);
+>   	if (err)
+> -		return err == -ENODEV ? NO_IOMMU : err;
+> +		return err;
+
+>   	err = of_iommu_xlate(dev, &iommu_spec);
+>   	of_node_put(iommu_spec.np);
+> @@ -72,7 +70,7 @@ static int of_iommu_configure_dev(struct device_node  
+> *master_np,
+>   				  struct device *dev)
+>   {
+>   	struct of_phandle_args iommu_spec;
+> -	int err = NO_IOMMU, idx = 0;
+> +	int err = -ENODEV, idx = 0;
+
+>   	while (!of_parse_phandle_with_args(master_np, "iommus",
+>   					   "#iommu-cells",
+> @@ -117,9 +115,8 @@ static int of_iommu_configure_device(struct  
+> device_node *master_np,
+>   int of_iommu_configure(struct device *dev, struct device_node *master_np,
+>   		       const u32 *id)
+>   {
+> -	const struct iommu_ops *ops = NULL;
+>   	struct iommu_fwspec *fwspec;
+> -	int err = NO_IOMMU;
+> +	int err;
+
+>   	if (!master_np)
+>   		return -ENODEV;
+> @@ -153,37 +150,21 @@ int of_iommu_configure(struct device *dev, struct  
+> device_node *master_np,
+>   	} else {
+>   		err = of_iommu_configure_device(master_np, dev, id);
+>   	}
+> -
+> -	/*
+> -	 * Two success conditions can be represented by non-negative err here:
+> -	 * >0 : there is no IOMMU, or one was unavailable for non-fatal reasons
+> -	 *  0 : we found an IOMMU, and dev->fwspec is initialised appropriately
+> -	 * <0 : any actual error
+> -	 */
+> -	if (!err) {
+> -		/* The fwspec pointer changed, read it again */
+> -		fwspec = dev_iommu_fwspec_get(dev);
+> -		ops    = fwspec->ops;
+> -	}
+>   	mutex_unlock(&iommu_probe_device_lock);
+
+> -	/*
+> -	 * If we have reason to believe the IOMMU driver missed the initial
+> -	 * probe for dev, replay it to get things in order.
+> -	 */
+> -	if (!err && dev->bus)
+> -		err = iommu_probe_device(dev);
+> -
+> -	/* Ignore all other errors apart from EPROBE_DEFER */
+> -	if (err < 0) {
+> -		if (err == -EPROBE_DEFER)
+> -			return err;
+> -		dev_dbg(dev, "Adding to IOMMU failed: %pe\n", ERR_PTR(err));
+> +	if (err == -ENODEV || err == -EPROBE_DEFER)
+>   		return err;
+> -	}
+> -	if (!ops)
+> -		return -ENODEV;
+> +	if (err)
+> +		goto err_log;
+> +
+> +	err = iommu_probe_device(dev);
+> +	if (err)
+> +		goto err_log;
+>   	return 0;
+> +
+> +err_log:
+> +	dev_dbg(dev, "Adding to IOMMU failed: %pe\n", ERR_PTR(err));
+> +	return err;
+>   }
+
+>   static enum iommu_resv_type __maybe_unused
+> --
+> 2.42.0
+
+
+Reviewed-by: Moritz Fischer <moritzf@google.com>
