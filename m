@@ -4,64 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DA70C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC0E7C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D05610E4EF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F61D10E4F0;
 	Tue, 16 Jan 2024 11:47:38 +0000 (UTC)
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com
- [IPv6:2607:f8b0:4864:20::331])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABC5310E187;
- Mon, 13 Nov 2023 18:42:56 +0000 (UTC)
-Received: by mail-ot1-x331.google.com with SMTP id
- 46e09a7af769-6d64ca151c2so179227a34.1; 
- Mon, 13 Nov 2023 10:42:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699900976; x=1700505776; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2mtmd09hFYXnVdRkrFU6g3p7HtLLyzcUAB+w/A7AON4=;
- b=RbgV+U0OnzIsFYbShrIn/6xzalp1rfjGp54I36GKZOh71aRhKy27WoQ2sml9w16tJX
- MW2GcXHmo7Gk3GSzKleb+MgMG/PNrRCVIhAmlqfa1PtB4em1fo05M+hGQy499yBnyq7y
- oF7HCSC9r0BPL8eaWslhfULdBZRwl6KpMRVDaEo6STqqy1mF74cp0+WGVmF0umolM4TP
- iAcCnQZwVGt0tKuz36PURtqHI4L+vZmYImgdWLMl4gLnl3R55avfvne4mkSKNsyIyTPw
- dwLhEt5Z5vUN52PdEUYGjWHgnTk+GyYXenQ9s5LiOuk+CUw/1y7pOfLfZ/SXO6ayrgnU
- HMfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699900976; x=1700505776;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=2mtmd09hFYXnVdRkrFU6g3p7HtLLyzcUAB+w/A7AON4=;
- b=FY0ObTzVktWuH/WFuHbq+nFlpw9FYBxFzL+ML9LnQUm9V06azWplHDE72GXI4yDv7u
- sFutQWARCNELUJ/abpHdDLP5VVPVf6U3KhsC0XPqOsB0y73qYsV4eSk+rebxwO5RmW99
- C9xisjqMoX0FYM+Ph6DQB6dv1y2R3ZF0hq2dUtEIh1VXSipF8Thx+QqR3U1lZfYbg1l+
- KJt4n3RJKjB6Iuvr58qCInHC24PhWF7tCi2Qv1V5WcZoYckPeKwKxejrofXnGVOIYfri
- 4ZruT23Y/o9gzCInOT2cFZqFbnGbZHbbpzBGf/WiNNPnsk3FX48NXZAe/49YadtK4M5m
- norQ==
-X-Gm-Message-State: AOJu0YwwUntM8bGFpSAC5OmS6w6V9yT1M0Pnbzjf5to86oyrYPTPkPrD
- ln5l6CSzNHu8I4CjwVgv01w=
-X-Google-Smtp-Source: AGHT+IEA1BUXt8w/1R9eTTYLZmyMjGnY+Z6vq6aMaSD2YdSx84htQATbTZVVwb3NbeXa3fdeWUhkBg==
-X-Received: by 2002:a05:6830:462a:b0:6b9:d3bd:3985 with SMTP id
- ba42-20020a056830462a00b006b9d3bd3985mr6976344otb.1.1699900975849; 
- Mon, 13 Nov 2023 10:42:55 -0800 (PST)
-Received: from abhinav.. ([103.75.161.208]) by smtp.gmail.com with ESMTPSA id
- 16-20020a630b10000000b005bd627c05c3sm4256693pgl.19.2023.11.13.10.42.51
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 13 Nov 2023 10:42:55 -0800 (PST)
-From: Abhinav Singh <singhabhinav9051571833@gmail.com>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch
-Subject: [PATCH v2] driver: gpu: Fixing warning directly dereferencing a rcu
- pointer
-Date: Tue, 14 Nov 2023 00:12:38 +0530
-Message-Id: <20231113184238.3276835-1-singhabhinav9051571833@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <d33fc41b-5a1f-4186-a0b2-3c82dcb8f00b@redhat.com>
-References: <d33fc41b-5a1f-4186-a0b2-3c82dcb8f00b@redhat.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DBC510E15C;
+ Thu, 30 Nov 2023 11:12:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 98D2961E51;
+ Thu, 30 Nov 2023 11:12:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEC73C433C7;
+ Thu, 30 Nov 2023 11:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1701342762;
+ bh=GGfXE9jnMr/28RJ1AbOcy/7HFYYF7xL3m95Mfm15Tps=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=hS29cAaeUtXdeK+kiZWZ8qW3M4rlyGHM7IrFWTDxn8Nt0aXiAvnbAmRc/aoZ3Gp0j
+ V7SRDf/8hQJMNOEslGbmVEQwuQ3v/n0aab4QU6apKhqRzbBW1fGVCc4o5+lNiYt0iI
+ /7/amZz6HtQ5TNJ7z/1iEkJX2GzxXQ/d0Y8W3VVN2EeZqpbt6InWklo12ZeEHk9H/Z
+ dLnoiGTasJF7l2Ws/GUmhIMMkZ/lsrZ8w7RC7r6TB1mn3zon1xzXFqjFmv6WUa2sKK
+ u5jJfB5MNcKrcJC5o7DP2m9wYEaZRsNjXWMH0W1KpYnQMkdMULlFup8a//0ud2c0XX
+ Dh6gxHxqd0DdA==
+Date: Thu, 30 Nov 2023 12:12:26 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
+Message-ID: <ZWhuGl1l5V5b+w4P@lpieralisi>
+References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+ <ZWc0qPWzNWPkL8vt@lpieralisi> <20231129191240.GZ436702@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231129191240.GZ436702@nvidia.com>
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,57 +51,106 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org,
- linux-kernel-mentees@lists.linuxfoundation.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Abhinav Singh <singhabhinav9051571833@gmail.com>
+Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
+ linux-mips@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Laxman Dewangan <ldewangan@nvidia.com>, Hanjun Guo <guohanjun@huawei.com>,
+ linux-riscv@lists.infradead.org, "K. Y. Srinivasan" <kys@microsoft.com>,
+ Frank Rowand <frowand.list@gmail.com>, Christoph Hellwig <hch@lst.de>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Wei Liu <wei.liu@kernel.org>,
+ Will Deacon <will@kernel.org>, Joerg Roedel <joro@8bytes.org>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
+ nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
+ Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
+ Albert Ou <aou@eecs.berkeley.edu>, Sven Peter <sven@svenpeter.dev>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ David Woodhouse <dwmw2@infradead.org>, Hector Martin <marcan@marcan.st>,
+ patches@lists.linux.dev, Vinod Koul <vkoul@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ asahi@lists.linux.dev, Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
+ Robin Murphy <robin.murphy@arm.com>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch fixes a sparse warning with this message 
-"warning:dereference of noderef expression". In this context it means we
-are dereferencing a __rcu tagged pointer directly.
+On Wed, Nov 29, 2023 at 03:12:40PM -0400, Jason Gunthorpe wrote:
+> On Wed, Nov 29, 2023 at 01:55:04PM +0100, Lorenzo Pieralisi wrote:
+> 
+> > I don't think it should be done this way. Is the goal compile testing
+> > IORT code ? 
+> 
+> Yes
+> 
+> > If so, why are we forcing it through the SMMU (only because
+> > it can be compile tested while eg SMMUv3 driver can't ?) menu entry ?
+> 
+> Because something needs to select it, and SMMU is one of the places
+> that are implicitly using it.
+> 
+> It isn't (and shouldn't be) a user selectable kconfig. Currently the
+> only thing that selects it is the ARM64 master kconfig.
 
-We should not be directly dereferencing a rcu pointer, rather we should
-be using rcu helper function rcu_dereferece() inside rcu read critical
-section to get a normal pointer which can be dereferenced.
+I never said it should be a user selectable kconfig. I said that
+I don't like using the SMMU entry (only) to select it just because
+that entry allows COMPILE_TEST.
 
-I tested with qemu with this command 
-qemu-system-x86_64 \
-	-m 2G \
-	-smp 2 \
-	-kernel bzImage \
-	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
-	-drive file=bullseye.img,format=raw \
-	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
-	-net nic,model=e1000 \
-	-enable-kvm \
-	-nographic \
-	-pidfile vm.pid \
-	2>&1 | tee vm.log
-with lockdep enabled.
+> > This looks a bit artificial (and it is unclear from the Kconfig
+> > file why only that driver selects IORT, it looks like eg the SMMUv3
+> > does not have the same dependency - there is also the SMMUv3 perf
+> > driver to consider).
+> 
+> SMMUv3 doesn't COMPILE_TEST so it picks up the dependency transitivity
+> through ARM64. I'm not sure why IORT was put as a global ARM64 kconfig
+> dependency and not put in the places that directly need it.
 
-Signed-off-by: Abhinav Singh <singhabhinav9051571833@gmail.com>
----
-v1 -> v2 : Replaced the rcu_dereference(...) with unrcu_pointer(...) and
-also removed the rcu locking and unlocking function call.
+Because IORT is used by few ARM64 system IPs (that are enabled by
+default, eg GIC), it makes sense to have a generic ARM64 select (if ACPI).
 
- drivers/gpu/drm/nouveau/nv04_fence.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> "perf driver" ? There is a bunch of GIC stuff that uses this too but I
+> don't know if it compile tests.
 
-diff --git a/drivers/gpu/drm/nouveau/nv04_fence.c b/drivers/gpu/drm/nouveau/nv04_fence.c
-index 5b71a5a5cd85..cdbc75e3d1f6 100644
---- a/drivers/gpu/drm/nouveau/nv04_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv04_fence.c
-@@ -39,7 +39,7 @@ struct nv04_fence_priv {
- static int
- nv04_fence_emit(struct nouveau_fence *fence)
- {
--	struct nvif_push *push = fence->channel->chan.push;
-+	struct nvif_push *push = unrcu_pointer(fence->channel)->chan.push;
- 	int ret = PUSH_WAIT(push, 2);
- 	if (ret == 0) {
- 		PUSH_NVSQ(push, NV_SW, 0x0150, fence->base.seqno);
--- 
-2.39.2
+"SMMUv3 perf driver" drivers/perf/arm_smmuv3_pmu.c
 
+> > Maybe we can move IORT code into drivers/acpi and add a silent config
+> > option there with a dependency on ARM64 || COMPILE_TEST.
+> 
+> That seems pretty weird to me, this is the right way to approach it,
+> IMHO. Making an entire directory condition is pretty incompatible with
+> COMPILE_TEST as a philosophy.
+
+That's not what I was suggesting. I was suggesting to move iort.c (or
+some portions of it) into drivers/acpi if we care enough to compile test
+it on arches !ARM64.
+
+It is also weird to have a file in drivers/acpi/arm64 that you want
+to compile test on other arches IMO (and I don't think it is very useful
+to compile test it either).
+
+> > Don't know but at least it is clearer. As for the benefits of compile
+> > testing IORT code - yes the previous patch is a warning to fix but
+> > I am not so sure about the actual benefits.
+> 
+> IMHO COMPILE_TEST is an inherently good thing. It makes development
+> easier for everyone because you have a less fractured code base to
+> work with.
+
+I am talking about IORT code, not COMPILE_TEST as a whole.
+
+I am not sure what "less fractured" means in this context.
+
+Anyway - it is not a big deal either way but I don't like selecting
+ACPI_IORT only on kconfig entries that allow COMPILE_TEST to implicitly
+compile test it so *if* we want to do it we will have to do it
+differently.
+
+Thanks,
+Lorenzo
