@@ -4,123 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F4D6C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F7ACC4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91E3510E4DF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A560910E4E1;
 	Tue, 16 Jan 2024 11:47:37 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2046.outbound.protection.outlook.com [40.107.220.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98A0A10E38C;
- Wed, 15 Nov 2023 03:23:19 +0000 (UTC)
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com
+ (mail-he1eur04olkn0818.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe0d::818])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0C0610E14F;
+ Mon,  4 Dec 2023 09:51:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZeiSE9rI38MZG4U03PIXdS7LiAGYUk6gG96pKK9qizHctB6SwIf4G/D3BMAMRdIPrQhTJsCSNGQfX5ZBzhsLfzcUA2nDr788u3EAyoh9XHlcIMWG1PPhuxTG1fBj17rsbhDumRZX/Pxt6XIXbafQM3BeEve+k5PyxiAfT6nd9Wp/ILSXEpURaNehRX6YMj/k3nSQ/GI93PnrvrxxFTVs2DVYzsS3M7fu+tXn7PAIwwJQBdMBs57Ru8UH8oM39v5D4Tqvz3a6pVj6JV/H/T1GtoLOlcHwCyYH2uIfAinrL+y/SuqtjQzqoG722g06N6QA+H4NgE5f6CtX7wUsma52JA==
+ b=gVh87JtCuiSxJ6paZO51Q/Q3xckY9rGKhzvrlGLJWZzDtb4Ffayf8eA5b8P7VujpV2apZvUFGCOFpcHA3JO2hYp5XgiqFePoRgXXbA8Y9HYH1J99DxAWsZoBRXw9OZAD7BYgcW7KLlXQW/rVkBTFifvBU2JK7V0ohlweN3IzF3Iz7vdG1XAtpzUn6e7VzTQ94g+mDEq6FGwoSb/nVEYnu4zmOEOAoIzmkiA7WaBxWZBIys+PpgbkhLNEI+GdoRwv6Kg+Q9cALFn/KieC6M/1PSGXcpVQJ2qt3oOjLev0CLWFs+nRd69YUffeXPvx+CP7oCcKb0uPLFZ+ToEJblsPXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7duwcchnGJmsBPzCJAX3XXVi+GgUmWqwevm8DZZwzSE=;
- b=WVFaNa6qqkjjJTq+uE8cOiuZsl6KgRi5az/Km8E/OvPAdVTY4yIdMatxWC0YlVahCxXMOS0m3ex0TX6ej9Zdda/juBXeDTTI9xPUeLs+Bfa5aXMvt4LT9vuRO8JFA4TtHUJtJss/kJ4fFJkdxOPXhEX/MjLW+duwBNo1o5E+xEwMVWwcFMQGjEdkhl9VA9cpDrelJNivPfQXgjhJsFf2VL9b9RcXJKxGjQNJjs7i0cnkqr/HT0V7qByfgkVSS0CjY0T8QFbwnnt2aagJZXNyBKIEVnzHO1i3ONLiwUiZbunUuuNPQ3dg4xhpFH0njFeIL+FPFt2fkUfkakwozoQZ+A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=tSRKFeX11ALtc4DWYo74WMF4MhGRbSjv9T6obHItYqA=;
+ b=gyi1asmf5NAfUsY2GI1ScWArG9PZpo9oWBbDYxrWQOe2a3qeo4e5G7SjJv5y+hW0VqPwODm9xz2vRGGHwu35DNPChhsKwY8KlWNldxgqjMaEGw5JUhqS5+rV2ctX0LfHE1Fy5yihB5EokKhKG9MSr8hmxGeP93V/x33hjv7WoZFCOQvfKMHCFXf8aqk8pGnUENT7ahb6QSDIoOOC4b5lS6lIS+UbTYxHJCu6kNzqqbqfIUt+nXEoaIjGmAp0WC+ImbgPXtShFx538THtNH+zj3nmL/KgM/A2ANfWXXZEdonTFidQBUpM7Rvebf6+U/uMc/Rcgt35sSlTQ4mWoYwRZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7duwcchnGJmsBPzCJAX3XXVi+GgUmWqwevm8DZZwzSE=;
- b=JlJnyZVWb9LT7xLcEfpr6qzeeKuLKJvoCVf/OyN0hjEKYR3Xi3COerolknYe9Slr21hkksLmLGymwQkeI0kdP4fyWZj+DAuTgDoewBIcG8PJiZRLJRvJQwEzpzxXsWDe+R5KT8g5bAo2WqcyK5MFJQXCfnlCASIgr8UnPIk4gfY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com (2603:10b6:a03:a6::22)
- by PH7PR12MB6467.namprd12.prod.outlook.com (2603:10b6:510:1f5::14)
+ bh=tSRKFeX11ALtc4DWYo74WMF4MhGRbSjv9T6obHItYqA=;
+ b=jVIzlvBmCcoVsxAKSjHT8M1BmQt5CqGv4OPo7QYM2VD5wwXo6v8QRFC6XQZpX7K0iS9SMkjG6w49VIjsmCxvZs162YrMm4/m9YCunbCWoMIYMcYcFheM/oHTTuE48Tb/z/xe6iMIax3ONMQasOHJ/g827E7hjxAub6wAA2GBbInURMAt6QQijmqa2toYVwnh/qoXBrr8noywlGiUJFL/J6iawHtHNbx3FJgNbhLZ0+EB63t3eeV5eO/B2plrAVJR5bBCRASekFhqoe731O1GF+fKGBT5iCEXNgYDvfr91tSAbFO+whe4O7Ve3NrJ+Rte9aBi+WN92HK3SPnNwx0JDg==
+Received: from AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:172::24)
+ by GV2PR10MB6043.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:150:a8::21)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.19; Wed, 15 Nov
- 2023 03:23:17 +0000
-Received: from BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::c258:1e94:a85b:1510]) by BYAPR12MB4614.namprd12.prod.outlook.com
- ([fe80::c258:1e94:a85b:1510%4]) with mapi id 15.20.6977.032; Wed, 15 Nov 2023
- 03:23:17 +0000
-Message-ID: <e0e76948-a0a8-b6c2-163b-1d00afb6650c@amd.com>
-Date: Wed, 15 Nov 2023 08:53:00 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.13.1
-Subject: Re: [PATCH v3 7/7] PCI: Exclude PCIe ports used for virtual links in
- pcie_bandwidth_available()
-Content-Language: en-US
-To: Mario Limonciello <mario.limonciello@amd.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Mika Westerberg <mika.westerberg@linux.intel.com>,
- Lukas Wunner <lukas@wunner.de>
-References: <20231114200755.14911-1-mario.limonciello@amd.com>
- <20231114200755.14911-8-mario.limonciello@amd.com>
-From: "Lazar, Lijo" <lijo.lazar@amd.com>
-In-Reply-To: <20231114200755.14911-8-mario.limonciello@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BM1PR01CA0145.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:68::15) To BYAPR12MB4614.namprd12.prod.outlook.com
- (2603:10b6:a03:a6::22)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.33; Mon, 4 Dec
+ 2023 09:51:27 +0000
+Received: from AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1fc4:7df9:3d95:eb28]) by AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::1fc4:7df9:3d95:eb28%6]) with mapi id 15.20.7046.033; Mon, 4 Dec 2023
+ 09:51:27 +0000
+Content-Type: multipart/alternative;
+ boundary="------------HA840JhN1vZdbRgLxjXR55lP"
+Message-ID: <AM7PR10MB39235076485E2E3905F422508E86A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
+Date: Mon, 4 Dec 2023 09:51:28 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Nouveau] Kernel problem with multiseat on one card
+To: Timur Tabi <ttabi@nvidia.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "bagasdotme@gmail.com" <bagasdotme@gmail.com>
+References: <AM7PR10MB39235DD53D163910E88FDB938E82A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
+ <AM7PR10MB3923E07D6024434077E95EBA8E82A@AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM>
+ <ZWsuiq7zrYS-pDli@archie.me>
+ <655a02097e9b49c2da7a2be60d7c154a48a916f4.camel@nvidia.com>
+Content-Language: nl
+From: Gert Vanhaerents <gert.vanhaerents@hotmail.com>
+In-Reply-To: <655a02097e9b49c2da7a2be60d7c154a48a916f4.camel@nvidia.com>
+X-TMN: [1DPUg5eiHiLEaNexU8zwBsbq0OqbQa3a]
+X-ClientProxiedBy: AM0PR10CA0043.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:150::23) To AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:172::24)
+X-Microsoft-Original-Message-ID: <b09af675-3d0e-447f-86e3-3a37fbe51e6d@hotmail.com>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BYAPR12MB4614:EE_|PH7PR12MB6467:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb127c4d-ecb1-47cb-a3fd-08dbe58a353c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: AM7PR10MB3923:EE_|GV2PR10MB6043:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69fd448a-0aed-42f2-af34-08dbf4ae9550
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Bh7gLHm32YpcvljvyyJpfmIuEnVdOCZIz/sL4Woh+nkDlAmpGpC5WG5FCj7qtrB8ocxO4C9z+eKW4c7VWuHOZqp/8MoW6Dm6e/PZzCJcnDQzMdENxjGIpq6F1WpD9RAfSIg7ty8iJ1nxSCawDTMRe/UWlKXBIEaFBcG+VGo774zVA3zUBjLhbfJ738BWqa3GpFhdPdPd1rjCiKfrJXdjFw+HluEqi/UfQKD8u2c1I2QmexKZvC1VFvXvCrvF5IS0ap4p0ekgkFI3tK9Zc+8pdScAuCO93jFyMJgUvLaXRcXNnVX97rjjSWQvxNJYjN43oYSzKGKBz6lwyPCbzHDzOdLOmUbCWSeLGqLDmCe0FRCokKJvhkmeZv9KX5D6RiPK68SDMqBNc00c/BQwNIqgOxAPIlhA25nhoUyAQ6U1ye/JQ6/y9ocgDptKntQ2bsCYS7K2XchijGGzl4yoTLCwOrO9Hq5utcdoD/LfvCp/6vFQj4PQP6k7lkDw+ttavvJL+11UhojOnzR14/t4OibGXwjIw4NpszFSVRBiYtFMtOIDfRAd3lcuCOH6cayGj2u9N2xVs6jrYewJlRaRLiG1sD72ZVYjGMDuKLjLhFwE+eEdhmhszUQ+7k8wbs/TtQrp
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BYAPR12MB4614.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(376002)(396003)(366004)(136003)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(31696002)(38100700002)(6506007)(53546011)(6512007)(7416002)(2616005)(2906002)(26005)(5660300002)(4326008)(8676002)(8936002)(54906003)(66476007)(66556008)(66946007)(36756003)(316002)(110136005)(83380400001)(41300700001)(6666004)(478600001)(31686004)(6486002)(966005)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+X-Microsoft-Antispam-Message-Info: iLakt7l46XD//M7nKAmCmdyLmr+r7fr9rq1xwUJtGaZy8IoWlHGR2UPsC+IwLK58VEL5LuswvlanjRzkj0Bv33WYjgkMiVVZHtVbEv2khoXKDQz0DcwcmqDn4vW2Y0EgJcQBGdlYX4QGkB9Jf1plPbn7ZYcCwlXjEvDeDqaWYk5jbVWAkDuQtVcxwUUg/r2Eq8lOhc8SQSOlvNEygby+MtLGsdPD1Lv4D/K6dJWkX5X9rO7T/efc7dfirnQZgvXd6TAdmtnogVGgI7/6mTwYGcvg9Mt9gaRJ33y8N3dlofviXSn6TfHwz9Jzo0ECWpcyme4cTOnYK+Xk7s4IjissnjnSK5tQPqgejrEZYaqbjpK3uq8kZP+tSFjhpU0KZx5fmerNoNJaNuFCr3ByKfJdTlzwXzKm17Anw6QD6xEJamxILBuD6ORPe5WVw/K4LJPOq4MeZVTZzL5pAVJVuuQFvANmOHiUqQZ1+OhgdSNyNsLCL5C2k7T8tEDF2zCgC2G5HLJwzkBYvBMMlV574KjCAA3zdBlm19iST7NmbgWdYXAesynBHtknY70hYVrnAHs4xjuXrA826iIKym+kgLj90MlyYocYN60S4L0KdaPICEPfcc5KuwKMg3xjyqnOsb4z
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzFzYVVOd3FMbDhlNUNvRDN1RzhWY25MWnBLbFpRd0JJSWkwSUtaZVZkQis2?=
- =?utf-8?B?djZvMzN5Tlk0OE1MWFpDVWV1bDVBMlRTRkFBNU9CT1dUK2xyQnpSbFIxR3Av?=
- =?utf-8?B?cnRsaEk2QlNRTnhQRll1YVhKWVFEOFdVWFNwWlJCcVFGWlVYcUhvNTlSTjdD?=
- =?utf-8?B?L3hzQlpqc2FobXdURGJFRW5hZEp1STU3dFNlM21DYUNMNmVnSjNjTnNQcW5X?=
- =?utf-8?B?R0RTeXlVM2Rob2UvMzg0dGRPdzZIOHJlcXluR2oyUmV5TEFhNG80a0pwVTgw?=
- =?utf-8?B?ekY3MFFmK1FNUEhXWmVZLzdaSXlWbUdiazV6NmQzTlRPcERWbXZmV3NXSi9z?=
- =?utf-8?B?RWNpM21HREdFa0JmUEVTVXdMRXZETS9GdDZKQWdHTk5aVTR6b1lFZkh6bHRx?=
- =?utf-8?B?eERwaU1ybTFSU1dxUXB2NmFSc3NGU0VxMTZjN0R5OHpPUmVWa0cyeHhvbC9L?=
- =?utf-8?B?aloxVFFrdldwMnV5a2hzeTlUcCt6T3ZYYi9Fa2RuTjV1eTByTkQ0TkluRWc2?=
- =?utf-8?B?STFPZGVjTEFmd2dOdklTWVNxUTMwaktqZGRNNXVScXJWdjdvL0xBSHNRUlV4?=
- =?utf-8?B?UUg5ZldLR2xnQUdxQkdhdmRMelkyTlFsVldYWERUNFdIcXZMdFdCbXVXeEFk?=
- =?utf-8?B?YTA0YitzQ25lOHpURkJDYWx3T3llSnE2d0k5L3hTYVh5UEVIMjJ0VE1MOTMx?=
- =?utf-8?B?K1hma0FUc0FGKys3M2JDbk83dWRlcWpPQmczQmtoV0gzMEFub3Z1aUZEQWNP?=
- =?utf-8?B?MTFMaHNOUDFtS2xTbERjQ2R4a3NxanF0YmV2dnlwU3YwTnBvejllUU9PSkxo?=
- =?utf-8?B?TGRFaFk0VE9mRVBZbG9CbUZSNlpJZTg1RFk3TW84amQ1Z01sMDI0d0RRSzJ4?=
- =?utf-8?B?SkVtOGxET0tUNitpS3dBRGJQZUE2NHhPb3duL25HRzZwcmpFdVQrdEdQckpY?=
- =?utf-8?B?Mmh3dmNGdVNtTHZZd216VUJBZE9GT1ZyZVJzK2VqVG12YkpJNTRkVGtHZWlU?=
- =?utf-8?B?SUVYa1lUZnoyQzdSUitRejNBRjRRbURRekR4dTNVcSt2WXltT0ZrRHc2RW52?=
- =?utf-8?B?RUlNNll3RnhacVhaQjVxM3luZG82enNyV1BMRFl6ZjJKSlNEYnMrMmxyOUVG?=
- =?utf-8?B?UjZPZnRxMm45Z2dSR0lzNmdYbVVsUWhtUDZJdUdKK1ZvRFlvSGR1MGZQUEp1?=
- =?utf-8?B?NUMvT2M4QTNnOG4ydlZabHVqanpKeEU1QW1FUHo3d3MycWN0T043SFNjbEJN?=
- =?utf-8?B?RGV3UU02enFRd2hIRk55U3MyVExOOGRxVXMwZTNtOEZvUDBWUGxRRm1KMld5?=
- =?utf-8?B?Y0R5WVhFT25VMzBVRGR5VkhwSWRPRVBHU2h6bTBUa3NqZElsRnRxbXdqOEx6?=
- =?utf-8?B?VmVFbmpNeEFmOXYyY0NMWFIycVhCdXJxRWVXWHpseVBHeUtLZE9mSEpLQlFO?=
- =?utf-8?B?Z1NsOEZ2MUhSK0w3VjdPVG1LMTAxNTQ2cm9XUmpXeTB2R1NmdE9sTFpKQllw?=
- =?utf-8?B?OWVMNlFpVC9mbWpJKy9mb3ZDSCtsZThmVDdnTStqTU11U2dWaVBBUlJMWkJY?=
- =?utf-8?B?NnphdTNIOFZVYk5ydHZ2cXdvclprWDVrNUVST1RjTzlJeGFlYktZK3IvQnlo?=
- =?utf-8?B?Y1FlMkN2c0pNYjh6WlBTUGpId0FPa0I3NjBnV0d0Q1NBczRXK3FqSGNGNTk5?=
- =?utf-8?B?L2xQZy9seXNibHR2Szc1aUZJdzlyQXF3TEdZMWIzL3RzNUorb3J0NVBxK2hQ?=
- =?utf-8?B?cUlMdlc4UnNPSmoxVUEweWlkMW5kZitwOHRLbm8wQzZzaU1aY2kyeXRmamU4?=
- =?utf-8?B?ZHRRSjhnUE96aS9mejdkNXhqbnZvc3lMWkYwSWhyY3ZGYUFlSDA0czdyaDFn?=
- =?utf-8?B?clY1TlBZeTFzWEMvZ3hzTWU5ZGFmSXczN0hWWGdpMURjVFczRm5SZVJEUjlE?=
- =?utf-8?B?NklPV256eGFxMis5ZUY0K0VTWFB5cUtNalJjbGJLSVRBV0wvQzc3UmhRcWZl?=
- =?utf-8?B?a1p3S2srL3VHTUQyd2tacTA0Z0JiMjJIdE1ISFBuUXFIaHArV050S2pnMVpx?=
- =?utf-8?B?dG1qSHdyRTZxSGJoQktMUzdJSjR4dGluSkk5am5Da2hCVkE1cDZYZ2p4M1RP?=
- =?utf-8?Q?7vYuXPtVYlUoPGGLT1gtg4BQz?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb127c4d-ecb1-47cb-a3fd-08dbe58a353c
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4614.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UlBXMml4MjBNZ01jalBZandaSytOa0VEMFZmVFkxTElHanNrUk1YTUlDT2c2?=
+ =?utf-8?B?V0hiQnhnM0I3djFRT0lIR1pyWFVlNHZwZVV3NDEvWW4raEFKUnd5U2NKYm4r?=
+ =?utf-8?B?WkJ0Qmw1VU9mOXo4ejBYUmVuY2MrR3BSaElUZHFJaHRKUWlSK2U5OVk2ckRM?=
+ =?utf-8?B?QktMT2x4RHgyc3k2dXRBb2JOalRLTll2RloxclZ3aHdwTVQ1K05FU2U4cUVk?=
+ =?utf-8?B?aE9ENjUwbWErOUorWVo1OS9VTkNsSHZadGRacDVmRUxFbnNyWGtEbW00Sk85?=
+ =?utf-8?B?UHUwNW9SNE9xc1EwWmcxSGlVVkVNcGY4dUFUbFY1OWRmWE5pNEt6L202MnZG?=
+ =?utf-8?B?dWpKcjJoNGxLSXVSQ2tVQVFGR1dsNGhBMmU4MnVrcEV2aUhYM2NLbDhEZjQy?=
+ =?utf-8?B?MUtjeXZoZTZlM25CaHhpUlF3NDE3WnB1RVRwVy9yL3FoNUlLYmFDei9OK0sz?=
+ =?utf-8?B?VUplZEhMYzFNVURYK1J2cndVajZ6RTBuZVdwUGR0QUFiTzlkWDNDL0dkMW9x?=
+ =?utf-8?B?MHpLd2I1YzErTTh5bjdqUE5ZWDVJcm1QeDFkMjZucVBvUFBjaFdrMTVkL3pL?=
+ =?utf-8?B?dE1vanVZeUlrSEJFaWhpSVRsamJmT0lCYnBHOEZQV2lMN2g1TEo1VFo5Q21M?=
+ =?utf-8?B?YUFVOHkwR0NCaEpCR252U0IyV2RIdUxreCtCS3VaZmxWUUpxRFB5S09Iem5D?=
+ =?utf-8?B?NFlnUUZIRlkxNVhVNy9seVJ4ckJIR3dMeTkxZk16c2tFQmFkdW9OVjVwUFlZ?=
+ =?utf-8?B?NEg3MmUxekJPbkdjeHpkN0tBRW00Z1JhdTkyeTF5dW5kT0JKTUNFM2dqeWp4?=
+ =?utf-8?B?VzN4Ym82YUdYUWZ0UjBmcTh6dEoyUVptRnZ1RktFaVpoU3VjSENiOWdqN2tk?=
+ =?utf-8?B?Q3gwQkMydDBmVHl3bTlNTjc3YVhMRmU0dGEyVHJ4VElZNlBEeWlPdFdJa2N5?=
+ =?utf-8?B?UUF2dkE5ak1RUlVyV2xmcjhEZVRIeC9Jemt0V0poSlp2dlB2ZHkyVVQrWFRa?=
+ =?utf-8?B?VmM1ZytIZkRwT01hUHE5amRvK2doYnNTcWNGdllVdHZEOHJ5ZWVaU3lRd0Zu?=
+ =?utf-8?B?aUxkMUg3ZEo2K05QMlR5TllmMXpLaVpHNEkrZDgzR0Z6c2cxZnFEc3pvWi94?=
+ =?utf-8?B?QThGN3J1bGpyNXprZnU2bzFmOTBrYXMzYmVid1BpQjFUTzhQVnQ5aWN1aTMv?=
+ =?utf-8?B?S05TakJxOWY1dzUvWEtERmIzOWkycVoyQlVMQ2l0UWtuVWtOSGJkUkZUUDBl?=
+ =?utf-8?B?REN1NUkzTkRJejJ5OVI5T1JPTDBPd1RBVVIyRXdVSU02dERldGMvQ2JNMkpa?=
+ =?utf-8?B?UzZPeXAxTFkvZytGd2x5NGVJTEhWeUdzTVJxSkdJZkZycWdNWkowVVplUk44?=
+ =?utf-8?B?Lzcrd0NmcFQrVXczVzVESmN6R2VucnpFVCtURURGQWdMbHdHazMza2dGNExF?=
+ =?utf-8?B?TFkyejlQNDk3THpWdnMxQXFoSW9NODVGTlgvL09hZjJXUmFCWFpFZE1sZkU0?=
+ =?utf-8?B?SlNwc01pRlhKL01VWEN1SHFTelJQYXRGV1VtcldTRlNFaTJ5cDZDcnJPQkZ6?=
+ =?utf-8?B?aFZZT0MwYkI0ZFA2aGpVTXpVVkoyaktiMjdpcUx5RTNPcWNpa2VqRmpZVFgy?=
+ =?utf-8?Q?C0oGomi/39Fz0D0ejFb6UVI3UutZFOF1HF6qtK13DoqY=3D?=
+X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-6b909.templateTenant
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69fd448a-0aed-42f2-af34-08dbf4ae9550
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR10MB3923.EURPRD10.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Nov 2023 03:23:16.8701 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Dec 2023 09:51:27.3764 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x3JnXrgk1GsJj1tuaIhVpHAmQSBisTGpxkVJCWLXcaABYAf/OfZyiaxU4saO/ZUo
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6467
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:28 +0000
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR10MB6043
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,109 +117,120 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
- Daniel Vetter <daniel@ffwll.ch>, "Rafael J . Wysocki" <rafael@kernel.org>,
- "open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>,
- Xinhui Pan <Xinhui.Pan@amd.com>, open list <linux-kernel@vger.kernel.org>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:ACPI" <linux-acpi@vger.kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <dri-devel@lists.freedesktop.org>, Manivannan Sadhasivam <mani@kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- =?UTF-8?Q?Ilpo_J=c3=a4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
- "Maciej W . Rozycki" <macro@orcam.me.uk>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+--------------HA840JhN1vZdbRgLxjXR55lP
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-On 11/15/2023 1:37 AM, Mario Limonciello wrote:
-> The USB4 spec specifies that PCIe ports that are used for tunneling
-> PCIe traffic over USB4 fabric will be hardcoded to advertise 2.5GT/s and
-> behave as a PCIe Gen1 device. The actual performance of these ports is
-> controlled by the fabric implementation.
-> 
-> Callers for pcie_bandwidth_available() will always find the PCIe ports
-> used for tunneling as a limiting factor potentially leading to incorrect
-> performance decisions.
-> 
-> To prevent such problems check explicitly for ports that are marked as
-> virtual links or as thunderbolt controllers and skip them when looking
-> for bandwidth limitations of the hierarchy. If the only device connected
-> is a port used for tunneling then report that device.
-> 
-> Callers to pcie_bandwidth_available() could make this change on their
-> own as well but then they wouldn't be able to detect other potential
-> speed bottlenecks from the hierarchy without duplicating
-> pcie_bandwidth_available() logic.
-> 
-> Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2925#note_2145860
-> Link: https://www.usb.org/document-library/usb4r-specification-v20
->        USB4 V2 with Errata and ECN through June 2023
->        Section 11.2.1
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
-> v2->v3:
->   * Split from previous patch version
->   * Look for thunderbolt or virtual link
-> ---
->   drivers/pci/pci.c | 19 +++++++++++++++++++
->   1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-> index 0ff7883cc774..b1fb2258b211 100644
-> --- a/drivers/pci/pci.c
-> +++ b/drivers/pci/pci.c
-> @@ -6269,11 +6269,20 @@ static u32 pcie_calc_bw_limits(struct pci_dev *dev, u32 bw,
->    * limiting_dev, speed, and width pointers are supplied) information about
->    * that point.  The bandwidth returned is in Mb/s, i.e., megabits/second of
->    * raw bandwidth.
-> + *
-> + * This excludes the bandwidth calculation that has been returned from a
-> + * PCIe device that is used for transmitting tunneled PCIe traffic over a virtual
-> + * link part of larger hierarchy. Examples include Thunderbolt3 and USB4 links.
-> + * The calculation is excluded because the USB4 specification specifies that the
-> + * max speed returned from PCIe configuration registers for the tunneling link is
-> + * always PCI 1x 2.5 GT/s.  When only tunneled devices are present, the bandwidth
-> + * returned is the bandwidth available from the first tunneled device.
->    */
->   u32 pcie_bandwidth_available(struct pci_dev *dev, struct pci_dev **limiting_dev,
->   			     enum pci_bus_speed *speed,
->   			     enum pcie_link_width *width)
->   {
-> +	struct pci_dev *vdev = NULL;
->   	u32 bw = 0;
->   
->   	if (speed)
-> @@ -6282,10 +6291,20 @@ u32 pcie_bandwidth_available(struct pci_dev *dev, struct pci_dev **limiting_dev,
->   		*width = PCIE_LNK_WIDTH_UNKNOWN;
->   
->   	while (dev) {
-> +		if (dev->is_virtual_link || dev->is_thunderbolt) {
-> +			if (!vdev)
-> +				vdev = dev;
-> +			goto skip;
-> +		}
+Op 2/12/2023 om 16:28 schreef Timur Tabi:
+> On Sat, 2023-12-02 at 20:18 +0700, Bagas Sanjaya wrote:
+>>> When i install the proprietary Nvidia drivers, i have the following:
+>>>
+>>> [MASTER] pci:0000:08:00.0
+>>>            │ ├─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0
+>>>            │ │ [MASTER] drm:card0
+>>>            │
+>>> └─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/renderD128
+>>>            │   drm:renderD128
+>>>
+>>> ─/sys/devices/platform/efi-framebuffer.0/graphics/fb0
+>>>            │ graphics:fb0 "EFI VGA"
+>>>
+>>> So no VGA, DVI or HDMI items.
+>> Then report to the GitHub tracker [1].
+>>
+>> Thanks.
+>>
+>> [1]:https://github.com/NVIDIA/open-gpu-kernel-modules/issues
+>>
+> No, do NOT report this on the Github tracker!
+>
+> That github tracker is ONLY for bugs that occur with OpenRM (the "Open GPU
+> Kernel Module") but not with the the proprietary driver.  If you have a bug
+> with the the Nvidia proprietary driver, that must be reported on the Nvidia
+> forum instead:
+>
+> https://forums.developer.nvidia.com/c/gpu-graphics/linux/148
 
-One problem with this is it *silently* ignores the bandwidth limiting 
-device - the bandwidth may not be really available if there are virtual 
-links in between. That is a change in behavior from the messages shown 
-in __pcie_print_link_status.
+OK  i will report it to nvidia. But with the nouveau drivers it's also 
+not working. Are you sure it's not a kernel problem?
 
-Thanks,
-Lijo
+Because according to systemd it would be a kernel problem.  (personaly i 
+am also thinking it's a driver problem)
 
->   		bw = pcie_calc_bw_limits(dev, bw, limiting_dev, speed, width);
-> +skip:
->   		dev = pci_upstream_bridge(dev);
->   	}
->   
-> +	/* If nothing "faster" found on hierarchy, limit to first virtual link */
-> +	if (vdev && !bw)
-> +		bw = pcie_calc_bw_limits(vdev, bw, limiting_dev, speed, width);
-> +
->   	return bw;
->   }
->   EXPORT_SYMBOL(pcie_bandwidth_available);
+--------------HA840JhN1vZdbRgLxjXR55lP
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">Op 2/12/2023 om 16:28 schreef Timur
+      Tabi:<br>
+    </div>
+    <blockquote type="cite" cite="mid:655a02097e9b49c2da7a2be60d7c154a48a916f4.camel@nvidia.com">
+      <pre class="moz-quote-pre" wrap="">On Sat, 2023-12-02 at 20:18 +0700, Bagas Sanjaya wrote:
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+      <blockquote type="cite">
+        <blockquote type="cite">
+          <pre class="moz-quote-pre" wrap="">When i install the proprietary Nvidia drivers, i have the following:
+
+[MASTER] pci:0000:08:00.0
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; │ ├─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/card0
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; │ │ [MASTER] drm:card0
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; │
+└─/sys/devices/pci0000:00/0000:00:03.1/0000:08:00.0/drm/renderD128
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; │&nbsp;&nbsp; drm:renderD128
+
+─/sys/devices/platform/efi-framebuffer.0/graphics/fb0
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; │ graphics:fb0 &quot;EFI VGA&quot;
+
+So no VGA, DVI or HDMI items.
+</pre>
+        </blockquote>
+        <pre class="moz-quote-pre" wrap="">
+Then report to the GitHub tracker [1].
+
+Thanks.
+
+[1]: <a class="moz-txt-link-freetext" href="https://github.com/NVIDIA/open-gpu-kernel-modules/issues">https://github.com/NVIDIA/open-gpu-kernel-modules/issues</a>
+
+</pre>
+      </blockquote>
+      <pre class="moz-quote-pre" wrap="">
+No, do NOT report this on the Github tracker!
+
+That github tracker is ONLY for bugs that occur with OpenRM (the &quot;Open GPU
+Kernel Module&quot;) but not with the the proprietary driver.  If you have a bug
+with the the Nvidia proprietary driver, that must be reported on the Nvidia
+forum instead: 
+
+<a class="moz-txt-link-freetext" href="https://forums.developer.nvidia.com/c/gpu-graphics/linux/148">https://forums.developer.nvidia.com/c/gpu-graphics/linux/148</a>
+</pre>
+    </blockquote>
+    <p>OK&nbsp; i will report it to nvidia. But with the nouveau drivers it's
+      also not working. Are you sure it's not a kernel problem? <br>
+    </p>
+    <p><span class="HwtZe" lang="en"><span class="jCAhz ChMk0b"><span class="ryNqvb">Because according to systemd it would be a
+            kernel problem.&nbsp; (personaly i am also thinking it's a driver
+            problem)<br>
+          </span></span></span></p>
+    <blockquote type="cite" cite="mid:655a02097e9b49c2da7a2be60d7c154a48a916f4.camel@nvidia.com">
+      <pre class="moz-quote-pre" wrap=""></pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------HA840JhN1vZdbRgLxjXR55lP--
