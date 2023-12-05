@@ -4,59 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22992C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D87CFC47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADE2B10E51C;
-	Tue, 16 Jan 2024 11:47:41 +0000 (UTC)
-Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
- [IPv6:2607:f8b0:4864:20::114a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B245210E608
- for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:20:37 +0000 (UTC)
-Received: by mail-yw1-x114a.google.com with SMTP id
- 00721157ae682-5c5daf2baccso84930967b3.3
- for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:20:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1701238837; x=1701843637;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=0+OWUPjfBbVNUCejaH4Zx1SnJx7h3HvWotJzN/ystxs=;
- b=XJV/jmxnQG7QTf+ctrWeU10+4yDNYmzO1moCBV3gGx+H/YV00ByEqpUHeUbJjj0Mak
- ACwYVSCiqPJam62Y+oJu25BBlZkO9xeT0tsT0GLm4sTkVRH1RmiE59EBXxico52qw9lj
- 4ukSLnRpz33vhgYh1k7Wc2rHQMuKp4gp9yoyNayC9Y+Ez1dypeaLuX7Y9JfXFAv3fTLX
- Mzii0sLnniwvXBk9V+QVZLulP3Tw0GGuOk0f9IdKcJAY3mEycazimOuw2K69RncKgQ0s
- tx6fGoIZjZEVQOp6E+/H3uvNwwO9RSUXeZ8Kp0QBsDTz6VwzPScRFsaLfwuYndATuNpS
- 43pg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701238837; x=1701843637;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=0+OWUPjfBbVNUCejaH4Zx1SnJx7h3HvWotJzN/ystxs=;
- b=Gd4wmxkA8XArGprT7sXXNuFHsjX1y49Ldq5mqrDl1Q15qagceXI+ZeipJKT2kMC0Uq
- J2HjtDG7O/vjElsgnWG+bXvM9tAQi2yYScA8F54/AbvjWW03D1KPe3ACYiNNkUUOusZN
- wAHiEbczYG25kj+Pfx6BgEk8BRVDZ0CWHgO4pSkoj/TGsnIqY0ruYNqROB+QhinbuanZ
- GuzLw4KP2NocRP/nugAERGqio3m892tOh9FYAh1hNs9cMoy0mMzQuQxaDaPIhhkjx15+
- +UxVNgt/1HBe3fOR0G3ROq6mRaC5wgimRwV/cT5I8adFXEVFU4TZvX3KwyPU7CODvTUv
- JbsQ==
-X-Gm-Message-State: AOJu0YxSFtrB5AX16TDeGeOBfx7J6F29SQSduLNdjPNzHxQs4HOD1gpS
- eE+Bk6zt5w7sWmdk8YR2nY46pARTqD96
-X-Google-Smtp-Source: AGHT+IGl2m8o4vcxyKfaevYjBuf0ZzzfYYiBjYjYyoamKSyXXxyRdZkkwSrexsSNRUrkDVXuH7e+Nb5/Bf9p
-X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
- (user=moritzf job=sendgmr) by 2002:a05:690c:4041:b0:5ce:550:685b
- with SMTP id
- ga1-20020a05690c404100b005ce0550685bmr480488ywb.5.1701238836860; Tue, 28 Nov
- 2023 22:20:36 -0800 (PST)
-Date: Wed, 29 Nov 2023 06:20:36 +0000
-In-Reply-To: <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Mime-Version: 1.0
-References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <10-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Message-ID: <20231129062036.urdezihvds2pkuyo@google.com>
-Subject: Re: [PATCH 10/10] ACPI: IORT: Allow COMPILE_TEST of IORT
-From: Moritz Fischer <moritzf@google.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0820510E521;
+	Tue, 16 Jan 2024 11:47:42 +0000 (UTC)
+X-Greylist: delayed 2306 seconds by postgrey-1.36 at gabe;
+ Tue, 05 Dec 2023 13:12:20 UTC
+Received: from wp530.webpack.hosteurope.de (wp530.webpack.hosteurope.de
+ [80.237.130.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2714810E51E;
+ Tue,  5 Dec 2023 13:12:20 +0000 (UTC)
+Received: from [2a02:8108:8980:2478:8cde:aa2c:f324:937e]; authenticated
+ by wp530.webpack.hosteurope.de running ExIM with esmtpsa
+ (TLS1.3:ECDHE_RSA_AES_128_GCM_SHA256:128)
+ id 1rAUca-0002hB-L7; Tue, 05 Dec 2023 13:33:52 +0100
+Message-ID: <66bf26bf-250e-43dd-ae70-e88bb709e272@leemhuis.info>
+Date: Tue, 5 Dec 2023 13:33:52 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Thorsten Leemhuis <linux@leemhuis.info>
+Subject: Re: [REGRESSION]: nouveau: Asynchronous wait on fence
+To: "Owen T. Heisler" <writer@owenh.net>,
+ Linux regressions mailing list <regressions@lists.linux.dev>,
+ stable@vger.kernel.org
+References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
+ <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
+ <6b7a71b4-c8a2-46f4-a995-0c63e7745ca3@owenh.net>
+ <c72ca99e-8657-4ed8-9999-5702ebeb5b8c@leemhuis.info>
+ <9bce5d00-8db6-4c8b-9817-06502492b44a@owenh.net>
+ <c1dd675d-cb3e-4c4c-8dc4-dd561ef4950b@owenh.net>
+Content-Language: en-US, de-DE
+Autocrypt: addr=linux@leemhuis.info; keydata=
+ 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 n7RI
+In-Reply-To: <c1dd675d-cb3e-4c4c-8dc4-dd561ef4950b@owenh.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-bounce-key: webpack.hosteurope.de;linux@leemhuis.info;1701781940;4d4b30f7;
+X-HE-SMSGID: 1rAUca-0002hB-L7
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,120 +95,48 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
- patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
- Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
- "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
- Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
- Albert Ou <aou@eecs.berkeley.edu>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
- Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
- linux-mips@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 08:48:06PM -0400, Jason Gunthorpe wrote:
-> The arm-smmu driver can COMPILE_TEST on x86, so expand this to also
-> enable the IORT code so it can be COMPILE_TEST'd too.
+Karol, Lyude, and Daniel:
 
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->   drivers/acpi/Kconfig        | 2 --
->   drivers/acpi/Makefile       | 2 +-
->   drivers/acpi/arm64/Kconfig  | 1 +
->   drivers/acpi/arm64/Makefile | 2 +-
->   drivers/iommu/Kconfig       | 1 +
->   5 files changed, 4 insertions(+), 4 deletions(-)
+On 29.11.23 01:37, Owen T. Heisler wrote:
+> On 11/21/23 14:23, Owen T. Heisler wrote:
+>> On 11/21/23 09:16, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>> On 15.11.23 07:19, Owen T. Heisler wrote:
+>>>> On 10/31/23 04:18, Linux regression tracking (Thorsten Leemhuis) wrote:
+>>>>> On 28.10.23 04:46, Owen T. Heisler wrote:
+>>>>>> #regzbot introduced: d386a4b54607cf6f76e23815c2c9a3abc1d66882
+>>>>>> #regzbot link:
+>>>>>> https://gitlab.freedesktop.org/drm/nouveau/-/issues/180
+>>>>>>
+>>>>>> 3. Suddenly the secondary Nvidia-connected display turns off and X
+>>>>>> stops responding to keyboard/mouse input.
+> 
+>> I am currently testing v6.6 with the culprit commit reverted.
+> 
+> - v6.6: fails
+> - v6.6 with the culprit commit reverted: works
+> 
+> See <https://gitlab.freedesktop.org/drm/nouveau/-/issues/180> for full
+> details including a decoded kernel log.
 
-> diff --git a/drivers/acpi/Kconfig b/drivers/acpi/Kconfig
-> index f819e760ff195a..3b7f77b227d13a 100644
-> --- a/drivers/acpi/Kconfig
-> +++ b/drivers/acpi/Kconfig
-> @@ -541,9 +541,7 @@ config ACPI_PFRUT
->   	  To compile the drivers as modules, choose M here:
->   	  the modules will be called pfr_update and pfr_telemetry.
+Not sure about the others, but it's kind of confusing that you update
+the issue descriptions all the time and never add a comment to that ticket.
 
-> -if ARM64
->   source "drivers/acpi/arm64/Kconfig"
-> -endif
+Anyway: Nouveau maintainers, could any of you at least comment on this?
+Sure, it's the regression is caused by an old commit (6eaa1f3c59a707 was
+merged for v5.14-rc7) and reverting it likely is not a option, but it
+nevertheless it would be great if this could be solved somehow.
 
->   config ACPI_PPTT
->   	bool
-> diff --git a/drivers/acpi/Makefile b/drivers/acpi/Makefile
-> index eaa09bf52f1760..4e77ae37b80726 100644
-> --- a/drivers/acpi/Makefile
-> +++ b/drivers/acpi/Makefile
-> @@ -127,7 +127,7 @@ obj-y				+= pmic/
->   video-objs			+= acpi_video.o video_detect.o
->   obj-y				+= dptf/
+Ciao, Thorsten (wearing his 'the Linux kernel's regression tracker' hat)
+--
+Everything you wanna know about Linux kernel regression tracking:
+https://linux-regtracking.leemhuis.info/about/#tldr
+If I did something stupid, please tell me, as explained on that page.
 
-> -obj-$(CONFIG_ARM64)		+= arm64/
-> +obj-y				+= arm64/
-
->   obj-$(CONFIG_ACPI_VIOT)		+= viot.o
-
-> diff --git a/drivers/acpi/arm64/Kconfig b/drivers/acpi/arm64/Kconfig
-> index b3ed6212244c1e..537d49d8ace69e 100644
-> --- a/drivers/acpi/arm64/Kconfig
-> +++ b/drivers/acpi/arm64/Kconfig
-> @@ -11,6 +11,7 @@ config ACPI_GTDT
-
->   config ACPI_AGDI
->   	bool "Arm Generic Diagnostic Dump and Reset Device Interface"
-> +	depends on ARM64
->   	depends on ARM_SDE_INTERFACE
->   	help
->   	  Arm Generic Diagnostic Dump and Reset Device Interface (AGDI) is
-> diff --git a/drivers/acpi/arm64/Makefile b/drivers/acpi/arm64/Makefile
-> index 143debc1ba4a9d..71d0e635599390 100644
-> --- a/drivers/acpi/arm64/Makefile
-> +++ b/drivers/acpi/arm64/Makefile
-> @@ -4,4 +4,4 @@ obj-$(CONFIG_ACPI_IORT) 	+= iort.o
->   obj-$(CONFIG_ACPI_GTDT) 	+= gtdt.o
->   obj-$(CONFIG_ACPI_APMT) 	+= apmt.o
->   obj-$(CONFIG_ARM_AMBA)		+= amba.o
-> -obj-y				+= dma.o init.o
-> +obj-$(CONFIG_ARM64)		+= dma.o init.o
-> diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-> index 7673bb82945b6c..309378e76a9bc9 100644
-> --- a/drivers/iommu/Kconfig
-> +++ b/drivers/iommu/Kconfig
-> @@ -318,6 +318,7 @@ config ARM_SMMU
->   	select IOMMU_API
->   	select IOMMU_IO_PGTABLE_LPAE
->   	select ARM_DMA_USE_IOMMU if ARM
-> +	select ACPI_IORT if ACPI
->   	help
->   	  Support for implementations of the ARM System MMU architecture
->   	  versions 1 and 2.
-> --
-> 2.42.0
+#regzbot poke
 
 
-Reviewed-by: Moritz Fischer <moritzf@google.com>
-
-Ok, now the previous patch makes sense :)
-
-Cheers,
-Moritz
