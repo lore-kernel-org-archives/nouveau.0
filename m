@@ -4,129 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D44AEC10DC3
-	for <nouveau@archiver.kernel.org>; Thu,  7 Dec 2023 18:03:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CADEC4167B
+	for <nouveau@archiver.kernel.org>; Fri,  8 Dec 2023 07:23:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFFA410E960;
-	Thu,  7 Dec 2023 18:03:27 +0000 (UTC)
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com
- (mail-co1nam11on2056.outbound.protection.outlook.com [40.107.220.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB6E510E20F;
- Thu,  7 Dec 2023 18:03:20 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hGhq2dr4HkZTioEHK6JRRysaSdmW7o7g+RWXbApo4mue8FC2+hsNuiOCHDdvOCO4doyNFbmbO6wr2uCMoxQ9yjmgod5eeUV9GRrTUqsB5iSilbXUEL32wLRzFAuMuuK95C9deSwHWWynltmgjUrgd8qKzUiW0EQybhdHLmXfGmTzzuf5wmF7oq8mV5+4TtaRfBnOFZL3iaj0fMy1Ir9gTSnEksoNkwaSc/YQJZW6lSRLq6CGBwTBMOzBbFGrIBSLq7vXXyZs+bejr+b5C5kZKvk5zmmr1a1jpg2+bwH5cYopovstPuF/M1YKpobaNEleSsB+WhpqjwOTDY85r7R01A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jtbACD0KyEnnKp4nvelyRe6WqB57167ZgHeXi882HwQ=;
- b=AwMZBm2O3lteoUktinnjfizcC69dGRUi1KQ6CY5dvw+COa1hyIZupXM+2uCg64WLUYTx9mbCphNBqBRFPtyrVXbJtgRXc1+SE9nGB6CziKZxFSfv75gb3+AFJknK5yNafigIq+M8COHWbLxUUJLjayCPFpB1kB6eGok6pX+EG6jz90A2Hv+X5qtAsVs0Og9IhAvz4qBapG03J3d1NNuFrBabawPrVB/56MgPEgJA3hFnGFULqFT63wcmaFyyraMBu63ysD5CcjPw3BwnAp2bBSerUwRTrUDv0llsLPIF9KekTx0JGAH9/XYPOzybpJadCyhYyJrbyaOkyAaA6D/3Kw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jtbACD0KyEnnKp4nvelyRe6WqB57167ZgHeXi882HwQ=;
- b=hV8r7sogOqrRFpg46x1a3xp18hqjpxOntAQCEf3c6LhB9vrrXefnQo02W8lKUL9renamcru5qEIOaaZYsXcBU9hBhTIMyZ816pxXeATcxRyY/0GGEReZFynq7ar5G0GH9t/X5s2fkCIrMPRfVJsLKxM9P8+AHlAPMYNqy1fdA3dZcfAY0WHB+cKKIT20nDFu6/7N9FSyEDFOq0i33SLoVcUFHcQb5ZFapUP7ZjQpCp0NLkDxJhxZhacfv5n+9WbHheUHym6r6ZyInTpkzIESyqw/tZwB4W+5cLwiKzqlT4SuGRTUIYNIHWua99HhjeJn3r7Rl5wqNpdYcqk1LUB0cg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
- by CH3PR12MB7667.namprd12.prod.outlook.com (2603:10b6:610:14f::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.25; Thu, 7 Dec
- 2023 18:03:18 +0000
-Received: from LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::60d4:c1e3:e1aa:8f93]) by LV2PR12MB5869.namprd12.prod.outlook.com
- ([fe80::60d4:c1e3:e1aa:8f93%4]) with mapi id 15.20.7046.038; Thu, 7 Dec 2023
- 18:03:18 +0000
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: David Airlie <airlied@gmail.com>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Albert Ou <aou@eecs.berkeley.edu>, asahi@lists.linux.dev,
- Catalin Marinas <catalin.marinas@arm.com>,
- Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- Dexuan Cui <decui@microsoft.com>, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, dri-devel@lists.freedesktop.org,
- David Woodhouse <dwmw2@infradead.org>,
- Frank Rowand <frowand.list@gmail.com>,
- Haiyang Zhang <haiyangz@microsoft.com>, iommu@lists.linux.dev,
- Jon Hunter <jonathanh@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- Karol Herbst <kherbst@redhat.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Laxman Dewangan <ldewangan@nvidia.com>, Len Brown <lenb@kernel.org>,
- linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-hyperv@vger.kernel.org, linux-mips@vger.kernel.org,
- linux-riscv@lists.infradead.org, linux-snps-arc@lists.infradead.org,
- linux-tegra@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
- Lyude Paul <lyude@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>,
- nouveau@lists.freedesktop.org, Palmer Dabbelt <palmer@dabbelt.com>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Sven Peter <sven@svenpeter.dev>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Vineet Gupta <vgupta@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Will Deacon <will@kernel.org>
-Subject: [PATCH v2 0/7] IOMMU related FW parsing cleanup
-Date: Thu,  7 Dec 2023 14:03:07 -0400
-Message-ID: <0-v2-16e4def25ebb+820-iommu_fwspec_p1_jgg@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BL1P221CA0004.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:208:2c5::15) To LV2PR12MB5869.namprd12.prod.outlook.com
- (2603:10b6:408:176::16)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50C2210E9D9;
+	Fri,  8 Dec 2023 07:23:20 +0000 (UTC)
+Received: from sender4-pp-o90.zoho.com (sender4-pp-o90.zoho.com
+ [136.143.188.90])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5247A10E9D9
+ for <nouveau@lists.freedesktop.org>; Fri,  8 Dec 2023 07:23:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1702020197; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=RmnQbJsT0HJg5Ji2X6l2ZIP9b2JFUf6II/rpLK2zubBALwNykpp4j4WMFG1/hRXhm2aU1WzqqE0f9AMFv/yN3xhdcTW31Br+gIFN15KysXfAojh4dZvfL0lFDVxKWrifn6fx7h0Ylzmsxhfv44Ke3L/5gBvJgmBG/20P4eS0EIQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1702020197;
+ h=Content-Type:Content-Transfer-Encoding:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=69u/obFqYQ0txPNr5c0ChfsmJT/Giqpx4aHjcidHWPM=; 
+ b=YQmw1gAfHdqVBAwaB6OGJV3A0n31fnqZ2gavcVZl6xoX9Z0NpjtqfL9c3p3vaP+nbXM4puZJD7U/iS3Qz2z39GLBu6cv0ChzmX63jLtV06UOxJ7Pu26yXMpCWAOC3J4L9abWn0pBMEvNK+69fZBTUUXnXT+51Kjcq7dCspgLSos=
+ARC-Authentication-Results: i=1; mx.zohomail.com; dkim=pass  header.i=zoho.com;
+ spf=pass  smtp.mailfrom=dufresnep@zoho.com;
+ dmarc=pass header.from=<dufresnep@zoho.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1702020197; 
+ s=zm2022; d=zoho.com; i=dufresnep@zoho.com;
+ h=Date:Date:From:From:To:To:Message-ID:In-Reply-To:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To:Cc;
+ bh=69u/obFqYQ0txPNr5c0ChfsmJT/Giqpx4aHjcidHWPM=;
+ b=ZajqfO51flKlO9rnXULA0SG6iAY7SIxazQqvKnW/wu7Tp1TBl9EEcF8tR5lek86c
+ bDDgtbj8QWJH2AioIwf02Okh+TsI8LUhtGHoQAYwTD/JCYh4qNVjiVUwNcSmZxvwzoI
+ 02D9buejJ4bwfSD32Cvsh0o4ZWsu0aQAWL0mFVfk=
+Received: from mail.zoho.com by mx.zohomail.com
+ with SMTP id 1702020191124263.4457058642803;
+ Thu, 7 Dec 2023 23:23:11 -0800 (PST)
+Received: from  [66.129.153.16] by mail.zoho.com
+ with HTTP;Thu, 7 Dec 2023 23:23:11 -0800 (PST)
+Date: Fri, 08 Dec 2023 02:23:11 -0500
+From: Paul Dufresne <dufresnep@zoho.com>
+To: "nouveau" <nouveau@lists.freedesktop.org>
+Message-ID: <18c484f1384.11597f7f962762.3209073694936907261@zoho.com>
+In-Reply-To: 
+Subject: fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT]
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR12MB5869:EE_|CH3PR12MB7667:EE_
-X-MS-Office365-Filtering-Correlation-Id: 285be75a-f859-4f0e-3cfe-08dbf74ec9e6
-X-LD-Processed: 43083d15-7273-40c1-b7db-39efd9ccc17a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3X5VVxjDwhiUlBSrgzeHhdzMHSXQifgBKRat8fV83G36N2R40qY1ZBmkT3DmI1lMOPyesxmDxRAzZ945RSCoSEk3lY43tE2pG4Ikmuemu9JCrsqK9ItwjD+wZbSCrqQmX9H/F/uR/zcI/S1M2LdM+xP0OxzlesH1GF7cSJEdluaYsdDLV//bMkiHM46WH2bno3GOwywNFexcpUciBwRN2CWb9bvBla5WsKCZql2+31uPNlbHiQIkbCofrHuS73nsCv4nLfR85DQhoBTmBiiOSAg5eHiZxlDask7Hw+KsG6My+r8+VU9zZayMKwxmICSVCVh59kB961/O/CMi78yxlpnJay79pia/Jpr6ulKfWSZbx7XNXOlRn3qwlT91xjanpVMVH2fhXTuplE8UDQxe6JJ8sBvCMJ8bkHnX1o46d2RrIEigh8vTwndn+xe26XgFRc7Lcu4PNwm1X5RHZ5uuD5opynraz33q9R2qf/WOGLiZo0vunUhka0EVzfCSCEPhr/EWp1r05H46mhpR9zQsX9PrnEQ1uW5SaS0thpna/8NBbaPuHVapnwgujYRhW/Ybta6l+mfZecKw6BU+FKgI7ynABVvjCOqvoNbyBXnZHSmY2HbavQRDr5Pxd1xL3foPTw627xM6UmURWh89sGX0Dw0ymFeziwtc95vm5R49h6s5ur3bO97A8LhlHBaNeyqX4XR+2RpkLSY4RP8N5o+/XQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV2PR12MB5869.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(376002)(346002)(136003)(396003)(230922051799003)(186009)(1800799012)(451199024)(64100799003)(7366002)(7416002)(2906002)(7406005)(5660300002)(41300700001)(86362001)(8676002)(4326008)(8936002)(36756003)(316002)(66946007)(66556008)(66476007)(54906003)(110136005)(921008)(38100700002)(6486002)(966005)(478600001)(107886003)(66574015)(83380400001)(6666004)(6506007)(26005)(6512007)(2616005)(4216001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?okcoPJ0XqOI1ipzg/sb0cxp8/YZrP+8ayzxab131skY2FgmnVBl8yi2qqhip?=
- =?us-ascii?Q?MomIx5z7qAMNZdwKNAmfWLp7Mpf5pf8w3SUCGWrqi1g2GhZA4sHffi1V+Nk6?=
- =?us-ascii?Q?StogYPt+MHw+/gls/N8i7eaXSFSMsf0zCqK+7B/WwQQhkoWjadxZgneWT79r?=
- =?us-ascii?Q?2G2FWnNhYbUcfaoryH4aQI5do0kf7ewuNRkkvLt/WMP1p5iGP5pHj1mArts+?=
- =?us-ascii?Q?s6mQdK14u6E/EjjdzMVFtl0hAzz/SGcESL6o8uD2nkeUnmjkfYluKy4cWVS2?=
- =?us-ascii?Q?P8NlndnfIMUIB/Mm9t71b+uFNXxidf7H90dt83DbltIfmqhWIw969A2mEdgy?=
- =?us-ascii?Q?mEiDS8RcextioEaNbyfkKsxDfzASuCPEusMPoFPA29eQke67rLiALUDdKUeH?=
- =?us-ascii?Q?SMm8/kDm/0tQs19NV6Sopj5eC6w8DQZCzJK4w4kosw+hqjMMwBZ2N5VFjgsD?=
- =?us-ascii?Q?UAMF+GPmQVYDNVDg6WpQDiWXQbojYHeiWDcZnC/RS/2AQJnldm7lp6EPSYz2?=
- =?us-ascii?Q?YPFCNO7AoinbRWMB8KmRZHi7tvNGJeDGxnehfHqVehMBXAvadg2ZkisD1t+A?=
- =?us-ascii?Q?iwvLH2t5Pn6NCgkEs4z7mhJL0PGJSmXiaukPShOpwSQmNgoyOCccxriarD1h?=
- =?us-ascii?Q?xFMXr3+nICfaNjdLxoDQqO4/+Xvj0UuAfL8i+6UnOmap3FAAnfMFHSPkFqbr?=
- =?us-ascii?Q?evjj8XSvsKYJFQc96bohYnyKBwpDg2IIQSRqEAYSyfhTS8z+giTyH++sBdq9?=
- =?us-ascii?Q?AqsApMhalfJp739h2Z1T0IRJ3B0oKMpahg7P6aQ2rAofJbtUlRNjVcvDCB9I?=
- =?us-ascii?Q?qqyvspBKVgcO46QoCKDcC6y5kOA3eCxz/Wb09SshdRBl+a22d7qG299pvI4F?=
- =?us-ascii?Q?+ACLQ2fhgEDBGz5+VOCBl6Yv8oH5XX5jcAZ3gqAnprgAL3dJkboO7VVwr5k+?=
- =?us-ascii?Q?hizpH84qH5riooWSJMTF+1m/77hVK7OCa7G5lieBGnu1FRhNbIgQ0MYZwoE6?=
- =?us-ascii?Q?vcEaiLgsmx3fccF+n15Ik/U1ZlKWIqpc4dDTqH5VgrjKPyjCgCOA6Hwd4vdl?=
- =?us-ascii?Q?VV59OZ+9Z0Sjhk/VGO0doMPipIgjmBt+oBBUNfQTkPtY8kGd3cLuSobFU7G1?=
- =?us-ascii?Q?C5dx9Z28614eSkDrduu7I4nJWjVHtUcp4tFR/tDDguUGQNEYPSH/4jYiQ8Zw?=
- =?us-ascii?Q?T6ofNgMIzIvawsszq4ANIVyR5YFE005P1CTbi1syzeJDMRUy5D9M4aAp5ZQX?=
- =?us-ascii?Q?j6dU6L4D85O+qFCLTJK/3LGJH4uqPv6T9MsbqlyOhmxV3kj3qrXYNQxx0/SC?=
- =?us-ascii?Q?eLPXKHvmT133/oDFOxhRC6vXuNoPqqgaJgfE3938ngDvIOJoTx5fzcOvHwDo?=
- =?us-ascii?Q?mxbvwnluRhnqsGw5/jmofNEU0YCYPl9+Dx7W4zfOXWus2sWmmmPutxA9YhSw?=
- =?us-ascii?Q?zVptHaDMQv/Mcmdxd8c5IUooz7pHJMRnrJKqIpUn0oMtpL5gN0ZbKnkzqYmR?=
- =?us-ascii?Q?wSeCy15SXIndHimQYH/aGdCjCX5jP0gu2+KyTBQiTqfVH8YbOKAJBrWGJWdt?=
- =?us-ascii?Q?7IFeq3jCPiZ2rIokx51sR/k/AFTcWOePDR7xvxGv?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 285be75a-f859-4f0e-3cfe-08dbf74ec9e6
-X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 18:03:17.1151 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KydOSEXXbTDZ0HhJjoCqDQZzi+V5aqI07sOgi9Sj45BYVzLt2wKWz7VKySZ8wMMN
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7667
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
+Feedback-ID: rr0801122814aa8d556ab9aa9645e8290800009b6732db38bc25a9f248d3d605dd8fd5d3ff34a47226f088592d:zu08011227b2345434ae2263e8065288e500003339015d995b620d4570df1056b492544978cb940c1a19c66d:rf0801123294ea3642e673945ef85a9b910000b69e02f81c87a97ba96eaaa18fd93b220df2f51acbc4f995677495361dd9370623a1bfe3:ZohoMail
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,80 +60,78 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rob Herring <robh@kernel.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Hector Martin <marcan@marcan.st>, Jerry Snitselaar <jsnitsel@redhat.com>,
- patches@lists.linux.dev, Thierry Reding <thierry.reding@gmail.com>,
- Moritz Fischer <mdf@kernel.org>, Moritz Fischer <moritzf@google.com>,
- Thierry Reding <treding@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-These are the patches from the from the prior series without the "fwspec
-polishing":
- https://lore.kernel.org/r/0-v2-36a0088ecaa7+22c6e-iommu_fwspec_jgg@nvidia.com
+I begin to find a way that help me investigate fifo: SCHED_ERROR 0a [CTXSW_TIMEOUT] errors.
+See https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/-/issues/339
 
-Does a few things to prepare for the next:
+I believe this affects mostly Fermi, Kepler and Maxwell1 graphic cards.
 
-- Clean up the call chains around dma_configure so the iommu_ops isn't being
-  exposed.
+I'd like first to describe a bit how I proceed, then talk about separating this issue in many.
 
-- Add additional lockdep annotations now that we can.
+I am working on Gnome Debian Testing.
+This environment react well (no freeze) when programs or XWayland are killed from the error.
 
-- Fix some missed places that need to call tegra_dev_iommu_get_stream_id()
+I am using drm-misc, from: https://cgit.freedesktop.org/drm-misc/tree/
+that I got with git clone git://cgit.freedesktop.org/drm-misc/tree/
+and have compiled.
 
-Based on Joerg's for-next with Robin's bus changes.
+my kernel command line in /etc/grub/default have:
+GRUB_CMDLINE_LINUX="pcie_aspm=off nouveau.debug=info nouveau.noaccel=0 drm.debug=0 log_buf_len=8M"
+Not sure if only me need pcie_aspm=off to remove some AER errors on PCIe bus.
 
-Robin's dma_base/size cleanup squashes the first patch, but we can't do
-the ops removal in the other parts without it, so let's keep it
-unsquashed.
+The first thing I do is:
+su -
+the - allows to have access to programs in /usr/sbin
 
-v2:
- - Remove comments and bracket around tegra_dev_iommu_get_stream_id()
-   in gp10b.c
- - Remove WARN_ON() in tegra186_mc_client_sid_override(), just return 0
- - Push the locking change to a later series
- - Drop the COMPILE_TEST improvement, not important enough to argue.
-v1: https://lore.kernel.org/r/0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com
+dmesg --console-off
+because I will generate a lot of messages, and I want them only in log files, not on console screen.
 
-Jason Gunthorpe (7):
-  iommu: Remove struct iommu_ops *iommu from arch_setup_dma_ops()
-  iommmu/of: Do not return struct iommu_ops from of_iommu_configure()
-  iommu/of: Use -ENODEV consistently in of_iommu_configure()
-  iommu: Mark dev_iommu_get() with lockdep
-  iommu: Mark dev_iommu_priv_set() with a lockdep
-  acpi: Do not return struct iommu_ops from acpi_iommu_configure_id()
-  iommu/tegra: Use tegra_dev_iommu_get_stream_id() in the remaining
-    places
+I launch Firefox, most of the bugs I get by browsing the web.
 
- arch/arc/mm/dma.c                             |  2 +-
- arch/arm/mm/dma-mapping-nommu.c               |  2 +-
- arch/arm/mm/dma-mapping.c                     | 10 +--
- arch/arm64/mm/dma-mapping.c                   |  4 +-
- arch/mips/mm/dma-noncoherent.c                |  2 +-
- arch/riscv/mm/dma-noncoherent.c               |  2 +-
- drivers/acpi/scan.c                           | 32 ++++++----
- drivers/dma/tegra186-gpc-dma.c                |  8 +--
- .../gpu/drm/nouveau/nvkm/subdev/ltc/gp10b.c   |  9 +--
- drivers/hv/hv_common.c                        |  2 +-
- drivers/iommu/amd/iommu.c                     |  2 -
- drivers/iommu/apple-dart.c                    |  1 -
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c   |  1 -
- drivers/iommu/arm/arm-smmu/arm-smmu.c         |  1 -
- drivers/iommu/intel/iommu.c                   |  2 -
- drivers/iommu/iommu.c                         | 11 ++++
- drivers/iommu/of_iommu.c                      | 64 ++++++++-----------
- drivers/iommu/omap-iommu.c                    |  1 -
- drivers/memory/tegra/tegra186.c               | 14 ++--
- drivers/of/device.c                           | 24 ++++---
- include/linux/dma-map-ops.h                   |  4 +-
- include/linux/iommu.h                         |  5 +-
- include/linux/of_iommu.h                      | 13 ++--
- 23 files changed, 105 insertions(+), 111 deletions(-)
+When ready to debug I do:
+echo 255 > /sys/module/drm/parameters/debug
+
+[At first was using 2, then 1 as suggested by /usr/sbin/modinfo drm, but then concluded 255 for all is the
+ best to have all the cases that could cause the timeout]
+
+I browse the web.
+
+When Firefox stop, or everything goes away and return to the gdm (login screen), first thing I do is:
+echo 0 > /sys/modules/drm/parameters/debug
+to stop logging so much messages.
+
+Then I do:
+journalctl -b -g SCHED
+to find at which second, the CTXSW_TIMEOUT message is.
+
+Suppose it is at 08:21:14.
+journalctl -b --since 08:21:13 --until 08:21:14
+until the CTXSW_TIMEOUT is not the first line, I do it again with minus 1 sec on --since
+
+Let's say I get up to: 08:21:09:
+journalctl -b --since 08:21:09 --until 08:21:14 -o short-monotone > err.txt
+
+cp err.txt /home/paul
+mv /home/paul/err.txt /home/paul/journalctl_no1.txt
+chown paul:paul /home/paul/journalctl_no1.txt
+
+And then, as normal user paul:
+gnome-text-editor journalctl_no1.txt &
+and I search for: SCHED again...
+and I looks the lines before to try to figure out the cause of the timeout.
+
+If you take a look at: See https://gitlab.freedesktop.org/xorg/driver/xf86-video-nouveau/-/issues/339
+you can see that what is before vary quite a bit each time.
+I suspect there is many causes that can result in a MMU error on the GPU and so cause a timeout.
+
+There is the possibility of a non-related memory corruption... I suppose.
+But if not, it would make some sense to open a different issue for each different things happening before the timeout message.
+
+Not sure, if is is really the good thing to do. So in part why I am writing this message to ask opinion(s).
 
 
-base-commit: 173ff345925a394284250bfa6e47d231e62031c7
--- 
-2.43.0
+
+
 
