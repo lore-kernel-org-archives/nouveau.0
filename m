@@ -4,60 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80690C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A29DC4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0525810E4FC;
-	Tue, 16 Jan 2024 11:47:39 +0000 (UTC)
-Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
- [IPv6:2607:f8b0:4864:20::114a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FDEE10E33A
- for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:18:27 +0000 (UTC)
-Received: by mail-yw1-x114a.google.com with SMTP id
- 00721157ae682-5cfe0b63eeeso51359737b3.0
- for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:18:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1701238707; x=1701843507;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=8J4qMZXxn7dMNLyiBgKsZSJFUlenzauaBGTwqmqEkBs=;
- b=MRCjpCW7klTyEc/eu7MlSblUjdlGeLAipB0RxGT8pVry5joDlDYm/8J6sHYpK7t73R
- vUgkis4vBa8Vz10RScQDzQNIkCGUM4wMub1jt5jLEJFhNaj2DVzCcBJgW63mCcyxbxOM
- MOAQi/EHjmAYwOuYZYEAwV4s4Kkl51v56U+ePUtCPbMKlfg1RYTCzMLJBjQf/Xz+XEcO
- 36JkQMamQCWPZEDimIFc8+bafr3RgbA2xjb7/iMy+NvddwcHMTLzNTCZl0HPS2oPUw7G
- ryqzaET91hi0W9We9WuT3gdXC6sHA6+WoJsOrPbQr9m4BJbTr62dpRuSj3NkppO5cMnX
- 2Q6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701238707; x=1701843507;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=8J4qMZXxn7dMNLyiBgKsZSJFUlenzauaBGTwqmqEkBs=;
- b=TY7qHsTzf1WU9BgDLAAV4k02J5wWtjcuC6VRTztxTJEeAEHm25sa+S+DdZ4oQP09tS
- 7yjWqBesesNgCfvBFU5uLmHylP2eGLTre5EJ7Zbln9OCZ/Xtqog7iqwvSs5ISmY3CHmp
- 39jHCWD7pNJlO9MEmzrsROukVKwWMTPktFzsPhqHijjcoo2/4VMhCNyStFNi82UScvrW
- em4gvKDZJOM97i6yNCkQzgcq+DPZ5NQ9k5yOp+j6Ok/sLosv53qm5KN1yUZlJSAwhe2A
- FQATsJn59K2yEfo9AdARsDhL+4/Lrz3eXPv9dMAMCxtU+QWtmJzQ3tWsoALpsahH3PED
- ojdA==
-X-Gm-Message-State: AOJu0Yy6J1KPeG6k5CUL2RIFOCucuXcDhlrf0aLSPQaXSYGN46Y1b8Rp
- 2IZmFu5DtrCEtz21jyqOD6u+Pkz8kFR8
-X-Google-Smtp-Source: AGHT+IFcUygGdfS95PQxvEDzLlpossLvNyVov+P9EiIyJqoPwhfNYT1rdzAgRP7ca8iJPDCSOmBZ7cELCldp
-X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
- (user=moritzf job=sendgmr) by 2002:a25:d287:0:b0:db3:8b00:22eb
- with SMTP id
- j129-20020a25d287000000b00db38b0022ebmr482941ybg.6.1701238706756; Tue, 28 Nov
- 2023 22:18:26 -0800 (PST)
-Date: Wed, 29 Nov 2023 06:18:25 +0000
-In-Reply-To: <9-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFA7D10E4FA;
+	Tue, 16 Jan 2024 11:47:38 +0000 (UTC)
+X-Greylist: delayed 360 seconds by postgrey-1.36 at gabe;
+ Thu, 14 Dec 2023 12:13:10 UTC
+Received: from mxct.zte.com.cn (mxct.zte.com.cn [58.251.27.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3183110E17B
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Dec 2023 12:13:10 +0000 (UTC)
+Received: from mxde.zte.com.cn (unknown [10.35.20.121])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4SrWLH6b8nzW8Q;
+ Thu, 14 Dec 2023 20:07:03 +0800 (CST)
+Received: from mxhk.zte.com.cn (unknown [192.168.250.138])
+ (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+ (No client certificate requested)
+ by mxde.zte.com.cn (FangMail) with ESMTPS id 4SrWLH5v32z9vXGK;
+ Thu, 14 Dec 2023 20:07:03 +0800 (CST)
+Received: from mxct.zte.com.cn (unknown [192.168.251.13])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxhk.zte.com.cn (FangMail) with ESMTPS id 4SrWLB1GDvz5B100;
+ Thu, 14 Dec 2023 20:06:58 +0800 (CST)
+Received: from mse-fl2.zte.com.cn (unknown [10.5.228.133])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by mxct.zte.com.cn (FangMail) with ESMTPS id 4SrWL23N3fz4xVbs;
+ Thu, 14 Dec 2023 20:06:50 +0800 (CST)
+Received: from xaxapp01.zte.com.cn ([10.88.99.176])
+ by mse-fl2.zte.com.cn with SMTP id 3BEC3JO0039139;
+ Thu, 14 Dec 2023 20:03:19 +0800 (+08)
+ (envelope-from yang.guang5@zte.com.cn)
+Received: from mapi (xaxapp01[null]) by mapi (Zmail) with MAPI id mid31;
+ Thu, 14 Dec 2023 20:03:22 +0800 (CST)
+Date: Thu, 14 Dec 2023 20:03:22 +0800 (CST)
+X-Zmail-TransId: 2af9657aef0afffffffff0d-394fc
+X-Mailer: Zmail v1.0
+Message-ID: <202312142003220684160@zte.com.cn>
 Mime-Version: 1.0
-References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <9-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Message-ID: <20231129061825.altvhmgltws2bvhh@google.com>
-Subject: Re: [PATCH 09/10] ACPI: IORT: Cast from ULL to phys_addr_t
-From: Moritz Fischer <moritzf@google.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
+From: <yang.guang5@zte.com.cn>
+To: <kherbst@redhat.com>
+Subject: =?UTF-8?B?W1BBVENIIGxpbnV4LW5leHRdIGRybS9ub3V2ZWF1L2Rpc3A6IHN3aXRjaCB0byB1c2Uga21lbWR1cCgpIGhlbHBlcg==?=
+Content-Type: text/plain;
+	charset="UTF-8"
+X-MAIL: mse-fl2.zte.com.cn 3BEC3JO0039139
+X-Fangmail-Gw-Spam-Type: 0
+X-Fangmail-Anti-Spam-Filtered: true
+X-Fangmail-MID-QID: 657AEFE6.000/4SrWLH6b8nzW8Q
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:28 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,93 +66,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
- patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
- Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
- "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
- Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
- Albert Ou <aou@eecs.berkeley.edu>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
- Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
- linux-mips@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
+Cc: daniel@ffwll.ch, cgel.zte@gmail.com, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, chen.haonan2@zte.com.cn, bskeggs@redhat.com,
+ jiang.xuexin@zte.com.cn, nouveau@lists.freedesktop.org, keescook@chromium.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 08:48:05PM -0400, Jason Gunthorpe wrote:
-> gcc on i386 (when compile testing) warns:
+From: Yang Guang <yang.guang5@zte.com.cn>
 
-This is a weird test. The Makefile for drivers/acpi/arm64 is conditional
-on CONFIG_ARM64. How does this happen?
+Use kmemdup() helper instead of open-coding to
+simplify the code.
 
-> 8->8
-obj-$(CONFIG_ARM64)		+= arm64/
-> 8->8
+Signed-off-by: Chen Haonan <chen.haonan2@zte.com.cn>
+---
+ drivers/gpu/drm/nouveau/nvif/outp.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/nvif/outp.c
+index 5d3190c05250..6daeb7f0b09b 100644
+--- a/drivers/gpu/drm/nouveau/nvif/outp.c
++++ b/drivers/gpu/drm/nouveau/nvif/outp.c
+@@ -452,13 +452,12 @@ nvif_outp_edid_get(struct nvif_outp *outp, u8 **pedid)
+ 	if (ret)
+ 		goto done;
 
->   drivers/acpi/arm64/iort.c:2014:18: warning: implicit conversion  
-> from 'unsigned long long' to 'phys_addr_t' (aka 'unsigned int') changes  
-> value from 18446744073709551615 to 4294967295 [-Wconstant-conversion]
->                             local_limit =  
-> DMA_BIT_MASK(ncomp->memory_address_limit);
+-	*pedid = kmalloc(args->size, GFP_KERNEL);
++	*pedid = kmemdup(args->data, args->size, GFP_KERNEL);
+ 	if (!*pedid) {
+ 		ret = -ENOMEM;
+ 		goto done;
+ 	}
 
-> Because DMA_BIT_MASK returns a large ULL constant. Explicitly truncate it
-> to phys_addr_t.
-
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->   drivers/acpi/arm64/iort.c | 6 ++++--
->   1 file changed, 4 insertions(+), 2 deletions(-)
-
-> diff --git a/drivers/acpi/arm64/iort.c b/drivers/acpi/arm64/iort.c
-> index 6496ff5a6ba20d..bdaf9256870d92 100644
-> --- a/drivers/acpi/arm64/iort.c
-> +++ b/drivers/acpi/arm64/iort.c
-> @@ -2011,7 +2011,8 @@ phys_addr_t __init  
-> acpi_iort_dma_get_max_cpu_address(void)
-
->   		case ACPI_IORT_NODE_NAMED_COMPONENT:
->   			ncomp = (struct acpi_iort_named_component *)node->node_data;
-> -			local_limit = DMA_BIT_MASK(ncomp->memory_address_limit);
-> +			local_limit = (phys_addr_t)DMA_BIT_MASK(
-> +				ncomp->memory_address_limit);
->   			limit = min_not_zero(limit, local_limit);
->   			break;
-
-> @@ -2020,7 +2021,8 @@ phys_addr_t __init  
-> acpi_iort_dma_get_max_cpu_address(void)
->   				break;
-
->   			rc = (struct acpi_iort_root_complex *)node->node_data;
-> -			local_limit = DMA_BIT_MASK(rc->memory_address_limit);
-> +			local_limit = (phys_addr_t)DMA_BIT_MASK(
-> +				rc->memory_address_limit);
->   			limit = min_not_zero(limit, local_limit);
->   			break;
->   		}
-> --
-> 2.42.0
-
-
-Cheers,
-Moritz
+-	memcpy(*pedid, args->data, args->size);
+ 	ret = args->size;
+ done:
+ 	kfree(args);
+-- 
+2.25.1
