@@ -4,54 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC69C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E54C3C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CE110E516;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEF3610E501;
 	Tue, 16 Jan 2024 11:47:40 +0000 (UTC)
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com
- [IPv6:2607:f8b0:4864:20::1134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0311610E055
- for <nouveau@lists.freedesktop.org>; Mon, 25 Dec 2023 08:26:02 +0000 (UTC)
-Received: by mail-yw1-x1134.google.com with SMTP id
- 00721157ae682-5e7c1012a42so29653517b3.3
- for <nouveau@lists.freedesktop.org>; Mon, 25 Dec 2023 00:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1703492761; x=1704097561; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=VNB8imntS8LBNtKK1nxaZRxw5hb3saJQOKkNzHToqUE=;
- b=fUHk5DJiQeonkBUseLLVvCPTRGm3qG/NWtklBX31lJrFd9RHkjgGuC2WzxguFZ7KAx
- c05XuA9OHq0ZcNg9T4v5xH15NPTKbgdWRN0PqDCdGG2cCngZ+uX67G3ZBzeE9dzsFgP5
- KO4RNIVvEhHB1LsvPasHOQPHRHcAe8IkVzKb/oqSdBgdGKY8b3M8PCVgase3MyOqG8Wd
- zTJVRPY3SgcNdyxZ/StZYsdwDz0DF8v3Nfy9f7V87Y75H+VXovT0OMw5gIsb3vOUxoDD
- j1AqrlVM0eSKW2AtdneeuM9sZrdTuZNmbs3TnIRSZXucS3oR859WvFvtRAwSmDcvXDuA
- zktA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1703492761; x=1704097561;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=VNB8imntS8LBNtKK1nxaZRxw5hb3saJQOKkNzHToqUE=;
- b=G05wFFZ3wVsQHJxIKsXoBU6p4GSsFwx3gaHpXDT9vRo25KFBO2FGLoMFVof2GPMd9l
- c0IuGnP7daG/h8auVfmi+tTlQVXiopGDkMS/km+fig24kei7xalNAqSl9tLKvJT7vT5C
- 6Ms3nyGPlkMWtjK3bl+VvLXSyZ+BeThscnj7hUx5N+NoMq7f602zTL7DQP0+MV0QUqaj
- n5BN1Dq/8FKukTTZ8Y4CGF/Imv1FLP23ysPmociSGynE5ZA7uH7jqRy0eJGtkLkpLrvb
- wfI8p3iByhqSw951qp4puQR90uFycHfQljJG5Szuu+2Si4527zf5aAEsz8xFYfTOR9zN
- Ce+Q==
-X-Gm-Message-State: AOJu0YzcvU+j/G+g5Ge+PexnZxRw/m/R0C378EDr4mzegBwqLZpUsIZG
- /RS3TYA8MJ2zTkU4W7WWdtvxv77Ip8worCgAtYjgCxtSAhifLg==
-X-Google-Smtp-Source: AGHT+IF083Bgt0C2N7LUbBQghDLExLDKK2OiXmQ1oldOTQJnjUyRTofm7RSs13RBrEV6NHXXLTe6uC/yOlvsnsuIfTA=
-X-Received: by 2002:a0d:d203:0:b0:5d7:1941:355c with SMTP id
- u3-20020a0dd203000000b005d71941355cmr3390590ywd.67.1703492760958; Mon, 25 Dec
- 2023 00:26:00 -0800 (PST)
+X-Greylist: delayed 993 seconds by postgrey-1.36 at gabe;
+ Fri, 15 Dec 2023 10:19:19 UTC
+Received: from wxsgout04.xfusion.com (wxsgout03.xfusion.com [36.139.52.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6972410E31C
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Dec 2023 10:19:19 +0000 (UTC)
+Received: from wuxshcsitd00600.xfusion.com (unknown [10.32.133.213])
+ by wxsgout04.xfusion.com (SkyGuard) with ESMTPS id 4Ss4SQ6ZQgzB2753;
+ Fri, 15 Dec 2023 17:59:18 +0800 (CST)
+Received: from localhost (10.82.147.3) by wuxshcsitd00600.xfusion.com
+ (10.32.133.213) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 15 Dec
+ 2023 18:02:41 +0800
+Date: Fri, 15 Dec 2023 18:02:41 +0800
+From: Wang Jinchao <wangjinchao@xfusion.com>
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
+ <daniel@ffwll.ch>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH] drm/nouveau/fifo: remove duplicated including
+Message-ID: <202312151802+0800-wangjinchao@xfusion.com>
 MIME-Version: 1.0
-From: vivek pandya <vivekvpandya@gmail.com>
-Date: Mon, 25 Dec 2023 13:55:49 +0530
-Message-ID: <CAHYgpoKzo=nuccJhk+jp+fsQFS18wfNQp+oq33GQLF+x9vbGbg@mail.gmail.com>
-Subject: Help identifying still open projects on
- https://www.x.org/wiki/SummerOfCodeIdeas/
-To: nouveau@lists.freedesktop.org, kherbst@redhat.com
-Content-Type: multipart/alternative; boundary="000000000000e4fa30060d5150c8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+X-Originating-IP: [10.82.147.3]
+X-ClientProxiedBy: wuxshcsitd00602.xfusion.com (10.32.132.250) To
+ wuxshcsitd00600.xfusion.com (10.32.133.213)
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,31 +47,29 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: wangjinchao@xfusion.com, stone.xulei@xfusion.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---000000000000e4fa30060d5150c8
-Content-Type: text/plain; charset="UTF-8"
+rm second including of chid.h
 
-Hello Karol and other members!
+Signed-off-by: Wang Jinchao <wangjinchao@xfusion.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-I see that on  https://www.x.org/wiki/SummerOfCodeIdeas/ there are lots of
-compiler related tasks but most of them seem very old.
-Are they still relevant?
-Kindly provide some details.
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
+index 87a62d4ff4bd..7d4716dcd512 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/chan.c
+@@ -24,7 +24,6 @@
+ #include "chan.h"
+ #include "chid.h"
+ #include "cgrp.h"
+-#include "chid.h"
+ #include "runl.h"
+ #include "priv.h"
+ 
+-- 
+2.40.0
 
-Sincerely,
-Vivek
-
---000000000000e4fa30060d5150c8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Karol and other members!</div><div><br></div><d=
-iv>I see that on=C2=A0 <a href=3D"https://www.x.org/wiki/SummerOfCodeIdeas/=
-">https://www.x.org/wiki/SummerOfCodeIdeas/</a> there are lots of compiler =
-related tasks but most of them seem very old. <br></div><div>Are they still=
- relevant?=C2=A0</div><div>Kindly provide some details.</div><div><br></div=
-><div>Sincerely,</div><div>Vivek<br></div></div>
-
---000000000000e4fa30060d5150c8--
