@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1472EC46CD4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF888C41535
 	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF4E10E718;
-	Fri, 22 Dec 2023 04:33:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1797C10E71B;
+	Fri, 22 Dec 2023 04:33:24 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC98E10E718
- for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:20 +0000 (UTC)
-Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-517-vUwgAl2UPMaYfnsd3-Kbbg-1; Thu,
- 21 Dec 2023 23:33:17 -0500
-X-MC-Unique: vUwgAl2UPMaYfnsd3-Kbbg-1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5AEF10E71B
+ for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:22 +0000 (UTC)
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-101-vw26pBeJPBiYxQlkCnapOA-1; Thu, 21 Dec 2023 23:33:20 -0500
+X-MC-Unique: vw26pBeJPBiYxQlkCnapOA-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
  [10.11.54.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E27872932480;
- Fri, 22 Dec 2023 04:33:16 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id D5301830FD7;
+ Fri, 22 Dec 2023 04:33:19 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.90])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E42912026D66;
- Fri, 22 Dec 2023 04:33:15 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id D6AFE2026D66;
+ Fri, 22 Dec 2023 04:33:18 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH 03/11] nouveau: fix disp disabling with GSP
-Date: Fri, 22 Dec 2023 14:31:52 +1000
-Message-ID: <20231222043308.3090089-4-airlied@gmail.com>
+Subject: [PATCH 05/11] nouveau/gsp: free userd allocation.
+Date: Fri, 22 Dec 2023 14:31:54 +1000
+Message-ID: <20231222043308.3090089-6-airlied@gmail.com>
 In-Reply-To: <20231222043308.3090089-1-airlied@gmail.com>
 References: <20231222043308.3090089-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -56,45 +56,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This func ptr here is normally static allocation, but gsp r535
-uses a dynamic pointer, so we need to handle that better.
-
-This fixes a crash with GSP when you use config=3Ddisp=3D0 to avoid
-disp problems.
+This was being leaked.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/fifo/r535.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c b/drivers/gpu/=
-drm/nouveau/nvkm/engine/disp/base.c
-index 457ec5db794d..b24eb1e560bc 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
-@@ -209,7 +209,7 @@ nvkm_disp_dtor(struct nvkm_engine *engine)
- =09=09nvkm_head_del(&head);
- =09}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/r535.c b/drivers/gpu/=
+drm/nouveau/nvkm/engine/fifo/r535.c
+index d088e636edc3..b903785056b5 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/r535.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/r535.c
+@@ -242,6 +242,7 @@ r535_chan_id_put(struct nvkm_chan *chan)
+ =09=09=09=09nvkm_memory_unref(&userd->mem);
+ =09=09=09=09nvkm_chid_put(runl->chid, userd->chid, &chan->cgrp->lock);
+ =09=09=09=09list_del(&userd->head);
++=09=09=09=09kfree(userd);
+ =09=09=09}
 =20
--=09if (disp->func->dtor)
-+=09if (disp->func && disp->func->dtor)
- =09=09disp->func->dtor(disp);
-=20
- =09return data;
-@@ -243,8 +243,10 @@ nvkm_disp_new_(const struct nvkm_disp_func *func, stru=
-ct nvkm_device *device,
- =09spin_lock_init(&disp->client.lock);
-=20
- =09ret =3D nvkm_engine_ctor(&nvkm_disp, device, type, inst, true, &disp->e=
-ngine);
--=09if (ret)
-+=09if (ret) {
-+=09=09disp->func =3D NULL;
- =09=09return ret;
-+=09}
-=20
- =09if (func->super) {
- =09=09disp->super.wq =3D create_singlethread_workqueue("nvkm-disp");
+ =09=09=09break;
 --=20
 2.43.0
 
