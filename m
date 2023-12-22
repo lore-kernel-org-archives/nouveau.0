@@ -4,37 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D78D8C41535
-	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1472EC46CD4
+	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F034510E3CD;
-	Fri, 22 Dec 2023 04:33:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF4E10E718;
+	Fri, 22 Dec 2023 04:33:22 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54C1A10E388
- for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:18 +0000 (UTC)
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-399-4AZm-7rYO_yapjGl3xHLgQ-1; Thu, 21 Dec 2023 23:33:14 -0500
-X-MC-Unique: 4AZm-7rYO_yapjGl3xHLgQ-1
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC98E10E718
+ for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:20 +0000 (UTC)
+Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-517-vUwgAl2UPMaYfnsd3-Kbbg-1; Thu,
+ 21 Dec 2023 23:33:17 -0500
+X-MC-Unique: vUwgAl2UPMaYfnsd3-Kbbg-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
  [10.11.54.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id EE56D101A52A;
- Fri, 22 Dec 2023 04:33:13 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id E27872932480;
+ Fri, 22 Dec 2023 04:33:16 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.90])
- by smtp.corp.redhat.com (Postfix) with ESMTP id EFB0F2026D66;
- Fri, 22 Dec 2023 04:33:12 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E42912026D66;
+ Fri, 22 Dec 2023 04:33:15 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH 01/11] nouveau/gsp: add three notifier callbacks that we see
- in normal operation (v2)
-Date: Fri, 22 Dec 2023 14:31:50 +1000
-Message-ID: <20231222043308.3090089-2-airlied@gmail.com>
+Subject: [PATCH 03/11] nouveau: fix disp disabling with GSP
+Date: Fri, 22 Dec 2023 14:31:52 +1000
+Message-ID: <20231222043308.3090089-4-airlied@gmail.com>
 In-Reply-To: <20231222043308.3090089-1-airlied@gmail.com>
 References: <20231222043308.3090089-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -57,50 +56,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add NULL callbacks for some things GSP calls that we don't handle, but know=
- about
-so we avoid the logging.
+This func ptr here is normally static allocation, but gsp r535
+uses a dynamic pointer, so we need to handle that better.
 
-v2: Timur suggested allowing null fn.
+This fixes a crash with GSP when you use config=3Ddisp=3D0 to avoid
+disp problems.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/gsp/r535.c
-index 44fb86841c05..7f831f41b598 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -298,7 +298,8 @@ r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 rep=
-c)
- =09=09struct nvkm_gsp_msgq_ntfy *ntfy =3D &gsp->msgq.ntfy[i];
-=20
- =09=09if (ntfy->fn =3D=3D msg->function) {
--=09=09=09ntfy->func(ntfy->priv, ntfy->fn, msg->data, msg->length - sizeof(=
-*msg));
-+=09=09=09if (ntfy->func)
-+=09=09=09=09ntfy->func(ntfy->priv, ntfy->fn, msg->data, msg->length - size=
-of(*msg));
- =09=09=09break;
- =09=09}
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c b/drivers/gpu/=
+drm/nouveau/nvkm/engine/disp/base.c
+index 457ec5db794d..b24eb1e560bc 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/base.c
+@@ -209,7 +209,7 @@ nvkm_disp_dtor(struct nvkm_engine *engine)
+ =09=09nvkm_head_del(&head);
  =09}
-@@ -2186,7 +2187,9 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
- =09r535_gsp_msg_ntfy_add(gsp, NV_VGPU_MSG_EVENT_MMU_FAULT_QUEUED,
- =09=09=09      r535_gsp_msg_mmu_fault_queued, gsp);
- =09r535_gsp_msg_ntfy_add(gsp, NV_VGPU_MSG_EVENT_OS_ERROR_LOG, r535_gsp_msg=
-_os_error_log, gsp);
--
-+=09r535_gsp_msg_ntfy_add(gsp, NV_VGPU_MSG_EVENT_PERF_BRIDGELESS_INFO_UPDAT=
-E, NULL, NULL);
-+=09r535_gsp_msg_ntfy_add(gsp, NV_VGPU_MSG_EVENT_UCODE_LIBOS_PRINT, NULL, N=
-ULL);
-+=09r535_gsp_msg_ntfy_add(gsp, NV_VGPU_MSG_EVENT_GSP_SEND_USER_SHARED_DATA,=
- NULL, NULL);
- =09ret =3D r535_gsp_rm_boot_ctor(gsp);
- =09if (ret)
+=20
+-=09if (disp->func->dtor)
++=09if (disp->func && disp->func->dtor)
+ =09=09disp->func->dtor(disp);
+=20
+ =09return data;
+@@ -243,8 +243,10 @@ nvkm_disp_new_(const struct nvkm_disp_func *func, stru=
+ct nvkm_device *device,
+ =09spin_lock_init(&disp->client.lock);
+=20
+ =09ret =3D nvkm_engine_ctor(&nvkm_disp, device, type, inst, true, &disp->e=
+ngine);
+-=09if (ret)
++=09if (ret) {
++=09=09disp->func =3D NULL;
  =09=09return ret;
++=09}
+=20
+ =09if (func->super) {
+ =09=09disp->super.wq =3D create_singlethread_workqueue("nvkm-disp");
 --=20
 2.43.0
 
