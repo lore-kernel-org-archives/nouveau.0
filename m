@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C17FCC46CD4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43B69C4706E
 	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE9E10E742;
-	Fri, 22 Dec 2023 04:33:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5F110E73F;
+	Fri, 22 Dec 2023 04:33:30 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
  (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F6B010E742
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBDE10E741
  for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:28 +0000 (UTC)
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-664-3yYVOjVeMBqU-V2HI_upkw-1; Thu, 21 Dec 2023 23:33:26 -0500
-X-MC-Unique: 3yYVOjVeMBqU-V2HI_upkw-1
+ us-mta-614-A9bP8Wl6N2-K0PCnHhy8AQ-1; Thu, 21 Dec 2023 23:33:23 -0500
+X-MC-Unique: A9bP8Wl6N2-K0PCnHhy8AQ-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
  [10.11.54.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id BD2BD85A58A;
- Fri, 22 Dec 2023 04:33:25 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id C8894832D1A;
+ Fri, 22 Dec 2023 04:33:22 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.90])
- by smtp.corp.redhat.com (Postfix) with ESMTP id BEABF2026D66;
- Fri, 22 Dec 2023 04:33:24 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id CA06C2026D66;
+ Fri, 22 Dec 2023 04:33:21 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH 09/11] nouveau/gsp: always free the alloc messages on r535
-Date: Fri, 22 Dec 2023 14:31:58 +1000
-Message-ID: <20231222043308.3090089-10-airlied@gmail.com>
+Subject: [PATCH 07/11] nouveau/gsp: convert gsp errors to generic errors
+Date: Fri, 22 Dec 2023 14:31:56 +1000
+Message-ID: <20231222043308.3090089-8-airlied@gmail.com>
 In-Reply-To: <20231222043308.3090089-1-airlied@gmail.com>
 References: <20231222043308.3090089-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -56,29 +56,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes a memory leak seen with kmemleak.
+This should let the upper layers retry as needed on EAGAIN.
+
+There may be other values we will care about in the future, but
+this covers our present needs.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 26 +++++++++++++++----
+ 1 file changed, 21 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/d=
 rm/nouveau/nvkm/subdev/gsp/r535.c
-index e2810fd1a36f..cafb82826473 100644
+index 774ca47b019f..54c1fbccc013 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -605,8 +605,7 @@ r535_gsp_rpc_rm_alloc_push(struct nvkm_gsp_object *obje=
+@@ -70,6 +70,20 @@ struct r535_gsp_msg {
+=20
+ #define GSP_MSG_HDR_SIZE offsetof(struct r535_gsp_msg, data)
+=20
++static int
++r535_rpc_status_to_errno(uint32_t rpc_status)
++{
++       switch (rpc_status) {
++       case 0x55: /* NV_ERR_NOT_READY */
++       case 0x66: /* NV_ERR_TIMEOUT_RETRY */
++              return -EAGAIN;
++       case 0x51: /* NV_ERR_NO_MEMORY */
++               return -ENOMEM;
++       default:
++               return -EINVAL;
++       }
++}
++
+ static void *
+ r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime)
+ {
+@@ -584,8 +598,9 @@ r535_gsp_rpc_rm_alloc_push(struct nvkm_gsp_object *obje=
 ct, void *argv, u32 repc)
+ =09=09return rpc;
+=20
+ =09if (rpc->status) {
+-=09=09nvkm_error(&gsp->subdev, "RM_ALLOC: 0x%x\n", rpc->status);
+-=09=09ret =3D ERR_PTR(-EINVAL);
++=09=09ret =3D ERR_PTR(r535_rpc_status_to_errno(rpc->status));
++=09=09if (ret !=3D -EAGAIN)
++=09=09=09nvkm_error(&gsp->subdev, "RM_ALLOC: 0x%x\n", rpc->status);
+ =09} else {
  =09=09ret =3D repc ? rpc->params : NULL;
  =09}
+@@ -639,9 +654,10 @@ r535_gsp_rpc_rm_ctrl_push(struct nvkm_gsp_object *obje=
+ct, void *argv, u32 repc)
+ =09=09return rpc;
 =20
--=09if (ret)
--=09=09nvkm_gsp_rpc_done(gsp, rpc);
-+=09nvkm_gsp_rpc_done(gsp, rpc);
-=20
- =09return ret;
- }
+ =09if (rpc->status) {
+-=09=09nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x fail=
+ed: 0x%08x\n",
+-=09=09=09   object->client->object.handle, object->handle, rpc->cmd, rpc->=
+status);
+-=09=09ret =3D ERR_PTR(-EINVAL);
++=09=09ret =3D ERR_PTR(r535_rpc_status_to_errno(rpc->status));
++=09=09if (ret !=3D -EAGAIN)
++=09=09=09nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x f=
+ailed: 0x%08x\n",
++=09=09=09=09   object->client->object.handle, object->handle, rpc->cmd, rp=
+c->status);
+ =09} else {
+ =09=09ret =3D repc ? rpc->params : NULL;
+ =09}
 --=20
 2.43.0
 
