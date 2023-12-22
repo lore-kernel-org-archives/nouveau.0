@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43B69C4706E
-	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72FD9C46CD4
+	for <nouveau@archiver.kernel.org>; Fri, 22 Dec 2023 04:33:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D5F110E73F;
-	Fri, 22 Dec 2023 04:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E60F710E748;
+	Fri, 22 Dec 2023 04:33:35 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBDE10E741
- for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:28 +0000 (UTC)
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E226E10E741
+ for <nouveau@lists.freedesktop.org>; Fri, 22 Dec 2023 04:33:32 +0000 (UTC)
 Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
  [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-614-A9bP8Wl6N2-K0PCnHhy8AQ-1; Thu, 21 Dec 2023 23:33:23 -0500
-X-MC-Unique: A9bP8Wl6N2-K0PCnHhy8AQ-1
+ us-mta-487-l1PDDIiuMwahk4PlS7zXWg-1; Thu, 21 Dec 2023 23:33:29 -0500
+X-MC-Unique: l1PDDIiuMwahk4PlS7zXWg-1
 Received: from smtp.corp.redhat.com (int-mx04.intmail.prod.int.rdu2.redhat.com
  [10.11.54.4])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id C8894832D1A;
- Fri, 22 Dec 2023 04:33:22 +0000 (UTC)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id B4C38830FD8;
+ Fri, 22 Dec 2023 04:33:28 +0000 (UTC)
 Received: from dreadlord.redhat.com (unknown [10.64.136.90])
- by smtp.corp.redhat.com (Postfix) with ESMTP id CA06C2026D66;
- Fri, 22 Dec 2023 04:33:21 +0000 (UTC)
+ by smtp.corp.redhat.com (Postfix) with ESMTP id B3B0D2026D66;
+ Fri, 22 Dec 2023 04:33:27 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org,
 	nouveau@lists.freedesktop.org
-Subject: [PATCH 07/11] nouveau/gsp: convert gsp errors to generic errors
-Date: Fri, 22 Dec 2023 14:31:56 +1000
-Message-ID: <20231222043308.3090089-8-airlied@gmail.com>
+Subject: [PATCH 11/11] drm/nouveau/dp: Honor GSP link training retry timeouts
+Date: Fri, 22 Dec 2023 14:32:00 +1000
+Message-ID: <20231222043308.3090089-12-airlied@gmail.com>
 In-Reply-To: <20231222043308.3090089-1-airlied@gmail.com>
 References: <20231222043308.3090089-1-airlied@gmail.com>
 MIME-Version: 1.0
@@ -56,74 +56,117 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This should let the upper layers retry as needed on EAGAIN.
+From: Lyude Paul <lyude@redhat.com>
 
-There may be other values we will care about in the future, but
-this covers our present needs.
+Turns out that one of the ways that Nvidia's driver handles the pre-LT
+timeout for eDP panels is by providing a retry timeout in their link
+training callbacks that we're expected to wait for. Up until now we didn't
+pay any attention to this parameter.
 
+So, start honoring the timeout if link training fails - and retry up to 3
+times. The "3 times" bit comes from OpenRM's link training code.
+
+[airlied: this fixes the panel on one of my laptops]
+Signed-off-by: Lyude Paul <lyude@redhat.com>
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 26 +++++++++++++++----
- 1 file changed, 21 insertions(+), 5 deletions(-)
+ .../gpu/drm/nouveau/nvkm/engine/disp/r535.c   | 62 ++++++++++++-------
+ 1 file changed, 40 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/d=
-rm/nouveau/nvkm/subdev/gsp/r535.c
-index 774ca47b019f..54c1fbccc013 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -70,6 +70,20 @@ struct r535_gsp_msg {
-=20
- #define GSP_MSG_HDR_SIZE offsetof(struct r535_gsp_msg, data)
-=20
-+static int
-+r535_rpc_status_to_errno(uint32_t rpc_status)
-+{
-+       switch (rpc_status) {
-+       case 0x55: /* NV_ERR_NOT_READY */
-+       case 0x66: /* NV_ERR_TIMEOUT_RETRY */
-+              return -EAGAIN;
-+       case 0x51: /* NV_ERR_NO_MEMORY */
-+               return -ENOMEM;
-+       default:
-+               return -EINVAL;
-+       }
-+}
-+
- static void *
- r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c b/drivers/gpu/=
+drm/nouveau/nvkm/engine/disp/r535.c
+index 1b4f988df7ed..b287ab19a51f 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c
+@@ -957,40 +957,58 @@ r535_dp_train_target(struct nvkm_outp *outp, u8 targe=
+t, bool mst, u8 link_nr, u8
  {
-@@ -584,8 +598,9 @@ r535_gsp_rpc_rm_alloc_push(struct nvkm_gsp_object *obje=
-ct, void *argv, u32 repc)
- =09=09return rpc;
+ =09struct nvkm_disp *disp =3D outp->disp;
+ =09NV0073_CTRL_DP_CTRL_PARAMS *ctrl;
+-=09int ret;
+-
+-=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom, NV0073_CTRL_CMD_DP_CTRL=
+, sizeof(*ctrl));
+-=09if (IS_ERR(ctrl))
+-=09=09return PTR_ERR(ctrl);
++=09int ret, retries;
++=09u32 cmd, data;
 =20
- =09if (rpc->status) {
--=09=09nvkm_error(&gsp->subdev, "RM_ALLOC: 0x%x\n", rpc->status);
--=09=09ret =3D ERR_PTR(-EINVAL);
-+=09=09ret =3D ERR_PTR(r535_rpc_status_to_errno(rpc->status));
-+=09=09if (ret !=3D -EAGAIN)
-+=09=09=09nvkm_error(&gsp->subdev, "RM_ALLOC: 0x%x\n", rpc->status);
- =09} else {
- =09=09ret =3D repc ? rpc->params : NULL;
- =09}
-@@ -639,9 +654,10 @@ r535_gsp_rpc_rm_ctrl_push(struct nvkm_gsp_object *obje=
-ct, void *argv, u32 repc)
- =09=09return rpc;
+-=09ctrl->subDeviceInstance =3D 0;
+-=09ctrl->displayId =3D BIT(outp->index);
+-=09ctrl->cmd =3D NVDEF(NV0073_CTRL, DP_CMD, SET_LANE_COUNT, TRUE) |
+-=09=09    NVDEF(NV0073_CTRL, DP_CMD, SET_LINK_BW, TRUE) |
+-=09=09    NVDEF(NV0073_CTRL, DP_CMD, TRAIN_PHY_REPEATER, YES);
+-=09ctrl->data =3D NVVAL(NV0073_CTRL, DP_DATA, SET_LANE_COUNT, link_nr) |
+-=09=09     NVVAL(NV0073_CTRL, DP_DATA, SET_LINK_BW, link_bw) |
+-=09=09     NVVAL(NV0073_CTRL, DP_DATA, TARGET, target);
++=09cmd =3D NVDEF(NV0073_CTRL, DP_CMD, SET_LANE_COUNT, TRUE) |
++=09      NVDEF(NV0073_CTRL, DP_CMD, SET_LINK_BW, TRUE) |
++=09      NVDEF(NV0073_CTRL, DP_CMD, TRAIN_PHY_REPEATER, YES);
++=09data =3D NVVAL(NV0073_CTRL, DP_DATA, SET_LANE_COUNT, link_nr) |
++=09       NVVAL(NV0073_CTRL, DP_DATA, SET_LINK_BW, link_bw) |
++=09       NVVAL(NV0073_CTRL, DP_DATA, TARGET, target);
 =20
- =09if (rpc->status) {
--=09=09nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x fail=
-ed: 0x%08x\n",
--=09=09=09   object->client->object.handle, object->handle, rpc->cmd, rpc->=
-status);
--=09=09ret =3D ERR_PTR(-EINVAL);
-+=09=09ret =3D ERR_PTR(r535_rpc_status_to_errno(rpc->status));
-+=09=09if (ret !=3D -EAGAIN)
-+=09=09=09nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x f=
-ailed: 0x%08x\n",
-+=09=09=09=09   object->client->object.handle, object->handle, rpc->cmd, rp=
-c->status);
- =09} else {
- =09=09ret =3D repc ? rpc->params : NULL;
+ =09if (mst)
+-=09=09ctrl->cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, SET_FORMAT_MODE, MULTI_STR=
+EAM);
++=09=09cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, SET_FORMAT_MODE, MULTI_STREAM);
+=20
+ =09if (outp->dp.dpcd[DPCD_RC02] & DPCD_RC02_ENHANCED_FRAME_CAP)
+-=09=09ctrl->cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, SET_ENHANCED_FRAMING, TRUE=
+);
++=09=09cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, SET_ENHANCED_FRAMING, TRUE);
+=20
+ =09if (target =3D=3D 0 &&
+ =09     (outp->dp.dpcd[DPCD_RC02] & 0x20) &&
+ =09    !(outp->dp.dpcd[DPCD_RC03] & DPCD_RC03_TPS4_SUPPORTED))
+-=09    ctrl->cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, POST_LT_ADJ_REQ_GRANTED, =
+YES);
++=09    cmd |=3D NVDEF(NV0073_CTRL, DP_CMD, POST_LT_ADJ_REQ_GRANTED, YES);
+=20
+-=09ret =3D nvkm_gsp_rm_ctrl_push(&disp->rm.objcom, &ctrl, sizeof(*ctrl));
+-=09if (ret) {
+-=09=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
+-=09=09return ret;
++=09/* We should retry up to 3 times, but only if GSP asks politely */
++=09for (retries =3D 0; retries < 3; ++retries) {
++=09=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom, NV0073_CTRL_CMD_DP_C=
+TRL,
++=09=09=09=09=09    sizeof(*ctrl));
++=09=09if (IS_ERR(ctrl))
++=09=09=09return PTR_ERR(ctrl);
++
++=09=09ctrl->subDeviceInstance =3D 0;
++=09=09ctrl->displayId =3D BIT(outp->index);
++=09=09ctrl->retryTimeMs =3D 0;
++=09=09ctrl->cmd =3D cmd;
++=09=09ctrl->data =3D data;
++
++=09=09ret =3D nvkm_gsp_rm_ctrl_push(&disp->rm.objcom, &ctrl, sizeof(*ctrl)=
+);
++=09=09if (ret =3D=3D -EAGAIN && ctrl->retryTimeMs) {
++=09=09=09/* Device (likely an eDP panel) isn't ready yet, wait for the tim=
+e specified
++=09=09=09 * by GSP before retrying again */
++=09=09=09nvkm_debug(&disp->engine.subdev,
++=09=09=09=09   "Waiting %dms for GSP LT panel delay before retrying\n",
++=09=09=09=09   ctrl->retryTimeMs);
++=09=09=09msleep(ctrl->retryTimeMs);
++=09=09=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
++=09=09} else {
++=09=09=09/* GSP didn't say to retry, or we were successful */
++=09=09=09if (ctrl->err)
++=09=09=09=09ret =3D -EIO;
++=09=09=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
++=09=09=09break;
++=09=09}
  =09}
+=20
+-=09ret =3D ctrl->err ? -EIO : 0;
+-=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
+ =09return ret;
+ }
+=20
 --=20
 2.43.0
 
