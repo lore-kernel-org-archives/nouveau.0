@@ -4,46 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9725C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A64DC4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F51810E50E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F9510E515;
 	Tue, 16 Jan 2024 11:47:40 +0000 (UTC)
-X-Greylist: delayed 584 seconds by postgrey-1.36 at gabe;
- Thu, 16 Nov 2023 06:40:46 UTC
-Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D733A10E249
- for <nouveau@lists.freedesktop.org>; Thu, 16 Nov 2023 06:40:46 +0000 (UTC)
-Received: from mail.nppct.ru (localhost [127.0.0.1])
- by mail.nppct.ru (Postfix) with ESMTP id 922251C0E03
- for <nouveau@lists.freedesktop.org>; Thu, 16 Nov 2023 09:30:58 +0300 (MSK)
-Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
- reason="pass (just generated,
- assumed good)" header.d=nppct.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
- content-transfer-encoding:mime-version:x-mailer:message-id:date
- :date:subject:subject:to:from:from; s=dkim; t=1700116258; x=
- 1700980259; bh=/9MO8o7o6nntPf+7n/of28fm2Es83s6OBU6s1H6hwTA=; b=k
- PjlYx5ZWDj+EpWLiT3v60MmQyXnhu+8FlV9aPRkwbH+idUXuV7+J7zUFtVCV3xTM
- sJewLvpk6FMhZIvUT4Z1uwxLaZ5QA/USQ/1yBayGwfRX4anAuTmWR4aX2Ni85Ayl
- vh0VFv3L7eNXGF29bRZAVLF/MxREFAs7Wax1NiS42Q=
-X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
-Received: from mail.nppct.ru ([127.0.0.1])
- by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 6bwfGpdVLIfJ for <nouveau@lists.freedesktop.org>;
- Thu, 16 Nov 2023 09:30:58 +0300 (MSK)
-Received: from localhost.localdomain (mail.dev-ai-melanoma.ru
- [185.130.227.204])
- by mail.nppct.ru (Postfix) with ESMTPSA id 57B921C061A;
- Thu, 16 Nov 2023 09:30:55 +0300 (MSK)
-From: Andrey Shumilin <shum.sdl@nppct.ru>
-To: Karol Herbst <kherbst@redhat.com>
-Subject: [PATCH] therm.c: Adding an array index check before accessing an
- element.
-Date: Thu, 16 Nov 2023 09:30:28 +0300
-Message-Id: <20231116063028.35871-1-shum.sdl@nppct.ru>
-X-Mailer: git-send-email 2.30.2
+Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [IPv6:2a01:e0c:1:1599::15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9932710E068
+ for <nouveau@lists.freedesktop.org>; Sun, 24 Dec 2023 10:18:59 +0000 (UTC)
+Received: from [IPV6:2a01:cb1d:8db4:28d1:7100:86ca:ab5d:d433] (unknown
+ [IPv6:2a01:cb1d:8db4:28d1:7100:86ca:ab5d:d433])
+ (Authenticated sender: pierrejove@free.fr)
+ by smtp6-g21.free.fr (Postfix) with ESMTPSA id 9E382780333
+ for <nouveau@lists.freedesktop.org>; Sun, 24 Dec 2023 11:18:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
+ s=smtp-20201208; t=1703413137;
+ bh=kc+nKceDpmvxcxCS84XbXX1yi6k4clx/4AsDeg0Suqs=;
+ h=Date:To:From:Subject:From;
+ b=ptwkIxqU38JWL/SstAXz8BZ42v+ElsA95jjkXg3vQxbZKFMqRycNYEm/lTtzq6wBi
+ 5of8Cn8k7IzVdHChXFsQViSHBfVhG8BL2qIpVYkPOO63fu9ozaqSNLoEqjp0Vz8Qzh
+ mXWoU9ntjvpw5NMFAn3MkKFTSimPEYhIWeCSLCbnNJyJ6U9ka0E+zlSeFctbmNwajI
+ lIj/hO+fF7u1NhVQpzAOQtjt0iVTa+47af/bhqq/XeVYfGAhiGFHSMv6+x1PolWtPp
+ /7Ds0Hvk426Gs5D4eqp+3hlKvLAu4KJ6XtMQPuCOwWBSMPflB60+Z5Bb2a9bFOE8XW
+ Do//1P97BidcQ==
+Message-ID: <75d066dd-e825-4a80-ae3d-f6fe06184ad2@free.fr>
+Date: Sun, 24 Dec 2023 11:18:57 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+To: nouveau@lists.freedesktop.org
+Content-Language: en-US
+From: niepce <pierrejove@free.fr>
+Subject: Driver Nvidia 535
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -57,35 +49,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org, Andrey Shumilin <shum.sdl@nppct.ru>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- vefanov@ispras.ru, ykarpov@ispras.ru, Daniel Vetter <daniel@ffwll.ch>,
- vmerzlyakov@ispras.ru, khoroshilov@ispras.ru
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-It is possible to access an element at index -1 if at the first iteration of the loop the result of switch is equal to 0x25
+you need to translate...sorry
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Bonjour; j'utilise un Dell G3-15 (intel core i5 9th Gen) & (Nvidia 
+GEforce GTX)
 
-Signed-off-by: Andrey Shumilin <shum.sdl@nppct.ru>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.c | 2 ++
- 1 file changed, 2 insertions(+)
+Mon OS est Linux Mint 21.2 Victoria (sous Ubuntu 22.04 Jammy Jellyfish )
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.c
-index 5babc5a7c7d5..78387053f214 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/bios/therm.c
-@@ -180,6 +180,8 @@ nvbios_therm_fan_parse(struct nvkm_bios *bios, struct nvbios_therm_fan *fan)
- 			cur_trip->fan_duty = duty_lut[(value & 0xf000) >> 12];
- 			break;
- 		case 0x25:
-+			if (fan->nr_fan_trip == 0)
-+				fan->nr_fan_trip++;
- 			cur_trip = &fan->trip[fan->nr_fan_trip - 1];
- 			cur_trip->fan_duty = value;
- 			break;
--- 
-2.30.2
+J'utilise un pilote vidéo générique; mais si je tente d'utiliser le 
+pilote Propriétaire Nvidia 535
+
+mon WiFi cesse de fonctionner ce qui est un problème sur un ordinateur 
+"gamming"
+
+Je ne connais rien a la programmation,je voulais seulement partager 
+l'information.
+
+Merci d'avoir pris le temps de me lire.
+
 
