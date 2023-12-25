@@ -4,39 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A64DC4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BC69C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:49:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1F9510E515;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5CE110E516;
 	Tue, 16 Jan 2024 11:47:40 +0000 (UTC)
-Received: from smtp6-g21.free.fr (smtp6-g21.free.fr [IPv6:2a01:e0c:1:1599::15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9932710E068
- for <nouveau@lists.freedesktop.org>; Sun, 24 Dec 2023 10:18:59 +0000 (UTC)
-Received: from [IPV6:2a01:cb1d:8db4:28d1:7100:86ca:ab5d:d433] (unknown
- [IPv6:2a01:cb1d:8db4:28d1:7100:86ca:ab5d:d433])
- (Authenticated sender: pierrejove@free.fr)
- by smtp6-g21.free.fr (Postfix) with ESMTPSA id 9E382780333
- for <nouveau@lists.freedesktop.org>; Sun, 24 Dec 2023 11:18:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
- s=smtp-20201208; t=1703413137;
- bh=kc+nKceDpmvxcxCS84XbXX1yi6k4clx/4AsDeg0Suqs=;
- h=Date:To:From:Subject:From;
- b=ptwkIxqU38JWL/SstAXz8BZ42v+ElsA95jjkXg3vQxbZKFMqRycNYEm/lTtzq6wBi
- 5of8Cn8k7IzVdHChXFsQViSHBfVhG8BL2qIpVYkPOO63fu9ozaqSNLoEqjp0Vz8Qzh
- mXWoU9ntjvpw5NMFAn3MkKFTSimPEYhIWeCSLCbnNJyJ6U9ka0E+zlSeFctbmNwajI
- lIj/hO+fF7u1NhVQpzAOQtjt0iVTa+47af/bhqq/XeVYfGAhiGFHSMv6+x1PolWtPp
- /7Ds0Hvk426Gs5D4eqp+3hlKvLAu4KJ6XtMQPuCOwWBSMPflB60+Z5Bb2a9bFOE8XW
- Do//1P97BidcQ==
-Message-ID: <75d066dd-e825-4a80-ae3d-f6fe06184ad2@free.fr>
-Date: Sun, 24 Dec 2023 11:18:57 +0100
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com
+ [IPv6:2607:f8b0:4864:20::1134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0311610E055
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Dec 2023 08:26:02 +0000 (UTC)
+Received: by mail-yw1-x1134.google.com with SMTP id
+ 00721157ae682-5e7c1012a42so29653517b3.3
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Dec 2023 00:26:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1703492761; x=1704097561; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=VNB8imntS8LBNtKK1nxaZRxw5hb3saJQOKkNzHToqUE=;
+ b=fUHk5DJiQeonkBUseLLVvCPTRGm3qG/NWtklBX31lJrFd9RHkjgGuC2WzxguFZ7KAx
+ c05XuA9OHq0ZcNg9T4v5xH15NPTKbgdWRN0PqDCdGG2cCngZ+uX67G3ZBzeE9dzsFgP5
+ KO4RNIVvEhHB1LsvPasHOQPHRHcAe8IkVzKb/oqSdBgdGKY8b3M8PCVgase3MyOqG8Wd
+ zTJVRPY3SgcNdyxZ/StZYsdwDz0DF8v3Nfy9f7V87Y75H+VXovT0OMw5gIsb3vOUxoDD
+ j1AqrlVM0eSKW2AtdneeuM9sZrdTuZNmbs3TnIRSZXucS3oR859WvFvtRAwSmDcvXDuA
+ zktA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1703492761; x=1704097561;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=VNB8imntS8LBNtKK1nxaZRxw5hb3saJQOKkNzHToqUE=;
+ b=G05wFFZ3wVsQHJxIKsXoBU6p4GSsFwx3gaHpXDT9vRo25KFBO2FGLoMFVof2GPMd9l
+ c0IuGnP7daG/h8auVfmi+tTlQVXiopGDkMS/km+fig24kei7xalNAqSl9tLKvJT7vT5C
+ 6Ms3nyGPlkMWtjK3bl+VvLXSyZ+BeThscnj7hUx5N+NoMq7f602zTL7DQP0+MV0QUqaj
+ n5BN1Dq/8FKukTTZ8Y4CGF/Imv1FLP23ysPmociSGynE5ZA7uH7jqRy0eJGtkLkpLrvb
+ wfI8p3iByhqSw951qp4puQR90uFycHfQljJG5Szuu+2Si4527zf5aAEsz8xFYfTOR9zN
+ Ce+Q==
+X-Gm-Message-State: AOJu0YzcvU+j/G+g5Ge+PexnZxRw/m/R0C378EDr4mzegBwqLZpUsIZG
+ /RS3TYA8MJ2zTkU4W7WWdtvxv77Ip8worCgAtYjgCxtSAhifLg==
+X-Google-Smtp-Source: AGHT+IF083Bgt0C2N7LUbBQghDLExLDKK2OiXmQ1oldOTQJnjUyRTofm7RSs13RBrEV6NHXXLTe6uC/yOlvsnsuIfTA=
+X-Received: by 2002:a0d:d203:0:b0:5d7:1941:355c with SMTP id
+ u3-20020a0dd203000000b005d71941355cmr3390590ywd.67.1703492760958; Mon, 25 Dec
+ 2023 00:26:00 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: nouveau@lists.freedesktop.org
-Content-Language: en-US
-From: niepce <pierrejove@free.fr>
-Subject: Driver Nvidia 535
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: vivek pandya <vivekvpandya@gmail.com>
+Date: Mon, 25 Dec 2023 13:55:49 +0530
+Message-ID: <CAHYgpoKzo=nuccJhk+jp+fsQFS18wfNQp+oq33GQLF+x9vbGbg@mail.gmail.com>
+Subject: Help identifying still open projects on
+ https://www.x.org/wiki/SummerOfCodeIdeas/
+To: nouveau@lists.freedesktop.org, kherbst@redhat.com
+Content-Type: multipart/alternative; boundary="000000000000e4fa30060d5150c8"
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -52,22 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-you need to translate...sorry
+--000000000000e4fa30060d5150c8
+Content-Type: text/plain; charset="UTF-8"
 
-Bonjour; j'utilise un Dell G3-15 (intel core i5 9th Gen) & (Nvidia 
-GEforce GTX)
+Hello Karol and other members!
 
-Mon OS est Linux Mint 21.2 Victoria (sous Ubuntu 22.04 Jammy Jellyfish )
+I see that on  https://www.x.org/wiki/SummerOfCodeIdeas/ there are lots of
+compiler related tasks but most of them seem very old.
+Are they still relevant?
+Kindly provide some details.
 
-J'utilise un pilote vidéo générique; mais si je tente d'utiliser le 
-pilote Propriétaire Nvidia 535
+Sincerely,
+Vivek
 
-mon WiFi cesse de fonctionner ce qui est un problème sur un ordinateur 
-"gamming"
+--000000000000e4fa30060d5150c8
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Je ne connais rien a la programmation,je voulais seulement partager 
-l'information.
+<div dir=3D"ltr"><div>Hello Karol and other members!</div><div><br></div><d=
+iv>I see that on=C2=A0 <a href=3D"https://www.x.org/wiki/SummerOfCodeIdeas/=
+">https://www.x.org/wiki/SummerOfCodeIdeas/</a> there are lots of compiler =
+related tasks but most of them seem very old. <br></div><div>Are they still=
+ relevant?=C2=A0</div><div>Kindly provide some details.</div><div><br></div=
+><div>Sincerely,</div><div>Vivek<br></div></div>
 
-Merci d'avoir pris le temps de me lire.
-
-
+--000000000000e4fa30060d5150c8--
