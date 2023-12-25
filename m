@@ -4,60 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15520C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36836C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:48:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 233CA10E4D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B81E10E4D7;
 	Tue, 16 Jan 2024 11:47:37 +0000 (UTC)
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
- [IPv6:2607:f8b0:4864:20::62a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F97810E0C6;
- Sun, 26 Nov 2023 14:57:37 +0000 (UTC)
-Received: by mail-pl1-x62a.google.com with SMTP id
- d9443c01a7336-1cfa7be5650so4568585ad.0; 
- Sun, 26 Nov 2023 06:57:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701010657; x=1701615457; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=ds6jz8XiqF0ADftYJN+hp07WDKExgCoZRBZ98zeNhK8=;
- b=g/RvzruNJCaCAwwDmpiKOCxii/oz3clpC0xFUQC+b/8A9/q9nDhNa59vweD+gIpfGZ
- Plmxm0bbdxhi91JZ7VoigRZMsFgs08ZidXv5isAE3QQeMjAK4UxK8VHXhm1ryhn2nYAd
- k32NckLsK9ZGagBghTUdt5h0w6nUxoHejtqK9KkBseUVR5kJSmHzKwpwmI2bdk2aH2bk
- btJqIgzIoO8vTSDbn2o4Cy/Z900Li4wJ2JcYg0vK/hkvZlQc4XDV9l9KBf59Qz83h1B2
- y+gLj4siYgk16jHvLCOaI2/6AfRp9rWGLRRBgTRK8JNBdC5E0TCbpst0ueYw65lzwzdj
- DkqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701010657; x=1701615457;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=ds6jz8XiqF0ADftYJN+hp07WDKExgCoZRBZ98zeNhK8=;
- b=EFj+u1TDofpnpKLk80S++9+hMAKDJcH0NTnWHUfrq+84J9he53/14b8wX/3hH3CJ3B
- Es1nGY8ndHEnm8q+xVY5Xsq9IL5bVNkHFIQFmVRqBXjE6L259/YaZ/BxmVua0zKn+maX
- 9b7KMNQJY27JqFPxpgOdf5ww/0qeKdofF45XXSY4yKVSJQQjk4ETF0y91LOWXs6KcegK
- I/Oa9W/YMoqOlSUmp8aUungogvhMNeMEiDqh1mOIY3AeP2s3XAODSRI9pc2KlxqqB+KM
- m9WQloFHrBgwyzIS6OZQdp0rVHi5faz7v1qbOV3Mqn48BxedlcZvUcbRC6ShbU9nWIhB
- 8JHw==
-X-Gm-Message-State: AOJu0YxzrQ6DTEEcO2yolZHoMpU6jz1JK02hlIwJsFUFrRkn5B30jd8s
- HuKJN2IFq7pSDbw4MaITa3w=
-X-Google-Smtp-Source: AGHT+IHfTmf4escnImpLTzKE4gnb2lDqdXKrQ5LQmUVS/atAbTu2PTrA6K046ATTWXWsoyAbE4pjZQ==
-X-Received: by 2002:a17:903:183:b0:1ce:5b6e:bae1 with SMTP id
- z3-20020a170903018300b001ce5b6ebae1mr10929057plg.3.1701010657137; 
- Sun, 26 Nov 2023 06:57:37 -0800 (PST)
-Received: from abhinav.. ([103.75.161.210]) by smtp.gmail.com with ESMTPSA id
- t8-20020a170902bc4800b001cc131c65besm6470070plz.168.2023.11.26.06.57.33
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 26 Nov 2023 06:57:36 -0800 (PST)
-From: Abhinav Singh <singhabhinav9051571833@gmail.com>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch
-Subject: [PATCH] driver: gpu: Fix warning directly dereferencing a rcu pointer
-Date: Sun, 26 Nov 2023 20:27:23 +0530
-Message-Id: <20231126145723.388162-1-singhabhinav9051571833@gmail.com>
-X-Mailer: git-send-email 2.39.2
+Received: from mx0a-00069f02.pphosted.com (mx0a-00069f02.pphosted.com
+ [205.220.165.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC5B10E0AD;
+ Mon, 25 Dec 2023 06:52:32 +0000 (UTC)
+Received: from pps.filterd (m0246629.ppops.net [127.0.0.1])
+ by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id
+ 3BONlFCB031298; Mon, 25 Dec 2023 06:52:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com;
+ h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding;
+ s=corp-2023-11-20; bh=FQZNYX+urMxp/YMleW1fr576KolT4Mh4EiS0z2ulfVc=;
+ b=Cjx4i/O3Ifu/YhhHIs/Y3taoSSIJD4ip9DOHCwQDIxUQ6dxooyGG4cipqpTJitS5SJbw
+ btbEw34v56LhbvJRHBWGF7FHmJPHlpw2IhUqVCbVzeWR1VWB0Clo50Kv7fiXYCKb8URx
+ T3/o8jhQp0Ti96Iz4o59DxpWRMxUhFniNjGuKT45MOJFFp2SBEWYeIUQxRlzKzpLZP6u
+ uP5ffjbLnL6OPcQLQJYbgjUafsQqpbSSgrHIS44AtdWiZMeGKORkazb7nMesLSmmBiZX
+ mxaNvcsev8meNV1fi9YjtVNYxSa1E/L8aFuqCrZ7YZKPRxK8eIRiocNb7tgcN44zjFyN Bw== 
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta01.appoci.oracle.com [138.1.114.2])
+ by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3v5qeb22qx-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 25 Dec 2023 06:52:05 +0000
+Received: from pps.filterd
+ (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (8.17.1.19/8.17.1.19)
+ with ESMTP id 3BP6n5xY005487; Mon, 25 Dec 2023 06:52:05 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+ by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTPS id
+ 3v73a6m1bk-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Mon, 25 Dec 2023 06:52:05 +0000
+Received: from phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com
+ (phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com [127.0.0.1])
+ by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3BP6q4Md015576;
+ Mon, 25 Dec 2023 06:52:04 GMT
+Received: from localhost.localdomain (dhcp-10-175-53-209.vpn.oracle.com
+ [10.175.53.209])
+ by phxpaimrmta01.imrmtpd1.prodappphxaev1.oraclevcn.com (PPS) with ESMTP id
+ 3v73a6m172-1; Mon, 25 Dec 2023 06:52:04 +0000
+From: Vegard Nossum <vegard.nossum@oracle.com>
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>
+Subject: [PATCH -next] drm/nouveau: uapi: fix kerneldoc warnings
+Date: Mon, 25 Dec 2023 07:51:45 +0100
+Message-Id: <20231225065145.3060754-1-vegard.nossum@oracle.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.997,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2023-12-25_03,2023-12-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
+ phishscore=0 adultscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 mlxscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
+ definitions=main-2312250049
+X-Proofpoint-GUID: 8Qnq6aKAqnTJiQcG022k2VjpaDP0PE9u
+X-Proofpoint-ORIG-GUID: 8Qnq6aKAqnTJiQcG022k2VjpaDP0PE9u
 X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,69 +78,140 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: nouveau@lists.freedesktop.org,
- linux-kernel-mentees@lists.linuxfoundation.org,
- dri-devel@lists.freedesktop.org,
- Abhinav Singh <singhabhinav9051571833@gmail.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Vegard Nossum <vegard.nossum@oracle.com>,
+ linux-doc@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Randy Dunlap <rdunlap@infradead.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, dri-devel@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix a sparse warning with this message
-"warning:dereference of noderef expression". In this context it means we
-are dereferencing a __rcu tagged pointer directly.
+As of commit b77fdd6a48e6 ("scripts/kernel-doc: restore warning for
+Excess struct/union"), we see the following warnings when running 'make
+htmldocs':
 
-We should not be directly dereferencing a rcu pointer. To get a normal
-(non __rcu tagged pointer) from a __rcu tagged pointer we are using the
-function unrcu_pointer(...). The non __rcu tagged pointer then can be
-dereferenced just like a normal pointer.
+  ./include/uapi/drm/nouveau_drm.h:292: warning: Excess struct member 'DRM_NOUVEAU_VM_BIND_OP_MAP' description in 'drm_nouveau_vm_bind_op'
+  ./include/uapi/drm/nouveau_drm.h:292: warning: Excess struct member 'DRM_NOUVEAU_VM_BIND_OP_UNMAP' description in 'drm_nouveau_vm_bind_op'
+  ./include/uapi/drm/nouveau_drm.h:292: warning: Excess struct member 'DRM_NOUVEAU_VM_BIND_SPARSE' description in 'drm_nouveau_vm_bind_op'
+  ./include/uapi/drm/nouveau_drm.h:336: warning: Excess struct member 'DRM_NOUVEAU_VM_BIND_RUN_ASYNC' description in 'drm_nouveau_vm_bind'
 
-I tested with qemu with this command 
-qemu-system-x86_64 \
-	-m 2G \
-	-smp 2 \
-	-kernel bzImage \
-	-append "console=ttyS0 root=/dev/sda earlyprintk=serial net.ifnames=0" \
-	-drive file=bullseye.img,format=raw \
-	-net user,host=10.0.2.10,hostfwd=tcp:127.0.0.1:10021-:22 \
-	-net nic,model=e1000 \
-	-enable-kvm \
-	-nographic \
-	-pidfile vm.pid \
-	2>&1 | tee vm.log
-with lockdep enabled.
+The problem is that these values are #define constants, but had kerneldoc
+comments attached to them as if they were actual struct members.
 
-Signed-off-by: Abhinav Singh <singhabhinav9051571833@gmail.com>
+There are a number of ways we could fix this, but I chose to draw
+inspiration from include/uapi/drm/i915_drm.h, which pulls them into the
+corresponding kerneldoc comment for the struct member that they are
+intended to be used with.
+
+To keep the diff readable, there are a number of things I _didn't_ do in
+this patch, but which we should also consider:
+
+- This is pretty good documentation, but it ends up in gpu/driver-uapi,
+  which is part of subsystem-apis/ when it really ought to display under
+  userspace-api/ (the "Linux kernel user-space API guide" book of the
+  documentation).
+
+- More generally, we might want a warning if include/uapi/ files are
+  kerneldoc'd outside userspace-api/.
+
+- I'd consider it cleaner if the #defines appeared between the kerneldoc
+  for the member and the member itself (which is something other DRM-
+  related UAPI docs do).
+
+- The %IDENTIFIER kerneldoc syntax is intended for "constants", and is
+  more appropriate in this context than ``IDENTIFIER`` or &IDENTIFIER.
+  The DRM docs aren't very consistent on this.
+
+Cc: Randy Dunlap <rdunlap@infradead.org>
+Cc: Jonathan Corbet <corbet@lwn.net>
+Signed-off-by: Vegard Nossum <vegard.nossum@oracle.com>
 ---
- drivers/gpu/drm/nouveau/nv10_fence.c | 2 +-
- drivers/gpu/drm/nouveau/nv84_fence.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ include/uapi/drm/nouveau_drm.h | 56 ++++++++++++++++------------------
+ 1 file changed, 27 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
-index c6a0db5b9e21..845b64c079ed 100644
---- a/drivers/gpu/drm/nouveau/nv10_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv10_fence.c
-@@ -32,7 +32,7 @@
- int
- nv10_fence_emit(struct nouveau_fence *fence)
- {
--	struct nvif_push *push = fence->channel->chan.push;
-+	struct nvif_push *push = unrcu_pointer(fence->channel)->chan.push;
- 	int ret = PUSH_WAIT(push, 2);
- 	if (ret == 0) {
- 		PUSH_MTHD(push, NV06E, SET_REFERENCE, fence->base.seqno);
-diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
-index 812b8c62eeba..d42e72e23dec 100644
---- a/drivers/gpu/drm/nouveau/nv84_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv84_fence.c
-@@ -85,7 +85,7 @@ nv84_fence_chid(struct nouveau_channel *chan)
- static int
- nv84_fence_emit(struct nouveau_fence *fence)
- {
--	struct nouveau_channel *chan = fence->channel;
-+	struct nouveau_channel *chan = unrcu_pointer(fence->channel);
- 	struct nv84_fence_chan *fctx = chan->fence;
- 	u64 addr = fctx->vma->addr + nv84_fence_chid(chan) * 16;
- 
+diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
+index 0bade1592f34..c95ef8a4d94a 100644
+--- a/include/uapi/drm/nouveau_drm.h
++++ b/include/uapi/drm/nouveau_drm.h
+@@ -238,34 +238,32 @@ struct drm_nouveau_vm_init {
+ struct drm_nouveau_vm_bind_op {
+ 	/**
+ 	 * @op: the operation type
++	 *
++	 * Supported values:
++	 *
++	 * %DRM_NOUVEAU_VM_BIND_OP_MAP - Map a GEM object to the GPU's VA
++	 * space. Optionally, the &DRM_NOUVEAU_VM_BIND_SPARSE flag can be
++	 * passed to instruct the kernel to create sparse mappings for the
++	 * given range.
++	 *
++	 * %DRM_NOUVEAU_VM_BIND_OP_UNMAP - Unmap an existing mapping in the
++	 * GPU's VA space. If the region the mapping is located in is a
++	 * sparse region, new sparse mappings are created where the unmapped
++	 * (memory backed) mapping was mapped previously. To remove a sparse
++	 * region the &DRM_NOUVEAU_VM_BIND_SPARSE must be set.
+ 	 */
+ 	__u32 op;
+-/**
+- * @DRM_NOUVEAU_VM_BIND_OP_MAP:
+- *
+- * Map a GEM object to the GPU's VA space. Optionally, the
+- * &DRM_NOUVEAU_VM_BIND_SPARSE flag can be passed to instruct the kernel to
+- * create sparse mappings for the given range.
+- */
+ #define DRM_NOUVEAU_VM_BIND_OP_MAP 0x0
+-/**
+- * @DRM_NOUVEAU_VM_BIND_OP_UNMAP:
+- *
+- * Unmap an existing mapping in the GPU's VA space. If the region the mapping
+- * is located in is a sparse region, new sparse mappings are created where the
+- * unmapped (memory backed) mapping was mapped previously. To remove a sparse
+- * region the &DRM_NOUVEAU_VM_BIND_SPARSE must be set.
+- */
+ #define DRM_NOUVEAU_VM_BIND_OP_UNMAP 0x1
+ 	/**
+ 	 * @flags: the flags for a &drm_nouveau_vm_bind_op
++	 *
++	 * Supported values:
++	 *
++	 * %DRM_NOUVEAU_VM_BIND_SPARSE - Indicates that an allocated VA
++	 * space region should be sparse.
+ 	 */
+ 	__u32 flags;
+-/**
+- * @DRM_NOUVEAU_VM_BIND_SPARSE:
+- *
+- * Indicates that an allocated VA space region should be sparse.
+- */
+ #define DRM_NOUVEAU_VM_BIND_SPARSE (1 << 8)
+ 	/**
+ 	 * @handle: the handle of the DRM GEM object to map
+@@ -301,17 +299,17 @@ struct drm_nouveau_vm_bind {
+ 	__u32 op_count;
+ 	/**
+ 	 * @flags: the flags for a &drm_nouveau_vm_bind ioctl
++	 *
++	 * Supported values:
++	 *
++	 * %DRM_NOUVEAU_VM_BIND_RUN_ASYNC - Indicates that the given VM_BIND
++	 * operation should be executed asynchronously by the kernel.
++	 *
++	 * If this flag is not supplied the kernel executes the associated
++	 * operations synchronously and doesn't accept any &drm_nouveau_sync
++	 * objects.
+ 	 */
+ 	__u32 flags;
+-/**
+- * @DRM_NOUVEAU_VM_BIND_RUN_ASYNC:
+- *
+- * Indicates that the given VM_BIND operation should be executed asynchronously
+- * by the kernel.
+- *
+- * If this flag is not supplied the kernel executes the associated operations
+- * synchronously and doesn't accept any &drm_nouveau_sync objects.
+- */
+ #define DRM_NOUVEAU_VM_BIND_RUN_ASYNC 0x1
+ 	/**
+ 	 * @wait_count: the number of wait &drm_nouveau_syncs
 -- 
-2.39.2
+2.34.1
 
