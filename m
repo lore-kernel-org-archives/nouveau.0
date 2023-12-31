@@ -4,36 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3232CC47073
-	for <nouveau@archiver.kernel.org>; Sun, 31 Dec 2023 23:36:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D603C3DA6E
+	for <nouveau@archiver.kernel.org>; Sun, 31 Dec 2023 23:36:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C94A010E078;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5F8410E085;
 	Sun, 31 Dec 2023 23:36:37 +0000 (UTC)
 Received: from bombadil.infradead.org (bombadil.infradead.org
  [IPv6:2607:7c80:54:3::133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAF810E036;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9099410E070;
  Sun, 31 Dec 2023 23:36:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
  d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
- :Reply-To:Content-Type:Content-ID:Content-Description;
- bh=YkItcnuo5x1taVeM+oJSMjte9KpmqBD29r0EejLD2Bo=; b=PfM91DZiaQo44ixDoBeAkKm58j
- kwImdjM+PAOGGsbWLDW6trkYoU25954IAZuGYYtzxtQMmyRLpTjC6K+v6kdZjEjg2MsuEnqEJGTW0
- vk0rBbY+8CN91mSezQSJZ4OYfAjuxRPuNmusM5AonNSz3yCKuvZ6ibhIvEyaKUZcAGv4qY+U/y7KN
- 7NfO6Xc+2x/f7309Bn6TF0St/kNuPRcoOJLU/5CP/rJHUA3wr2iRHABdLFYRU3ay72Th3DIiHTBE5
- q3FaZhTo0vGCyQbtPcM2o+mei0cd2QvC3LtVLbd925HPQDg8humEysuDe8F8otYDSBwd/v2aLIsWH
- 9bcA+0hA==;
+ MIME-Version:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
+ Content-ID:Content-Description:In-Reply-To:References;
+ bh=DQQOq7uMuqC+LUmYlsu8L+wWzEZWSGnRaRM1vF458w8=; b=jD0bKOK5DR9L4enLf/EHEUGkYb
+ Db1VFFkRgEEqmhO62Bv/HRTURxaPOfokmOl7iC1GPpFY2tA52os0IKB8RKTY+T/SI3rWVQbZq7D1x
+ ST91eSLiMAZbeuhWgtwSA79W1KB6SrAeUdG7puTcUTiyaYgkbOHqdrJmeNCfoasGm+sNhnRfd085J
+ GFEyHl5SYld9h4sHRUJVb88yvymVXJviiY5VOfa7me5IryQlGmmnj0ITIjJe7oDCmfFEPYQNAW2J/
+ 6iNxIe0n15SVWePV6eRJnkTNXXo45bPU4/xuUhAV/9217EJ8h61xpHIdxJFZwgsjm/8WSVGTVISIB
+ hAy8V8Fw==;
 Received: from [50.53.46.231] (helo=bombadil.infradead.org)
  by bombadil.infradead.org with esmtpsa (Exim 4.96 #2 (Red Hat Linux))
- id 1rK5MB-005MeM-03; Sun, 31 Dec 2023 23:36:35 +0000
+ id 1rK5MA-005MeM-0G; Sun, 31 Dec 2023 23:36:34 +0000
 From: Randy Dunlap <rdunlap@infradead.org>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 4/4] drm/nouveau/volt/gk20a: don't misuse kernel-doc comments
-Date: Sun, 31 Dec 2023 15:36:33 -0800
-Message-ID: <20231231233633.6596-4-rdunlap@infradead.org>
+Subject: [PATCH 1/4] drm/nouveau/disp: don't misuse kernel-doc comments
+Date: Sun, 31 Dec 2023 15:36:30 -0800
+Message-ID: <20231231233633.6596-1-rdunlap@infradead.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20231231233633.6596-1-rdunlap@infradead.org>
-References: <20231231233633.6596-1-rdunlap@infradead.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -56,14 +54,14 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 Change kernel-doc "/**" comments to common "/*" comments to prevent
 kernel-doc warnings:
 
-gk20a.c:49: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-gk20a.c:49: warning: missing initial short description on line:
- * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-gk20a.c:62: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
- * cvb_t_mv =
-gk20a.c:62: warning: missing initial short description on line:
- * cvb_t_mv =
+crtc.c:453: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+ * Sets up registers for the given mode/adjusted_mode pair.
+crtc.c:453: warning: missing initial short description on line:
+ * Sets up registers for the given mode/adjusted_mode pair.
+crtc.c:629: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+ * Sets up registers for the given mode/adjusted_mode pair.
+crtc.c:629: warning: missing initial short description on line:
+ * Sets up registers for the given mode/adjusted_mode pair.
 
 Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 Cc: Karol Herbst <kherbst@redhat.com>
@@ -74,27 +72,27 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Cc: Maxime Ripard <mripard@kernel.org>
 Cc: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c |    4 ++--
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff -- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/gk20a.c
-@@ -45,7 +45,7 @@ static const struct cvb_coef gk20a_cvb_c
- 	/* 852 */ { 1608418, -21643, -269,     0,    763,  -48},
- };
- 
--/**
-+/*
-  * cvb_mv = ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0)
-  */
- static inline int
-@@ -58,7 +58,7 @@ gk20a_volt_get_cvb_voltage(int speedo, i
- 	return mv;
+diff -- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -449,7 +449,7 @@ nv_crtc_mode_set_vga(struct drm_crtc *cr
+ 	regp->Attribute[NV_CIO_AR_CSEL_INDEX] = 0x00;
  }
  
 -/**
 +/*
-  * cvb_t_mv =
-  * ((c2 * speedo / s_scale + c1) * speedo / s_scale + c0) +
-  * ((c3 * speedo / s_scale + c4 + c5 * T / t_scale) * T / t_scale)
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
+@@ -625,7 +625,7 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc,
+ 	return ret;
+ }
+ 
+-/**
++/*
+  * Sets up registers for the given mode/adjusted_mode pair.
+  *
+  * The clocks, CRTCs and outputs attached to this CRTC must be off.
