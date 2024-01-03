@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7E7BC47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0809C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76D3E10E4A2;
-	Tue, 16 Jan 2024 11:48:09 +0000 (UTC)
-Received: from mail-yw1-x114a.google.com (mail-yw1-x114a.google.com
- [IPv6:2607:f8b0:4864:20::114a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A761010E5FE
- for <nouveau@lists.freedesktop.org>; Wed, 29 Nov 2023 06:06:05 +0000 (UTC)
-Received: by mail-yw1-x114a.google.com with SMTP id
- 00721157ae682-5cd6a86a898so78490537b3.3
- for <nouveau@lists.freedesktop.org>; Tue, 28 Nov 2023 22:06:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1701237965; x=1701842765;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=BFBgGZHgdrEFpnu/cpKOcJzser1reIBdXzg/6fniV64=;
- b=xqCTSCGBzzpc0xThThjFhaptQiRs3bpBmpk33zAXn2Ys2pa8qLrCdoZnvIYn/MMM5B
- 2sdrcC2iw7oYKrHzjQ/b9q7tk3UO+/u9nsY/WwB0oCayc1TkXeHXuE9uX/DizTZRxSJ5
- 7nHdLDszTvXj3xcaD63AzGKCUjAvL1UqZkEe7yfIeRGA92pXoQsHunIJgTbIhqFHzD2K
- zTJh5NOqElMbVFNlUx7/SNHMULMgZrnpGYfE/W0IvUImQRtAHM7FPxV7hvBi0XtKq0ol
- itzbFUp76n1ZqO0GA0/t1q5Hrgh4rNqYhnpFtBNjKC5rGX5oCRVfuKz5dvvI5AvDHxsa
- venA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701237965; x=1701842765;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=BFBgGZHgdrEFpnu/cpKOcJzser1reIBdXzg/6fniV64=;
- b=q9B/Fkky0aaCDG4T9PW/Jg837oIkHXk6Keh7FOkzWDpgHF+5tkGCqjWqo9HzE3m0TW
- G4yqm2egdo2EJLw0xYUCVpOLNgswtnf361id3OiVDItpvPLqA6GnAzsHEFB0FS3zJzz4
- oFZLwoX15Sx11RKCZxupc9TtZzH8d18G9BDIMqZJ/1OGBFfg9sAWfRItEOb+7EzkfOAK
- dJPV9uqelBSNuHRUKDo+RR9zhN45duhDkzqfX4xzBtprpaAiqoEUhrRKoe/auIpO3LgK
- XOjcV/BL2n7j+cXyYHVkiFFeYx0aatsIAFggPuyPDLGP3QVq97vm4xQAPkxrynUg3REA
- ihtw==
-X-Gm-Message-State: AOJu0Ywct+PqMNFnew1pYo6Ri7xm0SSI+LK3oOzLXUYFm+Z1FcHVHTKJ
- mHcjWR5LkYUII0a0H+o003qaCCKUX40v
-X-Google-Smtp-Source: AGHT+IG4ZcbE3hB8V6+vKX0zxYUr0OpHfbf/WNlvcGBdlOoo8eTYBCxtpp+7m/8KdVPZTHDTWhORx94znMfW
-X-Received: from morats.c.googlers.com ([fda3:e722:ac3:cc00:14:4d90:c0a8:d9e])
- (user=moritzf job=sendgmr) by 2002:a25:c044:0:b0:db5:1f69:704e
- with SMTP id
- c65-20020a25c044000000b00db51f69704emr38263ybf.1.1701237964651; Tue, 28 Nov
- 2023 22:06:04 -0800 (PST)
-Date: Wed, 29 Nov 2023 06:06:03 +0000
-In-Reply-To: <4-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Mime-Version: 1.0
-References: <0-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
- <4-v1-720585788a7d+811b-iommu_fwspec_p1_jgg@nvidia.com>
-Message-ID: <20231129060603.hxtmbsefxurxnwkh@google.com>
-Subject: Re: [PATCH 04/10] iommu: Mark dev_iommu_get() with lockdep
-From: Moritz Fischer <moritzf@google.com>
-To: Jason Gunthorpe <jgg@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81F4A10E4E7;
+	Tue, 16 Jan 2024 11:48:16 +0000 (UTC)
+X-Greylist: delayed 399 seconds by postgrey-1.36 at gabe;
+ Wed, 03 Jan 2024 12:37:40 UTC
+Received: from mail.kernel-space.org (mail.kernel-space.org [195.201.34.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 022C510E280;
+ Wed,  3 Jan 2024 12:37:40 +0000 (UTC)
+Received: from kernel-space.org (localhost [127.0.0.1])
+ by kernel-space.org (OpenSMTPD) with ESMTP id 5225f19b;
+ Wed, 3 Jan 2024 12:29:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=kernel-space.org; h=
+ message-id:date:mime-version:from:to:subject:content-type
+ :content-transfer-encoding; s=s1; bh=jJ51hW6QK8xSwgliZjmDtf2wAhE
+ =; b=euk35juEWF/iGRUkt0AjfmTmCgQWJnaF7pXerXVMmzq1EonAZXOt1TEQ4Vz
+ w0hDJWW4LH5BJ3y+/lgmhAKg69TgF4SJ1WB7BXM4u4DM13nc+MJLBTS5oaOOBCyP
+ RQ+99hPoVjWw5zXtAO9ogVPovv3bpzbaExT3AsDo93WSap4o=
+DomainKey-Signature: a=rsa-sha1; c=nofws; d=kernel-space.org; h=
+ message-id:date:mime-version:from:to:subject:content-type
+ :content-transfer-encoding; q=dns; s=s1; b=ClvWMrhhxoW9NbhZSVzIi
+ U0J+/C6oO8TJmCjBrR0/NtKpgm/6/WTQZ7WZYTZqyPr5hXtS8zFozKT87T+SCpM3
+ dNvrJqISMkmLpczUmQC20AQkR6WmzBAirEcXJ3xESLdcUrzGTjkL0PV5ImpQfT0l
+ UwnO1BVeFxq5PHm/rihhX4=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel-space.org;
+ s=s1; t=1704284994;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=Jso+kg0PCrUfKK3VrwCFHag8Ddx6YoUU5qjOQHaiT0g=;
+ b=zjFq6HYUOZUhQR46j0UkdkWAltPLbvU7dN1ANsDZmmEi87BGGlbEHelvWXt8/f71V/UPJi
+ MgfJgSDNYKKkUS9xNkj7Sgnm2p/G8Pi82cqrhEMVjswllCFIRpQT1K4LkjfVRDAuWrNYzj
+ tWDAiUKUbA5oI0aUB2zbllh+YagnvuY=
+Received: from [192.168.0.2] (host-79-41-232-3.retail.telecomitalia.it
+ [79.41.232.3])
+ by kernel-space.org (OpenSMTPD) with ESMTPSA id 20df6116
+ (TLSv1.3:TLS_AES_256_GCM_SHA384:256:NO); 
+ Wed, 3 Jan 2024 12:29:54 +0000 (UTC)
+Message-ID: <3419b50b-2ac7-c7b7-1289-d8eb5cc467f8@kernel-space.org>
+Date: Wed, 3 Jan 2024 13:30:17 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Betterbird/102.11.0
+Content-Language: en-US, it
+From: Angelo Dureghello <angelo@kernel-space.org>
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ dakr@redhat.com, bskeggs@redhat.com
+Subject: AD107M (197), black screen
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:28 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,70 +67,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hyperv@vger.kernel.org, "Rafael J. Wysocki" <rafael@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Jerry Snitselaar <jsnitsel@redhat.com>, dri-devel@lists.freedesktop.org,
- patches@lists.linux.dev, Laxman Dewangan <ldewangan@nvidia.com>,
- Hanjun Guo <guohanjun@huawei.com>, linux-riscv@lists.infradead.org,
- "K. Y. Srinivasan" <kys@microsoft.com>, Frank Rowand <frowand.list@gmail.com>,
- Christoph Hellwig <hch@lst.de>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Marek Szyprowski <m.szyprowski@samsung.com>, Rob Herring <robh@kernel.org>,
- Wei Liu <wei.liu@kernel.org>, Joerg Roedel <joro@8bytes.org>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Dexuan Cui <decui@microsoft.com>, Russell King <linux@armlinux.org.uk>,
- linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
- nouveau@lists.freedesktop.org, linux-snps-arc@lists.infradead.org,
- Len Brown <lenb@kernel.org>, devicetree@vger.kernel.org,
- Albert Ou <aou@eecs.berkeley.edu>,
- Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
- Will Deacon <will@kernel.org>, Sven Peter <sven@svenpeter.dev>,
- Haiyang Zhang <haiyangz@microsoft.com>, Vineet Gupta <vgupta@kernel.org>,
- Rob Herring <robh+dt@kernel.org>, Moritz Fischer <mdf@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, linux-tegra@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Robin Murphy <robin.murphy@arm.com>, Hector Martin <marcan@marcan.st>,
- linux-mips@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- asahi@lists.linux.dev, Daniel Vetter <daniel@ffwll.ch>,
- Sudeep Holla <sudeep.holla@arm.com>, dmaengine@vger.kernel.org,
- David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 08:48:00PM -0400, Jason Gunthorpe wrote:
-> Allocation of dev->iommu must be done under the
-> iommu_probe_device_lock. Mark this with lockdep to discourage future
-> mistakes.
+Hi all,
 
-> Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
-> Tested-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> ---
->   drivers/iommu/iommu.c | 2 ++
->   1 file changed, 2 insertions(+)
+i am testing current mainline (6.7.rc8), on
+a lenovo legion, with AD107M (chipset 197000a1).
 
-> diff --git a/drivers/iommu/iommu.c b/drivers/iommu/iommu.c
-> index 0d25468d53a68a..4323b6276e977f 100644
-> --- a/drivers/iommu/iommu.c
-> +++ b/drivers/iommu/iommu.c
-> @@ -334,6 +334,8 @@ static struct dev_iommu *dev_iommu_get(struct device  
-> *dev)
->   {
->   	struct dev_iommu *param = dev->iommu;
+Looks like somewhere at driver probe, screen turns
+black and stays forever. If any hint, welcome.
 
-> +	lockdep_assert_held(&iommu_probe_device_lock);
-> +
->   	if (param)
->   		return param;
+I can help debugging, rebuilding and testing in case.
 
-> --
-> 2.42.0
-
-
-Reviewed-by: Moritz Fischer <moritzf@google.com>
-
-Cheers,
-Moritz
+Regards,
+Angelo Dureghello
