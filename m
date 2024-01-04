@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4042C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A1D7C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F0D810E4C3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DF7510E4CB;
 	Tue, 16 Jan 2024 11:47:32 +0000 (UTC)
-Received: from mail-yw1-x1129.google.com (mail-yw1-x1129.google.com
- [IPv6:2607:f8b0:4864:20::1129])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C975210E4A2
- for <nouveau@lists.freedesktop.org>; Tue,  9 Jan 2024 17:29:22 +0000 (UTC)
-Received: by mail-yw1-x1129.google.com with SMTP id
- 00721157ae682-5f69383e653so28531247b3.1
- for <nouveau@lists.freedesktop.org>; Tue, 09 Jan 2024 09:29:22 -0800 (PST)
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com
+ [IPv6:2607:f8b0:4864:20::112b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D781910E51D
+ for <nouveau@lists.freedesktop.org>; Thu,  4 Jan 2024 20:02:12 +0000 (UTC)
+Received: by mail-yw1-x112b.google.com with SMTP id
+ 00721157ae682-5f588ce1b6dso5314057b3.1
+ for <nouveau@lists.freedesktop.org>; Thu, 04 Jan 2024 12:02:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=broadcom.com; s=google; t=1704821362; x=1705426162;
+ d=broadcom.com; s=google; t=1704398532; x=1705003332;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=fYasaJ5v2fpUQaUcTZErPf/UnAoKp/cDz4/IevuoK0U=;
- b=D3gMFm+XILd+q6VpdFQrObfAEORGSFR9z4DlQAI4NBM0IODlLVqf3iXLQJPR5cmo+3
- TpCd1g1AyQ5wNHo45B8MTiKjAtW2LmWXX8SaS1RAfRUAGwFR0iEiZbtCaeYJquQ/vAeK
- GDNGe7oz4dSvt30wU2xMy2o1ylV4YPgkkibAY=
+ bh=bybi4ywV1wZ094PB74r5c44b8oKAvA5ijLpht9GMRbs=;
+ b=RzCJRmkjIVOWSR+18CbO2k1XnImegcqyvy4fKosu5tHsPR+m1TFHCHK4sN7ACjwa05
+ as3WWNm5q2fTNpcOvFkTshH37PyRVudFkhIL6omeWp0HHDMvd2asy+tDOam/+S+hluh1
+ rvGXfJODgQl2IAAQUbu0rmhJdmSej+NpNTEXs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1704821362; x=1705426162;
+ d=1e100.net; s=20230601; t=1704398532; x=1705003332;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=fYasaJ5v2fpUQaUcTZErPf/UnAoKp/cDz4/IevuoK0U=;
- b=Ng+TANnVvMXHPUOltS0ax44dEajXkGvrkq7pEri3R+yPBbqG+U5FleeT8jwOxoJEhd
- zKmkytDbr84SoDaw5ShzOwROwnebaj5yDR+r8D6G2wZEUdjRwZBa3RaI7FeR35itxyg8
- KQMI1MyCqedZTJkZ/asnDSQNbghsDymSCbNNIW/DHOEOEnEIzvyMjCFLteHfQC36pnL8
- 58mT/bHZuTyWafUrRhVO22K35p4RV64UZuYfcMWdif3Elc9xPdUQwe+Ip1ymlGYUCdPw
- Dcv/s9BShdBikhcBT5Gl3R/dxIuZh6xl97E4rKENly7/HU7rffiDikyRJyNbNsN09mt/
- qNKg==
-X-Gm-Message-State: AOJu0YzM/9cZHH4flJl1rCfAxtaiyh0rAeYV3E8Res6iwGpRP+s9bo6E
- ZA8Uu/h3kaO0S2IjjfXZ8dU09xHwVagyq4shZxEFzOMP3E9NuinxuA6qnuFxKg==
-X-Google-Smtp-Source: AGHT+IFA6ToL68DJ3cvSWicLV2X3STJSgEJ4PTc+/rPSBEz7nDo5vfhB8Be8MgRpOGcrWAZo10QbLJec6oKrKA1U3fA=
-X-Received: by 2002:a25:df13:0:b0:db9:6a02:3931 with SMTP id
- w19-20020a25df13000000b00db96a023931mr3289748ybg.46.1704821361657; Tue, 09
- Jan 2024 09:29:21 -0800 (PST)
+ bh=bybi4ywV1wZ094PB74r5c44b8oKAvA5ijLpht9GMRbs=;
+ b=N8v6OFHBJiOWLyUowHEv1qhoaRKIyFJxTBnpbbkBwv9hgLUcOc5AGUhvrimGqqZsH6
+ D6ctBSpexe9Z8JOoSrztuYfPaZH/v288a1vpeBgCNwqmeAfFma3eecjYUCUTF9iRuov1
+ /ZZETFNyRW/foyP2oZL+CZVWHk19TQOL4eYM5CORZbkt3iEeV/9uD0zraD4eAbw6H/CM
+ 2WHX0bp2TfsXcHifPB5ySIZknDzPJb63N3aVC351ZgkKnHrLIqI1xQ/1Eyy2UR3s5pyi
+ oZuTj5FNf21YESyLGNICxvzW2wn3HtFx/e1gUcL4V/K9mRdg8/ZQvgNXJQUwIB/S5Dzs
+ u6Dg==
+X-Gm-Message-State: AOJu0YzO++Ll67Jmml7Fzv8ISHI8QXD/HaXzMf1ZpfAQIoh+lPH/ft6C
+ zc0JKQZghS/QlS6oWoNM8lGRTjp5DbJ9ANJzMHCcCB1GX8gB
+X-Google-Smtp-Source: AGHT+IEK0OgPmEBI8p5R2niiTJ3UnV4Wcaq1u0+6l9QKALUepmWk/ucXp3wyH5VpBPUp1QD4hcm3JqyB3IjJPtOob/g=
+X-Received: by 2002:a25:9ac6:0:b0:dbd:52d7:a611 with SMTP id
+ t6-20020a259ac6000000b00dbd52d7a611mr825681ybo.25.1704398531428; Thu, 04 Jan
+ 2024 12:02:11 -0800 (PST)
 MIME-Version: 1.0
-References: <20240109074729.3646-1-christian.koenig@amd.com>
- <20240109074729.3646-4-christian.koenig@amd.com>
-In-Reply-To: <20240109074729.3646-4-christian.koenig@amd.com>
+References: <20240104150545.1483-1-christian.koenig@amd.com>
+ <20240104150545.1483-3-christian.koenig@amd.com>
+In-Reply-To: <20240104150545.1483-3-christian.koenig@amd.com>
 From: Zack Rusin <zack.rusin@broadcom.com>
-Date: Tue, 9 Jan 2024 12:29:10 -0500
-Message-ID: <CABQX2QNe=G=vzT=aoNOC2Tcdcbpc4WBL3xnvY5rDS7YpWo64CA@mail.gmail.com>
-Subject: Re: [PATCH 3/5] drm/ttm: replace busy placement with flags v5
+Date: Thu, 4 Jan 2024 15:02:00 -0500
+Message-ID: <CABQX2QOk26-Dp0N6+_nb5H6E-xVr4w_yG1YP1_=Z=616rmp50Q@mail.gmail.com>
+Subject: Re: [PATCH 2/4] drm/ttm: replace busy placement with flags v4
 To: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -69,11 +69,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Cc: thomas.hellstrom@linux.intel.com, nouveau@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, jani.nikula@linux.intel.com,
- dri-devel@lists.freedesktop.org
+ dri-devel@lists.freedesktop.org, zackr@vmware.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jan 9, 2024 at 2:47=E2=80=AFAM Christian K=C3=B6nig
+On Thu, Jan 4, 2024 at 10:05=E2=80=AFAM Christian K=C3=B6nig
 <ckoenig.leichtzumerken@gmail.com> wrote:
 >
 > From: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
@@ -85,30 +85,29 @@ On Tue, Jan 9, 2024 at 2:47=E2=80=AFAM Christian K=C3=B6nig
 > v2: add missing TTM_PL_FLAG_IDLE for i915
 > v3: fix auto build test ERROR on drm-tip/drm-tip
 > v4: fix some typos pointed out by checkpatch
-> v5: cleanup some rebase problems with VMWGFX
 >
 > Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
 > Signed-off-by: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
 > ---
 >  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c |  6 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    | 11 +---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c    | 11 +--
 >  drivers/gpu/drm/drm_gem_vram_helper.c      |  2 -
->  drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 37 +++++------
+>  drivers/gpu/drm/i915/gem/i915_gem_ttm.c    | 37 ++++----
 >  drivers/gpu/drm/loongson/lsdc_ttm.c        |  2 -
->  drivers/gpu/drm/nouveau/nouveau_bo.c       | 59 +++++++----------
+>  drivers/gpu/drm/nouveau/nouveau_bo.c       | 59 +++++--------
 >  drivers/gpu/drm/nouveau/nouveau_bo.h       |  1 -
 >  drivers/gpu/drm/qxl/qxl_object.c           |  2 -
 >  drivers/gpu/drm/qxl/qxl_ttm.c              |  2 -
 >  drivers/gpu/drm/radeon/radeon_object.c     |  2 -
->  drivers/gpu/drm/radeon/radeon_ttm.c        |  8 +--
+>  drivers/gpu/drm/radeon/radeon_ttm.c        |  8 +-
 >  drivers/gpu/drm/radeon/radeon_uvd.c        |  1 -
->  drivers/gpu/drm/ttm/ttm_bo.c               | 21 ++++---
->  drivers/gpu/drm/ttm/ttm_resource.c         | 73 +++++-----------------
+>  drivers/gpu/drm/ttm/ttm_bo.c               | 21 +++--
+>  drivers/gpu/drm/ttm/ttm_resource.c         | 73 ++++------------
 >  drivers/gpu/drm/vmwgfx/vmwgfx_bo.c         |  2 -
->  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c |  4 --
->  include/drm/ttm/ttm_placement.h            | 10 +--
->  include/drm/ttm/ttm_resource.h             |  8 +--
->  18 files changed, 79 insertions(+), 172 deletions(-)
+>  drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c | 99 +++++++++++++++++-----
+>  include/drm/ttm/ttm_placement.h            | 10 ++-
+>  include/drm/ttm/ttm_resource.h             |  8 +-
+>  18 files changed, 159 insertions(+), 187 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm=
 /amd/amdgpu/amdgpu_object.c
@@ -806,11 +805,154 @@ main);
 > -       pl->num_busy_placement =3D set_placement_list(bo->busy_places, bu=
 sy_domain);
 >  }
+>
 
-Sorry, one last thing. Could you add the exact same code you've added
-to nouveau_bo.c here or add a fixme mentioning that it should be done?
+The busy_domain argument is unused now. There's no point in keeping it.
 
-With that, for the series:
-Reviewed-by: Zack Rusin <zack.rusin@broadcom.com>
+>  void vmw_bo_placement_set_default_accelerated(struct vmw_bo *bo)
+> diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c b/drivers/gpu/drm=
+/vmwgfx/vmwgfx_ttm_buffer.c
+> index af8562c95cc3..e243c9266453 100644
+> --- a/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> +++ b/drivers/gpu/drm/vmwgfx/vmwgfx_ttm_buffer.c
+> @@ -36,6 +36,49 @@ static const struct ttm_place vram_placement_flags =3D=
+ {
+>         .flags =3D 0
+>  };
+>
+> +struct ttm_placement vmw_vram_placement =3D {
+> +       .num_placement =3D 1,
+> +       .placement =3D &vram_placement_flags,
+> +};
+> +
+> +static const struct ttm_place vram_gmr_placement_flags[] =3D {
+> +       {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D TTM_PL_VRAM,
+> +               .flags =3D TTM_PL_FLAG_IDLE
+> +       }, {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D VMW_PL_GMR,
+> +               .flags =3D 0
+> +       }
+> +};
+> +
+> +struct ttm_placement vmw_vram_gmr_placement =3D {
+> +       .num_placement =3D 2,
+> +       .placement =3D vram_gmr_placement_flags,
+> +};
+> +
+> +static const struct ttm_place vram_sys_placement_flags[] =3D {
+> +       {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D TTM_PL_VRAM,
+> +               .flags =3D TTM_PL_FLAG_IDLE
+> +       }, {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D TTM_PL_SYSTEM,
+> +               .flags =3D TTM_PL_FLAG_BUSY
+> +       }
+> +};
+> +
+> +struct ttm_placement vmw_vram_sys_placement =3D {
+> +       .num_placement =3D 2,
+> +       .placement =3D vram_sys_placement_flags,
+> +};
+> +
+>  static const struct ttm_place sys_placement_flags =3D {
+>         .fpfn =3D 0,
+>         .lpfn =3D 0,
+> @@ -43,46 +86,64 @@ static const struct ttm_place sys_placement_flags =3D=
+ {
+>         .flags =3D 0
+>  };
+>
+> -static const struct ttm_place gmr_placement_flags =3D {
+> +struct ttm_placement vmw_sys_placement =3D {
+> +       .num_placement =3D 1,
+> +       .placement =3D &sys_placement_flags,
+> +};
+> +
+> +static const struct ttm_place vmw_sys_placement_flags =3D {
+>         .fpfn =3D 0,
+>         .lpfn =3D 0,
+> -       .mem_type =3D VMW_PL_GMR,
+> +       .mem_type =3D VMW_PL_SYSTEM,
+>         .flags =3D 0
+>  };
+>
+> -struct ttm_placement vmw_vram_placement =3D {
+> +struct ttm_placement vmw_pt_sys_placement =3D {
+>         .num_placement =3D 1,
+> -       .placement =3D &vram_placement_flags,
+> -       .num_busy_placement =3D 1,
+> -       .busy_placement =3D &vram_placement_flags
+> +       .placement =3D &vmw_sys_placement_flags,
+>  };
+>
+> -static const struct ttm_place vram_gmr_placement_flags[] =3D {
+> +static const struct ttm_place gmr_vram_placement_flags[] =3D {
+>         {
+>                 .fpfn =3D 0,
+>                 .lpfn =3D 0,
+> -               .mem_type =3D TTM_PL_VRAM,
+> +               .mem_type =3D VMW_PL_GMR,
+>                 .flags =3D 0
+>         }, {
+>                 .fpfn =3D 0,
+>                 .lpfn =3D 0,
+> -               .mem_type =3D VMW_PL_GMR,
+> -               .flags =3D 0
+> +               .mem_type =3D TTM_PL_VRAM,
+> +               .flags =3D TTM_PL_FLAG_BUSY
+>         }
+>  };
+>
+> -struct ttm_placement vmw_vram_gmr_placement =3D {
+> +struct ttm_placement vmw_srf_placement =3D {
+>         .num_placement =3D 2,
+> -       .placement =3D vram_gmr_placement_flags,
+> -       .num_busy_placement =3D 1,
+> -       .busy_placement =3D &gmr_placement_flags
+> +       .placement =3D gmr_vram_placement_flags
+>  };
+>
+> -struct ttm_placement vmw_sys_placement =3D {
+> -       .num_placement =3D 1,
+> -       .placement =3D &sys_placement_flags,
+> -       .num_busy_placement =3D 1,
+> -       .busy_placement =3D &sys_placement_flags
+> +static const struct ttm_place nonfixed_placement_flags[] =3D {
+> +       {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D TTM_PL_SYSTEM,
+> +               .flags =3D 0
+> +       }, {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D VMW_PL_GMR,
+> +               .flags =3D TTM_PL_FLAG_IDLE
+> +       }, {
+> +               .fpfn =3D 0,
+> +               .lpfn =3D 0,
+> +               .mem_type =3D VMW_PL_MOB,
+> +               .flags =3D TTM_PL_FLAG_IDLE
+> +       }
+> +};
+> +
+> +struct ttm_placement vmw_nonfixed_placement =3D {
+> +       .num_placement =3D 3,
+> +       .placement =3D nonfixed_placement_flags,
+>  };
+
+That looks incorrect. vmwgfx doesn't have or use most of those, e.g.
+vmw_nonfixed_placement or vmw_pt_sys_placement . They were removed
+about a year ago, which is, I guess, when this series started and the
+change was never updated.
 
 z
