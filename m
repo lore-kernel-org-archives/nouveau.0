@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C051C4706C
-	for <nouveau@archiver.kernel.org>; Fri, 12 Jan 2024 12:52:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCD69C47DA2
+	for <nouveau@archiver.kernel.org>; Fri, 12 Jan 2024 12:52:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 443E810EB71;
-	Fri, 12 Jan 2024 12:52:09 +0000 (UTC)
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com
- [IPv6:2a00:1450:4864:20::52e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5B1410EB5D;
- Fri, 12 Jan 2024 12:52:05 +0000 (UTC)
-Received: by mail-ed1-x52e.google.com with SMTP id
- 4fb4d7f45d1cf-5578485fc0eso5383205a12.1; 
- Fri, 12 Jan 2024 04:52:05 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5440D10EBC6;
+	Fri, 12 Jan 2024 12:52:10 +0000 (UTC)
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com
+ [IPv6:2a00:1450:4864:20::536])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7676C10EB03;
+ Fri, 12 Jan 2024 12:52:08 +0000 (UTC)
+Received: by mail-ed1-x536.google.com with SMTP id
+ 4fb4d7f45d1cf-555f581aed9so7487762a12.3; 
+ Fri, 12 Jan 2024 04:52:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1705063924; x=1705668724; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1705063927; x=1705668727; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=JcwEdCpsb2PYZC6jk3i+tru071xEJGYZ85L2FE92gSc=;
- b=M5SHBj8mdGJMQ0PacIMbFbvHi6OBguKIJsTGTTFPjhPeCivs9iVivXwAmqXskrN4Q1
- yNjlxYgK16Pw9FNATka+nSHW+eBmBUjhyewCqRYDPE+UsJDiknGnZSJFje5i9t/7G4rK
- IBFba3origSKK1lM1Nv9z5wGhWJ0BuocFymFnpB7CuSp9eR7bPBNJzaoH++zRMUf7iNI
- zQdDAzGjkf4kQTUnnyh+tyj4KR3O/aX+pi+4QgSORDn3WPsRue/0kJfh+Kf4YPyaMQO0
- GATuZs6fwNeyNIVp9InmnVG5h4l0h+a8VkFgM6o8z3rPcdIrc5/6IVNGTPZCjYPtAYQl
- gEww==
+ :reply-to; bh=9gqe6zt+K1SwL5LJS94hj5/KUX3LpPHn8y08oK/nAmQ=;
+ b=ejpp6/TQ2dRTFUIlYSu3Nhvjyd6URh36M4DWvXwGTmmFw3CEMjrkLX9/4DnrJk+Ccz
+ HSL7bZscC10D8KmPWnEokuq5XOmjVR/ggqbfOBtTK9h9NySw0HJ/1mFSUwEOXVsGIYtV
+ jvsIb45GMa2RtylDVl1u49671czEf55jc5pbTu1pzLXeXVoofFsySXA0jram4kkof1qE
+ w0yoDjuI6NbweXGBBrMeIr9slairv0ZylaqTZECzNA0Z0iSg+C5E8FhazMU4j3yRTCbz
+ aqN3i4LNY51WmT01sFBok3mtimdaKESquOO7sz+OcN/P866c5CHooV3fxZfSA9Ky9WoM
+ 6Eyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705063924; x=1705668724;
+ d=1e100.net; s=20230601; t=1705063927; x=1705668727;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JcwEdCpsb2PYZC6jk3i+tru071xEJGYZ85L2FE92gSc=;
- b=VWAzgRTOUcMAvKxuJhSJV0OpoV2BEvelL0idjLZNvJAMjCVHWr0iTUWuGNRj0kWEI2
- 8Tt7J224xijgh3qExE2m//h4zbAbtnOSjRXeU6X+26aVPKyvI0gS3BU3ipnHD/Bgihoq
- J8Lp34cySiUM0WYqp3ybxN2oSHg21o/6rpZGz5DEOKAp7xwjhRM6uaVw5iioQRj31d4d
- iQwmWLjEwt0dNWInF1NIQ1vcnjYc2ydQg/9lGSKxh7BZJhoSnK3nyIC3c/kclyWon9WP
- q7ru5l2dhVxVyQ1s5hENuKHKpSRm7zzfudQ7HUYyVsy4M7VK+L+geCnUucPCSBuLgY2F
- /uUQ==
-X-Gm-Message-State: AOJu0YzysiVCwRClD3tbh2innRdsvtYLYcuqgntOmq6gNgiayrjV6UYq
- SqVgt6hWRnb7PwSuu5IPElUItdqTeNfy1w==
-X-Google-Smtp-Source: AGHT+IExJYFc8T0in7MDlVlo12iDMyvcYxhNxMABO0KYDHed20bdxdGHdidG0M8zB6GHqIq4h0BKKg==
-X-Received: by 2002:a05:6402:31fa:b0:558:e8e1:b087 with SMTP id
- dy26-20020a05640231fa00b00558e8e1b087mr2606edb.41.1705063923989; 
- Fri, 12 Jan 2024 04:52:03 -0800 (PST)
+ bh=9gqe6zt+K1SwL5LJS94hj5/KUX3LpPHn8y08oK/nAmQ=;
+ b=Ze6YVIHPQ7rRtLpDyg6tK5VP78SdGEdHiXmrzuxyOnEKfYIiBtt8SYuvNQKpd+qqlU
+ mAeH740qh3gKTRqekiVESkmY134zeAHC4largJ3bKbkEkwRK6H7kl5fzUOWD70KdMVNE
+ QNNogzWYSk/0nrpNdFbV5m4aOqVMrwaZaioCfdcUFUrQgr6U7+SCNVCXsLxDrLnDkSgz
+ H+QbThZfDkoD2sSHGWkvDta0YlR6MekCEUfBfqZ+eDJKHpPG633gOAZj9qb7M1823cDn
+ mFq8wiGP4SP19Jy+dT/wEKUqN0V2Lf8WdTTWe3mxBwZWycJ6/zgYdFlePM3z27sJqeEE
+ XIvA==
+X-Gm-Message-State: AOJu0Yzy9RYi8t09EbsuthGez82EVudGxixliGfCZa6FDmRS4AAe7bYS
+ R/79V/5WEMftSDb4WSac+xTWUa7csztRQfor
+X-Google-Smtp-Source: AGHT+IHVk055NGr7VOr6JLLMuYJwLHJQBa+mA0jKkUCa+2/s2SoSr9i41bE6ESRSyGiXXKKa0sQGrw==
+X-Received: by 2002:aa7:c485:0:b0:557:63f0:1eff with SMTP id
+ m5-20020aa7c485000000b0055763f01effmr603584edq.9.1705063926964; 
+ Fri, 12 Jan 2024 04:52:06 -0800 (PST)
 Received: from able.fritz.box ([2a00:e180:152a:5d00:a6e1:95b5:7596:5333])
  by smtp.gmail.com with ESMTPSA id
- y10-20020aa7ccca000000b005572a1159b9sm1752427edt.22.2024.01.12.04.52.03
+ y10-20020aa7ccca000000b005572a1159b9sm1752427edt.22.2024.01.12.04.52.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 12 Jan 2024 04:52:03 -0800 (PST)
+ Fri, 12 Jan 2024 04:52:06 -0800 (PST)
 From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
 X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
  <christian.koenig@amd.com>
@@ -57,9 +57,9 @@ To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  thomas.hellstrom@linux.intel.com, nouveau@lists.freedesktop.org,
  jani.nikula@linux.intel.com, kherbst@redhat.com, lyude@redhat.com,
  zackr@vmware.com, michel.daenzer@mailbox.org
-Subject: [PATCH 2/5] drm/ttm: return ENOSPC from ttm_bo_mem_space
-Date: Fri, 12 Jan 2024 13:51:55 +0100
-Message-Id: <20240112125158.2748-3-christian.koenig@amd.com>
+Subject: [PATCH 5/5] drm/amdgpu: use GTT only as fallback for VRAM|GTT
+Date: Fri, 12 Jan 2024 13:51:58 +0100
+Message-Id: <20240112125158.2748-6-christian.koenig@amd.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240112125158.2748-1-christian.koenig@amd.com>
 References: <20240112125158.2748-1-christian.koenig@amd.com>
@@ -80,38 +80,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Only convert it to ENOMEM in ttm_bo_validate.
+Try to fill up VRAM as well by setting the busy flag on GTT allocations.
 
-This allows ttm_bo_validate to distinct between an out of memory
-situation and just out of space in a placement domain.
+This fixes the issue that when VRAM was evacuated for suspend it's never
+filled up again unless the application is restarted.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index edf10618fe2b..8c1eaa74fa21 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -830,7 +830,7 @@ int ttm_bo_mem_space(struct ttm_buffer_object *bo,
- 			goto error;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 06fb3fc47eaa..2752f2a67a44 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -173,6 +173,12 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
+ 			abo->flags & AMDGPU_GEM_CREATE_PREEMPTIBLE ?
+ 			AMDGPU_PL_PREEMPT : TTM_PL_TT;
+ 		places[c].flags = 0;
++		/*
++		 * When GTT is just an alternative to VRAM make sure that we
++		 * only use it as fallback and still try to fill up VRAM first.
++		 */
++		if (domain & abo->preferred_domains & AMDGPU_GEM_DOMAIN_VRAM)
++			places[c].flags |= TTM_PL_FLAG_FALLBACK;
+ 		c++;
  	}
- 
--	ret = -ENOMEM;
-+	ret = -ENOSPC;
- 	if (!type_found) {
- 		pr_err(TTM_PFX "No compatible memory type found\n");
- 		ret = -EINVAL;
-@@ -916,6 +916,9 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
- 		return -EINVAL;
- 
- 	ret = ttm_bo_move_buffer(bo, placement, ctx);
-+	/* For backward compatibility with userspace */
-+	if (ret == -ENOSPC)
-+		return -ENOMEM;
- 	if (ret)
- 		return ret;
  
 -- 
 2.34.1
