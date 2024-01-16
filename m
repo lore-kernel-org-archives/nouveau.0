@@ -4,48 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD809C47077
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:50:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E9D1C47077
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 12:32:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22E6310E4E9;
-	Tue, 16 Jan 2024 11:48:22 +0000 (UTC)
-X-Greylist: delayed 381 seconds by postgrey-1.36 at gabe;
- Thu, 02 Nov 2023 04:17:43 UTC
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5293710E7F6
- for <nouveau@lists.freedesktop.org>; Thu,  2 Nov 2023 04:17:43 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4SLVmk1wmwz9sjT;
- Thu,  2 Nov 2023 05:11:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=owenh.net; s=MBO0001; 
- t=1698898278;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=WN5fmOdVvci8BiTSNTkQ11/6+0Vp0IU6VwTOPcaqcaQ=;
- b=rrGbY2xW1+rXEaQIHig+TA8Z9R5mZ/w4e0xwsXUEFojPDzbZ7sKhEhVYzH4xpRTZ5H2X48
- T6h7IdM00xkClDJDZ/H+03qZJouT0nZsDaEAW5h08dbXKz0qnv3dn1IOlacW3CzfbIAUgM
- LJ4GU4G9hQo5ihfIGvHxYZ5B6uoH9TC+FDTgO1EEEH4qSyrbMwEUHZcTmH9wHyohUhP95Z
- raj36ltUy+sBcX7xMgoch2fn5ihKDCD3yIqZbMLXYVTjaKmo1NHanvnKxElj34B6U+pWEK
- crFALFWXUoXJLH9eTsYjEYg5zzQL86vvSp5iZwQdxyRh50wzB+3D2JdeD5zjHw==
-Message-ID: <f98d5544-34f8-4b35-9466-80fa9671686d@owenh.net>
-Date: Wed, 1 Nov 2023 23:11:08 -0500
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9B1610E4B5;
+	Tue, 16 Jan 2024 12:32:34 +0000 (UTC)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 437FC10E4CA
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Jan 2024 12:32:33 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-40e5f746ac4so63223755e9.1
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Jan 2024 04:32:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1705408292; x=1706013092; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ZT+z5kO7NZ0JfHwGBIqmnXCQBjLsapUuYK3PYHhWBbs=;
+ b=XcqUeVO4Hv+FaK2uwo2WGSvT2CFe02YYZJYn0XhVRfS6wbLYErDGlMtdBt2oYgrxox
+ kBcfRJMAZAQ41E8/FSxq6apppuGDfmFCyy5CSSTJKlNr661RQUQMI9YKtC8EKqziXKdQ
+ ZlBkT46hm5Ge3CJCZlEs6NoszAtqvT6Gv2fY30qHjIvmPwTyudyv2r9u/9Khp5gyjLDI
+ UtiNLAk1HU7kH58vqlxeVrW2LB5+Yn1DUGq0D/i66Rr9nfQWswryyFNqBT0wpc7whbeD
+ Qs+VcNZ4nShoKXcMmGI883V/mu4EZHepee6thNMhkVusO3Ht0TFNwnoC/BqJJdTzd/aI
+ Y7RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1705408292; x=1706013092;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZT+z5kO7NZ0JfHwGBIqmnXCQBjLsapUuYK3PYHhWBbs=;
+ b=snTLwibrVS1nCWoevZg9rCbSk7plkdijdAmz8qyTIPxM+zSfeVw+dsz04MHImsf1Is
+ UiwxXNWONZ9br5HYMI5vk4PWoXA85fRzv/o7FnvJTvHNM3AC5WIjFqS8KKMcADEVaHSk
+ erXY/UvaxFbL7nUFsDP0OhCnzsVBosN5IlN27veqFQcW0MEIjwbwdhNTZrmHkrFAP8pM
+ IE91UjY/MJ/TojiLOGG98KJkhEvOXxDHhvJ1oXbiz+24DgME2kRifg+WjEfm9Kt/svS9
+ Kq3BjBvPGvDd65NqLTMLOvM+RjrHxs845yX7OqRhIEsw54WG9iCmI5++a3Bdd1dIg11v
+ o6Fw==
+X-Gm-Message-State: AOJu0Yxs4IGJY5llkGX4zxjTA8owVwVOAKjY09EKNEJtiPX2f6k+oTgR
+ 0lreJWUFGJe4HY/nav8BgLvkilAT0mXz8A==
+X-Google-Smtp-Source: AGHT+IEE+TByEl7XVOYopKpmNFuQHPmwYwCI1LrdzsQYzrF0eXV1Q8x8cWXCEoLTXlRQR5WPDNP8Hw==
+X-Received: by 2002:a1c:740b:0:b0:40d:8815:afff with SMTP id
+ p11-20020a1c740b000000b0040d8815afffmr3913595wmc.39.1705408291854; 
+ Tue, 16 Jan 2024 04:31:31 -0800 (PST)
+Received: from localhost ([102.140.209.237]) by smtp.gmail.com with ESMTPSA id
+ d15-20020adf9c8f000000b00336c43b366fsm14493657wre.12.2024.01.16.04.31.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 16 Jan 2024 04:31:31 -0800 (PST)
+Date: Tue, 16 Jan 2024 15:31:27 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Colin Ian King <colin.i.king@gmail.com>
+Subject: Re: [PATCH][next] drm/nouveau/fifo/gk104: remove redundant variable
+ ret
+Message-ID: <aafe669f-b322-4f22-a48e-564e3eb3447f@moroto.mountain>
+References: <20240116111609.2258675-1-colin.i.king@gmail.com>
 MIME-Version: 1.0
-Subject: Re: [REGRESSION]: nouveau: Asynchronous wait on fence
-Content-Language: en-US
-To: Linux regressions mailing list <regressions@lists.linux.dev>,
- stable@vger.kernel.org
-References: <6f027566-c841-4415-bc85-ce11a5832b14@owenh.net>
- <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
-From: "Owen T. Heisler" <writer@owenh.net>
-In-Reply-To: <5ecf0eac-a089-4da9-b76e-b45272c98393@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Tue, 16 Jan 2024 11:47:29 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240116111609.2258675-1-colin.i.king@gmail.com>
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,31 +71,45 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sasha Levin <sashal@kernel.org>, nouveau@lists.freedesktop.org,
- Ben Skeggs <bskeggs@redhat.com>
+Cc: nouveau@lists.freedesktop.org, kernel-janitors@vger.kernel.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 10/31/23 04:18, Linux regression tracking (Thorsten Leemhuis) wrote:
-> Thanks for your report. With a bit of luck someone will look into this,
-> But I doubt it, as this report has some aspects why it might be ignored.
-> Mainly: (a) the report was about a stable/longterm kernel and (b)it's
-> afaics unclear if the problem even happens with the latest mainline
-> kernel.
+On Tue, Jan 16, 2024 at 11:16:09AM +0000, Colin Ian King wrote:
+> The variable ret is being assigned a value but it isn't being
+> read afterwards. The assignment is redundant and so ret can be
+> removed.
+> 
+> Cleans up clang scan build warning:
+> warning: Although the value stored to 'ret' is used in the enclosing
+> expression, the value is never actually read from 'ret'
+> [deadcode.DeadStores]
+> 
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvif/fifo.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvif/fifo.c b/drivers/gpu/drm/nouveau/nvif/fifo.c
+> index a463289962b2..e96de14ce87e 100644
+> --- a/drivers/gpu/drm/nouveau/nvif/fifo.c
+> +++ b/drivers/gpu/drm/nouveau/nvif/fifo.c
+> @@ -73,9 +73,9 @@ u64
+>  nvif_fifo_runlist(struct nvif_device *device, u64 engine)
+>  {
+>  	u64 runm = 0;
+> -	int ret, i;
+> +	int i;
+>  
+> -	if ((ret = nvif_fifo_runlists(device)))
+> +	if (nvif_fifo_runlists(device))
+>  		return runm;
 
-> You thus might want to check if the problem occurs with 6.6 -- and
-> ideally also check if reverting the culprit there fixes things for you.
+Could we return a literal zero here?  Otherwise, I'm surprised this
+doesn't trigger a static checker warning.
 
-Thorsten,
+regards,
+dan carpenter
 
-Thank you for your reply and suggestions. I will try (a) testing on 
-mainline (when I tried before I was interrupted by another, unrelated 
-regression) and (b) reverting the culprit commit there if I am able to 
-reproduce the problem.
-
-Thanks,
-Owen
-
---
-Owen T. Heisler
-https://owenh.net
