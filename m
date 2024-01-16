@@ -4,67 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AC23C4706C
-	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 09:58:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0528C4706C
+	for <nouveau@archiver.kernel.org>; Tue, 16 Jan 2024 11:17:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11B1510E479;
-	Tue, 16 Jan 2024 09:58:45 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14B0510E466;
- Tue, 16 Jan 2024 09:58:39 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-336788cb261so7954662f8f.3; 
- Tue, 16 Jan 2024 01:58:38 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75FEE10E49A;
+	Tue, 16 Jan 2024 11:17:13 +0000 (UTC)
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+ [209.85.128.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 301BB10E46B;
+ Tue, 16 Jan 2024 11:17:12 +0000 (UTC)
+Received: by mail-wm1-f48.google.com with SMTP id
+ 5b1f17b1804b1-40e86bd23d7so906075e9.1; 
+ Tue, 16 Jan 2024 03:17:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1705399057; x=1706003857; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:references:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=2uhSmZfzoghRK17rw0hKmTfGn83P0SdA/F+Pbhd5eJg=;
- b=i3X3jdIsZJQuHEppdCCGwk1cMB4sA/tewsZ/MsJItEr82GVF+v0eJ4YKzvkckWKJz9
- dwS/phAJpLe7RrhHHKFGCOu/3LsnfNap3jlahFPAEGI6ywp6Kkxoq2acrkSoz6BxquiX
- Gg8hU4Cd+jGbZ8q1iAlgB+M/S8PjsjcbyrY89ku5SsVk1bHWAu5A5PnRmJ9bf4+5aj9W
- aeEAbGfSTM19G0g7r1+PFWdbEpksA3ss5TgP9jnn/KKSluMgE5MOS34tQi7Q2EsE3N2C
- jlEn0C5edeJAB4JbMFqza1itgavAGG0hMigXptmnhqO9OGucT2YopVDEStHT1cy3qjYo
- SmcA==
+ d=gmail.com; s=20230601; t=1705403770; x=1706008570; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=bV4EzhRkZw5eNG7ZovPTr2GfxWsv5MIBKsQhvD/ibb8=;
+ b=icUcO6vpdL2+eqz0iqbGc6rBVAlR3YlwFpQAelRx9mLVBxfV5qxUfii27FWsOpECRn
+ Pxd9QB9wlmldt9EaIHCNXxjkCJ2LAVc7mA/bZxEArmIBk28jOQxsnnb7OyHZHGKqAVz/
+ u7KpXqpL5ppPBIORzogfKweVj64WtoWRqfO/4DKNzlz9U1hEteAvNcz3y3o/b29lcEJI
+ hKyBpLJZQEwzlese55INc8iqu4zdATsb1Gt9A0taCkGVL6uNiArRkexCwQSE6e40jkfQ
+ SCNezaxFtrw+0FjctNtr5yMWUEdvsmsx1m9tAb77zT4u7EkjOWsBlAqnJQJMK3SRFTFH
+ hqJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705399057; x=1706003857;
- h=content-transfer-encoding:in-reply-to:references:to:from
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2uhSmZfzoghRK17rw0hKmTfGn83P0SdA/F+Pbhd5eJg=;
- b=IaEL7wqRxXrF3igdj035/6uBDjzQ5inDDzCssHnezYyVm1e65iHBi0QSUwByS6/fHG
- ERnZPuRFyi40lvJLaLWbL9RX6Mf645rAEA1t8sAEyU5/vnlLdtGKik/nnjomiqaFQ7CZ
- +0OdgEy0Y2PrqLY96Q1+7Mmyaw8JGe7PRVdjIbNK2dezri3Crf6J0oDM7BHZA4aG1pPu
- wBneCsWNrxiJXkgquiQ6gNLenkWFiV61Dgkyb7feYRc4VQF1AJDYjCMsl5HX73EGNbXC
- 7zRmX8aMQDVgWHWZyzuHn1ATiiBejYdhoiOqi2DkNNrgLb2Rh7kOyQLUhCW+dxrzJV+B
- c9Hg==
-X-Gm-Message-State: AOJu0Yz0I6XA4sl1gGQimtie5PYxTmcafaunNJj5Y1CnBKKiR5PHjQAz
- SVrpFtotcGzAMptDInty3PZ1iJECnmLbhA==
-X-Google-Smtp-Source: AGHT+IEVFT0/1a9jbf1C6BJql5mBWfujuok+Gab1fp8jHloRHQYD+bvxhtShawLVKCV4fke/i/+2ew==
-X-Received: by 2002:adf:ce12:0:b0:337:7b14:d9fc with SMTP id
- p18-20020adfce12000000b003377b14d9fcmr4320500wrn.12.1705399057320; 
- Tue, 16 Jan 2024 01:57:37 -0800 (PST)
-Received: from [10.254.108.81] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- f3-20020adff983000000b00337bc2176f6sm974007wrr.81.2024.01.16.01.57.36
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 16 Jan 2024 01:57:36 -0800 (PST)
-Message-ID: <1df3cfff-50af-4873-b228-57b6900b9ba8@gmail.com>
-Date: Tue, 16 Jan 2024 10:57:32 +0100
+ d=1e100.net; s=20230601; t=1705403770; x=1706008570;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=bV4EzhRkZw5eNG7ZovPTr2GfxWsv5MIBKsQhvD/ibb8=;
+ b=MXlk/xK9TMNSqMRhPts3F6XC/QKGAX4ovMeZUZtXhcYJyb8x4MYQM762H26l8Fv9Ig
+ wXV9vXct0TxmOidyaG3CJnFNJ8dpttw/li98Mzv0KlqhZ1y6LVsXVBa9vk/AlT3xe3xP
+ sqmFQdFS2cUGpkNS0v8eVDmLdZ3UZ5U+meJvLAtQIiDQv3vq0LMGMU2P3mL2kxQfPnoq
+ rNHb3ldpS2L0D+DdfloSG3aByOVHjSOVcXNeVQH8rW0yLyMKq3L1+YyKQ6ExfggSlAPI
+ 2rQavWVyyYfxytZkN8e2YtV0XoitDOKiBi+l7vwiEECtJiQ8r+xB2MYtopNTj0lxHWQ4
+ Y2DQ==
+X-Gm-Message-State: AOJu0Yxaqo5cHzjURcP/J4nSD6pGieH6Ggt1+U65egadjyiCqWkqUNfr
+ yEQI+UMdCIjnX3nJnI76pnc=
+X-Google-Smtp-Source: AGHT+IHM9MvVRGvEUj/8Da942kzvMhJ/jHKDIdyczZcz2JU+V7Py2yNESnBCAoWPKM+3iTd1BzZ+GA==
+X-Received: by 2002:a05:600c:3093:b0:40e:4303:df0 with SMTP id
+ g19-20020a05600c309300b0040e43030df0mr2089782wmn.258.1705403770493; 
+ Tue, 16 Jan 2024 03:16:10 -0800 (PST)
+Received: from localhost (cpc154979-craw9-2-0-cust193.16-3.cable.virginm.net.
+ [80.193.200.194]) by smtp.gmail.com with ESMTPSA id
+ n18-20020a05600c501200b0040e77ce8768sm7102765wmr.16.2024.01.16.03.16.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 16 Jan 2024 03:16:10 -0800 (PST)
+From: Colin Ian King <colin.i.king@gmail.com>
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: [PATCH][next] drm/nouveau/fifo/gk104: remove redundant variable ret
+Date: Tue, 16 Jan 2024 11:16:09 +0000
+Message-Id: <20240116111609.2258675-1-colin.i.king@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Rework TTMs busy handling
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- thomas.hellstrom@linux.intel.com, nouveau@lists.freedesktop.org,
- jani.nikula@linux.intel.com, kherbst@redhat.com, lyude@redhat.com,
- zackr@vmware.com, michel.daenzer@mailbox.org
-References: <20240112125158.2748-1-christian.koenig@amd.com>
-In-Reply-To: <20240112125158.2748-1-christian.koenig@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,32 +73,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Am 12.01.24 um 13:51 schrieb Christian König:
-> Hi guys,
+The variable ret is being assigned a value but it isn't being
+read afterwards. The assignment is redundant and so ret can be
+removed.
 
-just a gentle ping on this.
+Cleans up clang scan build warning:
+warning: Although the value stored to 'ret' is used in the enclosing
+expression, the value is never actually read from 'ret'
+[deadcode.DeadStores]
 
-Zack any more comments for the VMWGFX parts?
+Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nvif/fifo.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks,
-Christian.
-
->
-> same as the last time. Things I've changed:
->
-> Implemented the requirements from Zack to correctly fill in the busy
-> placements for VMWGFX.
->
-> Renamed the placement flags to desired and fallback as suggested by
-> Michel.
->
-> Rebased on drm-tip instead of drm-misc-next and fixed XE as well.
->
-> Please review and comment,
-> Christian.
->
->
+diff --git a/drivers/gpu/drm/nouveau/nvif/fifo.c b/drivers/gpu/drm/nouveau/nvif/fifo.c
+index a463289962b2..e96de14ce87e 100644
+--- a/drivers/gpu/drm/nouveau/nvif/fifo.c
++++ b/drivers/gpu/drm/nouveau/nvif/fifo.c
+@@ -73,9 +73,9 @@ u64
+ nvif_fifo_runlist(struct nvif_device *device, u64 engine)
+ {
+ 	u64 runm = 0;
+-	int ret, i;
++	int i;
+ 
+-	if ((ret = nvif_fifo_runlists(device)))
++	if (nvif_fifo_runlists(device))
+ 		return runm;
+ 
+ 	for (i = 0; i < device->runlists; i++) {
+-- 
+2.39.2
 
