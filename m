@@ -4,79 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D95AC48260
-	for <nouveau@archiver.kernel.org>; Tue, 23 Jan 2024 00:37:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFE7CC47258
+	for <nouveau@archiver.kernel.org>; Tue, 23 Jan 2024 07:25:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9A4010F19E;
-	Tue, 23 Jan 2024 00:37:16 +0000 (UTC)
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B62C10F1A5
- for <nouveau@lists.freedesktop.org>; Tue, 23 Jan 2024 00:37:15 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-1d720c7fc04so19130035ad.2
- for <nouveau@lists.freedesktop.org>; Mon, 22 Jan 2024 16:37:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1705970175; x=1706574975;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=FQ7xzZ4X+f3NMzxQv1jPrp9LwmGb/TMGKf+Qoe38F3w=;
- b=jlsP/qc0A3uVQM77vCpCfUNwLuEXrKBYzgarlyPq1ASik1K2tBBvb2GgNbce9wTpoY
- PkzoZnIY7D0LvT/InKA8cdE0OkHUkJ3brPXipyrkUW4qjVA4378zGjItJ4WS/azhxaDB
- M71K5xWxNE0aMvw0X+M5Y1dv7xSIBHXNOJkoI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1705970175; x=1706574975;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=FQ7xzZ4X+f3NMzxQv1jPrp9LwmGb/TMGKf+Qoe38F3w=;
- b=FixT/01w2kQPwg4epN15xNXnMB7e0/9r+UwCEjaI6drnpIh4SuffU93mi9QWbXjU+x
- MsGuSNaDS17tUA60E8DxaL6GipQ0ZL35aVE+/YlTmPN60+/5lhO0Dmc+tf7mC8RhvRHW
- RPOeNG6GPfoX2+pFJZRCAXZq0DjRl4wkq9FMX7SsFYbm8whOWjBq2nFZsxt+wUvg6gk0
- Z4Ojb7Bz8r83D8IlCtqx8/HKGlhk8vwZfqH3t7MVuDQU2wJ3iecwPGjbGgh+Zq0C7d8D
- XsZC4azgxIszvuGjVems7rBVfuE7dIOMBEKsLvDTkAEUu37Ws4zntOtsu72mRvvV/N7r
- b5Iw==
-X-Gm-Message-State: AOJu0YzkJizEDHCExxC8kle2s4o00gXu1gDca+uw2+a/j1euJ9MobxB1
- 69JbmneDzpKI4IZayhYpyxpxJUihgtAV70LDXlDN3qMpMIP+d/Q0dQs8osj7gQ==
-X-Google-Smtp-Source: AGHT+IGexDA3GyNiC5HHivGPyYUFrDZgx/vvv3FbvTr4ymfT6W6OqPvq3tmWlk5gIBMYJDFDEGWKhQ==
-X-Received: by 2002:a17:903:2b0e:b0:1d7:2f55:c8a2 with SMTP id
- mc14-20020a1709032b0e00b001d72f55c8a2mr2946552plb.11.1705970175230; 
- Mon, 22 Jan 2024 16:36:15 -0800 (PST)
-Received: from www.outflux.net ([198.0.35.241])
- by smtp.gmail.com with ESMTPSA id
- e6-20020a170902784600b001d70125ebcdsm8018696pln.277.2024.01.22.16.36.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 22 Jan 2024 16:36:09 -0800 (PST)
-From: Kees Cook <keescook@chromium.org>
-To: linux-hardening@vger.kernel.org
-Subject: [PATCH 16/82] drm/nouveau/mmu: Refactor intentional wrap-around
- calculation
-Date: Mon, 22 Jan 2024 16:26:51 -0800
-Message-Id: <20240123002814.1396804-16-keescook@chromium.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240122235208.work.748-kees@kernel.org>
-References: <20240122235208.work.748-kees@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3748F10E1DF;
+	Tue, 23 Jan 2024 07:25:49 +0000 (UTC)
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30A7910E32F
+ for <nouveau@lists.freedesktop.org>; Tue, 23 Jan 2024 07:25:47 +0000 (UTC)
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-235-ZbVuWzwbMlWUt0MHVum_PQ-1; Tue, 23 Jan 2024 02:25:41 -0500
+X-MC-Unique: ZbVuWzwbMlWUt0MHVum_PQ-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.8])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 6049510135ED;
+ Tue, 23 Jan 2024 07:25:41 +0000 (UTC)
+Received: from dreadlord.redhat.com (unknown [10.64.136.44])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id 58402C0FDCA;
+ Tue, 23 Jan 2024 07:25:40 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH] nouveau: rip out fence irq allow/block sequences.
+Date: Tue, 23 Jan 2024 17:25:38 +1000
+Message-ID: <20240123072538.1290035-1-airlied@gmail.com>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2914; i=keescook@chromium.org; 
- h=from:subject;
- bh=GfYx3pgFmjHNgd1GYzBGO0bWTMyDF98VVZ9Uwwibr6I=; 
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBlrwgF0R3cMIb0bEJahqxzDH8aYuSuLtzDbLBcK
- MwJi5ln/oiJAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZa8IBQAKCRCJcvTf3G3A
- JiWKD/9QgeDTjHor+aVubrm/891iXDAk7jazHlj5v3/F2SnXTi+bmLLP4OtopjBdUMsPCx2UIAX
- 2Op2QtDm8HkUK+QQ6zmG4KUaapZRcdeqnGmu9M0qvSuxvVVcJJI7xJUumjx7Q6vhbwjQGSQ5PHx
- tw7o/vHgfuo8HqWcIQlyDVJeim5ZIIs6Qsa/2lGfMnyEf6ggYmPPgDdwi3q8gy/Z2R5EmQXitFZ
- 02jYxw8yJtqK7iQMIw/+DdCmJga+zhFwFiajePglGFS280vfynresbsR/Ab5I9K/mF6hoaW5Nzj
- /9JADfxQJ+B/7RwcqVQt9//klWcituWydCxmm2pAJKa5qB1+5bM1cNbZfS+7Gqg7d5DQbpkhWvR
- FCz4RotvOZUU11+L/g0NMZhLFyUrsoS3XnWMJPQKLzLuqMIEwYdpUHTsgp2fGFgbJo6v8zILL3/
- K7cq5u/axld11AryCmtQE6Xcl/NUaROikBH/clnZ621DMh6R2SgfHqHLq8LeFb+PV40D1lpjTUv
- KfPtyyrZh7N+9mj3AvF1kzruNYxNyozqGbZnhobgBHDiUh3Nc49GDnZWn5rot0j/cj4bNCHrvDK
- mkRTpRNTiSCzx1W+apGBT6IE6vC71q+Jq/tE64KklEKJ7L0Jq24pax9Z2T6UMrnNYMaRk8d5pT9
- b0LSPqP/mgvSy0A==
-X-Developer-Key: i=keescook@chromium.org; a=openpgp;
- fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
-Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.8
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: gmail.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=WINDOWS-1252; x-default=true
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,84 +50,247 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Cc: Kees Cook <keescook@chromium.org>, nouveau@lists.freedesktop.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Julia Lawall <Julia.Lawall@inria.fr>,
- Jiang Jian <jiangjian@cdjrlc.com>, Ben Skeggs <bskeggs@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, Justin Stitt <justinstitt@google.com>,
- Dave Airlie <airlied@redhat.com>, Bill Wendling <morbo@google.com>
+Cc: nouveau@lists.freedesktop.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In an effort to separate intentional arithmetic wrap-around from
-unexpected wrap-around, we need to refactor places that depend on this
-kind of math. One of the most common code patterns of this is:
+From: Dave Airlie <airlied@redhat.com>
 
-	VAR + value < VAR
+fences are signalled on nvidia hw using non-stall interrupts.
 
-Notably, this is considered "undefined behavior" for signed and pointer
-types, which the kernel works around by using the -fno-strict-overflow
-option in the build[1] (which used to just be -fwrapv). Regardless, we
-want to get the kernel source to the position where we can meaningfully
-instrument arithmetic wrap-around conditions and catch them when they
-are unexpected, regardless of whether they are signed[2], unsigned[3],
-or pointer[4] types.
+non-stall interrupts are not latched from my reading.
 
-Refactor open-coded unsigned wrap-around addition test to use
-check_add_overflow(), retaining the result for later usage (which removes
-the redundant open-coded addition). This paves the way to enabling the
-wrap-around sanitizers in the future.
+When nouveau emits a fence, it requests a NON_STALL signalling,
+but it only calls the interface to allow the non-stall irq to happen
+after it has already emitted the fence. A recent change
+eacabb546271 ("nouveau: push event block/allowing out of the fence context"=
+)
+made this worse by pushing out the fence allow/block to a workqueue.
 
-Link: https://git.kernel.org/linus/68df3755e383e6fecf2354a67b08f92f18536594 [1]
-Link: https://github.com/KSPP/linux/issues/26 [2]
-Link: https://github.com/KSPP/linux/issues/27 [3]
-Link: https://github.com/KSPP/linux/issues/344 [4]
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Julia Lawall <Julia.Lawall@inria.fr>
-Cc: Jiang Jian <jiangjian@cdjrlc.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Signed-off-by: Kees Cook <keescook@chromium.org>
+However I can't see how this could ever work great, since when
+enable signalling is called, the semaphore has already been emitted
+to the ring, and the hw could already have tried to set the bits,
+but it's been masked off. Changing the allowed mask later won't make
+the interrupt get called again.
+
+For now rip all of this out.
+
+This fixes a bunch of stalls seen running VK CTS sync tests.
+
+Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_fence.c | 77 +++++--------------------
+ drivers/gpu/drm/nouveau/nouveau_fence.h |  2 -
+ 2 files changed, 16 insertions(+), 63 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index 9c97800fe037..6ca1a82ccbc1 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -1149,13 +1149,15 @@ nvkm_vmm_ctor(const struct nvkm_vmm_func *func, struct nvkm_mmu *mmu,
- 	vmm->root = RB_ROOT;
- 
- 	if (managed) {
-+		u64 sum;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouv=
+eau/nouveau_fence.c
+index 5057d976fa57..d6d50cdccf75 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.c
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+@@ -50,24 +50,14 @@ nouveau_fctx(struct nouveau_fence *fence)
+ =09return container_of(fence->base.lock, struct nouveau_fence_chan, lock);
+ }
+=20
+-static int
++static void
+ nouveau_fence_signal(struct nouveau_fence *fence)
+ {
+-=09int drop =3D 0;
+-
+ =09dma_fence_signal_locked(&fence->base);
+ =09list_del(&fence->head);
+ =09rcu_assign_pointer(fence->channel, NULL);
+=20
+-=09if (test_bit(DMA_FENCE_FLAG_USER_BITS, &fence->base.flags)) {
+-=09=09struct nouveau_fence_chan *fctx =3D nouveau_fctx(fence);
+-
+-=09=09if (atomic_dec_and_test(&fctx->notify_ref))
+-=09=09=09drop =3D 1;
+-=09}
+-
+ =09dma_fence_put(&fence->base);
+-=09return drop;
+ }
+=20
+ static struct nouveau_fence *
+@@ -93,8 +83,7 @@ nouveau_fence_context_kill(struct nouveau_fence_chan *fct=
+x, int error)
+ =09=09if (error)
+ =09=09=09dma_fence_set_error(&fence->base, error);
+=20
+-=09=09if (nouveau_fence_signal(fence))
+-=09=09=09nvif_event_block(&fctx->event);
++=09=09nouveau_fence_signal(fence);
+ =09}
+ =09fctx->killed =3D 1;
+ =09spin_unlock_irqrestore(&fctx->lock, flags);
+@@ -103,8 +92,8 @@ nouveau_fence_context_kill(struct nouveau_fence_chan *fc=
+tx, int error)
+ void
+ nouveau_fence_context_del(struct nouveau_fence_chan *fctx)
+ {
+-=09cancel_work_sync(&fctx->allow_block_work);
+ =09nouveau_fence_context_kill(fctx, 0);
++=09nvif_event_block(&fctx->event);
+ =09nvif_event_dtor(&fctx->event);
+ =09fctx->dead =3D 1;
+=20
+@@ -127,11 +116,10 @@ nouveau_fence_context_free(struct nouveau_fence_chan =
+*fctx)
+ =09kref_put(&fctx->fence_ref, nouveau_fence_context_put);
+ }
+=20
+-static int
++static void
+ nouveau_fence_update(struct nouveau_channel *chan, struct nouveau_fence_ch=
+an *fctx)
+ {
+ =09struct nouveau_fence *fence;
+-=09int drop =3D 0;
+ =09u32 seq =3D fctx->read(chan);
+=20
+ =09while (!list_empty(&fctx->pending)) {
+@@ -140,10 +128,8 @@ nouveau_fence_update(struct nouveau_channel *chan, str=
+uct nouveau_fence_chan *fc
+ =09=09if ((int)(seq - fence->base.seqno) < 0)
+ =09=09=09break;
+=20
+-=09=09drop |=3D nouveau_fence_signal(fence);
++=09=09nouveau_fence_signal(fence);
+ =09}
+-
+-=09return drop;
+ }
+=20
+ static int
+@@ -160,26 +146,13 @@ nouveau_fence_wait_uevent_handler(struct nvif_event *=
+event, void *repv, u32 repc
+=20
+ =09=09fence =3D list_entry(fctx->pending.next, typeof(*fence), head);
+ =09=09chan =3D rcu_dereference_protected(fence->channel, lockdep_is_held(&=
+fctx->lock));
+-=09=09if (nouveau_fence_update(chan, fctx))
+-=09=09=09ret =3D NVIF_EVENT_DROP;
++=09=09nouveau_fence_update(chan, fctx);
+ =09}
+ =09spin_unlock_irqrestore(&fctx->lock, flags);
+=20
+ =09return ret;
+ }
+=20
+-static void
+-nouveau_fence_work_allow_block(struct work_struct *work)
+-{
+-=09struct nouveau_fence_chan *fctx =3D container_of(work, struct nouveau_f=
+ence_chan,
+-=09=09=09=09=09=09       allow_block_work);
+-
+-=09if (atomic_read(&fctx->notify_ref) =3D=3D 0)
+-=09=09nvif_event_block(&fctx->event);
+-=09else
+-=09=09nvif_event_allow(&fctx->event);
+-}
+-
+ void
+ nouveau_fence_context_new(struct nouveau_channel *chan, struct nouveau_fen=
+ce_chan *fctx)
+ {
+@@ -191,7 +164,6 @@ nouveau_fence_context_new(struct nouveau_channel *chan,=
+ struct nouveau_fence_cha
+ =09} args;
+ =09int ret;
+=20
+-=09INIT_WORK(&fctx->allow_block_work, nouveau_fence_work_allow_block);
+ =09INIT_LIST_HEAD(&fctx->flip);
+ =09INIT_LIST_HEAD(&fctx->pending);
+ =09spin_lock_init(&fctx->lock);
+@@ -216,6 +188,12 @@ nouveau_fence_context_new(struct nouveau_channel *chan=
+, struct nouveau_fence_cha
+ =09=09=09      &args.base, sizeof(args), &fctx->event);
+=20
+ =09WARN_ON(ret);
 +
- 		/* Address-space will be managed by the client for the most
- 		 * part, except for a specified area where NVKM allocations
- 		 * are allowed to be placed.
- 		 */
- 		vmm->start = 0;
- 		vmm->limit = 1ULL << bits;
--		if (addr + size < addr || addr + size > vmm->limit)
-+		if (check_add_overflow(addr, size, &sum) || sum > vmm->limit)
- 			return -EINVAL;
- 
- 		/* Client-managed area before the NVKM-managed area. */
-@@ -1174,7 +1176,7 @@ nvkm_vmm_ctor(const struct nvkm_vmm_func *func, struct nvkm_mmu *mmu,
- 		}
- 
- 		/* Client-managed area after the NVKM-managed area. */
--		addr = addr + size;
-+		addr = sum;
- 		size = vmm->limit - addr;
- 		if (size && (ret = nvkm_vmm_ctor_managed(vmm, addr, size)))
- 			return ret;
--- 
-2.34.1
++=09/*
++=09 * Always allow non-stall irq events - previously this code tried to
++=09 * enable/disable them, but that just seems racy as nonstall irqs are u=
+nlatched.
++=09 */
++=09nvif_event_allow(&fctx->event);
+ }
+=20
+ int
+@@ -247,8 +225,7 @@ nouveau_fence_emit(struct nouveau_fence *fence)
+ =09=09=09return -ENODEV;
+ =09=09}
+=20
+-=09=09if (nouveau_fence_update(chan, fctx))
+-=09=09=09nvif_event_block(&fctx->event);
++=09=09nouveau_fence_update(chan, fctx);
+=20
+ =09=09list_add_tail(&fence->head, &fctx->pending);
+ =09=09spin_unlock_irq(&fctx->lock);
+@@ -271,8 +248,8 @@ nouveau_fence_done(struct nouveau_fence *fence)
+=20
+ =09=09spin_lock_irqsave(&fctx->lock, flags);
+ =09=09chan =3D rcu_dereference_protected(fence->channel, lockdep_is_held(&=
+fctx->lock));
+-=09=09if (chan && nouveau_fence_update(chan, fctx))
+-=09=09=09nvif_event_block(&fctx->event);
++=09=09if (chan)
++=09=09=09nouveau_fence_update(chan, fctx);
+ =09=09spin_unlock_irqrestore(&fctx->lock, flags);
+ =09}
+ =09return dma_fence_is_signaled(&fence->base);
+@@ -530,32 +507,10 @@ static const struct dma_fence_ops nouveau_fence_ops_l=
+egacy =3D {
+ =09.release =3D nouveau_fence_release
+ };
+=20
+-static bool nouveau_fence_enable_signaling(struct dma_fence *f)
+-{
+-=09struct nouveau_fence *fence =3D from_fence(f);
+-=09struct nouveau_fence_chan *fctx =3D nouveau_fctx(fence);
+-=09bool ret;
+-=09bool do_work;
+-
+-=09if (atomic_inc_return(&fctx->notify_ref) =3D=3D 0)
+-=09=09do_work =3D true;
+-
+-=09ret =3D nouveau_fence_no_signaling(f);
+-=09if (ret)
+-=09=09set_bit(DMA_FENCE_FLAG_USER_BITS, &fence->base.flags);
+-=09else if (atomic_dec_and_test(&fctx->notify_ref))
+-=09=09do_work =3D true;
+-
+-=09if (do_work)
+-=09=09schedule_work(&fctx->allow_block_work);
+-
+-=09return ret;
+-}
+-
+ static const struct dma_fence_ops nouveau_fence_ops_uevent =3D {
+ =09.get_driver_name =3D nouveau_fence_get_get_driver_name,
+ =09.get_timeline_name =3D nouveau_fence_get_timeline_name,
+-=09.enable_signaling =3D nouveau_fence_enable_signaling,
++=09.enable_signaling =3D nouveau_fence_no_signaling,
+ =09.signaled =3D nouveau_fence_is_signaled,
+ =09.release =3D nouveau_fence_release
+ };
+diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/nouv=
+eau/nouveau_fence.h
+index 28f5cf013b89..380bb0397ed2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_fence.h
++++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
+@@ -46,8 +46,6 @@ struct nouveau_fence_chan {
+ =09char name[32];
+=20
+ =09struct nvif_event event;
+-=09struct work_struct allow_block_work;
+-=09atomic_t notify_ref;
+ =09int dead, killed;
+ };
+=20
+--=20
+2.43.0
 
