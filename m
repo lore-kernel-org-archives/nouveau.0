@@ -4,29 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E1F2C6FD1F
-	for <nouveau@archiver.kernel.org>; Tue, 19 Mar 2024 17:44:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEF94C54E58
+	for <nouveau@archiver.kernel.org>; Wed, 20 Mar 2024 09:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A055410EC28;
-	Tue, 19 Mar 2024 17:44:57 +0000 (UTC)
-X-Greylist: delayed 301 seconds by postgrey-1.36 at gabe;
- Tue, 19 Mar 2024 17:44:56 UTC
-Received: from hs01.dakr.org (hs01.dk-develop.de [173.249.23.66])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694CA10FC13;
- Tue, 19 Mar 2024 17:44:56 +0000 (UTC)
-Message-ID: <7f5308ff-e7d6-4d0b-b940-b7b95a3dd622@dakr.org>
-Date: Tue, 19 Mar 2024 18:39:44 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C60210F237;
+	Wed, 20 Mar 2024 09:31:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3RvyvzP";
+	dkim-atps=neutral
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED7D010E420
+ for <nouveau@lists.freedesktop.org>; Sun, 25 Feb 2024 21:50:51 +0000 (UTC)
+Received: by mail-qt1-f169.google.com with SMTP id
+ d75a77b69052e-42e89610ed8so79931cf.3
+ for <nouveau@lists.freedesktop.org>; Sun, 25 Feb 2024 13:50:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1708897850; x=1709502650; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=G07gU5mKzmeoSHSZqJiLpVOZvBgA31ZNZrms5SE3Uws=;
+ b=T3RvyvzPhZa7OehY89dy81Mep/Y489ZeDrHPKSGOBa/XxFxw3PUvtICSsZnijy0B1B
+ 0VT3DDDotujoeRsSlMk8QZd7aC/4ApbxkdcdBg3wd53/s3uX+m8wchGSOEFzeLzpOUlY
+ BGhFew191ISMjLIwOLCIyHtrYL4ehF7740+jGtZLkLVNn/Hn13ru0hgMScsUT9aMFKAi
+ 9UBXHG8dpE9eYK5CBkQ6GmDWxvSYjx/Kjzp+BrPqkvrg5SQS5WT4MivrKU/bzECJw+kG
+ zbicWORRVOecY4cCp4HIXWt18o9d2skZnG3HlKC5sWUHktk/8lOGgonY6jZqqOzQadfv
+ CGyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1708897850; x=1709502650;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=G07gU5mKzmeoSHSZqJiLpVOZvBgA31ZNZrms5SE3Uws=;
+ b=KoQBoqJtaXKzkrmkmRHJa80Cs0T1PBoY8Ad3ce/GHQ+wHMvIs+z0JicTpxGJlLA0Zj
+ k2YNR2ddIWPLxkAeFZgU6iJS1uuqLacbM6Oe0Z46DdI9+NyKfc9Ai+zbz6IHff05v6hc
+ Rk+OeKMWGm1SDiiMR+gAfC7efP3pgO+Zi/tBQyV7+pOOi1Jx8QPzC3L7iZoGDBGNu+Iu
+ 41YTJO/q/hR68VC9KPoDBNR9fpEhHQiqvu4NOvC35F6sIdCZ3QhRqFYI6jJfb2BDPOTY
+ HCYo+IgzjkmdiUiKQ9J9yYUvj6KnShsDfKxUQe8uYlwh7NBHZvkmLITo/Tdy/dyHUX1o
+ HS9g==
+X-Gm-Message-State: AOJu0YxwjZz+a8nEANJatrRXaEmMyLCQKyTuXg7msU2nHPa1XMweW8Q9
+ rAGHJtElQGZL3+9daXpEOHnw2qhFSpkHmp3Ij5ZR5j46mAydzjk/D+m1D+GdXEY0fAYLeTYKszR
+ IB/F2hncTXriFePkgxUkjw1aVQ7yRFyGmEZ/Tow==
+X-Google-Smtp-Source: AGHT+IGw04WbNluJ5XzbjbR8RbBmdESLklGhTrp2RobRCfvxPG4JkbtDtu6f+U1C5iaxaUWjdOl7ezVinSnp8MKcV60=
+X-Received: by 2002:ac8:7411:0:b0:42e:6f6a:1b03 with SMTP id
+ p17-20020ac87411000000b0042e6f6a1b03mr5807809qtq.35.1708897850237; Sun, 25
+ Feb 2024 13:50:50 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [PATCH] nouveau/gsp: don't check devinit disable on GSP.
-Content-Language: en-US
-To: Timothy Maden <terminatorul@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-References: <20240314014521.2695233-1-airlied@gmail.com>
- <utciie$rai$1@ciao.gmane.io>
-From: Danilo Krummrich <me@dakr.org>
-In-Reply-To: <utciie$rai$1@ciao.gmane.io>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Ojus Chugh <ojuschugh@gmail.com>
+Date: Mon, 26 Feb 2024 03:20:40 +0530
+Message-ID: <CAES57QXw50Z4XUaE0fCr-==br05xY2u=sNGMv84O1f45Ys4gQw@mail.gmail.com>
+Subject: Regarding EVoC Project-Adding new compiler optimization Passes to
+ Codegen
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="00000000000052260906123bc91a"
+X-Mailman-Approved-At: Wed, 20 Mar 2024 09:31:27 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,40 +71,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 3/19/24 18:38, Timothy Maden wrote:
-> Hello
-> 
-> Can this be merged please ?
+--00000000000052260906123bc91a
+Content-Type: text/plain; charset="UTF-8"
 
-Applied this to drm-misc-next-fixes a couple of hours ago.
+Greetings!
 
-- Danilo
+I am Ojus Chugh :D. While exploring the EVoC projects list, I became
+interested in a project titled "Adding New Compiler Optimization Passes to
+Codegen." However, I am unable to find the link to the GitHub or GitLab
+repository. Could anyone please guide me on the next steps? I am somewhat
+new to FreeDesktop.org.
 
-> 
-> On 3/14/24 03:45, Dave Airlie wrote:
->> From: Dave Airlie <airlied@redhat.com>
->>
->> GSP should be handling this and I can see no evidence in opengpu
->> driver that this register should be touched.
->>
->> Fixed acceleration on 2080 Ti GPUs.
->>
->> Fixes: 15740541e8f0 ("drm/nouveau/devinit/tu102-: prepare for GSP-RM")
->>
->> Signed-off-by: Dave Airlie <airlied@redhat.com>
->> ---
->>   drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.c | 1 -
->>   1 file changed, 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.c
->> index 666eb93b1742..11b4c9c274a1 100644
->> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.c
->> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/devinit/r535.c
->> @@ -41,7 +41,6 @@ r535_devinit_new(const struct nvkm_devinit_func *hw,
->>       rm->dtor = r535_devinit_dtor;
->>       rm->post = hw->post;
->> -    rm->disable = hw->disable;
->>       ret = nv50_devinit_new_(rm, device, type, inst, pdevinit);
->>       if (ret)
-> 
-> 
+This is my Github -:https://github.com/ojuschugh1/
+
+Thank you in advance :D
+
+Kind Regards,
+Ojus Chugh
+
+--00000000000052260906123bc91a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Greetings!<br><br>I am Ojus Chugh :D. While exploring the =
+EVoC projects list, I became interested in a project titled &quot;Adding Ne=
+w Compiler Optimization Passes to Codegen.&quot; However, I am unable to fi=
+nd the link to the GitHub or GitLab repository. Could anyone please guide m=
+e on the next steps? I am somewhat new to FreeDesktop.org.<div><br><div>Thi=
+s is my Github -:<a href=3D"https://github.com/ojuschugh1/">https://github.=
+com/ojuschugh1/</a></div><div><div><br>Thank you in advance :D<br><br>Kind =
+Regards,<br>Ojus Chugh<br></div></div></div></div>
+
+--00000000000052260906123bc91a--
