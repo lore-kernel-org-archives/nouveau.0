@@ -4,71 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FF60C5478C
-	for <nouveau@archiver.kernel.org>; Tue, 27 Feb 2024 11:39:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1E43C54E51
+	for <nouveau@archiver.kernel.org>; Tue, 27 Feb 2024 11:39:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2C2410EF17;
-	Tue, 27 Feb 2024 11:39:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55D5610F1A0;
+	Tue, 27 Feb 2024 11:39:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="N3Qh9t+x";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yt3YbrmK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="N3Qh9t+x";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yt3YbrmK";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="mBofjGGT";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cPjARdQH";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="eI+pozVz";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="exgRYLYR";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2161A10E8B7;
- Tue, 27 Feb 2024 11:39:00 +0000 (UTC)
-Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org [10.150.64.98])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1177610E60B;
+ Tue, 27 Feb 2024 11:38:58 +0000 (UTC)
+Received: from imap2.dmz-prg2.suse.org (imap2.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:98])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 979AB1FB94;
- Tue, 27 Feb 2024 11:38:58 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 2F9E8226DE;
+ Tue, 27 Feb 2024 11:38:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709033938; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dfzDi3LzuT0y0o9p9wBSZcCXSEHoL477SWtgnb0+42Q=;
- b=N3Qh9t+xOU//SHt117JfcqTOa8xenLWLkg+0qF9UncyK+A0js/KWEjqh1IH4WZ4hNBAemP
- a7OI+VbeoT++PXPU1xnjshy+QgCBJbQVdsoVlQvoD230u25H5qsRGrRUuBmxTQvU+ReKG2
- PtdOPYowHLINtETaJ0VkKdvZdZqz43Y=
+ t=1709033937; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=5C4CK+3IOQMm2tEAZJPCPaPAJ0nIVyugJd/heULKsBk=;
+ b=mBofjGGTP9buT7BDxHFEUtkHb9Ql2f+Nt/q+czcsmODUOSsHDVToHO1rbSdHvknZQbudnG
+ k2hHt0aHJn91Y6RcECo/8jW056zpIpfJ3Yz79MLw6/WF02jOAUoNUikbrZqsBstu1yf5nu
+ idUUE9n7SNp1ROkCrutkXtaKcrPlEtc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709033938;
+ s=susede2_ed25519; t=1709033937;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dfzDi3LzuT0y0o9p9wBSZcCXSEHoL477SWtgnb0+42Q=;
- b=yt3YbrmKB7x7chKBZ7z281K79I5dQ15dzyBfs4yKpB1HITwbSy5EZ2VjUqUL5BJBkB7jwr
- suTBAO6ZOZ4FE6DQ==
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=5C4CK+3IOQMm2tEAZJPCPaPAJ0nIVyugJd/heULKsBk=;
+ b=cPjARdQHlGQSH6PbnVsgqDFlGcCpvBuG4JsDRalPDUbO/B7rfTktrM+LxgLEZe9J/dno6M
+ vTxrqI88UEdNoQDw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1709033938; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dfzDi3LzuT0y0o9p9wBSZcCXSEHoL477SWtgnb0+42Q=;
- b=N3Qh9t+xOU//SHt117JfcqTOa8xenLWLkg+0qF9UncyK+A0js/KWEjqh1IH4WZ4hNBAemP
- a7OI+VbeoT++PXPU1xnjshy+QgCBJbQVdsoVlQvoD230u25H5qsRGrRUuBmxTQvU+ReKG2
- PtdOPYowHLINtETaJ0VkKdvZdZqz43Y=
+ t=1709033936; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=5C4CK+3IOQMm2tEAZJPCPaPAJ0nIVyugJd/heULKsBk=;
+ b=eI+pozVzqRLV5xA6BGWTcd8Pv7AxusQ9mMxoad1zWnWGXNvZETiOWZ1+/5Z6tXVXxvFBC2
+ wPlzlV+bHr8bM3x45hVU+Uxx12KFhegYLTrU6xmB78e/CoyJZga7Rftdf/eTM/J4hNHhTZ
+ wm/lmNrVfwOBiCAPdqB8Mr3+/oyhxag=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1709033938;
+ s=susede2_ed25519; t=1709033936;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=dfzDi3LzuT0y0o9p9wBSZcCXSEHoL477SWtgnb0+42Q=;
- b=yt3YbrmKB7x7chKBZ7z281K79I5dQ15dzyBfs4yKpB1HITwbSy5EZ2VjUqUL5BJBkB7jwr
- suTBAO6ZOZ4FE6DQ==
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=5C4CK+3IOQMm2tEAZJPCPaPAJ0nIVyugJd/heULKsBk=;
+ b=exgRYLYRU1toZEzhUPaWw7UpZNnMlASkq200zc0im8evnK4Spfb09O+YUahTVm6WOPVATQ
+ tTJvKgsxzJdp/JAQ==
 Received: from imap2.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id CC93113216;
- Tue, 27 Feb 2024 11:38:57 +0000 (UTC)
+ by imap2.dmz-prg2.suse.org (Postfix) with ESMTPS id 62B8213216;
+ Tue, 27 Feb 2024 11:38:55 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([10.150.64.162])
- by imap2.dmz-prg2.suse.org with ESMTPSA id +EB9MNHJ3WVMUQAAn2gu4w
- (envelope-from <tzimmermann@suse.de>); Tue, 27 Feb 2024 11:38:57 +0000
+ by imap2.dmz-prg2.suse.org with ESMTPSA id nxXHFs/J3WVMUQAAn2gu4w
+ (envelope-from <tzimmermann@suse.de>); Tue, 27 Feb 2024 11:38:55 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, christian.koenig@amd.com,
@@ -83,32 +76,36 @@ Cc: dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
  freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 03/13] drm/msm: Provide msm_gem_get_pages_locked()
-Date: Tue, 27 Feb 2024 11:14:50 +0100
-Message-ID: <20240227113853.8464-4-tzimmermann@suse.de>
+Subject: [PATCH 00/13] drm: Fix reservation locking for pin/unpin and console
+Date: Tue, 27 Feb 2024 11:14:47 +0100
+Message-ID: <20240227113853.8464-1-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240227113853.8464-1-tzimmermann@suse.de>
-References: <20240227113853.8464-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Authentication-Results: smtp-out2.suse.de;
-	none
-X-Spamd-Result: default: False [3.61 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=eI+pozVz;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=exgRYLYR
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-1.51 / 50.00]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:98:from];
  TO_DN_SOME(0.00)[]; R_MISSING_CHARSET(2.50)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- BROKEN_CONTENT_TYPE(1.50)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_RATELIMIT(0.00)[to_ip_from(RLqs7qcp4g99ribr8z1n9xsc8a)];
- RCVD_COUNT_THREE(0.00)[3];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.997]; RCPT_COUNT_TWELVE(0.00)[30];
- MID_CONTAINS_FROM(1.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email];
+ BROKEN_CONTENT_TYPE(1.50)[];
+ R_RATELIMIT(0.00)[to_ip_from(RLo3wgn6xaqcdyw4c639zmwwtu)];
+ RCVD_COUNT_THREE(0.00)[3]; DKIM_TRACE(0.00)[suse.de:+];
+ MX_GOOD(-0.01)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
  FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,kernel.org,linux.intel.com,amd.com,linaro.org,collabora.com,quicinc.com,poorly.run,somainline.org,loongson.cn,redhat.com,broadcom.com];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- MIME_TRACE(0.00)[0:+]; RCVD_TLS_ALL(0.00)[];
- BAYES_HAM(-0.09)[64.11%]
+ FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+];
+ BAYES_HAM(-3.00)[100.00%]; ARC_NA(0.00)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FROM_HAS_DN(0.00)[]; DWL_DNSWL_MED(-2.00)[suse.de:dkim];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; MIME_GOOD(-0.10)[text/plain];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCPT_COUNT_TWELVE(0.00)[30]; MID_CONTAINS_FROM(1.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,suse.de:dkim];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; RCVD_TLS_ALL(0.00)[]
+X-Rspamd-Queue-Id: 2F9E8226DE
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,55 +120,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rename msm_gem_pin_pages_locked() to msm_gem_get_pages_locked(). The
-function doesn't pin any pages, but only acquires them. Renaming the
-function makes the old name available.
+Dma-buf locking semantics require the caller of pin and unpin to hold
+the buffer's reservation lock. Fix DRM to adhere to the specs. This
+enables to fix the locking in DRM's console emulation. Similar changes
+for vmap and mmap have been posted at [1][2]
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/msm/msm_gem.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Most DRM drivers and memory managers acquire the buffer object's
+reservation lock within their GEM pin and unpin callbacks. This
+violates dma-buf locking semantics. We get away with it because PRIME
+does not provide pin/unpin, but attach/detach, for which the locking
+semantics is correct.
 
-diff --git a/drivers/gpu/drm/msm/msm_gem.c b/drivers/gpu/drm/msm/msm_gem.c
-index 175ee4ab8a6f7..bb729353d3a8d 100644
---- a/drivers/gpu/drm/msm/msm_gem.c
-+++ b/drivers/gpu/drm/msm/msm_gem.c
-@@ -219,7 +219,7 @@ static void put_pages(struct drm_gem_object *obj)
- 	}
- }
- 
--static struct page **msm_gem_pin_pages_locked(struct drm_gem_object *obj,
-+static struct page **msm_gem_get_pages_locked(struct drm_gem_object *obj,
- 					      unsigned madv)
- {
- 	struct msm_gem_object *msm_obj = to_msm_bo(obj);
-@@ -262,7 +262,7 @@ struct page **msm_gem_pin_pages(struct drm_gem_object *obj)
- 	struct page **p;
- 
- 	msm_gem_lock(obj);
--	p = msm_gem_pin_pages_locked(obj, MSM_MADV_WILLNEED);
-+	p = msm_gem_get_pages_locked(obj, MSM_MADV_WILLNEED);
- 	if (!IS_ERR(p))
- 		pin_obj_locked(obj);
- 	msm_gem_unlock(obj);
-@@ -489,7 +489,7 @@ int msm_gem_pin_vma_locked(struct drm_gem_object *obj, struct msm_gem_vma *vma)
- 
- 	msm_gem_assert_locked(obj);
- 
--	pages = msm_gem_pin_pages_locked(obj, MSM_MADV_WILLNEED);
-+	pages = msm_gem_get_pages_locked(obj, MSM_MADV_WILLNEED);
- 	if (IS_ERR(pages))
- 		return PTR_ERR(pages);
- 
-@@ -703,7 +703,7 @@ static void *get_vaddr(struct drm_gem_object *obj, unsigned madv)
- 	if (obj->import_attach)
- 		return ERR_PTR(-ENODEV);
- 
--	pages = msm_gem_pin_pages_locked(obj, madv);
-+	pages = msm_gem_get_pages_locked(obj, madv);
- 	if (IS_ERR(pages))
- 		return ERR_CAST(pages);
- 
+Patches 1 to 8 rework DRM GEM code in various implementations to
+acquire the reservation lock when entering the pin and unpin callbacks.
+This prepares them for the next patch. Drivers that are not affected
+by these patches either don't acquire the reservation lock (amdgpu)
+or don't need preparation (loongson).
+
+Patch 9 moves reservation locking from the GEM pin/unpin callbacks
+into drm_gem_pin() and drm_gem_unpin(). As PRIME uses these functions
+internally it still gets the reservation lock.
+
+With the updated GEM callbacks, the rest of the patchset fixes the
+fbdev emulation's buffer locking. Fbdev emulation needs to keep its
+GEM buffer object inplace while updating its content. This required
+a implicit pinning and apparently amdgpu didn't do this at all.
+
+Patch 10 introduces drm_client_buffer_vmap_local() and _vunmap_local().
+The former function map a GEM buffer into the kernel's address space
+with regular vmap operations, but keeps holding the reservation lock.
+The _vunmap_local() helper undoes the vmap and releases the lock. The
+updated GEM callbacks make this possible. Between the two calls, the
+fbdev emulation can update the buffer content without have the buffer
+moved or evicted. Update fbdev-generic to use vmap_local helpers,
+which fix amdgpu. The idea of adding a "local vmap" has previously been
+attempted at [3] in a different form.
+
+Patch 11 adds implicit pinning to the DRM client's regular vmap
+helper so that long-term vmap'ed buffers won't be evicted. This only
+affects fbdev-dma, but GEM DMA helpers don't require pinning. So
+there are no practical changes.
+
+Patches 12 and 13 remove implicit pinning from the vmap and vunmap
+operations in gem-vram and qxl. These pin operations are not supposed
+to be part of vmap code, but were required to keep the buffers in place
+for fbdev emulation. With the conversion o ffbdev-generic to to
+vmap_local helpers, that code can finally be removed.
+
+Tested with amdgpu, nouveau, radeon, simpledrm and vc4.
+
+[1] https://patchwork.freedesktop.org/series/106371/
+[2] https://patchwork.freedesktop.org/series/116001/
+[3] https://patchwork.freedesktop.org/series/84732/
+
+Thomas Zimmermann (13):
+  drm/gem-shmem: Acquire reservation lock in GEM pin/unpin callbacks
+  drm/gem-vram: Acquire reservation lock in GEM pin/unpin callbacks
+  drm/msm: Provide msm_gem_get_pages_locked()
+  drm/msm: Acquire reservation lock in GEM pin/unpin callback
+  drm/nouveau: Provide nouveau_bo_{pin,unpin}_locked()
+  drm/nouveau: Acquire reservation lock in GEM pin/unpin callbacks
+  drm/qxl: Provide qxl_bo_{pin,unpin}_locked()
+  drm/qxl: Acquire reservation lock in GEM pin/unpin callbacks
+  drm/gem: Acquire reservation lock in drm_gem_{pin/unpin}()
+  drm/fbdev-generic: Fix locking with drm_client_buffer_vmap_local()
+  drm/client: Pin vmap'ed GEM buffers
+  drm/gem-vram: Do not pin buffer objects for vmap
+  drm/qxl: Do not pin buffer objects for vmap
+
+ drivers/gpu/drm/drm_client.c            |  92 ++++++++++++++++++---
+ drivers/gpu/drm/drm_fbdev_generic.c     |   4 +-
+ drivers/gpu/drm/drm_gem.c               |  34 +++++++-
+ drivers/gpu/drm/drm_gem_shmem_helper.c  |   6 +-
+ drivers/gpu/drm/drm_gem_vram_helper.c   | 101 ++++++++++--------------
+ drivers/gpu/drm/drm_internal.h          |   2 +
+ drivers/gpu/drm/loongson/lsdc_gem.c     |  13 +--
+ drivers/gpu/drm/msm/msm_gem.c           |  20 ++---
+ drivers/gpu/drm/msm/msm_gem.h           |   4 +-
+ drivers/gpu/drm/msm/msm_gem_prime.c     |  20 +++--
+ drivers/gpu/drm/nouveau/nouveau_bo.c    |  43 +++++++---
+ drivers/gpu/drm/nouveau/nouveau_bo.h    |   2 +
+ drivers/gpu/drm/nouveau/nouveau_prime.c |   8 +-
+ drivers/gpu/drm/qxl/qxl_object.c        |  26 +++---
+ drivers/gpu/drm/qxl/qxl_object.h        |   2 +
+ drivers/gpu/drm/qxl/qxl_prime.c         |   4 +-
+ drivers/gpu/drm/radeon/radeon_prime.c   |  11 ---
+ drivers/gpu/drm/vmwgfx/vmwgfx_gem.c     |  25 ++----
+ include/drm/drm_client.h                |  10 +++
+ include/drm/drm_gem.h                   |   3 +
+ include/drm/drm_gem_shmem_helper.h      |   7 +-
+ 21 files changed, 265 insertions(+), 172 deletions(-)
+
+
+base-commit: 7291e2e67dff0ff573900266382c9c9248a7dea5
+prerequisite-patch-id: bdfa0e6341b30cc9d7647172760b3473007c1216
+prerequisite-patch-id: bc27ac702099f481890ae2c7c4a9c531f4a62d64
+prerequisite-patch-id: f5d4bf16dc45334254527c2e31ee21ba4582761c
+prerequisite-patch-id: 734c87e610747779aa41be12eb9e4c984bdfa743
+prerequisite-patch-id: 0aa359f6144c4015c140c8a6750be19099c676fb
+prerequisite-patch-id: c67e5d886a47b7d0266d81100837557fda34cb24
+prerequisite-patch-id: cbc453ee02fae02af22fbfdce56ab732c7a88c36
 -- 
 2.43.2
 
