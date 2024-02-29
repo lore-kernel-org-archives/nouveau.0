@@ -4,55 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9268C48BF6
-	for <nouveau@archiver.kernel.org>; Thu, 29 Feb 2024 13:19:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA83C54E41
+	for <nouveau@archiver.kernel.org>; Thu, 29 Feb 2024 13:40:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF1A10E07A;
-	Thu, 29 Feb 2024 13:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3984410E186;
+	Thu, 29 Feb 2024 13:40:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=nppct.ru header.i=@nppct.ru header.b="Fi5mGeks";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DDDQTuhT";
 	dkim-atps=neutral
-X-Greylist: delayed 511 seconds by postgrey-1.36 at gabe;
- Thu, 29 Feb 2024 13:19:20 UTC
-Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A542810E07A
- for <nouveau@lists.freedesktop.org>; Thu, 29 Feb 2024 13:19:20 +0000 (UTC)
-Received: from mail.nppct.ru (localhost [127.0.0.1])
- by mail.nppct.ru (Postfix) with ESMTP id 237711C0E63
- for <nouveau@lists.freedesktop.org>; Thu, 29 Feb 2024 16:10:45 +0300 (MSK)
-Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
- reason="pass (just generated,
- assumed good)" header.d=nppct.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
- content-transfer-encoding:mime-version:x-mailer:message-id:date
- :date:subject:subject:to:from:from; s=dkim; t=1709212242; x=
- 1710076243; bh=dRCSejW2kzJ3xySBJGPqpUgKdSkvijfiyJXAlXGgd3E=; b=F
- i5mGeksyN0m1+xAorznCpcY5+pNJC12/Kf9nqXJTCyeYyEuLijZLLay/bWgtmYwz
- 7KqUV9VRU5loSUNryWLmXwc4Vklo+jXc/8YmSXLfMXRUx7OQNAW16ddaA16CyT1H
- YWWFDgLNX07bpQiJqRoXUAozo0BL4QF78Spuv9Cz0Q=
-X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
-Received: from mail.nppct.ru ([127.0.0.1])
- by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id 1a6_aHUG9UVU for <nouveau@lists.freedesktop.org>;
- Thu, 29 Feb 2024 16:10:42 +0300 (MSK)
-Received: from localhost.localdomain (mail.dev-ai-melanoma.ru
- [185.130.227.204])
- by mail.nppct.ru (Postfix) with ESMTPSA id 02F0A1C05FF;
- Thu, 29 Feb 2024 16:10:37 +0300 (MSK)
-From: Andrey Shumilin <shum.sdl@nppct.ru>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Andrey Shumilin <shum.sdl@nppct.ru>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, khoroshilov@ispras.ru, ykarpov@ispras.ru,
- vmerzlyakov@ispras.ru, vefanov@ispras.ru
-Subject: [PATCH 3/3] drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c:
- BUFFER_OVERFLOW
-Date: Thu, 29 Feb 2024 16:10:24 +0300
-Message-Id: <20240229131024.636527-1-shum.sdl@nppct.ru>
-X-Mailer: git-send-email 2.30.2
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E1210E14D;
+ Thu, 29 Feb 2024 13:40:07 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-a3ed9cae56fso392996366b.1; 
+ Thu, 29 Feb 2024 05:40:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1709214005; x=1709818805; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=EsD9duYaaP/guPxTYG25ecMaCbHiDY/ZqhIHI87Zhf8=;
+ b=DDDQTuhTM6MrNU46kpsHahHan80ufzfSTWxDKeiXGag9eoGJ/vodzGFWfb+sQi4Mfz
+ MmDfdRwpiMnu6QiRRfUH/W0dqZRRkq8pOkrgfKzVTSkCs16xwBf6jD6VQ1ndAI8iP/ev
+ nOzjULYUpC4aNQEkuvWPNLodavtVNqFIVWpu3AYFwzaAX6FCOG9tThydKGChcFVktXrz
+ XeGOoglE8XrPL86NFOMuy9WJLsjYjSUpmgbXqitLcbf893ggfiK+hnNpjtUNk06s24+g
+ ezInE6CBbjqoNR9wJgAB+65TiHqaNU1p9bdLBTNKDYM2OnxYq3nWNlmAR8BBqio9+Fad
+ EGlg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709214005; x=1709818805;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EsD9duYaaP/guPxTYG25ecMaCbHiDY/ZqhIHI87Zhf8=;
+ b=I7gzj5CRg1KFka2MB9IOergkWrRpei3tt8Rt+nj2lwxkjB70Xxi9+iylJCESui6jN0
+ yhu/QwckrbJ4RTQXSMeTHj06h+ZSeI2C1KslgBa8ujP/Ybr1WRL1z6s9s9jqvy0osvhF
+ jI4jJb0JHgYXQHKrhf4uEIRVHDkGNOK27AZUNQbH906lYVyK/8rs59rFKMlR9TKZJGCv
+ rOstWN/JHtreD7T0N87F8HklPvpR9d45rS2K55QzD7kfDOhyuvLwloYMXu37qRxAU5aa
+ UPtzFV5y0VuUTVQHX79Os0S1vDGVhUrvZ5GbvJs7wwzU/dj2wHORkArGTChLxveDHmlT
+ d0zg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXQQgmFi0MYHuDMIXV+So/r5SwTT7oq22dFoIM+aiEYtZCNUvNmW9zU+bdFafTqsufSTkP0IVDGq9DmV+b3yg8u+sERAkj0JW0K5FXOZjDkEmVPjKk28rT7nWDuKm9PGkL79kynJFWUee4uX4XoK91USYdwyz2nIWYHpdt3YiWC+YjBH+OeNBd+uHCHwpTSIg==
+X-Gm-Message-State: AOJu0YzVXgF0XOxcRl+ECv982CPsxYoiCP0NYgT1tXn0LjbRzV38Irti
+ RDBn843q0C0pyfuCpyVphEGuwkvrRz9QNg0XuNsmNw8soUnk81il
+X-Google-Smtp-Source: AGHT+IGmoMWPdN+QD3+ShE1Q9nuwX6oAOM5DSiXBvLPNPDsB4d1jYwwHqT0JV7b38lqG/ISJbsWc5w==
+X-Received: by 2002:a17:906:f107:b0:a44:690:86de with SMTP id
+ gv7-20020a170906f10700b00a44069086demr1569347ejb.0.1709214005453; 
+ Thu, 29 Feb 2024 05:40:05 -0800 (PST)
+Received: from able.fritz.box ([2a00:e180:15dd:1300:6947:88a8:d838:c55])
+ by smtp.gmail.com with ESMTPSA id
+ pv25-20020a170907209900b00a3ee9305b02sm698153ejb.20.2024.02.29.05.40.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 29 Feb 2024 05:40:05 -0800 (PST)
+From: "=?UTF-8?q?Christian=20K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>
+X-Google-Original-From: =?UTF-8?q?Christian=20K=C3=B6nig?=
+ <christian.koenig@amd.com>
+To: matthew.auld@intel.com, thomas.hellstrom@linux.intel.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: [PATCH 2/2] drm/amdgpu: use GTT only as fallback for VRAM|GTT
+Date: Thu, 29 Feb 2024 14:40:03 +0100
+Message-Id: <20240229134003.3688-2-christian.koenig@amd.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240229134003.3688-1-christian.koenig@amd.com>
+References: <20240229134003.3688-1-christian.koenig@amd.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,28 +84,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The mxms_structlen function returns u16 (2 bytes).
-Therefore it reads 2 bytes beyond the mxms array.
+Try to fill up VRAM as well by setting the busy flag on GTT allocations.
 
-Signed-off-by: Andrey Shumilin <shum.sdl@nppct.ru>
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+This fixes the issue that when VRAM was evacuated for suspend it's never
+filled up again unless the application is restarted.
+
+Signed-off-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Zack Rusin <zack.rusin@broadcom.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c
-index c1acfe642da3..efd0c874742e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mxm/base.c
-@@ -47,7 +47,7 @@ mxm_shadow_rom(struct nvkm_mxm *mxm, u8 version)
- 	struct nvkm_bios *bios = device->bios;
- 	struct nvkm_i2c *i2c = device->i2c;
- 	struct nvkm_i2c_bus *bus = NULL;
--	u8 i2cidx, mxms[6], addr, size;
-+	u8 i2cidx, mxms[8], addr, size;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+index 010b0cb7693c..8bc79924d171 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_object.c
+@@ -173,6 +173,12 @@ void amdgpu_bo_placement_from_domain(struct amdgpu_bo *abo, u32 domain)
+ 			abo->flags & AMDGPU_GEM_CREATE_PREEMPTIBLE ?
+ 			AMDGPU_PL_PREEMPT : TTM_PL_TT;
+ 		places[c].flags = 0;
++		/*
++		 * When GTT is just an alternative to VRAM make sure that we
++		 * only use it as fallback and still try to fill up VRAM first.
++		 */
++		if (domain & abo->preferred_domains & AMDGPU_GEM_DOMAIN_VRAM)
++			places[c].flags |= TTM_PL_FLAG_FALLBACK;
+ 		c++;
+ 	}
  
- 	i2cidx = mxm_ddc_map(bios, 1 /* LVDS_DDC */) & 0x0f;
- 	if (i2cidx < 0x0f)
 -- 
-2.30.2
+2.34.1
 
