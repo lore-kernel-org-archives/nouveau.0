@@ -4,82 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C9D0C48BF6
-	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 12:58:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6294EC5478C
+	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 15:49:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC2C611210D;
-	Mon,  4 Mar 2024 12:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0C7310FD01;
+	Mon,  4 Mar 2024 15:49:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Q/GjkFiJ";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MDiuqeuw";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0145611210D
- for <nouveau@lists.freedesktop.org>; Mon,  4 Mar 2024 12:57:58 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA77310FD01
+ for <nouveau@lists.freedesktop.org>; Mon,  4 Mar 2024 15:49:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1709557077;
+ s=mimecast20190719; t=1709567356;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=eYaZySGsjz3Z9Hut7oWV6qGRb0bgLyHNoQ/FkIP7nYU=;
- b=Q/GjkFiJvjOyTXl8viE9ssF9Dk7KnfzY0CA035gj08XWpY0JAGhDZ021JQFt/WSGWydfRu
- OEsQhhZ+lnjWvnKfKTJ4QXqaR+PKwYyrbiAb6hhwjowULqHQc3p6ts9Px8yRqqzZd0tpDV
- zts3HFmA2hv8+UuymnRQ4WvS+oH5NnQ=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=rCw3c90XnhxEV+CpZlYVgHOD3Zlc8j0qRMz6sruVUkE=;
+ b=MDiuqeuwOSTj0Sm7oInCzaf5/W7rC4epOXe44mOrztrg9Kl/+Q4nF1wt1wmzu1RGxaQ+EP
+ 0mNBV+2sa0y1dFhZzPxAqxeQyHwtHzGPZj7Ueg0iQiiBMpLedMP6ap+BklEvQ3VkCH19HK
+ H2g4mFcMLpViEDvnV7WfFsXQDUhQmbo=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-547-CHIAs4TlNTSTnqrXMy-s1Q-1; Mon, 04 Mar 2024 07:57:56 -0500
-X-MC-Unique: CHIAs4TlNTSTnqrXMy-s1Q-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-a44508b6b22so242766366b.2
- for <nouveau@lists.freedesktop.org>; Mon, 04 Mar 2024 04:57:56 -0800 (PST)
+ us-mta-18-aw0NhBLLNfOtMXXagW-igQ-1; Mon, 04 Mar 2024 10:49:15 -0500
+X-MC-Unique: aw0NhBLLNfOtMXXagW-igQ-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-a44d9c0809cso107214766b.2
+ for <nouveau@lists.freedesktop.org>; Mon, 04 Mar 2024 07:49:14 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709557075; x=1710161875;
+ d=1e100.net; s=20230601; t=1709567353; x=1710172153;
  h=content-transfer-encoding:in-reply-to:organization:from:references
- :to:content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=eYaZySGsjz3Z9Hut7oWV6qGRb0bgLyHNoQ/FkIP7nYU=;
- b=OGsNGSgqYeddPEuO0MwUreJqS1ISClOIEMBkcQBbRa7rurNOTw3wGvmQhVbIUTC43R
- 1D+JETJXMBduoeQRdvocQnb1DzvYYjl6IVBXSyWwWwvSqk9oKuC431zjsZq47y9WYTJj
- nW0w0NBBPVwQgRVD9q6AZU+hN7lfNzK+rYU2L4N40JzYihU+kjoQdNTMmRrjuzoHtTzB
- Do7FpdadsDK6raMu+fC4XWN8/cV5+Styr4uGtQAPxI1WvUMApQqv8CddTU191PyYbEd1
- y6xilhlrBaJHzXouDge1la14bZN+siiwjszEBAh3MVJDRB184N3btl8Em6wk3pDcJiWs
- YzTg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUBB500O8ylnJkT6E0H2/18hin6cyIgZUQ7mH6LACYKN/wnsv8NoCx46rkGSkYaMf75zpK0jUBZDunEJaSLjO3/OSXvZCVync2nQvwhzA==
-X-Gm-Message-State: AOJu0Yy9Qr7IQ/S8ne9QZTFGHSKg9wqocGHlfW5T42qzvH1UBuRbM8dw
- Aowq9Wj7hlp/UcP4OTB3r8jnsawSoKh9T6N3xOOYqJULo6gJaoAqXG0LGVpL8YNGlYK9sftexy0
- X7eTIRda7rwYDtGmu24SnY3PDsHRf9lt50bVtBEs6PlFJEDnOt2O6Wdkn2BQ30Uo=
-X-Received: by 2002:a05:6402:1d21:b0:566:981d:aef5 with SMTP id
- dh1-20020a0564021d2100b00566981daef5mr5593476edb.24.1709557075014; 
- Mon, 04 Mar 2024 04:57:55 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGnTXigaoslZLLczHin2gXZc+I/5AV1i/e1RrtKcgzGCCOqC57oXW8SZB4FiOwgM2i07rgEBQ==
-X-Received: by 2002:a05:6402:1d21:b0:566:981d:aef5 with SMTP id
- dh1-20020a0564021d2100b00566981daef5mr5593457edb.24.1709557074592; 
- Mon, 04 Mar 2024 04:57:54 -0800 (PST)
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=unNsmKMp5dPtDNOZfGBaTP3v76hvdoxYwZuVv2IEA5I=;
+ b=FgIye1PzXgiHzb+CoaNvmQpie06RvwGyrVACLFCzMKwKtP8XyL1x8R1AQ/RDawaKn5
+ A2KRaxPHOHtf/gXT15bMOgCg2AzEaNpwfMd9R9xNvbawXvbfLR5XDfP5J6hiP0QRSAXE
+ sk8ZXgg2K9LZPJ8qY9qCvBiaiF9yLalD3MXCY4QyILhEIs3XWPyNjakCcV5uDfscckPS
+ XoO/jaiYmic+xMCkzZqDdzvJZ72Gf5HiHLxjEugFGCweLlcT4KaboGvRN4uKNxvQT+Qq
+ RMKHIywCOmBDjZZZ+WX+15Hw2NdleBdU8f79dC88DM3T+pRBtHwXfxtLrNnyKsxk+566
+ qSDA==
+X-Gm-Message-State: AOJu0Yygo0WK9r3fw3uRK/17Hg/pT2x1Nm4hOPFmQQImc9gaB0DJzne+
+ E2PRImVMd85smeoU0kSoOCcGiIVuaZwt4TsBLBHUbAMa5EWLet3LUsgluC0G9pZtnOgS9/tOkH+
+ Ki4c0oD/3U0uv/t+HYbqzsPOa20ScWFlwL9kIwdwpKac2RmFe5dzaRaC/d8ALwl2p8f4Rbcg=
+X-Received: by 2002:a17:906:cf88:b0:a45:373:d0a with SMTP id
+ um8-20020a170906cf8800b00a4503730d0amr3690344ejb.32.1709567353548; 
+ Mon, 04 Mar 2024 07:49:13 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFFiDf3e85T/K1m0/Oov6e6UHvNo7SW2WmjahwDPOP8WD7cLBwt5jA66bngeS5YzcoxV87kNg==
+X-Received: by 2002:a17:906:cf88:b0:a45:373:d0a with SMTP id
+ um8-20020a170906cf8800b00a4503730d0amr3690336ejb.32.1709567353184; 
+ Mon, 04 Mar 2024 07:49:13 -0800 (PST)
 Received: from ?IPV6:2a02:810d:4b3f:ee94:abf:b8ff:feee:998b?
  ([2a02:810d:4b3f:ee94:abf:b8ff:feee:998b])
  by smtp.gmail.com with ESMTPSA id
- cq16-20020a056402221000b005672a346a8fsm1814031edb.57.2024.03.04.04.57.53
+ bj9-20020a170906b04900b00a4547925e3asm1306226ejb.141.2024.03.04.07.49.12
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 04 Mar 2024 04:57:54 -0800 (PST)
-Message-ID: <7eb28bbf-76aa-4f97-b426-f0d87c4d2d7a@redhat.com>
-Date: Mon, 4 Mar 2024 13:57:53 +0100
+ Mon, 04 Mar 2024 07:49:12 -0800 (PST)
+Message-ID: <f844c57d-b6a9-491c-8ce3-84dab247146c@redhat.com>
+Date: Mon, 4 Mar 2024 16:49:11 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] [v4] nouveau: add command-line GSP-RM registry support
-To: Timur Tabi <ttabi@nvidia.com>, Dave Airlie <airlied@redhat.com>,
- Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
-References: <20240220215805.3201094-1-ttabi@nvidia.com>
+Subject: Re: [PATCH 1/2] nouveau: lock the client object tree.
+To: Dave Airlie <airlied@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20240301034238.3041715-1-airlied@gmail.com>
 From: Danilo Krummrich <dakr@redhat.com>
 Organization: RedHat
-In-Reply-To: <20240220215805.3201094-1-ttabi@nvidia.com>
+In-Reply-To: <20240301034238.3041715-1-airlied@gmail.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,473 +93,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 2/20/24 22:58, Timur Tabi wrote:
-> Add the NVreg_RegistryDwords command line parameter, which allows
-> specifying additional registry keys to be sent to GSP-RM.  This
-> allows additional configuration, debugging, and experimentation
-> with GSP-RM, which uses these keys to alter its behavior.
-> 
-> Note that these keys are passed as-is to GSP-RM, and Nouveau does
-> not parse them.  This is in contrast to the Nvidia driver, which may
-> parse some of the keys to configure some functionality in concert with
-> GSP-RM.  Therefore, any keys which also require action by the driver
-> may not function correctly when passed by Nouveau.  Caveat emptor.
-> 
-> The name and format of NVreg_RegistryDwords is the same as used by
-> the Nvidia driver, to maintain compatibility.
-> 
-> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
-
-Thanks for sending a new version of the patch.
-
-Please make sure that for future patches you include a changelog, such that
-it's easier for reviewers to keep track of what has changed.
-
-> ---
->   .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |   6 +
->   .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 375 ++++++++++++++++--
->   2 files changed, 357 insertions(+), 24 deletions(-)
-
-There are a few issues pointed out by checkpatch.pl, that I think should be fixed.
-> 
-> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-> index 6f5d376d8fcc..3fbc57b16a05 100644
-> --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-> +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-> @@ -211,6 +211,12 @@ struct nvkm_gsp {
->   		struct mutex mutex;;
->   		struct idr idr;
->   	} client_id;
-> +
-> +	/* A linked list of registry items. The registry RPC will be built from it. */
-> +	struct list_head registry_list;
-> +
-> +	/* The size of the registry RPC */
-> +	size_t registry_rpc_size;
->   };
->   
->   static inline bool
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> index 1c46e3f919be..40757a21e150 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> @@ -54,6 +54,8 @@
->   #include <nvrm/535.113.01/nvidia/kernel/inc/vgpu/rpc_global_enums.h>
->   
->   #include <linux/acpi.h>
-> +#include <linux/ctype.h>
-> +#include <linux/parser.h>
->   
->   #define GSP_MSG_MIN_SIZE GSP_PAGE_SIZE
->   #define GSP_MSG_MAX_SIZE GSP_PAGE_MIN_SIZE * 16
-> @@ -1082,51 +1084,376 @@ r535_gsp_rpc_unloading_guest_driver(struct nvkm_gsp *gsp, bool suspend)
->   	return nvkm_gsp_rpc_wr(gsp, rpc, true);
->   }
->   
-> +enum registry_type {
-> +	REGISTRY_TABLE_ENTRY_TYPE_DWORD  = 1, /* 32-bit unsigned integer */
-> +	REGISTRY_TABLE_ENTRY_TYPE_BINARY = 2, /* Binary blob */
-> +	REGISTRY_TABLE_ENTRY_TYPE_STRING = 3, /* Null-terminated string */
-> +};
-> +
-> +/**
-> + * registry_list_entry - linked list member for a registry key/value
-> + * @head: list_head struct
-> + * @type: dword, binary, or string
-> + * @klen: the length of name of the key
-> + * @vlen: the length of the value
-> + * @v.dword: the data, if REGISTRY_TABLE_ENTRY_TYPE_DWORD
-> + * @v.binary: the data, if TYPE_BINARY or TYPE_STRING
-> + * @key: the key name
-> + *
-> + * Every registry key/value is represented internally by this struct.
-> + *
-> + * Type DWORD is a simple 32-bit unsigned integer, and its value is stored in
-> + * v.dword.
-> + *
-> + * Types BINARY and STRING are variable-length binary blobs.  The only real
-> + * difference between BINARY and STRING is that STRING is null-terminated and
-> + * is expected to contain only printable characters.
-> + *
-> + * To avoid having to kmalloc multiple objects, the value for BINARY and
-> + * STRING is appended after the key[] in memory, and v.binary just points to
-> + * that block.
-> + *
-> + * Note: it is technically possible to have multiple keys with the same name
-> + * but different types, but this is not useful since GSP-RM expects keys to
-> + * have only one specific type.
-> + */
-> +struct registry_list_entry {
-> +	struct list_head head;
-> +	enum registry_type type;
-> +	size_t klen;
-> +	size_t vlen;
-> +	union {
-> +		u32 dword;	/* TYPE_DWORD */
-> +		void *binary;	/* TYPE_BINARY or TYPE_STRING */
-> +	} v;
-> +	char key[] __counted_by(klen);
-> +};
-> +
-> +/**
-> + * add_registry -- adds a registry entry
-> + * @gsp: gsp pointer
-> + * @key: name of the registry key
-> + * @type: type of data
-> + * @data: pointer to value
-> + * @length: size of data, in bytes
-> + *
-> + * Adds a registry key/value pair to the registry database.
-> + *
-> + * This function collects the registry information in a linked list.  After
-> + * all registry keys have been added, build_registry() is used to create the
-> + * RPC data structure.
-> + *
-> + * registry_rpc_size is a running total of the size of all registry keys.
-> + * It's used to avoid an O(n) calculation of the size when the RPC is built.
-> + *
-> + * Returns 0 on success, or negative error code on error.
-> + */
-> +static int add_registry(struct nvkm_gsp *gsp, const char *key,
-> +			enum registry_type type, const void *data, size_t length)
-> +{
-> +	struct registry_list_entry *reg;
-> +	size_t nlen = strlen(key) + 1;
-> +	size_t vlen; /* value length, non-zero if binary or string */
-> +
-> +	/* Set an arbitrary limit to avoid problems with broken command lines */
-> +	if (nlen > 64)
-> +		return -EFBIG;
-> +
-> +	vlen = (type == REGISTRY_TABLE_ENTRY_TYPE_DWORD) ? 0 : length;
-> +
-> +	reg = kmalloc(sizeof(struct registry_list_entry) + nlen + vlen, GFP_KERNEL);
-> +	if (!reg)
-> +		return -ENOMEM;
-> +
-> +	switch (type) {
-> +	case REGISTRY_TABLE_ENTRY_TYPE_DWORD:
-> +		reg->v.dword = *(const u32 *)(data);
-> +		nvkm_debug(&gsp->subdev, "adding GSP-RM registry '%s=%u'\n",
-> +			   key, reg->v.dword);
-> +		break;
-> +	case REGISTRY_TABLE_ENTRY_TYPE_BINARY:
-> +	case REGISTRY_TABLE_ENTRY_TYPE_STRING:
-> +		reg->v.binary = (void *)&reg->key + nlen;
-
-I see, you just append the binary at the end of the struct. However, that messes with
-the __counted_by() of reg->key. I think we should do a separate allocation for binary
-and string types.
-
-> +		memcpy(reg->v.binary, data, length);
-> +		vlen = length;
-> +		if (type == REGISTRY_TABLE_ENTRY_TYPE_BINARY)
-
-If you want a debug print for each type, you could move them to a separate function with
-it's own switch case.
-
-> +			nvkm_debug(&gsp->subdev,
-> +				   "adding GSP-RM registry '%s' blob of %zu bytes\n",
-> +				   key, length);
-> +		else
-> +			nvkm_debug(&gsp->subdev,
-> +				   "adding GSP-RM registry string '%s=%s'\n",
-> +				   key, (char *)reg->v.binary);
-> +		break;
-> +	default:
-> +		nvkm_error(&gsp->subdev, "unrecognized registry type %u for '%s'\n",
-> +			   type, key);
-> +		kfree(reg);
-> +		return -EINVAL;
-> +	}
-> +
-> +	memcpy(reg->key, key, nlen);
-> +	reg->klen = nlen;
-> +	reg->vlen = length;
-> +	reg->type = type;
-> +
-> +	list_add_tail(&reg->head, &gsp->registry_list);
-> +	gsp->registry_rpc_size += sizeof(PACKED_REGISTRY_ENTRY) + nlen + vlen;
-> +
-> +	return 0;
-> +}
-> +
-> +static int add_registry_num(struct nvkm_gsp *gsp, const char *key, u32 value)
-> +{
-> +	return add_registry(gsp, key, REGISTRY_TABLE_ENTRY_TYPE_DWORD,
-> +			    &value, sizeof(u32));
-> +}
-> +
-> +static int add_registry_string(struct nvkm_gsp *gsp, const char *key, const char *value)
-> +{
-> +	return add_registry(gsp, key, REGISTRY_TABLE_ENTRY_TYPE_STRING,
-> +			    value, strlen(value) + 1);
-> +}
-> +
-> +
-> +/**
-> + * build_registry -- create the registry RPC data
-> + * @gsp: gsp pointer
-> + * @registry: pointer to the RPC payload to fill
-> + *
-> + * After all registry key/value pairs have been added, call this function to
-> + * build the RPC.
-> + *
-> + * The registry RPC looks like this:
-> + *
-> + * +-----------------+
-> + * |NvU32 size;      |
-> + * |NvU32 numEntries;|
-> + * +-----------------+
-> + * +---------------------+
-> + * |PACKED_REGISTRY_ENTRY|
-> + * +---------------------+
-> + * |PACKED_REGISTRY_ENTRY|
-> + * +---------------------+
-> + * ... (one copy for each entry)
-> + *
-> + * +----------------------------------------+
-> + * |Null-terminated key (string) for entry 0|
-> + * +----------------------------------------+
-> + * |Binary/string data value for entry 0    | (only if necessary)
-> + * +----------------------------------------+
-> + * |Null-terminated key (string) for entry 1|
-> + * +----------------------------------------+
-> + * |Binary/string data value for entry 1    | (only if necessary)
-> + * +----------------------------------------+
-> + * ... (one copy for each entry)
-> + *
-> + *
-> + * The 'data' field of an entry is either a 32-bit integer (for type DWORD)
-> + * or an offset into the PACKED_REGISTRY_TABLE (for types BINARY and STRING).
-> + *
-> + * All memory allocated by add_registry() is released.
-> + */
-> +static void build_registry(struct nvkm_gsp *gsp, PACKED_REGISTRY_TABLE *registry)
-> +{
-> +	struct registry_list_entry *reg, *n;
-> +	size_t str_offset;
-> +	unsigned int i = 0;
-> +
-> +	registry->numEntries = list_count_nodes(&gsp->registry_list);
-> +	str_offset = struct_size(registry, entries, registry->numEntries);
-> +
-> +	list_for_each_entry_safe(reg, n, &gsp->registry_list, head) {
-> +		registry->entries[i].type = reg->type;
-> +		registry->entries[i].length = reg->klen;
-> +
-> +		/* Copy the key name to the table */
-> +		registry->entries[i].nameOffset = str_offset;
-> +		memcpy((void *)registry + str_offset, reg->key, reg->klen);
-> +		str_offset += reg->klen;
-> +
-> +		switch (reg->type) {
-> +		case REGISTRY_TABLE_ENTRY_TYPE_DWORD:
-> +			registry->entries[i].data = reg->v.dword;
-> +			break;
-> +		case REGISTRY_TABLE_ENTRY_TYPE_BINARY:
-> +		case REGISTRY_TABLE_ENTRY_TYPE_STRING:
-> +			/* If the type is binary or string, copy the value */
-> +			memcpy((void *)registry + str_offset, reg->v.binary, reg->vlen);
-> +			registry->entries[i].data = str_offset;
-> +			str_offset += reg->vlen;
-> +			break;
-> +		default:
-> +		}
-> +
-> +		i++;
-> +		list_del(&reg->head);
-> +		kfree(reg);
-> +	}
-> +
-> +	/* Double-check that we calculated the sizes correctly */
-> +	WARN_ON(gsp->registry_rpc_size != str_offset);
-> +
-> +	registry->size = gsp->registry_rpc_size;
-> +}
-> +
-> +/**
-> + * clean_registry -- clean up registry memory in case of error
-> + * @gsp: gsp pointer
-> + *
-> + * Call this function to clean up all memory allocated by add_registry()
-> + * in case of error and build_registry() is not called.
-> + */
-> +static void clean_registry(struct nvkm_gsp *gsp)
-> +{
-> +	struct registry_list_entry *reg, *n;
-> +
-> +	list_for_each_entry_safe(reg, n, &gsp->registry_list, head) {
-> +		list_del(&reg->head);
-> +		kfree(reg);
-> +	}
-> +
-> +	gsp->registry_rpc_size = sizeof(PACKED_REGISTRY_TABLE);
-> +}
-> +
-> +MODULE_PARM_DESC(NVreg_RegistryDwords,
-> +		 "A semicolon-separated list of key=integer pairs of GSP-RM registry keys");
-> +static char *NVreg_RegistryDwords;
-> +module_param(NVreg_RegistryDwords, charp, 0400);
-> +
->   /* dword only */
->   struct nv_gsp_registry_entries {
->   	const char *name;
->   	u32 value;
->   };
->   
-> +/**
-> + * r535_registry_entries - required registry entries for GSP-RM
-> + *
-> + * This array lists registry entries that are required for GSP-RM to
-> + * function correctly.
-> + *
-> + * RMSecBusResetEnable - enables PCI secondary bus reset
-> + * RMForcePcieConfigSave - forces GSP-RM to preserve PCI configuration
-> + *   registers on any PCI reset.
-> + */
->   static const struct nv_gsp_registry_entries r535_registry_entries[] = {
->   	{ "RMSecBusResetEnable", 1 },
->   	{ "RMForcePcieConfigSave", 1 },
->   };
->   #define NV_GSP_REG_NUM_ENTRIES ARRAY_SIZE(r535_registry_entries)
->   
-> +/**
-> + * strip - strips all characters in 'reject' from 's'
-> + * @s: string to strip
-> + * @reject: string of characters to remove
-> + *
-> + * 's' is modified.
-> + *
-> + * Returns the length of the new string.
-> + */
-> +static size_t strip(char *s, const char *reject)
-> +{
-> +	char *p = s, *p2 = s;
-> +	size_t length = 0;
-> +	char c;
-> +
-> +	do {
-> +		while ((c = *p2) && strchr(reject, c))
-> +			p2++;
-> +
-> +		*p++ = c = *p2++;
-> +		length++;
-> +	} while (c);
-> +
-> +	return length;
-> +}
-> +
-> +/**
-> + * r535_gsp_rpc_set_registry - build registry RPC and call GSP-RM
-> + * @gsp: gsp pointer
-> + *
-> + * The GSP-RM registry is a set of key/value pairs that configure some aspects
-> + * of GSP-RM. The keys are strings, and the values are 32-bit integers.
-> + *
-> + * The registry is built from a combination of a static hard-coded list (see
-> + * above) and entries passed on the driver's command line.
-> + */
->   static int
->   r535_gsp_rpc_set_registry(struct nvkm_gsp *gsp)
->   {
->   	PACKED_REGISTRY_TABLE *rpc;
-> -	char *strings;
-> -	int str_offset;
-> -	int i;
-> -	size_t rpc_size = struct_size(rpc, entries, NV_GSP_REG_NUM_ENTRIES);
-> +	unsigned int i;
-> +	int ret;
->   
-> -	/* add strings + null terminator */
-> -	for (i = 0; i < NV_GSP_REG_NUM_ENTRIES; i++)
-> -		rpc_size += strlen(r535_registry_entries[i].name) + 1;
-> +	INIT_LIST_HEAD(&gsp->registry_list);
-> +	gsp->registry_rpc_size = sizeof(PACKED_REGISTRY_TABLE);
->   
-> -	rpc = nvkm_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_SET_REGISTRY, rpc_size);
-> -	if (IS_ERR(rpc))
-> -		return PTR_ERR(rpc);
-> +	/* Add the required registry entries first */
-> +	for (i = 0; i < NV_GSP_REG_NUM_ENTRIES; i++) {
-> +		ret = add_registry_num(gsp, r535_registry_entries[i].name,
-> +				 r535_registry_entries[i].value);
-> +		if (ret) {
-> +			clean_registry(gsp);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * The NVreg_RegistryDwords parameter is a string of key=value
-> +	 * pairs separated by semicolons. We need to extract and trim each
-> +	 * substring, and then parse the substring to extract the key and
-> +	 * value.
-> +	 */
-> +	if (NVreg_RegistryDwords) {
-> +		char *p = kstrdup(NVreg_RegistryDwords, GFP_KERNEL);
-> +		char *start, *next = p, *equal;
-> +		size_t length;
-> +
-> +		/* Remove any whitespace from the parameter string */
-> +		length = strip(p, " \t\n");
-> +
-> +		while ((start = strsep(&next, ";"))) {
-> +			long value;
-> +
-> +			equal = strchr(start, '=');
-> +			if (!equal || (equal == start) || (equal[1] == 0)) {
-> +				nvkm_error(&gsp->subdev,
-> +					"ignoring invalid registry string '%s'\n", start);
-> +				continue;
-> +			}
->   
-> -	rpc->numEntries = NV_GSP_REG_NUM_ENTRIES;
-> +			/* Truncate the key=value string to just key */
-> +			*equal = 0;
->   
-> -	str_offset = offsetof(typeof(*rpc), entries[NV_GSP_REG_NUM_ENTRIES]);
-> -	strings = (char *)&rpc->entries[NV_GSP_REG_NUM_ENTRIES];
-> -	for (i = 0; i < NV_GSP_REG_NUM_ENTRIES; i++) {
-> -		int name_len = strlen(r535_registry_entries[i].name) + 1;
-> -
-> -		rpc->entries[i].nameOffset = str_offset;
-> -		rpc->entries[i].type = 1;
-> -		rpc->entries[i].data = r535_registry_entries[i].value;
-> -		rpc->entries[i].length = 4;
-> -		memcpy(strings, r535_registry_entries[i].name, name_len);
-> -		strings += name_len;
-> -		str_offset += name_len;
-> +			ret = kstrtol(equal + 1, 0, &value);
-> +			if (!ret) {
-> +				ret = add_registry_num(gsp, start, value);
-> +			} else {
-> +				/* Not a number, so treat it as a string */
-> +				ret = add_registry_string(gsp, start, equal + 1);
-> +			}
-> +
-> +			if (ret) {
-> +				nvkm_error(&gsp->subdev,
-> +					"ignoring invalid registry key/value '%s=%s'\n",
-> +					start, equal + 1);
-> +				continue;
-> +			}
-> +
-> +
-> +		}
-> +
-> +		kfree(p);
->   	}
-> -	rpc->size = str_offset;
-> +
-> +	rpc = nvkm_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_SET_REGISTRY, gsp->registry_rpc_size);
-> +	if (IS_ERR(rpc)) {
-> +		clean_registry(gsp);
-> +		return PTR_ERR(rpc);
-> +	}
-> +
-> +	build_registry(gsp, rpc);
->   
->   	return nvkm_gsp_rpc_wr(gsp, rpc, false);
->   }
+T24gMy8xLzI0IDA0OjQyLCBEYXZlIEFpcmxpZSB3cm90ZToNCj4gRnJvbTogRGF2ZSBBaXJsaWUg
+PGFpcmxpZWRAcmVkaGF0LmNvbT4NCj4gDQo+IEl0IGFwcGVhcnMgdGhlIGNsaWVudCBvYmplY3Qg
+dHJlZSBoYXMgbm8gbG9ja2luZyB1bmxlc3MgSSd2ZSBtaXNzZWQNCj4gc29tZXRoaW5nIGVsc2Uu
+IEZpeCByYWNlcyBhcm91bmQgYWRkaW5nL3JlbW92aW5nIGNsaWVudCBvYmplY3RzLA0KPiBtb3N0
+bHkgdnJhbSBiYXIgbWFwcGluZ3MuDQo+IA0KPiAgIDQ1NjIuMDk5MzA2XSBnZW5lcmFsIHByb3Rl
+Y3Rpb24gZmF1bHQsIHByb2JhYmx5IGZvciBub24tY2Fub25pY2FsIGFkZHJlc3MgMHg2Njc3ZWQ0
+MjJiY2ViODBjOiAwMDAwIFsjMV0gUFJFRU1QVCBTTVAgUFRJDQo+IFsgNDU2Mi4wOTkzMTRdIENQ
+VTogMiBQSUQ6IDIzMTcxIENvbW06IGRlcXAtdmsgTm90IHRhaW50ZWQgNi44LjAtcmM2KyAjMjcN
+Cj4gWyA0NTYyLjA5OTMyNF0gSGFyZHdhcmUgbmFtZTogR2lnYWJ5dGUgVGVjaG5vbG9neSBDby4s
+IEx0ZC4gWjM5MCBJIEFPUlVTIFBSTyBXSUZJL1ozOTAgSSBBT1JVUyBQUk8gV0lGSS1DRiwgQklP
+UyBGOCAxMS8wNS8yMDIxDQo+IFsgNDU2Mi4wOTkzMzBdIFJJUDogMDAxMDpudmttX29iamVjdF9z
+ZWFyY2grMHgxZC8weDcwIFtub3V2ZWF1XQ0KPiBbIDQ1NjIuMDk5NTAzXSBDb2RlOiA5MCA5MCA5
+MCA5MCA5MCA5MCA5MCA5MCA5MCA5MCA5MCA5MCA5MCA2NiAwZiAxZiAwMCAwZiAxZiA0NCAwMCAw
+MCA0OCA4OSBmOCA0OCA4NSBmNiA3NCAzOSA0OCA4YiA4NyBhMCAwMCAwMCAwMCA0OCA4NSBjMCA3
+NCAxMiA8NDg+IDhiIDQ4IGY4IDQ4IDM5IGNlIDczIDE1IDQ4IDhiIDQwIDEwIDQ4IDg1IGMwIDc1
+IGVlIDQ4IGM3IGMwIGZlDQo+IFsgNDU2Mi4wOTk1MDZdIFJTUDogMDAwMDpmZmZmYTk0Y2M0MjBi
+YmY4IEVGTEFHUzogMDAwMTAyMDYNCj4gWyA0NTYyLjA5OTUxMl0gUkFYOiA2Njc3ZWQ0MjJiY2Vi
+ODE0IFJCWDogZmZmZjk4MTA4NzkxZjQwMCBSQ1g6IGZmZmY5ODEwZjI2YjhmNTgNCj4gWyA0NTYy
+LjA5OTUxN10gUkRYOiAwMDAwMDAwMDAwMDAwMDAwIFJTSTogZmZmZjk4MTBmMjZiOTE1OCBSREk6
+IGZmZmY5ODEwODc5MWY0MDANCj4gWyA0NTYyLjA5OTUxOV0gUkJQOiBmZmZmOTgxMGYyNmI5MTU4
+IFIwODogMDAwMDAwMDAwMDAwMDAwMCBSMDk6IDAwMDAwMDAwMDAwMDAwMDANCj4gWyA0NTYyLjA5
+OTUyMV0gUjEwOiBmZmZmYTk0Y2M0MjBiYzQ4IFIxMTogMDAwMDAwMDAwMDAwMDAwMSBSMTI6IGZm
+ZmY5ODEwZjAyYTdjYzANCj4gWyA0NTYyLjA5OTUyNl0gUjEzOiAwMDAwMDAwMDAwMDAwMDAwIFIx
+NDogMDAwMDAwMDAwMDAwMDBmZiBSMTU6IDAwMDAwMDAwMDAwMDAwMDcNCj4gWyA0NTYyLjA5OTUy
+OF0gRlM6ICAwMDAwN2Y2MjljNTAxN2MwKDAwMDApIEdTOmZmZmY5ODE0MmM3MDAwMDAoMDAwMCkg
+a25sR1M6MDAwMDAwMDAwMDAwMDAwMA0KPiBbIDQ1NjIuMDk5NTM0XSBDUzogIDAwMTAgRFM6IDAw
+MDAgRVM6IDAwMDAgQ1IwOiAwMDAwMDAwMDgwMDUwMDMzDQo+IFsgNDU2Mi4wOTk1MzZdIENSMjog
+MDAwMDdmNjI5YTg4MjAwMCBDUjM6IDAwMDAwMDAxNzAxOWUwMDQgQ1I0OiAwMDAwMDAwMDAwMzcw
+NmYwDQo+IFsgNDU2Mi4wOTk1NDFdIERSMDogMDAwMDAwMDAwMDAwMDAwMCBEUjE6IDAwMDAwMDAw
+MDAwMDAwMDAgRFIyOiAwMDAwMDAwMDAwMDAwMDAwDQo+IFsgNDU2Mi4wOTk1NDJdIERSMzogMDAw
+MDAwMDAwMDAwMDAwMCBEUjY6IDAwMDAwMDAwZmZmZTBmZjAgRFI3OiAwMDAwMDAwMDAwMDAwNDAw
+DQo+IFsgNDU2Mi4wOTk1NDRdIENhbGwgVHJhY2U6DQo+IFsgNDU2Mi4wOTk1NTVdICA8VEFTSz4N
+Cj4gWyA0NTYyLjA5OTU3M10gID8gZGllX2FkZHIrMHgzNi8weDkwDQo+IFsgNDU2Mi4wOTk1ODNd
+ICA/IGV4Y19nZW5lcmFsX3Byb3RlY3Rpb24rMHgyNDYvMHg0YTANCj4gWyA0NTYyLjA5OTU5M10g
+ID8gYXNtX2V4Y19nZW5lcmFsX3Byb3RlY3Rpb24rMHgyNi8weDMwDQo+IFsgNDU2Mi4wOTk2MDBd
+ICA/IG52a21fb2JqZWN0X3NlYXJjaCsweDFkLzB4NzAgW25vdXZlYXVdDQo+IFsgNDU2Mi4wOTk3
+MzBdICBudmttX2lvY3RsKzB4YTEvMHgyNTAgW25vdXZlYXVdDQo+IFsgNDU2Mi4wOTk4NjFdICBu
+dmlmX29iamVjdF9tYXBfaGFuZGxlKzB4YzgvMHgxODAgW25vdXZlYXVdDQo+IFsgNDU2Mi4wOTk5
+ODZdICBub3V2ZWF1X3R0bV9pb19tZW1fcmVzZXJ2ZSsweDEyMi8weDI3MCBbbm91dmVhdV0NCj4g
+WyA0NTYyLjEwMDE1Nl0gID8gZG1hX3Jlc3ZfdGVzdF9zaWduYWxlZCsweDI2LzB4YjANCj4gWyA0
+NTYyLjEwMDE2M10gIHR0bV9ib192bV9mYXVsdF9yZXNlcnZlZCsweDk3LzB4M2MwIFt0dG1dDQo+
+IFsgNDU2Mi4xMDAxODJdICA/IF9fbXV0ZXhfdW5sb2NrX3Nsb3dwYXRoKzB4MmEvMHgyNzANCj4g
+WyA0NTYyLjEwMDE4OV0gIG5vdXZlYXVfdHRtX2ZhdWx0KzB4NjkvMHhiMCBbbm91dmVhdV0NCj4g
+WyA0NTYyLjEwMDM1Nl0gIF9fZG9fZmF1bHQrMHgzMi8weDE1MA0KPiBbIDQ1NjIuMTAwMzYyXSAg
+ZG9fZmF1bHQrMHg3Yy8weDU2MA0KPiBbIDQ1NjIuMTAwMzY5XSAgX19oYW5kbGVfbW1fZmF1bHQr
+MHg4MDAvMHhjMTANCj4gWyA0NTYyLjEwMDM4Ml0gIGhhbmRsZV9tbV9mYXVsdCsweDE3Yy8weDNl
+MA0KPiBbIDQ1NjIuMTAwMzg4XSAgZG9fdXNlcl9hZGRyX2ZhdWx0KzB4MjA4LzB4ODYwDQo+IFsg
+NDU2Mi4xMDAzOTVdICBleGNfcGFnZV9mYXVsdCsweDdmLzB4MjAwDQo+IFsgNDU2Mi4xMDA0MDJd
+ICBhc21fZXhjX3BhZ2VfZmF1bHQrMHgyNi8weDMwDQo+IFsgNDU2Mi4xMDA0MTJdIFJJUDogMDAz
+MzoweDliOTg3MA0KPiBbIDQ1NjIuMTAwNDE5XSBDb2RlOiA4NSBhOCBmNyBmZiBmZiA4YiA4ZCA4
+MCBmNyBmZiBmZiA4OSAwOCBlOSAxOCBmMiBmZiBmZiAwZiAxZiA4NCAwMCAwMCAwMCAwMCAwMCA0
+NCA4OSAzMiBlOSA5MCBmYSBmZiBmZiAwZiAxZiA4NCAwMCAwMCAwMCAwMCAwMCA8NDQ+IDg5IDMy
+IGU5IGY4IGYxIGZmIGZmIDBmIDFmIDg0IDAwIDAwIDAwIDAwIDAwIDY2IDQ0IDg5IDMyIGU5IGU3
+DQo+IFsgNDU2Mi4xMDA0MjJdIFJTUDogMDAyYjowMDAwN2ZmZjliYTJkYzcwIEVGTEFHUzogMDAw
+MTAyNDYNCj4gWyA0NTYyLjEwMDQyNl0gUkFYOiAwMDAwMDAwMDAwMDAwMDA0IFJCWDogMDAwMDAw
+MDAwZGQ2NWUxMCBSQ1g6IDAwMDAwMGZmZjAwMDAwMDANCj4gWyA0NTYyLjEwMDQyOF0gUkRYOiAw
+MDAwN2Y2MjlhODgyMDAwIFJTSTogMDAwMDdmNjI5YTg4MjAwMCBSREk6IDAwMDAwMDAwMDAwMDAw
+NjYNCj4gWyA0NTYyLjEwMDQzMl0gUkJQOiAwMDAwN2ZmZjliYTJlNTcwIFIwODogMDAwMDAwMDAw
+MDAwMDAwMCBSMDk6IDAwMDAwMDAxMjNkZGYwMDANCj4gWyA0NTYyLjEwMDQzNF0gUjEwOiAwMDAw
+MDAwMDAwMDAwMDAxIFIxMTogMDAwMDAwMDAwMDAwMDI0NiBSMTI6IDAwMDAwMDAwN2ZmZmZmZmYN
+Cj4gWyA0NTYyLjEwMDQzNl0gUjEzOiAwMDAwMDAwMDAwMDAwMDAwIFIxNDogMDAwMDAwMDAwMDAw
+MDAwMCBSMTU6IDAwMDAwMDAwMDAwMDAwMDANCj4gWyA0NTYyLjEwMDQ0Nl0gIDwvVEFTSz4NCj4g
+WyA0NTYyLjEwMDQ0OF0gTW9kdWxlcyBsaW5rZWQgaW46IG5mX2Nvbm50cmFja19uZXRiaW9zX25z
+IG5mX2Nvbm50cmFja19icm9hZGNhc3QgbmZ0X2ZpYl9pbmV0IG5mdF9maWJfaXB2NCBuZnRfZmli
+X2lwdjYgbmZ0X2ZpYiBuZnRfcmVqZWN0X2luZXQgbmZfcmVqZWN0X2lwdjQgbmZfcmVqZWN0X2lw
+djYgbmZ0X3JlamVjdCBuZnRfY3QgbmZ0X2NoYWluX25hdCBuZl9uYXQgbmZfY29ubnRyYWNrIG5m
+X2RlZnJhZ19pcHY2IG5mX2RlZnJhZ19pcHY0IGlwX3NldCBuZl90YWJsZXMgbGliY3JjMzJjIG5m
+bmV0bGluayBjbWFjIGJuZXAgc3VucnBjIGl3bG12bSBpbnRlbF9yYXBsX21zciBpbnRlbF9yYXBs
+X2NvbW1vbiBzbmRfc29mX3BjaV9pbnRlbF9jbmwgeDg2X3BrZ190ZW1wX3RoZXJtYWwgaW50ZWxf
+cG93ZXJjbGFtcCBzbmRfc29mX2ludGVsX2hkYV9jb21tb24gbWFjODAyMTEgY29yZXRlbXAgc25k
+X3NvY19hY3BpX2ludGVsX21hdGNoIGt2bV9pbnRlbCBzbmRfc29jX2FjcGkgc25kX3NvY19oZGFj
+X2hkYSBzbmRfc29mX3BjaSBzbmRfc29mX3h0ZW5zYV9kc3Agc25kX3NvZl9pbnRlbF9oZGFfbWxp
+bmsgc25kX3NvZl9pbnRlbF9oZGEgc25kX3NvZiBrdm0gc25kX3NvZl91dGlscyBzbmRfc29jX2Nv
+cmUgc25kX2hkYV9jb2RlY19yZWFsdGVrIGxpYmFyYzQgc25kX2hkYV9jb2RlY19nZW5lcmljIHNu
+ZF9jb21wcmVzcyBzbmRfaGRhX2V4dF9jb3JlIHZmYXQgZmF0IHNuZF9oZGFfaW50ZWwgc25kX2lu
+dGVsX2RzcGNmZyBpcnFieXBhc3MgaXdsd2lmaSBzbmRfaGRhX2NvZGVjIHNuZF9od2RlcCBzbmRf
+aGRhX2NvcmUgYnR1c2IgYnRydGwgbWVpX2hkY3AgaVRDT193ZHQgcmFwbCBtZWlfcHhwIGJ0aW50
+ZWwgc25kX3NlcSBpVENPX3ZlbmRvcl9zdXBwb3J0IGJ0YmNtIHNuZF9zZXFfZGV2aWNlIGludGVs
+X2NzdGF0ZSBibHVldG9vdGggc25kX3BjbSBjZmc4MDIxMSBpbnRlbF93bWlfdGh1bmRlcmJvbHQg
+d21pX2Jtb2YgaW50ZWxfdW5jb3JlIHNuZF90aW1lciBtZWlfbWUgc25kIGVjZGhfZ2VuZXJpYyBp
+MmNfaTgwMQ0KPiBbIDQ1NjIuMTAwNTQxXSAgZWNjIG1laSBpMmNfc21idXMgc291bmRjb3JlIHJm
+a2lsbCBpbnRlbF9wY2hfdGhlcm1hbCBhY3BpX3BhZCB6cmFtIG5vdXZlYXUgZHJtX3R0bV9oZWxw
+ZXIgdHRtIGdwdV9zY2hlZCBpMmNfYWxnb19iaXQgZHJtX2dwdXZtIGRybV9leGVjIG14bV93bWkg
+ZHJtX2Rpc3BsYXlfaGVscGVyIGRybV9rbXNfaGVscGVyIGRybSBjcmN0MTBkaWZfcGNsbXVsIGNy
+YzMyX3BjbG11bCBudm1lIGUxMDAwZSBjcmMzMmNfaW50ZWwgbnZtZV9jb3JlIGdoYXNoX2NsbXVs
+bmlfaW50ZWwgdmlkZW8gd21pIHBpbmN0cmxfY2Fubm9ubGFrZSBpcDZfdGFibGVzIGlwX3RhYmxl
+cyBmdXNlDQo+IFsgNDU2Mi4xMDA2MTZdIC0tLVsgZW5kIHRyYWNlIDAwMDAwMDAwMDAwMDAwMDAg
+XS0tLQ0KPiANCj4gU2lnbmVkLW9mZi1ieTogRGF2ZSBBaXJsaWUgPGFpcmxpZWRAcmVkaGF0LmNv
+bT4NCj4gQ2M6IHN0YWJsZUB2Z2VyLmtlcm5lbC5vcmcNCj4gLS0tDQo+ICAgLi4uL2RybS9ub3V2
+ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2NsaWVudC5oICAgIHwgIDEgKw0KPiAgIGRyaXZlcnMvZ3B1
+L2RybS9ub3V2ZWF1L252a20vY29yZS9jbGllbnQuYyAgICB8ICAxICsNCj4gICBkcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL2NvcmUvb2JqZWN0LmMgICAgfCAyMSArKysrKysrKysrKysrKyst
+LS0tDQo+ICAgMyBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygt
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZr
+bS9jb3JlL2NsaWVudC5oIGIvZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvaW5jbHVkZS9udmttL2Nv
+cmUvY2xpZW50LmgNCj4gaW5kZXggMGQ5ZmM3NDFhNzE5Li45MzJjOWZkMGIyZDggMTAwNjQ0DQo+
+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2NsaWVudC5o
+DQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L2luY2x1ZGUvbnZrbS9jb3JlL2NsaWVu
+dC5oDQo+IEBAIC0xMSw2ICsxMSw3IEBAIHN0cnVjdCBudmttX2NsaWVudCB7DQo+ICAgCXUzMiBk
+ZWJ1ZzsNCj4gICANCj4gICAJc3RydWN0IHJiX3Jvb3Qgb2Jqcm9vdDsNCj4gKwlzcGlubG9ja190
+IG9ial9sb2NrOw0KPiAgIA0KPiAgIAl2b2lkICpkYXRhOw0KPiAgIAlpbnQgKCpldmVudCkodTY0
+IHRva2VuLCB2b2lkICphcmd2LCB1MzIgYXJnYyk7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vbm91dmVhdS9udmttL2NvcmUvY2xpZW50LmMgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVh
+dS9udmttL2NvcmUvY2xpZW50LmMNCj4gaW5kZXggZWJkZWI4ZWI5ZTc3Li5jNTU2NjI5MzdhYjIg
+MTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9jbGllbnQu
+Yw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vbm91dmVhdS9udmttL2NvcmUvY2xpZW50LmMNCj4g
+QEAgLTE4MCw2ICsxODAsNyBAQCBudmttX2NsaWVudF9uZXcoY29uc3QgY2hhciAqbmFtZSwgdTY0
+IGRldmljZSwgY29uc3QgY2hhciAqY2ZnLCBjb25zdCBjaGFyICpkYmcsDQo+ICAgCWNsaWVudC0+
+ZGV2aWNlID0gZGV2aWNlOw0KPiAgIAljbGllbnQtPmRlYnVnID0gbnZrbV9kYmdvcHQoZGJnLCAi
+Q0xJRU5UIik7DQo+ICAgCWNsaWVudC0+b2Jqcm9vdCA9IFJCX1JPT1Q7DQo+ICsJc3Bpbl9sb2Nr
+X2luaXQoJmNsaWVudC0+b2JqX2xvY2spOw0KPiAgIAljbGllbnQtPmV2ZW50ID0gZXZlbnQ7DQo+
+ICAgCUlOSVRfTElTVF9IRUFEKCZjbGllbnQtPnVtZW0pOw0KPiAgIAlzcGluX2xvY2tfaW5pdCgm
+Y2xpZW50LT5sb2NrKTsNCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252
+a20vY29yZS9vYmplY3QuYyBiL2RyaXZlcnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9vYmpl
+Y3QuYw0KPiBpbmRleCA3YzU1NGMxNGU4ODQuLjVkZmZiOTY5ZmMzOCAxMDA2NDQNCj4gLS0tIGEv
+ZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbnZrbS9jb3JlL29iamVjdC5jDQo+ICsrKyBiL2RyaXZl
+cnMvZ3B1L2RybS9ub3V2ZWF1L252a20vY29yZS9vYmplY3QuYw0KPiBAQCAtMzAsOCArMzAsOSBA
+QCBudmttX29iamVjdF9zZWFyY2goc3RydWN0IG52a21fY2xpZW50ICpjbGllbnQsIHU2NCBoYW5k
+bGUsDQo+ICAgCQkgICBjb25zdCBzdHJ1Y3QgbnZrbV9vYmplY3RfZnVuYyAqZnVuYykNCj4gICB7
+DQo+ICAgCXN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0Ow0KPiAtDQo+ICsJdW5zaWduZWQgbG9u
+ZyBmbGFnczsNCj4gICAJaWYgKGhhbmRsZSkgew0KPiArCQlzcGluX2xvY2tfaXJxc2F2ZSgmY2xp
+ZW50LT5vYmpfbG9jaywgZmxhZ3MpOw0KPiAgIAkJc3RydWN0IHJiX25vZGUgKm5vZGUgPSBjbGll
+bnQtPm9ianJvb3QucmJfbm9kZTsNCj4gICAJCXdoaWxlIChub2RlKSB7DQo+ICAgCQkJb2JqZWN0
+ID0gcmJfZW50cnkobm9kZSwgdHlwZW9mKCpvYmplY3QpLCBub2RlKTsNCj4gQEAgLTQwLDkgKzQx
+LDEyIEBAIG52a21fb2JqZWN0X3NlYXJjaChzdHJ1Y3QgbnZrbV9jbGllbnQgKmNsaWVudCwgdTY0
+IGhhbmRsZSwNCj4gICAJCQllbHNlDQo+ICAgCQkJaWYgKGhhbmRsZSA+IG9iamVjdC0+b2JqZWN0
+KQ0KPiAgIAkJCQlub2RlID0gbm9kZS0+cmJfcmlnaHQ7DQo+IC0JCQllbHNlDQo+ICsJCQllbHNl
+IHsNCg0KTWlzc2luZyBicmFjZXMgZm9yIHRoZSBwcmVjZWRpbmcgaWYgYmxvY2tzLg0KDQo+ICsJ
+CQkJc3Bpbl91bmxvY2tfaXJxcmVzdG9yZSgmY2xpZW50LT5vYmpfbG9jaywgZmxhZ3MpOw0KPiAg
+IAkJCQlnb3RvIGRvbmU7DQo+ICsJCQl9DQo+ICAgCQl9DQo+ICsJCXNwaW5fdW5sb2NrX2lycXJl
+c3RvcmUoJmNsaWVudC0+b2JqX2xvY2ssIGZsYWdzKTsNCj4gICAJCXJldHVybiBFUlJfUFRSKC1F
+Tk9FTlQpOw0KPiAgIAl9IGVsc2Ugew0KPiAgIAkJb2JqZWN0ID0gJmNsaWVudC0+b2JqZWN0Ow0K
+PiBAQCAtNTcsMTYgKzYxLDIyIEBAIG52a21fb2JqZWN0X3NlYXJjaChzdHJ1Y3QgbnZrbV9jbGll
+bnQgKmNsaWVudCwgdTY0IGhhbmRsZSwNCj4gICB2b2lkDQo+ICAgbnZrbV9vYmplY3RfcmVtb3Zl
+KHN0cnVjdCBudmttX29iamVjdCAqb2JqZWN0KQ0KPiAgIHsNCj4gKwl1bnNpZ25lZCBsb25nIGZs
+YWdzOw0KDQpjaGVja3BhdGNoLnBsIGFza3MgZm9yIGEgYmxhbmsgbGluZSBoZXJlLg0KDQo+ICsJ
+c3Bpbl9sb2NrX2lycXNhdmUoJm9iamVjdC0+Y2xpZW50LT5vYmpfbG9jaywgZmxhZ3MpOw0KPiAg
+IAlpZiAoIVJCX0VNUFRZX05PREUoJm9iamVjdC0+bm9kZSkpDQo+ICAgCQlyYl9lcmFzZSgmb2Jq
+ZWN0LT5ub2RlLCAmb2JqZWN0LT5jbGllbnQtPm9ianJvb3QpOw0KPiArCXNwaW5fdW5sb2NrX2ly
+cXJlc3RvcmUoJm9iamVjdC0+Y2xpZW50LT5vYmpfbG9jaywgZmxhZ3MpOw0KPiAgIH0NCj4gICAN
+Cj4gICBib29sDQo+ICAgbnZrbV9vYmplY3RfaW5zZXJ0KHN0cnVjdCBudmttX29iamVjdCAqb2Jq
+ZWN0KQ0KPiAgIHsNCj4gLQlzdHJ1Y3QgcmJfbm9kZSAqKnB0ciA9ICZvYmplY3QtPmNsaWVudC0+
+b2Jqcm9vdC5yYl9ub2RlOw0KPiArCXN0cnVjdCByYl9ub2RlICoqcHRyOw0KPiAgIAlzdHJ1Y3Qg
+cmJfbm9kZSAqcGFyZW50ID0gTlVMTDsNCj4gKwl1bnNpZ25lZCBsb25nIGZsYWdzOw0KPiAgIA0K
+PiArCXNwaW5fbG9ja19pcnFzYXZlKCZvYmplY3QtPmNsaWVudC0+b2JqX2xvY2ssIGZsYWdzKTsN
+Cj4gKwlwdHIgPSAmb2JqZWN0LT5jbGllbnQtPm9ianJvb3QucmJfbm9kZTsNCj4gICAJd2hpbGUg
+KCpwdHIpIHsNCj4gICAJCXN0cnVjdCBudmttX29iamVjdCAqdGhpcyA9IHJiX2VudHJ5KCpwdHIs
+IHR5cGVvZigqdGhpcyksIG5vZGUpOw0KPiAgIAkJcGFyZW50ID0gKnB0cjsNCj4gQEAgLTc1LDEy
+ICs4NSwxNSBAQCBudmttX29iamVjdF9pbnNlcnQoc3RydWN0IG52a21fb2JqZWN0ICpvYmplY3Qp
+DQo+ICAgCQllbHNlDQo+ICAgCQlpZiAob2JqZWN0LT5vYmplY3QgPiB0aGlzLT5vYmplY3QpDQo+
+ICAgCQkJcHRyID0gJnBhcmVudC0+cmJfcmlnaHQ7DQo+IC0JCWVsc2UNCj4gKwkJZWxzZSB7DQoN
+Ck1pc3NpbmcgYnJhY2VzIGZvciB0aGUgcHJlY2VkaW5nIGlmIGJsb2Nrcy4NCg0KQ2FuIGZpeCB0
+aG9zZSB3aGVuIGFwcGx5aW5nIHRoZSBwYXRjaCBpZiB5b3Ugd2FudD8NCg0KPiArCQkJc3Bpbl91
+bmxvY2tfaXJxcmVzdG9yZSgmb2JqZWN0LT5jbGllbnQtPm9ial9sb2NrLCBmbGFncyk7DQo+ICAg
+CQkJcmV0dXJuIGZhbHNlOw0KPiArCQl9DQo+ICAgCX0NCj4gICANCj4gICAJcmJfbGlua19ub2Rl
+KCZvYmplY3QtPm5vZGUsIHBhcmVudCwgcHRyKTsNCj4gICAJcmJfaW5zZXJ0X2NvbG9yKCZvYmpl
+Y3QtPm5vZGUsICZvYmplY3QtPmNsaWVudC0+b2Jqcm9vdCk7DQo+ICsJc3Bpbl91bmxvY2tfaXJx
+cmVzdG9yZSgmb2JqZWN0LT5jbGllbnQtPm9ial9sb2NrLCBmbGFncyk7DQo+ICAgCXJldHVybiB0
+cnVlOw0KPiAgIH0NCj4gICANCg==
 
