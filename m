@@ -4,79 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00E78C5478C
-	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 18:01:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C6DCC5478C
+	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 18:11:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D68B511240D;
-	Mon,  4 Mar 2024 18:01:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F63F112429;
+	Mon,  4 Mar 2024 18:11:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kroah.com header.i=@kroah.com header.b="UijKYUII";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="LONYJcWf";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="PBPztpGE";
 	dkim-atps=neutral
-Received: from fhigh2-smtp.messagingengine.com
- (fhigh2-smtp.messagingengine.com [103.168.172.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D4EF11240B;
- Mon,  4 Mar 2024 18:01:31 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailfhigh.nyi.internal (Postfix) with ESMTP id 75BD811400A5;
- Mon,  4 Mar 2024 12:54:46 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Mon, 04 Mar 2024 12:54:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-type:content-type:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm1; t=1709574886; x=1709661286; bh=SPcmanJw9a
- ZzYzBS08sp4txIx1ZQ+vV0dQEw8ThQ9mQ=; b=UijKYUII8e8JZaOKGvse7Dq+Xx
- scMykYwcSm8LYhuZh3BbDrPGBIvjoV2YodfDbBoA3zDG6iMgQjND77Jy8q8Dlvkk
- CFYiIIuEM0znzfRJ7xzBqzuf1nIyqYF8tvVaFDakeaynLUZc7UMFRc2Dv4GWda47
- eb3dh9XqLZdD2N8DpnN4ERCYyvAIe3/X0lTXofXjIrMARNaOWkn+sbkC5PkHZit8
- 47pwoCd39iKA4DcomuzDEBzFWylx2zWMYDeKXEowv71FGAZ301Jm/x2sTaFN4/KV
- SY7sXCt7f7s2MoqahgPbUCsXhx1e/ZvbTFZW1tpVClN4FjjdVSyIiNS6QmDw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
- fm1; t=1709574886; x=1709661286; bh=SPcmanJw9aZzYzBS08sp4txIx1ZQ
- +vV0dQEw8ThQ9mQ=; b=LONYJcWf4zNMDllQ+Wrbrxew6Yd17x/fhtETUPfmUsyx
- /vXRgQ2UWMVLp/18AJb0bw9hsAcgoX8hRoUrhl6H6dG4JbcNO+8rcEol9hnDdpoL
- /5m9TL4KnNEEIiWUCI4R4AzRcKK6vbjbL1bjNGTXSiOTPaY3CA/R8lbzqtoOnLlb
- VcUNd0cQYxHMJopb053LjhiuueCMb/mi04813wi5yNr6F3JFo8sHCW2/OpMaj7UG
- 1FkY/JeB0FCNlyQ1Degs+m7FVaJ8viZ2R/QjsdPBH+oXDTehggUIlKwvvJvwF80I
- Y+WPYnFm/rZp6qjtjfqPOznkXqtiA5D5iV1EDE2BaA==
-X-ME-Sender: <xms:5grmZaSHD0nmrTa97QZM_3V5X6-jqGG5V8BYRmfGlWP-0bevPvObVA>
- <xme:5grmZfw0oJqYo5jpfzn28sBvb2Vfc-Mhz-fIAVaitnNSvMpdg_bzY21pSvntrx2Co
- nNgAL8B0L9dzQ>
-X-ME-Received: <xmr:5grmZX1PgR2W9hXyQy-A461PeyLSMULMJtBTh8LBVSqHivdZokeLlmyWaA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrheejgddutdegucetufdoteggodetrfdotf
- fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
- uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
- cujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepifhrvghg
- ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepheegvd
- evvdeljeeugfdtudduhfekledtiefhveejkeejuefhtdeufefhgfehkeetnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
- hhrdgtohhm
-X-ME-Proxy: <xmx:5grmZWCSmK-_BTPVOQ2K6twhJN9WPVLJnQwH1bphxS3_paGap6rWNw>
- <xmx:5grmZThXPET9z3bpygZPvO3vOWmmSrkOH2lV6xo11Zku8UQed2JQ1g>
- <xmx:5grmZSoPlLxzAj-bEp5_qtiTugf1mDmcXGxMW8h2_BST04KfB9nTdg>
- <xmx:5grmZcYsQWcD9amB5TplbGFuUKpJ-9DJ0tAFaDNpXtf21qM1H37Q4g>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 4 Mar 2024 12:54:45 -0500 (EST)
-Date: Mon, 4 Mar 2024 18:54:43 +0100
-From: Greg KH <greg@kroah.com>
-To: Danilo Krummrich <dakr@redhat.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04B5111242A
+ for <nouveau@lists.freedesktop.org>; Mon,  4 Mar 2024 18:11:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1709575867;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=vBjepeaDd7+e3s7rKO9VR+CPderTVwZuDQuLnzWRm24=;
+ b=PBPztpGE6359tsSshRY0mmMoxBUTuDv1XvGekBhzSQzvNdEQXvyBKEGb7ltKYsYqmXkZGV
+ wytWSv62f/C8b4jdZa8ltVjM3CN740YEjta0RyWR2mbpowxFIWtBi95zGZdCwztYAfo+DP
+ zjGJU+ee1i9mh9bkOi+ROx/ApY+7mAc=
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
+ [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-616-F0eRv9SVNlGByNMXME1Geg-1; Mon, 04 Mar 2024 13:10:59 -0500
+X-MC-Unique: F0eRv9SVNlGByNMXME1Geg-1
+Received: by mail-ed1-f70.google.com with SMTP id
+ 4fb4d7f45d1cf-565862cc48fso5831451a12.1
+ for <nouveau@lists.freedesktop.org>; Mon, 04 Mar 2024 10:10:59 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1709575858; x=1710180658;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=vBjepeaDd7+e3s7rKO9VR+CPderTVwZuDQuLnzWRm24=;
+ b=ixYIia4/NQETOuNeJRm2awTZa/whT0nBFgKWR196221FdaNyE/xc0uJjiUhYMqW/+r
+ RBANkHODPobeM7Je8QfcjLjOOd2sUIBfskVWkTxi5WXYricjMD2KJ2t/dffwJFEj7CwU
+ y58360C5N/27mWV4ke6IFUNPS+PrZ7GRPvVthl2qXxTl0wGa5usKFe5LMGnhcWd1KhxH
+ dz7rDwOe0HMH2n4QKb4fllR3Ab8a1fJnZ8fmsgrn4hmqYem0Pm5qAHdFYQfZLSeQuHLR
+ ga1Bg2941S56GEkTYrQhBS8dnpP4zqJJeFf+LMB9qXS11dAZtuR5tOrzc/bOcvl/lyoX
+ 4NlA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVQswcY973yMd6lMRDq3/86DiFXfkLAuyeL/O/TpLBmHpSzugs3yq1KSnp4tPr7Y7V9XRSZr2aFmkAUiilo1G0fauZjY+1Kjy+EdEERng==
+X-Gm-Message-State: AOJu0Yw8IFP+eqppcyjgwKNGbTFh6Wv0VUt7RfPXh0kMBcU2EPBTHU2O
+ eusGsZhcd6IjN161gVtJg56V0mu6mEsg8BOVNy/zPX8CyKprEDoOs1xIbJF2N6OiKBzqNmKHd5t
+ h5Ut9iLiTRomdL3/ZKTrofPakdVSwpZA8ef6gKgMDQ6+iYTtDvwMApe8krFxfxEI=
+X-Received: by 2002:a05:6402:12d6:b0:565:4b37:4578 with SMTP id
+ k22-20020a05640212d600b005654b374578mr248031edx.14.1709575858261; 
+ Mon, 04 Mar 2024 10:10:58 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IE3t2S0aWyhJ/v1zCmDqncy36MkHWOfwiyAhlwadf3nqgax2jvehgYnODUkmNZDIdWTKSsqoQ==
+X-Received: by 2002:a05:6402:12d6:b0:565:4b37:4578 with SMTP id
+ k22-20020a05640212d600b005654b374578mr248007edx.14.1709575857934; 
+ Mon, 04 Mar 2024 10:10:57 -0800 (PST)
+Received: from ?IPV6:2a02:810d:4b3f:ee94:abf:b8ff:feee:998b?
+ ([2a02:810d:4b3f:ee94:abf:b8ff:feee:998b])
+ by smtp.gmail.com with ESMTPSA id
+ m13-20020aa7d34d000000b0056486eaa669sm4910231edr.50.2024.03.04.10.10.57
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 04 Mar 2024 10:10:57 -0800 (PST)
+Message-ID: <4a3dc556-d7f4-4741-ae5b-6722bd2ce1c1@redhat.com>
+Date: Mon, 4 Mar 2024 19:10:56 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH stable v6.7] drm/nouveau: don't fini scheduler before
+ entity flush
+To: Greg KH <greg@kroah.com>
 Cc: stable@vger.kernel.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  Karol Herbst <kherbst@redhat.com>
-Subject: Re: [PATCH stable v6.7] drm/nouveau: don't fini scheduler before
- entity flush
-Message-ID: <2024030436-console-enlisted-07d2@gregkh>
 References: <20240304170158.4206-1-dakr@redhat.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240304170158.4206-1-dakr@redhat.com>
+ <2024030448-basin-grit-b550@gregkh>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <2024030448-basin-grit-b550@gregkh>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,10 +99,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Mar 04, 2024 at 06:01:46PM +0100, Danilo Krummrich wrote:
-> This bug is present in v6.7 only, since the scheduler design has been
-> re-worked in v6.8.
+On 3/4/24 18:55, Greg KH wrote:
+> On Mon, Mar 04, 2024 at 06:01:46PM +0100, Danilo Krummrich wrote:
+>> Cc: <stable@vger.kernel.org> # v6.7 only
+> You say 6.7 only, but this commit is in 6.6, so why not 6.6 also?
 
-Now queued up, thanks.
+Good catch, I was sure I originally merged this for 6.7. This fix should indeed
+be applied to 6.6 as well. Should have double checked that, my bad.
 
-greg k-h
+- Danilo
+
+> 
+> thanks,
+> 
+> greg k-h
+> 
+
