@@ -4,79 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10AD3C5478C
-	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 17:02:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F13AC48BF6
+	for <nouveau@archiver.kernel.org>; Mon,  4 Mar 2024 17:56:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 504CA11236D;
-	Mon,  4 Mar 2024 17:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B8A1123F7;
+	Mon,  4 Mar 2024 17:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HbE5ApGq";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="2EWz8X/v";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEA31112373
- for <nouveau@lists.freedesktop.org>; Mon,  4 Mar 2024 17:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1709571751;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=bRb2G3rGVCWNmjR6j8Y0jK9sd42QWUsDe6AfIQJkqsw=;
- b=HbE5ApGqKrdsuLOzcJfCNgayDvXXbARPpZ3HBBarXwa85++Y+7thYinmw8o4ZsB6h3SJ4I
- HiBKqSuA/TktqudALJUkzB/Oi+p8tCxNv8KFaB2+2LXu1FZoQyfd+DB0ch/oPvLMSn3/Ve
- i4wchnG/yqQbSI+hhTbp9GyFxeVSz1w=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-421-q4Vt8EJ2P6eedIMHZRm1Tg-1; Mon, 04 Mar 2024 12:02:27 -0500
-X-MC-Unique: q4Vt8EJ2P6eedIMHZRm1Tg-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-a4531df8727so44658466b.2
- for <nouveau@lists.freedesktop.org>; Mon, 04 Mar 2024 09:02:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709571746; x=1710176546;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=bRb2G3rGVCWNmjR6j8Y0jK9sd42QWUsDe6AfIQJkqsw=;
- b=XHwuC+CWwkJHBYgm4eZCgTEcg4iNaC9OV5MVBursPTtBb0v2BAGG/H+7f6BNJCaMuZ
- WO1hoQH7uVtLdpiIQTSyqca58Zk9gXuOhBMbVgxpLy/uOCbAAahekOswTlcjXu/1RK5w
- jZexWJqunbuokxLCo4SenxwofgPB3fnIa6M4w7Ig+USyTt03sB6rHGmsh5nwNpIcCgGK
- 4LNQj+8Z8x59MkRh5RRIzc3M8Zffwm7bpc8nvdw5++Zc3yaFohN/bRf3ExOoQhBHpYKi
- KVET0z8iNEiw2S5wdJszxBF6pbm+oQ5H43jm6JmR8Ks7qFoVnahJBM37e+FBfpCHVCVv
- o9/A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWfW+f+4H0LBXcPxen9QwHECpGgs1sxgzw4xiRPFMFzhIhnsD1Y6D0JsmDv0pRqToh7nvV41AGuXvwao0B9c7lHXj5wOwdx5Uxd/8s6lA==
-X-Gm-Message-State: AOJu0YxxTofQhtqLSrR9dvGPh6AsSLdChGhrqP4HHPkRSmewey1px8lU
- AtsORXiZ1q5kBEgmu/rksJbCcPS+tinyGLqy17AdCXeXjV71WBWZQKomz6pj/QXLHLCxSnFdkb5
- OYip/R/gNaI+VJRBfmrGROTHSqTxHU8W6FC/bYii8q4ILvi5YPEcGdjMW/OGENv0=
-X-Received: by 2002:a17:906:34d7:b0:a45:29f3:6cc9 with SMTP id
- h23-20020a17090634d700b00a4529f36cc9mr2924245ejb.20.1709571746335; 
- Mon, 04 Mar 2024 09:02:26 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IGEXK6MgN54UtOiHFSF4R6S0QqKf3vQjkdthql3Vdr45tKN/JnSK4chUqihHQ930YEbFsgjVA==
-X-Received: by 2002:a17:906:34d7:b0:a45:29f3:6cc9 with SMTP id
- h23-20020a17090634d700b00a4529f36cc9mr2924219ejb.20.1709571745935; 
- Mon, 04 Mar 2024 09:02:25 -0800 (PST)
-Received: from altair.. ([2a02:810d:4b3f:ee94:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- gl11-20020a170906e0cb00b00a448fab02easm3913637ejb.37.2024.03.04.09.02.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Mar 2024 09:02:25 -0800 (PST)
-From: Danilo Krummrich <dakr@redhat.com>
-To: stable@vger.kernel.org,
-	nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Danilo Krummrich <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>
-Subject: [PATCH stable v6.7] drm/nouveau: don't fini scheduler before entity
- flush
-Date: Mon,  4 Mar 2024 18:01:46 +0100
-Message-ID: <20240304170158.4206-1-dakr@redhat.com>
-X-Mailer: git-send-email 2.44.0
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE8BA1123F7;
+ Mon,  4 Mar 2024 17:56:47 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id BF1C66112D;
+ Mon,  4 Mar 2024 17:56:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7589C433F1;
+ Mon,  4 Mar 2024 17:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1709575006;
+ bh=Rj5nz+6JrMyt9pAzgTWPN52c/Zr+89bDdtjCifnpllo=;
+ h=Subject:To:Cc:From:Date:In-Reply-To:From;
+ b=2EWz8X/vPpwTguvLKQgFujdouSvfRgadAiu3j4/jULiaImMvWEpE9bzXIL6oQsAFh
+ BqXKNfsumMvx3Jb8q0XeeYZXVeVzUQHiEyR6L7NN+w/L2yKoMvI4OYaZS/1WolPAZH
+ GbpfZ6BfSxjtNaPxHCpEjGP3THAKh6a0oAxS54HU=
+Subject: Patch "drm/nouveau: don't fini scheduler before entity flush" has
+ been added to the 6.7-stable tree
+To: dakr@redhat.com, dri-devel@lists.freedesktop.org,
+ gregkh@linuxfoundation.org, kherbst@redhat.com, nouveau@lists.freedesktop.org
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 04 Mar 2024 18:56:42 +0100
+In-Reply-To: <20240304170158.4206-1-dakr@redhat.com>
+Message-ID: <2024030442-grader-frivolous-a250@gregkh>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=ANSI_X3.4-1968
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-stable: commit
+X-Patchwork-Hint: ignore
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,6 +54,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
+
+
+This is a note to let you know that I've just added the patch titled
+
+    drm/nouveau: don't fini scheduler before entity flush
+
+to the 6.7-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     drm-nouveau-don-t-fini-scheduler-before-entity-flush.patch
+and it can be found in the queue-6.7 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From dakr@redhat.com  Mon Mar  4 18:52:25 2024
+From: Danilo Krummrich <dakr@redhat.com>
+Date: Mon,  4 Mar 2024 18:01:46 +0100
+Subject: drm/nouveau: don't fini scheduler before entity flush
+To: stable@vger.kernel.org, nouveau@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>
+Message-ID: <20240304170158.4206-1-dakr@redhat.com>
+
+From: Danilo Krummrich <dakr@redhat.com>
 
 This bug is present in v6.7 only, since the scheduler design has been
 re-worked in v6.8.
@@ -227,15 +217,14 @@ Reported-by: Karol Herbst <kherbst@redhat.com>
 Closes: https://gist.githubusercontent.com/karolherbst/a20eb0f937a06ed6aabe2ac2ca3d11b5/raw/9cd8b1dc5894872d0eeebbee3dd0fdd28bb576bc/gistfile1.txt
 Fixes: b88baab82871 ("drm/nouveau: implement new VM_BIND uAPI")
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 ---
- drivers/gpu/drm/nouveau/nouveau_drm.c | 5 +++--
+ drivers/gpu/drm/nouveau/nouveau_drm.c |    5 +++--
  1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 50589f982d1a..75545da9d1e9 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -708,10 +708,11 @@ nouveau_drm_device_fini(struct drm_device *dev)
+@@ -708,10 +708,11 @@ nouveau_drm_device_fini(struct drm_devic
  	}
  	mutex_unlock(&drm->clients_lock);
  
@@ -249,6 +238,8 @@ index 50589f982d1a..75545da9d1e9 100644
  	nvif_parent_dtor(&drm->parent);
  	mutex_destroy(&drm->clients_lock);
  	kfree(drm);
--- 
-2.44.0
 
+
+Patches currently in stable-queue which might be from dakr@redhat.com are
+
+queue-6.7/drm-nouveau-don-t-fini-scheduler-before-entity-flush.patch
