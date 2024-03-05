@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB6FAC54E4A
-	for <nouveau@archiver.kernel.org>; Tue,  5 Mar 2024 10:49:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDA8EC54E49
+	for <nouveau@archiver.kernel.org>; Tue,  5 Mar 2024 13:26:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31717112A16;
-	Tue,  5 Mar 2024 10:49:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77C2A10E070;
+	Tue,  5 Mar 2024 13:26:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="hLyTDs6C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AW7R7ZRd";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC300112A0F;
- Tue,  5 Mar 2024 10:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=In-Reply-To:References:Cc:To:From:Subject:MIME-Version:Date:
- Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=K3yp7C0pQ7ldKDkCbhOar0UBhiv6KJOFunnEtqi5GAQ=; b=hLyTDs6CWwg/1gSgwVj9cG+Zt/
- zG352kTlF22EQDBx6hJJgWpdGRZX0WUi+LuLMAFlSwHDwVZjMnYfLpBpTHCsG5zCw6laVqDXjXneN
- eeXH4QvEVtbdjcRD7ytwQ18t1bOfhHDeQw9m8dQRbBSjUGym9AZNCnr2FxE33p3XtT/UbJzeaSw9/
- BfWecHt2BCw0BXEv3Z0z0V23KDLBFHd8Gj81gEYlhW3GsTaIeRMd/G4Dnb9ZpAOOjKuaRWaJBK2hr
- emrsI0r8sbGN5R07Zt5GhyJw80LsLxKxD2bGtFXz2mIijYDhpgtRwmqX2jvx26LOY/GQm0rCk5K5o
- 9PHPnVbQ==;
-Received: from c-71-59-88-35.hsd1.nj.comcast.net ([71.59.88.35]
- helo=[192.168.1.99]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1rhSMX-006CeC-Jf; Tue, 05 Mar 2024 11:49:33 +0100
-Content-Type: multipart/alternative;
- boundary="------------PUCnCxgdF0nKqUJPe2Gx1RhO"
-Message-ID: <39fac3a4-f9de-4968-b0ff-ac3bf503a4fb@igalia.com>
-Date: Tue, 5 Mar 2024 05:49:27 -0500
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEF1810E070;
+ Tue,  5 Mar 2024 13:26:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1709645207; x=1741181207;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=yXNm14NxN++hrLExbM8fzKn8NTqUH42Iaz49C2BIFwY=;
+ b=AW7R7ZRdYCFtdhJV7xLCz4QsPJL2luSncPkFmXTjsmlbxr9RXcn5O4Ns
+ Z2CqSLKzn7dVRkTUzYiozZ6d76RoQoPE9yHm4gu8SPLzRU1CKq3y3smtA
+ ayM4lJqVUfJr6UPjhGQWvgti5bEdrwOekcVb4+ryGUznYR+KCMot0P3Iu
+ Ys8riaZA4dtrWDvd6AzSRXe9jesYREMsqXsg0fJFF1NA3PzsL+nENueH6
+ 9iA8iO7EEe4day959G5W7Rajxhyl7YWk5bWfkrqOhgT5aoh/4yOgOXTS/
+ vSlcU8QPBvMaeyjbADUrcQK/Xt2G+gWUKrLJOqOQALOjxoCgnZjuat1Ve g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="7140296"
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
+   d="scan'208";a="7140296"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 05:26:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; d="scan'208";a="46909850"
+Received: from omakhlou-mobl4.amr.corp.intel.com (HELO localhost)
+ ([10.252.51.143])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2024 05:26:44 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: duoming@zju.edu.cn
+Cc: Timur Tabi <timur@kernel.org>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH] nouveau/dmem: handle kcalloc() allocation failure
+In-Reply-To: <601512f5.b287.18e0ebb25d4.Coremail.duoming@zju.edu.cn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240303081330.61091-1-duoming@zju.edu.cn>
+ <CAOZdJXUebAScPBjJdCbdzzA_Hmotk11bd7MvLLxe+pqS5-upHQ@mail.gmail.com>
+ <87y1ay42ir.fsf@intel.com>
+ <601512f5.b287.18e0ebb25d4.Coremail.duoming@zju.edu.cn>
+Date: Tue, 05 Mar 2024 15:26:41 +0200
+Message-ID: <87a5nc3j3i.fsf@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Reminder: 2024 X.Org Board of Directors Elections timeline extended, 
- request for nominations
-Content-Language: en-US
-From: Christopher Michael <cmichael@igalia.com>
-To: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
- xorg@lists.freedesktop.org
-Cc: board <board@foundation.x.org>
-References: <0efcdfe3-ea9e-43e5-ab07-6d69dca2c04a@igalia.com>
- <08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com>
-In-Reply-To: <08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com>
+Content-Type: text/plain
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,161 +68,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------PUCnCxgdF0nKqUJPe2Gx1RhO
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Tue, 05 Mar 2024, duoming@zju.edu.cn wrote:
+> On Mon, 04 Mar 2024 14:14:52 +0200 Jani Nikula wrote:
+>> >> The kcalloc() in nouveau_dmem_evict_chunk() will return null if
+>> >> the physical memory has run out. As a result, if we dereference
+>> >> src_pfns, dst_pfns or dma_addrs, the null pointer dereference bugs
+>> >> will happen.
+>> >>
+>> >> This patch uses stack variables to replace the kcalloc().
+>> >
+>> > Won't this blow the stack?  And why not just test the return value of
+>> > kcalloc?
+>> 
+>> VLAs should not be used in the kernel anymore. Building this results in
+>> a warning due to -Wvla. See 0bb95f80a38f ("Makefile: Globally enable VLA
+>> warning").
+>> 
+>> Error checking and propagation is the way to go.
+>
+> The GPU is going away. If the kcalloc() in nouveau_dmem_evict_chunk() fail,
+> we could not evict all pages mapping a chunk. Do you think we should add a
+> __GFP_NOFAIL flag in kcalloc()? I see the __GFP_NOFAIL flag is used in the
+> following code:
+>
+> /*
+> * _GFP_NOFAIL because the GPU is going away and there
+> * is nothing sensible we can do if we can't copy the
+> * data back.
+> */
+> dpage = alloc_page(GFP_HIGHUSER | __GFP_NOFAIL);
 
-This is a reminder that we are still looking for candidates for the 
-upcoming X.Org Board of Directors elections, and that membership 
-renewals are still open and will be needed to vote on those elections. 
-Please read below for more details.
+This is all up to the nouveau maintainers, really. All I'm saying is
+that VLA isn't the solution you're looking for.
+
+BR,
+Jani.
 
 
-Cheers,
-
-Christopher Michael, on behalf of the X.Org BoD
-
-
-On 3/1/24 06:25, Christopher Michael wrote:
->
-> We are seeking nominations for candidates for election to the X.org 
-> Foundation Board of Directors. However, as we presently do not have 
-> enough nominations to start the election - the decision has been made 
-> to extend the timeline by 2 weeks. Note this is a fairly regular part 
-> of the elections process.
->
->
-> The new deadline for nominations to the X.org Board of Directors is 
-> 23:59 UTC on 11 March 2024
->
->
-> The Board consists of directors elected from the membership. Each 
-> year, an election is held to bring the total number of directors to 
-> eight. The four members receiving the highest vote totals will serve 
-> as directors for two year terms.
->
-> The directors who received two year terms starting in 2023 were 
-> Arkadiusz Hiler, Christopher Michael, Lyude Paul, and Daniel Vetter. 
-> They will continue to serve until their term ends in 2024. Current 
-> directors whose term expires in 2024 are Emma Anholt, Mark Filion, 
-> Ricardo Garcia, and Alyssa Rosenzweig.
-> <https://rosenzweig.io/>
->
-> A director is expected to participate in the fortnightly IRC meeting 
-> to discuss current business and to attend the annual meeting of the 
-> X.Org Foundation, which will be held at a location determined in 
-> advance by the Board of Directors.
->
-> A member may nominate themselves or any other member they feel is 
-> qualified. Nominations should be sent to the Election Committee at 
-> elections@x.org.
->
-> Nominees shall be required to be current members of the X.Org 
-> Foundation, and submit a personal statement of up to 200 words that 
-> will be provided to prospective voters. The collected statements, 
-> along with the statement of contribution to the X.Org Foundation in 
-> the member's account page on http://members.x.org, will be made 
-> available to all voters to help them make their voting decisions.
->
-> Nominations and completed personal statements must be received no 
-> later than 23:59 UTC on 11 March 2024.
->
-> The slate of candidates will be published 18 March 2024 and candidate 
-> Q&A will begin then. The deadline for Xorg membership applications and 
-> renewals has also been extended 2 weeks and is now 25 March 2024.
->
->
-> Cheers,
->
-> Christopher Michael, on behalf of the X.Org BoD
->
->
---------------PUCnCxgdF0nKqUJPe2Gx1RhO
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>This is a reminder that we are still looking for candidates for
-      the upcoming X.Org Board of Directors elections, and that
-      membership renewals are still open and will be needed to vote on
-      those elections. Please read below for more details. <br>
-    </p>
-    <p><br>
-    </p>
-    <p>Cheers,</p>
-    <p>Christopher Michael, on behalf of the X.Org BoD</p>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 3/1/24 06:25, Christopher Michael
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:08f8a967-25e1-4362-be38-3f1b050ec6f2@igalia.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <p>We are seeking nominations for candidates for election to the
-        X.org Foundation Board of Directors. However, as we presently do
-        not have enough nominations to start the election - the decision
-        has been made to extend the timeline by 2 weeks. Note this is a
-        fairly regular part of the elections process.</p>
-      <p><br>
-      </p>
-      <p>The new deadline for nominations to the X.org Board of
-        Directors is 23:59 UTC on 11 March 2024</p>
-      <br>
-      The Board consists of directors elected from the membership. Each
-      year, an election is held to bring the total number of directors
-      to eight. The four members receiving the highest vote totals will
-      serve as directors for two year terms.
-      <p>The directors who received two year terms starting in 2023 were
-        <span class="createlink">Arkadiusz Hiler, </span><span
-          class="createlink">Christopher Michael, </span><span
-          class="createlink">Lyude Paul, and Daniel Vetter</span>. They
-        will continue to serve until their term ends in 2024. Current
-        directors whose term expires in 2024 are <span
-          class="createlink">Emma Anholt, </span><span
-          class="createlink">Mark Filion, </span><span
-          class="createlink">Ricardo Garcia, and Alyssa Rosenzweig.</span><a
-          href="https://rosenzweig.io/" moz-do-not-send="true"><br>
-        </a></p>
-      <p>A director is expected to participate in the fortnightly IRC
-        meeting to discuss current business and to attend the annual
-        meeting of the X.Org Foundation, which will be held at a
-        location determined in advance by the Board of Directors.</p>
-      <p>A member may nominate themselves or any other member they feel
-        is qualified. Nominations should be sent to the Election
-        Committee at <a
-          class="moz-txt-link-abbreviated moz-txt-link-freetext"
-          href="mailto:elections@x.org" moz-do-not-send="true">elections@x.org</a>.<br>
-      </p>
-      <p>Nominees shall be required to be current members of the X.Org
-        Foundation, and submit a personal statement of up to 200 words
-        that will be provided to prospective voters. The collected
-        statements, along with the statement of contribution to the
-        X.Org Foundation in the member's account page on <a
-          class="moz-txt-link-freetext" href="http://members.x.org"
-          moz-do-not-send="true">http://members.x.org</a>, will be made
-        available to all voters to help them make their voting
-        decisions.</p>
-      <p>Nominations and completed personal statements must be received
-        no later than 23:59 UTC on 11 March 2024.</p>
-      <p>The slate of candidates will be published 18 March 2024 and
-        candidate Q&amp;A will begin then. The deadline for Xorg
-        membership applications and renewals has also been extended 2
-        weeks and is now 25 March 2024.</p>
-      <p><br>
-      </p>
-      <p>Cheers,</p>
-      <p>Christopher Michael, on behalf of the X.Org BoD</p>
-      <p><br>
-      </p>
-    </blockquote>
-  </body>
-</html>
-
---------------PUCnCxgdF0nKqUJPe2Gx1RhO--
+-- 
+Jani Nikula, Intel
