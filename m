@@ -4,77 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 049CBC54E41
-	for <nouveau@archiver.kernel.org>; Tue,  5 Mar 2024 13:40:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B95CC54E41
+	for <nouveau@archiver.kernel.org>; Tue,  5 Mar 2024 16:55:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC11112AFC;
-	Tue,  5 Mar 2024 13:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 798C410E1F2;
+	Tue,  5 Mar 2024 16:55:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NfSz9unA";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="QiBmfGYA";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16465112AFC
- for <nouveau@lists.freedesktop.org>; Tue,  5 Mar 2024 13:40:56 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF8A1121A4
+ for <nouveau@lists.freedesktop.org>; Tue,  5 Mar 2024 16:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1709646056;
+ s=mimecast20190719; t=1709657702;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=VZnEToW5t7As1au0rwMSuY1nkYFxsgpWnFlldMYKeW4=;
- b=NfSz9unA4rAFpOn6BKEJDJZr1FD++oHTDWHVF+QM2X9NAXp6STMUHGNA5mvTkmh4sEUE4l
- E+JigwEdch4OCjxzOu3+BweJFFTMfxXyratlioisbn8XSwsFAe+EHryXgINmNf4bZDgwPY
- gmJlRKyWcfNZHjv3ouitvya/UJ09YyY=
-Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
- [209.85.215.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=q2z9lZCL9Z3rimHOG8O2ywzmChw7nkWjJ7ypccwQP5g=;
+ b=QiBmfGYA300RruTXxI5V0HZqmdpfU2JAb0Sq3DPsTa8gPS75jPfjHpxwMYTb0D7bHjdcBe
+ tIN7mlEhrdJh+Nf7jF66o8yYRowWHCnr4JT62/SiJGSUFPHZmqvcHGxtDelesssNOo4GSu
+ d+0rPI1cSYgyvoowxHmx+RD+TqJhB/g=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-652-dQvFNk3EODyCz1jtswL05Q-1; Tue, 05 Mar 2024 08:40:54 -0500
-X-MC-Unique: dQvFNk3EODyCz1jtswL05Q-1
-Received: by mail-pg1-f199.google.com with SMTP id
- 41be03b00d2f7-5dca5c631ffso5436180a12.2
- for <nouveau@lists.freedesktop.org>; Tue, 05 Mar 2024 05:40:54 -0800 (PST)
+ us-mta-645-4ZunNQUZPLe1grEERrsqPw-1; Tue, 05 Mar 2024 11:55:00 -0500
+X-MC-Unique: 4ZunNQUZPLe1grEERrsqPw-1
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-78825e5e374so468114285a.0
+ for <nouveau@lists.freedesktop.org>; Tue, 05 Mar 2024 08:54:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1709646054; x=1710250854;
+ d=1e100.net; s=20230601; t=1709657699; x=1710262499;
  h=content-transfer-encoding:in-reply-to:organization:from:references
  :cc:to:content-language:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=VZnEToW5t7As1au0rwMSuY1nkYFxsgpWnFlldMYKeW4=;
- b=ZUI8Qwd7BZr3ybaNlDNRvmTwGBxmlYrFnVcoaWY1I6QTNhyayISYEEeUWbQDYmgrMp
- db8bbZ9m9fteQlU9AcC6sQUiGxy8b1btpDS0TAms5yQTeH9nQXISS+AL3KrJUBaolKvy
- zCwv3H3gy043iSkuy+8ZsJKFxxtj9DvEcqOFhomNTkCNNxWhD+f3I6Zs1rREOzRYLaQl
- PCsmb/GclGw2CCM44q0WIfObDdyGCdDQWfMvsbHVu0gAkAXykkc8wZrR4OE/ahFgpwu2
- jY/vEtFeAy8a/+N/3DKfaIemUiIfL8Q0xGvy85/5TKCyE9LMCxSAFULFfL3XvH6s2wUu
- 4FxQ==
-X-Gm-Message-State: AOJu0Ywvfsc9TZY5M+yb/VDoRRrlD7gzf9eO91f2T373/c3rlmARBk6l
- AAHPZXfN+Lb3TY3ml0emjX1HYX4agJhiNdRWyD234ucAg7GoHJKT2fN1d3z+WKTBITFObCzyKH+
- Q3Uw5gwG8CC6tQ27LRs8Z3NlyBQapuY68gBzEiYiHcO1Lvodv3So3djyWULZ2goQ=
-X-Received: by 2002:a05:6a20:cea4:b0:1a1:45b8:bba4 with SMTP id
- if36-20020a056a20cea400b001a145b8bba4mr1537446pzb.37.1709646054009; 
- Tue, 05 Mar 2024 05:40:54 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHZZ9bEhXrO6qofCmunP2PwITI7ouZsIJbjodQXvB3Cecr0rJmvJ+jNDD8uikp00KYqrjuu6g==
-X-Received: by 2002:a05:6a20:cea4:b0:1a1:45b8:bba4 with SMTP id
- if36-20020a056a20cea400b001a145b8bba4mr1537431pzb.37.1709646053643; 
- Tue, 05 Mar 2024 05:40:53 -0800 (PST)
-Received: from [10.200.68.248] (nat-pool-muc-u.redhat.com. [149.14.88.27])
+ bh=q2z9lZCL9Z3rimHOG8O2ywzmChw7nkWjJ7ypccwQP5g=;
+ b=kieTPK80e7bi74gRFRVl/x/XYCfzp+n7xNBSjW5hfXCZwFHWcIG8pc8bZ1JiG0w71Q
+ TAu5PJJsV0VGdxpvzPHvIbBED42IjKJptJ4EynhAjm2zkfc8O28cT0SR+EMjB2NQT/8m
+ Z6xU4XXeVDSFxK3Y/GxFKqJKRAO4dFHtK65ZhKrLWPPtXEDuCR6GCYmI/frYywrCoVs/
+ czom4O5JY+RVkEJTmhleD13HULxu1s2wpND/lM9YruTJOfMXElbHUJUGqydJq2H5K0XH
+ LVTMmhq0wCrhwhk9cKMv2kyTL1WADKtFqW+MuG51EsSdrECEuSqlfZbvGv7wsf4AUhtu
+ mdWw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWXC3XWUshnJ5RsUOskGKoaOC9l8zf8q9thtnTNCsVwoRQ35nHrljdaw0BvNa8TJwiNFYVL0fiJZ6Ufp9EZOEqv0Hg5lKf6AIvuw2FOfQ==
+X-Gm-Message-State: AOJu0YyH9Gh/rjIgEyqzJdOIN/8pBfvDI1kPrVdvQPcaM8tAMnsiGMTD
+ fdrA9p9KDDHMb0WpzaW8Sdbua+cqsVgEQLy1sY3JBKMpO/pTqQgZYbVgsN5HV2tzQzeA4Hwmn4k
+ GEYA29c1yKE/Fl37lIGpozym1MFJoBECyuyzd9dDyYXWv/HjCX1UjX8YNatZwoRM=
+X-Received: by 2002:a05:620a:1482:b0:788:322f:e8ab with SMTP id
+ w2-20020a05620a148200b00788322fe8abmr3727312qkj.2.1709657699558; 
+ Tue, 05 Mar 2024 08:54:59 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IExv3MZheDgrjYzjAL3lBjTHXd+iKVpZeMtwriKBSS2qghKHcd7atNz/pH30IdbdmikOhTY+A==
+X-Received: by 2002:a05:620a:1482:b0:788:322f:e8ab with SMTP id
+ w2-20020a05620a148200b00788322fe8abmr3727284qkj.2.1709657699281; 
+ Tue, 05 Mar 2024 08:54:59 -0800 (PST)
+Received: from [10.32.64.131] (nat-pool-muc-t.redhat.com. [149.14.88.26])
  by smtp.gmail.com with ESMTPSA id
- a13-20020aa78e8d000000b006e558416202sm9236593pfr.148.2024.03.05.05.40.48
+ p14-20020ae9f30e000000b0078825e2c57dsm2507620qkg.76.2024.03.05.08.54.57
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 05 Mar 2024 05:40:53 -0800 (PST)
-Message-ID: <fbe9453d-53c5-44d1-a478-2496c5928603@redhat.com>
-Date: Tue, 5 Mar 2024 14:40:43 +0100
+ Tue, 05 Mar 2024 08:54:58 -0800 (PST)
+Message-ID: <93c832af-55df-4149-b9d1-1171528809c2@redhat.com>
+Date: Tue, 5 Mar 2024 17:54:56 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] nouveau/dmem: handle kcalloc() allocation failure
+Subject: Re: [PATCH v2] nouveau/dmem: handle kcalloc() allocation failure
 To: Duoming Zhou <duoming@zju.edu.cn>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  daniel@ffwll.ch, airlied@gmail.com, lyude@redhat.com, kherbst@redhat.com,
- linux-kernel@vger.kernel.org
-References: <20240303075312.56349-1-duoming@zju.edu.cn>
+ timur@kernel.org, jani.nikula@linux.intel.com, nouveau@lists.freedesktop.org
+References: <20240305143936.25283-1-duoming@zju.edu.cn>
 From: Danilo Krummrich <dakr@redhat.com>
 Organization: RedHat
-In-Reply-To: <20240303075312.56349-1-duoming@zju.edu.cn>
+In-Reply-To: <20240305143936.25283-1-duoming@zju.edu.cn>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
@@ -96,61 +98,50 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Hi Duoming,
 
-On 3/3/24 08:53, Duoming Zhou wrote:
+thanks for sending a V2.
+
+On 3/5/24 15:39, Duoming Zhou wrote:
 > The kcalloc() in nouveau_dmem_evict_chunk() will return null if
 > the physical memory has run out. As a result, if we dereference
 > src_pfns, dst_pfns or dma_addrs, the null pointer dereference bugs
 > will happen.
 > 
-> This patch uses stack variables to replace the kcalloc().
+> Moreover, the GPU is going away. If the kcalloc() fails, we could not
+> evict all pages mapping a chunk. So this patch adds a __GFP_NOFAIL
+> flag in kcalloc().
 > 
 > Fixes: 249881232e14 ("nouveau/dmem: evict device private memory during release")
 > Signed-off-by: Duoming Zhou <duoming@zju.edu.cn>
 > ---
->   drivers/gpu/drm/nouveau/nouveau_dmem.c | 13 +++++--------
->   1 file changed, 5 insertions(+), 8 deletions(-)
+> Changes in v2:
+>    - Allocate with __GFP_NOFAIL.
+> 
+>   drivers/gpu/drm/nouveau/nouveau_dmem.c | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> index 12feecf71e7..9a578262c6d 100644
+> index 12feecf71e7..f5ae9724ee2 100644
 > --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
 > +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> @@ -374,13 +374,13 @@ static void
->   nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
->   {
->   	unsigned long i, npages = range_len(&chunk->pagemap.range) >> PAGE_SHIFT;
-> -	unsigned long *src_pfns, *dst_pfns;
-> -	dma_addr_t *dma_addrs;
-> +	unsigned long src_pfns[npages], dst_pfns[npages];
-> +	dma_addr_t dma_addrs[npages];
-
-Please don't use variable length arrays, this can potentially blow up
-the stack.
-
-As a fix I think we should allocate with __GFP_NOFAIL instead.
-
-- Danilo
-
+> @@ -378,9 +378,9 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
+>   	dma_addr_t *dma_addrs;
 >   	struct nouveau_fence *fence;
 >   
 > -	src_pfns = kcalloc(npages, sizeof(*src_pfns), GFP_KERNEL);
 > -	dst_pfns = kcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL);
 > -	dma_addrs = kcalloc(npages, sizeof(*dma_addrs), GFP_KERNEL);
-> +	memset(src_pfns, 0, npages);
-> +	memset(dst_pfns, 0, npages);
-> +	memset(dma_addrs, 0, npages);
+> +	src_pfns = kcalloc(npages, sizeof(*src_pfns), GFP_KERNEL | __GFP_NOFAIL);
+> +	dst_pfns = kcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL | __GFP_NOFAIL);
+> +	dma_addrs = kcalloc(npages, sizeof(*dma_addrs), GFP_KERNEL | __GFP_NOFAIL);
+
+I think we should also switch to kvcalloc(), AFAICS we don't need 
+physically contiguous memory.
+
+Sorry I did not mention that in V1 already.
+
+- Danilo
+
 >   
 >   	migrate_device_range(src_pfns, chunk->pagemap.range.start >> PAGE_SHIFT,
 >   			npages);
-> @@ -406,11 +406,8 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
->   	migrate_device_pages(src_pfns, dst_pfns, npages);
->   	nouveau_dmem_fence_done(&fence);
->   	migrate_device_finalize(src_pfns, dst_pfns, npages);
-> -	kfree(src_pfns);
-> -	kfree(dst_pfns);
->   	for (i = 0; i < npages; i++)
->   		dma_unmap_page(chunk->drm->dev->dev, dma_addrs[i], PAGE_SIZE, DMA_BIDIRECTIONAL);
-> -	kfree(dma_addrs);
->   }
->   
->   void
 
