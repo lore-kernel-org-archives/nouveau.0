@@ -4,58 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEF94C54E58
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEDD0C54E67
 	for <nouveau@archiver.kernel.org>; Wed, 20 Mar 2024 09:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C60210F237;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6484710E6D2;
 	Wed, 20 Mar 2024 09:31:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3RvyvzP";
-	dkim-atps=neutral
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED7D010E420
- for <nouveau@lists.freedesktop.org>; Sun, 25 Feb 2024 21:50:51 +0000 (UTC)
-Received: by mail-qt1-f169.google.com with SMTP id
- d75a77b69052e-42e89610ed8so79931cf.3
- for <nouveau@lists.freedesktop.org>; Sun, 25 Feb 2024 13:50:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1708897850; x=1709502650; darn=lists.freedesktop.org;
- h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=G07gU5mKzmeoSHSZqJiLpVOZvBgA31ZNZrms5SE3Uws=;
- b=T3RvyvzPhZa7OehY89dy81Mep/Y489ZeDrHPKSGOBa/XxFxw3PUvtICSsZnijy0B1B
- 0VT3DDDotujoeRsSlMk8QZd7aC/4ApbxkdcdBg3wd53/s3uX+m8wchGSOEFzeLzpOUlY
- BGhFew191ISMjLIwOLCIyHtrYL4ehF7740+jGtZLkLVNn/Hn13ru0hgMScsUT9aMFKAi
- 9UBXHG8dpE9eYK5CBkQ6GmDWxvSYjx/Kjzp+BrPqkvrg5SQS5WT4MivrKU/bzECJw+kG
- zbicWORRVOecY4cCp4HIXWt18o9d2skZnG3HlKC5sWUHktk/8lOGgonY6jZqqOzQadfv
- CGyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1708897850; x=1709502650;
- h=to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=G07gU5mKzmeoSHSZqJiLpVOZvBgA31ZNZrms5SE3Uws=;
- b=KoQBoqJtaXKzkrmkmRHJa80Cs0T1PBoY8Ad3ce/GHQ+wHMvIs+z0JicTpxGJlLA0Zj
- k2YNR2ddIWPLxkAeFZgU6iJS1uuqLacbM6Oe0Z46DdI9+NyKfc9Ai+zbz6IHff05v6hc
- Rk+OeKMWGm1SDiiMR+gAfC7efP3pgO+Zi/tBQyV7+pOOi1Jx8QPzC3L7iZoGDBGNu+Iu
- 41YTJO/q/hR68VC9KPoDBNR9fpEhHQiqvu4NOvC35F6sIdCZ3QhRqFYI6jJfb2BDPOTY
- HCYo+IgzjkmdiUiKQ9J9yYUvj6KnShsDfKxUQe8uYlwh7NBHZvkmLITo/Tdy/dyHUX1o
- HS9g==
-X-Gm-Message-State: AOJu0YxwjZz+a8nEANJatrRXaEmMyLCQKyTuXg7msU2nHPa1XMweW8Q9
- rAGHJtElQGZL3+9daXpEOHnw2qhFSpkHmp3Ij5ZR5j46mAydzjk/D+m1D+GdXEY0fAYLeTYKszR
- IB/F2hncTXriFePkgxUkjw1aVQ7yRFyGmEZ/Tow==
-X-Google-Smtp-Source: AGHT+IGw04WbNluJ5XzbjbR8RbBmdESLklGhTrp2RobRCfvxPG4JkbtDtu6f+U1C5iaxaUWjdOl7ezVinSnp8MKcV60=
-X-Received: by 2002:ac8:7411:0:b0:42e:6f6a:1b03 with SMTP id
- p17-20020ac87411000000b0042e6f6a1b03mr5807809qtq.35.1708897850237; Sun, 25
- Feb 2024 13:50:50 -0800 (PST)
-MIME-Version: 1.0
-From: Ojus Chugh <ojuschugh@gmail.com>
-Date: Mon, 26 Feb 2024 03:20:40 +0530
-Message-ID: <CAES57QXw50Z4XUaE0fCr-==br05xY2u=sNGMv84O1f45Ys4gQw@mail.gmail.com>
-Subject: Regarding EVoC Project-Adding new compiler optimization Passes to
- Codegen
+Received: from zg8tmty3ljk5ljewns4xndka.icoremail.net
+ (zg8tmty3ljk5ljewns4xndka.icoremail.net [167.99.105.149])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 28975112EC9;
+ Wed,  6 Mar 2024 05:01:29 +0000 (UTC)
+Received: from ubuntu.localdomain (unknown [218.12.17.6])
+ by mail-app2 (Coremail) with SMTP id by_KCgBnq6qR+OdltmLGAg--.52750S2;
+ Wed, 06 Mar 2024 13:01:15 +0800 (CST)
+From: Duoming Zhou <duoming@zju.edu.cn>
 To: nouveau@lists.freedesktop.org
-Content-Type: multipart/alternative; boundary="00000000000052260906123bc91a"
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ daniel@ffwll.ch, airlied@gmail.com, dakr@redhat.com, lyude@redhat.com,
+ kherbst@redhat.com, timur@kernel.org, jani.nikula@linux.intel.com,
+ Duoming Zhou <duoming@zju.edu.cn>
+Subject: [PATCH v3] nouveau/dmem: handle kcalloc() allocation failure
+Date: Wed,  6 Mar 2024 13:01:04 +0800
+Message-Id: <20240306050104.11259-1-duoming@zju.edu.cn>
+X-Mailer: git-send-email 2.17.1
+X-CM-TRANSID: by_KCgBnq6qR+OdltmLGAg--.52750S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7trW5Cr1ruw4DCr4fKF4fGrg_yoW8KrW3pF
+ WxGr1jyr47t3WjvryxKF48CF13Can8Jay8Ka9Fvr9I9Fs5XFyxCw42yFyUWayFvr13CrWI
+ qr4kta4avFWjqwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+ JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+ CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+ 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+ W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+ Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+ 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+ zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+ 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+ CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+ nIWIevJa73UjIFyTuYvjfUonmRUUUUU
+X-CM-SenderInfo: qssqjiasttq6lmxovvfxof0/1tbiAwMLAWXnadMBYgBgsx
 X-Mailman-Approved-At: Wed, 20 Mar 2024 09:31:27 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,35 +59,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
---00000000000052260906123bc91a
-Content-Type: text/plain; charset="UTF-8"
+The kcalloc() in nouveau_dmem_evict_chunk() will return null if
+the physical memory has run out. As a result, if we dereference
+src_pfns, dst_pfns or dma_addrs, the null pointer dereference bugs
+will happen.
 
-Greetings!
+Moreover, the GPU is going away. If the kcalloc() fails, we could not
+evict all pages mapping a chunk. So this patch adds a __GFP_NOFAIL
+flag in kcalloc().
 
-I am Ojus Chugh :D. While exploring the EVoC projects list, I became
-interested in a project titled "Adding New Compiler Optimization Passes to
-Codegen." However, I am unable to find the link to the GitHub or GitLab
-repository. Could anyone please guide me on the next steps? I am somewhat
-new to FreeDesktop.org.
+Finally, as there is no need to have physically contiguous memory,
+this patch switches kcalloc() to kvcalloc() in order to avoid
+failing allocations.
 
-This is my Github -:https://github.com/ojuschugh1/
+Fixes: 249881232e14 ("nouveau/dmem: evict device private memory during release")
+Suggested-by: Danilo Krummrich <dakr@redhat.com>
+Signed-off-by: Duoming Zhou <duoming@zju.edu.cn>
+---
+Changes in v3:
+  - Switch kcalloc() to kvcalloc().
 
-Thank you in advance :D
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-Kind Regards,
-Ojus Chugh
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 12feecf71e7..6fb65b01d77 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -378,9 +378,9 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
+ 	dma_addr_t *dma_addrs;
+ 	struct nouveau_fence *fence;
+ 
+-	src_pfns = kcalloc(npages, sizeof(*src_pfns), GFP_KERNEL);
+-	dst_pfns = kcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL);
+-	dma_addrs = kcalloc(npages, sizeof(*dma_addrs), GFP_KERNEL);
++	src_pfns = kvcalloc(npages, sizeof(*src_pfns), GFP_KERNEL | __GFP_NOFAIL);
++	dst_pfns = kvcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL | __GFP_NOFAIL);
++	dma_addrs = kvcalloc(npages, sizeof(*dma_addrs), GFP_KERNEL | __GFP_NOFAIL);
+ 
+ 	migrate_device_range(src_pfns, chunk->pagemap.range.start >> PAGE_SHIFT,
+ 			npages);
+@@ -406,11 +406,11 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
+ 	migrate_device_pages(src_pfns, dst_pfns, npages);
+ 	nouveau_dmem_fence_done(&fence);
+ 	migrate_device_finalize(src_pfns, dst_pfns, npages);
+-	kfree(src_pfns);
+-	kfree(dst_pfns);
++	kvfree(src_pfns);
++	kvfree(dst_pfns);
+ 	for (i = 0; i < npages; i++)
+ 		dma_unmap_page(chunk->drm->dev->dev, dma_addrs[i], PAGE_SIZE, DMA_BIDIRECTIONAL);
+-	kfree(dma_addrs);
++	kvfree(dma_addrs);
+ }
+ 
+ void
+-- 
+2.17.1
 
---00000000000052260906123bc91a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Greetings!<br><br>I am Ojus Chugh :D. While exploring the =
-EVoC projects list, I became interested in a project titled &quot;Adding Ne=
-w Compiler Optimization Passes to Codegen.&quot; However, I am unable to fi=
-nd the link to the GitHub or GitLab repository. Could anyone please guide m=
-e on the next steps? I am somewhat new to FreeDesktop.org.<div><br><div>Thi=
-s is my Github -:<a href=3D"https://github.com/ojuschugh1/">https://github.=
-com/ojuschugh1/</a></div><div><div><br>Thank you in advance :D<br><br>Kind =
-Regards,<br>Ojus Chugh<br></div></div></div></div>
-
---00000000000052260906123bc91a--
