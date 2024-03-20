@@ -4,47 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5465CD11DD
-	for <nouveau@archiver.kernel.org>; Wed, 20 Mar 2024 09:31:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A29C6FD1F
+	for <nouveau@archiver.kernel.org>; Wed, 20 Mar 2024 17:58:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8FFE10F2F4;
-	Wed, 20 Mar 2024 09:31:31 +0000 (UTC)
-X-Greylist: delayed 1190 seconds by postgrey-1.36 at gabe;
- Sun, 03 Mar 2024 08:13:46 UTC
-Received: from zg8tmtyylji0my4xnjqumte4.icoremail.net
- (zg8tmtyylji0my4xnjqumte4.icoremail.net [162.243.164.118])
- by gabe.freedesktop.org (Postfix) with ESMTP id 43CA510E0FE;
- Sun,  3 Mar 2024 08:13:45 +0000 (UTC)
-Received: from ubuntu.localdomain (unknown [218.12.16.66])
- by mail-app3 (Coremail) with SMTP id cC_KCgAHDjkrMeRlNVjaAQ--.21339S2;
- Sun, 03 Mar 2024 16:13:40 +0800 (CST)
-From: Duoming Zhou <duoming@zju.edu.cn>
-To: nouveau@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Duoming Zhou <duoming@zju.edu.cn>
-Subject: [PATCH] nouveau/dmem: handle kcalloc() allocation failure
-Date: Sun,  3 Mar 2024 16:13:30 +0800
-Message-Id: <20240303081330.61091-1-duoming@zju.edu.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID: cC_KCgAHDjkrMeRlNVjaAQ--.21339S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7trW5Aw4kur1fWF4UGF13CFg_yoW8ZF48pF
- WxGF1jyr42yayjqry8tF1kur4ayan3JayxKa9Fy3sI9a4rXFy7Z3y7Aa45WFWYqrW7CrWa
- qr4Dta43ZF4Ut3JanT9S1TB71UUUUUJqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9S14x267AKxVWUJVW8JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
- JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1ln4kS14v26r1Y6r17M2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE
- 6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJVW8JwAm72
- CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7
- MxkF7I0En4kS14v26r1q6r43MxkIecxEwVAFwVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxV
- CFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r10
- 6r1rMI8E67AF67kF1VAFwI0_Jrv_JF1lIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxV
- WUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k26cxKx2IYs7xG
- 6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr
- 1UYxBIdaVFxhVjvjDU0xZFpf9x0JUsZ2-UUUUU=
-X-CM-SenderInfo: qssqjiasttq6lmxovvfxof0/1tbiAwIIAWXjdVMBCAAfs+
-X-Mailman-Approved-At: Wed, 20 Mar 2024 09:31:27 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id BADD010E352;
+	Wed, 20 Mar 2024 17:58:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hIfpQJSS";
+	dkim-atps=neutral
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A7F510E305
+ for <nouveau@lists.freedesktop.org>; Wed, 20 Mar 2024 17:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1710957529;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=Axnmc3c8wXrwtc1SqEBNyEeeabqX4hMnATXLfXqHXCQ=;
+ b=hIfpQJSSUQ/zPaV69Zpvtjdi4Q4wBu4iV/ONfv7tBLkG8HDDMftD3+17HCiQXlp8eJ3EEm
+ UWqDzK/pRRTSbrqVoogHkrOVU1TBYmJ1VWwiJk4lOM8Nfyh+7EJzspOhectVT4/GicHQhk
+ 8kTx2UXAi7o9rxwLJeZg4tZ5JBuf9BU=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-607-iozenpBmP1CB2jWipB2Ppw-1; Wed, 20 Mar 2024 13:58:48 -0400
+X-MC-Unique: iozenpBmP1CB2jWipB2Ppw-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-a4698fc37dfso5169266b.2
+ for <nouveau@lists.freedesktop.org>; Wed, 20 Mar 2024 10:58:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1710957526; x=1711562326;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Axnmc3c8wXrwtc1SqEBNyEeeabqX4hMnATXLfXqHXCQ=;
+ b=r74WLFy1EQwxY/fTjQn17CopQ/5sjoL7kboDo1/JJgjIEQn2o4rAGp2VRhWutPboms
+ zP/3irE7iPbvEjR6a0RDPQbRiJ3meOvCAuSGkisuhrNhrXvhPN66VKzB8GlzH/D3ujHe
+ r4/JMiyNAGspRgqPI6E1WMiGHEqgy+v/gJekErqeazVJEAZDYsjUeIf1et94/CHu8CoD
+ RBsC/XnsSz/IrAedG/Tf+05lc3GAX9xg7lgZDlg8esyTGo71xwRyyQRx2WljqlFOMZ3+
+ Yd7VVju8zGE0MBJe2pdzlg2RokQI4v9K7CUCp2gnO8rcoXOrkUwp0VAAACoTE9SYurI9
+ 2aRg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWy5oxmQh8vrDwwYIQZj4Y1vEroN29a0NbMOM9rn3+7aOcmhchRLNXLzX2RPYvw8rIUqiGp5vJPeHFjUOOnOT9629CrrJatBsXCqTnUcA==
+X-Gm-Message-State: AOJu0YxaLZTamSLFbH3O6FnR8Q+Gq85rK4vkfR4uIX+YNwAd3V66E26q
+ 7wYN4RIoh/UXdaWZ40zaibg5UIChqL1FABPisivUIwIrIVB3o+6HJNbZuLxn+DaNJ7d2y/tx4E3
+ ojOiplEvh4svUEMpOrd12DhioqvofDWh8ht7jwcqP6DfeLSXb3WcqSyqy+7mMS3w=
+X-Received: by 2002:a17:907:807:b0:a46:c09b:f1f3 with SMTP id
+ wv7-20020a170907080700b00a46c09bf1f3mr8390462ejb.41.1710957526668; 
+ Wed, 20 Mar 2024 10:58:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE5Zx5r74eNhXZfhgJG5SH2zSD9Ut4jqyawrs+DA3asxApbNiexXMDrJi/MSunnoKnvm8HnXg==
+X-Received: by 2002:a17:907:807:b0:a46:c09b:f1f3 with SMTP id
+ wv7-20020a170907080700b00a46c09bf1f3mr8390453ejb.41.1710957526324; 
+ Wed, 20 Mar 2024 10:58:46 -0700 (PDT)
+Received: from cassiopeiae ([2a02:810d:4b3f:ee94:642:1aff:fe31:a19f])
+ by smtp.gmail.com with ESMTPSA id
+ sd9-20020a170906ce2900b00a4628cacad4sm7529443ejb.195.2024.03.20.10.58.45
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 20 Mar 2024 10:58:45 -0700 (PDT)
+Date: Wed, 20 Mar 2024 18:58:43 +0100
+From: Danilo Krummrich <dakr@redhat.com>
+To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, gregkh@linuxfoundation.org
+Cc: airlied@redhat.com, lyude@redhat.com, pstanner@redhat.com,
+ ajanulgu@redhat.com, mcanal@igalia.com, lina@asahilina.net,
+ a.hindborg@samsung.com
+Subject: Nova and staging Rust abstractions
+Message-ID: <Zfsj0_tb-0-tNrJy@cassiopeiae>
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +88,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The kcalloc() in nouveau_dmem_evict_chunk() will return null if
-the physical memory has run out. As a result, if we dereference
-src_pfns, dst_pfns or dma_addrs, the null pointer dereference bugs
-will happen.
+Hi all,
 
-This patch uses stack variables to replace the kcalloc().
+In this mail I briefly want to announce the Nova project and subsequently talk about the first
+efforts taken in order to upstream required Rust abstractions:
 
-Fixes: 249881232e14 ("nouveau/dmem: evict device private memory during release")
-Signed-off-by: Duoming Zhou <duoming@zju.edu.cn>
----
- drivers/gpu/drm/nouveau/nouveau_dmem.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+We just started to work on Nova, a Rust-based GSP-only driver for Nvidia GPUs. Nova, in the long
+term, is intended to serve as the successor of Nouveau for GSP-firmware-based GPUs.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 12feecf71e7..9a578262c6d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -374,13 +374,13 @@ static void
- nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
- {
- 	unsigned long i, npages = range_len(&chunk->pagemap.range) >> PAGE_SHIFT;
--	unsigned long *src_pfns, *dst_pfns;
--	dma_addr_t *dma_addrs;
-+	unsigned long src_pfns[npages], dst_pfns[npages];
-+	dma_addr_t dma_addrs[npages];
- 	struct nouveau_fence *fence;
- 
--	src_pfns = kcalloc(npages, sizeof(*src_pfns), GFP_KERNEL);
--	dst_pfns = kcalloc(npages, sizeof(*dst_pfns), GFP_KERNEL);
--	dma_addrs = kcalloc(npages, sizeof(*dma_addrs), GFP_KERNEL);
-+	memset(src_pfns, 0, npages);
-+	memset(dst_pfns, 0, npages);
-+	memset(dma_addrs, 0, npages);
- 
- 	migrate_device_range(src_pfns, chunk->pagemap.range.start >> PAGE_SHIFT,
- 			npages);
-@@ -406,11 +406,8 @@ nouveau_dmem_evict_chunk(struct nouveau_dmem_chunk *chunk)
- 	migrate_device_pages(src_pfns, dst_pfns, npages);
- 	nouveau_dmem_fence_done(&fence);
- 	migrate_device_finalize(src_pfns, dst_pfns, npages);
--	kfree(src_pfns);
--	kfree(dst_pfns);
- 	for (i = 0; i < npages; i++)
- 		dma_unmap_page(chunk->drm->dev->dev, dma_addrs[i], PAGE_SIZE, DMA_BIDIRECTIONAL);
--	kfree(dma_addrs);
- }
- 
- void
--- 
-2.17.1
+With Nova we see the chance to significantly decrease the complexity of the driver compared to
+Nouveau for mainly two reasons. First, Nouveau's historic architecture, especially around nvif/nvkm,
+is rather complicated and inflexible and requires major rework to solve certain problems (such as
+locking hierarchy in VMM / MMU code for VM_BIND currently being solved with a workaround) and
+second, with a GSP-only driver there is no need to maintain compatibility with pre-GSP code.
+
+Besides that, we also want to take the chance to contribute to the Rust efforts in the kernel and
+benefit from from more memory safety offered by the Rust programming language. Ideally, all that
+leads to better maintainability and a driver that makes it easy for people to get involved into this
+project.
+
+With the choice of Rust the first problem to deal with are missing C binding abstractions for
+integral kernel infrastructure (e.g. device / driver abstractions). Since this is a bit of a chicken
+and egg problem - we need a user to upstream abstractions, but we also need the abstractions to
+create a driver - we want to develop Nova upstream and start with just a driver stub that only makes
+use of some basic Rust abstractions.
+
+In particular, we want to start with basic device / driver, DRM and PCI abstractions and a Nova stub
+driver making use of them.
+
+Fortunately, a lot of those abstractions did already exist in various downstream trees (big thanks
+to all the authors). We started picking up existing work, figured out the dependencies, fixed a few
+issues and warnings and applied some structure by organizing it in the following branches.
+
+Remotes: drm-misc [1], rust (Rust-for-Linux) [2], nova [3]
+
+- drm-misc/topic/rust-drm:  [4] contains basic DRM abstractions, e.g. DRM device, GEM; depends on
+                                 rust-device
+- rust/staging/rust-device: [5] contains all common device / driver abstractions
+- rust/staging/rust-pci:    [6] contains basic PCI abstractions, e.g. PCI device, but also other
+                                 dependencies such as IoMem and Ressources; depends on rust-device
+- rust/staging/dev:         [7] integration branch for all staging Rust abstractions
+- nova/stub/nova:           [8] the nova stub driver; depends on rust-drm and rust-pci
+
+All branches and commits are functional, but the code and commit messages are not yet in a state for
+sending actual patch series. While we are working on improving those patches we would like to ask
+for feedback and / or improvements already.
+
+@Greg, can you please have a first quick look at rust-device [5]?
+
+- Danilo
+
+[1] https://cgit.freedesktop.org/drm/drm-misc
+[2] https://github.com/Rust-for-Linux/linux
+[3] https://gitlab.freedesktop.org/drm/nova
+[4] https://cgit.freedesktop.org/drm/drm-misc/log/?h=topic/rust-drm
+[5] https://github.com/Rust-for-Linux/linux/tree/staging/rust-device
+[6] https://github.com/Rust-for-Linux/linux/tree/staging/rust-pci
+[7] https://github.com/Rust-for-Linux/linux/tree/staging/dev
+[8] https://gitlab.freedesktop.org/drm/nova/-/tree/stub/nova
 
