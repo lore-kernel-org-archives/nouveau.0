@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD1E4CD1292
-	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 145FACD1293
+	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A155D10EA1F;
-	Sun, 31 Mar 2024 08:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD0A10EA21;
+	Sun, 31 Mar 2024 08:48:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="V9EU/QtD";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="d27EqZQz";
 	dkim-atps=neutral
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F32310F71B;
- Fri, 29 Mar 2024 17:02:16 +0000 (UTC)
-Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
- by linux.microsoft.com (Postfix) with ESMTPSA id 139CD20E6F4C;
- Fri, 29 Mar 2024 10:02:16 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 139CD20E6F4C
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711731736;
- bh=10QUIiHAlv9I6vQcGTCyRQwtIGq1JOGHzw/GbEWkjZ8=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=V9EU/QtD7YjVWs7Rf1Y6NCTvJ90Erzdt3jGzDOOOJxaMRNV6JDsb7FyeIUH+qxPRB
- ae/egRfHYWa45J1dFxqs39V87C2GGQmXtnkcs6DAPy4TkNM0nzv2DR5NN2FqEfSrr7
- fM4ULK4Qq6R9xLTgWgp8saHdjd260GfyiGqcmbT4=
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- linux-media@vger.kernel.org (open list:COBALT MEDIA DRIVER),
- linux-kernel@vger.kernel.org (open list)
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list),
- intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
- linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
- Easwar Hariharan <eahariha@linux.microsoft.com>
-Subject: [PATCH v0 05/14] media: cobalt: Make I2C terminology more inclusive
-Date: Fri, 29 Mar 2024 17:00:29 +0000
-Message-Id: <20240329170038.3863998-6-eahariha@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com
+ [209.85.208.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3761310EE7C
+ for <nouveau@lists.freedesktop.org>; Thu, 21 Mar 2024 15:45:39 +0000 (UTC)
+Received: by mail-ed1-f48.google.com with SMTP id
+ 4fb4d7f45d1cf-56bc7b07df7so1467763a12.0
+ for <nouveau@lists.freedesktop.org>; Thu, 21 Mar 2024 08:45:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1711035937; x=1711640737; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=cDBPAUVxLCeU8WLblQC3g7TRNI8q5fORRcd1evjo3y8=;
+ b=d27EqZQzcVan3geQWlMSctpwi2PWrg/jLTgVVD7hw0jp9HmG5wadO0yGwZ8ybvca9n
+ 932QUEp3wPUPYeoB0gcq6Okg0/hEqwPGiUh2kDtrinsMJ26qgePfymfDVwZrYzuYJLxX
+ HjrHdjvTvcdmgfLVh3kbps1Y0eZEb33RH4vCvJQT45+dyKNa8O71gIeDSq4Obzb6WEY4
+ paqO8qcnvUFgh51N7PEAfNxLDaL++NKa0iTJN/Y9tZ3Vn+xWf9PFgMvdzy2/vcSaH9FC
+ tVtFwgKo/uyXvAt4PcbxGww3xG34V2MezDEXjdU4QLLzjMrL03I4l3KiU+x0mlITRLZR
+ odBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1711035937; x=1711640737;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=cDBPAUVxLCeU8WLblQC3g7TRNI8q5fORRcd1evjo3y8=;
+ b=WQRHo9j97IbnnZC3VyfXciXPMvjHQUQb7mOh4ekpCGvp9SEvf7/o6nwYOVvK6BcSv+
+ WTszExaSdk2pVUDXOGIxhSE/Oo5h4c0+VtFNiIbTpQFOTw5O0uwDklFGuDljV6/eyYsN
+ q5SZxTZAGNPn6Xneq/6cWk1sXyGJHvHumw5+sYVDUtmc+QuE0yi67yuNlafnkLiq7ij9
+ s6l8GGuKM/AT7k/r44ZFnLKq03GPn906i8G8Wibobwo2c03AkhdKzuRADqY8sWVP2aMT
+ a03wi1BCRkh0Tvmz7NizPyEe/exzTzUGcF+UMS+LEtVBl/aGtWq5+eLe/8L55GR0Lvkg
+ 1AAg==
+X-Gm-Message-State: AOJu0YzoWlTGNRomaYgylZmxnDf8yvKYK0zLvDsb8WamAWotgAxErIi4
+ ZrTQcbAjdHuwexjuJ9/BzbhJs/o+ZJOjZsvQ/l0xAbXKFupvzcaJYWv8N+ihBDbnNBNiF92/BJ+
+ DsNPdnskqanvUxFVHWledqnla3/+BoWKfLqI=
+X-Google-Smtp-Source: AGHT+IGtMDRZelHFQ9UMuuqKvcPQlxsuJf4m3L61uES6l/6m+G4Rj41sspBtO4JrZ2dTbXllMsJcKIVgc8lLcft75PY=
+X-Received: by 2002:a17:906:6d83:b0:a46:e7cb:c884 with SMTP id
+ h3-20020a1709066d8300b00a46e7cbc884mr2801942ejt.20.1711035937309; Thu, 21 Mar
+ 2024 08:45:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:13 +0000
+From: A Levak <alevak385@gmail.com>
+Date: Thu, 21 Mar 2024 16:45:25 +0100
+Message-ID: <CAD9hFWg8mWbTRTHUQu9qZ+wyQ5Y8mzJ7myMCaYjdPGbxc2T6Tw@mail.gmail.com>
+Subject: Old NVIDIA Geforce 4 Ti 4200 - is it useful to developers?
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="0000000000003dcaf006142d9931"
+X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:14 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,47 +70,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
-with more appropriate terms. Inspired by and following on to Wolfram's
-series to fix drivers/i2c/[1], fix the terminology for users of
-I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
-in the specification.
+--0000000000003dcaf006142d9931
+Content-Type: text/plain; charset="UTF-8"
 
-Compile tested, no functionality changes intended
+Hi,
+I have an old graphics card, AGP with NVIDIA Geforce 4 Ti 4200 GPU, so i'm
+not sure if it is useful to developers
 
-[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+Regards
 
-Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
----
- drivers/media/pci/cobalt/cobalt-i2c.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+--0000000000003dcaf006142d9931
+Content-Type: text/html; charset="UTF-8"
 
-diff --git a/drivers/media/pci/cobalt/cobalt-i2c.c b/drivers/media/pci/cobalt/cobalt-i2c.c
-index 10c9ee33f73e..d2963370f949 100644
---- a/drivers/media/pci/cobalt/cobalt-i2c.c
-+++ b/drivers/media/pci/cobalt/cobalt-i2c.c
-@@ -45,10 +45,10 @@ struct cobalt_i2c_regs {
- /* I2C stop condition */
- #define M00018_CR_BITMAP_STO_MSK	(1 << 6)
- 
--/* I2C read from slave */
-+/* I2C read from client */
- #define M00018_CR_BITMAP_RD_MSK		(1 << 5)
- 
--/* I2C write to slave */
-+/* I2C write to client */
- #define M00018_CR_BITMAP_WR_MSK		(1 << 4)
- 
- /* I2C ack */
-@@ -59,7 +59,7 @@ struct cobalt_i2c_regs {
- 
- /* SR[7:0] - Status register */
- 
--/* Receive acknowledge from slave */
-+/* Receive acknowledge from client */
- #define M00018_SR_BITMAP_RXACK_MSK	(1 << 7)
- 
- /* Busy, I2C bus busy (as defined by start / stop bits) */
--- 
-2.34.1
+<div dir="ltr"><div>Hi,</div><div>I have an old graphics card, AGP with NVIDIA Geforce 4 Ti 4200 GPU, so i&#39;m not sure if it is useful to developers</div><div><br></div><div>Regards<br></div></div>
 
+--0000000000003dcaf006142d9931--
