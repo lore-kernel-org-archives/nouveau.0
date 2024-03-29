@@ -4,32 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5A76CD1284
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E198ECD128E
 	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8B510E994;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C54410E995;
 	Sun, 31 Mar 2024 08:48:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="k2OAG2bX";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="X60gdqy7";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id B437E10E88E;
- Fri, 29 Mar 2024 17:02:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F2CC71127D6;
+ Fri, 29 Mar 2024 17:02:28 +0000 (UTC)
 Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
- by linux.microsoft.com (Postfix) with ESMTPSA id 524DE20E6F3E;
- Fri, 29 Mar 2024 10:02:15 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 524DE20E6F3E
+ by linux.microsoft.com (Postfix) with ESMTPSA id B440E20E6F57;
+ Fri, 29 Mar 2024 10:02:28 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com B440E20E6F57
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711731735;
- bh=zpJQ9Yx6Dd0ijDrG1ibCrDM6HiWKo8HuenXuwgSh1gs=;
+ s=default; t=1711731748;
+ bh=tlknWGbMb3rjua/hpEHcjQpDWIsRD3ogPSvWtRvZlV8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=k2OAG2bXObNwd7zLzFpdKdhsn1LKhDiQITLJKkS3q2pGn9PxA3ubhREeHhGxvckij
- nLyXymTBDq9Ktn8A9/zpNbhRdsl7VLIq5Js+n+Oswu+EbOPOOSioPoSLmBOHoAA2vr
- P5o/VzJptXE99vw9t54N+2+8Dq5xlzvfBuwUqRiY=
+ b=X60gdqy7oRJ8sXP2NRdej38mifm46re6sPVQ/xjUIGUPf/F9KRvsSIQSX4R7SSSZ/
+ R5Iot9zo7babVELykw9DtZJ8rc9zU+y+6OnPPYDYY91zI91j/AQt3DedynATZDzAGd
+ LsvgWCIO74+nFbOl93ByhkMAt1ADbIXvwGHCu6Dg=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Easwar Hariharan <eahariha@linux.microsoft.com>,
- linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)), 
+To: Steve Glendinning <steve.glendinning@shawell.net>,
+ Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org (open list:SMSC UFX6000 and UFX7000 USB to VGA
+ DRIVER), dri-devel@lists.freedesktop.org (open list:FRAMEBUFFER LAYER),
  linux-kernel@vger.kernel.org (open list)
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
@@ -42,10 +43,11 @@ Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
  GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
  linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
-Subject: [PATCH v0 04/14] media: au0828: Make I2C terminology more inclusive
-Date: Fri, 29 Mar 2024 17:00:28 +0000
-Message-Id: <20240329170038.3863998-5-eahariha@linux.microsoft.com>
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+Subject: [PATCH v0 11/14] fbdev/smscufx: Make I2C terminology more inclusive
+Date: Fri, 29 Mar 2024 17:00:35 +0000
+Message-Id: <20240329170038.3863998-12-eahariha@linux.microsoft.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
@@ -78,45 +80,31 @@ Compile tested, no functionality changes intended
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/media/usb/au0828/au0828-i2c.c   | 4 ++--
- drivers/media/usb/au0828/au0828-input.c | 2 +-
- 2 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/video/fbdev/smscufx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/usb/au0828/au0828-i2c.c b/drivers/media/usb/au0828/au0828-i2c.c
-index 749f90d73b5b..3e66d42bf134 100644
---- a/drivers/media/usb/au0828/au0828-i2c.c
-+++ b/drivers/media/usb/au0828/au0828-i2c.c
-@@ -23,7 +23,7 @@ MODULE_PARM_DESC(i2c_scan, "scan i2c bus at insmod time");
- #define I2C_WAIT_DELAY 25
- #define I2C_WAIT_RETRY 1000
+diff --git a/drivers/video/fbdev/smscufx.c b/drivers/video/fbdev/smscufx.c
+index 35d682b110c4..1c80c1a3d516 100644
+--- a/drivers/video/fbdev/smscufx.c
++++ b/drivers/video/fbdev/smscufx.c
+@@ -1292,7 +1292,7 @@ static int ufx_realloc_framebuffer(struct ufx_data *dev, struct fb_info *info)
+ 	return 0;
+ }
  
--static inline int i2c_slave_did_read_ack(struct i2c_adapter *i2c_adap)
-+static inline int i2c_client_did_read_ack(struct i2c_adapter *i2c_adap)
+-/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, master,
++/* sets up I2C Controller for 100 Kbps, std. speed, 7-bit addr, host,
+  * restart enabled, but no start byte, enable controller */
+ static int ufx_i2c_init(struct ufx_data *dev)
  {
- 	struct au0828_dev *dev = i2c_adap->algo_data;
- 	return au0828_read(dev, AU0828_I2C_STATUS_201) &
-@@ -35,7 +35,7 @@ static int i2c_wait_read_ack(struct i2c_adapter *i2c_adap)
- 	int count;
+@@ -1321,7 +1321,7 @@ static int ufx_i2c_init(struct ufx_data *dev)
+ 	/* 7-bit (not 10-bit) addressing */
+ 	tmp &= ~(0x10);
  
- 	for (count = 0; count < I2C_WAIT_RETRY; count++) {
--		if (!i2c_slave_did_read_ack(i2c_adap))
-+		if (!i2c_client_did_read_ack(i2c_adap))
- 			break;
- 		udelay(I2C_WAIT_DELAY);
- 	}
-diff --git a/drivers/media/usb/au0828/au0828-input.c b/drivers/media/usb/au0828/au0828-input.c
-index 3d3368202cd0..98a57b6e02e2 100644
---- a/drivers/media/usb/au0828/au0828-input.c
-+++ b/drivers/media/usb/au0828/au0828-input.c
-@@ -30,7 +30,7 @@ struct au0828_rc {
- 	int polling;
- 	struct delayed_work work;
+-	/* enable restart conditions and master mode */
++	/* enable restart conditions and host mode */
+ 	tmp |= 0x21;
  
--	/* i2c slave address of external device (if used) */
-+	/* i2c client address of external device (if used) */
- 	u16 i2c_dev_addr;
- 
- 	int  (*get_key_i2c)(struct au0828_rc *ir);
+ 	status = ufx_reg_write(dev, 0x1000, tmp);
 -- 
 2.34.1
 
