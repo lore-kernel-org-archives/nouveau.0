@@ -4,58 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 168E0CD1288
-	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58F0BCD1293
+	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EFAA10EA0A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B80510EA08;
 	Sun, 31 Mar 2024 08:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="HXt1rRSU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="cX2kQ6f7";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3ABA31127D5;
- Fri, 29 Mar 2024 17:02:28 +0000 (UTC)
-Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
- by linux.microsoft.com (Postfix) with ESMTPSA id E709B20E6F50;
- Fri, 29 Mar 2024 10:02:27 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com E709B20E6F50
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1737410E37A;
+ Fri, 29 Mar 2024 17:38:29 +0000 (UTC)
+Received: from [100.64.128.229] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 8A372201F16E;
+ Fri, 29 Mar 2024 10:38:24 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 8A372201F16E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711731748;
- bh=FBEap9UriasmuWH1luz/pYU8Vj/ov3W7GcXI5HcE8Oc=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=HXt1rRSU2n8RHfjdj+dQSPpD5mqqmQZS2xo1RoJb1Tx7aw63Shmx6szGeIXPbhjJ9
- KCJAEVxyAoSUBA0s8+2FYyT4zuT5SAC4MIJ9rIwYY/l4JyWAWCSaJhyxH+uk29eM4h
- Z+uxKwMTyQKbiiWtAXBnNEC7siWDf+GZGFaxGqY8=
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Edward Cree <ecree.xilinx@gmail.com>,
- Martin Habets <habetsm.xilinx@gmail.com>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Easwar Hariharan <eahariha@linux.microsoft.com>,
- netdev@vger.kernel.org (open list:SFC NETWORK DRIVER),
- linux-net-drivers@amd.com (open list:SFC NETWORK DRIVER),
- linux-kernel@vger.kernel.org (open list)
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list),
- intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
- linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
-Subject: [PATCH v0 10/14] sfc: falcon: Make I2C terminology more inclusive
-Date: Fri, 29 Mar 2024 17:00:34 +0000
-Message-Id: <20240329170038.3863998-11-eahariha@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ s=default; t=1711733906;
+ bh=8tbmpJNBNI1k4VwDOIxfkmsXDU989tyOYol27bNqXbk=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=cX2kQ6f74T2I03q55Vd7kF3+Ls664raID5hfw7D0UiNwgBbbYkRGavQTlFAnCbM9L
+ kqCM/BoF10ug6vQ7GnbaoopFkzr692jiKyEuH/t4hii+FxMUY4ZI5aXzomIEuN7X2P
+ bcPCAeq2cVRN3AzaLSxywZzWIrVSy1L+jsCYyD5A=
+Message-ID: <5181b1e8-032d-473b-92f3-0402bebad1b4@linux.microsoft.com>
+Date: Fri, 29 Mar 2024 10:38:23 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v0 02/14] drm/amdgpu, drm/radeon: Make I2C terminology more
+ inclusive
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+ Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
+ Alexander Richards <electrodeyt@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Hamza Mahfooz
+ <hamza.mahfooz@amd.com>, Ruan Jinjie <ruanjinjie@huawei.com>,
+ Alan Liu <haoping.liu@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
+ Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+ Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
+ Sohaib Nadeem <sohaib.nadeem@amd.com>, Lewis Huang <lewis.huang@amd.com>,
+ Tom Chung <chiahsuan.chung@amd.com>,
+ Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+ Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+ George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+ Jun Lei <jun.lei@amd.com>, Nicholas Kazlauskas
+ <nicholas.kazlauskas@amd.com>, Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
+ Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
+ Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Yang Wang <kevinyang.wang@amd.com>, Darren Powell <darren.powell@amd.com>,
+ Yifan Zhang <yifan1.zhang@amd.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
+ Andi Shyti <andi.shyti@kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-3-eahariha@linux.microsoft.com>
+ <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
+ <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
+Content-Language: en-CA
+In-Reply-To: <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:13 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,34 +99,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
-with more appropriate terms. Inspired by and following on to Wolfram's
-series to fix drivers/i2c/[1], fix the terminology for users of
-I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
-in the specification.
+On 3/29/2024 10:28 AM, Easwar Hariharan wrote:
+> On 3/29/2024 10:16 AM, Andi Shyti wrote:
+>> Hi Easwar,
+>>
 
-Compile tested, no functionality changes intended
+<snip>
 
-[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>
+>> The specification talks about:
+>>
+>>  - master -> controller
+>>  - slave -> target (and not client)
+>>
+>> But both you and Wolfram have used client. I'd like to reach
+>> some more consistency here.
+> 
+> I had the impression that remote targets (i.e external to the device) were to be called clients,
+> e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
+> I chose the terminology according to that understanding, but now I can't find where I got that
+> information.
+> 
+> Thanks,
+> Easwar
 
-Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
----
- drivers/net/ethernet/sfc/falcon/falcon.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Ah, it was in Wolfram's individual commit messages "They are also more specific because we distinguish now between a remote
+entity ("client") and a local one ("target")."
 
-diff --git a/drivers/net/ethernet/sfc/falcon/falcon.c b/drivers/net/ethernet/sfc/falcon/falcon.c
-index 7a1c9337081b..147e7c8e3c02 100644
---- a/drivers/net/ethernet/sfc/falcon/falcon.c
-+++ b/drivers/net/ethernet/sfc/falcon/falcon.c
-@@ -367,7 +367,7 @@ static const struct i2c_algo_bit_data falcon_i2c_bit_operations = {
- 	.getsda		= falcon_getsda,
- 	.getscl		= falcon_getscl,
- 	.udelay		= 5,
--	/* Wait up to 50 ms for slave to let us pull SCL high */
-+	/* Wait up to 50 ms for client to let us pull SCL high */
- 	.timeout	= DIV_ROUND_UP(HZ, 20),
- };
- 
--- 
-2.34.1
-
+Thanks,
+Easwar
