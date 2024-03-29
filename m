@@ -4,88 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D8CCD1296
-	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED2F3CD1291
+	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF79010EA1B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92C8810EA15;
 	Sun, 31 Mar 2024 08:48:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="pXGtnHj3";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="WVloCqZL";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0B03610E29D;
- Fri, 29 Mar 2024 18:51:26 +0000 (UTC)
-Received: from [100.64.128.229] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id 3DC7F20E6F42;
- Fri, 29 Mar 2024 11:51:22 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3DC7F20E6F42
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D97A1127DF;
+ Fri, 29 Mar 2024 17:02:36 +0000 (UTC)
+Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
+ by linux.microsoft.com (Postfix) with ESMTPSA id CBAD220E6F3E;
+ Fri, 29 Mar 2024 10:02:35 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CBAD220E6F3E
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711738284;
- bh=/pwtgF4mJa43U7u8eGPihHXysR53d8MYCc7SQXhSzb8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=pXGtnHj3DxKqLXh0cvZCSvcaLvUsOJN/dP3lwRNbukpYU9EaB53wcWvXKvtfs1jy5
- bJOw7CGRycUoouJw+APpXY6nb+neaFD76BLiDLQVXc02pqRxYlxecAeIpSrNcIxic/
- vz7SB5uqZmwS7X85Y0Jv1eOtFAQjodiyD0paH60Y=
-Message-ID: <a667a8b9-f7c3-4cb3-9a19-858f10d8bb9d@linux.microsoft.com>
-Date: Fri, 29 Mar 2024 11:51:21 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 02/14] drm/amdgpu, drm/radeon: Make I2C terminology more
- inclusive
-To: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
- Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
- Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
- Alexander Richards <electrodeyt@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Hamza Mahfooz
- <hamza.mahfooz@amd.com>, Ruan Jinjie <ruanjinjie@huawei.com>,
- Alan Liu <haoping.liu@amd.com>, Aurabindo Pillai <aurabindo.pillai@amd.com>,
- Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
- Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
- Sohaib Nadeem <sohaib.nadeem@amd.com>, Lewis Huang <lewis.huang@amd.com>,
- Tom Chung <chiahsuan.chung@amd.com>,
- Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
- Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
- George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
- Jun Lei <jun.lei@amd.com>, Nicholas Kazlauskas
- <nicholas.kazlauskas@amd.com>, Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
- Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
- Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
- Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Yang Wang <kevinyang.wang@amd.com>, Darren Powell <darren.powell@amd.com>,
- Yifan Zhang <yifan1.zhang@amd.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
- "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
- "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
- "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
- "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>,
- Andi Shyti <andi.shyti@kernel.org>
-References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-3-eahariha@linux.microsoft.com>
- <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
- <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
- <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
-Content-Language: en-CA
+ s=default; t=1711731756;
+ bh=gRW86ANHtbye+7f91W3f5Kays+kZ9CFcrEWE6EnDd+E=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=WVloCqZLiu74exUfSs0XMEzoaCWC9C9N6JvLyKKMKD2Kmz1sc75LLvxjn3VzSKcYW
+ 6WcPltpIu1npZG5Sudjj/8kw9TeQESGEXoM1GUjTyxO1aWsnlcr5i2F4RlfMRXMPHe
+ UdTHCmDUiPzWuTXD8LA5Q3ssvEzSHH54ZXFwfvjQ=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:14 +0000
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Easwar Hariharan <eahariha@linux.microsoft.com>,
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-kernel@vger.kernel.org (open list)
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+ linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+Subject: [PATCH v0 13/14] drm/nouveau: Make I2C terminology more inclusive
+Date: Fri, 29 Mar 2024 17:00:37 +0000
+Message-Id: <20240329170038.3863998-14-eahariha@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:13 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,48 +70,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 3/29/2024 10:38 AM, Andi Shyti wrote:
-> Hi,
-> 
+I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+with more appropriate terms. Inspired by and following on to Wolfram's
+series to fix drivers/i2c/[1], fix the terminology for users of
+I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+in the specification.
 
-<snip>
+Compile tested, no functionality changes intended
 
-> 
->>>> with more appropriate terms. Inspired by and following on to Wolfram's
->>>> series to fix drivers/i2c/[1], fix the terminology for users of
->>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->>>> in the specification.
->>>
->>> The specification talks about:
->>>
->>>  - master -> controller
->>>  - slave -> target (and not client)
->>>
->>> But both you and Wolfram have used client. I'd like to reach
->>> some more consistency here.
->>
->> I had the impression that remote targets (i.e external to the device) were to be called clients,
->> e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
->> I chose the terminology according to that understanding, but now I can't find where I got that
->> information.
-> 
-> The word "client" does not even appear in the documentation (only
-> one instance in the i3c document), so that the change is not
-> related to the document as stated in the commit log. Unless, of
-> course, I am missing something.
-> 
-> I'm OK with choosing a "customized" naming, but we need to reach
-> an agreement.
-> 
-> I raised the same question to Wolfram.
-> 
-> Thanks,
-> Andi
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
 
-I don't have a preference between using target and client. As I mentioned in the thread fork, my
-information came entirely from Wolfram's cover letter and patch messages. I'll follow along with
-whatever you and Wolfram settle on.
+Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+---
+ drivers/gpu/drm/nouveau/dispnv04/dfp.c             | 14 +++++++-------
+ .../gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bios.c             |  4 ++--
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
-Thanks,
-Easwar
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+index d5b129dc623b..65b791006b19 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+@@ -149,7 +149,7 @@ void nv04_dfp_update_fp_control(struct drm_encoder *encoder, int mode)
+ 	}
+ }
+ 
+-static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
++static struct drm_encoder *get_tmds_client(struct drm_encoder *encoder)
+ {
+ 	struct drm_device *dev = encoder->dev;
+ 	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+@@ -172,7 +172,7 @@ static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
+ 		struct dcb_output *slave_dcb = nouveau_encoder(slave)->dcb;
+ 
+ 		if (slave_dcb->type == DCB_OUTPUT_TMDS && get_slave_funcs(slave) &&
+-		    slave_dcb->tmdsconf.slave_addr == dcb->tmdsconf.slave_addr)
++		    slave_dcb->tmdsconf.client_addr == dcb->tmdsconf.client_addr)
+ 			return slave;
+ 	}
+ 
+@@ -471,7 +471,7 @@ static void nv04_dfp_commit(struct drm_encoder *encoder)
+ 		NVWriteRAMDAC(dev, 0, NV_PRAMDAC_TEST_CONTROL + nv04_dac_output_offset(encoder), 0x00100000);
+ 
+ 	/* Init external transmitters */
+-	slave_encoder = get_tmds_slave(encoder);
++	slave_encoder = get_tmds_client(encoder);
+ 	if (slave_encoder)
+ 		get_slave_funcs(slave_encoder)->mode_set(
+ 			slave_encoder, &nv_encoder->mode, &nv_encoder->mode);
+@@ -621,7 +621,7 @@ static void nv04_dfp_destroy(struct drm_encoder *encoder)
+ 	kfree(nv_encoder);
+ }
+ 
+-static void nv04_tmds_slave_init(struct drm_encoder *encoder)
++static void nv04_tmds_client_init(struct drm_encoder *encoder)
+ {
+ 	struct drm_device *dev = encoder->dev;
+ 	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+@@ -632,7 +632,7 @@ static void nv04_tmds_slave_init(struct drm_encoder *encoder)
+ 		{
+ 		    {
+ 		        .type = "sil164",
+-		        .addr = (dcb->tmdsconf.slave_addr == 0x7 ? 0x3a : 0x38),
++		        .addr = (dcb->tmdsconf.client_addr == 0x7 ? 0x3a : 0x38),
+ 		        .platform_data = &(struct sil164_encoder_params) {
+ 		            SIL164_INPUT_EDGE_RISING
+ 		         }
+@@ -642,7 +642,7 @@ static void nv04_tmds_slave_init(struct drm_encoder *encoder)
+ 	};
+ 	int type;
+ 
+-	if (!nv_gf4_disp_arch(dev) || !bus || get_tmds_slave(encoder))
++	if (!nv_gf4_disp_arch(dev) || !bus || get_tmds_client(encoder))
+ 		return;
+ 
+ 	type = nvkm_i2c_bus_probe(bus, "TMDS transmitter", info, NULL, NULL);
+@@ -716,7 +716,7 @@ nv04_dfp_create(struct drm_connector *connector, struct dcb_output *entry)
+ 
+ 	if (entry->type == DCB_OUTPUT_TMDS &&
+ 	    entry->location != DCB_LOC_ON_CHIP)
+-		nv04_tmds_slave_init(encoder);
++		nv04_tmds_client_init(encoder);
+ 
+ 	drm_connector_attach_encoder(connector, encoder);
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h
+index 73f9d9947e7e..5da40cf74b1a 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h
+@@ -50,7 +50,7 @@ struct dcb_output {
+ 		} dpconf;
+ 		struct {
+ 			struct sor_conf sor;
+-			int slave_addr;
++			int client_addr;
+ 		} tmdsconf;
+ 	};
+ 	bool i2c_upper_default;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bios.c b/drivers/gpu/drm/nouveau/nouveau_bios.c
+index 479effcf607e..a91a5d3df3ca 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bios.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bios.c
+@@ -1511,9 +1511,9 @@ parse_dcb20_entry(struct drm_device *dev, struct dcb_table *dcb,
+ 			link = entry->tmdsconf.sor.link;
+ 		}
+ 		else if (dcb->version >= 0x30)
+-			entry->tmdsconf.slave_addr = (conf & 0x00000700) >> 8;
++			entry->tmdsconf.client_addr = (conf & 0x00000700) >> 8;
+ 		else if (dcb->version >= 0x22)
+-			entry->tmdsconf.slave_addr = (conf & 0x00000070) >> 4;
++			entry->tmdsconf.client_addr = (conf & 0x00000070) >> 4;
+ 		break;
+ 	case DCB_OUTPUT_EOL:
+ 		/* weird g80 mobile type that "nv" treats as a terminator */
+-- 
+2.34.1
 
