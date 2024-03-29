@@ -4,61 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC48CD1292
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDDC5CD1291
 	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC5C710E9CB;
-	Sun, 31 Mar 2024 08:48:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 044AE10E9FA;
+	Sun, 31 Mar 2024 08:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="nyFQ5eHK";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="fsPIYB1a";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id C8FD61127DB;
- Fri, 29 Mar 2024 17:03:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EE95B10E88E;
+ Fri, 29 Mar 2024 17:02:30 +0000 (UTC)
 Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
- by linux.microsoft.com (Postfix) with ESMTPSA id 2105A20E6F57;
- Fri, 29 Mar 2024 10:03:01 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 2105A20E6F57
+ by linux.microsoft.com (Postfix) with ESMTPSA id 9099F20E6F4C;
+ Fri, 29 Mar 2024 10:02:30 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9099F20E6F4C
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1711731781;
- bh=b92hXveSFquyQbhxtaUmHSPsbW+5D4vpPR3tMHWATcA=;
+ s=default; t=1711731750;
+ bh=TqpLqzNyib8OysbLTGVtDWYtpHCJARdzL53jwhOmYiE=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=nyFQ5eHK3F9Gs99IX1KCpNgMhRVkTp5UR6tHOjJ+WR/EM+3MCGspplT+DT3anDTJx
- Bfdg4HRBGfvUBJtRwgoMJ0MDwJbEYbn5uVLTta84glTQxdYPHE/X5MemjHvfA2A8Ai
- Nl4Y2RtFlnGVpD6Qr7tJUwG+bdSxUE1t/oRsjUvQ=
+ b=fsPIYB1aPm/rXh6l6tW7AuLrssq7cED5IUIKEbBI0dCMk5B4Fgp/u2QRaRsBmWvGm
+ c99lxgoRae3pR05Vc3h3XV6ILRnQATMtBm/f3RIf3RMszkGJcBsyhdgl1lVib3KePH
+ pJyiWpPxADuflwpFgnagKOzZLqgfLmFmFUBkQMWU=
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-To: Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- "Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Andi Shyti <andi.shyti@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Andy Walls <awalls@md.metrocast.net>, Helge Deller <deller@gmx.de>,
- Easwar Hariharan <eahariha@linux.microsoft.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Wolfram Sang <wsa@kernel.org>,
- Zheng Wang <zyytlz.wz@163.com>,
- amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
- dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
- linux-kernel@vger.kernel.org (open list),
- intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
- DRIVERS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
- linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+To: Florian Tobias Schandinat <FlorianSchandinat@gmx.de>,
+ Helge Deller <deller@gmx.de>,
+ linux-fbdev@vger.kernel.org (open list:VIA UNICHROME(PRO)/CHROME9 FRAMEBUFFER
+ DRIVER), dri-devel@lists.freedesktop.org (open list:FRAMEBUFFER LAYER),
+ linux-kernel@vger.kernel.org (open list)
 Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
  dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
@@ -70,10 +43,11 @@ Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
  nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
  GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
  linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
- linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
-Subject: [PATCH v0 14/14] i2c and treewide: Make I2C terminology more inclusive
-Date: Fri, 29 Mar 2024 17:00:38 +0000
-Message-Id: <20240329170038.3863998-15-eahariha@linux.microsoft.com>
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER),
+ Easwar Hariharan <eahariha@linux.microsoft.com>
+Subject: [PATCH v0 12/14] fbdev/viafb: Make I2C terminology more inclusive
+Date: Fri, 29 Mar 2024 17:00:36 +0000
+Message-Id: <20240329170038.3863998-13-eahariha@linux.microsoft.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
@@ -96,7 +70,7 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
 with more appropriate terms. Inspired by and following on to Wolfram's
-series to fix drivers/i2c[1], fix the terminology for users of
+series to fix drivers/i2c/[1], fix the terminology for users of
 I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
 in the specification.
 
@@ -106,373 +80,280 @@ Compile tested, no functionality changes intended
 
 Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c       |  2 +-
- drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c    |  2 +-
- drivers/gpu/drm/gma500/cdv_intel_dp.c         |  2 +-
- drivers/gpu/drm/gma500/intel_gmbus.c          |  4 ++--
- drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c    |  2 +-
- drivers/gpu/drm/gma500/psb_intel_sdvo.c       |  2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |  4 ++--
- drivers/gpu/drm/i915/display/intel_sdvo.c     |  4 ++--
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c |  2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c |  2 +-
- drivers/gpu/drm/radeon/radeon_i2c.c           |  4 ++--
- drivers/i2c/algos/i2c-algo-bit.c              | 12 ++++++------
- drivers/media/pci/bt8xx/bttv-i2c.c            |  2 +-
- drivers/media/pci/cobalt/cobalt-i2c.c         |  2 +-
- drivers/media/pci/cx23885/cx23885-i2c.c       |  2 +-
- drivers/media/pci/cx25821/cx25821-i2c.c       |  2 +-
- drivers/media/pci/dm1105/dm1105.c             |  2 +-
- drivers/media/pci/ivtv/ivtv-i2c.c             |  2 +-
- drivers/media/pci/saa7164/saa7164-i2c.c       |  2 +-
- drivers/media/usb/au0828/au0828-i2c.c         |  2 +-
- drivers/video/fbdev/mb862xx/mb862xx-i2c.c     |  2 +-
- 21 files changed, 30 insertions(+), 30 deletions(-)
+ drivers/video/fbdev/via/chip.h    |  8 ++++----
+ drivers/video/fbdev/via/dvi.c     | 24 ++++++++++++------------
+ drivers/video/fbdev/via/lcd.c     |  6 +++---
+ drivers/video/fbdev/via/via_aux.h |  2 +-
+ drivers/video/fbdev/via/via_i2c.c | 12 ++++++------
+ drivers/video/fbdev/via/vt1636.c  |  6 +++---
+ 6 files changed, 29 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-index a34626882b67..75793e493df6 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_i2c.c
-@@ -154,7 +154,7 @@ static void amdgpu_i2c_set_data(void *i2c_priv, int data)
+diff --git a/drivers/video/fbdev/via/chip.h b/drivers/video/fbdev/via/chip.h
+index f0a19cbcb9e5..1ea6d4ce79e7 100644
+--- a/drivers/video/fbdev/via/chip.h
++++ b/drivers/video/fbdev/via/chip.h
+@@ -69,7 +69,7 @@
+ #define     VT1632_TMDS             0x01
+ #define     INTEGRATED_TMDS         0x42
+ 
+-/* Definition TMDS Trasmitter I2C Slave Address */
++/* Definition TMDS Trasmitter I2C Client Address */
+ #define     VT1632_TMDS_I2C_ADDR    0x10
+ 
+ /**************************************************/
+@@ -88,21 +88,21 @@
+ #define     TX_DATA_DDR_MODE        0x04
+ #define     TX_DATA_SDR_MODE        0x08
+ 
+-/* Definition LVDS Trasmitter I2C Slave Address */
++/* Definition LVDS Trasmitter I2C Client Address */
+ #define     VT1631_LVDS_I2C_ADDR    0x70
+ #define     VT3271_LVDS_I2C_ADDR    0x80
+ #define     VT1636_LVDS_I2C_ADDR    0x80
+ 
+ struct tmds_chip_information {
+ 	int tmds_chip_name;
+-	int tmds_chip_slave_addr;
++	int tmds_chip_client_addr;
+ 	int output_interface;
+ 	int i2c_port;
+ };
+ 
+ struct lvds_chip_information {
+ 	int lvds_chip_name;
+-	int lvds_chip_slave_addr;
++	int lvds_chip_client_addr;
+ 	int output_interface;
+ 	int i2c_port;
+ };
+diff --git a/drivers/video/fbdev/via/dvi.c b/drivers/video/fbdev/via/dvi.c
+index 13147e3066eb..db7db26416c3 100644
+--- a/drivers/video/fbdev/via/dvi.c
++++ b/drivers/video/fbdev/via/dvi.c
+@@ -70,7 +70,7 @@ bool viafb_tmds_trasmitter_identify(void)
+ 	/* Check for VT1632: */
+ 	viaparinfo->chip_info->tmds_chip_info.tmds_chip_name = VT1632_TMDS;
+ 	viaparinfo->chip_info->
+-		tmds_chip_info.tmds_chip_slave_addr = VT1632_TMDS_I2C_ADDR;
++		tmds_chip_info.tmds_chip_client_addr = VT1632_TMDS_I2C_ADDR;
+ 	viaparinfo->chip_info->tmds_chip_info.i2c_port = VIA_PORT_31;
+ 	if (check_tmds_chip(VT1632_DEVICE_ID_REG, VT1632_DEVICE_ID)) {
+ 		/*
+@@ -128,14 +128,14 @@ bool viafb_tmds_trasmitter_identify(void)
+ 	viaparinfo->chip_info->
+ 		tmds_chip_info.tmds_chip_name = NON_TMDS_TRANSMITTER;
+ 	viaparinfo->chip_info->tmds_chip_info.
+-		tmds_chip_slave_addr = VT1632_TMDS_I2C_ADDR;
++		tmds_chip_client_addr = VT1632_TMDS_I2C_ADDR;
+ 	return false;
  }
  
- static const struct i2c_algorithm amdgpu_atombios_i2c_algo = {
--	.master_xfer = amdgpu_atombios_i2c_xfer,
-+	.xfer          = amdgpu_atombios_i2c_xfer,
- 	.functionality = amdgpu_atombios_i2c_func,
- };
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
-index f2fc96d1cd7b..1d909d33cd15 100644
---- a/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
-+++ b/drivers/gpu/drm/amd/amdgpu/smu_v11_0_i2c.c
-@@ -714,7 +714,7 @@ static u32 smu_v11_0_i2c_func(struct i2c_adapter *adap)
+ static void tmds_register_write(int index, u8 data)
+ {
+ 	viafb_i2c_writebyte(viaparinfo->chip_info->tmds_chip_info.i2c_port,
+-			    viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
++			    viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
+ 			    index, data);
  }
  
- static const struct i2c_algorithm smu_v11_0_i2c_algo = {
--	.master_xfer = smu_v11_0_i2c_xfer,
-+	.xfer          = smu_v11_0_i2c_xfer,
- 	.functionality = smu_v11_0_i2c_func,
- };
+@@ -144,7 +144,7 @@ static int tmds_register_read(int index)
+ 	u8 data;
  
-diff --git a/drivers/gpu/drm/gma500/cdv_intel_dp.c b/drivers/gpu/drm/gma500/cdv_intel_dp.c
-index dd1eb7e9877d..d6f3c3bc169f 100644
---- a/drivers/gpu/drm/gma500/cdv_intel_dp.c
-+++ b/drivers/gpu/drm/gma500/cdv_intel_dp.c
-@@ -194,7 +194,7 @@ i2c_algo_dp_aux_functionality(struct i2c_adapter *adapter)
+ 	viafb_i2c_readbyte(viaparinfo->chip_info->tmds_chip_info.i2c_port,
+-			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
++			   (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
+ 			   (u8) index, &data);
+ 	return data;
  }
- 
- static const struct i2c_algorithm i2c_dp_aux_algo = {
--	.master_xfer	= i2c_algo_dp_aux_xfer,
-+	.xfer		= i2c_algo_dp_aux_xfer,
- 	.functionality	= i2c_algo_dp_aux_functionality,
- };
- 
-diff --git a/drivers/gpu/drm/gma500/intel_gmbus.c b/drivers/gpu/drm/gma500/intel_gmbus.c
-index 94cf854b1d3d..90c83cae04d9 100644
---- a/drivers/gpu/drm/gma500/intel_gmbus.c
-+++ b/drivers/gpu/drm/gma500/intel_gmbus.c
-@@ -233,7 +233,7 @@ intel_i2c_quirk_xfer(struct drm_psb_private *dev_priv,
- 	set_clock(gpio, 1);
- 	udelay(I2C_RISEFALL_TIME);
- 
--	ret = adapter->algo->master_xfer(adapter, msgs, num);
-+	ret = adapter->algo->xfer(adapter, msgs, num);
- 
- 	set_data(gpio, 1);
- 	set_clock(gpio, 1);
-@@ -374,7 +374,7 @@ static u32 gmbus_func(struct i2c_adapter *adapter)
+@@ -152,7 +152,7 @@ static int tmds_register_read(int index)
+ static int tmds_register_read_bytes(int index, u8 *buff, int buff_len)
+ {
+ 	viafb_i2c_readbytes(viaparinfo->chip_info->tmds_chip_info.i2c_port,
+-			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr,
++			    (u8) viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr,
+ 			    (u8) index, buff, buff_len);
+ 	return 0;
  }
+@@ -256,14 +256,14 @@ static int viafb_dvi_query_EDID(void)
  
- static const struct i2c_algorithm gmbus_algorithm = {
--	.master_xfer	= gmbus_xfer,
-+	.xfer		= gmbus_xfer,
- 	.functionality	= gmbus_func
- };
+ 	DEBUG_MSG(KERN_INFO "viafb_dvi_query_EDID!!\n");
  
-diff --git a/drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c b/drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c
-index 6daa6669ed23..a93e61208a84 100644
---- a/drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c
-+++ b/drivers/gpu/drm/gma500/oaktrail_hdmi_i2c.c
-@@ -160,7 +160,7 @@ static u32 oaktrail_hdmi_i2c_func(struct i2c_adapter *adapter)
- }
+-	restore = viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr;
+-	viaparinfo->chip_info->tmds_chip_info.tmds_chip_slave_addr = 0xA0;
++	restore = viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr;
++	viaparinfo->chip_info->tmds_chip_info.tmds_chip_client_addr = 0xA0;
  
- static const struct i2c_algorithm oaktrail_hdmi_i2c_algorithm = {
--	.master_xfer	= oaktrail_hdmi_i2c_access,
-+	.xfer		= oaktrail_hdmi_i2c_access,
- 	.functionality  = oaktrail_hdmi_i2c_func,
- };
- 
-diff --git a/drivers/gpu/drm/gma500/psb_intel_sdvo.c b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-index 39a3b696efc5..ad274c8410ca 100644
---- a/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-+++ b/drivers/gpu/drm/gma500/psb_intel_sdvo.c
-@@ -2417,7 +2417,7 @@ static u32 psb_intel_sdvo_ddc_proxy_func(struct i2c_adapter *adapter)
- }
- 
- static const struct i2c_algorithm psb_intel_sdvo_ddc_proxy = {
--	.master_xfer	= psb_intel_sdvo_ddc_proxy_xfer,
-+	.xfer		= psb_intel_sdvo_ddc_proxy_xfer,
- 	.functionality	= psb_intel_sdvo_ddc_proxy_func
- };
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index cbbdd84b4641..d97fe8f03a5d 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -759,7 +759,7 @@ gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num)
- 	wakeref = intel_display_power_get(i915, POWER_DOMAIN_GMBUS);
- 
- 	if (bus->force_bit) {
--		ret = i2c_bit_algo.master_xfer(adapter, msgs, num);
-+		ret = i2c_bit_algo.xfer(adapter, msgs, num);
- 		if (ret < 0)
- 			bus->force_bit &= ~GMBUS_FORCE_BIT_RETRY;
- 	} else {
-@@ -822,7 +822,7 @@ static u32 gmbus_func(struct i2c_adapter *adapter)
- }
- 
- static const struct i2c_algorithm gmbus_algorithm = {
--	.master_xfer	= gmbus_xfer,
-+	.xfer		= gmbus_xfer,
- 	.functionality	= gmbus_func
- };
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index 126493c662c5..0764aaf8fbec 100644
---- a/drivers/gpu/drm/i915/display/intel_sdvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -3299,7 +3299,7 @@ static int intel_sdvo_ddc_proxy_xfer(struct i2c_adapter *adapter,
- 	if (!__intel_sdvo_set_control_bus_switch(sdvo, 1 << ddc->ddc_bus))
- 		return -EIO;
- 
--	return sdvo->i2c->algo->master_xfer(sdvo->i2c, msgs, num);
-+	return sdvo->i2c->algo->xfer(sdvo->i2c, msgs, num);
- }
- 
- static u32 intel_sdvo_ddc_proxy_func(struct i2c_adapter *adapter)
-@@ -3311,7 +3311,7 @@ static u32 intel_sdvo_ddc_proxy_func(struct i2c_adapter *adapter)
- }
- 
- static const struct i2c_algorithm intel_sdvo_ddc_proxy = {
--	.master_xfer	= intel_sdvo_ddc_proxy_xfer,
-+	.xfer		= intel_sdvo_ddc_proxy_xfer,
- 	.functionality	= intel_sdvo_ddc_proxy_func
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-index d063d0dc13c5..55d45aba8467 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-@@ -89,7 +89,7 @@ nvkm_i2c_aux_i2c_func(struct i2c_adapter *adap)
- 
- static const struct i2c_algorithm
- nvkm_i2c_aux_i2c_algo = {
--	.master_xfer = nvkm_i2c_aux_i2c_xfer,
-+	.xfer          = nvkm_i2c_aux_i2c_xfer,
- 	.functionality = nvkm_i2c_aux_i2c_func
- };
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-index ed50cc3736b9..10c7bc68a278 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/bus.c
-@@ -97,7 +97,7 @@ nvkm_i2c_bus_func(struct i2c_adapter *adap)
- 
- static const struct i2c_algorithm
- nvkm_i2c_bus_algo = {
--	.master_xfer = nvkm_i2c_bus_xfer,
-+	.xfer          = nvkm_i2c_bus_xfer,
- 	.functionality = nvkm_i2c_bus_func,
- };
- 
-diff --git a/drivers/gpu/drm/radeon/radeon_i2c.c b/drivers/gpu/drm/radeon/radeon_i2c.c
-index 565d59536e9a..95912cce6aef 100644
---- a/drivers/gpu/drm/radeon/radeon_i2c.c
-+++ b/drivers/gpu/drm/radeon/radeon_i2c.c
-@@ -891,12 +891,12 @@ static u32 radeon_hw_i2c_func(struct i2c_adapter *adap)
- }
- 
- static const struct i2c_algorithm radeon_i2c_algo = {
--	.master_xfer = radeon_hw_i2c_xfer,
-+	.xfer          = radeon_hw_i2c_xfer,
- 	.functionality = radeon_hw_i2c_func,
- };
- 
- static const struct i2c_algorithm radeon_atom_i2c_algo = {
--	.master_xfer = radeon_atom_hw_i2c_xfer,
-+	.xfer          = radeon_atom_hw_i2c_xfer,
- 	.functionality = radeon_atom_hw_i2c_func,
- };
- 
-diff --git a/drivers/i2c/algos/i2c-algo-bit.c b/drivers/i2c/algos/i2c-algo-bit.c
-index eddf25b90ca8..de3b41f7d02d 100644
---- a/drivers/i2c/algos/i2c-algo-bit.c
-+++ b/drivers/i2c/algos/i2c-algo-bit.c
-@@ -143,7 +143,7 @@ static void i2c_stop(struct i2c_algo_bit_data *adap)
- 
- 
- /* send a byte without start cond., look for arbitration,
--   check ackn. from slave */
-+   check ackn. from client */
- /* returns:
-  * 1 if the device acknowledged
-  * 0 if the device did not ack
-@@ -182,7 +182,7 @@ static int i2c_outb(struct i2c_adapter *i2c_adap, unsigned char c)
- 		return -ETIMEDOUT;
+ 	data0 = (u8) tmds_register_read(0x00);
+ 	data1 = (u8) tmds_register_read(0x01);
+ 	if ((data0 == 0) && (data1 == 0xFF)) {
+ 		viaparinfo->chip_info->
+-			tmds_chip_info.tmds_chip_slave_addr = restore;
++			tmds_chip_info.tmds_chip_client_addr = restore;
+ 		return EDID_VERSION_1;	/* Found EDID1 Table */
  	}
  
--	/* read ack: SDA should be pulled down by slave, or it may
-+	/* read ack: SDA should be pulled down by client, or it may
- 	 * NAK (usually to report problems with the data we wrote).
- 	 * Always report ACK if SDA is write-only.
- 	 */
-@@ -358,7 +358,7 @@ static int sendbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
- 			temp++;
- 			wrcount++;
+@@ -280,8 +280,8 @@ static void dvi_get_panel_size_from_DDCv1(
  
--		/* A slave NAKing the master means the slave didn't like
-+		/* A client NAKing the host means the client didn't like
- 		 * something about the data it saw.  For example, maybe
- 		 * the SMBus PEC was wrong.
- 		 */
-@@ -369,7 +369,7 @@ static int sendbytes(struct i2c_adapter *i2c_adap, struct i2c_msg *msg)
- 		/* Timeout; or (someday) lost arbitration
- 		 *
- 		 * FIXME Lost ARB implies retrying the transaction from
--		 * the first message, after the "winning" master issues
-+		 * the first message, after the "winning" host issues
- 		 * its STOP.  As a rule, upper layer code has no reason
- 		 * to know or care about this ... it is *NOT* an error.
- 		 */
-@@ -619,8 +619,8 @@ static u32 bit_func(struct i2c_adapter *adap)
- /* -----exported algorithm data: -------------------------------------	*/
+ 	DEBUG_MSG(KERN_INFO "\n dvi_get_panel_size_from_DDCv1 \n");
  
- const struct i2c_algorithm i2c_bit_algo = {
--	.master_xfer = bit_xfer,
--	.master_xfer_atomic = bit_xfer_atomic,
-+	.xfer = bit_xfer,
-+	.xfer_atomic = bit_xfer_atomic,
- 	.functionality = bit_func,
- };
- EXPORT_SYMBOL(i2c_bit_algo);
-diff --git a/drivers/media/pci/bt8xx/bttv-i2c.c b/drivers/media/pci/bt8xx/bttv-i2c.c
-index 4a8a3f80c6db..285b2bd21278 100644
---- a/drivers/media/pci/bt8xx/bttv-i2c.c
-+++ b/drivers/media/pci/bt8xx/bttv-i2c.c
-@@ -248,7 +248,7 @@ static int bttv_i2c_xfer(struct i2c_adapter *i2c_adap, struct i2c_msg *msgs, int
+-	restore = tmds_chip->tmds_chip_slave_addr;
+-	tmds_chip->tmds_chip_slave_addr = 0xA0;
++	restore = tmds_chip->tmds_chip_client_addr;
++	tmds_chip->tmds_chip_client_addr = 0xA0;
+ 	for (i = 0x25; i < 0x6D; i++) {
+ 		switch (i) {
+ 		case 0x36:
+@@ -306,7 +306,7 @@ static void dvi_get_panel_size_from_DDCv1(
+ 
+ 	DEBUG_MSG(KERN_INFO "DVI max pixelclock = %d\n",
+ 		tmds_setting->max_pixel_clock);
+-	tmds_chip->tmds_chip_slave_addr = restore;
++	tmds_chip->tmds_chip_client_addr = restore;
  }
  
- static const struct i2c_algorithm bttv_algo = {
--	.master_xfer   = bttv_i2c_xfer,
-+	.xfer          = bttv_i2c_xfer,
- 	.functionality = functionality,
- };
+ /* If Disable DVI, turn off pad */
+@@ -427,7 +427,7 @@ void viafb_dvi_enable(void)
+ 				viafb_i2c_writebyte(viaparinfo->chip_info->
+ 					tmds_chip_info.i2c_port,
+ 					viaparinfo->chip_info->
+-					tmds_chip_info.tmds_chip_slave_addr,
++					tmds_chip_info.tmds_chip_client_addr,
+ 					0x08, data);
+ 			}
+ 		}
+diff --git a/drivers/video/fbdev/via/lcd.c b/drivers/video/fbdev/via/lcd.c
+index beec5c8d4d08..9a6e4ac9e551 100644
+--- a/drivers/video/fbdev/via/lcd.c
++++ b/drivers/video/fbdev/via/lcd.c
+@@ -147,7 +147,7 @@ bool viafb_lvds_trasmitter_identify(void)
+ 		return true;
+ 	/* Check for VT1631: */
+ 	viaparinfo->chip_info->lvds_chip_info.lvds_chip_name = VT1631_LVDS;
+-	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
++	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
+ 		VT1631_LVDS_I2C_ADDR;
  
-diff --git a/drivers/media/pci/cobalt/cobalt-i2c.c b/drivers/media/pci/cobalt/cobalt-i2c.c
-index d2963370f949..b70e89669bc7 100644
---- a/drivers/media/pci/cobalt/cobalt-i2c.c
-+++ b/drivers/media/pci/cobalt/cobalt-i2c.c
-@@ -297,7 +297,7 @@ static const struct i2c_adapter cobalt_i2c_adap_template = {
- };
+ 	if (check_lvds_chip(VT1631_DEVICE_ID_REG, VT1631_DEVICE_ID)) {
+@@ -161,7 +161,7 @@ bool viafb_lvds_trasmitter_identify(void)
  
- static const struct i2c_algorithm cobalt_algo = {
--	.master_xfer	= cobalt_xfer,
-+	.xfer		= cobalt_xfer,
- 	.functionality	= cobalt_func,
- };
+ 	viaparinfo->chip_info->lvds_chip_info.lvds_chip_name =
+ 		NON_LVDS_TRANSMITTER;
+-	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
++	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
+ 		VT1631_LVDS_I2C_ADDR;
+ 	return false;
+ }
+@@ -327,7 +327,7 @@ static int lvds_register_read(int index)
+ 	u8 data;
  
-diff --git a/drivers/media/pci/cx23885/cx23885-i2c.c b/drivers/media/pci/cx23885/cx23885-i2c.c
-index 385af2a893b4..1e5d0ecde5a3 100644
---- a/drivers/media/pci/cx23885/cx23885-i2c.c
-+++ b/drivers/media/pci/cx23885/cx23885-i2c.c
-@@ -247,7 +247,7 @@ static u32 cx23885_functionality(struct i2c_adapter *adap)
+ 	viafb_i2c_readbyte(VIA_PORT_2C,
+-			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr,
++			(u8) viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr,
+ 			(u8) index, &data);
+ 	return data;
+ }
+diff --git a/drivers/video/fbdev/via/via_aux.h b/drivers/video/fbdev/via/via_aux.h
+index 0933bbf20e58..e2b617b1e6fd 100644
+--- a/drivers/video/fbdev/via/via_aux.h
++++ b/drivers/video/fbdev/via/via_aux.h
+@@ -24,7 +24,7 @@ struct via_aux_drv {
+ 	struct list_head chain;		/* chain to support multiple drivers */
+ 
+ 	struct via_aux_bus *bus;	/* the I2C bus used */
+-	u8 addr;			/* the I2C slave address */
++	u8 addr;			/* the I2C client address */
+ 
+ 	const char *name;	/* human readable name of the driver */
+ 	void *data;		/* private data of this driver */
+diff --git a/drivers/video/fbdev/via/via_i2c.c b/drivers/video/fbdev/via/via_i2c.c
+index 582502810575..907c739475d0 100644
+--- a/drivers/video/fbdev/via/via_i2c.c
++++ b/drivers/video/fbdev/via/via_i2c.c
+@@ -104,7 +104,7 @@ static void via_i2c_setsda(void *data, int state)
+ 	spin_unlock_irqrestore(&i2c_vdev->reg_lock, flags);
  }
  
- static const struct i2c_algorithm cx23885_i2c_algo_template = {
--	.master_xfer	= i2c_xfer,
-+	.xfer		= i2c_xfer,
- 	.functionality	= cx23885_functionality,
- };
- 
-diff --git a/drivers/media/pci/cx25821/cx25821-i2c.c b/drivers/media/pci/cx25821/cx25821-i2c.c
-index bad8fb9f5319..ffcdce4971c4 100644
---- a/drivers/media/pci/cx25821/cx25821-i2c.c
-+++ b/drivers/media/pci/cx25821/cx25821-i2c.c
-@@ -268,7 +268,7 @@ static u32 cx25821_functionality(struct i2c_adapter *adap)
+-int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
++int viafb_i2c_readbyte(u8 adap, u8 client_addr, u8 index, u8 *pdata)
+ {
+ 	int ret;
+ 	u8 mm1[] = {0x00};
+@@ -115,7 +115,7 @@ int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
+ 	*pdata = 0;
+ 	msgs[0].flags = 0;
+ 	msgs[1].flags = I2C_M_RD;
+-	msgs[0].addr = msgs[1].addr = slave_addr / 2;
++	msgs[0].addr = msgs[1].addr = client_addr / 2;
+ 	mm1[0] = index;
+ 	msgs[0].len = 1; msgs[1].len = 1;
+ 	msgs[0].buf = mm1; msgs[1].buf = pdata;
+@@ -128,7 +128,7 @@ int viafb_i2c_readbyte(u8 adap, u8 slave_addr, u8 index, u8 *pdata)
+ 	return ret;
  }
  
- static const struct i2c_algorithm cx25821_i2c_algo_template = {
--	.master_xfer = i2c_xfer,
-+	.xfer          = i2c_xfer,
- 	.functionality = cx25821_functionality,
- #ifdef NEED_ALGO_CONTROL
- 	.algo_control = dummy_algo_control,
-diff --git a/drivers/media/pci/dm1105/dm1105.c b/drivers/media/pci/dm1105/dm1105.c
-index 9e9c7c071acc..d9b8614e8f0b 100644
---- a/drivers/media/pci/dm1105/dm1105.c
-+++ b/drivers/media/pci/dm1105/dm1105.c
-@@ -561,7 +561,7 @@ static u32 functionality(struct i2c_adapter *adap)
+-int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
++int viafb_i2c_writebyte(u8 adap, u8 client_addr, u8 index, u8 data)
+ {
+ 	int ret;
+ 	u8 msg[2] = { index, data };
+@@ -137,7 +137,7 @@ int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
+ 	if (!via_i2c_par[adap].is_active)
+ 		return -ENODEV;
+ 	msgs.flags = 0;
+-	msgs.addr = slave_addr / 2;
++	msgs.addr = client_addr / 2;
+ 	msgs.len = 2;
+ 	msgs.buf = msg;
+ 	ret = i2c_transfer(&via_i2c_par[adap].adapter, &msgs, 1);
+@@ -149,7 +149,7 @@ int viafb_i2c_writebyte(u8 adap, u8 slave_addr, u8 index, u8 data)
+ 	return ret;
  }
  
- static const struct i2c_algorithm dm1105_algo = {
--	.master_xfer   = dm1105_i2c_xfer,
-+	.xfer          = dm1105_i2c_xfer,
- 	.functionality = functionality,
- };
+-int viafb_i2c_readbytes(u8 adap, u8 slave_addr, u8 index, u8 *buff, int buff_len)
++int viafb_i2c_readbytes(u8 adap, u8 client_addr, u8 index, u8 *buff, int buff_len)
+ {
+ 	int ret;
+ 	u8 mm1[] = {0x00};
+@@ -159,7 +159,7 @@ int viafb_i2c_readbytes(u8 adap, u8 slave_addr, u8 index, u8 *buff, int buff_len
+ 		return -ENODEV;
+ 	msgs[0].flags = 0;
+ 	msgs[1].flags = I2C_M_RD;
+-	msgs[0].addr = msgs[1].addr = slave_addr / 2;
++	msgs[0].addr = msgs[1].addr = client_addr / 2;
+ 	mm1[0] = index;
+ 	msgs[0].len = 1; msgs[1].len = buff_len;
+ 	msgs[0].buf = mm1; msgs[1].buf = buff;
+diff --git a/drivers/video/fbdev/via/vt1636.c b/drivers/video/fbdev/via/vt1636.c
+index 8d8cfdb05618..614e5c29a449 100644
+--- a/drivers/video/fbdev/via/vt1636.c
++++ b/drivers/video/fbdev/via/vt1636.c
+@@ -44,7 +44,7 @@ u8 viafb_gpio_i2c_read_lvds(struct lvds_setting_information
+ 	u8 data;
  
-diff --git a/drivers/media/pci/ivtv/ivtv-i2c.c b/drivers/media/pci/ivtv/ivtv-i2c.c
-index 967e6a025020..86735f42c23c 100644
---- a/drivers/media/pci/ivtv/ivtv-i2c.c
-+++ b/drivers/media/pci/ivtv/ivtv-i2c.c
-@@ -610,7 +610,7 @@ static u32 ivtv_functionality(struct i2c_adapter *adap)
+ 	viafb_i2c_readbyte(plvds_chip_info->i2c_port,
+-			   plvds_chip_info->lvds_chip_slave_addr, index, &data);
++			   plvds_chip_info->lvds_chip_client_addr, index, &data);
+ 	return data;
  }
  
- static const struct i2c_algorithm ivtv_algo = {
--	.master_xfer   = ivtv_xfer,
-+	.xfer          = ivtv_xfer,
- 	.functionality = ivtv_functionality,
- };
+@@ -60,7 +60,7 @@ void viafb_gpio_i2c_write_mask_lvds(struct lvds_setting_information
+ 	data = (data & (~io_data.Mask)) | io_data.Data;
  
-diff --git a/drivers/media/pci/saa7164/saa7164-i2c.c b/drivers/media/pci/saa7164/saa7164-i2c.c
-index 3b11bf8899a0..aa7d989c1cb4 100644
---- a/drivers/media/pci/saa7164/saa7164-i2c.c
-+++ b/drivers/media/pci/saa7164/saa7164-i2c.c
-@@ -62,7 +62,7 @@ static u32 saa7164_functionality(struct i2c_adapter *adap)
+ 	viafb_i2c_writebyte(plvds_chip_info->i2c_port,
+-			    plvds_chip_info->lvds_chip_slave_addr, index, data);
++			    plvds_chip_info->lvds_chip_client_addr, index, data);
  }
  
- static const struct i2c_algorithm saa7164_i2c_algo_template = {
--	.master_xfer	= i2c_xfer,
-+	.xfer		= i2c_xfer,
- 	.functionality	= saa7164_functionality,
- };
+ void viafb_init_lvds_vt1636(struct lvds_setting_information
+@@ -113,7 +113,7 @@ bool viafb_lvds_identify_vt1636(u8 i2c_adapter)
+ 	DEBUG_MSG(KERN_INFO "viafb_lvds_identify_vt1636.\n");
  
-diff --git a/drivers/media/usb/au0828/au0828-i2c.c b/drivers/media/usb/au0828/au0828-i2c.c
-index 3e66d42bf134..585fe86f8ed7 100644
---- a/drivers/media/usb/au0828/au0828-i2c.c
-+++ b/drivers/media/usb/au0828/au0828-i2c.c
-@@ -313,7 +313,7 @@ static u32 au0828_functionality(struct i2c_adapter *adap)
- }
+ 	/* Sense VT1636 LVDS Transmiter */
+-	viaparinfo->chip_info->lvds_chip_info.lvds_chip_slave_addr =
++	viaparinfo->chip_info->lvds_chip_info.lvds_chip_client_addr =
+ 		VT1636_LVDS_I2C_ADDR;
  
- static const struct i2c_algorithm au0828_i2c_algo_template = {
--	.master_xfer	= i2c_xfer,
-+	.xfer		= i2c_xfer,
- 	.functionality	= au0828_functionality,
- };
- 
-diff --git a/drivers/video/fbdev/mb862xx/mb862xx-i2c.c b/drivers/video/fbdev/mb862xx/mb862xx-i2c.c
-index ffdb1597d303..55fe554a0818 100644
---- a/drivers/video/fbdev/mb862xx/mb862xx-i2c.c
-+++ b/drivers/video/fbdev/mb862xx/mb862xx-i2c.c
-@@ -141,7 +141,7 @@ static u32 mb862xx_func(struct i2c_adapter *adap)
- }
- 
- static const struct i2c_algorithm mb862xx_algo = {
--	.master_xfer	= mb862xx_xfer,
-+	.xfer		= mb862xx_xfer,
- 	.functionality	= mb862xx_func,
- };
- 
+ 	/* Check vendor ID first: */
 -- 
 2.34.1
 
