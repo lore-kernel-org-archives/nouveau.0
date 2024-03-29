@@ -4,44 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51B9ECD1288
-	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:47:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E33D6CD1288
+	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:48:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D02D410E16B;
-	Sun, 31 Mar 2024 08:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD9910E1E7;
+	Sun, 31 Mar 2024 08:48:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ispras.ru header.i=@ispras.ru header.b="k0FTnHnY";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="MamCsWkS";
 	dkim-atps=neutral
-Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB6EB10E6AB;
- Sun, 31 Mar 2024 06:46:06 +0000 (UTC)
-Received: from tundra.lovozera (unknown [46.138.86.221])
- by mail.ispras.ru (Postfix) with ESMTPSA id 5F9F140755D8;
- Sun, 31 Mar 2024 06:46:03 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 5F9F140755D8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
- s=default; t=1711867563;
- bh=Um1OeF+YjMXHeUez/kZLspj1wOkVZEI9a9MFeGLZNZo=;
- h=From:To:Cc:Subject:Date:From;
- b=k0FTnHnYTdvZURFzBOOYPMVCPYR5A2omqFTQlaRaFzwnHARsJT5Fj5QwrdRktR9J4
- jfced4TYeae7QRKyV7KkJAxZ6BKdeu6N9q/CkaJifFd002w0QdMN212n6YwWnY9sMl
- MUPYvIcBMG5fcxw/67QvuSkNbhV2WhInMT96d9dI=
-From: Mikhail Kobuk <m.kobuk@ispras.ru>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Mikhail Kobuk <m.kobuk@ispras.ru>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>,
- Francisco Jerez <currojerez@riseup.net>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, Fedor Pchelkin <pchelkin@ispras.ru>,
- Alexey Khoroshilov <khoroshilov@ispras.ru>
-Subject: [PATCH] drm: nv04: Add check to avoid out of bounds access
-Date: Sun, 31 Mar 2024 09:45:51 +0300
-Message-ID: <20240331064552.6112-1-m.kobuk@ispras.ru>
-X-Mailer: git-send-email 2.44.0
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 026421127D3;
+ Fri, 29 Mar 2024 17:02:27 +0000 (UTC)
+Received: from rrs24-12-35.corp.microsoft.com (unknown [131.107.147.137])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 3927120E6F4C;
+ Fri, 29 Mar 2024 10:02:25 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 3927120E6F4C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1711731745;
+ bh=Qwmeem4B9Er90dGhL6Lz2R55/4URZeEt+O0fc3RlyyM=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=MamCsWkSG1A8wjsPWLRC6O+cRsXcTXtSmo33DRenRj2SdRGUCn2XjFQAoKhRfxK1U
+ iLrIpepTKnR67z5VbnSZwrZDp8t6ZrW9tERhbZzQqL7j9/VaOxMLl9WUeK3zcCRdAb
+ Rw/T2kNc4a0kXs69OY24H4edkMV2Vnk5WlEXOO1k=
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Easwar Hariharan <eahariha@linux.microsoft.com>,
+ linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)), 
+ linux-kernel@vger.kernel.org (open list)
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ amd-gfx@lists.freedesktop.org (open list:RADEON and AMDGPU DRM DRIVERS),
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
+ linux-kernel@vger.kernel.org (open list),
+ intel-gfx@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ intel-xe@lists.freedesktop.org (open list:INTEL DRM DISPLAY FOR XE AND I915
+ DRIVERS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM HOST DRIVERS),
+ linux-media@vger.kernel.org (open list:BTTV VIDEO4LINUX DRIVER),
+ linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+Subject: [PATCH v0 09/14] media: cx23885: Make I2C terminology more inclusive
+Date: Fri, 29 Mar 2024 17:00:33 +0000
+Message-Id: <20240329170038.3863998-10-eahariha@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sun, 31 Mar 2024 08:47:52 +0000
+X-Mailman-Approved-At: Sun, 31 Mar 2024 08:48:13 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,42 +66,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Output Resource (dcb->or) value is not guaranteed to be non-zero (i.e.
-in drivers/gpu/drm/nouveau/nouveau_bios.c, in 'fabricate_dcb_encoder_table()'
-'dcb->or' is assigned value '0' in call to 'fabricate_dcb_output()').
+I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+with more appropriate terms. Inspired by and following on to Wolfram's
+series to fix drivers/i2c/[1], fix the terminology for users of
+I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+in the specification.
 
-Add check to validate 'dcb->or' before it's used.
+Compile tested, no functionality changes intended
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+[1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
 
-Fixes: 2e5702aff395 ("drm/nouveau: fabricate DCB encoder table for iMac G4")
-Signed-off-by: Mikhail Kobuk <m.kobuk@ispras.ru>
+Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/dac.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/media/pci/cx23885/cx23885-f300.c | 8 ++++----
+ drivers/media/pci/cx23885/cx23885-i2c.c  | 6 +++---
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/dac.c b/drivers/gpu/drm/nouveau/dispnv04/dac.c
-index d6b8e0cce2ac..0c8d4fc95ff3 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/dac.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/dac.c
-@@ -428,7 +428,7 @@ void nv04_dac_update_dacclk(struct drm_encoder *encoder, bool enable)
- 	struct drm_device *dev = encoder->dev;
- 	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+diff --git a/drivers/media/pci/cx23885/cx23885-f300.c b/drivers/media/pci/cx23885/cx23885-f300.c
+index ac1c434e8e24..5f937c281793 100644
+--- a/drivers/media/pci/cx23885/cx23885-f300.c
++++ b/drivers/media/pci/cx23885/cx23885-f300.c
+@@ -92,7 +92,7 @@ static u8 f300_xfer(struct dvb_frontend *fe, u8 *buf)
+ 	f300_set_line(dev, F300_RESET, 0);/* begin to send data */
+ 	msleep(1);
  
--	if (nv_gf4_disp_arch(dev)) {
-+	if (nv_gf4_disp_arch(dev) && ffs(dcb->or)) {
- 		uint32_t *dac_users = &nv04_display(dev)->dac_users[ffs(dcb->or) - 1];
- 		int dacclk_off = NV_PRAMDAC_DACCLK + nv04_dac_output_offset(encoder);
- 		uint32_t dacclk = NVReadRAMDAC(dev, 0, dacclk_off);
-@@ -453,7 +453,7 @@ bool nv04_dac_in_use(struct drm_encoder *encoder)
- 	struct drm_device *dev = encoder->dev;
- 	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+-	f300_send_byte(dev, 0xe0);/* the slave address is 0xe0, write */
++	f300_send_byte(dev, 0xe0);/* the client address is 0xe0, write */
+ 	msleep(1);
  
--	return nv_gf4_disp_arch(encoder->dev) &&
-+	return nv_gf4_disp_arch(encoder->dev) && ffs(dcb->or) &&
- 		(nv04_display(dev)->dac_users[ffs(dcb->or) - 1] & ~(1 << dcb->index));
- }
+ 	temp = buf[0];
+@@ -112,10 +112,10 @@ static u8 f300_xfer(struct dvb_frontend *fe, u8 *buf)
+ 	}
+ 
+ 	if (i > 7) {
+-		pr_err("%s: timeout, the slave no response\n",
++		pr_err("%s: timeout, the client no response\n",
+ 								__func__);
+-		ret = 1; /* timeout, the slave no response */
+-	} else { /* the slave not busy, prepare for getting data */
++		ret = 1; /* timeout, the client no response */
++	} else { /* the client not busy, prepare for getting data */
+ 		f300_set_line(dev, F300_RESET, 0);/*ready...*/
+ 		msleep(1);
+ 		f300_send_byte(dev, 0xe1);/* 0xe1 is Read */
+diff --git a/drivers/media/pci/cx23885/cx23885-i2c.c b/drivers/media/pci/cx23885/cx23885-i2c.c
+index f51fad33dc04..385af2a893b4 100644
+--- a/drivers/media/pci/cx23885/cx23885-i2c.c
++++ b/drivers/media/pci/cx23885/cx23885-i2c.c
+@@ -34,7 +34,7 @@ MODULE_PARM_DESC(i2c_scan, "scan i2c bus at insmod time");
+ #define I2C_EXTEND  (1 << 3)
+ #define I2C_NOSTOP  (1 << 4)
+ 
+-static inline int i2c_slave_did_ack(struct i2c_adapter *i2c_adap)
++static inline int i2c_client_did_ack(struct i2c_adapter *i2c_adap)
+ {
+ 	struct cx23885_i2c *bus = i2c_adap->algo_data;
+ 	struct cx23885_dev *dev = bus->dev;
+@@ -84,7 +84,7 @@ static int i2c_sendbytes(struct i2c_adapter *i2c_adap,
+ 		cx_write(bus->reg_ctrl, bus->i2c_period | (1 << 2));
+ 		if (!i2c_wait_done(i2c_adap))
+ 			return -EIO;
+-		if (!i2c_slave_did_ack(i2c_adap))
++		if (!i2c_client_did_ack(i2c_adap))
+ 			return -ENXIO;
+ 
+ 		dprintk(1, "%s() returns 0\n", __func__);
+@@ -163,7 +163,7 @@ static int i2c_readbytes(struct i2c_adapter *i2c_adap,
+ 		cx_write(bus->reg_ctrl, bus->i2c_period | (1 << 2) | 1);
+ 		if (!i2c_wait_done(i2c_adap))
+ 			return -EIO;
+-		if (!i2c_slave_did_ack(i2c_adap))
++		if (!i2c_client_did_ack(i2c_adap))
+ 			return -ENXIO;
+ 
  
 -- 
-2.44.0
+2.34.1
 
