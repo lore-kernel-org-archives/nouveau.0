@@ -4,88 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3336CD1288
-	for <nouveau@archiver.kernel.org>; Sat, 30 Mar 2024 14:12:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C624CD1288
+	for <nouveau@archiver.kernel.org>; Sun, 31 Mar 2024 08:22:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 767AD10E4E5;
-	Sat, 30 Mar 2024 14:12:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2F5010E954;
+	Sun, 31 Mar 2024 08:22:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="JD0oqpQF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ZBD0ycWJ";
 	dkim-atps=neutral
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com
- [209.85.161.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E6210E484
- for <nouveau@lists.freedesktop.org>; Sat, 30 Mar 2024 14:12:07 +0000 (UTC)
-Received: by mail-oo1-f53.google.com with SMTP id
- 006d021491bc7-5a4f7a648dbso1657832eaf.3
- for <nouveau@lists.freedesktop.org>; Sat, 30 Mar 2024 07:12:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1711807926; x=1712412726;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=5R0+AkTWI8QZwkAahS3FDyHG9j7KXHmvm4QW/s+hHfA=;
- b=JD0oqpQFuQRY2Gyaye5Z7iGI5yQg1uS4MewdW5ya6k3bFU27dKa3R8vFKy5Kn9S/Er
- YxECMj80DvXxclqKUQDJ72TtG3nGrBwzx4vPIyE/kvk0EhED7n2IaB8pt7s4Uz4Wk7mB
- sfyuLMr6eY5o+xK7/ia3ycGm/WOE3JGuBZplU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1711807926; x=1712412726;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=5R0+AkTWI8QZwkAahS3FDyHG9j7KXHmvm4QW/s+hHfA=;
- b=QZjXaN6jmHne9+/kbeS10KdeD5+4QjcWVtKyUnXknuBFzjaFG2P5zebJTwOvRWi+6j
- ozR//cSH0ffij8hd8hGyIuK8ZG+VyCBvZFgaVYMNIgwPX/UBXAUXtaEPCyqERbk97qhQ
- NkWNw2fpo9rl8/wX5NQTWakxSAsM/htj6WiQSU2RMdoS+QjPTgFL9bgdGqcxo5Hr/z/D
- XaB5XM8CYy1n4irY6uqR5YLbwdKeVtIAlsKdcaiFGtKTlcThf6njHzvPZHNBhiyem5pL
- M4YJSV4NJsGVMXe3Tc9cq02ab6kuLsWMf+yn00EIfVm/F4fsvEX+wR12Ac+sf3pIEWXt
- vfAg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVuVaTqAgRlbIDj7t8cH42FGdv1NOkeaXR/ZmIktVbhw9gRyOfPo3rXrQjbtLZ3ve3AtZYJfFTJA4ANaYey6ciPQox21PjKv4V5g7Yzcw==
-X-Gm-Message-State: AOJu0Yy2sGFip3t/Pa3+7AIzIr6O9gi9xdCUgoz1+XIMLhzRoyZ1McdC
- gZJ+iPKnGk3mZJ3aMaaiJpHQI60RyZ3OZtdILILYYVx3qqbafyguXa0aNMWHaA==
-X-Google-Smtp-Source: AGHT+IEJtzUzuRZgSZPHVHwVuvYRyBRpL8kDmcK5MecWGpcsJm7ruAhRPpLIlgMAXixtWQGCSKy74g==
-X-Received: by 2002:a05:6359:4121:b0:178:6c79:6ccf with SMTP id
- kh33-20020a056359412100b001786c796ccfmr5950622rwc.17.1711807926336; 
- Sat, 30 Mar 2024 07:12:06 -0700 (PDT)
-Received: from www.outflux.net ([198.0.35.241])
- by smtp.gmail.com with ESMTPSA id
- w22-20020a63fb56000000b005dc4b562f6csm4607931pgj.3.2024.03.30.07.12.05
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 30 Mar 2024 07:12:05 -0700 (PDT)
-From: Kees Cook <keescook@chromium.org>
-To: Karol Herbst <kherbst@redhat.com>
-Cc: Kees Cook <keescook@chromium.org>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
- Ben Skeggs <bskeggs@redhat.com>, Timur Tabi <ttabi@nvidia.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Dan Carpenter <dan.carpenter@linaro.org>, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org
-Subject: [PATCH] nouveau/gsp: Avoid addressing beyond end of rpc->entries
-Date: Sat, 30 Mar 2024 07:12:03 -0700
-Message-Id: <20240330141159.work.063-kees@kernel.org>
-X-Mailer: git-send-email 2.34.1
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7EA610E8FB;
+ Sun, 31 Mar 2024 08:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=MIME-Version:Content-Transfer-Encoding:Content-Type:References:
+ In-Reply-To:Date:To:From:Subject:Message-ID:Sender:Reply-To:Cc:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=lPWMOzZ1sCBLtkhfMiJDfHToxmpKev7gqm0R7FskFf0=; b=ZBD0ycWJxDl4Z9KMqRhF77mf/G
+ +DGVX4I1duoRiIJ47Xv7S1iRDqsS+34zyUta/XwRBgJNkt/oSGEyrY6gv3lIL1PIUzmRZglkko0IS
+ NMSbfzT2NgjsaOyQ8lEwVQhDYaTzFz3XGyvGR47oIUgJtx48XCojs4oJLLCnGg2KY354Io0tPUG+h
+ hCoKonEn54rf+EQlt0QPj9uZRkN1vAdTUlYnMyWF5V+ov101iNfxuB/xDWGPQMpJ6AfIIU+k6sS7h
+ Yy5u3fM+EfrYsgZL6d7K+LL/w28dZfkg/RfoOHVPYMaNheprjSj9Au+mzNOe6hz3VdjFhGKnYLYfb
+ uuShrWeg==;
+Received: from 30.red-83-52-1.dynamicip.rima-tde.net ([83.52.1.30]
+ helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1rqqSL-00HFxV-9H; Sun, 31 Mar 2024 10:22:21 +0200
+Message-ID: <0a816356c382e4377953bba256e1275c779b220d.camel@igalia.com>
+Subject: Re: 2024 X.Org Foundation Membership deadline for voting in the
+ election
+From: Ricardo Garcia <rgarcia@igalia.com>
+To: events@lists.x.org, xorg-devel@lists.x.org, 
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org, 
+ xorg@lists.freedesktop.org
+Date: Sun, 31 Mar 2024 10:22:20 +0200
+In-Reply-To: <57dd238b-2b94-4b46-a8be-c53b2f985e46@igalia.com>
+References: <0efcdfe3-ea9e-43e5-ab07-6d69dca2c04a@igalia.com>
+ <57dd238b-2b94-4b46-a8be-c53b2f985e46@igalia.com>
+Autocrypt: addr=rgarcia@igalia.com; prefer-encrypt=mutual;
+ keydata=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
+ p0ZW9AkVq7C3F0YSY0Tq5bKR94O8=
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2226; i=keescook@chromium.org; 
- h=from:subject:message-id;
- bh=72NlypCU3m1Ai+nlWdQqXQ/FhzgDGtzVMmXe9FDsnK0=; 
- b=owEBbQKS/ZANAwAKAYly9N/cbcAmAcsmYgBmCB2zFC4lHA+jf2TBWjM1ztczWQiNIUhah6PlJ
- NpV613q9s6JAjMEAAEKAB0WIQSlw/aPIp3WD3I+bhOJcvTf3G3AJgUCZggdswAKCRCJcvTf3G3A
- Ju46D/41X6YPEmbiOsUB+J4DpwOnPKKcWsCj004G4gCAGXDcM6V+h7frx+gzNYT4Rf8x4XsR+Jr
- rQie9X4uNZp2UqZjv6FoMoJ/4Fns8PwbjLF+l0gB/Fb9vnxXhMacWym6B8w+PswdMS16W9pSaen
- F5Zs8+sTbvHAaRXn3iZCPYx6ui3LhmHpqy/e7+pHVKnrj4FCMPmAuZYvV4anVze9FSq+nPmoFVe
- 4z1zpNbj5Nty9xbyRYWwhQNfAB8YuZpgDUGoG1p2AdiphqV77NP//zHYPcHsfgP+y0JIz/5BUxR
- Lp65/01z/jPpJyAivKhVM2pvS3aEM7N8bTOuAaM+rtB1V3deWraWkypkkJSwRAtdxUTiXrnbr3Q
- zK1KtBGo7BRK6DVc03milid8NDHuHnIwNJM3w+/h3ePn0NlvlmBD9bJLoAajAl/hlrYTzTAak2Z
- VHzHA0SQ2Vhn9Etuq2ipHNQhNVT3u8txxcSJCBr6Q6RBWkaeHS+IXH4DIwvKkwbcmc2SZ7BehHC
- gecHXXvfcvmvsbcNQnJHTKr0dZmjQsZkf7YPzVfhrYvzU33RIoADtfHAmcVTQXZsVqXFZq5PRjO
- 3LC4+FeijavF4l/RRJPr3Btg3mW8DmycJkmfTy3BiYHrt1lxWF488MN0zrq3NdSq2+JfZ8KkBrh
- pVR23AZ tcRpXu8A==
-X-Developer-Key: i=keescook@chromium.org; a=openpgp;
- fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
-Content-Transfer-Encoding: 8bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,53 +70,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Using the end of rpc->entries[] for addressing runs into both compile-time
-and run-time detection of accessing beyond the end of the array. Use the
-base pointer instead, since was allocated with the additional bytes for
-storing the strings. Avoids the following warning in future GCC releases
-with support for __counted_by:
+This is a reminder that the membership renewal period ends in 2 days,
+and elections will start after that. Please register as an X.Org
+Foundation member to be able to vote in the upcoming elections. Thanks!
 
-In function 'fortify_memcpy_chk',
-    inlined from 'r535_gsp_rpc_set_registry' at ../drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1123:3:
-../include/linux/fortify-string.h:553:25: error: call to '__write_overflow_field' declared with attribute warning: detected write beyond size of field (1st parameter); maybe use struct_group()? [-Werror=attribute-warning]
-  553 |                         __write_overflow_field(p_size_field, size);
-      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-for this code:
-
-	strings = (char *)&rpc->entries[NV_GSP_REG_NUM_ENTRIES];
-	...
-                memcpy(strings, r535_registry_entries[i].name, name_len);
-
-Signed-off-by: Kees Cook <keescook@chromium.org>
----
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@redhat.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Ben Skeggs <bskeggs@redhat.com>
-Cc: Timur Tabi <ttabi@nvidia.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index 9994cbd6f1c4..9858c1438aa7 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -1112,7 +1112,7 @@ r535_gsp_rpc_set_registry(struct nvkm_gsp *gsp)
- 	rpc->numEntries = NV_GSP_REG_NUM_ENTRIES;
- 
- 	str_offset = offsetof(typeof(*rpc), entries[NV_GSP_REG_NUM_ENTRIES]);
--	strings = (char *)&rpc->entries[NV_GSP_REG_NUM_ENTRIES];
-+	strings = (char *)rpc + str_offset;
- 	for (i = 0; i < NV_GSP_REG_NUM_ENTRIES; i++) {
- 		int name_len = strlen(r535_registry_entries[i].name) + 1;
- 
--- 
-2.34.1
+-Ricardo Garcia, on behalf of the X.Org elections committee.
+=20
+On Tue, 2024-03-26 at 11:42 -0400, Christopher Michael wrote:
+> The 2024 X.Org Foundation membership renewal period has been extended=20
+> one additional week and elections will start the following week on 01=20
+> April 2024.
+>=20
+> Please note that only current members can vote in the upcoming election,=
+=20
+> and that the deadline for new memberships or renewals to vote in the=20
+> upcoming election is 01 April 2024 at 23:59 UTC.
+>=20
+> If you are interested in joining the X.Org Foundation or in renewing=20
+> your membership, please visit the membership system site at:=20
+> https://members.x.org/
+>=20
+> Christopher Michael, on behalf of the X.Org elections committee
+>=20
+>=20
+>=20
 
