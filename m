@@ -4,37 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91B9AC04FF9
-	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42601C4345F
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C79BC10F1CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E877710F921;
 	Fri, 12 Apr 2024 23:09:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="ouUr4Yzr";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="l55a3AM4";
 	dkim-atps=neutral
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 06E3A113453;
- Thu,  4 Apr 2024 19:17:28 +0000 (UTC)
-Received: from [100.64.1.95] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id DEEC720E94A7;
- Thu,  4 Apr 2024 12:17:27 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com DEEC720E94A7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712258248;
- bh=ZrJyqrC7sT3JNnbsQN7FmNZAzW2Ic4NFV4xHepZ1iyE=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=ouUr4YzrTeT1xQ1G84VlDGr/wpUk6MGHRGIQMB7WoEeMZ+IPgpdMcvtmzPFc3Klyf
- aGnO13FEkkfhZT6ZBcqpgxS84Ob9Fza2JbfZXbMQXPvtNWxBeefu162cM7VQ0yCR/H
- fdTWdfJov5qRIM4zOKJufV8tFIV67xSnLc0hYGik=
-Message-ID: <cd983b4d-70dc-47b8-96cd-55bba39eb892@linux.microsoft.com>
-Date: Thu, 4 Apr 2024 12:17:26 -0700
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 10/14] sfc: falcon: Make I2C terminology more inclusive
-To: Simon Horman <horms@kernel.org>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9917310F3DB;
+ Tue,  2 Apr 2024 08:29:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id E84AF60F81;
+ Tue,  2 Apr 2024 08:29:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A6A2C43394;
+ Tue,  2 Apr 2024 08:29:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1712046597;
+ bh=KLiOyU5gxLUsegc5eE8/HwQZQ1rmvicDU4hOpKd3aeo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=l55a3AM46XbBh4JItwGhAxKslyWIKIYKui6nTuLqnelnvoCzqlpqOBF855wp5JiYA
+ Yowmji/9KFQKT7t3FXrheQWOfrZKhf4TXyansdGzhWv+JZ0NKjtP2vXTecC/0VBNXb
+ iyeRoNhrs0sqvkO3VW5XtNeqcA6vj8bE4n+Bku10Paa7Sw2yozjgMMQor1qpvpJeni
+ NYcWL13S4L1UDvWSpOd96u0uvRmBx+otENbremo5gbkAPR5nG4KtoKeteSAikD4VQo
+ aHJSXR2CScq7H9dhwpbQ9dZeGJASNTbz3sbft5dih+eH9O18+aPLDPwjNCJ64V3l+M
+ Jnld7gjc+HRxA==
+Date: Tue, 2 Apr 2024 09:29:51 +0100
+From: Simon Horman <horms@kernel.org>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
 Cc: Edward Cree <ecree.xilinx@gmail.com>,
  Martin Habets <habetsm.xilinx@gmail.com>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  "open list:SFC NETWORK DRIVER" <netdev@vger.kernel.org>,
  "open list:SFC NETWORK DRIVER" <linux-net-drivers@amd.com>,
@@ -43,23 +45,23 @@ Cc: Edward Cree <ecree.xilinx@gmail.com>,
  "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
  "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, 
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
- <intel-xe@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, 
  "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, 
  "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
  "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
  "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v0 10/14] sfc: falcon: Make I2C terminology more inclusive
+Message-ID: <20240402082951.GG26556@kernel.org>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
  <20240329170038.3863998-11-eahariha@linux.microsoft.com>
- <20240402082951.GG26556@kernel.org>
-Content-Language: en-CA
-From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <20240402082951.GG26556@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:09 +0000
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240329170038.3863998-11-eahariha@linux.microsoft.com>
+X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:06 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,26 +76,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 4/2/2024 1:29 AM, Simon Horman wrote:
-> On Fri, Mar 29, 2024 at 05:00:34PM +0000, Easwar Hariharan wrote:
->> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
->>
->> Compile tested, no functionality changes intended
->>
->> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
->>
->> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+On Fri, Mar 29, 2024 at 05:00:34PM +0000, Easwar Hariharan wrote:
+> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by and following on to Wolfram's
+> series to fix drivers/i2c/[1], fix the terminology for users of
+> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> in the specification.
 > 
-> Reviewed-by: Simon Horman <horms@kernel.org>
+> Compile tested, no functionality changes intended
+> 
+> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+> 
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
 
+Reviewed-by: Simon Horman <horms@kernel.org>
 
-Thank you, Simon, for reviewing. I believe that we are settling on controller/target
-terminology from feedback on the other drivers in this series. Would you want to re-review
-v1 with that change, or should I add you R-B in v1 despite the change?
-
-Thanks,
-Easwar
