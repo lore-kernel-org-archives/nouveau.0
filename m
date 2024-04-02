@@ -4,55 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 761FCC4345F
-	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF5BC00A94
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49B510F937;
-	Fri, 12 Apr 2024 23:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B53010F93C;
+	Fri, 12 Apr 2024 23:09:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="C0d1SRjy";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="Rj3Ojj+f";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5815810EB62;
- Fri,  5 Apr 2024 17:09:07 +0000 (UTC)
-Received: from [100.64.217.16] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id C079220E98C5;
- Fri,  5 Apr 2024 10:09:06 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C079220E98C5
+ by gabe.freedesktop.org (Postfix) with ESMTP id 34F6C10FE3E;
+ Tue,  2 Apr 2024 16:20:36 +0000 (UTC)
+Received: from [100.64.232.220] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 90A6D20E8BEB;
+ Tue,  2 Apr 2024 09:20:34 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 90A6D20E8BEB
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712336947;
- bh=8/pqkmLMlPcre5fV5qkvKEs/2rR9bcZxNm4kNFHWSjQ=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=C0d1SRjyurGtxNvhWTTmtbPSCA+yIp/OoN3XC/p90jKg2/Te57kQIcZHNpxQ3N2VQ
- sXQcWE6qovKVAf63szhiTG9qVBhLM1mFp1anVH+P8e81uOq0H+Hm08czNqSAQAwLsT
- RqFrEA3QupgZYOJZGbxAxqLnmILZ6wWm5h9HB87o=
-Message-ID: <3bd8d2f6-dfe1-479f-bff1-f2921b1940ed@linux.microsoft.com>
-Date: Fri, 5 Apr 2024 10:09:05 -0700
+ s=default; t=1712074835;
+ bh=diMLxdSPqVbdaJFyTeRrOWtjesbV9nks1RgdOComYig=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Rj3Ojj+f8L4oLg5jPxJITV4lljtaNQ1MZ7dSIzWZF5J+LfZs3X5diAKiUWhTUVFe0
+ FUnY9QuJZFaj3I6g90zBj9Bl1fU2tfaf4JxF0B4epu6O6DxnLXUVrTwkNb92FpwqlH
+ y1p3X2h3VTCj1AN7QMru6U7yC6w74c0lVL9oSGbg=
+Message-ID: <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
+Date: Tue, 2 Apr 2024 09:20:33 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 00/14] Make I2C terminology more inclusive for I2C
- Algobit and consumers
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
- open list <linux-kernel@vger.kernel.org>,
+Subject: Re: [PATCH v0 03/14] drm/gma500,drm/i915: Make I2C terminology more
+ inclusive
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Zhenyu Wang
+ <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
+ dri-devel@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
  <intel-gfx@lists.freedesktop.org>,
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
  <intel-xe@lists.freedesktop.org>,
+ "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
+ <intel-gvt-dev@lists.freedesktop.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
  "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
  <nouveau@lists.freedesktop.org>,
  "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
  "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
  "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
+ <20240329170038.3863998-4-eahariha@linux.microsoft.com>
+ <87a5mcfbms.fsf@intel.com>
+ <7d5e6ed0-ffe9-46c2-b3b4-a4a47c09532e@linux.microsoft.com>
+ <87ttkjesx8.fsf@intel.com>
 Content-Language: en-CA
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
+In-Reply-To: <87ttkjesx8.fsf@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:09 +0000
+X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:08 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,60 +80,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Wolfram,
-
-On 4/5/2024 3:18 AM, Wolfram Sang wrote:
-> Hello Easwar,
+On 4/2/2024 7:32 AM, Jani Nikula wrote:
+> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+>> On 4/2/2024 12:48 AM, Jani Nikula wrote:
+>>> On Fri, 29 Mar 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
+>>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>>>> with more appropriate terms. Inspired by and following on to Wolfram's
+>>>> series to fix drivers/i2c/[1], fix the terminology for users of
+>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>>>> in the specification.
+>>>
+>>> gma500 and i915 changes should be split. See MAINTAINERS.
+>>>
+>>> Might also split the i915 changes to smaller pieces, it's kind of
+>>> random. And the changes here are not strictly related to I2C AFAICT, so
+>>> the commit message should be updated.
+>>>
+>>> BR,
+>>> Jani.
+>>>
+>>>
+>>
+>> <snip>
+>>
+>> I will split gma500 and i915 into their respective patches if possible in v2.
+>>
+>> Can you say more about the changes being "not strictly related to I2C"? My
+>> heuristic was to grep for master/slave, and look in the surrounding context for
+>> i2c-related terminology (i2c_pin, 7-bit address, struct i2c_adapter, i2c_bus, etc)
+>> to confirm that they are i2c-related, then following the references around to
+>> make the compiler happy. For e.g., I did not change the many references to bigjoiner
+>> master and slave because I understood from context they were not i2c references.
+>>
+>> A couple examples would help me restrict the changes to I2C, since as mentioned in the
+>> discussion on Wolfram's thread, there are places where migrating away from master/slave
+>> terms in the code would conflict with the original technical manuals and reduce correlation
+>> and understanding of the code.
 > 
-> On Fri, Mar 29, 2024 at 05:00:24PM +0000, Easwar Hariharan wrote:
->> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->> with more appropriate terms. Inspired by and following on to Wolfram's
->> series to fix drivers/i2c/[1], fix the terminology for users of the
->> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->> in the specification.
+> I guess I was looking at the VBT changes in intel_bios.c. Granted, they
+> do end up being used as i2c addresses. No big deal.
 > 
-> I really appreciate that you want to assist in this task to improve the
-> I2C core. I do. I am afraid, however, that you took the second step
-> before the first one, though. As I mentioned in my original cover
-> letter, this is not only about renaming but also improving the I2C API
-> (splitting up header files...). So, drivers are not a priority right
-> now. They can be better fixed once the core is ready.
->
-
-Sorry, got excited. :) There were drivers I'd been part of that I specifically
-wanted to fixup, but then the scope grew to other users of algobit.
-
-> It is true that I changed quite some controller drivers within the i2c
-> realm. I did this to gain experience. As you also noticed quite some
-> questions came up. We need to agree on answers first. And once we are
-> happy with the answers we found, then IMO we can go outside of the i2c
-> realm and send patches to other subsystems referencing agreed
-> precedence. I intentionally did not go outside i2c yet. Since your
-> patches are already there, you probably want to foster them until they
-> are ready for inclusion.
-
-Sorry, I don't quite follow what you mean by foster in this context. Are
-you asking me to hold off on merging the series, or to follow through on
-getting it merged?
-
- Yet, regarding further patches, my suggestion
-> is to wait until the core is ready. That might take a while, though.
-> However, there is enough to discuss until the core is ready. So, your
-> collaboration there is highly appreciated!
+> I think I'd expect the treewide i2c adapter changes to land first, via
+> i2c, and subsequent cleanups to happen next, via individual driver
+> trees. There's quite a bit of conflict potential merging this outside of
+> drm-intel-next, and there's really no need for that.
 > 
->> The last patch updating the .master_xfer method to .xfer depends on
->> patch 1 of Wolfram's series below, but the series is otherwise
->> independent. It may make sense for the last patch to go in with
-> 
-> Please drop the last patch from this series. It will nicely remove the
-> dependency. Also, like above, I first want to gain experience with i2c
-> before going to other subsystems. That was intended.
->
-
-Will do, thanks!
-
-> All the best and happy hacking,
-> 
->    Wolfram
+> BR,
+> Jani.
 > 
 
+Great! Just so I'm clear, do you still want the i915 changes split up more, along with them being
+split off from gma500?
+
+Thanks,
+Easwar
