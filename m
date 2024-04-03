@@ -4,92 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F13BFC25B7C
-	for <nouveau@archiver.kernel.org>; Mon, 27 May 2024 11:24:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 425EFC00A94
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B7EB10FA3A;
-	Mon, 27 May 2024 11:24:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2EB810F926;
+	Fri, 12 Apr 2024 23:09:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="csM5nk2p";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Re8F0gky";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4262E10F4CB
- for <nouveau@lists.freedesktop.org>; Mon, 27 May 2024 11:24:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1716809042;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ezJXdyF0CJ1UVaUvAyDpaA8e9pPvbwoD8x8nXFabkEM=;
- b=csM5nk2pkFNl5QZxopc8Ls2S1FjCFivcT1oP0jKk3Vmzp5/qaE5RH65h51b+KVzqd7o5Z2
- g/3lbPDtosKFLHz7SY2/TDcm+iMcUdmAJ+qa1GIB2qFyFk294huGqUhOFfntH7scWzbmyv
- AsoCd0/cPsKVZaA/KTglwFbPGuCCvW8=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-606-eXcAJCJcMB2fitC7MJGXow-1; Mon, 27 May 2024 07:24:00 -0400
-X-MC-Unique: eXcAJCJcMB2fitC7MJGXow-1
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-42024ca94d0so12480995e9.1
- for <nouveau@lists.freedesktop.org>; Mon, 27 May 2024 04:24:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716809036; x=1717413836;
- h=content-transfer-encoding:in-reply-to:organization:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ezJXdyF0CJ1UVaUvAyDpaA8e9pPvbwoD8x8nXFabkEM=;
- b=fpHRDbGazvOMNh60AbffaDE+Gyu0GVt1vSDMUGuFla5Ic8LdhPH2oOsdnCGPXjQ8HI
- MRbCbWO3tiOMNvgN/iwDUEZ/3ekMM83Xyxha5rLyymxrntYmx6FN8/7NkCiE9zfJ7gJ6
- x9K4IyqWfs9Y91lctZCiFnYo+hikHoyQbzCKaF7ouJzEp7/WEbDfhuQW/yieLzpgYx6t
- LyjiaUS2reiq5cVUITet+BZ5RJrL1ulgs+6E1wort0xCH/3Phvfuug7wfedS44rQpUeY
- vfaJ7vXqoqiiXSzZwoa/6U/94tLHBKVuMKBimntXoKlg2YWtwMr0b3ks8pvajiTPujGI
- 3U3w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUZjcKEqTumojYaqorciOl2oCvFMDnLFNkOx0rlYLS3ZFmJqt7en8xInjo+q6ytgUqyAH+Q/xaMwLhnLHCHckD5hRNGK/w9T+trSKmoNA==
-X-Gm-Message-State: AOJu0Yx+ARQf2NrKbdBJrorbfm8xtd7G/WU+TH+JzcLQrQ2aSi69sbHa
- /4dUdxtuqVBHicd5RUOS2GmaErsRgRzr/jBL4uXERAFDBnXARuqMvKk3GMcBFjDndbeJLpsFoDx
- PtMgpGjkK1GI9sF9/Qp44O29CRC0z8UuG5YoOLCpobnnD/U73AoDD/M5FX4pVk1A=
-X-Received: by 2002:a05:600c:474f:b0:421:10e4:7f6b with SMTP id
- 5b1f17b1804b1-42110e47fd9mr36926235e9.27.1716809036236; 
- Mon, 27 May 2024 04:23:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEikC1MDgYWGSkvxnXWs44q8PtsKnEAug1a4E0ySEMd1oLjB/kkI4c5l3efqErU0u/TQoTByQ==
-X-Received: by 2002:a05:600c:474f:b0:421:10e4:7f6b with SMTP id
- 5b1f17b1804b1-42110e47fd9mr36926025e9.27.1716809035839; 
- Mon, 27 May 2024 04:23:55 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:ee94:abf:b8ff:feee:998b?
- ([2a02:810d:4b3f:ee94:abf:b8ff:feee:998b])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-421089708f8sm105016995e9.20.2024.05.27.04.23.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 May 2024 04:23:55 -0700 (PDT)
-Message-ID: <59d4bf96-9a94-4e2c-9636-81e79d572438@redhat.com>
-Date: Mon, 27 May 2024 13:23:53 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BB2E112AA4;
+ Wed,  3 Apr 2024 12:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1712147822; x=1743683822;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Gz4IMh43tlqJQMtkQNAmSURtoItRp7LuOPT/d9igbhs=;
+ b=Re8F0gkyxNMG91bQSCmM+sumsuhc/4ehQlP89bNusxXv2SWnXzgjJPFK
+ CLz9kMrGiZewa9C3EdKrNDfRcCrYpPbsat1ytgRlBd62M2VDY1LD+Ppia
+ NDTPfLXiUyQLLgXOSSqOQNJyk3X5i0ksIV9GXnhbegDabHOVxRjkAl+L9
+ 1ZUb0wesnfVDgV3xE0Vkh7pPrQZ9rTHY/OMJpRIVlgvpfqVym6UYOocSe
+ 3WRhKo6d+rlL8wZsHZRVd2l+HJsOaVAjR7TIu82r0UCES6uFWFbRoobwk
+ thIu8GRCft8GFjQQxP3XI20hTDJmOw5HsiI8BC9C8GmiaPYY0NQsXtZx4 w==;
+X-CSE-ConnectionGUID: 9buRWh2zSkumz/QaT0a9MQ==
+X-CSE-MsgGUID: 3jpF2ZTeT7mDQpkXQ84gEg==
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="32764450"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="32764450"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2024 05:36:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11033"; a="827789899"
+X-IronPort-AV: E=Sophos;i="6.07,177,1708416000"; d="scan'208";a="827789899"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga001.jf.intel.com with SMTP; 03 Apr 2024 05:36:43 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Wed, 03 Apr 2024 15:36:43 +0300
+Date: Wed, 3 Apr 2024 15:36:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+Cc: Easwar Hariharan <eahariha@linux.microsoft.com>,
+	Alex Deucher <alexander.deucher@amd.com>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	"Pan, Xinhui" <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+	Rodrigo Siqueira <Rodrigo.Siqueira@amd.com>,
+	Evan Quan <evan.quan@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+	Candice Li <candice.li@amd.com>, Ran Sun <sunran001@208suo.com>,
+	Alexander Richards <electrodeyt@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Hamza Mahfooz <hamza.mahfooz@amd.com>,
+	Ruan Jinjie <ruanjinjie@huawei.com>, Alan Liu <haoping.liu@amd.com>,
+	Aurabindo Pillai <aurabindo.pillai@amd.com>,
+	Wayne Lin <wayne.lin@amd.com>, Samson Tam <samson.tam@amd.com>,
+	Alvin Lee <alvin.lee2@amd.com>, Charlene Liu <charlene.liu@amd.com>,
+	Sohaib Nadeem <sohaib.nadeem@amd.com>,
+	Lewis Huang <lewis.huang@amd.com>,
+	Tom Chung <chiahsuan.chung@amd.com>,
+	Bhawanpreet Lakha <Bhawanpreet.Lakha@amd.com>,
+	Meenakshikumar Somasundaram <meenakshikumar.somasundaram@amd.com>,
+	George Shen <george.shen@amd.com>, Aric Cyr <aric.cyr@amd.com>,
+	Jun Lei <jun.lei@amd.com>,
+	Nicholas Kazlauskas <nicholas.kazlauskas@amd.com>,
+	Qingqing Zhuo <Qingqing.Zhuo@amd.com>,
+	Dillon Varone <dillon.varone@amd.com>, Le Ma <Le.Ma@amd.com>,
+	Lijo Lazar <lijo.lazar@amd.com>, Asad kamal <asad.kamal@amd.com>,
+	Kenneth Feng <kenneth.feng@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+	Mario Limonciello <mario.limonciello@amd.com>,
+	Yang Wang <kevinyang.wang@amd.com>,
+	Darren Powell <darren.powell@amd.com>,
+	Yifan Zhang <yifan1.zhang@amd.com>,
+	"open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+	"open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+	open list <linux-kernel@vger.kernel.org>, Wolfram@freedesktop.org,
+	"Sang <wsa+renesas"@sang-engineering
+Subject: Re: [PATCH v0 02/14] drm/amdgpu,drm/radeon: Make I2C terminology
+ more inclusive
+Message-ID: <Zg1NW0jqwFn4lvEP@intel.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-3-eahariha@linux.microsoft.com>
+ <Zgb3VYsgLjhJ2HKs@ashyti-mobl2.lan>
+ <ceeaafe1-49d5-4602-8251-eed63a1be2b6@linux.microsoft.com>
+ <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] drm/nouveau/nvif: Avoid build error due to potential
- integer overflows
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>,
- Kees Cook <keescook@chromium.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Joe Perches <joe@perches.com>, David Airlie <airlied@gmail.com>
-References: <20240524134817.1369993-1-linux@roeck-us.net>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <20240524134817.1369993-1-linux@roeck-us.net>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zgb8gieDzZtZmg2q@ashyti-mobl2.lan>
+X-Patchwork-Hint: comment
+X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:10 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,110 +111,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 5/24/24 15:48, Guenter Roeck wrote:
-> Trying to build parisc:allmodconfig with gcc 12.x or later results
-> in the following build error.
+On Fri, Mar 29, 2024 at 06:38:10PM +0100, Andi Shyti wrote:
+> Hi,
 > 
-> drivers/gpu/drm/nouveau/nvif/object.c: In function 'nvif_object_mthd':
-> drivers/gpu/drm/nouveau/nvif/object.c:161:9: error:
-> 	'memcpy' accessing 4294967264 or more bytes at offsets 0 and 32 overlaps 6442450881 bytes at offset -2147483617 [-Werror=restrict]
->    161 |         memcpy(data, args->mthd.data, size);
->        |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> drivers/gpu/drm/nouveau/nvif/object.c: In function 'nvif_object_ctor':
-> drivers/gpu/drm/nouveau/nvif/object.c:298:17: error:
-> 	'memcpy' accessing 4294967240 or more bytes at offsets 0 and 56 overlaps 6442450833 bytes at offset -2147483593 [-Werror=restrict]
->    298 |                 memcpy(data, args->new.data, size);
+> On Fri, Mar 29, 2024 at 10:28:14AM -0700, Easwar Hariharan wrote:
+> > On 3/29/2024 10:16 AM, Andi Shyti wrote:
+> > > Hi Easwar,
+> > > 
+> > > On Fri, Mar 29, 2024 at 05:00:26PM +0000, Easwar Hariharan wrote:
+> > >> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> > > 
+> > > I don't understand why we forget that i3c is 1.1.1 :-)
+> > 
+> > That's because it's a copy-paste error from Wolfram's cover letter. :) I'll update
+> > next go-around.
 > 
-> gcc assumes that 'sizeof(*args) + size' can overflow, which would result
-> in the problem.
+> not a binding comment, though. Just for completeness, because we
+> are giving the version to the i2c and smbus, but not i3c.
 > 
-> The problem is not new, only it is now no longer a warning but an error
-> since W=1 has been enabled for the drm subsystem and since Werror is
-> enabled for test builds.
+> > >> with more appropriate terms. Inspired by and following on to Wolfram's
+> > >> series to fix drivers/i2c/[1], fix the terminology for users of
+> > >> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> > >> in the specification.
+> > > 
+> > > The specification talks about:
+> > > 
+> > >  - master -> controller
+> > >  - slave -> target (and not client)
+> > > 
+> > > But both you and Wolfram have used client. I'd like to reach
+> > > some more consistency here.
+> > 
+> > I had the impression that remote targets (i.e external to the device) were to be called clients,
+> > e.g. the QSFP FRUs in drivers/infiniband, and internal ones targets.
+> > I chose the terminology according to that understanding, but now I can't find where I got that
+> > information.
 > 
-> Rearrange arithmetic and use check_add_overflow() for validating the
-> allocation size to avoid the overflow. While at it, split assignments
-> out of if conditions.
+> The word "client" does not even appear in the documentation (only
+> one instance in the i3c document), so that the change is not
+> related to the document as stated in the commit log. Unless, of
+> course, I am missing something.
 > 
-> Fixes: a61ddb4393ad ("drm: enable (most) W=1 warnings by default across the subsystem")
-> Cc: Javier Martinez Canillas <javierm@redhat.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Kees Cook <keescook@chromium.org>
-> Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> Cc: Joe Perches <joe@perches.com>
-> Reviewed-by: Kees Cook <keescook@chromium.org>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> I'm OK with choosing a "customized" naming, but we need to reach
+> an agreement.
+> 
+> I raised the same question to Wolfram.
 
-Applied to drm-misc-fixes, thanks!
+I don't know where that discussion happened, but my opinion
+is NAK to "client". Life is already confusing enough with
+these renames, so let's not make it even more confusing by
+inventing new names nowhere to be found in the spec.
 
-> ---
-> v3: Split assignments from if conditions.
-> v2: Use check_add_overflow() to calculate the allocation size and to check
->      for overflows.
-> 
->   drivers/gpu/drm/nouveau/nvif/object.c | 24 ++++++++++++++++++------
->   1 file changed, 18 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvif/object.c b/drivers/gpu/drm/nouveau/nvif/object.c
-> index 4d1aaee8fe15..1d19c87eaec1 100644
-> --- a/drivers/gpu/drm/nouveau/nvif/object.c
-> +++ b/drivers/gpu/drm/nouveau/nvif/object.c
-> @@ -142,11 +142,16 @@ nvif_object_mthd(struct nvif_object *object, u32 mthd, void *data, u32 size)
->   		struct nvif_ioctl_v0 ioctl;
->   		struct nvif_ioctl_mthd_v0 mthd;
->   	} *args;
-> +	u32 args_size;
->   	u8 stack[128];
->   	int ret;
->   
-> -	if (sizeof(*args) + size > sizeof(stack)) {
-> -		if (!(args = kmalloc(sizeof(*args) + size, GFP_KERNEL)))
-> +	if (check_add_overflow(sizeof(*args), size, &args_size))
-> +		return -ENOMEM;
-> +
-> +	if (args_size > sizeof(stack)) {
-> +		args = kmalloc(args_size, GFP_KERNEL);
-> +		if (!args)
->   			return -ENOMEM;
->   	} else {
->   		args = (void *)stack;
-> @@ -157,7 +162,7 @@ nvif_object_mthd(struct nvif_object *object, u32 mthd, void *data, u32 size)
->   	args->mthd.method = mthd;
->   
->   	memcpy(args->mthd.data, data, size);
-> -	ret = nvif_object_ioctl(object, args, sizeof(*args) + size, NULL);
-> +	ret = nvif_object_ioctl(object, args, args_size, NULL);
->   	memcpy(data, args->mthd.data, size);
->   	if (args != (void *)stack)
->   		kfree(args);
-> @@ -276,7 +281,15 @@ nvif_object_ctor(struct nvif_object *parent, const char *name, u32 handle,
->   	object->map.size = 0;
->   
->   	if (parent) {
-> -		if (!(args = kmalloc(sizeof(*args) + size, GFP_KERNEL))) {
-> +		u32 args_size;
-> +
-> +		if (check_add_overflow(sizeof(*args), size, &args_size)) {
-> +			nvif_object_dtor(object);
-> +			return -ENOMEM;
-> +		}
-> +
-> +		args = kmalloc(args_size, GFP_KERNEL);
-> +		if (!args) {
->   			nvif_object_dtor(object);
->   			return -ENOMEM;
->   		}
-> @@ -293,8 +306,7 @@ nvif_object_ctor(struct nvif_object *parent, const char *name, u32 handle,
->   		args->new.oclass = oclass;
->   
->   		memcpy(args->new.data, data, size);
-> -		ret = nvif_object_ioctl(parent, args, sizeof(*args) + size,
-> -					&object->priv);
-> +		ret = nvif_object_ioctl(parent, args, args_size, &object->priv);
->   		memcpy(data, args->new.data, size);
->   		kfree(args);
->   		if (ret == 0)
+And let's especially not invent names that don't even fit
+the purpose. "Client" makes me think of "client/server" or
+some real world analogy. Neither of which seem to have any
+resemblence to how the term would be used for i2c.
 
+-- 
+Ville Syrjälä
+Intel
