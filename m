@@ -4,49 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE683C4345F
-	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 761FCC4345F
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 962C710F92F;
-	Fri, 12 Apr 2024 23:09:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A49B510F937;
+	Fri, 12 Apr 2024 23:09:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ispras.ru header.i=@ispras.ru header.b="bN8ChonH";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="C0d1SRjy";
 	dkim-atps=neutral
-Received: from mail.ispras.ru (mail.ispras.ru [83.149.199.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13A4210EA45;
- Wed, 10 Apr 2024 15:39:13 +0000 (UTC)
-Received: from [10.240.168.185] (unknown [178.176.73.225])
- by mail.ispras.ru (Postfix) with ESMTPSA id 841D74076735;
- Wed, 10 Apr 2024 15:39:09 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.ispras.ru 841D74076735
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ispras.ru;
- s=default; t=1712763550;
- bh=xQKnhyAxfz2O94v4XYI3za4g+mMCNJTNwLCL1CPF8Ok=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=bN8ChonH1inQLvXBDq36U8i+WC0O2pHHPJZfyfYM7wlLgdot/eojoCS4wURkL4Ebp
- tDwbqg7+qnK6nKWLjpgvGHTY22886SDRtiz2SjKSQ8nmLLU5VYHo63IP+yAbAKze0+
- 4b2lbeBNkcT9LGmUJGit/D/YIpEXp+TIZ9uEcCI4=
-Message-ID: <624ee851-162b-4490-8444-0d9e06b5863b@ispras.ru>
-Date: Wed, 10 Apr 2024 18:39:35 +0300
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5815810EB62;
+ Fri,  5 Apr 2024 17:09:07 +0000 (UTC)
+Received: from [100.64.217.16] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id C079220E98C5;
+ Fri,  5 Apr 2024 10:09:06 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com C079220E98C5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+ s=default; t=1712336947;
+ bh=8/pqkmLMlPcre5fV5qkvKEs/2rR9bcZxNm4kNFHWSjQ=;
+ h=Date:Subject:To:References:From:In-Reply-To:From;
+ b=C0d1SRjyurGtxNvhWTTmtbPSCA+yIp/OoN3XC/p90jKg2/Te57kQIcZHNpxQ3N2VQ
+ sXQcWE6qovKVAf63szhiTG9qVBhLM1mFp1anVH+P8e81uOq0H+Hm08czNqSAQAwLsT
+ RqFrEA3QupgZYOJZGbxAxqLnmILZ6wWm5h9HB87o=
+Message-ID: <3bd8d2f6-dfe1-479f-bff1-f2921b1940ed@linux.microsoft.com>
+Date: Fri, 5 Apr 2024 10:09:05 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm: nv04: Add check to avoid out of bounds access
-To: Danilo Krummrich <me@dakr.org>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>
-Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Francisco Jerez <currojerez@riseup.net>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, Fedor Pchelkin <pchelkin@ispras.ru>,
- Alexey Khoroshilov <khoroshilov@ispras.ru>
-References: <20240331064552.6112-1-m.kobuk@ispras.ru>
- <c3253f8a-e654-4016-b0c6-d92703107c48@redhat.com>
- <11096e558e67f2fea2aee976c70a19af1b7c212b.camel@redhat.com>
- <03263130-0627-45c4-ab14-aa0e3b597442@dakr.org>
-Content-Language: en-US
-From: Mikhail Kobuk <m.kobuk@ispras.ru>
-In-Reply-To: <03263130-0627-45c4-ab14-aa0e3b597442@dakr.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v0 00/14] Make I2C terminology more inclusive for I2C
+ Algobit and consumers
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
+ "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>,
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>,
+ "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
+ "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
+ "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
+Content-Language: en-CA
+From: Easwar Hariharan <eahariha@linux.microsoft.com>
+In-Reply-To: <ffumcagmzdstcf3qcn3f26555pnu7i6azjppciyd4zvcoit7pv@vu262tsfnqyr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:09 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,110 +67,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 08/04/2024 16:23, Danilo Krummrich wrote:
-> On 4/5/24 22:05, Lyude Paul wrote:
->> On Fri, 2024-04-05 at 17:53 +0200, Danilo Krummrich wrote:
->>> On 3/31/24 08:45, Mikhail Kobuk wrote:
->>>> Output Resource (dcb->or) value is not guaranteed to be non-zero
->>>> (i.e.
->>>> in drivers/gpu/drm/nouveau/nouveau_bios.c, in
->>>> 'fabricate_dcb_encoder_table()'
->>>> 'dcb->or' is assigned value '0' in call to
->>>> 'fabricate_dcb_output()').
->>>
->>> I don't really know much about the semantics of this code.
->>>
->>> Looking at fabricate_dcb_output() though I wonder if the intention
->>> was to assign
->>> BIT(or) to entry->or.
->>>
->>> @Lyude, can you help here?
->> 
->> This code is definitely a bit before my time as well - but I think
->> you're completely correct. Especially considering this bit I found in
->> nouveau_bios.h:
+Hi Wolfram,
+
+On 4/5/2024 3:18 AM, Wolfram Sang wrote:
+> Hello Easwar,
 > 
-> Thanks for confirming.
+> On Fri, Mar 29, 2024 at 05:00:24PM +0000, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by and following on to Wolfram's
+>> series to fix drivers/i2c/[1], fix the terminology for users of the
+>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>> in the specification.
 > 
-> @Mikhail, I think we should rather fix this assignment then.
+> I really appreciate that you want to assist in this task to improve the
+> I2C core. I do. I am afraid, however, that you took the second step
+> before the first one, though. As I mentioned in my original cover
+> letter, this is not only about renaming but also improving the I2C API
+> (splitting up header files...). So, drivers are not a priority right
+> now. They can be better fixed once the core is ready.
+>
 
-Thank you all for a thorough look!
+Sorry, got excited. :) There were drivers I'd been part of that I specifically
+wanted to fixup, but then the scope grew to other users of algobit.
 
+> It is true that I changed quite some controller drivers within the i2c
+> realm. I did this to gain experience. As you also noticed quite some
+> questions came up. We need to agree on answers first. And once we are
+> happy with the answers we found, then IMO we can go outside of the i2c
+> realm and send patches to other subsystems referencing agreed
+> precedence. I intentionally did not go outside i2c yet. Since your
+> patches are already there, you probably want to foster them until they
+> are ready for inclusion.
+
+Sorry, I don't quite follow what you mean by foster in this context. Are
+you asking me to hold off on merging the series, or to follow through on
+getting it merged?
+
+ Yet, regarding further patches, my suggestion
+> is to wait until the core is ready. That might take a while, though.
+> However, there is enough to discuss until the core is ready. So, your
+> collaboration there is highly appreciated!
 > 
-> - Danilo
+>> The last patch updating the .master_xfer method to .xfer depends on
+>> patch 1 of Wolfram's series below, but the series is otherwise
+>> independent. It may make sense for the last patch to go in with
 > 
->> 
->> enum nouveau_or {
->> 	DCB_OUTPUT_A = (1 << 0),
->> 	DCB_OUTPUT_B = (1 << 1),
->> 	DCB_OUTPUT_C = (1 << 2)
->> };
->> 
->> 
+> Please drop the last patch from this series. It will nicely remove the
+> dependency. Also, like above, I first want to gain experience with i2c
+> before going to other subsystems. That was intended.
+>
 
-Considering this code bit, and the fact that fabricate_dcb_output() is 
-called in drivers/gpu/drm/nouveau/nouveau_bios.c only, there's option to 
-adjust function calls instead of adding BIT(or), i.e.:
+Will do, thanks!
 
-fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 0, all_heads, DCB_OUTPUT_B);
-
-instead of current:
-
-fabricate_dcb_output(dcb, DCB_OUTPUT_TMDS, 0, all_heads, 1);
-
-and etc.
-
-Should I make a new patch with adjusted calls or stick with BIT(or)?
-
->>>
->>> Otherwise, for parsing the DCB entries, it seems that the bound
->>> checks are
->>> happening in olddcb_outp_foreach() [1].
->>>
->>> [1]
->>> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/nouveau/nouveau_bios.c#L1331
->>>
->>>>
->>>> Add check to validate 'dcb->or' before it's used.
->>>>
->>>> Found by Linux Verification Center (linuxtesting.org) with SVACE.
->>>>
->>>> Fixes: 2e5702aff395 ("drm/nouveau: fabricate DCB encoder table for
->>>> iMac G4")
->>>> Signed-off-by: Mikhail Kobuk <m.kobuk@ispras.ru>
->>>> ---
->>>>    drivers/gpu/drm/nouveau/dispnv04/dac.c | 4 ++--
->>>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/nouveau/dispnv04/dac.c
->>>> b/drivers/gpu/drm/nouveau/dispnv04/dac.c
->>>> index d6b8e0cce2ac..0c8d4fc95ff3 100644
->>>> --- a/drivers/gpu/drm/nouveau/dispnv04/dac.c
->>>> +++ b/drivers/gpu/drm/nouveau/dispnv04/dac.c
->>>> @@ -428,7 +428,7 @@ void nv04_dac_update_dacclk(struct drm_encoder
->>>> *encoder, bool enable)
->>>>    	struct drm_device *dev = encoder->dev;
->>>>    	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
->>>>    
->>>> -	if (nv_gf4_disp_arch(dev)) {
->>>> +	if (nv_gf4_disp_arch(dev) && ffs(dcb->or)) {
->>>>    		uint32_t *dac_users = &nv04_display(dev)-
->>>>> dac_users[ffs(dcb->or) - 1];
->>>>    		int dacclk_off = NV_PRAMDAC_DACCLK +
->>>> nv04_dac_output_offset(encoder);
->>>>    		uint32_t dacclk = NVReadRAMDAC(dev, 0,
->>>> dacclk_off);
->>>> @@ -453,7 +453,7 @@ bool nv04_dac_in_use(struct drm_encoder
->>>> *encoder)
->>>>    	struct drm_device *dev = encoder->dev;
->>>>    	struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
->>>>    
->>>> -	return nv_gf4_disp_arch(encoder->dev) &&
->>>> +	return nv_gf4_disp_arch(encoder->dev) && ffs(dcb->or) &&
->>>>    		(nv04_display(dev)->dac_users[ffs(dcb->or) - 1] &
->>>> ~(1 << dcb->index));
->>>>    }
->>>>    
->>>
->> 
+> All the best and happy hacking,
+> 
+>    Wolfram
+> 
 
