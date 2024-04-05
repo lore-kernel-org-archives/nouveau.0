@@ -4,69 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E94EBC4345F
-	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2353AC4345F
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9B710F91F;
-	Fri, 12 Apr 2024 23:09:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF04310F928;
+	Fri, 12 Apr 2024 23:09:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DWioxHIz";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="DvATwmVZ";
 	dkim-atps=neutral
 Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
- by gabe.freedesktop.org (Postfix) with ESMTP id C70C610FF50;
- Tue,  2 Apr 2024 18:19:05 +0000 (UTC)
-Received: from [100.64.232.220] (unknown [20.29.225.195])
- by linux.microsoft.com (Postfix) with ESMTPSA id 44D9220E8BDC;
- Tue,  2 Apr 2024 11:19:04 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 44D9220E8BDC
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7EBB410E782;
+ Fri,  5 Apr 2024 16:30:15 +0000 (UTC)
+Received: from [100.64.217.16] (unknown [20.29.225.195])
+ by linux.microsoft.com (Postfix) with ESMTPSA id 6099820E98B9;
+ Fri,  5 Apr 2024 09:30:14 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 6099820E98B9
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
- s=default; t=1712081945;
- bh=6CxfCTy2hvljG0KtnNfE1+yaCZUecQ3XXshhsgNm9Uw=;
+ s=default; t=1712334614;
+ bh=w130JaeBPpS+L9M4QU8ZQXXwRcANcq5ZUO69X1bKRmU=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=DWioxHIzgS3pFY1uvHRovezlPv1RdDLcO2IT9/uxBMLrPIYLmaifrAV+YozRfQao5
- rn7ZeC4782fWxJ68W1tiLG19p3MAqbIzFdJeAEkZWoLgMwgJMeelbVPX1Afg8R8m6u
- UVRz1yN/74Ux892MYhIq1XY0LntOnyafVlWsWEQ4=
-Message-ID: <75428d6c-c40a-43d8-84e3-f9ed161c37e2@linux.microsoft.com>
-Date: Tue, 2 Apr 2024 11:19:03 -0700
+ b=DvATwmVZCnu2mWeOkHNjSOn3NP+uGroDac1iSpu2wd+v3d//PQw85B2Bdx0Po6Lvd
+ ZjMGVuaZ73P4XTz+rG7byN35W0KUrpl5gZ3alXfZ8frHGqOGX4PxPO84VA9eudZIJk
+ 732o/mFjv1LuWV0m4a0o7Gs9Fy/VV5ERgAzWEo3E=
+Message-ID: <e6b04b76-c695-47b4-9432-f2316e174585@linux.microsoft.com>
+Date: Fri, 5 Apr 2024 09:30:13 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v0 03/14] drm/gma500,drm/i915: Make I2C terminology more
- inclusive
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Zhenyu Wang
- <zhenyuw@linux.intel.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- dri-devel@lists.freedesktop.org, open list <linux-kernel@vger.kernel.org>,
+Subject: Re: [PATCH v0 13/14] drm/nouveau: Make I2C terminology more inclusive
+To: Danilo Krummrich <dakr@redhat.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <dri-devel@lists.freedesktop.org>,
+ "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
+ <nouveau@lists.freedesktop.org>, open list <linux-kernel@vger.kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
  <intel-gfx@lists.freedesktop.org>,
  "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
  <intel-xe@lists.freedesktop.org>,
- "open list:INTEL GVT-g DRIVERS (Intel GPU Virtualization)"
- <intel-gvt-dev@lists.freedesktop.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- "open list:RADEON and AMDGPU DRM DRIVERS" <amd-gfx@lists.freedesktop.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>,
  "open list:I2C SUBSYSTEM HOST DRIVERS" <linux-i2c@vger.kernel.org>,
  "open list:BTTV VIDEO4LINUX DRIVER" <linux-media@vger.kernel.org>,
  "open list:FRAMEBUFFER LAYER" <linux-fbdev@vger.kernel.org>
 References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
- <20240329170038.3863998-4-eahariha@linux.microsoft.com>
- <87a5mcfbms.fsf@intel.com>
- <7d5e6ed0-ffe9-46c2-b3b4-a4a47c09532e@linux.microsoft.com>
- <87ttkjesx8.fsf@intel.com>
- <fde7a0da-1981-48db-95e2-96d45655c11c@linux.microsoft.com>
- <87o7aremfz.fsf@intel.com>
+ <20240329170038.3863998-14-eahariha@linux.microsoft.com>
+ <4dc6fb16-3d85-4a7f-85f9-ed249da0df1a@redhat.com>
 Content-Language: en-CA
 From: Easwar Hariharan <eahariha@linux.microsoft.com>
-In-Reply-To: <87o7aremfz.fsf@intel.com>
+In-Reply-To: <4dc6fb16-3d85-4a7f-85f9-ed249da0df1a@redhat.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:09 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -82,69 +70,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 4/2/2024 9:52 AM, Jani Nikula wrote:
-> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->> On 4/2/2024 7:32 AM, Jani Nikula wrote:
->>> On Tue, 02 Apr 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>>> On 4/2/2024 12:48 AM, Jani Nikula wrote:
->>>>> On Fri, 29 Mar 2024, Easwar Hariharan <eahariha@linux.microsoft.com> wrote:
->>>>>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
->>>>>> with more appropriate terms. Inspired by and following on to Wolfram's
->>>>>> series to fix drivers/i2c/[1], fix the terminology for users of
->>>>>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
->>>>>> in the specification.
->>>>>
->>>>> gma500 and i915 changes should be split. See MAINTAINERS.
->>>>>
->>>>> Might also split the i915 changes to smaller pieces, it's kind of
->>>>> random. And the changes here are not strictly related to I2C AFAICT, so
->>>>> the commit message should be updated.
->>>>>
->>>>> BR,
->>>>> Jani.
->>>>>
->>>>>
->>>>
->>>> <snip>
->>>>
->>>> I will split gma500 and i915 into their respective patches if possible in v2.
->>>>
->>>> Can you say more about the changes being "not strictly related to I2C"? My
->>>> heuristic was to grep for master/slave, and look in the surrounding context for
->>>> i2c-related terminology (i2c_pin, 7-bit address, struct i2c_adapter, i2c_bus, etc)
->>>> to confirm that they are i2c-related, then following the references around to
->>>> make the compiler happy. For e.g., I did not change the many references to bigjoiner
->>>> master and slave because I understood from context they were not i2c references.
->>>>
->>>> A couple examples would help me restrict the changes to I2C, since as mentioned in the
->>>> discussion on Wolfram's thread, there are places where migrating away from master/slave
->>>> terms in the code would conflict with the original technical manuals and reduce correlation
->>>> and understanding of the code.
->>>
->>> I guess I was looking at the VBT changes in intel_bios.c. Granted, they
->>> do end up being used as i2c addresses. No big deal.
->>>
->>> I think I'd expect the treewide i2c adapter changes to land first, via
->>> i2c, and subsequent cleanups to happen next, via individual driver
->>> trees. There's quite a bit of conflict potential merging this outside of
->>> drm-intel-next, and there's really no need for that.
->>>
->>> BR,
->>> Jani.
->>>
+On 4/5/2024 9:15 AM, Danilo Krummrich wrote:
+> Hi Easwar,
+> 
+> On 3/29/24 18:00, Easwar Hariharan wrote:
+>> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+>> with more appropriate terms. Inspired by and following on to Wolfram's
+>> series to fix drivers/i2c/[1], fix the terminology for users of
+>> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+>> in the specification.
 >>
->> Great! Just so I'm clear, do you still want the i915 changes split up more, along with them being
->> split off from gma500?
+>> Compile tested, no functionality changes intended
+>>
+>> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
+>>
+>> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+>> ---
+>>   drivers/gpu/drm/nouveau/dispnv04/dfp.c             | 14 +++++++-------
+>>   .../gpu/drm/nouveau/include/nvkm/subdev/bios/dcb.h |  2 +-
+>>   drivers/gpu/drm/nouveau/nouveau_bios.c             |  4 ++--
+>>   3 files changed, 10 insertions(+), 10 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/dispnv04/dfp.c b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> index d5b129dc623b..65b791006b19 100644
+>> --- a/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> +++ b/drivers/gpu/drm/nouveau/dispnv04/dfp.c
+>> @@ -149,7 +149,7 @@ void nv04_dfp_update_fp_control(struct drm_encoder *encoder, int mode)
+>>       }
+>>   }
+>>   -static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
+>> +static struct drm_encoder *get_tmds_client(struct drm_encoder *encoder)
+>>   {
+>>       struct drm_device *dev = encoder->dev;
+>>       struct dcb_output *dcb = nouveau_encoder(encoder)->dcb;
+>> @@ -172,7 +172,7 @@ static struct drm_encoder *get_tmds_slave(struct drm_encoder *encoder)
+>>           struct dcb_output *slave_dcb = nouveau_encoder(slave)->dcb;
+>>             if (slave_dcb->type == DCB_OUTPUT_TMDS && get_slave_funcs(slave) &&
+>> -            slave_dcb->tmdsconf.slave_addr == dcb->tmdsconf.slave_addr)
+>> +            slave_dcb->tmdsconf.client_addr == dcb->tmdsconf.client_addr)
+>>               return slave;
 > 
-> If we can merge the i915 changes via drm-intel-next, it's probably fine
-> as a big i915 patch. Just the gma500 separated. (The struct
-> i2c_algorithm change etc. necessarily has to go via I2C tree of course.)
+> While, personally, I think master/slave was well suiting for the device relationship
+> on those busses, I think that if we change it up to conform with the change in
+> specification, we should make sure to update drivers consistently.
 > 
-> BR,
-> Jani.
+> We should make sure to also change the names of the sourrounding structures and variable
+> names, otherwise we just make this code harder to read.
+> 
+> - Danilo
 > 
 
-Got it. I'll send the split out in v1 (not v2 as mentioned earlier) since this is v0.
+Thanks for the review, and for the appetite to go further! So we are on the same page, you would prefer
+renaming to controller/target like the feedback on other drm drivers (i915, gma500, radeon)?
 
 Thanks,
 Easwar
