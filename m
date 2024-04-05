@@ -4,50 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71A01C04FFE
-	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71BDCC4345F
+	for <nouveau@archiver.kernel.org>; Fri, 12 Apr 2024 23:09:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B5310F92C;
-	Fri, 12 Apr 2024 23:09:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B437110F931;
+	Fri, 12 Apr 2024 23:09:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=msys.ch header.i=@msys.ch header.b="MhDXmoaE";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VifUXvR5";
 	dkim-atps=neutral
-X-Greylist: delayed 328 seconds by postgrey-1.36 at gabe;
- Sun, 31 Mar 2024 16:53:26 UTC
-Received: from mx.msys.ch (hq.msys.ch [46.175.8.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A546710EC6B;
- Sun, 31 Mar 2024 16:53:26 +0000 (UTC)
-Content-Type: text/plain; charset=utf-8
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msys.ch; s=dkim;
- t=1711903675;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=NaN+o+c6PopybeUgoomEUf/7EPalUAG6zQAbhrx7NpU=;
- b=MhDXmoaEPeUrgIT+8/JBR485GwX7FWwF4cRfth/ZeMYkzyYw14tK+w4HXP65bB+Dws9uC8
- zKt1nABzvkTCtGS8uV2hbixfT5QNARywXej4AvW26XoPPes74NPNln9Ek7EyauEX5zrzoY
- cAZZ12BHyGMb4gE+sJZr111hW1o/a4w=
-Authentication-Results: mx.msys.ch;
-	auth=pass smtp.mailfrom=marc@msys.ch
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93AC710EB8F;
+ Fri,  5 Apr 2024 15:41:15 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4162f7ea50cso6399805e9.3; 
+ Fri, 05 Apr 2024 08:41:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1712331674; x=1712936474; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vWae/TQVR4lDMRxTHKpFB8Vkf/PIFo/hlHy1KJVttno=;
+ b=VifUXvR5xab+VNxBPzVH1apw0GqirSUqXD0sW3jSflJBrW/2p25OiPqBq1PbwzARcS
+ Ymc3xY1B4epIghvMYz0JnoF3GOdI4dBc94WOnwcLClR8Q1TgBwyByIxv+gcDMqirJs4w
+ 0pgb/hI4/xotFmFfedNgpr9TuZ6kDxeQz1JZ9fCFGTZzwsw2cah14pJWttC48nSMNIHl
+ FRgK5n6W/Cec1MOAciuJIsjKp+qB7pWSqmQKocVI0s7smR5delKR9OoQFYR+6159yOBo
+ 8lIBXTU13JXaesECFVWQUq1nBOLT5rpu20GP23nPWnCIldT3XZd7+OqGdfi2wpIQynpb
+ df4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1712331674; x=1712936474;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=vWae/TQVR4lDMRxTHKpFB8Vkf/PIFo/hlHy1KJVttno=;
+ b=h60hl/zBR5uFjL1ebOYuYURoA8NB5+0fW/s+Y5XMnNkKyqhgzxv8w4Qeg/1qMSrHU7
+ HT6/JuLx0bNpHAgr10dG2gNbi2wV1SHnrPogSrI1xhV1Ay9M75y3LLMByqiW4uITXBTI
+ FlQTmIkvTrcS4ibTUxR/H+2vl+916NT7celmRYZ6ab3AKBmnSnahiTJD2wiXAbZCocIM
+ jMuW3OrVecBoX6xm3SCwaZIEr5tecoaJQQC9RFhtTJQcIvcLjUN/nf/UCuF3HZJSPWP9
+ OwfN46qUeTVPzbhP8yTdyT6jYNVrkoM1KHL9t8su1er0h49/IOqOB70B3XYcEBq+2mZp
+ r1qQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWudLql74iYGov2MbtDDP5IscQfKF32dEKNBDhc4qfDg5wd4t5u2pulf5VVBq96TbXYcKi4GtC0GYSLm6/awharU4ey9CeEQOptTTUyPtS3GDudmx6L91izC7BctwjrneAJltFSG9aUgR4zO5CFCJKnUHdl2gRbLXiprRIL+y66GFJrw1xjbhE5cmi1xpkx94TgEP3vKLkWtAhJ9GXomDAL6/5j2/pdpyvH/9vdyeLuHz8UFTw/j+zQ3kQrhILQVVDfKVMfBMDGF6xaj70Ymq/WLJlq5lVxDB2vllW5miJCUvbCDwPI60W3vLfiAJExzYhZhjl3Xos2sMXxfMbIJ/QTcAcUcYI68cXpIr8=
+X-Gm-Message-State: AOJu0YyHJwq2DT2IFV+MfrA6O5v/mo9EbIP7oj8EQugjUizIKqDxcp0f
+ 3omusJV61gqUP1SHVI0YTTLAoow9HSB4eb8dHq3mydAFDYRS/GqehUMF5kqhZwN6UHPIqEauFuQ
+ MzyuSbUHpTvajRExWRLd0welb/Fo=
+X-Google-Smtp-Source: AGHT+IEH9WiGdwQmFDR3UUpRkcaEXiGYsc+rbm05qeGkTnAd0VuAIEH5g2EodOENEkeRm+TdhthkOlf3f027HucPkCY=
+X-Received: by 2002:a05:600c:19cd:b0:416:2bef:ce81 with SMTP id
+ u13-20020a05600c19cd00b004162befce81mr1484706wmq.1.1712331657141; Fri, 05 Apr
+ 2024 08:40:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <202404052349.lQch9J7G-lkp@intel.com>
+In-Reply-To: <202404052349.lQch9J7G-lkp@intel.com>
+From: Alexei Starovoitov <alexei.starovoitov@gmail.com>
+Date: Fri, 5 Apr 2024 08:40:45 -0700
+Message-ID: <CAADnVQJXq1bSe20FgBN=BL1E5d8qOfLv_Ettq+724h5QfRuuKg@mail.gmail.com>
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 8568bb2ccc278f344e6ac44af6ed010a90aa88dc
+To: kernel test robot <lkp@intel.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, 
+ Linux Memory Management List <linux-mm@kvack.org>,
+ amd-gfx list <amd-gfx@lists.freedesktop.org>, 
+ bpf <bpf@vger.kernel.org>, dri-devel@lists.freedesktop.org, 
+ freedreno@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org, 
+ linux-arch <linux-arch@vger.kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, Linux-Renesas <linux-renesas-soc@vger.kernel.org>, 
+ nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-From: Marc Balmer <marc@msys.ch>
-Mime-Version: 1.0
-Subject: Re: 2024 X.Org Foundation Membership deadline for voting in the
- election
-Date: Sun, 31 Mar 2024 18:47:43 +0200
-Message-Id: <0A85708F-4DEA-4967-B135-9C1FCB2BDB41@msys.ch>
-References: <0a816356c382e4377953bba256e1275c779b220d.camel@igalia.com>
-Cc: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- libre-soc-dev@lists.libre-soc.org, elections@x.org, members@x.org,
- xorg@lists.freedesktop.org
-In-Reply-To: <0a816356c382e4377953bba256e1275c779b220d.camel@igalia.com>
-To: Ricardo Garcia <rgarcia@igalia.com>
-X-Spamd-Bar: --
 X-Mailman-Approved-At: Fri, 12 Apr 2024 23:09:09 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,33 +88,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-How often will you send this spam again?
+On Fri, Apr 5, 2024 at 8:37=E2=80=AFAM kernel test robot <lkp@intel.com> wr=
+ote:
+>
+> tree/branch: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-n=
+ext.git master
+> branch HEAD: 8568bb2ccc278f344e6ac44af6ed010a90aa88dc  Add linux-next spe=
+cific files for 20240405
+>
+> Error/Warning reports:
+>
+> https://lore.kernel.org/oe-kbuild-all/202404051333.7und7PPW-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404051423.eiaXLwhX-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404051659.aawUkGUQ-lkp@intel.com
+> https://lore.kernel.org/oe-kbuild-all/202404052022.Cwf2ilBp-lkp@intel.com
+>
+> Error/Warning: (recently discovered and may have been fixed)
+>
+> aarch64-linux-ld: kernel/bpf/verifier.c:20223:(.text+0xdbb4): undefined r=
+eference to `__SCK__perf_snapshot_branch_stack'
+> aarch64-linux-ld: verifier.c:(.text+0x17c3c): undefined reference to `__S=
+CK__perf_snapshot_branch_stack'
+> drivers/i2c/busses/i2c-i801.c:1407:(.text+0x1d2ef4a): undefined reference=
+ to `i2c_root_adapter'
+> kernel/bpf/verifier.c:20223:(.text+0xdba4): dangerous relocation: unsuppo=
+rted relocation
+> loongarch64-linux-ld: kernel/bpf/verifier.c:20223:(.text+0xa818): undefin=
+ed reference to `__SCK__perf_snapshot_branch_stack'
+> loongarch64-linux-ld: verifier.c:(.text+0xa964): undefined reference to `=
+__SCK__perf_snapshot_branch_stack'
+> mips64el-linux-ld: verifier.c:(.text.do_misc_fixups+0xd9c): undefined ref=
+erence to `__SCK__perf_snapshot_branch_stack'
+> riscv32-linux-ld: section .data LMA [00369000,00907967] overlaps section =
+.text LMA [0007899c,01a6a6af]
+> s390-linux-ld: verifier.c:(.text+0x13038): undefined reference to `__SCK_=
+_perf_snapshot_branch_stack'
+> verifier.c:(.text+0x17c14): relocation truncated to fit: R_AARCH64_ADR_PR=
+EL_PG_HI21 against undefined symbol `__SCK__perf_snapshot_branch_stack'
+> verifier.c:(.text+0xa960): undefined reference to `__SCK__perf_snapshot_b=
+ranch_stack'
+> verifier.c:(.text+0xadd0): dangerous relocation: unsupported relocation
+> verifier.c:(.text.do_misc_fixups+0xd98): undefined reference to `__SCK__p=
+erf_snapshot_branch_stack'
 
-> Am 31.03.2024 um 18:46 schrieb Ricardo Garcia <rgarcia@igalia.com>:
->=20
-> =EF=BB=BFThis is a reminder that the membership renewal period ends in 2 d=
-ays,
-> and elections will start after that. Please register as an X.Org
-> Foundation member to be able to vote in the upcoming elections. Thanks!
->=20
-> -Ricardo Garcia, on behalf of the X.Org elections committee.
->=20
->> On Tue, 2024-03-26 at 11:42 -0400, Christopher Michael wrote:
->> The 2024 X.Org Foundation membership renewal period has been extended
->> one additional week and elections will start the following week on 01
->> April 2024.
->>=20
->> Please note that only current members can vote in the upcoming election,
->> and that the deadline for new memberships or renewals to vote in the
->> upcoming election is 01 April 2024 at 23:59 UTC.
->>=20
->> If you are interested in joining the X.Org Foundation or in renewing
->> your membership, please visit the membership system site at:
->> https://members.x.org/
->>=20
->> Christopher Michael, on behalf of the X.Org elections committee
->>=20
->>=20
->>=20
->=20
-
+Fixed in bpf-next with commit:
+https://lore.kernel.org/all/20240405142637.577046-1-arnd@kernel.org/
