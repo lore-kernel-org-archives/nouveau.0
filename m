@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 392CEC05024
-	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:41:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E80DC4345F
+	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:41:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BDD0112F53;
-	Tue, 16 Apr 2024 23:41:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5F61112F5A;
+	Tue, 16 Apr 2024 23:41:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="okeAPFa0";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="XDymc2Wq";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2067.outbound.protection.outlook.com [40.107.93.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2A35112F52
- for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:41:52 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2073.outbound.protection.outlook.com [40.107.92.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F02E112F5A
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:41:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J7sY8InYkT27hp2vaNDZl21c2p2IxBAzyK/XdwjP1WshgI46HbzksOs72PAR8UACuYQ2Os8LPpOiZe3nFxr6oeXhwDAtioSRSSuQ/840H4a8uxMAkJ9qOV1Se9GqyQO4n3yIgw3JZQ9W3XwSgFpY79Nm+QPGKBHiT3hcBhx36dXJ2UYDBTUQLHWEpg8gjuKCNvAOlbIZzKFjbZrKwRUEOAAkEN4T8Z2Zvs65ScEsAcLdUTP34fwCTtueXSIHLpNqxhDr5nLoih3v+8j/yXlzEbWtqNX56V7sWPVx0nv6XfC8Tcybd5KSQNAHO0kW61o+/22zfH695OnmmDK+nU0SRw==
+ b=MV98SgeuN6h5WbwpoODyEkIMJGZGBT0koIMgeNdbxs2iRh0QreKG/LYg9xuIHk65ZSlo7b35XktB7tNLM0ceBUrlRvs/90iWLzHXyXaAWAxbxpf8tF4s8JTAT07w59OHHZtOLkwDr8W0hjveMbPFU5VOHOW3W5c10O9boyFSQbXQJZ2/nbR5FycIW/V7LP4o12K9y3TvKTKiJyQT6Zhb6wdutA1Nxc4y1eTn/sz9H/LZxxXI+8+2B7TQCAyDLsoIw5MXRPSZK5L75BiN/kg1iz2lCbwURre0slvWjfjR31/obIkWBY9iv/9XGu9oX7UNQeRvnYi7ry8uIBBa6n1HdA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Wwvt9u5xkQ3C4MB2obEflsWk8iFFcq8jMb55NRVq3bM=;
- b=mlrzJczWqMkid2SPLSM9dKWEyUkwx+Bs++LvI8M/kacg1uz6W1mx107GAlXFXDHOfSAABTkQo6Ex/rgu3FL3Dv+8Rwy8ZQ4yoc1c99IBcNscNcIAm9WImKSrrEV0BcYdLY4+Vxw9MFB2t27fgYDmuqPLxeG/wMfoqNp1C4gNt3AoKIadmsIkcaWVnh/je1J+uUWQqkpujZloroYgzdo+bU/cWUcfvHMUnHgFqeMJnTgbBXIehrZN/MLS5/FWDk+sJVkMNYXcQ4/VfNQj8yM8r7wceJxSaeIevxgKe0MtSnX1cro0xdtpI4nG10Li1qizPrgilRIWXnwYA1xuQO3IMA==
+ bh=GCuV/dJjn0Wtf9Xbn6jyiPhtdBslAVETr/sOP4OL/tE=;
+ b=hEdG6xTGAXfJLmKae30m5JvWo0zFttNsULXAqmJFn2uVzMggV6geHjX4Qi1D5wo5qoVPXyOMaLdjtL6MpNJ86OgP7aBtmfLwVhAyusym35npG+9KzoLD+pP6T/1ldlI7E2esXXOHNXwVslXMNlaOyDbYwAoFv7aIAFLGxAd7I+OLFe7wxfyQyvwyB52iPZZpLpR1FPPfzzXNPUhenmrkbLtzXZ3cWtaWb6nLFHuzMrc1pq49Vr8kIxBTNCvUQDWJaD1SUON6/arnJroliE2Fx6g5j68oY3hH70PWJeqdFSldrW4dVSlq/63STjx7oQHKtgq6Z4vKxpDg5lz8IrPeLQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Wwvt9u5xkQ3C4MB2obEflsWk8iFFcq8jMb55NRVq3bM=;
- b=okeAPFa0MwqVR1RZPHumB8RIw/I/q+JYLPAMzWBmLH0FcBWPvcegM8h0L5jqZk8uFFNCpDBGr9j2SwwDby8dmMfMW/kDcmvTK42bLJWXYY0VT4w1wTjExpdr+XOZ6p6wlWjnm2I3m1vZVvbZOCX3ZmUmA7A5YgRNRm6Elr2QjMqbIn55GePWmZT0lw8Xf75SIzlOBexBYkNhqbq9nGaWJLIclaT/r3qf9kgwBNi8AdKBUZqlceJGpcO3d3IAUsM1WvMFSS0nQzCd0xFC9oYko9EvaO4XXpsGc8ZiP5RR1gb5N/nTTsdNa3r1UBFMa9EahgNvSZeV5EBr8eoHYRsE/w==
-Received: from MN2PR16CA0045.namprd16.prod.outlook.com (2603:10b6:208:234::14)
- by SN7PR12MB8147.namprd12.prod.outlook.com (2603:10b6:806:32e::5)
+ bh=GCuV/dJjn0Wtf9Xbn6jyiPhtdBslAVETr/sOP4OL/tE=;
+ b=XDymc2WqayI1efnleh4Vz1CKOJUU5z0dHJl7anRGrcT7k33VO1UHGWlWrjcmNxDW0SEJuoZn4kpiW0fwGijGi6o7IjOJ50EwuA9AJLHGAK2EOhEQ0YnQ+Kha33kl5ZDno/rbAhl/BDlapz7z+pBIsIMlAZdasABX6NhR+vEGTtDj9C28BPiwHVvwnjnHOi4X0iASo4pRyfsMOkn++bZdBKNm6njVOp5g7IugyZ4ZVcX2YGffG6eFIWl01sMx4SbUNxzkWCTftiN15N6thBQrrKReJs90++Wov9PVP9ZVKi9Zi9OFeHVku7yR/x4nRqtagpUa/s4p7sEAMMV+3QIG4w==
+Received: from MN2PR19CA0025.namprd19.prod.outlook.com (2603:10b6:208:178::38)
+ by SJ0PR12MB6831.namprd12.prod.outlook.com (2603:10b6:a03:47d::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 23:41:48 +0000
-Received: from BN3PEPF0000B072.namprd04.prod.outlook.com
- (2603:10b6:208:234:cafe::62) by MN2PR16CA0045.outlook.office365.com
- (2603:10b6:208:234::14) with Microsoft SMTP Server (version=TLS1_2,
+ 2024 23:41:54 +0000
+Received: from BN3PEPF0000B076.namprd04.prod.outlook.com
+ (2603:10b6:208:178:cafe::fc) by MN2PR19CA0025.outlook.office365.com
+ (2603:10b6:208:178::38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.34 via Frontend
- Transport; Tue, 16 Apr 2024 23:41:48 +0000
+ Transport; Tue, 16 Apr 2024 23:41:53 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,24 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.160 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.160) by
- BN3PEPF0000B072.mail.protection.outlook.com (10.167.243.117) with Microsoft
+ BN3PEPF0000B076.mail.protection.outlook.com (10.167.243.121) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:41:47 +0000
+ 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:41:52 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 16 Apr
- 2024 16:41:23 -0700
+ 2024 16:41:31 -0700
 Received: from fedora.mshome.net (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Tue, 16 Apr
- 2024 16:41:22 -0700
+ 2024 16:41:30 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 046/156] drm/nouveau/nvkm: detach user handling from
- nvkm_fault_buffer
-Date: Wed, 17 Apr 2024 09:38:12 +1000
-Message-ID: <20240416234002.19509-47-bskeggs@nvidia.com>
+Subject: [PATCH 053/156] drm/nouveau/nvkm: rename struct nvkm_uchan
+Date: Wed, 17 Apr 2024 09:38:19 +1000
+Message-ID: <20240416234002.19509-54-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240416234002.19509-1-bskeggs@nvidia.com>
 References: <20240416234002.19509-1-bskeggs@nvidia.com>
@@ -79,26 +78,26 @@ X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B072:EE_|SN7PR12MB8147:EE_
-X-MS-Office365-Filtering-Correlation-Id: c7c4c46e-1cf2-41df-1745-08dc5e6ec861
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B076:EE_|SJ0PR12MB6831:EE_
+X-MS-Office365-Filtering-Correlation-Id: 275588b2-7975-473c-3520-08dc5e6ecb4d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zvE2y1gRqE0HDCVy2Y9TApLATWpigTQLMyA3Cb4sH85T068gNAoGKvhUVYm93kGAP57YrDMviTr02TCtu5IFCssZQPaKvuwFWbyMbTf37RSYcxgmLSYTdIFmM0I4WTUSsJ+WI1629SXno48zwWcEqnL+73Qk7qKmQD+E3ewE6PxvaeXnuPl8OCn3SMAWV00VZJ/nRkrPPneBHToipYM4UohPdM1WYyOw+a3OfiQqT2isJYUin9FNgOsLdAykPv2YdtCYkG6+vEP0HK8FdGkq++qxNCaFhWAdQoT+TquWmMQRiQMOBJ67QB+9DUYCWPRHoODMuvMAvwAhKD5yX5TvcsnBoPjOpeI4fRcyLvRJM/zvoXWn8Tf0NQZMQIeystTK0aQJo33M2VvIFBGz/k3kCzv0EAWql1FwVkCilg41pSEMaPYB1kyB/KgbcgHBv3IZK43NM7tuAA+ITEorFE0kyyHRfaBN8RfyoM3NdFqqV3GglqFmZkrtD58BkgJTfUWDteaAsJfXQAqkh3Y2X2/G01iVPgVtNw9VUueV1heIgLU6hEC4i93iHrVtbxnsfLgmNR1p8/oymn98JDlPo1XsI04ypqsMPQRU3J4GyQW4VQOeAVvtCwaKnj5dMUkKGc4uijB3lhp3mWU8qUp2Gx8lONyMLYk/SV3Jfg6sQVYjGE/8JBOsf2fll/F74RfF57ncCSuH1FQAaAEKdmQzOK+xgRIlbisbgYhB69BIHg8WgJCuCPuCAgunP64DciufEs8l
+X-Microsoft-Antispam-Message-Info: 0pDiMxykTXe8t6qHQcr9WpuA1B2y4lw2/phsPZCYwjkHO/wweS66E5pGGD4J6/jmMP+7tR3vp9bFq0qea/E+wOnF67wzaHHsRRerHL95amBZAImfRZz89nsuBl0aX5Rn3OX7W+Lb+w5IbyTFm+vLu4KSKyv3ru46CXDKUfdQ816V8UXQTjusNKb51gx8uhcTgTZgUaIMrSo1zFVYtQVcFs5NXtVvDA7ErSn7RXLEG5WyAoJhXwNROEUupXQ0Ytr7ZXep//UqpWfFkis4tkSEpg02qFdJF2nbigjC7XrOtkcQfv4sv5UAqmH5NMAIqRmifkanbTg1PSRtgHGg+6OaGV3JgRZFatiNuQ6JsFK6Be975wFLGEO/RoyfP6KUU/fHbdaxA2P2nxMq1QbXPbaCADe7YE8aV6TVlRlUiuFHzDEimQeJ9z9sKN308lW/TOCucTQnjxbNQIDCerQrJgA1NcqeBduGB6YUDJo6JCKR+47gki0iaOOqW5XXTLjzy3aQpD+060JKf3PUozE/J2AXZkUJme2V7FHRE1dl0z3ORvt4sLajajID5uDGIQ7wHH68s7RJIOtDRM8b2iNeLvUCmJxUIqmGJ+sEpHYWRIA0A3JWsi0HUBZg3mq4DTz5WA4NsPa6+jUDtGEmhco44hvwThu8qmi7pgnWu1DSyWlUEsE7T8BgfO+776LLMogFppi22Q3zBTU7vz/CXzWOaROHt4NzA33QkpoRmQU4Qos9xhgZkDKmYFA0LeNytfZ83yq/
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(36860700004)(376005)(82310400014)(1800799015); DIR:OUT;
+ SFS:(13230031)(82310400014)(36860700004)(1800799015)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:41:47.8956 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c7c4c46e-1cf2-41df-1745-08dc5e6ec861
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:41:52.7672 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 275588b2-7975-473c-3520-08dc5e6ecb4d
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B072.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B076.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8147
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6831
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,118 +113,115 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 - preparation for upcoming patches
-- open-code current nvkm_fault_buffer() macro
+- open-code current nvkm_uchan() macro
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- .../gpu/drm/nouveau/nvkm/subdev/fault/priv.h  |  2 --
- .../gpu/drm/nouveau/nvkm/subdev/fault/user.c  | 30 ++++++++++++++-----
- 2 files changed, 23 insertions(+), 9 deletions(-)
+ .../gpu/drm/nouveau/nvkm/engine/fifo/uchan.c  | 21 +++++++++----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/priv.h
-index a5510332c402..3c26e76d1d3c 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/priv.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/priv.h
-@@ -1,6 +1,5 @@
- #ifndef __NVKM_FAULT_PRIV_H__
- #define __NVKM_FAULT_PRIV_H__
--#define nvkm_fault_buffer(p) container_of((p), struct nvkm_fault_buffer, object)
- #define nvkm_fault(p) container_of((p), struct nvkm_fault, subdev)
- #include <subdev/fault.h>
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c
+index 9e56bcc166ed..3dbc424869b3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/uchan.c
+@@ -19,7 +19,6 @@
+  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  * OTHER DEALINGS IN THE SOFTWARE.
+  */
+-#define nvkm_uchan(p) container_of((p), struct nvkm_uchan, object)
+ #include "priv.h"
+ #include "cgrp.h"
+ #include "chan.h"
+@@ -33,7 +32,7 @@
  
-@@ -8,7 +7,6 @@
- #include <core/object.h>
+ #include <nvif/if0020.h>
  
- struct nvkm_fault_buffer {
--	struct nvkm_object object;
- 	struct nvkm_fault *fault;
- 	int id;
- 	int entries;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.c b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.c
-index c123e5893d76..6c3ede8b0321 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/fault/user.c
-@@ -28,10 +28,15 @@
- #include <nvif/clb069.h>
- #include <nvif/unpack.h>
- 
-+struct nvif_faultbuf_priv {
-+	struct nvkm_object object;
-+	struct nvkm_fault_buffer *buffer;
-+};
-+
+-struct nvkm_uchan {
++struct nvif_chan_priv {
+ 	struct nvkm_object object;
+ 	struct nvkm_chan *chan;
+ };
+@@ -41,7 +40,7 @@ struct nvkm_uchan {
  static int
- nvkm_ufault_uevent(struct nvkm_object *object, void *argv, u32 argc, struct nvkm_uevent *uevent)
+ nvkm_uchan_uevent(struct nvkm_object *object, void *argv, u32 argc, struct nvkm_uevent *uevent)
  {
--	struct nvkm_fault_buffer *buffer = nvkm_fault_buffer(object);
-+	struct nvkm_fault_buffer *buffer = container_of(object, struct nvif_faultbuf_priv, object)->buffer;
- 	union nvif_clb069_event_args *args = argv;
+-	struct nvkm_chan *chan = nvkm_uchan(object)->chan;
++	struct nvkm_chan *chan = container_of(object, struct nvif_chan_priv, object)->chan;
+ 	struct nvkm_runl *runl = chan->cgrp->runl;
+ 	union nvif_chan_event_args *args = argv;
  
- 	if (!uevent)
-@@ -47,7 +52,7 @@ static int
- nvkm_ufault_map(struct nvkm_object *object, void *argv, u32 argc,
- 		enum nvkm_object_map *type, u64 *addr, u64 *size)
+@@ -154,7 +153,7 @@ static int
+ nvkm_uchan_object_new(const struct nvkm_oclass *oclass, void *argv, u32 argc,
+ 		      struct nvkm_object **pobject)
  {
--	struct nvkm_fault_buffer *buffer = nvkm_fault_buffer(object);
-+	struct nvkm_fault_buffer *buffer = container_of(object, struct nvif_faultbuf_priv, object)->buffer;
- 	struct nvkm_device *device = buffer->fault->subdev.device;
- 	*type = NVKM_OBJECT_MAP_IO;
- 	*addr = device->func->resource_addr(device, 3) + buffer->addr;
-@@ -58,7 +63,9 @@ nvkm_ufault_map(struct nvkm_object *object, void *argv, u32 argc,
+-	struct nvkm_chan *chan = nvkm_uchan(oclass->parent)->chan;
++	struct nvkm_chan *chan = container_of(oclass->parent, struct nvif_chan_priv, object)->chan;
+ 	struct nvkm_cgrp *cgrp = chan->cgrp;
+ 	struct nvkm_engn *engn;
+ 	struct nvkm_uobj *uobj;
+@@ -203,7 +202,7 @@ nvkm_uchan_object_new(const struct nvkm_oclass *oclass, void *argv, u32 argc,
  static int
- nvkm_ufault_fini(struct nvkm_object *object, bool suspend)
+ nvkm_uchan_sclass(struct nvkm_object *object, int index, struct nvkm_oclass *oclass)
  {
--	struct nvkm_fault_buffer *buffer = nvkm_fault_buffer(object);
-+	struct nvif_faultbuf_priv *ufault = container_of(object, typeof(*ufault), object);
-+	struct nvkm_fault_buffer *buffer = ufault->buffer;
-+
- 	buffer->fault->func->buffer.fini(buffer);
- 	return 0;
- }
-@@ -66,7 +73,9 @@ nvkm_ufault_fini(struct nvkm_object *object, bool suspend)
+-	struct nvkm_chan *chan = nvkm_uchan(object)->chan;
++	struct nvkm_chan *chan = container_of(object, struct nvif_chan_priv, object)->chan;
+ 	struct nvkm_engn *engn;
+ 	int ret, runq = 0;
+ 
+@@ -255,7 +254,7 @@ static int
+ nvkm_uchan_map(struct nvkm_object *object, void *argv, u32 argc,
+ 	       enum nvkm_object_map *type, u64 *addr, u64 *size)
+ {
+-	struct nvkm_chan *chan = nvkm_uchan(object)->chan;
++	struct nvkm_chan *chan = container_of(object, struct nvif_chan_priv, object)->chan;
+ 	struct nvkm_device *device = chan->cgrp->runl->fifo->engine.subdev.device;
+ 
+ 	if (chan->func->userd->bar < 0)
+@@ -271,7 +270,7 @@ nvkm_uchan_map(struct nvkm_object *object, void *argv, u32 argc,
  static int
- nvkm_ufault_init(struct nvkm_object *object)
+ nvkm_uchan_fini(struct nvkm_object *object, bool suspend)
  {
--	struct nvkm_fault_buffer *buffer = nvkm_fault_buffer(object);
-+	struct nvif_faultbuf_priv *ufault = container_of(object, typeof(*ufault), object);
-+	struct nvkm_fault_buffer *buffer = ufault->buffer;
-+
- 	buffer->fault->func->buffer.init(buffer);
- 	return 0;
- }
-@@ -74,7 +83,7 @@ nvkm_ufault_init(struct nvkm_object *object)
+-	struct nvkm_chan *chan = nvkm_uchan(object)->chan;
++	struct nvkm_chan *chan = container_of(object, struct nvif_chan_priv, object)->chan;
+ 
+ 	nvkm_chan_block(chan);
+ 	nvkm_chan_remove(chan, true);
+@@ -285,7 +284,7 @@ nvkm_uchan_fini(struct nvkm_object *object, bool suspend)
+ static int
+ nvkm_uchan_init(struct nvkm_object *object)
+ {
+-	struct nvkm_chan *chan = nvkm_uchan(object)->chan;
++	struct nvkm_chan *chan = container_of(object, struct nvif_chan_priv, object)->chan;
+ 
+ 	if (atomic_read(&chan->errored))
+ 		return 0;
+@@ -301,7 +300,7 @@ nvkm_uchan_init(struct nvkm_object *object)
  static void *
- nvkm_ufault_dtor(struct nvkm_object *object)
+ nvkm_uchan_dtor(struct nvkm_object *object)
  {
--	return NULL;
-+	return container_of(object, struct nvif_faultbuf_priv, object);
+-	struct nvkm_uchan *uchan = nvkm_uchan(object);
++	struct nvif_chan_priv *uchan = container_of(object, typeof(*uchan), object);
+ 
+ 	nvkm_chan_del(&uchan->chan);
+ 	return uchan;
+@@ -323,7 +322,7 @@ nvkm_uchan_chan(struct nvkm_object *object)
+ 	if (WARN_ON(object->func != &nvkm_uchan))
+ 		return NULL;
+ 
+-	return nvkm_uchan(object)->chan;
++	return container_of(object, struct nvif_chan_priv, object)->chan;
  }
  
- static const struct nvkm_object_func
-@@ -94,6 +103,7 @@ nvkm_ufault_new(struct nvkm_device *device, const struct nvkm_oclass *oclass,
- 		struct nvif_clb069_v0 v0;
- 	} *args = argv;
- 	struct nvkm_fault *fault = device->fault;
-+	struct nvif_faultbuf_priv *ufault;
- 	struct nvkm_fault_buffer *buffer = fault->buffer[fault->func->user.rp];
- 	int ret = -ENOSYS;
+ int
+@@ -335,7 +334,7 @@ nvkm_uchan_new(struct nvkm_fifo *fifo, struct nvkm_cgrp *cgrp, const struct nvkm
+ 	struct nvkm_vmm *vmm = NULL;
+ 	struct nvkm_dmaobj *ctxdma = NULL;
+ 	struct nvkm_memory *userd = NULL;
+-	struct nvkm_uchan *uchan;
++	struct nvif_chan_priv *uchan;
+ 	struct nvkm_chan *chan;
+ 	int ret;
  
-@@ -104,7 +114,13 @@ nvkm_ufault_new(struct nvkm_device *device, const struct nvkm_oclass *oclass,
- 	} else
- 		return ret;
- 
--	nvkm_object_ctor(&nvkm_ufault, oclass, &buffer->object);
--	*pobject = &buffer->object;
-+	ufault = kzalloc(sizeof(*ufault), GFP_KERNEL);
-+	if (!ufault)
-+		return -ENOMEM;
-+
-+	nvkm_object_ctor(&nvkm_ufault, oclass, &ufault->object);
-+	ufault->buffer = fault->buffer[fault->func->user.rp];
-+
-+	*pobject = &ufault->object;
- 	return 0;
- }
 -- 
 2.41.0
 
