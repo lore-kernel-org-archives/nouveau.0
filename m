@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66062C4345F
-	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:41:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 391D1C05023
+	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:41:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60FF3112F29;
-	Tue, 16 Apr 2024 23:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85DDD112F2F;
+	Tue, 16 Apr 2024 23:41:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sKtuOOco";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EYXiW9mK";
 	dkim-atps=neutral
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com
- (mail-bn1nam02on2045.outbound.protection.outlook.com [40.107.212.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A5AC112F2A
- for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:41:08 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2050.outbound.protection.outlook.com [40.107.236.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2D0112F23
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:41:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eYdC4bCTJLSyN5LecvLgd4tlb3WTmXm+TxfpRUXNY+IPmqJozssUoP8y/D3wfe/SRH1DNO9uK+2m24w8cgpIOzRZYD6hmqVq+zfiJ3XKm4Bviu5jvCUq2O5eL7XDivdyFeKShNZ7osh5QsrUelzBTu1jYQ1FUxdohxJiYYOtz24qGMD3U7Bvs9ulsPTqHwzOO9sfmyWRJTuuQUmdFdxZqF9enLt4IZSX5pMpOlC2iw3eHR9iGYa4FsN1hIS1VZVIw49dDmOaNsRqPQWQbFfVDWGVdSJL6WsBjeE6piVpelFqydFWmaKf1fLZPHCaUkDdO11vn+hP/SZsYdBmhV4vyA==
+ b=UX4Y3Tw67trywspSugd9VDAprVEpqB94Kxghyi97XVAUZ8CuNF2Kpt9gwOEC5W98QII8dPcOirQNVe600myuu1HE1AuajBFHTzZZz60a1zVjk+r8zCg9Pmb6vLPu+5NfizTGTL6ZhJilMlcbXh/tpzeoHyX7J01B2Mn/O8WmWz+rpl4VkLMt3DT/bU61QmxSy4hebuLj8QClm1NAsvlOwC5TSW1f6g+Fag1BBzszWMx0Jqtq3fp8S7itUFYS8cziGtBcuiNjPQwZwsCSrTZSb8FZm7ae1bBt1D0Xqv0EFWVH9fpAaDcPZW+6a9xesehJcJn2SyQdL5nLEu9EAnQYMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J0aBrJPwpJlqyuzCoc04UosdEdL1e/BqBCBdVQKvr8I=;
- b=FpyO3SOiEljUv62LWhkJ3qf7u3SFp3zF2t2E2YTj0IwZtePkVO+h7ayy2+H+ft3EGpJ+cXx5TDBjzGDA2Ptm1Z7amVfukajNr8wl+IfsGAJl1BsUA8GgueKBk0OvYthnES+reRgdk9Yehc3E+ka+wbGS7RyUhy9JgEfhWOJ+zXDh5kLax3z53MZnRSPxTvr8CDKYB7f23RHZb5BjoDVJeq7rgqtdWxTrDfNHWCej7gpbYUl5skwi2yG8I7IYE2xG5KAny7vqqt2rPvO0HH57i41gqu2VVsaEzxzLbi6WCSLNSfeJddXLl+7HPbn1XWKUOPfAhMD0x/QdU67bf83C2g==
+ bh=jHv3jfOrCh/4lSh5CjTSEu+asGXNPzIyNgRqh74Ks+w=;
+ b=WObV5Jq8JPaAJJ5NPybc1ar0kKs5BKe37RdBZq8sPmvasMljsNKXHkrILh0Y4CcfYUKrJfzg4xqqHdeqeNgqGbu9bocYvqISSce6Lolb0soaVmpUW/tdlKml4PphuX5MH4dJIReMfBul3PJWZNZmOdUFdhQFXjCUSYXeq2AkKObyLEYtdXFafBp50/4Gd1kWgoGXaNUc8wfDz7X/yGbWlJMD1MgYmdPuMi+S1cR062tixkMO0+OqTsHnqIL/vct3WyjrtNndY25m85YRYIBIT3I67ZWb94/dCrq6VGETZAah6gzouthE7fKz371ohivreG4D1R0dPw3zijIwV86siQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J0aBrJPwpJlqyuzCoc04UosdEdL1e/BqBCBdVQKvr8I=;
- b=sKtuOOcoZfCVZ5132UYWc8GSCIeh+72sLkXSvs0LS/wGCGWhpCt3dqJWOYlwvLR4wBvyG5eK9oRgv/MADMr4CVMzhS5e63vJJZJJZNr6IjUrqF1Z8Oej3Od1H9nSOyMDBP35YhGzwH6w3WbQ/fqEspMOGmypwvwgfmOpQa740VWntEc4oaJdEPQVGKW4WokYDFJmhwceTAsEploUfQ/uJjRg2N2QyAnFyP9mEcUvAZv5B3e7YHiqMdl4JK5R9lhJOWEIprz+ZwzQy2VsekBFaRYfSNb+RSWc5EXUcl8M9cx83ISCOkeN8zuVXaVjKj1J+AzxNiAPEi5TdpOtFvcY0g==
-Received: from MN2PR16CA0064.namprd16.prod.outlook.com (2603:10b6:208:234::33)
- by SJ2PR12MB8941.namprd12.prod.outlook.com (2603:10b6:a03:542::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.43; Tue, 16 Apr
- 2024 23:41:05 +0000
-Received: from BN3PEPF0000B072.namprd04.prod.outlook.com
- (2603:10b6:208:234:cafe::e0) by MN2PR16CA0064.outlook.office365.com
- (2603:10b6:208:234::33) with Microsoft SMTP Server (version=TLS1_2,
+ bh=jHv3jfOrCh/4lSh5CjTSEu+asGXNPzIyNgRqh74Ks+w=;
+ b=EYXiW9mK0NFbcI6SYU4SZm5hMOGoX1KJncisBVJEnXybnb//QBJemPB0H7xyVu8091TyE5e2+yl/uiKD59h6nhax5bATnPyy/IsH8iGqH4TrK0x7DMlieYWxE+tM9mtnN9ToHohVDallaqSx+4LumPzJLpaJ15bKDeY6ReiZxRwoziEuKMOmL5QCJbeN3mAxU7dgru8Gx8EfCibKMn9XLkvZ3wYBIuvKFDMaspqcHJtTac3RHwTPfcWxy0hQsZhn3/NB8c7eD39yub+NKIgKsxCl7Vs/ZhkeIBL0PKWaGtys0erc7HFjPGhw3pSG2mO1KiSpjfRuNMGIoWQ0AroPyA==
+Received: from BN9PR03CA0064.namprd03.prod.outlook.com (2603:10b6:408:fc::9)
+ by CYYPR12MB9015.namprd12.prod.outlook.com (2603:10b6:930:c8::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
+ 2024 23:41:08 +0000
+Received: from BN3PEPF0000B078.namprd04.prod.outlook.com
+ (2603:10b6:408:fc:cafe::cb) by BN9PR03CA0064.outlook.office365.com
+ (2603:10b6:408:fc::9) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7472.34 via Frontend
- Transport; Tue, 16 Apr 2024 23:41:05 +0000
+ Transport; Tue, 16 Apr 2024 23:41:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,23 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.160 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.160) by
- BN3PEPF0000B072.mail.protection.outlook.com (10.167.243.117) with Microsoft
+ BN3PEPF0000B078.mail.protection.outlook.com (10.167.243.123) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:41:05 +0000
+ 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:41:07 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 16 Apr
- 2024 16:40:45 -0700
+ 2024 16:40:49 -0700
 Received: from fedora.mshome.net (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Tue, 16 Apr
- 2024 16:40:44 -0700
+ 2024 16:40:48 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 013/156] drm/nouveau: remove abi16->device
-Date: Wed, 17 Apr 2024 09:37:39 +1000
-Message-ID: <20240416234002.19509-14-bskeggs@nvidia.com>
+Subject: [PATCH 016/156] drm/nouveau: create pci device once
+Date: Wed, 17 Apr 2024 09:37:42 +1000
+Message-ID: <20240416234002.19509-17-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240416234002.19509-1-bskeggs@nvidia.com>
 References: <20240416234002.19509-1-bskeggs@nvidia.com>
@@ -78,26 +78,26 @@ X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN3PEPF0000B072:EE_|SJ2PR12MB8941:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11598014-2731-4ee8-d055-08dc5e6eaede
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B078:EE_|CYYPR12MB9015:EE_
+X-MS-Office365-Filtering-Correlation-Id: 38b1a85d-320d-44f2-f3d0-08dc5e6eb066
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vWtjQR2J2vzWD0alTMmJ0pCqwL1g8ZSPWlJnbcyzl40D5LYQVDzFBsxoZMHVM/6VgiJMVcqnHztLRxyN7nOHv0vHV2TdOR000/3HoMfgWc8rn1qj//tNvFZdMGVNG5zUhhULSl3Tq6qfNJzeqj56M4jLfiuDyvWEG/iv68MZBBN8ODoH51PgnCx4jlZXXU7GqtlH/NiDG/B/W0hOSI0EmCdM9LLyK0oik2IBFP8GSQXdfizSLVLFQxSnA57ciH5rBbuOMBXbTL+A8509PJVjeB5Fay6i3Em4cElqXk7RLkgeU/wykscjy5n1pyxHOvspp6ynWjTUtYmyncBF72ktypzq/NmrG8ksxFaT7hfwUv5POdYdp+Y43TDQbJfoH2/Y6Ko/FlGQC9Hx2D7T9EQvQ3xGsaHI2g53MIzgjHk+4+TGAY1G7Tyh7nuoOReClaoigqqN8LizhWZZHX2TI9JI5BRnwYO9EUA4vWQM53v/DI+ZXJlsxnUA8M4pCGcAotMRxGMoR1sfkAO+P+uFMRoyhbmCYEVHxKgX4ggrzXCdcwhVIqJn88BBRlP+godKq5Kg9pT5wvvB4M4codiSbURIqpqUhFJ+EQC4SN4MdALAROMuOYH+OEQqKbOLk4UKz/ITdNQAo7rOOr0cMpfRXURCAkOjQSKGMOv1kWzQSI9mEl84Kt+g2sJ8QiUsA8NRzbxfW12XIjRYS0lOBbbPgmjfHTdcUitr6qKPx0Tt1ApRWZW2uKlWm+B5q5G7rvlxkbD7
+X-Microsoft-Antispam-Message-Info: Q66yBBUJSdVTmIT1QqzBIZZTDTGSlsyBpTOObM2o1IVBlI4E2s81YRbF+muW8L/Geu4uFxTk1JFcZMf0Uz3rI13d4SMRglBrHPx4rM+Dnqmy6ZcFDO7JmSPH9p/CdH9A4LfOZvWaXHDLoxV+b//hyypvr8tluhgh39VCLurP2PU5e3qL4nK7uzb1y3D2jSGTk3/BOufJP1Arbsswx18jFSaryaJBlgxSU4tAdicIuhU7dobebXErjyVCYw7+xSGgilT+/IAUhSukLwUFayZhMFIV8HxqQuNed57N7dKimG1Ool8qja95C+ISY2FbmwA8P8Xr9vbTrO/JjXPMREGqUimOCMq35eSWjmW30l6FNh3n/i2Jn1qQU/K+KTSrcqZyX5u2QvrlfA7r84kGUk8ilE6v88a1sP9QsBnK/yVdd/A+W+9/AOv3XIY+wRY9Lczu5UOs1/Ns9cN1sCZMHUEkbbIVTtuheOX0XG67MIlpePG7nVmTFogmmUZH+ZtwiejJk5kLkj7YUyFUWCKfBp1gbsWtWYCW+mJAnJrRcBbOnh3n+TJxVbDnxW6WURuGN+Miv5H1KJMEqyv4STaimPo9jOXcaBJHkPgRGLjCv5q13KCN02re9RQME+7zTGJ+j5z6vPBNXZ9qo1o1F2kGbqNHRvAckj/cNv58gknGli2qdd0F4rHoWRB8QWou05kESf8LCmOirhspyooRF4yZ4ESOQWSjer4uD77KvDu/cUydBmBgxfDJGBN4d5qr4dbNRFD3
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(376005)(82310400014)(1800799015)(36860700004); DIR:OUT;
+ SFS:(13230031)(36860700004)(1800799015)(376005)(82310400014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:41:05.0987 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 11598014-2731-4ee8-d055-08dc5e6eaede
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:41:07.6687 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 38b1a85d-320d-44f2-f3d0-08dc5e6eb066
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B072.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: BN3PEPF0000B078.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8941
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR12MB9015
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,92 +112,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-- not used anymore other than device info, use drm->device instead
+HW isn't touched anymore (aside from detection) until the first
+nvif_device has been allocated, so we no longer need a separate
+probe-only step before kicking efifb (etc) off the HW.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 24 ++----------------------
- drivers/gpu/drm/nouveau/nouveau_abi16.h |  1 -
- 2 files changed, 2 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-index 5341d96ffc85..5ebd19ece13b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
-@@ -46,25 +46,9 @@ nouveau_abi16(struct drm_file *file_priv)
- 		struct nouveau_abi16 *abi16;
- 		cli->abi16 = abi16 = kzalloc(sizeof(*abi16), GFP_KERNEL);
- 		if (cli->abi16) {
--			struct nv_device_v0 args = {
--				.device = ~0ULL,
--			};
--
- 			abi16->cli = cli;
- 			INIT_LIST_HEAD(&abi16->channels);
- 			INIT_LIST_HEAD(&abi16->objects);
--
--			/* allocate device object targeting client's default
--			 * device (ie. the one that belongs to the fd it
--			 * opened)
--			 */
--			if (nvif_device_ctor(&cli->base.object, "abi16Device",
--					     0, NV_DEVICE, &args, sizeof(args),
--					     &abi16->device) == 0)
--				return cli->abi16;
--
--			kfree(cli->abi16);
--			cli->abi16 = NULL;
- 		}
- 	}
- 	return cli->abi16;
-@@ -235,9 +219,6 @@ nouveau_abi16_fini(struct nouveau_abi16 *abi16)
- 		nouveau_abi16_chan_fini(abi16, chan);
- 	}
- 
--	/* destroy the device object */
--	nvif_device_dtor(&abi16->device);
--
- 	kfree(cli->abi16);
- 	cli->abi16 = NULL;
- }
-@@ -351,7 +332,7 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
- 	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nouveau_abi16 *abi16 = nouveau_abi16_get(file_priv);
- 	struct nouveau_abi16_chan *chan;
--	struct nvif_device *device;
-+	struct nvif_device *device = &drm->device;
- 	u64 engine, runm;
- 	int ret;
- 
-@@ -368,7 +349,6 @@ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 8d34a4cf2900..9a4f2b0a8463 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -830,23 +830,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	/* We need to check that the chipset is supported before booting
+ 	 * fbdev off the hardware, as there's no way to put it back.
  	 */
- 	__nouveau_cli_disable_uvmm_noinit(cli);
+-	ret = nvkm_device_pci_new(pdev, nouveau_config, "error",
+-				  true, false, 0, &device);
++	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
++				  true, true, ~0ULL, &device);
+ 	if (ret)
+ 		return ret;
  
--	device = &abi16->device;
- 	engine = NV_DEVICE_HOST_RUNLIST_ENGINES_GR;
+-	nvkm_device_del(&device);
+-
+ 	/* Remove conflicting drivers (vesafb, efifb etc). */
+ 	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver_pci);
+ 	if (ret)
+ 		return ret;
  
- 	/* hack to allow channel engine type specification on kepler */
-@@ -634,7 +614,7 @@ nouveau_abi16_ioctl_notifierobj_alloc(ABI16_IOCTL_ARGS)
- 	struct nouveau_abi16 *abi16 = nouveau_abi16_get(file_priv);
- 	struct nouveau_abi16_chan *chan;
- 	struct nouveau_abi16_ntfy *ntfy;
--	struct nvif_device *device = &abi16->device;
-+	struct nvif_device *device = &drm->device;
- 	struct nvif_client *client;
- 	struct nv_dma_v0 args = {};
- 	int ret;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.h b/drivers/gpu/drm/nouveau/nouveau_abi16.h
-index 75a883a44e04..4743459ea14c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_abi16.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_abi16.h
-@@ -31,7 +31,6 @@ struct nouveau_abi16_chan {
+-	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
+-				  true, true, ~0ULL, &device);
+-	if (ret)
+-		return ret;
+-
+ 	pci_set_master(pdev);
  
- struct nouveau_abi16 {
- 	struct nouveau_cli *cli;
--	struct nvif_device device;
- 	struct list_head channels;
- 	u64 handles;
- 	struct list_head objects;
+ 	if (nouveau_atomic)
 -- 
 2.41.0
 
