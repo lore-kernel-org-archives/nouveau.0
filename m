@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DDCC04FF9
-	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:43:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3082C04FF6
+	for <nouveau@archiver.kernel.org>; Tue, 16 Apr 2024 23:43:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB1A0112FAF;
-	Tue, 16 Apr 2024 23:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83E5C112FAB;
+	Tue, 16 Apr 2024 23:43:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dhdb7JWn";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="d9ppt5oX";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2082.outbound.protection.outlook.com [40.107.93.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26C81112F6B
- for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:43:01 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2089.outbound.protection.outlook.com [40.107.236.89])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E321112FAE
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Apr 2024 23:43:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SbNVtVYwRSouoWsvxqjTVJfBhoogAUIuUP1eWfG1d404RJK7V1LXlU8SHKuxIsCnuM3aY9l/8TeIhnYEh33fOX1h1Wra2av1KxND3pS6As6V8kVAa0XZ/1TZYlAR94Tsd+IB8NqGAI0emlbhrbwspj7ON5zIw7k7XbGCXlkuiGPVvEqtXMqSyvUnZuGYMnt7QMa3TtWcov9rwGkgmey9GUK+e8ET7dTK3xgSjb+8s5uIUEazVtw5Z5J/JWcU5O37f9JsxY7e13lGuWJsEl3t0QuE2Iyuab/9TpFJdhb7OdLWMu6ILiTDPMq35btHOuWnzlkODl7vGS4QUqQceKQoYQ==
+ b=hBTwFJoLf1cRY4/HjOdUQ7MXyYYypvtai6d9wIhccYidm0MhLiLJBF9VamxYK05sXnk+ZmBZy1r+YKTsSN56j9IDzH/5ISOYrfNFGRrI+f/+GG2LO3/vKLwz5+QqmxLq/J3hr+MrK48/kF8yjSAsouzpM1kzKuL4hrq+S6PQYKI9kQMnC9Le6d6qwOwvJMrRElmYMezQ2sFoZ/7tkjEUY8qautmDDcsQ6Yuy80yfsOdzAtM1yLgYiE2d2eEYIv394omho1vVyZ2P2eExY37f2/78QlBm/VkUNpClv8h3N1+biJd+YO7TBYaYN9olcoT7hpe4B8rBAYiCEgmesXPaaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9mPxEdZ2Uri2otvxarlcjOVw9j4VQ0amF9oRYMJd/uk=;
- b=P4InPsTbYGh66CXaZ3qJBRlWaGOwNsx2ABh+9j4kzI15NwsfmRjEgTg7PDYUeeS3xjZ7JqUbdCButq148qH8IogiNNFFGdl43YQCDaP9UDGARNWw+eqfjohyL+7+YY0qWcYE7en1EBgNUFIlg3JWLIR0FlUDx6+JVTJVGm2kiqfPWKq00bNBVTh0iBHT+LglnZvpaBtfmhUEvb0xv6858F+SvWX1iPlLKDD4BiuSPF3iyd5qLNHvLNf1UF49fSvj3jfalUUGN/FwXbANG4n9U7iRyF2hFA+JfkH7sSnTbNSqiLkouNsLGYWNx/8UMHTHMZMiFhZEnDRiCoYM0GKrmg==
+ bh=uAsKgdTvbFC7N/W5hNL+VLgZ5xSWxikM2adLjv0XzFE=;
+ b=H8QIh7lxY2Zavd9lkKiu+MK71ttHp0AxWDq4cg2oW9sTlDC3POPygO/BXBkzlDx4L7r41GquUwHzymMmMjdMvWIztv1noAnBuYDs46SJg+i8wZAdAi+XFbubAY/cfT8jytAjc8AJiYQKqLZdeoH3bNtmKVNKvybYc3mSpdhRpTqg3S7MyPW+2BYImzdXW8Qh9z1odKT9vylGmTcDoBnAZPaVPMRDvLWvCM9jLi067jZRj4gp/cKD3sADeemciB+t59fuMbbNE6wAXv0yaJKs11LZWAfFl/Uyoqjyz07He5T2VAemSReQwhZu+IjSU2Y8jRj98juMz8IhRzQogqIDdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9mPxEdZ2Uri2otvxarlcjOVw9j4VQ0amF9oRYMJd/uk=;
- b=dhdb7JWnRjkNvrpQOfutGzjSFjozvG2xnPloVOn/j+QtGSBGkNtA+jgLA1evy9pf378YMs8UUvxKa68ECU0QpCCgbUEIQrQ8rN5GdshlvsRGxLqc7WkTYJ8SFSEGyFKhSkRktFSxxZ2NgqokRkm+qoBoJ/6GyllKip0+nhn6cFVMHeErsYVWzkBbEWNV/k1RYr483kin+8JED5NFNchT+u+a8dG1vdoJ0+JOeLw/2nBXnIrqDbafmshsujwTAZm4WkO59El4sT+UyKkdoV9uoi9StgfmONGj28lgvQiqIEPRGFPHDEf8a8Ap7+7OWEtXW6hPP3dyoc31/i6jKILPxw==
-Received: from CH0PR13CA0059.namprd13.prod.outlook.com (2603:10b6:610:b2::34)
- by PH0PR12MB7960.namprd12.prod.outlook.com (2603:10b6:510:287::12)
+ bh=uAsKgdTvbFC7N/W5hNL+VLgZ5xSWxikM2adLjv0XzFE=;
+ b=d9ppt5oXzOc8UYbBGZqrqKh6zvnalxRmbYaG9TtoAwmXEK0wfx5Dd+TNlfqjLHPWaY9SDAV2BtDwTnBjwmFRm/wdIJn0E46EwAIISxQIvB17l8AyA0SJgQRjFrFTUcP4HhmYwvha7kNx9y5nEXl15eQo6i7VbGKEjn6XrqxpVun2j1NlBvCotNJqCDvkauxZYadLNBNvBUJfM4be89BAr8wnD7j96MS73+7jSpSTjV1MXSmfwNTW+uvhsPuyJ2CESLSNwFt9o9mL9YozYshFsDfUHDD2pc+SuPqRBTqffLTc12w9EhfgS6mvqS5zdzxb9S4o33rO6n8sBjBeL0maag==
+Received: from CH5P222CA0009.NAMP222.PROD.OUTLOOK.COM (2603:10b6:610:1ee::25)
+ by PH8PR12MB7374.namprd12.prod.outlook.com (2603:10b6:510:216::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7452.50; Tue, 16 Apr
- 2024 23:42:54 +0000
-Received: from CH2PEPF0000013B.namprd02.prod.outlook.com
- (2603:10b6:610:b2:cafe::dd) by CH0PR13CA0059.outlook.office365.com
- (2603:10b6:610:b2::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.23 via Frontend
- Transport; Tue, 16 Apr 2024 23:42:53 +0000
+ 2024 23:42:59 +0000
+Received: from CH2PEPF0000013D.namprd02.prod.outlook.com
+ (2603:10b6:610:1ee:cafe::1) by CH5P222CA0009.outlook.office365.com
+ (2603:10b6:610:1ee::25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7495.20 via Frontend
+ Transport; Tue, 16 Apr 2024 23:42:59 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,23 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.160 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.160) by
- CH2PEPF0000013B.mail.protection.outlook.com (10.167.244.68) with Microsoft
+ CH2PEPF0000013D.mail.protection.outlook.com (10.167.244.69) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:42:53 +0000
+ 15.20.7452.22 via Frontend Transport; Tue, 16 Apr 2024 23:42:59 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.41; Tue, 16 Apr
- 2024 16:42:32 -0700
+ 2024 16:42:36 -0700
 Received: from fedora.mshome.net (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Tue, 16 Apr
- 2024 16:42:30 -0700
+ 2024 16:42:35 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 106/156] drm/nouveau/nvif: rework outp "detect" api
-Date: Wed, 17 Apr 2024 09:39:12 +1000
-Message-ID: <20240416234002.19509-107-bskeggs@nvidia.com>
+Subject: [PATCH 110/156] drm/nouveau/nvif: rework outp "acquire" api
+Date: Wed, 17 Apr 2024 09:39:16 +1000
+Message-ID: <20240416234002.19509-111-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240416234002.19509-1-bskeggs@nvidia.com>
 References: <20240416234002.19509-1-bskeggs@nvidia.com>
@@ -78,49 +78,26 @@ X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PEPF0000013B:EE_|PH0PR12MB7960:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2ab469e-61fb-4676-9846-08dc5e6eef7c
+X-MS-TrafficTypeDiagnostic: CH2PEPF0000013D:EE_|PH8PR12MB7374:EE_
+X-MS-Office365-Filtering-Correlation-Id: dea8a0d0-be46-4c8c-3a90-08dc5e6ef2d2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?BolSAmnnS9H2Eyp8Bqho83K19ux1KWYjl1M6AfCslNJgoihFy2/1eesvcPE4?=
- =?us-ascii?Q?LXUbgp1tvziCQrr9lwV2UPLnYL02ibsb/iVXFZzoJ0WjsVqul1omTDzev07o?=
- =?us-ascii?Q?hJr8fuxX5IQQODv9qiDE4uA4X/uor2Jc/pW7yO5OpV3+lUN1zmFydFfeBqON?=
- =?us-ascii?Q?LCybWGrDeG/nbI7Bgxs7pdp/XXc2X3g/6o77xuttRo8x+P1eB0XcMTxm6zBD?=
- =?us-ascii?Q?pn3ouS1KsZ/cuzGJeaf9ASrFwigOeBqZwyJcnue+tIpGjMLcGOh6boXJiitv?=
- =?us-ascii?Q?pVYGHCggctlvm3lNTuubNI/N5P/7Qe1tjjYW1zvfNHLEyO87/7i17PT2uDx4?=
- =?us-ascii?Q?dWd4U29uM73CdBf4wxqF6XieGrR4a3OdeBl9otNyF9tqRE37qUi4CDn78UHp?=
- =?us-ascii?Q?yhgthDZbnmKIK4kdUuuLKhKbKgDCF8XskHm/wgxN7sgIo4N3JZtGfSZU/PjL?=
- =?us-ascii?Q?VvfZP13+yjgk9uR4zALD9DLFGydE/hrGOnDJHGAQFrKxoUWK9qHEJzeyb2zd?=
- =?us-ascii?Q?7fDcrUYKe1lyWgVASBlBDJHxGvK5CFe0D9mFRhQBqgDefID2plwmxRsdeLR5?=
- =?us-ascii?Q?9RBZCGtv7iNG6KDa+puEBRXnz9eypuCH+Ta6IIq0Kj0+E92VQU6T+BUw10RR?=
- =?us-ascii?Q?qqSSdTSIih9/8RawdWvvzp1k2zr0DyYRUbituzDISkyLxgC22ujtX7xedwCr?=
- =?us-ascii?Q?VOSpxFMUktGBuE8Wepf5Tm2j3KkYJbjX1Eejf0G+oohLS1jfqULZfx0RbzYL?=
- =?us-ascii?Q?uYUyPnIJnoN4Krkv2MJamLRW2JLveGFuVJ2yYUQPh5PTPxM43zSvGntSmmwo?=
- =?us-ascii?Q?W0aOJle9wwKtU1qGptK13vlFXn406vXkx8EnPSE7SRAuecESXDovBhyc2csg?=
- =?us-ascii?Q?veflPwm0KMq1bE3zekBPm/7vXbPjuJzIjjiexvf33a8/iNBWZv/PKTs1jwIl?=
- =?us-ascii?Q?6e6PDvzLGT7qtElbuFL8rtHr1s77d6qgomzD76/ZEusWDxS8CcfbildFOqQv?=
- =?us-ascii?Q?9BPm4gLFn5UYXi4Nqwjl1CxiqKFudNOUZk1MCRaZ/8SYSwmb1VRcrLErnmH2?=
- =?us-ascii?Q?EcbIQVwWHKZqk1vEmegVi4UeUW6yYB03Od2vGqckegoqrvsE5txSKyrVFDgs?=
- =?us-ascii?Q?7V957Qrtj7RNgPn3AdP6ncptCxqUT+0X2huK/36jDc5i3UffTqyOWQbOajIT?=
- =?us-ascii?Q?7AxfgY5+ssj62YQjKKxA4c0Li88fgaDmS4ezi4K2gXT9zDQipimUXQTssIJg?=
- =?us-ascii?Q?I5jiC+sHTZIT+XilGGFBGXFZja/yIpzt4ZxuveIZypnA8f/E6i7OmuUbS1aE?=
- =?us-ascii?Q?6ltF+vlXnHQAyv7pJkWSWIPk0fTKHIZeGTrNCr9hg1o3wPJUKob1l39+uJY6?=
- =?us-ascii?Q?jUHDZ2gT5ZgnRrSQDzwCm81seMVL?=
+X-Microsoft-Antispam-Message-Info: 7KmuH2m4g2axZU2OUVufsSxW0WsvjSYb1suREgsPCAOtrBBm3sij5oi3NycVp+CWcQYQqCNqjYvJMgZtBCYQH/gjf3arLA/3aWIIB8yRGs6og0vIDlSMEgriC20zpMibrcgI8VmKnq4a0O3/h/KQFmM/7ji/9XJ4r9Y4dCP+W0/dofkiW6iR7VTgXUN+ZvFdo5V0j1HQBWtqEsL6R2+hgQpWnhqNcBj1Zn4Hb5wJM7bLEp4HJ+G5lkjm0VHwA8F9m805U+IlQuD++giqZX/qz3f8BJUQYIgStrg8BzQi6FuYmKOgqYnUsjKDrniw5+lSgw9AioDKpamEzYFFAtKDzUIsm5kj2jPKqKhjYDNrHd+2/i1XmW/UY78FRCr1pTMMmzukrfIXjuR3plG2ksx8nloMor01cRmdpYWvshQqU2QEcT/a1xYRwTKdTYLU0OU2bfm5Y8nCiqKXH0iraaK948EkTFl4mN1PcVwiGN4ElY4942Rphb0rj7ry5mb1+AUJ9iFd2klb3OkJgeDZeCQSvZu4W98L5mOewJIKrGBYd2w1FBZalrAvBMZWO+6x8a+ykSlGj6FtC7olW/SigB6Y+ZoHeD3/XP4Udr4kbInRkBYnvyZVt4M/tz5zeAFP5/5Yi9Vg4FrsG/8j7PLzkGyBezDdt0Ma1UxSBf3hK0O9B40/58BWYTP/3zUQT2mlZuCPNLzpCHW++senExucBmiJNmYEA+ABV5dL8P8hwkaDZgQtwFEocKT6TlEX1RzX+SsT
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(82310400014)(36860700004)(1800799015)(376005); DIR:OUT;
+ SFS:(13230031)(1800799015)(36860700004)(82310400014)(376005); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:42:53.5538 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2ab469e-61fb-4676-9846-08dc5e6eef7c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Apr 2024 23:42:59.1482 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dea8a0d0-be46-4c8c-3a90-08dc5e6ef2d2
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF0000013D.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7960
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7374
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,240 +116,205 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- .../gpu/drm/nouveau/include/nvif/driverif.h   |  8 ++++
- drivers/gpu/drm/nouveau/include/nvif/if0012.h | 11 -----
- drivers/gpu/drm/nouveau/include/nvif/outp.h   |  6 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c   |  6 +--
- drivers/gpu/drm/nouveau/nouveau_dp.c          |  2 +-
- drivers/gpu/drm/nouveau/nvif/outp.c           | 21 ++-------
- .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 47 ++++++++++++++-----
- 7 files changed, 53 insertions(+), 48 deletions(-)
+ .../gpu/drm/nouveau/include/nvif/driverif.h   |  1 +
+ drivers/gpu/drm/nouveau/include/nvif/if0012.h | 19 ----------
+ drivers/gpu/drm/nouveau/nvif/outp.c           | 29 ++++++---------
+ .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 35 ++++++++++---------
+ 4 files changed, 31 insertions(+), 53 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/include/nvif/driverif.h b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
-index 8d00ed58323f..fd05065374fe 100644
+index 9ab54de43ba3..a2e0423f76c2 100644
 --- a/drivers/gpu/drm/nouveau/include/nvif/driverif.h
 +++ b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
-@@ -244,6 +244,12 @@ struct nvif_conn_impl {
- 		     const struct nvif_event_impl **, struct nvif_event_priv **);
- };
+@@ -278,6 +278,7 @@ struct nvif_outp_impl {
  
-+enum nvif_outp_detect_status {
-+	NVIF_OUTP_DETECT_NOT_PRESENT,
-+	NVIF_OUTP_DETECT_PRESENT,
-+	NVIF_OUTP_DETECT_UNKNOWN,
-+};
-+
- struct nvif_outp_impl {
- 	void (*del)(struct nvif_outp_priv *);
+ 	int (*inherit)(struct nvif_outp_priv *, enum nvif_outp_proto,
+ 		       u8 *or, u8 *link, u8 *head, u8 *proto_evo);
++	int (*acquire)(struct nvif_outp_priv *, enum nvif_outp_type, bool hda, u8 *or, u8 *link);
  
-@@ -267,6 +273,8 @@ struct nvif_outp_impl {
- 	u8 ddc;
- 	u8 conn;
+ 	int (*load_detect)(struct nvif_outp_priv *, u32 loadval, u8 *load);
  
-+	int (*detect)(struct nvif_outp_priv *, enum nvif_outp_detect_status *);
-+
- 	struct {
- 		u32 freq_max;
- 	} rgb_crt;
 diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0012.h b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-index d1e2f0ff8965..c0c13cb64994 100644
+index 09e2f61673a8..3cbdb5fc4757 100644
 --- a/drivers/gpu/drm/nouveau/include/nvif/if0012.h
 +++ b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
 @@ -4,7 +4,6 @@
  
  #include <drm/display/drm_dp.h>
  
--#define NVIF_OUTP_V0_DETECT        0x00
- #define NVIF_OUTP_V0_EDID_GET      0x01
+-#define NVIF_OUTP_V0_ACQUIRE       0x11
+ #define NVIF_OUTP_V0_RELEASE       0x12
  
- #define NVIF_OUTP_V0_INHERIT       0x10
-@@ -33,16 +32,6 @@
+ #define NVIF_OUTP_V0_BL_GET        0x30
+@@ -27,24 +26,6 @@
  #define NVIF_OUTP_V0_DP_MST_ID_PUT 0x77
  #define NVIF_OUTP_V0_DP_MST_VCPI   0x78
  
--union nvif_outp_detect_args {
--	struct nvif_outp_detect_v0 {
+-union nvif_outp_acquire_args {
+-	struct nvif_outp_acquire_v0 {
 -		__u8 version;
--#define NVIF_OUTP_DETECT_V0_NOT_PRESENT 0x00
--#define NVIF_OUTP_DETECT_V0_PRESENT     0x01
--#define NVIF_OUTP_DETECT_V0_UNKNOWN     0x02
--		__u8 status;
+-#define NVIF_OUTP_ACQUIRE_V0_DAC  0x00
+-#define NVIF_OUTP_ACQUIRE_V0_SOR  0x01
+-#define NVIF_OUTP_ACQUIRE_V0_PIOR 0x02
+-		__u8 type;
+-		__u8 or;
+-		__u8 link;
+-		__u8 pad04[4];
+-		union {
+-			struct {
+-				__u8 hda;
+-			} sor;
+-		};
 -	} v0;
 -};
 -
- union nvif_outp_edid_get_args {
- 	struct nvif_outp_edid_get_v0 {
- 		__u8  version;
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-index 56bfbc41a576..7a64a7d2ac97 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-@@ -21,12 +21,6 @@ struct nvif_outp {
- int nvif_outp_ctor(struct nvif_disp *, const char *name, int id, struct nvif_outp *);
- void nvif_outp_dtor(struct nvif_outp *);
- 
--enum nvif_outp_detect_status {
--	NOT_PRESENT,
--	PRESENT,
--	UNKNOWN,
--};
--
- enum nvif_outp_detect_status nvif_outp_detect(struct nvif_outp *);
- int nvif_outp_edid_get(struct nvif_outp *, u8 **pedid);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index b1bd8264b703..3063ef792023 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -434,11 +434,11 @@ nouveau_connector_ddc_detect(struct drm_connector *connector)
- 			} else {
- 				status = nvif_outp_detect(&nv_encoder->outp);
- 				switch (status) {
--				case PRESENT:
-+				case NVIF_OUTP_DETECT_PRESENT:
- 					return nv_encoder;
--				case NOT_PRESENT:
-+				case NVIF_OUTP_DETECT_NOT_PRESENT:
- 					continue;
--				case UNKNOWN:
-+				case NVIF_OUTP_DETECT_UNKNOWN:
- 					break;
- 				default:
- 					WARN_ON(1);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dp.c b/drivers/gpu/drm/nouveau/nouveau_dp.c
-index a72c45809484..cf196af96609 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dp.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dp.c
-@@ -256,7 +256,7 @@ nouveau_dp_detect(struct nouveau_connector *nv_connector,
- 	}
- 
- 	hpd = nvif_outp_detect(&nv_encoder->outp);
--	if (hpd == NOT_PRESENT) {
-+	if (hpd == NVIF_OUTP_DETECT_NOT_PRESENT) {
- 		nvif_outp_dp_aux_pwr(&nv_encoder->outp, false);
- 		goto out;
- 	}
+ union nvif_outp_release_args {
+ 	struct nvif_outp_release_vn {
+ 	} vn;
 diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/nvif/outp.c
-index a8012a71a50c..b704886c1bb6 100644
+index c98af48b4b33..ddcd2b9d69f3 100644
 --- a/drivers/gpu/drm/nouveau/nvif/outp.c
 +++ b/drivers/gpu/drm/nouveau/nvif/outp.c
-@@ -467,26 +467,15 @@ nvif_outp_edid_get(struct nvif_outp *outp, u8 **pedid)
- enum nvif_outp_detect_status
- nvif_outp_detect(struct nvif_outp *outp)
+@@ -302,54 +302,47 @@ nvif_outp_release(struct nvif_outp *outp)
+ }
+ 
+ static inline int
+-nvif_outp_acquire(struct nvif_outp *outp, u8 type, struct nvif_outp_acquire_v0 *args)
++nvif_outp_acquire(struct nvif_outp *outp, enum nvif_outp_type type, bool hda)
  {
--	struct nvif_outp_detect_v0 args;
-+	enum nvif_outp_detect_status status;
++	u8 or, link;
  	int ret;
  
--	args.version = 0;
+-	args->version = 0;
+-	args->type = type;
 -
--	ret = nvif_mthd(&outp->object, NVIF_OUTP_V0_DETECT, &args, sizeof(args));
--	NVIF_ERRON(ret, &outp->object, "[DETECT] status:%02x", args.status);
-+	ret = outp->impl->detect(outp->priv, &status);
-+	NVIF_ERRON(ret, &outp->object, "[DETECT] status:%02x", status);
+-	ret = nvif_mthd(&outp->object, NVIF_OUTP_V0_ACQUIRE, args, sizeof(*args));
++	ret = outp->impl->acquire(outp->priv, type, hda, &or, &link);
  	if (ret)
--		return UNKNOWN;
--
--	switch (args.status) {
--	case NVIF_OUTP_DETECT_V0_NOT_PRESENT: return NOT_PRESENT;
--	case NVIF_OUTP_DETECT_V0_PRESENT: return PRESENT;
--	case NVIF_OUTP_DETECT_V0_UNKNOWN: return UNKNOWN;
--	default:
--		WARN_ON(1);
--		break;
--	}
-+		return NVIF_OUTP_DETECT_UNKNOWN;
+ 		return ret;
  
--	return UNKNOWN;
-+	return status;
+-	outp->or.id = args->or;
+-	outp->or.link = args->link;
++	outp->or.id = or;
++	outp->or.link = link;
+ 	return 0;
  }
  
- void
+ int
+ nvif_outp_acquire_pior(struct nvif_outp *outp)
+ {
+-	struct nvif_outp_acquire_v0 args;
+ 	int ret;
+ 
+-	ret = nvif_outp_acquire(outp, NVIF_OUTP_ACQUIRE_V0_PIOR, &args);
+-	NVIF_ERRON(ret, &outp->object, "[ACQUIRE PIOR] or:%d", args.or);
++	ret = nvif_outp_acquire(outp, NVIF_OUTP_PIOR, false);
++	NVIF_ERRON(ret, &outp->object, "[ACQUIRE PIOR] or:%d", outp->or.id);
+ 	return ret;
+ }
+ 
+ int
+ nvif_outp_acquire_sor(struct nvif_outp *outp, bool hda)
+ {
+-	struct nvif_outp_acquire_v0 args;
+ 	int ret;
+ 
+-	args.sor.hda = hda;
+-
+-	ret = nvif_outp_acquire(outp, NVIF_OUTP_ACQUIRE_V0_SOR, &args);
+-	NVIF_ERRON(ret, &outp->object, "[ACQUIRE SOR] or:%d link:%d", args.or, args.link);
++	ret = nvif_outp_acquire(outp, NVIF_OUTP_SOR, hda);
++	NVIF_ERRON(ret, &outp->object, "[ACQUIRE SOR] or:%d link:%d", outp->or.id, outp->or.link);
+ 	return ret;
+ }
+ 
+ int
+ nvif_outp_acquire_dac(struct nvif_outp *outp)
+ {
+-	struct nvif_outp_acquire_v0 args;
+ 	int ret;
+ 
+-	ret = nvif_outp_acquire(outp, NVIF_OUTP_ACQUIRE_V0_DAC, &args);
+-	NVIF_ERRON(ret, &outp->object, "[ACQUIRE DAC] or:%d", args.or);
++	ret = nvif_outp_acquire(outp, NVIF_OUTP_DAC, false);
++	NVIF_ERRON(ret, &outp->object, "[ACQUIRE DAC] or:%d", outp->or.id);
+ 	return ret;
+ }
+ 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-index b585b781e928..2324549787b6 100644
+index 3f242a03f77b..46ca915f0206 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-@@ -35,6 +35,31 @@ struct nvif_outp_priv {
- 	struct nvif_outp_impl impl;
- };
- 
-+static inline void
-+nvkm_uoutp_unlock(struct nvif_outp_priv *uoutp)
-+{
-+	mutex_unlock(&uoutp->outp->disp->super.mutex);
-+}
-+
-+static inline void
-+nvkm_uoutp_lock(struct nvif_outp_priv *uoutp)
-+{
-+	mutex_lock(&uoutp->outp->disp->super.mutex);
-+}
-+
-+static inline int
-+nvkm_uoutp_lock_acquired(struct nvif_outp_priv *uoutp)
-+{
-+	nvkm_uoutp_lock(uoutp);
-+
-+	if (!uoutp->outp->ior) {
-+		nvkm_uoutp_unlock(uoutp);
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
- static int
- nvkm_uoutp_mthd_dp_mst_vcpi(struct nvkm_outp *outp, void *argv, u32 argc)
- {
-@@ -480,22 +505,20 @@ nvkm_uoutp_mthd_edid_get(struct nvkm_outp *outp, void *argv, u32 argc)
+@@ -373,35 +373,38 @@ nvkm_uoutp_mthd_release(struct nvkm_outp *outp, void *argv, u32 argc)
  }
  
  static int
--nvkm_uoutp_mthd_detect(struct nvkm_outp *outp, void *argv, u32 argc)
-+nvkm_uoutp_detect(struct nvif_outp_priv *uoutp, enum nvif_outp_detect_status *status)
+-nvkm_uoutp_mthd_acquire(struct nvkm_outp *outp, void *argv, u32 argc)
++nvkm_uoutp_acquire(struct nvif_outp_priv *uoutp, enum nvif_outp_type type, bool hda,
++		   u8 *or, u8 *link)
  {
--	union nvif_outp_detect_args *args = argv;
+-	union nvif_outp_acquire_args *args = argv;
 +	struct nvkm_outp *outp = uoutp->outp;
  	int ret;
  
 -	if (argc != sizeof(args->v0) || args->v0.version != 0)
 -		return -ENOSYS;
--	if (!outp->func->detect)
--		return -EINVAL;
--
+-	if (outp->ior && args->v0.type <= NVIF_OUTP_ACQUIRE_V0_PIOR)
 +	nvkm_uoutp_lock(uoutp);
- 	ret = outp->func->detect(outp);
-+	nvkm_uoutp_unlock(uoutp);
-+
- 	switch (ret) {
--	case 0: args->v0.status = NVIF_OUTP_DETECT_V0_NOT_PRESENT; break;
--	case 1: args->v0.status = NVIF_OUTP_DETECT_V0_PRESENT; break;
-+	case 0: *status = NVIF_OUTP_DETECT_NOT_PRESENT; break;
-+	case 1: *status = NVIF_OUTP_DETECT_PRESENT; break;
++	if (outp->ior) {
++		nvkm_uoutp_unlock(uoutp);
+ 		return -EBUSY;
++	}
+ 
+-	switch (args->v0.type) {
+-	case NVIF_OUTP_ACQUIRE_V0_DAC:
+-	case NVIF_OUTP_ACQUIRE_V0_PIOR:
++	switch (type) {
++	case NVIF_OUTP_DAC:
++	case NVIF_OUTP_PIOR:
+ 		ret = outp->func->acquire(outp, false);
+ 		break;
+-	case NVIF_OUTP_ACQUIRE_V0_SOR:
+-		ret = outp->func->acquire(outp, args->v0.sor.hda);
++	case NVIF_OUTP_SOR:
++		ret = outp->func->acquire(outp, hda);
+ 		break;
  	default:
--		args->v0.status = NVIF_OUTP_DETECT_V0_UNKNOWN;
-+		*status = NVIF_OUTP_DETECT_UNKNOWN;
+ 		ret = -EINVAL;
  		break;
  	}
  
-@@ -528,7 +551,6 @@ static int
+-	if (ret)
+-		return ret;
++	if (ret == 0) {
++		*or = outp->ior->id;
++		*link = outp->ior->asy.link;
++	}
+ 
+-	args->v0.or = outp->ior->id;
+-	args->v0.link = outp->ior->asy.link;
+-	return 0;
++	nvkm_uoutp_unlock(uoutp);
++	return ret;
+ }
+ 
+ static int
+@@ -549,7 +552,6 @@ static int
  nvkm_uoutp_mthd_noacquire(struct nvkm_outp *outp, u32 mthd, void *argv, u32 argc, bool *invalid)
  {
  	switch (mthd) {
--	case NVIF_OUTP_V0_DETECT     : return nvkm_uoutp_mthd_detect     (outp, argv, argc);
- 	case NVIF_OUTP_V0_EDID_GET   : return nvkm_uoutp_mthd_edid_get   (outp, argv, argc);
- 	case NVIF_OUTP_V0_INHERIT    : return nvkm_uoutp_mthd_inherit    (outp, argv, argc);
- 	case NVIF_OUTP_V0_ACQUIRE    : return nvkm_uoutp_mthd_acquire    (outp, argv, argc);
-@@ -627,6 +649,9 @@ nvkm_uoutp_new(struct nvkm_disp *disp, u8 id, const struct nvif_outp_impl **pimp
- 	uoutp->impl = nvkm_uoutp_impl;
- 	uoutp->impl.id = id;
+-	case NVIF_OUTP_V0_ACQUIRE    : return nvkm_uoutp_mthd_acquire    (outp, argv, argc);
+ 	case NVIF_OUTP_V0_BL_GET     : return nvkm_uoutp_mthd_bl_get     (outp, argv, argc);
+ 	case NVIF_OUTP_V0_BL_SET     : return nvkm_uoutp_mthd_bl_set     (outp, argv, argc);
+ 	case NVIF_OUTP_V0_DP_AUX_PWR : return nvkm_uoutp_mthd_dp_aux_pwr (outp, argv, argc);
+@@ -599,6 +601,7 @@ static const struct nvif_outp_impl
+ nvkm_uoutp_impl = {
+ 	.del = nvkm_uoutp_del,
+ 	.inherit = nvkm_uoutp_inherit,
++	.acquire = nvkm_uoutp_acquire,
+ };
  
-+	if (outp->func->detect)
-+		uoutp->impl.detect = nvkm_uoutp_detect;
-+
- 	switch (outp->info.type) {
- 	case DCB_OUTPUT_ANALOG:
- 		uoutp->impl.type = NVIF_OUTP_DAC;
+ static void *
 -- 
 2.41.0
 
