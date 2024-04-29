@@ -4,116 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80282D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F5F7D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56E6F10E56F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D8F810E750;
 	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="gIvPB8cF";
+	dkim=permerror (0-bit key) header.d=linaro.org header.i=@linaro.org header.b="YUuixz4O";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9813910E45D
- for <nouveau@lists.freedesktop.org>; Mon,  4 Aug 2025 21:43:22 +0000 (UTC)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574GbvTj021762
- for <nouveau@lists.freedesktop.org>; Mon, 4 Aug 2025 21:43:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:date:from:in-reply-to:message-id
- :mime-version:references:subject:to; s=qcppdkim1; bh=4iMQZAqx3JH
- WA1prynQ+6hJlCX8ujFNqsZgwdOw+rDs=; b=gIvPB8cFPv1IRFNTmqYWqEWuixR
- Rwv7bmlaMzqpBylwNtRi/TG3UiM5k84mwatQE10PeUBNVzoEhsZC/kEPjRmRctDC
- +4ryya9XDg//UPR17UUtiH/UY+Becav0ePCMrFVJlEzmhGQalUXJG9cFtGnElobB
- qlSlHwe5N9O8RqWjBAnqJ8u1dxf87h6e8PXE5AZAC8ytxEBqBzKaeLCFYkRG+iXS
- ZPKaXijDwUfqLCd6gmGJkhRVPcGNg/6HUPKEFA9trUtMYvvoMAgwYgrrRcN7XsLw
- 7GLN1tfWws+oetwv6VI5XGTLxVbDC8BxqoxJmILgFmZRwmtdCQzjbkQWuKQ==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
- [209.85.214.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489byc6a8s-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 21:43:22 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id
- d9443c01a7336-2403e4c82ddso36418555ad.1
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 14:43:22 -0700 (PDT)
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com
+ [209.85.161.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22D68112CF6
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Apr 2024 15:07:06 +0000 (UTC)
+Received: by mail-oo1-f48.google.com with SMTP id
+ 006d021491bc7-5af3cda139fso2240078eaf.1
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Apr 2024 08:07:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1714403225; x=1715008025; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=Kq/mDhjDx0haJOXMYO5ieP1vWAdfCIwGNjDIS1vV1ns=;
+ b=YUuixz4O9dM7zFbPsY47P84rtLzbQdMERf7L5VIwsYAnhTfSNMpkF+bHJC+XVsE+xG
+ P8vwqFf0Pxz1b47vOuPSeCcp9nTx05UpPCWWjR8HBfVx2fwHKR/6ZW15L6uc0u29OxJV
+ zDi4u0NfxL40MgE6KZRsg72070YmHH3iMEkyDCZuz50TpypTzYh7dw3vFuwG80/iVkEU
+ wudAI3qIP+yNjuKIzDtmL+PyzbNHS/SdE9xWqWYMB900QQ+H+UDsc9+5xjBYcYwjZrSa
+ Zm7t2qIhGFEm30PEfksS2dw91HH66HZ2KC8UHn/HsP3iqcOxo4ztUW7w4y8jcj8s0M2U
+ c3PA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754343801; x=1754948601;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4iMQZAqx3JHWA1prynQ+6hJlCX8ujFNqsZgwdOw+rDs=;
- b=eayB6YocwY4uYhdyiZdHagRUMt+C3wCHvvIXK7+HlsXVlmhF9Hnch1CyUefFKL1cM8
- 4d11I3eMZ5AAmUMxaXg6j+wiqD05rC3gWHoURrSIgy0GxVqxpHlHn0dUQznIEY5vbrsZ
- zvyX1smZBM4KLHtwvSEQhyWnAX4te7CODn+P02SapRM2kBnu+k4t/qRkBqaah1kDziSq
- HVukRS/0MY6mFw1VObuoM+7pVZituGrLRbsxNJcj6q01Z0TFOGPsn2OvqMJHpEk15hwK
- O1D+pUJUlybfQbnP2qafESFkWc1TLGjqAn0Flsft2F0i9hSlEDPM3GNt7l30THPJOgNt
- 2EIw==
+ d=1e100.net; s=20230601; t=1714403225; x=1715008025;
+ h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Kq/mDhjDx0haJOXMYO5ieP1vWAdfCIwGNjDIS1vV1ns=;
+ b=GmvglvgAr8e7TfGFwc8xQi3Oa4RbSsLhQ0zheeFdT6Xu8+Ux8KON2DHFo95kVkM5wM
+ Z+kTXWcZA99+ZpvCRWnbnCDxlCw3ka1xB0F4r549OnV6c3Oy5+NFiIgIt/MEuoJE/fkb
+ 2rz4F7wJDkiFEyzC1ybel9qn4FW0s8EjA+WG9W7ubIsY1j4QFJJS2In2gImWghCV8A7F
+ FEM/i7XeFFsVnWqQEZIpvVnE83yO1guUJJ6M9n05O36HC6oR61ZHIzf9MSDirFrNMZFw
+ GXr+GxOroiXapVXcjVV+WHZVQG/5bLP5SXZnYo/cd6lAyTSuyPaudtr2uPi9fwCk7GPX
+ mPxQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUQcpq+E/e2Z649Y+Mh9d7GidJyS1Ml4UZEcTcuuxFtTPpjrR+t3nNz8aFpDHvA5PVvdhqlutTi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyx8bFWmRlNkheEy6hjWhJUkHT7eVecYVrhnMhBkuo7s1uuzzFa
- 45znGkAmuf1jWA6qvHwqZFhQJ70OLUgazT8qfC4dR9MdaN6fS4H7bj+ocANl5mGbVTIxFu1Tr3V
- dympbKaboZP8TRACWwDnaFfe69m7Ysxsxfp4510Nmr5Rdzij4R7yzfoOCRd1F7qA1KzOs
-X-Gm-Gg: ASbGncsf7/myb4l7cSHRMcDeqkQV+WgwFkOy9FYB2qeFBcMbpqHLdJB+NmqZupt+9jo
- hZohIdPILGyo/siX8sfDOqVZLc5Ceu/ayZtVa03yvtpH+q4Vn9DohXDpD5GkQZyaxfefjQdplNI
- euplhiRrs3//xyZafd5lKJoBv6KFlsXq9qvs+S0mkp170mzUmdhZ0SvOKdcm72wVMYTncZAIz9Q
- /1KtTH4Yv18kvHe8scrozVGd7u1R0vTUPQNIuhuENnhtUoqVch9EvhpilGG4NQdX7Mu9L5SoM4k
- KoLDdy7XM0RfqYLN8m3Ja6Cd2erj0X53u/TDtBCaNQemsQLVOdI=
-X-Received: by 2002:a17:902:c951:b0:240:25f3:2115 with SMTP id
- d9443c01a7336-24246f66529mr161881545ad.12.1754343801267; 
- Mon, 04 Aug 2025 14:43:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEJ42SvcJgCxFfQN88b9q64GCmdPYqi/gv07LLosxuO/N73EtGwR8zNcDRPko1iT53bOia+0w==
-X-Received: by 2002:a17:902:c951:b0:240:25f3:2115 with SMTP id
- d9443c01a7336-24246f66529mr161881165ad.12.1754343800876; 
- Mon, 04 Aug 2025 14:43:20 -0700 (PDT)
-Received: from localhost ([2601:1c0:5000:d5c:5b3e:de60:4fda:e7b1])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-31f63da57b4sm15506076a91.5.2025.08.04.14.43.20
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Aug 2025 14:43:20 -0700 (PDT)
-From: Rob Clark <robin.clark@oss.qualcomm.com>
-To: dri-devel@lists.freedesktop.org
-Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Danilo Krummrich <dakr@redhat.com>, Connor Abbott <cwabbott0@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- linux-kernel@vger.kernel.org (open list),
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS)
-Subject: [PATCH RESEND 1/2] drm/gpuvm: Send in-place re-maps to the driver as
- remap
-Date: Mon,  4 Aug 2025 14:43:15 -0700
-Message-ID: <20250804214317.658704-2-robin.clark@oss.qualcomm.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
-References: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
+ AJvYcCVCKOqIPcLj3wDTk43Z95RDZqPa8A65RxLWxnYUNsrkwD6AkFG0uPzBrkZmwfXLdnHmuicD9mv82puO3lZkt4r7MfJqx1bxPRvjm4ehOQ==
+X-Gm-Message-State: AOJu0YyCr39NA9slbMB1tHqX+iyHvoyToSVV0lbf1Eruz+zQH3vLq34p
+ jze5qUQIvDtoETVef92/jeEtEQbE86yH00HD8ezAcMkoB5FWuQtpGicuyT4LtqdM6JWeSeNYteF
+ FEiD1P/VktVvg3WPK6GiWuBY/XQCa6FLX0okS8A==
+X-Google-Smtp-Source: AGHT+IGi7klXrfkLGYDk0bH46vsiOhdwy/HLQn/JmrZKyHF7xJC4yozyKeAYx8uVrhCWOCacbYNZwg87iwhAtb2HZSs=
+X-Received: by 2002:a05:6358:5d91:b0:186:3fcb:8da9 with SMTP id
+ s17-20020a0563585d9100b001863fcb8da9mr11016997rwm.21.1714403224770; Mon, 29
+ Apr 2024 08:07:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: r70CAJ5ZrM5VSmv8eIJB2MXRL5bxDWW_
-X-Authority-Analysis: v=2.4 cv=Y6D4sgeN c=1 sm=1 tr=0 ts=6891297a cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=xqWC_Br6kY4A:10 a=2OwXVqhp2XgA:10
- a=EUspDBNiAAAA:8 a=-LggB1lm2EvgG5rjBn0A:9 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-GUID: r70CAJ5ZrM5VSmv8eIJB2MXRL5bxDWW_
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDEzMCBTYWx0ZWRfX+x8UQcnlYJNi
- C78OlYgQ+sC/8639YxLCxKbe3JZ3GJLwmaQSsOuFR3fgkfMORmAU9sap0gqiX2Y6YNPEi4+V8Ja
- 7lKpWswqPkzYftXM9HKSLOzf6OzrPOcXSBsy+W7mZnNgpJszWV1r/86I4hxVhfMmgq2jBoyLRAi
- Lzi4fuJ+pPRHtjYCL4nOuGkfSwzgZ0iwi86h4sEyEm5zXq+K79LwncUxrM81Jz83mg61HDNqiPc
- QcQId60LZ+4gjb+gTRPZjJvdl5D8Ofdsxu0K8B6xTWug7+oqDdR48aUm/UCiMdKC7ORNDlz7WF6
- /3TxkDvcVhHraSgAaYaeZBJCP/6QDsRqSX1HD36aPU3uX28thOqxDOtSLaYBzB7Q9ORyI5jveIH
- U1yiEXOcBAevLeTmiiLKjgob/ZP2wpLvPnrpJy/DsTrPfjOndTzCqvTPs5YLsJgjV31Yjazf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-04_09,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxscore=0 mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
- priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508040130
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+From: Naresh Kamboju <naresh.kamboju@linaro.org>
+Date: Mon, 29 Apr 2024 20:36:53 +0530
+Message-ID: <CA+G9fYu7Ug0K8h9QJT0WbtWh_LL9Juc+VC0WMU_Z_vSSPDNymg@mail.gmail.com>
+Subject: nouveau: r535.c:1266:3: error: label at end of compound statement
+ default: with gcc-8
+To: open list <linux-kernel@vger.kernel.org>, 
+ Linux ARM <linux-arm-kernel@lists.infradead.org>, lkft-triage@lists.linaro.org,
+ Linux Regressions <regressions@lists.linux.dev>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Timur Tabi <ttabi@nvidia.com>, Danilo Krummrich <dakr@redhat.com>,
+ Arnd Bergmann <arnd@arndb.de>, Dan Carpenter <dan.carpenter@linaro.org>,
+ Anders Roxell <anders.roxell@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,62 +79,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The 'keep' hint on the unmap is only half useful, without being able to
-link it to a map cb.  Instead combine the two ops into a remap op to
-give the driver a chance to figure things out.
+Following build warnings / errors noticed on Linux next-20240429 tag on the
+arm64, arm and riscv with gcc-8 and gcc-13 builds pass.
 
-Signed-off-by: Rob Clark <robin.clark@oss.qualcomm.com>
----
- drivers/gpu/drm/drm_gpuvm.c            | 21 +++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 ++-
- 2 files changed, 23 insertions(+), 1 deletion(-)
+Reported-by: Linux Kernel Functional Testing <lkft@linaro.org>
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index bbc7fecb6f4a..e21782a97fbe 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -2125,6 +2125,27 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 				 offset == req_offset;
- 
- 			if (end == req_end) {
-+				if (merge) {
-+					/*
-+					 * This is an exact remap of the existing
-+					 * VA (potentially flags change)?  Pass
-+					 * this to the driver as a remap so it can
-+					 * do an in-place update:
-+					 */
-+					struct drm_gpuva_op_map n = {
-+						.va.addr = va->va.addr,
-+						.va.range = va->va.range,
-+						.gem.obj = va->gem.obj,
-+						.gem.offset = va->gem.offset,
-+					};
-+					struct drm_gpuva_op_unmap u = {
-+						.va = va,
-+						.keep = true,
-+					};
-+
-+					return op_remap_cb(ops, priv, NULL, &n, &u);
-+				}
-+
- 				ret = op_unmap_cb(ops, priv, va, merge);
- 				if (ret)
- 					return ret;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 48f105239f42..c3e3a15eb3c8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -820,7 +820,8 @@ op_remap(struct drm_gpuva_op_remap *r,
- 	if (r->next)
- 		end = r->next->va.addr;
- 
--	op_unmap_range(u, addr, end - addr);
-+	if (!u->keep)
-+		op_unmap_range(u, addr, end - addr);
- }
- 
- static int
--- 
-2.50.1
+Commit id:
+ b58a0bc904ff nouveau: add command-line GSP-RM registry support
 
+Buids:
+--
+  gcc-8-arm64-defconfig - Fail
+  gcc-8-arm-defconfig - Fail
+  gcc-8-riscv-defconfig - Fail
+
+Build log:
+----
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function 'build_registry':
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at
+end of compound statement
+   default:
+   ^~~~~~~
+make[7]: *** [scripts/Makefile.build:244:
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
+
+metadata:
+  git_describe: next-20240429
+  git_repo: https://gitlab.com/Linaro/lkft/mirrors/next/linux-next
+  git_short_log: b0a2c79c6f35 ("Add linux-next specific files for 20240429")
+  arch: arm64, arm, riscv
+  toolchain: gcc-8
+
+Steps to reproduce:
+----
+# tuxmake --runtime podman --target-arch arm64 --toolchain gcc-8
+--kconfig defconfig
+
+Links:
+ - https://storage.tuxsuite.com/public/linaro/lkft/builds/2flcoOuqVJfhTvX4AOYsWMd5hqe/
+ - https://qa-reports.linaro.org/lkft/linux-next-master/build/next-20240429/testrun/23704376/suite/build/test/gcc-8-defconfig/history/
+ - https://qa-reports.linaro.org/lkft/linux-next-master/build/next-20240429/testrun/23705756/suite/build/test/gcc-8-defconfig/details/
+
+
+--
+Linaro LKFT
+https://lkft.linaro.org
