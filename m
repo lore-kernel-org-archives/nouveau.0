@@ -4,200 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93F4DD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D971D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB6D210EA78;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A76E10EA75;
 	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=intel.com header.i=@intel.com header.b="hjcHsHh4";
+	dkim=pass (1024-bit key; unprotected) header.d=ti.com header.i=@ti.com header.b="iEYljnBg";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A279C10E203;
- Tue,  4 Jun 2024 08:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1717489443; x=1749025443;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=+++E6PT7Ikl/BMgbDWFQCaPzsOD33MgC2YSDizKZxfM=;
- b=hjcHsHh4rR3xAdSXlm3C6G2Kp2/W7ffGHBrhPphJOiggQzNfwXO8w7Y0
- +o6Pe4ipvC3QSdDEkxjPQk/jbYthOkqDLGEnZmrmuBTDPxn5GibAgd+AN
- WnK4SkEFNHCoaKG+vzr0H49OXGa0LZGhfi8tXg8odTToCISAsImaiRLmB
- OSsuys1dgi2CBYqcOMmo1lNUiQX+yeuGO53eyIt2pRDa3juOdh/zeY6Yf
- 0quJdHyYCpn1dGvYTqQLRGVLApDCKBYPiT00+l7VjF343NaMMMujDEFxR
- ahmQ1j/hupNokuxh1tJDGH6FnTXE/sDQrfaJBBKw26M5vhneI1qOqBEbz A==;
-X-CSE-ConnectionGUID: aRIn4eBfSyuhC2KB+1+83w==
-X-CSE-MsgGUID: 3qkvFA73QfipblN7OZKDew==
-X-IronPort-AV: E=McAfee;i="6600,9927,11092"; a="25418656"
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="25418656"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 01:24:02 -0700
-X-CSE-ConnectionGUID: QnqcRERvTtiWVVqObAcxXA==
-X-CSE-MsgGUID: PnRo7jT/R82Chm81jYLsGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.08,213,1712646000"; d="scan'208";a="37030218"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com)
- ([10.237.72.44])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jun 2024 01:23:51 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
- by kekkonen.fi.intel.com (Postfix) with SMTP id E1B7911FA4A;
- Tue,  4 Jun 2024 11:23:48 +0300 (EEST)
-Date: Tue, 4 Jun 2024 08:23:48 +0000
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Perry Yuan <perry.yuan@amd.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>,
- Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>,
- Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>,
- Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>,
- Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
- Johannes Berg <johannes.berg@intel.com>,
- Gregory Greenman <gregory.greenman@intel.com>,
- Benjamin Berg <benjamin.berg@intel.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Robert Richter <rrichter@amd.com>, Vinod Koul <vkoul@kernel.org>,
- Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Linus Walleij <linus.walleij@linaro.org>,
- Hans de Goede <hdegoede@redhat.com>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Stanley Chang <stanley_chang@realtek.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Abdel Alkuor <abdelalkuor@geotab.com>,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Eric Biggers <ebiggers@google.com>,
- Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>,
- "Steven Rostedt (Google)" <rostedt@goodmis.org>,
- Daniel Bristot de Oliveira <bristot@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Hugh Dickins <hughd@google.com>, Abel Wu <wuyun.abel@bytedance.com>,
- John Johansen <john.johansen@canonical.com>,
- Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Takashi Iwai <tiwai@suse.de>,
- Takashi Sakamoto <o-takashi@sakamocchi.jp>,
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Mark Brown <broonie@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- keyrings@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-ide@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, linux-clk@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- linux-pm@vger.kernel.org, qat-linux@intel.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-usb@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org,
- linux-hardening@vger.kernel.org, cgroups@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
- Nicholas Piggin <npiggin@gmail.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>,
- "David S. Miller" <davem@davemloft.net>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Daniel Scally <djrscally@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Heiko Stuebner <heiko@sntech.de>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Huang Rui <ray.huang@amd.com>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
- Hu Ziji <huziji@marvell.com>, Ulf Hansson <ulf.hansson@linaro.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Potnuri Bharat Teja <bharat@chelsio.com>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Miri Korenblit <miriam.rachel.korenblit@intel.com>,
- Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
- Oliver O'Halloran <oohall@gmail.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- JC Kuo <jckuo@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Sebastian Reichel <sre@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>,
- Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- Valentin Schneider <vschneid@redhat.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Clemens Ladisch <clemens@ladisch.de>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
- sysfs_match_string()
-Message-ID: <Zl7PFGprypdZi6ql@kekkonen.localdomain>
-References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+X-Greylist: delayed 1314 seconds by postgrey-1.36 at gabe;
+ Mon, 29 Apr 2024 09:41:12 UTC
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9FC110FE3D
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Apr 2024 09:41:12 +0000 (UTC)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+ by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T9JHf3110209;
+ Mon, 29 Apr 2024 04:19:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+ s=ti-com-17Q1; t=1714382357;
+ bh=GAeJutmBfbXi2G1J44pQsF+mK6WtMQQGoTi+2ZHgAFI=;
+ h=Date:Subject:To:References:From:In-Reply-To;
+ b=iEYljnBglN1umF0i0eKBO28GZYJEVrBWJ2wcntfpRn7l/oQMlQqlR8Bk72Jr/bM4b
+ 4nMvuIvuDF3XW653x9aBPUgnLqcgpPQO2sbxXDy4i4A/b7OJl2XCEejuZuqX21aIEo
+ MJRGBCGToX7Ra9u9CAszPvBe0crDw5ucGLl3egc4=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+ by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T9JHKx001675
+ (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+ Mon, 29 Apr 2024 04:19:17 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
+ Apr 2024 04:19:16 -0500
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 29 Apr 2024 04:19:16 -0500
+Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
+ by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T9JD0G118263;
+ Mon, 29 Apr 2024 04:19:14 -0500
+Message-ID: <c5ff8d3e-ecfc-4970-86c0-540b75b4be2e@ti.com>
+Date: Mon, 29 Apr 2024 14:49:13 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] [v7] nouveau: add command-line GSP-RM registry support
+Content-Language: en-US
+To: Timur Tabi <ttabi@nvidia.com>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ <bskeggs@nvidia.com>, <nouveau@lists.freedesktop.org>
+References: <20240417215317.3490856-1-ttabi@nvidia.com>
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <20240417215317.3490856-1-ttabi@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -212,33 +72,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Andy,
+Hi Timur Tabi,
 
-On Sun, Jun 02, 2024 at 06:57:12PM +0300, Andy Shevchenko wrote:
-> diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
-> index 503773707e01..9cb350de30f0 100644
-> --- a/drivers/acpi/scan.c
-> +++ b/drivers/acpi/scan.c
-> @@ -798,7 +798,7 @@ static bool acpi_info_matches_ids(struct acpi_device_info *info,
->  	if (!(info->valid & ACPI_VALID_HID))
->  		return false;
->  
-> -	index = match_string(ids, -1, info->hardware_id.string);
-> +	index = __match_string(ids, -1, info->hardware_id.string);
->  	if (index >= 0)
->  		return true;
->  
-> @@ -809,7 +809,7 @@ static bool acpi_info_matches_ids(struct acpi_device_info *info,
->  		return false;
->  
->  	for (i = 0; i < cid_list->count; i++) {
-> -		index = match_string(ids, -1, cid_list->ids[i].string);
-> +		index = __match_string(ids, -1, cid_list->ids[i].string);
->  		if (index >= 0)
->  			return true;
->  	}
+On 18/04/24 3:23 am, Timur Tabi wrote:
+> Add the NVreg_RegistryDwords command line parameter, which allows
+> specifying additional registry keys to be sent to GSP-RM.  This
+> allows additional configuration, debugging, and experimentation
+> with GSP-RM, which uses these keys to alter its behavior.
+> 
+> Note that these keys are passed as-is to GSP-RM, and Nouveau does
+> not parse them.  This is in contrast to the Nvidia driver, which may
+> parse some of the keys to configure some functionality in concert with
+> GSP-RM.  Therefore, any keys which also require action by the driver
+> may not function correctly when passed by Nouveau.  Caveat emptor.
+> 
+> The name and format of NVreg_RegistryDwords is the same as used by
+> the Nvidia driver, to maintain compatibility.
+> 
 
-Reviewed-by: Sakari Ailus <sakari.ailus@linux.intel.com> # drivers/acpi
+This patch seems to be breaking latest linux-next (tag: next-20240429).
+While building kernel for arm64 on latest linux-next with defconfig, I
+see build failure with below error.
+
+❯ make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
+
+  CALL    scripts/checksyscalls.sh
+  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function
+‘build_registry’:
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at
+end of compound statement
+ 1266 |   default:
+      |   ^~~~~~~
+make[6]: *** [scripts/Makefile.build:244:
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
+make[5]: *** [scripts/Makefile.build:485: drivers/gpu/drm/nouveau] Error 2
+make[4]: *** [scripts/Makefile.build:485: drivers/gpu/drm] Error 2
+make[3]: *** [scripts/Makefile.build:485: drivers/gpu] Error 2
+make[2]: *** [scripts/Makefile.build:485: drivers] Error 2
+make[1]: *** [/home/danish/workspace/linux-next/Makefile:1924: .] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+> ---
+> v7:
+>   rebase onto drm-misc-next
+>   rename vlen to alloc_size
+> 
+>  .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |   6 +
+>  .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 355 ++++++++++++++++--
+>  2 files changed, 337 insertions(+), 24 deletions(-)
+
+[...]
+
+> +
+> +/**
+> + * build_registry -- create the registry RPC data
+> + * @gsp: gsp pointer
+> + * @registry: pointer to the RPC payload to fill
+> + *
+> + * After all registry key/value pairs have been added, call this function to
+> + * build the RPC.
+> + *
+> + * The registry RPC looks like this:
+> + *
+> + * +-----------------+
+> + * |NvU32 size;      |
+> + * |NvU32 numEntries;|
+> + * +-----------------+
+> + * +----------------------------------------+
+> + * |PACKED_REGISTRY_ENTRY                   |
+> + * +----------------------------------------+
+> + * |Null-terminated key (string) for entry 0|
+> + * +----------------------------------------+
+> + * |Binary/string data value for entry 0    | (only if necessary)
+> + * +----------------------------------------+
+> + *
+> + * +----------------------------------------+
+> + * |PACKED_REGISTRY_ENTRY                   |
+> + * +----------------------------------------+
+> + * |Null-terminated key (string) for entry 1|
+> + * +----------------------------------------+
+> + * |Binary/string data value for entry 1    | (only if necessary)
+> + * +----------------------------------------+
+> + * ... (and so on, one copy for each entry)
+> + *
+> + *
+> + * The 'data' field of an entry is either a 32-bit integer (for type DWORD)
+> + * or an offset into the PACKED_REGISTRY_TABLE (for types BINARY and STRING).
+> + *
+> + * All memory allocated by add_registry() is released.
+> + */
+> +static void build_registry(struct nvkm_gsp *gsp, PACKED_REGISTRY_TABLE *registry)
+> +{
+> +	struct registry_list_entry *reg, *n;
+> +	size_t str_offset;
+> +	unsigned int i = 0;
+> +
+> +	registry->numEntries = list_count_nodes(&gsp->registry_list);
+> +	str_offset = struct_size(registry, entries, registry->numEntries);
+> +
+> +	list_for_each_entry_safe(reg, n, &gsp->registry_list, head) {
+> +		registry->entries[i].type = reg->type;
+> +		registry->entries[i].length = reg->vlen;
+> +
+> +		/* Append the key name to the table */
+> +		registry->entries[i].nameOffset = str_offset;
+> +		memcpy((void *)registry + str_offset, reg->key, reg->klen);
+> +		str_offset += reg->klen;
+> +
+> +		switch (reg->type) {
+> +		case REGISTRY_TABLE_ENTRY_TYPE_DWORD:
+> +			registry->entries[i].data = reg->dword;
+> +			break;
+> +		case REGISTRY_TABLE_ENTRY_TYPE_BINARY:
+> +		case REGISTRY_TABLE_ENTRY_TYPE_STRING:
+> +			/* If the type is binary or string, also append the value */
+> +			memcpy((void *)registry + str_offset, reg->binary, reg->vlen);
+> +			registry->entries[i].data = str_offset;
+> +			str_offset += reg->vlen;
+> +			break;
+> +		default:
+
+This line seems to be the culprit.
+
+> +		}
+> +
+> +		i++;
+> +		list_del(&reg->head);
+> +		kfree(reg);
+> +	}
+> +
+> +	/* Double-check that we calculated the sizes correctly */
+> +	WARN_ON(gsp->registry_rpc_size != str_offset);
+> +
+> +	registry->size = gsp->registry_rpc_size;
+> +}
+> +
+
+[...]
 
 -- 
-Sakari Ailus
+Thanks and Regards,
+Danish
