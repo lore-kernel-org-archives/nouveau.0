@@ -4,46 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C6FAD5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15D99D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0120810E9D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D3E10E96E;
 	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
-Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 054A810E0B7;
- Fri, 30 Aug 2024 01:14:06 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.163.174])
- by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Ww0XD4kZ9zyR6Q;
- Fri, 30 Aug 2024 09:13:32 +0800 (CST)
-Received: from kwepemd500012.china.huawei.com (unknown [7.221.188.25])
- by mail.maildlp.com (Postfix) with ESMTPS id BC85D140202;
- Fri, 30 Aug 2024 09:14:04 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemd500012.china.huawei.com
- (7.221.188.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Fri, 30 Aug
- 2024 09:14:04 +0800
-From: Li Zetao <lizetao1@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <kherbst@redhat.com>, <lyude@redhat.com>, <dakr@redhat.com>,
- <felix.kuehling@amd.com>, <zhenguo.yin@amd.com>,
- <srinivasan.shanmugam@amd.com>, <shashank.sharma@amd.com>,
- <Jesse.Zhang@amd.com>
-CC: <lizetao1@huawei.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Subject: [PATCH -next 2/3] drm/amdgpu: use clamp() in amdgpu_vm_adjust_size()
-Date: Fri, 30 Aug 2024 09:22:15 +0800
-Message-ID: <20240830012216.603623-3-lizetao1@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240830012216.603623-1-lizetao1@huawei.com>
-References: <20240830012216.603623-1-lizetao1@huawei.com>
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="U0Fo00mN";
+	dkim-atps=neutral
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AA9010F6A1;
+ Fri,  3 May 2024 06:01:07 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4433a53G004818;
+ Fri, 3 May 2024 06:01:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=noN7kBLxq9TVGdHUBmY+gSoaFbzmaEzOs2TwYGDA4NA=; b=U0
+ Fo00mN+XXjGU8b/VaAv8ENQXxmXztOCDwkY1Qe1bQiafxAnopThnVdYwUX/Jf4Aa
+ xATL/sB5o1OokTs7y0NcRSRY1KEkcpwI84k40q31WC41CUkzv5Hg6utRT/K29FQv
+ pyuyOIwGZSfxj8AdrnRprofbH4RRj37b6KJDFo9P6EIGzu8K9KI3O7QDjOG2j4sJ
+ QjLUjeBQnrW6xQ49pG1m6ZYYd0u2BV8/dmUVxuEzs1gSxRTZ+wq4qbOMkncesqUt
+ 5PiFQWkY3M1pYZi5qYpZqyQd5uOIC8tp9Bs3zlkoJHEd50J/HNOPb4wC+J73gPP7
+ eO02QrtSpjm4vE6TKdDQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xv6q0td3h-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 03 May 2024 06:00:59 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44360wPC008346
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 3 May 2024 06:00:58 GMT
+Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 2 May 2024
+ 23:00:54 -0700
+Message-ID: <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
+Date: Fri, 3 May 2024 11:30:50 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.90.53.73]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemd500012.china.huawei.com (7.221.188.25)
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
+To: Greg KH <gregkh@linuxfoundation.org>, kernel test robot <lkp@intel.com>
+CC: Andrew Morton <akpm@linux-foundation.org>, Linux Memory Management List
+ <linux-mm@kvack.org>,
+ <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>
+References: <202405030439.AH8NR0Mg-lkp@intel.com>
+ <2024050342-slashing-froth-bcf9@gregkh>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2024050342-slashing-froth-bcf9@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-ORIG-GUID: O6_fT_RHzM9at2lNZPzBwfaLMctBtVtb
+X-Proofpoint-GUID: O6_fT_RHzM9at2lNZPzBwfaLMctBtVtb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-03_03,2024-05-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ lowpriorityscore=0 bulkscore=0 priorityscore=1501 spamscore=0
+ mlxlogscore=726 malwarescore=0 phishscore=0 adultscore=0 clxscore=1011
+ mlxscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405030041
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,27 +96,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-When it needs to get a value within a certain interval, using clamp()
-makes the code easier to understand than min(max()).
 
-Signed-off-by: Li Zetao <lizetao1@huawei.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-index e20d19ae01b2..40f9a5d4f3c0 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c
-@@ -2224,7 +2224,7 @@ void amdgpu_vm_adjust_size(struct amdgpu_device *adev, uint32_t min_vm_size,
- 		phys_ram_gb = ((uint64_t)si.totalram * si.mem_unit +
- 			       (1 << 30) - 1) >> 30;
- 		vm_size = roundup_pow_of_two(
--			min(max(phys_ram_gb * 3, min_vm_size), max_size));
-+			clamp(phys_ram_gb * 3, min_vm_size, max_size));
- 	}
- 
- 	adev->vm_manager.max_pfn = (uint64_t)vm_size << 18;
--- 
-2.34.1
+On 5/3/2024 10:42 AM, Greg KH wrote:
+> Ok, I'm getting tired of seeing these for the USB portion of the tree,
+> so I went to look for:
+> 
+> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
+>> |-- arc-randconfig-002-20240503
+>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
+> 
+> This warning (same for all arches), but can't seem to find it anywhere.
+> 
+> Any hints as to where it would be?
+> 
 
+Hi Greg,
+
+  I think the hw_mode was not removed in hs_phy_setup and left unused.
+
+  Thinh reported the same when there was a merge conflict into linux 
+next (that the hw_mode variable was removed in ss_phy_setup and should 
+be removed in hs_phy_setup as well):
+
+https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+
+  Perhaps that was missed ?
+
+Regards,
+Krishna,
