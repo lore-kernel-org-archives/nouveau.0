@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6528AD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FD6FD5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFF6410EA5A;
-	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3506810EA65;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZuC3h5Z8";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="PhtnMo/9";
 	dkim-atps=neutral
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C486F10E4DD;
- Tue, 10 Jun 2025 10:16:51 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-235248ba788so6462595ad.0; 
- Tue, 10 Jun 2025 03:16:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749550611; x=1750155411; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=UUKpD09dHui4C4fVtz7ec5/TcctLfFsmGhQ+qO4+hGE=;
- b=ZuC3h5Z8VnhKn+HpL42TMeM+lGYX7CJPGiZZck7+1zCVIXuj2MZIsACsA1ZmWpdrQy
- JKN9yH3D8TyHUrRMshD1zHhQglqfFf1oYePj+cbqp55e2uooBsXZbq/12EopmC6faAi2
- Udd0daI7E6cbq6e26Huag9Gi4xUQGzS0HpsgzxRzBdJeolDPHLanFsp/Fs1hSDFhetjU
- y1DBi8GSKJUEiu404g/PvX/KuY54tDOdqauaX2E4Akz7w3rW8bLJD2Vx6mZo5ccyft9q
- JYOS63N39W2VnOJpOduWY/aTC3heKCvK/ffVRT7wFEWFjHvR0K7Mv2clqnjn82dYfoVW
- gAkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749550611; x=1750155411;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=UUKpD09dHui4C4fVtz7ec5/TcctLfFsmGhQ+qO4+hGE=;
- b=GYbnyiepdCAchYNoIiYWX77yRAlT0IU1NeZvwn4lpBdL3Ur21r1eAPcbxbXq6MhM/M
- B3iZvcqAyu3etr1e4y83aoxo8aTvhoZ+k6Vq7LQPfKq8C0r9WsfHtf3P2WAxaYVfQBl0
- b0KuutwwD2vVkb0oekJTH7tW1wBwDBin4xhYWc0e7lTeWQktk9hE4u3UwdNpeOGrCdJ/
- 4VpXzdZMKQ62TxKkYyweU+jM4cB8NYfiQ+umMpcCuOHPY2hvBfl86waei6V+fC1A9bGN
- Y1C3Qb0eBpfoAQ3WstYY5x2gVuitEpUlvHURKznYN9F6+Bgnvg+el+hlOoTfUMRn4CuP
- 5feA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUzeIgCYplhwyYmnbRSKl1josC7PTqvk0zXmJG1z1+AI1d6dWFidiRhAypmGI3tzXtuzQyro3hVMQ==@lists.freedesktop.org,
- AJvYcCXSiIu66PEzHIeQfytwHcJiACISJA2FfAur3NyYoY8UckQ+L+OIZcm0RGmxtyCJbnx931SSqFmlYfE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yym+BVhE7GL1wQx3+Fykv5sabOQ961c8yiAD5ECcMIZYYaxxDM/
- PtUp3hpIfcuvx6Uu+P6TBhX//b0u66Nl38UYg0j4rr44RBi1Elgc4bUclOmNfVs+mLTDW/TjEMq
- T0yNiO9PVBW+gLBmH2p87C9Mvc/zYhtI=
-X-Gm-Gg: ASbGncsz0kGsMw63pCq6U7cKocip3elrfHdEPNpNiYuauTRx7bb7qlepXn7X7YBDj5n
- buR+l2YzmlcvZ6cPU1rfilsWp3wjkooUHsIuF5vzSW3/XB1qbmBg91Z73yuUFufDEAbbugb7FE7
- cPLx0sn9C/C8ov1iEoJ2bg9F6EOfnCeNx9ov2WAE70oIo=
-X-Google-Smtp-Source: AGHT+IGjNe4w/TZWClCQSXCO0edDTMBkbQhOnY+c8pbDSn5UW9W4Wf46Bs/AhhcRk7i4bblmszBZ6m7JuEbjAxmj0uM=
-X-Received: by 2002:a17:902:ce85:b0:234:adce:3ea4 with SMTP id
- d9443c01a7336-23601da9a61mr93668205ad.10.1749550611325; Tue, 10 Jun 2025
- 03:16:51 -0700 (PDT)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 374E710ECCA;
+ Fri,  3 May 2024 07:54:00 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4436srbR030347;
+ Fri, 3 May 2024 07:53:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ message-id:date:mime-version:subject:to:cc:references:from
+ :in-reply-to:content-type:content-transfer-encoding; s=
+ qcppdkim1; bh=3mzdCXxXwnn8uCG5UnxaKBkw7nHf6ws+H3ixiga1rf4=; b=Ph
+ tnMo/9H5defEBpAiWaXHCbfUbzlzPihxbRvIm/T1sckITy/l1zp8nVhHfFwjUHgQ
+ s5Ug37+Kxp/aa2QvM69pIrTfcgt1LpxtwPKFoqhois04amUWjupw9meo8Ak1aio4
+ 7mLNa2NpGTBtdJNJYexesOmg41tnxkXCqelUU+XoiLwLDG1rF9T5KLjq6qKWtc9A
+ cl0zL08qZd5bbsS7WHpW56EZZyJd4oqgwEVL7jykzyNXL2Sms8cA2A5Lf9zH8xTK
+ frQMAdINzapOmJ9BvugUip3a1p1h79ZtWP4VOgbFlIWvca95yy14y/YODvEDLSP6
+ h2DsazBpJweCZsLjmBAQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3xvu2n833h-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 03 May 2024 07:53:51 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4437rpdi000345
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 3 May 2024 07:53:51 GMT
+Received: from [10.216.13.234] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 3 May 2024
+ 00:53:46 -0700
+Message-ID: <a0daf2d5-4c72-4d96-a8d4-b15adb7252d5@quicinc.com>
+Date: Fri, 3 May 2024 13:23:43 +0530
 MIME-Version: 1.0
-References: <20250609122200.179307-1-trintaeoitogc@gmail.com>
- <DAIQ9342ZFYD.3VQVI80A18HKX@kernel.org>
- <CANiq72kC1j-kprAQ5WU0QVV_zhyKfDPJ_M5E9xZ+8+fxt4R6qQ@mail.gmail.com>
- <DAIRU9INPO8A.1PLCLKFJJGODH@kernel.org>
-In-Reply-To: <DAIRU9INPO8A.1PLCLKFJJGODH@kernel.org>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 10 Jun 2025 12:16:36 +0200
-X-Gm-Features: AX0GCFvnab1QEUDa9dFfE8CNMQFcfiIoOKuRWyWSIv2LB_UaenukRWb6fdKCArM
-Message-ID: <CANiq72kORZjTe3tPEBueDi57TGF7KfxgTSw4Tn0DQeK_X5hi5A@mail.gmail.com>
-Subject: Re: [PATCH] rust: module: remove deprecated author key
-To: Benno Lossin <lossin@kernel.org>
-Cc: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>, rafael@kernel.org,
- viresh.kumar@linaro.org, 
- dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, mcgrof@kernel.org, 
- russ.weight@linux.dev, ojeda@kernel.org, alex.gaynor@gmail.com, 
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
- a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
- leitao@debian.org, gregkh@linuxfoundation.org, david.m.ertman@intel.com, 
- ira.weiny@intel.com, leon@kernel.org, fujita.tomonori@gmail.com, 
- tamird@gmail.com, igor.korotin.linux@gmail.com, walmeida@microsoft.com, 
- anisse@astier.eu, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [linux-next:master] BUILD REGRESSION
+ 9c6ecb3cb6e20c4fd7997047213ba0efcf9ada1a
+To: Greg KH <gregkh@linuxfoundation.org>
+CC: kernel test robot <lkp@intel.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Linux Memory Management List
+ <linux-mm@kvack.org>,
+ <amd-gfx@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-arch@vger.kernel.org>,
+ <linux-usb@vger.kernel.org>, <netdev@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>
+References: <202405030439.AH8NR0Mg-lkp@intel.com>
+ <2024050342-slashing-froth-bcf9@gregkh>
+ <d7f7cfae-78d5-41aa-aaf9-0d558cdfcbea@quicinc.com>
+ <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Language: en-US
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <2024050314-knelt-sandpaper-3884@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-ORIG-GUID: on9lyQf9xcE0l1itpmxGZT4JopeFAuC6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1011,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-03_04,2024-05-03_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0
+ lowpriorityscore=0 adultscore=0 spamscore=0 phishscore=0 mlxlogscore=707
+ priorityscore=1501 malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2404010003 definitions=main-2405030055
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,14 +99,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jun 10, 2025 at 12:12=E2=80=AFPM Benno Lossin <lossin@kernel.org> w=
-rote:
->
-> Hmm, I guess a checkpatch lint fits better then?
 
-Yeah, that would work.
 
-Probably for the C side too -- from a quick grep I don't see it.
+On 5/3/2024 11:58 AM, Greg KH wrote:
+> On Fri, May 03, 2024 at 11:30:50AM +0530, Krishna Kurapati PSSNV wrote:
+>>
+>>
+>> On 5/3/2024 10:42 AM, Greg KH wrote:
+>>> Ok, I'm getting tired of seeing these for the USB portion of the tree,
+>>> so I went to look for:
+>>>
+>>> On Fri, May 03, 2024 at 04:44:42AM +0800, kernel test robot wrote:
+>>>> |-- arc-randconfig-002-20240503
+>>>> |   `-- drivers-usb-dwc3-core.c:warning:variable-hw_mode-set-but-not-used
+>>>
+>>> This warning (same for all arches), but can't seem to find it anywhere.
+>>>
+>>> Any hints as to where it would be?
+>>>
+>>
+>> Hi Greg,
+>>
+>>   I think the hw_mode was not removed in hs_phy_setup and left unused.
+>>
+>>   Thinh reported the same when there was a merge conflict into linux next
+>> (that the hw_mode variable was removed in ss_phy_setup and should be removed
+>> in hs_phy_setup as well):
+>>
+>> https://lore.kernel.org/all/20240426213923.tyeddub4xszypeju@synopsys.com/
+>>
+>>   Perhaps that was missed ?
+> 
+> Must have been.  I need it in a format that it can be applied in (a
+> 2-way diff can't apply...)
+> 
 
-Cheers,
-Miguel
+I just checked it with W=1 and it is causing the issue:
+
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c: 
+In function 'dwc3_hs_phy_setup':
+/local/mnt/workspace/krishna/linux-next/skales_test/skales/kernel/drivers/usb/dwc3/core.c:679:15: 
+warning: variable 'hw_mode' set but not used [-Wunused-but-set-variable]
+   unsigned int hw_mode;
+                ^
+
+I can send a patch to fix it up. Also, just wanted to confirm if  I skip 
+the fixes and CC tags as the main patch wasn't yet merged into any 
+stable trees ?
+
+Regards,
+Krishna,
