@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B19B3D5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0CDAD5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2EA10E7BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 924F710E8E8;
 	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="tZuttLM3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nJwQoM2R";
 	dkim-atps=neutral
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com
- [46.235.227.194])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A94910EA43
- for <nouveau@lists.freedesktop.org>; Mon, 29 Apr 2024 14:15:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1714400141;
- bh=+HgArwANycQymeI5ldrVtS468Zq2+ws8hnlvf1oqak8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=tZuttLM3Paf7w34fTyjCPLzwIrltV+vvWLyrsWboEFB27cJfsOjrQLAEuUoZG0VfB
- BtV9uvdc4afdVgKErzojMf9ZSvnWf7OfzbhY1FUn4DNyg309vhioNF4VwNX4Hu6bfM
- 7Sgwd6lxkKqvv+glbW17t8++XPm9f6ig4gj7hXeV8cMC1+wEq7YkR4k4GENxOxSONZ
- GZSV5kPWpeJZ1RmyiCQ6yMI5OwA1oe4pokSfIO8hvbdzq7knWVliEllOGyPd5/+El7
- ALyXriDN1Pz2pOKZE4BFIpq0BVdsKdoWwq2XceMX237CuKktmDD/ro7rxHPa/HBedc
- B94Rqx2jgLpcQ==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: nfraprado)
- by madrid.collaboradmins.com (Postfix) with ESMTPSA id D86CE3780BFE;
- Mon, 29 Apr 2024 14:15:39 +0000 (UTC)
-Date: Mon, 29 Apr 2024 10:15:37 -0400
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: Timur Tabi <ttabi@nvidia.com>
-Cc: "airlied@redhat.com" <airlied@redhat.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "lyude@redhat.com" <lyude@redhat.com>, Ben Skeggs <bskeggs@nvidia.com>,
- "dakr@redhat.com" <dakr@redhat.com>,
- "danishanwar@ti.com" <danishanwar@ti.com>
-Subject: Re: [PATCH] [v7] nouveau: add command-line GSP-RM registry support
-Message-ID: <c5d25e0f-046e-4c8b-b89e-de784f489441@notapiano>
-References: <20240417215317.3490856-1-ttabi@nvidia.com>
- <c5ff8d3e-ecfc-4970-86c0-540b75b4be2e@ti.com>
- <2775775499487396fbad5c2327dcaf7fb88a524d.camel@nvidia.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8784A10FFF5;
+ Fri,  3 May 2024 19:03:25 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 2AB26CE19FE;
+ Fri,  3 May 2024 19:03:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C6EDC116B1;
+ Fri,  3 May 2024 19:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1714763002;
+ bh=pJM8i96ujPL/T4zAJrJuNpEQ+W+V/MxYLMvJEqYmBvg=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=nJwQoM2R038ROrePBZmLBa9LYRKlWHdPcGcYai07pnFJYM6UTHODQtRliqexPCOgg
+ WyQenZ6EGL6INqEuQpZnvuyV5VrXQkVxgu74DZj4mKJs4LRaGTYwzIsNSmCZMTrvwZ
+ AUXClks0NGxZ0OY3IItj4fPXk/lqFMVEPDE771iQqnaGMB3uQmEjnOz0KCG/IFR60O
+ own53ZbY1D1FjeQObRwkIrGaVe0hJC8+m+TOnlN7L5tjp+ohRqe+SAjcjAt7CrKDh0
+ Elyj8osbsh3KXPBnBAL9C3QOyL3fEJVeH9a0hjbk8fgnvV8hCcO7v0AbQ1+m679Nsi
+ GrNG8hEtpghEA==
+Date: Fri, 3 May 2024 20:03:14 +0100
+From: Mauro Carvalho Chehab <mchehab@kernel.org>
+To: Easwar Hariharan <eahariha@linux.microsoft.com>
+Cc: linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
+ (V4L/DVB)), linux-kernel@vger.kernel.org (open list), Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, amd-gfx@lists.freedesktop.org (open
+ list:RADEON and AMDGPU DRM DRIVERS), dri-devel@lists.freedesktop.org (open
+ list:DRM DRIVERS), intel-gfx@lists.freedesktop.org (open list:INTEL DRM
+ DISPLAY FOR XE AND I915 DRIVERS), intel-xe@lists.freedesktop.org (open
+ list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS),
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS), linux-i2c@vger.kernel.org (open list:I2C SUBSYSTEM
+ HOST DRIVERS), linux-fbdev@vger.kernel.org (open list:FRAMEBUFFER LAYER)
+Subject: Re: [PATCH v0 04/14] media: au0828: Make I2C terminology more
+ inclusive
+Message-ID: <20240503200314.51e8439a@sal.lan>
+In-Reply-To: <20240329170038.3863998-5-eahariha@linux.microsoft.com>
+References: <20240329170038.3863998-1-eahariha@linux.microsoft.com>
+ <20240329170038.3863998-5-eahariha@linux.microsoft.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2775775499487396fbad5c2327dcaf7fb88a524d.camel@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,74 +68,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Apr 29, 2024 at 12:40:25PM +0000, Timur Tabi wrote:
-> On Mon, 2024-04-29 at 14:49 +0530, MD Danish Anwar wrote:
-> > This patch seems to be breaking latest linux-next (tag: next-20240429).
-> > While building kernel for arm64 on latest linux-next with defconfig, I
-> > see build failure with below error.
-> > 
-> > ❯ make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
-> > 
-> >   CALL    scripts/checksyscalls.sh
-> >   CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o
-> > drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function
-> > ‘build_registry’:
-> > drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at
-> > end of compound statement
-> >  1266 |   default:
-> >       |   ^~~~~~~
-> > make[6]: *** [scripts/Makefile.build:244:
-> > drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
+Em Fri, 29 Mar 2024 17:00:28 +0000
+Easwar Hariharan <eahariha@linux.microsoft.com> escreveu:
+
+> I2C v7, SMBus 3.2, and I3C specifications have replaced "master/slave"
+> with more appropriate terms. Inspired by and following on to Wolfram's
+> series to fix drivers/i2c/[1], fix the terminology for users of
+> I2C_ALGOBIT bitbanging interface, now that the approved verbiage exists
+> in the specification.
 > 
-> I've been writing C code for 30 years, and I can't remember ever seeing this
-> compiler compaint.
+> Compile tested, no functionality changes intended
+
+Current media drivers are perfectly fine with the current terminology. 
+None of them implement the above new standards.
+
+Please drop patches for current stuff under drivers/media.
+
+Regards,
+Mauro
+
 > 
-> 	default:
-> 	}
+> [1]: https://lore.kernel.org/all/20240322132619.6389-1-wsa+renesas@sang-engineering.com/
 > 
-> Seems normal to me, and it doesn't fail on x86.  Try adding a "break;" between
-> the two lines.
+> Signed-off-by: Easwar Hariharan <eahariha@linux.microsoft.com>
+> ---
+>  drivers/media/usb/au0828/au0828-i2c.c   | 4 ++--
+>  drivers/media/usb/au0828/au0828-input.c | 2 +-
+>  2 files changed, 3 insertions(+), 3 deletions(-)
 > 
-
-Hi,
-
-this build failure was also reproduced by KernelCI, and I reproduced it locally
-too. So indeed this change breaks the build for arm64, with the same error
-mentioned above:
-
-
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function ‘build_registry’:
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at end of compound statement
- 1266 |   default:
-      |   ^~~~~~~
-make[6]: *** [scripts/Makefile.build:244: drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
-make[5]: *** [scripts/Makefile.build:485: drivers/gpu/drm/nouveau] Error 2
-
-
-Adding a break statement after the default label as you suggested did fix the
-issue:
-
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index 0b46db5c77b8..63619512e7f6 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -1264,6 +1264,7 @@ static void build_registry(struct nvkm_gsp *gsp, PACKED_REGISTRY_TABLE *registry
-                        str_offset += reg->vlen;
-                        break;
-                default:
-+                       break;
-                }
-
-                i++;
-
-
-Feel free to add my T-by when you send the fix:
-Tested-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-
-#regzbot introduced: b58a0bc904ffa
-#regzbot title: arm64 build failure with error 'label at end of compound statement' on next-20240429
-
-Thanks,
-Nícolas
+> diff --git a/drivers/media/usb/au0828/au0828-i2c.c b/drivers/media/usb/au0828/au0828-i2c.c
+> index 749f90d73b5b..3e66d42bf134 100644
+> --- a/drivers/media/usb/au0828/au0828-i2c.c
+> +++ b/drivers/media/usb/au0828/au0828-i2c.c
+> @@ -23,7 +23,7 @@ MODULE_PARM_DESC(i2c_scan, "scan i2c bus at insmod time");
+>  #define I2C_WAIT_DELAY 25
+>  #define I2C_WAIT_RETRY 1000
+>  
+> -static inline int i2c_slave_did_read_ack(struct i2c_adapter *i2c_adap)
+> +static inline int i2c_client_did_read_ack(struct i2c_adapter *i2c_adap)
+>  {
+>  	struct au0828_dev *dev = i2c_adap->algo_data;
+>  	return au0828_read(dev, AU0828_I2C_STATUS_201) &
+> @@ -35,7 +35,7 @@ static int i2c_wait_read_ack(struct i2c_adapter *i2c_adap)
+>  	int count;
+>  
+>  	for (count = 0; count < I2C_WAIT_RETRY; count++) {
+> -		if (!i2c_slave_did_read_ack(i2c_adap))
+> +		if (!i2c_client_did_read_ack(i2c_adap))
+>  			break;
+>  		udelay(I2C_WAIT_DELAY);
+>  	}
+> diff --git a/drivers/media/usb/au0828/au0828-input.c b/drivers/media/usb/au0828/au0828-input.c
+> index 3d3368202cd0..98a57b6e02e2 100644
+> --- a/drivers/media/usb/au0828/au0828-input.c
+> +++ b/drivers/media/usb/au0828/au0828-input.c
+> @@ -30,7 +30,7 @@ struct au0828_rc {
+>  	int polling;
+>  	struct delayed_work work;
+>  
+> -	/* i2c slave address of external device (if used) */
+> +	/* i2c client address of external device (if used) */
+>  	u16 i2c_dev_addr;
+>  
+>  	int  (*get_key_i2c)(struct au0828_rc *ir);
