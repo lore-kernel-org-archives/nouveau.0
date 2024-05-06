@@ -4,49 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E381D5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F397D5B161
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1258B10E9DE;
-	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E13110EA5C;
- Thu, 27 Jun 2024 07:42:14 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-03 (Coremail) with SMTP id rQCowABHTkbQF31mFzy1Eg--.4169S2;
- Thu, 27 Jun 2024 15:42:10 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch, bskeggs@redhat.com, airlied@redhat.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>,
- stable@vger.kernel.org
-Subject: [PATCH v3] drm/nouveau: fix null pointer dereference in
- nouveau_connector_get_modes
-Date: Thu, 27 Jun 2024 15:42:04 +0800
-Message-Id: <20240627074204.3023776-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8EB410E9A9;
+	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=danm.net header.i=@danm.net header.b="QROozGPc";
+	dkim-atps=neutral
+X-Greylist: delayed 490 seconds by postgrey-1.36 at gabe;
+ Mon, 06 May 2024 19:07:24 UTC
+Received: from mr85p00im-ztdg06011901.me.com (mr85p00im-ztdg06011901.me.com
+ [17.58.23.198])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 619AE10FF56
+ for <nouveau@lists.freedesktop.org>; Mon,  6 May 2024 19:07:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=danm.net; s=sig1;
+ t=1715021953; bh=5IIESbR3d7PDTj2PZkx/M3SXR6EBw4Yas+xIOzHKpLQ=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=QROozGPcQ1BDbPD4y28JbBRKN8LWKB27xIcPMiaIEh+VN6WaolzSOcdjbnDSIukAL
+ t6vMVFJukvGFtLxk8qgKXEeAgaTPfGZoGgBi+TcXLL8hJq/SDyCx2N+uLjwbwkSgmT
+ QnER8wQqp//NHU/DPf//zMscGt/buGwifowkoi5xdc2irEjFK8Lz4PP4Zzgn9aYmRF
+ ZzQCPbI3zsqY/itae2MjQ9r2LIJDSKEf03n+whJHakELkm4ejMtPRK501D1pqXwhnF
+ DvCMxnbYiigPoKJnM3GkcG8XFZXpbKHhv0uuvc3mQmXxCMxVLZFjHeZwgw0EI5RMwj
+ YNKT6MShzmirQ==
+Received: from hitch.danm.net (mr38p00im-dlb-asmtp-mailmevip.me.com
+ [17.57.152.18])
+ by mr85p00im-ztdg06011901.me.com (Postfix) with ESMTPSA id 47DD61349F79;
+ Mon,  6 May 2024 18:59:12 +0000 (UTC)
+From: Dan Moulding <dan@danm.net>
+To: dan@danm.net
+Cc: airlied@redhat.com, dakr@redhat.com, kherbst@redhat.com, lyude@redhat.com,
+ nouveau@lists.freedesktop.org, stable@vger.kernel.org,
+ regressions@lists.linux.dev
+Subject: Re: [REGRESSION] v6.9-rc7: nouveau: init failed, no display output
+ from kernel; successfully bisected
+Date: Mon,  6 May 2024 12:59:10 -0600
+Message-ID: <20240506185910.17917-1-dan@danm.net>
+X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240506182331.8076-1-dan@danm.net>
+References: <20240506182331.8076-1-dan@danm.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: rQCowABHTkbQF31mFzy1Eg--.4169S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw1xZFy3urW5tFW5Zr17GFg_yoWkuFc_GF
- 18ZasrGr4rK3WvywsrAa18ZFn29w1UZr4vyFnYqFZav39rJw1akrn8t34rXFy7XrykGryq
- y3Wq9F98CrnFgjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb3kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
- Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
- 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr
- 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
- rcIFxwACI402YVCY1x02628vn2kIc2xKxwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
- kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
- 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
- CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
- MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUAkucUUUUU=
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
+X-Proofpoint-ORIG-GUID: a1gJzvlb2jdxZFrF5r8DGOtd09gwGmcs
+X-Proofpoint-GUID: a1gJzvlb2jdxZFrF5r8DGOtd09gwGmcs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
+ definitions=2024-05-06_13,2024-05-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ mlxscore=0 suspectscore=0
+ spamscore=0 bulkscore=0 malwarescore=0 adultscore=0 clxscore=1030
+ mlxlogscore=563 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2308100000 definitions=main-2405060137
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,37 +70,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nouveau_connector_get_modes(), the return value of drm_mode_duplicate()
-is assigned to mode, which will lead to a possible NULL pointer
-dereference on failure of drm_mode_duplicate(). Add a check to avoid npd.
+CC'ing regressions list and looping in regzbot (both of which I
+accidentally left out in my initial regression report).
 
-Cc: stable@vger.kernel.org
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
-Changes in v3:
-- added CC stable as suggested, sorry for my negligence.
-Changes in v2:
-- modified the patch according to suggestions;
-- added Fixes line.
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 856b3ef5edb8..0c71d761d378 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1001,6 +1001,9 @@ nouveau_connector_get_modes(struct drm_connector *connector)
- 		struct drm_display_mode *mode;
- 
- 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
-+		if (!mode)
-+			return 0;
-+
- 		drm_mode_probed_add(connector, mode);
- 		ret = 1;
- 	}
--- 
-2.25.1
-
+#regzbot introduced: 52a6947bf576
