@@ -4,77 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBA0FD5B163
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A890D5B165
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A9810E9F4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A857F10E9DD;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="DwR3GGql";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="J6rn49bX";
 	dkim-atps=neutral
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
- [209.85.166.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1520C10E0EF;
- Thu, 30 Jan 2025 21:26:54 +0000 (UTC)
-Received: by mail-io1-f43.google.com with SMTP id
- ca18e2360f4ac-84ceaf2667aso86775539f.3; 
- Thu, 30 Jan 2025 13:26:54 -0800 (PST)
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
+ [209.85.210.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78BF410E0A0;
+ Wed, 22 May 2024 23:15:21 +0000 (UTC)
+Received: by mail-ot1-f46.google.com with SMTP id
+ 46e09a7af769-6f0e2544f6bso213906a34.3; 
+ Wed, 22 May 2024 16:15:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738272413; x=1738877213; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Tqkamo/W6pMKSnOTnzoBwQwZ/NjYd08MuGkepnhxhX0=;
- b=DwR3GGqlSr/x0TwXZ6YUNEe8vcxrr/yZaEIziATJElBxSMzaB7IZcNYvKFVR8MEQn+
- 7dOvY1q8Rdh+DPjcM0hWJ8jx3J0eoEZhTBoxllAFtt5xLbIDL1fJcnsTUD0jlZvcsUIr
- EOPtp0Q2rUxP4ge0OTenF4L/BqzsFfoU32l+OmxXn8gMgkaSLYNqQsTM7vODOG6LP8O1
- eegjrRyyNCxJeT1Z1GDfK5hMZT3i5gKpaJhlh//s1icVQutj0d39kZbcNyvfK7ZPdPVX
- GnIDLWSeJZPOlgtn79OYFMRgGjaAmVhPJguez/2YY5IAdWPp1027qnr+p074Mb/LI3YV
- oYug==
+ d=gmail.com; s=20230601; t=1716419720; x=1717024520; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=Ir2XqinlUrPpaQlopq6pGICD8nECQfQb9VlUJ47Cml4=;
+ b=J6rn49bX7cEOXk0OgPJEPa3XA3nt+xZA5OSiyirMdDnwkQNvMuUDT/QgT9FBb0Gd/A
+ Ee9nkW3QzvpOZhxys3uUcghzJDqO7dbIk0syvJWlKylk6Qdm7krsa4xGnYWi7oTWeIse
+ xVOqdknF0KFTslfc6wlo3I9oPBHLTXc+gUVUkc37W5Z9Kk7WKmwFw7KNdWNHbndVkt6H
+ mTevg22FEMBbGMId0NmUZh1cqzo3zyxcz3Bc/8Y76Zr/16hmxTN8UbTedRWpARZZ55IU
+ gjildVMv8v7ebt1aFNTDKBAAMSm3mlkZ0w2XgvNKM+Chzx6wKdzuLUPiWaIftEGS2O+t
+ 2O4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738272413; x=1738877213;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Tqkamo/W6pMKSnOTnzoBwQwZ/NjYd08MuGkepnhxhX0=;
- b=EtY+1aeEjzX53zzbtKFzuCyV0IY6QfXf+R99hzwKBgqF96YBYvhtrjTxApuH9qhZq9
- Z2K0F0DgT9zbRBLbH1nT5zalVGvvWKAqIwbBqg1k7NakBopfVSaaaq3OrU//6zd+mJHG
- HKrD8y2BxwIvYmOOQ3BNIbgWeV3gajWxruxin8HKZ0SBOlmjZ4CXGG3Ifob+YIOZqKA6
- mGbYzvuttoWrT6O1FnSJR3jDg6j6NG/Ah2fnWgv0zx7U6WGTxdQdWYTbFAvhaqr8tN0Y
- FhnoBHezSbYpZV7h1D4p5evqfEiEuit3AMgbLmraRI03iyfv0wrkE20GMLOjMiOdfx+v
- aiTA==
+ d=1e100.net; s=20230601; t=1716419720; x=1717024520;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=Ir2XqinlUrPpaQlopq6pGICD8nECQfQb9VlUJ47Cml4=;
+ b=fuCA+RLgn0nTP45xPKcO7yhec48JtSjrTmzT2qnIqFkcQXD+5q13egUfPKyNiFzLq4
+ pVh9uF51p8IUJEdbgZ+DrfGJ+roc6CYWFyvEno+1xEhQdfRA5J8+amXCAtxQB/0GnS2Q
+ oARwX5hm7+JgK7Ty+GiMoO/yUozQNENXuf7BsIpl9G5OKMwhksu/daKwFsmDgEw2LEqt
+ ngTSNGm90DP73PYdGzs4fgfmwsR5OEptD9IbwMLJOqFL6UDGcieA8zT6nBfjIIfWd4HA
+ y5X9xyl/M9JYabXl0K4IlaSSwj3h+AASPo6di08+uem7vwoLQ2/i6ewHhS6SBJGKYK6M
+ Z9wQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUAe3RYpDrPgIF0MnNTAAeHj0+3d/9ZNkic5XsNwYpi8q/W7BsUuIx/DPagbs1KVJCsBaaJ7NJeuFw=@lists.freedesktop.org,
- AJvYcCW41ywJZDZkSCSiXngWYkBhu4k7Apcxb6BB7S7wjl/vwJAOHlysriqq5r3d/BESoZv8pneVzGMx4g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxuiO1zw4NZFAq91PFv0Onwh6x8/56wZmtmOpVTJ2ZlzGQZ05az
- AcE8O77isPW7SkYdfE+6Y1Kjx1mS+TJ4bhV9cm1DxoVjB3L2ufDq
-X-Gm-Gg: ASbGncv5Jh1UdyeJXh9kj76y+KZJee/huc98COSwV15ECn/9EOi2l2I/0vGSgYVYtbM
- RWzdPOexUAETfMTj9G187IbbI7bw87vGRlzOAzyokTAA9+N7PQ+hh4WbdYAHaR0571/J2TGSaRr
- 2y3ut9SRRMMF8JTYDB+JXyonZOWYf9ua1oddVy9xLmuT8Y9nBKY59bHJMDuzHI2J9r4C2EyZkaE
- qMBqsvszrGUYM3GNSIlL2d4+QxaQGQ6nDy4H/BkbpJ63DKqlgV4bNY23alP03aJCkY2p1pmVEsT
- Fqf9KPCK6wWj5/DzbNMcvkk0vg==
-X-Google-Smtp-Source: AGHT+IEkLqBHFekG09YoFWTOutpig+q5kged9l+7F7EfV+49vPiL2hEWO25pIxOb0Uvq/rD9kwXQwg==
-X-Received: by 2002:a05:6602:418b:b0:843:e8d0:a728 with SMTP id
- ca18e2360f4ac-8541111199cmr945896239f.4.1738272413235; 
- Thu, 30 Jan 2025 13:26:53 -0800 (PST)
-Received: from vengeance.tcpc.lan ([97.75.251.196])
- by smtp.gmail.com with ESMTPSA id
- 8926c6da1cb9f-4ec745b49bcsm518959173.37.2025.01.30.13.26.52
+ AJvYcCV8TeE434TTm3e+3Zar7LUMPYEDrbETCFr27iQAv0sQyZTUL9IR9k3kpKyNX7sbGoXc4iv4lq9STf+m5t92vk1JgP7pcwrBuqp3y5O5eUET8Qj3m7dlrPPpaYW1lKvqG4XHOm+0soygePiivFOt1A==
+X-Gm-Message-State: AOJu0YyB9/XgENz9+pYwfIKxmuZXjojfXZObf7WEd56u+Fdc6C32mipX
+ +X+hHJGxib5tAgn0iayiqCq9F2eSiTlTM3V55UUEY/oip76FyNqh
+X-Google-Smtp-Source: AGHT+IEg0tD1wihn+c8EcE3GfwFZJ9P0oCxBgIaw/cJq+yGvGb5ZmoLis9eA4mwP5hlUp53Vcp3WSg==
+X-Received: by 2002:a05:6358:2921:b0:192:82da:43df with SMTP id
+ e5c5f4694b2df-19791b7d6d6mr377565255d.1.1716419720266; 
+ Wed, 22 May 2024 16:15:20 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-6f4d2a66557sm22855335b3a.44.2024.05.22.16.15.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jan 2025 13:26:52 -0800 (PST)
-From: Aaron Kling <luceoscutum@gmail.com>
-X-Google-Original-From: Aaron Kling <webgeek1234@gmail.com>
-To: 
-Cc: Aaron Kling <webgeek1234@gmail.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Ben Skeggs <bskeggs@redhat.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau/pmu: Fix gp10b firmware guard
-Date: Thu, 30 Jan 2025 15:25:21 -0600
-Message-ID: <20250130212525.2508700-1-webgeek1234@gmail.com>
-X-Mailer: git-send-email 2.48.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ Wed, 22 May 2024 16:15:19 -0700 (PDT)
+Date: Thu, 23 May 2024 08:15:13 +0900 (JST)
+Message-Id: <20240523.081513.81513679981916366.fujita.tomonori@gmail.com>
+To: pstanner@redhat.com
+Cc: fujita.tomonori@gmail.com, dakr@redhat.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, wedsonaf@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ a.hindborg@samsung.com, aliceryhl@google.com, lina@asahilina.net,
+ ajanulgu@redhat.com, lyude@redhat.com, gregkh@linuxfoundation.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <35fef820ed6e67f2203e78735fc9e15248436221.camel@redhat.com>
+References: <20240520172422.181763-4-dakr@redhat.com>
+ <20240522.085334.1009573112046880609.fujita.tomonori@gmail.com>
+ <35fef820ed6e67f2203e78735fc9e15248436221.camel@redhat.com>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=utf-8
+Content-Transfer-Encoding: base64
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,25 +91,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fixes: 989863d7cbe5 ("drm/nouveau/pmu: select implementation based on available firmware")
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
-index a6f410ba60bc9..d393bc540f862 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
-@@ -75,7 +75,7 @@ gp10b_pmu_acr = {
- 	.bootstrap_multiple_falcons = gp10b_pmu_acr_bootstrap_multiple_falcons,
- };
- 
--#if IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
-+#if IS_ENABLED(CONFIG_ARCH_TEGRA_186_SOC)
- MODULE_FIRMWARE("nvidia/gp10b/pmu/desc.bin");
- MODULE_FIRMWARE("nvidia/gp10b/pmu/image.bin");
- MODULE_FIRMWARE("nvidia/gp10b/pmu/sig.bin");
--- 
-2.47.1
-
+SGksDQoNCk9uIFdlZCwgMjIgTWF5IDIwMjQgMDk6Mzc6MzAgKzAyMDANClBoaWxpcHAgU3Rhbm5l
+ciA8cHN0YW5uZXJAcmVkaGF0LmNvbT4gd3JvdGU6DQoNCj4+ID4gKy8vLyBBYnN0cmFjdGlvbiBh
+cm91bmQgYSBDIGZpcm13YXJlIHN0cnVjdC4NCj4+ID4gKy8vLw0KPj4gPiArLy8vIFRoaXMgaXMg
+YSBzaW1wbGUgYWJzdHJhY3Rpb24gYXJvdW5kIHRoZSBDIGZpcm13YXJlIEFQSS4gSnVzdA0KPj4g
+PiBsaWtlIHdpdGggdGhlIEMgQVBJLCBmaXJtd2FyZSBjYW4NCj4+ID4gKy8vLyBiZSByZXF1ZXN0
+ZWQuIE9uY2UgcmVxdWVzdGVkIHRoZSBhYnN0cmFjdGlvbiBwcm92aWRlcyBkaXJlY3QNCj4+ID4g
+YWNjZXNzIHRvIHRoZSBmaXJtd2FyZSBidWZmZXIgYXMNCj4+ID4gKy8vLyBgJlt1OF1gLiBBbHRl
+cm5hdGl2ZWx5LCB0aGUgZmlybXdhcmUgY2FuIGJlIGNvcGllZCB0byBhIG5ldw0KPj4gPiBidWZm
+ZXIgdXNpbmcgYEZpcm13YXJlOjpjb3B5YC4gVGhlDQo+PiA+ICsvLy8gZmlybXdhcmUgaXMgcmVs
+ZWFzZWQgb25jZSBbYEZpcm13YXJlYF0gaXMgZHJvcHBlZC4NCj4+ID4gKy8vLw0KPj4gPiArLy8v
+ICMgRXhhbXBsZXMNCj4+ID4gKy8vLw0KPj4gPiArLy8vIGBgYA0KPj4gPiArLy8vIGxldCBmdyA9
+IEZpcm13YXJlOjpyZXF1ZXN0KCJwYXRoL3RvL2Zpcm13YXJlLmJpbiIsDQo+PiA+IGRldi5hc19y
+ZWYoKSk/Ow0KPj4gPiArLy8vIGRyaXZlcl9sb2FkX2Zpcm13YXJlKGZ3LmRhdGEoKSk7DQo+PiA+
+ICsvLy8gYGBgDQo+PiA+ICtwdWIgc3RydWN0IEZpcm13YXJlKE9wYXF1ZTwqY29uc3QgYmluZGlu
+Z3M6OmZpcm13YXJlPik7DQo+PiANCj4+IFdyYXBwaW5nIGEgcmF3IHBvaW50ZXIgaXMgbm90IHRo
+ZSBpbnRlbmRlZCB1c2Ugb2YgUXBhcXVlIHR5cGU/DQo+PiANCj4gDQo+IFdoYXQgaXMgdGhlIGlu
+dGVuZGVkIHVzZT8NCj4gQXMgSSBzZWUgaXQsIGFsbCB1c2VzIHdyYXBwIHNvbWUgYmluZGluZzo6
+KiDigJMgYnV0IGEgcmF3cG9pbnRlciB0byBhDQo+IGJpbmRpbmcgc2hvdWxkbid0IGJlIHdyYXBw
+ZWQgYnkgaXQ/DQoNCklmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHksIGl0J3MgZm9yIGVtYmVkZGlu
+ZyBDJ3Mgc3RydWN0IGluIFJ1c3Qncw0Kc3RydWN0IChhcyBhbGwgdGhlIHVzYWdlIGluIHRoZSB0
+cmVlIGRvKS4gSXQgZ2l2ZXMgdGhlIHRyaWNrcyBmb3INCmluaXRpYWxpemF0aW9uIGFuZCBhIHBv
+aW50ZXIgdG8gdGhlIGVtYmVkZGVkIG9iamVjdC4NCg0KVGhlIEMncyBmaXJtd2FyZSBBUEkgZ2l2
+ZXMgYSBwb2ludGVyIHRvIGFuIGluaXRpYWxpemVkIG9iamVjdCBzbyBubw0KcmVhc29uIHRvIHVz
+ZSBPcGFxdWUuDQoNCldpdGggc3VjaCBDIEFQSSwgUnVzdCdzIHN0cnVjdCBzaW1wbHkgdXNlcyBy
+YXcgcG9pbnRlcnMgaW4gb2xkIHJ1c3QNCmJyYW5jaC4gRm9yIGV4YW1wbGUsDQoNCmh0dHBzOi8v
+Z2l0aHViLmNvbS9SdXN0LWZvci1MaW51eC9saW51eC9ibG9iL3J1c3QvcnVzdC9rZXJuZWwvY2hy
+ZGV2LnJzI0wyOA0KDQpzdHJ1Y3QgQ2RldigqbXV0IGJpbmRpbmdzOjpjZGV2KTsNCg0KDQpBbm90
+aGVyIGNob2ljZSB0aGF0IEkga25vdyBpcyBOb25OdWxsOg0KDQpodHRwczovL2xvcmUua2VybmVs
+Lm9yZy9sa21sLzIwMjQwNDE1LWFsaWNlLW1tLXY1LTQtNmY1NWU0ZDhlZjUxQGdvb2dsZS5jb20v
+DQoNCnB1YiBzdHJ1Y3QgUGFnZSB7DQogICAgcGFnZTogTm9uTnVsbDxiaW5kaW5nczo6cGFnZT4s
+DQp9DQo=
