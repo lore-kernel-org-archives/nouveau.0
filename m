@@ -4,85 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74E10D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1D8CD5B15F
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF18510EA9A;
-	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E396510EA7E;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="a8EbiBrB";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Wxnihngx";
 	dkim-atps=neutral
-Received: from mail-qv1-xf36.google.com (mail-qv1-xf36.google.com
- [IPv6:2607:f8b0:4864:20::f36])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C742010EF59;
- Fri, 13 Dec 2024 08:36:47 +0000 (UTC)
-Received: by mail-qv1-xf36.google.com with SMTP id
- 6a1803df08f44-6d932b5081eso13962796d6.1; 
- Fri, 13 Dec 2024 00:36:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734079007; x=1734683807; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=KRt1MXIvY7wy4Sl3wPWxh5TWbRsTuTxrC9cGCSyNao0=;
- b=a8EbiBrBSd9y3oIhinswPJT3B01gxGfIrbOH5j6eWKrwBzvsmtpwTJZhKlVvU5PA4P
- ZScSJ46/D6cOmcIsx21W+6EEnQ9iLN/yhSS9e8dmpTtp7mXu9GwSzfh1OticUNORGnct
- aRdCoXSmHVLwXH/PdWMFx1M/cTMJbd8HexawB/DDpw6Fxh+O8bS8+47c1gF8BpSuK/n4
- rqdQYKKxVUuNdAaqquK1FicacOuck7Yh3RWjJlpqc+IdCoTh/Roj/STvzYghnFmWx/YD
- 7w3P3B3NAz2WMzvnG7bICJTvpMXpF1arknzZ1t6oDrNLRA/p1N0OQmgazt6Qg2lMM2tb
- j3SA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734079007; x=1734683807;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=KRt1MXIvY7wy4Sl3wPWxh5TWbRsTuTxrC9cGCSyNao0=;
- b=KsazMi2WbzY/JEtUF28POjdPeWL1NiyY+u8pfBRL2hRmGo1p5AOtue159Bc2Gocm2M
- 6nr0GMyuDhsxIryR8f1z+acrlEpUViWK+1EeMcelorfrulqZQHYbWdEvLcFDM401CSuW
- hm7oRCWgJ7fLBNjRu6bTkdGk8bt/CLGy71yUdqAsstdUU5uT3XK2eeVah/j/yjbedRgS
- ejXr3hykVfH80K5saM9yk4lg7UNyhM4qLi/Ue5l2RBSaXxn4f78yW0N4PTlo+Orh5axN
- 47F7G2Ej7LdItZrmy+LzCUMrQd2fPms1AlElZyYFIiA5ABr2BkDwvxbFlOivqCn9E9UU
- OenQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVBHSWcC7KXFPRppYakyr/2Ue8Im0OmfOJRR1W3Vdf/t7/V6oY8qYxdhNQZgysx912J3zW6cObwvHE=@lists.freedesktop.org,
- AJvYcCVUbfNKCVM20ujzHpHSKtq/T/X+OFCbChLpwBPt4JAI1gwMO+YI8uI1En9reoY9wF3uCKcPUBr7uQ==@lists.freedesktop.org,
- AJvYcCXABTM3Yu4gR4ZtDnvYlq9o5vGla9F+2M4bb1GX+u1/oGukclN3q4Lka4dUb8TISbzl4kL4P7ZzGer2@lists.freedesktop.org,
- AJvYcCXDVK5rj1o5RGVG0y4+xNT2smZBE/9raM94VUoVSvHOXqhSadZBIhdLQwX3kg+ZZb5/cvKmS/XzHsM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yya9Kci8TLNWrhz25sVKhNDMgbsgVjBkEkaYw8Q0iqZEymMoNdz
- Vrur+KqbY+CuTBCbhIste/EkKfjSQsDqLr71Q2RNfKic9EHWSKwqKCOVDD6PwH5Xvw5rG+mZNQU
- u+K4Bg7pOkFHyVOypI4QkLakRpwo=
-X-Gm-Gg: ASbGncuAqbDmKmzqUsjEdGG3pdL6Fkuz7klEVX1sH6VpZlvV86Ab1BHVgTocirCt2zk
- tGtlBqvvue/3Cq5Ew6qCd7/A43JRzmvNUpasPq7Y=
-X-Google-Smtp-Source: AGHT+IEt1cOWo4VsTmw/6EdhS/KZ00UrsyLMhWiucugMYEeldbYzELrBj4wzlhuYfpJWzQ/nKiHjbqdqIiCiPqivAYk=
-X-Received: by 2002:a05:6214:301e:b0:6cb:ee08:c1e8 with SMTP id
- 6a1803df08f44-6dc8ca869aamr25025096d6.23.1734079006748; Fri, 13 Dec 2024
- 00:36:46 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCEB710E6B9
+ for <nouveau@lists.freedesktop.org>; Thu, 23 May 2024 13:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1716469822;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3p6OlKUIOC2RSeVNacuD1/ce5DU5TQqJuOE6ymSR2nA=;
+ b=Wxnihngx+mo1AxKI/ZvsLRBxxqS1Hr2UaFqDoBpXpxIj5LoDN7pTtwHAH6X0rT+9qmf+LF
+ LnPFUsd1nR9DYxPc7e9sBIPo2cIQJ9teB5up4wlBn8jo8+ZbwWJvStEJfmqEHOdC2Fa6sp
+ mj3YHOzq6Lx57WYNU78RZ9D3G/uU5Sg=
+Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
+ by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-508-268lM4CCMX2POemBt8vzYA-1; Thu,
+ 23 May 2024 09:10:17 -0400
+X-MC-Unique: 268lM4CCMX2POemBt8vzYA-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.8])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 8F2A11C0514E;
+ Thu, 23 May 2024 13:10:16 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.39.192.217])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id CF721C15BF6;
+ Thu, 23 May 2024 13:10:14 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH 3/5] drm/panic: Add a set_pixel() callback to
+ drm_scanout_buffer
+Date: Thu, 23 May 2024 15:00:36 +0200
+Message-ID: <20240523130955.428233-4-jfalempe@redhat.com>
+In-Reply-To: <20240523130955.428233-1-jfalempe@redhat.com>
+References: <20240523130955.428233-1-jfalempe@redhat.com>
 MIME-Version: 1.0
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-2-laoar.shao@gmail.com>
- <Z1vq2-V7vB5KhBR9@pathway.suse.cz>
-In-Reply-To: <Z1vq2-V7vB5KhBR9@pathway.suse.cz>
-From: Yafang Shao <laoar.shao@gmail.com>
-Date: Fri, 13 Dec 2024 16:36:10 +0800
-Message-ID: <CALOAHbAD-USZYry6dToxDTM-OO1+Rz0g6XQkCjhzhWDt7g4MGw@mail.gmail.com>
-Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
-To: Petr Mladek <pmladek@suse.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Cc: akpm@linux-foundation.org, linux-kernel@vger.kernel.org, 
- linux-security-module@vger.kernel.org, x86@kernel.org, 
- linux-snps-arc@lists.infradead.org, linux-wireless@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- ocfs2-devel@lists.linux.dev, Steven Rostedt <rostedt@goodmis.org>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>, 
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.8
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,46 +77,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Dec 13, 2024 at 4:05=E2=80=AFPM Petr Mladek <pmladek@suse.com> wrot=
-e:
->
-> On Fri 2024-12-13 13:46:04, Yafang Shao wrote:
-> > Since the task->comm is guaranteed to be NUL-ternimated, we can print i=
-t
-> > directly. Add a new vsnprintf format specifier "%pTN" to print task com=
-m,
-> > where 'p' represents the task Pointer, 'T' stands for Task, and 'N' den=
-ots
-> > Name. With this abstraction, the user no longer needs to care about
-> > retrieving task name.
->
-> What is the advantage, please?
+This allows drivers to draw the pixel, and handle tiling, or specific
+color formats.
 
-The advantage is that it provides the flexibility to modify the comm
-representation to meet future requirements. For instance, we could
-rename it to "task_name" and increase its size.
+Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+---
+ drivers/gpu/drm/drm_panic.c | 120 +++++++++++++++++++++++-------------
+ include/drm/drm_panic.h     |   9 +++
+ 2 files changed, 85 insertions(+), 44 deletions(-)
 
->
-> Honestly, I believe that the meaning of
->
->         printk("%s\n", task->comm);
->
-> is much more clear than using a cryptic %pXYZ modifier:
->
->         printk("%pTN\n", task);
->
->
-> The %pXYZ modifiers makes sense only when the formatting of the printed
-> information needs some processing. But this is a plain string.
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index 09d7d45f80c2..94558087bba3 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -251,40 +251,54 @@ static void drm_panic_blit32(struct iosys_map *dmap, unsigned int dpitch,
+ 				iosys_map_wr(dmap, y * dpitch + x * sizeof(u32), u32, color);
+ }
+ 
++static void drm_panic_blit_pixel(struct drm_scanout_buffer *sb, struct drm_rect *clip,
++				 const u8 *sbuf8, unsigned int spitch, u32 color)
++{
++	unsigned int y, x;
++
++	for (y = 0; y < drm_rect_height(clip); y++)
++		for (x = 0; x < drm_rect_width(clip); x++)
++			if (sbuf8[(y * spitch) + x / 8] & (0x80 >> (x % 8)))
++				sb->set_pixel(sb, clip->x1 + x, clip->y1 + y, color);
++}
++
+ /*
+  * drm_panic_blit - convert a monochrome image to a linear framebuffer
+- * @dmap: destination iosys_map
+- * @dpitch: destination pitch in bytes
++ * @sb: destination scanout buffer
++ * @clip: destination rectangle
+  * @sbuf8: source buffer, in monochrome format, 8 pixels per byte.
+  * @spitch: source pitch in bytes
+- * @height: height of the image to copy, in pixels
+- * @width: width of the image to copy, in pixels
+  * @color: foreground color, in destination format
+- * @pixel_width: pixel width in bytes.
+  *
+  * This can be used to draw a font character, which is a monochrome image, to a
+  * framebuffer in other supported format.
+  */
+-static void drm_panic_blit(struct iosys_map *dmap, unsigned int dpitch,
+-			   const u8 *sbuf8, unsigned int spitch,
+-			   unsigned int height, unsigned int width,
+-			   u32 color, unsigned int pixel_width)
++static void drm_panic_blit(struct drm_scanout_buffer *sb, struct drm_rect *clip,
++			   const u8 *sbuf8, unsigned int spitch, u32 color)
+ {
+-	switch (pixel_width) {
++	struct iosys_map map;
++
++	if (sb->set_pixel)
++		return drm_panic_blit_pixel(sb, clip, sbuf8, spitch, color);
++
++	map = sb->map[0];
++	iosys_map_incr(&map, clip->y1 * sb->pitch[0] + clip->x1 * sb->format->cpp[0]);
++
++	switch (sb->format->cpp[0]) {
+ 	case 2:
+-		drm_panic_blit16(dmap, dpitch, sbuf8, spitch,
+-				 height, width, color);
++		drm_panic_blit16(&map, sb->pitch[0], sbuf8, spitch,
++				 drm_rect_height(clip), drm_rect_width(clip), color);
+ 	break;
+ 	case 3:
+-		drm_panic_blit24(dmap, dpitch, sbuf8, spitch,
+-				 height, width, color);
++		drm_panic_blit24(&map, sb->pitch[0], sbuf8, spitch,
++				 drm_rect_height(clip), drm_rect_width(clip), color);
+ 	break;
+ 	case 4:
+-		drm_panic_blit32(dmap, dpitch, sbuf8, spitch,
+-				 height, width, color);
++		drm_panic_blit32(&map, sb->pitch[0], sbuf8, spitch,
++				 drm_rect_height(clip), drm_rect_width(clip), color);
+ 	break;
+ 	default:
+-		WARN_ONCE(1, "Can't blit with pixel width %d\n", pixel_width);
++		WARN_ONCE(1, "Can't blit with pixel width %d\n", sb->format->cpp[0]);
+ 	}
+ }
+ 
+@@ -328,33 +342,51 @@ static void drm_panic_fill32(struct iosys_map *dmap, unsigned int dpitch,
+ 			iosys_map_wr(dmap, y * dpitch + x * sizeof(u32), u32, color);
+ }
+ 
++static void drm_panic_fill_pixel(struct drm_scanout_buffer *sb,
++				 struct drm_rect *clip,
++				 u32 color)
++{
++	unsigned int y, x;
++
++	for (y = 0; y < drm_rect_height(clip); y++)
++		for (x = 0; x < drm_rect_width(clip); x++)
++			sb->set_pixel(sb, clip->x1 + x, clip->y1 + y, color);
++}
++
+ /*
+  * drm_panic_fill - Fill a rectangle with a color
+- * @dmap: destination iosys_map, pointing to the top left corner of the rectangle
+- * @dpitch: destination pitch in bytes
+- * @height: height of the rectangle, in pixels
+- * @width: width of the rectangle, in pixels
+- * @color: color to fill the rectangle.
+- * @pixel_width: pixel width in bytes
++ * @sb: destination scanout buffer
++ * @clip: destination rectangle
++ * @color: foreground color, in destination format
+  *
+  * Fill a rectangle with a color, in a linear framebuffer.
+  */
+-static void drm_panic_fill(struct iosys_map *dmap, unsigned int dpitch,
+-			   unsigned int height, unsigned int width,
+-			   u32 color, unsigned int pixel_width)
++static void drm_panic_fill(struct drm_scanout_buffer *sb, struct drm_rect *clip,
++			   u32 color)
+ {
+-	switch (pixel_width) {
++	struct iosys_map map;
++
++	if (sb->set_pixel)
++		return drm_panic_fill_pixel(sb, clip, color);
++
++	map = sb->map[0];
++	iosys_map_incr(&map, clip->y1 * sb->pitch[0] + clip->x1 * sb->format->cpp[0]);
++
++	switch (sb->format->cpp[0]) {
+ 	case 2:
+-		drm_panic_fill16(dmap, dpitch, height, width, color);
++		drm_panic_fill16(&map, sb->pitch[0], drm_rect_height(clip),
++				 drm_rect_width(clip), color);
+ 	break;
+ 	case 3:
+-		drm_panic_fill24(dmap, dpitch, height, width, color);
++		drm_panic_fill24(&map, sb->pitch[0], drm_rect_height(clip),
++				 drm_rect_width(clip), color);
+ 	break;
+ 	case 4:
+-		drm_panic_fill32(dmap, dpitch, height, width, color);
++		drm_panic_fill32(&map, sb->pitch[0], drm_rect_height(clip),
++				 drm_rect_width(clip), color);
+ 	break;
+ 	default:
+-		WARN_ONCE(1, "Can't fill with pixel width %d\n", pixel_width);
++		WARN_ONCE(1, "Can't fill with pixel width %d\n", sb->format->cpp[0]);
+ 	}
+ }
+ 
+@@ -387,25 +419,24 @@ static void draw_txt_rectangle(struct drm_scanout_buffer *sb,
+ 	int i, j;
+ 	const u8 *src;
+ 	size_t font_pitch = DIV_ROUND_UP(font->width, 8);
+-	struct iosys_map dst;
+-	unsigned int px_width = sb->format->cpp[0];
+-	int left = 0;
++	struct drm_rect rec;
+ 
+ 	msg_lines = min(msg_lines,  drm_rect_height(clip) / font->height);
+ 	for (i = 0; i < msg_lines; i++) {
+ 		size_t line_len = min(msg[i].len, drm_rect_width(clip) / font->width);
+ 
++		rec.y1 = clip->y1 +  i * font->height;
++		rec.y2 = rec.y1 + font->height;
++		rec.x1 = clip->x1;
++
+ 		if (centered)
+-			left = (drm_rect_width(clip) - (line_len * font->width)) / 2;
++			rec.x1 += (drm_rect_width(clip) - (line_len * font->width)) / 2;
+ 
+-		dst = sb->map[0];
+-		iosys_map_incr(&dst, (clip->y1 + i * font->height) * sb->pitch[0] +
+-				     (clip->x1 + left) * px_width);
+ 		for (j = 0; j < line_len; j++) {
+ 			src = get_char_bitmap(font, msg[i].txt[j], font_pitch);
+-			drm_panic_blit(&dst, sb->pitch[0], src, font_pitch,
+-				       font->height, font->width, color, px_width);
+-			iosys_map_incr(&dst, font->width * px_width);
++			rec.x2 = rec.x1 + font->width;
++			drm_panic_blit(sb, &rec, src, font_pitch, color);
++			rec.x1 += font->width;
+ 		}
+ 	}
+ }
+@@ -420,7 +451,7 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
+ 	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
+ 	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
+ 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
+-	struct drm_rect r_logo, r_msg;
++	struct drm_rect r_screen, r_logo, r_msg;
+ 
+ 	if (!font)
+ 		return;
+@@ -428,6 +459,8 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
+ 	fg_color = convert_from_xrgb8888(fg_color, sb->format->format);
+ 	bg_color = convert_from_xrgb8888(bg_color, sb->format->format);
+ 
++	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
++
+ 	r_logo = DRM_RECT_INIT(0, 0,
+ 			       get_max_line_len(logo, logo_lines) * font->width,
+ 			       logo_lines * font->height);
+@@ -439,8 +472,7 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
+ 	drm_rect_translate(&r_msg, (sb->width - r_msg.x2) / 2, (sb->height - r_msg.y2) / 2);
+ 
+ 	/* Fill with the background color, and draw text on top */
+-	drm_panic_fill(&sb->map[0], sb->pitch[0], sb->height, sb->width,
+-		       bg_color, sb->format->cpp[0]);
++	drm_panic_fill(sb, &r_screen, bg_color);
+ 
+ 	if ((r_msg.x1 >= drm_rect_width(&r_logo) || r_msg.y1 >= drm_rect_height(&r_logo)) &&
+ 	    drm_rect_width(&r_logo) < sb->width && drm_rect_height(&r_logo) < sb->height) {
+diff --git a/include/drm/drm_panic.h b/include/drm/drm_panic.h
+index 822dbb1aa9d6..73bb3f3d9ed9 100644
+--- a/include/drm/drm_panic.h
++++ b/include/drm/drm_panic.h
+@@ -50,6 +50,15 @@ struct drm_scanout_buffer {
+ 	 * @pitch: Length in bytes between the start of two consecutive lines.
+ 	 */
+ 	unsigned int pitch[DRM_FORMAT_MAX_PLANES];
++
++	/**
++	 * @set_pixel: Optional function, to set a pixel color on the
++	 * framebuffer. It allows to handle special tiling format inside the
++	 * driver.
++	 */
++	void (*set_pixel)(struct drm_scanout_buffer *sb, unsigned int x,
++			  unsigned int y, u32 color);
++
+ };
+ 
+ /**
+-- 
+2.45.0
 
-That makes sense to me.
-
-> IMHO, it is not worth it. In fact, I believe that it is a
-> counter productive.
-
-Linus, what are your thoughts?
-
-
---
-Regards
-Yafang
