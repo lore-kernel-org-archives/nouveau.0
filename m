@@ -4,82 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B37FFD5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68CE4D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEB210EA69;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D886210E9E1;
 	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bRBHMhdX";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Bseya/Tw";
 	dkim-atps=neutral
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
- [209.85.210.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88C0910E1AB
- for <nouveau@lists.freedesktop.org>; Fri, 15 Aug 2025 05:32:42 +0000 (UTC)
-Received: by mail-pf1-f174.google.com with SMTP id
- d2e1a72fcca58-76e2ead794eso1436547b3a.2
- for <nouveau@lists.freedesktop.org>; Thu, 14 Aug 2025 22:32:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755235962; x=1755840762; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5ItkcH2oOrHmGXKS1kIzQCIhIchwgBZlnH8595tjW2Y=;
- b=bRBHMhdX2gk2QPBv5ZxlboBlTsi9cg810W+n0+8dEa02ccdg7jUF+/j4hY5YXhdG23
- 2N7R0vINonu/ep7vgUWYgLtmPqyZs6AVLvqRcP0lm0zQT/DIc0V0/751Whs0MSO+DAgS
- Q5K6jytZS06DLA1QIXRMMTlgxcC+xdOhYOsgCXftIHa5UP+abEdPWwD5a9+t5MGuJYf8
- DcaRz5f8ioEVaMk5krwEpTjRw0xnvYNTCmF6zYRRVkECCnZslD2W4uCZdlkWV0h9jw5z
- Ml6+E0cgAoRPgOtHqEK8g+My6+HdlMPuzB1XjUhIqkl4N5ogaX5pgzgkBs1SshBdE2Do
- RdFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755235962; x=1755840762;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5ItkcH2oOrHmGXKS1kIzQCIhIchwgBZlnH8595tjW2Y=;
- b=g8eIBb6Rvu7sXHvhcyEULSVBoqvPKCfRz2SoBCL2yQa8se+ro8piE76qQx8/ZIxSgh
- 9k2YSHg1kXLkPcBARmgA6eYH9t+RKf83JsxuRxiww2k3EgfcEma1AV50ChiKdpOCzyPy
- dBm1OqaQzjqCB65jVINfZGIunGyj3YX/lupQyPbmzeLsCL23bJYodChjLX4vdBHx8z1V
- vDTgjvPf4Y6V59BISN+8nBdU3oCiUF9X+xD6jaWHjc74JwGNT7e0vCuSIPeEHwCcI1Iu
- /dUixYYct5IhMJIpaxpV4riOFwYe6jCcdoJG48Ip8waYswQH8DXUbyJHJeecl6FkdCOx
- Bd4g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVjLpZHTDRtmGjd7ZNuNpAoesr7VtQraK6nfnScqeaX48iXVIr1RBtxwrfy1rCEK5VmtOREipth@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxb2XYcVNagdkn95sg2PZtaRnkgXGa722jHjejPaVAp2YcDwzQw
- +GFRG1nwD38ok99q6eAgazXDpIoA6d83trkOevf7CNkDww5N3Q2/DNfRTfL/YQ==
-X-Gm-Gg: ASbGnct++YR+YkswwWmDipS3jfWa7M8DY0zEa8FOetZvZlGM6QZmGAa/mku9ZSuy9oY
- D8SGZNYA316yvO08qdT69906mLcK5RGcm67KrBB2UkjFW5cQavVb+KPVP5nFx8x0z0vc8953O0b
- IYgFNIs5imQmjseKnkkKZrrhgfiYJAUj/k3pcwQjwLFzXZAOl52Z3GhobaGZ6TB9ilVtAs2qoJ5
- rdOkb8c/e3w3MJmiWmRO/gR2AaEIDR6xekeFUOd+Zv3y6SdaYeEDqeF3OV/3RZb7eze7HJoTgVs
- cHpJF+kSB2dq/piNdRotTernEpSDxjXhS6w6YDHZHSCHcMjExP5fU9QqhzBbFaSC0QcZE0y/cK3
- WPhEO1OwzrpvCf5muBz0U6IqdOfNt9oPMSqAWPxQw/bz7ROMz2K876g==
-X-Google-Smtp-Source: AGHT+IG6RpS5kBDo1uNCaTTuFsahy7gN7SvHmXtqbjLO2J8QO2AfC+R3FC64Kl85jAXYtBoEFXRCqg==
-X-Received: by 2002:a05:6a00:92a4:b0:76b:fcac:f2ad with SMTP id
- d2e1a72fcca58-76e44847105mr1187592b3a.20.1755235961994; 
- Thu, 14 Aug 2025 22:32:41 -0700 (PDT)
-Received: from localhost.localdomain ([112.149.32.52])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-76e4556692bsm335234b3a.61.2025.08.14.22.32.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Aug 2025 22:32:41 -0700 (PDT)
-From: Jesung Yang <y.j3ms.n@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
-Subject: [PATCH v2 3/5] rust: macros: prefix variable `span` with underscore
-Date: Fri, 15 Aug 2025 05:32:13 +0000
-Message-Id: <1455d8540acc62ad3acc1dd8ead71b1ad38935da.1755235180.git.y.j3ms.n@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1755235180.git.y.j3ms.n@gmail.com>
-References: <cover.1755235180.git.y.j3ms.n@gmail.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8545810E1C5
+ for <nouveau@lists.freedesktop.org>; Thu, 23 May 2024 13:10:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1716469814;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=wBbwE73o+bBoJKpCicXGAglShU+WRt0vodLekmk+P5s=;
+ b=Bseya/Twqk9/Q0XRgb+1UcVlflf3yQh24ECyCe9ktWwFhGaBh0j3ASx+cdoLdS/akUZORT
+ LyFU0F/YIjA1a+ehsqqlzKmdiPeT2s8odqbDVPYOuhdnedTUg5MdiCNvFolV6fRLu87n1C
+ uL1JkoMxbpu2Uq5HkQRj2cWR0B411F8=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-557-g2o15bFiMTOflnYYu8vAhg-1; Thu, 23 May 2024 09:10:13 -0400
+X-MC-Unique: g2o15bFiMTOflnYYu8vAhg-1
+Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
+ [10.11.54.8])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A87CB800CB1;
+ Thu, 23 May 2024 13:10:12 +0000 (UTC)
+Received: from hydra.redhat.com (unknown [10.39.192.217])
+ by smtp.corp.redhat.com (Postfix) with ESMTP id E8698C15BFA;
+ Thu, 23 May 2024 13:10:10 +0000 (UTC)
+From: Jocelyn Falempe <jfalempe@redhat.com>
+To: dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ nouveau@lists.freedesktop.org
+Cc: Jocelyn Falempe <jfalempe@redhat.com>
+Subject: [PATCH 1/5] drm/panic: Add ABGR2101010 support
+Date: Thu, 23 May 2024 15:00:34 +0200
+Message-ID: <20240523130955.428233-2-jfalempe@redhat.com>
+In-Reply-To: <20240523130955.428233-1-jfalempe@redhat.com>
+References: <20240523130955.428233-1-jfalempe@redhat.com>
 MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.8
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+Content-Type: text/plain; charset="US-ASCII"; x-default=true
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,42 +76,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Prefix the variable `span` in `quote_spanned!()` macro with an
-underscore to silence unused variable warnings.
+Add support for ABGR2101010, used by the nouveau driver.
 
-The warning occurs when the macro is used without any uninterpolated
-identifiers. For example:
-
-    // Triggers a warning: "unused variable: `span`"
-    quote! { #foo }
-
-    // This is fine
-    quote! { Some(#foo) }
-
-There is no good reason to disallow such quoting patterns, so fix the
-warning instead.
-
-Tested-by: Alexandre Courbot <acourbot@nvidia.com>
-Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
 ---
- rust/macros/quote.rs | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/drm_panic.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
-index 24764b04a07d..75367a93e0d3 100644
---- a/rust/macros/quote.rs
-+++ b/rust/macros/quote.rs
-@@ -57,8 +57,8 @@ macro_rules! quote_spanned {
-         #[allow(clippy::vec_init_then_push)]
-         {
-             tokens = ::std::vec::Vec::new();
--            let span = $span;
--            quote_spanned!(@proc tokens span $($tt)*);
-+            let _span = $span;
-+            quote_spanned!(@proc tokens _span $($tt)*);
-         }
-         ::proc_macro::TokenStream::from_iter(tokens)
-     }};
+diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+index 7ece67086cec..78fdecfede84 100644
+--- a/drivers/gpu/drm/drm_panic.c
++++ b/drivers/gpu/drm/drm_panic.c
+@@ -152,6 +152,14 @@ static u32 convert_xrgb8888_to_argb2101010(u32 pix)
+ 	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
+ }
+ 
++static u32 convert_xrgb8888_to_abgr2101010(u32 pix)
++{
++	pix = ((pix & 0x00FF0000) >> 14) |
++	      ((pix & 0x0000FF00) << 4) |
++	      ((pix & 0x000000FF) << 22);
++	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
++}
++
+ /*
+  * convert_from_xrgb8888 - convert one pixel from xrgb8888 to the desired format
+  * @color: input color, in xrgb8888 format
+@@ -185,6 +193,8 @@ static u32 convert_from_xrgb8888(u32 color, u32 format)
+ 		return convert_xrgb8888_to_xrgb2101010(color);
+ 	case DRM_FORMAT_ARGB2101010:
+ 		return convert_xrgb8888_to_argb2101010(color);
++	case DRM_FORMAT_ABGR2101010:
++		return convert_xrgb8888_to_abgr2101010(color);
+ 	default:
+ 		WARN_ONCE(1, "Can't convert to %p4cc\n", &format);
+ 		return 0;
 -- 
-2.39.5
+2.45.0
 
