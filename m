@@ -4,131 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3AA8D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BD5ED5B157
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3679210E410;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26BA010E40E;
 	Sat, 13 Dec 2025 12:17:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZUvegvOs";
+	dkim=permerror (0-bit key) header.d=intel.com header.i=@intel.com header.b="WFn1/cFo";
 	dkim-atps=neutral
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
- [209.85.222.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D84410E07C;
- Sat, 14 Jun 2025 17:08:32 +0000 (UTC)
-Received: by mail-qk1-f170.google.com with SMTP id
- af79cd13be357-7c5675dec99so388294585a.0; 
- Sat, 14 Jun 2025 10:08:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749920911; x=1750525711; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=oxVUAAHvP8h1CL9/50hYyRFp+95+lQwkRR0h40rA/qQ=;
- b=ZUvegvOsn/vnadmMhdpZo8u0hFzSLFcdbg8Zo1laMjulIPdPseUSludV80iRrfZ+VU
- tkSR7VNO4j0DA80KeOTRYVRzmB7ZDJY5HvoGrOonKS8RbdzYXIL1N6KkDlPMT6CRAKgv
- 6jo5qIFGs0A0cMBC7VZ1n4R/+f9PxOvtOx+qLWFZQMO+d13ABNpodY9HRjp6mPMc0CIS
- g1lr6KdZhKiAAWOo8hf4y1JP4/HSnvwVKTUNPEa7GjyLTQoSboIIMPRREM3HUH826Z/f
- I2IVmD+GQ2aI1LmRmwq0T8gChtgzAt+xthAKZyaBxqae7XixiOsPhoNOiHvaVQtsj2oz
- Ny5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749920911; x=1750525711;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=oxVUAAHvP8h1CL9/50hYyRFp+95+lQwkRR0h40rA/qQ=;
- b=wzZOieaIemQvlj2IIF11HK+4CqdS+ukXQAeP1rRhhy/j6xzzrNmMRa1ycgiFu15zij
- b0Th8mk0v3TsTQ4MG7OZeQ+U3gn/5iY/Y1byP7da9SMdjuV3Js5L9XWz8UGE0xACbyKF
- ihjo+TtXsDpHXzH644cJBjvGbxEOAM/igO9gkfLsA6/5QUJSIeskt5LtWEULKPVqwb+x
- L0Nq+3fl3D0K1auDqJHcxbAq/F2Fa+M0xS3wOjysRRK+fI3V9Ra96m+94CeXY5rqu4Uy
- aC3CbCoKBLRc3Q1WaycZVtJ5pPbOELtI/9ImGz8BZzSV0ifVBA+X6QKtyE77RmlJrxAt
- l1Dw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV2rzdK1/EAJ+f1mLWTaxxBvaRxE4D5Y/7I1os4HpJOGnajGzXyfY8Chf8u5RuiFg/vQhT2RfSgtko=@lists.freedesktop.org,
- AJvYcCVllsMIs5OSctNTLVAQwQGiz6nwyAy8XuW+TjUzQBnz5/uQhrQnUKyct7HSwNHYUZk+94CGXanrZA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxcvYfitXqJmGTJh0VUn48EBA2Bm29wQVQpruMBYWwnBZYWMv3l
- lm3zu1RjDbguT5qw/gDMl5FZQwKAMcEVpldxElFe1+bo/aiNH8vhBGad
-X-Gm-Gg: ASbGnctG8UBKgRBExIh45pswDDGbbL8C4xtjCf4CL9LSFISZO5bjOqveko8OdkdIKBN
- NKbRaWtelU7RZze4ZI6gwWp9eOv8AxWHywbB0N1tCLJKkGwgnuM0s7OODei8Ee3v3UKapmkoh4m
- 64Y1dcDKCUQk1wHwBx76h7EzbDt2fsIqoT9xhfOzZkjeVP+g24NOvL7pTgzH4lPKLFY51Xtam9I
- TVhcsGCmAxEdp+DDoL8Hd8h5V99/ml0LKHqrPo+WZT4QDXrgL7tzHVU02Hl/mi93Bj1U+PRAGm0
- 7wdKVJb9UV38sCcJSpv/Mk7M3jchazt4UsH5HfNgVqrh46cEW5pUgKw8PVMLFVEGs9tF2T4ysXi
- IbWi03gVSR+wIf0KZhsH0O7yzfazP5BWu3fPFP1Fn57vBuUkmE60E
-X-Google-Smtp-Source: AGHT+IFuI5Iogxyn4F7KxbnZi28W1LHxaKHJ2292LsmPp2oZPmDqNDtGdBDsq/ot6E0bqW+DooZb2A==
-X-Received: by 2002:a05:620a:17a9:b0:7ca:f41a:546b with SMTP id
- af79cd13be357-7d3c6c096f4mr572262285a.6.1749920911374; 
- Sat, 14 Jun 2025 10:08:31 -0700 (PDT)
-Received: from fauth-a2-smtp.messagingengine.com
- (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7d3b8dc9323sm312906185a.20.2025.06.14.10.08.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 14 Jun 2025 10:08:31 -0700 (PDT)
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal
- [10.202.2.50])
- by mailfauth.phl.internal (Postfix) with ESMTP id 1054E1200043;
- Sat, 14 Jun 2025 13:08:30 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-10.internal (MEProxy); Sat, 14 Jun 2025 13:08:30 -0400
-X-ME-Sender: <xms:jaxNaDa_fdqUB9RuIocIKW8UidJwkUIn4A0q3HBRGMgUVREMdHNxiA>
- <xme:jaxNaCYKE2MOC8kSyCcAy3XqoI1fat1wBEmgdNhrtxQwdZ9PPcZbff-BHc5C49H9Q
- uC_GkmccjMksRy6RQ>
-X-ME-Received: <xmr:jaxNaF_OoZCym3thLwfVjhd25VyveWQJBL_hzrurVDE2cEuL9ZeGvhoi1Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddvudeflecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
- uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
- hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
- necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
- drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
- ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
- hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
- ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
- hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopedvhedpmhho
- uggvpehsmhhtphhouhhtpdhrtghpthhtoheprggtohhurhgsohhtsehnvhhiughirgdrtg
- homhdprhgtphhtthhopehojhgvuggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegr
- lhgvgidrghgrhihnohhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepghgrrhihsehgrg
- hrhihguhhordhnvghtpdhrtghpthhtohepsghjohhrnhefpghghhesphhrohhtohhnmhgr
- ihhlrdgtohhmpdhrtghpthhtoheprgdrhhhinhgusghorhhgsehkvghrnhgvlhdrohhrgh
- dprhgtphhtthhopegrlhhitggvrhihhhhlsehgohhoghhlvgdrtghomhdprhgtphhtthho
- pehtmhhgrhhoshhssehumhhitghhrdgvughupdhrtghpthhtohepuggrkhhrsehkvghrnh
- gvlhdrohhrgh
-X-ME-Proxy: <xmx:jaxNaJqkxdpUUQV9yk0sxRCuluUUw6kOcfHdnrkh8a61mHlNX1arFQ>
- <xmx:jaxNaOo1RT6izaizxVP9UWs-2IAqcudHXVlcSDLtSJO3_0bkEf81Sw>
- <xmx:jaxNaPTMhtLH-bGDn1gnSf3WN-VSrJZQigtqfdLxvmE12vyDfrM2Zw>
- <xmx:jaxNaGoNFrt02Ky4jp8HsgwAFF4rdUi-lnYGAWrorw-ffzxbY1dtPA>
- <xmx:jqxNaP6-2cpiS8pKJslikTdmjkOA37vypgNNkTF-P6_7EVybrvejQAAf>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 14 Jun 2025 13:08:29 -0400 (EDT)
-Date: Sat, 14 Jun 2025 10:08:28 -0700
-From: Boqun Feng <boqun.feng@gmail.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Benno Lossin <lossin@kernel.org>,
- John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/23] rust: add new `num` module with `PowerOfTwo` type
-Message-ID: <aE2sjA4DxFndTZYk@Mac.home>
-References: <20250612-nova-frts-v5-0-14ba7eaf166b@nvidia.com>
- <20250612-nova-frts-v5-4-14ba7eaf166b@nvidia.com>
- <aErtL6yxLu3Azbsm@tardis.local>
- <DALGWEM3TD3O.95L77CD6R62S@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A167A10E103;
+ Thu, 23 May 2024 10:14:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1716459281; x=1747995281;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=WQkKShPJdahLJj81d8i6m75pK1vAXvXObd/mloxLCng=;
+ b=WFn1/cFoj589uO3wvIhUUbk+5XgvuOcDwnZp8gUySMOEru0rCR50liU+
+ TU2BvcaO/GXQSfV9ldvxP7aS61asyRfukbIbIXDp98Mf6TVD9x/kcPTTs
+ pdhU+yI8Fc1+NMKnItWeMoMM34yElplXoJLHr97X5EN3y35XLQlOODzY5
+ QW0RHuh1AerAeAdvlF1/2A4qVSzS3St9DweTF5kHEmjKVC98CKs5+vdvs
+ N9wYKmR6alOVKyWpRdhOMYu1sasStck4gVGHiB1QwHPhMoJtaFKRnG+JZ
+ b+m1Xgf79sY7AG3dDxy0vCbTmfie1xa+eCC15O7NqeE8Y1g0ilY/1AnJ6 Q==;
+X-CSE-ConnectionGUID: YMJMl5xvRkGI3FXLSQ4j3w==
+X-CSE-MsgGUID: Gx2xhuPoRgWreTDyV4N35A==
+X-IronPort-AV: E=McAfee;i="6600,9927,11080"; a="12641083"
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="12641083"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2024 03:14:40 -0700
+X-CSE-ConnectionGUID: g7csa7rHTuuf8dt7OFcx0Q==
+X-CSE-MsgGUID: d2Ey+DCMR1CQeJMc+BxILA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.08,182,1712646000"; d="scan'208";a="34085264"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orviesa006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 23 May 2024 03:14:40 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 23 May 2024 03:14:40 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39; Thu, 23 May 2024 03:14:39 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.39 via Frontend Transport; Thu, 23 May 2024 03:14:39 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Thu, 23 May 2024 03:14:39 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dheam8t/h9m/8kv0TStoOqkTV77HW9Py+9R0LBCz2ricogAnGzXPNrXpQ2G/qm35WQAkpliG7lMH0vCFCfwhZqC1iIyuoHc+tLd8H5nOMF//xTSi/1NTBWzAucQVmCCTIiHw1VssDsHiZsanrqCfeEuHW0PJKQqD4o+Rem3jquwEy9nhXIR1ImwmbUxq7fnUM7bWE71B+dOZOhROy79mn6l91pybNM8UPO1E0A7Zx6rlQRthXWFBjQVTrH7tZ5hqEo1d9HRSjvXT71YHlTSS5VF3/38ggytCgLpMBkJNX/LJlvDF6ESJoZ+PE3lyMLH5aiE2aPMhAPfMRkFe82Fduw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1noH8mckWq8z/8nydJ2O4FVVzr1mi0Ro4Ofv8ioE5B0=;
+ b=CbhGknTaS5oJnKgwGR1yw4XvUa1nd4BDSadwSraYxdH9fcO3i63/9ztjjx8L9VRVKgN570FQ9u/gORs8E+AJG0nN3iJTi6lPAUmtkU193RK/RwVFfgx5SybM6rIefn5/f7iL9ubkF5nN7mppK4Qz5prkpcnTbAqUQtj6hDfmrCcqzVOYkQJA0KhvIfG9dwAaZNrV23CBRBWnYqpz47Tcs9H5uxb4fZ2IF00ZM8kW2bSacaOoq9//fR1AWPiDPWNSmCy4o/oGQv0d4tCCTYDLm4mSNBfizKIe+TsGlpky0DoyMS3fiJdWQ+n5wP8fqxxumi6lh4y5p0ZK0z9QaT26lQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
+ by PH0PR11MB7585.namprd11.prod.outlook.com (2603:10b6:510:28f::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7587.36; Thu, 23 May
+ 2024 10:14:37 +0000
+Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525]) by SJ1PR11MB6129.namprd11.prod.outlook.com
+ ([fe80::21c3:4b36:8cc5:b525%6]) with mapi id 15.20.7611.016; Thu, 23 May 2024
+ 10:14:37 +0000
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+To: "Nikula, Jani" <jani.nikula@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+CC: "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Nikula, 
+ Jani" <jani.nikula@intel.com>
+Subject: RE: [RESEND 6/6] drm/connector: update edid_blob_ptr documentation
+Thread-Topic: [RESEND 6/6] drm/connector: update edid_blob_ptr documentation
+Thread-Index: AQHaouwJunJptEEDskup0MB4zjoGrrGkrhOw
+Date: Thu, 23 May 2024 10:14:37 +0000
+Message-ID: <SJ1PR11MB6129691F7F09BDB945E9DC4FB9F42@SJ1PR11MB6129.namprd11.prod.outlook.com>
+References: <cover.1715353572.git.jani.nikula@intel.com>
+ <b6aa1ea30ae85ef9e9814315d3437e82f0ba6754.1715353572.git.jani.nikula@intel.com>
+In-Reply-To: <b6aa1ea30ae85ef9e9814315d3437e82f0ba6754.1715353572.git.jani.nikula@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6129:EE_|PH0PR11MB7585:EE_
+x-ms-office365-filtering-correlation-id: 5204758d-ccc3-4e5b-ebcc-08dc7b112703
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230031|376005|1800799015|366007|38070700009;
+x-microsoft-antispam-message-info: =?us-ascii?Q?TZ+3IhhFUOYUvShWePHkoR6G3dFRT95IrLAEVGM0i2LVE/Su9gH816FuIoLa?=
+ =?us-ascii?Q?Mp8qSX56qt66KkFXg86RYgQI2T1vuVSLddLAbAH+HLwyU9weP09BIdckpXlQ?=
+ =?us-ascii?Q?bskDzZv7TZVfRKqCcQO4MOSa9tVzMqjKRroDVQSjvO9JgEPrCugRyFs5QwKG?=
+ =?us-ascii?Q?fzIB2upVQ+C84NbraXxHEWI4kzEUkCn7b1+HFrFPNjL/SxvsBPnmkhRDDEiB?=
+ =?us-ascii?Q?0mwh6BNZ/OwhQmjVRnU1v/5cj1Ln7dzUOrounZCHbYmP6QA9s5k18B7qIHvp?=
+ =?us-ascii?Q?9tswAQ0XRJmuWGARIknb9VlW2lgInm0MmqJp7fhlcUSjhdmBslnTVD8RbM+G?=
+ =?us-ascii?Q?3qd2h+dvOdxBJjAXYO8QKvElK0ZWtDDIswpNzoqpDGm6gEh3ZbXz7F4HkyDb?=
+ =?us-ascii?Q?78udScNuDTepsIS6/Jb5WjgdLTSz8gjklAwzjV035cyMiGMOn3wJ2dNF6urb?=
+ =?us-ascii?Q?AcPELU0Fepp9ufBpKRn40mD7oicPC7JO82iNM8v0rUofK6ZB0wSUpc1agZfI?=
+ =?us-ascii?Q?EAsyeYMOOTAAsfowoVPzsyxncibR8VGYnvo/OhC1NAVxq3urvgQNqQYU4MI/?=
+ =?us-ascii?Q?ib55T2/Vh76MWgGnX8YIi51a98YfLyfQDMybtNHeaGvOB7qTNsTykPQx/vTd?=
+ =?us-ascii?Q?sygggyODyzEPDgizyGfQ7fKXCk3pLhrxZOzZfgJ/s4mmbudFJiO+f4I5boGU?=
+ =?us-ascii?Q?hduKYJP9WDcUSM5sNwe69QPnXnYJCUO3hREZu4LG0Zo56qQAUQ9C512KbHIV?=
+ =?us-ascii?Q?DfeE/49YE0aNH3ECJeFDounCi0jU7X3MADBe3AohEIuf6dtC7Z26/0XGk3j9?=
+ =?us-ascii?Q?sM0S7wf/cQvhPX9tKY4E7q/wgn9XmCG43VAMvHnGRCedg8juhLlo5Y83d+O2?=
+ =?us-ascii?Q?/prnSfVMcMPQF+9yQcJieRRjGEJ4mBdllpu3pKpKatvGPvadOpCfwFc2cK8x?=
+ =?us-ascii?Q?6QHMfyC2E7/xg05zC4/bJ9sn1QczP17MUI1T20z9sI66cnbkvKOsHSgos2Jq?=
+ =?us-ascii?Q?ydvMya/MKTOXW3GSJQvGx6DPk4nJK7Uwtv5me1UbBN7MHXeFksEqdq1E8Z4A?=
+ =?us-ascii?Q?DWbgcIgt5HLv7T9dbjZ/EPnn1LI3MSXvNFNB4Ej3PTgNNogTBNQ5Mz1LPg5g?=
+ =?us-ascii?Q?1terHYJHu+FhLhLsIopITZfBdw8utgXOOPvFeqGqWKaJJSeDOoQxtm4EoUXu?=
+ =?us-ascii?Q?TIQOc3A+ueCCBqjV2A1Ypp7WjnUTpNlYZtCeGCQs4/ltbyXmAxxLtJLVozY3?=
+ =?us-ascii?Q?+kiTrCKctsIFFiMcRLGX162Mxhk4fwrLU2RhU6GWXs9NUqeAEXaWxVVmV2e1?=
+ =?us-ascii?Q?aOXDSTfROfiM/qrBeRmg7vRBwOjSAWBz1JjENbaX6KDf2A=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376005)(1800799015)(366007)(38070700009); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?RgU8hmPbO01i7xI8piu3/hkoXxjiUVhC3fPnGNql6cDT88YdbMSe9+OjcfwB?=
+ =?us-ascii?Q?HaDFFeJZbNa+24l71k8Xyy7jOaaFG/cOUG3KIeohpSNEzOA2IgbivC6a51aA?=
+ =?us-ascii?Q?ociMLO6/4sRBj2dxBQ/vsZLgEs5yAqRRDk1g3FWegqa9sIugL4X21jLozQNq?=
+ =?us-ascii?Q?UcVNECYXJ/4CzTl/TLICRjgsCtGl4Z6K1Hw6ZuQBafzOCNksw2PGGSxCXgN5?=
+ =?us-ascii?Q?wuWim5fiBki4kexlghUCcIz768FhyptCbirNXswGayOATFyaXCVNeWCrNAu5?=
+ =?us-ascii?Q?EAhiufc+BK2UW8PsHZ+xuxSciJgrEN5XALDap02XUfLcUJMcTVajpGVkrazX?=
+ =?us-ascii?Q?FgHEoQUfXBaq0XzcleFikE8+KfYGd2OnY5VTK7jKpf5Inm93UKqDztsJsH8Y?=
+ =?us-ascii?Q?6+d2s4gv+EDiBgc+l8s4Mp3eZo/voKmdOSV74+DeX7WUPZ6USToDgVgynXo7?=
+ =?us-ascii?Q?VO5C2MtXao+XSeR5se0QzhLdAWuNLt91sDO54zUIkMZ3gvpP8EQk4OwUV+jH?=
+ =?us-ascii?Q?bphmBABU1dLHV9aw3Y5otujplPSnFe5wni0rlVKVVoOnQIA462nf3L6s7Eou?=
+ =?us-ascii?Q?bnufthJ9EggJdLvVhSSv8LvWu/vEfno7XKLyd77HoXENmrrgn0P40oR9S6sq?=
+ =?us-ascii?Q?7/dZYlmjcrRCS/3xcHQgtoHndgFeplXxheM/SRr9KsTJalXITLr8KW+TFrV7?=
+ =?us-ascii?Q?5Pl5ZGTPjpn4EcjD4qPOTLA4PEjyMX8gH+ySamcKpsACIQ+Nujg5JmaAjSvM?=
+ =?us-ascii?Q?TN/djoqCG0uG9+y/bmIyl88ufEoArzz2QYvEBP5OIOzzjiNWdN15H39vIcx6?=
+ =?us-ascii?Q?dtO04cUzSTwQ84wMJjsJJSrzDJKC2v0m3XrT/mBwp2hubmOunG8b6Vliw1EY?=
+ =?us-ascii?Q?Qddd4ZmrckiTn2ZbB1cdPob2zR0CrdyAyCamFNymev7p/ab9Z9OMEJZ37K2y?=
+ =?us-ascii?Q?BcfcQYcOWkkQrCLoc296kheeQqqZSiBNBb1EpI6/KqMyD+t7qYa7aHo3NsSk?=
+ =?us-ascii?Q?MdG/r+F+Qbk0K/aWA765qYhBYnYflYx7ziJwt6nb94Xkx0G96DI1XH/megrk?=
+ =?us-ascii?Q?OFShjszszASjsVQKwBy1nmkjt2VSNLq/P7pEy33duQSoViyD3ckJi52yLcUj?=
+ =?us-ascii?Q?lQXVX9GrG9mi32FU2djPtSuNdcVfAMitc0EzM4tWK5xT/it23Jd8CpmpEVCW?=
+ =?us-ascii?Q?ixnlnscYrck+b/3MGUFFFkKFEpZnvm3i7R2CU+Qvldur5pNCIH5XoFb4fO+3?=
+ =?us-ascii?Q?JMEUmP3tuytDzUA1ZsfcjZos8rLR2G19eYfP0X4IuzSQwccTCtLXb0rE3MaU?=
+ =?us-ascii?Q?xhYhM+6dF7rV3RF20+JxVKNaVdvUM4W233VoL5/wIANRnYnj3xUzRKBeaY+3?=
+ =?us-ascii?Q?U4UOoXpOGfhpWnX6JQ1iIyxv4CSLYKvZEm7s15UKKv2FG9qPY5u5++LMjviz?=
+ =?us-ascii?Q?W4ZPHszv3bzb4Lfa/877BosJ2NXjotkcJVkUZvP/caVz2RVdHbeKnNgZn1zZ?=
+ =?us-ascii?Q?3bG8lNaCCtd4qJHBLQalfI2kUuh+n8yKeOp4zKKv3uSCRjQGi+y3ol7l6DZi?=
+ =?us-ascii?Q?3ACAW6HWtaMLiQIzEvXydmX1vYLwLGGsibmF412Eld+EBBtXMcD0bToigPuk?=
+ =?us-ascii?Q?xQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DALGWEM3TD3O.95L77CD6R62S@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5204758d-ccc3-4e5b-ebcc-08dc7b112703
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 May 2024 10:14:37.8556 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: llI3qV38CdMtS8gGy2yLBKnvG7n9F6c2dIBAHuAobVeXWTh7tgwf+yZIIOd/EuhOzBv5bW4jsZ0MOXPCywirnfk3nj8Wus7lYC66/Txwm50=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7585
+X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:00 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,75 +187,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 11:16:10PM +0900, Alexandre Courbot wrote:
-[...]
-> >> +                /// Aligns `self` down to `alignment`.
-> >> +                ///
-> >> +                /// # Examples
-> >> +                ///
-> >> +                /// ```
-> >> +                /// use kernel::num::PowerOfTwo;
-> >> +                ///
-> >> +                /// assert_eq!(PowerOfTwo::<u32>::new(0x1000).align_down(0x4fff), 0x4000);
-> >> +                /// ```
-> >> +                #[inline(always)]
-> >> +                pub const fn align_down(self, value: $t) -> $t {
-> >
-> > I'm late to party, but could we instead implement:
-> >
-> >     pub const fn round_down<i32>(value: i32, shift: i32) -> i32 {
-> >         value & !((1 << shift) - 1)
-> >     }
-> >
-> >     pub const fn round_up<i32>(value: i32, shift: i32) -> i32 {
-> >         let mask = (1 << shift) - 1;
-> >         value.wrapping_add(mask) & !mask
-> >     }
-> >
-> > ? It's much harder to pass an invalid alignment with this.
-> 
-> It also forces you to think in terms of shifts instead of values - i.e.
-> you cannot round to `0x1000` as it commonly done in the kernel, now you
+> -----Original Message-----
+> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Ja=
+ni
+> Nikula
+> Sent: Friday, May 10, 2024 8:38 PM
+> To: dri-devel@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org; nouveau@lists.freedesktop.org; intel-
+> gfx@lists.freedesktop.org; Nikula, Jani <jani.nikula@intel.com>
+> Subject: [RESEND 6/6] drm/connector: update edid_blob_ptr documentation
+>=20
+> Accessing the EDID via edid_blob_ptr causes chicken-and-egg problems. Kee=
+p
+> edid_blob_ptr as the userspace interface that should be accessed via dedi=
+cated
+> functions.
+>=20
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Well, for const values, you can always define:
+LGTM
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 
-   const ROUND_SHIFT_0X1000: i32 = 12;
 
-because `0x1000` is just a name ;-)
+> ---
+>  include/drm/drm_connector.h | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index fe88d7fc6b8f..58ee9adf9091 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1636,8 +1636,12 @@ struct drm_connector {
+>=20
+>  	/**
+>  	 * @edid_blob_ptr: DRM property containing EDID if present.
+> Protected by
+> -	 * &drm_mode_config.mutex. This should be updated only by calling
+> +	 * &drm_mode_config.mutex.
+> +	 *
+> +	 * This must be updated only by calling drm_edid_connector_update()
+> or
+>  	 * drm_connector_update_edid_property().
+> +	 *
+> +	 * This must not be used by drivers directly.
+>  	 */
+>  	struct drm_property_blob *edid_blob_ptr;
+>=20
+> --
+> 2.39.2
 
-or we define an Alignment in term of the shift:
-
-    pub struct Alignment {
-        shift: i8,
-    }
-
-    ipml Alignment {
-        pub const new(shift: i8) -> Self {
-            Self { shift }
-        }
-    }
-
-then
-
-    const ALIGN_0x1000: Alignment = Alignment::new(12);
-
-and
-
-    pub const fn round_down_i32(value: i32, align: Alignment) -> i32 {
-        ...
-    }
-
-My point was that instead of the value itself, we can always use the
-shift to represent a power of two, and that would avoid troubles when we
-need to check the internal representation.
-
-That said, after some experiments by myself, I haven't found any
-significant difference between shift representations vs value
-representations. So no strong reason of using a shift representation.
-
-Regards,
-Boqun
-
-> need to do some mental gymnastics to know it is actually a shift of `12`.
-> Being able to use the actual value to round to is more familiar (and
-> natural) to me.
