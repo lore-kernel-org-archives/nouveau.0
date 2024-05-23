@@ -4,130 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E82ADD5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D49C9D5AE45
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2A310E412;
-	Sat, 13 Dec 2025 12:17:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85D2510E434;
+	Sat, 13 Dec 2025 12:17:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CQjyG/V1";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="YWAg08qW";
 	dkim-atps=neutral
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5BB8B10E987;
- Fri, 13 Jun 2025 15:25:14 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-7c922169051so140821685a.0; 
- Fri, 13 Jun 2025 08:25:14 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
+ [209.85.128.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E727110ECCA;
+ Thu, 23 May 2024 02:48:57 +0000 (UTC)
+Received: by mail-yw1-f175.google.com with SMTP id
+ 00721157ae682-61af74a010aso17376887b3.0; 
+ Wed, 22 May 2024 19:48:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749828313; x=1750433113; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lAvMYCY7N602oTIv1xbvy3rwaOD5ob45HmfKgySj4yM=;
- b=CQjyG/V1GjGSSnBeZzuJiBqfCdVbBNOeAYp0g9jN9huLpg4cWFWO6+JTGhcTDRsKYn
- iyaLxsY/M4KUEXWRCdZ7R9aOY9kfN+IyI5fKaBLPyEz490Yx8fPzZNa71MXB7hXixACo
- PcJ4bF0iTwzeNL9CBbQ3HHQViv8POW/sEMOw9Zfpx2U3fxoqdJtFDSTNQaEcTPbP2I9X
- k5s46bN6a/M6031bpTeAtE5eNjRoDN2ECR/14j8k325aaKtW+WX3I78Ra6a9P/Uk1pbr
- EZ1q1JVemvdr/YU1wgqjE7Lxt6Ds6QoDhC/74b79p/sp7PqMjDjUwMwe3Uh1O0n22C3o
- Sj5w==
+ d=gmail.com; s=20230601; t=1716432537; x=1717037337; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :feedback-id:from:to:cc:subject:date:message-id:reply-to;
+ bh=TJvI5ka+7JgZUuM9P+5dJkLsAfZT/399LMPF7VVV6Qw=;
+ b=YWAg08qWoeRdBD/dNzOvuIGdMjjN6X4teY1Z3TPnkyvdiCSWDlt/ux7j7oQ+qIHDCZ
+ QE2cd1uao5PqYiE4Lq6mqiNWL77ky0Xtb0B3mTlBM5MtQX+sckp7rMk32z4he5gpmjIU
+ cORfvzHBBeboYuFC6VRyCNrC5FKMvNayrckunnDWvOw39S0ZuP77OMK6QhMjc8bqLHHJ
+ xyhGaZBnxomRhV9H8JZCcFCb4h2z2R+y9JxZTGh8S17Kk34pVNrBW1/ThQHQcId7M0Ob
+ qF2ZkhggTZjoRGsX1cAdgQsjd8cNx17Mi1rMjhjZ/z3o8QCDXMzN+Iol0PoRg/vrDd2c
+ DmjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749828313; x=1750433113;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=lAvMYCY7N602oTIv1xbvy3rwaOD5ob45HmfKgySj4yM=;
- b=NkVJlYrG2PUaKdpPSse2tTYWwNA7TpYB/v94thTujp/Hlxf+O/WjFXOl2p3nNw/Mkm
- KiJbustKyWUzu1J7U2Is8LwVRs3WWgWkdhRYKDQUojc3eNJ886fVpxqcinM5FnkaHuKK
- dyvUdwP7f754RPt6UepE81qyJXznMtgzse6mzG28PIdvhMRXxiDly0ho32SPjYDSjkwg
- s3+8tTNehUbhifa8oytsynyrx/T67M441quvqujJgyC3j6uFJY2foiTS4sUTDiedDAE/
- p8zmHZdU7iZrosSpQjNoFzdPMHiYBLUn5wOWYLNLnRDjjMbjlDsmnK1eSM9uZfUzbggp
- uUsw==
+ d=1e100.net; s=20230601; t=1716432537; x=1717037337;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :feedback-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=TJvI5ka+7JgZUuM9P+5dJkLsAfZT/399LMPF7VVV6Qw=;
+ b=CCsZlpsQs9aiEdHl6Rk5JGsn1uhFv6BZan/2Fjc+PC5y9C5l6FFUqAreDxsMlhFZeZ
+ GeNKuqRjmhzoGuDyAoNoTog8uDzS1t1I8tsD1XBJ7J8I1frUq1JsRW3sFTju3uv2D08k
+ Sk1SeOEYrrnW1MJHGiMU2gcmJgORX9/PU+gTvZ2c8XSF7Kn+SudtiUCN5NTO22PENMRS
+ k1H1XfYLPkn8TtNcLTSeCvORdtOGUn4UHMlAvtRt75CZCaKd3vySh6c3stHpcEdsNdCI
+ n9nUqXmq4r0qEQ+ioWnEmBk7BAXe7A8v9E/knurSttQgp66Ocyu8T3V9fvSHeAwF1QqR
+ 0Pyg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV1A9vmUNKFc6U+GYnKHNoUen9RKvmvjQVYl7qtMmWylZE/QCK5FAFBA47KrTMlxFQSTydCoZ1a2/Y=@lists.freedesktop.org,
- AJvYcCVik+vYcR63ugHIdB+fsKtCrKYNHMbX3N5r7H9PqDybuqq/gXod3tuDKPeO2oBLfA/Fo2h1/+8LQQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyrTIAMx55B7JQFL3j4Hvi4umELUUWGINZwRiei/sBntTvKxqxN
- FcFcNYYO8VzqbJ5ZAVkYO7Kay5k2OtURpPlV6WloHGMshV6fWqQLCf7l
-X-Gm-Gg: ASbGncs1AkJWyq6CqCvRN4jVhCkw5ZZAibX3Pb3i/PwAYpDB0vetByTs4t1GXN35hrQ
- PWZ9qEqQNJ8pgILmTq21l8NwmziBTp7AJiMQeqzVroIyX26kJYqGCW/uy8JZvDUTfEAoOFmb8z/
- tnS5GLpdojxh+zfbAoc8hD40opTO34SaXTjnCGAO1JReAaipCdc45rKArQD3c8E241jZMWu7Vqi
- rcXWqLQ5EbsAoV6QxAM3C0KDdCwoKPhe89+1guXOZAUUUBT/jW2xDiQ9MTDXdVW0rUfOIza3q5y
- Hw3gP3Ur6UmvYfCflG8HfH4JsdfmHskzEdoq1Bo2bFxFmMOPd/5dNa8J+UlUOsbw6KN6hhqEBp4
- 5ryXBtbMTfjcbu3zFZOjj778He0/B7Z1DsV6xRdU7UFOuEfoQFTF9
-X-Google-Smtp-Source: AGHT+IF0nUAxa3ReBaADmdgbTluy0nUpM5l1CqJ7CF4aRQW+mAF+H8dNcq9aeQVegX9bYVkg1XO5gw==
-X-Received: by 2002:a05:620a:2905:b0:7ca:df2c:e112 with SMTP id
- af79cd13be357-7d3bc4b8904mr469287285a.45.1749828313083; 
- Fri, 13 Jun 2025 08:25:13 -0700 (PDT)
-Received: from fauth-a2-smtp.messagingengine.com
- (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
+ AJvYcCX5ZQLGAtvXfwUkr+kP6U5cOuh4c+aiK6rG1jTPy3sAhL4fXmL4qRHhb0p0jyryGLW0LqspZiIS+xlbQqUDfl4D0pZysfpUKWnGmRkYXn+lUwSAcnsigwPn42BMD2J8t6g2LbFGxyp5xmp0zTg9Pw==
+X-Gm-Message-State: AOJu0Yxw1K1WCzUkIo468okM3VcZ/ShWQDFTMOTX6ezL3ygxRQx7ckEm
+ NhjYBwmA/cAIjrvj5n8MSAoEzLKgUUB4yYltvoL5hpRsjKFdzDNq
+X-Google-Smtp-Source: AGHT+IH0dxdXbgmC4rYlR/hwUOO+Wp8dfkUpjfFuvGBklHjUOcOUKupWE7JhBWZ/Fbp+d7zv5g0sWA==
+X-Received: by 2002:a05:690c:660c:b0:627:88fc:61e4 with SMTP id
+ 00721157ae682-627e46c77a6mr47090767b3.1.1716432536685; 
+ Wed, 22 May 2024 19:48:56 -0700 (PDT)
+Received: from fauth2-smtp.messagingengine.com
+ (fauth2-smtp.messagingengine.com. [103.168.172.201])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7d3b8eac852sm184655885a.71.2025.06.13.08.25.12
+ 6a1803df08f44-6ab9335edf3sm486806d6.54.2024.05.22.19.48.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Jun 2025 08:25:12 -0700 (PDT)
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal
- [10.202.2.45])
- by mailfauth.phl.internal (Postfix) with ESMTP id B68461200043;
- Fri, 13 Jun 2025 11:25:11 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-05.internal (MEProxy); Fri, 13 Jun 2025 11:25:11 -0400
-X-ME-Sender: <xms:10JMaOdiZhcyzdY9O-UyB-HYPT4bQ2eExX7BSrCeeVb_lvLYlm5YuQ>
- <xme:10JMaIPCXbrhyhWgzd2KbHv3tqiEgajb8TKENsm-AA05nZMNtwojaMca2R1AEfHoG
- PHK8lHfRad0WPP8Iw>
-X-ME-Received: <xmr:10JMaPjb0XgDR_VD9sZev4hdAsMDoQjNbtigy7Ghh-_dV-W9yvAHZM1Hvg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugddukeefudcutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
- uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
- hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
- necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
- drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
- ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
- hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
- ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
- hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopedvhedpmhho
- uggvpehsmhhtphhouhhtpdhrtghpthhtoheprggtohhurhgsohhtsehnvhhiughirgdrtg
- homhdprhgtphhtthhopehojhgvuggrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegr
- lhgvgidrghgrhihnohhrsehgmhgrihhlrdgtohhmpdhrtghpthhtohepghgrrhihsehgrg
- hrhihguhhordhnvghtpdhrtghpthhtohepsghjohhrnhefpghghhesphhrohhtohhnmhgr
- ihhlrdgtohhmpdhrtghpthhtoheprgdrhhhinhgusghorhhgsehkvghrnhgvlhdrohhrgh
- dprhgtphhtthhopegrlhhitggvrhihhhhlsehgohhoghhlvgdrtghomhdprhgtphhtthho
- pehtmhhgrhhoshhssehumhhitghhrdgvughupdhrtghpthhtohepuggrkhhrsehkvghrnh
- gvlhdrohhrgh
-X-ME-Proxy: <xmx:10JMaL_kfhoKrO6X8e3fz52F0wnehq8a6jKkLf17zQC5_DLEj2z-0A>
- <xmx:10JMaKvD4gdM7EQ95ZJZjAv5YReN4IXxytDIypr7FBVye2qNKA75zg>
- <xmx:10JMaCGO40MMjFycUE4eFTeVCmv8MrGVbGoWc57K13ufV-rjUvrk0w>
- <xmx:10JMaJO7nnDgCfmU5iEo8WgGK6AoKvkSkG8oC9hOFgZth1sQ5r7QFQ>
- <xmx:10JMaHO8UP66GCv2E26QOvTPmojbt-HM3WaXjUu0O8N_sb9of3oQwtMv>
+ Wed, 22 May 2024 19:48:56 -0700 (PDT)
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+ by mailfauth.nyi.internal (Postfix) with ESMTP id 5D3BB1200043;
+ Wed, 22 May 2024 22:48:55 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+ by compute5.internal (MEProxy); Wed, 22 May 2024 22:48:55 -0400
+X-ME-Sender: <xms:l65OZr9JgWgOPevW5yJppccZOOcaKoF1y1Q-zOeEZOswlQ-KqF7COw>
+ <xme:l65OZnscWI1OsvTggyuLZVJO_Bncv7ufzMNE5V3hj-DMKkUJf0KNMJLGKWdnpDbTf
+ f1Llj0I-VdnK9fASA>
+X-ME-Received: <xmr:l65OZpD63joYbDlA02gOpBHu68Z8AqYCVeGfdTJcU5aXuCrkC93E0IM-2w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrvdeihedgiedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+ uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+ cujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeeuohhq
+ uhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilhdrtghomheqnecuggftrf
+ grthhtvghrnhepveffgedtgfetvdfgudfhgfehgffgveevvdelkefhjeeiudffkefhhfdv
+ heeljeefnecuffhomhgrihhnpehgihhthhhusgdrtghomhdptghhrhguvghvrdhrshdpkh
+ gvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
+ lhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqie
+ elvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepghhmrghilhdr
+ tghomhesfhhigihmvgdrnhgrmhgv
+X-ME-Proxy: <xmx:l65OZnd7sYcwsq4EahySDVP_rcHk5LbPyZCq3gVR9UPROv5R8kxsEA>
+ <xmx:l65OZgNAdnvMAm4YjgLWf2ArjzaV4-wkunlqPk7laIC3sP2UbPJumw>
+ <xmx:l65OZpmPhuz8l8B2xc5bBebr2iev-w4i7F-whjk-ZadLf6TOxiFOjQ>
+ <xmx:l65OZqsr-BuwfODBOdojAbsWIzKP4m-LGWgduDHqXUdk4bT6XG6DYA>
+ <xmx:l65OZqsGO3Q7ks2k17BChTc3GSPOdJHTB9Od0O7mkbGZCU-g6zbTQKVf>
 Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 13 Jun 2025 11:25:11 -0400 (EDT)
-Date: Fri, 13 Jun 2025 08:25:10 -0700
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 22 May 2024 22:48:54 -0400 (EDT)
+Date: Wed, 22 May 2024 19:48:53 -0700
 From: Boqun Feng <boqun.feng@gmail.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Benno Lossin <lossin@kernel.org>,
- John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/23] rust: add new `num` module with `PowerOfTwo` type
-Message-ID: <aExC1j8WmkJn3Csb@Mac.home>
-References: <20250612-nova-frts-v5-0-14ba7eaf166b@nvidia.com>
- <20250612-nova-frts-v5-4-14ba7eaf166b@nvidia.com>
- <aErtL6yxLu3Azbsm@tardis.local>
- <DALGWEM3TD3O.95L77CD6R62S@nvidia.com>
+To: FUJITA Tomonori <fujita.tomonori@gmail.com>
+Cc: pstanner@redhat.com, dakr@redhat.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, ojeda@kernel.org, alex.gaynor@gmail.com,
+ wedsonaf@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, ajanulgu@redhat.com,
+ lyude@redhat.com, gregkh@linuxfoundation.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+Message-ID: <Zk6ulWF72cbp14O3@Boquns-Mac-mini.home>
+References: <20240520172422.181763-4-dakr@redhat.com>
+ <20240522.085334.1009573112046880609.fujita.tomonori@gmail.com>
+ <35fef820ed6e67f2203e78735fc9e15248436221.camel@redhat.com>
+ <20240523.081513.81513679981916366.fujita.tomonori@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <DALGWEM3TD3O.95L77CD6R62S@nvidia.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240523.081513.81513679981916366.fujita.tomonori@gmail.com>
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -143,55 +124,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 13, 2025 at 11:16:10PM +0900, Alexandre Courbot wrote:
-[...]
-> >> +#[repr(transparent)]
-> >> +pub struct PowerOfTwo<T>(T);
-> >> +
-> >> +macro_rules! power_of_two_impl {
-> >> +    ($($t:ty),+) => {
-> >> +        $(
-> >> +            impl PowerOfTwo<$t> {
-> >> +                /// Validates that `v` is a power of two at build-time, and returns it wrapped into
-> >> +                /// `PowerOfTwo`.
-> >> +                ///
-> >> +                /// A build error is triggered if `v` cannot be asserted to be a power of two.
-> >> +                ///
-> >> +                /// # Examples
-> >> +                ///
-> >> +                /// ```
-> >> +                /// use kernel::num::PowerOfTwo;
-> >> +                ///
-> >> +                /// let v = PowerOfTwo::<u32>::new(256);
-> >> +                /// assert_eq!(v.value(), 256);
-> >> +                /// ```
-> >> +                #[inline(always)]
-> >> +                pub const fn new(v: $t) -> Self {
-> >
-> > Then this function should be unsafe, because an invalid `v` can create
-> > an invalid PowerOfTwo.
+On Thu, May 23, 2024 at 08:15:13AM +0900, FUJITA Tomonori wrote:
+> Hi,
 > 
-> Doesn't the `build_assert` below allow us to keep this method safe,
-> since it will fail at build-time if it cannot be asserted that `v` is a
-> power of two?
+> On Wed, 22 May 2024 09:37:30 +0200
+> Philipp Stanner <pstanner@redhat.com> wrote:
+> 
+> >> > +/// Abstraction around a C firmware struct.
+> >> > +///
+> >> > +/// This is a simple abstraction around the C firmware API. Just
+> >> > like with the C API, firmware can
+> >> > +/// be requested. Once requested the abstraction provides direct
+> >> > access to the firmware buffer as
+> >> > +/// `&[u8]`. Alternatively, the firmware can be copied to a new
+> >> > buffer using `Firmware::copy`. The
+> >> > +/// firmware is released once [`Firmware`] is dropped.
+> >> > +///
+> >> > +/// # Examples
+> >> > +///
+> >> > +/// ```
+> >> > +/// let fw = Firmware::request("path/to/firmware.bin",
+> >> > dev.as_ref())?;
+> >> > +/// driver_load_firmware(fw.data());
+> >> > +/// ```
+> >> > +pub struct Firmware(Opaque<*const bindings::firmware>);
+> >> 
+> >> Wrapping a raw pointer is not the intended use of Qpaque type?
+> >> 
+> > 
+> > What is the intended use?
+> > As I see it, all uses wrapp some binding::* – but a rawpointer to a
+> > binding shouldn't be wrapped by it?
 > 
 
-You're right, I misunderstood a bit, so if compiler cannot be sure about
-the assertion from build_assert!() it'll still generate a build error,
-i.e. even for cases like:
+Thank you Tomo for calling this out!
 
-    pub fn my_power_of_two(v: i32) -> PowerOfTwo<i32> {
-        PowerOfTwo::new(v)
-    }
+And yes, using `Opaque` on a pointer is weird. A `Opaque<T>` is
+`UnsafeCell<MayUninit<T>>`, `UnsafeCell` means the inner `T` may be
+accessed by C code at anytime, and `MayUninit` means that the inner `T`
+may not be properly initialized by the C code. So as the doc says:
 
-where `v` is a user input and the value is unknown at the build time.
-build_assert!() will trigger.
+	This is meant to be used with FFI objects that are never
+	interpreted by Rust code.
+
+that is, Rust code should never create a `&T` or `&mut T`, it should
+only be accessed with `Opaque::get()` or its friends (i.e. accessing it
+via a raw pointer), much like a black box to Rust code in some sense.
+
+Hence putting `Opaque` on a raw pointer is not what you want to do.
+
+> If I understand correctly, it's for embedding C's struct in Rust's
+> struct (as all the usage in the tree do). It gives the tricks for
+> initialization and a pointer to the embedded object.
+> 
+> The C's firmware API gives a pointer to an initialized object so no
+> reason to use Opaque.
+> 
+> With such C API, Rust's struct simply uses raw pointers in old rust
+> branch. For example,
+> 
+> https://github.com/Rust-for-Linux/linux/blob/rust/rust/kernel/chrdev.rs#L28
+> 
+> struct Cdev(*mut bindings::cdev);
+> 
+> 
+> Another choice that I know is NonNull:
+> 
+> https://lore.kernel.org/lkml/20240415-alice-mm-v5-4-6f55e4d8ef51@google.com/
+> 
+> pub struct Page {
+>     page: NonNull<bindings::page>,
+> }
+
+Both are reasonable for temporary use, although, we could generify the
+"wrapping on pointer which owns the underlying object" in the future.
 
 Regards,
 Boqun
 
-> >
-> >> +                    build_assert!(v.count_ones() == 1);
-> >> +                    Self(v)
-> >> +                }
-[...]
