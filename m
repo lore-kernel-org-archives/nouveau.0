@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02A6C25B74
-	for <nouveau@archiver.kernel.org>; Tue, 28 May 2024 02:24:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4C53C25B7E
+	for <nouveau@archiver.kernel.org>; Tue, 28 May 2024 02:24:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1174510FE30;
-	Tue, 28 May 2024 02:24:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 094A210FE35;
+	Tue, 28 May 2024 02:24:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rWJRhzch";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="W2JehyVz";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94C3E10FE33
- for <nouveau@lists.freedesktop.org>; Tue, 28 May 2024 02:24:00 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2043.outbound.protection.outlook.com [40.107.237.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A096810FE30
+ for <nouveau@lists.freedesktop.org>; Tue, 28 May 2024 02:23:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kn+DxBCemCNU0wYWaL/QW3eCj60E6Z8Dzp9m6gwj0/uD6NE48trAdf44LGSZfyAKKot6JDggW7wgpSaEYKNG/h/bKu6lEw0AztDD3U5dNtxfATxmZAb+Xh4bPjAxazMbauQk03Y9/Jf8NGCe1oEoqsEDhi8I13zLWrclksKBarVdkIfAyMZMMPiOJwoQ0xPCdd/XNP8Hq2xMRKZH2ugK7YgISh8rJVR2/bGGcaHPbBp3rgk4hegFGKWGOADreP84HwvUvqKfPGaHIkqei3gmWFOeN4vIMxBz9UKbwtLKTF9QNxoKAmGBK7hTi2HbrvQVZ785c0ltbiOtsXvR1x/5VQ==
+ b=HNx/r4vWYmhJxRY1yIFtv88BnYjXqORRTPYsvtTIZ2c6kyHl+a6ss8gcLN3X7gvWfMOiilCJQdEE48GA3wf5esnsCHVVF0uk54pUH45X0FqKzswRgFEqBHoYnob4aD7tuhhnH/T4HRU8eVO4/B+8UxqCi3FqWxwgLzmDO+9hOsViHB14PZUBSu//P79HdLywhXcWB+j7WH6m9qRwoEW8Jqs+cnWYSa3dtEW0LuXjagbqpnymsqbVDqVXoB9yV0AiOEHOeqkL9uq6hURXdhwEaGacpx3Jo5mflg8AYZI/JVTlIAijIBJGE9P+K9z6dMcDBiGCU0B6wUi2ySTnR8p3Jw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BTbILffnvYRYAV/VwyPpzTYAQIIroriWcDPOaG60faE=;
- b=X72SdwzTrtjCVk1+dG1O/WNYtYODgrgLcTwl9DEIJNUqX03EHaUJZuKG54alsyvmpu67Dfq+wVYNyyU/hM83dKBBeKywHMGWBp2GuasY6qAjP23NbjzIZG8wgMENw82Ihp+MnG6qz2fgrNm46zPjYH2Km1TGo8amjJrlBsgd/zv7DG++z9V78HgLcjij/LPx6cDzU2lqF5gPjh324bj5g83evw8fUXh4hjlwKi2DNLAWZfHgpo9UySzUBLCBtQS801MhpeOUsNyyqI0tyXfn/0eQkZ1/EnIi1VQa7QOWXm6O4KufqGEHHZWN9wjVH242Rf/oqqJsP9R7VQq1VpghTw==
+ bh=Ip+DFCyBqH3EdpvcrXWn2jRVUv6fcfh+yi2ia5cTjhs=;
+ b=fhPOtN6F87awS/JepOrR2qSaJf9NVhBwsy5+pxWsQqHIFSU+qFDmgN2AXCRIukDjTbi5PrrYJ5w89gnLKktZEK0wJlBSRxANWrWZpAO1g3VGfOtAjF16GKRpu8w1g7cjgtjzVCO6Fr+cq/m74WduFJLqqo2zshCwW+gsV0I7XCPwS3mCzznVVA+5UngNvOo2KhxHrbiYM4lTSJgbsbO5Et6U0b5U0MgGhlh0H8cwpoRvUjpaYSbWpa4DghDz4EZfz7cN8rz7jQR+BRZz4yvFzzJnVvGz83yQTZJtN+dw/rA8H53ki+Va8phzAyB36DklOBgLPTMKd9mJPAsWl5ZGZg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BTbILffnvYRYAV/VwyPpzTYAQIIroriWcDPOaG60faE=;
- b=rWJRhzchj8OHxNlmZCjxir89hhKov1UXMdUjUmyrlGdU9XORsAtw+OD+6JGy7zRS+ulXvR0hgIxGIiBNjhiI6tVhk3QPqqv5R565J2qwd2T8QR119BcxucpoT75khPTyokkjSJ6iInHW0Tq1goPuhk7XQZoo7dGLiKuRGkP9o8EWnOwVosUZHuIp21Q6P5lZD17K3d0e/Pn9ws3+U9M1bsQOw7hZngqreLjw5snumgYE0N/PoEJdeqNaFLYuGAcRGX8AHhK4XYab261XOsi15rkYFhN8JuiBEJR8VjWGMKIa9aGm1gBVe0X2pVH2UulUFy+8BzO5b+27LzWB3wp9sA==
-Received: from PH0PR07CA0117.namprd07.prod.outlook.com (2603:10b6:510:4::32)
- by DM4PR12MB6541.namprd12.prod.outlook.com (2603:10b6:8:88::11) with
+ bh=Ip+DFCyBqH3EdpvcrXWn2jRVUv6fcfh+yi2ia5cTjhs=;
+ b=W2JehyVz6lNYJPdOWrvryg9fnoXCQ8lgxIjpRx/A8A9U0W4oQkXk6hu70X5y/VSbcTMqn/35oZ2YVBuRN6/iFX8PkREggxie0ZNepbv4uUKDV2vIJ+a2OlEcWhNnSWk8K4aH9vZIgyJiq/0ZTnnRUeM9C16CyuJAXflKcTgp52fbQZgihgmchrDywM+Yc+cuGighjN7xKxY0TnH5gnUCQ576ivIQfZOid/ApJ4LJRI4xhd9ft7ZJ6FcnXue6lSzc4s4vS91vhyWNzkxkkrEK5yA0kKJmEN6ofhvnV4b8H0mtfmo6BxVyftSeSyfwczw/fzOjxktV6/MIX5IAXxVdqQ==
+Received: from PH0PR07CA0099.namprd07.prod.outlook.com (2603:10b6:510:4::14)
+ by CH2PR12MB4232.namprd12.prod.outlook.com (2603:10b6:610:a4::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.29; Tue, 28 May
- 2024 02:23:53 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30; Tue, 28 May
+ 2024 02:23:51 +0000
 Received: from SN1PEPF00036F3D.namprd05.prod.outlook.com
- (2603:10b6:510:4:cafe::a9) by PH0PR07CA0117.outlook.office365.com
- (2603:10b6:510:4::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.28 via Frontend
- Transport; Tue, 28 May 2024 02:23:53 +0000
+ (2603:10b6:510:4:cafe::4e) by PH0PR07CA0099.outlook.office365.com
+ (2603:10b6:510:4::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7611.30 via Frontend
+ Transport; Tue, 28 May 2024 02:23:51 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -52,21 +52,21 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
 Received: from mail.nvidia.com (216.228.117.160) by
  SN1PEPF00036F3D.mail.protection.outlook.com (10.167.248.21) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7633.15 via Frontend Transport; Tue, 28 May 2024 02:23:53 +0000
+ 15.20.7633.15 via Frontend Transport; Tue, 28 May 2024 02:23:50 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 27 May
- 2024 19:23:38 -0700
+ 2024 19:23:35 -0700
 Received: from fedora.mshome.net (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 27 May
- 2024 19:23:36 -0700
+ 2024 19:23:34 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 34/34] drm/nouveau/kms: remove push pointer from nv50_dmac
-Date: Tue, 28 May 2024 00:19:59 +1000
-Message-ID: <20240527141959.59193-35-bskeggs@nvidia.com>
+Subject: [PATCH 32/34] drm/nouveau: remove push pointer from nouveau_channel
+Date: Tue, 28 May 2024 00:19:57 +1000
+Message-ID: <20240527141959.59193-33-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240527141959.59193-1-bskeggs@nvidia.com>
 References: <20240527141959.59193-1-bskeggs@nvidia.com>
@@ -78,50 +78,50 @@ X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3D:EE_|DM4PR12MB6541:EE_
-X-MS-Office365-Filtering-Correlation-Id: 703e968e-7e9a-4540-fa59-08dc7ebd37f9
+X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3D:EE_|CH2PR12MB4232:EE_
+X-MS-Office365-Filtering-Correlation-Id: e4f1297b-9aaf-4bc0-e31f-08dc7ebd369d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230031|1800799015|376005|36860700004|82310400017; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5NUlJjMU00eLeqpvmqmx9cRKCJvswUydsyVCxKK+k+5Z2zfhz6o42pjZUszi?=
- =?us-ascii?Q?xkij5jGymPhSf++rBBD2fLHrbHFRyloW3mGT4VE+fZKNcLXq11kDcAQBSn6u?=
- =?us-ascii?Q?8U/9sDZlgRJMu1kVXL/ONHA/P4OcL/qQXkfLTC7fl9gHFTb/BmSh8xfFUKy0?=
- =?us-ascii?Q?vddy+hm811BTsFEvWlQGaUjsMgg5hbdtkTORK+8bX9P0vpJ2YO8HEtvF3S8f?=
- =?us-ascii?Q?21DuARS91v+qaerobx5VcZMu+md6svjjYp038MMFx0ZCUAnrhSqclDmgG9hj?=
- =?us-ascii?Q?E4ARAH8N2YzeKHqlIgWTPAlu8Er7gtQOWTjaVgXWBXqJXU2p2P0HU5OuMilv?=
- =?us-ascii?Q?Ji4pBtDVsS/HDjebXqRCPvsz0lsdiHboq3VhZmgau+0RzPD7QYzBjSRnAKrX?=
- =?us-ascii?Q?bkXfV7EKp8QBSDL2lax91Zk9Dnz0wY4mJCjeoFvvLPc/ZYMzNIqW3ysw/Ghm?=
- =?us-ascii?Q?LzseU+cC66gtcumpiYpmA2T+Rx29zkYe2xbfLquNPRyWB/BXOZOqu32C/xkk?=
- =?us-ascii?Q?3uqWiQYV7B+iTspDkGrDhiFEgoNpAYSiFOc/vOh4Y5kCWNruq+3mtMuODPEh?=
- =?us-ascii?Q?c9aq9HjKenTcwFO0zUPNVtGHSuvDhzRzm+xVCjRc0hTRohGUFiDEP3qSeqhj?=
- =?us-ascii?Q?7kIZw+zGM0I2UcqIAUanBR13WNOHVXvpixLwdMGpKO/Bxja2rQzWMEvZbsjO?=
- =?us-ascii?Q?ym4pKan+TsZDT+SmoH1btvLov7h5afF1LDeBMGe5oTywF1PkZWL0jIGE0Lu7?=
- =?us-ascii?Q?INgUXL6LuNkY42ReT4dML3+m6vQiOGIyg2MDLlT79y4n1xHfE3yXyUbsD8Nx?=
- =?us-ascii?Q?wyraVPftN7o3hg6uY//ojmYdp8gjbz3IPZlKLa/X9B3149EbD+4YFEz67F2z?=
- =?us-ascii?Q?AlJnTmriNZCBnwPhifL4ubB/AG9nuK5gTw/KkoqiiUNwMxtf0kULwwtgWDBx?=
- =?us-ascii?Q?cVBMZWqjsRkwAjTZx7jlUdRkQiKMBcxCDXN+P9i47kE59KYq+Gr1aahSEQxz?=
- =?us-ascii?Q?Sl/f2CoUaQaotDfqIWn+fzRusyAiCZxifczTrMrgbnpFsM3VF3ll14V6eUF/?=
- =?us-ascii?Q?6uutcXF3kYnOqhoh1fBFKqHJzoZ4UPxgetbSmWSYfoZWWQNFENmkCxnnSgk3?=
- =?us-ascii?Q?8b1XZ7EliUiAl2ZvpF51GDKW8PNro/8r1wEO3ZslI3KFCv38z0qmVxwGy0VK?=
- =?us-ascii?Q?1CoTPlmU7IKNw9NYsdN7Lv0665r1FZNb6kg/xVBisFKXoZm9uNkpmuKPhPSD?=
- =?us-ascii?Q?k1TsLT2umLe17RELi9+Cbh6MQBG7d+7zzE8NKNE53Wsqed5AiMyIxL63nfD9?=
- =?us-ascii?Q?SBNVafmz/E56xD1a+ZNrWkgCTWiloBTg9W8q9wsL5Q+IWfVu37bU8IMpzW48?=
- =?us-ascii?Q?Bof86C8e4aivLCM3JjaiZ6XnAK36?=
+ ARA:13230031|36860700004|376005|82310400017|1800799015; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fELKZNAkEQHtzVeicqjU18dHplFRqWrYxQF3U4QoaWdfR/tUm3UXqIlsmu0Y?=
+ =?us-ascii?Q?NLSP3VNbGJ8fkpyiP7sCW3RPTiJL9K9u/xP1+mZI77bQdncepHI4JMHTPKWj?=
+ =?us-ascii?Q?qsKXT8vPgP6qlQOoNrTwfAixgSKSWkYzvtI2e3JkI7I8lsuXMn6jSuCHTdBH?=
+ =?us-ascii?Q?FjrmLobACQ9Evzs1hMpV4nttbJ0EFU1HzoqcKUuNAY60BoYvR9bQfL1//wS0?=
+ =?us-ascii?Q?X+XI7g6KfiYhfKg/Ng0v/AfL1e2V5hMe3bpbmcWnIxF9j4o7JkzjsMIKhRb5?=
+ =?us-ascii?Q?ARbjsJaIj9xbri+dXl7xzcmWKh+naa3Hc3wabjEbj1a/cpPSY5llOTv0y310?=
+ =?us-ascii?Q?jpRIeLC/OfvIgvjufs9Q9TsSsdbqsvpt/xZpiu0hhAnKhY8m1Ow9Dve1KagL?=
+ =?us-ascii?Q?mRuqCawxBXT+yH4ucBrlU1jPfLyMiPKMMPqV+lqALuzC8CeGIjhAUnmdiSF4?=
+ =?us-ascii?Q?3H7wh4NH/FxiAABPGoOAKc6VAcCrof5SFIIPU8/rg36auEpQe1z1sa6tBC83?=
+ =?us-ascii?Q?lj9GMSNytn9h14yXip4aRh5zLwKTPlGB2SS6U6vkCXKDkkPddYNugl6+Xr/p?=
+ =?us-ascii?Q?r37J3lV5zWbAAs+d0XIKWjVNVvwMEGm5Zb3ehp5CR8YxGj2pd2i/Fpytmqec?=
+ =?us-ascii?Q?eJvRHWFUqZ9xzU7oi5eEoTZAg/2Oi6hYvlwgpKyr7WXkz1zim6p45iP+SALP?=
+ =?us-ascii?Q?DN6zWy2tHasdhmY3hAySt6VvuRuq8TeLRbZWTvteJqwgRxPL+I48PD9j1Bj2?=
+ =?us-ascii?Q?08D/jOIpIVVe3xKevIXGG6e7moaMwJP7J/r8Osqqf5KNvFO8wZ0kyQwcix8Q?=
+ =?us-ascii?Q?vNEVL+IUiwJhdNJBNjpVgzQE/ghoxIB7vtXSmTpNuVT/BhwmFuvQj5kQ4l5B?=
+ =?us-ascii?Q?4TxkQjFAw1jliQkZLVC1/J0/Itv46LJZ+Qzqz2E9gSPxag4tcC/IlJ2t2rBQ?=
+ =?us-ascii?Q?Z1sUKD7rxgmPb11qvQCyuAhYWcoc83vimRsFXo9q9IrObqYsrk3Vmik4BGaq?=
+ =?us-ascii?Q?DiksbV20tE0ECYJNcXebLZDyKk2hLDbxTXabtnIbbtNL3wz51sHiVgRkN0cT?=
+ =?us-ascii?Q?b0kDiCYLdX7laZLOOy7e3WW+WgnGqYiHzPq/gBxJ7TEssNSdENfY0DGdcar1?=
+ =?us-ascii?Q?zl1TOERBNag9U/KcLxgPge00yJqCvsu9FSfj1b13Z4FEoeSNqo3JZ+wOQf3V?=
+ =?us-ascii?Q?/qjo4LtdfimwhYGd7YgYxAFwpD/cXACPEhg02tJFW+ghD6WIfqm9Nw9BtfzX?=
+ =?us-ascii?Q?wvgb8dafXwg6y7C9WqXCVng/dEpnGMU1K+gGsijuM5UbNhn9cU7rNoQDYrqc?=
+ =?us-ascii?Q?kHkYOkAGqbWChg3odpV5ruPPiCxvUvuBiUXuphqmP03unesey/Xmq/nKuLgR?=
+ =?us-ascii?Q?ztBrgdg=3D?=
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230031)(1800799015)(376005)(36860700004)(82310400017); DIR:OUT;
+ SFS:(13230031)(36860700004)(376005)(82310400017)(1800799015); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 02:23:53.1409 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 703e968e-7e9a-4540-fa59-08dc7ebd37f9
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 May 2024 02:23:50.8597 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e4f1297b-9aaf-4bc0-e31f-08dc7ebd369d
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
 X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00036F3D.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6541
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4232
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,1215 +136,445 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The struct itself lives in nv50_dmac already, just use that.
+The struct itself lives in nouveau_channel already, just use that.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/dispnv50/base507c.c | 18 +++++------
- drivers/gpu/drm/nouveau/dispnv50/base827c.c |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/base907c.c | 10 +++---
- drivers/gpu/drm/nouveau/dispnv50/core507d.c |  6 ++--
- drivers/gpu/drm/nouveau/dispnv50/corec37d.c |  6 ++--
- drivers/gpu/drm/nouveau/dispnv50/corec57d.c |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/crc907d.c  |  4 +--
- drivers/gpu/drm/nouveau/dispnv50/crcc37d.c  |  4 +--
- drivers/gpu/drm/nouveau/dispnv50/crcc57d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/dac507d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/dac907d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c     | 35 ++++++++++-----------
- drivers/gpu/drm/nouveau/dispnv50/disp.h     |  3 +-
- drivers/gpu/drm/nouveau/dispnv50/head507d.c | 24 +++++++-------
- drivers/gpu/drm/nouveau/dispnv50/head827d.c | 10 +++---
- drivers/gpu/drm/nouveau/dispnv50/head907d.c | 26 +++++++--------
- drivers/gpu/drm/nouveau/dispnv50/head917d.c |  6 ++--
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c | 18 +++++------
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c | 12 +++----
- drivers/gpu/drm/nouveau/dispnv50/ovly507e.c |  4 +--
- drivers/gpu/drm/nouveau/dispnv50/ovly827e.c |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/ovly907e.c |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/pior507d.c |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/sor507d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/sor907d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/sorc37d.c  |  2 +-
- drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c |  4 +--
- drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c | 22 ++++++-------
- drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c | 10 +++---
- drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c |  2 +-
- 30 files changed, 122 insertions(+), 124 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c  |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_bo0039.c |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_bo5039.c |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_bo74c1.c |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo85b5.c |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_bo9039.c |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_bo90b5.c |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_boa0b5.c |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_chan.c   | 41 ++++++++++++------------
+ drivers/gpu/drm/nouveau/nouveau_chan.h   |  3 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c   |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_drm.c    |  3 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c    | 14 ++++----
+ drivers/gpu/drm/nouveau/nv04_fence.c     |  2 +-
+ drivers/gpu/drm/nouveau/nv10_fence.c     |  2 +-
+ drivers/gpu/drm/nouveau/nv17_fence.c     |  4 +--
+ drivers/gpu/drm/nouveau/nv84_fence.c     |  4 +--
+ drivers/gpu/drm/nouveau/nvc0_fence.c     |  4 +--
+ 18 files changed, 53 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/base507c.c b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-index e36a473f2075..a431f6c5f6fa 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/base507c.c
-@@ -35,7 +35,7 @@
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index eff43bfb7521..90e549541981 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1100,7 +1100,7 @@ nv04_page_flip_emit(struct nouveau_channel *chan,
+ 	struct nouveau_fence_chan *fctx = chan->fence;
+ 	struct nouveau_drm *drm = chan->cli->drm;
+ 	struct drm_device *dev = drm->dev;
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	unsigned long flags;
+ 	int ret;
+ 
+@@ -1158,7 +1158,7 @@ nv04_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 	if (!chan)
+ 		return -ENODEV;
+ 	cli = chan->cli;
+-	push = chan->chan.push;
++	push = &chan->chan.push;
+ 
+ 	s = kzalloc(sizeof(*s), GFP_KERNEL);
+ 	if (!s)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo0039.c b/drivers/gpu/drm/nouveau/nouveau_bo0039.c
+index 2babc6c47241..0b6758e024a1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo0039.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo0039.c
+@@ -47,7 +47,7 @@ int
+ nv04_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	u32 src_ctxdma = nouveau_bo_mem_ctxdma(bo, chan, old_reg);
+ 	u32 src_offset = old_reg->start << PAGE_SHIFT;
+ 	u32 dst_ctxdma = nouveau_bo_mem_ctxdma(bo, chan, new_reg);
+@@ -96,7 +96,7 @@ nv04_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
  int
- base507c_update(struct nv50_wndw *wndw, u32 *interlock)
+ nv04_bo_move_init(struct nouveau_channel *chan, u32 handle)
  {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
  	int ret;
  
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -48,7 +48,7 @@ base507c_update(struct nv50_wndw *wndw, u32 *interlock)
+ 	ret = PUSH_WAIT(push, 4);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo5039.c b/drivers/gpu/drm/nouveau/nouveau_bo5039.c
+index 0a6b1fce1108..c3de17548d97 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo5039.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo5039.c
+@@ -40,7 +40,7 @@ nv50_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	u64 length = new_reg->size;
+ 	u64 src_offset = mem->vma[0].addr;
+ 	u64 dst_offset = mem->vma[1].addr;
+@@ -136,7 +136,7 @@ nv50_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
  int
- base507c_image_clr(struct nv50_wndw *wndw)
+ nv50_bo_move_init(struct nouveau_channel *chan, u32 handle)
  {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 4)))
-@@ -65,7 +65,7 @@ base507c_image_clr(struct nv50_wndw *wndw)
- static int
- base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 13)))
-@@ -118,7 +118,7 @@ base507c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- base507c_xlut_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -132,7 +132,7 @@ base507c_xlut_clr(struct nv50_wndw *wndw)
- int
- base507c_xlut_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -158,7 +158,7 @@ base507c_ntfy_wait_begun(struct nouveau_bo *bo, u32 offset,
- int
- base507c_ntfy_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -171,7 +171,7 @@ base507c_ntfy_clr(struct nv50_wndw *wndw)
- int
- base507c_ntfy_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 3)))
-@@ -195,7 +195,7 @@ base507c_ntfy_reset(struct nouveau_bo *bo, u32 offset)
- int
- base507c_sema_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -208,7 +208,7 @@ base507c_sema_clr(struct nv50_wndw *wndw)
- int
- base507c_sema_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 5)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/base827c.c b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-index 093d4ba6910e..4545cc5f3a14 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/base827c.c
-@@ -28,7 +28,7 @@
- static int
- base827c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 13)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/base907c.c b/drivers/gpu/drm/nouveau/dispnv50/base907c.c
-index e6b0417c325b..4a2d5a259e15 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/base907c.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/base907c.c
-@@ -28,7 +28,7 @@
- static int
- base907c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 10)))
-@@ -65,7 +65,7 @@ base907c_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- static int
- base907c_xlut_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 6)))
-@@ -84,7 +84,7 @@ base907c_xlut_clr(struct nv50_wndw *wndw)
- static int
- base907c_xlut_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 6)))
-@@ -156,7 +156,7 @@ base907c_csc(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw,
- static int
- base907c_csc_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -170,7 +170,7 @@ base907c_csc_clr(struct nv50_wndw *wndw)
- static int
- base907c_csc_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 13)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/core507d.c b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-index 85845e3dc7ba..ce2cb78bbdd3 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/core507d.c
-@@ -33,7 +33,7 @@
- int
- core507d_update(struct nv50_core *core, u32 *interlock, bool ntfy)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, (ntfy ? 2 : 0) + 3)))
-@@ -80,7 +80,7 @@ core507d_ntfy_init(struct nouveau_bo *bo, u32 offset)
- int
- core507d_read_caps(struct nv50_disp *disp)
- {
--	struct nvif_push *push = disp->core->chan.push;
-+	struct nvif_push *push = &disp->core->chan.push;
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
  	int ret;
  
  	ret = PUSH_WAIT(push, 6);
-@@ -130,7 +130,7 @@ core507d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo74c1.c b/drivers/gpu/drm/nouveau/nouveau_bo74c1.c
+index 9b7ba31fae13..e6ef79de2498 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo74c1.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo74c1.c
+@@ -37,7 +37,7 @@ nv84_bo_move_exec(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret;
+ 
+ 	ret = PUSH_WAIT(push, 7);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo85b5.c b/drivers/gpu/drm/nouveau/nouveau_bo85b5.c
+index a15a38a87a95..c4861d073ad4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo85b5.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo85b5.c
+@@ -41,7 +41,7 @@ nva3_bo_move_copy(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	u64 src_offset = mem->vma[0].addr;
+ 	u64 dst_offset = mem->vma[1].addr;
+ 	u32 page_count = PFN_UP(new_reg->size);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo9039.c b/drivers/gpu/drm/nouveau/nouveau_bo9039.c
+index d2bb2687d401..ad82269c7725 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo9039.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo9039.c
+@@ -38,7 +38,7 @@ int
+ nvc0_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+ 	u64 src_offset = mem->vma[0].addr;
+ 	u64 dst_offset = mem->vma[1].addr;
+@@ -86,7 +86,7 @@ nvc0_bo_move_m2mf(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
  int
- core507d_init(struct nv50_core *core)
+ nvc0_bo_move_init(struct nouveau_channel *chan, u32 handle)
  {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
  	int ret;
  
- 	if ((ret = PUSH_WAIT(push, 2)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/corec37d.c b/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
-index 42f877f2ced2..7f637b8830be 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/corec37d.c
-@@ -33,7 +33,7 @@
+ 	ret = PUSH_WAIT(push, 2);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo90b5.c b/drivers/gpu/drm/nouveau/nouveau_bo90b5.c
+index 4618f4f5ab56..5eaeef9d25e4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo90b5.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo90b5.c
+@@ -34,7 +34,7 @@ nvc0_bo_move_copy(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	u64 src_offset = mem->vma[0].addr;
+ 	u64 dst_offset = mem->vma[1].addr;
+ 	u32 page_count = PFN_UP(new_reg->size);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_boa0b5.c b/drivers/gpu/drm/nouveau/nouveau_boa0b5.c
+index 07a5c6302c98..dff2ae0e1e45 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_boa0b5.c
++++ b/drivers/gpu/drm/nouveau/nouveau_boa0b5.c
+@@ -39,7 +39,7 @@ nve0_bo_move_copy(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
+ 		  struct ttm_resource *old_reg, struct ttm_resource *new_reg)
+ {
+ 	struct nouveau_mem *mem = nouveau_mem(old_reg);
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret;
+ 
+ 	ret = PUSH_WAIT(push, 10);
+@@ -78,7 +78,7 @@ nve0_bo_move_copy(struct nouveau_channel *chan, struct ttm_buffer_object *bo,
  int
- corec37d_wndw_owner(struct nv50_core *core)
+ nve0_bo_move_init(struct nouveau_channel *chan, u32 handle)
  {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	const u32 windows = 8; /*XXX*/
- 	int ret, i;
- 
-@@ -51,7 +51,7 @@ corec37d_wndw_owner(struct nv50_core *core)
- int
- corec37d_update(struct nv50_core *core, u32 *interlock, bool ntfy)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
  	int ret;
  
- 	if ((ret = PUSH_WAIT(push, (ntfy ? 2 * 2 : 0) + 5)))
-@@ -127,7 +127,7 @@ int corec37d_caps_init(struct nouveau_drm *drm, struct nv50_disp *disp)
- static int
- corec37d_init(struct nv50_core *core)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	const u32 windows = 8; /*XXX*/
- 	int ret, i;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/corec57d.c b/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
-index 53b1e2a569c1..421d0d57e1d8 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/corec57d.c
-@@ -29,7 +29,7 @@
- static int
- corec57d_init(struct nv50_core *core)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	const u32 windows = 8; /*XXX*/
- 	int ret, i;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crc907d.c b/drivers/gpu/drm/nouveau/dispnv50/crc907d.c
-index f9ad641555b7..a674ba435b05 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crc907d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crc907d.c
-@@ -26,7 +26,7 @@ static int
- crc907d_set_src(struct nv50_head *head, int or, enum nv50_crc_source_type source,
- 		struct nv50_crc_notifier_ctx *ctx)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 crc_args = NVDEF(NV907D, HEAD_SET_CRC_CONTROL, CONTROLLING_CHANNEL, CORE) |
- 		       NVDEF(NV907D, HEAD_SET_CRC_CONTROL, EXPECT_BUFFER_COLLAPSE, FALSE) |
-@@ -74,7 +74,7 @@ crc907d_set_src(struct nv50_head *head, int or, enum nv50_crc_source_type source
- static int
- crc907d_set_ctx(struct nv50_head *head, struct nv50_crc_notifier_ctx *ctx)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c b/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-index f10f6c484408..4821ce32f9ed 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crcc37d.c
-@@ -15,7 +15,7 @@ static int
- crcc37d_set_src(struct nv50_head *head, int or, enum nv50_crc_source_type source,
- 		struct nv50_crc_notifier_ctx *ctx)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 crc_args = NVVAL(NVC37D, HEAD_SET_CRC_CONTROL, CONTROLLING_CHANNEL, i * 4) |
- 		       NVDEF(NVC37D, HEAD_SET_CRC_CONTROL, EXPECT_BUFFER_COLLAPSE, FALSE) |
-@@ -53,7 +53,7 @@ crcc37d_set_src(struct nv50_head *head, int or, enum nv50_crc_source_type source
- 
- int crcc37d_set_ctx(struct nv50_head *head, struct nv50_crc_notifier_ctx *ctx)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/crcc57d.c b/drivers/gpu/drm/nouveau/dispnv50/crcc57d.c
-index cc0130e3d496..ad591dcb0bc9 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/crcc57d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/crcc57d.c
-@@ -13,7 +13,7 @@
- static int crcc57d_set_src(struct nv50_head *head, int or, enum nv50_crc_source_type source,
- 			   struct nv50_crc_notifier_ctx *ctx)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 crc_args = NVDEF(NVC57D, HEAD_SET_CRC_CONTROL, CONTROLLING_CHANNEL, CORE) |
- 		       NVDEF(NVC57D, HEAD_SET_CRC_CONTROL, EXPECT_BUFFER_COLLAPSE, FALSE) |
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/dac507d.c b/drivers/gpu/drm/nouveau/dispnv50/dac507d.c
-index 09de78d96679..99ae692f219e 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/dac507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/dac507d.c
-@@ -29,7 +29,7 @@ static int
- dac507d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	     struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	u32 sync = 0;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/dac907d.c b/drivers/gpu/drm/nouveau/dispnv50/dac907d.c
-index 95efa625b691..74bc9f81e3f1 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/dac907d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/dac907d.c
-@@ -29,7 +29,7 @@ static int
- dac907d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	     struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index ec1c083c4256..73e320ddcdfd 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -127,20 +127,20 @@ nv50_dmac_destroy(struct nv50_dmac *dmac)
- 
- 	nv50_chan_destroy(&dmac->base);
- 
--	nvif_mem_dtor(&dmac->_push.mem);
-+	nvif_mem_dtor(&dmac->push.mem);
- }
- 
+ 	ret = PUSH_WAIT(push, 2);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index 287c74072c65..2aabc6beb8d0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -117,24 +117,24 @@ nouveau_channel_del(struct nouveau_channel **pchan)
  static void
- nv50_dmac_kick(struct nvif_push *push)
+ nouveau_channel_kick(struct nvif_push *push)
  {
--	struct nv50_dmac *dmac = container_of(push, typeof(*dmac), _push);
-+	struct nv50_dmac *dmac = container_of(push, typeof(*dmac), push);
- 
--	dmac->cur = push->cur - (u32 __iomem *)dmac->_push.mem.object.map.ptr;
-+	dmac->cur = push->cur - (u32 __iomem *)dmac->push.mem.object.map.ptr;
- 	if (dmac->put != dmac->cur) {
- 		/* Push buffer fetches are not coherent with BAR1, we need to ensure
- 		 * writes have been flushed right through to VRAM before writing PUT.
- 		 */
--		if (dmac->push->mem.type & NVIF_MEM_VRAM) {
-+		if (dmac->push.mem.type & NVIF_MEM_VRAM) {
- 			struct nvif_device *device = dmac->base.device;
- 			nvif_wr32(&device->object, 0x070000, 0x00000001);
- 			nvif_msec(device, 2000,
-@@ -175,7 +175,7 @@ nv50_dmac_wind(struct nv50_dmac *dmac)
- 	if (get == 0) {
- 		/* Corner-case, HW idle, but non-committed work pending. */
- 		if (dmac->put == 0)
--			nv50_dmac_kick(dmac->push);
-+			nv50_dmac_kick(&dmac->push);
- 
- 		if (nvif_msec(dmac->base.device, 2000,
- 			if (NVIF_TV32(&dmac->base.user, NV507C, GET, PTR, >, 0))
-@@ -184,7 +184,7 @@ nv50_dmac_wind(struct nv50_dmac *dmac)
- 			return -ETIMEDOUT;
- 	}
- 
--	PUSH_RSVD(dmac->push, PUSH_JUMP(dmac->push, 0));
-+	PUSH_RSVD(&dmac->push, PUSH_JUMP(&dmac->push, 0));
- 	dmac->cur = 0;
- 	return 0;
+-	struct nouveau_channel *chan = container_of(push, typeof(*chan), chan._push);
+-	chan->dma.cur = chan->dma.cur + (chan->chan._push.cur - chan->chan._push.bgn);
++	struct nouveau_channel *chan = container_of(push, typeof(*chan), chan.push);
++	chan->dma.cur = chan->dma.cur + (chan->chan.push.cur - chan->chan.push.bgn);
+ 	FIRE_RING(chan);
+-	chan->chan._push.bgn = chan->chan._push.cur;
++	chan->chan.push.bgn = chan->chan.push.cur;
  }
-@@ -192,19 +192,19 @@ nv50_dmac_wind(struct nv50_dmac *dmac)
+ 
  static int
- nv50_dmac_wait(struct nvif_push *push, u32 size)
+ nouveau_channel_wait(struct nvif_push *push, u32 size)
  {
--	struct nv50_dmac *dmac = container_of(push, typeof(*dmac), _push);
-+	struct nv50_dmac *dmac = container_of(push, typeof(*dmac), push);
- 	int free;
- 
- 	if (WARN_ON(size > dmac->max))
- 		return -EINVAL;
- 
--	dmac->cur = push->cur - (u32 __iomem *)dmac->_push.mem.object.map.ptr;
-+	dmac->cur = push->cur - (u32 __iomem *)dmac->push.mem.object.map.ptr;
- 	if (dmac->cur + size >= dmac->max) {
- 		int ret = nv50_dmac_wind(dmac);
- 		if (ret)
- 			return ret;
- 
--		push->cur = dmac->_push.mem.object.map.ptr;
-+		push->cur = dmac->push.mem.object.map.ptr;
- 		push->cur = push->cur + dmac->cur;
- 		nv50_dmac_kick(push);
+-	struct nouveau_channel *chan = container_of(push, typeof(*chan), chan._push);
++	struct nouveau_channel *chan = container_of(push, typeof(*chan), chan.push);
+ 	int ret;
+-	chan->dma.cur = chan->dma.cur + (chan->chan._push.cur - chan->chan._push.bgn);
++	chan->dma.cur = chan->dma.cur + (chan->chan.push.cur - chan->chan.push.bgn);
+ 	ret = RING_SPACE(chan, size);
+ 	if (ret == 0) {
+-		chan->chan._push.bgn = chan->chan._push.mem.object.map.ptr;
+-		chan->chan._push.bgn = chan->chan._push.bgn + chan->dma.cur;
+-		chan->chan._push.cur = chan->chan._push.bgn;
+-		chan->chan._push.end = chan->chan._push.bgn + size;
++		chan->chan.push.bgn = chan->chan.push.mem.object.map.ptr;
++		chan->chan.push.bgn = chan->chan.push.bgn + chan->dma.cur;
++		chan->chan.push.cur = chan->chan.push.bgn;
++		chan->chan.push.end = chan->chan.push.bgn + size;
  	}
-@@ -217,7 +217,7 @@ nv50_dmac_wait(struct nvif_push *push, u32 size)
- 		return -ETIMEDOUT;
+ 	return ret;
+ }
+@@ -176,13 +176,12 @@ nouveau_channel_prep(struct nouveau_cli *cli,
+ 		return ret;
  	}
  
--	push->bgn = dmac->_push.mem.object.map.ptr;
-+	push->bgn = dmac->push.mem.object.map.ptr;
- 	push->bgn = push->bgn + dmac->cur;
- 	push->cur = push->bgn;
- 	push->end = push->cur + free;
-@@ -252,16 +252,15 @@ nv50_dmac_create(struct nouveau_drm *drm,
- 	    (nv50_dmac_vram_pushbuf < 0 && device->info.family == NV_DEVICE_INFO_V0_PASCAL))
- 		type |= NVIF_MEM_VRAM;
+-	chan->chan._push.mem.object.parent = cli->base.object.parent;
+-	chan->chan._push.mem.object.client = &cli->base;
+-	chan->chan._push.mem.object.name = "chanPush";
+-	chan->chan._push.mem.object.map.ptr = chan->push.buffer->kmap.virtual;
+-	chan->chan._push.wait = nouveau_channel_wait;
+-	chan->chan._push.kick = nouveau_channel_kick;
+-	chan->chan.push = &chan->chan._push;
++	chan->chan.push.mem.object.parent = cli->base.object.parent;
++	chan->chan.push.mem.object.client = &cli->base;
++	chan->chan.push.mem.object.name = "chanPush";
++	chan->chan.push.mem.object.map.ptr = chan->push.buffer->kmap.virtual;
++	chan->chan.push.wait = nouveau_channel_wait;
++	chan->chan.push.kick = nouveau_channel_kick;
  
--	ret = nvif_mem_ctor_map(&drm->mmu, "kmsChanPush", type, 0x1000, &dmac->_push.mem);
-+	ret = nvif_mem_ctor_map(&drm->mmu, "kmsChanPush", type, 0x1000, &dmac->push.mem);
+ 	/* create dma object covering the *entire* memory space that the
+ 	 * pushbuf lives in, this is because the GEM code requires that
+@@ -461,12 +460,12 @@ nouveau_channel_init(struct nouveau_channel *chan, u32 vram, u32 gart)
+ 	chan->dma.cur = chan->dma.put;
+ 	chan->dma.free = chan->dma.max - chan->dma.cur;
+ 
+-	ret = PUSH_WAIT(chan->chan.push, NOUVEAU_DMA_SKIPS);
++	ret = PUSH_WAIT(&chan->chan.push, NOUVEAU_DMA_SKIPS);
  	if (ret)
  		return ret;
  
--	dmac->_push.wait = nv50_dmac_wait;
--	dmac->_push.kick = nv50_dmac_kick;
--	dmac->push = &dmac->_push;
--	dmac->push->bgn = dmac->_push.mem.object.map.ptr;
--	dmac->push->cur = dmac->push->bgn;
--	dmac->push->end = dmac->push->bgn;
-+	dmac->push.wait = nv50_dmac_wait;
-+	dmac->push.kick = nv50_dmac_kick;
-+	dmac->push.bgn = dmac->push.mem.object.map.ptr;
-+	dmac->push.cur = dmac->push.bgn;
-+	dmac->push.end = dmac->push.bgn;
- 	dmac->max = 0x1000/4 - 1;
+ 	for (i = 0; i < NOUVEAU_DMA_SKIPS; i++)
+-		PUSH_DATA(chan->chan.push, 0x00000000);
++		PUSH_DATA(&chan->chan.push, 0x00000000);
  
- 	/* EVO channels are affected by a HW bug where the last 12 DWORDs
-@@ -270,7 +269,7 @@ nv50_dmac_create(struct nouveau_drm *drm,
- 	if (disp->oclass < GV100_DISP)
- 		dmac->max -= 12;
+ 	/* allocate software object class (used for fences on <= nv05) */
+ 	if (device->info.family < NV_DEVICE_INFO_V0_CELSIUS) {
+@@ -476,12 +475,12 @@ nouveau_channel_init(struct nouveau_channel *chan, u32 vram, u32 gart)
+ 		if (ret)
+ 			return ret;
  
--	args->pushbuf = nvif_handle(&dmac->_push.mem.object);
-+	args->pushbuf = nvif_handle(&dmac->push.mem.object);
+-		ret = PUSH_WAIT(chan->chan.push, 2);
++		ret = PUSH_WAIT(&chan->chan.push, 2);
+ 		if (ret)
+ 			return ret;
  
- 	ret = nv50_chan_create(device, disp, oclass, head, data, size,
- 			       &dmac->base);
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.h b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-index b66a30915af2..15f9242b72ac 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.h
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.h
-@@ -62,8 +62,7 @@ struct nv50_chan {
- struct nv50_dmac {
- 	struct nv50_chan base;
+-		PUSH_NVSQ(chan->chan.push, NV_SW, 0x0000, chan->nvsw.handle);
+-		PUSH_KICK(chan->chan.push);
++		PUSH_NVSQ(&chan->chan.push, NV_SW, 0x0000, chan->nvsw.handle);
++		PUSH_KICK(&chan->chan.push);
+ 	}
  
--	struct nvif_push _push;
--	struct nvif_push *push;
-+	struct nvif_push push;
+ 	/* initialise synchronisation */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.h b/drivers/gpu/drm/nouveau/nouveau_chan.h
+index 3ce9832c9528..016f668c0bc1 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.h
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.h
+@@ -8,8 +8,7 @@ struct nvif_device;
  
- 	struct nvif_object sync;
- 	struct nvif_object vram;
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head507d.c b/drivers/gpu/drm/nouveau/dispnv50/head507d.c
-index 0edd4e520c8e..7fa1e0279d7d 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head507d.c
-@@ -29,7 +29,7 @@
- int
- head507d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
+ struct nouveau_channel {
+ 	struct {
+-		struct nvif_push _push;
+-		struct nvif_push *push;
++		struct nvif_push push;
+ 	} chan;
+ 
+ 	struct nouveau_cli *cli;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 6fb65b01d778..b2f20e33bf66 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -443,7 +443,7 @@ nvc0b5_migrate_copy(struct nouveau_drm *drm, u64 npages,
+ 		    enum nouveau_aper dst_aper, u64 dst_addr,
+ 		    enum nouveau_aper src_aper, u64 src_addr)
  {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
+-	struct nvif_push *push = drm->dmem->migrate.chan->chan.push;
++	struct nvif_push *push = &drm->dmem->migrate.chan->chan.push;
+ 	u32 launch_dma = 0;
  	int ret;
  
-@@ -48,7 +48,7 @@ head507d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head507d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
+@@ -516,7 +516,7 @@ static int
+ nvc0b5_migrate_clear(struct nouveau_drm *drm, u32 length,
+ 		     enum nouveau_aper dst_aper, u64 dst_addr)
  {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
+-	struct nvif_push *push = drm->dmem->migrate.chan->chan.push;
++	struct nvif_push *push = &drm->dmem->migrate.chan->chan.push;
+ 	u32 launch_dma = 0;
  	int ret;
  
-@@ -66,7 +66,7 @@ head507d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head507d_ovly(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 bounds = 0;
- 	int ret;
-@@ -94,7 +94,7 @@ head507d_ovly(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head507d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 bounds = 0;
- 	int ret;
-@@ -122,7 +122,7 @@ head507d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 74c4c1f4b22a..6ed8e932aa26 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -382,7 +382,8 @@ nouveau_accel_gr_init(struct nouveau_drm *drm)
+ 		}
+ 
+ 		if (ret == 0) {
+-			struct nvif_push *push = drm->channel->chan.push;
++			struct nvif_push *push = &drm->channel->chan.push;
++
+ 			ret = PUSH_WAIT(push, 8);
+ 			if (ret == 0) {
+ 				if (device->info.chipset >= 0x11) {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index 22f4ee483ff3..9ae2cee1c7c5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -871,7 +871,7 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 		}
+ 	} else
+ 	if (drm->client.device.info.chipset >= 0x25) {
+-		ret = PUSH_WAIT(chan->chan.push, req->nr_push * 2);
++		ret = PUSH_WAIT(&chan->chan.push, req->nr_push * 2);
+ 		if (ret) {
+ 			NV_PRINTK(err, cli, "cal_space: %d\n", ret);
+ 			goto out;
+@@ -881,11 +881,11 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 			struct nouveau_bo *nvbo = (void *)(unsigned long)
+ 				bo[push[i].bo_index].user_priv;
+ 
+-			PUSH_CALL(chan->chan.push, nvbo->offset + push[i].offset);
+-			PUSH_DATA(chan->chan.push, 0);
++			PUSH_CALL(&chan->chan.push, nvbo->offset + push[i].offset);
++			PUSH_DATA(&chan->chan.push, 0);
+ 		}
+ 	} else {
+-		ret = PUSH_WAIT(chan->chan.push, req->nr_push * (2 + NOUVEAU_DMA_SKIPS));
++		ret = PUSH_WAIT(&chan->chan.push, req->nr_push * (2 + NOUVEAU_DMA_SKIPS));
+ 		if (ret) {
+ 			NV_PRINTK(err, cli, "jmp_space: %d\n", ret);
+ 			goto out;
+@@ -914,10 +914,10 @@ nouveau_gem_ioctl_pushbuf(struct drm_device *dev, void *data,
+ 						push[i].length - 8) / 4, cmd);
+ 			}
+ 
+-			PUSH_JUMP(chan->chan.push, nvbo->offset + push[i].offset);
+-			PUSH_DATA(chan->chan.push, 0);
++			PUSH_JUMP(&chan->chan.push, nvbo->offset + push[i].offset);
++			PUSH_DATA(&chan->chan.push, 0);
+ 			for (j = 0; j < NOUVEAU_DMA_SKIPS; j++)
+-				PUSH_DATA(chan->chan.push, 0);
++				PUSH_DATA(&chan->chan.push, 0);
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv04_fence.c b/drivers/gpu/drm/nouveau/nv04_fence.c
+index cdbc75e3d1f6..fa5c6029f783 100644
+--- a/drivers/gpu/drm/nouveau/nv04_fence.c
++++ b/drivers/gpu/drm/nouveau/nv04_fence.c
+@@ -39,7 +39,7 @@ struct nv04_fence_priv {
  static int
- head507d_curs_clr(struct nv50_head *head)
+ nv04_fence_emit(struct nouveau_fence *fence)
  {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -139,7 +139,7 @@ head507d_curs_clr(struct nv50_head *head)
- static int
- head507d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -188,7 +188,7 @@ head507d_curs_layout(struct nv50_head *head, struct nv50_wndw_atom *asyw,
- int
- head507d_core_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -202,7 +202,7 @@ head507d_core_clr(struct nv50_head *head)
- static int
- head507d_core_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -278,7 +278,7 @@ head507d_core_calc(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head507d_olut_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -293,7 +293,7 @@ head507d_olut_clr(struct nv50_head *head)
- static int
- head507d_olut_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -345,7 +345,7 @@ head507d_olut(struct nv50_head *head, struct nv50_head_atom *asyh, int size)
- int
- head507d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	struct nv50_head_mode *m = &asyh->mode;
- 	const int i = head->base.index;
- 	int ret;
-@@ -400,7 +400,7 @@ head507d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head507d_view(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head827d.c b/drivers/gpu/drm/nouveau/dispnv50/head827d.c
-index 194d1771c481..1545d576fe9c 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head827d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head827d.c
-@@ -29,7 +29,7 @@
- static int
- head827d_curs_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -48,7 +48,7 @@ head827d_curs_clr(struct nv50_head *head)
- static int
- head827d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -73,7 +73,7 @@ head827d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head827d_core_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -110,7 +110,7 @@ head827d_core_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head827d_olut_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -127,7 +127,7 @@ head827d_olut_clr(struct nv50_head *head)
- static int
- head827d_olut_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head907d.c b/drivers/gpu/drm/nouveau/dispnv50/head907d.c
-index 18fe4c1e2d6a..6c9e0438e55c 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head907d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head907d.c
-@@ -36,7 +36,7 @@
- int
- head907d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -57,7 +57,7 @@ head907d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -77,7 +77,7 @@ head907d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head907d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -95,7 +95,7 @@ head907d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_ovly(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 bounds = 0;
- 	int ret;
-@@ -124,7 +124,7 @@ head907d_ovly(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head907d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 bounds = 0;
- 	int ret;
-@@ -152,7 +152,7 @@ head907d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_curs_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -171,7 +171,7 @@ head907d_curs_clr(struct nv50_head *head)
- int
- head907d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -195,7 +195,7 @@ head907d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_core_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -209,7 +209,7 @@ head907d_core_clr(struct nv50_head *head)
- int
- head907d_core_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -246,7 +246,7 @@ head907d_core_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_olut_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -263,7 +263,7 @@ head907d_olut_clr(struct nv50_head *head)
- int
- head907d_olut_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -322,7 +322,7 @@ bool head907d_ilut_check(int size)
- int
- head907d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	struct nv50_head_mode *m = &asyh->mode;
- 	const int i = head->base.index;
- 	int ret;
-@@ -378,7 +378,7 @@ head907d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- head907d_view(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/head917d.c b/drivers/gpu/drm/nouveau/dispnv50/head917d.c
-index 4ce47b55f72c..2d9aee050510 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/head917d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/head917d.c
-@@ -30,7 +30,7 @@
- static int
- head917d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -48,7 +48,7 @@ head917d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head917d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u32 bounds = 0;
- 	int ret;
-@@ -77,7 +77,7 @@ head917d_base(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- head917d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-index a4a3b78ea42c..2bcb3790fc10 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/headc37d.c
-@@ -30,7 +30,7 @@
- static int
- headc37d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u8 depth;
- 	int ret;
-@@ -64,7 +64,7 @@ headc37d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- headc37d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -85,7 +85,7 @@ headc37d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- headc37d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -104,7 +104,7 @@ headc37d_dither(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- headc37d_curs_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -122,7 +122,7 @@ headc37d_curs_clr(struct nv50_head *head)
- int
- headc37d_curs_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -161,7 +161,7 @@ headc37d_curs_format(struct nv50_head *head, struct nv50_wndw_atom *asyw,
- static int
- headc37d_olut_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -175,7 +175,7 @@ headc37d_olut_clr(struct nv50_head *head)
- static int
- headc37d_olut_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -209,7 +209,7 @@ headc37d_olut(struct nv50_head *head, struct nv50_head_atom *asyh, int size)
- static int
- headc37d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	struct nv50_head_mode *m = &asyh->mode;
- 	const int i = head->base.index;
- 	int ret;
-@@ -254,7 +254,7 @@ headc37d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- int
- headc37d_view(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-index 53b1248c40ec..fde4087e7691 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/headc57d.c
-@@ -30,7 +30,7 @@
- static int
- headc57d_display_id(struct nv50_head *head, u32 display_id)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -43,7 +43,7 @@ headc57d_display_id(struct nv50_head *head, u32 display_id)
- static int
- headc57d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	u8 depth;
- 	int ret;
-@@ -78,7 +78,7 @@ headc57d_or(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- headc57d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -96,7 +96,7 @@ headc57d_procamp(struct nv50_head *head, struct nv50_head_atom *asyh)
- static int
- headc57d_olut_clr(struct nv50_head *head)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -110,7 +110,7 @@ headc57d_olut_clr(struct nv50_head *head)
- static int
- headc57d_olut_set(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	const int i = head->base.index;
- 	int ret;
- 
-@@ -201,7 +201,7 @@ headc57d_olut(struct nv50_head *head, struct nv50_head_atom *asyh, int size)
- static int
- headc57d_mode(struct nv50_head *head, struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = nv50_disp(head->base.base.dev)->core->chan.push;
-+	struct nvif_push *push = &nv50_disp(head->base.base.dev)->core->chan.push;
- 	struct nv50_head_mode *m = &asyh->mode;
- 	const int i = head->base.index;
- 	int ret;
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/ovly507e.c b/drivers/gpu/drm/nouveau/dispnv50/ovly507e.c
-index 73fcfb27c32c..654e506f8431 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/ovly507e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/ovly507e.c
-@@ -33,7 +33,7 @@
- int
- ovly507e_scale_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 4)))
-@@ -55,7 +55,7 @@ ovly507e_scale_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- static int
- ovly507e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 12)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/ovly827e.c b/drivers/gpu/drm/nouveau/dispnv50/ovly827e.c
-index 02dc02d9260f..a5ae22ed663d 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/ovly827e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/ovly827e.c
+-	struct nvif_push *push = unrcu_pointer(fence->channel)->chan.push;
++	struct nvif_push *push = &unrcu_pointer(fence->channel)->chan.push;
+ 	int ret = PUSH_WAIT(push, 2);
+ 	if (ret == 0) {
+ 		PUSH_NVSQ(push, NV_SW, 0x0150, fence->base.seqno);
+diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
+index c6a0db5b9e21..1e45b5fcbf23 100644
+--- a/drivers/gpu/drm/nouveau/nv10_fence.c
++++ b/drivers/gpu/drm/nouveau/nv10_fence.c
 @@ -32,7 +32,7 @@
+ int
+ nv10_fence_emit(struct nouveau_fence *fence)
+ {
+-	struct nvif_push *push = fence->channel->chan.push;
++	struct nvif_push *push = &fence->channel->chan.push;
+ 	int ret = PUSH_WAIT(push, 2);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV06E, SET_REFERENCE, fence->base.seqno);
+diff --git a/drivers/gpu/drm/nouveau/nv17_fence.c b/drivers/gpu/drm/nouveau/nv17_fence.c
+index 7fa52ec61b30..4415a6de680b 100644
+--- a/drivers/gpu/drm/nouveau/nv17_fence.c
++++ b/drivers/gpu/drm/nouveau/nv17_fence.c
+@@ -39,8 +39,8 @@ nv17_fence_sync(struct nouveau_fence *fence,
+ 	struct nouveau_cli *cli = prev->cli;
+ 	struct nv10_fence_priv *priv = cli->drm->fence;
+ 	struct nv10_fence_chan *fctx = chan->fence;
+-	struct nvif_push *ppush = prev->chan.push;
+-	struct nvif_push *npush = chan->chan.push;
++	struct nvif_push *ppush = &prev->chan.push;
++	struct nvif_push *npush = &chan->chan.push;
+ 	u32 value;
+ 	int ret;
+ 
+diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+index 7f62089dc940..a9cbea2d1cc0 100644
+--- a/drivers/gpu/drm/nouveau/nv84_fence.c
++++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+@@ -35,7 +35,7 @@
  static int
- ovly827e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ nv84_fence_emit32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 12)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/ovly907e.c b/drivers/gpu/drm/nouveau/dispnv50/ovly907e.c
-index 645130d18a99..8cf0e18fa596 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/ovly907e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/ovly907e.c
-@@ -29,7 +29,7 @@
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret = PUSH_WAIT(push, 8);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV826F, SET_CONTEXT_DMA_SEMAPHORE, chan->vram.handle);
+@@ -58,7 +58,7 @@ nv84_fence_emit32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  static int
- ovly907e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ nv84_fence_sync32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 12)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/pior507d.c b/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
-index 17d230256bdd..79507d169778 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/pior507d.c
-@@ -30,7 +30,7 @@ static int
- pior507d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	      struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if (asyh) {
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/sor507d.c b/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
-index ca73d7710885..08cc9845322e 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/sor507d.c
-@@ -30,7 +30,7 @@ static int
- sor507d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	     struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if (asyh) {
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/sor907d.c b/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
-index c86cd8fa61d6..23957cc8f326 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/sor907d.c
-@@ -32,7 +32,7 @@ static int
- sor907d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	     struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c b/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
-index 9eaef34816da..da05d4614e00 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/sorc37d.c
-@@ -29,7 +29,7 @@ static int
- sorc37d_ctrl(struct nv50_core *core, int or, u32 ctrl,
- 	     struct nv50_head_atom *asyh)
- {
--	struct nvif_push *push = core->chan.push;
-+	struct nvif_push *push = &core->chan.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-index 8cb5b79bacbf..7985da61aaac 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c
-@@ -31,7 +31,7 @@
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret = PUSH_WAIT(push, 7);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV826F, SET_CONTEXT_DMA_SEMAPHORE, chan->vram.handle);
+diff --git a/drivers/gpu/drm/nouveau/nvc0_fence.c b/drivers/gpu/drm/nouveau/nvc0_fence.c
+index e1461c0b0779..a5e98d0d4217 100644
+--- a/drivers/gpu/drm/nouveau/nvc0_fence.c
++++ b/drivers/gpu/drm/nouveau/nvc0_fence.c
+@@ -34,7 +34,7 @@
  static int
- wimmc37b_update(struct nv50_wndw *wndw, u32 *interlock)
+ nvc0_fence_emit32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  {
--	struct nvif_push *push = wndw->wimm.push;
-+	struct nvif_push *push = &wndw->wimm.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -46,7 +46,7 @@ wimmc37b_update(struct nv50_wndw *wndw, u32 *interlock)
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret = PUSH_WAIT(push, 6);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV906F, SEMAPHOREA,
+@@ -57,7 +57,7 @@ nvc0_fence_emit32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  static int
- wimmc37b_point(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
+ nvc0_fence_sync32(struct nouveau_channel *chan, u64 virtual, u32 sequence)
  {
--	struct nvif_push *push = wndw->wimm.push;
-+	struct nvif_push *push = &wndw->wimm.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c b/drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c
-index caf40977f455..50a7b97d37a2 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c
-@@ -39,7 +39,7 @@ wndwc37e_csc_clr(struct nv50_wndw *wndw)
- static int
- wndwc37e_csc_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 13)))
-@@ -52,7 +52,7 @@ wndwc37e_csc_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- static int
- wndwc37e_ilut_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -65,7 +65,7 @@ wndwc37e_ilut_clr(struct nv50_wndw *wndw)
- static int
- wndwc37e_ilut_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 4)))
-@@ -94,7 +94,7 @@ wndwc37e_ilut(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw, int size)
- int
- wndwc37e_blend_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 8)))
-@@ -139,7 +139,7 @@ wndwc37e_blend_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc37e_image_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 4)))
-@@ -156,7 +156,7 @@ wndwc37e_image_clr(struct nv50_wndw *wndw)
- static int
- wndwc37e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 17)))
-@@ -209,7 +209,7 @@ wndwc37e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc37e_ntfy_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -222,7 +222,7 @@ wndwc37e_ntfy_clr(struct nv50_wndw *wndw)
- int
- wndwc37e_ntfy_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 3)))
-@@ -239,7 +239,7 @@ wndwc37e_ntfy_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc37e_sema_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -252,7 +252,7 @@ wndwc37e_sema_clr(struct nv50_wndw *wndw)
- int
- wndwc37e_sema_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 5)))
-@@ -268,7 +268,7 @@ wndwc37e_sema_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc37e_update(struct nv50_wndw *wndw, u32 *interlock)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 5)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c b/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
-index 1d214a4b960a..d1ca51aae58c 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c
-@@ -32,7 +32,7 @@
- static int
- wndwc57e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 17)))
-@@ -81,7 +81,7 @@ wndwc57e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc57e_csc_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	const u32 identity[12] = {
- 		0x00010000, 0x00000000, 0x00000000, 0x00000000,
- 		0x00000000, 0x00010000, 0x00000000, 0x00000000,
-@@ -99,7 +99,7 @@ wndwc57e_csc_clr(struct nv50_wndw *wndw)
- int
- wndwc57e_csc_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 13)))
-@@ -112,7 +112,7 @@ wndwc57e_csc_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- int
- wndwc57e_ilut_clr(struct nv50_wndw *wndw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 2)))
-@@ -125,7 +125,7 @@ wndwc57e_ilut_clr(struct nv50_wndw *wndw)
- int
- wndwc57e_ilut_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 4)))
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c b/drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c
-index 7a370fa1df20..52af293c98f4 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c
-@@ -29,7 +29,7 @@
- static int
- wndwc67e_image_set(struct nv50_wndw *wndw, struct nv50_wndw_atom *asyw)
- {
--	struct nvif_push *push = wndw->wndw.push;
-+	struct nvif_push *push = &wndw->wndw.push;
- 	int ret;
- 
- 	if ((ret = PUSH_WAIT(push, 17)))
+-	struct nvif_push *push = chan->chan.push;
++	struct nvif_push *push = &chan->chan.push;
+ 	int ret = PUSH_WAIT(push, 5);
+ 	if (ret == 0) {
+ 		PUSH_MTHD(push, NV906F, SEMAPHOREA,
 -- 
 2.44.0
 
