@@ -4,88 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B3F2D5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F32D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90BA310EB10;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E288610EA73;
 	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="deYdM41s";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CZSQeSGz";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 178CF10E5CD
- for <nouveau@lists.freedesktop.org>; Tue, 28 Oct 2025 14:46:01 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-290aaff26c1so16759145ad.3
- for <nouveau@lists.freedesktop.org>; Tue, 28 Oct 2025 07:46:01 -0700 (PDT)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43538112124;
+ Tue, 28 May 2024 11:01:44 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-2bde882ab2bso131209a91.3; 
+ Tue, 28 May 2024 04:01:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761662760; x=1762267560; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JcaJkvlevrlFiqDWQaxlxV75MgJ3OQA9Phd19FF0hYw=;
- b=deYdM41s1t6LJAlhggxCymJ+hBqxL+NHwS49vkHB/rWJMAMo2agpcJGTH+2jvAgSCO
- ygVEz/t/U3d871be/UGJRRE268bgVZiqAf2eAJjeSnMXg/V+Zf699WSdgQQqoGFwfzQN
- 9jFERMYpP2FCwarXF7LWV9/YjcbG6AoooiaU+vAKSkJWquD9dHcL+ipB1NLWM6SBOXps
- MDOzo3+5mUnQDFhLCE6mvo2CkAEd3tFt4+YK9XFKrCJVYZniLMMmZzbHkhhSNPfWuK6L
- 1Ajgn1N6hcyPrpalz78rcvnxzR+eKdVo6n3e6DjT50O0qIVr/FI8nGa4EMWUlLWEPjpD
- EAXQ==
+ d=gmail.com; s=20230601; t=1716894103; x=1717498903; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=iiu6Rm5CIFCk4QRomYxhTqrZVCrSfLMD8/o2TBnR/WU=;
+ b=CZSQeSGzuodYnd6jpZyIzKFnAJY/4DTu4fr3GkhqYdn4G5UHW91671OuuAoGh4hYIa
+ pix3sv9yj1KL4lMORR6liyKvQfYH7m5FikOVyog5wjix4fbWg52OY6R8dlsWnDesH39b
+ 1RwenV57AY5xgIhkM2SrrWk8xq19Pofc4VpS4ZbG+ttAcZg0Ju9NNLKsQfUH+iYb6JV5
+ Wa1lsQAdoP140+M3h+gtjcVneu83m9ElOmWyAPtG2KvKGz1Ng484OP3uofH07yFGedTG
+ mHyU42j3GeAk0Z4ei/+VsPeU0OnUuvD4urQiCXSl6vXRUSTe87J56tYA1Uuv+hPfIkHk
+ g4RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761662760; x=1762267560;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=JcaJkvlevrlFiqDWQaxlxV75MgJ3OQA9Phd19FF0hYw=;
- b=AcBRYKaMt1D2BN8f9bC+ojCIwYkQ8Qk37tWgdbW+qs/42ofy/IBhBtFN8UubkUSwRO
- Q5/6sjS/oYjTPa3kJVyofF3H6JDfvqYIAQXgfJwc/X/ZicW69em/qdxhaYJX4pVatHTh
- EOnXO6amZsa9+KV82ExXgJwEa8uy/EE2DBr2Rc9ZEA9DeabaL8q+RPEAE37KicZ9kRLn
- +Z13UR5OYDhh+EteN57Xb3XajjZUTta09tuXWdJvaSFaeMRiUQxD1jY5Go8g+y7Ckw/2
- cS9MUwEP5k/au8L0Us24kiwB2Sp+KeNCC6CCuSOHUxPmFMq03coCQAWL2G0zZip0OO7A
- zUNQ==
+ d=1e100.net; s=20230601; t=1716894103; x=1717498903;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=iiu6Rm5CIFCk4QRomYxhTqrZVCrSfLMD8/o2TBnR/WU=;
+ b=Am0x8PMMA4mxjXT27bFudTDB5AaSIBgbbI6u8x+2PUsd40T2baEyd19jtnWmt35Qvi
+ kYGOiBnwXljjwz8+yESL9QPD9I+0w/lGxGTKH/57CniekXvJH/56jHC+CHF8OmM46jpM
+ 2XD80i6rQFlx1s7n0+b6KNBdpv2x59vvG5AAUlNEXl7dwrrssPCL2y++8uM77e0jIEwg
+ Uy5m2ua7UfNy2CNGjFAin+OVcgh99yk29w0f5vAXksyKfNZr5sNmeu2qcmU/LYCVIekD
+ 0MFmxuSNFqQpI8Uf4NchOXGFnEbeEh0ub30KGxJ46KNnRvlMs/fKRvlBJIexF1lnQZK1
+ JxSg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUv7AcGnSAmbkYCA6Xk2lZseJ96x07RfkemEENZJBWlv9sa+FhQob83dpj+2Pj+7ZUeIfghXIRD@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yymc7KEfhVQQZPTS+5JakPEDU6O5s6d2GojcXady6GglC6/cOCi
- wjRIkGTh7fbACa/ZJUglfLbkePms2YytPvoLs84EDXxM5vjHj56d3dbQGTY90WPCzwj091hnxsa
- pbi+e7ge/houROXnAZCHtS4ZiQcFdxy8=
-X-Gm-Gg: ASbGncvAisPB5ZjiJkYZKtsFsBx2JJpSirWfeQmSHgsUX+E05E9BKv8yej4O7NiDvF2
- jPHUTElfJNKIjI6bcEKsPry+gs00xkxTpbjFvuwv0db7m3fCY0Hacn9nBOZCN5ksTUjsL118g73
- YCfgfGdLNDFTryS4tFDu8ozsJz8Vv6bVA08bvikUkuf8AVxYCcUYgNJFOxW9vkaUrN3FizVYfns
- Mk5GhYpXLj+tncvpB4C8eBbBNabpty6CTRiPLX9196rgTF47LYMawJfhnS5Hn4wOaK4FGxb4taJ
- oIPaUShCKVhvrFtT/PG9HmDvjXggkQtlnpOIVcSiTeDCVUJ7PR1m4UtKIAa8WBCpFvC/p5t+I9v
- wOqg8ndDMPTrZnQ==
-X-Google-Smtp-Source: AGHT+IFfY89QqiTl3UPAk6WKNc6WSfg9maX4CslBrwsb+ya7LyhSlvq0HWbjx5qGqAFL/1tDdaDG4249vNygIfHTzN0=
-X-Received: by 2002:a17:903:3c4d:b0:27e:eee6:6df2 with SMTP id
- d9443c01a7336-294cb3e8bb7mr26098245ad.7.1761662760526; Tue, 28 Oct 2025
- 07:46:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20251026-nova-as-v1-0-60c78726462d@nvidia.com>
- <20251026-nova-as-v1-7-60c78726462d@nvidia.com>
- <CANiq72m9ms-OznWQ5+4_JvAs4yruwgBRcm1u0gCAnasqO8uJOA@mail.gmail.com>
- <DDT3BTI26XFE.1Z5E9QZZJCPHQ@nvidia.com>
-In-Reply-To: <DDT3BTI26XFE.1Z5E9QZZJCPHQ@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 28 Oct 2025 15:45:47 +0100
-X-Gm-Features: AWmQ_bkouzgy_TlroPyjfTyhvmFTe0497ZQoaOPqA8hULwK1yxqY9ku9pkOIYX4
-Message-ID: <CANiq72kUDtc+6hrJ_=bbVfAjsWOYzSjVvUiT_GOBKHWQRaLDMA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] gpu: nova-core: justify remaining uses of `as`
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>, 
- dri-devel <dri-devel-bounces@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+ AJvYcCXP08fQWcU/cPtqCnuIJrH6S9w/wDgn5HG3VWlh/sPxD7g2PO+NMxbVgCMeS6CE5PnnCtdAJ1/mQosxTICTkvlic/gb0RAl5/hcVqCJE53Iws05d0sUW1cwj/a9whQBPlJpp/j1A04AX5pTFbkurg==
+X-Gm-Message-State: AOJu0Ywrlm+1YEogD18k7nb7gAvYZ5m8fgMbHy/9V/FGWV/PkOmaY0jZ
+ U5GTMDgV6m7uXVNQ0gAI8Si8V8xA64VVp04CU+Voqo6KCHzZ8/xi
+X-Google-Smtp-Source: AGHT+IHK5eumprqwAuUfIcVd4VaPDiipzyGfVLdzZ2wsfbiHrJjeTv0bZYczA03Xit3eWLGqqN68hg==
+X-Received: by 2002:a17:902:db08:b0:1f4:8ca4:411f with SMTP id
+ d9443c01a7336-1f48ca44187mr62400315ad.6.1716894103380; 
+ Tue, 28 May 2024 04:01:43 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1f44c7afcf5sm77259205ad.87.2024.05.28.04.01.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 May 2024 04:01:43 -0700 (PDT)
+Date: Tue, 28 May 2024 20:01:26 +0900 (JST)
+Message-Id: <20240528.200126.99248529380429957.fujita.tomonori@gmail.com>
+To: dakr@redhat.com
+Cc: fujita.tomonori@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, ojeda@kernel.org, alex.gaynor@gmail.com,
+ wedsonaf@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, gregkh@linuxfoundation.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <ZlTdh/eQAIhxNn9e@pollux.localdomain>
+References: <20240520172422.181763-4-dakr@redhat.com>
+ <20240522.085334.1009573112046880609.fujita.tomonori@gmail.com>
+ <ZlTdh/eQAIhxNn9e@pollux.localdomain>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,21 +91,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Oct 27, 2025 at 1:07=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> Sounds great, will do!
+On Mon, 27 May 2024 21:22:47 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-Thanks!
+>> > +/// Abstraction around a C firmware struct.
+>> > +///
+>> > +/// This is a simple abstraction around the C firmware API. Just like with the C API, firmware can
+>> > +/// be requested. Once requested the abstraction provides direct access to the firmware buffer as
+>> > +/// `&[u8]`. Alternatively, the firmware can be copied to a new buffer using `Firmware::copy`. The
+>> > +/// firmware is released once [`Firmware`] is dropped.
+>> > +///
+>> > +/// # Examples
+>> > +///
+>> > +/// ```
+>> > +/// let fw = Firmware::request("path/to/firmware.bin", dev.as_ref())?;
+>> > +/// driver_load_firmware(fw.data());
+>> > +/// ```
+>> > +pub struct Firmware(Opaque<*const bindings::firmware>);
+>> 
+>> Wrapping a raw pointer is not the intended use of Qpaque type?
+>> 
+> 
+> Indeed, will fix this in v2 and use NonNull instead. I'll also offload most of
+> the boilerplate in the 'request' functions to some common 'request_internal' one.
 
-For reference, the other day I opened a couple issues for this on Clippy:
+You might need to add 'Invariants' comment on Firmware struct.
 
-    https://github.com/rust-lang/rust-clippy/issues/15963
-    https://github.com/rust-lang/rust-clippy/issues/15964
-
-and added them to our usual list:
-
-    https://github.com/Rust-for-Linux/linux/issues/349
-
-Cheers,
-Miguel
+BTW, what merge window are you aiming for? As I wrote before, I have a
+driver that needs the firmware abstractions (the minimum device
+abstractions is enough; Device::as_raw() and as_ref()). So the sooner,
+the better for me.
