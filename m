@@ -4,68 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6261CC0219B
-	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:37:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89209C02194
+	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:37:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3068B10E9D4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F53110E9D8;
 	Fri,  7 Feb 2025 01:37:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IVAF0mGr";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="m53EpN/F";
 	dkim-atps=neutral
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
- [209.85.166.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAEE410E012;
- Fri,  7 Jun 2024 22:11:49 +0000 (UTC)
-Received: by mail-io1-f47.google.com with SMTP id
- ca18e2360f4ac-7e22af6fed5so5780739f.2; 
- Fri, 07 Jun 2024 15:11:49 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F8B410F844;
+ Tue, 28 May 2024 21:54:53 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-1f347e8f6acso849625ad.1; 
+ Tue, 28 May 2024 14:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1717798308; x=1718403108; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1716933292; x=1717538092; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=o3jaei81jj8xUrmWQKSpfLOPLqiUY8YCzCHgaZkL3Ss=;
- b=IVAF0mGrk8Bt1ZLwZMzZJmTbRv1Vn+jXDVY5jcgiIoX396mvVev/m9Cc9PFQvTZOHK
- 2FEyy5vZbCU2PpP5rXRhUXw9SYzmlhxrRJoOjdpq/Lhiq7Ub6bpOos30hwm/XxrrYwJS
- JDbmgeroUWWUGJKGjLw2tGW8IWw+oY4lMO4xVmaAxd0UjP+A2cj4ZdWWFPpnTiAOh9g3
- 75TsKz0P8IaAlGpxuXg+nhxDvVyZDreWaT0AZokYqnDg6ElEEVhMzA9nnRtCEUK4Rdk2
- UI1Uargi/eIqMVmNZUOdAXE6Y5Bx2aSFp42gA39roY8dXNUzMkBj6u2hjLL77luve5sO
- wuPw==
+ bh=KzIu37DqkkW+Cz1sVAEbgQDsbfYiYv2kMR+B6yEhDS0=;
+ b=m53EpN/Fl5kceh/GbyNkieExB1NR5CNQNTez8QHlIQvsfpBViCTkui98BcF89vr3ME
+ LGv2Pu+XrDS0pvFNyP0Zl+h7UJeFupMT7zlU8x8cYr0gVGaBGi4xWx+t8xpWNDxhCViz
+ v5OCIi0xwcMJCSXamG8++ahVCwFx7Fun3ec90/2uR44QbvX+fQI/KkZd6JiD/841v8ZN
+ WtMn5emIxyNPP34DNB5CoBRju2Ojilr2tMH+M4JuU3/JEm+Puqh/PA/ch9UO62bjEGCw
+ XqsJeZbffM4VyksJhV9obdmE9nY79be56DML8KGj3pGb33yUSSpQyHM7b3+CWqKlc98j
+ d26w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1717798308; x=1718403108;
+ d=1e100.net; s=20230601; t=1716933292; x=1717538092;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=o3jaei81jj8xUrmWQKSpfLOPLqiUY8YCzCHgaZkL3Ss=;
- b=qdEHmGMWHgVoSTHcUr6TPhtGR+sK0rMzO/Gwr6D1rTcooG4u/bSinmQY0JP5kkWYTW
- wH3kjJ14/YyH4L9YdOaX/qMhguDVg+5lCDbO1Toq+5R7KPoXLTdOzVY9asYseMMaRX+Q
- NdyL6VPzk54tIlZVWEiXDt/kbE018uaHshi77S0TavVR4/2J0SmnrbsGR5uSzolinyMX
- +FPbv/ZUZVMWgBOR7mQYkJXZxrSB5qiSUqEb9r6OoDpLmFgGBQk7OJHZ1FaHETWyUv67
- +IX3B/6Dc6uEJVJRJwrtB3CyLIUNN7Upi9FILnsuSdceNIam/B1TKZroVMgVOwcvuwE1
- ueoQ==
+ bh=KzIu37DqkkW+Cz1sVAEbgQDsbfYiYv2kMR+B6yEhDS0=;
+ b=N8+ociCkn/1wF7Np0jmcOz7ygfuhfvRLN1z7FyySMr3xXEu5ZdAdDvdecYhsZo0XOY
+ NLHwwum98bm4gRP6VsGqh6yG6RHW+B2T0WVfFEQ/hYvTdj/CyL6uvR2YCx7V4a9lGJfk
+ RsScZ+mzysUZnXV2yH0G6buDBa7/kXG9itSC4vECrPIANb6DPATx2oxtvs8+/COUdUV7
+ hp9QSgtLTXFM0X7dHbn8rJp6X1OctHQhh206NwQaIjMR165ysw0WpjkldgatbaT71kjQ
+ umUUwer2dCYC8NngUfge/p4yAjtn1Nza+IVj8765R/zsK+TNfE5dHi2LQ3H6xty0ALwK
+ 451g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVvM8ccLNgI9bvBwLwu2nK0FvY26WH1yXPJr4oE7DbgFpNjFzhM0HVcA4Sz1tYPabUgwj92isPDEoDzbiLWTdCKOqbD3kst/9AQ14xd5Qx4HWAWQ2gtXfBhsLYDAubT1LLg4/ExEx+FENLYKO7BJg==
-X-Gm-Message-State: AOJu0Yzyu/VHzdr5YFzS4uKvMgBdpo7dJrztm1aXp7YpoPUr94G2rR5v
- ejzebVF8c1d7rW8wjy0mywoBncvYIhVVysr2SX618j6fMpvoFhux
-X-Google-Smtp-Source: AGHT+IEiBcOfSXobqq6vAjMYAgLdx8kDIz1R2uqyhzhEyQKksb63efpVJodqm6bSkTa6En2Bu04cLA==
-X-Received: by 2002:a05:6602:2094:b0:7eb:3aa3:8b02 with SMTP id
- ca18e2360f4ac-7eb5724ac8fmr371097539f.2.1717798308411; 
- Fri, 07 Jun 2024 15:11:48 -0700 (PDT)
+ AJvYcCWCQsYA+xNvz7un9hEM8C3OzziVEPDC00jNKD5AvwTXSghlX3TSBrRn+qYA1m2wLeRx4Pkjh+TqsjVWm71l28ZUUTJYjDQgtlv3+ARB0FOeuSqXA1NnutPEY2i0VXtHjkB3t6ohs+H0upkQqdMeYQ==
+X-Gm-Message-State: AOJu0YzMfvS1UhfuEFMeKa/IIbHzBHyDZzXJ875hbUAca1abwyzyI9UW
+ 3JWI7fl71JPUY8F+gy5FIxCHl9suTEXtvpG5kfWY0RuYOVnT1T3o
+X-Google-Smtp-Source: AGHT+IHcgJCvLsBRskDkUaDAWfOlyZcYlxZHzOY7xZdSR9m1gVY7jRLbD0C+mCcacgZ/89vJZUaWeQ==
+X-Received: by 2002:a17:902:db11:b0:1f4:5ad1:b659 with SMTP id
+ d9443c01a7336-1f45ad1c3ecmr132940195ad.3.1716933292537; 
+ Tue, 28 May 2024 14:54:52 -0700 (PDT)
 Received: from anarsoul-xps15.lan ([2604:3d08:7780:1ca9::398])
  by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-6de2221b28asm3238416a12.39.2024.06.07.15.11.47
+ d9443c01a7336-1f4bcf3a0besm27586795ad.306.2024.05.28.14.54.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 07 Jun 2024 15:11:47 -0700 (PDT)
+ Tue, 28 May 2024 14:54:52 -0700 (PDT)
 From: Vasily Khoruzhick <anarsoul@gmail.com>
 To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
  Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@nvidia.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+ Daniel Vetter <daniel@ffwll.ch>, Ben Skeggs <bskeggs@redhat.com>,
+ Jani Nikula <jani.nikula@intel.com>, Wayne Lin <Wayne.Lin@amd.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
 Cc: Vasily Khoruzhick <anarsoul@gmail.com>
-Subject: [PATCH v2] drm/nouveau: don't attempt to schedule hpd_work on
- headless cards
-Date: Fri,  7 Jun 2024 15:09:32 -0700
-Message-ID: <20240607221032.25918-1-anarsoul@gmail.com>
-X-Mailer: git-send-email 2.45.2
+Subject: [PATCH] drm/nouveau: don't attempt to schedule hpd_work on headless
+ cards
+Date: Tue, 28 May 2024 14:52:43 -0700
+Message-ID: <20240528215344.2442-1-anarsoul@gmail.com>
+X-Mailer: git-send-email 2.45.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:37:08 +0000
@@ -93,14 +95,12 @@ Fixes: ae1aadb1eb8d ("nouveau: don't fail driver load if no display hw present."
 Link: https://gitlab.freedesktop.org/drm/nouveau/-/issues/337
 Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
 ---
-v2: drop extra checks in nouveau_display_hpd_work() and
-nouveau_connector_hpd()
-
- drivers/gpu/drm/nouveau/dispnv04/disp.c   | 2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c   | 2 +-
- drivers/gpu/drm/nouveau/nouveau_display.c | 6 +++++-
- drivers/gpu/drm/nouveau/nouveau_drv.h     | 1 +
- 4 files changed, 8 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/disp.c     |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_connector.c |  3 +++
+ drivers/gpu/drm/nouveau/nouveau_display.c   | 11 ++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_drv.h       |  1 +
+ 5 files changed, 16 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/nouveau/dispnv04/disp.c b/drivers/gpu/drm/nouveau/dispnv04/disp.c
 index 13705c5f1497..4b7497a8755c 100644
@@ -128,8 +128,22 @@ index 88728a0b2c25..674dc567e179 100644
  		cancel_work_sync(&drm->hpd_work);
  }
  
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 856b3ef5edb8..b315a2ef5b28 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1190,6 +1190,9 @@ nouveau_connector_hpd(struct nouveau_connector *nv_connector, u64 bits)
+ 	u32 mask = drm_connector_mask(&nv_connector->base);
+ 	unsigned long flags;
+ 
++	if (drm->headless)
++		return;
++
+ 	spin_lock_irqsave(&drm->hpd_lock, flags);
+ 	if (!(drm->hpd_pending & mask)) {
+ 		nv_connector->hpd_pending |= bits;
 diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index aed5d5b51b43..d4725a968827 100644
+index aed5d5b51b43..1961ef665e97 100644
 --- a/drivers/gpu/drm/nouveau/nouveau_display.c
 +++ b/drivers/gpu/drm/nouveau/nouveau_display.c
 @@ -450,6 +450,9 @@ nouveau_display_hpd_resume(struct drm_device *dev)
@@ -142,7 +156,19 @@ index aed5d5b51b43..d4725a968827 100644
  	spin_lock_irq(&drm->hpd_lock);
  	drm->hpd_pending = ~0;
  	spin_unlock_irq(&drm->hpd_lock);
-@@ -635,7 +638,7 @@ nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime)
+@@ -468,6 +471,11 @@ nouveau_display_hpd_work(struct work_struct *work)
+ 	int changed = 0;
+ 	struct drm_connector *first_changed_connector = NULL;
+ 
++	WARN_ON_ONCE(drm->headless);
++
++	if (drm->headless)
++		return;
++
+ 	pm_runtime_get_sync(dev->dev);
+ 
+ 	spin_lock_irq(&drm->hpd_lock);
+@@ -635,7 +643,7 @@ nouveau_display_fini(struct drm_device *dev, bool suspend, bool runtime)
  	}
  	drm_connector_list_iter_end(&conn_iter);
  
@@ -151,7 +177,7 @@ index aed5d5b51b43..d4725a968827 100644
  		cancel_work_sync(&drm->hpd_work);
  
  	drm_kms_helper_poll_disable(dev);
-@@ -729,6 +732,7 @@ nouveau_display_create(struct drm_device *dev)
+@@ -729,6 +737,7 @@ nouveau_display_create(struct drm_device *dev)
  		/* no display hw */
  		if (ret == -ENODEV) {
  			ret = 0;
@@ -172,5 +198,5 @@ index e239c6bf4afa..25fca98a20bc 100644
  	spinlock_t hpd_lock;
  	u32 hpd_pending;
 -- 
-2.45.2
+2.45.1
 
