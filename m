@@ -4,91 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE3D0D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6D8D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 221FC10E9E3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5822110E9EA;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=cirrus.com header.i=@cirrus.com header.b="WI0sVayc";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hut2Vcta";
 	dkim-atps=neutral
-X-Greylist: delayed 1557 seconds by postgrey-1.36 at gabe;
- Wed, 09 Oct 2024 13:14:30 UTC
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com
- [67.231.149.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B1B510E266;
- Wed,  9 Oct 2024 13:14:30 +0000 (UTC)
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
- by mx0a-001ae601.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4994xc0x003245;
- Wed, 9 Oct 2024 07:48:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=
- PODMain02222019; bh=b9CbWLDMZti2ojgRTihH3RA0WYLUzEcG7aX6pdihoQY=; b=
- WI0sVaycTZYkwMgmtYcXXMdvigsiua8Ix4Qh02mNCGH2fBXcoCmYBNNsEO5BXVde
- 1Bz9WSIl3H9aytV4MjeLGq5iNgl4nMnifXKD7gZBG7Nh0M0RDNAmEax34ZlRrQpc
- BqxwXp6rQsj7d8HBI3neZNecBDiZiUXrqk9SjO/XH7GSP3KBa0vc3lo3Nh2evgTs
- vMpU/eouIhXwHQgJkPlVYadHgMk2W3tKDA7WeoPiKLk9i2DcqwNiAeCbgFtNS1E3
- D/03y3ryRn8KcZ7U0bo3WMxdHCmB9tG9qfIm/V0gyX7oGE/Hh+fOgbX3EkFod4UH
- WWLlkgIPTShr+Vylj7CyYA==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
- by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 4232uy5xfs-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 09 Oct 2024 07:48:17 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
- 13:48:15 +0100
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- anon-ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server id
- 15.2.1544.9 via Frontend Transport; Wed, 9 Oct 2024 13:48:15 +0100
-Received: from [198.90.208.18] (ediswws06.ad.cirrus.com [198.90.208.18])
- by ediswmail9.ad.cirrus.com (Postfix) with ESMTP id 33C5E82024A;
- Wed,  9 Oct 2024 12:48:15 +0000 (UTC)
-Message-ID: <41a0ad69-912b-4eb3-84f7-fb385433c056@opensource.cirrus.com>
-Date: Wed, 9 Oct 2024 13:48:15 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
-To: "Rafael J. Wysocki" <rafael@kernel.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Laurent Pinchart
- <laurent.pinchart@ideasonboard.com>, Sakari Ailus
- <sakari.ailus@linux.intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <linux-bluetooth@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-crypto@vger.kernel.org>, <dmaengine@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>,
- <linux-stm32@st-md-mailman.stormreply.com>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <linux-i3c@lists.infradead.org>, <linux-iio@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <patches@opensource.cirrus.com>,
- <iommu@lists.linux.dev>, <imx@lists.linux.dev>,
- <linux-mediatek@lists.infradead.org>, <linux-media@vger.kernel.org>,
- <linux-mmc@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
- <netdev@vger.kernel.org>, <linux-wireless@vger.kernel.org>,
- <linux-pci@vger.kernel.org>, <linux-phy@lists.infradead.org>,
- <linux-pwm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <linux-spi@vger.kernel.org>,
- <linux-staging@lists.linux.dev>, <linux-usb@vger.kernel.org>,
- <linux-serial@vger.kernel.org>, <greybus-dev@lists.linaro.org>,
- <asahi@lists.linux.dev>, Andy Shevchenko <andy.shevchenko@gmail.com>
-References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
- <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
- <20241007184924.GH14766@pendragon.ideasonboard.com>
- <CAPDyKFpQVnF7eQv3dup8k-3EijnMjuveCG9sZ=Rpey1Y6MBJEg@mail.gmail.com>
- <20241007222502.GG30699@pendragon.ideasonboard.com>
- <CAPDyKFrGNwna6Y2pqSRaBbRYHKRaD2ayqQHLtoqLPOu9Et7qTg@mail.gmail.com>
- <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
-Content-Language: en-GB
-From: Richard Fitzgerald <rf@opensource.cirrus.com>
-In-Reply-To: <CAJZ5v0jvJyS7D5-wURi2kyWN-rmNa+YqupeQJ000pQRVd9VBcQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: ltWPFp1gnPUjzPmaRQ9EaXCq91PhMVjU
-X-Proofpoint-ORIG-GUID: ltWPFp1gnPUjzPmaRQ9EaXCq91PhMVjU
-X-Proofpoint-Spam-Reason: safe
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
+ [209.85.215.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD4A10E193;
+ Tue, 28 May 2024 10:18:12 +0000 (UTC)
+Received: by mail-pg1-f175.google.com with SMTP id
+ 41be03b00d2f7-64f12fc9661so32324a12.3; 
+ Tue, 28 May 2024 03:18:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1716891492; x=1717496292; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=4oKjidjiVG3iD+sGVPZRpxklkmgxpuRK74mDLt2GwZ0=;
+ b=Hut2VctaYlfZv9qtb34va80EolWKTiqFGlnLPlqogNBm/nISbVkOqndxyO0+qKCNBU
+ o+GwQPGJ9rE4gRZlhCzm+cXXvhxLR6Bc1SmUx8SK4xnEjGBtNEiXiqoHZH/FLNEA1vkT
+ ut7D1WZaf62oTHziiKI92PDVWP6e+WQ9aLA7TPItaqrsQR7iHZ15pw6FmIeTHLHeBg/i
+ 1ZIHHWEd56chB2wDYiS+Cy/DrmOV7YrbZrmXygXou8xoISbw9WlJl8Pf/PBmiU1dKK2P
+ OHfeqN/oSMQb7TKC+TMsHt0AUIRN1t1Usx4OCqKNzLeAfWynkcm96jvNWtSpPid9P/Kl
+ t0Lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1716891492; x=1717496292;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=4oKjidjiVG3iD+sGVPZRpxklkmgxpuRK74mDLt2GwZ0=;
+ b=sJfEbveaCHI/OuXy9SYpXOeayr4NYgPoAUZO0dUiCjQTiBi1Psmu23mHNY9XFMRDzA
+ aJeydAWhI6T6W/uarFg1efM3ajFZLWSuON6GNMUUEPKyZvpKlvU1U7eKrnLOpm28rfYr
+ RfZPsc++r1LMNG+MVgyNtjBIYbB5PgAlb+vZA0wVUOuqzYTDoz2bw+tJ+9uEOFHFqx7E
+ S0YW5w+c90qN/UWiOKcgJj0qO7tUZ15iyCai9oMjJiX4bqxPg1Y3Gkkg/RwQy7E2vzE7
+ Alu02LJh24Ukf2GA3SRZWdHrPi2aCDTy1ihlzFMhFQdQRobpp4nmkAzB0sBZospulCrU
+ HaSw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWOu6M6dsh9sXZcU23Znpyss6bHRNvRSFkwsV/z4hFlyrPB5pmTsMlujZ90B9WnUaQFTdvjq9BoFRj/Vn0bOYfSlnBGQMajL3egn4rLHfVXExoO5E8DnR1PjNsgcAMGDwwEdwGn/bYNF7WiMqJHPQ==
+X-Gm-Message-State: AOJu0YxWtTifIfmFLjxMAvren1gG7eo82WE6CDA5rWMX1zmskcDasCZ4
+ AgyVZGGpCcyPtQm2vx0TPKWNrwiEyATvtOUaYi9hiqltc6kP0rcp
+X-Google-Smtp-Source: AGHT+IEELOe5mgelYMSGmtxG+kL4UbvP8a3LHl0DXgrfdRShMJFiYY7EESOCugBH7JHSw6S2HnBW3Q==
+X-Received: by 2002:a05:6a20:9759:b0:1af:ce9c:6421 with SMTP id
+ adf61e73a8af0-1b212b6f694mr10944170637.0.1716891491764; 
+ Tue, 28 May 2024 03:18:11 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-6f8fcfe64ebsm6140939b3a.156.2024.05.28.03.18.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 28 May 2024 03:18:11 -0700 (PDT)
+Date: Tue, 28 May 2024 19:17:54 +0900 (JST)
+Message-Id: <20240528.191754.1306229738730927340.fujita.tomonori@gmail.com>
+To: zhiw@nvidia.com
+Cc: dakr@redhat.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, wedsonaf@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ a.hindborg@samsung.com, aliceryhl@google.com, fujita.tomonori@gmail.com,
+ lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com,
+ lyude@redhat.com, gregkh@linuxfoundation.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <fd5dbd42-24b7-422b-bc0b-393347b3fdca@nvidia.com>
+References: <20240521083231.000074c2.zhiw@nvidia.com>
+ <ZlTcnYNff2EDQJdj@pollux.localdomain>
+ <fd5dbd42-24b7-422b-bc0b-393347b3fdca@nvidia.com>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,94 +91,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 08/10/2024 7:24 pm, Rafael J. Wysocki wrote:
-> On Tue, Oct 8, 2024 at 12:35 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
->>
->> On Tue, 8 Oct 2024 at 00:25, Laurent Pinchart
->> <laurent.pinchart@ideasonboard.com> wrote:
+Hi,
+
+On Tue, 28 May 2024 08:40:20 +0000
+Zhi Wang <zhiw@nvidia.com> wrote:
+
+> On 27/05/2024 22.18, Danilo Krummrich wrote:
+>> External email: Use caution opening links or attachments
+>> 
+>> 
+>> On Tue, May 21, 2024 at 08:32:31AM +0300, Zhi Wang wrote:
+>>> On Mon, 20 May 2024 19:24:19 +0200
+>>> Danilo Krummrich <dakr@redhat.com> wrote:
 >>>
->>> Hi Ulf,
->>>
->>> On Tue, Oct 08, 2024 at 12:08:24AM +0200, Ulf Hansson wrote:
->>>> On Mon, 7 Oct 2024 at 20:49, Laurent Pinchart wrote:
->>>>> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
->>>>>> On Fri, 4 Oct 2024 at 11:41, Sakari Ailus wrote:
->>>>>>>
->>>>>>> Hello everyone,
->>>>>>>
->>>>>>> This set will switch the users of pm_runtime_put_autosuspend() to
->>>>>>> __pm_runtime_put_autosuspend() while the former will soon be re-purposed
->>>>>>> to include a call to pm_runtime_mark_last_busy(). The two are almost
->>>>>>> always used together, apart from bugs which are likely common. Going
->>>>>>> forward, most new users should be using pm_runtime_put_autosuspend().
->>>>>>>
->>>>>>> Once this conversion is done and pm_runtime_put_autosuspend() re-purposed,
->>>>>>> I'll post another set to merge the calls to __pm_runtime_put_autosuspend()
->>>>>>> and pm_runtime_mark_last_busy().
->>>>>>
->>>>>> That sounds like it could cause a lot of churns.
->>>>>>
->>>>>> Why not add a new helper function that does the
->>>>>> pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
->>>>>> things? Then we can start moving users over to this new interface,
->>>>>> rather than having this intermediate step?
->>>>>
->>>>> I think the API would be nicer if we used the shortest and simplest
->>>>> function names for the most common use cases. Following
->>>>> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
->>>>> most common use case. That's why I like Sakari's approach of repurposing
->>>>> pm_runtime_put_autosuspend(), and introducing
->>>>> __pm_runtime_put_autosuspend() for the odd cases where
->>>>> pm_runtime_mark_last_busy() shouldn't be called.
+>>>> Add an abstraction around the kernels firmware API to request firmware
+>>>> images. The abstraction provides functions to access the firmware
+>>>> buffer and / or copy it to a new buffer allocated with a given
+>>>> allocator backend.
 >>>>
->>>> Okay, so the reason for this approach is because we couldn't find a
->>>> short and descriptive name that could be used in favor of
->>>> pm_runtime_put_autosuspend(). Let me throw some ideas at it and maybe
->>>> you like it - or not. :-)
 >>>
->>> I like the idea at least :-)
+>>> Was playing with firmware extractions based on this patch.
+>>> Unfortunately I ended up with a lot of pointer operations, unsafe
+>>> statements.
 >>>
->>>> I don't know what options you guys discussed, but to me the entire
->>>> "autosuspend"-suffix isn't really that necessary in my opinion. There
->>>> are more ways than calling pm_runtime_put_autosuspend() that triggers
->>>> us to use the RPM_AUTO flag for rpm_suspend(). For example, just
->>>> calling pm_runtime_put() has the similar effect.
+>>> As we know many vendors have a C headers for the definitions of the
+>>> firwmare content, the driver extract the data by applying a struct
+>>> pointer on it.
 >>>
->>> To be honest, I'm lost there. pm_runtime_put() calls
->>> __pm_runtime_idle(RPM_GET_PUT | RPM_ASYNC), while
->>> pm_runtime_put_autosuspend() calls __pm_runtime_suspend(RPM_GET_PUT |
->>> RPM_ASYNC | RPM_AUTO).
->>
->> __pm_runtime_idle() ends up calling rpm_idle(), which may call
->> rpm_suspend() - if it succeeds to idle the device. In that case, it
->> tags on the RPM_AUTO flag in the call to rpm_suspend(). Quite similar
->> to what is happening when calling pm_runtime_put_autosuspend().
+>>> But in rust, I feel it would nice that we can also have a common
+>>> firmware extractor for drivers, that can wrap the pointer operations,
+>>> take a list of the firmware struct members that converted from C headers
+>>> as the input, offer the driver some common ABI methods to query them.
+>>> Maybe that would ease the pain a lot.
+>> 
+>> So, you mean some abstraction that takes a list of types, offsets in the
+>> firmware and a reference to the firmware itself and provides references to the
+>> corresponding objects?
+>> 
+>> I agree it might be helpful to have some common infrastructure for this, but the
+>> operations on it would still be unsafe, since ultimately it involves
+>> dereferencing pointers.
+>> 
 > 
-> Right.
+> I think the goal is to 1) concentrate the "unsafe" operations in a 
+> abstraction so the driver doesn't have to write explanation of unsafe 
+> operations here and there, improve the readability of the driver that 
+> interacts with vendor-firmware buffer. 2) ease the driver maintenance 
+> burden.
 > 
-> For almost everybody, except for a small bunch of drivers that
-> actually have a .runtime_idle() callback, pm_runtime_put() is
-> literally equivalent to pm_runtime_put_autosuspend().
-> 
-> So really the question is why anyone who doesn't provide a
-> .runtime_idle() callback bothers with using this special
-> pm_runtime_put_autosuspend() thing,
+> Some solutions I saw in different projects written in rust for 
+> de-referencing a per-defined struct:
 
-Because they are following the documentation? It says:
-
-"Drivers should call pm_runtime_mark_last_busy() to update this field
-after carrying out I/O, typically just before calling
-pm_runtime_put_autosuspend()."
-
-and
-
-"In order to use autosuspend, subsystems or drivers must call
-pm_runtime_use_autosuspend() (...), and thereafter they should use the
-various `*_autosuspend()` helper functions instead of the non#
-autosuspend counterparts"
-
-So the documentation says I should be using pm_runtime_put_autosuspend()
-instead of pm_runtime_put().
-
-Seems unfair to criticise people for following the documentation.
-
+Aren't there other abstractions that require that functionality, not
+just the firmware abstractions?
