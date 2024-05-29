@@ -4,68 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A33DBD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 678C6D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30C0F10EAE3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71AD310EA61;
 	Sat, 13 Dec 2025 12:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=crapouillou.net header.i=@crapouillou.net header.b="ZunYbkwC";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vhqt+JfG";
 	dkim-atps=neutral
-X-Greylist: delayed 508 seconds by postgrey-1.36 at gabe;
- Sat, 17 Aug 2024 21:02:40 UTC
-Received: from aposti.net (aposti.net [89.234.176.197])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E7C710E111;
- Sat, 17 Aug 2024 21:02:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
- s=mail; t=1723928050;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=WVIEqwFIHNGgAN6qGUvxQku++RkpPwaMRzWZN5sESeY=;
- b=ZunYbkwC4ZwrSY6CABaaBQwU/7MDq7uN0QkS4Lzl+muHxoGrRHFXa2IorYuFkgCSdpb5Xb
- H3HqV5OMaUk6PXq3k6H3mzjZRkK9MGKrSUx51tf185UbEpEAk9bYPoWUPvtAAIn+lDhSA4
- elN3j5urMgWWjBf3iAARhfIkvxWySkk=
-Message-ID: <8e1fbdb1fe4e16b702a23a1eba01f43df6331317.camel@crapouillou.net>
-Subject: Re: [PATCH 22/86] drm/ingenic: Run DRM default client setup
-From: Paul Cercueil <paul@crapouillou.net>
-To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
- airlied@gmail.com,  jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org
-Date: Sat, 17 Aug 2024 22:54:07 +0200
-In-Reply-To: <20240816125408.310253-23-tzimmermann@suse.de>
-References: <20240816125408.310253-1-tzimmermann@suse.de>
- <20240816125408.310253-23-tzimmermann@suse.de>
-Autocrypt: addr=paul@crapouillou.net; prefer-encrypt=mutual;
- keydata=mQENBF0KhcEBCADkfmrzdTOp/gFOMQX0QwKE2WgeCJiHPWkpEuPH81/HB2dpjPZNW03ZM
- LQfECbbaEkdbN4YnPfXgcc1uBe5mwOAPV1MBlaZcEt4M67iYQwSNrP7maPS3IaQJ18ES8JJ5Uf5Uz
- FZaUawgH+oipYGW+v31cX6L3k+dGsPRM0Pyo0sQt52fsopNPZ9iag0iY7dGNuKenaEqkYNjwEgTtN
- z8dt6s3hMpHIKZFL3OhAGi88wF/21isv0zkF4J0wlf9gYUTEEY3Eulx80PTVqGIcHZzfavlWIdzhe
- +rxHTDGVwseR2Y1WjgFGQ2F+vXetAB8NEeygXee+i9nY5qt9c07m8mzjABEBAAG0JFBhdWwgQ2VyY
- 3VlaWwgPHBhdWxAY3JhcG91aWxsb3UubmV0PokBTgQTAQoAOBYhBNdHYd8OeCBwpMuVxnPua9InSr
- 1BBQJdCoXBAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHPua9InSr1BgvIH/0kLyrI3V0f
- 33a6D3BJwc1grbygPVYGuC5l5eMnAI+rDmLR19E2yvibRpgUc87NmPEQPpbbtAZt8On/2WZoE5OIP
- dlId/AHNpdgAtGXo0ZX4LGeVPjxjdkbrKVHxbcdcnY+zzaFglpbVSvp76pxqgVg8PgxkAAeeJV+ET
- 4t0823Gz2HzCL/6JZhvKAEtHVulOWoBh368SYdolp1TSfORWmHzvQiCCCA+j0cMkYVGzIQzEQhX7U
- rf9N/nhU5/SGLFEi9DcBfXoGzhyQyLXflhJtKm3XGB1K/pPulbKaPcKAl6rIDWPuFpHkSbmZ9r4KF
- lBwgAhlGy6nqP7O3u7q23hRW5AQ0EXQqFwQEIAMo+MgvYHsyjX3Ja4Oolg1Txzm8woj30ch2nACFC
- qaO0R/1kLj2VVeLrDyQUOlXx9PD6IQI4M8wy8m0sR4wV2p/g/paw7k65cjzYYLh+FdLNyO7IWYXnd
- JO+wDPi3aK/YKUYepqlP+QsmaHNYNdXEQDRKqNfJg8t0f5rfzp9ryxd1tCnbV+tG8VHQWiZXNqN70
- 62DygSNXFUfQ0vZ3J2D4oAcIAEXTymRQ2+hr3Hf7I61KMHWeSkCvCG2decTYsHlw5Erix/jYWqVOt
- X0roOOLqWkqpQQJWtU+biWrAksmFmCp5fXIg1Nlg39v21xCXBGxJkxyTYuhdWyu1yDQ+LSIUAEQEA
- AYkBNgQYAQoAIBYhBNdHYd8OeCBwpMuVxnPua9InSr1BBQJdCoXBAhsMAAoJEHPua9InSr1B4wsH/
- Az767YCT0FSsMNt1jkkdLCBi7nY0GTW+PLP1a4zvVqFMo/vD6uz1ZflVTUAEvcTi3VHYZrlgjcxmc
- Gu239oruqUS8Qy/xgZBp9KF0NTWQSl1iBfVbIU5VV1vHS6r77W5x0qXgfvAUWOH4gmN3MnF01SH2z
- McLiaUGF+mcwl15rHbjnT3Nu2399aSE6cep86igfCAyFUOXjYEGlJy+c6UyT+DUylpjQg0nl8MlZ/
- 7Whg2fAU9+FALIbQYQzGlT4c71SibR9T741jnegHhlmV4WXXUD6roFt54t0MSAFSVxzG8mLcSjR2c
- LUJ3NIPXixYUSEn3tQhfZj07xIIjWxAYZo=
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 912C710EE85;
+ Wed, 29 May 2024 23:28:32 +0000 (UTC)
+Received: by mail-pj1-f51.google.com with SMTP id
+ 98e67ed59e1d1-2bde882ab2bso34952a91.3; 
+ Wed, 29 May 2024 16:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1717025312; x=1717630112; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=1CbHtrgyTy3hlnL/xrFUFy4gX8XK+D4Wz02/A1kHTNU=;
+ b=Vhqt+JfGvBkKG3WChe6PEX535djI9D+fI8hlg6r8UKb1BLFpIZMKOc4exYAuTfmcaa
+ ajWxvMPZimgDFriB17+uaIa6tzQq2Wqvh8OirLGeQrQ5QIvZg/1Z5yRAhcf6fq1exWEH
+ I0VHXQmLpHIBIiduRyVsSfy/8r/yTnMwtASPWFuTHgstrH9/gLMoFrv6xOskLFlD6eSW
+ u9YzzhblJ3yC6C8QDi3ybhaPSBS6to8y/kHs65j2gqEIaQGEr5IH/wV9tElts4o/KiPd
+ ysC7bUjBEjSSiVL2RDRG23Vp+n3bRAxbpTdxe5QN6uh5FWjqaC0ylHxHacb7oHVhPgvW
+ RZhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717025312; x=1717630112;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=1CbHtrgyTy3hlnL/xrFUFy4gX8XK+D4Wz02/A1kHTNU=;
+ b=e5bq1VhMXugJkIKBQ+ANYibQSYfoqB2k2lSuGo+mNJjkEXm1SwQRFdLMRamMcsIgYI
+ WGKz8jOJ9KpJG8oQRsxDowYYl4jziJ5OWqQxCo+2RxEW1U9mqGl6VBoxvxKSwsqOPhlW
+ mobZexEL6iTY1+r4GEZgZWAvYSg6befZPFEjMEI+4Gi3bTrX4juu2DTU6itq88TtfPXx
+ 8LYyJ+McFuMxcvaGANx6YnoYZ1p4ztlsBzjMdOBXKYmjYeAoPQ1y2vq7KCn/bHpuaV9W
+ NbZG35khZJ+C5GzAf3qAJrjXB6GYeFzZCmGtHDVagEpXZw01ZKrXWQAWU9cKvscP9xuD
+ AS3w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVwO1oblRuiqsw1H+x9MUzIwOeNwydneIxK/R1c0IumFU+jgFzJGXDzL+ldYDR+QFSKIUiFhtqaFgz6VGMaxTykO9MmPYtPE+vR3o5Q8WzyzKXI4u0Wax3cjR88t8CEgnBIWVKsXsHiF62kBfkDGA==
+X-Gm-Message-State: AOJu0Yzytkfv4Yb81C7IJnH46Lfn33+ibyAakdtjB/wCnEumCIG9XrLO
+ S/eB1ps8TdPrGDTpL9hKOLA4zfLfxRCtIQ1cb/So17RaovpinM+j
+X-Google-Smtp-Source: AGHT+IE1OtjMwHtpI5sgyloFG5EHG3kwe46MRMtl7GShic69l2ObaEr6JnwIz7681roQpRkx2eLWJA==
+X-Received: by 2002:a05:6a20:1001:b0:1af:a5e8:d184 with SMTP id
+ adf61e73a8af0-1b2646a3a95mr445927637.5.1717025311753; 
+ Wed, 29 May 2024 16:28:31 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1f48bb6163asm69304775ad.37.2024.05.29.16.28.26
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 May 2024 16:28:31 -0700 (PDT)
+Date: Thu, 30 May 2024 08:28:24 +0900 (JST)
+Message-Id: <20240530.082824.289365952172442399.fujita.tomonori@gmail.com>
+To: gregkh@linuxfoundation.org, dakr@redhat.com, wedsonaf@gmail.com
+Cc: fujita.tomonori@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ daniel@ffwll.ch, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@samsung.com, aliceryhl@google.com,
+ lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com,
+ lyude@redhat.com, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ mcgrof@kernel.org, russ.weight@linux.dev
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <2024052950-purely-sandstone-36c7@gregkh>
+References: <2024052816-makeshift-irrigate-cef5@gregkh>
+ <20240529.092821.1593412345609718860.fujita.tomonori@gmail.com>
+ <2024052950-purely-sandstone-36c7@gregkh>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,60 +91,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Thomas,
+Hi,
 
-Le vendredi 16 ao=C3=BBt 2024 =C3=A0 14:22 +0200, Thomas Zimmermann a =C3=
-=A9crit=C2=A0:
-> Call drm_client_setup() to run the kernel's default client setup
-> for DRM. Set fbdev_probe in struct drm_driver, so that the client
-> setup can start the common fbdev client.
->=20
-> The ingenic driver specifies a preferred color mode of 32. As this
-> is the default if no format has been given, leave it out entirely.
->=20
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Paul Cercueil <paul@crapouillou.net>
+On Wed, 29 May 2024 21:57:03 +0200
+Greg KH <gregkh@linuxfoundation.org> wrote:
 
-Acked-by: Paul Cercueil <paul@crapouillou.net>
+>> For a Rust PHY driver, you know that you have a valid pointer to C's
+>> device object of C's PHY device during the probe callback. The driver
+>> creates a Rust device object to wrap the C pointer to the C's device
+>> object and passes it to the firmware abstractions. The firmware
+>> abstractions gets the C's pointer from the Rust object and calls C's
+>> function to load firmware, returns the result.
+>> 
+>> You have concerns about the simple code like the following?
+>> 
+>> 
+>> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+>> new file mode 100644
+>> index 000000000000..6144437984a9
+>> --- /dev/null
+>> +++ b/rust/kernel/device.rs
+>> @@ -0,0 +1,30 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +
+>> +//! Generic devices that are part of the kernel's driver model.
+>> +//!
+>> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+>> +
+>> +use crate::types::Opaque;
+>> +
+>> +#[repr(transparent)]
+>> +pub struct Device(Opaque<bindings::device>);
+>> +
+>> +impl Device {
+>> +    /// Creates a new [`Device`] instance from a raw pointer.
+>> +    ///
+>> +    /// # Safety
+>> +    ///
+>> +    /// For the duration of 'a, the pointer must point at a valid `device`.
+> 
+> If the following rust code does what this comment says, then sure, I'm
+> ok with it for now if it helps you all out with stuff like the firmware
+> interface for the phy rust code.
 
-Cheers,
--Paul
+Great, thanks a lot!
 
-> ---
-> =C2=A0drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 4 +++-
-> =C2=A01 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> index 39fa291f43dd..056b70b63554 100644
-> --- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> +++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-> @@ -24,6 +24,7 @@
-> =C2=A0#include <drm/drm_atomic_helper.h>
-> =C2=A0#include <drm/drm_bridge.h>
-> =C2=A0#include <drm/drm_bridge_connector.h>
-> +#include <drm/drm_client_setup.h>
-> =C2=A0#include <drm/drm_color_mgmt.h>
-> =C2=A0#include <drm/drm_crtc.h>
-> =C2=A0#include <drm/drm_damage_helper.h>
-> @@ -960,6 +961,7 @@ static const struct drm_driver
-> ingenic_drm_driver_data =3D {
-> =C2=A0	.fops			=3D &ingenic_drm_fops,
-> =C2=A0	.gem_create_object	=3D ingenic_drm_gem_create_object,
-> =C2=A0	DRM_GEM_DMA_DRIVER_OPS,
-> +	DRM_FBDEV_DMA_DRIVER_OPS,
-> =C2=A0};
-> =C2=A0
-> =C2=A0static const struct drm_plane_funcs ingenic_drm_primary_plane_funcs
-> =3D {
-> @@ -1399,7 +1401,7 @@ static int ingenic_drm_bind(struct device *dev,
-> bool has_components)
-> =C2=A0		goto err_clk_notifier_unregister;
-> =C2=A0	}
-> =C2=A0
-> -	drm_fbdev_dma_setup(drm, 32);
-> +	drm_client_setup(drm, NULL);
-> =C2=A0
-> =C2=A0	return 0;
-> =C2=A0
+Danilo and Wedson, are there any concerns about pushing this patch [1]
+for the firmware abstractions?
 
+I you prefer to be the author of the patch, please let me know. Who
+the author is doesn't matter to me. Otherwise, I'll add
+Co-developed-by tag.
+
+[1] https://lore.kernel.org/rust-for-linux/20240529.092821.1593412345609718860.fujita.tomonori@gmail.com/
