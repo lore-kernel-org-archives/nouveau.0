@@ -4,108 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C085CD5AE41
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 323B5D5B168
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECE110E660;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C2610EA09;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGqpv40Y";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="dGxIU3mh";
 	dkim-atps=neutral
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0131110E0E0;
- Sun, 22 Jun 2025 22:50:45 +0000 (UTC)
-Received: by mail-pj1-f53.google.com with SMTP id
- 98e67ed59e1d1-313756c602fso357274a91.3; 
- Sun, 22 Jun 2025 15:50:45 -0700 (PDT)
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+ [209.85.215.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89D9911AAAA;
+ Thu, 30 May 2024 04:24:42 +0000 (UTC)
+Received: by mail-pg1-f178.google.com with SMTP id
+ 41be03b00d2f7-681a3e5d376so7868a12.2; 
+ Wed, 29 May 2024 21:24:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750632645; x=1751237445; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2XyaOPS+SVDJS2nuVakOU+h3pEZcqv0KxHASicqOHR0=;
- b=RGqpv40YSldTbQXr2/VYzPUzgV1Wkt8LRCBAjgByrxQgxPSqsMHG8fceWxsK4OxzkJ
- y5jv6GpglVqTasAGuvnvqv8ne0bSnVixtjgIJcRSdPkTEv9+PkQFYN365bTyqWyUo/Go
- dIcxUm9QKVteP/QAKu9OvsuZI8DLWgrZcStkM0/2e54pcGSnRIhGpCnEoOGAAvaR7Mrq
- YC7RFg/gDvSyAbx2C85jciIfnkPL+90i+Nuok7o1Of4b45pxi8za7G+822uFbYnr5q1t
- t369geC7sAIX/WTGLzK61VKl95U5JF1Qx5JlNvPAidp3lOyPwfMp3YmtOKyqIN5WKx0M
- zPow==
+ d=gmail.com; s=20230601; t=1717043082; x=1717647882; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=E3VVbhC6I5IDpIBKGc/cIzsKHjro6Wg4me5Z18wNEmY=;
+ b=dGxIU3mhhfL0UISTahbboa/6mx+lwTrGJPMP5AOEW/sbEA4iOd/6pLPpLanBvT+UGZ
+ 9OtcZ0GJVAcLFZyV6+3T5DrRRpTWFZoDlpufSjSrtZxHoWPbNSwc+d7fRCzy2c031iZM
+ 02YFvQx8JKbr60D5pNe8m2EKliq420K/5R8liAC6LxSbd31/1RIacrmxLwl1JZ4hYzsi
+ CKr+xKYKjDn0kG8uq/5DFuAXpRcIqgYIGz5AbrMKExTQ+krkfDqNnR1cW2nD4thzhHc7
+ N+CFoOpjMoDBeED27ihe4bfyJrCecZ28vIxoJlhLAHsK95ZtSd2hqq+Q/VFYH9TGnmUa
+ FtYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750632645; x=1751237445;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=2XyaOPS+SVDJS2nuVakOU+h3pEZcqv0KxHASicqOHR0=;
- b=G8ahcmQd99MihZw6xm91fME+W4LqeI5WGOa+ij2HFUWyFse3G7I/XmRtKoQHwCC92G
- jCCIn5m9krbjW8BNRgdb5z9HhdUgYLZrPeOWT0OycxuEFiXCjj3wNQUsqAfoAA34j1iZ
- PKH5K2qZLUNb4BFL/prr5+Ks/3bfWD79svF7IFgPgO1hWJQQpwzEY81hn5GIHlfVX+Bk
- Oe1XQaCme30A0hfkOfFqZMUgyz/5mPGm0cuJzocJn0yYeBngbjeMOoy+8mgaUOgOZ0At
- gp7CcsTTgoLA7DNVBzyM1AD04+OGQGTChl2Ua/Pfvyj538Qc6cTXhCO8LMMm7njOk16T
- MoVA==
+ d=1e100.net; s=20230601; t=1717043082; x=1717647882;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=E3VVbhC6I5IDpIBKGc/cIzsKHjro6Wg4me5Z18wNEmY=;
+ b=hqiQ3/mlQ5h+E4TGTEUqK/eMxQrSNr4dd8jnCjOU0KdGny0inHrnWzXBEKIqV6lUCY
+ j7fv6QOaglIPSa53LflBmezd3Q5DyyVuDoJSZ2xAr3IR03PwdEINPxynLh4PP12GrgD0
+ 3G34As93w/qnTslA7+h2AN1TDKvt9cmJ9fgvRQHT3G24F6jeKVx4qTbT6IwRX8SNVUGS
+ 10825Qe6A41f9XQEslFEknGw/AxHsjC1XDm0E3FrCgS3EptMtjXq6oWsfzu0C0zaCJDV
+ n7zkjqcHVrdEDGPgXBKSpmWlEnDHJCSHpEP7cxjMhpB18YYvJ4SXRVhQRcNCSJBiRAkV
+ cTvA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWl/c2tiYmLKjFxCw7XbPJJ09MFGPYk5+Udy7vHujAXHgGuTlr/LlqWlhXDUAjxPqhClTKrLzU82iU=@lists.freedesktop.org,
- AJvYcCXCT+PkxerXa+ZIiCd6rqSwf4qF547UwRNr3d29Zitx3+MXhDEx7zz4ykYeZVWWXQRFnRLjBWhgeg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxoiucLPgNfmHjNJ0eAexrd7+jTw29JyCkEMhlpwaByMlWA9rer
- YcP9EkI449Vrh0va2VXd3/DNCHKNYcj/t2ZqOjIiu1oFZR+ddsVmxLHPoAb7OnUar0LLmtm9VTy
- d7TsLBCux+re+XEDaUsDZ02TSoU6WL7k=
-X-Gm-Gg: ASbGnctNQASii5WwtdA3qIgnORSCZL+ua/MqYnv+LrERNZ3sWeoFQmWCX1nbw/wc0RR
- yku5wp6bHiUuS+65/4V1t7HtnRAZxNyB875p/Q7bYoiCRVOA7bB5LvKxkCH74MLgT+KqL8pOWdI
- Od/AyZC/IJvfrJX/4vrhhnYXwpTV9uTpgtFAV5DLwH6dinQvOQxDxNfg==
-X-Google-Smtp-Source: AGHT+IHkK5VxbDTzDH+78CGWNybiQ0lflBEpMpSVRH6uwkYDUKXtQuR/kJbEABJn7CeEMEkyXPjXtmArCfcPAjxsRNU=
-X-Received: by 2002:a17:90b:3a43:b0:311:fde5:c4ae with SMTP id
- 98e67ed59e1d1-3159d8e2be9mr5684021a91.6.1750632645432; Sun, 22 Jun 2025
- 15:50:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
-In-Reply-To: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 23 Jun 2025 00:50:31 +0200
-X-Gm-Features: Ac12FXzAp4qUKl_aNT741tylL3I37tb5s--GlJccgcY1EV1oeXS1Teju6Ztan0w
-Message-ID: <CANiq72=xmyHuBYEGbCMi=Um_NvNbf5TfMmJB5YPpVp41FcPdJA@mail.gmail.com>
-Subject: Re: [PATCH v12 0/6] rust: reduce `as` casts, enable related lints
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
- Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Nicolas Schier <nicolas.schier@linux.dev>, 
- Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
- Thomas Gleixner <tglx@linutronix.de>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Benno Lossin <lossin@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
- linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
- linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org, 
- Christian Brauner <brauner@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+ AJvYcCVPjqOv2RtnaMJiFYtrhmWalQD8Ai4drmNC3BFiFP2STmhqzqPW9r88BkLIE4j5HJ1p+dhN/KZnPi7mm437iqD4di3vxcqcFmPhzGmEESmJREXLBvCunu0ByTGh4Dq1j6s8pfyiuXNBzUP0y/Ioog==
+X-Gm-Message-State: AOJu0Yxq6E6yrcgGHRbhNnQant8MU1RPJzTYTuSM2NaB96WyLj9k2JjM
+ Me4ZU/3IgzbGUpUmqB7BL7/u7aXdNEj10VTKyyKEQ9QnSwNexicf
+X-Google-Smtp-Source: AGHT+IEJdZ4YE8MX8w0oPD51QAdlQikfgmInuFu5dotPFl7flHJL3hSTz7FpJiSJHzOGtR8YnBeuYQ==
+X-Received: by 2002:a05:6a20:3219:b0:1af:96e7:2be6 with SMTP id
+ adf61e73a8af0-1b26440808amr1198934637.0.1717043081669; 
+ Wed, 29 May 2024 21:24:41 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1f477d337cdsm83515795ad.71.2024.05.29.21.24.36
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 29 May 2024 21:24:41 -0700 (PDT)
+Date: Thu, 30 May 2024 13:24:33 +0900 (JST)
+Message-Id: <20240530.132433.2195707766186347550.fujita.tomonori@gmail.com>
+To: dakr@redhat.com, gregkh@linuxfoundation.org
+Cc: fujita.tomonori@gmail.com, wedsonaf@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ mcgrof@kernel.org, russ.weight@linux.dev
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <ZlfeA7MEZRv404MO@pollux.localdomain>
+References: <2024052950-purely-sandstone-36c7@gregkh>
+ <20240530.082824.289365952172442399.fujita.tomonori@gmail.com>
+ <ZlfeA7MEZRv404MO@pollux.localdomain>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,30 +91,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Jun 15, 2025 at 10:55=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
-> wrote:
->
-> This started with a patch that enabled `clippy::ptr_as_ptr`. Benno
-> Lossin suggested I also look into `clippy::ptr_cast_constness` and I
-> discovered `clippy::as_ptr_cast_mut`. This series now enables all 3
-> lints. It also enables `clippy::as_underscore` which ensures other
-> pointer casts weren't missed.
->
-> As a later addition, `clippy::cast_lossless` and `clippy::ref_as_ptr`
-> are also enabled.
->
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+Hi,
 
-Applied to `rust-next` -- thanks everyone!
+On Thu, 30 May 2024 04:01:39 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-    [ Added `.cast()` for `opp`. - Miguel ]
+> On Thu, May 30, 2024 at 08:28:24AM +0900, FUJITA Tomonori wrote:
+>> Hi,
+>> 
+>> On Wed, 29 May 2024 21:57:03 +0200
+>> Greg KH <gregkh@linuxfoundation.org> wrote:
+>> 
+>> >> For a Rust PHY driver, you know that you have a valid pointer to C's
+>> >> device object of C's PHY device during the probe callback. The driver
+>> >> creates a Rust device object to wrap the C pointer to the C's device
+>> >> object and passes it to the firmware abstractions. The firmware
+>> >> abstractions gets the C's pointer from the Rust object and calls C's
+>> >> function to load firmware, returns the result.
+>> >> 
+>> >> You have concerns about the simple code like the following?
+>> >> 
+>> >> 
+>> >> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+>> >> new file mode 100644
+>> >> index 000000000000..6144437984a9
+>> >> --- /dev/null
+>> >> +++ b/rust/kernel/device.rs
+>> >> @@ -0,0 +1,30 @@
+>> >> +// SPDX-License-Identifier: GPL-2.0
+>> >> +
+>> >> +//! Generic devices that are part of the kernel's driver model.
+>> >> +//!
+>> >> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+>> >> +
+>> >> +use crate::types::Opaque;
+>> >> +
+>> >> +#[repr(transparent)]
+>> >> +pub struct Device(Opaque<bindings::device>);
+>> >> +
+>> >> +impl Device {
+>> >> +    /// Creates a new [`Device`] instance from a raw pointer.
+>> >> +    ///
+>> >> +    /// # Safety
+>> >> +    ///
+>> >> +    /// For the duration of 'a, the pointer must point at a valid `device`.
+>> > 
+>> > If the following rust code does what this comment says, then sure, I'm
+>> > ok with it for now if it helps you all out with stuff like the firmware
+>> > interface for the phy rust code.
+>> 
+>> Great, thanks a lot!
+>> 
+>> Danilo and Wedson, are there any concerns about pushing this patch [1]
+>> for the firmware abstractions?
+> 
+> Well, if everyone is fine with this one I don't see why we can't we go with [1]
+> directly? AFAICS, we'd only need the following fix:
+> 
+> -//! C header: [`include/linux/device.h`](../../../../include/linux/device.h)
+> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+> 
+> [1] https://lore.kernel.org/rust-for-linux/20240520172554.182094-2-dakr@redhat.com/
 
-    [ Changed `isize` to `c_long`. - Miguel ]
+The difference is that your patch touches the reference count of a
+struct device. My patch doesn't.
 
-It would still be nice to get the couple remaining Acked-bys (happy to
-rebase to apply them), but I feel we are in good shape, and it is a
-good time to put it into linux-next so that people see the lint before
-they start applying new code into their branches.
+The following part in your patch allows the rust code to freely play
+with the reference count of a struct device. Your Rust drm driver
+interact with the reference count in a different way than C's drm
+drivers if I understand correctly. I'm not sure that Greg will be
+convinenced with that approach.
 
-Cheers,
-Miguel
++// SAFETY: Instances of `Device` are always ref-counted.
++unsafe impl crate::types::AlwaysRefCounted for Device {
++    fn inc_ref(&self) {
++        // SAFETY: The existence of a shared reference guarantees that the refcount is nonzero.
++        unsafe { bindings::get_device(self.as_raw()) };
++    }
++
++    unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
++        // SAFETY: The safety requirements guarantee that the refcount is nonzero.
++        unsafe { bindings::put_device(obj.cast().as_ptr()) }
++    }
++}
+
+The following comments give the impression that Rust abstractions
+wrongly interact with the reference count; callers check out the
+reference counter. Nobody should do that.
+
++    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count.
++    pub unsafe fn from_raw(ptr: *mut bindings::device) -> ARef<Self> {
+
++    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count for
++    /// the entire duration when the returned reference exists.
++    pub unsafe fn as_ref<'a>(ptr: *mut bindings::device) -> &'a Self {
++        // SAFETY: Guaranteed by the safety requirements of the function.
++        unsafe { &*ptr.cast() }
++    }
