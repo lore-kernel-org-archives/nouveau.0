@@ -4,95 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2AAFD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B19A8D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C87C10EAC4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADA8F10EA55;
 	Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NRYiLHUC";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="PJo+7ljg";
 	dkim-atps=neutral
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
- [209.85.218.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976FD10E5B9
- for <nouveau@lists.freedesktop.org>; Tue,  8 Oct 2024 20:38:06 +0000 (UTC)
-Received: by mail-ej1-f53.google.com with SMTP id
- a640c23a62f3a-a99388e3009so471027566b.3
- for <nouveau@lists.freedesktop.org>; Tue, 08 Oct 2024 13:38:06 -0700 (PDT)
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
+ [209.85.210.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F231614A042;
+ Fri, 31 May 2024 07:50:51 +0000 (UTC)
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-7024df1b183so10842b3a.3; 
+ Fri, 31 May 2024 00:50:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728419885; x=1729024685;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
- b=NRYiLHUCQ7TImUks4fAatmLv/c5uDIiISlrDWnTFQR02uom9zRcW+Uyi630EwtrLOS
- rpn+clus4PoEaoSKGREcBZOO2TeBK8i5QT71Yh24xUCMM4+QelwwhGX8uPf306b+WpN6
- h3Ibpnr5FCh7DfMRkj0zKWnT4q92PmClirZcHgUJjwk2Y67XZ2JnngcsUIxzaQPEZFAk
- lse2Gk04nm8/j/zP2JcnXCFg7oXyNfhHisd2bbh8Fo0IPEJ9uLkhBf3DWnCN4R5kk/va
- AdIQfqmNlleVyM7MvWnO7ARvwiYVRvMi9vgLzbzWZbWEfUvXyryK0A7KH3BUim9hkKEm
- 7zzA==
+ d=gmail.com; s=20230601; t=1717141851; x=1717746651; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=r2XdzJ6IzRamTT3nhFH8XeJzlNSkKuRVnD58Iktcp0o=;
+ b=PJo+7ljgDuPo9xXHjFPU4UaUUBxup0jn8gpHop+pneojV5A02ndCi6L+whfcCx9VKO
+ huB6LchRy77yhAKT8/1RfshnRp2GWYK67D8NLrOVAiD6qo6Zq4BCLdypwlkloUZxsUrg
+ Ft+4i16QmCY1bgmWYZCutNo/dLo2NT1x43lVZ09/6ZzAQc73zbKjfhw3VStA9yMsbjaZ
+ BnLjt6xXxqkZp1Ll/fKT/HHrQFtimezvJzZdlpOK9T8BEzLB+dj7j+r2Aivk3men5qhG
+ 0XPnCUtfMgcDpFyXnnyU3yIQLc5idSE/mdnfg27/a0KZd+XeN7Yg8KM4vY8e6GriU8gd
+ oKAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1728419885; x=1729024685;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
- b=WGdqH5LHSG3TKXSImNNcdjEJlMezqt5xbNjnKflAORqRUB1V8a+BWOshyRdMlXbyeY
- SAlHtCVOUG4BLz+rCm+nPvjC9zZ54/cX88xqFEtRxIyDGJp1sEejZzrYAcCEPR+yZp8D
- 5VCvFvbh3ZJ/RiDUblWaawX2QYq2xumWt7bxkzIl2c22UV2Ls/EPebMx46pa3ZuumUyE
- 4YyHxCG40U/wTh8gFYKjsYmhjbu8UYTVAQn1KZKAquVFHNCxxiTM4TeSkDL1C3RkLFfv
- iz6Bsg33IG93vKfZvdUQPwlRJ3CrOh3PLzIk9/Z0pfny4K/LQD52w9g/6ItDccRjrRA0
- UraA==
+ d=1e100.net; s=20230601; t=1717141851; x=1717746651;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=r2XdzJ6IzRamTT3nhFH8XeJzlNSkKuRVnD58Iktcp0o=;
+ b=UAOCN8SzPsIuRnDUjJfx7kIwdzASc7AVS7//0JzqIX52Q7rvq4QzqgOHae+UrR3Hnf
+ DTW231L8Xvre56/bRbGfqf4Tt24BMSkrT2lxZxBkAZBZp647ypKhNekxCMiJidJrkWqd
+ +Jr+VD2nXtssUfwytnSaUJtx64A+O/TtvCBQL/XvTOcWGuuU3eoDJt4zS0vORr9TLY+C
+ tDQhp/yDwUb/bNCMfMzRmENEZwDYCPbiPo/luunSwVUuUpW40dTCjbWtbjNgbKbyj4C8
+ cxU1/hJCSJm6M0PBblGIHLnEXyERrESm1OAiKYdlyWfc0RZ35ORCXY8HM0gI7Zi5Z8G6
+ DOxA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWOl1qVx9T5BBVE2JB61U9Vzv1cS0iUCNLHDLW+h7o2JrkqMQl0krNMiZNd/0GVtvqTeUGGDZ+n@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyD3inEg+1vZOa83gz5xwiP5n2xOci0PWfdZxSDm/xTWj0ryMi1
- 5Jl9aRvKDLr5bDBq8WtBZtNrpS619rDPP035vuiFjBdgbdcP72wRVv4xmDr5/j4=
-X-Google-Smtp-Source: AGHT+IFQsuFQDnMORn6KRqls83kXMRALTmz1xji/Zv3nzyXsaV17OwyYMIY5gtZ7u9n9SjQRNHRlFg==
-X-Received: by 2002:a17:907:94d4:b0:a8d:250a:52b2 with SMTP id
- a640c23a62f3a-a998d114bbemr3268366b.6.1728419884897; 
- Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:c420:a9b6:c5e1:5b65])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-a996274deeesm196971266b.103.2024.10.08.13.38.04
+ AJvYcCUvMbDOf65EOT/4t7lQaHNLigofhbCpmtNcrwRp3dLMOeYPAmQqtCuEXwX8YJ1gGZUK2QDlw6+Q6XEaxWKkM2xQOj4bTd5LnkogkhQ1/vbbMCueN57bQV9FsJrJZZi05yKlTmkXrs6TH4as5E8KfQ==
+X-Gm-Message-State: AOJu0Yy8UjP2qEhfwLwaZ0lJP4zEz6ckQ3GeHV1cdRYm2lz6BbBFngY3
+ MF4+q1R3GaGAvMbllXsdY9P5eN26sqMP2JhBO9okdMNx6IrajyLy
+X-Google-Smtp-Source: AGHT+IFmoHx1DOu6EUaKr3kPXbJU6PasPLBG1RJBIrbPUKjR0PqfUbfRMbaW6z2DR6/UwsxA+97g9w==
+X-Received: by 2002:a05:6a21:3394:b0:1ae:42aa:7f1 with SMTP id
+ adf61e73a8af0-1b26f13949emr1469445637.2.1717141851145; 
+ Fri, 31 May 2024 00:50:51 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-70242aea177sm856082b3a.110.2024.05.31.00.50.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
-Date: Tue, 8 Oct 2024 22:38:02 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-bluetooth@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-crypto@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- linux-i3c@lists.infradead.org, 
- linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
- patches@opensource.cirrus.com, 
- iommu@lists.linux.dev, imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
- linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-mtd@lists.infradead.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
- linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
- linux-remoteproc@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-staging@lists.linux.dev, 
- linux-usb@vger.kernel.org, linux-serial@vger.kernel.org,
- greybus-dev@lists.linaro.org, asahi@lists.linux.dev, rafael@kernel.org,
- Andy Shevchenko <andy.shevchenko@gmail.com>
-Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
-Message-ID: <ttmnzgsdyng5vab63pvj7csrotbsmwnultjelvdotrvyg2snac@iv7afgect5f3>
-References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
- <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
- <20241007184924.GH14766@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="2ocqjla6tcmukjn3"
-Content-Disposition: inline
-In-Reply-To: <20241007184924.GH14766@pendragon.ideasonboard.com>
+ Fri, 31 May 2024 00:50:50 -0700 (PDT)
+Date: Fri, 31 May 2024 16:50:32 +0900 (JST)
+Message-Id: <20240531.165032.1895479176481879387.fujita.tomonori@gmail.com>
+To: dakr@redhat.com
+Cc: fujita.tomonori@gmail.com, gregkh@linuxfoundation.org,
+ wedsonaf@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ mcgrof@kernel.org, russ.weight@linux.dev
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <Zlgg_Q5y3Q99Ts1s@pollux>
+References: <ZlfeA7MEZRv404MO@pollux.localdomain>
+ <20240530.132433.2195707766186347550.fujita.tomonori@gmail.com>
+ <Zlgg_Q5y3Q99Ts1s@pollux>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -108,80 +91,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Thu, 30 May 2024 08:47:25 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
---2ocqjla6tcmukjn3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>> >> >> For a Rust PHY driver, you know that you have a valid pointer to C's
+>> >> >> device object of C's PHY device during the probe callback. The driver
+>> >> >> creates a Rust device object to wrap the C pointer to the C's device
+>> >> >> object and passes it to the firmware abstractions. The firmware
+>> >> >> abstractions gets the C's pointer from the Rust object and calls C's
+>> >> >> function to load firmware, returns the result.
+>> >> >> 
+>> >> >> You have concerns about the simple code like the following?
+>> >> >> 
+>> >> >> 
+>> >> >> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+>> >> >> new file mode 100644
+>> >> >> index 000000000000..6144437984a9
+>> >> >> --- /dev/null
+>> >> >> +++ b/rust/kernel/device.rs
+>> >> >> @@ -0,0 +1,30 @@
+>> >> >> +// SPDX-License-Identifier: GPL-2.0
+>> >> >> +
+>> >> >> +//! Generic devices that are part of the kernel's driver model.
+>> >> >> +//!
+>> >> >> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+>> >> >> +
+>> >> >> +use crate::types::Opaque;
+>> >> >> +
+>> >> >> +#[repr(transparent)]
+>> >> >> +pub struct Device(Opaque<bindings::device>);
+>> >> >> +
+>> >> >> +impl Device {
+>> >> >> +    /// Creates a new [`Device`] instance from a raw pointer.
+>> >> >> +    ///
+>> >> >> +    /// # Safety
+>> >> >> +    ///
+>> >> >> +    /// For the duration of 'a, the pointer must point at a valid `device`.
+>> >> > 
+>> >> > If the following rust code does what this comment says, then sure, I'm
+>> >> > ok with it for now if it helps you all out with stuff like the firmware
+>> >> > interface for the phy rust code.
+>> >> 
+>> >> Great, thanks a lot!
+>> >> 
+>> >> Danilo and Wedson, are there any concerns about pushing this patch [1]
+>> >> for the firmware abstractions?
+>> > 
+>> > Well, if everyone is fine with this one I don't see why we can't we go with [1]
+>> > directly? AFAICS, we'd only need the following fix:
+>> > 
+>> > -//! C header: [`include/linux/device.h`](../../../../include/linux/device.h)
+>> > +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+>> > 
+>> > [1] https://lore.kernel.org/rust-for-linux/20240520172554.182094-2-dakr@redhat.com/
+>> 
+>> The difference is that your patch touches the reference count of a
+>> struct device. My patch doesn't.
+>> 
+>> The following part in your patch allows the rust code to freely play
+>> with the reference count of a struct device. Your Rust drm driver
+>> interact with the reference count in a different way than C's drm
+>> drivers if I understand correctly. I'm not sure that Greg will be
+>> convinenced with that approach.
+> 
+> I don't see how this is different than what we do in C. If you (for whatever
+> reason) want to keep a pointer to a struct device you should make sure to
+> increase the reference count of this device, such that it can't get freed for
+> the time being.
+> 
+> This is a 1:1 representation of that and conceptually identical.
 
-Hello,
+A drm driver does such? If a drm driver allocates two types of
+driver-specific data and keep a pointer to the pci device, then the
+driver calls get_device() twice to increase the reference count of the
+pci's device?
 
-On Mon, Oct 07, 2024 at 09:49:24PM +0300, Laurent Pinchart wrote:
-> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
-> > On Fri, 4 Oct 2024 at 11:41, Sakari Ailus <sakari.ailus@linux.intel.com=
-> wrote:
-> > >
-> > > Hello everyone,
-> > >
-> > > This set will switch the users of pm_runtime_put_autosuspend() to
-> > > __pm_runtime_put_autosuspend() while the former will soon be re-purpo=
-sed
-> > > to include a call to pm_runtime_mark_last_busy(). The two are almost
-> > > always used together, apart from bugs which are likely common. Going
-> > > forward, most new users should be using pm_runtime_put_autosuspend().
-> > >
-> > > Once this conversion is done and pm_runtime_put_autosuspend() re-purp=
-osed,
-> > > I'll post another set to merge the calls to __pm_runtime_put_autosusp=
-end()
-> > > and pm_runtime_mark_last_busy().
-> >=20
-> > That sounds like it could cause a lot of churns.
-> >=20
-> > Why not add a new helper function that does the
-> > pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
-> > things? Then we can start moving users over to this new interface,
-> > rather than having this intermediate step?
->=20
-> I think the API would be nicer if we used the shortest and simplest
-> function names for the most common use cases. Following
-> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
-> most common use case. That's why I like Sakari's approach of repurposing
-> pm_runtime_put_autosuspend(), and introducing
-> __pm_runtime_put_autosuspend() for the odd cases where
-> pm_runtime_mark_last_busy() shouldn't be called.
+At the very least, network device drivers don't. a driver doesn't play
+with the reference count. The network subsystem does. And, the network
+subsystem doesn't care about how many pointers to a pci device a
+driver keeps.
 
-That's ok for me. However this patch series isn't the optimal path to
-there because most drivers (i.e. those that already today do
-pm_runtime_mark_last_busy() in combination with
-pm_runtime_put_autosuspend()) have to be patched twice.
+With the patch [1], a driver plays with the reference count of a
+device and directly calls get/put_device. It's a different than C
+drivers for me (not sure about drm subsystem though).
 
-The saner route is: Only convert the drivers with a sole
-pm_runtime_put_autosuspend() (i.e. without pm_runtime_mark_last_busy())
-to __pm_runtime_put_autosuspend(). Then add the mark_last_busy() bits to
-pm_runtime_put_autosuspend() and then drop the explicit calls to
-pm_runtime_mark_last_busy() before pm_runtime_put_autosuspend().
+But I might be misunderstanding that Greg isn't convinced with this
+reference count thing. We need to wait for his response.
 
-(Note this doesn't take into account Rafael's position that
-pm_runtime_put() might be the saner option. My argument applies for that
-conversion analogously.)
 
-Best regards
-Uwe
+>> +// SAFETY: Instances of `Device` are always ref-counted.
+>> +unsafe impl crate::types::AlwaysRefCounted for Device {
+>> +    fn inc_ref(&self) {
+>> +        // SAFETY: The existence of a shared reference guarantees that the refcount is nonzero.
+>> +        unsafe { bindings::get_device(self.as_raw()) };
+>> +    }
+>> +
+>> +    unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
+>> +        // SAFETY: The safety requirements guarantee that the refcount is nonzero.
+>> +        unsafe { bindings::put_device(obj.cast().as_ptr()) }
+>> +    }
+>> +}
+>> 
+>> The following comments give the impression that Rust abstractions
+>> wrongly interact with the reference count; callers check out the
+>> reference counter. Nobody should do that.
+> 
+> No, saying that the caller must ensure that the device "has a non-zero reference
+> count" is a perfectly valid requirement.
+> 
+> It doensn't mean that the calling code has to peek the actual reference count,
+> but it means that it must be ensured that while we try to increase the reference
+> count it can't drop to zero unexpectedly.
 
---2ocqjla6tcmukjn3
-Content-Type: application/pgp-signature; name="signature.asc"
+Yeah, the same requirements but expressed differently.
 
------BEGIN PGP SIGNATURE-----
+But again, I might be misunderstanding. Greg might have a different reason.
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcFmCEACgkQj4D7WH0S
-/k6xnwf/QOZhbtT562rFFa3JIiBatDxTcqyEXoXClrP7jSyQFY/VFzq2S2jRHOFt
-wM6zQUX1bTUqDtC4HozJIbQDjLxd3qFgc5RoTRLV8VhRJbcq9cOo5Nf1h4KJ5Ip9
-nhpzoHwUHoEjEHj1f9UvEWfnFAVCSLFxgb14ZDHZyb2pQue3G5OYI2f2cJYT8YVB
-xQktDFp7rUu4xWDTzoIxNKvR1Ipy5fGxdf9R2/+IQhW64sWuDG2ZH6tAmfn6mEb8
-ecspbesJx+NMbZ06Zl7wqBvyj/DpQGgPaCnWUQ5cI0Of/kOzqxh4+65JK68CLLs0
-/Goin2zz55IZITGC5zHuAA07bW/c7Q==
-=7Wup
------END PGP SIGNATURE-----
-
---2ocqjla6tcmukjn3--
+> Your patch, as a subset of this one, has the same requirements as listed below.
+> 
+>> 
+>> +    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count.
+>> +    pub unsafe fn from_raw(ptr: *mut bindings::device) -> ARef<Self> {
+>> 
+>> +    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count for
+>> +    /// the entire duration when the returned reference exists.
+>> +    pub unsafe fn as_ref<'a>(ptr: *mut bindings::device) -> &'a Self {
+>> +        // SAFETY: Guaranteed by the safety requirements of the function.
+>> +        unsafe { &*ptr.cast() }
+>> +    }
+>> 
+> 
+> 
