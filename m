@@ -4,83 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E368D5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E13C5D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C935B10EA7B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B26C10EB13;
 	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MajzK9qS";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=freemail.hu header.i=@freemail.hu header.b="ELxkzDJF";
 	dkim-atps=neutral
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
- [209.85.128.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A39410E8E9
- for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 19:50:26 +0000 (UTC)
-Received: by mail-wm1-f43.google.com with SMTP id
- 5b1f17b1804b1-4710665e7deso4599405e9.1
- for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 12:50:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760557825; x=1761162625; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=bdStip0PmH8uNxqvUSt7q9Mj9fkGcDmvgx0joPS4jZo=;
- b=MajzK9qSSDnJdxVhAMbLaenaan2i0j1laS0sigU/w/bbMAYoVd+QZiW9olaKl3x+jT
- G88SAvKAegjHG1YISlZlGyL9KjxWlw7Y/S3VlsZeupdMNZ2pCyoaPN2iDrDecWTIZXVH
- knHsTH314GojSSxyGlawhgBZDQH83Zsn8ef2cZVSkiZVAP8TgLOEfo7rtCurHiD74ojJ
- jXAS/rhOzVpCMxZ0fuBa+BoDh8zNZKTKds+QqXue2zOvVqpwS77l6WbR9s6cWwS0UflL
- R5/u3qtPObVKo81ymYLB0w7Ia/7jqdls7Ift/2o7+2DBVHgfqHAbHo0+nCBoNxjKCgMv
- Niyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760557825; x=1761162625;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=bdStip0PmH8uNxqvUSt7q9Mj9fkGcDmvgx0joPS4jZo=;
- b=r+dqlXWxuWKMyEeHNTNAemAHb1PjrEKOUODKLRyLSYUBeKyJTr6rGH+4R88nGhJmch
- c0pKQdbfOSbiJUjbtInYiEG+wV8X2cIvksuqAmjhRo+1jQIX6sdrXjkalTtVYT2kPDWo
- FkwzQuzkMnADZ1NhEZl2LeqF3qfawURERBQ7ytMdg3nijPNA0WYRuzjvGb2G+0BxD0Vt
- Xz9sAUdO3xPltnmDSDKT1HF+2grlSpIcI1PNgsqVPIH9y3ERm83+YViZayyhTZIUWRgI
- GrFuiN0fL8V0OsWl2qkMB5VopIvMARipfQ8rOKGxBcHJjJLu/cUx1YeZKi8SUK8091o3
- JlkA==
-X-Gm-Message-State: AOJu0YzXsAa1MdqFH+awpkxfaMRwOtHMRMZbEPadGVmit1pQTI4Sk9Z/
- V8ArZW4WbF5ucg23DUUiblF127AIS+ARlzFNzVpE6aaH2971kGH1Vt2i
-X-Gm-Gg: ASbGncsDJkFK/uNIkAP9UeyO9Y3InBjdMmCOuZtgQRHd+lHNbxEEUyVW7eTImrmoVKc
- snQSN61yMdge+XFfmWS75DX/AjuH7jx3LufhTFjvwnhfjUkJ0P2mLlg9EmclLa2vPwC43uJjem1
- 6ZtmOo3/FnTErCEmnJJqcNtJXV596ZXr4uPpl+inr8NwC+zNO6XXetnr4hLWj1zftcmu5yngELx
- uU9Ob0PJE27ZzmRudIYOM8eaygO2jJN9OZIotJTnT7F3l7liHlrBPy0d2202L89V+0rpIyJoBLL
- H79hyE8IioCNm47dJL/R0p5lfpn6hcXqf8xP7gxWdna1xzJrjZyIasrUNU3ZLaZrRVihh80u8eg
- FXi5meoPs+baRHLW7eRiPZuO5BxysZO3ye/utrYTj41usEF6dLb0VuOEBFLGomjHCk69iNI3fNT
- Zc69g6mFPsMammMTx9irYHtMrNP1Sg
-X-Google-Smtp-Source: AGHT+IGddGrpCxX7OrSl23A+tvIURBAgb57PvaARooGLmVHLlO5kmYWtSLkEff3kH7Jc2lvzrUziFw==
-X-Received: by 2002:a05:600c:1990:b0:46e:37af:f90e with SMTP id
- 5b1f17b1804b1-46fa9a8f085mr218854435e9.6.1760557824618; 
- Wed, 15 Oct 2025 12:50:24 -0700 (PDT)
-Received: from archito.cern.ch ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46fc155143fsm281464675e9.11.2025.10.15.12.50.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Oct 2025 12:50:24 -0700 (PDT)
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org,
- Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-Subject: [PATCH 1/2] nova-core: Solve mentions of `CoherentAllocation`
- improvements [COHA]
-Date: Wed, 15 Oct 2025 21:49:35 +0200
-Message-ID: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
-X-Mailer: git-send-email 2.51.0
+Received: from smtp-out.freemail.hu (fmfe17.freemail.hu [46.107.16.210])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A8E510E013;
+ Sun,  2 Jun 2024 23:27:50 +0000 (UTC)
+Received: from [192.168.0.16] (catv-80-98-74-198.catv.fixed.vodafone.hu
+ [80.98.74.198])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp.freemail.hu (Postfix) with ESMTPSA id 4VstLn25b4z2vv;
+ Mon,  3 Jun 2024 01:27:45 +0200 (CEST)
+Message-ID: <d8366db0-ceeb-44c5-bef3-8cffb9d74860@freemail.hu>
+Date: Mon, 3 Jun 2024 01:27:40 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/nouveau/i2c: rename aux.c and aux.h to nvkm_i2c_aux.c
+ and nvkm_i2c_aux.h
+To: Ben Skeggs <bskeggs@nvidia.com>, kherbst@redhat.com, lyude@redhat.com,
+ airlied@gmail.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20240601212247.54786-1-egyszeregy@freemail.hu>
+ <233ba844-7964-42ad-8962-95c371e402be@nvidia.com>
+Content-Language: hu, en-US
+From: =?UTF-8?Q?Sz=C5=91ke_Benjamin?= <egyszeregy@freemail.hu>
+In-Reply-To: <233ba844-7964-42ad-8962-95c371e402be@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/relaxed; t=1717370867; 
+ s=20181004; d=freemail.hu;
+ h=Message-ID:Date:MIME-Version:Subject:To:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+ l=7588; bh=MEMKy+zpzeM/b0SV9PKLhstRFfWTgKmOq/rJvbhZwXQ=;
+ b=ELxkzDJF/zs+wcGNMvH0gkpPqrA7mgMbamXNgxisVoafyqaOEcLygqrt+S5R4/AV
+ mn48KjRdpXTWR3//Jz3VpSnQQc2WS45dQDoaQhv9sd5ce/NnZo8NYQP2WWdTVCs2Btb
+ DsrUkDeG3dTngNRc/sdesH6EBp+qhnCDCnvyXzIWYvKMRXP3koNq56e6dSxRZ4C4bHF
+ /x8widEcfvs8giZ4FPhpXoooJTpj2Hoc9p4vZgsM7xxWmNe2Uob2vp4thdjG8noCmYO
+ 3O8BtHqJYSpbTjJGu1JNdjew6rhNa81nLdQlIgM6mo5U24gCte+QdpN07InOMwMW1gE
+ mFAXUDVTmQ==
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,244 +63,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch solves the existing mentions of COHA, a task
-in the Nova task list about improving the `CoherentAllocation` API.
-I confirmed by talking to Alexandre Courbot, that the reading/writing
-methods in `CoherentAllocation` can never be safe, so
-this patch doesn't actually change `CoherentAllocation`, but rather
-tries to solve the existing references to [COHA].
+2024. 06. 03. 0:08 keltezéssel, Ben Skeggs írta:
+> On 2/6/24 07:22, egyszeregy@freemail.hu wrote:
+> 
+>> From: Benjamin Szőke <egyszeregy@freemail.hu>
+>>
+>> The goal is to clean-up Linux repository from AUX file names, because
+>> the use of such file names is prohibited on other operating systems
+>> such as Windows, so the Linux repository cannot be cloned and
+>> edited on them.
+>>
+>> Signed-off-by: Benjamin Szőke <egyszeregy@freemail.hu>
+>> ---
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild                  | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c               | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c                | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c              | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c              | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c                  | 2 +-
+>>   .../gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => nvkm_i2c_aux.c}   | 2 +-
+>>   .../gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => nvkm_i2c_aux.h}   | 0
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c                | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c              | 2 +-
+>>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c              | 2 +-
+>>   11 files changed, 10 insertions(+), 10 deletions(-)
+>>   rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => nvkm_i2c_aux.c} (99%)
+>>   rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => nvkm_i2c_aux.h} (100%)
+> 
+> NACK on this rename.  No other part of NVKM uses filenames like this. If 
+> anything, auxch.[ch] would be a better choice.
+> 
+> Ben.
 
-Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
----
- drivers/gpu/nova-core/dma.rs            |  20 ++---
- drivers/gpu/nova-core/firmware/fwsec.rs | 104 ++++++++++--------------
- 2 files changed, 50 insertions(+), 74 deletions(-)
+Do you mean it would be better to rename them in the following way?
 
-diff --git a/drivers/gpu/nova-core/dma.rs b/drivers/gpu/nova-core/dma.rs
-index 94f44bcfd748..639a99cf72c4 100644
---- a/drivers/gpu/nova-core/dma.rs
-+++ b/drivers/gpu/nova-core/dma.rs
-@@ -25,21 +25,11 @@ pub(crate) fn new(dev: &device::Device<device::Bound>, len: usize) -> Result<Sel
-     }
- 
-     pub(crate) fn from_data(dev: &device::Device<device::Bound>, data: &[u8]) -> Result<Self> {
--        Self::new(dev, data.len()).map(|mut dma_obj| {
--            // TODO[COHA]: replace with `CoherentAllocation::write()` once available.
--            // SAFETY:
--            // - `dma_obj`'s size is at least `data.len()`.
--            // - We have just created this object and there is no other user at this stage.
--            unsafe {
--                core::ptr::copy_nonoverlapping(
--                    data.as_ptr(),
--                    dma_obj.dma.start_ptr_mut(),
--                    data.len(),
--                );
--            }
--
--            dma_obj
--        })
-+        let mut dma_obj = Self::new(dev, data.len())?;
-+        // SAFETY: We have just created this object and there is no other user at this stage.
-+        unsafe { dma_obj.write(data, 0)? };
-+
-+        Ok(dma_obj)
-     }
- }
- 
-diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
-index 8edbb5c0572c..cc5a6200d0de 100644
---- a/drivers/gpu/nova-core/firmware/fwsec.rs
-+++ b/drivers/gpu/nova-core/firmware/fwsec.rs
-@@ -11,12 +11,12 @@
- //! - The ucode signature, so the GSP falcon can run FWSEC in HS mode.
- 
- use core::marker::PhantomData;
--use core::mem::{align_of, size_of};
-+use core::mem::size_of;
- use core::ops::Deref;
- 
- use kernel::device::{self, Device};
- use kernel::prelude::*;
--use kernel::transmute::FromBytes;
-+use kernel::transmute::{AsBytes, FromBytes};
- 
- use crate::dma::DmaObject;
- use crate::driver::Bar0;
-@@ -70,6 +70,8 @@ struct FalconAppifDmemmapperV3 {
- }
- // SAFETY: any byte sequence is valid for this struct.
- unsafe impl FromBytes for FalconAppifDmemmapperV3 {}
-+// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
-+unsafe impl AsBytes for FalconAppifDmemmapperV3 {}
- 
- #[derive(Debug)]
- #[repr(C, packed)]
-@@ -82,6 +84,8 @@ struct ReadVbios {
- }
- // SAFETY: any byte sequence is valid for this struct.
- unsafe impl FromBytes for ReadVbios {}
-+// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
-+unsafe impl AsBytes for ReadVbios {}
- 
- #[derive(Debug)]
- #[repr(C, packed)]
-@@ -94,6 +98,8 @@ struct FrtsRegion {
- }
- // SAFETY: any byte sequence is valid for this struct.
- unsafe impl FromBytes for FrtsRegion {}
-+// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
-+unsafe impl AsBytes for FrtsRegion {}
- 
- const NVFW_FRTS_CMD_REGION_TYPE_FB: u32 = 2;
- 
-@@ -104,6 +110,8 @@ struct FrtsCmd {
- }
- // SAFETY: any byte sequence is valid for this struct.
- unsafe impl FromBytes for FrtsCmd {}
-+// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
-+unsafe impl AsBytes for FrtsCmd {}
- 
- const NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS: u32 = 0x15;
- const NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB: u32 = 0x19;
-@@ -149,24 +157,9 @@ impl FirmwareSignature<FwsecFirmware> for Bcrt30Rsa3kSignature {}
- ///
- /// Callers must ensure that the region of memory returned is not written for as long as the
- /// returned reference is alive.
--///
--/// TODO[TRSM][COHA]: Remove this and `transmute_mut` once `CoherentAllocation::as_slice` is
--/// available and we have a way to transmute objects implementing FromBytes, e.g.:
--/// https://lore.kernel.org/lkml/20250330234039.29814-1-christiansantoslima21@gmail.com/
--unsafe fn transmute<'a, 'b, T: Sized + FromBytes>(
--    fw: &'a DmaObject,
--    offset: usize,
--) -> Result<&'b T> {
--    if offset + size_of::<T>() > fw.size() {
--        return Err(EINVAL);
--    }
--    if (fw.start_ptr() as usize + offset) % align_of::<T>() != 0 {
--        return Err(EINVAL);
--    }
--
--    // SAFETY: we have checked that the pointer is properly aligned that its pointed memory is
--    // large enough the contains an instance of `T`, which implements `FromBytes`.
--    Ok(unsafe { &*(fw.start_ptr().add(offset).cast::<T>()) })
-+unsafe fn transmute<T: Sized + FromBytes>(fw: &DmaObject, offset: usize) -> Result<&T> {
-+    // SAFETY: Guaranteed by the safety requirements of the function.
-+    T::from_bytes(unsafe { fw.as_slice(offset, size_of::<T>())? }).ok_or(EINVAL)
- }
- 
- /// Reinterpret the area starting from `offset` in `fw` as a mutable instance of `T` (which must
-@@ -176,20 +169,12 @@ unsafe fn transmute<'a, 'b, T: Sized + FromBytes>(
- ///
- /// Callers must ensure that the region of memory returned is not read or written for as long as
- /// the returned reference is alive.
--unsafe fn transmute_mut<'a, 'b, T: Sized + FromBytes>(
--    fw: &'a mut DmaObject,
-+unsafe fn transmute_mut<T: Sized + FromBytes + AsBytes>(
-+    fw: &mut DmaObject,
-     offset: usize,
--) -> Result<&'b mut T> {
--    if offset + size_of::<T>() > fw.size() {
--        return Err(EINVAL);
--    }
--    if (fw.start_ptr_mut() as usize + offset) % align_of::<T>() != 0 {
--        return Err(EINVAL);
--    }
--
--    // SAFETY: we have checked that the pointer is properly aligned that its pointed memory is
--    // large enough the contains an instance of `T`, which implements `FromBytes`.
--    Ok(unsafe { &mut *(fw.start_ptr_mut().add(offset).cast::<T>()) })
-+) -> Result<&mut T> {
-+    // SAFETY: Guaranteed by the safety requirements of the function.
-+    T::from_bytes_mut(unsafe { fw.as_slice_mut(offset, size_of::<T>())? }).ok_or(EINVAL)
- }
- 
- /// The FWSEC microcode, extracted from the BIOS and to be run on the GSP falcon.
-@@ -260,32 +245,38 @@ fn new_fwsec(dev: &Device<device::Bound>, bios: &Vbios, cmd: FwsecCommand) -> Re
- 
-         // Find the DMEM mapper section in the firmware.
-         for i in 0..hdr.entry_count as usize {
--            let app: &FalconAppifV1 =
-             // SAFETY: we have exclusive access to `dma_object`.
--            unsafe {
-+            let app: &FalconAppifV1 = unsafe {
-                 transmute(
-                     &dma_object,
--                    hdr_offset + hdr.header_size as usize + i * hdr.entry_size as usize
-+                    hdr_offset + hdr.header_size as usize + i * hdr.entry_size as usize,
-                 )
-             }?;
- 
-             if app.id != NVFW_FALCON_APPIF_ID_DMEMMAPPER {
-                 continue;
-             }
-+            let dmem_base = app.dmem_base;
- 
-             // SAFETY: we have exclusive access to `dma_object`.
-             let dmem_mapper: &mut FalconAppifDmemmapperV3 = unsafe {
--                transmute_mut(
--                    &mut dma_object,
--                    (desc.imem_load_size + app.dmem_base) as usize,
--                )
-+                transmute_mut(&mut dma_object, (desc.imem_load_size + dmem_base) as usize)
-             }?;
- 
-+            dmem_mapper.init_cmd = match cmd {
-+                FwsecCommand::Frts {
-+                    frts_addr: _,
-+                    frts_size: _,
-+                } => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS,
-+                FwsecCommand::Sb => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB,
-+            };
-+            let cmd_in_buffer_offset = dmem_mapper.cmd_in_buffer_offset;
-+
-             // SAFETY: we have exclusive access to `dma_object`.
-             let frts_cmd: &mut FrtsCmd = unsafe {
-                 transmute_mut(
-                     &mut dma_object,
--                    (desc.imem_load_size + dmem_mapper.cmd_in_buffer_offset) as usize,
-+                    (desc.imem_load_size + cmd_in_buffer_offset) as usize,
-                 )
-             }?;
- 
-@@ -296,24 +287,19 @@ fn new_fwsec(dev: &Device<device::Bound>, bios: &Vbios, cmd: FwsecCommand) -> Re
-                 size: 0,
-                 flags: 2,
-             };
--
--            dmem_mapper.init_cmd = match cmd {
--                FwsecCommand::Frts {
--                    frts_addr,
--                    frts_size,
--                } => {
--                    frts_cmd.frts_region = FrtsRegion {
--                        ver: 1,
--                        hdr: size_of::<FrtsRegion>() as u32,
--                        addr: (frts_addr >> 12) as u32,
--                        size: (frts_size >> 12) as u32,
--                        ftype: NVFW_FRTS_CMD_REGION_TYPE_FB,
--                    };
--
--                    NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS
--                }
--                FwsecCommand::Sb => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB,
--            };
-+            if let FwsecCommand::Frts {
-+                frts_addr,
-+                frts_size,
-+            } = cmd
-+            {
-+                frts_cmd.frts_region = FrtsRegion {
-+                    ver: 1,
-+                    hdr: size_of::<FrtsRegion>() as u32,
-+                    addr: (frts_addr >> 12) as u32,
-+                    size: (frts_size >> 12) as u32,
-+                    ftype: NVFW_FRTS_CMD_REGION_TYPE_FB,
-+                };
-+            }
- 
-             // Return early as we found and patched the DMEMMAPPER region.
-             return Ok(Self(dma_object, PhantomData));
--- 
-2.51.0
+rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => auxc.c}
+rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => auxh.h}
+
+
+> 
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+>> index 819703913a00..c488dfce4392 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+>> @@ -25,7 +25,7 @@ nvkm-y += nvkm/subdev/i2c/busnv50.o
+>>   nvkm-y += nvkm/subdev/i2c/busgf119.o
+>>   nvkm-y += nvkm/subdev/i2c/bit.o
+>> -nvkm-y += nvkm/subdev/i2c/aux.o
+>> +nvkm-y += nvkm/subdev/i2c/nvkm_i2c_aux.o
+>>   nvkm-y += nvkm/subdev/i2c/auxg94.o
+>>   nvkm-y += nvkm/subdev/i2c/auxgf119.o
+>>   nvkm-y += nvkm/subdev/i2c/auxgm200.o
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+>> index dd391809fef7..30bf84e77db9 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+>> @@ -24,7 +24,7 @@
+>>   #define anx9805_pad(p) container_of((p), struct anx9805_pad, base)
+>>   #define anx9805_bus(p) container_of((p), struct anx9805_bus, base)
+>>   #define anx9805_aux(p) container_of((p), struct anx9805_aux, base)
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "bus.h"
+>>   struct anx9805_pad {
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+>> index 47068f6f9c55..9e07ba444ca8 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs <bskeggs@redhat.com>
+>>    */
+>>   #define g94_i2c_aux(p) container_of((p), struct g94_i2c_aux, base)
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   struct g94_i2c_aux {
+>>       struct nvkm_i2c_aux base;
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+>> index dab40cd8fe3a..8709b728c38b 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+>> @@ -19,7 +19,7 @@
+>>    * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+>>    * OTHER DEALINGS IN THE SOFTWARE.
+>>    */
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   static const struct nvkm_i2c_aux_func
+>>   gf119_i2c_aux = {
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+>> index 8bd1d442e465..f40c5709d217 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs <bskeggs@redhat.com>
+>>    */
+>>   #define gm200_i2c_aux(p) container_of((p), struct gm200_i2c_aux, base)
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   struct gm200_i2c_aux {
+>>       struct nvkm_i2c_aux base;
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+>> index 976539de4220..736275f0c774 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs
+>>    */
+>>   #include "priv.h"
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "bus.h"
+>>   #include "pad.h"
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nvkm_i2c_aux.c
+>> similarity index 99%
+>> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+>> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nvkm_i2c_aux.c
+>> index d063d0dc13c5..6b76df02c63a 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nvkm_i2c_aux.c
+>> @@ -24,7 +24,7 @@
+>>   #include <linux/string_helpers.h>
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "pad.h"
+>>   static int
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nvkm_i2c_aux.h
+>> similarity index 100%
+>> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+>> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/nvkm_i2c_aux.h
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+>> index 5904bc5f2d2a..e9c55a57c878 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs
+>>    */
+>>   #include "pad.h"
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "bus.h"
+>>   void
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+>> index 3bc4d0310076..1af64e25d838 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs
+>>    */
+>>   #include "pad.h"
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "bus.h"
+>>   static const struct nvkm_i2c_pad_func
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c 
+>> b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+>> index 7d417f6a816e..997a5a2146c4 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+>> @@ -22,7 +22,7 @@
+>>    * Authors: Ben Skeggs
+>>    */
+>>   #include "pad.h"
+>> -#include "aux.h"
+>> +#include "nvkm_i2c_aux.h"
+>>   #include "bus.h"
+>>   static void
 
