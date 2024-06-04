@@ -4,47 +4,185 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB718D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9575DD5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD9C910EAD3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE08810EAD9;
 	Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H3remL7r";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cO0txN5x";
 	dkim-atps=neutral
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2C310EA4F;
- Thu, 18 Jul 2024 17:00:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9801710E42C;
+ Tue,  4 Jun 2024 07:56:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 9766361BA6;
- Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA39EC4AF0A;
- Thu, 18 Jul 2024 17:00:13 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id E183D61214;
+ Tue,  4 Jun 2024 07:56:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78922C4AF07;
+ Tue,  4 Jun 2024 07:55:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1721322015;
- bh=EPLPHzWrGEOLeJuNaGjh5LgxCTKpZ6gyK3S1PTRsKbA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=H3remL7rPxu8MSAAL358JFVnirA2jauibLaDz/JK2cK2DXNDsnSRDrkY+mCk0cIny
- HLUGidoIJB3Tr+apsQkh6YNGcYEFzJXv2JyFxGKCxBm6kZcjW3RD3/XOqpf6tyfCZX
- G44p1Cf48xlKlv8VxvKxI2DegZmbowBjV3zR0gfCrmFPTUXk8LBnhsB2q4qhhfIMAs
- KeCuKOnzhqRLVLkkSSkS0Wvs+zdeds0vK/E2Dr3aY3TnoZXX9TnLal5y1ASgN/85wF
- IRT2TD3MgF8Jj+NzoMk3JFDKWCk5/7qMRkfYX8HMBUmOCqKZ+8ui/aeyOpkpOc9KBi
- CiXYpaRZnR7MQ==
-From: Danilo Krummrich <dakr@kernel.org>
-To: lyude@redhat.com,
-	airlied@redhat.com,
-	christian.koenig@amd.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH 2/3] drm/nouveau: bo: remove unused functions
-Date: Thu, 18 Jul 2024 18:58:47 +0200
-Message-ID: <20240718165959.3983-3-dakr@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240718165959.3983-1-dakr@kernel.org>
-References: <20240718165959.3983-1-dakr@kernel.org>
+ s=k20201202; t=1717487760;
+ bh=4r1XIGiIBntxtYgSrLATGn9pzmPHWxwf8DOa6d4i2rM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=cO0txN5xdNfslfvZE791uexfYpXbRpHRIJ4K3vX7xZgZGMu/BK5fgd4ZTgoFlDPBU
+ FCYQx1I4EV5cBO9u0WdQi9XhBFx+P+Xq8cKra5KDDqFlhW9YxOLdsXaSPnapDHDXxZ
+ Sn9bXHmXIw6RqiRT3LYxIGzGWvsK9ueuZJjpaN78aCTZ1FV/L1CyJdAP4ozvgA8WV5
+ XnvR1z5+4GS1WJqZ/Mwr1fE6xGukYvnhwpjJH69wsci4jbJCOQq4hRQZWUpXOHR8Yf
+ krQZ+u74+Go0mge+d7wlxJScR5Dthshf4fStEgV84j5/ECqRXSC1OdnOXqc3QHBAya
+ v/ZuT/0z8+Cxg==
+Date: Tue, 4 Jun 2024 13:25:55 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Perry Yuan <perry.yuan@amd.com>,
+ Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Nuno Sa <nuno.sa@analog.com>, Guenter Roeck <linux@roeck-us.net>,
+ Randy Dunlap <rdunlap@infradead.org>, Andi Shyti <andi.shyti@kernel.org>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Lee Jones <lee@kernel.org>,
+ Samuel Holland <samuel@sholland.org>, Elad Nachman <enachman@marvell.com>,
+ Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+ Johannes Berg <johannes.berg@intel.com>,
+ Gregory Greenman <gregory.greenman@intel.com>,
+ Benjamin Berg <benjamin.berg@intel.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Hans de Goede <hdegoede@redhat.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Nikita Kravets <teackot@gmail.com>, Jiri Slaby <jirislaby@kernel.org>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Stanley Chang <stanley_chang@realtek.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Abdel Alkuor <abdelalkuor@geotab.com>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ Eric Biggers <ebiggers@google.com>,
+ Kees Cook <keescook@chromium.org>, Ingo Molnar <mingo@kernel.org>,
+ "Steven Rostedt (Google)" <rostedt@goodmis.org>,
+ Daniel Bristot de Oliveira <bristot@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Hugh Dickins <hughd@google.com>, Abel Wu <wuyun.abel@bytedance.com>,
+ John Johansen <john.johansen@canonical.com>,
+ Mimi Zohar <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>,
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, Takashi Iwai <tiwai@suse.de>,
+ Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Mark Brown <broonie@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ keyrings@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-ide@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, linux-clk@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-pm@vger.kernel.org, qat-linux@intel.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org,
+ linux-hardening@vger.kernel.org, cgroups@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
+ linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org, Michael Ellerman <mpe@ellerman.id.au>,
+ Nicholas Piggin <npiggin@gmail.com>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, David Howells <dhowells@redhat.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Daniel Scally <djrscally@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Heiko Stuebner <heiko@sntech.de>,
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Huang Rui <ray.huang@amd.com>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, Jean Delvare <jdelvare@suse.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Tony Lindgren <tony@atomide.com>, Adrian Hunter <adrian.hunter@intel.com>,
+ Hu Ziji <huziji@marvell.com>, Ulf Hansson <ulf.hansson@linaro.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Potnuri Bharat Teja <bharat@chelsio.com>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
+ Oliver O'Halloran <oohall@gmail.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ JC Kuo <jckuo@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>,
+ Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>,
+ Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Valentin Schneider <vschneid@redhat.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+ Clemens Ladisch <clemens@ladisch.de>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
+ sysfs_match_string()
+Message-ID: <Zl7IizU68VWtYHsV@matsya>
+References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:53 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,54 +197,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-nouveau_bo_new_pin_map() and nouveau_bo_unmap_unpin_unref() are unused,
-hence remove them.
+On 02-06-24, 18:57, Andy Shevchenko wrote:
+> Make two APIs look similar. Hence convert match_string() to be
+> a 2-argument macro. In order to avoid unneeded churn, convert
+> all users as well. There is no functional change intended.
+> 
 
-Signed-off-by: Danilo Krummrich <dakr@kernel.org>
----
- drivers/gpu/drm/nouveau/nouveau_bo.h | 29 ----------------------------
- 1 file changed, 29 deletions(-)
+..
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-index 4e891752c255..3b8dfbb621da 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-@@ -115,35 +115,6 @@ nvbo_kmap_obj_iovirtual(struct nouveau_bo *nvbo)
- 	return ioptr;
- }
- 
--static inline void
--nouveau_bo_unmap_unpin_unref(struct nouveau_bo **pnvbo)
--{
--	if (*pnvbo) {
--		nouveau_bo_unmap(*pnvbo);
--		nouveau_bo_unpin(*pnvbo);
--		nouveau_bo_ref(NULL, pnvbo);
--	}
--}
--
--static inline int
--nouveau_bo_new_pin_map(struct nouveau_cli *cli, u64 size, int align, u32 domain,
--		       struct nouveau_bo **pnvbo)
--{
--	int ret = nouveau_bo_new(cli, size, align, domain,
--				 0, 0, NULL, NULL, pnvbo);
--	if (ret == 0) {
--		ret = nouveau_bo_pin(*pnvbo, domain, true);
--		if (ret == 0) {
--			ret = nouveau_bo_map(*pnvbo);
--			if (ret == 0)
--				return ret;
--			nouveau_bo_unpin(*pnvbo);
--		}
--		nouveau_bo_ref(NULL, pnvbo);
--	}
--	return ret;
--}
--
- int nv04_bo_move_init(struct nouveau_channel *, u32);
- int nv04_bo_move_m2mf(struct nouveau_channel *, struct ttm_buffer_object *,
- 		      struct ttm_resource *, struct ttm_resource *);
+>  drivers/phy/mediatek/phy-mtk-tphy.c           |  8 ++---
+>  drivers/phy/tegra/xusb.c                      |  4 +--
+
+Acked-by: Vinod Koul <vkoul@kernel.org>
+
 -- 
-2.45.2
-
+~Vinod
