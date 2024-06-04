@@ -4,60 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBA57D5AE45
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:15:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54DF0D5AE45
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3579C10E0B9;
-	Sat, 13 Dec 2025 12:15:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB47A10E04A;
+	Sat, 13 Dec 2025 12:17:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=qq.com header.i=@qq.com header.b="i4/EWZjO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="N3Bnsh4/";
 	dkim-atps=neutral
-Received: from out203-205-221-242.mail.qq.com (out203-205-221-242.mail.qq.com
- [203.205.221.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EACF10E062
- for <nouveau@lists.freedesktop.org>; Mon,  1 Dec 2025 01:42:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
- t=1764553374; bh=EwbRVh5O8zYDm77GrSE46g/cFUM+uW2lfKH1bz4YXPw=;
- h=From:To:Cc:Subject:Date;
- b=i4/EWZjOCQghBr7+pQPX6YBOSCMHrq8KWw93KyUYwRrpUgqD70zoH4llf17wtIpGs
- /TKI97F2koQUCG+tGo8WdL3/KQpC4gw62SB3nqZXeIpYkDnBKYZ3BLB+PR2WRby+s3
- V+EPFVlbm/Vq3nq1S+eoWJaWvyQ7CQZL6KcL4FMU=
-Received: from localhost.localdomain ([116.128.244.169])
- by newxmesmtplogicsvrszb51-0.qq.com (NewEsmtp) with SMTP
- id A67B906E; Mon, 01 Dec 2025 09:41:39 +0800
-X-QQ-mid: xmsmtpt1764553299t3kp9bknk
-Message-ID: <tencent_7431C42BA1F206D1FAF305FB068550884605@qq.com>
-X-QQ-XMAILINFO: MGcJvgbhPSHvqKda8qgvU1SNZR/cbDAt5KkK+IO6+GfyhUMbUSqa6orKlRlxfa
- jJ52ppBFBRdF+98o6pLVdwSBAo6EskvAGP+c3fqej9+sGbVwH5+oWd/cXCrIcTs0emBVICTX0lyB
- K6d9mQSb5YsPXORCMo9nDoTOqVm0EPpNTQfHwl6wNtRT70uFjgW94xneCyF77IgPe/FljOLVomdC
- ZEQYub+zudNmGPgPQICG0YiqKzg8hBn3Fwk6W6lK+LnFG/ygPTcMKD6o2iBTFIl10p1kmL2S8VQT
- s7qR4EH3z+0CrXhPd0x3F3Ay3v1dbt0bW3bin8yJun+DlkowwQDwefZrNoyGs6WfAHeid3xSNrPJ
- lA6euebWveWuHbHgix70RJLOKNDwwgyi+zPAKP7YkJ8jx2wBOUOX1gxKqUnBE/Voi9Ysx3n17U1j
- HYsidoLRO5xCeCbarldfDxjnOzevQHpPVGWboP8zh1jr2CmXa51YwiydZERqlEh4hr9Og4rsX6Rm
- 2du9JHHL8xbtTcDvtJ52OIwk1NNUEKU6HS5s+oGHQkpmuR3MFwR922oBbKNsOZtRCFqqvCzuKkb0
- 45NDZa17tk72cANNS0KM3C1WWlM6RtFzxdDg4LRALhQNfQXRoM5fpa/oLtcSHUlshqPAFPbBtxwg
- lUOriT+et/+h5k7Aw8SRGfWROvZIjhTNkgrDFSsqYAtJjzy5zOot9l7LO26ZbZpSBSsOF261ysSE
- GLbteQPiVCNifl3/h6EkzVzIyJj6Ig/eMtgeJ7XxizyHOb9YoOi7se7uU+LfkhUhlDeSLKp6Izs4
- 9BhVr8xsvz5ek9hqymsN68lfeVT9C0dimW7a54Jfl/h2E9Kz3Xyr6CWx9Iy+Ce1sTbQ2H8pqw3BL
- 4vPLWr2bm2MjXOnma+0ej33+6q9yQXJCZ968iHDOduhTtWT+6+xsPARKofnK5BUWSPXP++J2AEMk
- j1mppRY6GJoRZyqrQht6fvJ2XCf4rU
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-From: 2564278112@qq.com
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jiangwang@kylinos.cn
-Subject: [PATCH] drm/nouveau: Resolve the issue of VGA not detecting
- disconnection
-Date: Mon,  1 Dec 2025 09:41:36 +0800
-X-OQ-MSGID: <20251201014136.38975-1-2564278112@qq.com>
-X-Mailer: git-send-email 2.25.1
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B2E310E42A;
+ Tue,  4 Jun 2024 06:44:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 87C00CE0F1E;
+ Tue,  4 Jun 2024 06:44:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE40C2BBFC;
+ Tue,  4 Jun 2024 06:43:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1717483444;
+ bh=0b2B21EDLznmxz0+PWaGRMUp9XLDYqlFaMbkmYh70KU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=N3Bnsh4/tGU8oGO2cyjLj6gwijbDQqjQqTW5Tg/DmHdTVa26xfvhgUduiUEpWgRMJ
+ jaeytFwbW0xoivR5RT/pTnNOSj5zJCz1gRI5uHTyT23hKQaEPMg6zYZNAYLSVrm+cF
+ dgtT6Ckdr0n7pQPkMZfSOYfG4dbSrh4eCdGcQSZqGLBkhMtMzlutm6bOFIcoAV1FZe
+ 9+EEQixoc3BG4phFKrga/REGqRRoaGpUMtJZl8B1M8iUMVe2WYDBm1ZLCQyqhB9Aaq
+ FIJcQ95prB9DQQ/heINrJ6uwiWuSaSLO60BeDil3P6g6e+XxFflXroV097o5ECrDeb
+ TDd+kVE/p/o6g==
+Message-ID: <0ea564fa-5405-444a-befb-ca4372817e33@kernel.org>
+Date: Tue, 4 Jun 2024 08:42:41 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:15:12 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
+ sysfs_match_string()
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Perry Yuan <perry.yuan@amd.com>,
+ Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>, Nuno Sa <nuno.sa@analog.com>,
+ Guenter Roeck <linux@roeck-us.net>, Randy Dunlap <rdunlap@infradead.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Lee Jones <lee@kernel.org>, Samuel Holland <samuel@sholland.org>,
+ Elad Nachman <enachman@marvell.com>,
+ Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
+ Johannes Berg <johannes.berg@intel.com>,
+ Gregory Greenman <gregory.greenman@intel.com>,
+ Benjamin Berg <benjamin.berg@intel.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
+ Vinod Koul <vkoul@kernel.org>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Hans de Goede
+ <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>, Nikita Kravets <teackot@gmail.com>,
+ Jiri Slaby <jirislaby@kernel.org>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Stanley Chang <stanley_chang@realtek.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Abdel Alkuor <abdelalkuor@geotab.com>,
+ Kent Overstreet <kent.overstreet@linux.dev>,
+ Eric Biggers <ebiggers@google.com>, Kees Cook <keescook@chromium.org>,
+ Ingo Molnar <mingo@kernel.org>, "Steven Rostedt (Google)"
+ <rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Hugh Dickins <hughd@google.com>, Abel Wu <wuyun.abel@bytedance.com>,
+ John Johansen <john.johansen@canonical.com>, Mimi Zohar
+ <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>,
+ Roberto Sassu <roberto.sassu@huawei.com>,
+ Eric Snowberg <eric.snowberg@oracle.com>, Takashi Iwai <tiwai@suse.de>,
+ Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+ Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
+ Mark Brown <broonie@kernel.org>,
+ Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ keyrings@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-acpi@vger.kernel.org, linux-ide@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, linux-clk@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-pm@vger.kernel.org, qat-linux@intel.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev,
+ linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-staging@lists.linux.dev, linux-usb@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org,
+ linux-hardening@vger.kernel.org, cgroups@vger.kernel.org,
+ linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
+ linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-sound@vger.kernel.org
+Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin
+ <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
+ "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
+ David Howells <dhowells@redhat.com>, "David S. Miller"
+ <davem@davemloft.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
+ Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
+ Daniel Scally <djrscally@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
+ Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Heiko Stuebner <heiko@sntech.de>,
+ Peter De Schrijver <pdeschrijver@nvidia.com>,
+ Prashant Gaikwad <pgaikwad@nvidia.com>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Huang Rui <ray.huang@amd.com>,
+ "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ Jean Delvare <jdelvare@suse.com>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Tony Lindgren <tony@atomide.com>,
+ Adrian Hunter <adrian.hunter@intel.com>, Hu Ziji <huziji@marvell.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet
+ <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Miri Korenblit <miriam.rachel.korenblit@intel.com>,
+ Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
+ Oliver O'Halloran <oohall@gmail.com>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ JC Kuo <jckuo@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Sebastian Reichel <sre@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>,
+ Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>,
+ Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
+ Vincent Guittot <vincent.guittot@linaro.org>,
+ Dietmar Eggemann <dietmar.eggemann@arm.com>, Ben Segall
+ <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
+ Daniel Bristot de Oliveira <bristot@redhat.com>,
+ Valentin Schneider <vschneid@redhat.com>,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
+ Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Linus Torvalds <torvalds@linux-foundation.org>
+References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+Content-Language: en-US, pt-BR, it-IT
+From: Daniel Bristot de Oliveira <bristot@kernel.org>
+In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,31 +192,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Wang Jiang <jiangwang@kylinos.cn>
+On 6/2/24 17:57, Andy Shevchenko wrote:
+> diff --git a/kernel/trace/trace_osnoise.c b/kernel/trace/trace_osnoise.c
+> index a8e28f9b9271..7bed499effd3 100644
+> --- a/kernel/trace/trace_osnoise.c
+> +++ b/kernel/trace/trace_osnoise.c
+> @@ -2230,9 +2230,9 @@ static ssize_t osnoise_options_write(struct file *filp, const char __user *ubuf,
+>  		enable = false;
+>  	}
+>  
+> -	option = match_string(osnoise_options_str, OSN_MAX, option_str);
+> +	option = match_string(osnoise_options_str, option_str);
+>  	if (option < 0)
+> -		return -EINVAL;
+> +		return option;
+>  
+>  	/*
+>  	 * trace_types_lock is taken to avoid concurrency on start/stop.
 
-When using the GT730, I found that the VGA could recognize when it was plugged in,
-but could not detect when it was disconnected.
-The reason is that the polled flag for the connector is missing DRM_CONNECTOR_POLL_DISCONNECT.
+Acked-by: Daniel Bristot de Oliveira <bristot@kernel.org>
 
-Signed-off-by: Wang Jiang <jiangwang@kylinos.cn>
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 63621b1510f6..dfff01edf65a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1421,7 +1421,7 @@ nouveau_connector_create(struct drm_device *dev, int index)
- 	connector->doublescan_allowed = false;
- 
- 	drm_connector_helper_add(connector, &nouveau_connector_helper_funcs);
--	connector->polled = DRM_CONNECTOR_POLL_CONNECT;
-+	connector->polled = DRM_CONNECTOR_POLL_CONNECT | DRM_CONNECTOR_POLL_DISCONNECT;
- 
- 	if (nvif_object_constructed(&nv_connector->conn.object)) {
- 		ret = nvif_conn_event_ctor(&nv_connector->conn, "kmsHotplug",
--- 
-2.25.1
-
+Thanks!
+-- Daniel
