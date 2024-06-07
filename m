@@ -4,106 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7CFFD5B163
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8979CD5B161
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B2410EA15;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE85210EA17;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TithUnsS";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NS+zfLRx";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA1110E033
- for <nouveau@lists.freedesktop.org>; Sat, 29 Nov 2025 12:21:12 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-477bf34f5f5so16704925e9.0
- for <nouveau@lists.freedesktop.org>; Sat, 29 Nov 2025 04:21:12 -0800 (PST)
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com
+ [209.85.161.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83D5B10EC1E;
+ Fri,  7 Jun 2024 12:11:51 +0000 (UTC)
+Received: by mail-oo1-f41.google.com with SMTP id
+ 006d021491bc7-5b3356fd4f3so237892eaf.1; 
+ Fri, 07 Jun 2024 05:11:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764418871; x=1765023671; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=KcVPfmTekyLiABGhJu4xmxadfb6FIwZsqQzyLFSkQjE=;
- b=TithUnsSi2tCCtGltPh1k3Tw3WMhWtAjlhtnC2k0NKLPdnxUBQ+JRNskqzrD4NR/LC
- GN3xBYpwOP7ejbe1VhHknJAudRIupo3L11bJFkJkMxIikI7niCwE1x1SYsmC8XLIW+Os
- iDL6KfIG3R15p1Si/vy1Gt++wewOms3gAgy1It2Dfx5UHOfD+OqP5CFjRHD2O0FAxVxL
- MwJEQ1tLSG+NBpqt2a7twBS5ukhF0VtPa8r8aVDXpvBc133Spj6QeIE1GnoUB6cbB0r5
- owWkUvGNsBNKpwAKQr5WhOv5TR1ThY6f7d+tQmTrl78iXC1SeFVR1THXKMwiweWsEaAB
- KY1g==
+ d=gmail.com; s=20230601; t=1717762310; x=1718367110; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=9ejJYUTymxXCdJXCEblRqnmvXk+rUpZBBw17pH+ow8E=;
+ b=NS+zfLRxugNvYkMdra3kvxBSLKj5JJba/zghMIJnw1WzgqME35d3vTT7Fr68kperPf
+ YC8F+yoR1gXrvk+YMeK7EFu5yUak4dDLieEFN1Ck+ecWFHJV9gR1UBYg0Gkbq4qKBoTY
+ VdwYTVdtUl/SfK5G6riYkQpYHkaUAitm+R2gxVNWo1gZUxQFAETV4T9rFuD8C8sRY8bn
+ D94+0FKXQw9jrIxOC52TUeSerxJLvy5nv+9C8BaSWMxTvjMsqFHimx/7VYwD4M2ExK8x
+ 4g8rjepXQadoywpc/MChn6GnQlZQjEYvCpV7vMW/jEq0xizVFuVM+iAB9jISSjQ4TUr9
+ jY+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764418871; x=1765023671;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=KcVPfmTekyLiABGhJu4xmxadfb6FIwZsqQzyLFSkQjE=;
- b=pYSoF7m8WjYc1v13Xuu1fggyL51h91PrxDdh7wfbsiaaoRA0xNJyGmjbpETgLDzhdy
- Drl8mZG6fNc2FkYlAGgPqgmUlYhGSopPO5a5krJK8kx7eVH9t85onFX+XRfw+QrIbkgR
- A4haNXCqyZi6XN7gybgHlRvgNH01Yj5W5Cr1TWBbUxaehMuuit1k7aQjyx9GnhH3qR4H
- d4toyFMUo6oBXyf+UmS04hbc699NwN2IsyJDNyQrOAVm2dqLSSWZfKXfiAIMKBJl7D0t
- k0nh/mqO7waXAL9RW6QfSdvKkL/MalIbHHp8ioBI3e/ukJqSM2TmG+GlbYzsoI2Cjtjx
- ofdQ==
+ d=1e100.net; s=20230601; t=1717762310; x=1718367110;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=9ejJYUTymxXCdJXCEblRqnmvXk+rUpZBBw17pH+ow8E=;
+ b=jEcUU3lPggL2uQBCrvQXmVx3q7hQfD1xIgEpMn+Z2xLmM0ICs3PJOabQFOdHaP8OwF
+ b2M1yprDsLIbvNowEEmCS0JfSkp/WEjoXnNqVwyABI/y2cB3XFu2RCtGmVuMjqmzO5v2
+ F6Vm3Pqb2RJRmgIV6PX1dE2amfZU1eyOMF2EKXBfr0ye+AzTBzOmhYpnnQuHryaQY0ix
+ tmVeFX8SJjH5FIHS9T4EkJCp2MZts9Ew3jznH9aMfHIefxsIWT4swfPmn+aGNpBhtm7m
+ YiObnRVR3nyf745vnl79UWiSm6X8xYAjo6L5prh226g13b5x8SKHZxm5qOVCi1sPI+T6
+ PB4A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW2UbMYtGl41cVmOAjN43mzmnTxUpWDBWHLKJFktFKpVKC78xJGfKFmHzgqY5+7oT6d3lM2sul1@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy6lwKmUXy6su0nxcVlFtQ5Q8plz3vdWi5ikXWCZAKc7xePfZyg
- /efWhz8PNp0zM+w1lPzojKRdo6y4aHRDKXEqZ2WmmcuoY4PyAxdU1EzO
-X-Gm-Gg: ASbGncsxGVeFJxDFXLp6cFFdK8tYZIC1Dtfu9cR6c01ejwiCDtj5khvAkG/0ihTxWqH
- lqyY1ZU0VmjAcbyFEIhhxqQjvazu73PF3RPxtNJABpDqNFspHBJaJHwOuY9l6xkcWFWtBvzB1mE
- NUM3A4X7yeEdXCaGA0em9FBzbswn+NgqGvt0g+Esipe2pfVCDc1hlMljYDcR4cjHAZDT+c7ZaMB
- 8KRTbTQm74woOq5ZSnnv99pnJcIQGZecdlf4Q7UYsGSeUlkU16gwbn3qsjRbjqcqlqUyMpqStdi
- o24EkQ7bAA2czbJdGVC66UAs+8bG8EZbmbAvTf34Iy7uGfBm/zWKl7wyQNCuAGE18jg86bsd/Js
- lEAjLlFB3eedq98d9EEkJ0gGzjAaJ2h4lumkMxjas5F/iV1gd57SVMegn84QljzzUUud7DIgrf/
- 2yqPNmE+cfBouFBSn8wwRsftCY5B9DIhnaHcmNWv/9dOS+nxSpWErfX9QCfsoC8uIHPwfk3RDc4
- g9Zvq0PYlNnPjAE
-X-Google-Smtp-Source: AGHT+IHPdRho1zaUXZGS4ozcekK0LR1lA9bfnMYzOaD4j+9k0x7QM6vylSP8/9z2op9t+DSRd2h1Jw==
-X-Received: by 2002:a05:600c:3b96:b0:477:5c58:3d42 with SMTP id
- 5b1f17b1804b1-47904ad907amr211433865e9.10.1764418870809; 
- Sat, 29 Nov 2025 04:21:10 -0800 (PST)
-Received: from ?IPV6:2a06:5906:2618:cb00:ddd6:3141:6a4a:f8d8?
- ([2a06:5906:2618:cb00:ddd6:3141:6a4a:f8d8])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42e1ca1a3f1sm15343627f8f.28.2025.11.29.04.21.09
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 29 Nov 2025 04:21:09 -0800 (PST)
-Message-ID: <1b7408c5-64a8-42f1-92ab-dd90a883c1a4@gmail.com>
-Date: Sat, 29 Nov 2025 12:21:09 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] rust: kernel: Update ARef and AlwaysRefCounted
- imports to use sync::aref
-To: Shankari Anand <shankari.ak0208@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ AJvYcCVNR899kCkgrsgQiLK3IxKqsPShH8GDqQgCVXTeF8X7XjgpxPdIQHAirYSri8WzhhURqnRkCBAbjAfzJtzskXfqNMHf0KWgqVR1/tcLF2e2fAUvBguuOFVbvz/xHw9+4PSzg4hCw3h1oBmP/bHxdA==
+X-Gm-Message-State: AOJu0Yw0FiycYcQIf+lsueO5guJ4C2CmrPGMzePIRcpftui3aULL2ixn
+ FFxQqP8/yqs8wm8fz4p41sQZ4vibjfD8CioiGUb5agWcTOhrlM0k
+X-Google-Smtp-Source: AGHT+IG93K5LasDx76aB3h60qsup/I/V+qgt3wQKVPjU0LZk7V6uDStCyNutIbwM9d0MAoOglo2EJQ==
+X-Received: by 2002:a05:6358:70e:b0:19f:19dd:901e with SMTP id
+ e5c5f4694b2df-19f1fd06835mr256324155d.1.1717762310161; 
+ Fri, 07 Jun 2024 05:11:50 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-6de2017fc69sm2165585a12.17.2024.06.07.05.11.44
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 07 Jun 2024 05:11:49 -0700 (PDT)
+Date: Fri, 07 Jun 2024 21:11:32 +0900 (JST)
+Message-Id: <20240607.211132.1411950625632247437.fujita.tomonori@gmail.com>
+To: dakr@redhat.com
+Cc: fujita.tomonori@gmail.com, gregkh@linuxfoundation.org,
+ wedsonaf@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, rust-for-linux@vger.kernel.org,
  dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
- <20251123092438.182251-6-shankari.ak0208@gmail.com>
-Content-Language: en-US
-From: Igor Korotin <igor.korotin.linux@gmail.com>
-In-Reply-To: <20251123092438.182251-6-shankari.ak0208@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ mcgrof@kernel.org, russ.weight@linux.dev
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <Zlmfkws-QjNmFxfr@pollux>
+References: <Zlgg_Q5y3Q99Ts1s@pollux>
+ <20240531.165032.1895479176481879387.fujita.tomonori@gmail.com>
+ <Zlmfkws-QjNmFxfr@pollux>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,58 +91,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 11/23/2025 9:24 AM, Shankari Anand wrote:
-> Update call sites in `i2c.rs` to import `ARef` and
-> `AlwaysRefCounted` from `sync::aref` instead of `types`.
-> 
-> This aligns with the ongoing effort to move `ARef` and
-> `AlwaysRefCounted` to sync.
-> 
-> Suggested-by: Benno Lossin <lossin@kernel.org>
-> Link: https://github.com/Rust-for-Linux/linux/issues/1173
-> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> ---
->   rust/kernel/i2c.rs | 10 ++++------
->   1 file changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
-> index 1aee46f59460..c50ca464d87c 100644
-> --- a/rust/kernel/i2c.rs
-> +++ b/rust/kernel/i2c.rs
-> @@ -17,10 +17,8 @@
->       of,
->       prelude::*,
->       str::CStrExt as _,
-> -    types::{
-> -        AlwaysRefCounted,
-> -        Opaque, //
-> -    }, //
-> +    sync::aref::AlwaysRefCounted,
-> +    types::Opaque, //
->   };
->   
->   use core::{
-> @@ -32,7 +30,7 @@
->       }, //
->   };
->   
-> -use kernel::types::ARef;
-> +use kernel::sync::aref::ARef;
->   
->   /// An I2C device id table.
->   #[repr(transparent)]
-> @@ -408,7 +406,7 @@ pub fn get(index: i32) -> Result<ARef<Self>> {
->   kernel::impl_device_context_into_aref!(I2cAdapter);
->   
->   // SAFETY: Instances of `I2cAdapter` are always reference-counted.
-> -unsafe impl crate::types::AlwaysRefCounted for I2cAdapter {
-> +unsafe impl crate::sync::aref::AlwaysRefCounted for I2cAdapter {
->       fn inc_ref(&self) {
->           // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
->           unsafe { bindings::i2c_get_adapter(self.index()) };
+Hi,
 
-I'm fine with this going through either tree.
+On Fri, 31 May 2024 11:59:47 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-Acked-by: Igor Korotin <igor.korotin.linux@gmail.com>
+> Once we get to a conclusion I can send a series with only the device and firmare
+> abstractions such that we can get them in outside of the scope of the reset of
+> both series to get your driver going.
 
-Thanks
+Since your discussion with Greg seems to continue for a while, let me
+include the following patch that Greg approved with the next version
+of the PHY driver patchset.
+
+You have the new version of the firmware patch? The unused functions
+will not be merged so only request_firmware() and release_firmware()
+can be included. If not, I can include my firmware patch that I wrote
+before.
+
+=
+From: Danilo Krummrich <dakr@redhat.com>
+Date: Fri, 7 Jun 2024 20:14:59 +0900
+Subject: [PATCH] add abstraction for struct device
+
+Add abstraction for struct device. This implements only the minimum
+necessary functions required for the abstractions of firmware API;
+that is, wrapping C's pointer to a device object with Rust struct only
+during a caller knows the pointer is valid (e.g., the probe callback).
+
+Co-developed-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+Signed-off-by: Wedson Almeida Filho <wedsonaf@gmail.com>
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+Co-developed-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
+Signed-off-by: FUJITA Tomonori <fujita.tomonori@gmail.com>
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ rust/kernel/device.rs | 31 +++++++++++++++++++++++++++++++
+ rust/kernel/lib.rs    |  1 +
+ 2 files changed, 32 insertions(+)
+ create mode 100644 rust/kernel/device.rs
+
+diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+new file mode 100644
+index 000000000000..55ec4f364628
+--- /dev/null
++++ b/rust/kernel/device.rs
+@@ -0,0 +1,31 @@
++// SPDX-License-Identifier: GPL-2.0
++
++//! Generic devices that are part of the kernel's driver model.
++//!
++//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
++
++use crate::types::Opaque;
++
++/// Wraps the kernel's `struct task_struct`.
++#[repr(transparent)]
++pub struct Device(Opaque<bindings::device>);
++
++impl Device {
++    /// Creates a new [`Device`] instance from a raw pointer.
++    ///
++    /// # Safety
++    ///
++    /// For the duration of 'a, the pointer must point at a valid `device`.
++    pub unsafe fn from_raw<'a>(ptr: *mut bindings::device) -> &'a Self {
++        // CAST: `Self` is a `repr(transparent)` wrapper around `bindings::device`.
++        let ptr = ptr.cast::<Self>();
++        // SAFETY: by the function requirements the pointer is valid and we have unique access for
++        // the duration of `'a`.
++        unsafe { &mut *ptr }
++    }
++
++    /// Returns the raw pointer to the device.
++    pub(crate) fn as_raw(&self) -> *mut bindings::device {
++        self.0.get()
++    }
++}
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index fbd91a48ff8b..dd1207f1a873 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -28,6 +28,7 @@
+ 
+ pub mod alloc;
+ mod build_assert;
++pub mod device;
+ pub mod error;
+ pub mod init;
+ pub mod ioctl;
+-- 
+2.34.1
+
