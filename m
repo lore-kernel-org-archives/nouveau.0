@@ -4,102 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51D51D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 071EAD5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89C1510EBF1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8037110EBEF;
 	Sat, 13 Dec 2025 12:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ezxpezwd";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jm8umP5n";
 	dkim-atps=neutral
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2ACA10E0C0
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:25:46 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-29558061c68so45435095ad.0
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:25:46 -0800 (PST)
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+ [209.85.215.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A7A010E0E8;
+ Fri,  7 Jun 2024 23:28:28 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id
+ 41be03b00d2f7-6dccc583e89so298431a12.1; 
+ Fri, 07 Jun 2024 16:28:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763889946; x=1764494746; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BHBuqhkFJfYaNnj9M7q8FhjsYY3lIhigbe8268nPJsA=;
- b=ezxpezwdN2DzGx1iQNyEz4Gu0RDL3JppCwY897VjWNJz8D8bsnhzzradqDS2M6dGao
- hGo3VbdiEGjrvXJJg7OVhApylC6FlEyrP6gBST4c2wplWy+aKkbt+1CG0eVbiF09UKzJ
- Phrb7saKa5nMyzW0wAwzQOz//hz87S+meZbkwwsbJiN5YmzAsYnNnOCtBu087c0OiHqP
- M0xoXWSBeWvvcKk8Vax9jYjx+OJ1kbg+DeVyv20W1H7o7lkjBzVSfyY19J572kiFoV6Y
- 21L0MA+xJfbp4eWn80Z+DDDpWi4kXj15Gm4EJurb/FlAiKAika0FpqszV2kiYyk7zpzF
- 2tNA==
+ d=gmail.com; s=20230601; t=1717802907; x=1718407707; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=FCpSnT/Z3gu96TW6Bi5jW20jSUnyH6/NiGyW/o29kp4=;
+ b=Jm8umP5nj0MIgI0JNrCdyj3m65ptYxQhg36kJIqWt/XeNWJ6l3uIDYtHsAfIsWfU3N
+ ccOdkAxZLTsjy5Xvcrm4C+BMmGmVoRqNpYxU8+IeoPbRo9WSZI3K2OKcYaGcIvwEgPsM
+ LeTP2rStyf/yyVz3QvaLNTDZ7k5NS58ugr0bXJ+ikDOa34T4rYuii5N+txV1rT6kcQQX
+ DEj6BFdwiieZJKONcN/9hzcJdp0g7fwDx3YVXG93XAoJPmWAwb/+iEObUVluFQkK13xD
+ xDva6X6BzhFRuW6k3fYR/vGqEl5EHBv9QU+sxixqFneg+KzM4KBN6iULB8HBGbBmhN03
+ pRRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763889946; x=1764494746;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=BHBuqhkFJfYaNnj9M7q8FhjsYY3lIhigbe8268nPJsA=;
- b=lCkExRp5/QtYljbJHS6VR5bSPAEI3jpuCCz5/lja89QEcvbVRuh8aYR/49MvE5FkwZ
- vR2LBMLH8LRBWaAoLxj/50tchBPVRyCGqqNwo3NqWohX0Yi+MzJ2tHULonwkBTj0TlxW
- /Wv60QygbGaGUX8DAs2IIbid6OWq4ZWqdVsE7T4OEmh3cRZEJxs262dHvL1G00dHcfTj
- X3CZCXm8YKRaaUCTPMWgodmAuiIVnaeDC01Q00wRtSfgOQwY+tio0WotK/h+PfUPRdHg
- Lnv1ES4jpTHsbRi2l/LZkU99ElyS5hdfPKeACcyNDRMmFJM/mOqruJix04pFyn1dCd3x
- +iFg==
+ d=1e100.net; s=20230601; t=1717802907; x=1718407707;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=FCpSnT/Z3gu96TW6Bi5jW20jSUnyH6/NiGyW/o29kp4=;
+ b=MJWy3utY+ZGA16KuP3GaE4BMzR3RZqGWee+trSpr6RJzK6DowIkeZWtufUuhBwZ6j6
+ 6UbdfkrBZ8O3Q32m/i8krEwXKAHW/SN3BWTpMXdV/+fgtFEHGjB/cAF5Qbh7sC4MOVx3
+ l3jYfbsfD3m0Cyci+u+MexRhJ6T0Bc23DKuTMBBoKo3KILNS/kz17+tXHihHvd7Zt6qq
+ JMPmTw7hc7CJt/d0imBGBs0WQ3zxMdr51KxLIE5M3iJeFt47Rw0eForAYD08PrwfQgCp
+ TiYvuqzPZum6JaQTXsldCTysFo2GDzef9JDaEQsq84nat4GgcFzR+23BtNN2yNPvk+R9
+ Q+qA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW1YBN7WCSsxjxqhIGAiomcaOJhvQ2JRSKVK8QRea1NGU1HbPHM3dEbSTziZC+DP6HHBziPhPVU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQNYpqlyqTBGpCXxX7+r36bqtyMXlfgeNBu4q9tvQN1Vm8BtKY
- A473nKINXziLSewIhNAJojqkmuMS+WcacrcBQ1vEjm+qL16l/Bo0m8tP
-X-Gm-Gg: ASbGncuQarRNETHmE4cGqGRIXr7mYz1crL4VnFZHG/Wq8jmsZlf2kv7HcprWT+l89QK
- O+/KlI3+yKagefUXgDmEGXrhZM96rEVQRByNn9XbUykV24TFdcuBUC/zedREbU3EXvxzzm61Jhg
- /XG742JvX6J2sc9G9fWNfaUDUzPa7ubz1javt5ZmskfPKVR6HfnJ2SuT27uSWkbcNRnDcqTzJqn
- yIm4WczP75zQu8x142rI8LtjQ+PR+KaOKcdz4qzKyfFAivqbPnMDIxqDtjxPh8aKTzLhwA9xHTS
- mm6uGieHjvKZrjy6Lz/IGi8SBuHbfbgnQqzY7L9LjxwrLFkR1m1isX1XQNJUJJ0BqkKc352do0b
- TJnO8agPMkHHxkmNtgom08tHb8N5SxF6r7qbTc2PF52L8o43AYFaoT5dnafRHBZ7HCivxj1gNtV
- gM6N4xcGgSXC8kadC1G+3tz4KLLw==
-X-Google-Smtp-Source: AGHT+IHeRFkTHVTA6Srefmm0HL5WijnlyHgpdTjb/dQ8CxktDbPnk0dZz+0OIDZ55NxQOWacfTdN2A==
-X-Received: by 2002:a17:903:947:b0:28e:a70f:e879 with SMTP id
- d9443c01a7336-29b6be8cb2dmr88701485ad.1.1763889946269; 
- Sun, 23 Nov 2025 01:25:46 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.25.34
+ AJvYcCXlSHsQzj0RAX+Tig5ygAQ4NfvO/lnE1qYndwD8y7HKWarzbM0hfqHT8B7jCZsoGCAsa6MtYzHGBDKELM/lxYowdT9T8FJYtHOujYOnbkA/EaVjt/1CO9yfhYJ0YDKTXy+a9r1d+gVBpmWv5NkvIg==
+X-Gm-Message-State: AOJu0Yz/kxFRzkxsXZoFlQfifXR0DRbxHm3Vr5N/CTfsnJhdhctdVPn9
+ 8dxSpmRyZXkUG+K/4dUpkkSdeWVtAPJba6w50IDFePJfOW9F6mt+
+X-Google-Smtp-Source: AGHT+IHKqP8BpJ3GvlWBCtH9BHSef3p/eg8WyNZ0fLmpTYYkVZFK8lROhnr7aPwhZgNBRJIsfeTjWA==
+X-Received: by 2002:a17:903:2308:b0:1f6:ee76:1b35 with SMTP id
+ d9443c01a7336-1f6ee762403mr9866665ad.5.1717802907232; 
+ Fri, 07 Jun 2024 16:28:27 -0700 (PDT)
+Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
+ [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-1f6bd75f157sm40102215ad.18.2024.06.07.16.28.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:25:45 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ Fri, 07 Jun 2024 16:28:26 -0700 (PDT)
+Date: Sat, 08 Jun 2024 08:28:06 +0900 (JST)
+Message-Id: <20240608.082806.872238171846642664.fujita.tomonori@gmail.com>
+To: dakr@redhat.com
+Cc: gregkh@linuxfoundation.org, fujita.tomonori@gmail.com,
+ wedsonaf@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, rust-for-linux@vger.kernel.org,
  dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 01/10] drivers: android: binder: Update ARef imports from
- sync::aref
-Date: Sun, 23 Nov 2025 14:54:29 +0530
-Message-Id: <20251123092438.182251-2-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+ mcgrof@kernel.org, russ.weight@linux.dev
+Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <ZmNJpQbTtFUPOkAJ@cassiopeiae>
+References: <ZmMMMyi3uXTFtIae@cassiopeiae>
+ <2024060745-palatable-dragging-32d1@gregkh>
+ <ZmNJpQbTtFUPOkAJ@cassiopeiae>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,52 +91,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update call sites in binder files to import `ARef`
-from `sync::aref` instead of `types`.
+On Fri, 7 Jun 2024 19:55:49 +0200
+Danilo Krummrich <dakr@redhat.com> wrote:
 
-This aligns with the ongoing effort to move `ARef` and
-`AlwaysRefCounted` to sync.
+> On Fri, Jun 07, 2024 at 05:41:11PM +0200, Greg KH wrote:
+>> On Fri, Jun 07, 2024 at 03:33:39PM +0200, Danilo Krummrich wrote:
+>> > On Fri, Jun 07, 2024 at 02:36:50PM +0200, Greg KH wrote:
+>> > > Anyway, that's all hand-wavy right now, sorry, to get back to the point
+>> > > here, again, let's take this, which will allow the firmware bindings to
+>> > > be resubmitted and hopefully accepted, and we can move forward from
+>> > > there to "real" things like a USB or PCI or even platform device and
+>> > > driver binding stuff.
+>> > 
+>> > In order to continue I propose to send out the following series:
+>> > 
+>> > 1) minimal device and firmware abstractions only
+>> 
+>> Sounds good.
+> 
+> Just a heads-up, I'll probably send this one quite a bit earlier than the other
+> two to make sure to unblock Fujita on their PHY driver.
 
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- drivers/android/binder/process.rs | 2 +-
- drivers/android/binder/thread.rs  | 3 +--
- 2 files changed, 2 insertions(+), 3 deletions(-)
+Please. The sooner, the better. I need to send the PHY driver with
+these patchse to netdev.
 
-diff --git a/drivers/android/binder/process.rs b/drivers/android/binder/process.rs
-index e5237e9ec552..1409129ff82a 100644
---- a/drivers/android/binder/process.rs
-+++ b/drivers/android/binder/process.rs
-@@ -27,11 +27,11 @@
-     seq_print,
-     sync::poll::PollTable,
-     sync::{
-+        aref::ARef,
-         lock::{spinlock::SpinLockBackend, Guard},
-         Arc, ArcBorrow, CondVar, CondVarTimeoutResult, Mutex, SpinLock, UniqueArc,
-     },
-     task::Task,
--    types::ARef,
-     uaccess::{UserSlice, UserSliceReader},
-     uapi,
-     workqueue::{self, Work},
-diff --git a/drivers/android/binder/thread.rs b/drivers/android/binder/thread.rs
-index 7e34ccd394f8..033af3ce352e 100644
---- a/drivers/android/binder/thread.rs
-+++ b/drivers/android/binder/thread.rs
-@@ -16,9 +16,8 @@
-     seq_file::SeqFile,
-     seq_print,
-     sync::poll::{PollCondVar, PollTable},
--    sync::{Arc, SpinLock},
-+    sync::{aref::ARef, Arc, SpinLock},
-     task::Task,
--    types::ARef,
-     uaccess::UserSlice,
-     uapi,
- };
--- 
-2.34.1
-
+I'm not sure what the above "minimal device" means. If you send the
+original patch again instead of the patch that Greg already approved
+and the discussion continues, then I proceed with the approved patch.
