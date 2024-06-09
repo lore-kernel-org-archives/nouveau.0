@@ -4,79 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A890D5B165
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE1F0D5B161
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A857F10E9DD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75B6D10E9ED;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="J6rn49bX";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SnsjLFxo";
 	dkim-atps=neutral
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
- [209.85.210.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78BF410E0A0;
- Wed, 22 May 2024 23:15:21 +0000 (UTC)
-Received: by mail-ot1-f46.google.com with SMTP id
- 46e09a7af769-6f0e2544f6bso213906a34.3; 
- Wed, 22 May 2024 16:15:21 -0700 (PDT)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
+ [209.85.167.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB28C10E04A
+ for <nouveau@lists.freedesktop.org>; Sun,  9 Jun 2024 06:28:44 +0000 (UTC)
+Received: by mail-oi1-f177.google.com with SMTP id
+ 5614622812f47-3d1b6b6b2c5so403550b6e.0
+ for <nouveau@lists.freedesktop.org>; Sat, 08 Jun 2024 23:28:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716419720; x=1717024520; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=Ir2XqinlUrPpaQlopq6pGICD8nECQfQb9VlUJ47Cml4=;
- b=J6rn49bX7cEOXk0OgPJEPa3XA3nt+xZA5OSiyirMdDnwkQNvMuUDT/QgT9FBb0Gd/A
- Ee9nkW3QzvpOZhxys3uUcghzJDqO7dbIk0syvJWlKylk6Qdm7krsa4xGnYWi7oTWeIse
- xVOqdknF0KFTslfc6wlo3I9oPBHLTXc+gUVUkc37W5Z9Kk7WKmwFw7KNdWNHbndVkt6H
- mTevg22FEMBbGMId0NmUZh1cqzo3zyxcz3Bc/8Y76Zr/16hmxTN8UbTedRWpARZZ55IU
- gjildVMv8v7ebt1aFNTDKBAAMSm3mlkZ0w2XgvNKM+Chzx6wKdzuLUPiWaIftEGS2O+t
- 2O4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716419720; x=1717024520;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ d=gmail.com; s=20230601; t=1717914523; x=1718519323; darn=lists.freedesktop.org;
+ h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
  :date:message-id:reply-to;
- bh=Ir2XqinlUrPpaQlopq6pGICD8nECQfQb9VlUJ47Cml4=;
- b=fuCA+RLgn0nTP45xPKcO7yhec48JtSjrTmzT2qnIqFkcQXD+5q13egUfPKyNiFzLq4
- pVh9uF51p8IUJEdbgZ+DrfGJ+roc6CYWFyvEno+1xEhQdfRA5J8+amXCAtxQB/0GnS2Q
- oARwX5hm7+JgK7Ty+GiMoO/yUozQNENXuf7BsIpl9G5OKMwhksu/daKwFsmDgEw2LEqt
- ngTSNGm90DP73PYdGzs4fgfmwsR5OEptD9IbwMLJOqFL6UDGcieA8zT6nBfjIIfWd4HA
- y5X9xyl/M9JYabXl0K4IlaSSwj3h+AASPo6di08+uem7vwoLQ2/i6ewHhS6SBJGKYK6M
- Z9wQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV8TeE434TTm3e+3Zar7LUMPYEDrbETCFr27iQAv0sQyZTUL9IR9k3kpKyNX7sbGoXc4iv4lq9STf+m5t92vk1JgP7pcwrBuqp3y5O5eUET8Qj3m7dlrPPpaYW1lKvqG4XHOm+0soygePiivFOt1A==
-X-Gm-Message-State: AOJu0YyB9/XgENz9+pYwfIKxmuZXjojfXZObf7WEd56u+Fdc6C32mipX
- +X+hHJGxib5tAgn0iayiqCq9F2eSiTlTM3V55UUEY/oip76FyNqh
-X-Google-Smtp-Source: AGHT+IEg0tD1wihn+c8EcE3GfwFZJ9P0oCxBgIaw/cJq+yGvGb5ZmoLis9eA4mwP5hlUp53Vcp3WSg==
-X-Received: by 2002:a05:6358:2921:b0:192:82da:43df with SMTP id
- e5c5f4694b2df-19791b7d6d6mr377565255d.1.1716419720266; 
- Wed, 22 May 2024 16:15:20 -0700 (PDT)
-Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
- [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-6f4d2a66557sm22855335b3a.44.2024.05.22.16.15.15
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 22 May 2024 16:15:19 -0700 (PDT)
-Date: Thu, 23 May 2024 08:15:13 +0900 (JST)
-Message-Id: <20240523.081513.81513679981916366.fujita.tomonori@gmail.com>
-To: pstanner@redhat.com
-Cc: fujita.tomonori@gmail.com, dakr@redhat.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
- alex.gaynor@gmail.com, wedsonaf@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@samsung.com, aliceryhl@google.com, lina@asahilina.net,
- ajanulgu@redhat.com, lyude@redhat.com, gregkh@linuxfoundation.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <35fef820ed6e67f2203e78735fc9e15248436221.camel@redhat.com>
-References: <20240520172422.181763-4-dakr@redhat.com>
- <20240522.085334.1009573112046880609.fujita.tomonori@gmail.com>
- <35fef820ed6e67f2203e78735fc9e15248436221.camel@redhat.com>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=utf-8
-Content-Transfer-Encoding: base64
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+ bh=KfTnoDEE8ZOfj0cBKwxCKe6MRNLehS3BxuSWqnV70Pc=;
+ b=SnsjLFxoVxUAT45BcQ51K5+xw8MYCzuHP8pEo7u96Kh6XhTbMSbVylR7diBuSAWuPF
+ ZDEEngRaHj5xxzT+nqNth75Se3BJ3o7DCGdMxsnSLIwBTWtn+wygXwDpGR5ZdxXCy2/U
+ FxbYWwSMIl4kXyR/MJikEoDeyiIPCdYaPPrvurln1ngd++47AcZSGj/YQsmKgs8FXlmU
+ EwghCboDLalLKa1eaF8/88giSKwbPI3b8ielLvpuT8s4c/yAzKwYfGAUlaCduKW+uVXr
+ BMq2bhMXMnsgQI8NzV3qu9o5p3me1uzPMjTkrq8nIFKsHAGt4Y+LFkHEZm6kV7bri0Ey
+ dnSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1717914523; x=1718519323;
+ h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=KfTnoDEE8ZOfj0cBKwxCKe6MRNLehS3BxuSWqnV70Pc=;
+ b=tavBzMLWH1uOPFXU4vHA/S1d0SkEbiGgtlnw1jRU+YKIooN+b4AgqwfP5O6GiGMxy7
+ I4I4KLl1C7GVwjBgfpX6g0AgP9NiTKLQGDGy893us5NI316V070ljHy7ruVZUYuZJL3y
+ qXsa3dVuXLzxs65Lw3jFXsdGdPx5gaZLX7wuA1Wzl4JiHWtXGhgKRpptBJwWwbxIRWgb
+ qoBHtoIWg9C/3b8N8MhSVhPCD5HHbOaTSmHe2aoC6yGap/4kCAY5saqLJbEQdMy+pP93
+ f1tYVwHmC0QheTKSY1iSIM2km8FvRxOtqe2Daz6ovVR+w4UQokqw1o5mOIoIk6citi8w
+ WY2g==
+X-Gm-Message-State: AOJu0YwmeoXtiVNQALpmG9trgzwFX7CtedtDKsjyOO1QmbMXfaJdB6RW
+ OwhIAVr/RLv+z/8KyLS+Td+BwW6n2DyqW/vfhGYkZExvXXVXObul24G+9dfjRPOtLGXbwMEGUMf
+ qBpZbHMD0MAJDMFggsBYMWQR2durfWz4B
+X-Google-Smtp-Source: AGHT+IFJrv6/jiaIWnTGTF8kvVjYXaYjqyFTyFAZwrVg1DdGQVheeTn2rGwGMtN6WBHIDpQVUaKyRpVNePU0exbPV1M=
+X-Received: by 2002:a05:6871:b09:b0:254:b6f2:de93 with SMTP id
+ 586e51a60fabf-254b6f2f87cmr674490fac.0.1717914523252; Sat, 08 Jun 2024
+ 23:28:43 -0700 (PDT)
+MIME-Version: 1.0
+From: =?UTF-8?B?TmFjaXllIEFsY8Sx?= <naciyealci0@gmail.com>
+Date: Sun, 9 Jun 2024 06:28:32 +0000
+Message-ID: <CABNPNryh8+Gq6gApJwiB82YTOOOq5cQRTWPbEQvwjmtOrT1Ohg@mail.gmail.com>
+Subject: [ BUG ] Broken GPU
+To: nouveau@lists.freedesktop.org
+Content-Type: multipart/alternative; boundary="000000000000e9be82061a6f2418"
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,34 +70,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-SGksDQoNCk9uIFdlZCwgMjIgTWF5IDIwMjQgMDk6Mzc6MzAgKzAyMDANClBoaWxpcHAgU3Rhbm5l
-ciA8cHN0YW5uZXJAcmVkaGF0LmNvbT4gd3JvdGU6DQoNCj4+ID4gKy8vLyBBYnN0cmFjdGlvbiBh
-cm91bmQgYSBDIGZpcm13YXJlIHN0cnVjdC4NCj4+ID4gKy8vLw0KPj4gPiArLy8vIFRoaXMgaXMg
-YSBzaW1wbGUgYWJzdHJhY3Rpb24gYXJvdW5kIHRoZSBDIGZpcm13YXJlIEFQSS4gSnVzdA0KPj4g
-PiBsaWtlIHdpdGggdGhlIEMgQVBJLCBmaXJtd2FyZSBjYW4NCj4+ID4gKy8vLyBiZSByZXF1ZXN0
-ZWQuIE9uY2UgcmVxdWVzdGVkIHRoZSBhYnN0cmFjdGlvbiBwcm92aWRlcyBkaXJlY3QNCj4+ID4g
-YWNjZXNzIHRvIHRoZSBmaXJtd2FyZSBidWZmZXIgYXMNCj4+ID4gKy8vLyBgJlt1OF1gLiBBbHRl
-cm5hdGl2ZWx5LCB0aGUgZmlybXdhcmUgY2FuIGJlIGNvcGllZCB0byBhIG5ldw0KPj4gPiBidWZm
-ZXIgdXNpbmcgYEZpcm13YXJlOjpjb3B5YC4gVGhlDQo+PiA+ICsvLy8gZmlybXdhcmUgaXMgcmVs
-ZWFzZWQgb25jZSBbYEZpcm13YXJlYF0gaXMgZHJvcHBlZC4NCj4+ID4gKy8vLw0KPj4gPiArLy8v
-ICMgRXhhbXBsZXMNCj4+ID4gKy8vLw0KPj4gPiArLy8vIGBgYA0KPj4gPiArLy8vIGxldCBmdyA9
-IEZpcm13YXJlOjpyZXF1ZXN0KCJwYXRoL3RvL2Zpcm13YXJlLmJpbiIsDQo+PiA+IGRldi5hc19y
-ZWYoKSk/Ow0KPj4gPiArLy8vIGRyaXZlcl9sb2FkX2Zpcm13YXJlKGZ3LmRhdGEoKSk7DQo+PiA+
-ICsvLy8gYGBgDQo+PiA+ICtwdWIgc3RydWN0IEZpcm13YXJlKE9wYXF1ZTwqY29uc3QgYmluZGlu
-Z3M6OmZpcm13YXJlPik7DQo+PiANCj4+IFdyYXBwaW5nIGEgcmF3IHBvaW50ZXIgaXMgbm90IHRo
-ZSBpbnRlbmRlZCB1c2Ugb2YgUXBhcXVlIHR5cGU/DQo+PiANCj4gDQo+IFdoYXQgaXMgdGhlIGlu
-dGVuZGVkIHVzZT8NCj4gQXMgSSBzZWUgaXQsIGFsbCB1c2VzIHdyYXBwIHNvbWUgYmluZGluZzo6
-KiDigJMgYnV0IGEgcmF3cG9pbnRlciB0byBhDQo+IGJpbmRpbmcgc2hvdWxkbid0IGJlIHdyYXBw
-ZWQgYnkgaXQ/DQoNCklmIEkgdW5kZXJzdGFuZCBjb3JyZWN0bHksIGl0J3MgZm9yIGVtYmVkZGlu
-ZyBDJ3Mgc3RydWN0IGluIFJ1c3Qncw0Kc3RydWN0IChhcyBhbGwgdGhlIHVzYWdlIGluIHRoZSB0
-cmVlIGRvKS4gSXQgZ2l2ZXMgdGhlIHRyaWNrcyBmb3INCmluaXRpYWxpemF0aW9uIGFuZCBhIHBv
-aW50ZXIgdG8gdGhlIGVtYmVkZGVkIG9iamVjdC4NCg0KVGhlIEMncyBmaXJtd2FyZSBBUEkgZ2l2
-ZXMgYSBwb2ludGVyIHRvIGFuIGluaXRpYWxpemVkIG9iamVjdCBzbyBubw0KcmVhc29uIHRvIHVz
-ZSBPcGFxdWUuDQoNCldpdGggc3VjaCBDIEFQSSwgUnVzdCdzIHN0cnVjdCBzaW1wbHkgdXNlcyBy
-YXcgcG9pbnRlcnMgaW4gb2xkIHJ1c3QNCmJyYW5jaC4gRm9yIGV4YW1wbGUsDQoNCmh0dHBzOi8v
-Z2l0aHViLmNvbS9SdXN0LWZvci1MaW51eC9saW51eC9ibG9iL3J1c3QvcnVzdC9rZXJuZWwvY2hy
-ZGV2LnJzI0wyOA0KDQpzdHJ1Y3QgQ2RldigqbXV0IGJpbmRpbmdzOjpjZGV2KTsNCg0KDQpBbm90
-aGVyIGNob2ljZSB0aGF0IEkga25vdyBpcyBOb25OdWxsOg0KDQpodHRwczovL2xvcmUua2VybmVs
-Lm9yZy9sa21sLzIwMjQwNDE1LWFsaWNlLW1tLXY1LTQtNmY1NWU0ZDhlZjUxQGdvb2dsZS5jb20v
-DQoNCnB1YiBzdHJ1Y3QgUGFnZSB7DQogICAgcGFnZTogTm9uTnVsbDxiaW5kaW5nczo6cGFnZT4s
-DQp9DQo=
+--000000000000e9be82061a6f2418
+Content-Type: text/plain; charset="UTF-8"
+
+I am quite new to mailing lists, and i am aware this may not be the best
+format for reporting an issue.
+
+So, on an nvidia gt420 the nouveau driver on kernel 6.9.x do not display.
+The issue was with nouveau not being able to display on the card. Using a
+older kernel (6.6 LTS) has fixed the problem.
+
+I dont know what else i should add for a issue report, For responding to me
+specifically please send an email to me with a urgent tag. (I have a bunch
+of junk in the mailbox)
+
+--000000000000e9be82061a6f2418
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>I am quite new to mailing lists, and i am aware this =
+may not be the best format for reporting an issue.</div><div><br></div><div=
+>So, on an nvidia gt420 the nouveau driver on kernel 6.9.x do not display. =
+The issue was with nouveau not being able to display on the card. Using a o=
+lder kernel (6.6 LTS) has fixed the problem.</div><div><br></div><div>I don=
+t know what else i should add for a issue report, For responding to me spec=
+ifically please send an email to me with a urgent tag. (I have a bunch of j=
+unk in the mailbox)<br></div></div>
+
+--000000000000e9be82061a6f2418--
