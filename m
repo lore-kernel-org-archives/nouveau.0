@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B719FC27C75
-	for <nouveau@archiver.kernel.org>; Thu, 13 Jun 2024 17:00:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A4FBC27C6E
+	for <nouveau@archiver.kernel.org>; Thu, 13 Jun 2024 17:00:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA54C10EB04;
-	Thu, 13 Jun 2024 17:00:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 041D610EB0B;
+	Thu, 13 Jun 2024 17:00:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="c3YWNBmd";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EpOIzKYy";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55A0E10EB0E;
- Thu, 13 Jun 2024 17:00:05 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2049.outbound.protection.outlook.com [40.107.220.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA2B10EB17;
+ Thu, 13 Jun 2024 17:00:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B7r1ZGMWBaXHuW4ShWDU7+QqcO1hjl1KU/TyuyH+9XKN3fM1Sp9kWU4noqw97jj/uRmOsVE8kXasd1c7ovvQOdt6tTPjCSbygm3uD8GJBBlQRqsA1CQKz6RNZuJZ6J7tPneuGDL61Rj0E2b9Lu5XtK/dPoAynq90cBSdEOj+2Apvr+Ws1+5/sX2XaLsAApXz3YzzuKJxxfajz/FzDAY3LHLgCpnUcQHBa8yOGA0bcTdDVFfqwmqSDLIeu/Cx+07p85F/Hrnbq+c5pPJ55sTyqccuTFfXFLY8UkHwSCkJWFiYtvY7QN4pbL+yOaMM8KCjHjxTcSPV9YWU8I6fYui2xA==
+ b=iZGssb26XBz9NVx+AL7AfwaDeZllrLU9/ZyPWESNbmZiws1r337nHfCiB5InxG19vKpgqLUPiG4PVhBMzsG/IN0llJjYmRQFhnICubhvhOcQCVZYwHcPG6RdzloMckzA3Wqh7sD81Eiylpp+w13LCGPkxxrjBlYNPPTtFaEWKuH3tJwxsZKfJmxJDlZrGrm3xOzhOoGF7wUqtwn3SHSegRTCiinSo234sxTVVh+uEByd+9ZQTskqvftbwoNheWVNzQ/LPTqSYHKvDL6Z0tdl6bE7O2QMmrk+LAALHa5AOxUzZCBtouIQjJ+eEAaFVDosNU85YHXjAfeIXSkEI3Nm8A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5DzgEROFQ3oyDqWVe1dvAPduxS6pFPwHavV5m2Oya5Q=;
- b=MaAUXTf0WZhM8eaohB2dVt1zzj7VmmRCqeoFTH+EZ7p8fvHoAIoTDYvwPMlsjEYYtqsCDjeR/zkQJGQwrkaNERIwp8BCuCkl6KJcAOcgvG1YHXzCNBiJRbqTg31asEGsIPeg4457qCFM6S5awNGNxmY6tNbaw435V5Nau5Bxxb4yJDtO7dU/o5bPfVIEIc19O+eXjEwg+vKIHWmfMDNMNHaI8hWrWshXze39Tbj5ALsS2wRrENrtjPuD3uxePVNhXVLD3bFj0espeMwsNz4uhyxZB9bZ4ZyBhDJ6VYBn7hG/jiaCFOBXLBq8wpfrplTJDcT3iYq6fai9C9Cf4YLsqA==
+ bh=uO2K5JspyBKWOtx49f5u2rEjRjx3SGImVhiUXHix7KQ=;
+ b=iI4UPJkFrFwaGFlMhE9H1vSLSgC9a/mjkfAYPZyGRUZw0rTkjBw2Tve2sI7Y/OG8krjx2+x8TWEdMRb/C99WX1C/GVFVygHasNIX0piDxyAmvFO3Sd3OolOgVQ7c/99cgb1jjFsS9XoyNT3GWZRKG3s6sI5/JfAyDxknM9c+vjpK5erK2CHYcX8ADWleCkBl+Kivz38ltgCp79c+h5Sy7FeEBATR6elRuWuNLSifKPVBpV7sJxtZmTd1/jJeGy2Anc7hHah0cubc4FTo0NevF0IrdAfoAjomNx+a6bxTXuv+rqHm9Dl/4kXoVcjos2fwxxk6a85LUsj/KwrF8NrRFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5DzgEROFQ3oyDqWVe1dvAPduxS6pFPwHavV5m2Oya5Q=;
- b=c3YWNBmd3sjvWuqwYRnD8N5a/RKnkAxmOtGMeRw/7K87tLV98ZbuM1Bey5gg2pp+A2dXE5WPcymJumrS3IK+vkbojK+/YPhIS4YPfkbi7PBXmGbmEjo9gOsmR/QSlR0VzDq/Ge1wsfdh+8KaRA4+tm/s15u9L2692wMC/aArK7J495r119o5SKRF+6wDytOSNHWuRjsZV9u5bofwu/jmUSMcNvXVTtlqMXoH6Fju0/k7VWAV0AlIlrV1fHvC/JIkOmf9VzPiT0e7SP5E47gDrDOuazhF+OH3JWgaNry6KBqboo7jMONslYTr9xctsQ/+LOYPvudA2S9eNYrbXX+Lpg==
-Received: from SJ0PR05CA0018.namprd05.prod.outlook.com (2603:10b6:a03:33b::23)
- by SA1PR12MB6726.namprd12.prod.outlook.com (2603:10b6:806:255::13)
+ bh=uO2K5JspyBKWOtx49f5u2rEjRjx3SGImVhiUXHix7KQ=;
+ b=EpOIzKYyKWVPlxyM3rRrccnPCCTzN+Xd/KGU07T4E4+oMjU0CJiYL8/cmFOJXJ/91NLvveG8BAdZNJ6gTGplNFOM6Eg4fqoIlnDqt/VUSfw86i1bFN3bthzhvhkYOsq+CL+41lsPVt35wYdnXJBy/Mu3TAv1Qyp7gsMoyiUCxEoVRnK2YaeCCru6sNnnsljs39gauw9MISCwuKji/mBQ0yO3a97xBQ5DAHFoUW6gdQTnCrKLm0mdDzqHhIRDw6EI6FDodewTy2Dsd/iSvlO3EuACk6+0/R3659BhZaVcTpJ/kWTV21bO+/AfGgfS5uSsO65BuTDqRmRzKUIqqbvjug==
+Received: from BYAPR05CA0062.namprd05.prod.outlook.com (2603:10b6:a03:74::39)
+ by IA1PR12MB6580.namprd12.prod.outlook.com (2603:10b6:208:3a0::9)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Thu, 13 Jun
- 2024 16:59:58 +0000
-Received: from SJ1PEPF00002325.namprd03.prod.outlook.com
- (2603:10b6:a03:33b:cafe::c3) by SJ0PR05CA0018.outlook.office365.com
- (2603:10b6:a03:33b::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.24 via Frontend
- Transport; Thu, 13 Jun 2024 16:59:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.25; Thu, 13 Jun
+ 2024 17:00:03 +0000
+Received: from SJ1PEPF00002326.namprd03.prod.outlook.com
+ (2603:10b6:a03:74:cafe::58) by BYAPR05CA0062.outlook.office365.com
+ (2603:10b6:a03:74::39) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.21 via Frontend
+ Transport; Thu, 13 Jun 2024 17:00:03 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,24 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.160 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.160) by
- SJ1PEPF00002325.mail.protection.outlook.com (10.167.242.88) with Microsoft
+ SJ1PEPF00002326.mail.protection.outlook.com (10.167.242.89) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7677.15 via Frontend Transport; Thu, 13 Jun 2024 16:59:58 +0000
+ 15.20.7677.15 via Frontend Transport; Thu, 13 Jun 2024 17:00:03 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 13 Jun
- 2024 09:59:44 -0700
+ 2024 09:59:50 -0700
 Received: from fedora.mshome.net (10.126.230.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 13 Jun
- 2024 09:59:42 -0700
+ 2024 09:59:48 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 05/21] drm/nouveau/nvif: add nvif_driver_func for nvkm->drm
- callbacks
-Date: Fri, 14 Jun 2024 02:59:57 +1000
-Message-ID: <20240613170046.88687-6-bskeggs@nvidia.com>
+Subject: [PATCH 09/21] drm/nouveau/nvkm: move switcheroo init from drm
+Date: Fri, 14 Jun 2024 03:00:01 +1000
+Message-ID: <20240613170046.88687-10-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240613170046.88687-1-bskeggs@nvidia.com>
 References: <20240613170046.88687-1-bskeggs@nvidia.com>
@@ -79,50 +78,50 @@ X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PEPF00002325:EE_|SA1PR12MB6726:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2007161-f220-4566-1ffc-08dc8bca420c
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002326:EE_|IA1PR12MB6580:EE_
+X-MS-Office365-Filtering-Correlation-Id: e3153333-9101-4ac1-f720-08dc8bca44b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230035|376009|1800799019|82310400021|36860700008; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mE5eIUHJpaAEEBUvMZyP1aVGq+YCEEPcZK+dB0FQ6A/R29ju+tWWY8tskq/r?=
- =?us-ascii?Q?S+9uKJnQAuZ/VP2GmcMo2AyngADXDXMtCQ7U6if5RRcPVq6iMxeViLae2hk3?=
- =?us-ascii?Q?6dqCwPZ1DNnxnolQOZ+YBADN3Ero4XKSSvmVooacNUzNYYqCgbpJjGMd+4mZ?=
- =?us-ascii?Q?3l15bFC4KlbJSCivmW6e4pF11ecHAfeAxP4WMu8+BVh3+4G3DGyIoS/EGFpZ?=
- =?us-ascii?Q?IxkklzPyTQsooJuqXawkG7u3QHjqNn4+BYlRJ7sY/mmg9E4be/YTmXXFi5ru?=
- =?us-ascii?Q?0MxTuyo0qjBSAwOftq214mgI8oaq27Zz1+1dHKGRMY//xE3g3zjKhAg6V883?=
- =?us-ascii?Q?kP5Dys/HUr7Pf+jZBsX6bVub74bBVHS1wM18w/QjQ5XYhM6lgcjPT4uWHS/y?=
- =?us-ascii?Q?vqCWWCpO7K9zsrXaaEB1Df1Wlow0b43qMZDdAGBKZS/J48DZDjed3GN35tFq?=
- =?us-ascii?Q?B8v7827zscT4muum4760tdZTuzMd0HHJCaQi71eraTeONUvigqqKGaqKoJRI?=
- =?us-ascii?Q?9tpDjAEngWz9myVejeq7ASE2663TxU2j9Ock46YH78n6j9xhmvmEgcXGL87t?=
- =?us-ascii?Q?dzctqRcsqknm6gLT0l/vRkbVZCsaJ7PdGuZuNNrPnOhuDKCZ4aJj9SAoXiNO?=
- =?us-ascii?Q?e1u9UkycDTia0/DTOX1xf1+SzMefE8nBFsE4Mn8dubJoLASgCAPHLu80bQQ8?=
- =?us-ascii?Q?48ZhA7Q0GUfhcRhkEBEG4zGbf4Ot6M2U96b2AlyKriNBcrqDBTvquPJ44JlM?=
- =?us-ascii?Q?1THILGi0AZHuF8VhOgkF3dKqyafwazif1dUBrtLypJMG42ALncpAykEloo12?=
- =?us-ascii?Q?JuUn0MMJkrxit8MCvUKjbM11CS+6Loa3hZedWnyqQO4p18kne+gswRU/W5DX?=
- =?us-ascii?Q?VpwChFMTegdknZCme/ydoA/jSLGY81j1q4xDYq9fymU07GLnWM2QVk3X3fSL?=
- =?us-ascii?Q?Jb3JBmVZxU7BNTfJEZIW+w38smAYdVHVtWt5JtuVwPIpjUvPGOswYPYe596w?=
- =?us-ascii?Q?vaVFmnOEsY99zfDyKgFDk+Ry6vz1/7pbWHWB0FRpp1d+LZhTFvoLrOg9S+bf?=
- =?us-ascii?Q?qQxCy8psmeWH06+3bKE9ZYtW4mm8Bdox1AUShxvNLHt/q5FJBeAlJO92ch48?=
- =?us-ascii?Q?TpBE7bPtHARbUHrajbMeL2/9J0hfW2Iakxujj7CXej6DIN4xQOoXtbpCST1S?=
- =?us-ascii?Q?gVMbX5RrgoJPYkkxoS2sj1hP+84r1nBg30e+EoeEbB4OUNDHLUf5naimgvWZ?=
- =?us-ascii?Q?QA2oiDJPE+rdKs1J4qNbpMIwNIFuBV/VUYt1jixHJW6qIVLr5r8MV+sZ9VI8?=
- =?us-ascii?Q?5fA5j464t5qeliMZvg+jmiIe/eOiENGnzIEsEloENSgCcsN5LuwQwSf/Igg6?=
- =?us-ascii?Q?GR8/JoXC4/oC+gAxIYADcWuPwg186HvzBc/f34OV5dtScpXXzw=3D=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mUtC5iaLhkaJ/ux4d2BsQKVKhajt6QyN/16HgK4AVuaVtBYvy77HpamG5Ot6?=
+ =?us-ascii?Q?oelBoodejfl81sm/w6wywkPZVbYl5qhuVYn554XfmhZmRHZoIoViYzdYeoA6?=
+ =?us-ascii?Q?GRpuX/LK7F7LwytnyjBLdgvr3+HGDquoA2R+3CisgXa0rKxLCzqWHgQvDn0I?=
+ =?us-ascii?Q?ojUoew6sC45zCir3Z2L6d4LaN4twbTLKZe8NwH4igk4dHL118GpPcW6JHQJS?=
+ =?us-ascii?Q?8cmXFetT05hLXSDfXFxephZqLm+HcEJQZels20HrnxPgbfjFwgUpzaPDnP+e?=
+ =?us-ascii?Q?FPavm7urO5/yiJMPH02/sfezVK98G3NF1nauoE1TFAaarOYbNjoRpG8qcQoR?=
+ =?us-ascii?Q?nskDhbbc95gAF8s1Mq4UhiiyjEtLNse0ma5eN5gar3ft8DZax3IDxC77Ru30?=
+ =?us-ascii?Q?d72LN7Y5HMErealRtCVRoetHnMFEwu/Vhmmx600W0E34D1zz+ZK47gM1b9LF?=
+ =?us-ascii?Q?wXA+KTjXwiJz/jf2wcFVU3HMedSrVDBtOJuOAJOhVd/z4QBnSO5kg0NTC2Z8?=
+ =?us-ascii?Q?T6NwkCyaUJP9FymJ5qwiULQNqPtNWpxr08ZwII4x81AgsIrZEnGWo8BXm2ul?=
+ =?us-ascii?Q?fhiRxU9HMuAm/tu2YIB8UX/VRrfpZipg4wTGkiJzE3ikvQF6lw5BGZi6hRfm?=
+ =?us-ascii?Q?fYmW8+JFCyaIyFMobqUCJwLSdklA5D4q3qWNa0RArOKeWJVETETpee8Lk14l?=
+ =?us-ascii?Q?Nv2auKmQisYKuWKG9qrqpvZDfeAnetnqLrC1yjfi/TgubaMwmVxnISoNne36?=
+ =?us-ascii?Q?QgZiLMLZWTSXYg/grBEKGF1vRVPcOkRsNkVxjQTs7JiE66sRRQR4UFhgLbAB?=
+ =?us-ascii?Q?ET86i4E5nfH4doU6079AdfduqPtmaFR3iqys7RZwvl/AjcgyziMoHGwRxeFZ?=
+ =?us-ascii?Q?eQZiEX9N4b4RghH1/s0QQAB4w1hZngk/LeCgGvJJ/M2yEFKHt7F0CV7dUgoA?=
+ =?us-ascii?Q?OuVanKLMKQOIdGS7bkvGndlgDXXJbl7RvkSmRP16WGiweNQFtARRI3U098kI?=
+ =?us-ascii?Q?shxvJYUzXHJSZaa3nOlpO1oWAMTUuz1uza/vlbUNuWzsxfHQJwpsrNYno0RO?=
+ =?us-ascii?Q?CWel/SMz/lpnMRCnWr0meKY4aL6cb/LGf1DhFzuk/xOpeFEovXq2Di8XPXBO?=
+ =?us-ascii?Q?o/RtsrBr0e1FoYGHpDUMn01G4KynfqnV1XNE2XWPupSv6XBVLq569etrVo0u?=
+ =?us-ascii?Q?A+7+Uqbp7C9Fyfu/ZNWcZEGtyEMDF9PR/Kkf3613s+kH8Vvyg8s7ul8lZ4Tt?=
+ =?us-ascii?Q?/EMIpQsXoxy7zFCFQ7Kd4tOju5QzW7U3nTwgSQYCDSMg2zMQT5qcisla7hir?=
+ =?us-ascii?Q?3dkxYOJDLQ3ONY8JH86gjiPKldPiO5uJ5XR/D4LR6dTEidvnNqz8j9Vao6S0?=
+ =?us-ascii?Q?ZaQf//0mpLQO6nUgF3mNNRnNo72E2PlZusBX+SPlNEVcBsDgOQ=3D=3D?=
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
  SFS:(13230035)(376009)(1800799019)(82310400021)(36860700008); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 16:59:58.7200 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2007161-f220-4566-1ffc-08dc8bca420c
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 17:00:03.2082 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3153333-9101-4ac1-f720-08dc8bca44b8
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002325.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002326.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6726
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6580
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,231 +136,835 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-A later patch in this series will move the code that binds to a PCI/
-Tegra device into NVKM, and requires a couple of callbacks to handle
-switcheroo, etc.
-
-nvif_event is generally used for NVKM->DRM callbacks, but these will
-need to be registered before nvif_event is ready.
-
-This patch replaces the event() function pointer that was passed to
-nvkm_driver_ctor() during init with a nvif_driver_func struct, that
-contains the existing event() callback.
-
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/include/nvif/driverif.h    |  4 ++++
- drivers/gpu/drm/nouveau/include/nvif/event.h       |  2 ++
- drivers/gpu/drm/nouveau/include/nvkm/core/client.h |  3 +--
- drivers/gpu/drm/nouveau/include/nvkm/core/device.h |  2 ++
- drivers/gpu/drm/nouveau/nouveau_drm.c              |  7 +++++++
- drivers/gpu/drm/nouveau/nouveau_drv.h              |  1 +
- drivers/gpu/drm/nouveau/nvif/event.c               |  9 +++++++++
- drivers/gpu/drm/nouveau/nvkm/core/client.c         | 13 +++++++++----
- drivers/gpu/drm/nouveau/nvkm/core/driver.c         | 14 +-------------
- 9 files changed, 36 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_acpi.c     | 344 ---------------------
+ drivers/gpu/drm/nouveau/nouveau_acpi.h     |   7 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c      |   2 -
+ drivers/gpu/drm/nouveau/nvkm/device/acpi.c | 339 +++++++++++++++++++-
+ drivers/gpu/drm/nouveau/nvkm/device/acpi.h |  19 ++
+ drivers/gpu/drm/nouveau/nvkm/module.c      |   3 +
+ 6 files changed, 362 insertions(+), 352 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/driverif.h b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
-index 0476dd6621b5..638c72c1b580 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/driverif.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
-@@ -34,6 +34,10 @@ struct nvif_event_impl {
- 	int (*block)(struct nvif_event_priv *);
- };
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.c b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+index 8f0c69aad248..b9c43fe552c0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.c
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.c
+@@ -2,55 +2,12 @@
+ #include <linux/pci.h>
+ #include <linux/acpi.h>
+ #include <linux/slab.h>
+-#include <linux/mxm-wmi.h>
+-#include <linux/vga_switcheroo.h>
+ #include <drm/drm_edid.h>
+ #include <acpi/video.h>
  
-+struct nvif_driver_func {
-+	enum nvif_event_stat (*event)(u64 token, void *repv, u32 repc);
-+};
-+
- struct nvif_driver {
- 	const char *name;
- 	int (*suspend)(struct nvif_client_priv *);
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/event.h b/drivers/gpu/drm/nouveau/include/nvif/event.h
-index 6c52de0e17d0..ce14e478b1fe 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/event.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/event.h
-@@ -5,6 +5,8 @@
- #include <nvif/driverif.h>
- struct nvif_event;
+ #include "nouveau_drv.h"
+ #include "nouveau_acpi.h"
  
-+enum nvif_event_stat nvif_event(u64 token, void *repv, u32 repc);
-+
- typedef enum nvif_event_stat (*nvif_event_func)(struct nvif_event *, void *repv, u32 repc);
- 
- struct nvif_event {
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/client.h b/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
-index 5c9a54d4bd64..4e5d56056b81 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
-@@ -14,10 +14,9 @@ struct nvkm_client {
- 	spinlock_t obj_lock;
- 
- 	void *data;
--	int (*event)(u64 token, void *argv, u32 argc);
- };
- 
--int nvkm_client_new(const char *name, struct nvkm_device *, int (*event)(u64, void *, u32),
-+int nvkm_client_new(const char *name, struct nvkm_device *,
- 		    const struct nvif_client_impl **, struct nvif_client_priv **);
- int nvkm_client_event(struct nvkm_client *client, u64 token, void *repv, u32 repc);
- 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/device.h b/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
-index fff0d7dd0e1b..c9965934b0d5 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
-@@ -71,6 +71,8 @@ struct nvkm_device {
- 		bool armed;
- 		bool legacy_done;
- 	} intr;
-+
-+	const struct nvif_driver_func *driver;
- };
- 
- struct nvkm_subdev *nvkm_device_subdev(struct nvkm_device *, int type, int inst);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 18990d21dc48..09947790f677 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -614,6 +614,11 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
- 	return ret;
+-#define NOUVEAU_DSM_LED 0x02
+-#define NOUVEAU_DSM_LED_STATE 0x00
+-#define NOUVEAU_DSM_LED_OFF 0x10
+-#define NOUVEAU_DSM_LED_STAMINA 0x11
+-#define NOUVEAU_DSM_LED_SPEED 0x12
+-
+-#define NOUVEAU_DSM_POWER 0x03
+-#define NOUVEAU_DSM_POWER_STATE 0x00
+-#define NOUVEAU_DSM_POWER_SPEED 0x01
+-#define NOUVEAU_DSM_POWER_STAMINA 0x02
+-
+-#define NOUVEAU_DSM_OPTIMUS_CAPS 0x1A
+-#define NOUVEAU_DSM_OPTIMUS_FLAGS 0x1B
+-
+-#define NOUVEAU_DSM_OPTIMUS_POWERDOWN_PS3 (3 << 24)
+-#define NOUVEAU_DSM_OPTIMUS_NO_POWERDOWN_PS3 (2 << 24)
+-#define NOUVEAU_DSM_OPTIMUS_FLAGS_CHANGED (1)
+-
+-#define NOUVEAU_DSM_OPTIMUS_SET_POWERDOWN (NOUVEAU_DSM_OPTIMUS_POWERDOWN_PS3 | NOUVEAU_DSM_OPTIMUS_FLAGS_CHANGED)
+-
+-/* result of the optimus caps function */
+-#define OPTIMUS_ENABLED (1 << 0)
+-#define OPTIMUS_STATUS_MASK (3 << 3)
+-#define OPTIMUS_STATUS_OFF  (0 << 3)
+-#define OPTIMUS_STATUS_ON_ENABLED  (1 << 3)
+-#define OPTIMUS_STATUS_PWR_STABLE  (3 << 3)
+-#define OPTIMUS_DISPLAY_HOTPLUG (1 << 6)
+-#define OPTIMUS_CAPS_MASK (7 << 24)
+-#define OPTIMUS_DYNAMIC_PWR_CAP (1 << 24)
+-
+-#define OPTIMUS_AUDIO_CAPS_MASK (3 << 27)
+-#define OPTIMUS_HDA_CODEC_MASK (2 << 27) /* hda bios control */
+-
+-static struct nouveau_dsm_priv {
+-	bool dsm_detected;
+-	bool optimus_detected;
+-	bool optimus_flags_detected;
+-	bool optimus_skip_dsm;
+-	acpi_handle dhandle;
+-} nouveau_dsm_priv;
+-
+ bool nouveau_is_optimus(void) {
+ 	return nouveau_dsm_priv.optimus_detected;
+ }
+@@ -59,307 +16,6 @@ bool nouveau_is_v1_dsm(void) {
+ 	return nouveau_dsm_priv.dsm_detected;
  }
  
-+static const struct nvif_driver_func
-+nouveau_driver = {
-+	.event = nvif_event,
-+};
-+
- static void
- nouveau_drm_device_del(struct nouveau_drm *drm)
- {
-@@ -643,9 +648,11 @@ nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *paren
- 		return ERR_PTR(-ENOMEM);
- 
- 	drm->nvkm = device;
-+	drm->driver = nouveau_driver;
- 
- 	device->cfgopt = nouveau_config;
- 	device->dbgopt = nouveau_debug;
-+	device->driver = &drm->driver;
- 
- 	nvif_parent_ctor(&nouveau_parent, &drm->parent);
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
-index 832651fe9f42..52589d5eab63 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drv.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
-@@ -202,6 +202,7 @@ u_memcpya(uint64_t user, unsigned int nmemb, unsigned int size)
- 
- struct nouveau_drm {
- 	struct nvkm_device *nvkm;
-+	struct nvif_driver_func driver;
- 	struct nvif_parent parent;
- 	struct nvif_client client;
- 	struct nvif_device device;
-diff --git a/drivers/gpu/drm/nouveau/nvif/event.c b/drivers/gpu/drm/nouveau/nvif/event.c
-index 2974ec8e13af..816e3d1bedb4 100644
---- a/drivers/gpu/drm/nouveau/nvif/event.c
-+++ b/drivers/gpu/drm/nouveau/nvif/event.c
-@@ -23,6 +23,15 @@
- #include <nvif/driverif.h>
- #include <nvif/printf.h>
- 
-+enum nvif_event_stat
-+nvif_event(u64 token, void *repv, u32 repc)
-+{
-+	struct nvif_object *object = (void *)(unsigned long)token;
-+	struct nvif_event *event = container_of(object, typeof(*event), object);
-+
-+	return event->func(event, repv, repc);
-+}
-+
- int
- nvif_event_block(struct nvif_event *event)
- {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/client.c b/drivers/gpu/drm/nouveau/nvkm/core/client.c
-index beb966d65daf..b767d77ad205 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/client.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/client.c
-@@ -23,6 +23,7 @@
-  */
- #include <core/client.h>
- #include <core/device.h>
-+#include <core/event.h>
- #include <core/option.h>
- #include <device/user.h>
- 
-@@ -34,7 +35,12 @@
- int
- nvkm_client_event(struct nvkm_client *client, u64 token, void *repv, u32 repc)
- {
--	return client->event(token, repv, repc);
-+	enum nvif_event_stat stat = client->device->driver->event(token, repv, repc);
-+
-+	if (stat == NVIF_EVENT_KEEP)
-+		return NVKM_EVENT_KEEP;
-+
-+	return NVKM_EVENT_DROP;
- }
- 
- static int
-@@ -59,7 +65,7 @@ nvkm_client_new_client(struct nvif_client_priv *parent,
- 	struct nvkm_client *client;
- 	int ret;
- 
--	ret = nvkm_client_new("client", parent->device, parent->event, pimpl, &client);
-+	ret = nvkm_client_new("client", parent->device, pimpl, &client);
- 	if (ret)
- 		return ret;
- 
-@@ -96,7 +102,7 @@ nvkm_client = {
- };
- 
- int
--nvkm_client_new(const char *name, struct nvkm_device *device, int (*event)(u64, void *, u32),
-+nvkm_client_new(const char *name, struct nvkm_device *device,
- 		const struct nvif_client_impl **pimpl, struct nvif_client_priv **ppriv)
- {
- 	struct nvkm_oclass oclass = {};
-@@ -112,7 +118,6 @@ nvkm_client_new(const char *name, struct nvkm_device *device, int (*event)(u64,
- 	client->device = device;
- 	client->debug = NV_DBG_ERROR;
- 	spin_lock_init(&client->obj_lock);
--	client->event = event;
- 
- 	*pimpl = &nvkm_client_impl;
- 	*ppriv = client;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/driver.c b/drivers/gpu/drm/nouveau/nvkm/core/driver.c
-index 86ada3c888ec..dcc5dc7f246e 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/driver.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/driver.c
-@@ -56,18 +56,6 @@ nvkm_driver_suspend(struct nvif_client_priv *client)
- 	return nvkm_object_fini(&client->object, true);
- }
- 
--static int
--nvkm_driver_event(u64 token, void *repv, u32 repc)
+-#ifdef CONFIG_VGA_SWITCHEROO
+-static const guid_t nouveau_dsm_muid =
+-	GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
+-		  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
+-
+-static const guid_t nouveau_op_dsm_muid =
+-	GUID_INIT(0xA486D8F8, 0x0BDA, 0x471B,
+-		  0xA7, 0x2B, 0x60, 0x42, 0xA6, 0xB5, 0xBE, 0xE0);
+-
+-static int nouveau_optimus_dsm(acpi_handle handle, int func, int arg, uint32_t *result)
 -{
--	struct nvif_object *object = (void *)(unsigned long)token;
--	struct nvif_event *event = container_of(object, typeof(*event), object);
+-	int i;
+-	union acpi_object *obj;
+-	char args_buff[4];
+-	union acpi_object argv4 = {
+-		.buffer.type = ACPI_TYPE_BUFFER,
+-		.buffer.length = 4,
+-		.buffer.pointer = args_buff
+-	};
 -
--	if (event->func(event, repv, repc) == NVIF_EVENT_KEEP)
--		return NVKM_EVENT_KEEP;
+-	/* ACPI is little endian, AABBCCDD becomes {DD,CC,BB,AA} */
+-	for (i = 0; i < 4; i++)
+-		args_buff[i] = (arg >> i * 8) & 0xFF;
 -
--	return NVKM_EVENT_DROP;
+-	*result = 0;
+-	obj = acpi_evaluate_dsm_typed(handle, &nouveau_op_dsm_muid, 0x00000100,
+-				      func, &argv4, ACPI_TYPE_BUFFER);
+-	if (!obj) {
+-		acpi_handle_info(handle, "failed to evaluate _DSM\n");
+-		return AE_ERROR;
+-	} else {
+-		if (obj->buffer.length == 4) {
+-			*result |= obj->buffer.pointer[0];
+-			*result |= (obj->buffer.pointer[1] << 8);
+-			*result |= (obj->buffer.pointer[2] << 16);
+-			*result |= (obj->buffer.pointer[3] << 24);
+-		}
+-		ACPI_FREE(obj);
+-	}
+-
+-	return 0;
 -}
 -
- static const struct nvif_driver
- nvkm_driver = {
- 	.name = "nvkm",
-@@ -83,7 +71,7 @@ nvkm_driver_ctor(struct nvkm_device *device, const struct nvif_driver **pdrv,
+-/*
+- * On some platforms, _DSM(nouveau_op_dsm_muid, func0) has special
+- * requirements on the fourth parameter, so a private implementation
+- * instead of using acpi_check_dsm().
+- */
+-static int nouveau_dsm_get_optimus_functions(acpi_handle handle)
+-{
+-	int result;
+-
+-	/*
+-	 * Function 0 returns a Buffer containing available functions.
+-	 * The args parameter is ignored for function 0, so just put 0 in it
+-	 */
+-	if (nouveau_optimus_dsm(handle, 0, 0, &result))
+-		return 0;
+-
+-	/*
+-	 * ACPI Spec v4 9.14.1: if bit 0 is zero, no function is supported.
+-	 * If the n-th bit is enabled, function n is supported
+-	 */
+-	if (result & 1 && result & (1 << NOUVEAU_DSM_OPTIMUS_CAPS))
+-		return result;
+-	return 0;
+-}
+-
+-static int nouveau_dsm(acpi_handle handle, int func, int arg)
+-{
+-	int ret = 0;
+-	union acpi_object *obj;
+-	union acpi_object argv4 = {
+-		.integer.type = ACPI_TYPE_INTEGER,
+-		.integer.value = arg,
+-	};
+-
+-	obj = acpi_evaluate_dsm_typed(handle, &nouveau_dsm_muid, 0x00000102,
+-				      func, &argv4, ACPI_TYPE_INTEGER);
+-	if (!obj) {
+-		acpi_handle_info(handle, "failed to evaluate _DSM\n");
+-		return AE_ERROR;
+-	} else {
+-		if (obj->integer.value == 0x80000002)
+-			ret = -ENODEV;
+-		ACPI_FREE(obj);
+-	}
+-
+-	return ret;
+-}
+-
+-static int nouveau_dsm_switch_mux(acpi_handle handle, int mux_id)
+-{
+-	mxm_wmi_call_mxmx(mux_id == NOUVEAU_DSM_LED_STAMINA ? MXM_MXDS_ADAPTER_IGD : MXM_MXDS_ADAPTER_0);
+-	mxm_wmi_call_mxds(mux_id == NOUVEAU_DSM_LED_STAMINA ? MXM_MXDS_ADAPTER_IGD : MXM_MXDS_ADAPTER_0);
+-	return nouveau_dsm(handle, NOUVEAU_DSM_LED, mux_id);
+-}
+-
+-static int nouveau_dsm_set_discrete_state(acpi_handle handle, enum vga_switcheroo_state state)
+-{
+-	int arg;
+-	if (state == VGA_SWITCHEROO_ON)
+-		arg = NOUVEAU_DSM_POWER_SPEED;
+-	else
+-		arg = NOUVEAU_DSM_POWER_STAMINA;
+-	nouveau_dsm(handle, NOUVEAU_DSM_POWER, arg);
+-	return 0;
+-}
+-
+-static int nouveau_dsm_switchto(enum vga_switcheroo_client_id id)
+-{
+-	if (!nouveau_dsm_priv.dsm_detected)
+-		return 0;
+-	if (id == VGA_SWITCHEROO_IGD)
+-		return nouveau_dsm_switch_mux(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_LED_STAMINA);
+-	else
+-		return nouveau_dsm_switch_mux(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_LED_SPEED);
+-}
+-
+-static int nouveau_dsm_power_state(enum vga_switcheroo_client_id id,
+-				   enum vga_switcheroo_state state)
+-{
+-	if (id == VGA_SWITCHEROO_IGD)
+-		return 0;
+-
+-	/* Optimus laptops have the card already disabled in
+-	 * nouveau_switcheroo_set_state */
+-	if (!nouveau_dsm_priv.dsm_detected)
+-		return 0;
+-
+-	return nouveau_dsm_set_discrete_state(nouveau_dsm_priv.dhandle, state);
+-}
+-
+-static enum vga_switcheroo_client_id nouveau_dsm_get_client_id(struct pci_dev *pdev)
+-{
+-	/* easy option one - intel vendor ID means Integrated */
+-	if (pdev->vendor == PCI_VENDOR_ID_INTEL)
+-		return VGA_SWITCHEROO_IGD;
+-
+-	/* is this device on Bus 0? - this may need improving */
+-	if (pdev->bus->number == 0)
+-		return VGA_SWITCHEROO_IGD;
+-
+-	return VGA_SWITCHEROO_DIS;
+-}
+-
+-static const struct vga_switcheroo_handler nouveau_dsm_handler = {
+-	.switchto = nouveau_dsm_switchto,
+-	.power_state = nouveau_dsm_power_state,
+-	.get_client_id = nouveau_dsm_get_client_id,
+-};
+-
+-static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out,
+-				  bool *has_mux, bool *has_opt,
+-				  bool *has_opt_flags, bool *has_pr3)
+-{
+-	acpi_handle dhandle;
+-	bool supports_mux;
+-	int optimus_funcs;
+-	struct pci_dev *parent_pdev;
+-
+-	if (pdev->vendor != PCI_VENDOR_ID_NVIDIA)
+-		return;
+-
+-	*has_pr3 = false;
+-	parent_pdev = pci_upstream_bridge(pdev);
+-	if (parent_pdev) {
+-		if (parent_pdev->bridge_d3)
+-			*has_pr3 = pci_pr3_present(parent_pdev);
+-		else
+-			pci_d3cold_disable(pdev);
+-	}
+-
+-	dhandle = ACPI_HANDLE(&pdev->dev);
+-	if (!dhandle)
+-		return;
+-
+-	if (!acpi_has_method(dhandle, "_DSM"))
+-		return;
+-
+-	supports_mux = acpi_check_dsm(dhandle, &nouveau_dsm_muid, 0x00000102,
+-				      1 << NOUVEAU_DSM_POWER);
+-	optimus_funcs = nouveau_dsm_get_optimus_functions(dhandle);
+-
+-	/* Does not look like a Nvidia device. */
+-	if (!supports_mux && !optimus_funcs)
+-		return;
+-
+-	*dhandle_out = dhandle;
+-	*has_mux = supports_mux;
+-	*has_opt = !!optimus_funcs;
+-	*has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
+-
+-	if (optimus_funcs) {
+-		uint32_t result;
+-		nouveau_optimus_dsm(dhandle, NOUVEAU_DSM_OPTIMUS_CAPS, 0,
+-				    &result);
+-		dev_info(&pdev->dev, "optimus capabilities: %s, status %s%s\n",
+-			 (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
+-			 (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
+-			 (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
+-	}
+-}
+-
+-static bool nouveau_dsm_detect(void)
+-{
+-	char acpi_method_name[255] = { 0 };
+-	struct acpi_buffer buffer = {sizeof(acpi_method_name), acpi_method_name};
+-	struct pci_dev *pdev = NULL;
+-	acpi_handle dhandle = NULL;
+-	bool has_mux = false;
+-	bool has_optimus = false;
+-	bool has_optimus_flags = false;
+-	bool has_power_resources = false;
+-	int vga_count = 0;
+-	bool guid_valid;
+-	bool ret = false;
+-
+-	/* lookup the MXM GUID */
+-	guid_valid = mxm_wmi_supported();
+-
+-	if (guid_valid)
+-		printk("MXM: GUID detected in BIOS\n");
+-
+-	/* now do DSM detection */
+-	while ((pdev = pci_get_base_class(PCI_BASE_CLASS_DISPLAY, pdev))) {
+-		if ((pdev->class != PCI_CLASS_DISPLAY_VGA << 8) &&
+-		    (pdev->class != PCI_CLASS_DISPLAY_3D << 8))
+-			continue;
+-
+-		vga_count++;
+-
+-		nouveau_dsm_pci_probe(pdev, &dhandle, &has_mux, &has_optimus,
+-				      &has_optimus_flags, &has_power_resources);
+-	}
+-
+-	/* find the optimus DSM or the old v1 DSM */
+-	if (has_optimus) {
+-		nouveau_dsm_priv.dhandle = dhandle;
+-		acpi_get_name(nouveau_dsm_priv.dhandle, ACPI_FULL_PATHNAME,
+-			&buffer);
+-		pr_info("VGA switcheroo: detected Optimus DSM method %s handle\n",
+-			acpi_method_name);
+-		if (has_power_resources)
+-			pr_info("nouveau: detected PR support, will not use DSM\n");
+-		nouveau_dsm_priv.optimus_detected = true;
+-		nouveau_dsm_priv.optimus_flags_detected = has_optimus_flags;
+-		nouveau_dsm_priv.optimus_skip_dsm = has_power_resources;
+-		ret = true;
+-	} else if (vga_count == 2 && has_mux && guid_valid) {
+-		nouveau_dsm_priv.dhandle = dhandle;
+-		acpi_get_name(nouveau_dsm_priv.dhandle, ACPI_FULL_PATHNAME,
+-			&buffer);
+-		pr_info("VGA switcheroo: detected DSM switching method %s handle\n",
+-			acpi_method_name);
+-		nouveau_dsm_priv.dsm_detected = true;
+-		ret = true;
+-	}
+-
+-
+-	return ret;
+-}
+-
+-void nouveau_register_dsm_handler(void)
+-{
+-	bool r;
+-
+-	r = nouveau_dsm_detect();
+-	if (!r)
+-		return;
+-
+-	vga_switcheroo_register_handler(&nouveau_dsm_handler, 0);
+-}
+-
+-/* Must be called for Optimus models before the card can be turned off */
+-void nouveau_switcheroo_optimus_dsm(void)
+-{
+-	u32 result = 0;
+-	if (!nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.optimus_skip_dsm)
+-		return;
+-
+-	if (nouveau_dsm_priv.optimus_flags_detected)
+-		nouveau_optimus_dsm(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_OPTIMUS_FLAGS,
+-				    0x3, &result);
+-
+-	nouveau_optimus_dsm(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_OPTIMUS_CAPS,
+-		NOUVEAU_DSM_OPTIMUS_SET_POWERDOWN, &result);
+-
+-}
+-
+-void nouveau_unregister_dsm_handler(void)
+-{
+-	if (nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.dsm_detected)
+-		vga_switcheroo_unregister_handler();
+-}
+-#else
+-void nouveau_register_dsm_handler(void) {}
+-void nouveau_unregister_dsm_handler(void) {}
+-void nouveau_switcheroo_optimus_dsm(void) {}
+-#endif
+-
+ void *
+ nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector)
  {
- 	int ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_acpi.h b/drivers/gpu/drm/nouveau/nouveau_acpi.h
+index e39dd8b94b8b..a7fac1f7a73d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_acpi.h
++++ b/drivers/gpu/drm/nouveau/nouveau_acpi.h
+@@ -7,17 +7,14 @@
+ #if defined(CONFIG_ACPI) && defined(CONFIG_X86)
+ bool nouveau_is_optimus(void);
+ bool nouveau_is_v1_dsm(void);
+-void nouveau_register_dsm_handler(void);
+-void nouveau_unregister_dsm_handler(void);
+-void nouveau_switcheroo_optimus_dsm(void);
++#include <device/acpi.h>
++static inline void nouveau_switcheroo_optimus_dsm(void) { nvkm_acpi_switcheroo_set_powerdown(); }
+ void *nouveau_acpi_edid(struct drm_device *, struct drm_connector *);
+ bool nouveau_acpi_video_backlight_use_native(void);
+ void nouveau_acpi_video_register_backlight(void);
+ #else
+ static inline bool nouveau_is_optimus(void) { return false; };
+ static inline bool nouveau_is_v1_dsm(void) { return false; };
+-static inline void nouveau_register_dsm_handler(void) {}
+-static inline void nouveau_unregister_dsm_handler(void) {}
+ static inline void nouveau_switcheroo_optimus_dsm(void) {}
+ static inline void *nouveau_acpi_edid(struct drm_device *dev, struct drm_connector *connector) { return NULL; }
+ static inline bool nouveau_acpi_video_backlight_use_native(void) { return true; }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 6c1cfc38d8fa..0ac17da04819 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1399,7 +1399,6 @@ nouveau_drm_init(void)
+ 	platform_driver_register(&nouveau_platform_driver);
+ #endif
  
--	ret = nvkm_client_new("driver", device, nvkm_driver_event, pimpl, ppriv);
-+	ret = nvkm_client_new("driver", device, pimpl, ppriv);
- 	if (ret)
- 		return ret;
+-	nouveau_register_dsm_handler();
+ 	nouveau_backlight_ctor();
  
+ #ifdef CONFIG_PCI
+@@ -1419,7 +1418,6 @@ nouveau_drm_exit(void)
+ 	pci_unregister_driver(&nouveau_drm_pci_driver);
+ #endif
+ 	nouveau_backlight_dtor();
+-	nouveau_unregister_dsm_handler();
+ 
+ #ifdef CONFIG_NOUVEAU_PLATFORM_DRIVER
+ 	platform_driver_unregister(&nouveau_platform_driver);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/device/acpi.c b/drivers/gpu/drm/nouveau/nvkm/device/acpi.c
+index c948a0dc9e62..2bead7e879a5 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/device/acpi.c
++++ b/drivers/gpu/drm/nouveau/nvkm/device/acpi.c
+@@ -26,6 +26,343 @@
+ #include <core/device.h>
+ #include <subdev/clk.h>
+ 
++#include <linux/mxm-wmi.h>
++#include <linux/vga_switcheroo.h>
++
++#ifdef CONFIG_VGA_SWITCHEROO
++struct nouveau_dsm_priv nouveau_dsm_priv = {};
++
++static const guid_t nouveau_op_dsm_muid =
++	GUID_INIT(0xA486D8F8, 0x0BDA, 0x471B,
++		  0xA7, 0x2B, 0x60, 0x42, 0xA6, 0xB5, 0xBE, 0xE0);
++
++#define NOUVEAU_DSM_OPTIMUS_CAPS 0x1A
++#define NOUVEAU_DSM_OPTIMUS_FLAGS 0x1B
++
++#define NOUVEAU_DSM_OPTIMUS_POWERDOWN_PS3 (3 << 24)
++#define NOUVEAU_DSM_OPTIMUS_NO_POWERDOWN_PS3 (2 << 24)
++#define NOUVEAU_DSM_OPTIMUS_FLAGS_CHANGED (1)
++
++#define NOUVEAU_DSM_OPTIMUS_SET_POWERDOWN (NOUVEAU_DSM_OPTIMUS_POWERDOWN_PS3 | NOUVEAU_DSM_OPTIMUS_FLAGS_CHANGED)
++
++/* result of the optimus caps function */
++#define OPTIMUS_ENABLED (1 << 0)
++#define OPTIMUS_STATUS_MASK (3 << 3)
++#define OPTIMUS_STATUS_OFF  (0 << 3)
++#define OPTIMUS_STATUS_ON_ENABLED  (1 << 3)
++#define OPTIMUS_STATUS_PWR_STABLE  (3 << 3)
++#define OPTIMUS_DISPLAY_HOTPLUG (1 << 6)
++#define OPTIMUS_CAPS_MASK (7 << 24)
++#define OPTIMUS_DYNAMIC_PWR_CAP (1 << 24)
++
++#define OPTIMUS_AUDIO_CAPS_MASK (3 << 27)
++#define OPTIMUS_HDA_CODEC_MASK (2 << 27) /* hda bios control */
++
++static int nouveau_optimus_dsm(acpi_handle handle, int func, int arg, uint32_t *result)
++{
++	int i;
++	union acpi_object *obj;
++	char args_buff[4];
++	union acpi_object argv4 = {
++		.buffer.type = ACPI_TYPE_BUFFER,
++		.buffer.length = 4,
++		.buffer.pointer = args_buff
++	};
++
++	/* ACPI is little endian, AABBCCDD becomes {DD,CC,BB,AA} */
++	for (i = 0; i < 4; i++)
++		args_buff[i] = (arg >> i * 8) & 0xFF;
++
++	*result = 0;
++	obj = acpi_evaluate_dsm_typed(handle, &nouveau_op_dsm_muid, 0x00000100,
++				      func, &argv4, ACPI_TYPE_BUFFER);
++	if (!obj) {
++		acpi_handle_info(handle, "failed to evaluate _DSM\n");
++		return AE_ERROR;
++	} else {
++		if (obj->buffer.length == 4) {
++			*result |= obj->buffer.pointer[0];
++			*result |= (obj->buffer.pointer[1] << 8);
++			*result |= (obj->buffer.pointer[2] << 16);
++			*result |= (obj->buffer.pointer[3] << 24);
++		}
++		ACPI_FREE(obj);
++	}
++
++	return 0;
++}
++
++/* Must be called for Optimus models before the card can be turned off */
++void nvkm_acpi_switcheroo_set_powerdown(void)
++{
++	u32 result = 0;
++	if (!nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.optimus_skip_dsm)
++		return;
++
++	if (nouveau_dsm_priv.optimus_flags_detected)
++		nouveau_optimus_dsm(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_OPTIMUS_FLAGS,
++				    0x3, &result);
++
++	nouveau_optimus_dsm(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_OPTIMUS_CAPS,
++		NOUVEAU_DSM_OPTIMUS_SET_POWERDOWN, &result);
++
++}
++
++/*
++ * On some platforms, _DSM(nouveau_op_dsm_muid, func0) has special
++ * requirements on the fourth parameter, so a private implementation
++ * instead of using acpi_check_dsm().
++ */
++static int nouveau_dsm_get_optimus_functions(acpi_handle handle)
++{
++	int result;
++
++	/*
++	 * Function 0 returns a Buffer containing available functions.
++	 * The args parameter is ignored for function 0, so just put 0 in it
++	 */
++	if (nouveau_optimus_dsm(handle, 0, 0, &result))
++		return 0;
++
++	/*
++	 * ACPI Spec v4 9.14.1: if bit 0 is zero, no function is supported.
++	 * If the n-th bit is enabled, function n is supported
++	 */
++	if (result & 1 && result & (1 << NOUVEAU_DSM_OPTIMUS_CAPS))
++		return result;
++	return 0;
++}
++
++static const guid_t nouveau_dsm_muid =
++	GUID_INIT(0x9D95A0A0, 0x0060, 0x4D48,
++		  0xB3, 0x4D, 0x7E, 0x5F, 0xEA, 0x12, 0x9F, 0xD4);
++
++#define NOUVEAU_DSM_LED 0x02
++#define NOUVEAU_DSM_LED_STATE 0x00
++#define NOUVEAU_DSM_LED_OFF 0x10
++#define NOUVEAU_DSM_LED_STAMINA 0x11
++#define NOUVEAU_DSM_LED_SPEED 0x12
++
++#define NOUVEAU_DSM_POWER 0x03
++#define NOUVEAU_DSM_POWER_STATE 0x00
++#define NOUVEAU_DSM_POWER_SPEED 0x01
++#define NOUVEAU_DSM_POWER_STAMINA 0x02
++
++static int nouveau_dsm(acpi_handle handle, int func, int arg)
++{
++	int ret = 0;
++	union acpi_object *obj;
++	union acpi_object argv4 = {
++		.integer.type = ACPI_TYPE_INTEGER,
++		.integer.value = arg,
++	};
++
++	obj = acpi_evaluate_dsm_typed(handle, &nouveau_dsm_muid, 0x00000102,
++				      func, &argv4, ACPI_TYPE_INTEGER);
++	if (!obj) {
++		acpi_handle_info(handle, "failed to evaluate _DSM\n");
++		return AE_ERROR;
++	} else {
++		if (obj->integer.value == 0x80000002)
++			ret = -ENODEV;
++		ACPI_FREE(obj);
++	}
++
++	return ret;
++}
++
++static int nouveau_dsm_switch_mux(acpi_handle handle, int mux_id)
++{
++	mxm_wmi_call_mxmx(mux_id == NOUVEAU_DSM_LED_STAMINA ? MXM_MXDS_ADAPTER_IGD : MXM_MXDS_ADAPTER_0);
++	mxm_wmi_call_mxds(mux_id == NOUVEAU_DSM_LED_STAMINA ? MXM_MXDS_ADAPTER_IGD : MXM_MXDS_ADAPTER_0);
++	return nouveau_dsm(handle, NOUVEAU_DSM_LED, mux_id);
++}
++
++static int nouveau_dsm_set_discrete_state(acpi_handle handle, enum vga_switcheroo_state state)
++{
++	int arg;
++	if (state == VGA_SWITCHEROO_ON)
++		arg = NOUVEAU_DSM_POWER_SPEED;
++	else
++		arg = NOUVEAU_DSM_POWER_STAMINA;
++	nouveau_dsm(handle, NOUVEAU_DSM_POWER, arg);
++	return 0;
++}
++
++static int nouveau_dsm_switchto(enum vga_switcheroo_client_id id)
++{
++	if (!nouveau_dsm_priv.dsm_detected)
++		return 0;
++	if (id == VGA_SWITCHEROO_IGD)
++		return nouveau_dsm_switch_mux(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_LED_STAMINA);
++	else
++		return nouveau_dsm_switch_mux(nouveau_dsm_priv.dhandle, NOUVEAU_DSM_LED_SPEED);
++}
++
++static int nouveau_dsm_power_state(enum vga_switcheroo_client_id id,
++				   enum vga_switcheroo_state state)
++{
++	if (id == VGA_SWITCHEROO_IGD)
++		return 0;
++
++	/* Optimus laptops have the card already disabled in
++	 * nouveau_switcheroo_set_state */
++	if (!nouveau_dsm_priv.dsm_detected)
++		return 0;
++
++	return nouveau_dsm_set_discrete_state(nouveau_dsm_priv.dhandle, state);
++}
++
++static enum vga_switcheroo_client_id nouveau_dsm_get_client_id(struct pci_dev *pdev)
++{
++	/* easy option one - intel vendor ID means Integrated */
++	if (pdev->vendor == PCI_VENDOR_ID_INTEL)
++		return VGA_SWITCHEROO_IGD;
++
++	/* is this device on Bus 0? - this may need improving */
++	if (pdev->bus->number == 0)
++		return VGA_SWITCHEROO_IGD;
++
++	return VGA_SWITCHEROO_DIS;
++}
++
++static const struct vga_switcheroo_handler nouveau_dsm_handler = {
++	.switchto = nouveau_dsm_switchto,
++	.power_state = nouveau_dsm_power_state,
++	.get_client_id = nouveau_dsm_get_client_id,
++};
++
++static void nouveau_dsm_pci_probe(struct pci_dev *pdev, acpi_handle *dhandle_out,
++				  bool *has_mux, bool *has_opt,
++				  bool *has_opt_flags, bool *has_pr3)
++{
++	acpi_handle dhandle;
++	bool supports_mux;
++	int optimus_funcs;
++	struct pci_dev *parent_pdev;
++
++	if (pdev->vendor != PCI_VENDOR_ID_NVIDIA)
++		return;
++
++	*has_pr3 = false;
++	parent_pdev = pci_upstream_bridge(pdev);
++	if (parent_pdev) {
++		if (parent_pdev->bridge_d3)
++			*has_pr3 = pci_pr3_present(parent_pdev);
++		else
++			pci_d3cold_disable(pdev);
++	}
++
++	dhandle = ACPI_HANDLE(&pdev->dev);
++	if (!dhandle)
++		return;
++
++	if (!acpi_has_method(dhandle, "_DSM"))
++		return;
++
++	supports_mux = acpi_check_dsm(dhandle, &nouveau_dsm_muid, 0x00000102,
++				      1 << NOUVEAU_DSM_POWER);
++	optimus_funcs = nouveau_dsm_get_optimus_functions(dhandle);
++
++	/* Does not look like a Nvidia device. */
++	if (!supports_mux && !optimus_funcs)
++		return;
++
++	*dhandle_out = dhandle;
++	*has_mux = supports_mux;
++	*has_opt = !!optimus_funcs;
++	*has_opt_flags = optimus_funcs & (1 << NOUVEAU_DSM_OPTIMUS_FLAGS);
++
++	if (optimus_funcs) {
++		uint32_t result;
++		nouveau_optimus_dsm(dhandle, NOUVEAU_DSM_OPTIMUS_CAPS, 0,
++				    &result);
++		dev_info(&pdev->dev, "optimus capabilities: %s, status %s%s\n",
++			 (result & OPTIMUS_ENABLED) ? "enabled" : "disabled",
++			 (result & OPTIMUS_DYNAMIC_PWR_CAP) ? "dynamic power, " : "",
++			 (result & OPTIMUS_HDA_CODEC_MASK) ? "hda bios codec supported" : "");
++	}
++}
++
++static bool nouveau_dsm_detect(void)
++{
++	char acpi_method_name[255] = { 0 };
++	struct acpi_buffer buffer = {sizeof(acpi_method_name), acpi_method_name};
++	struct pci_dev *pdev = NULL;
++	acpi_handle dhandle = NULL;
++	bool has_mux = false;
++	bool has_optimus = false;
++	bool has_optimus_flags = false;
++	bool has_power_resources = false;
++	int vga_count = 0;
++	bool guid_valid;
++	bool ret = false;
++
++	/* lookup the MXM GUID */
++	guid_valid = mxm_wmi_supported();
++
++	if (guid_valid)
++		printk("MXM: GUID detected in BIOS\n");
++
++	/* now do DSM detection */
++	while ((pdev = pci_get_base_class(PCI_BASE_CLASS_DISPLAY, pdev))) {
++		if ((pdev->class != PCI_CLASS_DISPLAY_VGA << 8) &&
++		    (pdev->class != PCI_CLASS_DISPLAY_3D << 8))
++			continue;
++
++		vga_count++;
++
++		nouveau_dsm_pci_probe(pdev, &dhandle, &has_mux, &has_optimus,
++				      &has_optimus_flags, &has_power_resources);
++	}
++
++	/* find the optimus DSM or the old v1 DSM */
++	if (has_optimus) {
++		nouveau_dsm_priv.dhandle = dhandle;
++		acpi_get_name(nouveau_dsm_priv.dhandle, ACPI_FULL_PATHNAME,
++			&buffer);
++		pr_info("VGA switcheroo: detected Optimus DSM method %s handle\n",
++			acpi_method_name);
++		if (has_power_resources)
++			pr_info("nouveau: detected PR support, will not use DSM\n");
++		nouveau_dsm_priv.optimus_detected = true;
++		nouveau_dsm_priv.optimus_flags_detected = has_optimus_flags;
++		nouveau_dsm_priv.optimus_skip_dsm = has_power_resources;
++		ret = true;
++	} else if (vga_count == 2 && has_mux && guid_valid) {
++		nouveau_dsm_priv.dhandle = dhandle;
++		acpi_get_name(nouveau_dsm_priv.dhandle, ACPI_FULL_PATHNAME,
++			&buffer);
++		pr_info("VGA switcheroo: detected DSM switching method %s handle\n",
++			acpi_method_name);
++		nouveau_dsm_priv.dsm_detected = true;
++		ret = true;
++	}
++
++
++	return ret;
++}
++
++void
++nvkm_acpi_switcheroo_fini(void)
++{
++	if (nouveau_dsm_priv.optimus_detected || nouveau_dsm_priv.dsm_detected)
++		vga_switcheroo_unregister_handler();
++}
++
++void
++nvkm_acpi_switcheroo_init(void)
++{
++	bool r;
++
++	r = nouveau_dsm_detect();
++	if (!r)
++		return;
++
++	vga_switcheroo_register_handler(&nouveau_dsm_handler, 0);
++}
++#endif
++
+ #ifdef CONFIG_ACPI
+ static int
+ nvkm_acpi_ntfy(struct notifier_block *nb, unsigned long val, void *data)
+@@ -38,7 +375,7 @@ nvkm_acpi_ntfy(struct notifier_block *nb, unsigned long val, void *data)
+ 
+ 	return NOTIFY_DONE;
+ }
+-#endif
++#endif /* CONFIG_ACPI */
+ 
+ void
+ nvkm_acpi_fini(struct nvkm_device *device)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/device/acpi.h b/drivers/gpu/drm/nouveau/nvkm/device/acpi.h
+index 1d3c5cf7c3b4..34854d10026d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/device/acpi.h
++++ b/drivers/gpu/drm/nouveau/nvkm/device/acpi.h
+@@ -6,4 +6,23 @@ struct nvkm_device;
+ 
+ void nvkm_acpi_init(struct nvkm_device *);
+ void nvkm_acpi_fini(struct nvkm_device *);
++
++#ifdef CONFIG_VGA_SWITCHEROO
++extern struct nouveau_dsm_priv {
++	bool dsm_detected;
++	bool optimus_detected;
++	bool optimus_flags_detected;
++	bool optimus_skip_dsm;
++	acpi_handle dhandle;
++} nouveau_dsm_priv;
++
++void nvkm_acpi_switcheroo_init(void);
++void nvkm_acpi_switcheroo_fini(void);
++void nvkm_acpi_switcheroo_set_powerdown(void);
++#else
++static inline void nvkm_acpi_switcheroo_init(void) {};
++static inline void nvkm_acpi_switcheroo_fini(void) {};
++static inline void nvkm_acpi_switcheroo_set_powerdown(void) {};
++#endif
++
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nvkm/module.c b/drivers/gpu/drm/nouveau/nvkm/module.c
+index 66d28465514b..cf71c68af89a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/module.c
++++ b/drivers/gpu/drm/nouveau/nvkm/module.c
+@@ -20,14 +20,17 @@
+  * DEALINGS IN THE SOFTWARE.
+  */
+ #include <core/module.h>
++#include <device/acpi.h>
+ 
+ void __exit
+ nvkm_exit(void)
+ {
++	nvkm_acpi_switcheroo_fini();
+ }
+ 
+ int __init
+ nvkm_init(void)
+ {
++	nvkm_acpi_switcheroo_init();
+ 	return 0;
+ }
 -- 
 2.44.0
 
