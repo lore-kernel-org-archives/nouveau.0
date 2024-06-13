@@ -4,69 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC977C27C4F
-	for <nouveau@archiver.kernel.org>; Thu, 13 Jun 2024 17:00:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B719FC27C75
+	for <nouveau@archiver.kernel.org>; Thu, 13 Jun 2024 17:00:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0938610EB1B;
-	Thu, 13 Jun 2024 17:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA54C10EB04;
+	Thu, 13 Jun 2024 17:00:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dMflzdwY";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="c3YWNBmd";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2083.outbound.protection.outlook.com [40.107.92.83])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF35510EB07;
- Thu, 13 Jun 2024 17:00:02 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2086.outbound.protection.outlook.com [40.107.243.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55A0E10EB0E;
+ Thu, 13 Jun 2024 17:00:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ENddFGwA8nWLGN62mz3QehEayN0EMi7GPpt67KAN4faNn0Xc7Jvmd9FCSvy4Ax0TMERFAdxGySpKaIp0fcJ5dcaV09920hh+T7uR8irN+6EdwM+/SABYjHmMGebi+I5NmHTnOVZhpev7pGgQhxpV96J+ngq9vvMcoacBSTvBxnoDUP6rSD3nFhk78VYrX+0M2hvPHggtjTK4Z8bzgkN4Hvdnk5yBkzGr5TtQfziyc09HzrH2QZr9iHx98D8qbC5nhE7yhX5/7Oh+OKOVC98B+mQpaf2gQbfrPegBOMH1C9+nl3DbDGHL20mkxbRqwI7E4Wg3R5uItbjNZGWXYfhZiQ==
+ b=B7r1ZGMWBaXHuW4ShWDU7+QqcO1hjl1KU/TyuyH+9XKN3fM1Sp9kWU4noqw97jj/uRmOsVE8kXasd1c7ovvQOdt6tTPjCSbygm3uD8GJBBlQRqsA1CQKz6RNZuJZ6J7tPneuGDL61Rj0E2b9Lu5XtK/dPoAynq90cBSdEOj+2Apvr+Ws1+5/sX2XaLsAApXz3YzzuKJxxfajz/FzDAY3LHLgCpnUcQHBa8yOGA0bcTdDVFfqwmqSDLIeu/Cx+07p85F/Hrnbq+c5pPJ55sTyqccuTFfXFLY8UkHwSCkJWFiYtvY7QN4pbL+yOaMM8KCjHjxTcSPV9YWU8I6fYui2xA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RQ2k7RfrGgI6aaQ0Kd7fmVBlbuY+nJAZbDL1cJqsBB8=;
- b=Wks1ldpPQxBUWgCIar0l3CPwwoD7wKuQmaH36cEwS0mSYtSmtqiUh6NRr/1EpVbWy9yNyfkJMFwPhq7yQG84gvVq/ee25S2YZGLqHciUpvE0mZHON5r2udN66HfxDOIsyHqgUZzoJiLWRmjwoSfhwi0migXNdOAGdo2woafnlvajCTNljr8mHlbotEg/QCLsC01t+XgDy7bcP4H/sZ19HaHG5J8mwdkfr6kEwPzwPWxyyhzry6WoHRMZ3sug3azdZUJBb2GNjHh9FqGUfaHroRT9q/vfFqgJYzpdbdV+HaeBEIOSg9VgAJr1l68GSt9Rv86PokeE27cDGHM2iR/P0Q==
+ bh=5DzgEROFQ3oyDqWVe1dvAPduxS6pFPwHavV5m2Oya5Q=;
+ b=MaAUXTf0WZhM8eaohB2dVt1zzj7VmmRCqeoFTH+EZ7p8fvHoAIoTDYvwPMlsjEYYtqsCDjeR/zkQJGQwrkaNERIwp8BCuCkl6KJcAOcgvG1YHXzCNBiJRbqTg31asEGsIPeg4457qCFM6S5awNGNxmY6tNbaw435V5Nau5Bxxb4yJDtO7dU/o5bPfVIEIc19O+eXjEwg+vKIHWmfMDNMNHaI8hWrWshXze39Tbj5ALsS2wRrENrtjPuD3uxePVNhXVLD3bFj0espeMwsNz4uhyxZB9bZ4ZyBhDJ6VYBn7hG/jiaCFOBXLBq8wpfrplTJDcT3iYq6fai9C9Cf4YLsqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
+ 216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
  header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RQ2k7RfrGgI6aaQ0Kd7fmVBlbuY+nJAZbDL1cJqsBB8=;
- b=dMflzdwYUZAlRZa7u6sBRvq2tV4fE0Zlym41OnZeOnAbpjWKKxAN9EQ2ne4+ulet2fJAW5T5jSkfSnF/TgP6KHwBPgbjWDfICCF1L7JD/G4ilXlDhYaxJaB6UvvPQa6gF7o/CbqsBB5Nyu3x7VQH5H9UFdIeDo1Q8OQ3hSAkyrlZfffePDn4dTsL9yIhtIg4A9Ijc+Yf70NTurUJbqCkLoMcwsm+px/esfsBFyHNWEffQtZCOgMG5qaqTRBHLJuimkunagE75qox/MteHQxd/CGlcfYvyTCy9UFr30zAcYbscNmyR35mAhY3SRDXPu5QVgXl9cUH3HyKFvohJpWzfw==
-Received: from SN4PR0501CA0043.namprd05.prod.outlook.com
- (2603:10b6:803:41::20) by CH3PR12MB8994.namprd12.prod.outlook.com
- (2603:10b6:610:171::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.22; Thu, 13 Jun
- 2024 16:59:51 +0000
-Received: from SA2PEPF00003F61.namprd04.prod.outlook.com
- (2603:10b6:803:41:cafe::2c) by SN4PR0501CA0043.outlook.office365.com
- (2603:10b6:803:41::20) with Microsoft SMTP Server (version=TLS1_2,
+ bh=5DzgEROFQ3oyDqWVe1dvAPduxS6pFPwHavV5m2Oya5Q=;
+ b=c3YWNBmd3sjvWuqwYRnD8N5a/RKnkAxmOtGMeRw/7K87tLV98ZbuM1Bey5gg2pp+A2dXE5WPcymJumrS3IK+vkbojK+/YPhIS4YPfkbi7PBXmGbmEjo9gOsmR/QSlR0VzDq/Ge1wsfdh+8KaRA4+tm/s15u9L2692wMC/aArK7J495r119o5SKRF+6wDytOSNHWuRjsZV9u5bofwu/jmUSMcNvXVTtlqMXoH6Fju0/k7VWAV0AlIlrV1fHvC/JIkOmf9VzPiT0e7SP5E47gDrDOuazhF+OH3JWgaNry6KBqboo7jMONslYTr9xctsQ/+LOYPvudA2S9eNYrbXX+Lpg==
+Received: from SJ0PR05CA0018.namprd05.prod.outlook.com (2603:10b6:a03:33b::23)
+ by SA1PR12MB6726.namprd12.prod.outlook.com (2603:10b6:806:255::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7633.37; Thu, 13 Jun
+ 2024 16:59:58 +0000
+Received: from SJ1PEPF00002325.namprd03.prod.outlook.com
+ (2603:10b6:a03:33b:cafe::c3) by SJ0PR05CA0018.outlook.office365.com
+ (2603:10b6:a03:33b::23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7677.24 via Frontend
- Transport; Thu, 13 Jun 2024 16:59:51 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ Transport; Thu, 13 Jun 2024 16:59:58 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- SA2PEPF00003F61.mail.protection.outlook.com (10.167.248.36) with Microsoft
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SJ1PEPF00002325.mail.protection.outlook.com (10.167.242.88) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7677.15 via Frontend Transport; Thu, 13 Jun 2024 16:59:51 +0000
+ 15.20.7677.15 via Frontend Transport; Thu, 13 Jun 2024 16:59:58 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 13 Jun
- 2024 09:59:37 -0700
+ 2024 09:59:44 -0700
 Received: from fedora.mshome.net (10.126.230.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 13 Jun
- 2024 09:59:36 -0700
+ 2024 09:59:42 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 01/21] drm/nouveau: fix a couple of KBuild comments
-Date: Fri, 14 Jun 2024 02:59:53 +1000
-Message-ID: <20240613170046.88687-2-bskeggs@nvidia.com>
+Subject: [PATCH 05/21] drm/nouveau/nvif: add nvif_driver_func for nvkm->drm
+ callbacks
+Date: Fri, 14 Jun 2024 02:59:57 +1000
+Message-ID: <20240613170046.88687-6-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <20240613170046.88687-1-bskeggs@nvidia.com>
 References: <20240613170046.88687-1-bskeggs@nvidia.com>
@@ -78,50 +79,50 @@ X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003F61:EE_|CH3PR12MB8994:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71b6f0f6-c033-4baf-6b53-08dc8bca3dcd
+X-MS-TrafficTypeDiagnostic: SJ1PEPF00002325:EE_|SA1PR12MB6726:EE_
+X-MS-Office365-Filtering-Correlation-Id: f2007161-f220-4566-1ffc-08dc8bca420c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230035|376009|1800799019|82310400021|36860700008; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?MQwM8dfxj5Dq3CRuzOh/8lCBWRASlhzXHI149g3OiUtrpsD4ur/VQG9jAhIf?=
- =?us-ascii?Q?HrcuWZOXJMCS7YBfnuWGS+WLfQntx6xg0ooxQN9DVqeq/esyXYO6BAbjEDxF?=
- =?us-ascii?Q?SlEI1+3LKzZ9psPe6sOFdUw36nH9flVkhNjvoBlcYbD41IytyWPi9Y7DNUAE?=
- =?us-ascii?Q?O2E6InEo+bP2ggGXeCh8/FCMsS/KSqb5I24ahmezXybNk2XKM6zar9HhUj8/?=
- =?us-ascii?Q?9QVgBG0sf6tfOgyR4yOsoWyVPXqTafi8SkUexLNUqxa5X2l4tfkHXAaOhOae?=
- =?us-ascii?Q?KGEOyjdUkOfi0mj8+EX/bC1ozbcbLrlmmpiqKF3CGbucVYxmFF06tAsc2s2I?=
- =?us-ascii?Q?Wexo51p0OxxbcZct/Jw+QiAJyT93RywL8333z5X+zz+VhyTf3CaqS1IVVrs+?=
- =?us-ascii?Q?VbKu3YyESlMQl8VzZeB+ofoq6FNIkLz3z0kZFP1aQU2/m11M7ZYnOwwYxjH1?=
- =?us-ascii?Q?0Ae9zIYaqj2hob0jBGMyNUibpey3SkRfzH7H+U44Y1eIpFwc/C/9DshSeJqe?=
- =?us-ascii?Q?vy9v9W+sKei2tt404+U+RchG6iTjKat6lBKsO+78Hii/6eHSjEGdW5RHSqOY?=
- =?us-ascii?Q?Rq5qqofXJT47DKpZ8e+j89quXD0ox2GXPBSM4C3w3Ogh0AngmBnV35JRHSfr?=
- =?us-ascii?Q?mYfnqKvvF92F/GW4C9hkXEJ8s8dBLb4U/q8VSSVDBFoeSfaeBxasWZK79ai+?=
- =?us-ascii?Q?t29n/jW0CXwuNUcCThAws+SLx8pRB/OeJlcdtSy6VGNUR8UnnC3AbyPBccQX?=
- =?us-ascii?Q?1rE5R1oXCIoMyVt16o2yY1gZRp/NdIsS+DczJuhjSF0cIcCvxrML8ctqAdFq?=
- =?us-ascii?Q?+BvXp0HQnLtv2pKQnsCiPQFGsZgMAzi5qfqBrH6NZEiYR8ag2OmfJMxVuTgz?=
- =?us-ascii?Q?G59Rwg/eUnSpleLdo6YNCRmnuS1+5Vs/Yqx/Md1zskYJXPkke1zvFyKsSfZF?=
- =?us-ascii?Q?CI6sJJRFGh1XFMtOClN19mEl419sqqNXSfl2aqyp+eiWsqXmoNedah//ET/s?=
- =?us-ascii?Q?Gfs3j9ablzMSmQRUaR4GVzJCv0AuE5415iO8GV+6mr58210uc+tw2J1Jklrx?=
- =?us-ascii?Q?Ooq/f9c81wOjoTYLzIwN1jrm17zMREAg0CaPZGJaqIYtbJflJRj/hmyNevwV?=
- =?us-ascii?Q?NrTUvtwKTAm8bA7638zVU12KYpcunTMGjeVJpfP+TLNYB8qyEkgpOaIKlBXQ?=
- =?us-ascii?Q?1Oc7I/EP3KfkrtJELd42ZiHp4dqpxVAfWEMsq+WozM+Tbunb2UfmwQfIciBk?=
- =?us-ascii?Q?Zc4Xhb5gqK9ICGBkPRzTYBFu7ujKwcS3K8I7PgonP9mRo1gE4W/NftUMRCBm?=
- =?us-ascii?Q?V1kL/zw7M1L3utzxGW6WQVl6DZAw1tJ61ASlYjjXLKoyHYlvHNXNCxtv2yEQ?=
- =?us-ascii?Q?J2sEF4IC+P9R6IHKRKbabQt8GBLFLOvcDwCbHqgFKGH0mdn3DA=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?mE5eIUHJpaAEEBUvMZyP1aVGq+YCEEPcZK+dB0FQ6A/R29ju+tWWY8tskq/r?=
+ =?us-ascii?Q?S+9uKJnQAuZ/VP2GmcMo2AyngADXDXMtCQ7U6if5RRcPVq6iMxeViLae2hk3?=
+ =?us-ascii?Q?6dqCwPZ1DNnxnolQOZ+YBADN3Ero4XKSSvmVooacNUzNYYqCgbpJjGMd+4mZ?=
+ =?us-ascii?Q?3l15bFC4KlbJSCivmW6e4pF11ecHAfeAxP4WMu8+BVh3+4G3DGyIoS/EGFpZ?=
+ =?us-ascii?Q?IxkklzPyTQsooJuqXawkG7u3QHjqNn4+BYlRJ7sY/mmg9E4be/YTmXXFi5ru?=
+ =?us-ascii?Q?0MxTuyo0qjBSAwOftq214mgI8oaq27Zz1+1dHKGRMY//xE3g3zjKhAg6V883?=
+ =?us-ascii?Q?kP5Dys/HUr7Pf+jZBsX6bVub74bBVHS1wM18w/QjQ5XYhM6lgcjPT4uWHS/y?=
+ =?us-ascii?Q?vqCWWCpO7K9zsrXaaEB1Df1Wlow0b43qMZDdAGBKZS/J48DZDjed3GN35tFq?=
+ =?us-ascii?Q?B8v7827zscT4muum4760tdZTuzMd0HHJCaQi71eraTeONUvigqqKGaqKoJRI?=
+ =?us-ascii?Q?9tpDjAEngWz9myVejeq7ASE2663TxU2j9Ock46YH78n6j9xhmvmEgcXGL87t?=
+ =?us-ascii?Q?dzctqRcsqknm6gLT0l/vRkbVZCsaJ7PdGuZuNNrPnOhuDKCZ4aJj9SAoXiNO?=
+ =?us-ascii?Q?e1u9UkycDTia0/DTOX1xf1+SzMefE8nBFsE4Mn8dubJoLASgCAPHLu80bQQ8?=
+ =?us-ascii?Q?48ZhA7Q0GUfhcRhkEBEG4zGbf4Ot6M2U96b2AlyKriNBcrqDBTvquPJ44JlM?=
+ =?us-ascii?Q?1THILGi0AZHuF8VhOgkF3dKqyafwazif1dUBrtLypJMG42ALncpAykEloo12?=
+ =?us-ascii?Q?JuUn0MMJkrxit8MCvUKjbM11CS+6Loa3hZedWnyqQO4p18kne+gswRU/W5DX?=
+ =?us-ascii?Q?VpwChFMTegdknZCme/ydoA/jSLGY81j1q4xDYq9fymU07GLnWM2QVk3X3fSL?=
+ =?us-ascii?Q?Jb3JBmVZxU7BNTfJEZIW+w38smAYdVHVtWt5JtuVwPIpjUvPGOswYPYe596w?=
+ =?us-ascii?Q?vaVFmnOEsY99zfDyKgFDk+Ry6vz1/7pbWHWB0FRpp1d+LZhTFvoLrOg9S+bf?=
+ =?us-ascii?Q?qQxCy8psmeWH06+3bKE9ZYtW4mm8Bdox1AUShxvNLHt/q5FJBeAlJO92ch48?=
+ =?us-ascii?Q?TpBE7bPtHARbUHrajbMeL2/9J0hfW2Iakxujj7CXej6DIN4xQOoXtbpCST1S?=
+ =?us-ascii?Q?gVMbX5RrgoJPYkkxoS2sj1hP+84r1nBg30e+EoeEbB4OUNDHLUf5naimgvWZ?=
+ =?us-ascii?Q?QA2oiDJPE+rdKs1J4qNbpMIwNIFuBV/VUYt1jixHJW6qIVLr5r8MV+sZ9VI8?=
+ =?us-ascii?Q?5fA5j464t5qeliMZvg+jmiIe/eOiENGnzIEsEloENSgCcsN5LuwQwSf/Igg6?=
+ =?us-ascii?Q?GR8/JoXC4/oC+gAxIYADcWuPwg186HvzBc/f34OV5dtScpXXzw=3D=3D?=
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
  SFS:(13230035)(376009)(1800799019)(82310400021)(36860700008); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 16:59:51.4888 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71b6f0f6-c033-4baf-6b53-08dc8bca3dcd
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Jun 2024 16:59:58.7200 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2007161-f220-4566-1ffc-08dc8bca420c
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003F61.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PEPF00002325.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8994
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6726
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,36 +137,231 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The NVIF/NVKM comments were backwards.
+A later patch in this series will move the code that binds to a PCI/
+Tegra device into NVKM, and requires a couple of callbacks to handle
+switcheroo, etc.
+
+nvif_event is generally used for NVKM->DRM callbacks, but these will
+need to be registered before nvif_event is ready.
+
+This patch replaces the event() function pointer that was passed to
+nvkm_driver_ctor() during init with a nvif_driver_func struct, that
+contains the existing event() callback.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/Kbuild | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/include/nvif/driverif.h    |  4 ++++
+ drivers/gpu/drm/nouveau/include/nvif/event.h       |  2 ++
+ drivers/gpu/drm/nouveau/include/nvkm/core/client.h |  3 +--
+ drivers/gpu/drm/nouveau/include/nvkm/core/device.h |  2 ++
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |  7 +++++++
+ drivers/gpu/drm/nouveau/nouveau_drv.h              |  1 +
+ drivers/gpu/drm/nouveau/nvif/event.c               |  9 +++++++++
+ drivers/gpu/drm/nouveau/nvkm/core/client.c         | 13 +++++++++----
+ drivers/gpu/drm/nouveau/nvkm/core/driver.c         | 14 +-------------
+ 9 files changed, 36 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
-index f99b7b227947..61eeef83847a 100644
---- a/drivers/gpu/drm/nouveau/Kbuild
-+++ b/drivers/gpu/drm/nouveau/Kbuild
-@@ -7,14 +7,12 @@ ccflags-y += -I $(NOUVEAU_PATH)/$(src)/nvkm
- ccflags-y += -I $(NOUVEAU_PATH)/$(src)
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/driverif.h b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
+index 0476dd6621b5..638c72c1b580 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/driverif.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/driverif.h
+@@ -34,6 +34,10 @@ struct nvif_event_impl {
+ 	int (*block)(struct nvif_event_priv *);
+ };
  
- # NVKM - HW resource manager
--#- code also used by various userspace tools/tests
--include $(src)/nvif/Kbuild
--nouveau-y := $(nvif-y)
-+include $(src)/nvkm/Kbuild
-+nouveau-y := $(nvkm-y)
++struct nvif_driver_func {
++	enum nvif_event_stat (*event)(u64 token, void *repv, u32 repc);
++};
++
+ struct nvif_driver {
+ 	const char *name;
+ 	int (*suspend)(struct nvif_client_priv *);
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/event.h b/drivers/gpu/drm/nouveau/include/nvif/event.h
+index 6c52de0e17d0..ce14e478b1fe 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/event.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/event.h
+@@ -5,6 +5,8 @@
+ #include <nvif/driverif.h>
+ struct nvif_event;
  
- # NVIF - NVKM interface library (NVKM user interface also defined here)
--#- code also used by various userspace tools/tests
--include $(src)/nvkm/Kbuild
--nouveau-y += $(nvkm-y)
-+include $(src)/nvif/Kbuild
-+nouveau-y += $(nvif-y)
++enum nvif_event_stat nvif_event(u64 token, void *repv, u32 repc);
++
+ typedef enum nvif_event_stat (*nvif_event_func)(struct nvif_event *, void *repv, u32 repc);
  
- # DRM - general
- ifdef CONFIG_X86
+ struct nvif_event {
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/client.h b/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
+index 5c9a54d4bd64..4e5d56056b81 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/client.h
+@@ -14,10 +14,9 @@ struct nvkm_client {
+ 	spinlock_t obj_lock;
+ 
+ 	void *data;
+-	int (*event)(u64 token, void *argv, u32 argc);
+ };
+ 
+-int nvkm_client_new(const char *name, struct nvkm_device *, int (*event)(u64, void *, u32),
++int nvkm_client_new(const char *name, struct nvkm_device *,
+ 		    const struct nvif_client_impl **, struct nvif_client_priv **);
+ int nvkm_client_event(struct nvkm_client *client, u64 token, void *repv, u32 repc);
+ 
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/core/device.h b/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
+index fff0d7dd0e1b..c9965934b0d5 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/core/device.h
+@@ -71,6 +71,8 @@ struct nvkm_device {
+ 		bool armed;
+ 		bool legacy_done;
+ 	} intr;
++
++	const struct nvif_driver_func *driver;
+ };
+ 
+ struct nvkm_subdev *nvkm_device_subdev(struct nvkm_device *, int type, int inst);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 18990d21dc48..09947790f677 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -614,6 +614,11 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
+ 	return ret;
+ }
+ 
++static const struct nvif_driver_func
++nouveau_driver = {
++	.event = nvif_event,
++};
++
+ static void
+ nouveau_drm_device_del(struct nouveau_drm *drm)
+ {
+@@ -643,9 +648,11 @@ nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *paren
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	drm->nvkm = device;
++	drm->driver = nouveau_driver;
+ 
+ 	device->cfgopt = nouveau_config;
+ 	device->dbgopt = nouveau_debug;
++	device->driver = &drm->driver;
+ 
+ 	nvif_parent_ctor(&nouveau_parent, &drm->parent);
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 832651fe9f42..52589d5eab63 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -202,6 +202,7 @@ u_memcpya(uint64_t user, unsigned int nmemb, unsigned int size)
+ 
+ struct nouveau_drm {
+ 	struct nvkm_device *nvkm;
++	struct nvif_driver_func driver;
+ 	struct nvif_parent parent;
+ 	struct nvif_client client;
+ 	struct nvif_device device;
+diff --git a/drivers/gpu/drm/nouveau/nvif/event.c b/drivers/gpu/drm/nouveau/nvif/event.c
+index 2974ec8e13af..816e3d1bedb4 100644
+--- a/drivers/gpu/drm/nouveau/nvif/event.c
++++ b/drivers/gpu/drm/nouveau/nvif/event.c
+@@ -23,6 +23,15 @@
+ #include <nvif/driverif.h>
+ #include <nvif/printf.h>
+ 
++enum nvif_event_stat
++nvif_event(u64 token, void *repv, u32 repc)
++{
++	struct nvif_object *object = (void *)(unsigned long)token;
++	struct nvif_event *event = container_of(object, typeof(*event), object);
++
++	return event->func(event, repv, repc);
++}
++
+ int
+ nvif_event_block(struct nvif_event *event)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/client.c b/drivers/gpu/drm/nouveau/nvkm/core/client.c
+index beb966d65daf..b767d77ad205 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/client.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/client.c
+@@ -23,6 +23,7 @@
+  */
+ #include <core/client.h>
+ #include <core/device.h>
++#include <core/event.h>
+ #include <core/option.h>
+ #include <device/user.h>
+ 
+@@ -34,7 +35,12 @@
+ int
+ nvkm_client_event(struct nvkm_client *client, u64 token, void *repv, u32 repc)
+ {
+-	return client->event(token, repv, repc);
++	enum nvif_event_stat stat = client->device->driver->event(token, repv, repc);
++
++	if (stat == NVIF_EVENT_KEEP)
++		return NVKM_EVENT_KEEP;
++
++	return NVKM_EVENT_DROP;
+ }
+ 
+ static int
+@@ -59,7 +65,7 @@ nvkm_client_new_client(struct nvif_client_priv *parent,
+ 	struct nvkm_client *client;
+ 	int ret;
+ 
+-	ret = nvkm_client_new("client", parent->device, parent->event, pimpl, &client);
++	ret = nvkm_client_new("client", parent->device, pimpl, &client);
+ 	if (ret)
+ 		return ret;
+ 
+@@ -96,7 +102,7 @@ nvkm_client = {
+ };
+ 
+ int
+-nvkm_client_new(const char *name, struct nvkm_device *device, int (*event)(u64, void *, u32),
++nvkm_client_new(const char *name, struct nvkm_device *device,
+ 		const struct nvif_client_impl **pimpl, struct nvif_client_priv **ppriv)
+ {
+ 	struct nvkm_oclass oclass = {};
+@@ -112,7 +118,6 @@ nvkm_client_new(const char *name, struct nvkm_device *device, int (*event)(u64,
+ 	client->device = device;
+ 	client->debug = NV_DBG_ERROR;
+ 	spin_lock_init(&client->obj_lock);
+-	client->event = event;
+ 
+ 	*pimpl = &nvkm_client_impl;
+ 	*ppriv = client;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/core/driver.c b/drivers/gpu/drm/nouveau/nvkm/core/driver.c
+index 86ada3c888ec..dcc5dc7f246e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/core/driver.c
++++ b/drivers/gpu/drm/nouveau/nvkm/core/driver.c
+@@ -56,18 +56,6 @@ nvkm_driver_suspend(struct nvif_client_priv *client)
+ 	return nvkm_object_fini(&client->object, true);
+ }
+ 
+-static int
+-nvkm_driver_event(u64 token, void *repv, u32 repc)
+-{
+-	struct nvif_object *object = (void *)(unsigned long)token;
+-	struct nvif_event *event = container_of(object, typeof(*event), object);
+-
+-	if (event->func(event, repv, repc) == NVIF_EVENT_KEEP)
+-		return NVKM_EVENT_KEEP;
+-
+-	return NVKM_EVENT_DROP;
+-}
+-
+ static const struct nvif_driver
+ nvkm_driver = {
+ 	.name = "nvkm",
+@@ -83,7 +71,7 @@ nvkm_driver_ctor(struct nvkm_device *device, const struct nvif_driver **pdrv,
+ {
+ 	int ret;
+ 
+-	ret = nvkm_client_new("driver", device, nvkm_driver_event, pimpl, ppriv);
++	ret = nvkm_client_new("driver", device, pimpl, ppriv);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.44.0
 
