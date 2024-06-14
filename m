@@ -4,87 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6D54D0EE2F
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A672CD0EE1C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6FB010E4AB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A15FD10E4A8;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NWwo0XuP";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="HphKi76d";
 	dkim-atps=neutral
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
- [209.85.210.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA1DD89864;
- Wed, 14 May 2025 10:58:49 +0000 (UTC)
-Received: by mail-ot1-f51.google.com with SMTP id
- 46e09a7af769-72c27166ab3so4783587a34.1; 
- Wed, 14 May 2025 03:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747220329; x=1747825129; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VovI2MJA5yrsgZVuWzhEGgze0o42B0tngXC0Xns04F8=;
- b=NWwo0XuPHAau6ABCQcjeriSATP68RRyBnJP7jWxP42LYfMhWSkCxrfYYGcy/fwQUkX
- 59CnobOUTtVm5PT6WE7J57vatFDL0WzMXiYH3SQOauX6ll8p1ozNd68A4OjZyeQFC39V
- 4MywVzpoWGLIQtAjbm8HfKOqYlHuJBFhdocLHKpfNfwx+xNNMFcAE38GR3UVQenDILWQ
- xpUI9CqYEMqjG7v6EHugOtKtZIIeiACpn4pSPyhhU0dGuEIIDeZB77gTVCzHs2shm8w2
- UIe1NYFve/UCMQciJgLZSsEwxHxVOd5xY+RkZnnmOi7C/85GlZJnij7Qk2E2B8pNY+d9
- F6+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747220329; x=1747825129;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VovI2MJA5yrsgZVuWzhEGgze0o42B0tngXC0Xns04F8=;
- b=EqPCEIZQiQtUnHYlebbMjYhAA/GJ/xRcWFYMwaywjxPj7ZgUa5LcALBENmH8RMbXfC
- A8RkkrMJuOtJ7QAFRP9OoUpLcMpKxgPnMKE4ylWuZ0sYNfvTEz3GLBM2jbbMs5e9kR1a
- 5rGL+LYJgDcPuExxQlIkEJnhPKkmcl0V6SvnTbD+2ZQPkfJXgB9vLfdGmkGMVKU48Sny
- PKq3Qq48cQl6kOHrVG9+1a+il3FdVXba6V77zaIuN7mmOIl0natEQG5txatmZO8RxxcV
- qfwNf+XEQKOqyX7DRF5VJjcHNLTfpHCqilSqAMp2ecQLc9OUwWnblDgRmD/E94nQIWl6
- Ksqw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVJ10WSFTdhsJ+VNHEpfklNE/EyMx0G5Tk/GXwcEWs0/fNvdHfTwwhS2bTJfRduebRA99Em0lQI@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxENWJLQ4fyBf66Ouk40rkc2ggwJltkkq8v5svSxx5McU4fcpfT
- dD2yQ3MFnPcVGXQOrPZzoXb64AsrfHFSeajuw1uNIUjdmZiTEKyK
-X-Gm-Gg: ASbGncsCFq8+HBqjjdi14n9NXXmMTWjumJ5+ka8RSiTVmcb9IPxIXkIXQjvFD7XJZAX
- qk+w2dMQj5Sa5Jhcpcgu/oszI2LHM4lnNyNBhuNMh5hs5tT6eRiNuz/Wza29VlsD2up4ZTlX1+G
- mC/0PJRAp4rrJKGHuMEu7rtzjFvVo4bZldBud1thzf5ZtyipAv4omy/EG8KdutcZ+HLSnz31Qy0
- OTZ2qqkE2RdhsuzCkhPSqy1Rma8rav73jnUUnOP4pGJAICR67UjobCIXyaM3Z4egnMfSca675LS
- JkpNxvKVQI5Pt3dSDcmfXPrEZBSOJ56DRDLrrzK91fNQbzP0jzwB3khIboni7s/BFMR2WBlqts+
- +fQZhp3lEAkOLDwrmwsKLNSs=
-X-Google-Smtp-Source: AGHT+IGvL6lH6ONZZTZw0JVilpcjbjUVXYPilV66tx5v9oXHgFKQIvgBVSwhNCuPOSNDrDvg0lp6Sw==
-X-Received: by 2002:a05:6870:95a3:b0:2d4:c19a:94e5 with SMTP id
- 586e51a60fabf-2e34885828emr1280774fac.39.1747220328945; 
- Wed, 14 May 2025 03:58:48 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-2dba060be9esm2654535fac.10.2025.05.14.03.58.44
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 14 May 2025 03:58:48 -0700 (PDT)
-From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, a.hindborg@kernel.org, airlied@gmail.com,
- akpm@linux-foundation.org, alex.gaynor@gmail.com, aliceryhl@google.com,
- andrewjballance@gmail.com, andriy.shevchenko@linux.intel.com,
- arnd@arndb.de, benno.lossin@proton.me, bhelgaas@google.com,
- bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
- daniel.almeida@collabora.com, fujita.tomonori@gmail.com, gary@garyguo.net,
- gregkh@linuxfoundation.org, kwilczynski@kernel.org, me@kloenk.dev,
- ojeda@kernel.org, raag.jadav@intel.com, rafael@kernel.org, simona@ffwll.ch,
- tmgross@umich.edu
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org
-Subject: [PATCH v2 4/6] rust: io: implement Debug for IoRaw and add some
- doctests
-Date: Wed, 14 May 2025 05:57:32 -0500
-Message-ID: <20250514105734.3898411-5-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250514105734.3898411-1-andrewjballance@gmail.com>
-References: <20250514105734.3898411-1-andrewjballance@gmail.com>
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03AB410EDC2;
+ Fri, 14 Jun 2024 15:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=5+/vSUsusZJjzOquaKR+Lnhfb4Xwzp1gKdxtTXFkte4=; b=HphKi76dzy1FbzwUKfH6CQJ7e9
+ 4mqbYGd9nU4R3tBwtUrovH2GkVix+0iSEhvFBd40Lr8bS8vkA72/q67NbP3Ot7Yemm+Z/a5xMme1C
+ qITfmbryXx7/kTXo1YxGdeP+9nhjIcSnyPB4Zxw83m+yTA1jXdPk8v1dglA/+0SyL+7bKC1+AVB9k
+ vGs/ekPSfrWSFK5VX5mV5eTm0rHSadoLSRJStK4grNwSAw/WQGBRircf770WKBBZ4DeyzM7otygcA
+ OoC8jWi8e161CCUiP5da/omkaJA43Z0fAw4XWCqgAbJzWeXWwy1yJvSXKD7v0XRnF4nwmu76n/Qbo
+ nj7ZGO9Q==;
+Received: from [179.118.191.115] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sI8yv-003B8v-CW; Fri, 14 Jun 2024 17:36:49 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
+ daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v6 8/8] drm/amdgpu: Make it possible to async flip overlay
+ planes
+Date: Fri, 14 Jun 2024 12:35:35 -0300
+Message-ID: <20240614153535.351689-9-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240614153535.351689-1-andrealmeid@igalia.com>
+References: <20240614153535.351689-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:23 +0000
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,128 +80,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Fiona Behrens <me@kloenk.dev>
+amdgpu can handle async flips on overlay planes, so mark it as true
+during the plane initialization.
 
-Implement `Debug` for `kernel::io::IoRaw` which also outputs the const
-generic SIZE as a field.
-
-Add some doctests to `IoRaw::new` and `MMIo::from_raw(_ref)`.
-
-Signed-off-by: Fiona Behrens <me@kloenk.dev>
-Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
 ---
- rust/kernel/io.rs | 63 +++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-index ce044c155b16..9445451f4b02 100644
---- a/rust/kernel/io.rs
-+++ b/rust/kernel/io.rs
-@@ -226,6 +226,33 @@ pub struct IoRaw<const SIZE: usize = 0> {
- 
- impl<const SIZE: usize> IoRaw<SIZE> {
-     /// Returns a new `IoRaw` instance on success, an error otherwise.
-+    ///
-+    /// # Examples
-+    ///
-+    /// Const generic size 0, only allowing runtime checks:
-+    /// ```
-+    /// use kernel::io::IoRaw;
-+    ///
-+    /// let raw: IoRaw<0> = IoRaw::new(0xDEADBEEFC0DE, 8).unwrap();
-+    /// # assert_eq!(raw.addr(), 0xDEADBEEFC0DE);
-+    /// # assert_eq!(raw.maxsize(), 8);
-+    /// ```
-+    ///
-+    /// Const generic size equals maxsize:
-+    /// ```
-+    /// use kernel::io::IoRaw;
-+    ///
-+    /// let raw: IoRaw<8> = IoRaw::new(0xDEADBEEFC0DE, 8).unwrap();
-+    /// # assert_eq!(raw.addr(), 0xDEADBEEFC0DE);
-+    /// # assert_eq!(raw.maxsize(), 8);
-+    /// ```
-+    ///
-+    /// Const generic size bigger then maxsize:
-+    /// ```
-+    /// use kernel::io::IoRaw;
-+    ///
-+    /// IoRaw::<16>::new(0xDEADBEEFC0DE, 8).unwrap_err();
-+    /// ```
-     pub fn new(addr: usize, maxsize: usize) -> Result<Self> {
-         if maxsize < SIZE {
-             return Err(EINVAL);
-@@ -247,6 +274,16 @@ pub fn maxsize(&self) -> usize {
-     }
- }
- 
-+impl<const SIZE: usize> core::fmt::Debug for IoRaw<SIZE> {
-+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
-+        f.debug_struct("IoRaw")
-+            .field("SIZE", &SIZE)
-+            .field("addr", &self.addr)
-+            .field("maxsize", &self.maxsize)
-+            .finish()
-+    }
-+}
-+
- /// IO-mapped memory, starting at the base address [`addr`] and spanning [`maxsize`] bytes.
- ///
- /// The creator (usually a subsystem / bus such as PCI) is responsible for creating the
-@@ -263,6 +300,7 @@ pub fn maxsize(&self) -> usize {
- /// [`maxsize`]: IoAccess::maxsize
- /// [`read`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
- /// [`write`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
-+#[derive(Debug)]
- #[repr(transparent)]
- pub struct MMIo<const SIZE: usize = 0>(IoRaw<SIZE>);
- 
-@@ -273,6 +311,18 @@ impl<const SIZE: usize> MMIo<SIZE> {
-     ///
-     /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of
-     /// size `maxsize`.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// use kernel::io::{IoRaw, MMIo, IoAccess};
-+    ///
-+    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
-+    /// // SAFETY: test, value is not actually written to.
-+    /// let mmio: MMIo<2> = unsafe { MMIo::from_raw(raw) };
-+    /// # assert_eq!(0xDEADBEEFC0DE, mmio.addr());
-+    /// # assert_eq!(2, mmio.maxsize());
-+    /// ```
-     #[inline]
-     pub unsafe fn from_raw(raw: IoRaw<SIZE>) -> Self {
-         Self(raw)
-@@ -285,6 +335,18 @@ pub unsafe fn from_raw(raw: IoRaw<SIZE>) -> Self {
-     ///
-     /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of
-     /// size `maxsize`.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// use kernel::io::{IoRaw, MMIo, IoAccess};
-+    ///
-+    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
-+    /// // SAFETY: test, value is not actually written to.
-+    /// let mmio: &MMIo<2> = unsafe { MMIo::from_raw_ref(&raw) };
-+    /// # assert_eq!(raw.addr(), mmio.addr());
-+    /// # assert_eq!(raw.maxsize(), mmio.maxsize());
-+    /// ```
-     #[inline]
-     pub unsafe fn from_raw_ref(raw: &IoRaw<SIZE>) -> &Self {
-         // SAFETY: `MMIo` is a transparent wrapper around `IoRaw`.
-@@ -349,6 +411,7 @@ impl<const SIZE: usize> IoAccess64Relaxed<SIZE> for MMIo<SIZE> {
- /// [`maxsize`]: IoAccess::maxsize
- /// [`ioread`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
- /// [`iowrite`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
-+#[derive(Debug)]
- #[repr(transparent)]
- pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
- 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 0c126c5609d3..7d508d816f0d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -1709,6 +1709,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	} else if (plane->type == DRM_PLANE_TYPE_OVERLAY) {
+ 		unsigned int zpos = 1 + drm_plane_index(plane);
+ 		drm_plane_create_zpos_property(plane, zpos, 1, 254);
++		plane->async_flip = true;
+ 	} else if (plane->type == DRM_PLANE_TYPE_CURSOR) {
+ 		drm_plane_create_zpos_immutable_property(plane, 255);
+ 	}
 -- 
-2.49.0
+2.45.2
 
