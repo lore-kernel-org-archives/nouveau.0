@@ -4,58 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A64CD0EE1C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F3ED0EE2C
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49F7F10E49A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479B410E498;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="WZcVsfI7";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IaEN/oB6";
 	dkim-atps=neutral
-X-Greylist: delayed 6826 seconds by postgrey-1.36 at gabe;
- Thu, 06 Mar 2025 00:24:30 UTC
-Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA6010E878;
- Thu,  6 Mar 2025 00:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
- s=7i7nfeayubfi5gqgovqg3wpoeq.protonmail; t=1741220667; x=1741479867;
- bh=zM6T0I1UDmm6pK0qaYYW60tPdabgjnBTsVC6Y/zI8KY=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=WZcVsfI7qYj4WAZOGHfQb7lCbP1yZ1/lSOuNILHMFYSHa4/uZtr2x6VVCKmX2VSRu
- 4XBLKSpZrd6O0S6t4dQWmMS4vzSqk8KfEBjBYNy+xrMRPHvbTHk+FY+DlSEhAFhw8S
- tnH8nfLTD3rXiSwAX+wQlw8xWBDJhUHJygGMCZVtsfDp3c7R9+t4xemK2xGtKISEsU
- ROPXFdpVUwKYFvQ3PpSr3mbXIZ3En3zvogFQRAFbw9PF01jBFml22Ig0KbnsXZaVol
- 7+q8vjZJ3x9hAN+PzETkNgnZ3lVMOW/IqD7r5Qb5t2EKG1xZTL7ZJ1isqLqAzIX63o
- JyTa0JnlpcsEw==
-Date: Thu, 06 Mar 2025 00:24:21 +0000
-To: Danilo Krummrich <dakr@kernel.org>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com,
- cjia@nvidia.com, jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
- aliceryhl@google.com, tmgross@umich.edu, gregkh@linuxfoundation.org,
- mcgrof@kernel.org, russ.weight@linux.dev, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] rust: firmware: introduce
- `firmware::ModInfoBuilder`
-Message-ID: <D88R7HI1Z6GG.ZOQ9A1VQOR28@proton.me>
-In-Reply-To: <Z8jk3qs6nCIJz-39@pollux>
-References: <20250304173555.2496-1-dakr@kernel.org>
- <20250304173555.2496-3-dakr@kernel.org> <D88OSC9XJXZL.C5HXWFYCG9U6@proton.me>
- <Z8jSV5CpZDcXrviY@pollux> <D88Q7503C8FF.2TMMBSEMOGKU1@proton.me>
- <Z8jk3qs6nCIJz-39@pollux>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: da2143f6321c35ea1a493628d2ba460ec60f7fa3
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7D5110EDB3;
+ Fri, 14 Jun 2024 15:36:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=DKE9E8EfN4qFoXgS2Nhr4CIKzmxCOJoEG4cKtj5vuJs=; b=IaEN/oB63jOJZPzaLtrY3GcTEr
+ O2HwdvD0tELiCl8UT8ClfthshVPMcQjTs4roGd3avMcu/rpj5oOMw1xfjUluVHCPu23C+2vyt2ynX
+ GS+/rJP7mm6UJuE0TowPo0nhB0LGZ+/RhpvIAC6gGSalh5fntHV8Ztdo7yCFztMgNO+EUzGaOwDXX
+ YDRNij7OtLLhDeropi8r9FYTwqLCGjnQbsyYYrksowqXkzlyJlmdq5mUYihHwg6t0GSOVlptQ4TAT
+ ruwfSc0SZhsRQkYFgO+LVvZ7VcLg3J9fjIetGINtzbeVlPa8Hjy6m+/Q8h/1dk9hiUV+aOxPvkcGK
+ OmfZvXsQ==;
+Received: from [179.118.191.115] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sI8yf-003B8v-Kq; Fri, 14 Jun 2024 17:36:34 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
+ daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v6 6/8] drm/nouveau: Enable async flips on the primary plane
+Date: Fri, 14 Jun 2024 12:35:33 -0300
+Message-ID: <20240614153535.351689-7-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240614153535.351689-1-andrealmeid@igalia.com>
+References: <20240614153535.351689-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:19 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,68 +79,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu Mar 6, 2025 at 12:57 AM CET, Danilo Krummrich wrote:
-> On Wed, Mar 05, 2025 at 11:36:54PM +0000, Benno Lossin wrote:
->> On Wed Mar 5, 2025 at 11:38 PM CET, Danilo Krummrich wrote:
->> > On Wed, Mar 05, 2025 at 10:30:31PM +0000, Benno Lossin wrote:
->> >> On Tue Mar 4, 2025 at 6:34 PM CET, Danilo Krummrich wrote:
->> >> > +    /// Push an additional path component.
->> >> > +    ///
->> >> > +    /// After a new [`ModInfoBuilder`] instance has been created, =
-[`ModInfoBuilder::prepare`] must
->> >> > +    /// be called before adding path components.
->> >> > +    pub const fn push(self, s: &str) -> Self {
->> >> > +        if N !=3D 0 && self.n =3D=3D 0 {
->> >> > +            crate::build_error!("Must call prepare() before push()=
-.");
->> >>
->> >> This will only prevent the first `prepare` call being missed, right?
->> >
->> > Correct, unfortunately there's no way to detect subsequent ones.
->>
->> Does it make sense to do that one in the constructor?
->>
->> (After looking at the example below) Ah maybe you can't do that, since
->> then you would have two `prepare()` calls for the example below...?
->
-> Exactly.
->
->> >> If you always have to call this before `push`, why not inline it ther=
-e?
->> >
->> > You can push() multiple times to compose the firmware path string (whi=
-ch is the
->> > whole purpose :).
->>
->> Ah I see, I only looked at the example you have in the next patch. All
->> in all, I think this patch could use some better documentation, since I
->> had to read a lot of the code to understand what everything is supposed
->> to do...
->
-> I can expand the example in module_firmware! to make things a bit more ob=
-vious.
->
-> Otherwise, what information do you think is missing?
+This driver can perfom async flips on primary planes, so enable it.
 
-Abstractly: what `ModInfoBuilder` *does*, concretely:
-- why the generic constant `N` exists,
-- what `prepare()` does,
-- what happens with the `module_name` parameter of `new`
-- answer the question "I want that the builder outputs the string `???`
-  can it do that? If yes, how do I do it?"
-
->> It might also make sense to make this more generic, since one probably
->> also needs this in other places? Or do you think this will only be
->> required for modinfo?
->
-> Currently, I don't think there's any more need for a generic const string
-> builder. For now, I think we're good. Let's factor it out, once we have a=
-ctual
-> need for that.
-
-Sounds good.
-
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
 ---
-Cheers,
-Benno
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 4 ++++
+ drivers/gpu/drm/nouveau/dispnv50/wndw.c | 4 ++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 4310ad71870b..fd06d46d49ec 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -1285,6 +1285,7 @@ int
+ nv04_crtc_create(struct drm_device *dev, int crtc_num)
+ {
+ 	struct nouveau_display *disp = nouveau_display(dev);
++	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nouveau_crtc *nv_crtc;
+ 	struct drm_plane *primary;
+ 	int ret;
+@@ -1338,6 +1339,9 @@ nv04_crtc_create(struct drm_device *dev, int crtc_num)
+ 	if (ret)
+ 		return ret;
+ 
++	if (drm->client.device.info.chipset >= 0x11)
++		primary->async_flip = true;
++
+ 	return nvif_head_vblank_event_ctor(&nv_crtc->head, "kmsVbl", nv04_crtc_vblank_handler,
+ 					   false, &nv_crtc->vblank);
+ }
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+index 7a2cceaee6e9..55db0fdf61e7 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+@@ -763,6 +763,10 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
+ 			return ret;
+ 	}
+ 
++	if (type == DRM_PLANE_TYPE_PRIMARY &&
++	    drm->client.device.info.chipset >= 0x11)
++		wndw->plane.async_flip = true;
++
+ 	return 0;
+ }
+ 
+-- 
+2.45.2
 
