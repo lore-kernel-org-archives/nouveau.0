@@ -4,56 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 073ACD0EE1C
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15FDCD0EE25
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3435A10E4EF;
-	Tue, 25 Nov 2025 20:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7BB510E4DD;
+	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="ExIVDq+U";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mCxmQWfs";
 	dkim-atps=neutral
-X-Greylist: delayed 607 seconds by postgrey-1.36 at gabe;
- Wed, 05 Mar 2025 22:40:51 UTC
-Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D8510E04F
- for <nouveau@lists.freedesktop.org>; Wed,  5 Mar 2025 22:40:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
- s=protonmail; t=1741213841; x=1741473041;
- bh=oA5VdBYqAl1FD7XLdd6ED5xak0jGnkmx5w36QBysOHU=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=ExIVDq+Ujn6KsOt67OMC7GxrAMIcWg00nU1tO3l1CRkkMfRDzJfhUvlOnbAFRRdwh
- QSIFakcquGfaPU+hFA+dg/eqEL5ljlXh9cxSrJd/gz0cypodCjxiFBhoA+FX/Jji5X
- KH9tXlAO+QzhvYchL/eCAymMTqJgYmpyXsPoMOAW7Gr5cGXq/BOJ6ZHwGC4mHfHXmO
- BINFIJj8ovd8c3iX/5R20OaEcbzFpvkmE3oMa7zRiD7ziMgat1ysdRpIkc0JjpKlzK
- O2U8nk7deejkOq6rODO8bJp9A0ftPXefTmSwnB6yDHUxkwVXMCmui6Z3aid/fg9nM2
- 5DLkYeCXLmxGw==
-Date: Wed, 05 Mar 2025 22:30:31 +0000
-To: Danilo Krummrich <dakr@kernel.org>, airlied@gmail.com, simona@ffwll.ch,
- corbet@lwn.net, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, ajanulgu@redhat.com, lyude@redhat.com,
- pstanner@redhat.com, zhiw@nvidia.com, cjia@nvidia.com, jhubbard@nvidia.com,
- bskeggs@nvidia.com, acurrid@nvidia.com
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
- aliceryhl@google.com, tmgross@umich.edu, gregkh@linuxfoundation.org,
- mcgrof@kernel.org, russ.weight@linux.dev, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] rust: firmware: introduce
- `firmware::ModInfoBuilder`
-Message-ID: <D88OSC9XJXZL.C5HXWFYCG9U6@proton.me>
-In-Reply-To: <20250304173555.2496-3-dakr@kernel.org>
-References: <20250304173555.2496-1-dakr@kernel.org>
- <20250304173555.2496-3-dakr@kernel.org>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: fc5a88e7746fec47f7de82f7668300d12884367f
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1DB510E54B;
+ Tue, 18 Jun 2024 03:01:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=iMbXibmuv4tLW3BVBfl9Ydvrc3EWU1itn+Bz/2WUIe4=; b=mCxmQWfsBMRQqJzp+UT+TdaiPc
+ QxlJ8Ie2sri/lNdmo4jLuZfEq/mBd8czgWCNT/jGcfk69pqSwPEys9dF3pb9G/23GkQ9cf2Xhc2hs
+ 7Qp0h6H1AhjmrjEMJKMIiwQnJ9INn+Jb34Hb0Vt2+riCGljr0yfZV6fNbbi8kAeOqmiHA7FjBpMO1
+ +OdrRe348nT3L7ciQiLWAOZmoi+p1BUmqT7xLwsYePNhhcAU7iNEx4UqaPoVwPzGeniWOvSu3mGea
+ ssQDJtxN0q+tc6I+VoTeHBUhPpQh4A6XHBI8ePrkQfLI/sNwcinmesbhFFfHx1fSak7PHft797hU0
+ coP4zsFg==;
+Received: from [191.8.29.108] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sJP6C-004YXc-GX; Tue, 18 Jun 2024 05:01:32 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
+ daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v7 7/9] drm/vc4: Enable async flips on the primary plane
+Date: Tue, 18 Jun 2024 00:00:22 -0300
+Message-ID: <20240618030024.500532-8-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240618030024.500532-1-andrealmeid@igalia.com>
+References: <20240618030024.500532-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:19 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,149 +80,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue Mar 4, 2025 at 6:34 PM CET, Danilo Krummrich wrote:
-> The `firmware` field of the `module!` only accepts literal strings,
-> which is due to the fact that it is implemented as a proc macro.
->
-> Some drivers require a lot of firmware files (such as nova-core) and
-> hence benefit from more flexibility composing firmware path strings.
->
-> The `firmware::ModInfoBuilder` is a helper component to flexibly compose
-> firmware path strings for the .modinfo section in const context.
->
-> It is meant to be used in combination with `kernel::module_firmware!`,
-> which is introduced in a subsequent patch.
->
-> Co-developed-by: Alice Ryhl <aliceryhl@google.com>
-> Signed-off-by: Alice Ryhl <aliceryhl@google.com>
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  rust/kernel/firmware.rs | 98 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 98 insertions(+)
->
-> diff --git a/rust/kernel/firmware.rs b/rust/kernel/firmware.rs
-> index c5162fdc95ff..6e6972d94597 100644
-> --- a/rust/kernel/firmware.rs
-> +++ b/rust/kernel/firmware.rs
-> @@ -115,3 +115,101 @@ unsafe impl Send for Firmware {}
->  // SAFETY: `Firmware` only holds a pointer to a C `struct firmware`, ref=
-erences to which are safe to
->  // be used from any thread.
->  unsafe impl Sync for Firmware {}
-> +
-> +/// Builder for firmware module info.
-> +///
-> +/// [`ModInfoBuilder`] is a helper component to flexibly compose firmwar=
-e paths strings for the
-> +/// .modinfo section in const context.
-> +///
-> +/// It is meant to be used in combination with [`kernel::module_firmware=
-!`].
-> +///
-> +/// For more details and an example, see [`kernel::module_firmware!`].
-> +pub struct ModInfoBuilder<const N: usize> {
-> +    buf: [u8; N],
-> +    n: usize,
-> +    module_name: &'static CStr,
-> +}
-> +
-> +impl<const N: usize> ModInfoBuilder<N> {
-> +    /// Create an empty builder instance.
-> +    pub const fn new(module_name: &'static CStr) -> Self {
-> +        Self {
-> +            buf: [0; N],
-> +            n: 0,
-> +            module_name,
-> +        }
-> +    }
-> +
-> +    const fn push_internal(mut self, bytes: &[u8]) -> Self {
-> +        let mut j =3D 0;
-> +
-> +        if N =3D=3D 0 {
-> +            self.n +=3D bytes.len();
-> +            return self;
-> +        }
-> +
-> +        while j < bytes.len() {
-> +            if self.n < N {
-> +                self.buf[self.n] =3D bytes[j];
-> +            }
-> +            self.n +=3D 1;
-> +            j +=3D 1;
-> +        }
-> +        self
-> +    }
-> +
-> +    /// Push an additional path component.
-> +    ///
-> +    /// After a new [`ModInfoBuilder`] instance has been created, [`ModI=
-nfoBuilder::prepare`] must
-> +    /// be called before adding path components.
-> +    pub const fn push(self, s: &str) -> Self {
-> +        if N !=3D 0 && self.n =3D=3D 0 {
-> +            crate::build_error!("Must call prepare() before push().");
+This driver can perfom async flips on primary planes, so enable it.
 
-This will only prevent the first `prepare` call being missed, right?
-
-> +        }
-> +
-> +        self.push_internal(s.as_bytes())
-> +    }
-> +
-> +    const fn prepare_module_name(self) -> Self {
-> +        let mut this =3D self;
-> +        let module_name =3D this.module_name;
-> +
-> +        if !this.module_name.is_empty() {
-> +            this =3D this.push_internal(module_name.as_bytes_with_nul())=
-;
-> +
-> +            if N !=3D 0 {
-> +                // Re-use the space taken by the NULL terminator and swa=
-p it with the '.' separator.
-> +                this.buf[this.n - 1] =3D b'.';
-> +            }
-> +        }
-> +
-> +        this.push_internal(b"firmware=3D")
-> +    }
-> +
-> +    /// Prepare for the next module info entry.
-> +    ///
-> +    /// Must be called before [`ModInfoBuilder::push`] can be called.
-
-If you always have to call this before `push`, why not inline it there?
-
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
 ---
-Cheers,
-Benno
+ drivers/gpu/drm/vc4/vc4_plane.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-> +    pub const fn prepare(self) -> Self {
-> +        self.push_internal(b"\0").prepare_module_name()
-> +    }
-> +
-> +    /// Build the byte array.
-> +    pub const fn build(self) -> [u8; N] {
-> +        // Add the final NULL terminator.
-> +        let this =3D self.push_internal(b"\0");
-> +
-> +        if this.n =3D=3D N {
-> +            this.buf
-> +        } else {
-> +            crate::build_error!("Length mismatch.");
-> +        }
-> +    }
-> +}
-> +
-> +impl ModInfoBuilder<0> {
-> +    /// Return the length of the byte array to build.
-> +    pub const fn build_length(self) -> usize {
-> +        // Compensate for the NULL terminator added by `build`.
-> +        self.n + 1
-> +    }
-> +}
-> --
-> 2.48.1
-
+diff --git a/drivers/gpu/drm/vc4/vc4_plane.c b/drivers/gpu/drm/vc4/vc4_plane.c
+index 07caf2a47c6c..e3d41da14e6f 100644
+--- a/drivers/gpu/drm/vc4/vc4_plane.c
++++ b/drivers/gpu/drm/vc4/vc4_plane.c
+@@ -1672,8 +1672,10 @@ struct drm_plane *vc4_plane_init(struct drm_device *dev,
+ 					  DRM_COLOR_YCBCR_BT709,
+ 					  DRM_COLOR_YCBCR_LIMITED_RANGE);
+ 
+-	if (type == DRM_PLANE_TYPE_PRIMARY)
++	if (type == DRM_PLANE_TYPE_PRIMARY) {
+ 		drm_plane_create_zpos_immutable_property(plane, 0);
++		plane->async_flip = true;
++	}
+ 
+ 	return plane;
+ }
+-- 
+2.45.2
 
