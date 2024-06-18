@@ -4,51 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85E75D0EE2A
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87836D0EE2E
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBDF610E4B4;
-	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 658C110E4C8;
+	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="br+hPYt9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OmHDp3La";
 	dkim-atps=neutral
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
- [51.77.79.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3416110E08D
- for <nouveau@lists.freedesktop.org>; Sun, 16 Mar 2025 18:01:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
- s=protonmail; t=1742148087; x=1742407287;
- bh=tAOyqqzV3U1doRz6F+tF1ZAeoLpn6CDfC6jWDliUrEo=;
- h=Date:To:From:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=br+hPYt9Gnwa7o6IBCW88llVLpCKrhm1GWAa2kho4+eWWTBZS+6S+ubbKlEWppETU
- RAw9A5p1vS8w3QiwmwAkDMufLI12hL6tdt3JVJNO4c9T/OskCpr/dealfBc7Vf7w7Z
- AcMQpB3mxJRdx7/zzZ6AyphoU3rvhuaUAZ5zgM2f3Oaueb4+JimxwN0mIOpMtcOhfN
- dip7LuZI88MW7P4jIdzFCMmtLWD2Um/0oIXMwQEDrAETEIdXnI+zKCoxt+Vvini2Mq
- +VhEZC/9B8C5JHR+jk2qxrJaZEWcCff2YaPaqVJna4WLKcsVlefSZJ4UOcvuhKerlX
- uiiFEnDxfCqcg==
-Date: Sun, 16 Mar 2025 18:01:21 +0000
-To: Andrew Ballance <andrewjballance@gmail.com>, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, corbet@lwn.net, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, acourbot@nvidia.com, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-From: Benno Lossin <benno.lossin@proton.me>
-Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
-Message-ID: <D8HVY5KSXNRL.YPQRJFX9R8XQ@proton.me>
-In-Reply-To: <20250316111644.154602-3-andrewjballance@gmail.com>
-References: <20250316111644.154602-1-andrewjballance@gmail.com>
- <20250316111644.154602-3-andrewjballance@gmail.com>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: 6851ab4816f7ad4e9864ac4c422a20a36671b293
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1403F10E547;
+ Tue, 18 Jun 2024 03:01:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=BAKaAobYFUntrejEJZZwpK2PmNSiy7/4l9aRDDrVOhI=; b=OmHDp3LamcdpRGs8+ySxWRMw8S
+ q6UVzdFtNpJsyhipzdCLBEWq0QFUlB4PJLnuiaIdTudQw9t8KRKsrDH6JYkN9A5dITLKZYG2n7yf0
+ l+78t8GkfSVCKp0plYva7sKS8ycD60rnj+gOpu8ePXDddBJAMUu+t+y05AVgphG8Z5bpQyjRjcqxZ
+ 83yl8+8REglDJLZ53h/BCwYqnec7nY341dVZYbPN2Qba/tXzYjz4Rbf17vb8Sv7HMUw4zDqcr0Tt9
+ E7yy4rA0FnQNOyJUqzZmDQVlnmmWqRlDGsbP7DCEQh3ZsY9Cavcc2zExQzqP+yX5xPUDsmh6dixQJ
+ qD4UBQfQ==;
+Received: from [191.8.29.108] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sJP5n-004YXc-Je; Tue, 18 Jun 2024 05:01:08 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
+ daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v7 4/9] drm: atmel-hlcdc: Enable async flips on the primary
+ plane
+Date: Tue, 18 Jun 2024 00:00:19 -0300
+Message-ID: <20240618030024.500532-5-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240618030024.500532-1-andrealmeid@igalia.com>
+References: <20240618030024.500532-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:20 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,19 +81,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun Mar 16, 2025 at 12:16 PM CET, Andrew Ballance wrote:
-> implement the equivalent of the rust std's Vec::resize
-> on the kernel's Vec type.
->
-> Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+This driver can perfom async flips on primary planes, so enable it.
 
-Reviewed-by: Benno Lossin <benno.lossin@proton.me>
-
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
 ---
-Cheers,
-Benno
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> ---
->  rust/kernel/alloc/kvec.rs | 26 ++++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
+diff --git a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
+index 4a7ba0918eca..22b8a5c888ef 100644
+--- a/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
++++ b/drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c
+@@ -1227,6 +1227,9 @@ static int atmel_hlcdc_plane_create(struct drm_device *dev,
+ 	if (ret)
+ 		return ret;
+ 
++	if (type == DRM_PLANE_TYPE_PRIMARY)
++		plane->base.async_flip = true;
++
+ 	drm_plane_helper_add(&plane->base,
+ 			     &atmel_hlcdc_layer_plane_helper_funcs);
+ 
+-- 
+2.45.2
 
