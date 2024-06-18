@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3138CD0EE2A
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05FBDD0EE1C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C78B010E4B1;
-	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39FD110E4BF;
+	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="H6yx/qfQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mxiC3nGa";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D0D610E536;
- Tue, 18 Jun 2024 03:01:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58F8610E556;
+ Tue, 18 Jun 2024 03:01:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=UGSCYUB1C9SdI44irIlb8YiYD3kMwObaC0KqVFpWgGg=; b=H6yx/qfQJfvSRu2Pdl6igXFlym
- 7pGCGJTUu/ZSAFO2v07RFsgsVaje2wtinzQdgDn4OVeMltJWMkbpvNtvLvO+2eWIGt73ywX+ajA7u
- TlvwfdUnxazVHQAMkMX4+wyTDDeXFxMDji0Zli626u8+ikx6Z5uTfyjOuBcl61QCJTJAEtG5cmYgk
- qmEHEo0SwBWOgTbm+GBTy/uh/c+viryW57QtNr0oK+IGcxi6SotTMe5eP5/ipJOpSgDtg5Ce0NxiW
- 4LV3+oYrZTqV2J5dWiD25Pmzdthn4s6aMJaWBpbxrhclQ7SkrkFzHSyac/6ISpG1ZM92lh1f4acM+
- jx7PagZw==;
+ bh=5+/vSUsusZJjzOquaKR+Lnhfb4Xwzp1gKdxtTXFkte4=; b=mxiC3nGaid5bpz8/d2SJUgWCT7
+ XGcYIScOMgs2Ia16c/9Uop9P5XpyHxINUzhE1PWpRZqbvhDgwwR31+8B7Sad7ho9pQ4srLIaYy6b6
+ QswCPdUJWeVLZ2OL1YyEnsDOoQy2K8Llmv1cLj5P8wU2C4UK6FPy6DfCXiHFLddlMVdgTRqc9qwzr
+ FbMvUfj5RFlb6YuS0KtxrkK4dwhQF8xTAjhQqruq/o6Xict2CYzENJhtsJQj3K1BB9rMiKKRcdNXf
+ xCU7sUR++PEl19NVR2yWoGNvQ8UjsncNj+m8L/KcJN78Is8xIXrEgOpXkkIHniXPqiTHIAazTayyh
+ fcwkkY9A==;
 Received: from [191.8.29.108] (helo=localhost.localdomain)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sJP5v-004YXc-TL; Tue, 18 Jun 2024 05:01:16 +0200
+ id 1sJP6T-004YXc-3W; Tue, 18 Jun 2024 05:01:49 +0200
 From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
 To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -56,9 +56,10 @@ Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
  Lyude Paul <lyude@redhat.com>,
  =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v7 5/9] drm/i915: Enable async flips on the primary plane
-Date: Tue, 18 Jun 2024 00:00:20 -0300
-Message-ID: <20240618030024.500532-6-andrealmeid@igalia.com>
+Subject: [PATCH v7 9/9] drm/amdgpu: Make it possible to async flip overlay
+ planes
+Date: Tue, 18 Jun 2024 00:00:24 -0300
+Message-ID: <20240618030024.500532-10-andrealmeid@igalia.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20240618030024.500532-1-andrealmeid@igalia.com>
 References: <20240618030024.500532-1-andrealmeid@igalia.com>
@@ -80,40 +81,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This driver can perfom async flips on primary planes, so enable it.
+amdgpu can handle async flips on overlay planes, so mark it as true
+during the plane initialization.
 
 Signed-off-by: André Almeida <andrealmeid@igalia.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c          | 3 +++
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 1 +
- 2 files changed, 4 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 0279c8aabdd1..0142beef20dc 100644
---- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -931,6 +931,9 @@ intel_primary_plane_create(struct drm_i915_private *dev_priv, enum pipe pipe)
- 
- 	intel_plane_helper_add(plane);
- 
-+	if (plane->async_flip)
-+		plane->base.async_flip = true;
-+
- 	return plane;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 860574d04f88..8d0a9f69709a 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2371,6 +2371,7 @@ skl_universal_plane_create(struct drm_i915_private *dev_priv,
- 		plane->async_flip = skl_plane_async_flip;
- 		plane->enable_flip_done = skl_plane_enable_flip_done;
- 		plane->disable_flip_done = skl_plane_disable_flip_done;
-+		plane->base.async_flip = true;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+index 0c126c5609d3..7d508d816f0d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_plane.c
+@@ -1709,6 +1709,7 @@ int amdgpu_dm_plane_init(struct amdgpu_display_manager *dm,
+ 	} else if (plane->type == DRM_PLANE_TYPE_OVERLAY) {
+ 		unsigned int zpos = 1 + drm_plane_index(plane);
+ 		drm_plane_create_zpos_property(plane, zpos, 1, 254);
++		plane->async_flip = true;
+ 	} else if (plane->type == DRM_PLANE_TYPE_CURSOR) {
+ 		drm_plane_create_zpos_immutable_property(plane, 255);
  	}
- 
- 	if (DISPLAY_VER(dev_priv) >= 11)
 -- 
 2.45.2
 
