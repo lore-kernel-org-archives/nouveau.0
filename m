@@ -4,81 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1103ED0EE1C
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14E20D0EE30
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6B9B10E490;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C2A10E48A;
 	Tue, 25 Nov 2025 20:47:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="l8HXUN5f";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="B45UZoMX";
 	dkim-atps=neutral
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com
- [209.85.161.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6896F10E0CE;
- Fri,  9 May 2025 03:16:09 +0000 (UTC)
-Received: by mail-oo1-f46.google.com with SMTP id
- 006d021491bc7-601ad30bc0cso1791402eaf.0; 
- Thu, 08 May 2025 20:16:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746760568; x=1747365368; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=sTOwig8lTDkxPKMgyzizdRYq4XG3E64o3g/lB7m6NZU=;
- b=l8HXUN5fyzRVTbCFF8bRpD0SAyw1H1c+TpyN1kw42SP2nxOuGAniqlPfNOQg3IOC/H
- tEVgZ4c5UR4Uv3g+0ukq6rLQMH6/n6DbmTZ8TSRc9ZNIVLsqUx3am7BORc5s0eRLkrG8
- Oo0Ens0NHVkE47hTjGGPW9zwvtR5QauU5lxeW01t8hxUuOaEjoRXGwnkMAL1L+MgZqb0
- QBn7IwuaM5kJ+05CtYsTwkdm4VkysyW/bpd15B4rfI5feyh4FF3Wl0456l6/gKMJULjX
- Ybt4bHMDwjkG3s0mxdz+NguSa+8khjtqE0TTkW+uVtWimfKM1h695xhd0qBvVdzzrk1J
- X2Dw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746760568; x=1747365368;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=sTOwig8lTDkxPKMgyzizdRYq4XG3E64o3g/lB7m6NZU=;
- b=eJ7rb/J0JGAUh6ocVzTOX/4cgmIS8awaEJhEio4WRI7w2qrlJPQ5z2+gX3VWCLDJdR
- fiyUD7oAfjX246OHINjrpAZyqwBCFLPeTvuw+Ak6phTh5n2+IqNFBVhAu6emYZeNBOpS
- JVw4tVDMyIOm1c8k3Ler9EEuuCzktmKjyEiUYwpvwCyr/d3t0XpgkceTwpB+HYwEpfIg
- 9jtQq1U9n2OA1d3MmVkiAc1+m4mcX9peZKD2Ko58mxrmYHX48qvbOD2fgYtaK8Xxlzn5
- +EYQxbOZzRVg19ChLjTaaOzOFuOJbt9uX4vduQIzZ8InPLnyToKe0s5t5dmwASpnzwr9
- n+2A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW4sfjKVxLV4lVkDNskG3LIRm8kym8MSSPG58UXS7uMnu69OXgA6vwP7CaHUgNPu+535frEb5QwGUQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJWytezzQtp/CUIEUCvJvg1z4EpjrLwkYE7MxludQIdHuPfZQW
- mBP8vIoZPgKOgd7i4FaEfGP2a0msQ2r9JHdfHBnJHKi7FEmPIprh
-X-Gm-Gg: ASbGncvWplLuZfRCmC4iHQq75fhpFYGGMijlN/G3HK1MG1y8sJf96XinQ7myNMzw60r
- b1lHVeSNT9aGEiAXh8yblrh3V/8yO4VTCwRLQgo4uYGgNO5zWTGaZAKsFvaBKI9vqbAsCZ4shLJ
- v0IW+L0FCHsoK3ylKPWW4Q3Cjjg4UlR8my6iTCvaLNAGGgm5jF8mn692FY/zK/bYFudzjjPKHib
- mAoHdh9pCSMznEESvlKNgQLBNOPnJDaB2U1nZBazPMScjDS8n18B4hb97/fqdEf3pS+kC8pxem0
- B/dd+AjWi7CFZZN3CPr/J+0cE01U2lsbPOGHt3v31G5kE8X2B9lCUB+YVVa5zVtexG7BL4FeCWw
- TsmtHcHqHZNfR
-X-Google-Smtp-Source: AGHT+IFabaKG5IMI4f6lw/FzmXhfD/qA1aN2NZHwCsMXYiRNwWJ9KzD39S8IFVi2DsYvBD60grQSJw==
-X-Received: by 2002:a05:6820:208c:b0:604:99a6:4e90 with SMTP id
- 006d021491bc7-60868ad8738mr995531eaf.0.1746760568573; 
- Thu, 08 May 2025 20:16:08 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.16.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 May 2025 20:16:07 -0700 (PDT)
-From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
- bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
- andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
- andrewjballance@gmail.com, fujita.tomonori@gmail.com,
- daniel.almeida@collabora.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org
-Subject: [PATCH 00/11] rust: add support for Port io
-Date: Thu,  8 May 2025 22:15:13 -0500
-Message-ID: <20250509031524.2604087-1-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.49.0
+Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56F3010E537;
+ Tue, 18 Jun 2024 03:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=rZ3Tb4qAu6Z+twWJyOcZ2EZNot0n9kRT91kObBenkKQ=; b=B45UZoMX/ee8Rq+ArfpTmWwIIx
+ GMD49HtipMR6pUyRxth9XneNoqH/GPE4ok7wQg96kroUv6/TAaQNr0T+aloAM9yHS2g3PImG7hl4M
+ cPXt3ZHLgSJmy4Yz/rKFrYWd6EZ0BtX+bX4rLL5rODbfAVGNAQI9jUcTR0B26dEVCebFsuA2Viaej
+ GGDOC8ZMOKdjs9sDUAcDCOPEdR7gyTy5gLN1tDyoNU4dBcqQnvazoSsijtu3ADcSiUp8j6AkMNrI3
+ QdH7C2KPtIb/0kib/kl992VHsQC1CSGo6Gx8H1cubbXfFk9BXCup/Ntb5K1781Khf4Bcs2ClhUpDH
+ tINbMfoQ==;
+Received: from [191.8.29.108] (helo=localhost.localdomain)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1sJP5X-004YXc-0k; Tue, 18 Jun 2024 05:00:51 +0200
+From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
+ alexander.deucher@amd.com, christian.koenig@amd.com,
+ Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
+ daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
+ =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
+ Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
+ Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
+ =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
+ Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v7 2/9] drm: Support per-plane async flip configuration
+Date: Tue, 18 Jun 2024 00:00:17 -0300
+Message-ID: <20240618030024.500532-3-andrealmeid@igalia.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240618030024.500532-1-andrealmeid@igalia.com>
+References: <20240618030024.500532-1-andrealmeid@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -95,46 +80,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-currently the rust `Io` type maps to the c read{b, w, l, q}/write{b, w, l, q}
-functions and have no support for port io.this is a problem for pci::Bar
-because the pointer returned by pci_iomap is expected to accessed with
-the ioread/iowrite api [0].
+Drivers have different capabilities on what plane types they can or
+cannot perform async flips. Create a plane::async_flip field so each
+driver can choose which planes they allow doing async flips.
 
-this patch series splits the `Io` type into `Io`, `PortIo` and `MMIo`.and,
-updates pci::Bar, as suggested in the zulip[1], so that it is generic over
-Io and, a user can optionally give a compile time hint about the type of io. 
+Signed-off-by: André Almeida <andrealmeid@igalia.com>
+---
+ include/drm/drm_plane.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Link: https://docs.kernel.org/6.11/driver-api/pci/pci.html#c.pci_iomap [0]
-Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/.60IoRaw.60.20and.20.60usize.60/near/514788730 [1]
-
-Andrew Ballance (6):
-  rust: io: add new Io type
-  rust: io: add from_raw_cookie functions
-  rust: pci: make Bar generic over Io
-  samples: rust: rust_driver_pci: update to use new bar and io api
-  gpu: nova-core: update to use the new bar and io api
-  rust: devres: fix doctest
-
-Fiona Behrens (5):
-  rust: helpers: io: use macro to generate io accessor functions
-  rust: io: Replace Io with MMIo using IoAccess trait
-  rust: io: implement Debug for IoRaw and add some doctests
-  rust: io: add PortIo
-  io: move PIO_OFFSET to linux/io.h
-
- drivers/gpu/nova-core/driver.rs |   4 +-
- drivers/gpu/nova-core/regs.rs   |   1 +
- include/linux/io.h              |  13 +
- lib/iomap.c                     |  13 -
- rust/helpers/io.c               | 132 +++---
- rust/kernel/devres.rs           |   4 +-
- rust/kernel/io.rs               | 753 +++++++++++++++++++++++++-------
- rust/kernel/pci.rs              |  88 +++-
- samples/rust/rust_driver_pci.rs |   6 +-
- 9 files changed, 731 insertions(+), 283 deletions(-)
-
-
-base-commit: 92a09c47464d040866cf2b4cd052bc60555185fb
+diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
+index 9507542121fa..0bebc72af5c3 100644
+--- a/include/drm/drm_plane.h
++++ b/include/drm/drm_plane.h
+@@ -786,6 +786,11 @@ struct drm_plane {
+ 	 * @kmsg_panic: Used to register a panic notifier for this plane
+ 	 */
+ 	struct kmsg_dumper kmsg_panic;
++
++	/**
++	 * @async_flip: indicates if a plane can do async flips
++	 */
++	bool async_flip;
+ };
+ 
+ #define obj_to_plane(x) container_of(x, struct drm_plane, base)
 -- 
-2.49.0
+2.45.2
 
