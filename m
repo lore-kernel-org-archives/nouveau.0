@@ -4,79 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 323B5D5B168
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AD38D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C2610EA09;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCEAD10EA19;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="dGxIU3mh";
-	dkim-atps=neutral
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
- [209.85.215.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89D9911AAAA;
- Thu, 30 May 2024 04:24:42 +0000 (UTC)
-Received: by mail-pg1-f178.google.com with SMTP id
- 41be03b00d2f7-681a3e5d376so7868a12.2; 
- Wed, 29 May 2024 21:24:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1717043082; x=1717647882; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=E3VVbhC6I5IDpIBKGc/cIzsKHjro6Wg4me5Z18wNEmY=;
- b=dGxIU3mhhfL0UISTahbboa/6mx+lwTrGJPMP5AOEW/sbEA4iOd/6pLPpLanBvT+UGZ
- 9OtcZ0GJVAcLFZyV6+3T5DrRRpTWFZoDlpufSjSrtZxHoWPbNSwc+d7fRCzy2c031iZM
- 02YFvQx8JKbr60D5pNe8m2EKliq420K/5R8liAC6LxSbd31/1RIacrmxLwl1JZ4hYzsi
- CKr+xKYKjDn0kG8uq/5DFuAXpRcIqgYIGz5AbrMKExTQ+krkfDqNnR1cW2nD4thzhHc7
- N+CFoOpjMoDBeED27ihe4bfyJrCecZ28vIxoJlhLAHsK95ZtSd2hqq+Q/VFYH9TGnmUa
- FtYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1717043082; x=1717647882;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=E3VVbhC6I5IDpIBKGc/cIzsKHjro6Wg4me5Z18wNEmY=;
- b=hqiQ3/mlQ5h+E4TGTEUqK/eMxQrSNr4dd8jnCjOU0KdGny0inHrnWzXBEKIqV6lUCY
- j7fv6QOaglIPSa53LflBmezd3Q5DyyVuDoJSZ2xAr3IR03PwdEINPxynLh4PP12GrgD0
- 3G34As93w/qnTslA7+h2AN1TDKvt9cmJ9fgvRQHT3G24F6jeKVx4qTbT6IwRX8SNVUGS
- 10825Qe6A41f9XQEslFEknGw/AxHsjC1XDm0E3FrCgS3EptMtjXq6oWsfzu0C0zaCJDV
- n7zkjqcHVrdEDGPgXBKSpmWlEnDHJCSHpEP7cxjMhpB18YYvJ4SXRVhQRcNCSJBiRAkV
- cTvA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVPjqOv2RtnaMJiFYtrhmWalQD8Ai4drmNC3BFiFP2STmhqzqPW9r88BkLIE4j5HJ1p+dhN/KZnPi7mm437iqD4di3vxcqcFmPhzGmEESmJREXLBvCunu0ByTGh4Dq1j6s8pfyiuXNBzUP0y/Ioog==
-X-Gm-Message-State: AOJu0Yxq6E6yrcgGHRbhNnQant8MU1RPJzTYTuSM2NaB96WyLj9k2JjM
- Me4ZU/3IgzbGUpUmqB7BL7/u7aXdNEj10VTKyyKEQ9QnSwNexicf
-X-Google-Smtp-Source: AGHT+IEJdZ4YE8MX8w0oPD51QAdlQikfgmInuFu5dotPFl7flHJL3hSTz7FpJiSJHzOGtR8YnBeuYQ==
-X-Received: by 2002:a05:6a20:3219:b0:1af:96e7:2be6 with SMTP id
- adf61e73a8af0-1b26440808amr1198934637.0.1717043081669; 
- Wed, 29 May 2024 21:24:41 -0700 (PDT)
-Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
- [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1f477d337cdsm83515795ad.71.2024.05.29.21.24.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 29 May 2024 21:24:41 -0700 (PDT)
-Date: Thu, 30 May 2024 13:24:33 +0900 (JST)
-Message-Id: <20240530.132433.2195707766186347550.fujita.tomonori@gmail.com>
-To: dakr@redhat.com, gregkh@linuxfoundation.org
-Cc: fujita.tomonori@gmail.com, wedsonaf@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@samsung.com,
- aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
- ajanulgu@redhat.com, lyude@redhat.com, rust-for-linux@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- mcgrof@kernel.org, russ.weight@linux.dev
-Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <ZlfeA7MEZRv404MO@pollux.localdomain>
-References: <2024052950-purely-sandstone-36c7@gregkh>
- <20240530.082824.289365952172442399.fujita.tomonori@gmail.com>
- <ZlfeA7MEZRv404MO@pollux.localdomain>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+X-Greylist: delayed 443 seconds by postgrey-1.36 at gabe;
+ Tue, 25 Jun 2024 08:18:21 UTC
+Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE6210E5E2
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Jun 2024 08:18:21 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-01 (Coremail) with SMTP id qwCowACXnRmDe3pmfYGhDA--.39238S2;
+ Tue, 25 Jun 2024 16:10:52 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch, make24@iscas.ac.cn
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: [PATCH] drm/nouveau/dispnv04: fix null pointer dereference in
+ nv17_tv_get_hd_modes
+Date: Tue, 25 Jun 2024 16:10:29 +0800
+Message-Id: <20240625081029.2619437-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: qwCowACXnRmDe3pmfYGhDA--.39238S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Cr4DAw4DGrykGFWxAr43Wrg_yoW8JFWDpF
+ 4xGFyYvrnrJF97K3W0y3WDWFWY9a1vkFZ7C34ak39I93ZYyr1qqryUAry3Wry7JFy5GF13
+ trnxtFyqgr18Cr7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWUWVWUuwAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26ryj6F1UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr
+ 0_GcWlnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+ F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
+ 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
+ 648v4I1lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
+ 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+ zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
+ 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
+ CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
+ nIWIevJa73UjIFyTuYvjfUOlksUUUUU
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,100 +63,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+In nv17_tv_get_hd_modes(), the return value of drm_mode_duplicate() is
+assigned to mode, which will lead to a possible NULL pointer dereference
+on failure of drm_mode_duplicate(). The same applies to drm_cvt_mode().
+Add a check to avoid null pointer dereference.
 
-On Thu, 30 May 2024 04:01:39 +0200
-Danilo Krummrich <dakr@redhat.com> wrote:
+Cc: stable@vger.kernel.org
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+---
+ drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> On Thu, May 30, 2024 at 08:28:24AM +0900, FUJITA Tomonori wrote:
->> Hi,
->> 
->> On Wed, 29 May 2024 21:57:03 +0200
->> Greg KH <gregkh@linuxfoundation.org> wrote:
->> 
->> >> For a Rust PHY driver, you know that you have a valid pointer to C's
->> >> device object of C's PHY device during the probe callback. The driver
->> >> creates a Rust device object to wrap the C pointer to the C's device
->> >> object and passes it to the firmware abstractions. The firmware
->> >> abstractions gets the C's pointer from the Rust object and calls C's
->> >> function to load firmware, returns the result.
->> >> 
->> >> You have concerns about the simple code like the following?
->> >> 
->> >> 
->> >> diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
->> >> new file mode 100644
->> >> index 000000000000..6144437984a9
->> >> --- /dev/null
->> >> +++ b/rust/kernel/device.rs
->> >> @@ -0,0 +1,30 @@
->> >> +// SPDX-License-Identifier: GPL-2.0
->> >> +
->> >> +//! Generic devices that are part of the kernel's driver model.
->> >> +//!
->> >> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
->> >> +
->> >> +use crate::types::Opaque;
->> >> +
->> >> +#[repr(transparent)]
->> >> +pub struct Device(Opaque<bindings::device>);
->> >> +
->> >> +impl Device {
->> >> +    /// Creates a new [`Device`] instance from a raw pointer.
->> >> +    ///
->> >> +    /// # Safety
->> >> +    ///
->> >> +    /// For the duration of 'a, the pointer must point at a valid `device`.
->> > 
->> > If the following rust code does what this comment says, then sure, I'm
->> > ok with it for now if it helps you all out with stuff like the firmware
->> > interface for the phy rust code.
->> 
->> Great, thanks a lot!
->> 
->> Danilo and Wedson, are there any concerns about pushing this patch [1]
->> for the firmware abstractions?
-> 
-> Well, if everyone is fine with this one I don't see why we can't we go with [1]
-> directly? AFAICS, we'd only need the following fix:
-> 
-> -//! C header: [`include/linux/device.h`](../../../../include/linux/device.h)
-> +//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
-> 
-> [1] https://lore.kernel.org/rust-for-linux/20240520172554.182094-2-dakr@redhat.com/
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+index 670c9739e5e1..9c3dc9a5bb46 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+@@ -258,6 +258,8 @@ static int nv17_tv_get_hd_modes(struct drm_encoder *encoder,
+ 		if (modes[i].hdisplay == output_mode->hdisplay &&
+ 		    modes[i].vdisplay == output_mode->vdisplay) {
+ 			mode = drm_mode_duplicate(encoder->dev, output_mode);
++			if (!mode)
++				continue;
+ 			mode->type |= DRM_MODE_TYPE_PREFERRED;
+ 
+ 		} else {
+@@ -265,6 +267,8 @@ static int nv17_tv_get_hd_modes(struct drm_encoder *encoder,
+ 					    modes[i].vdisplay, 60, false,
+ 					    (output_mode->flags &
+ 					     DRM_MODE_FLAG_INTERLACE), false);
++			if (!mode)
++				continue;
+ 		}
+ 
+ 		/* CVT modes are sometimes unsuitable... */
+-- 
+2.25.1
 
-The difference is that your patch touches the reference count of a
-struct device. My patch doesn't.
-
-The following part in your patch allows the rust code to freely play
-with the reference count of a struct device. Your Rust drm driver
-interact with the reference count in a different way than C's drm
-drivers if I understand correctly. I'm not sure that Greg will be
-convinenced with that approach.
-
-+// SAFETY: Instances of `Device` are always ref-counted.
-+unsafe impl crate::types::AlwaysRefCounted for Device {
-+    fn inc_ref(&self) {
-+        // SAFETY: The existence of a shared reference guarantees that the refcount is nonzero.
-+        unsafe { bindings::get_device(self.as_raw()) };
-+    }
-+
-+    unsafe fn dec_ref(obj: ptr::NonNull<Self>) {
-+        // SAFETY: The safety requirements guarantee that the refcount is nonzero.
-+        unsafe { bindings::put_device(obj.cast().as_ptr()) }
-+    }
-+}
-
-The following comments give the impression that Rust abstractions
-wrongly interact with the reference count; callers check out the
-reference counter. Nobody should do that.
-
-+    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count.
-+    pub unsafe fn from_raw(ptr: *mut bindings::device) -> ARef<Self> {
-
-+    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count for
-+    /// the entire duration when the returned reference exists.
-+    pub unsafe fn as_ref<'a>(ptr: *mut bindings::device) -> &'a Self {
-+        // SAFETY: Guaranteed by the safety requirements of the function.
-+        unsafe { &*ptr.cast() }
-+    }
