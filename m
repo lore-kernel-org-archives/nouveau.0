@@ -4,89 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C08C30658
-	for <nouveau@archiver.kernel.org>; Tue, 25 Jun 2024 14:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D02C2BBCA
+	for <nouveau@archiver.kernel.org>; Tue, 25 Jun 2024 19:11:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4214E10E682;
-	Tue, 25 Jun 2024 14:36:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FEF510E714;
+	Tue, 25 Jun 2024 19:11:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kroah.com header.i=@kroah.com header.b="h/2JJ2XX";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="p16LuvBY";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NIKw4Pvw";
 	dkim-atps=neutral
-X-Greylist: delayed 323 seconds by postgrey-1.36 at gabe;
- Tue, 25 Jun 2024 14:36:09 UTC
-Received: from flow3-smtp.messagingengine.com (flow3-smtp.messagingengine.com
- [103.168.172.138])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3215410E682
- for <nouveau@lists.freedesktop.org>; Tue, 25 Jun 2024 14:36:09 +0000 (UTC)
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
- by mailflow.nyi.internal (Postfix) with ESMTP id BDBD820045E;
- Tue, 25 Jun 2024 10:30:45 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
- by compute4.internal (MEProxy); Tue, 25 Jun 2024 10:30:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1719325845;
- x=1719333045; bh=n40rkhfGjzu8AxDo0A/VhYrpxULagui6L3eRoobEu9s=; b=
- h/2JJ2XXSHYRlUkmpcnT1ZYxUEoM6+aze6cr1UQaAOuDFuFFq7+vZwHHjJ5+gA9e
- taFX8BCOJfr9P/3hlGF0KCr4czzK+1CRyL6PEPuzqAQj/hsvPAUG7r9p/mtX1Xie
- 4wnUj30g3HssVJe0R/Gt6pQUbHv8pCX+J39cJZFFf0mW0yhotgEeTvLdXVQWGSry
- XvdNPh1t1gUkRzLlMOTOyX/crmFlxhq3xu1n5r5qFkUQx8ao8+NiTyIgmC9nt1kQ
- Yvf8cvzLGee5cjDVEGJVnShhckvCSRwIdSTym+vzBsBnf1J9wZg0PacopLPx2yQG
- FT8o4XUAGI8/0+btZP4cWA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1719325845; x=
- 1719333045; bh=n40rkhfGjzu8AxDo0A/VhYrpxULagui6L3eRoobEu9s=; b=p
- 16LuvBYPifBPtp1l8HXW0WgcAp5qGByADd/cqp/p258PeINNUDIwl64Ivtnd/6jP
- KP2qFgL9nsOXI5jERVMjQCmcgaGb7OqEvy5gyng4MqOZbyFCuzeItKZ52RhTQ04x
- HT+CFMINatNqgVpUGWMR/8TkA10jpY0tKJ5ekhIM5jDwJXKEtlBkV1CX5PYWto/s
- hUq2OkPosmu+IUge0TffWt207BPm7za49vZA/ZjjKWEsaBx2CGn/8yMhBXRbxVlX
- foasR8S9k88K50s/VK6pPcKnfQrGs2gJnk2ItaeLbf4tG4VMVLWpdRS/CwedMIy3
- a1+bRPM/Or4YCy9tUGF1w==
-X-ME-Sender: <xms:ldR6ZgBpRWP8mS3VA2Qms6OZM9ckhp2ODlyswd4iLVJMxG4GyYBVhQ>
- <xme:ldR6ZijR2bT4v8GuzSqLgvs_JN-mtU4fg_zEFVmVFTxaVi-xKN2ByhcgWPALxupLf
- W0rIPje73BbIA>
-X-ME-Received: <xmr:ldR6ZjlW6CpJaTkmgHMK6qtDoy9t12v8oJoegXoTg_k_o2dozihWVxvTZa79t6Ria-rl3mmM8DVB6iPuo0DPe2x5la9fWRzcJmCfRA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrtddtgdeggecutefuodetggdotefrodftvf
- curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
- uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
- fjughrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomhepifhrvghg
- ucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrfgrthhtvghrnhepgfekff
- eifeeiveekleetjedvtedvtdeludfgvdfhteejjeeiudeltdefffefvdeinecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepghhrvghgsehkrhhorg
- hhrdgtohhm
-X-ME-Proxy: <xmx:ldR6ZmxY0zFwG6pWHsU-y6YkcmngJmKUn9oPpTIHsv4G346eRrdlnA>
- <xmx:ldR6ZlRyQYCTt1DG04kEg57pOpQ8KoojDGl47d9FpoQ1qWgp1cZiBg>
- <xmx:ldR6ZhbC6ybWV8DlIc4L8v9H8l8ZOOnF0r6vJpa9NY3LU5Do76bTkg>
- <xmx:ldR6ZuT4ptUDAasIrsTeXyADiCA_LMQqFynBKgYq7xqX3qlCrbtVCA>
- <xmx:ldR6ZnmM9XBOBtZyCNgYz6zqBuHcXPrEJjuGSn2Hkv78Acq8H7ggnLJC>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 25 Jun 2024 10:30:44 -0400 (EDT)
-Date: Tue, 25 Jun 2024 16:30:41 +0200
-From: Greg KH <greg@kroah.com>
-To: Markus Elfring <Markus.Elfring@web.de>
-Cc: Ma Ke <make24@iscas.ac.cn>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Danilo Krummrich <dakr@redhat.com>,
- David Airlie <airlied@gmail.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, stable@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA8CE10E208
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Jun 2024 19:11:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1719342676;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=J6Dr7XzQihg9MSKxY6pbB34NIR1CD8eMrbVwTROvnJc=;
+ b=NIKw4Pvw6s03cb6+7rrtukxtVTZ8EwhyzTrv/ckriJUA2qMNfeWp3OB3jG2UQ7pWl33eSB
+ OXjB06GQzokCXTVQLV0bVZIuDqbC/+vacJ0IYbXfGa+iYF1vLaEfjcn9qyty/hmNUNag9T
+ ft/xjLX4sYQBUHBy+VZRBQ/I1VCki14=
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-528-1TSNNWZyMqqglDsgR0GwhQ-1; Tue, 25 Jun 2024 15:11:15 -0400
+X-MC-Unique: 1TSNNWZyMqqglDsgR0GwhQ-1
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-6b057a9690bso86134986d6.2
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Jun 2024 12:11:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1719342675; x=1719947475;
+ h=mime-version:user-agent:content-transfer-encoding:organization
+ :references:in-reply-to:date:cc:to:from:subject:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=ifx89QbqNTvqNTqVFeOnhXLP0jmM+ngsCZbnU659x1A=;
+ b=dRMy79QeuMecCJdLpdZh+go9aHvwFLFl5l+2VHbXh84Jqhkr1+pYq8quazNJnvCMpN
+ P480VStomV+JU3LPvdm+oq6k+Pv69IJsNXgop5mKfG5FMiIY1lPBWQOC1TXZE9DTisma
+ E/y2je8AJsqtcPjJ1K5TF7piGnHUdlgYa60LN+YRqSEU6vqYxZ9kN6V7fyiJct2Wtvv5
+ uBt6Xl58LhvUwThYjOLgG9NTk95wT9gGg+x2dQTn/4mtHkvwfApXRxGRxC0FJHhSEWVO
+ E4etq0OXn2fWSC1I9lj07pC4MkDcW2GYGzbBJnVHmqJNiYiCS2S/xN7ZrgRE8nqKECQj
+ VpIA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWcIES6WM/sxT2cAL/4MdW59nKqPfmbw9/SSUkW1AaQxdSDBbjkX9K8aIw/21ZGI/J4Y/kpCi3JiqQxwGjEYAJVT0fhDSvrUYRd1k00ng==
+X-Gm-Message-State: AOJu0Yz3SNibzFQjQE0/sLNWquP82qnUurDrxiZpXBJBsl/lwpIpFIDB
+ WMPQAFXX4MJDjqpER/jxQ4pUf0ulcVwuYCpbWJ00EIfZQL55Z49dtzLQOIKPF+0Z06HBGxbU1YP
+ cW+UA9uzgzpR9Fl5w1GIFGYczHbvVSAaJjpXQeo7KeyT+Ct6UExDzV//C2uu8ruI=
+X-Received: by 2002:a0c:ac4c:0:b0:6b5:101d:201 with SMTP id
+ 6a1803df08f44-6b53bbd2640mr88923826d6.39.1719342674659; 
+ Tue, 25 Jun 2024 12:11:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH6Jt3WC0d7hZup1taiuXs6wrI0vbXesfenzHXw1GMzzA+zIlNjhXPp/ZyUSjSvtzxHI6BjjQ==
+X-Received: by 2002:a0c:ac4c:0:b0:6b5:101d:201 with SMTP id
+ 6a1803df08f44-6b53bbd2640mr88923626d6.39.1719342674299; 
+ Tue, 25 Jun 2024 12:11:14 -0700 (PDT)
+Received: from chopper.lyude.net ([2600:4040:5c4c:a000::789])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-6b51ef54a9bsm47185826d6.112.2024.06.25.12.11.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 Jun 2024 12:11:13 -0700 (PDT)
+Message-ID: <2020b1333c0f0be49648b81ebc4b55f3abe0a2cd.camel@redhat.com>
 Subject: Re: [PATCH] drm/nouveau/dispnv04: fix null pointer dereference in
  nv17_tv_get_ld_modes
-Message-ID: <2024062533-quiver-cacti-b068@gregkh>
+From: Lyude Paul <lyude@redhat.com>
+To: Ma Ke <make24@iscas.ac.cn>, kherbst@redhat.com, dakr@redhat.com, 
+ airlied@gmail.com, daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Tue, 25 Jun 2024 15:11:12 -0400
+In-Reply-To: <20240625081828.2620794-1-make24@iscas.ac.cn>
 References: <20240625081828.2620794-1-make24@iscas.ac.cn>
- <8517da06-3010-4356-b5df-d9a14454feec@web.de>
+Organization: Red Hat Inc.
+User-Agent: Evolution 3.52.2 (3.52.2-1.fc40)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8517da06-3010-4356-b5df-d9a14454feec@web.de>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,49 +95,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jun 25, 2024 at 03:43:37PM +0200, Markus Elfring wrote:
-> > In nv17_tv_get_ld_modes(), the return value of drm_mode_duplicate() is
-> > assigned to mode, which will lead to a possible NULL pointer dereference
-> > on failure of drm_mode_duplicate(). Add a check to avoid npd.
-> 
-> Can a wording approach (like the following) be a better change description?
-> 
->   A null pointer is stored in the local variable “mode” after a call
->   of the function “drm_mode_duplicate” failed. This pointer was used
->   in a subsequent statement where an undesirable dereference will
->   be performed then.
->   Thus add a corresponding return value check.
-> 
-> 
-> > Cc: stable@vger.kernel.org
-> 
-> Would you like to add the tag “Fixes” accordingly?
-> 
-> 
-> How do you think about to use a summary phrase like
-> “Prevent null pointer dereference in nv17_tv_get_ld_modes()”?
-> 
-> 
-> Regards,
-> Markus
-> 
-Hi,
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-This is the semi-friendly patch-bot of Greg Kroah-Hartman.
+On Tue, 2024-06-25 at 16:18 +0800, Ma Ke wrote:
+> In nv17_tv_get_ld_modes(), the return value of drm_mode_duplicate()
+> is
+> assigned to mode, which will lead to a possible NULL pointer
+> dereference
+> on failure of drm_mode_duplicate(). Add a check to avoid npd.
+>=20
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+> ---
+> =C2=A0drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 2 ++
+> =C2=A01 file changed, 2 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> index 670c9739e5e1..4a08e61f3336 100644
+> --- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> +++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
+> @@ -209,6 +209,8 @@ static int nv17_tv_get_ld_modes(struct
+> drm_encoder *encoder,
+> =C2=A0=09=09struct drm_display_mode *mode;
+> =C2=A0
+> =C2=A0=09=09mode =3D drm_mode_duplicate(encoder->dev, tv_mode);
+> +=09=09if (!mode)
+> +=09=09=09continue;
+> =C2=A0
+> =C2=A0=09=09mode->clock =3D tv_norm->tv_enc_mode.vrefresh *
+> =C2=A0=09=09=09mode->htotal / 1000 *
 
-Markus, you seem to have sent a nonsensical or otherwise pointless
-review comment to a patch submission on a Linux kernel developer mailing
-list.  I strongly suggest that you not do this anymore.  Please do not
-bother developers who are actively working to produce patches and
-features with comments that, in the end, are a waste of time.
+--=20
+Cheers,
+ Lyude Paul (she/her)
+ Software Engineer at Red Hat
 
-Patch submitter, please ignore Markus's suggestion; you do not need to
-follow it at all.  The person/bot/AI that sent it is being ignored by
-almost all Linux kernel maintainers for having a persistent pattern of
-behavior of producing distracting and pointless commentary, and
-inability to adapt to feedback.  Please feel free to also ignore emails
-from them.
-
-thanks,
-
-greg k-h's patch email bot
