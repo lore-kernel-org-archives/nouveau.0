@@ -4,77 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30778D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9A4D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97BCF10EB6A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC3DC10EAA5;
 	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="h7AKNFdf";
-	dkim-atps=neutral
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
- [209.85.215.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDC1610EB59
- for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 13:35:27 +0000 (UTC)
-Received: by mail-pg1-f180.google.com with SMTP id
- 41be03b00d2f7-b31c9132688so271236a12.1
- for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 06:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750426527; x=1751031327; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ciykJwNPy2VNieSQKGV5yGfXBWXTz3pnWQQit/GvIGg=;
- b=h7AKNFdfl0MkA8RH1O8Oj1js5m+pVDMh91DL6N9LCiv60I3A+ywMHrNiPMiVv/7PZx
- UaarO+jHKm5sjW+0IMs+Zwy9vQoTz671nU2mlp5p5dlZT8T3vXyFtcAMJ6zBrReGm82F
- 3EYTEC2Pulls96+ffauzn+g4ZcOazjtvlqJIOXybDmwPuQf5+3DecWM7ybVB9mKsC1Ud
- Y5yCPW5BvGp5aqn4PbG9IJVQcws0js5dha2YahOxV6rfYda94P0k8366E2FMTZTluwAy
- ZfYfNCTLPusOuWFYEHSrvHMBb6SIYXg5W9jWISuR2fGPSXqjVexz8poz8TKlouvYN9gV
- m0aA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750426527; x=1751031327;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ciykJwNPy2VNieSQKGV5yGfXBWXTz3pnWQQit/GvIGg=;
- b=CVy4c1NNKlROJsZde2b6Q298wd5NhIjYIWxxzE9ueEFZKvAUoeYX6i4nYNm9O7mKgm
- xh2QsGZHcszrQpVLITtinU8W5nBCkVXxeFv1+cYTlme+05UImfno4bSCxjGkS2VMmJ2S
- Qj8wrxfDBwSDtxKxsv78XDUEu6K62nECSnm9yk16JbNngY6bK0QDLM8MOBp4J2OZLx1L
- T7vrN7Y4vDJ3aKWPQKtXWAxBJry69jvRc6o8b2mtblq0p8wuYA4pldLDprVkAW2kaxMs
- rvGmX5BitTHr0loJtU+YRVwcJ8nhSbOznxIkLWBHBAQsx11ShpxUNu4K1e9xEprLquUY
- Zw7g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbpG0OzNgJeoKuGPQwhLFGVdwYMd5sv4jE8SsjiCkGzTNYNFT5GbdbH7FTPJpuTl9BoYbpT8HL@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyjTdf/G7VpmZgWn1BL9Byl63XiXjlw9TPtgLl49l2x3t6rDs8x
- tZm7ZDqh24PrezgtNd1YVry2DnCU5ZmVVqh3BECygeL5siH8yvuVHjp1fL/jnue2bG4DEfBKw5K
- 5gvguSsWuqnR5E1cNJy2eu6eNOyEZURo=
-X-Gm-Gg: ASbGncupNWx7gZdN/RvEOMtgsFHtSxtE6ohx8lgqmie/Saivo00534blaz4hkljeC01
- GqG3xi0IxygS24o5tqlA5Fg73yC5ISAAbD358Dsd2meStJEg1t6G1RT5r29r/h56UTpoGRSjFRo
- JdzmHuO81u8WYMpDS5M0eobv5EAJhDn0dnXYUhsmi2VNk=
-X-Google-Smtp-Source: AGHT+IFPthesqIFSi/O171CaK3dBItc40f2bqdqoBwA2MAUv9vVgFRzwoXgjNy0n53Ha/Xt7WBxaFVSen5LG/UgilkQ=
-X-Received: by 2002:a17:90b:3a43:b0:311:fde5:c4ae with SMTP id
- 98e67ed59e1d1-3159d8e2be9mr1716522a91.6.1750426527235; Fri, 20 Jun 2025
- 06:35:27 -0700 (PDT)
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4280110E0DC;
+ Wed, 26 Jun 2024 01:30:27 +0000 (UTC)
+Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
+ by APP-05 (Coremail) with SMTP id zQCowADnjRAnb3tmk0nREg--.43249S2;
+ Wed, 26 Jun 2024 09:30:23 +0800 (CST)
+From: Ma Ke <make24@iscas.ac.cn>
+To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ daniel@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>
+Subject: [PATCH] drm/nouveau: fix null pointer dereference in
+ nouveau_connector_get_modes
+Date: Wed, 26 Jun 2024 09:30:13 +0800
+Message-Id: <20240626013013.2765395-1-make24@iscas.ac.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20250620-num-v1-0-7ec3d3fb06c9@nvidia.com>
- <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
-In-Reply-To: <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 20 Jun 2025 15:35:14 +0200
-X-Gm-Features: AX0GCFuVT1QLcBO2haDSwB53syExrcXNwY3AyOzQthEHRsH2T3KmjtBuf1buWgA
-Message-ID: <CANiq72=BSnom-nQgzLvv-cqwSknK1uJ=CXGP51r0WRj1Y553Ew@mail.gmail.com>
-Subject: Re: [PATCH 1/3] rust: add `num` module with `PowerOfTwo` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowADnjRAnb3tmk0nREg--.43249S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7Jw1xZw1xKrW7WF1Utr4xWFg_yoWfZFc_uF
+ 1kZasrGrs093WvyrsrAw48AF9F9w1UZF4kZFnIqF9avrZ2qw1SkryUtryYvFy7Xa48WryD
+ tayq9as8Crn2gjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+ 9fnUUIcSsGvfJTRUUUb4kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
+ 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
+ A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
+ Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
+ WxJr1lnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
+ F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r
+ 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
+ 648v4I1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67
+ AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
+ rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
+ v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
+ JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUFYFADU
+ UUU
+X-Originating-IP: [183.174.60.14]
+X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,39 +61,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 20, 2025 at 3:15=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> Introduce the `num` module, featuring the `PowerOfTwo` unsigned wrapper
-> that guarantees (at build-time or runtime) that a value is a power of
-> two.
->
-> Such a property is often useful to maintain. In the context of the
-> kernel, powers of two are often used to align addresses or sizes up and
-> down, or to create masks. These operations are provided by this type.
+In nouveau_connector_get_modes(), the return value of drm_mode_duplicate()
+is assigned to mode, which will lead to a possible NULL pointer
+dereference on failure of drm_mode_duplicate(). Add a check to avoid npd.
 
-Before I forget: the other day in a call we discussed powers of two
-and I mentioned that there is `Alignment` in the standard library:
+Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-    https://doc.rust-lang.org/std/ptr/struct.Alignment.html
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 856b3ef5edb8..010eed56b14d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1001,6 +1001,8 @@ nouveau_connector_get_modes(struct drm_connector *connector)
+ 		struct drm_display_mode *mode;
+ 
+ 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
++		if (!mode)
++			return -ENOMEM;
+ 		drm_mode_probed_add(connector, mode);
+ 		ret = 1;
+ 	}
+-- 
+2.25.1
 
-    "A type storing a `usize` which is a power of two"
-
-So it would be nice to ask upstream the following if they have plans
-to stabilize it, and whether they have considered a generic
-`PowerOfTwo<T>` type like this one, rather than one just for alignment
-purposes (possibly with an alias or newtype for `Alignment` if
-needed).
-
-Similarly, if they stabilize the `Alignment` one (only) and we end up
-only using our `PowerOfTwo<T>` for `usize` and those use cases, then
-we should consider using the upstream one (and adding any/all methods
-that we need).
-
-So I will ask them the next time we meet. I have added
-`ptr_alignment_type` to our list (in the "nice to have" section).
-
-(Apologies if this was already discussed!)
-
-Cheers,
-Miguel
