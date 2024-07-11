@@ -4,81 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E32D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9857D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 998B510EA8F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3826E10EA0C;
 	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FM/iQDg7";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="LyvdAvB6";
 	dkim-atps=neutral
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
- [IPv6:2607:f8b0:4864:20::636])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 428E110E074;
- Fri, 13 Dec 2024 05:46:44 +0000 (UTC)
-Received: by mail-pl1-x636.google.com with SMTP id
- d9443c01a7336-2156e078563so10800195ad.2; 
- Thu, 12 Dec 2024 21:46:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734068804; x=1734673604; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
- b=FM/iQDg7KC4a/755IIO7QtW7lGZizb9Ij12tusXglECWpyQ9nvOTMHAcDQwxPnjnYo
- eTsmAPsuz79GW2gDJB31OVGRJSLIvIdoV//6LhZKavKhZUdkvG49eXuYeH7FM/LeRfjP
- hpHU4RxyoJvFZIZ5WFJINR8gs5wgEdI874DfumKMva7Hez/g9dQjQvSD0GxM57ZqiRUn
- Ze68Q8GAR8BO+Otz3EB8MyMegI37Yf180KgHlGvecTr7RT6Z/zQ5ifdva8QEAGqA9rxV
- 5k8tF13tb13nM2JEThwqXq215k7y81rAhUluLZI9l+xXAdlzqxQuOL4CGYB6RCQ+9rtm
- R0aw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734068804; x=1734673604;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
- b=mFWDB/eHGMLYTkaKvVKZ60/txoFkAnA43c4hJyKomRRG88tb4QvFogw4OsBvUIi5Vu
- QOA8BiD/ML7hvLNsYYv1y76T6dbHHOGIsgr8EpdSQiUciT9fKaT7iu6CdSdosuYtPkw5
- 7ZsJ9p1VmmQ9jEF20YLao+0dw8dSsHzdBGVWM+PFvLfVH4ZGFOSTwuBPh2FjbEE8/CZH
- 2lsLwyvnIkJbBT/TAQhitGsdmuooeqm5zWKs2hTprneecYU12Y/AULYcgNn9J+wj7emC
- uJ8yJfX211t7igSyOVZyJ0JEVpbKBTaILhPtggFQygO3LlvE+qtzr3K7CBAttlu25Dwi
- bZHg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVuNV/C7KDZ61vdMumNzJGhNjpMAlyZS/AhlZd4MRE3HobeUI7E6xaybrgbdXf0oeOuAQfTE9O7Q8o=@lists.freedesktop.org,
- AJvYcCWS6LZqKveP7bsekch4g5LppcXizEU5XoTm8x26xqOm74sc+ymQcqpR+ZsPSIK/l9G4O/r2a9TBwEw=@lists.freedesktop.org,
- AJvYcCX1nmu/3KwyscWOAguGfYweWt8GgaEE63J/Mv4yirjKB47QZeYaOYR6633KAxKNpvUJ8FCfecaQFZbl@lists.freedesktop.org,
- AJvYcCXHM+EdtG+QH1Y0pzz6C3N1W4Ht+sgm3K+k+QTFPLB6MDAhZbO6XMyZQIrMA7ohfrnIHiXdwRg/Vw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyuXR864N1lZGhEEgmYBdzJda9RMNp1aqTsCT+X4sCmUoEV9qJ5
- mkcfAIkMKDbxUYZyAKXwTTN5LjhLbRkGq+1bDN8+prts/1ZJn/MaLsk0ziHZoGk=
-X-Gm-Gg: ASbGncsKUZK8Aboj2I69p6dCvLNo9vla2jLf07xDz2WOGJ/DMCfLjVFYERktOyE4Vt1
- 1LBpFoIqYz9PoW40OY3QFSQXU63CBL4fUA0xOL4s9NUczjx8krGa34kIlIGEBi9BSVyBFaPVoih
- 2BlZo8F85exj9cvo3MyGc4T9ZAqILbfUCdV85UypY+nX5lRCky69tY/cqE76hth3D9RaLKumHfv
- m0Ct3JNbdWgQGRPvsKjZrRxqhOgspaV4r49ieGReupJvjLjjan/a52yy442Ls55tVTWhxXfL+6R
- hsT2R6s=
-X-Google-Smtp-Source: AGHT+IHVKByQs8aQw9nFW65MyCdke95tovLrIe/teYLFc9u83Eik6guIs9oKZyvf6Ts5Rmy4R5h3SA==
-X-Received: by 2002:a17:902:ccd2:b0:216:26f1:530b with SMTP id
- d9443c01a7336-21892a70579mr20915305ad.51.1734068803702; 
- Thu, 12 Dec 2024 21:46:43 -0800 (PST)
-Received: from localhost.localdomain ([180.159.118.224])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.46.38
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 12 Dec 2024 21:46:43 -0800 (PST)
-From: Yafang Shao <laoar.shao@gmail.com>
-To: torvalds@linux-foundation.org,
-	akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>
-Subject: [PATCH 0/7] vsprintf: Add %pTN to print Task Name 
-Date: Fri, 13 Dec 2024 13:46:03 +0800
-Message-Id: <20241213054610.55843-1-laoar.shao@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A823D10E2CB
+ for <nouveau@lists.freedesktop.org>; Thu, 11 Jul 2024 18:50:56 +0000 (UTC)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46BDBB79008745;
+ Thu, 11 Jul 2024 18:50:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ kU90E4EzVBWO/hKTiAhZwsQuZeXFe5mA7pm/NB52++4=; b=LyvdAvB69X0Qxu62
+ junCU9WNF95j6PGc4lnNgi8FX3jSKak3iir60Aml2bwB3t9SJ8NDBYMhuvs4xCee
+ UrB9NRj3uaoal6opPY2Wx/KSVJLGoI3EQt1lxgEDq0gbtNHh0gEByHz6m+TM0aGd
+ b8E9/DVo4PkeB1T5SeOEXYJkvIoKEvIFtPjYRecEwJMtr/qBUkoZ0jcfnCnhWimt
+ lBt3LpeHkPpepkak+TNYG8j3wWHXyBYXHzoGmT0EY42+6TGYila/cEwNYKaDozNA
+ F5LgrxXOoaalWuNe/cshohy41tihpOrH3PFzfQ5wlgUWmxUOwIQ38K6ZwTz1MCTC
+ 7+YCQQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 406x51dg84-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 11 Jul 2024 18:50:26 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA01.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
+ 46BIoL0E024082
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Thu, 11 Jul 2024 18:50:21 GMT
+Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 11 Jul
+ 2024 11:50:20 -0700
+Message-ID: <b1f79d00-80bc-4beb-8d49-6e626b79b97c@quicinc.com>
+Date: Thu, 11 Jul 2024 11:50:12 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] x86/mm: add testmmiotrace MODULE_DESCRIPTION()
+To: Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen
+ <ppaalanen@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>, Andy
+ Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Thomas
+ Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav
+ Petkov <bp@alien8.de>, <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>
+CC: <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ <linux-arm-kernel@lists.infradead.org>
+References: <20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com>
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: TVytbWzRQGN5Kw_RiD9K3gyN9tJ4nIXH
+X-Proofpoint-ORIG-GUID: TVytbWzRQGN5Kw_RiD9K3gyN9tJ4nIXH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-11_14,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 adultscore=0
+ suspectscore=0 impostorscore=0 mlxlogscore=999 mlxscore=0 bulkscore=0
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407110130
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,45 +98,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since task->comm is guaranteed to be NUL-terminated, it can be printed
-directly. This patch introduces a new vsnprintf format specifier, %pTN, to
-print a task's name. In this specifier, p represents the task pointer, T
-stands for "Task," and N denotes "Name." With this abstraction, users no
-longer need to manually retrieve the task name for printing purposes.
+On 5/15/24 17:06, Jeff Johnson wrote:
+> Fix the following 'make W=1' warning:
+> 
+> WARNING: modpost: missing MODULE_DESCRIPTION() in arch/x86/mm/testmmiotrace.o
+> 
+> Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+> ---
+>   arch/x86/mm/testmmiotrace.c | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
+> index bda73cb7a044..ae295659ca14 100644
+> --- a/arch/x86/mm/testmmiotrace.c
+> +++ b/arch/x86/mm/testmmiotrace.c
+> @@ -144,3 +144,4 @@ static void __exit cleanup(void)
+>   module_init(init);
+>   module_exit(cleanup);
+>   MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Test module for mmiotrace");
+> 
+> ---
+> base-commit: 8c06da67d0bd3139a97f301b4aa9c482b9d4f29e
+> change-id: 20240515-testmmiotrace-md-c6050c66a517
 
-In this patchset, all instances of get_task_comm() used for printing the
-task name have been replaced with the new %pTN specifier. The raw uses of
-'xyz->comm' for printouts will be addressed in a subsequent patch.
+I don't see this in linux-next yet so following up to see if anything 
+else is needed to get this merged.
 
-Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
-Link: https://lore.kernel.org/bpf/CAHk-=wgqrwFXK-CO8-V4fwUh5ymnUZ=wJnFyufV1dM9rC1t3Lg@mail.gmail.com 
+I'm hoping to have these warnings fixed tree-wide in 6.11.
 
-Yafang Shao (7):
-  vsprintf: Add %pTN to print task name
-  kernel: Replace get_task_comm() with %pTN
-  arch: Replace get_task_comm() with %pTN
-  net: Replace get_task_comm() with %pTN
-  security: Replace get_task_comm() with %pTN
-  drivers: Repace get_task_comm() with %pTN
-  fs: Use %pTN to print task name
-
- arch/arc/kernel/unaligned.c                    |  9 ++++-----
- arch/x86/kernel/vm86_32.c                      |  5 ++---
- drivers/accel/habanalabs/common/context.c      |  5 ++---
- .../accel/habanalabs/common/habanalabs_ioctl.c | 15 +++++----------
- .../drm/i915/display/intel_display_driver.c    | 10 ++++------
- drivers/gpu/drm/nouveau/nouveau_chan.c         |  4 +---
- drivers/gpu/drm/nouveau/nouveau_drm.c          |  7 +++----
- drivers/tty/tty_io.c                           |  5 ++---
- fs/ocfs2/cluster/netdebug.c                    |  5 ++---
- kernel/capability.c                            | 12 ++++--------
- kernel/futex/waitwake.c                        |  5 ++---
- lib/vsprintf.c                                 | 18 ++++++++++++++++++
- net/wireless/wext-core.c                       |  6 ++----
- scripts/checkpatch.pl                          |  6 ++++--
- security/yama/yama_lsm.c                       |  6 ++----
- 15 files changed, 57 insertions(+), 61 deletions(-)
-
--- 
-2.43.5
+/jeff
 
