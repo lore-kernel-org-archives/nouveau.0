@@ -4,88 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D64D7D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C7FBD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF3110EA6D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A73E10EA74;
 	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=iki.fi header.i=@iki.fi header.b="VC7rXLXV";
-	dkim=pass (1024-bit key; secure) header.d=iki.fi header.i=@iki.fi header.b="GmIzAikO";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="i11aRz8k";
 	dkim-atps=neutral
-X-Greylist: delayed 543 seconds by postgrey-1.36 at gabe;
- Wed, 25 Jun 2025 08:26:05 UTC
-Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93CF910E1BF;
- Wed, 25 Jun 2025 08:26:05 +0000 (UTC)
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by lahtoruutu.iki.fi (Postfix) with ESMTPS id 4bRvmc4kkRz49Q5s;
- Wed, 25 Jun 2025 11:16:48 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu; 
- t=1750839408;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
- b=VC7rXLXVw4vwp8IoATh/qxtDmh+Xrgz/LT+GGq/IKtHxPt01XOPLPR3pth6nPvetvGQEsw
- CRf874lMculCF3ibIlkbCqoG8J9KJfAuMfnb6gVLv3NZ42G4RgRev8/sWaI+lZvutxSXiy
- GfZMwg6o8vb2mHYQPiaKaWiqb27RPVL0Hpm1QcQFaEHJJhpE5uI/injgxCsAlv9lFOySTY
- oaJVX7ndRxJIXJAK7HDap4+HSXlPdlDwifivwv6H1Xps9sIK2ZUjnQ+xzdH+6srFJOtYZr
- 3R2lGjLIgVY2gBslroRDRj1ANaW5NhPF6kloms5nvzSsEYEj9frdMcp59zlzlw==
-Received: from hillosipuli.retiisi.eu
- (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net
- [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: sailus)
- by meesny.iki.fi (Postfix) with ESMTPSA id 4bRvmT67FTzyQ5;
- Wed, 25 Jun 2025 11:16:41 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
- t=1750839402;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
- b=GmIzAikOby6iq36P4gbjFfrehlkARIALWJD2C4Pt9zr0js+tvGgzLgBS6sf6rOR4V9voM2
- gMi/s07tIWdNmzBPiVDEU/zsr4zh/0U13YtSE3ZZc5TQ/r86nYBs/5x75RjU9MkPSChGUZ
- fz73PKHwybahYhbnxNcN7vty7Iiv9vk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
- s=meesny; t=1750839402;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
- b=Ka7TTCIx8rxkMORpPwCxAY+72JgTmJ5cmHt2CXIA2Ay+9KqTo55Tias/0AgmHFx+v7CQOX
- ScbAJjSaXPJdyJ+bRqMeSW1raUhbPIa8EXXheuiRAwRa2ehj0HHI0/H3JxJrQ2cUyS67jp
- T00a5rgfepnNUDzK3mt6DjMVXOYS4qA=
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1750839402; a=rsa-sha256; cv=none;
- b=xD3eINPrld3VHOT5rKZPM1aHuLa9bV+jNMVMC/qRCUqgSx0UoeMXzgUYas5lxATMxd+N4T
- Ebt9qbHqX7ccx+yhjzbfWK1RvFHZyv5Urb4bji6LShku+DSQFr4ASv2qZFSGbYvybd0gLK
- kYL4NMPRpIu0doLGv2tsvaiE9ntz4pA=
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2B2FA634C93;
- Wed, 25 Jun 2025 11:16:41 +0300 (EEST)
-Date: Wed, 25 Jun 2025 08:16:40 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH 1/1] drm/nouveau/disp: Use dev->dev to get the device
-Message-ID: <aFuwaMpjbvWgcwYV@valkosipuli.retiisi.eu>
-References: <20250409103344.3661603-1-sakari.ailus@linux.intel.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E26B10E00F
+ for <nouveau@lists.freedesktop.org>; Sun, 14 Jul 2024 21:47:39 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46EKnQbh008267;
+ Sun, 14 Jul 2024 21:46:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:message-id
+ :mime-version:subject:to; s=qcppdkim1; bh=OPgvFq7obMv7GmeiLernwZ
+ 91FcWyRXMaMaPwAII0TKE=; b=i11aRz8kiKoU58NFzRB0gcXfQAqbRk4+1Y0lqd
+ wOZ7acqhtFY86yr4MmDC18TmO7mnoAJUKeRHf8h2D9Fb/gIDlVJChswJ8dRikOoC
+ WDBMpv7/pnEXcO3JdD3pjvgrEjagofz7Pti3jERYtPr08Jfr7UZzLyfpnRxl9Pg4
+ qsX90rP7+iyaKnR3nWxNEVdnSzoqc6kG+2ylvWRb5lbNWvl6OmFdHAqJvwNDJVTU
+ XYTUV/LjuzPoZVdexVDmWMimCu5G6Yg/n9KUTZMRK+eyiDBJHdWDEavwbYHhBsjY
+ 2oWv6OojOQpW61oLKnIwDPEneY1p2qm5vMGNSiYHEC1jSXlg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40bjrja7hy-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 14 Jul 2024 21:46:22 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
+ 46ELkL6G026617
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 14 Jul 2024 21:46:21 GMT
+Received: from [10.48.246.224] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 14 Jul
+ 2024 14:46:20 -0700
+Message-ID: <2d168cf9-e456-4262-b276-95e992b8eac7@quicinc.com>
+Date: Sun, 14 Jul 2024 14:46:19 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250409103344.3661603-1-sakari.ailus@linux.intel.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+To: Andrew Morton <akpm@linux-foundation.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>
+Subject: MODULE_DESCRIPTION() patches with no maintainer action
+CC: Russell King <linux@armlinux.org.uk>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <kernel-janitors@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>, Mauro Carvalho Chehab
+ <mchehab+huawei@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Steven Rostedt <rostedt@goodmis.org>,
+ Masami Hiramatsu <mhiramat@kernel.org>, Karol Herbst
+ <karolherbst@gmail.com>, Pekka Paalanen <ppaalanen@gmail.com>, Dave Hansen
+ <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter
+ Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo
+ Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, <x86@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: uHiJuLrbG-gyOrVCv3S8wWVfEDAvVCSw
+X-Proofpoint-ORIG-GUID: uHiJuLrbG-gyOrVCv3S8wWVfEDAvVCSw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-14_15,2024-07-11_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 clxscore=1015
+ mlxlogscore=841 bulkscore=0 priorityscore=1501 lowpriorityscore=0
+ impostorscore=0 mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2406140001 definitions=main-2407140174
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,12 +101,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Apr 09, 2025 at 01:33:44PM +0300, Sakari Ailus wrote:
-> The local variable dev points to drm->dev already, use dev directly.
-> 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+Andrew & Greg,
 
-Ping.
+I hate to bother you with such mundane patches, but the following have been
+posted for a while without any maintainer or reviewer comment or action, and
+they have not yet landed in linux-next.
 
--- 
-Sakari Ailus
+What is the path forward to have these MODULE_DESCRIPTION() warnings fixed?
+
+arch/arm/probes/kprobes/
+https://lore.kernel.org/all/20240622-md-arm-arch-arm-probes-kprobes-v1-1-0832bd6e45db@quicinc.com/
+
+arch/x86/mm/
+https://lore.kernel.org/all/20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com/
+
+drivers/spmi/
+https://lore.kernel.org/all/20240609-md-drivers-spmi-v1-1-f1d5b24e7a66@quicinc.com/
+
+(note that beyond these 3 patches I still have an additional 13 patches which
+need to land in order to fix these warnings tree-wide, but those 13 patches
+have had recent maintainer or reviewer action so I'm not seeking your help at
+this time).
+
+/jeff
