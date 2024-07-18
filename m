@@ -4,79 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6D8D5B15E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3BEBD5B15F
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5822110E9EA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 833C510E9CA;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Hut2Vcta";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K7XaI/Do";
 	dkim-atps=neutral
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com
- [209.85.215.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD4A10E193;
- Tue, 28 May 2024 10:18:12 +0000 (UTC)
-Received: by mail-pg1-f175.google.com with SMTP id
- 41be03b00d2f7-64f12fc9661so32324a12.3; 
- Tue, 28 May 2024 03:18:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716891492; x=1717496292; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=4oKjidjiVG3iD+sGVPZRpxklkmgxpuRK74mDLt2GwZ0=;
- b=Hut2VctaYlfZv9qtb34va80EolWKTiqFGlnLPlqogNBm/nISbVkOqndxyO0+qKCNBU
- o+GwQPGJ9rE4gRZlhCzm+cXXvhxLR6Bc1SmUx8SK4xnEjGBtNEiXiqoHZH/FLNEA1vkT
- ut7D1WZaf62oTHziiKI92PDVWP6e+WQ9aLA7TPItaqrsQR7iHZ15pw6FmIeTHLHeBg/i
- 1ZIHHWEd56chB2wDYiS+Cy/DrmOV7YrbZrmXygXou8xoISbw9WlJl8Pf/PBmiU1dKK2P
- OHfeqN/oSMQb7TKC+TMsHt0AUIRN1t1Usx4OCqKNzLeAfWynkcm96jvNWtSpPid9P/Kl
- t0Lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716891492; x=1717496292;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=4oKjidjiVG3iD+sGVPZRpxklkmgxpuRK74mDLt2GwZ0=;
- b=sJfEbveaCHI/OuXy9SYpXOeayr4NYgPoAUZO0dUiCjQTiBi1Psmu23mHNY9XFMRDzA
- aJeydAWhI6T6W/uarFg1efM3ajFZLWSuON6GNMUUEPKyZvpKlvU1U7eKrnLOpm28rfYr
- RfZPsc++r1LMNG+MVgyNtjBIYbB5PgAlb+vZA0wVUOuqzYTDoz2bw+tJ+9uEOFHFqx7E
- S0YW5w+c90qN/UWiOKcgJj0qO7tUZ15iyCai9oMjJiX4bqxPg1Y3Gkkg/RwQy7E2vzE7
- Alu02LJh24Ukf2GA3SRZWdHrPi2aCDTy1ihlzFMhFQdQRobpp4nmkAzB0sBZospulCrU
- HaSw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWOu6M6dsh9sXZcU23Znpyss6bHRNvRSFkwsV/z4hFlyrPB5pmTsMlujZ90B9WnUaQFTdvjq9BoFRj/Vn0bOYfSlnBGQMajL3egn4rLHfVXExoO5E8DnR1PjNsgcAMGDwwEdwGn/bYNF7WiMqJHPQ==
-X-Gm-Message-State: AOJu0YxWtTifIfmFLjxMAvren1gG7eo82WE6CDA5rWMX1zmskcDasCZ4
- AgyVZGGpCcyPtQm2vx0TPKWNrwiEyATvtOUaYi9hiqltc6kP0rcp
-X-Google-Smtp-Source: AGHT+IEELOe5mgelYMSGmtxG+kL4UbvP8a3LHl0DXgrfdRShMJFiYY7EESOCugBH7JHSw6S2HnBW3Q==
-X-Received: by 2002:a05:6a20:9759:b0:1af:ce9c:6421 with SMTP id
- adf61e73a8af0-1b212b6f694mr10944170637.0.1716891491764; 
- Tue, 28 May 2024 03:18:11 -0700 (PDT)
-Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
- [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-6f8fcfe64ebsm6140939b3a.156.2024.05.28.03.18.06
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 May 2024 03:18:11 -0700 (PDT)
-Date: Tue, 28 May 2024 19:17:54 +0900 (JST)
-Message-Id: <20240528.191754.1306229738730927340.fujita.tomonori@gmail.com>
-To: zhiw@nvidia.com
-Cc: dakr@redhat.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
- alex.gaynor@gmail.com, wedsonaf@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@samsung.com, aliceryhl@google.com, fujita.tomonori@gmail.com,
- lina@asahilina.net, pstanner@redhat.com, ajanulgu@redhat.com,
- lyude@redhat.com, gregkh@linuxfoundation.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <fd5dbd42-24b7-422b-bc0b-393347b3fdca@nvidia.com>
-References: <20240521083231.000074c2.zhiw@nvidia.com>
- <ZlTcnYNff2EDQJdj@pollux.localdomain>
- <fd5dbd42-24b7-422b-bc0b-393347b3fdca@nvidia.com>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5777310EA4F;
+ Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 66376CE19D4;
+ Thu, 18 Jul 2024 17:00:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03A38C4AF0C;
+ Thu, 18 Jul 2024 17:00:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1721322011;
+ bh=mlpP4ffiXBG1uroeqwi9S6JOrz0k+lbPbkdmr3wYVUA=;
+ h=From:To:Cc:Subject:Date:From;
+ b=K7XaI/DoLjWXi7HV1yiAt2ms9htBVUIiCQiZdh5tojMVv3FKUTISfK5eLxyHM3ZRN
+ gc7bRqB/MEhokoRc3jgR18yVKrMT3yDdsQiUhjvetnhkhiM7CnsYoXpzTVDB+t7Zkl
+ 557rgK+OEa+GqbGamZFC+k45+U95oKG7HQcj5r3CtpPPEb3xJgxQs02ZaSjuwfkr9L
+ Rfrb55Yc/AD+ziWGst47lm+SrJzuoWzX+EhA9mCvPXzBXk2FmT/LT2xnsSvzWtnZ37
+ Zf6+5sNGonNdfB+EovpB/0frOMJukCUJ9dzyBdmq/hDo6ZsRnPjaWagaGXv43EE6VX
+ H/qRG4MKYneWQ==
+From: Danilo Krummrich <dakr@kernel.org>
+To: lyude@redhat.com,
+	airlied@redhat.com,
+	christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH 0/3] Nouveau fixes for TTM refcount rework
+Date: Thu, 18 Jul 2024 18:58:45 +0200
+Message-ID: <20240718165959.3983-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.45.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,56 +57,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Hi Christian,
 
-On Tue, 28 May 2024 08:40:20 +0000
-Zhi Wang <zhiw@nvidia.com> wrote:
+Those three patches should unblock your series to use GEM references instead of
+TTM ones.
 
-> On 27/05/2024 22.18, Danilo Krummrich wrote:
->> External email: Use caution opening links or attachments
->> 
->> 
->> On Tue, May 21, 2024 at 08:32:31AM +0300, Zhi Wang wrote:
->>> On Mon, 20 May 2024 19:24:19 +0200
->>> Danilo Krummrich <dakr@redhat.com> wrote:
->>>
->>>> Add an abstraction around the kernels firmware API to request firmware
->>>> images. The abstraction provides functions to access the firmware
->>>> buffer and / or copy it to a new buffer allocated with a given
->>>> allocator backend.
->>>>
->>>
->>> Was playing with firmware extractions based on this patch.
->>> Unfortunately I ended up with a lot of pointer operations, unsafe
->>> statements.
->>>
->>> As we know many vendors have a C headers for the definitions of the
->>> firwmare content, the driver extract the data by applying a struct
->>> pointer on it.
->>>
->>> But in rust, I feel it would nice that we can also have a common
->>> firmware extractor for drivers, that can wrap the pointer operations,
->>> take a list of the firmware struct members that converted from C headers
->>> as the input, offer the driver some common ABI methods to query them.
->>> Maybe that would ease the pain a lot.
->> 
->> So, you mean some abstraction that takes a list of types, offsets in the
->> firmware and a reference to the firmware itself and provides references to the
->> corresponding objects?
->> 
->> I agree it might be helpful to have some common infrastructure for this, but the
->> operations on it would still be unsafe, since ultimately it involves
->> dereferencing pointers.
->> 
-> 
-> I think the goal is to 1) concentrate the "unsafe" operations in a 
-> abstraction so the driver doesn't have to write explanation of unsafe 
-> operations here and there, improve the readability of the driver that 
-> interacts with vendor-firmware buffer. 2) ease the driver maintenance 
-> burden.
-> 
-> Some solutions I saw in different projects written in rust for 
-> de-referencing a per-defined struct:
+@Lyude, Dave: Can you please double check?
 
-Aren't there other abstractions that require that functionality, not
-just the firmware abstractions?
+- Danilo
+
+Danilo Krummrich (3):
+  drm/nouveau: prime: fix refcount underflow
+  drm/nouveau: bo: remove unused functions
+  drm/nouveau: use GEM references instead of TTMs
+
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 43 +++++++++++++++------
+ drivers/gpu/drm/nouveau/dispnv50/disp.c |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_bo.h    | 50 ++-----------------------
+ drivers/gpu/drm/nouveau/nouveau_chan.c  |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c  |  4 +-
+ drivers/gpu/drm/nouveau/nouveau_prime.c |  3 +-
+ drivers/gpu/drm/nouveau/nv10_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv17_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv50_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv84_fence.c    |  4 +-
+ 10 files changed, 46 insertions(+), 70 deletions(-)
+
+
+base-commit: 99e0fb8b087120b5a7019f1cff6c5c2b5b925ae5
+-- 
+2.45.2
+
