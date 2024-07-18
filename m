@@ -4,72 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46CC6D5AE41
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB718D5B15E
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3543910E955;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9C910EAD3;
 	Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="GPST+UwV";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="H3remL7r";
 	dkim-atps=neutral
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com
- [209.85.219.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDE4110E068;
- Mon, 21 Jul 2025 12:23:00 +0000 (UTC)
-Received: by mail-yb1-f180.google.com with SMTP id
- 3f1490d57ef6-e8bd3fbd9f7so3559904276.3; 
- Mon, 21 Jul 2025 05:23:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753100580; x=1753705380; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=eCEGSN3M10MrjOFjG0lLCegL5PcRSqy0h0h9sELILDA=;
- b=GPST+UwV/jMsguTAMMS1iQiQGagNgVkbLZspla1RHvlDBx55P9ww1ZO0+qzDec6EKg
- wGn2BWFbVKbnPANzdoBebYQFs4B4tspDsCh8BEfLu4cKYLPNs+IRZBEsQowZ+53Tce/o
- y/AdMTbyT/t/W6QmzqVuwtT8K3SWErVDz7YVbrlEUPBR/R3K9NMGXgjBjBlKF9WpX20S
- dVdsk7qwogmQu4e9hyG/N64qT6WKFDBLYN+LMydHUBQEH7RhNQGie48ZqEoZUnpj6hZ9
- jUSVS8Jvy1UztxcL4N69hUMUwhkYwIQh3axbQja863ZL/dgzaikBweahNh72atYloNVO
- 1D8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753100580; x=1753705380;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=eCEGSN3M10MrjOFjG0lLCegL5PcRSqy0h0h9sELILDA=;
- b=lFynBN3E6hu765CTScfVv7bynZm7b60pgr//BZGJEh8rZdh59ipYRCmVWKNmFv7u5m
- jbEZLbTGpXpJbVnNMsR+3R5B4KaTIwvdGd1nx/v8xIJUbGf0JDBw6JfWyW6EOHkWGxJK
- DfKvAV4AIljQh/5SQw2Q0EWGzveJtoOVEIIuZqomMWOVbUPiwzfO53YS+heZny2U9lRo
- 4Q7NNXyOyuoeamgFctUhIQpR7Sv26eiCNdH+1xZb3V9Mhz5xtNVEfNkcOv+rRxQbESCh
- rEPsTsvSSebhuy+8qPNb3wsfCOVQOZPygX+Mdsb8JwP1Q3mxcJlont5w/9KPbjAaRgON
- PGaw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVKFWrTAJXnhDWr7mQbQeEmfZzCeukXiugKifpGUvMwFJeb2I6fvgu6jHJ/1DfmuHZHH+YTs39+dg==@lists.freedesktop.org,
- AJvYcCXcf11IdAhAXnDRfhsHoFI536zqhZsgghR4mWONgqP9Qb1QARPMo+B0hRr2gbwiKkLfewyz0hyUHOk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyEV+a7x9/IMHONiMQLp1oQb5724rAZt/cRzRKWk2I8IfEVE731
- 5lpLttuwjh9fYJwlWREhNwtj/N9SQd7eu00rIK2SPbGZVtKWi8ynbbwmKURhanjUyQJeTyEEurK
- C6F7vD1/I5ie6RF1+TACABxxmasm53NU=
-X-Gm-Gg: ASbGncsu9cd5oHAdhVPSubX4bEbuPyjjJOnmDpm0rzX5uD0UjmQqZoOpZJrgMzMdMrC
- SgsyUhYFpi/k4DuDWeWzUxwk8L4zbvk/sAAShG55Tf3Sa83HSUD+udah+5YV0ysasrOiGdSC63Y
- BCVktvoKeEPWuowbcvCQUOjnMRAkzewt6+3s3xJLiDwA0m9dsRFBrKQDtqfrwEnyqlK162w0kVR
- BL3jg==
-X-Google-Smtp-Source: AGHT+IEWB7JrFoMbHrRALXWP1vhD6NN5YpFLPFz8a0z6KxSPI5Oh15vQ4Zsncp+bvRHP3+gphdxUKvzFK9fNg5W9TvY=
-X-Received: by 2002:a05:690c:868a:20b0:718:38bd:bb42 with SMTP id
- 00721157ae682-71838bdd021mr184209147b3.41.1753100579541; Mon, 21 Jul 2025
- 05:22:59 -0700 (PDT)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2C310EA4F;
+ Thu, 18 Jul 2024 17:00:16 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 9766361BA6;
+ Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA39EC4AF0A;
+ Thu, 18 Jul 2024 17:00:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1721322015;
+ bh=EPLPHzWrGEOLeJuNaGjh5LgxCTKpZ6gyK3S1PTRsKbA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=H3remL7rPxu8MSAAL358JFVnirA2jauibLaDz/JK2cK2DXNDsnSRDrkY+mCk0cIny
+ HLUGidoIJB3Tr+apsQkh6YNGcYEFzJXv2JyFxGKCxBm6kZcjW3RD3/XOqpf6tyfCZX
+ G44p1Cf48xlKlv8VxvKxI2DegZmbowBjV3zR0gfCrmFPTUXk8LBnhsB2q4qhhfIMAs
+ KeCuKOnzhqRLVLkkSSkS0Wvs+zdeds0vK/E2Dr3aY3TnoZXX9TnLal5y1ASgN/85wF
+ IRT2TD3MgF8Jj+NzoMk3JFDKWCk5/7qMRkfYX8HMBUmOCqKZ+8ui/aeyOpkpOc9KBi
+ CiXYpaRZnR7MQ==
+From: Danilo Krummrich <dakr@kernel.org>
+To: lyude@redhat.com,
+	airlied@redhat.com,
+	christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH 2/3] drm/nouveau: bo: remove unused functions
+Date: Thu, 18 Jul 2024 18:58:47 +0200
+Message-ID: <20240718165959.3983-3-dakr@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240718165959.3983-1-dakr@kernel.org>
+References: <20240718165959.3983-1-dakr@kernel.org>
 MIME-Version: 1.0
-From: Satadru Pramanik <satadru@gmail.com>
-Date: Mon, 21 Jul 2025 08:22:48 -0400
-X-Gm-Features: Ac12FXy7wN3KNUOiIVLumsXVvu9VY7MUOOaJsu-IjLq8qTEhzCqLvUhvpKWfvAw
-Message-ID: <CAFrh3J85tsZRpOHQtKgNHUVnn=EG=QKBnZTRtWS8eWSc1K1xkA@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau: check ioctl command codes better
-To: Arnd Bergmann <arnd@kernel.org>
-Cc: airlied@gmail.com, airlied@redhat.com, arnd@arndb.de, bskeggs@nvidia.com, 
- bskeggs@redhat.com,
- "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>, 
- open list <linux-kernel@vger.kernel.org>, Lyude Paul <lyude@redhat.com>, 
- nouveau@lists.freedesktop.org, simona@ffwll.ch, ttabi@nvidia.com, 
- Thomas Zimmermann <tzimmermann@suse.de>, Satadru Pramanik <satadru@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,30 +59,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello all,
+nouveau_bo_new_pin_map() and nouveau_bo_unmap_unpin_unref() are unused,
+hence remove them.
 
-I suspect this commit in 6.16-rc7 has broken acceleration with Mesa's
-nouveau drivers on my machine.
+Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.h | 29 ----------------------------
+ 1 file changed, 29 deletions(-)
 
-glxinfo -B reports that I'm using llvmpipe.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index 4e891752c255..3b8dfbb621da 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -115,35 +115,6 @@ nvbo_kmap_obj_iovirtual(struct nouveau_bo *nvbo)
+ 	return ioptr;
+ }
+ 
+-static inline void
+-nouveau_bo_unmap_unpin_unref(struct nouveau_bo **pnvbo)
+-{
+-	if (*pnvbo) {
+-		nouveau_bo_unmap(*pnvbo);
+-		nouveau_bo_unpin(*pnvbo);
+-		nouveau_bo_ref(NULL, pnvbo);
+-	}
+-}
+-
+-static inline int
+-nouveau_bo_new_pin_map(struct nouveau_cli *cli, u64 size, int align, u32 domain,
+-		       struct nouveau_bo **pnvbo)
+-{
+-	int ret = nouveau_bo_new(cli, size, align, domain,
+-				 0, 0, NULL, NULL, pnvbo);
+-	if (ret == 0) {
+-		ret = nouveau_bo_pin(*pnvbo, domain, true);
+-		if (ret == 0) {
+-			ret = nouveau_bo_map(*pnvbo);
+-			if (ret == 0)
+-				return ret;
+-			nouveau_bo_unpin(*pnvbo);
+-		}
+-		nouveau_bo_ref(NULL, pnvbo);
+-	}
+-	return ret;
+-}
+-
+ int nv04_bo_move_init(struct nouveau_channel *, u32);
+ int nv04_bo_move_m2mf(struct nouveau_channel *, struct ttm_buffer_object *,
+ 		      struct ttm_resource *, struct ttm_resource *);
+-- 
+2.45.2
 
-Reverting this in 6.16-rc7 restores nouveau acceleration, and glxinfo
-then reports: "OpenGL renderer string: NVE7"
-
-inxi -G
-Graphics:
-  Device-1: NVIDIA GK107M [GeForce GT 750M Mac Edition] driver: nouveau
-    v: kernel
-  Display: wayland server: X.Org v: 24.1.8 with: Xwayland v: 24.1.8
-    compositor: gnome-shell v: 48.0 driver: X: loaded: modesetting
-    unloaded: fbdev,vesa dri: nouveau gpu: nouveau resolution: 2880x1800~60Hz
-  API: EGL v: 1.5 drivers: nouveau,swrast
-    platforms: gbm,wayland,x11,surfaceless,device
-  API: OpenGL v: 4.5 compat-v: 4.3 vendor: mesa
-    v: 25.2.0~rc1+git2507191056.03f67b52319~p~mesarc0 renderer: NVE7
-  API: Vulkan v: 1.4.304 drivers: N/A surfaces: xcb,xlib,wayland
-  Info: Tools: api: eglinfo, glxinfo, vulkaninfo x11: xdriinfo, xdpyinfo,
-    xprop, xrandr
-
-Best,
-Satadru Pramanik
