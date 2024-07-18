@@ -4,85 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DF9FD5B15E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9598D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD2210EBEC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80CF310EC43;
 	Sat, 13 Dec 2025 12:42:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0U34g9k";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y2qQU8t5";
 	dkim-atps=neutral
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
- [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5565710E3A6
- for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 19:38:04 +0000 (UTC)
-Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-4710665e7deso28027765e9.1
- for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 11:38:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762285083; x=1762889883; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0Xypec85439AsoYQYRLT5jRDZoV8gj7wZ5fnhiAzlQA=;
- b=O0U34g9kjzfbX7orcTctDELNw1P6JVo7NioFiBrqXNp6OPIdGal/EaoyY/f0dWRnI5
- dYFe8owGiac/r9LucdOgY64X9GUcnsEWzug10qIQXAHmqUrc5d/S91vKAfjelomAftp0
- ptcQzYeamjhEGJXHAVhe8zoQLlrEZQnTZ+LeovRiFHrDFBbyAuX2yzhGEAPgP6GFPivD
- UayaLw6KQ3OXx2cxhM98hjiTLfsLOmrF+O+7yVU7ir7tf+MRZJp0V3dC24PzRLqjulA6
- S6cA5YMEo1pSE2Iw+a+xiFVZ5ntPAZd1n5NA7vojT4XUF4aay3iTHkhm+t10Arfy4zmo
- 0K7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762285083; x=1762889883;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=0Xypec85439AsoYQYRLT5jRDZoV8gj7wZ5fnhiAzlQA=;
- b=Li10itTC0m97PVshDhztmSwqkQC9wT+iJlvFVhPYizdl1PENYHkOhDuuzB5EAQs4oi
- yA0SLHn0vuOy4HF9i4N7dnqwMUscxQSusrO1KOwNPffKdK3hPP+GyyS/4jIQ8jf8nX57
- hympGGnbqNFPyPWKAjgwkqBLCOAnUs44WjkBOqXQesAaIR6W4rx54swOEaTqMNKf43rQ
- TPiSI6PhrcRNMJlRoW7c5iwTN8kRIeBQnv+ta9V69bXuhtXKXkcparR+kiAqi80XQu8M
- PDroiFUVE/uVpMJwR48zvnR8vuFuWXWkFtpN91QfyNq0HgbzhpfSicOAfjoZyO8UUNtk
- Ep8Q==
-X-Gm-Message-State: AOJu0YyJYcLuWIII+58OD+WnBrgkcQ3vBPK1xhQP5oAZl1jx8+mCAVGR
- tipSUZibX4Ut6qLXh+LXMKruVTJl9jlNTDiu8zrEV0DKT8hrnCOyqQRL
-X-Gm-Gg: ASbGncsytpTcQeoLSZ2LLe3f/QJZtfwSfv9VIsomG3i87Hb1mcbKRu0ewIeKQDtJnvA
- 6huF6LhOnoTfQPhsshtPZ+R2aerRwAMBKOh+aMleb1ju443ZSXQQIYN3VdqTw9MBkJPrFKtlOaX
- q6RGJbKxNI+gj5tXrWVy9+Exe1zVedTTM/0MCEouH15iqfwG45dk96rXq31cgPMOvgDZK/vnbpu
- tVkEZsAg5DvXQAmSnuyjlHA2o79ZjA5Q62c6XPCHMhAn4QN6hBZuuMPnuvBm36vNN/tIXHZs+wo
- h0GMC1zodb064waR1XBLEUyq45BhjA17yPMFkJdIVk1uqRbs92f6BzNlG6+N3cwYE2Jz/gXWgWu
- WFB44Kov4i+9d9q5WwaU9BkUTeOu7XzwjuAgEodQKBbSDAQ3b16lMqRjr6F4gQ1gIqoFxSFAaFD
- juzyfy943eBKxCeGWMNw==
-X-Google-Smtp-Source: AGHT+IEg6aUY+0P7kqhINTv2xiPrN6T4RUVpHv5FGmHlhfMEaLbEGCK4acGBL7ICAZFqqzMOEyKd6w==
-X-Received: by 2002:a05:600c:8216:b0:471:1716:11c4 with SMTP id
- 5b1f17b1804b1-4775ce20dcemr6765225e9.34.1762285082750; 
- Tue, 04 Nov 2025 11:38:02 -0800 (PST)
-Received: from archito ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4775ce3ef38sm5549195e9.17.2025.11.04.11.38.01
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 04 Nov 2025 11:38:02 -0800 (PST)
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org,
- Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-Subject: [PATCH v3 2/4] nova-core: Fix capitalization of some comments
-Date: Tue,  4 Nov 2025 20:37:49 +0100
-Message-ID: <20251104193756.57726-2-delcastillodelarosadaniel@gmail.com>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20251104193756.57726-1-delcastillodelarosadaniel@gmail.com>
-References: <20251104193756.57726-1-delcastillodelarosadaniel@gmail.com>
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 209E310EA4F;
+ Thu, 18 Jul 2024 17:00:18 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 7E50561B5F;
+ Thu, 18 Jul 2024 17:00:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B171EC4AF0C;
+ Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1721322017;
+ bh=o6LFR2CG1I/Zl0paV4qR4nPROnNStuPxPR6YczJjRlA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=Y2qQU8t5Fz7hlCal5Tt7RsaFPxGLuc7+oUreIwavdsKKx/gd4+wkRdcxmhfW2qYhM
+ Fwam+qBjLoJGwjn1ox8OR6nmEPNrNbnbixWhAYldo8veWKMr9ROqFyY20EhIONqOxo
+ 9BOXoOC3aKoWB2HrkXdpzXUOihi4GSewLvUxR1NueDyWrpyf+LoEiTX+6sWpsgz7I9
+ 22HGVj4U4ADk1WB0qoJLqhj1tD+vDVFXqzBof/UUd/lIODqVOiHFmRy9e4cBbeXDAq
+ rJ0BUQBggo35R4HCSLP4n/rcd500T1cJ6k1+Dc2ASjhJk+Wqzlt/+6wZTh7XFWfL21
+ I1wlrY/4B05hA==
+From: Danilo Krummrich <dakr@kernel.org>
+To: lyude@redhat.com,
+	airlied@redhat.com,
+	christian.koenig@amd.com
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH 3/3] drm/nouveau: use GEM references instead of TTMs
+Date: Thu, 18 Jul 2024 18:58:48 +0200
+Message-ID: <20240718165959.3983-4-dakr@kernel.org>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240718165959.3983-1-dakr@kernel.org>
+References: <20240718165959.3983-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,72 +59,263 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Some comments that already existed didn't start with a capital
-letter, this patch fixes that.
+TTM wants to get rid of the duplicate refcounting of the embedded GEM
+object and its own reference count.
 
-Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+Hence, use of GEM object references where possible.
+
+Also get rid of nouveau_bo_ref() and replace it with nouveau_bo_fini(),
+which drops the initial reference we get from initializing a ttm_bo.
+
+Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 ---
- drivers/gpu/nova-core/firmware/fwsec.rs | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/dispnv04/crtc.c | 43 ++++++++++++++++++-------
+ drivers/gpu/drm/nouveau/dispnv50/disp.c |  4 +--
+ drivers/gpu/drm/nouveau/nouveau_bo.h    | 21 ++----------
+ drivers/gpu/drm/nouveau/nouveau_chan.c  |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c  |  4 +--
+ drivers/gpu/drm/nouveau/nv10_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv17_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv50_fence.c    |  2 +-
+ drivers/gpu/drm/nouveau/nv84_fence.c    |  4 +--
+ 9 files changed, 44 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
-index 4f268fe09573..7d5203268313 100644
---- a/drivers/gpu/nova-core/firmware/fwsec.rs
-+++ b/drivers/gpu/nova-core/firmware/fwsec.rs
-@@ -35,7 +35,7 @@ struct FalconAppifHdrV1 {
-     entry_size: u8,
-     entry_count: u8,
- }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for FalconAppifHdrV1 {}
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+index 4310ad71870b..438e3ec6e1ca 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
+@@ -617,9 +617,15 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
  
- #[repr(C, packed)]
-@@ -44,7 +44,7 @@ struct FalconAppifV1 {
-     id: u32,
-     dmem_base: u32,
- }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for FalconAppifV1 {}
+ 	ret = nouveau_bo_pin(nvbo, NOUVEAU_GEM_DOMAIN_VRAM, false);
+ 	if (ret == 0) {
+-		if (disp->image[nv_crtc->index])
+-			nouveau_bo_unpin(disp->image[nv_crtc->index]);
+-		nouveau_bo_ref(nvbo, &disp->image[nv_crtc->index]);
++		if (disp->image[nv_crtc->index]) {
++			struct nouveau_bo *bo = disp->image[nv_crtc->index];
++
++			nouveau_bo_unpin(bo);
++			drm_gem_object_put(&bo->bo.base);
++		}
++
++		drm_gem_object_get(&nvbo->bo.base);
++		disp->image[nv_crtc->index] = nvbo;
+ 	}
  
- #[derive(Debug)]
-@@ -68,7 +68,7 @@ struct FalconAppifDmemmapperV3 {
-     ucode_cmd_mask1: u32,
-     multi_tgt_tbl: u32,
+ 	return ret;
+@@ -754,13 +760,17 @@ static void nv_crtc_destroy(struct drm_crtc *crtc)
+ 
+ 	drm_crtc_cleanup(crtc);
+ 
+-	if (disp->image[nv_crtc->index])
+-		nouveau_bo_unpin(disp->image[nv_crtc->index]);
+-	nouveau_bo_ref(NULL, &disp->image[nv_crtc->index]);
++	if (disp->image[nv_crtc->index]) {
++		struct nouveau_bo *bo = disp->image[nv_crtc->index];
++
++		nouveau_bo_unpin(bo);
++		drm_gem_object_put(&bo->bo.base);
++		disp->image[nv_crtc->index] = NULL;
++	}
+ 
+ 	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
+ 	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
+-	nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
++	nouveau_bo_fini(nv_crtc->cursor.nvbo);
+ 	nvif_event_dtor(&nv_crtc->vblank);
+ 	nvif_head_dtor(&nv_crtc->head);
+ 	kfree(nv_crtc);
+@@ -794,9 +804,14 @@ nv_crtc_disable(struct drm_crtc *crtc)
+ {
+ 	struct nv04_display *disp = nv04_display(crtc->dev);
+ 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
+-	if (disp->image[nv_crtc->index])
+-		nouveau_bo_unpin(disp->image[nv_crtc->index]);
+-	nouveau_bo_ref(NULL, &disp->image[nv_crtc->index]);
++
++	if (disp->image[nv_crtc->index]) {
++		struct nouveau_bo *bo = disp->image[nv_crtc->index];
++
++		nouveau_bo_unpin(bo);
++		drm_gem_object_put(&bo->bo.base);
++		disp->image[nv_crtc->index] = NULL;
++	}
  }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for FalconAppifDmemmapperV3 {}
- // SAFETY: This struct doesn't contain uninitialized bytes and doesn't have interior mutability.
- unsafe impl AsBytes for FalconAppifDmemmapperV3 {}
-@@ -82,7 +82,7 @@ struct ReadVbios {
-     size: u32,
-     flags: u32,
+ 
+ static int
+@@ -1210,7 +1225,11 @@ nv04_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
+ 		PUSH_NVSQ(push, NV05F, 0x0130, 0);
+ 	}
+ 
+-	nouveau_bo_ref(new_bo, &dispnv04->image[head]);
++	if (dispnv04->image[head])
++		drm_gem_object_put(&dispnv04->image[head]->bo.base);
++
++	drm_gem_object_get(&new_bo->bo.base);
++	dispnv04->image[head] = new_bo;
+ 
+ 	ret = nv04_page_flip_emit(chan, old_bo, new_bo, s, &fence);
+ 	if (ret)
+@@ -1329,7 +1348,7 @@ nv04_crtc_create(struct drm_device *dev, int crtc_num)
+ 				nouveau_bo_unpin(nv_crtc->cursor.nvbo);
+ 		}
+ 		if (ret)
+-			nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
++			nouveau_bo_fini(nv_crtc->cursor.nvbo);
+ 	}
+ 
+ 	nv04_cursor_init(nv_crtc);
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index ac9657d7e92d..6d20d3c68fa7 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -2819,7 +2819,7 @@ nv50_display_destroy(struct drm_device *dev)
+ 	nouveau_bo_unmap(disp->sync);
+ 	if (disp->sync)
+ 		nouveau_bo_unpin(disp->sync);
+-	nouveau_bo_ref(NULL, &disp->sync);
++	nouveau_bo_fini(disp->sync);
+ 
+ 	nouveau_display(dev)->priv = NULL;
+ 	kfree(disp);
+@@ -2862,7 +2862,7 @@ nv50_display_create(struct drm_device *dev)
+ 				nouveau_bo_unpin(disp->sync);
+ 		}
+ 		if (ret)
+-			nouveau_bo_ref(NULL, &disp->sync);
++			nouveau_bo_fini(disp->sync);
+ 	}
+ 
+ 	if (ret)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index 3b8dfbb621da..596a63a50a20 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -53,25 +53,10 @@ nouveau_bo(struct ttm_buffer_object *bo)
+ 	return container_of(bo, struct nouveau_bo, bo);
  }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for ReadVbios {}
- // SAFETY: This struct doesn't contain uninitialized bytes and doesn't have interior mutability.
- unsafe impl AsBytes for ReadVbios {}
-@@ -96,7 +96,7 @@ struct FrtsRegion {
-     size: u32,
-     ftype: u32,
+ 
+-static inline int
+-nouveau_bo_ref(struct nouveau_bo *ref, struct nouveau_bo **pnvbo)
++static inline void
++nouveau_bo_fini(struct nouveau_bo *bo)
+ {
+-	struct nouveau_bo *prev;
+-
+-	if (!pnvbo)
+-		return -EINVAL;
+-	prev = *pnvbo;
+-
+-	if (ref) {
+-		ttm_bo_get(&ref->bo);
+-		*pnvbo = nouveau_bo(&ref->bo);
+-	} else {
+-		*pnvbo = NULL;
+-	}
+-	if (prev)
+-		ttm_bo_put(&prev->bo);
+-
+-	return 0;
++	ttm_bo_put(&bo->bo);
  }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for FrtsRegion {}
- // SAFETY: This struct doesn't contain uninitialized bytes and doesn't have interior mutability.
- unsafe impl AsBytes for FrtsRegion {}
-@@ -108,7 +108,7 @@ struct FrtsCmd {
-     read_vbios: ReadVbios,
-     frts_region: FrtsRegion,
+ 
+ extern struct ttm_device_funcs nouveau_bo_driver;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index 66fca95c10c7..f568ea251e3b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -110,7 +110,7 @@ nouveau_channel_del(struct nouveau_channel **pchan)
+ 		nouveau_bo_unmap(chan->push.buffer);
+ 		if (chan->push.buffer && chan->push.buffer->bo.pin_count)
+ 			nouveau_bo_unpin(chan->push.buffer);
+-		nouveau_bo_ref(NULL, &chan->push.buffer);
++		nouveau_bo_fini(chan->push.buffer);
+ 		kfree(chan);
+ 	}
+ 	*pchan = NULL;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 6719353e2e13..7b3b8f4630a2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -294,7 +294,7 @@ nouveau_dmem_chunk_alloc(struct nouveau_drm *drm, struct page **ppage)
+ out_bo_unpin:
+ 	nouveau_bo_unpin(chunk->bo);
+ out_bo_free:
+-	nouveau_bo_ref(NULL, &chunk->bo);
++	nouveau_bo_fini(chunk->bo);
+ out_release:
+ 	release_mem_region(chunk->pagemap.range.start, range_len(&chunk->pagemap.range));
+ out_free:
+@@ -426,7 +426,7 @@ nouveau_dmem_fini(struct nouveau_drm *drm)
+ 	list_for_each_entry_safe(chunk, tmp, &drm->dmem->chunks, list) {
+ 		nouveau_dmem_evict_chunk(chunk);
+ 		nouveau_bo_unpin(chunk->bo);
+-		nouveau_bo_ref(NULL, &chunk->bo);
++		nouveau_bo_fini(chunk->bo);
+ 		WARN_ON(chunk->callocated);
+ 		list_del(&chunk->list);
+ 		memunmap_pages(&chunk->pagemap);
+diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
+index c6a0db5b9e21..1a53b8b80467 100644
+--- a/drivers/gpu/drm/nouveau/nv10_fence.c
++++ b/drivers/gpu/drm/nouveau/nv10_fence.c
+@@ -88,7 +88,7 @@ nv10_fence_destroy(struct nouveau_drm *drm)
+ 	nouveau_bo_unmap(priv->bo);
+ 	if (priv->bo)
+ 		nouveau_bo_unpin(priv->bo);
+-	nouveau_bo_ref(NULL, &priv->bo);
++	nouveau_bo_fini(priv->bo);
+ 	drm->fence = NULL;
+ 	kfree(priv);
  }
--// SAFETY: any byte sequence is valid for this struct.
-+// SAFETY: Any byte sequence is valid for this struct.
- unsafe impl FromBytes for FrtsCmd {}
- // SAFETY: This struct doesn't contain uninitialized bytes and doesn't have interior mutability.
- unsafe impl AsBytes for FrtsCmd {}
+diff --git a/drivers/gpu/drm/nouveau/nv17_fence.c b/drivers/gpu/drm/nouveau/nv17_fence.c
+index 07c2e0878c24..2c99f2c1ddcd 100644
+--- a/drivers/gpu/drm/nouveau/nv17_fence.c
++++ b/drivers/gpu/drm/nouveau/nv17_fence.c
+@@ -141,7 +141,7 @@ nv17_fence_create(struct nouveau_drm *drm)
+ 				nouveau_bo_unpin(priv->bo);
+ 		}
+ 		if (ret)
+-			nouveau_bo_ref(NULL, &priv->bo);
++			nouveau_bo_fini(priv->bo);
+ 	}
+ 
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
+index ea1e1f480bfe..6fa18f9d26b6 100644
+--- a/drivers/gpu/drm/nouveau/nv50_fence.c
++++ b/drivers/gpu/drm/nouveau/nv50_fence.c
+@@ -92,7 +92,7 @@ nv50_fence_create(struct nouveau_drm *drm)
+ 				nouveau_bo_unpin(priv->bo);
+ 		}
+ 		if (ret)
+-			nouveau_bo_ref(NULL, &priv->bo);
++			nouveau_bo_fini(priv->bo);
+ 	}
+ 
+ 	if (ret) {
+diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+index 812b8c62eeba..9ce4c2d60fe3 100644
+--- a/drivers/gpu/drm/nouveau/nv84_fence.c
++++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+@@ -188,7 +188,7 @@ nv84_fence_destroy(struct nouveau_drm *drm)
+ 	nouveau_bo_unmap(priv->bo);
+ 	if (priv->bo)
+ 		nouveau_bo_unpin(priv->bo);
+-	nouveau_bo_ref(NULL, &priv->bo);
++	nouveau_bo_fini(priv->bo);
+ 	drm->fence = NULL;
+ 	kfree(priv);
+ }
+@@ -232,7 +232,7 @@ nv84_fence_create(struct nouveau_drm *drm)
+ 				nouveau_bo_unpin(priv->bo);
+ 		}
+ 		if (ret)
+-			nouveau_bo_ref(NULL, &priv->bo);
++			nouveau_bo_fini(priv->bo);
+ 	}
+ 
+ 	if (ret)
 -- 
-2.51.2
+2.45.2
 
