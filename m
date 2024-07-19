@@ -4,43 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17451D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE2C4D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E191A10EADF;
-	Sat, 13 Dec 2025 12:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C368F10EA44;
+	Sat, 13 Dec 2025 12:41:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=exactco.de header.i=@exactco.de header.b="ooZEiA+r";
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="LYyJO9nj";
 	dkim-atps=neutral
-Received: from exactco.de (exactco.de [176.9.10.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51EFE10E667;
- Tue,  2 Dec 2025 15:49:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=exactco.de; 
- s=x;
- h=Content-Transfer-Encoding:Content-Type:Mime-Version:From:Subject:Cc:To
- :Message-Id:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
- Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
- References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
- List-Owner:List-Archive; bh=us4cXwZibrCp/4pn/5nhOL8E5dr825vqUhsBdb3WS3c=; b=o
- oZEiA+r0njrrmSWyGw+vcoDsO7xAMKBBIB6JYSBezvEWygX54QNEG3AX+lQYduKVDjNhwbFYjFN3K
- wtCoKc9M5YMdNuKDuFFQelL025SEPPuRlZJF1pOUg+M5FQDC9K8m42f2sU4lcTkorHpC+A32EjKJX
- nJ2w46gA+G9RHrLVXh0PI2/R2zQ3N+opywG7WmFOF3sgGl+oCXWcTkoED9TIqnQvTzHFjf66DxGHk
- NYkqPOnt664bFRftGEqalzBMUf/sskmxwnpoUru2+kOhLWpNH0jJzvNKsJFUQfPzQoOotuVNZbqos
- AIHfK7MQ/mSZ6ReBDD9N4mmDMyveE6Rkw==;
-Date: Tue, 02 Dec 2025 16:49:52 +0100 (CET)
-Message-Id: <20251202.164952.2216481867721531616.rene@exactco.de>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Lyude Paul
- <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH RESEND] drm/nouveau: fix circular dep oops from vendored
- i2c encoder
-From: =?iso-8859-1?Q?Ren=E9?= Rebe <rene@exactco.de>
-X-Mailer: Mew version 6.10 on Emacs 30.2
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDA1610EC33
+ for <nouveau@lists.freedesktop.org>; Fri, 19 Jul 2024 14:01:26 +0000 (UTC)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46JCVfr5002454;
+ Fri, 19 Jul 2024 14:00:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ 0iOXd/KnUcqhuwFmJpV0aD60W+/rKAO1g0GIgi7G9dU=; b=LYyJO9njjal2idWQ
+ pHOhc9v48Y3mFXXbo69osK52dhN/D2QEB1m6pC0VT4I8cWFE6izJVlgjMwNnXolR
+ ukdcCv907hcFc3z5BaSFy2wnlJpSuGYRw4Zt5qMUJhnOF3k0Ds/1r/rAEu3sMBaR
+ milE/AgVpodAQ976/mWxTO9CfzNtOrQiai5WaOGn08hjuBVDuDDa8bKhY6RgDjRz
+ p0UGJ/xbZv/pSTN8VVHBMVXj7UhG3xtqyRdt6RhNvIdiwv66z5tvUIMNbRA+R7RN
+ FdN5SwAgonLbrA6yAjkBbAsg38Q2rnC1O4iKS7dmylnlLecD8O8nA19F7zuFDW9u
+ j62hpw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40fe94sm9p-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 19 Jul 2024 14:00:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
+ 46JE0J7r027068
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Fri, 19 Jul 2024 14:00:19 GMT
+Received: from [10.48.247.102] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 19 Jul
+ 2024 07:00:18 -0700
+Message-ID: <55341a0d-b07b-4f25-be45-dd0b352315aa@quicinc.com>
+Date: Fri, 19 Jul 2024 07:00:17 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: MODULE_DESCRIPTION() patches with no maintainer action
+Content-Language: en-US
+To: Arnd Bergmann <arnd@arndb.de>, Andrew Morton <akpm@linux-foundation.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC: Russell King <linux@armlinux.org.uk>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <kernel-janitors@vger.kernel.org>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ Mauro Carvalho Chehab <mchehab+huawei@kernel.org>, Stephen Boyd
+ <sboyd@kernel.org>, Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
+ <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen
+ <ppaalanen@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>, Andy
+ Lutomirski <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Thomas
+ Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav
+ Petkov <bp@alien8.de>, <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>
+References: <2d168cf9-e456-4262-b276-95e992b8eac7@quicinc.com>
+ <bdac7f10-4c65-4be2-952b-aed1af04e2c9@app.fastmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <bdac7f10-4c65-4be2-952b-aed1af04e2c9@app.fastmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: sg1Ff6mAFYU0BUKqF12MoFAl9ng0bFVC
+X-Proofpoint-ORIG-GUID: sg1Ff6mAFYU0BUKqF12MoFAl9ng0bFVC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-19_06,2024-07-18_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0
+ mlxlogscore=999 lowpriorityscore=0 bulkscore=0 spamscore=0 impostorscore=0
+ adultscore=0 malwarescore=0 clxscore=1011 phishscore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407190107
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,151 +104,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since a73583107af9 ("drm/nouveau: vendor in drm_encoder_slave API")
-nouveau appears to be broken for all dispnv04 GPUs (before NV50).
-Depending on the kernel version, either having no display output and
-hanging in kernel for a long time, or even oopsing in the cleanup
-path like:
+On 7/19/2024 3:51 AM, Arnd Bergmann wrote:
+> On Sun, Jul 14, 2024, at 23:46, Jeff Johnson wrote:
+>> Andrew & Greg,
+>>
+>> I hate to bother you with such mundane patches, but the following have been
+>> posted for a while without any maintainer or reviewer comment or action, and
+>> they have not yet landed in linux-next.
+>>
+>> What is the path forward to have these MODULE_DESCRIPTION() warnings fixed?
+>>
+>> arch/arm/probes/kprobes/
+>> https://lore.kernel.org/all/20240622-md-arm-arch-arm-probes-kprobes-v1-1-0832bd6e45db@quicinc.com/
+>>
+>> arch/x86/mm/
+>> https://lore.kernel.org/all/20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com/
+>>
+>> drivers/spmi/
+>> https://lore.kernel.org/all/20240609-md-drivers-spmi-v1-1-f1d5b24e7a66@quicinc.com/
+>>
+>> (note that beyond these 3 patches I still have an additional 13 patches which
+>> need to land in order to fix these warnings tree-wide, but those 13 patches
+>> have had recent maintainer or reviewer action so I'm not seeking your help at
+>> this time).
+> 
+> Hi Jeff,
+> 
+> For completeness, this is a patch that I have in my local
+> test tree now after I addressed the build issues for all
+> randconfig builds on arm, arm64 and x86.
+> 
+> I assume you already a version of most of these,
+> but please have a look in case there are some still
+> missing.
 
-Hardware name: PowerMac11,2 PPC970MP 0x440101 PowerMac
-...
-nouveau 0000:0a:00.0: drm: 0x14C5: Parsing digital output script table
-BUG: Unable to handle kernel data access on read at 0x00041520
-Faulting instruction address: 0xc0003d0001be0844
-Oops: Kernel access of bad area, sig: 11 [#1]
-BE PAGE_SIZE=4K MMU=Hash  SMP NR_CPUS=8 NUMA PowerMac
-Modules linked in: windfarm_cpufreq_clamp windfarm_smu_sensors windfarm_smu_controls windfarm_pm112 snd_aoa_codec_onyx snd_aoa_fabric_layout snd_aoa windfarm_pid jo
- apple_mfi_fastcharge rndis_host cdc_ether usbnet mii snd_aoa_i2sbus snd_aoa_soundbus snd_pcm snd_timer snd soundcore rack_meter windfarm_smu_sat windfarm_max6690_s
-m75_sensor windfarm_core gpu_sched drm_gpuvm drm_exec drm_client_lib drm_ttm_helper ttm drm_display_helper drm_kms_helper drm drm_panel_orientation_quirks syscopyar
-_sys_fops i2c_algo_bit backlight uio_pdrv_genirq uio uninorth_agp agpgart zram dm_mod dax ipv6 nfsv4 dns_resolver nfs lockd grace sunrpc offb cfbfillrect cfbimgblt
-ont input_leds sr_mod cdrom sd_mod uas ata_generic hid_apple hid_generic usbhid hid usb_storage pata_macio sata_svw libata firewire_ohci scsi_mod firewire_core ohci
-ehci_pci ehci_hcd tg3 ohci_hcd libphy usbcore usb_common nls_base
- led_class
-CPU: 0 UID: 0 PID: 245 Comm: (udev-worker) Not tainted 6.14.0-09584-g7d06015d936c #7 PREEMPTLAZY
-Hardware name: PowerMac11,2 PPC970MP 0x440101 PowerMac
-NIP:  c0003d0001be0844 LR: c0003d0001be0830 CTR: 0000000000000000
-REGS: c0000000053f70e0 TRAP: 0300   Not tainted  (6.14.0-09584-g7d06015d936c)
-MSR:  9000000000009032 <SF,HV,EE,ME,IR,DR,RI>  CR: 24222220  XER: 00000000
-DAR: 0000000000041520 DSISR: 40000000 IRQMASK: 0 \x0aGPR00: c0003d0001be0830 c0000000053f7380 c0003d0000911900 c000000007bc6800 \x0aGPR04: 0000000000000000 0000000000000000 c000000007bc6e70 0000000000000001 \x0aGPR08: 01f3040000000000 0000000000041520 0000000000000000 c0003d0000813958 \x0aGPR12: c000000000071a48 c000000000e28000 0000000000000020 0000000000000000 \x0aGPR16: 0000000000000000 0000000000f52630 0000000000000000 0000000000000000 \x0aGPR20: 0000000000000000 0000000000000000 0000000000000001 c0003d0000928528 \x0aGPR24: c0003d0000928598 0000000000000000 c000000007025480 c000000007025480 \x0aGPR28: c0000000010b4000 0000000000000000 c000000007bc1800 c000000007bc6800
-NIP [c0003d0001be0844] nv_crtc_destroy+0x44/0xd4 [nouveau]
-LR [c0003d0001be0830] nv_crtc_destroy+0x30/0xd4 [nouveau]
-Call Trace:
-[c0000000053f7380] [c0003d0001be0830] nv_crtc_destroy+0x30/0xd4 [nouveau] (unreliable)
-[c0000000053f73c0] [c0003d00007f7bf4] drm_mode_config_cleanup+0x27c/0x30c [drm]
-[c0000000053f7490] [c0003d0001bdea50] nouveau_display_create+0x1cc/0x550 [nouveau]
-[c0000000053f7500] [c0003d0001bcc29c] nouveau_drm_device_init+0x1c8/0x844 [nouveau]
-[c0000000053f75e0] [c0003d0001bcc9ec] nouveau_drm_probe+0xd4/0x1e0 [nouveau]
-[c0000000053f7670] [c000000000557d24] local_pci_probe+0x50/0xa8
-[c0000000053f76f0] [c000000000557fa8] pci_device_probe+0x22c/0x240
-[c0000000053f7760] [c0000000005fff3c] really_probe+0x188/0x31c
-[c0000000053f77e0] [c000000000600204] __driver_probe_device+0x134/0x13c
-[c0000000053f7860] [c0000000006002c0] driver_probe_device+0x3c/0xb4
-[c0000000053f78a0] [c000000000600534] __driver_attach+0x118/0x128
-[c0000000053f78e0] [c0000000005fe038] bus_for_each_dev+0xa8/0xf4
-[c0000000053f7950] [c0000000005ff460] driver_attach+0x2c/0x40
-[c0000000053f7970] [c0000000005fea68] bus_add_driver+0x130/0x278
-[c0000000053f7a00] [c00000000060117c] driver_register+0x9c/0x1a0
-[c0000000053f7a80] [c00000000055623c] __pci_register_driver+0x5c/0x70
-[c0000000053f7aa0] [c0003d0001c058a0] nouveau_drm_init+0x254/0x278 [nouveau]
-[c0000000053f7b10] [c00000000000e9bc] do_one_initcall+0x84/0x268
-[c0000000053f7bf0] [c0000000001a0ba0] do_init_module+0x70/0x2d8
-[c0000000053f7c70] [c0000000001a42bc] init_module_from_file+0xb4/0x108
-[c0000000053f7d50] [c0000000001a4504] sys_finit_module+0x1ac/0x478
-[c0000000053f7e10] [c000000000023230] system_call_exception+0x1a4/0x20c
-[c0000000053f7e50] [c00000000000c554] system_call_common+0xf4/0x258
- --- interrupt: c00 at 0xfd5f988
-NIP:  000000000fd5f988 LR: 000000000ff9b148 CTR: 0000000000000000
-REGS: c0000000053f7e80 TRAP: 0c00   Not tainted  (6.14.0-09584-g7d06015d936c)
-MSR:  100000000000d032 <HV,EE,PR,ME,IR,DR,RI>  CR: 28222244  XER: 00000000
-IRQMASK: 0 \x0aGPR00: 0000000000000161 00000000ffcdc2d0 00000000405db160 0000000000000020 \x0aGPR04: 000000000ffa2c9c 0000000000000000 000000000000001f 0000000000000045 \x0aGPR08: 0000000011a13770 0000000000000000 0000000000000000 0000000000000000 \x0aGPR12: 0000000000000000 0000000010249d8c 0000000000000020 0000000000000000 \x0aGPR16: 0000000000000000 0000000000f52630 0000000000000000 0000000000000000 \x0aGPR20: 0000000000000000 0000000000000000 0000000000000000 0000000011a11a70 \x0aGPR24: 0000000011a13580 0000000011a11950 0000000011a11a70 0000000000020000 \x0aGPR28: 000000000ffa2c9c 0000000000000000 000000000ffafc40 0000000011a11a70
-NIP [000000000fd5f988] 0xfd5f988
-LR [000000000ff9b148] 0xff9b148
- --- interrupt: c00
-Code: f821ffc1 418200ac e93f0000 e9290038 e9291468 eba90000 48026c0d e8410018 e93f06aa 3d290001 392982a4 79291f24 <7fdd482a> 2c3e0000 41820030 7fc3f378
- ---[ end trace 0000000000000000 ]---
+You have found and fixed some that I didn't encounter with make allmodconfig
+builds. I do have a list of ones for further analysis that I created by
+looking for files with a MODULE_LICENSE but not a MODULE_DESCRIPTION, and the
+ones I haven't yet fixed are on that list, but I'm very happy for you to
+submit your fixes.
 
-This is caused by the i2c encoder modules vendored into nouveau/ now
-depending on the equally vendored nouveau_i2c_encoder_destroy
-function. Trying to auto-load this modules hangs on nouveau
-initialization until timeout, and nouveau continues without i2c video
-encoders.
+Details follow:
 
-Fix by avoiding nouveau dependency by __always_inlining that helper
-functions into those i2c video encoder modules.
+>  arch/arm/lib/xor-neon.c                         | 1 +
+https://lore.kernel.org/all/20240711-md-arm-arch-arm-lib-v2-1-ab08653dc106@quicinc.com/
 
-Fixes: a73583107af9 ("drm/nouveau: vendor in drm_encoder_slave API")
-Signed-off-by: René Rebe <rene@exactco.de>
----
-Tested on NV43 [GeForce 6600], PPC64 PowerMac11,2 runing T2/Linux 
----
- .../nouveau/dispnv04/nouveau_i2c_encoder.c    | 20 -------------------
- .../include/dispnv04/i2c/encoder_i2c.h        | 19 +++++++++++++++++-
- 2 files changed, 18 insertions(+), 21 deletions(-)
+>  arch/x86/mm/testmmiotrace.c                     | 1 +
+https://lore.kernel.org/all/20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com/
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/nouveau_i2c_encoder.c b/drivers/gpu/drm/nouveau/dispnv04/nouveau_i2c_encoder.c
-index e2bf99c43336..a60209097a20 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/nouveau_i2c_encoder.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/nouveau_i2c_encoder.c
-@@ -94,26 +94,6 @@ int nouveau_i2c_encoder_init(struct drm_device *dev,
- 	return err;
- }
- 
--/**
-- * nouveau_i2c_encoder_destroy - Unregister the I2C device backing an encoder
-- * @drm_encoder:	Encoder to be unregistered.
-- *
-- * This should be called from the @destroy method of an I2C slave
-- * encoder driver once I2C access is no longer needed.
-- */
--void nouveau_i2c_encoder_destroy(struct drm_encoder *drm_encoder)
--{
--	struct nouveau_i2c_encoder *encoder = to_encoder_i2c(drm_encoder);
--	struct i2c_client *client = nouveau_i2c_encoder_get_client(drm_encoder);
--	struct module *module = client->dev.driver->owner;
--
--	i2c_unregister_device(client);
--	encoder->i2c_client = NULL;
--
--	module_put(module);
--}
--EXPORT_SYMBOL(nouveau_i2c_encoder_destroy);
--
- /*
-  * Wrapper fxns which can be plugged in to drm_encoder_helper_funcs:
-  */
-diff --git a/drivers/gpu/drm/nouveau/include/dispnv04/i2c/encoder_i2c.h b/drivers/gpu/drm/nouveau/include/dispnv04/i2c/encoder_i2c.h
-index 31334aa90781..869820701a56 100644
---- a/drivers/gpu/drm/nouveau/include/dispnv04/i2c/encoder_i2c.h
-+++ b/drivers/gpu/drm/nouveau/include/dispnv04/i2c/encoder_i2c.h
-@@ -202,7 +202,24 @@ static inline struct i2c_client *nouveau_i2c_encoder_get_client(struct drm_encod
- 	return to_encoder_i2c(encoder)->i2c_client;
- }
- 
--void nouveau_i2c_encoder_destroy(struct drm_encoder *encoder);
-+/**
-+ * nouveau_i2c_encoder_destroy - Unregister the I2C device backing an encoder
-+ * @drm_encoder:        Encoder to be unregistered.
-+ *
-+ * This should be called from the @destroy method of an I2C slave
-+ * encoder driver once I2C access is no longer needed.
-+ */
-+static __always_inline void nouveau_i2c_encoder_destroy(struct drm_encoder *drm_encoder)
-+{
-+	struct nouveau_i2c_encoder *encoder = to_encoder_i2c(drm_encoder);
-+	struct i2c_client *client = nouveau_i2c_encoder_get_client(drm_encoder);
-+	struct module *module = client->dev.driver->owner;
-+
-+	i2c_unregister_device(client);
-+	encoder->i2c_client = NULL;
-+
-+	module_put(module);
-+}
- 
- /*
-  * Wrapper fxns which can be plugged in to drm_encoder_helper_funcs:
--- 
-2.46.0
+>  drivers/fpga/tests/fpga-bridge-test.c           | 1 +
+>  drivers/fpga/tests/fpga-mgr-test.c              | 1 +
+>  drivers/fpga/tests/fpga-region-test.c           | 1 +
+I do not have a patch for these three
 
--- 
-René Rebe, ExactCODE GmbH, Berlin, Germany
-https://exactco.de • https://t2linux.com • https://patreon.com/renerebe
+>  drivers/fsi/fsi-core.c                          | 1 +
+>  drivers/fsi/fsi-master-aspeed.c                 | 2 ++
+>  drivers/fsi/fsi-master-ast-cf.c                 | 1 +
+>  drivers/fsi/fsi-master-gpio.c                   | 1 +
+>  drivers/fsi/fsi-master-hub.c                    | 1 +
+>  drivers/fsi/fsi-scom.c                          | 1 +
+https://lore.kernel.org/all/20240605-md-drivers-fsi-v1-1-fefc82d81b12@quicinc.com/
+
+>  drivers/xen/xenbus/xenbus_probe_frontend.c      | 1 +
+I do not have a patch for this one
+
+>  fs/adfs/super.c                                 | 2 ++
+https://lore.kernel.org/all/20240523-md-adfs-v1-1-364268e38370@quicinc.com/
+
+>  fs/exportfs/expfs.c                             | 1 +
+I do not have a patch for this one
+
+>  kernel/locking/test-ww_mutex.c                  | 1 +
+https://lore.kernel.org/all/20240528-md-test-ww_mutex-v2-1-a2a19e920b12@quicinc.com/
+
+>  lib/asn1_decoder.c                              | 1 +
+>  lib/slub_kunit.c                                | 1 +
+>  lib/ucs2_string.c                               | 1 +
+>  lib/zlib_inflate/inflate_syms.c                 | 1 +
+I do not have a patch for these four
+
+>  mm/kasan/kasan_test.c                           | 1 +
+>  mm/kasan/kasan_test_module.c                    | 1 +
+I do not have a patch for these two
+
+>  samples/livepatch/livepatch-callbacks-busymod.c | 1 +
+>  samples/livepatch/livepatch-callbacks-demo.c    | 1 +
+>  samples/livepatch/livepatch-callbacks-mod.c     | 1 +
+>  samples/livepatch/livepatch-sample.c            | 1 +
+>  samples/livepatch/livepatch-shadow-fix1.c       | 1 +
+>  samples/livepatch/livepatch-shadow-fix2.c       | 1 +
+I do not have a patch for these six
+
+>  security/apparmor/policy_unpack_test.c          | 1 +
+https://lore.kernel.org/all/20240529-md-apparmor_policy_unpack_test-v1-1-9efc582078c4@quicinc.com/
+
+
