@@ -4,86 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9E00D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F65D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 120E110EA59;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2302210EA66;
 	Sat, 13 Dec 2025 12:41:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=suse.com header.i=@suse.com header.b="Qrny3f+i";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="m46XLCYz";
 	dkim-atps=neutral
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com
- [IPv6:2a00:1450:4864:20::62d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C547D10EF33
- for <nouveau@lists.freedesktop.org>; Fri, 13 Dec 2024 08:05:51 +0000 (UTC)
-Received: by mail-ej1-x62d.google.com with SMTP id
- a640c23a62f3a-aa6b4cc7270so183374366b.0
- for <nouveau@lists.freedesktop.org>; Fri, 13 Dec 2024 00:05:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1734077150; x=1734681950; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=lgwYE8AkKohlShjZLrwteb4c+nimfkWQZUupQYO5W68=;
- b=Qrny3f+iKFiqDyOb/8dDJ/AFdJ7F8OYMFNw2GC6HVEqTIJM3VTdLX9bGKMBKLoltdF
- hBMonnBwplrMomw1zNZkEKAFP82A+y96HZqfeI4J2ma5ihdgGyAgemaFAWCzqEYfnMJl
- 20pO4s+01y4c5jKLudAK1nMmdAf/sbk3fOJTz0cFDVhySSp+ivGX2NJNHMpXTBqUjHuK
- R3GlnQtW/6YLAvvZ2uqq9ZM5U2K0JujaFDgKdF8PKzpiiOi6ma6kJhjgDwUGnSLSIY+S
- XkrEk07Aiug2a76S9/uK/kj5JJFU1ZWFxw2Zjen+9PFLJkUvR4HgHCYs3kUZRzyX707K
- Q7yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734077150; x=1734681950;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lgwYE8AkKohlShjZLrwteb4c+nimfkWQZUupQYO5W68=;
- b=wc6R/gfeYVHF2v4VRG/cHfrNJCrmwHKZSjZ3Y+oYmokkdip5douyQvmPxwfjIB0IGT
- GrZzGZiEHvvzGYdZQCFKSm0xiufWFONFvB4jzeZJ/bRXJn9y/AcYdjdj/eboE5Qn3YGP
- yKRaKCJtbiKeCauFiVCf5FPuf0G70jpXKlQ/N0U9ZK3w4Vu/ktf20lfRE4Azo4z5BwKf
- /qmLxcSvGUztdfziJm7zMZlb47To4sJJMUa+6G0B+mL+Ty2TYZ7jB/C1MM1akkOmo6Sk
- 5HeHumM1YkfwLNdvPOIORyoQXZzS7r/eGqbBs5rROrFSV+h7LiF6TDxchUWbntla8TRh
- WYFw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWhFPVglm8beGHeDnKBvq/bg2GavsSUqTMCgYXfy9qK5nbDkVjrgophb8q543eejsXz1poXbOIk@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzWlAHPGO9k6V6BMvIbnA4P2dDvPoPih9+BOi3SZDD9BdaMwu78
- /L32zw9hwgeZNmTtGtEvGC9zJc2fOubC3HX08RxREOS2PgPQrnUa53irT8wA7U4=
-X-Gm-Gg: ASbGncvUXfSCzRRhGaFLZq74AFqpumbb0YJ6tNKBRwu9BhiUP1fxmuMEkxp6Q493D3m
- tIMqz3k9aOR5u9zGUbz00ZbE6qKoriFUgHs+5ReRg6aDBtwYetSIolLYV/pQq2IPnwTg7xuCPnf
- SiC+KlmjLWGJ69qhsNf9SBuun/jyQJntb40CG81nc3G5F1hdv99Y9xOl9e6J3Hr94VlizHd0gsK
- OpDCit6hyvH4/+BklNiuvZqJjma7ALLpCbpWYsiyR74HOqChG1IyeUKlQ==
-X-Google-Smtp-Source: AGHT+IEBU3KaEVduDDJFmDiYKp43p4o//mXEFM4u7vCzKG7h47JoeDZ5E1DdrcH3VOsdWE+nfKrYuQ==
-X-Received: by 2002:a05:6402:4584:b0:5d0:ea4f:972f with SMTP id
- 4fb4d7f45d1cf-5d63c318beemr3590523a12.8.1734077150211; 
- Fri, 13 Dec 2024 00:05:50 -0800 (PST)
-Received: from pathway.suse.cz ([176.114.240.50])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-5d3ef026a41sm7507030a12.15.2024.12.13.00.05.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Dec 2024 00:05:49 -0800 (PST)
-Date: Fri, 13 Dec 2024 09:05:47 +0100
-From: Petr Mladek <pmladek@suse.com>
-To: Yafang Shao <laoar.shao@gmail.com>
-Cc: torvalds@linux-foundation.org, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Steven Rostedt <rostedt@goodmis.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Andy Whitcroft <apw@canonical.com>, Joe Perches <joe@perches.com>,
- Dwaipayan Ray <dwaipayanray1@gmail.com>,
- Lukas Bulwahn <lukas.bulwahn@gmail.com>
-Subject: Re: [PATCH 1/7] vsprintf: Add %pTN to print task name
-Message-ID: <Z1vq2-V7vB5KhBR9@pathway.suse.cz>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
- <20241213054610.55843-2-laoar.shao@gmail.com>
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48F0310E19B;
+ Mon, 22 Jul 2024 21:01:24 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sin.source.kernel.org (Postfix) with ESMTP id 7BABFCE0BAF;
+ Mon, 22 Jul 2024 21:01:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CDFC9C116B1;
+ Mon, 22 Jul 2024 21:01:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1721682080;
+ bh=NI8ymRZG9MIZcjZLm0vLtyw9OIJl09V8sxhdYuvkmX0=;
+ h=Date:Subject:To:References:Cc:From:In-Reply-To:From;
+ b=m46XLCYzv/rEmFZN0f9j/3LmXum6eaxczRus3erHpJAsAyUYcTV22/mdSqbfGNLfH
+ 25PvVKieSrt9g50zmCrh7B8If6aEEbAs7/W8wH/K8WYZFeUQnosyKypbX5/h/eWCO/
+ CAjiut/9UrOJhaHKFspkurwHX15qzsJJrWSEFiuk5xDEil/VKqygt22CpE6Deqk3Pt
+ FGahHLhyYBxOPktoY+ihPIUfirWMAD/buN6sTzwlVW/otQB0SRTbWsospFHkVLJIby
+ y3Ztqdj5/X+N4MOcq8QyVRj+Prt967M18NxS/vbnwZBmtZLIIJtbozi1Pmu/UMjed+
+ Ocw86yA6E5UoQ==
+Message-ID: <260f84d6-17dd-471a-a0c2-f21542da9ae2@kernel.org>
+Date: Mon, 22 Jul 2024 23:01:17 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241213054610.55843-2-laoar.shao@gmail.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] Nouveau fixes for TTM refcount rework
+To: Ben Skeggs <bskeggs@nvidia.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+References: <20240718165959.3983-1-dakr@kernel.org>
+ <eeceb079-2397-447a-9217-64ba01e21b0f@nvidia.com>
+Content-Language: en-US
+Cc: dri-devel@lists.freedesktop.org,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+From: Danilo Krummrich <dakr@kernel.org>
+In-Reply-To: <eeceb079-2397-447a-9217-64ba01e21b0f@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,28 +61,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri 2024-12-13 13:46:04, Yafang Shao wrote:
-> Since the task->comm is guaranteed to be NUL-ternimated, we can print it
-> directly. Add a new vsnprintf format specifier "%pTN" to print task comm,
-> where 'p' represents the task Pointer, 'T' stands for Task, and 'N' denots
-> Name. With this abstraction, the user no longer needs to care about
-> retrieving task name.
+On 7/18/24 7:53 AM, Ben Skeggs wrote:
+> On 19/7/24 02:58, Danilo Krummrich wrote:
+> 
+>> Hi Christian,
+>>
+>> Those three patches should unblock your series to use GEM references instead of
+>> TTM ones.
+>>
+>> @Lyude, Dave: Can you please double check?
+> 
+> Hi Danilo,
+> 
+> These look fine to me, and appear to resolve the issues I see with just the refcount series applied.
+> 
+> Ben.
+> 
+> 
+> Reviewed-by: Ben Skeggs <bskeggs@nvidia.com>
 
-What is the advantage, please?
+Thanks for reviewing!
 
-Honestly, I believe that the meaning of
+@Christian, I applied the series to drm-misc-next for you to go ahead and
+cherry-picked the bug fix to drm-misc-fixes.
 
-	printk("%s\n", task->comm);
+- Danilo
 
-is much more clear than using a cryptic %pXYZ modifier:
-
-	printk("%pTN\n", task);
-
-
-The %pXYZ modifiers makes sense only when the formatting of the printed
-information needs some processing. But this is a plain string.
-IMHO, it is not worth it. In fact, I believe that it is a
-counter productive.
-
-Best Regards,
-Petr
+> 
+>>
+>> - Danilo
+>>
+>> Danilo Krummrich (3):
+>>    drm/nouveau: prime: fix refcount underflow
+>>    drm/nouveau: bo: remove unused functions
+>>    drm/nouveau: use GEM references instead of TTMs
+>>
+>>   drivers/gpu/drm/nouveau/dispnv04/crtc.c | 43 +++++++++++++++------
+>>   drivers/gpu/drm/nouveau/dispnv50/disp.c |  4 +-
+>>   drivers/gpu/drm/nouveau/nouveau_bo.h    | 50 ++-----------------------
+>>   drivers/gpu/drm/nouveau/nouveau_chan.c  |  2 +-
+>>   drivers/gpu/drm/nouveau/nouveau_dmem.c  |  4 +-
+>>   drivers/gpu/drm/nouveau/nouveau_prime.c |  3 +-
+>>   drivers/gpu/drm/nouveau/nv10_fence.c    |  2 +-
+>>   drivers/gpu/drm/nouveau/nv17_fence.c    |  2 +-
+>>   drivers/gpu/drm/nouveau/nv50_fence.c    |  2 +-
+>>   drivers/gpu/drm/nouveau/nv84_fence.c    |  4 +-
+>>   10 files changed, 46 insertions(+), 70 deletions(-)
+>>
+>>
+>> base-commit: 99e0fb8b087120b5a7019f1cff6c5c2b5b925ae5
