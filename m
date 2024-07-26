@@ -4,71 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4842BC3DA7E
-	for <nouveau@archiver.kernel.org>; Fri, 26 Jul 2024 04:39:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5974BC3DA49
+	for <nouveau@archiver.kernel.org>; Fri, 26 Jul 2024 04:39:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6BC10E21E;
-	Fri, 26 Jul 2024 04:39:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E449710E2E3;
+	Fri, 26 Jul 2024 04:39:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="lyaxxfKh";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="lmC88VzK";
 	dkim-atps=neutral
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2077.outbound.protection.outlook.com [40.107.237.77])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2B0510E1A1
- for <nouveau@lists.freedesktop.org>; Fri, 26 Jul 2024 04:39:01 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2086.outbound.protection.outlook.com [40.107.96.86])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36DC410E2AB
+ for <nouveau@lists.freedesktop.org>; Fri, 26 Jul 2024 04:39:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jPbWCxGlKokx9NhYlzHU2jPHCyw4t1GOnk6XPAdkmHheraEzRov38e5LfCvEvZd2W21ahbqahvF4MW/COH6cy5lM9WnIkL6oDqTOwPE/nV42qkBhrc9b48g84HuTSMBg2SHA8CpYEbN+plyuKRWu+Damraq7PVvRW6PCMhp5t0A9dhzszcvN5zbhl7nB6EK8+SG3cQTFAPycKwgOvV89jp2ghFbI5DHo8+IRwq51q/jl1MPiEtceH8F71BPtHzuIc0qODsV8K5yKWquh7Sl91nLxxsUHDAKUZxqhgPHw033uSm4m3HTc10u6s+yREdsvEqeu36rVbi9Fb8VrXxvO7g==
+ b=wJ8DlKryobITh/hWIPdSNnUIge21dk7DSqEAa4tSCuUzqaNn8HMYRVmA97sBg/OMcUnJUvWfIMrRNh96Re+BdD3HCgIc8HKrkR/zxjk7K3Ab5LOmG8PQBINPWX5RJVwP9zLPp1vQv+gYh2Oe79Tl5sLNy8E8q0Bo4lGMkeLWC4OsS0IZm1+cMgqC6f44rG8KqL1zgzdFwhF9C9E7TZ7vnNFqrJo3WGYf3BTub4j+Q6vOPp+yZbSyozKWJg51CXEgGjWwsuM9RG6Mz/4pXKA5v7Wy1yGpihk12NIDQd4GH0PGKzVoeN9BodVph/FGGyCVnwbX/dlCsGPhw9B1wAFBdA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bqcc6mVlf17E1i2hmbekx+I39kxDSSH8yms6+oPWcu4=;
- b=AMkJuCTEa29KC6vnxeZB3tDU7AMoI/+JZnwVAYIBCYGq6CjByBa1d3uTgvaQe2O0mbnLWniPAZoYkIFLm/n0SPrJ57sIhRiVEjKuN5OtJUc8waovPonJE+KhGT4heqLPZUi4vm9Cdx0n9eiUz1ofItYRaQNBpCa58rVbZ4Q6m0+X3XtQ9jL0XYAG46+Rch/RcBSPI5w2RzYBcCW/KhzC/D2HUyVyQJVlMJ5VDJ+ggbNPJuqmWa2gNcolobxVbI9f3NqY3G9A4rNWNsBMeELAeS/v8oUxIWha+BbG9edOm2aEdfi9A/cmSWtTNNXQIXbQyCIqT1hLQ4/fshv5wwUTTg==
+ bh=3SNvodKsCEkV5jwtISy1FahPNjX3uEVzAExwQBkoFpg=;
+ b=nCwHE1gP9WHlagbOF2r9zB5nHoUgv48fmy1R9vUklLtXY2XMygI0rqWTEo0ZaxaD2emAwcch8s6D+NkIHbQyFc7Ll51ZQ1cwKfpZoq3yHrPG6tRh2heDbGNv80u27hwuH8cn0vSrYZAY+K+X+d0SjLKPUn/EV+SKhF3F56k8+8kM01HUfGyI9B5wm6BosVQryAp/XAyEmC6MupjuotVWZSVaRwL8AZ2fc6JOWQA4seYVCzzs/nSi9Omhy6JDGUKQ2eFdPz+JWK7V0pu62/p/lsz0FPr7mo3oMaK1aYD0Z3ivbgpv2TbbW9zydTa73S8fkahKGBSS+Fwxhfdf7PT0jQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
+ 216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
  header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bqcc6mVlf17E1i2hmbekx+I39kxDSSH8yms6+oPWcu4=;
- b=lyaxxfKhWBlBbzcL7+x2naTa8riAS5tYuVTLWDu9XrOCBvIBFD2lZhZLWGwmv6GoMHZnOjK/ibW+7caEJOw1BZAFLupHobsLA8wTlmIFhO1ZhQ/uiaX9YBrHxDwfHe5Fjwq8v9J4wIlczDuEUGecpWIrY+iygjnyB+6qVMfvUkWLEovGtoBYtcnT94UdqBFgEHUF/bHHgPwZWuV83al9OIUvZZ97k4xN7IYcXyXRgY+xaJh3TFTowVMt1jjTA9coIZHbkg9l4oIJJvA+qZbfaoBNbPyW/BOrT93pIEWcdc1CrAn0T1O5QHMfwM2NQgAf7t6pDEtB1A4QEEAE1ZLi4A==
-Received: from DS7PR03CA0291.namprd03.prod.outlook.com (2603:10b6:5:3ad::26)
- by CH3PR12MB8510.namprd12.prod.outlook.com (2603:10b6:610:15b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7784.29; Fri, 26 Jul
- 2024 04:38:53 +0000
-Received: from DS1PEPF00017094.namprd03.prod.outlook.com
- (2603:10b6:5:3ad:cafe::e0) by DS7PR03CA0291.outlook.office365.com
- (2603:10b6:5:3ad::26) with Microsoft SMTP Server (version=TLS1_2,
+ bh=3SNvodKsCEkV5jwtISy1FahPNjX3uEVzAExwQBkoFpg=;
+ b=lmC88VzKVbXbYnwiugYr2KsReHt06eBeO10cNRkDkJrU5OZMDLy9eYLS+WAYCJ41PqmKeGhAGp00WTbCv5UalNUBp5spUe3hWU4aE/djTuAD7h0wtJOKObL/Hz86WKlWlYe46QSLrxdZM6PoPDEujGnkvBF8F2nSUUMMh1VzovDyf48rY3psbAQHX/TByMjBL30NQWyOPo9t81OFqDDs3QRYw1kWZeBawmx2QZIAno3ufZ+WNl+pa3GWQfFa6NSnzkXzHSu9JGNt5YQOsQAn0Rq5lNtsvERli6Qao8zqBXVe4rqba1sU+c2fs9U+n9bJkNgP0poVhGFAMyDwWN8U1g==
+Received: from DM6PR03CA0060.namprd03.prod.outlook.com (2603:10b6:5:100::37)
+ by DM4PR12MB5892.namprd12.prod.outlook.com (2603:10b6:8:68::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7784.20; Fri, 26 Jul 2024 04:38:59 +0000
+Received: from DS2PEPF0000343B.namprd02.prod.outlook.com
+ (2603:10b6:5:100:cafe::5c) by DM6PR03CA0060.outlook.office365.com
+ (2603:10b6:5:100::37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7762.29 via Frontend
- Transport; Fri, 26 Jul 2024 04:38:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ Transport; Fri, 26 Jul 2024 04:38:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- DS1PEPF00017094.mail.protection.outlook.com (10.167.17.137) with Microsoft
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ DS2PEPF0000343B.mail.protection.outlook.com (10.167.18.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7784.11 via Frontend Transport; Fri, 26 Jul 2024 04:38:53 +0000
+ 15.20.7784.11 via Frontend Transport; Fri, 26 Jul 2024 04:38:59 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 25 Jul
- 2024 21:38:45 -0700
+ 2024 21:38:51 -0700
 Received: from fedora.mshome.net (10.126.230.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 25 Jul
- 2024 21:38:44 -0700
+ 2024 21:38:49 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH v3 00/37] drm/nouveau: misc. cleanups and removal of unused
- apis
-Date: Fri, 26 Jul 2024 14:37:51 +1000
-Message-ID: <20240726043828.58966-1-bskeggs@nvidia.com>
+Subject: [PATCH v3 04/37] drm/nouveau: create pci device once
+Date: Fri, 26 Jul 2024 14:37:55 +1000
+Message-ID: <20240726043828.58966-5-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.45.1
+In-Reply-To: <20240726043828.58966-1-bskeggs@nvidia.com>
+References: <20240726043828.58966-1-bskeggs@nvidia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
@@ -77,51 +77,51 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF00017094:EE_|CH3PR12MB8510:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c8c5eac-e284-42e5-f396-08dcad2cda6a
+X-MS-TrafficTypeDiagnostic: DS2PEPF0000343B:EE_|DM4PR12MB5892:EE_
+X-MS-Office365-Filtering-Correlation-Id: 643dfd0b-ffc8-4cb5-bcc7-08dcad2cde2b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|1800799024|376014|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?s7Nf9qtLuv3dRuLuaL5yXdvhZ2J7U/D6HxOrDT/DDxItu/T5LVyUm+VLEipC?=
- =?us-ascii?Q?pzThemi6LRIom2teRZ5ubI0msJBZhxIShKh7XPgn0hk4giKJfZmw5vQRO2tc?=
- =?us-ascii?Q?u6lBfCvYHIOXZqVNB08JPO6OolpQU4P6F5XCD5E8YgRdU5GLULQ7EoV3dCUW?=
- =?us-ascii?Q?Y4c8SBT6qHQGePjoSiYuzAKDdqt4dCBdJnILnQgTnt/8DS30tQpQAdftYrnL?=
- =?us-ascii?Q?mNo2A/+3/fC39uLpgbbIL8voxCff/sTXVC0dtXFo35eM1MV+kZocVtlFOegX?=
- =?us-ascii?Q?FkQCJWaOAeERffZhr7wiJxavaXEP4vQNhuyELUBXTw8OGG8ibfXzUs/iEufY?=
- =?us-ascii?Q?2loOJ/FFb3YUPpGC2244434a5YrsWciyZnu0sR5QpoJSSjtil2Wky3Bg6F1Q?=
- =?us-ascii?Q?u25OPzR789y6EY+K8RceUeHb6Bf3OfusFLCMIEsa8yeTNhVYugtExtBqmPRo?=
- =?us-ascii?Q?WwFb2uC8lHFvJ2banabfRfREVwav8+XhGtok8mnkujHIuAE8OcCGCUVfv8sK?=
- =?us-ascii?Q?js50trHInbIK4s0rFMWXlqDKzaImeZp1kPsRIncNg9Sh2kqf16Ui/Vl9cWJn?=
- =?us-ascii?Q?SfLLpcxgDfZX5TeDCuWenHCWXTHbJn80KuLfTJiku6xGyqdVOot/smfHzgG7?=
- =?us-ascii?Q?+u50Wrcv4C+AAa1hFflV2+ZfOQgUVpf7g14s7EeYeevIlXemaBko/t9MpJDw?=
- =?us-ascii?Q?0g6Is91+mPm45CpfqtRxjoUXhCe4Yyw71w/bd5lI9KEsMR2lEL0cHF37dt/f?=
- =?us-ascii?Q?pU2f1N7i7O4gO80V1MQ6y2nPLShBygKOxANwkw0YbolGS+KNbNnVDUZMsj8j?=
- =?us-ascii?Q?eZHblgsroa5iuebXn2+l7AH5VFTDiVARFKk3axSRzUwYCh1kv6aIsuUuBWCr?=
- =?us-ascii?Q?jShbwLo4yHPrrC04sR2s0oHzfPUSOyZJfMM4BadSAVdB3tZPSvS8flcpZb84?=
- =?us-ascii?Q?gz1Q4IJMa2SnO5UaEvQjNh0nLet3xnSXwsMYy6juy3DTJsEzYH34vAhW+Gvu?=
- =?us-ascii?Q?V7Dzxs8wzKInpk63bTSBxBT1p4IJEN81Tjo6/PwNnRTG7vdTE42ZL9GOhB88?=
- =?us-ascii?Q?rrDRsUtsz0k0Gm+8iRc/MOsOcS45RgpV8sTQzzq2pKDxrq6D31aMHxIXIwOU?=
- =?us-ascii?Q?O/3NBKoCGiyr8ODY0GfFdS6Hi2RXG5EtB4lOWnxydngF29yN3QKSEypE0c8+?=
- =?us-ascii?Q?biRge1Hx285b0H9RcPPrjj2QvVgplravN7w0fvNACDwGG0/Fc2lmkzZwhXuv?=
- =?us-ascii?Q?dBvh5lsxy+9P3GmbGeu95WvmPh1MeMEzzVF0xTJmbSkZ0oMJYXY4AdHk9pEr?=
- =?us-ascii?Q?YvMtk9jJ4KuBIvxmrl0FdTdkuJRkxcvNnInOdogdHQS5AVrskRssRHSCvhcp?=
- =?us-ascii?Q?ewFQz1oSQHMwWrypEtKY7Xx8OaTNp7bmUdMK91qKIpTWit+4CVZcojKhuF9G?=
- =?us-ascii?Q?dBSQxxwNTvY+hq62cVNGl/lMPOoTV5K1?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013); DIR:OUT;
+ ARA:13230040|82310400026|36860700013|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ewIS1TbS5QEf26MH16GQddK/0k810PNLuFdFCk/buVi4WjKgrqFnE39GYTOP?=
+ =?us-ascii?Q?7kJPNZLldMvpSI0gVBdXmzJLmQzIl6U4P3bhmFRSzHCryuEAShd/w6/Rkp5P?=
+ =?us-ascii?Q?zXrlIY+vun7gkcynhHnymTRMHC9V7lRlEI9gQR8z9KfT1lbP9mJUslIkh1Hs?=
+ =?us-ascii?Q?PemGXAzUF06nZahidhmGV8PrjC2rgH9Pz8TrUKxr/pcuQ4qID4s3lgjyQTvI?=
+ =?us-ascii?Q?K6fmwSDizMPti5A+RVJxtj2UiaaqfY8WgSA5Yg0WL3bQwmUEqAYEC+JAPPSj?=
+ =?us-ascii?Q?4G6zKLbWqXh7Wl8UNZoApCpCPICqJdSumz0nc1iQUGR2FZs7M/CX4hgtHY31?=
+ =?us-ascii?Q?oymBve5Rk95uszgtMqFDaax+BAmznlMumc/EO4wpI/IsUB23Tn0cuyuW+9UL?=
+ =?us-ascii?Q?nfmyyDAs4S3f8nXVQKESsewYGxDmMHL2sAWg+dCej3I9rTHjee0cmQnzBCiT?=
+ =?us-ascii?Q?EVqQPvqxHmEM4BCV16F/OslN9s9GJqOV43v0Io8GN7K0zGLHqg4ZzwjqVByN?=
+ =?us-ascii?Q?GK4GQTb3SRVqLe2a6FLuYV/0ScPUIY7NCgLk6+la8j4ayh+puBcVm72FqI9M?=
+ =?us-ascii?Q?8PYqDIBOv/ud67MpiHJyQmK9HbxJ7u+Jz0yhtTnZb8/2+7RGMMVPcglGy6wj?=
+ =?us-ascii?Q?5rNeFGH7R75JN28VFEnfEfewEJogDxpn4yPCcKVZsR1b+Fx1F3FHy/MPWkVv?=
+ =?us-ascii?Q?EGC1Ak5GVKXe/bZxsBRXgsZOr6R78zLi1pbkMtn/d+CPif1cvD6iFhqIAIR9?=
+ =?us-ascii?Q?awMjlyYXLN+sNkTD8xGL5y3JTEGlswRAfBKmXnl9qCtJwrwdrBInGoTdJ3oV?=
+ =?us-ascii?Q?91z1xqCfx+FZPyAZfeL5WRsU/5kIzX62UkqJs2jbSmQj63XOvYY0fE6cKd9L?=
+ =?us-ascii?Q?Klq1C8/Pwgp9Z49uY5xK7XI+p+UDcAXMpVJz409SARTXcNa+Z5OXN32xw1Ua?=
+ =?us-ascii?Q?5vdp0/EwLf5uICusC4oPOh6j1tDtA87buhAPrBKuMWOSIrC5x3ZSdG+3EcpL?=
+ =?us-ascii?Q?YmLtVHwxbExwRDVSTa7qT3yWgka8yT2tXNeX66JFxPKTawE7K0DKCJLIfhET?=
+ =?us-ascii?Q?jDp6yKdhpm1xecLmuXWPAuZzCQLUB37ORvMdSiZhkko4CwmKkXHi7IepRmBe?=
+ =?us-ascii?Q?F+6mCUYXyVQ2wLYRgB0i74WCjmKXlS0PfuP81rGeG7AF81VKH5sjc4gInv0U?=
+ =?us-ascii?Q?kWI3wxLmyFUwemCaim+bdZvEQUyUmionevXyC9hVo5+g5jvNjzTMUbdutsyR?=
+ =?us-ascii?Q?FtLS5fYf/ZieKrqaf3HZuVldmabuY8Eviy6NRzsWXHfCSngAVqr6+JXB3V6l?=
+ =?us-ascii?Q?9la81dgH4jKjmqAKSfDGFb0xHWvwAeoNWGZPOd2UMEVOQQ+P+biuV+xcl+cc?=
+ =?us-ascii?Q?hRPixbAZCdvLCKqNwqvenCXTUfoR1AHv+6YWgHaiTGSxrzojkx2ncesfbxgr?=
+ =?us-ascii?Q?Gll578A5wVzexuCGkmJBDLPTvKfJFb4K?=
+X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
+ SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 04:38:53.2657 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c8c5eac-e284-42e5-f396-08dcad2cda6a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jul 2024 04:38:59.5779 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 643dfd0b-ffc8-4cb5-bcc7-08dcad2cde2b
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF00017094.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: DS2PEPF0000343B.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8510
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5892
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,221 +136,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This series is a smaller subset of the prior series I posted, that aimed
-to remove the ioctl layer between NVKM and the nouveau DRM driver.
+HW isn't touched anymore (aside from detection) until the first
+nvif_device has been allocated, so we no longer need a separate
+probe-only step before kicking efifb (etc) off the HW.
 
-Whilst this series doesn't go the full way, it aims to remove a bunch of
-internal APIs that aren't useful anymore so they don't have to be ported,
-and to cleanup a few paths in the DRM driver that have suffered from bit-
-rot over the years to ensure it's safe to remove the ioctl layer next.
+Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 11 ++---------
+ 1 file changed, 2 insertions(+), 9 deletions(-)
 
-There's more details of the specific changes in the relevant commits.
-
-A git tree is available at [1], and the remaining commits that were in
-the prior series, but not this one, are available at [2].
-
-v2:
-- prepended a couple of patches that begin to cleanup pci vs tegra
-  paths, addressing some comments about variable naming, more in a
-  future series
-- rebased on current drm-misc-next
-- other changes mentioned in their relevant commits
-v3:
-- remove unnecessary change to nouveau_name()
-- reword some commit messages/comments
-
-[1] https://gitlab.freedesktop.org/bskeggs/nouveau/-/tree/00.00-cleanup
-[2] https://gitlab.freedesktop.org/bskeggs/nouveau/-/tree/00.01-remove-ioctl
-
-Ben Skeggs (37):
-  drm/nouveau: move nouveau_drm_device_fini() above init()
-  drm/nouveau: handle pci/tegra drm_dev_{alloc,register} from common
-    code
-  drm/nouveau: replace drm_device* with nouveau_drm* as dev drvdata
-  drm/nouveau: create pci device once
-  drm/nouveau: store nvkm_device pointer in nouveau_drm
-  drm/nouveau: move allocation of root client out of nouveau_cli_init()
-  drm/nouveau: add nouveau_cli to nouveau_abi16
-  drm/nouveau: handle limited nvif ioctl in abi16
-  drm/nouveau: remove abi16->device
-  drm/nouveau: remove abi16->handles
-  drm/nouveau/nvkm: remove detect/mmio/subdev_mask from device args
-  drm/nouveau/nvkm: remove perfmon
-  drm/nouveau/nvkm: remove nvkm_client_search()
-  drm/nouveau/nvif: remove support for userspace backends
-  drm/nouveau/nvif: remove route/token
-  drm/nouveau/nvif: remove nvxx_object()
-  drm/nouveau/nvif: remove nvxx_client()
-  drm/nouveau/nvif: remove driver keep/fini
-  drm/nouveau/nvif: remove client device arg
-  drm/nouveau/nvif: remove client version
-  drm/nouveau/nvif: remove client devlist
-  drm/nouveau/nvif: remove client fini
-  drm/nouveau/nvif: remove device args
-  drm/nouveau: always map device
-  drm/nouveau/nvif: remove device rd/wr
-  drm/nouveau/nvif: remove disp chan rd/wr
-  drm/nouveau: move nvxx_* definitions to nouveau_drv.h
-  drm/nouveau: add nvif_mmu to nouveau_drm
-  drm/nouveau: pass drm to nouveau_mem_new(), instead of cli
-  drm/nouveau: pass drm to nv50_dmac_create(), rather than device+disp
-  drm/nouveau: pass cli to nouveau_channel_new() instead of drm+device
-  drm/nouveau: remove nouveau_chan.device
-  drm/nouveau: remove chan->drm
-  drm/nouveau: remove master
-  drm/nouveau: remove push pointer from nouveau_channel
-  drm/nouveau/kms: remove a few unused struct members and fn decls
-  drm/nouveau/kms: remove push pointer from nv50_dmac
-
- drivers/gpu/drm/nouveau/Kbuild                |   1 -
- drivers/gpu/drm/nouveau/dispnv04/crtc.c       |  14 +-
- drivers/gpu/drm/nouveau/dispnv04/dac.c        |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/dfp.c        |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/disp.c       |   7 +-
- drivers/gpu/drm/nouveau/dispnv04/disp.h       |   2 +-
- drivers/gpu/drm/nouveau/dispnv04/hw.c         |   9 +-
- drivers/gpu/drm/nouveau/dispnv04/tvnv04.c     |   4 +-
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |   6 +-
- drivers/gpu/drm/nouveau/dispnv50/base507c.c   |  21 +-
- drivers/gpu/drm/nouveau/dispnv50/base827c.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/base907c.c   |  10 +-
- drivers/gpu/drm/nouveau/dispnv50/core507d.c   |   8 +-
- drivers/gpu/drm/nouveau/dispnv50/corec37d.c   |   6 +-
- drivers/gpu/drm/nouveau/dispnv50/corec57d.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/crc907d.c    |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/crcc37d.c    |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/crcc57d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/dac507d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/dac907d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c       |  74 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.h       |  14 +-
- drivers/gpu/drm/nouveau/dispnv50/head507d.c   |  24 +-
- drivers/gpu/drm/nouveau/dispnv50/head827d.c   |  10 +-
- drivers/gpu/drm/nouveau/dispnv50/head907d.c   |  26 +-
- drivers/gpu/drm/nouveau/dispnv50/head917d.c   |   6 +-
- drivers/gpu/drm/nouveau/dispnv50/headc37d.c   |  18 +-
- drivers/gpu/drm/nouveau/dispnv50/headc57d.c   |  12 +-
- drivers/gpu/drm/nouveau/dispnv50/ovly507e.c   |   6 +-
- drivers/gpu/drm/nouveau/dispnv50/ovly827e.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/ovly907e.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/pior507d.c   |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/sor507d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/sor907d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/sorc37d.c    |   2 +-
- drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c   |   7 +-
- drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c   |  24 +-
- drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c   |  10 +-
- drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c   |   2 +-
- drivers/gpu/drm/nouveau/include/nvif/cl0080.h |   7 -
- drivers/gpu/drm/nouveau/include/nvif/class.h  |   3 -
- drivers/gpu/drm/nouveau/include/nvif/client.h |  11 +-
- drivers/gpu/drm/nouveau/include/nvif/device.h |  37 +-
- drivers/gpu/drm/nouveau/include/nvif/driver.h |   5 -
- drivers/gpu/drm/nouveau/include/nvif/if0000.h |  10 -
- drivers/gpu/drm/nouveau/include/nvif/if0002.h |  39 -
- drivers/gpu/drm/nouveau/include/nvif/if0003.h |  34 -
- drivers/gpu/drm/nouveau/include/nvif/ioctl.h  |  27 -
- drivers/gpu/drm/nouveau/include/nvif/object.h |  24 +-
- drivers/gpu/drm/nouveau/include/nvif/os.h     |  19 +
- .../drm/nouveau/include/nvkm/core/client.h    |   1 -
- .../drm/nouveau/include/nvkm/core/device.h    |   1 -
- .../drm/nouveau/include/nvkm/core/layout.h    |   1 -
- .../drm/nouveau/include/nvkm/core/object.h    |  14 -
- .../drm/nouveau/include/nvkm/core/oclass.h    |   2 -
- .../gpu/drm/nouveau/include/nvkm/core/os.h    |  19 -
- .../gpu/drm/nouveau/include/nvkm/core/pci.h   |   1 -
- .../gpu/drm/nouveau/include/nvkm/core/tegra.h |   1 -
- .../gpu/drm/nouveau/include/nvkm/engine/pm.h  |  29 -
- drivers/gpu/drm/nouveau/nouveau_abi16.c       | 330 +++++--
- drivers/gpu/drm/nouveau/nouveau_abi16.h       |   6 +-
- drivers/gpu/drm/nouveau/nouveau_bios.c        |   4 +-
- drivers/gpu/drm/nouveau/nouveau_bios.h        |   1 +
- drivers/gpu/drm/nouveau/nouveau_bo.c          |  10 +-
- drivers/gpu/drm/nouveau/nouveau_bo0039.c      |   6 +-
- drivers/gpu/drm/nouveau/nouveau_bo5039.c      |   6 +-
- drivers/gpu/drm/nouveau/nouveau_bo74c1.c      |   2 +-
- drivers/gpu/drm/nouveau/nouveau_bo85b5.c      |   2 +-
- drivers/gpu/drm/nouveau/nouveau_bo9039.c      |   4 +-
- drivers/gpu/drm/nouveau/nouveau_bo90b5.c      |   2 +-
- drivers/gpu/drm/nouveau/nouveau_boa0b5.c      |   4 +-
- drivers/gpu/drm/nouveau/nouveau_chan.c        |  96 +-
- drivers/gpu/drm/nouveau/nouveau_chan.h        |   8 +-
- drivers/gpu/drm/nouveau/nouveau_display.c     |   4 +-
- drivers/gpu/drm/nouveau/nouveau_display.h     |   2 +-
- drivers/gpu/drm/nouveau/nouveau_dma.c         |   2 +-
- drivers/gpu/drm/nouveau/nouveau_dmem.c        |   4 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c         | 387 ++++----
- drivers/gpu/drm/nouveau/nouveau_drv.h         |  61 +-
- drivers/gpu/drm/nouveau/nouveau_fence.c       |  17 +-
- drivers/gpu/drm/nouveau/nouveau_gem.c         |  21 +-
- drivers/gpu/drm/nouveau/nouveau_hwmon.c       |  46 +-
- drivers/gpu/drm/nouveau/nouveau_led.c         |   2 +-
- drivers/gpu/drm/nouveau/nouveau_mem.c         |  38 +-
- drivers/gpu/drm/nouveau/nouveau_mem.h         |   4 +-
- drivers/gpu/drm/nouveau/nouveau_nvif.c        |   2 -
- drivers/gpu/drm/nouveau/nouveau_platform.c    |  11 +-
- drivers/gpu/drm/nouveau/nouveau_sgdma.c       |   2 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c         |  12 +-
- drivers/gpu/drm/nouveau/nouveau_usif.c        | 194 ----
- drivers/gpu/drm/nouveau/nouveau_usif.h        |  10 -
- drivers/gpu/drm/nouveau/nouveau_vga.c         |  14 +-
- drivers/gpu/drm/nouveau/nv04_fence.c          |   2 +-
- drivers/gpu/drm/nouveau/nv10_fence.c          |   2 +-
- drivers/gpu/drm/nouveau/nv17_fence.c          |  10 +-
- drivers/gpu/drm/nouveau/nv50_fence.c          |   2 +-
- drivers/gpu/drm/nouveau/nv84_fence.c          |  12 +-
- drivers/gpu/drm/nouveau/nvc0_fence.c          |   4 +-
- drivers/gpu/drm/nouveau/nvif/client.c         |  32 +-
- drivers/gpu/drm/nouveau/nvif/device.c         |  15 +-
- drivers/gpu/drm/nouveau/nvif/driver.c         |  32 +-
- drivers/gpu/drm/nouveau/nvif/object.c         |  40 -
- drivers/gpu/drm/nouveau/nvkm/core/client.c    |  64 +-
- drivers/gpu/drm/nouveau/nvkm/core/ioctl.c     |  91 +-
- drivers/gpu/drm/nouveau/nvkm/core/object.c    |  50 -
- drivers/gpu/drm/nouveau/nvkm/core/oproxy.c    |  42 -
- drivers/gpu/drm/nouveau/nvkm/core/uevent.c    |   4 +-
- drivers/gpu/drm/nouveau/nvkm/engine/Kbuild    |   1 -
- .../gpu/drm/nouveau/nvkm/engine/device/base.c | 479 +++++-----
- .../gpu/drm/nouveau/nvkm/engine/device/pci.c  |   4 +-
- .../gpu/drm/nouveau/nvkm/engine/device/priv.h |   2 -
- .../drm/nouveau/nvkm/engine/device/tegra.c    |   5 +-
- .../gpu/drm/nouveau/nvkm/engine/device/user.c |  93 +-
- .../gpu/drm/nouveau/nvkm/engine/disp/chan.c   |  24 -
- drivers/gpu/drm/nouveau/nvkm/engine/pm/Kbuild |  11 -
- drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c | 867 ------------------
- drivers/gpu/drm/nouveau/nvkm/engine/pm/g84.c  | 165 ----
- .../gpu/drm/nouveau/nvkm/engine/pm/gf100.c    | 243 -----
- .../gpu/drm/nouveau/nvkm/engine/pm/gf100.h    |  20 -
- .../gpu/drm/nouveau/nvkm/engine/pm/gf108.c    |  66 --
- .../gpu/drm/nouveau/nvkm/engine/pm/gf117.c    |  80 --
- .../gpu/drm/nouveau/nvkm/engine/pm/gk104.c    | 184 ----
- .../gpu/drm/nouveau/nvkm/engine/pm/gt200.c    | 157 ----
- .../gpu/drm/nouveau/nvkm/engine/pm/gt215.c    | 138 ---
- drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.c | 123 ---
- drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.h |  15 -
- drivers/gpu/drm/nouveau/nvkm/engine/pm/nv50.c | 175 ----
- drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h | 105 ---
- 128 files changed, 1119 insertions(+), 4194 deletions(-)
- delete mode 100644 drivers/gpu/drm/nouveau/include/nvif/if0002.h
- delete mode 100644 drivers/gpu/drm/nouveau/include/nvif/if0003.h
- delete mode 100644 drivers/gpu/drm/nouveau/include/nvkm/engine/pm.h
- delete mode 100644 drivers/gpu/drm/nouveau/nouveau_usif.c
- delete mode 100644 drivers/gpu/drm/nouveau/nouveau_usif.h
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/Kbuild
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/g84.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf100.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf100.h
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf108.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf117.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gk104.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gt200.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gt215.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.h
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv50.c
- delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 0687bc59d486..f372bf2954aa 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -839,23 +839,16 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
+ 	/* We need to check that the chipset is supported before booting
+ 	 * fbdev off the hardware, as there's no way to put it back.
+ 	 */
+-	ret = nvkm_device_pci_new(pdev, nouveau_config, "error",
+-				  true, false, 0, &device);
++	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
++				  true, true, ~0ULL, &device);
+ 	if (ret)
+ 		return ret;
+ 
+-	nvkm_device_del(&device);
+-
+ 	/* Remove conflicting drivers (vesafb, efifb etc). */
+ 	ret = drm_aperture_remove_conflicting_pci_framebuffers(pdev, &driver_pci);
+ 	if (ret)
+ 		return ret;
+ 
+-	ret = nvkm_device_pci_new(pdev, nouveau_config, nouveau_debug,
+-				  true, true, ~0ULL, &device);
+-	if (ret)
+-		return ret;
+-
+ 	pci_set_master(pdev);
+ 
+ 	if (nouveau_atomic)
 -- 
 2.45.1
 
