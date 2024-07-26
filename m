@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC3DD5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3531D5B15B
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41DAC10EB5F;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2825710EAB5;
+	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=aaront.org header.i=@aaront.org header.b="dqoXjpFe";
-	dkim=pass (2048-bit key; secure) header.d=aaront.org header.i=@aaront.org header.b="v/BVgkC3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LBc2/Das";
 	dkim-atps=neutral
-X-Greylist: delayed 436 seconds by postgrey-1.36 at gabe;
- Thu, 03 Jul 2025 21:27:29 UTC
-Received: from smtp-out0.aaront.org (smtp-out0.aaront.org [52.10.12.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E35710E8F5;
- Thu,  3 Jul 2025 21:27:29 +0000 (UTC)
-Received: from smtp-send0.aaront.org (localhost [IPv6:::1])
- by smtp-out0.aaront.org (Postfix) with ESMTP id 4bY8mq5CtwzMY;
- Thu,  3 Jul 2025 21:20:11 +0000 (UTC)
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/simple; d=aaront.org;
- h=from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding; s=3r7feyyp; bh=/kZmNYWZNOTJQa4opCPhE
- 9MeAHI82FTFippa+nVrA1o=; b=dqoXjpFePZxdEULpDnRSc1iIU4UTydj/TLfKH
- HPMBaqlkHTLVMC3dGVYex9NVU6iBEYzQmXt8W7LxEMeYThhAQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aaront.org; h=
- from:to:cc:subject:date:message-id:mime-version
- :content-transfer-encoding; s=4x7dsrm2; bh=/kZmNYWZNOTJQa4opCPhE
- 9MeAHI82FTFippa+nVrA1o=; b=v/BVgkC3yRTStqMBR2f8EZeF/HuMKVSqzUfqb
- HxVf5nKI7XyG5CgmhaI4PA6+MoQIVykqJYaxMC4e9JYhTBMI8Oh9/3O1B3vQAJzA
- yT2qo3NmNXZx/dWD34nULC8n6maD5SQR/xGNsh5iNgOJIrUxOV2McxS++VvkUKhq
- dUDyj0q+yqm1NV4nNraI9k9HuU/OO/G1hgnJsho3gpx3WQRKYpNqNhP26Cf+J6UW
- ZACEQtJm0eJV4qEn5NmRynCJAFU8SnrjpamGAqpqgz6HEktS8gABBh8nvkeNHtqe
- icIBqKWKHm0g67l8+0EPGXIG9g2CgVUc+/O3lNR0i3LQ2J98w==
-Received: by smtp-send0.aaront.org (Postfix) id 4bY8mq323rzJm;
- Thu,  3 Jul 2025 21:20:11 +0000 (UTC)
-From: Aaron Thompson <dev@aaront.org>
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Timur Tabi <ttabi@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Aaron Thompson <dev@aaront.org>,
- stable@vger.kernel.org
-Subject: [PATCH] drm/nouveau: Do not fail module init on debugfs errors
-Date: Thu,  3 Jul 2025 21:19:49 +0000
-Message-Id: <20250703211949.9916-1-dev@aaront.org>
-X-Mailer: git-send-email 2.39.5
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4CDBE10E104
+ for <nouveau@lists.freedesktop.org>; Fri, 26 Jul 2024 15:41:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 909776181E;
+ Fri, 26 Jul 2024 15:41:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C8AEC32782;
+ Fri, 26 Jul 2024 15:41:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1722008469;
+ bh=LMzbVZA4QYawYf4BRRlbZ4n/Y3AGIuAifB0ECz0TYWk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=LBc2/DasYPuibayilf6QlhnErzKO11OVZA6Cj6XW5Zh1XYv1H9ou/JyO2aufIJWar
+ YM8RKJ5XFYhWe0/yZzZyYt3/mZiOSTfI39iBtRxAKlyGNCke0G5yz8oSnJO1ptp5/l
+ 0oX+wMTkDQzyffJbyfV3aTFILTsdxWEuRUrZ8bS2KHWeO+FFKnUbVLfRxl3HJ/nruO
+ l7M8CuvHClUyl7hm/UtbXlsQp7//3PBOQkrxTk0sTFmYDMssP34ftyO/C/cY5asYKI
+ CpYdPSfcQ+A162eBwKklspKpy4IcjWpUwi8Sq9lH7m+2TiVbNoYh0L+QFvFzCxRNdj
+ ZtuHxIFUiuLZw==
+Date: Fri, 26 Jul 2024 17:41:05 +0200
+From: Danilo Krummrich <dakr@kernel.org>
+To: Ben Skeggs <bskeggs@nvidia.com>
+Cc: nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v2 02/37] drm/nouveau: handle pci/tegra drm_dev_{alloc,
+ register} from common code
+Message-ID: <ZqPDkZ2t5MjXX4Sx@cassiopeiae>
+References: <20240704183721.25778-1-bskeggs@nvidia.com>
+ <20240704183721.25778-3-bskeggs@nvidia.com>
+ <Zo1UP-aapSyf2Rnj@pollux>
+ <e67e0c36-5c21-4f37-b489-78ec45298c4e@nvidia.com>
+ <ZppJuiWfgfkEKeCH@pollux>
+ <9760d7df-dfbf-478e-9b0e-ddc7768b8de1@nvidia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+In-Reply-To: <9760d7df-dfbf-478e-9b0e-ddc7768b8de1@nvidia.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,95 +63,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Aaron Thompson <dev@aaront.org>
+On Fri, Jul 26, 2024 at 02:27:53PM +1000, Ben Skeggs wrote:
+> > > > > +
+> > > > > +static struct nouveau_drm *
+> > > > > +nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *parent,
+> > > > > +		       struct nvkm_device *device)
+> > > > > +{
+> > > > > +	struct nouveau_drm *drm;
+> > > > > +	int ret;
+> > > > > +
+> > > > > +	drm = kzalloc(sizeof(*drm), GFP_KERNEL);
+> > > > > +	if (!drm)
+> > > > > +		return ERR_PTR(-ENOMEM);
+> > > > > +
+> > > > > +	drm->dev = drm_dev_alloc(drm_driver, parent);
+> > > > Since you're reworking this anyways, can we switch to devm_drm_dev_alloc()?
+> > > > 
+> > > > This also gets us rid of nouveau_drm_device_del().
+> > > No, we can't.  I originally had this change as a cleanup patch in the series
+> > > I posted implementing aux bus support.  However it turns out that in order
+> > > to avoid breaking udev etc, we can't use the aux device as parent of the drm
+> > Can you please expand a bit on what was breaking?
+> 
+> Sorry, I meant to say PRIME, not udev.  The device selection logic ties the
+> DRM device back to its sysfs node, and doesn't understand the auxiliary
+> bus.  So, if nouveau were to use its auxiliary device as parent of the DRM
+> device, PRIME breaks.
 
-If CONFIG_DEBUG_FS is enabled, nouveau_drm_init() returns an error if it
-fails to create the "nouveau" directory in debugfs. One case where that
-will happen is when debugfs access is restricted by
-CONFIG_DEBUG_FS_ALLOW_NONE or by the boot parameter debugfs=off, which
-cause the debugfs APIs to return -EPERM.
+The Vulkan device selector stuff looks like it should mostly work.
 
-So just ignore errors from debugfs. Note that nouveau_debugfs_root may
-be an error now, but that is a standard pattern for debugfs. From
-include/linux/debugfs.h:
+However, I guess you refer to the loader stuff in Mesa that uses
+drmGetDevices2() from libdrm? This stuff indeed whitelists busses it accepts to
+report DRM device from:
 
-"NOTE: it's expected that most callers should _ignore_ the errors
-returned by this function. Other debugfs functions handle the fact that
-the "dentry" passed to them could be an error and they don't crash in
-that case. Drivers should generally work fine even if debugfs fails to
-init anyway."
+	{ "/pci", DRM_BUS_PCI },
+	{ "/usb", DRM_BUS_USB },
+	{ "/platform", DRM_BUS_PLATFORM },
+	{ "/spi", DRM_BUS_PLATFORM },
+	{ "/host1x", DRM_BUS_HOST1X },
+	{ "/virtio", DRM_BUS_VIRTIO },
 
-Fixes: 97118a1816d2 ("drm/nouveau: create module debugfs root")
-Cc: stable@vger.kernel.org
-Signed-off-by: Aaron Thompson <dev@aaront.org>
----
- drivers/gpu/drm/nouveau/nouveau_debugfs.c | 6 +-----
- drivers/gpu/drm/nouveau/nouveau_debugfs.h | 5 ++---
- drivers/gpu/drm/nouveau/nouveau_drm.c     | 4 +---
- 3 files changed, 4 insertions(+), 11 deletions(-)
+Not a big deal to just add it for a new driver, but obviously we can't just do
+this for an existing one.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-index 200e65a7cefc..c7869a639bef 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
-@@ -314,14 +314,10 @@ nouveau_debugfs_fini(struct nouveau_drm *drm)
- 	drm->debugfs = NULL;
- }
- 
--int
-+void
- nouveau_module_debugfs_init(void)
- {
- 	nouveau_debugfs_root = debugfs_create_dir("nouveau", NULL);
--	if (IS_ERR(nouveau_debugfs_root))
--		return PTR_ERR(nouveau_debugfs_root);
--
--	return 0;
- }
- 
- void
-diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.h b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
-index b7617b344ee2..d05ed0e641c4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_debugfs.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
-@@ -24,7 +24,7 @@ extern void nouveau_debugfs_fini(struct nouveau_drm *);
- 
- extern struct dentry *nouveau_debugfs_root;
- 
--int  nouveau_module_debugfs_init(void);
-+void nouveau_module_debugfs_init(void);
- void nouveau_module_debugfs_fini(void);
- #else
- static inline void
-@@ -42,10 +42,9 @@ nouveau_debugfs_fini(struct nouveau_drm *drm)
- {
- }
- 
--static inline int
-+static inline void
- nouveau_module_debugfs_init(void)
- {
--	return 0;
- }
- 
- static inline void
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 0c82a63cd49d..1527b801f013 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1461,9 +1461,7 @@ nouveau_drm_init(void)
- 	if (!nouveau_modeset)
- 		return 0;
- 
--	ret = nouveau_module_debugfs_init();
--	if (ret)
--		return ret;
-+	nouveau_module_debugfs_init();
- 
- #ifdef CONFIG_NOUVEAU_PLATFORM_DRIVER
- 	platform_driver_register(&nouveau_platform_driver);
+> Fortunately it didn't turn out to be necessary, and we
+> can happily probe() against the auxiliary device and still use the PCI
+> device as the DRM device's parent.
 
-base-commit: d0b3b7b22dfa1f4b515fd3a295b3fd958f9e81af
--- 
-2.39.5
+At a first glance, I guess this should work. But, before we introduce
+workarounds like this one and add even more complexity, I wonder what's the
+benefit of doing this for Nouveau in the first place? I think we agreed to this
+split for Nova, for the reasons discussed in [1].
 
+[1] https://lore.kernel.org/dri-devel/20240613170211.88779-1-bskeggs@nvidia.com/
+
+> 
+> > 
+> > > device and instead have to continue passing the pci/platform device as we do
+> > > now.
+> > > 
+> > > Using devm_drm_dev_alloc() with the pci device as parent would tie the
+> > > lifetime of the drm device to the pci device, which is owned by nvkm (after
+> > How does this tie the lifetime of the drm device to the pci device? It's the
+> > other way around, the drm device takes a reference of its parent (i.e. the pci
+> > device).
+> > 
+> > I don't think there's anything wrong with that.
+> 
+> My understanding is that devres will cleanup allocations when the driver
+> detaches from the device.
+
+Right, I think I took that too literally.
+
+The lifetime of the DRM device (or more precisely one of its references) is
+bound to the binding between the parent device and its corresponding driver.
+
+But the lifetime of the parent device itself is bound to the DRM device.
+
+So, yes this doesn't work, and proves the point that initializing the DRM device
+with the parent's parent is just a workaround.
+
+> With the auxdev changes, it's *NVKM* that's
+> attached to the PCI device, not the DRM driver (which is attached to an
+> auxiliary device instead).
+> 
+> This means that the devm_drm_dev_init_release() won't be called when the DRM
+> driver detaches from its auxiliary device as it should, but when NVKM
+> detaches from the PCI device, which isn't the most obvious and could lead to
+> confusion.
+> 
+> It also entirely blows up in the split module case as nouveau.ko is unloaded
+> already by the time NVKM detaches and drm_dev_put() gets called.
+> 
+> > 
+> > > the auxdev series).  We could look at changing devm_drm_dev_alloc() of
+> > > course, but I think that's best left until later.
+> > I don't think that this is necessary.
