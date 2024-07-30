@@ -4,49 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB9A4D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8453CD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC3DC10EAA5;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4280110E0DC;
- Wed, 26 Jun 2024 01:30:27 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-05 (Coremail) with SMTP id zQCowADnjRAnb3tmk0nREg--.43249S2;
- Wed, 26 Jun 2024 09:30:23 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>
-Subject: [PATCH] drm/nouveau: fix null pointer dereference in
- nouveau_connector_get_modes
-Date: Wed, 26 Jun 2024 09:30:13 +0800
-Message-Id: <20240626013013.2765395-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8888110EAA7;
+	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="gE7m1eTi";
+	dkim-atps=neutral
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E92E810E073
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Jul 2024 14:44:29 +0000 (UTC)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46U8v0fb029572;
+ Tue, 30 Jul 2024 14:43:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ l/pN3Orktibi2Gx1TE8d0CGoiC4jjvEU3fPqJwbBNB8=; b=gE7m1eTiqLRqrVMm
+ u6uewvmNoudUNhSl7Lckvaa4rciwaYkuwoL7WsF+9+ch5/SDxLks2+9kwres0+s2
+ qLEoJjfnASkjSsUd3f4FgPWjqC8Cv70k+2MfF5J06VORF2fveT0RCZ3xlGoDzgGP
+ OXGWkI4tQ9zOIrbQ/aMunwsqHwDqrHx5AQ2pjGMDKacR5nXgqE8XwwHb9YGYbO31
+ N4wdt4ayQKmFbUjtR1RfD5b0gwY5I2fb05c8eAPA7tuQv/+SzUCRN4ciq1iDTFI2
+ US40tLyRytR4tXHWyTCZyLV2DFlQxMMLTBrGLmZMQxLEr4PZB0+gmNJsHCxgHH/x
+ bYpmnQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
+ [129.46.96.20])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40pw4411vh-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 30 Jul 2024 14:43:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
+ [10.47.209.196])
+ by NALASPPMTA04.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
+ 46UEhNvw031087
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 30 Jul 2024 14:43:23 GMT
+Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Jul
+ 2024 07:43:23 -0700
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Date: Tue, 30 Jul 2024 07:43:21 -0700
+Subject: [PATCH 4/5] fsi: add missing MODULE_DESCRIPTION() macros
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowADnjRAnb3tmk0nREg--.43249S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw1xZw1xKrW7WF1Utr4xWFg_yoWfZFc_uF
- 1kZasrGrs093WvyrsrAw48AF9F9w1UZF4kZFnIqF9avrZ2qw1SkryUtryYvFy7Xa48WryD
- tayq9as8Crn2gjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb4kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
- Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r4UJV
- WxJr1lnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
- F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r
- 4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
- 648v4I1l42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67
- AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
- rxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14
- v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8
- JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUFYFADU
- UUU
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20240730-module_description_orphans-v1-4-7094088076c8@quicinc.com>
+References: <20240730-module_description_orphans-v1-0-7094088076c8@quicinc.com>
+In-Reply-To: <20240730-module_description_orphans-v1-0-7094088076c8@quicinc.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andrew Morton
+ <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, Russell King
+ <linux@armlinux.org.uk>, Steven Rostedt <rostedt@goodmis.org>, "Masami
+ Hiramatsu" <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>,
+ "Pekka Paalanen" <ppaalanen@gmail.com>, Dave Hansen
+ <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter
+ Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo
+ Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>, <x86@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, "Alexandre Torgue"
+ <alexandre.torgue@foss.st.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Michael Ellerman
+ <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy
+ <christophe.leroy@csgroup.eu>,
+ Naveen N Rao <naveen@kernel.org>, Jeremy Kerr <jk@ozlabs.org>,
+ Joel Stanley <joel@jms.id.au>, Alistar Popple <alistair@popple.id.au>,
+ Eddie James <eajames@linux.ibm.com>, Andrew Jeffery
+ <andrew@codeconstruct.com.au>, Will Deacon <will@kernel.org>, Waiman Long
+ <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>,
+ <linux-stm32@st-md-mailman.stormreply.com>, <linux-pm@vger.kernel.org>,
+ <linuxppc-dev@lists.ozlabs.org>, <linux-fsi@lists.ozlabs.org>,
+ <linux-aspeed@lists.ozlabs.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: b4 0.14.0
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
+ signatures=585085
+X-Proofpoint-GUID: oE1-ugv7m5vwi_BkglOwMxdiOFX5wijr
+X-Proofpoint-ORIG-GUID: oE1-ugv7m5vwi_BkglOwMxdiOFX5wijr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
+ definitions=2024-07-30_12,2024-07-30_01,2024-05-17_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 mlxscore=0
+ priorityscore=1501 adultscore=0 mlxlogscore=999 clxscore=1015
+ impostorscore=0 spamscore=0 lowpriorityscore=0 bulkscore=0 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2407110000 definitions=main-2407300100
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,28 +111,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nouveau_connector_get_modes(), the return value of drm_mode_duplicate()
-is assigned to mode, which will lead to a possible NULL pointer
-dereference on failure of drm_mode_duplicate(). Add a check to avoid npd.
+make allmodconfig && make W=1 C=1 reports:
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-core.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-hub.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-aspeed.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-gpio.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-master-ast-cf.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fsi/fsi-scom.o
 
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+Add the missing invocations of the MODULE_DESCRIPTION() macro, and fix the
+copy/paste of the module description comment in fsi-master-ast-cf.c.
+
+Reviewed-by: Eddie James <eajames@linux.ibm.com>
+Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_connector.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/fsi/fsi-core.c          | 1 +
+ drivers/fsi/fsi-master-aspeed.c | 1 +
+ drivers/fsi/fsi-master-ast-cf.c | 3 ++-
+ drivers/fsi/fsi-master-gpio.c   | 1 +
+ drivers/fsi/fsi-master-hub.c    | 1 +
+ drivers/fsi/fsi-scom.c          | 1 +
+ 6 files changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 856b3ef5edb8..010eed56b14d 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1001,6 +1001,8 @@ nouveau_connector_get_modes(struct drm_connector *connector)
- 		struct drm_display_mode *mode;
+diff --git a/drivers/fsi/fsi-core.c b/drivers/fsi/fsi-core.c
+index 46ac5a8beab7..e2e1e9df6115 100644
+--- a/drivers/fsi/fsi-core.c
++++ b/drivers/fsi/fsi-core.c
+@@ -1444,5 +1444,6 @@ static void fsi_exit(void)
+ }
+ module_exit(fsi_exit);
+ module_param(discard_errors, int, 0664);
++MODULE_DESCRIPTION("FSI core driver");
+ MODULE_LICENSE("GPL");
+ MODULE_PARM_DESC(discard_errors, "Don't invoke error handling on bus accesses");
+diff --git a/drivers/fsi/fsi-master-aspeed.c b/drivers/fsi/fsi-master-aspeed.c
+index b0b624c3717b..6f5e1bdf7e40 100644
+--- a/drivers/fsi/fsi-master-aspeed.c
++++ b/drivers/fsi/fsi-master-aspeed.c
+@@ -670,4 +670,5 @@ static struct platform_driver fsi_master_aspeed_driver = {
+ };
  
- 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
-+		if (!mode)
-+			return -ENOMEM;
- 		drm_mode_probed_add(connector, mode);
- 		ret = 1;
- 	}
+ module_platform_driver(fsi_master_aspeed_driver);
++MODULE_DESCRIPTION("FSI master driver for AST2600");
+ MODULE_LICENSE("GPL");
+diff --git a/drivers/fsi/fsi-master-ast-cf.c b/drivers/fsi/fsi-master-ast-cf.c
+index f8c776ce1b56..a4c37ff8edd6 100644
+--- a/drivers/fsi/fsi-master-ast-cf.c
++++ b/drivers/fsi/fsi-master-ast-cf.c
+@@ -1,7 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0+
+ // Copyright 2018 IBM Corp
+ /*
+- * A FSI master controller, using a simple GPIO bit-banging interface
++ * A FSI master based on Aspeed ColdFire coprocessor
+  */
+ 
+ #include <linux/crc4.h>
+@@ -1438,5 +1438,6 @@ static struct platform_driver fsi_master_acf = {
+ };
+ 
+ module_platform_driver(fsi_master_acf);
++MODULE_DESCRIPTION("A FSI master based on Aspeed ColdFire coprocessor");
+ MODULE_LICENSE("GPL");
+ MODULE_FIRMWARE(FW_FILE_NAME);
+diff --git a/drivers/fsi/fsi-master-gpio.c b/drivers/fsi/fsi-master-gpio.c
+index 10fc344b6b22..f761344f4873 100644
+--- a/drivers/fsi/fsi-master-gpio.c
++++ b/drivers/fsi/fsi-master-gpio.c
+@@ -892,4 +892,5 @@ static struct platform_driver fsi_master_gpio_driver = {
+ };
+ 
+ module_platform_driver(fsi_master_gpio_driver);
++MODULE_DESCRIPTION("A FSI master controller, using a simple GPIO bit-banging interface");
+ MODULE_LICENSE("GPL");
+diff --git a/drivers/fsi/fsi-master-hub.c b/drivers/fsi/fsi-master-hub.c
+index 6d8b6e8854e5..6568fed7db3c 100644
+--- a/drivers/fsi/fsi-master-hub.c
++++ b/drivers/fsi/fsi-master-hub.c
+@@ -295,4 +295,5 @@ static struct fsi_driver hub_master_driver = {
+ };
+ 
+ module_fsi_driver(hub_master_driver);
++MODULE_DESCRIPTION("FSI hub master driver");
+ MODULE_LICENSE("GPL");
+diff --git a/drivers/fsi/fsi-scom.c b/drivers/fsi/fsi-scom.c
+index 61dbda9dbe2b..411ddc018cd8 100644
+--- a/drivers/fsi/fsi-scom.c
++++ b/drivers/fsi/fsi-scom.c
+@@ -625,4 +625,5 @@ static void scom_exit(void)
+ 
+ module_init(scom_init);
+ module_exit(scom_exit);
++MODULE_DESCRIPTION("SCOM FSI Client device driver");
+ MODULE_LICENSE("GPL");
+
 -- 
-2.25.1
+2.42.0
 
