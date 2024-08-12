@@ -4,99 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C815C3DA7F
-	for <nouveau@archiver.kernel.org>; Mon, 12 Aug 2024 08:30:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40E2EC531DC
+	for <nouveau@archiver.kernel.org>; Mon, 12 Aug 2024 08:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6209A10E0BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA81810E109;
 	Mon, 12 Aug 2024 08:30:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ToePF8Wb";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="FatAsAcr";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ToePF8Wb";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="FatAsAcr";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="LnLq8Cpe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="D3Sr95y7";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="LnLq8Cpe";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="D3Sr95y7";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DAA410E08A;
- Mon, 12 Aug 2024 08:30:07 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11B0510E08A;
+ Mon, 12 Aug 2024 08:30:08 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id A81B7224D3;
- Mon, 12 Aug 2024 08:30:05 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id C302920240;
+ Mon, 12 Aug 2024 08:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723451405; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=eFWLvJ51hGSvQbjiZp7pZRxv6CU0uQ91PVw3FS0sW60=;
- b=ToePF8WbFkuid/kJPBtFShG2AZnP5VJpKmQwp78gD+fTisj8Vnz7PXDX9JqYUPbUkI9JWl
- KP5x/e/S0q1p2SMkTeIqM8hfoDEBGaRCg/e5md1WQfz9Ad7W9xCson3W3kQseCxanK7Shi
- pQ5U/2kK/KyytdcucUHgcYxiqffsRd0=
+ t=1723451406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=t87THOtseNvsM7YLJKHqHZ2Csmi8+la9wFqDAbvhcl0=;
+ b=LnLq8CpepIe4+XRLOIF8k7sur2CJ3Rv2pK0xpmVatsmYkEa9JLkDkxb7gKa0HvlNLfHR7O
+ nV0m+K/Wd/PU5WKTW7qikx0LKG7x9VwZjtbImrj3vE3GWj2YJ6SRimFnJmfkSGfbInnp5g
+ YIbDgzgffM2tC6t2sOZk8tpBSM/Oytc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723451405;
+ s=susede2_ed25519; t=1723451406;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=eFWLvJ51hGSvQbjiZp7pZRxv6CU0uQ91PVw3FS0sW60=;
- b=FatAsAcr5hCjlwQJrtl61YPJvI4Siq2ckiwK9hYdY50Cq20pMpYpb2qsBTvUCECBwksnAN
- NWVXWz7CutWKc/CA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ToePF8Wb;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=FatAsAcr
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=t87THOtseNvsM7YLJKHqHZ2Csmi8+la9wFqDAbvhcl0=;
+ b=D3Sr95y7QPNDVYBkRlczhb7WAHuS+8thNECVTk2zkSkW/x55iSLbtPrVErNL3WSqzaEQHV
+ eZ30+cWlDszixpCA==
+Authentication-Results: smtp-out2.suse.de;
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723451405; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=eFWLvJ51hGSvQbjiZp7pZRxv6CU0uQ91PVw3FS0sW60=;
- b=ToePF8WbFkuid/kJPBtFShG2AZnP5VJpKmQwp78gD+fTisj8Vnz7PXDX9JqYUPbUkI9JWl
- KP5x/e/S0q1p2SMkTeIqM8hfoDEBGaRCg/e5md1WQfz9Ad7W9xCson3W3kQseCxanK7Shi
- pQ5U/2kK/KyytdcucUHgcYxiqffsRd0=
+ t=1723451406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=t87THOtseNvsM7YLJKHqHZ2Csmi8+la9wFqDAbvhcl0=;
+ b=LnLq8CpepIe4+XRLOIF8k7sur2CJ3Rv2pK0xpmVatsmYkEa9JLkDkxb7gKa0HvlNLfHR7O
+ nV0m+K/Wd/PU5WKTW7qikx0LKG7x9VwZjtbImrj3vE3GWj2YJ6SRimFnJmfkSGfbInnp5g
+ YIbDgzgffM2tC6t2sOZk8tpBSM/Oytc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723451405;
+ s=susede2_ed25519; t=1723451406;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=eFWLvJ51hGSvQbjiZp7pZRxv6CU0uQ91PVw3FS0sW60=;
- b=FatAsAcr5hCjlwQJrtl61YPJvI4Siq2ckiwK9hYdY50Cq20pMpYpb2qsBTvUCECBwksnAN
- NWVXWz7CutWKc/CA==
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=t87THOtseNvsM7YLJKHqHZ2Csmi8+la9wFqDAbvhcl0=;
+ b=D3Sr95y7QPNDVYBkRlczhb7WAHuS+8thNECVTk2zkSkW/x55iSLbtPrVErNL3WSqzaEQHV
+ eZ30+cWlDszixpCA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 51C5413A23;
- Mon, 12 Aug 2024 08:30:05 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6F13213A3D;
+ Mon, 12 Aug 2024 08:30:06 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id uQHFEg3IuWZpHwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 12 Aug 2024 08:30:05 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id +MTxGQ7IuWZpHwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 12 Aug 2024 08:30:06 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
  airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 0/9] drm/{amdgpu,nouveau}: Remove old fbdev hooks
-Date: Mon, 12 Aug 2024 10:28:21 +0200
-Message-ID: <20240812083000.337744-1-tzimmermann@suse.de>
+Subject: [PATCH v2 3/9] drm/nouveau: Do not set struct drm_driver.lastclose
+Date: Mon, 12 Aug 2024 10:28:24 +0200
+Message-ID: <20240812083000.337744-4-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20240812083000.337744-1-tzimmermann@suse.de>
+References: <20240812083000.337744-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: A81B7224D3
-X-Spamd-Result: default: False [-5.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- DWL_DNSWL_MED(-2.00)[suse.de:dkim];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
- R_MISSING_CHARSET(0.50)[];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+X-Spamd-Result: default: False [0.20 / 50.00]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[14]; RCVD_TLS_ALL(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; MIME_TRACE(0.00)[0:+];
+ RCPT_COUNT_TWELVE(0.00)[14];
  FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,redhat.com];
- RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ ARC_NA(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+ FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,49 +112,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-After switching all drivers' fbdev emulation to DRM client, the
-old fbdev hooks are now obsolete. Only amgdpu and nouveau still use
-them in a several places. Remove the hooks from the drivers and the
-DRM core.
-
-The series would ideally be merged at once via drm-misc-next.
+Remove the implementation of struct drm_driver.lastclose. The hook
+was only necessary before in-kernel DRM clients existed, but is now
+obsolete. The code in nouveau_vga_lastclose() is performed by
+drm_lastclose().
 
 v2:
-- call vga_switcheroo_process_delayed_switch() from
-  drm_lastclose() (Sima)
-- documentation updates
+- update commit description
 
-Thomas Zimmermann (9):
-  drm: Do delayed switcheroo in drm_lastclose()
-  drm/amdgpu: Do not set struct drm_driver.lastclose
-  drm/nouveau: Do not set struct drm_driver.lastclose
-  drm/nouveau: Do not set struct
-    drm_mode_config_funcs.output_poll_changed
-  drm/nouveau: Implement switcheroo reprobe with
-    drm_client_dev_hotplug()
-  drm/fbdev-helper: Update documentation on obsolete callbacks
-  drm/fbdev-helper: Remove drm_fb_helper_output_poll_changed()
-  drm: Remove struct drm_driver.lastclose
-  drm: Remove struct drm_mode_config_funcs.output_poll_changed
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+ drivers/gpu/drm/nouveau/nouveau_vga.c | 7 -------
+ drivers/gpu/drm/nouveau/nouveau_vga.h | 1 -
+ 3 files changed, 9 deletions(-)
 
- drivers/gpu/drm/amd/amdgpu/amdgpu.h       |  1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c   |  2 --
- drivers/gpu/drm/amd/amdgpu/amdgpu_kms.c   | 17 -----------
- drivers/gpu/drm/drm_fb_helper.c           | 37 +++++------------------
- drivers/gpu/drm/drm_file.c                | 32 ++++++--------------
- drivers/gpu/drm/drm_internal.h            |  1 -
- drivers/gpu/drm/drm_probe_helper.c        | 10 +-----
- drivers/gpu/drm/nouveau/dispnv50/disp.c   |  1 -
- drivers/gpu/drm/nouveau/nouveau_display.c |  1 -
- drivers/gpu/drm/nouveau/nouveau_drm.c     |  1 -
- drivers/gpu/drm/nouveau/nouveau_vga.c     | 10 ++----
- drivers/gpu/drm/nouveau/nouveau_vga.h     |  1 -
- drivers/gpu/vga/vga_switcheroo.c          |  3 +-
- include/drm/drm_drv.h                     | 28 -----------------
- include/drm/drm_fb_helper.h               |  6 ----
- include/drm/drm_mode_config.h             | 16 ----------
- 16 files changed, 21 insertions(+), 146 deletions(-)
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index ac7c60fb14d3..4a9a9b9c3935 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1303,7 +1303,6 @@ driver_stub = {
+ 			   DRIVER_RENDER,
+ 	.open = nouveau_drm_open,
+ 	.postclose = nouveau_drm_postclose,
+-	.lastclose = nouveau_vga_lastclose,
+ 
+ #if defined(CONFIG_DEBUG_FS)
+ 	.debugfs_init = nouveau_drm_debugfs_init,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
+index 2525e08938b3..ee637f1fe03d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.c
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
+@@ -127,10 +127,3 @@ nouveau_vga_fini(struct nouveau_drm *drm)
+ 	if (runtime && nouveau_is_v1_dsm() && !nouveau_is_optimus())
+ 		vga_switcheroo_fini_domain_pm_ops(drm->dev->dev);
+ }
+-
+-
+-void
+-nouveau_vga_lastclose(struct drm_device *dev)
+-{
+-	vga_switcheroo_process_delayed_switch();
+-}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.h b/drivers/gpu/drm/nouveau/nouveau_vga.h
+index 951a83f984dd..63be415d2a44 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_vga.h
++++ b/drivers/gpu/drm/nouveau/nouveau_vga.h
+@@ -4,6 +4,5 @@
+ 
+ void nouveau_vga_init(struct nouveau_drm *);
+ void nouveau_vga_fini(struct nouveau_drm *);
+-void nouveau_vga_lastclose(struct drm_device *dev);
+ 
+ #endif
 -- 
 2.46.0
 
