@@ -4,66 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F7D8C52D7D
-	for <nouveau@archiver.kernel.org>; Mon, 12 Aug 2024 07:14:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6083C3DA7F
+	for <nouveau@archiver.kernel.org>; Mon, 12 Aug 2024 08:30:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC0B910E102;
-	Mon, 12 Aug 2024 07:14:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B484910E0AB;
+	Mon, 12 Aug 2024 08:30:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DqvqL9c7";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="os1lpwWW";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="K0AbqOE6";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="os1lpwWW";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="K0AbqOE6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F39CB10E101;
- Mon, 12 Aug 2024 07:14:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1723446864; x=1754982864;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=nLYeFCmV2sqj4+yCU6U1t0LxOTa1hw9jyckG6WHjQvg=;
- b=DqvqL9c7bVT8n41u/UjrSOHj79S6IxA4cMPa2HVxKv8yRZsS1DCYKA0t
- vc8ferCqGO1qzNCBQ+dhVBkeiAbs6Lfs5PEZPTKc/KPA4JMg3trJj4Yg6
- t9VXlsi6NTXaNc1RmsL47o94FmlQE92LM+YijjZHQKqk8Xf5r8iEkk6SZ
- 98rKSIXrv72sptOAJf2HulgmjzrOa2BCqWPFFQzM3JxLBRGXkh/+qod0J
- LLLgrVQRrsCa7Lio9xwx8AyLT8xlDLfL6XFNj651TSNg18lCFRIMnQ8Lj
- IZbCJrtYdiJGz1fthUI1LWYz3QDuIbmBrICUx3rI1rFoEbSqPH6WQ96/I Q==;
-X-CSE-ConnectionGUID: w72YHw9oRB+6fOq/LJRMGg==
-X-CSE-MsgGUID: 0eKasuhXTS+kufvFY1B0og==
-X-IronPort-AV: E=McAfee;i="6700,10204,11161"; a="21711597"
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="21711597"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Aug 2024 00:14:23 -0700
-X-CSE-ConnectionGUID: gDxvwbtUQGqyr6hrki+oVA==
-X-CSE-MsgGUID: EJqZOrj4S8WKg9ArWC+AEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.09,282,1716274800"; d="scan'208";a="57823841"
-Received: from allen-box.sh.intel.com ([10.239.159.127])
- by fmviesa007.fm.intel.com with ESMTP; 12 Aug 2024 00:14:17 -0700
-From: Lu Baolu <baolu.lu@linux.intel.com>
-To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Sandy Huang <hjc@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Mikko Perttunen <mperttunen@nvidia.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-media@vger.kernel.org,
- iommu@lists.linux.dev, linux-kernel@vger.kernel.org,
- Lu Baolu <baolu.lu@linux.intel.com>
-Subject: [PATCH 3/3] drm/tegra: Remove call to iommu_domain_alloc()
-Date: Mon, 12 Aug 2024 15:10:34 +0800
-Message-Id: <20240812071034.9443-3-baolu.lu@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240812071034.9443-1-baolu.lu@linux.intel.com>
-References: <20240812071034.9443-1-baolu.lu@linux.intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6913110E09E;
+ Mon, 12 Aug 2024 08:30:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 0E066224D6;
+ Mon, 12 Aug 2024 08:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1723451406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dj52857EH4jhKBKxdCq/oW6LTdYhB00nsx3FYD603H0=;
+ b=os1lpwWWLOpElrhs2USKUfA1lPiBFgGEL7u4IRT6cyvt0m75zbQh4hn7ogFtAR+2PjO45/
+ N7s0CZ6LIWD7PRtEsZ3r0AJbXoAmLxxSb5LfR/j1tNlfSYquO6koLqrPHfVoQNoarFaAcM
+ uMdW+S9o/7AodUGxhjxV+pk8j49BeU8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1723451406;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dj52857EH4jhKBKxdCq/oW6LTdYhB00nsx3FYD603H0=;
+ b=K0AbqOE6J/00ovYbkPRt+NQkBQsFnqGlTRxd+nrvc6Jk4Ey50cWufes2CkvkI5zJpSSuuy
+ 1D3/ebwaVmTaGHCg==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=os1lpwWW;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=K0AbqOE6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1723451406; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dj52857EH4jhKBKxdCq/oW6LTdYhB00nsx3FYD603H0=;
+ b=os1lpwWWLOpElrhs2USKUfA1lPiBFgGEL7u4IRT6cyvt0m75zbQh4hn7ogFtAR+2PjO45/
+ N7s0CZ6LIWD7PRtEsZ3r0AJbXoAmLxxSb5LfR/j1tNlfSYquO6koLqrPHfVoQNoarFaAcM
+ uMdW+S9o/7AodUGxhjxV+pk8j49BeU8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1723451406;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Dj52857EH4jhKBKxdCq/oW6LTdYhB00nsx3FYD603H0=;
+ b=K0AbqOE6J/00ovYbkPRt+NQkBQsFnqGlTRxd+nrvc6Jk4Ey50cWufes2CkvkI5zJpSSuuy
+ 1D3/ebwaVmTaGHCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id ADC5813A3D;
+ Mon, 12 Aug 2024 08:30:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id MA0/KQ3IuWZpHwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 12 Aug 2024 08:30:05 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: alexander.deucher@amd.com, christian.koenig@amd.com, Xinhui.Pan@amd.com,
+ airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 1/9] drm: Do delayed switcheroo in drm_lastclose()
+Date: Mon, 12 Aug 2024 10:28:22 +0200
+Message-ID: <20240812083000.337744-2-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.46.0
+In-Reply-To: <20240812083000.337744-1-tzimmermann@suse.de>
+References: <20240812083000.337744-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-0.01 / 50.00]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ RCVD_TLS_ALL(0.00)[]; MIME_TRACE(0.00)[0:+];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCPT_COUNT_TWELVE(0.00)[14];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
+ FROM_HAS_DN(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ FREEMAIL_TO(0.00)[amd.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,redhat.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Spamd-Bar: /
+X-Rspamd-Queue-Id: 0E066224D6
+X-Rspamd-Action: no action
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,79 +120,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Commit <17de3f5fdd35> ("iommu: Retire bus ops") removes iommu ops from
-the bus structure. The iommu subsystem no longer relies on bus for
-operations. So iommu_domain_alloc() interface is no longer relevant.
+Amdgpu and nouveau call vga_switcheroo_process_delayed_switch() from
+their lastclose callbacks. Call it from drm_lastclose(), so that the
+driver functions can finally be removed. Only PCI devices with enabled
+switcheroo do the delayed switching. The call has no effect on other
+hardware.
 
-Normally, iommu_paging_domain_alloc() could be a replacement for
-iommu_domain_alloc() if the caller has the right device for IOMMU API
-use. Unfortunately, this is not the case for this driver.
+v2:
+- move change to drm_lastclose() (Sima)
+- update docs for vga_switcheroo_process_delayed_switch()
 
-Iterate the devices on the platform bus and find a suitable device
-whose device DMA is translated by an IOMMU. Then use this device to
-allocate an iommu domain. The iommu subsystem prevents domains
-allocated by one iommu driver from being attached to devices managed
-by any different iommu driver.
-
-Signed-off-by: Lu Baolu <baolu.lu@linux.intel.com>
-Link: https://lore.kernel.org/r/20240610085555.88197-20-baolu.lu@linux.intel.com
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/tegra/drm.c | 34 +++++++++++++++++++++++++---------
- 1 file changed, 25 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/drm_file.c       | 4 ++++
+ drivers/gpu/vga/vga_switcheroo.c | 3 +--
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-index 03d1c76aec2d..ee391f859992 100644
---- a/drivers/gpu/drm/tegra/drm.c
-+++ b/drivers/gpu/drm/tegra/drm.c
-@@ -1133,6 +1133,17 @@ static bool host1x_drm_wants_iommu(struct host1x_device *dev)
- 	return domain != NULL;
+diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+index 714e42b05108..513bef816ae9 100644
+--- a/drivers/gpu/drm/drm_file.c
++++ b/drivers/gpu/drm/drm_file.c
+@@ -38,6 +38,7 @@
+ #include <linux/pci.h>
+ #include <linux/poll.h>
+ #include <linux/slab.h>
++#include <linux/vga_switcheroo.h>
+ 
+ #include <drm/drm_client.h>
+ #include <drm/drm_drv.h>
+@@ -404,6 +405,9 @@ void drm_lastclose(struct drm_device * dev)
+ 	drm_dbg_core(dev, "driver lastclose completed\n");
+ 
+ 	drm_client_dev_restore(dev);
++
++	if (dev_is_pci(dev->dev))
++		vga_switcheroo_process_delayed_switch();
  }
  
-+static int iommu_mapped_device(struct device *dev, void *data)
-+{
-+	struct device **iommu_dev = data;
-+
-+	if (!device_iommu_mapped(dev))
-+		return 0;
-+
-+	*iommu_dev = dev;
-+	return 1;
-+}
-+
- static int host1x_drm_probe(struct host1x_device *dev)
- {
- 	struct tegra_drm *tegra;
-@@ -1149,16 +1160,21 @@ static int host1x_drm_probe(struct host1x_device *dev)
- 		goto put;
- 	}
- 
--	if (host1x_drm_wants_iommu(dev) && iommu_present(&platform_bus_type)) {
--		tegra->domain = iommu_domain_alloc(&platform_bus_type);
--		if (!tegra->domain) {
--			err = -ENOMEM;
--			goto free;
-+	if (host1x_drm_wants_iommu(dev)) {
-+		struct device *iommu_dev = NULL;
-+
-+		bus_for_each_dev(&platform_bus_type, NULL, &iommu_dev, iommu_mapped_device);
-+		if (iommu_dev) {
-+			tegra->domain = iommu_paging_domain_alloc(iommu_dev);
-+			if (IS_ERR(tegra->domain)) {
-+				err = PTR_ERR(tegra->domain);
-+				goto free;
-+			}
-+
-+			err = iova_cache_get();
-+			if (err < 0)
-+				goto domain;
- 		}
--
--		err = iova_cache_get();
--		if (err < 0)
--			goto domain;
- 	}
- 
- 	mutex_init(&tegra->clients_lock);
+ /**
+diff --git a/drivers/gpu/vga/vga_switcheroo.c b/drivers/gpu/vga/vga_switcheroo.c
+index 365e6ddbe90f..18f2c92beff8 100644
+--- a/drivers/gpu/vga/vga_switcheroo.c
++++ b/drivers/gpu/vga/vga_switcheroo.c
+@@ -926,8 +926,7 @@ static void vga_switcheroo_debugfs_init(struct vgasr_priv *priv)
+ /**
+  * vga_switcheroo_process_delayed_switch() - helper for delayed switching
+  *
+- * Process a delayed switch if one is pending. DRM drivers should call this
+- * from their ->lastclose callback.
++ * Process a delayed switch if one is pending.
+  *
+  * Return: 0 on success. -EINVAL if no delayed switch is pending, if the client
+  * has unregistered in the meantime or if there are other clients blocking the
 -- 
-2.34.1
+2.46.0
 
