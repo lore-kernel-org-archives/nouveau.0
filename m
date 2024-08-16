@@ -4,102 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8546CC5321E
-	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:57:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA1EBC5320E
+	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:57:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECEE10E74B;
-	Fri, 16 Aug 2024 12:54:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="lmiVuUci";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0ymbN2jG";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="lmiVuUci";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0ymbN2jG";
-	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4809510E6C2;
- Fri, 16 Aug 2024 12:54:33 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0383810E737;
+	Fri, 16 Aug 2024 12:54:41 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 830F210E6FC;
+ Fri, 16 Aug 2024 12:54:38 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id CB84D200B6;
- Fri, 16 Aug 2024 12:54:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723812871; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=C/DxjZ09bTmdyfc6lezSsxt9gat45ZdgpZFB4vyAPYM=;
- b=lmiVuUcidltGT0OjpiMYgQeyH9piFoAub3MSN7H+Slhdi2B04Y5RiPzTTXgu866MKeDfls
- rT3fz9AX6Qt+3HQEkt7R0I0rDr5iKBo8wClvsfRsDPEt3HuvnQYhjtczO/AU+Y+NPtywlu
- M3nK1vWrpyWHRcJNLb51+TZLJ/o0dQw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723812871;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=C/DxjZ09bTmdyfc6lezSsxt9gat45ZdgpZFB4vyAPYM=;
- b=0ymbN2jGRkt7FrVTtlAHKei12aLyF4eCdTv2d5pHww1eEBW4VBTSPUWFudI3quC3sBLDo4
- RyItosRP+5aAG5Bw==
-Authentication-Results: smtp-out2.suse.de;
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 35C3B22894;
+ Fri, 16 Aug 2024 12:54:37 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
 	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1723812871; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=C/DxjZ09bTmdyfc6lezSsxt9gat45ZdgpZFB4vyAPYM=;
- b=lmiVuUcidltGT0OjpiMYgQeyH9piFoAub3MSN7H+Slhdi2B04Y5RiPzTTXgu866MKeDfls
- rT3fz9AX6Qt+3HQEkt7R0I0rDr5iKBo8wClvsfRsDPEt3HuvnQYhjtczO/AU+Y+NPtywlu
- M3nK1vWrpyWHRcJNLb51+TZLJ/o0dQw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1723812871;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=C/DxjZ09bTmdyfc6lezSsxt9gat45ZdgpZFB4vyAPYM=;
- b=0ymbN2jGRkt7FrVTtlAHKei12aLyF4eCdTv2d5pHww1eEBW4VBTSPUWFudI3quC3sBLDo4
- RyItosRP+5aAG5Bw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 78FC213ACA;
- Fri, 16 Aug 2024 12:54:31 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D512913A2F;
+ Fri, 16 Aug 2024 12:54:36 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id QLU5HAdMv2bdbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:31 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id +InNMgxMv2bdbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:36 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Dave Airlie <airlied@redhat.com>, Sean Paul <sean@poorly.run>
-Subject: [PATCH 60/86] drm/udl: Run DRM default client setup
-Date: Fri, 16 Aug 2024 14:23:26 +0200
-Message-ID: <20240816125408.310253-61-tzimmermann@suse.de>
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>
+Subject: [PATCH 75/86] drm/exynos-drm: Run DRM default client setup
+Date: Fri, 16 Aug 2024 14:23:41 +0200
+Message-ID: <20240816125408.310253-76-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240816125408.310253-1-tzimmermann@suse.de>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-6.80 / 50.00]; REPLY(-4.00)[];
- BAYES_HAM(-3.00)[100.00%]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid];
- RCPT_COUNT_TWELVE(0.00)[12]; MIME_TRACE(0.00)[0:+];
- TO_DN_SOME(0.00)[]; FROM_HAS_DN(0.00)[];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- FROM_EQ_ENVFROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_TLS_ALL(0.00)[];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- R_RATELIMIT(0.00)[to_ip_from(RLw9gjjhh8cousxs3wi4trssza)];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 35C3B22894
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,47 +68,214 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Rework fbdev probing to support fbdev_probe in struct drm_driver
+and remove the old fb_probe callback. Provide an initializer macro
+for struct drm_driver that sets the callback according to the kernel
+configuration.
+
 Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/udl/udl_drv.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+The exynos-drm driver specifies a preferred color mode of 32. As this
+is the default if no format has been given, leave it out entirely.
 
-diff --git a/drivers/gpu/drm/udl/udl_drv.c b/drivers/gpu/drm/udl/udl_drv.c
-index 280a09a6e2ad..8d8ae40f945c 100644
---- a/drivers/gpu/drm/udl/udl_drv.c
-+++ b/drivers/gpu/drm/udl/udl_drv.c
-@@ -6,6 +6,7 @@
- #include <linux/module.h>
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Inki Dae <inki.dae@samsung.com>
+Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
+Cc: Kyungmin Park <kyungmin.park@samsung.com>
+---
+ drivers/gpu/drm/exynos/exynos_drm_drv.c   |   4 +-
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.c | 101 ++--------------------
+ drivers/gpu/drm/exynos/exynos_drm_fbdev.h |  15 ++--
+ 3 files changed, 19 insertions(+), 101 deletions(-)
+
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_drv.c b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+index 7c59e1164a48..2a466d8179f4 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_drv.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_drv.c
+@@ -15,6 +15,7 @@
  
- #include <drm/drm_drv.h>
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
- #include <drm/drm_fbdev_shmem.h>
+ #include <drm/drm_drv.h>
  #include <drm/drm_file.h>
- #include <drm/drm_gem_shmem_helper.h>
-@@ -73,6 +74,7 @@ static const struct drm_driver driver = {
- 	.fops = &udl_driver_fops,
- 	DRM_GEM_SHMEM_DRIVER_OPS,
- 	.gem_prime_import = udl_driver_gem_prime_import,
-+	DRM_FBDEV_SHMEM_DRIVER_OPS,
+ #include <drm/drm_fourcc.h>
+@@ -111,6 +112,7 @@ static const struct drm_driver exynos_drm_driver = {
+ 	.dumb_create		= exynos_drm_gem_dumb_create,
+ 	.gem_prime_import	= exynos_drm_gem_prime_import,
+ 	.gem_prime_import_sg_table	= exynos_drm_gem_prime_import_sg_table,
++	EXYNOS_DRM_FBDEV_DRIVER_OPS,
+ 	.ioctls			= exynos_ioctls,
+ 	.num_ioctls		= ARRAY_SIZE(exynos_ioctls),
+ 	.fops			= &exynos_drm_driver_fops,
+@@ -288,7 +290,7 @@ static int exynos_drm_bind(struct device *dev)
+ 	if (ret < 0)
+ 		goto err_cleanup_poll;
  
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
-@@ -117,7 +119,7 @@ static int udl_usb_probe(struct usb_interface *interface,
- 
- 	DRM_INFO("Initialized udl on minor %d\n", udl->drm.primary->index);
- 
--	drm_fbdev_shmem_setup(&udl->drm, 0);
-+	drm_client_setup(&udl->drm, NULL);
+-	exynos_drm_fbdev_setup(drm);
++	drm_client_setup(drm, NULL);
  
  	return 0;
+ 
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+index a379c8ca435a..73fa7b77d8d0 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
++++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.c
+@@ -22,9 +22,6 @@
+ #include "exynos_drm_fb.h"
+ #include "exynos_drm_fbdev.h"
+ 
+-#define MAX_CONNECTOR		4
+-#define PREFERRED_BPP		32
+-
+ static int exynos_drm_fb_mmap(struct fb_info *info, struct vm_area_struct *vma)
+ {
+ 	struct drm_fb_helper *helper = info->par;
+@@ -87,8 +84,11 @@ static int exynos_drm_fbdev_update(struct drm_fb_helper *helper,
+ 	return 0;
  }
+ 
+-static int exynos_drm_fbdev_create(struct drm_fb_helper *helper,
+-				    struct drm_fb_helper_surface_size *sizes)
++static const struct drm_fb_helper_funcs exynos_drm_fbdev_helper_funcs = {
++};
++
++int exynos_drm_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
++					struct drm_fb_helper_surface_size *sizes)
+ {
+ 	struct exynos_drm_gem *exynos_gem;
+ 	struct drm_device *dev = helper->dev;
+@@ -120,6 +120,7 @@ static int exynos_drm_fbdev_create(struct drm_fb_helper *helper,
+ 		ret = PTR_ERR(helper->fb);
+ 		goto err_destroy_gem;
+ 	}
++	helper->funcs = &exynos_drm_fbdev_helper_funcs;
+ 
+ 	ret = exynos_drm_fbdev_update(helper, sizes, exynos_gem);
+ 	if (ret < 0)
+@@ -134,93 +135,3 @@ static int exynos_drm_fbdev_create(struct drm_fb_helper *helper,
+ 	exynos_drm_gem_destroy(exynos_gem);
+ 	return ret;
+ }
+-
+-static const struct drm_fb_helper_funcs exynos_drm_fb_helper_funcs = {
+-	.fb_probe =	exynos_drm_fbdev_create,
+-};
+-
+-/*
+- * struct drm_client
+- */
+-
+-static void exynos_drm_fbdev_client_unregister(struct drm_client_dev *client)
+-{
+-	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+-
+-	if (fb_helper->info) {
+-		drm_fb_helper_unregister_info(fb_helper);
+-	} else {
+-		drm_client_release(&fb_helper->client);
+-		drm_fb_helper_unprepare(fb_helper);
+-		kfree(fb_helper);
+-	}
+-}
+-
+-static int exynos_drm_fbdev_client_restore(struct drm_client_dev *client)
+-{
+-	drm_fb_helper_lastclose(client->dev);
+-
+-	return 0;
+-}
+-
+-static int exynos_drm_fbdev_client_hotplug(struct drm_client_dev *client)
+-{
+-	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+-	struct drm_device *dev = client->dev;
+-	int ret;
+-
+-	if (dev->fb_helper)
+-		return drm_fb_helper_hotplug_event(dev->fb_helper);
+-
+-	ret = drm_fb_helper_init(dev, fb_helper);
+-	if (ret)
+-		goto err_drm_err;
+-
+-	if (!drm_drv_uses_atomic_modeset(dev))
+-		drm_helper_disable_unused_functions(dev);
+-
+-	ret = drm_fb_helper_initial_config(fb_helper);
+-	if (ret)
+-		goto err_drm_fb_helper_fini;
+-
+-	return 0;
+-
+-err_drm_fb_helper_fini:
+-	drm_fb_helper_fini(fb_helper);
+-err_drm_err:
+-	drm_err(dev, "Failed to setup fbdev emulation (ret=%d)\n", ret);
+-	return ret;
+-}
+-
+-static const struct drm_client_funcs exynos_drm_fbdev_client_funcs = {
+-	.owner		= THIS_MODULE,
+-	.unregister	= exynos_drm_fbdev_client_unregister,
+-	.restore	= exynos_drm_fbdev_client_restore,
+-	.hotplug	= exynos_drm_fbdev_client_hotplug,
+-};
+-
+-void exynos_drm_fbdev_setup(struct drm_device *dev)
+-{
+-	struct drm_fb_helper *fb_helper;
+-	int ret;
+-
+-	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
+-	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
+-
+-	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
+-	if (!fb_helper)
+-		return;
+-	drm_fb_helper_prepare(dev, fb_helper, PREFERRED_BPP, &exynos_drm_fb_helper_funcs);
+-
+-	ret = drm_client_init(dev, &fb_helper->client, "fbdev", &exynos_drm_fbdev_client_funcs);
+-	if (ret)
+-		goto err_drm_client_init;
+-
+-	drm_client_register(&fb_helper->client);
+-
+-	return;
+-
+-err_drm_client_init:
+-	drm_fb_helper_unprepare(fb_helper);
+-	kfree(fb_helper);
+-}
+diff --git a/drivers/gpu/drm/exynos/exynos_drm_fbdev.h b/drivers/gpu/drm/exynos/exynos_drm_fbdev.h
+index 1e1dea627cd9..02a9201abea3 100644
+--- a/drivers/gpu/drm/exynos/exynos_drm_fbdev.h
++++ b/drivers/gpu/drm/exynos/exynos_drm_fbdev.h
+@@ -11,12 +11,17 @@
+ #ifndef _EXYNOS_DRM_FBDEV_H_
+ #define _EXYNOS_DRM_FBDEV_H_
+ 
+-#ifdef CONFIG_DRM_FBDEV_EMULATION
+-void exynos_drm_fbdev_setup(struct drm_device *dev);
++struct drm_fb_helper;
++struct drm_fb_helper_surface_size;
++
++#if defined(CONFIG_DRM_FBDEV_EMULATION)
++int exynos_drm_fbdev_driver_fbdev_probe(struct drm_fb_helper *fbh,
++					struct drm_fb_helper_surface_size *sizes);
++#define EXYNOS_DRM_FBDEV_DRIVER_OPS \
++	.fbdev_probe = exynos_drm_fbdev_driver_fbdev_probe
+ #else
+-static inline void exynos_drm_fbdev_setup(struct drm_device *dev)
+-{
+-}
++#define EXYNOS_DRM_FBDEV_DRIVER_OPS \
++	.fbdev_probe = NULL
+ #endif
+ 
+ #endif
 -- 
 2.46.0
 
