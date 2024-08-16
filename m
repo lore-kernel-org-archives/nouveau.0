@@ -4,41 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D982C5474D
-	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:55:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BBECC54755
+	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:55:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEC4F10E61B;
-	Fri, 16 Aug 2024 12:54:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06EF310E5AF;
+	Fri, 16 Aug 2024 12:54:22 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD12F10E532;
- Fri, 16 Aug 2024 12:54:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9DAA10E5F5;
+ Fri, 16 Aug 2024 12:54:17 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 7CEFC200B5;
- Fri, 16 Aug 2024 12:54:13 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id AE037200B5;
+ Fri, 16 Aug 2024 12:54:16 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 31FD613ACA;
- Fri, 16 Aug 2024 12:54:13 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5DAB313A2F;
+ Fri, 16 Aug 2024 12:54:16 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id aArxCvVLv2bdbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:13 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id uBaPFfhLv2bdbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:16 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Liviu Dudau <liviu.dudau@arm.com>
-Subject: [PATCH 08/86] drm/arm/hdlcd: Run DRM default client setup
-Date: Fri, 16 Aug 2024 14:22:34 +0200
-Message-ID: <20240816125408.310253-9-tzimmermann@suse.de>
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 17/86] drm/ili9341: Run DRM default client setup
+Date: Fri, 16 Aug 2024 14:22:43 +0200
+Message-ID: <20240816125408.310253-18-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240816125408.310253-1-tzimmermann@suse.de>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
@@ -50,7 +49,7 @@ X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
 X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 7CEFC200B5
+X-Rspamd-Queue-Id: AE037200B5
 X-Spamd-Result: default: False [-4.00 / 50.00];
 	REPLY(-4.00)[]
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -71,44 +70,40 @@ Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The hdlcd driver specifies a preferred color mode of 32. As this
-is the default if no format has been given, leave it out entirely.
-
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
 ---
- drivers/gpu/drm/arm/hdlcd_drv.c | 4 +++-
+ drivers/gpu/drm/tiny/ili9341.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/arm/hdlcd_drv.c b/drivers/gpu/drm/arm/hdlcd_drv.c
-index 32be9e370049..f5d358f3893b 100644
---- a/drivers/gpu/drm/arm/hdlcd_drv.c
-+++ b/drivers/gpu/drm/arm/hdlcd_drv.c
-@@ -23,6 +23,7 @@
+diff --git a/drivers/gpu/drm/tiny/ili9341.c b/drivers/gpu/drm/tiny/ili9341.c
+index 8bcada30af71..c1dfdfbbd30c 100644
+--- a/drivers/gpu/drm/tiny/ili9341.c
++++ b/drivers/gpu/drm/tiny/ili9341.c
+@@ -16,6 +16,7 @@
+ #include <linux/spi/spi.h>
  
- #include <drm/drm_aperture.h>
  #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_debugfs.h>
  #include <drm/drm_drv.h>
-@@ -228,6 +229,7 @@ DEFINE_DRM_GEM_DMA_FOPS(fops);
- static const struct drm_driver hdlcd_driver = {
- 	.driver_features = DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
- 	DRM_GEM_DMA_DRIVER_OPS,
+ #include <drm/drm_fbdev_dma.h>
+ #include <drm/drm_gem_atomic_helper.h>
+@@ -150,6 +151,7 @@ static const struct drm_driver ili9341_driver = {
+ 	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+ 	.fops			= &ili9341_fops,
+ 	DRM_GEM_DMA_DRIVER_OPS_VMAP,
 +	DRM_FBDEV_DMA_DRIVER_OPS,
- 	.fops = &fops,
- 	.name = "hdlcd",
- 	.desc = "ARM HDLCD Controller DRM",
-@@ -299,7 +301,7 @@ static int hdlcd_drm_bind(struct device *dev)
- 	if (ret)
- 		goto err_register;
+ 	.debugfs_init		= mipi_dbi_debugfs_init,
+ 	.name			= "ili9341",
+ 	.desc			= "Ilitek ILI9341",
+@@ -218,7 +220,7 @@ static int ili9341_probe(struct spi_device *spi)
  
--	drm_fbdev_dma_setup(drm, 32);
+ 	spi_set_drvdata(spi, drm);
+ 
+-	drm_fbdev_dma_setup(drm, 0);
 +	drm_client_setup(drm, NULL);
  
  	return 0;
- 
+ }
 -- 
 2.46.0
 
