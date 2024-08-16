@@ -4,43 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C85A3C53211
-	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:56:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63960C531DC
+	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:56:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B41510E716;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D08610E732;
 	Fri, 16 Aug 2024 12:54:41 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 141B410E716;
- Fri, 16 Aug 2024 12:54:40 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92E6C10E6E5;
+ Fri, 16 Aug 2024 12:54:34 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id AE28F200BE;
- Fri, 16 Aug 2024 12:54:38 +0000 (UTC)
-Authentication-Results: smtp-out2.suse.de;
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 42A85222AB;
+ Fri, 16 Aug 2024 12:54:33 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 58A9C13A2F;
- Fri, 16 Aug 2024 12:54:38 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id F180213ACA;
+ Fri, 16 Aug 2024 12:54:32 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id QD5oFA5Mv2bdbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:38 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6ESoOQhMv2bdbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:32 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Subject: [PATCH 79/86] drm/tegra: Run DRM default client setup
-Date: Fri, 16 Aug 2024 14:23:45 +0200
-Message-ID: <20240816125408.310253-80-tzimmermann@suse.de>
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 64/86] drm/fbdev-ttm: Support struct drm_driver.fbdev_probe
+Date: Fri, 16 Aug 2024 14:23:30 +0200
+Message-ID: <20240816125408.310253-65-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240816125408.310253-1-tzimmermann@suse.de>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
@@ -48,13 +45,13 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Queue-Id: 42A85222AB
+X-Rspamd-Action: no action
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: AE28F200BE
-X-Spamd-Result: default: False [-4.00 / 50.00]; REPLY(-4.00)[];
- TAGGED_RCPT(0.00)[]
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,208 +67,208 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Rework fbdev probing to support fbdev_probe in struct drm_driver
-and remove the old fb_probe callback. Provide an initializer macro
-for struct drm_driver that sets the callback according to the kernel
-configuration.
+and reimplement the old fb_probe callback on top of it. Provide an
+initializer macro for struct drm_driver that sets the callback
+according to the kernel configuration.
 
-Call drm_client_setup() to run the kernel's default client setup
-for DRM. Set fbdev_probe in struct drm_driver, so that the client
-setup can start the common fbdev client.
-
-The tegra driver specifies a preferred color mode of 32. As this
-is the default if no format has been given, leave it out entirely.
+This change allows the common fbdev client to run on top of TTM-
+based DRM drivers.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Jonathan Hunter <jonathanh@nvidia.com>
 ---
- drivers/gpu/drm/tegra/drm.c   |  5 +-
- drivers/gpu/drm/tegra/drm.h   | 12 +++--
- drivers/gpu/drm/tegra/fbdev.c | 98 +++--------------------------------
- 3 files changed, 19 insertions(+), 96 deletions(-)
+ drivers/gpu/drm/drm_fbdev_ttm.c | 142 +++++++++++++++++---------------
+ include/drm/drm_fbdev_ttm.h     |  13 +++
+ 2 files changed, 90 insertions(+), 65 deletions(-)
 
-diff --git a/drivers/gpu/drm/tegra/drm.c b/drivers/gpu/drm/tegra/drm.c
-index d9f0728c3afd..6186524cf1a4 100644
---- a/drivers/gpu/drm/tegra/drm.c
-+++ b/drivers/gpu/drm/tegra/drm.c
-@@ -15,6 +15,7 @@
- #include <drm/drm_aperture.h>
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
-+#include <drm/drm_client_setup.h>
- #include <drm/drm_debugfs.h>
- #include <drm/drm_drv.h>
- #include <drm/drm_fourcc.h>
-@@ -891,6 +892,8 @@ static const struct drm_driver tegra_drm_driver = {
+diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
+index 119ffb28aaf9..d799cbe944cd 100644
+--- a/drivers/gpu/drm/drm_fbdev_ttm.c
++++ b/drivers/gpu/drm/drm_fbdev_ttm.c
+@@ -71,71 +71,7 @@ static const struct fb_ops drm_fbdev_ttm_fb_ops = {
+ static int drm_fbdev_ttm_helper_fb_probe(struct drm_fb_helper *fb_helper,
+ 					     struct drm_fb_helper_surface_size *sizes)
+ {
+-	struct drm_client_dev *client = &fb_helper->client;
+-	struct drm_device *dev = fb_helper->dev;
+-	struct drm_client_buffer *buffer;
+-	struct fb_info *info;
+-	size_t screen_size;
+-	void *screen_buffer;
+-	u32 format;
+-	int ret;
+-
+-	drm_dbg_kms(dev, "surface width(%d), height(%d) and bpp(%d)\n",
+-		    sizes->surface_width, sizes->surface_height,
+-		    sizes->surface_bpp);
+-
+-	format = drm_driver_legacy_fb_format(dev, sizes->surface_bpp,
+-					     sizes->surface_depth);
+-	buffer = drm_client_framebuffer_create(client, sizes->surface_width,
+-					       sizes->surface_height, format);
+-	if (IS_ERR(buffer))
+-		return PTR_ERR(buffer);
+-
+-	fb_helper->buffer = buffer;
+-	fb_helper->fb = buffer->fb;
+-
+-	screen_size = buffer->gem->size;
+-	screen_buffer = vzalloc(screen_size);
+-	if (!screen_buffer) {
+-		ret = -ENOMEM;
+-		goto err_drm_client_framebuffer_delete;
+-	}
+-
+-	info = drm_fb_helper_alloc_info(fb_helper);
+-	if (IS_ERR(info)) {
+-		ret = PTR_ERR(info);
+-		goto err_vfree;
+-	}
+-
+-	drm_fb_helper_fill_info(info, fb_helper, sizes);
+-
+-	info->fbops = &drm_fbdev_ttm_fb_ops;
+-
+-	/* screen */
+-	info->flags |= FBINFO_VIRTFB | FBINFO_READS_FAST;
+-	info->screen_buffer = screen_buffer;
+-	info->fix.smem_len = screen_size;
+-
+-	/* deferred I/O */
+-	fb_helper->fbdefio.delay = HZ / 20;
+-	fb_helper->fbdefio.deferred_io = drm_fb_helper_deferred_io;
+-
+-	info->fbdefio = &fb_helper->fbdefio;
+-	ret = fb_deferred_io_init(info);
+-	if (ret)
+-		goto err_drm_fb_helper_release_info;
+-
+-	return 0;
+-
+-err_drm_fb_helper_release_info:
+-	drm_fb_helper_release_info(fb_helper);
+-err_vfree:
+-	vfree(screen_buffer);
+-err_drm_client_framebuffer_delete:
+-	fb_helper->fb = NULL;
+-	fb_helper->buffer = NULL;
+-	drm_client_framebuffer_delete(buffer);
+-	return ret;
++	return drm_fbdev_ttm_driver_fbdev_probe(fb_helper, sizes);
+ }
  
- 	.dumb_create = tegra_bo_dumb_create,
- 
-+	TEGRA_FBDEV_DRIVER_OPS,
-+
- 	.ioctls = tegra_drm_ioctls,
- 	.num_ioctls = ARRAY_SIZE(tegra_drm_ioctls),
- 	.fops = &tegra_drm_fops,
-@@ -1268,7 +1271,7 @@ static int host1x_drm_probe(struct host1x_device *dev)
- 	if (err < 0)
- 		goto hub;
- 
--	tegra_fbdev_setup(drm);
-+	drm_client_setup(drm, NULL);
- 
- 	return 0;
- 
-diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
-index 682011166a8f..0bc8d6625aef 100644
---- a/drivers/gpu/drm/tegra/drm.h
-+++ b/drivers/gpu/drm/tegra/drm.h
-@@ -25,6 +25,9 @@
- /* XXX move to include/uapi/drm/drm_fourcc.h? */
- #define DRM_FORMAT_MOD_NVIDIA_SECTOR_LAYOUT BIT_ULL(22)
- 
-+struct drm_fb_helper;
-+struct drm_fb_helper_surface_size;
-+
- struct edid;
- struct reset_control;
- 
-@@ -190,10 +193,13 @@ struct drm_framebuffer *tegra_fb_create(struct drm_device *drm,
- 					const struct drm_mode_fb_cmd2 *cmd);
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
--void tegra_fbdev_setup(struct drm_device *drm);
-+int tegra_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes);
-+#define TEGRA_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = tegra_fbdev_driver_fbdev_probe
- #else
--static inline void tegra_fbdev_setup(struct drm_device *drm)
--{ }
-+#define TEGRA_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = NULL
- #endif
- 
- extern struct platform_driver tegra_display_hub_driver;
-diff --git a/drivers/gpu/drm/tegra/fbdev.c b/drivers/gpu/drm/tegra/fbdev.c
-index db6eaac3d30e..cd9d798f8870 100644
---- a/drivers/gpu/drm/tegra/fbdev.c
-+++ b/drivers/gpu/drm/tegra/fbdev.c
-@@ -66,8 +66,11 @@ static const struct fb_ops tegra_fb_ops = {
- 	.fb_destroy = tegra_fbdev_fb_destroy,
+ static void drm_fbdev_ttm_damage_blit_real(struct drm_fb_helper *fb_helper,
+@@ -240,6 +176,82 @@ static const struct drm_fb_helper_funcs drm_fbdev_ttm_helper_funcs = {
+ 	.fb_dirty = drm_fbdev_ttm_helper_fb_dirty,
  };
  
--static int tegra_fbdev_probe(struct drm_fb_helper *helper,
--			     struct drm_fb_helper_surface_size *sizes)
-+static const struct drm_fb_helper_funcs tegra_fbdev_helper_funcs = {
-+};
++/*
++ * struct drm_driver
++ */
 +
-+int tegra_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes)
++int drm_fbdev_ttm_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
++				     struct drm_fb_helper_surface_size *sizes)
++{
++	struct drm_client_dev *client = &fb_helper->client;
++	struct drm_device *dev = fb_helper->dev;
++	struct drm_client_buffer *buffer;
++	struct fb_info *info;
++	size_t screen_size;
++	void *screen_buffer;
++	u32 format;
++	int ret;
++
++	drm_dbg_kms(dev, "surface width(%d), height(%d) and bpp(%d)\n",
++		    sizes->surface_width, sizes->surface_height,
++		    sizes->surface_bpp);
++
++	format = drm_driver_legacy_fb_format(dev, sizes->surface_bpp,
++					     sizes->surface_depth);
++	buffer = drm_client_framebuffer_create(client, sizes->surface_width,
++					       sizes->surface_height, format);
++	if (IS_ERR(buffer))
++		return PTR_ERR(buffer);
++
++	fb_helper->funcs = &drm_fbdev_ttm_helper_funcs;
++	fb_helper->buffer = buffer;
++	fb_helper->fb = buffer->fb;
++
++	screen_size = buffer->gem->size;
++	screen_buffer = vzalloc(screen_size);
++	if (!screen_buffer) {
++		ret = -ENOMEM;
++		goto err_drm_client_framebuffer_delete;
++	}
++
++	info = drm_fb_helper_alloc_info(fb_helper);
++	if (IS_ERR(info)) {
++		ret = PTR_ERR(info);
++		goto err_vfree;
++	}
++
++	drm_fb_helper_fill_info(info, fb_helper, sizes);
++
++	info->fbops = &drm_fbdev_ttm_fb_ops;
++
++	/* screen */
++	info->flags |= FBINFO_VIRTFB | FBINFO_READS_FAST;
++	info->screen_buffer = screen_buffer;
++	info->fix.smem_len = screen_size;
++
++	/* deferred I/O */
++	fb_helper->fbdefio.delay = HZ / 20;
++	fb_helper->fbdefio.deferred_io = drm_fb_helper_deferred_io;
++
++	info->fbdefio = &fb_helper->fbdefio;
++	ret = fb_deferred_io_init(info);
++	if (ret)
++		goto err_drm_fb_helper_release_info;
++
++	return 0;
++
++err_drm_fb_helper_release_info:
++	drm_fb_helper_release_info(fb_helper);
++err_vfree:
++	vfree(screen_buffer);
++err_drm_client_framebuffer_delete:
++	fb_helper->fb = NULL;
++	fb_helper->buffer = NULL;
++	drm_client_framebuffer_delete(buffer);
++	return ret;
++}
++EXPORT_SYMBOL(drm_fbdev_ttm_driver_fbdev_probe);
++
+ static void drm_fbdev_ttm_client_unregister(struct drm_client_dev *client)
  {
- 	struct tegra_drm *tegra = helper->dev->dev_private;
- 	struct drm_device *drm = helper->dev;
-@@ -112,6 +115,7 @@ static int tegra_fbdev_probe(struct drm_fb_helper *helper,
- 		return PTR_ERR(fb);
- 	}
+ 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
+diff --git a/include/drm/drm_fbdev_ttm.h b/include/drm/drm_fbdev_ttm.h
+index 9e6c3bdf3537..243685d02eb1 100644
+--- a/include/drm/drm_fbdev_ttm.h
++++ b/include/drm/drm_fbdev_ttm.h
+@@ -3,11 +3,24 @@
+ #ifndef DRM_FBDEV_TTM_H
+ #define DRM_FBDEV_TTM_H
  
-+	helper->funcs = &tegra_fbdev_helper_funcs;
- 	helper->fb = fb;
- 	helper->info = info;
++#include <linux/stddef.h>
++
+ struct drm_device;
++struct drm_fb_helper;
++struct drm_fb_helper_surface_size;
  
-@@ -144,93 +148,3 @@ static int tegra_fbdev_probe(struct drm_fb_helper *helper,
- 	drm_framebuffer_remove(fb);
- 	return err;
- }
--
--static const struct drm_fb_helper_funcs tegra_fb_helper_funcs = {
--	.fb_probe = tegra_fbdev_probe,
--};
--
--/*
-- * struct drm_client
-- */
--
--static void tegra_fbdev_client_unregister(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--
--	if (fb_helper->info) {
--		drm_fb_helper_unregister_info(fb_helper);
--	} else {
--		drm_client_release(&fb_helper->client);
--		drm_fb_helper_unprepare(fb_helper);
--		kfree(fb_helper);
--	}
--}
--
--static int tegra_fbdev_client_restore(struct drm_client_dev *client)
--{
--	drm_fb_helper_lastclose(client->dev);
--
--	return 0;
--}
--
--static int tegra_fbdev_client_hotplug(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = client->dev;
--	int ret;
--
--	if (dev->fb_helper)
--		return drm_fb_helper_hotplug_event(dev->fb_helper);
--
--	ret = drm_fb_helper_init(dev, fb_helper);
--	if (ret)
--		goto err_drm_err;
--
--	if (!drm_drv_uses_atomic_modeset(dev))
--		drm_helper_disable_unused_functions(dev);
--
--	ret = drm_fb_helper_initial_config(fb_helper);
--	if (ret)
--		goto err_drm_fb_helper_fini;
--
--	return 0;
--
--err_drm_fb_helper_fini:
--	drm_fb_helper_fini(fb_helper);
--err_drm_err:
--	drm_err(dev, "Failed to setup fbdev emulation (ret=%d)\n", ret);
--	return ret;
--}
--
--static const struct drm_client_funcs tegra_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.unregister	= tegra_fbdev_client_unregister,
--	.restore	= tegra_fbdev_client_restore,
--	.hotplug	= tegra_fbdev_client_hotplug,
--};
--
--void tegra_fbdev_setup(struct drm_device *dev)
--{
--	struct drm_fb_helper *helper;
--	int ret;
--
--	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
--	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
--
--	helper = kzalloc(sizeof(*helper), GFP_KERNEL);
--	if (!helper)
--		return;
--	drm_fb_helper_prepare(dev, helper, 32, &tegra_fb_helper_funcs);
--
--	ret = drm_client_init(dev, &helper->client, "fbdev", &tegra_fbdev_client_funcs);
--	if (ret)
--		goto err_drm_client_init;
--
--	drm_client_register(&helper->client);
--
--	return;
--
--err_drm_client_init:
--	drm_fb_helper_unprepare(helper);
--	kfree(helper);
--}
+ #ifdef CONFIG_DRM_FBDEV_EMULATION
++int drm_fbdev_ttm_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
++				     struct drm_fb_helper_surface_size *sizes);
++
++#define DRM_FBDEV_TTM_DRIVER_OPS \
++	.fbdev_probe = drm_fbdev_ttm_driver_fbdev_probe
++
+ void drm_fbdev_ttm_setup(struct drm_device *dev, unsigned int preferred_bpp);
+ #else
++#define DRM_FBDEV_TTM_DRIVER_OPS \
++	.fbdev_probe = NULL
++
+ static inline void drm_fbdev_ttm_setup(struct drm_device *dev, unsigned int preferred_bpp)
+ { }
+ #endif
 -- 
 2.46.0
 
