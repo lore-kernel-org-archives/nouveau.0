@@ -4,46 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 952FFC5320E
-	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:57:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C892C3DA4A
+	for <nouveau@archiver.kernel.org>; Fri, 16 Aug 2024 12:57:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E95B10E78E;
-	Fri, 16 Aug 2024 12:54:48 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB46D10E6C2;
- Fri, 16 Aug 2024 12:54:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2210D10E79C;
+	Fri, 16 Aug 2024 12:54:49 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A12CC10E701;
+ Fri, 16 Aug 2024 12:54:39 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 758911FB44;
- Fri, 16 Aug 2024 12:54:40 +0000 (UTC)
-Authentication-Results: smtp-out2.suse.de;
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 5291922899;
+ Fri, 16 Aug 2024 12:54:38 +0000 (UTC)
+Authentication-Results: smtp-out1.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0FFDE13A2F;
- Fri, 16 Aug 2024 12:54:40 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id F2A0713ACA;
+ Fri, 16 Aug 2024 12:54:37 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 0P+bAhBMv2bdbgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:40 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id EGT8OQ1Mv2bdbgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 16 Aug 2024 12:54:37 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH 83/86] drm/{i915,xe}: Run DRM default client setup
-Date: Fri, 16 Aug 2024 14:23:49 +0200
-Message-ID: <20240816125408.310253-84-tzimmermann@suse.de>
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>
+Subject: [PATCH 78/86] drm/radeon: Run DRM default client setup
+Date: Fri, 16 Aug 2024 14:23:44 +0200
+Message-ID: <20240816125408.310253-79-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240816125408.310253-1-tzimmermann@suse.de>
 References: <20240816125408.310253-1-tzimmermann@suse.de>
@@ -56,7 +53,7 @@ X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
 X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 758911FB44
+X-Rspamd-Queue-Id: 5291922899
 X-Spamd-Result: default: False [-4.00 / 50.00];
 	REPLY(-4.00)[]
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -78,355 +75,244 @@ and remove the old fb_probe callback. Provide an initializer macro
 for struct drm_driver that sets the callback according to the kernel
 configuration.
 
-Call drm_client_setup_with_color_mode() to run the kernel's default
-client setup for DRM. Set fbdev_probe in struct drm_driver, so that
-the client setup can start the common fbdev client.
+Call drm_client_setup() to run the kernel's default client setup
+for DRM. Set fbdev_probe in struct drm_driver, so that the client
+setup can start the common fbdev client.
+
+The radeon driver specifies a preferred color mode depending on
+the available video memory, with a default of 32. Adapt this for
+the new client interface.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Xinhui Pan <Xinhui.Pan@amd.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 216 ++++++---------------
- drivers/gpu/drm/i915/display/intel_fbdev.h |   8 +
- drivers/gpu/drm/i915/i915_driver.c         |   2 +
- drivers/gpu/drm/xe/xe_device.c             |   3 +
- 4 files changed, 68 insertions(+), 161 deletions(-)
+ drivers/gpu/drm/radeon/radeon_drv.c   |  13 ++-
+ drivers/gpu/drm/radeon/radeon_fbdev.c | 114 ++------------------------
+ drivers/gpu/drm/radeon/radeon_mode.h  |  12 ++-
+ 3 files changed, 26 insertions(+), 113 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index abe77ef0bd84..50b8657e55d7 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -37,6 +37,7 @@
- #include <linux/tty.h>
- #include <linux/vga_switcheroo.h>
+diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
+index 7bf08164140e..08ccfec6f6ec 100644
+--- a/drivers/gpu/drm/radeon/radeon_drv.c
++++ b/drivers/gpu/drm/radeon/radeon_drv.c
+@@ -38,8 +38,10 @@
+ #include <linux/pci.h>
  
+ #include <drm/drm_aperture.h>
 +#include <drm/drm_client_setup.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_fb_helper.h>
-@@ -175,8 +176,55 @@ static const struct fb_ops intelfb_ops = {
- 
- __diag_pop();
- 
--static int intelfb_create(struct drm_fb_helper *helper,
--			  struct drm_fb_helper_surface_size *sizes)
-+static int intelfb_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
-+{
-+	if (!(clip->x1 < clip->x2 && clip->y1 < clip->y2))
-+		return 0;
-+
-+	if (helper->fb->funcs->dirty)
-+		return helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, clip, 1);
-+
-+	return 0;
-+}
-+
-+static void intelfb_restore(struct drm_fb_helper *fb_helper)
-+{
-+	struct drm_device *dev = fb_helper->client.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
-+
-+	intel_fbdev_invalidate(ifbdev);
-+}
-+
-+static int intelfb_hotplug(struct drm_fb_helper *fb_helper)
-+{
-+	struct drm_device *dev = fb_helper->client.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
-+	bool send_hpd;
-+
-+	if (!ifbdev)
-+		return -EINVAL;
-+
-+	mutex_lock(&ifbdev->hpd_lock);
-+	send_hpd = !ifbdev->hpd_suspended;
-+	ifbdev->hpd_waiting = true;
-+	mutex_unlock(&ifbdev->hpd_lock);
-+
-+	if (!send_hpd || !(ifbdev->vma || dev->fb_helper->deferred_setup))
-+		return -EAGAIN;
-+
-+	return 0;
-+}
-+
-+static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
-+	.fb_dirty = intelfb_dirty,
-+	.fb_restore = intelfb_restore,
-+	.fb_hotplug = intelfb_hotplug,
-+};
-+
-+int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes)
+ #include <drm/drm_drv.h>
+ #include <drm/drm_file.h>
++#include <drm/drm_fourcc.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_ioctl.h>
+ #include <drm/drm_pciids.h>
+@@ -260,6 +262,7 @@ static int radeon_pci_probe(struct pci_dev *pdev,
  {
- 	struct drm_device *dev = helper->client.dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
-@@ -246,6 +294,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		goto out_unpin;
+ 	unsigned long flags = 0;
+ 	struct drm_device *dev;
++	struct radeon_device *rdev;
+ 	int ret;
+ 
+ 	if (!ent)
+@@ -314,7 +317,13 @@ static int radeon_pci_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		goto err_agp;
+ 
+-	radeon_fbdev_setup(dev->dev_private);
++	rdev = dev->dev_private;
++	if (rdev->mc.real_vram_size <= (8 * 1024 * 1024))
++		drm_client_setup(dev, drm_format_info(DRM_FORMAT_C8));
++	else if (ASIC_IS_RN50(rdev) || rdev->mc.real_vram_size <= (32 * 1024 * 1024))
++		drm_client_setup(dev, drm_format_info(DRM_FORMAT_RGB565));
++	else
++		drm_client_setup(dev, NULL);
+ 
+ 	return 0;
+ 
+@@ -581,6 +590,8 @@ static const struct drm_driver kms_driver = {
+ 
+ 	.gem_prime_import_sg_table = radeon_gem_prime_import_sg_table,
+ 
++	RADEON_FBDEV_DRIVER_OPS,
++
+ 	.name = DRIVER_NAME,
+ 	.desc = DRIVER_DESC,
+ 	.date = DRIVER_DATE,
+diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
+index 02bf25759059..4c81f9a87c16 100644
+--- a/drivers/gpu/drm/radeon/radeon_fbdev.c
++++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+@@ -198,12 +198,11 @@ static const struct fb_ops radeon_fbdev_fb_ops = {
+ 	.fb_destroy = radeon_fbdev_fb_destroy,
+ };
+ 
+-/*
+- * Fbdev helpers and struct drm_fb_helper_funcs
+- */
++static const struct drm_fb_helper_funcs radeon_fbdev_fb_helper_funcs = {
++};
+ 
+-static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
+-					   struct drm_fb_helper_surface_size *sizes)
++int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
++				    struct drm_fb_helper_surface_size *sizes)
+ {
+ 	struct radeon_device *rdev = fb_helper->dev->dev_private;
+ 	struct drm_mode_fb_cmd2 mode_cmd = { };
+@@ -243,6 +242,7 @@ static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
  	}
  
-+	helper->funcs = &intel_fb_helper_funcs;
- 	helper->fb = &fb->base;
+ 	/* setup helper */
++	fb_helper->funcs = &radeon_fbdev_fb_helper_funcs;
+ 	fb_helper->fb = fb;
  
- 	info->fbops = &intelfb_ops;
-@@ -285,54 +334,6 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	/* okay we have an object now allocate the framebuffer */
+@@ -288,110 +288,6 @@ static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
  	return ret;
  }
  
--static int intelfb_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *clip)
--{
--	if (!(clip->x1 < clip->x2 && clip->y1 < clip->y2))
--		return 0;
--
--	if (helper->fb->funcs->dirty)
--		return helper->fb->funcs->dirty(helper->fb, NULL, 0, 0, clip, 1);
--
--	return 0;
--}
--
--static void intelfb_restore(struct drm_fb_helper *fb_helper)
--{
--	struct drm_device *dev = fb_helper->client.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
--
--	intel_fbdev_invalidate(ifbdev);
--}
--
--static int intelfb_hotplug(struct drm_fb_helper *fb_helper)
--{
--	struct drm_device *dev = fb_helper->client.dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
--	bool send_hpd;
--
--	if (!ifbdev)
--		return -EINVAL;
--
--	mutex_lock(&ifbdev->hpd_lock);
--	send_hpd = !ifbdev->hpd_suspended;
--	ifbdev->hpd_waiting = true;
--	mutex_unlock(&ifbdev->hpd_lock);
--
--	if (!send_hpd || !(ifbdev->vma || dev->fb_helper->deferred_setup))
--		return -EAGAIN;
--
--	return 0;
--}
--
--static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
--	.fb_probe = intelfb_create,
--	.fb_dirty = intelfb_dirty,
--	.fb_restore = intelfb_restore,
--	.fb_hotplug = intelfb_hotplug,
+-static const struct drm_fb_helper_funcs radeon_fbdev_fb_helper_funcs = {
+-	.fb_probe = radeon_fbdev_fb_helper_fb_probe,
 -};
--
- /*
-  * Build an intel_fbdev struct using a BIOS allocated framebuffer, if possible.
-  * The core display code will have read out the current plane configuration,
-@@ -579,100 +580,10 @@ void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous
- 	intel_fbdev_hpd_set_suspend(dev_priv, state);
- }
- 
--static int intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
--{
--	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
--	struct drm_device *dev = &dev_priv->drm;
--	int ret;
--
--	if (!ifbdev)
--		return -EINVAL;
--
--	if (!ifbdev->vma)
--		return -ENOMEM;
--
--	ret = drm_fb_helper_restore_fbdev_mode_unlocked(dev->fb_helper);
--	if (ret)
--		return ret;
--
--	return 0;
--}
 -
 -/*
 - * Fbdev client and struct drm_client_funcs
 - */
 -
--static void intel_fbdev_client_unregister(struct drm_client_dev *client)
+-static void radeon_fbdev_client_unregister(struct drm_client_dev *client)
 -{
 -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
 -	struct drm_device *dev = fb_helper->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
+-	struct radeon_device *rdev = dev->dev_private;
 -
 -	if (fb_helper->info) {
--		vga_switcheroo_client_fb_set(pdev, NULL);
+-		vga_switcheroo_client_fb_set(rdev->pdev, NULL);
+-		drm_helper_force_disable_all(dev);
 -		drm_fb_helper_unregister_info(fb_helper);
 -	} else {
--		drm_fb_helper_unprepare(fb_helper);
 -		drm_client_release(&fb_helper->client);
+-		drm_fb_helper_unprepare(fb_helper);
 -		kfree(fb_helper);
 -	}
 -}
 -
--static int intel_fbdev_client_restore(struct drm_client_dev *client)
+-static int radeon_fbdev_client_restore(struct drm_client_dev *client)
 -{
--	struct drm_i915_private *dev_priv = to_i915(client->dev);
--	int ret;
--
--	ret = intel_fbdev_restore_mode(dev_priv);
--	if (ret)
--		return ret;
--
+-	drm_fb_helper_lastclose(client->dev);
 -	vga_switcheroo_process_delayed_switch();
 -
 -	return 0;
 -}
 -
--static int intel_fbdev_client_hotplug(struct drm_client_dev *client)
+-static int radeon_fbdev_client_hotplug(struct drm_client_dev *client)
 -{
 -	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
 -	struct drm_device *dev = client->dev;
--	struct pci_dev *pdev = to_pci_dev(dev->dev);
+-	struct radeon_device *rdev = dev->dev_private;
 -	int ret;
 -
 -	if (dev->fb_helper)
--		return drm_fb_helper_hotplug_event(fb_helper);
+-		return drm_fb_helper_hotplug_event(dev->fb_helper);
 -
 -	ret = drm_fb_helper_init(dev, fb_helper);
 -	if (ret)
 -		goto err_drm_err;
 -
+-	if (!drm_drv_uses_atomic_modeset(dev))
+-		drm_helper_disable_unused_functions(dev);
+-
 -	ret = drm_fb_helper_initial_config(fb_helper);
 -	if (ret)
 -		goto err_drm_fb_helper_fini;
 -
--	vga_switcheroo_client_fb_set(pdev, fb_helper->info);
+-	vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
 -
 -	return 0;
 -
 -err_drm_fb_helper_fini:
 -	drm_fb_helper_fini(fb_helper);
 -err_drm_err:
--	drm_err(dev, "Failed to setup i915 fbdev emulation (ret=%d)\n", ret);
+-	drm_err(dev, "Failed to setup radeon fbdev emulation (ret=%d)\n", ret);
 -	return ret;
 -}
 -
--static const struct drm_client_funcs intel_fbdev_client_funcs = {
+-static const struct drm_client_funcs radeon_fbdev_client_funcs = {
 -	.owner		= THIS_MODULE,
--	.unregister	= intel_fbdev_client_unregister,
--	.restore	= intel_fbdev_client_restore,
--	.hotplug	= intel_fbdev_client_hotplug,
+-	.unregister	= radeon_fbdev_client_unregister,
+-	.restore	= radeon_fbdev_client_restore,
+-	.hotplug	= radeon_fbdev_client_hotplug,
 -};
 -
- void intel_fbdev_setup(struct drm_i915_private *i915)
- {
- 	struct drm_device *dev = &i915->drm;
- 	struct intel_fbdev *ifbdev;
+-void radeon_fbdev_setup(struct radeon_device *rdev)
+-{
 -	struct drm_fb_helper *fb_helper;
- 	int ret;
- 
- 	if (!HAS_DISPLAY(i915))
-@@ -684,30 +595,13 @@ void intel_fbdev_setup(struct drm_i915_private *i915)
- 
- 	i915->display.fbdev.fbdev = ifbdev;
- 	INIT_WORK(&i915->display.fbdev.suspend_work, intel_fbdev_suspend_worker);
--	mutex_init(&ifbdev->hpd_lock);
-+	ret = drmm_mutex_init(dev, &ifbdev->hpd_lock);
-+	if (ret)
-+		return;
- 	if (!intel_fbdev_init_bios(dev, ifbdev))
- 		ifbdev->preferred_bpp = 32;
- 
+-	int bpp_sel = 32;
+-	int ret;
+-
+-	if (rdev->mc.real_vram_size <= (8 * 1024 * 1024))
+-		bpp_sel = 8;
+-	else if (ASIC_IS_RN50(rdev) || rdev->mc.real_vram_size <= (32 * 1024 * 1024))
+-		bpp_sel = 16;
+-
 -	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
 -	if (!fb_helper)
 -		return;
--	drm_fb_helper_prepare(dev, fb_helper, ifbdev->preferred_bpp, &intel_fb_helper_funcs);
+-	drm_fb_helper_prepare(rdev->ddev, fb_helper, bpp_sel, &radeon_fbdev_fb_helper_funcs);
 -
--	ret = drm_client_init(dev, &fb_helper->client, "intel-fbdev",
--			      &intel_fbdev_client_funcs);
+-	ret = drm_client_init(rdev->ddev, &fb_helper->client, "radeon-fbdev",
+-			      &radeon_fbdev_client_funcs);
 -	if (ret) {
--		drm_err(dev, "Failed to register client: %d\n", ret);
--		goto err_drm_fb_helper_unprepare;
+-		drm_err(rdev->ddev, "Failed to register client: %d\n", ret);
+-		goto err_drm_client_init;
 -	}
 -
 -	drm_client_register(&fb_helper->client);
 -
 -	return;
 -
--err_drm_fb_helper_unprepare:
--	drm_fb_helper_unprepare(dev->fb_helper);
--	mutex_destroy(&ifbdev->hpd_lock);
+-err_drm_client_init:
+-	drm_fb_helper_unprepare(fb_helper);
 -	kfree(fb_helper);
-+	drm_client_setup_with_color_mode(dev, ifbdev->preferred_bpp);
- }
+-}
+-
+ void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state)
+ {
+ 	if (rdev->ddev->fb_helper)
+diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
+index e0a5af180801..8e916729f393 100644
+--- a/drivers/gpu/drm/radeon/radeon_mode.h
++++ b/drivers/gpu/drm/radeon/radeon_mode.h
+@@ -38,6 +38,9 @@
+ #include <linux/i2c.h>
+ #include <linux/i2c-algo-bit.h>
  
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev)
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.h b/drivers/gpu/drm/i915/display/intel_fbdev.h
-index 08de2d5b3433..b4184a679595 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.h
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.h
-@@ -9,15 +9,23 @@
- #include <linux/types.h>
- 
- struct drm_device;
 +struct drm_fb_helper;
 +struct drm_fb_helper_surface_size;
- struct drm_i915_private;
- struct intel_fbdev;
- struct intel_framebuffer;
++
+ struct edid;
+ struct radeon_bo;
+ struct radeon_device;
+@@ -935,12 +938,15 @@ void dce8_program_fmt(struct drm_encoder *encoder);
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
-+int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-+				   struct drm_fb_helper_surface_size *sizes);
-+#define INTEL_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = intel_fbdev_driver_fbdev_probe
- void intel_fbdev_setup(struct drm_i915_private *dev_priv);
- void intel_fbdev_set_suspend(struct drm_device *dev, int state, bool synchronous);
- struct intel_framebuffer *intel_fbdev_framebuffer(struct intel_fbdev *fbdev);
+ /* fbdev layer */
+ #if defined(CONFIG_DRM_FBDEV_EMULATION)
+-void radeon_fbdev_setup(struct radeon_device *rdev);
++int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
++				    struct drm_fb_helper_surface_size *sizes);
++#define RADEON_FBDEV_DRIVER_OPS \
++	.fbdev_probe = radeon_fbdev_driver_fbdev_probe
+ void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state);
+ bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj);
  #else
-+#define INTEL_FBDEV_DRIVER_OPS \
+-static inline void radeon_fbdev_setup(struct radeon_device *rdev)
+-{ }
++#define RADEON_FBDEV_DRIVER_OPS \
 +	.fbdev_probe = NULL
- static inline void intel_fbdev_setup(struct drm_i915_private *dev_priv)
- {
- }
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index e32766286369..d7c38e8facd2 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1781,6 +1781,8 @@ static const struct drm_driver i915_drm_driver = {
- 	.dumb_create = i915_gem_dumb_create,
- 	.dumb_map_offset = i915_gem_dumb_mmap_offset,
- 
-+	INTEL_FBDEV_DRIVER_OPS,
-+
- 	.ioctls = i915_ioctls,
- 	.num_ioctls = ARRAY_SIZE(i915_ioctls),
- 	.fops = &i915_driver_fops,
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 206328387150..7a28396abb25 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -17,6 +17,8 @@
- #include <drm/drm_print.h>
- #include <drm/xe_drm.h>
- 
-+#include "intel_fbdev.h"
-+
- #include "display/xe_display.h"
- #include "instructions/xe_gpu_commands.h"
- #include "regs/xe_gt_regs.h"
-@@ -267,6 +269,7 @@ static struct drm_driver driver = {
- 
- 	.dumb_create = xe_bo_dumb_create,
- 	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
-+	INTEL_FBDEV_DRIVER_OPS,
- #ifdef CONFIG_PROC_FS
- 	.show_fdinfo = xe_drm_client_fdinfo,
- #endif
+ static inline void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state)
+ { }
+ static inline bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj)
 -- 
 2.46.0
 
