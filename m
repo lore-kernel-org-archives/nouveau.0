@@ -4,116 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3E0EC54722
-	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:08:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DBC9C52D7C
+	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:29:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2478E10EAD4;
-	Wed, 21 Aug 2024 13:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D730410E60E;
+	Wed, 21 Aug 2024 13:29:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="SBwn22vT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MoOuCpzI";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SBwn22vT";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="MoOuCpzI";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=meddatainc.com header.i=agents@meddatainc.com header.b="NODc35Pm";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D51DA10EA32;
- Wed, 21 Aug 2024 13:04:24 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 6A9D1200A0;
- Wed, 21 Aug 2024 13:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245463; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cc+rwcJJBtfRDf2FbuxoIw6STq8ip/PZWkPQUOrrWS0=;
- b=SBwn22vTNH6EVWxCuSlKCt5vfq0xietIqxIaJsnTxNlQAkxaFg/lg2y+hKxGTzgVCn3EIY
- u/riehZ+EANSbGL3EkeGhHx5vFnIb+pjD3+zmAjdUdcqlnZ0Mbl/e+FMhnAHjqkvmGdi/e
- XKuwYMy+7Z3oagryYvPht6p3IwyWG9Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245463;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cc+rwcJJBtfRDf2FbuxoIw6STq8ip/PZWkPQUOrrWS0=;
- b=MoOuCpzIQo2j/BcXoIHbFXgn6+zjBqCk+dkw+ygXTTOydVmlJthj9OlxGls6SAkxLV8tea
- rF7dG3dgr/NMHbBg==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=SBwn22vT;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=MoOuCpzI
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245463; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cc+rwcJJBtfRDf2FbuxoIw6STq8ip/PZWkPQUOrrWS0=;
- b=SBwn22vTNH6EVWxCuSlKCt5vfq0xietIqxIaJsnTxNlQAkxaFg/lg2y+hKxGTzgVCn3EIY
- u/riehZ+EANSbGL3EkeGhHx5vFnIb+pjD3+zmAjdUdcqlnZ0Mbl/e+FMhnAHjqkvmGdi/e
- XKuwYMy+7Z3oagryYvPht6p3IwyWG9Q=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245463;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=cc+rwcJJBtfRDf2FbuxoIw6STq8ip/PZWkPQUOrrWS0=;
- b=MoOuCpzIQo2j/BcXoIHbFXgn6+zjBqCk+dkw+ygXTTOydVmlJthj9OlxGls6SAkxLV8tea
- rF7dG3dgr/NMHbBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 0A7DD13770;
- Wed, 21 Aug 2024 13:04:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 2HJeAdflxWbXGQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:04:23 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 81/86] drm/i915: Move custom restore code into separate
- callback
-Date: Wed, 21 Aug 2024 15:00:18 +0200
-Message-ID: <20240821130348.73038-82-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240821130348.73038-1-tzimmermann@suse.de>
-References: <20240821130348.73038-1-tzimmermann@suse.de>
+Received: from mout.perfora.net (mout.perfora.net [74.208.4.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D585510E60E
+ for <nouveau@lists.freedesktop.org>; Wed, 21 Aug 2024 13:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=meddatainc.com;
+ s=s1-ionos; t=1724246980; x=1724851780; i=agents@meddatainc.com;
+ bh=cBDy0hsPZkQj345FtGZZaogMdBy/yQ01CJ4Ph7TbdRE=;
+ h=X-UI-Sender-Class:Date:In-Reply-To:References:MIME-Version:
+ Content-Type:Content-Transfer-Encoding:Subject:To:From:Message-ID:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=NODc35PmN3roL7pqgfJKV0Jj5p3qUOHgffPCGLz32r9XZXxZP4eNZSPLaifh+Cfx
+ idwLvLCS/UeNGqJSll5oq2XQNWWEuXb+5XqJuOVoNgeciaLoxbS1lrezQBZtPLyi/
+ l4PnyhKH362bmFWGFz141NRHNjKYp6l1f+U85tuSmHapMKN9H3LmtARRpC970+/WE
+ 1zivq+uYHpsWpKR+E0fu/YDPTXQ9FqwLZL6gTexSqH82OJRfv0IZ0gpIDtOm2MeLR
+ FZu6SsdAHgetjyuCiPsSdE6t9dGLxvhsJvcHDEVdxurCCVqaLIwzLQLj8cJmDnzzH
+ AkApVS7Hf7lEFns8bw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.1.215] ([71.162.171.44]) by mrelay.perfora.net
+ (mreueus004 [74.208.5.2]) with ESMTPSA (Nemesis) id 1Mz9AN-1ruRsW3dgZ-00z5bp
+ for <nouveau@lists.freedesktop.org>; Wed, 21 Aug 2024 15:29:40 +0200
+Date: Wed, 21 Aug 2024 09:29:35 -0400
+User-Agent: K-9 Mail for Android
+In-Reply-To: <B2AE2FA5-1D8A-4359-B0D8-F5EC9828A2C9@meddatainc.com>
+References: <E2CB6BBD-35B1-4359-99F7-BBB0A6E6CA7A@meddatainc.com>
+ <B2AE2FA5-1D8A-4359-B0D8-F5EC9828A2C9@meddatainc.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 6A9D1200A0
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-3.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- TO_DN_SOME(0.00)[]; ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to(RLazpx1r3qpnsfr8nfakn),to_ip_from(RLgk4u1ri6nhg6f1rtzmk7keyw)];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: Possible nouveau driver problem?
+To: nouveau@lists.freedesktop.org,
+ Nouveau Mailing List <nouveau@lists.freedesktop.org>
+From: H <agents@meddatainc.com>
+Message-ID: <26AD7741-0AA8-4C79-89B8-57C206C634F1@meddatainc.com>
+X-Provags-ID: V03:K1:KKxLqJwVF638UKoH5zcmLDi6+fb6zpoM+KaQ4ovPqum6XEeES5D
+ BquS3Zzmeb6dxfEHg8UqkgUTbmer7BTZPXINFBeCUv3JRukRgXP7fk9ya4wy5emivFw7FH1
+ GWb6V4jf7b/86ihlc/GWIVV6niUhhX/EaTdp6r8CsvTxi7lSHHY1v2D9gn9g9MPtSlpTNuf
+ AbAQHnAiVna7KTbmQUvgQ==
+UI-OutboundReport: notjunk:1;M01:P0:GWMWrKi/HG4=;EirA22Wx5R8BRZtTtl/yVrB1cZe
+ EhUREkGI7kn/tjQqSybZyuF1jOQLz5SmOp38SCgCf1GpaKuF0UywwAUydPWfJnmCPVAARe0cU
+ gBJIovoYbvSx/4OBZShMucqHuwZ2YcxTV+ZU5QJ1dZu5nnjUfXYU0BNrkt3zePeHETvOExzoo
+ z+OoOMd9i8Zsyxt0+dPyN0g+dT56SdwMEiAvG8GXgyu+SCb/IzBjPw4GXdxHC4hpmJS9E6FSW
+ 06DKYGhMtvuuWv1dE/n5AIK2I16EPiL73bHmN/XG7Sro1QWQOg6cvvbsC6HeoDS62fg8O+nod
+ ANE3ze4v7tHNIopxTRPx2zssLGzApBArfy1vev5KS4PHxv17qIJrEDmbIyteFXnzZ8nEJ9IbX
+ JtiNT8q7nJzIYtZ5LEuf0lweuYZxSvAXKLzNHjmj/ZM28thFNeq9fOJN+aBPHxWXMM34xuOq1
+ CJiMgA95eMXAuecdqodynGNmGNNwoO7HxtR8m7dNCC62Pj8RLQcpQbc0rcbv0iL96a36b7oqc
+ UgMJ/0JsxpF7T2B41qiyyNIAgPkjfISlvJrUhdSlc7KAITWN8g8l0jBreCRLTI36dTNiOsn/j
+ mrGg6Iy8mYPBUjKRAexBGjIeR/4R68OgbfyXbCJFjeDJGNUfLBRlD5+dezyOG1E1wYOJJnIOE
+ VTgZJ05FumtdEhS4ODXSVgOjK8gE8Jh9jd+eu2iSXj9E2YKjka7dOl2KpmIfLEZXQwWPKYaMJ
+ Un4bZ8pjR1i5BTKnEJcKsoKr7JmxtGigQ==
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,95 +76,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-i915's fbdev contains additional code for restoring the client that
-cannot be ported to the common fbdev client. Introduce the callback
-struct drm_fb_helper.fb_restore and implement it for i915. The fbdev
-helpers invoke the callback after restoring the fbdev client.
+On August 17, 2024 3:41:23 PM EDT, H <agents@meddatainc=2Ecom> wrote:
+>On August 15, 2024 8:24:26 PM GMT-04:00, H <agents@meddatainc=2Ecom>
+>wrote:
+>>I am running Rocky Linux latest version with the Mate Desktop 1=2E26=2E2
+>>(the latest version in the EPEL repository) on a Dell Inspiron laptop
+>>with a 3840 x 2160 display and an external 1920 x 1080 Acer
+>>monitor connected via HDMI, see output below:
+>>
+>>$ inxi --graphics
+>>Graphics:
+>>  Device-1: Intel UHD Graphics 620 driver: i915 v: kernel
+>>  Device-2: NVIDIA GM108M [GeForce 940MX] driver: nouveau v: kernel
+>>Device-3: DisplayLink Dell D3100 Docking Station driver: usbfs type:
+>>USB
+>>  Device-4: Realtek Integrated_Webcam_HD driver: uvcvideo type: USB
+>>  Display: x11 server: X=2EOrg v: 1=2E20=2E11 driver: X: loaded: modeset=
+ting
+>>    dri: iris gpu: i915 resolution: 1: 1920x1080~60Hz 2:
+>3840x2160~60Hz
+>>API: OpenGL v: 4=2E6 vendor: intel mesa v: 23=2E3=2E3 renderer: Mesa Int=
+el
+>>UHD
+>>    Graphics 620 (KBL GT2)
+>>
+>>The problem is that the external display has some issues, whether they
+>>are related to the nouveau driver, the Mate Desktop or something else
+>I
+>>cannot determine=2E What happens is that although the
+>>external monitor is indeed using the 1920 x 1080 resolution and
+>>dragging a window from the laptop screen to the external screen works,
+>>ie=2E, it maintains the "correct" size, then maximizing it makes it
+>>1/4 of the size of the external monitor display=2E Likewise, the Mate
+>>Desktop background repeats partly 4-fold on this monitor, partly
+>>16-fold=2E=2E=2E
+>>
+>>I also have a Dell docking station, model D3100 and have downloaded
+>the
+>>latest DisplayLink driver from github with the hope that I could
+>attach
+>>two external Acer monitors to use with the laptop, I
+>>unable to use xrandr to correctly set the external monitor (I have
+>only
+>>tried with one so far) to the desired 1920 x 1080 resolution while
+>>maintaining the 3840 x 2160 resolution on the laptop screen=2E
+>>
+>>Googling suggests that there might be some issues with xrandr and
+>>scaling
+>>
+>>Given my description above, could there possibly be a bug in the
+>>nouveau driver I am using?
+>>
+>>Thanks=2E =20
+>
+>Would be great if someone could opine on the bug I am seeing : whether
+>it might be a nouveau bug, xrandr-related bug or possibly Mate Desktop
+>related bug? Or some other bug=2E
+>
+>Thank you=2E
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/drm_fb_helper.c            |  3 +++
- drivers/gpu/drm/i915/display/intel_fbdev.c | 12 ++++++++++--
- include/drm/drm_fb_helper.h                | 13 +++++++++++++
- 3 files changed, 26 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
-index 44bc92caf58a..b593f6ccd404 100644
---- a/drivers/gpu/drm/drm_fb_helper.c
-+++ b/drivers/gpu/drm/drm_fb_helper.c
-@@ -245,6 +245,9 @@ __drm_fb_helper_restore_fbdev_mode_unlocked(struct drm_fb_helper *fb_helper,
- 	if (do_delayed)
- 		drm_fb_helper_hotplug_event(fb_helper);
- 
-+	if (fb_helper->funcs->fb_restore)
-+		fb_helper->funcs->fb_restore(fb_helper);
-+
- 	return ret;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 9ece62783ce1..c03fb00002a4 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -296,9 +296,19 @@ static int intelfb_dirty(struct drm_fb_helper *helper, struct drm_clip_rect *cli
- 	return 0;
- }
- 
-+static void intelfb_restore(struct drm_fb_helper *fb_helper)
-+{
-+	struct drm_device *dev = fb_helper->client.dev;
-+	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_fbdev *ifbdev = dev_priv->display.fbdev.fbdev;
-+
-+	intel_fbdev_invalidate(ifbdev);
-+}
-+
- static const struct drm_fb_helper_funcs intel_fb_helper_funcs = {
- 	.fb_probe = intelfb_create,
- 	.fb_dirty = intelfb_dirty,
-+	.fb_restore = intelfb_restore,
- };
- 
- /*
-@@ -582,8 +592,6 @@ static int intel_fbdev_restore_mode(struct drm_i915_private *dev_priv)
- 	if (ret)
- 		return ret;
- 
--	intel_fbdev_invalidate(ifbdev);
--
- 	return 0;
- }
- 
-diff --git a/include/drm/drm_fb_helper.h b/include/drm/drm_fb_helper.h
-index 699f2790b9ac..34eb77c18a13 100644
---- a/include/drm/drm_fb_helper.h
-+++ b/include/drm/drm_fb_helper.h
-@@ -99,6 +99,19 @@ struct drm_fb_helper_funcs {
- 	 * 0 on success, or an error code otherwise.
- 	 */
- 	int (*fb_dirty)(struct drm_fb_helper *helper, struct drm_clip_rect *clip);
-+
-+	/**
-+	 * @fb_restore:
-+	 *
-+	 * Driver callback to restore internal fbdev state. If set, fbdev
-+	 * emulation will invoke this callback after restoring the display
-+	 * mode.
-+	 *
-+	 * Only for i915. Do not use in new code.
-+	 *
-+	 * TODO: Fix i915 to not require this callback.
-+	 */
-+	void (*fb_restore)(struct drm_fb_helper *helper);
- };
- 
- /**
--- 
-2.46.0
-
+I have not seen anyone comment on my posting below=2E If this is not the a=
+ppropriate forum to raise a potential bug, where should I raise it?
