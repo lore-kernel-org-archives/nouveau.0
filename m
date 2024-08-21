@@ -4,64 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31C27D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDFF2D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21F2910EA5F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27EDB10EA68;
 	Sat, 13 Dec 2025 12:41:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="YnvjuG45";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=lechnology.com header.i=@lechnology.com header.b="w8jlikg8";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57CBA10EB95;
- Fri, 11 Apr 2025 12:44:30 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZYxG02S0Mz9snx;
- Fri, 11 Apr 2025 14:44:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1744375464; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Du4qqvATMM8DpLvGgTuHF9F5VvpdjpJA6n9DJyaGPRs=;
- b=YnvjuG45lTJrdSA3FlIcRfV0ksiDBOXoKjJN0mjnLaQUNzPuBAjcFfot2/hiu3vR8zsgTe
- ZWsGvPf36O008LxYT3JtfR5ONeTc3yK+XD4fYXqo0kE0CGZIl0vvL4vN3MTQEvEZV4fObB
- NM+Q6dSFX5aiVEQQ8M5KQfRn+9g/dMezD+Kx+ChA7HJgHBc3W6ISY7hyPbR98IOCjjjYZ0
- Qmv+6lcQBHKVPlTf8W2iIwg7d7axNo0Ynk8HBrj6EgRF8OXZ3MWUCdCR3X33XgG02Ggiz5
- wj23pZUS5kKeHJ9842CTJVfibOv40lTZ8Ca8AiW4oBZ4gCow7hBqCqK4Fz6TRw==
-Message-ID: <aca00cb25b813da4fd2f215829f02337f05642f3.camel@mailbox.org>
-Subject: Re: [PATCH 1/3] drm/nouveau: Prevent signaled fences in pending list
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Sabrina Dubroca <sd@queasysnail.net>, Sumit Semwal
- <sumit.semwal@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
- stable@vger.kernel.org
-Date: Fri, 11 Apr 2025 14:44:18 +0200
-In-Reply-To: <81a70ba6-94b1-4bb3-a0b2-9e8890f90b33@amd.com>
-References: <20250410092418.135258-2-phasta@kernel.org>
- <20250410092418.135258-3-phasta@kernel.org>
- <8583665a-6886-4245-be49-fd8839cfe212@amd.com>
- <c737c89c7ce9174e349c61ab4e5712eee8946f13.camel@mailbox.org>
- <50c9530d-e274-4f89-8620-16afe0981239@amd.com>
- <1a73e5fe4350d6ee4b7d807612264eb637c4f2a9.camel@mailbox.org>
- <d3dee321cd6b70d6ca98768fbcf6f1e6134c43a1.camel@mailbox.org>
- <81a70ba6-94b1-4bb3-a0b2-9e8890f90b33@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Greylist: delayed 940 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Aug 2024 14:03:43 UTC
+Received: from vern.gendns.com (vern.gendns.com [98.142.107.122])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 083F910E5D2;
+ Wed, 21 Aug 2024 14:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+ In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+ :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+ Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+ List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=lxOLKkIQ7poSz2tJygrDKrikqb7HuPRZ9lURWfUtGTA=; b=w8jlikg86wQ5L5mu0e1wjnbDch
+ DHvxJKdVGcNaafC0b+sIFC3m6YupHICgne/2gd8T8t+r72ayQ3QsnifRYEicezhVePf+HVeFuQU2m
+ Hckxbf2fpSjfiS6ziZ4px8YcmRQ1abxEQnd142nJEY9HQ1jCsOUbrPUqnJh7ttDfo5JwB+3ZS2fgj
+ WkfjYgqZe7PdSDpVal/a7ZZSFFVU2ZOVeqP4R+73ygRpLrNKX3/o9qEUJzMBNFpq6TcPxjSu4+pVq
+ /fgsdH7TfZZ1nNBlzbkAou53DAU65WFZyNKqsStGBio5waDGz1XjyK0hL0/0rorZQmk5gdSw1OYZh
+ xAt1varw==;
+Received: from ip98-183-112-25.ok.ok.cox.net ([98.183.112.25]:53320
+ helo=[192.168.0.142]) by vern.gendns.com with esmtpsa (TLS1.2) tls
+ TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.96.2)
+ (envelope-from <david@lechnology.com>) id 1sgljE-00029O-2Q;
+ Wed, 21 Aug 2024 09:48:13 -0400
+Message-ID: <b447ffe0-c0d8-4d08-b98c-36f3dc251ccf@lechnology.com>
+Date: Wed, 21 Aug 2024 08:48:11 -0500
 MIME-Version: 1.0
-X-MBO-RS-META: i96m4o7hgfmzjg76chu9n7jme4bognqy
-X-MBO-RS-ID: f5ad7dea73dd44f5d10
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 44/86] drm/st7586: Run DRM default client setup
+To: Thomas Zimmermann <tzimmermann@suse.de>, daniel@ffwll.ch,
+ airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <20240821130348.73038-1-tzimmermann@suse.de>
+ <20240821130348.73038-45-tzimmermann@suse.de>
+Content-Language: en-US
+From: David Lechner <david@lechnology.com>
+Autocrypt: addr=david@lechnology.com; keydata=
+ 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
+In-Reply-To: <20240821130348.73038-45-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse,
+ please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - lists.freedesktop.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id:
+ davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,181 +117,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 2025-04-11 at 13:05 +0200, Christian K=C3=B6nig wrote:
-> =C2=A0Am 11.04.25 um 11:29 schrieb Philipp Stanner:
-> =C2=A0
-> > [SNIP]
-> > =C2=A0
-> > It could be, however, that at the same moment
-> > nouveau_fence_signal() is
-> > removing that entry, holding the appropriate lock.
-> >=20
-> > So we have a race. Again.
-> > =C2=A0
-> =C2=A0
-> =C2=A0Ah, yes of course. If signaled is called with or without the lock i=
-s
-> actually undetermined.
-> =C2=A0
-> =C2=A0
-> > =C2=A0
-> > You see, fixing things in Nouveau is difficult :)
-> > It gets more difficult if you want to clean it up "properly", so it
-> > conforms to rules such as those from dma_fence.
-> >=20
-> > I have now provided two fixes that both work, but you are not
-> > satisfied
-> > with from the dma_fence-maintainer's perspective. I understand
-> > that,
-> > but please also understand that it's actually not my primary task
-> > to
-> > work on Nouveau. I just have to fix this bug to move on with my
-> > scheduler work.
-> > =C2=A0
-> =C2=A0
-> =C2=A0Well I'm happy with whatever solution as long as it works, but as
-> far as I can see the approach with the callback simply doesn't.
-> =C2=A0
-> =C2=A0You just can't drop the fence reference for the list from the
-> callback.
-> =C2=A0
-> =C2=A0
-> > =C2=A0
-> > So if you have another idea, feel free to share it. But I'd like to
-> > know how we can go on here.
-> > =C2=A0
-> =C2=A0
-> =C2=A0Well the fence code actually works, doesn't it? The problem is
-> rather that setting the error throws a warning because it doesn't
-> expect signaled fences on the pending list.
-> =C2=A0
-> =C2=A0Maybe we should fix that instead.
+On 8/21/24 7:59 AM, Thomas Zimmermann wrote:
+> Call drm_client_setup() to run the kernel's default client setup
+> for DRM. Set fbdev_probe in struct drm_driver, so that the client
+> setup can start the common fbdev client.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Lechner <david@lechnology.com>
+> ---
 
-The fence code works as the author intended, but I would be happy if it
-were more explicitly documented.
-
-Regarding the WARN_ON: It occurs in dma_fence_set_error() because there
-is an attempt to set an error code on a signaled fence. I don't think
-that should be "fixed", it works as intended: You must not set an error
-code of a fence that was already signaled.
-
-The reason seems to be that once a fence is signaled, a third party
-might evaluate the error code.
-
-But I think this wasn't wat you meant with "fix".
-
-In any case, there must not be signaled fences in nouveau's pending-
-list. They must be removed immediately once they signal, and this must
-not race.
-
-> =C2=A0
-> =C2=A0
-> > =C2=A0
-> > I'm running out of ideas. What I'm wondering if we couldn't just
-> > remove
-> > performance hacky fastpath functions such as
-> > nouveau_fence_is_signaled() completely. It seems redundant to me.
-> > =C2=A0
-> =C2=A0
-> =C2=A0That would work for me as well.
-
-I'll test this approach. Seems a bit like the nuclear approach, but if
-it works we'd at least clean up a lot of this mess.
-
-
-P.
-
-
-> =C2=A0
-> =C2=A0
-> > =C2=A0
-> >=20
-> > Or we might add locking to it, but IDK what was achieved with RCU
-> > here.
-> > In any case it's definitely bad that Nouveau has so many redundant
-> > and
-> > half-redundant mechanisms.
-> > =C2=A0
-> =C2=A0
-> =C2=A0Yeah, agree messing with the locks even more won't help us here.
-> =C2=A0
-> =C2=A0Regards,
-> =C2=A0Christian.
-> =C2=A0
-> =C2=A0
-> > =C2=A0
-> >=20
-> >=20
-> > P.
-> >=20
-> > =C2=A0
-> > > =C2=A0
-> > >=20
-> > > P.
-> > >=20
-> > > =C2=A0
-> > > > =C2=A0
-> > > > Regards,
-> > > > Christian.
-> > > >=20
-> > > > =C2=A0
-> > > > > =C2=A0
-> > > > > P.
-> > > > >=20
-> > > > >=20
-> > > > >=20
-> > > > > =C2=A0
-> > > > > > =C2=A0
-> > > > > > Regards,
-> > > > > > Christian.
-> > > > > >=20
-> > > > > > =C2=A0
-> > > > > > > =C2=A0
-> > > > > > > Replace the call to dma_fence_is_signaled() with
-> > > > > > > nouveau_fence_base_is_signaled().
-> > > > > > >=20
-> > > > > > > Cc: <stable@vger.kernel.org> # 4.10+, precise commit not
-> > > > > > > to
-> > > > > > > be
-> > > > > > > determined
-> > > > > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > > > > > > ---
-> > > > > > > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
-> > > > > > > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> > > > > > >=20
-> > > > > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > > > > b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > > > > index 7cc84472cece..33535987d8ed 100644
-> > > > > > > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > > > > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > > > > @@ -274,7 +274,7 @@ nouveau_fence_done(struct
-> > > > > > > nouveau_fence
-> > > > > > > *fence)
-> > > > > > > =C2=A0			nvif_event_block(&fctx->event);
-> > > > > > > =C2=A0		spin_unlock_irqrestore(&fctx->lock,
-> > > > > > > flags);
-> > > > > > > =C2=A0	}
-> > > > > > > -	return dma_fence_is_signaled(&fence->base);
-> > > > > > > +	return test_bit(DMA_FENCE_FLAG_SIGNALED_BIT,
-> > > > > > > &fence-
-> > > > > > > =C2=A0
-> > > > > > > > =C2=A0
-> > > > > > > > base.flags);
-> > > > > > > > =C2=A0
-> > > > > > > =C2=A0
-> > > > > > > =C2=A0}
-> > > > > > > =C2=A0
-> > > > > > > =C2=A0static long
-> > > > > > > =C2=A0
-> > > > > > =C2=A0
-> > > > > =C2=A0
-> > > > =C2=A0
-> > > =C2=A0=C2=A0
-> > =C2=A0=C2=A0
-> =C2=A0
-> =C2=A0
-
+Acked-by: David Lechner <david@lechnology.com>
