@@ -4,89 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D13BC52D6F
-	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:08:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93CB6C5320E
+	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:08:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2221310EAA2;
-	Wed, 21 Aug 2024 13:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6676410EAB9;
+	Wed, 21 Aug 2024 13:04:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="f5eKmGc7";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eUZYr8vo";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="f5eKmGc7";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eUZYr8vo";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="v0SYmGe1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="52iA+XEi";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="v0SYmGe1";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="52iA+XEi";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F368F10E9E5;
- Wed, 21 Aug 2024 13:04:17 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7237B10E9FB;
+ Wed, 21 Aug 2024 13:04:19 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id B3DDE22287;
- Wed, 21 Aug 2024 13:04:16 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id E23D62009D;
+ Wed, 21 Aug 2024 13:04:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245456; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1724245457; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vTuAlNXiuLqWqZWRPuAd/acPSlKDiKV+f1PAGmYcwIw=;
- b=f5eKmGc7GR1cwrwwVhV6/RZ7k759B/Yeu7SWuMZEqPneGY83gCHc2+w579oEb9GepBMZSk
- /G1Lz9LrVyW0Vd3fDx/c1z6g3R/Y2ILCRYxpU3hfBmyNwHronBCVpU8ScaN2PXEXR4qrzW
- BDAwvVZBNHwDQ8F0t93J8G8rhK4bjC8=
+ bh=tyQ8uSj507E0vHpdrXiZE0y2B+QZCwaMtd7CpOzKpeQ=;
+ b=v0SYmGe1Ig/zoODT9STP6h+V18T615JfIGII+eqdksuXPPAEg8zpzM97XFEVLaLKNbymp3
+ a3Jo3iY4UrKOboK7OH8YdXMYbPV7Sg95I7frCDQNKTSwQGQ2YwZsMxvbr/3fCn0GjyKCy+
+ idorZbEl1qRTnJvkNN5kkE8cVtK6aHc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245456;
+ s=susede2_ed25519; t=1724245457;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vTuAlNXiuLqWqZWRPuAd/acPSlKDiKV+f1PAGmYcwIw=;
- b=eUZYr8vocryhrDSro2dQAVL9n/0Wi4Qu5RmpEtKCNcLgK7bzIY0asQGUdXPJsaDMP+sL7r
- 6gjPHOagevCvzsDA==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=f5eKmGc7;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=eUZYr8vo
+ bh=tyQ8uSj507E0vHpdrXiZE0y2B+QZCwaMtd7CpOzKpeQ=;
+ b=52iA+XEi7tfsBSL6CalnmbfvCsvdBXpqlgtCGDIr141mtr2f9GBaJrVV5D6VmEVNNGFCx9
+ uzoK08RmFDqyrvBQ==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=v0SYmGe1;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=52iA+XEi
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245456; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1724245457; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vTuAlNXiuLqWqZWRPuAd/acPSlKDiKV+f1PAGmYcwIw=;
- b=f5eKmGc7GR1cwrwwVhV6/RZ7k759B/Yeu7SWuMZEqPneGY83gCHc2+w579oEb9GepBMZSk
- /G1Lz9LrVyW0Vd3fDx/c1z6g3R/Y2ILCRYxpU3hfBmyNwHronBCVpU8ScaN2PXEXR4qrzW
- BDAwvVZBNHwDQ8F0t93J8G8rhK4bjC8=
+ bh=tyQ8uSj507E0vHpdrXiZE0y2B+QZCwaMtd7CpOzKpeQ=;
+ b=v0SYmGe1Ig/zoODT9STP6h+V18T615JfIGII+eqdksuXPPAEg8zpzM97XFEVLaLKNbymp3
+ a3Jo3iY4UrKOboK7OH8YdXMYbPV7Sg95I7frCDQNKTSwQGQ2YwZsMxvbr/3fCn0GjyKCy+
+ idorZbEl1qRTnJvkNN5kkE8cVtK6aHc=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245456;
+ s=susede2_ed25519; t=1724245457;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=vTuAlNXiuLqWqZWRPuAd/acPSlKDiKV+f1PAGmYcwIw=;
- b=eUZYr8vocryhrDSro2dQAVL9n/0Wi4Qu5RmpEtKCNcLgK7bzIY0asQGUdXPJsaDMP+sL7r
- 6gjPHOagevCvzsDA==
+ bh=tyQ8uSj507E0vHpdrXiZE0y2B+QZCwaMtd7CpOzKpeQ=;
+ b=52iA+XEi7tfsBSL6CalnmbfvCsvdBXpqlgtCGDIr141mtr2f9GBaJrVV5D6VmEVNNGFCx9
+ uzoK08RmFDqyrvBQ==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3D92613B18;
- Wed, 21 Aug 2024 13:04:16 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5C51D13B18;
+ Wed, 21 Aug 2024 13:04:17 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id aKvZDdDlxWbXGQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:04:16 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id kEhsFdHlxWbXGQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:04:17 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 64/86] drm/fbdev-ttm: Support struct drm_driver.fbdev_probe
-Date: Wed, 21 Aug 2024 15:00:01 +0200
-Message-ID: <20240821130348.73038-65-tzimmermann@suse.de>
+ nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
+ Gerd Hoffmann <kraxel@redhat.com>
+Subject: [PATCH v2 66/86] drm/bochs: Run DRM default client setup
+Date: Wed, 21 Aug 2024 15:00:03 +0200
+Message-ID: <20240821130348.73038-67-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240821130348.73038-1-tzimmermann@suse.de>
 References: <20240821130348.73038-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: B3DDE22287
+X-Rspamd-Queue-Id: E23D62009D
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
@@ -101,8 +102,8 @@ X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  DKIM_TRACE(0.00)[suse.de:+]; TO_DN_SOME(0.00)[];
  RCVD_COUNT_TWO(0.00)[2]; FROM_EQ_ENVFROM(0.00)[];
  FROM_HAS_DN(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
- RCPT_COUNT_SEVEN(0.00)[10];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.de:dkim,suse.de:mid,suse.de:email];
+ RCPT_COUNT_SEVEN(0.00)[11];
  DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
  R_RATELIMIT(0.00)[to(RLazpx1r3qpnsfr8nfakn),to_ip_from(RLgk4u1ri6nhg6f1rtzmk7keyw)];
  RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
@@ -121,209 +122,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rework fbdev probing to support fbdev_probe in struct drm_driver
-and reimplement the old fb_probe callback on top of it. Provide an
-initializer macro for struct drm_driver that sets the callback
-according to the kernel configuration.
+Call drm_client_setup() to run the kernel's default client setup
+for DRM. Set fbdev_probe in struct drm_driver, so that the client
+setup can start the common fbdev client.
 
-This change allows the common fbdev client to run on top of TTM-
-based DRM drivers.
+The bochs driver specifies a preferred color mode of 32. As this
+is the default if no format has been given, leave it out entirely.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
 ---
- drivers/gpu/drm/drm_fbdev_ttm.c | 142 +++++++++++++++++---------------
- include/drm/drm_fbdev_ttm.h     |  13 +++
- 2 files changed, 90 insertions(+), 65 deletions(-)
+ drivers/gpu/drm/tiny/bochs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_fbdev_ttm.c b/drivers/gpu/drm/drm_fbdev_ttm.c
-index 119ffb28aaf9..d799cbe944cd 100644
---- a/drivers/gpu/drm/drm_fbdev_ttm.c
-+++ b/drivers/gpu/drm/drm_fbdev_ttm.c
-@@ -71,71 +71,7 @@ static const struct fb_ops drm_fbdev_ttm_fb_ops = {
- static int drm_fbdev_ttm_helper_fb_probe(struct drm_fb_helper *fb_helper,
- 					     struct drm_fb_helper_surface_size *sizes)
- {
--	struct drm_client_dev *client = &fb_helper->client;
--	struct drm_device *dev = fb_helper->dev;
--	struct drm_client_buffer *buffer;
--	struct fb_info *info;
--	size_t screen_size;
--	void *screen_buffer;
--	u32 format;
--	int ret;
--
--	drm_dbg_kms(dev, "surface width(%d), height(%d) and bpp(%d)\n",
--		    sizes->surface_width, sizes->surface_height,
--		    sizes->surface_bpp);
--
--	format = drm_driver_legacy_fb_format(dev, sizes->surface_bpp,
--					     sizes->surface_depth);
--	buffer = drm_client_framebuffer_create(client, sizes->surface_width,
--					       sizes->surface_height, format);
--	if (IS_ERR(buffer))
--		return PTR_ERR(buffer);
--
--	fb_helper->buffer = buffer;
--	fb_helper->fb = buffer->fb;
--
--	screen_size = buffer->gem->size;
--	screen_buffer = vzalloc(screen_size);
--	if (!screen_buffer) {
--		ret = -ENOMEM;
--		goto err_drm_client_framebuffer_delete;
--	}
--
--	info = drm_fb_helper_alloc_info(fb_helper);
--	if (IS_ERR(info)) {
--		ret = PTR_ERR(info);
--		goto err_vfree;
--	}
--
--	drm_fb_helper_fill_info(info, fb_helper, sizes);
--
--	info->fbops = &drm_fbdev_ttm_fb_ops;
--
--	/* screen */
--	info->flags |= FBINFO_VIRTFB | FBINFO_READS_FAST;
--	info->screen_buffer = screen_buffer;
--	info->fix.smem_len = screen_size;
--
--	/* deferred I/O */
--	fb_helper->fbdefio.delay = HZ / 20;
--	fb_helper->fbdefio.deferred_io = drm_fb_helper_deferred_io;
--
--	info->fbdefio = &fb_helper->fbdefio;
--	ret = fb_deferred_io_init(info);
--	if (ret)
--		goto err_drm_fb_helper_release_info;
--
--	return 0;
--
--err_drm_fb_helper_release_info:
--	drm_fb_helper_release_info(fb_helper);
--err_vfree:
--	vfree(screen_buffer);
--err_drm_client_framebuffer_delete:
--	fb_helper->fb = NULL;
--	fb_helper->buffer = NULL;
--	drm_client_framebuffer_delete(buffer);
--	return ret;
-+	return drm_fbdev_ttm_driver_fbdev_probe(fb_helper, sizes);
- }
+diff --git a/drivers/gpu/drm/tiny/bochs.c b/drivers/gpu/drm/tiny/bochs.c
+index 31fc5d839e10..fb69f70043d5 100644
+--- a/drivers/gpu/drm/tiny/bochs.c
++++ b/drivers/gpu/drm/tiny/bochs.c
+@@ -5,6 +5,7 @@
  
- static void drm_fbdev_ttm_damage_blit_real(struct drm_fb_helper *fb_helper,
-@@ -240,6 +176,82 @@ static const struct drm_fb_helper_funcs drm_fbdev_ttm_helper_funcs = {
- 	.fb_dirty = drm_fbdev_ttm_helper_fb_dirty,
+ #include <drm/drm_aperture.h>
+ #include <drm/drm_atomic_helper.h>
++#include <drm/drm_client_setup.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_edid.h>
+ #include <drm/drm_fbdev_ttm.h>
+@@ -604,6 +605,7 @@ static const struct drm_driver bochs_driver = {
+ 	.major			= 1,
+ 	.minor			= 0,
+ 	DRM_GEM_VRAM_DRIVER,
++	DRM_FBDEV_TTM_DRIVER_OPS,
  };
  
-+/*
-+ * struct drm_driver
-+ */
-+
-+int drm_fbdev_ttm_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
-+				     struct drm_fb_helper_surface_size *sizes)
-+{
-+	struct drm_client_dev *client = &fb_helper->client;
-+	struct drm_device *dev = fb_helper->dev;
-+	struct drm_client_buffer *buffer;
-+	struct fb_info *info;
-+	size_t screen_size;
-+	void *screen_buffer;
-+	u32 format;
-+	int ret;
-+
-+	drm_dbg_kms(dev, "surface width(%d), height(%d) and bpp(%d)\n",
-+		    sizes->surface_width, sizes->surface_height,
-+		    sizes->surface_bpp);
-+
-+	format = drm_driver_legacy_fb_format(dev, sizes->surface_bpp,
-+					     sizes->surface_depth);
-+	buffer = drm_client_framebuffer_create(client, sizes->surface_width,
-+					       sizes->surface_height, format);
-+	if (IS_ERR(buffer))
-+		return PTR_ERR(buffer);
-+
-+	fb_helper->funcs = &drm_fbdev_ttm_helper_funcs;
-+	fb_helper->buffer = buffer;
-+	fb_helper->fb = buffer->fb;
-+
-+	screen_size = buffer->gem->size;
-+	screen_buffer = vzalloc(screen_size);
-+	if (!screen_buffer) {
-+		ret = -ENOMEM;
-+		goto err_drm_client_framebuffer_delete;
-+	}
-+
-+	info = drm_fb_helper_alloc_info(fb_helper);
-+	if (IS_ERR(info)) {
-+		ret = PTR_ERR(info);
-+		goto err_vfree;
-+	}
-+
-+	drm_fb_helper_fill_info(info, fb_helper, sizes);
-+
-+	info->fbops = &drm_fbdev_ttm_fb_ops;
-+
-+	/* screen */
-+	info->flags |= FBINFO_VIRTFB | FBINFO_READS_FAST;
-+	info->screen_buffer = screen_buffer;
-+	info->fix.smem_len = screen_size;
-+
-+	/* deferred I/O */
-+	fb_helper->fbdefio.delay = HZ / 20;
-+	fb_helper->fbdefio.deferred_io = drm_fb_helper_deferred_io;
-+
-+	info->fbdefio = &fb_helper->fbdefio;
-+	ret = fb_deferred_io_init(info);
-+	if (ret)
-+		goto err_drm_fb_helper_release_info;
-+
-+	return 0;
-+
-+err_drm_fb_helper_release_info:
-+	drm_fb_helper_release_info(fb_helper);
-+err_vfree:
-+	vfree(screen_buffer);
-+err_drm_client_framebuffer_delete:
-+	fb_helper->fb = NULL;
-+	fb_helper->buffer = NULL;
-+	drm_client_framebuffer_delete(buffer);
-+	return ret;
-+}
-+EXPORT_SYMBOL(drm_fbdev_ttm_driver_fbdev_probe);
-+
- static void drm_fbdev_ttm_client_unregister(struct drm_client_dev *client)
- {
- 	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-diff --git a/include/drm/drm_fbdev_ttm.h b/include/drm/drm_fbdev_ttm.h
-index 9e6c3bdf3537..243685d02eb1 100644
---- a/include/drm/drm_fbdev_ttm.h
-+++ b/include/drm/drm_fbdev_ttm.h
-@@ -3,11 +3,24 @@
- #ifndef DRM_FBDEV_TTM_H
- #define DRM_FBDEV_TTM_H
+ /* ---------------------------------------------------------------------- */
+@@ -667,7 +669,7 @@ static int bochs_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent
+ 	if (ret)
+ 		goto err_hw_fini;
  
-+#include <linux/stddef.h>
-+
- struct drm_device;
-+struct drm_fb_helper;
-+struct drm_fb_helper_surface_size;
+-	drm_fbdev_ttm_setup(dev, 32);
++	drm_client_setup(dev, NULL);
+ 	return ret;
  
- #ifdef CONFIG_DRM_FBDEV_EMULATION
-+int drm_fbdev_ttm_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
-+				     struct drm_fb_helper_surface_size *sizes);
-+
-+#define DRM_FBDEV_TTM_DRIVER_OPS \
-+	.fbdev_probe = drm_fbdev_ttm_driver_fbdev_probe
-+
- void drm_fbdev_ttm_setup(struct drm_device *dev, unsigned int preferred_bpp);
- #else
-+#define DRM_FBDEV_TTM_DRIVER_OPS \
-+	.fbdev_probe = NULL
-+
- static inline void drm_fbdev_ttm_setup(struct drm_device *dev, unsigned int preferred_bpp)
- { }
- #endif
+ err_hw_fini:
 -- 
 2.46.0
 
