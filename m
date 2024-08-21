@@ -4,103 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDAB9C52D7C
-	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:06:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BBEFC5321D
+	for <nouveau@archiver.kernel.org>; Wed, 21 Aug 2024 13:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FE510EA3A;
-	Wed, 21 Aug 2024 13:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E515C10EA4A;
+	Wed, 21 Aug 2024 13:04:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="TMF4ArqQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="V7EffV3B";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="TMF4ArqQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="V7EffV3B";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="Twk21nj+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2GlFx7oY";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="Twk21nj+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="2GlFx7oY";
 	dkim-atps=neutral
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C34210EA1C;
- Wed, 21 Aug 2024 13:04:23 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 997BE10E994;
+ Wed, 21 Aug 2024 13:04:11 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 375BA200A8;
- Wed, 21 Aug 2024 13:04:22 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 1D7152009A;
+ Wed, 21 Aug 2024 13:04:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245462; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ t=1724245450; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NzJDCWfgelCi0WSaHTzUH3Uy2yIhRvaZANutyTd5xKg=;
- b=TMF4ArqQ3FG75AJTD0RwjuppwHbqvrsezrf6ZxzftC3AnDpC/Y2hke/l/6DNdRLBFDZ/GZ
- 8E+0B74UbeSpNktTVQEbsre7SzQ0Vq38oR0unHghldMRD9qiEYBIrQIihOjp2X+9o6rmlr
- eQipbIIb+FsDN8IPAYTut/P9uLaQTAs=
+ bh=AC/bEBLzVqsbI1gDRB5hcwWOTenV6X5gHKNh003aLqM=;
+ b=Twk21nj+8Wn+09+HeDGuIAT8YqxmysndVxKRNHEG8W/aS9aJ3uZnkAVvt+SmMo5SJInReI
+ ybGjiupQDHZ8/un8GYfK3HmqW8RzvtZaLby+CfdhGzFZGB1m1zMCIMnaxijt16um/pIzUY
+ ZvjomSCNq9MAmullGdnyM2rUwherhOE=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245462;
+ s=susede2_ed25519; t=1724245450;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NzJDCWfgelCi0WSaHTzUH3Uy2yIhRvaZANutyTd5xKg=;
- b=V7EffV3B+V/n5rC2o3+p9SYSN8ad2T4K6vp9ok0zVbiiXn4dc+TFhV6I9Vd40ilWpxqX3i
- hO08YlbjWcuaW6Dw==
+ bh=AC/bEBLzVqsbI1gDRB5hcwWOTenV6X5gHKNh003aLqM=;
+ b=2GlFx7oYtav9PRdwkZB+WwC5+Wp6AOsLwZo6qoE2AeXVbQjVKCZey1YUVBo0AhUlqJVQNA
+ KXiiw/l/buUCDYCw==
 Authentication-Results: smtp-out2.suse.de;
-	none
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Twk21nj+;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=2GlFx7oY
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1724245462; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ t=1724245450; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NzJDCWfgelCi0WSaHTzUH3Uy2yIhRvaZANutyTd5xKg=;
- b=TMF4ArqQ3FG75AJTD0RwjuppwHbqvrsezrf6ZxzftC3AnDpC/Y2hke/l/6DNdRLBFDZ/GZ
- 8E+0B74UbeSpNktTVQEbsre7SzQ0Vq38oR0unHghldMRD9qiEYBIrQIihOjp2X+9o6rmlr
- eQipbIIb+FsDN8IPAYTut/P9uLaQTAs=
+ bh=AC/bEBLzVqsbI1gDRB5hcwWOTenV6X5gHKNh003aLqM=;
+ b=Twk21nj+8Wn+09+HeDGuIAT8YqxmysndVxKRNHEG8W/aS9aJ3uZnkAVvt+SmMo5SJInReI
+ ybGjiupQDHZ8/un8GYfK3HmqW8RzvtZaLby+CfdhGzFZGB1m1zMCIMnaxijt16um/pIzUY
+ ZvjomSCNq9MAmullGdnyM2rUwherhOE=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1724245462;
+ s=susede2_ed25519; t=1724245450;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
+ mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=NzJDCWfgelCi0WSaHTzUH3Uy2yIhRvaZANutyTd5xKg=;
- b=V7EffV3B+V/n5rC2o3+p9SYSN8ad2T4K6vp9ok0zVbiiXn4dc+TFhV6I9Vd40ilWpxqX3i
- hO08YlbjWcuaW6Dw==
+ bh=AC/bEBLzVqsbI1gDRB5hcwWOTenV6X5gHKNh003aLqM=;
+ b=2GlFx7oYtav9PRdwkZB+WwC5+Wp6AOsLwZo6qoE2AeXVbQjVKCZey1YUVBo0AhUlqJVQNA
+ KXiiw/l/buUCDYCw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D9D5B13B18;
- Wed, 21 Aug 2024 13:04:21 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C3EB213B18;
+ Wed, 21 Aug 2024 13:04:09 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id qGr/M9XlxWbXGQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:04:21 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id yCmjLsnlxWbXGQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Wed, 21 Aug 2024 13:04:09 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Xinhui Pan <Xinhui.Pan@amd.com>
-Subject: [PATCH v2 78/86] drm/radeon: Run DRM default client setup
-Date: Wed, 21 Aug 2024 15:00:15 +0200
-Message-ID: <20240821130348.73038-79-tzimmermann@suse.de>
+ Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>
+Subject: [PATCH v2 52/86] drm/cirrus: Run DRM default client setup
+Date: Wed, 21 Aug 2024 14:59:49 +0200
+Message-ID: <20240821130348.73038-53-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240821130348.73038-1-tzimmermann@suse.de>
 References: <20240821130348.73038-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-3.30 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+X-Rspamd-Queue-Id: 1D7152009A
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_MISSING_CHARSET(0.50)[];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MIME_TRACE(0.00)[0:+];
+ MX_GOOD(-0.01)[]; RCPT_COUNT_TWELVE(0.00)[12];
+ TO_MATCH_ENVRCPT_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
  FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
- ARC_NA(0.00)[]; RCPT_COUNT_TWELVE(0.00)[13];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FUZZY_BLOCKED(0.00)[rspamd.com]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[]; RCVD_TLS_ALL(0.00)[];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo, suse.de:email,
- suse.de:mid]
+ MIME_TRACE(0.00)[0:+]; ARC_NA(0.00)[]; RCVD_TLS_ALL(0.00)[];
+ DKIM_TRACE(0.00)[suse.de:+]; RCVD_COUNT_TWO(0.00)[2];
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ TO_DN_SOME(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ R_RATELIMIT(0.00)[to(RLazpx1r3qpnsfr8nfakn),to_ip_from(RLgk4u1ri6nhg6f1rtzmk7keyw)];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,255 +122,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rework fbdev probing to support fbdev_probe in struct drm_driver
-and remove the old fb_probe callback. Provide an initializer macro
-for struct drm_driver that sets the callback according to the kernel
-configuration.
-
 Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The radeon driver specifies a preferred color mode depending on
-the available video memory, with a default of 32. Adapt this for
-the new client interface.
-
-v2:
-- style changes
+The cirrus driver requests the same client pixel format as the value
+stored in struct drm_mode_config.preferred_depth. The fbdev client
+also looks at this value for the default pixel format. Thus remove
+the format selection from cirrus.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: Xinhui Pan <Xinhui.Pan@amd.com>
+Cc: Dave Airlie <airlied@redhat.com>
+Cc: Gerd Hoffmann <kraxel@redhat.com>
 ---
- drivers/gpu/drm/radeon/radeon_drv.c   |  16 +++-
- drivers/gpu/drm/radeon/radeon_fbdev.c | 114 ++------------------------
- drivers/gpu/drm/radeon/radeon_mode.h  |  12 ++-
- 3 files changed, 29 insertions(+), 113 deletions(-)
+ drivers/gpu/drm/tiny/cirrus.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/radeon/radeon_drv.c b/drivers/gpu/drm/radeon/radeon_drv.c
-index 7bf08164140e..9eb24f653008 100644
---- a/drivers/gpu/drm/radeon/radeon_drv.c
-+++ b/drivers/gpu/drm/radeon/radeon_drv.c
-@@ -38,8 +38,10 @@
- #include <linux/pci.h>
- 
- #include <drm/drm_aperture.h>
+diff --git a/drivers/gpu/drm/tiny/cirrus.c b/drivers/gpu/drm/tiny/cirrus.c
+index 751326e3d9c3..20c4479ed4c3 100644
+--- a/drivers/gpu/drm/tiny/cirrus.c
++++ b/drivers/gpu/drm/tiny/cirrus.c
+@@ -27,6 +27,7 @@
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_atomic_state_helper.h>
 +#include <drm/drm_client_setup.h>
+ #include <drm/drm_connector.h>
+ #include <drm/drm_damage_helper.h>
  #include <drm/drm_drv.h>
- #include <drm/drm_file.h>
-+#include <drm/drm_fourcc.h>
- #include <drm/drm_gem.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_pciids.h>
-@@ -260,6 +262,8 @@ static int radeon_pci_probe(struct pci_dev *pdev,
- {
- 	unsigned long flags = 0;
- 	struct drm_device *dev;
-+	struct radeon_device *rdev;
-+	const struct drm_format_info *format;
- 	int ret;
+@@ -662,6 +663,7 @@ static const struct drm_driver cirrus_driver = {
  
- 	if (!ent)
-@@ -314,7 +318,15 @@ static int radeon_pci_probe(struct pci_dev *pdev,
- 	if (ret)
- 		goto err_agp;
- 
--	radeon_fbdev_setup(dev->dev_private);
-+	rdev = dev->dev_private;
-+	if (rdev->mc.real_vram_size <= (8 * 1024 * 1024))
-+		format = drm_format_info(DRM_FORMAT_C8);
-+	else if (ASIC_IS_RN50(rdev) || rdev->mc.real_vram_size <= (32 * 1024 * 1024))
-+		format = drm_format_info(DRM_FORMAT_RGB565);
-+	else
-+		format = NULL;
-+
-+	drm_client_setup(dev, format);
- 
- 	return 0;
- 
-@@ -581,6 +593,8 @@ static const struct drm_driver kms_driver = {
- 
- 	.gem_prime_import_sg_table = radeon_gem_prime_import_sg_table,
- 
-+	RADEON_FBDEV_DRIVER_OPS,
-+
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
- 	.date = DRIVER_DATE,
-diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
-index 02bf25759059..4c81f9a87c16 100644
---- a/drivers/gpu/drm/radeon/radeon_fbdev.c
-+++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
-@@ -198,12 +198,11 @@ static const struct fb_ops radeon_fbdev_fb_ops = {
- 	.fb_destroy = radeon_fbdev_fb_destroy,
+ 	.fops		 = &cirrus_fops,
+ 	DRM_GEM_SHMEM_DRIVER_OPS,
++	DRM_FBDEV_SHMEM_DRIVER_OPS,
  };
  
--/*
-- * Fbdev helpers and struct drm_fb_helper_funcs
-- */
-+static const struct drm_fb_helper_funcs radeon_fbdev_fb_helper_funcs = {
-+};
+ static int cirrus_pci_probe(struct pci_dev *pdev,
+@@ -716,7 +718,7 @@ static int cirrus_pci_probe(struct pci_dev *pdev,
+ 	if (ret)
+ 		return ret;
  
--static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
--					   struct drm_fb_helper_surface_size *sizes)
-+int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
-+				    struct drm_fb_helper_surface_size *sizes)
- {
- 	struct radeon_device *rdev = fb_helper->dev->dev_private;
- 	struct drm_mode_fb_cmd2 mode_cmd = { };
-@@ -243,6 +242,7 @@ static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
- 	}
- 
- 	/* setup helper */
-+	fb_helper->funcs = &radeon_fbdev_fb_helper_funcs;
- 	fb_helper->fb = fb;
- 
- 	/* okay we have an object now allocate the framebuffer */
-@@ -288,110 +288,6 @@ static int radeon_fbdev_fb_helper_fb_probe(struct drm_fb_helper *fb_helper,
- 	return ret;
+-	drm_fbdev_shmem_setup(dev, 16);
++	drm_client_setup(dev, NULL);
+ 	return 0;
  }
  
--static const struct drm_fb_helper_funcs radeon_fbdev_fb_helper_funcs = {
--	.fb_probe = radeon_fbdev_fb_helper_fb_probe,
--};
--
--/*
-- * Fbdev client and struct drm_client_funcs
-- */
--
--static void radeon_fbdev_client_unregister(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = fb_helper->dev;
--	struct radeon_device *rdev = dev->dev_private;
--
--	if (fb_helper->info) {
--		vga_switcheroo_client_fb_set(rdev->pdev, NULL);
--		drm_helper_force_disable_all(dev);
--		drm_fb_helper_unregister_info(fb_helper);
--	} else {
--		drm_client_release(&fb_helper->client);
--		drm_fb_helper_unprepare(fb_helper);
--		kfree(fb_helper);
--	}
--}
--
--static int radeon_fbdev_client_restore(struct drm_client_dev *client)
--{
--	drm_fb_helper_lastclose(client->dev);
--	vga_switcheroo_process_delayed_switch();
--
--	return 0;
--}
--
--static int radeon_fbdev_client_hotplug(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
--	struct drm_device *dev = client->dev;
--	struct radeon_device *rdev = dev->dev_private;
--	int ret;
--
--	if (dev->fb_helper)
--		return drm_fb_helper_hotplug_event(dev->fb_helper);
--
--	ret = drm_fb_helper_init(dev, fb_helper);
--	if (ret)
--		goto err_drm_err;
--
--	if (!drm_drv_uses_atomic_modeset(dev))
--		drm_helper_disable_unused_functions(dev);
--
--	ret = drm_fb_helper_initial_config(fb_helper);
--	if (ret)
--		goto err_drm_fb_helper_fini;
--
--	vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
--
--	return 0;
--
--err_drm_fb_helper_fini:
--	drm_fb_helper_fini(fb_helper);
--err_drm_err:
--	drm_err(dev, "Failed to setup radeon fbdev emulation (ret=%d)\n", ret);
--	return ret;
--}
--
--static const struct drm_client_funcs radeon_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.unregister	= radeon_fbdev_client_unregister,
--	.restore	= radeon_fbdev_client_restore,
--	.hotplug	= radeon_fbdev_client_hotplug,
--};
--
--void radeon_fbdev_setup(struct radeon_device *rdev)
--{
--	struct drm_fb_helper *fb_helper;
--	int bpp_sel = 32;
--	int ret;
--
--	if (rdev->mc.real_vram_size <= (8 * 1024 * 1024))
--		bpp_sel = 8;
--	else if (ASIC_IS_RN50(rdev) || rdev->mc.real_vram_size <= (32 * 1024 * 1024))
--		bpp_sel = 16;
--
--	fb_helper = kzalloc(sizeof(*fb_helper), GFP_KERNEL);
--	if (!fb_helper)
--		return;
--	drm_fb_helper_prepare(rdev->ddev, fb_helper, bpp_sel, &radeon_fbdev_fb_helper_funcs);
--
--	ret = drm_client_init(rdev->ddev, &fb_helper->client, "radeon-fbdev",
--			      &radeon_fbdev_client_funcs);
--	if (ret) {
--		drm_err(rdev->ddev, "Failed to register client: %d\n", ret);
--		goto err_drm_client_init;
--	}
--
--	drm_client_register(&fb_helper->client);
--
--	return;
--
--err_drm_client_init:
--	drm_fb_helper_unprepare(fb_helper);
--	kfree(fb_helper);
--}
--
- void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state)
- {
- 	if (rdev->ddev->fb_helper)
-diff --git a/drivers/gpu/drm/radeon/radeon_mode.h b/drivers/gpu/drm/radeon/radeon_mode.h
-index e0a5af180801..8e916729f393 100644
---- a/drivers/gpu/drm/radeon/radeon_mode.h
-+++ b/drivers/gpu/drm/radeon/radeon_mode.h
-@@ -38,6 +38,9 @@
- #include <linux/i2c.h>
- #include <linux/i2c-algo-bit.h>
- 
-+struct drm_fb_helper;
-+struct drm_fb_helper_surface_size;
-+
- struct edid;
- struct radeon_bo;
- struct radeon_device;
-@@ -935,12 +938,15 @@ void dce8_program_fmt(struct drm_encoder *encoder);
- 
- /* fbdev layer */
- #if defined(CONFIG_DRM_FBDEV_EMULATION)
--void radeon_fbdev_setup(struct radeon_device *rdev);
-+int radeon_fbdev_driver_fbdev_probe(struct drm_fb_helper *fb_helper,
-+				    struct drm_fb_helper_surface_size *sizes);
-+#define RADEON_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = radeon_fbdev_driver_fbdev_probe
- void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state);
- bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj);
- #else
--static inline void radeon_fbdev_setup(struct radeon_device *rdev)
--{ }
-+#define RADEON_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = NULL
- static inline void radeon_fbdev_set_suspend(struct radeon_device *rdev, int state)
- { }
- static inline bool radeon_fbdev_robj_is_fb(struct radeon_device *rdev, struct radeon_bo *robj)
 -- 
 2.46.0
 
