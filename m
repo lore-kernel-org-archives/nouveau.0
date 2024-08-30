@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99A55CA0EF5
-	for <nouveau@archiver.kernel.org>; Fri, 30 Aug 2024 08:48:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D41ACA0EF5
+	for <nouveau@archiver.kernel.org>; Fri, 30 Aug 2024 08:48:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5457F10EA07;
-	Fri, 30 Aug 2024 08:45:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B77F010EA0E;
+	Fri, 30 Aug 2024 08:45:44 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6BF10E936;
- Fri, 30 Aug 2024 08:45:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21A7810E932;
+ Fri, 30 Aug 2024 08:45:23 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 311B71FD16;
- Fri, 30 Aug 2024 08:45:23 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id A66B21F7CA;
+ Fri, 30 Aug 2024 08:45:21 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CC2AA13A3D;
- Fri, 30 Aug 2024 08:45:22 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4BB0B13A3D;
+ Fri, 30 Aug 2024 08:45:21 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id sM6RMKKG0WbyegAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:22 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id GPUsEaGG0WbyegAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:21 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>, Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v3 69/81] drm/nouveau: Run DRM default client setup
-Date: Fri, 30 Aug 2024 10:40:53 +0200
-Message-ID: <20240830084456.77630-70-tzimmermann@suse.de>
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>
+Subject: [PATCH v3 65/81] drm/amdgpu: Run DRM default client setup
+Date: Fri, 30 Aug 2024 10:40:49 +0200
+Message-ID: <20240830084456.77630-66-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240830084456.77630-1-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Spamd-Result: default: False [-4.00 / 50.00];
 	REPLY(-4.00)[]
-X-Rspamd-Queue-Id: 311B71FD16
+X-Rspamd-Queue-Id: A66B21F7CA
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
@@ -72,7 +74,7 @@ Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The nouveau driver specifies a preferred color mode depending on
+The amdgpu driver specifies a preferred color mode depending on
 the available video memory, with a default of 32. Adapt this for
 the new client interface.
 
@@ -80,57 +82,62 @@ v2:
 - style changes
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Karol Herbst <kherbst@redhat.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@redhat.com>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>
+Cc: "Christian König" <christian.koenig@amd.com>
+Cc: Xinhui Pan <Xinhui.Pan@amd.com>
+Tested-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Acked-by: Hamza Mahfooz <hamza.mahfooz@amd.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_drm.c | 10 ++++++++--
- 1 file changed, 8 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 4a9a9b9c3935..628c47a60de5 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -31,6 +31,7 @@
- #include <linux/dynamic_debug.h>
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+index 5dd39e6c6223..849d59e2bca7 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c
+@@ -23,6 +23,7 @@
+  */
  
- #include <drm/drm_aperture.h>
+ #include <drm/amdgpu_drm.h>
 +#include <drm/drm_client_setup.h>
  #include <drm/drm_drv.h>
  #include <drm/drm_fbdev_ttm.h>
- #include <drm/drm_gem_ttm_helper.h>
-@@ -836,6 +837,7 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- {
- 	struct nvkm_device *device;
- 	struct nouveau_drm *drm;
-+	const struct drm_format_info *format;
- 	int ret;
- 
- 	if (vga_switcheroo_client_probe_defer(pdev))
-@@ -873,9 +875,11 @@ static int nouveau_drm_probe(struct pci_dev *pdev,
- 		goto fail_pci;
- 
- 	if (drm->client.device.info.ram_size <= 32 * 1024 * 1024)
--		drm_fbdev_ttm_setup(drm->dev, 8);
-+		format = drm_format_info(DRM_FORMAT_C8);
- 	else
--		drm_fbdev_ttm_setup(drm->dev, 32);
-+		format = NULL;
+ #include <drm/drm_gem.h>
+@@ -2341,11 +2342,15 @@ static int amdgpu_pci_probe(struct pci_dev *pdev,
+ 	 */
+ 	if (adev->mode_info.mode_config_initialized &&
+ 	    !list_empty(&adev_to_drm(adev)->mode_config.connector_list)) {
++		const struct drm_format_info *format;
 +
-+	drm_client_setup(drm->dev, format);
+ 		/* select 8 bpp console on low vram cards */
+ 		if (adev->gmc.real_vram_size <= (32*1024*1024))
+-			drm_fbdev_ttm_setup(adev_to_drm(adev), 8);
++			format = drm_format_info(DRM_FORMAT_C8);
+ 		else
+-			drm_fbdev_ttm_setup(adev_to_drm(adev), 32);
++			format = NULL;
++
++		drm_client_setup(adev_to_drm(adev), format);
+ 	}
  
- 	quirk_broken_nv_runpm(pdev);
- 	return 0;
-@@ -1317,6 +1321,8 @@ driver_stub = {
- 	.dumb_create = nouveau_display_dumb_create,
- 	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
- 
+ 	ret = amdgpu_debugfs_init(adev);
+@@ -2957,6 +2962,7 @@ static const struct drm_driver amdgpu_kms_driver = {
+ 	.num_ioctls = ARRAY_SIZE(amdgpu_ioctls_kms),
+ 	.dumb_create = amdgpu_mode_dumb_create,
+ 	.dumb_map_offset = amdgpu_mode_dumb_mmap,
 +	DRM_FBDEV_TTM_DRIVER_OPS,
-+
- 	.name = DRIVER_NAME,
- 	.desc = DRIVER_DESC,
- #ifdef GIT_REVISION
+ 	.fops = &amdgpu_driver_kms_fops,
+ 	.release = &amdgpu_driver_release_kms,
+ #ifdef CONFIG_PROC_FS
+@@ -2983,6 +2989,7 @@ const struct drm_driver amdgpu_partition_driver = {
+ 	.num_ioctls = ARRAY_SIZE(amdgpu_ioctls_kms),
+ 	.dumb_create = amdgpu_mode_dumb_create,
+ 	.dumb_map_offset = amdgpu_mode_dumb_mmap,
++	DRM_FBDEV_TTM_DRIVER_OPS,
+ 	.fops = &amdgpu_driver_kms_fops,
+ 	.release = &amdgpu_driver_release_kms,
+ 
 -- 
 2.46.0
 
