@@ -4,88 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8665CD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A281D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0FF010EB56;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6559810EB87;
 	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="e9UrPh7O";
-	dkim-atps=neutral
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
- [209.85.216.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED03910E042;
- Mon, 21 Jul 2025 12:54:41 +0000 (UTC)
-Received: by mail-pj1-f45.google.com with SMTP id
- 98e67ed59e1d1-313dc7be67aso530978a91.0; 
- Mon, 21 Jul 2025 05:54:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753102481; x=1753707281; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Bq5VgfjTkqyHZmMsa4CuFn3fXsUBDjAcxmYxO2xVUQQ=;
- b=e9UrPh7OZqUQS7e92qBPqGEArNzNOZR4GXnOg90o2CkGGixtosfkJXZMnFy2d0DMdQ
- /HJl/xu3FnWZS2xncT2Rl8XC9A7U21bqCexwJ31tp1Kb39UdrDVB5uRfja9ZSqTNGbU8
- 2WRHLZ01PfWScsvs0z6fjaHPgpi98dFu8kJegGKhjwrPnB8iSDUvvInuoF6EPibDQg9C
- ySCIRdEcGeNEKEQ8NSzDHOeooph/zXs9IbQQBN3YsuKn6IB9D1SA/Bc5SdpzuexCxTd9
- FTcbJmMkp5qFTp3av+G08gKQm588bkQzexJLmp74uIaFkHEXtVDNsQeSdQv6eIEiWag9
- DvFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753102481; x=1753707281;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=Bq5VgfjTkqyHZmMsa4CuFn3fXsUBDjAcxmYxO2xVUQQ=;
- b=mGABn6VpE3Hj8jxa+WeFX5uKj0V/xf052OCrpy0JwBGkw5PTV+SriawZuTLHAAb++O
- IB1moGwLn10RfMqDA3efO4vhzxQrlM8SLc4LbPVWDOjdWD9IEJ6vc8Fo/TVYB+ZChXYv
- RmyPfAL9tF/LeK8dKe+uVuvPUrwtWKwZmzsIGeMZ1CV5LP1ynsNX6fWqZdbhsFh7Osei
- AK1Ub9yaP6uPBbefwc+X2kx20v91x4z7pycCmF8C4Mb0IU/3VTpsT30ZGUKiJAOI/6Jm
- TBrdMGq3s16Cnd8u7rHUIJr/DEADt/+61ldl2oFaQsB7gse3gj/Yu2dG98/+nvE4szDh
- wxJw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUgtX6v2ZfzrhSteK8JcgZYQkz4u0HlyvROo/gvPWbpWmo1h26BMel1j5lb7Nowd03VXXDh0VqUdQ==@lists.freedesktop.org,
- AJvYcCVpWaBEL//8Ef3DyQH4w4XUk5Y3OrmCr71OeIFkRESBEgywdmYY4qXQv2IOwq2GjxHaIc/+wsi+ewU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzEBVnh3bW5SQ8WRcRma7NO6CBDy1xjA9qRPWpevLUq+DTTOk5E
- E+Gbl6B1EpPhFq2oQFzd7weoxsgf9gueH4vyo39343o2F9BsWD+CekWFV7nU7Ux59UF5vHCrPyR
- hbnjg4ziGxi8Q2hGr44/D30/Pso/QcDk=
-X-Gm-Gg: ASbGncsxqTulFqRk5Hc6WZYGqV0gRSKPwXTMIuDpkWC2XZwxgI+lHLgfQWbCag3OpST
- HhVUUB3WGHXpR3mjCIFFY2lOrRsEg2mFLT+xpsnUONuxBt9qZzxKJ20cRJmOu0dy98Ky+ZsE0j2
- iTLms0xxoHO3RuNI0NY4MgyjSVz/+7UEl9YjDmzrtaEpeXYgF9nUZtoQGsTotmqK/kyi6msMcwv
- LECXsW3Yw1eU+7e3u0=
-X-Google-Smtp-Source: AGHT+IFI0uNUbtO1EL18MgqcISBuZun5VUryvqrsQhtAKtldt6P/mlWmjlPr/GgmBjbnB7SvG/K7ChJXEi849ooHmqA=
-X-Received: by 2002:a17:90b:562c:b0:312:25dd:1c8a with SMTP id
- 98e67ed59e1d1-31c9e6e8348mr11443694a91.2.1753102481364; Mon, 21 Jul 2025
- 05:54:41 -0700 (PDT)
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7303B10E13B;
+ Fri, 30 Aug 2024 01:14:07 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.163.48])
+ by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4Ww0XC3YmWzyR9X;
+ Fri, 30 Aug 2024 09:13:31 +0800 (CST)
+Received: from kwepemd500012.china.huawei.com (unknown [7.221.188.25])
+ by mail.maildlp.com (Postfix) with ESMTPS id 93A2B1800A0;
+ Fri, 30 Aug 2024 09:14:03 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemd500012.china.huawei.com
+ (7.221.188.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Fri, 30 Aug
+ 2024 09:14:02 +0800
+From: Li Zetao <lizetao1@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+ <kherbst@redhat.com>, <lyude@redhat.com>, <dakr@redhat.com>,
+ <felix.kuehling@amd.com>, <zhenguo.yin@amd.com>,
+ <srinivasan.shanmugam@amd.com>, <shashank.sharma@amd.com>,
+ <Jesse.Zhang@amd.com>
+CC: <lizetao1@huawei.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Subject: [PATCH -next 0/3] drm: use clamp() instead of min(max())
+Date: Fri, 30 Aug 2024 09:22:13 +0800
+Message-ID: <20240830012216.603623-1-lizetao1@huawei.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
- <20250704-core-cstr-prepare-v1-1-a91524037783@gmail.com>
- <20250721073717.i6hr4iesfupzvtwf@vireshk-i7>
-In-Reply-To: <20250721073717.i6hr4iesfupzvtwf@vireshk-i7>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 21 Jul 2025 14:54:29 +0200
-X-Gm-Features: Ac12FXy9X7WoYLkMFLbQ__okKUv8h09D5Y5ZLeDybojK9NFQlmOXBw1vbHf4mSI
-Message-ID: <CANiq72mZxcwDX2X3RfRpHzqkmU6GBVadKPLJYF03Hj14O2x4PA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] rust: kernel: remove `fmt!`,
- fix clippy::uninlined-format-args
-To: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Tamir Duberstein <tamird@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ kwepemd500012.china.huawei.com (7.221.188.25)
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,15 +56,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jul 21, 2025 at 9:37=E2=80=AFAM Viresh Kumar <viresh.kumar@linaro.o=
-rg> wrote:
->
-> Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Hi,
 
-Thanks Viresh -- I will add this one if I rebase, since Stephen
-already solved a conflict with it (I should have pinged earlier I
-guess, sorry; I thought you guys didn't Ack so far since it was
-trivial, but thanks to you both for them).
+When it needs to get the value of a certain interval [min, max],
+it is easier to understand using clamp(x, min, max) instead of
+min(max(x, min), max). What needs to be determined is that min
+should be smaller than max.
 
-Cheers,
-Miguel
+Li Zetao (3):
+  drm/amd: use clamp() in amdgpu_pll_get_fb_ref_div()
+  drm/amdgpu: use clamp() in amdgpu_vm_adjust_size()
+  drm/amdgpu: use clamp() in nvkm_volt_map()
+
+ drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c         | 2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c          | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
+
