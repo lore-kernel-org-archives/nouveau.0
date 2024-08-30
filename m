@@ -4,56 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A200ACA0EF5
-	for <nouveau@archiver.kernel.org>; Fri, 30 Aug 2024 08:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E957ACA0EF5
+	for <nouveau@archiver.kernel.org>; Fri, 30 Aug 2024 08:47:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDE1A10E876;
-	Fri, 30 Aug 2024 08:45:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 716D610E96B;
+	Fri, 30 Aug 2024 08:45:28 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C7FC10E8F2;
- Fri, 30 Aug 2024 08:45:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 532FC10E8C2;
+ Fri, 30 Aug 2024 08:45:12 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id E7E421F7CA;
- Fri, 30 Aug 2024 08:45:17 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 0286C1F7BD;
+ Fri, 30 Aug 2024 08:45:11 +0000 (UTC)
 Authentication-Results: smtp-out2.suse.de;
 	none
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9EDB313A66;
- Fri, 30 Aug 2024 08:45:17 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A0F2313A3D;
+ Fri, 30 Aug 2024 08:45:10 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id UL6FJZ2G0WbyegAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:17 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id CDsFJpaG0WbyegAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 30 Aug 2024 08:45:10 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: daniel@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
-Subject: [PATCH v3 54/81] drm/gud: Run DRM default client setup
-Date: Fri, 30 Aug 2024 10:40:38 +0200
-Message-ID: <20240830084456.77630-55-tzimmermann@suse.de>
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Subject: [PATCH v3 34/81] drm/renesas/rcar-du: Run DRM default client setup
+Date: Fri, 30 Aug 2024 10:40:18 +0200
+Message-ID: <20240830084456.77630-35-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240830084456.77630-1-tzimmermann@suse.de>
 References: <20240830084456.77630-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
-X-Spamd-Result: default: False [-4.00 / 50.00];
-	REPLY(-4.00)[]
-X-Rspamd-Queue-Id: E7E421F7CA
+X-Spamd-Result: default: False [-4.00 / 50.00]; REPLY(-4.00)[];
+ TAGGED_RCPT(0.00)[renesas]
+X-Rspamd-Queue-Id: 0286C1F7BD
 X-Rspamd-Pre-Result: action=no action; module=replies;
  Message is reply to one we originated
 X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,42 +73,46 @@ Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
+The rcar-du driver specifies a preferred color mode of 32. As this
+is the default if no format has been given, leave it out entirely.
+
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: "Noralf Trønnes" <noralf@tronnes.org>
-Acked-by: Noralf Trønnes <noralf@tronnes.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 ---
- drivers/gpu/drm/gud/gud_drv.c | 4 +++-
+ drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/gud/gud_drv.c b/drivers/gpu/drm/gud/gud_drv.c
-index ac6bbf920c72..09ccdc1dc1a2 100644
---- a/drivers/gpu/drm/gud/gud_drv.c
-+++ b/drivers/gpu/drm/gud/gud_drv.c
-@@ -15,6 +15,7 @@
+diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+index fb719d9aff10..4e0bafc86f50 100644
+--- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
++++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
+@@ -19,6 +19,7 @@
+ #include <linux/wait.h>
  
  #include <drm/drm_atomic_helper.h>
- #include <drm/drm_blend.h>
 +#include <drm/drm_client_setup.h>
- #include <drm/drm_damage_helper.h>
- #include <drm/drm_debugfs.h>
  #include <drm/drm_drv.h>
-@@ -376,6 +377,7 @@ static const struct drm_driver gud_drm_driver = {
- 	.fops			= &gud_fops,
- 	DRM_GEM_SHMEM_DRIVER_OPS,
- 	.gem_prime_import	= gud_gem_prime_import,
-+	DRM_FBDEV_SHMEM_DRIVER_OPS,
+ #include <drm/drm_fbdev_dma.h>
+ #include <drm/drm_gem_dma_helper.h>
+@@ -606,6 +607,7 @@ static const struct drm_driver rcar_du_driver = {
+ 	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
+ 	.dumb_create		= rcar_du_dumb_create,
+ 	.gem_prime_import_sg_table = rcar_du_gem_prime_import_sg_table,
++	DRM_FBDEV_DMA_DRIVER_OPS,
+ 	.fops			= &rcar_du_fops,
+ 	.name			= "rcar-du",
+ 	.desc			= "Renesas R-Car Display Unit",
+@@ -716,7 +718,7 @@ static int rcar_du_probe(struct platform_device *pdev)
  
- 	.name			= "gud",
- 	.desc			= "Generic USB Display",
-@@ -622,7 +624,7 @@ static int gud_probe(struct usb_interface *intf, const struct usb_device_id *id)
+ 	drm_info(&rcdu->ddev, "Device %s probed\n", dev_name(&pdev->dev));
  
- 	drm_kms_helper_poll_init(drm);
- 
--	drm_fbdev_shmem_setup(drm, 0);
-+	drm_client_setup(drm, NULL);
+-	drm_fbdev_dma_setup(&rcdu->ddev, 32);
++	drm_client_setup(&rcdu->ddev, NULL);
  
  	return 0;
- }
+ 
 -- 
 2.46.0
 
