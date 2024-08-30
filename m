@@ -4,102 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86FE7D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787F6D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93BA110EBC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A1B610EBC0;
 	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="caYype7d";
-	dkim-atps=neutral
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1E6610E126
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:26:53 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-2957850c63bso23976405ad.0
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:26:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763890013; x=1764494813; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jcsZ1pYdc/lZZufwkk7hmx3zrC9Zk2tE9eYLDhtARFw=;
- b=caYype7docGKKeNGLCfHaCbmWIKZZMGXvon554YMwnO0mK8JkZOAzCw9pkGA7O+Trt
- 6PT3ZBSPXTOehRmYFOhQ2GaNGuWfPp5gAXYB5HulJHQJ7g4nrxHn93a/nTettbKzipF4
- iHuYfq2PpWAIEZLhhwDo4TXFNqjQGYr0AK8Ba7UYjc5mA94HfSVar44+prs4QLYgdejK
- +l0lWbVa2mekfRS4VQKnjxG8jbFUFLK/Xyyl+ilwsVn6p7k8aZcLSfQPEZX9ChEs3tvG
- YaFsJroRUlMJp+Zd1wcMMlDq2EQ3Dpa8h50vUqrVRU7t8P7JgfEF6EUE/HtHKLtBovdv
- cbUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763890013; x=1764494813;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=jcsZ1pYdc/lZZufwkk7hmx3zrC9Zk2tE9eYLDhtARFw=;
- b=J55HM8vjjGEiOOCCy3bNaAi8cQYncRRO8gbGZFaAiobPpZ3FN2w1xp0ciztNJC5oCu
- GBsqkGiIIQYkBdEbEC86mfvIuGLJOxwBWA3Z1FArfwbHWQ943rQHvwlk7ckBW4uqvwdk
- b06Dkp8CEx0nKdp6fzjxSLkFznbHTQJnRzCcidGzSYL5OpQsYZ0cN8ew5AukH5AvIphH
- g00lZR6JWQp0wgRr0ggaoMgXl4LCejBTs1Rd/rAy9Khaoz1dkXdipH2+Lk8k5o8AeUHl
- 1tQlCI9zqVqTyS1UrxQGNXgv7u8U7L9jT7o1I2+8gxhZXa7YfGvgxz1AZpIjT6OUZ83K
- E08Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUzFFMs+4ZDzeVAK52PzWNW7TmlCrwmv0BzNOqLs4NfPd4mvquptY5U1OGUbbIy9O9gxkHrVwLi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwwTUTfis46vPW+8jNLpfZjubZk8WY0Qh2t/HoPAPVJB0VwHbKN
- DzV5fxLhrTRbw1HVfrkw7jf5L+KrNVexN9q90325xSx2TMGlugbFjL88
-X-Gm-Gg: ASbGncvb72ax9ttObZ4S0VMu1HV6euseu85aPgr2LX+J7dQscB8FAKmWuvcuxFUULaY
- FippE7BgBwA9dlElNiFk6F7giYLxErM2Ww7owZRzXpMJE79vj7/cyfM/nn7nIEnrbnicpElAjyT
- anYtyjWvWLvK1ZwccNiFCcQOVP3ye+P4tmPoYW/vk9B95ETkTzwvnnbjL411lYz8o7fHXh3EGot
- iFMeYzWEIXDqW6aQBaIhM2VO6ehYaaAG5UjRxIe+albfZ5q+QwjPYzBTOZEDtDrw2/0iPrv11dE
- GJjNXWKAhTUfu/m5w/ZEKujwIPquPDHnr437IcWAZ/6k4qg8lDMWlFiViJ/Lr7QveYCTXGD5jG6
- tinpET/7JMQVPLtWYlmZCEg2xt3qFpeCh2ij6MezPz5quigYSclkghYe0/n03lfmAtGVFxow15i
- OuirwPiAzu2iu5OBHdzdb+acfRDQ==
-X-Google-Smtp-Source: AGHT+IEPaSiAglOPtRohHhMD3F7poU82nQz/JA+b9mPjFhoImXk6hT3H7zPq8hH/JIUpP2uJO5DptA==
-X-Received: by 2002:a17:902:ef4f:b0:295:82d0:9baa with SMTP id
- d9443c01a7336-29b6bfa8cd3mr100768505ad.17.1763890013033; 
- Sun, 23 Nov 2025 01:26:53 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.26.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:26:52 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 06/10] rust: kernel: Update ARef and AlwaysRefCounted imports
- to use sync::aref
-Date: Sun, 23 Nov 2025 14:54:34 +0530
-Message-Id: <20251123092438.182251-7-shankari.ak0208@gmail.com>
+X-Greylist: delayed 1029 seconds by postgrey-1.36 at gabe;
+ Fri, 30 Aug 2024 01:31:16 UTC
+Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5710210E13B;
+ Fri, 30 Aug 2024 01:31:16 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.88.214])
+ by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4Ww0RG1j5Rz20n8q;
+ Fri, 30 Aug 2024 09:09:14 +0800 (CST)
+Received: from kwepemd500012.china.huawei.com (unknown [7.221.188.25])
+ by mail.maildlp.com (Postfix) with ESMTPS id 58B521A016C;
+ Fri, 30 Aug 2024 09:14:05 +0800 (CST)
+Received: from huawei.com (10.90.53.73) by kwepemd500012.china.huawei.com
+ (7.221.188.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Fri, 30 Aug
+ 2024 09:14:04 +0800
+From: Li Zetao <lizetao1@huawei.com>
+To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
+ <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
+ <kherbst@redhat.com>, <lyude@redhat.com>, <dakr@redhat.com>,
+ <felix.kuehling@amd.com>, <zhenguo.yin@amd.com>,
+ <srinivasan.shanmugam@amd.com>, <shashank.sharma@amd.com>,
+ <Jesse.Zhang@amd.com>
+CC: <lizetao1@huawei.com>, <amd-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
+Subject: [PATCH -next 3/3] drm/amdgpu: use clamp() in nvkm_volt_map()
+Date: Fri, 30 Aug 2024 09:22:16 +0800
+Message-ID: <20240830012216.603623-4-lizetao1@huawei.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+In-Reply-To: <20240830012216.603623-1-lizetao1@huawei.com>
+References: <20240830012216.603623-1-lizetao1@huawei.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+Content-Type: text/plain
+X-Originating-IP: [10.90.53.73]
+X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
+ kwepemd500012.china.huawei.com (7.221.188.25)
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,34 +60,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update call sites in `pwm.rs` to import `ARef`
-and `AlwaysRefCounted` from `sync::aref`
-instead of `types`.
+When it needs to get a value within a certain interval, using clamp()
+makes the code easier to understand than min(max()).
 
-This aligns with the ongoing effort to move `ARef` and
-`AlwaysRefCounted` to sync.
-
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+Signed-off-by: Li Zetao <lizetao1@huawei.com>
 ---
- rust/kernel/pwm.rs | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/rust/kernel/pwm.rs b/rust/kernel/pwm.rs
-index cb00f8a8765c..1605d13d5d64 100644
---- a/rust/kernel/pwm.rs
-+++ b/rust/kernel/pwm.rs
-@@ -13,7 +13,8 @@
-     devres,
-     error::{self, to_result},
-     prelude::*,
--    types::{ARef, AlwaysRefCounted, Opaque}, //
-+    sync::aref::{ARef, AlwaysRefCounted},
-+    types::Opaque, //
- };
- use core::{marker::PhantomData, ptr::NonNull};
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c
+index a17a6dd8d3de..803b98df4858 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/volt/base.c
+@@ -142,7 +142,7 @@ nvkm_volt_map(struct nvkm_volt *volt, u8 id, u8 temp)
+ 			return -ENODEV;
+ 		}
  
+-		result = min(max(result, (s64)info.min), (s64)info.max);
++		result = clamp(result, (s64)info.min, (s64)info.max);
+ 
+ 		if (info.link != 0xff) {
+ 			int ret = nvkm_volt_map(volt, info.link, temp);
 -- 
 2.34.1
 
