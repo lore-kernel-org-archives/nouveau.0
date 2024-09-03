@@ -4,98 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B526C02194
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B33A2C0219B
 	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:42:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25E5B10E9DA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 695E510E9DC;
 	Fri,  7 Feb 2025 01:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="dpSKOgC6";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="MWw6jy7t";
 	dkim-atps=neutral
 Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
  [209.85.128.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8884A10E9AB
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 16:09:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2A0110E581
+ for <nouveau@lists.freedesktop.org>; Tue,  3 Sep 2024 12:39:57 +0000 (UTC)
 Received: by mail-wm1-f54.google.com with SMTP id
- 5b1f17b1804b1-436a03197b2so7254155e9.2
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 08:09:49 -0800 (PST)
+ 5b1f17b1804b1-4280ca0791bso45681185e9.1
+ for <nouveau@lists.freedesktop.org>; Tue, 03 Sep 2024 05:39:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1738253388; x=1738858188; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=DHjECDXWr9DtzEWz0JXb8DxrPMtRT+1WnFwQ9T4qTYY=;
- b=dpSKOgC6QI62i9gw4CbPr9/y+tMNWBEX/lKXC/rApPeCgZ4Q6Ihx6ummAr5Sp5i6KZ
- lKYHLYnHQzw7CT7lctoqypYW0YNzl4Yh8jQzhtgTP9NPtSfF+7n43skylIn81Kn7vUdg
- mEqiOgjW6gALIiQEoa2wHzpfB8zFH7q/z35J0=
+ d=ffwll.ch; s=google; t=1725367196; x=1725971996; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=eS0iv/n7MbSe6dw0/hr9KhntehZWi/UAfId00tU1FBU=;
+ b=MWw6jy7ty8vP7lhfVlUseJu5rbz896iWmgkjF4y1SsC454FkHpewl7IaNZEOyzAqrf
+ pmIbtOqqLWrbdSsSpcoSwx9dVq7RBDZverYLwE5btxWLOE7fYR/L/MPgyc82hgJ1WaaQ
+ LqLPOuutkd0q/Y8lvvbwDrj+HzLo/tOahsG+M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738253388; x=1738858188;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=DHjECDXWr9DtzEWz0JXb8DxrPMtRT+1WnFwQ9T4qTYY=;
- b=EKyf9NdyC8Kehh56UdqgbJPMlBc646wPRvEIKTO6X60GA8it0oZTSLlJJYhit5mgs0
- iz89euejR0wJ5D/IES4C4vyDPfM/hzM64121/MnlSMkNp1l8tc1ud6jRafUHWK7ZoiCO
- Ukb6xgW+XZ1CJA8HiMYTqeSGrFhVD6WlLopboTff/SYYknRqoixR6CKPbAaTfTUdyvKb
- VNAW5mddeprJh6duP9s+aK6Nujd+K5xVNvpqhGmK39soIRqZBLM8h9zfjttsNRCs24Gt
- WuUqw+OA045eNu8tfnhBS+AJBWVFowU2/2vpavH4G9fCVKWvpaCLPUWZoxGfWBqEyLGe
- YCFw==
+ d=1e100.net; s=20230601; t=1725367196; x=1725971996;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=eS0iv/n7MbSe6dw0/hr9KhntehZWi/UAfId00tU1FBU=;
+ b=XIjbrseBHPNxYr8AOlhaQuA7fDrQacIRsx1rZ1s7UEG+42vnwmYzoh243Hx4aRJW8l
+ IiKGU0Ou/55Kg7gymc39ZZoe9bWVjFeqBkuk95vokLyr5XmrxUY2RfaaNveoHKvHQr++
+ 7FmVcuK/wSi/G9fuVxIGHxkvesCyHUZmbGIsOjYCoAnvDuqYamh4TNEDU//Kcxz8sGHW
+ LBOUrpqFUjGrltqng+Jr7apTmtalDYRfAqTXxJyWGcNITEncAhm4E8BDsN77dbJHI99a
+ xNTSJv+E8eR+T9KrwGS4ORzTMfj01LKpP7qOYZQLPKmFzdLzPSUCP1cuy8U7pg6gqy/I
+ C0BA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUo164requZ/jYvMXysO2X0SxZMlQpItko6E6NWKzxRqkNQogUI9ZF2d3wjdvbYZYW345PUa4Sw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw/TYYA2XTbR5OEJYHy6uKeRtHhWnU6gn2Xfxz44IPjomme/qL4
- MExysofjzna3LOKUb71yFGrPE+PU0RcQghODLgoqWaOTM9WGk6XoXsU6PAjDZHM=
-X-Gm-Gg: ASbGncu9TU4wSaKb1Bt627rst/+zB0QItkVabkJB2+C5ZW6haySWbo7L7teYlfK/1OD
- YJf7JHfhSf+Fnxt5JPrbfn3mwFCltym3790bLb7203SaSP/U60t/CpMyP1nK7hf52H1N+XFpbKT
- GLSfu4vwTMocR+yZHJaukAxd/VHW7WfhlmITq/Q+CqmvMPKDt9l3NV4WJd6tjL1FN+mehsvT7PU
- nkQ3KZoCZFvEpwZ8FHm0QuCQluRgsACL3tNfF0TT7K4+5Ne4SgAufOA/ar4C5CWklD70I6jzTuR
- D0t5vOn95WdikM61xQnx9yZ+dwg=
-X-Google-Smtp-Source: AGHT+IHzkAlG33CPN/kMrEln846pAhOyRPiLkWV/nev8K+POyx7veXX/IQAiWwM1YsBE7oYiCeZW/A==
-X-Received: by 2002:a05:600c:1e0d:b0:436:f960:3427 with SMTP id
- 5b1f17b1804b1-438dc40ffbbmr65699075e9.22.1738253387756; 
- Thu, 30 Jan 2025 08:09:47 -0800 (PST)
+ AJvYcCVmjKx6k2v1R38c2NLRRw/4ce3k1poRxwjEmfNa9QMWm1Lu1Mzr4SDrlvgy6v7Z/IyyJ0Abn9eK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyB4XXV+qwHyPzea46/KXJaxTP5B4xnpgnIrO1wqWkSf9iISm44
+ lA/y1NLq5HExjIAtuWggTJQYHc9XV87kAX6EGm/4gXsx/DVYeA0LnNsM2RIh0R0=
+X-Google-Smtp-Source: AGHT+IHNhD+r/CPo523w/8HFM2TuVsrQ7AuT5zWQJdKE4RvYIw+abb1WIkixGF9ybaxSUJ7T3j7prg==
+X-Received: by 2002:a05:600c:3150:b0:426:6eae:6596 with SMTP id
+ 5b1f17b1804b1-42c8de9dd30mr4970165e9.25.1725367195774; 
+ Tue, 03 Sep 2024 05:39:55 -0700 (PDT)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438dcc2ef08sm64120395e9.22.2025.01.30.08.09.46
+ 5b1f17b1804b1-42ba63abea3sm208229195e9.28.2024.09.03.05.39.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jan 2025 08:09:46 -0800 (PST)
-Date: Thu, 30 Jan 2025 17:09:44 +0100
+ Tue, 03 Sep 2024 05:39:55 -0700 (PDT)
+Date: Tue, 3 Sep 2024 14:39:52 +0200
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
- lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
- akpm@linux-foundation.org, GalShalom@nvidia.com,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-mm@kvack.org, linux-tegra@vger.kernel.org
-Subject: Re: [RFC 1/5] mm/hmm: HMM API to enable P2P DMA for device private
- pages
-Message-ID: <Z5ukSNjvmQcXsZTm@phenom.ffwll.local>
-Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
- lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
- akpm@linux-foundation.org, GalShalom@nvidia.com,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
- linux-mm@kvack.org, linux-tegra@vger.kernel.org
-References: <7282ac68c47886caa2bc2a2813d41a04adf938e1.camel@linux.intel.com>
- <20250128132034.GA1524382@ziepe.ca>
- <de293a7e9b4c44eab8792b31a4605cc9e93b2bf5.camel@linux.intel.com>
- <20250128151610.GC1524382@ziepe.ca>
- <b78d32e13811ef1fa57b0535749c811f2afb4dcd.camel@linux.intel.com>
- <20250128172123.GD1524382@ziepe.ca>
- <Z5ovcnX2zVoqdomA@phenom.ffwll.local>
- <20250129134757.GA2120662@ziepe.ca>
- <Z5tZc0OQukfZEr3H@phenom.ffwll.local>
- <20250130132317.GG2120662@ziepe.ca>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Daniel Vetter <daniel.vetter@ffwll.ch>, Danilo Krummrich <dakr@redhat.com>,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
+ ojeda@kernel.org, alex.gaynor@gmail.com, wedsonaf@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@samsung.com,
+ aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
+ ajanulgu@redhat.com, lyude@redhat.com, gregkh@linuxfoundation.org,
+ robh@kernel.org, daniel.almeida@collabora.com,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v2 3/8] rust: drm: add driver abstractions
+Message-ID: <ZtcDmPf9Zr9wPcjo@phenom.ffwll.local>
+References: <20240618233324.14217-1-dakr@redhat.com>
+ <20240618233324.14217-4-dakr@redhat.com>
+ <ZtXn0hesji0s_45x@phenom.ffwll.local> <Ztbu-wUkH0l3nbUm@pollux>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250130132317.GG2120662@ziepe.ca>
-X-Operating-System: Linux phenom 6.12.11-amd64 
+In-Reply-To: <Ztbu-wUkH0l3nbUm@pollux>
+X-Operating-System: Linux phenom 6.9.12-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,80 +91,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 09:23:17AM -0400, Jason Gunthorpe wrote:
-> On Thu, Jan 30, 2025 at 11:50:27AM +0100, Simona Vetter wrote:
-> > On Wed, Jan 29, 2025 at 09:47:57AM -0400, Jason Gunthorpe wrote:
-> > > On Wed, Jan 29, 2025 at 02:38:58PM +0100, Simona Vetter wrote:
+On Tue, Sep 03, 2024 at 01:11:55PM +0200, Danilo Krummrich wrote:
+> On Mon, Sep 02, 2024 at 06:29:06PM +0200, Daniel Vetter wrote:
+> > On Wed, Jun 19, 2024 at 01:31:39AM +0200, Danilo Krummrich wrote:
+> > > Implement the DRM driver abstractions.
 > > > 
-> > > > > The pgmap->owner doesn't *have* to fixed, certainly during early boot before
-> > > > > you hand out any page references it can be changed. I wouldn't be
-> > > > > surprised if this is useful to some requirements to build up the
-> > > > > private interconnect topology?
-> > > > 
-> > > > The trouble I'm seeing is device probe and the fundemantal issue that you
-> > > > never know when you're done. And so if we entirely rely on pgmap->owner to
-> > > > figure out the driver private interconnect topology, that's going to be
-> > > > messy. That's why I'm also leaning towards both comparing owners and
-> > > > having an additional check whether the interconnect is actually there or
-> > > > not yet.
+> > > The `Driver` trait provides the interface to the actual driver to fill
+> > > in the driver specific data, such as the `DriverInfo`, driver features
+> > > and IOCTLs.
 > > > 
-> > > Hoenstely, I'd rather invest more effort into being able to update
-> > > owner for those special corner cases than to slow down the fast path
-> > > in hmm_range_fault..
+> > > Co-developed-by: Asahi Lina <lina@asahilina.net>
+> > > Signed-off-by: Asahi Lina <lina@asahilina.net>
+> > > Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+> > > ---
+> > >  rust/bindings/bindings_helper.h |   1 +
+> > >  rust/kernel/drm/drv.rs          | 141 ++++++++++++++++++++++++++++++++
+> > >  rust/kernel/drm/mod.rs          |   1 +
+> > >  3 files changed, 143 insertions(+)
+> > >  create mode 100644 rust/kernel/drm/drv.rs
+> > > 
+> > > diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
+> > > index ed25b686748e..dc19cb789536 100644
+> > > --- a/rust/bindings/bindings_helper.h
+> > > +++ b/rust/bindings/bindings_helper.h
+> > > @@ -6,6 +6,7 @@
+> > >   * Sorted alphabetically.
+> > >   */
+> > >  
+> > > +#include <drm/drm_drv.h>
+> > >  #include <drm/drm_ioctl.h>
+> > >  #include <kunit/test.h>
+> > >  #include <linux/errname.h>
+> > > diff --git a/rust/kernel/drm/drv.rs b/rust/kernel/drm/drv.rs
+> > > new file mode 100644
+> > > index 000000000000..cd594a32f9e4
+> > > --- /dev/null
+> > > +++ b/rust/kernel/drm/drv.rs
+> > > @@ -0,0 +1,141 @@
+> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> > > +
+> > > +//! DRM driver core.
+> > > +//!
+> > > +//! C header: [`include/linux/drm/drm_drv.h`](srctree/include/linux/drm/drm_drv.h)
+> > > +
+> > > +use crate::{bindings, drm, private::Sealed, str::CStr, types::ForeignOwnable};
+> > > +use macros::vtable;
+> > > +
+> > > +/// Driver use the GEM memory manager. This should be set for all modern drivers.
+> > > +pub const FEAT_GEM: u32 = bindings::drm_driver_feature_DRIVER_GEM;
+> > > +/// Driver supports mode setting interfaces (KMS).
+> > > +pub const FEAT_MODESET: u32 = bindings::drm_driver_feature_DRIVER_MODESET;
+> > > +/// Driver supports dedicated render nodes.
+> > > +pub const FEAT_RENDER: u32 = bindings::drm_driver_feature_DRIVER_RENDER;
+> > > +/// Driver supports the full atomic modesetting userspace API.
+> > > +///
+> > > +/// Drivers which only use atomic internally, but do not support the full userspace API (e.g. not
+> > > +/// all properties converted to atomic, or multi-plane updates are not guaranteed to be tear-free)
+> > > +/// should not set this flag.
+> > > +pub const FEAT_ATOMIC: u32 = bindings::drm_driver_feature_DRIVER_ATOMIC;
+> > > +/// Driver supports DRM sync objects for explicit synchronization of command submission.
+> > > +pub const FEAT_SYNCOBJ: u32 = bindings::drm_driver_feature_DRIVER_SYNCOBJ;
+> > > +/// Driver supports the timeline flavor of DRM sync objects for explicit synchronization of command
+> > > +/// submission.
+> > > +pub const FEAT_SYNCOBJ_TIMELINE: u32 = bindings::drm_driver_feature_DRIVER_SYNCOBJ_TIMELINE;
+> > > +/// Driver supports compute acceleration devices. This flag is mutually exclusive with `FEAT_RENDER`
+> > > +/// and `FEAT_MODESET`. Devices that support both graphics and compute acceleration should be
+> > > +/// handled by two drivers that are connected using auxiliary bus.
+> > > +pub const FEAT_COMPUTE_ACCEL: u32 = bindings::drm_driver_feature_DRIVER_COMPUTE_ACCEL;
+> > > +/// Driver supports user defined GPU VA bindings for GEM objects.
+> > > +pub const FEAT_GEM_GPUVA: u32 = bindings::drm_driver_feature_DRIVER_GEM_GPUVA;
+> > > +/// Driver supports and requires cursor hotspot information in the cursor plane (e.g. cursor plane
+> > > +/// has to actually track the mouse cursor and the clients are required to set hotspot in order for
+> > > +/// the cursor planes to work correctly).
+> > > +pub const FEAT_CURSOR_HOTSPOT: u32 = bindings::drm_driver_feature_DRIVER_CURSOR_HOTSPOT;
+> > > +
+> > > +/// Information data for a DRM Driver.
+> > > +pub struct DriverInfo {
+> > > +    /// Driver major version.
+> > > +    pub major: i32,
+> > > +    /// Driver minor version.
+> > > +    pub minor: i32,
+> > > +    /// Driver patchlevel version.
+> > > +    pub patchlevel: i32,
+> > > +    /// Driver name.
+> > > +    pub name: &'static CStr,
+> > > +    /// Driver description.
+> > > +    pub desc: &'static CStr,
+> > > +    /// Driver date.
+> > > +    pub date: &'static CStr,
+> > > +}
+> > > +
+> > > +/// Internal memory management operation set, normally created by memory managers (e.g. GEM).
+> > > +///
+> > > +/// See `kernel::drm::gem` and `kernel::drm::gem::shmem`.
+> > > +pub struct AllocOps {
+> > > +    pub(crate) gem_create_object: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            dev: *mut bindings::drm_device,
+> > > +            size: usize,
+> > > +        ) -> *mut bindings::drm_gem_object,
+> > > +    >,
+> > > +    pub(crate) prime_handle_to_fd: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            dev: *mut bindings::drm_device,
+> > > +            file_priv: *mut bindings::drm_file,
+> > > +            handle: u32,
+> > > +            flags: u32,
+> > > +            prime_fd: *mut core::ffi::c_int,
+> > > +        ) -> core::ffi::c_int,
+> > > +    >,
+> > > +    pub(crate) prime_fd_to_handle: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            dev: *mut bindings::drm_device,
+> > > +            file_priv: *mut bindings::drm_file,
+> > > +            prime_fd: core::ffi::c_int,
+> > > +            handle: *mut u32,
+> > > +        ) -> core::ffi::c_int,
+> > > +    >,
+> > > +    pub(crate) gem_prime_import: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            dev: *mut bindings::drm_device,
+> > > +            dma_buf: *mut bindings::dma_buf,
+> > > +        ) -> *mut bindings::drm_gem_object,
+> > > +    >,
+> > > +    pub(crate) gem_prime_import_sg_table: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            dev: *mut bindings::drm_device,
+> > > +            attach: *mut bindings::dma_buf_attachment,
+> > > +            sgt: *mut bindings::sg_table,
+> > > +        ) -> *mut bindings::drm_gem_object,
+> > > +    >,
+> > > +    pub(crate) dumb_create: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            file_priv: *mut bindings::drm_file,
+> > > +            dev: *mut bindings::drm_device,
+> > > +            args: *mut bindings::drm_mode_create_dumb,
+> > > +        ) -> core::ffi::c_int,
+> > > +    >,
+> > > +    pub(crate) dumb_map_offset: Option<
+> > > +        unsafe extern "C" fn(
+> > > +            file_priv: *mut bindings::drm_file,
+> > > +            dev: *mut bindings::drm_device,
+> > > +            handle: u32,
+> > > +            offset: *mut u64,
+> > > +        ) -> core::ffi::c_int,
+> > > +    >,
+> > > +}
+> > > +
+> > > +/// Trait for memory manager implementations. Implemented internally.
+> > > +pub trait AllocImpl: Sealed {
+> > > +    /// The C callback operations for this memory manager.
+> > > +    const ALLOC_OPS: AllocOps;
+> > > +}
+> > > +
+> > > +/// The DRM `Driver` trait.
+> > > +///
+> > > +/// This trait must be implemented by drivers in order to create a `struct drm_device` and `struct
+> > > +/// drm_driver` to be registered in the DRM subsystem.
+> > > +#[vtable]
+> > > +pub trait Driver {
+> > > +    /// Context data associated with the DRM driver
+> > > +    ///
+> > > +    /// Determines the type of the context data passed to each of the methods of the trait.
+> > > +    type Data: ForeignOwnable + Sync + Send;
+> > > +
+> > > +    /// The type used to manage memory for this driver.
+> > > +    ///
+> > > +    /// Should be either `drm::gem::Object<T>` or `drm::gem::shmem::Object<T>`.
+> > > +    type Object: AllocImpl;
 > > 
-> > I'm not sure how you want to make the owner mutable.
+> > Bit similar comment to what I discussed at length with lyude, drivers
+> > might have a need for different implementations. But I think from the kms
+> > discussions we have solid solution for that, so I think we should be fine.
+> > 
+> > > +
+> > > +    /// Driver metadata
+> > > +    const INFO: DriverInfo;
+> > > +
+> > > +    /// Feature flags
+> > > +    const FEATURES: u32;
+> > 
+> > I think there's a type safety issue here with allowing drivers to muck
+> > with these directly. Example:
+> > 
+> > - If you don't set FEAT_GEM but try to use gem C functions, stuff blows up
+> >   because the core doesn't call drm_gem_init() in that case.
 > 
-> You'd probably have to use a system where you never free them until
-> all the page maps are destroyed.
+> Indeed. Ideally, we'd want the feature flags to be automatically set, when a
+> corresponding implementation is provided by the driver.
 > 
-> You could also use an integer instead of a pointer to indicate the
-> cluster of interconnect, I think there are many options..
-
-Hm yeah I guess an integer allocater of the atomic_inc kind plus "surely
-32bit is enough" could work. But I don't think it's needed, if we can
-reliable just unregister the entire dev_pagemap and then just set up a new
-one. Plus that avoids thinking about which barriers we might need where
-exactly all over mm code that looks at the owner field.
-
-> > And I've looked at the lifetime fun of unregistering a dev_pagemap for
-> > device hotunplug and pretty firmly concluded it's unfixable and that I
-> > should run away to do something else :-P
+> For now, as you say, GEM can just be mandatory I think.
 > 
-> ? It is supposed to work, it blocks until all the pages are freed, but
-> AFAIK ther is no fundamental life time issue. The driver is
-> responsible to free all its usage.
-
-Hm I looked at it again, and I guess with the fixes to make migration to
-system memory work reliable in Matt Brost's latest series it should indeed
-work reliable. The devm_ version still freaks me out because of how easily
-people misuse these for things that are memory allocations.
-
-> > An optional callback is a lot less scary to me here (or redoing
-> > hmm_range_fault or whacking the migration helpers a few times) looks a lot
-> > less scary than making pgmap->owner mutable in some fashion.
+> > 
+> > - For modesetting it's more fun because there mandatory init functions are
+> >   meant to be called by the driver, in the right sequence, interleaved
+> >   with other driver setup code for all the right modeset objects. If you
+> >   get it wrong you go boom.
 > 
-> It extra for every single 4k page on every user :\
-> 
-> And what are you going to do better inside this callback?
+> My proposal was to just have another associated `Kms` type for `Driver` that
+> provides the corresponding callbacks for initialization. KMS initialization
+> functions could then be exposed only through those callbacks, such that they
+> can't be called after registration.
 
-Having more comfy illusions :-P
-
-Slightly more seriously, I can grab some locks and make life easier,
-whereas sprinkling locking or even barriers over pgmap->owner in core mm
-is not going to fly. Plus more flexibility, e.g. when the interconnect
-doesn't work for atomics or some other funny reason it only works for some
-of the traffic, where you need to more dynamically decide where memory is
-ok to sit. Or checking p2pdma connectivity and all that stuff.
-
-But we can also do all that stuff by checking afterwards or migrating
-memory around as needed. At least for drivers who cooperate and all set
-the same owner, which I think is Thomas' current plan.
-
-Also note that fundamentally you can't protect against the hotunplug or
-driver unload case for hardware access. So some access will go to nowhere
-when that happens, until we've torn down all the mappings and migrated
-memory out.
+Hm yeah I guess callbacks works too. No idea whether that's the rust way
+or not though, at least on the C side callbacks for init are kinda
+midlayer smell and tend to be in the way.
 -Sima
+
+> 
+> > 
+> > For the modeset side of things I've dumped a pile of comments on lyude's
+> > patches already: Essentially during registration I think we need a special
+> > drmKmsDriverInit object or phantom type or so, so that you can proof
+> > you're registering kms objects at the right time, with the rust
+> > abstraction calling all the other functions around that in the right
+> > order.
+> > 
+> > For gem I think we should flat out not allow non-gem drivers in rust. At
+> > least until someone comes up with a need for a non-gem driver.
+> > 
+> > For some of the values like hotspot cursor support we might need to change
+> > the rust abstraction to compute these at runtime driver init, and then set
+> > them somewhere in the runtime data structure instead of having them
+> > statically sepcified in drm_driver->features.
+> > 
+> > In general these feature flag are midlayer design and that tends to be
+> > bad, rust is just the messenger here.
+> > 
+> > Cheers, Sima
+> > 
+> > 
+> > > +
+> > > +    /// IOCTL list. See `kernel::drm::ioctl::declare_drm_ioctls!{}`.
+> > > +    const IOCTLS: &'static [drm::ioctl::DrmIoctlDescriptor];
+> > > +}
+> > > diff --git a/rust/kernel/drm/mod.rs b/rust/kernel/drm/mod.rs
+> > > index 9ec6d7cbcaf3..d987c56b3cec 100644
+> > > --- a/rust/kernel/drm/mod.rs
+> > > +++ b/rust/kernel/drm/mod.rs
+> > > @@ -2,4 +2,5 @@
+> > >  
+> > >  //! DRM subsystem abstractions.
+> > >  
+> > > +pub mod drv;
+> > >  pub mod ioctl;
+> > > -- 
+> > > 2.45.1
+> > > 
+> > 
+> > -- 
+> > Simona Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> > 
+
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
