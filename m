@@ -4,82 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 546A0D5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B288ED5B160
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D09F10EA3A;
-	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E201210EA9C;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SQ3PRlaV";
+	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="q0Mtd8A2";
 	dkim-atps=neutral
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD82B10E109;
- Thu, 24 Jul 2025 17:57:54 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-234b122f2feso117485ad.0; 
- Thu, 24 Jul 2025 10:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753379874; x=1753984674; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+8UvJuIn0OPJI+DjMgO3jk5kaVoeuzRgCCA1dECQ/gA=;
- b=SQ3PRlaVBom8q1NBcjyZwOtUwsUei+ujjxQ7fE2bx0w9mCWfxMTZ7jn+Fz8dMt5Gfv
- o1NmTkY7VF+x5n7YQ70GrJ4qbMqzXBfhJPKmUjycaLLKP2gl2iJAJf8wJcDt9XGkFWW1
- gGcqzM61p3Z8JAMf4ZEX/CG36qK07tJLF3GUTbeS7qbftV2Od/YhJBmqECWIQq5feBYr
- SU+vLBoFU93l6Ea8asOxHM+PdmiGdzeAFUBC9lLZ8txjmt9OVDxxPwiFLu9f9qMcZtgw
- F3iqCnWKlT52hQOLEnekmpjtQxrFCNAJzHr2yxQsoasAT9r5ryPu+Ewn/AHz7ZGKmEDc
- rUjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753379874; x=1753984674;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=+8UvJuIn0OPJI+DjMgO3jk5kaVoeuzRgCCA1dECQ/gA=;
- b=BLT8X+Yfup4rbzaFtLZcZ3cotsxd6uy3XNnT6PgsiCXr4K0HpnaIQYJrbQICsAtbtE
- K4o/hQXn4wUBUA/ye+eZnXJZHiqIm+ixzWugucBWlgjotfRNIlbETNdFggOSF82redTg
- DwVBbwMNwb6P13afukHSJ8PCxobLHnWRau5OTURs9RmEDyh2ClAWnarqP9S8+Dw6ffu0
- Pwj0e4vf12M8pPho9lEBc3P9d7YbqC6On65B+dA4VZqryf6vY08OHiPina7dYK4VOQ8e
- Q2x8Xk9RS71PFw//fTNOckVL381ZAkDBL3a0GVYlLMULTIPVZsYZ76VFFAt4etdOG39n
- ftow==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWoR2zpO3E/eRkgk8q4JztNf8fnTFEtsk/V3owaS9sAYSB74SpbfXv8T02nB3OgnmXkQpAUWKCGSzM=@lists.freedesktop.org,
- AJvYcCXqG6tU25ExDNdYtjjHgO3pfw7f32FR4zxbGrzROdQwMzmXOSA/GtklOOKr8Q8aUnS7x5nRqQTzmA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YytmSsLY+nxCxmkMS9Ge2J2Mgm0aWrT8Yfst8/UFWnQG+u68lfn
- QMRk/k9/S9DbDvs1jtbCxDP1rPdu0jYy9kMcBKxLGW9t+LfExJngXtoNFYYyvqhNrFu1I/qzCUL
- sH7XYw5ly7Cm6JtNv2aQCdN+0hcMVo1Q=
-X-Gm-Gg: ASbGnctZN5LYNoUPjJWt1G7hCKQZyyuz1xzNawrH1wYUjbDJQBpRtledBI/KO66uSXv
- FVlXR2lZ+DH62LZX2UUbLmOLrO1u5O3tM+WkQAjkE49Zcq7OHJhjmTQmVYNGOqSsomt5pwVbsap
- KO75Std3LlbhYglUCIZi26ICPdpqXNPBUl53Y1xD6CKOolaFfRivM7cHunvsOApATULmzvYZHzB
- wHPSmyB
-X-Google-Smtp-Source: AGHT+IEAhOyud9kcbqXxowjJUbxNlqWbJT7GJpdyKPEF2m9XE+mf16rjfgmV2MlnEZtVjRLDvU7+lrC48/cD3la2z1c=
-X-Received: by 2002:a17:903:1aac:b0:23f:9aae:6f0d with SMTP id
- d9443c01a7336-23f9aae7183mr37615165ad.6.1753379873956; Thu, 24 Jul 2025
- 10:57:53 -0700 (PDT)
+Received: from APC01-SG2-obe.outbound.protection.outlook.com
+ (mail-sgaapc01on2050.outbound.protection.outlook.com [40.107.215.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 317DD10E84F;
+ Thu,  5 Sep 2024 10:22:48 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tFl//SkxHEGhH1JUy5JIvCa2WKDHLJwv6vFoOvKJ4te0YU2VwQ54GpDNh868beViyKwytA16uelB8EFSP8LCicKDXUO+vjTckhLC7gRYbCjq45jebWiklASW9F0fj1zlW/bQ41KorU+tUHzs8deGewZQJ0bligLh9HYQrP9ay/yGz7QCpnarSUEi/ytHnLgslO/9HMHvPd7jwNEo09ikHH98wcB8vi85kJQ9i6TilS6HSUOBVXsFFl0hkaoTegRH6S+5eZDip3eMzey5l3wWaxZQjNYwK2JxDY3qcEq4z3oM6vhWgZ8kbaR9By0HMGjowYt+Lny9jwZDAQuH5aNX5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rEPKNvrGwgQfwdsWCzQOaciZOOWDsFnQkygZIlbvb2w=;
+ b=RY/D5KRftE1eQN/tENc2l2RUYfznrb0V8sFs6f9fKJE3xh3lFBv8yBrKYMUoiSJ7A+PJkAhJ2GTva/TUao2p3m8GYKhZFWf7HAe7BjcQEk0y+lVLsfGQ2myPxLP/hwzOccrZQ3MiIcWk3VoiJ9K6qPYWf/O0qBM1NLVG6il7HP5U+D4CXcwmE/h5onLo/OjmgwTW8S4RRF9zE2Ioi1vIQ3Oh4JIp88qtOjSbQ+bA+tZKisgG3+e8qr7p+70MqyoVQWwfqzffiL0C0ocR9bBdNn/iV2EFmjMpgc5PVjXT8az/uWXL/asMJwUIydaJTh50dznVEp0doVGqqq0/bksN3A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rEPKNvrGwgQfwdsWCzQOaciZOOWDsFnQkygZIlbvb2w=;
+ b=q0Mtd8A2jnEpgMIT3d2wYJAMVnSKvqNDgfou91HeiBz2es2cQ5oApj9tFCDrjiMhGsQzf+Gwiuz/ayyp06PO8MIAHb2sS4/HgOZ8Cn2CdmGA9Pi4Q9R4+j0rpVsNPzoIYYBZXZrfEXroCB1IbddOjw+e4DgHa0dIoTHt8yj5mDCpn3QSHQ9iYJlcKHLpzz79ZPxocu6+NRbksBPS8XyeNT0I1hnqTL02qviGWrPKmxpRcQ2r45E9Zeqhw2vjlXDHennEQwMolps7X8IpVp9+/l3Zr1/SgqJZaXJiv5qCDr5aCh4vUY0GfEMOZV1T9JAPcWxii2Vni+zPAuDbdLtFgA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from KL1PR0601MB5487.apcprd06.prod.outlook.com
+ (2603:1096:820:bf::14) by KL1PR06MB6865.apcprd06.prod.outlook.com
+ (2603:1096:820:10d::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.28; Thu, 5 Sep
+ 2024 10:22:42 +0000
+Received: from KL1PR0601MB5487.apcprd06.prod.outlook.com
+ ([fe80::2129:59e5:6c67:311f]) by KL1PR0601MB5487.apcprd06.prod.outlook.com
+ ([fe80::2129:59e5:6c67:311f%7]) with mapi id 15.20.7918.024; Thu, 5 Sep 2024
+ 10:22:42 +0000
+From: Chen Yufan <chenyufan@vivo.com>
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Dave Airlie <airlied@redhat.com>,
+ Ben Skeggs <bskeggs@redhat.com>, Chen Yufan <chenyufan@vivo.com>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: opensource.kernel@vivo.com
+Subject: [PATCH v1] drm/nouveau/nvkm: Convert to use ERR_CAST()
+Date: Thu,  5 Sep 2024 18:20:30 +0800
+Message-Id: <20240905102106.85283-1-chenyufan@vivo.com>
+X-Mailer: git-send-email 2.39.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0027.apcprd02.prod.outlook.com
+ (2603:1096:4:195::14) To KL1PR0601MB5487.apcprd06.prod.outlook.com
+ (2603:1096:820:bf::14)
 MIME-Version: 1.0
-References: <20250724165441.2105632-1-ojeda@kernel.org>
- <DBKG6CA32OO0.368N1Y6VMIUTL@kernel.org>
-In-Reply-To: <DBKG6CA32OO0.368N1Y6VMIUTL@kernel.org>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 24 Jul 2025 19:57:40 +0200
-X-Gm-Features: Ac12FXwN0CMehniS1G7J0FWaHdQIDWYqXa1YTpgsiVMs45pPNA405NE1QlSsAHI
-Message-ID: <CANiq72ktx9JsTXN_HTfjGWHxpBh430tkxHE2xL_1BQB2yb16rA@mail.gmail.com>
-Subject: Re: [PATCH] drm: nova-drm: fix 32-bit arm build
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Alex Gaynor <alex.gaynor@gmail.com>, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, patches@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR0601MB5487:EE_|KL1PR06MB6865:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9d45c253-538f-41e8-29fa-08dccd94ad23
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|7416014|52116014|921020|38350700014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?E/HLgOVB3RFI3qxHgUcFk+N/LOD/kx8ywYsyE3iJIy/oXSkKfOEwe6cq9u/d?=
+ =?us-ascii?Q?zIf2aim0MJ5HEvDIRj7OzMLWjxKacxrmGYDzqOTNptmec6YWtMZbYUJ/HqR1?=
+ =?us-ascii?Q?z1Ek9bcBuSZm8kEBx8/GShiBmtXaErRs+RHwiHuAsB44AqwSMkDU9UWB3E82?=
+ =?us-ascii?Q?HLF1SBc/RRFywB+G6oP62TyGN7/CFeg33qjBTdWAh/WcxqaPTDrDLQeL3WZI?=
+ =?us-ascii?Q?6Lni1xAKW4q+Fl94ll9HUyyz/kXFHdj+lMhrx+CX0fShJCEcuCFpDU0+RoDK?=
+ =?us-ascii?Q?oNJAsoJe7q8cpHagTx4hD2l0qobVlAGhfilAU9m6E7D9uZqZsp5Um3qNrLir?=
+ =?us-ascii?Q?JYvsD7vyr4ZVTRVea4MLFY9hRRbAXLsmRkZTkUD9MwNxCkPn0ltcSamu5mmX?=
+ =?us-ascii?Q?eI1025l8WENqdbPZgEAyBDxpgXOuczUQTh+J3+h3mrqFIBkVXg1l4s8LqiZd?=
+ =?us-ascii?Q?BOTA7O0Pfcq8k/Z9Ni4ek6EAwvEzDDXV21EvVIc1utALwUT81oHbWdtbxmHr?=
+ =?us-ascii?Q?3rxx6GhNTvoPrUgkBfKfzo7CKt7TBzgS3i3yLnN3iAGFi7ZEkl+ShDeO1Lu/?=
+ =?us-ascii?Q?boEDYNR5FAD/9yA+y5lhPRGvnXMoGGAoRLlUAwq0JKUAOgQDVnt5z67hNff2?=
+ =?us-ascii?Q?qI1FKmaTqTwi0Omd3iDb3sVuWqfj+v+WrvLEiqja8Maa8Fowg76fH0gdmFQg?=
+ =?us-ascii?Q?POfoD7GXq4w10utbZpDHz7P3RckLeXynLYv2fOkkgaMdAq0sL9OPndc17WiO?=
+ =?us-ascii?Q?VU4aaPW2bUxJsmuVyaOzeUKGwdNwEkQov8k4NMaMCCSXe7JLLvdmXSDWBD7H?=
+ =?us-ascii?Q?JYFM/QsT5NVaYhH4MX5vi5EBMOcAxWXZg38pTgkLJK8wbSG8tRJ+35Sj5Fho?=
+ =?us-ascii?Q?+JLBxlF8dVdTeep7DjZyYeYi2UJz+txnUIsBY472FLI9gMQa3lstafG13onU?=
+ =?us-ascii?Q?3uRFZo9lOxMkq/1F6Dmq8cbmsGqI4ANT807A3EgV5DrCcSTlRQ6MP9jBUPxO?=
+ =?us-ascii?Q?6K8YffknCDS71o42b2E5I/1tYhcgxszlyoK6QgP0KJw6GPhI8SIP7njdGdHH?=
+ =?us-ascii?Q?zOm310zefl9njl5aQeGL1fI5H7QvapNOu82skaIiIdhBs48kuMYxxMIYyAgN?=
+ =?us-ascii?Q?ImxOdJMY/sV9Oxuh3HZ+rNr5kQlYKDc9Q/+ypAYK31m2NCNh1RRwfkFWldrs?=
+ =?us-ascii?Q?AlynOpkbzhi53zeZWQvdLFD5pu29GiLM11MWYFAtaaBghai39ZE72Dzr7ANm?=
+ =?us-ascii?Q?ydpfPPIBOzWk8DVfS1+QOSzPp6MSuKfyGlB6f1s14WPGAdwEA/y3LIjj2zPj?=
+ =?us-ascii?Q?KUrpreToTewmmLluw5KhwgugtwFO17ZLQ70D21ZwvaFs2bSA+S5Vl9v+r5JH?=
+ =?us-ascii?Q?2SWFD+C7yaT6PrLqCOmHmBtiRONYJDLTXwLYrvTpLh/tn5SwWMUk5UuztHkw?=
+ =?us-ascii?Q?+i9jn9CJo+g=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:KL1PR0601MB5487.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(52116014)(921020)(38350700014);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LhieTlWAvuVblEfWjoUrQbR0boAIeokbni4e+ojvHww31bfuOJ/xjKOdaE2H?=
+ =?us-ascii?Q?pXb1YwNN3OR3bjSwZ/OpyLnNOw4Ug+I+e1wDO54Iy8CqAezUNjra+xmUF56h?=
+ =?us-ascii?Q?az9jyEcjjdDgFRzO1UEUjgzN+9w58T30W+5fZDnzY9wBV/F/ruMAiXw1Cw2v?=
+ =?us-ascii?Q?sZxr3OudYZan3ad6nSxx7ZFmgICi9w3o46dYCfDL0jdF+9Ce3iJTY6Xn+OEI?=
+ =?us-ascii?Q?IAtfZ8N63r0wL8vw0+A386CcHc1P/nNGYzKVZQRSPiZ6HM7jUQLE0uYYB2No?=
+ =?us-ascii?Q?mAE5/ybfJbuzcu6vSXO0fuMvMMVBRl2rNiqkqnJRgGP6Ph5Ja4XpyKDMA3pV?=
+ =?us-ascii?Q?DYxKsgyGVL/gMqMsGZsW+IEq2TSGzYFhCt9hbQl6gDDi7yshi0fN8F/TgLrg?=
+ =?us-ascii?Q?eEO5EcOPBcHqct4FZyy/GophX6ToI+xkrBeVeWikHfpap1h2bjcSHzT+TN4D?=
+ =?us-ascii?Q?A1kwgpsCRuPK+y/Afy1/Fj8BwzLiWsD0bcqOMBvXaygMIJ7Pzoy8tSjsWJyP?=
+ =?us-ascii?Q?zg8wsEEM011lRhMUhmxIbLKY0T8YC8bhr7L+UjYDuMEZ3Z71mUj13O9Rg/Fr?=
+ =?us-ascii?Q?YTkSAYUDKvMtcXghvQEn4AVUyDks8SZj3qBBRyXzrd1toDw6SY4kEN8ClBqK?=
+ =?us-ascii?Q?Cq0SWXqX2eFTtFMA483WoWXcGrANSwYr5CAkmlhqFtTk6iQGv7O9PuSKU6Xf?=
+ =?us-ascii?Q?/RrmzrS0RQWUROOiaNnM4x+E8rvNwzJN55E1lcHhIW22XmyD/Lhv5vgtTX+E?=
+ =?us-ascii?Q?aQH2RBHRI2B8OBXH2+we7wXDKI07LumQd8AbFWQIWK8YluZbLHWcvD54mOjb?=
+ =?us-ascii?Q?Xlu6OhaP3Kdgd9RfCef1gkv6tb9H69ylpG8MBCQSd38OJg9Q4OmZTfac4n5v?=
+ =?us-ascii?Q?mL97MXAeVb2Lfp2ENWNZ5gv9EEn2tTfUDIHU2r8u1U2dyFOsZGlKfksAVLNw?=
+ =?us-ascii?Q?xZa9C6zBtLKInHgQ3HUJZfz9Fkb6jL9EErDrpiz2XP/QDPqZwG9DuMLuj1RX?=
+ =?us-ascii?Q?7dZ2DH7qmgCySL+T7CODw5VyYqkhzAa3lSthM6t/oteBws0a1rXZpbKM2J6U?=
+ =?us-ascii?Q?Dd5UadWIGRs8YA8FencNLXsoMGADMGFd+7Gnfw1jeRiez4okP3Cq66KKAmed?=
+ =?us-ascii?Q?Q4TCDZiWOeaCMYJjH9HCu1KJx1/ajgA6aPuKePuMbClSdBdkbcXuFr3ug3HE?=
+ =?us-ascii?Q?4jrv5t0zlDY1pIvQ88F5ypYRAnIXx53jmXz2c/qAi0/AKp3qmV2NiKhQhgDO?=
+ =?us-ascii?Q?Tm/HQ1/GOI01PsfOAsaBXhbnBvfjdyV8LB1JBYSrn7w/dauzwf2vknSdePqH?=
+ =?us-ascii?Q?rbmbqaARdSqukXPEdhyyQzW69xaGGh93nFjn49J/TUSa7+F3n2VatTmJ49q6?=
+ =?us-ascii?Q?fzsICXAQd0ht54QmrpIvZTLQzdoLac3lQtEzzgc0y4qi2SxT/W+DUUWs7k31?=
+ =?us-ascii?Q?sO7JEaOEdd6YBOVIPBXB7fW4H+ptjUH1nAJcoEv+S36UOVR8VprWSqFVxxAv?=
+ =?us-ascii?Q?pvEZBDmlm2Ey3IVimYJ9H85XDR/F7ZWqABZgGgkTc31j1j9Rt8ffbhR+0Kg7?=
+ =?us-ascii?Q?SE7JrLJkkh8TBONxKBWMHYt8e6gQMomBdtvv9bTp?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d45c253-538f-41e8-29fa-08dccd94ad23
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR0601MB5487.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2024 10:22:42.5416 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5i7fUO9tLGfW87ZfvlYsgYmtBX0Sz+m+HrRQYAfUFvblQGarBn/xpl8DJDj6TleC5s/4cogXH94NriM1C9yWJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6865
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,32 +148,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jul 24, 2025 at 7:05=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> I think I will follow up with a function to perform the conversion in a s=
-ingle
-> place, but I really like the idea of a special clippy annotation to tell =
-clippy
-> to not warn about unnecessary into() conversions for a specific type alia=
-s, such
-> as ResourceSize.
->
-> Do we agree that we want something like this? Do we even have a feature r=
-equest
-> for this already?
+Instead of directly casting and returning (void *) pointer, use ERR_CAST
+to explicitly return an error-valued pointer. This makes the error handling
+more explicit and improves code clarity.
 
-I think we should at least ask -- done here:
+Signed-off-by: Chen Yufan <chenyufan@vivo.com>
+---
+ drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/engine/dma/user.c  | 2 +-
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c  | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-    https://github.com/rust-lang/rust-clippy/issues/15337
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c b/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c
+index 027867c2a8c5..266857ace7c7 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/r535.c
+@@ -646,7 +646,7 @@ r535_conn_new(struct nvkm_disp *disp, u32 id)
+ 	ctrl = nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
+ 				    NV0073_CTRL_CMD_SPECIFIC_GET_CONNECTOR_DATA, sizeof(*ctrl));
+ 	if (IS_ERR(ctrl))
+-		return (void *)ctrl;
++		return ERR_CAST(ctrl);
+ 
+ 	ctrl->subDeviceInstance = 0;
+ 	ctrl->displayId = BIT(id);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/dma/user.c b/drivers/gpu/drm/nouveau/nvkm/engine/dma/user.c
+index 797131ed7d67..ef02e61dda0c 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/dma/user.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/dma/user.c
+@@ -38,7 +38,7 @@ nvkm_dmaobj_search(struct nvkm_client *client, u64 handle)
+ 
+ 	object = nvkm_object_search(client, handle, &nvkm_dmaobj_func);
+ 	if (IS_ERR(object))
+-		return (void *)object;
++		return ERR_CAST(object);
+ 
+ 	return nvkm_dmaobj(object);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
+index cf490ff2b9f1..c45914f30c3d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/uvmm.c
+@@ -37,7 +37,7 @@ nvkm_uvmm_search(struct nvkm_client *client, u64 handle)
+ 
+ 	object = nvkm_object_search(client, handle, &nvkm_uvmm);
+ 	if (IS_ERR(object))
+-		return (void *)object;
++		return ERR_CAST(object);
+ 
+ 	return nvkm_vmm_ref(nvkm_uvmm(object)->vmm);
+ }
+-- 
+2.39.0
 
-Though, thinking about it, an explicit function may provide value
-nevertheless to clearly see where this happens, and it also means that
-when we see `into()` we know it cannot be a no-op.
-
-Having said that, regardless of what we do for that lint, giving more
-information to the compiler is generally a good idea, even if only for
-notes/diagnostics etc.
-
-Cheers,
-Miguel
