@@ -4,109 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F7B1ECE584
-	for <nouveau@archiver.kernel.org>; Mon,  9 Sep 2024 11:39:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 150E2ECE57E
+	for <nouveau@archiver.kernel.org>; Mon,  9 Sep 2024 11:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76EAE10E3CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C94010E4B4;
 	Mon,  9 Sep 2024 11:37:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="V/YkE6uK";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="j81dm/zO";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="V/YkE6uK";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="j81dm/zO";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="YTnKUznN";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UxkpuwxH";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="YTnKUznN";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="UxkpuwxH";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD61E10E3CE;
- Mon,  9 Sep 2024 11:37:06 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E704910E477;
+ Mon,  9 Sep 2024 11:37:05 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 15EC51FC0D;
- Mon,  9 Sep 2024 11:37:05 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 7BD6421BF2;
+ Mon,  9 Sep 2024 11:37:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1725881825; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1725881824; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=22vKnz4EBQjHoJLcI++BvjA5pMRrbj+fUzSXVB7HVGo=;
- b=V/YkE6uKvqQ8cktNpINOAuJacYB+sa+ygKgxhNznAIE81L5Rutfa6WHh7zE9ZxxkeB0srG
- R3WYamauHoMgLPLiNxY70rEeiWbQeMeadObwFJWj3ezfhYy+ugweyMfoYvvykzjTIQbN6s
- OMC2EQI0ODv+N554ut50BEXGyJLs3SU=
+ bh=m1RLVKsv/SS9fDN5+w4ZO+C0CxmE3SLOxc5PTu3eMxU=;
+ b=YTnKUznN4XLmszGquSnhFWEfHPBjiX7HIw/69RNqVyL1rtqV08/Yk++RhKSJmr+HuNj3Wq
+ OcVoZOmAh/GHmvTbDJAklIvBsuPDUGe0lr3Q0vfm2rOcMQ55fpNMDBiTBk0filr70iMxjn
+ +/DpbdXq0KLT8eVQEXQCZo6mZJGQzjU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1725881825;
+ s=susede2_ed25519; t=1725881824;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=22vKnz4EBQjHoJLcI++BvjA5pMRrbj+fUzSXVB7HVGo=;
- b=j81dm/zOH8H3wCuibO7EO00a+IrQgDrUWSqLwnO/F4qJQIilOwI4AcWq2118+WIqfxArTT
- +yCX9/c8obUfCxCQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="V/YkE6uK";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="j81dm/zO"
+ bh=m1RLVKsv/SS9fDN5+w4ZO+C0CxmE3SLOxc5PTu3eMxU=;
+ b=UxkpuwxHwHWYZ6ClFC0ozKm/AgBy+mdYQn8a97ug7nj4jp1M7m1weqDutSl2wr+pXGEZEz
+ 6hX0KkKVK13g5KAg==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=YTnKUznN;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=UxkpuwxH
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1725881825; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1725881824; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=22vKnz4EBQjHoJLcI++BvjA5pMRrbj+fUzSXVB7HVGo=;
- b=V/YkE6uKvqQ8cktNpINOAuJacYB+sa+ygKgxhNznAIE81L5Rutfa6WHh7zE9ZxxkeB0srG
- R3WYamauHoMgLPLiNxY70rEeiWbQeMeadObwFJWj3ezfhYy+ugweyMfoYvvykzjTIQbN6s
- OMC2EQI0ODv+N554ut50BEXGyJLs3SU=
+ bh=m1RLVKsv/SS9fDN5+w4ZO+C0CxmE3SLOxc5PTu3eMxU=;
+ b=YTnKUznN4XLmszGquSnhFWEfHPBjiX7HIw/69RNqVyL1rtqV08/Yk++RhKSJmr+HuNj3Wq
+ OcVoZOmAh/GHmvTbDJAklIvBsuPDUGe0lr3Q0vfm2rOcMQ55fpNMDBiTBk0filr70iMxjn
+ +/DpbdXq0KLT8eVQEXQCZo6mZJGQzjU=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1725881825;
+ s=susede2_ed25519; t=1725881824;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=22vKnz4EBQjHoJLcI++BvjA5pMRrbj+fUzSXVB7HVGo=;
- b=j81dm/zOH8H3wCuibO7EO00a+IrQgDrUWSqLwnO/F4qJQIilOwI4AcWq2118+WIqfxArTT
- +yCX9/c8obUfCxCQ==
+ bh=m1RLVKsv/SS9fDN5+w4ZO+C0CxmE3SLOxc5PTu3eMxU=;
+ b=UxkpuwxHwHWYZ6ClFC0ozKm/AgBy+mdYQn8a97ug7nj4jp1M7m1weqDutSl2wr+pXGEZEz
+ 6hX0KkKVK13g5KAg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C6EEC13A84;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 337CF13A84;
  Mon,  9 Sep 2024 11:37:04 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id qFxJL+Dd3malNAAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id wG5NC+Dd3malNAAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Mon, 09 Sep 2024 11:37:04 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Russell King <linux@armlinux.org.uk>
-Subject: [PATCH v4 73/80] drm/armada: Run DRM default client setup
-Date: Mon,  9 Sep 2024 13:31:19 +0200
-Message-ID: <20240909113633.595465-74-tzimmermann@suse.de>
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Subject: [PATCH v4 71/80] drm/vmwgfx: Run DRM default client setup
+Date: Mon,  9 Sep 2024 13:31:17 +0200
+Message-ID: <20240909113633.595465-72-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240909113633.595465-1-tzimmermann@suse.de>
 References: <20240909113633.595465-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: 15EC51FC0D
+X-Rspamd-Queue-Id: 7BD6421BF2
+X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-3.01 / 50.00]; BAYES_HAM(-3.00)[100.00%];
  NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
  R_MISSING_CHARSET(0.50)[];
  R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
  MX_GOOD(-0.01)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email];
  RCVD_TLS_ALL(0.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
  ARC_NA(0.00)[]; MIME_TRACE(0.00)[0:+];
  RCVD_VIA_SMTP_AUTH(0.00)[]; TO_DN_SOME(0.00)[];
  TO_MATCH_ENVRCPT_ALL(0.00)[];
  FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,redhat.com];
  FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_COUNT_TWO(0.00)[2];
- RCPT_COUNT_SEVEN(0.00)[10]; FROM_EQ_ENVFROM(0.00)[];
+ RCPT_COUNT_SEVEN(0.00)[11]; FROM_EQ_ENVFROM(0.00)[];
  FROM_HAS_DN(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
  DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,224 +122,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rework fbdev probing to support fbdev_probe in struct drm_driver
-and remove the old fb_probe callback. Provide an initializer macro
-for struct drm_driver that sets the callback according to the kernel
-configuration.
-
 Call drm_client_setup() to run the kernel's default client setup
 for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The armada driver specifies a preferred color mode of 32. As this
-is the default if no format has been given, leave it out entirely.
-
-v4:
-- revert an unrelated cleanup (Javier)
-
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Russell King <linux@armlinux.org.uk>
+Cc: Zack Rusin <zack.rusin@broadcom.com>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
 Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 ---
- drivers/gpu/drm/armada/armada_drm.h   |  11 ++-
- drivers/gpu/drm/armada/armada_drv.c   |   4 +-
- drivers/gpu/drm/armada/armada_fbdev.c | 113 ++------------------------
- 3 files changed, 16 insertions(+), 112 deletions(-)
+ drivers/gpu/drm/vmwgfx/vmwgfx_drv.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/armada/armada_drm.h b/drivers/gpu/drm/armada/armada_drm.h
-index c303e8c7ff6c..3c0ff221a43b 100644
---- a/drivers/gpu/drm/armada/armada_drm.h
-+++ b/drivers/gpu/drm/armada/armada_drm.h
-@@ -16,6 +16,8 @@ struct armada_crtc;
- struct armada_gem_object;
- struct clk;
- struct drm_display_mode;
-+struct drm_fb_helper;
-+struct drm_fb_helper_surface_size;
- 
- static inline void
- armada_updatel(uint32_t val, uint32_t mask, void __iomem *ptr)
-@@ -74,10 +76,13 @@ struct armada_private {
- #define drm_to_armada_dev(dev) container_of(dev, struct armada_private, drm)
- 
- #if defined(CONFIG_DRM_FBDEV_EMULATION)
--void armada_fbdev_setup(struct drm_device *dev);
-+int armada_fbdev_driver_fbdev_probe(struct drm_fb_helper *fbh,
-+				    struct drm_fb_helper_surface_size *sizes);
-+#define ARMADA_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = armada_fbdev_driver_fbdev_probe
- #else
--static inline void armada_fbdev_setup(struct drm_device *dev)
--{ }
-+#define ARMADA_FBDEV_DRIVER_OPS \
-+	.fbdev_probe = NULL
- #endif
- 
- int armada_overlay_plane_create(struct drm_device *, unsigned long);
-diff --git a/drivers/gpu/drm/armada/armada_drv.c b/drivers/gpu/drm/armada/armada_drv.c
-index e51ecc4f7ef4..3dc5f0499e4c 100644
---- a/drivers/gpu/drm/armada/armada_drv.c
-+++ b/drivers/gpu/drm/armada/armada_drv.c
-@@ -12,6 +12,7 @@
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+index 50ad3105c16e..f9009f5a5aef 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_drv.c
+@@ -36,6 +36,7 @@
+ #include "ttm_object.h"
  
  #include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
  #include <drm/drm_drv.h>
- #include <drm/drm_ioctl.h>
- #include <drm/drm_managed.h>
-@@ -39,6 +40,7 @@ DEFINE_DRM_GEM_FOPS(armada_drm_fops);
- static const struct drm_driver armada_drm_driver = {
- 	.gem_prime_import	= armada_gem_prime_import,
- 	.dumb_create		= armada_gem_dumb_create,
-+	ARMADA_FBDEV_DRIVER_OPS,
- 	.major			= 1,
- 	.minor			= 0,
- 	.name			= "armada-drm",
-@@ -137,7 +139,7 @@ static int armada_drm_bind(struct device *dev)
- 	armada_drm_debugfs_init(priv->drm.primary);
- #endif
+ #include <drm/drm_fbdev_ttm.h>
+ #include <drm/drm_gem_ttm_helper.h>
+@@ -1628,6 +1629,8 @@ static const struct drm_driver driver = {
+ 	.prime_handle_to_fd = vmw_prime_handle_to_fd,
+ 	.gem_prime_import_sg_table = vmw_prime_import_sg_table,
  
--	armada_fbdev_setup(&priv->drm);
-+	drm_client_setup(&priv->drm, NULL);
- 
- 	return 0;
- 
-diff --git a/drivers/gpu/drm/armada/armada_fbdev.c b/drivers/gpu/drm/armada/armada_fbdev.c
-index d223176912b6..6ee7ce04ee71 100644
---- a/drivers/gpu/drm/armada/armada_fbdev.c
-+++ b/drivers/gpu/drm/armada/armada_fbdev.c
-@@ -39,8 +39,10 @@ static const struct fb_ops armada_fb_ops = {
- 	.fb_destroy	= armada_fbdev_fb_destroy,
- };
- 
--static int armada_fbdev_create(struct drm_fb_helper *fbh,
--	struct drm_fb_helper_surface_size *sizes)
-+static const struct drm_fb_helper_funcs armada_fbdev_helper_funcs;
++	DRM_FBDEV_TTM_DRIVER_OPS,
 +
-+int armada_fbdev_driver_fbdev_probe(struct drm_fb_helper *fbh,
-+				    struct drm_fb_helper_surface_size *sizes)
- {
- 	struct drm_device *dev = fbh->dev;
- 	struct drm_mode_fb_cmd2 mode;
-@@ -98,6 +100,7 @@ static int armada_fbdev_create(struct drm_fb_helper *fbh,
- 	info->fix.smem_len = obj->obj.size;
- 	info->screen_size = obj->obj.size;
- 	info->screen_base = ptr;
-+	fbh->funcs = &armada_fbdev_helper_funcs;
- 	fbh->fb = &dfb->fb;
+ 	.fops = &vmwgfx_driver_fops,
+ 	.name = VMWGFX_DRIVER_NAME,
+ 	.desc = VMWGFX_DRIVER_DESC,
+@@ -1679,7 +1682,7 @@ static int vmw_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  
- 	drm_fb_helper_fill_info(info, fbh, sizes);
-@@ -112,109 +115,3 @@ static int armada_fbdev_create(struct drm_fb_helper *fbh,
- 	dfb->fb.funcs->destroy(&dfb->fb);
- 	return ret;
- }
--
--static int armada_fb_probe(struct drm_fb_helper *fbh,
--	struct drm_fb_helper_surface_size *sizes)
--{
--	int ret = 0;
--
--	if (!fbh->fb) {
--		ret = armada_fbdev_create(fbh, sizes);
--		if (ret == 0)
--			ret = 1;
--	}
--	return ret;
--}
--
--static const struct drm_fb_helper_funcs armada_fb_helper_funcs = {
--	.fb_probe	= armada_fb_probe,
--};
--
--/*
-- * Fbdev client and struct drm_client_funcs
-- */
--
--static void armada_fbdev_client_unregister(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fbh = drm_fb_helper_from_client(client);
--
--	if (fbh->info) {
--		drm_fb_helper_unregister_info(fbh);
--	} else {
--		drm_client_release(&fbh->client);
--		drm_fb_helper_unprepare(fbh);
--		kfree(fbh);
--	}
--}
--
--static int armada_fbdev_client_restore(struct drm_client_dev *client)
--{
--	drm_fb_helper_lastclose(client->dev);
--
--	return 0;
--}
--
--static int armada_fbdev_client_hotplug(struct drm_client_dev *client)
--{
--	struct drm_fb_helper *fbh = drm_fb_helper_from_client(client);
--	struct drm_device *dev = client->dev;
--	int ret;
--
--	if (dev->fb_helper)
--		return drm_fb_helper_hotplug_event(dev->fb_helper);
--
--	ret = drm_fb_helper_init(dev, fbh);
--	if (ret)
--		goto err_drm_err;
--
--	if (!drm_drv_uses_atomic_modeset(dev))
--		drm_helper_disable_unused_functions(dev);
--
--	ret = drm_fb_helper_initial_config(fbh);
--	if (ret)
--		goto err_drm_fb_helper_fini;
--
--	return 0;
--
--err_drm_fb_helper_fini:
--	drm_fb_helper_fini(fbh);
--err_drm_err:
--	drm_err(dev, "armada: Failed to setup fbdev emulation (ret=%d)\n", ret);
--	return ret;
--}
--
--static const struct drm_client_funcs armada_fbdev_client_funcs = {
--	.owner		= THIS_MODULE,
--	.unregister	= armada_fbdev_client_unregister,
--	.restore	= armada_fbdev_client_restore,
--	.hotplug	= armada_fbdev_client_hotplug,
--};
--
--void armada_fbdev_setup(struct drm_device *dev)
--{
--	struct drm_fb_helper *fbh;
--	int ret;
--
--	drm_WARN(dev, !dev->registered, "Device has not been registered.\n");
--	drm_WARN(dev, dev->fb_helper, "fb_helper is already set!\n");
--
--	fbh = kzalloc(sizeof(*fbh), GFP_KERNEL);
--	if (!fbh)
--		return;
--	drm_fb_helper_prepare(dev, fbh, 32, &armada_fb_helper_funcs);
--
--	ret = drm_client_init(dev, &fbh->client, "fbdev", &armada_fbdev_client_funcs);
--	if (ret) {
--		drm_err(dev, "Failed to register client: %d\n", ret);
--		goto err_drm_client_init;
--	}
--
--	drm_client_register(&fbh->client);
--
--	return;
--
--err_drm_client_init:
--	drm_fb_helper_unprepare(fbh);
--	kfree(fbh);
--	return;
--}
+ 	vmw_fifo_resource_inc(vmw);
+ 	vmw_svga_enable(vmw);
+-	drm_fbdev_ttm_setup(&vmw->drm,  0);
++	drm_client_setup(&vmw->drm, NULL);
+ 
+ 	vmw_debugfs_gem_init(vmw);
+ 	vmw_debugfs_resource_managers_init(vmw);
 -- 
 2.46.0
 
