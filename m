@@ -4,84 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEF6EECE57E
-	for <nouveau@archiver.kernel.org>; Mon,  9 Sep 2024 11:38:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 345ECECE587
+	for <nouveau@archiver.kernel.org>; Mon,  9 Sep 2024 11:38:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DADD10E43E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEA5210E443;
 	Mon,  9 Sep 2024 11:36:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="fxqOKwr5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="pZgli9v0";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fxqOKwr5";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="pZgli9v0";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="orrmD+GD";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="oFgm6O1C";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="O8j6dRQS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="B//s7IxW";
 	dkim-atps=neutral
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AB8C10E3FD;
- Mon,  9 Sep 2024 11:36:53 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55B3510E404;
+ Mon,  9 Sep 2024 11:36:54 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 3746F21BEE;
+ by smtp-out2.suse.de (Postfix) with ESMTPS id D57E61FC2A;
  Mon,  9 Sep 2024 11:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1725881812; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1725881813; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XGHNDnTR4kUgH4EW//QlX2emi3EEciDur/4SHakvZXg=;
- b=fxqOKwr5vcdnhck5Xy+cN6OVywGtJ6M+U/9v6GR55ZQmBCWRmcNDmn9jfBNHauXzFEXgWF
- qqZwo0AkiByfuNTnY8bqJ/Pu1uMXNyqKAAWvucRCumsBixyuanZmNoE2frbN2piRlq1r2V
- r1/sYky10qru9nZ7RETQ7/3CZ0guqeM=
+ bh=oiIFId6pFI4jFghZFZHRggqgaOIMXM8g9Uy1vWoI9yI=;
+ b=orrmD+GDltah9Vh5OHwOhHO4MytbdqL6OVIXOo/1D0G40A7Yy5O1Xf4wT9cCaXYAUdGAnC
+ hQegUXvcSvtEAfu4OG7J6XrVSH+aGKWmIXl+4pcz7KXbfDytGGkrtlXz/DQUqTwSjy9oHp
+ ek86uXH2t4A4J6EeC/ffjFgV5vJoy6s=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1725881812;
+ s=susede2_ed25519; t=1725881813;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XGHNDnTR4kUgH4EW//QlX2emi3EEciDur/4SHakvZXg=;
- b=pZgli9v04jCHRC+FjezGqVbeyBLFu05yzurPp5JauSxzLoKGurrdnVXEICP/EdKiXq6yK9
- EWEg5tFneCxU2wBg==
-Authentication-Results: smtp-out1.suse.de;
+ bh=oiIFId6pFI4jFghZFZHRggqgaOIMXM8g9Uy1vWoI9yI=;
+ b=oFgm6O1CBTNCVlGKEa57InugNzRBwR2giOrcHlmPigUOAfN+HoTXr4Gn1N/5wiYlUmdPGN
+ EZsOY5EQU38MsSBQ==
+Authentication-Results: smtp-out2.suse.de;
 	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
  t=1725881812; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XGHNDnTR4kUgH4EW//QlX2emi3EEciDur/4SHakvZXg=;
- b=fxqOKwr5vcdnhck5Xy+cN6OVywGtJ6M+U/9v6GR55ZQmBCWRmcNDmn9jfBNHauXzFEXgWF
- qqZwo0AkiByfuNTnY8bqJ/Pu1uMXNyqKAAWvucRCumsBixyuanZmNoE2frbN2piRlq1r2V
- r1/sYky10qru9nZ7RETQ7/3CZ0guqeM=
+ bh=oiIFId6pFI4jFghZFZHRggqgaOIMXM8g9Uy1vWoI9yI=;
+ b=O8j6dRQSP4I9Y+IJ6GV805+s1Nqdgt+fjxXOUWDlpJ+2KR6aNnK4JBWRyJu3jAQABiWRGd
+ 6L4TGhplW/DwDwOG0XygVeV3ToZvT0EFTrro4R2LeXfmIn9BGv8cal/CPFJv4I4/SIs4at
+ 8gM4AJa407l1knhQ4cKVD9A7rmh2GLA=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_ed25519; t=1725881812;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=XGHNDnTR4kUgH4EW//QlX2emi3EEciDur/4SHakvZXg=;
- b=pZgli9v04jCHRC+FjezGqVbeyBLFu05yzurPp5JauSxzLoKGurrdnVXEICP/EdKiXq6yK9
- EWEg5tFneCxU2wBg==
+ bh=oiIFId6pFI4jFghZFZHRggqgaOIMXM8g9Uy1vWoI9yI=;
+ b=B//s7IxWAttTWsJWGEwfOngjEoKs3q6NFRzLb+ZycqXj6cuUyiHG29LOQTQnONhijogCgM
+ SK1NMmle6By/uMAQ==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DF6CE13312;
- Mon,  9 Sep 2024 11:36:51 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8841813312;
+ Mon,  9 Sep 2024 11:36:52 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id uAU6NdPd3malNAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 09 Sep 2024 11:36:51 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id sFwKINTd3malNAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 09 Sep 2024 11:36:52 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, airlied@gmail.com, jfalempe@redhat.com, javierm@redhat.com
 Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  Thomas Zimmermann <tzimmermann@suse.de>,
  Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
  Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: [PATCH v4 33/80] drm/renesas/rcar-du: Run DRM default client setup
-Date: Mon,  9 Sep 2024 13:30:39 +0200
-Message-ID: <20240909113633.595465-34-tzimmermann@suse.de>
+Subject: [PATCH v4 35/80] drm/renesas/shmobile: Run DRM default client setup
+Date: Mon,  9 Sep 2024 13:30:41 +0200
+Message-ID: <20240909113633.595465-36-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20240909113633.595465-1-tzimmermann@suse.de>
 References: <20240909113633.595465-1-tzimmermann@suse.de>
@@ -117,47 +117,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Call drm_client_setup() to run the kernel's default client setup
-for DRM. Set fbdev_probe in struct drm_driver, so that the client
+Call drm_client_setup_with_fourcc() to run the kernel's default client
+setup for DRM. Set fbdev_probe in struct drm_driver, so that the client
 setup can start the common fbdev client.
 
-The rcar-du driver specifies a preferred color mode of 32. As this
-is the default if no format has been given, leave it out entirely.
+v2:
+- use drm_client_setup_with_fourcc()
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
 Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-index fb719d9aff10..4e0bafc86f50 100644
---- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-+++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_drv.c
-@@ -19,6 +19,7 @@
- #include <linux/wait.h>
+diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
+index ff2883c7fd46..8d3effe3f598 100644
+--- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
++++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
+@@ -18,8 +18,10 @@
+ #include <linux/slab.h>
  
  #include <drm/drm_atomic_helper.h>
 +#include <drm/drm_client_setup.h>
  #include <drm/drm_drv.h>
  #include <drm/drm_fbdev_dma.h>
++#include <drm/drm_fourcc.h>
  #include <drm/drm_gem_dma_helper.h>
-@@ -606,6 +607,7 @@ static const struct drm_driver rcar_du_driver = {
+ #include <drm/drm_modeset_helper.h>
+ #include <drm/drm_module.h>
+@@ -101,6 +103,7 @@ DEFINE_DRM_GEM_DMA_FOPS(shmob_drm_fops);
+ static const struct drm_driver shmob_drm_driver = {
  	.driver_features	= DRIVER_GEM | DRIVER_MODESET | DRIVER_ATOMIC,
- 	.dumb_create		= rcar_du_dumb_create,
- 	.gem_prime_import_sg_table = rcar_du_gem_prime_import_sg_table,
+ 	DRM_GEM_DMA_DRIVER_OPS,
 +	DRM_FBDEV_DMA_DRIVER_OPS,
- 	.fops			= &rcar_du_fops,
- 	.name			= "rcar-du",
- 	.desc			= "Renesas R-Car Display Unit",
-@@ -716,7 +718,7 @@ static int rcar_du_probe(struct platform_device *pdev)
+ 	.fops			= &shmob_drm_fops,
+ 	.name			= "shmob-drm",
+ 	.desc			= "Renesas SH Mobile DRM",
+@@ -257,7 +260,7 @@ static int shmob_drm_probe(struct platform_device *pdev)
+ 	if (ret < 0)
+ 		goto err_modeset_cleanup;
  
- 	drm_info(&rcdu->ddev, "Device %s probed\n", dev_name(&pdev->dev));
- 
--	drm_fbdev_dma_setup(&rcdu->ddev, 32);
-+	drm_client_setup(&rcdu->ddev, NULL);
+-	drm_fbdev_dma_setup(ddev, 16);
++	drm_client_setup_with_fourcc(ddev, DRM_FORMAT_RGB565);
  
  	return 0;
  
