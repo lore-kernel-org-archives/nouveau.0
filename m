@@ -4,125 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0924DEE01EB
-	for <nouveau@archiver.kernel.org>; Tue, 10 Sep 2024 21:56:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAD9DEE49B3
+	for <nouveau@archiver.kernel.org>; Wed, 11 Sep 2024 14:19:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C46610E92E;
-	Tue, 10 Sep 2024 21:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C784A10EA27;
+	Wed, 11 Sep 2024 14:19:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="utCOh400";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="To2v1Z3M";
 	dkim-atps=neutral
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2089.outbound.protection.outlook.com [40.107.244.89])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67E4110E92E
- for <nouveau@lists.freedesktop.org>; Tue, 10 Sep 2024 21:56:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yYizNQL+FJxa6GTZY823CbIMOhOSXpvWLXXKdXOpj5oo+kUj2tJn7JKDlK9TzvfTkIdbECXyPVZMzwXp0IcIn3IrHYQ+cnhw/pSBtmBVO3RDaUg029NAJe+nE4qZFhZXNwOws8/+/K95bb/QYhkgCCSc8xK3jsKYdTnuVZvNwFkpMPHCHfwOXeWF4Xx9nM/gNW45B4P9vmAVT6Z8VBF8seZRRL+vBoa16Lb510ACIciO8SCYd9LrgfpnpW8+5mCFI7PY02mHPh3fn0D2ww9GvwB9DkXlosqUQTSwacfI/t0qh3LggZFJ+6lQYUi97UfqYSpwy2bW9CSyqvPPZp0JLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HB0krWy7bJ5U8ICWHeq/GmXsIwtx3wFjOrb/1blDDFM=;
- b=CVN6ZI0bF7U/QmN7pr5Tng4uK4yBq5p9aLnJVckyfgacgWVgfcLZdKoizb52CQfUEBB5pKDa0DQM79AAYlwA7j9L7EdFC5fi+EFU2fVdbpRzXEkoJitxX1dEv6bUiXhQ+I31aDnhwGHquLxix/xgs7LuGIVLYDTadnBI8vpcrCsSnEIryVNUUv9om6P3dNxiRrmqTNoYCk6M+z5WJ6KmmhTkZNk9OAvxxSxY51ohaOdn1UIhJKPV9lIhH37zr+rE0gk3uyf2liOdboo7lzD93majzRQDnIvDLxoFtiM1niUpPzypyQx/PnpdmWmoSdOrkRqpQvd4RVpCeEYGjbN1QQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HB0krWy7bJ5U8ICWHeq/GmXsIwtx3wFjOrb/1blDDFM=;
- b=utCOh400erkB9+iofbccoV/8PKxPPTTrtcYw8An9SSjHDXE7q+JbPFPsZP5AtMdxEKVKQooasj8z4UbNpVl5U60JUHLVoVPnnss9oNc5wFRh/oARKN3KQ7cHUIiFZH9WrOZGmKijA/slRBEIWY0O/BLJzGug9yl3InBNoo7jH9T5RRy8s623F19K63ice9bX7qVT4R7VndvrNGXhVCoOiqOJJTvxb3SmcMXzdwxfl8CuPxH2snQXGX5JXSuGqLzsCXeeg6TC/b/Qiioo/MP6a6bAXXz2tbep6usoeT0jel1ciz2xWm0KME/10m3zzGSi0HrK1nLSota56ZdenhJDww==
-Received: from CY5PR17CA0056.namprd17.prod.outlook.com (2603:10b6:930:12::10)
- by SJ2PR12MB7798.namprd12.prod.outlook.com (2603:10b6:a03:4c0::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Tue, 10 Sep
- 2024 21:56:35 +0000
-Received: from CY4PEPF0000EE35.namprd05.prod.outlook.com
- (2603:10b6:930:12:cafe::cc) by CY5PR17CA0056.outlook.office365.com
- (2603:10b6:930:12::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
- Transport; Tue, 10 Sep 2024 21:56:35 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CY4PEPF0000EE35.mail.protection.outlook.com (10.167.242.41) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7918.13 via Frontend Transport; Tue, 10 Sep 2024 21:56:35 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 10 Sep
- 2024 14:56:25 -0700
-Received: from ttabi.nvidia.com (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 10 Sep
- 2024 14:56:24 -0700
-From: Timur Tabi <ttabi@nvidia.com>
-To: Danilo Krummrich <dakr@redhat.com>, Dave Airlie <airlied@redhat.com>,
- <bskeggs@nvidia.com>, <nouveau@lists.freedesktop.org>
-Subject: [PATCH 1/2] [v2] drm/nouveau: retain device pointer in nvkm_gsp_mem
- object
-Date: Tue, 10 Sep 2024 16:56:15 -0500
-Message-ID: <20240910215616.1516679-1-ttabi@nvidia.com>
-X-Mailer: git-send-email 2.34.1
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5242710E9A8
+ for <nouveau@lists.freedesktop.org>; Wed, 11 Sep 2024 14:19:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1726064351;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0kBYOTGYbT4nZk0pFJEmu4i4U5+awrWOjDRx+7UM/Z8=;
+ b=To2v1Z3MfZctB80QKjyIK1vi2xR4qrZKRD9erTGF2yu4NWCiI/GGELlDLGw7lBKunqurtx
+ WPhVnThdZ22JPlD1JY+Jxla2ErzIGeSlHdCZFTuD/Tofn6ip039Wbw5VkWTtylapxWlnff
+ fyuNJA0gX+HWrgv7ti8rrUft4UDcJ/Y=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-270-RDFlNW8LPA67rQ42DBRErg-1; Wed, 11 Sep 2024 10:19:10 -0400
+X-MC-Unique: RDFlNW8LPA67rQ42DBRErg-1
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-42cbadcbb6eso17001605e9.2
+ for <nouveau@lists.freedesktop.org>; Wed, 11 Sep 2024 07:19:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1726064348; x=1726669148;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=0kBYOTGYbT4nZk0pFJEmu4i4U5+awrWOjDRx+7UM/Z8=;
+ b=TiqUd2zdggOu/Ub8Bcjk837NJCb7DDeL5gnpYGFTZlAQtaV8Jav/H3s8aVduKf03jJ
+ zcHDocmsMuVQtha7zWjhnQkwL32qoNJ6chYJCNs5bbuZGw/GjQvtmbuni3hgzGiT49pc
+ YLMCxvKpilCJzKV8wLfNviaV/uNaxTUd/F9w7CaQT8+M16KVmGniTaNK2Y9ioaxZ5UNx
+ uGzeZDcfhQZ7qssZ0+C7sdM0g5vGy8ce0lZHjThfUv7JvPN7FkbS7oLbe+KHMKHIKMcy
+ jc2WugcUeykafHKQT+kHP82tmVHwLCipCHpN/j3trwxZh8Wimgbk/bcFu+5hn+xfVbMJ
+ 3vDQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWsKppTzS72tdSq2ZL/Rw2dX77CAPMnfLTO4Pl4JTIkSPYmSrB2j/AJ6OhFKzQSiI9b5x4goEsV@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxIsmwzcxAwZdNx5s5uhzxkwIDIRgMEFfHM6bNDBxwiZQFA9Smg
+ Q2Ih1sBzeZW5HfDqCc/vbUp4EmXgXATVumuyLFQ+IasB0JssOrB1Z8driE4P9Dtp3ge3iww0Lui
+ i1AzcrWfNMQ9POlD2U2z4jquHkjx39fHH4TPkni9m5rq83T7aeE2ocg9fN5RJfk8=
+X-Received: by 2002:a05:600c:1987:b0:428:10d7:a4b1 with SMTP id
+ 5b1f17b1804b1-42ccd35b222mr29768215e9.25.1726064347542; 
+ Wed, 11 Sep 2024 07:19:07 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEMnkWtyC/MfafsJDm61mmVgGA9rBtEvsfE5aKiE1D1yVv54Nl+uOBqFqTLrT0XlY4lvOkAYA==
+X-Received: by 2002:a05:600c:1987:b0:428:10d7:a4b1 with SMTP id
+ 5b1f17b1804b1-42ccd35b222mr29767825e9.25.1726064346821; 
+ Wed, 11 Sep 2024 07:19:06 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-378956d2ec2sm11746749f8f.75.2024.09.11.07.19.05
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 11 Sep 2024 07:19:06 -0700 (PDT)
+Message-ID: <2fb7978b-9d1f-49f1-afe0-f32cc3b6a0c0@redhat.com>
+Date: Wed, 11 Sep 2024 16:19:05 +0200
 MIME-Version: 1.0
-X-NVConfidentiality: public
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/nouveau: Add drm_panic support for nv50+
+To: James Jones <jajones@nvidia.com>, Ilia Mirkin <imirkin@alum.mit.edu>
+Cc: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+References: <20240906100434.1171093-1-jfalempe@redhat.com>
+ <20240906100434.1171093-4-jfalempe@redhat.com>
+ <CAKb7UviZ_SZyuEV3apP80oEHZZKm4mAY1pSGueSOEswvzwgdkQ@mail.gmail.com>
+ <21e44532-7989-43a9-99dd-04461c346be6@nvidia.com>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <21e44532-7989-43a9-99dd-04461c346be6@nvidia.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE35:EE_|SJ2PR12MB7798:EE_
-X-MS-Office365-Filtering-Correlation-Id: d39bcf6f-59b8-4db1-32e9-08dcd1e3705d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?oyC0ky3LZQmSkkrImyIAxvV4sVay2FcraVgzUptKbbVhZTTq6TGWcBuXXb8o?=
- =?us-ascii?Q?zrEzL9y9kue+vo7BL+5riBJZNZ2OQ1NO0COMUHWmDLBK2D+mqRvmTBdXpTQ0?=
- =?us-ascii?Q?geUCkk6ZtykoSjqsydGnJBCvrh0i843avFD1fzSLRyZN9YhZgCqSJpXuHIYP?=
- =?us-ascii?Q?dM56pM9SgchvkoMk1bdQ2X2N9MZt4Y93f4YoN7v2wIyVSuxnqnX+aBZ9iEV/?=
- =?us-ascii?Q?uOUggQ5+FrfH3og7k5wPLWFXVFVmae8UiJzyFG8YpXeWZFa018Gc/x4y+FgG?=
- =?us-ascii?Q?Q4g3U892FpsAmM4sc18j1X+Gk/G/hHe5VhwwwwOZGVTo8PGxOSTKuTU1XQW5?=
- =?us-ascii?Q?73K/ORoMpMcJr2mzvObQvQZuvMEQyelN+7MaRv4rTCtixmaJ0leoZJJc+xNc?=
- =?us-ascii?Q?R3MPt2u6G8zU4lc44tQj4x/eQDe0QpZNtaz3sQiHAuz+JTwJ7Fr5ml8h6cLo?=
- =?us-ascii?Q?wvrIWPHhG5SwieGo+P5Gjqs1HCS5m5MTvvLbnziu8uEKKFbM1VYV6DzuT6OE?=
- =?us-ascii?Q?YZBf2RK7fG6pcF8m+MAO6WDLLJwmElRPzqUpn3d9kDvHnP8Av3u5HKK+F1FQ?=
- =?us-ascii?Q?x4QB+dhdD2oRyAy/jMRSB+lWsol99jMDf1fATzy+U2eErfVmLhJbG0RabVWD?=
- =?us-ascii?Q?mT5ub9o1O03GKL75AR9lRsCSIe+YW6lishX8lzw3lTP+AT2bdCR/KpcUWe/5?=
- =?us-ascii?Q?QIA4jX75HIu7owXW2IgBGGj0gLt9iy9DecntkOpInVUlX3es+hSyYDcFPejS?=
- =?us-ascii?Q?WuozddzQVpc0WN3HTfCeRLOukHIbjHFOzkP/KVTfnwK13E3IIsNhlRNKSBEk?=
- =?us-ascii?Q?xPQHg/9Od9jQX2OO0dm41vt1g38t3+SK9OKau6D3xgd4ub5lCi7WBBFkYYuH?=
- =?us-ascii?Q?Oe/J3Y6kkCoS235gcsNw3baXV9yR8LY0u/rAOHRCLGnpskshoeV5bEvqX4dY?=
- =?us-ascii?Q?G3MsrhatILTaEvKKoJLmOJSsQCaialaBCBG9NU7a72tu9oN37nWG5yTUoeTS?=
- =?us-ascii?Q?LH23xBUPGPIiRis/495r99Lqp4SWh8wbZcvT6DtcYJ2SC6T1rQsh6taKY4t8?=
- =?us-ascii?Q?PV8GB1wWqRI5blBX1X3hId0g1iBTOpCBvxLPeWWu69yYHsr8xi/fvwopyiUM?=
- =?us-ascii?Q?CWNdojYdsoEY8NAntpIFVD2HnmwL/8SFk/l6013HwEv86KwvRiFK4lKYK69M?=
- =?us-ascii?Q?ly8vwrRWxN2Enjc9sWaIkiyMxzTS1me9IFl3vkBouQlMwRz1Y8cx7uSjSpxc?=
- =?us-ascii?Q?MwlUWzY3uwbsGih+spPS33TKKWpTguL+e6/MrXSgM8H3PFphWBVmcNu099Sr?=
- =?us-ascii?Q?KVElKArfl+X6zWzG1XzKBB/+ZnXH5ZFXB4npHjnIU7cAD0CbPpcRGyedgUXD?=
- =?us-ascii?Q?XFYr7PMY2TTdLdQxVpM2hfHBUz1EevIr3LAb8SJqPtDOnkEB98aiuE3yfju9?=
- =?us-ascii?Q?ATJHdoPKZZqUoY4xriqVqhxUIWaFnR/n?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(36860700013)(82310400026); DIR:OUT;
- SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2024 21:56:35.2236 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: d39bcf6f-59b8-4db1-32e9-08dcd1e3705d
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE35.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7798
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,154 +101,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Store the struct device pointer used to allocate the DMA buffer in
-the nvkm_gsp_mem object.  This allows nvkm_gsp_mem_dtor() to release
-the buffer without needing the nvkm_gsp.  This is needed so that
-we can retain DMA buffers even after the nvkm_gsp object is deleted.
+On 06/09/2024 21:36, James Jones wrote:
+> Right, there are 3 iterations of block linear tiling actually. NV50 does 
+> support scanout of block linear surfaces. All block-linear-capable GPUs 
+> do. The 3 generations are:
+> 
+> NV5x/G8x/GTXXX line: Original block size.
+> GFXXX(nvc0 I believe in nouveau terms)-GV100: double the block height I 
+> believe.
+> GTXXX+: Same block size, but the layout within a block is subtly 
+> different, at least as visible in CPU mappings.
+> 
 
-Signed-off-by: Timur Tabi <ttabi@nvidia.com>
----
- .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  1 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 50 ++++++++++++-------
- 2 files changed, 34 insertions(+), 17 deletions(-)
+I'm looking at how to check for specific chip in nouveau, and fix the 
+tiling for other cards than Turing.
+It looks like in most case nouveau uses device->info.chipset, with 
+hardcoded hex value. so for nvc0+ I should check device->info.chipset >= 
+0xc0 ?
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-index 9e6f39912368..a45a4ad843b9 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-@@ -9,6 +9,7 @@
- #define GSP_PAGE_SIZE  BIT(GSP_PAGE_SHIFT)
- 
- struct nvkm_gsp_mem {
-+	struct device *dev;
- 	size_t size;
- 	void *data;
- 	dma_addr_t addr;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index cf58f9da9139..86450b0cd605 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -1000,7 +1000,7 @@ r535_gsp_rpc_get_gsp_static_info(struct nvkm_gsp *gsp)
- }
- 
- static void
--nvkm_gsp_mem_dtor(struct nvkm_gsp *gsp, struct nvkm_gsp_mem *mem)
-+nvkm_gsp_mem_dtor(struct nvkm_gsp_mem *mem)
- {
- 	if (mem->data) {
- 		/*
-@@ -1009,19 +1009,35 @@ nvkm_gsp_mem_dtor(struct nvkm_gsp *gsp, struct nvkm_gsp_mem *mem)
- 		 */
- 		memset(mem->data, 0xFF, mem->size);
- 
--		dma_free_coherent(gsp->subdev.device->dev, mem->size, mem->data, mem->addr);
-+		dma_free_coherent(mem->dev, mem->size, mem->data, mem->addr);
-+		put_device(mem->dev);
-+
- 		memset(mem, 0, sizeof(*mem));
- 	}
- }
- 
-+/**
-+ * nvkm_gsp_mem_ctor - constructor for nvkm_gsp_mem objects
-+ * @gsp: gsp pointer
-+ * @size: number of bytes to allocate
-+ * @mem: nvkm_gsp_mem object to initialize
-+ *
-+ * Allocates a block of memory for use with GSP.
-+ *
-+ * This memory block can potentially out-live the driver's remove() callback,
-+ * so we take a device reference to ensure its lifetime. The reference is
-+ * dropped in the destructor.
-+ */
- static int
- nvkm_gsp_mem_ctor(struct nvkm_gsp *gsp, size_t size, struct nvkm_gsp_mem *mem)
- {
--	mem->size = size;
- 	mem->data = dma_alloc_coherent(gsp->subdev.device->dev, size, &mem->addr, GFP_KERNEL);
- 	if (WARN_ON(!mem->data))
- 		return -ENOMEM;
- 
-+	mem->size = size;
-+	mem->dev = get_device(gsp->subdev.device->dev);
-+
- 	return 0;
- }
- 
-@@ -1054,8 +1070,8 @@ r535_gsp_postinit(struct nvkm_gsp *gsp)
- 	nvkm_wr32(device, 0x110004, 0x00000040);
- 
- 	/* Release the DMA buffers that were needed only for boot and init */
--	nvkm_gsp_mem_dtor(gsp, &gsp->boot.fw);
--	nvkm_gsp_mem_dtor(gsp, &gsp->libos);
-+	nvkm_gsp_mem_dtor(&gsp->boot.fw);
-+	nvkm_gsp_mem_dtor(&gsp->libos);
- 
- 	return ret;
- }
-@@ -2234,8 +2250,8 @@ static void
- nvkm_gsp_radix3_dtor(struct nvkm_gsp *gsp, struct nvkm_gsp_radix3 *rx3)
- {
- 	nvkm_gsp_sg_free(gsp->subdev.device, &rx3->lvl2);
--	nvkm_gsp_mem_dtor(gsp, &rx3->lvl1);
--	nvkm_gsp_mem_dtor(gsp, &rx3->lvl0);
-+	nvkm_gsp_mem_dtor(&rx3->lvl1);
-+	nvkm_gsp_mem_dtor(&rx3->lvl0);
- }
- 
- /**
-@@ -2323,9 +2339,9 @@ nvkm_gsp_radix3_sg(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size,
- 
- 	if (ret) {
- lvl2_fail:
--		nvkm_gsp_mem_dtor(gsp, &rx3->lvl1);
-+		nvkm_gsp_mem_dtor(&rx3->lvl1);
- lvl1_fail:
--		nvkm_gsp_mem_dtor(gsp, &rx3->lvl0);
-+		nvkm_gsp_mem_dtor(&rx3->lvl0);
- 	}
- 
- 	return ret;
-@@ -2417,7 +2433,7 @@ r535_gsp_init(struct nvkm_gsp *gsp)
- 
- done:
- 	if (gsp->sr.meta.data) {
--		nvkm_gsp_mem_dtor(gsp, &gsp->sr.meta);
-+		nvkm_gsp_mem_dtor(&gsp->sr.meta);
- 		nvkm_gsp_radix3_dtor(gsp, &gsp->sr.radix3);
- 		nvkm_gsp_sg_free(gsp->subdev.device, &gsp->sr.sgt);
- 		return ret;
-@@ -2498,7 +2514,7 @@ r535_gsp_dtor(struct nvkm_gsp *gsp)
- 	mutex_destroy(&gsp->client_id.mutex);
- 
- 	nvkm_gsp_radix3_dtor(gsp, &gsp->radix3);
--	nvkm_gsp_mem_dtor(gsp, &gsp->sig);
-+	nvkm_gsp_mem_dtor(&gsp->sig);
- 	nvkm_firmware_dtor(&gsp->fw);
- 
- 	nvkm_falcon_fw_dtor(&gsp->booter.unload);
-@@ -2509,12 +2525,12 @@ r535_gsp_dtor(struct nvkm_gsp *gsp)
- 
- 	r535_gsp_dtor_fws(gsp);
- 
--	nvkm_gsp_mem_dtor(gsp, &gsp->rmargs);
--	nvkm_gsp_mem_dtor(gsp, &gsp->wpr_meta);
--	nvkm_gsp_mem_dtor(gsp, &gsp->shm.mem);
--	nvkm_gsp_mem_dtor(gsp, &gsp->loginit);
--	nvkm_gsp_mem_dtor(gsp, &gsp->logintr);
--	nvkm_gsp_mem_dtor(gsp, &gsp->logrm);
-+	nvkm_gsp_mem_dtor(&gsp->rmargs);
-+	nvkm_gsp_mem_dtor(&gsp->wpr_meta);
-+	nvkm_gsp_mem_dtor(&gsp->shm.mem);
-+	nvkm_gsp_mem_dtor(&gsp->loginit);
-+	nvkm_gsp_mem_dtor(&gsp->logintr);
-+	nvkm_gsp_mem_dtor(&gsp->logrm);
- }
- 
- int
+chipset < c0 : block_height 4, "old layout"
+chipset >= c0 : block_height 8, "old layout"
+chispet >= ?? : block_height 8, "new layout"
 
-base-commit: f327bfdbf6c6d7d8e5402795c7c97fb97c2dcf79
-prerequisite-patch-id: 6f7d619f67878dea2a3378e76e28d3c666921fbd
+For testing, I have at hand a GTX1650 (Turing) and an old Geforce 
+8800GTS (Tesla?), so it's a NV92, and still uses this nv50+ code ?
+
+So I should be able to figure out if there is a tiling layout difference 
+on my 8800GTS.
+
+> If there isn't enough info on the layouts in the reverse engineered 
+> documentation, believe this is somewhat documented in drm_fourcc.h, and 
+> it has a link to a technical reference manual describing the details of 
+> the 2nd-gen layout (Pre-turing), though I believe it's behind a 
+> developer account login wall that's free to sign up for but may require 
+> agreeing to a EULA of some sort regarding the content. Once you get the 
+> pre-turing layout working, just halve the block height to get it working 
+> on NV5x. If that isn't sufficient, reach out and we'll see what we can 
+> do to improve documentation or answer specific questions.
+
+I didn't find the link, but I think I have enough information, thanks 
+for your support.
+
+Best regards,
+
 -- 
-2.34.1
+
+Jocelyn
+
+> 
+> Thanks,
+> -James
+> 
+> On 9/6/24 05:53, Ilia Mirkin wrote:
+>> On Fri, Sep 6, 2024 at 6:05 AM Jocelyn Falempe <jfalempe@redhat.com 
+>> <mailto:jfalempe@redhat.com>> wrote:
+>>
+>>     Add drm_panic support, for nv50+ cards.
+>>     It's enough to get the panic screen while running Gnome/Wayland on a
+>>     GTX 1650.
+>>     It doesn't support multi-plane or compressed format.
+>>     Support for other formats and older cards will come later.
+>>     Tiling is only tested on GTX1650, and might be wrong for other cards.
+>>
+>>
+>> I'm moderately sure that nv50 and nvc0 tile differently (the general 
+>> algo is the same, but height is different):
+>>
+>> https://envytools.readthedocs.io/en/latest/hw/memory/g80-surface.html? 
+>> highlight=tiling#blocklinear-surfaces <https:// 
+>> envytools.readthedocs.io/en/latest/hw/memory/g80-surface.html? 
+>> highlight=tiling#blocklinear-surfaces>
+>>
+>> That said, I don't know that nv50 supports scanout of tiled surfaces 
+>> (nor was I aware that nvc0+ did, perhaps it's a recent feature, or 
+>> perhaps I'm just forgetful).
+>>
+>> Cheers,
+>>
+>>    -ilia
+>>
+>>
+>>     Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com
+>>     <mailto:jfalempe@redhat.com>>
+>>     ---
+>>     v2:
+>>       * Rebase and drop already merged patches.
+>>       * Rework the tiling algorithm, using "swizzle" to compute the 
+>> offset
+>>         inside the block.
+>>
+>>       drivers/gpu/drm/nouveau/dispnv50/wndw.c | 107 ++++++++++++++++++ 
+>> +++++-
+>>       1 file changed, 105 insertions(+), 2 deletions(-)
+>>
+>>     diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>>     b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>>     index 7a2cceaee6e9..50ecf6f12b81 100644
+>>     --- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>>     +++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
+>>     @@ -30,11 +30,16 @@
+>>       #include <nvhw/class/cl507e.h>
+>>       #include <nvhw/class/clc37e.h>
+>>
+>>     +#include <linux/iosys-map.h>
+>>     +
+>>       #include <drm/drm_atomic.h>
+>>       #include <drm/drm_atomic_helper.h>
+>>       #include <drm/drm_blend.h>
+>>     -#include <drm/drm_gem_atomic_helper.h>
+>>       #include <drm/drm_fourcc.h>
+>>     +#include <drm/drm_framebuffer.h>
+>>     +#include <drm/drm_gem_atomic_helper.h>
+>>     +#include <drm/drm_panic.h>
+>>     +#include <drm/ttm/ttm_bo.h>
+>>
+>>       #include "nouveau_bo.h"
+>>       #include "nouveau_gem.h"
+>>     @@ -577,6 +582,93 @@ nv50_wndw_prepare_fb(struct drm_plane *plane,
+>>     struct drm_plane_state *state)
+>>              return 0;
+>>       }
+>>
+>>     +#define NV_TILE_BLK_BASE_HEIGHT 8      /* In pixel */
+>>     +#define NV_TILE_GOB_SIZE 64    /* In bytes */
+>>     +#define NV_TILE_BLK_WIDTH (NV_TILE_GOB_SIZE / 4) /* For 32 bits
+>>     pixel */
+>>     +
+>>     +/* get the offset in bytes inside the framebuffer, after taking
+>>     tiling into account */
+>>     +static unsigned int nv50_get_tiled_offset(struct drm_scanout_buffer
+>>     *sb, unsigned int blk_h,
+>>     +                                         unsigned int x, unsigned
+>>     int y)
+>>     +{
+>>     +       u32 blk_x, blk_y, blk_sz, blk_off, pitch;
+>>     +       u32 swizzle;
+>>     +
+>>     +       blk_sz = NV_TILE_GOB_SIZE * blk_h;
+>>     +       pitch = DIV_ROUND_UP(sb->width, NV_TILE_BLK_WIDTH);
+>>     +
+>>     +       /* block coordinate */
+>>     +       blk_x = x / NV_TILE_BLK_WIDTH;
+>>     +       blk_y = y / blk_h;
+>>     +
+>>     +       blk_off = ((blk_y * pitch) + blk_x) * blk_sz;
+>>     +
+>>     +       y = y % blk_h;
+>>     +
+>>     +       /* Inside the block, use the fast address swizzle to compute
+>>     the offset
+>>     +        * For nvidia blocklinear, bit order is yn..y3 x3 y2 x2 y1
+>>     y0 x1 x0
+>>     +        */
+>>     +       swizzle = (x & 3) | (y & 3) << 2 | (x & 4) << 2 | (y & 4) 
+>> << 3;
+>>     +       swizzle |= (x & 8) << 3 | (y >> 3) << 7;
+>>     +
+>>     +       return blk_off + swizzle * 4;
+>>     +}
+>>     +
+>>     +static void nv50_set_pixel(struct drm_scanout_buffer *sb, unsigned
+>>     int x, unsigned int y, u32 color)
+>>     +{
+>>     +       struct drm_framebuffer *fb = sb->private;
+>>     +       unsigned int off;
+>>     +       /* According to DRM_FORMAT_MOD_NVIDIA_BLOCK_LINEAR_2D
+>>     documentation,
+>>     +        * the last 4 bits of the modifier is log2(blk_height /
+>>     NV_TILE_BLK_BASE_HEIGHT)
+>>     +        */
+>>     +       unsigned int blk_h = NV_TILE_BLK_BASE_HEIGHT * (1 <<
+>>     (fb->modifier & 0xf));
+>>     +
+>>     +       off = nv50_get_tiled_offset(sb, blk_h, x, y);
+>>     +       iosys_map_wr(&sb->map[0], off, u32, color);
+>>     +}
+>>     +
+>>     +static int
+>>     +nv50_wndw_get_scanout_buffer(struct drm_plane *plane, struct
+>>     drm_scanout_buffer *sb)
+>>     +{
+>>     +       struct drm_framebuffer *fb;
+>>     +       struct nouveau_bo *nvbo;
+>>     +
+>>     +       if (!plane->state || !plane->state->fb)
+>>     +               return -EINVAL;
+>>     +
+>>     +       fb = plane->state->fb;
+>>     +       nvbo = nouveau_gem_object(fb->obj[0]);
+>>     +
+>>     +       /* Don't support compressed format, or multiplane yet. */
+>>     +       if (nvbo->comp || fb->format->num_planes != 1)
+>>     +               return -EOPNOTSUPP;
+>>     +
+>>     +       if (nouveau_bo_map(nvbo)) {
+>>     +               pr_warn("nouveau bo map failed, panic won't be
+>>     displayed\n");
+>>     +               return -ENOMEM;
+>>     +       }
+>>     +
+>>     +       if (nvbo->kmap.bo_kmap_type & TTM_BO_MAP_IOMEM_MASK)
+>>     +               iosys_map_set_vaddr_iomem(&sb->map[0],
+>>     nvbo->kmap.virtual);
+>>     +       else
+>>     +               iosys_map_set_vaddr(&sb->map[0], nvbo->kmap.virtual);
+>>     +
+>>     +       sb->height = fb->height;
+>>     +       sb->width = fb->width;
+>>     +       sb->pitch[0] = fb->pitches[0];
+>>     +       sb->format = fb->format;
+>>     +
+>>     +       /* If tiling is enabled, use the set_pixel() to display
+>>     correctly.
+>>     +        * Only handle 32bits format for now.
+>>     +        */
+>>     +       if (fb->modifier & 0xf) {
+>>     +               if (fb->format->cpp[0] != 4)
+>>     +                       return -EOPNOTSUPP;
+>>     +               sb->private = (void *) fb;
+>>     +               sb->set_pixel = nv50_set_pixel;
+>>     +       }
+>>     +       return 0;
+>>     +}
+>>     +
+>>       static const struct drm_plane_helper_funcs
+>>       nv50_wndw_helper = {
+>>              .prepare_fb = nv50_wndw_prepare_fb,
+>>     @@ -584,6 +676,14 @@ nv50_wndw_helper = {
+>>              .atomic_check = nv50_wndw_atomic_check,
+>>       };
+>>
+>>     +static const struct drm_plane_helper_funcs
+>>     +nv50_wndw_primary_helper = {
+>>     +       .prepare_fb = nv50_wndw_prepare_fb,
+>>     +       .cleanup_fb = nv50_wndw_cleanup_fb,
+>>     +       .atomic_check = nv50_wndw_atomic_check,
+>>     +       .get_scanout_buffer = nv50_wndw_get_scanout_buffer,
+>>     +};
+>>     +
+>>       static void
+>>       nv50_wndw_atomic_destroy_state(struct drm_plane *plane,
+>>                                     struct drm_plane_state *state)
+>>     @@ -732,7 +832,10 @@ nv50_wndw_new_(const struct nv50_wndw_func
+>>     *func, struct drm_device *dev,
+>>                      return ret;
+>>              }
+>>
+>>     -       drm_plane_helper_add(&wndw->plane, &nv50_wndw_helper);
+>>     +       if (type == DRM_PLANE_TYPE_PRIMARY)
+>>     +               drm_plane_helper_add(&wndw->plane,
+>>     &nv50_wndw_primary_helper);
+>>     +       else
+>>     +               drm_plane_helper_add(&wndw->plane, 
+>> &nv50_wndw_helper);
+>>
+>>              if (wndw->func->ilut) {
+>>                      ret = nv50_lut_init(disp, mmu, &wndw->ilut);
+>>     --     2.46.0
+>>
 
