@@ -4,147 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60D45D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1328D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB9810E9F7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6003F10E9EB;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="LhrKWVdB";
-	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 420C210E4FC
- for <nouveau@lists.freedesktop.org>; Mon,  7 Apr 2025 16:03:02 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5378dndA003209
- for <nouveau@lists.freedesktop.org>; Mon, 7 Apr 2025 16:03:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- fc3XwojJ5GFfdF94r7F5k7ZenDcWsyFJvzqBaDf4v4E=; b=LhrKWVdB0XApgiSi
- 353Kx+c8j0G1MEQPLZS1YUKrFV/20lOlvVl+YLT7USlQXdf8LLogfhBC23nD1Ch4
- yE4zq3OMN6Hmy6UX1oWEBMkk8uQDaXiRe//l6AewLCu27L2z6+tZxByzRYalFM1q
- cj434Xz8yPb/C2ZV41WC7+73j6iqFrLlzbnRPi9DNjcstlwgOzsXWEcCCFGzrFYD
- PjFZPFWjLJi7H76w2fytPAYkrCrh7koGIfqc7vrYHY5pznJFi5IAtg8uamO+n+X0
- cD6jxRUCopbEC5Yap3+i3I15uJlUi63JIjhqmQMg2h4cLzPHob9twNKVgEjY+27B
- Nn0gOQ==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com
- [209.85.214.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 45twftcqj0-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Mon, 07 Apr 2025 16:03:01 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id
- d9443c01a7336-2255ae39f8fso58984255ad.0
- for <nouveau@lists.freedesktop.org>; Mon, 07 Apr 2025 09:03:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1744041780; x=1744646580;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=fc3XwojJ5GFfdF94r7F5k7ZenDcWsyFJvzqBaDf4v4E=;
- b=WEcfyzli+/UqUq1GsYQRyZIUDolG7VuPaepIGKb2SxPFfHjQzxX6vemIrSsZjhi1kg
- r5j6l8QlHybuuWQqnwM48BQbqa/zqjM+Fpm33wQz27rq5KP1YwzrawlqvyvxwoZ1w7MM
- uVCHC2vR8kcmYoufCpTyLJXVvorJuajefziZFRSPC4V5hhNwJysAIHi526FQN6TrlcPK
- hmyH7gJ+LI9+O2NWJclWsp5JVg7D02NKIFD9SygGmn6o6nr0uEZ2aciiBPd4OGzN0rXI
- G9/9y0XzH2ZhNdELMnrfS7+suylYZElmHew3so7IQg6r0U6n2nkIpxlgBNLh/c2r67+4
- qBRg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUO5RnDYP9oH/2a2+2+AtFMdoDSUSbIE944GxItqukH/W9c7anR16zpdgkmaEc5qsPKE/kltkQ0@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxAQ9j29HcEUrCcYjxRXsbVCiYMcQh+E2CbZJkHut14fwJWACf9
- luRTaDRIBvQQtgRc5sjUE5ge9s4Ux5AEZ4qPP72s7V44J9Um8Ib5xp03XeWuD3xlDi3CScomjnU
- ue+K2rbwHcRJBBtW2bvbUzTvnfrUwiIO4dO3gDV3s7OZVKLamq+rGHlS6OK/muvgW
-X-Gm-Gg: ASbGncsHCn4bI+/SUEamyxpFcFN/lGrgiNXcBQqMV6yNEa9t13Fsjgb7kJXb/U0EKJp
- 4oo7ifIXcjMNTwabfU2yZthxlbeq2quBLBOMhNy6IhqZmN5+zB3M3DofVyLSSltNyslUoE6Zxrh
- qX30tyO3SVErB4gSwz5yY4r+8Apso7x/h4DtNyHSG5waP9PmTog9TM9yRiqmWFR/IVuaC9lPCzQ
- joZ/ajFRtpTFxZGQFjPRZ1oO39adCxGJJrMeurJ9Mo6HqwHbG+IC7XYTG/DYRgp2Fy6aJBaxqJN
- 9G0BhASkZug0tdWw0UU5LHdBT2Ox/iP8ufAUF64wgcPtPylNIHf4KF/0U/2SsBE9Bg==
-X-Received: by 2002:a17:903:2a8f:b0:225:abd2:5e5a with SMTP id
- d9443c01a7336-22ab5df1b0dmr455955ad.4.1744041779644; 
- Mon, 07 Apr 2025 09:02:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHQkBFjjP+ONLlvzzb1gd0pTO1LSFOf1s2n0EEL7fUMEzu7Ove5cxahF9Lf52ILh1wQo+2pDg==
-X-Received: by 2002:a17:903:2a8f:b0:225:abd2:5e5a with SMTP id
- d9443c01a7336-22ab5df1b0dmr454955ad.4.1744041779170; 
- Mon, 07 Apr 2025 09:02:59 -0700 (PDT)
-Received: from [10.226.59.182] (i-global254.qualcomm.com. [199.106.103.254])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-739d97f2fd3sm8971891b3a.69.2025.04.07.09.02.53
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 07 Apr 2025 09:02:58 -0700 (PDT)
-Message-ID: <cd94dff9-d28d-42f5-a071-26e9dd0c3490@oss.qualcomm.com>
-Date: Mon, 7 Apr 2025 10:02:52 -0600
+X-Greylist: delayed 1187 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Sep 2024 01:18:19 UTC
+Received: from dggsgout12.his.huawei.com (dggsgout12.his.huawei.com
+ [45.249.212.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53D2110E9CB
+ for <nouveau@lists.freedesktop.org>; Wed, 11 Sep 2024 01:18:19 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.163.235])
+ by dggsgout12.his.huawei.com (SkyGuard) with ESMTP id 4X3Mcz0jvNz4f3jR7
+ for <nouveau@lists.freedesktop.org>; Wed, 11 Sep 2024 08:58:11 +0800 (CST)
+Received: from mail02.huawei.com (unknown [10.116.40.128])
+ by mail.maildlp.com (Postfix) with ESMTP id 7C8291A06D7
+ for <nouveau@lists.freedesktop.org>; Wed, 11 Sep 2024 08:58:26 +0800 (CST)
+Received: from localhost.localdomain (unknown [10.67.175.61])
+ by APP4 (Coremail) with SMTP id gCh0CgDXDMkt6+BmskTrAw--.65200S2;
+ Wed, 11 Sep 2024 08:58:26 +0800 (CST)
+From: Zheng Yejian <zhengyejian@huaweicloud.com>
+To: rostedt@goodmis.org, mhiramat@kernel.org, mathieu.desnoyers@efficios.com,
+ karolherbst@gmail.com, ppaalanen@gmail.com
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, zhengyejian1@huawei.com
+Subject: [PATCH -next] tracing: Remove TRACE_EVENT_FL_FILTERED logic
+Date: Wed, 11 Sep 2024 09:00:26 +0800
+Message-Id: <20240911010026.2302849-1-zhengyejian@huaweicloud.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC] PCI: add CONFIG_MMU dependency
-To: Arnd Bergmann <arnd@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Carl Vanderlip <quic_carlv@quicinc.com>,
- Oded Gabbay <ogabbay@kernel.org>, Takashi Sakamoto
- <o-takashi@sakamocchi.jp>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Xinliang Liu <xinliang.liu@linaro.org>, Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Sumit Semwal <sumit.semwal@linaro.org>, Yongqin Liu
- <yongqin.liu@linaro.org>, John Stultz <jstultz@google.com>,
- Sui Jingfeng <suijingfeng@loongson.cn>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>, Gerd Hoffmann <kraxel@redhat.com>,
- Zack Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Saurav Kashyap <skashyap@marvell.com>,
- Javed Hasan <jhasan@marvell.com>, GR-QLogic-Storage-Upstream@marvell.com,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Nilesh Javali <njavali@marvell.com>,
- Manish Rangankar <mrangankar@marvell.com>,
- Alex Williamson <alex.williamson@redhat.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>,
- Lijo Lazar <lijo.lazar@amd.com>, Niklas Schnelle <schnelle@linux.ibm.com>,
- Dmitry Baryshkov <lumag@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-scsi@vger.kernel.org, kvm@vger.kernel.org
-References: <20250407104025.3421624-1-arnd@kernel.org>
-Content-Language: en-US
-From: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-In-Reply-To: <20250407104025.3421624-1-arnd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=B5+50PtM c=1 sm=1 tr=0 ts=67f3f735 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=IkcTkHD0fZMA:10 a=XR8D0OoHHMoA:10 a=VwQbUJbxAAAA:8 a=ZLGELXoPAAAA:8
- a=EUspDBNiAAAA:8 a=mM23EaL7GqIQzlWAp5AA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=CFiPc5v16LZhaT-MVE1c:22
-X-Proofpoint-GUID: guweJmDzT_dmHiXHUV_qkLsWpUXbgKb-
-X-Proofpoint-ORIG-GUID: guweJmDzT_dmHiXHUV_qkLsWpUXbgKb-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1095,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-04-07_04,2025-04-03_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- mlxlogscore=726
- suspectscore=0 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- priorityscore=1501 adultscore=0 impostorscore=0 lowpriorityscore=0
- mlxscore=0 clxscore=1011 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2502280000
- definitions=main-2504070112
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: gCh0CgDXDMkt6+BmskTrAw--.65200S2
+X-Coremail-Antispam: 1UD129KBjvAXoW3uw1ktFWfZr43Cry5Kw4UJwb_yoW8Ar1fJo
+ W3X39Yvwn7try8A3y3KayvqFs8Zrn0gr90yr4xtr4DuF1jkw1UZrWxAws0yFn8Xwn0kan8
+ Z3WDJa1DJrs5Ja95n29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+ AaLaJ3UjIYCTnIWjp_UUU5E7kC6x804xWl14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK
+ 8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4
+ AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26F1j6w1UM28EF7xvwVC0I7IYx2IY6xkF
+ 7I0E14v26F4j6r4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x
+ 0267AKxVW0oVCq3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG
+ 6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFV
+ Cjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JMxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI
+ 7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxV
+ Cjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY
+ 6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6x
+ AIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY
+ 1x0267AKxVWUJVW8JbIYCTnIWIevJa73UjIFyTuYvjxUF1v3UUUUU
+X-CM-SenderInfo: x2kh0w51hmxt3q6k3tpzhluzxrxghudrp/
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,20 +67,435 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 4/7/2025 4:38 AM, Arnd Bergmann wrote:
-> From: Arnd Bergmann <arnd@arndb.de>
-> 
-> It turns out that there are no platforms that have PCI but don't have an MMU,
-> so adding a Kconfig dependency on CONFIG_PCI simplifies build testing kernels
-> for those platforms a lot, and avoids a lot of inadvertent build regressions.
-> 
-> Add a dependency for CONFIG_PCI and remove all the ones for PCI specific
-> device drivers that are currently marked not having it.
-> 
-> Link: https://lore.kernel.org/lkml/a41f1b20-a76c-43d8-8c36-f12744327a54@app.fastmail.com/
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->   drivers/accel/qaic/Kconfig              | 1 -
+After commit dcb0b5575d24 ("tracing: Remove TRACE_EVENT_FL_USE_CALL_FILTER
+ logic"), no one's going to set the TRACE_EVENT_FL_FILTERED or change the
+call->filter, so remove related logic.
 
-For qaic:
-Acked-by: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Signed-off-by: Zheng Yejian <zhengyejian@huaweicloud.com>
+---
+ include/linux/trace_events.h         |  4 ---
+ kernel/trace/trace.c                 | 44 ++++++----------------------
+ kernel/trace/trace.h                 |  4 ---
+ kernel/trace/trace_branch.c          |  4 +--
+ kernel/trace/trace_events.c          |  2 --
+ kernel/trace/trace_functions_graph.c |  8 ++---
+ kernel/trace/trace_hwlat.c           |  4 +--
+ kernel/trace/trace_mmiotrace.c       |  8 ++---
+ kernel/trace/trace_osnoise.c         | 12 ++------
+ kernel/trace/trace_sched_wakeup.c    |  8 ++---
+ 10 files changed, 20 insertions(+), 78 deletions(-)
+
+diff --git a/include/linux/trace_events.h b/include/linux/trace_events.h
+index 42bedcddd511..f8f2e52653df 100644
+--- a/include/linux/trace_events.h
++++ b/include/linux/trace_events.h
+@@ -326,7 +326,6 @@ void *trace_event_buffer_reserve(struct trace_event_buffer *fbuffer,
+ void trace_event_buffer_commit(struct trace_event_buffer *fbuffer);
+ 
+ enum {
+-	TRACE_EVENT_FL_FILTERED_BIT,
+ 	TRACE_EVENT_FL_CAP_ANY_BIT,
+ 	TRACE_EVENT_FL_NO_SET_FILTER_BIT,
+ 	TRACE_EVENT_FL_IGNORE_ENABLE_BIT,
+@@ -341,7 +340,6 @@ enum {
+ 
+ /*
+  * Event flags:
+- *  FILTERED	  - The event has a filter attached
+  *  CAP_ANY	  - Any user can enable for perf
+  *  NO_SET_FILTER - Set when filter has error and is to be ignored
+  *  IGNORE_ENABLE - For trace internal events, do not enable with debugfs file
+@@ -356,7 +354,6 @@ enum {
+  *                   to a tracepoint yet, then it is cleared when it is.
+  */
+ enum {
+-	TRACE_EVENT_FL_FILTERED		= (1 << TRACE_EVENT_FL_FILTERED_BIT),
+ 	TRACE_EVENT_FL_CAP_ANY		= (1 << TRACE_EVENT_FL_CAP_ANY_BIT),
+ 	TRACE_EVENT_FL_NO_SET_FILTER	= (1 << TRACE_EVENT_FL_NO_SET_FILTER_BIT),
+ 	TRACE_EVENT_FL_IGNORE_ENABLE	= (1 << TRACE_EVENT_FL_IGNORE_ENABLE_BIT),
+@@ -381,7 +378,6 @@ struct trace_event_call {
+ 	};
+ 	struct trace_event	event;
+ 	char			*print_fmt;
+-	struct event_filter	*filter;
+ 	/*
+ 	 * Static events can disappear with modules,
+ 	 * where as dynamic ones need their own ref count.
+diff --git a/kernel/trace/trace.c b/kernel/trace/trace.c
+index c390de3a4515..b06f381f1989 100644
+--- a/kernel/trace/trace.c
++++ b/kernel/trace/trace.c
+@@ -570,19 +570,6 @@ int tracing_check_open_get_tr(struct trace_array *tr)
+ 	return 0;
+ }
+ 
+-int call_filter_check_discard(struct trace_event_call *call, void *rec,
+-			      struct trace_buffer *buffer,
+-			      struct ring_buffer_event *event)
+-{
+-	if (unlikely(call->flags & TRACE_EVENT_FL_FILTERED) &&
+-	    !filter_match_preds(call->filter, rec)) {
+-		__trace_event_discard_commit(buffer, event);
+-		return 1;
+-	}
+-
+-	return 0;
+-}
+-
+ /**
+  * trace_find_filtered_pid - check if a pid exists in a filtered_pid list
+  * @filtered_pids: The list of pids to check
+@@ -2866,7 +2853,6 @@ void
+ trace_function(struct trace_array *tr, unsigned long ip, unsigned long
+ 	       parent_ip, unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_function;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ring_buffer_event *event;
+ 	struct ftrace_entry *entry;
+@@ -2879,11 +2865,9 @@ trace_function(struct trace_array *tr, unsigned long ip, unsigned long
+ 	entry->ip			= ip;
+ 	entry->parent_ip		= parent_ip;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event)) {
+-		if (static_branch_unlikely(&trace_function_exports_enabled))
+-			ftrace_exports(event, TRACE_EXPORT_FUNCTION);
+-		__buffer_unlock_commit(buffer, event);
+-	}
++	if (static_branch_unlikely(&trace_function_exports_enabled))
++		ftrace_exports(event, TRACE_EXPORT_FUNCTION);
++	__buffer_unlock_commit(buffer, event);
+ }
+ 
+ #ifdef CONFIG_STACKTRACE
+@@ -2909,7 +2893,6 @@ static void __ftrace_trace_stack(struct trace_buffer *buffer,
+ 				 unsigned int trace_ctx,
+ 				 int skip, struct pt_regs *regs)
+ {
+-	struct trace_event_call *call = &event_kernel_stack;
+ 	struct ring_buffer_event *event;
+ 	unsigned int size, nr_entries;
+ 	struct ftrace_stack *fstack;
+@@ -2963,8 +2946,7 @@ static void __ftrace_trace_stack(struct trace_buffer *buffer,
+ 	memcpy(&entry->caller, fstack->calls,
+ 	       flex_array_size(entry, caller, nr_entries));
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		__buffer_unlock_commit(buffer, event);
++	__buffer_unlock_commit(buffer, event);
+ 
+  out:
+ 	/* Again, don't let gcc optimize things here */
+@@ -3037,7 +3019,6 @@ static void
+ ftrace_trace_userstack(struct trace_array *tr,
+ 		       struct trace_buffer *buffer, unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_user_stack;
+ 	struct ring_buffer_event *event;
+ 	struct userstack_entry *entry;
+ 
+@@ -3071,8 +3052,7 @@ ftrace_trace_userstack(struct trace_array *tr,
+ 	memset(&entry->caller, 0, sizeof(entry->caller));
+ 
+ 	stack_trace_save_user(entry->caller, FTRACE_STACK_ENTRIES);
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		__buffer_unlock_commit(buffer, event);
++	__buffer_unlock_commit(buffer, event);
+ 
+  out_drop_count:
+ 	__this_cpu_dec(user_stack_count);
+@@ -3241,7 +3221,6 @@ static void trace_printk_start_stop_comm(int enabled)
+  */
+ int trace_vbprintk(unsigned long ip, const char *fmt, va_list args)
+ {
+-	struct trace_event_call *call = &event_bprint;
+ 	struct ring_buffer_event *event;
+ 	struct trace_buffer *buffer;
+ 	struct trace_array *tr = &global_trace;
+@@ -3282,10 +3261,8 @@ int trace_vbprintk(unsigned long ip, const char *fmt, va_list args)
+ 	entry->fmt			= fmt;
+ 
+ 	memcpy(entry->buf, tbuffer, sizeof(u32) * len);
+-	if (!call_filter_check_discard(call, entry, buffer, event)) {
+-		__buffer_unlock_commit(buffer, event);
+-		ftrace_trace_stack(tr, buffer, trace_ctx, 6, NULL);
+-	}
++	__buffer_unlock_commit(buffer, event);
++	ftrace_trace_stack(tr, buffer, trace_ctx, 6, NULL);
+ 
+ out:
+ 	ring_buffer_nest_end(buffer);
+@@ -3305,7 +3282,6 @@ static int
+ __trace_array_vprintk(struct trace_buffer *buffer,
+ 		      unsigned long ip, const char *fmt, va_list args)
+ {
+-	struct trace_event_call *call = &event_print;
+ 	struct ring_buffer_event *event;
+ 	int len = 0, size;
+ 	struct print_entry *entry;
+@@ -3340,10 +3316,8 @@ __trace_array_vprintk(struct trace_buffer *buffer,
+ 	entry->ip = ip;
+ 
+ 	memcpy(&entry->buf, tbuffer, len + 1);
+-	if (!call_filter_check_discard(call, entry, buffer, event)) {
+-		__buffer_unlock_commit(buffer, event);
+-		ftrace_trace_stack(&global_trace, buffer, trace_ctx, 6, NULL);
+-	}
++	__buffer_unlock_commit(buffer, event);
++	ftrace_trace_stack(&global_trace, buffer, trace_ctx, 6, NULL);
+ 
+ out:
+ 	ring_buffer_nest_end(buffer);
+diff --git a/kernel/trace/trace.h b/kernel/trace/trace.h
+index 4f448ab2d1e7..f5883bb85864 100644
+--- a/kernel/trace/trace.h
++++ b/kernel/trace/trace.h
+@@ -1427,10 +1427,6 @@ struct trace_subsystem_dir {
+ 	int				nr_events;
+ };
+ 
+-extern int call_filter_check_discard(struct trace_event_call *call, void *rec,
+-				     struct trace_buffer *buffer,
+-				     struct ring_buffer_event *event);
+-
+ void trace_buffer_unlock_commit_regs(struct trace_array *tr,
+ 				     struct trace_buffer *buffer,
+ 				     struct ring_buffer_event *event,
+diff --git a/kernel/trace/trace_branch.c b/kernel/trace/trace_branch.c
+index e47fdb4c92fb..0f24eca449bf 100644
+--- a/kernel/trace/trace_branch.c
++++ b/kernel/trace/trace_branch.c
+@@ -30,7 +30,6 @@ static struct trace_array *branch_tracer;
+ static void
+ probe_likely_condition(struct ftrace_likely_data *f, int val, int expect)
+ {
+-	struct trace_event_call *call = &event_branch;
+ 	struct trace_array *tr = branch_tracer;
+ 	struct trace_buffer *buffer;
+ 	struct trace_array_cpu *data;
+@@ -82,8 +81,7 @@ probe_likely_condition(struct ftrace_likely_data *f, int val, int expect)
+ 	entry->line = f->data.line;
+ 	entry->correct = val == expect;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ 
+  out:
+ 	current->trace_recursion &= ~TRACE_BRANCH_BIT;
+diff --git a/kernel/trace/trace_events.c b/kernel/trace/trace_events.c
+index 7266ec2a4eea..77e68efbd43e 100644
+--- a/kernel/trace/trace_events.c
++++ b/kernel/trace/trace_events.c
+@@ -3149,8 +3149,6 @@ static void __trace_remove_event_call(struct trace_event_call *call)
+ {
+ 	event_remove(call);
+ 	trace_destroy_fields(call);
+-	free_event_filter(call->filter);
+-	call->filter = NULL;
+ }
+ 
+ static int probe_remove_event_call(struct trace_event_call *call)
+diff --git a/kernel/trace/trace_functions_graph.c b/kernel/trace/trace_functions_graph.c
+index a569daaac4c4..ab57ec78ca04 100644
+--- a/kernel/trace/trace_functions_graph.c
++++ b/kernel/trace/trace_functions_graph.c
+@@ -102,7 +102,6 @@ int __trace_graph_entry(struct trace_array *tr,
+ 				struct ftrace_graph_ent *trace,
+ 				unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_funcgraph_entry;
+ 	struct ring_buffer_event *event;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ftrace_graph_ent_entry *entry;
+@@ -113,8 +112,7 @@ int __trace_graph_entry(struct trace_array *tr,
+ 		return 0;
+ 	entry	= ring_buffer_event_data(event);
+ 	entry->graph_ent			= *trace;
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ 
+ 	return 1;
+ }
+@@ -223,7 +221,6 @@ void __trace_graph_return(struct trace_array *tr,
+ 				struct ftrace_graph_ret *trace,
+ 				unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_funcgraph_exit;
+ 	struct ring_buffer_event *event;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ftrace_graph_ret_entry *entry;
+@@ -234,8 +231,7 @@ void __trace_graph_return(struct trace_array *tr,
+ 		return;
+ 	entry	= ring_buffer_event_data(event);
+ 	entry->ret				= *trace;
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ }
+ 
+ void trace_graph_return(struct ftrace_graph_ret *trace,
+diff --git a/kernel/trace/trace_hwlat.c b/kernel/trace/trace_hwlat.c
+index b791524a6536..fcd5e8c91669 100644
+--- a/kernel/trace/trace_hwlat.c
++++ b/kernel/trace/trace_hwlat.c
+@@ -130,7 +130,6 @@ static bool hwlat_busy;
+ static void trace_hwlat_sample(struct hwlat_sample *sample)
+ {
+ 	struct trace_array *tr = hwlat_trace;
+-	struct trace_event_call *call = &event_hwlat;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ring_buffer_event *event;
+ 	struct hwlat_entry *entry;
+@@ -148,8 +147,7 @@ static void trace_hwlat_sample(struct hwlat_sample *sample)
+ 	entry->nmi_count		= sample->nmi_count;
+ 	entry->count			= sample->count;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ }
+ 
+ /* Macros to encapsulate the time capturing infrastructure */
+diff --git a/kernel/trace/trace_mmiotrace.c b/kernel/trace/trace_mmiotrace.c
+index 64e77b513697..ba5858866b2f 100644
+--- a/kernel/trace/trace_mmiotrace.c
++++ b/kernel/trace/trace_mmiotrace.c
+@@ -294,7 +294,6 @@ static void __trace_mmiotrace_rw(struct trace_array *tr,
+ 				struct trace_array_cpu *data,
+ 				struct mmiotrace_rw *rw)
+ {
+-	struct trace_event_call *call = &event_mmiotrace_rw;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ring_buffer_event *event;
+ 	struct trace_mmiotrace_rw *entry;
+@@ -310,8 +309,7 @@ static void __trace_mmiotrace_rw(struct trace_array *tr,
+ 	entry	= ring_buffer_event_data(event);
+ 	entry->rw			= *rw;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
++	trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
+ }
+ 
+ void mmio_trace_rw(struct mmiotrace_rw *rw)
+@@ -325,7 +323,6 @@ static void __trace_mmiotrace_map(struct trace_array *tr,
+ 				struct trace_array_cpu *data,
+ 				struct mmiotrace_map *map)
+ {
+-	struct trace_event_call *call = &event_mmiotrace_map;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ring_buffer_event *event;
+ 	struct trace_mmiotrace_map *entry;
+@@ -341,8 +338,7 @@ static void __trace_mmiotrace_map(struct trace_array *tr,
+ 	entry	= ring_buffer_event_data(event);
+ 	entry->map			= *map;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
++	trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
+ }
+ 
+ void mmio_trace_mapping(struct mmiotrace_map *map)
+diff --git a/kernel/trace/trace_osnoise.c b/kernel/trace/trace_osnoise.c
+index 1c11cb7d01ae..029019d2613c 100644
+--- a/kernel/trace/trace_osnoise.c
++++ b/kernel/trace/trace_osnoise.c
+@@ -499,7 +499,6 @@ static void print_osnoise_headers(struct seq_file *s)
+ static void
+ __trace_osnoise_sample(struct osnoise_sample *sample, struct trace_buffer *buffer)
+ {
+-	struct trace_event_call *call = &event_osnoise;
+ 	struct ring_buffer_event *event;
+ 	struct osnoise_entry *entry;
+ 
+@@ -517,8 +516,7 @@ __trace_osnoise_sample(struct osnoise_sample *sample, struct trace_buffer *buffe
+ 	entry->softirq_count	= sample->softirq_count;
+ 	entry->thread_count	= sample->thread_count;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ }
+ 
+ /*
+@@ -578,7 +576,6 @@ static void print_timerlat_headers(struct seq_file *s)
+ static void
+ __trace_timerlat_sample(struct timerlat_sample *sample, struct trace_buffer *buffer)
+ {
+-	struct trace_event_call *call = &event_osnoise;
+ 	struct ring_buffer_event *event;
+ 	struct timerlat_entry *entry;
+ 
+@@ -591,8 +588,7 @@ __trace_timerlat_sample(struct timerlat_sample *sample, struct trace_buffer *buf
+ 	entry->context			= sample->context;
+ 	entry->timer_latency		= sample->timer_latency;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ }
+ 
+ /*
+@@ -654,7 +650,6 @@ static void timerlat_save_stack(int skip)
+ static void
+ __timerlat_dump_stack(struct trace_buffer *buffer, struct trace_stack *fstack, unsigned int size)
+ {
+-	struct trace_event_call *call = &event_osnoise;
+ 	struct ring_buffer_event *event;
+ 	struct stack_entry *entry;
+ 
+@@ -668,8 +663,7 @@ __timerlat_dump_stack(struct trace_buffer *buffer, struct trace_stack *fstack, u
+ 	memcpy(&entry->caller, fstack->calls, size);
+ 	entry->size = fstack->nr_entries;
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit_nostack(buffer, event);
++	trace_buffer_unlock_commit_nostack(buffer, event);
+ }
+ 
+ /*
+diff --git a/kernel/trace/trace_sched_wakeup.c b/kernel/trace/trace_sched_wakeup.c
+index ae2ace5e515a..d6c7f18daa15 100644
+--- a/kernel/trace/trace_sched_wakeup.c
++++ b/kernel/trace/trace_sched_wakeup.c
+@@ -378,7 +378,6 @@ tracing_sched_switch_trace(struct trace_array *tr,
+ 			   struct task_struct *next,
+ 			   unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_context_switch;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+ 	struct ring_buffer_event *event;
+ 	struct ctx_switch_entry *entry;
+@@ -396,8 +395,7 @@ tracing_sched_switch_trace(struct trace_array *tr,
+ 	entry->next_state		= task_state_index(next);
+ 	entry->next_cpu	= task_cpu(next);
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
++	trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
+ }
+ 
+ static void
+@@ -406,7 +404,6 @@ tracing_sched_wakeup_trace(struct trace_array *tr,
+ 			   struct task_struct *curr,
+ 			   unsigned int trace_ctx)
+ {
+-	struct trace_event_call *call = &event_wakeup;
+ 	struct ring_buffer_event *event;
+ 	struct ctx_switch_entry *entry;
+ 	struct trace_buffer *buffer = tr->array_buffer.buffer;
+@@ -424,8 +421,7 @@ tracing_sched_wakeup_trace(struct trace_array *tr,
+ 	entry->next_state		= task_state_index(wakee);
+ 	entry->next_cpu			= task_cpu(wakee);
+ 
+-	if (!call_filter_check_discard(call, entry, buffer, event))
+-		trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
++	trace_buffer_unlock_commit(tr, buffer, event, trace_ctx);
+ }
+ 
+ static void notrace
+-- 
+2.25.1
+
