@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49D11FA3722
-	for <nouveau@archiver.kernel.org>; Fri, 13 Sep 2024 07:22:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36F67FA372B
+	for <nouveau@archiver.kernel.org>; Fri, 13 Sep 2024 08:14:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E88110ECA0;
-	Fri, 13 Sep 2024 07:22:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D21F010ECB2;
+	Fri, 13 Sep 2024 08:14:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="WpEQ9ISO";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KkVEwY/t";
 	dkim-atps=neutral
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47A1E10ECA0
- for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 07:22:51 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D2C810ECB2
+ for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 08:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1726212170;
+ s=mimecast20190719; t=1726215293;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ to:to:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=2ezrAtS0ZVZbGW949ONNYwIZzLcJMYqLxPpzY4tCRl0=;
- b=WpEQ9ISOWwFW/Uw1KQorejBF3l094RUm1VwrlnqvGT0eFHQpj3Nat65SP/jqy/ZH3mlL9j
- QcB+boCgSBru3wpkKaV264w8fx64T/P+w09e8363xCZnZQisBqJxNwkRa+Z1HxRRB3ddou
- 0cnIF6L1vFvVK8nUzcI/kAiBbLtkJDU=
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com
- [209.85.221.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=Pfcxu+UmXmfDI/rTDdM4uILVL0wQha2acqL1NiwE3nw=;
+ b=KkVEwY/t4963eEtoqsbT6eYi04Jn0tID82aGugjVKzSfHIKuEzzCVcgA2B4KvEGuKSjiVu
+ 8zwdQ3TDOEookETRGM8BnhrfE1lFiKrJEylp0sLx/FjhGxAqZz9WTy1ovCL3JV6f5tFYzT
+ nbznhabmh7yuSvgepvqhJnEfh9A01zw=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-260-o82C9Hm4PR2rT10iJf6yDw-1; Fri, 13 Sep 2024 03:22:49 -0400
-X-MC-Unique: o82C9Hm4PR2rT10iJf6yDw-1
-Received: by mail-wr1-f69.google.com with SMTP id
- ffacd0b85a97d-374b69e65e8so816707f8f.0
- for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 00:22:49 -0700 (PDT)
+ us-mta-639-YYloVks0MAinO9V6SJpf3A-1; Fri, 13 Sep 2024 04:14:52 -0400
+X-MC-Unique: YYloVks0MAinO9V6SJpf3A-1
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-42cb0ed9072so6159265e9.1
+ for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 01:14:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1726212168; x=1726816968;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=2ezrAtS0ZVZbGW949ONNYwIZzLcJMYqLxPpzY4tCRl0=;
- b=sR3DHXgyvUJ4XEiPcSuJNtpWG2h6LfcyFS3IfdS/M5gT4Njezf6w8wCj3rn2atLVMt
- hTB410N9fwVIFIV2eABv2VKymSwggTw9GmDn3UaJYOXuQv7eRp/93NGahpio4gZ+MJ0I
- QsELFd0UooSwcWaKUxqltQMQtMo6AHxJPUhZy6x21AAJTFbF/BR2omK+TJrLNiQ2BErE
- EfctLbt9jQg/Ls3KDI3W1qEgC8QfUB84LVZswK/iDyvq9Or5cj9Tf7Zd6kgjidbmz+gx
- 3SDvOk5VGjNTF0p1iA4+UZJ4njuehTd87VPdhez1YpKB7c3Yhcr8ZDS/g6DOK7gyVbVb
- PIJA==
+ d=1e100.net; s=20230601; t=1726215291; x=1726820091;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Pfcxu+UmXmfDI/rTDdM4uILVL0wQha2acqL1NiwE3nw=;
+ b=BAtfBdtboGjVrhQy5cG6ixAqef/e7Xctx5WQrTFQ+/6X2Kj6pmSWTc2BJQsxWOH/5M
+ qPZG7a5y+zL7KCbxcmib/WZXc8p3ePxuDyk+7ctkkax2n4pMPIipF9VT/A6mCHo2Yo4P
+ zz3w3iYC4kEbKjMjq0eiKXwmtopZLx12d8CBWCew21seEd9uqbUEL8ycaty5JWjlFYwJ
+ p3UcDgK1vVwZw/5MH7KQcmk0DeYCpVT0tYbMvE9nK4XcLecmq0F4QLg6pLfVcEyUohvF
+ ujVyvUYaRzMbHjluNLGbEQ3nFWm76YH0FRjwXM2HwBskruGZBjUJE8ealNW7e5ylcblK
+ E6GA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVifOH5+UN5IPEzlMfroKoOm2qMtONcfDrxzgNRfrZ8OGONVjsKCaBGevOWjjHVwQyP2Pv+u2k9@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJjMBZBaaCikpyu1ogdLABdH90pI569rmy3zMtoYFnURUxxPkd
- DDkAH48Dekq9K+HmTFNvGVu/lTtpaNFMfuhxsdQDZkQzAGmYJTIUxv0t2iRd3W19HJpCXAvNO14
- GnqYqhsGDULAybkgrYX8y0EPosUvry+BAXRSORFJhwt4CmCqZ/cJmtgShL9U5Yb8=
-X-Received: by 2002:adf:e28d:0:b0:374:b6f2:5f30 with SMTP id
- ffacd0b85a97d-378c2d1246emr3016531f8f.27.1726212168047; 
- Fri, 13 Sep 2024 00:22:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEZMWrlEzJh0WOtOStc18L8IoLgcwnmnI0DTnyObNM8d+Al8nGf4oKzPzWbtBSgLCYnV/aMrw==
-X-Received: by 2002:adf:e28d:0:b0:374:b6f2:5f30 with SMTP id
- ffacd0b85a97d-378c2d1246emr3016512f8f.27.1726212167531; 
- Fri, 13 Sep 2024 00:22:47 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+ AJvYcCWxUJSdExD5jlimBP0uSmjB9HUlUKn1DTSakA9c4dZWP892Z4aMMqxR7zgJySAm04Nu3FG6Bhcv@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRsZqQel/Fgarp8OFLVNbXqjp6PJVdebYJTRzYJmNsCalHPa1a
+ dBnYi9PQ2NZJ/0klI2csTm689zZJu2Y4LDL+IRKURQfBGb4pRQ40bWMyi0AdHsePxBxTff7WakR
+ Y69janYmZcr8zEX3/CuaBAbx5+UzAwIxYPlecLv8TPuao9HnGi+tArrHscyChTnM=
+X-Received: by 2002:a05:600c:1d1b:b0:42c:b555:43dd with SMTP id
+ 5b1f17b1804b1-42d9070a3f2mr19812525e9.3.1726215290943; 
+ Fri, 13 Sep 2024 01:14:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFQkYNqZa5jF6ReF1NSD90GNAfAwze/3O4yqzySA4Awnui5bCo04WKFNl0IwH6e2Z5WUB/2NA==
+X-Received: by 2002:a05:600c:1d1b:b0:42c:b555:43dd with SMTP id
+ 5b1f17b1804b1-42d9070a3f2mr19812175e9.3.1726215290403; 
+ Fri, 13 Sep 2024 01:14:50 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:c:37e0:ced3:55bd:f454:e722?
+ ([2a01:e0a:c:37e0:ced3:55bd:f454:e722])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-3789567609esm16025263f8f.59.2024.09.13.00.22.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Sep 2024 00:22:47 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Jocelyn Falempe <jfalempe@redhat.com>, Ilia Mirkin
- <imirkin@alum.mit.edu>, James Jones <jajones@nvidia.com>, Karol Herbst
- <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
- <dakr@redhat.com>, David Airlie <airlied@gmail.com>, Daniel Vetter
- <daniel@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
+ ffacd0b85a97d-378956653b0sm16298795f8f.44.2024.09.13.01.14.49
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 13 Sep 2024 01:14:49 -0700 (PDT)
+Message-ID: <a58be9b0-d766-401f-8666-8e693b1b38da@redhat.com>
+Date: Fri, 13 Sep 2024 10:14:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/2] drm/panic: Add ABGR2101010 support
-In-Reply-To: <20240913071036.574782-2-jfalempe@redhat.com>
+To: Javier Martinez Canillas <javierm@redhat.com>,
+ Ilia Mirkin <imirkin@alum.mit.edu>, James Jones <jajones@nvidia.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 References: <20240913071036.574782-1-jfalempe@redhat.com>
  <20240913071036.574782-2-jfalempe@redhat.com>
-Date: Fri, 13 Sep 2024 09:22:46 +0200
-Message-ID: <87h6akyq49.fsf@minerva.mail-host-address-is-not-set>
-MIME-Version: 1.0
+ <87h6akyq49.fsf@minerva.mail-host-address-is-not-set>
+From: Jocelyn Falempe <jfalempe@redhat.com>
+In-Reply-To: <87h6akyq49.fsf@minerva.mail-host-address-is-not-set>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Language: en-US, fr
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,62 +101,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Jocelyn Falempe <jfalempe@redhat.com> writes:
+On 13/09/2024 09:22, Javier Martinez Canillas wrote:
+> Jocelyn Falempe <jfalempe@redhat.com> writes:
+> 
+> Hello Jocelyn,
+> 
+>> Add support for ABGR2101010, used by the nouveau driver.
+>>
+>> Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+>> ---
+>>   drivers/gpu/drm/drm_panic.c | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
+>> index 74412b7bf936..0a9ecc1380d2 100644
+>> --- a/drivers/gpu/drm/drm_panic.c
+>> +++ b/drivers/gpu/drm/drm_panic.c
+>> @@ -209,6 +209,14 @@ static u32 convert_xrgb8888_to_argb2101010(u32 pix)
+>>   	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
+>>   }
+>>   
+>> +static u32 convert_xrgb8888_to_abgr2101010(u32 pix)
+>> +{
+>> +	pix = ((pix & 0x00FF0000) >> 14) |
+>> +	      ((pix & 0x0000FF00) << 4) |
+>> +	      ((pix & 0x000000FF) << 22);
+>> +	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
+>> +}
+> 
+> Maybe we can move this format conversion helper and the others in the
+> driver to drivers/gpu/drm/drm_format_helper.c ?
 
-Hello Jocelyn,
+I think there are still a few issues with that. First is that 
+drm_format_helper.c is in a separate module, so you can't call its 
+functions from the main drm module, where drm_panic is.
 
-> Add support for ABGR2101010, used by the nouveau driver.
->
-> Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
-> ---
->  drivers/gpu/drm/drm_panic.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-> index 74412b7bf936..0a9ecc1380d2 100644
-> --- a/drivers/gpu/drm/drm_panic.c
-> +++ b/drivers/gpu/drm/drm_panic.c
-> @@ -209,6 +209,14 @@ static u32 convert_xrgb8888_to_argb2101010(u32 pix)
->  	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
->  }
->  
-> +static u32 convert_xrgb8888_to_abgr2101010(u32 pix)
-> +{
-> +	pix = ((pix & 0x00FF0000) >> 14) |
-> +	      ((pix & 0x0000FF00) << 4) |
-> +	      ((pix & 0x000000FF) << 22);
-> +	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
-> +}
+In my drm_log series, https://patchwork.freedesktop.org/series/136789/ I 
+moved this to drm_draw.c, and maybe drm_format_helper could re-use that ?
 
-Maybe we can move this format conversion helper and the others in the
-driver to drivers/gpu/drm/drm_format_helper.c ?
-
-> +
->  /*
->   * convert_from_xrgb8888 - convert one pixel from xrgb8888 to the desired format
->   * @color: input color, in xrgb8888 format
-> @@ -242,6 +250,8 @@ static u32 convert_from_xrgb8888(u32 color, u32 format)
->  		return convert_xrgb8888_to_xrgb2101010(color);
->  	case DRM_FORMAT_ARGB2101010:
->  		return convert_xrgb8888_to_argb2101010(color);
-> +	case DRM_FORMAT_ABGR2101010:
-> +		return convert_xrgb8888_to_abgr2101010(color);
->  	default:
->  		WARN_ONCE(1, "Can't convert to %p4cc\n", &format);
->  		return 0;
-> -- 
-> 2.46.0
->
-
-
-The patch looks good to me.
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+> 
+>> +
+>>   /*
+>>    * convert_from_xrgb8888 - convert one pixel from xrgb8888 to the desired format
+>>    * @color: input color, in xrgb8888 format
+>> @@ -242,6 +250,8 @@ static u32 convert_from_xrgb8888(u32 color, u32 format)
+>>   		return convert_xrgb8888_to_xrgb2101010(color);
+>>   	case DRM_FORMAT_ARGB2101010:
+>>   		return convert_xrgb8888_to_argb2101010(color);
+>> +	case DRM_FORMAT_ABGR2101010:
+>> +		return convert_xrgb8888_to_abgr2101010(color);
+>>   	default:
+>>   		WARN_ONCE(1, "Can't convert to %p4cc\n", &format);
+>>   		return 0;
+>> -- 
+>> 2.46.0
+>>
+> 
+> 
+> The patch looks good to me.
+> 
+> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
+> 
 
