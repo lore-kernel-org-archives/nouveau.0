@@ -4,66 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC864CF649C
-	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E6C6CF6497
+	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBBED10E381;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7062A10E382;
 	Sun, 29 Sep 2024 21:29:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="giKiWKdO";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="SzHBoD70";
 	dkim-atps=neutral
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam04on2087.outbound.protection.outlook.com [40.107.102.87])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8095B10E059
- for <nouveau@lists.freedesktop.org>; Sun, 22 Sep 2024 12:50:49 +0000 (UTC)
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2056.outbound.protection.outlook.com [40.107.236.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 695D010E059
+ for <nouveau@lists.freedesktop.org>; Sun, 22 Sep 2024 12:50:50 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CA3PC9roIOUGYoxpMBF7E46W30OUWnaapG3+b4tcqHk7vmT1FHEm5rbRmxbQu+f4R9MKkOMGzcVurD9nz6M7Wbm0FGH1aYNrE/JdzhcT8g86iNMePHNoHu1paelY56aayQ93m9MLXTVNXLS09Y1EquCl+Zyp60NB3g2b2lw5cRDTWtkN3bA7nGjI8/3tt1/QwNSnLnw/S2KgPSVNMGWImzZMyYbNQh+sXOt2JrRnfkptXWD6hk5gI4qeT+TUp9gYYnx4Dj4yBqqDB/BMF/T4/0SuByV3uS1b+r98q3Iz4/RM4jZHegk+T7w8kpbyXw4rIppeJHwxy1YMBI4qciqXWQ==
+ b=MQ7LUhDWPzvgVLz3IYtSNUUqb0DpQ4MBxGmmapFhKVcfX8KIW7l7A/7qeXPEu0MTd1kivpR6UvuWe1MWV+ZlsbX5V/QpVMVyHwioDvrO8za1CMeAqcddoKCCtVsqOtCdu6XiPlXAtTkb2TBLKyHCm8LE3VLPnJeHQL59qI2KEpifTD0mVhWGDn+0NTgx9FeJscOyAjosve0MVr0zF+HSR+BgK09gR35v+3en5UOP4T5WCbEHWFJBrYtvIHin/SjypTRz69VXmPpfhLhH3wxHdOsgaEgeS/5M35WjQsNf+9BG7hSE+WM9YET8iWrn0/oBKaDGxzQPlenxPWFLOID4Yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Rh4IiVDFgJAG1o4yb1ZHyq6rwEl0kAOJyiNfdUMFfX4=;
- b=cgLBwrzTPjT/TpYTeVKNJ8kCvJqcC/XlHPAN4LK+m7qY5Zw6NFpQG3qq9uSOfzrTlM1oTGezh7enRFF/XSTkrPf/tpd+M+ajEf6PT+C3H1fCzlapHNo9fUW3buIzyimpPnKumdNPUKiTQ6OsTgWNZKed3DGu20JAG02OmK3KcC/KhsjtFpWjPFjW2C6D7MLplxbNNoBZUSNRaVRKT8kslOUcRXjkTKBmmUhMcCi2SQ4aWaW3j4DICKLYb/dZ6BaRKh3t47Xn1UgbuV0Dhlqkw7+CDRVI4MTaHd3KLiFGgq9UTlxsEScb4Y7vYqpn0Lu7uJrAbdSjL6sOWiuaqVs/tQ==
+ bh=tO7GDRY2U3uvpaqhcosC9SNjelzDMHBPuhdAWI2kBe8=;
+ b=muiL1H9d94HlYJ07MbRGeEdljAwDwQAVVN0HyJ0GB8S98Y56gVm4Xq83o0458C5a7NNJt9DQaJLYPIjK64w/KmDU8ofjjFtq87qrJYCJ3zJBaxzdNz4hezItfBClpgMH2QTjwCFe8+Grr68RqHOreKlrcSpgYjyUkLHCcAEESeybZJ8MAVhX/MTZi62eVqa73TtXmi2cVV8tDUdXhlTJtaSFBwlC4zUIzeN7Swxu+CaujIFKbEVlxfY8i0YpIeWi9KxEDr8gr1keKUPPv9Vo74sUff/UOWsoD6Ok9Pns9y+yIi5tEyur3/AB8kO208nHQGPWJVC4yleYkVPfiENG+g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ 216.228.118.233) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Rh4IiVDFgJAG1o4yb1ZHyq6rwEl0kAOJyiNfdUMFfX4=;
- b=giKiWKdOAgkZKYsBa+L5RlVnQn4LDlw/aP94OqnK2Zf/93JLQFbU7qitGty+GiC0W5c/RIIpNQZ6zynIg/yCFsboLdDWIU9YQVhiic5sw0nEIsGmPYoR/jUXUErqK0K/Z9ntO6nb0S0KXKzCb/oTko64LYtvx/eej+B92Sh+S20bg6ZNXmox3uHvWv6JVfkJKDx5UCIoZ4VgNc4L/CGvRIlXeWyNT/Ukbg36Qjreo1S5ZNqJsmz569ByR8bGdfy3hjxBSMFY99eYlfO29SefjsH6TpciGdH8t4pWZpJxkhEKA9b5J0MavULSjIf9yk1p0i1KbY4QG9HZmpdN8LgC5Q==
-Received: from BN8PR04CA0057.namprd04.prod.outlook.com (2603:10b6:408:d4::31)
- by SJ2PR12MB7798.namprd12.prod.outlook.com (2603:10b6:a03:4c0::21)
+ bh=tO7GDRY2U3uvpaqhcosC9SNjelzDMHBPuhdAWI2kBe8=;
+ b=SzHBoD70EBFwDOsSI/wb3QowlJSXHvVey/SCc1t80o42yZOiEmVbMzRqqp9UpzEB648et8jdak0nj/WZ9SMasOW6SIyBVVhb1dvUCAN/PHIH0vLWOO6NoynrVH696ATE6ZnyHbt4btt782gc9p6DICpytqLNuSFQSGzi5StbIazyjm/PDqOSK2ME9w99lxJPizyvLBel339TTeiVKckUPwvqpHMbGoGggTOLewS5H8jJXqxEW6VyM6c9NUIlEmrNY0lsDvCvfjTeFDbOmywzJoqN7HcGrC/74CaBCVWHBGYbeRkEh1PYLp3ZcqeKvc4oWf/w78vFKJ5tkptJgAHXug==
+Received: from MW4PR04CA0318.namprd04.prod.outlook.com (2603:10b6:303:82::23)
+ by SJ1PR12MB6241.namprd12.prod.outlook.com (2603:10b6:a03:458::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.24; Sun, 22 Sep
- 2024 12:50:46 +0000
-Received: from BL6PEPF00020E5F.namprd04.prod.outlook.com
- (2603:10b6:408:d4:cafe::c1) by BN8PR04CA0057.outlook.office365.com
- (2603:10b6:408:d4::31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.30 via Frontend
- Transport; Sun, 22 Sep 2024 12:50:45 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ 2024 12:50:44 +0000
+Received: from CO1PEPF000075ED.namprd03.prod.outlook.com
+ (2603:10b6:303:82:cafe::f9) by MW4PR04CA0318.outlook.office365.com
+ (2603:10b6:303:82::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24 via Frontend
+ Transport; Sun, 22 Sep 2024 12:50:44 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- BL6PEPF00020E5F.mail.protection.outlook.com (10.167.249.20) with Microsoft
+ 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.233) by
+ CO1PEPF000075ED.mail.protection.outlook.com (10.167.249.36) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7918.13 via Frontend Transport; Sun, 22 Sep 2024 12:50:45 +0000
+ 15.20.7918.13 via Frontend Transport; Sun, 22 Sep 2024 12:50:44 +0000
 Received: from drhqmail201.nvidia.com (10.126.190.180) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 22 Sep
- 2024 05:50:30 -0700
+ 2024 05:50:32 -0700
 Received: from drhqmail203.nvidia.com (10.126.190.182) by
  drhqmail201.nvidia.com (10.126.190.180) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.4; Sun, 22 Sep 2024 05:50:29 -0700
+ 15.2.1544.4; Sun, 22 Sep 2024 05:50:31 -0700
 Received: from inno-linux.nvidia.com (10.127.8.13) by mail.nvidia.com
  (10.126.190.182) with Microsoft SMTP Server id 15.2.1544.4 via Frontend
- Transport; Sun, 22 Sep 2024 05:50:29 -0700
+ Transport; Sun, 22 Sep 2024 05:50:31 -0700
 From: Zhi Wang <zhiw@nvidia.com>
 To: <kvm@vger.kernel.org>, <nouveau@lists.freedesktop.org>
 CC: <alex.williamson@redhat.com>, <kevin.tian@intel.com>, <jgg@nvidia.com>,
@@ -71,63 +71,70 @@ CC: <alex.williamson@redhat.com>, <kevin.tian@intel.com>, <jgg@nvidia.com>,
  <cjia@nvidia.com>, <smitra@nvidia.com>, <ankita@nvidia.com>,
  <aniketa@nvidia.com>, <kwankhede@nvidia.com>, <targupta@nvidia.com>,
  <zhiw@nvidia.com>, <zhiwang@kernel.org>
-Subject: [RFC 16/29] nvkm/vgpu: introduce BAR1 map routines for vGPUs
-Date: Sun, 22 Sep 2024 05:49:38 -0700
-Message-ID: <20240922124951.1946072-17-zhiw@nvidia.com>
+Subject: [RFC 19/29] vfio/vgpu_mgr: introdcue vGPU lifecycle management prelude
+Date: Sun, 22 Sep 2024 05:49:41 -0700
+Message-ID: <20240922124951.1946072-20-zhiw@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240922124951.1946072-1-zhiw@nvidia.com>
 References: <20240922124951.1946072-1-zhiw@nvidia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 X-NV-OnPremToCloud: ExternallySecured
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00020E5F:EE_|SJ2PR12MB7798:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d676868-f146-4d67-63b9-08dcdb052d1d
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075ED:EE_|SJ1PR12MB6241:EE_
+X-MS-Office365-Filtering-Correlation-Id: 848d5c2d-f920-449d-8b3c-08dcdb052c24
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?lOKslr13TJQV5Cspl/jRJkjCv0bFy72G5Ir9VEtHjQxB2gLC1/87urjQ766H?=
- =?us-ascii?Q?BZd0uKkE1BI10LyHzdo56boJqYaVJ5zts/rLqBdVX1RYEgirE/d8dNa109w4?=
- =?us-ascii?Q?9NVCn7JhngOYxdBY14i3LQe9Zupwpl0nHdq5zTP7UR6xkX3ak7XuvEnAAcSY?=
- =?us-ascii?Q?6Rz0dq94no7QmPXNkpFwNUjPQOox/Vh3CPYtluX+9fsqGYmsDHO6sTSJrxzZ?=
- =?us-ascii?Q?H1wheJfb1nbgehPRbXfOFERKdELsxuNNoXz7tPCfEMSdn/daCkyQDxK0ZpS5?=
- =?us-ascii?Q?Hbd1UwtIVAtIeY13aMmsudtg2qib15sp0Kxx8QT/b72DCLfFtQDgBeh+XOh7?=
- =?us-ascii?Q?Jf3j3l0O8ihDRWhgjE8FtmxOYUAx+Mmtem12OW0jDpaTtus0OFll6NlZm/V8?=
- =?us-ascii?Q?u1WZmJb8Boe0pCuFw36GPEe/sAaW/aHslAt/hYD0+cl6MsxDACU21/nEk3yp?=
- =?us-ascii?Q?JkIK9GmP2DnJPaIH+b/I9ERkiWW6pWOfRhJyYgUz27TvYjitBbbIWxAkvJkQ?=
- =?us-ascii?Q?TvEwUXw5EaJ6XEMYxCfUOJTbrmSizsJB/BeTkcE2+kynSA272T+S24deAZ2e?=
- =?us-ascii?Q?8hHmytSu/u0Q0Mf3/we7Cyl7lc0d2pH/OFMMOasdJ+NghN6YCCtSPBpHiDrS?=
- =?us-ascii?Q?fsgiaYt3BzTpuWKlQrq44wdWr7nwberznNKdgCnVAGik26dpxhCnS/DnklMK?=
- =?us-ascii?Q?O9el5B2CWyLrKuFTWgtZ8DS3iU7hWcnSOR2GHuMKJhRfF3lwIawJwfoNulet?=
- =?us-ascii?Q?9QeCnE3+1iSmKszv1wnHT9R33dzE/7vC6/QgVo0za/TaVtAqyAFAeE+7xF2X?=
- =?us-ascii?Q?18dbcQ/QQ47/c6Z1nDanf4YBblcZmBJlBOm/GqYD4zz3uMrqjfCCCLCFNJl1?=
- =?us-ascii?Q?mguG5xObYleDHpAeq5SvjIKASFqlkEYgKg4LM3Rv9DBEs472wfpAMv5txsjx?=
- =?us-ascii?Q?A0m428WT29ZbAYr5ZfVvevDDNFa+o5RMQqp4U0ajja7U9sg3Jrl1uBXTJx66?=
- =?us-ascii?Q?UMFoseQdubkHyb1pqgVhP96cYB4MaOl1qV7ntulSF+8Ra4caUNAQDkPmJ17M?=
- =?us-ascii?Q?+klZNl8GROfdpfH8dJrZ78yXKngZCFvObjpGTKvcUnhrdHsXhdkFBdhv746O?=
- =?us-ascii?Q?9IE1VWQcAadcB5lzRKx4/vpfnVl2J0wh5rfrUMK5cF9zuSSbQh9XU/65KNgY?=
- =?us-ascii?Q?nm/et+ORcCJMCr7a13GQk4etiGbBBw69AWvb8Pf3ffW7m885dxVa0e/b9iOi?=
- =?us-ascii?Q?1M5CtEUo3bQhhX1oJpld/PiOEsYi8EPZbDiYtVIVH1G2pR3gFiOxxG9FxIxT?=
- =?us-ascii?Q?jw3m6kaAohjJ4/G5YQTbVS6ktmmopL1MKCfL+jBZt6qvmllvCVyM49fRxcj2?=
- =?us-ascii?Q?NojPFs2SQ5a1nV5pRUndgBRvG9iSr+9SKjMgBuFiBW2psgsd7IjqEkxbpmHe?=
- =?us-ascii?Q?XdDMGV4+vtjwjzrwB91G0trllWRyf4cZ?=
-X-Forefront-Antispam-Report: CIP:216.228.118.232; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ ARA:13230040|36860700013|1800799024|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y2ZteTA4ZnllZ2g1Uk01cDdMUng1NTlnMHNVZ2JMV3BwQTJjOFkzbzA1VGs0?=
+ =?utf-8?B?dUlZRmR0SFdQMDRVUGNLZ1ZaeVpaL1Ard2trN0pUemxFMmROckVtWWtFd1dD?=
+ =?utf-8?B?WlRPR2c1SDF4SXhaNkFMTEQrMVpES3kwS0Q1MUw0aGEyQnl4UGtzeWUyNEhJ?=
+ =?utf-8?B?cVRYZ1F2RDQ4ZHozMk9NOW5SL2MxV09TcVp5aVVxN0x5MjJBVkxGa0tUOFha?=
+ =?utf-8?B?Y2ViUUpnN1UxVlgvT0pDc3VQS2ZJTU1QYUYvb25yaTI5SldYc0V0RnB2cG9n?=
+ =?utf-8?B?aU04bStKQXp5R2ltTDc5MVVnSzVzRWJpSHN4T1E5YjE1VlRab2tGQy9zeTA1?=
+ =?utf-8?B?dURFUWxHV0x3VHVSTWtrcHQxSHNtckN0ckdYemI0L0FEd3Nid0lpRTU0WFFh?=
+ =?utf-8?B?ZkZucVVNK3VCV2x6S0NWYWxUSURiN3hDWWhIeTZOWXVjV3pOSDM2M0tUVVVp?=
+ =?utf-8?B?eVRoaStKTkt6Q1dsYlVpVm45ajNWNEZ2TU5iczFzVkJDbjYrelNSRmVuWkNy?=
+ =?utf-8?B?RitQWGFiR2Q1d04xZXA4ZVpUTzJ5cnN3VHBZZk1kUU1UNnhyd0ZCTXRvQ2ZE?=
+ =?utf-8?B?c1BsbzhyNVVJODBtSFdIQVVtWmVrQ3haZDQ3ZStsNjV1ZUNMelNrYkZVRXZj?=
+ =?utf-8?B?M0pMWXpKNk8yR1F4MVR3MEg5TkhNd2JsUnJlS1BONExFQ210ZHBVdHF4N0xy?=
+ =?utf-8?B?dnkzUjZOeVFwMkszUjRkQ21Mbjk2aC9qakNpRkFpWTRyYWRueTcwbnhFN0Fw?=
+ =?utf-8?B?U2xMLzZzYU5ndzlqUDNuNldiMWpSYlVlNzNWZ2I2cU55V04wbGRvRXdBSngy?=
+ =?utf-8?B?RnFOZGV2WGU4T3k4czQ2SXMrNThEa0RLSmt0aDJPTDg4NGVBSFJMb3JwL1Zz?=
+ =?utf-8?B?Y2hPTGl6NFMxUWJjYnpWQkdHMWplcDVEWTlsRXlGRlRsVzRzaVRjVExyVHlW?=
+ =?utf-8?B?MlVac21PZjh3ZnFyV0xUaXBrT2YzZmZFTHlqOUo3ZWl2cVBFcTQvSzBOSm05?=
+ =?utf-8?B?WkpnUUVtemE0Z1RVdWdMUVAwVzNXL0FPSHIyMnZudnRmZ0VLUVViOHY2Q0xz?=
+ =?utf-8?B?WStlMkFtazFiTjJLYVh2WGVDOWhwaGJmMzNWbWIraVRjMUxTaEF2c09nUzdZ?=
+ =?utf-8?B?YzBaTjlReDJnVkFBcWNzWm5HY1JhdUhoTkY5YU9lSnY0N0pvUWVPK2sra3Bj?=
+ =?utf-8?B?aVFFQldSMjFyM0s0M1d5UTJuVWtkMjNCWkE3M2cxZFdnanl5NEFCU1hyVnRP?=
+ =?utf-8?B?U1JoSEpZemRZR1gxOE1vUy9WL2JtNWVaVlAxZ3RQY1g4Qkg1c01qZmJ0cG41?=
+ =?utf-8?B?RWZ3a3cxWTdTODRQVkZGdDhVNExIcnZrVDJtM3RQSENsak5OaXY0bHdzVDZa?=
+ =?utf-8?B?S2RHL29ybWlUb0R6S1JUbVdMVit5MzN0NzAzckxiTWxTWFdWSVVSMElSaUxl?=
+ =?utf-8?B?SW1LY053a0lzSnFPNnZvOXRzWHRKbHpMYSt1WlFqaWpsbGhrakFrbWRvUENS?=
+ =?utf-8?B?aVJuczhpMUdlZWVuV24yNDJQSVZ6RExJQnBQMjlzMDc0U0xMTDVxdWt2VnJw?=
+ =?utf-8?B?b1dZbUFjMnE4K2QxZWZaTmhRcEVGemExTGZiRG1MSVA0OCtMeStRR28xbSt2?=
+ =?utf-8?B?Ui9pazN5OWFPYm5TZlFqeHlJckZqSjBKWlRabHByR0cxeDVuRy92b0k1azFL?=
+ =?utf-8?B?OGJPcjZCKzc2TS9iR213UlFseTRocFljT2lNalFCd0V0ZWNMVkJLdGV5Njln?=
+ =?utf-8?B?c1lKSDBpRk8xNGxOVFNHVjNjRHZJV0ZOMXJkWHU1REg4WHc5eWZVT3VzejBk?=
+ =?utf-8?B?SUVOYU1Oako5M3ZkWGlqQjJXaGFIWEI2dlZjNGFEU1IrUzNyUzgvWjI0SWJw?=
+ =?utf-8?Q?n6UzCwFQbTUnr?=
+X-Forefront-Antispam-Report: CIP:216.228.118.233; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge2.nvidia.com; CAT:NONE;
+ SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2024 12:50:45.6113 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d676868-f146-4d67-63b9-08dcdb052d1d
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2024 12:50:44.0897 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 848d5c2d-f920-449d-8b3c-08dcdb052c24
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.232];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.233];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BL6PEPF00020E5F.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CO1PEPF000075ED.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7798
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6241
 X-Mailman-Approved-At: Sun, 29 Sep 2024 21:28:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -143,128 +150,377 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The mgmt heap is a block of shared FBMEM between the GSP firmware and
-the vGPU manager. It is used for supporting vGPU RPCs, vGPU logging.
+To introduce the routines when creating a vGPU one by one in the
+following patches, first, introduce the prelude of the vGPU lifecycle
+management as the skeleton.
 
-To access the data structures of vGPU RPCs and vGPU logging, the mgmt
-heap FBMEM needs to mapped into BAR1 and the region in the BAR1 is
-required to be mapped into CPU vaddr.
+Introduce NVIDIA vGPU manager core module that hosting the vGPU lifecycle
+managemement data structures and routines.
 
-Expose the BAR1 map routines to NVIDIA vGPU VFIO module to map the mgmt
-heap.
-
+Cc: Neo Jia <cjia@nvidia.com>
+Cc: Surath Mitra <smitra@nvidia.com>
 Signed-off-by: Zhi Wang <zhiw@nvidia.com>
 ---
- .../nouveau/include/nvkm/vgpu_mgr/vgpu_mgr.h  |  1 +
- drivers/gpu/drm/nouveau/nvkm/vgpu_mgr/vfio.c  | 47 +++++++++++++++++++
- include/drm/nvkm_vgpu_mgr_vfio.h              |  3 ++
- 3 files changed, 51 insertions(+)
+ drivers/vfio/pci/Kconfig                |  2 +
+ drivers/vfio/pci/Makefile               |  2 +
+ drivers/vfio/pci/nvidia-vgpu/Kconfig    | 13 ++++
+ drivers/vfio/pci/nvidia-vgpu/Makefile   |  3 +
+ drivers/vfio/pci/nvidia-vgpu/nvkm.h     | 46 ++++++++++++
+ drivers/vfio/pci/nvidia-vgpu/vgpu.c     | 83 +++++++++++++++++++++
+ drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.c | 99 +++++++++++++++++++++++++
+ drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.h | 43 +++++++++++
+ 8 files changed, 291 insertions(+)
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/Kconfig
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/Makefile
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/nvkm.h
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/vgpu.c
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.c
+ create mode 100644 drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.h
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/vgpu_mgr/vgpu_mgr.h b/drivers/gpu/drm/nouveau/include/nvkm/vgpu_mgr/vgpu_mgr.h
-index b6e0321a53ad..882965fd25ce 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/vgpu_mgr/vgpu_mgr.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/vgpu_mgr/vgpu_mgr.h
-@@ -10,6 +10,7 @@ struct nvkm_vgpu_mem {
- 	struct nvidia_vgpu_mem base;
- 	struct nvkm_memory *mem;
- 	struct nvkm_vgpu_mgr *vgpu_mgr;
-+	struct nvkm_vma *bar1_vma;
- };
+diff --git a/drivers/vfio/pci/Kconfig b/drivers/vfio/pci/Kconfig
+index 15821a2d77d2..4b42378afc1a 100644
+--- a/drivers/vfio/pci/Kconfig
++++ b/drivers/vfio/pci/Kconfig
+@@ -69,4 +69,6 @@ source "drivers/vfio/pci/virtio/Kconfig"
  
- struct nvkm_vgpu_mgr {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/vgpu_mgr/vfio.c b/drivers/gpu/drm/nouveau/nvkm/vgpu_mgr/vfio.c
-index 2aabb2c5f142..535c2922d3af 100644
---- a/drivers/gpu/drm/nouveau/nvkm/vgpu_mgr/vfio.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/vgpu_mgr/vfio.c
-@@ -6,6 +6,7 @@
- #include <subdev/bar.h>
- #include <subdev/fb.h>
- #include <subdev/gsp.h>
-+#include <subdev/mmu.h>
+ source "drivers/vfio/pci/nvgrace-gpu/Kconfig"
  
- #include <vgpu_mgr/vgpu_mgr.h>
- #include <drm/nvkm_vgpu_mgr_vfio.h>
-@@ -203,6 +204,50 @@ static struct nvidia_vgpu_mem *alloc_fbmem(void *handle, u64 size,
- 	return base;
- }
++source "drivers/vfio/pci/nvidia-vgpu/Kconfig"
++
+ endmenu
+diff --git a/drivers/vfio/pci/Makefile b/drivers/vfio/pci/Makefile
+index ce7a61f1d912..88f722c5c161 100644
+--- a/drivers/vfio/pci/Makefile
++++ b/drivers/vfio/pci/Makefile
+@@ -17,3 +17,5 @@ obj-$(CONFIG_PDS_VFIO_PCI) += pds/
+ obj-$(CONFIG_VIRTIO_VFIO_PCI) += virtio/
  
-+static void bar1_unmap_mem(struct nvidia_vgpu_mem *base)
+ obj-$(CONFIG_NVGRACE_GPU_VFIO_PCI) += nvgrace-gpu/
++
++obj-$(CONFIG_NVIDIA_VGPU_VFIO_PCI) += nvidia-vgpu/
+diff --git a/drivers/vfio/pci/nvidia-vgpu/Kconfig b/drivers/vfio/pci/nvidia-vgpu/Kconfig
+new file mode 100644
+index 000000000000..a9b28e944902
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/Kconfig
+@@ -0,0 +1,13 @@
++# SPDX-License-Identifier: GPL-2.0-only
++config NVIDIA_VGPU_MGR
++	tristate
++
++config NVIDIA_VGPU_VFIO_PCI
++	tristate "VFIO support for the NVIDIA vGPU"
++	select NVIDIA_VGPU_MGR
++	select VFIO_PCI_CORE
++	help
++	  VFIO support for the NVIDIA vGPU is required to assign the vGPU
++	  to userspace using KVM/qemu/etc.
++
++	  If you don't know what to do here, say N.
+diff --git a/drivers/vfio/pci/nvidia-vgpu/Makefile b/drivers/vfio/pci/nvidia-vgpu/Makefile
+new file mode 100644
+index 000000000000..1d2c0eb1fa5c
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/Makefile
+@@ -0,0 +1,3 @@
++# SPDX-License-Identifier: GPL-2.0-only
++obj-$(CONFIG_NVIDIA_VGPU_MGR) += nvidia-vgpu-mgr.o
++nvidia-vgpu-mgr-y := vgpu_mgr.o vgpu.o
+diff --git a/drivers/vfio/pci/nvidia-vgpu/nvkm.h b/drivers/vfio/pci/nvidia-vgpu/nvkm.h
+new file mode 100644
+index 000000000000..4c75431ee1f6
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/nvkm.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright © 2024 NVIDIA Corporation
++ */
++#ifndef __NVIDIA_VGPU_MGR_NVKM_H__
++#define __NVIDIA_VGPU_MGR_NVKM_H__
++
++#include <linux/pci.h>
++#include <drm/nvkm_vgpu_mgr_vfio.h>
++
++struct nvidia_vgpu_mgr_handle {
++	void *pf_drvdata;
++	struct nvkm_vgpu_mgr_vfio_ops *ops;
++	struct nvidia_vgpu_vfio_handle_data data;
++};
++
++static inline int nvidia_vgpu_mgr_get_handle(struct pci_dev *pdev,
++		struct nvidia_vgpu_mgr_handle *h)
 +{
-+	struct nvkm_vgpu_mem *mem =
-+		container_of(base, struct nvkm_vgpu_mem, base);
-+	struct nvkm_vgpu_mgr *vgpu_mgr = mem->vgpu_mgr;
-+	struct nvkm_device *device = vgpu_mgr->nvkm_dev;
-+	struct nvkm_vmm *vmm = nvkm_bar_bar1_vmm(device);
++	struct pci_dev *pf_dev;
 +
-+	iounmap(base->bar1_vaddr);
-+	base->bar1_vaddr = NULL;
-+	nvkm_vmm_put(vmm, &mem->bar1_vma);
-+	mem->bar1_vma = NULL;
-+}
++	if (!pdev->is_virtfn)
++		return -EINVAL;
 +
-+static int bar1_map_mem(struct nvidia_vgpu_mem *base)
-+{
-+	struct nvkm_vgpu_mem *mem =
-+		container_of(base, struct nvkm_vgpu_mem, base);
-+	struct nvkm_vgpu_mgr *vgpu_mgr = mem->vgpu_mgr;
-+	struct nvkm_device *device = vgpu_mgr->nvkm_dev;
-+	struct nvkm_vmm *vmm = nvkm_bar_bar1_vmm(device);
-+	unsigned long paddr;
-+	int ret;
++	pf_dev = pdev->physfn;
 +
-+	if (WARN_ON(base->bar1_vaddr || mem->bar1_vma))
-+		return -EEXIST;
++	if (strcmp(pf_dev->driver->name, "nvkm"))
++		return -EINVAL;
 +
-+	ret = nvkm_vmm_get(vmm, 12, base->size, &mem->bar1_vma);
-+	if (ret)
-+		return ret;
++	h->pf_drvdata = pci_get_drvdata(pf_dev);
++	h->ops = nvkm_vgpu_mgr_get_vfio_ops(h->pf_drvdata);
++	h->ops->get_handle(h->pf_drvdata, &h->data);
 +
-+	ret = nvkm_memory_map(mem->mem, 0, vmm, mem->bar1_vma, NULL, 0);
-+	if (ret) {
-+		nvkm_vmm_put(vmm, &mem->bar1_vma);
-+		return ret;
-+	}
-+
-+	paddr = device->func->resource_addr(device, 1) +
-+		mem->bar1_vma->addr;
-+
-+	base->bar1_vaddr = ioremap(paddr, base->size);
 +	return 0;
 +}
 +
- struct nvkm_vgpu_mgr_vfio_ops nvkm_vgpu_mgr_vfio_ops = {
- 	.vgpu_mgr_is_enabled = vgpu_mgr_is_enabled,
- 	.get_handle = get_handle,
-@@ -219,6 +264,8 @@ struct nvkm_vgpu_mgr_vfio_ops nvkm_vgpu_mgr_vfio_ops = {
- 	.free_chids = free_chids,
- 	.alloc_fbmem = alloc_fbmem,
- 	.free_fbmem = free_fbmem,
-+	.bar1_map_mem = bar1_map_mem,
-+	.bar1_unmap_mem = bar1_unmap_mem,
- };
- 
- /**
-diff --git a/include/drm/nvkm_vgpu_mgr_vfio.h b/include/drm/nvkm_vgpu_mgr_vfio.h
-index 4841e9cf0d40..38b4cf5786fa 100644
---- a/include/drm/nvkm_vgpu_mgr_vfio.h
-+++ b/include/drm/nvkm_vgpu_mgr_vfio.h
-@@ -19,6 +19,7 @@ struct nvidia_vgpu_gsp_client {
- struct nvidia_vgpu_mem {
- 	u64 addr;
- 	u64 size;
-+	void * __iomem bar1_vaddr;
- };
- 
- struct nvkm_vgpu_mgr_vfio_ops {
-@@ -45,6 +46,8 @@ struct nvkm_vgpu_mgr_vfio_ops {
- 	struct nvidia_vgpu_mem *(*alloc_fbmem)(void *handle, u64 size,
- 					       bool vmmu_aligned);
- 	void (*free_fbmem)(struct nvidia_vgpu_mem *mem);
-+	int (*bar1_map_mem)(struct nvidia_vgpu_mem *mem);
-+	void (*bar1_unmap_mem)(struct nvidia_vgpu_mem *mem);
- };
- 
- struct nvkm_vgpu_mgr_vfio_ops *nvkm_vgpu_mgr_get_vfio_ops(void *handle);
++#define nvidia_vgpu_mgr_support_is_enabled(h) \
++	(h).ops->vgpu_mgr_is_enabled((h).pf_drvdata)
++
++#define nvidia_vgpu_mgr_attach_handle(h) \
++	(h)->ops->attach_handle((h)->pf_drvdata, &(h)->data)
++
++#define nvidia_vgpu_mgr_detach_handle(h) \
++	(h)->ops->detach_handle((h)->pf_drvdata)
++
++#endif
+diff --git a/drivers/vfio/pci/nvidia-vgpu/vgpu.c b/drivers/vfio/pci/nvidia-vgpu/vgpu.c
+new file mode 100644
+index 000000000000..34f6adb9dfe4
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/vgpu.c
+@@ -0,0 +1,83 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright © 2024 NVIDIA Corporation
++ */
++
++#include "vgpu_mgr.h"
++
++static void unregister_vgpu(struct nvidia_vgpu *vgpu)
++{
++	struct nvidia_vgpu_mgr *vgpu_mgr = vgpu->vgpu_mgr;
++
++	mutex_lock(&vgpu_mgr->vgpu_id_lock);
++
++	vgpu_mgr->vgpus[vgpu->info.id] = NULL;
++	atomic_dec(&vgpu_mgr->num_vgpus);
++
++	mutex_unlock(&vgpu_mgr->vgpu_id_lock);
++}
++
++static int register_vgpu(struct nvidia_vgpu *vgpu)
++{
++	struct nvidia_vgpu_mgr *vgpu_mgr = vgpu->vgpu_mgr;
++
++	mutex_lock(&vgpu_mgr->vgpu_id_lock);
++
++	if (vgpu_mgr->vgpus[vgpu->info.id]) {
++		mutex_unlock(&vgpu_mgr->vgpu_id_lock);
++		return -EBUSY;
++	}
++	vgpu_mgr->vgpus[vgpu->info.id] = vgpu;
++	atomic_inc(&vgpu_mgr->num_vgpus);
++
++	mutex_unlock(&vgpu_mgr->vgpu_id_lock);
++	return 0;
++}
++
++/**
++ * nvidia_vgpu_mgr_destroy_vgpu - destroy a vGPU instance
++ * @vgpu: the vGPU instance going to be destroyed.
++ *
++ * Returns: 0 on success, others on failure.
++ */
++int nvidia_vgpu_mgr_destroy_vgpu(struct nvidia_vgpu *vgpu)
++{
++	if (!atomic_cmpxchg(&vgpu->status, 1, 0))
++		return -ENODEV;
++
++	unregister_vgpu(vgpu);
++	return 0;
++}
++EXPORT_SYMBOL(nvidia_vgpu_mgr_destroy_vgpu);
++
++/**
++ * nvidia_vgpu_mgr_create_vgpu - create a vGPU instance
++ * @vgpu: the vGPU instance going to be created.
++ * @vgpu_type: the vGPU type of the vGPU instance.
++ *
++ * The caller must initialize vgpu->vgpu_mgr, gpu->info, vgpu->pdev.
++ *
++ * Returns: 0 on success, others on failure.
++ */
++int nvidia_vgpu_mgr_create_vgpu(struct nvidia_vgpu *vgpu, u8 *vgpu_type)
++{
++	int ret;
++
++	if (WARN_ON(vgpu->info.id >= NVIDIA_MAX_VGPUS))
++		return -EINVAL;
++
++	if (WARN_ON(!vgpu->vgpu_mgr || !vgpu->info.gfid || !vgpu->info.dbdf))
++		return -EINVAL;
++
++	mutex_init(&vgpu->lock);
++	vgpu->vgpu_type = vgpu_type;
++
++	ret = register_vgpu(vgpu);
++	if (ret)
++		return ret;
++
++	atomic_set(&vgpu->status, 1);
++
++	return 0;
++}
++EXPORT_SYMBOL(nvidia_vgpu_mgr_create_vgpu);
+diff --git a/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.c b/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.c
+new file mode 100644
+index 000000000000..dc2a73f95650
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.c
+@@ -0,0 +1,99 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright © 2024 NVIDIA Corporation
++ */
++
++#include "vgpu_mgr.h"
++
++DEFINE_MUTEX(vgpu_mgr_attach_lock);
++
++static void vgpu_mgr_release(struct kref *kref)
++{
++	struct nvidia_vgpu_mgr *vgpu_mgr =
++		container_of(kref, struct nvidia_vgpu_mgr, refcount);
++
++	nvidia_vgpu_mgr_detach_handle(&vgpu_mgr->handle);
++	kvfree(vgpu_mgr);
++}
++
++/**
++ * nvidia_vgpu_mgr_put - put the vGPU manager
++ * @vgpu: the vGPU manager to put.
++ *
++ */
++void nvidia_vgpu_mgr_put(struct nvidia_vgpu_mgr *vgpu_mgr)
++{
++	if (!nvidia_vgpu_mgr_support_is_enabled(vgpu_mgr->handle))
++		return;
++
++	mutex_lock(&vgpu_mgr_attach_lock);
++	kref_put(&vgpu_mgr->refcount, vgpu_mgr_release);
++	mutex_unlock(&vgpu_mgr_attach_lock);
++}
++EXPORT_SYMBOL(nvidia_vgpu_mgr_put);
++
++/**
++ * nvidia_vgpu_mgr_get - get the vGPU manager
++ * @dev: the VF pci_dev.
++ *
++ * Returns: pointer to vgpu_mgr on success, IS_ERR() on failure.
++ */
++struct nvidia_vgpu_mgr *nvidia_vgpu_mgr_get(struct pci_dev *dev)
++{
++	struct nvidia_vgpu_mgr *vgpu_mgr;
++	struct nvidia_vgpu_mgr_handle handle;
++	int ret;
++
++	mutex_lock(&vgpu_mgr_attach_lock);
++
++	memset(&handle, 0, sizeof(handle));
++
++	ret = nvidia_vgpu_mgr_get_handle(dev, &handle);
++	if (ret) {
++		mutex_unlock(&vgpu_mgr_attach_lock);
++		return ERR_PTR(ret);
++	}
++
++	if (!nvidia_vgpu_mgr_support_is_enabled(handle)) {
++		mutex_unlock(&vgpu_mgr_attach_lock);
++		return ERR_PTR(-ENODEV);
++	}
++
++	if (handle.data.priv) {
++		vgpu_mgr = handle.data.priv;
++		kref_get(&vgpu_mgr->refcount);
++		mutex_unlock(&vgpu_mgr_attach_lock);
++		return vgpu_mgr;
++	}
++
++	vgpu_mgr = kvzalloc(sizeof(*vgpu_mgr), GFP_KERNEL);
++	if (!vgpu_mgr) {
++		ret = -ENOMEM;
++		goto fail_alloc_vgpu_mgr;
++	}
++
++	vgpu_mgr->handle = handle;
++	vgpu_mgr->handle.data.priv = vgpu_mgr;
++
++	ret = nvidia_vgpu_mgr_attach_handle(&handle);
++	if (ret)
++		goto fail_attach_handle;
++
++	kref_init(&vgpu_mgr->refcount);
++	mutex_init(&vgpu_mgr->vgpu_id_lock);
++
++	mutex_unlock(&vgpu_mgr_attach_lock);
++	return vgpu_mgr;
++
++fail_attach_handle:
++	kvfree(vgpu_mgr);
++fail_alloc_vgpu_mgr:
++	mutex_unlock(&vgpu_mgr_attach_lock);
++	vgpu_mgr = ERR_PTR(ret);
++	return vgpu_mgr;
++}
++EXPORT_SYMBOL(nvidia_vgpu_mgr_get);
++
++MODULE_LICENSE("Dual MIT/GPL");
++MODULE_AUTHOR("Zhi Wang <zhiw@nvidia.com>");
++MODULE_DESCRIPTION("NVIDIA VGPU manager - core module to support VFIO PCI driver for NVIDIA vGPU");
+diff --git a/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.h b/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.h
+new file mode 100644
+index 000000000000..2efd96644098
+--- /dev/null
++++ b/drivers/vfio/pci/nvidia-vgpu/vgpu_mgr.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: GPL-2.0 OR MIT */
++/*
++ * Copyright © 2024 NVIDIA Corporation
++ */
++#ifndef __NVIDIA_VGPU_MGR_H__
++#define __NVIDIA_VGPU_MGR_H__
++
++#include "nvkm.h"
++
++#define NVIDIA_MAX_VGPUS 2
++
++struct nvidia_vgpu_info {
++	int id;
++	u32 gfid;
++	u32 dbdf;
++};
++
++struct nvidia_vgpu {
++	struct mutex lock;
++	atomic_t status;
++	struct pci_dev *pdev;
++
++	u8 *vgpu_type;
++	struct nvidia_vgpu_info info;
++	struct nvidia_vgpu_mgr *vgpu_mgr;
++};
++
++struct nvidia_vgpu_mgr {
++	struct kref refcount;
++	struct nvidia_vgpu_mgr_handle handle;
++
++	struct mutex vgpu_id_lock;
++	struct nvidia_vgpu *vgpus[NVIDIA_MAX_VGPUS];
++	atomic_t num_vgpus;
++};
++
++struct nvidia_vgpu_mgr *nvidia_vgpu_mgr_get(struct pci_dev *dev);
++void nvidia_vgpu_mgr_put(struct nvidia_vgpu_mgr *vgpu_mgr);
++
++int nvidia_vgpu_mgr_destroy_vgpu(struct nvidia_vgpu *vgpu);
++int nvidia_vgpu_mgr_create_vgpu(struct nvidia_vgpu *vgpu, u8 *vgpu_type);
++
++#endif
 -- 
 2.34.1
 
