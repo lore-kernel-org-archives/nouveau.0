@@ -4,88 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 395E4D5B15A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2B8FD5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C85610EA36;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42D9A10EA29;
 	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="louE8tOR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=freemail.hu header.i=@freemail.hu header.b="qY1DL1nl";
 	dkim-atps=neutral
-Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
- [IPv6:2607:f8b0:4864:20::429])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5AC210E276;
- Thu, 19 Dec 2024 02:35:11 +0000 (UTC)
-Received: by mail-pf1-x429.google.com with SMTP id
- d2e1a72fcca58-728f1525565so395032b3a.1; 
- Wed, 18 Dec 2024 18:35:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734575711; x=1735180511; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=GFcOX4O91tQFD6muydW9g9dtgYf4vZjGzF6jEGHBeGo=;
- b=louE8tOR+kUhbQ+RyuqH7dQ5YQoKfVXulHTuHvRxbuelUOe/BEpKuOIRLcYpCxbC7y
- +GgycZ1O5tMl+SgeCT/s2V4jgaOCOOBYsw5ThLh5LDayG0f+RkeLVxhjsGKRswiFCNa3
- A757U2HVx234Dz4/16JzNf/SJPhc/OcxcuEz53Fkm+Nzhka0fa2XXsYYV+MtmuE2qHBi
- 5ZwkSMtbXPQT/vpqfVvrSdHtXAXciKAUMR5fNRPT1SNmqqzdtw+243BL7Y3iQ4slw2r3
- v+xnt9iZUWlQF8yTB1BdAFqEUze0cYatgQWT5kHq0xq6LNtDhM4SXp0CxgAF6wfEUHoL
- WQ1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734575711; x=1735180511;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=GFcOX4O91tQFD6muydW9g9dtgYf4vZjGzF6jEGHBeGo=;
- b=dDxRMoRCmTgJgGDIkJ9zrD6yNDS0BQrEi7LbFK82/idZJC10uaq88qEQvb+kQ26bnz
- U3/pVxI3XDT7nXoJIRjgFHCfDaYJ2vn2pN6GIX5siKrRZH1PQJ4thZbU/OR/HPFBoUFf
- gAPzWfAZjkbedv70NgX6IzCpDGtyz5+FWqqLWmxEUjoNabbLPQHxDuVhaWjiL1HW7EeP
- qKH3lpKgtAOyoUrvbipDd1/YdIxNcPRxbPYTNBv0MKNFBxDSK5h9mzlzlvOVIbFKEAV3
- gEBPS3lQ8HPwkqHHg+7BXUymN6BP+OtWD+E7WrXcBtrjY4oWvoAj6veGBENui78XmgiF
- Ww+w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWMU2Xvd40qo22wQZ05SrUuMI8SNwJqq51O40d+ZOzL7XrXDZi/jUE4+ZS1US5bZCf6HyseaU4vjA==@lists.freedesktop.org,
- AJvYcCX9ZMrKxziyaBjBFsJb7DWlN1sFcRQOeilNuzXdr9DeLf026cfn15p1rkROnCIZeU7WFzdBdsJGaj0=@lists.freedesktop.org,
- AJvYcCXb8y6UiTcinDF0a2l96ma+tBo6BLb07O4BBpKG3j+4qhu/sbZJMjtvF2Todcz/lR9xgKdl0pn/99t9@lists.freedesktop.org,
- AJvYcCXvOM7tY2o9Jp55SZpmVr4PDD/JOcjw40magbneSAOwhYZoK+vxSXPnYA1o+QrJX6+Y7RpscWGvdo8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwvtVJuNNdAD2i/io51JG+3tuH6h68uUefnQj3CLaK2Rgo9y4XV
- tYlVM+CdqoycKQUb/43jj2ZCxiDBwqLzCzSUsCB0uC3DqFp6fY1T
-X-Gm-Gg: ASbGncv2ye3gZlCf2ZDjevekWizjHO5D9N4emvwKcj5Cj95bClan/xXOadH4qP/Ywo+
- 0PvM/Wve8vMI3LSzCTl3+dv5rdSLz0IuQX5eJXT+oJo24BILoVVNQnYqyRq7H6c0LX6emPKsjKc
- WlD2ePXh28pgbI1TDr9jx+0EMgM+sllnSpfDMfVthxEQSjxekLl5U2xn7YdSNBLSnNXfkFKXAvv
- V2raxNf2zmm+3q6yrIms9voV0T8R8juwkOuUrwJMGbMKMZMboBRFTxZbOE+nRnnj+zs/XI4b2HK
- D9lXLm0=
-X-Google-Smtp-Source: AGHT+IF8uDHPAeHRKoSWXDpZOfxN83+9I3jRkG5wW7qXuv+87XI+9vIxsP70Tcc6kEOf0TdmQfwRSg==
-X-Received: by 2002:a05:6a20:c6c2:b0:1e1:ca25:8da3 with SMTP id
- adf61e73a8af0-1e5b4820f26mr9200947637.20.1734575711218; 
- Wed, 18 Dec 2024 18:35:11 -0800 (PST)
-Received: from localhost.localdomain ([180.159.118.224])
- by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.06
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Wed, 18 Dec 2024 18:35:10 -0800 (PST)
-From: Yafang Shao <laoar.shao@gmail.com>
-To: akpm@linux-foundation.org
-Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
- bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>, Vineet Gupta <vgupta@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>, "H. Peter Anvin" <hpa@zytor.com>
-Subject: [PATCH v2 2/5] arch: Remove get_task_comm() and print task comm
- directly
-Date: Thu, 19 Dec 2024 10:34:49 +0800
-Message-Id: <20241219023452.69907-3-laoar.shao@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
-References: <20241219023452.69907-1-laoar.shao@gmail.com>
+X-Greylist: delayed 397 seconds by postgrey-1.36 at gabe;
+ Mon, 23 Sep 2024 20:25:57 UTC
+Received: from smtp-out.freemail.hu (fmfe01.freemail.hu [46.107.16.194])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A3310E2A5;
+ Mon, 23 Sep 2024 20:25:57 +0000 (UTC)
+Received: from [192.168.0.16] (catv-178-48-208-49.catv.fixed.vodafone.hu
+ [178.48.208.49])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp.freemail.hu (Postfix) with ESMTPSA id 4XCDq658Pkz6b9;
+ Mon, 23 Sep 2024 22:19:14 +0200 (CEST)
+Message-ID: <114482fe-0d91-4742-8ea1-5eaef8254c45@freemail.hu>
+Date: Mon, 23 Sep 2024 22:18:05 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/nouveau/i2c: rename aux.c and aux.h to auxch.c and
+ auxch.h
+To: bskeggs@nvidia.com, kherbst@redhat.com, lyude@redhat.com,
+ airlied@gmail.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20240603091558.35672-1-egyszeregy@freemail.hu>
+Content-Language: hu
+From: =?UTF-8?Q?Sz=C5=91ke_Benjamin?= <egyszeregy@freemail.hu>
+In-Reply-To: <20240603091558.35672-1-egyszeregy@freemail.hu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/relaxed; t=1727122755; 
+ s=20181004; d=freemail.hu;
+ h=Message-ID:Date:MIME-Version:Subject:To:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+ l=6727; bh=sJL9AOsUJH2ovHr5PYMU/rHzKoMeXVYsbJRkD0TaT5E=;
+ b=qY1DL1nlKnhWn0mpbbrefaus7g0fXuyQgL10k8YLW7EoFYdwaqOeDl6O+oQvVNmk
+ SvFiAJ5gdZeuP+2ZqTy3J1GOrOWP4HE77uQ4mJh9vyF3orZv2QtyIksudyXdHHiWwSS
+ IV7i4YkfUElv4+pFlUQ+hMRRXAOiqU/RVo1xBF0MBe/XGM1dt2UOj96u6lDp/vR7KP4
+ Tc7OCbj3h2I+07VEElEunHRpDFgZer+RV3SBLWBjiYBFtuUj3+iMnO/z36DlNJyHAj5
+ fySgG1IiRjIheKlzc5H7ikpMRfchALaeD+t1ayA7CERE4zDvIcBse8S5Oxkxvg7zwIW
+ Elv65cjloA==
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,64 +64,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since task->comm is guaranteed to be NUL-terminated, we can print it
-directly without the need to copy it into a separate buffer. This
-simplifies the code and avoids unnecessary operations.
+2024. 06. 03. 11:15 keltezéssel, egyszeregy@freemail.hu írta:
+> From: Benjamin Szőke <egyszeregy@freemail.hu>
+> 
+> The goal is to clean-up Linux repository from AUX file names, because
+> the use of such file names is prohibited on other operating systems
+> such as Windows, so the Linux repository cannot be cloned and
+> edited on them.
+> 
+> Signed-off-by: Benjamin Szőke <egyszeregy@freemail.hu>
+> ---
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild             | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c          | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => auxch.c} | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => auxch.h} | 0
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c           | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c         | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c         | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c             | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c           | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c         | 2 +-
+>   drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c         | 2 +-
+>   11 files changed, 10 insertions(+), 10 deletions(-)
+>   rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => auxch.c} (99%)
+>   rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => auxch.h} (100%)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+> index 819703913a00..2c551bdc9bc9 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
+> @@ -25,7 +25,7 @@ nvkm-y += nvkm/subdev/i2c/busnv50.o
+>   nvkm-y += nvkm/subdev/i2c/busgf119.o
+>   nvkm-y += nvkm/subdev/i2c/bit.o
+>   
+> -nvkm-y += nvkm/subdev/i2c/aux.o
+> +nvkm-y += nvkm/subdev/i2c/auxch.o
+>   nvkm-y += nvkm/subdev/i2c/auxg94.o
+>   nvkm-y += nvkm/subdev/i2c/auxgf119.o
+>   nvkm-y += nvkm/subdev/i2c/auxgm200.o
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+> index dd391809fef7..6c76e5e14b75 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
+> @@ -24,7 +24,7 @@
+>   #define anx9805_pad(p) container_of((p), struct anx9805_pad, base)
+>   #define anx9805_bus(p) container_of((p), struct anx9805_bus, base)
+>   #define anx9805_aux(p) container_of((p), struct anx9805_aux, base)
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "bus.h"
+>   
+>   struct anx9805_pad {
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
+> similarity index 99%
+> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
+> index d063d0dc13c5..fafc634acbf6 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
+> @@ -24,7 +24,7 @@
+>   
+>   #include <linux/string_helpers.h>
+>   
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "pad.h"
+>   
+>   static int
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.h
+> similarity index 100%
+> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
+> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.h
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+> index 47068f6f9c55..854bb4b5fdb4 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs <bskeggs@redhat.com>
+>    */
+>   #define g94_i2c_aux(p) container_of((p), struct g94_i2c_aux, base)
+> -#include "aux.h"
+> +#include "auxch.h"
+>   
+>   struct g94_i2c_aux {
+>   	struct nvkm_i2c_aux base;
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+> index dab40cd8fe3a..c17d5647cb99 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
+> @@ -19,7 +19,7 @@
+>    * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+>    * OTHER DEALINGS IN THE SOFTWARE.
+>    */
+> -#include "aux.h"
+> +#include "auxch.h"
+>   
+>   static const struct nvkm_i2c_aux_func
+>   gf119_i2c_aux = {
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+> index 8bd1d442e465..3c5005e3b330 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs <bskeggs@redhat.com>
+>    */
+>   #define gm200_i2c_aux(p) container_of((p), struct gm200_i2c_aux, base)
+> -#include "aux.h"
+> +#include "auxch.h"
+>   
+>   struct gm200_i2c_aux {
+>   	struct nvkm_i2c_aux base;
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> index 976539de4220..ab86e11e7780 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs
+>    */
+>   #include "priv.h"
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "bus.h"
+>   #include "pad.h"
+>   
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+> index 5904bc5f2d2a..cc26cd677917 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs
+>    */
+>   #include "pad.h"
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "bus.h"
+>   
+>   void
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+> index 3bc4d0310076..1797c6c65979 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs
+>    */
+>   #include "pad.h"
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "bus.h"
+>   
+>   static const struct nvkm_i2c_pad_func
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+> index 7d417f6a816e..5afc1bf8e798 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
+> @@ -22,7 +22,7 @@
+>    * Authors: Ben Skeggs
+>    */
+>   #include "pad.h"
+> -#include "aux.h"
+> +#include "auxch.h"
+>   #include "bus.h"
+>   
+>   static void
 
-Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Cc: Vineet Gupta <vgupta@kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>
-Cc: Ingo Molnar <mingo@redhat.com>
-Cc: Borislav Petkov <bp@alien8.de>
-Cc: Dave Hansen <dave.hansen@linux.intel.com>
-Cc: "H. Peter Anvin" <hpa@zytor.com>
----
- arch/arc/kernel/unaligned.c | 5 ++---
- arch/x86/kernel/vm86_32.c   | 5 ++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arc/kernel/unaligned.c b/arch/arc/kernel/unaligned.c
-index d2f5ceaaed1b..3b2d8b1bd271 100644
---- a/arch/arc/kernel/unaligned.c
-+++ b/arch/arc/kernel/unaligned.c
-@@ -200,7 +200,6 @@ int misaligned_fixup(unsigned long address, struct pt_regs *regs,
- 		     struct callee_regs *cregs)
- {
- 	struct disasm_state state;
--	char buf[TASK_COMM_LEN];
- 
- 	/* handle user mode only and only if enabled by sysadmin */
- 	if (!user_mode(regs) || !unaligned_enabled)
-@@ -212,11 +211,11 @@ int misaligned_fixup(unsigned long address, struct pt_regs *regs,
- 			     " performance significantly\n. To enable further"
- 			     " logging of such instances, please \n"
- 			     " echo 0 > /proc/sys/kernel/ignore-unaligned-usertrap\n",
--			     get_task_comm(buf, current), task_pid_nr(current));
-+			     current->comm, task_pid_nr(current));
- 	} else {
- 		/* Add rate limiting if it gets down to it */
- 		pr_warn("%s(%d): unaligned access to/from 0x%lx by PC: 0x%lx\n",
--			get_task_comm(buf, current), task_pid_nr(current),
-+			current->comm, task_pid_nr(current),
- 			address, regs->ret);
- 
- 	}
-diff --git a/arch/x86/kernel/vm86_32.c b/arch/x86/kernel/vm86_32.c
-index e9e803a4d44c..e6cc84143f3e 100644
---- a/arch/x86/kernel/vm86_32.c
-+++ b/arch/x86/kernel/vm86_32.c
-@@ -246,9 +246,8 @@ static long do_sys_vm86(struct vm86plus_struct __user *user_vm86, bool plus)
- 
- 	/* VM86_SCREEN_BITMAP had numerous bugs and appears to have no users. */
- 	if (v.flags & VM86_SCREEN_BITMAP) {
--		char comm[TASK_COMM_LEN];
--
--		pr_info_once("vm86: '%s' uses VM86_SCREEN_BITMAP, which is no longer supported\n", get_task_comm(comm, current));
-+		pr_info_once("vm86: '%s' uses VM86_SCREEN_BITMAP, which is no longer supported\n",
-+			     current->comm);
- 		return -EINVAL;
- 	}
- 
--- 
-2.43.5
-
+@Ben Skeggs
+When it will be merged? Your hints was done and ready in this renaming patch.
