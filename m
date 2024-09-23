@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB25DCF649C
-	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9EBCF64A2
+	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B9910E385;
-	Sun, 29 Sep 2024 21:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1172510E387;
+	Sun, 29 Sep 2024 21:29:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=nvidia.com header.i=@nvidia.com header.b="AEJCj3m8";
+	dkim=pass (2048-bit key; unprotected) header.d=nvidia.com header.i=@nvidia.com header.b="MSv4+qrw";
 	dkim-atps=neutral
-X-Greylist: delayed 302 seconds by postgrey-1.36 at gabe;
- Wed, 18 Sep 2024 15:46:27 UTC
 Received: from xvfrnhpk.outbound-mail.sendgrid.net
  (xvfrnhpk.outbound-mail.sendgrid.net [168.245.32.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A5CF10E288
- for <nouveau@lists.freedesktop.org>; Wed, 18 Sep 2024 15:46:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C2A910E08E
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Sep 2024 13:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com;
- h=from:subject:mime-version:to:cc:content-transfer-encoding:
- content-type:cc:content-type:from:subject:to;
- s=s1; bh=ziLSBkmD8N3wAECNVc4vP8+a8zEWGyAXVCNY3Vn7ff0=;
- b=AEJCj3m8vbHBBBETUWtOYUy0ZAlb8lLmCPHcnJU4CUoU+DjWbDuF1ZoRYHwdVEyARi6v
- 4cnoQPqWaDxyq+ild68etiFoHx+AC7uOgcZF26rtcp4u/ArJmFLnpo6rOeTi2WSFPWAtJ7
- nT2Me7jpOytFpZ4czBR4uHEeNW+vA/LvT0hagctEGlFLFiq1Ox5GqIs/PDwC2b9wKNMpT3
- tbUveqkhhE3bAzBLqs+KJAbBfbazoOXhD5lyA/76iPAcQ/Acq9RrT4Zs4lPWG4CgA/0kNf
- 29xt5mGPBAQoAN7SYUZupr/wBrvGzKHnBgXjt4y03wk6qxT4m1tBYGuw+VaM7RkQ==
-Received: by recvd-5767f9c879-sslgp with SMTP id
- recvd-5767f9c879-sslgp-1-66EAF4A4-5
- 2024-09-18 15:41:24.075238971 +0000 UTC m=+510254.006226547
-Received: from mtl123.mtl.labs.mlnx (unknown) by geopod-ismtpd-4 (SG)
- with ESMTP id 3jtN1PSnQaSZa_p6kXiHqQ
- Wed, 18 Sep 2024 15:41:23.862 +0000 (UTC)
+ h=from:subject:in-reply-to:references:mime-version:to:cc:
+ content-transfer-encoding:content-type:cc:content-type:from:subject:to;
+ s=s1; bh=FqlIwZD48b5YhQmqyhADPiG2ENluZ4A33K6uoKNXTSQ=;
+ b=MSv4+qrwV2bk0cH58cO4G09e4xvkX3VfxurBKQAZ8Ejp6b3KjLYtRjeKlOwTESRqVtQE
+ gthXJEhIVXOfR7gkZz0Djm7lVFAxTiVcFZQ3MKt2pReicf/2e3Rd1HP8vhdlsHBtxnBobb
+ ugwPX1xH56Q8AL7pnMSOVJ9YO90YsNGxFtN+r7yd9w1Y0HvhhD8qqgktGAq6iZ3+Q8bdDF
+ nwt74izG3kDTfgBnunjYHyMgrA2eCITU3plF7c+Q2p4QnKR/MuCf97eGyF0K3lbqjhDMgF
+ scfUIYJbfYvN9+NYc+0IrCWYxRmH4zjVVrh79xRIleXWr8l3nAamZ0vhuZyFsStQ==
+Received: by recvd-6ccfdb9759-nvdbw with SMTP id
+ recvd-6ccfdb9759-nvdbw-1-66F17332-15
+ 2024-09-23 13:54:58.400958387 +0000 UTC m=+935842.082053598
+Received: from mtl123.mtl.labs.mlnx (unknown) by geopod-ismtpd-5 (SG)
+ with ESMTP id gtOCFFx3RdGniX3NXaV2_Q
+ Mon, 23 Sep 2024 13:54:58.228 +0000 (UTC)
 Received: from adv-dev-804.mtl.labs.mlnx (adv-dev-804.mtl.labs.mlnx
  [10.237.43.220])
- by mtl123.mtl.labs.mlnx (8.14.4/8.14.4) with ESMTP id 48IFfNqn012717;
- Wed, 18 Sep 2024 18:41:23 +0300
+ by mtl123.mtl.labs.mlnx (8.14.4/8.14.4) with ESMTP id 48NDsvkx028636;
+ Mon, 23 Sep 2024 16:54:57 +0300
 Received: from adv-dev-804.mtl.labs.mlnx (localhost [127.0.0.1])
  by adv-dev-804.mtl.labs.mlnx (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP id
- 48IFfNW7299140; Wed, 18 Sep 2024 18:41:23 +0300
+ 48NDsvV3356270; Mon, 23 Sep 2024 16:54:57 +0300
 Received: (from ymaman@localhost)
- by adv-dev-804.mtl.labs.mlnx (8.15.2/8.15.2/Submit) id 48IFfMRA299139;
- Wed, 18 Sep 2024 18:41:22 +0300
+ by adv-dev-804.mtl.labs.mlnx (8.15.2/8.15.2/Submit) id 48NDsvHA356269;
+ Mon, 23 Sep 2024 16:54:57 +0300
 From: Yonatan Maman <Ymaman@Nvidia.com>
-Subject: [PATCH 0/2] *** BUG Fix for Nouveau Memory***
-Date: Wed, 18 Sep 2024 15:41:24 +0000 (UTC)
-Message-Id: <20240918153932.299095-1-Ymaman@Nvidia.com>
+Subject: [PATCH 2/2] nouveau/dmem: Fix memory leak in `migrate_to_ram` upon
+ copy error
+Date: Mon, 23 Sep 2024 13:54:58 +0000 (UTC)
+Message-Id: <20240923135449.356244-3-Ymaman@Nvidia.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20240923135449.356244-1-Ymaman@Nvidia.com>
+References: <20240923135449.356244-1-Ymaman@Nvidia.com>
 MIME-Version: 1.0
 X-SG-EID: =?us-ascii?Q?u001=2ELV3ZPuPfm6MEUzpJJKUmPK7bFUdOAxbw77JQHpHEsK=2FX2=2FUTlQRmqLgqk?=
- =?us-ascii?Q?5EHnkMyvO1KLlDiEzbuD8jfGZLnyF=2F6WDUL+0Vw?=
- =?us-ascii?Q?G9ijbm=2F7W5y9w5x0rq3X+Eb5DbDkom8Uwwt+YFu?=
- =?us-ascii?Q?zcPoJU+ymXHyXhkJpptGWNF5RKoaAXLVA3vOQYt?=
- =?us-ascii?Q?YgqhzcjVfkGuew+9BQrlMcc5Y+tPfiKebXozfeR?=
- =?us-ascii?Q?txElXOSRFA+IGB=2F8ZF2JGOlpcyn7JzppE2mF6yL?= =?us-ascii?Q?V+uE?=
+ =?us-ascii?Q?5EHnkMyvO1KLlDiEzbuD8jfGZLnyC4RTO3Q7aNE?=
+ =?us-ascii?Q?rxIy80GNX0jjsm0HbF+5G2X4YFBVtXo8TNjePKj?=
+ =?us-ascii?Q?zlTHEWfZptWMW2GJSF8l1u=2FF9No2XaRpb4vwF8r?=
+ =?us-ascii?Q?hSzKQpAnRJQuhkPi8HetbkyX+DzioNnYkLByKZU?=
+ =?us-ascii?Q?nXQd+P226uYWtjdwt=2F9ifcTXq279aIyA8xtDt0+?= =?us-ascii?Q?kkfx?=
 To: nouveau@lists.freedesktop.org
-Cc: Yonatan Maman <Ymaman@Nvidia.com>
+Cc: Yonatan Maman <Ymaman@Nvidia.com>, Gal Shalom <GalShalom@Nvidia.com>
 X-Entity-ID: u001.9Nu+sJkq3f0LJ/tZbyfOWA==
 Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset=us-ascii
@@ -75,20 +76,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch series addresses two critical issues in the Nouveau driver related to device channels, error handling and memory leaking.
+A copy push command might fail, causing `migrate_to_ram` to return a
+dirty HIGH_USER page to the user.
 
-- Memory Leak in migrate_to_ram - the migrate_to_ram function was identified as leaking memory when a copy push command fails. This results in the function returning a dirty HIGH_USER page, which can expose sensitive information and pose a security risk. To mitigate this vulnerability, the patch ensures that a zero page is allocated for the destination page, thereby preventing memory leaks and enhancing the security of the driver in case of failure.
+This exposes a security vulnerability in the nouveau driver. To prevent
+memory leaks in `migrate_to_ram` upon a copy error, allocate a zero
+page for the destination page.
 
-- Privileged Error in Copy Engine Channel - an error was observed when the nouveau_dmem_copy_one function is executed, leading to a Host Copy Engine Privileged error on channel 1. The patch addresses this by adjusting the Copy Engine channel configuration to permit privileged push commands, thus resolving the error.
-
-Yonatan Maman (2):
-  nouveau/dmem: Fix privileged error in copy engine channel
-  nouveau/dmem: Fix memory leak in `migrate_to_ram` upon copy error
-
+Signed-off-by: Yonatan Maman <Ymaman@Nvidia.com>
+Signed-off-by: Gal Shalom <GalShalom@Nvidia.com>
+---
  drivers/gpu/drm/nouveau/nouveau_dmem.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c  | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+index 6fb65b01d778..097bd3af0719 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
+@@ -193,7 +193,7 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
+ 	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
+ 		goto done;
+ 
+-	dpage = alloc_page_vma(GFP_HIGHUSER, vmf->vma, vmf->address);
++	dpage = alloc_page_vma(GFP_HIGHUSER | __GFP_ZERO, vmf->vma, vmf->address);
+ 	if (!dpage)
+ 		goto done;
+ 
 -- 
 2.34.1
 
