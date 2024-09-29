@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC30ACF6495
-	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B79CCF649D
+	for <nouveau@archiver.kernel.org>; Sun, 29 Sep 2024 21:29:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DE6310E38F;
-	Sun, 29 Sep 2024 21:29:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC53610E36B;
+	Sun, 29 Sep 2024 21:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="qxOINmsh";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="s10AZshE";
 	dkim-atps=neutral
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com
- (mail-sn1nam02on2045.outbound.protection.outlook.com [40.107.96.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30C4B10E171
- for <nouveau@lists.freedesktop.org>; Sun, 29 Sep 2024 12:09:19 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2085.outbound.protection.outlook.com [40.107.92.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C00F10E171
+ for <nouveau@lists.freedesktop.org>; Sun, 29 Sep 2024 11:44:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=y7Yp1pqW04+EslKd1OntVACnCvgsGibjxTRj4rozlbhBWNcuLUDb7HicAikiw/YKVEbEQyXGdShBjIQA5xiiZ3QJj/fjQ8cZ/JivZu6QZfIcfTG/OyBbX69hKD7yFA5VfoWoW3gjhTGOEeSpcGpOClFmV7x9uEUvLmQe8p63yYlS0GQl7llu3FcYdatwozOoDPaljHoTPQmJEJGlpFIeDm466uDh0/shZ1kJEA3M3jWe6RgnriGKFu4HqnIiRbmiPG7eW/eITuqH2ZZcj+e94/MU9KVQiDIsH5hCKCPxa4Uw+HGjDhBv6exKdG9wePZa4+JSkddnQPh+M/sc2qTmxA==
+ b=tLDvH8DobpgQjDLyG7ggP2bE4ID9KVLklgz8NuVcg4LkLpxxz9KiosksA8AS6dHJ3C3qpILQU7EO4trVMMlBopDIZut/PNsAeO9phtWhHMbrJAG+cJhY6QoM3f0IvCZTJ8jUWfoZUx1zhERyjqK4jYWCC3WYRRiOq9tVDaUWXY7IzzBzBfDQEAtAz4tZqDv70c7J5bMty15ylXm/HHWIM9LBQGjycNCj7hFnqT2fsg7mkBlF+u974GBZx3ko+T3svjPdXTDiSjlWCH0Rqa+PljIwWvu1roed4bM4gB3hyDHhSSM2KusHebUWhZwWO5nHGUH7F1SBg6bC7acQLe/rqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XJqP4zemDkW4wrwSO612eOvMgNvjKhmdH4FHsV63vOs=;
- b=JiFPTo9Okyp/0JZGCkuD0zgIHL0rQ5C+yXQbm27nxSzKvG3D0Hf7FY5KroiBQgnaAzmbK8uZvm7VEw0EZZiniC/iuPIoUqurwPN6uFB0ea/6Fu68iZMZUBS5S9d+EXeFht/faTrNslppqRKeXp9i90duNa08S9muPK6omTlfzj0N594nt9wIQlCE2S2uYDfA0t0KE22+X2FbJHl7dCpnld+Gp/FcNBJQ1tXTrTactMg6tKu19pipyZG/EljRmKMQFBkI+9diyFOxZMz5XubCfuOVAy71wqPXWWpAFNawzSMoQ6eEzlBjZfV8cwSFhfVUU4+HPHlsfFlvFD6nZWXKCw==
+ bh=SgM/B74BXkHJ8t9utgm1llijCsC+NQe128KyLYZmAuw=;
+ b=WOYml1wKIgKtOlLqontSEsy1CzHw0pVEZ1H7WLWOZIu0uVPEAhSSTCmWfiH+63KIjBMejBeRQNJsY6J2wQOraHzjAdO/1THORQcOhko4QbPQnu/qcPXm4THD0jsVfze/awRGG7mA4tFDGEfkT2SObcaJ8XW6EWWBLMO44CnVfOgQsidfS1z+JFu2rJuf/h9l+0P++acfy2k84n4H4UDQmIkNw+FY2d+c5nkkGLQiJavaqLIRr/uk40iRnNLjM3WDVY2BIHBjS8NxB4LRGmTYdl6sNPi0+Yx9d30KVZh/t/CxMVn13mqTcLYJqPvmmCf/BEQHMpUkLjOf3N4k8ecbkA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XJqP4zemDkW4wrwSO612eOvMgNvjKhmdH4FHsV63vOs=;
- b=qxOINmshabevYJSQNiDONJiyOn4BmkfufUsfjyELrvbvRpoFv6z2PpX/sXX6JKJ/gX9rlNvOaiCzStMv5TjuTeqlEh146Pm/crkzbH5yzTgRP2St8+pvM7SRJ6uvw0p5Ta2Ku00PN65QcrkJs5tIqHnrLiRquar3u0wD3pPVcjDISJ0w0MXWc7OLx+d9V+mgtf35QW1zdsD2lFmdgEbnKOvlVeFTtJoMu0FT7K+mgpgMSAKNBcPzTwXTx/ur0jy8JZ46+MdXW8pRkcaNoX6mn6iyi6y3HBx/tIxFIZABa8Ud4xAhRrbC4ZlYig7HPBHHTAZSEfYx02nswR6zOwuFCw==
-Received: from DS7P222CA0028.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::21) by
- DM4PR12MB7504.namprd12.prod.outlook.com (2603:10b6:8:110::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8005.25; Sun, 29 Sep 2024 12:09:14 +0000
-Received: from CY4PEPF0000EE39.namprd03.prod.outlook.com
- (2603:10b6:8:2e:cafe::62) by DS7P222CA0028.outlook.office365.com
- (2603:10b6:8:2e::21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26 via Frontend
- Transport; Sun, 29 Sep 2024 12:09:14 +0000
+ bh=SgM/B74BXkHJ8t9utgm1llijCsC+NQe128KyLYZmAuw=;
+ b=s10AZshEfzl2Biglk/ao4GQu/TFV+9WH5L15U3e2qibQKl0IGxCJ8ilRLerfb3zPDlCcqoUCSahqa/ze4lK4IJOyJJLixzruFjk0hsmeLDlmEqDeL6dTaCK0ps0T3TmafBU/Abc7Skq0f4Z2mh/R6Dtg0+b5uD0Eg9LEChDz21ANDE4mYw/hjq2V2WzYAiluehnDk0fsooRbEIn5yI+xMv/n5THsH7c2CdRSEN3DsrV8SnvZI6EuLk4kvH40Etz4B7II+LnYnxugopxqx/FkNdSygHzp/gtX/Q9RPaWNI54HPSoj6eMWL1jLuby907C5OX8GwDIoGdpyPFQusRVK8w==
+Received: from PH7PR17CA0055.namprd17.prod.outlook.com (2603:10b6:510:325::16)
+ by CY8PR12MB7337.namprd12.prod.outlook.com (2603:10b6:930:53::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.25; Sun, 29 Sep
+ 2024 11:44:38 +0000
+Received: from CY4PEPF0000E9D2.namprd03.prod.outlook.com
+ (2603:10b6:510:325:cafe::79) by PH7PR17CA0055.outlook.office365.com
+ (2603:10b6:510:325::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.25 via Frontend
+ Transport; Sun, 29 Sep 2024 11:44:38 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,80 +50,77 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- CY4PEPF0000EE39.mail.protection.outlook.com (10.167.242.11) with Microsoft
+ CY4PEPF0000E9D2.mail.protection.outlook.com (10.167.241.137) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8026.11 via Frontend Transport; Sun, 29 Sep 2024 12:09:14 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ 15.20.8026.11 via Frontend Transport; Sun, 29 Sep 2024 11:44:38 +0000
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 29 Sep
- 2024 05:09:03 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ 2024 04:44:21 -0700
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail204.nvidia.com
+ (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Sun, 29 Sep
- 2024 05:09:02 -0700
+ 2024 04:44:20 -0700
 Received: from vdi.nvidia.com (10.127.8.9) by mail.nvidia.com (10.129.68.6)
  with Microsoft SMTP Server id 15.2.1544.4 via Frontend Transport; Sun, 29 Sep
- 2024 05:09:01 -0700
+ 2024 04:44:19 -0700
 From: Yonatan Maman <ymaman@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
-CC: Yonatan Maman <Ymaman@Nvidia.com>, Gal Shalom <GalShalom@Nvidia.com>
-Subject: [PATCH 2/2] nouveau/dmem: Fix memory leak in `migrate_to_ram` upon
- copy error
-Date: Sun, 29 Sep 2024 15:08:56 +0300
-Message-ID: <20240929120856.440950-3-ymaman@nvidia.com>
+CC: Yonatan Maman <Ymaman@Nvidia.com>
+Subject: [PATCH 0/2] *** BUG Fix for Nouveau Memory***
+Date: Sun, 29 Sep 2024 14:44:14 +0300
+Message-ID: <20240929114416.420203-1-ymaman@nvidia.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240929120856.440950-1-ymaman@nvidia.com>
-References: <20240929120856.440950-1-ymaman@nvidia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-NV-OnPremToCloud: ExternallySecured
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE39:EE_|DM4PR12MB7504:EE_
-X-MS-Office365-Filtering-Correlation-Id: bbc9227e-32e0-436a-5796-08dce07f8905
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D2:EE_|CY8PR12MB7337:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04e896fa-9195-43c8-8982-08dce07c1919
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|36860700013|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ni9tLMr3CjpfG72gRzg2vE9w+B82TVodaF4Z9qCdUEo2jA57xRTj+GlcbRHY?=
- =?us-ascii?Q?0L9z4UExMH2iQRlsUruH2ylMpGQ6bpZWSOLTVq7gR8rcXCR9sugAcCwSNeqO?=
- =?us-ascii?Q?eoTgAF3H7474m/9Yvxg9cQtu1lq3Rgr6PuP+85At0jt8DogomvForFns3gYH?=
- =?us-ascii?Q?mTZZOO+qdYSd04aDID3wN1d2eNt5Rn4v89isEdYyJcSkq6gAy6ezbjV1p/d4?=
- =?us-ascii?Q?klb1KA1yc3kV4UAc28Gq2QP6E3KBOVX3MbezgAAcus6x8yW7Gc8Skg2mO+TF?=
- =?us-ascii?Q?CTmrAHn8Pv/eA+7klNRhFkprepDsFzaCC1bK5QoJe3WGgnaPkx+/82pVc3BH?=
- =?us-ascii?Q?Au7jO9HIVK9++etEdj/zp2XdGsk4LQpPMg2ZOaQhRxkc0H1KkyP94CZOoGRf?=
- =?us-ascii?Q?p0GLLECZ80Z8dW3JQ0ijihdUHNn33AmdatH9PsRDjlptEwLwNPcejUWdFMGT?=
- =?us-ascii?Q?FruCMNTzML2gmt/vhOr2N1dZOjmdbhRThj5gh/jHBTRyyF/FVBgj512WfC6R?=
- =?us-ascii?Q?hibhsTbw/kKQ2HSj3f6KM87IDUXevySJ1et/GCoyMRtrpUR9cSyv3Ti1Nco7?=
- =?us-ascii?Q?/6b7nPjUs3w/FoCwtTY6Rq4/7dKMZwonZShqm+nb594wVFT74FUKlfn6WrEC?=
- =?us-ascii?Q?OyiVx44unC4lWu7ZEgiDfOkAdCvubXC0C02HrSN8tqCkMI3pZDBW7XnRvURw?=
- =?us-ascii?Q?52ORT3ZJDWwAKhoYlixqDcZE5u7VztkMs/R9wlTlAoSe5oTvzh3ENGrfJRPb?=
- =?us-ascii?Q?t/YDxfIJItUhdfgSa2WIrEoAA1nqxY2xdFeGFn1bLWbjmQzXx6I1B56v+JpO?=
- =?us-ascii?Q?+yCyarJEOBqacbYbC3zgy5Giw/ssxBpYtj9pM4abBtAZBpeQMf8MGFS3PW0B?=
- =?us-ascii?Q?Lj9R2Ye0MBrp7GezWo3QZCPcItPE2DH7EwdMu4gXfFNkjYKMeTpD9vysS+Yk?=
- =?us-ascii?Q?0ZhCJsiZuZHcmpUKEmc49waWqUeboeK/UVDeJFGIbj/vG/bOaTBifQU7Telo?=
- =?us-ascii?Q?oc5CW4NHrnQ0Egq5SjSYiX/tMCS6dNTXToU98MJINJegrP+3HraZ6ci4abW4?=
- =?us-ascii?Q?C6x2IYuZFT325gsFVW0ExiYpOE7VN2hvd/U6Rve0cRQ5T7Pjwg3HUujP3Paa?=
- =?us-ascii?Q?XPDXozvjkK4rsSJiI8TovggYm5Dg2cwLPCl/CJe9fqJaz12m2pYCwB8TmeZC?=
- =?us-ascii?Q?1SHAFxbASZ+gWANPt4w3PiIKxlmJ0EQloVq+uiGvd7JTISVzz30VteFYE2SX?=
- =?us-ascii?Q?ACJP3rALoM5qCBT7yyVWkGDVMYW68ztEhoYAxVmxzKWapbBYLNZA8Tr8K3nD?=
- =?us-ascii?Q?30lOZGs0/K4/EcZRn8J2RTkpkz8P9LsSbasCtz67M2aTGFK0Y8x9QWrU69hT?=
- =?us-ascii?Q?R8fwh7jR49DLGQdTgZaPszZciV83?=
+ ARA:13230040|376014|82310400026|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9yo3iy04Lw6vlS1JEfB6HfNdFZ8rbNu2gtuKC4mtoyvMwepqmMZD8ezKA1fs?=
+ =?us-ascii?Q?HVT2el3C3sufHAS0pnAJA17lUZoy9CCdUlEYX+JkiDrLm/bztg5CAyxpEMPM?=
+ =?us-ascii?Q?Atyde+4PLsa4NVVJtEduf46uLCiCC5tK54nxSzavQIApBrKEt6LZEAH5MxXX?=
+ =?us-ascii?Q?/TjZ/sHMppTldhMRA6YHPf0LiclMT0vWytp+iA+S3dQwxvwyoj/CHN02wdtY?=
+ =?us-ascii?Q?A+cWfNhzENFb4+Z7iP0QZwKrcs6iRVzRX0/RzV4sFXEnepu95EDdQsKecNZg?=
+ =?us-ascii?Q?mdK0QQUOdK8tjtbLi7JhbOroYNPySALf48t1S8JmzuFZ9bFwz+a1pH64G4Ky?=
+ =?us-ascii?Q?byirqicmCX+RBhgDtjDkWaoBcrewCwd7XgLb8rCj9bEx9n00C1gWqM1mSfPZ?=
+ =?us-ascii?Q?buKDtr22+txUZODCgGi6QYnIvkHq2uCnJeayWAc7ox4xbu45NyjQXXkeU3QH?=
+ =?us-ascii?Q?EwczBYKHDHOQF705zAhlfQrITO9M6p8voJmXiIatmUmE8Y9pIcdqPlDPmUr8?=
+ =?us-ascii?Q?pJvDUeAvGj8m+p4AnKAL3Lw8/vo7L4+W09DxsfdotbKrpgZj/1/d1HRxBmb4?=
+ =?us-ascii?Q?IdxZsHxYzQXwYst6ftx7VrTUfygLon5BHp5ePrwPJCv3FC0QRv2KlM0/0Odu?=
+ =?us-ascii?Q?eCK+jO5rKuA8pM+pOBSaH5mecwH+Bhvo9H2AI4nwyRUAJ2vXvXRWKzwlo+Is?=
+ =?us-ascii?Q?ljFaEr9t8q9Y7Zlb7shO7pcsYzxafnlxc6tyF+BQh28PPZKl1zZBQYE0GYWM?=
+ =?us-ascii?Q?7MzwNTlEjECPxVRHOsjghwtgiW65NatySGoUZ9VEL7EhIeqXw7fdFb2JJIae?=
+ =?us-ascii?Q?A25iWqrRqyg6ALrglYhPjS8Eedl+sFoOw+wjtJgLX4Xn0Y3+FnMguE4KnyGu?=
+ =?us-ascii?Q?kVhG/nFdcWQdSucRm0tV59A4hUMJLOtz1w7zChBhcDp7/4DTHBG2VSU+XSPw?=
+ =?us-ascii?Q?NcSZ+lEG9mf8RaX+DZI/k6ojCuz9RfCpJqU3rjNcYABBYH0fFPgjGdvY2x9Z?=
+ =?us-ascii?Q?8J8ggbpYIDFLXgWy74oPo+j8H/GcxKmc4Fb+BRPKmtbHY/Yj77ypfP5/5Ep9?=
+ =?us-ascii?Q?/vi5598xXg/WXCsvJWuCRGr9e26tV+8R/v4nA8bFELdVYvgRGYeKPQ+5ExnY?=
+ =?us-ascii?Q?fLQbk4xjovgIPo1G1YtKd+/zrqNE8GfWodhGkkbMQvebMr7bAXp9HlxnXBqx?=
+ =?us-ascii?Q?kbI8iAt8OsKARTSkJ6F3RYLU3BJiyEgbwPpUCFmxWPHf7C3U70JSXJ/QRcut?=
+ =?us-ascii?Q?gLeNixN6A1PFOMgI4dQViqyqvzl9UVWpXpIdFv/L7VGp92FDXKfyzHfa2Un/?=
+ =?us-ascii?Q?dC0n1/uPBJGO9Www5pOZIOqHVTba4CK0p/RP00nw1GCIaiSiOHWvvM5WSzoY?=
+ =?us-ascii?Q?RETr9UmmFupvmUn4jOEGx9HsUApN?=
 X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
+ SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2024 12:09:14.2814 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bbc9227e-32e0-436a-5796-08dce07f8905
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2024 11:44:38.0500 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04e896fa-9195-43c8-8982-08dce07c1919
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE39.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D2.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7504
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7337
 X-Mailman-Approved-At: Sun, 29 Sep 2024 21:29:23 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -141,32 +138,20 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Yonatan Maman <Ymaman@Nvidia.com>
 
-A copy push command might fail, causing `migrate_to_ram` to return a
-dirty HIGH_USER page to the user.
+This patch series addresses two critical issues in the Nouveau driver related to device channels, error handling and memory leaking.
 
-This exposes a security vulnerability in the nouveau driver. To prevent
-memory leaks in `migrate_to_ram` upon a copy error, allocate a zero
-page for the destination page.
+- Memory Leak in migrate_to_ram - the migrate_to_ram function was identified as leaking memory when a copy push command fails. This results in the function returning a dirty HIGH_USER page, which can expose sensitive information and pose a security risk. To mitigate this vulnerability, the patch ensures that a zero page is allocated for the destination page, thereby preventing memory leaks and enhancing the security of the driver in case of failure.
 
-Signed-off-by: Yonatan Maman <Ymaman@Nvidia.com>
-Signed-off-by: Gal Shalom <GalShalom@Nvidia.com>
----
+- Privileged Error in Copy Engine Channel - an error was observed when the nouveau_dmem_copy_one function is executed, leading to a Host Copy Engine Privileged error on channel 1. The patch addresses this by adjusting the Copy Engine channel configuration to permit privileged push commands, thus resolving the error.
+
+Yonatan Maman (2):
+  nouveau/dmem: Fix privileged error in copy engine channel
+  nouveau/dmem: Fix memory leak in `migrate_to_ram` upon copy error
+
  drivers/gpu/drm/nouveau/nouveau_dmem.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_drm.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 6fb65b01d778..097bd3af0719 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -193,7 +193,7 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struct vm_fault *vmf)
- 	if (!spage || !(src & MIGRATE_PFN_MIGRATE))
- 		goto done;
- 
--	dpage = alloc_page_vma(GFP_HIGHUSER, vmf->vma, vmf->address);
-+	dpage = alloc_page_vma(GFP_HIGHUSER | __GFP_ZERO, vmf->vma, vmf->address);
- 	if (!dpage)
- 		goto done;
- 
 -- 
 2.34.1
 
