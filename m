@@ -4,47 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48062D1812E
-	for <nouveau@archiver.kernel.org>; Mon, 14 Oct 2024 16:18:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99173CFB43F
+	for <nouveau@archiver.kernel.org>; Mon,  7 Oct 2024 13:28:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB37A10E1E0;
-	Mon, 14 Oct 2024 16:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5551110E344;
+	Mon,  7 Oct 2024 13:28:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZCAMPOq1";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ChKbEfOD";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2FF710E1E0
- for <nouveau@lists.freedesktop.org>; Mon, 14 Oct 2024 16:18:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id B24F55C5803;
- Mon, 14 Oct 2024 16:18:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CDD8C4CEC3;
- Mon, 14 Oct 2024 16:18:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1728922714;
- bh=EE8ZAHy6yYFPBwcoF5mopLpCJUSiOfcz+F/jv677e48=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ZCAMPOq1xwMFFeNtGD+Ix+ltYmgZGkSp1CpSGqDevimf5uT8LGYQSxlrK6TPPkiqI
- 8tsYr9OUIXGGOIH6UgMDXV7/GdgYN8xHP4tQcHSNQjfE8wBzOAvcVNZaAyyzEemfbC
- Zu8R+AapzCvNfIYKEj65A4jDi0DMZMrYZOOxzgRBGu5TXP+r6we7kx9iH0AZ4on9A4
- JYvVVXEcJbpZUy7BiNVk3JKha0hZejdXEAn4OGOKmPnmPFg1J8cqDXy7VlHh/Z5Va/
- 9Cy+n9y6gm4QNF4zpotipj692vA6v51aOjbPZHiAGQcC13LAZ0uXe8CqiFMllZ2Ixk
- NfVILgsLrpO+A==
-Date: Mon, 14 Oct 2024 18:18:26 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Zhi Wang <zhiw@nvidia.com>
-Cc: nouveau@lists.freedesktop.org, airlied@gmail.com, daniel@ffwll.ch,
- bskeggs@nvidia.com, acurrid@nvidia.com, cjia@nvidia.com,
- smitra@nvidia.com, ankita@nvidia.com, aniketa@nvidia.com,
- kwankhede@nvidia.com, targupta@nvidia.com, zhiwang@kernel.org
-Subject: Re: [PATCH 3/3] nvkm/gsp: handle the return of large RPC
-Message-ID: <Zw1EUlV6QvaxnCam@pollux>
-References: <20240922130709.1946893-1-zhiw@nvidia.com>
- <20240922130709.1946893-4-zhiw@nvidia.com>
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2061.outbound.protection.outlook.com [40.107.223.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B3510E344;
+ Mon,  7 Oct 2024 13:28:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mc5Iij4Tw7cStvJ0lwXyQzaobA+wXR441Ut9+FWrbzBV0o6bPCKX2U+rxba8U4UAUZp/Rc+bksmCaO9+QuUfvonU+QnneUKLmh0Bv1wdqAtUDFd0AAQhuHped9eE9orXJRWCr6qK5i9iQk0Pe5JgknrE1INuzXHi3P2EcgXe/uWuBkRd1WAFbQviGvNpFmzGVVtxb1osZiTEwxVxal1SVX4QHu6LXCe+byRzJAYduDiaRwIMlsg9MRFJnEzV5nefCAS5K6yeFDdCLK9ETR0PahIjP2k+QKVE3HDr+CeXfTyGBdkKTy21x2yTwdLFlcvA+rNCrzN1wmytYbz80btZaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=BfFbYUgQaLC2eLhsTkxb0rcsfX9WdXzWD8D9aIKPsaI=;
+ b=QeJUl0GQm+kNSIgYRO1oIZCQQm3flY5VAN03IBrJSUn2qybCnl9cfZhYn1lRozSdBfAza3FRdQ8VCnLU2PAnU9t2BTECqY4VmXUpEl0W1kdyAIjIfFpilsbROMhzmnUoh3dc6BMbw8r4zUTsBgWO/ZQodSGyainqWPrbg+ZsOf9tR3r2T/tssnU0yHS6HwIb/AvfFx+YCh7qaRmoPv+abNjYRfNWRTRVNp5tz8ZI5hS0FhB2gX0bSRFKpgAqypZNNc4T6Idd69zFrU6oGO5q9fZx5EPpxn5Wz5b7FHnN9RQr1b688CsYLBaepxYcZwyDHC9vzIFBdoV4W4DVnHHdow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.118.232) smtp.rcpttodomain=redhat.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BfFbYUgQaLC2eLhsTkxb0rcsfX9WdXzWD8D9aIKPsaI=;
+ b=ChKbEfOD7Mmcq3d7hpjg07haWDXH7AKOIFgaefYdSqfvJUemALBzsY3FnhQ4ziTYfIkQKc7eQQu8yqwvMXIYhskPedDcDqoUMLvaTBvvCe8TXddpRb6A3km7C+ebO8AZ0fIKMD1uQ5fDyVpctWtuMFDJ95P5OGNtkeyV4gJ+1HdhTf4MG4Y7s8+TOMfrSJA0zflbBpGSOPBzHkX3hCB2llWQjnnrvBgprCJa7MT/6cz+VufBsghfkZeMMo+TLZqZgFREzn04fVWhyt8zg8RRPrnwcP0xokjsPJrE9w8MikOyCnD46Jqd2sVf1TrLnfZ5yvdCykwmlElT4UkfiOwQtQ==
+Received: from PH8PR15CA0008.namprd15.prod.outlook.com (2603:10b6:510:2d2::27)
+ by LV3PR12MB9142.namprd12.prod.outlook.com (2603:10b6:408:198::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Mon, 7 Oct
+ 2024 13:28:48 +0000
+Received: from CY4PEPF0000EE31.namprd05.prod.outlook.com
+ (2603:10b6:510:2d2:cafe::21) by PH8PR15CA0008.outlook.office365.com
+ (2603:10b6:510:2d2::27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.21 via Frontend
+ Transport; Mon, 7 Oct 2024 13:28:47 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.118.232) by
+ CY4PEPF0000EE31.mail.protection.outlook.com (10.167.242.37) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8048.13 via Frontend Transport; Mon, 7 Oct 2024 13:28:47 +0000
+Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
+ (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 7 Oct 2024
+ 06:28:39 -0700
+Received: from drhqmail201.nvidia.com (10.126.190.180) by
+ drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.4; Mon, 7 Oct 2024 06:28:38 -0700
+Received: from vdi.nvidia.com (10.127.8.9) by mail.nvidia.com (10.126.190.180)
+ with Microsoft SMTP Server id 15.2.1544.4 via Frontend Transport;
+ Mon, 7 Oct 2024 06:28:36 -0700
+From: Yonatan Maman <ymaman@nvidia.com>
+To: <kherbst@redhat.com>, <lyude@redhat.com>, <dakr@redhat.com>,
+ <airlied@gmail.com>, <daniel@ffwll.ch>, <bskeggs@nvidia.com>,
+ <jglisse@redhat.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>
+CC: Yonatan Maman <Ymaman@Nvidia.com>, <linux-kernel@vger.kernel.org>,
+ <stable@vger.kernel.org>
+Subject: 
+Date: Mon, 7 Oct 2024 16:26:58 +0300
+Message-ID: <20241007132700.982800-1-ymaman@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240922130709.1946893-4-zhiw@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE31:EE_|LV3PR12MB9142:EE_
+X-MS-Office365-Filtering-Correlation-Id: 16c175d8-2ceb-4e02-41b9-08dce6d3f94f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|36860700013|7416014|376014|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?egPscBrw/0QXRCScki1GBKlbVSQiicJkKkjHvTEbblF5ZJrjDbRJ9E+wWgeQ?=
+ =?us-ascii?Q?BmzDI2D4u8UAHsIqPWcwjK1gujAaXejtRgvST7bOWeN2zZv8qVsRlaj8EGBG?=
+ =?us-ascii?Q?j9T6p9KoiiMg3FJgvKYLv4zta17nnrLH+7c6RAr+YcgRiR0dF4dnS8hBSL9J?=
+ =?us-ascii?Q?r+MBo9mrXD/GDo/yFmW6jdwkvlKKRsRvbrw98UbcgL3iz7KImdb7ermBQoDE?=
+ =?us-ascii?Q?VD53VtxpDgFzVgZqUgCKk9ZG4yMNI0GLB4d1CyzNSUB2V6l9zAVB7Qtq8P70?=
+ =?us-ascii?Q?03S5JYXgflQLOjERuvtN1HAurCKJOWWWUpZjhi8vzK0WLnGirkBb+otLJ2Bm?=
+ =?us-ascii?Q?Af1ivp8/QRdLuMDkJCuAgUfyal+BVevgJU+S7LWtGJ4MQine5HrDDfDA9lLh?=
+ =?us-ascii?Q?7mCXdPna1uxXU6xZchIrn+wAdMjMg1cLH31G5REzOubbEWP74ObToC98qusZ?=
+ =?us-ascii?Q?xbjiPAC9InHjZ0JcGwoBk8t1TfEyc8cyfXRFakS3/4nccFysma2JgMfzf+I7?=
+ =?us-ascii?Q?kmEePkvCFTAaSBciRGMBPUp2hgRo3tj2ZCqaZLMaH6ytT++JOtNvXqSlIpVR?=
+ =?us-ascii?Q?bC4IYdJYzPRrimKiiISgFaL7Q1NYxsL7ZVoko/IT+26TcAT+1HzfWfzonwD7?=
+ =?us-ascii?Q?uc0+drYP3UmDhLhTint80eHO8psRhD7B3qJ33N8qfYAfeCy1Ti8+zq1l9lwO?=
+ =?us-ascii?Q?U9dGjIFUKB0ycd8KcrciB0TyW6hwmMKFg2gqNvCRMulMTyp6IH25v8k/44hK?=
+ =?us-ascii?Q?u8eC9zKNamVvmpiK1FkpR3lM6bT8VKnx+WhXgSGf8L1DcU6JkQSaRnXlZ7FE?=
+ =?us-ascii?Q?tUVMLargmTHCQw443hUFynrj/A/9Apd4+Mvl++eIKQNk0m4GEJNXhjoNh/ec?=
+ =?us-ascii?Q?zN4XtIjyATRYts3/OY3QlodQskaO3d4fUj3xYDxPmU2l4+4jylUlcJX8eYDT?=
+ =?us-ascii?Q?DxMdLfOkFA8guEwnXCkPpNncgJ74RgE2h/hN7HDYSInVyrW7pQUnQO3vZaLB?=
+ =?us-ascii?Q?Oh3oH0GafZakv+kHtFzotu1QSb518jZ2EFQL2jcj/bsv4ffzXrXspu0K1pEO?=
+ =?us-ascii?Q?sheTZZeZByuuUm4QD0YlOO8kAC9NBNDtm+pul9xkMr9gfBcD1+CWNaAv7z+t?=
+ =?us-ascii?Q?c0xxswBR+nUncI1bg9ixx8WAg3vSuct5MTt3nOuz0s2h6WK+u6w7tX0/2zXL?=
+ =?us-ascii?Q?78CGKLMc7nGMlgdqvITYam2ZOKYKHgxLcVlhcrgq8o1yM6ZPCjoUkfEpseHJ?=
+ =?us-ascii?Q?+u1Ir/xjtZ7kDRjIFUXBjd9x4f5uz/1YY9s7P8JfKdJXShvmK/7SNQRffzvA?=
+ =?us-ascii?Q?ErHHr3fEtg7OstcxCFhgQnaIDAViYWAQT8lP2gzSC1uZmsDDTz/vIbQlKr6t?=
+ =?us-ascii?Q?0pqn/oQA4r6NiZrM7vXwLisSv1IV?=
+X-Forefront-Antispam-Report: CIP:216.228.118.232; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc7edge1.nvidia.com; CAT:NONE;
+ SFS:(13230040)(1800799024)(36860700013)(7416014)(376014)(82310400026); DIR:OUT;
+ SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2024 13:28:47.3881 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16c175d8-2ceb-4e02-41b9-08dce6d3f94f
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.118.232];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE31.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9142
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,309 +139,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Sep 22, 2024 at 06:07:09AM -0700, Zhi Wang wrote:
-> The max RPC size is 16 pages (including the RPC header). To send an RPC
-> larger than 16 pages, nvkm should split it into multiple RPCs and send
-> it accordingly. The first of the split RPCs has the expected function
-> number, while the rest of the split RPCs are sent with function number
-> as NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD. GSP will consume the split
-> RPCs from the cmdq and always write the result back to the msgq. The
-> result is also formed as split RPCs.
-> 
-> However, NVKM is able to send split RPC when dealing with large RPCs,
-> but totally not aware of handling the return of the large RPCs, which
-> are the split RPC in the msgq. Thus, it keeps dumping the unknown RPC
-> messages from msgq, which is actually CONTINUATION_RECORD message,
-> discard them unexpectly. Thus, the caller will not be able to consume
-> the result from GSP.
-> 
-> Introduce the handling of split RPCs on the msgq path. Slightly
-> re-factor the low-level part of receiving RPCs from the msgq, RPC
-> vehicle handling to merge the split RPCs back into a large RPC before
-> handling it to the upper level. Thus, the upper-level of RPC APIs don't
-> need to be heavily changed.
-> 
-> Signed-off-by: Zhi Wang <zhiw@nvidia.com>
-> ---
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 172 ++++++++++++------
->  1 file changed, 121 insertions(+), 51 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> index 49721935013b..ec4ab732997a 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-> @@ -72,6 +72,21 @@ struct r535_gsp_msg {
->  
->  #define GSP_MSG_HDR_SIZE offsetof(struct r535_gsp_msg, data)
->  
-> +struct nvfw_gsp_rpc {
-> +	u32 header_version;
-> +	u32 signature;
-> +	u32 length;
-> +	u32 function;
-> +	u32 rpc_result;
-> +	u32 rpc_result_private;
-> +	u32 sequence;
-> +	union {
-> +		u32 spare;
-> +		u32 cpuRmGfid;
-> +	};
-> +	u8  data[];
-> +};
-> +
->  static int
->  r535_rpc_status_to_errno(uint32_t rpc_status)
->  {
-> @@ -87,12 +102,12 @@ r535_rpc_status_to_errno(uint32_t rpc_status)
->  }
->  
->  static void *
-> -r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime)
-> +r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime,
-> +		   u8 *msg, bool skip_copy_rpc_header)
+From: Yonatan Maman <Ymaman@Nvidia.com>
 
-This function now has very specific expectations on the memory that has to be
-allocated by the caller, which is dependent on multiple factors, i.e.
-`skip_copy_rpc_header`, `prepc`, etc. and also exposes the burden to free the
-memory on failure to the caller.
+Date: Mon, 7 Oct 2024 14:48:26 +0300
+Subject: [PATCH v2 0/2] drm/nouveau/dmem: Fix Memory Leaking and Device Channels configuration
 
-Besides that, I think the name `r535_gsp_msgq_wait` becomes misleading, it has
-quite some more semantics than just that meanwhile.
+This patch series addresses two critical issues in the Nouveau driver
+related to device channels, error handling, and memory leaks.
 
-I think shouldn't open-code all this, instead I think it would be better to wrap
-all relevant arguments in a dedicated state structure that explains all the
-different cases and conditionals, and build a properly documented state machine
-around it.
+- Memory Leak in migrate_to_ram: The migrate_to_ram function was
+  identified as leaking memory when a copy push command fails. This
+  results in the function returning a dirty HIGH_USER page, which can
+  expose sensitive information and pose a security risk. To mitigate
+  this vulnerability, the patch ensures that a zero page is allocated for
+  the destination page, thereby preventing memory leaks and enhancing
+  driver security in case of failure.
 
->  {
->  	struct r535_gsp_msg *mqe;
->  	u32 size, rptr = *gsp->msgq.rptr;
->  	int used;
-> -	u8 *msg;
->  	u32 len;
->  
->  	size = DIV_ROUND_UP(GSP_MSG_HDR_SIZE + repc, GSP_PAGE_SIZE);
-> @@ -123,13 +138,13 @@ r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime)
->  
->  	size = ALIGN(repc + GSP_MSG_HDR_SIZE, GSP_PAGE_SIZE);
->  
-> -	msg = kvmalloc(repc, GFP_KERNEL);
-> -	if (!msg)
-> -		return ERR_PTR(-ENOMEM);
-> -
->  	len = ((gsp->msgq.cnt - rptr) * GSP_PAGE_SIZE) - sizeof(*mqe);
->  	len = min_t(u32, repc, len);
-> -	memcpy(msg, mqe->data, len);
-> +	if (!skip_copy_rpc_header)
-> +		memcpy(msg, mqe->data, len);
-> +	else
-> +		memcpy(msg, mqe->data + sizeof(struct nvfw_gsp_rpc),
-> +		       len - sizeof(struct nvfw_gsp_rpc));
->  
->  	repc -= len;
->  
-> @@ -145,10 +160,91 @@ r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 repc, u32 *prepc, int *ptime)
->  	return msg;
->  }
->  
-> +static void
-> +r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl)
-> +{
-> +	if (gsp->subdev.debug >= lvl) {
-> +		nvkm_printk__(&gsp->subdev, lvl, info,
-> +			      "msg fn:%d len:0x%x/0x%zx res:0x%x resp:0x%x\n",
-> +			      msg->function, msg->length, msg->length - sizeof(*msg),
-> +			      msg->rpc_result, msg->rpc_result_private);
-> +		print_hex_dump(KERN_INFO, "msg: ", DUMP_PREFIX_OFFSET, 16, 1,
-> +			       msg->data, msg->length - sizeof(*msg), true);
-> +	}
-> +}
-> +
->  static void *
-> -r535_gsp_msgq_recv(struct nvkm_gsp *gsp, u32 repc, int *ptime)
-> +r535_gsp_msgq_recv_continuation(struct nvkm_gsp *gsp, u32 *payload_size,
-> +				u8 *buf, int *ptime)
->  {
-> -	return r535_gsp_msgq_wait(gsp, repc, NULL, ptime);
-> +	struct nvkm_subdev *subdev = &gsp->subdev;
-> +	struct nvfw_gsp_rpc *msg;
-> +	u32 size;
-> +
-> +	/* Peek next message */
-> +	msg = r535_gsp_msgq_wait(gsp, sizeof(*msg), &size, ptime, NULL,
-> +				 false);
-> +	if (IS_ERR_OR_NULL(msg))
-> +		return msg;
-> +
-> +	if (msg->function != NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD) {
-> +		nvkm_error(subdev, "Not a continuation of a large RPC\n");
-> +		r535_gsp_msg_dump(gsp, msg, NV_DBG_ERROR);
-> +		return ERR_PTR(-EIO);
-> +	}
-> +
-> +	*payload_size = msg->length - sizeof(*msg);
-> +	return r535_gsp_msgq_wait(gsp, msg->length, NULL, ptime, buf,
-> +				  true);
-> +}
-> +
-> +static void *
-> +r535_gsp_msgq_recv(struct nvkm_gsp *gsp, u32 msg_repc, u32 total_repc,
-> +		   int *ptime)
-> +{
-> +	struct nvfw_gsp_rpc *msg;
-> +	const u32 max_msg_size = (16 * 0x1000) - sizeof(struct r535_gsp_msg);
-> +	const u32 max_rpc_size = max_msg_size - sizeof(*msg);
-> +	u32 repc = total_repc;
-> +	u8 *buf, *next;
-> +
-> +	if (WARN_ON(msg_repc > max_msg_size))
-> +		return NULL;
-> +
-> +	buf = kvmalloc(max_t(u32, msg_repc, total_repc + sizeof(*msg)), GFP_KERNEL);
-> +	if (!buf)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	msg = r535_gsp_msgq_wait(gsp, msg_repc, NULL, ptime, buf, false);
-> +	if (IS_ERR_OR_NULL(msg)) {
-> +		kfree(buf);
-> +		return msg;
-> +	}
-> +
-> +	if (total_repc <= max_rpc_size)
-> +		return buf;
-> +
-> +	next = buf;
-> +
-> +	next += msg_repc;
-> +	repc -= msg_repc - sizeof(*msg);
-> +
-> +	while (repc) {
-> +		struct nvfw_gsp_rpc *cont_msg;
-> +		u32 size;
-> +
-> +		cont_msg = r535_gsp_msgq_recv_continuation(gsp, &size, next,
-> +						      ptime);
-> +		if (IS_ERR_OR_NULL(cont_msg)) {
-> +			kfree(buf);
-> +			return cont_msg;
-> +		}
-> +		repc -= size;
-> +		next += size;
-> +	}
-> +
-> +	msg->length = total_repc + sizeof(*msg);
-> +	return buf;
->  }
->  
->  static int
-> @@ -236,40 +332,12 @@ r535_gsp_cmdq_get(struct nvkm_gsp *gsp, u32 argc)
->  	return cmd->data;
->  }
->  
-> -struct nvfw_gsp_rpc {
-> -	u32 header_version;
-> -	u32 signature;
-> -	u32 length;
-> -	u32 function;
-> -	u32 rpc_result;
-> -	u32 rpc_result_private;
-> -	u32 sequence;
-> -	union {
-> -		u32 spare;
-> -		u32 cpuRmGfid;
-> -	};
-> -	u8  data[];
-> -};
-> -
->  static void
->  r535_gsp_msg_done(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg)
->  {
->  	kvfree(msg);
->  }
->  
-> -static void
-> -r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl)
-> -{
-> -	if (gsp->subdev.debug >= lvl) {
-> -		nvkm_printk__(&gsp->subdev, lvl, info,
-> -			      "msg fn:%d len:0x%x/0x%zx res:0x%x resp:0x%x\n",
-> -			      msg->function, msg->length, msg->length - sizeof(*msg),
-> -			      msg->rpc_result, msg->rpc_result_private);
-> -		print_hex_dump(KERN_INFO, "msg: ", DUMP_PREFIX_OFFSET, 16, 1,
-> -			       msg->data, msg->length - sizeof(*msg), true);
-> -	}
-> -}
-> -
->  static struct nvfw_gsp_rpc *
->  r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 repc)
->  {
-> @@ -279,11 +347,11 @@ r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 repc)
->  	u32 size;
->  
->  retry:
-> -	msg = r535_gsp_msgq_wait(gsp, sizeof(*msg), &size, &time);
-> +	msg = r535_gsp_msgq_wait(gsp, sizeof(*msg), &size, &time, NULL, false);
->  	if (IS_ERR_OR_NULL(msg))
->  		return msg;
->  
-> -	msg = r535_gsp_msgq_recv(gsp, msg->length, &time);
-> +	msg = r535_gsp_msgq_recv(gsp, msg->length, repc, &time);
->  	if (IS_ERR_OR_NULL(msg))
->  		return msg;
->  
-> @@ -736,6 +804,7 @@ r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *argv, bool wait, u32 repc)
->  	mutex_lock(&gsp->cmdq.mutex);
->  	if (rpc_size > max_rpc_size) {
->  		const u32 fn = rpc->function;
-> +		u32 remain_rpc_size = rpc_size;
->  
->  		/* Adjust length, and send initial RPC. */
->  		rpc->length = sizeof(*rpc) + max_rpc_size;
-> @@ -746,11 +815,11 @@ r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *argv, bool wait, u32 repc)
->  			goto done;
->  
->  		argv += max_rpc_size;
-> -		rpc_size -= max_rpc_size;
-> +		remain_rpc_size -= max_rpc_size;
->  
->  		/* Remaining chunks sent as CONTINUATION_RECORD RPCs. */
-> -		while (rpc_size) {
-> -			u32 size = min(rpc_size, max_rpc_size);
-> +		while (remain_rpc_size) {
-> +			u32 size = min(remain_rpc_size, max_rpc_size);
->  			void *next;
->  
->  			next = r535_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD, size);
-> @@ -766,19 +835,20 @@ r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *argv, bool wait, u32 repc)
->  				goto done;
->  
->  			argv += size;
-> -			rpc_size -= size;
-> +			remain_rpc_size -= size;
->  		}
->  
->  		/* Wait for reply. */
-> -		if (wait) {
-> -			rpc = r535_gsp_msg_recv(gsp, fn, repc);
-> -			if (!IS_ERR_OR_NULL(rpc))
-> +		rpc = r535_gsp_msg_recv(gsp, fn, rpc_size);
-> +		if (!IS_ERR_OR_NULL(rpc)) {
-> +			if (wait)
->  				repv = rpc->data;
-> -			else
-> -				repv = rpc;
-> -		} else {
-> -			repv = NULL;
-> -		}
-> +			else {
-> +				nvkm_gsp_rpc_done(gsp, rpc);
-> +				repv = NULL;
-> +			}
-> +		} else
-> +			repv = wait ? rpc : NULL;
->  	} else {
->  		repv = r535_gsp_rpc_send(gsp, argv, wait, repc);
->  	}
-> -- 
-> 2.34.1
-> 
+- Privileged Error in Copy Engine Channel: An error was observed when
+  the nouveau_dmem_copy_one function is executed, leading to a Host Copy
+  Engine Privileged error on channel 1. The patch resolves this by
+  adjusting the Copy Engine channel configuration to permit privileged
+  push commands, resolving the error.
+
+Changes since V1:
+- Fixed version according to Danilo Krummrich's comments.
+
+Yonatan Maman (2):
+  nouveau/dmem: Fix privileged error in copy engine channel
+  nouveau/dmem: Fix memory leak in `migrate_to_ram` upon copy error
+
+ drivers/gpu/drm/nouveau/nouveau_dmem.c | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c  | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.34.1
+
