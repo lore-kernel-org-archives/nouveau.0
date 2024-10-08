@@ -4,59 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A629D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2AAFD5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C5C10EA02;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C87C10EAC4;
 	Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="Ek+r28qN";
+	dkim=permerror (0-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NRYiLHUC";
 	dkim-atps=neutral
-X-Greylist: delayed 307 seconds by postgrey-1.36 at gabe;
- Thu, 03 Apr 2025 10:22:43 UTC
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B15A110E995
- for <nouveau@lists.freedesktop.org>; Thu,  3 Apr 2025 10:22:43 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZSyNF0K1Jz9tXs;
- Thu,  3 Apr 2025 12:17:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1743675453; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=IbuCeSaYR73n/sLJzZvyflx5oDaQunwvpjdo2sxXDKY=;
- b=Ek+r28qNYkvF+vrm5VPf/pAb4WCWPfErtyE2i9ub8FPKksW8HiQet+dZrPzzq0fhRlmJSm
- 56TsjVqG7tdGq0Uh0XRTcEsTAfRLAzFZV0tGbRxNvSVN/fyNmFzXHWzTcU2PYPG77sIUKZ
- x3Fsh6gJJtgoKQnMGiAcA0ZxPllgD5FOT/jK+UAaC+C9PrxnGU6Lrbu/GpUUAq9iDW8uuN
- MnSTVA9b2Cn1VYPYHp1ogKcvTx1UcamDU7ksI+i4pdEOIbJufN2cHCBK1p0o1uWNjyQA3z
- KWL9dDANMeIk2g0KwA/YR4u9SqwaLh7mIJw5e50PkKkymO2zghKkMww1hT0Dog==
-Message-ID: <84b0db2de7a26aab00778bcaca15a0dffaa9c32a.camel@mailbox.org>
-Subject: Re: [PATCH v2] drm/nouveau: Prevent signalled fences in pending list
-From: Philipp Stanner <phasta@mailbox.org>
-To: Philipp Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org, stable@vger.kernel.org
-Date: Thu, 03 Apr 2025 12:17:29 +0200
-In-Reply-To: <20250403101353.42880-2-phasta@kernel.org>
-References: <20250403101353.42880-2-phasta@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com
+ [209.85.218.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 976FD10E5B9
+ for <nouveau@lists.freedesktop.org>; Tue,  8 Oct 2024 20:38:06 +0000 (UTC)
+Received: by mail-ej1-f53.google.com with SMTP id
+ a640c23a62f3a-a99388e3009so471027566b.3
+ for <nouveau@lists.freedesktop.org>; Tue, 08 Oct 2024 13:38:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728419885; x=1729024685;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
+ b=NRYiLHUCQ7TImUks4fAatmLv/c5uDIiISlrDWnTFQR02uom9zRcW+Uyi630EwtrLOS
+ rpn+clus4PoEaoSKGREcBZOO2TeBK8i5QT71Yh24xUCMM4+QelwwhGX8uPf306b+WpN6
+ h3Ibpnr5FCh7DfMRkj0zKWnT4q92PmClirZcHgUJjwk2Y67XZ2JnngcsUIxzaQPEZFAk
+ lse2Gk04nm8/j/zP2JcnXCFg7oXyNfhHisd2bbh8Fo0IPEJ9uLkhBf3DWnCN4R5kk/va
+ AdIQfqmNlleVyM7MvWnO7ARvwiYVRvMi9vgLzbzWZbWEfUvXyryK0A7KH3BUim9hkKEm
+ 7zzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1728419885; x=1729024685;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=jBKc56vBxPYaOUWcC+VFZKlnp8sdizUoPysD1KL2n2Y=;
+ b=WGdqH5LHSG3TKXSImNNcdjEJlMezqt5xbNjnKflAORqRUB1V8a+BWOshyRdMlXbyeY
+ SAlHtCVOUG4BLz+rCm+nPvjC9zZ54/cX88xqFEtRxIyDGJp1sEejZzrYAcCEPR+yZp8D
+ 5VCvFvbh3ZJ/RiDUblWaawX2QYq2xumWt7bxkzIl2c22UV2Ls/EPebMx46pa3ZuumUyE
+ 4YyHxCG40U/wTh8gFYKjsYmhjbu8UYTVAQn1KZKAquVFHNCxxiTM4TeSkDL1C3RkLFfv
+ iz6Bsg33IG93vKfZvdUQPwlRJ3CrOh3PLzIk9/Z0pfny4K/LQD52w9g/6ItDccRjrRA0
+ UraA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWOl1qVx9T5BBVE2JB61U9Vzv1cS0iUCNLHDLW+h7o2JrkqMQl0krNMiZNd/0GVtvqTeUGGDZ+n@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyD3inEg+1vZOa83gz5xwiP5n2xOci0PWfdZxSDm/xTWj0ryMi1
+ 5Jl9aRvKDLr5bDBq8WtBZtNrpS619rDPP035vuiFjBdgbdcP72wRVv4xmDr5/j4=
+X-Google-Smtp-Source: AGHT+IFQsuFQDnMORn6KRqls83kXMRALTmz1xji/Zv3nzyXsaV17OwyYMIY5gtZ7u9n9SjQRNHRlFg==
+X-Received: by 2002:a17:907:94d4:b0:a8d:250a:52b2 with SMTP id
+ a640c23a62f3a-a998d114bbemr3268366b.6.1728419884897; 
+ Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:c420:a9b6:c5e1:5b65])
+ by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-a996274deeesm196971266b.103.2024.10.08.13.38.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 08 Oct 2024 13:38:04 -0700 (PDT)
+Date: Tue, 8 Oct 2024 22:38:02 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ linux-bluetooth@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-crypto@vger.kernel.org, 
+ dmaengine@vger.kernel.org, linux-gpio@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+ linux-i3c@lists.infradead.org, 
+ linux-iio@vger.kernel.org, linux-input@vger.kernel.org,
+ patches@opensource.cirrus.com, 
+ iommu@lists.linux.dev, imx@lists.linux.dev, linux-mediatek@lists.infradead.org,
+ linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+ linux-mtd@lists.infradead.org, 
+ netdev@vger.kernel.org, linux-wireless@vger.kernel.org,
+ linux-pci@vger.kernel.org, 
+ linux-phy@lists.infradead.org, linux-pwm@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org, 
+ linux-sound@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-staging@lists.linux.dev, 
+ linux-usb@vger.kernel.org, linux-serial@vger.kernel.org,
+ greybus-dev@lists.linaro.org, asahi@lists.linux.dev, rafael@kernel.org,
+ Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH 00/51] treewide: Switch to __pm_runtime_put_autosuspend()
+Message-ID: <ttmnzgsdyng5vab63pvj7csrotbsmwnultjelvdotrvyg2snac@iv7afgect5f3>
+References: <20241004094101.113349-1-sakari.ailus@linux.intel.com>
+ <CAPDyKFp0N6UJhnHS164Tdf=xkWB0jzq65L9TdvYazeBQ-6WjeQ@mail.gmail.com>
+ <20241007184924.GH14766@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-X-MBO-RS-META: uxieox9rrfhb7wiwaja9txij87nw5748
-X-MBO-RS-ID: f3ebb4b2b4aec552ea1
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="2ocqjla6tcmukjn3"
+Content-Disposition: inline
+In-Reply-To: <20241007184924.GH14766@pendragon.ideasonboard.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,226 +105,83 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-04-03 at 12:13 +0200, Philipp Stanner wrote:
-> Nouveau currently relies on the assumption that dma_fences will only
-> ever get signalled through nouveau_fence_signal(), which takes care
-> of
-> removing a signalled fence from the list nouveau_fence_chan.pending.
+
+--2ocqjla6tcmukjn3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Mon, Oct 07, 2024 at 09:49:24PM +0300, Laurent Pinchart wrote:
+> On Fri, Oct 04, 2024 at 04:38:36PM +0200, Ulf Hansson wrote:
+> > On Fri, 4 Oct 2024 at 11:41, Sakari Ailus <sakari.ailus@linux.intel.com=
+> wrote:
+> > >
+> > > Hello everyone,
+> > >
+> > > This set will switch the users of pm_runtime_put_autosuspend() to
+> > > __pm_runtime_put_autosuspend() while the former will soon be re-purpo=
+sed
+> > > to include a call to pm_runtime_mark_last_busy(). The two are almost
+> > > always used together, apart from bugs which are likely common. Going
+> > > forward, most new users should be using pm_runtime_put_autosuspend().
+> > >
+> > > Once this conversion is done and pm_runtime_put_autosuspend() re-purp=
+osed,
+> > > I'll post another set to merge the calls to __pm_runtime_put_autosusp=
+end()
+> > > and pm_runtime_mark_last_busy().
+> >=20
+> > That sounds like it could cause a lot of churns.
+> >=20
+> > Why not add a new helper function that does the
+> > pm_runtime_put_autosuspend() and the pm_runtime_mark_last_busy()
+> > things? Then we can start moving users over to this new interface,
+> > rather than having this intermediate step?
 >=20
-> This self-imposed rule is violated in nouveau_fence_done(), where
-> dma_fence_is_signaled() can signal the fence without removing it from
-> the list. This enables accesses to already signalled fences through
-> the
-> list, which is a bug.
->=20
-> Furthermore, it must always be possible to use standard dma_fence
-> methods an a dma_fence and observe valid behavior. The canonical way
-> of
-> ensuring that signalling a fence has additional effects is to add
-> those
-> effects to a callback and register it on that fence.
->=20
-> Move the code from nouveau_fence_signal() into a dma_fence callback.
-> Register that callback when creating the fence.
->=20
-> Cc: <stable@vger.kernel.org> # 4.10+
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> ---
-> Changes in v2:
-> =C2=A0 - Remove Fixes: tag. (Danilo)
-> =C2=A0 - Remove integer "drop" and call nvif_event_block() in the fence
-> =C2=A0=C2=A0=C2=A0 callback. (Danilo)
-> ---
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 52 +++++++++++++---------=
--
-> --
-> =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.h |=C2=A0 1 +
-> =C2=A02 files changed, 29 insertions(+), 24 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> index 7cc84472cece..cf510ef9641a 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> @@ -50,24 +50,24 @@ nouveau_fctx(struct nouveau_fence *fence)
-> =C2=A0	return container_of(fence->base.lock, struct
-> nouveau_fence_chan, lock);
-> =C2=A0}
-> =C2=A0
-> -static int
-> -nouveau_fence_signal(struct nouveau_fence *fence)
-> +static void
-> +nouveau_fence_cleanup_cb(struct dma_fence *dfence, struct
-> dma_fence_cb *cb)
-> =C2=A0{
-> -	int drop =3D 0;
-> +	struct nouveau_fence_chan *fctx;
-> +	struct nouveau_fence *fence;
-> +
-> +	fence =3D container_of(dfence, struct nouveau_fence, base);
-> +	fctx =3D nouveau_fctx(fence);
-> =C2=A0
-> -	dma_fence_signal_locked(&fence->base);
-> =C2=A0	list_del(&fence->head);
-> =C2=A0	rcu_assign_pointer(fence->channel, NULL);
-> =C2=A0
-> =C2=A0	if (test_bit(DMA_FENCE_FLAG_USER_BITS, &fence->base.flags))
-> {
-> -		struct nouveau_fence_chan *fctx =3D
-> nouveau_fctx(fence);
-> -
-> =C2=A0		if (!--fctx->notify_ref)
-> -			drop =3D 1;
-> +			nvif_event_block(&fctx->event);
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	dma_fence_put(&fence->base);
+> I think the API would be nicer if we used the shortest and simplest
+> function names for the most common use cases. Following
+> pm_runtime_put_autosuspend() with pm_runtime_mark_last_busy() is that
+> most common use case. That's why I like Sakari's approach of repurposing
+> pm_runtime_put_autosuspend(), and introducing
+> __pm_runtime_put_autosuspend() for the odd cases where
+> pm_runtime_mark_last_busy() shouldn't be called.
 
-What I realized while coding this v2 is that we might want to think
-about whether we really want the dma_fence_put() in the fence callback?
+That's ok for me. However this patch series isn't the optimal path to
+there because most drivers (i.e. those that already today do
+pm_runtime_mark_last_busy() in combination with
+pm_runtime_put_autosuspend()) have to be patched twice.
 
-It should work fine, since it's exactly identical to the previous
-code's behavior =E2=80=93 but effectively it means that the driver's refere=
-nce
-will be dropped whenever it signals that fence.
+The saner route is: Only convert the drivers with a sole
+pm_runtime_put_autosuspend() (i.e. without pm_runtime_mark_last_busy())
+to __pm_runtime_put_autosuspend(). Then add the mark_last_busy() bits to
+pm_runtime_put_autosuspend() and then drop the explicit calls to
+pm_runtime_mark_last_busy() before pm_runtime_put_autosuspend().
 
-IDK
+(Note this doesn't take into account Rafael's position that
+pm_runtime_put() might be the saner option. My argument applies for that
+conversion analogously.)
 
-P.
+Best regards
+Uwe
 
+--2ocqjla6tcmukjn3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> -	return drop;
-> =C2=A0}
-> =C2=A0
-> =C2=A0static struct nouveau_fence *
-> @@ -93,8 +93,7 @@ nouveau_fence_context_kill(struct
-> nouveau_fence_chan *fctx, int error)
-> =C2=A0		if (error)
-> =C2=A0			dma_fence_set_error(&fence->base, error);
-> =C2=A0
-> -		if (nouveau_fence_signal(fence))
-> -			nvif_event_block(&fctx->event);
-> +		dma_fence_signal_locked(&fence->base);
-> =C2=A0	}
-> =C2=A0	fctx->killed =3D 1;
-> =C2=A0	spin_unlock_irqrestore(&fctx->lock, flags);
-> @@ -127,11 +126,10 @@ nouveau_fence_context_free(struct
-> nouveau_fence_chan *fctx)
-> =C2=A0	kref_put(&fctx->fence_ref, nouveau_fence_context_put);
-> =C2=A0}
-> =C2=A0
-> -static int
-> +static void
-> =C2=A0nouveau_fence_update(struct nouveau_channel *chan, struct
-> nouveau_fence_chan *fctx)
-> =C2=A0{
-> =C2=A0	struct nouveau_fence *fence;
-> -	int drop =3D 0;
-> =C2=A0	u32 seq =3D fctx->read(chan);
-> =C2=A0
-> =C2=A0	while (!list_empty(&fctx->pending)) {
-> @@ -140,10 +138,8 @@ nouveau_fence_update(struct nouveau_channel
-> *chan, struct nouveau_fence_chan *fc
-> =C2=A0		if ((int)(seq - fence->base.seqno) < 0)
-> =C2=A0			break;
-> =C2=A0
-> -		drop |=3D nouveau_fence_signal(fence);
-> +		dma_fence_signal_locked(&fence->base);
-> =C2=A0	}
-> -
-> -	return drop;
-> =C2=A0}
-> =C2=A0
-> =C2=A0static void
-> @@ -152,7 +148,6 @@ nouveau_fence_uevent_work(struct work_struct
-> *work)
-> =C2=A0	struct nouveau_fence_chan *fctx =3D container_of(work, struct
-> nouveau_fence_chan,
-> =C2=A0						=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 uevent_work);
-> =C2=A0	unsigned long flags;
-> -	int drop =3D 0;
-> =C2=A0
-> =C2=A0	spin_lock_irqsave(&fctx->lock, flags);
-> =C2=A0	if (!list_empty(&fctx->pending)) {
-> @@ -161,11 +156,8 @@ nouveau_fence_uevent_work(struct work_struct
-> *work)
-> =C2=A0
-> =C2=A0		fence =3D list_entry(fctx->pending.next,
-> typeof(*fence), head);
-> =C2=A0		chan =3D rcu_dereference_protected(fence->channel,
-> lockdep_is_held(&fctx->lock));
-> -		if (nouveau_fence_update(chan, fctx))
-> -			drop =3D 1;
-> +		nouveau_fence_update(chan, fctx);
-> =C2=A0	}
-> -	if (drop)
-> -		nvif_event_block(&fctx->event);
-> =C2=A0
-> =C2=A0	spin_unlock_irqrestore(&fctx->lock, flags);
-> =C2=A0}
-> @@ -235,6 +227,19 @@ nouveau_fence_emit(struct nouveau_fence *fence)
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &fctx->lock, fctx->context,=
- ++fctx-
-> >sequence);
-> =C2=A0	kref_get(&fctx->fence_ref);
-> =C2=A0
-> +	fence->cb.func =3D nouveau_fence_cleanup_cb;
-> +	/* Adding a callback runs into
-> __dma_fence_enable_signaling(), which will
-> +	 * ultimately run into nouveau_fence_no_signaling(), where a
-> WARN_ON
-> +	 * would fire because the refcount can be dropped there.
-> +	 *
-> +	 * Increment the refcount here temporarily to work around
-> that.
-> +	 */
-> +	dma_fence_get(&fence->base);
-> +	ret =3D dma_fence_add_callback(&fence->base, &fence->cb,
-> nouveau_fence_cleanup_cb);
-> +	dma_fence_put(&fence->base);
-> +	if (ret)
-> +		return ret;
-> +
-> =C2=A0	ret =3D fctx->emit(fence);
-> =C2=A0	if (!ret) {
-> =C2=A0		dma_fence_get(&fence->base);
-> @@ -246,8 +251,7 @@ nouveau_fence_emit(struct nouveau_fence *fence)
-> =C2=A0			return -ENODEV;
-> =C2=A0		}
-> =C2=A0
-> -		if (nouveau_fence_update(chan, fctx))
-> -			nvif_event_block(&fctx->event);
-> +		nouveau_fence_update(chan, fctx);
-> =C2=A0
-> =C2=A0		list_add_tail(&fence->head, &fctx->pending);
-> =C2=A0		spin_unlock_irq(&fctx->lock);
-> @@ -270,8 +274,8 @@ nouveau_fence_done(struct nouveau_fence *fence)
-> =C2=A0
-> =C2=A0		spin_lock_irqsave(&fctx->lock, flags);
-> =C2=A0		chan =3D rcu_dereference_protected(fence->channel,
-> lockdep_is_held(&fctx->lock));
-> -		if (chan && nouveau_fence_update(chan, fctx))
-> -			nvif_event_block(&fctx->event);
-> +		if (chan)
-> +			nouveau_fence_update(chan, fctx);
-> =C2=A0		spin_unlock_irqrestore(&fctx->lock, flags);
-> =C2=A0	}
-> =C2=A0	return dma_fence_is_signaled(&fence->base);
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h
-> b/drivers/gpu/drm/nouveau/nouveau_fence.h
-> index 8bc065acfe35..e6b2df7fdc42 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_fence.h
-> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
-> @@ -10,6 +10,7 @@ struct nouveau_bo;
-> =C2=A0
-> =C2=A0struct nouveau_fence {
-> =C2=A0	struct dma_fence base;
-> +	struct dma_fence_cb cb;
-> =C2=A0
-> =C2=A0	struct list_head head;
-> =C2=A0
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcFmCEACgkQj4D7WH0S
+/k6xnwf/QOZhbtT562rFFa3JIiBatDxTcqyEXoXClrP7jSyQFY/VFzq2S2jRHOFt
+wM6zQUX1bTUqDtC4HozJIbQDjLxd3qFgc5RoTRLV8VhRJbcq9cOo5Nf1h4KJ5Ip9
+nhpzoHwUHoEjEHj1f9UvEWfnFAVCSLFxgb14ZDHZyb2pQue3G5OYI2f2cJYT8YVB
+xQktDFp7rUu4xWDTzoIxNKvR1Ipy5fGxdf9R2/+IQhW64sWuDG2ZH6tAmfn6mEb8
+ecspbesJx+NMbZ06Zl7wqBvyj/DpQGgPaCnWUQ5cI0Of/kOzqxh4+65JK68CLLs0
+/Goin2zz55IZITGC5zHuAA07bW/c7Q==
+=7Wup
+-----END PGP SIGNATURE-----
+
+--2ocqjla6tcmukjn3--
