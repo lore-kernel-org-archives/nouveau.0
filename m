@@ -4,106 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3053CD5AE41
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D38DAD5B160
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB0510EA91;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4199F10EA87;
 	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkKDk/vY";
-	dkim-atps=neutral
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65F2910E0F8
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 13:16:28 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-47775fb6cb4so22429125e9.0
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 05:16:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763903787; x=1764508587; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=vWsYIQ2Ggbhbzka70Nij3a4arpdwqNARnWCMeN/qSWA=;
- b=SkKDk/vYsWozyy5C5m/77TLHZUFPH4So1wMjCa/Osok7L7rjlYLoo/cjw3xtdAsmdg
- a6pQ+XVrMKluNPRfmB2T+DBZmuxxKH4CoPUaqkoFcBZoiAsz1hnfm+REjxbE3/qx8nY+
- qgzC1qcCvlul4yM9/T1i204YwLENTEqGDSaQINWgGHpYrybQUHvU9lBjJ5gm39qComMJ
- wB8FxXhknEjPq9+6E57PkJexh5hEVhSBF11DQkqpiFG7b+LOwt7CeUyJE9FtHx6IzX4i
- H5EkyR+yoN4YRuOrNp/YrMRSNWonLRQr+CPSDAnrfWn0Kw5DAj3lc5cx+C/jvs8ldzX2
- MlJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763903787; x=1764508587;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=vWsYIQ2Ggbhbzka70Nij3a4arpdwqNARnWCMeN/qSWA=;
- b=NapUqMzTy20d2QeqJ0yETlbb72F7iHUJ1VXaYQcV7V676vgVLdJS265DmHr/J5+z7h
- ZqPsgNQFHfkTl4du+o1bqUM+4eQYi0/o1LUVL5J0N5CvLZO8QpodyCL2vOTsqf2cwY6M
- nLSEhCjiHfS1QhiU/+uHF4OoRkYdCT05+CnnYpXDkz/S0XhGToY2Qy2IoieDs+NYpMFL
- zKAs1gFD0O71cUArVPOFs6BSbwCMrxq3zpLHlMUYinco8luy1AS/a95kMa7+WlN4zgUE
- yFITicsZGot/JHVoHlHUjbTefEBul1M67o8jaq8QLAeUILTC+qL3Is1Auqaxb3N5YvNi
- VcTg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWfaLVXCeFjZ+5/iQRTslcdVd5k/21ppW1MCKEISAHlAkPJndoJN9YF1OzladxhDfIugj+8439@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyuHvAdEfhC5dqOyFp09HHGedC81FHj6to+bEt/GuqaE4QXQ1NZ
- hNB9ZaZ5+5z+rnNfKnS92VnkRNWcxBnq473eN3AZnC9dX7l8aEs7ejyJ
-X-Gm-Gg: ASbGncseUH6dbygBzJyQcjdWF3xrn71INuKtUOyRzJiEMkiimkL2Y6v9PInpHXy9XDQ
- fLFjZhCJ8OeGx7AclSqhWxffd+6PZcB8Tz9dl4sBkIwsJo108RYH6zRJWSUsURbgrKp2YqjEFI2
- F/7hO4OsrwR/iiDZD+BAjJS4/zD+N6gGwk6D/GHYfM/4Qp0uVxfe5tpfglUeX1rRygq2R3vw/Ut
- 9iY5+gh0owVsKoaz9F20063r8hHdZZP7KXUSK/ajeCH6hws6zWfuQPtba17kVJ37uThvzqeVUep
- 88GQbRdqBc35JAzS0bqEhExwymseiygmlC08j5TCB5eZwCnQ3GZ/OvZbSl/Rwm/ZQnXdVpJsypj
- rc0IXhADiZ9u0vnqfsoGxbF2qFSHL+hSg1i67l1leelIK8EAGZOZlsmxMdL2sWkUQyJ46/0qjqP
- OZ2gPxBURIC5YlXqCg/lqr/BeySWDvlt0UpG2xGFYkZWN56MhVzssdoMmnS/lUN4rCGJyYlx+wK
- il4LQ==
-X-Google-Smtp-Source: AGHT+IGwu9HAU1GTXcVV6PqyT2WVWbNnyTLYP+26LVoRcWUnFI2rUjGr2LZvtLw3Ln81be9Wp+f1+Q==
-X-Received: by 2002:a05:600c:840f:b0:477:632a:fd67 with SMTP id
- 5b1f17b1804b1-477c10d6d13mr93671615e9.12.1763903786586; 
- Sun, 23 Nov 2025 05:16:26 -0800 (PST)
-Received: from ?IPV6:2a06:5906:2618:cb00:f1a3:6462:6c03:ec0e?
- ([2a06:5906:2618:cb00:f1a3:6462:6c03:ec0e])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42cb7fb919bsm22549569f8f.34.2025.11.23.05.16.25
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 23 Nov 2025 05:16:26 -0800 (PST)
-Message-ID: <7bd3232c-90cc-4e71-8aed-2ac911cb20f9@gmail.com>
-Date: Sun, 23 Nov 2025 13:16:24 +0000
+Received: from szxga08-in.huawei.com (szxga08-in.huawei.com [45.249.212.255])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1976910E824;
+ Thu, 31 Oct 2024 02:04:10 +0000 (UTC)
+Received: from mail.maildlp.com (unknown [172.19.88.194])
+ by szxga08-in.huawei.com (SkyGuard) with ESMTP id 4Xf6gS4DJpz1T9Qn;
+ Thu, 31 Oct 2024 10:01:56 +0800 (CST)
+Received: from kwepemf500004.china.huawei.com (unknown [7.202.181.242])
+ by mail.maildlp.com (Postfix) with ESMTPS id 3D7CE1402E1;
+ Thu, 31 Oct 2024 10:04:08 +0800 (CST)
+Received: from [10.67.110.237] (10.67.110.237) by
+ kwepemf500004.china.huawei.com (7.202.181.242) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.11; Thu, 31 Oct 2024 10:04:07 +0800
+Subject: Re: [PATCH] drm/nouveau/gr/gf100: Fix missing unlock in
+ gf100_gr_chan_new()
+To: Lyude Paul <lyude@redhat.com>, <kherbst@redhat.com>
+CC: <dakr@redhat.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <colin.i.king@gmail.com>, <rdunlap@infradead.org>, <bskeggs@redhat.com>,
+ <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>
+References: <20241026173844.2392679-1-lihuafei1@huawei.com>
+ <10f8d1c07a3bf49d643a06ae0b6c11bd4c9dd880.camel@redhat.com>
+From: Li Huafei <lihuafei1@huawei.com>
+Message-ID: <67c66881-231f-1a35-caab-0a6327365e58@huawei.com>
+Date: Thu, 31 Oct 2024 10:04:07 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.9.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/10] rust: kernel: Update ARef and AlwaysRefCounted
- imports to use sync::aref
-To: Shankari Anand <shankari.ak0208@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
- <20251123092438.182251-6-shankari.ak0208@gmail.com>
+In-Reply-To: <10f8d1c07a3bf49d643a06ae0b6c11bd4c9dd880.camel@redhat.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-From: Igor Korotin <igor.korotin.linux@gmail.com>
-In-Reply-To: <20251123092438.182251-6-shankari.ak0208@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+X-Originating-IP: [10.67.110.237]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ kwepemf500004.china.huawei.com (7.202.181.242)
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,61 +59,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello Shankari
 
-On 11/23/2025 9:24 AM, Shankari Anand wrote:
-> Update call sites in `i2c.rs` to import `ARef` and
-> `AlwaysRefCounted` from `sync::aref` instead of `types`.
+
+On 2024/10/30 2:42, Lyude Paul wrote:
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
 > 
-> This aligns with the ongoing effort to move `ARef` and
-> `AlwaysRefCounted` to sync.
+> Will push upstream in a moment
+>
+Thank you for reviewing.
+
+Thanks,
+Huafei
+> On Sun, 2024-10-27 at 01:38 +0800, Li Huafei wrote:
+>> When the call to gf100_grctx_generate() fails, unlock gr->fecs.mutex
+>> before returning the error.
+>>
+>> Fixes smatch warning:
+>>
+>> drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c:480 gf100_gr_chan_new() warn: inconsistent returns '&gr->fecs.mutex'.
+>>
+>> Fixes: ca081fff6ecc ("drm/nouveau/gr/gf100-: generate golden context during first object alloc")
+>> Signed-off-by: Li Huafei <lihuafei1@huawei.com>
+>> ---
+>>  drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+>> index 060c74a80eb1..3ea447f6a45b 100644
+>> --- a/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+>> +++ b/drivers/gpu/drm/nouveau/nvkm/engine/gr/gf100.c
+>> @@ -443,6 +443,7 @@ gf100_gr_chan_new(struct nvkm_gr *base, struct nvkm_chan *fifoch,
+>>  		ret = gf100_grctx_generate(gr, chan, fifoch->inst);
+>>  		if (ret) {
+>>  			nvkm_error(&base->engine.subdev, "failed to construct context\n");
+>> +			mutex_unlock(&gr->fecs.mutex);
+>>  			return ret;
+>>  		}
+>>  	}
 > 
-> Suggested-by: Benno Lossin <lossin@kernel.org>
-> Link: https://github.com/Rust-for-Linux/linux/issues/1173
-> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
-> ---
->   rust/kernel/i2c.rs | 10 ++++------
->   1 file changed, 4 insertions(+), 6 deletions(-)
-> 
-> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
-> index 1aee46f59460..c50ca464d87c 100644
-> --- a/rust/kernel/i2c.rs
-> +++ b/rust/kernel/i2c.rs
-> @@ -17,10 +17,8 @@
->       of,
->       prelude::*,
->       str::CStrExt as _,
-> -    types::{
-> -        AlwaysRefCounted,
-> -        Opaque, //
-> -    }, //
-> +    sync::aref::AlwaysRefCounted,
-> +    types::Opaque, //
->   };
->   
->   use core::{
-> @@ -32,7 +30,7 @@
->       }, //
->   };
->   
-> -use kernel::types::ARef;
-> +use kernel::sync::aref::ARef;
->   
->   /// An I2C device id table.
->   #[repr(transparent)]
-> @@ -408,7 +406,7 @@ pub fn get(index: i32) -> Result<ARef<Self>> {
->   kernel::impl_device_context_into_aref!(I2cAdapter);
->   
->   // SAFETY: Instances of `I2cAdapter` are always reference-counted.
-> -unsafe impl crate::types::AlwaysRefCounted for I2cAdapter {
-> +unsafe impl crate::sync::aref::AlwaysRefCounted for I2cAdapter {
-
-NIT: This module already imports `AlwaysRefCounted`, so please use the
-imported name instead of the full path for consistency.
-
->       fn inc_ref(&self) {
->           // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
->           unsafe { bindings::i2c_get_adapter(self.index()) };
-
-Thanks
-Igor
