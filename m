@@ -4,60 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07EE7D5C0FB
-	for <nouveau@archiver.kernel.org>; Fri,  8 Nov 2024 16:20:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3253AD5C0FF
+	for <nouveau@archiver.kernel.org>; Fri,  8 Nov 2024 16:20:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B51CB10E9F8;
-	Fri,  8 Nov 2024 16:20:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF7D10EA00;
+	Fri,  8 Nov 2024 16:20:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="kO/MLkZH";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="GAZOyzaA";
 	dkim-atps=neutral
 Received: from mail-wm1-f73.google.com (mail-wm1-f73.google.com
  [209.85.128.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5530610E9F8
- for <nouveau@lists.freedesktop.org>; Fri,  8 Nov 2024 16:20:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C507B10EA01
+ for <nouveau@lists.freedesktop.org>; Fri,  8 Nov 2024 16:20:48 +0000 (UTC)
 Received: by mail-wm1-f73.google.com with SMTP id
- 5b1f17b1804b1-4314f023f55so15931795e9.2
- for <nouveau@lists.freedesktop.org>; Fri, 08 Nov 2024 08:20:44 -0800 (PST)
+ 5b1f17b1804b1-431ad45828aso15922875e9.3
+ for <nouveau@lists.freedesktop.org>; Fri, 08 Nov 2024 08:20:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1731082843; x=1731687643;
+ d=google.com; s=20230601; t=1731082847; x=1731687647;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=qSNggYYB42ksK77mqLJizRXwTBzrM89QBEMwFFNrJdw=;
- b=kO/MLkZHSuBZhb6JVgmstvzNVHrPKhiYPDMX7LeknjlE9LTpDv/9Xd7kPjRjx25IG6
- V7HZxYG+HRYYy5ef8cJdpR8mK3UYApwuHtoBnPu/dgHWLJLwaTfUQsXVGj8LSNd7JGf8
- TAvUIo7rR8UAE1NTgMUtZFpv7m/+AVlVpDvCehPkKhTeELLvxVzD5m8Wg3NrJIUlJMbZ
- S3rY+KHMnadXH1bWnPrdKRjzav3oLV/eDyTwjLdhcYWGkNT1u4s9Y6QWt3sU/3Ouw2t5
- n31n24OFOjAytcdEUdDH72+b4volWF13X2TLAvYvbXloEvmxBSfQdOYRCsK/DM7Diuzd
- oc3w==
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=YSD3xsyZZCSV87kyUY/RPMIHEZzslYpSJkMBD8vjd+E=;
+ b=GAZOyzaAR2Chq/jXFOq31u6nckJTUo6BWJgz7tH15e6C3YQwvv49KF4MmrMzXA4PM0
+ RES/rXvpxA4FINJsqjutg24/fRcOyXUV4uZFakm/QX9VR/5eDdcWdppreTexPNlIZJT8
+ lOs0G67CWpDri6gRPyRSKudywlzRPHkRQCLhRhgHcb2+6LHLTrAcFlM1Uqmuq1xDYaG2
+ mc1E2WwmeSyW4PSpFBumCcvGouzExZ/YAFZLC5qQ1jmYfuctTy280j3J37MbBqDWPxON
+ dfQF54vDTQpJVwwJ0Ll5mgPkV1yhFVDMtp0Om2kvwe6BL9JJX+CWTmd1soCUVmXO2IZ6
+ mzUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731082843; x=1731687643;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=qSNggYYB42ksK77mqLJizRXwTBzrM89QBEMwFFNrJdw=;
- b=lbP7ccJvBFg3Lkc/zKe/9XTNO+r+WiZ91c3llh1CY95oqWKllO0yc/lqGUdzQGvUJF
- T3fkE8slO+1xg3RSmmJL1MqblbgjkNcU8oIdG75qkM8S87HJZLM3dwPEdpIncTVHwU74
- pwkhSuTQNtn/Wc/5UG9NT+iDVqHC3wyd/8mDgP4J634IWFSLle6jsmKpFlX1/pXKE/qZ
- BIOFvaXiQWorXcqWC082ck9zOWQjywjH5xdG4ArDHVvkpMJ6aYRDlgavSZiDLN5KXWI6
- tyLuYQBXYi9a8wMk2wTSV9/qKmk3p8oPL7/JgIav2DG2m2Z/8i//lDcPVlhGaxxkRfwk
- xdCA==
+ d=1e100.net; s=20230601; t=1731082847; x=1731687647;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=YSD3xsyZZCSV87kyUY/RPMIHEZzslYpSJkMBD8vjd+E=;
+ b=CDokI0Af99L8/+keNsf6J22wL7KSPZDrBbbi+cNbxkr9aOWMWT1Km5s+9ANNj2Vp+1
+ lfeCZE19Q6U/D2HS4HDIwPEEeqX/sH3VqJyhX02rBcNPxzzKFR28gJcUMpBeK0Vcyeni
+ cwSgjR0/6ILCmgUDfVUqcQEKPiuToudRWYhJFPuV+I+fp6wv5f6XfJu0yIAyfZOCso7A
+ 5+N1tlrSR1bQbTjAmXDt2F2kTGxZluwryT5EoduBhJT3mhBeLktQNXts6wMiS5OHuZld
+ H0eeIMNkuREu++Ta7MqsBxvLIpS7na8kmXT0tZITekm7u2cWbsY+Gsv7HNcqa3Pu6NG7
+ yEzA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXcZez90XVGrGHsLZOOUy5C4ZWwIc4lccpq70RCGN1nl6JolHqSrDdYdxOHGkO0X5hGJUZbi9MB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwWVy0qzKuLSX60Hw4sz3ZR6l4S+PNiodA+g1geBSlyORiv68fb
- eV588oUTND8fQSc9Q+6baYNIXK0m2G5bAa6XBHmWHDr3h50RDzOqEZPE2ewhEswTHDF4s5+9qQ=
+ AJvYcCUmqbPaHYRz4CaKeq2HOdTQLmGfxL81Vn8dNlAT6wKrDvNIJMDhzcRSmOGeRvpvJEODyn3Pxm+7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw3YnnwjI98Fb4hqLoE+ASYkJEYbLKXhaot7vhI2XaTolfSkGyX
+ IIk4iPs2OYkTuNAPNOAr7DcAu9JCHJxcMyf4cshqshyivDMnRGafXk91Fr7mruQRjhcD72sQmg=
  =
-X-Google-Smtp-Source: AGHT+IGNt2ARzTp6h05fXXQEL275e7en0LhPQqztYO3DssrZ2Bpa4ilDg6kO0xlH0JaVTwhHigLo2F9OCQ==
+X-Google-Smtp-Source: AGHT+IFgJCvqHUnZF2sVggmAky7vOXqPzIu1h0GscO2JqqplWhQ8XkVaucC9oHlByVAHMi0UBju5RAkHJw==
 X-Received: from fuad.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:1613])
- (user=tabba job=sendgmr) by 2002:adf:e611:0:b0:37d:45dd:dfbf with
- SMTP id
- ffacd0b85a97d-381f18641abmr2475f8f.4.1731082842629; Fri, 08 Nov 2024 08:20:42
- -0800 (PST)
-Date: Fri,  8 Nov 2024 16:20:30 +0000
+ (user=tabba job=sendgmr) by 2002:a05:600c:6a84:b0:42c:a8b5:c26
+ with SMTP id
+ 5b1f17b1804b1-432b74fc1e5mr108415e9.2.1731082847148; Fri, 08 Nov 2024
+ 08:20:47 -0800 (PST)
+Date: Fri,  8 Nov 2024 16:20:32 +0000
+In-Reply-To: <20241108162040.159038-1-tabba@google.com>
 Mime-Version: 1.0
+References: <20241108162040.159038-1-tabba@google.com>
 X-Mailer: git-send-email 2.47.0.277.g8800431eea-goog
-Message-ID: <20241108162040.159038-1-tabba@google.com>
-Subject: [RFC PATCH v1 00/10] mm: Introduce and use folio_owner_ops
+Message-ID: <20241108162040.159038-3-tabba@google.com>
+Subject: [RFC PATCH v1 02/10] mm/migrate: don't call
+ folio_putback_active_hugetlb() on dst hugetlb folio
 From: Fuad Tabba <tabba@google.com>
 To: linux-mm@kvack.org
 Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org, 
@@ -84,75 +87,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Some folios, such as hugetlb folios and zone device folios,
-require special handling when the folio's reference count reaches
-0, before being freed. Moreover, guest_memfd folios will likely
-require special handling to notify it once a folio's reference
-count reaches 0, to facilitate shared to private folio conversion
-[*]. Currently, each usecase has a dedicated callback when the
-folio refcount reaches 0 to that effect. Adding yet more
-callbacks is not ideal.
+From: David Hildenbrand <david@redhat.com>
 
-This patch series introduces struct folio_owner_ops and uses it
-as a generic way to handle callbacks on freeing a folio. It also
-applies the callbacks to hugetlb and zone device folios.
+We replaced a simple put_page() by a putback_active_hugepage() call in
+commit 3aaa76e125c1 (" mm: migrate: hugetlb: putback destination hugepage
+to active list"), to set the "active" flag on the dst hugetlb folio.
 
-A pointer to struct folio_owner_ops is overlaid on struct page
-compound_page, struct page/folio lru. To indicate that the folio
-uses the callback, this patch series sets bit 1 of the new field,
-similar to how bit 0 indicates a compound page.
+Nowadays, we decoupled the "active" list from the flag, by calling the
+flag "migratable".
 
-Patches 1 to 6 rework the hugetlb code to allow us to reuse
-folio->lru for the owner ops as long as they are not isolated.
+Calling "putback" on something that wasn't allocated is weird and not
+future proof, especially if we might reach that path when migration failed
+and we just want to free the freshly allocated hugetlb folio.
 
-Patches 7 to 10 introduce struct folio_owner_ops, and apply the
-callbacks to zone device and hugetlb folios.
+Let's simply set the "migratable" flag in move_hugetlb_state(), where we
+know that allocation succeeded, and use simple folio_put() to return
+our reference.
 
-Cheers,
-/fuad
+Do we need the hugetlb_lock for setting that flag? Staring at other
+users of folio_set_hugetlb_migratable(), it does not look like it. After
+all, the dst folio should already be on the active list, and we are not
+modifying that list.
 
-[*] https://lore.kernel.org/all/CAGtprH_JP2w-4rq02h_Ugvq5KuHX7TUvegOS7xUs_iy5hriE7g@mail.gmail.com/
+Signed-off-by: David Hildenbrand <david@redhat.com>
+Signed-off-by: Fuad Tabba <tabba@google.com>
+---
+ mm/hugetlb.c | 5 +++++
+ mm/migrate.c | 8 ++++----
+ 2 files changed, 9 insertions(+), 4 deletions(-)
 
-David Hildenbrand (6):
-  mm/hugetlb: rename isolate_hugetlb() to folio_isolate_hugetlb()
-  mm/migrate: don't call folio_putback_active_hugetlb() on dst hugetlb
-    folio
-  mm/hugetlb: rename "folio_putback_active_hugetlb()" to
-    "folio_putback_hugetlb()"
-  mm/hugetlb-cgroup: convert hugetlb_cgroup_css_offline() to work on
-    folios
-  mm/hugetlb: use folio->lru int demote_free_hugetlb_folios()
-  mm/hugetlb: use separate folio->_hugetlb_list for hugetlb-internals
-
-Fuad Tabba (4):
-  mm: Introduce struct folio_owner_ops
-  mm: Use getters and setters to access page pgmap
-  mm: Use owner_ops on folio_put for zone device pages
-  mm: hugetlb: Use owner_ops on folio_put for hugetlb
-
- drivers/gpu/drm/nouveau/nouveau_dmem.c |   4 +-
- drivers/pci/p2pdma.c                   |   8 +-
- include/linux/hugetlb.h                |  10 +-
- include/linux/memremap.h               |  14 +-
- include/linux/mm_types.h               | 107 ++++++++++++++-
- lib/test_hmm.c                         |   2 +-
- mm/gup.c                               |   2 +-
- mm/hmm.c                               |   2 +-
- mm/hugetlb.c                           | 179 ++++++++++++++++++-------
- mm/hugetlb_cgroup.c                    |  19 ++-
- mm/hugetlb_vmemmap.c                   |   8 +-
- mm/internal.h                          |   1 -
- mm/memory.c                            |   2 +-
- mm/mempolicy.c                         |   2 +-
- mm/memremap.c                          |  49 +------
- mm/migrate.c                           |  20 +--
- mm/migrate_device.c                    |   4 +-
- mm/mm_init.c                           |  48 ++++++-
- mm/swap.c                              |  25 ++--
- 19 files changed, 342 insertions(+), 164 deletions(-)
-
-
-base-commit: beb2622b970047000fa3cae64c23585669b01fca
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+index e17bb2847572..da3fe1840ab8 100644
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -7508,6 +7508,11 @@ void move_hugetlb_state(struct folio *old_folio, struct folio *new_folio, int re
+ 		}
+ 		spin_unlock_irq(&hugetlb_lock);
+ 	}
++	/*
++	 * Our old folio is isolated and has "migratable" cleared until it
++	 * is putback. As migration succeeded, set the new folio "migratable".
++	 */
++	folio_set_hugetlb_migratable(new_folio);
+ }
+ 
+ static void hugetlb_unshare_pmds(struct vm_area_struct *vma,
+diff --git a/mm/migrate.c b/mm/migrate.c
+index 55585b5f57ec..b129dc41c140 100644
+--- a/mm/migrate.c
++++ b/mm/migrate.c
+@@ -1547,14 +1547,14 @@ static int unmap_and_move_huge_page(new_folio_t get_new_folio,
+ 		list_move_tail(&src->lru, ret);
+ 
+ 	/*
+-	 * If migration was not successful and there's a freeing callback, use
+-	 * it.  Otherwise, put_page() will drop the reference grabbed during
+-	 * isolation.
++	 * If migration was not successful and there's a freeing callback,
++	 * return the folio to that special allocator. Otherwise, simply drop
++	 * our additional reference.
+ 	 */
+ 	if (put_new_folio)
+ 		put_new_folio(dst, private);
+ 	else
+-		folio_putback_active_hugetlb(dst);
++		folio_put(dst);
+ 
+ 	return rc;
+ }
 -- 
 2.47.0.277.g8800431eea-goog
 
