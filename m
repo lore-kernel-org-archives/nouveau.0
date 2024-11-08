@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CB8BD5C0FB
-	for <nouveau@archiver.kernel.org>; Fri,  8 Nov 2024 16:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0464D5D69B
+	for <nouveau@archiver.kernel.org>; Fri,  8 Nov 2024 16:20:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59AE110E9FE;
-	Fri,  8 Nov 2024 16:20:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 618B410EA03;
+	Fri,  8 Nov 2024 16:20:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="1Oegflka";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="TIdQRGaR";
 	dkim-atps=neutral
-Received: from mail-wm1-f73.google.com (mail-wm1-f73.google.com
- [209.85.128.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 942D710E111
- for <nouveau@lists.freedesktop.org>; Fri,  8 Nov 2024 16:20:46 +0000 (UTC)
-Received: by mail-wm1-f73.google.com with SMTP id
- 5b1f17b1804b1-4314c6ca114so16520815e9.1
- for <nouveau@lists.freedesktop.org>; Fri, 08 Nov 2024 08:20:46 -0800 (PST)
+Received: from mail-wr1-f74.google.com (mail-wr1-f74.google.com
+ [209.85.221.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10DE210EA01
+ for <nouveau@lists.freedesktop.org>; Fri,  8 Nov 2024 16:20:51 +0000 (UTC)
+Received: by mail-wr1-f74.google.com with SMTP id
+ ffacd0b85a97d-381e8cf69a6so1200478f8f.1
+ for <nouveau@lists.freedesktop.org>; Fri, 08 Nov 2024 08:20:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1731082845; x=1731687645;
+ d=google.com; s=20230601; t=1731082849; x=1731687649;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=Kl2W4EtzrNZ1cJuCyrufhU34bgPSAtiEFnUtuMhqv3Y=;
- b=1OegflkaCpwvG8dn3r+lyb7k7m6ysuEO5qSnF82aO2bqMs+G/ReopPpi3CrHPXaXw1
- oipFQjpYRdgc1mouNmRyjf8imvBt1/qLH8fAPrtB4r9tzZhjN+0ybv3Q1Y1Rdrz/QjFj
- OgkncRWvU2RMoGkYZJQEZ2j3D6RdfBDzEFZYi7guvnVYo/SxEXoJcyzEBIhUPnqsNPvU
- GWkxegPLl5++2XVNW5EaZsSzdet6wf6VLs+4nVorAJOVYmsLxBaRkYcZQJ+9aFpaYnD3
- AdmAZxFKirFI0at4/Jzr2HoIbCGiT0UxMuhBTuQq3MMsDY4RGt/7tNP333HusBUr/Fny
- GLQw==
+ bh=c97rKSzu5OtSEQDwZyqgn1x58KOnaAilRAoGtwwyknw=;
+ b=TIdQRGaRQkOnbts0K12ZCrSRngdYoa8MKqd2lMK2zMO8Vq1a6Wlr8h/7RRF4MHTU6t
+ rEQHsLIRFj3Rd+lQYQWVrFxEETvl16znAj8yNv+iOvaRFRTRiFPy7K4qCFXJSCXynKR2
+ 7YUojqsjAR9RNkB3b408UFSrngfV6Lj+IqvEV38F7q0V9Rf6KXtMsf0OUvxWItlee/Wk
+ K+87j4U44WGbDjx3FBDMXJ35hO5sJhgGBpNGn/k1RjeRoPqGwcCgUAHNfib770N7AlKf
+ pOrQmCqK20R/OPl/bQ9/GhDP9+gEaGDU+EYSqFin1Ixq3ftTIN7yr/gAlRTV2Sm7vBTR
+ DHSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1731082845; x=1731687645;
+ d=1e100.net; s=20230601; t=1731082849; x=1731687649;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Kl2W4EtzrNZ1cJuCyrufhU34bgPSAtiEFnUtuMhqv3Y=;
- b=WJfc1CCdRUu0++YjI31TGDmQ1WSSFoBO/PrhEz0Ez/g8AQZ0zJzqMpFuqVwaFWgMnH
- 2//jRiz+us3Lj6iyoR1ovifjqCSFpvWqaGezs9/wMLZcCGl8PsBbqzNFW/agGw8S4D0S
- wLoMYNi7TZfzx1EJobr6EtUiyg9nnEEVKGT/diBpdukakqmUOs+T+Pk8wFSvp9S9PmJo
- ckfOUv1wNz1SN80tXGavOmtzFKSZHaPzIkTJK4i4StLHzBAYovdUduCCD/2qFhtsmPAt
- 0BuTCi7VS8AqtRa75kBv/Z2wGZrhAwnAoKLkM8rqbUwvJLt2FrI9kxbe05ZE4XZu360q
- YYCg==
+ bh=c97rKSzu5OtSEQDwZyqgn1x58KOnaAilRAoGtwwyknw=;
+ b=Cc+IOBPXZ+1xGtbJmzhX0YWW+4Kn09eiI9RtQynMd09435Fmml6JY+1a6EsKwMZ3BN
+ CVAPF2sy/QDbSq8P7qbciI70z8kcuYKEQD5noXwt6UejwnJ8loN3z0+Ir7AKp81oqsdy
+ X+FK0ZlWhILvP28espAN2Nr2Xtjgbfh/a0HJaYH23VpIWJW0fHVooxEtgeRSSF+CUQkm
+ Qsu/pisDq7jA1p7JX+BngzMVzp/3SD7mn4mYL9fXC4eJIdNP3WoRgdwHZgyXzDD7Gyse
+ OoPBrKqHP5iYdI8qgnAsnKGDonBpA1olzU3uTcE++2kODN++y5TuMDXGEzsmsrIEEPd4
+ Uzdw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXlf8G+YiHpK00ErAWC4DAOYTxdTMQkJbQxDADiMTTOrsLhJqDSGo0u7FUeducwWQhYbNcDtfs/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy/eB0cmVvCGlMRdzy/L3Lxkf385zImd2sKhtQZCuzoEhaE8ajr
- JVHi4EHBFy+bRNLp2u4grGUitEmq+qWUhIgwz/MN6YPeiRooD1WhCIPUVKVVIJFmJIhR1+j7HA=
+ AJvYcCXwh1nChZxiCAe3rRw+gogOqlDPhy6zfXCURrDqauvkd14DlwVJDNziMf19uozvylXQSr+W2Vuk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx5JdqqVTRpREJZwbL/aab4UoW1aQvRdPAYHW0KIHWS1kLFQegD
+ FwOhb8F1wfFAE9aLH5+dcQr957EyxaY/6FjV5zVyauNrbh3EA2sP0vVEpWfuJ3/jBtOT5TKB7A=
  =
-X-Google-Smtp-Source: AGHT+IGpbTMLKH3Z//v+mS0oCFNNN5K9KgwxRuxW+vMV7GiwPseAyRHtw03enomMXvu4TmjvVSMQK6Mc+A==
+X-Google-Smtp-Source: AGHT+IELhlKA+w5GoDYCQVGGU0Q69yO5Jt+Zri88wGQ6Nd2QAGecV+Ce7InAsjA0a+zrL4cO721qJjhh5w==
 X-Received: from fuad.c.googlers.com ([fda3:e722:ac3:cc00:28:9cb1:c0a8:1613])
- (user=tabba job=sendgmr) by 2002:a05:600c:4a21:b0:431:43e6:adfc
- with SMTP id
- 5b1f17b1804b1-432b7527703mr24725e9.8.1731082844948; Fri, 08 Nov 2024 08:20:44
+ (user=tabba job=sendgmr) by 2002:a5d:4f84:0:b0:381:d049:c688 with
+ SMTP id
+ ffacd0b85a97d-381f1884303mr2415f8f.9.1731082849389; Fri, 08 Nov 2024 08:20:49
  -0800 (PST)
-Date: Fri,  8 Nov 2024 16:20:31 +0000
+Date: Fri,  8 Nov 2024 16:20:33 +0000
 In-Reply-To: <20241108162040.159038-1-tabba@google.com>
 Mime-Version: 1.0
 References: <20241108162040.159038-1-tabba@google.com>
 X-Mailer: git-send-email 2.47.0.277.g8800431eea-goog
-Message-ID: <20241108162040.159038-2-tabba@google.com>
-Subject: [RFC PATCH v1 01/10] mm/hugetlb: rename isolate_hugetlb() to
- folio_isolate_hugetlb()
+Message-ID: <20241108162040.159038-4-tabba@google.com>
+Subject: [RFC PATCH v1 03/10] mm/hugetlb: rename
+ "folio_putback_active_hugetlb()" to "folio_putback_hugetlb()"
 From: Fuad Tabba <tabba@google.com>
 To: linux-mm@kvack.org
 Cc: kvm@vger.kernel.org, nouveau@lists.freedesktop.org, 
@@ -89,146 +89,106 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: David Hildenbrand <david@redhat.com>
 
-Let's make the function name match "folio_isolate_lru()", and add some
-kernel doc.
+Now that folio_putback_hugetlb() is only called on folios that were
+previously isolated through folio_isolate_hugetlb(), let's rename it to
+match folio_putback_lru().
+
+Add some kernel doc to clarify how this function is supposed to be used.
 
 Signed-off-by: David Hildenbrand <david@redhat.com>
 Signed-off-by: Fuad Tabba <tabba@google.com>
 ---
  include/linux/hugetlb.h |  4 ++--
- mm/gup.c                |  2 +-
- mm/hugetlb.c            | 23 ++++++++++++++++++++---
- mm/mempolicy.c          |  2 +-
+ mm/hugetlb.c            | 15 +++++++++++++--
  mm/migrate.c            |  6 +++---
- 5 files changed, 27 insertions(+), 10 deletions(-)
+ 3 files changed, 18 insertions(+), 7 deletions(-)
 
 diff --git a/include/linux/hugetlb.h b/include/linux/hugetlb.h
-index ae4fe8615bb6..b0cf8dbfeb6a 100644
+index b0cf8dbfeb6a..e846d7dac77c 100644
 --- a/include/linux/hugetlb.h
 +++ b/include/linux/hugetlb.h
-@@ -153,7 +153,7 @@ bool hugetlb_reserve_pages(struct inode *inode, long from, long to,
- 						vm_flags_t vm_flags);
- long hugetlb_unreserve_pages(struct inode *inode, long start, long end,
- 						long freed);
--bool isolate_hugetlb(struct folio *folio, struct list_head *list);
-+bool folio_isolate_hugetlb(struct folio *folio, struct list_head *list);
+@@ -157,7 +157,7 @@ bool folio_isolate_hugetlb(struct folio *folio, struct list_head *list);
  int get_hwpoison_hugetlb_folio(struct folio *folio, bool *hugetlb, bool unpoison);
  int get_huge_page_for_hwpoison(unsigned long pfn, int flags,
  				bool *migratable_cleared);
-@@ -414,7 +414,7 @@ static inline pte_t *huge_pte_offset(struct mm_struct *mm, unsigned long addr,
- 	return NULL;
+-void folio_putback_active_hugetlb(struct folio *folio);
++void folio_putback_hugetlb(struct folio *folio);
+ void move_hugetlb_state(struct folio *old_folio, struct folio *new_folio, int reason);
+ void hugetlb_fix_reserve_counts(struct inode *inode);
+ extern struct mutex *hugetlb_fault_mutex_table;
+@@ -430,7 +430,7 @@ static inline int get_huge_page_for_hwpoison(unsigned long pfn, int flags,
+ 	return 0;
  }
  
--static inline bool isolate_hugetlb(struct folio *folio, struct list_head *list)
-+static inline bool folio_isolate_hugetlb(struct folio *folio, struct list_head *list)
+-static inline void folio_putback_active_hugetlb(struct folio *folio)
++static inline void folio_putback_hugetlb(struct folio *folio)
  {
- 	return false;
  }
-diff --git a/mm/gup.c b/mm/gup.c
-index 28ae330ec4dd..40bbcffca865 100644
---- a/mm/gup.c
-+++ b/mm/gup.c
-@@ -2301,7 +2301,7 @@ static unsigned long collect_longterm_unpinnable_folios(
- 			continue;
- 
- 		if (folio_test_hugetlb(folio)) {
--			isolate_hugetlb(folio, movable_folio_list);
-+			folio_isolate_hugetlb(folio, movable_folio_list);
- 			continue;
- 		}
  
 diff --git a/mm/hugetlb.c b/mm/hugetlb.c
-index cec4b121193f..e17bb2847572 100644
+index da3fe1840ab8..d58bd815fdf2 100644
 --- a/mm/hugetlb.c
 +++ b/mm/hugetlb.c
-@@ -2868,7 +2868,7 @@ static int alloc_and_dissolve_hugetlb_folio(struct hstate *h,
- 		 * Fail with -EBUSY if not possible.
- 		 */
- 		spin_unlock_irq(&hugetlb_lock);
--		isolated = isolate_hugetlb(old_folio, list);
-+		isolated = folio_isolate_hugetlb(old_folio, list);
- 		ret = isolated ? 0 : -EBUSY;
- 		spin_lock_irq(&hugetlb_lock);
- 		goto free_new;
-@@ -2953,7 +2953,7 @@ int isolate_or_dissolve_huge_page(struct page *page, struct list_head *list)
- 	if (hstate_is_gigantic(h))
- 		return -ENOMEM;
+@@ -7409,7 +7409,7 @@ __weak unsigned long hugetlb_mask_last_page(struct hstate *h)
+  * it is already isolated/non-migratable.
+  *
+  * On success, an additional folio reference is taken that must be dropped
+- * using folio_putback_active_hugetlb() to undo the isolation.
++ * using folio_putback_hugetlb() to undo the isolation.
+  *
+  * Return: True if isolation worked, otherwise False.
+  */
+@@ -7461,7 +7461,18 @@ int get_huge_page_for_hwpoison(unsigned long pfn, int flags,
+ 	return ret;
+ }
  
--	if (folio_ref_count(folio) && isolate_hugetlb(folio, list))
-+	if (folio_ref_count(folio) && folio_isolate_hugetlb(folio, list))
- 		ret = 0;
- 	else if (!folio_ref_count(folio))
- 		ret = alloc_and_dissolve_hugetlb_folio(h, folio, list);
-@@ -7396,7 +7396,24 @@ __weak unsigned long hugetlb_mask_last_page(struct hstate *h)
- 
- #endif /* CONFIG_ARCH_WANT_GENERAL_HUGETLB */
- 
--bool isolate_hugetlb(struct folio *folio, struct list_head *list)
+-void folio_putback_active_hugetlb(struct folio *folio)
 +/**
-+ * folio_isolate_hugetlb: try to isolate an allocated hugetlb folio
-+ * @folio: the folio to isolate
-+ * @list: the list to add the folio to on success
++ * folio_putback_hugetlb: unisolate a hugetlb folio
++ * @folio: the isolated hugetlb folio
 + *
-+ * Isolate an allocated (refcount > 0) hugetlb folio, marking it as
-+ * isolated/non-migratable, and moving it from the active list to the
-+ * given list.
++ * Putback/un-isolate the hugetlb folio that was previous isolated using
++ * folio_isolate_hugetlb(): marking it non-isolated/migratable and putting it
++ * back onto the active list.
 + *
-+ * Isolation will fail if @folio is not an allocated hugetlb folio, or if
-+ * it is already isolated/non-migratable.
-+ *
-+ * On success, an additional folio reference is taken that must be dropped
-+ * using folio_putback_active_hugetlb() to undo the isolation.
-+ *
-+ * Return: True if isolation worked, otherwise False.
++ * Will drop the additional folio reference obtained through
++ * folio_isolate_hugetlb().
 + */
-+bool folio_isolate_hugetlb(struct folio *folio, struct list_head *list)
++void folio_putback_hugetlb(struct folio *folio)
  {
- 	bool ret = true;
- 
-diff --git a/mm/mempolicy.c b/mm/mempolicy.c
-index bb37cd1a51d8..41bdff67757c 100644
---- a/mm/mempolicy.c
-+++ b/mm/mempolicy.c
-@@ -647,7 +647,7 @@ static int queue_folios_hugetlb(pte_t *pte, unsigned long hmask,
- 	 */
- 	if ((flags & MPOL_MF_MOVE_ALL) ||
- 	    (!folio_likely_mapped_shared(folio) && !hugetlb_pmd_shared(pte)))
--		if (!isolate_hugetlb(folio, qp->pagelist))
-+		if (!folio_isolate_hugetlb(folio, qp->pagelist))
- 			qp->nr_failed++;
- unlock:
- 	spin_unlock(ptl);
+ 	spin_lock_irq(&hugetlb_lock);
+ 	folio_set_hugetlb_migratable(folio);
 diff --git a/mm/migrate.c b/mm/migrate.c
-index dfb5eba3c522..55585b5f57ec 100644
+index b129dc41c140..89292d131148 100644
 --- a/mm/migrate.c
 +++ b/mm/migrate.c
-@@ -136,7 +136,7 @@ static void putback_movable_folio(struct folio *folio)
-  *
-  * This function shall be used whenever the isolated pageset has been
-  * built from lru, balloon, hugetlbfs page. See isolate_migratepages_range()
-- * and isolate_hugetlb().
-+ * and folio_isolate_hugetlb().
-  */
- void putback_movable_pages(struct list_head *l)
- {
-@@ -177,7 +177,7 @@ bool isolate_folio_to_list(struct folio *folio, struct list_head *list)
- 	bool isolated, lru;
+@@ -145,7 +145,7 @@ void putback_movable_pages(struct list_head *l)
  
- 	if (folio_test_hugetlb(folio))
--		return isolate_hugetlb(folio, list);
-+		return folio_isolate_hugetlb(folio, list);
+ 	list_for_each_entry_safe(folio, folio2, l, lru) {
+ 		if (unlikely(folio_test_hugetlb(folio))) {
+-			folio_putback_active_hugetlb(folio);
++			folio_putback_hugetlb(folio);
+ 			continue;
+ 		}
+ 		list_del(&folio->lru);
+@@ -1459,7 +1459,7 @@ static int unmap_and_move_huge_page(new_folio_t get_new_folio,
  
- 	lru = !__folio_test_movable(folio);
- 	if (lru)
-@@ -2208,7 +2208,7 @@ static int __add_folio_for_migration(struct folio *folio, int node,
- 		return -EACCES;
+ 	if (folio_ref_count(src) == 1) {
+ 		/* page was freed from under us. So we are done. */
+-		folio_putback_active_hugetlb(src);
++		folio_putback_hugetlb(src);
+ 		return MIGRATEPAGE_SUCCESS;
+ 	}
  
- 	if (folio_test_hugetlb(folio)) {
--		if (isolate_hugetlb(folio, pagelist))
-+		if (folio_isolate_hugetlb(folio, pagelist))
- 			return 1;
- 	} else if (folio_isolate_lru(folio)) {
- 		list_add_tail(&folio->lru, pagelist);
+@@ -1542,7 +1542,7 @@ static int unmap_and_move_huge_page(new_folio_t get_new_folio,
+ 	folio_unlock(src);
+ out:
+ 	if (rc == MIGRATEPAGE_SUCCESS)
+-		folio_putback_active_hugetlb(src);
++		folio_putback_hugetlb(src);
+ 	else if (rc != -EAGAIN)
+ 		list_move_tail(&src->lru, ret);
+ 
 -- 
 2.47.0.277.g8800431eea-goog
 
