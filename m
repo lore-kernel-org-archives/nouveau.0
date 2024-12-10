@@ -4,46 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80B29D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E93D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0511410EB21;
-	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=freemail.hu header.i=@freemail.hu header.b="EswRUQok";
-	dkim-atps=neutral
-Received: from smtp-out.freemail.hu (fmfe14.freemail.hu [46.107.16.207])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 392C610E33B;
- Mon,  3 Jun 2024 09:16:08 +0000 (UTC)
-Received: from fizweb.elte.hu (fizweb.elte.hu [157.181.183.248])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.freemail.hu (Postfix) with ESMTPSA id 4Vt7Pd3jnlz18V;
- Mon,  3 Jun 2024 11:16:05 +0200 (CEST)
-From: egyszeregy@freemail.hu
-To: bskeggs@nvidia.com, kherbst@redhat.com, lyude@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Benjamin=20Sz=C5=91ke?= <egyszeregy@freemail.hu>
-Subject: [PATCH] drm/nouveau/i2c: rename aux.c and aux.h to auxch.c and auxch.h
-Date: Mon,  3 Jun 2024 11:15:58 +0200
-Message-ID: <20240603091558.35672-1-egyszeregy@freemail.hu>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D187B10EB1B;
+	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
+X-Greylist: delayed 367 seconds by postgrey-1.36 at gabe;
+ Tue, 10 Dec 2024 06:27:13 UTC
+Received: from mail.nfschina.com (unknown [42.101.60.213])
+ by gabe.freedesktop.org (Postfix) with SMTP id C078C10E021;
+ Tue, 10 Dec 2024 06:27:13 +0000 (UTC)
+Received: from 127.0.0.1 (unknown [40.50.50.41])
+ by mail.nfschina.com (MailData Gateway V2.8.8) with ESMTPA id 840C9606A5D50;
+ Tue, 10 Dec 2024 14:20:40 +0800 (CST)
+Date: Tue, 10 Dec 2024 14:20:40 +0800 (CST)
+X-MD-Sfrom: zhanxin@nfschina.com
+X-MD-SrcIP: 40.50.50.41
+From: zhanxin <zhanxin@nfschina.com>
+To: kherbst <kherbst@redhat.com>, lyude <lyude@redhat.com>,
+ dakr <dakr@redhat.com>, airlied <airlied@gmail.com>,
+ simona <simona@ffwll.ch>
+Cc: dri-devel <dri-devel@lists.freedesktop.org>,
+ nouveau <nouveau@lists.freedesktop.org>,
+ linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <1722060220.392.1733811640530@127.0.0.1>
+Subject: [PATCH] drm/nouveau: Fix memory leak in nvbios_iccsense_parse
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/relaxed; t=1717406166; 
- s=20181004; d=freemail.hu;
- h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding;
- l=6337; bh=rijsPYYSbzi73ZsjnyWe6jiHuk3OCHTuD8vMOf/445U=;
- b=EswRUQokcslT1G+LQHyFiWcRQDM6iHCHBCJnkI5ThJ9yuZXovaAM4OGKMTKeIy8N
- ZS7ZaMhyPrJjAwxVMfcz9vqbuWjY5IlsIJuM0bbFLubPWXpZZU1DIx1NK5nmXhFatsd
- u5OOgr+zZzXXuLadvS4ijLtyGtUW81X6xwTqH0Qxn61igzSmqcm6Gz3utPGl8Hhmxb5
- 7C2zK07XLbmeZSUmT9TfRGo4jGyxH6WSHnWlWtBeJ13c8j8ejdg3X+kO8HwugiNGyLD
- jnlF2xpRJa1Teyu3z2yj5jK1QQfg2WuYa5+XCzb/EH+A16hkqSk7If1DOszoavcHFhl
- fPls79YWXg==
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Type: multipart/mixed; 
+ boundary="----=_Part_390_769418950.1733811640517"
+X-Priority: 3
+X-NFS-GUID: PNrdZJdcGdfhQmGbW1mQ
+X-ISRICH: 1
+Content-ID: 53ed85b6-b98c-4938-a21f-5ff90b033fe9
+X-Mail-src: 1291
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,170 +49,65 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: zhanxin@nfschina.com
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Benjamin Szőke <egyszeregy@freemail.hu>
+------=_Part_390_769418950.1733811640517
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_389_1713214656.1733811640517"
 
-The goal is to clean-up Linux repository from AUX file names, because
-the use of such file names is prohibited on other operating systems
-such as Windows, so the Linux repository cannot be cloned and
-edited on them.
+------=_Part_389_1713214656.1733811640517
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Benjamin Szőke <egyszeregy@freemail.hu>
+
+------=_Part_389_1713214656.1733811640517
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+------=_Part_389_1713214656.1733811640517--
+
+------=_Part_390_769418950.1733811640517
+Content-Type: application/octet-stream; 
+	name=0001-drm-nouveau-Fix-memory-leak-in-nvbios_iccsense_parse.patch
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; 
+	filename=0001-drm-nouveau-Fix-memory-leak-in-nvbios_iccsense_parse.patch
+Content-ID: <d136119c-4913-48be-9d47-02fc4529b2e7>
+Content-uid: 1733811638148
+
+From 895d436242c94c56a1d696c713016cc1504b9b83 Mon Sep 17 00:00:00 2001
+From: Zhanxin Qi <zhanxin0@outlook.com>
+Date: Tue, 10 Dec 2024 13:12:04 +0800
+Subject: [PATCH] drm/nouveau: Fix memory leak in nvbios_iccsense_parse
+
+The nvbios_iccsense_parse function allocates memory for sensor data
+but fails to free it when the function exits, leading to a memory
+leak. Add proper cleanup to free the allocated memory.
+
+Signed-off-by: Zhanxin Qi <zhanxin0@outlook.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild             | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c          | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => auxch.c} | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => auxch.h} | 0
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c           | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c         | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c         | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c             | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c           | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c         | 2 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c         | 2 +-
- 11 files changed, 10 insertions(+), 10 deletions(-)
- rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c => auxch.c} (99%)
- rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h => auxch.h} (100%)
+ drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
-index 819703913a00..2c551bdc9bc9 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
-@@ -25,7 +25,7 @@ nvkm-y += nvkm/subdev/i2c/busnv50.o
- nvkm-y += nvkm/subdev/i2c/busgf119.o
- nvkm-y += nvkm/subdev/i2c/bit.o
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+index 8f0ccd3664eb..502608d575f7 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/iccsense/base.c
+@@ -291,6 +291,9 @@ nvkm_iccsense_oneinit(struct nvkm_subdev *subdev)
+ 			list_add_tail(&rail->head, &iccsense->rails);
+ 		}
+ 	}
++
++	kfree(stbl.rail);
++
+ 	return 0;
+ }
  
--nvkm-y += nvkm/subdev/i2c/aux.o
-+nvkm-y += nvkm/subdev/i2c/auxch.o
- nvkm-y += nvkm/subdev/i2c/auxg94.o
- nvkm-y += nvkm/subdev/i2c/auxgf119.o
- nvkm-y += nvkm/subdev/i2c/auxgm200.o
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
-index dd391809fef7..6c76e5e14b75 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
-@@ -24,7 +24,7 @@
- #define anx9805_pad(p) container_of((p), struct anx9805_pad, base)
- #define anx9805_bus(p) container_of((p), struct anx9805_bus, base)
- #define anx9805_aux(p) container_of((p), struct anx9805_aux, base)
--#include "aux.h"
-+#include "auxch.h"
- #include "bus.h"
- 
- struct anx9805_pad {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
-similarity index 99%
-rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
-index d063d0dc13c5..fafc634acbf6 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
-@@ -24,7 +24,7 @@
- 
- #include <linux/string_helpers.h>
- 
--#include "aux.h"
-+#include "auxch.h"
- #include "pad.h"
- 
- static int
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.h
-similarity index 100%
-rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
-rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.h
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
-index 47068f6f9c55..854bb4b5fdb4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs <bskeggs@redhat.com>
-  */
- #define g94_i2c_aux(p) container_of((p), struct g94_i2c_aux, base)
--#include "aux.h"
-+#include "auxch.h"
- 
- struct g94_i2c_aux {
- 	struct nvkm_i2c_aux base;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
-index dab40cd8fe3a..c17d5647cb99 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
-@@ -19,7 +19,7 @@
-  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
--#include "aux.h"
-+#include "auxch.h"
- 
- static const struct nvkm_i2c_aux_func
- gf119_i2c_aux = {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-index 8bd1d442e465..3c5005e3b330 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs <bskeggs@redhat.com>
-  */
- #define gm200_i2c_aux(p) container_of((p), struct gm200_i2c_aux, base)
--#include "aux.h"
-+#include "auxch.h"
- 
- struct gm200_i2c_aux {
- 	struct nvkm_i2c_aux base;
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-index 976539de4220..ab86e11e7780 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "priv.h"
--#include "aux.h"
-+#include "auxch.h"
- #include "bus.h"
- #include "pad.h"
- 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
-index 5904bc5f2d2a..cc26cd677917 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "pad.h"
--#include "aux.h"
-+#include "auxch.h"
- #include "bus.h"
- 
- void
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
-index 3bc4d0310076..1797c6c65979 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "pad.h"
--#include "aux.h"
-+#include "auxch.h"
- #include "bus.h"
- 
- static const struct nvkm_i2c_pad_func
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
-index 7d417f6a816e..5afc1bf8e798 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
-@@ -22,7 +22,7 @@
-  * Authors: Ben Skeggs
-  */
- #include "pad.h"
--#include "aux.h"
-+#include "auxch.h"
- #include "bus.h"
- 
- static void
 -- 
-2.43.0
+2.30.2
 
+
+------=_Part_390_769418950.1733811640517--
