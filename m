@@ -4,102 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A6C6D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80A57D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F15A10EA2C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DF5A10EA25;
 	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="n/cAWajK";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="iScZozK8";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64FC310E8D1;
- Wed,  9 Apr 2025 14:02:13 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZXl4d5KM8z9t40;
- Wed,  9 Apr 2025 16:02:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1744207329; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=iqjOv8PC0paDWXrZO/qp2lqr+5gHSa2tmgVreDdK328=;
- b=n/cAWajK7qyRBy39EjI+b038v5TLRQPnbsZsejuWIaDQc3yApnamzQUBNqrfVLqU+9ZQye
- 6YpZVyo+OPDJz8NnfwsjQkW1/y6T8ZXZ+VLyctnAx72cqilgUW+SYicNGsaZA5TL+OzNkv
- QVF2Uea5+pUcJ7Fh+KIO33qILuncMa8X7a+IkAFGK5lPYm43ATHvHa1QVFMEw5hX2abTeb
- Tjn7lStQsc8TA3pTDXqoh9lw6zAElg6K77S+v+XeIWrNUv24tD0L10jARdiINKJ+2S1/ec
- Ao1Sl7C7xYWCCuI7vapAaNwcVLexZ2Zq1R9aiaCivJq+ddQFc3xqeKqzfLnK9w==
-Message-ID: <9a90f7f14c22c01aa28d89aa91bf4dfa4049c062.camel@mailbox.org>
-Subject: Re: [PATCH 1/2] dma-fence: Rename dma_fence_is_signaled()
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
- <gustavo@padovan.org>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach
- <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,  Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Frank Binns
- <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, Qiang Yu
- <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>, Sean Paul
- <sean@poorly.run>,  Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Marijn Suijten
- <marijn.suijten@somainline.org>,  Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Steven Price
- <steven.price@arm.com>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann
- <kraxel@redhat.com>,  Matthew Brost <matthew.brost@intel.com>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Melissa Wen
- <mwen@igalia.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Zack
- Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Bas Nieuwenhuizen
- <bas@basnieuwenhuizen.nl>,  Yang Wang <kevinyang.wang@amd.com>, Jesse Zhang
- <jesse.zhang@amd.com>, Tim Huang <tim.huang@amd.com>,  Sathishkumar S
- <sathishkumar.sundararaju@amd.com>, Saleemkhan Jamadar
- <saleemkhan.jamadar@amd.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo
- Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Ma Jun
- <Jun.Ma2@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>, Eric Huang
- <jinhuieric.huang@amd.com>, Asad Kamal <asad.kamal@amd.com>, Srinivasan
- Shanmugam <srinivasan.shanmugam@amd.com>,  Jack Xiao <Jack.Xiao@amd.com>,
- Friedrich Vock <friedrich.vock@gmx.de>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <mdaenzer@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, Thomas Gleixner
- <tglx@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, Dan
- Carpenter <dan.carpenter@linaro.org>,  linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
- lima@lists.freedesktop.org,  linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,  nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev,  spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 16:01:53 +0200
-In-Reply-To: <ab7d1937-d0e9-45f8-8f7d-ddd7a1a9d3d5@amd.com>
-References: <20250409120640.106408-2-phasta@kernel.org>
- <20250409120640.106408-3-phasta@kernel.org>
- <20250409143917.31303d22@collabora.com>
- <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
- <72eb974dfea8fa1167cf97e29848672223f6fc5b.camel@mailbox.org>
- <ab7d1937-d0e9-45f8-8f7d-ddd7a1a9d3d5@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
+ [IPv6:2607:f8b0:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE3610EEF5;
+ Fri, 13 Dec 2024 05:47:30 +0000 (UTC)
+Received: by mail-pl1-x629.google.com with SMTP id
+ d9443c01a7336-216426b0865so12495435ad.0; 
+ Thu, 12 Dec 2024 21:47:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734068850; x=1734673650; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=WABVozVaGAUeC6WVv6dNDEWCXVmF+XIaxOqP2xXRnSs=;
+ b=iScZozK8ZnFr0iSryj/biErGBGEAo/fKu//a/wd+SURkfFBMeDCDtZn66YsGGvWcHF
+ IawR0pySgKgS46tFofoFtDUQtfbNJm5dtv8xFjvFC2tc4kEgp9yePdL1U9+MT1XRjQVM
+ 46m/kipTOasy1lfV80E9fTFqR+4jmTTXHV/HgtZKb9khMo+7CGL+lu7izWPq9Cxhp8C6
+ eREBxVWIT5/gzyXfM9iVZ2fch6DflVA3ctpehqlwkVjdINPm4XM25nemS9ncuO6lYLAJ
+ kmTbAWWzl83ZSCrKzYIvqAmoaBSmY5ZYWWz6paQ6vr15937rfLmH5qN5rhb1zLzqij96
+ W05Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734068850; x=1734673650;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=WABVozVaGAUeC6WVv6dNDEWCXVmF+XIaxOqP2xXRnSs=;
+ b=oG6a5yhJe/zaBJJQ1BE9AdVtAOgTIY3BpdRB/loNcJfH0XUxx/kQnpnsLoaTlxoOyQ
+ zXTwAeygVIn4aHIXMOxjzxb+7vNS24onwV/5n+Zkww0ABC/jwVz1tG6HlcNZTwJvxWcL
+ hTjGjOdDRDKxpZ+6qVyfoAmQEs+H37QE+lJ3A4EBKuIAVzPMImO9aOAcjaj+DAjbrM4H
+ 8NjPsLwzLEh3eeJfkjSOobiHOtJTOYhaZlUilfg5oXlGUzRO13Xx7eTtAFBxAmbmph9s
+ jdi7LKZoxr6n5zoIyhY+xKKzQ7J4AUCSy7moolnDStc/uHRtNHPzPgyp+2PDertInVFQ
+ da1A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV0V/hdVkOXikA5lqtQS/qkWhTtMl0e4P7TfUe7fn4AnHlOv1AcGIjdnjMDe1E2JOgXgLsnD5nukAM=@lists.freedesktop.org,
+ AJvYcCVUDuiA2tWZQBXHdE+N6smQQdGeni3T/9JHPp7zcexut3u4qMsMQa1ORVx6dLdH0iFdiHO4vmqjsw==@lists.freedesktop.org,
+ AJvYcCW1gquKJdaex67jF9QsDBaTq9Fu5MSSoThtUSP/ufG7TAwrPhtSRVBAfGFS1bNAerfqCypc9VGISaNF@lists.freedesktop.org,
+ AJvYcCXS2X2Cv0GXVRuE58zpKt4wH13okBiqIJ7Ev05o8Cf0RZL0ddmcg2T940zl9t35dNxrEcXiDGEmc5M=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxvblv/e5jmEfbu8SaME7xeQYKMz9bZFskUUa88YS1+X71mBRni
+ Gskh/dqN8JCYBpIRqWhllt9cuUzpVF4ZGRUp0aexwvssMSdq+bHw
+X-Gm-Gg: ASbGncsoAwQeyjGoq3Q5g51wmZp2EuazS0X7sdkw/Cu3HIWE6gOfZrdwNuaznCZh8Rn
+ 7G7/ybWwC6R2LRt7YcBQYNg/wxIyVy5ctLQFYOO6LjSq0ruY6/8dR8ButGqhLkdMkN+j3IG1KZ6
+ c+YoTcMUg0zXt3jdYImbJKKPln5ueJ412ethV+GZHuhutoxRnn5QvYU4grl1XYT1vJMmpa/s3Rf
+ aPN9MBn3RjcJBONLeJFXm4ARgBTcork+daT5uBVlzl+3CrnH+8tXwqsvQaiceJr5HWNcaqowxAY
+ HdgMYUQ=
+X-Google-Smtp-Source: AGHT+IGFE1mRmyM5NL2PUAWpAoscqFHXvU8vwTTuUZkYB6i9lL3x0jZgiaefTaKhcRetCPxuiJ6lzw==
+X-Received: by 2002:a17:90b:3889:b0:2ee:aa28:79aa with SMTP id
+ 98e67ed59e1d1-2f28fa55d20mr2136406a91.6.1734068850070; 
+ Thu, 12 Dec 2024 21:47:30 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.20
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:47:29 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Ofir Bitton <obitton@habana.ai>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>
+Subject: [PATCH 6/7] drivers: Repace get_task_comm() with %pTN
+Date: Fri, 13 Dec 2024 13:46:09 +0800
+Message-Id: <20241213054610.55843-7-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-X-MBO-RS-META: 46noetswqbs4h4jeiqeiz488uzz7697a
-X-MBO-RS-ID: 65a997a3aec7032e9b6
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,142 +102,193 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2025-04-09 at 15:14 +0200, Christian K=C3=B6nig wrote:
-> Am 09.04.25 um 14:56 schrieb Philipp Stanner:
-> > On Wed, 2025-04-09 at 14:51 +0200, Philipp Stanner wrote:
-> > > On Wed, 2025-04-09 at 14:39 +0200, Boris Brezillon wrote:
-> > > > Hi Philipp,
-> > > >=20
-> > > > On Wed,=C2=A0 9 Apr 2025 14:06:37 +0200
-> > > > Philipp Stanner <phasta@kernel.org> wrote:
-> > > >=20
-> > > > > dma_fence_is_signaled()'s name strongly reads as if this
-> > > > > function
-> > > > > were
-> > > > > intended for checking whether a fence is already signaled.
-> > > > > Also
-> > > > > the
-> > > > > boolean it returns hints at that.
-> > > > >=20
-> > > > > The function's behavior, however, is more complex: it can
-> > > > > check
-> > > > > with a
-> > > > > driver callback whether the hardware's sequence number
-> > > > > indicates
-> > > > > that
-> > > > > the fence can already be treated as signaled, although the
-> > > > > hardware's /
-> > > > > driver's interrupt handler has not signaled it yet. If that's
-> > > > > the
-> > > > > case,
-> > > > > the function also signals the fence.
-> > > > >=20
-> > > > > (Presumably) this has caused a bug in Nouveau (unknown
-> > > > > commit),
-> > > > > where
-> > > > > nouveau_fence_done() uses the function to check a fence,
-> > > > > which
-> > > > > causes a
-> > > > > race.
-> > > > >=20
-> > > > > Give the function a more obvious name.
-> > > > This is just my personal view on this, but I find the new name
-> > > > just
-> > > > as
-> > > > confusing as the old one. It sounds like something is checked,
-> > > > but
-> > > > it's
-> > > > clear what, and then the fence is forcibly signaled like it
-> > > > would
-> > > > be
-> > > > if
-> > > > you call drm_fence_signal(). Of course, this clarified by the
-> > > > doc,
-> > > > but
-> > > > given the goal was to make the function name clearly reflect
-> > > > what
-> > > > it
-> > > > does, I'm not convinced it's significantly better.
-> > > >=20
-> > > > Maybe dma_fence_check_hw_state_and_propagate(), though it might
-> > > > be
-> > > > too long of name. Oh well, feel free to ignore this comments if
-> > > > a
-> > > > majority is fine with the new name.
-> > > Yoa, the name isn't perfect (the perfect name describing the
-> > > whole
-> > > behavior would be
-> > > dma_fence_check_if_already_signaled_then_check_hardware_state_and
-> > > _pro
-> > > pa
-> > > gate() ^^'
-> > >=20
-> > > My intention here is to have the reader realize "watch out, the
-> > > fence
-> > > might get signaled here!", which is probably the most important
-> > > event
-> > > regarding fences, which can race, invoke the callbacks and so on.
-> > >=20
-> > > For details readers will then check the documentation.
-> > >=20
-> > > But I'm of course open to see if there's a majority for this or
-> > > that
-> > > name.
-> > how about:
-> >=20
-> > dma_fence_check_hw_and_signal() ?
->=20
-> I don't think that renaming the function is a good idea in the first
-> place.
->=20
-> What the function does internally is an implementation detail of the
-> framework.
->=20
-> For the code using this function it's completely irrelevant if the
-> function might also signal the fence, what matters for the caller is
-> the returned status of the fence. I think this also counts for the
-> dma_fence_is_signaled() documentation.
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-It does obviously matter. As it's currently implemented, a lot of
-important things happen implicitly.
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Ofir Bitton <obitton@habana.ai>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Karol Herbst <kherbst@redhat.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Jiri Slaby <jirislaby@kernel.org>
+---
+ drivers/accel/habanalabs/common/context.c         |  5 ++---
+ .../accel/habanalabs/common/habanalabs_ioctl.c    | 15 +++++----------
+ .../gpu/drm/i915/display/intel_display_driver.c   | 10 ++++------
+ drivers/gpu/drm/nouveau/nouveau_chan.c            |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c             |  7 +++----
+ drivers/tty/tty_io.c                              |  5 ++---
+ 6 files changed, 17 insertions(+), 29 deletions(-)
 
-I only see improvement by making things more obvious.
-
-In any case, how would you call a wrapper that just does
-test_bit(IS_SIGNALED, =E2=80=A6) ?
-
-P.
-
->=20
-> What we should improve is the documentation of the dma_fence_ops-
-> >enable_signaling and dma_fence_ops->signaled callbacks.
->=20
-> Especially see the comment about reference counts on enable_signaling
-> which is missing on the signaled callback. That is most likely the
-> root cause why nouveau implemented enable_signaling correctly but not
-> the other one.
->=20
-> But putting that aside I think we should make nails with heads and
-> let the framework guarantee that the fences stay alive until they are
-> signaled (one way or another). This completely removes the burden to
-> keep a reference on unsignaled fences from the drivers /
-> implementations and make things more over all more defensive.
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > P.
-> >=20
-> > > P.
-> > >=20
-> > >=20
-> > > > Regards,
-> > > >=20
-> > > > Boris
->=20
+diff --git a/drivers/accel/habanalabs/common/context.c b/drivers/accel/habanalabs/common/context.c
+index b83141f58319..e4026051b735 100644
+--- a/drivers/accel/habanalabs/common/context.c
++++ b/drivers/accel/habanalabs/common/context.c
+@@ -199,7 +199,6 @@ int hl_ctx_create(struct hl_device *hdev, struct hl_fpriv *hpriv)
+ 
+ int hl_ctx_init(struct hl_device *hdev, struct hl_ctx *ctx, bool is_kernel_ctx)
+ {
+-	char task_comm[TASK_COMM_LEN];
+ 	int rc = 0, i;
+ 
+ 	ctx->hdev = hdev;
+@@ -271,8 +270,8 @@ int hl_ctx_init(struct hl_device *hdev, struct hl_ctx *ctx, bool is_kernel_ctx)
+ 
+ 		mutex_init(&ctx->ts_reg_lock);
+ 
+-		dev_dbg(hdev->dev, "create user context, comm=\"%s\", asid=%u\n",
+-			get_task_comm(task_comm, current), ctx->asid);
++		dev_dbg(hdev->dev, "create user context, comm=\"%pTN\", asid=%u\n",
++			current, ctx->asid);
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/accel/habanalabs/common/habanalabs_ioctl.c b/drivers/accel/habanalabs/common/habanalabs_ioctl.c
+index 1dd6e23172ca..32678cd0775a 100644
+--- a/drivers/accel/habanalabs/common/habanalabs_ioctl.c
++++ b/drivers/accel/habanalabs/common/habanalabs_ioctl.c
+@@ -1279,13 +1279,10 @@ static long _hl_ioctl(struct hl_fpriv *hpriv, unsigned int cmd, unsigned long ar
+ 		retcode = -EFAULT;
+ 
+ out_err:
+-	if (retcode) {
+-		char task_comm[TASK_COMM_LEN];
+-
++	if (retcode)
+ 		dev_dbg_ratelimited(dev,
+-				"error in ioctl: pid=%d, comm=\"%s\", cmd=%#010x, nr=%#04x\n",
+-				task_pid_nr(current), get_task_comm(task_comm, current), cmd, nr);
+-	}
++				"error in ioctl: pid=%d, comm=\"%pTN\", cmd=%#010x, nr=%#04x\n",
++				task_pid_nr(current), current, cmd, nr);
+ 
+ 	if (kdata != stack_kdata)
+ 		kfree(kdata);
+@@ -1308,11 +1305,9 @@ long hl_ioctl_control(struct file *filep, unsigned int cmd, unsigned long arg)
+ 	if (nr == _IOC_NR(DRM_IOCTL_HL_INFO)) {
+ 		ioctl = &hl_ioctls_control[nr - HL_COMMAND_START];
+ 	} else {
+-		char task_comm[TASK_COMM_LEN];
+-
+ 		dev_dbg_ratelimited(hdev->dev_ctrl,
+-				"invalid ioctl: pid=%d, comm=\"%s\", cmd=%#010x, nr=%#04x\n",
+-				task_pid_nr(current), get_task_comm(task_comm, current), cmd, nr);
++				"invalid ioctl: pid=%d, comm=\"%pTN\", cmd=%#010x, nr=%#04x\n",
++				task_pid_nr(current), current, cmd, nr);
+ 		return -ENOTTY;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 56b78cf6b854..416aff49ceb8 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -391,7 +391,6 @@ void intel_display_driver_resume_access(struct drm_i915_private *i915)
+  */
+ bool intel_display_driver_check_access(struct drm_i915_private *i915)
+ {
+-	char comm[TASK_COMM_LEN];
+ 	char current_task[TASK_COMM_LEN + 16];
+ 	char allowed_task[TASK_COMM_LEN + 16] = "none";
+ 
+@@ -399,13 +398,12 @@ bool intel_display_driver_check_access(struct drm_i915_private *i915)
+ 	    i915->display.access.allowed_task == current)
+ 		return true;
+ 
+-	snprintf(current_task, sizeof(current_task), "%s[%d]",
+-		 get_task_comm(comm, current),
+-		 task_pid_vnr(current));
++	snprintf(current_task, sizeof(current_task), "%pTN[%d]",
++		 current, task_pid_vnr(current));
+ 
+ 	if (i915->display.access.allowed_task)
+-		snprintf(allowed_task, sizeof(allowed_task), "%s[%d]",
+-			 get_task_comm(comm, i915->display.access.allowed_task),
++		snprintf(allowed_task, sizeof(allowed_task), "%pTN[%d]",
++			 i915->display.access.allowed_task,
+ 			 task_pid_vnr(i915->display.access.allowed_task));
+ 
+ 	drm_dbg_kms(&i915->drm,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index 2cb2e5675807..5bcfda6ecafe 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -279,7 +279,6 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 	const u64 plength = 0x10000;
+ 	const u64 ioffset = plength;
+ 	const u64 ilength = 0x02000;
+-	char name[TASK_COMM_LEN];
+ 	int cid, ret;
+ 	u64 size;
+ 
+@@ -338,8 +337,7 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 		chan->userd = &chan->user;
+ 	}
+ 
+-	get_task_comm(name, current);
+-	snprintf(args.name, sizeof(args.name), "%s[%d]", name, task_pid_nr(current));
++	snprintf(args.name, sizeof(args.name), "%pTN[%d]", current, task_pid_nr(current));
+ 
+ 	ret = nvif_object_ctor(&device->object, "abi16ChanUser", 0, hosts[cid].oclass,
+ 			       &args, sizeof(args), &chan->user);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 107f63f08bd9..3264465cded6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1159,7 +1159,7 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ {
+ 	struct nouveau_drm *drm = nouveau_drm(dev);
+ 	struct nouveau_cli *cli;
+-	char name[32], tmpname[TASK_COMM_LEN];
++	char name[32];
+ 	int ret;
+ 
+ 	/* need to bring up power immediately if opening device */
+@@ -1169,10 +1169,9 @@ nouveau_drm_open(struct drm_device *dev, struct drm_file *fpriv)
+ 		return ret;
+ 	}
+ 
+-	get_task_comm(tmpname, current);
+ 	rcu_read_lock();
+-	snprintf(name, sizeof(name), "%s[%d]",
+-		 tmpname, pid_nr(rcu_dereference(fpriv->pid)));
++	snprintf(name, sizeof(name), "%pTN[%d]",
++		 current, pid_nr(rcu_dereference(fpriv->pid)));
+ 	rcu_read_unlock();
+ 
+ 	if (!(cli = kzalloc(sizeof(*cli), GFP_KERNEL))) {
+diff --git a/drivers/tty/tty_io.c b/drivers/tty/tty_io.c
+index 9771072da177..bd39167d4234 100644
+--- a/drivers/tty/tty_io.c
++++ b/drivers/tty/tty_io.c
+@@ -2622,14 +2622,13 @@ static int tty_tiocgicount(struct tty_struct *tty, void __user *arg)
+ 
+ static int tty_set_serial(struct tty_struct *tty, struct serial_struct *ss)
+ {
+-	char comm[TASK_COMM_LEN];
+ 	int flags;
+ 
+ 	flags = ss->flags & ASYNC_DEPRECATED;
+ 
+ 	if (flags)
+-		pr_warn_ratelimited("%s: '%s' is using deprecated serial flags (with no effect): %.8x\n",
+-				__func__, get_task_comm(comm, current), flags);
++		pr_warn_ratelimited("%s: '%pTN' is using deprecated serial flags (with no effect): %.8x\n",
++				__func__, current, flags);
+ 
+ 	if (!tty->ops->set_serial)
+ 		return -ENOTTY;
+-- 
+2.43.5
 
