@@ -4,110 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16B90D5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C676BD5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8E1610EB36;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C9E10EB29;
 	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="AA28ZGDG";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="GakuZVnt";
 	dkim-atps=neutral
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
- [209.85.210.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3355410E5FB;
- Tue,  1 Jul 2025 17:07:56 +0000 (UTC)
-Received: by mail-pf1-f177.google.com with SMTP id
- d2e1a72fcca58-74917867678so476221b3a.0; 
- Tue, 01 Jul 2025 10:07:56 -0700 (PDT)
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com
+ [IPv6:2607:f8b0:4864:20::62d])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01CC810E238;
+ Fri, 13 Dec 2024 05:46:59 +0000 (UTC)
+Received: by mail-pl1-x62d.google.com with SMTP id
+ d9443c01a7336-21636268e43so18023675ad.2; 
+ Thu, 12 Dec 2024 21:46:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751389676; x=1751994476; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1734068819; x=1734673619; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=otvAmKrNgrGmm953h66f4Y1tIUJExy7j19EPbj8H6iA=;
- b=AA28ZGDG+nB4IChojqo5hx9cAvd8EaIIc8kFygsmX8qe2/77VRQliGM01kVpm4xexc
- wMPFsOrbEEzGFQ6NCO5mhtwTxEvAV3h+KgX6YyKx9v0RT2Y6QjARcXFrRyWtos//Sypv
- ykeVAO6F9XOMU1JMNoGT3YRYys4CpiG+lMek2CvmQ4ppmGqp1ANhij3wilQ0TvB7usOB
- Sn9QS0WZxZhFGUeCnep0pHXy1Suyp41Lg8RHfUSqs9RZLEOiSMIVt9kWAKYgJYlV5qFy
- K20W5RsiLfbYUBEWuLLakDKRBefdOtrGUrl02UOfBQOLL3SJEvTyKfhEaPYrl0siCuwp
- QOBA==
+ bh=fVaAhWgLsrOIaawWt+Es3lyBYssP2HU9Cngct4cKfGw=;
+ b=GakuZVntB6g7YpyRFXN1LbQaFvhX6Tp4C8dD626BGiWJJ8miCR2UhHBtB7tF8EdU8b
+ 2+vNf/6vroXgQ6i52QtCoMPhLgm6mr1IYlqNaqXbmiTnfKa7BRDL/ff88hgD1F8EY1GA
+ TD9z/8lQPo0TY7c3/y3L7wN0fxw3p0mnUg3lFeLe+PcVwZYz/bLm8LD0pncxItqUcZql
+ 9xx2voDZ31Y3FlxQbTRPir2wXbdY8RagkuUNMf7AoKGsmi4elQ8WT5CWgxOtNvy1EPwJ
+ KMRH9FWNzxovAMm0AGEMoRTZ5PqJHU2ZA6wn4tGRIg2SXUzgZ+YBI26Nu5802I8HwGBH
+ 4CIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751389676; x=1751994476;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1734068819; x=1734673619;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=otvAmKrNgrGmm953h66f4Y1tIUJExy7j19EPbj8H6iA=;
- b=Z2VrpsKb0Mv3iw6t9f6HgSlicobisnzi4ygYV0ekmb4coprELbZZkVmoZ5HiU/HBX3
- dw2IrFKzbemWf+5zVsk+KbNzaz4beer8XDH3eS6PlEfYEvJtZWubWVMA3e2znRi0kAxb
- W5/L7XltGlUgfN6VcFey7IStt1CzdvMwS3bbVsLwuwg+8TCuj7kWqD3zXMQsmf/iSyUh
- zvujqXhryTO0d3DV5iSzepwx2MlqlTsIhaHOihigPaLGXkwLL4zM/W9bSkcYHmmSeK3k
- M2DVkUVEDFIB/xsE7x86gg9ONaLsKsPjxbusrrbsP4NAF1trKxjTpIz+JPwpYHndkDKJ
- o1Tw==
+ bh=fVaAhWgLsrOIaawWt+Es3lyBYssP2HU9Cngct4cKfGw=;
+ b=Z1Al96d1fL4r9t2EjTkugLXuI0xor/2ms9V8xx/IgIvWEKNPOUSYkIKJsYFbZypXWP
+ 2q6hCWXDvpT8a4WhaJWQzk6d0+jcFmkhbCs8YLvrEzmSvDgrHCELxX2OrvISz7MvK9W8
+ AIUS2bxdJMMKI/lSaHoohOkMbA3JVuM6J74JZhp5LXOITpqOnEimbsK652GPeWHSafUe
+ /q0tG8qe+eZHxiSpme018+ixhDGvDraXgECVZQjvuvFnFyReFwJ4DaYO77pgx30e44rc
+ pWrem8XZKHjYYgaGXmJJUAQbWSOUkLzUOeZuQ2P4hJBFHOd+2MbVhhuVW2ATjT/QzVO4
+ PfhA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV3i7CSanbxGIAS/r251KgidA5tTD5xrYc2N9d09wSBoiufVAhBdViUv4mlkuxwGx3M0gVDfDqF5gA=@lists.freedesktop.org,
- AJvYcCVxWz0nO20t/JmPsDClQZIdqn+xyej6q3vTRGwmkU68lJYGlZg03mht58mkBAwK8V+3edVDX2KcPQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhOFKJ4Y9pdIu7cbE196lmyJtfp9Zi8FFmTU2LPdYRuiltMV0h
- g4A5iYBBUAAEy2Bg0FO/EDxmNJaJQEgc3UqdOwK2OOjnbMABAq0RW5Fist1uguXp8jKrRC3LJeB
- pGDGqvVAjC1oLxq4YJVy6+M2U3mwVByw=
-X-Gm-Gg: ASbGnctkYGTR6SEJOBwR243Lk1eFFcBHocPBG9yfvp5OAPdT2i/Zpxd3ULRzIYXyr6B
- hAcYe7GnZ2spbzYzfr9ZXz8Rl0b17y8zmMGAHvEE3lKjwT5EG0fKCGN0LFQc2OTGKEzQ4aPs+cy
- 1xtAALXiQ5jbgVPocP0XHh/VmnMRwnqEWG+xZOQc6Q4eyy/m5nU9Tkvw==
-X-Google-Smtp-Source: AGHT+IGgyj2cxaLL1I/RbT9oFzMdK+mMcfN6YoSZuvCYWImRFjEfnNWMRG/RDCPN3KNKY0Jv5Rbef8Y4TKqAiOAmPyk=
-X-Received: by 2002:a17:90b:1843:b0:314:29ff:6845 with SMTP id
- 98e67ed59e1d1-319519ee90bmr2461781a91.4.1751389675613; Tue, 01 Jul 2025
- 10:07:55 -0700 (PDT)
+ AJvYcCUJJtT0kFOWVEv3VxhQRX+oTYrbEcrbeBAzAJqAe6OdfpMQeC3y8RWwLkoD3x7sFsr1JdaOWEDuJw==@lists.freedesktop.org,
+ AJvYcCVNZ3zokedkAsWjJ7xk6cxLC0JIBVO517mcI26ATgTKKM2AkrteM3gJX7Xs3gyvDGUfwaFBr2g0sDg=@lists.freedesktop.org,
+ AJvYcCWqiMKjXEs42LwXYNTrUVfyvoqf5vYqaFN3jP52Fk9THebwvqKYrrNgj6W4hLkGhrRyF2BXcIlefvg6@lists.freedesktop.org,
+ AJvYcCXsiJS9IsxTwP0fanebPlfWVYCUXnVxjhc6t56iJszZiRTZE37psfhDTivKagEaVPtz6IXGbgd1hrs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzk7C3ITsCz1kD0wUtFddwUFHR9hcHrpvgnIk2+fwQzFrw0SbGa
+ 72+1cWCBtpVT1Eg06hlemej+27igEjUEEwmfylsPFc+27BER6j86
+X-Gm-Gg: ASbGncvrupJm5nvhOc+ls9OksrE1EbczdoNiszt90N+Lb+G9hyHlxqQzU3s7YmOrKZR
+ wp2Y2hiivTe79AEVrHihlB1Ep67zoqLI2jIvGqtkVIKFA0DZZOpbyrGf0L0fcD/dSQphSFu4n2M
+ IVnvJkKq3nHeCYgSo6UBZgnWRZtpwzo81WpEjB4WkvpLPcGpCLh4UoJz9ySVZJfDkgcZXuaxOEn
+ 490q3wAGg9f+aaCPft6bvmyUz0wh5nWorgCVDabrDGKyQFh24+NlNSpG5SR7F8CZndK2vfiy55M
+ CgeGeZI=
+X-Google-Smtp-Source: AGHT+IGnQMpyX4qO4c9TaUxIvkW9bvqpb4HtTDVE3C9gZFkXCVV6ksZB8lAWhFJzpiBj11HO1t8PNw==
+X-Received: by 2002:a17:902:e88b:b0:212:615f:c1 with SMTP id
+ d9443c01a7336-218929a19c2mr20599995ad.14.1734068819460; 
+ Thu, 12 Dec 2024 21:46:59 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.46.52
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:46:58 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Serge Hallyn <serge@hallyn.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Darren Hart <dvhart@infradead.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH 2/7] kernel: Replace get_task_comm() with %pTN
+Date: Fri, 13 Dec 2024 13:46:05 +0800
+Message-Id: <20241213054610.55843-3-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
-In-Reply-To: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 1 Jul 2025 19:07:43 +0200
-X-Gm-Features: Ac12FXxPrxBmeSfKO3xPaPnHZ9Ojlak6uQ0jVcG0JF2jdPMZA5As1xRK0OZ6894
-Message-ID: <CANiq72kb5b-Q4OwASfGg6gz94fCQSLH34u29umQRsF8MEhR+6g@mail.gmail.com>
-Subject: Re: [PATCH v13 0/5] rust: replace kernel::str::CStr w/ core::ffi::CStr
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>,
- Benno Lossin <lossin@kernel.org>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
- linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,22 +101,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jul 1, 2025 at 6:49=E2=80=AFPM Tamir Duberstein <tamird@gmail.com> =
-wrote:
->
-> This picks up from Michal Rostecki's work[0]. Per Michal's guidance I
-> have omitted Co-authored tags, as the end result is quite different.
->
-> Link: https://lore.kernel.org/rust-for-linux/20240819153656.28807-2-vador=
-ovsky@protonmail.com/t/#u [0]
-> Closes: https://github.com/Rust-for-Linux/linux/issues/1075
->
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copye it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-Thanks for keeping this up.
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Serge Hallyn <serge@hallyn.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Darren Hart <dvhart@infradead.org>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Cc: "André Almeida" <andrealmeid@igalia.com>
+---
+ kernel/capability.c     | 12 ++++--------
+ kernel/futex/waitwake.c |  5 ++---
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
-Let's see if we get some Acked-by's -- otherwise, we may want to split
-by subsystem and avoid flagday changes wherever possible.
+diff --git a/kernel/capability.c b/kernel/capability.c
+index dac4df77e376..4512cd797f49 100644
+--- a/kernel/capability.c
++++ b/kernel/capability.c
+@@ -38,10 +38,8 @@ __setup("no_file_caps", file_caps_disable);
+ 
+ static void warn_legacy_capability_use(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+-	pr_info_once("warning: `%s' uses 32-bit capabilities (legacy support in use)\n",
+-		     get_task_comm(name, current));
++	pr_info_once("warning: `%pTN' uses 32-bit capabilities (legacy support in use)\n",
++		     current);
+ }
+ 
+ /*
+@@ -62,10 +60,8 @@ static void warn_legacy_capability_use(void)
+ 
+ static void warn_deprecated_v2(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+-	pr_info_once("warning: `%s' uses deprecated v2 capabilities in a way that may be insecure\n",
+-		     get_task_comm(name, current));
++	pr_info_once("warning: `%pTN' uses deprecated v2 capabilities in a way that may be insecure\n",
++		     current);
+ }
+ 
+ /*
+diff --git a/kernel/futex/waitwake.c b/kernel/futex/waitwake.c
+index 3a10375d9521..df8f8c85d776 100644
+--- a/kernel/futex/waitwake.c
++++ b/kernel/futex/waitwake.c
+@@ -210,13 +210,12 @@ static int futex_atomic_op_inuser(unsigned int encoded_op, u32 __user *uaddr)
+ 
+ 	if (encoded_op & (FUTEX_OP_OPARG_SHIFT << 28)) {
+ 		if (oparg < 0 || oparg > 31) {
+-			char comm[sizeof(current->comm)];
+ 			/*
+ 			 * kill this print and return -EINVAL when userspace
+ 			 * is sane again
+ 			 */
+-			pr_info_ratelimited("futex_wake_op: %s tries to shift op by %d; fix this program\n",
+-					get_task_comm(comm, current), oparg);
++			pr_info_ratelimited("futex_wake_op: %pTN tries to shift op by %d; fix this program\n",
++					    current, oparg);
+ 			oparg &= 31;
+ 		}
+ 		oparg = 1 << oparg;
+-- 
+2.43.5
 
-Cheers,
-Miguel
