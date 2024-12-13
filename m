@@ -4,81 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72940D5B15A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2E32D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E7710EB27;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998B510EA8F;
 	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WygyOlUg";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FM/iQDg7";
 	dkim-atps=neutral
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C6610E2D1
- for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 14:51:59 +0000 (UTC)
-Received: by mail-pg1-f182.google.com with SMTP id
- 41be03b00d2f7-b8b33cdf470so121865a12.0
- for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 06:51:59 -0800 (PST)
+Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com
+ [IPv6:2607:f8b0:4864:20::636])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 428E110E074;
+ Fri, 13 Dec 2024 05:46:44 +0000 (UTC)
+Received: by mail-pl1-x636.google.com with SMTP id
+ d9443c01a7336-2156e078563so10800195ad.2; 
+ Thu, 12 Dec 2024 21:46:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763995919; x=1764600719; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/cuXBv9WUJm6Kko0g9y8Xk9WBvYZvMR/dgMEJPiZVyU=;
- b=WygyOlUgkHEjn38i3yGw/GncJJIIwoAtsIrcqRO1aXas5x85zyNeWQ0StQjm7dYg1G
- T4hliRinEblUN9tfCHaRKQu3l1kD+QyvJR/KPXCGF1bwRo6My990UWhe6GOdkPa/e68r
- grXjv75r04bnYZ4j7+VCjwULzSHm2AJhZM/cg5VyXvtz5SgT1lbFArqY8zOs5lT7vv1p
- m/3IRcZDitP4WBwaWUWNgSgD8AifH+CEeAv2WGie7kyYhtaluR7P3oojro7mtiJHCB7b
- 7FV4ri3SVr2QuZDFGSVI/4yxAnjQ/uKPx/BmkuZ1xfMgGhX7Da4+K4KRPdyQyjzW7BIn
- XTBw==
+ d=gmail.com; s=20230601; t=1734068804; x=1734673604; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
+ b=FM/iQDg7KC4a/755IIO7QtW7lGZizb9Ij12tusXglECWpyQ9nvOTMHAcDQwxPnjnYo
+ eTsmAPsuz79GW2gDJB31OVGRJSLIvIdoV//6LhZKavKhZUdkvG49eXuYeH7FM/LeRfjP
+ hpHU4RxyoJvFZIZ5WFJINR8gs5wgEdI874DfumKMva7Hez/g9dQjQvSD0GxM57ZqiRUn
+ Ze68Q8GAR8BO+Otz3EB8MyMegI37Yf180KgHlGvecTr7RT6Z/zQ5ifdva8QEAGqA9rxV
+ 5k8tF13tb13nM2JEThwqXq215k7y81rAhUluLZI9l+xXAdlzqxQuOL4CGYB6RCQ+9rtm
+ R0aw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763995919; x=1764600719;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=/cuXBv9WUJm6Kko0g9y8Xk9WBvYZvMR/dgMEJPiZVyU=;
- b=FpJgJW+t8CRee6r2d5rVqHFHWaBbnxLH1nhzI0cmfl0v56fR77LtQwN7RGE68qxoP/
- ryA873ziR7x4oIH2ynrK3Sno8d+QMpT8bNjE6rgrUryHdHZvXuXoXWJck/GCdM/qU7tD
- 0LLp6NGN1II0ecU6HjKxsMV8nuOVNPHyI5ipdkQhc22lpNUmmRtB1tBi4RM7uagEBeWX
- tN8r76FpwyU1azNP7k+A1lCCncdRunia5Lfus0+shWk08+gMiHXCSp5svwJY6EImPt4c
- W/xWLeXpPebi/ryvo2WJyta9bCoCpi1khiQMMvL0uxtKFxxqbRAHCIAxAlT9/lWusNJ1
- E6jQ==
+ d=1e100.net; s=20230601; t=1734068804; x=1734673604;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=9nDBDHl8OkOEbonP7/O/xeWGAuqOftf+4IMvf+gS1cw=;
+ b=mFWDB/eHGMLYTkaKvVKZ60/txoFkAnA43c4hJyKomRRG88tb4QvFogw4OsBvUIi5Vu
+ QOA8BiD/ML7hvLNsYYv1y76T6dbHHOGIsgr8EpdSQiUciT9fKaT7iu6CdSdosuYtPkw5
+ 7ZsJ9p1VmmQ9jEF20YLao+0dw8dSsHzdBGVWM+PFvLfVH4ZGFOSTwuBPh2FjbEE8/CZH
+ 2lsLwyvnIkJbBT/TAQhitGsdmuooeqm5zWKs2hTprneecYU12Y/AULYcgNn9J+wj7emC
+ uJ8yJfX211t7igSyOVZyJ0JEVpbKBTaILhPtggFQygO3LlvE+qtzr3K7CBAttlu25Dwi
+ bZHg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVGRAq1COoqrRbQOb+GgwlROzFYv0lyA44944+G9H7MPoTwQlnn34GI49qztbgWRbcoIS9XsJXy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxW8T2PfHn+PFL3D8MGCKAStGXYCa4gUDUsAhyhdoH4Rp5WumI3
- 7DuNa7bG5YW8k6sdXQk2yDLKS9Pk2EPFi+cPTz2Tg63oIcxrds0hRRHmS30s2cJN4RBvtrMuXeQ
- vioOr+iMt6k/i8XaIs5hV/yqqBvgD49Q=
-X-Gm-Gg: ASbGncuOis53kb+lxPsdUDvKTkzuX8uvnpCZaZz2CEzVehTdnZsxYc+5LAqcvNIy+KC
- IGfoKfiRNVR+46exKgMLZcH+a9bfIU/ZgKfXTfrVvff+CHbcHqsPQnExPtoGBrkQcu9b47W9NHZ
- K4Xj/U+J1JcQkoYw+eGV1zfJ7MzheRTMe82xzkSGAvwEuHYxGJVaVCNc8+OwKkF4Bdaz1X/YZsx
- dVooFl64ZA6VhyBxRODJpH5vZBgqhtKSaEyGe7geuasWJoiuU0h/bGwlSPIPC409ZeckdxtbTdC
- EFlaAt4QwLpV8HxfbFMHDVdDdNScFsyx21iP/SBTzt95zsdfZD0qcRBWaIAdjCGOZODdxU5dFK2
- s7F2QzRU9+mxQ/w==
-X-Google-Smtp-Source: AGHT+IHPUoZtQP0D4LXyIGxGGt4feAJlxaU/xnzf58w7DLQtCNJmBFAVlgka05hrCrIG2fNw6s735Cx7RdDtbzh+p78=
-X-Received: by 2002:a05:7300:ac82:b0:2a4:3593:2c0a with SMTP id
- 5a478bee46e88-2a724c02369mr6966770eec.3.1763995918927; Mon, 24 Nov 2025
- 06:51:58 -0800 (PST)
+ AJvYcCVuNV/C7KDZ61vdMumNzJGhNjpMAlyZS/AhlZd4MRE3HobeUI7E6xaybrgbdXf0oeOuAQfTE9O7Q8o=@lists.freedesktop.org,
+ AJvYcCWS6LZqKveP7bsekch4g5LppcXizEU5XoTm8x26xqOm74sc+ymQcqpR+ZsPSIK/l9G4O/r2a9TBwEw=@lists.freedesktop.org,
+ AJvYcCX1nmu/3KwyscWOAguGfYweWt8GgaEE63J/Mv4yirjKB47QZeYaOYR6633KAxKNpvUJ8FCfecaQFZbl@lists.freedesktop.org,
+ AJvYcCXHM+EdtG+QH1Y0pzz6C3N1W4Ht+sgm3K+k+QTFPLB6MDAhZbO6XMyZQIrMA7ohfrnIHiXdwRg/Vw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuXR864N1lZGhEEgmYBdzJda9RMNp1aqTsCT+X4sCmUoEV9qJ5
+ mkcfAIkMKDbxUYZyAKXwTTN5LjhLbRkGq+1bDN8+prts/1ZJn/MaLsk0ziHZoGk=
+X-Gm-Gg: ASbGncsKUZK8Aboj2I69p6dCvLNo9vla2jLf07xDz2WOGJ/DMCfLjVFYERktOyE4Vt1
+ 1LBpFoIqYz9PoW40OY3QFSQXU63CBL4fUA0xOL4s9NUczjx8krGa34kIlIGEBi9BSVyBFaPVoih
+ 2BlZo8F85exj9cvo3MyGc4T9ZAqILbfUCdV85UypY+nX5lRCky69tY/cqE76hth3D9RaLKumHfv
+ m0Ct3JNbdWgQGRPvsKjZrRxqhOgspaV4r49ieGReupJvjLjjan/a52yy442Ls55tVTWhxXfL+6R
+ hsT2R6s=
+X-Google-Smtp-Source: AGHT+IHVKByQs8aQw9nFW65MyCdke95tovLrIe/teYLFc9u83Eik6guIs9oKZyvf6Ts5Rmy4R5h3SA==
+X-Received: by 2002:a17:902:ccd2:b0:216:26f1:530b with SMTP id
+ d9443c01a7336-21892a70579mr20915305ad.51.1734068803702; 
+ Thu, 12 Dec 2024 21:46:43 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.46.38
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:46:43 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>
+Subject: [PATCH 0/7] vsprintf: Add %pTN to print Task Name 
+Date: Fri, 13 Dec 2024 13:46:03 +0800
+Message-Id: <20241213054610.55843-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-References: <20251124231644.38d0303b@canb.auug.org.au>
- <20251124123249.GP4067720@noisy.programming.kicks-ass.net>
- <aSRlFB9PoOcZVmvt@tardis.local>
- <20251124144714.GT3245006@noisy.programming.kicks-ass.net>
-In-Reply-To: <20251124144714.GT3245006@noisy.programming.kicks-ass.net>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 24 Nov 2025 15:51:46 +0100
-X-Gm-Features: AWmQ_bkcTjev6aW2ygRL9xeP9TP5FKOyn61229OF8XBDxgWHkq8wbcdDoBOjJiU
-Message-ID: <CANiq72kN_QjYSCdzs9UCx2sHdR9Q2g_7_h-ZZ2y0qLZjhUxX6g@mail.gmail.com>
-Subject: Re: linux-next: build failure after merge of the tip tree
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Stephen Rothwell <sfr@canb.auug.org.au>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, 
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
- Linux Next Mailing List <linux-next@vger.kernel.org>, ojeda@kernel.org, 
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- nouveau@lists.freedesktop.org, Alice Ryhl <aliceryhl@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -94,29 +93,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Nov 24, 2025 at 3:47=E2=80=AFPM Peter Zijlstra <peterz@infradead.or=
-g> wrote:
->
-> I really don't think rustavailable is doing a good job here. Strictly
-> speaking yes, its available, but figuring out why things don't work is a
-> giant pain in the arse.
+Since task->comm is guaranteed to be NUL-terminated, it can be printed
+directly. This patch introduces a new vsnprintf format specifier, %pTN, to
+print a task's name. In this specifier, p represents the task pointer, T
+stands for "Task," and N denotes "Name." With this abstraction, users no
+longer need to manually retrieve the task name for printing purposes.
 
-I guess `rusttoolchainavailable` would have been a better name, i.e.
-it is only about the toolchain, not about the kernel config
-requirements:
+In this patchset, all instances of get_task_comm() used for printing the
+task name have been replaced with the new %pTN specifier. The raw uses of
+'xyz->comm' for printouts will be addressed in a subsequent patch.
 
-  rustavailable   - Checks whether the Rust toolchain is
-                    available and, if not, explains why.
+Suggested-by: Linus Torvalds <torvalds@linux-foundation.org>
+Link: https://lore.kernel.org/bpf/CAHk-=wgqrwFXK-CO8-V4fwUh5ymnUZ=wJnFyufV1dM9rC1t3Lg@mail.gmail.com 
 
-> Now, lets see if frobbing Kconfig to disqualify RANDSTRUCT will let
-> allmodconfig work better.
+Yafang Shao (7):
+  vsprintf: Add %pTN to print task name
+  kernel: Replace get_task_comm() with %pTN
+  arch: Replace get_task_comm() with %pTN
+  net: Replace get_task_comm() with %pTN
+  security: Replace get_task_comm() with %pTN
+  drivers: Repace get_task_comm() with %pTN
+  fs: Use %pTN to print task name
 
-By the way, I have had this patch around for RANDSTRUCT a long time:
+ arch/arc/kernel/unaligned.c                    |  9 ++++-----
+ arch/x86/kernel/vm86_32.c                      |  5 ++---
+ drivers/accel/habanalabs/common/context.c      |  5 ++---
+ .../accel/habanalabs/common/habanalabs_ioctl.c | 15 +++++----------
+ .../drm/i915/display/intel_display_driver.c    | 10 ++++------
+ drivers/gpu/drm/nouveau/nouveau_chan.c         |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c          |  7 +++----
+ drivers/tty/tty_io.c                           |  5 ++---
+ fs/ocfs2/cluster/netdebug.c                    |  5 ++---
+ kernel/capability.c                            | 12 ++++--------
+ kernel/futex/waitwake.c                        |  5 ++---
+ lib/vsprintf.c                                 | 18 ++++++++++++++++++
+ net/wireless/wext-core.c                       |  6 ++----
+ scripts/checkpatch.pl                          |  6 ++++--
+ security/yama/yama_lsm.c                       |  6 ++----
+ 15 files changed, 57 insertions(+), 61 deletions(-)
 
-    https://lore.kernel.org/rust-for-linux/20241119185747.862544-1-ojeda@ke=
-rnel.org/
+-- 
+2.43.5
 
-More than glad if someone confirms it works for them...
-
-Cheers,
-Miguel
