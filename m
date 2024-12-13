@@ -4,89 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B915FD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E53AED5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B890710E9F1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E69810EA30;
 	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="dQPFiFEE";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SooqcpWO";
 	dkim-atps=neutral
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
- [209.85.216.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C81E110E1D4;
- Thu, 28 Aug 2025 11:45:55 +0000 (UTC)
-Received: by mail-pj1-f49.google.com with SMTP id
- 98e67ed59e1d1-325006ff07eso77467a91.1; 
- Thu, 28 Aug 2025 04:45:55 -0700 (PDT)
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
+ [IPv6:2607:f8b0:4864:20::629])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FACB10E4E1;
+ Fri, 13 Dec 2024 05:47:14 +0000 (UTC)
+Received: by mail-pl1-x629.google.com with SMTP id
+ d9443c01a7336-2166022c5caso12160875ad.2; 
+ Thu, 12 Dec 2024 21:47:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756381555; x=1756986355; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1734068833; x=1734673633; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=I2H56yO/8NFGXQtE7p7bHZ/o1E70dyX3AMAnCJlBt6w=;
- b=dQPFiFEE5trpogGtFcs+sw4czMozzXgKuhR/Mz5mNVeIwKmOB0PHHAvV9bLf98oYbb
- RZ+oxHSY0PSFM72xzTveyPEZRdm2nbn3m4WYViQwDNSsz6gaox9rW57GAd0vX8nNu5wU
- AhFNGUcuOz88GuZu7Wq1yn9hEQAhcrsMR+a3JH4G/fWNvUFoTAioaJcw8czbw/E3DRLy
- oMokxgcVmaf3yCjjgD4QflUQSLRkjw02RnMsyGvVUwICGpg2pfPpxt+u2cx58nh9gFe4
- CmBxWaEFiBIBfXHFVUGGFP7L9NpmqPh6LPFtsJJEYmGTEVDHK5dQ4V3wgeb3wNGIisk3
- cKPA==
+ bh=gS7oaK0RsPIguog+zKCBYVnzq+DdL6weynD0punt/E0=;
+ b=SooqcpWOMyT6L+d+J8A3U+MM6HS1Zct3Uya92glSX1EsZwBrCuMRBjQaB6G6XmZBKX
+ OhLz9+fsvP3tFVeXM7+thySamGOtqs/gFs2tjE/nqvwcsKLThtGtI7ix+lFKVgLqFhDY
+ jOoP25O7oOoITZPjoeYwqHpelrbXHESqmBYJtMmpX+HYm1FDetf7PO7pGxPIgAYREhrj
+ MRS5stK3MauoY14vGXaPxZ8XjyB66SLbQ0oJfrdbRUiQJxnLwqlPl4tK/zJQyuiAI1JF
+ k5pG1eBUqn5rkop5m/GJmvVnXl6nMyfzx7oT7Fdp2ODjsmWPYu0EliWercV0Hqm9mNKO
+ 4iVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756381555; x=1756986355;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1734068833; x=1734673633;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=I2H56yO/8NFGXQtE7p7bHZ/o1E70dyX3AMAnCJlBt6w=;
- b=LqTVXMFEvigGbaEELmR9ef4RlEehGwqI6Is8Dgqv95gUgwQWlxfI1QB4rfYVbeJ5si
- u5vtW59tqVV1dYbHabLKiUR5FQY2FncnyHvlqOn9uBIDAllBCEXilXSfB4PulJD7fZ9p
- txq7hr19NTW8UfoVbLNr+GodL6G2ls7J4VLrwSOw0rg82t/C+9XbrNgm7Y6qozesZPgj
- kmCRelgyeE+0EBI76ddGKj8N4jAOUiH2lcr7YN8EQIdegqOBoc4mYqH16TDAZ3QwS7Ax
- moOLwP6h3Kak9qe4XzpbWmH4M9AX547LPQ9aiV1bJd+vwRqeJekp30+Zy0/pEMQ/fbnx
- uMAw==
+ bh=gS7oaK0RsPIguog+zKCBYVnzq+DdL6weynD0punt/E0=;
+ b=hcrQr/q5Oyxb4i2SNljT6oH9IK0BCnWBxLrAZfZuLpvU8rOoZCTB8F/DZL1UWUv+GA
+ Qmcpp4jzN/u6xhr/g98+xE8Va20AcTLBEhv68qORry9txwsqh8pIXNKgMvGb6Q240tFP
+ XcIzChjEg+NCg+nr+7aGC8LcSnQAvM8vrWkBIdbFOJ0btTqW17vj8s+NU8mVVAluqIt5
+ mOSOOMFs1UypVWRgPf3vJm/SFgiVgxB0gJugrr6RKngIzLEJ0wk23F2ebfV2GLHCZbyz
+ AGiPY2pMAPd6Uo7DoCxS83v0IRykdr6zDRcK/7iQwzFDLGxMVNeRoYOwG9Ram0fiPtoy
+ XYng==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVnMzjgIummVbDCp9QK8DofnOLb/+LcOmppIxtlPpPQmE9TWmcWpxRa3e1+/6paxVTSnNlXvoTufw0=@lists.freedesktop.org,
- AJvYcCXAebKHvaJYmMM6KqRHda/TDhrU0Wyl/a71wLC9mOMA12QYfOqCkcphyoEk9X4IZ4GQhZkqDgwqOg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz1cqKdOuJ+nJiSFshqkicr7EJ1PiLgtfdt3yHj3tUBe5TY2Xhs
- X6cQfDnZXwAO+9W2CEJnXKbro0gGi48MPd4fwr93YOMj6W9+rbj6GkFyPiF7bNK2vseHr5eCTvW
- IVJskXuF0lNj1kCoX8JydoOcE42ycnvY=
-X-Gm-Gg: ASbGncu5qFtNiuSX2k7vj1sUBupjZad/mbNTyFOcNQ2u6f3zB1kTRXWedm47UXWrqXm
- vzaT9w7Da4nSUa7GjyzCQUTRO8rhvYSQQ/bxH4Fp8en64Zletq01wCAj9KyZawXxDoIQLMWoAM2
- lQ3NGsMnjlWub9val/YccOCdOMVA4HuN88xuHQTGFNoPC9dN24qIthSuDxYwI9iech63rY04grz
- j8QIOc/NUPmf/G2z6jRj762faOSZokWnslmhYjQdXFwkQs5Tqe7dmyUPVR3TQkUN+vlZWmknK+Q
- voTy822yl/VMuwLQRIIk+L0j+aPNkt/7Ci/3
-X-Google-Smtp-Source: AGHT+IG1ihsWTuJC99RCEFetl0OaKKf7I0MSOaGMg4ugbXGYCXUCMWGrBO89xxuGWPNGJExxHbx0h7dAYm9Df/5VgN0=
-X-Received: by 2002:a17:90b:4d01:b0:31f:3d6:6d98 with SMTP id
- 98e67ed59e1d1-32515ee8b50mr16448907a91.5.1756381555273; Thu, 28 Aug 2025
- 04:45:55 -0700 (PDT)
+ AJvYcCUCa8MZT7JxxkR+Wn3CtC/w3e3o3rJPemQbtEYH7Ps84GuyHaOjq7UEYS79vSovDEmm/B/bzISB2JCh@lists.freedesktop.org,
+ AJvYcCVVbESmras5uK42Vgfasp7ClkBlEbvL8jLLU+pRuVj1GrqhtTPNVOe3lUYJROUiqxf21tOEc4cvAs4=@lists.freedesktop.org,
+ AJvYcCWXjZ3bENLnflz78b8GANS87lyRWES8YIXymmUo8dYLrETuv5s/tZd6T/eS3hX0IJBE3dl3JvMH4w==@lists.freedesktop.org,
+ AJvYcCXCa+THm8osG364Y3SpXFzGma5+igllk+8N8bbtW6kpwT2QIxIT7QJIZ9ffuX+fc+v7ZF8dSUMSJkQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwUPY780y6GReLjARmsBGoKodW72tdbvcJtJQSwumDUo1w3JY06
+ gyi7Pe8SfxgoXBiP8qSLN/m9tVRQu1zuBYT1wdhvC/wtQ1BQH86c+pNda9fHFm4=
+X-Gm-Gg: ASbGncu1IQUDFe8mqzBTQ/enmjFTglyicHNaTNRT3jJqkYBSQtwn3lghP5WZamCeQw2
+ bwhmj0KmoBC+nbg18DBG4249aIjvVqHKOOLe8H+l89pAxDuYR8f5ntgZAf14nyjMeBd1zmitgKy
+ YRIKPbDOYy8KYpVrX+m/pJWYKrSLZgAQLF9SYeWje9z7gCzRYSiFkiHFIh8dulEHjqly0jVV3rE
+ pWCkiHbRDvs8TGee5nhGsIa9Wbf1IPRML9XKmmj5nnkB5Sv7ZwcqJoDhK3dXSm6EqbYkkq1Rf26
+ JGhe5T0=
+X-Google-Smtp-Source: AGHT+IG/u9vPHYJsr72JqaDrYLM72r0Mv+gF1sZwvgldiU0c1giVELNbwcEluD8XRP6pboK2QDHicw==
+X-Received: by 2002:a17:902:f60c:b0:216:7c33:8994 with SMTP id
+ d9443c01a7336-21892a7a811mr23989435ad.53.1734068833602; 
+ Thu, 12 Dec 2024 21:47:13 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.07
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:47:13 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>,
+ Johannes Berg <johannes@sipsolutions.net>
+Subject: [PATCH 4/7] net: Replace get_task_comm() with %pTN
+Date: Fri, 13 Dec 2024 13:46:07 +0800
+Message-Id: <20241213054610.55843-5-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
+References: <20241213054610.55843-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
- <20250826-nova_firmware-v2-1-93566252fe3a@nvidia.com>
- <DCE0VZXSP39I.FKGHKONUTB5L@nvidia.com>
-In-Reply-To: <DCE0VZXSP39I.FKGHKONUTB5L@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 28 Aug 2025 13:45:43 +0200
-X-Gm-Features: Ac12FXzDZTEvSN_jSpG0n7-NSUbagH20PpVfLwEy9ehcrmoj8GVXqea9N91DQ_U
-Message-ID: <CANiq72=Z26jzVMbGfqL-_Wq8boX5qApmPCVGA1D6cwzOxgWWLg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] rust: transmute: add `from_bytes_copy` method to
- `FromBytes` trait
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- Timur Tabi <ttabi@nvidia.com>, rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,18 +97,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Aug 28, 2025 at 1:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> We got 3 Reviewed-by on this patch - Miguel, are you ok if I merge it
-> together with Christian's `from_bytes` patch, since they are closely
-> related?
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-If you are taking this series this cycle, then sure!
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>
+---
+ net/wireless/wext-core.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-Acked-by: Miguel Ojeda <ojeda@kernel.org>
+diff --git a/net/wireless/wext-core.c b/net/wireless/wext-core.c
+index 3bb04b05c5ce..1f2a7ab546ba 100644
+--- a/net/wireless/wext-core.c
++++ b/net/wireless/wext-core.c
+@@ -640,10 +640,8 @@ EXPORT_SYMBOL(wireless_send_event);
+ #ifdef CONFIG_CFG80211_WEXT
+ static void wireless_warn_cfg80211_wext(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+-	pr_warn_once("warning: `%s' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
+-		     get_task_comm(name, current));
++	pr_warn_once("warning: `%pTN' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
++		     current);
+ }
+ #endif
+ 
+-- 
+2.43.5
 
-Thanks!
-
-Cheers,
-Miguel
