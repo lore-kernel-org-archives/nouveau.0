@@ -4,42 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3BEBD5B15F
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A7AD5B164
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 833C510E9CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83CCB10E9F0;
 	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="K7XaI/Do";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LA5W3T47";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5777310EA4F;
- Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 66376CE19D4;
- Thu, 18 Jul 2024 17:00:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03A38C4AF0C;
- Thu, 18 Jul 2024 17:00:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1721322011;
- bh=mlpP4ffiXBG1uroeqwi9S6JOrz0k+lbPbkdmr3wYVUA=;
- h=From:To:Cc:Subject:Date:From;
- b=K7XaI/DoLjWXi7HV1yiAt2ms9htBVUIiCQiZdh5tojMVv3FKUTISfK5eLxyHM3ZRN
- gc7bRqB/MEhokoRc3jgR18yVKrMT3yDdsQiUhjvetnhkhiM7CnsYoXpzTVDB+t7Zkl
- 557rgK+OEa+GqbGamZFC+k45+U95oKG7HQcj5r3CtpPPEb3xJgxQs02ZaSjuwfkr9L
- Rfrb55Yc/AD+ziWGst47lm+SrJzuoWzX+EhA9mCvPXzBXk2FmT/LT2xnsSvzWtnZ37
- Zf6+5sNGonNdfB+EovpB/0frOMJukCUJ9dzyBdmq/hDo6ZsRnPjaWagaGXv43EE6VX
- H/qRG4MKYneWQ==
-From: Danilo Krummrich <dakr@kernel.org>
-To: lyude@redhat.com,
-	airlied@redhat.com,
-	christian.koenig@amd.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH 0/3] Nouveau fixes for TTM refcount rework
-Date: Thu, 18 Jul 2024 18:58:45 +0200
-Message-ID: <20240718165959.3983-1-dakr@kernel.org>
-X-Mailer: git-send-email 2.45.2
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com
+ [IPv6:2607:f8b0:4864:20::430])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2E0710EEF6;
+ Fri, 13 Dec 2024 05:49:27 +0000 (UTC)
+Received: by mail-pf1-x430.google.com with SMTP id
+ d2e1a72fcca58-728f1e66418so1225252b3a.2; 
+ Thu, 12 Dec 2024 21:49:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734068967; x=1734673767; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=m2jUPvsdlfQUhZsdbtI4Ke1sLD5+tvHbQzW9Gl1gyas=;
+ b=LA5W3T47PvwIf7VmXGnZPFB39WUEhKo7m2Em+r8J6qf0S0I93mTrVAOLaGapaKH64V
+ Pdww8aFHJm+jIK3org0dLcJ86lyic4eVqOtJ761bKG5Wx75KbXpwbkl9ITYsZo4FErcg
+ wEov1VhKGY02TQkbxDkBg5gQm0r32u2hlCif/sVMgYn0hIqi1rkKd6FMIrDTuZjqFhFl
+ BA5Xl9dcm9QkikNplPXQjsW4/MLSMN6GcygJrhIKlnuPcoTGHr4OGztiYQDb9RRq3WQe
+ UXu289hLPU+hQyDdab6ZY5raguxeNZQQrmFCIw7XVs3mW/E0jqQaJoh6EVVsjSAHx4Vh
+ LoHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734068967; x=1734673767;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m2jUPvsdlfQUhZsdbtI4Ke1sLD5+tvHbQzW9Gl1gyas=;
+ b=XkP/L/JedEfzX5KOsJxsQt1D7wyv6NdIWDZSaVzAX38Wx1ZAaqG7YH4ial1sK8dEZ5
+ oXlp77x/1FqqHKYdugp85J5Mcqq5nMNfoKWvNlhWr+55FgNVXOajC/TLZjui+yBeiVsp
+ eEAb2Z0BxBYAT/bYyYhIWDabnSS3ZxYynUN2jaGOWfNAa4Rb2S8+hkHL8YLTmMcpm8hi
+ XopNBGaM7Whd0fuiCJ9SKmsPbH2zahsz3ubci6P/5e0dB7tjJtTfxStxU7L5d9yELRY5
+ 20PMBdYLgzqfSTV9nDt6DMcUk40WS2Sn/OaEek4voIYmz4XnK9XLinSOhliGcVJoavWM
+ jxzw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVPtdmGsbYDus5geJXj4hyaK1Jl/fXX1RptTx0hj7ayu0mFFKrzed4OwNW0RZ19r5DSoKfXy9eXW0I=@lists.freedesktop.org,
+ AJvYcCVfN45mQASctwiPvmwMuAdZN3Y/hFq3GN+PmOUX0wNEXfCWjvUPGIYdYkYOV4i2ZXqFbEzkIAMjf9b7@lists.freedesktop.org,
+ AJvYcCVvTuMRknmT83sk/vF+2N0dL4v7An/BVz0bzO4PRN+Ms/n6uG0Alr9MIKiHzJNu5G8sk1aBQtP1aQ==@lists.freedesktop.org,
+ AJvYcCXcCyTitm5nQN2G6N6whO0J+dCqHA3XpQvoPQYaEyh/JzEUkqIuZUsZNZiwg+iQsSG2nVCsjxlYsDU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz5QI0Ey7lM1SYcy9g1M6pPdxTIJPBL5opRhAIHocac0gpr4Cx2
+ 6qW2OUHmzSlgCt1cfJA6hO9PR0wq+sdy0WhuFbsVRlsGihluDTlY
+X-Gm-Gg: ASbGncsxj/I6srSDlns1syc9CIa6r+Fzw2wJB3PHSAAAl4PjfDaJJYlVTmT7clOyOXi
+ Z++v/fbpooShycVHUjN3DRv8bW+bJ93e2ZG82bdoI2W3vWi4b4cqtYfQOj+EeTfepUl2J023Ib4
+ 2oZqqneVKZYpcKNIHluyxjSQtZIReHUcSBcTe4jfgUJggDN+dNSYAlo1aGhWPnzvDQbRZCHTJWg
+ Uk7AMFXdXjpwG6lD/eIwyGaolqIxicaI07ar8HnaLkPNPACi4sUAoTeOjADjojfVY4crELiCln3
+ mqtk8Fk=
+X-Google-Smtp-Source: AGHT+IGsjn2HsD9B470GSaZ7/WuS4a1ciiqbzWwWUR77XR0Zla03DKiQ+x82aV6yWtJ1LuxULtoYsw==
+X-Received: by 2002:a05:6a00:b46:b0:71e:4786:98ee with SMTP id
+ d2e1a72fcca58-7290c2702e3mr2257553b3a.21.1734068967116; 
+ Thu, 12 Dec 2024 21:49:27 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-725ee10f928sm8166032b3a.32.2024.12.12.21.49.23
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Thu, 12 Dec 2024 21:49:26 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: torvalds@linux-foundation.org,
+	akpm@linux-foundation.org
+Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Mark Fasheh <mark@fasheh.com>,
+ Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>
+Subject: [PATCH 7/7] fs: Use %pTN to print task name
+Date: Fri, 13 Dec 2024 13:49:18 +0800
+Message-Id: <20241213054918.56441-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
@@ -57,34 +94,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Christian,
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-Those three patches should unblock your series to use GEM references instead of
-TTM ones.
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Mark Fasheh <mark@fasheh.com>
+Cc: Joel Becker <jlbec@evilplan.org>
+Cc: Joseph Qi <joseph.qi@linux.alibaba.com>
+---
+ fs/ocfs2/cluster/netdebug.c | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-@Lyude, Dave: Can you please double check?
-
-- Danilo
-
-Danilo Krummrich (3):
-  drm/nouveau: prime: fix refcount underflow
-  drm/nouveau: bo: remove unused functions
-  drm/nouveau: use GEM references instead of TTMs
-
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 43 +++++++++++++++------
- drivers/gpu/drm/nouveau/dispnv50/disp.c |  4 +-
- drivers/gpu/drm/nouveau/nouveau_bo.h    | 50 ++-----------------------
- drivers/gpu/drm/nouveau/nouveau_chan.c  |  2 +-
- drivers/gpu/drm/nouveau/nouveau_dmem.c  |  4 +-
- drivers/gpu/drm/nouveau/nouveau_prime.c |  3 +-
- drivers/gpu/drm/nouveau/nv10_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv17_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv50_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv84_fence.c    |  4 +-
- 10 files changed, 46 insertions(+), 70 deletions(-)
-
-
-base-commit: 99e0fb8b087120b5a7019f1cff6c5c2b5b925ae5
+diff --git a/fs/ocfs2/cluster/netdebug.c b/fs/ocfs2/cluster/netdebug.c
+index bc27301eab6d..039d99f951ea 100644
+--- a/fs/ocfs2/cluster/netdebug.c
++++ b/fs/ocfs2/cluster/netdebug.c
+@@ -122,11 +122,10 @@ static int nst_seq_show(struct seq_file *seq, void *v)
+ 	send = ktime_to_us(ktime_sub(now, nst->st_send_time));
+ 	status = ktime_to_us(ktime_sub(now, nst->st_status_time));
+ 
+-	/* get_task_comm isn't exported.  oh well. */
+ 	seq_printf(seq, "%p:\n"
+ 		   "  pid:          %lu\n"
+ 		   "  tgid:         %lu\n"
+-		   "  process name: %s\n"
++		   "  process name: %pTN\n"
+ 		   "  node:         %u\n"
+ 		   "  sc:           %p\n"
+ 		   "  message id:   %d\n"
+@@ -137,7 +136,7 @@ static int nst_seq_show(struct seq_file *seq, void *v)
+ 		   "  wait start:   %lld usecs ago\n",
+ 		   nst, (unsigned long)task_pid_nr(nst->st_task),
+ 		   (unsigned long)nst->st_task->tgid,
+-		   nst->st_task->comm, nst->st_node,
++		   nst->st_task, nst->st_node,
+ 		   nst->st_sc, nst->st_id, nst->st_msg_type,
+ 		   nst->st_msg_key,
+ 		   (long long)sock,
 -- 
-2.45.2
+2.43.5
 
