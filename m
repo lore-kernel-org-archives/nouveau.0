@@ -4,104 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEF3BD5B15F
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 070EDD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDEDE10E970;
-	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4085110E9E9;
+	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=outlook.com header.i=@outlook.com header.b="OiShPOtK";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XnKOXrpy";
 	dkim-atps=neutral
-Received: from AUS01-SY4-obe.outbound.protection.outlook.com
- (mail-sy4aus01olkn2143.outbound.protection.outlook.com [40.92.62.143])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDD8811351D;
- Tue, 23 Apr 2024 18:00:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J50pC2FWS675cy5dLo2ot/n0VurY8047ozhPng2Jv3sAcF+aCpjg+qfc65+0f7MtG8o33X1IbUHu/oNTXQAhmCSiVprShrx//EG0c1Kz9eGrjD1Oh7nC97d7HizojTjeuPyLJf/hWAttIhdtvIMP+08HRgpPgU/1JQoKdusSJM4NHeEwz7UyLpPNqqhsXST0fF97Fa6WVjNNk3KsdUnZ1oAQhQbSTrmbI1vTAKmL+FSdLklxXCJRhfHQYn+hjjDHSBLszAAATBjp+FwXSMMDO8D2lFH4WGum/iexoo6ohg7FN159F+ZP+yhTvuB+NGM8C39Y2DqubcINMLasIGYJzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=faduL2iMx/0YzC3unOxhh7uvKQOReainYuSFlIFmDr4=;
- b=PTJR3iJV1Te0pXpnwfBoJ0X7Undw6lyPdTSebTaY+0+QEIckS4CW91+K8TIdmT0YGSn02IbDsI5/HfSif6Nj5kbNBeatwbVwhmi2Ot3y/H2bC1cDfgTr7bRMMqX4qmjLnGUrPcGTx2pBQwhs8Nbc4lNpe9zQ+tO5xiJdF00en+wH6H5vCB1Blm4xN7Dcja5fQDQtqLk00vm8+gUafVaBk/nFdzsGlFBE0CNuLQrLu9qhtO0Bq/MYX6nYZWJpzRVOgAUW/o42t8ufqjzVASEk87b09WVV8jG4K563QtCHzd1K+FGqLS/QqKfrVg1tQQbY8tExqZ4Zvx7D4ZUSOSagVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=faduL2iMx/0YzC3unOxhh7uvKQOReainYuSFlIFmDr4=;
- b=OiShPOtKs5EaMdOm7/LdJSDjw6fpikVnqZdZpwqRtkBI024wt4QU+kLHKyekgirrGorszpo88YksxffbfWEdJq9rTA1OfOiTApm3gTMJO6ggmL2ynIA8tgrXLlBrEXbGSx+NIc5A+KbcPDXPLcJCuN13SYnvwTY1Kp7r2D4EfuWtmBxRAOfvi1CXmPAJv2mZ2vQBV60QpWoUi7F747GF5J0XXJuAHw/HGuQMahMwDnningghI+G/oJT3pzpZJC+I+cntHDZeo4r3VXhGlQZmNldOB0Pa/DGj+85lDcbLxVf5HrWqnOXNNliSZtHloJWfIaBK1nbC0lValg339iZxmg==
-Received: from SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:88::12) by
- SYYP282MB0974.AUSP282.PROD.OUTLOOK.COM (2603:10c6:10:73::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7519.22; Tue, 23 Apr 2024 18:00:49 +0000
-Received: from SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM
- ([fe80::eec7:3528:ae72:1ccc]) by SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM
- ([fe80::eec7:3528:ae72:1ccc%5]) with mapi id 15.20.7472.044; Tue, 23 Apr 2024
- 18:00:49 +0000
-From: Moody Liu <mooodyhunter@outlook.com>
-To: angelo@kernel-space.org
-Cc: dakr@redhat.com, dri-devel@lists.freedesktop.org, kherbst@redhat.com,
- lyude@redhat.com, nouveau@lists.freedesktop.org
-Subject: Re: Add working backlight for "ada lovelace" missing case.
-Date: Tue, 23 Apr 2024 19:00:21 +0100
-Message-ID: <SYCP282MB0461C8165AF5AB2A4A119123D3112@SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240412194901.1596-1-angelo@kernel-space.org>
-References: <20240412194901.1596-1-angelo@kernel-space.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-TMN: [BqmqiGXxwnGrIYTlCYaX5HuJPbY7OFhs]
-X-ClientProxiedBy: PA7P264CA0071.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:2de::15) To SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:88::12)
-X-Microsoft-Original-Message-ID: <20240423180022.6242-1-mooodyhunter@outlook.com>
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com
+ [IPv6:2607:f8b0:4864:20::429])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECAFA10E45F;
+ Thu, 19 Dec 2024 02:35:20 +0000 (UTC)
+Received: by mail-pf1-x429.google.com with SMTP id
+ d2e1a72fcca58-725f4623df7so304803b3a.2; 
+ Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734575720; x=1735180520; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=35FnTfH4WG+K4PY792luJMCXMpwCP4Hox12oxUuAxYU=;
+ b=XnKOXrpyyMJ90nTU4ulBubzGWGrL8xvYjRBxAxcSe7cNdRSKDHxGo089gzZUh3WdKQ
+ ErRO/ijaOnCwu04z3q/8UwxeoaH2tyU245QO7mUoMqpeC/V/JyaQlwhwYpX8yN5mHPR6
+ X5jMLkPXTwYmRPrTCj96aT/S5ge/8zy+KG/ncCnutAzELLGbJqmRVRO0IyyL6PWG7rq7
+ ymOGawNvCiSLBe0KBhpNIUqJuOcp5Sz065wm46Ut09kTvJqvVldf1nsyYQHMRcIljNrr
+ Hi3XhQ8fqM0uSTuw+/Y+ozMGqfT2J7huZTDnvTbSTCp+Om/iw+xH+cSMzgI7vmCYpTrT
+ MQ+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734575720; x=1735180520;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=35FnTfH4WG+K4PY792luJMCXMpwCP4Hox12oxUuAxYU=;
+ b=nm83KaayWIy0f3DM6FdspQ0IL7NIqpqvFL2PeGqiwMHR7RgTt4jvCIXLFNQJ5sGVv5
+ Tpi1XmsD2U3gnyxb772rFwCMo8yIPARmyrM+jAKPyfELZ4Jlm79YViTw/PITylZKllzr
+ SxsuIvjYtI9fbDXVnz8q6A5QGqcfoJW8XerdrV53y6FL2yr1FvqLda92a295CwMY42fq
+ PQXDd/ZUkRuPVBc7jhbeEGDKRQ1SAiaYmEvaJyJGz2ysRjwOeBj62QUOQvYS7j/s/0/6
+ XGyXqGV+fllB6Gsd3AxUP0wRj07hvWkIo3xlX3IP27h8+KE0o7/mia5NordO+NLm5r72
+ 1VwQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVOXVSQc0WnC1ewZBBsczT9ULiPOK3zy9vqdas4toF0uBVCyjT5Ps2OMXOphrt9XlevqVDxKwnW1Q==@lists.freedesktop.org,
+ AJvYcCVPkWhsJfCNzr3f4TmMG611T0aA5s+jEZz7pUejdDqg2/Wi1ktOQe/DBzQGSKUetAbTxsKTlV3x4pc=@lists.freedesktop.org,
+ AJvYcCVTj0uYfXlvRzxptyccUGlou6pvrNFg+LKcQNxnqGmrYIkWNBPi6Pg8Lbp9qPoqDLY98DcWoCEWr4s=@lists.freedesktop.org,
+ AJvYcCWh57IqC9rUSn2W5U289Le5+d72mcMGLSJ+J3fKJ8+kRg40aq1z+BcnA62EzFpybjRmpOOOLsR2Qu4h@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzbzQIL/AXNzj5/1VyHYV+wpT6rVHtTjLpHfsDoTf4ogTuUM3I4
+ uIBwMWInoR13eUE/2oUwsOokShBx77n9OtXI23hfdZNjdUlx0NBF
+X-Gm-Gg: ASbGncv4QUcxRkO9MAuPNsG7aCY+zpCSaJrQAWDUZLWZmu3NUEVFXFIgjoBOkV7LeYN
+ CKo36YG0vF6u4T5XZM3jkaYcX1SB/27Gc4ZC8/JdTNHSNbLIREnWG66cOd11HOA6PHBEW+2SHrr
+ 6NKaG9uIOkp19xDcHluH5FT3PZNu/tNMbKzZaio881yU5rCy0ysgEYTw88/XHQzNHJqzxAQwYiJ
+ aVt8DIumXbJXu51FytgDRUwPeLLlcXwS2i0Lmjep203UOxJY/SYq7R17i1wHBMm3uFObo/7TiIx
+ 3V3g7hU=
+X-Google-Smtp-Source: AGHT+IEYa8/cPCrPUtV+8BluujgYPFlXKrKcInk+YdaLokr+l/jazm3QEi9WUGXKVKTvc9yKVja0nA==
+X-Received: by 2002:a05:6a00:9096:b0:725:e37d:cd35 with SMTP id
+ d2e1a72fcca58-72a8d2c2269mr8262629b3a.18.1734575720422; 
+ Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.15
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Wed, 18 Dec 2024 18:35:20 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: akpm@linux-foundation.org
+Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
+ bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Paul Moore <paul@paul-moore.com>,
+ Kees Cook <kees@kernel.org>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>
+Subject: [PATCH v2 4/5] security: Remove get_task_comm() and print task comm
+ directly
+Date: Thu, 19 Dec 2024 10:34:51 +0800
+Message-Id: <20241219023452.69907-5-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
+References: <20241219023452.69907-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SYCP282MB0461:EE_|SYYP282MB0974:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad46edbb-29da-478d-f09c-08dc63bf4e30
-X-Microsoft-Antispam: BCL:0;ARA:14566002|461199019|440099019|3412199016;
-X-Microsoft-Antispam-Message-Info: 3hyTwz424J4fbcbOyoY2OXbKyZDUTkoQZMaqRF3J4zcRPXr3SQXqeXxrb+0nBjXzUeg5KFHpP3PVtrfcvPbvzjMIfnDlMZRhdtwl0wQRHDtie4QNqIf20PDscylwE+PcKlJdma5guuOSqHcRmReYOJmAyP7hQrwAGs5uo6tjNhl/sncyQ8SKtOTrBnKwdwiq1t07zCUcsRiFLj094UvlOD/kyZGA+2GVCspKoyw8Y2oY3ACfId3iDM1jTmhbNnLGJQ9LMQgXAiX/ZZwhFJwDlQCXfdGO1CfcKPQblmECDuA6FK0pVzT0TZFZBQxTl1YFtLNlNbVQoak01dI0pPaC0EbYu6wR+bVb1G8OEDPlRUyeXp+4glfeeELiZmqeJEJOUFAaUEGCasHJGSd1z5I3xdjh3wIo7TQi7LKr1OEIxOcEqqcCR1ZncKobduBmOy3l3LppFlQNj8wZtqzJIGNEQ+eaNG3pcc0dnHMbmFjjg7a6L9L3zbzcvDYOaFBS8k7tFgr3vqrdCltpabIniA5Ytu2CQEOLCt4U2oTSVdARscuMqaTlX5TOhK5if9TnHRFN
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WG4ya1VEK1Q5Ry9mOVY4c2lwZnJnaE1UTVVXUlJjeDI1V2NPOGZlMi9VUHcz?=
- =?utf-8?B?eHlHSzNSRnl0cXRNUFhqL25Qd2tUNGV5ajhzWWl4TS9ZSnRYTlgwcDQ1Nkpn?=
- =?utf-8?B?VE1XdjdIamkwL1ZzU3RpV1NrUEJNY3lGUjhXaHFsdUNDYzU5dU5KZHUwS2o3?=
- =?utf-8?B?b3dTOGRNYlhFa1Zwd3c5MDc4V3pTVUllNTBQdmd4VEd5d1poRlNUNHVocjhN?=
- =?utf-8?B?NTlDS1hGN3hJanRyQjdrOEtxVnZKSThPcURGVGlkdnl2OWNseHRjdFpGZkJR?=
- =?utf-8?B?TStlT1U4Nk1kZDNEeXV1RjNsN0ZFM1ZKbDNFQkdLWFgzclZURGw3Y0NiQ2pn?=
- =?utf-8?B?ZSs1WXFCamVZUzRCTDVnVkU1bGl2WUQ4ZU9ZcTFDM0dueHBrWllydm0rUGlF?=
- =?utf-8?B?OFRYTnFHdlRrUDJ0SXN5YTd1Ym9qbmxXS0dIK2hsMjNQTlFER3J0T0lmcmZm?=
- =?utf-8?B?cjlOR3d5YXZwV1czOVQvbU5kdk1zUkxRT0Y1TDVva253eXhtbUlKdWtvOXZY?=
- =?utf-8?B?VzBzRExRMFBScnU4UnlGN1JUNVBtNW9UQ0pRQXFGNUJZanNSaEg0RDJLYlRC?=
- =?utf-8?B?VlpJZlNJZGZGZmo1UXBoRkdmOXRUTjZsNHlSbHVRZk53KzJud3JVZm5jQ1lB?=
- =?utf-8?B?NXhUL3RWMFh1VC83cnlqMkFBU0Fjc1hwR1pOU3Q0T0lRRTExK3Q0bXh2alVz?=
- =?utf-8?B?anVHSk5kamZHYklKalpweUVUUUNHSHRlYUY3NDZUMXpBcytndUNnOURORlBn?=
- =?utf-8?B?TU93L1BPM2NMZEE2ckhSY2VpWDNpWEVKU09tUzRDMW4rbWQ5R3lZYXRUSEJC?=
- =?utf-8?B?Nkc1REt3Vk55eXZTQ3hzMXoxQUlrMXZwaVFValR2bnk0MUpicWtudEtoWG9H?=
- =?utf-8?B?MXZJSkRyc1h2cGVRN1RKd1lKWjdmdjVhNmFzdE4xcXFhT1Z6SGlPV0tLQTNv?=
- =?utf-8?B?MFFmYWZYbHAyaCtTaXV4UlVaT3JUS1Z5V2k3cmVRRkYwUUVNR0ZJMmwvWWRn?=
- =?utf-8?B?QmRQSkc3OWFjVndPTTJRcWJ0MzUyM3hlK0NHU1ljaTJXSTFOSDhFVTZIRTho?=
- =?utf-8?B?eFp3ZTNJdURvd1Z1LzNWSjN0bFBvKzdsUFdjQk9kOFJTa0Vwb054Q1ZWWlAv?=
- =?utf-8?B?cGNWbDN2TFkwZFFpNEEzcEJsd0VZYjUrSVQ3MCttR0NyWDgxN3JWVTk3WHlK?=
- =?utf-8?B?bko4ekswYnZObmRndVhSMVFXSXg1dU1qcFRCQk5jSUl3end3eWcxYlVRemYr?=
- =?utf-8?B?SG1CMStRSE56cUR1dWpXVmRUZVdTbmtwZnJhRnQzRjA5eWNiem5uU1hyK1dI?=
- =?utf-8?B?MHp1Z3l0SmJ5aEdaWEdBdTdGRjhTanpWMHJxeXkwKy9LMysvaG9YS3pURFlO?=
- =?utf-8?B?bTM4dkl6c3NES1FkZkhtYkE5REJ1MStEL0tUa2w2WXZ1VjBuMGkwbFlZeC9p?=
- =?utf-8?B?L3F4ZGV2eHF1T3IzemxGalBDMWZORUxCRllNVGUyMitSaDgwMHZvR3dGRnAv?=
- =?utf-8?B?TGY5aTJYUkRPZWJ6MElSS0tmZ0dEMEI2MnRPSFYwdTJZVVRscEtGdVVPZ1Zh?=
- =?utf-8?B?aHNzaVZvMGtDQ05ZcDZES3dDZTdOWnRkcGxoZVlXcktoSm9TNzdyaElvM1Nm?=
- =?utf-8?Q?N1FuKwGjHCxlCGmm3hmWrdCYUNLON6qlM9it48hr8qFc=3D?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad46edbb-29da-478d-f09c-08dc63bf4e30
-X-MS-Exchange-CrossTenant-AuthSource: SYCP282MB0461.AUSP282.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2024 18:00:48.9268 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SYYP282MB0974
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,29 +100,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Reviewed-by: Paul Moore <paul@paul-moore.com>
+Acked-by: Kees Cook <kees@kernel.org>
+Cc: James Morris <jmorris@namei.org>
+Cc: "Serge E. Hallyn" <serge@hallyn.com>
+---
+ security/yama/yama_lsm.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Hello,
+diff --git a/security/yama/yama_lsm.c b/security/yama/yama_lsm.c
+index e1a5e13ea269..1a2d02fee09b 100644
+--- a/security/yama/yama_lsm.c
++++ b/security/yama/yama_lsm.c
+@@ -76,7 +76,6 @@ static void report_access(const char *access, struct task_struct *target,
+ 				struct task_struct *agent)
+ {
+ 	struct access_report_info *info;
+-	char agent_comm[sizeof(agent->comm)];
+ 
+ 	assert_spin_locked(&target->alloc_lock); /* for target->comm */
+ 
+@@ -86,8 +85,7 @@ static void report_access(const char *access, struct task_struct *target,
+ 		 */
+ 		pr_notice_ratelimited(
+ 		    "ptrace %s of \"%s\"[%d] was attempted by \"%s\"[%d]\n",
+-		    access, target->comm, target->pid,
+-		    get_task_comm(agent_comm, agent), agent->pid);
++		    access, target->comm, target->pid, agent->comm, agent->pid);
+ 		return;
+ 	}
+ 
+-- 
+2.43.5
 
-I would confirm that this patch works for my machine:
-
-  01:00.0 VGA compatible controller: NVIDIA Corporation AD107M [GeForce RTX 4050 Max-Q / Mobile] (rev a1)
-  01:00.1 Audio device: NVIDIA Corporation Device 22be (rev a1)
-
-  System Information
-    Manufacturer: LENOVO
-    Product Name: 82WK
-    Version: Legion Y9000P IRX8
-    SKU Number: LENOVO_MT_82WK_BU_idea_FM_Legion Y9000P IRX8
-    Family: Legion Y9000P IRX8
-
-  Graphics Platform: Wayland
-  Processors: 32 × 13th Gen Intel® Core™ i9-13900HX
-  Memory: 62.6 GiB of RAM
-  Graphics Processor: NV197
-  Manufacturer: LENOVO
-  Product Name: 82WK
-  System Version: Legion Y9000P IRX8
-
-
-Moody Liu
