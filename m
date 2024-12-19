@@ -4,58 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD7E0D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E08D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A398D10EA67;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEBDC10EACD;
 	Sat, 13 Dec 2025 12:41:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="X/GzKpRL";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="cRLBUEvR";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4324710E802;
- Thu, 22 May 2025 12:20:13 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4b36n42b4Fz9smv;
- Thu, 22 May 2025 14:20:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1747916408; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6les8TOi5wRq0T8kDR8xQDFeOUCbVRDYJE8WXeCcMbk=;
- b=X/GzKpRLGoUU1TIQgiCFE33WMIXEgo2bOzU2gD+5YBWIA+Xch5he0PNQ5L4B9c50ClsLa0
- AjpL/vNQ5PL/0zlPieZL2EAYcfWWP/bIBv6d89Kf0PWtotOHOLZ7ZA8biPCX8dC56KGSWG
- Y8/2y9AWnSS5zLtZUQOBfdXZA7jwqGKTIEP+HeIOzkSQ0921vADAkAE3w233nXJohb09hu
- uJpNHTUx13lSzntM5QICqUvDqMwqDt5Ci8pzqtl+FIhYpTiocEwbz+lkwNoKYktLfXSIB/
- o8JOG2n2ugalDzKQawb+80VuNMOtXViSR9pY7rlEHNP0KKrhN7lq2T06KRtSWg==
-Message-ID: <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
- context
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
- Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>,  David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Thu, 22 May 2025 14:20:03 +0200
-In-Reply-To: <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
-References: <20250522112540.161411-2-phasta@kernel.org>
- <20250522112540.161411-3-phasta@kernel.org>
- <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com
+ [IPv6:2607:f8b0:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6105B10E20D;
+ Thu, 19 Dec 2024 02:35:01 +0000 (UTC)
+Received: by mail-pf1-x433.google.com with SMTP id
+ d2e1a72fcca58-7265c18d79bso376314b3a.3; 
+ Wed, 18 Dec 2024 18:35:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734575701; x=1735180501; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=cRLBUEvRP8UbMnQvOxuMIMxeNxd4Tp6BGg4homTh/W5wzmvi513Z1lqfHQwTStOU8y
+ L1bDo4+nAc97jnYmrVKRM3xRtc4s6An2E/cf07L7TI5Pjum46hDpKThr6esDW87LNxoI
+ OpbN40tQH9G5H0graqLE7CazBJZMjNJDApKyJRHjphpStl+u3rYxxBfnR6IAnZWasMFL
+ bOE3aDSM5qayROuE0eIBa1oZunxlzcxSgKxItKL0MKq3M8sEGM2+TIMFFn+T6paq7y/I
+ 2FlSAxh1EpRtIPrZsbyUxo6i+VrlO4kbmjpqvjKQW823sxlZNRgFwSLGe3Eaa+NCwKPC
+ 3FSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734575701; x=1735180501;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ewYmRGbtjw/u5CZQB/fGCIYq/IkhzVppRPs0v4hq1mw=;
+ b=PcH6W7N9eiiTr8aBzCeLlduf3YdDKaSHQ9GcUURlkxl78VCZmj3fKPCVFsnz7DlMlV
+ oFiWcmLLGsRxhmFUsib1iLRKQvLLzHjRaaRtFfn4CC0rCDrFCiNqgx44YdXm8O2nvze4
+ PLYhaKfwRYZX+CW72MaNRz17cnJKmsBLbNxJHrJSobmY3u2E+2Xby5NssGnFYi7BMVo+
+ 46jpOgN9EiH33E6If+q+L4O3PmvUV7aDgAfe7PK8+eOC8ib7/kP8n65OTq+SEIbkLloX
+ Id3CpBC6W6SxHQ1ne3rgg87COk0KgiJ9CcKIuoQRlBCQoYTL4cSUt4QJgltR5n+ZpkQs
+ xNkw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUVy7qfTqSb9Kfv25Kk3px9zpVVFtT0qpn5hNTtytgPjBqt2DFfGEPJZpqDlEugFHrehbeikYWQeg==@lists.freedesktop.org,
+ AJvYcCVw/egzdXDgFX/LlMNU9yep046vwKr3FjiIixkVJNMAYY+CVaIMSO+4Sp/YwPQPzgW8fZwZtEL+zLMa@lists.freedesktop.org,
+ AJvYcCWzwiJFp509Q72Y01taZjBK30WUDwxjLN11I4hEXWQc8zTnFDT+vj5lGswrmG3iDLGoscuqHDfRovU=@lists.freedesktop.org,
+ AJvYcCXNw3z4aqLRDNqGeXXKE8iyTXNbAgRd76B+tSj2rXY7u41csao0wgCIsH8MM7Y+eViJx94TfXmOiIw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyDGiQlEmlGEorXy3M//atFDPhvl13C5JTdpUSfNtos/gAQurNO
+ xwF0IpDJhJxyGyMJwsGeO7xdu/u+KWNu+pG06GZBqQkYegcDoXv/
+X-Gm-Gg: ASbGncvMZoXWPik0RvbaYJhW9ggQBAYaJDbaFWLZqc4iF20is6/6E3rt2DgW1pPmfNw
+ cH0SZ6CnsgYtE1YqdFFsTMbh3Xm0Q+va0VQThtA4m/kYSsUhT20kgcjKuqRyoQS5uEicTmwbl4c
+ +rtUp9ITj25J304bxWQHYhREJ8fSkYPc62b/9RMxH154bp5wiJMlCPPM83XHAg+gMHGuTv0LSca
+ CVbk4waPmkodwozUSibqLPdO+UXTVuwUUbOykBRy9ZS0NucTrRhdOlum2BkLHP9ix5UzeLle1NR
+ XZb+qys=
+X-Google-Smtp-Source: AGHT+IGkt8eWE3wh1dURnDDolV6IzXf9MexDfJ0kaeAEgc6DDmy7cFDTyCLLAMMKibF6E7v5iDX6cg==
+X-Received: by 2002:aa7:9316:0:b0:724:ed8f:4d35 with SMTP id
+ d2e1a72fcca58-72a8d2e0557mr8641134b3a.26.1734575700792; 
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.34.56
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Wed, 18 Dec 2024 18:35:00 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: akpm@linux-foundation.org
+Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
+ bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>
+Subject: [PATCH v2 0/5] Remove get_task_comm() and print task comm directly
+Date: Thu, 19 Dec 2024 10:34:47 +0800
+Message-Id: <20241219023452.69907-1-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
 MIME-Version: 1.0
-X-MBO-RS-ID: 081f752363f695d129f
-X-MBO-RS-META: zq69kf63muzfjptq7ehgdi67s8374jom
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,72 +92,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-05-22 at 14:06 +0200, Christian K=C3=B6nig wrote:
-> On 5/22/25 13:25, Philipp Stanner wrote:
-> > dma_fence_is_signaled_locked(), which is used in
-> > nouveau_fence_context_kill(), can signal fences below the surface
-> > through a callback.
-> >=20
-> > There is neither need for nor use in doing that when killing a
-> > fence
-> > context.
-> >=20
-> > Replace dma_fence_is_signaled_locked() with
-> > __dma_fence_is_signaled(), a
-> > function which only checks, never signals.
->=20
-> That is not a good approach.
->=20
-> Having the __dma_fence_is_signaled() means that other would be
-> allowed to call it as well.
->=20
-> But nouveau can do that here only because it knows that the fence was
-> issued by nouveau.
->=20
-> What nouveau can to is to test the signaled flag directly, but that's
-> what you try to avoid as well.
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-There's many parties who check the bit already.
+v1->v2:
+- Don't add "%pTN" (Petr, Kalle, Borislav, Andy, Linus)
 
-And if Nouveau is allowed to do that, one can just as well provide a
-wrapper for it.
+v1: https://lore.kernel.org/all/20241213054610.55843-1-laoar.shao@gmail.com/
 
-That has the advantage of centralizing the responsibility and
-documenting it.
+Yafang Shao (5):
+  kernel: Remove get_task_comm() and print task comm directly
+  arch: Remove get_task_comm() and print task comm directly
+  net: Remove get_task_comm() and print task comm directly
+  security: Remove get_task_comm() and print task comm directly
+  drivers: Remove get_task_comm() and print task comm directly
 
-P.
+ arch/arc/kernel/unaligned.c                         |  5 ++---
+ arch/x86/kernel/vm86_32.c                           |  5 ++---
+ drivers/accel/habanalabs/common/context.c           |  3 +--
+ drivers/accel/habanalabs/common/habanalabs_ioctl.c  | 11 +++--------
+ drivers/gpu/drm/i915/display/intel_display_driver.c |  6 ++----
+ drivers/gpu/drm/nouveau/nouveau_chan.c              |  4 +---
+ drivers/gpu/drm/nouveau/nouveau_drm.c               |  5 ++---
+ drivers/tty/tty_io.c                                |  3 +--
+ kernel/capability.c                                 |  8 ++------
+ kernel/futex/waitwake.c                             |  3 +--
+ net/wireless/wext-core.c                            |  4 +---
+ security/yama/yama_lsm.c                            |  4 +---
+ 12 files changed, 19 insertions(+), 42 deletions(-)
 
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > ---
-> > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
-> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > index d5654e26d5bc..993b3dcb5db0 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > @@ -88,7 +88,7 @@ nouveau_fence_context_kill(struct
-> > nouveau_fence_chan *fctx, int error)
-> > =C2=A0
-> > =C2=A0	spin_lock_irqsave(&fctx->lock, flags);
-> > =C2=A0	list_for_each_entry_safe(fence, tmp, &fctx->pending, head)
-> > {
-> > -		if (error && !dma_fence_is_signaled_locked(&fence-
-> > >base))
-> > +		if (error && !__dma_fence_is_signaled(&fence-
-> > >base))
-> > =C2=A0			dma_fence_set_error(&fence->base, error);
-> > =C2=A0
-> > =C2=A0		if (nouveau_fence_signal(fence))
->=20
+-- 
+2.43.5
 
