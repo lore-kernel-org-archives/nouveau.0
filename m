@@ -4,64 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68CE4D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC02D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D886210E9E1;
-	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C21DC10EA97;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Bseya/Tw";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wiz4x8jd";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8545810E1C5
- for <nouveau@lists.freedesktop.org>; Thu, 23 May 2024 13:10:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1716469814;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=wBbwE73o+bBoJKpCicXGAglShU+WRt0vodLekmk+P5s=;
- b=Bseya/Twqk9/Q0XRgb+1UcVlflf3yQh24ECyCe9ktWwFhGaBh0j3ASx+cdoLdS/akUZORT
- LyFU0F/YIjA1a+ehsqqlzKmdiPeT2s8odqbDVPYOuhdnedTUg5MdiCNvFolV6fRLu87n1C
- uL1JkoMxbpu2Uq5HkQRj2cWR0B411F8=
-Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
- [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-557-g2o15bFiMTOflnYYu8vAhg-1; Thu, 23 May 2024 09:10:13 -0400
-X-MC-Unique: g2o15bFiMTOflnYYu8vAhg-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id A87CB800CB1;
- Thu, 23 May 2024 13:10:12 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.39.192.217])
- by smtp.corp.redhat.com (Postfix) with ESMTP id E8698C15BFA;
- Thu, 23 May 2024 13:10:10 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH 1/5] drm/panic: Add ABGR2101010 support
-Date: Thu, 23 May 2024 15:00:34 +0200
-Message-ID: <20240523130955.428233-2-jfalempe@redhat.com>
-In-Reply-To: <20240523130955.428233-1-jfalempe@redhat.com>
-References: <20240523130955.428233-1-jfalempe@redhat.com>
+Received: from mail-pf1-x434.google.com (mail-pf1-x434.google.com
+ [IPv6:2607:f8b0:4864:20::434])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C6210E44B;
+ Thu, 19 Dec 2024 02:35:16 +0000 (UTC)
+Received: by mail-pf1-x434.google.com with SMTP id
+ d2e1a72fcca58-728ea1573c0so290410b3a.0; 
+ Wed, 18 Dec 2024 18:35:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1734575715; x=1735180515; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Zz5f2fkK5TyUEN5/ypHLYKDvnfLQ33CHwDb71kc+wK0=;
+ b=Wiz4x8jdikthKgCfv6BY5z67V7JYaJliEV1ndcCl67DVrn08zmI/h/JgYqudBEgMow
+ aRMh56JFW8Nf74QsTm7oW7d7NrasB6faZRSj/crpa16yETcu5sXgF3eOHx+B60ifGe6H
+ qMy0zLH+9gKpb2jJsvbd7y4G9iOmj0S6A/RwWWSGz1UIgpotZo1MgLjaYUSADEYhKzll
+ aMERShPNH1nqKaBdOUs8/JpR6DwknNk0P5ekj/KOVZSr1fB3X15SUp3CmpiSaLU0JVzd
+ gKQR3EBV1js6MpInv2z92gAMSMsrVxhECcp8gblalsM96BbdrHt3krNJA7EnRGWCj/yp
+ ZeOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1734575715; x=1735180515;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Zz5f2fkK5TyUEN5/ypHLYKDvnfLQ33CHwDb71kc+wK0=;
+ b=kXk+nJ4lr9Do6Fd7ZlBJ+mofqwRIrjfztuau5Ul3ZvzDKJAmX+IfrsTYrgxvFvEmk3
+ AN7qQmAOAe2RkCZ4T2mwJi460N8ubL7t7INT7Pq4kSK7QuI3Ms6HQqzO5Mu+e717+GUB
+ JEy5UloTnOp0cSOP19zW2dZS3o2MEadfUR1cHwSozWFi5nTtOOt79kKbH4NlQSx6Oaec
+ dURr7ucxigIxT2ami+rwVxkny2ut/h0aG2G7YQPENvrXvdHvxU1S9Ti1G7bepKSwuOfr
+ Sk1M25DZK4WqMkh+ep1XTKxXsuhhD+hSIFyfULXjnIfTysgp0OCjXsuE6EWUMj20sU6h
+ g6zw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU4regOXPovfBhD8VXxLf2WNWaeiCYRpiNpfzmdU9dmNFTE1CO1kY6Y+u9VR+tal3dixVcvAK1EBD9m@lists.freedesktop.org,
+ AJvYcCVZuY78NbdJEaA7v7AG83E8VGWluVGIxmTGAkqp95E1Fa6amVMB9Cdd6EAwH3y9SBMgHuLMzL5zP1c=@lists.freedesktop.org,
+ AJvYcCXjbbcvWNA7zAwbz0jipdrJAHzebU5Row9Pn05ymx8vSjaOlXnymBwc4iOiZD/qA2ASN/fCdWaGMQ==@lists.freedesktop.org,
+ AJvYcCXlN+EwkGWDVKmQ6kCmAvI/DXXPGfDgHEbIm9sQQ2r7LJ+2vNmpYcYRi0cqwaeu7QDfVemLUF/kx7E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxA9jo4oW5XVAsHwdPZOCaawQuBHJFdG31jktfI27o1X3zKfygL
+ ILlXpdqbCXoDqTC4heV2UZiNaoghjmEx+cxG9BFK8sJ2ZV9XwrRK
+X-Gm-Gg: ASbGncuWFXqxAbdzoSNL2LhzNmFTC09k0UtsN4/Hzw+ylNxrofxZqkqFo4hoW4naInG
+ e7SZb8rrKVvINWnjF3N5H7HOIc3oYavl0K/14ZzNz4QMQM8ktHFNk8GLAJb8Kjr9Dq+vd84c+WX
+ L6CN7Vt0WYe7cfK/kqqEW8R7+iMUpbHwDQJ+7lo+aLFznTzQ3guyOP5vzlpUk32G9nUaKkAPznQ
+ c8nGiYV22lhU2t9AwToESXlUvyuUlpMDFzKIF/W/SzqR1HMr6SALeYwLx26wVmIzIVFXKNQYMdN
+ 5dDyjVc=
+X-Google-Smtp-Source: AGHT+IE+5BVERtvEj0uFGUNd3NBBPkGat0lwCNqupmyw0FAX2xvKE0cJmTowKcGod/Hmj9SrgliLyA==
+X-Received: by 2002:a05:6a20:a11f:b0:1e0:c0fa:e088 with SMTP id
+ adf61e73a8af0-1e5b4810ff0mr7532504637.18.1734575715510; 
+ Wed, 18 Dec 2024 18:35:15 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.11
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Wed, 18 Dec 2024 18:35:15 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: akpm@linux-foundation.org
+Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
+ bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>,
+ Johannes Berg <johannes@sipsolutions.net>
+Subject: [PATCH v2 3/5] net: Remove get_task_comm() and print task comm
+ directly
+Date: Thu, 19 Dec 2024 10:34:50 +0800
+Message-Id: <20241219023452.69907-4-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
+References: <20241219023452.69907-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.8
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,41 +99,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add support for ABGR2101010, used by the nouveau driver.
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Johannes Berg <johannes@sipsolutions.net>
 ---
- drivers/gpu/drm/drm_panic.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ net/wireless/wext-core.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index 7ece67086cec..78fdecfede84 100644
---- a/drivers/gpu/drm/drm_panic.c
-+++ b/drivers/gpu/drm/drm_panic.c
-@@ -152,6 +152,14 @@ static u32 convert_xrgb8888_to_argb2101010(u32 pix)
- 	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
+diff --git a/net/wireless/wext-core.c b/net/wireless/wext-core.c
+index 3bb04b05c5ce..bea70eb6f034 100644
+--- a/net/wireless/wext-core.c
++++ b/net/wireless/wext-core.c
+@@ -640,10 +640,8 @@ EXPORT_SYMBOL(wireless_send_event);
+ #ifdef CONFIG_CFG80211_WEXT
+ static void wireless_warn_cfg80211_wext(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+ 	pr_warn_once("warning: `%s' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
+-		     get_task_comm(name, current));
++		     current->comm);
  }
+ #endif
  
-+static u32 convert_xrgb8888_to_abgr2101010(u32 pix)
-+{
-+	pix = ((pix & 0x00FF0000) >> 14) |
-+	      ((pix & 0x0000FF00) << 4) |
-+	      ((pix & 0x000000FF) << 22);
-+	return GENMASK(31, 30) /* set alpha bits */ | pix | ((pix >> 8) & 0x00300C03);
-+}
-+
- /*
-  * convert_from_xrgb8888 - convert one pixel from xrgb8888 to the desired format
-  * @color: input color, in xrgb8888 format
-@@ -185,6 +193,8 @@ static u32 convert_from_xrgb8888(u32 color, u32 format)
- 		return convert_xrgb8888_to_xrgb2101010(color);
- 	case DRM_FORMAT_ARGB2101010:
- 		return convert_xrgb8888_to_argb2101010(color);
-+	case DRM_FORMAT_ABGR2101010:
-+		return convert_xrgb8888_to_abgr2101010(color);
- 	default:
- 		WARN_ONCE(1, "Can't convert to %p4cc\n", &format);
- 		return 0;
 -- 
-2.45.0
+2.43.5
 
