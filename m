@@ -4,79 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D00AD5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E350FD5B15E
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E6A010EBAE;
-	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 120DF10EBD2;
+	Sat, 13 Dec 2025 12:41:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VOQqYwWd";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="HZe8BTSZ";
 	dkim-atps=neutral
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
- [209.85.208.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE63210E38C
- for <nouveau@lists.freedesktop.org>; Fri, 12 Sep 2025 07:08:07 +0000 (UTC)
-Received: by mail-lj1-f182.google.com with SMTP id
- 38308e7fff4ca-336b0b3d753so14809891fa.1
- for <nouveau@lists.freedesktop.org>; Fri, 12 Sep 2025 00:08:07 -0700 (PDT)
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com
+ [IPv6:2607:f8b0:4864:20::62a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B661C10E271;
+ Thu, 19 Dec 2024 02:35:06 +0000 (UTC)
+Received: by mail-pl1-x62a.google.com with SMTP id
+ d9443c01a7336-216395e151bso2164065ad.0; 
+ Wed, 18 Dec 2024 18:35:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757660886; x=1758265686; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1734575706; x=1735180506; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=W7sa4dPPTPYoYuKBZuN8JhwzRLpV6rUI5E+79YIK4mc=;
- b=VOQqYwWd/lErihBg7wTLJNi1jFfn8FXpMyk5BLNYbh9n2vAtsSuVwj7pm4UMmG80/E
- y2ki9AE01jCBBA9XUKp9lYgJ7A3BN3x0oAA/oyS51h8Zjg+iwjvIN7T15LN0sVrhnYQE
- QoclPcYbNluO4DvfLTajlgcOkM9HkvFSru/uZ1wUHxK8rXGWm2tQW+lkXB0kc1oh8F3o
- z9iAL6+HmRnTy/2KzO4TEVYPH7ivmc4K3HWGVfsibxToWTXlyTq+yID/HpZEd7evXXvN
- 5ttD4wR6MnvMWzUxLFCU3D+EMonf+qmt0JqbmHUL48mLJz+P1E2C30VG+zMXBof3TGxC
- IzIg==
+ bh=6yZ75uwrgzXS/KAS9XiI4pfcH/Aa7U+Upt9QqSiD0i8=;
+ b=HZe8BTSZyJ+q9OGkdxCCAQx+r1VJ6B4lUDaoZ2M/B4yhqxskkOvNxU6zAC3W3PMT4h
+ KWyW3LYM8S+LqxSmySPt2PCo3ckrAXW+zfg1Ato2Y7CX3Nrrz8iE/1i9a6TKzHCNgkAM
+ NQV4IoqRTDuVNIAUP0YAOG9XWVcgqXsLg8DWhrDupuHE/3a15y04Y25TZSVMNc1juPrp
+ LCeyeAB8U5HXgmuSU0JQsmZFQjy+AGnJHxNLMIOjhQYmn25RICqpgrbivXW6AJngE/Q5
+ 6Rdo1hyUyog0wx3xMeeRevgmDrHUJvHC2B76D4OCvx1KJYTldxkCR0rekTrNkvpjtaqY
+ yxfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757660886; x=1758265686;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1734575706; x=1735180506;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=W7sa4dPPTPYoYuKBZuN8JhwzRLpV6rUI5E+79YIK4mc=;
- b=vtibA1NFZTX3GvsPPKKHWM7AqDoSEUMtWdax96GtGQ14gm6hyTiiNge/YXXsAJP9Gi
- LSWnKNqxSIn5ghBtj+m2bpTVIlkeQH2Krs22V+7wrTq2yLSHaWvZL7LBByEFN2lAiXKI
- AutCOsR1p0uHpz3R0Y/PuYBkjZhjmAtfr6a5+rZTvSST0PJOJE3Ibf9ya4QXQ2LAvmeN
- e+Mo9rVnoolJHgQvTaibfqYNahinA+OYDzLa5E+jn8WKmx9+xyFCrdHbtf0D8ZH8RKdp
- +R2lDU4h45MP0XqvQvyE/MwLhahEUVRnpiSPIc8d2Z3oKD8uICGkU2Tf/iWQzAs9ZCIn
- XFEg==
+ bh=6yZ75uwrgzXS/KAS9XiI4pfcH/Aa7U+Upt9QqSiD0i8=;
+ b=cVJBrCDp5SBkUoscNKAeMHaMRaj7aLuWV3DeiWLav+vjezszTjRvPUpOAx3YFFmaZ1
+ 226StqDHF6xinC899zkP7R6l3wZPe4xKwdLgZqMXEIvGPr/Vo2xWS29OQ8UsCkTtQZFG
+ Kst8ILvRAxsJVGLM0ubHVJqv7AAAsntEBgZya3Xh1+cXTpNL+DzuU+HHIoJpAxzryHGr
+ eJDmxBlheEoFVsi5XRSm/pA5eyjgD+wdU1F+MCw46ZMCtnUwDFcYduB5FtNTtjgrHBrM
+ iv5hPCtCQAPxrW+ZsqxBxBe590KKiGF6rkXfrsyzG3+CRIzbcVL3QzmuQMLPtbQTC1jH
+ 5CmQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWD8q0XsDgnz/jC4zsizxzLpEx98UBBclrr7rz8GoqPS4BOg1zlF8vDv2sa1FyfHqd66ouyaqBd@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxVi/DnvcvzbZU9PM/bbNThAWr8i1bGAj/hJHDeOyjXTUIN3MNn
- yeLQUqvyu0VHpeGrW1QqTOCvEc1CQbLpVKmonUE9VSR4Cuu6LL4i88YApuke5VrWMOKOCaBXpLD
- 235sHEVt/npGeLrq2j3/JkwqESCSZWlE=
-X-Gm-Gg: ASbGncsM8RA4ZuLnQHvNezz+oj3P/k6hkfwaSXpdzAXC/ocAxgsNWeWudAKhig1cHZZ
- xBh42q3jGzaVqbDvgmpUWkOlCYx2bv3WDXsWtP2kcLtrDSlQpeiH1+pdaI0qrdEeE530ZxPyCf0
- MKQYneUMSoTb6GiKRfi39kUTHGn/3qNkc8ZJQsql+ioHYN5c7SYfK3hw+XcvFgb6akJo1fS8l9l
- Agczh9eGlwONEocsQ==
-X-Google-Smtp-Source: AGHT+IG0a/RzAkySA0zv4GtRtoMgb7fMz40QqFaDmGNUnRd1h2GrriKeQPDg7VZPJxieR37sFPCZyvmxOEUrMUgnUno=
-X-Received: by 2002:a05:651c:542:b0:32a:6aa0:2173 with SMTP id
- 38308e7fff4ca-3513fc37bd3mr5450921fa.20.1757660885920; Fri, 12 Sep 2025
- 00:08:05 -0700 (PDT)
+ AJvYcCVBgPoSAn2KpbigBv3DY4KGBBMY3cBh4DqF9kQ3YCMWCdUiUT4akv96y23TvOtoYG5LnjLJrllxc6g=@lists.freedesktop.org,
+ AJvYcCVRrvozocophIB3uM2gcCkmJLVB60xXhJSTb4/GLTRBz567oSD0HDjas43MdatWuCOdyHm06/eQOZ35@lists.freedesktop.org,
+ AJvYcCW0CxuwCRc1XwfsfZB6w8qu0otKqHN0ulV5+cAU2kE9CLKeRT6VTN82UCQVpjP08i8BA5yfSf02og==@lists.freedesktop.org,
+ AJvYcCXhldZKnKlmJD0Y7TIq5ZlOTcb29dUyPGdvsdW8QgdyoX5z0P4skdYN10vodDT5pkklQKju21iGsBY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyXA9GyD3/yxKsp6KZqGIh/sPetBIw79a9YKGKtU8ydT7BI0wdN
+ cIBpXFQulhRv/bO4c6n+onMRyvBWBGFdIPjk44RY1kiwfjf2tWbV
+X-Gm-Gg: ASbGncu+KmTEYn0K1MfqYLN34iq9z+fDiSQNQ4cSeoxGpcmn7zL6Rg8cbCJD08ewNst
+ ZrZcFEBmdUsoZJMyNz6h3ndYxSP9A6NI645H/qn1Hlmu8HqblqRgcmjeJq27AXzfOJ54MZUK+Tm
+ lD4af+Igevk+V5M9ZKF9Mxt5rB101NRw3Qg7lmV/aXFkJBwXyfws6FA1RlKXvQEfCuIW87kPdhH
+ xJjW5CcqJSaaP9FQKjEASi1YRboP4Ur99zoY3EXc53ozrwWtD2mTTOs9Id6ICo0SzKKa3TRG9JB
+ BHpYovQ=
+X-Google-Smtp-Source: AGHT+IHDUXmWYVlYvXYhHIsD36N49JfOorXAToNFZUciCwG5nEYfG9fZ9g2sYrKUGUIeEzsd5pUGJQ==
+X-Received: by 2002:a17:902:f689:b0:215:2d2c:dd0c with SMTP id
+ d9443c01a7336-219da5e3b97mr23433885ad.14.1734575706180; 
+ Wed, 18 Dec 2024 18:35:06 -0800 (PST)
+Received: from localhost.localdomain ([180.159.118.224])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-842b821da83sm142163a12.40.2024.12.18.18.35.01
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Wed, 18 Dec 2024 18:35:05 -0800 (PST)
+From: Yafang Shao <laoar.shao@gmail.com>
+To: akpm@linux-foundation.org
+Cc: torvalds@linux-foundation.org, pmladek@suse.com, kvalo@kernel.org,
+ bp@alien8.de, andriy.shevchenko@linux.intel.com, linux-mm@kvack.org,
+ linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
+ x86@kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
+ Yafang Shao <laoar.shao@gmail.com>, Serge Hallyn <serge@hallyn.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+ Peter Zijlstra <peterz@infradead.org>, Darren Hart <dvhart@infradead.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
+Subject: [PATCH v2 1/5] kernel: Remove get_task_comm() and print task comm
+ directly
+Date: Thu, 19 Dec 2024 10:34:48 +0800
+Message-Id: <20241219023452.69907-2-laoar.shao@gmail.com>
+X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
+In-Reply-To: <20241219023452.69907-1-laoar.shao@gmail.com>
+References: <20241219023452.69907-1-laoar.shao@gmail.com>
 MIME-Version: 1.0
-References: <20250831-gk20a-devfreq-v1-1-c25a8f1169a8@gmail.com>
- <4f3d9122f3fe552f94827b83a7dce5d3bbdc23e2.camel@redhat.com>
- <CALHNRZ-h2ee5pyOx2YDDBDQzFnXxDFX5EzhjX5+DT25UbKj1MQ@mail.gmail.com>
- <rvfjkkpsqvk3uedaahzhwrao7bgnxvbn7hdm6goa2bn6co7ctk@2hbiwwvn6y2j>
-In-Reply-To: <rvfjkkpsqvk3uedaahzhwrao7bgnxvbn7hdm6goa2bn6co7ctk@2hbiwwvn6y2j>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Fri, 12 Sep 2025 02:07:54 -0500
-X-Gm-Features: Ac12FXwznuijRqzCnopDIstfQghwKQCFmHybp4tbVUQN04WRkgdFV7WmBtzwMqA
-Message-ID: <CALHNRZ_hZ5rjGpt4rDmMvxcBBcW2fK6Q2Z_1oKzj+eBi6U-1+g@mail.gmail.com>
-Subject: Re: [PATCH] drm/nouveau: Support devfreq for Tegra
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,43 +103,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Sep 9, 2025 at 7:05=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
-.com> wrote:
->
-> On Sat, Sep 06, 2025 at 08:01:27PM -0500, Aaron Kling wrote:
-> [...]
-> > I should note that I have only actively tested this on gm20b and
-> > gp10b. I am currently unable to get nouveau running on any gk20a
-> > device I own. I am trying to target consumer devices such as the
-> > shield tablet, which use the android bootloader. I can boot the kernel
-> > just fine and tegra-drm works as well, however when nouveau tries to
-> > probe, it hangs the first time it tries to access a register. I have
-> > not yet been able to figure out why.
->
-> These types of hangs typically indicate that the hardware is not powered
-> on, not clocked or in reset. It's odd that it would hang during register
-> access on gk20a because nothing significant has changed in any of the
-> related drivers, as far as I know.
->
-> One thing that you could try is passing the clk_ignore_unused and
-> pd_ignore_unused command-line parameters when booting the kernel. If it
-> works with those, try finding out which one of them is causing things to
-> break to narrow down what we need to fix.
+Since task->comm is guaranteed to be NUL-terminated, we can print it
+directly without the need to copy it into a separate buffer. This
+simplifies the code and avoids unnecessary operations.
 
-The ignore_unused params didn't make a difference, but this got me
-looking closer at the power rails. I noticed that vdd-gpu for the
-jetson-tk1 is set to always-on for mainline, which it is not on the
-downstream kernel. Mirroring that to ardbeg resulted in nouveau
-successfully probing. One of my other devices needed a pwm-regulator
-for vdd-gpu, after which it also probes as expected. I will need to
-double check the rest of my devices as well. Is there a known reason
-why if vdd-gpu is a pmic regulator, it needs to be always-on, or is
-this another unsolved mystery?
+Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
+Cc: Serge Hallyn <serge@hallyn.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Darren Hart <dvhart@infradead.org>
+Cc: Davidlohr Bueso <dave@stgolabs.net>
+Cc: "André Almeida" <andrealmeid@igalia.com>
+---
+ kernel/capability.c     | 8 ++------
+ kernel/futex/waitwake.c | 3 +--
+ 2 files changed, 3 insertions(+), 8 deletions(-)
 
-This change looks to be working okay on gk20a. It does a couple
-transitions on startup. I'm having other issues getting full rendering
-started, though. Kasan slab-out-of-bounds in nvkm_falcon_v1_load_imem
-when drm_hwcomposer tries to start up. Looking into that separately
-now, but that shouldn't block any of my open patches.
+diff --git a/kernel/capability.c b/kernel/capability.c
+index dac4df77e376..e089d2628c29 100644
+--- a/kernel/capability.c
++++ b/kernel/capability.c
+@@ -38,10 +38,8 @@ __setup("no_file_caps", file_caps_disable);
+ 
+ static void warn_legacy_capability_use(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+ 	pr_info_once("warning: `%s' uses 32-bit capabilities (legacy support in use)\n",
+-		     get_task_comm(name, current));
++		     current->comm);
+ }
+ 
+ /*
+@@ -62,10 +60,8 @@ static void warn_legacy_capability_use(void)
+ 
+ static void warn_deprecated_v2(void)
+ {
+-	char name[sizeof(current->comm)];
+-
+ 	pr_info_once("warning: `%s' uses deprecated v2 capabilities in a way that may be insecure\n",
+-		     get_task_comm(name, current));
++		     current->comm);
+ }
+ 
+ /*
+diff --git a/kernel/futex/waitwake.c b/kernel/futex/waitwake.c
+index 3a10375d9521..eb86a7ade06a 100644
+--- a/kernel/futex/waitwake.c
++++ b/kernel/futex/waitwake.c
+@@ -210,13 +210,12 @@ static int futex_atomic_op_inuser(unsigned int encoded_op, u32 __user *uaddr)
+ 
+ 	if (encoded_op & (FUTEX_OP_OPARG_SHIFT << 28)) {
+ 		if (oparg < 0 || oparg > 31) {
+-			char comm[sizeof(current->comm)];
+ 			/*
+ 			 * kill this print and return -EINVAL when userspace
+ 			 * is sane again
+ 			 */
+ 			pr_info_ratelimited("futex_wake_op: %s tries to shift op by %d; fix this program\n",
+-					get_task_comm(comm, current), oparg);
++					    current->comm, oparg);
+ 			oparg &= 31;
+ 		}
+ 		oparg = 1 << oparg;
+-- 
+2.43.5
 
-Aaron
