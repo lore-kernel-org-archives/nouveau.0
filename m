@@ -4,45 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10346E77199
-	for <nouveau@archiver.kernel.org>; Wed,  8 Jan 2025 07:39:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7DB9E77188
+	for <nouveau@archiver.kernel.org>; Wed,  8 Jan 2025 13:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A132E10E7F1;
-	Wed,  8 Jan 2025 07:39:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82E4E10EBB8;
+	Wed,  8 Jan 2025 13:16:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J74plNu4";
+	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="mN5cDSYv";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29A6510E7F1;
- Wed,  8 Jan 2025 07:39:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id CA7F55C3DD8;
- Wed,  8 Jan 2025 07:38:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4267C4CEE0;
- Wed,  8 Jan 2025 07:39:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1736321944;
- bh=9JpopllONnBnaO2zazzax/ph9EPvvRuP1gFw4S4Mj94=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=J74plNu47cju+K9lAo4MPtIY9oBpX/QfCzhvR/xf+x5tu+JYv4G7a0Pdib4n91WLC
- b1sqRiOPI4RmG3smOGYfmUvjtlTJrKJnWlaFQLuASJQ6JQKjH42bBRByPPuVsFq/L4
- TatlOe4ZCHHN665xWzQhT+gHRLpcL6lyWTRfx8jDCCHBxXjB60ml3ZOxTKWJ58i4ja
- OaTcsrZdwi7PZvuVcbJ63pUCXCFktUmaTeQ+7STIIFbmJd31GSB4PmzzJwHmpel7bg
- gi4Q2xsDNA/2nHrdnl/aGSjlg6HQ5ZrRDIO197VdxSeflveCMeg/nQoT7qsNFRXQoA
- ELhXcBrAdEb2A==
-Date: Wed, 8 Jan 2025 08:39:01 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Dave Airlie <airlied@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH] nouveau/fence: handle cross device fences properly.
-Message-ID: <Z34rleGXo15o9NXd@pollux>
-References: <20250107055846.536589-1-airlied@gmail.com>
- <Z31P_Wp4qMzIlv88@pollux>
- <CAPM=9twK4UUnrOc1rB7bZLgWG534HH14vsdyCgUcKX1YLrnNDg@mail.gmail.com>
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E72810EBB8
+ for <nouveau@lists.freedesktop.org>; Wed,  8 Jan 2025 13:16:36 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-43621d27adeso116169245e9.2
+ for <nouveau@lists.freedesktop.org>; Wed, 08 Jan 2025 05:16:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linaro.org; s=google; t=1736342135; x=1736946935; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=RJuigyfwmP8g+AjzZPBKqd3NanhyQaBWQuNEBkBgD08=;
+ b=mN5cDSYv1iUpnDTnR2/YANI4/yLVv3w9CE5bt+cOyCHHmzo9Peq/Lx7cHypTGkYHhN
+ RiatNLfY1RqtkxmP5JEF5gj8WuzFiHTslj87yeIRvPt8os7pS/6usWGqvg+FWmfOYhAP
+ zCiw/EPtWBFzzZjUOjEW2I25jY9XsUOlPKPgl5ABPY59wy5svcqnmbBngaR75pxpCd/n
+ 9/iPqF9dkSET5BzuzgqvSf8J5/+fhuoNMafwnDcjP1UzEAlsactucOxqmzHSSd3TsBVX
+ 3y0IwtuTYz3+g6ih6BcDYc2k3ajRDnsIwO9EdZzqrJxeCgP3eVroCx9MiyRZ0aQG3veT
+ UaoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1736342135; x=1736946935;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RJuigyfwmP8g+AjzZPBKqd3NanhyQaBWQuNEBkBgD08=;
+ b=f2O3WCwHsCq5Aj7Z3R5nTDkNTnJfD9brUigXllbMMLDp7ckp3HAgwz0BxWB0xe8Q8F
+ bqXu8Qstc7DNVgQOQAOEeBwxXtLLTOm6+I2rsDrR3a3hqLyfngi86UmfvdrKliLL8Ijj
+ o0ZePrYjgpzYwE1IPOH8jp6+zAs4KtMxN4V/BKVLSgT6m/dHAx/op0Ikn+BSdegu/tjh
+ 1+yROOVuMcCp9hGx2OmMVK/ynsew1tMOXiAgPDjyTHiWsq/MYsoOk3fDhuI9XRl1Gt5j
+ 2+U6wVPuFO2CxI+wQ4vUC+GoKxjhHwlHIFAW+7cjO0EaFSbMUeCxNdCqHM+asiRK5h71
+ GgVg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWQj7DcPX6o69w7RGarnTjZfvJd5LS0QWG2scL6qCl9pz3oPbJ82l7SFz0Q1olfX/9hLOYX4BcK@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzK1TCPwGfzPdCdxmh8DoBk/CylARxseqwX7g74Om7gPtRpSZjF
+ wZrLezeEpgp+BaFtugbB2k2oQq2AC5gCF9IJYlA6OpX2m7R7uXZ5amCCuoxZhDs=
+X-Gm-Gg: ASbGnct42rd2s5TLGELlWQr6XdI5c/dBte689CaQQsG6GsczTMzMJCapU1T+sQsRAe3
+ 78nRRD0i6fiOdTLJ04XMN/HM+9tS30S7D5Sc5pZXJWHBNW+vnoeHxe+ncuS+SunKOKZKLsLil8X
+ PW0Tf18STwC+CGWVszCtrlwnD1xjed4RvTI5krBs+2gzfttQRsG/LdS7C3pv6ZtMmmTed7Hwc2F
+ 04B0XiSz1NGUeny4KY11ZgVZGyVjfbu3v/mF+cRJskGpW8ZUnUAaY0=
+X-Google-Smtp-Source: AGHT+IEBlTrxBtjf7901ssDCnGeSN4NcUwtvM8JV72Q4zJ9UCPrPz4BdIknjwwKXyCc18LVEe1ItmQ==
+X-Received: by 2002:a05:600c:3b91:b0:436:46f9:4fc6 with SMTP id
+ 5b1f17b1804b1-436e26928e6mr24415245e9.8.1736342135088; 
+ Wed, 08 Jan 2025 05:15:35 -0800 (PST)
+Received: from linaro.org ([86.121.162.10]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-436e2e21e1esm20577465e9.38.2025.01.08.05.15.33
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Jan 2025 05:15:34 -0800 (PST)
+Date: Wed, 8 Jan 2025 15:15:29 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>
+Subject: Re: [PATCH v3 3/4] drm/i915/dp: Use the generic helper to control
+ LTTPR transparent mode
+Message-ID: <Z356cSOjqJYrSMvt@linaro.org>
+References: <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-0-5c367f4b0763@linaro.org>
+ <20250103-drm-dp-msm-add-lttpr-transparent-mode-set-v3-3-5c367f4b0763@linaro.org>
+ <3p3wgzhtptjexplxrluod6sk36xeltpoh4hxg2yagssw7nh7hj@ikc4rssp6zej>
+ <Z3vQfIIDDgnFJsDn@linaro.org>
+ <enzj72vy523bvlphbygxn42zocvhx24eghreffzrthomhy5jxo@2l4h345h7ojl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAPM=9twK4UUnrOc1rB7bZLgWG534HH14vsdyCgUcKX1YLrnNDg@mail.gmail.com>
+In-Reply-To: <enzj72vy523bvlphbygxn42zocvhx24eghreffzrthomhy5jxo@2l4h345h7ojl>
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,83 +106,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 08, 2025 at 11:04:21AM +1000, Dave Airlie wrote:
-> On Wed, 8 Jan 2025 at 02:02, Danilo Krummrich <dakr@kernel.org> wrote:
-> >
-> > On Tue, Jan 07, 2025 at 03:58:46PM +1000, Dave Airlie wrote:
-> > > From: Dave Airlie <airlied@redhat.com>
-> > >
-> > > If we have two nouveau controlled devices and one passes a dma-fence
-> > > to the other, when we hit the sync path it can cause the second device
-> > > to try and put a sync wait in it's pushbuf for the seqno of the context
-> > > on the first device.
-> > >
-> > > Since fence contexts are vmm bound, check the if vmm's match between
-> > > both users, this should ensure that fence seqnos don't get used wrongly
-> > > on incorrect channels.
-> >
-> > The fence sequence number is global, i.e. per device, hence checking the vmm
-> > context seems too restrictive.
-> >
-> > Wouldn't it be better to ensure that `prev->cli->drm == chan->cli->drm`?
+On 25-01-08 15:11:50, Dmitry Baryshkov wrote:
+> On Mon, Jan 06, 2025 at 02:45:48PM +0200, Abel Vesa wrote:
+> > On 25-01-03 20:09:42, Dmitry Baryshkov wrote:
+> > > On Fri, Jan 03, 2025 at 02:58:17PM +0200, Abel Vesa wrote:
+> > > > LTTPRs operating modes are defined by the DisplayPort standard and the
+> > > > generic framework now provides a helper to switch between them, which
+> > > > is handling the explicit disabling of non-transparent mode and its
+> > > > disable->enable sequence mentioned in the DP Standard v2.0 section
+> > > > 3.6.6.1.
+> > > > 
+> > > > So use the new drm generic helper instead as it makes the code a bit
+> > > > cleaner.
+> > > > 
+> > > > Acked-by: Imre Deak <imre.deak@intel.com>
+> > > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > > > ---
+> > > >  .../gpu/drm/i915/display/intel_dp_link_training.c  | 24 +++++-----------------
+> > > >  1 file changed, 5 insertions(+), 19 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > index 8b1977cfec503c70f07af716ee2c00e7605c6adf..c5bad311edf7b9a5cebb633b9e9692bae397f9ed 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> > > > @@ -119,9 +119,6 @@ intel_dp_set_lttpr_transparent_mode(struct intel_dp *intel_dp, bool enable)
+> > > >  	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
+> > > >  			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
+> > > >  
+> > > > -	if (drm_dp_dpcd_write(&intel_dp->aux, DP_PHY_REPEATER_MODE, &val, 1) != 1)
+> > > > -		return false;
+> > > > -
+> > > >  	intel_dp->lttpr_common_caps[DP_PHY_REPEATER_MODE -
+> > > >  				    DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] = val;
+> > > >  
+> > > > @@ -146,6 +143,7 @@ static bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp)
+> > > >  static int intel_dp_init_lttpr_phys(struct intel_dp *intel_dp, const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+> > > >  {
+> > > >  	int lttpr_count;
+> > > > +	int ret;
+> > > >  
+> > > >  	if (!intel_dp_read_lttpr_common_caps(intel_dp, dpcd))
+> > > >  		return 0;
+> > > > @@ -172,22 +170,8 @@ static int intel_dp_init_lttpr_phys(struct intel_dp *intel_dp, const u8 dpcd[DP_
+> > > >  		return lttpr_count;
+> > > >  	}
+> > > >  
+> > > > -	/*
+> > > > -	 * See DP Standard v2.0 3.6.6.1. about the explicit disabling of
+> > > > -	 * non-transparent mode and the disable->enable non-transparent mode
+> > > > -	 * sequence.
+> > > > -	 */
+> > > > -	intel_dp_set_lttpr_transparent_mode(intel_dp, true);
+> > > > -
+> > > > -	/*
+> > > > -	 * In case of unsupported number of LTTPRs or failing to switch to
+> > > > -	 * non-transparent mode fall-back to transparent link training mode,
+> > > > -	 * still taking into account any LTTPR common lane- rate/count limits.
+> > > > -	 */
+> > > > -	if (lttpr_count < 0)
+> > > > -		goto out_reset_lttpr_count;
+> > > > -
+> > > > -	if (!intel_dp_set_lttpr_transparent_mode(intel_dp, false)) {
+> > > > +	ret = drm_dp_lttpr_init(&intel_dp->aux, lttpr_count);
+> > > > +	if (ret) {
+> > > >  		lt_dbg(intel_dp, DP_PHY_DPRX,
+> > > >  		       "Switching to LTTPR non-transparent LT mode failed, fall-back to transparent mode\n");
+> > > >  
+> > > > @@ -196,6 +180,8 @@ static int intel_dp_init_lttpr_phys(struct intel_dp *intel_dp, const u8 dpcd[DP_
+> > > >  		goto out_reset_lttpr_count;
+> > > >  	}
+> > > >  
+> > > > +	intel_dp_set_lttpr_transparent_mode(intel_dp, false);
+> > > > +
+> > > 
+> > > I think the code now misses a way to update intel_dp->lttpr_common_caps
+> > > in a transparent-mode case:
+> > > intel_dp_set_lttpr_transparent_mode(intel_dp, true).
+> > 
+> > It is being called if the drm_dp_lttpr_init() returns a non-zero value,
+> > but that is not part of the diff here.
 > 
-> Can you prove that? I thought the same and I've gone around a few
-> times yesterday/today and convinced myself what I wrote is right.
+> Ack, thanks for the explanation. I'd suggest mentioning that in the
+> commit message.
 
-Honestly, I thought you were implying that by the commit summary and message,
-but that's more the how you found this.
-
-With that bias grep made me end up at pre-nv84 code, where this is actually
-still the case (see nv17_fence_sync()).
-
-But of course for later GPUs it's a per fence-context / channel seqno; can't
-know what the firmware scheduler puts first.
-
-I think we should change the commit message to "handle cross cli fences
-properly" (channels of the same cli share the cli's vmm) and clarify in the
-commit message that not only cross device cases are affected.
-
-I'd also put that the problem is that (for nv84 and later) we otherwise take the
-channel ID of the fence' channel and add it on top of the fence-context vma
-address of the target channel, which (if they have different VMMs) makes us end
-up with a wrong synchronization point [1].
-
-Cross device could even be worse with very old GPUs, since ->sync() just assumes
-the same fence-context type between the channels.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/gpu/drm/nouveau/nv84_fence.c#n100
+Sure. Will do.
 
 > 
-> dma_fence_init gets passed the seqno which comes from fctx->sequence,
-> which is nouveau_fence_chan, which gets allocated for each channel.
+> > 
+> > > 
+> > > >  	return lttpr_count;
+> > > >  
+> > > >  out_reset_lttpr_count:
+> > > > 
+> > > > -- 
+> > > > 2.34.1
+> > > > 
+> > > 
+> > > -- 
+> > > With best wishes
+> > > Dmitry
 > 
-> So we should hit this path if we have 2 userspace submits, one with
-> say graphics, the one with copy engine contexts, otherwise we should
-> wait on the CPU.
-> 
-> > >  drivers/gpu/drm/nouveau/nouveau_fence.c | 3 ++-
-> > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > index ee5e9d40c166f..5743c82f4094b 100644
-> > > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > @@ -370,7 +370,8 @@ nouveau_fence_sync(struct nouveau_bo *nvbo, struct nouveau_channel *chan,
-> > >
-> > >                               rcu_read_lock();
-> > >                               prev = rcu_dereference(f->channel);
-> > > -                             if (prev && (prev == chan ||
-> > > +                             if (prev && (prev->vmm == chan->vmm) &&
-> > > +                                 (prev == chan ||
-> >
-> > Maybe better break it down a bit, e.g.
-> >
-> > bool local = prev && (prev->... == chan->...);
-> >
-> > if (local && ...) {
-> > ...
-> > }
-> 
-> I'll update that once we resolve the above.
-> 
-> Dave.
+> -- 
+> With best wishes
+> Dmitry
+
+Thanks for reviewing!
+
+Abel
