@@ -4,93 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6973E77199
-	for <nouveau@archiver.kernel.org>; Thu,  9 Jan 2025 12:14:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2068E7719A
+	for <nouveau@archiver.kernel.org>; Thu,  9 Jan 2025 15:03:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 974B610ED81;
-	Thu,  9 Jan 2025 12:14:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 676FE10EE2B;
+	Thu,  9 Jan 2025 15:03:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=linaro.org header.i=@linaro.org header.b="B5Ear+Jh";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ntZkX8HI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KRido0aS";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ntZkX8HI";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="KRido0aS";
 	dkim-atps=neutral
-Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com
- [IPv6:2a00:1450:4864:20::336])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A0CC10ED89
- for <nouveau@lists.freedesktop.org>; Thu,  9 Jan 2025 12:14:25 +0000 (UTC)
-Received: by mail-wm1-x336.google.com with SMTP id
- 5b1f17b1804b1-4363ae65100so9371315e9.0
- for <nouveau@lists.freedesktop.org>; Thu, 09 Jan 2025 04:14:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linaro.org; s=google; t=1736424864; x=1737029664; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Qgi4e6BoGIUkq88BVzT7YBbI2Ar0NhYklw/AGMjsAlg=;
- b=B5Ear+JhPAVnF0evzlI3EQqzkt7dmuahMHwTSYE4mWta/F7T6iRE5RV7hp8pxQKhLX
- aoBWPCC+ndsTTQZ2/tiV8DXvNZTeES+atiSoc5XKtm83YcyzUPZMtkpkoCoZb1/+8v5+
- WC0LTNd8fg+PHZaPKxOMrYxv35LRs3FN2ltpYvgoGW6tWV6AWiyCBpE7GbxtszMdNzxg
- tHBPUoXAzuaJjOXOFiHiNABaY0CEGs4jBg1yk5xXDXT73tIyD+/PGiJr/6WX9izgDC1p
- /HRnLk0qSTogsgDlolVsmOPRHXNy4IsYxvVSGIhZ2vTIKRjxvg6tdumz74EqpTVwVGkF
- nkag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1736424864; x=1737029664;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Qgi4e6BoGIUkq88BVzT7YBbI2Ar0NhYklw/AGMjsAlg=;
- b=Ct3K+T6y7CYUs4IK5RHtH+DGxJ0lkB5GXKOOd4IvnQAfD8qr3kCXyq8iq8t0lfXlm7
- +Jea/9oss99x5lrW9IZbpdrBokQ4kf/8IPlr36XqbyqTsQEiu0znMoDb3dWFVhzpVAMz
- QRH1AGV3pF4YihrfyY1q+iDMcv6P1WSHwjIjP6feDEWQ3a06jjwdOdBP/2d0tNX7sWDp
- f54V436om3ifknqGCZrD+uEQwgOsWJkbb1IZ6b2JzlSB6r59AS7h9GdnZsqDNyDl0OiT
- XzHqTgE/a1BFvDLLiRFnyA88IZsCptfNGINDNRfuVbRpnKRFhiEO0Q8kVIflN48bv3QR
- haNQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU2CV+wdiAsLDcfxPuU3hH+apAS8zjnVGiCMjMSPKqDCOiOEkWQkgQt5oTWyZiOC9sHvYYXmHU3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzgxZwqnB+xTjBRw/6P86kxGvN1xZTMLyzH8W8/YkaArsEij4Z4
- 5F7jSOl8ACG9buhsw73czt4f/y+mBZTBZlNoTRNUlzeUzx1v+ltfS64UBmU0TXI=
-X-Gm-Gg: ASbGncuGeks5bgaY1PSMhjpkYkndhyz614q84PN2+OqDJbUAlRYwxeB3O36oDP5dcYv
- nOtLH/R9PSJTdfxVcdI7bDxhNm4/Rmh8CXj8Bvz9XWdv65p70ufJm1VEpsRWRGxIy75KXAxt4Cz
- dbJ3XwT4Ty6sKwwJu2Qr3OUstShfhhnqkfDR0wjC6pd3Aoeec8ljCwlM2nIMW5Y+mJozhDOXC2Q
- BQLNVdMQ/wDuGXJH5P+3UUGwZOL1gdFCSw41VX8VWwq0m/bfmwqYco=
-X-Google-Smtp-Source: AGHT+IFZfJfwssLNpBYM5MjiXFRSaZImZ4dWDIr4RYjQoPZfimRRPYITmNGGjTmVo8KU+9ieJp1Ivg==
-X-Received: by 2002:a05:600c:6b6f:b0:436:e86e:e4ab with SMTP id
- 5b1f17b1804b1-436e86ee529mr33625975e9.30.1736424863901; 
- Thu, 09 Jan 2025 04:14:23 -0800 (PST)
-Received: from linaro.org ([86.121.162.10]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-436e2da6401sm53853955e9.2.2025.01.09.04.14.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Jan 2025 04:14:23 -0800 (PST)
-Date: Thu, 9 Jan 2025 14:14:21 +0200
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark <robdclark@gmail.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Johan Hovold <johan@kernel.org>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v4 1/4] drm/dp: Add helper to set LTTPRs in transparent
- mode
-Message-ID: <Z3+9nUwDyyYkB2Jl@linaro.org>
-References: <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-0-918949bc2e3a@linaro.org>
- <20250108-drm-dp-msm-add-lttpr-transparent-mode-set-v4-1-918949bc2e3a@linaro.org>
- <b4z2o4sgyjyh7wqbybtifi5evhh7b3tgfujson6l5ajmjdwt3f@x2xz6iod54vz>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 776C510EE27;
+ Thu,  9 Jan 2025 15:03:17 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 157402116D;
+ Thu,  9 Jan 2025 15:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736434996; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=ntZkX8HIPc1qGvPW8UM3Evg6Ff9TM4m/+rMTrtZcyvaUoSYG4MrK4zcw+XGDVVaTWpH7VQ
+ 7fbl79Pw4UcW5H8ug3QUw8sp9ufyiWEcAHz3WKEHjB9MqZMiL/ntefZ7I6bgtfudgZeMg4
+ Eezv9GbAWHlf4ZgRNmiE562bHzv0X/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736434996;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=KRido0aSgwUv2dnvGXNMHH0PnwD78rt0xuNhPUc3UhOyhb1FS2KDnnaKFfuch02NIZf5DB
+ LvLC3fVQ/RHRQjCg==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ntZkX8HI;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=KRido0aS
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1736434996; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=ntZkX8HIPc1qGvPW8UM3Evg6Ff9TM4m/+rMTrtZcyvaUoSYG4MrK4zcw+XGDVVaTWpH7VQ
+ 7fbl79Pw4UcW5H8ug3QUw8sp9ufyiWEcAHz3WKEHjB9MqZMiL/ntefZ7I6bgtfudgZeMg4
+ Eezv9GbAWHlf4ZgRNmiE562bHzv0X/I=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1736434996;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3sh7vVw1B49hkDdbVfqLYlvz8obe5G8l/LkcFxQMXdM=;
+ b=KRido0aSgwUv2dnvGXNMHH0PnwD78rt0xuNhPUc3UhOyhb1FS2KDnnaKFfuch02NIZf5DB
+ LvLC3fVQ/RHRQjCg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8ED65139AB;
+ Thu,  9 Jan 2025 15:03:15 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id cNeRITPlf2c1awAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 09 Jan 2025 15:03:15 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH v2 02/25] drm/dumb-buffers: Provide helper to set pitch and
+ size
+Date: Thu,  9 Jan 2025 15:56:56 +0100
+Message-ID: <20250109150310.219442-3-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <20250109150310.219442-1-tzimmermann@suse.de>
+References: <20250109150310.219442-1-tzimmermann@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b4z2o4sgyjyh7wqbybtifi5evhh7b3tgfujson6l5ajmjdwt3f@x2xz6iod54vz>
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 157402116D
+X-Spamd-Result: default: False [-1.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ SUSPICIOUS_RECIPS(1.50)[]; MID_CONTAINS_FROM(1.00)[];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; R_MISSING_CHARSET(0.50)[];
+ NEURAL_HAM_SHORT(-0.20)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:dkim,suse.de:mid,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ FUZZY_BLOCKED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[19]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ FROM_HAS_DN(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ ASN(0.00)[asn:25478, ipnet:::/0, country:RU];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ R_RATELIMIT(0.00)[to_ip_from(RLqtkr6cif1ebgurukgmwdm7xc)];
+ RCVD_TLS_ALL(0.00)[]; DKIM_TRACE(0.00)[suse.de:+];
+ TO_DN_SOME(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,87 +128,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 25-01-08 16:17:47, Bjorn Andersson wrote:
-> On Wed, Jan 08, 2025 at 04:31:43PM +0200, Abel Vesa wrote:
-> > According to the DisplayPort standard, LTTPRs have two operating
-> > modes:
-> >  - non-transparent - it replies to DPCD LTTPR field specific AUX
-> >    requests, while passes through all other AUX requests
-> >  - transparent - it passes through all AUX requests.
-> > 
-> > Switching between this two modes is done by the DPTX by issuing
-> > an AUX write to the DPCD PHY_REPEATER_MODE register.
-> > 
-> > Add a generic helper that allows switching between these modes.
-> > 
-> > Also add a generic wrapper for the helper that handles the explicit
-> > disabling of non-transparent mode and its disable->enable sequence
-> > mentioned in the DP Standard v2.0 section 3.6.6.1. Do this in order
-> > to move this handling out of the vendor specific driver implementation
-> > into the generic framework.
-> > 
-> > Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  drivers/gpu/drm/display/drm_dp_helper.c | 62 +++++++++++++++++++++++++++++++++
-> >  include/drm/display/drm_dp_helper.h     |  2 ++
-> >  2 files changed, 64 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> > index da3c8521a7fa7d3c9761377363cdd4b44ab1106e..fa7eff94d408718a1762834597f0cd51376d2596 100644
-> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> > @@ -2817,6 +2817,68 @@ int drm_dp_lttpr_max_link_rate(const u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> >  }
-> >  EXPORT_SYMBOL(drm_dp_lttpr_max_link_rate);
-> >  
-> > +/**
-> > + * drm_dp_lttpr_set_transparent_mode - set the LTTPR in transparent mode
-> 
-> kernel-doc functions should have () suffix
+Add drm_modes_size_dumb(), a helper to calculate the dumb-buffer
+scanline pitch and allocation size. Implementations of struct
+drm_driver.dumb_create can call the new helper for their size
+computations. There's currently quite a bit of code duplication
+among DRM's memory managers. Each calculates scanline pitch and
+buffer size from the given arguments, but the implementations are
+inconsistent in how they treat alignment and format support. Later
+patches will unify this code on top of drm_mode_size_dumb() as
+much as possible.
 
-Yes, will add.
+drm_mode_size_dumb() uses existing 4CC format helpers to interpret the
+given color mode. This makes the dumb-buffer interface behave similar
+the kernel's video= parameter. Again, current per-driver implementations
+likely have subtle differences or bugs in how they support color modes.
 
-> 
-> > + * @aux: DisplayPort AUX channel
-> > + * @enable: Enable or disable transparent mode
-> > + *
-> > + * Returns 0 on success or a negative error code on failure.
-> 
-> And this should be "Return: ...".
+Future directions: one bug is present in the current input validation
+in drm_mode_create_dumb(). The dumb-buffer overflow tests round up any
+given bits-per-pixel value to a multiple of 8. So even one-bit formats,
+such as DRM_FORMAT_C1, require 8 bits per pixel. While not common,
+low-end displays use such formats; with a possible overcommitment of
+memory. At some point, the validation logic in drm_mode_size_dumb() is
+supposed to replace the erronous code.
 
-Will fix as well.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_dumb_buffers.c | 93 ++++++++++++++++++++++++++++++
+ include/drm/drm_dumb_buffers.h     | 14 +++++
+ 2 files changed, 107 insertions(+)
+ create mode 100644 include/drm/drm_dumb_buffers.h
 
-> 
-> > + */
-> > +int drm_dp_lttpr_set_transparent_mode(struct drm_dp_aux *aux, bool enable)
-> > +{
-> > +	u8 val = enable ? DP_PHY_REPEATER_MODE_TRANSPARENT :
-> > +			  DP_PHY_REPEATER_MODE_NON_TRANSPARENT;
-> > +	int ret = drm_dp_dpcd_writeb(aux, DP_PHY_REPEATER_MODE, val);
-> > +
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	return (ret == 1) ? 0 : -EIO;
-> > +}
-> > +EXPORT_SYMBOL(drm_dp_lttpr_set_transparent_mode);
-> > +
-> > +/**
-> > + * drm_dp_lttpr_init - init LTTPR transparency mode according to DP standard
-> > + *
-> 
-> Documentation also explicitly says not to leave a blank line here...
+diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
+index 9916aaf5b3f2..fd39720bd617 100644
+--- a/drivers/gpu/drm/drm_dumb_buffers.c
++++ b/drivers/gpu/drm/drm_dumb_buffers.c
+@@ -25,6 +25,8 @@
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_drv.h>
++#include <drm/drm_dumb_buffers.h>
++#include <drm/drm_fourcc.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_mode.h>
+ 
+@@ -57,6 +59,97 @@
+  * a hardware-specific ioctl to allocate suitable buffer objects.
+  */
+ 
++static int drm_mode_align_dumb(struct drm_mode_create_dumb *args,
++			       unsigned long pitch_align,
++			       unsigned long size_align)
++{
++	u32 pitch = args->pitch;
++	u32 size;
++
++	if (!pitch)
++		return -EINVAL;
++
++	if (pitch_align)
++		pitch = roundup(pitch, pitch_align);
++
++	/* overflow checks for 32bit size calculations */
++	if (args->height > U32_MAX / pitch)
++		return -EINVAL;
++
++	if (!size_align)
++		size_align = PAGE_SIZE;
++	else if (!IS_ALIGNED(size_align, PAGE_SIZE))
++		return -EINVAL;
++
++	size = ALIGN(args->height * pitch, size_align);
++	if (!size)
++		return -EINVAL;
++
++	args->pitch = pitch;
++	args->size = size;
++
++	return 0;
++}
++
++/**
++ * drm_mode_size_dumb - Calculates the scanline and buffer sizes for dumb buffers
++ * @dev: DRM device
++ * @args: Parameters for the dumb buffer
++ * @pitch_align: Scanline alignment in bytes
++ * @size_align: Buffer-size alignment in bytes
++ *
++ * The helper drm_mode_size_dumb() calculates the size of the buffer
++ * allocation and the scanline size for a dumb buffer. Callers have to
++ * set the buffers width, height and color mode in the argument @arg.
++ * The helper validates the correctness of the input and tests for
++ * possible overflows. If successful, it returns the dumb buffer's
++ * required scanline pitch and size in &args.
++ *
++ * The parameter @pitch_align allows the driver to specifies an
++ * alignment for the scanline pitch, if the hardware requires any. The
++ * calculated pitch will be a multiple of the alignment. The parameter
++ * @size_align allows to specify an alignment for buffer sizes. The
++ * returned size is always a multiple of PAGE_SIZE.
++ *
++ * Returns:
++ * Zero on success, or a negative error code otherwise.
++ */
++int drm_mode_size_dumb(struct drm_device *dev,
++		       struct drm_mode_create_dumb *args,
++		       unsigned long pitch_align,
++		       unsigned long size_align)
++{
++	u32 fourcc;
++	const struct drm_format_info *info;
++	u64 pitch;
++
++	/*
++	 * The scanline pitch depends on the buffer width and the color
++	 * format. The latter is specified as a color-mode constant for
++	 * which we first have to find the corresponding color format.
++	 *
++	 * Different color formats can have the same color-mode constant.
++	 * For example XRGB8888 and BGRX8888 both have a color mode of 32.
++	 * It is possible to use different formats for dumb-buffer allocation
++	 * and rendering as long as all involved formats share the same
++	 * color-mode constant.
++	 */
++	fourcc = drm_driver_color_mode_format(dev, args->bpp);
++	if (fourcc == DRM_FORMAT_INVALID)
++		return -EINVAL;
++	info = drm_format_info(fourcc);
++	if (!info)
++		return -EINVAL;
++	pitch = drm_format_info_min_pitch(info, 0, args->width);
++	if (!pitch || pitch > U32_MAX)
++		return -EINVAL;
++
++	args->pitch = pitch;
++
++	return drm_mode_align_dumb(args, pitch_align, size_align);
++}
++EXPORT_SYMBOL(drm_mode_size_dumb);
++
+ int drm_mode_create_dumb(struct drm_device *dev,
+ 			 struct drm_mode_create_dumb *args,
+ 			 struct drm_file *file_priv)
+diff --git a/include/drm/drm_dumb_buffers.h b/include/drm/drm_dumb_buffers.h
+new file mode 100644
+index 000000000000..6fe36004b19d
+--- /dev/null
++++ b/include/drm/drm_dumb_buffers.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: MIT */
++
++#ifndef __DRM_DUMB_BUFFERS_H__
++#define __DRM_DUMB_BUFFERS_H__
++
++struct drm_device;
++struct drm_mode_create_dumb;
++
++int drm_mode_size_dumb(struct drm_device *dev,
++		       struct drm_mode_create_dumb *args,
++		       unsigned long pitch_align,
++		       unsigned long size_align);
++
++#endif
+-- 
+2.47.1
 
-Will drop the blank line.
-
-> 
-> Regards,
-> Bjorn
-> 
-
-Thanks for reviewing!
-
-Abel
