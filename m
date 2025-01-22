@@ -4,68 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B33ADD5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 661FED5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D101910EC6F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C70B410EC60;
 	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="qYnrR6L4";
+	dkim=permerror (0-bit key) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="KdK4iKFO";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9D1610E5B4;
- Tue, 22 Apr 2025 13:46:30 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Zhk6V0g4dz9slY;
- Tue, 22 Apr 2025 15:46:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1745329586; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=X4UNsOaOx56cRcgj+HnW0PnHBzc2Fijk7TfEsF4nX2A=;
- b=qYnrR6L44OXGqvGRGYAoFmZyiltnTXOjXAfwE3MP2Suqkco5KJtUV0HS3c0mRYg5QCy3c7
- kDqLTx5qZnLXx+h1PCpRmRkkm4O5gMwIkjlJnkli1tRUqy7zGmlepPxffJBw+81rJqRfjf
- 7hNngGEHokvrSeksYNMoX0HEjqM9MCmt30sX2oj368wmfQ4eyAb6eWFVh9VCrlCyMnTN9c
- s+UETjdHirJu9gKjQMdUYwj4mdkGM727o+FKUd8Vv2kv/rJu0YK9fGR8LUuYReWKjgCbOz
- SN6REaOd9kkaJnYakziWjzDZm1yC7HbxkOYAY/xyk5rBRt2BuUNvtcGqR9fyoA==
-Message-ID: <e8459da01e0c76242544b88768fd3a58e75073d5.camel@mailbox.org>
-Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
-From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Danilo Krummrich
- <dakr@kernel.org>
-Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Tue, 22 Apr 2025 15:46:21 +0200
-In-Reply-To: <52574769-2120-41a1-b5dc-50a42da5dca6@igalia.com>
-References: <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
- <3ac34c84-fd84-4598-96e1-239418b7109f@igalia.com> <aADv4ivXZoJpEA7k@pollux>
- <83758ca7-8ece-433e-b904-3d21690ead23@igalia.com>
- <aAEUwjzZ9w9xlKRY@cassiopeiae>
- <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
- <0bfa746ca37de1813db22e518ffb259648d29e02.camel@mailbox.org>
- <5a5d4a33-2f7b-46e4-8707-7445ac3de376@igalia.com>
- <aAd54jUwBwgc-_g2@cassiopeiae>
- <d3c0f721-2d19-4a1c-a086-33e8d6bd7be6@igalia.com>
- <aAeMVtdkrAoMrmVk@cassiopeiae>
- <52574769-2120-41a1-b5dc-50a42da5dca6@igalia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com
+ [IPv6:2a00:1450:4864:20::334])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B9510E726
+ for <nouveau@lists.freedesktop.org>; Wed, 22 Jan 2025 16:15:03 +0000 (UTC)
+Received: by mail-wm1-x334.google.com with SMTP id
+ 5b1f17b1804b1-4363ae65100so78826455e9.0
+ for <nouveau@lists.freedesktop.org>; Wed, 22 Jan 2025 08:15:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1737562502; x=1738167302;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=k6yifiK7k1egD832rtDY2X5ShBnrSfrr32YKaeunTC8=;
+ b=KdK4iKFOSGcnO0aoEI+jD4eCVb69PwkWFLUq94aslSm4dHouSdF3BDvRuMrEx0Y3wj
+ uabthTZX4K8LloKL4sfBEGzkWIaw1ArrQkVqeP2gCZuzOhBi88GD69htFu7liuqKQT7u
+ WDSK+nUbktsQcDFVQjx2MR/dWqrLbkkqrBoVi0XYkpfjT9bKbKn3SF2ObT3F9i/XjE2p
+ owVkqQEDlnJ9ylMgo3+LCpj+t6cSGgGWz9R+ohwpXXYZW0N5ZS2NcVaeiOXrfX2orwg+
+ 5gRIqqoEDCp57KMlMSJIDt5duAsSWMXBvOdckl2qyj5nt29ZrbRHKMWnl3sZqBlsgPow
+ 2tDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1737562502; x=1738167302;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=k6yifiK7k1egD832rtDY2X5ShBnrSfrr32YKaeunTC8=;
+ b=wBJIdi9J2Q6QGkeudFbzd0VFdhffQ6ugaJU43R0BFc4ZgFwYSlYCg1tuJDcHev68/L
+ JNbH1PMvmENvmPn3TEWTnqHkciWtsOHZffebALPL6PEcr4vq2/MutSelvT/rNXcdmqjA
+ XxAO3PyYs2SCiLc9U/Ynl7VRVQoHgF8c2edOJyKHkPy23KkzlG1JOv3RFoVLe0moJ7BF
+ E4YoIv6aBeH+6LfXUS04BKFETNdOMqxOrUTl/iDz+8G67FgaRtzZLCQJukOnf/hQP+f/
+ iP+kdLFEhpG1uQEeuJCjUiYAdAZHP8RoZvnkl/pYyDu9cIRePLD8Su8OVJ1q6M++dyyY
+ vrIQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWB97g2E/S9pO9uB9l7N99IXGBsarvEqIQ7fQNEp6/y+F3ivJzYq3qzGwqu9n+6bZsrMU2lPa0E@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqJCVVkGNJHcMJ86HiczSwqz3AYTlS7mgK5BTezxb6OvwYWoyP
+ mQUr/+HoYlTSCbmpN1vBZnhnq3t8qe1lVZkzJFxApKqHNnaS0Drx1Id6tTvkbdk=
+X-Gm-Gg: ASbGncs9fNCridm502iFw60BnFmh8YFCQNSo8/TfZMMsRnfRU+H6ffuj+M0+4Q2u1h3
+ O78pD38p+xSaRwVQdZ0x3spke2yo15cP/Kn/KD+fWhNqAg9gk+ZVwClplQ56JS+rff4CcO26VkH
+ XmQ1EuwakKFmdk4Ytlj5PUxxz7TD1WprtlY28KZBOgbow2KRpXpVk1NVa+wat4lex106sHZrJae
+ BtUtvmypr+YWVcbzdVLZ2xZHmllFsi9e0M7RKr5Ywb9eq/ZlNlZmR+OPar9S2wK5qq6zCnm2V3m
+ prBcYYYDaA==
+X-Google-Smtp-Source: AGHT+IHjMS8YRSk6XzW0Efeh0A/XzjKRZHlKqwNXg3TUjzGuKVwVdcPgC6qrdd/tzzJ2CrO/z5EPcw==
+X-Received: by 2002:a05:600c:4ecb:b0:434:ff45:cbbe with SMTP id
+ 5b1f17b1804b1-438913f5c63mr219797095e9.18.1737562501952; 
+ Wed, 22 Jan 2025 08:15:01 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-438b1718741sm20115825e9.0.2025.01.22.08.15.00
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 22 Jan 2025 08:15:01 -0800 (PST)
+Message-ID: <ce6bd1f3-8d7c-4b3c-af07-b8c9e0912f51@ursulin.net>
+Date: Wed, 22 Jan 2025 16:14:59 +0000
 MIME-Version: 1.0
-X-MBO-RS-ID: a0e588faec0dee86da0
-X-MBO-RS-META: qbfize4p6ohzmmp9m5gy8daaugrp4pek
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
+To: Boris Brezillon <boris.brezillon@collabora.com>,
+ Philipp Stanner <phasta@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Qiang Yu <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <pstanner@redhat.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250122140818.45172-3-phasta@kernel.org>
+ <20250122165104.536c4143@collabora.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20250122165104.536c4143@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,219 +118,86 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, 2025-04-22 at 14:39 +0100, Tvrtko Ursulin wrote:
->=20
-> On 22/04/2025 13:32, Danilo Krummrich wrote:
-> > On Tue, Apr 22, 2025 at 01:07:47PM +0100, Tvrtko Ursulin wrote:
-> > >=20
-> > > On 22/04/2025 12:13, Danilo Krummrich wrote:
-> > > > On Tue, Apr 22, 2025 at 11:39:11AM +0100, Tvrtko Ursulin wrote:
-> > > > > Question I raised is if there are other drivers which manage
-> > > > > to clean up
-> > > > > everything correctly (like the mock scheduler does), but
-> > > > > trigger that
-> > > > > warning. Maybe there are not and maybe mock scheduler is the
-> > > > > only false
-> > > > > positive.
-> > > >=20
-> > > > So far the scheduler simply does not give any guideline on how
-> > > > to address the
-> > > > problem, hence every driver simply does something (or nothing,
-> > > > effectively
-> > > > ignoring the problem). This is what we want to fix.
-> > > >=20
-> > > > The mock scheduler keeps it's own list of pending jobs and on
-> > > > tear down stops
-> > > > the scheduler's workqueues, traverses it's own list and
-> > > > eventually frees the
-> > > > pending jobs without updating the scheduler's internal pending
-> > > > list.
-> > > >=20
-> > > > So yes, it does avoid memory leaks, but it also leaves the
-> > > > schedulers internal
-> > > > structures with an invalid state, i.e. the pending list of the
-> > > > scheduler has
-> > > > pointers to already freed memory.
-> > > >=20
-> > > > What if the drm_sched_fini() starts touching the pending list?
-> > > > Then you'd end up
-> > > > with UAF bugs with this implementation. We cannot invalidate
-> > > > the schedulers
-> > > > internal structures and yet call scheduler functions - e.g.
-> > > > drm_sched_fini() -
-> > > > subsequently.
-> > > >=20
-> > > > Hence, the current implementation of the mock scheduler is
-> > > > fundamentally flawed.
-> > > > And so would be *every* driver that still has entries within
-> > > > the scheduler's
-> > > > pending list.
-> > > >=20
-> > > > This is not a false positive, it already caught a real bug --
-> > > > in the mock
-> > > > scheduler.
-> > >=20
-> > > To avoid furher splitting hairs on whether real bugs need to be
-> > > able to
-> > > manifest or not, lets move past this with a conclusion that there
-> > > are two
-> > > potential things to do here:
-> >=20
-> > This is not about splitting hairs, it is about understanding that
-> > abusing
-> > knowledge about internals of a component to clean things up is
-> > *never* valid.
-> >=20
-> > > First one is to either send separately or include in this series
-> > > something
-> > > like:
-> > >=20
-> > > diff --git a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > index f999c8859cf7..7c4df0e890ac 100644
-> > > --- a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > +++ b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > @@ -300,6 +300,8 @@ void drm_mock_sched_fini(struct
-> > > drm_mock_scheduler
-> > > *sched)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_mock_sched_job_complete(job);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spin_unlock_irqresto=
-re(&sched->lock, flags);
-> > >=20
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_fini(&sched->base);
-> > > +
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Free complet=
-ed jobs and jobs not yet processed by the
-> > > DRM
-> > > scheduler
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * free worker.
-> > > @@ -311,8 +313,6 @@ void drm_mock_sched_fini(struct
-> > > drm_mock_scheduler
-> > > *sched)
-> > >=20
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 list_for_each_entry_=
-safe(job, next, &list, link)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 mock_sched_free_job(&job->base);
-> > > -
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_fini(&sched->base);
-> > > =C2=A0 }
-> > >=20
-> > > =C2=A0 /**
-> > >=20
-> > > That should satisfy the requirement to "clear" memory about to be
-> > > freed and
-> > > be 100% compliant with drm_sched_fini() kerneldoc (guideline b).
-> > >=20
-> > > But the new warning from 3/5 here will still be there AFAICT and
-> > > would you
-> > > then agree it is a false positive?
-> >=20
-> > No, I do not agree.
-> >=20
-> > Even if a driver does what you describe it is not the correct thing
-> > to do and
-> > having a warning call it out makes sense.
-> >=20
-> > This way of cleaning things up entirely relies on knowing specific
-> > scheduler
-> > internals, which if changed, may fall apart.
-> >=20
-> > > Secondly, the series should modify all drivers (including the
-> > > unit tests)
-> > > which are known to trigger this false positive.
-> >=20
-> > Again, there are no false positives. It is the scheduler that needs
-> > to call
-> > free_job() and other potential cleanups. You can't just stop the
-> > scheduler,
-> > leave it in an intermediate state and try to clean it up by hand
-> > relying on
-> > knowledge about internals.
->=20
-> Sorry I don't see the argument for the claim it is relying on the=20
-> internals with the re-positioned drm_sched_fini call. In that case it
-> is=20
-> fully compliant with:
->=20
-> /**
-> =C2=A0 * drm_sched_fini - Destroy a gpu scheduler
-> =C2=A0 *
-> =C2=A0 * @sched: scheduler instance
-> =C2=A0 *
-> =C2=A0 * Tears down and cleans up the scheduler.
-> =C2=A0 *
-> =C2=A0 * This stops submission of new jobs to the hardware through
-> =C2=A0 * drm_sched_backend_ops.run_job(). Consequently,=20
-> drm_sched_backend_ops.free_job()
-> =C2=A0 * will not be called for all jobs still in
-> drm_gpu_scheduler.pending_list.
-> =C2=A0 * There is no solution for this currently. Thus, it is up to the=
-=20
-> driver to make
-> =C2=A0 * sure that:
-> =C2=A0 *
-> =C2=A0 *=C2=A0 a) drm_sched_fini() is only called after for all submitted=
- jobs
-> =C2=A0 *=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_backend_ops.free_job() has bee=
-n called or that
-> =C2=A0 *=C2=A0 b) the jobs for which drm_sched_backend_ops.free_job() has=
- not
-> been=20
-> called
-> =C2=A0 *
-> =C2=A0 * FIXME: Take care of the above problem and prevent this function
-> from=20
-> leaking
-> =C2=A0 * the jobs in drm_gpu_scheduler.pending_list under any
-> circumstances.
->=20
-> ^^^ recommended solution b).
->=20
-> > Consequently, when the pending list isn't empty when
-> > drm_sched_fini() is called,
-> > it *always* is a bug.
->=20
-> I am simply arguing that a quick audit of the drivers should be done
-> to=20
-> see that the dev_err is not added for drivers which clean up in=20
-> compliance with drm_sched_fini() kerneldoc.
->=20
-> Starting to log errors from those would be adding work for many
-> people=20
-> in the bug handling chain. Sure you can say lets add the dev_err and=20
-> then we don't have to look into the code base, just wait for bug
-> reports=20
-> to come our way. That works too (on some level) but lets please state
-> the intent clearly and explicitly.
 
-Well, yes, that exactly is my intention.
+On 22/01/2025 15:51, Boris Brezillon wrote:
+> On Wed, 22 Jan 2025 15:08:20 +0100
+> Philipp Stanner <phasta@kernel.org> wrote:
+> 
+>> --- a/drivers/gpu/drm/panthor/panthor_sched.c
+>> +++ b/drivers/gpu/drm/panthor/panthor_sched.c
+>> @@ -3272,6 +3272,7 @@ group_create_queue(struct panthor_group *group,
+>>   		   const struct drm_panthor_queue_create *args)
+>>   {
+>>   	struct drm_gpu_scheduler *drm_sched;
+>> +	struct drm_sched_init_params sched_params;
+> 
+> nit: Could we use a struct initializer instead of a
+> memset(0)+field-assignment?
+> 
+> 	struct drm_sched_init_params sched_params = {
+> 		.ops = &panthor_queue_sched_ops,
+> 		.submit_wq = group->ptdev->scheduler->wq,
+> 		.num_rqs = 1,
+> 		.credit_limit = args->ringbuf_size / sizeof(u64),
+> 		.hang_limit = 0,
+> 		.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS),
+> 		.timeout_wq = group->ptdev->reset.wq,
+> 		.name = "panthor-queue",
+> 		.dev = group->ptdev->base.dev,
+>          };
 
-All driver's must currently ensure in some custom way that a) all
-fences get signaled and b) that the scheduler had time to call
-free_job() for all jobs in pending_list.
++1 on this as a general approach for the whole series. And I'd drop the 
+explicit zeros and NULLs. Memsets could then go too.
 
-If there is anyone in-tree currently who has len(pending_list) > 0
-after drm_sched_fini() ran that are clearly memory leaks that need to
-be fixed.
+Regards,
 
-And, thus, firing the warning for all those drivers is appropriate.
+Tvrtko
 
-I think it's unlikely to happen though. The hardware schedulers rarely
-call drm_sched_fini(), and the firmware schedulers would have memory
-leaks so large that they are likely to have been discovered by now.
-
-P.
-
->=20
-> Regards,
->=20
-> Tvrtko
->=20
-
+> 
+> The same comment applies the panfrost changes BTW.
+> 
+>>   	struct panthor_queue *queue;
+>>   	int ret;
+>>   
+>> @@ -3289,6 +3290,8 @@ group_create_queue(struct panthor_group *group,
+>>   	if (!queue)
+>>   		return ERR_PTR(-ENOMEM);
+>>   
+>> +	memset(&sched_params, 0, sizeof(struct drm_sched_init_params));
+>> +
+>>   	queue->fence_ctx.id = dma_fence_context_alloc(1);
+>>   	spin_lock_init(&queue->fence_ctx.lock);
+>>   	INIT_LIST_HEAD(&queue->fence_ctx.in_flight_jobs);
+>> @@ -3341,17 +3344,23 @@ group_create_queue(struct panthor_group *group,
+>>   	if (ret)
+>>   		goto err_free_queue;
+>>   
+>> +	sched_params.ops = &panthor_queue_sched_ops;
+>> +	sched_params.submit_wq = group->ptdev->scheduler->wq;
+>> +	sched_params.num_rqs = 1;
+>>   	/*
+>> -	 * Credit limit argument tells us the total number of instructions
+>> +	 * The credit limit argument tells us the total number of instructions
+>>   	 * across all CS slots in the ringbuffer, with some jobs requiring
+>>   	 * twice as many as others, depending on their profiling status.
+>>   	 */
+>> -	ret = drm_sched_init(&queue->scheduler, &panthor_queue_sched_ops,
+>> -			     group->ptdev->scheduler->wq, 1,
+>> -			     args->ringbuf_size / sizeof(u64),
+>> -			     0, msecs_to_jiffies(JOB_TIMEOUT_MS),
+>> -			     group->ptdev->reset.wq,
+>> -			     NULL, "panthor-queue", group->ptdev->base.dev);
+>> +	sched_params.credit_limit = args->ringbuf_size / sizeof(u64);
+>> +	sched_params.hang_limit = 0;
+>> +	sched_params.timeout = msecs_to_jiffies(JOB_TIMEOUT_MS);
+>> +	sched_params.timeout_wq = group->ptdev->reset.wq;
+>> +	sched_params.score = NULL;
+>> +	sched_params.name = "panthor-queue";
+>> +	sched_params.dev = group->ptdev->base.dev;
+>> +
+>> +	ret = drm_sched_init(&queue->scheduler, &sched_params);
+>>   	if (ret)
+>>   		goto err_free_queue;
