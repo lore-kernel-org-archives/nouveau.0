@@ -4,109 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A369C0219B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B933DC0219C
 	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6925C10E9E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75A8010E9E5;
 	Fri,  7 Feb 2025 01:44:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="ObkglLFd";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="KWdCV3WM";
 	dkim-atps=neutral
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D47C10E3FC
- for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 17:00:53 +0000 (UTC)
-Received: by mail-wr1-f45.google.com with SMTP id
- ffacd0b85a97d-385ef8b64b3so2060332f8f.0
- for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 09:00:53 -0800 (PST)
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40B0810E0A5
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Jan 2025 15:08:20 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-4361f796586so10980935e9.3
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Jan 2025 07:08:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1738342852; x=1738947652; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1737644899; x=1738249699; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
  :subject:date:message-id:reply-to;
- bh=aNin4moK4eUBxK3vPAgTMhDUk/P6pM+fAX5RqvxKF3I=;
- b=ObkglLFdVdtKzWkc/c213LmgfhTdv4tYVHP0x9BJOhsaZlC/cqgEgOoQLNUrd/4iVk
- 9QNjxpCUzPfAMIKcRgpSPzkjojjAhljwLM3pzDTOqQk0JVROfUQdBL1YNeVpHjdW451G
- /DI/01QDa8XuE34Co/6lEUhklvyvdbCqYk0+g=
+ bh=vnvF918MExGqpW1JhPiFqDMhjdc3YrQOLeaZRhdmR1k=;
+ b=KWdCV3WMC9xRLdi20guqKEi05oRWqnEo0mfpK4wPHRhLlTZlrsNnlk6z+dxY0kMnNc
+ 0nHZf//t8NNp5Tg5rw/12Or5TqxPV6khTHfS52JbrwUJrLhMdvDOlDyM2+uEFhOtzMr/
+ dWo5A1hpEU0y2s5IdWMTIRe7hb4LW5GLBP1yg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738342852; x=1738947652;
+ d=1e100.net; s=20230601; t=1737644899; x=1738249699;
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=aNin4moK4eUBxK3vPAgTMhDUk/P6pM+fAX5RqvxKF3I=;
- b=ugPDmkuD9nnO9hfI0j5pa4kEYgSNzzFqqDPfTwnPEgv1S/j1sjkbBHlonrV0KHg3BK
- z/sBpOnWGJFm6QU9NoLHKuxsbiTKLYER9wib2J3Br+d7w/2D8HcTpf8YQcQXfulC/GZR
- 0Qxx+j7aNUuRMcBIykf5o0Jibd1fT5WadKykINgcdj2mDaF3jWzQJPQjectxpkeyL4TW
- D/p/iHw6/Yd832HpJUkPO61gvxkF1YvlepKhFK6x6l5ZY4ZMss2dKb1bpcZoN7CnMp7z
- rQ/4PqwegFDr4oEFjPliGboMehKr9d0YMLcY2PqYP7IEaPJhurPd08jEiEOuOpVjYaDE
- YvuA==
+ bh=vnvF918MExGqpW1JhPiFqDMhjdc3YrQOLeaZRhdmR1k=;
+ b=YaXCo2kA5f7oGREA311LQcNgUfjguir0pvAEdgCR8WyIBrb6Fm695GVc2cBiXMDGr2
+ qIgqJzgV3HlG/jpdclyMs1G70sTcmlufDD/xYR+9nfIB1qmnpUpVoBDF1NtOTDSutBxF
+ sZegWMdIylwgWb1ieK4coHoVpppwufJfJNJJENk4aK7lPIvb2itA5+jj1faeommhkEi8
+ WJHtMp5QUbd8vsJ/2xdqFevjXOGhrRnLk95JvOTtEvyt1jVrlfF4HxktI5+4Sq2WSJuT
+ j9BVWZ3RyS77YwN/PGpWX9lddcZ+woZiADXnXf0yYFzjsMAzri6Fr/ruQysKO4Y4zwby
+ 4euQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX45bWMPHF1gwNiorRH57Hw430+HmFU7Evhx5Hc3XThxou+PwHEf/10SMvK+cCVf5PrilIqkf9F@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxgpaFEx9gCwP8cF+uMTz1KIKOz94VBn/c0ZF0+GvBvV+cGVfN3
- YUnydrrUbZWK45WcvUd3ZB1646WpbzNMYy9Nm18vi4NK3fUT88xmKWyTUc0SDWE=
-X-Gm-Gg: ASbGncs5723PGbAYtS9cSHYaBiWl9JkbbHZEFg9t1OKeEFMQTKqcEVlxoRI/aTdqpAf
- C3iWd0TzlTBAKBjYpnfM+NCL4492mYP5YxsR/EVBLFuhsslVXabHbQfCW9AxLxaxYHRp6QhsjH5
- ZIpYH1Doh2fa3IxjmphLBBNpBCQpD2iQcZgp85DLwbKGj1PnQdSeCgSlKEtrFjatO23hykEnVan
- uqdV+2NCagPtmWG2nqg+ESKQ2VIxFXc03RYIS91SZwvIZE9IIfj46xC4Xa1kL3X1ArVVdG1nhzz
- n7pOiUNnThXaj4nAh1FcxxC1zuU=
-X-Google-Smtp-Source: AGHT+IG+wK8v3ltoU+dMOZ5Egg+X1fduaSB/k0+6guPHhIiHiZusmikjMEVA/Y4fTi33o54vzPLBkg==
-X-Received: by 2002:a05:6000:400b:b0:386:42a6:21f2 with SMTP id
- ffacd0b85a97d-38c5192f4afmr10830620f8f.10.1738342851857; 
- Fri, 31 Jan 2025 09:00:51 -0800 (PST)
+ AJvYcCUZ7N1c+HyTDaxoNJaS3mdmazq+lXtSW8zQ8Bf1ePJWncDNEP8oGaLIS2/vlbfBUZYjyONEBI/m@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyJ6vZxk9C65UDmwgf/QbYMQ6JXeyoxiK7AMjybnLc1SInGYUdq
+ q7vN4cWJwNVg5wgwedW+r9zU+bWGF4cQWgDtP4B9T8bkjjIuGZuHzyohwTLuDRo=
+X-Gm-Gg: ASbGnctDghU5MVSbYqoKeCafpM5Bz71KfpJ7/4RBbc25fgY4e9v5jjPrblgDstPGbaS
+ L0kOFdkP0qz76UltFBiA1emWjNm/0fglrAtN9I9m5+4VcCUpIa97JlyeD0Q2xuUOtw8AH6f7b9N
+ qizZi40n1N8q2d7881ZsJyQrHk0fy8UzIBQobTcT8aMPJxNDgmcF0eIJmSDo5jOyHIjG7yuT/0L
+ JD+jYRouJcoDZ3NpnMOQib78eZ97X4iJnIqcXUofjXATA5Rrrw1Q6GHdg2Xd4OrSUS+smzURDWF
+ UsLc5MKUr8skoaGY
+X-Google-Smtp-Source: AGHT+IFe5bvrufD5E2WCU0xgHozwkEfe52bL8rsuxcBOdIdAdnpMPzPUDgbaIWl03oauCdgHt4m7yA==
+X-Received: by 2002:a05:600c:4e06:b0:434:fddf:5c0c with SMTP id
+ 5b1f17b1804b1-438913c60e1mr250217565e9.4.1737644898467; 
+ Thu, 23 Jan 2025 07:08:18 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c5c0eca02sm5194639f8f.12.2025.01.31.09.00.50
+ 5b1f17b1804b1-438b31ae155sm64915825e9.20.2025.01.23.07.08.17
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2025 09:00:51 -0800 (PST)
-Date: Fri, 31 Jan 2025 18:00:49 +0100
+ Thu, 23 Jan 2025 07:08:18 -0800 (PST)
+Date: Thu, 23 Jan 2025 16:08:16 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
 To: David Hildenbrand <david@redhat.com>
-Cc: Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, nouveau@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
+Cc: "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
  Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v1 04/12] mm/rmap: implement make_device_exclusive()
- using folio_walk instead of rmap walk
-Message-ID: <Z50BwZSh1rT4LDJS@phenom.ffwll.local>
+ Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [Question] Are "device exclusive non-swap entries" / "SVM
+ atomics in Nouveau" still getting used in practice?
+Message-ID: <Z5JbYC2-slPU0l3n@phenom.ffwll.local>
 Mail-Followup-To: David Hildenbrand <david@redhat.com>,
- Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, nouveau@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
+ "linux-mm@kvack.org" <linux-mm@kvack.org>,
+ John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org,
+ Jason Gunthorpe <jgg@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ DRI Development <dri-devel@lists.freedesktop.org>,
  Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
-References: <20250129115411.2077152-1-david@redhat.com>
- <20250129115411.2077152-5-david@redhat.com>
- <7tzcpx23vufmp5cxutnzhjgdj7kwqrw5drwochpv5ern7zknhj@h2s6y2qjbr3f>
- <Z5tI-cOSyzdLjoe_@phenom.ffwll.local>
- <54a55ff7-38c8-42c2-886f-d6d1985072a9@redhat.com>
- <Z5t34-0K9FJKVQe6@phenom.ffwll.local>
- <9f59b475-232f-41d4-bd6f-7f84111062ac@redhat.com>
+ Danilo Krummrich <dakr@kernel.org>
+References: <346518a4-a090-4eaa-bc04-634388fd4ca3@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9f59b475-232f-41d4-bd6f-7f84111062ac@redhat.com>
-X-Operating-System: Linux phenom 6.12.11-amd64 
+In-Reply-To: <346518a4-a090-4eaa-bc04-634388fd4ca3@redhat.com>
+X-Operating-System: Linux phenom 6.12.3-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -122,63 +99,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 04:59:16PM +0100, David Hildenbrand wrote:
-> > > > > > Note that the PTE is
-> > > > > > always writable, and we can always create a writable-device-exclusive
-> > > > > > entry.
-> > > > > > 
-> > > > > > With this change, device-exclusive is fully compatible with THPs /
-> > > > > > large folios. We still require PMD-sized THPs to get PTE-mapped, and
-> > > > > > supporting PMD-mapped THP (without the PTE-remapping) is a different
-> > > > > > endeavour that might not be worth it at this point.
-> > > > 
-> > > > I'm not sure we actually want hugepages for device exclusive, since it has
-> > > > an impact on what's allowed and what not. If we only ever do 4k entries
-> > > > then userspace can assume that as long atomics are separated by a 4k page
-> > > > there's no issue when both the gpu and cpu hammer on them. If we try to
-> > > > keep thp entries then suddenly a workload that worked before will result
-> > > > in endless ping-pong between gpu and cpu because the separate atomic
-> > > > counters (or whatever) now all sit in the same 2m page.
-> > > 
-> > > Agreed. And the conversion + mapping into the device gets trickier.
-> > > 
-> > > > 
-> > > > So going with thp might result in userspace having to spread out atomics
-> > > > even more, which is just wasting memory and not saving any tlb entries
-> > > > since often you don't need that many.
-> > > > 
-> > > > tldr; I think not supporting thp entries for device exclusive is a
-> > > > feature, not a bug.
-> > > 
-> > > So, you agree with my "different endeavour that might not be worth it"
-> > > statement?
-> > 
-> > Yes.
-> > 
-> > Well I think we should go further and clearly document that we
-> > intentionally return split pages. Because it's part of the uapi contract
-> > with users of all this.
+On Thu, Jan 23, 2025 at 11:20:37AM +0100, David Hildenbrand wrote:
+> Hi,
 > 
-> Yes, see my reply to patch #3/
-
-Ack.
-
-> > And if someone needs pmd entries for performance or whatever, we need two
-> > things:
-> > 
-> > a) userspace must mmap that memory as hugepage memory, to clearly signal
-> > the promise that atomics are split up on hugepage sizes and not just page
-> > size
-> > 
-> > b) we need to extend make_device_exclusive and drivers to handle the
-> > hugetlb folio case
-> > 
-> > I think thp is simply not going to work here, it's impossible (without
-> > potentially causing fault storms) to figure out what userspace might want.
+> I keep finding issues in our implementation of "device exclusive non-swap
+> entries", and the way it messes with mapcounts is disgusting.
 > 
-> Right, I added a link to this discussion in the patch.
+> As a reminder, what we do here is to replace a PTE pointing to an anonymous
+> page by a "device exclusive non-swap entry".
+> 
+> As long as the original PTE is in place, the only CPU can access it, as soon
+> as the "device exclusive non-swap entry" is in place, only the device can
+> access it. Conversion back and forth is triggered by CPU / device faults.
+> 
+> I have fixes/reworks/simplifications for most things, but as there is only a
+> "real" single user in-tree of make_device_exclusive():
+> 
+> 	drivers/gpu/drm/nouveau/nouveau_svm.c
+> 
+> to "support SVM atomics in Nouveau [1]"
+> 
+> naturally I am wondering: is this still a thing on actual hardware, or is it
+> already stale on recent hardware and not really required anymore?
+> 
+> 
+> [1] https://lore.kernel.org/linux-kernel//6621654.gmDyfcmpjF@nvdebian/T/
 
-Thanks, Sima
+As long as you don't have a coherent interconnect it's needed. On intel
+discrete device atomics require device memory, so they need full hmm
+migration (and hence wont use this function even once we land intel gpu
+svm code in upstream). On integrated the gpu is tied into the coherency
+fabric, so there it's not needed.
+
+I think the more fundamental question with both this function here and
+with forced migration to device memory is that there's no guarantee it
+will work out. At least that's my understanding. And for this gpu device
+atomics without coherent interconnect idea to work, we'd need to be able
+to guarantee that we can make any page device exclusive. So from my side I
+have some pretty big question marks on this entire thing overall.
+
+Cheers, Sima
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
