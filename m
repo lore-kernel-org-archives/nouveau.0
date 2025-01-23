@@ -4,78 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC31D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C86AED5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F388010EBED;
-	Sat, 13 Dec 2025 12:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0409C10EBF0;
+	Sat, 13 Dec 2025 12:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SxdtE+mo";
+	dkim=permerror (0-bit key) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="BtDsr5SE";
 	dkim-atps=neutral
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com
- [209.85.161.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06C3B10E437
- for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 15:47:40 +0000 (UTC)
-Received: by mail-oo1-f42.google.com with SMTP id
- 006d021491bc7-657230e45e8so2140866eaf.1
- for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 07:47:39 -0800 (PST)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D30F10E7C9
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Jan 2025 10:57:49 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-385f06d0c8eso353741f8f.0
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Jan 2025 02:57:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764085659; x=1764690459; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=vwd7GiN0LhHHn+1+8fCmutdytRAkrux2QdVf0iABeVI=;
- b=SxdtE+moJwAhGbNnxnltRQoGXs+x9vyE77cpjUT0Z2lSWuBJTJdDrrCbhG2cVSUR87
- w/hel1gvSdIQqUyx2lIhxXalwEE/LEtCXRPESocZ/Hf+1KSJQCHmrzC7VujxZnmeD9+G
- SPz39f5TxqfsM3AS0TgGcAw+87NItrpwBrhEnRjuHIiY/F6JGnsxDzMjvHKGLXOKW39g
- ggrTtGsJ4/EbWFxxcWzZJzAaHXXSNVGjb6gfQ1sNcfM64c06ztXqvmFwSnPLgNi4aOrc
- B0250+lZnpg1pukfXizRXvv+B/eFBFrQDFaYdrnZ5lSRMVN8LdwWfO/8osafGPmhnSQX
- 0J3g==
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1737629867; x=1738234667;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=30gtLyVebZdKEobBArrAkfadsgu2rmW9GlB2Mmp+Z3o=;
+ b=BtDsr5SEpeDZjkPYDkyoEgLa9n5lUQyFAryzqHvJ6fhIa794hnpzI7qUpZeoiZJ1lK
+ RJX3wWqqo3wkySirMwGko08PIpiC8xzv3+lZx98tEhVq3rItviT9/BV+v7oyRp6jN2CD
+ B0ht55DdyR+0ABawOEivNzaT5/BFBoQRGD/LX1onZ+BBiKH+P77TpNOfYFnRUcWYp/iE
+ Y7ZbWHrIz8Jr7sUvbfh9U3vf237HrlZJucfRUmhO+vdk8DsK43ks13cDcQBmS39zxFiw
+ w3AV1Hc6yqwKI6uofmCSToObRoBfHe0NXtC84aGP/CPN1TLI6oTzF9E3KkZRMnJxetdf
+ iomA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764085659; x=1764690459;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=vwd7GiN0LhHHn+1+8fCmutdytRAkrux2QdVf0iABeVI=;
- b=Hm1tEIg1I+S/UZQwcA+0BJobpoxJCll+XIFekrSduOL8TUpY0JV1D3HJSO+bALyiwT
- Q29LqCB9OWsTY7rtU0/32QnmtuLehlHE1gFX4VSq0o1qQAKdhx8IYSrmlvTOWWCdKzEP
- JkIXvN3KF70fLSVdWODDE9uXZhoVgrAEGlP5W8rnlZX732a2X/9MudEVTO2Q81IAsjLH
- 76rEpYfO87plMag1AJapek9az2G30OVaKEiYv9MS1Ix2dzwySWHIuHtthImOy006Q8qC
- P2/UlTK0XEHfH2fkHQHNIL0XjvKWEO0DjrEv0b4fFWblWYb+T9D7lJJltoA4IfLeNRMX
- nUAg==
+ d=1e100.net; s=20230601; t=1737629867; x=1738234667;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=30gtLyVebZdKEobBArrAkfadsgu2rmW9GlB2Mmp+Z3o=;
+ b=DiTOp730itPDaRYvdkim+p41ESC5r128V+YkpoQLIwoSW4KCCmFXpDD6HeNI14Os+l
+ JQ50kpp6IYqOfKfHQfh0WvCtCmjQTfCdqaS9Ng9SaNCOCB5CY+TOUb7AgfbYP1OBDL6/
+ 7xomVEUDpiVBdS3saXiXjxpTyBDZkskVKYVA3wYA0ADB2wPz4PGgZREb+JwZ75K1q9ks
+ yoAl0+A5b2vehahHo1E4qjUGpT9KO7bs35MVTUiD/T4oc+zMf2ai4/rsbsKBWDxd5K/q
+ hAuJgVniL5iWQVNXyOBLJFD2dq3L8WQlSeyjXlxWhk4FkgO260OMMrTaKztVW0YMUM6s
+ y8sg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWPQIAODtzj9dV7+rIwbevOsQ1C3w2TPOOZPgPVH00DaRwXlI26xa7ViUBYCOrzssPyQ2PawGBm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxOK4GVJUV/LF/H7Vcv8BDMbF0BK8qBn1HwaHce59HmGqShfyL9
- Ay0PUxqKOxxCnWt0A0BWC3DV3em9b0W92pvUehownIREbfcIWWx4r0A2
-X-Gm-Gg: ASbGncsPUOv4s8FG4xR540GR0b90gkB37/sErJEQJOZtuJpMy/NlB1pgzKjn4HQ2tlr
- Y86mBQvp+AUdjJ20Imb+w6MtTlaGvaYrA7QA64ukn5P8m+Wi+awKltMLEuHmJaVFsUp8tvbLnID
- JdUZq0QbXYxaBWRiKqhtbxkFWof5ftPfKBSZJRBSbfT4efrkU7vytN9s0LqDfu6N87k8q0b/qpP
- lbzYA3e2bpTQgGeQaFwrSGTT7nTsbBKa1C0yNXhPgkStIsL9rwQQRGAa8GUHVuGuv3EeCKckZ58
- iM5rt/rcu0mSqya0t8m0pAdkzgwGLS2aeKYDc79jIHp1SwJ24o01c4dJnR+rEL11EAAII91TRes
- okUEijVthRw+lra4VqUdcGXQUff7umRojFCRxLsp9UFY+FUgGp+YFrhsGgwb/ztrcQwkwB++4qP
- Oxjny0IUI9G4abaXDzzv4Kukgvyj1Tig4=
-X-Google-Smtp-Source: AGHT+IHiuoQZzYWwy314lRsUMafz3cwaDnTm31WJbXtW7FkNI3HiSFHTqV00n0ZzdvjwbdNNHFnnig==
-X-Received: by 2002:a05:6808:1926:b0:450:cd83:80d6 with SMTP id
- 5614622812f47-45112af3534mr7396381b6e.16.1764085659162; 
- Tue, 25 Nov 2025 07:47:39 -0800 (PST)
-Received: from SyzRHEL1.fyre.ibm.com ([170.225.223.18])
+ AJvYcCU6kPY1Hsda8zPRbA8PeZQIUBvpf1QSsoqI4ahx1v7kNL8xF2Cx6PBnkf6Gh5V//YbL6u+VAn7U@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwGmCYH75cS7STB9rk32v3K1tYyuEYn9kt7qPTeHXFIqiJugdcX
+ JsKHesGQQLh0gXrBRF8iUf5J6C34w1Oh/1QW5cFm8YZ8/6FQmRBf6S+bfCDPlEU=
+X-Gm-Gg: ASbGnctn6S0F0yVDGbt5+hOZo4KUOLiOaNIzHS7w9oFNA3NGBeoswa4c9/VmPlwTwQ/
+ tJ3Jb29hoku9ikoYAfXIF76IQYkShIMyx2V/f4M3Evf70tMVEXU/MfkmEiMOuueKUJHCDALGRPW
+ xkbksGnGNHT4ntIsiBo63AOs/Pjy1N5x8oKzRimFcOAVoItnhg7Yhq9ipE2qDiydZIzzpCEQzGo
+ HlNUaeCkL6JMFBCUbmtydAvO1QQl28vDXlyxmINkgjp2fTtMLdUWXwu6yRHyzC3EwUY0eWWYdFD
+ OhKoHZ06dyTwF4MLSoAn
+X-Google-Smtp-Source: AGHT+IHpKgpQDCjK1YcskusgjOOfedvKDgMRGq/HKiTsnZfb2gV/B/uu8mCCB+Emo5ibqoWzbXfktQ==
+X-Received: by 2002:a5d:6d06:0:b0:38a:864e:29b1 with SMTP id
+ ffacd0b85a97d-38bf59e22d2mr26981832f8f.41.1737629867331; 
+ Thu, 23 Jan 2025 02:57:47 -0800 (PST)
+Received: from [192.168.0.101] ([90.241.98.187])
  by smtp.gmail.com with ESMTPSA id
- 5614622812f47-450fffed315sm4633108b6e.21.2025.11.25.07.47.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 25 Nov 2025 07:47:38 -0800 (PST)
-From: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
-To: lyude@redhat.com, dakr@kernel.org, mripard@kernel.org, airlied@gmail.com,
- maarten.lankhorst@linux.intel.com
-Cc: tzimmermann@suse.de, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,
- Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
-Subject: [PATCH] drm/nouveau/mmu: add NULL check for args in
- nouveau_uvmm_sm_prepare()
-Date: Tue, 25 Nov 2025 07:47:29 -0800
-Message-ID: <20251125154729.434072-1-chelsyratnawat2001@gmail.com>
-X-Mailer: git-send-email 2.47.3
+ ffacd0b85a97d-38bf322acdcsm19245193f8f.55.2025.01.23.02.57.45
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 23 Jan 2025 02:57:46 -0800 (PST)
+Message-ID: <0c46e330-33d1-4121-b073-1bd41d37a58b@ursulin.net>
+Date: Thu, 23 Jan 2025 10:57:45 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
+To: phasta@kernel.org, Danilo Krummrich <dakr@kernel.org>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Qiang Yu <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>,
+ Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Rob Herring <robh@kernel.org>, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Luben Tuikov <ltuikov89@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>,
+ Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250122140818.45172-3-phasta@kernel.org>
+ <20250122181227.491b7881@collabora.com>
+ <af5aac800f7d2153aa3c315584f70c55378c1b2b.camel@mailbox.org>
+ <Z5IL9Ok7f16S9ZoD@pollux.localdomain>
+ <4ef6430c01f31659c327f688965800285b8172ac.camel@mailbox.org>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <4ef6430c01f31659c327f688965800285b8172ac.camel@mailbox.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,30 +123,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-nouveau_uvmm_sm_prepare() passes the uvmm_map_args pointer (args) to
-op_map_prepare() without checking for NULL.
-Prevent NULL deref in op_map_prepare() by checking args before use.
 
-Signed-off-by: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 4 ++++
- 1 file changed, 4 insertions(+)
+On 23/01/2025 09:35, Philipp Stanner wrote:
+> On Thu, 2025-01-23 at 10:29 +0100, Danilo Krummrich wrote:
+>> On Thu, Jan 23, 2025 at 08:33:01AM +0100, Philipp Stanner wrote:
+>>> On Wed, 2025-01-22 at 18:16 +0100, Boris Brezillon wrote:
+>>>> On Wed, 22 Jan 2025 15:08:20 +0100
+>>>> Philipp Stanner <phasta@kernel.org> wrote:
+>>>>
+>>>>>   int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>>>> -    const struct drm_sched_backend_ops *ops,
+>>>>> -    struct workqueue_struct *submit_wq,
+>>>>> -    u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+>>>>> -    long timeout, struct workqueue_struct *timeout_wq,
+>>>>> -    atomic_t *score, const char *name, struct device *dev);
+>>>>> + const struct drm_sched_init_params *params);
+>>>>
+>>>>
+>>>> Another nit: indenting is messed up here.
+>>>
+>>> That was done on purpose.
+>>
+>> Let's not change this convention, it's used all over the kernel tree,
+>> including
+>> the GPU scheduler. People are used to read code that is formatted
+>> this way, plus
+>> the attempt of changing it will make code formatting inconsistent.
+> 
+> Both the tree and this file are already inconsistent in regards to
+> this.
+> 
+> Anyways, what is your proposed solution to ridiculous nonsense like
+> this?
+> 
+> https://elixir.bootlin.com/linux/v6.13-rc3/source/drivers/gpu/drm/scheduler/sched_main.c#L1296
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 79eefdfd08a2..7a33ce63770c 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -627,6 +627,10 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
- 		case DRM_GPUVA_OP_MAP: {
- 			u64 vmm_get_range = vmm_get_end - vmm_get_start;
- 
-+			if (!args) {
-+				ret = -EINVAL;
-+				goto unwind;
-+			}
- 			ret = op_map_prepare(uvmm, &new->map, &op->map, args);
- 			if (ret)
- 				goto unwind;
--- 
-2.47.3
+Apologies for budging in. Sometimes breaking 80 cols is unavoidable, or 
+perhaps something like the below would be a bit easier on the eyes? 
+Although it still breaks 80 columns, just a bit less.
 
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c 
+b/drivers/gpu/drm/scheduler/sched_main.c
+index 06b06987129d..3f7e97b240d1 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1287,22 +1287,18 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+                 return 0;
+         }
+
+-       if (submit_wq) {
+-               sched->submit_wq = submit_wq;
+-               sched->own_submit_wq = false;
+-       } else {
+-#ifdef CONFIG_LOCKDEP
+-               sched->submit_wq = alloc_ordered_workqueue_lockdep_map(name,
+- 
+WQ_MEM_RECLAIM,
+- 
+&drm_sched_lockdep_map);
+-#else
+-               sched->submit_wq = alloc_ordered_workqueue(name, 
+WQ_MEM_RECLAIM);
+-#endif
+-               if (!sched->submit_wq)
+-                       return -ENOMEM;
++       own_wq = !!submit_wq;
++       if (!submit_wq && IS_ENABLED(CONFIG_LOCKDEP))
++               submit_wq = alloc_ordered_workqueue_lockdep_map(name,
++ 
+WQ_MEM_RECLAIM,
++ 
+&drm_sched_lockdep_map);
++       else if (!submit_wq)
++               submit_wq = alloc_ordered_workqueue(name, WQ_MEM_RECLAIM);
++       if (!submit_wq)
++               return -ENOMEM;
+
+-               sched->own_submit_wq = true;
+-       }
++       sched->submit_wq = submit_wq;
++       sched->own_submit_wq = own_wq;
+
+         sched->sched_rq = kmalloc_array(num_rqs, sizeof(*sched->sched_rq),
+                                         GFP_KERNEL | __GFP_ZERO);
+
+Could bring it under 80 by renaming drm_sched_lockdep_map to something 
+shorter. Which should be fine since it is local to the file.
+
+Regards,
+
+Tvrtko
