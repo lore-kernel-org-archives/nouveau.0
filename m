@@ -4,61 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A09B0D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 444C7D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B38CF10EC85;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B6210EC6B;
 	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="xD9XA+tF";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lyW10yfs";
 	dkim-atps=neutral
+X-Greylist: delayed 598 seconds by postgrey-1.36 at gabe;
+ Thu, 23 Jan 2025 07:43:14 UTC
 Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5AA2A10E873;
- Thu, 12 Jun 2025 14:21:08 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5067110E780;
+ Thu, 23 Jan 2025 07:43:14 +0000 (UTC)
+Received: from smtp1.mailbox.org (unknown [10.196.197.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4bJ4Sw0z4Dz9sp3;
- Thu, 12 Jun 2025 16:21:04 +0200 (CEST)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Ydt2x1QV9z9sWp;
+ Thu, 23 Jan 2025 08:33:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1749738064; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1737617593; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=LUPnbMKZsQR2YGEzcKKfW5NC/LS9WZVDDt3t+hU+WYU=;
- b=xD9XA+tF3DtsgZ/TvoLRbK1Aczn2kB03rAMmVtJak3LqwegXNUc9uE/X+ueAQE2lsb3m4z
- nMS/GAVVbawehSW3oHS+UrMDPUfosntFCueeJu0jdBg7agC7b/icGX2oLwDaaDbb/D3uJL
- e0PHOod+Rz4m5QK3iAme7eCMyiPKbR5hv1VO4K8fvv7B7PtHCpIMMecJx5sREk1CryUckd
- v62q0rHqELw4BRYHCKbhp13fonFZXPKIGO8HYmj7yJardsvD2c96JZp/YCYBLIPBPM8h8y
- a26R8D10Vu/FuGEcVYJVpeR3fZsngtoc6ndZnptXNyVwj5KyXuDzGjrPViZ2IA==
-Message-ID: <f4f326a0ecb98a9996919c3f827b3247b8207feb.camel@mailbox.org>
-Subject: Re: [RFC PATCH 1/6] drm/sched: Avoid memory leaks with cancel_job()
- callback
+ bh=pafGZP171TKVXmmTNtfdIkH/JLfRofR6L9YfhmD45jE=;
+ b=lyW10yfsdoKC9khVw9jNmQQjpXd/IpvM0GENMUQG4ShV8XOOqjm/LPE0R7H2th4muEIaww
+ WjWGoh0BAWCFJX9B1qk8du3Kt58QKRUC0Ge1iJGXX7tDbaRkH3zzd1MyOqNFUNE4LWtTnA
+ ZHxS83eGnU7TcUn45ektfe2nG2rLtuoSRq3Z3UwhPFP4g9edzj2p7EtYo96EGGNiALZVWP
+ c9S2JgPiw/mfMODTFYK5JEz9pj8xFBlTNA+rQvHuuNZjMKghxgF7TAx8WQAiasC8dCWHJE
+ a5A29twSa5ZfOqnphJ+ERRMcVAtkimJEY1P1GJC5V+sjGzEqGq0UxhYyBuaG5Q==
+Message-ID: <af5aac800f7d2153aa3c315584f70c55378c1b2b.camel@mailbox.org>
+Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Philipp Stanner
- <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
- <sumit.semwal@linaro.org>, Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Thu, 12 Jun 2025 16:20:58 +0200
-In-Reply-To: <62ff8ddb-b2f1-4e52-a026-290561ab5337@igalia.com>
-References: <20250603093130.100159-2-phasta@kernel.org>
- <20250603093130.100159-3-phasta@kernel.org>
- <62ff8ddb-b2f1-4e52-a026-290561ab5337@igalia.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Xinhui Pan
+ <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, Russell King
+ <linux+etnaviv@armlinux.org.uk>,  Christian Gmeiner
+ <christian.gmeiner@gmail.com>, Frank Binns <frank.binns@imgtec.com>, Matt
+ Coster <matt.coster@imgtec.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,  Rob
+ Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Konrad Dybcio
+ <konradybcio@kernel.org>,  Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Karol Herbst <kherbst@redhat.com>, Lyude
+ Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
+ <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
+ <liviu.dudau@arm.com>, Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost
+ <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sunil Khatri <sunil.khatri@amd.com>,  Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
+ Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
+ etnaviv@lists.freedesktop.org,  lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org,  freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org,  intel-xe@lists.freedesktop.org
+Date: Thu, 23 Jan 2025 08:33:01 +0100
+In-Reply-To: <20250122181227.491b7881@collabora.com>
+References: <20250122140818.45172-3-phasta@kernel.org>
+ <20250122181227.491b7881@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-META: oodnuo5gzpywi6c6hikd3z6f1sf1sei5
-X-MBO-RS-ID: 8a4021f237a81cd6bf4
+X-MBO-RS-ID: 8a70febfe27100aa303
+X-MBO-RS-META: sw7fmubqh1x18f97mnek9yippijrrm9p
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,169 +93,29 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-06-12 at 15:17 +0100, Tvrtko Ursulin wrote:
+On Wed, 2025-01-22 at 18:16 +0100, Boris Brezillon wrote:
+> On Wed, 22 Jan 2025 15:08:20 +0100
+> Philipp Stanner <phasta@kernel.org> wrote:
 >=20
-> On 03/06/2025 10:31, Philipp Stanner wrote:
-> > Since its inception, the GPU scheduler can leak memory if the
-> > driver
-> > calls drm_sched_fini() while there are still jobs in flight.
-> >=20
-> > The simplest way to solve this in a backwards compatible manner is
-> > by
-> > adding a new callback, drm_sched_backend_ops.cancel_job(), which
-> > instructs the driver to signal the hardware fence associated with
-> > the
-> > job. Afterwards, the scheduler can savely use the established
-> > free_job()
-> > callback for freeing the job.
-> >=20
-> > Implement the new backend_ops callback cancel_job().
-> >=20
-> > Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> > =C2=A0int drm_sched_init(struct drm_gpu_scheduler *sched,
+> > - =C2=A0=C2=A0 const struct drm_sched_backend_ops *ops,
+> > - =C2=A0=C2=A0 struct workqueue_struct *submit_wq,
+> > - =C2=A0=C2=A0 u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
+> > - =C2=A0=C2=A0 long timeout, struct workqueue_struct *timeout_wq,
+> > - =C2=A0=C2=A0 atomic_t *score, const char *name, struct device *dev);
+> > + const struct drm_sched_init_params *params);
 >=20
-> Please just add the link to the patch here (it is only in the cover
-> letter):
 >=20
-> Link:=20
-> https://lore.kernel.org/dri-devel/20250418113211.69956-1-tvrtko.ursulin@i=
-galia.com/
+> Another nit: indenting is messed up here.
 
-That I can do, sure
+That was done on purpose.
 
->=20
-> And you probably want to take the unit test modifications from the
-> same=20
-> patch too. You could put them in the same patch or separate.
-
-Necessary adjustments for the unit tests are already implemented and
-are waiting for review separately, since this can be done independently
-from this entire series:
-
-https://lore.kernel.org/dri-devel/20250605134154.191764-2-phasta@kernel.org=
-/
-
-
-Thx
-P.
-
->=20
-> Regards,
->=20
-> Tvrtko
->=20
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > ---
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 34 ++++++++++++++++----=
--
-> > -----
-> > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9 +++++++
-> > =C2=A0 2 files changed, 30 insertions(+), 13 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > b/drivers/gpu/drm/scheduler/sched_main.c
-> > index d20726d7adf0..3f14f1e151fa 100644
-> > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > @@ -1352,6 +1352,18 @@ int drm_sched_init(struct drm_gpu_scheduler
-> > *sched, const struct drm_sched_init_
-> > =C2=A0 }
-> > =C2=A0 EXPORT_SYMBOL(drm_sched_init);
-> > =C2=A0=20
-> > +static void drm_sched_kill_remaining_jobs(struct drm_gpu_scheduler
-> > *sched)
-> > +{
-> > +	struct drm_sched_job *job, *tmp;
-> > +
-> > +	/* All other accessors are stopped. No locking necessary.
-> > */
-> > +	list_for_each_entry_safe_reverse(job, tmp, &sched-
-> > >pending_list, list) {
-> > +		sched->ops->cancel_job(job);
-> > +		list_del(&job->list);
-> > +		sched->ops->free_job(job);
-> > +	}
-> > +}
-> > +
-> > =C2=A0 /**
-> > =C2=A0=C2=A0 * drm_sched_fini - Destroy a gpu scheduler
-> > =C2=A0=C2=A0 *
-> > @@ -1359,19 +1371,11 @@ EXPORT_SYMBOL(drm_sched_init);
-> > =C2=A0=C2=A0 *
-> > =C2=A0=C2=A0 * Tears down and cleans up the scheduler.
-> > =C2=A0=C2=A0 *
-> > - * This stops submission of new jobs to the hardware through
-> > - * drm_sched_backend_ops.run_job(). Consequently,
-> > drm_sched_backend_ops.free_job()
-> > - * will not be called for all jobs still in
-> > drm_gpu_scheduler.pending_list.
-> > - * There is no solution for this currently. Thus, it is up to the
-> > driver to make
-> > - * sure that:
-> > - *
-> > - *=C2=A0 a) drm_sched_fini() is only called after for all submitted
-> > jobs
-> > - *=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_backend_ops.free_job() has been c=
-alled or that
-> > - *=C2=A0 b) the jobs for which drm_sched_backend_ops.free_job() has no=
-t
-> > been called
-> > - *=C2=A0=C2=A0=C2=A0=C2=A0 after drm_sched_fini() ran are freed manual=
-ly.
-> > - *
-> > - * FIXME: Take care of the above problem and prevent this function
-> > from leaking
-> > - * the jobs in drm_gpu_scheduler.pending_list under any
-> > circumstances.
-> > + * This stops submission of new jobs to the hardware through
-> > &struct
-> > + * drm_sched_backend_ops.run_job. If &struct
-> > drm_sched_backend_ops.cancel_job
-> > + * is implemented, all jobs will be canceled through it and
-> > afterwards cleaned
-> > + * up through &struct drm_sched_backend_ops.free_job. If
-> > cancel_job is not
-> > + * implemented, memory could leak.
-> > =C2=A0=C2=A0 */
-> > =C2=A0 void drm_sched_fini(struct drm_gpu_scheduler *sched)
-> > =C2=A0 {
-> > @@ -1401,6 +1405,10 @@ void drm_sched_fini(struct drm_gpu_scheduler
-> > *sched)
-> > =C2=A0=C2=A0	/* Confirm no work left behind accessing device structures
-> > */
-> > =C2=A0=C2=A0	cancel_delayed_work_sync(&sched->work_tdr);
-> > =C2=A0=20
-> > +	/* Avoid memory leaks if supported by the driver. */
-> > +	if (sched->ops->cancel_job)
-> > +		drm_sched_kill_remaining_jobs(sched);
-> > +
-> > =C2=A0=C2=A0	if (sched->own_submit_wq)
-> > =C2=A0=C2=A0		destroy_workqueue(sched->submit_wq);
-> > =C2=A0=C2=A0	sched->ready =3D false;
-> > diff --git a/include/drm/gpu_scheduler.h
-> > b/include/drm/gpu_scheduler.h
-> > index e62a7214e052..81dcbfc8c223 100644
-> > --- a/include/drm/gpu_scheduler.h
-> > +++ b/include/drm/gpu_scheduler.h
-> > @@ -512,6 +512,15 @@ struct drm_sched_backend_ops {
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * and it's=
- time to clean it up.
-> > =C2=A0=C2=A0	 */
-> > =C2=A0=C2=A0	void (*free_job)(struct drm_sched_job *sched_job);
-> > +
-> > +	/**
-> > +	 * @cancel_job: Used by the scheduler to guarantee
-> > remaining jobs' fences
-> > +	 * get signaled in drm_sched_fini().
-> > +	 *
-> > +	 * Drivers need to signal the passed job's hardware fence
-> > with
-> > +	 * -ECANCELED in this callback. They must not free the
-> > job.
-> > +	 */
-> > +	void (*cancel_job)(struct drm_sched_job *sched_job);
-> > =C2=A0 };
-> > =C2=A0=20
-> > =C2=A0 /**
->=20
-
+I never got why so many like to intend to the opening brackets,
+because:
+   1. The kernel coding guide line does not demand it
+   2. It mixes tabs with spaces
+   3. It doesn't create an identical level of intendation
+   4. It wastes huge amount of space and does not solve the problem of
+      long names, but might even make it worse:
+      https://elixir.bootlin.com/linux/v6.13-
+      rc3/source/drivers/gpu/drm/scheduler/sched_main.c#L1296
