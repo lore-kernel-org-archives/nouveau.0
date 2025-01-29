@@ -4,104 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5F68C021A0
-	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36DC7C021A1
+	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 683ED10E9E1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7441A10E9E4;
 	Fri,  7 Feb 2025 01:44:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="CbVxGrRT";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="Kd+hbita";
 	dkim-atps=neutral
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1F6C10E31B
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 09:51:25 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-4368a293339so6427015e9.3
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 01:51:25 -0800 (PST)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6681010E09D
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Jan 2025 13:39:04 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-4362bae4d7dso48808275e9.1
+ for <nouveau@lists.freedesktop.org>; Wed, 29 Jan 2025 05:39:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1738230684; x=1738835484; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/pdSjiOp9c4OOZ/yEIi55/ppp/3tp0YczNnLQ60kX3w=;
- b=CbVxGrRTjmiBDB0mh5j2O3t7Sf8HI+UbZ2VNFoI+Ju05oFOkX4Eo/igFmx8yVCo2zR
- WC4D886sMznNUmu+Jmh17JuMeDSSh2CZoLfYuoDERKZftyJj6p8xsm1OsLUsDcAgtBiI
- T4MSYPDyoSmuB7JMvZ21YU8QHnQXVOEqzdd0o=
+ d=ffwll.ch; s=google; t=1738157942; x=1738762742; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=ekPyuSS82CPNI1Lh/E6IsIbzoEEGT2LSw6fRdzUam+8=;
+ b=Kd+hbitaPFwi3dfoMSBaIgNshfGno/ktIfsEHAbKD1KU+hllXiRucOo2SixWF4lIdl
+ uxVACD6pjZEzr8FdF1zOYM3fO8Ed57cC1tNFEqK2roBdqnZzi3AQzOZBfPKv1kB11Yt5
+ 4fNH0kY3GfOTu9pyoiLQFdOAeOGpn7IDnYZXk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738230684; x=1738835484;
- h=in-reply-to:content-disposition:mime-version:references
- :mail-followup-to:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=/pdSjiOp9c4OOZ/yEIi55/ppp/3tp0YczNnLQ60kX3w=;
- b=NXMV7HeMvKGdURR6M8fikMaa0Q2cTmaqy0hUNncDSDU1hcstOghOTMKFumAITSb5uW
- K8/eLmJWQNOM4yzb1ci9cSZNPGJPqSJ/rCxaYKmLffNdrx7we0/Q+677p0GMOm1C1b+c
- urEeJUnTF3EFLgvU3ILBXcs3I6qHpUxWEfSvGzzNXWkEv8CKVqETvRBQbKODS14jJcLC
- Xq7t9F7Ik0a1Q5IJagX4tDAGFn35mcr8vrB3IupkmGnOFfau2m4jaauyxlhInDELdp06
- 3DyCT3yZu3/LomjkVUQijtwBsHtv4XTM68QpcnmLoBfTQzImnDa/CFRPiZ7jgyczxsX9
- Qnrg==
+ d=1e100.net; s=20230601; t=1738157942; x=1738762742;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:mail-followup-to:message-id:subject:cc:to
+ :from:date:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=ekPyuSS82CPNI1Lh/E6IsIbzoEEGT2LSw6fRdzUam+8=;
+ b=Rl66u8v+377RWn7YyokpoRCCTlEL3o81oBc6EcO8ERN3jVEOorMUD/9QRxbn2ejYUw
+ Vt+XflO6oKs0aLHCJJ7OH7R7EtaXVT64VNZpLkzJGpkO2L1k6QVv2WzGT5s4baeO7yHf
+ sAlTLjJlptzEOQjt+g1OELo65aXZyneQhldIWdZ+1keCcXz2f4qsiireFXqgsUNO+zf3
+ YI0TeaAMy02+41VToAltCKTNcd2lcHbrek+9mj2R5lOtVN2itegsJPgoWz8iRhHadihV
+ lZkCKh6YaTzel719P0bnFHHVgxY4/NWPvA7NLOc00TykTHm1aFF9v59RAPK80EW+LxxD
+ uwKA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXXHv6g4Vs7bab0+IgDB4K6s5vR20/7EX8SJd88l2rhOJeK2w/mK/00Rvb57Q0iQp1d5zSE8dFB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwyUi1tmYTotVUqV1tA1zthQC20n9KFtWM8Yg0trL19304KcUDF
- 2UPZqRqATwtfE4N/8nlCt4t8aCdH+lnfRIPEyTM3kcKWsDVwxMditrxiZ7v6Fms=
-X-Gm-Gg: ASbGncuH4WobMXOQK2UpaNW9j2C9cO0sgYHpI1+jF0cmPKvpGaCYY3mWp9hB/kcpb0b
- njIq3msBxasnFCZX+bgNlh+pVZPcGKVL0RfuS4LdH7ZpNSbH/ZAR6MMI32JAEhj+Hpn5YkX3jC7
- /qsqKcOmRI8arJfp3B5/6npet5OlHprsEIrAXmJfxv2J00zzAhm9jJ9d59E7xTJjoQ9kf+Rfdh0
- ntek9ZPByRhdZrQs+3aUitZ6tcNm8Tmdl+8QUHs5Ud1wZuLJlCzIW3hycPNFzVtCLvPY3f7+RvM
- JbICJTEqM3qo71Ia75tge1yli38=
-X-Google-Smtp-Source: AGHT+IF1314un3GQgKorQlU7Ooz/rQrCyj9j2D9rJRU+9J5toI9CX1diHYvVJ9K+Omvgaz97Oy+yBw==
-X-Received: by 2002:a05:600c:1d82:b0:438:a240:c55 with SMTP id
- 5b1f17b1804b1-438e298e709mr9982485e9.1.1738230684290; 
- Thu, 30 Jan 2025 01:51:24 -0800 (PST)
+ AJvYcCWQQMjlU+t3S1UWJQYJoM/gAzDY3YR3t6DWsZ0lCQorFqvA6fXk83DbKZk1nCYueL9KZIfZFQ0L@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzzOQOlaPVQHtPeZIaKjU//oxbXNSa/OPLm7iyG6EtdjAM1YS+b
+ Fd5A0Y16aTihWtVfNv/jdqeRZG1k5zXMJSl7imzKogaa4lK3SGglZ0fsIciETfI=
+X-Gm-Gg: ASbGncusb18jUkbnOVdDCZBBjlEh3hdz6c7mxhHLry5bfRwglzpC5q3Coi40x9KFZBS
+ KacFyojQe216btP1/9+LB9Hc5M/jfQzRkDlH73IIPIFe36N7DQq5gCfWyz4ciX92tP0QMovSfww
+ zJqQ94bEEF1xODNDrZRrccjMgThlGnpnHKhuJ0pQ+cvfrBEYAi62r3+R/fzuAuqWoKZ+t6SBtiT
+ 3CUGbo/eX7uVYX2QfgTFp1NLv1pbgH262wHCYz+ny8eOWY4AoMGM4ejZhyQdv7Or65ql1rdxhDD
+ XThSst8K6M9zTj5nILRPuwMoUEo=
+X-Google-Smtp-Source: AGHT+IFp40yYl/FrcEC18d1HA1Wbr1YBHRju+Twtn7vgv1BIenNhcb0w0RrYUn5K84MH3BCfQBYGmw==
+X-Received: by 2002:a05:600c:5486:b0:433:c76d:d57e with SMTP id
+ 5b1f17b1804b1-438dc3a40d3mr30211795e9.5.1738157942387; 
+ Wed, 29 Jan 2025 05:39:02 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438e245efbcsm16833505e9.33.2025.01.30.01.51.23
+ 5b1f17b1804b1-438dcc263f0sm23501465e9.9.2025.01.29.05.39.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jan 2025 01:51:23 -0800 (PST)
-Date: Thu, 30 Jan 2025 10:51:21 +0100
+ Wed, 29 Jan 2025 05:39:01 -0800 (PST)
+Date: Wed, 29 Jan 2025 14:38:58 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v1 05/12] mm/memory: detect writability in
- restore_exclusive_pte() through can_change_pte_writable()
-Message-ID: <Z5tLmYOQaZrdWQHN@phenom.ffwll.local>
-Mail-Followup-To: David Hildenbrand <david@redhat.com>,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-References: <20250129115411.2077152-1-david@redhat.com>
- <20250129115411.2077152-6-david@redhat.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
+ lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
+ akpm@linux-foundation.org, GalShalom@nvidia.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-mm@kvack.org, linux-tegra@vger.kernel.org
+Subject: Re: [RFC 1/5] mm/hmm: HMM API to enable P2P DMA for device private
+ pages
+Message-ID: <Z5ovcnX2zVoqdomA@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
+ lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
+ akpm@linux-foundation.org, GalShalom@nvidia.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-mm@kvack.org, linux-tegra@vger.kernel.org
+References: <20241201103659.420677-1-ymaman@nvidia.com>
+ <20241201103659.420677-2-ymaman@nvidia.com>
+ <7282ac68c47886caa2bc2a2813d41a04adf938e1.camel@linux.intel.com>
+ <20250128132034.GA1524382@ziepe.ca>
+ <de293a7e9b4c44eab8792b31a4605cc9e93b2bf5.camel@linux.intel.com>
+ <20250128151610.GC1524382@ziepe.ca>
+ <b78d32e13811ef1fa57b0535749c811f2afb4dcd.camel@linux.intel.com>
+ <20250128172123.GD1524382@ziepe.ca>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250129115411.2077152-6-david@redhat.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250128172123.GD1524382@ziepe.ca>
 X-Operating-System: Linux phenom 6.12.11-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -118,71 +111,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 12:54:03PM +0100, David Hildenbrand wrote:
-> Let's do it just like mprotect write-upgrade or during NUMA-hinting
-> faults on PROT_NONE PTEs: detect if the PTE can be writable by using
-> can_change_pte_writable().
+On Tue, Jan 28, 2025 at 01:21:23PM -0400, Jason Gunthorpe wrote:
+> On Tue, Jan 28, 2025 at 05:32:23PM +0100, Thomas Hellström wrote:
+> > > This series supports three case:
+> > > 
+> > >  1) pgmap->owner == range->dev_private_owner
+> > >     This is "driver private fast interconnect" in this case HMM
+> > > should
+> > >     immediately return the page. The calling driver understands the
+> > >     private parts of the pgmap and computes the private interconnect
+> > >     address.
+> > > 
+> > >     This requires organizing your driver so that all private
+> > >     interconnect has the same pgmap->owner.
+> > 
+> > Yes, although that makes this map static, since pgmap->owner has to be
+> > set at pgmap creation time. and we were during initial discussions
+> > looking at something dynamic here. However I think we can probably do
+> > with a per-driver owner for now and get back if that's not sufficient.
 > 
-> Set the PTE only dirty if the folio is dirty: we might not
-> necessarily have a write access, and setting the PTE writable doesn't
-> require setting the PTE dirty.
+> The pgmap->owner doesn't *have* to fixed, certainly during early boot before
+> you hand out any page references it can be changed. I wouldn't be
+> surprised if this is useful to some requirements to build up the
+> private interconnect topology?
 
-Not sure whether there's much difference in practice, since a device
-exclusive access means a write, so the folio better be dirty (unless we
-aborted halfway through). But then I couldn't find the code in nouveau to
-do that, so now I'm confused.
--Sima
+The trouble I'm seeing is device probe and the fundemantal issue that you
+never know when you're done. And so if we entirely rely on pgmap->owner to
+figure out the driver private interconnect topology, that's going to be
+messy. That's why I'm also leaning towards both comparing owners and
+having an additional check whether the interconnect is actually there or
+not yet.
 
-> With this change in place, there is no need to have separate
-> readable and writable device-exclusive entry types, and we'll merge
-> them next separately.
+You can fake that by doing these checks after hmm_range_fault returned,
+and if you get a bunch of unsuitable pages, toss it back to
+hmm_range_fault asking for an unconditional migration to system memory for
+those. But that's kinda not great and I think goes at least against the
+spirit of how you want to handle pci p2p in step 2 below?
+
+Cheers, Sima
+
+> > >  2) The page is DEVICE_PRIVATE and get_dma_pfn_for_device() exists.
+> > >     The exporting driver has the option to return a P2P struct page
+> > >     that can be used for PCI P2P without any migration. In a PCI GPU
+> > >     context this means the GPU has mapped its local memory to a PCI
+> > >     address. The assumption is that P2P always works and so this
+> > >     address can be DMA'd from.
+> > 
+> > So do I understand it correctly, that the driver then needs to set up
+> > one device_private struct page and one pcie_p2p struct page for each
+> > page of device memory participating in this way?
 > 
-> Note that, during fork(), we first convert the device-exclusive entries
-> back to ordinary PTEs, and we only ever allow conversion of writable
-> PTEs to device-exclusive -- only mprotect can currently change them to
-> readable-device-exclusive. Consequently, we always expect
-> PageAnonExclusive(page)==true and can_change_pte_writable()==true,
-> unless we are dealing with soft-dirty tracking or uffd-wp. But reusing
-> can_change_pte_writable() for now is cleaner.
+> Yes, for now. I hope to remove the p2p page eventually.
 > 
-> Signed-off-by: David Hildenbrand <david@redhat.com>
-> ---
->  mm/memory.c | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
+> > > If you are just talking about your private multi-path, then that is
+> > > already handled..
+> > 
+> > No, the issue I'm having with this is really why would
+> > hmm_range_fault() need the new pfn when it could easily be obtained
+> > from the device-private pfn by the hmm_range_fault() caller? 
 > 
-> diff --git a/mm/memory.c b/mm/memory.c
-> index 03efeeef895a..db38d6ae4e74 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -725,18 +725,21 @@ static void restore_exclusive_pte(struct vm_area_struct *vma,
->  	struct folio *folio = page_folio(page);
->  	pte_t orig_pte;
->  	pte_t pte;
-> -	swp_entry_t entry;
->  
->  	orig_pte = ptep_get(ptep);
->  	pte = pte_mkold(mk_pte(page, READ_ONCE(vma->vm_page_prot)));
->  	if (pte_swp_soft_dirty(orig_pte))
->  		pte = pte_mksoft_dirty(pte);
->  
-> -	entry = pte_to_swp_entry(orig_pte);
->  	if (pte_swp_uffd_wp(orig_pte))
->  		pte = pte_mkuffd_wp(pte);
-> -	else if (is_writable_device_exclusive_entry(entry))
-> -		pte = maybe_mkwrite(pte_mkdirty(pte), vma);
-> +
-> +	if ((vma->vm_flags & VM_WRITE) &&
-> +	    can_change_pte_writable(vma, address, pte)) {
-> +		if (folio_test_dirty(folio))
-> +			pte = pte_mkdirty(pte);
-> +		pte = pte_mkwrite(pte, vma);
-> +	}
->  
->  	VM_BUG_ON_FOLIO(pte_write(pte) && (!folio_test_anon(folio) &&
->  					   PageAnonExclusive(page)), folio);
-> -- 
-> 2.48.1
+> That isn't the API of HMM, the caller uses hmm to get PFNs it can use.
 > 
+> Deliberately returning PFNs the caller cannot use is nonsensical to
+> it's purpose :)
+> 
+> > So anyway what we'll do is to try to use an interconnect-common owner
+> > for now and revisit the problem if that's not sufficient so we can come
+> > up with an acceptable solution.
+> 
+> That is the intention for sure. The idea was that the drivers under
+> the private pages would somehow generate unique owners for shared
+> private interconnect segments.
+> 
+> I wouldn't say this is the end all of the idea, if there are better
+> ways to handle accepting private pages they can certainly be
+> explored..
+> 
+> Jason
 
 -- 
 Simona Vetter
