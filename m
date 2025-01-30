@@ -4,85 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA35CC02198
-	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC868C02194
+	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74FF310E9DD;
-	Fri,  7 Feb 2025 01:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3BD910E9D7;
+	Fri,  7 Feb 2025 01:44:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="R8uOpa2J";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="Yu0cvH1e";
 	dkim-atps=neutral
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
- [209.85.221.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B13410E061
- for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 17:13:24 +0000 (UTC)
-Received: by mail-wr1-f45.google.com with SMTP id
- ffacd0b85a97d-3863703258fso2151822f8f.1
- for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 09:13:24 -0800 (PST)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com
+ [209.85.221.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2F9E10E96B
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 13:31:53 +0000 (UTC)
+Received: by mail-wr1-f52.google.com with SMTP id
+ ffacd0b85a97d-3863c36a731so652634f8f.1
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 05:31:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1738343602; x=1738948402; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1738243912; x=1738848712; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
  :subject:date:message-id:reply-to;
- bh=6jSWMajugHE39GppqlmQIz8pPmyPm52DOpdfP99qKyo=;
- b=R8uOpa2JvaGPOLui/pH22ugyUv1SlsiHcNaZ72vxxeDl6TAXgqfxzscdtTgDunKRme
- r8qRH5O0qx06HnwcbAeaqIy+cIyTL63SMlgtv0Uorogx69sta2hSnTGHS8J8x8Q+ptyu
- s46zvMQ3TdfEe+81aQYhiEgUQL8W7h/wDciRI=
+ bh=+HfypuIQboTZvpun4E8zdORtqN9UpDgcxhaup4sp9X8=;
+ b=Yu0cvH1eMM2R46+xVd1vFRtydP/K21WQMCvHXgJE3pRuojPuPrtZbtZgr6qDrSj4/T
+ vkGy4E8A3RfcvQTSmLl9od3uAn8EQjACDLFR6OG6PgNRgNoNGKWGuTKll9+S6hmIfPMj
+ wAmzNcjy13sx+uCBCCyoZKH24Sbo/nR0Z2NU4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738343602; x=1738948402;
+ d=1e100.net; s=20230601; t=1738243912; x=1738848712;
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=6jSWMajugHE39GppqlmQIz8pPmyPm52DOpdfP99qKyo=;
- b=Y2Tkl60SIlAVGYdseHwA3UnGavPIG6v45X0jxVA6gTfbxRFDU7jVNBjPU/5ztgsCOQ
- TnRa0W5WjxL4Tzcp7EDFlTrGWw7+KaPYtKuyVnZuJeGNLpLLttND3NhzTymQm+4GCL4F
- wwKvvvU/OFmLMgXgbs6lns5uZM3PeDitcCCBAQADMyrx+BHIyHlRMBHGdrd8nZqH30B9
- jZ3Q4pKxiEs2n4aQ3O1xeP0fKCX+uQdRq7NBQ9tyFnGnbgb3Cb26EqPy6HMQZjTwuNAA
- CFsjDPQe56rH9ngsEUVpyLm62SBw+Ot//yumVnt2n/792qH2P8hLsvTih693B3EzdNgG
- 4KqQ==
+ bh=+HfypuIQboTZvpun4E8zdORtqN9UpDgcxhaup4sp9X8=;
+ b=cQ+ssSrHy1g3g4Cm8sUAopjioWfiFfZeFV9ZppCRdcf5KXxsUtO4kR/GGkrhZfObrD
+ BfFOpq1RJ7kXkCHvUlhc8n3PQElN4bsgV1o2fjxCetQVoqgLN7bNymEt7ZLevG2dPkiL
+ VTE90lc/L99qalwIWqm7c8jLeT1LdnfqYnGHhGarU+ZBpkxlXFIvyZv3Os/eCgnDAwla
+ 28Vm9XlpOPyHdyzUcNQVzFtVHljvJdGasbBGdKH1G3rkaOkVdUCAb51RT+h9EJ+qDeKm
+ 7tWf4jC4cIDcFGuOlfh3WSl0OmQnG5tFmQOvoejHLilw4BIJerxpANuueOzMJHp8Lv0c
+ IHiQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW9QxgrbxinSeGd7Zjr0ehDOiMs2xQp//9r9zcC8Xh0pn4l9791VvRN2su0QsqakJElXGss37W/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzgSQGgSEQKgaQdjvH72FBCdu/Scp7llPL/OHB5WLGXK982cLga
- p1yQkMpOpiZ9cwoJeGJR0rSiN0dXEJY+4qHUlNIfIMbw0ODTJ0Db0HpSseDV7Jw=
-X-Gm-Gg: ASbGncuUIPKcBBTHHN6SAwY4H5qgkW+pWP7LX7m8preLWdCSU0DoZpiyukyo8RNAl2C
- z9agngGl59gxvesID+ba8xssCIiU+ZSytfYYcsgqxkIOqVyg4zfmcdBZZkCSbFJZbouLB+X918W
- 2fOylIm+ONwDLiqmvA3axXo55UgYJb4nt5GaB1CyEcjqV/rUX0IF3R91Tn58SPOa1Yuhg4+YvNO
- Eo1r2FZTre+lp7gi80M5zEkIykp8wN77ZRIYUqOD4eR+Id3KAWP+k46OI6KGYdOSOfmiG/C87p8
- mYFGbGVFh5bFv7+R640EWz5HuyE=
-X-Google-Smtp-Source: AGHT+IGBiDEPfJPSLRmnOOkpJfCiAcSXF7PRNDxRISEjglfPUZ3JlbXVG6tP7dp5Gn/UOWRu2XqpDg==
-X-Received: by 2002:a05:6000:1563:b0:38a:5d7d:4bd6 with SMTP id
- ffacd0b85a97d-38c5a9bee80mr7346375f8f.25.1738343602545; 
- Fri, 31 Jan 2025 09:13:22 -0800 (PST)
+ AJvYcCUJFH3KKBJ3SRte/qdspStHFV4fCD+FIEuOiH+nTDO1Py9uvIQyPzddaTtmzUNJQiUN3avtAHIp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwVVQtRKfSqI0XdY1XXV7l6Lam3VUen/Ci2QkmEObyvK5Og2JBA
+ Xot0q/rmQHu0EOAPv4hewQG7uaduwxzxOfFnIz4xJ0CANmixKtPMNNDb01J5Zjs=
+X-Gm-Gg: ASbGncuS3QutJ87xReQRFfi21/Hky9KgmcEdRewbuIrTmZ4VEfhlTkNsRoHocBoYCgZ
+ l6JtJjUzPyxR2UekayxfcQaEL1WxELMRh/bsmUq9FpZz7Hvs2IqCb2KplsI78KrCO5U4ppgf4V5
+ OsET0jZgnNT6VtPPGpv8rlKKYA0TfVzcFfrcMd0z0VQuHfh5Vawmt2MSoRYGhCddAJEbBENoZqF
+ zs7zkTRAGInrhKV+kUOcGuWNhEUt1oymNK96MvhBg9kwyaOImgsXQhYU0rPWUfznUldxrJ3E8Pv
+ L3wDCgkLFm0K99u/A52mhWiM5rU=
+X-Google-Smtp-Source: AGHT+IFMswZ2dc1PUK9As+fnPUJ+YPXY0lrKZKSyFsUE3i9ImUyvh7RLGwzxoWBETKt22tExTSNKvA==
+X-Received: by 2002:a5d:6c65:0:b0:38a:4b8a:e477 with SMTP id
+ ffacd0b85a97d-38c51969b28mr5731448f8f.22.1738243912301; 
+ Thu, 30 Jan 2025 05:31:52 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c5c1b57ccsm5178729f8f.79.2025.01.31.09.13.21
+ ffacd0b85a97d-38c5c1cf831sm2033238f8f.90.2025.01.30.05.31.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Jan 2025 09:13:22 -0800 (PST)
-Date: Fri, 31 Jan 2025 18:13:19 +0100
+ Thu, 30 Jan 2025 05:31:51 -0800 (PST)
+Date: Thu, 30 Jan 2025 14:31:49 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
 To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v1 12/12] mm/rmap: keep mapcount untouched for
- device-exclusive entries
-Message-ID: <Z50Er1Oy7VPLVY9U@phenom.ffwll.local>
-Mail-Followup-To: David Hildenbrand <david@redhat.com>,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org,
+Cc: Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org,
  Andrew Morton <akpm@linux-foundation.org>,
  =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
  Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
@@ -94,18 +75,33 @@ Mail-Followup-To: David Hildenbrand <david@redhat.com>,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
  Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
  Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-References: <20250129115411.2077152-1-david@redhat.com>
- <20250129115411.2077152-13-david@redhat.com>
- <Z5tWYpwpUfgEmeKj@phenom.ffwll.local>
- <887df26d-b8bb-48df-af2f-21b220ef22e6@redhat.com>
- <Z5t8dkujVv7xZiuV@phenom.ffwll.local>
- <d70db67d-8989-4ce4-bc21-52a89449db4b@redhat.com>
+ Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v1 4/4] mm/memory: document restore_exclusive_pte()
+Message-ID: <Z5t_RebEx6Mj-KlT@phenom.ffwll.local>
+Mail-Followup-To: David Hildenbrand <david@redhat.com>,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>,
+ Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
+References: <20250129115803.2084769-1-david@redhat.com>
+ <20250129115803.2084769-5-david@redhat.com>
+ <7vejbjs7btkof4iguvn3nqvozxqpnzbymxbumd7pant4zi4ac4@3ozuzfzsm5tp>
+ <cfc4f8ac-80c4-472f-85fc-36ffcd212441@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d70db67d-8989-4ce4-bc21-52a89449db4b@redhat.com>
+In-Reply-To: <cfc4f8ac-80c4-472f-85fc-36ffcd212441@redhat.com>
 X-Operating-System: Linux phenom 6.12.11-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -122,116 +118,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jan 30, 2025 at 04:43:08PM +0100, David Hildenbrand wrote:
-> > > Assume you have a THP (or any mTHP today). You can easily trigger the
-> > > scenario that folio_mapcount() != 0 with active device-exclusive entries,
-> > > and you start doing rmap walks and stumble over these device-exclusive
-> > > entries and *not* handle them properly. Note that more and more systems are
-> > > configured to just give you THP unless you explicitly opted-out using
-> > > MADV_NOHUGEPAGE early.
-> > > 
-> > > Note that b756a3b5e7ea added that hunk that still walks these
-> > > device-exclusive entries in rmap code, but didn't actually update the rmap
-> > > walkers:
-> > > 
-> > > @@ -102,7 +104,8 @@ static bool check_pte(struct page_vma_mapped_walk *pvmw)
-> > > 
-> > >                  /* Handle un-addressable ZONE_DEVICE memory */
-> > >                  entry = pte_to_swp_entry(*pvmw->pte);
-> > > -               if (!is_device_private_entry(entry))
-> > > +               if (!is_device_private_entry(entry) &&
-> > > +                   !is_device_exclusive_entry(entry))
-> > >                          return false;
-> > > 
-> > >                  pfn = swp_offset(entry);
-> > > 
-> > > That was the right thing to do, because they resemble PROT_NONE entries and
-> > > not migration entries or anything else that doesn't hold a folio reference).
+On Thu, Jan 30, 2025 at 10:37:06AM +0100, David Hildenbrand wrote:
+> On 30.01.25 01:27, Alistair Popple wrote:
+> > On Wed, Jan 29, 2025 at 12:58:02PM +0100, David Hildenbrand wrote:
+> > > Let's document how this function is to be used, and why the requirement
+> > > for the folio lock might maybe be dropped in the future.
 > > 
-> > Yeah I got that part. What I meant is that doubling down on this needs a
-> > full audit and cannot rely on "we already have device private entries
-> > going through these paths for much longer", which was the impression I
-> > got. I guess it worked, thanks for doing that below :-)
+> > Sorry, only just catching up on your other thread. The folio lock was to ensure
+> > the GPU got a chance to make forward progress by mapping the page. Without it
+> > the CPU could immediately invalidate the entry before the GPU had a chance to
+> > retry the fault.
+> > > Obviously performance wise having such thrashing is terrible, so should
+> > really be avoided by userspace, but the lock at least allowed such programs
+> > to complete.
 > 
-> I know I know, I shouldn't have touched it ... :)
+> Thanks for the clarification. So it's relevant that the MMU notifier in
+> remove_device_exclusive_entry() is sent after taking the folio lock.
 > 
-> So yeah, I'll spend some extra work on sorting out the other cases.
+> However, as soon as we drop the folio lock, remove_device_exclusive_entry()
+> will become active, lock the folio and trigger the MMU notifier.
+> 
+> So the time it is actually mapped into the device is rather
 
-Thanks :-)
-
-> > And at least from my very rough understanding of mm, at least around all
-> > this gpu stuff, tracking device exclusive mappings like real cpu mappings
-> > makes sense, they do indeed act like PROT_NONE with some magic to restore
-> > access on fault.
-> > 
-> > I do wonder a bit though what else is all not properly tracked because
-> > they should be like prot_none except arent. I guess we'll find those as we
-> > hit them :-/
-> 
-> Likely a lot of stuff. But more in a "entry gets ignored -- functionality
-> not implemented, move along" way, because all page table walkers have to
-> care about !pte_present() already; it's just RMAP code that so far never
-> required it.
-
-I think it'd be good to include a tersion summary of this in the commit
-messages - I'd expect this is code other gpu folks will need to crawl
-through in the future again, and I had no idea where I should even start
-looking to figure this out.
-
-> 
-> [...]
-> 
-> > 
-> > > If thp constantly reassembles a pmd entry because hey all the
-> > > > memory is contig and userspace allocated a chunk of memory to place
-> > > > atomics that alternate between cpu and gpu nicely separated by 4k pages,
-> > > > then we'll thrash around invalidating ptes to no end. So might be more
-> > > > fallout here.
-> > > 
-> > > khugepaged will back off once it sees an exclusive entry, so collapsing
-> > > could only happen once everything is non-exclusive. See
-> > > __collapse_huge_page_isolate() as an example.
-> > 
-> > Ah ok. I think might be good to add that to the commit message, so that
-> > people who don't understand mm deeply (like me) aren't worried when they
-> > stumble over this change in the future again when digging around.
-> 
-> Will do, thanks for raising that concern!
-> 
-> > 
-> > > It's really only page_vma_mapped_walk() callers that are affected by this
-> > > change, not any other page table walkers.
-> > 
-> > I guess my mm understanding is just not up to that, but I couldn't figure
-> > out why just looking at page_vma_mapped_walk() only is good enough?
-> 
-> See above: these never had to handle !page_present() before -- in contrast
-> to the other page table walkers.
->
-> So nothing bad happens when these page table walkers traverse these PTEs,
-> it's just that the functionality will usually be implemented.
-> 
-> Take MADV_PAGEOUT as an example: madvise_cold_or_pageout_pte_range() will
-> simply skip "!pte_present()", because it wouldn't know what to do in that
-> case.
-> 
-> Of course, there could be page table walkers that check all cases and bail
-> out if they find something unexpected: do_swap_page() cannot make forward
-> progress and will inject a VM_FAULT_SIGBUS if it doesn't recognize the
-> entry. But these are rather rare.
-
-Yeah this all makes sense to me now. Thanks a lot for your explanation,
-I'll try to pay it back by trying to review the next version of the series
-a bit.
-
-> We could enlighten selected page table walkers to handle device-exclusive
-> where it really makes sense later.
-
-I think rmap for eviction/migration is really the big one that obviously
-should be fixed. All the other cases I could think of I think just end up
-in handle_mm_fault() to sort out the situation and then retry.
-
-Cheers, Sima
+Looks like you cut off a bit here (or mail transport did that somewhere),
+but see my other reply I don't think this is a legit use-case. So we don't
+have to worry. Well beyond documenting that if userspace concurrently thrashes
+the same page with both device atomics and cpu access it will stall real
+bad.
+-Sima
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
