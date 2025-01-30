@@ -4,88 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EED97C0219B
-	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DD77C02198
+	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8E3610E9F1;
-	Fri,  7 Feb 2025 01:44:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 255F710E9E8;
+	Fri,  7 Feb 2025 01:44:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="akcMk1ic";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="h6Mj3iKL";
 	dkim-atps=neutral
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D52E410E9C4
- for <nouveau@lists.freedesktop.org>; Fri, 24 Jan 2025 15:29:00 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-43634b570c1so16201755e9.0
- for <nouveau@lists.freedesktop.org>; Fri, 24 Jan 2025 07:29:00 -0800 (PST)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFEEC10E056
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 13:19:54 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-38633b5dbcfso786622f8f.2
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 05:19:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1737732539; x=1738337339; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1738243193; x=1738847993; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
  :subject:date:message-id:reply-to;
- bh=w+AUOleCAQXNWX4R6WEOCPMezKuf6jJkTIyVfG+jJvY=;
- b=akcMk1icjUc2NJYeCBvET6aLYxpB9hA+dz5cCmjw61qjzHkm/05+UGh2XiXswCUuHW
- lues6RJXDrzE7yrseo1GfqnKARIbSF+8Q48ezxEG/fNjIOiS6j0VmN0qib3SKLqjfqvV
- UX5++SNcaczspj6JyGjX2sHt9Vk9ryPzJASgA=
+ bh=je4i/r40oAXuV4+p1/WiSxUA0U60ME/6bXfv5n4XiRM=;
+ b=h6Mj3iKLXU3eh6Um6BePH+Or/bYx01PfadqBzfzJHaCwOZQ5pR1BsOec+f91ybmYCp
+ iR7UkfIX4WcLaEihLm9p1HfQMXivtQ9kZSx7HF5ZNsX7ubqLxOh7Oir2EDm80E3BaQfw
+ k0tYb/rz1SKVZOEx6u5iymOwraKMCi1ZYXC+U=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737732539; x=1738337339;
+ d=1e100.net; s=20230601; t=1738243193; x=1738847993;
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=w+AUOleCAQXNWX4R6WEOCPMezKuf6jJkTIyVfG+jJvY=;
- b=LnBeWp+rAQ49kvnIDSpRf2SYV8O7upIjzuF8mVliga3A6E9qMRIKIwuEl4+goqYb+V
- f6oQLQaTrKSVYrdowpiFv8HbWJNYOLZEXqBx50tpIgguUNX4JInj+4HZBvIqIOeWEKp4
- z3SAQVQiFp3yjN5tQ8ObzdzfXkFb04LzQELHFtfnMO9HHIlHqNqsAOuBj96neujI6sFZ
- LAt/HrznYL6YLc97ERZeSLAAelrM4s0O/ny4qSoojXtBTi6ivS52gSzWHkOpYHr1oJJg
- muvCryiJVmm7paSCbwzeD0pItvBpvjtaHqQexZ2cCDL/UaBigVOa4wsow2Gb3wV5s2nH
- JOuQ==
+ bh=je4i/r40oAXuV4+p1/WiSxUA0U60ME/6bXfv5n4XiRM=;
+ b=ObJtMFpQ6NGId1cM8WBRKSKq07ib1gKlEuOdqlCL74flw/NPSyoBiNYRLSDMK54bUn
+ IMcZbKLbVVTh5KzvPMyRGlflsBzQqbgcDMTKHe9pCYVqZK5LXQs7frI6fmGBJd+dJqhn
+ aHbo2La7q9kDX+XEmlge823BGnhrh9VTqEvzo2PiE+bPVVvwvCTzkokXsmbrG//lydIb
+ 4TbZsvJwIM9VHvYR7XlHHd2Lgd2GlyB5msnxbjfJAXm0KF/58wwS/h2oV8jCWYJFMORS
+ ZxHvs7UIkCPI4IvwF2P63tZmHlrpUxWHfcXs4GiMNzQNfCxV8Hr/Ya/8kY6h309AAeQX
+ /NbA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVYqM83xQsso7mWLYYvmOuhD9TePqCjh/Y9T9if4qLIaI3aqEWmcBf70NsSeFSvr1VHIx5cG9DO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy2uVeuUX63+Zuz3DjQlfZ/TxTEMgogHz5P6YtCkevAwIoVd27y
- OOQNEvn+kJ63BaM3XSbMISPYTTy2Z04DqY25JB2keU7z23QQarUhGlNBOSqX42E=
-X-Gm-Gg: ASbGncvnH4KkCLT9Hmq8ms7rCTHtd1zCfxYUkwS1/BkudMiQ0yCM3VqaoFts36WzCnI
- Rd69bYoJI2qVpCKsl1ui5COgi1RMXULPuW/jtY/NnISxJgoFqmXCRQj0gLJ83kVoe/A4bpyXP1O
- zLyAnZ2s8H6qZ0fPh2D85ZmXNF+KFSpEu1VJDbYbUVG6vUyVWKcmEMfKJ40xyWFbW3SfR1Ze7gd
- M4P128yRsN9vYAaZ7X9yLAb7hQ0C1SjvEYZeRH4p84ifVxXTce2Lkjaj26DYWgSBUx3zbFmzpQ6
- JL48I1kV3bPiEFgn
-X-Google-Smtp-Source: AGHT+IG7AtKSShZbMOeW1UKchLmGsIKlwNKebn/4Phf0AM9NhDt5TUVmFQc7i/i3BJ2+0nT3Qeq81w==
-X-Received: by 2002:a5d:64e9:0:b0:386:2ebe:7ae2 with SMTP id
- ffacd0b85a97d-38bf57b8aa7mr28516016f8f.45.1737732539149; 
- Fri, 24 Jan 2025 07:28:59 -0800 (PST)
+ AJvYcCU8UfbgwjoAJNNqQhNOefHIXS93zQdxQToXRStfaaUQa0DHmG4bbjm8BodqyefVmKa2zEx6yo/k@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxiFkZmUCvbFtTymZp0ML/wBP8RpF1xX0psPfByeBruQYoK1Agp
+ 4sKIUtPTqoBOSjAyx0ebuiZCnet7r1sGMzsx+UZ/2fKFq3j+MvPFBYXwa1PEytavtdnukXPYWzf
+ L
+X-Gm-Gg: ASbGncuG6AL6TekIkOqlG0nMSc9vYQA19/IsQCg5Y5uca/l1VrweVVskNwjsnStWX5N
+ MiXOSB5W3bHCBOUeeE96zFEccdldzvGHYREtni/2k2CVUdt4WPxnjjIztKacXjZkvzWOSRKi8sm
+ ffsM1Ri9c+1paVbcOSHSPZ6Wmw7PsIbI821Vp5hOT205r1Be+d/4LdEHJDf9qAilfn6d0bOUjK1
+ lkJ2kZ5q6IetLdRu2TKhnnHgZ+XEi7OT2R0+jYP1CNMgmSxhpTQq6PMN17MgKWsCQjMV2sxZ6Jj
+ qGEkedsmMAsTrVNcjY21vInKuP0=
+X-Google-Smtp-Source: AGHT+IGpIlpBVQ4cq9fFNMeb+rvecigacDPTxIRWc2mwixyppcYhS8KCgcxJ6JU5vKwfdjCrG9DHJQ==
+X-Received: by 2002:a5d:5f56:0:b0:385:d7f9:f157 with SMTP id
+ ffacd0b85a97d-38c51e957b9mr6367577f8f.36.1738243193249; 
+ Thu, 30 Jan 2025 05:19:53 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-38c2a17662bsm3012012f8f.4.2025.01.24.07.28.58
+ ffacd0b85a97d-38c5c101599sm1939047f8f.23.2025.01.30.05.19.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 24 Jan 2025 07:28:58 -0800 (PST)
-Date: Fri, 24 Jan 2025 16:28:56 +0100
+ Thu, 30 Jan 2025 05:19:52 -0800 (PST)
+Date: Thu, 30 Jan 2025 14:19:50 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
 To: David Hildenbrand <david@redhat.com>
-Cc: "linux-mm@kvack.org" <linux-mm@kvack.org>,
- John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org,
- Jason Gunthorpe <jgg@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
+Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>,
  Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [Question] Are "device exclusive non-swap entries" / "SVM
- atomics in Nouveau" still getting used in practice?
-Message-ID: <Z5OxuGMGT-OvMy5P@phenom.ffwll.local>
+ Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>,
+ Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
+ Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v1 12/12] mm/rmap: keep mapcount untouched for
+ device-exclusive entries
+Message-ID: <Z5t8dkujVv7xZiuV@phenom.ffwll.local>
 Mail-Followup-To: David Hildenbrand <david@redhat.com>,
- "linux-mm@kvack.org" <linux-mm@kvack.org>,
- John Hubbard <jhubbard@nvidia.com>, nouveau@lists.freedesktop.org,
- Jason Gunthorpe <jgg@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>,
- DRI Development <dri-devel@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>,
  Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
-References: <346518a4-a090-4eaa-bc04-634388fd4ca3@redhat.com>
- <Z5JbYC2-slPU0l3n@phenom.ffwll.local>
- <8c6f3838-f194-4a42-845d-10011192a234@redhat.com>
+ Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>,
+ Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
+ Jason Gunthorpe <jgg@nvidia.com>
+References: <20250129115411.2077152-1-david@redhat.com>
+ <20250129115411.2077152-13-david@redhat.com>
+ <Z5tWYpwpUfgEmeKj@phenom.ffwll.local>
+ <887df26d-b8bb-48df-af2f-21b220ef22e6@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <8c6f3838-f194-4a42-845d-10011192a234@redhat.com>
-X-Operating-System: Linux phenom 6.12.3-amd64 
+In-Reply-To: <887df26d-b8bb-48df-af2f-21b220ef22e6@redhat.com>
+X-Operating-System: Linux phenom 6.12.11-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,114 +121,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jan 24, 2025 at 11:44:28AM +0100, David Hildenbrand wrote:
-> On 23.01.25 16:08, Simona Vetter wrote:
-> > On Thu, Jan 23, 2025 at 11:20:37AM +0100, David Hildenbrand wrote:
-> > > Hi,
-> > > 
-> > > I keep finding issues in our implementation of "device exclusive non-swap
-> > > entries", and the way it messes with mapcounts is disgusting.
-> > > 
-> > > As a reminder, what we do here is to replace a PTE pointing to an anonymous
-> > > page by a "device exclusive non-swap entry".
-> > > 
-> > > As long as the original PTE is in place, the only CPU can access it, as soon
-> > > as the "device exclusive non-swap entry" is in place, only the device can
-> > > access it. Conversion back and forth is triggered by CPU / device faults.
-> > > 
-> > > I have fixes/reworks/simplifications for most things, but as there is only a
-> > > "real" single user in-tree of make_device_exclusive():
-> > > 
-> > > 	drivers/gpu/drm/nouveau/nouveau_svm.c
-> > > 
-> > > to "support SVM atomics in Nouveau [1]"
-> > > 
-> > > naturally I am wondering: is this still a thing on actual hardware, or is it
-> > > already stale on recent hardware and not really required anymore?
-> > > 
-> > > 
-> > > [1] https://lore.kernel.org/linux-kernel//6621654.gmDyfcmpjF@nvdebian/T/
+On Thu, Jan 30, 2025 at 12:42:26PM +0100, David Hildenbrand wrote:
+> On 30.01.25 11:37, Simona Vetter wrote:
+> > On Wed, Jan 29, 2025 at 12:54:10PM +0100, David Hildenbrand wrote:
+> > > Now that conversion to device-exclusive does no longer perform an
+> > > rmap walk and the main page_vma_mapped_walk() users were taught to
+> > > properly handle nonswap entries, let's treat device-exclusive entries just
+> > > as if they would be present, similar to how we handle device-private
+> > > entries already.
 > > 
+> > So the reason for handling device-private entries in rmap is so that
+> > drivers can rely on try_to_migrate and related code to invalidate all the
+> > various ptes even for device private memory. Otherwise no one should hit
+> > this path, at least if my understanding is correct.
 > 
-> Thanks for your answer!
+> Right, device-private probably only happen to be seen on the migration path
+> so far.
 > 
-> Nvidia folks told me on a different channel that it's still getting used.
-> 
-> > As long as you don't have a coherent interconnect it's needed. On intel
-> > discrete device atomics require device memory, so they need full hmm
-> > migration (and hence wont use this function even once we land intel gpu
-> > svm code in upstream).
-> 
-> Makes sense.
-> 
-> > On integrated the gpu is tied into the coherency
-> > fabric, so there it's not needed.
 > > 
-> > I think the more fundamental question with both this function here and
-> > with forced migration to device memory is that there's no guarantee it
-> > will work out.
+> > So I'm very much worried about opening a can of worms here because I think
+> > this adds a genuine new case to all the various callers.
 > 
-> Yes, in particular with device-exclusive, it doesn't really work with THP
-> and is only limited to anonymous memory. I have patches to at least make it
-> work reliably with THP.
-
-I should have crawled through the implementation first before replying.
-Since it only looks at folio_mapcount() make_device_exclusive() should at
-least in theory work reliably on anon memory, and not be impacted by
-elevated refcounts due to migration/ksm/thp/whatever. This is unlike
-device atomics that require migration to device memory, which is just
-fundamentally not a reliable thing.
-
-> Then, we seem to give up too easily if we cannot lock the folio when wanting
-> to convert to device-exclusive, which also looks rather odd. But well, maybe
-> it just works good enough in the common case, or there is some other retry
-> logic that makes it fly.
-
-I've crawled through the path to migrate pages from device memory back to
-system memory a few months ago, and found some livelock issues in there.
-Wouldn't be surprised if m_d_e has some of the same, but I didn't dig
-through it (least because intel can't use it because not-so-great hw
-design).
-
-> > At least that's my understanding. And for this gpu device
-> > atomics without coherent interconnect idea to work, we'd need to be able
-> > to guarantee that we can make any page device exclusive. So from my side I
-> > have some pretty big question marks on this entire thing overall.
+> To be clear: it can all already happen.
 > 
-> I don't think other memory (shmem/file/...) is really feasible as soon as
-> other processes (not the current process) map/write/read file pages.
-
-Yeah none of the apis that use this internally in their implementations
-make any promises beyond memory acquired with libc's malloc() or one of
-the variants. So this limitation is fine.
-
-> We could really only handle if we converted a single PTE and that PTE is
-> getting converted back again.
+> Assume you have a THP (or any mTHP today). You can easily trigger the
+> scenario that folio_mapcount() != 0 with active device-exclusive entries,
+> and you start doing rmap walks and stumble over these device-exclusive
+> entries and *not* handle them properly. Note that more and more systems are
+> configured to just give you THP unless you explicitly opted-out using
+> MADV_NOHUGEPAGE early.
 > 
-> There are other concerns I have (what if the page is pinned and access
-> outside of the user space page tables?). Maybe there was not need to handle
-> these cases so far.
-
-I think that's also ok, but might be good to document this clearly that
-concurrent direct i/o or rdma registered buffer or whatever will mess with
-this. The promise is only between the gpu and the cpu, not anything else,
-in current apis. At least to my knowledge.
-
-> So best I can do is make anonymous memory more reliable with
-> device-exclusive and fixup some of the problematic parts that I see (e.g.,
-> broken page reclaim, page migration, ...).
+> Note that b756a3b5e7ea added that hunk that still walks these
+> device-exclusive entries in rmap code, but didn't actually update the rmap
+> walkers:
 > 
-> But before starting to cleanup+improve the existing handling of anonymous
-> memory, I was wondering if this whole thing is getting used at all.
+> @@ -102,7 +104,8 @@ static bool check_pte(struct page_vma_mapped_walk *pvmw)
+> 
+>                 /* Handle un-addressable ZONE_DEVICE memory */
+>                 entry = pte_to_swp_entry(*pvmw->pte);
+> -               if (!is_device_private_entry(entry))
+> +               if (!is_device_private_entry(entry) &&
+> +                   !is_device_exclusive_entry(entry))
+>                         return false;
+> 
+>                 pfn = swp_offset(entry);
+> 
+> That was the right thing to do, because they resemble PROT_NONE entries and
+> not migration entries or anything else that doesn't hold a folio reference).
 
-Yeah if this can be made reliable (under the limitation of only anon
-memory and only excluding userspace access) then I expect we'll need this
-for a very long time. I just had no idea whether even that is possible.
+Yeah I got that part. What I meant is that doubling down on this needs a
+full audit and cannot rely on "we already have device private entries
+going through these paths for much longer", which was the impression I
+got. I guess it worked, thanks for doing that below :-)
 
-What isn't good is if it's only mostly reliable, like the current
-pgmap->ops->migrate_to_ram() path in do_swap_page() still is. But that one
-is fixable, the patches should be floating around somewhere.
+And at least from my very rough understanding of mm, at least around all
+this gpu stuff, tracking device exclusive mappings like real cpu mappings
+makes sense, they do indeed act like PROT_NONE with some magic to restore
+access on fault.
+
+I do wonder a bit though what else is all not properly tracked because
+they should be like prot_none except arent. I guess we'll find those as we
+hit them :-/
+
+> Fortunately, it's only the page_vma_mapped_walk() callers that need care.
+> 
+> mm/rmap.c is handled with this series.
+> 
+> mm/page_vma_mapped.c should work already.
+> 
+> mm/migrate.c: does not apply
+> 
+> mm/page_idle.c: likely should just skip !pte_present().
+> 
+> mm/ksm.c might be fine, but likely we should just reject !pte_present().
+> 
+> kernel/events/uprobes.c likely should reject !pte_present().
+> 
+> mm/damon/paddr.c likely should reject !pte_present().
+> 
+> 
+> I briefly though about a flag to indicate if a page_vma_mapped_walk()
+> supports these non-present entries, but likely just fixing them up is
+> easier+cleaner.
+> 
+> Now that I looked at all, I might just write patches for them.
+> 
+> > 
+> > > This fixes swapout/migration of folios with device-exclusive entries.
+> > > 
+> > > Likely there are still some page_vma_mapped_walk() callers that are not
+> > > fully prepared for these entries, and where we simply want to refuse
+> > > !pte_present() entries. They have to be fixed independently; the ones in
+> > > mm/rmap.c are prepared.
+> > 
+> > The other worry is that maybe breaking migration is a feature, at least in
+> > parts.
+> 
+> Maybe breaking swap and migration is a feature in some reality, in this
+> reality it's a BUG :)
+
+Oh yeah I agree on those :-)
+
+> If thp constantly reassembles a pmd entry because hey all the
+> > memory is contig and userspace allocated a chunk of memory to place
+> > atomics that alternate between cpu and gpu nicely separated by 4k pages,
+> > then we'll thrash around invalidating ptes to no end. So might be more
+> > fallout here.
+> 
+> khugepaged will back off once it sees an exclusive entry, so collapsing
+> could only happen once everything is non-exclusive. See
+> __collapse_huge_page_isolate() as an example.
+
+Ah ok. I think might be good to add that to the commit message, so that
+people who don't understand mm deeply (like me) aren't worried when they
+stumble over this change in the future again when digging around.
+
+> It's really only page_vma_mapped_walk() callers that are affected by this
+> change, not any other page table walkers.
+
+I guess my mm understanding is just not up to that, but I couldn't figure
+out why just looking at page_vma_mapped_walk() only is good enough?
+
+> It's unfortunate that we now have to fix it all up, that original series
+> should have never been merged that way.
+
+Yeah looks like a rather big miss.
 -Sima
+
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
