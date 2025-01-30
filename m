@@ -4,76 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88709C0219E
-	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A45DC02194
+	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A41010E9F2;
-	Fri,  7 Feb 2025 01:44:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5854910E9EC;
+	Fri,  7 Feb 2025 01:44:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="SMvtZCtH";
+	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="EzxXnG2f";
 	dkim-atps=neutral
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C61F610E413
- for <nouveau@lists.freedesktop.org>; Tue,  3 Sep 2024 07:32:56 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-374d29ad8a7so636794f8f.2
- for <nouveau@lists.freedesktop.org>; Tue, 03 Sep 2024 00:32:56 -0700 (PDT)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D99710E22E
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 13:00:24 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-43618283dedso7858215e9.3
+ for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 05:00:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1725348775; x=1725953575; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=jStyz7cF/GRPSLiBq7afoHfr3JzNU62RShSwfRKzITo=;
- b=SMvtZCtHavOoC37wsT0kwrO0ywLGRn+6pMbDVTEzdA8wn7vKFTM1vabUrGyLio2GeY
- cBnvo9glEUkvaUsbNgG5zj2+CekxSOYPXy+pRhX7WrcosqoFUaYeuWeS02W4VPdEYjFO
- nTLJ4i9OMmBWpIhJ/DbJ3C1rOr+4U/tidJsu0=
+ d=ffwll.ch; s=google; t=1738242023; x=1738846823; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PWEfvcfTsN7T0tilikMhQJMX7DbMz278YnuholCTh1k=;
+ b=EzxXnG2fJrjORzLdJ9bsQveKZktl0xdbF0laKvyhT2EcsTKJB8EZHzItA+IW6FtDOy
+ /hEP/lbGfoz8jVV+ANmUiBlG2tbcR1jJ2AWomcRdWq3oflDxYgafWgRAcxse533HV6sG
+ N+t0q6T/quoW5vys4OCmm0wmkul4Z9Ho70YHo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1725348775; x=1725953575;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jStyz7cF/GRPSLiBq7afoHfr3JzNU62RShSwfRKzITo=;
- b=nmHXnjQrvWMTiPlhPQrarC6oRbfCbsr7V6FE4ZgA+7vPutXg7N7UV6YLbLLUN2GbXx
- j7KkRVoqC9WS0wksArsxSDEDF9bm/TmAhwXl3hhgAS9T3TQLiw+P6DPlkEiIRtOZ538F
- HLNeSQhW36FP5ANwkHdQ+1y+7pwHRgPcnGpbAU2/0gR9nc5shK+Dy371hwPvO/DMvikN
- T1CYqsyWbOAMP8Otf/UlZZEOW27MvmjClYf1PWoWDAvPqr0UVWRGhDy2XmnCGnJk4pzW
- L91LADkcsGENy2qGvmqsSTsC6IjmYyFgaclBDtAhkxV/ewPzukDhGsA5CYvDaXfdJFoY
- 71cA==
+ d=1e100.net; s=20230601; t=1738242023; x=1738846823;
+ h=in-reply-to:content-disposition:mime-version:references
+ :mail-followup-to:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=PWEfvcfTsN7T0tilikMhQJMX7DbMz278YnuholCTh1k=;
+ b=PYv5QgjxV2RA4tK8wVI/KnuimhuxQrChpZNf/A7aKhX2DDDivwRaMCQGCLOJgMK711
+ h0keAKxhuo5C4/syn0c6itQ8RQu6uEzvJ8lfgVvDz6My7lKRgiPLnHjGdw97goJHrmaM
+ pGh+qBF9hWQ9hVOIyVk6IqX3hoOrbBD2untoVJJoA4XQXyNu5NTJAVc3spOWp+jcsZPq
+ e0NVNOlVCRYgBxBr0hVxOcdC0dpKMy0eURh9B5GnhOnbgZp5WSvgx05usdT2XRjCftZv
+ 8X7TvSbioDjZvwlXH3MKZegMEwpjWp2YCs6bukofnTXHDFUMVkVSK1CKx3HFzlbfLXDw
+ vuFw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW+61S/1XodtwehNPE9EccX0cY/ycd1h/SCGtCYIbKDIjlyTQJRgYhKjv2ch0QnJ/rF4hLS2QUJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx5wsmdQQDVx+yaFfxq/gUlQymNeBSe8vHO92A2CAuGoAxas+ff
- 5BDtCN6SPDT8iUcjbpjPaICC/cfLkiCGBgeGDnGlXdnK/eCJkjpfQmWbio3Paq8=
-X-Google-Smtp-Source: AGHT+IGgQUY7p0fwPG8ckVOXs6G5z6LEBN/3GIwOhXGelUa0A/UnYm2cH9vzWq0+BrRRjfVRAHkMdQ==
-X-Received: by 2002:adf:fc4d:0:b0:368:3717:10aa with SMTP id
- ffacd0b85a97d-374c9455425mr3438719f8f.11.1725348774560; 
- Tue, 03 Sep 2024 00:32:54 -0700 (PDT)
+ AJvYcCXxgOqk69vmaE1d2+dnDVUnNIpJphaQHNrm+s87brQowlrZJ3LuBNLB5mkNbhq3y9Yw162nsXdh@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxKAuXnFC0BThiwkRTsx6hF5R1JoKkFgKN0MsQOtwPUj/kSAtVg
+ 5H1Hft2wwghLNv/ELX6/x/iF7KpycmRQI3YaincJ2wpXZyOyclklm7+QCc+7elE=
+X-Gm-Gg: ASbGnctt9pGAneMGAQSn7zaMsoX5y+M5FYHRyOWc4TPYQYvblGPnjcpM1VRlCrSDQEI
+ BtMLkw4PicLdwU29nv0wGWWP/mZb1xnTVxjUf/lg1xuhM5QjIFwDWfXqhV6hMTtxgj7l7kU/AKI
+ n5572kaOUU+Wd17n2xWCQkSISuGcCPpxh60g/3GkHQzwVvXQvQjIQECgFO0k58UKa6kTrdWEXSZ
+ F+5taevYDET++gmpinv6R2rvxYyhekuHTNtoCVToDmIg2334wHENKkxX+MgUeTvwCTjmsucYHUt
+ 6avV5e3DmQHIregJo2lc0lf3mu8=
+X-Google-Smtp-Source: AGHT+IG/nMuUBD3KzbbfR2aeV/qZxqQT5Q4oWBw/1zX9VuChXzIPGd76LlGfkfl60EN6WAkMb4jFOQ==
+X-Received: by 2002:a5d:5986:0:b0:385:ec6e:e87a with SMTP id
+ ffacd0b85a97d-38c520904ebmr6377248f8f.43.1738242022392; 
+ Thu, 30 Jan 2025 05:00:22 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-374cc75a5fbsm4256548f8f.80.2024.09.03.00.32.53
+ ffacd0b85a97d-38c5c1b59f6sm1937111f8f.69.2025.01.30.05.00.21
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Sep 2024 00:32:54 -0700 (PDT)
-Date: Tue, 3 Sep 2024 09:32:51 +0200
+ Thu, 30 Jan 2025 05:00:21 -0800 (PST)
+Date: Thu, 30 Jan 2025 14:00:19 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: Danilo Krummrich <dakr@redhat.com>
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch,
- ojeda@kernel.org, alex.gaynor@gmail.com, wedsonaf@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@samsung.com,
- aliceryhl@google.com, lina@asahilina.net, pstanner@redhat.com,
- ajanulgu@redhat.com, lyude@redhat.com, gregkh@linuxfoundation.org,
- robh@kernel.org, daniel.almeida@collabora.com,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/8] DRM Rust abstractions and Nova
-Message-ID: <Zta7o089vlSbfZbq@phenom.ffwll.local>
-References: <20240618233324.14217-1-dakr@redhat.com>
- <ZtXqYGt3g_YY7RUN@phenom.ffwll.local>
+To: David Hildenbrand <david@redhat.com>
+Cc: Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>,
+ Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH v1 04/12] mm/rmap: implement make_device_exclusive()
+ using folio_walk instead of rmap walk
+Message-ID: <Z5t34-0K9FJKVQe6@phenom.ffwll.local>
+Mail-Followup-To: David Hildenbrand <david@redhat.com>,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
+ Pasha Tatashin <pasha.tatashin@soleen.com>,
+ Peter Xu <peterx@redhat.com>, Jason Gunthorpe <jgg@nvidia.com>
+References: <20250129115411.2077152-1-david@redhat.com>
+ <20250129115411.2077152-5-david@redhat.com>
+ <7tzcpx23vufmp5cxutnzhjgdj7kwqrw5drwochpv5ern7zknhj@h2s6y2qjbr3f>
+ <Z5tI-cOSyzdLjoe_@phenom.ffwll.local>
+ <54a55ff7-38c8-42c2-886f-d6d1985072a9@redhat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ZtXqYGt3g_YY7RUN@phenom.ffwll.local>
-X-Operating-System: Linux phenom 6.9.12-amd64 
+In-Reply-To: <54a55ff7-38c8-42c2-886f-d6d1985072a9@redhat.com>
+X-Operating-System: Linux phenom 6.12.11-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -89,124 +120,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Sep 02, 2024 at 06:40:00PM +0200, Daniel Vetter wrote:
-> On Wed, Jun 19, 2024 at 01:31:36AM +0200, Danilo Krummrich wrote:
-> > This patch series implements some basic DRM Rust abstractions and a stub
-> > implementation of the Nova GPU driver.
+On Thu, Jan 30, 2025 at 10:47:29AM +0100, David Hildenbrand wrote:
+> On 30.01.25 10:40, Simona Vetter wrote:
+> > On Thu, Jan 30, 2025 at 05:11:49PM +1100, Alistair Popple wrote:
+> > > On Wed, Jan 29, 2025 at 12:54:02PM +0100, David Hildenbrand wrote:
+> > > > We require a writable PTE and only support anonymous folio: we can only
+> > > > have exactly one PTE pointing at that page, which we can just lookup
+> > > > using a folio walk, avoiding the rmap walk and the anon VMA lock.
+> > > > 
+> > > > So let's stop doing an rmap walk and perform a folio walk instead, so we
+> > > > can easily just modify a single PTE and avoid relying on rmap/mapcounts.
+> > > > 
+> > > > We now effectively work on a single PTE instead of multiple PTEs of
+> > > > a large folio, allowing for conversion of individual PTEs from
+> > > > non-exclusive to device-exclusive -- note that the other way always
+> > > > worked on single PTEs.
+> > > > 
+> > > > We can drop the MMU_NOTIFY_EXCLUSIVE MMU notifier call and document why
+> > > > that is not required: GUP will already take care of the
+> > > > MMU_NOTIFY_EXCLUSIVE call if required (there is already a device-exclusive
+> > > > entry) when not finding a present PTE and having to trigger a fault and
+> > > > ending up in remove_device_exclusive_entry().
+> > > 
+> > > I will have to look at this a bit more closely tomorrow but this doesn't seem
+> > > right to me. We may be transitioning from a present PTE (ie. a writable
+> > > anonymous mapping) to a non-present PTE (ie. a device-exclusive entry) and
+> > > therefore any secondary processors (eg. other GPUs, iommus, etc.) will need to
+> > > update their copies of the PTE. So I think the notifier call is needed.
 > > 
-> > Nova is intended to be developed upstream, starting out with just a stub driver
-> > to lift some initial required infrastructure upstream. A more detailed
-> > explanation can be found in [1].
-> > 
-> > This patch series is based on the "Device / Driver and PCI Rust abstractions"
-> > series [2].
-> > 
-> > The DRM bits can also be found in [3] and the Nova bits in [4].
-> > 
-> > Changes in v2:
-> > ==============
-> > - split up the DRM device / driver abstractions in three separate commits
-> > - separate `struct drm_device` abstraction in a separte source file more
-> >   cleanly
-> > - switch `struct drm_driver` and `struct file_operations` to 'static const'
-> >   allocations
-> > - implement `Registration::new_foreign_owned` (using `Devres`), such that we
-> >   don't need to keep the `Registration` alive on the Rust side, but
-> >   automatically revoke it on device unbind
-> > - add missing DRM driver features (Rob)
-> > - use `module_pci_driver!` macro in Nova
-> > - use a const sized `pci::Bar` in Nova
-> > - increase the total amount of Documentation, rephrase some safety comments and
-> >   commit messages for less ambiguity
-> > - fix compilation issues with some documentation example
-> > 
-> > [1] https://lore.kernel.org/dri-devel/Zfsj0_tb-0-tNrJy@cassiopeiae/T/#u
-> > [2] Reply to this mail titled "Device / Driver and PCI Rust abstractions".
-> > [3] https://gitlab.freedesktop.org/drm/misc/kernel/-/tree/topic/rust-drm
-> > [4] https://gitlab.freedesktop.org/drm/nova/-/tree/nova-next
+> > I guess this is a question of semantics we want, for multiple gpus do we
+> > require that device-exclusive also excludes other gpus or not. I'm leaning
+> > towards agreeing with you here.
 > 
-> Ok finally stopped dragging my feet on this, went through my old comments,
-> looked at stuff again, and wrote some replies.
-> 
-> I think all but the question around type safety for drm_driver->features
-> can be sorted out post-merge, when we have a driver that needs it. The
-> feature flags stuff I think essentially makes the current abstraction
-> unsafe, and you can blow up when constructing a new drm::Device instance
-> if you're creative enough I think.
+> See my reply, it's also relevant for non-device, such as KVM. So it's the
+> right thing to do.
 
-Oh one thing I've forgotten: I think for the subclassing pattern in rust
-there's clear consensus now, at least from my discussion with Lyude on the
-modeset side of things. Well maybe aside from the little issue that rust
-doesn't guarantee uniqueness for static const ops pointers, but apparently
-that's getting addressed. One thing I'd really like us to be consistent at
-though is not just the pattern, but the naming (like RawFoo vs whatever
-else people came up with) of the different struct/traits, so would be
-really good to document that somewhere for drm and make sure we follow it
-in all the gpu related rust bindings. Unless upstream has that already
-(maybe as part of the device/driver binding stuff).
+Yeah sounds good.
+
+> > > > Note that the PTE is
+> > > > always writable, and we can always create a writable-device-exclusive
+> > > > entry.
+> > > > 
+> > > > With this change, device-exclusive is fully compatible with THPs /
+> > > > large folios. We still require PMD-sized THPs to get PTE-mapped, and
+> > > > supporting PMD-mapped THP (without the PTE-remapping) is a different
+> > > > endeavour that might not be worth it at this point.
+> > 
+> > I'm not sure we actually want hugepages for device exclusive, since it has
+> > an impact on what's allowed and what not. If we only ever do 4k entries
+> > then userspace can assume that as long atomics are separated by a 4k page
+> > there's no issue when both the gpu and cpu hammer on them. If we try to
+> > keep thp entries then suddenly a workload that worked before will result
+> > in endless ping-pong between gpu and cpu because the separate atomic
+> > counters (or whatever) now all sit in the same 2m page.
+> 
+> Agreed. And the conversion + mapping into the device gets trickier.
+> 
+> > 
+> > So going with thp might result in userspace having to spread out atomics
+> > even more, which is just wasting memory and not saving any tlb entries
+> > since often you don't need that many.
+> > 
+> > tldr; I think not supporting thp entries for device exclusive is a
+> > feature, not a bug.
+> 
+> So, you agree with my "different endeavour that might not be worth it"
+> statement?
+
+Yes.
+
+Well I think we should go further and clearly document that we
+intentionally return split pages. Because it's part of the uapi contract
+with users of all this.
+
+And if someone needs pmd entries for performance or whatever, we need two
+things:
+
+a) userspace must mmap that memory as hugepage memory, to clearly signal
+the promise that atomics are split up on hugepage sizes and not just page
+size
+
+b) we need to extend make_device_exclusive and drivers to handle the
+hugetlb folio case
+
+I think thp is simply not going to work here, it's impossible (without
+potentially causing fault storms) to figure out what userspace might want.
 
 Cheers, Sima
-
-> > Asahi Lina (4):
-> >   rust: drm: ioctl: Add DRM ioctl abstraction
-> >   rust: Add a Sealed trait
-> >   rust: drm: file: Add File abstraction
-> >   rust: drm: gem: Add GEM object abstraction
-> > 
-> > Danilo Krummrich (4):
-> >   rust: drm: add driver abstractions
-> >   rust: drm: add device abstraction
-> >   rust: drm: add DRM driver registration
-> >   nova: add initial driver stub
-> > 
-> >  MAINTAINERS                     |  10 +
-> >  drivers/gpu/drm/Kconfig         |   2 +
-> >  drivers/gpu/drm/Makefile        |   1 +
-> >  drivers/gpu/drm/nova/Kconfig    |  12 +
-> >  drivers/gpu/drm/nova/Makefile   |   3 +
-> >  drivers/gpu/drm/nova/driver.rs  |  85 +++++++
-> >  drivers/gpu/drm/nova/file.rs    |  70 ++++++
-> >  drivers/gpu/drm/nova/gem.rs     |  50 ++++
-> >  drivers/gpu/drm/nova/gpu.rs     | 173 ++++++++++++++
-> >  drivers/gpu/drm/nova/nova.rs    |  18 ++
-> >  include/uapi/drm/nova_drm.h     | 101 ++++++++
-> >  rust/bindings/bindings_helper.h |   5 +
-> >  rust/helpers.c                  |  23 ++
-> >  rust/kernel/drm/device.rs       | 182 ++++++++++++++
-> >  rust/kernel/drm/drv.rs          | 199 ++++++++++++++++
-> >  rust/kernel/drm/file.rs         | 116 +++++++++
-> >  rust/kernel/drm/gem/mod.rs      | 409 ++++++++++++++++++++++++++++++++
-> >  rust/kernel/drm/ioctl.rs        | 153 ++++++++++++
-> >  rust/kernel/drm/mod.rs          |   9 +
-> >  rust/kernel/lib.rs              |   7 +
-> >  rust/uapi/uapi_helper.h         |   2 +
-> >  21 files changed, 1630 insertions(+)
-> >  create mode 100644 drivers/gpu/drm/nova/Kconfig
-> >  create mode 100644 drivers/gpu/drm/nova/Makefile
-> >  create mode 100644 drivers/gpu/drm/nova/driver.rs
-> >  create mode 100644 drivers/gpu/drm/nova/file.rs
-> >  create mode 100644 drivers/gpu/drm/nova/gem.rs
-> >  create mode 100644 drivers/gpu/drm/nova/gpu.rs
-> >  create mode 100644 drivers/gpu/drm/nova/nova.rs
-> >  create mode 100644 include/uapi/drm/nova_drm.h
-> >  create mode 100644 rust/kernel/drm/device.rs
-> >  create mode 100644 rust/kernel/drm/drv.rs
-> >  create mode 100644 rust/kernel/drm/file.rs
-> >  create mode 100644 rust/kernel/drm/gem/mod.rs
-> >  create mode 100644 rust/kernel/drm/ioctl.rs
-> >  create mode 100644 rust/kernel/drm/mod.rs
-> > 
-> > 
-> > base-commit: 6646240d29b11de3177f71ff777d0ae683c32623
-> > -- 
-> > 2.45.1
-> > 
-> 
-> -- 
-> Simona Vetter
-> Software Engineer, Intel Corporation
-> http://blog.ffwll.ch
-
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
