@@ -4,104 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C864C0219B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2459C0219F
 	for <nouveau@archiver.kernel.org>; Fri,  7 Feb 2025 01:44:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14C3010E9F6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 508C210E9FB;
 	Fri,  7 Feb 2025 01:44:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=ffwll.ch header.i=@ffwll.ch header.b="ibKg5JbF";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="I3w/9KbK";
 	dkim-atps=neutral
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
- [209.85.128.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3FC810E922
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 10:10:59 +0000 (UTC)
-Received: by mail-wm1-f53.google.com with SMTP id
- 5b1f17b1804b1-4361f664af5so6739805e9.1
- for <nouveau@lists.freedesktop.org>; Thu, 30 Jan 2025 02:10:59 -0800 (PST)
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8044F10E3DA
+ for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 16:59:30 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-4361c705434so17197035e9.3
+ for <nouveau@lists.freedesktop.org>; Fri, 31 Jan 2025 08:59:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1738231858; x=1738836658; darn=lists.freedesktop.org; 
+ d=ffwll.ch; s=google; t=1738342769; x=1738947569; darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date:from:to:cc
  :subject:date:message-id:reply-to;
- bh=93vOIonXuhhlCsVZNUEtlATNESA+m5aY8gZZwzqgor4=;
- b=ibKg5JbFwr7qkxk/89t0unoCCl9ZPswtLoJlWl5P1SMVWY7mY7iwCgHIhfpDD/qqR4
- Lq5rv18kmJdwICPh7ZxrT0/FIRVfonFTMAlB2SDIbVpnupD3duByi4OFX3aAHUK7hF1J
- nf/oxD2/5/KB1L6wCPuTqSFxAnpOReCfDLvaI=
+ bh=VV6lM3YFA6dZ2gmoOiF/2v5mb84a3EuFvSRPBCXsykU=;
+ b=I3w/9KbKfX0TIVjPWnRQhiBUtM5LOz0r7ywA3AaKwAxy8O2SDg0lAOWPPPtZ+rnDYP
+ jyYv8kcEUdSU0hNCiRXsULsPI1+wlx+dndvkcEpXJSZB8c/42eBWUlUMdJCzPu3/VR0Y
+ HaFPXcHYKzj1sGDh5EZkvh5JIwzoUUhWR4O7c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738231858; x=1738836658;
+ d=1e100.net; s=20230601; t=1738342769; x=1738947569;
  h=in-reply-to:content-disposition:mime-version:references
  :mail-followup-to:message-id:subject:cc:to:from:date
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=93vOIonXuhhlCsVZNUEtlATNESA+m5aY8gZZwzqgor4=;
- b=GV5Q19ETEArEQdemwwCaiwDVk7LzSwfhTfqXDxGkwZH07q2AK08YzLXZceA1XTMP1x
- dp4aPHdzSU7UZtp3oQqveWzKT+4rkGODAoBrt1R0wqOlWgAboCnBbU2oexDGGbw+91Jv
- WicLHZZPKUFPaEJBb6O1zhwH9XnFv3zAGvPv7m+20eaasZu8LW9ooBXY8VQgxn1k4NWW
- kBRy3q6BjkhEnvdV3BEMTIKEpRtcPcp75C1dDO4c9PSTSOi7OceBwMhXt3SKRaAnhR4O
- /aiDwF2A/SE3kRZdiNJR/yhLS2lo1CrF0NAOhhzVlXLlIdT818FQX/+nVuchUGfRzPX8
- eI7A==
+ bh=VV6lM3YFA6dZ2gmoOiF/2v5mb84a3EuFvSRPBCXsykU=;
+ b=iUDH3+/+p9mMXlq758voUnSRinnJAjXhNK/pfFHfXZKkz7MBRh5MCvRjs+IccTQ8tL
+ sC6VktUBVvoo9phvYCL4NQHgOh7FPqr6pCUaySko5prVpK9RZ2+6nADAJIZLMfMwwGQj
+ GhQmZTUwHRZwewMLooDKSoavPZcSbXhshr5bwB6cOwoELVC10jUOAr28Y7YYLYWwl5i+
+ bw009sI+6lTCO/WGjfjUOoV+7iDFtuw70Q755aC59GsEEzAC5kM/qnVfZBlitf8M5KJg
+ WFDo9b66XKwooLxa6K+yQ3lR9mguN19iD8y5YTiReLeDA9rkrKDUNKr5Zf1zM3PjDPhp
+ qLrQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXfjDhNduJPK1JzQP2OYbIqKSttexPEAfX4KlDQVhnWPoN2fjMj0hF7aHjTQVzVZSYqayj98zcG@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxe3wnYCX+EgY5Ya4Sj1mtIBWvOtrMQf878qcSF+tox+zUSRrZe
- K5THVJDmE/T3+GfbCuH/Ld6CuIQH/b1tIYpdashpjlYWEeMBVbPPC1FxOqunZ3M=
-X-Gm-Gg: ASbGncvM+ZOxbdOxYMPg1yk/nXQYhumiR1Cp2Qh3oqWrVc4HYrT+cktzoF9vWjzsI/5
- YnRbUejGSf7SQhgEKhWdmkGbiKs9wVGu2PNSzOpMLKgMIgL0/+yTMRrwN1G80vBI6qtLcrb1tST
- h/cWxwaJ0UyNfEMzwZ56k4wpGV6wpCBPyLcgHUlVm862XKT6cdxaUDVwPLdaCsCdpuBjdn6fCXS
- CnMPmn+WuUtjCsFGhPVaT4AliSRjibcObgPPGW4G95OG38NddA7UfrShSsLSyc/W/HFOvnObphD
- ZLh74tGXgWsnqtwGRAqXRv3LgFI=
-X-Google-Smtp-Source: AGHT+IGJbnpeQf8B7cOXmXj6f06PfyU+GyWQpPIgeE+bqBElNwC7Ri+H94bg3ZkKWdVeU5p3l70P8w==
-X-Received: by 2002:a05:600c:3501:b0:434:a7e3:db5c with SMTP id
- 5b1f17b1804b1-438e2446708mr19019575e9.11.1738231858001; 
- Thu, 30 Jan 2025 02:10:58 -0800 (PST)
+ AJvYcCX5TKFzLQdkcEOmz/9wrNes1rNghDhvU7WrxGkV7Di26yHKtKGpMRUE4a0yASWovp+XUAw8+Fcj@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+8YIomyGt3phf1nvMMKhz/GSLmA1UtWIKVFXJmffDINLF50nE
+ L1rF3NVbzJU8d3/fL0DP4WQmVoey4IeUq0qs6gCRnUsit5jsxJoRequNvcDIN9c=
+X-Gm-Gg: ASbGncvgZH0WFczfFogklGPiH6wO+4KtH0nT4yUlaGbOA6du7q5N7bvb3yBvt1BKVXh
+ qodFr0JFhVcr219GykyO5fynF3cMAXmPmYb91KFmr1ewOOBDcgzR5DN9nV/xlsGxljTOq2r37DM
+ iC1Xd+C5LcmP6HCY54l8tvwHg4vMYNrCW/xYiBfz9JPPwK4kB3tWl+0YILLPculBontNsBo7YCa
+ VFnucg9P3hs+jwInH1EF4/XWFs5161u9hYgKt6WNC9K3KMBQhAVRCBu1YSklDp+D0RvxC4Qf/WB
+ jARJjzQIxLiOn80ZquKOd5CD0bs=
+X-Google-Smtp-Source: AGHT+IGol4Q1biN5R/T0S8PgIDvIBvNwryDWNshGEwCGFyy4OqFaWpi7Ea88cFCjbaHh4AUGnh4Gfg==
+X-Received: by 2002:a05:600c:5119:b0:434:f917:2b11 with SMTP id
+ 5b1f17b1804b1-438dc40bd8dmr99961815e9.21.1738342768800; 
+ Fri, 31 Jan 2025 08:59:28 -0800 (PST)
 Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-438dcc81911sm52790125e9.38.2025.01.30.02.10.56
+ 5b1f17b1804b1-438e23de2d6sm59965215e9.11.2025.01.31.08.59.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 30 Jan 2025 02:10:57 -0800 (PST)
-Date: Thu, 30 Jan 2025 11:10:55 +0100
+ Fri, 31 Jan 2025 08:59:28 -0800 (PST)
+Date: Fri, 31 Jan 2025 17:59:26 +0100
 From: Simona Vetter <simona.vetter@ffwll.ch>
-To: David Hildenbrand <david@redhat.com>
-Cc: linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [PATCH v1 08/12] mm/rmap: handle device-exclusive entries
- correctly in try_to_unmap_one()
-Message-ID: <Z5tQL60SNNGCkfQR@phenom.ffwll.local>
-Mail-Followup-To: David Hildenbrand <david@redhat.com>,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org,
- Andrew Morton <akpm@linux-foundation.org>,
- =?iso-8859-1?B?Suly9G1l?= Glisse <jglisse@redhat.com>,
- Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
- Yanteng Si <si.yanteng@linux.dev>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>,
- Pasha Tatashin <pasha.tatashin@soleen.com>,
- Peter Xu <peterx@redhat.com>, Alistair Popple <apopple@nvidia.com>,
- Jason Gunthorpe <jgg@nvidia.com>
-References: <20250129115411.2077152-1-david@redhat.com>
- <20250129115411.2077152-9-david@redhat.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
+ lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
+ akpm@linux-foundation.org, GalShalom@nvidia.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-mm@kvack.org, linux-tegra@vger.kernel.org
+Subject: Re: [RFC 1/5] mm/hmm: HMM API to enable P2P DMA for device private
+ pages
+Message-ID: <Z50BbuUQWIaDPRzK@phenom.ffwll.local>
+Mail-Followup-To: Jason Gunthorpe <jgg@ziepe.ca>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Yonatan Maman <ymaman@nvidia.com>, kherbst@redhat.com,
+ lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
+ simona@ffwll.ch, leon@kernel.org, jglisse@redhat.com,
+ akpm@linux-foundation.org, GalShalom@nvidia.com,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-rdma@vger.kernel.org,
+ linux-mm@kvack.org, linux-tegra@vger.kernel.org
+References: <de293a7e9b4c44eab8792b31a4605cc9e93b2bf5.camel@linux.intel.com>
+ <20250128151610.GC1524382@ziepe.ca>
+ <b78d32e13811ef1fa57b0535749c811f2afb4dcd.camel@linux.intel.com>
+ <20250128172123.GD1524382@ziepe.ca>
+ <Z5ovcnX2zVoqdomA@phenom.ffwll.local>
+ <20250129134757.GA2120662@ziepe.ca>
+ <Z5tZc0OQukfZEr3H@phenom.ffwll.local>
+ <20250130132317.GG2120662@ziepe.ca>
+ <Z5ukSNjvmQcXsZTm@phenom.ffwll.local>
+ <20250130174217.GA2296753@ziepe.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250129115411.2077152-9-david@redhat.com>
+In-Reply-To: <20250130174217.GA2296753@ziepe.ca>
 X-Operating-System: Linux phenom 6.12.11-amd64 
 X-Mailman-Approved-At: Fri, 07 Feb 2025 01:42:11 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -118,165 +111,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jan 29, 2025 at 12:54:06PM +0100, David Hildenbrand wrote:
-> Ever since commit b756a3b5e7ea ("mm: device exclusive memory access")
-> we can return with a device-exclusive entry from page_vma_mapped_walk().
+On Thu, Jan 30, 2025 at 01:42:17PM -0400, Jason Gunthorpe wrote:
+> On Thu, Jan 30, 2025 at 05:09:44PM +0100, Simona Vetter wrote:
+> > > > An optional callback is a lot less scary to me here (or redoing
+> > > > hmm_range_fault or whacking the migration helpers a few times) looks a lot
+> > > > less scary than making pgmap->owner mutable in some fashion.
+> > > 
+> > > It extra for every single 4k page on every user :\
+> > > 
+> > > And what are you going to do better inside this callback?
+> > 
+> > Having more comfy illusions :-P
 > 
-> try_to_unmap_one() is not prepared for that, so teach it about these
-> non-present nonswap PTEs.
+> Exactly!
 > 
-> Before that, could we also have triggered this case with device-private
-> entries? Unlikely.
+> > Slightly more seriously, I can grab some locks and make life easier,
+> 
+> Yes, but then see my concern about performance again. Now you are
+> locking/unlocking every 4k? And then it still races since it can
+> change after hmm_range_fault returns. That's not small, and not really
+> better.
 
-Just quick comment on this, I'm still pondering all the other aspects.
+Hm yeah, I think that's the death argument for the callback. Consider me
+convinced on that being a bad idea.
 
-device-private memory is entirely owned by the driver, the core mm isn't
-supposed to touch these beyond migrating it back to system memory in
-do_swap_page. Plus using rmap when the driver asks for invalidating
-mappings as needed.
+> > whereas sprinkling locking or even barriers over pgmap->owner in core mm
+> > is not going to fly. Plus more flexibility, e.g. when the interconnect
+> > doesn't work for atomics or some other funny reason it only works for some
+> > of the traffic, where you need to more dynamically decide where memory is
+> > ok to sit.
+> 
+> Sure, an asymmetric mess could be problematic, and we might need more
+> later, but lets get to that first..
+> 
+> > Or checking p2pdma connectivity and all that stuff.
+> 
+> Should be done in the core code, don't want drivers open coding this
+> stuff.
 
-So no lru, thp, migration or anything initiated by core mm should ever
-happen on these device private pages. If it does, it'd be a bug.
+Yeah so after amdkfd and noveau I agree that letting drivers mess this up
+isn't great. But see below, I'm not sure whether going all the way to core
+code is the right approach, at least for gpu internal needs.
 
-device-exclusive is entirely different ofc since that's just normal system
-memory managed by core mm/.
--Sima
+> > Also note that fundamentally you can't protect against the hotunplug or
+> > driver unload case for hardware access. So some access will go to nowhere
+> > when that happens, until we've torn down all the mappings and migrated
+> > memory out.
 > 
-> Note that we could currently only run into this case with
-> device-exclusive entries on THPs. For order-0 folios, we still adjust
-> the mapcount on conversion to device-exclusive, making the rmap walk
-> abort early (folio_mapcount() == 0 and breaking swapout). We'll fix
-> that next, now that try_to_unmap_one() can handle it.
+> I think a literal (safe!) hot unplug must always use the page map
+> revoke, and that should be safely locked between hmm_range_fault and
+> the notifier.
 > 
-> Further note that try_to_unmap() calls MMU notifiers and holds the
-> folio lock, so any device-exclusive users should be properly prepared
-> for this device-exclusive PTE to "vanish".
-> 
-> Fixes: b756a3b5e7ea ("mm: device exclusive memory access")
-> Signed-off-by: David Hildenbrand <david@redhat.com>
-> ---
->  mm/rmap.c | 53 ++++++++++++++++++++++++++++++++++++++++-------------
->  1 file changed, 40 insertions(+), 13 deletions(-)
-> 
-> diff --git a/mm/rmap.c b/mm/rmap.c
-> index 65d9bbea16d0..12900f367a2a 100644
-> --- a/mm/rmap.c
-> +++ b/mm/rmap.c
-> @@ -1648,9 +1648,9 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  {
->  	struct mm_struct *mm = vma->vm_mm;
->  	DEFINE_FOLIO_VMA_WALK(pvmw, folio, vma, address, 0);
-> +	bool anon_exclusive, ret = true;
->  	pte_t pteval;
->  	struct page *subpage;
-> -	bool anon_exclusive, ret = true;
->  	struct mmu_notifier_range range;
->  	enum ttu_flags flags = (enum ttu_flags)(long)arg;
->  	unsigned long pfn;
-> @@ -1722,7 +1722,19 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  		/* Unexpected PMD-mapped THP? */
->  		VM_BUG_ON_FOLIO(!pvmw.pte, folio);
->  
-> -		pfn = pte_pfn(ptep_get(pvmw.pte));
-> +		/*
-> +		 * We can end up here with selected non-swap entries that
-> +		 * actually map pages similar to PROT_NONE; see
-> +		 * page_vma_mapped_walk()->check_pte().
-> +		 */
-> +		pteval = ptep_get(pvmw.pte);
-> +		if (likely(pte_present(pteval))) {
-> +			pfn = pte_pfn(pteval);
-> +		} else {
-> +			pfn = swp_offset_pfn(pte_to_swp_entry(pteval));
-> +			VM_WARN_ON_FOLIO(folio_test_hugetlb(folio), folio);
-> +		}
-> +
->  		subpage = folio_page(folio, pfn - folio_pfn(folio));
->  		address = pvmw.address;
->  		anon_exclusive = folio_test_anon(folio) &&
-> @@ -1778,7 +1790,9 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  				hugetlb_vma_unlock_write(vma);
->  			}
->  			pteval = huge_ptep_clear_flush(vma, address, pvmw.pte);
-> -		} else {
-> +			if (pte_dirty(pteval))
-> +				folio_mark_dirty(folio);
-> +		} else if (likely(pte_present(pteval))) {
->  			flush_cache_page(vma, address, pfn);
->  			/* Nuke the page table entry. */
->  			if (should_defer_flush(mm, flags)) {
-> @@ -1796,6 +1810,10 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  			} else {
->  				pteval = ptep_clear_flush(vma, address, pvmw.pte);
->  			}
-> +			if (pte_dirty(pteval))
-> +				folio_mark_dirty(folio);
-> +		} else {
-> +			pte_clear(mm, address, pvmw.pte);
->  		}
->  
->  		/*
-> @@ -1805,10 +1823,6 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  		 */
->  		pte_install_uffd_wp_if_needed(vma, address, pvmw.pte, pteval);
->  
-> -		/* Set the dirty flag on the folio now the pte is gone. */
-> -		if (pte_dirty(pteval))
-> -			folio_mark_dirty(folio);
-> -
->  		/* Update high watermark before we lower rss */
->  		update_hiwater_rss(mm);
->  
-> @@ -1822,8 +1836,8 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  				dec_mm_counter(mm, mm_counter(folio));
->  				set_pte_at(mm, address, pvmw.pte, pteval);
->  			}
-> -
-> -		} else if (pte_unused(pteval) && !userfaultfd_armed(vma)) {
-> +		} else if (likely(pte_present(pteval)) && pte_unused(pteval) &&
-> +			   !userfaultfd_armed(vma)) {
->  			/*
->  			 * The guest indicated that the page content is of no
->  			 * interest anymore. Simply discard the pte, vmscan
-> @@ -1902,6 +1916,12 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  				set_pte_at(mm, address, pvmw.pte, pteval);
->  				goto walk_abort;
->  			}
-> +
-> +			/*
-> +			 * arch_unmap_one() is expected to be a NOP on
-> +			 * architectures where we could have non-swp entries
-> +			 * here, so we'll not check/care.
-> +			 */
->  			if (arch_unmap_one(mm, vma, address, pteval) < 0) {
->  				swap_free(entry);
->  				set_pte_at(mm, address, pvmw.pte, pteval);
-> @@ -1926,10 +1946,17 @@ static bool try_to_unmap_one(struct folio *folio, struct vm_area_struct *vma,
->  			swp_pte = swp_entry_to_pte(entry);
->  			if (anon_exclusive)
->  				swp_pte = pte_swp_mkexclusive(swp_pte);
-> -			if (pte_soft_dirty(pteval))
-> -				swp_pte = pte_swp_mksoft_dirty(swp_pte);
-> -			if (pte_uffd_wp(pteval))
-> -				swp_pte = pte_swp_mkuffd_wp(swp_pte);
-> +			if (likely(pte_present(pteval))) {
-> +				if (pte_soft_dirty(pteval))
-> +					swp_pte = pte_swp_mksoft_dirty(swp_pte);
-> +				if (pte_uffd_wp(pteval))
-> +					swp_pte = pte_swp_mkuffd_wp(swp_pte);
-> +			} else {
-> +				if (pte_swp_soft_dirty(pteval))
-> +					swp_pte = pte_swp_mksoft_dirty(swp_pte);
-> +				if (pte_swp_uffd_wp(pteval))
-> +					swp_pte = pte_swp_mkuffd_wp(swp_pte);
-> +			}
->  			set_pte_at(mm, address, pvmw.pte, swp_pte);
->  		} else {
->  			/*
-> -- 
-> 2.48.1
-> 
+> If the underlying fabric is loosing operations during an unplanned hot
+> unplug I expect things will need resets to recover..
 
+So one aspect where I don't like the pgmap->owner approach much is that
+it's a big thing to get right, and it feels a bit to me that we don't yet
+know the right questions.
+
+A bit related is that we'll have to do some driver-specific migration
+after hmm_range_fault anyway for allocation policies. With coherent
+interconnect that'd be up to numactl, but for driver private it's all up
+to the driver. And once we have that, we can also migrate memory around
+that's misplaced for functional and not just performance reasons.
+
+The plan I discussed with Thomas a while back at least for gpus was to
+have that as a drm_devpagemap library, which would have a common owner (or
+maybe per driver or so as Thomas suggested). Then it would still not be in
+drivers, but also a bit easier to mess around with for experiments. And
+once we have some clear things that hmm_range_fault should do instead for
+everyone, we can lift them up.
+
+Doing this at a pagemap level should also be much more efficient, since I
+think we can make the assumption that access limitations are uniform for a
+given dev_pagemap (and if they're not if e.g. not the entire vram is bus
+visible, drivers can handle that by splitting things up).
+
+But upfront speccing all this out doesn't seem like a good idea to,
+because I honestly don't know what we all need.
+
+Cheers, Sima
 -- 
 Simona Vetter
 Software Engineer, Intel Corporation
