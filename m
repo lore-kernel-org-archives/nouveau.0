@@ -4,104 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EF7CD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E112D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA8E10EBE2;
-	Sat, 13 Dec 2025 12:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F015410EBB7;
+	Sat, 13 Dec 2025 12:42:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="lAG0BcZ4";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="YDVfWEjp";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="lAG0BcZ4";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="YDVfWEjp";
+	dkim=temperror (0-bit key; unprotected) header.d=asahilina.net header.i=@asahilina.net header.b="aObAO7Gf";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B40A410E6E4
- for <nouveau@lists.freedesktop.org>; Tue,  7 Oct 2025 15:20:24 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4701610E0C2;
+ Sun,  2 Feb 2025 23:56:09 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 59B4F1F38F;
- Tue,  7 Oct 2025 15:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1759850423;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iQc0YRJr7IJHOyz4OppGQkW0tWxTiIJn5XmaoGwBjS4=;
- b=lAG0BcZ4FjfT3tnysBTEvSnxqZGB9x2gDzP3Sc1I3J6/TzO29zunuKpk12k1SkSFpBJv6p
- DVVwPXrURoX5HESTPo7rV2Vi/JInQJXcTG8Kre86MelbJFgZUkArGudSLZUaWR+o7TcKrv
- poWWmGmlSa9DRU2AhzOGQg0jqdU/jTM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1759850423;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iQc0YRJr7IJHOyz4OppGQkW0tWxTiIJn5XmaoGwBjS4=;
- b=YDVfWEjpewz5QgRZyehDGqnlndL38xs45wRXPPBvlqtB2ZfQ9j7KNuSN5HvqX1bK4E35nI
- l2NnYe1u57d40rCw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1759850423;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iQc0YRJr7IJHOyz4OppGQkW0tWxTiIJn5XmaoGwBjS4=;
- b=lAG0BcZ4FjfT3tnysBTEvSnxqZGB9x2gDzP3Sc1I3J6/TzO29zunuKpk12k1SkSFpBJv6p
- DVVwPXrURoX5HESTPo7rV2Vi/JInQJXcTG8Kre86MelbJFgZUkArGudSLZUaWR+o7TcKrv
- poWWmGmlSa9DRU2AhzOGQg0jqdU/jTM=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1759850423;
- h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
- cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=iQc0YRJr7IJHOyz4OppGQkW0tWxTiIJn5XmaoGwBjS4=;
- b=YDVfWEjpewz5QgRZyehDGqnlndL38xs45wRXPPBvlqtB2ZfQ9j7KNuSN5HvqX1bK4E35nI
- l2NnYe1u57d40rCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B60DF13693;
- Tue,  7 Oct 2025 15:20:22 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id lYhSKLYv5WjUTAAAD6G6ig
- (envelope-from <pvorel@suse.cz>); Tue, 07 Oct 2025 15:20:22 +0000
-Date: Tue, 7 Oct 2025 17:20:21 +0200
-From: Petr Vorel <pvorel@suse.cz>
-To: Timur Tabi <ttabi@nvidia.com>
-Cc: "airlied@gmail.com" <airlied@gmail.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "dakr@kernel.org" <dakr@kernel.org>
-Subject: Re: [PATCH] nouveau: add option to avoid 535 firmware in initramfs
-Message-ID: <20251007152021.GA139177@pevik>
-References: <20251007013207.1469618-1-airlied@gmail.com>
- <d57eb562b87f9c3ead50acc81d76526e947d0ab9.camel@nvidia.com>
- <CAPM=9tx3Q4NdAc5NDGUjdjOH-ZPagKNu43+zOUZTVcpEO9zSsQ@mail.gmail.com>
- <a02a0105aed482a977b06e66391b35e5a6f39cd0.camel@nvidia.com>
+ (Authenticated sender: lina@asahilina.net)
+ by mail.marcansoft.com (Postfix) with ESMTPSA id B7858425F5;
+ Sun,  2 Feb 2025 23:56:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
+ s=default; t=1738540566;
+ bh=XxSMXL+/QTvPenPoEdFCaxa+GXolURGhYNxTlnUOi/w=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To;
+ b=aObAO7GfWqEeA7trzJ86f/XnseVBckks3Wp4/oXznHSilYgYVoqZIWDOvj71xgkib
+ lgmCn4V/J95HXPuWr/BC9UezFlKNi7fChuM++IKjdHyEnniFWEdcFH3P80QjT4GKT8
+ 7FXJpcyV5rxXbJB/o77o3DyY6W0ZxXjoEFTCGaMdjI9Qu614oQ9ehN29qeFz5nc71y
+ n6Vb2X9YqAd8aVCrFAhZkk9YlgsEa1fvwSHKLjn9QIyM149G8f40pXF85PmeGbCrRC
+ CDm8c7tFbkfvpwTOQgds27hLzVDN6ZHCf/i3csfpUeE+/V/ONQ2WElOVQKGkCcKlui
+ L9Utcl2DNDEPA==
+Message-ID: <4a431b98-cccc-495e-b72e-02362828c96b@asahilina.net>
+Date: Mon, 3 Feb 2025 08:56:03 +0900
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a02a0105aed482a977b06e66391b35e5a6f39cd0.camel@nvidia.com>
-X-Spamd-Result: default: False [-3.50 / 50.00]; BAYES_HAM(-3.00)[99.99%];
- NEURAL_HAM_LONG(-1.00)[-1.000]; MID_RHS_NOT_FQDN(0.50)[];
- HAS_REPLYTO(0.30)[pvorel@suse.cz];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
- TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- MIME_TRACE(0.00)[0:+]; TO_DN_EQ_ADDR_SOME(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; RCVD_TLS_ALL(0.00)[];
- MISSING_XM_UA(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org,kernel.org];
- RCVD_COUNT_TWO(0.00)[2]; RCPT_COUNT_FIVE(0.00)[5];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:replyto,imap1.dmz-prg2.suse.org:helo]; 
- RCVD_VIA_SMTP_AUTH(0.00)[]; REPLYTO_EQ_FROM(0.00)[]
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, asahi@lists.linux.dev
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+ <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+Content-Language: en-US
+From: Asahi Lina <lina@asahilina.net>
+In-Reply-To: <Z5-_O8vkCO0LXcl7@pollux.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,44 +69,84 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: Petr Vorel <pvorel@suse.cz>
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi all,
 
-> On Tue, 2025-10-07 at 13:31 +1000, Dave Airlie wrote:
-> > We can't do that, because if we moved to 580, and distros have this
-> > option on for 570, they would fail unless they had the 580 firmware,
-> > so it needs to be versioned.
 
-> Hmmm then how about making it a choice of which version to support:
+On 2/3/25 3:53 AM, Danilo Krummrich wrote:
+> Hi Lina,
+> 
+> On Sun, Feb 02, 2025 at 10:34:49PM +0900, Asahi Lina wrote:
+>> Some hardware requires dummy page mappings to efficiently implement
+>> Vulkan sparse features. These mappings consist of the same physical
+>> memory page, repeated for a large range of address space (e.g. 16GiB).
+>>
+>> Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
+>> ranges to correspond 1:1 to virtual memory ranges that are mapped, and
+>> does math on the BO offset accordingly. To make single page mappings
+>> work, we need a way to turn off that math, keeping the BO offset always
+>> constant and pointing to the same page (typically BO offset 0).
+>>
+>> To make this work, we need to handle all the corner cases when these
+>> mappings intersect with regular mappings. The rules are simply to never
+>> mix or merge a "regular" mapping with a single page mapping.
+>>
+>> drm_gpuvm has support for a flags field in drm_gpuva objects. This is
+>> normally managed by drivers directly. We can introduce a
+>> DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
+>> sm_map and friends need to know ahead of time whether the new mapping is
+>> a single page mapping or not. Therefore, we need to add an argument to
+>> these functions so drivers can provide the flags to be filled into
+>> drm_gpuva.flags.
+>>
+>> These changes should not affect any existing drivers that use drm_gpuvm
+>> other than the API change:
+>>
+>> - imagination: Does not use flags at all
+>> - nouveau: Only uses drm_gpuva_invalidate(), which is only called on
+>>   existing drm_gpuva objects (after the map steps)
+>> - panthor: Does not use flags at all
+>> - xe: Does not use drm_gpuva_init_from_op() or
+>>   drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
+>> flags field of the gpuva object is managed by the driver only, so these
+>> changes cannot clobber it.
+>>
+>> Note that the way this is implemented, drm_gpuvm does not need to know
+>> the GPU page size. It only has to never do math on the BO offset to meet
+>> the requirements.
+>>
+>> I suspect that after this change there could be some cleanup possible in
+>> the xe driver (which right now passes flags around in various
+>> driver-specific ways from the map step through to drm_gpuva objects),
+>> but I'll leave that to the Xe folks.
+>>
+>> Signed-off-by: Asahi Lina <lina@asahilina.net>
+>> ---
+>> Asahi Lina (4):
+>>       drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
+>>       drm/gpuvm: Plumb through flags into drm_gpuva_op_map
+>>       drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
+>>       drm/gpuvm: Plumb through flags into drm_gpuva_init
+> 
+> Without looking into any details yet:
+> 
+> This is a bit of tricky one, since we're not even close to having a user for
+> this new feature upstream yet, are we?
 
-> choice
->   prompt "Firmware version supported"
->   default DRM_NOUVEAU_ANY
+I'd hope we're at least somewhere "this year" close to upstreaming
+drm/asahi!
 
-You probably know it, in case you don't: DRM_NOUVEAU_ANY needs to be also as
-config:
+> 
+> I wonder if we could do an exception by adding some KUnit tests (which
+> admittedly I never got to) validating things with and without this new feature.
+> 
+> Speaking of tests, how did you validate this change to validate the behavior
+> without DRM_GPUVA_SINGLE_PAGE?
 
-config DRM_NOUVEAU_ANY
-	bool "Support all firmware versions"
-	...
+Mostly just making sure our driver passes GL/Vulkan CTS including sparse
+after this change. I do want to put together some low-level tests in
+igt-gpu-tools, but I haven't gotten around to it yet...
 
-> config DRM_NOUVEAU_535_ONLY
-> ...
-
-> config DRM_NOUVEAU_535_ONLY
-> ...
-
-> endchoice
-
-+1
-
-> Or something like that.  I can't figure out how choices work, but the idea is that the defconfig
-
-Kind regards,
-Petr
-
-> defaults to allowing all versions, but you can pick a specific one.
+~~ Lina
 
