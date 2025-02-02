@@ -4,85 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9CD0D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5802AD5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33A1B10EA0F;
-	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D612810EA99;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="EqfbzRRx";
+	dkim=temperror (0-bit key; unprotected) header.d=asahilina.net header.i=@asahilina.net header.b="uD0v39eA";
 	dkim-atps=neutral
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
- [209.85.216.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D43E10E053;
- Sun, 20 Jul 2025 21:25:08 +0000 (UTC)
-Received: by mail-pj1-f42.google.com with SMTP id
- 98e67ed59e1d1-313862d48e7so490294a91.1; 
- Sun, 20 Jul 2025 14:25:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753046708; x=1753651508; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ZOfGo0Jsenpn6hZiffPRs915jB+hKQfehNQr85qBjhw=;
- b=EqfbzRRxC594EHoQgIuzWqVRo6eI62B6rig+sBXspW0JrRrseJtV+TnkaJ6zJCJncx
- dnW30E7rE963Au+qP1Uyd0P9jLTKwrMaSnNSEAl/DScbV6/z7SK4XccqI0tZ+dyG1CyI
- IB5y+5FPGCMQguHTwZ0qOIsm5M748PUNvS4RM0sI8h1Z1+nMxWgxsrds2fx7QxKTm3dr
- iROwRfcbgBZ1PMlD6Pcdt6t1XvS6MF9VGtRa5TmNiik220H5xsXNW9C4VM3nty2mfcpj
- 5/HmdIBRjbfGCZwnVAwHAaFLNHyLoMvl8Fbdrd5CiP3XPOm9vGRvDzh7pUdfm7vOvdTE
- TSEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753046708; x=1753651508;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ZOfGo0Jsenpn6hZiffPRs915jB+hKQfehNQr85qBjhw=;
- b=CG2KkTDI90bhv/QSfeEkvNqAYQrDRKCouLMkSHl3YmKehQvk2FmITgqZ5rAknUyi92
- PqgBeJk95CurqaskywDfZXa6QPrC75OAv9G/sBrSSX4QSyL66NL1POTMXKZoS7udg2Uv
- KAaSluZylS/EdVjH+ebmK6hB7OwdCel//WW8R8JZqVvHbvIs0kc7zksCkd4yz+zzMydF
- BYobmO4BYSk96BAE+cx79FFqieBxd+Qa2crcyyrnc1zxMpO3nZrWSUWTVtJ73P0aLz6z
- /aElkutwqcr/sq5jrYBT2v96s6vYApzz6C/il4a9bAE5a1Ud8S+AtSn10fO5iBazJA1V
- +3TA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUt10ltC+Gn29AmrAPoS/fhmgnlOUuuKZxYDjBjfD8+sK+G0jrq16R+H2ng/i/dr0bZNslY37hjbA==@lists.freedesktop.org,
- AJvYcCW8/+o/9ePVeqS9SOvgTMmsRfTSe+tyeY4mY4x/LjQki+Q4EJV+/b40gr4vQUTRfsl47vFRfCrx03o=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwhQulO0zI6u2utwqCmUtXYZ7b0ma9OhgbgnsEa4Q4yZ2oL9yit
- rD0OlEpekE0aX98F/k97n6fwz/4gSajWFhaUHksYzwbrEFaqntlhRdYBQzsJBlTKluBdnFLrEmQ
- G7n+0HGgAw6P1PcuYx4SytIFm3PWVY90=
-X-Gm-Gg: ASbGncvG4+bWHr6pBFtC4fsGh2CQ5SC6iPg5qHBLouKT7czcjr382HvOnNEtY3byi0Z
- P6YrQhYZa1KX5qeRstUrxhakvux2sA7ffc6HrPzQRcxGUzgPuQ+brAvTk/hPm4Dz8W6g+BVRX+R
- jAF59NecuywtyKnyk6eE0Goh2G7l8Q/I7tO4ac0g6ojYt2PTI9qN3MUzDoNFRxzpZQcE+ZwTkoO
- O7Y8CKELxdbIqzRWzk=
-X-Google-Smtp-Source: AGHT+IEkcEPFJWVoqDC95ubnHjSmK+HgnV7Pk/LSgyHRbODBMgxYD03I2CuqEZBVSHRbSPTpfzdWXJRqkBiOadC0OLg=
-X-Received: by 2002:a17:903:18d:b0:235:f1e4:3381 with SMTP id
- d9443c01a7336-23e24f33804mr97588565ad.8.1753046707493; Sun, 20 Jul 2025
- 14:25:07 -0700 (PDT)
+X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
+ Sun, 02 Feb 2025 13:52:21 UTC
+Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC3210E0E5;
+ Sun,  2 Feb 2025 13:52:21 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ (Authenticated sender: sendonly@marcansoft.com)
+ by mail.marcansoft.com (Postfix) with ESMTPSA id 9CE30426E2;
+ Sun,  2 Feb 2025 13:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
+ s=default; t=1738503912;
+ bh=uu52xMGokrDDgENtthfQJ71LyZloD14w6rOxRrrh344=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc;
+ b=uD0v39eASsjcf1/3SXk5cmzdi4EhXYnO7sVMISYU13gDT7VcjsfmoLzKdqlUGLKHj
+ PtSwxIcHvYP17ei55bcX+FvkNaA1p61nuMtlbVQN3PzN4Ltm+nwo47Yt/iS1dkZ1pa
+ j68AmpGGGIZFcRZy71jFo9A2nVRnPpynE/Upt+PfYBNK44u0b0SUGoxQFgIxPqt3r0
+ lJwDu5st9ljEUeI5DJT3bfiDXF3+xzt9LjQ5NprGlwhdyC98KaKvCYSOdb1SDFcMzX
+ CW69PJpAh8I2fLvbOa6nAHHxUUzXgeRoTt0guPesw5bquoouV6kVd11pgWOVNB5h5Z
+ vjjeEswiIKQDQ==
+From: Asahi Lina <lina@asahilina.net>
+Date: Sun, 02 Feb 2025 22:34:50 +0900
+Subject: [PATCH 1/4] drm/gpuvm: Add a flags argument to
+ drm_gpuvm_sm_map[_*]
 MIME-Version: 1.0
-References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
- <20250704-core-cstr-prepare-v1-1-a91524037783@gmail.com>
-In-Reply-To: <20250704-core-cstr-prepare-v1-1-a91524037783@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 20 Jul 2025 23:24:54 +0200
-X-Gm-Features: Ac12FXxNjw8Q4g3oEBeaU3nmS0KVSD6HWujMXOZAqRuJ_29r1bVUJEDsypVG_d0
-Message-ID: <CANiq72mjiBK+DE-NOx1p+wWuZpnK=aPtgnMUUEzig+4jHZzemA@mail.gmail.com>
-Subject: Re: [PATCH 1/6] rust: kernel: remove `fmt!`,
- fix clippy::uninlined-format-args
-To: Tamir Duberstein <tamird@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Nishanth Menon <nm@ti.com>,
- Stephen Boyd <sboyd@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250202-gpuvm-single-page-v1-1-8cbd44fdcbd4@asahilina.net>
+References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+In-Reply-To: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@kernel.org>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1738503908; l=5456;
+ i=lina@asahilina.net; s=20240902; h=from:subject:message-id;
+ bh=uu52xMGokrDDgENtthfQJ71LyZloD14w6rOxRrrh344=;
+ b=C9WT1JzSXVS8oXNUsibvBt3bied9shp4kP5FTP0VMuo5Qk8Rez4F3DdxZyQlD5cqz2SnBJ2kF
+ UCP+cz0Ar4xBqSxG/kmEYB912yJQDgnkqlN1duZfiu1GFLzqraxIwCC
+X-Developer-Key: i=lina@asahilina.net; a=ed25519;
+ pk=tpv7cWfUnHNw5jwf6h4t0gGgglt3/xcwlfs0+A/uUu8=
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,15 +81,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 4, 2025 at 10:16=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
->
->  drivers/cpufreq/rcpufreq_dt.rs    |  3 +--
->  drivers/gpu/nova-core/firmware.rs |  5 +++--
->  rust/kernel/opp.rs                |  2 +-
+drm_gpuva objects have a flags field. Currently, this can be managed by
+drivers out-of-band, without any special handling in drm_gpuvm.
 
-Danilo, Viresh: I assume you are OK with this, but let me know
-otherwise, thanks!
+To be able to introduce flags that do affect the logic in the drm_gpuvm
+core, we need to plumb it through the map calls. This will allow the
+core to check the flags on map and alter the merge/split logic depending
+on the requested flags and the flags of the existing drm_gpuva ranges
+that are being split.
 
-Cheers,
-Miguel
+First, just add the argument to the API and do nothing with it.
+
+Signed-off-by: Asahi Lina <lina@asahilina.net>
+---
+ drivers/gpu/drm/drm_gpuvm.c            | 6 ++++--
+ drivers/gpu/drm/imagination/pvr_vm.c   | 3 ++-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 3 ++-
+ drivers/gpu/drm/panthor/panthor_mmu.c  | 3 ++-
+ drivers/gpu/drm/xe/xe_vm.c             | 3 ++-
+ include/drm/drm_gpuvm.h                | 6 ++++--
+ 6 files changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index f9eb56f24bef291e084a15d844d4ececda8412d9..9733460d737667035541b488657154afb56872e3 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -2333,7 +2333,8 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
+ int
+ drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+ 		 u64 req_addr, u64 req_range,
+-		 struct drm_gem_object *req_obj, u64 req_offset)
++		 struct drm_gem_object *req_obj, u64 req_offset,
++		 enum drm_gpuva_flags req_flags)
+ {
+ 	const struct drm_gpuvm_ops *ops = gpuvm->ops;
+ 
+@@ -2516,7 +2517,8 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+ 			    u64 req_addr, u64 req_range,
+-			    struct drm_gem_object *req_obj, u64 req_offset)
++			    struct drm_gem_object *req_obj, u64 req_offset,
++			    enum drm_gpuva_flags req_flags)
+ {
+ 	struct drm_gpuva_ops *ops;
+ 	struct {
+diff --git a/drivers/gpu/drm/imagination/pvr_vm.c b/drivers/gpu/drm/imagination/pvr_vm.c
+index 363f885a709826efa3d45a906c5f65131f7ed7b9..c57c7adcbe987dfc559bc00fc24862f5d99bbc0e 100644
+--- a/drivers/gpu/drm/imagination/pvr_vm.c
++++ b/drivers/gpu/drm/imagination/pvr_vm.c
+@@ -190,7 +190,8 @@ static int pvr_vm_bind_op_exec(struct pvr_vm_bind_op *bind_op)
+ 					bind_op, bind_op->device_addr,
+ 					bind_op->size,
+ 					gem_from_pvr_gem(bind_op->pvr_obj),
+-					bind_op->offset);
++					bind_op->offset,
++					0);
+ 
+ 	case PVR_VM_BIND_TYPE_UNMAP:
+ 		return drm_gpuvm_sm_unmap(&bind_op->vm_ctx->gpuvm_mgr,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 48f105239f42d8ffa3cefd253bd83d52dbb3255f..d548154c0a38c08c74cfbb9c66d703699d8d882b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1304,7 +1304,8 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
+ 							      op->va.addr,
+ 							      op->va.range,
+ 							      op->gem.obj,
+-							      op->gem.offset);
++							      op->gem.offset,
++							      0);
+ 			if (IS_ERR(op->ops)) {
+ 				ret = PTR_ERR(op->ops);
+ 				goto unwind_continue;
+diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
+index a49132f3778b3a7a0855de37e4ab008e9476f740..ebfb399af8752afdd26c33723b8ac6f616d02fc5 100644
+--- a/drivers/gpu/drm/panthor/panthor_mmu.c
++++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+@@ -2155,7 +2155,8 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
+ 		}
+ 
+ 		ret = drm_gpuvm_sm_map(&vm->base, vm, op->va.addr, op->va.range,
+-				       op->map.vm_bo->obj, op->map.bo_offset);
++				       op->map.vm_bo->obj, op->map.bo_offset,
++				       0);
+ 		break;
+ 
+ 	case DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP:
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index c99380271de62f8659fdd909a5bd9980d09de4d9..2d1fde089c382c363e354200cfb0281869b97f56 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1926,7 +1926,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 	case DRM_XE_VM_BIND_OP_MAP:
+ 	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
+ 		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
+-						  obj, bo_offset_or_userptr);
++						  obj, bo_offset_or_userptr,
++						  0);
+ 		break;
+ 	case DRM_XE_VM_BIND_OP_UNMAP:
+ 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 00d4e43b76b6c12e10e422d250ab0ac1c9009bc5..cb045378803646a9645c002c57183c915d35befb 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -1056,7 +1056,8 @@ struct drm_gpuva_ops {
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
+ 			    u64 addr, u64 range,
+-			    struct drm_gem_object *obj, u64 offset);
++			    struct drm_gem_object *obj, u64 offset,
++			    enum drm_gpuva_flags flags);
+ struct drm_gpuva_ops *
+ drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
+ 			      u64 addr, u64 range);
+@@ -1201,7 +1202,8 @@ struct drm_gpuvm_ops {
+ 
+ int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
+ 		     u64 addr, u64 range,
+-		     struct drm_gem_object *obj, u64 offset);
++		     struct drm_gem_object *obj, u64 offset,
++		     enum drm_gpuva_flags flags);
+ 
+ int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
+ 		       u64 addr, u64 range);
+
+-- 
+2.47.1
+
