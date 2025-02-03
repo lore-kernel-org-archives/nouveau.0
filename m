@@ -4,78 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 979EBD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE29D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C91C10EA51;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 524DD10EA4A;
 	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="X+CxX6ik";
+	dkim=permerror (0-bit key) header.d=joelfernandes.org header.i=@joelfernandes.org header.b="gItr8kFV";
 	dkim-atps=neutral
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
- [209.85.167.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3699F10E80D
- for <nouveau@lists.freedesktop.org>; Tue,  9 Sep 2025 22:04:22 +0000 (UTC)
-Received: by mail-lf1-f50.google.com with SMTP id
- 2adb3069b0e04-55f7c8b38a0so971110e87.2
- for <nouveau@lists.freedesktop.org>; Tue, 09 Sep 2025 15:04:22 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
+ [209.85.128.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B5A810E07D
+ for <nouveau@lists.freedesktop.org>; Mon,  3 Feb 2025 21:53:54 +0000 (UTC)
+Received: by mail-wm1-f47.google.com with SMTP id
+ 5b1f17b1804b1-436202dd730so35077935e9.2
+ for <nouveau@lists.freedesktop.org>; Mon, 03 Feb 2025 13:53:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757455460; x=1758060260; darn=lists.freedesktop.org;
+ d=joelfernandes.org; s=google; t=1738619633; x=1739224433;
+ darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=vJE7SAtMU597GHTC8LkC90WpJdQrYFWukdI48tYxJKQ=;
- b=X+CxX6ikLwX22Bk09wfnpKici+HVFrwJ9ryEIMF4tTsGj7ZhDpPcniYu7OJj4MeQ0f
- pp/dlj2oVKpFQ5XiDD8dcisTpgkTfbxtugTOP94Di26ZFWkpHSsdEwcrMQCPEPXyFXw3
- k3HL2kG/jk3Glc4ZHq8I0tgWsWSCUyKsEP7WxS/2dl7hl7zwBft7e6O8hiNFfHHOvcx2
- ermZKRb/EbfEonSp3nyG/O9uu+RXHSSkug9WckWTrsSe1+bEmu1cmSB2y7tecV6voFNB
- NelqyBsDIP94E2ApDo9jWYlMbkKW/T5ADDSIdUKjSQFeLNb/GWB4sF8628ifcbYppMf/
- Js5A==
+ bh=WuP2pJU8bBZXahLySdNlt2shroJTENQiUQtUnqJ4MBc=;
+ b=gItr8kFV9gLtO8fJjNvmXXdDyqOf7mfLrDDEcKJ8huUkjS7H+rs8xvtIBSh/wiaCXd
+ eBvJ6TFGbbG3wtnyORLc+GeKlpk/I1IRb/Wi2eObGk+5N2ZQKagZb42KF5pKBE6F8yHD
+ KrHVgLC8UfBV7t002CMl0DynEuk+QjasksrYk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757455460; x=1758060260;
+ d=1e100.net; s=20230601; t=1738619633; x=1739224433;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=vJE7SAtMU597GHTC8LkC90WpJdQrYFWukdI48tYxJKQ=;
- b=tbozbU6xpIpXbnIpx4iAx7psV/1tHuQ/TvDS8tWhhxnQ3UmSBd4zsEv9kJ34J+aq52
- TJ6CfFT/iegAMf0DmqMpH7YYe9VNLBLrtZ3GbBo1pWANGZGkCSOm7YfSK/DbhLbrFQGM
- KNfUPO7tRjmAuGCIIyhsGNuSQctEInI/+wIKnoSmDlsJdO2IqRUIyoQtFbjWNw5REZ4T
- Ln5wmFtThVVkP1uxBfw1dyXLA1uJa+MfSVtwKDiP9W4qPVGDzMLCtdPQPI0nMrrHXgXM
- XVp3uHYqf7PVY4ESy7PewKVsu9D6UmuHv/ranLJvdnZFxSgYkpGC1ineRiZDL3uoHjzc
- 7ZSA==
+ bh=WuP2pJU8bBZXahLySdNlt2shroJTENQiUQtUnqJ4MBc=;
+ b=JFx7istfqGx8EUER2VAoAo+/BrnkysHuBUJ8ExNa5JtKW82deM7ktPpeljUyj0foZu
+ nEJkGx1UFTadULXMaY9HyI9TxqiuL4qSYHUKscViPgCGzgIIKqM5l1sbneHyho5rmwNF
+ L5ea3ggOeFSIamGonUaqyCevNQfGhJypTXJloBMA5jQ7O0NFpshw2tBf4bU3BhiYf2tq
+ e4fUCvy9bXzAFYTOLyJDFwpQTC7eygZAXswwSMD+KU0YyKZR2tCSYSpX7WFJA3cuz+OL
+ GzvIFXYn3qv4XhkprCpRo/c7peInXjPAcuaqNoSF0zI/KulhmXONW8sxEjPWwRfA5yqh
+ DzQQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU4UUkfGy4YztdAYORLf7TodWUVqYJcJrtFBjypDc8Ae1fiO3bUQYd273W2XkXLZZIR54NIWxkF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yze6Rr6bOyFfkByaUUH5ZUgqWy/R4s5J5w4fZPo0VTovQmqLLj+
- BB36FomkzCKzCZVK7fdUOptlBLUFWeT7AZr6xvf/8S7KXdx01u4bPNEgzVEjJvc5RL3bPG9rzsU
- pUXEKuuKzNsVgptDkTqVqeSzciAYwCWs=
-X-Gm-Gg: ASbGnctxMIvWvz3iQkL0UrsUC4XZi2+KHXtZ/C+J92JVWr6SW52IIya26O2jdUuBVzc
- PpRWcOGTGiD+tsNL0HRHhZYh5W3XGkEa6GqvfVt29cJi+r2hfcrelKi3YWG4EC4NDmbGPy630NM
- X7ZcA442J1QpEGvZ7snrvSEqRZukce6iZtgJrP3zwF2m2vmggUtcUCLBzhEtKgPqRtGL/+PFY1H
- ZTkuyWZPVNvcgquztolQ1T3iNd9k2X84rT63HhcbnjfiUf9BXQr6LmQwyFEG6qJp3pBn+N8iF5P
- NCRSi1adQFF2rR1osln+3qkGICR0XIm6s0nL
-X-Google-Smtp-Source: AGHT+IGaa3tKhTEeaj82Fyo2xoHmCsDsP1VnOtUkctEIYGUN0qmz9E5woHXIzyMUU0VsfLfEZBQ0b8TrzmrdoI/zncM=
-X-Received: by 2002:a05:6512:3ca4:b0:55f:4a0d:3f50 with SMTP id
- 2adb3069b0e04-56262a40f6amr2161481e87.7.1757455460118; Tue, 09 Sep 2025
- 15:04:20 -0700 (PDT)
+ AJvYcCWLFelUiDfQqI6F2xbF3W9Mraxv6hIWckzaixEdRnHsSWDGFegjLeJLOWmVm5j1r9EotZd1rul0@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw+uF/hn27fNkvM8pnPU6sWKTk9N8Up32BKGmj0NgyKQFNBOPuk
+ HK72MbTatJuHOCmm/Gw5t06pU6ndtEolyWlh72mEULxBW3ldLSxUYzySy59nWjgizjf/5cw0Ova
+ zgYAbtYz9g12+NsvPo8GhkbEIKCMTIC4ox3qxtw==
+X-Gm-Gg: ASbGncvkO5UuCqv7prlF7bON/VjlloVhc6hAh2z5ru+JMw2LmAIOYz37fcr1oDzEam2
+ XhqUW72C5kiw6icIc/g6WKhdaJ03JXy6/zxpFr+uac/1k74BPs7i1v8sAnoMLl8yFdEZi/mpbDG
+ k=
+X-Google-Smtp-Source: AGHT+IFTT878gvRp7ddeyuzEmi6d3nVR7yt9pGw+C9SikTc7j0JfpLe79f9EX7kOwWILUEP0xX1xpi49VVK/vAEm5uc=
+X-Received: by 2002:a05:6000:1445:b0:385:f573:1f78 with SMTP id
+ ffacd0b85a97d-38c519744e1mr18589075f8f.24.1738619632538; Mon, 03 Feb 2025
+ 13:53:52 -0800 (PST)
 MIME-Version: 1.0
-References: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
-In-Reply-To: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 10 Sep 2025 00:04:04 +0200
-X-Gm-Features: AS18NWBzPuHqngmTpgXNZpIRD-OdqL2Y5OEaYpGUN_Vn-7watZfMYtmQRtqbWzI
-Message-ID: <CANiq72mYzgx0dB+yO4BFBRCNEKBcONx56Jp=h7HKVXzkbRn_Sg@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] rust: add `Alignment` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+References: <20250131220432.17717-1-dakr@kernel.org>
+ <20250203202410.GA3936980@joelbox2>
+ <34d7a6af-5974-482e-9f70-3f92a823bd96@nvidia.com>
+In-Reply-To: <34d7a6af-5974-482e-9f70-3f92a823bd96@nvidia.com>
+From: Joel Fernandes <joel@joelfernandes.org>
+Date: Mon, 3 Feb 2025 16:53:42 -0500
+X-Gm-Features: AWEUYZl0JrUywsCdCfm9saD5c0m9P2P4l5rddBjbWCr91MZ6RR70sF-I7X6sYiw
+Message-ID: <CAEXW_YRpjzGo2AJLFb_eAyi03pzSVGKJywxzQNatGnQTF4me8g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] gpu: nova-core: add initial driver stub
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, airlied@gmail.com, simona@ffwll.ch,
+ corbet@lwn.net, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com, 
+ cjia@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com, ojeda@kernel.org, 
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net, 
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@kernel.org, 
+ aliceryhl@google.com, tmgross@umich.edu, dri-devel@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
+ joelagnelf@nvidia.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,14 +92,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Sep 8, 2025 at 3:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
-om> wrote:
+On Mon, Feb 3, 2025 at 4:00=E2=80=AFPM John Hubbard <jhubbard@nvidia.com> w=
+rote:
+[..]
 >
-> prerequisite-message-id: <20250808-falcondma_256b-v1-1-15f911d89ffd@nvidi=
-a.com>
-> prerequisite-patch-id: 2439f5f9b560ee4867716f0018b5326dcd72cda3
+> >> +        ()
+> >> +    )]
+> >> +);
+> >> +
+> >> +impl pci::Driver for NovaCore {
+> >> +    type IdInfo =3D ();
+> >> +    const ID_TABLE: pci::IdTable<Self::IdInfo> =3D &PCI_TABLE;
+> >> +
+> >> +    fn probe(pdev: &mut pci::Device, _info: &Self::IdInfo) -> Result<=
+Pin<KBox<Self>>> {
+> >> +        dev_dbg!(pdev.as_ref(), "Probe Nova Core GPU driver.\n");
+> >> +
+> >> +        pdev.enable_device_mem()?;
+> >> +        pdev.set_master();
+> >> +
+> >> +        let bar =3D pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("n=
+ova-core"))?;
+> >> +
+> >> +        let this =3D KBox::pin_init(
+> >> +            try_pin_init!(Self {
+> >> +                gpu <- Gpu::new(pdev, bar)?,
+>
+> Here. Try to construct a Gpu, which tries to construct a GpuSpec, which
+> fails out if Chipset is not listed, or if CardType (which should be
+> renamed to Architecture) is not listed.
+>
+> And only Turing+ GPUs are listed. Turing is the first GPU that has a
+> GSP unit.
+>
+> By the way, I have loaded this on a system with a Kepler GPU (pre-Turing)=
+,
+> and an Ampere GPU, and traced through actually loading NovaCore, and it
+> behaves as described above.
 
-I guess you had this in your branch but is not actually needed, right?
 
-Cheers,
-Miguel
+Ah that makes sense, Thanks John!
+
+ - Joel
