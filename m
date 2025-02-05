@@ -4,48 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFC54D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60DBAD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 919D010EB68;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4B310EA43;
 	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=cse.ust.hk header.i=@cse.ust.hk header.b="38CGOve4";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="M+tAoWu/";
 	dkim-atps=neutral
-Received: from cse.ust.hk (cssvr7.cse.ust.hk [143.89.41.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD2DC10E1C3;
- Tue,  7 Oct 2025 16:17:33 +0000 (UTC)
-Received: from homelab ([58.82.196.128]) (authenticated bits=0)
- by cse.ust.hk (8.18.1/8.12.5) with ESMTPSA id 597GHFhK1883936
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 8 Oct 2025 00:17:24 +0800
-ARC-Seal: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse; t=1759853845; cv=none;
- b=g2O6RbwQmczahLkXKrHwGibNRFNhUAf9LaW8iLX+jepb/f/Z4lrGcP5uXHBqnmqo9efL+ZdsGMkqAZQDzdg2TSxpf9g3jVUE9qHHYhue3Jmx9NLJ6aEHJVTlM/7RJQZMjbjfOFMMXJEu3QkVJHKKBYsy2asALT8BiDpetNTPijw=
-ARC-Message-Signature: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse;
- t=1759853845; c=relaxed/relaxed;
- bh=24DsaxGYM2c65pUUHqLrjY0RrgMH0pttOAS/k9JF3RU=;
- h=DKIM-Signature:Date:From:To:Subject:Message-ID:MIME-Version;
- b=jmgP7+3Qp3OQ+DiOfFK8nbhMxMfT7kVfeHrR2f39rqcNbGfYsgzUCqANmUbr/6OYnRUzbFqgOGpYInwbYljKP0jMbJ9DxmgngBY6Few6oyh6T1HNkYBNViX1Ys7E31Jfwtmc3HxUK5nqpbV8JhI7ZyWC702KVNqGPTnTVkzxQC4=
-ARC-Authentication-Results: i=1; cse.ust.hk
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cse.ust.hk;
- s=cseusthk; t=1759853845;
- bh=24DsaxGYM2c65pUUHqLrjY0RrgMH0pttOAS/k9JF3RU=;
- h=Date:From:To:Cc:Subject:From;
- b=38CGOve42jDY+Z9Qk/jeA3D4UncmB8zjjVtZeIOcGI2bjkuoLEhq56o6D9LV7tvZq
- OEtW++LVhGF8E+4L8ra9vuX50JV/g5ZGjCVH1vVy6uFUBDZqhTZRH//r6muHOXDoya
- PFnHumP/aKdMZ6FCLres6BSyvCTtGUYOotPNYI/I=
-Date: Wed, 8 Oct 2025 00:17:09 +0800
-From: Shuhao Fu <sfual@cse.ust.hk>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/nouveau: fix bad ret code in nouveau_bo_move_prep
-Message-ID: <aOU9BXjYDNoPRQmf@homelab>
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F25D10E064;
+ Wed,  5 Feb 2025 14:13:26 +0000 (UTC)
+Received: by mail-pj1-f51.google.com with SMTP id
+ 98e67ed59e1d1-2f9cf019884so338890a91.0; 
+ Wed, 05 Feb 2025 06:13:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1738764806; x=1739369606; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=y9bBxD6OlYG3QN3t6eEdPcfSBfOJrPnlO3VouFKzOcs=;
+ b=M+tAoWu/0wWllQIxDpWRZO8COJjz7xHvS9niJ7mzWqJRGgYusPYexyou5uusrxHoSg
+ dFApz41x8iBWQgCBtyBSiTUo9JPfgp+V0ZpZv9K+juG00HFqJdWXVfNGGi9rtml4NYaT
+ VHClEerB6EyluJsooFcMhjvz+FFYQ2FnmjAC2oGGF1ax0DWK8LHFHM3k6PV3A7Ug6Dlq
+ zmvEU+De87O13SkgP9sFD7qRAyv+k5DkniTf6a9TWaxUVtq2P2SET0PzAMfPowSSa2VK
+ tfjLxOOrkULvhCeaSd7TK9SVDEmoxI2dN4UwOSWMA4Ry8xKh5g0iM9CVDxwMJKPlASXd
+ M/sQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1738764806; x=1739369606;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=y9bBxD6OlYG3QN3t6eEdPcfSBfOJrPnlO3VouFKzOcs=;
+ b=Dlhy90a5KRl3ib6tBIZ4sUM+grSJ5as7hMOOKe4W8IcId/B/Z3NxBt2O0We7t1YEmK
+ g8n58kvi1EgKEYVab0GSuEmt386Jh9rZtV0EmOBMu9IrSOpjGZEyqaPhlxvUv3MRCfvk
+ mRl8X7gdNfUTpCrZxoLN1qRlRDON8gu8Z9LbqiJHASu2zqBVLnroNiDMa8LOsFqIzPZB
+ mZ5Vxq3U2Ev973muKL/x5dPCbdkwcTW06UdI5WAl0zweH3kl6KcHDP7aVKJut7nNJq1e
+ u45C7ZoF1URincroCUZPZ3KSzWoWb6HxmtGSsOLHXnbem4cjjrTcH9Ccx3iW672TXtOW
+ eCGQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUMX6mugx4toGnmmx34glZIPukARWVXuu1JI6ouvH9DyXTqD/BAPeFAXYWuC1Pi14BaOVte/sEF+A==@lists.freedesktop.org,
+ AJvYcCVbkRfoTX+y/7usq4c14ddHn+04S9CntqWSSZcqBIhAh8Yr/+JAuKTRUX5VXJ908bAF9kPRS/mJzas=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyGn51LWGzSAWqN6FySa0jhAuxTP0dRMBGYs8IaSgKM3rAiohdy
+ dIW3jprxTembFtXH/ul4oeoTmz4jtJnHj7GElZd9djs9y01yCjzM4SHkuQ0DfqXPf8tR51zTelw
+ ecQ8a+xIgiD0+D3pJBe6D0SZLEvo=
+X-Gm-Gg: ASbGncuodu7ODtqzMNLmzbqBDYNrNHT3S7t3o2lJpU4Rb+27UaUtk+blH2VayWaDN9I
+ mTvKNf+iJg52QEL7jJnlTMuyMtwW565AtgEeME5U44WMdzH0SFsh/2xio5o15DyLRWIZsSS/4
+X-Google-Smtp-Source: AGHT+IF4hKXRVLLC6unmAjENx+zZEHsy43XxaM92zW4ScuMwkiqk1/7Tpba6AbMwT3b4dDa6OhFd6Tj7HQNu4hPCPUs=
+X-Received: by 2002:a17:90b:4f4b:b0:2ee:f59a:94d3 with SMTP id
+ 98e67ed59e1d1-2f9e06b216cmr1912666a91.0.1738764805841; Wed, 05 Feb 2025
+ 06:13:25 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Env-From: sfual
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+References: <20250204190400.2550-1-dakr@kernel.org>
+ <20250204190400.2550-2-dakr@kernel.org>
+ <20250205155646.00003c2f@nvidia.com>
+In-Reply-To: <20250205155646.00003c2f@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 5 Feb 2025 15:13:12 +0100
+X-Gm-Features: AWEUYZkGVXHP4hrFG-5_ihud3NGINPm5TNS2CNAPtoXmocfUh6RQ24GiptUl5w0
+Message-ID: <CANiq72mxKhCudmRaS=gwnC=gjkCLMhZcC2ZpfzKKaGX1Hivz9g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] gpu: nova-core: add initial documentation
+To: Zhi Wang <zhiw@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, airlied@gmail.com, simona@ffwll.ch,
+ corbet@lwn.net, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, cjia@nvidia.com, 
+ jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com, ojeda@kernel.org, 
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net, 
+ bjorn3_gh@protonmail.com, benno.lossin@proton.me, a.hindborg@kernel.org, 
+ aliceryhl@google.com, tmgross@umich.edu, dri-devel@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,29 +93,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In `nouveau_bo_move_prep`, if `nouveau_mem_map` fails, an error code
-should be returned. Currently, it returns zero even if vmm addr is not
-correctly mapped.
+On Wed, Feb 5, 2025 at 2:57=E2=80=AFPM Zhi Wang <zhiw@nvidia.com> wrote:
+>
+> It would be also helpful to make the process explicit. E.g. sharing your
+> command lines used to checking the patches. So folks can align with the
+> expected outcome, e.g. command line parameters.
 
-Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
-Fixes: 9ce523cc3bf2 ("drm/nouveau: separate buffer object backing memory from nvkm structures")
----
- drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+These two guidelines (and generally the few others above) are intended
+to apply to all Rust code in the kernel (i.e. not just `rust/`) --
+their command lines are mentioned in `Documentation/rust/`. We could
+add a note to make that clearer if that helps. So I would suggest
+avoiding repetition here by referencing those.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index b96f0555ca14..f26562eafffc 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -929,7 +929,7 @@ nouveau_bo_move_prep(struct nouveau_drm *drm, struct ttm_buffer_object *bo,
- 		nvif_vmm_put(vmm, &old_mem->vma[1]);
- 		nvif_vmm_put(vmm, &old_mem->vma[0]);
- 	}
--	return 0;
-+	return ret;
- }
- 
- static int
--- 
-2.39.5
+We also mention it in our "Subsystem Profile document" at
+https://rust-for-linux.com/contributing#submit-checklist-addendum.
 
+> > +The availability of proper documentation is essential in terms of scal=
+ability,
+> > +accessability for new contributors and maintainability of a project in=
+ general,
+
+Typo: accessibility?
+
+Cheers,
+Miguel
