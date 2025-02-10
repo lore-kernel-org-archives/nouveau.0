@@ -4,69 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44053D0EE2B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1BC5D0EE2F
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 487EA10E499;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AAAD10E49B;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mw/EUmuT";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NcQS7yW0";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E24D10E14F;
- Tue, 18 Jun 2024 03:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Ld6CWp6MvzsfLCexkDmw2gq97DL2MMR6pnNJDMxtfIA=; b=mw/EUmuTRH+Mvzsqt73ouRnJz3
- LWS2nHuqMo/Q4WgO+Gsi441NQIraJa28h7vsH/F60J7RpYJLaoKIlLi62s2cUNf9GAEBeyIyIVYmu
- 4Gn9bm5BFI2ADzOBUxNgw/2MnRa/uEB/1BDOjpFbkzeU+0aJaYxylOsCbt3T+7n/JWXLi2mcE3bWA
- B/kpcmLGis8/MgHXqmHpM7Sw5Mt1+H5tEgSZ07a8xu9FVuL8kH59tg5/mTr5cZnKRnylMHFVfVkaF
- QLhKajlp8aHcR8YgH/XKghxUgHBwIy001z1BUhbV93QAFSXqT2vBL5zyzVPSJsO3VO4yi4K0Gq8Do
- wXODCEww==;
-Received: from [191.8.29.108] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sJP5O-004YXc-NX; Tue, 18 Jun 2024 05:00:43 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
- daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
- =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
- Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v7 1/9] drm/atomic: Allow userspace to use explicit sync with
- atomic async flips
-Date: Tue, 18 Jun 2024 00:00:16 -0300
-Message-ID: <20240618030024.500532-2-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240618030024.500532-1-andrealmeid@igalia.com>
-References: <20240618030024.500532-1-andrealmeid@igalia.com>
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com
+ [209.85.222.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 664CD10E404;
+ Mon, 10 Feb 2025 23:39:19 +0000 (UTC)
+Received: by mail-ua1-f42.google.com with SMTP id
+ a1e0cc1a2514c-866e924f735so1449151241.2; 
+ Mon, 10 Feb 2025 15:39:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1739230758; x=1739835558; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=r4J5WV+6IR7+S2waApgF1qBwpbiN//GCbixakjmicks=;
+ b=NcQS7yW0bv6fsxyumcpCOwh+URkPkmVDXVFbDz5N0FIe8w7YUY2vl0VsM/779EB7Yl
+ vw1nKs7xqoJkdF1ib3cJURCEgQRh9xZ6IYf4dSwOC8gtJqNhj6Kd9fMNPU+BzCsE6XfH
+ o9QgSX2n59al+XSezM37I2+jplZ1Z2CJ0Vwu/snmLiacl2x8HKJusreC004PlruHUhmo
+ JpBTf0NaD0uNMBqxn6D4Z0KUl8bUZ3suGpkKg1NstM+q6V/8w3jn91Zp1ouTCRSmoj2W
+ ZHCr9Q0/Bnh608OMP005l9l13IuNJGjcgZ/0g6MTR3ELpGdXmdmUZvXo9wANR1wIAHMi
+ WkBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1739230758; x=1739835558;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=r4J5WV+6IR7+S2waApgF1qBwpbiN//GCbixakjmicks=;
+ b=isurhDejPwVxqrqM26s4UssrbR0lXUkMUnGxaKMfJ5coh55Bg5A+uwbXFdpyw+a7hN
+ wY7SCazI8viVhNX4Iz6YpH2qH6R/Iefgxc4Ba///i8NMTr1M4SM+oDtx4w3OjDxhzu0g
+ 7zHe3aUbcv6YyAU2ADcUYvl6KM33WypWPXS1I+WvpAsaWZoBhs+E5ZaHog+rdXEZGRIk
+ LJLNiJ+5PwbQ/6W1mZhKa5etOO1QnEtvmMAN7rl+1jhPbh+IFfPSgMdd7XbW2LaGSGFp
+ Spl03ufJ1Q+bYR7koskLNCkjSVtSEytaoyIGB1TwFP6vssMVGYwOj7txtb7aa+OVD1iI
+ W6RA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVsBUM8JSCUiuEJagG4fKnCZCOTgngDCevZySeXTQvNntcY6cMK5sXJJZiWix3Jtw+70sSWgJ2Srw==@lists.freedesktop.org,
+ AJvYcCXd2sM4Lkafo1DxrczJHyki0/BKSRJLhNQuU/GzWE5ipmL6rijiw3GrYISHrEeRI1eAHk6RPEQywSM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzqSy+4xh4JLeUhGy6xMiM/Xoj5IVq2JA/N0Ms6RFTLtRu/mDIr
+ WW9tee1bD1FUZmtTSHswK07HvmbORYZgO7quRr3WjH5irFzHKT83quJO3rvaNc/qZtk3LWf5zoA
+ 85yao86IuJxMeVuO4fxF4FsVA9CU=
+X-Gm-Gg: ASbGncsjCcw0J3iqnHHyumcSI15hE9y7N5Dk0x6UwEm93vuEW0iL1Qquv/Md3l7wOY/
+ ac4ncKusN9210cQtmPKqqASleeEuligLbkAFunkf5M6rDT22z0ozKZp2IpBP5xtzuvBFvutyLRt
+ meYkXuXyq7Gr4xyN56TG0+nEy34oD3JTU=
+X-Google-Smtp-Source: AGHT+IEzfy3CbplemS9WcnlHDD6MpmxCskJpVqC7I5+Y9/ioGIApBpWu1Deqy+MADOJ9mj0OMU6KQgcPeg0LuaokY6w=
+X-Received: by 2002:a05:6102:2b88:b0:4bb:ba51:7d48 with SMTP id
+ ada2fe7eead31-4bbba51806cmr4870296137.5.1739230758203; Mon, 10 Feb 2025
+ 15:39:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+References: <20250210193801.781278-1-david@redhat.com>
+ <20250210150515.c71078f212ff4661eafc15bf@linux-foundation.org>
+In-Reply-To: <20250210150515.c71078f212ff4661eafc15bf@linux-foundation.org>
+From: Barry Song <21cnbao@gmail.com>
+Date: Tue, 11 Feb 2025 12:39:07 +1300
+X-Gm-Features: AWEUYZmxTQri2-Cf24uNq3e2oUES2a1ywMTPcjyR3D9qOdCEqwTj81M6L3Eziec
+Message-ID: <CAGsJ_4yVkJdKejof1CxJY1hkUSsQ-ziRzCTp9CBXdBJ-4d1HHw@mail.gmail.com>
+Subject: Re: [PATCH v2 00/17] mm: fixes for device-exclusive entries (hmm)
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: David Hildenbrand <david@redhat.com>, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-mm@kvack.org, nouveau@lists.freedesktop.org, 
+ linux-trace-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org, 
+ damon@lists.linux.dev, =?UTF-8?B?SsOpcsO0bWUgR2xpc3Nl?= <jglisse@redhat.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Shi <alexs@kernel.org>,
+ Yanteng Si <si.yanteng@linux.dev>, 
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Peter Zijlstra <peterz@infradead.org>, SeongJae Park <sj@kernel.org>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, Jann Horn <jannh@google.com>, 
+ Pasha Tatashin <pasha.tatashin@soleen.com>, Peter Xu <peterx@redhat.com>, 
+ Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Barry Song <v-songbaohua@oppo.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:24 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,30 +101,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Allow userspace to use explicit synchronization with atomic async flips.
-That means that the flip will wait for some hardware fence, and then
-will flip as soon as possible (async) in regard of the vblank.
+On Tue, Feb 11, 2025 at 12:05=E2=80=AFPM Andrew Morton
+<akpm@linux-foundation.org> wrote:
+>
+> On Mon, 10 Feb 2025 20:37:42 +0100 David Hildenbrand <david@redhat.com> w=
+rote:
+>
+> > Against mm-hotfixes-stable for now.
+> >
+> > Discussing the PageTail() call in make_device_exclusive_range() with
+> > Willy, I recently discovered [1] that device-exclusive handling does
+> > not properly work with THP, making the hmm-tests selftests fail if THPs
+> > are enabled on the system.
+> >
+> > Looking into more details, I found that hugetlb is not properly fenced,
+> > and I realized that something that was bugging me for longer -- how
+> > device-exclusive entries interact with mapcounts -- completely breaks
+> > migration/swapout/split/hwpoison handling of these folios while they ha=
+ve
+> > device-exclusive PTEs.
+> >
+> > The program below can be used to allocate 1 GiB worth of pages and
+> > making them device-exclusive on a kernel with CONFIG_TEST_HMM.
+> >
+> > Once they are device-exclusive, these folios cannot get swapped out
+> > (proc$pid/smaps_rollup will always indicate 1 GiB RSS no matter how
+> > much one forces memory reclaim), and when having a memory block onlined
+> > to ZONE_MOVABLE, trying to offline it will loop forever and complain ab=
+out
+> > failed migration of a page that should be movable.
+> >
+> > # echo offline > /sys/devices/system/memory/memory136/state
+> > # echo online_movable > /sys/devices/system/memory/memory136/state
+> > # ./hmm-swap &
+> > ... wait until everything is device-exclusive
+> > # echo offline > /sys/devices/system/memory/memory136/state
+> > [  285.193431][T14882] page: refcount:2 mapcount:0 mapping:000000000000=
+0000
+> >   index:0x7f20671f7 pfn:0x442b6a
+> > [  285.196618][T14882] memcg:ffff888179298000
+> > [  285.198085][T14882] anon flags: 0x5fff0000002091c(referenced|uptodat=
+e|
+> >   dirty|active|owner_2|swapbacked|node=3D1|zone=3D3|lastcpupid=3D0x7ff)
+> > [  285.201734][T14882] raw: ...
+> > [  285.204464][T14882] raw: ...
+> > [  285.207196][T14882] page dumped because: migration failure
+> > [  285.209072][T14882] page_owner tracks the page as allocated
+> > [  285.210915][T14882] page last allocated via order 0, migratetype
+> >   Movable, gfp_mask 0x140dca(GFP_HIGHUSER_MOVABLE|__GFP_COMP|__GFP_ZERO=
+),
+> >   id 14926, tgid 14926 (hmm-swap), ts 254506295376, free_ts 22740202377=
+4
+> > [  285.216765][T14882]  post_alloc_hook+0x197/0x1b0
+> > [  285.218874][T14882]  get_page_from_freelist+0x76e/0x3280
+> > [  285.220864][T14882]  __alloc_frozen_pages_noprof+0x38e/0x2740
+> > [  285.223302][T14882]  alloc_pages_mpol+0x1fc/0x540
+> > [  285.225130][T14882]  folio_alloc_mpol_noprof+0x36/0x340
+> > [  285.227222][T14882]  vma_alloc_folio_noprof+0xee/0x1a0
+> > [  285.229074][T14882]  __handle_mm_fault+0x2b38/0x56a0
+> > [  285.230822][T14882]  handle_mm_fault+0x368/0x9f0
+> > ...
+> >
+> > This series fixes all issues I found so far.
+>
+> Cool.
+>
+> Barry, could you please redo your series "mm: batched unmap lazyfree
+> large folios during reclamation" on top of this (on top of mm-unstable,
+> ideally).
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
----
- drivers/gpu/drm/drm_atomic_uapi.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Sure. Thanks for letting me know.
 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 22bbb2d83e30..2e1d9391febe 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1070,7 +1070,9 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
- 			break;
- 		}
- 
--		if (async_flip && prop != config->prop_fb_id) {
-+		if (async_flip &&
-+		    prop != config->prop_fb_id &&
-+		    prop != config->prop_in_fence_fd) {
- 			ret = drm_atomic_plane_get_property(plane, plane_state,
- 							    prop, &old_val);
- 			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
--- 
-2.45.2
-
+>
