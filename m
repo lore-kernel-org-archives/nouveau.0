@@ -4,49 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C7F5D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49CB1D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5036A10EA95;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9159A10EAAB;
 	Sat, 13 Dec 2025 12:41:29 +0000 (UTC)
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A01410E0F3;
- Thu, 27 Jun 2024 02:27:44 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-05 (Coremail) with SMTP id zQCowADX3+cVznxmSQEhAA--.8512S2;
- Thu, 27 Jun 2024 10:27:40 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch, airlied@redhat.com, bskeggs@redhat.com
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NvNY01On";
+	dkim-atps=neutral
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+ [209.85.210.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C42BB10E048;
+ Sun, 16 Feb 2025 07:25:51 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id
+ 46e09a7af769-727118c4f9aso339503a34.1; 
+ Sat, 15 Feb 2025 23:25:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1739690751; x=1740295551; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=X2MtFzYyeGI+w53HFhz70blX7wSMVkW9RRqxmsCmG4c=;
+ b=NvNY01Ond9T13ILcdwN15NNExZHX0Fd/etfACbGD1ZKE3gqA8ig2bvw+LWrzPj4QvQ
+ F1aVA7rfsiZ4zVmrztaxW6+d9hM7L8+y7tlI6Y9oxsAxAVgfbtjnuJ1SN/evuD8w37ci
+ lbKkHEHVGfTKpZVGUjmYhN1A8d/bq10FVBc9py5xh+UsFEX80rXz6f8UyumM4xM0vZ8J
+ aAJyteEDC54iiT87uTte8vx8fSeM6X63vbNKe2moleAqvtaED3Vk5Bqm430OO3yTXoM1
+ uWjjPh470vPqb2SZZ7znsSYx5s++ItUnfkVmXDmb8lXxWFP/kBdNvxJpgFOquL9pPm6G
+ IX+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1739690751; x=1740295551;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=X2MtFzYyeGI+w53HFhz70blX7wSMVkW9RRqxmsCmG4c=;
+ b=DIkKGrQmkW2V+0dMoQXyMh0WIgKo2FRn9skFjvFjp4dmnhUBnKP6baLdGXinwuy0AA
+ aO3yoYS//4TSckKT8pj58hkgaHuyJWrPZWIKT5ykGFBFD8PXJPqnTvNgSe81J7QvUILv
+ /DAmcyh/FM3H5L0fm3sLm005WMK3tn6qV22hT7eu9fS13jZA+3PYzG0P5HHOU1pU/KxU
+ M+3Z4gmK3fV4FapFG21yOyv2O5xZ44s6/J3nhMjkEEWCos5N54VtH1xk4l9kpwOIF/uq
+ AQSCB+WvN8ijsEB78iBN90H38D4fKEnf1FhcbGoVFLEDRSkWNgo4KQt3xXY470dTnJTj
+ BXPA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUVf9cUe55Rn/x74kKoPDQ4Lhk3KeHwoETOeGSVS+c5jSTSGjwj7H7Em08A0DNJteqXu7KyN2XD@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyr6WM2e1tCWbIxtfzWAK6Uu/QpvlZ1hEOoA45bYqWXN1LMceP9
+ l5ADjnbkv4DPfzsmyxqfxZGcGj2xItugRhCqpxXpQZp3j52l6QCs
+X-Gm-Gg: ASbGncvM30NrXtratXJ88UOhfS32mLtCnBFY2u6aFGEv8Zat24obgVveTCo3cpVeXQe
+ PlTcikEovF2LA+Ih+nOdmVrqv5ey3Ises5hLo42iWQgd7z1AvuFBt2xWbvsSTGugZkCpw6TD2/d
+ 43rPvn+cGLc2f1e79AimWWavzcY3Q+8N6BxVOI7IrP3y+gWXjn0nPagQ1iNoZVAUbMnUUvdcP12
+ MRlbMQWAs13SNRyRNj29D7qlrBA8u/jliveQfGX1NIZdob/DXgnVAVglfiNQqZE/xCvrsNzEmLa
+ UUBjzNPJZovFQv8BMripRDdXvA==
+X-Google-Smtp-Source: AGHT+IEldSYRhKKvL+bF0zUKZ2HmbKXzdMRqJSuAGcuPjdAPT3c5bZVwGqGNztiB1tyFq27lo9WP7w==
+X-Received: by 2002:a05:6808:2107:b0:3f3:1ca8:97b with SMTP id
+ 5614622812f47-3f3eb122105mr3150386b6e.28.1739690750791; 
+ Sat, 15 Feb 2025 23:25:50 -0800 (PST)
+Received: from vengeance.tcpc.lan ([97.75.251.196])
+ by smtp.gmail.com with ESMTPSA id
+ 5614622812f47-3f3daa19849sm2467306b6e.44.2025.02.15.23.25.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 15 Feb 2025 23:25:50 -0800 (PST)
+From: Aaron Kling <luceoscutum@gmail.com>
+X-Google-Original-From: Aaron Kling <webgeek1234@gmail.com>
+To: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Aaron Kling <webgeek1234@gmail.com>,
+ Ben Skeggs <bskeggs@redhat.com>
 Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ma Ke <make24@iscas.ac.cn>
-Subject: [PATCH v2] drm/nouveau: fix null pointer dereference in
- nouveau_connector_get_modes
-Date: Thu, 27 Jun 2024 10:27:32 +0800
-Message-Id: <20240627022732.2978601-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+ linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND] drm/nouveau/pmu: Fix gp10b firmware guard
+Date: Sun, 16 Feb 2025 01:25:37 -0600
+Message-ID: <20250216072541.317954-1-webgeek1234@gmail.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowADX3+cVznxmSQEhAA--.8512S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw13Ww4ruw48Jw1xuF47twb_yoWDuFc_CF
- 1kZa9rGrsYgw10ywsrAa18Ary29w1UZrs7AFnYqFZavrZrJw1akry7tr1YqFy7Xry8WryD
- t3Wq9F98Crn2gjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUba8FF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_
- Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr
- 0_Cr1UM2vYz4IE04k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
- Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r106r15McIj6I8E87Iv67AKxVWUJV
- W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI2
- 0VAGYxC7M4IIrI8v6xkF7I0E8cxan2IY04v7MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
- Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
- x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
- 1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
- JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
- sGvfC2KfnxnUUI43ZEXa7VU1c4S5UUUUU==
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,33 +89,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nouveau_connector_get_modes(), the return value of drm_mode_duplicate()
-is assigned to mode, which will lead to a possible NULL pointer
-dereference on failure of drm_mode_duplicate(). Add a check to avoid npd.
+Most kernel configs enable multiple Tegra SoC generations, causing this
+typo to go unnoticed. But in the case where a kernel config is strictly
+for Tegra186, this is a problem.
 
-Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
+Fixes: 989863d7cbe5 ("drm/nouveau/pmu: select implementation based on available firmware")
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
 ---
-Changes in v2:
-- modified the patch according to suggestions.
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 856b3ef5edb8..0c71d761d378 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1001,6 +1001,9 @@ nouveau_connector_get_modes(struct drm_connector *connector)
- 		struct drm_display_mode *mode;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
+index a6f410ba60bc9..d393bc540f862 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pmu/gp10b.c
+@@ -75,7 +75,7 @@ gp10b_pmu_acr = {
+ 	.bootstrap_multiple_falcons = gp10b_pmu_acr_bootstrap_multiple_falcons,
+ };
  
- 		mode = drm_mode_duplicate(dev, nv_connector->native_mode);
-+		if (!mode)
-+			return 0;
-+
- 		drm_mode_probed_add(connector, mode);
- 		ret = 1;
- 	}
+-#if IS_ENABLED(CONFIG_ARCH_TEGRA_210_SOC)
++#if IS_ENABLED(CONFIG_ARCH_TEGRA_186_SOC)
+ MODULE_FIRMWARE("nvidia/gp10b/pmu/desc.bin");
+ MODULE_FIRMWARE("nvidia/gp10b/pmu/image.bin");
+ MODULE_FIRMWARE("nvidia/gp10b/pmu/sig.bin");
 -- 
-2.25.1
+2.48.1
 
