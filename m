@@ -4,65 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8365DD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33004D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C181710EA2A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 146AF10EA81;
 	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="reUC8JMd";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ufx33ohB";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6629210E9FD;
- Fri,  4 Jul 2025 11:27:13 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bYWZ61yKtz9tPc;
- Fri,  4 Jul 2025 13:27:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1751628430; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vAYgujU/GayRVUHzZeIwhj6KjiLXs1qZHyUAQpSCpDs=;
- b=reUC8JMdywTHa6SGNGQxlb/EI8+C7FIDEBI3laF3FTZloaaiv/+lVs1AxWDebUi2nwdZrF
- sNVoBUfpAwFWLFCirX+bP5/ECcGKZpWeSzwgUuCnpP8YT1U8CInxZgzM8kD9eZeZDct6Hh
- 1d2TaTWXCm/uQzOy8rs/3njSclVgH6A9dHRkJTnxfep/rxH58aAbsskMyd1hfMQyA++30H
- +6dzSHOBG2XMLBGxJS/+VmpLu2hTVwmjviygZ5kQdFz57vwa6dlv8vfDQX6QesieBH5PVt
- qsXccfyh0CtgFmM169spDeFMlycwq5bcpmw7yJlsZPjauIahOlGzSNE1X58o0A==
-Message-ID: <298eeb951676d24981f1d9208b076ec03563a3ae.camel@mailbox.org>
-Subject: Re: [PATCH 2/6] drm/sched/tests: Port to cancel_job()
-From: Philipp Stanner <phasta@mailbox.org>
-To: phasta@kernel.org, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Lyude
- Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
- <sumit.semwal@linaro.org>, Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
- linaro-mm-sig@lists.linaro.org
-Date: Fri, 04 Jul 2025 13:27:04 +0200
-In-Reply-To: <fc61c7c9d5d341d752458d0ee6313ec932803ab3.camel@mailbox.org>
-References: <20250701132142.76899-3-phasta@kernel.org>
- <20250701132142.76899-5-phasta@kernel.org>
- <f9b55d5b-0018-4850-a9b7-2f267467e957@igalia.com>
- <6762d33b4fe8e7b264a7403f228e6ec6723ae623.camel@mailbox.org>
- <9a070a66-f6fd-45b4-958c-c6e9f3487a0c@igalia.com>
- <fc61c7c9d5d341d752458d0ee6313ec932803ab3.camel@mailbox.org>
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+ [209.85.208.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93F4110E293;
+ Mon, 17 Feb 2025 20:48:07 +0000 (UTC)
+Received: by mail-lj1-f171.google.com with SMTP id
+ 38308e7fff4ca-3092643f4aaso26412331fa.1; 
+ Mon, 17 Feb 2025 12:48:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1739825285; x=1740430085; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=PBnEtgDXrS3Iq43NK/WiujJi82KZNp8oMdM7dL15NAw=;
+ b=Ufx33ohBvOTYxjorvZ7pTrayR61R7zYu73lohCxVSxWtnVto3NDNOW0RYcdFXR72vs
+ TjKYbZ1VgREm0BcLl/wAP761smNHBHSg0UDgZOZHbA8ogko4tzE/fG3xDXZJ9d/twvpO
+ pvRifFq6nDSngJsdnDjNqcyRmS1q7gX1euROhNqk8Xzmkc/aJ9b38ECiSDN05uO0Xb0c
+ jr5UURPUsEioQqCLULTOGGqnLHO3DOP7RtxACyvBx00Y7CPPSOv3qp4EEQVNkgpaEZfn
+ PSdvylSGeC62bwkbEb4WC2dWjqC0gG9oCNZ48tQ9yzwTmbGaACoBldtZp6qUJvIRyEMb
+ rr0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1739825285; x=1740430085;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=PBnEtgDXrS3Iq43NK/WiujJi82KZNp8oMdM7dL15NAw=;
+ b=qAbhjwdxTTS1DtCiUxMY8Qw4uNe0dd2vP9r4LUTPdiBT1kFx0MtvcnfeCziMdrX3UH
+ cZtGITt3UNxPZv1xvkjQ6ne7EErCiQNSDEgZcOe/3hL7yimdKUm2eu3L9R8EksHgr2m1
+ iFClXM0HFarSpN3d+D4gNadheg9UwWlrhGWRfoS8qkygC7u3DHa+pA8E/yg6HCGd9PZM
+ /FcS4UMUSlyMaSLgygeDSE+ktaSNNDaeHHTwbu8vd0UYp5lJIjNj59J/5KzC1mALsmix
+ N16dIyegl6Q5RpsaOcivJ/sCj5E8QIJNqGGI7a0PMT5FBlkQRwJe8sZlxmYXU/KDXbvl
+ GQfA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVJlv3pMiFgcIyh4fPNWfhxIZRwPqQafOGq4WW4LyBdk2iWPNMZ3+FXX5SNXaJM0vkyW4Z+dmQ1zg==@lists.freedesktop.org,
+ AJvYcCW7RkXyyzNOeYZ+o7+lsVC6cU1WttnAxfjEMy1n/oWaxIU2jxtSDAYW8Y6R/hNTyeI+KAp+AHSQSlo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx/rIUvSb1XZkroqvQam7Tpvlo7MUCSXEIcMp4wdplhNkk/qAJg
+ HfgvJhLtzTwW02SW2cCimlotz2qzqsoFJS9kMn2ie3p/h64oHcGmsX62ejnLlr+BBjk9rrn3Tyb
+ KsHMQg66Szrh/16wLccPhH5Gsnwk=
+X-Gm-Gg: ASbGncseode7crOKuXK2iEPe+LAVdTV4tNxUQZcjq9+nl5tof8F7bedHh62l1KxmQoJ
+ UJpcg9E/HuPgPe5PJmDGCXo0/rpuzhjMP9woMJECdptrkdGIRvjXN37gTgS4jxiAvQMrMFD0=
+X-Google-Smtp-Source: AGHT+IE2HIK55IZ0WC8oiPzUGf3+qIkZjooYuFgwlxN7ic0lMuYmKdXdCrYqMbDIIPjb16hn+uYvN37aRRh2Mmw54r8=
+X-Received: by 2002:a2e:8615:0:b0:309:1f1a:276b with SMTP id
+ 38308e7fff4ca-309288dd3d9mr24735151fa.10.1739825285303; Mon, 17 Feb 2025
+ 12:48:05 -0800 (PST)
+MIME-Version: 1.0
+References: <20250217-nova_timer-v1-0-78c5ace2d987@nvidia.com>
+ <20250217-nova_timer-v1-1-78c5ace2d987@nvidia.com>
+In-Reply-To: <20250217-nova_timer-v1-1-78c5ace2d987@nvidia.com>
+From: =?UTF-8?Q?Sergio_Gonz=C3=A1lez_Collado?= <sergio.collado@gmail.com>
+Date: Mon, 17 Feb 2025 21:47:29 +0100
+X-Gm-Features: AWEUYZkhMupaOKDqUFGG02klV236GSJkG6vgCUJ5hwk1HNdZbu8uVT8mYAd_O24
+Message-ID: <CAA76j90OV5OpCVLGFrGVL4-DRSFreZDj8FUmx_nkOq9HL1x2cQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/3] rust: add useful ops for u64
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-MBO-RS-META: ashhwffr5of6bn8qo63jw5reyuy595af
-X-MBO-RS-ID: 6ddbd0de627db6a1644
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,305 +84,84 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 2025-07-04 at 11:53 +0200, Philipp Stanner wrote:
-> On Wed, 2025-07-02 at 12:25 +0100, Tvrtko Ursulin wrote:
-> >=20
-> > On 02/07/2025 11:56, Philipp Stanner wrote:
-> > > On Wed, 2025-07-02 at 11:36 +0100, Tvrtko Ursulin wrote:
-> > > >=20
-> > > > On 01/07/2025 14:21, Philipp Stanner wrote:
-> > > > > The GPU Scheduler now supports a new callback, cancel_job(),
-> > > > > which
-> > > > > lets
-> > > > > the scheduler cancel all jobs which might not yet be freed
-> > > > > when
-> > > > > drm_sched_fini() runs. Using this callback allows for
-> > > > > significantly
-> > > > > simplifying the mock scheduler teardown code.
-> > > > >=20
-> > > > > Implement the cancel_job() callback and adjust the code where
-> > > > > necessary.
-> > > >=20
-> > > > Cross referencing against my version I think you missed this
-> > > > hunk:
-> > > >=20
-> > > > --- a/drivers/gpu/drm/scheduler/tests/sched_tests.h
-> > > > +++ b/drivers/gpu/drm/scheduler/tests/sched_tests.h
-> > > > @@ -49,7 +49,6 @@ struct drm_mock_scheduler {
-> > > >=20
-> > > > =C2=A0=C2=A0=C2=A0	spinlock_t		lock;
-> > > > =C2=A0=C2=A0=C2=A0	struct list_head	job_list;
-> > > > -	struct list_head	done_list;
-> > > >=20
-> > > > =C2=A0=C2=A0=C2=A0	struct {
-> > > > =C2=A0=C2=A0=C2=A0		u64		context;
-> > > >=20
-> > >=20
-> > > Right, overlooked that one.
-> > >=20
-> > > >=20
-> > > > I also had this:
-> > > >=20
-> > > > @@ -97,7 +96,8 @@ struct drm_mock_sched_job {
-> > > > =C2=A0=C2=A0=C2=A0	struct completion	done;
-> > > >=20
-> > > > =C2=A0=C2=A0 #define DRM_MOCK_SCHED_JOB_DONE		0x1
-> > > > -#define DRM_MOCK_SCHED_JOB_TIMEDOUT	0x2
-> > > > +#define DRM_MOCK_SCHED_JOB_CANCELED	0x2
-> > > > +#define DRM_MOCK_SCHED_JOB_TIMEDOUT	0x4
-> > > >=20
-> > > > And was setting it in the callback. And since we should add a
-> > > > test to
-> > > > explicitly cover the new callback, and just the callback, that
-> > > > could
-> > > > make it very easy to do it.
-> > >=20
-> > > What do you imagine that to look like? The scheduler only invokes
-> > > the
-> > > callback on tear down.
-> > >=20
-> > > We also don't have tests that only test free_job() and the like,
-> > > do
-> > > we?
-> > >=20
-> > > You cannot test a callback for the scheduler, because the
-> > > callback
-> > > is
-> > > implemented in the driver.
-> > >=20
-> > > Callbacks are tested by using the scheduler. In this case, it's
-> > > tested
-> > > the intended way by the unit tests invoking drm_sched_free().
-> >=20
-> > Something like (untested):
-> >=20
-> > static void drm_sched_test_cleanup(struct kunit *test)
-> > {
-> > 	struct drm_mock_sched_entity *entity;
-> > 	struct drm_mock_scheduler *sched;
-> > 	struct drm_mock_sched_job job;
-> > 	bool done;
-> >=20
-> > 	/*
-> > 	 * Check that the job cancel callback gets invoked by the
-> > scheduler.
-> > 	 */
-> >=20
-> > 	sched =3D drm_mock_sched_new(test, MAX_SCHEDULE_TIMEOUT);
-> > 	entity =3D drm_mock_sched_entity_new(test,
-> > 					=C2=A0=C2=A0
-> > DRM_SCHED_PRIORITY_NORMAL,
-> > 					=C2=A0=C2=A0 sched);
-> >=20
-> > 	job =3D drm_mock_sched_job_new(test, entity);
-> > 	drm_mock_sched_job_submit(job);
-> > 	done =3D drm_mock_sched_job_wait_scheduled(job, HZ);
-> > 	KUNIT_ASSERT_TRUE(test, done);
-> >=20
-> > 	drm_mock_sched_entity_free(entity);
-> > 	drm_mock_sched_fini(sched);
-> >=20
-> > 	KUNIT_ASSERT_TRUE(test, job->flags &
-> > DRM_MOCK_SCHED_JOB_CANCELED);
-> > }
->=20
-> That could work =E2=80=93 but it's racy.
->=20
-> I wonder if we want to introduce a mechanism into the mock scheduler
-> through which we can enforce a simulated GPU hang. Then it would
-> never
-> race, and that might be useful for more advanced tests for reset
-> recovery and those things.
->=20
-> Opinions?
-
-Ah wait, we can do that with job_duration =3D 0
-
-Very good, I'll include something like that in v2.
-
-
-P.
-
->=20
->=20
-> P.
->=20
->=20
-> >=20
-> > Or via the hw fence status.
-> >=20
-> > Regards,
-> >=20
-> > Tvrtko
-> >=20
-> > > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > > > > ---
-> > > > > =C2=A0=C2=A0 .../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 |=
- 66
-> > > > > +++++++--
-> > > > > -----
-> > > > > -----
-> > > > > =C2=A0=C2=A0 1 file changed, 23 insertions(+), 43 deletions(-)
-> > > > >=20
-> > > > > diff --git a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > > > b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > > > index 49d067fecd67..2d3169d95200 100644
-> > > > > --- a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > > > +++ b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> > > > > @@ -63,7 +63,7 @@ static void
-> > > > > drm_mock_sched_job_complete(struct
-> > > > > drm_mock_sched_job *job)
-> > > > > =C2=A0=C2=A0=C2=A0	lockdep_assert_held(&sched->lock);
-> > > > > =C2=A0=C2=A0=20
-> > > > > =C2=A0=C2=A0=C2=A0	job->flags |=3D DRM_MOCK_SCHED_JOB_DONE;
-> > > > > -	list_move_tail(&job->link, &sched->done_list);
-> > > > > +	list_del(&job->link);
-> > > > > =C2=A0=C2=A0=C2=A0	dma_fence_signal_locked(&job->hw_fence);
-> > > > > =C2=A0=C2=A0=C2=A0	complete(&job->done);
-> > > > > =C2=A0=C2=A0 }
-> > > > > @@ -236,26 +236,39 @@ mock_sched_timedout_job(struct
-> > > > > drm_sched_job
-> > > > > *sched_job)
-> > > > > =C2=A0=C2=A0=20
-> > > > > =C2=A0=C2=A0 static void mock_sched_free_job(struct drm_sched_job
-> > > > > *sched_job)
-> > > > > =C2=A0=C2=A0 {
-> > > > > -	struct drm_mock_scheduler *sched =3D
-> > > > > -			drm_sched_to_mock_sched(sched_job-
-> > > > > > sched);
-> > > > > =C2=A0=C2=A0=C2=A0	struct drm_mock_sched_job *job =3D
-> > > > > drm_sched_job_to_mock_job(sched_job);
-> > > > > -	unsigned long flags;
-> > > > > =C2=A0=C2=A0=20
-> > > > > -	/* Remove from the scheduler done list. */
-> > > > > -	spin_lock_irqsave(&sched->lock, flags);
-> > > > > -	list_del(&job->link);
-> > > > > -	spin_unlock_irqrestore(&sched->lock, flags);
-> > > > > =C2=A0=C2=A0=C2=A0	dma_fence_put(&job->hw_fence);
-> > > > > -
-> > > > > =C2=A0=C2=A0=C2=A0	drm_sched_job_cleanup(sched_job);
-> > > > > =C2=A0=C2=A0=20
-> > > > > =C2=A0=C2=A0=C2=A0	/* Mock job itself is freed by the kunit frame=
-work.
-> > > > > */
-> > > > > =C2=A0=C2=A0 }
-> > > > > =C2=A0=C2=A0=20
-> > > > > +static void mock_sched_cancel_job(struct drm_sched_job
-> > > > > *sched_job)
-> > > > > +{
-> > > > > +	struct drm_mock_scheduler *sched =3D
-> > > > > drm_sched_to_mock_sched(sched_job->sched);
-> > > > > +	struct drm_mock_sched_job *job =3D
-> > > > > drm_sched_job_to_mock_job(sched_job);
-> > > > > +	unsigned long flags;
-> > > > > +
-> > > > > +	hrtimer_cancel(&job->timer);
-> > > > > +
-> > > > > +	spin_lock_irqsave(&sched->lock, flags);
-> > > > > +	if (!dma_fence_is_signaled_locked(&job->hw_fence)) {
-> > > > > +		list_del(&job->link);
-> > > > > +		dma_fence_set_error(&job->hw_fence, -
-> > > > > ECANCELED);
-> > > > > +		dma_fence_signal_locked(&job->hw_fence);
-> > > > > +	}
-> > > > > +	spin_unlock_irqrestore(&sched->lock, flags);
-> > > > > +
-> > > > > +	/* The GPU Scheduler will call
-> > > > > drm_sched_backend_ops.free_job(), still.
-> > > > > +	 * Mock job itself is freed by the kunit framework.
-> > > > > */
-> > > >=20
-> > > > /*
-> > > > =C2=A0=C2=A0 * Multiline comment style to stay consistent, at least=
- in
-> > > > this
-> > > > file.
-> > > > =C2=A0=C2=A0 */
-> > > >=20
-> > > > The rest looks good, but I need to revisit the timeout/free
-> > > > handling
-> > > > since it has been a while and you changed it recently.
-> > > >=20
-> > > > Regards,
-> > > >=20
-> > > > Tvrtko
-> > > >=20
-> > > > > +}
-> > > > > +
-> > > > > =C2=A0=C2=A0 static const struct drm_sched_backend_ops
-> > > > > drm_mock_scheduler_ops
-> > > > > =3D {
-> > > > > =C2=A0=C2=A0=C2=A0	.run_job =3D mock_sched_run_job,
-> > > > > =C2=A0=C2=A0=C2=A0	.timedout_job =3D mock_sched_timedout_job,
-> > > > > -	.free_job =3D mock_sched_free_job
-> > > > > +	.free_job =3D mock_sched_free_job,
-> > > > > +	.cancel_job =3D mock_sched_cancel_job,
-> > > > > =C2=A0=C2=A0 };
-> > > > > =C2=A0=C2=A0=20
-> > > > > =C2=A0=C2=A0 /**
-> > > > > @@ -289,7 +302,6 @@ struct drm_mock_scheduler
-> > > > > *drm_mock_sched_new(struct kunit *test, long timeout)
-> > > > > =C2=A0=C2=A0=C2=A0	sched->hw_timeline.context =3D
-> > > > > dma_fence_context_alloc(1);
-> > > > > =C2=A0=C2=A0=C2=A0	atomic_set(&sched->hw_timeline.next_seqno, 0);
-> > > > > =C2=A0=C2=A0=C2=A0	INIT_LIST_HEAD(&sched->job_list);
-> > > > > -	INIT_LIST_HEAD(&sched->done_list);
-> > > > > =C2=A0=C2=A0=C2=A0	spin_lock_init(&sched->lock);
-> > > > > =C2=A0=C2=A0=20
-> > > > > =C2=A0=C2=A0=C2=A0	return sched;
-> > > > > @@ -304,38 +316,6 @@ struct drm_mock_scheduler
-> > > > > *drm_mock_sched_new(struct kunit *test, long timeout)
-> > > > > =C2=A0=C2=A0=C2=A0 */
-> > > > > =C2=A0=C2=A0 void drm_mock_sched_fini(struct drm_mock_scheduler *=
-sched)
-> > > > > =C2=A0=C2=A0 {
-> > > > > -	struct drm_mock_sched_job *job, *next;
-> > > > > -	unsigned long flags;
-> > > > > -	LIST_HEAD(list);
-> > > > > -
-> > > > > -	drm_sched_wqueue_stop(&sched->base);
-> > > > > -
-> > > > > -	/* Force complete all unfinished jobs. */
-> > > > > -	spin_lock_irqsave(&sched->lock, flags);
-> > > > > -	list_for_each_entry_safe(job, next, &sched-
-> > > > > >job_list,
-> > > > > link)
-> > > > > -		list_move_tail(&job->link, &list);
-> > > > > -	spin_unlock_irqrestore(&sched->lock, flags);
-> > > > > -
-> > > > > -	list_for_each_entry(job, &list, link)
-> > > > > -		hrtimer_cancel(&job->timer);
-> > > > > -
-> > > > > -	spin_lock_irqsave(&sched->lock, flags);
-> > > > > -	list_for_each_entry_safe(job, next, &list, link)
-> > > > > -		drm_mock_sched_job_complete(job);
-> > > > > -	spin_unlock_irqrestore(&sched->lock, flags);
-> > > > > -
-> > > > > -	/*
-> > > > > -	 * Free completed jobs and jobs not yet processed by
-> > > > > the
-> > > > > DRM scheduler
-> > > > > -	 * free worker.
-> > > > > -	 */
-> > > > > -	spin_lock_irqsave(&sched->lock, flags);
-> > > > > -	list_for_each_entry_safe(job, next, &sched-
-> > > > > >done_list,
-> > > > > link)
-> > > > > -		list_move_tail(&job->link, &list);
-> > > > > -	spin_unlock_irqrestore(&sched->lock, flags);
-> > > > > -
-> > > > > -	list_for_each_entry_safe(job, next, &list, link)
-> > > > > -		mock_sched_free_job(&job->base);
-> > > > > -
-> > > > > =C2=A0=C2=A0=C2=A0	drm_sched_fini(&sched->base);
-> > > > > =C2=A0=C2=A0 }
-> > > > > =C2=A0=C2=A0=20
-> > > >=20
-> > >=20
-> >=20
->=20
-
+On Mon, 17 Feb 2025 at 15:07, Alexandre Courbot <acourbot@nvidia.com> wrote=
+:
+>
+> It is common to build a u64 from its high and low parts obtained from
+> two 32-bit registers. Conversely, it is also common to split a u64 into
+> two u32s to write them into registers. Add an extension trait for u64
+> that implement these methods in a new `num` module.
+>
+> It is expected that this trait will be extended with other useful
+> operations, and similar extension traits implemented for other types.
+>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  rust/kernel/lib.rs |  1 +
+>  rust/kernel/num.rs | 32 ++++++++++++++++++++++++++++++++
+>  2 files changed, 33 insertions(+)
+>
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index 496ed32b0911a9fdbce5d26738b9cf7ef910b269..8c0c7c20a16aa96e3d3e444be=
+3e03878650ddf77 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -59,6 +59,7 @@
+>  pub mod miscdevice;
+>  #[cfg(CONFIG_NET)]
+>  pub mod net;
+> +pub mod num;
+>  pub mod of;
+>  pub mod page;
+>  #[cfg(CONFIG_PCI)]
+> diff --git a/rust/kernel/num.rs b/rust/kernel/num.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..5e714cbda4575b8d74f506605=
+80dc4c5683f8c2b
+> --- /dev/null
+> +++ b/rust/kernel/num.rs
+> @@ -0,0 +1,32 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Numerical and binary utilities for primitive types.
+> +
+> +/// Useful operations for `u64`.
+> +pub trait U64Ext {
+> +    /// Build a `u64` by combining its `high` and `low` parts.
+> +    ///
+> +    /// ```
+> +    /// use kernel::num::U64Ext;
+> +    /// assert_eq!(u64::from_u32s(0x01234567, 0x89abcdef), 0x01234567_89=
+abcdef);
+> +    /// ```
+> +    fn from_u32s(high: u32, low: u32) -> Self;
+> +
+> +    /// Returns the `(high, low)` u32s that constitute `self`.
+> +    ///
+> +    /// ```
+> +    /// use kernel::num::U64Ext;
+> +    /// assert_eq!(u64::into_u32s(0x01234567_89abcdef), (0x1234567, 0x89=
+abcdef));
+> +    /// ```
+> +    fn into_u32s(self) -> (u32, u32);
+> +}
+> +
+> +impl U64Ext for u64 {
+> +    fn from_u32s(high: u32, low: u32) -> Self {
+> +        ((high as u64) << u32::BITS) | low as u64
+> +    }
+> +
+> +    fn into_u32s(self) -> (u32, u32) {
+> +        ((self >> u32::BITS) as u32, self as u32)
+> +    }
+> +}
+>
+> --
+> 2.48.1
+>
+>
+Looks good :)
+Reviewed-by: Sergio Gonz=C3=A1lez Collado <sergio.collado@gmail.com>
