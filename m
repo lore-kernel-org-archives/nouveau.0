@@ -4,70 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DCE8D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFA5ED5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1067010E421;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CB3F10E427;
 	Sat, 13 Dec 2025 12:17:25 +0000 (UTC)
-Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5424410E0BC;
- Wed, 13 Aug 2025 20:12:06 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by nyc.source.kernel.org (Postfix) with ESMTP id F27F8A57F1C;
- Wed, 13 Aug 2025 20:12:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4096C4CEEF;
- Wed, 13 Aug 2025 20:11:53 +0000 (UTC)
-Date: Wed, 13 Aug 2025 21:11:51 +0100
-From: Mark Brown <broonie@debian.org>
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
- Dave Ertman <david.m.ertman@intel.com>,
- Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-pm@vger.kernel.org,
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="J4f72sBb";
+	dkim-atps=neutral
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F9010EB2A;
+ Thu, 27 Feb 2025 15:18:06 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-7c0ac2f439eso120931185a.0; 
+ Thu, 27 Feb 2025 07:18:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1740669485; x=1741274285; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RGggIkK/XZzPteLqAYumoxClI9/TZi6ilC7vijsxqiM=;
+ b=J4f72sBbQ1su/Pk2KbirSx0YdGz8nDV8uRwXmE8EpRL8M6geYwa3tsm/rSLHCiKYql
+ 2edxvGLHqn0/1xRwQPnNHMsRFRj112wM8f+MqdjD/Km/3FoNxl1s1AdiMRS521Y7Zeyt
+ OWnET4siuNefKZU6dAKm3VpO/zD0u+tjUwQvLuhKWExgcC59EBQf2bblUTaXhAvOmqln
+ IiZmvkSEEcGQ0bz3aJzcbJVqr7WFgOvKfgxbxkXwkqAfJTQOrVKYyAkCoPouyWcgGR9P
+ 6Ri+JopJ7iNRgwC7Z4bppqlve5UN5+I+bRo6xX0g8GD6Xbe3yGuYnYzKSF7YoZT2Zrxd
+ oiZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740669485; x=1741274285;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=RGggIkK/XZzPteLqAYumoxClI9/TZi6ilC7vijsxqiM=;
+ b=r2mxgD2bX9dG/+PBTyx2aeRxOCh/oNkoakAZampUcNOtom1R0Jq5hZupqEcKG99fKZ
+ 5GsUgl8ylu6dRYBQUE2Yw058oUTDcFOVGFzCcEogR6MIOdbqZSlJrTt7/Kemb+1ypMKa
+ VXmft7kkU8J9UgaDka4n2feczbVFBKht3ZBOOaXB+AWRR1L5e/TeOsteDo8jEJBEABFJ
+ YeVeO2NMaPqZ26z/i74s+IHwF6oQAtlV9siGMLRWpWhv4qEI8uGgdTURuXGjcMEpvFlQ
+ fe4SqmqT9aAmAKhXuiIpfSwNJWyuEua4NGYEk8cGwHsWxUILLFYGXE4pnOhbcOchx1iv
+ qP2w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUOypScD8xzCTuxyMdgPzsfMJL+/H0obeijLbhjfY8szunBwjzxrc7QeQ2+i6oG1Qb/jS/YSaFtzLs=@lists.freedesktop.org,
+ AJvYcCWq7Lj2uWtiJzrl7vnuLFOFerk75xR3rPNreF4sofzi6b4+OCz/gePC58Q68IgIjYiMaR7PAe5uxg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyeD+2htpJ9hlQG5CPdVZsLTVWFDc+7uuLhZxsP4LXobflSsQZB
+ EAOTIj/1YHneAVKN++h1zYn8AJIMbsg4c/Q70GIvqazg2GPLbT0R
+X-Gm-Gg: ASbGncuKSiSt8hElIxtAwDcl9Y+5TxYySK0jz5iix91KUHDp76VlpVjNkpz2/8Yf3cD
+ TtWFX6tynj4vGqXmi8yq4eMsMD67L7D4JXbidF6XTEKkqCFJZ5WEzz7/PH9LXP4FDG7atiUr8so
+ RIhiARarspUGEQeob1vnZfItxibqeGiSGGfuoeNZwBeLiucGyEJbQizxRidWeRCoTyyQJ/Cre+l
+ NqIV4tRYjrINbXQ4uezEC8Nm0uaAOjG998o/e/I26SfvKGSWNfitMTUsNte/cqtO2421zRzg3Om
+ XPojl3cCrg30qeCM7XhlQt+dga04x1AJ0C+Eh1srwGvmnTfC2Pw7nbiN2ecmbYASXgpQh0pTHVC
+ vBs5G9WOsRxt/ps3s
+X-Google-Smtp-Source: AGHT+IEq6UiJGiAn5J8WLSyd0NSIn0Gz699g7En/BXC3Xd/QEAVezFlMxxou7MPtwiZYDc1OaY4iKg==
+X-Received: by 2002:a05:620a:4508:b0:7c0:b7ca:70ec with SMTP id
+ af79cd13be357-7c0cef4853emr3674139285a.41.1740669485263; 
+ Thu, 27 Feb 2025 07:18:05 -0800 (PST)
+Received: from fauth-a1-smtp.messagingengine.com
+ (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7c378d9fe36sm115572385a.83.2025.02.27.07.18.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 27 Feb 2025 07:18:04 -0800 (PST)
+Received: from phl-compute-08.internal (phl-compute-08.phl.internal
+ [10.202.2.48])
+ by mailfauth.phl.internal (Postfix) with ESMTP id 46794120006D;
+ Thu, 27 Feb 2025 10:18:04 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+ by phl-compute-08.internal (MEProxy); Thu, 27 Feb 2025 10:18:04 -0500
+X-ME-Sender: <xms:LILAZ_0n7FGmGJITqMKE32EJqDyy7Mzle5qLOF40jUOUKhGz5PUfZQ>
+ <xme:LILAZ-FwrJixiSMy0LZApN6iZ3P5tpinDuFaAS_OzCXV9t5zpdL3s4A-476yKgaoC
+ PPcnauyTW5KvJH0jQ>
+X-ME-Received: <xmr:LILAZ_6NohMDVnPg6nF5cxXv5QjESw3A_S6s5LSYVBgruahHifKY8yP9UQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekjeekudcutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+ uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+ hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
+ necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
+ drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
+ ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+ hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
+ ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
+ hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopeduhedpmhho
+ uggvpehsmhhtphhouhhtpdhrtghpthhtohepjhhgghesnhhvihguihgrrdgtohhmpdhrtg
+ hpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjohgvlhgrghhn
+ vghlfhesnhhvihguihgrrdgtohhmpdhrtghpthhtoheprggtohhurhgsohhtsehnvhhiug
+ hirgdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghp
+ thhtohepghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepjhhovghlsehjoh
+ gvlhhfvghrnhgrnhguvghsrdhorhhgpdhrtghpthhtohepjhhhuhgssggrrhgusehnvhhi
+ ughirgdrtghomhdprhgtphhtthhopegsshhkvghgghhssehnvhhiughirgdrtghomh
+X-ME-Proxy: <xmx:LILAZ00V1NaJ4mvj1-dwMWGjY-pTlO3NLGn9enWCsVKsRyR1AXVXDQ>
+ <xmx:LILAZyEEsKioUNzF4sPKjWl06vG3bhu69SMl19pvBls-9V4UOFYQuw>
+ <xmx:LILAZ18E-uNORxHsgOKOQ3JOtrZTzPTOr4UiT0IRx0C6WLcEXbJZkA>
+ <xmx:LILAZ_nHko2mGSrMEiqf4tOvdP9950Gc_aexl4qnzS1hufAHlKN0-w>
+ <xmx:LILAZ-GnZXcGVrbFPYhz1nd--0hhGxQeONVznQF9J2ZrcQii6wBtc808>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Feb 2025 10:18:03 -0500 (EST)
+Date: Thu, 27 Feb 2025 07:18:02 -0800
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Dave Airlie <airlied@gmail.com>, Gary Guo <gary@garyguo.net>,
+ Joel Fernandes <joel@joelfernandes.org>,
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
  linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- netdev@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com, linux-block@vger.kernel.org,
- linux-fsdevel@vger.kernel.org
-Subject: Re: [PATCH v2 00/19] rust: replace `kernel::c_str!` with C-Strings
-Message-ID: <34d384af-6123-4602-bde0-85ca3d14fe09@sirena.org.uk>
-References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+ paulmck@kernel.org
+Subject: Re: [RFC PATCH 0/3] gpu: nova-core: add basic timer subdevice
+ implementation
+Message-ID: <Z8CCKl_yA74WjpQ1@Mac.home>
+References: <20250225210228.GA1801922@joelnvbox>
+ <20250225225756.GA4959@nvidia.com> <Z75WKSRlUVEqpysJ@cassiopeiae>
+ <20250226004916.GB4959@nvidia.com> <Z75riltJo0WvOsS5@cassiopeiae>
+ <20250226172120.GD28425@nvidia.com> <Z7-IHgcVVS8XBurW@cassiopeiae>
+ <20250226234730.GC39591@nvidia.com>
+ <Z7-0pOmWO6r_KeQI@boqun-archlinux>
+ <20250227144618.GE39591@nvidia.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="6FVk2V0LrGBjdKpm"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
-X-Cookie: Turn the other cheek.
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:00 +0000
+In-Reply-To: <20250227144618.GE39591@nvidia.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,41 +139,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Thu, Feb 27, 2025 at 10:46:18AM -0400, Jason Gunthorpe wrote:
+> On Wed, Feb 26, 2025 at 04:41:08PM -0800, Boqun Feng wrote:
+> > And if you don't store the HrTimerHandle anywhere, like you drop() it
+> > right after start a hrtimer, it will immediately stop the timer. Does
+> > this make sense?
+> 
+> Oh, I understand that, but it is not sufficient in the kernel.
+> 
+> You are making an implicit argument that something external to the
+> rust universe will hold the module alive until all rust destructors
+> are run. That is trivialy obvious in your example above.
+> 
 
---6FVk2V0LrGBjdKpm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The question in your previous email is about function pointer of hrtimer
+EAF because of module unload, are you moving to a broader topic here?
+If no, the for module unload, the argument is not implicit because in
+rust/macro/module.rs the module __exit() function is generated by Rust,
+and in that function, `assume_init_drop()` will call these destructors.
 
-On Wed, Aug 13, 2025 at 11:59:10AM -0400, Tamir Duberstein wrote:
-> This series depends on step 3[0] which depends on steps 2a[1] and 2b[2]
-> which both depend on step 1[3].
->=20
-> This series also has a minor merge conflict with a small change[4] that
-> was taken through driver-core-testing. This series is marked as
-> depending on that change; as such it contains the post-conflict patch.
->=20
-> Subsystem maintainers: I would appreciate your `Acked-by`s so that this
-> can be taken through Miguel's tree (where the previous series must go).
+> However, make it more complex. Run the destructor call for your
+> hrtimer in a workqueue thread. Use workqueue.rs. Now you don't have
+> this implicit argument anymore, and it will EAF things.
+> 
 
-Something seems to have gone wrong with your posting, both my mail
-server and the mail archives stop at patch 15.  If it were just rate
-limiting or greylisting I'd have expected things to have sorted
-themselves out by now for one or the other.
+Note that HrTimerHandle holds a "reference" (could be a normal
+reference, or an refcounted reference, like Arc) to the hrtimer (and the
+struct contains it), therefore as long as HrTimerHandle exists, the
+destructor call of the hrtimer won't be call. Hence the argument is not
+implicit, it literally is:
 
---6FVk2V0LrGBjdKpm
-Content-Type: application/pgp-signature; name="signature.asc"
+* If a HrTimerHandle exists, it means the timer has been started, and
+  since the timer has been started, the existence of HrTimerHandle will
+  prevent the destructors of the hrtimer.
 
------BEGIN PGP SIGNATURE-----
+* drop() on HrTimerHandle will 1) stop the timer and 2) release the
+  reference to the hrtimer, so then the destructors could be called.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmic8YYACgkQJNaLcl1U
-h9Cumwf/YkCiNa2FUFyl0xap34GT0uNu8Xh2QH5gQa+2jI19lL8u1OybvUdzWI8N
-dryQmdo4BgnkEFiIeCiAWIUh8fHachIQqfAZfj8yJRexfSk3R0S/Nrg8CfGa9myh
-jkwom0F4sUSvZpsacG1c/oCya64UwN/bCgC+Yw2fivCPjjw/vz1JE5gtarpJEQly
-EJBbiexaSe0XYdtZ3cIT4wm0YElZqekk8U953MglLhWOOLXzt59bkslAam/8fori
-si1u/uVgWv1vyziB8dYHRa26Gsgy9OkgjCD0P64YWkoAV/uSnxsEo5wtWBx2ys1n
-pZ4kmgo8dh16iRQ7pqHeV2g3wE9HiQ==
-=xgNk
------END PGP SIGNATURE-----
+> Danilo argues this is a bug in workqueue.rs.
+> 
+> Regardless, it seems like EAF is an overlooked topic in the safety
+> analysis.
+> 
 
---6FVk2V0LrGBjdKpm--
+Well, no. See above.
+
+> Further, you and Danilo are making opposing correctness arguments:
+> 
+>  1) all rust destructors run before module __exit completes
+
+What do you mean by "all rust destructor"? In my previous email, I was
+talking about the particular destructors of fields in module struct,
+right?
+
+>  2) rust destructors can run after driver removal completes
+> 
+
+I will defer this to Danilo, because I'm not sure that's what he was
+talking about.
+
+Regards,
+Boqun
+
+> I understand the technical underpinnings why these are different, but
+> I feel that if you can make #1 reliably true for __exit then it is
+> highly desirable to use the same techniques to make it true for
+> remove() too.
+> 
+> Jason
