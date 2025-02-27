@@ -4,179 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54DF0D5AE45
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F165AD5B154
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB47A10E04A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F28C610E193;
 	Sat, 13 Dec 2025 12:17:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="N3Bnsh4/";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kYj1VO/m";
 	dkim-atps=neutral
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B2E310E42A;
- Tue,  4 Jun 2024 06:44:08 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sin.source.kernel.org (Postfix) with ESMTP id 87C00CE0F1E;
- Tue,  4 Jun 2024 06:44:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE40C2BBFC;
- Tue,  4 Jun 2024 06:43:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1717483444;
- bh=0b2B21EDLznmxz0+PWaGRMUp9XLDYqlFaMbkmYh70KU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=N3Bnsh4/tGU8oGO2cyjLj6gwijbDQqjQqTW5Tg/DmHdTVa26xfvhgUduiUEpWgRMJ
- jaeytFwbW0xoivR5RT/pTnNOSj5zJCz1gRI5uHTyT23hKQaEPMg6zYZNAYLSVrm+cF
- dgtT6Ckdr0n7pQPkMZfSOYfG4dbSrh4eCdGcQSZqGLBkhMtMzlutm6bOFIcoAV1FZe
- 9+EEQixoc3BG4phFKrga/REGqRRoaGpUMtJZl8B1M8iUMVe2WYDBm1ZLCQyqhB9Aaq
- FIJcQ95prB9DQQ/heINrJ6uwiWuSaSLO60BeDil3P6g6e+XxFflXroV097o5ECrDeb
- TDd+kVE/p/o6g==
-Message-ID: <0ea564fa-5405-444a-befb-ca4372817e33@kernel.org>
-Date: Tue, 4 Jun 2024 08:42:41 +0200
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+ [209.85.222.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2501810E0B1;
+ Thu, 27 Feb 2025 00:41:56 +0000 (UTC)
+Received: by mail-qk1-f178.google.com with SMTP id
+ af79cd13be357-7c0b9f35dc7so49991985a.2; 
+ Wed, 26 Feb 2025 16:41:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1740616915; x=1741221715; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=EBYtztjxLyrkD0HRV/UOGdGGNoqugc5RDu2qyVaSfBg=;
+ b=kYj1VO/mUHYMi8kwM+855rL/p3KpjE5/4xEaLojj9+i4CGmtxJBRyKtDZpuag5WGJC
+ ysRUsaQH3RP7kwnMYI302h+T3WqY2bSEoqr1fOclgR5PIH0kP8v3/cK1KaFlRefrdILr
+ VFTB0u+eSYwQf+ceX1NgpNM4s8poxevxAT5lJ2wImfXm6kliJeKJnntsniTOI+ArsT0o
+ bnx6naeGrs4kvK9i99Rd9gOvWIzRtMcwHDZ3yBy4UH8/p/VazlUYU+RRx8xmZQhGqJJ1
+ M6kCdh1abb6WJxx2xjcIDW6y4ybFa98L2YBtNW8ySZ/nErbD4YS4uUeMFjYBWYjw5dvj
+ eMOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740616915; x=1741221715;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=EBYtztjxLyrkD0HRV/UOGdGGNoqugc5RDu2qyVaSfBg=;
+ b=KuL7ojnwanqH47nWa/WKhnTkvVtKSscGaUfpCDlqEZH/uIlpf80vfvcYAzibyQBNnH
+ FmeKeF1Lr2y01ceUPqwogHwr7NRr+M5uTSl1JMyhhHhs2cM1P+ta0Pb3x6lhc/ji7lnQ
+ 50EaS5joKse2hqwZcSUHgvKAUB9KbkLlewyd1shKrYbjjJeaH7jD0xBeLG6Eo5+F8iJ4
+ nH1HVU29h+6I/5CF/OJ5f8z79F0Kr58fZnK+Yz6/9029D9CE3BliBKKbqHcT2kQTIxA4
+ QcA3GNZh4R4vL4oXNz2B+Tpd/cBQuDczBRCEcAuXLybUkY4jwqNuhSl04z26zuyepnaN
+ CWwg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUi9e8OTfXK2hf62W20I/dPa6EBCQZt+MQDE891+UTw9AH4xHHiOkyydTpeBG1x5wDp5ByqyEkOqQ==@lists.freedesktop.org,
+ AJvYcCWRp+qEXSET4ZhuPEwDzmCZ+nJ1AsVpRz/lzxH6O6P5oN3vljxTfRCelKcQOmBfkXZRjsLiIt9x44Y=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyU33empbH3G5Jnkwo09bp5g4dBii1yhTQ4gl/pkWp0TaDHAz7t
+ YosWj77CRJRsHPAQKhks3EFzqbvPLc6WHUs9MjPqASYe4LBHoEnE
+X-Gm-Gg: ASbGnctiEayFJ7Z6CAN322a7q5YcwIrNpkXfRbtoJnrcthQ15PSZKcjsk2nZdl66iwG
+ AOt/bZj7I6EQMwuDy4lCnYyOp/snVWeKVbOD5ijKpRwKHDEZ87RXQy46XJxR25b0MpnBotMTqis
+ dRNIIOUENwI2GkiNBmDKhVi0zon2Gjw7AEvfz3g1TlXZsORpZj1MJVqp7P8i2DZ2dJD2QpxtSj1
+ ZN/NfNHG/vAXNFx66qODa2pFf1REMWvJPjupbWyPNJCqn3qokK0c5qr2eE1uRAPNSYxxbq8UdM7
+ s8YLEfaEZSb49K8VPJWtTLosUAWsdPBFJc72KLHA4/VppboKm+a9NMmww7JVyno2bu7OhU8+lRr
+ 3ucLB+leJjQySPSgD
+X-Google-Smtp-Source: AGHT+IHEFPQ7h2hiLqhunzFMCRcCHXQxnJ3HssD/+iXCLwudLrT5IggZ0fY4ywZ4notarqngMnZKOw==
+X-Received: by 2002:a05:620a:4506:b0:7c0:a594:d788 with SMTP id
+ af79cd13be357-7c247fcb710mr803662885a.39.1740616915089; 
+ Wed, 26 Feb 2025 16:41:55 -0800 (PST)
+Received: from fauth-a1-smtp.messagingengine.com
+ (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7c378dacd0bsm30867385a.90.2025.02.26.16.41.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Feb 2025 16:41:54 -0800 (PST)
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal
+ [10.202.2.50])
+ by mailfauth.phl.internal (Postfix) with ESMTP id 2034B1200043;
+ Wed, 26 Feb 2025 19:41:54 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-10.internal (MEProxy); Wed, 26 Feb 2025 19:41:54 -0500
+X-ME-Sender: <xms:0rS_Z-qHnb1z3udMVQg71w3rlADl-5Kx4_8RPFk0ssTNufr-d_7ciQ>
+ <xme:0rS_Z8o23cN0gXUZ2OOUMuMaTRzcPghkFhRG61AnERPYIyKgLaFTxO2knPD-_hGk2
+ fAUHYTKghkOdxxJ7w>
+X-ME-Received: <xmr:0rS_ZzMoAsoL2KIkFvTj6D4vFzQ0ylLSpHKjgwfJiBGIxpyJFqUFoHuzVuE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekiedthecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+ uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+ hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
+ necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
+ drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
+ ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+ hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
+ ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
+ hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopeduhedpmhho
+ uggvpehsmhhtphhouhhtpdhrtghpthhtohepjhhgghesnhhvihguihgrrdgtohhmpdhrtg
+ hpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjohgvlhgrghhn
+ vghlfhesnhhvihguihgrrdgtohhmpdhrtghpthhtoheprggtohhurhgsohhtsehnvhhiug
+ hirgdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghp
+ thhtohepghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepjhhovghlsehjoh
+ gvlhhfvghrnhgrnhguvghsrdhorhhgpdhrtghpthhtohepjhhhuhgssggrrhgusehnvhhi
+ ughirgdrtghomhdprhgtphhtthhopegsshhkvghgghhssehnvhhiughirgdrtghomh
+X-ME-Proxy: <xmx:0rS_Z95b8IAr5V57cIk9vPxV9IQj3u_MqcKTTVBJNWw7vdPYNKZ_ww>
+ <xmx:0rS_Z95VzEmi7ly3IrRqhUnzLxp_ZLBZdoNO2UPvbKMm5zNAdsk1gg>
+ <xmx:0rS_Z9iftC5GfXLLYP2Hmwtw6OXqfK0Aifr0_r2rXAeY4qo8b83Z8w>
+ <xmx:0rS_Z36wQUjk18b5yGAG03hOAAgsgo2ShSyFBlUYQ9YZq6LOOP2Zag>
+ <xmx:0rS_Z4ImYsmrxwYVTBU9Ve_ju9CN5hHKmwKJPcFy472NycoJqeSLWsFJ>
+Feedback-ID: iad51458e:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 26 Feb 2025 19:41:53 -0500 (EST)
+Date: Wed, 26 Feb 2025 16:41:08 -0800
+From: Boqun Feng <boqun.feng@gmail.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Dave Airlie <airlied@gmail.com>, Gary Guo <gary@garyguo.net>,
+ Joel Fernandes <joel@joelfernandes.org>,
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ paulmck@kernel.org
+Subject: Re: [RFC PATCH 0/3] gpu: nova-core: add basic timer subdevice
+ implementation
+Message-ID: <Z7-0pOmWO6r_KeQI@boqun-archlinux>
+References: <2f062199-8d69-48a2-baa6-abb755479a16@nvidia.com>
+ <Z73rP4secPlUMIoS@cassiopeiae> <20250225210228.GA1801922@joelnvbox>
+ <20250225225756.GA4959@nvidia.com> <Z75WKSRlUVEqpysJ@cassiopeiae>
+ <20250226004916.GB4959@nvidia.com> <Z75riltJo0WvOsS5@cassiopeiae>
+ <20250226172120.GD28425@nvidia.com> <Z7-IHgcVVS8XBurW@cassiopeiae>
+ <20250226234730.GC39591@nvidia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/1] treewide: Align match_string() with
- sysfs_match_string()
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Corey Minyard <minyard@acm.org>, Allen Pais <apais@linux.microsoft.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Perry Yuan <perry.yuan@amd.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- Herbert Xu <herbert@gondor.apana.org.au>, Nuno Sa <nuno.sa@analog.com>,
- Guenter Roeck <linux@roeck-us.net>, Randy Dunlap <rdunlap@infradead.org>,
- Andi Shyti <andi.shyti@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Lee Jones <lee@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Elad Nachman <enachman@marvell.com>,
- Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
- Johannes Berg <johannes.berg@intel.com>,
- Gregory Greenman <gregory.greenman@intel.com>,
- Benjamin Berg <benjamin.berg@intel.com>, Bjorn Helgaas
- <bhelgaas@google.com>, Robert Richter <rrichter@amd.com>,
- Vinod Koul <vkoul@kernel.org>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
- Linus Walleij <linus.walleij@linaro.org>, Hans de Goede
- <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>, Nikita Kravets <teackot@gmail.com>,
- Jiri Slaby <jirislaby@kernel.org>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Stanley Chang <stanley_chang@realtek.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Abdel Alkuor <abdelalkuor@geotab.com>,
- Kent Overstreet <kent.overstreet@linux.dev>,
- Eric Biggers <ebiggers@google.com>, Kees Cook <keescook@chromium.org>,
- Ingo Molnar <mingo@kernel.org>, "Steven Rostedt (Google)"
- <rostedt@goodmis.org>, Andrew Morton <akpm@linux-foundation.org>,
- Hugh Dickins <hughd@google.com>, Abel Wu <wuyun.abel@bytedance.com>,
- John Johansen <john.johansen@canonical.com>, Mimi Zohar
- <zohar@linux.ibm.com>, Stefan Berger <stefanb@linux.ibm.com>,
- Roberto Sassu <roberto.sassu@huawei.com>,
- Eric Snowberg <eric.snowberg@oracle.com>, Takashi Iwai <tiwai@suse.de>,
- Takashi Sakamoto <o-takashi@sakamocchi.jp>,
- Jiapeng Chong <jiapeng.chong@linux.alibaba.com>,
- Mark Brown <broonie@kernel.org>,
- Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- keyrings@vger.kernel.org, linux-crypto@vger.kernel.org,
- linux-acpi@vger.kernel.org, linux-ide@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, linux-clk@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- linux-pm@vger.kernel.org, qat-linux@intel.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, linux-i2c@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-omap@vger.kernel.org, linux-mmc@vger.kernel.org,
- linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
- linux-wireless@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- linux-gpio@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-staging@lists.linux.dev, linux-usb@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-bcachefs@vger.kernel.org,
- linux-hardening@vger.kernel.org, cgroups@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org, linux-mm@kvack.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-integrity@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org
-Cc: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin
- <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
- "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>,
- Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>,
- David Howells <dhowells@redhat.com>, "David S. Miller"
- <davem@davemloft.net>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Damien Le Moal <dlemoal@kernel.org>, Niklas Cassel <cassel@kernel.org>,
- Daniel Scally <djrscally@gmail.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Heiko Stuebner <heiko@sntech.de>,
- Peter De Schrijver <pdeschrijver@nvidia.com>,
- Prashant Gaikwad <pgaikwad@nvidia.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>, Huang Rui <ray.huang@amd.com>,
- "Gautham R. Shenoy" <gautham.shenoy@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>,
- Viresh Kumar <viresh.kumar@linaro.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Jean Delvare <jdelvare@suse.com>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Pavel Machek <pavel@ucw.cz>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Tony Lindgren <tony@atomide.com>,
- Adrian Hunter <adrian.hunter@intel.com>, Hu Ziji <huziji@marvell.com>,
- Ulf Hansson <ulf.hansson@linaro.org>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Potnuri Bharat Teja <bharat@chelsio.com>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>,
- Miri Korenblit <miriam.rachel.korenblit@intel.com>,
- Kalle Valo <kvalo@kernel.org>, Mahesh J Salgaonkar <mahesh@linux.ibm.com>,
- Oliver O'Halloran <oohall@gmail.com>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- JC Kuo <jckuo@nvidia.com>, Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Sebastian Reichel <sre@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Helge Deller <deller@gmx.de>, Brian Foster <bfoster@redhat.com>,
- Zhihao Cheng <chengzhihao1@huawei.com>, Tejun Heo <tj@kernel.org>,
- Zefan Li <lizefan.x@bytedance.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>, Ben Segall
- <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
- Daniel Bristot de Oliveira <bristot@redhat.com>,
- Valentin Schneider <vschneid@redhat.com>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>,
- Dmitry Kasatkin <dmitry.kasatkin@gmail.com>,
- Clemens Ladisch <clemens@ladisch.de>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Linus Torvalds <torvalds@linux-foundation.org>
-References: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
-Content-Language: en-US, pt-BR, it-IT
-From: Daniel Bristot de Oliveira <bristot@kernel.org>
-In-Reply-To: <20240603211538.289765-1-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250226234730.GC39591@nvidia.com>
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -192,25 +138,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 6/2/24 17:57, Andy Shevchenko wrote:
-> diff --git a/kernel/trace/trace_osnoise.c b/kernel/trace/trace_osnoise.c
-> index a8e28f9b9271..7bed499effd3 100644
-> --- a/kernel/trace/trace_osnoise.c
-> +++ b/kernel/trace/trace_osnoise.c
-> @@ -2230,9 +2230,9 @@ static ssize_t osnoise_options_write(struct file *filp, const char __user *ubuf,
->  		enable = false;
->  	}
->  
-> -	option = match_string(osnoise_options_str, OSN_MAX, option_str);
-> +	option = match_string(osnoise_options_str, option_str);
->  	if (option < 0)
-> -		return -EINVAL;
-> +		return option;
->  
->  	/*
->  	 * trace_types_lock is taken to avoid concurrency on start/stop.
+On Wed, Feb 26, 2025 at 07:47:30PM -0400, Jason Gunthorpe wrote:
+[...]
+> 
+> > Other abstractions do consider this though, e.g. the upcoming hrtimer work. [1]
+> 
+> Does it??? hrtimer uses function pointers. Any time you take a
+> function pointer you have to reason about how does the .text lifetime
+> work relative to the usage of the function pointer.
+> 
+> So how does [1] guarentee that the hrtimer C code will not call the
+> function pointer after driver remove() completes?
+> 
+> My rust is aweful, but it looks to me like the timer lifetime is
+> linked to the HrTimerHandle lifetime, but nothing seems to hard link
+> that to the driver bound, or module lifetime?
+> 
 
-Acked-by: Daniel Bristot de Oliveira <bristot@kernel.org>
+So to write a module, normally you need to have a module struct, e.g.
 
-Thanks!
--- Daniel
+	struct MyModule { ... }
+
+and if a hrtimer is used by MyModule, you can put an HrTimerHandle in
+it:
+
+	struct MyModule {
+	    ...
+	    handle: Option<HrTimerHandle>
+	}
+
+, when module unloaded, every field of MyModule will call their drop()
+function, and HrTimerHandle's drop() will cancel the hrtimer, so that
+the function pointer won't be referenced by hrtimer core.
+
+And if you don't store the HrTimerHandle anywhere, like you drop() it
+right after start a hrtimer, it will immediately stop the timer. Does
+this make sense?
+
+Regards,
+Boqun
+
+> This is what I'm talking about, the design pattern you are trying to
+> fix with revocable is *everywhere* in the C APIs, it is very subtle,
+> but must be considered. One solution would be to force hrtimer into
+> a revocable too.
+> 
+> And on and on for basically every kernel API that uses function
+> pointers.
+> 
+> This does not seem reasonable to me at all, it certainly isn't better
+> than the standard pattern.
+> 
+> > be) also reflected by the corresponding abstraction. Dropping a
+> > MiscDeviceRegistration [2] on module_exit() for instance will ensure that there
+> > are no concurrent IOCTLs, just like the corresponding C code.
+> 
+> The way misc device works you can't unload the module until all the
+> FDs are closed and the misc code directly handles races with opening
+> new FDs while modules are unloading. It is quite a different scheme
+> than discussed in this thread.
+> 
+> Jason
