@@ -4,120 +4,125 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E187D5AE45
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8D70D5B15B
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28B7010E404;
-	Sat, 13 Dec 2025 12:17:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34A0010E3F5;
+	Sat, 13 Dec 2025 12:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="PC0qEdHG";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SiIha4CF";
 	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
- [209.85.160.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1EC710E2D3
- for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 14:01:05 +0000 (UTC)
-Received: by mail-qt1-f176.google.com with SMTP id
- d75a77b69052e-4eddfb8c7f5so37621341cf.1
- for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 06:01:05 -0800 (PST)
+Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com
+ [209.85.219.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB6510E0AB;
+ Thu, 27 Feb 2025 21:26:00 +0000 (UTC)
+Received: by mail-qv1-f44.google.com with SMTP id
+ 6a1803df08f44-6dd15d03eacso14510856d6.0; 
+ Thu, 27 Feb 2025 13:26:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763992864; x=1764597664; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1740691559; x=1741296359; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
  :message-id:reply-to;
- bh=K/jxlDz9BAO9kydkpl4fCic8ClBRjihhesEG6s01glE=;
- b=PC0qEdHGX57BKdk3mmAFU27Wq01axIZgckgJC+k8Bkm0zbLniiQqEXaduE96RPwBwZ
- i2n9FuI3xpBBzguebPQXDiSZBhfBTv9SfS3qi7TDy0qliYRNiLGjQkHWlP582qvlojby
- 7UKtPuyNlQHypfgBQZlYxhaNjamHcgdS4HoXjpHjWLvmZt69JEazdPcXK10LtJVQb4lU
- eh661KrIxy66PzoUHu7u/FvAmXAxJSg+ZmdRJXmjFKixkJHU3U+OXKRnvDDJyiJqcIb7
- DE2sHEHAwDTAObS2UNQLtlmnvN9MLvtw5cMmICU3ILsG47WrcNUrX+TnXu1gmRewDIcL
- 4acg==
+ bh=2UF7O2o8LV3sBQN2Z5pMzAnL0OBwN8vfx4Qu6oNc5dM=;
+ b=SiIha4CFYllxuDar1yUgao/ABXEl5h2OkWdwaGpHmY0j0b6T9azY0If5X73rjmqb11
+ IBkXa6QZi/Eb/3VQviJ0/MZWBy4a0rwqm1K6wxtfK05noMtz3jB5NR4FsmP/gPQjhw+m
+ aTzeudm0q8mWpfSyHGt7mHWEX1LU/+TSn1xQbtwvXnjWiRPuF+FKwnnEGYMlmMgXMopj
+ 1PWHlw85zFnjjMTRpjhMopayQ1QR0Lx0BaZPDv5+IEudbzaP/YwlUBnCrKJrzQJf4unH
+ qs/thxRN0IIkKrWtnzdFIwrzrllXqN472GtNjAQTED84XAuNAziJW4qlv03hbB7AEZFo
+ UIOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763992864; x=1764597664;
+ d=1e100.net; s=20230601; t=1740691559; x=1741296359;
  h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=K/jxlDz9BAO9kydkpl4fCic8ClBRjihhesEG6s01glE=;
- b=oX2vjdTj/ge4EQeTHjIDRjS3cBf1XH1K7mi9axj3oa6jA/tVLgKXmCb345QPTaKI6c
- rOrEzHpJyu7vJjDUU6i6ogU7BOG5Lx7TQKYYbNCTMnK42kP91B/X7+sm6iP8vsqrw5JD
- KdYJGQ6wzuMyDyzX2AyGDQ1fvrlnzQY3rVCoMujT+K7EGE9JhorTckam/sGhkBI1bdY3
- 7Gj6gO04WGTOZIHXF6cqyH4HO8TZAsUFQYrL5mLtZOwvlMS1lYy4KvHLQgrw9HfqqtB2
- mUAP0X5+rNi20a5GG3fzWtCr2jrffJ6VbX8fzs0FEsQf/vkPpSQhhimAHiKJrFM9PBzL
- +QOw==
+ :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2UF7O2o8LV3sBQN2Z5pMzAnL0OBwN8vfx4Qu6oNc5dM=;
+ b=cWyTwtu0BU+jOiZV0TZG/bLX7cfbUsAsLgNd27y81rf/U8q6xONVAhqdHs+UFUgZ9n
+ xH+SQl10VselkuhlO+uOq42GtE7OQr+AUwgPIFJ/K3PsjMfYxmEOb1tRdE+e3xLW9xvg
+ aUtgPBUD7SgS9WiE1zFMUfbAitcZTaMPezZrhKR8Ba5zUflL2xCo4t8DypZxqEmuW766
+ 8/HTJUPDNb67CveRApAuuR9b2ZAIZDd1ybO5dFWh3eZ2P61bhSfRdOjiSvs9/T7vGGBF
+ +s5cBWjjtbQJx0VhEnTRTc+Qk2PwUEmivhuMuRJQ2XbRwFX7L1w8clhm76oO1FH1Ent0
+ ZJkg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXqwLA8womYYP/AQuMKp6cRtktAq6lyjmqdnzwvGGtHhXyPqUA4SotrJ89yWr9THTPHbjiTaq3y@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzhqctyEVy1zmIjR0VYq6PS351/sQC1SB/kC73suQsEy7h240X0
- fJyQ9OHCr79cd2m43fCWKX26ugmw9/56xYGBgH9NqoHythJt8ITSg0Kg
-X-Gm-Gg: ASbGncso46aCiguZUYAC2Z4dA3WBhn+0IrnT+FHu7XchMKsoR3faFeqNOTUySOfnS7K
- uOW2DRrLkPq7DasdD79Pedaz0yCCNPUgpsKl7/K82dyn+D5Zdu8os7wDRXtGghSSAHcRX5zcDun
- wUyNSRD3/Ql1DCB4Tesyp/PrvbXDkoW8ghy2KSTXlzaOLLu+60GM3T3ad4l7Xssu20gJ/bk1x7E
- 0d7ON5xZDfgzmODVnDzm0ospc7caUAD1CqQhSWkvf5AQ6HX8UO8RcKRW2iTrHMlOXIDKGdiYHhm
- rliPeT9saY75qcYzLeNCu3+R8R77w09qzpyGGF6ZbQpzGcTn0giYj0fPvXCJf1a55i3KEQhhom2
- PciFtOn9Jro1OAPyisE22Klslh7gVcOJ0JwCQj/dDS8yq+D815sR2ekrdwX68uTdAdMCx74UI7E
- VElaWP/9M0w6uT6x3A+LHhKte66Y2aA7lUlei8jLA5f1ppHQ1kCR/Y0rPUR/7F5PFg8MS9LR9Uc
- c4TYbv1L3fYQVY=
-X-Google-Smtp-Source: AGHT+IFrrXhu6AJfyliU/Xzg3MThXEUzI8ZAPUU7ipyQF52eo/ZMchMrcbXBykYYxmEfwQPHrKxvsQ==
-X-Received: by 2002:a05:622a:89:b0:4ee:1f5b:73c3 with SMTP id
- d75a77b69052e-4ee588b5258mr166800441cf.60.1763992855573; 
- Mon, 24 Nov 2025 06:00:55 -0800 (PST)
+ AJvYcCVFrCkGilJQssmdRfNf5QB8BeQ5laJx1LWIkhiQo8byzxo9T7VdV+C1QS5A+NfnbqX4hcGXgAfZIwA=@lists.freedesktop.org,
+ AJvYcCX0Zp0w2ffpQzunVT8S7hDqgU6wS9p6q+dDsGF2/96BPnNSlyTyO8bSCLVV7Kss5sVm80fyHaTPeA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxF7D1VZoNMsuOMyphdTkNgqs5eYk9MBDbrPGikvPM/UR9+1ieE
+ g7DU4gfM5ukHWUG0p+9IxsDnP9//0JV7M+iM9N5L2fzdwAwBpfir
+X-Gm-Gg: ASbGncsXNwPC7SbgrZARXnz3iSXWhydhn1NgXQMnMzHV9xFSLfsRS2sqgvLucj24D7X
+ vhwbV0vDdTAiGrPXoQw+pt0Np9t2cE2OuTt92e0/Y8w/s0HbMq0IFP47c0kTYHUrmAy+w2DybMP
+ XzoPCp5Qtfpo4h6IRWRAGe4MOyV4nalCXCDddC5l3nZDz6Cq3E+0/owdI5zgxn9mV02CufY9MPq
+ 41th9A8duWifCVWyDjMvolZcOr62cn3d1qH3LXbZSbWVABV1aDEdelxBcPqNr/jNrOSRuJxvFgh
+ XsHIc0Jav0BmNm4j7y/oe6FQ8PEwlxQijkNXwB2dxVMVvRtDTWZG6RpSXSSSHu4Hjne18efhknJ
+ nMuZggiy+Ql94F0SM
+X-Google-Smtp-Source: AGHT+IEPDOQ7BZ2Sbx86St0jP2+DOKauK3d9nYm7k7AYGnZ2YAad8o5P61Ob7AwAw8Bjzh+SoVipww==
+X-Received: by 2002:a05:6214:2aa8:b0:6e4:5a38:dd0f with SMTP id
+ 6a1803df08f44-6e895798e25mr78217746d6.4.1740691559215; 
+ Thu, 27 Feb 2025 13:25:59 -0800 (PST)
 Received: from fauth-a1-smtp.messagingengine.com
  (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4ee4cbc3c81sm78152051cf.16.2025.11.24.06.00.54
+ 6a1803df08f44-6e89766087dsm14124836d6.52.2025.02.27.13.25.58
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 24 Nov 2025 06:00:55 -0800 (PST)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
- by mailfauth.phl.internal (Postfix) with ESMTP id 5A591F4006B;
- Mon, 24 Nov 2025 09:00:54 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-02.internal (MEProxy); Mon, 24 Nov 2025 09:00:54 -0500
-X-ME-Sender: <xms:FmUkaRi8XRZ7NjmS5aeRh4-Jm1Pfv8hgGzNPpz_5YeA1tYOE41UXfw>
- <xme:FmUkabPthiPCpHANWDH3BhuF6r9lJNXRf9zF_XsmtbzvH7P9H9FR0QMQ1JEuawC6f
- pbd79UfL_3nWTVMtqoFU5nrQDfdHYmtxS7eAe_n2tBGNKaIO8i6kQ>
-X-ME-Received: <xmr:FmUkaUePcNTfbNXU_ioiV3mYYPKLFXpFLx5lT86L_rAH17KxgRIBvxosI6S6qcNHjRZ87CsubsdzQrh4lHfN1ufZAFu1_DiT>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvfeekjeelucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkfhggtggujgesthdtredttddtvdenucfhrhhomhepuehoqhhunhcu
- hfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrihhlrdgtohhmqeenucggtffrrghtth
- gvrhhnpeehudfgudffffetuedtvdehueevledvhfelleeivedtgeeuhfegueevieduffei
- vdenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsoh
- hquhhnodhmvghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedq
- udejjeekheehhedvqdgsohhquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmh
- gvrdhnrghmvgdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgt
- phhtthhopehpvghtvghriiesihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehsfh
- hrsegtrghnsgdrrghuuhhgrdhorhhgrdgruhdprhgtphhtthhopehtghhlgieslhhinhhu
- thhrohhnihigrdguvgdprhgtphhtthhopehmihhnghhosehkvghrnhgvlhdrohhrghdprh
- gtphhtthhopehhphgrseiihihtohhrrdgtohhmpdhrtghpthhtoheplhhinhhugidqkhgv
- rhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqnh
- gvgihtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepohhjvggurgeskhgv
- rhhnvghlrdhorhhgpdhrtghpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:FmUkaVwKOdqs2hd1c5mVJwNjIzEk-ZJZjGbua1gEney0XsqYgUup6Q>
- <xmx:FmUkaZ2k42CgQZqenqRYQSlyFeJ03Aygp_PdeG-WqjDRQMnSmlNuog>
- <xmx:FmUkacekbu74JBnu_PLPfiu5XuLSGuPZCk5dY7M85Eo5cWCmkWTMWA>
- <xmx:FmUkaeWDVqlM3N7_rjUHHvB9Lm6nW8m9EwwnRZn-ig3h0D8kxtoCpw>
- <xmx:FmUkaU_7pojGQ_Cqb4E_n5iaqsuoY7-Os-7iD2I-3WKtSqb9HUGHKYB7>
+ Thu, 27 Feb 2025 13:25:58 -0800 (PST)
+Received: from phl-compute-02.internal (phl-compute-02.phl.internal
+ [10.202.2.42])
+ by mailfauth.phl.internal (Postfix) with ESMTP id 32F7C120006A;
+ Thu, 27 Feb 2025 16:25:58 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+ by phl-compute-02.internal (MEProxy); Thu, 27 Feb 2025 16:25:58 -0500
+X-ME-Sender: <xms:ZtjAZ5xiCQj1tMhaxghzhrNFsXc0VYP-45C8hZJpzVts_mPyzLI6ZA>
+ <xme:ZtjAZ5RAXVI0ln7niV2HDes9T-ndIGX57kNI1tqAbzP8GHwsmqvmH2T21mfxi9onf
+ SPhQawZhkLrnSwV9Q>
+X-ME-Received: <xmr:ZtjAZzXPibEUnw8gs_pK9FWxq3GpZvvNGu8T6Xre1aa3fhtObNNT_UHYQs4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgdekkeehhecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+ uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+ hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
+ necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
+ drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
+ ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+ hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
+ ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
+ hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopeduhedpmhho
+ uggvpehsmhhtphhouhhtpdhrtghpthhtohepjhhgghesnhhvihguihgrrdgtohhmpdhrtg
+ hpthhtohepuggrkhhrsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjohgvlhgrghhn
+ vghlfhesnhhvihguihgrrdgtohhmpdhrtghpthhtoheprggtohhurhgsohhtsehnvhhiug
+ hirgdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghp
+ thhtohepghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepjhhovghlsehjoh
+ gvlhhfvghrnhgrnhguvghsrdhorhhgpdhrtghpthhtohepjhhhuhgssggrrhgusehnvhhi
+ ughirgdrtghomhdprhgtphhtthhopegsshhkvghgghhssehnvhhiughirgdrtghomh
+X-ME-Proxy: <xmx:ZtjAZ7hDlqdN1I5R7i4hpxdt_QE8BVIdqpH1m4SFCGUhSpHlUsdb-g>
+ <xmx:ZtjAZ7DptZWXmZMeZ6xDEnwJV0DYHrTujc3EL3aRFuW56V2GXN0DCw>
+ <xmx:ZtjAZ0I8j70c-gvzPmtP21DJefEBUeHAtRm7OYjzNOS14hgzgbCDVw>
+ <xmx:ZtjAZ6CFlaGMj7OZ24M6YZ6jF3FgQ3jFPnAVwHVbLwl3HX70SVON9w>
+ <xmx:ZtjAZ_xx6BrgASXaWs5JOVwRlPZp3ATVyj0YMbg6d_eL6dsONWdXTO-S>
 Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 24 Nov 2025 09:00:53 -0500 (EST)
-Date: Mon, 24 Nov 2025 06:00:52 -0800
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 27 Feb 2025 16:25:57 -0500 (EST)
+Date: Thu, 27 Feb 2025 13:25:10 -0800
 From: Boqun Feng <boqun.feng@gmail.com>
-To: Peter Zijlstra <peterz@infradead.org>
-Cc: Stephen Rothwell <sfr@canb.auug.org.au>,
- Thomas Gleixner <tglx@linutronix.de>,
- Ingo Molnar <mingo@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- ojeda@kernel.org, Danilo Krummrich <dakr@kernel.org>,
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
  Alexandre Courbot <acourbot@nvidia.com>,
- nouveau@lists.freedesktop.org, Alice Ryhl <aliceryhl@google.com>
-Subject: Re: linux-next: build failure after merge of the tip tree
-Message-ID: <aSRlFB9PoOcZVmvt@tardis.local>
-References: <20251124231644.38d0303b@canb.auug.org.au>
- <20251124123249.GP4067720@noisy.programming.kicks-ass.net>
+ Dave Airlie <airlied@gmail.com>, Gary Guo <gary@garyguo.net>,
+ Joel Fernandes <joel@joelfernandes.org>,
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ paulmck@kernel.org
+Subject: Re: [RFC PATCH 0/3] gpu: nova-core: add basic timer subdevice
+ implementation
+Message-ID: <Z8DYNszfONdsKZsl@boqun-archlinux>
+References: <20250226172120.GD28425@nvidia.com> <Z7-IHgcVVS8XBurW@cassiopeiae>
+ <20250226234730.GC39591@nvidia.com>
+ <Z7-0pOmWO6r_KeQI@boqun-archlinux>
+ <20250227144618.GE39591@nvidia.com> <Z8CCKl_yA74WjpQ1@Mac.home>
+ <20250227161733.GH39591@nvidia.com> <Z8CY7fqbtbO4v1jv@Mac.home>
+ <Z8ChnwPC0UwM8xBe@cassiopeiae> <20250227192321.GA67615@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251124123249.GP4067720@noisy.programming.kicks-ass.net>
+In-Reply-To: <20250227192321.GA67615@nvidia.com>
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -133,34 +138,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Nov 24, 2025 at 01:32:49PM +0100, Peter Zijlstra wrote:
-> On Mon, Nov 24, 2025 at 11:16:44PM +1100, Stephen Rothwell wrote:
-> > Hi all,
+On Thu, Feb 27, 2025 at 03:23:21PM -0400, Jason Gunthorpe wrote:
+> On Thu, Feb 27, 2025 at 06:32:15PM +0100, Danilo Krummrich wrote:
+> > On Thu, Feb 27, 2025 at 08:55:09AM -0800, Boqun Feng wrote:
+> > > On Thu, Feb 27, 2025 at 12:17:33PM -0400, Jason Gunthorpe wrote:
+> > > 
+> > > > I still wonder why you couldn't also have these reliable reference
+> > > > counts rooted on the device driver instead of only on the module.
+> > > > 
+> > > 
+> > > You could put reliable reference counts anywhere you want, as long as it
+> > > reflects the resource dependencies.
 > > 
-> > After merging the tip tree, today's linux-next build (x86_64 allmodconfig)
-> > failed like this:
+> > Right, as I explained in a different reply, the signature for PCI driver probe()
+> > looks like this:
 > > 
-> > ERROR: modpost: "NULL" [drivers/gpu/nova-core/nova_core.ko] undefined!
+> > 	fn probe(pdev: &mut pci::Device, _info: &Self::IdInfo) -> Result<Pin<KBox<Self>>>
 > > 
+> > The returned Pin<KBox<Self>> has the lifetime of the driver being bound to the
+> > device.
+> > 
+> > Which means a driver can bind things to this lifetime. But, it isn't forced to,
+> > it can also put things into an Arc and share it with the rest of the world.
 > 
-> Rust :/
+> This statement right here seems to be the fundamental problem.
 > 
-> So I have:
+> The design pattern says that 'share it with the rest of the world' is
+> a bug. A driver following the pattern cannot do that, it must contain
+> the driver objects within the driver scope and free them. In C we
+
+I cannot speak for Danilo, but IIUC, the 'share it with the rest of the
+world' things are the ones that drivers can share, for example, I
+suppose (not a network expert) a NIC driver can share the packet object
+with the upper layer of netowrk.
+
+> inspect for this manually, and check for it with kmemleak
+
+In Rust, it's better (of course, depending on your PoV ;-)), because
+your driver or module data structures need to track the things they use
+(otherwise they will be cancelled and maybe freed, e.g. the hrtimer
+case). So you have that part covered by compiler. But could there be
+corner cases? Probably. We will just resolve that case by case.
+
+> progamatically.
 > 
-> $ make O=tmp-build LLVM=-22 allmodconfig
-> $ make O=tmp-build LLVM=-22 rustavailable
-> Rust is available!
-> $ grep -e CONFIG_RUST= -e CONFIG_NOVA= tmp-build/.config
-> $
-> 
-> Help ?!?
+> It appears to me that the main issue here is that nobody has figured
+> out how to make rust have rules that can enforce that design pattern.
 > 
 
-[CC nova]
+Most of the cases, it should be naturally achieved, because you already
+bind the objects into your module or driver, otherwise they would be
+already cancelled and freed. Handwavingly, it provides a
+"data/type-oriented" resource management instead of "oh I have to
+remember to call this function before module unload". Again, I believe
+there are and will be corner cases, but happy to look into them.
 
-On my system it seems that RANDSTRUCT=y prevents the enabling of RUST,
-but I'm sure Danilo and Alexandre have better ideas about how to enable
-nova-core.
+> Have the compiler prevent the driver author from incorrectly extending
+> the lifetime of a driver-object beyond the driver's inherent scope, ie
+> that Self object above.
+> 
+
+Compilers can help in the cases where they know which objects are belong
+to a driver/module.
+
+So I think in Rust you can have the "design pattern", the difference is
+instead of putting cancel/free functions carefully in some remove()
+function, you will need to (still!) carefully arrange the fields in your
+driver/module data structure, and you can have more fine grained control
+by writting the drop() function for the driver/module data structure.
+
+> Instead we get this:
+> 
+> > If something is crucial to be bound to the lifetime of a driver being bound to a
+> > device (i.e. device resources), you have to expose it as Devres<T>.
+> 
+
+I feel I'm still missing some contexts why Devres<T> is related to the
+"design pattern", so I will just skip this part for now... Hope we are
+on the same page of the "design pattern" in Rust?
 
 Regards,
 Boqun
+
+> Which creates a costly way to work around this missing design pattern
+> by adding runtime checks to every single access of T in all the
+> operational threads. Failable rcu_lock across every batch of register
+> access.
+> 
+[...]
