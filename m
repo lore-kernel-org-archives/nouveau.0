@@ -4,86 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9192C19F32
-	for <nouveau@archiver.kernel.org>; Fri, 28 Feb 2025 01:49:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2617C19F32
+	for <nouveau@archiver.kernel.org>; Fri, 28 Feb 2025 02:25:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8726C10EBD2;
-	Fri, 28 Feb 2025 01:49:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A28710E0CB;
+	Fri, 28 Feb 2025 02:25:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="P1Es/sOT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dXjqAb8Q";
 	dkim-atps=neutral
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Fri, 28 Feb 2025 01:49:50 UTC
-Received: from omta38.uswest2.a.cloudfilter.net
- (omta38.uswest2.a.cloudfilter.net [35.89.44.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 296C110EBD2
- for <nouveau@lists.freedesktop.org>; Fri, 28 Feb 2025 01:49:50 +0000 (UTC)
-Received: from eig-obgw-6003a.ext.cloudfilter.net ([10.0.30.151])
- by cmsmtp with ESMTPS
- id nogct9uw0AfjwnpOdtvlFR; Fri, 28 Feb 2025 01:42:35 +0000
-Received: from gator4166.hostgator.com ([108.167.133.22]) by cmsmtp with ESMTPS
- id npObtfFhfNMSlnpOctKuAi; Fri, 28 Feb 2025 01:42:34 +0000
-X-Authority-Analysis: v=2.4 cv=K9DpHDWI c=1 sm=1 tr=0 ts=67c1148a
- a=1YbLdUo/zbTtOZ3uB5T3HA==:117 a=6Vi/Wpy7sgpXGMLew8oZcg==:17
- a=IkcTkHD0fZMA:10 a=T2h4t0Lz3GQA:10 a=7T7KSl7uo7wA:10
- a=iit3rYpcdqjZrRsmSfkA:9 a=QEXdDO2ut3YA:10 a=Xt_RvD8W3m28Mn_h3AK8:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=Ml+ZtiSZg6m5QioCesBYuryQ6UN65U0bEw11wXgplw4=; b=P1Es/sOTtmwWfMGk7jz8Crg1oi
- iV3sne7xu/X1QenquevXy7MmUn7PdDXjhR0jfLMM+Kv8PsjW745vcZQNr1aPpG1kOdX+RnX/eD+gY
- eGw471fKtYiZ2u8kc0m8UhlQjI0feDfPPzUgvnxAsTHTs3FrMZGHHVyHaFndq+eWe79gV1W+tRjP2
- r5sbEPr1Bvjs2PP+zWi8kqGswjRjGDOBD7c5TQGf8yskQ6g7AInmRDCdjTC7FlY1CPKb4QDa/+gHu
- 7cOaQ/+aPFLnV4Vkl4sdINJIxcUFW5EbvXss2e5NnxQZy+mWUobyJzxoDDQSEGh6QlSai1P/MSvZR
- uKJwmknw==;
-Received: from [45.124.203.140] (port=53610 helo=[192.168.0.158])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.98.1)
- (envelope-from <gustavo@embeddedor.com>) id 1tnpOa-00000003AAi-1kQ8;
- Thu, 27 Feb 2025 19:42:33 -0600
-Message-ID: <4a6c2392-3200-4e1c-ba5e-236f2e608daa@embeddedor.com>
-Date: Fri, 28 Feb 2025 12:12:28 +1030
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
+ [209.85.208.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3860310E0CB;
+ Fri, 28 Feb 2025 02:25:04 +0000 (UTC)
+Received: by mail-ed1-f54.google.com with SMTP id
+ 4fb4d7f45d1cf-5deb956aa5eso2415641a12.2; 
+ Thu, 27 Feb 2025 18:25:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1740709502; x=1741314302; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=HOiFb2uaZTM/Hc5eDFna0HdsQUy4+S1apmiGNsTq08Y=;
+ b=dXjqAb8QpbHwRHlakkPuV0YRqkWowkMg9HFLAoU1MwC3LhBgwDAIzMlDVWH1yQmx+S
+ HtDvNVyGChX4frRnRBh9N/xL9qFpAsyXrWjqMz64wHD/2AqSVlUXbLXDaQbUIf+J59Vo
+ PtNkobe7rw65lFsAg12RRp0fVxm1Etp6ISQ7UcoHDmbcWuVibezQOhzaX9KDrvFCil/v
+ mzRbunvlqMm45G0eRCgDFR+DjYXUus9k6lNIgORG5GVlt8kzrgAUyZBCJ/rF6WAbVpnw
+ KwAgZ1jDVgYdlY8HxzPjtVInFVMIMT2w194/YFMQipGLOn7yIT2LXsRNksXGhrlAYRaj
+ lccw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1740709502; x=1741314302;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=HOiFb2uaZTM/Hc5eDFna0HdsQUy4+S1apmiGNsTq08Y=;
+ b=BLUe4g2aOqHlJ7Gw8YDxpfIFQliNjXsp+ayXJD/sXnnbi+faAhftbre26WxUcpopjx
+ okiNhP2YYcdrMBg8VAwm7IexJbAvVVZ+DprO1DFXHGEpl3RGhfr1pR5egbkfOqE3p3Av
+ WtDlW2gmX9a1stUc9o6Zo7GjYuEoTdbayp1/rC3nSETy37m4p+ZM0ld3bnqf4ZEKu74D
+ YPdwLzOS2lFbEENdUyac/URByLTCEZ9qV7ds7APEw9SC37fv8EZG9KxNZKLuf/mpfUUX
+ zguiP2n4h2UTJR+4zOES0CamCJ7pWypoGYI5HWxpqvsswIB4Ksqf4zqskd6unqI1Edaq
+ dD+w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV4SHagRnedBAXar/tL9H8LwmuYaGl18PIMvA4zfmwvjwDznSSyr6a/khafvQl8MGoELs72VrFdgKBdJV5spWWu@lists.freedesktop.org,
+ AJvYcCWD4ODjQcxxfcCdA2dN5BEESjszvEg7BpVB7lAVjofAlK1W+uwKSp2FVC3bXLLqFhY1ndF9C0HcYg==@lists.freedesktop.org,
+ AJvYcCWqTrJUdcUSaIZ521sFmDNfXsnZC4cbYXzrFv/dJKGAM0rTHMlcignitJqZfJgs7vUjT2ozusUtRqc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxVkXy1bBvHrqVRJaOJsNnarwqq+PbrB492ZdNEiXjis4C1AAhl
+ 4JPcFfrjRRGD95a2iVn4+Ph4O1hN/Zf/BcdHWZ8uDE5n05H8/FzSMEg+v8YzIdb8z0UfnRTUDIr
+ EgenzpVF7nnzFgP8mFas1ZI/U/mg=
+X-Gm-Gg: ASbGncup+Falvr+rItDW97PQSfIzS2UW8DuENOdPHy+0K1K9dSMEma8FndMG+uW/AYY
+ hV3lOhsigrzXTa/bG8IiSDlXZ+l8Murfl+MG/fVuBPRrwRXW0JleLps1dQXlhdfUxP8+NjaQ4Vf
+ QLV3jc2Q==
+X-Google-Smtp-Source: AGHT+IG8P/Rf7Nhp6ubr6y0mJxpSoaHQ23pNLudbTvjrOGOm94lBjX0PH2uiYGY5ebcGSTw2itPEiP8WYWZIYVpcOo8=
+X-Received: by 2002:a05:6402:1ecf:b0:5e4:ce6e:388b with SMTP id
+ 4fb4d7f45d1cf-5e4d6ac54a7mr3056695a12.6.1740709502364; Thu, 27 Feb 2025
+ 18:25:02 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][next] drm/nouveau: Avoid multiple
- -Wflex-array-member-not-at-end warnings
-To: Danilo Krummrich <dakr@kernel.org>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>
-Cc: Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <Z6xjZhHxRp4Bu_SX@kspp>
- <df8b8d59-470f-43e6-a8c2-cc40a4ebe5d6@kernel.org>
-Content-Language: en-US
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <df8b8d59-470f-43e6-a8c2-cc40a4ebe5d6@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 45.124.203.140
-X-Source-L: No
-X-Exim-ID: 1tnpOa-00000003AAi-1kQ8
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.0.158]) [45.124.203.140]:53610
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 17
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfIQq4zXezqtqXT9iT9A++o1642geGxuiKerB9Ybmd5ZZbzxbdIlnHWjISrUz2B2qj+GvvacHaG0rclVZiyFMYgz1MC+Bq22XcMiMWbR3sTROjzN2tMR7
- KM49P2hTJxVyqID5nCcXktug970DjguCoM9foiC1NU7w8atb0fFevZN0QlmtR9qj4RlcXdlnSC/ZW90irKxQfT75I3ZXI1+WddnCBwEOV/rXSFFmsSCAs6NB
+References: <20250217-nova_timer-v1-0-78c5ace2d987@nvidia.com>
+ <Z7OrKX3zzjrzZdyz@pollux>
+ <CAPM=9tyu84z4Xk5X0fykO3Dazby2UqRgwtN4woNKe4Z2yMyDZg@mail.gmail.com>
+ <D80AK2CLL4AZ.1G6R7OBHOF08O@nvidia.com> <Z7xg8uArPlr2gQBU@pollux>
+ <D81L5PE1SPWC.O56MB6SRS0XK@nvidia.com>
+ <CAPM=9tw=8WtR9093EThr0aY6yTYtef9SBgjN5S1xZUXaWN8aWQ@mail.gmail.com>
+ <d9c7e8ff4b32f06650b2ad4e3b993d217b286aa9.camel@nvidia.com>
+In-Reply-To: <d9c7e8ff4b32f06650b2ad4e3b993d217b286aa9.camel@nvidia.com>
+From: Dave Airlie <airlied@gmail.com>
+Date: Fri, 28 Feb 2025 12:24:50 +1000
+X-Gm-Features: AQ5f1Jo9MDruhrTr2qymJBq8i--oaJMjPPjA2VFHO726289NAQO1EfWzdBHtnOI
+Message-ID: <CAPM=9txa5Uo0qC-5OqNOcrWaGNjJEr8+J+ug0C3e6fMk9t18Zg@mail.gmail.com>
+Subject: Re: [RFC PATCH 0/3] gpu: nova-core: add basic timer subdevice
+ implementation
+To: Timur Tabi <ttabi@nvidia.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, 
+ "nouveau-bounces@lists.freedesktop.org"
+ <nouveau-bounces@lists.freedesktop.org>, John Hubbard <jhubbard@nvidia.com>, 
+ "gary@garyguo.net" <gary@garyguo.net>, 
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>, 
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+ "boqun.feng@gmail.com" <boqun.feng@gmail.com>,
+ "dakr@kernel.org" <dakr@kernel.org>, 
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, 
+ "joel@joelfernandes.org" <joel@joelfernandes.org>,
+ Ben Skeggs <bskeggs@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,11 +99,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-  > Applied to drm-misc-next, thanks!
+On Fri, 28 Feb 2025 at 11:49, Timur Tabi <ttabi@nvidia.com> wrote:
+>
+> On Fri, 2025-02-28 at 07:37 +1000, Dave Airlie wrote:
+> > I've tried to retrofit checking 0xffffffff to drivers a lot, I'd
+> > prefer not to. Drivers getting stuck in wait for clear bits for ever.
+>
+> That's what read_poll_timeout() is for.  I'm surprised Nouveau doesn't use it.
 
-Awesome. :)
+That doesn't handle the PCIE returns 0xffffffff case at all, which is
+the thing we most want to handle, it also uses the CPU timer whereas
+nouveau's wait infrastructure uses the GPU timer usually (though that
+could be changed).
 
-Thank you, guys.
---
-Gustavo
-
+Dave.
