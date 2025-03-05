@@ -4,91 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E99E8D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AF27D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5044810EB9F;
-	Sat, 13 Dec 2025 12:41:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD0A410EAC8;
+	Sat, 13 Dec 2025 12:41:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="hHSSKlEt";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bl2sJGm+";
 	dkim-atps=neutral
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFC010EA85
- for <nouveau@lists.freedesktop.org>; Thu, 16 Oct 2025 21:13:14 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-426ed6f4db5so1410360f8f.0
- for <nouveau@lists.freedesktop.org>; Thu, 16 Oct 2025 14:13:14 -0700 (PDT)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D603010E795;
+ Wed,  5 Mar 2025 21:07:30 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-2ff53b26af2so3459a91.0; 
+ Wed, 05 Mar 2025 13:07:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760649193; x=1761253993; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=t7dC9s7DUHDfq+JM4myzAQqHd029NncsnmY1lMtLvU4=;
- b=hHSSKlEtmc076z7La1l/33xNDf2kudF25pLeF/HU9zOkc8QTaOduA8munFr8L/679I
- UZMsZJmA3kTrGnbOF6gqsB13JXSYUvCV3lqjrwM3A7G61nMdW4h32iIvaYaQg+2iDprk
- 6Fxdhy7mONIU/MB451iVmkxMDWkYxRUZeu0yASA+m0pzOLr+NMMtx4vEFnZS1pCyYSz8
- cjKjykFB0ByX3upIMMSHa4GzvqS72aBku/hOYWMTraeNw0oZS2JAlXwKbglXnoc7Wuoi
- EfoxkoWQbypOVMY8Ii64JzQZN1xb/gbqhVBcsVTPwrongUMcGWWz4jdmX52zlLm/N6xe
- pFzQ==
+ d=gmail.com; s=20230601; t=1741208850; x=1741813650; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ppeUxjaKjmx50Q3bQDc5N6dSfYxyGJbGKWKkwVwTeuI=;
+ b=Bl2sJGm+KITi8YIbZxrKzcYJDFJqGaC+3YhKJqxuwIHfAYOtN11RZMvbtZzjwF3/6k
+ jDJVGZkvzQnvh0HXIvtURxYDLErWMwROvVyhDEj0jTvBF6lbe6UWhnMsR8r870bpfGJo
+ A24NndjyD12KS8iAlGQoVAZlWu5A8xoDcoLtUaZ4vIU/+xNBBk8/h/vea0JqkbTnsRMe
+ ivbUUUav9pEsrKsIYELk6RUSYgKX+UEpLEqzbcRstj6t0aTMf42id1+ppHjwt2tF4JIl
+ EQEE3UA23M1gQ9SBi443E7yjpWND4DVaEKqp35paQA/boO7neterxDAQiuuqX7D9IyXf
+ c+DA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760649193; x=1761253993;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=t7dC9s7DUHDfq+JM4myzAQqHd029NncsnmY1lMtLvU4=;
- b=VJjfvMZHV0teIg6OUbNFnoN/OCq+khAlO8JkmPiN8GKY3qlag4/Somyozls3QpuQOy
- nGgIJsGWKiI0N8fgErzI7WK4aO5DUh6rDo3o/NyZC8wRp+heonTJVDEv1V5hxYKU7wly
- cw9eKVGzUFDLVY+w6ruEy7tGWFO+/V0lwuYHWeuTasJgY2NuDTKRFN+sWD7VPWY3q1ji
- URxt9VT2c3+vnfTef8lXDjHnNnBJ/cv94DzoZJGKzNhOSAtCg3tgCakSpZSJstaSfZq2
- r013xl0CFTS0ORWuKJNy0wnQ/hmkX4oi6c0lB2/SGN27KdcBZvm4UKQtv5N2ZjK4C0KO
- xTtQ==
+ d=1e100.net; s=20230601; t=1741208850; x=1741813650;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ppeUxjaKjmx50Q3bQDc5N6dSfYxyGJbGKWKkwVwTeuI=;
+ b=cj6NMXdUCztSMcCwxZXjkb8QLbAtfKd1vt9jaOZIAVKxHsUl/jWTIypYsGsbRSoupV
+ Ym0JqLmAC1R6FC1X7jk52sTT8FaZvsGlG+dIFTdSyB/PqoO/ERqMDuqkVRoe2IxxjL2M
+ xI9TDHegKCYbjcv7PSEkgCdUcPit2PKvKx0VBa/5y+Grzm13Al6/2HvOP1VO0c6gS/zT
+ vyRWyZ1jePJiPWl2PSV3sm9T8da1kvQWty9+yRD9iCaHfmSUitH58G3KQpfq5w2GGxdD
+ kK+3fsxzG14rUug0nZTdyV921e05Zn6MbUrnUbm+NAb80njlkBGRv6hUsjuLlD+RsZHt
+ cbQA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUMSAASc/bP6v1griXZKmNabtAM2g73q+j6gNrBfKmbfhsMvYvaH5c9Bw6VLqKXusl9E6QeTJIt@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwpXegHey6TBA5oDjxB3fAtRWRirdTWvLulTMi71NUYup8q592m
- 8tIDY/Ts0icnf2b58PWzj0DmNO1f919j+0fJq2GDN1KA0zIyDhQRZ5NI
-X-Gm-Gg: ASbGncvOV4gvz3yyOPoqBrG25A0unHKyxLj1NJ6dovxZXVdm9MaYpzYGbYHjMHW80Hf
- WPk7GHgjHvzGqLNvU3c4yyBFMstuOY3MyTMgxnrZXN/cWbwbhWYTwmD69Sbmsklh/GwuOgxaf1B
- j+S/iAAGhdDp3+xTOV3l8Tc0G4cN2+N4KD/YdtHsHeFB2Wpth+YqOxqlh5vTvmnc4CRWmmrnmgl
- YnhjQudIg7DKmItsrVuMlT+bZHJucnuIYBy8c3TRTTqwpVoiUiXY6fHS09dNj1Z0ZBRhgqYSRRi
- /KAjEV3RZtk8kiyo5AadhDOtqxL53ojlYHj3dBgrJ3DI//AADwAhQYUu2k41vnZkwj2v0xCXtzr
- VC+mNqdV4nWh1SO3WVN5a+kD3o9TGtN3BbjNYPAy3OCG90DNGEL7JeMxuk3VCuzWmyRkw5FuE06
- VbPa7wIVFa44Xg1ZEJYicod4Aa85PsUOCZdAObROAsQylWaPMALUM9to2W7naFsns9dHjZ+AsBf
- GyItg==
-X-Google-Smtp-Source: AGHT+IHKPJSTI0DmvT06VL4xwoZPAZid6jDY8psvVG06n9vCvu/0Q/oxZW5QmJcTU6PqNg2HD3zBYg==
-X-Received: by 2002:a05:6000:41f7:b0:427:548:6e3b with SMTP id
- ffacd0b85a97d-42705486e44mr815017f8f.13.1760649192715; 
- Thu, 16 Oct 2025 14:13:12 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:acc:bb60:756b:64e3:20ef:1d08?
- ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-426ce5cf6b4sm37077374f8f.25.2025.10.16.14.13.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 16 Oct 2025 14:13:12 -0700 (PDT)
-Message-ID: <21944b18-ac36-4acd-9d36-cc05579acc0d@gmail.com>
-Date: Thu, 16 Oct 2025 23:13:11 +0200
+ AJvYcCUuSucX3Upz8QQzgO8+fp7GrGNgI9AsdAAevruv7Gne+k7Tbe2OOyv+U9rA7oPuXVeUAtOgjG8ZhQ==@lists.freedesktop.org,
+ AJvYcCWuHJ0nx14Tkv9pYPTWWZ22LVVE4xlUFOTmSBMmsIAtW3Ubu6sPKiaHQqU79LlgHIdAa3BuukNYp7c=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzjnULXLYS56StpKjeZevH1um4VX65my9gU/e3n0a7dBmc8BFOQ
+ ebGHtBcwGHkAMEj0J7/W4+hevstKoNlTJGJ5YPxCvXeOIeQH+aXDXBi462m8pMQpyZdRFaFdVJu
+ 4iGwij6b4MeyQNICfW+7ztHOrpy0=
+X-Gm-Gg: ASbGnctu2knZ4QwEApB2l2BUPKUMuSHCuX5I9xvYyiGqtXN5EBts+teiqwS5baIy2Rz
+ Pyts9KG/aLJyXGwjsnEEy3luXAKS7le4G3CH2Duvdv3cVm2SEZ3FWvqegy+wH4GghqbI+UWJ/dC
+ yAH4nfWL8XbQidGUaHyGqzI42hTQ==
+X-Google-Smtp-Source: AGHT+IFdCsF1vk5OPN4taJHp2TBXL+JUlxGZBmkkbeifhcezimLuADcrM7P2FojcMB4CukfeYQQYekuvC1Sp9CWZOJY=
+X-Received: by 2002:a17:90b:3504:b0:2ee:6563:20b5 with SMTP id
+ 98e67ed59e1d1-2ff49634954mr3085426a91.0.1741208850256; Wed, 05 Mar 2025
+ 13:07:30 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] nova-core: Solve mentions of `CoherentAllocation`
- improvements [COHA]
+References: <20250304173555.2496-1-dakr@kernel.org>
+ <20250304173555.2496-2-dakr@kernel.org>
+In-Reply-To: <20250304173555.2496-2-dakr@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 5 Mar 2025 22:07:18 +0100
+X-Gm-Features: AQ5f1Jo9uyXmUsRhx9aiXZGx5yBRRudRw6l9QRLBH4aKQdIv0iL_aGAt-0G_uyM
+Message-ID: <CANiq72kr1NU-xs2f8TG3XXG5su4HmZG0TGj6p2vtrzygxTv0TA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] rust: module: add type `LocalModule`
 To: Danilo Krummrich <dakr@kernel.org>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, rust-for-linux@vger.kernel.org
-References: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
- <409f2f03-2bc2-4cb8-9ca7-4e30f82077ff@kernel.org>
-Content-Language: en-US
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-In-Reply-To: <409f2f03-2bc2-4cb8-9ca7-4e30f82077ff@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com, 
+ cjia@nvidia.com, jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com, 
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+ gregkh@linuxfoundation.org, mcgrof@kernel.org, russ.weight@linux.dev, 
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,27 +94,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Danilo,
+On Tue, Mar 4, 2025 at 6:36=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
+rote:
+>
+> The `LocalModule` type is the type of the module created by `module!`,
+> `module_pci_driver!`, `module_platform_driver!`, etc.
+>
+> Since the exact type of the module is sometimes generated on the fly by
+> the listed macros, provide an alias.
+>
+> This is first used by the `module_firmware!` macro introduced in a
+> subsequent patch.
+>
+> Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-On 10/15/25 22:04, Danilo Krummrich wrote:
-> Hi Daniel,
-> 
-> On 10/15/25 9:49 PM, Daniel del Castillo wrote:
->> This patch solves the existing mentions of COHA, a task
->> in the Nova task list about improving the `CoherentAllocation` API.
->> I confirmed by talking to Alexandre Courbot, that the reading/writing
->> methods in `CoherentAllocation` can never be safe, so
->> this patch doesn't actually change `CoherentAllocation`, but rather
->> tries to solve the existing references to [COHA].
-> 
-> This patch seems to address two different TODOs. Please split up the patch
-> accordingly.
-
-Sorry, I thought it was okay as they were part of the same task. Will do.
-
-Thanks for the other comments as well, I'll apply them and send a new
-version soon.
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
 Cheers,
-Daniel
-
+Miguel
