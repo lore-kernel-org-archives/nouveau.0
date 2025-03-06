@@ -4,83 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68915D0EE25
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC388D0EE2D
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 395C310E48D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D92B10E49D;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NvWncY/u";
+	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="fvFai9fn";
 	dkim-atps=neutral
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
- [209.85.167.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EEA310E12F;
- Sun, 16 Mar 2025 11:17:25 +0000 (UTC)
-Received: by mail-oi1-f170.google.com with SMTP id
- 5614622812f47-3fa6c54cdb2so2631453b6e.3; 
- Sun, 16 Mar 2025 04:17:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742123844; x=1742728644; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
- :reply-to; bh=ekjsEa3df+HXolOxxQjVErHPPoRYP8orqeSGkgsPOaQ=;
- b=NvWncY/ulN7lK+9CNf28mzQQ+y75JgbPmt77Y5CG/Qd6Dt2PuJk9fbTvnZD+awSGx5
- cVw9ZANnHjAR37e1BS/JQRYUmKFxwwCHnDTmTkrNiebM1qdhAHsw+SzL6PRdXa4BKENK
- TTXkO/DQPsKKf2ZkJH0AL4o8xp71B4rz/vcLkXknKepkUZ4M+D4OHJcKdkhLxPl/IeLL
- 2z1m30xdmAmhkhYkGmDtbQ7EArjBvgSUOVFP7abWTkewJwEJc1rJgpoXmoERzjKYiQVU
- Xf20mENyHsl193E5aZepagz+ECrxE2r/r0TAqS+jKT5G6BGJzNT6EpD0/vJYn1zvv3An
- S6kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742123845; x=1742728645;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ekjsEa3df+HXolOxxQjVErHPPoRYP8orqeSGkgsPOaQ=;
- b=QK5EeuwUsYZh8JOEIGxxfYtWLl6D73cC9Ddaa/RmqQhuS6JSEgVvyy1vXlVKnWrsBS
- Awig+aYaGjB/5SIvA4w+2SRtKwEf1WWCNYLQku8KY6UHoPsQz51YTlOVR9sk5MZ5FrDq
- Ac7wwjz51Uqoe5KfJ13BxYnBn16AfLVjjJNOASQlzOcfTwH2QIy+QTaRX9QNmzO4kbgv
- tN/rAR834hXMFa/qOD1RtfEXFJH4Lu/AUBG9N8xiW1zjydwGBDxchRG+D2ElPHJ3zb5u
- J9mZJxIQpx/iqF5FcXsUdpHO53svcenwAm+eDyzofrut9TWCGitPyBG51gvHg1keAn3E
- yxOw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUvp5eeuNf4c1RyW6LaAgKIDlaoDGWBTdLqtYKpPNxkfXF3XXUVM9o390fXVFt0RPN4PTFMZUs+Uw==@lists.freedesktop.org,
- AJvYcCVObAjdwyu8Y4zoFYUQ99JgM3xGO4lsEyhtYWO/L6OP/MpMrrBxT2VNaaH2yuaaOOcywHTWOnupJWU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz/QHRnYprNc0jaWie64ujgdJ/X/mH2KqGFF29Wzj0GzBiiU1nQ
- UU9MLdxUz9lSw1EdREzSgegNALCIZsCvamFm/2PBEhtwCHYgPfPC
-X-Gm-Gg: ASbGncsxH6DkLJRuatFYBl2umVW2s3JDRAGAtm0d6s3uSs2hUjKnQHIHeb5OPPnHiiX
- 2/91YREmb5xbV39ulbP/+KoSlnN2I4ZORIZZnpW9+F0+DT4BHmvo/XRfrwc1Ur1lZbT35lvig6l
- NcImq36oCs6EsbWGTFblamvL1bM+eDVOQLiIvPbsUEbAZQdozVtY36eCf8jHomXikq0YlRAVocN
- vFjzdyyyvNccToxMsmMNclYEOZFT38LeK68spsk/y/YYS+ARXOPTQQOp9yOvk4pNxRdasnq0UCw
- Nt3qugkOEou0MQCbggQTK/89AS/GGVfwTHtW/kXLqE32CSShp+Wk6+lz39qFi70MR/7NCtJAbWn
- RjBLBvKbvq4p/dL1EPwuXvm61cKU=
-X-Google-Smtp-Source: AGHT+IEjg2xfhvPfXaY/5Cp/9QgKkPC0d1FC1flzt29b+ldjcXyycYr78QYS2iUROkMc5ivHSaEeaw==
-X-Received: by 2002:a05:6808:23c3:b0:3fa:f848:8dfa with SMTP id
- 5614622812f47-3fdf026db54mr5046847b6e.30.1742123844546; 
- Sun, 16 Mar 2025 04:17:24 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-3fe832ce015sm715978b6e.7.2025.03.16.04.17.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 16 Mar 2025 04:17:23 -0700 (PDT)
-From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, andrewjballance@gmail.com, acourbot@nvidia.com,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5816710E87B
+ for <nouveau@lists.freedesktop.org>; Thu,  6 Mar 2025 00:31:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=protonmail; t=1741221079; x=1741480279;
+ bh=lP7zxDTbeyDZl0Ryw9P4Uxud5cGW/sqewezSoPeHTi8=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=fvFai9fnStR80Ck8q5ZbNYGtkk79SqF9sDYjImm1MpaSN6RDOS+8lhTcu4HXf7pz9
+ T9lMedaRW741aWPMQu6x1qkNz8rYkPnDMz8G+InK+mr5ym8Z7os07oaG3k52xycWtO
+ +408J6O0lf8KRisg58hDagab57rMVaK1CGz5b/l+UPFxpmr3J+3NZ3e10uo9jLU0bF
+ e2JszLzwZOYc+Xly3hL/osA3FiNUHbd1RsjCl90QuuRVXxUg+QnvleEhOwJPKkukQY
+ Ids9xB5ZbQEABna8Y5ccztGCUDGX4jSYLlVeOdFw4VApoGE/t2yucj2hckmCuoSGHR
+ 318twzUTdMVGw==
+Date: Thu, 06 Mar 2025 00:31:14 +0000
+To: Danilo Krummrich <dakr@kernel.org>, airlied@gmail.com, simona@ffwll.ch,
+ corbet@lwn.net, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, ajanulgu@redhat.com, lyude@redhat.com,
+ pstanner@redhat.com, zhiw@nvidia.com, cjia@nvidia.com, jhubbard@nvidia.com,
+ bskeggs@nvidia.com, acurrid@nvidia.com
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
+ aliceryhl@google.com, tmgross@umich.edu, gregkh@linuxfoundation.org,
+ mcgrof@kernel.org, russ.weight@linux.dev, dri-devel@lists.freedesktop.org,
  linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-Subject: [PATCH v2 2/3] rust: alloc: add Vec::resize method
-Date: Sun, 16 Mar 2025 06:16:43 -0500
-Message-ID: <20250316111644.154602-3-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250316111644.154602-1-andrewjballance@gmail.com>
-References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v5 3/5] rust: firmware: add `module_firmware!` macro
+Message-ID: <D88RCQTNVD7B.3RIN253F8LODY@proton.me>
+In-Reply-To: <20250304173555.2496-4-dakr@kernel.org>
+References: <20250304173555.2496-1-dakr@kernel.org>
+ <20250304173555.2496-4-dakr@kernel.org>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 8d1ff6c103cb6cc8c060a13e03d39356aa065e1c
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:19 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,51 +65,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-implement the equivalent of the rust std's Vec::resize
-on the kernel's Vec type.
+On Tue Mar 4, 2025 at 6:34 PM CET, Danilo Krummrich wrote:
+> Analogous to the `module!` macro `module_firmware!` adds additional
+> firmware path strings to the .modinfo section.
+>
+> In contrast to `module!`, where path strings need to be string literals,
+> path strings can be composed with the `firmware::ModInfoBuilder`.
+>
+> Some drivers require a lot of firmware files (such as nova-core) and
+> hence benefit from more flexibility composing firmware path strings.
+>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+> ---
+>  rust/kernel/firmware.rs | 79 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>
+> diff --git a/rust/kernel/firmware.rs b/rust/kernel/firmware.rs
+> index 6e6972d94597..5d1ac8287171 100644
+> --- a/rust/kernel/firmware.rs
+> +++ b/rust/kernel/firmware.rs
+> @@ -116,6 +116,85 @@ unsafe impl Send for Firmware {}
+>  // be used from any thread.
+>  unsafe impl Sync for Firmware {}
+>
+> +/// Create firmware .modinfo entries.
+> +///
+> +/// This macro is the counterpart of the C macro `MODULE_FIRMWARE()`, bu=
+t instead of taking a
+> +/// simple string literals, which is already covered by the `firmware` f=
+ield of
+> +/// [`crate::prelude::module!`], it allows the caller to pass a builder =
+type (e.g.
+> +/// [`ModInfoBuilder`]) which can create the firmware modinfo strings in=
+ a more flexible way.
+> +///
+> +/// Drivers should extend the [`ModInfoBuilder`] with their own driver s=
+pecific builder type.
+> +///
+> +/// The `builder` argument must be a type which implements the following=
+ function.
+> +///
+> +/// `const fn create(module_name: &'static CStr) -> ModInfoBuilder`
+> +///
+> +/// `create` should pass the `module_name` to the [`ModInfoBuilder`] and=
+, with the help of
+> +/// it construct the corresponding firmware modinfo.
+> +///
+> +/// Typically, such contracts would be enforced by a trait, however trai=
+ts do not (yet) support
+> +/// const functions.
+> +///
+> +/// # Example
+> +///
+> +/// ```
+> +/// # mod module_firmware_test {
+> +/// # use kernel::firmware;
+> +/// # use kernel::prelude::*;
+> +/// #
+> +/// # struct MyModule;
+> +/// #
+> +/// # impl kernel::Module for MyModule {
+> +/// #     fn init(_module: &'static ThisModule) -> Result<Self> {
+> +/// #         Ok(Self)
+> +/// #     }
+> +/// # }
+> +/// #
+> +/// #
+> +/// struct Builder<const N: usize>;
+> +///
+> +/// impl<const N: usize> Builder<N> {
+> +///     const fn create(module_name: &'static kernel::str::CStr) -> firm=
+ware::ModInfoBuilder<N> {
+> +///         firmware::ModInfoBuilder::new(module_name)
+> +///             .prepare()
+> +///             .push("vendor/foo.bin")
+> +///             .prepare()
+> +///             .push("vendor/bar.bin")
+> +///     }
+> +/// }
+> +///
+> +/// module! {
+> +///    type: MyModule,
+> +///    name: "module_firmware_test",
+> +///    author: "Rust for Linux",
+> +///    description: "module_firmware! test module",
+> +///    license: "GPL",
+> +/// }
+> +///
+> +/// kernel::module_firmware!(Builder);
+> +/// # }
+> +/// ```
 
-Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+Would be nice to see a more complex example here like the one from nova
+you sent in the other thread. So with "dynamic" string interpolation and
+multiple pushes.
+
+> +#[macro_export]
+> +macro_rules! module_firmware {
+> +    ($($builder:tt)*) =3D> {
+
+This should probably be `$builder:expr` instead.
+
+> +
+> +        #[cfg(not(MODULE))]
+> +        const fn __module_name() -> &'static kernel::str::CStr {
+> +            <LocalModule as kernel::ModuleMetadata>::NAME
+
+Please either use `::kernel::` or `$crate::` instead of `kernel::`.
+
+Hmm, I am not 100% comfortable with the `LocalModule` way of accessing
+the current module for some reason, no idea if there is a rational
+argument behind that, but it just doesn't sit right with me.
+
+Essentially you're doing this for convenience, right? So you don't want
+to have to repeat the name of the module type every time?
+
+> +        }
+> +
+> +        #[cfg(MODULE)]
+> +        const fn __module_name() -> &'static kernel::str::CStr {
+> +            kernel::c_str!("")
+
+Ditto.
+
+> +        }
+
+Are these two functions used outside of the `static` below? If no, then
+you can just move them into the static? You can also probably use a
+`const` instead of a function, that way you only have 4 lines instead
+of 8.
+
 ---
- rust/kernel/alloc/kvec.rs | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+Cheers,
+Benno
 
-diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
-index 18bcc59f0b38..eb6d40a1bf8b 100644
---- a/rust/kernel/alloc/kvec.rs
-+++ b/rust/kernel/alloc/kvec.rs
-@@ -554,6 +554,32 @@ pub fn from_elem(value: T, n: usize, flags: Flags) -> Result<Self, AllocError> {
- 
-         Ok(v)
-     }
-+
-+    /// Resizes the [`Vec`] so that `len` is equal to `new_len`.
-+    ///
-+    /// If `new_len` is smaller than `len`, the `Vec` is [`Vec::truncate`]d.
-+    /// If `new_len` is larger, each new slot is filled with clones of `value`.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// let mut v = kernel::kvec![1, 2, 3]?;
-+    /// v.resize(1, 42, GFP_KERNEL)?;
-+    /// assert_eq!(&v, &[1]);
-+    ///
-+    /// v.resize(3, 42, GFP_KERNEL)?;
-+    /// assert_eq!(&v, &[1, 42, 42]);
-+    ///
-+    /// # Ok::<(), Error>(())
-+    /// ```
-+    pub fn resize(&mut self, new_len: usize, value: T, flags: Flags) -> Result<(), AllocError> {
-+        if new_len > self.len() {
-+            self.extend_with(new_len - self.len(), value, flags)
-+        } else {
-+            self.truncate(new_len);
-+            Ok(())
-+        }
-+    }
- }
- 
- impl<T, A> Drop for Vec<T, A>
--- 
-2.48.1
+> +
+> +        #[link_section =3D ".modinfo"]
+> +        #[used]
+> +        static __MODULE_FIRMWARE: [u8; $($builder)*::create(__module_nam=
+e()).build_length()] =3D
+> +            $($builder)*::create(__module_name()).build();
+> +    };
+> +}
+> +
+>  /// Builder for firmware module info.
+>  ///
+>  /// [`ModInfoBuilder`] is a helper component to flexibly compose firmwar=
+e paths strings for the
+> --
+> 2.48.1
+
 
