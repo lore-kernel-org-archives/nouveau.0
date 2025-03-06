@@ -4,86 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3A6CD0EE2A
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A64CD0EE1C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6237810E49F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49F7F10E49A;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kd9x5J9Z";
+	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="WZcVsfI7";
 	dkim-atps=neutral
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com
- [209.85.167.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C879210E260;
- Fri,  9 May 2025 03:16:39 +0000 (UTC)
-Received: by mail-oi1-f182.google.com with SMTP id
- 5614622812f47-400fa6b3012so1805823b6e.1; 
- Thu, 08 May 2025 20:16:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746760599; x=1747365399; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3FpcyogW9Sb9XRTvTc38KDvi+cUlELYSGH7PdgFznfY=;
- b=Kd9x5J9ZHG30Q6GFVM0xki61+ICdzK4cTUOgCsTlQcLLR6bu6HlLGjma8shwpQ93it
- sygtbVMt7LcV7ufUb9reiVMS/a7T5EPvzzBWvVbxSrxFhGtg0AHhBcrUBENsk3KJu1J2
- VSg4OCAbAYE9Ubuoh+2wMNR4/vWkU6qvGMLVuIHMx/w8t9LPhR+66Hcec1fvGCAVnMl7
- FxpItntJZrJ0Mpcu0IuPB/NQXZQhUjCqgy6rS0Y/10ICYaRQlkKu5OB/e3JkIMstXa6J
- f/ArJFSwTYYeup68rsgxZmvsQ3SOGFmC4F1smbi7WGNLEwALEvgqBapJtHApW0tDol/b
- 2kXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746760599; x=1747365399;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3FpcyogW9Sb9XRTvTc38KDvi+cUlELYSGH7PdgFznfY=;
- b=hJpC2Bg0hhWGFLMbroLJVikHDlV76dD2tQrn+ExZ0I/DU+lZgtcDuPXFIBEDADx8sG
- +dRfLX45EReI6ePHwYvq6zH3rEHZ+czj+ymkzDNsz3F5gaudedtNA4jCcXY2pGaaDJY5
- 2tYl3WPBTCC9vuYQ5uEMX7Xn5MuwHoxBUklvfL6U9K3Uk5pJSF57GZ7+UBDQ2D8b0Yvr
- f0hPo1rT3LFyKc79chz6zpLrNiVwkcg9hn3Tgx/1cXNRP1zwFTmQlnXfhr0GjPGy1jnB
- leJc5kD+H+Bp7ki1SVTzD4vKDlQmBtBoRPpfF/VWgfG1rxcG5b0qiWAx2F1LAn2070sR
- 7LZQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUm+8GF3MRuwAWb+qLGEJvCPo4jgal5LdiRFub5rKl6Efvhctsf2FxsAClBxQjrCBWQqBAaye09wM8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxfxsmgy3qYTDfEbsfjrpNVc4LTot5VzvosoD9CmUfvmEcqAZzB
- lsrPnfOYNpcSof2gQnKAJ/+AkTMdxURpWlqX1BfVj81dxwcWPRbo
-X-Gm-Gg: ASbGnct4veX6orQ0CJVBgMrF5vUUQyIM+H0y8O8d/EtGKmGzaYsfer8byE3tlVXjQ4c
- wb8MS45TENeZmVAJlP1/idYYTyIV24jRVMPc9LoH2q80Uxv7kBOyq5D9iZEg5mSsGJM92KFfoPK
- B0+ZE4hSirq8XR0K3gXJJ9ZnJFCaEXSQip2uvQPucvlP2bvoVIKyo7GNKcC/1nnlFJO2WjbBCgG
- 3uMaikSRu5R9h38N3cvcby8+KTTU++EymAhfgKqFY+hlI0mKEl2ZTVNzotBrUF/7GLkUU7pWVw8
- p0k2IMR/6UXsbuuAlDru43E9qp+t4Pkvbh13CowKb3V3SV1DxIrtYCY0RrW3y55DkYSYoyeg3X1
- DWN2F14F+Ombl
-X-Google-Smtp-Source: AGHT+IEdxh2dCg5/We4vy5v5IiaPgW7LzfgjZM2joNSLRFy6xgWXUoJM6ruSZQvFAiSMKyUdL2wbnQ==
-X-Received: by 2002:a05:6808:d53:b0:3f9:176a:3958 with SMTP id
- 5614622812f47-40377983b84mr3290641b6e.11.1746760598943; 
- Thu, 08 May 2025 20:16:38 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.16.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 May 2025 20:16:38 -0700 (PDT)
-From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
- bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
- andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
- andrewjballance@gmail.com, fujita.tomonori@gmail.com,
- daniel.almeida@collabora.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org
-Subject: [PATCH 05/11] rust: io: add new Io type
-Date: Thu,  8 May 2025 22:15:18 -0500
-Message-ID: <20250509031524.2604087-6-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509031524.2604087-1-andrewjballance@gmail.com>
-References: <20250509031524.2604087-1-andrewjballance@gmail.com>
+X-Greylist: delayed 6826 seconds by postgrey-1.36 at gabe;
+ Thu, 06 Mar 2025 00:24:30 UTC
+Received: from mail-4322.protonmail.ch (mail-4322.protonmail.ch [185.70.43.22])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EA6010E878;
+ Thu,  6 Mar 2025 00:24:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=7i7nfeayubfi5gqgovqg3wpoeq.protonmail; t=1741220667; x=1741479867;
+ bh=zM6T0I1UDmm6pK0qaYYW60tPdabgjnBTsVC6Y/zI8KY=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=WZcVsfI7qYj4WAZOGHfQb7lCbP1yZ1/lSOuNILHMFYSHa4/uZtr2x6VVCKmX2VSRu
+ 4XBLKSpZrd6O0S6t4dQWmMS4vzSqk8KfEBjBYNy+xrMRPHvbTHk+FY+DlSEhAFhw8S
+ tnH8nfLTD3rXiSwAX+wQlw8xWBDJhUHJygGMCZVtsfDp3c7R9+t4xemK2xGtKISEsU
+ ROPXFdpVUwKYFvQ3PpSr3mbXIZ3En3zvogFQRAFbw9PF01jBFml22Ig0KbnsXZaVol
+ 7+q8vjZJ3x9hAN+PzETkNgnZ3lVMOW/IqD7r5Qb5t2EKG1xZTL7ZJ1isqLqAzIX63o
+ JyTa0JnlpcsEw==
+Date: Thu, 06 Mar 2025 00:24:21 +0000
+To: Danilo Krummrich <dakr@kernel.org>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com,
+ cjia@nvidia.com, jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
+ aliceryhl@google.com, tmgross@umich.edu, gregkh@linuxfoundation.org,
+ mcgrof@kernel.org, russ.weight@linux.dev, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v5 2/5] rust: firmware: introduce
+ `firmware::ModInfoBuilder`
+Message-ID: <D88R7HI1Z6GG.ZOQ9A1VQOR28@proton.me>
+In-Reply-To: <Z8jk3qs6nCIJz-39@pollux>
+References: <20250304173555.2496-1-dakr@kernel.org>
+ <20250304173555.2496-3-dakr@kernel.org> <D88OSC9XJXZL.C5HXWFYCG9U6@proton.me>
+ <Z8jSV5CpZDcXrviY@pollux> <D88Q7503C8FF.2TMMBSEMOGKU1@proton.me>
+ <Z8jk3qs6nCIJz-39@pollux>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: da2143f6321c35ea1a493628d2ba460ec60f7fa3
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:19 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,125 +70,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-adds a new Io type that uses the C ioread/iowrite family of functions
-and implements the IoAccess trait for it.
+On Thu Mar 6, 2025 at 12:57 AM CET, Danilo Krummrich wrote:
+> On Wed, Mar 05, 2025 at 11:36:54PM +0000, Benno Lossin wrote:
+>> On Wed Mar 5, 2025 at 11:38 PM CET, Danilo Krummrich wrote:
+>> > On Wed, Mar 05, 2025 at 10:30:31PM +0000, Benno Lossin wrote:
+>> >> On Tue Mar 4, 2025 at 6:34 PM CET, Danilo Krummrich wrote:
+>> >> > +    /// Push an additional path component.
+>> >> > +    ///
+>> >> > +    /// After a new [`ModInfoBuilder`] instance has been created, =
+[`ModInfoBuilder::prepare`] must
+>> >> > +    /// be called before adding path components.
+>> >> > +    pub const fn push(self, s: &str) -> Self {
+>> >> > +        if N !=3D 0 && self.n =3D=3D 0 {
+>> >> > +            crate::build_error!("Must call prepare() before push()=
+.");
+>> >>
+>> >> This will only prevent the first `prepare` call being missed, right?
+>> >
+>> > Correct, unfortunately there's no way to detect subsequent ones.
+>>
+>> Does it make sense to do that one in the constructor?
+>>
+>> (After looking at the example below) Ah maybe you can't do that, since
+>> then you would have two `prepare()` calls for the example below...?
+>
+> Exactly.
+>
+>> >> If you always have to call this before `push`, why not inline it ther=
+e?
+>> >
+>> > You can push() multiple times to compose the firmware path string (whi=
+ch is the
+>> > whole purpose :).
+>>
+>> Ah I see, I only looked at the example you have in the next patch. All
+>> in all, I think this patch could use some better documentation, since I
+>> had to read a lot of the code to understand what everything is supposed
+>> to do...
+>
+> I can expand the example in module_firmware! to make things a bit more ob=
+vious.
+>
+> Otherwise, what information do you think is missing?
 
-Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+Abstractly: what `ModInfoBuilder` *does*, concretely:
+- why the generic constant `N` exists,
+- what `prepare()` does,
+- what happens with the `module_name` parameter of `new`
+- answer the question "I want that the builder outputs the string `???`
+  can it do that? If yes, how do I do it?"
+
+>> It might also make sense to make this more generic, since one probably
+>> also needs this in other places? Or do you think this will only be
+>> required for modinfo?
+>
+> Currently, I don't think there's any more need for a generic const string
+> builder. For now, I think we're good. Let's factor it out, once we have a=
+ctual
+> need for that.
+
+Sounds good.
+
 ---
- rust/helpers/io.c |  8 +++++
- rust/kernel/io.rs | 86 +++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 94 insertions(+)
-
-diff --git a/rust/helpers/io.c b/rust/helpers/io.c
-index d439b61c672e..11c0c34f2eba 100644
---- a/rust/helpers/io.c
-+++ b/rust/helpers/io.c
-@@ -71,3 +71,11 @@ define_rust_pio_read_helper(inl, u32);
- define_rust_pio_write_helper(outb, u8);
- define_rust_pio_write_helper(outw, u16);
- define_rust_pio_write_helper(outl, u32);
-+
-+define_rust_mmio_read_helper(ioread8, u8);
-+define_rust_mmio_read_helper(ioread16, u16);
-+define_rust_mmio_read_helper(ioread32, u32);
-+
-+define_rust_mmio_write_helper(iowrite8, u8);
-+define_rust_mmio_write_helper(iowrite16, u16);
-+define_rust_mmio_write_helper(iowrite32, u32);
-diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-index 70621a016a87..3d8b6e731ce7 100644
---- a/rust/kernel/io.rs
-+++ b/rust/kernel/io.rs
-@@ -483,3 +483,89 @@ fn addr(&self) -> usize {
-         read32_unchecked, inl, write32_unchecked, outl, u32;
-     );
- }
-+
-+/// Io that can be either PortIo or MMIo,
-+/// starting at the base address [`addr`] and spanning [`maxsize`] bytes.
-+///
-+/// The creator (usually a subsystem / bus such as PCI) is responsible for creating the
-+/// mapping, performing an additional region request, etc.
-+///
-+/// # Invariants
-+///
-+/// [`addr`] is the start and [`maxsize`] the length of a valid io region of size [`maxsize`].
-+///
-+/// [`addr`] is valid to access with the C [`ioread`]/[`iowrite`] family of functions.
-+///
-+/// [`addr`]: IoAccess::addr
-+/// [`maxsize`]: IoAccess::maxsize
-+/// [`ioread`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
-+/// [`iowrite`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
-+#[derive(Debug)]
-+#[repr(transparent)]
-+pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
-+
-+impl<const SIZE: usize> Io<SIZE> {
-+    /// Convert a [`IoRaw`] into an [`Io`] instance, providing the accessors to the
-+    /// Io mapping.
-+    ///
-+    /// # Safety
-+    ///
-+    /// Callers must ensure that `addr` is the start of a valid I/O region of size `maxsize`.
-+    ///
-+    /// ```
-+    /// use kernel::io::{IoRaw, Io, IoAccess};
-+    ///
-+    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
-+    /// // SAFETY: test, value is not actually written to.
-+    /// let io: Io<2> = unsafe { Io::from_raw(raw) };
-+    /// # assert_eq!(0xDEADBEEFC0DE, io.addr());
-+    /// # assert_eq!(2, io.maxsize());
-+    /// ```
-+    pub unsafe fn from_raw(raw: IoRaw<SIZE>) -> Self {
-+        Self(raw)
-+    }
-+
-+    /// Convert a ref to [`IoRaw`] into an [`Io`] instance, providing the accessors to
-+    /// the Io mapping.
-+    ///
-+    /// # Safety
-+    ///
-+    /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of
-+    /// size `maxsize`.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// use kernel::io::{IoRaw, Io, IoAccess};
-+    ///
-+    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
-+    /// // SAFETY: test, value is not actually written to.
-+    /// let io: &Io<2> = unsafe { Io::from_raw_ref(&raw) };
-+    /// # assert_eq!(raw.addr(), io.addr());
-+    /// # assert_eq!(raw.maxsize(), io.maxsize());
-+    /// ```
-+    #[inline]
-+    pub unsafe fn from_raw_ref(raw: &IoRaw<SIZE>) -> &Self {
-+        // SAFETY: `Io` is a transparent wrapper around `IoRaw`.
-+        unsafe { &*core::ptr::from_ref(raw).cast() }
-+    }
-+}
-+
-+// SAFETY: as per invariant `raw` is valid
-+unsafe impl<const SIZE: usize> IoAccess<SIZE> for Io<SIZE> {
-+    #[inline]
-+    fn addr(&self) -> usize {
-+        self.0.addr()
-+    }
-+
-+    #[inline]
-+    fn maxsize(&self) -> usize {
-+        self.0.maxsize()
-+    }
-+
-+    impl_accessor_fn!(
-+        read8_unchecked, ioread8, write8_unchecked, iowrite8, u8;
-+        read16_unchecked, ioread16, write16_unchecked, iowrite16, u16;
-+        read32_unchecked, ioread32, write32_unchecked, iowrite32, u32;
-+    );
-+}
--- 
-2.49.0
+Cheers,
+Benno
 
