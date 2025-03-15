@@ -4,67 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B3C8D0EE30
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFA3D0EE2D
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF7C10E4D7;
-	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8EEF10E4AC;
+	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Kjh5TorH";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ln6Jno3m";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E29B10E710;
- Tue, 18 Jun 2024 16:18:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=YJvIf2DDEFs4F7cl6mRoHHDrlRyogLF3aAA6llHTpMM=; b=Kjh5TorHWywtTOKU3DR8seE9DT
- J1P6eLTtgK4qTlj1CMVS13+GAY70esJ3ef2HogKsoiqh3fri7T5xblTJ/6SecVCjcr0bF/SjgDtju
- mxpYCRqVNrSUd8SSb6v3+tn/mh1qzT/vKLbemhu3EWRPIz37DRBDDYNopMWKboku066wF+ZC7lBNH
- /AHAcfHPHXVhRQfCBcsGUxBlUTKyi06lubS4wwy70jCElT81E0XG/+099c4XI1INCXVveu/9F0r0K
- iGa6noh+fZQ0JkimLwpUbtwmoYweHKBhmvzpkKar/2LYRsAfAk+5LzuHq/IW5d5vvZew3yNanZZKG
- b4isgE7A==;
-Received: from [177.172.122.99] (helo=[192.168.15.100])
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1sJbXI-004na1-TW; Tue, 18 Jun 2024 18:18:21 +0200
-Message-ID: <fc67b552-6f61-4f30-9e34-dd6b2364d155@igalia.com>
-Date: Tue, 18 Jun 2024 13:18:10 -0300
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com
+ [209.85.161.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD8C310E2B5;
+ Sat, 15 Mar 2025 11:15:56 +0000 (UTC)
+Received: by mail-oo1-f47.google.com with SMTP id
+ 006d021491bc7-5fcd61e9bcdso1325976eaf.0; 
+ Sat, 15 Mar 2025 04:15:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742037355; x=1742642155; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fsE4ot+F7yV8gTFDUQj/QcGbskBzPPy0s/mWjVIBgJ4=;
+ b=Ln6Jno3m7C87FLymjU9cgvR9DpiQ8azBBUPvb/KaBsC8Q1El5lzpHgyPLCjNsoP/xt
+ BcUxflcVFbZZtFXy+lFhRSVJXW3W/RMjuj9PtAkvtYh6pW6QUNmhHK4Z5bkqcUFc6BBi
+ HwzETQpAYahhjvL8bJ4AHguCOqFmP+WKdxkh5zEp3i+OhcajtuDmhJpzp5YPTG/3dny3
+ +X6y9np6tzh1eu0n6aKPwN4P73wZ4GFvMOSkGmRP2DY6IQNK5VM9Z2SAIHEgJAJyFLne
+ 6mJPsazopgFZF00tjLuZPpB4i4ypCLoi4DeytdnKQ6KiHd40Q3Cd4DRsF8k1R0MTSlB1
+ 3ZjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742037355; x=1742642155;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=fsE4ot+F7yV8gTFDUQj/QcGbskBzPPy0s/mWjVIBgJ4=;
+ b=rAToWXBonbpPcccfHZQf7h7xQoWcgLsiEpZnNl5fIhhVNsnyzYrDcMjQKL8F6kMmMf
+ EgwudDoC5G++7YYBzFSm5EFz5qcowkfhopvH23g3g1RH4jNMcwJy/tzPU5p5Xm2vou/4
+ dFw+xDV96IyWyIpeAJBElt3Ii0hORmHAnTO+YdT+YqVEbFp0HDD0tmpu49hGrqkLrCZ2
+ /MTJ0TcFjaH6Pp8qneH1W+ipCVO88zF9C0mQm+7htTRNAnZXA2gk8/89SCtch5LG5OpM
+ bP3wVKxabLInrADH+oqUs6Kmk/z2NrwDTLSae/tqBRBeRiLpk4pORLaJh1fxf4aGH12F
+ y3XA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWajeKQY0nA5fcRQxqXJEDsMVnaFZsruVIOU6AkTrGyrDtO3IsvbGVo1fUKqoJumGZfR8BN331KLwE=@lists.freedesktop.org,
+ AJvYcCXu5M3cEv/3rkOC7u0H4lUs5YCooz7Mc2LCfy2nlTbL3uCL44T9VNxAU9RBJrdUU5oLAnp+LAlC7g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzW/wb7pt6pTUrkkIh/gBks4qa+ofemqpcRjsBdXEYaCnr0UmsN
+ EUZUeiVmh9Fl0z5J5cq6IhtI7YZWHFbV2uSqrPlmF3Hj98AIL8wX
+X-Gm-Gg: ASbGncvLo6O0w50wUHw6OfrkigBi6IEv39gdfbTtKvMaq4WhQOb7rFAgqMr/R+GkkMc
+ wRdbPW/IC8+RzHpmRS4KIrc3kknTOU/w2hVWMKI/gW/7HGYbr3PCPCoXv49TuPE9Y5G9MH7ZwXF
+ OvdlILpEnrRG0KnrL5Sm36kWPZRRweEpNOp+OuR6J14s0DghyZbvdIOjqOpVEmUFOgGcBcvUHQs
+ L2EsCLe9h7eaI5KjOtqmLLUL1v++wugGPzfRvNDcpeiNKZgw4RJXhPurvqgcmCOMwRFOMSQg067
+ h4v6rm5gotgjiI3OGUqIc7+UxoiaGlspziKRwKk/nW6efmuh+uqaGYl9YhQrFtKgEqNu1ElHDQC
+ uw3BR2AF67nBNXGUN
+X-Google-Smtp-Source: AGHT+IEtJfw/w3NFqPpk/9J3e/w+rGmcMb9d2v6gwwk8XdHXokvYktoc9+s3uuIp+BGxQ9A7JuIynw==
+X-Received: by 2002:a4a:ee85:0:b0:600:2ff9:acb9 with SMTP id
+ 006d021491bc7-601e45a7a78mr3037153eaf.1.1742037355049; 
+ Sat, 15 Mar 2025 04:15:55 -0700 (PDT)
+Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
+ [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
+ 006d021491bc7-601db65a010sm913826eaf.1.2025.03.15.04.15.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 15 Mar 2025 04:15:54 -0700 (PDT)
+From: Andrew Ballance <andrewjballance@gmail.com>
+To: benno.lossin@proton.me
+Cc: a.hindborg@kernel.org, acourbot@nvidia.com, airlied@gmail.com,
+ alex.gaynor@gmail.com, aliceryhl@google.com, andrewjballance@gmail.com,
+ bjorn3_gh@protonmail.com, boqun.feng@gmail.com, corbet@lwn.net,
+ dakr@kernel.org, dri-devel@lists.freedesktop.org, gary@garyguo.net,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ nouveau@lists.freedesktop.org, ojeda@kernel.org,
+ rust-for-linux@vger.kernel.org, simona@ffwll.ch, tmgross@umich.edu,
+ tzimmermann@suse.de
+Subject: Re: [PATCH 1/3] rust: alloc: add Vec::truncate method
+Date: Sat, 15 Mar 2025 06:15:11 -0500
+Message-ID: <20250315111511.107047-1-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <D8GRAC8YQIVC.2LS1EIIIRZU3I@proton.me>
+References: <D8GRAC8YQIVC.2LS1EIIIRZU3I@proton.me>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/9] drm: Support per-plane async flip configuration
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
- daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
- =?UTF-8?B?TWFyZWsgT2zFocOhaw==?= <maraeo@gmail.com>,
- Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>
-References: <20240618030024.500532-1-andrealmeid@igalia.com>
- <20240618030024.500532-3-andrealmeid@igalia.com> <878qz2h9pp.fsf@intel.com>
- <CAA8EJpqM4iaG3PKM5c0Op7Y7c1SRDrOCk_oOnwG8YfdCxC8w6g@mail.gmail.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Andr=C3=A9_Almeida?= <andrealmeid@igalia.com>
-In-Reply-To: <CAA8EJpqM4iaG3PKM5c0Op7Y7c1SRDrOCk_oOnwG8YfdCxC8w6g@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -81,55 +97,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Em 18/06/2024 07:07, Dmitry Baryshkov escreveu:
-> On Tue, 18 Jun 2024 at 12:38, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>
->> On Tue, 18 Jun 2024, André Almeida <andrealmeid@igalia.com> wrote:
->>> Drivers have different capabilities on what plane types they can or
->>> cannot perform async flips. Create a plane::async_flip field so each
->>> driver can choose which planes they allow doing async flips.
->>>
->>> Signed-off-by: André Almeida <andrealmeid@igalia.com>
->>> ---
->>>   include/drm/drm_plane.h | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/include/drm/drm_plane.h b/include/drm/drm_plane.h
->>> index 9507542121fa..0bebc72af5c3 100644
->>> --- a/include/drm/drm_plane.h
->>> +++ b/include/drm/drm_plane.h
->>> @@ -786,6 +786,11 @@ struct drm_plane {
->>>         * @kmsg_panic: Used to register a panic notifier for this plane
->>>         */
->>>        struct kmsg_dumper kmsg_panic;
->>> +
->>> +     /**
->>> +      * @async_flip: indicates if a plane can do async flips
->>> +      */
->>
->> When is it okay to set or change the value of this member?
->>
->> If you don't document it, people will find creative uses for this.
+On Sat, Mar 15, 2025 at 10:09:26AM +0000, Benno Lossin wrote:
+> On Sat Mar 15, 2025 at 3:42 AM CET, Andrew Ballance wrote:
+> > implements the equivalent to the std's Vec::truncate
+> > on the kernel's Vec type.
+> >
+> > Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+> > ---
+> >  rust/kernel/alloc/kvec.rs | 36 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 36 insertions(+)
+> >
+> > diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
+> > index ae9d072741ce..75e9feebb81f 100644
+> > --- a/rust/kernel/alloc/kvec.rs
+> > +++ b/rust/kernel/alloc/kvec.rs
+> > @@ -452,6 +452,42 @@ pub fn reserve(&mut self, additional: usize, flags: Flags) -> Result<(), AllocEr
+> >  
+> >          Ok(())
+> >      }
+> > +
+> > +    /// Shortens the vector, setting the length to `len` and drops the removed values.
+> > +    /// If `len` is greater than or equal to the current length, this does nothing.
+> > +    ///
+> > +    /// This has no effect on the capacity and will not allocate.
+> > +    /// # Examples
+> > +    /// ```
+> > +    /// let mut v = kernel::kvec![1, 2, 3]?;
+> > +    /// v.truncate(1);
+> > +    /// assert_eq!(v.len(), 1);
+> > +    /// assert_eq!(&v, &[1]);
+> > +    ///
+> > +    /// # Ok::<(), Error>(())
+> > +    /// ```
+> > +    pub fn truncate(&mut self, len: usize) {
+> > +        if len >= self.len() {
+> > +            return;
+> > +        }
+> > +
+> > +        // [new_len, len) is guaranteed to be valid because [0, len) is guaranteed to be valid
+> > +        let drop_range = len..self.len();
+> > +
+> > +        // SAFETY:
+> > +        // we can safely ignore the bounds check because we already did our own check
+> > +        let ptr: *mut [T] = unsafe { self.get_unchecked_mut(drop_range) };
 > 
-> Maybe it's better to have a callback instead of a static field? This
-> way it becomes clear that it's only relevant at the time of the
-> atomic_check().
+> What's this `get_unchecked_mut` method, I don't see it in `rust-next` or
+> `alloc-next`.
+
+Vec derefs into a slice which implements get_uncheked_mut
+https://rust.docs.kernel.org/next/kernel/alloc/kvec/struct.Vec.html#method.get_unchecked_mut
+
+> > +
+> > +        // SAFETY:
+> > +        // it is safe to shrink the length because the new length is
+> > +        // guaranteed to be less than the old length
+> 
+> Please take a look at the documentation of `set_len`, in the safety
+> section you'll find what you need to justify here.
+> 
+> > +        unsafe { self.set_len(len) };
+> > +
+> > +        // SAFETY:
+> 
+> A couple points missing:
+> - why is the pointer valid?
+> 
+> > +        // - the dropped values are valid `T`s
+> > +        // - we are allowed to invalidate [new_len, old_len) because we just changed the len
+> 
+> This should justify why the value will never be accessed again.
 > 
 
-So we would have something like bool (*async_flip) for struct 
-drm_plane_funcs I suppose. Then each driver will implement this function 
-and check on runtime if it should flip or not, right?
+I will fixup the safety comments for the v2. Thanks.
 
-I agree that it makes more clear, but as far as I can see this is not 
-something that is subject to being changed at runtime at all, so it 
-seems a bit overkill to me to encapsulate a static information like 
-that. I prefer to improve the documentation on the struct member to see 
-if this solves the problem. What do you think of the following comment:
-
-/**
-  * @async_flip: indicates if a plane can perform async flips. The
-  * driver should set this true only for planes that the hardware
-  * supports flipping asynchronously. It may not be changed during
-  * runtime. This field is checked inside drm_mode_atomic_ioctl() to
-  * allow only the correct planes to go with DRM_MODE_PAGE_FLIP_ASYNC.
-  */
+> ---
+> Cheers,
+> Benno
+> 
+> > +        unsafe { ptr::drop_in_place(ptr) };
+> > +    }
+> >  }
+> >  
+> >  impl<T: Clone, A: Allocator> Vec<T, A> {
+> 
+> 
