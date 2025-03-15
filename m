@@ -4,92 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43827D0EE2B
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A447D0EE2F
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99FE010E4D3;
-	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC17B10E4B5;
+	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="M7ZLybk0";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CSWyRbqs";
 	dkim-atps=neutral
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com
- [209.85.160.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D930D10E066;
- Tue, 13 May 2025 15:16:09 +0000 (UTC)
-Received: by mail-oa1-f45.google.com with SMTP id
- 586e51a60fabf-2c12b7af278so4302240fac.0; 
- Tue, 13 May 2025 08:16:09 -0700 (PDT)
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
+ [209.85.210.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1CE510E386;
+ Sat, 15 Mar 2025 02:43:21 +0000 (UTC)
+Received: by mail-ot1-f48.google.com with SMTP id
+ 46e09a7af769-728a274632eso1544026a34.3; 
+ Fri, 14 Mar 2025 19:43:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747149369; x=1747754169; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0uh/PTXJRbMcazwRaWv8Bo4RnC9VvZ9wH65449hEE1k=;
- b=M7ZLybk0vtdzd8WNJj7MZLw3RPNg1+YNLPIhu4httNSv/+cPW3udQYukdehXh/HMNT
- MoiFoYx+woYMl/FITUTgktHys51ziDYb461thfIW+91Mgg2osppqvwIu3IuT6n1k0/MO
- oTHsSbXto/GJN6G1jJxiMua2tbjSiN9j0K70Ps+U5n1kMyFoGELvLjqXc/u/LyPfEAtn
- dzf0AkFPn1R0bIarJTgIjeToke8xoj7jCd5llWuUGdM5Lc90djujPHRfWqynjPZBWzIK
- UM769RMzc4tSj0zn4R9g2TIL37swHWwKnzYbfroK2Jm59dPGbswg2Ll48bE0cymS/zXi
- JCbg==
+ d=gmail.com; s=20230601; t=1742006600; x=1742611400; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=AeYqJbrf6I+8xJpb1fpUMZYL3aN7NPBWHbe8L0cMhR4=;
+ b=CSWyRbqsOfIcpqowBgTlQV2OXbSt6jv3G4mwcdbY7EhHlleDH8mDsSyGj/yrTtzbma
+ 0jPGz66sj6cs7KVU4IwQvucYLm/PjkLd8nj4SLqrpbDcHjzzTejhVtPcmh1w1nx2XOcE
+ KY3+V/XZFULb4R7AaltDzkDrfrIsqitK9jyWYq0KUvltopo53/mhWU62LI9AnhXjKfTo
+ qn1ja+q0XRrHOPdy7toNR5rgdE1PaOGFSTgmNcYM1fbmoivG7XBDaSjhetRbndJfUnAs
+ yAotedlF1G482/imHeyYGPAKR7xTAc/9QWd6KHhdNNLe8UF+Rx70SXsrnkSASk5ax6A1
+ qYpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747149369; x=1747754169;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0uh/PTXJRbMcazwRaWv8Bo4RnC9VvZ9wH65449hEE1k=;
- b=kyohHGOtBwEZSVy3934ni/gQh5MZDk/arKbdahtkQTsPZL1Wa5tSgi7OfcDRTGcGwP
- AZdb/9MVzTDlM4f9Zp5NVYdHQmZKnQjrji2Lpa/p2yDBDVV29R9e/jwQYjLTIJax+feN
- 3K4Bxwq1u2/bZa1dsWWE5BxXp5N6pte+mSvwid7ccPQY67kB0jgHgXFHc0OJ/PeLEl0a
- HqaoXQDTVOrnqIN+ZD9hmzMdQt8s1BgQX+KLIfXazpE6x5xcUvtQNyid16mJn5xe2Ln7
- jsnJ87yjjD7/jHrqghnWaUUk4TwbIqtvp0sZCyun5zahh59ouefkVi+El6UagO/Idbh/
- Axsg==
+ d=1e100.net; s=20230601; t=1742006600; x=1742611400;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=AeYqJbrf6I+8xJpb1fpUMZYL3aN7NPBWHbe8L0cMhR4=;
+ b=OPugG5u7h+MSfJne3o7Bh0qH5mcPDikXwQlFAhILjIGhtT8Bx8axIDWPjVWxQQBNkF
+ RmoXxD6nsoXD2rPQR6qbd+dBT9uK1oRq87J/5/z89dbVUUE2A9HMtJ+6XWKlTqM2MqsM
+ o1C3mylmifhXynPFfMjx9NHeSgvSGIUc94CUlGE69Cs7VRs4QsI9eaaxIHxgJR0jtpm3
+ tqkwwHHK5NDj/0iqJjewD2K5pl+FBQrPIhmJIPBEO97bDmXRgla6++KKqBWCAjhbLj3e
+ V3xw+xvWxD6sJ+Ioz+yF8hgtBODzXnIgjTbOn131SDqY4Ecw3s/YeiLLoPJ0/+U3cREz
+ 5csQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUNSl5ODvOG8AA46k0VDeLKyjO0KnvGySfZlMkWm25aCrAkJCwKDdCgb02JPdHfKwksG1qfq60VTQ==@lists.freedesktop.org,
- AJvYcCXX8yX2Shwrd5FbmfJ+w+SP65xw+cKUEQ11Py31VcMlVm9Vj2T/qRSYfF9P1qXMRgBHZV4PGIMuG0A=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw+4RzyHjLs1kxxbHLy93Zxv4sWq58VDKnOy3PbWvTSMjdOwxFu
- DHLs00ZjunsRlnMcVGyUJZvuIuxNULkhNAW61+aT7TZ6sJXWbtlY
-X-Gm-Gg: ASbGncuCxwpZ/hkxNcZhSQ47KhH7mJ2CrDBT8eOpm1RZfh3wPbPx1aNjzmPLoitvXPv
- rUfv2ZkyZyeqUCWpT07OmVXVzezdHWAiNl87Wfx9rP+btooW41xUDl5nZtx3c0XxTk7x55hq5Dv
- NLphoq9O0jCM9rKvtFs3o1bGsE2xMp+SGV7XKKBTNX/LedIDo2ozrTGHdD2vwFubIwatPQslCmH
- c0hqxMiQAVXuUolBsQx99tYlhS8nbSUCjSPpFLTxzaiZVLIqZwxeyzawQwcAIUpnuXjefvulyZe
- caaWRk5zNRvhv/RU15q+OoW/7sj9D2nF26HBQopvDM9bVKjWxTa8EvcdPTwK8+J7uv1RKT2uxxM
- XYFDr9in1c9TI0+2UPsSgBy7Zis1c
-X-Google-Smtp-Source: AGHT+IGbr/uZ7r4cS/fBNvQYU2fhVqEpCiBt00je02tqMC1tSmemGmi5CB3JGNk1qdmVKM7wKn0FCw==
-X-Received: by 2002:a05:6871:e086:b0:2c4:1b1c:42c3 with SMTP id
- 586e51a60fabf-2e005bc46camr2217682fac.9.1747149368576; 
- Tue, 13 May 2025 08:16:08 -0700 (PDT)
-Received: from my-computer (c-73-76-29-249.hsd1.tx.comcast.net. [73.76.29.249])
- by smtp.gmail.com with ESMTPSA id
- 586e51a60fabf-2dba0b7f856sm2270445fac.45.2025.05.13.08.16.03
+ AJvYcCU/lykIds5Xex8MkU2Rgl8FlUMLnpW40Jri9URkZm7fmda6W8yiaqgjCMo/Kodkxh0rqYPzAznp/Q==@lists.freedesktop.org,
+ AJvYcCUnnJosWGIIeXabWc7sOoL0GtzMdGdz9BLkBygMh+4Z4eKmyrawhEvOJjNE98TTtEYRagyjM8QeBgM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywx/947UO5p7OFCvfZ0MkQNDAl437/F9EpAnXkNZiaEhxfAUePn
+ 6QpW6N0oudGD6hmPlb0RSeoO8MhF1M/q4yX29NjJWZzFoOOrjJBO
+X-Gm-Gg: ASbGncu12kFBBMjIcFQzs20WzGqt8tyjJ4qpXm6wcMj/kXJ0IdaJid3gCt+8FdWn/yS
+ 4BFMzduIw/E16XEqjTkzSf2cHqhGbVoKa1fVgZTu2Mpqvh9ssmxu/dKB8ONpqNXWOxcNn1uGlDp
+ RBF0AN9fFA4mfuzOMOSvRupiSQe/m8kuU/jujc8kvLpaJOuM/cSKTwEb/UQtYvnZBQfiP4TFsOP
+ aPzNzKCM96XFhlST3cBWmIBjnGvkxNzJm5hNaTtqNUwDM5y6djQbSSW9C++WBboa3JYg5Yod5jk
+ EACEFQt6p2yEpKhp2oeqAfLEUE97ULJUGrV7kfXBRFJZaOfn9jq83pgiLgbWJAnhQrVOH08Nyhh
+ bG68DwF76I9ru0p3U
+X-Google-Smtp-Source: AGHT+IFyEBBnvYzkXYuE6/AMMpI3VNwP3HqbWsB1HV45tb/drP1bhozEjDZ54crecAv68ZJodxXxoQ==
+X-Received: by 2002:a05:6830:dc9:b0:72b:872f:efca with SMTP id
+ 46e09a7af769-72bbc5423ddmr3120313a34.27.1742006600316; 
+ Fri, 14 Mar 2025 19:43:20 -0700 (PDT)
+Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
+ [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
+ 46e09a7af769-72bb26bb82dsm882990a34.32.2025.03.14.19.43.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 13 May 2025 08:16:08 -0700 (PDT)
-Date: Tue, 13 May 2025 10:15:24 -0500
+ Fri, 14 Mar 2025 19:43:19 -0700 (PDT)
 From: Andrew Ballance <andrewjballance@gmail.com>
-To: Arnd Bergmann <arnd@arndb.de>
-Cc: Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, bhelgaas@google.com,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Raag Jadav <raag.jadav@intel.com>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, me@kloenk.dev,
- FUJITA Tomonori <fujita.tomonori@gmail.com>, daniel.almeida@collabora.com,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH 00/11] rust: add support for Port io
-Message-ID: <aCNiDPgMGZ-tD66n@my-computer>
-References: <20250509031524.2604087-1-andrewjballance@gmail.com>
- <ff526b49-a033-450d-9e48-699187167712@app.fastmail.com>
+To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, andrewjballance@gmail.com, acourbot@nvidia.com,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH 1/3] rust: alloc: add Vec::truncate method
+Date: Fri, 14 Mar 2025 21:42:33 -0500
+Message-ID: <20250315024235.5282-2-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250315024235.5282-1-andrewjballance@gmail.com>
+References: <20250315024235.5282-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ff526b49-a033-450d-9e48-699187167712@app.fastmail.com>
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -105,16 +95,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, May 09, 2025 at 07:53:31AM +0200, Arnd Bergmann wrote:
-> Can you describe here why you want to support both "Io" and "PortIo"
-> cases separately? I don't think we need to micro-optimize for
-> legacy ISA devices any more, so I'd hope the "Io" path would be
-> sufficient to cover the common outliers (ata, uart, vga, ipmi, ne2000)
-> that need the iomap indirection and also the legacy devices that only
-> need port I/O (floppy, x86 platform devices, ...).
+implements the equivalent to the std's Vec::truncate
+on the kernel's Vec type.
 
-Yeah, we probably don`t need the `PortIo` type and can rely on `Io` for
-port io. I`ll remove it for the v2.
+Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+---
+ rust/kernel/alloc/kvec.rs | 36 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
 
-Best regards
-Andrew Ballance
+diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
+index ae9d072741ce..75e9feebb81f 100644
+--- a/rust/kernel/alloc/kvec.rs
++++ b/rust/kernel/alloc/kvec.rs
+@@ -452,6 +452,42 @@ pub fn reserve(&mut self, additional: usize, flags: Flags) -> Result<(), AllocEr
+ 
+         Ok(())
+     }
++
++    /// Shortens the vector, setting the length to `len` and drops the removed values.
++    /// If `len` is greater than or equal to the current length, this does nothing.
++    ///
++    /// This has no effect on the capacity and will not allocate.
++    /// # Examples
++    /// ```
++    /// let mut v = kernel::kvec![1, 2, 3]?;
++    /// v.truncate(1);
++    /// assert_eq!(v.len(), 1);
++    /// assert_eq!(&v, &[1]);
++    ///
++    /// # Ok::<(), Error>(())
++    /// ```
++    pub fn truncate(&mut self, len: usize) {
++        if len >= self.len() {
++            return;
++        }
++
++        // [new_len, len) is guaranteed to be valid because [0, len) is guaranteed to be valid
++        let drop_range = len..self.len();
++
++        // SAFETY:
++        // we can safely ignore the bounds check because we already did our own check
++        let ptr: *mut [T] = unsafe { self.get_unchecked_mut(drop_range) };
++
++        // SAFETY:
++        // it is safe to shrink the length because the new length is
++        // guaranteed to be less than the old length
++        unsafe { self.set_len(len) };
++
++        // SAFETY:
++        // - the dropped values are valid `T`s
++        // - we are allowed to invalidate [new_len, old_len) because we just changed the len
++        unsafe { ptr::drop_in_place(ptr) };
++    }
+ }
+ 
+ impl<T: Clone, A: Allocator> Vec<T, A> {
+-- 
+2.48.1
+
