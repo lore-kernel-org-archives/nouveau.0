@@ -4,97 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3081AD5B15D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFFFAD5B15C
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79B4210EC4B;
-	Sat, 13 Dec 2025 12:42:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05CBD10EBF9;
+	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JqCkd3jM";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="AlVRGJGg";
 	dkim-atps=neutral
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
- [209.85.221.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA5A10E09B
- for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 08:10:05 +0000 (UTC)
-Received: by mail-wr1-f49.google.com with SMTP id
- ffacd0b85a97d-42fb3801f7eso216296f8f.3
- for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 00:10:05 -0800 (PST)
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B541510E29A;
+ Sat, 15 Mar 2025 19:52:41 +0000 (UTC)
+Received: by mail-pj1-f51.google.com with SMTP id
+ 98e67ed59e1d1-30144a72db9so234505a91.1; 
+ Sat, 15 Mar 2025 12:52:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765527004; x=1766131804; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=fJ/CIq+S550sT8g8cfuPfmVxbEDEzZdlgJAf7FID7wY=;
- b=JqCkd3jMku6gzepKd9mUEek3y/sYrJLQMpg8Y6JsRUVPXmdAlUD2hMMaZ9K3013S4S
- YQrT4XmFZO7iftlxGD6jWd8ytaEm8uVbajnQnIQGtFGoyzRUNObOIaxuMkPqOrPn4W5W
- 4K2zlG51vt9or2wp2//vpqhs8TPsHe0eAdymwTjoEG5+HzPfxZEjQDg4fBqHzqojU/sH
- 5duPd1630CGTm0osl7cQPlMXjxDKbX7zcECA3Trd8nnJ3UlHjeqBjVFVJspHQjjZKGw5
- da7CnXYxcx3ShvKL+gRF+ReRUDjjalSkYuOyCIQENa1YavYHA4zQsRa7DMQhexKaiAdn
- aVlg==
+ d=gmail.com; s=20230601; t=1742068361; x=1742673161; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=RkSRY1nf3/CCgGX8CixRKz7GOQ9oD7FKwLr65/SUc7E=;
+ b=AlVRGJGgCpiDRQWuGw1vP65TF7G1P0roviqsZ32a4IY2AxoT5VKz6gYAdWudVUNFd1
+ pDoxxpTLAnTuu7DjbDV9bB7URKLow2CT6KdloJQA/GJcWWnSjNdMINGqW1+Dh1LsJlbO
+ Vwofo7LKPu8l8ncLoxMsfYAzD25RsUzX6qRvKDtXnnEGYm5JsCSHimxaqKBtHJChnQ7+
+ MBT8XbM1aZwQ5ASRifYaqw57vwcyzPYs0e4wRMwe5jryzymxEklE1a4W+1qpercubaxu
+ s9GwJVBJW5fSGi6b3mX3qmqZQcQw/H1F4pcfBq4Hr0Fq6Y4wKCTil/YuKDoT7jHevcto
+ DCYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765527004; x=1766131804;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=fJ/CIq+S550sT8g8cfuPfmVxbEDEzZdlgJAf7FID7wY=;
- b=ipfql7TFu7CK1+zB/Flv9k2ExrnLprl/Lf0Cs1x7JIfHUFkFTTbOOr0h+p6m6z9VBl
- 0GZrcRBiHLVN6ms1jlTV9+TyUmMNNr0lAtd16mRAV+5EGP7s4ZzEbCzO32CUjrQVoH3x
- Kq/Vch9LHpLHIUA+38mR9+KnQcvo8KMhHdqR7bj6xg94WPiiB42xWweB+11tKO2s0bVP
- H84Bs8JIXI5sNm9tDQFW43dtJOZcSits2t4N/GlD49ixZY16scB+chQlpGlj3L3bgxdf
- ODf4zB7mJd6bAvs6donxssbus6yOQtkAaxEK6dHOPWXnFM+OWAMhhwB4qh4USTSa+v2g
- 3R2w==
+ d=1e100.net; s=20230601; t=1742068361; x=1742673161;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=RkSRY1nf3/CCgGX8CixRKz7GOQ9oD7FKwLr65/SUc7E=;
+ b=l1/2AR/T+yNE2nUKYvQbBpMFDtwvcDzcFt8B6DCHppefhluG9nYBnuJTOanimt5TY2
+ OFkFaqqs8xPufT61juBeaiynW1mn4Zqkvuc0h4hmnQJRyvkS+cgGbI3SQsUGrF7U8sSZ
+ djmLAHpyXldHCsyQi1qhmWO6G4af8OuNNm6gzb1eRuYxK5+o/v7sOhABMCFOe9oRhpnW
+ BTi1UnkNqqAcxxNrVQAaQGpkmIvcGPQ/hmd3Xad0+TEHq4YQHpuTYhixG2D0f8qjvamM
+ eJ9NuH955qA2kBsS4cwFY2lev2YaTJpXAYbVjrIB4iWT0atMqzxumHMp78iYHIyRGqMA
+ AJLQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXHtaGJIhvdnpWRomzTMtXKuo9X/yzqjXifuGom9RUjNplR5FbFaI924jHSrj8K8QhHDAHfzPaw@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzAu5MLVcwZdV4jJArToEm/ZSpvdhG/oPmnmPDP3fXRw/kWsLPk
- w+6hX+gNfE0AywKSlAY/prA4zGJ/Dq5J2eJFxr5EI/cVi09t9AvV9WBB
-X-Gm-Gg: AY/fxX4YAcxUdB/3giRxPwDufsklzzeOCzWNl1ml79LuTgyRZ8eGBs8pbVNUkFr5zH/
- KLcr4VC8+IDUgBMGPl8ginM8X6HXCObgrV/3s7X9aEsXC1A7if0E7B6UnFFacC5T79NrDT+dwwp
- myLDtBIgOiK1Qez+t/+sjCFQqplUWMJ7XbwjN9ARR6zzOOLpLb9oNRC0AjmWu8yH0H6dxWMOsem
- b02eTQr5PVwm80+fMnt3Zs0JnTx8EJfDDuPNCK4X3hR29HSEpcPw0k64tRernMAHeWg0qT5pW9E
- xMZX8Xja+4Jy3mrmM0sh4rjBoMMKNESzkVGHZ471gxv0qshuuAuV01krvIpqj0IJ7CP8SfvF0py
- QJIQNqpTAP3wf5sG0JnDVuv5NalpGXFhhrUzE091kIXn+0J/K26alP14Aw8yE9uNMsHl3/Wid9l
- fzb+K9/UeUf83XvwupylmdLKZIb6k+FFpyqHVwevqV553+YqfL2SuMww06Cy23ph1+W4pXVquzB
- WIb/nMlf4S4uDIXJ8EaKHa2Do1v4JuzzkTsFr3H37HkwQ==
-X-Google-Smtp-Source: AGHT+IGTJIGEa6611HGPyO7WCyo7XVD/0HX+3HAeJdXdjKMR+z9KB5y2eg2ivEwm/6LLYaeomx6J1Q==
-X-Received: by 2002:a05:6000:4012:b0:42b:2f79:755e with SMTP id
- ffacd0b85a97d-42fb44d46b4mr1032448f8f.3.1765527003664; 
- Fri, 12 Dec 2025 00:10:03 -0800 (PST)
-Received: from ?IPV6:2003:df:bf2d:e300:84fc:a859:31e5:6980?
- (p200300dfbf2de30084fca85931e56980.dip0.t-ipconnect.de.
- [2003:df:bf2d:e300:84fc:a859:31e5:6980])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42fa8b9b1f1sm10460373f8f.39.2025.12.12.00.10.02
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 12 Dec 2025 00:10:03 -0800 (PST)
-Message-ID: <25aa90a7-e9f4-471e-9d93-c61b9a7a429c@gmail.com>
-Date: Fri, 12 Dec 2025 09:10:01 +0100
+ AJvYcCULKbThZA9MpyOKoYSCO6TF/rMWS4jt2ZY56dUSRUPL8GfnNbFcJe5Dxqcb5uTUiV8ZpFP5gsg5Wk8=@lists.freedesktop.org,
+ AJvYcCWTC+r/vQYMNBFtjvViYi22UnVeOnWJDFQaJO92oM4JgT/mWvM1XatbWtp8YWxLmK7qxaYMGVcr2A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyn4W84AYSBoC1OlPgbY6VgWhHdAgne2h1jPEbB3RxLz5q2EJwm
+ sokgOAdSasHUBcGQtT7Tm3cKZPjmJZq+H0VNnFHjvjxoHc6YfP+uJfDrwSpDFXLCBtRKEtSxyER
+ BdPMQi9R21c5LucMejx+Y1lmTwKc=
+X-Gm-Gg: ASbGncukvuCGUfcD9rCSHpaBrvKTiZUa2zhjA6it3bn1FVkmMM+Sv/anT66/lRC67xP
+ GBowaQXbBfgFhnSgVydQhTmc05CSmuH1cpGC3QeOBVDEha/ZRCK/VHwLZcLdBgmRCpt6HeUaeNq
+ wJhstw2FT3d3tG5QMddztCxA7vVg==
+X-Google-Smtp-Source: AGHT+IFxs4He+SBXrB/e8968d3Baar4MKu0CcOHNfsoZUjb9jwXqfRgnNLe0uug3mxIerqMFsB0azD9mjCBGHGObzng=
+X-Received: by 2002:a05:6a21:9189:b0:1ee:e99a:469f with SMTP id
+ adf61e73a8af0-1f5c12df14amr3661527637.9.1742068361121; Sat, 15 Mar 2025
+ 12:52:41 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] gpu: nova-core: gsp: Fix length of received messages
-To: Joel Fernandes <joelagnelf@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>
-References: <20251122-nova-fixes-v1-0-a91eafeed7b5@nvidia.com>
- <20251122-nova-fixes-v1-2-a91eafeed7b5@nvidia.com>
- <504C636B-FB96-4B54-B9CD-C506026CCDB1@nvidia.com>
-Content-Language: de-AT-frami, en-US
-From: Dirk Behme <dirk.behme@gmail.com>
-In-Reply-To: <504C636B-FB96-4B54-B9CD-C506026CCDB1@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250315024235.5282-1-andrewjballance@gmail.com>
+ <20250315024235.5282-3-andrewjballance@gmail.com>
+In-Reply-To: <20250315024235.5282-3-andrewjballance@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sat, 15 Mar 2025 20:52:27 +0100
+X-Gm-Features: AQ5f1JryREH9Epw5Czi-uWWexrRFhCZPOTW2A9z8mj-ycImcQLdxcWM1ZbztLgw
+Message-ID: <CANiq72mLX6d9wYGC_OfQ_-0SKsjM85hP=X5n9qRwx5krNw1NLA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] rust: alloc: add Vec::resize method
+To: Andrew Ballance <andrewjballance@gmail.com>
+Cc: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+ acourbot@nvidia.com, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -110,41 +91,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 12.12.25 08:59, Joel Fernandes wrote:
-> Hi Alex,
-> 
->> On Nov 22, 2025, at 12:00 AM, Alexandre Courbot <acourbot@nvidia.com> wrote:
->>
->> ﻿The size of messages' payload is miscalculated, leading to extra data
->> passed to the message handler. While this is not a problem with our
->> current set of commands, others with a variable-length payload may
->> misbehave. Fix this.
->>
->> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
->> ---
->> drivers/gpu/nova-core/gsp/cmdq.rs | 11 +++++++----
->> drivers/gpu/nova-core/gsp/fw.rs   |  2 +-
->> 2 files changed, 8 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
->> index 6f946d14868a..dab73377c526 100644
->> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
->> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
->> @@ -588,21 +588,24 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
->>             header.length(),
->>         );
->>
->> +        // The length of the message that follows the header.
->> +        let msg_length = header.length() - size_of::<GspMsgElement>();
-> 
-> Is this immune to under flow without one of the checked subtraction wrappers? Either way, we should not tolerate the underflow I think. Which means it can panic when the rust overflow checks are enabled. Since the header length comes from firmware, this cannot be guaranteed to not underflow in the event of a malformed message.
+On Sat, Mar 15, 2025 at 3:43=E2=80=AFAM Andrew Ballance
+<andrewjballance@gmail.com> wrote:
+>
+> +    /// # Example
 
-Would this be a possible use case for the untrusted data proposal
+Nit: please use the plural for section headers.
 
-https://lwn.net/Articles/1034603/
+Thanks!
 
-?
-
-Cheers
-
-Dirk
+Cheers,
+Miguel
