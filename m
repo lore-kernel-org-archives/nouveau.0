@@ -4,65 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3F3ED0EE2C
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68915D0EE25
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 479B410E498;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 395C310E48D;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="IaEN/oB6";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NvWncY/u";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7D5110EDB3;
- Fri, 14 Jun 2024 15:36:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=DKE9E8EfN4qFoXgS2Nhr4CIKzmxCOJoEG4cKtj5vuJs=; b=IaEN/oB63jOJZPzaLtrY3GcTEr
- O2HwdvD0tELiCl8UT8ClfthshVPMcQjTs4roGd3avMcu/rpj5oOMw1xfjUluVHCPu23C+2vyt2ynX
- GS+/rJP7mm6UJuE0TowPo0nhB0LGZ+/RhpvIAC6gGSalh5fntHV8Ztdo7yCFztMgNO+EUzGaOwDXX
- YDRNij7OtLLhDeropi8r9FYTwqLCGjnQbsyYYrksowqXkzlyJlmdq5mUYihHwg6t0GSOVlptQ4TAT
- ruwfSc0SZhsRQkYFgO+LVvZ7VcLg3J9fjIetGINtzbeVlPa8Hjy6m+/Q8h/1dk9hiUV+aOxPvkcGK
- OmfZvXsQ==;
-Received: from [179.118.191.115] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sI8yf-003B8v-Kq; Fri, 14 Jun 2024 17:36:34 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
- daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
- =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
- Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v6 6/8] drm/nouveau: Enable async flips on the primary plane
-Date: Fri, 14 Jun 2024 12:35:33 -0300
-Message-ID: <20240614153535.351689-7-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614153535.351689-1-andrealmeid@igalia.com>
-References: <20240614153535.351689-1-andrealmeid@igalia.com>
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com
+ [209.85.167.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EEA310E12F;
+ Sun, 16 Mar 2025 11:17:25 +0000 (UTC)
+Received: by mail-oi1-f170.google.com with SMTP id
+ 5614622812f47-3fa6c54cdb2so2631453b6e.3; 
+ Sun, 16 Mar 2025 04:17:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1742123844; x=1742728644; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=ekjsEa3df+HXolOxxQjVErHPPoRYP8orqeSGkgsPOaQ=;
+ b=NvWncY/ulN7lK+9CNf28mzQQ+y75JgbPmt77Y5CG/Qd6Dt2PuJk9fbTvnZD+awSGx5
+ cVw9ZANnHjAR37e1BS/JQRYUmKFxwwCHnDTmTkrNiebM1qdhAHsw+SzL6PRdXa4BKENK
+ TTXkO/DQPsKKf2ZkJH0AL4o8xp71B4rz/vcLkXknKepkUZ4M+D4OHJcKdkhLxPl/IeLL
+ 2z1m30xdmAmhkhYkGmDtbQ7EArjBvgSUOVFP7abWTkewJwEJc1rJgpoXmoERzjKYiQVU
+ Xf20mENyHsl193E5aZepagz+ECrxE2r/r0TAqS+jKT5G6BGJzNT6EpD0/vJYn1zvv3An
+ S6kA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1742123845; x=1742728645;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ekjsEa3df+HXolOxxQjVErHPPoRYP8orqeSGkgsPOaQ=;
+ b=QK5EeuwUsYZh8JOEIGxxfYtWLl6D73cC9Ddaa/RmqQhuS6JSEgVvyy1vXlVKnWrsBS
+ Awig+aYaGjB/5SIvA4w+2SRtKwEf1WWCNYLQku8KY6UHoPsQz51YTlOVR9sk5MZ5FrDq
+ Ac7wwjz51Uqoe5KfJ13BxYnBn16AfLVjjJNOASQlzOcfTwH2QIy+QTaRX9QNmzO4kbgv
+ tN/rAR834hXMFa/qOD1RtfEXFJH4Lu/AUBG9N8xiW1zjydwGBDxchRG+D2ElPHJ3zb5u
+ J9mZJxIQpx/iqF5FcXsUdpHO53svcenwAm+eDyzofrut9TWCGitPyBG51gvHg1keAn3E
+ yxOw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUvp5eeuNf4c1RyW6LaAgKIDlaoDGWBTdLqtYKpPNxkfXF3XXUVM9o390fXVFt0RPN4PTFMZUs+Uw==@lists.freedesktop.org,
+ AJvYcCVObAjdwyu8Y4zoFYUQ99JgM3xGO4lsEyhtYWO/L6OP/MpMrrBxT2VNaaH2yuaaOOcywHTWOnupJWU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz/QHRnYprNc0jaWie64ujgdJ/X/mH2KqGFF29Wzj0GzBiiU1nQ
+ UU9MLdxUz9lSw1EdREzSgegNALCIZsCvamFm/2PBEhtwCHYgPfPC
+X-Gm-Gg: ASbGncsxH6DkLJRuatFYBl2umVW2s3JDRAGAtm0d6s3uSs2hUjKnQHIHeb5OPPnHiiX
+ 2/91YREmb5xbV39ulbP/+KoSlnN2I4ZORIZZnpW9+F0+DT4BHmvo/XRfrwc1Ur1lZbT35lvig6l
+ NcImq36oCs6EsbWGTFblamvL1bM+eDVOQLiIvPbsUEbAZQdozVtY36eCf8jHomXikq0YlRAVocN
+ vFjzdyyyvNccToxMsmMNclYEOZFT38LeK68spsk/y/YYS+ARXOPTQQOp9yOvk4pNxRdasnq0UCw
+ Nt3qugkOEou0MQCbggQTK/89AS/GGVfwTHtW/kXLqE32CSShp+Wk6+lz39qFi70MR/7NCtJAbWn
+ RjBLBvKbvq4p/dL1EPwuXvm61cKU=
+X-Google-Smtp-Source: AGHT+IEjg2xfhvPfXaY/5Cp/9QgKkPC0d1FC1flzt29b+ldjcXyycYr78QYS2iUROkMc5ivHSaEeaw==
+X-Received: by 2002:a05:6808:23c3:b0:3fa:f848:8dfa with SMTP id
+ 5614622812f47-3fdf026db54mr5046847b6e.30.1742123844546; 
+ Sun, 16 Mar 2025 04:17:24 -0700 (PDT)
+Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
+ [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
+ 5614622812f47-3fe832ce015sm715978b6e.7.2025.03.16.04.17.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 16 Mar 2025 04:17:23 -0700 (PDT)
+From: Andrew Ballance <andrewjballance@gmail.com>
+To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, andrewjballance@gmail.com, acourbot@nvidia.com,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+Date: Sun, 16 Mar 2025 06:16:43 -0500
+Message-ID: <20250316111644.154602-3-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250316111644.154602-1-andrewjballance@gmail.com>
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
@@ -79,51 +95,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This driver can perfom async flips on primary planes, so enable it.
+implement the equivalent of the rust std's Vec::resize
+on the kernel's Vec type.
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 4 ++++
- drivers/gpu/drm/nouveau/dispnv50/wndw.c | 4 ++++
- 2 files changed, 8 insertions(+)
+ rust/kernel/alloc/kvec.rs | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 4310ad71870b..fd06d46d49ec 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -1285,6 +1285,7 @@ int
- nv04_crtc_create(struct drm_device *dev, int crtc_num)
- {
- 	struct nouveau_display *disp = nouveau_display(dev);
-+	struct nouveau_drm *drm = nouveau_drm(dev);
- 	struct nouveau_crtc *nv_crtc;
- 	struct drm_plane *primary;
- 	int ret;
-@@ -1338,6 +1339,9 @@ nv04_crtc_create(struct drm_device *dev, int crtc_num)
- 	if (ret)
- 		return ret;
+diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
+index 18bcc59f0b38..eb6d40a1bf8b 100644
+--- a/rust/kernel/alloc/kvec.rs
++++ b/rust/kernel/alloc/kvec.rs
+@@ -554,6 +554,32 @@ pub fn from_elem(value: T, n: usize, flags: Flags) -> Result<Self, AllocError> {
  
-+	if (drm->client.device.info.chipset >= 0x11)
-+		primary->async_flip = true;
+         Ok(v)
+     }
 +
- 	return nvif_head_vblank_event_ctor(&nv_crtc->head, "kmsVbl", nv04_crtc_vblank_handler,
- 					   false, &nv_crtc->vblank);
++    /// Resizes the [`Vec`] so that `len` is equal to `new_len`.
++    ///
++    /// If `new_len` is smaller than `len`, the `Vec` is [`Vec::truncate`]d.
++    /// If `new_len` is larger, each new slot is filled with clones of `value`.
++    ///
++    /// # Examples
++    ///
++    /// ```
++    /// let mut v = kernel::kvec![1, 2, 3]?;
++    /// v.resize(1, 42, GFP_KERNEL)?;
++    /// assert_eq!(&v, &[1]);
++    ///
++    /// v.resize(3, 42, GFP_KERNEL)?;
++    /// assert_eq!(&v, &[1, 42, 42]);
++    ///
++    /// # Ok::<(), Error>(())
++    /// ```
++    pub fn resize(&mut self, new_len: usize, value: T, flags: Flags) -> Result<(), AllocError> {
++        if new_len > self.len() {
++            self.extend_with(new_len - self.len(), value, flags)
++        } else {
++            self.truncate(new_len);
++            Ok(())
++        }
++    }
  }
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/wndw.c b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-index 7a2cceaee6e9..55db0fdf61e7 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/wndw.c
-@@ -763,6 +763,10 @@ nv50_wndw_new_(const struct nv50_wndw_func *func, struct drm_device *dev,
- 			return ret;
- 	}
  
-+	if (type == DRM_PLANE_TYPE_PRIMARY &&
-+	    drm->client.device.info.chipset >= 0x11)
-+		wndw->plane.async_flip = true;
-+
- 	return 0;
- }
- 
+ impl<T, A> Drop for Vec<T, A>
 -- 
-2.45.2
+2.48.1
 
