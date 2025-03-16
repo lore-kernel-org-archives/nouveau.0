@@ -4,83 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A55C7D0EE1C
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4300FD0EE2E
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03DE410E481;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E5D10E47D;
 	Tue, 25 Nov 2025 20:47:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="fbAaav7k";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="EASY8a2Q";
 	dkim-atps=neutral
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
- [209.85.161.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 291A310E262;
- Fri,  9 May 2025 03:16:45 +0000 (UTC)
-Received: by mail-oo1-f44.google.com with SMTP id
- 006d021491bc7-604ad6c4d3dso634651eaf.0; 
- Thu, 08 May 2025 20:16:45 -0700 (PDT)
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com
+ [209.85.161.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F3F10E134;
+ Sun, 16 Mar 2025 11:17:32 +0000 (UTC)
+Received: by mail-oo1-f45.google.com with SMTP id
+ 006d021491bc7-601c12ac8d0so1597470eaf.2; 
+ Sun, 16 Mar 2025 04:17:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746760604; x=1747365404; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742123851; x=1742728651; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DJ+SSE57+NVD+voAZIpxys9eSbuHtPfvcAY3huVe52E=;
- b=fbAaav7kKlAKOjhrjsQMrwrU+xfEoXw+/kSygjZvgSfj7z5m2i1q6XBb6L3aRteMw4
- Bp/zpxeVjungnqdniezdazNRhTuqycNn24e2kQmLi76NtM9xHS96xzovjgXuFpG0IpBc
- Ez49OXne4VEIO2ZLiZpaZcD5jBIUbog4LUWAOncm7W1y4cB29+n8X7YYGMGGCU3QZDoq
- Z5RarlgqXWIj+OgXVEfysbPqMGlkARETjGQWPmZ0nz7ruf/7EYDlTpOtC6z2aejN49Ab
- JW4iRqT74lk7xG7SsMaQPZMy7xtatKPYriH9V1Zr8CJlcBvTjixmmn1N2kYdQdVS92qO
- gMcg==
+ :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=MibvrQXj2P5QnlDxX5YbYon7Ne8dH6XMjJsYnk+RzkY=;
+ b=EASY8a2QqL597+w10wi1uAB2XS04sx5lQY0EVnHgn8sX8D1kBDJfFpJqLJrmG1TELy
+ HXYGNKElK00h9EqgpfGgS6nsmO6ZwyhXFXKKCq+VtWGXICip1kFrV0Yb4Q33tVcTgzJx
+ LzJbSrQdLZkbAGKWtzunCOzbwXSwSxm/9nXmwZbReVwDPF4jNo+YIxGgvdDAbQmFG3mk
+ t5751Ecpo9l7r4uSt8j91spWKc3vORvVXE0p3g3vz9lQmCW/k6jqNr2KOVUrraEkt9cA
+ wspDKB7NmoS0G1oZjGjg7KeV96TJCmhK1l3rci9X1Bpnd1Ceffug1W1Woc+DJwiWkHkI
+ Mo0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746760604; x=1747365404;
+ d=1e100.net; s=20230601; t=1742123851; x=1742728651;
  h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=DJ+SSE57+NVD+voAZIpxys9eSbuHtPfvcAY3huVe52E=;
- b=e772wlnrE+gU8x9jg1smIm67ilH8Wheo05fECmvjuMTS85yJDd2zykMal3AyyCAHK4
- eUyLa7yMYq5sVLXhHmZBjAz/V39WF14JkMcYGekwyj8oSahBgMnP7AIi+Ezr62K0mqK4
- 4WOrQwdNlFLy9AO64qPwTUgcQYwWXE/7GIRKMTApxEjx4UNH4qdNkSvTWxW1gSYp9Jv9
- zDGMZEtbDY3BXHjIiYB67RcL565S3cE5mrwznjnaVprMeKU2yAn08ai3lnQJJFFjo+1w
- B0GBlzVWifdwNp0BrFZ6LRHQICaf35Q8yp1GBW/9YRaavjdA31Bdbzh8msiw8n/FPdgW
- 46yA==
+ bh=MibvrQXj2P5QnlDxX5YbYon7Ne8dH6XMjJsYnk+RzkY=;
+ b=umTSpZ6X21wzrWsPuqmB7D3AGO/dwNnFyKXGOM0+dj3A5fh8II0DEfxQITa6wNYA+c
+ 6NvYV7PyDFCmsMxEfgJPvMvwACAibraylwXmYUWzuC8Oxe/grWnteQiiIh+vKddxvJEs
+ CN5VZvRMEISzAGOa6WfTozs9chD8eImwXXCuUDyYcbq1UCIIaMCRefBZJ/nN1mUqwhsD
+ kF8Zjsopq060of8gLAjGhcRqG8oAdOu4ygbY0+KqLpGIDdx6t3nvB6D495L6ildTqWdX
+ NgHQ/e/FDfM0GZmjMAv9hcTkzu3jBfxnlqzKNUMuAkLginHxaqFHhlwhXN3VOnex4qrW
+ uYzw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWpMKtiVK17sk7vlO1KFHoAlpbOTFplr/NF8V/Vp+lNTtCHemVK/cv+v80qeTm/J/NIl/QAPkSnloM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxn0LsY55/Xd6808QQ7jmfxUcL104w973SnNdWAMR3oGJaUzryG
- lcnzhgFZh10iz5z2DCmYrTa2sDegyeDrClPfZtC4cqPUSajbrlpf
-X-Gm-Gg: ASbGncsDyLko9o9UibOQUEKVczREoubmmhL7FZSc6wF4wI8wvNRt2B9fAg6x5ZkXPwF
- 3xYXcQzUzZjTri3ACgPYOasNJkB+i9YKZRT8CocpwOcaOe+g5NWvdre0ty9AXztp9ZILXB7grwx
- hj/bghFc/L7467FNw4UYooFH2iCXUBfv9G6QrL7J+Qa3goh5igKRYoQAsGAHn89wP5YDn3Ivw7e
- c2AcUXUe8SNqHCbK9IyDgLKufaxiwRbCMo0y76anv/CoXWGCIJ/G07bdtvU7ACW723e1Ohj62oN
- 1ddNmJmVGtZzuoP6BiTPZej2pxZRhPRdHh5ucrxM5LXg2KJV/2b67oXa7uADJDRWCbI0lOUtDgR
- ktb5idsFw1D7u
-X-Google-Smtp-Source: AGHT+IGpMx7dY3dkHvqr4awICZ7vr0q2bv50WztDT96Nqcfn11nY3aHVKib+jqiYd+/U5X2LVifHrA==
-X-Received: by 2002:a4a:ec44:0:b0:606:293f:f37e with SMTP id
- 006d021491bc7-6084c0ff314mr1382389eaf.6.1746760604235; 
- Thu, 08 May 2025 20:16:44 -0700 (PDT)
+ AJvYcCWOjSV4bgFawrkODDfwS1MxoJlSVxdZg3+CCf2/5NNnssoRwdyWfYg67GIgFODOh55LaCRlngfKCQ==@lists.freedesktop.org,
+ AJvYcCXgLroLKv3WwmrYhgK2b1VrUeR5yeeaFJwQREiL52+BEzbSpmAEkq8laOdfzcyMWHkcv+HQXwI1xjY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyiWs62Sj6ToV7cQkaEqFRCBWwesLFATyV5iuDwQcNtonGmW0vA
+ fy5LSmxXWyXSxALzUnusMoy/LVOSNzGPL1T/fZk+VM8TRVUC98xk
+X-Gm-Gg: ASbGncuoXQ53cKXoER7qT5pbGPj7Q8bw63y9prBqORgCqOK5Hqd4bWhyw4aZCquqWd9
+ iBzwu1AS9g7c444rYq3HqO4JfnmCS9qVdsW1sf3Uv9zr2BPbTN4EpcKgADxRtECv2WmW+lbDRj7
+ PnaCjhQDR3tcomB7M8nrwBa8I+ZZFYavcGmFDDwnhdrKX0mJRXjJUzkTvOBOMNIIFohyZI+BxHc
+ 7CCLvGW00ufTQd94H1dFIP3uekzDkqTOaLMl3eQ/Vxa3zNwyBKNtWBNVcAbCIiJ7g7pY2MW4E/q
+ sD3dghhCu9Dg+NQCoKdPIJYTHGsrHDq1YywiAHfk9Kx2Cog+lrwYEUWh8v+4xyGMrBO+lSi4vQF
+ SXnmezWwZQxVlv0Y6
+X-Google-Smtp-Source: AGHT+IG0u7JDaDNYIHwPQlqHBQlgmBC+Fo0wrepsC3YNTau6TIWAGIJlcCHjX1uHxt1F9G2iknrsEg==
+X-Received: by 2002:a05:6808:f12:b0:3f4:af3:74a5 with SMTP id
+ 5614622812f47-3fdeed0d78emr5189018b6e.21.1742123851687; 
+ Sun, 16 Mar 2025 04:17:31 -0700 (PDT)
 Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
  [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.16.39
+ 5614622812f47-3fe832ce015sm715978b6e.7.2025.03.16.04.17.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 May 2025 20:16:43 -0700 (PDT)
+ Sun, 16 Mar 2025 04:17:30 -0700 (PDT)
 From: Andrew Ballance <andrewjballance@gmail.com>
 To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com,
  boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
  benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
- bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
- andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
- andrewjballance@gmail.com, fujita.tomonori@gmail.com,
- daniel.almeida@collabora.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org
-Subject: [PATCH 06/11] io: move PIO_OFFSET to linux/io.h
-Date: Thu,  8 May 2025 22:15:19 -0500
-Message-ID: <20250509031524.2604087-7-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509031524.2604087-1-andrewjballance@gmail.com>
-References: <20250509031524.2604087-1-andrewjballance@gmail.com>
+ tmgross@umich.edu, andrewjballance@gmail.com, acourbot@nvidia.com,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH v2 3/3] gpu: nova-core: remove completed Vec extentions from
+ task list
+Date: Sun, 16 Mar 2025 06:16:44 -0500
+Message-ID: <20250316111644.154602-4-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <20250316111644.154602-1-andrewjballance@gmail.com>
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
@@ -98,68 +96,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Fiona Behrens <me@kloenk.dev>
+The requested Vec methods have been implemented thus, removes
+the completed item from the nova task list
 
-Move the non arch specific PIO size to linux/io.h.
-
-This allows rust to access `PIO_OFFSET`, `PIO_MASK` and
-`PIO_RESERVED`. This is required to implement `IO_COND` in rust.
-
-Signed-off-by: Fiona Behrens <me@kloenk.dev>
 Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
 ---
- include/linux/io.h | 13 +++++++++++++
- lib/iomap.c        | 13 -------------
- 2 files changed, 13 insertions(+), 13 deletions(-)
+ Documentation/gpu/nova/core/todo.rst | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-diff --git a/include/linux/io.h b/include/linux/io.h
-index 6a6bc4d46d0a..df032061544a 100644
---- a/include/linux/io.h
-+++ b/include/linux/io.h
-@@ -12,6 +12,19 @@
- #include <asm/io.h>
- #include <asm/page.h>
+diff --git a/Documentation/gpu/nova/core/todo.rst b/Documentation/gpu/nova/core/todo.rst
+index ca08377d3b73..234d753d3eac 100644
+--- a/Documentation/gpu/nova/core/todo.rst
++++ b/Documentation/gpu/nova/core/todo.rst
+@@ -190,16 +190,6 @@ Rust abstraction for debugfs APIs.
+ | Reference: Export GSP log buffers
+ | Complexity: Intermediate
  
-+#ifndef HAVE_ARCH_PIO_SIZE
-+/*
-+ * We encode the physical PIO addresses (0-0xffff) into the
-+ * pointer by offsetting them with a constant (0x10000) and
-+ * assuming that all the low addresses are always PIO. That means
-+ * we can do some sanity checks on the low bits, and don't
-+ * need to just take things for granted.
-+ */
-+#define PIO_OFFSET	0x10000UL
-+#define PIO_MASK	0x0ffffUL
-+#define PIO_RESERVED	0x40000UL
-+#endif
-+
- struct device;
- 
- #ifndef __iowrite32_copy
-diff --git a/lib/iomap.c b/lib/iomap.c
-index a65717cd86f7..e13cfe77c32f 100644
---- a/lib/iomap.c
-+++ b/lib/iomap.c
-@@ -24,19 +24,6 @@
-  * implementation and should do their own copy.
-  */
- 
--#ifndef HAVE_ARCH_PIO_SIZE
--/*
-- * We encode the physical PIO addresses (0-0xffff) into the
-- * pointer by offsetting them with a constant (0x10000) and
-- * assuming that all the low addresses are always PIO. That means
-- * we can do some sanity checks on the low bits, and don't
-- * need to just take things for granted.
-- */
--#define PIO_OFFSET	0x10000UL
--#define PIO_MASK	0x0ffffUL
--#define PIO_RESERVED	0x40000UL
--#endif
+-Vec extensions
+---------------
 -
- static void bad_io_access(unsigned long port, const char *access)
- {
- 	static int count = 10;
+-Implement ``Vec::truncate`` and ``Vec::resize``.
+-
+-Currently this is used for some experimental code to parse the vBIOS.
+-
+-| Reference vBIOS support
+-| Complexity: Beginner
+-
+ GPU (general)
+ =============
+ 
 -- 
-2.49.0
+2.48.1
 
