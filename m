@@ -4,113 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E89B7CCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81A6CCA472
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE0F10E537;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06A4310E510;
 	Mon,  6 Oct 2025 20:57:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UHjhX2lV";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ei3A1LxJ";
 	dkim-atps=neutral
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
- [209.85.222.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB6E510E0DB;
- Sat, 24 May 2025 20:33:26 +0000 (UTC)
-Received: by mail-qk1-f176.google.com with SMTP id
- af79cd13be357-7c560c55bc1so110071285a.1; 
- Sat, 24 May 2025 13:33:26 -0700 (PDT)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+ [209.85.208.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD2F010E4CD;
+ Tue, 18 Mar 2025 20:13:31 +0000 (UTC)
+Received: by mail-lj1-f170.google.com with SMTP id
+ 38308e7fff4ca-30c0517142bso53686731fa.1; 
+ Tue, 18 Mar 2025 13:13:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748118802; x=1748723602; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=mvfJkqxXdrTl2ACAyEytt+D5VYLPEzTHxEFeE81vrvE=;
- b=UHjhX2lVEpWMyuoWlC2Nyia05LWYXNWtfLNQkW0+5CFu0xlxE8fwMB39cOh7UWZwO5
- zof5anPj4uNoYMnOMK8EW89oEaijjw8Kw2X+JDSSVfzB11pcwNrXWZqGntP12DnWdjYl
- 2/keKmr4LAjwkaXTYDIllJMTzpiy97nwcSKjdPe+yx9Fbam0qENq79dzCidAPPh6Doa6
- vRYV19q2TvhnTg9MSdOs2yaYzqWvnQjKn4IIdoSOEYILG638gWAjKt7WLX9EDnWHsCM/
- 0X9hmY9bBXOOJZKBMyrkQn0R5CIfvjnhaS+mZMxCVQYHxoUtXDtqqyVALzBT8mx9jKVG
- YDGA==
+ d=gmail.com; s=20230601; t=1742328810; x=1742933610; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7EYuK/t2IJSGOT76QGj0LoVWETpAfuQmAmJNAdEEvyY=;
+ b=ei3A1LxJFC/X8eR5IwqgSFc8AusF5ZCnZJvFv+uqZ5SfWObUAMvV2hY5W5QvXu9/7E
+ +m4GZN3A9X4u6/1d4RAOZYOT/eaYbICPbqjTCzBtNpJedMafmFQCIWIchy8mFRmEjkVJ
+ mESwTv3dgcZVuc0sq7BWFBhF2O9twSm8TW/Py8K3i+gyKQkUEqV4c1SRZbTBZ11ynIoG
+ 6Mzr3fJcgqkcNGzWJPpnuk65/etqfNGsZcBTL24WS+x+pQEDFisgNXUODGRMIMOq1Kz7
+ 3kU4HfJj4ZO4IknSVhAmar6CicRjSb+FAc0JbZK0PcQCBLf71Evw9Fnjxe9pWDyMvt1W
+ glAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748118802; x=1748723602;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1742328810; x=1742933610;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=mvfJkqxXdrTl2ACAyEytt+D5VYLPEzTHxEFeE81vrvE=;
- b=C/bX3WxZ8E1E3BeItZl9PESltz6yYuNMvi4t9MitwrcUZrXTKuRbK8uQvuAj0giQss
- uQ+lpw12eIu2OEBN6zYnOmYnfRxRXwmzL36vF6EnfHjhR5HAwrAr3A+v4pKif1qScxCd
- DaSUD3MLdfCEfvhTrFv2cXe8afutFXqFFQuoYyHuW1hQ4lVVQiOPDHfNr+IWJ/YztuAf
- 05jkzuUZ6hmpmSXKBzQRdNcXgjdyNwZgaFALLCCttkp/AH/FBUOLOO45P27bk9x9zXgy
- Q9PO8P/JZaOAY/w0Pnb5QcjCS1JstESNT2zSoHtQB4OOEFvDomPdckN/UfOJQ0f0ZB3N
- L/MA==
+ bh=7EYuK/t2IJSGOT76QGj0LoVWETpAfuQmAmJNAdEEvyY=;
+ b=duZ0lZtBV8LjxbyiXPVM0pv5JgwxwriytFt6herI7/0IfNvhzHmUz8SUvI48PHUo1g
+ 5vDCWaSBoyyM/cdd/BosNrbe6Uxmp/LAvKH7XWW8c2ddnYeLgFw1tkwEP+/CofVv2kSD
+ DJIzwaf4Bfh/Oqhwm6ruPgM0y1aJzsxOehIOAcWPbW95WcajDEJpwnHuKcUKtylS7hU+
+ MasAK0tjY/hYD52w/hXyqU3lI/uBGer4CPQPr0eNIFGDlkb79EDF+Im8LmszRDJ5RPaY
+ 6MKtyqnGnbV/sDzZLWyWvmjL6qZBFaK/ZB1Zm7dAkh2k5s+Fdp1MBR231fyN7P3lihDt
+ NfFg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVruybv1T4ejvCKmUJz+tp6cotbOSOJnC3Na7+745pHMcU29+A6TWH28IPa8r7/HijDIHk3T4ve5w==@lists.freedesktop.org,
- AJvYcCXCx6jhKcGgon1imHZt+McSwhlJXEDa+D2y1iqllw/qGo/iFTB2aANUsnlPP3KoWUL9INPtIJm9v48=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPbr901zQhFwPD5BCwRHWlBQOSQ3So2j+eg5ZIuIMonf+u347/
- fxyvdIRuytTtVf56wm0/XBYldjLawA4sHX3e9Es1yGouTzUfTVCq0mY8
-X-Gm-Gg: ASbGnct2Kf+Ltq8NfeuL1b82zb2n2YVZKJsgL7lakC7qhxPBKguXb7BYk3pijQLnFJg
- PkVQxJyd9ahYt/zPyMbXqN7OIw5xjSgKemlem9FarLPG40hM+E59+gWlpAmlPVkgxPoekQ7Ce8p
- N1srH08kix1CQVMTUsFVB5oEpxR3fHHc5ux9u22yywRVCxUAm5Bg4ojM0H3WUFpQAuKSR2e2/pz
- RZ3z9jX4WCJ89KhJritfoBxk5Muo8tElMfZ3hzNrUSdL0Lx/vOS4SkupDrc2cZCXHcG1c3jD00h
- vuESFDEMYr/OjVU9DPfxiZppUPhE1B9+Y0cr+9ijcA1YaNhRSgTDoKYcD+0uIIudx5742iMnGOu
- eKZP1sGwlpE4VR/p87KLWY/Yj/25mQq21XgkZrvrVw9jZ47+9r9SlAemb2lUscxmV/a/zLCB4t3
- ydEcY=
-X-Google-Smtp-Source: AGHT+IFboxRLluplUf3LaplIw8SJcbgWkLbYbE/qq4hS3to1whGiWg64X2sqtasOImnMch7vEUC1oA==
-X-Received: by 2002:a05:620a:608e:b0:7ca:eb5b:6b99 with SMTP id
- af79cd13be357-7ceecba77cdmr512632385a.15.1748118802225; 
- Sat, 24 May 2025 13:33:22 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4041:5be7:7c00:8563:e370:791f:7436])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7cd467d7fd1sm1379590085a.29.2025.05.24.13.33.19
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 24 May 2025 13:33:21 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 24 May 2025 16:33:01 -0400
-Subject: [PATCH v10 1/5] rust: retitle "Example" section as "Examples"
+ AJvYcCVYMcz+qCkDUQN0doRZTbPx6soug4WorTnHgw1QkHacbevsUI91JD/Q6l/8b7rtUZnTsMI51jNkRg==@lists.freedesktop.org,
+ AJvYcCVcOZ0d9t3dapV2YdG9lvV+XbdMXO4ZAnHrNSs10BJKwAxcQA2gjy+dKbQdlJtzPODKwuzksn84Stw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxlgZhzeJ7AR+LUM8jMX07e4Hv7c8u/ktQubfBzMu8l6uKMuoHT
+ fcA6J3ihX58Ymil/7CrkJw1lzCfMfJuhMwQ8JciuE3U05DE/F4kDBpEtAhZ7bnc4OYLrfBdix/D
+ ML+gIuFPhBDig80M+tNqBwVMBRxg=
+X-Gm-Gg: ASbGncsghY40Pnud8aZ9hn4lLk316zCCyXrfF7CMI6umaWwZaMdsksIe4H9uK8CA8gZ
+ PYfpw7m7vyUZtBlWtf1GbtgRkiSshbetOFjN0YCNzluuRzmVczz1MwLemvHpubYAl6edKHoHn7V
+ Et4VKO6DJ43oqJKrSBSsAp2LYB6cgLDygjFzd3JvZIXw==
+X-Google-Smtp-Source: AGHT+IE03XdTIPJlrlbTe4XTC7CjLxzzw2MmqZ7G1kRhG67FU/kpFzEBbds8p2MpkhI2rqH08hJOoadGnI+7Ukp7gec=
+X-Received: by 2002:a05:651c:a0b:b0:30b:f52d:148f with SMTP id
+ 38308e7fff4ca-30d6a3e2be0mr420101fa.18.1742328809683; Tue, 18 Mar 2025
+ 13:13:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250524-cstr-core-v10-1-6412a94d9d75@gmail.com>
-References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
-In-Reply-To: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
-To: Michal Rostecki <vadorovsky@protonmail.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
- Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
- Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Benno Lossin <lossin@kernel.org>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ <20250316111644.154602-3-andrewjballance@gmail.com>
+In-Reply-To: <20250316111644.154602-3-andrewjballance@gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Tue, 18 Mar 2025 16:12:53 -0400
+X-Gm-Features: AQ5f1JqGHb-xKycRwPr6BJPWKgZnlSyF596guWZP_moUzsbI0d82WEiS8RZpmM4
+Message-ID: <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+To: Andrew Ballance <andrewjballance@gmail.com>
+Cc: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+ acourbot@nvidia.com, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -126,29 +91,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This title is consistent with all other macros' documentation,
-regardless of the number of examples contained in their "Examples"
-sections.
+On Sun, Mar 16, 2025 at 7:17=E2=80=AFAM Andrew Ballance
+<andrewjballance@gmail.com> wrote:
+>
+> implement the equivalent of the rust std's Vec::resize
+> on the kernel's Vec type.
+>
+> Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+> ---
+>  rust/kernel/alloc/kvec.rs | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>
+> diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
+> index 18bcc59f0b38..eb6d40a1bf8b 100644
+> --- a/rust/kernel/alloc/kvec.rs
+> +++ b/rust/kernel/alloc/kvec.rs
+> @@ -554,6 +554,32 @@ pub fn from_elem(value: T, n: usize, flags: Flags) -=
+> Result<Self, AllocError> {
+>
+>          Ok(v)
+>      }
+> +
+> +    /// Resizes the [`Vec`] so that `len` is equal to `new_len`.
+> +    ///
+> +    /// If `new_len` is smaller than `len`, the `Vec` is [`Vec::truncate=
+`]d.
+> +    /// If `new_len` is larger, each new slot is filled with clones of `=
+value`.
+> +    ///
+> +    /// # Examples
+> +    ///
+> +    /// ```
+> +    /// let mut v =3D kernel::kvec![1, 2, 3]?;
+> +    /// v.resize(1, 42, GFP_KERNEL)?;
+> +    /// assert_eq!(&v, &[1]);
+> +    ///
+> +    /// v.resize(3, 42, GFP_KERNEL)?;
+> +    /// assert_eq!(&v, &[1, 42, 42]);
+> +    ///
+> +    /// # Ok::<(), Error>(())
+> +    /// ```
+> +    pub fn resize(&mut self, new_len: usize, value: T, flags: Flags) -> =
+Result<(), AllocError> {
+> +        if new_len > self.len() {
+> +            self.extend_with(new_len - self.len(), value, flags)
+> +        } else {
+> +            self.truncate(new_len);
+> +            Ok(())
+> +        }
+> +    }
 
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- rust/macros/lib.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+You can avoid underflow checking in debug builds by using `checked_sub`:
 
-diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
-index 9acaa68c974e..d31e50c446b0 100644
---- a/rust/macros/lib.rs
-+++ b/rust/macros/lib.rs
-@@ -263,7 +263,7 @@ pub fn concat_idents(ts: TokenStream) -> TokenStream {
- /// literals (lifetimes and documentation strings are not supported). There is a difference in
- /// supported modifiers as well.
- ///
--/// # Example
-+/// # Examples
- ///
- /// ```
- /// # const binder_driver_return_protocol_BR_OK: u32 = 0;
+        match new_len.checked_sub(self.len()) {
+            Some(n) =3D> self.extend_with(n, value, flags),
+            None =3D> {
+                self.truncate(new_len);
+                Ok(())
+            }
+        }
 
--- 
-2.49.0
+>  }
+>
+>  impl<T, A> Drop for Vec<T, A>
+> --
+> 2.48.1
+>
+>
 
+Either way:
+
+Reviewed-by: Tamir Duberstein <tamird@gmail.com>
