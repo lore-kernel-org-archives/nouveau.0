@@ -4,67 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C19D0EE2E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4F0BD0EE2D
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C580B10E4B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F36B010E4BA;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="e8l9VEx1";
+	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="XMoYDFA9";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine.igalia.com [178.60.130.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29FE510EDC1;
- Fri, 14 Jun 2024 15:36:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=iMbXibmuv4tLW3BVBfl9Ydvrc3EWU1itn+Bz/2WUIe4=; b=e8l9VEx1/3TjTxvs/xWpRIwe8p
- 1tqhvk9qf6m1hEaLAaTIlV9ShiJ12mPE8Wm+ODs3NWB30oGpB1+sOSVks6v13OM+y298aMcYntEUN
- 1Qg24/ef4CwLycGX+BiqfImAC8INTkXhUlS6aRt/mzNKlFXkDOkqaPaIM/SaAGhoIaaDRdl3Mgwlk
- +NZmZZewqrV8akaBOvITagORzP9urp7tFO2N91jFt6ELMVbfWXow/IM/wLbllle3eYMs4+ALm5n/O
- uJVoIpdaOuSCv8cvRXQsYeI/W7NOuOD1WGVolQCrJFhxkwGQCSXeiKPxw6TrQp+Hr6xJ/sComZTgN
- SooEgaCQ==;
-Received: from [179.118.191.115] (helo=localhost.localdomain)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1sI8yn-003B8v-Ge; Fri, 14 Jun 2024 17:36:41 +0200
-From: =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-To: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Melissa Wen <mwen@igalia.com>,
- alexander.deucher@amd.com, christian.koenig@amd.com,
- Simon Ser <contact@emersion.fr>, Pekka Paalanen <ppaalanen@gmail.com>,
- daniel@ffwll.ch, Daniel Stone <daniel@fooishbar.org>,
- =?UTF-8?q?=27Marek=20Ol=C5=A1=C3=A1k=27?= <maraeo@gmail.com>,
- Dave Airlie <airlied@gmail.com>, ville.syrjala@linux.intel.com,
- Xaver Hugl <xaver.hugl@gmail.com>, Joshua Ashton <joshua@froggi.es>,
- =?UTF-8?q?Michel=20D=C3=A4nzer?= <michel.daenzer@mailbox.org>,
- Sam Ravnborg <sam@ravnborg.org>, Boris Brezillon <bbrezillon@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>,
- =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>
-Subject: [PATCH v6 7/8] drm/vc4: Enable async flips on the primary plane
-Date: Fri, 14 Jun 2024 12:35:34 -0300
-Message-ID: <20240614153535.351689-8-andrealmeid@igalia.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240614153535.351689-1-andrealmeid@igalia.com>
-References: <20240614153535.351689-1-andrealmeid@igalia.com>
+Received: from mail-10630.protonmail.ch (mail-10630.protonmail.ch
+ [79.135.106.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8016310E23D;
+ Wed, 19 Mar 2025 14:34:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=protonmail; t=1742394858; x=1742654058;
+ bh=1z4dJFA1oF0CRRS/sExQ1v3obrgN9+5/FwLBH297BOY=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=XMoYDFA9E4VJhCiq6RWj9hUWXDW1RXu5dTWuuMTLu2ZXX1uQosPiLRnfED+LRlnrK
+ 7jTWKnnGyl7rs4+AKxtswN5p3jlJxLvD2e5zyFI2EeVYZYtzN+eqwb6eeuuPvG+j4y
+ TyG9DOFNa8InpV9OEOZbDn6dz4Lzokya8A6WViRztDXVOvjPMskM3cgfztWmXD+fon
+ GmHnTgLNARNkMKInCTT8z2hy3tdCSjRJ8phuKFfRHHgGwfZgZYIxtNA+O36/+FHXNy
+ XDNTdzW5j8zdLOoaLpL+VNm211+4QtNxZeaLCsfytlTJYUEDkfduqkED6y4VVZ2VJy
+ Ravj30YhjkgwA==
+Date: Wed, 19 Mar 2025 14:34:13 +0000
+To: Tamir Duberstein <tamird@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: Andrew Ballance <andrewjballance@gmail.com>, dakr@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, corbet@lwn.net, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, acourbot@nvidia.com, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+Message-ID: <D8KBFC9M74H5.4ZJ2SJK06SGR@proton.me>
+In-Reply-To: <CAJ-ks9k+A1+0CWXZmD2m0+jRqTRTNFn-=d9VXqytiOqvn4BR0w@mail.gmail.com>
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ <20250316111644.154602-3-andrewjballance@gmail.com>
+ <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+ <D8JTWL8JY7DM.3IVH6FZ4M49CB@proton.me>
+ <CAJ-ks9k+A1+0CWXZmD2m0+jRqTRTNFn-=d9VXqytiOqvn4BR0w@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 7359374f116b2f0b801718ab9a5a44bdad44f80a
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:20 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,29 +67,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This driver can perfom async flips on primary planes, so enable it.
+On Wed Mar 19, 2025 at 2:42 PM CET, Tamir Duberstein wrote:
+> On Tue, Mar 18, 2025 at 8:50=E2=80=AFPM Benno Lossin <benno.lossin@proton=
+.me> wrote:
+>>
+>> On Tue Mar 18, 2025 at 9:12 PM CET, Tamir Duberstein wrote:
+>> > On Sun, Mar 16, 2025 at 7:17=E2=80=AFAM Andrew Ballance
+>> > <andrewjballance@gmail.com> wrote:
+>> >> +    pub fn resize(&mut self, new_len: usize, value: T, flags: Flags)=
+ -> Result<(), AllocError> {
+>> >> +        if new_len > self.len() {
+>> >> +            self.extend_with(new_len - self.len(), value, flags)
+>> >> +        } else {
+>> >> +            self.truncate(new_len);
+>> >> +            Ok(())
+>> >> +        }
+>> >> +    }
+>> >
+>> > You can avoid underflow checking in debug builds by using `checked_sub=
+`:
+>>
+>> `checked_sub` doesn't only avoid underflow in debug builds, but rather
+>> in all builds. But the code below is a good suggestion.
+>
+> Yes, I know :)
+>
+> I included that language because the underflow check is likely
+> optimized away in release builds.
 
-Signed-off-by: André Almeida <andrealmeid@igalia.com>
+If the function is inlined and the compiler can argue that `new_len >
+self.len()`, then yes, but otherwise I'm pretty sure it won't be
+optimized away.
+
+Also if it is optimized away, then the check was still "executed", so I
+find it a bit misleading to say "in debug builds" (making it sound like
+it wouldn't do it in non-debug builds).
+
 ---
- drivers/gpu/drm/vc4/vc4_plane.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/vc4/vc4_plane.c b/drivers/gpu/drm/vc4/vc4_plane.c
-index 07caf2a47c6c..e3d41da14e6f 100644
---- a/drivers/gpu/drm/vc4/vc4_plane.c
-+++ b/drivers/gpu/drm/vc4/vc4_plane.c
-@@ -1672,8 +1672,10 @@ struct drm_plane *vc4_plane_init(struct drm_device *dev,
- 					  DRM_COLOR_YCBCR_BT709,
- 					  DRM_COLOR_YCBCR_LIMITED_RANGE);
- 
--	if (type == DRM_PLANE_TYPE_PRIMARY)
-+	if (type == DRM_PLANE_TYPE_PRIMARY) {
- 		drm_plane_create_zpos_immutable_property(plane, 0);
-+		plane->async_flip = true;
-+	}
- 
- 	return plane;
- }
--- 
-2.45.2
+Cheers,
+Benno
 
