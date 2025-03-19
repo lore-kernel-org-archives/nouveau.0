@@ -4,77 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1DD0D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 751B7D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5703010EB0B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6461310EB0D;
 	Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=joelfernandes.org header.i=@joelfernandes.org header.b="rUMyxT+k";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LoxyKmi0";
 	dkim-atps=neutral
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6B3E10E098
- for <nouveau@lists.freedesktop.org>; Tue,  4 Feb 2025 21:09:25 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-436202dd7f6so70097095e9.0
- for <nouveau@lists.freedesktop.org>; Tue, 04 Feb 2025 13:09:25 -0800 (PST)
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACBCB10E542;
+ Wed, 19 Mar 2025 16:06:52 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-2ff5544af03so1255786a91.1; 
+ Wed, 19 Mar 2025 09:06:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=joelfernandes.org; s=google; t=1738703364; x=1739308164;
- darn=lists.freedesktop.org; 
+ d=gmail.com; s=20230601; t=1742400412; x=1743005212; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hU4QrAbDQR1o2bnoBznVmRjsUjgFoPERHNCe0D3R9dg=;
- b=rUMyxT+k+8xP2lzhRtjpJjDyTTP3wWYyNRGZPrEgvLqX5M+fsD/FX/+P8/+yStYCQR
- CaIuRW6liKNA94dEyP0JfyB/U3+vGRjf9CFMCfHSY8sDFc3aqcN/0uq73DCClreCs6b0
- rpoQ8BZrhVt4ox70oDKBRmHugq8o1NtNQ4+sg=
+ bh=zOvNy6cuX1wOoW8pRGs7qcnquFhdC/sbHrVaQCrxSA8=;
+ b=LoxyKmi0J6vqGP/ziyZ4APtWP5uMzEeIs4CfUJm/khqUH1ToKQUKLxrCArHMh+FSV4
+ 5/1+wge3fxip3LCT+MRcrxxAWxwlv8kny7H4Rc1rUDfQ2+QBG4i06mIj82AflcqP6cWc
+ w8wcXF7tsSexHM/W9zYPKJazF/NJvkLgcAr2ujQMx2f/xQvdj82qA3xTglNAAnQws+0R
+ jWmUpC+SGijI4881AN7BaRMPddppIyCKxKaXST5jyaTPZpUfGC5ced0YiUh+TLsZ/s6l
+ oOvlVm11JEedDqTXxVtO+RER2k34g/AIGf5Y3jrd2dSiahlAu7ZyRfM/7dO82LIIUSxK
+ Lqfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738703364; x=1739308164;
+ d=1e100.net; s=20230601; t=1742400412; x=1743005212;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hU4QrAbDQR1o2bnoBznVmRjsUjgFoPERHNCe0D3R9dg=;
- b=ff48uYlnNQmpKWJYRWKHaZ0qu3N8EH7XdyZOyt/bJDNrIVuwb+yUjfbIpmfOruMZJc
- j6jEPv144qyH2k7EKdKzZpyETt4EMI5e/wdSrnFKUsPTaH6KUYww/CsiPLMTq8/hcNvy
- JixmdZ3xDL/Yw8qgixJvMAY2QB4cOHbCXOidTEeGs5DF1gHF1Z3daDz5r5o9N/vnkxzS
- LEgxSe7fHoeLRPiDnPH5lYY6fU/YobgXMkMKt6tnafkyAUaOJ9psFvkKn+gUK/uycN4J
- 4ZwKg2L+5/6KVcnninGAt172PoRbn8Nwt1TF6YJthElBhNSZHA+JNJ4twkD+H3OYcg1Y
- KFkA==
+ bh=zOvNy6cuX1wOoW8pRGs7qcnquFhdC/sbHrVaQCrxSA8=;
+ b=PfymsTfAqj2lfPWIi/+PpD7A0qb9ySjie+8Gfij/HooZ0pU3gR+Gu2K1KQGQLdtZu1
+ lR0eeP+UxcZrLRNQDBNC0LTish3Vs+C+BS6/kCkKRGgOOourXTROFou7zxVWWsuh65vO
+ 2psc1TzFgpQmNLv5JM/c4tln14XzCtDbaQUEoDK/EBMEIs5otDDrF7lxFDhHNG8pHppw
+ 3VPqaBiDQ4exgSMN463B0BoYhXyAQ6FbjvjUk0E+lARGvxsHjPoM+lgVdqRJglkTvnNE
+ MTcosKY1GXQofb0ywCDjNTBfWe49fnjz3EXtmzQ36HV6uZsSjb8d6gQqjTXxhSv7DjRB
+ Ezkg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVKX/OGYejVRL93f1Xj9lvLW9XssSjJuILqZpz9YS+QdFVQwxi/j1Ucd7ro44pC0/ui+EoTmlWx@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxvphzlyWbEg1xkeUhj1R8YDnS1ozSxzvcSn7BvgqqcInr9VTmP
- KGeXU9kjcDPebvgWAu0aIP4fIMNrQIWZAGlzhXD4FE8T327tzejxMiDg0mvMit4a/6++9GlILyW
- dHJ4NkqRlY6evdwZ5rTPdpSpvrWQlgqvFxSq4IQ==
-X-Gm-Gg: ASbGncuzltCuA5p/n5dB+c9yxOCeHa7/YMcKZ9KcWX++HgG7n8XB8HEgIHVAKrw36f9
- VRzJf9pd1rDxJqeQelIxjtZXAM6uPIgTnZPDQEpDi1AqcKVdi/K4Vj2lG6uOd04xayqlHh+wF
-X-Google-Smtp-Source: AGHT+IG1wU/phrvdmWOZ6gg4Qkaj9tiLGHlTlII39K2KsIGA/7PJCQGdfM9Y7R/VJVyH/LBFDX1pLGfA1F+6yTJrKno=
-X-Received: by 2002:a05:600c:5492:b0:434:ff25:19a0 with SMTP id
- 5b1f17b1804b1-4390d5697b4mr753735e9.21.1738703363904; Tue, 04 Feb 2025
- 13:09:23 -0800 (PST)
+ AJvYcCUHVbisIzwv84kQ168+Sq1inIWR19BNEsEgQ3YKMvHDv24yRYIYhS2NfZBq8tBEHHKRFvPjH8qn0w==@lists.freedesktop.org,
+ AJvYcCUQd9axxkiwdpv94mr/wUak8ks0ozkuizaVsX4hlGRDR7PovBrjZVh6mTBxpUckEnkXMO5JDq/3Ofg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwrDiaSQjtjZZXUYD11FrDTxjpxzKHhrkl3uOBaP9v4TKQmsUyx
+ 5I3jrXS45PwK4+OcZ4AUdqKrAuGcHP0EZkOyLnGRTIv9BD0wQLXWDWDVfqMU8Cp9KWz0O0tTJUK
+ dt5X1UhWCd+g6QjYnTtDpdeAVSlM=
+X-Gm-Gg: ASbGncvhNkJJQMNVssTnRYjkowZvVfpsHeGg3HTleeaw8jqcW/7C5v+iPDDc4fofLkI
+ Lhzrb5BlA05DVtR5Q9LNYHylVk1pGez3kEwo1UWH1iOkLVfNv3I9sCZZ+pohc+l2Ag9M1BQ3BGA
+ 6lrgyZZKOa3qOcrDVkBGjSBjXYjA==
+X-Google-Smtp-Source: AGHT+IGKH7dGzo9CR9DyO61FwA7cxqxKg1zlVUXDQ/9/34mE4QzwcvBU2hSm+dhh6M/XvRm1n6FGq53W1euSYJyTZJY=
+X-Received: by 2002:a17:90b:2246:b0:301:1c11:aa7a with SMTP id
+ 98e67ed59e1d1-301bfc749d3mr1656740a91.3.1742400412036; Wed, 19 Mar 2025
+ 09:06:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250131220432.17717-1-dakr@kernel.org>
- <20250203202410.GA3936980@joelbox2> <Z6Jgf-cVt_AlM6Qd@cassiopeiae>
-In-Reply-To: <Z6Jgf-cVt_AlM6Qd@cassiopeiae>
-From: Joel Fernandes <joel@joelfernandes.org>
-Date: Tue, 4 Feb 2025 16:09:13 -0500
-X-Gm-Features: AWEUYZmCOUkLm9MpjL2MDd5EZQ1gMNJEykz-KDiUu51t6tTmXr73ZDfIU09FM3Q
-Message-ID: <CAEXW_YQQey_QweH+favrXPhrEkVwyqCXRG+UBn-oG6wb+n4+gA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpu: nova-core: add initial driver stub
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com, 
- cjia@nvidia.com, jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com, 
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me, 
- a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ <20250316111644.154602-3-andrewjballance@gmail.com>
+ <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+ <D8JTWL8JY7DM.3IVH6FZ4M49CB@proton.me>
+ <CAJ-ks9k+A1+0CWXZmD2m0+jRqTRTNFn-=d9VXqytiOqvn4BR0w@mail.gmail.com>
+ <D8KBFC9M74H5.4ZJ2SJK06SGR@proton.me>
+ <CAJ-ks9=NQrz3ySacKt+XXm2vS+Fn9gjmtqAaaoz1k=iTG_1HXw@mail.gmail.com>
+In-Reply-To: <CAJ-ks9=NQrz3ySacKt+XXm2vS+Fn9gjmtqAaaoz1k=iTG_1HXw@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 19 Mar 2025 17:06:39 +0100
+X-Gm-Features: AQ5f1JrZzeF8YqgUhS2ui73zsg8Ty3fstbUTrdh2di_k7zMf5vS2OO4mnq0-LQ8
+Message-ID: <CANiq72mnT73Mb7RJhZjf4de=_Orv4pipunMhOersOj_aqrFA-g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Benno Lossin <benno.lossin@proton.me>,
+ Andrew Ballance <andrewjballance@gmail.com>, dakr@kernel.org, 
+ airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, corbet@lwn.net, ojeda@kernel.org, 
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net, 
+ bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com, 
+ tmgross@umich.edu, acourbot@nvidia.com, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, joelagnelf@nvidia.com
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,35 +97,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Feb 4, 2025 at 1:46=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> w=
-rote:
+On Wed, Mar 19, 2025 at 4:59=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
 >
-> On Mon, Feb 03, 2025 at 03:24:10PM -0500, Joel Fernandes wrote:
-> > Hi Danilo,
-> >
-> > On Fri, Jan 31, 2025 at 11:04:24PM +0100, Danilo Krummrich wrote:
-> > > +#[pin_data]
-> > > +pub(crate) struct NovaCore {
-> > > +    #[pin]
-> > > +    pub(crate) gpu: Gpu,
-> > > +}
-> >
-> > I am curious what is the need for pinning here in the patch in its curr=
-ent
-> > form, is it for future-proofing?
->
-> Yes, it is.
->
-> It's not always needed, but since I know that further down the road we'll=
- need
-> at least a few mutexes, it seemed reasonable to already consider it.
+> If we're talking about the same thing then I think we're both wrong
+> and the correct phrasing would have been: "you can avoid underflow
+> checking when CONFIG_RUST_OVERFLOW_CHECKS=3Dy by using `checked_sub`". I
+> was referring to the underflow check implicit in `new_len -
+> self.len()`.
 
-It seems reasonable to me as well, I would probably also add a code
-comment there about what is expected to be unmovable in the future
-(Just in case any code readers don't raise the same question I was
-raising).
+`checked_sub` always checks (if not optimized away). The config option
+is about the implicit one.
 
-The source of the confusion for a reader could be the documentation
-expecting a #[pin].
+Do you mean avoiding panics?
 
- - Joel
+Cheers,
+Miguel
