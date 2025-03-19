@@ -4,80 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D295D0EE2C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B9FD0EE2E
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4B6710E4A9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEE010E4AD;
 	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="iOAMKRum";
+	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="OuvlnTKG";
 	dkim-atps=neutral
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com
- [209.85.210.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C915B10E386;
- Sat, 15 Mar 2025 02:43:15 +0000 (UTC)
-Received: by mail-ot1-f53.google.com with SMTP id
- 46e09a7af769-72737740673so1582071a34.3; 
- Fri, 14 Mar 2025 19:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742006594; x=1742611394; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:from:to:cc:subject:date:message-id:reply-to;
- bh=XT8HYn51QyYArt1rrJadjd/k3O2KfE7Vq5w9HaXKeH8=;
- b=iOAMKRumFFFe2WTU1WjltKHk8BPYFi/vjSTmfJr1+QdESsTf6VgX2wSOW3q2pwn39W
- lbM2oaEUtWA/2A5MjF1eG+WWHob+n7DFZRnENBNJ07QiQhZD1cNCY1bW3rT4hha9yhqv
- 1RF9wd84+wt/1BBrIinKgRm3VnjJ4SV5+hWCmhSdfOPOTelXE8vg1mZd7ui5G6R4oudJ
- H8FtM7om1WznI7GefTXTv2vYBymU3BlLwmLb/U1YH2zLdPW7iaC+NJb2ujqHEk97V2MI
- y0g5QhZWMpXLVhmhHq8irUl7EomRCmU2VOKsvNHovx2W7r6aPHYo2wlvL5B/z4rj7CY4
- 3O1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742006594; x=1742611394;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=XT8HYn51QyYArt1rrJadjd/k3O2KfE7Vq5w9HaXKeH8=;
- b=uiQbMOTQLl3x1NqaBVRMT9M1ae2isP1fobQnmU7tC90XiUagSeMduhEWFa0pRRlLhU
- rlfCuF6QOhUbIZbixIQMefurwkvzYewlvU/k4QzSHnl4SEhNZ0SBG1WtksCnYQPGSW37
- MqYTGTxTDYDV6ZjoQqcEx0H6uWqV/DJh5/XJ5pjbVrW66K8Cq90BJNFI0LFwMStwh+US
- Bs0mQXTnX4/ozgG+MsStoDT5gsFjCw4fPythSus32TNK7djSqzp5kB2ZFWyDnPFdQqGB
- P4m5OdT1zKwLv53MFbDcfukdvc6H1XFxE/wAz27naSlpC1DgGA8wMW9mqT+zp2eN+kB8
- 5ZlA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCBp6b9OxV3+qYK/lxSMn32taJBBsVXO/vn/ANo4yCWWh+Gfn6jNaGiSAYcv+ift3+I8fOeALdog==@lists.freedesktop.org,
- AJvYcCWi88aCzoNbOCFaLV7ZqxL3rOptW0vGvos8Frlm0HhKjhFnyrWq5cIp3L5Bdwp72Gzfot4zwrkrow0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxfpBtZ0PPH4JpMe7gNjC4/4pNWBNqaKQniQnJZm4+YPjnU+4pV
- J9sOUrOBwbjpbPTraV2sfVVECTZZV/w2ZMeZE4egtCsVzLdNr/a4
-X-Gm-Gg: ASbGnctE5ECKmJfolvr6yx8pDsbKK2CIqLWtLqFIivOGNxYv9T/yanVaCU8patYZe6t
- IjExcn83/oKUBpZdsHsY8v0J3tyNrqXuSDnFtkPzrkAXmFklz01i0MfTz538V+dg/oARur26Wah
- D+ZoGdDMCrqMfuTBf/O8/z0DP1WxR1vBSBm7hkIFlvTB/jCDY2y+kS4jIYRhCnLMTQhYIQb20Yb
- lXELgfnsAZwiTxfOt49g02m5ZORMVOXghFQ4tlIgZ8MbyyV6J7BzsMTyR77tTHUcdvpdV+F78DK
- CVBe9MUzP+LNmuZcDpif1VY9bY9sldIbeoZ1cQB01rSc8jg53a6F5DUo7Q1hH5bM/CrGgK1cH+R
- gcBK6uwLl4jik9nHr
-X-Google-Smtp-Source: AGHT+IGOVE5wyNqOM7/fv6cFlMkko9+hHKdXOnxrJZVF0sr7+N4uWGsQlnAMOYDClGQej5nEuFl4MA==
-X-Received: by 2002:a05:6830:2b28:b0:72b:98f8:5c95 with SMTP id
- 46e09a7af769-72bbc23c75cmr2905119a34.1.1742006594247; 
- Fri, 14 Mar 2025 19:43:14 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 46e09a7af769-72bb26bb82dsm882990a34.32.2025.03.14.19.43.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 14 Mar 2025 19:43:13 -0700 (PDT)
-From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+Received: from mail-10629.protonmail.ch (mail-10629.protonmail.ch
+ [79.135.106.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A346F10E284
+ for <nouveau@lists.freedesktop.org>; Wed, 19 Mar 2025 00:50:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=6jba5to2fzf2tmn4smqyqpdmoq.protonmail; t=1742345439; x=1742604639;
+ bh=VkL2Mxif+LYFPEMvRY4YuHUJQ31AetP3+c0xD9LJp+0=;
+ h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+ Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+ Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
+ b=OuvlnTKGDYLlG88upDBw7wr7g3AGCYM0aTNk3kRAoVprUuW+CF/kqquXw1cSicdLT
+ uVn/H329nesx/xyayy2Fazl1UVyHZV/K9jTFAG2dKFAG0dRAq2X9EKmPTvy44/LhqH
+ UHiRD60+7g1KXwgS4aJRWHPWE1eO7El1z6MIJnTGMDd/5NPPy77oQsWCNSa40MHR0S
+ +WoI4I0EQk/x2iIHvxkVkXQ4zY4IbT36G7wYMVsFjOsIpmc8INPwpP/zzcrIZZVBJD
+ ylra/qToQwv/F1EBGmh2weZubQEmvOe9vyQrqoJEt34Dm4R4WYR1Ork8tDUjgM+Fbl
+ mmXzZ4qWCyItw==
+Date: Wed, 19 Mar 2025 00:50:29 +0000
+To: Tamir Duberstein <tamird@gmail.com>,
+ Andrew Ballance <andrewjballance@gmail.com>
+From: Benno Lossin <benno.lossin@proton.me>
+Cc: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
  maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, andrewjballance@gmail.com, acourbot@nvidia.com,
+ corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
+ aliceryhl@google.com, tmgross@umich.edu, acourbot@nvidia.com,
  nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
  rust-for-linux@vger.kernel.org
-Subject: [PATCH 0/3] rust: alloc: add Vec::resize and Vec::truncate
-Date: Fri, 14 Mar 2025 21:42:32 -0500
-Message-ID: <20250315024235.5282-1-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.48.1
+Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+Message-ID: <D8JTWL8JY7DM.3IVH6FZ4M49CB@proton.me>
+In-Reply-To: <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ <20250316111644.154602-3-andrewjballance@gmail.com>
+ <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+Feedback-ID: 71780778:user:proton
+X-Pm-Message-ID: 124220e04b60981fd23d64c8176e2b18357079aa
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:20 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,19 +66,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch series implements the Vec::truncate and Vec::resize methods
-that were needed by the nova driver and removes the corresponding item
-from their task list
+On Tue Mar 18, 2025 at 9:12 PM CET, Tamir Duberstein wrote:
+> On Sun, Mar 16, 2025 at 7:17=E2=80=AFAM Andrew Ballance
+> <andrewjballance@gmail.com> wrote:
+>> +    pub fn resize(&mut self, new_len: usize, value: T, flags: Flags) ->=
+ Result<(), AllocError> {
+>> +        if new_len > self.len() {
+>> +            self.extend_with(new_len - self.len(), value, flags)
+>> +        } else {
+>> +            self.truncate(new_len);
+>> +            Ok(())
+>> +        }
+>> +    }
+>
+> You can avoid underflow checking in debug builds by using `checked_sub`:
 
-Andrew Ballance (3):
-  rust: alloc: add Vec::truncate method
-  rust: alloc: add Vec::resize method
-  gpu: nova-core: remove completed Vec extentions from task list
+`checked_sub` doesn't only avoid underflow in debug builds, but rather
+in all builds. But the code below is a good suggestion.
 
- Documentation/gpu/nova/core/todo.rst | 10 -----
- rust/kernel/alloc/kvec.rs            | 61 ++++++++++++++++++++++++++++
- 2 files changed, 61 insertions(+), 10 deletions(-)
+---
+Cheers,
+Benno
 
--- 
-2.48.1
+>         match new_len.checked_sub(self.len()) {
+>             Some(n) =3D> self.extend_with(n, value, flags),
+>             None =3D> {
+>                 self.truncate(new_len);
+>                 Ok(())
+>             }
+>         }
+>
+>>  }
+>>
+>>  impl<T, A> Drop for Vec<T, A>
+>> --
+>> 2.48.1
+>>
+>>
+>
+> Either way:
+>
+> Reviewed-by: Tamir Duberstein <tamird@gmail.com>
+
 
