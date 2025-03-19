@@ -4,122 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64A37CAC5B8
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47409CCA472
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12A9710E5F2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E33810E5FF;
 	Mon,  6 Oct 2025 20:57:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="As5mJmRd";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="d2y24HN6";
 	dkim-atps=neutral
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FDA810E944
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:56:14 +0000 (UTC)
-Received: by mail-qv1-f46.google.com with SMTP id
- 6a1803df08f44-78e4056623fso6744956d6.2
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:56:14 -0700 (PDT)
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com
+ [209.85.208.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6DC1B10E543;
+ Wed, 19 Mar 2025 15:59:38 +0000 (UTC)
+Received: by mail-lj1-f176.google.com with SMTP id
+ 38308e7fff4ca-30bd11bfec6so70889321fa.0; 
+ Wed, 19 Mar 2025 08:59:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758808573; x=1759413373; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=67z28WQrX/ogTxUcpWCJ1GAunLtCBeF3o3dpHhKNjK8=;
- b=As5mJmRdXP7fX7w0KoGwNoOFtm17ikMrEv/yA17JgGuUvT2fXlI1clOO4U6v7VTZqM
- Ww+AtvdW87u9tLrfn7FCMRNoA0vKHf+ablCvdHz45rU9x0AL4xaAY3lrOhCLnV8jE9H9
- FGm35tAPRVp5t2VBL8ee0qHkB23JQvx94Q+PzRsh2u0Tm/wSUn/YXnRHsYxoCDnUWFGj
- WhorCzsogcjy3v7F3nETCn1n1bIJ/fGb0r8VrJyLFU5XPwWseuc+mDyw3ZWEaRFVuhjo
- RwM/dr7mO9ov+fOpz5AjMo5UsUJvilo6VHeFxtgv0skk3PM55wj0XjJz9hv//esSY5kB
- AJqg==
+ d=gmail.com; s=20230601; t=1742399977; x=1743004777; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=g9hyskz0+W8oxdMSBSrKYAiDGZxtrfIfmdmAlEMXAcA=;
+ b=d2y24HN6DGV0wiDYN2uqRd+deR/VRTww0mkKMuDhkjxuKRh/hMO6m4CcmrBEgFzK4r
+ kon12VujKB3v60rgweJ5HSLOYOBj3+5yjc3E7ubBhJ3lh4s6jpJm+f0XJHkmbvS6lbir
+ Fm7vVS/hjKQnbw1DXUCZyjEawJjcJDLuFSUBYUn34lTAAC43hadGlzpRiXLOeFgjzn9w
+ M6IWFSKR/ngKhyEHBJzBJjyqK5Vh8zxjGLl3dxcr+JSGVy/WpAvE752jzJxauLw+V2hO
+ LQwbzTq2RLiKLAANV27mQ0CADedeM7q5+k9NLnlOgV+ZIKWT/1emmF2WLYMVRD3yiuOg
+ hSeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758808573; x=1759413373;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1742399977; x=1743004777;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=67z28WQrX/ogTxUcpWCJ1GAunLtCBeF3o3dpHhKNjK8=;
- b=aO8LiSJQUw/sx1Jcq3HOP8KetpEt4NLnRyaS/3gZ1eIkPIOGK3PHRzF+axTo1akggp
- dNn/IZlKxUH219cpgIxQduJMYYseAQdB4QL+3qNRwUmbePmGU7a6ry80laQG1N3T53Fx
- MGVXado04JD38OjAylLRKfiSBI4WNTOwl9o4r2KDhWxnhfnK4nka3QEoLq0cM4HSZynb
- iAQP9FxMcfL0gwjumvs0W0tdQpKslCv8c57oKbARCFe6iCR09GgLdWjfcnEKPxhBKtUP
- Dki6ODs4DLdeJlyzJ16VNNUGRYMTWKIVyVP1fWNwZ0Ss8/BTxzykj3PwQwt36WKCWJMd
- fneA==
+ bh=g9hyskz0+W8oxdMSBSrKYAiDGZxtrfIfmdmAlEMXAcA=;
+ b=fBP3rnmz/34jTvb6bHRLpQTM9IeiMPujEvjPPdThjiYAOxrxCwWNpvLSp7kXwA/a9l
+ NzkGYqvL+QBvEYJ3qvoIxRFfajL1A3HY5hotMfWCt/d+NaZYqQZUtLnE4bqZblP5Bf8H
+ +6qaQOD1ctK6khfA0eXmhiuGCFFLISLdciIr7LcMqEIfNnuh8sfbEVld8KK2By4fGGFm
+ 47VmCIM7TQPqmKEtWK0EdfSeXuElLd2WCW0kZqhur1QIUa/VGzP0zQpVvzWa4rNhuUyt
+ tS08en5NwRH6GcBlGVz5NP0TWwlX3fcOb2fOeqSuYgtCY0x++pXT/d4w6wC2fXVG8I04
+ 1qMg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXBdYvlBOzs7bwcJ9WR6dHqiYkAFYJ9aF11I8kqZPkg00IwfDPxtyyH2qEhpFouigdJRGJPq5R2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxQrlJ3jbww6xl/JcDjens2XBKICknvNxMKCdbNliwp+9EQCyFe
- TnK9bmb5K0CKLLs3Yk7ox+aJ4gSQUmfnapB5v8J/nNOJ1FuFkMcJ/M0z
-X-Gm-Gg: ASbGncuXG3vACnp8ePiUvwFIo5/gEwiZHHTo2YtBDmPxVGY15pwUuxtQtjCirtFc3S2
- ujbgKs3FtF/rAoLADNg5M+wUlLBp0xMOlgIv5KINamn5cNlTHTxsBQkTyC21TlFzdmXlW/On55C
- iQLWBboS9ZyTLSNLNlTxfCfI86hS87Fap6BqyUArgzfsrgEa/CXubitXNQcIy3d2VO2xwih6JpT
- x10JcomsAMxHGTa4ZkFpESytJ0XArACQEK2XMlHFZap5gPJH2RJ72YUui5+nUIczJpT3Fa7ARsd
- ZLAn2dY1gdiwoCkRyIqgAIuKuuWv6mIZbZNfBBSzV898HJ/SRbywnhmZLUM93M4qU+fcy5AP5+C
- k/IIQMjLz2JJlPEr3VgFr2VGv9Ti1K0s0ehMBBLTstuPCjJnnoE+uQG8JL3Np+hdazK7VItBufk
- ZFQQ5cybOvMElTuyYw42dYwf06jr3Nm70WrlG5m7+CdWPForRtD/XeYdVDuRAvzNhp8ZPq
-X-Google-Smtp-Source: AGHT+IFqm26OFmsSA0nKzITzw08x0KzoFRvLAeGfptjPnF7Ljbfyc5/369jW8FthqI8ZOsSRAhkw7g==
-X-Received: by 2002:a05:6214:1cc4:b0:786:e3b6:bb99 with SMTP id
- 6a1803df08f44-7fc3128e0c3mr48349976d6.29.1758808572677; 
- Thu, 25 Sep 2025 06:56:12 -0700 (PDT)
-Received: from 137.1.168.192.in-addr.arpa
- ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.56.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Sep 2025 06:56:12 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 25 Sep 2025 09:54:07 -0400
-Subject: [PATCH v2 19/19] rust: regulator: replace `kernel::c_str!` with
- C-Strings
+ AJvYcCUICsnxHJQ7YAtm1djL292UuocYFel0545BX2mJIsRveBEeTIr+Am208wz4TzcVkz/DZPDDfRuP38o=@lists.freedesktop.org,
+ AJvYcCV3gvw7r2wQ7fiSGY02Rwgu6ajMHjzZdZKBTKX2QdkWP7FnVlcTpFOK4VPhD6ge/DOwHJNa/PeHAg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzEuki04h2SxO/B7nCy+0imEz5uCkg+mOKUiTpSwy1PIHC+0u9m
+ rL6147okh5A1we/sGGDzk5A2l8dWNn+GPinWNDg1mxCS7/sKv0yKvVpNl0YyHmzTUMemBX8ntmv
+ SwFRbpHGmUO1EpIuB+6Rhc59GSio=
+X-Gm-Gg: ASbGncudVugWj1/7orbbzPTW8DPo5bAOhKlX6d509FTQ69ZZFz1SfGpoLaWBlerUV8B
+ zTP19ARHIbXTWawPaFRZ9oeg26L5274IIf80Oje+tRfdBzkBSiVKINQfJ6ikSRPaAEKf148q/Dx
+ 9fC5Ss53I8StApnmfdNOBs+o6C9RPyCnHgtEaK/4KYug==
+X-Google-Smtp-Source: AGHT+IGpFcafT3b6aIOYtJ2V3tq0B+fB5vBSvNidH0DfLkAvD0boqzlYgVWbBMeg+FDMjz+arPmg3F7bSk7c+dd0l3c=
+X-Received: by 2002:a05:651c:210a:b0:30b:b00f:9507 with SMTP id
+ 38308e7fff4ca-30d6a44cae5mr15914741fa.24.1742399976387; Wed, 19 Mar 2025
+ 08:59:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-core-cstr-cstrings-v2-19-78e0aaace1cd@gmail.com>
-References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1758808439; l=2550;
- i=tamird@gmail.com; h=from:subject:message-id;
- bh=O/wu2Lf29nUdzSaspIKYEix0WPxikVmVfF3mQ9scbuU=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
- MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QFsLawjfMUC3xaiUohpUXzdZt822yLFxnKyQ3hJFQI3UAkDtLeyUoqZ2lgOdZhmeuCD54hWBgXN
- /2qfobXSOOAA=
-X-Developer-Key: i=tamird@gmail.com; a=openssh;
- fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
+References: <20250316111644.154602-1-andrewjballance@gmail.com>
+ <20250316111644.154602-3-andrewjballance@gmail.com>
+ <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
+ <D8JTWL8JY7DM.3IVH6FZ4M49CB@proton.me>
+ <CAJ-ks9k+A1+0CWXZmD2m0+jRqTRTNFn-=d9VXqytiOqvn4BR0w@mail.gmail.com>
+ <D8KBFC9M74H5.4ZJ2SJK06SGR@proton.me>
+In-Reply-To: <D8KBFC9M74H5.4ZJ2SJK06SGR@proton.me>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Wed, 19 Mar 2025 11:58:59 -0400
+X-Gm-Features: AQ5f1Jqy1G9xW_d_MZv7EIGIWVxFYoqazHtgodTNU3whmyJ8gAuU1mj5mo_jYbc
+Message-ID: <CAJ-ks9=NQrz3ySacKt+XXm2vS+Fn9gjmtqAaaoz1k=iTG_1HXw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
+To: Benno Lossin <benno.lossin@proton.me>
+Cc: Andrew Ballance <andrewjballance@gmail.com>, dakr@kernel.org,
+ airlied@gmail.com, 
+ simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ tzimmermann@suse.de, corbet@lwn.net, ojeda@kernel.org, alex.gaynor@gmail.com, 
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+ acourbot@nvidia.com, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,64 +96,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-C-String literals were added in Rust 1.77. Replace instances of
-`kernel::c_str!` with C-String literals where possible.
+On Wed, Mar 19, 2025 at 10:34=E2=80=AFAM Benno Lossin <benno.lossin@proton.=
+me> wrote:
+>
+> On Wed Mar 19, 2025 at 2:42 PM CET, Tamir Duberstein wrote:
+> > On Tue, Mar 18, 2025 at 8:50=E2=80=AFPM Benno Lossin <benno.lossin@prot=
+on.me> wrote:
+> >>
+> >> On Tue Mar 18, 2025 at 9:12 PM CET, Tamir Duberstein wrote:
+> >> > On Sun, Mar 16, 2025 at 7:17=E2=80=AFAM Andrew Ballance
+> >> > <andrewjballance@gmail.com> wrote:
+> >> >> +    pub fn resize(&mut self, new_len: usize, value: T, flags: Flag=
+s) -> Result<(), AllocError> {
+> >> >> +        if new_len > self.len() {
+> >> >> +            self.extend_with(new_len - self.len(), value, flags)
+> >> >> +        } else {
+> >> >> +            self.truncate(new_len);
+> >> >> +            Ok(())
+> >> >> +        }
+> >> >> +    }
+> >> >
+> >> > You can avoid underflow checking in debug builds by using `checked_s=
+ub`:
+> >>
+> >> `checked_sub` doesn't only avoid underflow in debug builds, but rather
+> >> in all builds. But the code below is a good suggestion.
+> >
+> > Yes, I know :)
+> >
+> > I included that language because the underflow check is likely
+> > optimized away in release builds.
+>
+> If the function is inlined and the compiler can argue that `new_len >
+> self.len()`, then yes, but otherwise I'm pretty sure it won't be
+> optimized away.
+>
+> Also if it is optimized away, then the check was still "executed", so I
+> find it a bit misleading to say "in debug builds" (making it sound like
+> it wouldn't do it in non-debug builds).
 
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- rust/kernel/regulator.rs | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
-
-diff --git a/rust/kernel/regulator.rs b/rust/kernel/regulator.rs
-index 65f3a125348f..dff8fb00566f 100644
---- a/rust/kernel/regulator.rs
-+++ b/rust/kernel/regulator.rs
-@@ -98,12 +98,11 @@ pub struct Error<State: RegulatorState> {
- ///
- /// ```
- /// # use kernel::prelude::*;
--/// # use kernel::c_str;
- /// # use kernel::device::Device;
- /// # use kernel::regulator::{Voltage, Regulator, Disabled, Enabled};
- /// fn enable(dev: &Device, min_voltage: Voltage, max_voltage: Voltage) -> Result {
- ///     // Obtain a reference to a (fictitious) regulator.
--///     let regulator: Regulator<Disabled> = Regulator::<Disabled>::get(dev, c_str!("vcc"))?;
-+///     let regulator: Regulator<Disabled> = Regulator::<Disabled>::get(dev, c"vcc")?;
- ///
- ///     // The voltage can be set before enabling the regulator if needed, e.g.:
- ///     regulator.set_voltage(min_voltage, max_voltage)?;
-@@ -142,12 +141,11 @@ pub struct Error<State: RegulatorState> {
- ///
- /// ```
- /// # use kernel::prelude::*;
--/// # use kernel::c_str;
- /// # use kernel::device::Device;
- /// # use kernel::regulator::{Voltage, Regulator, Enabled};
- /// fn enable(dev: &Device) -> Result {
- ///     // Obtain a reference to a (fictitious) regulator and enable it.
--///     let regulator: Regulator<Enabled> = Regulator::<Enabled>::get(dev, c_str!("vcc"))?;
-+///     let regulator: Regulator<Enabled> = Regulator::<Enabled>::get(dev, c"vcc")?;
- ///
- ///     // Dropping an enabled regulator will disable it. The refcount will be
- ///     // decremented.
-@@ -193,7 +191,6 @@ pub struct Error<State: RegulatorState> {
- ///
- /// ```
- /// # use kernel::prelude::*;
--/// # use kernel::c_str;
- /// # use kernel::device::Device;
- /// # use kernel::regulator::{Regulator, Dynamic};
- /// struct PrivateData {
-@@ -203,7 +200,7 @@ pub struct Error<State: RegulatorState> {
- /// // A fictictious probe function that obtains a regulator and sets it up.
- /// fn probe(dev: &Device) -> Result<PrivateData> {
- ///     // Obtain a reference to a (fictitious) regulator.
--///     let mut regulator = Regulator::<Dynamic>::get(dev, c_str!("vcc"))?;
-+///     let mut regulator = Regulator::<Dynamic>::get(dev, c"vcc")?;
- ///
- ///     Ok(PrivateData { regulator })
- /// }
-
--- 
-2.51.0
-
+If we're talking about the same thing then I think we're both wrong
+and the correct phrasing would have been: "you can avoid underflow
+checking when CONFIG_RUST_OVERFLOW_CHECKS=3Dy by using `checked_sub`". I
+was referring to the underflow check implicit in `new_len -
+self.len()`.
