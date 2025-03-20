@@ -4,129 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E74FFD5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B13FAD5AE45
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36ACA10E3F7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46E1E10E3FC;
 	Sat, 13 Dec 2025 12:17:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jKJ3C3FX";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="HFeXWu/T";
 	dkim-atps=neutral
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com
- [209.85.219.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A0931124DD;
- Wed, 21 May 2025 12:45:11 +0000 (UTC)
-Received: by mail-qv1-f51.google.com with SMTP id
- 6a1803df08f44-6f8b0fdd5ffso66358846d6.0; 
- Wed, 21 May 2025 05:45:11 -0700 (PDT)
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
+ [209.85.160.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3336910E683;
+ Thu, 20 Mar 2025 18:18:28 +0000 (UTC)
+Received: by mail-qt1-f175.google.com with SMTP id
+ d75a77b69052e-4769f3e19a9so7155361cf.0; 
+ Thu, 20 Mar 2025 11:18:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1747831510; x=1748436310; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1742494707; x=1743099507; darn=lists.freedesktop.org;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Vhnzj3NnJO366VT/ATwYapAPa7ylDj+dwVk+TFu/WXo=;
- b=jKJ3C3FXpzIExSP0AuiXYfjceEI2df8wbzfX0dfDrY73QDwQH9N2cJ1PD7wdPfR6BX
- zrAqgY9zhVNPbtLNWFFWUoKgRgBihNWpiNq0+HfifsR1SBwWUkqn6OP2Xu3obJu6ki6/
- 9v2e1+8STX0Hxhwg6T8pa3QL6QbgDyNRnZ31lm6pcEAmuf8xkanvSRBGn18FGlpmb240
- B5M9oQGaMYzCMldd9v2Dm2w7JOiP7mQ2uNulMOmfB3oFnlPMsOzlauyRw1blRU9ugi5n
- Fb43n8rPpgJe3/bCy7OPkuXQwb5yZ6CldWPPrPdhJNy4NcJnFY3qauifO30lrW5VCoiP
- Yc6w==
+ bh=LomTTqYpuCaFq7iSHprNyvYgv1kuqToo7AopkRQx8fk=;
+ b=HFeXWu/Tv/iGeGYaKgVHV/cTM+8apIJ+JWWGUtyh4oDqHHd0IGoJPhqxwWyvLZKmi8
+ O/GK68R8/VtSWrnO5ZSv57ptDehoP3YDW2hLmj4x1B5wL41S3ndJ0Uf2tKLFm7oB4tq5
+ PX87Y38iYS+akVcBSHkSKZHh8nn0oxXXJsp76WDPKWUSeKJs/LmcRn72hnoVL9+ybtic
+ i3nL+j0Q+yo+Na5lvC3b1wiS3K8dYoONgLn8jn5hOqdLzCSiBQdhGwYnSp0B8f6cAG/T
+ 1NMCHzraKMn0ef6nWtgUYCZEP0cy2sFrkRD3qiPiw7A5GDE8kerqjTYkBp0/jwPFo8f8
+ rN/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1747831510; x=1748436310;
+ d=1e100.net; s=20230601; t=1742494707; x=1743099507;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Vhnzj3NnJO366VT/ATwYapAPa7ylDj+dwVk+TFu/WXo=;
- b=wzPhx08hOdfI/F2Qb+XjPTItdoPYQTDyj7I1Ad3G4NnK7wllUH75sF3+MfCSs8NsOZ
- binM668JAdW5U4Zc+j1TT0aylzUA5aebiKRsW6kUa+D1Rh2pJ46CvJLBcM2nJ/kShKc8
- rnbojG2r33rdErG1vyKROHyW9hPAD4XMOVlUx4PchpbaeL7DmCffPSTvDNlTwFFX/jFF
- Rb3Os6lFtHQTjktN+PP5AXLVHyyIRodNnO03vo++xk/7gu2eImDNsyQepRSZhVxDEG4w
- nQ1P3SqK3b9+SH+Q1T0sSv9FN/2dJ0B+46ZBZGz5y2PZyg3Q8zsddRlOI7xAxgXGLmIZ
- IWpQ==
+ bh=LomTTqYpuCaFq7iSHprNyvYgv1kuqToo7AopkRQx8fk=;
+ b=wsgGtAtz8TG2nJOtMlAAb+GRUCedli/z0cfKO7RxWYQETGCi8xbBlsWLFYrm3Xt9mt
+ DvD0mpl2c7QNv1leiQx2Xs9TOwpW2wAqP5ONc6PzfDRXg1yV3GmXLi8OGg8GFdT2NL8P
+ Zb1mumXw/hYfxfrpq/BzSpMPJ1PzFDI9kXbXVtH5xbe1eWihBwqu8DssVlGcUatan9xN
+ 99rJTm+jIb9zwBjKRlz+0iZ6CLeahfovlwYC0wGV16hoVZ7ze4DaSFC+gEjK1o8xlEO4
+ qu32KxSLnk41+95ro4XLqAKVezaHzqYYOCUF9cDoQ2jGAbegiseHQDZLb8UPeexqhYYD
+ cIfA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUcla+kpNyWPFuKiFosC9Yy+e0jvT3VP9fHQHWAE85NLBHMMPidOFCE+MG+4eq4qCegQc8LcfhNJw==@lists.freedesktop.org,
- AJvYcCVPHoOs1eQVG0dXIY0fjaP/e5v6U9JqlHSnKLQ7dX8RZH7oX0+vI7ZPlhAfCfGsa9qDBdVMuycjN18=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw7bJJ/YF3XprC0U5CFak+NkdOnPeuJtsZqvn+sdIbd33HhqUm/
- 2U8cC8L1R9nxF6ST4e2kJJDkQUpSKMTnYTtf5x7mlqhsvyXZxcbzh3u2wudQdA==
-X-Gm-Gg: ASbGncskXl18P5wdy3mOLRaADb6TaYz2yhkbn2gRhe+E4B2QjuCdXktqIe9GsPt2bqr
- joNjrkc9+E5u6dMSNt5oP+sWZTLYkhmL2P1SDSm9jKGARodimDwQFcxW5Nz0XYRp0NgsFQkQGBp
- OdOUcdQwqeqQ1tquBhJ/RboInU36E3uYJLAlo+ZMdyBKH/JRBFw6QCA40A5uqX5FxbKcdNNtX2r
- ntSQoDftKIpHaeK1g4Y+K2o8LRlyWNxbA7LgAe7gPYV43FQAXlJqzpfKbfBzq31FVKnmsie1y+7
- UcPIdlm6M9GpDYn100v2VgQ7iK+J4zG05FYs2AkehSdIrfEtTPGrI5cpDZt/9KD073DSCtZd3b2
- 0FNBlihvSMLbzcosELlT1K/lxE9kFViGsEaBK1S8tpA==
-X-Google-Smtp-Source: AGHT+IEfRSqcGJ5t4rcRxmzM2k920FXsaJwu1wxt9D1Hfdpn8uKSN3fb6OCq2dNh4iOIGz1TYtv/Hg==
-X-Received: by 2002:a05:6214:cac:b0:6fa:864f:87cc with SMTP id
- 6a1803df08f44-6fa864f8a4fmr18904046d6.33.1747831510427; 
- Wed, 21 May 2025 05:45:10 -0700 (PDT)
-Received: from fauth-a1-smtp.messagingengine.com
- (fauth-a1-smtp.messagingengine.com. [103.168.172.200])
+ AJvYcCWOVDPtVskFsPqr8wYe3JD5Wm/lr4CJAkPuMlJuyCbIQ2/IAMr407psDukH3w1qO3/yGoZ4hcqBBnA=@lists.freedesktop.org,
+ AJvYcCXMvcHEYKtDzf2hrkQrZJpk/6HpNu7FWyCL9kRhokZzj73XPVPBxhdAhGOnOEVu8/GPn2sM1PwNDA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwQhjKlrWEwkgwxKVik7O0hEgU+BBvL2WqHiHgfoxaBmeAiuRNK
+ 6DOTLfa0p+vI252LyTR87hkK2anzmfw5zZkFDdF2XCHl0pOCoINP
+X-Gm-Gg: ASbGnctbzB267BiBPciJsx9ko9tqBy+O/epo02qX3vtfgRrJwPvPxitepgeejShIKvt
+ RSvmjJ1zISKr/9c06Uk72Q/7Tb/CKFlm1Y2QBCMK2AlelNJIe6Cx1XxU19R5jRUCYYtWvU+N+OM
+ eyHdy4AUnevww9JaUHDAI8ul4PZodHEiEOTqXTtN42MsqOrrOVdoNgFW5f5lbaUMyMznHfDexiq
+ QlFxKn3hkMOfG+mvkVhVIL5qFZGh5tGWppr8wrVEmk48Sf1Vr21GTwt4dnd/QSb44b2ygPZVwI9
+ gIaGk8VvssP5qgHiAqVBp0acrPx73p9QVK1suxECA9dB5FCz/Z+AH4dyF9P+uY+IpYyWITJBBSU
+ wlfkfopQ/WhcKMJ2mfWi3uj6N0WoYPDV5yt8=
+X-Google-Smtp-Source: AGHT+IGTSTOAyuGocnflySrE4kK1S9ukavorDpX0IfEuohTfTc5QeQmhb4wijjvjF5rRXiU5mHxsJg==
+X-Received: by 2002:a05:622a:1805:b0:477:1e1f:8a0a with SMTP id
+ d75a77b69052e-4771e1f928bmr1807731cf.0.1742494706873; 
+ Thu, 20 Mar 2025 11:18:26 -0700 (PDT)
+Received: from fauth-a2-smtp.messagingengine.com
+ (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-6f8b08bf66bsm84578696d6.63.2025.05.21.05.45.09
+ d75a77b69052e-4771d634b90sm1609991cf.70.2025.03.20.11.18.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 21 May 2025 05:45:09 -0700 (PDT)
-Received: from phl-compute-11.internal (phl-compute-11.phl.internal
- [10.202.2.51])
- by mailfauth.phl.internal (Postfix) with ESMTP id 5CD34120007A;
- Wed, 21 May 2025 08:45:09 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
- by phl-compute-11.internal (MEProxy); Wed, 21 May 2025 08:45:09 -0400
-X-ME-Sender: <xms:1cotaFbzhLa-AVxwpQ35d8kX6hIq-ZwWislwhChbDGrE886dcXNkqg>
- <xme:1cotaMb7eFhXctyLi7ci4R4k3tFn2T2VAuphJPlupRodTcGwYg19z8qCxeIB3OiXg
- GoUBfDa8naZrFuR_A>
-X-ME-Received: <xmr:1cotaH9vnyOR6XHBgx3dt1S-54GBmy0ro27iatwvJnw6GrIg8QlhdE-Y>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddtgdefuddvucdltddurdegfedvrddttd
- dmucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgf
- nhhsuhgsshgtrhhisggvpdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttd
- enucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhgg
- tggujgesthdtredttddtvdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunh
- drfhgvnhhgsehgmhgrihhlrdgtohhmqeenucggtffrrghtthgvrhhnpeehudfgudffffet
- uedtvdehueevledvhfelleeivedtgeeuhfegueevieduffeivdenucevlhhushhtvghruf
- hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegsohhquhhnodhmvghsmhhtphgr
- uhhthhhpvghrshhonhgrlhhithihqdeiledvgeehtdeigedqudejjeekheehhedvqdgsoh
- hquhhnrdhfvghngheppehgmhgrihhlrdgtohhmsehfihigmhgvrdhnrghmvgdpnhgspghr
- tghpthhtohepvdehpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegrtghouhhrsg
- hothesnhhvihguihgrrdgtohhmpdhrtghpthhtohepohhjvggurgeskhgvrhhnvghlrdho
- rhhgpdhrtghpthhtoheprghlvgigrdhgrgihnhhorhesghhmrghilhdrtghomhdprhgtph
- htthhopehgrghrhiesghgrrhihghhuohdrnhgvthdprhgtphhtthhopegsjhhorhhnfegp
- ghhhsehprhhothhonhhmrghilhdrtghomhdprhgtphhtthhopegsvghnnhhordhlohhssh
- hinhesphhrohhtohhnrdhmvgdprhgtphhtthhopegrrdhhihhnuggsohhrgheskhgvrhhn
- vghlrdhorhhgpdhrtghpthhtoheprghlihgtvghrhihhlhesghhoohhglhgvrdgtohhmpd
- hrtghpthhtohepthhmghhrohhsshesuhhmihgthhdrvgguuh
-X-ME-Proxy: <xmx:1cotaDr_BZnTBO2ZZrxy5srrQmZLzeo9gWXnSOIXgNKffweWuOxofg>
- <xmx:1cotaAqMl1zRLe7L77t9gwX1n54-xBKwNgVE1PMBxXFMnUOO50bscw>
- <xmx:1cotaJQ4dtper7JsxvJG39LklNMIPguYPvErgkSuMnOiT_alNE6wdA>
- <xmx:1cotaIqgOC4ilrO4JZb18O9O6GbSlFri46ozj22VjBeOFxpIB5P63g>
- <xmx:1cotaJ4jQULX3Xw0qsN9n-dwPqENjGgYpRv_JvJUfS2Dt1RcyknYAt6Z>
+ Thu, 20 Mar 2025 11:18:26 -0700 (PDT)
+Received: from phl-compute-03.internal (phl-compute-03.phl.internal
+ [10.202.2.43])
+ by mailfauth.phl.internal (Postfix) with ESMTP id 46499120006C;
+ Thu, 20 Mar 2025 14:18:25 -0400 (EDT)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-03.internal (MEProxy); Thu, 20 Mar 2025 14:18:25 -0400
+X-ME-Sender: <xms:8VvcZ5UKVJwXhYXWhXHtn2haxbLwZG2xAlXKsRBB3J7gcApJFSE3HA>
+ <xme:8VvcZ5l7nFDUCjTFsvyYygAvgM5vQvptROtTZcgie_Yvlg68YXlZYFyOvNHuo9igV
+ 8J-Cz3xKm__avnQEA>
+X-ME-Received: <xmr:8VvcZ1ZuGICIojz_S3rzkf-3VyuA58sX-zxcEeYW77xIsVzZ4eriIirIknE>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefvddrtddtgddugeekleduucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+ pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+ gvnhhtshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddt
+ vdenucfhrhhomhepuehoqhhunhcuhfgvnhhguceosghoqhhunhdrfhgvnhhgsehgmhgrih
+ hlrdgtohhmqeenucggtffrrghtthgvrhhnpefhtedvgfdtueekvdekieetieetjeeihedv
+ teehuddujedvkedtkeefgedvvdehtdenucffohhmrghinhepkhgvrhhnvghlrdhorhhgne
+ cuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghoqhhu
+ nhdomhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqieelvdeghedtieegqdduje
+ ejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepghhmrghilhdrtghomhesfhhigihmvgdr
+ nhgrmhgvpdhnsggprhgtphhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghpth
+ htoheprggtohhurhgsohhtsehnvhhiughirgdrtghomhdprhgtphhtthhopegurghkrhes
+ khgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomh
+ dprhgtphhtthhopehjhhhusggsrghrugesnhhvihguihgrrdgtohhmpdhrtghpthhtohep
+ sghskhgvghhgshesnhhvihguihgrrdgtohhmpdhrtghpthhtohepohhjvggurgeskhgvrh
+ hnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrdhgrgihnhhorhesghhmrghilhdrtgho
+ mhdprhgtphhtthhopehgrghrhiesghgrrhihghhuohdrnhgvthdprhgtphhtthhopegsjh
+ horhhnfegpghhhsehprhhothhonhhmrghilhdrtghomh
+X-ME-Proxy: <xmx:8VvcZ8Wqsw1Rx59o_KwVZBTx3fF9JNGGeIXnvhmqpA_j1_Wj8iT2dA>
+ <xmx:8VvcZzl4zMDdm7jFIEG9Tf4t4R5JP79QuaQHEl5DfgdBlq2TLQfmiQ>
+ <xmx:8VvcZ5cChY4oQsQsEgQoijGu4887dbwk6RTkereQmOrVwtHNoCbm5Q>
+ <xmx:8VvcZ9FVx_aPIQM5EcBsvF1ernTFGseOKLmF4lg4zNBHS1bjUSUG5g>
+ <xmx:8VvcZ9kcVo0qoFOysMd7fVwXLQ4DagQz6fWfwIRG9YT6NTm1pNsytu4o>
 Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 21 May 2025 08:45:08 -0400 (EDT)
-Date: Wed, 21 May 2025 05:45:07 -0700
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 20 Mar 2025 14:18:24 -0400 (EDT)
+Date: Thu, 20 Mar 2025 11:17:58 -0700
 From: Boqun Feng <boqun.feng@gmail.com>
 To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Gary Guo <gary@garyguo.net>,
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
  =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
  Benno Lossin <benno.lossin@proton.me>,
  Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 03/20] rust: sizes: add constants up to SZ_2G
-Message-ID: <aC3K0-z7JARmg7Cc@Mac.home>
-References: <20250521-nova-frts-v4-0-05dfd4f39479@nvidia.com>
- <20250521-nova-frts-v4-3-05dfd4f39479@nvidia.com>
+ Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH RFC v3 6/7] gpu: nova-core: add basic timer device
+Message-ID: <Z9xb1r1x5tOzAIZT@boqun-archlinux>
+References: <20250320-nova_timer-v3-0-79aa2ad25a79@nvidia.com>
+ <20250320-nova_timer-v3-6-79aa2ad25a79@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250521-nova-frts-v4-3-05dfd4f39479@nvidia.com>
+In-Reply-To: <20250320-nova_timer-v3-6-79aa2ad25a79@nvidia.com>
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -142,54 +137,166 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, May 21, 2025 at 03:44:58PM +0900, Alexandre Courbot wrote:
-> nova-core will need to use SZ_1M, so make the remaining constants
-> available.
+Hi Alexandre,
+
+On Thu, Mar 20, 2025 at 10:39:14PM +0900, Alexandre Courbot wrote:
+> Add a basic timer device and exercise it during device probing. This
+> first draft is probably very questionable.
+> 
+> One point in particular which should IMHO receive attention: the generic
+> wait_on() method aims at providing similar functionality to Nouveau's
+> nvkm_[num]sec() macros. Since this method will be heavily used with
+> different conditions to test, I'd like to avoid monomorphizing it
+> entirely with each instance ; that's something that is achieved in
+> nvkm_xsec() using functions that the macros invoke.
+> 
+> I have tried achieving the same result in Rust using closures (kept
+> as-is in the current code), but they seem to be monomorphized as well.
+> Calling extra functions could work better, but looks also less elegant
+> to me, so I am really open to suggestions here.
 > 
 > Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/driver.rs    |   4 +-
+>  drivers/gpu/nova-core/gpu.rs       |  55 +++++++++++++++-
+>  drivers/gpu/nova-core/nova_core.rs |   1 +
+>  drivers/gpu/nova-core/regs.rs      |  11 ++++
+>  drivers/gpu/nova-core/timer.rs     | 132 +++++++++++++++++++++++++++++++++++++
+>  5 files changed, 201 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+> index 63c19f140fbdd65d8fccf81669ac590807cc120f..0cd23aa306e4082405f480afc0530a41131485e7 100644
+> --- a/drivers/gpu/nova-core/driver.rs
+> +++ b/drivers/gpu/nova-core/driver.rs
+> @@ -10,7 +10,7 @@ pub(crate) struct NovaCore {
+>      pub(crate) gpu: Gpu,
+>  }
+>  
+> -const BAR0_SIZE: usize = 8;
+> +const BAR0_SIZE: usize = 0x9500;
+>  pub(crate) type Bar0 = pci::Bar<BAR0_SIZE>;
+>  
+>  kernel::pci_device_table!(
+> @@ -42,6 +42,8 @@ fn probe(pdev: &mut pci::Device, _info: &Self::IdInfo) -> Result<Pin<KBox<Self>>
+>              GFP_KERNEL,
+>          )?;
+>  
+> +        let _ = this.gpu.test_timer();
+> +
+>          Ok(this)
+>      }
+>  }
+> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+> index d96901e5c8eace1e7c57c77da7def209e8149cd3..f010d3152530b1cec032ca620e59de51a2fc1a13 100644
+> --- a/drivers/gpu/nova-core/gpu.rs
+> +++ b/drivers/gpu/nova-core/gpu.rs
+> @@ -6,8 +6,10 @@
+>  
+>  use crate::driver::Bar0;
+>  use crate::regs;
+> +use crate::timer::Timer;
+>  use crate::util;
+>  use core::fmt;
+> +use core::time::Duration;
+>  
 
-Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
+Since there is already a Delta type proposed to represent the timestamp
+difference in kernel:
+
+	https://lore.kernel.org/rust-for-linux/20250220070611.214262-4-fujita.tomonori@gmail.com/
+
+, could you please make your work based on that and avoid using
+core::time::Duration. Thanks!
+
+>  macro_rules! define_chipset {
+>      ({ $($variant:ident = $value:expr),* $(,)* }) =>
+> @@ -179,6 +181,7 @@ pub(crate) struct Gpu {
+>      /// MMIO mapping of PCI BAR 0
+>      bar: Devres<Bar0>,
+>      fw: Firmware,
+> +    timer: Timer,
+>  }
+>  
+[...]
+> +
+> +/// A timestamp with nanosecond granularity obtained from the GPU timer.
+> +///
+> +/// A timestamp can also be substracted to another in order to obtain a [`Duration`].
+> +///
+> +/// TODO: add Kunit tests!
+> +#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
+> +pub(crate) struct Timestamp(u64);
+> +
+
+Also an Instant type has been proposed and reviewed for a while:
+
+	https://lore.kernel.org/rust-for-linux/20250220070611.214262-5-fujita.tomonori@gmail.com/
+
+we should use that type instead of re-inventing the wheel here. Of
+course, it's currently not quite working because Instant is only for
+CLOCK_MONOTONIC. But there was a proposal to make `Instant` generic over
+clock:
+
+	https://lore.kernel.org/rust-for-linux/20230714-rust-time-v2-1-f5aed84218c4@asahilina.net/
+
+if you follow that design, you can implement a `Instant<NovaGpu>`, where
+
+    ipml Now for NovaGpu {
+        fn now() -> Instant<Self> {
+	    // your Timer::read() implementation.
+	}
+    }
+
+Thanks!
 
 Regards,
 Boqun
 
-> ---
->  rust/kernel/sizes.rs | 24 ++++++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/rust/kernel/sizes.rs b/rust/kernel/sizes.rs
-> index 834c343e4170f507821b870e77afd08e2392911f..661e680d9330616478513a19fe2f87f9521516d7 100644
-> --- a/rust/kernel/sizes.rs
-> +++ b/rust/kernel/sizes.rs
-> @@ -24,3 +24,27 @@
->  pub const SZ_256K: usize = bindings::SZ_256K as usize;
->  /// 0x00080000
->  pub const SZ_512K: usize = bindings::SZ_512K as usize;
-> +/// 0x00100000
-> +pub const SZ_1M: usize = bindings::SZ_1M as usize;
-> +/// 0x00200000
-> +pub const SZ_2M: usize = bindings::SZ_2M as usize;
-> +/// 0x00400000
-> +pub const SZ_4M: usize = bindings::SZ_4M as usize;
-> +/// 0x00800000
-> +pub const SZ_8M: usize = bindings::SZ_8M as usize;
-> +/// 0x01000000
-> +pub const SZ_16M: usize = bindings::SZ_16M as usize;
-> +/// 0x02000000
-> +pub const SZ_32M: usize = bindings::SZ_32M as usize;
-> +/// 0x04000000
-> +pub const SZ_64M: usize = bindings::SZ_64M as usize;
-> +/// 0x08000000
-> +pub const SZ_128M: usize = bindings::SZ_128M as usize;
-> +/// 0x10000000
-> +pub const SZ_256M: usize = bindings::SZ_256M as usize;
-> +/// 0x20000000
-> +pub const SZ_512M: usize = bindings::SZ_512M as usize;
-> +/// 0x40000000
-> +pub const SZ_1G: usize = bindings::SZ_1G as usize;
-> +/// 0x80000000
-> +pub const SZ_2G: usize = bindings::SZ_2G as usize;
-> 
-> -- 
-> 2.49.0
-> 
+> +impl Display for Timestamp {
+> +    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+> +        write!(f, "{}", self.0)
+> +    }
+> +}
+> +
+> +impl Add<Duration> for Timestamp {
+> +    type Output = Self;
+> +
+> +    fn add(mut self, rhs: Duration) -> Self::Output {
+> +        let mut nanos = rhs.as_nanos();
+> +        while nanos > u64::MAX as u128 {
+> +            self.0 = self.0.wrapping_add(nanos as u64);
+> +            nanos -= u64::MAX as u128;
+> +        }
+> +
+> +        Timestamp(self.0.wrapping_add(nanos as u64))
+> +    }
+> +}
+> +
+> +impl Sub for Timestamp {
+> +    type Output = Duration;
+> +
+> +    fn sub(self, rhs: Self) -> Self::Output {
+> +        Duration::from_nanos(self.0.wrapping_sub(rhs.0))
+> +    }
+> +}
+> +
+> +pub(crate) struct Timer {}
+> +
+> +impl Timer {
+> +    pub(crate) fn new() -> Self {
+> +        Self {}
+> +    }
+> +
+> +    /// Read the current timer timestamp.
+> +    pub(crate) fn read(&self, bar: &Bar0) -> Timestamp {
+> +        loop {
+> +            let hi = regs::PtimerTime1::read(bar);
+> +            let lo = regs::PtimerTime0::read(bar);
+> +
+> +            if hi.hi() == regs::PtimerTime1::read(bar).hi() {
+> +                return Timestamp(u64::from_u32s(hi.hi(), lo.lo()));
+> +            }
+> +        }
+> +    }
+> +
+[...]
