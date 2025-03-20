@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47EEEC36000
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D466FC36006
 	for <nouveau@archiver.kernel.org>; Thu, 20 Mar 2025 13:40:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A08910E61C;
-	Thu, 20 Mar 2025 13:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02EBE10E61B;
+	Thu, 20 Mar 2025 13:39:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fDoj44+J";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="a/dlY2qp";
 	dkim-atps=neutral
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam12on2082.outbound.protection.outlook.com [40.107.243.82])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 361D510E60E;
- Thu, 20 Mar 2025 13:39:46 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2048.outbound.protection.outlook.com [40.107.244.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2D4C10E61B;
+ Thu, 20 Mar 2025 13:39:56 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=somZd7puMJKMEbix4lGyHnYNSfHvI0Ow9vsAzUWLrLqMene8chzGFS0cuE8504A3t6rBiZ8hDxULmfj/OUHm3DjCWzjQDSqzR/056wYriggeYZqDZWG/jrd41WG667CtrT0hiJg1ZBaDAtn7lMAYxFrHuEvM2cSh4ydgzK20E6WvLly2GSuiqZNvWlfej8HN1JCnnoG5tBOx2TyP65BVkJgPyYKpAHqL/Tp6wURRkFG5yOAcctk+HWuW3lxU29ZzxEyzwxLr9uidTmv7rKCI98QScpZTvgZdj8eCh71r2r3tksEFb0lVyxjy+kdyoRBoOHgOfOYCDfZBqtd8AXHekw==
+ b=CYQZ+KHxGR1ehdNDwLUvkhH1rIQuueHL3ZXmAUBkTF1qAMSWFlgI0n3+XwYDvhx0pS6+LgVZ/zBymbLyYUYlSP6uLlc2/5kAWdvpdAW5mOrU5zozs8L2Al4GoEiZ5dF7EqQQ0GCDYC7NsuDe918AkL7il0aAytgViLRJZ9zyQsPtOwgPcDFN8V6SxVui+SFFUkTmcyBfKwDco6Cm6ZWXiXQ9sClr+rZPDFwztp4pHj8pNMrQvFeJxGOIMswU2yFX/MsoJ7REQakx99t/qWUW+G07S1IQj0DNBxEAIyNWWxaNnAY94KXyjA6dw1rUykRwsrRtolJdgKLT8LuJiZXNXw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EK4S6/fFpJEHWr5HZhZMZylVlvtpfoJFbihN6XU5xSA=;
- b=LtsS/zelUfeo2AWhHjh/bE/jDYHHvmSTx1rfEClVE7fc51WinAx8GNsS2B8nfi1qA1qFcI9rcWsAK1wPEMDUDvd2XQXizeLE0h2BoJ8XRKeTHLRWpngJckne7QOCcQYxNkInbuNxvztUW1x+tUl8hqCUiT5IH5/WIAgKxe32RLO6p08+Ob1PTDNV3ZRtNSDZGsERBM858QLvYRIyWRD3ZjKNvG3hl8Oau/UbH07CQRG2MXTB/bBqw5uG4qVKpvFf+sFw4UMlkk4W75AfEFXgbONZF762VoOG56Cmphik650v1Z926q/C91IMIwXgpwcIxqHam5mxV1/l0IYFs7fw0w==
+ bh=UGVZG1xRBatSmCFEwlJEeNReMyfGhf7QLcPFnC3KbB0=;
+ b=gy+DsZAFgoIecz4bolxxN8dSJhpO4f6d3gNaZt7P5bOkTOFvErqRnYzTvuamNxc/b/egCHQEL0BpdV1gd7RtF+p1Vs26PKcg/t74lz+KfhKg7GO/k+suPcgepDEvRU/1ojIUgkBo1M8X+UJVQBBM+Tsr7hPRZhKwknzD4T5LAtdsTMgz1tQvSrhy0zJfKjpP7MIkjyLiqRo18uVTE3+guMnruPcMAiDpemJw73k3RwIYtWWxtWFWmHpdBwibOV3uVz+9NMxfx2lLfnCOkvB5+E1PHOlQk4MqT0uCpyHYN9pfzPymIDo/OtQhmA3xuEkCoUZyyUQ8z9eulc0WPJkCVw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EK4S6/fFpJEHWr5HZhZMZylVlvtpfoJFbihN6XU5xSA=;
- b=fDoj44+J8X6CwV/yNnipoJ3iWoH1vq4tjiohXS9VMJvow2uWHZr8Q+CkhBEzTaGk+A+3aZn65/vizO7ux2Ih23oEX3Q/QnHqGgskpjRP4uYbF9jIxsQPfluEMblBQBoic7pZB6uS4+53nmqIW3jXLKnR3qofcGm89m4jWpyiN8vawdWY+zTK9yQEc4DPHQ1MC1c9VhWea+fqdjPnzNUcvmNM7wEp7D6Ba8jsfTi7clIxEqmlaBevr4XV1PvI1pidq0TScxlkDMjlW3U6ROiA/NVgbTQ659He0AhBrn2eXjq+f8yMB7rvzIQMzml+dw8ABJM4DcJkjJbaIH3Ucrvz+A==
+ bh=UGVZG1xRBatSmCFEwlJEeNReMyfGhf7QLcPFnC3KbB0=;
+ b=a/dlY2qp4jYS4i9L4IyCQZtdhZOVkhM3hpFDFjXKAD08bJzvQ4lZ6kOgU2QQ8ScuiJB3iFkdPScVU+TfiA5qzW9aX8PQgy6v7Gz8E0quxIniNbOAW1puq4yHvu+CFGEC4xANZfqjShZOpDE1Eqk8gmA5tN0dOJNctvUGJFZ6hDem6gPo8+uv7/Mk77jZiz/xCGy6IOoh5efpRRMt07KZnMXFgJpfKZs/gL6m8UJxT15wo/E4GqinYmeqUQA0sNsNHO5LVjVvLjZgfyvGj2RILW9e7iZUoF7JGvodH2mz8gEcSpp0LIk7Lzp58A1xUUfALCuZ+cqalM+iqbdUzDQrew==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
  by IA1PR12MB6409.namprd12.prod.outlook.com (2603:10b6:208:38b::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8534.35; Thu, 20 Mar
- 2025 13:39:32 +0000
+ 2025 13:39:52 +0000
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com
  ([fe80::6e37:569f:82ee:3f99]) by CH2PR12MB3990.namprd12.prod.outlook.com
  ([fe80::6e37:569f:82ee:3f99%6]) with mapi id 15.20.8534.034; Thu, 20 Mar 2025
- 13:39:32 +0000
+ 13:39:52 +0000
 From: Alexandre Courbot <acourbot@nvidia.com>
-Subject: [RFC PATCH v3 0/7] gpu: nova-core: register definitions and basic
- timer and falcon devices
-Date: Thu, 20 Mar 2025 22:39:08 +0900
-Message-Id: <20250320-nova_timer-v3-0-79aa2ad25a79@nvidia.com>
+Date: Thu, 20 Mar 2025 22:39:14 +0900
+Subject: [PATCH RFC v3 6/7] gpu: nova-core: add basic timer device
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHwa3GcC/23P70rDMBQF8Fcp/ewtyU36xyKy9xCRNL3p4tZkJ
- l1Qxt7drFPmwI/3wvlxzqmMFCzFsi9OZaBko/UuH+KhKPVWuYnAjvkukWHNkDfgfFJvi50pgG4
- epWC8k6aWZQ4cAhn7uWIvr/ne2rj48LXaiV++v0z7l0kcGLSdrpUmHB+7duOSHa2qtJ/Li5Pwl
- hVM3mUxZzszcGGE6bQxd9nztVSgj2Metlyb3Xb1RSYlZyhg8Qer4aDcsvUBQoSJ3KziDowadN0
- KQ0aKPq0zZ4pR/QBP10FZ4TVjbYWsRSYFcFDDaGlfvSt33E9H2kyzsvtLref/DcEaRBSiqVDID
- rMwql3Y7Ci4zPgwrblBRYKMzHbpi9RUXELQdV56/gZdHpYAygEAAA==
-X-Change-ID: 20250216-nova_timer-c69430184f54
+Message-Id: <20250320-nova_timer-v3-6-79aa2ad25a79@nvidia.com>
+References: <20250320-nova_timer-v3-0-79aa2ad25a79@nvidia.com>
+In-Reply-To: <20250320-nova_timer-v3-0-79aa2ad25a79@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
  John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>, 
  Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
@@ -66,104 +60,103 @@ To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
  Trevor Gross <tmgross@umich.edu>, Simona Vetter <simona@ffwll.ch>
 Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
  nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Alexandre Courbot <acourbot@nvidia.com>, 
- =?utf-8?q?Sergio_Gonz=C3=A1lez_Collado?= <sergio.collado@gmail.com>
+ Alexandre Courbot <acourbot@nvidia.com>
 X-Mailer: b4 0.14.2
-X-ClientProxiedBy: TYCP286CA0286.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c8::18) To CH2PR12MB3990.namprd12.prod.outlook.com
+X-ClientProxiedBy: TYCP286CA0271.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c9::16) To CH2PR12MB3990.namprd12.prod.outlook.com
  (2603:10b6:610:28::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|IA1PR12MB6409:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c4401a5-2b3a-408f-c495-08dd67b4a584
+X-MS-Office365-Filtering-Correlation-Id: 8d33a1b5-adbc-4f94-153a-08dd67b4b0ef
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|1800799024|366016|10070799003|7416014|376014|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WFE5TTB4TEQ3bzdVUUZVYktha0FJSVlMRW0wZ2ZabWcyOTdpQ3pka0cyK1po?=
- =?utf-8?B?SXh2S0lSMTBzQS85RlFZYURxdnIySlNiWTRlaHRPZWZJcDR1RnN0S0cvVDZT?=
- =?utf-8?B?a3BvbWZhRnRWbVVxR3JnSUtBUnNENWtobmNWcEYzNkxneCtmTVlORTgrNk1w?=
- =?utf-8?B?SUdTbVZOTzdONXoyZTFnYlY1RDk5ZTljRXdmWEpaSzlXeWgyMUN6dFlPaGFL?=
- =?utf-8?B?ek9zcHIwcDVTMG9wamxERS9qcWtsSi9ONEpMVnBXVmhMZ1hGeFM5U01mbzBp?=
- =?utf-8?B?SDNycXFFSWJ6TzlTQm9tK1psRXF4SmsvYURNdUVqVVdNS3ROU1gwdXRrbnpU?=
- =?utf-8?B?ekd0eUlFazJTbXlheStva1ZScEJrbWVTM1k3ejBWdjdUa2kzYWZnS0FCYVFG?=
- =?utf-8?B?YXRRbjl2VkFkV0xkeVRJalk4OWtodVd3ajE5NkhGV2FMMXlkTUt4eTVNOE9N?=
- =?utf-8?B?Q0JKbEZRcXFMdjhkaENCNFVrQTJ3WGlOejR6YkZMQVJPQWdkU1lCNElLWll0?=
- =?utf-8?B?bk1UVS9tYlVpM2R2S0k3dS9qcjI4NkFEZlA0Q01sV25ISG0rNkh1d3NOdnlH?=
- =?utf-8?B?UTJiRFk5R1hhMlY2d1ZzUWFqR1lsKzRobkRVbU5rVEI4dDFtZVdBbUJwVEZv?=
- =?utf-8?B?UGpQYlZ3U1oxUXpGYkFHelFLUTNWRml2M2JpU2kzZXZHU2RIa2NsL0dQRWla?=
- =?utf-8?B?eVpheVRtMzFJNGxmVmpvS1NpYm9tdm9lWXlQM2J4YTJJL1lyZzRRY0IvR05z?=
- =?utf-8?B?R3VQVG5oUVFoSFd5WWswbFpsTzFoaFdjZ3ROZTluTEtkQjZsa3dMeGMyMTVZ?=
- =?utf-8?B?L3hIT0huVmNCRFZjTHFKazhEUmhCR1RRcUllbTgybGN6Vmt1SktPejNQLzYr?=
- =?utf-8?B?MWFvNU1QaXprRlo1S2Y2M1ZnYkh3YjFjeHdCMTV2dlFzOE1YdStXV2xvbGRQ?=
- =?utf-8?B?ZmMxcFg2Z2MvN0dSTGhCbmxVUFMxckpZTFM1NGtKTVNDNUxyaEo0a0gvK2Yw?=
- =?utf-8?B?Tjd5TnhzT09LVFJUNDVKdGdYQS9qUWNoSk5lNmtMWWF4S1E1eGFvRnpYU0Ey?=
- =?utf-8?B?TWQzVGdWOXRJaEQybE5XY0czczc1MUhiQnpwR3Fjb2tLSWx4dWtnT0h5cTZm?=
- =?utf-8?B?VHoyL2hJR0JtNWxXdkJjMHZnY0NqN2FRWUtrUDVneDFmVXhiOWtJTktkeEtK?=
- =?utf-8?B?VHNaZjdXTU93T3psMThONThvZ2VqTmdsaEdMRUVETWNWZk5PQWF6Tm55amQ5?=
- =?utf-8?B?MGYvdytBblRIYjA3ZzkxVmo5RVFLNlA4aS9HL2F4OWhFM2tFMzRzdU9LaStj?=
- =?utf-8?B?eDV3eDFjSUt0dEFWZHVtMnh2RFBFckhlOVVxSVRPRmJmak8yMkJ4ZUxsT3hs?=
- =?utf-8?B?SmNQSitkYmhYT056eTVxRS9IOUxRUlJvRGl6T2w0cjVFcWxHTzh0eUJwVGU1?=
- =?utf-8?B?cXVTeTR4Ni9YMVE1TVFnRUpQUTl3bEgyQVJENVM3aGlPOU93OForSTVBTjhP?=
- =?utf-8?B?Tk9xemZEa2haU0FtNXhYeHplRHh5MUdtV0UrQkRUWkVNVDhNZi9CYXNrbWlK?=
- =?utf-8?B?UUZVbUV3cjlxeldMbGtQRFhXWlAvaTk0M1IxbFBBYXJib0JPSk9ack54YXJq?=
- =?utf-8?B?S09HL0p4RnVxU29SclRmOFhUZ0NURWNOUmR3UHN5SnRoMWljVlNEYVVWUzhE?=
- =?utf-8?B?OWJXYThCMmtScEN2a3VMaEpNVkdyMUw0eThiRnowTVRuMUovQUxkb0ZkY0tz?=
- =?utf-8?B?aTNaUVBodFlIZmE4dm9YbmdyVS9UeEl4TmZpZ29uUlVKbjZXdG1LKzlrMGdU?=
- =?utf-8?B?VHdUNHp2VnIvZjBWLzhmZS80M3BackpidlB3QzRTSmE5clkwWXBiSUZkM1dL?=
- =?utf-8?B?REhhVmtFSHZ0UGpuOXdOeWxLU0s2QUorOWlXbENtbDRQaXZwNldmVGk1L1Js?=
- =?utf-8?Q?a+kYujcj0RM=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?VkkxZUVzaVNsOUd2a0huR2dsMHFxekVhaGc2STJ1bG4rWmUveWZ2RUQ0K20v?=
+ =?utf-8?B?TmJKR3o0eWNoK3liejZnZlUyQ29uN2pkT2VmcTJGdVZ0VmVKcHhBOFlPT3Nw?=
+ =?utf-8?B?UHFmWjBEMHhMejRQeXBqYTQveDZLZi9XaFRkckhUVnY1eFJ6aXRTaXFzRWhX?=
+ =?utf-8?B?aGlZcEVRQ3N0a1lCaW5GUWQ0TkFNNVMxTEFISlFDVE9hY0hHeC9LQTF4Qndm?=
+ =?utf-8?B?MmxBTW4xblVWS0VSWmY0RnY2dTMxUXY0ZEw3Z2t5eHFLMzNVWXQ1Z0UxeDBE?=
+ =?utf-8?B?VmIxMFdQRlY5bjBzTjlNVjlmdGpMWmJiZWI0WGdHYk04UEdBY0lBL01DLys5?=
+ =?utf-8?B?UDFHeFZ0MFpuWmdLNC9rM3BaVnNqZCswT3dXeHhXUXpVVFhKTkZRS2oxTzdk?=
+ =?utf-8?B?MXg0czlEZkZHUE1XUXU1emdDaVBQbXJJU3locHQ1eHBrU2pFS0ZmVHBKYjI3?=
+ =?utf-8?B?U2dERHVPZEc1M21wVFVhL2ExM0RoSW9NUHB2NVZpUVNhSWF4ajdRSHE5cjNP?=
+ =?utf-8?B?ZXpSNEFOeHZ4RS90QkpzcUJ6Q0RqdjEzUGQ5ejdZNnB3SjI5ZWFKSUlidWI3?=
+ =?utf-8?B?dzJkdkJkOXRIN0lFcTVuQU45Q2F1TEFxdUJEQWxMVkdZOTBXclE1eStKQ3JE?=
+ =?utf-8?B?QXRiZ2hpdjNDeG13ZUQ1MXd3eDNaV25tU0ZQSWxJa1drNXBscEhNRjh6cVdw?=
+ =?utf-8?B?WndjdTByNHJxbnR6YVExWEozR2xDQ3IvY1Y5RmdseEZLeGJNM3l2VDZFbTcv?=
+ =?utf-8?B?bklnZ2kvcVZ3aFFiM21ISXMzTVFWN0k4SloyNms1bFVRdHgvNkduZGpNTm5o?=
+ =?utf-8?B?RVhVdFZVWXk3QzNjYWJJTlJYZ2kvWXZxSXJZOXo2REpZUFc3Y2UvUWhXRVFu?=
+ =?utf-8?B?enBsamdNVlF2ZGtMWi8vUWxJaEo4dXA1TjI3a1FudFpKYlZJZEtFV3VDSUta?=
+ =?utf-8?B?SjIrNTdQZi9nVFFYVGMvek54Y2lLdGtnd2wzVGNDQXpqNDYwa3k0OFpYYVFt?=
+ =?utf-8?B?MVE2aEl4MVpZaGE3TmxVSUU5ZlVwait4L0hIRGlqeEJHc2pnNmN4UWZva29D?=
+ =?utf-8?B?OXMzNHZ0UGxsYlF0dGJPR2t0dGZQVEZKRDhjSkpJY3ZFLzVpREdGMFJMTCtV?=
+ =?utf-8?B?QkxMNmhQdndUV3MwY3d1ZC9xLzFnTjluU1dUVjE1cTBtazA0SFI5V2cvRUU3?=
+ =?utf-8?B?ZEwxWUZFSVRvWXdTS2M3ZCtheno2WmhoNTI2SDlFNzgwOUU3Q2lZQWljUTRZ?=
+ =?utf-8?B?Si80VEdoVFF3c3paNE5MUHIyTTZOd1lzb3BaRnBmZEZKQVJLQmJIcTN1QkFv?=
+ =?utf-8?B?UlkyQWlyckJjN3MxaXdKa2k3dERYN0hzYXRwNXNQL0ErZ0NSTlVyMGxCaU4z?=
+ =?utf-8?B?NkJCVlJIdHNIT1dVMWprYmNJaHFVR1pTdERlcVhKc1dQLzJZMGhmbWJjQU1I?=
+ =?utf-8?B?TE1GLzlLd1UyRE50NE1qU1B4eWFFSzU0N2p5RHdrd0ttUGFTcURVbHFWalQy?=
+ =?utf-8?B?NFNITzdlQTlvK045WGdrbUFibWFCRTlLcGVqcC9ZSG12MTBlZDhmOHpab2lo?=
+ =?utf-8?B?T2M0ZGRkb2VkbDlHRXZqWE8vZXJONW0zSkZyR3dyNCtobTJnRFBVWmh2Wm9O?=
+ =?utf-8?B?U0N2bGJQYmxNV0MyOTRiZ2hhMnZjQlpnbjRxSERvd21PdTdEZy9Belh4MjVJ?=
+ =?utf-8?B?MThKdGs2MXRVZU11dlI2Qk9rVSt4V0pybnVQSTAzWHZHVmdDM2lNcjFxUlVS?=
+ =?utf-8?B?ek9kN2VQS3c5bGVNOG9adnpZN2lsU0lRajZuV1lCK1lpek1jSURXRkZRY2h5?=
+ =?utf-8?B?YXRzOEtpb1lsQ1UzOWYvNWdiOWNFQTNST3RmREUxb1BZTnhXSG8xcXFnQ0JR?=
+ =?utf-8?B?OGhCMFAweU5od1Vxak43cUxVbVVRNmtMTCt6LzgyMWN1MW45MVZQVldSVXFV?=
+ =?utf-8?Q?zYjTD2wq4+M=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(366016)(10070799003)(7416014)(376014)(921020);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QkFvY0Vyb3IvTURLQkF4WjRZUzRJRlcxNHpUQnJSeUlMamtjclE1RjA4RjVK?=
- =?utf-8?B?SGx4ZlVGMHlVaDFBdFlFY29sOXBQeHlzaUhWYmlUREszQTdrQW4rMGsvREZn?=
- =?utf-8?B?QkRPRGRVRVZxVUk1cVNKbkt4KzNJcjlKVDB4R1MvRWpHbmc4ZUVTRTVkbTB6?=
- =?utf-8?B?Qll3SUF4TFdxT2dRVEMrRHZkcWROUHNDLzhzMCt0aGkzRENPUStHTDVvTita?=
- =?utf-8?B?eEVFVVdLdnBOenpIRHdpQzk2dlZleHJSOXRlZjEvUjFmSkRLcHFCYVo0Y3Mx?=
- =?utf-8?B?VWp2TlF4c1RFNDI4bXdqNHUxL3B3NjBTc2VXRUF4S3ZobEgzL2VNeXdiZ3Fo?=
- =?utf-8?B?NXdPVkRlOEt0aTJZL1hnYWVNSi8zRXBuK2c0UzVTMkF1N0lZS0w5RG5ZaFc1?=
- =?utf-8?B?ZGM4NnBrekd1VW1ySlRMbmFGMUEyMGZ4VUtJcEUvS3Vqd3c2S29Rc0t6eEJs?=
- =?utf-8?B?dlhldkd0S3dQTFpRd01GMzdVQ0prREt1d09KSzlCeExhdjRMSDFrOVJSRWRu?=
- =?utf-8?B?WGlqMnliOSsvU3BUSWtOY2VtNk9BVEl4a2Y3L1RUdmpXdWZpOGZNeVJXdFFE?=
- =?utf-8?B?ZXBSenlkQzE2M1hhYjJzSlpwMUY0TGxjbUV1bWI1RnRmbS9hR0FhZGhMZmJX?=
- =?utf-8?B?aHJYdkRoUHBram5uRnJSQ0U5KzFUZjFablA3QVdSR3pKai81d0J6akJNYzhj?=
- =?utf-8?B?TjM5dDdVTHA0RHpRb1RUNTNJc09xOHZyZ3lCWmNzalBmcGpMMVlVLy9wVy9h?=
- =?utf-8?B?Q0xRUEhjaHpBOFFMM0pPd0lYNDdrNjkzUXkwRitMTDJKM21IaWwzODRKYzAr?=
- =?utf-8?B?REM4c1hQQXpSYmhEc1dURkNtNkwyS01yV3Y1K2dRTGRzcUpMSEZ1RU1yUExB?=
- =?utf-8?B?QWpzOG9sNCtoaXUwN1RzcEN3K1ZDYjhjN0I4UmFoVWRGSnNOazlQK2dHTUto?=
- =?utf-8?B?UFVJNXdQMXlvUWszRWJmbENiUzZ6QjYva3Q0QkdIeTV2cEgyQVdwWTA3SVJk?=
- =?utf-8?B?a1dkN0tlV3NTYTkvRzRZNDk2YkIvY0hXM0ZDajhHNk1aK29TZ1NheUlqNXpz?=
- =?utf-8?B?NE1RMHFzUlFRaHdEOWdFcHdUOS9kNDlydnNicjZiK2s5RTN4VWlSMnl6Zitt?=
- =?utf-8?B?cUpMQXlkOWpyeWpWK01ISTZnVkpjeWd2dkhpL0dVeUQrZTRwT096a1dZZHNj?=
- =?utf-8?B?WEl6aUFPZWpiSG9sUUw0Wm45Z0xhWnM2VC9oOWJkOGNmOEs3QSt1eDhGcFY2?=
- =?utf-8?B?dG50QVNTVmtocGd2MlNieHIxT2tvd3p3S2JaM1RqLzB2a3YwQ3FuRFV4eEJw?=
- =?utf-8?B?RWI4UWdQSnBsbzBLVUNFeSt6OE9PVlErUkhwZ1VVWXhrMTZ1OVlxbGxrVkJ6?=
- =?utf-8?B?ckxFbnFoaVBHNUl0Q3Blbm5VS3I5UkZtQ2l3MlM5enVLcHFDN2J6cGpMTis2?=
- =?utf-8?B?dFJKeXIyTWVLSnBOdmp4VTg5V1VSMEFtRnFQS3lMaUZKWHRCNURlS1BTZkRN?=
- =?utf-8?B?VUVScTNGdHBCR096Y0p2Wlg2R29seFZjZDYxSUVjQnRBZWFhZzB4ZFpQZm9O?=
- =?utf-8?B?UzI1a3phaGtWajUyZlVDY0NFUVRCOGRYVVVVUjhyNTFIWTJLRElGS0VqUW1B?=
- =?utf-8?B?YzFWdE00RFZ5SkxWa2tMT0NNRW5LbmtlaEZuSnN2T2JxamtxTjBEVWRCeFJ5?=
- =?utf-8?B?QlNVOEFaZHFUNlF6cjFHd0YwU2p1anl3R3RtZmJEU043ZmFjYk5LRENFd01Z?=
- =?utf-8?B?Y3V0U1lJOTVObGF3WlNnUE5iM045OXBzUnM3aUQ0aklwcnNnOFVNWVFNRGZa?=
- =?utf-8?B?WEg5R3I3eVNTeTZISkR4c0poQnE3NU9rSDFZUjBjNVZLcDN4eUEzbWtvNHVX?=
- =?utf-8?B?SldwandxWGo3MWZQT1NDNkhRcDRwaUllRGFPY08yRDErdDJIWkRTSGlnREdE?=
- =?utf-8?B?UUg1S3BOZUxTQTR1cjBnc3RoZnFQazlQYnJsOGtDRm11cDlwSks0V2ZMT1lY?=
- =?utf-8?B?SU5mWitFRWxtem9ORWEzRzhreEhHWDlVbVNJcndET0dFRGxlNG9oZmxLMys3?=
- =?utf-8?B?K29kdlV2WW50c2VZMDRkUkVieURrT1dWSG5Vb1NrM1pPVjMrV25IQjFVRVpY?=
- =?utf-8?B?WHFWVElWU25VSmNnOUZqTlFXSjRta0dpYklWTWwxWUh4bm8xS0VkOHdzQVBl?=
- =?utf-8?Q?1ycsfg2Xj3pW0difSZO5herpZjvaBmsGgKz8qgG2ufVy?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?T1d4NUxCVGhFbnpZSjZvdnhyUjJ3RE5LM1h1d1ZyNklmZWorTllJWTk4bW40?=
+ =?utf-8?B?RWU1NFcyMFY1dkNmNy9Gdk4xTi9Yc2srTFB5NXdncEV3anlHNHN0SWZsNVRJ?=
+ =?utf-8?B?K0llVnAxajd6K1FMcTRwQXVjS2ZxYlNqTXVUSlgyZWRxS0lJOS83NUFHTjk4?=
+ =?utf-8?B?aTlQYkhkWnovWHR0ODRzTlI0Umt5ZVc5WmNpeUlTSUYxd2E5RGdNaTFNWk1k?=
+ =?utf-8?B?ODhXMWNvUjdvUktXSzZINDhPU0FXb3hSL0R6VlhDemtUaklEdTc4aUsrcS9D?=
+ =?utf-8?B?RjAvOExRWjJXakhTN3kxMS82SWFrQVEyUE1nZEtUYjIvRWpabWJwV1RrS0hp?=
+ =?utf-8?B?QXJ3dHR2QlRJcGw2QTh5Y0VuU3ZkcGtIenp3bXo0Q2pJYVRBWmMvNnJDYkYw?=
+ =?utf-8?B?Wk5MZ1BVVkZMbXl0VFlIRDhNZXI0cnptaDlqYU1yVk9sSmZZWlVVOVMzOGlY?=
+ =?utf-8?B?MGVoYWt1UG9kVGNJYTBtOTBOL0FUVHR5SFVOQWtNMGZhT2pQdmZYVlB4TXYy?=
+ =?utf-8?B?OUp4aEdiTjZpVi9PQkVqVWxrcE1JK3lrK1BjVnVDOTNSaUtSbFB2UGk2bS9S?=
+ =?utf-8?B?WFpEVWtkN2lsUG5lSTIrQ2ZncFVRNDBHL3g2YzErNnFYQlJqcS9BclJ0MWxt?=
+ =?utf-8?B?OTg3aDhRUzJVYmtvdVo0eDlvNWwwdG44RFJOeTRGOHpLOURjK2s4SEpEY1Vv?=
+ =?utf-8?B?VXVnMkxxMW5GSVFNUTZhZ2lMeis4S2VFaFJCaElvL01wcTNsb1ZJNXZ6ckRj?=
+ =?utf-8?B?UU9LQW0yMEpoeHpvTi84aFFYRWNtUUY2azFacExIeEhHQUFyZmV0VklsYkcw?=
+ =?utf-8?B?cGpOd1l3d29wdmJ1NEtrMUQ2MzFYVGpOYU9XZ0JWME41cUFyMlJYbklDY0hH?=
+ =?utf-8?B?WndJY2F3a0svRDZXazcvNjNKWHFUUjV4WmNBWEJRQ0JwL1dYSmYxT2QwNW1H?=
+ =?utf-8?B?SlFzYUR5a1V5UWVpNnBWRHVTS0RkTWliRjJFQlpnNEoxUjRScXZMSlN4cjZn?=
+ =?utf-8?B?elZXdVRRR25TNlNMMG9OSzhlV1NlRVV6QVNzMjJMQnRFbzlMSFY4YXJOR0RO?=
+ =?utf-8?B?c2RPSHBJOHRYQ0EvUXNrbDlqNjRrUVBwaDIvRkQ4Qko2YTBYaW9XUXJrZjQ4?=
+ =?utf-8?B?elU4MWJLdStneVJrUm9acjN3Z3RGZXFKcTBzeFRZQTFDUXExeXpleDBjU2lx?=
+ =?utf-8?B?b3Z4V2x5NkpId2I5RWwrY2xlTk9MclZkUHdaaXJpSWNxQWMvakdQRlY5TVNa?=
+ =?utf-8?B?aE5UK0FTVGo2M1dhU2NrZGxXdDc2T1laRklFdkZqZ09ZaDAyZVJNUGdLSC9B?=
+ =?utf-8?B?YVB4ZnNZZmg5OG9EUzd3eWRSU1VxUy9jMC9mUk1BdmYycklpcC9UZXVqWi9p?=
+ =?utf-8?B?Z0ovUEZmZ05XR1V5dkwvZGdnYk0reWVhcXVsK1AwcWZHdURaTVN3UWxHY2ph?=
+ =?utf-8?B?dHY2eEpvcDVhQ3lxWldxaGRqbm5OZGtyamFqbm5qd29WV2lhYkdzTkppN3Yr?=
+ =?utf-8?B?RmZHMEV0Yjh5czRRblhjKzhEbHFKMERjZm50aHpmUUt4SG9SY1JuMVRZSFBl?=
+ =?utf-8?B?U3dUOHN3UHBDU2xRWmtpa25Oc1hSRkxtT29MZFVIUXpsdE9xZWhKZnN1QkNx?=
+ =?utf-8?B?YXM4QWFEVitaODBsaHcyNzlZcDJScGVZYUpSRktWT1Mrc09QKzN3U2RYVUZ5?=
+ =?utf-8?B?RGZJemN1UXVRQXV5K1RpTzI2NUtYSS9HOENSS0N1OGJzMTRqWkRWWUYwOU1x?=
+ =?utf-8?B?LzQ0ZWJ4MnYxMFhkOTBGbStYT3c5UytUelE0Y2ZBZUNlUVAySnlnSk1LRnhO?=
+ =?utf-8?B?b2R6TDJTLzF4OTdHaFIrb09uUnBlbFR4VUQ0TExYK1JzVWtUcm9mVXY0NDM2?=
+ =?utf-8?B?cGtWdis4cFFrQURMQnRRb3BjaGY3SWFiRDdVQ3MwVjIwMHBCL1VRcm85bGpO?=
+ =?utf-8?B?RDBoUzM4dG93b29ESE14ekR3bDFSWEhjQ3hrVkp1ZVlrakY2ODRtRUxXT0Vu?=
+ =?utf-8?B?R1lMYXh0NVR6SFBmeHRlSitnQjFIV0dPa2ZrVHdmcU93R3RBLzM2ZXluQW1V?=
+ =?utf-8?B?WndKYVBWZktWclRTWmUza0F5d1o0dWZCWVFSWC9ZZTR0emxCK3lFaGd0WUZh?=
+ =?utf-8?B?amhkUUptd05ZaHcwQzJ4ZnpqdW0rSjJHSVFjN0d5eWtrMXRnanduS3VlK0lN?=
+ =?utf-8?Q?bl5LrnrSBbF/WspasAWcpmqVJIfVpRz2OxDUaSsFOpdi?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c4401a5-2b3a-408f-c495-08dd67b4a584
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d33a1b5-adbc-4f94-153a-08dd67b4b0ef
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 13:39:32.6434 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2025 13:39:51.9529 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1d3XPbTiCmDhQYXnSnh3vU+xIy5mBQybst/sWNHebhVCNcbH33TL3tTDXV3VTub9zqt4v0p4ro1uoYHBihDtow==
+X-MS-Exchange-CrossTenant-UserPrincipalName: EyuGXeowYvf5rRJF0zetCvd/lFmSV9jpqFS2v6dcc8LZg26/Qx91SaPUhci1DkMlkhpvJwHY8OUWcsplLvC8Mg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6409
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,95 +172,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi everyone,
+Add a basic timer device and exercise it during device probing. This
+first draft is probably very questionable.
 
-New RFC for the first steps towards bringing booting the GSP, with more
-complete Falcon code. This code has been successfully used to run the
-FECS-FRTS firmware from the bios and create the WPR2 region, although
-this series alone is not enough to reproduce this - the next revision
-will probably include the code required to extract that firmware from
-the BIOS.
+One point in particular which should IMHO receive attention: the generic
+wait_on() method aims at providing similar functionality to Nouveau's
+nvkm_[num]sec() macros. Since this method will be heavily used with
+different conditions to test, I'd like to avoid monomorphizing it
+entirely with each instance ; that's something that is achieved in
+nvkm_xsec() using functions that the macros invoke.
 
-As for the previous revisions, the goal is to get more eyes to look at
-the general direction of the driver and raise concerns if there are any,
-the main point of discussion being probably the register!() macro that
-is used to define register layouts.
-
-The falcon code is still quite in a work-in-progress state, I am notably
-still thinking of the best way to implement the HAL for chip-dependent
-operations (right now we branch depending on the chipset, but that
-obviously won't scale). So the overall design is still very much
-flexible.
-
-Dependencies:
-
-- https://lore.kernel.org/rust-for-linux/20250318-topic-panthor-rs-genmask-v4-1-35004fca6ac5@collabora.com/
-- https://lore.kernel.org/rust-for-linux/20250319-try_with-v2-0-822ec63c05fb@nvidia.com/
-- https://lore.kernel.org/rust-for-linux/20250224115007.2072043-1-abdiel.janulgue@gmail.com/
-- https://lore.kernel.org/rust-for-linux/20250306222336.23482-1-dakr@kernel.org/
-- https://lore.kernel.org/rust-for-linux/20250320-registers-v2-1-d277409bcde8@nvidia.com/
-
-TODO:
-
-- Document more registers and fields,
-- Add BIOS extractor code to obtain the FWSEC-FRTS firmware,
-- Complete FWSEC-FRTS execution to obtain WPR2 region.
+I have tried achieving the same result in Rust using closures (kept
+as-is in the current code), but they seem to be monomorphized as well.
+Calling extra functions could work better, but looks also less elegant
+to me, so I am really open to suggestions here.
 
 Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 ---
-Changes in v3:
-- Fixed typo in Boot0 register definition that made probing fail.
-- Moved the register definition macros to their own patch series.
-- Used Revocable::try_access_with() when accessing registers.
-- Added all the Falcon code required to boot FWSEC-FRTS.
-- Link to v2: https://lore.kernel.org/r/20250304-nova_timer-v2-0-8fb13f3f8cff@nvidia.com
-
-Changes in v2:
-- Don't hold the Bar guard in methods that can sleep.
-- Added a Timestamp type for Timer to safely and easily get durations
-  between two measurements.
-- Added a macro to make register definitions easier.
-- Added a very basic falcon implementation to define more registers and
-  exercise the register definition macro.
-- Link to v1: https://lore.kernel.org/r/20250217-nova_timer-v1-0-78c5ace2d987@nvidia.com
-
----
-Alexandre Courbot (7):
-      rust: add useful ops for u64
-      rust: make ETIMEDOUT error available
-      gpu: nova-core: derive useful traits for Chipset
-      gpu: nova-core: add missing GA100 definition
-      gpu: nova-core: use register!() to define register layout
-      gpu: nova-core: add basic timer device
-      gpu: nova-core: add falcon register definitions and probe code
-
  drivers/gpu/nova-core/driver.rs    |   4 +-
- drivers/gpu/nova-core/falcon.rs    | 618 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/nova-core/gpu.rs       |  78 ++++-
- drivers/gpu/nova-core/nova_core.rs |  14 +
- drivers/gpu/nova-core/regs.rs      | 261 ++++++++++++----
- drivers/gpu/nova-core/timer.rs     | 132 ++++++++
- rust/kernel/error.rs               |   1 +
- rust/kernel/lib.rs                 |   1 +
- rust/kernel/num.rs                 |  52 ++++
- 9 files changed, 1101 insertions(+), 60 deletions(-)
----
-base-commit: 1d53763dc16c9fc9329a4cdc14d691979d47568f
-change-id: 20250216-nova_timer-c69430184f54
-prerequisite-change-id: 20241023-topic-panthor-rs-genmask-fabc573fef43:v4
-prerequisite-patch-id: 182945904fd914573eed9388a559ce8a642310ef
-prerequisite-message-id: <20250224115007.2072043-1-abdiel.janulgue@gmail.com>
-prerequisite-patch-id: 73f4047ae5d3e4d51cfa285bd8fd0f1c04d47409
-prerequisite-patch-id: 5ad45352d9d457a45886eeea90a46cc21516356e
-prerequisite-patch-id: 725e7d42309919c759fdd0585a97810b1eb72706
-prerequisite-message-id: <20250306222336.23482-1-dakr@kernel.org>
-prerequisite-patch-id: de15c0d16727e6af2d79f88f5b67be4c06212552
-prerequisite-patch-id: f8bca95d983222da29508cc6e6886e4b0f992588
-prerequisite-patch-id: 1ae8f68250fb43808342285a284bcf7b572263fe
-prerequisite-patch-id: fa5ce1308e1dbc71374a381537ab3978babe20a0
-prerequisite-patch-id: 7225e000f745bb5fd45fc43393d801d1d9adb767
+ drivers/gpu/nova-core/gpu.rs       |  55 +++++++++++++++-
+ drivers/gpu/nova-core/nova_core.rs |   1 +
+ drivers/gpu/nova-core/regs.rs      |  11 ++++
+ drivers/gpu/nova-core/timer.rs     | 132 +++++++++++++++++++++++++++++++++++++
+ 5 files changed, 201 insertions(+), 2 deletions(-)
 
-Best regards,
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index 63c19f140fbdd65d8fccf81669ac590807cc120f..0cd23aa306e4082405f480afc0530a41131485e7 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -10,7 +10,7 @@ pub(crate) struct NovaCore {
+     pub(crate) gpu: Gpu,
+ }
+ 
+-const BAR0_SIZE: usize = 8;
++const BAR0_SIZE: usize = 0x9500;
+ pub(crate) type Bar0 = pci::Bar<BAR0_SIZE>;
+ 
+ kernel::pci_device_table!(
+@@ -42,6 +42,8 @@ fn probe(pdev: &mut pci::Device, _info: &Self::IdInfo) -> Result<Pin<KBox<Self>>
+             GFP_KERNEL,
+         )?;
+ 
++        let _ = this.gpu.test_timer();
++
+         Ok(this)
+     }
+ }
+diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+index d96901e5c8eace1e7c57c77da7def209e8149cd3..f010d3152530b1cec032ca620e59de51a2fc1a13 100644
+--- a/drivers/gpu/nova-core/gpu.rs
++++ b/drivers/gpu/nova-core/gpu.rs
+@@ -6,8 +6,10 @@
+ 
+ use crate::driver::Bar0;
+ use crate::regs;
++use crate::timer::Timer;
+ use crate::util;
+ use core::fmt;
++use core::time::Duration;
+ 
+ macro_rules! define_chipset {
+     ({ $($variant:ident = $value:expr),* $(,)* }) =>
+@@ -179,6 +181,7 @@ pub(crate) struct Gpu {
+     /// MMIO mapping of PCI BAR 0
+     bar: Devres<Bar0>,
+     fw: Firmware,
++    timer: Timer,
+ }
+ 
+ impl Gpu {
+@@ -194,6 +197,56 @@ pub(crate) fn new(pdev: &pci::Device, bar: Devres<Bar0>) -> Result<impl PinInit<
+             spec.revision
+         );
+ 
+-        Ok(pin_init!(Self { spec, bar, fw }))
++        let timer = Timer::new();
++
++        Ok(pin_init!(Self {
++            spec,
++            bar,
++            fw,
++            timer,
++        }))
++    }
++
++    pub(crate) fn test_timer(&self) -> Result<()> {
++        pr_info!("testing timer subdev\n");
++        with_bar!(self.bar, |b| {
++            pr_info!("current timestamp: {}\n", self.timer.read(b))
++        })?;
++
++        if !matches!(
++            self.timer
++                .wait_on(&self.bar, Duration::from_millis(10), || Some(())),
++            Ok(())
++        ) {
++            pr_crit!("timer test failure\n");
++        }
++
++        let t1 = with_bar!(self.bar, |b| {
++            pr_info!("timestamp after immediate exit: {}\n", self.timer.read(b));
++            self.timer.read(b)
++        })?;
++
++        if self
++            .timer
++            .wait_on(&self.bar, Duration::from_millis(10), || Option::<()>::None)
++            != Err(ETIMEDOUT)
++        {
++            pr_crit!("timer test 2 failure\n");
++        }
++
++        let t2 = with_bar!(self.bar, |b| self.timer.read(b))?;
++        if t2 - t1 < Duration::from_millis(10) {
++            pr_crit!("timer test 3 failure\n");
++        }
++
++        with_bar!(self.bar, |b| {
++            pr_info!(
++                "timestamp after timeout: {} ({:?})\n",
++                self.timer.read(b),
++                t2 - t1
++            );
++        })?;
++
++        Ok(())
+     }
+ }
+diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
+index 94f4778c16f6a4d046c2f799129ed0cc68df6fd4..f54dcfc66490cb6b10090ef944ac14feca9f6972 100644
+--- a/drivers/gpu/nova-core/nova_core.rs
++++ b/drivers/gpu/nova-core/nova_core.rs
+@@ -18,6 +18,7 @@ macro_rules! with_bar {
+ mod firmware;
+ mod gpu;
+ mod regs;
++mod timer;
+ mod util;
+ 
+ kernel::module_pci_driver! {
+diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+index 7bfd2b575fe2184565d495012e55cd0829b0b1ad..0d06e09b1ba62d55688c633500f37d3fe1aeb30e 100644
+--- a/drivers/gpu/nova-core/regs.rs
++++ b/drivers/gpu/nova-core/regs.rs
+@@ -11,3 +11,14 @@
+     7:4     major_rev => as u8, "major revision of the chip";
+     28:20   chipset => try_into Chipset, "chipset model"
+ );
++
++/* PTIMER */
++
++register!(PtimerTime0@0x00009400;
++    31:0    lo => as u32, "low 32-bits of the timer"
++);
++
++register!(PtimerTime1@0x00009410;
++    31:0    hi => as u32, "high 32 bits of the timer"
++);
++
+diff --git a/drivers/gpu/nova-core/timer.rs b/drivers/gpu/nova-core/timer.rs
+new file mode 100644
+index 0000000000000000000000000000000000000000..1361e4ad10d923ce114972889cdfcfa6e58a691b
+--- /dev/null
++++ b/drivers/gpu/nova-core/timer.rs
+@@ -0,0 +1,132 @@
++// SPDX-License-Identifier: GPL-2.0
++
++//! Nova Core Timer subdevice
++
++use core::fmt::Display;
++use core::ops::{Add, Sub};
++use core::time::Duration;
++
++use kernel::devres::Devres;
++use kernel::num::U64Ext;
++use kernel::prelude::*;
++
++use crate::driver::Bar0;
++use crate::regs;
++
++/// A timestamp with nanosecond granularity obtained from the GPU timer.
++///
++/// A timestamp can also be substracted to another in order to obtain a [`Duration`].
++///
++/// TODO: add Kunit tests!
++#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
++pub(crate) struct Timestamp(u64);
++
++impl Display for Timestamp {
++    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
++        write!(f, "{}", self.0)
++    }
++}
++
++impl Add<Duration> for Timestamp {
++    type Output = Self;
++
++    fn add(mut self, rhs: Duration) -> Self::Output {
++        let mut nanos = rhs.as_nanos();
++        while nanos > u64::MAX as u128 {
++            self.0 = self.0.wrapping_add(nanos as u64);
++            nanos -= u64::MAX as u128;
++        }
++
++        Timestamp(self.0.wrapping_add(nanos as u64))
++    }
++}
++
++impl Sub for Timestamp {
++    type Output = Duration;
++
++    fn sub(self, rhs: Self) -> Self::Output {
++        Duration::from_nanos(self.0.wrapping_sub(rhs.0))
++    }
++}
++
++pub(crate) struct Timer {}
++
++impl Timer {
++    pub(crate) fn new() -> Self {
++        Self {}
++    }
++
++    /// Read the current timer timestamp.
++    pub(crate) fn read(&self, bar: &Bar0) -> Timestamp {
++        loop {
++            let hi = regs::PtimerTime1::read(bar);
++            let lo = regs::PtimerTime0::read(bar);
++
++            if hi.hi() == regs::PtimerTime1::read(bar).hi() {
++                return Timestamp(u64::from_u32s(hi.hi(), lo.lo()));
++            }
++        }
++    }
++
++    #[allow(dead_code)]
++    pub(crate) fn time(bar: &Bar0, time: u64) {
++        regs::PtimerTime1::default()
++            .set_hi(time.upper_32_bits())
++            .write(bar);
++        regs::PtimerTime0::default()
++            .set_lo(time.lower_32_bits())
++            .write(bar);
++    }
++
++    /// Wait until `cond` is true or `timeout` elapsed, based on GPU time.
++    ///
++    /// When `cond` evaluates to `Some`, its return value is returned.
++    ///
++    /// `Err(ETIMEDOUT)` is returned if `timeout` has been reached without `cond` evaluating to
++    /// `Some`, or if the timer device is stuck for some reason.
++    pub(crate) fn wait_on<R, F: Fn() -> Option<R>>(
++        &self,
++        bar: &Devres<Bar0>,
++        timeout: Duration,
++        cond: F,
++    ) -> Result<R> {
++        // Number of consecutive time reads after which we consider the timer frozen if it hasn't
++        // moved forward.
++        const MAX_STALLED_READS: usize = 16;
++
++        let (mut cur_time, mut prev_time, deadline) = {
++            let cur_time = with_bar!(bar, |b| self.read(b))?;
++            let deadline = cur_time + timeout;
++
++            (cur_time, cur_time, deadline)
++        };
++        let mut num_reads = 0;
++
++        loop {
++            if let Some(ret) = cond() {
++                return Ok(ret);
++            }
++
++            (|| {
++                cur_time = with_bar!(bar, |b| self.read(b))?;
++
++                /* Check if the timer is frozen for some reason. */
++                if cur_time == prev_time {
++                    if num_reads >= MAX_STALLED_READS {
++                        return Err(ETIMEDOUT);
++                    }
++                    num_reads += 1;
++                } else {
++                    if cur_time >= deadline {
++                        return Err(ETIMEDOUT);
++                    }
++
++                    num_reads = 0;
++                    prev_time = cur_time;
++                }
++
++                Ok(())
++            })()?;
++        }
++    }
++}
+
 -- 
-Alexandre Courbot <acourbot@nvidia.com>
+2.48.1
 
