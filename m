@@ -4,88 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E6DCD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEFF3D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 694F910EA07;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B509E10EA14;
 	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="U9vflweR";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Oovkl2U0";
 	dkim-atps=neutral
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB1010E03D;
- Sat, 31 May 2025 14:09:42 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-23496600df1so3023345ad.2; 
- Sat, 31 May 2025 07:09:42 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A189810E027;
+ Wed, 26 Mar 2025 13:11:03 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-39149bccb69so5960983f8f.2; 
+ Wed, 26 Mar 2025 06:11:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748700582; x=1749305382; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=jUoEx8H/KVzfoUg1ZEZiII0xV0maDmmY5gK2aXzz3UA=;
- b=U9vflweRyRgmaLXAQvgIgG/iSbJPBkQBTaJyt8glN1LaE3CxDg6uZN98GhdTOBzroB
- mqvbHR58Qg/XGxdnOJvAzratdeQdv+fIxmOjkvlv9LwwZLtJZq3v4D4McpC7GrXBROep
- iM3g9kAMj3NQ/74Younrs+iRk+gMRPcriLQxjgtKSPW7vpC6wfuxzrCBJbBZ4bdq4kU5
- fXNQ26/cl+vATOizgk8aSHoNj7zffQIqi22qAndYE208FJTSTw52rfH1HxA322pssM2e
- XoFPoxEC4FEk71njdP2Q4IoEIyyu36C9qGYzZb8C1Igxrs1nNfSeb46WR8dY4DaFMiV5
- 5FYw==
+ d=gmail.com; s=20230601; t=1742994662; x=1743599462; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=coBo9zTOkV+54/uJ8ZjRiGU/vI3P1bGg7BoPmlBVdVs=;
+ b=Oovkl2U0YZmZnG5M9dABmXvaCvFpG4hMx23zKsrpkPTZQJdFilbP7aAX1iY3GskkLZ
+ qURo4fC9ZVppaa3Hjdfv8IsnrX0zFVe3677MjEY1YQCVLAs7lu8D5qrFQeVpSzZ69JBO
+ NQgT3rxCWLk3ghzwP9gbp9Y3R+uoO431Y4HDJXf7cBN66LwYc1FeMNrMz6r0j8W49La6
+ 6h8c8nn0UjtN/u9wVzzl9PTpUygSCeqGgX7FqU9kIriC8lRVrs0R8P5hHH1fIjgqgVi6
+ Vdvyr83Y/W2cjNQy/2mvS2ntAIBGKVj3Q91151g2ykQJkoz3hsf9+/f/UWLbRSdI5wRb
+ pqow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748700582; x=1749305382;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=jUoEx8H/KVzfoUg1ZEZiII0xV0maDmmY5gK2aXzz3UA=;
- b=roT6W3i4M997MKz9g/jiQlut1WTs2/qBm5BvmL/7CqgMGa58hpbb2uD9KOUebXDjdC
- Uclc6tNGZbQ9A1sFUC9FSpL+0X2amigW/Rc5+vCw7a1Io/bYUzFm5hvY0yCoJ2S233Fe
- uJ1nxMyIww7pgZoZyxt5/SxLTAYQJvdvh0qXFfyqEZ4hLmWdcYP41TOjpeUPqcJILAjT
- Lls+m5GfS+UsOqkEBoCyHnsy+5b8DOAYuy31sKz48GTI3O/psVgPIusQFEXoLLoEVdB9
- 58avxC8jS9zyhsjmcyLDRaRhv9t9V54W46/GuqiPSUgtonQipMLHXPzBcA8/K/tUaqOW
- IFig==
+ d=1e100.net; s=20230601; t=1742994662; x=1743599462;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=coBo9zTOkV+54/uJ8ZjRiGU/vI3P1bGg7BoPmlBVdVs=;
+ b=KFnJoCRw596xaXy9BWGhv5Jv26lJdJwULolrwzH7ni8dYEA9+mGUfX71UIO6oPgCdV
+ cx/5OA0lHvUfRSdKVCSyBTbZzHXJVHTzmLFChkajqqOd0CrDCD0s1epdzVY+ciaPD+WH
+ Kz0HH3Ichr69E30m870LxlIxVWFpMMrpYGY4O8ipytY/DXMIvb7yOrVGPE/BriZZaErc
+ igGAHB+my+N2ugLzE1svDcd9RgXvb9HO5A1KMg33TzIlMLIjLms7Tm/vbalXIgHbMXl0
+ bRdLlwdidAT4LuX/IDEn0MSUiK0F1MamcOgy2ehEuJ3Cecx4ekIQMdOJTLz5dzKKP7kR
+ ViGA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUAIDaDoMyx+ks23y0jhzHGTI1berXpKfnQjhu3yHpHbjLjz1kzaZr68uK6oknTk1zW+diNINxCLw==@lists.freedesktop.org,
- AJvYcCV2MWXGk5Ly0vbFrzPQih4M3KSSZu0oBKs/TMhRu2FFhlejqW0w/Qnja0DkkIvHHY/GtLu9vLcQ7vE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwMLLajoGuwnCpICTb1V13yMPeMsKZlNQ37ykGFFETLMJX1jztq
- NCq9NcsioujEzzll8I2OktmTMntvOrQKt6ShgJdE9yubACgY2uNBm69vj73JM2q4vt5Ou6hi5Bg
- CwTsyCvVsWv5esGFx0a2yvT3NLMFolJk=
-X-Gm-Gg: ASbGnct+kO57FTKKQqV+6uM5Tv1YHwG2Fi5PU3/TBjboAWef8nDRioTBGQQawTacz5u
- g6Zwz9mttDozB7HBCNJwWas22G620Ap7KtoVjwLbTcp0Iwjzf3aZMcSYzEdl9/JtjhfKvskkTtL
- Mfoz2Bf32/IhUPN9ONNQUIx+Qn5lKyJhsN
-X-Google-Smtp-Source: AGHT+IEspOjKjrSMaDPUZm3os+Lu9UscySkhErkqZ+b2ldXhGBsFlg8mPJC77+6o2Bz6O5zQXWG7deG8XDVluRWv3GM=
-X-Received: by 2002:a17:90b:3c85:b0:311:c939:c855 with SMTP id
- 98e67ed59e1d1-3124db050femr3602044a91.3.1748700582022; Sat, 31 May 2025
- 07:09:42 -0700 (PDT)
+ AJvYcCUXIxbOJWFOtKXU/QDyBPHbPP6uj8EWJFZ79rA5ogmzNOeOaYJcCGmHO5QFaiXjXDkwbsZmzq5Mm4U=@lists.freedesktop.org,
+ AJvYcCVg98jqKCAmWpOgnFLcPscaI7HCR1WPrMvdCGSzPscv8Sugd13JgyKmRoCJZYmpXj0+YlGa487l/g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwbD0wWU8bZkKOa/KaV4bXbwRf7EQqCsBnmJ19URltrT100pbWo
+ V5Px7CeodYDAY+TF7fcGSqlQkpYqAKHalz0M3rc8UYqGIK3xaU3h
+X-Gm-Gg: ASbGnctpiEwRgK/myAADQA4nHS7yex089OMLiPjvxRx6NQxdEjuc/Kd/puCtm6FAzXX
+ szx4t527bkYcLhqublup4BYh6ULDO6nDzds578u0nYD44PrmK1T1CIt6OXbI9niK9r6UFjIB2Xl
+ mi7fpuNzI57E+X4zsyJqMmthWXfrMNQwjtO8F2vXA7Xm/dRkqjnblK6Q9Olx5r7BPpZczZSIZOT
+ NyI4i4/1A9ejeTYoOTQ02DyWRCU5Mec+BP3yeD5INa57Q8mxsfIsOQUVAGKEtJ+VIUUGv0yP7c7
+ TkKrDedUBxtPygYgxQE6s8fMkjwpa2hkUeYS+9TEv6f9gHBVa01Vnsj6
+X-Google-Smtp-Source: AGHT+IGo5kRZQjK7go8ME7rLgXCUGjJN5HdX5Ne05KaMSmNpoFgkpvAveAfXQrZVzmsvdqDm6os96w==
+X-Received: by 2002:a5d:584b:0:b0:390:f9a5:bd79 with SMTP id
+ ffacd0b85a97d-3997f90ab9emr20396175f8f.26.1742994661851; 
+ Wed, 26 Mar 2025 06:11:01 -0700 (PDT)
+Received: from debian.local ([2a0a:ef40:4d4:f101:e41a:977a:f788:910f])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-43d82e6ab48sm1773125e9.10.2025.03.26.06.11.00
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 26 Mar 2025 06:11:01 -0700 (PDT)
+Date: Wed, 26 Mar 2025 13:10:58 +0000
+From: Chris Bainbridge <chris.bainbridge@gmail.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ lyude@redhat.com, sumit.semwal@linaro.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] drm/prime: fix drm_prime_gem_destroy comment
+Message-ID: <Z-P84iMUP4NBAY7k@debian.local>
+References: <Z9GHj-edWJmyzpdY@debian.local>
+ <00e4d9c4-ecfc-4784-b603-12db04cda806@amd.com>
+ <Z9q-ggKKgTsvW-Rz@debian.local> <Z9rA0G2urlVHFOSx@cassiopeiae>
+ <1f4a534f-8883-4793-b191-60c2773f6217@amd.com>
+ <Z9rSTkXlub-JZAz0@cassiopeiae> <Z-P4zQ1464SeZGmB@debian.local>
+ <94eeb36a-9aa5-4afd-9ba6-76e8ace10122@amd.com>
 MIME-Version: 1.0
-References: <20250521-nova-frts-v4-0-05dfd4f39479@nvidia.com>
- <20250521-nova-frts-v4-11-05dfd4f39479@nvidia.com>
- <adbf5fa1104978df76ae40705e5df13dfbe59bb8.camel@redhat.com>
-In-Reply-To: <adbf5fa1104978df76ae40705e5df13dfbe59bb8.camel@redhat.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sat, 31 May 2025 16:09:29 +0200
-X-Gm-Features: AX0GCFswDAyLG96-rV_NBPeq61h0apxRhahuyfPFqf41zfiQeci120cEPxAvoNk
-Message-ID: <CANiq72n42hbKPmED4PnzCADsy8iM-i0R2dizypTd_Vui5GctJg@mail.gmail.com>
-Subject: Re: [PATCH v4 11/20] gpu: nova-core: wait for GFW_BOOT completion
-To: Lyude Paul <lyude@redhat.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
- Ben Skeggs <bskeggs@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <94eeb36a-9aa5-4afd-9ba6-76e8ace10122@amd.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,27 +98,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, May 30, 2025 at 11:51=E2=80=AFPM Lyude Paul <lyude@redhat.com> wrot=
-e:
->
-> JFYI: You can actually just say Result here, since () is the default type=
- for
-> the kernel's Result type
+Edit the comments on correct usage of drm_prime_gem_destroy to note
+that, if using TTM, drm_prime_gem_destroy must be called in the
+ttm_buffer_object.destroy hook, to avoid the dma_buf being freed leaving
+a dangling pointer which will be later dereferenced by
+ttm_bo_delayed_delete.
 
-+1
+Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
+Suggested-by: Christian König <christian.koenig@amd.com>
+---
+ drivers/gpu/drm/drm_prime.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-> TBH - we should really add some safe bindings for sleeps instead of calli=
-ng
-> this unsafely, I'd be happy to review them if you do
+diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+index 32a8781cfd67..452d5c7cd292 100644
+--- a/drivers/gpu/drm/drm_prime.c
++++ b/drivers/gpu/drm/drm_prime.c
+@@ -929,7 +929,9 @@ EXPORT_SYMBOL(drm_gem_prime_export);
+  * &drm_driver.gem_prime_import_sg_table internally.
+  *
+  * Drivers must arrange to call drm_prime_gem_destroy() from their
+- * &drm_gem_object_funcs.free hook when using this function.
++ * &drm_gem_object_funcs.free hook or &ttm_buffer_object.destroy
++ * hook when using this function, to avoid the dma_buf being freed while the
++ * ttm_buffer_object can still dereference it.
+  */
+ struct drm_gem_object *drm_gem_prime_import_dev(struct drm_device *dev,
+ 					    struct dma_buf *dma_buf,
+@@ -999,7 +1001,9 @@ EXPORT_SYMBOL(drm_gem_prime_import_dev);
+  * implementation in drm_gem_prime_fd_to_handle().
+  *
+  * Drivers must arrange to call drm_prime_gem_destroy() from their
+- * &drm_gem_object_funcs.free hook when using this function.
++ * &drm_gem_object_funcs.free hook or &ttm_buffer_object.destroy
++ * hook when using this function, to avoid the dma_buf being freed while the
++ * ttm_buffer_object can still dereference it.
+  */
+ struct drm_gem_object *drm_gem_prime_import(struct drm_device *dev,
+ 					    struct dma_buf *dma_buf)
+-- 
+2.47.2
 
-In case it helps, there is:
 
-    https://lore.kernel.org/rust-for-linux/20250423192857.199712-6-fujita.t=
-omonori@gmail.com/
-
-I think that is the last one -- we have been going back and forth a
-bit on it (e.g. we had `coarse_sleep()` in the old `rust` pre-merge
-branch), but, yeah, let's try to get the abstraction(s) in.
-
-Cheers,
-Miguel
