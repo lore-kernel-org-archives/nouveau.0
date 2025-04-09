@@ -4,65 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C132D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBE90D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE1710EC5F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A98410EC63;
 	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="q+PykJF0";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="qoq0l8CR";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23DAF10E087;
- Tue, 22 Apr 2025 12:00:22 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFC610E886;
+ Wed,  9 Apr 2025 12:51:52 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Zhgm16Xl5z9tQY;
- Tue, 22 Apr 2025 14:00:17 +0200 (CEST)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4ZXjWR652Hz9sn9;
+ Wed,  9 Apr 2025 14:51:47 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1745323218; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1744203109; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=1vpYm+GQxhLlWhb6ifByWLEltnQPSlybhasf4ERMH8Q=;
- b=q+PykJF0H2r6JiN/VNCR1+a218ywnoE6PZ226N3JwQaNyjuwRz4fAT6XKX3pyflIz4HoME
- rbRL2GVEz0rbAmX7yH6J4ksvagXPGG8V8pWJDPjJmG/UCni3uBQ9pF7dxnc3zE7Y0PgSp1
- geQjVuk4jtftJ4tzLhKujml6kqfkuT50KgaEPJ5JEof2MoOXZf0eTAVSLvQPE0FfpgaATu
- QEb58Ly1Z7Sjm1MC+IWZFBchEal9sgWhuFyzTPzYp2Wlkr1Uzp/NF5E600OwgVDTECI2Q+
- IlITcPQyB1KXHifWKHx8D03jHd13EdMpOYiATDl8Z/xv3rlikLbkvpRdKEoNRA==
-Message-ID: <649c7fe3469c39496db89de6951d9f2b61c36576.camel@mailbox.org>
-Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
+ bh=y1KOsl3bM2Nc82jWkBpwB9pBWedP0INipQprBLc0j5o=;
+ b=qoq0l8CRDL+UCLVS3PHrT3P1vR961xDbvNHjxml9bfKWX4A8AKek0gxWwmdmbupugwQeUa
+ Or+iNbsFczg2uc1qjLHcrFuRpL+GzZagbMm58iileZJozNcIGY1Wxql/PZKK+5bG8ZsWq2
+ 2YoNz9CTr+r/TtXKi8y1ULJZxxI6uQrf97iP25KM8X3lfdIHeDBuYN1kXSv4fCXzbScnTT
+ yLuadRHPxEojfM+iEAtJ0zGXkOO/SSAIQW6CFfEy729P3TxL/gTXnIHf4mkGow540KskXM
+ nrcgR++I+jzbqfsLLSFAJ5yiAQoZy2b6Yx0KmrVsiTq4Af3cCbXv1hYpqyHV5w==
+Message-ID: <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
+Subject: Re: [PATCH 1/2] dma-fence: Rename dma_fence_is_signaled()
 From: Philipp Stanner <phasta@mailbox.org>
-To: Danilo Krummrich <dakr@kernel.org>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>
-Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Tue, 22 Apr 2025 14:00:11 +0200
-In-Reply-To: <aAd54jUwBwgc-_g2@cassiopeiae>
-References: <20250407152239.34429-2-phasta@kernel.org>
- <20250407152239.34429-5-phasta@kernel.org>
- <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
- <3ac34c84-fd84-4598-96e1-239418b7109f@igalia.com> <aADv4ivXZoJpEA7k@pollux>
- <83758ca7-8ece-433e-b904-3d21690ead23@igalia.com>
- <aAEUwjzZ9w9xlKRY@cassiopeiae>
- <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
- <0bfa746ca37de1813db22e518ffb259648d29e02.camel@mailbox.org>
- <5a5d4a33-2f7b-46e4-8707-7445ac3de376@igalia.com>
- <aAd54jUwBwgc-_g2@cassiopeiae>
+To: Boris Brezillon <boris.brezillon@collabora.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
+ <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
+ Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,  Jani Nikula
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Frank Binns
+ <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, Qiang Yu
+ <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>, Sean Paul
+ <sean@poorly.run>,  Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>,  Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Steven Price
+ <steven.price@arm.com>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann
+ <kraxel@redhat.com>,  Matthew Brost <matthew.brost@intel.com>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Melissa Wen
+ <mwen@igalia.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Zack
+ Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Bas Nieuwenhuizen
+ <bas@basnieuwenhuizen.nl>,  Yang Wang <kevinyang.wang@amd.com>, Jesse Zhang
+ <jesse.zhang@amd.com>, Tim Huang <tim.huang@amd.com>,  Sathishkumar S
+ <sathishkumar.sundararaju@amd.com>, Saleemkhan Jamadar
+ <saleemkhan.jamadar@amd.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo
+ Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Ma Jun
+ <Jun.Ma2@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>, Eric Huang
+ <jinhuieric.huang@amd.com>, Asad Kamal <asad.kamal@amd.com>, Srinivasan
+ Shanmugam <srinivasan.shanmugam@amd.com>,  Jack Xiao <Jack.Xiao@amd.com>,
+ Friedrich Vock <friedrich.vock@gmx.de>, Michel =?ISO-8859-1?Q?D=E4nzer?=
+ <mdaenzer@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, Thomas Gleixner
+ <tglx@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, Dan
+ Carpenter <dan.carpenter@linaro.org>,  linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
+ lima@lists.freedesktop.org,  linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,  nouveau@lists.freedesktop.org,
+ virtualization@lists.linux.dev,  spice-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 14:51:14 +0200
+In-Reply-To: <20250409143917.31303d22@collabora.com>
+References: <20250409120640.106408-2-phasta@kernel.org>
+ <20250409120640.106408-3-phasta@kernel.org>
+ <20250409143917.31303d22@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 4c04011615e20bdd267
-X-MBO-RS-META: n61eesopsdmkks4z8prq1n7h8hkk6wg4
+X-MBO-RS-META: 7iy136p8m6py4oeaepzr7ogfmahipjtt
+X-MBO-RS-ID: b1321202fe5ffc9b996
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,69 +112,69 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, 2025-04-22 at 13:13 +0200, Danilo Krummrich wrote:
-> On Tue, Apr 22, 2025 at 11:39:11AM +0100, Tvrtko Ursulin wrote:
-> > Question I raised is if there are other drivers which manage to
-> > clean up
-> > everything correctly (like the mock scheduler does), but trigger
+On Wed, 2025-04-09 at 14:39 +0200, Boris Brezillon wrote:
+> Hi Philipp,
+>=20
+> On Wed,=C2=A0 9 Apr 2025 14:06:37 +0200
+> Philipp Stanner <phasta@kernel.org> wrote:
+>=20
+> > dma_fence_is_signaled()'s name strongly reads as if this function
+> > were
+> > intended for checking whether a fence is already signaled. Also the
+> > boolean it returns hints at that.
+> >=20
+> > The function's behavior, however, is more complex: it can check
+> > with a
+> > driver callback whether the hardware's sequence number indicates
 > > that
-> > warning. Maybe there are not and maybe mock scheduler is the only
-> > false
-> > positive.
+> > the fence can already be treated as signaled, although the
+> > hardware's /
+> > driver's interrupt handler has not signaled it yet. If that's the
+> > case,
+> > the function also signals the fence.
+> >=20
+> > (Presumably) this has caused a bug in Nouveau (unknown commit),
+> > where
+> > nouveau_fence_done() uses the function to check a fence, which
+> > causes a
+> > race.
+> >=20
+> > Give the function a more obvious name.
+>=20
+> This is just my personal view on this, but I find the new name just
+> as
+> confusing as the old one. It sounds like something is checked, but
+> it's
+> clear what, and then the fence is forcibly signaled like it would be
+> if
+> you call drm_fence_signal(). Of course, this clarified by the doc,
+> but
+> given the goal was to make the function name clearly reflect what it
+> does, I'm not convinced it's significantly better.
+>=20
+> Maybe dma_fence_check_hw_state_and_propagate(), though it might be
+> too long of name. Oh well, feel free to ignore this comments if a
+> majority is fine with the new name.
 
-For clarification:
+Yoa, the name isn't perfect (the perfect name describing the whole
+behavior would be
+dma_fence_check_if_already_signaled_then_check_hardware_state_and_propa
+gate() ^^'
 
-I messed up the comment from the cover letter.
+My intention here is to have the reader realize "watch out, the fence
+might get signaled here!", which is probably the most important event
+regarding fences, which can race, invoke the callbacks and so on.
 
-What I did was run the *old* unit tests (v5 IIRC) from Tvrtko that
-still had the memory leaks. Those then trigger the warning print, as is
-expected, since they don't provide fence_context_kill().
+For details readers will then check the documentation.
 
-The current unit tests are fine memory-leak-wise.
-
-IOW, both with Nouveau and the unit tests, everything behaves as
-expected, without issues.
-
-Sorry for the confusion.
+But I'm of course open to see if there's a majority for this or that
+name.
 
 P.
 
+
 >=20
-> So far the scheduler simply does not give any guideline on how to
-> address the
-> problem, hence every driver simply does something (or nothing,
-> effectively
-> ignoring the problem). This is what we want to fix.
+> Regards,
 >=20
-> The mock scheduler keeps it's own list of pending jobs and on tear
-> down stops
-> the scheduler's workqueues, traverses it's own list and eventually
-> frees the
-> pending jobs without updating the scheduler's internal pending list.
->=20
-> So yes, it does avoid memory leaks, but it also leaves the schedulers
-> internal
-> structures with an invalid state, i.e. the pending list of the
-> scheduler has
-> pointers to already freed memory.
->=20
-> What if the drm_sched_fini() starts touching the pending list? Then
-> you'd end up
-> with UAF bugs with this implementation. We cannot invalidate the
-> schedulers
-> internal structures and yet call scheduler functions - e.g.
-> drm_sched_fini() -
-> subsequently.
->=20
-> Hence, the current implementation of the mock scheduler is
-> fundamentally flawed.
-> And so would be *every* driver that still has entries within the
-> scheduler's
-> pending list.
->=20
-> This is not a false positive, it already caught a real bug -- in the
-> mock
-> scheduler.
->=20
-> - Danilo
+> Boris
 
