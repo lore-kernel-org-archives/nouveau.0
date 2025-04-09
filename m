@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50B96D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58DE9D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0134710EC73;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9D710EC77;
 	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="hvdmvmCC";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="H9kbCebU";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0B7310E631;
- Tue,  3 Jun 2025 13:23:48 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F012F10E800;
+ Wed,  9 Apr 2025 08:03:44 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bBWcs5tVRz9tKm;
- Tue,  3 Jun 2025 15:23:41 +0200 (CEST)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZXb711qMBz9t4w;
+ Wed,  9 Apr 2025 10:03:41 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1748957021; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1744185821; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=9rC9wfImtJeRRZMvS7a471KH44YhZ50t9581jq7fj9c=;
- b=hvdmvmCCcNvGJiQxq49aEEttREH4Kcrp00Q7oSW5mNn41hphEgaWVBESxXsuO5aLcOxeI4
- kBM4mKnPCkCpILWBTpCb6PSo3UGOA+WYMyTD//w0wKhPFbYt1rm2rqPCM7fePX1e77+jeK
- kv5IJ7Ownc7Dgpvx8uJo+/FcwWZmxQxZ+QK9mNCUhxYGb7VbR2kDeUM77ay0lrytJaqx4R
- 4SCb4ZpTWKItU4FjMCurdR/mZNHHzUKq2NzhZwWbMNcyepX4SgeUKnkMq9GlypG6hp6kIo
- B9BjVXFnlWUpYZE2CKHcoYfQpuLKVrbvXTmLo6RyC2AdjTwFneDRnaIzGGX+Ug==
-Message-ID: <8256799772c200103124c0c10490a9c1db04e355.camel@mailbox.org>
-Subject: Re: [RFC PATCH 0/6] drm/sched: Avoid memory leaks by canceling
- job-by-job
+ bh=7fqznLAyvHu/jJ9za6hfLAeZqCvQ3xojCZMtgLC3XYw=;
+ b=H9kbCebUZR1c7HOrQgYjPIYBVEFAXQSWcq6/p1UyaFsQL5RVW8qDJPZJDp+qC3GjKNVxRt
+ DRZL0n/rENniKePXYZaCqEJY0i7wRIVO8nj1NZnDeePrW2Dn3W1dB+9XWKWpB33dMcfYJ9
+ J2f7juccWHrQ6rBYVzSeuDhek0t6v0Y1omaNC+VbHOyOLNiRNHXjOlg+v77wj55CLq6kZe
+ I8GCkSKnPB7VGieK0t/tUrz6+VwPURjf1eHIX/aqKevwbGEZET2BfNY4v4zU1C5ZKlQMsV
+ q1BjHRuzslbwi9G5yJVXKkWQP5uTYc6Ftpwgx9gaAtErlzy1rplwxy1+/krYeg==
+Message-ID: <2486e9eba3806f8e7fc3df724e916929a627fac7.camel@mailbox.org>
+Subject: Re: [PATCH v8 00/10] Improve gpu_scheduler trace events + UAPI
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Philipp Stanner
- <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
- <sumit.semwal@linaro.org>, Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Tue, 03 Jun 2025 15:23:36 +0200
-In-Reply-To: <fae980fa-e173-4921-90e2-6a4f6b8833a8@igalia.com>
-References: <20250603093130.100159-2-phasta@kernel.org>
- <fae980fa-e173-4921-90e2-6a4f6b8833a8@igalia.com>
+To: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>, Pierre-Eric
+ Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, Philipp Stanner <phasta@kernel.org>, Danilo
+ Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
+Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, nouveau@lists.freedesktop.org
+Date: Wed, 09 Apr 2025 10:03:34 +0200
+In-Reply-To: <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
+References: <20250320095818.40622-1-pierre-eric.pelloux-prayer@amd.com>
+ <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: cdf397ce994b2e274e3
-X-MBO-RS-META: oepr7uqp6e6ppxxyqmaoqq5ms8qeqiiz
+X-MBO-RS-META: ac77wnkq97cnh7ipc437xrje46qmhgfq
+X-MBO-RS-ID: 890d0c8e5ddfbadb243
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,99 +72,151 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, 2025-06-03 at 13:27 +0100, Tvrtko Ursulin wrote:
+On Wed, 2025-04-09 at 09:52 +0200, Pierre-Eric Pelloux-Prayer wrote:
+> Hi,
 >=20
-> On 03/06/2025 10:31, Philipp Stanner wrote:
-> > An alternative version to [1], based on Tvrtko's suggestion from
-> > [2].
-> >=20
-> > I tested this for Nouveau. Works.
-> >=20
-> > I'm having, however, bigger problems properly porting the unit
-> > tests and
-> > have seen various explosions. In the process I noticed that some
-> > things
-> > in the unit tests aren't right and a bit of a larger rework will be
-> > necessary (for example, the timedout job callback must signal the
-> > timedout fence, remove it from the list and so on).
+> I've rebased the series on top of drm-next, applied the minor tweaks
+> suggested by Tvrtko on v8 and=20
+> the R-b tags. The result can be found on gitlab.fdo:
 >=20
-> General approach I follow when implementing any mock component is to=20
-> implement only as much is needed for a test to pass. Only add more
-> and=20
-> rework when a test/functionality is added which requires it.
+> https://gitlab.freedesktop.org/pepp/linux/-/commits/improve_gpu_scheduler=
+_trace_v9
 >=20
-> Specifically for timedout callback signaling I see that I had exactly
-> that added in the patch you linked as [2].
-> =C2=A0 > Anyways. Please comment on the general idea.
->=20
-> I am obviously okay with it. :) Especially now that you verified it=20
-> works well for nouveau.
->=20
-> What I am not that ecstatic about is only getting the Suggested-by=20
-> credit in 1/6. Given it is basically my patch with some cosmetic
-> changes=20
-> like the kernel doc and the cancel loop extracted to a helper.
+> I believe it's ready to be merged, unless I've missed something?
 
-Sign the patch off and I give you the authorship if you want.
+Has slipped my radar for a while, sorry.
+
+I browsed over the series=20
+
+Can you pro forma send the v9 (with the scheduler maintainers also in
+the cover letter's CC) with the changelog, please?
+
+Then I'd ACK and someone (probably me?) can take it in.
+
+Thanks
+P.
 
 >=20
-> > @Tvrtko: As briefly brainstormed about on IRC, if you'd be willing
-> > to
-> > take care of the unit tests patch, I could remove that one (and,
-> > maaaaybe, the warning print patch) from the series and we could
-> > merge
-> > this RFC's successor version %N once it's ready. What do you think?
+> Thanks,
+> Pierre-Eric
 >=20
-> Okay in principle but the first thing I would suggest you could try
-> is=20
-> to take my unit tests adaptations from [2] verbatim. Benefit of
-> keeping=20
-> everything in one series is more confidence we are merging a solid=20
-> thing. But I can take it on myself as a follow up too if you want.
->=20
-> Regards,
->=20
-> Tvrtko
->=20
+> Le 20/03/2025 =C3=A0 10:57, Pierre-Eric Pelloux-Prayer a =C3=A9crit=C2=A0=
+:
+> > Hi,
 > >=20
-> > P.
+> > The initial goal of this series was to improve the drm and amdgpu
+> > trace events to be able to expose more of the inner workings of
+> > the scheduler and drivers to developers via tools.
 > >=20
-> > [1]
-> > https://lore.kernel.org/dri-devel/20250522082742.148191-2-phasta@kernel=
-.org/
-> > [2]
-> > https://lore.kernel.org/dri-devel/20250418113211.69956-1-tvrtko.ursulin=
-@igalia.com/
+> > Then, the series evolved to become focused only on gpu_scheduler.
+> > The changes around vblank events will be part of a different
+> > series, as well as the amdgpu ones.
 > >=20
-> > Philipp Stanner (6):
-> > =C2=A0=C2=A0 drm/sched: Avoid memory leaks with cancel_job() callback
-> > =C2=A0=C2=A0 drm/sched/tests: Implement cancel_job()
-> > =C2=A0=C2=A0 drm/sched: Warn if pending list is not empty
-> > =C2=A0=C2=A0 drm/nouveau: Make fence container helper usable driver-wid=
-e
-> > =C2=A0=C2=A0 drm/nouveau: Add new callback for scheduler teardown
-> > =C2=A0=C2=A0 drm/nouveau: Remove waitque for sched teardown
+> > Moreover Sima suggested to make some trace events stable uAPI,
+> > so tools can rely on them long term.
 > >=20
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 35 +++++----
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_fence.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 7 ++
+> > The first patches extend and cleanup the gpu scheduler events,
+> > then add a documentation entry in drm-uapi.rst.
+> >=20
+> > The last 2 patches are new in v8. One is based on a suggestion
+> > from Tvrtko and gets rid of drm_sched_job::id. The other is a
+> > cleanup of amdgpu trace events to use the fence=3D%llu:%llu format.
+> >=20
+> > The drm_sched_job patches don't affect gpuvis which has code to
+> > parse
+> > the gpu_scheduler events but these events are not enabled.
+> >=20
+> > Changes since v7:
+> > * uint64_t -> u64
+> > * reworked dependencies tracing (Tvrtko)
+> > * use common name prefix for all events (Tvrtko)
+> > * dropped drm_sched_job::id (Tvrtko)
+> >=20
+> > Useful links:
+> > - userspace tool using the updated events:
+> > https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
+> > - v7:
+> > https://lists.freedesktop.org/archives/dri-devel/2025-January/488117.ht=
+ml
+> >=20
+> > Pierre-Eric Pelloux-Prayer (10):
+> > =C2=A0=C2=A0 drm/debugfs: output client_id in in drm_clients_info
+> > =C2=A0=C2=A0 drm/sched: store the drm client_id in drm_sched_fence
+> > =C2=A0=C2=A0 drm/sched: add device name to the drm_sched_process_job ev=
+ent
+> > =C2=A0=C2=A0 drm/sched: cleanup gpu_scheduler trace events
+> > =C2=A0=C2=A0 drm/sched: trace dependencies for gpu jobs
+> > =C2=A0=C2=A0 drm/sched: add the drm_client_id to the drm_sched_run/exec=
+_job
+> > events
+> > =C2=A0=C2=A0 drm/sched: cleanup event names
+> > =C2=A0=C2=A0 drm/doc: document some tracepoints as uAPI
+> > =C2=A0=C2=A0 drm: get rid of drm_sched_job::id
+> > =C2=A0=C2=A0 drm/amdgpu: update trace format to match gpu_scheduler_tra=
+ce
+> >=20
+> > =C2=A0 Documentation/gpu/drm-uapi.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++++
+> > =C2=A0 drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 32 ++----
+> > =C2=A0 drivers/gpu/drm/drm_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 =
++-
+> > =C2=A0 drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c=C2=A0 |=C2=A0=C2=A0=
+ 2 +-
+> > =C2=A0 drivers/gpu/drm/imagination/pvr_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/lima/lima_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> > =C2=A0 drivers/gpu/drm/lima/lima_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
 > > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 35 +++++----
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 9 +--
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_uvmm.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 8 +--
+=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/panfrost/panfrost_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/panthor/panthor_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> > =C2=A0 .../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0 | 103
+> > +++++++++++++-----
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 16 ++-
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=
+=C2=A0=C2=A0 2 +-
 > > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 37 ++++++----
-> > =C2=A0 .../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 | 71 +++++++-=
-------
-> > -----
-> > =C2=A0 drivers/gpu/drm/scheduler/tests/sched_tests.h |=C2=A0 4 +-
+=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +-
+> > =C2=A0 drivers/gpu/drm/v3d/v3d_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> > =C2=A0 drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
 > > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 9 +++
-> > =C2=A0 9 files changed, 115 insertions(+), 100 deletions(-)
+=C2=A0 13 ++-
+> > =C2=A0 30 files changed, 186 insertions(+), 96 deletions(-)
 > >=20
->=20
 
