@@ -4,77 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763DCD5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF3C4D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8AEE10EB4D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 954EB10EA98;
 	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jKceVKa+";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="mzxk9Tbk";
 	dkim-atps=neutral
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC1310E033;
- Sun, 13 Jul 2025 02:53:26 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-315c1b0623cso3292319a91.1; 
- Sat, 12 Jul 2025 19:53:26 -0700 (PDT)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7160510E3CB;
+ Sat, 12 Apr 2025 17:54:12 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-7c7a5ee85dcso58797285a.2; 
+ Sat, 12 Apr 2025 10:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752375206; x=1752980006; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1744480451; x=1745085251; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=acNe71zhPgHfE83GbVhM4d777Q2BYU21y6svlMAOGRE=;
- b=jKceVKa++K3XA0lrbkSsbxMRm8D4trvQViaEaRMtjxgeJ2ii2aiyoxo8egdrjGU3C9
- x73W7dRa8ExWIc9gQanA689rW6Fs2SJFxOFQ38GNZohk9tNFaonpKp6o8h7AMUS7UTYP
- EkKc/EGh+xSEG6o+LKiMWVCgOtPIqCw+7eVw0Ov9Z8/oAjLJPa90unR+D9YYubx6V7Ol
- /DsOn73ZGxHHrkQTEMF+32rtp2fjOsGJ6J/BqPpvMjgfHXyVrBH1s90B/RqD9J+0iOZY
- +fbNXS4lK1rSkRW0p+wn9CkR0U65Qv1GX22v32au6ZhKMoITHJy8Xi5PXhTjcQX4MvBo
- 3Xww==
+ bh=6+swTvs1bMwk0dAlVOfDZ90gSAfKDS6pnqb80rHKJ+c=;
+ b=mzxk9TbkHvepm8eVcAmkimwkoJJL7b9L9tsCJfLMjpd8bBcJC9JNbuM+BxclbbX+u6
+ +xwZqEo4pPqbtnPY/64+oJZY7wvirYTUW9oPYzbDuFfTZ7Ei6Fi5xOYuSqsDPQvj6CUy
+ j5eKPO+wh7TM6euttgF7fyD2gx5cTw5KbCPZ2oyUoBD6+bpPFNx2psfYYV6MtkrKy+Cg
+ CMmPL5a+cVjAB+ZEMEt+UAgIbnvfH4GlSTkHdUCW5Fe91uzB9emnrEVx1lBUpb4XVBRr
+ TfhRZvyWVR47Ol0eiQTfNNxCUWIjHK0XlrOymHbTeDY81Vm+ujrlMbJDuU4AmYx5Kr5g
+ QGDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752375206; x=1752980006;
+ d=1e100.net; s=20230601; t=1744480451; x=1745085251;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=acNe71zhPgHfE83GbVhM4d777Q2BYU21y6svlMAOGRE=;
- b=gjT0EjG9VWD7ZIsom62q96Aa8KFEQScVi8318712F3pyw45ejCajWUmzjK1wNAwdNP
- xoC1uLyj/0vzqzDSU6u7fFWblTPot0fefXsSq3sB6FfJjGmikn6Fw7Hgyx+MAz+lS9km
- qYTSSbgz2m2Kc6i0qPfuI6M7neIxfaHFsJlksq3pyOSTZjH7AlZwonwIrSRcKvZhHiSR
- DZwzuuch72TdjoZDLfncO0BkUUb5VVN8F6TXmpGVNoz+MSWIKsZj3nZgWsQ5pX8uMdtw
- O6f/UBNsAHA+E8FTzuS240cUbkqhfk5ijqgud3IJvjDiVEvYoY5kwAYcMKVRbsQ7K3pb
- hZjA==
+ bh=6+swTvs1bMwk0dAlVOfDZ90gSAfKDS6pnqb80rHKJ+c=;
+ b=EskDbciL468swke/lON5VaI2NqyU+I4g6ogGOQn877voPUvKhSaHhQ2vLEhYRZFoZw
+ WOc8YX7NHlNQwAeAOOKp80aVtu5BqVUFx3iG3M6EirLhTzSiuczeO/dDhNOIuTnJh3NX
+ 8Be750qp38LrxZP8TXX0bdeWm8wPZFb/9COPBJc+97Q1dWRVqMrbreXsDy3ElNXn1GKN
+ VZFOgfbVoDASZN1nmq5tu7SE+5fp6t4eUs2A6zzH7pbS+KnGFieOvFxZzGPlu4tIMgGC
+ sXviL1hXz6oO8P2ELlkwuWtUuOA7yfotaFxDSYB9aFh83uRqvWwHymJoDo2O38msnXaO
+ GZPw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUdEXts5lFFwHoVAxqEYDcTgYPs0nHXseAvLcm8HAKotLOPcylOxkmvsa4sDDnf3RjVYWmTpfpbE00=@lists.freedesktop.org,
- AJvYcCWaT93SiBMPX7qbUPWPtWHyo4zQtrOV5bqOvlKBVQF6K7M65IdRtYWw+913SI36Busz5GNCmvadbA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzpcU64iVOkMh0c2hOw9+XybKAvcUcUOYOMwfW27Y/fx4Lyy5+Z
- mDDQ139XEzJrEwBsNywAsoZo+cwf74MjZpFE+H4lomwGZMN2usbxXQ4h
-X-Gm-Gg: ASbGnctwA5G9JTjFVWPw05l2ZtL+PuCFhySG7g9XOUffJp4loQcq7rVKX/hRPT9+8ff
- E7wjhvNoUtB6Rd7dtSgdeOefiVA+dtsShP2WpBmNczNWtSn3XVDCRFlKhf+uKXwP+gc1q4LcXcP
- B1Pfhqgn2nEa/ITgUNVjsiCHUIxgs4yNENs2ytHfAKb+KkUzrjnjHEd6U8n1iuSAn/4/Acs/JJ+
- tuCiefdCZfzAfHkBvuUgq7QYM3QfIzkqWl/TdB0tl8iNukcNu+PVEWaXUHh1TmORPQjtlQCBg6A
- oCPDCYbcPIBLFfyJQ77z+C4LhD7GLPx2SfNTJOb41aIF7KWZi2i1dnmG9Dw3/2eYP1ufXGyVYux
- HU/RJQHIxztxDnaynxf5MwKnR
-X-Google-Smtp-Source: AGHT+IGd8q7vYPk8tC8e4wXZEeiN7rexsxjv5S+Uzeguwh00QdTa0AZAe4a4z+mwvG8FjYaTfd9Kvw==
-X-Received: by 2002:a17:90a:da8d:b0:311:b6d2:4c36 with SMTP id
- 98e67ed59e1d1-31c4f5ad1e1mr10884033a91.26.1752375206071; 
- Sat, 12 Jul 2025 19:53:26 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ AJvYcCWvlJYYpxpJW7tjT9y7aoEWS2UJG97VnyupqDBWY75t2aXSco5dN8alJSvy6DpcFJrvPC59CecS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxKjUCSK4VXLYdcj93ihk8CucSXONSnzjVXApOovli/Gm2Behr0
+ oI2vmgbFR1+rAwiNLFK0Og+R9ylKHsRnxOWKfMPBUbaVDN9ktTw=
+X-Gm-Gg: ASbGncv832ArhzAJ/p9u2pB10U95uUHbNlKfF4/5xXKVel6mWCaqUFB0dLzbogvTYsz
+ qUFIMYuD1EGHbTteCx6GIU9gs1V/Rks5wjJhZEEnBptNJZOz08GVMoYv1GNmUXSlMSPW5ertxiK
+ 6ZEGEepXmeMIF4hgVO/S6mCGXziWj++OhXw5sxUvSFqRbpLp25FykC3T9XYh/ncyBbx9OSPijwe
+ OBz7crRoc24Wa530HpLMu5k4U+9Ns3Ae4W5qNSvLTTvY33GSQFg4Ssqbhh7zyMm5GPCq0peBF+j
+ vMtjJnngOFdTnTXB+YcS4OVBggdsnhTOKQnSHTqODR0kAZ7/
+X-Google-Smtp-Source: AGHT+IEL1SqJ5F06hbFN3Y1JvHG2PLyceL1Lc10guuRTd0YVFxZ2IuhOYNTle1a61WyixhDH669LQw==
+X-Received: by 2002:a05:622a:3d3:b0:472:1d00:1faa with SMTP id
+ d75a77b69052e-479775de243mr38040611cf.13.1744480451119; 
+ Sat, 12 Apr 2025 10:54:11 -0700 (PDT)
+Received: from ise-alpha.. ([2620:0:e00:550a:642:1aff:fee8:511b])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23de4286da3sm76345145ad.34.2025.07.12.19.53.24
+ d75a77b69052e-4796edc0e57sm43012951cf.65.2025.04.12.10.54.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 12 Jul 2025 19:53:25 -0700 (PDT)
-From: Rhys Lloyd <krakow20@gmail.com>
-To: dakr@kernel.org,
-	acourbot@nvidia.com
-Cc: airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, Rhys Lloyd <krakow20@gmail.com>
-Subject: [PATCH] gpu: nova-core: fix bounds check in PmuLookupTableEntry::new
-Date: Sat, 12 Jul 2025 19:51:08 -0700
-Message-ID: <20250713025108.9364-2-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
+ Sat, 12 Apr 2025 10:54:10 -0700 (PDT)
+From: Chenyuan Yang <chenyuan0y@gmail.com>
+To: lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ lumag@kernel.org, tzimmermann@suse.de, dianders@chromium.org,
+ harry.wentland@amd.com, u.kleine-koenig@baylibre.com, airlied@redhat.com,
+ bskeggs@redhat.com
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Chenyuan Yang <chenyuan0y@gmail.com>
+Subject: [PATCH] drm/nouveau: Fix null pointer dereference
+Date: Sat, 12 Apr 2025 12:53:56 -0500
+Message-Id: <20250412175356.3123901-1-chenyuan0y@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,38 +88,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-data is sliced from 2..6, but the bounds check data.len() < 5
-does not satisfy those bounds.
+The return value of drm_mode_duplicate() is assigned to mode,
+which will lead to a NULL pointer dereference on
+failure of drm_mode_duplicate(). Add a check to avoid npd.
 
-Fixes: 47c4846e4319 ("gpu: nova-core: vbios: Add support for FWSEC ucode extraction")
-
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+Signed-off-by: Chenyuan Yang <chenyuan0y@gmail.com>
+Fixes: 6ee738610f41 ("drm/nouveau: Add DRM driver for NVIDIA GPUs")
 ---
-Changes in v2:
-- Ensure commit description does not spill into commit message
-- Fix author to match SoB
-- Add "Fixes:" tag
-- Add base commit
+ drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
----
- drivers/gpu/nova-core/vbios.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 663fc50e8b66..5b5d9f38cbb3 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -901,7 +901,7 @@ struct PmuLookupTableEntry {
+diff --git a/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c b/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
+index fd2150e07e36..f39a7028933a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
++++ b/drivers/gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c
+@@ -229,6 +229,7 @@ static int ch7006_encoder_get_modes(struct drm_encoder *encoder,
+ {
+ 	struct ch7006_priv *priv = to_ch7006_priv(encoder);
+ 	const struct ch7006_mode *mode;
++	struct drm_display_mode *drm_mode;
+ 	int n = 0;
  
- impl PmuLookupTableEntry {
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 5 {
-+        if data.len() < 6 {
-             return Err(EINVAL);
-         }
+ 	for (mode = ch7006_modes; mode->mode.clock; mode++) {
+@@ -236,9 +237,11 @@ static int ch7006_encoder_get_modes(struct drm_encoder *encoder,
+ 		    ~mode->valid_norms & 1<<priv->norm)
+ 			continue;
  
-
-base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
+-		drm_mode_probed_add(connector,
+-				drm_mode_duplicate(encoder->dev, &mode->mode));
++		drm_mode = drm_mode_duplicate(encoder->dev, &mode->mode);
++		if (!drm_mode)
++			continue;
+ 
++		drm_mode_probed_add(connector, drm_mode);
+ 		n++;
+ 	}
+ 
 -- 
-2.50.1
+2.34.1
 
