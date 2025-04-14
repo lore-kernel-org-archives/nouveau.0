@@ -4,94 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F871C369B2
-	for <nouveau@archiver.kernel.org>; Fri, 11 Apr 2025 19:30:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE26FC369A2
+	for <nouveau@archiver.kernel.org>; Mon, 14 Apr 2025 04:16:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A8A10EC7C;
-	Fri, 11 Apr 2025 19:29:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80EDD10E46B;
+	Mon, 14 Apr 2025 04:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hptnRUTQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="E/US4XO/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C395D10EC6B;
- Fri, 11 Apr 2025 19:29:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5547E10E46B;
+ Mon, 14 Apr 2025 04:16:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1744399798; x=1775935798;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=c0XI+8dOnzwArZciGMA9WwX2edCFJFM1pt1w/ixtXz0=;
- b=hptnRUTQ8eHK3+eY1otd+Kup0ci21iTwmdn8Yuqst19d0aOrlt7SRFAo
- gewMkdj+VGntrrgEm9kO+8IICFYppJ9izs1BjSOLV5eMv9E3S7P/Qct1q
- x+sdpR3BQSDG1oIqucW9uYDNs87P1FwNSHOg00nvjEgZZJh8C+EM8RA6/
- GYPKGV3mZPDvea4AJlK3NDVGnuud1R3eOoLYbf7uQfa2OzXDW20bd//bh
- DATJmFmv9cQqqeFQDGPyOkjo085Gw1zGtCNHzzJlrJDGPEJCeP2XseH3f
- Wm19iv5IDiGEIixp5D6GcclcpezJSxu+RQZ0RX/8tOzrGvgAJl55DajM3 w==;
-X-CSE-ConnectionGUID: jrIjwRbDRCyKBdSg4ny5YQ==
-X-CSE-MsgGUID: 6IzDA/nERJiiv/HdhGo/MA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11401"; a="68451221"
-X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="68451221"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2025 12:29:56 -0700
-X-CSE-ConnectionGUID: +30Dfz/QSNe/45WhqasBXA==
-X-CSE-MsgGUID: bgVHdkQZRVyuqWH1+MmLKg==
+ t=1744604194; x=1776140194;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=TIAvfnBUUr7H0EKEqZIp/KomCSfEz6dDB2p+5GB1zBE=;
+ b=E/US4XO/RNgndb+CMSfQuqODRBu8m4jPVRyD1bjkp0rW/7sHrU2srWyM
+ Lqb/qHL6cqbsBM1kQFeprxgUa5UFpxpGmLE6ttXZj3H009iwERh2evHa7
+ 2xyUJbXi8hH/iSGf3lwmiBpNaM/2xNzwmncrr3PTIH+J5tP0wQXci2LNz
+ wWO/lJAWsFdfJle+a/F53EEMYa73cguhr9TJqxYV+W6OfpAmQwBMBr8WZ
+ Z0wNLHzYImULhzfFYgpdGkSeIZtavn9Fo55y/5aT/0HtnwUEVtm2AErea
+ qW422Dp7R+PYAjhSewgQ1hC18Oj2AK78GR8LWrLVls6ht6C3sZfS+1lh9 A==;
+X-CSE-ConnectionGUID: //HeQXZZSSGsF9+Fx0iDhQ==
+X-CSE-MsgGUID: 3Xsh3aG2R6mNuqN15zK7gg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11402"; a="45767890"
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="45767890"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2025 21:16:33 -0700
+X-CSE-ConnectionGUID: CU73WwFyQFWejgS+Z6mJJg==
+X-CSE-MsgGUID: 0RhhSKYcS6SsBzbJH/i8mA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.15,206,1739865600"; d="scan'208";a="134434869"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orviesa005.jf.intel.com with SMTP; 11 Apr 2025 12:29:43 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 11 Apr 2025 22:29:42 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
-	Alex Deucher <alexander.deucher@amd.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Inki Dae <inki.dae@samsung.com>,
-	Seung-Woo Kim <sw0312.kim@samsung.com>,
-	Kyungmin Park <kyungmin.park@samsung.com>,
-	Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
-	Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-	Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Dave Airlie <airlied@redhat.com>, Gerd Hoffmann <kraxel@redhat.com>,
-	Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Sandy Huang <hjc@rock-chips.com>,
-	=?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
-	Andy Yan <andy.yan@rock-chips.com>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	=?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
-	Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
-	Dmitry Osipenko <dmitry.osipenko@collabora.com>,
-	Gurchetan Singh <gurchetansingh@chromium.org>,
-	Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
-	amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-	freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
-	virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org,
-	linux-renesas-soc@vger.kernel.org, linux-tegra@vger.kernel.org,
-	Laurent@freedesktop.org, "Pinchart <la"@freedesktop.org
-Subject: [PATCH v2 04/19] drm: Pass the format info to .fb_create()
-Date: Fri, 11 Apr 2025 22:29:42 +0300
-Message-ID: <20250411192942.9705-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250410163218.15130-5-ville.syrjala@linux.intel.com>
-References: <20250410163218.15130-5-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.15,211,1739865600"; d="scan'208";a="134680475"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2025 21:16:33 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Sun, 13 Apr 2025 21:16:32 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14 via Frontend Transport; Sun, 13 Apr 2025 21:16:32 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.44; Sun, 13 Apr 2025 21:16:32 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E43WmvaPDy8QlwUDCnomi8+MrMNx7Z+sTOumo7KfIhh6iiAlLDovmLV4xkjXOFnvlKURUDLnhBAOpkyc2+nwbe71igzBGCQe8RAYd09nX9cbPPVpl0fVBSsxGkC0yv7KH7I9brtwW9pSpfK/ocDezg4hYBKek4o/l7C8kk0h4JP8XfBhGX5DHgWh8WZO2uka6KBC5edEU+mjPsqS2pHnTe4rcFqQAp3/VpO/XFs/Ex0T9n6X/a3ToGxccDYq8UgyZQNNUo/9hX+AO7ndelJA5Jyg1J/YBT3c5NFdyNPQu2ie8vmG4tO22LwxFvVaRaf9v4vLhSj54mmVz9odkP+cqw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JG7MtbbUwxHlfmYPgkio88xQu7IKvZ3Q4vDDpmti8V0=;
+ b=nqWMqlKFhXhYaSAeYh+Rt+GuxXu78ZVX1Ln9tX2uB0Flrcign+jRe7Hp4k58+RiBR2rt1fyeObrMqZBQPTt9C8jkcrYRghNA75mfuFYChj0qAsEKZaFi1itDD8360LdWrvNow7+8CDkqnRVUX5z5bdmrax/D/g6hHnXYTvTEGKdw8jgxepJi2VlhGhpBvDTr20r+zN6l15Syv2Ws6yYx3foU8B/fPB2D1iCEVcLbEKKXkor9u3+8ZAjyFNI1KolBHQ6+rX+ZrV1qYj4IFazvx70rFH+druG/uQnHADfT2C4Gz5g8CcKxUkedo3xPoGOm2ppGbNrSLxB5qzI7nGbh6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com (2603:10b6:806:266::21)
+ by MW4PR11MB6958.namprd11.prod.outlook.com (2603:10b6:303:229::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.27; Mon, 14 Apr
+ 2025 04:16:29 +0000
+Received: from SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527]) by SN7PR11MB6750.namprd11.prod.outlook.com
+ ([fe80::9570:169d:a0d5:527%4]) with mapi id 15.20.8606.033; Mon, 14 Apr 2025
+ 04:16:29 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH 07/13] drm/dp: Change argument type for
+ drm_edp_backlight_set_level
+Thread-Topic: [PATCH 07/13] drm/dp: Change argument type for
+ drm_edp_backlight_set_level
+Thread-Index: AQHbqppO8O3d+gEClUWbDwvcbYCJwbOeRq2AgARL2aA=
+Date: Mon, 14 Apr 2025 04:16:29 +0000
+Message-ID: <SN7PR11MB67505ADDA85EC7B16287F435E3B32@SN7PR11MB6750.namprd11.prod.outlook.com>
+References: <20250411042909.2626807-1-suraj.kandpal@intel.com>
+ <20250411042909.2626807-8-suraj.kandpal@intel.com> <87zfgnt22g.fsf@intel.com>
+In-Reply-To: <87zfgnt22g.fsf@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SN7PR11MB6750:EE_|MW4PR11MB6958:EE_
+x-ms-office365-filtering-correlation-id: ebe125e9-eb44-41dd-ee0a-08dd7b0b219d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?us-ascii?Q?C5g4ITjQaplNXchpqRWGnCd+kRwT/D7Xq8n/yPLPwpxBqeu1DZk4SytAWEz0?=
+ =?us-ascii?Q?zRHxVhYql8y5le02jn2fwniEYr2DNuuzIQhuhUWcXqnU0DmIEtkgH+RwhbVL?=
+ =?us-ascii?Q?j56hqq7JTSOBYFqaB85a/LkW8bU+YLU0lL/LhbUNplXRm+cKX6COVHZz6bIh?=
+ =?us-ascii?Q?1Tqi2KKNY9uDbZWoiAh2PUTHGscnpSN9oKZDpIH1f9uozk3QOBXlmq/sS8mp?=
+ =?us-ascii?Q?Oq7HaOSDEd+ZPz2OoPp0Z9iz/aXqfBbuVevYyoR757gx8lHh3FDm4fg6rA79?=
+ =?us-ascii?Q?ypfVNHQ7lKJM4XFdesnd8ZmueIaAEskgnV3Np1flSCYyqecD0NqEOBHte73M?=
+ =?us-ascii?Q?nt4cM3dxlYu2q3pE+cQ8tyV0J4xXbQederiL2594nVBnlAbqofI3p2yfDhcA?=
+ =?us-ascii?Q?rJdM1cb6OZFVYR7HOfpsOTuZ29KTMlf50xi6lsi3FlbDnG0YsGYki37VbK3D?=
+ =?us-ascii?Q?JjauwydP6xOgkJqJIYu8uQVVTp+oeH8K3DGYgAZ59BSnUHAXh/2oDmbSFKR9?=
+ =?us-ascii?Q?RcdcJEwLDXNEwspfpdfQXvGZhxDtCjbBZnfwskL64TWx7JuXItjSfiE68p/f?=
+ =?us-ascii?Q?BPanH8VroV0G7muGiH4KsnoqIV4tQKFtjINzgcpOaqLVZuWP4U/7sthMRlJj?=
+ =?us-ascii?Q?KT85iXDKhdpan70A5nS6f1GCgMVQ8Hwt/7dGjJETEFWkJ3sBTwmNmZ5W5Tm2?=
+ =?us-ascii?Q?gKwUBSBMzX76Kx+KKnMvbn+tw9ljrRNM6LhEwniqrVqbGwgxhbDNkwy37lRz?=
+ =?us-ascii?Q?KzcRF4rKSG1qZ0xFNQV8fSCLWhkxogIpGq7l1ZGBz5i1wcklC458jSmzlaBK?=
+ =?us-ascii?Q?QcwhsC94Zt6vR5xnoUEjNpeMPxTkpb+VZXqwEkVMx0NHmtvMaxAnUqM9b6X9?=
+ =?us-ascii?Q?9xkmsxr1LlpcGXHNZURSSUC8pkug2slgmn+0mp/MyahFQ86neX5d1uZlU9ox?=
+ =?us-ascii?Q?wANWsWZdylCLJBfz3GkWeCJ0Lc0sjT4VlhRzgpxkmtYlPWv5fRBy8NFDEbsh?=
+ =?us-ascii?Q?irXlpXybGApgHHWnlzhMwNR1DDmi5u5+JlhODHTelptDQNCAyQDukk/Lfb9a?=
+ =?us-ascii?Q?XE/yEJIn/WSCJ01cIEX/9Gl7dohOD3kASc9oE1eGySnbLxrnKSjbJ6IH0ZJK?=
+ =?us-ascii?Q?xCpSZSGATa53Ls4GNaUgPdqrbNshp8Sr1FPLZ6HexDNQzH/X5e5FukF7wyQy?=
+ =?us-ascii?Q?gfMMglMrCKz8KAZYMpKlR3KJ2wLnGOAvhsvW9mkGupMmaUfc56Zon5cKlGQp?=
+ =?us-ascii?Q?DhVZ1UthmRYd5z2GyqQdGnMJJPHFgNUY5wettHYTMfye2OzeKH5uBi+S1TKT?=
+ =?us-ascii?Q?mGpt/+6VfCRlIrM8GSEmd3MQvDF5IRcphR7eN+Q2OMK5XEj1ZLaf6eCqQT3R?=
+ =?us-ascii?Q?zbd/JMHRjHW3VtCnF7DyTd6zVndgqOsSpEjrtSqV7XiFDZ9nHzg3C9AKbsxD?=
+ =?us-ascii?Q?P4vgIxFpylZmaAsCTj94wK1W0UlXV9XcpBanoFmFXbj7FSRmjtidBA=3D=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB6750.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700018); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?EWlZjAHiwvpQoQ2siAefLRRPZ4X+CAf+30XBImoczw2tbLvi+TtnOtpLVu18?=
+ =?us-ascii?Q?tdD38HgJyLOzTXju70Nw6DtuSJBy2jPBEl6pgQs4H2UCtAMlGTMGKmy40bjG?=
+ =?us-ascii?Q?zZFRMLbI10bFc/xkysS3QY+EBN3Mva139FC17+YDA2DIGDUxwwXHLRVLaCJr?=
+ =?us-ascii?Q?vu+5j5lvvmWYWzbOKlXWi2mwjIaJGCpzolYlPc+NstnLy3z6EFzetF1F5KnE?=
+ =?us-ascii?Q?LEfuamsq9twiQGyP+0tWlX7kqu/ue0ma+9jzx6KDyzpIgyfFm5Ad/ZZI/3Aw?=
+ =?us-ascii?Q?NBdYIzZhS9DX9SDDACsm0DyFK1xM2y2i7jIDNOPJuWhAtxWDFd/uPUCLFOvo?=
+ =?us-ascii?Q?DYQq2wiZC9OzAkBkjhx76PTAyA2KLd5Nxxhd84ctPVyzfcD5tBkHlf+X/YMX?=
+ =?us-ascii?Q?v/auWINAIqvbYQ7NWJsmbgNhbjjYSBI8pilntCC+fDTtrUbnvRJT8Qs73r+J?=
+ =?us-ascii?Q?lX4eIZ5gbUEBqweJldZ8wFZUKwr9P+AFlg+B1OFGc706NAFARGN33riCRds+?=
+ =?us-ascii?Q?iXxK4pGjAwK5cW4sZHre4g+nAi90oFCtKqQXxXezZrXdMNLFt1By/oBO9PJI?=
+ =?us-ascii?Q?Wzf+rb2NointvoxYxWQOSNqXZZ1vdDrkeNXYSJYAGrpLlgMMBpjs1vSKzrnw?=
+ =?us-ascii?Q?1gbHnoP1NAgbh2g8AEwoLQf3VippDFjfGXBSVp8pqZx8BUp15hUs8KBTozdr?=
+ =?us-ascii?Q?ky4BFBHTP8h2UDBgcykbeZm8JTPSDkLZMkCJsxdOsXrlRhcbFM7h7/3YndEm?=
+ =?us-ascii?Q?TFBczcaPxCU3b7SAnPwOXdmB6GP4a8ySq0mzuzfPe3XOadAIbr092i4DxI9R?=
+ =?us-ascii?Q?6Qsa+cttq4+ePXl7WMhbFGf1wduq4D3cT0RrPgteLP/zb7FoNue9CL9B6cCx?=
+ =?us-ascii?Q?d8yBz5sAOPBh+ihRd0mNeH8ydJL9WwFX+1On+BqsxbqFJqllSzQetJnurnjW?=
+ =?us-ascii?Q?+pn/9xAATz0rT0TQeAOTjO6oWv1+aH1GAGfGNERiyhHxeYIi/9KS43ruqxDs?=
+ =?us-ascii?Q?OcCuVm+D+nUb/30jul10+MbFE8g0ZxG59k8NcBwA00N1+5L477vU1BHFpHeK?=
+ =?us-ascii?Q?68WGI6HZ+BeGIZWM/6yDNrdln8BKPg3gZiw7ndCDlOhp+pzjm6T3+g0Yv1EA?=
+ =?us-ascii?Q?2tC/uMOXU98V0TxrVIJgQgTOBjDpdHYyM+1QH+J0OxqkWmeYtIXx0flS/ctu?=
+ =?us-ascii?Q?pF3lepsmNmvP8TpzXCiKtTdcFyyCF6T2XkEYZ5kIEJZtr0Z+UOu2TERA3Fn2?=
+ =?us-ascii?Q?oF0VmO+cQUbfRIXLLN7AhwdtBUvqrWGEYjurPXNB27aNzukw8bXEwT17IYpK?=
+ =?us-ascii?Q?0/lrgIbfib1XgBgedTAZTZISoUoBBtXBJRRoWdVkEYBvgsOiGN61dBxHGfZ9?=
+ =?us-ascii?Q?P+kdHLS01v9AkwA0DN2981GVfHaRxybzvBEI4jL/KRc3AdcUdy8Dzaf4AdP8?=
+ =?us-ascii?Q?VGFvXnvnfyey73vUu8xClrBeISVb5U66Gq2X5Ad3UJ682bZ7Ul6BGjeSmEFP?=
+ =?us-ascii?Q?JuPScPeDC+aGoqwdtMCodEn13FAM9m9Z9wBg2az5URQIX0xdXPZBlgkdnKpT?=
+ =?us-ascii?Q?F21EuQuROAu2OS2DKFNWyh81hXL8PJq2dhHFiSHZ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6750.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ebe125e9-eb44-41dd-ee0a-08dd7b0b219d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Apr 2025 04:16:29.5243 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6ia99A/aiGsf5kjPp9RZbsRIzcMQ2e7F8vsE1tYMugp9BspT6bu30VdxNlJMZjBwUonPipYY8Uaq44iwftPSVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6958
+X-OriginatorOrg: intel.com
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,824 +185,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pass along the format information from the top to .fb_create()
-so that we can avoid redundant (and somewhat expensive) lookups
-in the drivers.
 
-Done with cocci (with some manual fixups):
-@@
-identifier func =~ ".*create.*";
-identifier dev, file, mode_cmd;
-@@
-struct drm_framebuffer *func(
-       struct drm_device *dev,
-       struct drm_file *file,
-+      const struct drm_format_info *info,
-       const struct drm_mode_fb_cmd2 *mode_cmd)
-{
-...
-(
-- const struct drm_format_info *info = drm_get_format_info(...);
-|
-- const struct drm_format_info *info;
-...
-- info = drm_get_format_info(...);
-)
-<...
-- if (!info)
--    return ...;
-...>
-}
+> -----Original Message-----
+> From: Jani Nikula <jani.nikula@linux.intel.com>
+> Sent: Friday, April 11, 2025 4:09 PM
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; nouveau@lists.freedesktop.o=
+rg;
+> dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; intel-
+> gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> Subject: Re: [PATCH 07/13] drm/dp: Change argument type for
+> drm_edp_backlight_set_level
+>=20
+> On Fri, 11 Apr 2025, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> > Use u32 for level variable as one may need to pass value for
+> > DP_EDP_PANEL_TARGET_LUMINANCE_VALUE.
+> >
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/display/drm_dp_helper.c | 6 +++---
+> >  include/drm/display/drm_dp_helper.h     | 2 +-
+> >  2 files changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/display/drm_dp_helper.c
+> > b/drivers/gpu/drm/display/drm_dp_helper.c
+> > index bb1242a1bf6b..895ed4a22fc3 100644
+> > --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> > @@ -3933,7 +3933,7 @@
+> EXPORT_SYMBOL(drm_dp_pcon_convert_rgb_to_ycbcr);
+> >   * Returns: %0 on success, negative error code on failure
+> >   */
+> >  int drm_edp_backlight_set_level(struct drm_dp_aux *aux, const struct
+> drm_edp_backlight_info *bl,
+> > -				u16 level)
+> > +				u32 level)
+> >  {
+> >  	int ret;
+> >  	u8 buf[2] =3D { 0 };
+> > @@ -4047,7 +4047,7 @@ int drm_edp_backlight_enable(struct drm_dp_aux
+> *aux, const struct drm_edp_backli
+> >  		return ret < 0 ? ret : -EIO;
+> >  	}
+> >
+> > -	ret =3D drm_edp_backlight_set_level(aux, bl, level);
+> > +	ret =3D drm_edp_backlight_set_level(aux, bl, (u32)level);
+>=20
+> What difference do you think the cast makes?
 
-@@
-identifier func =~ ".*create.*";
-identifier dev, file, mode_cmd;
-@@
-struct drm_framebuffer *func(
-       struct drm_device *dev,
-       struct drm_file *file,
-+      const struct drm_format_info *info,
-       const struct drm_mode_fb_cmd2 *mode_cmd)
-{
-...
-}
+You are right this is not needed the var should be automatically be promote=
+d will fix this here
+And in another patch where I have done the same mistake.
 
-@find@
-identifier fb_create_func =~ ".*create.*";
-identifier dev, file, mode_cmd;
-@@
-struct drm_framebuffer *fb_create_func(
-       struct drm_device *dev,
-       struct drm_file *file,
-+      const struct drm_format_info *info,
-       const struct drm_mode_fb_cmd2 *mode_cmd);
+Regards,
+Suraj Kandpal
 
-@@
-identifier find.fb_create_func;
-expression dev, file, mode_cmd;
-@@
-fb_create_func(dev, file
-+	       ,info
-	       ,mode_cmd)
-
-@@
-expression dev, file, mode_cmd;
-@@
-drm_gem_fb_create(dev, file
-+	       ,info
-	       ,mode_cmd)
-
-@@
-expression dev, file, mode_cmd;
-@@
-drm_gem_fb_create_with_dirty(dev, file
-+	       ,info
-	       ,mode_cmd)
-
-@@
-expression dev, file_priv, mode_cmd;
-identifier info, fb;
-@@
-info = drm_get_format_info(...);
-...
-fb = dev->mode_config.funcs->fb_create(dev, file_priv
-+                                      ,info
-                                       ,mode_cmd);
-
-@@
-identifier dev, file_priv, mode_cmd;
-@@
-struct drm_mode_config_funcs {
-...
-struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
-                                     struct drm_file *file_priv,
-+                                     const struct drm_format_info *info,
-                                     const struct drm_mode_fb_cmd2 *mode_cmd);
-...
-};
-
-v2: Fix kernel docs (Laurent)
-    Fix commit msg (Geert)
-
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Russell King <linux@armlinux.org.uk>
-Cc: Inki Dae <inki.dae@samsung.com>
-Cc: Seung-Woo Kim <sw0312.kim@samsung.com>
-Cc: Kyungmin Park <kyungmin.park@samsung.com>
-Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Rob Clark <robdclark@gmail.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: Dmitry Baryshkov <lumag@kernel.org>
-Cc: Sean Paul <sean@poorly.run>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>
-Cc: Marek Vasut <marex@denx.de>
-Cc: Stefan Agner <stefan@agner.ch>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Dave Airlie <airlied@redhat.com>
-Cc: Gerd Hoffmann <kraxel@redhat.com>
-Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Sandy Huang <hjc@rock-chips.com>
-Cc: "Heiko Stübner" <heiko@sntech.de>
-Cc: Andy Yan <andy.yan@rock-chips.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: "Maíra Canal" <mcanal@igalia.com>
-Cc: Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc: Gurchetan Singh <gurchetansingh@chromium.org>
-Cc: Chia-I Wu <olvaffe@gmail.com>
-Cc: Zack Rusin <zack.rusin@broadcom.com>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: linux-arm-msm@vger.kernel.org
-Cc: freedreno@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: virtualization@lists.linux.dev
-Cc: spice-devel@lists.freedesktop.org
-Cc: linux-renesas-soc@vger.kernel.org
-Cc: linux-tegra@vger.kernel.org
-Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.c            |  1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_display.h            |  1 +
- .../gpu/drm/arm/display/komeda/komeda_framebuffer.c    |  1 +
- .../gpu/drm/arm/display/komeda/komeda_framebuffer.h    |  1 +
- drivers/gpu/drm/arm/malidp_drv.c                       |  3 ++-
- drivers/gpu/drm/armada/armada_fb.c                     |  6 ++----
- drivers/gpu/drm/armada/armada_fb.h                     |  3 ++-
- drivers/gpu/drm/drm_framebuffer.c                      |  2 +-
- drivers/gpu/drm/drm_gem_framebuffer_helper.c           |  4 ++++
- drivers/gpu/drm/exynos/exynos_drm_fb.c                 |  4 +---
- drivers/gpu/drm/gma500/framebuffer.c                   |  1 +
- drivers/gpu/drm/i915/display/intel_fb.c                |  1 +
- drivers/gpu/drm/i915/display/intel_fb.h                |  1 +
- drivers/gpu/drm/ingenic/ingenic-drm-drv.c              |  5 +++--
- drivers/gpu/drm/mediatek/mtk_drm_drv.c                 |  7 ++-----
- drivers/gpu/drm/msm/msm_drv.h                          |  3 ++-
- drivers/gpu/drm/msm/msm_fb.c                           |  6 ++----
- drivers/gpu/drm/mxsfb/mxsfb_drv.c                      | 10 ++--------
- drivers/gpu/drm/nouveau/nouveau_display.c              |  1 +
- drivers/gpu/drm/nouveau/nouveau_display.h              |  1 +
- drivers/gpu/drm/omapdrm/omap_fb.c                      |  6 ++----
- drivers/gpu/drm/omapdrm/omap_fb.h                      |  3 ++-
- drivers/gpu/drm/qxl/qxl_display.c                      |  1 +
- drivers/gpu/drm/radeon/radeon_display.c                |  1 +
- drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c          |  3 ++-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c           |  3 ++-
- drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c       |  3 ++-
- drivers/gpu/drm/rockchip/rockchip_drm_fb.c             |  7 +------
- drivers/gpu/drm/tegra/drm.h                            |  1 +
- drivers/gpu/drm/tegra/fb.c                             |  4 +---
- drivers/gpu/drm/tests/drm_framebuffer_test.c           |  1 +
- drivers/gpu/drm/vc4/vc4_kms.c                          |  3 ++-
- drivers/gpu/drm/virtio/virtgpu_display.c               |  1 +
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                    |  1 +
- drivers/gpu/drm/xen/xen_drm_front_kms.c                |  1 +
- drivers/gpu/drm/xlnx/zynqmp_kms.c                      |  3 ++-
- include/drm/drm_gem_framebuffer_helper.h               |  3 +++
- include/drm/drm_mode_config.h                          |  1 +
- 38 files changed, 59 insertions(+), 49 deletions(-)
-
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-index 35c778426a7c..10c57ded0e3e 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.c
-@@ -1297,6 +1297,7 @@ static int amdgpu_display_framebuffer_init(struct drm_device *dev,
- struct drm_framebuffer *
- amdgpu_display_user_framebuffer_create(struct drm_device *dev,
- 				       struct drm_file *file_priv,
-+				       const struct drm_format_info *info,
- 				       const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct amdgpu_framebuffer *amdgpu_fb;
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
-index dfa0d642ac16..930c171473b4 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_display.h
-@@ -44,6 +44,7 @@ uint32_t amdgpu_display_supported_domains(struct amdgpu_device *adev,
- struct drm_framebuffer *
- amdgpu_display_user_framebuffer_create(struct drm_device *dev,
- 				       struct drm_file *file_priv,
-+				       const struct drm_format_info *info,
- 				       const struct drm_mode_fb_cmd2 *mode_cmd);
- const struct drm_format_info *
- amdgpu_lookup_format_info(u32 format, uint64_t modifier);
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c b/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c
-index df5da5a44755..29b05482f713 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.c
-@@ -157,6 +157,7 @@ komeda_fb_none_afbc_size_check(struct komeda_dev *mdev, struct komeda_fb *kfb,
- 
- struct drm_framebuffer *
- komeda_fb_create(struct drm_device *dev, struct drm_file *file,
-+		 const struct drm_format_info *info,
- 		 const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct komeda_dev *mdev = dev->dev_private;
-diff --git a/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.h b/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.h
-index c61ca98a3a63..02b2b8ae482a 100644
---- a/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.h
-+++ b/drivers/gpu/drm/arm/display/komeda/komeda_framebuffer.h
-@@ -37,6 +37,7 @@ struct komeda_fb {
- 
- struct drm_framebuffer *
- komeda_fb_create(struct drm_device *dev, struct drm_file *file,
-+		const struct drm_format_info *info,
- 		const struct drm_mode_fb_cmd2 *mode_cmd);
- int komeda_fb_check_src_coords(const struct komeda_fb *kfb,
- 			       u32 src_x, u32 src_y, u32 src_w, u32 src_h);
-diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-index 558e44a7e627..8b920566f2e8 100644
---- a/drivers/gpu/drm/arm/malidp_drv.c
-+++ b/drivers/gpu/drm/arm/malidp_drv.c
-@@ -377,6 +377,7 @@ malidp_verify_afbc_framebuffer(struct drm_device *dev, struct drm_file *file,
- 
- static struct drm_framebuffer *
- malidp_fb_create(struct drm_device *dev, struct drm_file *file,
-+		 const struct drm_format_info *info,
- 		 const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	if (mode_cmd->modifier[0]) {
-@@ -384,7 +385,7 @@ malidp_fb_create(struct drm_device *dev, struct drm_file *file,
- 			return ERR_PTR(-EINVAL);
- 	}
- 
--	return drm_gem_fb_create(dev, file, mode_cmd);
-+	return drm_gem_fb_create(dev, file, info, mode_cmd);
- }
- 
- static const struct drm_mode_config_funcs malidp_mode_config_funcs = {
-diff --git a/drivers/gpu/drm/armada/armada_fb.c b/drivers/gpu/drm/armada/armada_fb.c
-index 85fc2cb50544..597720e229c2 100644
---- a/drivers/gpu/drm/armada/armada_fb.c
-+++ b/drivers/gpu/drm/armada/armada_fb.c
-@@ -84,11 +84,9 @@ struct armada_framebuffer *armada_framebuffer_create(struct drm_device *dev,
- }
- 
- struct drm_framebuffer *armada_fb_create(struct drm_device *dev,
--	struct drm_file *dfile, const struct drm_mode_fb_cmd2 *mode)
-+	struct drm_file *dfile, const struct drm_format_info *info,
-+	const struct drm_mode_fb_cmd2 *mode)
- {
--	const struct drm_format_info *info = drm_get_format_info(dev,
--								 mode->pixel_format,
--								 mode->modifier[0]);
- 	struct armada_gem_object *obj;
- 	struct armada_framebuffer *dfb;
- 	int ret;
-diff --git a/drivers/gpu/drm/armada/armada_fb.h b/drivers/gpu/drm/armada/armada_fb.h
-index c5bc53d7e0c4..41ba76dd80d6 100644
---- a/drivers/gpu/drm/armada/armada_fb.h
-+++ b/drivers/gpu/drm/armada/armada_fb.h
-@@ -19,5 +19,6 @@ struct armada_framebuffer {
- struct armada_framebuffer *armada_framebuffer_create(struct drm_device *,
- 	const struct drm_mode_fb_cmd2 *, struct armada_gem_object *);
- struct drm_framebuffer *armada_fb_create(struct drm_device *dev,
--	struct drm_file *dfile, const struct drm_mode_fb_cmd2 *mode);
-+	struct drm_file *dfile, const struct drm_format_info *info,
-+	const struct drm_mode_fb_cmd2 *mode);
- #endif
-diff --git a/drivers/gpu/drm/drm_framebuffer.c b/drivers/gpu/drm/drm_framebuffer.c
-index ae09ef6977b2..61a7213f2389 100644
---- a/drivers/gpu/drm/drm_framebuffer.c
-+++ b/drivers/gpu/drm/drm_framebuffer.c
-@@ -302,7 +302,7 @@ drm_internal_framebuffer_create(struct drm_device *dev,
- 	if (ret)
- 		return ERR_PTR(ret);
- 
--	fb = dev->mode_config.funcs->fb_create(dev, file_priv, r);
-+	fb = dev->mode_config.funcs->fb_create(dev, file_priv, info, r);
- 	if (IS_ERR(fb)) {
- 		drm_dbg_kms(dev, "could not create framebuffer\n");
- 		return fb;
-diff --git a/drivers/gpu/drm/drm_gem_framebuffer_helper.c b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-index 8f1213ea0e16..56ba0c967bd7 100644
---- a/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-+++ b/drivers/gpu/drm/drm_gem_framebuffer_helper.c
-@@ -263,6 +263,7 @@ static const struct drm_framebuffer_funcs drm_gem_fb_funcs = {
-  *                       &drm_mode_config_funcs.fb_create callback
-  * @dev: DRM device
-  * @file: DRM file that holds the GEM handle(s) backing the framebuffer
-+ * @info: pixel format information
-  * @mode_cmd: Metadata from the userspace framebuffer creation request
-  *
-  * This function creates a new framebuffer object described by
-@@ -282,6 +283,7 @@ static const struct drm_framebuffer_funcs drm_gem_fb_funcs = {
-  */
- struct drm_framebuffer *
- drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
-+		  const struct drm_format_info *info,
- 		  const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
-@@ -300,6 +302,7 @@ static const struct drm_framebuffer_funcs drm_gem_fb_funcs_dirtyfb = {
-  *                       &drm_mode_config_funcs.fb_create callback
-  * @dev: DRM device
-  * @file: DRM file that holds the GEM handle(s) backing the framebuffer
-+ * @info: pixel format information
-  * @mode_cmd: Metadata from the userspace framebuffer creation request
-  *
-  * This function creates a new framebuffer object described by
-@@ -320,6 +323,7 @@ static const struct drm_framebuffer_funcs drm_gem_fb_funcs_dirtyfb = {
-  */
- struct drm_framebuffer *
- drm_gem_fb_create_with_dirty(struct drm_device *dev, struct drm_file *file,
-+			     const struct drm_format_info *info,
- 			     const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	return drm_gem_fb_create_with_funcs(dev, file, mode_cmd,
-diff --git a/drivers/gpu/drm/exynos/exynos_drm_fb.c b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-index bcf7b534d1f7..9ae526825726 100644
---- a/drivers/gpu/drm/exynos/exynos_drm_fb.c
-+++ b/drivers/gpu/drm/exynos/exynos_drm_fb.c
-@@ -94,11 +94,9 @@ exynos_drm_framebuffer_init(struct drm_device *dev,
- 
- static struct drm_framebuffer *
- exynos_user_fb_create(struct drm_device *dev, struct drm_file *file_priv,
-+		      const struct drm_format_info *info,
- 		      const struct drm_mode_fb_cmd2 *mode_cmd)
- {
--	const struct drm_format_info *info = drm_get_format_info(dev,
--								 mode_cmd->pixel_format,
--								 mode_cmd->modifier[0]);
- 	struct exynos_drm_gem *exynos_gem[MAX_FB_BUFFER];
- 	struct drm_framebuffer *fb;
- 	int i;
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index c82e623a2071..a4a18ec2dd56 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -97,6 +97,7 @@ struct drm_framebuffer *psb_framebuffer_create(struct drm_device *dev,
-  */
- static struct drm_framebuffer *psb_user_framebuffer_create
- 			(struct drm_device *dev, struct drm_file *filp,
-+			 const struct drm_format_info *info,
- 			 const struct drm_mode_fb_cmd2 *cmd)
- {
- 	struct drm_gem_object *obj;
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 34a29488311f..0dffe40adb22 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2323,6 +2323,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- struct drm_framebuffer *
- intel_user_framebuffer_create(struct drm_device *dev,
- 			      struct drm_file *filp,
-+			      const struct drm_format_info *info,
- 			      const struct drm_mode_fb_cmd2 *user_mode_cmd)
- {
- 	struct drm_framebuffer *fb;
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-index 7d1267fbeee2..00181c4a67dc 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb.h
-@@ -109,6 +109,7 @@ intel_framebuffer_create(struct drm_gem_object *obj,
- struct drm_framebuffer *
- intel_user_framebuffer_create(struct drm_device *dev,
- 			      struct drm_file *filp,
-+			      const struct drm_format_info *info,
- 			      const struct drm_mode_fb_cmd2 *user_mode_cmd);
- 
- bool intel_fb_modifier_uses_dpt(struct intel_display *display, u64 modifier);
-diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-index f851e9ffdb28..9db1ceaed518 100644
---- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-+++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
-@@ -901,14 +901,15 @@ static void ingenic_drm_disable_vblank(struct drm_crtc *crtc)
- 
- static struct drm_framebuffer *
- ingenic_drm_gem_fb_create(struct drm_device *drm, struct drm_file *file,
-+			  const struct drm_format_info *info,
- 			  const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct ingenic_drm *priv = drm_device_get_priv(drm);
- 
- 	if (priv->soc_info->map_noncoherent)
--		return drm_gem_fb_create_with_dirty(drm, file, mode_cmd);
-+		return drm_gem_fb_create_with_dirty(drm, file, info, mode_cmd);
- 
--	return drm_gem_fb_create(drm, file, mode_cmd);
-+	return drm_gem_fb_create(drm, file, info, mode_cmd);
- }
- 
- static struct drm_gem_object *
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 64521577b05f..76fd10afe467 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -43,16 +43,13 @@ static const struct drm_mode_config_helper_funcs mtk_drm_mode_config_helpers = {
- static struct drm_framebuffer *
- mtk_drm_mode_fb_create(struct drm_device *dev,
- 		       struct drm_file *file,
-+		       const struct drm_format_info *info,
- 		       const struct drm_mode_fb_cmd2 *cmd)
- {
--	const struct drm_format_info *info = drm_get_format_info(dev,
--								 cmd->pixel_format,
--								 cmd->modifier[0]);
--
- 	if (info->num_planes != 1)
- 		return ERR_PTR(-EINVAL);
- 
--	return drm_gem_fb_create(dev, file, cmd);
-+	return drm_gem_fb_create(dev, file, info, cmd);
- }
- 
- static const struct drm_mode_config_funcs mtk_drm_mode_config_funcs = {
-diff --git a/drivers/gpu/drm/msm/msm_drv.h b/drivers/gpu/drm/msm/msm_drv.h
-index a65077855201..ba82fa756e57 100644
---- a/drivers/gpu/drm/msm/msm_drv.h
-+++ b/drivers/gpu/drm/msm/msm_drv.h
-@@ -271,7 +271,8 @@ uint32_t msm_framebuffer_iova(struct drm_framebuffer *fb,
- struct drm_gem_object *msm_framebuffer_bo(struct drm_framebuffer *fb, int plane);
- const struct msm_format *msm_framebuffer_format(struct drm_framebuffer *fb);
- struct drm_framebuffer *msm_framebuffer_create(struct drm_device *dev,
--		struct drm_file *file, const struct drm_mode_fb_cmd2 *mode_cmd);
-+		struct drm_file *file, const struct drm_format_info *info,
-+		const struct drm_mode_fb_cmd2 *mode_cmd);
- struct drm_framebuffer * msm_alloc_stolen_fb(struct drm_device *dev,
- 		int w, int h, int p, uint32_t format);
- 
-diff --git a/drivers/gpu/drm/msm/msm_fb.c b/drivers/gpu/drm/msm/msm_fb.c
-index df2f85c44d55..4aef51cef3d5 100644
---- a/drivers/gpu/drm/msm/msm_fb.c
-+++ b/drivers/gpu/drm/msm/msm_fb.c
-@@ -134,11 +134,9 @@ const struct msm_format *msm_framebuffer_format(struct drm_framebuffer *fb)
- }
- 
- struct drm_framebuffer *msm_framebuffer_create(struct drm_device *dev,
--		struct drm_file *file, const struct drm_mode_fb_cmd2 *mode_cmd)
-+		struct drm_file *file, const struct drm_format_info *info,
-+		const struct drm_mode_fb_cmd2 *mode_cmd)
- {
--	const struct drm_format_info *info = drm_get_format_info(dev,
--								 mode_cmd->pixel_format,
--								 mode_cmd->modifier[0]);
- 	struct drm_gem_object *bos[4] = {0};
- 	struct drm_framebuffer *fb;
- 	int ret, i, n = info->num_planes;
-diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-index 09329af9b01e..0b756da2fec2 100644
---- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-+++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-@@ -91,21 +91,15 @@ void mxsfb_disable_axi_clk(struct mxsfb_drm_private *mxsfb)
- 
- static struct drm_framebuffer *
- mxsfb_fb_create(struct drm_device *dev, struct drm_file *file_priv,
-+		const struct drm_format_info *info,
- 		const struct drm_mode_fb_cmd2 *mode_cmd)
- {
--	const struct drm_format_info *info;
--
--	info = drm_get_format_info(dev, mode_cmd->pixel_format,
--				   mode_cmd->modifier[0]);
--	if (!info)
--		return ERR_PTR(-EINVAL);
--
- 	if (mode_cmd->width * info->cpp[0] != mode_cmd->pitches[0]) {
- 		dev_dbg(dev->dev, "Invalid pitch: fb width must match pitch\n");
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	return drm_gem_fb_create(dev, file_priv, mode_cmd);
-+	return drm_gem_fb_create(dev, file_priv, info, mode_cmd);
- }
- 
- static const struct drm_mode_config_funcs mxsfb_mode_config_funcs = {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.c b/drivers/gpu/drm/nouveau/nouveau_display.c
-index a54c3f132c5c..3df388784bd3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.c
-@@ -333,6 +333,7 @@ nouveau_framebuffer_new(struct drm_device *dev,
- struct drm_framebuffer *
- nouveau_user_framebuffer_create(struct drm_device *dev,
- 				struct drm_file *file_priv,
-+				const struct drm_format_info *info,
- 				const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_framebuffer *fb;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_display.h b/drivers/gpu/drm/nouveau/nouveau_display.h
-index 1f506f8b289c..e45f211501f6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_display.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_display.h
-@@ -67,5 +67,6 @@ nouveau_framebuffer_get_layout(struct drm_framebuffer *fb, uint32_t *tile_mode,
- 
- struct drm_framebuffer *
- nouveau_user_framebuffer_create(struct drm_device *, struct drm_file *,
-+				const struct drm_format_info *,
- 				const struct drm_mode_fb_cmd2 *);
- #endif
-diff --git a/drivers/gpu/drm/omapdrm/omap_fb.c b/drivers/gpu/drm/omapdrm/omap_fb.c
-index e18878068c57..36afcd1c1fd7 100644
---- a/drivers/gpu/drm/omapdrm/omap_fb.c
-+++ b/drivers/gpu/drm/omapdrm/omap_fb.c
-@@ -335,11 +335,9 @@ void omap_framebuffer_describe(struct drm_framebuffer *fb, struct seq_file *m)
- #endif
- 
- struct drm_framebuffer *omap_framebuffer_create(struct drm_device *dev,
--		struct drm_file *file, const struct drm_mode_fb_cmd2 *mode_cmd)
-+		struct drm_file *file, const struct drm_format_info *info,
-+		const struct drm_mode_fb_cmd2 *mode_cmd)
- {
--	const struct drm_format_info *info = drm_get_format_info(dev,
--								 mode_cmd->pixel_format,
--								 mode_cmd->modifier[0]);
- 	unsigned int num_planes = info->num_planes;
- 	struct drm_gem_object *bos[4];
- 	struct drm_framebuffer *fb;
-diff --git a/drivers/gpu/drm/omapdrm/omap_fb.h b/drivers/gpu/drm/omapdrm/omap_fb.h
-index b75f0b5ef1d8..0873f953cf1d 100644
---- a/drivers/gpu/drm/omapdrm/omap_fb.h
-+++ b/drivers/gpu/drm/omapdrm/omap_fb.h
-@@ -20,7 +20,8 @@ struct omap_overlay_info;
- struct seq_file;
- 
- struct drm_framebuffer *omap_framebuffer_create(struct drm_device *dev,
--		struct drm_file *file, const struct drm_mode_fb_cmd2 *mode_cmd);
-+		struct drm_file *file, const struct drm_format_info *info,
-+		const struct drm_mode_fb_cmd2 *mode_cmd);
- struct drm_framebuffer *omap_framebuffer_init(struct drm_device *dev,
- 		const struct drm_mode_fb_cmd2 *mode_cmd, struct drm_gem_object **bos);
- int omap_framebuffer_pin(struct drm_framebuffer *fb);
-diff --git a/drivers/gpu/drm/qxl/qxl_display.c b/drivers/gpu/drm/qxl/qxl_display.c
-index 70aff64ced87..f7bc83f2d489 100644
---- a/drivers/gpu/drm/qxl/qxl_display.c
-+++ b/drivers/gpu/drm/qxl/qxl_display.c
-@@ -1176,6 +1176,7 @@ static int qdev_output_init(struct drm_device *dev, int num_output)
- static struct drm_framebuffer *
- qxl_user_framebuffer_create(struct drm_device *dev,
- 			    struct drm_file *file_priv,
-+			    const struct drm_format_info *info,
- 			    const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	return drm_gem_fb_create_with_funcs(dev, file_priv, mode_cmd,
-diff --git a/drivers/gpu/drm/radeon/radeon_display.c b/drivers/gpu/drm/radeon/radeon_display.c
-index 8f5f8abcb1b4..85b714ac9882 100644
---- a/drivers/gpu/drm/radeon/radeon_display.c
-+++ b/drivers/gpu/drm/radeon/radeon_display.c
-@@ -1314,6 +1314,7 @@ radeon_framebuffer_init(struct drm_device *dev,
- static struct drm_framebuffer *
- radeon_user_framebuffer_create(struct drm_device *dev,
- 			       struct drm_file *file_priv,
-+			       const struct drm_format_info *info,
- 			       const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_gem_object *obj;
-diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-index 70d8ad065bfa..af22a5d23637 100644
---- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-+++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-@@ -426,6 +426,7 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
- 
- static struct drm_framebuffer *
- rcar_du_fb_create(struct drm_device *dev, struct drm_file *file_priv,
-+		  const struct drm_format_info *info,
- 		  const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct rcar_du_device *rcdu = to_rcar_du_device(dev);
-@@ -490,7 +491,7 @@ rcar_du_fb_create(struct drm_device *dev, struct drm_file *file_priv,
- 		}
- 	}
- 
--	return drm_gem_fb_create(dev, file_priv, mode_cmd);
-+	return drm_gem_fb_create(dev, file_priv, info, mode_cmd);
- }
- 
- /* -----------------------------------------------------------------------------
-diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
-index 55a97691e9b2..87f171145a23 100644
---- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
-+++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
-@@ -191,6 +191,7 @@ int rzg2l_du_dumb_create(struct drm_file *file, struct drm_device *dev,
- 
- static struct drm_framebuffer *
- rzg2l_du_fb_create(struct drm_device *dev, struct drm_file *file_priv,
-+		   const struct drm_format_info *info,
- 		   const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	const struct rzg2l_du_format_info *format;
-@@ -214,7 +215,7 @@ rzg2l_du_fb_create(struct drm_device *dev, struct drm_file *file_priv,
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	return drm_gem_fb_create(dev, file_priv, mode_cmd);
-+	return drm_gem_fb_create(dev, file_priv, info, mode_cmd);
- }
- 
- /* -----------------------------------------------------------------------------
-diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c
-index 4202ab00fb0c..fd9460da1789 100644
---- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c
-+++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_kms.c
-@@ -117,6 +117,7 @@ const struct shmob_drm_format_info *shmob_drm_format_info(u32 fourcc)
- 
- static struct drm_framebuffer *
- shmob_drm_fb_create(struct drm_device *dev, struct drm_file *file_priv,
-+		    const struct drm_format_info *info,
- 		    const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	const struct shmob_drm_format_info *format;
-@@ -144,7 +145,7 @@ shmob_drm_fb_create(struct drm_device *dev, struct drm_file *file_priv,
- 		}
- 	}
- 
--	return drm_gem_fb_create(dev, file_priv, mode_cmd);
-+	return drm_gem_fb_create(dev, file_priv, info, mode_cmd);
- }
- 
- static const struct drm_mode_config_funcs shmob_drm_mode_config_funcs = {
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-index bf25286c7665..d46297bec5f8 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_fb.c
-@@ -30,17 +30,12 @@ static const struct drm_mode_config_helper_funcs rockchip_mode_config_helpers =
- 
- static struct drm_framebuffer *
- rockchip_fb_create(struct drm_device *dev, struct drm_file *file,
-+		   const struct drm_format_info *info,
- 		   const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_afbc_framebuffer *afbc_fb;
--	const struct drm_format_info *info;
- 	int ret;
- 
--	info = drm_get_format_info(dev, mode_cmd->pixel_format,
--				   mode_cmd->modifier[0]);
--	if (!info)
--		return ERR_PTR(-ENOMEM);
--
- 	afbc_fb = kzalloc(sizeof(*afbc_fb), GFP_KERNEL);
- 	if (!afbc_fb)
- 		return ERR_PTR(-ENOMEM);
-diff --git a/drivers/gpu/drm/tegra/drm.h b/drivers/gpu/drm/tegra/drm.h
-index 0b65e69f3a8a..77e520c43f72 100644
---- a/drivers/gpu/drm/tegra/drm.h
-+++ b/drivers/gpu/drm/tegra/drm.h
-@@ -190,6 +190,7 @@ struct drm_framebuffer *tegra_fb_alloc(struct drm_device *drm,
- 				       unsigned int num_planes);
- struct drm_framebuffer *tegra_fb_create(struct drm_device *drm,
- 					struct drm_file *file,
-+					const struct drm_format_info *info,
- 					const struct drm_mode_fb_cmd2 *cmd);
- 
- #ifdef CONFIG_DRM_FBDEV_EMULATION
-diff --git a/drivers/gpu/drm/tegra/fb.c b/drivers/gpu/drm/tegra/fb.c
-index 634c6346d947..24907573e758 100644
---- a/drivers/gpu/drm/tegra/fb.c
-+++ b/drivers/gpu/drm/tegra/fb.c
-@@ -132,11 +132,9 @@ struct drm_framebuffer *tegra_fb_alloc(struct drm_device *drm,
- 
- struct drm_framebuffer *tegra_fb_create(struct drm_device *drm,
- 					struct drm_file *file,
-+					const struct drm_format_info *info,
- 					const struct drm_mode_fb_cmd2 *cmd)
- {
--	const struct drm_format_info *info = drm_get_format_info(drm,
--								 cmd->pixel_format,
--								 cmd->modifier[0]);
- 	struct tegra_bo *planes[4];
- 	struct drm_gem_object *gem;
- 	struct drm_framebuffer *fb;
-diff --git a/drivers/gpu/drm/tests/drm_framebuffer_test.c b/drivers/gpu/drm/tests/drm_framebuffer_test.c
-index 6ea04cc8f324..9b8e01e8cd91 100644
---- a/drivers/gpu/drm/tests/drm_framebuffer_test.c
-+++ b/drivers/gpu/drm/tests/drm_framebuffer_test.c
-@@ -363,6 +363,7 @@ struct drm_framebuffer_test_priv {
- 
- static struct drm_framebuffer *fb_create_mock(struct drm_device *dev,
- 					      struct drm_file *file_priv,
-+					      const struct drm_format_info *info,
- 					      const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_framebuffer_test_priv *priv = container_of(dev, typeof(*priv), dev);
-diff --git a/drivers/gpu/drm/vc4/vc4_kms.c b/drivers/gpu/drm/vc4/vc4_kms.c
-index f5b167417428..8f983edb81ff 100644
---- a/drivers/gpu/drm/vc4/vc4_kms.c
-+++ b/drivers/gpu/drm/vc4/vc4_kms.c
-@@ -530,6 +530,7 @@ static int vc4_atomic_commit_setup(struct drm_atomic_state *state)
- 
- static struct drm_framebuffer *vc4_fb_create(struct drm_device *dev,
- 					     struct drm_file *file_priv,
-+					     const struct drm_format_info *info,
- 					     const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct vc4_dev *vc4 = to_vc4_dev(dev);
-@@ -568,7 +569,7 @@ static struct drm_framebuffer *vc4_fb_create(struct drm_device *dev,
- 		mode_cmd = &mode_cmd_local;
- 	}
- 
--	return drm_gem_fb_create(dev, file_priv, mode_cmd);
-+	return drm_gem_fb_create(dev, file_priv, info, mode_cmd);
- }
- 
- /* Our CTM has some peculiar limitations: we can only enable it for one CRTC
-diff --git a/drivers/gpu/drm/virtio/virtgpu_display.c b/drivers/gpu/drm/virtio/virtgpu_display.c
-index 59a45e74a641..f9a98fbbabd1 100644
---- a/drivers/gpu/drm/virtio/virtgpu_display.c
-+++ b/drivers/gpu/drm/virtio/virtgpu_display.c
-@@ -293,6 +293,7 @@ static int vgdev_output_init(struct virtio_gpu_device *vgdev, int index)
- static struct drm_framebuffer *
- virtio_gpu_user_framebuffer_create(struct drm_device *dev,
- 				   struct drm_file *file_priv,
-+				   const struct drm_format_info *info,
- 				   const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct drm_gem_object *obj = NULL;
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-index 05b1c54a070c..2d48a28cda9c 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.c
-@@ -712,6 +712,7 @@ vmw_kms_new_framebuffer(struct vmw_private *dev_priv,
- 
- static struct drm_framebuffer *vmw_kms_fb_create(struct drm_device *dev,
- 						 struct drm_file *file_priv,
-+						 const struct drm_format_info *info,
- 						 const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct vmw_private *dev_priv = vmw_priv(dev);
-diff --git a/drivers/gpu/drm/xen/xen_drm_front_kms.c b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-index dfa78a49a6d9..a360003bee47 100644
---- a/drivers/gpu/drm/xen/xen_drm_front_kms.c
-+++ b/drivers/gpu/drm/xen/xen_drm_front_kms.c
-@@ -54,6 +54,7 @@ static const struct drm_framebuffer_funcs fb_funcs = {
- 
- static struct drm_framebuffer *
- fb_create(struct drm_device *dev, struct drm_file *filp,
-+	  const struct drm_format_info *info,
- 	  const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct xen_drm_front_drm_info *drm_info = dev->dev_private;
-diff --git a/drivers/gpu/drm/xlnx/zynqmp_kms.c b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-index b47463473472..2bee0a2275ed 100644
---- a/drivers/gpu/drm/xlnx/zynqmp_kms.c
-+++ b/drivers/gpu/drm/xlnx/zynqmp_kms.c
-@@ -373,6 +373,7 @@ static int zynqmp_dpsub_dumb_create(struct drm_file *file_priv,
- 
- static struct drm_framebuffer *
- zynqmp_dpsub_fb_create(struct drm_device *drm, struct drm_file *file_priv,
-+		       const struct drm_format_info *info,
- 		       const struct drm_mode_fb_cmd2 *mode_cmd)
- {
- 	struct zynqmp_dpsub *dpsub = to_zynqmp_dpsub(drm);
-@@ -383,7 +384,7 @@ zynqmp_dpsub_fb_create(struct drm_device *drm, struct drm_file *file_priv,
- 	for (i = 0; i < ARRAY_SIZE(cmd.pitches); ++i)
- 		cmd.pitches[i] = ALIGN(cmd.pitches[i], dpsub->dma_align);
- 
--	return drm_gem_fb_create(drm, file_priv, &cmd);
-+	return drm_gem_fb_create(drm, file_priv, info, &cmd);
- }
- 
- static const struct drm_mode_config_funcs zynqmp_dpsub_mode_config_funcs = {
-diff --git a/include/drm/drm_gem_framebuffer_helper.h b/include/drm/drm_gem_framebuffer_helper.h
-index d302521f3dd4..4fdf9d3d1863 100644
---- a/include/drm/drm_gem_framebuffer_helper.h
-+++ b/include/drm/drm_gem_framebuffer_helper.h
-@@ -8,6 +8,7 @@ struct drm_afbc_framebuffer;
- struct drm_device;
- struct drm_fb_helper_surface_size;
- struct drm_file;
-+struct drm_format_info;
- struct drm_framebuffer;
- struct drm_framebuffer_funcs;
- struct drm_gem_object;
-@@ -32,9 +33,11 @@ drm_gem_fb_create_with_funcs(struct drm_device *dev, struct drm_file *file,
- 			     const struct drm_framebuffer_funcs *funcs);
- struct drm_framebuffer *
- drm_gem_fb_create(struct drm_device *dev, struct drm_file *file,
-+		  const struct drm_format_info *info,
- 		  const struct drm_mode_fb_cmd2 *mode_cmd);
- struct drm_framebuffer *
- drm_gem_fb_create_with_dirty(struct drm_device *dev, struct drm_file *file,
-+			     const struct drm_format_info *info,
- 			     const struct drm_mode_fb_cmd2 *mode_cmd);
- 
- int drm_gem_fb_vmap(struct drm_framebuffer *fb, struct iosys_map *map,
-diff --git a/include/drm/drm_mode_config.h b/include/drm/drm_mode_config.h
-index 6fca0362bc31..bea88446fcdc 100644
---- a/include/drm/drm_mode_config.h
-+++ b/include/drm/drm_mode_config.h
-@@ -82,6 +82,7 @@ struct drm_mode_config_funcs {
- 	 */
- 	struct drm_framebuffer *(*fb_create)(struct drm_device *dev,
- 					     struct drm_file *file_priv,
-+					     const struct drm_format_info *info,
- 					     const struct drm_mode_fb_cmd2 *mode_cmd);
- 
- 	/**
--- 
-2.49.0
-
+>=20
+> >  	if (ret < 0)
+> >  		return ret;
+> >  	ret =3D drm_edp_backlight_set_enable(aux, bl, true); @@ -4327,7
+> > +4327,7 @@ static int dp_aux_backlight_update_status(struct
+> backlight_device *bd)
+> >  			bl->enabled =3D true;
+> >  			return 0;
+> >  		}
+> > -		ret =3D drm_edp_backlight_set_level(bl->aux, &bl->info,
+> brightness);
+> > +		ret =3D drm_edp_backlight_set_level(bl->aux, &bl->info,
+> > +(u32)brightness);
+>=20
+> Ditto.
+>=20
+> >  	} else {
+> >  		if (bl->enabled) {
+> >  			drm_edp_backlight_disable(bl->aux, &bl->info); diff --
+> git
+> > a/include/drm/display/drm_dp_helper.h
+> > b/include/drm/display/drm_dp_helper.h
+> > index 62be80417ded..6bce0176efd3 100644
+> > --- a/include/drm/display/drm_dp_helper.h
+> > +++ b/include/drm/display/drm_dp_helper.h
+> > @@ -853,7 +853,7 @@ drm_edp_backlight_init(struct drm_dp_aux *aux,
+> struct drm_edp_backlight_info *bl
+> >  		       u16 driver_pwm_freq_hz, const u8
+> edp_dpcd[EDP_DISPLAY_CTL_CAP_SIZE],
+> >  		       u32 *current_level, u8 *current_mode, bool
+> need_luminance);
+> > int drm_edp_backlight_set_level(struct drm_dp_aux *aux, const struct
+> drm_edp_backlight_info *bl,
+> > -				u16 level);
+> > +				u32 level);
+> >  int drm_edp_backlight_enable(struct drm_dp_aux *aux, const struct
+> drm_edp_backlight_info *bl,
+> >  			     u16 level);
+> >  int drm_edp_backlight_disable(struct drm_dp_aux *aux, const struct
+> > drm_edp_backlight_info *bl);
+>=20
+> --
+> Jani Nikula, Intel
