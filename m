@@ -4,45 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC192D5B165
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C9D7D5B15F
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3DF10EA0D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96D0710EA12;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21BFC10E1B7
- for <nouveau@lists.freedesktop.org>; Fri, 28 Jun 2024 08:23:15 +0000 (UTC)
-X-QQ-mid: bizesmtp77t1719562896t2sg8m4v
-X-QQ-Originating-IP: wW6Te52tLfIZhGbAIwW7ZTTx5j6Cem2c75vdERYyR2A=
-Received: from [198.18.0.1] ( [223.112.234.130])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Fri, 28 Jun 2024 16:21:34 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 16955004016337450842
-Message-ID: <2CCFA0BD64E5F2E0+e4c7fc43-47b1-4788-a7d2-44f6a33cff66@shingroup.cn>
-Date: Fri, 28 Jun 2024 16:21:34 +0800
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="XCrIF9p3";
+	dkim-atps=neutral
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B2A410E782;
+ Tue, 15 Apr 2025 12:54:44 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4ZcPJ012q5z9sWs;
+ Tue, 15 Apr 2025 14:54:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1744721680; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=K/FjfTvH1QRy7+t7pKsVPI8IS+WdkLH8SmEYGjRagwA=;
+ b=XCrIF9p3qYjPKTa32Gt7lp4HeMkDbm5dXf4RLEonFk06uMtAbMgwWXkjqIR46XbE713xqz
+ fE+SUU+xAn8sk/b6kuU1QEsyKqCPGFGcf6BTCFUdf8HSZp+Mp9hdtWimDXXroOW1Mq2AjZ
+ 6jpgBk+8cNhNmmeUcj389vv5NY/mtZS/M49hR3sJDMwWdOajQ1vJgMQMIfi7puukA2q1fk
+ 5oE+49W2M17Uw4RWT+8aoaPjxvUsqm1RjXc1dXF84SCY/AYVTESxoXiWFzmNmy0ti3MLW2
+ eUDUqZCbc4KMM3sxTi53SRCABrFe7asAgwL0ryWhoWQ3NNP7zA++k90ukumh0A==
+Message-ID: <573a616a5270d97f421a380e2e41c7e35d2f03e3.camel@mailbox.org>
+Subject: Re: [PATCH 1/3] drm/nouveau: Prevent signaled fences in pending list
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo
+ Krummrich <dakr@kernel.org>, phasta@kernel.org
+Cc: Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Sabrina Dubroca <sd@queasysnail.net>, Sumit
+ Semwal <sumit.semwal@linaro.org>, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ netdev@vger.kernel.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org, stable@vger.kernel.org
+Date: Tue, 15 Apr 2025 14:54:36 +0200
+In-Reply-To: <2dba3077-a770-4e00-9a7a-c744096ae876@amd.com>
+References: <8583665a-6886-4245-be49-fd8839cfe212@amd.com>
+ <c737c89c7ce9174e349c61ab4e5712eee8946f13.camel@mailbox.org>
+ <50c9530d-e274-4f89-8620-16afe0981239@amd.com>
+ <1a73e5fe4350d6ee4b7d807612264eb637c4f2a9.camel@mailbox.org>
+ <d3dee321cd6b70d6ca98768fbcf6f1e6134c43a1.camel@mailbox.org>
+ <81a70ba6-94b1-4bb3-a0b2-9e8890f90b33@amd.com>
+ <aca00cb25b813da4fd2f215829f02337f05642f3.camel@mailbox.org>
+ <45d66ca4-5390-42e9-869a-f5f9125d05b6@amd.com>
+ <1127db242503055b2e5e8d07db3aeae46cfb7a24.camel@mailbox.org>
+ <6e4628c3cfc7e0d1e4ea9af510ce0b09b34a8cf8.camel@mailbox.org>
+ <Z_0bOgTBkkRH9jib@cassiopeiae>
+ <2dba3077-a770-4e00-9a7a-c744096ae876@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] powerpc/mmiotrace: Add MMIO Tracing tool for
- PowerPC
-To: Michael Ellerman <mpe@ellerman.id.au>, Nicholas Piggin
- <npiggin@gmail.com>, Christophe Leroy <christophe.leroy@csgroup.eu>,
- "Naveen N. Rao" <naveen.n.rao@linux.ibm.com>
-Cc: luming.yu@shingroup.cn, shenghui.qu@shingroup.cn,
- linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
- Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>,
- Pekka Paalanen <ppaalanen@gmail.com>, nouveau@lists.freedesktop.org
-References: <2bf90acf7d29641ba6643934ff8dbba897dbd2d9.1718873074.git.jialong.yang@shingroup.cn>
- <87h6ddlfc7.fsf@mail.lhotse>
-From: =?UTF-8?B?WWFuZyBKaWFsb25nIOadqOS9s+m+mQ==?= <jialong.yang@shingroup.cn>
-In-Reply-To: <87h6ddlfc7.fsf@mail.lhotse>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz8a-0
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+X-MBO-RS-META: 8it8cuy3unipa6fs4gcxd9fju5nkgkz1
+X-MBO-RS-ID: 9a0b51d9a94caabfc13
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,101 +77,55 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Tue, 2025-04-15 at 11:56 +0200, Christian K=C3=B6nig wrote:
+> Am 14.04.25 um 16:27 schrieb Danilo Krummrich:
+> > On Mon, Apr 14, 2025 at 10:54:25AM +0200, Philipp Stanner wrote:
+> > > @Danilo:
+> > > We have now 2 possible solutions for the firing WARN_ON floating.
+> > >=20
+> > > Version A (Christian)
+> > > Check in nouveau_fence_context_kill() whether a fence is already
+> > > signaled before setting an error.
+> > >=20
+> > > Version B (Me)
+> > > This patch series here. Make sure that in Nouveau, only
+> > > nouveau_fence_signal() signals fences.
+> > >=20
+> > >=20
+> > > Both should do the trick. Please share a maintainer-preference so
+> > > I can
+> > > move on here.
+> > Thanks for working on this Philipp.
+> >=20
+> > If you don't want to rework things entirely, A seems to be
+> > superior, since it
+> > also catches the case when someone else would call
+> > dma_fence_is_signaled() on a
+> > nouveau fence (which could happen at any time). This doesn't seem
+> > to be caught
+> > by B, right?
+>=20
+> Correct, yes. I would also keep it as simple as possible for
+> backporting this bug fix.
+>=20
+> On the other hand a rework is certainly appropriate including both
+> nouveau as well as the DMA-fence calling rules. Especially that the
+> DMA-fence framework calls the signaled callback with inconsistent
+> locking is something we should fix.
 
-在 2024/6/28 15:02, Michael Ellerman 写道:
-> Jialong Yang <jialong.yang@shingroup.cn> writes:
->> mmiotrace is a useful tool to trace MMIO accesses. Nowadays, it only
->> supported on x86 and x86_64 platforms.
-> I've never used mmiotrace, and don't know it well.
->
-> I'm not necessarily opposed to merging it, but AFAIK it was mostly used
-> for reverse engineering proprietary drivers, where the driver itself
-> couldn't be easily instrumented. Is that what you're using it for?
+Do you have a suggestion where to start?
 
-Yes. Just like you think. We have used it for network stack debug in 
-ppc64le.
+I btw would still be interested in adding some sort of centralized
+mechanism in dma_fence that the driver could use to do some cleanup
+stuff once a fence gets signaled ^_^
 
+P.
 
->
-> For drivers where we have the source wouldn't it be easier to just use
-> tracepoints in the MMIO accessors?
-
-
-Tracepoints need pre-defined. And in some big driver, it's not easy to 
-overwrite
-
-all points where access registers in io area. And tracepoint is C 
-function level filter.
-
-mmiotrace is similar to set tracepoints in writel/readl... But it can do 
-deeperly.
-
-mmiotrace is a asm level filter tool. It doesn't care what have done in 
-C level. It will
-
-only find what have done by asm, such as stw(store word)/lw(load word),  
-just like standing
-
-in the view of device.
-
-
->
-> Is it still in-use/maintained on the x86 side?
-
-
-Here is some core file patches number in x86:
-
-|      | mmio_mod.c | kmmio.c | pf_in.* | testmmiotrace.c |
-|------+------------+---------+---------+-----------------|
-| 2022 |               1 |            3 | |                  |
-| 2021 |               2 |            1 |               |         |
-| 2020 |               4 |            4 | |               1 |
-| 2019 |               2 |            1 |            1 |               4 |
-| 2018 |                  |            2 |               |          |
-| 2017 |               2 |            2 | |               1 |
-| 2016 |               1 |            2 |            1 |        |
-| 2014 |                  |            1 |               |          |
-| 2013 |               1 |               |               |          |
-| 2012 |               1 |               | |                  |
-| 2011 |               3 |               |            1 |         |
-| 2010 |               1 |            3 |            2 |               1 |
-| 2009 |               4 |          19 | |               3 |
-| 2008 |             13 |            5 |            2 |               3 |
-
->
->> Here is a support for powerpc.
->> The manual is located at Documentation/trace/mmiotrace.rst which means
->> I have not changed user API. People will be easy to use it.
->> Almost all files are copied from x86/mm, there are only some
->> differences from hardware and architectures software.
->>
->> LINK: https://lore.kernel.org/lkml/20080127195536.50809974@daedalus.pq.iki.fi/
->>
->> Signed-off-by: Jialong Yang <jialong.yang@shingroup.cn>
->> ---
->>   arch/powerpc/Kconfig.debug       |   3 +
->>   arch/powerpc/mm/Makefile         |   1 +
->>   arch/powerpc/mm/kmmio.c          | 649 +++++++++++++++++++++++++++++++
->>   arch/powerpc/mm/mmio-mod.c       | 414 ++++++++++++++++++++
->>   arch/powerpc/mm/mmiotrace_arch.c | 149 +++++++
->>   arch/powerpc/mm/mmiotrace_arch.h |  25 ++
->>   arch/powerpc/mm/pf_in.c          | 185 +++++++++
->>   arch/powerpc/mm/pf_in.h          |  33 ++
->>   8 files changed, 1459 insertions(+)
->    
-> At a glance most of that code could be shared between arches. I don't
-> think I can merge that as-is, without some attempt to split the generic
-> parts out.
-
-
-Right.
-
-I just copy them from arch/x86/mm. There are many code not arch specific.
-
-
-> cheers
->
+>=20
+> Regards,
+> Christian.
 
