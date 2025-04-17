@@ -4,85 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E53AED5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90756D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E69810EA30;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D8F10EAA1;
 	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SooqcpWO";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="g0892s9B";
 	dkim-atps=neutral
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com
- [IPv6:2607:f8b0:4864:20::629])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FACB10E4E1;
- Fri, 13 Dec 2024 05:47:14 +0000 (UTC)
-Received: by mail-pl1-x629.google.com with SMTP id
- d9443c01a7336-2166022c5caso12160875ad.2; 
- Thu, 12 Dec 2024 21:47:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734068833; x=1734673633; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=gS7oaK0RsPIguog+zKCBYVnzq+DdL6weynD0punt/E0=;
- b=SooqcpWOMyT6L+d+J8A3U+MM6HS1Zct3Uya92glSX1EsZwBrCuMRBjQaB6G6XmZBKX
- OhLz9+fsvP3tFVeXM7+thySamGOtqs/gFs2tjE/nqvwcsKLThtGtI7ix+lFKVgLqFhDY
- jOoP25O7oOoITZPjoeYwqHpelrbXHESqmBYJtMmpX+HYm1FDetf7PO7pGxPIgAYREhrj
- MRS5stK3MauoY14vGXaPxZ8XjyB66SLbQ0oJfrdbRUiQJxnLwqlPl4tK/zJQyuiAI1JF
- k5pG1eBUqn5rkop5m/GJmvVnXl6nMyfzx7oT7Fdp2ODjsmWPYu0EliWercV0Hqm9mNKO
- 4iVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734068833; x=1734673633;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=gS7oaK0RsPIguog+zKCBYVnzq+DdL6weynD0punt/E0=;
- b=hcrQr/q5Oyxb4i2SNljT6oH9IK0BCnWBxLrAZfZuLpvU8rOoZCTB8F/DZL1UWUv+GA
- Qmcpp4jzN/u6xhr/g98+xE8Va20AcTLBEhv68qORry9txwsqh8pIXNKgMvGb6Q240tFP
- XcIzChjEg+NCg+nr+7aGC8LcSnQAvM8vrWkBIdbFOJ0btTqW17vj8s+NU8mVVAluqIt5
- mOSOOMFs1UypVWRgPf3vJm/SFgiVgxB0gJugrr6RKngIzLEJ0wk23F2ebfV2GLHCZbyz
- AGiPY2pMAPd6Uo7DoCxS83v0IRykdr6zDRcK/7iQwzFDLGxMVNeRoYOwG9Ram0fiPtoy
- XYng==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUCa8MZT7JxxkR+Wn3CtC/w3e3o3rJPemQbtEYH7Ps84GuyHaOjq7UEYS79vSovDEmm/B/bzISB2JCh@lists.freedesktop.org,
- AJvYcCVVbESmras5uK42Vgfasp7ClkBlEbvL8jLLU+pRuVj1GrqhtTPNVOe3lUYJROUiqxf21tOEc4cvAs4=@lists.freedesktop.org,
- AJvYcCWXjZ3bENLnflz78b8GANS87lyRWES8YIXymmUo8dYLrETuv5s/tZd6T/eS3hX0IJBE3dl3JvMH4w==@lists.freedesktop.org,
- AJvYcCXCa+THm8osG364Y3SpXFzGma5+igllk+8N8bbtW6kpwT2QIxIT7QJIZ9ffuX+fc+v7ZF8dSUMSJkQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUPY780y6GReLjARmsBGoKodW72tdbvcJtJQSwumDUo1w3JY06
- gyi7Pe8SfxgoXBiP8qSLN/m9tVRQu1zuBYT1wdhvC/wtQ1BQH86c+pNda9fHFm4=
-X-Gm-Gg: ASbGncu1IQUDFe8mqzBTQ/enmjFTglyicHNaTNRT3jJqkYBSQtwn3lghP5WZamCeQw2
- bwhmj0KmoBC+nbg18DBG4249aIjvVqHKOOLe8H+l89pAxDuYR8f5ntgZAf14nyjMeBd1zmitgKy
- YRIKPbDOYy8KYpVrX+m/pJWYKrSLZgAQLF9SYeWje9z7gCzRYSiFkiHFIh8dulEHjqly0jVV3rE
- pWCkiHbRDvs8TGee5nhGsIa9Wbf1IPRML9XKmmj5nnkB5Sv7ZwcqJoDhK3dXSm6EqbYkkq1Rf26
- JGhe5T0=
-X-Google-Smtp-Source: AGHT+IG/u9vPHYJsr72JqaDrYLM72r0Mv+gF1sZwvgldiU0c1giVELNbwcEluD8XRP6pboK2QDHicw==
-X-Received: by 2002:a17:902:f60c:b0:216:7c33:8994 with SMTP id
- d9443c01a7336-21892a7a811mr23989435ad.53.1734068833602; 
- Thu, 12 Dec 2024 21:47:13 -0800 (PST)
-Received: from localhost.localdomain ([180.159.118.224])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.07
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 12 Dec 2024 21:47:13 -0800 (PST)
-From: Yafang Shao <laoar.shao@gmail.com>
-To: torvalds@linux-foundation.org,
-	akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>,
- Johannes Berg <johannes@sipsolutions.net>
-Subject: [PATCH 4/7] net: Replace get_task_comm() with %pTN
-Date: Fri, 13 Dec 2024 13:46:07 +0800
-Message-Id: <20241213054610.55843-5-laoar.shao@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6713810EA52;
+ Thu, 17 Apr 2025 07:45:45 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZdVLY0tS3z9snh;
+ Thu, 17 Apr 2025 09:45:41 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1744875941; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=o01QhRRBt9kbGlZJekh53pp9WB+AZ1VXMfcDIjz0TJ4=;
+ b=g0892s9BhUhMNN64iMQ6epD56Kl8AfSwwketorczIHbAL2mlAxPhjNk9ToLepZYUOpKzh4
+ DSlDKbgZJjvtp3kzU9wBKftCRNySChuK8SbG6m34MI7DACrM2rxf5RDwkhjoh4zDex07+D
+ HpFJQjBURim06m+Fq5OA7SNRQMRvyOAAOusKV5q24Br2cqywBbWNnxKIQ93gSLYAAR23dJ
+ hvaioSVBjtF0AJdkMOtrsfgpKag7DATK59lSf/JYWm5ZwK4myuoqa9brQT9QgUc86TPN64
+ 9s2eavL7DOVxBwGHD+2XSiF/kE/rOBBPmK4glF8bDrT5CAMBN7CKBeW6ze/Uvg==
+Message-ID: <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
+Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
+From: Philipp Stanner <phasta@mailbox.org>
+To: Philipp Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko
+ Ursulin <tvrtko.ursulin@igalia.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Date: Thu, 17 Apr 2025 09:45:35 +0200
+In-Reply-To: <20250407152239.34429-5-phasta@kernel.org>
+References: <20250407152239.34429-2-phasta@kernel.org>
+ <20250407152239.34429-5-phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+X-MBO-RS-META: ht1k5cx6yf918cstjfpo94f1fsqmah66
+X-MBO-RS-ID: 72d8f281a13a97fa464
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,36 +67,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since task->comm is guaranteed to be NUL-terminated, we can print it
-directly without the need to copy it into a separate buffer. This
-simplifies the code and avoids unnecessary operations.
+On Mon, 2025-04-07 at 17:22 +0200, Philipp Stanner wrote:
+> drm_sched_fini() can leak jobs under certain circumstances.
+>=20
+> Warn if that happens.
+>=20
+> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> ---
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c | 4 ++++
 
-Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Cc: Johannes Berg <johannes@sipsolutions.net>
----
- net/wireless/wext-core.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+I hear a lot of amazed silence for this series ^_^
 
-diff --git a/net/wireless/wext-core.c b/net/wireless/wext-core.c
-index 3bb04b05c5ce..1f2a7ab546ba 100644
---- a/net/wireless/wext-core.c
-+++ b/net/wireless/wext-core.c
-@@ -640,10 +640,8 @@ EXPORT_SYMBOL(wireless_send_event);
- #ifdef CONFIG_CFG80211_WEXT
- static void wireless_warn_cfg80211_wext(void)
- {
--	char name[sizeof(current->comm)];
--
--	pr_warn_once("warning: `%s' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
--		     get_task_comm(name, current));
-+	pr_warn_once("warning: `%pTN' uses wireless extensions which will stop working for Wi-Fi 7 hardware; use nl80211\n",
-+		     current);
- }
- #endif
- 
--- 
-2.43.5
+If there's no major pushback, my intention is to pull this in once the
+blocking Nouveau-bug has been fixed (by pulling my patch).
+
+
+In the mean time, let me review my own stuff:
+
+> =C2=A01 file changed, 4 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c
+> b/drivers/gpu/drm/scheduler/sched_main.c
+> index 6b72278c4b72..ae3152beca14 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -1465,6 +1465,10 @@ void drm_sched_fini(struct drm_gpu_scheduler
+> *sched)
+> =C2=A0	sched->ready =3D false;
+> =C2=A0	kfree(sched->sched_rq);
+> =C2=A0	sched->sched_rq =3D NULL;
+> +
+> +	if (!list_empty(&sched->pending_list))
+> +		dev_err(sched->dev, "%s: Tearing down scheduler
+> while jobs are pending!\n",
+> +			__func__);
+
+The "%s" here will be removed since dev_err() alreday prints the
+function name.
+
+I find this dev_err() print more useful than the stack a WARN_ON prints
+(telling you about invalid_asm_exec_op or stuff like that).
+
+Plus, I guess the places where drivers call drm_sched_fini() are very
+well defined and known, so a callstack wouldn't really be useful in the
+first place.
+
+
+P.
+
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL(drm_sched_fini);
+> =C2=A0
 
