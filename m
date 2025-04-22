@@ -4,61 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A57D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C132D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59AE910EC62;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CE1710EC5F;
 	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="ubolpMVR";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="q+PykJF0";
 	dkim-atps=neutral
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62B2C10ECB7;
- Thu, 22 May 2025 13:16:32 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org
- [IPv6:2001:67c:2050:b231:465::102])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23DAF10E087;
+ Tue, 22 Apr 2025 12:00:22 +0000 (UTC)
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4b38251lNrz9tFZ;
- Thu, 22 May 2025 15:16:29 +0200 (CEST)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4Zhgm16Xl5z9tQY;
+ Tue, 22 Apr 2025 14:00:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1747919789; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1745323218; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=2xY0ojqhuGBcKzHDlcpTqdk5F5P4zkhEB59bIyA/OVQ=;
- b=ubolpMVRg9ftBOJo2ByE6Gh0CtGNWIU4Uc0Aux6mIvl+Ze97x5YLo+34A6nlB5rooQNWYi
- JDko441+ZvW+EzSmD24mnxify0M592Iv9mKgemWy3Ka/pCUJys0YcuUJjzZopzPyC6NPoC
- xR5Bv/pfwQVMqsd9f589+MrozWiDiwio5xtwnvuKAxQiNnFvIds+nHCj2PUlNff0ywI+e4
- xX48IjaBDGJimuAdkaeoCQ4uKHfieEWjolVdXKTe/2cogNLO+IaP+IHK3xrv6RXmaKbUe6
- IpdTon4GXxpoyK8nE+zElOZBoLOmvSVAzrOmgyTpy5ezlsZYeReOl8g9yUt/+g==
-Message-ID: <282de2b9251e3a1b793e02ef23675dace248725b.camel@mailbox.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
- context
+ bh=1vpYm+GQxhLlWhb6ifByWLEltnQPSlybhasf4ERMH8Q=;
+ b=q+PykJF0H2r6JiN/VNCR1+a218ywnoE6PZ226N3JwQaNyjuwRz4fAT6XKX3pyflIz4HoME
+ rbRL2GVEz0rbAmX7yH6J4ksvagXPGG8V8pWJDPjJmG/UCni3uBQ9pF7dxnc3zE7Y0PgSp1
+ geQjVuk4jtftJ4tzLhKujml6kqfkuT50KgaEPJ5JEof2MoOXZf0eTAVSLvQPE0FfpgaATu
+ QEb58Ly1Z7Sjm1MC+IWZFBchEal9sgWhuFyzTPzYp2Wlkr1Uzp/NF5E600OwgVDTECI2Q+
+ IlITcPQyB1KXHifWKHx8D03jHd13EdMpOYiATDl8Z/xv3rlikLbkvpRdKEoNRA==
+Message-ID: <649c7fe3469c39496db89de6951d9f2b61c36576.camel@mailbox.org>
+Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
 From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo
- Krummrich <dakr@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>
 Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sumit Semwal
- <sumit.semwal@linaro.org>, dri-devel@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org
-Date: Thu, 22 May 2025 15:16:25 +0200
-In-Reply-To: <ebedece4-9758-47e9-b621-37b40e3f0fc3@amd.com>
-References: <20250522112540.161411-2-phasta@kernel.org>
- <20250522112540.161411-3-phasta@kernel.org>
- <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
- <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
- <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com> <aC8fpEXYWZ9Oy41J@pollux>
- <ebedece4-9758-47e9-b621-37b40e3f0fc3@amd.com>
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
+ <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
+Date: Tue, 22 Apr 2025 14:00:11 +0200
+In-Reply-To: <aAd54jUwBwgc-_g2@cassiopeiae>
+References: <20250407152239.34429-2-phasta@kernel.org>
+ <20250407152239.34429-5-phasta@kernel.org>
+ <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
+ <3ac34c84-fd84-4598-96e1-239418b7109f@igalia.com> <aADv4ivXZoJpEA7k@pollux>
+ <83758ca7-8ece-433e-b904-3d21690ead23@igalia.com>
+ <aAEUwjzZ9w9xlKRY@cassiopeiae>
+ <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
+ <0bfa746ca37de1813db22e518ffb259648d29e02.camel@mailbox.org>
+ <5a5d4a33-2f7b-46e4-8707-7445ac3de376@igalia.com>
+ <aAd54jUwBwgc-_g2@cassiopeiae>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 3c2590ebf42a25dd418
-X-MBO-RS-META: rtwsdkhdwdcmpueph13z64fnzp4ku9sf
+X-MBO-RS-ID: 4c04011615e20bdd267
+X-MBO-RS-META: n61eesopsdmkks4z8prq1n7h8hkk6wg4
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,94 +79,69 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-05-22 at 15:09 +0200, Christian K=C3=B6nig wrote:
-> On 5/22/25 14:59, Danilo Krummrich wrote:
-> > On Thu, May 22, 2025 at 02:34:33PM +0200, Christian K=C3=B6nig wrote:
-> > > See all the functions inside include/linux/dma-fence.h can be
-> > > used by everybody. It's basically the public interface of the
-> > > dma_fence object.
-> >=20
-> > As you write below, in certain cases it is valid to call this from
-> > drivers, so
-> > it's not unreasonable to have it as part of the public API.
->=20
-> The question is from which drivers?
->=20
-> > > So testing if a fence is signaled without calling the callback is
-> > > only allowed by whoever implemented the fence.
-> > >=20
-> > > In other words nouveau can test nouveau fences, i915 can test
-> > > i915 fences, amdgpu can test amdgpu fences etc... But if you have
-> > > the wrapper that makes it officially allowed that nouveau starts
-> > > testing i915 fences and that would be problematic.
-> >=20
-> > In general, I like the=C2=A0 __dma_fence_is_signaled() helper, because
-> > this way we
-> > can document in which cases it is allowed to be used, i.e. the ones
-> > you descibe
-> > above.
-> >=20
-> > test_bit() can be called by anyone and there is no documentation
-> > comment
-> > explaining that it is only allowed under certain conditions.
->=20
-> That's a rather good argument.
->=20
-> > Having the __dma_fence_is_signaled() helper properly documented
-> > could get you
-> > rid of having to explain in which case the test_bit() dance is
-> > allowed to do
-> > over and over again. :-)
->=20
-> That's an even better argument.=20
->=20
-> > I also think the name is good, since the '__' prefix already
-> > implies that there
-> > are some restrictions on the use of this helper.
->=20
-> I'm still hesitating. Adding something to the API always made it
-> usable by everybody.
->=20
-> Now suddenly saying we add that to the include/linux/dma-fence.h
-> header but only certainly code can use it still sounds questionable
-> to me.
+On Tue, 2025-04-22 at 13:13 +0200, Danilo Krummrich wrote:
+> On Tue, Apr 22, 2025 at 11:39:11AM +0100, Tvrtko Ursulin wrote:
+> > Question I raised is if there are other drivers which manage to
+> > clean up
+> > everything correctly (like the mock scheduler does), but trigger
+> > that
+> > warning. Maybe there are not and maybe mock scheduler is the only
+> > false
+> > positive.
 
-If I understand the current code correctly, the documentation state and
-the question "which driver is allowed to do it?" is the same, because
-the documentation for the signaled callback doesn't specify that:
+For clarification:
 
+I messed up the comment from the cover letter.
 
-	/**
-	 * @signaled:
-	 *
-	 * Peek whether the fence is signaled, as a fastpath optimization for
-	 * e.g. dma_fence_wait() or dma_fence_add_callback(). Note that this
-	 * callback does not need to make any guarantees beyond that a fence
-	 * once indicates as signalled must always return true from this
-	 * callback. This callback may return false even if the fence has
-	 * completed already, in this case information hasn't propogated throug
-	 * the system yet. See also dma_fence_is_signaled().
-	 *
-	 * May set &dma_fence.error if returning true.
-	 *
-	 * This callback is optional.
-	 */
-	bool (*signaled)(struct dma_fence *fence);
+What I did was run the *old* unit tests (v5 IIRC) from Tvrtko that
+still had the memory leaks. Those then trigger the warning print, as is
+expected, since they don't provide fence_context_kill().
 
+The current unit tests are fine memory-leak-wise.
 
-"optional". What if I don't ipmlement it? Who should implement it?
+IOW, both with Nouveau and the unit tests, everything behaves as
+expected, without issues.
 
-If the callback is optional, then dma_fence_is_signaled() is the same
-as __dma_fence_is_signaled().
-
-IOW, it already needs to be better documented who needs to implement
-the callback and who doesn't. If we get clarity on that, we also get
-clarity on who may use __dma_fence_is_signaled().
-
+Sorry for the confusion.
 
 P.
 
 >=20
-> Regards,
-> Christian.
+> So far the scheduler simply does not give any guideline on how to
+> address the
+> problem, hence every driver simply does something (or nothing,
+> effectively
+> ignoring the problem). This is what we want to fix.
+>=20
+> The mock scheduler keeps it's own list of pending jobs and on tear
+> down stops
+> the scheduler's workqueues, traverses it's own list and eventually
+> frees the
+> pending jobs without updating the scheduler's internal pending list.
+>=20
+> So yes, it does avoid memory leaks, but it also leaves the schedulers
+> internal
+> structures with an invalid state, i.e. the pending list of the
+> scheduler has
+> pointers to already freed memory.
+>=20
+> What if the drm_sched_fini() starts touching the pending list? Then
+> you'd end up
+> with UAF bugs with this implementation. We cannot invalidate the
+> schedulers
+> internal structures and yet call scheduler functions - e.g.
+> drm_sched_fini() -
+> subsequently.
+>=20
+> Hence, the current implementation of the mock scheduler is
+> fundamentally flawed.
+> And so would be *every* driver that still has entries within the
+> scheduler's
+> pending list.
+>=20
+> This is not a false positive, it already caught a real bug -- in the
+> mock
+> scheduler.
+>=20
+> - Danilo
 
