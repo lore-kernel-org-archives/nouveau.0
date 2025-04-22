@@ -4,146 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E006CCD188
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:48:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882BCCCD187
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:48:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 427EA10E55C;
-	Mon,  6 Oct 2025 20:47:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6370A10E581;
+	Mon,  6 Oct 2025 20:47:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="NfzgiSzT";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="AENrfvqT";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010039.outbound.protection.outlook.com [52.101.46.39])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C842710E148;
- Mon,  6 Oct 2025 20:36:54 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00EC110E048;
+ Tue, 22 Apr 2025 18:50:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QWDo1dThulJjeNrhwUHWAYCMraydgyd/hXY2od+Cpk00r4VyvoNUWCtf8aB/YnXqWY72pvAZRIT+fpZyExH14mG5nCyGXBhFInZiaqXOoOszlkendwcLKlgF5CbqsD+a9u4Mhl4616BU1DCR4ZBHv0bjDyON9AIAo3VyLIqZR2aVBTeQw0I1rLBmMVcDgfd0Pt+4fardVcItWrZJiIPGIlLQaaefHsTEyZ2DbAnXDbaVEP/TO/VdiEPmUP1YAOZPPBvAaAaMdGUwoCcHCF3JqvboxWsFLqMNcLxD+wdyuux/7k//XcVmKxTnaebdIIeS+qYZxMiPHFS2t1cGwUmzbw==
+ b=N8vKXxTRi6Ol6PBROnmgQicl9PcrikLO8g0oF/Re0DxrSQgMnMTJEcvZ2DkpDqeNABgv6UfSnvyJde7E/0Ltx/DkVS0nVQfCWiPNoIjGq1ry1PIYmDtmAeOY53Cf820a+0nOUQcw8DTPr73HUnNeb2rHQk2EGTN82pnxoHoL9xqgZ3XSNmNSY4RPYfEUY+JCHm1siNVqHJTpvvm6FCo24NDVnHYARzPjHHkV7fTcf+0H/TqXIaVZKfXPaKbk640/nE8/yhAJwV32sLRgpD4U3Jn9UJVi4hd3aok/ViB0WTfUOUOJz27EcqPjXB2fA1kbF7f2+ae0FdOIf/iL1PYFhg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Lei9K5TjL8vflzTkncRiJ/0qxJkj3TnbjW8uU+zYj6M=;
- b=NdJogqDXM47uv638oet9AX36mOqly8FRUh6lDTTCBEiM+b+yb5mIuD6sBA7JqN76wf6X6NBt4ciq5GAi5BoyovBN09kpL9B4SrxqNC9nolKCxyVoJLRtMW4QaDIK0L02Xn8G8mTWyJ3MvfJoZGmP3SpbDJSOacIfNp0Ebnb6icH8gjVE6MdWKyJSlFOlQHaz1h5juAKlydtB7fFo9/GuW++1sCWfF8kPLpZMz2DxBKZURjVtW30VCpD7FpR3P3E+jFKWxtszV+JoCmgi7lr1/Op/U/lnhVEdhx9E4cMCcEkzu94PksZ1kX9tyEH7zlWRr9X3v6hMbYnlwaJ+Gx+qXQ==
+ bh=lUDwaZhurM/p2mH+vOaXBIKHmiwNA+YCrjwHIgZsmnE=;
+ b=iexeCCkf5sZhgnH6ZXb9EjD9L6ZudEvsCfiXVyN2IfUs5Uz3BvvAJr6CpTNbR8JogeCDZ9Du51vHx6lAM6Aq0C1qBFjZmGXAibO3HZ7adBpve9w8Ox7Ha4zYD2vQ2UA1vYzJPGp0OsZG2Szk3BaTZ9NCIaYOayNVSsspmwjNae7A16PaoXafawp9BE4OWP4pQGBSRU+/rkOBeyHAcKSlZ1XldFccbzCtUmFyaKaF4jdYQ9/fxey+7L3NcO1dxEZGzmbRE9/ZGhh0U/PY10aK3mRrv37n8hLPERjXgBe/AMNjVtlkFwqEZIlad4tSZvi56SHdhNSvQROGGAOoHai7Pg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Lei9K5TjL8vflzTkncRiJ/0qxJkj3TnbjW8uU+zYj6M=;
- b=NfzgiSzTnAjEa1abcoaWaTcycMWAYc2rUlqAglc4lPJ2Di0QS48D4Ve+0NF4oJ0h0Zw//ugUcNQIlAnP0U5XzT/CrnNaioXBSXJ2o12SM925KNQouXrDYwS0QvOX+gCJhvMAUhwcP+QtJRIaiFHt4A1AxCph8hAMaDN/8w/UtaLH6H4cKaV+pTDc8MY1X73ATI6qzrv1hqKDzfwKVi6Xgm8wGGnKm12BpMwE/f0MPnh5urCna0lKfpoZn1/UXdp8peOKenEsSfaz3m+543W7NE2oagxsSQm6j0Xn7Zep53P9R+Tq8EElrVUpo1zsCuUb1QPDOse3ABXJixE5NIr9nw==
+ bh=lUDwaZhurM/p2mH+vOaXBIKHmiwNA+YCrjwHIgZsmnE=;
+ b=AENrfvqT9/xIYst6Fop9x2CX5mLAciXwu1AOXUq9++S1bQSwRHK+Iai/o3k6PGZJOxNmzHFBaWi6zHs5fuUtEy2LTaDRxIkzR2e44NpIgVivt5IBEEpHp4wDAFcj39sPsTOJpCjf4DCPx4kwMvSkIXNjZWimDD0mEG9Hdu2hPp0PygYH+1ZEmWX/+AVy9WW7mPoTSmgtL38oyHyrjcnJq8MoiCuFSWjEv/J0yM2T66Zw5spMwH6N2zyBgaamgF3aSBsnUy0qpBKX/PTfICBr3/lfGDs0s+CfWgKjSOS6GWyN74TOAizOkrdd8+sIzspT7QuxKtD64HrN0Y4705o2oA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by MW4PR12MB6875.namprd12.prod.outlook.com (2603:10b6:303:209::5)
+ by LV2PR12MB5727.namprd12.prod.outlook.com (2603:10b6:408:17d::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
- 2025 20:36:46 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.33; Tue, 22 Apr
+ 2025 18:50:28 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9182.017; Mon, 6 Oct 2025
- 20:36:46 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com
-Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ ([fe80::4ee2:654e:1fe8:4b91%6]) with mapi id 15.20.8655.033; Tue, 22 Apr 2025
+ 18:50:28 +0000
+Message-ID: <c7c47d24-4a09-4fdc-b356-168dccd06008@nvidia.com>
+Date: Tue, 22 Apr 2025 14:50:25 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/16] gpu: nova-core: register sysmem flush page
+To: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
- Elle Rhumsaa <elle@weathered-steel.dev>, Yury Norov <yury.norov@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-Subject: [PATCH v7] rust: bitfield: Add KUNIT tests for bitfield
-Date: Mon,  6 Oct 2025 16:36:31 -0400
-Message-Id: <20251006203631.3150221-1-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251003154748.1687160-6-joelagnelf@nvidia.com>
-References: <20251003154748.1687160-6-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BN9P221CA0016.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:408:10a::18) To SN7PR12MB8059.namprd12.prod.outlook.com
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonathan Corbet <corbet@lwn.net>
+Cc: John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20250420-nova-frts-v1-0-ecd1cca23963@nvidia.com>
+ <20250420-nova-frts-v1-9-ecd1cca23963@nvidia.com>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <20250420-nova-frts-v1-9-ecd1cca23963@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BN9PR03CA0974.namprd03.prod.outlook.com
+ (2603:10b6:408:109::19) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|MW4PR12MB6875:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6de3412-2f9a-489b-6f8e-08de0518112d
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|LV2PR12MB5727:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06ae16e0-0e24-44b7-bae2-08dd81ce8c88
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OMihJif5WeaCp9/siHpKSqKGCuyDL+7xZFtm1YNToHTjdYB67DqbAsW86GC7?=
- =?us-ascii?Q?NQ5GGgHT6oGoT3U4Qs9XHcf6fYmMWF4nvjomI65vA6G/DIN2CRO5XqdI4HmH?=
- =?us-ascii?Q?4eLWU74unTsomh5w2hGg2ysny2h5qDZYWMBjSnOHZ7sax86yRvLGk2WD5JDq?=
- =?us-ascii?Q?aTPK3xgjVsYyfRkWA+MJEVQeFHKXWD6emdxvRTgut8GZY+7F2ZS6v0zwgtAB?=
- =?us-ascii?Q?r/1wvCy7bZPbIFmWPYXvTPlhkXAbXTh8I7X2Y+jb84cYoxX7SQimR22mgGI8?=
- =?us-ascii?Q?nnDyik0xwvKn+zdQtpgRTES8MAq/aj1BKzVom6xDrN1BWuA2BGX2ZXm4CdEV?=
- =?us-ascii?Q?Joxa6QiCoxbxQeeHC1lVNwLw10xaYuZ0f3wxLCVy+6LECi1DuJDgawHMbLrs?=
- =?us-ascii?Q?OezL+HPY8xy2trBok3SZf/AwK46Z6plv7oIlmWN+4HjPICO1GWue9j0FxrKb?=
- =?us-ascii?Q?5PkohJXQRw6JpVAH/g+o5ggbQeH9wC3TXwlaNWO2w9e2MOkkOM6RD4LczRiI?=
- =?us-ascii?Q?EpnkzBWO6GRlGDKQGD1wKcVRZ6QKblIYw6IC+tibdtWxI1Rob+xq0abP+ccS?=
- =?us-ascii?Q?q9MDMMAUwoHBgz1dZGTlEfxNi7LuAeOc0bxPncT8Ktbs/Rh2P4sqhoEWprTC?=
- =?us-ascii?Q?HbCCs7HWp+uyEKOjlVUHm0u3Qyfr8obTU4d+TfZxr2KVWVoeqWJLX9a4jrlp?=
- =?us-ascii?Q?WS8WfuWT30YjwyDRfOdrEUbycUaIu++D1mOw8uU3Dlv2Pzsqh3ICWnG7Bf2y?=
- =?us-ascii?Q?0Lp2iI836gyHBaB1z/fkSPZyfnRDnBZs7H9WfHDgy/Cs1Ye72cE0Dam9eAi0?=
- =?us-ascii?Q?b3N4ybTkL09X5cP5oNYa1J6pkvxM0HPPaUDoyR+ShYqZ26EZUIgOp7ScKsVb?=
- =?us-ascii?Q?h9rbLpelTZRb65Wic/h92oSg5HLw4eFjcj4SLgIZX5SPfXYGQ35APvYnYYhc?=
- =?us-ascii?Q?rLKRyHoNFq1j+9srXYkDlO0e8z0zSdWlBAuXBYiN5RFoUwEK4lKN3PAAXxJA?=
- =?us-ascii?Q?t6DLZX7Ty3OJmqF88hT8DWsl2xBfRm784d+oAYSFwNafyWqr+qGYeBPIK9/j?=
- =?us-ascii?Q?6AKV1GkYJrNkUTjHz9jiLLyPBn8xih/Bt390l171viwhrQlieCJor/6bTy+C?=
- =?us-ascii?Q?+z7HDfHgY2q3W8VKXNff84urVTVZrgEZIYYzR9/zLbBtQQSLloosuP5eKUnI?=
- =?us-ascii?Q?5l445nABkrydURAxfsheScvm58QhWBJUsRnUW3L1DdfHk2it4X/NcI4lLYlh?=
- =?us-ascii?Q?QXp49MYpgFh5f2dy3eQROACV3tjP4imWEPLntsCt+cX7myFbamndHrlPeXnZ?=
- =?us-ascii?Q?APgqz7/hBSH42WRpMmtHLj2VYTkF7CE73eiUFXqDsuB+09ml0gmPlef6i6Xc?=
- =?us-ascii?Q?ZsbHk9WR8MNEBQZxQxSKOmCewlgw+EDvwWyyqX/xjEwcAgcjXRKY5n5LuKTO?=
- =?us-ascii?Q?TH6ldJInCdMJrOXwef5HvZEpRX4GAEUT?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|366016|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?eGczckQ5eHpub05TNnZEcGNtcEI5WENZdFdadzg0ZjRWeThyd0Z1bDhGM3E4?=
+ =?utf-8?B?UE0velZSSnRXeUFaQ0ZoRVA5eDM3OGtaOC9tTTBUU1p2eFdtdHRYLzhsMHJh?=
+ =?utf-8?B?NmVOQm5ZTTNmb2hBRm50Y0lIUVVaQVBNRUFtamRZdEU2ZnU3MEFGTUxZYVV2?=
+ =?utf-8?B?TEsvTnhxTVdRNUJxdXBMSnhQam8wU1VmQ2RsaVh5N1ErNkVrNUZDbXhNQkY1?=
+ =?utf-8?B?MXp1K2lZQ1UxeFB1M3g5OHlNbDRQbjdjYXBtbVI5QUZDcnd2MXFrZStybkp2?=
+ =?utf-8?B?aHk3K2M1czhYcDJWRXhWQVVzVnlVY3lEb1lYR0NnWEpzeXM2YklJVnF6L3cv?=
+ =?utf-8?B?TjcxaFdKQTRWYXpSWFVjOUNKdGxhcDM1MU9QQjE3ZFVHcTI2V0tuaVZtNHhk?=
+ =?utf-8?B?K3padFlsWEREalFTcVAwZ0VTMW1hZmFkdERuZ3RJVjh3QWp3bVorY1BPYUJx?=
+ =?utf-8?B?M2wvRDdIdHR0Z0l4L1lVcmlHeC80Q1hhbStMNXRDQm9KNjRFWUdQd0JkTXlV?=
+ =?utf-8?B?THV5THVqeDVCNUkreWlUbjJhYi9sTEdLVlR0M0xUZG93MHl5RXNYMEp4MmN3?=
+ =?utf-8?B?ZVFaVTRzSDFHelkyektlK3RSK1JETUtDbEVPVWRjWDJYY2p2WXFaanBFL2Nx?=
+ =?utf-8?B?S2lrWXhMRlF0N3BmRmR3cGRTS2JrZStvb05icGZPSTNJbWVXdlhMeFhkcUU3?=
+ =?utf-8?B?WXpEOERnZFZVS010cS9uSy9OeFJiYUJ4Yko4bFBhTkdvMFI5bHk0TVhmajMz?=
+ =?utf-8?B?T1RoTDY5R1d5Z3FFU2E1ZGYwUjBMWHRPdG5zWWxKcjFTNDhMd0xqZ1RQTGdT?=
+ =?utf-8?B?RVJVcDVDYjBjdlJpdGhPWFNJYW9NM0M4ZitzaTZJWENOY0FNZ1pxNHVrd253?=
+ =?utf-8?B?QnlSekZkdU56K21MZTJOZ29nMEh2TmM2VUJRSmthcGZZbHF2N2hZVnhKc1Ro?=
+ =?utf-8?B?ZS9KS3hjbkFMZ0ZRMTBXZFRmSVlpWXcyWlpJYTFReHcvZWxWOHhsNEw3VFNy?=
+ =?utf-8?B?NkRhYzRmNHB2WlRka3gwTmxPek95UEJLYkdwQTJZWnQ5bEJnTEp5TExWZGFR?=
+ =?utf-8?B?eGRPYWdabE1lQU9XMmN6WEROZTdWQWdwazB6dEVYL0tBTXFzVldmZmZKc0ow?=
+ =?utf-8?B?dkk5Wkk4Z3ZPTExmcHhCTXJyamtRS0R0QmRmbG50WUVUNUZzS3ljOFpwQi9y?=
+ =?utf-8?B?cHJKK3krVVJVcGtFaVV6QUV6eTdBSmp5ZlJMYjYxeFYzczV3MUlnS3BQNnBB?=
+ =?utf-8?B?bklIQ1ZTNDl2bUdIVnZmZ0FZSmNhTU5yS3pSd3kyVXRQaHpHRWpPSzJJWjFs?=
+ =?utf-8?B?MGRMMjNDVlMvQlBDaXZkRWNRdXhJSDExT1BWUXN3aDhnSDBGQ1ZKUEZuc0wz?=
+ =?utf-8?B?RlZWUWE1L1QwSEc3MWJTcGhMNkhiM3NWR1VnNlJhQ2JpMnNRQmZrWlhqWEpK?=
+ =?utf-8?B?K3VOOGdjVEVYeTdvYUE5WFRlVzg3K2dzUG1Ka1Axa2FENzdvcGNDMG82UXJa?=
+ =?utf-8?B?VDFCUnVIdHhLa1NjcFYvaFREZ2dkSGlSTnl4L0tLRVA4K1U4T2ZlU1pZSDNm?=
+ =?utf-8?B?ZDFRa25yMFFiQkk0bGY3L09mOFNia0w4QTRxMDYwaFVvVkFTUXhWWkZFMG5Q?=
+ =?utf-8?B?RzJYdkJ0YUg5azQxaDNFN3AvNmJlN1F5blA4NnBuSmJENXF2d3k2ZVpSc3Va?=
+ =?utf-8?B?ZGRVdXBvVEhTcGU1RTBnNTFjNi9pN3Z3MzBzYWlKcDl2aUxEVVEzTHhkRWJo?=
+ =?utf-8?B?SW1qc1JydVQyNXBrcEM4Y3BCZEdlNnUzZ1RDSUU0RmhsamtKcElqQTcwZDFI?=
+ =?utf-8?B?UEhhNTllS1lYMHk5TEticDc3blY3VFlpMzdOcnpBaG4vM2pydDNkNjI5VXFt?=
+ =?utf-8?B?R0hiLytHOHRqR2EybzEvNWtULzRic1N5Yk03Z3Jod09zNi9laU5JanRLSFJv?=
+ =?utf-8?B?bzdnbkRDdmc2b04wNkNXUWcrdXhlTndtQVBiQ3pORnlxUXg4aDBYSVppVC85?=
+ =?utf-8?B?THNJK1hQdEVRPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jv0XatIyPbeWEt6rhWhfy/bQCrXtWuMHLvpXPHrLFwT1kQGRgvLW3jEadODu?=
- =?us-ascii?Q?xAObbxQFo2Uuj6Jq6I4liV9U0aAF7Z/M1ZZ1r1NnLoj61x8g1brVtNA7x6xJ?=
- =?us-ascii?Q?Xw7EplBn0Algoee+pU/rq3eihcUuQeHyo6TsOI1Yppb67c27PcHqXmXh8lat?=
- =?us-ascii?Q?1wGMSrupoYoIhYESS5fJulkcSgCv4WhfIEUrgV6YLF2+uTzKgvOxZZxfc5i6?=
- =?us-ascii?Q?4tsytLgtfwAK3BOJh9TOl8we28s+5wDldZD+kscfsT1eQkUkC4gDnK+JMSX0?=
- =?us-ascii?Q?RXUbiOOduAro0lkMG4Vnamlmx3TnFRBwGh8hOdhjo4aZG27MhjF61uKjeoIe?=
- =?us-ascii?Q?cwcB9xZmxIB0OS5JD1LLdZA+yETCLCmHsr4Ty0jhKaY1Mv9x5Le5b8cwTUyq?=
- =?us-ascii?Q?Mx8mhJnkDIkcaydltlnMdD2rzQD4HlVcRrWyZc9aDS6OX2F9lB8P30fUWiCb?=
- =?us-ascii?Q?5J7ED0DKxnQ7jsiW3XF+N525edtcIy+cNnkQMCvlhAnLUEdCWAvrzrO52I0z?=
- =?us-ascii?Q?Z3d4apXgWtRAlUCdO0MZMvma+T5U7NB9lBnTREXLMjc5jeQ2ADg9pgKj+VUz?=
- =?us-ascii?Q?gtC8fc+Va3uBmjo0EGXViaGdA8BYEjpn9DKzTl6nPc9YoVaODAw5CA/5Aqz5?=
- =?us-ascii?Q?wXx1X+YQC2KcqE6nsifQtsXpPg9SWqzICoWp4ZwoEbSWuKfOyEhlLy61ddtO?=
- =?us-ascii?Q?QQtdqYY3SnL1SRlFf1XkyjKZU0X5kPUN8G1kIz2e0jbhGMlhQrzj+9CB0WDF?=
- =?us-ascii?Q?msz35j2VP/Pc2rGD2qYmQRYdAYAYQ8rBP0vdu3ClHokUMUyls2ov4X6JIQMF?=
- =?us-ascii?Q?Tvn4Va1Zh+W1tbU9kQNhnV+NyccSTYg30/kkUgwkq2fdMCJonBRJ2ashYUZN?=
- =?us-ascii?Q?4SdnofuDMH3A9PZO9SD4qRv/4jvS0Bgd5BWT+/oBoDfuhgCE9KfLpfvDCw92?=
- =?us-ascii?Q?cahC4FnirwePU4+36mU8HL+K4MuzdiCtXh5p9aMbGI6t6JmJ/dt3jxWfGCM+?=
- =?us-ascii?Q?ILek5HWdpbdMN769d/iwsfRzw7XbcYbwRO09XD2MTqJGZZ3ZiIKIBrf/CCKG?=
- =?us-ascii?Q?BHIIdT/xAMI9nfn2NrCVpMDXZebuChttY6kWWcdQx3wZ1NvphUUPRSNNh9/C?=
- =?us-ascii?Q?K6StOTiEHKm5ausbIu+dvwthyBm3/r8LfQg7X66hwH9HrCUauPeTS/oqYxvJ?=
- =?us-ascii?Q?ruYcik/SmefBQNfVtUPvqDszdtEmy30N3UOE7oR40ooZJP0UVkcg110h93KK?=
- =?us-ascii?Q?3WqVpWa/1fEAQT5lJ7fp5DeYp60NuU9yQYIvyOodjpy1FkY08IHvu8wlY2c3?=
- =?us-ascii?Q?uQlaKCEaG/MRx2j2D9CSJ4/yCB4yATmZRFPeN4N9oKTj91PwpJ/F5yhLvVyt?=
- =?us-ascii?Q?uc1Z5PoDkq7wpYHW104dQ++W07/A5wFQCyV7auXP9Bq45bfWAAzigLYJr8Km?=
- =?us-ascii?Q?3SLJTdPcEYec8ZDmKUXwamKxhGEU+k/dgxzRTf7zCBHQnv1V+3MaRAwfaOs8?=
- =?us-ascii?Q?DIgbbKoIHilgADcTB1dBBvsom/SVRVE9fbXwwS6nd1i+Sn4Neznd/9V1SvI0?=
- =?us-ascii?Q?p97G+wnT0ouQt2O9v7fY5s1eyifVLNqYKVpk56yn?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WmQ4R05jbHMrWDF4Zm9temthYjh2V0F1ZVprbjBRT0hKcndiSGRLUTZOa085?=
+ =?utf-8?B?K1RWSlBSN1NhaWQrQ2hrZEdsWWt4eHNiVE5Ea2VnRCtIY3BESUJtYi9STlAv?=
+ =?utf-8?B?TEcrSG5QVFFyZkVwK2tqckp1MHJVTm82LytSZmtxZkZlQythb24xcGkzWVNi?=
+ =?utf-8?B?UDltaFZiSnRXa1duellKd25ZQVl5N0lMSlRLdE9TVEJ0ZUtHZEdoa1d3a1ps?=
+ =?utf-8?B?Z0M2cjlNNnNQbkxHMzBSamZZencwbU1tV3o1YmQ4TjN2aFUwQnNaL3c4SDdW?=
+ =?utf-8?B?SDBGTENRajk4cjBFTXhSMzNpTnFveU96RzA2WU43ZUgyOU04cE9KZ20wSmFG?=
+ =?utf-8?B?QlQ1N2FmN0MxbWc4eVY4NjdET1lncDdobm5UdnZlRWhwbDg0WXYxM1lPQmlL?=
+ =?utf-8?B?eXcvR3hGREE5MU0rQTVzVnI0R2p6UmNIWnBWb3plOHRxbHEzaTlEWGRnZHZP?=
+ =?utf-8?B?M284bW5LeTFEYW5PSU1WQkdKKzF3eTFKVGFHYkFJY3NKUmdray9ENUYzTEox?=
+ =?utf-8?B?TTJ6bUNpQzE1ZmlKdDZhQlQzMG1YcUt3Ty92V05FRTRreVdpRjB5QnhSaDd0?=
+ =?utf-8?B?eUVRR2dUcVZmUjNaaGRlUmgyMzlScXhUaCtuSFVVd01yekNCVHhoeW5iU0dq?=
+ =?utf-8?B?N2Z1Y0VlRG9UVXorNXppekpOVUo4Uys1N21nZXlBU1BXUGcrTjJmMnNrQXN2?=
+ =?utf-8?B?aUhOSjNnLzJlWHI2WlEyT0prNXJvTVF5dE11YTVCcHRIL0dLT0w5QWVkWncw?=
+ =?utf-8?B?am5TWmZ1azFyWlJpc2pOblZocTNqZEdGNVBBYVp6Q1FJVm9TRzc2REpFSUZw?=
+ =?utf-8?B?cCt1dk5uWEZPZ3NDQnlsUE9HbU9td0Z5T0pWUkJQK25nRTUrZ3Q2aTVQVEVj?=
+ =?utf-8?B?NE9uZnRiYnZkWFRacEFyWUJyNUtxRDFIR2djRUNJR3BMYWtYTVdqYVFJYThE?=
+ =?utf-8?B?bDZtWUV6ZHFOQWVmZUttQjZiRzQ4Y0FmZVkvMUNieDhuRXVhMkQzNUM4WHlX?=
+ =?utf-8?B?bzhqWVdQSFpobW1oTlJuTVJrd1NvU21ndTlUUmRaOS9xdVlSS2NwVFIwQUNv?=
+ =?utf-8?B?Zys3cmQ5S1ZaQnNIS1EydjRDZXd2SkNROHZqSERhQk1ZZm9NMisxTHRuSWpv?=
+ =?utf-8?B?bVBKN0t1d3M5ZHlpQzJ6K1ZYN0lOeFRldUJQbEZ6U2d3K29VZEdlWUpUaHp4?=
+ =?utf-8?B?OG5tOXF3bUhuQVEzOEFOOGYyNDJXOWhBbVpaNHJSblA4QnBDVFhXQUNrdGZm?=
+ =?utf-8?B?VkR2Zy9BQzJiZHBFM3JISVJMWlFVSGdnT1hMamEyUlZqek81VlRTOE1TSHpO?=
+ =?utf-8?B?Wmt1WklTa3lGcEZuTHN2OTBBeDhRdE84R01mdWJ1RlBVYlo2S21YdGFueGc5?=
+ =?utf-8?B?WkN3U0lQb0dTN0VnQ0xpL2cvWmFhbXhmekc5Q2lGY0dsYTdpWHg0SUVsNjQr?=
+ =?utf-8?B?M1NoOXZXQmMvc1VENDFkbWNUWjd4bGVMV0ZoM0M4b1dKUHgzMi8xYWVyRGoy?=
+ =?utf-8?B?YnZSNFRDZ2xpWndsZEpnelJsb0VQMS9wYVBseklDc3Z0QUFPaFk0ZDBpVWMr?=
+ =?utf-8?B?RkFKaS9Za0FRSHRxQ3RpZ3FXbFFLZTdqaVVlWlgrbFQwWWE0YVR6QzhLTk4x?=
+ =?utf-8?B?U2kxeDJxbUwxNDNKMUVrZXhJUlZQaDVXaXU4K3h3MW1lUjFoNzhmZTRvUlMv?=
+ =?utf-8?B?WG9VRHJWdXNna0lyaWxHOUdoV0FwRnowUjRjZVZwZzlFWGJSZFhSLzFvbmcz?=
+ =?utf-8?B?bWZITEIxN3BwQVR2bFNBeW8ydkR6TlFENzRvaGR2aFJKblBVK0ZnS2ZPenNk?=
+ =?utf-8?B?UUJ6QlJsSTlyV2gweUQ2d1V0dmRvbGpEdExOUDVFMXp6U3M4dm90eFhiT2Fi?=
+ =?utf-8?B?SERHay9wRVVPZ3AvRDZrUFJ0Y0p0RkJEWDBFM0pqbFM3TVlhbHFTcHZncmUr?=
+ =?utf-8?B?cHVER3V4N1h2SGdQbzQzNVpZaFMxakRaN2c5VHVYYWdsMk1VM3E5RHFOZnRM?=
+ =?utf-8?B?Wk54LzhqRm45alliT01tdlVUdHZYeHNJWnBiWTllRXh3N0FhamRYaHVldFI5?=
+ =?utf-8?B?OTg3MmZzRC9XOU1VM3FUZWJnd1BZYk9wcU1JanM1cXNIR0hEamVhWDM2bW9u?=
+ =?utf-8?Q?WY36cV+hxgpnJnJG+ToK4rgEC?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6de3412-2f9a-489b-6f8e-08de0518112d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06ae16e0-0e24-44b7-bae2-08dd81ce8c88
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 20:36:46.1035 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2025 18:50:27.9608 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: s5ZM08pdArFHrSdZM/gQpussROhcPpOEmiOYg4DOHfAaUmpmge8T6hpw+W4MIPQ9HEGgW5k0NE6+6/J/G2rrKg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6875
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: a7W6Y0MvOMEjPMvhPhPnPgxeEghAGnQne6OUCIm7YiC4gukgkK7KKzcFHJHGm+YQ+t08p4NF+oTokPR3RjDXGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5727
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,338 +177,220 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add KUNIT tests to make sure the macro is working correctly.
 
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- rust/kernel/bitfield.rs | 316 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 316 insertions(+)
 
-diff --git a/rust/kernel/bitfield.rs b/rust/kernel/bitfield.rs
-index 09cd5741598c..c3e0ef531256 100644
---- a/rust/kernel/bitfield.rs
-+++ b/rust/kernel/bitfield.rs
-@@ -329,3 +329,319 @@ fn default() -> Self {
-         }
-     };
- }
-+
-+#[::kernel::macros::kunit_tests(kernel_bitfield)]
-+mod tests {
-+    use core::convert::TryFrom;
-+
-+    // Enum types for testing => and ?=> conversions
-+    #[derive(Debug, Default, Clone, Copy, PartialEq)]
-+    enum MemoryType {
-+        #[default]
-+        Unmapped = 0,
-+        Normal = 1,
-+        Device = 2,
-+        Reserved = 3,
-+    }
-+
-+    impl TryFrom<u8> for MemoryType {
-+        type Error = u8;
-+        fn try_from(value: u8) -> Result<Self, Self::Error> {
-+            match value {
-+                0 => Ok(MemoryType::Unmapped),
-+                1 => Ok(MemoryType::Normal),
-+                2 => Ok(MemoryType::Device),
-+                3 => Ok(MemoryType::Reserved),
-+                _ => Err(value),
-+            }
-+        }
-+    }
-+
-+    impl From<MemoryType> for u64 {
-+        fn from(mt: MemoryType) -> u64 {
-+            mt as u64
-+        }
-+    }
-+
-+    #[derive(Debug, Default, Clone, Copy, PartialEq)]
-+    enum Priority {
-+        #[default]
-+        Low = 0,
-+        Medium = 1,
-+        High = 2,
-+        Critical = 3,
-+    }
-+
-+    impl From<u8> for Priority {
-+        fn from(value: u8) -> Self {
-+            match value & 0x3 {
-+                0 => Priority::Low,
-+                1 => Priority::Medium,
-+                2 => Priority::High,
-+                _ => Priority::Critical,
-+            }
-+        }
-+    }
-+
-+    impl From<Priority> for u16 {
-+        fn from(p: Priority) -> u16 {
-+            p as u16
-+        }
-+    }
-+
-+    bitfield! {
-+        struct TestPageTableEntry(u64) {
-+            0:0       present     as bool;
-+            1:1       writable    as bool;
-+            11:9      available   as u8;
-+            15:12     mem_type    as u8 ?=> MemoryType;
-+            51:16     pfn         as u64;
-+            61:52     available2  as u16;
-+        }
-+    }
-+
-+    bitfield! {
-+        struct TestControlRegister(u16) {
-+            0:0       enable      as bool;
-+            3:1       mode        as u8;
-+            5:4       priority    as u8 => Priority;
-+            7:4       priority_nibble as u8;
-+            15:8      channel     as u8;
-+        }
-+    }
-+
-+    bitfield! {
-+        struct TestStatusRegister(u8) {
-+            0:0       ready       as bool;
-+            1:1       error       as bool;
-+            3:2       state       as u8;
-+            7:4       reserved    as u8;
-+            7:0       full_byte   as u8;  // For entire register
-+        }
-+    }
-+
-+    #[test]
-+    fn test_single_bits() {
-+        let mut pte = TestPageTableEntry::default();
-+
-+        assert!(!pte.present());
-+        assert!(!pte.writable());
-+        assert_eq!(u64::from(pte), 0x0);
-+
-+        pte = pte.set_present(true);
-+        assert!(pte.present());
-+        assert_eq!(u64::from(pte), 0x1);
-+
-+        pte = pte.set_writable(true);
-+        assert!(pte.writable());
-+        assert_eq!(u64::from(pte), 0x3);
-+
-+        pte = pte.set_writable(false);
-+        assert!(!pte.writable());
-+        assert_eq!(u64::from(pte), 0x1);
-+
-+        assert_eq!(pte.available(), 0);
-+        pte = pte.set_available(0x5);
-+        assert_eq!(pte.available(), 0x5);
-+        assert_eq!(u64::from(pte), 0xA01);
-+    }
-+
-+    #[test]
-+    fn test_range_fields() {
-+        let mut pte = TestPageTableEntry::default();
-+        assert_eq!(u64::from(pte), 0x0);
-+
-+        pte = pte.set_pfn(0x123456);
-+        assert_eq!(pte.pfn(), 0x123456);
-+        assert_eq!(u64::from(pte), 0x1234560000);
-+
-+        pte = pte.set_available(0x7);
-+        assert_eq!(pte.available(), 0x7);
-+        assert_eq!(u64::from(pte), 0x1234560E00);
-+
-+        pte = pte.set_available2(0x3FF);
-+        assert_eq!(pte.available2(), 0x3FF);
-+        assert_eq!(u64::from(pte), 0x3FF0_0012_3456_0E00u64);
-+
-+        // Test TryFrom with ?=> for MemoryType
-+        pte = pte.set_mem_type(MemoryType::Device);
-+        assert_eq!(pte.mem_type(), Ok(MemoryType::Device));
-+        assert_eq!(u64::from(pte), 0x3FF0_0012_3456_2E00u64);
-+
-+        pte = pte.set_mem_type(MemoryType::Normal);
-+        assert_eq!(pte.mem_type(), Ok(MemoryType::Normal));
-+        assert_eq!(u64::from(pte), 0x3FF0_0012_3456_1E00u64);
-+
-+        // Test all valid values for mem_type
-+        pte = pte.set_mem_type(MemoryType::Reserved);
-+        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
-+        assert_eq!(u64::from(pte), 0x3FF0_0012_3456_3E00u64);
-+
-+        // Test failure case using mem_type field which has 4 bits (0-15)
-+        // MemoryType only handles 0-3, so values 4-15 should return Err
-+        let mut raw = pte.into();
-+        // Set bits 15:12 to 7 (invalid for MemoryType)
-+        raw = (raw & !::kernel::bits::genmask_u64(12..=15)) | (0x7 << 12);
-+        let invalid_pte = TestPageTableEntry(raw);
-+        // Should return Err with the invalid value
-+        assert_eq!(invalid_pte.mem_type(), Err(0x7));
-+
-+        // Test a valid value after testing invalid to ensure both cases work
-+        // Set bits 15:12 to 2 (valid: Device)
-+        raw = (raw & !::kernel::bits::genmask_u64(12..=15)) | (0x2 << 12);
-+        let valid_pte = TestPageTableEntry(raw);
-+        assert_eq!(valid_pte.mem_type(), Ok(MemoryType::Device));
-+
-+        let max_pfn = ::kernel::bits::genmask_u64(0..=35);
-+        pte = pte.set_pfn(max_pfn);
-+        assert_eq!(pte.pfn(), max_pfn);
-+    }
-+
-+    #[test]
-+    fn test_builder_pattern() {
-+        let pte = TestPageTableEntry::default()
-+            .set_present(true)
-+            .set_writable(true)
-+            .set_available(0x7)
-+            .set_pfn(0xABCDEF)
-+            .set_mem_type(MemoryType::Reserved)
-+            .set_available2(0x3FF);
-+
-+        assert!(pte.present());
-+        assert!(pte.writable());
-+        assert_eq!(pte.available(), 0x7);
-+        assert_eq!(pte.pfn(), 0xABCDEF);
-+        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
-+        assert_eq!(pte.available2(), 0x3FF);
-+    }
-+
-+    #[test]
-+    fn test_raw_operations() {
-+        let raw_value = 0x3FF0000031233E03u64;
-+
-+        let pte = TestPageTableEntry(raw_value);
-+        assert_eq!(u64::from(pte), raw_value);
-+
-+        assert!(pte.present());
-+        assert!(pte.writable());
-+        assert_eq!(pte.available(), 0x7);
-+        assert_eq!(pte.pfn(), 0x3123);
-+        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
-+        assert_eq!(pte.available2(), 0x3FF);
-+
-+        // Test using direct constructor syntax TestStruct(value)
-+        let pte2 = TestPageTableEntry(raw_value);
-+        assert_eq!(u64::from(pte2), raw_value);
-+    }
-+
-+    #[test]
-+    fn test_u16_bitfield() {
-+        let mut ctrl = TestControlRegister::default();
-+
-+        assert!(!ctrl.enable());
-+        assert_eq!(ctrl.mode(), 0);
-+        assert_eq!(ctrl.priority(), Priority::Low);
-+        assert_eq!(ctrl.priority_nibble(), 0);
-+        assert_eq!(ctrl.channel(), 0);
-+
-+        ctrl = ctrl.set_enable(true);
-+        assert!(ctrl.enable());
-+
-+        ctrl = ctrl.set_mode(0x5);
-+        assert_eq!(ctrl.mode(), 0x5);
-+
-+        // Test From conversion with =>
-+        ctrl = ctrl.set_priority(Priority::High);
-+        assert_eq!(ctrl.priority(), Priority::High);
-+        assert_eq!(ctrl.priority_nibble(), 0x2); // High = 2 in bits 5:4
-+
-+        ctrl = ctrl.set_channel(0xAB);
-+        assert_eq!(ctrl.channel(), 0xAB);
-+
-+        // Test overlapping fields
-+        ctrl = ctrl.set_priority_nibble(0xF);
-+        assert_eq!(ctrl.priority_nibble(), 0xF);
-+        assert_eq!(ctrl.priority(), Priority::Critical); // bits 5:4 = 0x3
-+
-+        let ctrl2 = TestControlRegister::default()
-+            .set_enable(true)
-+            .set_mode(0x3)
-+            .set_priority(Priority::Medium)
-+            .set_channel(0x42);
-+
-+        assert!(ctrl2.enable());
-+        assert_eq!(ctrl2.mode(), 0x3);
-+        assert_eq!(ctrl2.priority(), Priority::Medium);
-+        assert_eq!(ctrl2.channel(), 0x42);
-+
-+        let raw_value: u16 = 0x4217;
-+        let ctrl3 = TestControlRegister(raw_value);
-+        assert_eq!(u16::from(ctrl3), raw_value);
-+        assert!(ctrl3.enable());
-+        assert_eq!(ctrl3.priority(), Priority::Medium);
-+        assert_eq!(ctrl3.priority_nibble(), 0x1);
-+        assert_eq!(ctrl3.channel(), 0x42);
-+    }
-+
-+    #[test]
-+    fn test_u8_bitfield() {
-+        let mut status = TestStatusRegister::default();
-+
-+        assert!(!status.ready());
-+        assert!(!status.error());
-+        assert_eq!(status.state(), 0);
-+        assert_eq!(status.reserved(), 0);
-+        assert_eq!(status.full_byte(), 0);
-+
-+        status = status.set_ready(true);
-+        assert!(status.ready());
-+        assert_eq!(status.full_byte(), 0x01);
-+
-+        status = status.set_error(true);
-+        assert!(status.error());
-+        assert_eq!(status.full_byte(), 0x03);
-+
-+        status = status.set_state(0x3);
-+        assert_eq!(status.state(), 0x3);
-+        assert_eq!(status.full_byte(), 0x0F);
-+
-+        status = status.set_reserved(0xA);
-+        assert_eq!(status.reserved(), 0xA);
-+        assert_eq!(status.full_byte(), 0xAF);
-+
-+        // Test overlapping field
-+        status = status.set_full_byte(0x55);
-+        assert_eq!(status.full_byte(), 0x55);
-+        assert!(status.ready());
-+        assert!(!status.error());
-+        assert_eq!(status.state(), 0x1);
-+        assert_eq!(status.reserved(), 0x5);
-+
-+        let status2 = TestStatusRegister::default()
-+            .set_ready(true)
-+            .set_state(0x2)
-+            .set_reserved(0x5);
-+
-+        assert!(status2.ready());
-+        assert!(!status2.error());
-+        assert_eq!(status2.state(), 0x2);
-+        assert_eq!(status2.reserved(), 0x5);
-+        assert_eq!(status2.full_byte(), 0x59);
-+
-+        let raw_value: u8 = 0x59;
-+        let status3 = TestStatusRegister(raw_value);
-+        assert_eq!(u8::from(status3), raw_value);
-+        assert!(status3.ready());
-+        assert!(!status3.error());
-+        assert_eq!(status3.state(), 0x2);
-+        assert_eq!(status3.reserved(), 0x5);
-+        assert_eq!(status3.full_byte(), 0x59);
-+
-+        let status4 = TestStatusRegister(0xFF);
-+        assert!(status4.ready());
-+        assert!(status4.error());
-+        assert_eq!(status4.state(), 0x3);
-+        assert_eq!(status4.reserved(), 0xF);
-+        assert_eq!(status4.full_byte(), 0xFF);
-+    }
-+}
--- 
-2.34.1
+On 4/20/2025 8:19 AM, Alexandre Courbot wrote:
+> A page of system memory is reserved so sysmembar can perform a read on
+> it if a system write occurred since the last flush. Do this early as it
+> can be required to e.g. reset the GPU falcons.
+> 
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/dma.rs       | 54 ++++++++++++++++++++++++++++++++++++++
+>  drivers/gpu/nova-core/gpu.rs       | 53 +++++++++++++++++++++++++++++++++++--
+>  drivers/gpu/nova-core/nova_core.rs |  1 +
+>  drivers/gpu/nova-core/regs.rs      | 10 +++++++
+>  4 files changed, 116 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/nova-core/dma.rs b/drivers/gpu/nova-core/dma.rs
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..a4162bff597132a04e002b2b910a4537bbabc287
+> --- /dev/null
+> +++ b/drivers/gpu/nova-core/dma.rs
+> @@ -0,0 +1,54 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! Simple DMA object wrapper.
+> +
+> +// To be removed when all code is used.
+> +#![allow(dead_code)]
+> +
+> +use kernel::device;
+> +use kernel::dma::CoherentAllocation;
+> +use kernel::page::PAGE_SIZE;
+> +use kernel::prelude::*;
+> +
+> +pub(crate) struct DmaObject {
+> +    pub dma: CoherentAllocation<u8>,
+> +    pub len: usize,
+> +    #[allow(dead_code)]
+> +    pub name: &'static str,
+> +}
+> +
+> +impl DmaObject {
+> +    pub(crate) fn new(
+> +        dev: &device::Device<device::Bound>,
+> +        len: usize,
+> +        name: &'static str,
+> +    ) -> Result<Self> {
+> +        let len = core::alloc::Layout::from_size_align(len, PAGE_SIZE)
+> +            .map_err(|_| EINVAL)?
+> +            .pad_to_align()
+> +            .size();
+> +        let dma = CoherentAllocation::alloc_coherent(dev, len, GFP_KERNEL | __GFP_ZERO)?;
+> +
+> +        Ok(Self { dma, len, name })
+> +    }
+> +
+> +    pub(crate) fn from_data(
+> +        dev: &device::Device<device::Bound>,
+> +        data: &[u8],
+> +        name: &'static str,
+> +    ) -> Result<Self> {
+> +        Self::new(dev, data.len(), name).and_then(|mut dma_obj| {
+> +            // SAFETY:
+> +            // - The copied data fits within the size of the allocated object.
+> +            // - We have just created this object and there is no other user at this stage.
+> +            unsafe {
+> +                core::ptr::copy_nonoverlapping(
+> +                    data.as_ptr(),
+> +                    dma_obj.dma.start_ptr_mut(),
+> +                    data.len(),
+> +                );
+> +            }
+> +            Ok(dma_obj)
+> +        })
+> +    }
+> +}
+> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+> index 1f7799692a0ab042f2540e01414f5ca347ae9ecc..d43e710cc983d51f053dacbd77cbbfb79fa882c3 100644
+> --- a/drivers/gpu/nova-core/gpu.rs
+> +++ b/drivers/gpu/nova-core/gpu.rs
+> @@ -3,6 +3,7 @@
+>  use kernel::{device, devres::Devres, error::code::*, pci, prelude::*};
+>  
+>  use crate::devinit;
+> +use crate::dma::DmaObject;
+>  use crate::driver::Bar0;
+>  use crate::firmware::Firmware;
+>  use crate::regs;
+> @@ -145,12 +146,30 @@ fn new(bar: &Devres<Bar0>) -> Result<Spec> {
+>  }
+>  
+>  /// Structure holding the resources required to operate the GPU.
+> -#[pin_data]
+> +#[pin_data(PinnedDrop)]
+>  pub(crate) struct Gpu {
+>      spec: Spec,
+>      /// MMIO mapping of PCI BAR 0
+>      bar: Devres<Bar0>,
+>      fw: Firmware,
+
+Can add here:
+  // System memory page required for sysmembar which is a GPU-initiated hardware
+  // memory-barrier operation that flushes all pending GPU-side memory writes
+  // that were done through PCIE, to system memory.
+
+Will add to my git tree as well (but feel free to squash as needed).
+
+> +    sysmem_flush: DmaObject,
+> +}
+> +
+> +#[pinned_drop]
+> +impl PinnedDrop for Gpu {
+> +    fn drop(self: Pin<&mut Self>) {
+> +        // Unregister the sysmem flush page before we release it.
+> +        let _ = with_bar!(&self.bar, |b| {
+> +            regs::PfbNisoFlushSysmemAddr::default()
+> +                .set_adr_39_08(0)
+> +                .write(b);
+> +            if self.spec.chipset >= Chipset::GA102 {
+> +                regs::PfbNisoFlushSysmemAddrHi::default()
+> +                    .set_adr_63_40(0)
+> +                    .write(b);
+> +            }
+> +        });
+> +    }
+>  }
+>  
+>  impl Gpu {
+> @@ -173,6 +192,36 @@ pub(crate) fn new(
+>          devinit::wait_gfw_boot_completion(&bar)
+>              .inspect_err(|_| pr_err!("GFW boot did not complete"))?;
+>  
+> -        Ok(pin_init!(Self { spec, bar, fw }))
+> +        // System memory page required for sysmembar to properly flush into system memory.
+
+Can elaborate more here:
+
+  // System memory page required for sysmembar which is a GPU-initiated hardware
+  // memory-barrier operation that flushes all GPU-side memory writes that were
+  // done through PCIE, to system memory. It is required for Falcon to be reset
+  // as the reset operation involves a reset handshake. When the falcon acks the
+  // reset, it writes its acknowledgement into system memory, but for this write
+  // to be visible to the host, it needs to do sysmembar to flush the write and
+  // prevent the driver from timing out.
+
+> +        let sysmem_flush = {
+> +            let page = DmaObject::new(
+> +                pdev.as_ref(),
+> +                kernel::bindings::PAGE_SIZE,
+> +                "sysmem flush page",
+> +            )?;
+> +
+> +            // Register the sysmem flush page.
+> +            with_bar!(bar, |b| {
+> +                let handle = page.dma.dma_handle();
+> +
+> +                regs::PfbNisoFlushSysmemAddr::default()
+> +                    .set_adr_39_08((handle >> 8) as u32)
+> +                    .write(b);
+> +                if spec.chipset >= Chipset::GA102 {
+> +                    regs::PfbNisoFlushSysmemAddrHi::default()
+> +                        .set_adr_63_40((handle >> 40) as u32)
+> +                        .write(b);
+> +                }
+> +            })?;
+> +
+> +            page
+> +        };
+> +
+> +        Ok(pin_init!(Self {
+> +            spec,
+> +            bar,
+> +            fw,
+> +            sysmem_flush,
+> +        }))
+>      }
+>  }
+> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
+> index 878161e060f54da7738c656f6098936a62dcaa93..37c7eb0ea7a926bee4e3c661028847291bf07fa2 100644
+> --- a/drivers/gpu/nova-core/nova_core.rs
+> +++ b/drivers/gpu/nova-core/nova_core.rs
+> @@ -21,6 +21,7 @@ macro_rules! with_bar {
+>  }
+>  
+>  mod devinit;
+> +mod dma;
+>  mod driver;
+>  mod firmware;
+>  mod gpu;
+> diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+> index fd7096f0ddd4af90114dd1119d9715d2cd3aa2ac..1e24787c4b5f432ac25fe399c8cb38b7350e44ae 100644
+> --- a/drivers/gpu/nova-core/regs.rs
+> +++ b/drivers/gpu/nova-core/regs.rs
+> @@ -14,6 +14,16 @@
+>      28:20   chipset => try_into Chipset, "chipset model"
+>  );
+>  
+> +/* PFB */
+
+Also can add:
+
+/// These two registers together hold the physical system memory address
+/// that is used by the GPU for perform sysmembar operation (see gpu.rs).
+
+> +
+> +register!(PfbNisoFlushSysmemAddr@0x00100c10;
+> +    31:0    adr_39_08 => as u32
+> +);
+> +
+> +register!(PfbNisoFlushSysmemAddrHi@0x00100c40;
+> +    23:0    adr_63_40 => as u32
+> +);
+> +
+
+Thanks.
+
+
 
