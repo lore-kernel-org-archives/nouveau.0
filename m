@@ -4,145 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8FE2CCA472
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A9EACCD187
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F020710E47E;
-	Mon,  6 Oct 2025 20:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6242210E487;
+	Mon,  6 Oct 2025 20:46:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BWSE2bIz";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="S/PQ6YET";
 	dkim-atps=neutral
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2057.outbound.protection.outlook.com [40.107.94.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 157EE10E7E6;
- Tue, 25 Feb 2025 21:02:34 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2066.outbound.protection.outlook.com [40.107.243.66])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A99D610E6FC;
+ Wed, 23 Apr 2025 22:54:38 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fP82h7LcEhOpr4wX8dnDanYiCBPNqL96GZFbbmB3v9GffM6stfxPbkkNd7InFbL6aLaoG3aUg4lQeaoRweL0yfyxqFnuhOo/OIif4T952YcldIxeP1p8SIDI4uUxV/fWXoaV7Uwr3A3uVq1OIXp7i7zOVTMV0gSPLQ9vC+QEWdxlOTXHidOqnCAGNis4BLt/1/Hih0AcOhERMRBNFleXpzbW4kz33rDJE7Z9Vz2K/kXzstWR4qBijnj6MLwB3KBrJLA/SvfpnGREHorb7O+GsoXkEK1oqvPXAqha+HeGDdlL0aItvUTQU6JlCBXgZUL3sGXZOFdC4mFzQe0O6JDtpw==
+ b=SwEjuFtd86C1cRANHrrQKjUmB3mf0Rx19zn5WknBwKj5xhyjwDzftb784G0Yez3y8T/OmMDiL60ccsoElqy7Zi6faQJiGxzziRqlykamvd1HwMOZUZLfLZut8iM8iISXVUGn0yvXHsqfIhpBDzurrUPVTs0q9W4Bdlph3I7UZhk2VHe/O48bkJOGmQeQ10TrSui+LpVIWHm1+Sbt0GbnFa/bjbvY3uOLMkhjR26UKU2NSETrrQZS3i7+dbBgW7TYPXK60sdqRsBbO74mLoaC7qvKqWE8+uzKwn3Wwf8l0oqHxniGJMHCZPZRaI4wkSz48XzUDHAvD8phaL8Yewlhrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T/JDlv985s7SMkDyrawNWQM/qQ+AzbeSVAc0b7mQ9Bo=;
- b=aZaWmBKOVuMT8Ju/mQc1eMU8oYi3idxFRQ2Rx4IOiozbKB5f12+88DfSZ0pET+fFeeRPFOnkjy2QFs5vChnb5aI1rm7jS4zj+b/pnu1Pg1AfSqbNbEuOPe7slVZKw3DVQ085juOswv6P9PfLiynAUq50VaTzB87TFaMq1B6WmpTn6vJPBrLHGoXg8V/uq/UReTBFFWTKOgYEJAO12z8ttWA0NgH4r4grMD7uLMhM1lL/wiv8pT7Oq4g5nrejYUgA6f0KKPXsLjztfxtJVUylJPkjPBpidmMnvGAZ7rk6o8LYCKM4IR55yDNDaqCv+ycOlTDcXZnkCL7NvRy0D5bNDw==
+ bh=Du5IHCP3h1SeKWBFAGevlPV8wkdfq6KQ3lU3PEJL1bg=;
+ b=kEc92SZhd0HtlLmbGZ0RDb7yKMwzbX6kOCZBinY0Q2AxQ+KKGqz+QxZturfHB+6EYCVzbZCSy+jK3rTnIy040h8AaXOjhzQ1LnTboTa66c4470iiPZqjasfonNKi1kRf1G5Do+pfmkGeIKtRC7nLs32jn+fRes1uxKkPqMfGcYcIqmVtpWHI0Ym+oamSc/9rnOaYJZ6wXgvExpIhOfjfSlnk+5LvRl8Xpd+NF+9xMKiaJJm45sBlKzlPooaPKoHN8YWr6KRhs2Q81Nn1/HEpiuyHBVNiB1fV/Cy1fteb9ZNGKAF3Yee6or5VuBoSFp1gun9FyklYSQ64KYFX0cjo9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=T/JDlv985s7SMkDyrawNWQM/qQ+AzbeSVAc0b7mQ9Bo=;
- b=BWSE2bIzzDUtgdfY3pTphBF8sBLZ/S81KStdV6Nezo9kEE003sDZXo5ihj8+RCLuAvX6CpkukRKel2bIUnLRUc4+bnMgKzvPv2w6IgzhoFXxBrt5b7CUv9giABmIaWiOg1DZ2kFON7xdmJ0iwXvRLOA4WMAIy/OffwcdydW+CsoBa3BJ5bvIIixTmsRZCDAN8AjzwXEtMimMQobbWmKyVC1kKLDnMC1/FuEzpHctJeljTFcqKhLsRnXfech566+P6Qb85mye1PE2qlmr/c9nXjR6LU4ESpgeSVQU49uZjc65INXWPW3HDr8h7oXIwi+nuzhgshdPUh91ksfVUMwTZw==
+ bh=Du5IHCP3h1SeKWBFAGevlPV8wkdfq6KQ3lU3PEJL1bg=;
+ b=S/PQ6YETfu+13D/iA5JhJM67/vnpYWSb49Ao4fEkg3U7U1rPRX/b3MLx43bIhH5Q+PJkVEkaHZgopzHfyZ4o0Cde3pFMRPnNVphAObTJs7U+AuCvSFXuHDwxNTDJI5Ys7OypHnHxl/uGeYCJoGoeFgcjYlynoqWJrGe3fFuQ2I6lLLD3ILc9ZSQGvgRef1wz889BhnyDdcVFY5RRVWtWB2iUpUwr/pMkjxc99JSpfqhMhOnf6sq7PrCtSrlNiS8nQCcht4v97D79w0U0A5WS30n1RA5fa8pEX6dtRqGWLV3K1yuEAepW8WEOfYnO1hNlsE7S8fmBT6A9Qo70MowQ1A==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by DS0PR12MB8576.namprd12.prod.outlook.com (2603:10b6:8:165::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.20; Tue, 25 Feb
- 2025 21:02:30 +0000
+ by PH7PR12MB7841.namprd12.prod.outlook.com (2603:10b6:510:273::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.24; Wed, 23 Apr
+ 2025 22:54:26 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%5]) with mapi id 15.20.8466.016; Tue, 25 Feb 2025
- 21:02:30 +0000
-Date: Tue, 25 Feb 2025 16:02:28 -0500
+ ([fe80::4ee2:654e:1fe8:4b91%6]) with mapi id 15.20.8655.033; Wed, 23 Apr 2025
+ 22:54:26 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Alexandre Courbot <acourbot@nvidia.com>,
- Dave Airlie <airlied@gmail.com>, Gary Guo <gary@garyguo.net>,
- Joel Fernandes <joel@joelfernandes.org>, Boqun Feng <boqun.feng@gmail.com>,
- John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- paulmck@kernel.org, Jason Gunthorpe <jgg@nvidia.com>
-Subject: Re: [RFC PATCH 0/3] gpu: nova-core: add basic timer subdevice
- implementation
-Message-ID: <20250225210228.GA1801922@joelnvbox>
-References: <20250217-nova_timer-v1-0-78c5ace2d987@nvidia.com>
- <Z7OrKX3zzjrzZdyz@pollux>
- <CAPM=9tyu84z4Xk5X0fykO3Dazby2UqRgwtN4woNKe4Z2yMyDZg@mail.gmail.com>
- <D80AK2CLL4AZ.1G6R7OBHOF08O@nvidia.com> <Z7xg8uArPlr2gQBU@pollux>
- <Z7xh5bEyh_MII4WV@pollux> <20250224184502.GA1599486@joelnvbox>
- <Z70EcwNIX0KtWy36@cassiopeiae>
- <2f062199-8d69-48a2-baa6-abb755479a16@nvidia.com>
- <Z73rP4secPlUMIoS@cassiopeiae>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z73rP4secPlUMIoS@cassiopeiae>
-X-ClientProxiedBy: MN0PR02CA0006.namprd02.prod.outlook.com
- (2603:10b6:208:530::24) To SN7PR12MB8059.namprd12.prod.outlook.com
+To: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ John Hubbard <jhubbard@nvidia.com>,
+ Shirish Baskaran <sbaskaran@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Ben Skeggs <bskeggs@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-doc@vger.kernel.org
+Subject: [PATCH 4/6] nova-core: docs: Document fwsec operation and layout
+Date: Wed, 23 Apr 2025 18:54:00 -0400
+Message-ID: <20250423225405.139613-5-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250423225405.139613-1-joelagnelf@nvidia.com>
+References: <20250423225405.139613-1-joelagnelf@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MN2PR02CA0009.namprd02.prod.outlook.com
+ (2603:10b6:208:fc::22) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|DS0PR12MB8576:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe9c7ef6-dd9e-4271-43e3-08dd55dfb75e
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|PH7PR12MB7841:EE_
+X-MS-Office365-Filtering-Correlation-Id: 69784aab-5b45-4cba-74cd-08dd82b9cc36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|366016|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cG13QlN2croAkAZi1497K3iB35kpgmV6DuyLPkCJ1KFTzcN9tbGiljMZO1jJ?=
- =?us-ascii?Q?9gij6uD3XJXdwEJEMFhNjSOsybROu71PwB7/T+deB1wA0kFw4UbadDQs0khw?=
- =?us-ascii?Q?F9zYcS1zpMAwmxpsWmf+j6T9rrJrpgr7J9fRuq7pXX5nRDQ6MtFgU4Nd6fzU?=
- =?us-ascii?Q?Pg7keeAs5409xWB7VHMlA7GA+XH/4ZTl5BajdA7Y8s6ScaEBSEB3zu3TcYUm?=
- =?us-ascii?Q?TFgM0MAQ7X55j4h3M+i6kfpxvf6y6ZcIUusaRitrwxNCv/SLRAa+EVEHfN96?=
- =?us-ascii?Q?/OpYP3qvBJPPayv8QbAEV+sfQYCO20IwO0VeHI7iuV3aPPW79nD06RKZSk6c?=
- =?us-ascii?Q?hu0tNWeje7Z9bQ44NXcY8o2WY4jrgywTZkXxhKxECqAZn/slEyhZtFdt9yFK?=
- =?us-ascii?Q?VvnK5nkHu03kTK1ruhQJmAswKaelK5fKRsrZ6COCoQSU5c39do+/Y0TUCgWR?=
- =?us-ascii?Q?b+u5hRE6lGDloH/W5Qyi99YcktgcQ5UU0Ol6gwOM8dWIT26YGdSxW8lU6LVx?=
- =?us-ascii?Q?kdsGh+XEEK+Lk7Wt0CQyYmGydt5zPy1p/Db6vY/WwwWKCOwbEZ0Sy0httEqx?=
- =?us-ascii?Q?dqdadOftcw+33ugfxvoX/K5dp1SM9xSYKblQeMWSEl6Nkw7FFfKRGCVzRIN2?=
- =?us-ascii?Q?23mAI9JOUqHTy5/aL69ob603KTXqFOEsvqMxYDqgzu3yN8GYK4xzpLLVoc2Z?=
- =?us-ascii?Q?C/GZ9X/Kg+LSesNZdgD1hOM52H/HRqmQBKo2oDuy0jjXqhG6OQ6jkb+cWido?=
- =?us-ascii?Q?fFrdfzvNZYxdHH0J14Et1KXZW0quDm4qbm0AqdPZZ4SqJleSJV6Kh80TRI1C?=
- =?us-ascii?Q?58wYwEZ7l/KIA0NnBe/i9NvzR0tFhLulhIwQ4+kOsVMVWU/AUKWLK1gXclHL?=
- =?us-ascii?Q?cQHgk0umil8tNUfi6jtLXIe7rNQjrkv+bApX16MV3OyrbnfOz5psL24sHXn0?=
- =?us-ascii?Q?P6r9PvnlY/dD4xCbTmZX9tJh/ssPi3OesJdspabSo3Sn+PQkwReNnfoddlmW?=
- =?us-ascii?Q?gAhX4KdZxfrVAvshBxDkx8YGDvBozlsQFlckhmuyQH6G1Hvw1I77ILjMcIig?=
- =?us-ascii?Q?F2xUrVJNRc6G9Rior9/Y0tBMFjCIzf6mCq+OZaWhAwjXgkLTcRs0UsaYFW/i?=
- =?us-ascii?Q?F7lEGqrTVdbjwNb5tX/9Px4+2tOCVeS9Vk/fj+vtwCwHOUFEOq0TXfhTUzDi?=
- =?us-ascii?Q?Bleqb3NRhOJVSSbAm9NVSFwTsWWL7fan/4/XRezPwSD4SukKRBb1Z/j+Hdm2?=
- =?us-ascii?Q?wo2lq8vk13qIcUyf+rF1y4j/Fksr6CVhl92ci3G7D0FHSqJl2B242UPg+khb?=
- =?us-ascii?Q?QW6vyOx3MWrqABhm7jczdOcEERFOJtX5C/J6g2iND4rF3+NZbHotwlsOTHdv?=
- =?us-ascii?Q?PJGQySy7mhCAF1k9YNKq8Baz3yWu?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dlFucWF3cDRsSEg4blgrQ0U1S0pPNnh4a21RVU5wV1RXZFJRV2kyeGlOVlVE?=
+ =?utf-8?B?SXp0V1hHRk1ELy94SGpMeFYrU3UzcXpVTDZVbDJHNGpOUU14bW1lcVNYR1JG?=
+ =?utf-8?B?UzhMNGVwRUkwd0xNcVV5Znk3RE9kL0s5Z0xJOFRIQVBncU5FMHJyRUdOZ3FI?=
+ =?utf-8?B?b3NpYTJFNExTMFZEam9oV1BWNTNwWC9mZWFqUkR1UkJQTGdwRk95WDJ3VERQ?=
+ =?utf-8?B?eGwxcnN1cnpnNGV3WUFXR0FUSlF1S2JCNVZTak05eEIwdm1MZ0x4b2VyYVhp?=
+ =?utf-8?B?akVpNmY5eS9tUFEwOVl6L2pVNW1kZFVhalJyNDRCbTVqVkU2WGNTOENlQzBD?=
+ =?utf-8?B?TTk3c3M2Z3MxMllFUCtidUVURlNXTUg3ZzNka2E0TCtZVFZkLzRDRXBGNm9u?=
+ =?utf-8?B?eWNuandjSjg4dVZWMFlYYXNzT2V4TWVpbzVtNGVXWDR0dUh6UUJRZ3NXSFk2?=
+ =?utf-8?B?U0JNQnk3MGdsdm9veUE0bzdNUHlNUDBSYkpVVjQ2aUJ5SVQ4YWxvbVJ3WFpH?=
+ =?utf-8?B?MGJBamZkN25pSkhPclEvZVo5cmFkODh4Vlp4TUNKSUMxN2FGTUtIZ2NaUDI1?=
+ =?utf-8?B?eWZaeGIwNHlabW9Ib0hsTWV1WDI4MUQyOWs1eVlZK2VtVUorN09WY1l6NmdI?=
+ =?utf-8?B?cTh4MGJONUdvTGtKSTVOTGg0ZkZHbFFkL2hYa0x5blVndmlaOTB5UmJDNC9p?=
+ =?utf-8?B?QWc4d2VkSlNDNGRTdFd4cUhpdElja3NBNnBXZ0sxZEtlUzNONTdUZ3laaXBo?=
+ =?utf-8?B?UURRY1kxVk5NWW52T3RiTlR6aVpidUVEem5JbmUxa080RTJDQlNJRXBjWDhX?=
+ =?utf-8?B?NkFaU1JZV3Q5enVSK0RqMkFWejh0NUtRZjFXN014QnR0S2lTSzZEOFlDaW5a?=
+ =?utf-8?B?WUZsRFNpRkN4K0V1OVhZY2NQUm5Xa0pIRHBCQ1NQYnFmQTJQUG5pdnFXdlZD?=
+ =?utf-8?B?NWhHazN2OElQaGIydGFCaTR6OVBsUk96TzhtY3gyN0NWVDZ1TTFWV0J4bEIr?=
+ =?utf-8?B?UnJrQ3VYclBrMDl5T1RpYkdzTlF5VnY3dEF3YXlaYjltQUc0eHRhVklad1dN?=
+ =?utf-8?B?VldjRVpYWHBFd2xjbjJKUDVWMnY4NTdsMDcrWHhXbXhiYWpmSHhHd1paZzVl?=
+ =?utf-8?B?cjk1TFBpZGpHdi8xUzlKTGFobnMwYkgrVW9JYzlSVitlZ0l2MEl3Sm93Z1J5?=
+ =?utf-8?B?ajVVcXNzcUl4T0lIMjNZeE5DRkJPRTVBNEVYYlluY2pIUnh1WmhwLzEvOGRo?=
+ =?utf-8?B?UXpWRVZxMGN6ajl1dUUzbHFVOXViZC92SlFrazRQWk9Lc0ZRKzk3Y0h6eGxT?=
+ =?utf-8?B?WjJOZ0RadlZTbEttSVZjTWdKMGpTaVh6R3ZQZWQrWjVDZ2RGNlBiTXJ2akdV?=
+ =?utf-8?B?TkE5dTNic1ZKdTNTZTVTMksxUjR2WE5uMzlpdEx0djRQbmZrUHU5cFZhZXU0?=
+ =?utf-8?B?TUFhNjArZy9zSVZCQnhJbi9QWEl1Z3g0T0U3TWtsQzBMMytqeHFtbXVkdnYr?=
+ =?utf-8?B?eUJWdzFOK3FwbzNlVkc4a2pLM2NIN21zTGlIcWRPSnZZR3pqdlhzcHFhV0RI?=
+ =?utf-8?B?Y1RiRUpNMytDM1JhcjZwY3lCU3hRNFJjTDZsQkt4REEvWmhvZnFmbG9mUkdT?=
+ =?utf-8?B?bVRUOHJHTmx6YStrRVBwOUdaRG9tbWp3b3FwRHRGaWprS2dSeGl2UjJHaDMy?=
+ =?utf-8?B?c3NSZnYxdDIxcWV4b1piR0YweGJEWnkrR3hDWDNoRkgxanpOMDhPMW00YTh1?=
+ =?utf-8?B?RXZ5WkRGcVN6aGxoak81Y0JNQ09GWjdqamxtRlhuRXNzYWNDY3JWTEVMalFN?=
+ =?utf-8?B?NnIrR3AzQlNmK2VZUWYwTFo0ejVBN3U2eVh2b0Q4bkhXWHkzMkU2ZFZiU1Y2?=
+ =?utf-8?B?czk3Z0JLM1FxZVVrTGtkcTBDQ1p3TG9qMnJ1V0JBNkJIQi9DbUFOMzhtQWE2?=
+ =?utf-8?Q?qL4nR+NaCs0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016)(13003099007); DIR:OUT;
- SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lTz5Y6D+rvRIE9rB+SMu/NOTM83sKPNXHC5l3P2lHT5tZAFzXqYjv860Mcoc?=
- =?us-ascii?Q?cNEMAzZVTCYKyDNIdxQx0+f4aYoQb/4f3feqU79U3QL9RSHiD6FoT9O0p3P1?=
- =?us-ascii?Q?HyhfKc1uh5g7X4yK3RBz71DYwlfYgfsnKJ38n14/PtSZuX3igq5u1oqAzK4T?=
- =?us-ascii?Q?Bf9RqA3xJBBn84QixJZwXIFt96AXwV5n3BJqDt57jBbm5BiQJJdH4hiwy1FE?=
- =?us-ascii?Q?VSyBQjjiAphihyr93R4uV+plgxUef3+KTWjeemNdpslaNJLaz105vLJqhlfi?=
- =?us-ascii?Q?6tRBaz0X/0sCCcJwxgqoYkZXskuSJz+CwaDvC/ga2TopEW2SH5q4dyIaL86J?=
- =?us-ascii?Q?oSmqaK8zZtWgVxfVzK3cbQjbmF7WgiOCi/pHlIg0vRubc9f3vCxBIkhvexVJ?=
- =?us-ascii?Q?FP8vDA0RBrL1wVMxy4DdKAQl7MoNqcHFdHR3166Gl+FTPAtLUktogO18e3c+?=
- =?us-ascii?Q?61LPZhLijmJpTlngT7DF6noCZ6QhIsHNni7h/zTS0ByWva8mzjVILnlrRqEw?=
- =?us-ascii?Q?UUC4OmHVq4msEn2bUlk5rtoQJ/O+iWHFTxfFW28jjyoS5GssLIzhKaXiAjFP?=
- =?us-ascii?Q?fG28+iwLQsAfvxBBdXXWwEj603T9iuCy2JdHznmWn8lH+lJqLsp/6ZW3NHev?=
- =?us-ascii?Q?n5rSrqeb6wCOXqEEQCspKGAbrmq7cfc7jLJsmc53gZFODODyMVkJ+pkFCAyd?=
- =?us-ascii?Q?gy2wcXydNWmsilGW2drS5To6zYmwRbPY2lSl346XnuXOiA+pGhIrObxltQLS?=
- =?us-ascii?Q?Wi/VmXO4Owcb26SEAWJK0jiNdZAsZ7wJMzgkLTGGyqtbrxwRxXldDIeuns6q?=
- =?us-ascii?Q?OKspkWk/ovIUPWnNrsRQ5SB+HetbGfqsT6jmJShpyf6rAJtbljE/7Xw0q/li?=
- =?us-ascii?Q?SOsqWTk2SUTFm61saJEDAFKiVrghsLaaJceEgkvIyI9i+aHtwVEEgP6ul9f7?=
- =?us-ascii?Q?U6DzZPzcARWEfi86BVvyeC+WEWVP91LIKRhw/g6HVLfJDW1lSt6XkxebdiZp?=
- =?us-ascii?Q?MN6YPauaMJFaPI0d/tZVWpx5HtoEPwri+h/Q90n67t506UaVW65uvm3BvjuZ?=
- =?us-ascii?Q?cS9W4huJRb8HQN3Xd4WUpV75adMy0xpMIz1BCDz3X9bQOEiodWaQuKp+DxsC?=
- =?us-ascii?Q?a+pCVS2nXs3ga6S1JzzI61uJRVdJlb5QNU76R1Rl29A98J/wsSXkuhyEKr8u?=
- =?us-ascii?Q?XcSjpR0oqDXQapwrppSAk2bIx0Z+atU1/AwhV1CsJpU/62ksBVwsUPftl37m?=
- =?us-ascii?Q?DyWkix6/rrl70aWvl8dBrEEqRwZncYuC1lfJqU8ePASqXsvXp4VaVganirnF?=
- =?us-ascii?Q?42n/Z+eNnvNvjfb4oZ/9CKjE8TNGQEVpPHeK5gMgtqUnz9Sh2JFUUwBbHKD1?=
- =?us-ascii?Q?FOHPK4bjPTZMfqECHS1T2NBvZXdToD90Z4YiN2F2ege3RjWDGDEnwkoSgBUX?=
- =?us-ascii?Q?xiEK77wXpQRe1n0hu3mzJ0TnZfw4+6xWuXghVMFadkVdWY4dfU+QxnRNqLH8?=
- =?us-ascii?Q?7hpNU4oo45L9lOR/GjZmSm+lv+J9V0OWlSM0ezD0FSt17TzF7WNroWblYU1+?=
- =?us-ascii?Q?r3UFTex9ps465dUD3UaewZWry1Rpx1Awh+xWeukD?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YU0wVktaVVZMSCtrVnBRZG1ieUdwRkdZakt3dWRLQzdnQ0owVFppc2JuK21X?=
+ =?utf-8?B?cU5MNEJoV0FobmZwVzVSMUptMzJkYjVpZFJxelRQZDN3ZWQvSnMyUjlmandX?=
+ =?utf-8?B?Vk1nQzRiRHdYYXVPY1pSNG5yY3gzSVJKZmJBV090ZVJFd1kzT0R2a1VSUTY5?=
+ =?utf-8?B?eDdmSXJ3OGR4d1dqQnI4a1B3eVNFa29UR2F1WVJyZ0lZYXdKdlVCS2ZFRUlR?=
+ =?utf-8?B?NWRDczVXLzdySWx2S2phRWl2bWFraURqMU5iT1ZQUWJnbFJkRld5YVB4cDBv?=
+ =?utf-8?B?SEEzR1M0STQrRzVwTmRka2NMTXpUT055cHRaOTR1ZHVIQjNxVUJqVzRQTzRj?=
+ =?utf-8?B?ZEV4OHI5YlJpTXVZM3B3b05OUGVrVkEzbnI4YWtvUDlkTldJTGhtZnFnL3pW?=
+ =?utf-8?B?c0RwSEFrTElVWWw3bGV4THRwazRqbXI0UlVHKzRPWnlhUUFoMklqZlB6OGxP?=
+ =?utf-8?B?M0YwYW5pcHVvcEg2aC9idXhMRXNDOVorTHRnVVpuYmF0enkvVlIycFlSNjNB?=
+ =?utf-8?B?b3pFMEdFRGs4R3NNUVFYdWhBelg4RjBYUE5Cd3RYSUZ4R3ZpbzNuYUZiYUZ1?=
+ =?utf-8?B?aDh5bXgxSkROZ1Eyb2lUcTJMQ2hVMUNrcXdhWU1RK1FYRDhQT0JadFpmVDV5?=
+ =?utf-8?B?aE1EK0ExYUpvWjI0SzRwL2FGNU0zUS94TmZhekMwdUM5WTY1Y2J4SkR3TDJ5?=
+ =?utf-8?B?dlZzNmc4Q09aSU5NV0lSOFVjb1hQUFBhTDZrbitWeXFjTFJtdTJLbEhwendj?=
+ =?utf-8?B?TlNaU3k0QnhQTUduMkdleDRna2w1blErektQMTV6cnVnU0ZrYWlTbkdmSEdT?=
+ =?utf-8?B?RnF5a1pqK1dlcHhXbjRLL3RlNU1GQUExUGNRbUZ0MmRpUTZlenpXRTYxN1hZ?=
+ =?utf-8?B?MjRIU0pQY3BuK21mUllvUTN1SWx0NVhLeGFuNi9PQTFBaWtCKytWcjRRT1VN?=
+ =?utf-8?B?UjVaNXp6b2pzaDdvYm8rT1hRd01mZzVNTWZMeVJ4NHVZTk5BbXRVTkhuV2dh?=
+ =?utf-8?B?UnlaMzVyZmhZSmFMMW8rTFVnL1BnVmJyY1NNREtMcXJwcWxXUXd4RWVaODlB?=
+ =?utf-8?B?c2xIRWJxakRyQ2tWYXZCWFdGZTVxLzlvK0gxL0JOaTRBaWlNTUxiMmpvaEFk?=
+ =?utf-8?B?cjZCaWl0RXpVbG04c0twOGVwdzJFUGdQLzdKU3FUbjZXbHpDaWh2a0VEaXo4?=
+ =?utf-8?B?bUQ1ODBZUHJkWk45NUFhOEJaN3JtdFBLYlJCK0NGdEdVeURUYU53VlRnZCtL?=
+ =?utf-8?B?KzlFNkk5bThTWGx4bXNYUUFsVjVndXc3TFo3Y21mTEV4YUpvdEk0UFpzcnZI?=
+ =?utf-8?B?MHhGT2ZDQ1BEYlBzb2NzVll5RzE3WUo1NUgvV2NIOUM5VzlzWDhpVE9lWjB2?=
+ =?utf-8?B?WVlDaFNDWHBqREFBOGtzSnlYdG12YVMyeEdaK0pUODArMFZzdXpMZ3pFRDRP?=
+ =?utf-8?B?T2g3WHpzTnZnbG4zc2NwQ3h0VmU2bFFUbkx4azFrbnJBV0NpMStpeEdTZWd0?=
+ =?utf-8?B?UnVRdzF1QVpSYmtXL1VBQUcxa3hVckVhcnFPVzVNSmlLVTM3aDVDRnNDdlp3?=
+ =?utf-8?B?MEkzU2Vkczk2VTlrWGVPUkc3Y1ZMNFpndFMxYzdDOHhHUjZ5eWcyNUtKWmpE?=
+ =?utf-8?B?aGRnWWNYZjF5T3Q3OUk1by9TVE1TVGtNUUR2WUVFQWVnaGQwL1ExZmtKUCtE?=
+ =?utf-8?B?eFlTc01hOEM4TTc0VW9WUWdtdGp1TFg0Ly9BQjN2ZFpyRjFGbGhmMXl0djBr?=
+ =?utf-8?B?dVowSHQ3N21JVTJpcGJCdFcveFpyTC9XUmp5VzZPUnNBMkM2dW8vdDJBM2lW?=
+ =?utf-8?B?YkFEclgvTjFzNUdKVy93bnpwQ3FOUERDSndxMTBMWDBCSTdOZ2xTaFp1M3Fz?=
+ =?utf-8?B?MjlpdkxQVkxqNzBPZ0hwQkxwdXpsdTNpZTVLbHFtd281aHdqY2p0OXdHVDhi?=
+ =?utf-8?B?TWQ3aUdYVlZDQVduemxKQk9lSTB0Vyswb0o1Q1g2UnFSclY2dWZSODNpRUF1?=
+ =?utf-8?B?aGpxWFFZWVB0U0FpaFZQWHZHNGNKNW1XU2RwaW12eVZnamY5RTJVUi9BSEF5?=
+ =?utf-8?B?VHVFbm1qOERjcGRyUGhibzg5eG9aUTdRaC9BYzQxeTBnM0poWjg5RnJqemQy?=
+ =?utf-8?Q?641wFj/jF7MJ13abG2MemHiRV?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe9c7ef6-dd9e-4271-43e3-08dd55dfb75e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 69784aab-5b45-4cba-74cd-08dd82b9cc36
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2025 21:02:30.0536 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2025 22:54:26.5059 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9VnS5BsuIDwkp/w4nE5uxcg7Xpab2mSS/5NmPSNKpVk7/YjfnBatXb2/9tsq2t3d67w9/HA35vDletdmrSaOvQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8576
+X-MS-Exchange-CrossTenant-UserPrincipalName: ucxNLL7yLe15+/kMTH/4sRIoJAP5fRmMREVUB0yjFZT0zaREft32cP+pxcJ/NMfOCvK+YULK0wnwtVpUmpMhSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7841
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,158 +171,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Feb 25, 2025 at 05:09:35PM +0100, Danilo Krummrich wrote:
-> On Tue, Feb 25, 2025 at 10:52:41AM -0500, Joel Fernandes wrote:
-> > 
-> > 
-> > On 2/24/2025 6:44 PM, Danilo Krummrich wrote:
-> > > On Mon, Feb 24, 2025 at 01:45:02PM -0500, Joel Fernandes wrote:
-> > >> Hi Danilo,
-> > >>
-> > >> On Mon, Feb 24, 2025 at 01:11:17PM +0100, Danilo Krummrich wrote:
-> > >>> On Mon, Feb 24, 2025 at 01:07:19PM +0100, Danilo Krummrich wrote:
-> > >>>> CC: Gary
-> > >>>>
-> > >>>> On Mon, Feb 24, 2025 at 10:40:00AM +0900, Alexandre Courbot wrote:
-> > >>>>> This inability to sleep while we are accessing registers seems very
-> > >>>>> constraining to me, if not dangerous. It is pretty common to have
-> > >>>>> functions intermingle hardware accesses with other operations that might
-> > >>>>> sleep, and this constraint means that in such cases the caller would
-> > >>>>> need to perform guard lifetime management manually:
-> > >>>>>
-> > >>>>>   let bar_guard = bar.try_access()?;
-> > >>>>>   /* do something non-sleeping with bar_guard */
-> > >>>>>   drop(bar_guard);
-> > >>>>>
-> > >>>>>   /* do something that might sleep */
-> > >>>>>
-> > >>>>>   let bar_guard = bar.try_access()?;
-> > >>>>>   /* do something non-sleeping with bar_guard */
-> > >>>>>   drop(bar_guard);
-> > >>>>>
-> > >>>>>   ...
-> > >>>>>
-> > >>>>> Failure to drop the guard potentially introduces a race condition, which
-> > >>>>> will receive no compile-time warning and potentialy not even a runtime
-> > >>>>> one unless lockdep is enabled. This problem does not exist with the
-> > >>>>> equivalent C code AFAICT
-> > >>>
-> > >>> Without klint [1] it is exactly the same as in C, where I have to remember to
-> > >>> not call into something that might sleep from atomic context.
-> > >>>
-> > >>
-> > >> Sure, but in C, a sequence of MMIO accesses don't need to be constrained to
-> > >> not sleeping?
-> > > 
-> > > It's not that MMIO needs to be constrained to not sleeping in Rust either. It's
-> > > just that the synchronization mechanism (RCU) used for the Revocable type
-> > > implies that.
-> > > 
-> > > In C we have something that is pretty similar with drm_dev_enter() /
-> > > drm_dev_exit() even though it is using SRCU instead and is specialized to DRM.
-> > > 
-> > > In DRM this is used to prevent accesses to device resources after the device has
-> > > been unplugged.
-> > 
-> > Thanks a lot for the response. Might it make more sense to use SRCU then? The
-> > use of RCU seems overly restrictive due to the no-sleep-while-guard-held thing.
-> 
-> Allowing to hold on to the guard for too long is a bit contradictive to the goal
-> of detecting hotunplug I guess.
-> 
-> Besides that I don't really see why we can't just re-acquire it after we sleep?
-> Rust provides good options to implement it ergonimcally I think.
-> 
-> > 
-> > Another colleague told me RDMA also uses SRCU for a similar purpose as well.
-> 
-> See the reasoning against SRCU from Sima [1], what's the reasoning of RDMA?
-> 
-> [1] https://lore.kernel.org/nouveau/Z7XVfnnrRKrtQbB6@phenom.ffwll.local/
+Add explanation of fwsec with diagrams. This helps clarify how the
+nova-core falcon boot works.
 
-Hmm, so you're saying SRCU sections blocking indefinitely is a concern as per
-that thread. But I think SRCU GPs should not be stalled in normal operation.
-If it is, that is a bug anyway. Stalling SRCU grace periods is not really a
-good thing anyway, you could run out of memory (even though stalling RCU is
-even more dangerous).
+Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+---
+ Documentation/gpu/nova/core/fwsec.rst | 173 ++++++++++++++++++++++++++
+ Documentation/gpu/nova/core/vbios.rst |   3 +-
+ Documentation/gpu/nova/index.rst      |   1 +
+ 3 files changed, 176 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/gpu/nova/core/fwsec.rst
 
-For RDMA, I will ask Jason Gunthorpe to chime in, I CC'd him. Jason, correct
-me if I'm wrong about the RDMA user but this is what I recollect discussing
-with you.
-
-> > 
-> > >> I am fairly new to rust, could you help elaborate more about why these MMIO
-> > >> accesses need to have RevocableGuard in Rust? What problem are we trying to
-> > >> solve that C has but Rust doesn't with the aid of a RCU read-side section? I
-> > >> vaguely understand we are trying to "wait for an MMIO access" using
-> > >> synchronize here, but it is just a guest.
-> > > 
-> > > Similar to the above, in Rust it's a safety constraint to prevent MMIO accesses
-> > > to unplugged devices.
-> > > 
-> > > The exact type in Rust in this case is Devres<pci::Bar>. Within Devres, the
-> > > pci::Bar is placed in a Revocable. The Revocable is revoked when the device
-> > > is detached from the driver (for instance because it has been unplugged).
-> > 
-> > I guess the Devres concept of revoking resources on driver detach is not a rust
-> > thing (even for PCI)... but correct me if I'm wrong.
-> 
-> I'm not sure what you mean with that, can you expand a bit?
-
-I was reading the devres documentation earlier. It mentios that one of its
-use is to clean up resources. Maybe I mixed up the meaning of "clean up" and
-"revoke" as I was reading it.
-
-Honestly, I am still confused a bit by the difference between "revoking" and
-"cleaning up".
-
-> > 
-> > > By revoking the Revocable, the pci::Bar is dropped, which implies that it's also
-> > > unmapped; a subsequent call to try_access() would fail.
-> > > 
-> > > But yes, if the device is unplugged while holding the RCU guard, one is on their
-> > > own; that's also why keeping the critical sections short is desirable.
-> > 
-> > I have heard some concern around whether Rust is changing the driver model when
-> > it comes to driver detach / driver remove.  Can you elaborate may be a bit about
-> > how Rust changes that mechanism versus C, when it comes to that?
-> 
-> I think that one is simple, Rust does *not* change the driver model.
-> 
-> What makes you think so?
-
-Well, the revocable concept for one is rust-only right?
-
-It is also possibly just some paranoia based on discussions, but I'm not sure
-at the moment.
-
-> > Ideally we
-> > would not want Rust drivers to have races with user space accesses when they are
-> > detached/remove. But we also don't want accesses to be non-sleepable sections
-> > where this guard is held, it seems restrictive (though to your point the
-> > sections are expected to be small).
-> 
-> In the very extreme case, nothing prevents you from implementing a wrapper like:
-> 
-> 	fn my_write32(bar: &Devres<pci::Bar>, offset: usize) -> Result<u32> {
-> 		let bar = bar.try_access()?;
-> 		bar.read32(offset);
-> 	}
-> 
-> Which limits the RCU read side critical section to my_write32().
-> 
-> Similarly you can have custom functions for short sequences of I/O ops, or use
-> closures. I don't understand the concern.
-
-Yeah, this is certainly possible. I think one concern is similar to what you
-raised on the other thread you shared [1]:
-"Maybe we even want to replace it with SRCU entirely to ensure that drivers
-can't stall the RCU grace period for too long by accident."
-
-[1] https://lore.kernel.org/nouveau/Z7XVfnnrRKrtQbB6@phenom.ffwll.local/
-
-thanks,
-
- - Joel
-
+diff --git a/Documentation/gpu/nova/core/fwsec.rst b/Documentation/gpu/nova/core/fwsec.rst
+new file mode 100644
+index 000000000000..03d1f0d67414
+--- /dev/null
++++ b/Documentation/gpu/nova/core/fwsec.rst
+@@ -0,0 +1,173 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++=========================
++FWSEC (Firmware Security)
++=========================
++
++The role of FWSEC to provide firmware verification and perform secure operations
++such as carving out the WPR2 region (Write protected region). It is critical to
++the boot sequence of the GPU.
++
++The FWSEC image is located in the VBIOS ROM. For how it is extracted, see vbios.rst
++and the vbios.rs source code.
++
++The Falcon data in the FWSEC image is a combination of headers, data sections
++(DMEM) and instruction code sections (IMEM).
++
++FWSEC itself is a central location for all microcodes in the VBIOS that run on
++various microcontrollers (PMU, SEC, GSP etc) some of which (such as devinit) are
++executed after GPU power-on before the nova-core driver is even loaded.
++
++For the purposes of nova-core driver, the FWSEC contains microcode called
++DMEMMAPPER which executes the "FWSEC-FRTS" command (among other commands it is
++capable of executing) that is executed on the GSP to carve out the WPR2 region
++(Write protected region).
++
++FWSEC Memory Layout
++-------------------
++
++The memory layout of the FWSEC image is as follows (this is using an GA-102
++Ampere GPU as an example and could vary for future GPUs):
++
++┌───────────────────────────────────────────────────────────────┐
++│                         FWSEC image (type 0xE0)               │
++│                                                               │
++│  ┌─────────────────────────────────┐                          │
++│  │     PMU Falcon Ucode Table      │                          │
++│  │     (PmuLookupTable)            │                          │
++│  │  ┌─────────────────────────┐    │                          │
++│  │  │ Table Header            │    │                          │
++│  │  │ - version: 0x01         │    │                          │
++│  │  │ - header_size: 6        │    │                          │
++│  │  │ - entry_size: 6         │    │                          │
++│  │  │ - entry_count: N        │    │                          │
++│  │  │ - desc_version:3(unused)│    │                          │
++│  │  └─────────────────────────┘    │                          │
++│  │         ...                     │                          │
++│  │  ┌─────────────────────────┐    │                          │
++│  │  │ Entry for FWSEC (0x85)  │    │                          │
++│  │  │ (PmuLookupTableEntry)   │    │                          │
++│  │  │ - app_id: 0x85 (FWSEC)  │ ───┼────┐                     │
++│  │  │ - target_id: 0x01 (PMU) │    │    │                     │
++│  │  │ - data: offset ─────────┼────┼────┼───┐                 │
++│  │  └─────────────────────────┘    │    │   │                 │
++│  └─────────────────────────────────┘    │   │                 │
++│                                         │   │                 │
++│                                         │   │                 │
++│  ┌─────────────────────────────────┐    │   │                 │
++│  │     FWSEC Ucode Component       │<───┘   │                 │
++│  │     (aka Falcon data)           │        │                 │
++│  │  ┌─────────────────────────┐    │        │                 │
++│  │  │ FalconUCodeDescV3       │<───┼────────┘                 │
++│  │  │ - hdr                   │    │                          │
++│  │  │ - stored_size           │    │                          │
++│  │  │ - pkc_data_offset       │    │                          │
++│  │  │ - interface_offset ─────┼────┼────────────────┐         │
++│  │  │ - imem_phys_base        │    │                │         │
++│  │  │ - imem_load_size        │    │                │         │
++│  │  │ - imem_virt_base        │    │                │         │
++│  │  │ - dmem_phys_base        │    │                │         │
++│  │  │ - dmem_load_size        │    │                │         │
++│  │  │ - engine_id_mask        │    │                │         │
++│  │  │ - ucode_id              │    │                │         │
++│  │  │ - signature_count       │    │    look up sig │         │
++│  │  │ - signature_versions ───┼────┼─────┐using hal │         │
++│  │  └─────────────────────────┘    │     │          │         │
++│  │         (no gap)                │     │          │         │
++│  │  ┌─────────────────────────┐    │     │          │         │
++│  │  │ Signatures Section      │<───┼─────┘          │         │
++│  │  │ (384 bytes per sig)     │    │                │         │
++│  │  │ - RSA-3K Signature 1    │    │                │         │
++│  │  │ - RSA-3K Signature 2    │    │                │         │
++│  │  │   ...                   │    │                │         │
++│  │  └─────────────────────────┘    │                │         │
++│  │                                 │                │         │
++│  │  ┌─────────────────────────┐    │                │         │
++│  │  │ IMEM Section (Code)     │    │                │         │
++│  │  │                         │    │                │         │
++│  │  │ Contains devinit, fwsec │    │                │         │
++│  │  │ instruction code etc.   │    │                │         │
++│  │  └─────────────────────────┘    │                │         │
++│  │                                 │                │         │
++│  │  ┌─────────────────────────┐    │                │         │
++│  │  │ DMEM Section (Data)     │    │                │         │
++│  │  │                         │    │                │         │
++│  │  │ ┌─────────────────────┐ │    │                │         │
++│  │  │ │ Application         │ │<───┼────────────────┘         │
++│  │  │ │ Interface Table     │ │    │                          │
++│  │  │ │ (FalconAppifHdrV1)  │ │    │                          │
++│  │  │ │ Header:             │ │    │                          │
++│  │  │ │ - version: 0x01     │ │    │                          │
++│  │  │ │ - header_size: 4    │ │    │                          │
++│  │  │ │ - entry_size: 8     │ │    │                          │
++│  │  │ │ - entry_count: N    │ │    │                          │
++│  │  │ │                     │ │    │                          │
++│  │  │ │ Entries:            │ │    │                          │
++│  │  │ │ ┌─────────────────┐ │ │    │                          │
++│  │  │ │ │ DEVINIT (ID 1)  │ │ │    │                          │
++│  │  │ │ │ - id: 0x01      │ │ │    │                          │
++│  │  │ │ │ - dmemOffset X ─┼─┼─┼────┐                          │
++│  │  │ │ └─────────────────┘ │ │    │                          │
++│  │  │ │ ┌─────────────────┐ │ │    │                          │
++│  │  │ │ │ DMEMMAPPER(ID 4)│ │ │    │                          │
++│  │  │ │ │ - id: 0x04      │ │ │    │                          │
++|  |  | | |  (NVFW_FALCON_  | | |    |                          |
++|  |  | | |   APPIF_ID_DMEMMAPPER)   |                          |
++│  │  │ │ │ - dmemOffset Y ─┼─┼─┼────┼─────┐                    │
++│  │  │ │ └─────────────────┘ │ │    │     │                    │
++│  │  │ │ ┌─────────────────┐ │ │    │     │                    │
++│  │  │ │ │ MULTI_FALCON (5)│ │ │    │     │                    │
++│  │  │ │ │ - id: 0x05      │ │ │    │     │    (See note [1])  │
++│  │  │ │ │ - dmemOffset Z ─┼─┼─┼────┼─────┼────────────────┐   │
++│  │  │ │ └─────────────────┘ │ │    │     │                │   │
++│  │  │ └─────────────────────┘ │    │     │                │   │
++│  │  │                         │    │     │                │   │
++│  │  │ ┌─────────────────────┐ │    │     │                │   │
++│  │  │ │ DEVINIT Engine      │<┼────┘     │                │   │
++│  │  │ │ Interface           │ │    │     │                │   │
++│  │  │ └─────────────────────┘ │    │     │                │   │
++│  │  │                         │    │     │                │   │
++│  │  │ ┌─────────────────────┐ │    │     │                │   │
++│  │  │ │ DMEM Mapper (ID 4)  │<┼────+─────┘                │   │
++│  │  │ │ (FalconAppifDmemmapperV3)  |                      |   |
++│  │  │ │ - signature: "DMAP" │ │    │                      |   |
++│  │  │ │ - version: 0x0003   │ │    │                      |   |
++│  │  │ │ - Size: 64 bytes    │ │    │                      |   |
++│  │  │ │ - cmd_in_buffer_off │ │────┼────────────┐         |   |
++│  │  │ │ - cmd_in_buffer_size│ │    │            │         |   |
++│  │  │ │ - cmd_out_buffer_off│ │────┼────────────┼─────┐   |   |
++│  │  │ │ - cmd_out_buffer_sz │ │    │            │     │   |   |
++│  │  │ │ - init_cmd          │ │    │            │     │   |   |
++│  │  │ │ - features          │ │    │            │     │   |   |
++│  │  │ │ - cmd_mask0/1       │ │    │            │     │   V   |
++│  │  │ │ - multiTgtTbl-------┼─┼────+────────────+─────+────┐  │
++│  │  │ └─────────────────────┘ │    │            │     │    │  │
++│  │  │                         │    │            │     │    │  │
++│  │  │ ┌─────────────────────┐ │    │            │     │    │  │
++│  │  │ │ MULTI_FALCON        │<┼────+────────────+─────+────┘  │
++│  │  │ │ - version           │ │    │            │     │       |
++│  │  │ │ - targetId (PMU/SEC)│ │    │            │     │       |
++│  │  │ │ - loadType          │ │    │            │     │       |
++│  │  │ │ - initStack         │ │    │            │     │       |
++│  │  │ └─────────────────────┘ │    │            │     │       |
++│  │  │                         │    │            │     │       |
++│  │  │ ┌─────────────────────┐ │    │            │     │       |
++│  │  │ │ Command Input Buffer│<┼────┼────────────┘     │       |
++│  │  │ │ - Command data      │ │    │                  │       |
++│  │  │ │ - Arguments         │ │    │                  │       |
++│  │  │ └─────────────────────┘ │    │                  │       |
++│  │  │                         │    │                  │       |
++│  │  │ ┌─────────────────────┐ │    │                  │       |
++│  │  │ │ Command Output      │<┼────┼──────────────────┘       |
++│  │  │ │ Buffer              │ │    │                          |
++│  │  │ │ - Results           │ │    │                          |
++│  │  │ │ - Status            │ │    │                          |
++│  │  │ └─────────────────────┘ │    │                          |
++│  │  └─────────────────────────┘    │                          |
++│  └─────────────────────────────────┘                          |
++│                                                               │
++└───────────────────────────────────────────────────────────────┘
++
++Note:
++[1] MULTI_FALCON section in DMEM can either be looked up by
++    MULTI_FALCON App Interface, or from multi_tgt_table entry
++    in DMEM_MAPPER's App Interface.
+\ No newline at end of file
+diff --git a/Documentation/gpu/nova/core/vbios.rst b/Documentation/gpu/nova/core/vbios.rst
+index 17411f21b410..da759b56fb2d 100644
+--- a/Documentation/gpu/nova/core/vbios.rst
++++ b/Documentation/gpu/nova/core/vbios.rst
+@@ -44,7 +44,8 @@ VBIOS ROM Layout
+ 
+ The VBIOS layout is roughly a series of concatenated images as follows:
+ (For more explanations of acronyms, see the detailed descriptions in vbios.rs).
+-
++Note: this diagram is using an GA-102 Ampere GPU as an example and could vary
++      for future GPUs.
+ ┌────────────────────────────────────────────────────────────────────────┐
+ │ VBIOS (Starting at ROM_OFFSET: 0x300000)                               │
+ ├────────────────────────────────────────────────────────────────────────┤
+diff --git a/Documentation/gpu/nova/index.rst b/Documentation/gpu/nova/index.rst
+index 2701b3f4af35..c01dcc5657e2 100644
+--- a/Documentation/gpu/nova/index.rst
++++ b/Documentation/gpu/nova/index.rst
+@@ -27,4 +27,5 @@ vGPU manager VFIO driver and the nova-drm driver.
+    :titlesonly:
+ 
+    core/guidelines
++   core/fwsec
+    core/todo
+-- 
+2.43.0
 
