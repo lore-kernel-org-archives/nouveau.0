@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72903CCD186
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6BB6CCA472
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E8DC10E4E8;
-	Mon,  6 Oct 2025 20:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15F9910E4FE;
+	Mon,  6 Oct 2025 20:46:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="uWVSSr9o";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="VUfusL8P";
 	dkim-atps=neutral
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2043.outbound.protection.outlook.com [40.107.94.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A475410E360;
- Thu,  1 May 2025 13:52:43 +0000 (UTC)
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam12on2065.outbound.protection.outlook.com [40.107.244.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F62810E05C;
+ Thu, 24 Apr 2025 19:54:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zRAOIpXanIABdZQqmPQ6LTx+NYeNMi99X/nJrMwy0yJtrmZzM1fMsimSy7Xy9nD5scKj9SYX0abPd/3uJ4/Pca/hhRta/zJag3dTgr3MAZYHO7EVYPJ7uX4ixXSVuqBstzLwKrGIK0C962dVuJ8b8lGJDOKUKdL9dDbvD/dk63wiNcUuubvMylJV+rTQGqb3wcHSzn32U6Yn6uxHqXh+0DRLqCDx/j2ltTBOVu4PT7ank2tWMgHcEpYsPdl84cxK1TBeSrVlxfKqjWb7THJ4D4+/oZ8ECkOYsqk18SY+o5g6W7RgCuCn6cOG/EemmMG8VPdGzeEL+QeS7oLRfojgYQ==
+ b=DWBxTWYS3jA7B66PhTJxDrPF3So0mK34ASjxFrqQSynWRk2rZ1+9cGhqJeiuXPrI+EqHro0RLFb5fVqX7BRb9ldE/Jlqo2OxCyOB2vjRlbwspPSZNr0Xg4jVLz6Cid3Z3jDdQaSQJxAscuvSJbR3KeShw5D+TnzhDDxXWDV+oOAEcL0BFcGeuS7UFsGfEZ4nJES33YDS5nD/xnWhNC3UWjh3b2WXoC1ENUPvSAcE0qSgX7WrJB+CzUOCJSx9kydaR7p4FbhognUNK7VJMdSfeqAt6/PKIPrmQS3LZsqpq0YHmuBWgt7TYid6KfV2t2ptyXd4fzcALptjecP+iax1MQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=31AjLCZLVksDZUHKANMVkw2Xe0ZjSlfwbVsMO2Gke5A=;
- b=S5Mg221PltFRC7KXRALU0cemvt4IBQHGrdLztVfmuIkEpIVcao+gGQWDtFtKxsSO1WX6UPK+Zr1KyLTX+1/Fkne+FDcvarfFi4bVImjFhy5UCCnqPXksF0obEO9ZvExFaWHk9Grfxjqr35xWXT6CPwBVyumy1QInmwEnoQ8bEV6n4lvx/B4X0tsdjjz95IFKLQOnnqWQ1GrmDTjdEBM6wZ6eKVH9tFeY4eZLLk/j0ksR084BNGNyih7PDLWbpdJ+ja8QGQTr/U98s0e628uBgIhjrpuCVfo0GTiXnwGmfdbsOb2QLc/ZbVbIXvl5S8BJlosMv0YcBN7s5EXuAmcLCQ==
+ bh=yScPl8rR31awUNdgnBm/42yk6JHIIKG4+lxA3V+iOO8=;
+ b=jiAF6pp2tckkH8b8ud30YrotAxdLNHdDiOTNMUgDzzFyMdNLK3XTn94MVqslkzbiw9RNFeNALUJpkBIJZVfKhSLrCQZbY5PUidhRk8QOi0NHcNnPfIiDXCCmbeyY4QCKuDcyXWo2aLY/Xfl+ecmxbkIOFOEG2ONG3EpU1S04cl0GOWV0bME6uHHc9Zqjop5F61PszPET1EOV+cBFmBCtzzMFKoFDXWoRfwl5qfkvmuedUDuYty9gWejdmxpqArN4WMYuPK2xRu0fh0E6syNL4O+MxxWRkBb4Uc3/Gv9bsWPEH7b2g0AZBRWb083tx4KpOu0+yZq1nyNP+krHrlE08g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=31AjLCZLVksDZUHKANMVkw2Xe0ZjSlfwbVsMO2Gke5A=;
- b=uWVSSr9o2e1BtJa6lWnm1tnuqowsfUlCZVxreWfyjn6U2eKyPwmGuy+oYq1zFlG2x7ZZfS/OWKH6n50dYWZuFvD/855gSKH0UrjtsPYWWMpp564S6Smx9QgssDHQSwDvzHvl8xUh52Q0FD5QLQNjfqfxrJ5rm6mMA/ydFmlgg9MTkGdl23MO3BL5moVIXtWpAb6Cpt2tNmbI9xFxv/Z/ppIg/+YFaCcTHx++GNGma0EC3YAibeFhWWUEWPfB9ArrAw76gZPbMW94mPu5ApWCPLs+J0BS8fq/1jNCEhPEorlf64H9NvnRqyHBg6dhS88Nsij2trEnsrholnKi0M6f9w==
+ bh=yScPl8rR31awUNdgnBm/42yk6JHIIKG4+lxA3V+iOO8=;
+ b=VUfusL8PtS84ZBKiCFoyQxl6fu33a9FP+uoKgfgCa3OWuj3IFRu5XawTUMQvgHaZfkU5q9ANv2H0NXnZHYe8oenvQu9CFSCdYGPNQFMaNwWRWnaRZz+KZRsb7y5WzY/e1KYlNIxkvvuA8urzXyMun7rKenZmZkE92vTO7Vb1UveOgwUXSl/pc9fE5Ic9pJvT2kgoX4HrnaMy710czyD3ToFv/HkOrnY00u1G6c4VfEdXp+ACotCGpwh+Bmm5hl8oCxRPR3rGS0RJOatGpKL2is79uKcFb8WQmICbOLUCbSyNbIacmWjD3/3NeS48yPngTm+PApw6eWtV+afeZ+Hpig==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by IA0PR12MB8327.namprd12.prod.outlook.com (2603:10b6:208:40e::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Thu, 1 May
- 2025 13:52:37 +0000
-Received: from SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.8699.021; Thu, 1 May 2025
- 13:52:36 +0000
-Date: Thu, 1 May 2025 09:52:34 -0400
+Received: from DS0PR12MB8044.namprd12.prod.outlook.com (2603:10b6:8:148::14)
+ by MW6PR12MB8868.namprd12.prod.outlook.com (2603:10b6:303:242::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.36; Thu, 24 Apr
+ 2025 19:54:50 +0000
+Received: from DS0PR12MB8044.namprd12.prod.outlook.com
+ ([fe80::f250:7fd7:ce23:a0fb]) by DS0PR12MB8044.namprd12.prod.outlook.com
+ ([fe80::f250:7fd7:ce23:a0fb%6]) with mapi id 15.20.8678.025; Thu, 24 Apr 2025
+ 19:54:50 +0000
+Date: Thu, 24 Apr 2025 15:54:48 -0400
 From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
  Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
  =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
  Benno Lossin <benno.lossin@proton.me>,
  Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
@@ -60,90 +60,93 @@ Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
  Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
  linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 15/21] gpu: nova-core: add falcon register definitions
- and base code
-Message-ID: <20250501135234.GA687268@joelnvbox>
-References: <20250501-nova-frts-v2-0-b4a137175337@nvidia.com>
- <20250501-nova-frts-v2-15-b4a137175337@nvidia.com>
+Subject: Re: [PATCH 13/16] gpu: nova-core: Add support for VBIOS ucode
+ extraction for boot
+Message-ID: <20250424195448.GA182914@joelnvbox>
+References: <20250420-nova-frts-v1-0-ecd1cca23963@nvidia.com>
+ <20250420-nova-frts-v1-13-ecd1cca23963@nvidia.com>
+ <aAjz2CYTsAhidiEU@pollux>
+ <88937e2b-6950-4c9d-8f02-50f9b12c7376@nvidia.com>
+ <aAkBIvfTkKVNbdnm@pollux>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250501-nova-frts-v2-15-b4a137175337@nvidia.com>
-X-ClientProxiedBy: MN2PR04CA0036.namprd04.prod.outlook.com
- (2603:10b6:208:d4::49) To SN7PR12MB8059.namprd12.prod.outlook.com
- (2603:10b6:806:32b::7)
+In-Reply-To: <aAkBIvfTkKVNbdnm@pollux>
+X-ClientProxiedBy: BL0PR05CA0005.namprd05.prod.outlook.com
+ (2603:10b6:208:91::15) To DS0PR12MB8044.namprd12.prod.outlook.com
+ (2603:10b6:8:148::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|IA0PR12MB8327:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94a0e59b-bcb7-4d84-94ce-08dd88b76e45
+X-MS-TrafficTypeDiagnostic: DS0PR12MB8044:EE_|MW6PR12MB8868:EE_
+X-MS-Office365-Filtering-Correlation-Id: 64035453-ec63-4600-a479-08dd8369df92
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?i2pFtV8ZEy7RzrQbxw51UQV5H2dibjnQreCB0zpxIUtnSvIuUFWkQjB/Nn+A?=
- =?us-ascii?Q?JlvxmloDV04d3HC5irDqAwr4ofEx/MjeC5LvV8mP/OpVhoR3i7hXYl0tl+sG?=
- =?us-ascii?Q?AYFiidQT0yly+Okk9jPkp57Q8KQByj/eVmo7m0ZtoxlttlHrFMGXe3q+a50g?=
- =?us-ascii?Q?AOwP3L6rMcP5x45GbG7GKDIM3LGTavfyHBsFSFmxR4sXlr+Fd74W09ubQEsK?=
- =?us-ascii?Q?XKI2kCECpYptN5f6F+8ODXIJPFeXmzHy+xK19gHzyuOXeNLBjsFFVUhoHYfr?=
- =?us-ascii?Q?+evIv2lwolhl6VJWohI9cACgkFg/cadnPgnhWVPOk7ZBAtN0reTF8MaY3LWR?=
- =?us-ascii?Q?fmEF/NCrJeeRX4+sMbTVePjMz03WllCBEFRytB5Lzd48pufHMroDVjt8TEVR?=
- =?us-ascii?Q?UpdEMxD/oGBQ8Z2yp3zZn6Dg1Qd/3WMEpf1f/uB+zW6aDYrzoqN9ipuSLDhx?=
- =?us-ascii?Q?VvAlkZm96/IVHMUNre+dQLmJ13c3iwQqinr7hM1oJvoziDLq10YCZuenP00p?=
- =?us-ascii?Q?ttJHwwg2gUq1kvmGqjZp3s4VqPtFNsccUP63OzsdwGIPZDtm91sPOmA9TJop?=
- =?us-ascii?Q?tWHCEDUd7rjrPj4B+UxOF+xx8U8jTyj0qMS+C1V4wZD4uGyQXb2g3tSyG0TI?=
- =?us-ascii?Q?tLVh1HmKlOQ7dtVNXZnW5U2gWlv8y33FRJDUuLoxpZbkn3wyL7cXW1Go0nH8?=
- =?us-ascii?Q?BWvcY8CeSQ/MLTJJQuECAzpk0fxhnxrNTM3aka+AYcicSl7QcsgSrJnAqcfU?=
- =?us-ascii?Q?rHCHvaZxDrZO7SDh+ro8nGSz320CyXdL7AQDtlXZtd7lRQkzfNcwfhWIiy+b?=
- =?us-ascii?Q?EC02RzpbCVZM2cAATxfwATD5A398plrWzu35To6Pr18XhIREELKCRqG2c338?=
- =?us-ascii?Q?X9NcgM7ENJ2DwqhWGbNm8FeMI5T9/uezoq00KEl8qlJLp6hi33dRYIBb3Mxe?=
- =?us-ascii?Q?GVkW2bhICdsLidIIOzkK/qwW+g9MCyc7oUJZmZf1RdkXoCXY37vYM6De+4OU?=
- =?us-ascii?Q?WQDNm6gYOvqrhoQsAjxl3uBkjqIm2jE/KS/GHeFHMOMYAoh8+HKGtpzigMv0?=
- =?us-ascii?Q?gTZGcojTg5l9OmhN0V7p6UO+RwVmSDD8a4ADL9QfMKBEJ2pR22BeQNnVD5aD?=
- =?us-ascii?Q?IEq1Cci/Jv0SIBz6QEQFg7uxMtvt05Ww5lSG1Q/uyGvB4VSr1BbBHEeoI2Jx?=
- =?us-ascii?Q?HtzYr8pYRWiZxx9uS8pg5nIjPWIsMUqZmVFO0hph4o5cnw465FJOQCABY32b?=
- =?us-ascii?Q?A+iABDtiV5o6dV/jSOPFNWtNwBpSovuXPCoG/0F1GXEA9g6I2O22aQCEnZbX?=
- =?us-ascii?Q?xuXHE9z6bpRzD4I7WgLwyM+wLYwDoWx8J41HmdLrrCwMj3qNiqKoRM6kQUH4?=
- =?us-ascii?Q?rea4QjY/v9q/rrRZyZPwMcW1aDlABqS5eKrNgTJ3h6zncloqbnjr+Qcasf/i?=
- =?us-ascii?Q?KVaUSv1wZOk=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?4vJTa/E/eoqC0q/hdF86upDvJzeP8ye3lwJz6H5CyuAGsAHNQugRs9pVc4i4?=
+ =?us-ascii?Q?wzswhxWxCjpZHnXptGFHD6tWphjPVEToTLClijbx+iwO05lkUI3sZQU+aydo?=
+ =?us-ascii?Q?nzrPwVvzeVjzwYnWHB1YrS0eo/RcXjJoxeCsWSeYxQFZxORTFS1E+Z8Azmvx?=
+ =?us-ascii?Q?jT6A5E0VGtdc4wMNgXuGoRK+a4NlFabnU5d++molBf3bnBf2PXRPe5Idj1vM?=
+ =?us-ascii?Q?tQ9dDOgvIe7YZkW9bTZ58aJiTi0cMngifuvZqg05UI4a5uayHT+sgEcd0Gv5?=
+ =?us-ascii?Q?lK3AJE+uVuRhNKBakULKyDHes9p3ups49KSWNlU3cTkVsEohy7MReK89ysZ0?=
+ =?us-ascii?Q?pfV3h8f/TngZSZhYifmbhh5dYYbLQQilSlJG7wAZv82cNhIuEZ59TPFsPdSA?=
+ =?us-ascii?Q?SdnBe8qQkETE9lgVzQcjPmd4gNoTwkVrnCQQ5eTy6mAZ7ImHj+otXRHYsWT4?=
+ =?us-ascii?Q?WD/n+9HE9Cl9iCiUwvCUd0hb39QlgTh1jCObkyI6XzlSdS3Ldr4RHt4Uo2a0?=
+ =?us-ascii?Q?1t7frQ5zvGBEK1ORxGlYRBc5fxE4YG/4vdPH2r3WfjdtMYU2eTQUOLy/Hbt8?=
+ =?us-ascii?Q?x9fPj+uJe79q+/qXPGuFtUNXUFCEz+G/wgYg9of0KZpZS8glkTVHRZSaZJG3?=
+ =?us-ascii?Q?pRBwpGpkRcw8oUmINlNd7WdM0ylisDiSVOFLExfIR+1xfiAkH/z+gMAp4YQ9?=
+ =?us-ascii?Q?BaUyFy+kgIqUj8u7+vrb541Fbg/dALHLygFqwYfZrzljE4PGUu8oy2TonvJM?=
+ =?us-ascii?Q?7piPfoXCiq5Dk8RtH0toFOmPO7z5pJJpg9rHv7Co4yNnpVS9mKum2sq2hgEy?=
+ =?us-ascii?Q?bZHUIgeYRiOnZLSzZBrY13oRjHsSV30xgsiLVpbnXMvTH0066yFF1h6cbjt1?=
+ =?us-ascii?Q?WNlT1eiU8toDdNEVObMGMNa9hRErImef18QmEU3AHaRqHvBZbPVSTEu5D5YT?=
+ =?us-ascii?Q?mV8Wo8MOnMGnEXpeKJVbwuSfJJjp7VJXp+9dSIYRT9JhMcfqMxkYJtx+hyEa?=
+ =?us-ascii?Q?FFoDdnzSV2y/DqqahaFet/MEHJwMWdUVoInyiaRL+asJ4AkGyqc613fKjNW+?=
+ =?us-ascii?Q?ECpPnkhwrwJoWoi+g1bAYM8VD8am5rligPtzvQ+r/K4IjUO5JtaZ8Quhbt5V?=
+ =?us-ascii?Q?+GQwDiCmiqlW1jRKDXCbGcCs9nGAb+Z0Q9ca1Cgyb2/+pMZFvorIeN/Yn4an?=
+ =?us-ascii?Q?lQnyLwQq7uYQ5syHEP6sY1M4hFFOm3Up978FBraYWh3SZF1VASIhxM79KGC3?=
+ =?us-ascii?Q?u9b9DgdLHOWpZmL7lF/rBE3VfC2iCTFuvPqANN2NIYR9MFqGlB6ydJ6cpH8O?=
+ =?us-ascii?Q?OOHjL/5a+b2HfFAV7mqzGT64Ku+EoOA0huFdRpbU6d3PBSY02jo3I/lzMGtH?=
+ =?us-ascii?Q?GpqgIxQ3VSeZNkELkjmyBApVfzOHAsLg4KV2kYdLOZmqo3LkUc80S+rtwGzt?=
+ =?us-ascii?Q?QtryzqYJ23o=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB8044.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9RBacsFntWu3HR8Wc511xfRp3cpfVVj8BCkvKGRBkARNoZ02e5Wi3up2b+us?=
- =?us-ascii?Q?8zT5o9rINt8TSEmID6w/aSFtWBJLvyvvmHjXUU92DbtYSatlEIbUbi7oT1qj?=
- =?us-ascii?Q?LJ8K9FZT7QRjg6prJ17xOfB6O5YwjDiRdIEh6Ufgz69GysFU/bKjivO8RfkV?=
- =?us-ascii?Q?bu/Cb0He5erJI54QwWMT7t67H4cODue8vDFb60tNR3wyne39hCyM+Nze6sEw?=
- =?us-ascii?Q?ge3XPlkk22kgoi5J2EU01Evvr6yNKCHRX8Ay1u8KlyECLcF/zCPsaRS43C7V?=
- =?us-ascii?Q?6XFBWLClNscTOQiPDi7Dy2CZgb++X2002/AWt7/7SG8jQkooBlvwv8E0IKFb?=
- =?us-ascii?Q?s9InXNtiTidhHo1uWsEVoj64ybDCwB82KgP8KdsYl66Ay1Kev5xmriXGybk1?=
- =?us-ascii?Q?i4Bh606IFGe70jwbyBk6TfWYAP2o6KHQnWjEOnmZN6VK90x6oPsCc8Mb5tDQ?=
- =?us-ascii?Q?J/q86LwLgxqMtYV0905RZq8CDRboJf2dqo4phcNt8GMm/DBYnIGBKT/6nZZH?=
- =?us-ascii?Q?UAdbIEw66LSNSzM2DXcHw7UmCicZa3cyNHWbBDtQ57lAh66ZktexJATWsG9m?=
- =?us-ascii?Q?MqHkbWVz4wyYpOk9/pcck4w/XO3Ai/MLKHnUyRkdKbePpXcZYEvzTCKMtSNT?=
- =?us-ascii?Q?GRp7CzCbfn1rjJn4aF1NbGbzYQWQP6nRZrsIUrOHJlnPSQNzQWmdUBs13JeG?=
- =?us-ascii?Q?sDuCwHpmCRtAEZu5Ik9q7j30sAYYAdM+VGeyeptLGJczA/U9m6kjTX3ha/id?=
- =?us-ascii?Q?msKugY4rxl55zEpK7/ewNJJjgtVL2dS3jfzwLk8kPmWcI+q07xFgv4MNJKzP?=
- =?us-ascii?Q?kRcQ4Kq1EJ+C6Dd8MhBG6rAEjdLmd1r/Y8JyhZpNsLNCPZr1Mjkm4+DDsi6Z?=
- =?us-ascii?Q?OM9mv7P6HMfC3R7u0ufV3T8PNxW6tNeFIQS8drW4USWUTgY+PvnI1eyBj68M?=
- =?us-ascii?Q?Z500m/gG1ZVGC8s61P6QDB+y/psSmjhQ7AeG83byR3Gg2iCwFyyKCAF4Mpg9?=
- =?us-ascii?Q?bmenhhj4bJZL74ElN4yL0IOyQZ2yGmNxZNDaVfUzV9BeolXlHdtCEBBuR7Ao?=
- =?us-ascii?Q?n4Anr/V8AigKYPFKdANBoXDKGNuRxuEExXaBg0uO8pO866nt0XYPyQ1xFnts?=
- =?us-ascii?Q?cjviW/2nR5sFV34De56Vky4wPznlA+As1A+nU8KOMLqMxIikAywjJE81u9zM?=
- =?us-ascii?Q?rbIZMRYE+kD/snTcpdyOXmYPSop1nBqiZbYUz4ByufUQNikMbsZkseGsaWVw?=
- =?us-ascii?Q?e1w17UxvSevnWHbid+d1A9DibahhKdWHibcQ9dH+Is/S+nvW7Aq6wME2V5Uh?=
- =?us-ascii?Q?DiOhRHql0R3NIoGkv5kCr6mMC0J/QVhMe5nxw+35O07zCv1qvri9LnzDX5ym?=
- =?us-ascii?Q?UJ/SdFjtRXiYMcMrBwHYkDBXuDy8p4zBQXAKjEJmEpo8XaG5a0rC7/m9CU8n?=
- =?us-ascii?Q?Jbu+cOAf8p9EFd8tz6vFEbmrX6jAXHQJWSY6oFNOum82Dq+L3P7TYbu8Gkgp?=
- =?us-ascii?Q?HtSETAlVKPHuSnN7vA1DIdwjoOeAzYV84YA9He9nrCCSKzqhoTmjGNaDCvbB?=
- =?us-ascii?Q?kkCmmdVX5SHdua8Exr1Fr3I3vsG56dSpB7IvkDY+?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Jw8LA6W1Wrp2YQ1Ur2a77GJrdW6VuJvVNaX9NAHT2Fa5gcUNiUMqJwsebtz+?=
+ =?us-ascii?Q?JZ4rqe7hgn0rZbH5PIwmRjZKvfOD0UmN7cb3yN2SgygjRaQLFUqrjpgeLCJz?=
+ =?us-ascii?Q?EsyfWKY/QYlT4ubVIgvP+PTl84ubE263YMt2sx9+tEMIhdCYe8ReZFTnJX7F?=
+ =?us-ascii?Q?fd2Ny25Wa/ovGfrfs7Wst87/CD9v8OF9thO5uRaNWqiXFNQzDzZ7icB2ZUJK?=
+ =?us-ascii?Q?EweQgkB6nrfym/lqqMlmjGSKq9OYlM0pm4vrk1HavMpIT8ca+Cjpkx/3vLYN?=
+ =?us-ascii?Q?v+AoXZoMBWrz8q1sBd/z7k7EF1WMoMcAHvFkP6KSAO84euiwGSzVm1q5sZ+k?=
+ =?us-ascii?Q?zduHBRUpR7Eg1MbKMybxO3eBJBoszGjfi+iuJcl8fW+1Lb79kwNN063u5RBp?=
+ =?us-ascii?Q?bqxM2AQCIAvhgpHDa0GB9E5GXAxN8TWiR8vTVEawg9rQGZ1CS56E7QRqt1rY?=
+ =?us-ascii?Q?UjdKQk6niLJyUKOd0maAqTBYW1xhs2d3LQ7bMhJAbk476m7oQ/KFoGwhXBcu?=
+ =?us-ascii?Q?k4GogskWusWZnBa94C+9X+mN+H45tMXJdLsmb/hgki2hpN1oYgl6u6J2zA54?=
+ =?us-ascii?Q?2Urc1/Lp3putV/gBi/xyotmZC7HzzpRl+Hn6X5xxxxz6Q5M2as02zYo60LJ2?=
+ =?us-ascii?Q?+VlHTc1MVsLEfGPWpDOfYlEJA4k8CV++/BaAf1oLdiha+HR/ltv9+aCb+oxj?=
+ =?us-ascii?Q?wqHQSSfz39U8+8B0pRHuBRirKVx92yxubM+FL75sY7nAUb7kQaSUFZj8M/t1?=
+ =?us-ascii?Q?B5/ZcAGMxDLVu/Pa8f1vA6mVdkduwWu3k1/zALGs9o/sAkuXbrgvwB1JgN0w?=
+ =?us-ascii?Q?birk1EhWzwTcPhpzHmQXilpvrc/MYHBrR653oJV68hfuW3asdQhNjl0Nc5HZ?=
+ =?us-ascii?Q?AX/6/Ou4Do5nsplacgW2njXYvTJySF9qX4nH1PRTtWliMoIJIRZVpEFmyx6q?=
+ =?us-ascii?Q?imR5u5l6X1bqUx4eJtgEYq/mvJRTTVQZXxCdgV33WCvPQpLFAwDeUHo4Gcce?=
+ =?us-ascii?Q?WkNHfH3L152xyFfxuTq6F90ZkJHao1LeiY9Eigqgv/gvNnYYw0nhvF+P8SG3?=
+ =?us-ascii?Q?9CvJRskQ/cZwhSZ7hxpC6W3lmSBuSJicWL2jKUW6C8K9YC2YHEzp5Wjq6UE8?=
+ =?us-ascii?Q?beeeSbVzurRBUJmDMcqnPL3deCHvCZ8vt+sizZYSPQxjDr61UcktqC1uA4Sv?=
+ =?us-ascii?Q?SWqON3uqr+/TNgdU2RwVch8D9ulf6e1BFNHb+6/xV19Apu14HlLYfl1BD72d?=
+ =?us-ascii?Q?A2KnoC6NWWnhIvSK4wqBEPGdEwLGk08s/e4w86t0q9UhtSG266INQRYTe4qN?=
+ =?us-ascii?Q?Xghwgo0TNavLaCUGc+wu0o+JTF7FEA6F8hkic5Pi5tSj+Isj5cPqEoflTfu9?=
+ =?us-ascii?Q?jGfip47FHqJMbOwDs9W/om/4yX7XrXOBnijmHdO5hXw2GiRpNs4z7pDP+2nP?=
+ =?us-ascii?Q?NQijW2OCInBCMte8ud7Zw0X2F0rbQw4hEXLPbedtwvX1fS3QDgLH8Fx2zdnj?=
+ =?us-ascii?Q?Iokzmw2B5/u4Tg/Q7EpcgZfHgh3fNOe6Ca92bkrPYFWwaQhoFQ+S6GYQYhIg?=
+ =?us-ascii?Q?pNfvTBKlExB4oQQft/YDVHEQ/I0LDFM0+jQZBsjp?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94a0e59b-bcb7-4d84-94ce-08dd88b76e45
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 64035453-ec63-4600-a479-08dd8369df92
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB8044.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 May 2025 13:52:36.8343 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Apr 2025 19:54:50.6427 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZiTAg2VqTDtknScLgQHGXmSrcvER9MiIMIOidUZ8dVnCqV1r5YfQfbTx7qTlvAF5Ojqzk6KS2ZmQuLTg+WHaxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8327
+X-MS-Exchange-CrossTenant-UserPrincipalName: PhhMrq11Iwtj2J0KkPw8tXCCrG8yfEICNBE/e8XgKpnY6uFyZpnxFkEe4Xrgh0TtkMyqw8vW1elrhdv223tIJw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8868
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,159 +162,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello Alex,
-
-On Thu, May 01, 2025 at 09:58:33PM +0900, Alexandre Courbot wrote:
-> Add the common Falcon code and HAL for Ampere GPUs, and instantiate the
-> GSP and SEC2 Falcons that will be required to boot the GSP.
+On Wed, Apr 23, 2025 at 05:02:58PM +0200, Danilo Krummrich wrote:
+> On Wed, Apr 23, 2025 at 10:52:42AM -0400, Joel Fernandes wrote:
+> > Hello, Danilo,
+> > Thanks for all the feedback. Due to the volume of feedback, I will respond
+> > incrementally in multiple emails so we can discuss as we go - hope that's Ok but
+> > let me know if that is annoying.
 > 
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
->  drivers/gpu/nova-core/falcon.rs           | 546 ++++++++++++++++++++++++++++++
->  drivers/gpu/nova-core/falcon/gsp.rs       |  25 ++
->  drivers/gpu/nova-core/falcon/hal.rs       |  55 +++
->  drivers/gpu/nova-core/falcon/hal/ga102.rs | 115 +++++++
->  drivers/gpu/nova-core/falcon/sec2.rs      |   8 +
->  drivers/gpu/nova-core/gpu.rs              |  11 +
->  drivers/gpu/nova-core/nova_core.rs        |   1 +
->  drivers/gpu/nova-core/regs.rs             | 125 +++++++
->  drivers/gpu/nova-core/util.rs             |   1 -
->  9 files changed, 886 insertions(+), 1 deletion(-)
+> That's perfectly fine, whatever works best for you. :)
 > 
-> diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..7cae45645e548bab5b85cb53880898cedbae778a
-> --- /dev/null
-> +++ b/drivers/gpu/nova-core/falcon.rs
-> @@ -0,0 +1,546 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! Falcon microprocessor base support
-> +
-> +// To be removed when all code is used.
-> +#![expect(dead_code)]
-> +
-> +use core::time::Duration;
-> +use hal::FalconHal;
-> +use kernel::bindings;
-> +use kernel::device;
-> +use kernel::devres::Devres;
-> +use kernel::prelude::*;
-> +use kernel::sync::Arc;
-> +
-> +use crate::driver::Bar0;
-> +use crate::gpu::Chipset;
-> +use crate::regs;
-> +use crate::util;
-> +
-> +pub(crate) mod gsp;
-> +mod hal;
-> +pub(crate) mod sec2;
-> +
-> +/// Revision number of a falcon core, used in the [`crate::regs::NV_PFALCON_FALCON_HWCFG1`]
-> +/// register.
-> +#[repr(u8)]
-> +#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
-> +pub(crate) enum FalconCoreRev {
-> +    #[default]
-> +    Rev1 = 1,
-> +    Rev2 = 2,
-> +    Rev3 = 3,
-> +    Rev4 = 4,
-> +    Rev5 = 5,
-> +    Rev6 = 6,
-> +    Rev7 = 7,
-> +}
-> +
-> +impl TryFrom<u8> for FalconCoreRev {
-> +    type Error = Error;
-> +
-> +    fn try_from(value: u8) -> core::result::Result<Self, Self::Error> {
-> +        use FalconCoreRev::*;
-> +
-> +        let rev = match value {
-> +            1 => Rev1,
-> +            2 => Rev2,
-> +            3 => Rev3,
-> +            4 => Rev4,
-> +            5 => Rev5,
-> +            6 => Rev6,
-> +            7 => Rev7,
-> +            _ => return Err(EINVAL),
-> +        };
-> +
-> +        Ok(rev)
-> +    }
-> +}
-> +
-> +/// Revision subversion number of a falcon core, used in the
-> +/// [`crate::regs::NV_PFALCON_FALCON_HWCFG1`] register.
-> +#[repr(u8)]
-> +#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
-> +pub(crate) enum FalconCoreRevSubversion {
-> +    #[default]
-> +    Subversion0 = 0,
-> +    Subversion1 = 1,
-> +    Subversion2 = 2,
-> +    Subversion3 = 3,
-> +}
-> +
-> +impl TryFrom<u8> for FalconCoreRevSubversion {
-> +    type Error = Error;
-> +
-> +    fn try_from(value: u8) -> Result<Self> {
-> +        use FalconCoreRevSubversion::*;
-> +
-> +        let sub_version = match value & 0b11 {
-> +            0 => Subversion0,
-> +            1 => Subversion1,
-> +            2 => Subversion2,
-> +            3 => Subversion3,
-> +            _ => return Err(EINVAL),
-> +        };
-> +
-> +        Ok(sub_version)
-> +    }
-> +}
-> +
-> +/// Security model of a falcon core, used in the [`crate::regs::NV_PFALCON_FALCON_HWCFG1`]
-> +/// register.
-> +#[repr(u8)]
-> +#[derive(Debug, Default, Copy, Clone)]
-> +pub(crate) enum FalconSecurityModel {
-> +    /// Non-Secure: runs unsigned code without privileges.
-> +    #[default]
-> +    None = 0,
-> +    /// Low-secure: runs unsigned code with some privileges. Can only be entered from `Heavy` mode.
+> > On 4/23/2025 10:06 AM, Danilo Krummrich wrote:
+> > 
+> > >> +impl Vbios {
+> > >> +    /// Read bytes from the ROM at the current end of the data vector
+> > >> +    fn read_more(bar0: &Devres<Bar0>, data: &mut KVec<u8>, len: usize) -> Result {
+> > >> +        let current_len = data.len();
+> > >> +        let start = ROM_OFFSET + current_len;
+> > >> +
+> > >> +        // Ensure length is a multiple of 4 for 32-bit reads
+> > >> +        if len % core::mem::size_of::<u32>() != 0 {
+> > >> +            pr_err!("VBIOS read length {} is not a multiple of 4\n", len);
+> > > 
+> > > Please don't use any of the pr_*() print macros within a driver, use the dev_*()
+> > > ones instead.
+> > 
+> > Ok I'll switch to this. One slight complication is I've to retrieve the 'dev'
+> > from the Bar0 and pass that along, but that should be doable.
+> 
+> You can also pass the pci::Device reference to VBios::probe() directly.
 
-This is not true. Low-secure is also (has to be) signed and the signatures
-are verified by High-secure code. I can/will go fix that up in my follow-up doc
-patches.
 
-> +/// Returns a boxed falcon HAL adequate for the passed `chipset`.
-> +///
-> +/// We use this function and a heap-allocated trait object instead of statically defined trait
-> +/// objects because of the two-dimensional (Chipset, Engine) lookup required to return the
-> +/// requested HAL.
-> +///
-> +/// TODO: replace the return type with `KBox` once it gains the ability to host trait objects.
-> +pub(crate) fn create_falcon_hal<E: FalconEngine + 'static>(
-> +    chipset: Chipset,
-> +) -> Result<Arc<dyn FalconHal<E>>> {
-> +    let hal = match chipset {
-> +        Chipset::GA102 | Chipset::GA103 | Chipset::GA104 | Chipset::GA106 | Chipset::GA107 => {
-> +            Arc::new(ga102::Ga102::<E>::new(), GFP_KERNEL)? as Arc<dyn FalconHal<E>>
+This turns out to be rather difficult to do in the whole vbios.rs because
+we'd have to them propogate pdev to various class methods which may print
+errors (some of which don't make sense to pass pdev to, like try_from()). But
+I can do it in probe() (or new() as we call it now). See below for preview
+diff doing this for many prints where possible, does this work for you?
 
-I am guessing macro-fication of this did not pan out? i.e. I think we
-discussed:
-1. Seeing if we can reduce/get rid of Arc in favor of static allocation.
-2. Simplify the chain of GAxx | GAyy..
-But nothing that cannot be done as a follow-up improvement..
+Preview diff (give or take rustfmt):
 
-(Also it is a bit weird that the namespace for chipsets for > GA10x is
-ga102::GA102::). Example, Chipset::GA104 uses the HAL in Ga102).
+---8<-----------------------
 
-thanks,
-
- - Joel
-
+diff --git a/drivers/gpu/nova-core/firmware/gsp.rs b/drivers/gpu/nova-core/firmware/gsp.rs
+index 43cf34a078ae..808e8446ac79 100644
+--- a/drivers/gpu/nova-core/firmware/gsp.rs
++++ b/drivers/gpu/nova-core/firmware/gsp.rs
+@@ -236,7 +236,7 @@ pub(crate) fn new(
+         falcon: &Falcon<Gsp>,
+         pdev: &Device,
+         bar: &Devres<Bar0>,
+-        bios: &Vbios,
++        bios: &Vbios<'_>,
+         cmd: FwsecCommand,
+     ) -> Result<Self> {
+         let v3_desc = bios.fwsec_header()?;
+diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+index 0069d6ec8751..aa301e2a7111 100644
+--- a/drivers/gpu/nova-core/gpu.rs
++++ b/drivers/gpu/nova-core/gpu.rs
+@@ -259,7 +259,7 @@ pub(crate) fn new(pdev: &pci::Device, bar: Devres<Bar0>) -> Result<impl PinInit<
+ 
+         let fb_layout = FbLayout::new(spec.chipset, &bar, &fw.bootloader)?;
+         pr_info!("{:#x?}\n", fb_layout);
+-        let bios = Vbios::new(&bar)?;
++        let bios = Vbios::new(pdev, &bar)?;
+ 
+         // TODO: should we write 0x0 back when we drop this object?
+         let sysmem_flush = DmaObject::new(pdev.as_ref(), 0x1000, "sysmem flush page")?;
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index f0c43a5143d0..c5a8333f00b2 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -8,6 +8,7 @@
+ use kernel::devres::Devres;
+ use kernel::error::Result;
+ use kernel::prelude::*;
++use kernel::pci;
+ 
+ /// The offset of the VBIOS ROM in the BAR0 space.
+ const ROM_OFFSET: usize = 0x300000;
+@@ -24,7 +25,8 @@
+ const FALCON_UCODE_ENTRY_APPID_FWSEC_DBG: u8 = 0x45;
+ const FALCON_UCODE_ENTRY_APPID_FWSEC_PROD: u8 = 0x85;
+ 
+-pub(crate) struct Vbios {
++pub(crate) struct Vbios<'a> {
++    pdev: &'a pci::Device,
+     pub fwsec_image: Option<FwSecBiosImage>,
+     // VBIOS data vector: As BIOS images are scanned, they are added to this vector
+     // for reference or copying into other data structures. It is the entire
+@@ -35,7 +37,7 @@ pub(crate) struct Vbios {
+     data: Option<KVec<u8>>,
+ }
+ 
+-impl Vbios {
++impl Vbios<'_> {
+     /// Read bytes from the ROM at the current end of the data vector
+     fn read_more(&mut self, bar0: &Devres<Bar0>, len: usize) -> Result {
+         let data = self.data.as_mut().ok_or(EINVAL)?;
+@@ -44,7 +46,7 @@ fn read_more(&mut self, bar0: &Devres<Bar0>, len: usize) -> Result {
+ 
+         // Ensure length is a multiple of 4 for 32-bit reads
+         if len % core::mem::size_of::<u32>() != 0 {
+-            pr_err!("VBIOS read length {} is not a multiple of 4\n", len);
++            dev_err!(self.pdev.as_ref(), "VBIOS read length {} is not a multiple of 4\n", len);
+             return Err(EINVAL);
+         }
+ 
+@@ -73,7 +75,7 @@ fn read_more_at_offset(
+         len: usize,
+     ) -> Result {
+         if offset > BIOS_MAX_SCAN_LEN {
+-            pr_err!("Error: exceeded BIOS scan limit.\n");
++            dev_err!(self.pdev.as_ref(), "Error: exceeded BIOS scan limit.\n");
+             return Err(EINVAL);
+         }
+ 
+@@ -101,13 +103,14 @@ fn read_bios_image_at_offset(
+         let data_len = self.data.as_ref().ok_or(EINVAL)?.len();
+         if offset + len > data_len {
+             self.read_more_at_offset(bar0, offset, len).inspect_err(|e| {
+-                pr_err!("Failed to read more at offset {:#x}: {:?}\n", offset, e)
++                dev_err!(self.pdev.as_ref(), "Failed to read more at offset {:#x}: {:?}\n", offset, e)
+             })?;
+         }
+ 
+         let data = self.data.as_ref().ok_or(EINVAL)?;
+         BiosImage::try_from(&data[offset..offset + len]).inspect_err(|e| {
+-            pr_err!(
++            dev_err!(
++                self.pdev.as_ref(),
+                 "Failed to create BiosImage at offset {:#x}: {:?}\n",
+                 offset,
+                 e
+@@ -117,8 +120,9 @@ fn read_bios_image_at_offset(
+ 
+     /// Probe for VBIOS extraction
+     /// Once the VBIOS object is built, bar0 is not read for vbios purposes anymore.
+-    pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
++    pub(crate) fn new(pdev: &pci::Device, bar0: &Devres<Bar0>) -> Result<Self> {
+         let mut vbios = Self {
++            pdev,
+             fwsec_image: None,
+             data: Some(KVec::new()),
+         };
+@@ -137,7 +141,8 @@ pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
+                 vbios.read_bios_image_at_offset(bar0, cur_offset, BIOS_READ_AHEAD_SIZE)
+                     .and_then(|image| image.image_size_bytes())
+                     .inspect_err(|e| {
+-                        pr_err!(
++                        dev_err!(
++                            vbios.pdev.as_ref(),
+                             "Failed to parse initial BIOS image headers at offset {:#x}: {:?}\n",
+                             cur_offset,
+                             e
+@@ -148,7 +153,8 @@ pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
+             let full_image =
+                 vbios.read_bios_image_at_offset(bar0, cur_offset, image_size)
+                     .inspect_err(|e| {
+-                        pr_err!(
++                        dev_err!(
++                            vbios.pdev.as_ref(),
+                             "Failed to parse full BIOS image at offset {:#x}: {:?}\n",
+                             cur_offset,
+                             e
+@@ -158,7 +164,8 @@ pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
+             // Determine the image type
+             let image_type = full_image.image_type_str();
+ 
+-            pr_info!(
++            dev_info!(
++                vbios.pdev.as_ref(),
+                 "Found BIOS image at offset {:#x}, size: {:#x}, type: {}\n",
+                 cur_offset,
+                 image_size,
+@@ -195,7 +202,7 @@ pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
+ 
+             // Safety check - don't go beyond BIOS_MAX_SCAN_LEN (1MB)
+             if cur_offset > BIOS_MAX_SCAN_LEN {
+-                pr_err!("Error: exceeded BIOS scan limit, stopping scan\n");
++                dev_err!(vbios.pdev.as_ref(), "Error: exceeded BIOS scan limit, stopping scan\n");
+                 break;
+             }
+         } // end of loop
+@@ -212,9 +219,9 @@ pub(crate) fn new(bar0: &Devres<Bar0>) -> Result<Self> {
+             {
+                 second
+                     .setup_falcon_data(pci_at, first)
+-                    .inspect_err(|e| pr_err!("Falcon data setup failed: {:?}\n", e))?;
++                    .inspect_err(|e| dev_err!(vbios.pdev.as_ref(), "Falcon data setup failed: {:?}\n", e))?;
+             } else {
+-                pr_err!("Missing required images for falcon data setup, skipping\n");
++                dev_err!(vbios.pdev.as_ref(), "Missing required images for falcon data setup, skipping\n");
+             }
+             second // Return the potentially modified second image
+         };
