@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06761D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 493C7D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF6A10EC22;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 632EE10EC38;
 	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="a583IQHj";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="UKBU989q";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22D2A10E283
- for <nouveau@lists.freedesktop.org>; Thu, 31 Jul 2025 15:46:36 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5704510E7E1;
+ Thu, 24 Apr 2025 13:26:06 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4btD2w6vvyz9smJ;
- Thu, 31 Jul 2025 17:46:32 +0200 (CEST)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4ZjxYz24PCz9spL;
+ Thu, 24 Apr 2025 15:25:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1753976793; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1745501159; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=nqSqnIBT+SHJ9AizB7Ds7cjospfQYyj5MAaxXf/CUTI=;
- b=a583IQHj17TnZm2kYRSRkRL3d85eAIKkjqNmRxTxRUZfFGLRxhF3gvPv6ZdpCbljw/3ypw
- HkqMV3lZRm0BVyeHLCNgG5LTT1apwLVXu0nHjx+hWEB+QVaAP6uuojfVW39U6We8r087HD
- tlLclS74neeZagvkY/ltfUlkgwPMzQD/v5J9knfx/exibfkv2UyC3WGZ4ym3m8gj+msJ00
- PUdEVqHJ+BXs67jCm0iAxw9WLg6oVQaJxyY394LNSxpa/uxWeMt0Djxq9lS3tlMp98oG8F
- G5UwK5R8fh6Tdj/imwetG3Aatv9DqyUhyp3HhUAedVUbvVlhKLzUMo1b+6GUng==
-Message-ID: <481a2808c235f95726d17803503b2b6dc2746dc3.camel@mailbox.org>
-Subject: Re: [PATCH] drm/nouveau: Remove forgotten TODO
+ bh=fKyBAXY4h0YZsHpQmmZLPNawFEm0LQITaKXAZVu5Xr0=;
+ b=UKBU989qA9gUKlvGOsr9ynylYvx1uO/wprmjoclW9BEwCSjjnVmmzjDZUhQBCVaT4QnCnC
+ ORbl7bU/cf7Sbv3DdAEusQ/Ji5TVyFKQbR+TgqmM/xb1qzLwCn8wLafBuXtO8L/XSkc1g7
+ PYX5tJXmg20m7l40mM7lBqlYnujts51Kit0lxgkYjH34Nx7wiEo2E0RFvF5yfQ7rkH2Iym
+ r8LTboTaanJ2Gj816s2yLjyn/1AUgiptWr+FtjdfO6LoxkOfUkTvkh+y2VsBXQrYUayJ0a
+ NdKC0HKKnrJFuy9+Q4wMRZwklxvHET0IOGPRE0lxHXItxnVcKVwL6iB3MpwUlQ==
+Message-ID: <a27a0a01fa2bf5f328ee762b7dd84dffd18fa664.camel@mailbox.org>
+Subject: Re: [PATCH 4/4] drm/nouveau: Check dma_fence in canonical way
 From: Philipp Stanner <phasta@mailbox.org>
 To: Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Ben Skeggs <bskeggs@nvidia.com>, 
- Simona Vetter <simona@ffwll.ch>, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Date: Thu, 31 Jul 2025 17:46:30 +0200
-In-Reply-To: <Z_ZTrZ-dcD5YiSm4@cassiopeiae>
-References: <20250409091413.94102-2-phasta@kernel.org>
- <Z_ZTrZ-dcD5YiSm4@cassiopeiae>
+Cc: Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, Christian
+ =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Date: Thu, 24 Apr 2025 15:25:55 +0200
+In-Reply-To: <609c8b1a-d7a9-4667-bd6c-1455c639fcd0@kernel.org>
+References: <20250424130254.42046-2-phasta@kernel.org>
+ <20250424130254.42046-6-phasta@kernel.org>
+ <609c8b1a-d7a9-4667-bd6c-1455c639fcd0@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-META: p53bo8i5ur8wo1qck16c34ycr5h7kqgw
-X-MBO-RS-ID: b29b12feb864e280c3e
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-MBO-RS-META: 4sjhmd8518k1j7h9y85ob19dku96umzr
+X-MBO-RS-ID: 26ac357924729e237f5
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,58 +71,40 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2025-04-09 at 13:02 +0200, Danilo Krummrich wrote:
-> (+ Ben)
->=20
-> On Wed, Apr 09, 2025 at 11:14:14AM +0200, Philipp Stanner wrote:
-> > commit ebb945a94bba ("drm/nouveau: port all engines to new engine modul=
-e
-> > format") introduced a TODO to nouveau_chan.h, stating that an
-> > unspecified rework would take place in the "near future".
+On Thu, 2025-04-24 at 15:24 +0200, Danilo Krummrich wrote:
+> On 4/24/25 3:02 PM, Philipp Stanner wrote:
+> > In nouveau_fence_done(), a fence is checked for being signaled by
+> > manually evaluating the base fence's bits. This can be done in a
+> > canonical manner through dma_fence_is_signaled().
 > >=20
-> > Almost 13 years have passed since this "near future", so it can be
-> > safely assumed that the TODO is not needed anymore. Besides, its conten=
-t
-> > is useless anyways since it does not specify *what* should have been
-> > done.
-> >=20
-> > Remove the TODO.
+> > Replace the bit-check with dma_fence_is_signaled().
 > >=20
 > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
 > > ---
-> > =C2=A0drivers/gpu/drm/nouveau/nouveau_chan.h | 1 -
-> > =C2=A01 file changed, 1 deletion(-)
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+> > =C2=A0 1 file changed, 1 insertion(+), 1 deletion(-)
 > >=20
-> > diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.h b/drivers/gpu/drm/n=
-ouveau/nouveau_chan.h
-> > index 016f668c0bc1..3b73ec91c4ff 100644
-> > --- a/drivers/gpu/drm/nouveau/nouveau_chan.h
-> > +++ b/drivers/gpu/drm/nouveau/nouveau_chan.h
-> > @@ -33,7 +33,6 @@ struct nouveau_channel {
-> > =C2=A0		u64 addr;
-> > =C2=A0	} push;
-> > =C2=A0
-> > -	/* TODO: this will be reworked in the near future */
-> > =C2=A0	bool accel_done;
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > index fb9811938c82..d5654e26d5bc 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > @@ -253,7 +253,7 @@ nouveau_fence_done(struct nouveau_fence *fence)
+> > =C2=A0=C2=A0	struct nouveau_channel *chan;
+> > =C2=A0=C2=A0	unsigned long flags;
+> > =C2=A0=20
+> > -	if (test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence-
+> > >base.flags))
+> > +	if (dma_fence_is_signaled(&fence->base))
 >=20
-> After having a brief look, it seems that it may has actually been reworke=
-d;
-> there is only a single use of accel_done, which is in FIRE_RING(), where =
-it is
-> set to true. But it doesn't seem to be read from anywhere.
->=20
-> So, I think we should remove both, the TODO and the accel_done field.
->=20
-> @Ben: Maybe you remember the history of this.
+> This is only correct with commit bbe5679f30d7 ("drm/nouveau: Fix
+> WARN_ON in
+> nouveau_fence_context_kill()") from drm-misc-fixes, correct?
 
-Since we didn't get an answer =E2=80=93 how do we want to continue with tha=
-t,
-Danilo?
+Yup. Otherwise, this series can't be merged anyways, because patch 1
+depends on it.
 
+The cover letter says so: "This series is based on this partially
+merged series: [1]"
 
 P.
-
-
->=20
-> - Danilo
-
