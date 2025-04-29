@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64D40C3ABAD
-	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:40:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B83C3ABAA
+	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:40:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 259AF10E54E;
-	Tue, 29 Apr 2025 23:40:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD8210E558;
+	Tue, 29 Apr 2025 23:40:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="OYlrkbx0";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rt9TUCUD";
 	dkim-atps=neutral
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2084.outbound.protection.outlook.com [40.107.237.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A09E10E54B
- for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:40:07 +0000 (UTC)
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam04on2043.outbound.protection.outlook.com [40.107.100.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 752E810E557
+ for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:40:11 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CTc5Sl+y2KfCwOdJnTqRP7m8m8Rap4YKb+m9SnSTq3clA9dwYQNrH5VOs641tziZy3G7z7ukK8WoObkWYawGL3GkG2/oCuu5xW7sCzRcuJ/1SxxWle/Z0DyKWhggn5AqCkK3rRwj7Fqd0g6IIGef3iJYjC9iNgrjgVhXIJPL1WK5XbBG+mAzey3084gnedd2636Z3pkS5aDi5LGMYofIZTaglCf3n+0eKpEfQVnKSlrBktPfkKmdEP4jSKiNolhnn0+FdlEU8RJp/nItMhacFF19aP9e/7JVAQPKvhakKCtgPSc2jyeMsC0n9paqzt202bG+P219wV3p8Lrvz5h2qQ==
+ b=W7VziIr8qGBmuIUdYbMP4Y6WxU5YfcZG2hlJXyiu0d/A68y1NKIckeYjwyLnjsVxYw2d2IfxuqxB+3B/8Rbh6Q51cYLVgOBtrbiU4sLozygKyJxSgw7VXTHdHzWFfYAIwMI6HwoVOnExZLAZYzl90xMIP5Op3PxtwGuc0j8ns6X/NxyrJrMja8gjQ3dtU+i4UBG9gt/ZCX/mpXT8fL0HtrxI+QK4wkf/+E1pPcELhOAIfjx718xA6xelbMdFE+vx8FyI9CLXlygTo4gn6Eg2iG88mBzvL3Y/O8rkAu2YELeOFgtopfGbmMw4eqLOQQSN/q6mvYknj8TXa7ZiUJ3xWw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KiiyWYftQXjOB2uDGWHeQYO6tOfjYGfjD8BWAdFhKHI=;
- b=njWmkm5mBPCVEM8g9huPadlVldk11qvWwEIiN6oNeBHsxTA1kk8b8RW1nsHyLQLnXyiHNZwBZf95SgJGf2AKYh+vVMUbcU1ifStD4COlp592mAa/DHT9nthbGhQp1KdMktvwTk84qp69MhsjDiUfEJYkpmlnFq/WTYVw8U29ik/i0h04qSu7JW7UV61zV07UDplCgyGecbh9644p7d4CA3mFENc9SgkJbThP2z+NfK7Jsu77xJ8q7+C5S6iT6jUreFKr1eFKfypSkKHp5bUrSWKrUyZ7wi6vDjImcnwceFeEy5ilvEHJ+YonV/+4STr6sArnLxhdXW+BqW2bBi2gtQ==
+ bh=9JG32/BDoXcvu+6y+xu8H/yKZoJMfLbhBE1RL9/IeV4=;
+ b=xVv+zAbihlIYNg05vCK393lUGc5/3GnROXNhSHJNiXCfBgTrhLZQw9DF4+M43V5RhPOVX49mDx9uvPiLlNWwxcw2bXZZmdRl+FSXb+lMSDuAXKD/Vu/ZBddslAxsXOiZepGMLaw3OZQkB5+w/HsQ1QLMJQomH4HtGBYvSHaPge87NQNZIWnFXFlPKTJq46wLe7BWrtT8dEzFT5EOD6PplV9d2fj0r7/sMq3iOWFOAU1v9QT+anCfvbmUXYwE8aEyKQ72IZAnz4XqYKlK2pJX+qXeh8BR+JQ3eXHz8dWjxw88GDFCAfbnIS4mleHkmR3yz70fheOLWJEoXY3LlVL6WQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KiiyWYftQXjOB2uDGWHeQYO6tOfjYGfjD8BWAdFhKHI=;
- b=OYlrkbx0RCKmNaKcs+kkQhRVm023eXPbW8pr611Id8Gc8BgVtetrV7y4OcTgePu2m7rE12oxCsz+cyYu/C+OKQfUwyMlze7Xyg6MzGQOIvemzSDlVbGlhBYA+isN7toSH5HSXhBCc4ETjx/0GK/uLp9lCnxV1MFFHOS189zHTvqXdlsgjgU0aZ8hWaY/bKRZwolEGmcGHcOjfaLar4zfbxnvuI62KUqY5FTB2ucuPxRmsEMCa91gQdncKrSnNuqirhanqJpqo8iZcrt6qWnI8d7br0IuOkSs2CvFsIe5ty1DBfq/kMkKD+HDXAAjompVGRKg0EQDx80QPtzczJS+Ng==
-Received: from BYAPR07CA0029.namprd07.prod.outlook.com (2603:10b6:a02:bc::42)
- by CY5PR12MB6383.namprd12.prod.outlook.com (2603:10b6:930:3d::12)
+ bh=9JG32/BDoXcvu+6y+xu8H/yKZoJMfLbhBE1RL9/IeV4=;
+ b=rt9TUCUDfKc5OzXU0/rWIpFuG9vdaK7prmNVE9X2GmIsVNMpwS+AvV7Jffi69Y8knlqlpLPIczQG0UOIaA/O8wBeyFcvOsN2DDv+NnqImpU+Yhw7miBcHVObkvnTZxt0spEZboqDm14NBoctOjJO9LYlOfy6fCSc13TdW7fJzOqa2BpWcXAuL8p9NYDANiK5p8661zJa/uvbUHPchzw4hkg8zpyUHyJ8mtl8kCGP8EaVnYh7GKGQ+t8LXmNnAY63nGYn0Vaq2IpAYFO/eA2k9JEdwQk57bUnzvNZw9PJjSBST/7cUjtFavEjA1UFpgpHcdKBce94p5pdD3NMkrBwug==
+Received: from MW3PR06CA0022.namprd06.prod.outlook.com (2603:10b6:303:2a::27)
+ by CY3PR12MB9701.namprd12.prod.outlook.com (2603:10b6:930:103::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.33; Tue, 29 Apr
- 2025 23:39:59 +0000
-Received: from SJ5PEPF000001EB.namprd05.prod.outlook.com
- (2603:10b6:a02:bc:cafe::16) by BYAPR07CA0029.outlook.office365.com
- (2603:10b6:a02:bc::42) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.36 via Frontend Transport; Tue,
- 29 Apr 2025 23:39:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Tue, 29 Apr
+ 2025 23:40:05 +0000
+Received: from SJ5PEPF000001E8.namprd05.prod.outlook.com
+ (2603:10b6:303:2a:cafe::20) by MW3PR06CA0022.outlook.office365.com
+ (2603:10b6:303:2a::27) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.35 via Frontend Transport; Tue,
+ 29 Apr 2025 23:40:05 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,23 +50,24 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.160 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.160) by
- SJ5PEPF000001EB.mail.protection.outlook.com (10.167.242.199) with Microsoft
+ SJ5PEPF000001E8.mail.protection.outlook.com (10.167.242.196) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:39:59 +0000
+ 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:40:04 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 29 Apr
- 2025 16:39:46 -0700
+ 2025 16:39:52 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.230.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 29 Apr 2025 16:39:45 -0700
+ 15.2.1544.14; Tue, 29 Apr 2025 16:39:51 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 06/60] drm/nouveau/gsp: split rm ctrl handling out on its own
-Date: Wed, 30 Apr 2025 09:38:34 +1000
-Message-ID: <20250429233929.24363-7-bskeggs@nvidia.com>
+Subject: [PATCH 11/60] drm/nouveau/gsp: move booter handling to GPU-specific
+ code
+Date: Wed, 30 Apr 2025 09:38:39 +1000
+Message-ID: <20250429233929.24363-12-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250429233929.24363-1-bskeggs@nvidia.com>
 References: <20250429233929.24363-1-bskeggs@nvidia.com>
@@ -78,52 +79,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EB:EE_|CY5PR12MB6383:EE_
-X-MS-Office365-Filtering-Correlation-Id: ee967095-847d-4444-09d0-08dd877727a3
+X-MS-TrafficTypeDiagnostic: SJ5PEPF000001E8:EE_|CY3PR12MB9701:EE_
+X-MS-Office365-Filtering-Correlation-Id: a87dde1f-30c0-4698-6b21-08dd87772af3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?e/igSxIqCKrb7sB0CL37q/ZBSxC7KbBt86wCn9rdxDRIlHFdG3H20dIkEmu5?=
- =?us-ascii?Q?QcPIbclVXbOgG/m+pqolRneIgCtGkfZx0gmg+a3+nYg92++7OcQHF6r4b/A8?=
- =?us-ascii?Q?cpMJqXJsVdqg36CXLIzlj70Sy9PXtwXK/ha7c0pWt+Uqq+53xJm9J0KfIngk?=
- =?us-ascii?Q?s0R4K5uEGcHTW0cdFvcjYXo6vMiiaqnxBvBYU8x/6E/wu3hWPD+SWtpPuLB5?=
- =?us-ascii?Q?gAYm2gSLCgkEUPk4QPP+DOimHWvMZnJ7vMQLY5i0JNqMJo/gXfVJuzHx9ANs?=
- =?us-ascii?Q?CALeBVFoYgV9WxfeztNDYFkxeRvy+o8z7e0kcMdHl6YYOwDwUmurcPl4VyBo?=
- =?us-ascii?Q?iPeAAzJIqFd7vwxkU+ezi+Lw31STDcoTnjlloJLD1iHWXcKSabkiEm7l3R0L?=
- =?us-ascii?Q?+LaU/paos1vxBd1oLrQVuQfieKsaAWFVGuJDASZ7gzdOj4DHayz9SBiLG6zK?=
- =?us-ascii?Q?8AQlDVM6MWrlxNFeZL8rBX46eT9VHysxQDWxH+10osOWoHnK3REmBZwfc+pZ?=
- =?us-ascii?Q?xENybCfouEJYSp8QQ4KnPJSOZbwPGVCc/oPUQEjen8N1v2iK/JfZf6VauBMH?=
- =?us-ascii?Q?ovnCURJWRekQY5bcpoabqq7TjD/jvsZvq40g1ms/WLfauYo3K9WKcC0FVSnb?=
- =?us-ascii?Q?sb2eks2wP2MePfNWeNECow1NDtNqFoiL4XDb2OtFuyI/70xVVPC4cdvco4by?=
- =?us-ascii?Q?FZ37GVxhyUzL05ct2MzwmumwQahv5JhR0CHsPHadLGqMlygiKW6LZuVwgtdZ?=
- =?us-ascii?Q?76cJ1QY7hl2nibzIKPGPRTxd5DC5/iWUvP0GperStR4Itp9940yjjbfpaKoV?=
- =?us-ascii?Q?I623pCl+ACgWBtTf1IzB4DY5JFCNr3nW5eHMjcfXMJ5TPmxFSzog39txOshf?=
- =?us-ascii?Q?ZVFSrQ5jJcD7KZbaP+bF1atw2LjUqIFgCvDF+87zmaY+YvNlADKCMkMkaNRn?=
- =?us-ascii?Q?5QTD6Gj5fvnOEKKWZSwgkMb/E3eTTmVnxa+HvCOQp7CZXVWsIIkGQLcx89G6?=
- =?us-ascii?Q?EjKQkX53SuWgE3CST3VEDsv+S0xNJhz+Z+/jcCbgcnNpmBZwFvrW3VS/+6Xx?=
- =?us-ascii?Q?FW4eWvkaQUrGKPhb+dxsGi2SWcxmUsJow97VjSNyNChWtbTSYA4jyj1qUCE5?=
- =?us-ascii?Q?p/J5de30LaWnoDn7364xUUuz8joU2/CE8QBt0DmoN/hzkX2gjoZfTmNhNO+0?=
- =?us-ascii?Q?L8jqkWh/cQ22bmpLSM5lSR8EXK4MF3DxbGCzFEhO3comlaWY5frQb5Ybtsc+?=
- =?us-ascii?Q?T3nYYm5GTECDK3c9cpUaQ81ZRLkFdrAGRRntCWI2FKfTsV8WpQHOdWNicXvF?=
- =?us-ascii?Q?0h/1zfwu7xRhPlV75VlfMCCpe97+BE9/jTmAgMSPVVuo7aaixhtxcBuMaJN9?=
- =?us-ascii?Q?czwneuutayljAS5/ZVtC3vH6qeaGH2Y3F0s5sHF9W49Az7LVufYJst/flqr1?=
- =?us-ascii?Q?l1V9xw8cQsmwseeu9cxaSu+lcLb5Z0q3EVdwR0BfTKB9RwVu59KNSej8PvKZ?=
- =?us-ascii?Q?BLEseb+4w/wjFeiToHiiCYV2sP3VfnIzDTFQ?=
+ ARA:13230040|82310400026|36860700013|376014|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Vh5JkcRMLT/MjiSVy/HtaEydVjfyLaT12SovnoQ4MipXUzjTrgQxQOwXGe1v?=
+ =?us-ascii?Q?tPMMQf8V9cqpG5+sUl55lOsG5mtoTN4HZk6qFoeRdPzhbfXYFMRJZ+OlYxr9?=
+ =?us-ascii?Q?OBa0J6vnBhT2UNzR4Ayfxs0c4s3uR3NhyVH2K8CWmI1nlSb7ZtA3tv4ITFKV?=
+ =?us-ascii?Q?1SVdTENu6C5PhBQCVUZDoaOCfOVxPL6URoui5is5bq1q7fn90mppUZENY6sV?=
+ =?us-ascii?Q?587iPqA8foSdqQLoKvOKlHHu9UKABE2k3u/XAOtIo3he3galaV1224rStP3W?=
+ =?us-ascii?Q?n4rphu2bNiDFeV4XYvy4ypcZ59zySI/hpvcNn+qgfyK1uF5PHx/EFfMVIaoR?=
+ =?us-ascii?Q?2O+hFp1m99M8bFdBYydYOWHGkzujVVde8qmAt6qzjElsROOoyBvvL11pLe4p?=
+ =?us-ascii?Q?55tzUNhf7Cj7ruDCGqe4zO8mR3d6G7A4fYO8i5Gv5R8yEpfpsHweic7AT41J?=
+ =?us-ascii?Q?5h7AvVvI+liL5jpvRVJxYpdgGRl3cMkE12c2/E0aXqnriVSx4St1QU1Wy8u6?=
+ =?us-ascii?Q?AC23W11QJY1AYYA8/7yq7FgW4kRNOpEvipW8mp3la+MnQ7GWuPrEwqOIba0e?=
+ =?us-ascii?Q?2V2RgY9uCiYMSGJAmzQwefQKYazBVcN8Fjr/y2T/27WofdPJp74wbhBB7qub?=
+ =?us-ascii?Q?qDwBKmK0NbAxR5bGYxUz8W+Ofa2KE9vTkQ13lDDbcmrGfgwFbUWAtxvBe6cZ?=
+ =?us-ascii?Q?JPxyW5T/lPlFipExTicDy3Pq49qc+knlRj+qeegzypSsy6JB/T1rycRJvx5I?=
+ =?us-ascii?Q?Eub0SvfjLoBsn66MISL1GM9T93a1cEagloovz+TazA7BuAnNz/YentP0j0LA?=
+ =?us-ascii?Q?jHvoq6L8xOsaPuPNiw1WRZj1evPYdz/DB0ndhUy32ouua1OVlTvSCj+7Z2h4?=
+ =?us-ascii?Q?nUR6wLBnE1n5kR6Pb6DnWhlKVfXwQAuGeElHDVsoSrbXbdcuCSNsSs70Fw2q?=
+ =?us-ascii?Q?mw9aQjBHJZaUfgG0+em8N5MW9HSuohniWW5LVakxGb0WnzZnU2ilpOKQ3Eax?=
+ =?us-ascii?Q?O905vFiSdrNhWOtt4J/ISfq0aCG2fpktHBLZTRhitgdrDLg+gdBCYi9k6deu?=
+ =?us-ascii?Q?Z/pTwNuEvW5SVM9bZx/jedSl0hInKtCY8Di9mgMw7olXv7O/kXbMXZOFw8IY?=
+ =?us-ascii?Q?ucNO5pr8aH7vmeSDAbQTGXXY6rBnOqs+X/o3BhqMfaaLZF1Zstkj9ZheICPG?=
+ =?us-ascii?Q?+D+09ohpcLh4zjj271UDkFGeWO5x8rtx0kSPyzAj7tmiYiE1VVsySHAxS86W?=
+ =?us-ascii?Q?3q5ipmpBdvWddy/vHAHevcz8sraSCew5nfS0/UvHN7ebh5UB8WrHuyQjg6EF?=
+ =?us-ascii?Q?T/7ouLwIIs/k129nTpWY0tlvjaqHtjlmMxFVjUpvh6bVBEsLOXMrJ3yjKMcU?=
+ =?us-ascii?Q?eUkasjdtH5fAwYyaINTnR3i9ivojy6xeQiUqMYnREY6tW1Zfd7YxSECTGsEk?=
+ =?us-ascii?Q?BcxUu17J5jA3+t0ZP6CS/oDjN5W/HxlSWDbFv7zg7V6ca3pUyABrD/4gTWxK?=
+ =?us-ascii?Q?wNA/vJlcYQx3P/CJlaBQr/9+f/QsV0J43f2y?=
 X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(82310400026)(36860700013)(376014)(1800799024); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:39:59.1695 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee967095-847d-4444-09d0-08dd877727a3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:40:04.6987 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: a87dde1f-30c0-4698-6b21-08dd87772af3
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001EB.namprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PEPF000001E8.namprd05.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6383
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9701
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,288 +139,429 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Split base RM_CONTROL handling out into its own module.
-
-Aside from moving the function pointers, no code change is intended.
+GH100/GBxxx have significant changes to the GSP-RM boot process.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h | 10 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 66 +------------
- .../nouveau/nvkm/subdev/gsp/rm/r535/Kbuild    |  1 +
- .../nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c    | 94 +++++++++++++++++++
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  |  1 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  7 ++
- 6 files changed, 107 insertions(+), 72 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c   |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/base.c    |   2 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c   |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c   |   4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/priv.h    |   3 +
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    |  94 +--------------
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c   | 113 +++++++++++++++++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c   |   4 +-
+ 8 files changed, 125 insertions(+), 103 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-index b543c31d3d32..bc2cf837aa9f 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-@@ -212,10 +212,6 @@ struct nvkm_gsp {
- 	const struct nvkm_gsp_rm {
- 		const struct nvkm_rm_api *api;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+index 221ea0fd8a51..ea2821e7a54e 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+@@ -36,8 +36,8 @@ ad102_gsp_r535_113_01 = {
  
--		void *(*rm_ctrl_get)(struct nvkm_gsp_object *, u32 cmd, u32 argc);
--		int (*rm_ctrl_push)(struct nvkm_gsp_object *, void **argv, u32 repc);
--		void (*rm_ctrl_done)(struct nvkm_gsp_object *, void *repv);
--
- 		void *(*rm_alloc_get)(struct nvkm_gsp_object *, u32 oclass, u32 argc);
- 		void *(*rm_alloc_push)(struct nvkm_gsp_object *, void *argv);
- 		void (*rm_alloc_done)(struct nvkm_gsp_object *, void *repv);
-@@ -316,13 +312,13 @@ nvkm_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
- static inline void *
- nvkm_gsp_rm_ctrl_get(struct nvkm_gsp_object *object, u32 cmd, u32 argc)
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+-	.init = r535_gsp_init,
+-	.fini = r535_gsp_fini,
++	.init = tu102_gsp_init,
++	.fini = tu102_gsp_fini,
+ 	.reset = ga102_gsp_reset,
+ 
+ 	.rm = &r535_gsp_rm,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+index fe1cef1b6324..78f2a15f0d42 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+@@ -52,7 +52,7 @@ nvkm_gsp_fini(struct nvkm_subdev *subdev, bool suspend)
  {
--	return object->client->gsp->rm->rm_ctrl_get(object, cmd, argc);
-+	return object->client->gsp->rm->api->ctrl->get(object, cmd, argc);
- }
+ 	struct nvkm_gsp *gsp = nvkm_gsp(subdev);
  
- static inline int
- nvkm_gsp_rm_ctrl_push(struct nvkm_gsp_object *object, void *argv, u32 repc)
- {
--	return object->client->gsp->rm->rm_ctrl_push(object, argv, repc);
-+	return object->client->gsp->rm->api->ctrl->push(object, argv, repc);
- }
+-	if (!gsp->func->fini)
++	if (!gsp->func->fini || !gsp->running)
+ 		return 0;
  
- static inline void *
-@@ -353,7 +349,7 @@ nvkm_gsp_rm_ctrl_wr(struct nvkm_gsp_object *object, void *argv)
- static inline void
- nvkm_gsp_rm_ctrl_done(struct nvkm_gsp_object *object, void *repv)
- {
--	object->client->gsp->rm->rm_ctrl_done(object, repv);
-+	object->client->gsp->rm->api->ctrl->done(object, repv);
- }
+ 	return gsp->func->fini(gsp, suspend);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+index c3be72d3390a..d9cdec4810b4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+@@ -52,8 +52,8 @@ ga100_gsp_r535_113_01 = {
  
- static inline void *
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+-	.init = r535_gsp_init,
+-	.fini = r535_gsp_fini,
++	.init = tu102_gsp_init,
++	.fini = tu102_gsp_fini,
+ 	.reset = tu102_gsp_reset,
+ 
+ 	.rm = &r535_gsp_rm,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+index d7385d3989f1..7b8db70f3cb3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+@@ -164,8 +164,8 @@ ga102_gsp_r535_113_01 = {
+ 
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+-	.init = r535_gsp_init,
+-	.fini = r535_gsp_fini,
++	.init = tu102_gsp_init,
++	.fini = tu102_gsp_fini,
+ 	.reset = ga102_gsp_reset,
+ 
+ 	.rm = &r535_gsp_rm,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+index 601dd5d503bb..e6f0e865848a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+@@ -59,6 +59,8 @@ extern const struct nvkm_falcon_fw_func tu102_gsp_fwsec;
+ int tu102_gsp_booter_ctor(struct nvkm_gsp *, const char *, const struct firmware *,
+ 			  struct nvkm_falcon *, struct nvkm_falcon_fw *);
+ int tu102_gsp_oneinit(struct nvkm_gsp *);
++int tu102_gsp_init(struct nvkm_gsp *);
++int tu102_gsp_fini(struct nvkm_gsp *, bool suspend);
+ int tu102_gsp_reset(struct nvkm_gsp *);
+ 
+ extern const struct nvkm_falcon_func ga102_gsp_flcn;
+@@ -72,6 +74,7 @@ int r535_gsp_oneinit(struct nvkm_gsp *);
+ int r535_gsp_init(struct nvkm_gsp *);
+ int r535_gsp_fini(struct nvkm_gsp *, bool suspend);
+ extern const struct nvkm_gsp_rm r535_gsp_rm;
++int r535_gsp_rmargs_init(struct nvkm_gsp *gsp, bool resume);
+ 
+ int nvkm_gsp_new_(const struct nvkm_gsp_fwif *, struct nvkm_device *, enum nvkm_subdev_type, int,
+ 		  struct nvkm_gsp **);
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index 53a4af001039..24d90910cee0 100644
+index 45e3fcbabe4f..ff5ab2635003 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -20,6 +20,7 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- #include <rm/rpc.h>
-+
- #include "priv.h"
- 
- #include <core/pci.h>
-@@ -304,75 +305,10 @@ r535_gsp_rpc_rm_alloc_get(struct nvkm_gsp_object *object, u32 oclass,
- 	return rpc->params;
+@@ -1145,48 +1145,6 @@ r535_gsp_msg_run_cpu_sequencer(void *priv, u32 fn, void *repv, u32 repc)
+ 	return 0;
  }
  
--static void
--r535_gsp_rpc_rm_ctrl_done(struct nvkm_gsp_object *object, void *params)
+-static int
+-r535_gsp_booter_unload(struct nvkm_gsp *gsp, u32 mbox0, u32 mbox1)
 -{
--	rpc_gsp_rm_control_v03_00 *rpc = to_payload_hdr(params, rpc);
+-	struct nvkm_subdev *subdev = &gsp->subdev;
+-	struct nvkm_device *device = subdev->device;
+-	u32 wpr2_hi;
+-	int ret;
 -
--	if (!params)
--		return;
--	nvkm_gsp_rpc_done(object->client->gsp, rpc);
+-	wpr2_hi = nvkm_rd32(device, 0x1fa828);
+-	if (!wpr2_hi) {
+-		nvkm_debug(subdev, "WPR2 not set - skipping booter unload\n");
+-		return 0;
+-	}
+-
+-	ret = nvkm_falcon_fw_boot(&gsp->booter.unload, &gsp->subdev, true, &mbox0, &mbox1, 0, 0);
+-	if (WARN_ON(ret))
+-		return ret;
+-
+-	wpr2_hi = nvkm_rd32(device, 0x1fa828);
+-	if (WARN_ON(wpr2_hi))
+-		return -EIO;
+-
+-	return 0;
 -}
 -
 -static int
--r535_gsp_rpc_rm_ctrl_push(struct nvkm_gsp_object *object, void **params, u32 repc)
+-r535_gsp_booter_load(struct nvkm_gsp *gsp, u32 mbox0, u32 mbox1)
 -{
--	rpc_gsp_rm_control_v03_00 *rpc = to_payload_hdr((*params), rpc);
--	struct nvkm_gsp *gsp = object->client->gsp;
--	int ret = 0;
+-	int ret;
 -
--	rpc = nvkm_gsp_rpc_push(gsp, rpc, NVKM_GSP_RPC_REPLY_RECV, repc);
--	if (IS_ERR_OR_NULL(rpc)) {
--		*params = NULL;
--		return PTR_ERR(rpc);
--	}
+-	ret = nvkm_falcon_fw_boot(&gsp->booter.load, &gsp->subdev, true, &mbox0, &mbox1, 0, 0);
+-	if (ret)
+-		return ret;
 -
--	if (rpc->status) {
--		ret = r535_rpc_status_to_errno(rpc->status);
--		if (ret != -EAGAIN && ret != -EBUSY)
--			nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x failed: 0x%08x\n",
--				   object->client->object.handle, object->handle, rpc->cmd, rpc->status);
--	}
+-	nvkm_falcon_wr32(&gsp->falcon, 0x080, gsp->boot.app_version);
 -
--	if (repc)
--		*params = rpc->params;
--	else
--		nvkm_gsp_rpc_done(gsp, rpc);
+-	if (WARN_ON(!nvkm_falcon_riscv_active(&gsp->falcon)))
+-		return -EIO;
 -
--	return ret;
+-	return 0;
 -}
 -
--static void *
--r535_gsp_rpc_rm_ctrl_get(struct nvkm_gsp_object *object, u32 cmd, u32 params_size)
--{
--	struct nvkm_gsp_client *client = object->client;
--	struct nvkm_gsp *gsp = client->gsp;
--	rpc_gsp_rm_control_v03_00 *rpc;
--
--	nvkm_debug(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x params_size:%d\n",
--		   client->object.handle, object->handle, cmd, params_size);
--
--	rpc = nvkm_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_GSP_RM_CONTROL,
--			       sizeof(*rpc) + params_size);
--	if (IS_ERR(rpc))
--		return rpc;
--
--	rpc->hClient    = client->object.handle;
--	rpc->hObject    = object->handle;
--	rpc->cmd	= cmd;
--	rpc->status     = 0;
--	rpc->paramsSize = params_size;
--	return rpc->params;
--}
--
- const struct nvkm_gsp_rm
- r535_gsp_rm = {
- 	.api = &r535_rm,
+ static int
+ r535_gsp_wpr_meta_init(struct nvkm_gsp *gsp)
+ {
+@@ -1287,7 +1245,7 @@ r535_gsp_shared_init(struct nvkm_gsp *gsp)
+ 	return 0;
+ }
  
--	.rm_ctrl_get = r535_gsp_rpc_rm_ctrl_get,
--	.rm_ctrl_push = r535_gsp_rpc_rm_ctrl_push,
--	.rm_ctrl_done = r535_gsp_rpc_rm_ctrl_done,
--
- 	.rm_alloc_get = r535_gsp_rpc_rm_alloc_get,
- 	.rm_alloc_push = r535_gsp_rpc_rm_alloc_push,
- 	.rm_alloc_done = r535_gsp_rpc_rm_alloc_done,
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
-index 21c818ec0701..c8d7419b754f 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
-@@ -4,3 +4,4 @@
+-static int
++int
+ r535_gsp_rmargs_init(struct nvkm_gsp *gsp, bool resume)
+ {
+ 	GSP_ARGUMENTS_CACHED *args;
+@@ -1816,12 +1774,8 @@ nvkm_gsp_radix3_sg(struct nvkm_gsp *gsp, struct sg_table *sgt, u64 size,
+ int
+ r535_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
+ {
+-	u32 mbox0 = 0xff, mbox1 = 0xff;
+ 	int ret;
  
- nvkm-y += nvkm/subdev/gsp/rm/r535/rm.o
- nvkm-y += nvkm/subdev/gsp/rm/r535/rpc.o
-+nvkm-y += nvkm/subdev/gsp/rm/r535/ctrl.o
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c
-new file mode 100644
-index 000000000000..f3f0fcd22cac
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c
-@@ -0,0 +1,94 @@
-+/*
-+ * Copyright 2023 Red Hat Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+#include <rm/rpc.h>
-+
-+#include <nvrm/nvtypes.h>
-+#include <nvrm/535.113.01/nvidia/generated/g_rpc-structures.h>
-+#include <nvrm/535.113.01/nvidia/kernel/inc/vgpu/rpc_global_enums.h>
-+
-+static void
-+r535_gsp_rpc_rm_ctrl_done(struct nvkm_gsp_object *object, void *params)
+-	if (!gsp->running)
+-		return 0;
+-
+ 	if (suspend) {
+ 		GspFwWprMeta *meta = gsp->wpr_meta.data;
+ 		u64 len = meta->gspFwWprEnd - meta->gspFwWprStart;
+@@ -1844,9 +1798,6 @@ r535_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
+ 		sr->revision = GSP_FW_SR_META_REVISION;
+ 		sr->sysmemAddrOfSuspendResumeData = gsp->sr.radix3.lvl0.addr;
+ 		sr->sizeOfSuspendResumeData = len;
+-
+-		mbox0 = lower_32_bits(gsp->sr.meta.addr);
+-		mbox1 = upper_32_bits(gsp->sr.meta.addr);
+ 	}
+ 
+ 	ret = r535_gsp_rpc_unloading_guest_driver(gsp, suspend);
+@@ -1858,14 +1809,6 @@ r535_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
+ 			break;
+ 	);
+ 
+-	nvkm_falcon_reset(&gsp->falcon);
+-
+-	ret = nvkm_gsp_fwsec_sb(gsp);
+-	WARN_ON(ret);
+-
+-	ret = r535_gsp_booter_unload(gsp, mbox0, mbox1);
+-	WARN_ON(ret);
+-
+ 	gsp->running = false;
+ 	return 0;
+ }
+@@ -1873,23 +1816,12 @@ r535_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
+ int
+ r535_gsp_init(struct nvkm_gsp *gsp)
+ {
+-	u32 mbox0, mbox1;
+ 	int ret;
+ 
+-	if (!gsp->sr.meta.data) {
+-		mbox0 = lower_32_bits(gsp->wpr_meta.addr);
+-		mbox1 = upper_32_bits(gsp->wpr_meta.addr);
+-	} else {
+-		r535_gsp_rmargs_init(gsp, true);
+-
+-		mbox0 = lower_32_bits(gsp->sr.meta.addr);
+-		mbox1 = upper_32_bits(gsp->sr.meta.addr);
+-	}
++	nvkm_falcon_wr32(&gsp->falcon, 0x080, gsp->boot.app_version);
+ 
+-	/* Execute booter to handle (eventually...) booting GSP-RM. */
+-	ret = r535_gsp_booter_load(gsp, mbox0, mbox1);
+-	if (WARN_ON(ret))
+-		goto done;
++	if (WARN_ON(!nvkm_falcon_riscv_active(&gsp->falcon)))
++		return -EIO;
+ 
+ 	ret = r535_gsp_rpc_poll(gsp, NV_VGPU_MSG_EVENT_GSP_INIT_DONE);
+ 	if (ret)
+@@ -2220,16 +2152,6 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	mutex_init(&gsp->cmdq.mutex);
+ 	mutex_init(&gsp->msgq.mutex);
+ 
+-	ret = gsp->func->booter.ctor(gsp, "booter-load", gsp->fws.booter.load,
+-				     &device->sec2->falcon, &gsp->booter.load);
+-	if (ret)
+-		return ret;
+-
+-	ret = gsp->func->booter.ctor(gsp, "booter-unload", gsp->fws.booter.unload,
+-				     &device->sec2->falcon, &gsp->booter.unload);
+-	if (ret)
+-		return ret;
+-
+ 	/* Load GSP firmware from ELF image into DMA-accessible memory. */
+ 	ret = r535_gsp_elf_section(gsp, ".fwimage", &data, &size);
+ 	if (ret)
+@@ -2324,14 +2246,6 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	if (WARN_ON(ret))
+ 		return ret;
+ 
+-	/* Reset GSP into RISC-V mode. */
+-	ret = gsp->func->reset(gsp);
+-	if (WARN_ON(ret))
+-		return ret;
+-
+-	nvkm_falcon_wr32(&gsp->falcon, 0x040, lower_32_bits(gsp->libos.addr));
+-	nvkm_falcon_wr32(&gsp->falcon, 0x044, upper_32_bits(gsp->libos.addr));
+-
+ 	mutex_init(&gsp->client_id.mutex);
+ 	idr_init(&gsp->client_id.idr);
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+index e7396344cfdf..451d3e588d26 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+@@ -22,11 +22,43 @@
+ #include "priv.h"
+ 
+ #include <subdev/fb.h>
++#include <engine/sec2.h>
+ 
+ #include <nvfw/flcn.h>
+ #include <nvfw/fw.h>
+ #include <nvfw/hs.h>
+ 
++static int
++tu102_gsp_booter_unload(struct nvkm_gsp *gsp, u32 mbox0, u32 mbox1)
 +{
-+	rpc_gsp_rm_control_v03_00 *rpc = to_payload_hdr(params, rpc);
++	struct nvkm_subdev *subdev = &gsp->subdev;
++	struct nvkm_device *device = subdev->device;
++	u32 wpr2_hi;
++	int ret;
 +
-+	if (!params)
-+		return;
-+	nvkm_gsp_rpc_done(object->client->gsp, rpc);
++	wpr2_hi = nvkm_rd32(device, 0x1fa828);
++	if (!wpr2_hi) {
++		nvkm_debug(subdev, "WPR2 not set - skipping booter unload\n");
++		return 0;
++	}
++
++	ret = nvkm_falcon_fw_boot(&gsp->booter.unload, &gsp->subdev, true, &mbox0, &mbox1, 0, 0);
++	if (WARN_ON(ret))
++		return ret;
++
++	wpr2_hi = nvkm_rd32(device, 0x1fa828);
++	if (WARN_ON(wpr2_hi))
++		return -EIO;
++
++	return 0;
 +}
 +
 +static int
-+r535_gsp_rpc_rm_ctrl_push(struct nvkm_gsp_object *object, void **params, u32 repc)
++tu102_gsp_booter_load(struct nvkm_gsp *gsp, u32 mbox0, u32 mbox1)
 +{
-+	rpc_gsp_rm_control_v03_00 *rpc = to_payload_hdr((*params), rpc);
-+	struct nvkm_gsp *gsp = object->client->gsp;
-+	int ret = 0;
-+
-+	rpc = nvkm_gsp_rpc_push(gsp, rpc, NVKM_GSP_RPC_REPLY_RECV, repc);
-+	if (IS_ERR_OR_NULL(rpc)) {
-+		*params = NULL;
-+		return PTR_ERR(rpc);
-+	}
-+
-+	if (rpc->status) {
-+		ret = r535_rpc_status_to_errno(rpc->status);
-+		if (ret != -EAGAIN && ret != -EBUSY)
-+			nvkm_error(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x failed: 0x%08x\n",
-+				   object->client->object.handle, object->handle, rpc->cmd, rpc->status);
-+	}
-+
-+	if (repc)
-+		*params = rpc->params;
-+	else
-+		nvkm_gsp_rpc_done(gsp, rpc);
-+
-+	return ret;
++	return nvkm_falcon_fw_boot(&gsp->booter.load, &gsp->subdev, true, &mbox0, &mbox1, 0, 0);
 +}
 +
-+static void *
-+r535_gsp_rpc_rm_ctrl_get(struct nvkm_gsp_object *object, u32 cmd, u32 params_size)
-+{
-+	struct nvkm_gsp_client *client = object->client;
-+	struct nvkm_gsp *gsp = client->gsp;
-+	rpc_gsp_rm_control_v03_00 *rpc;
-+
-+	nvkm_debug(&gsp->subdev, "cli:0x%08x obj:0x%08x ctrl cmd:0x%08x params_size:%d\n",
-+		   client->object.handle, object->handle, cmd, params_size);
-+
-+	rpc = nvkm_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_GSP_RM_CONTROL,
-+			       sizeof(*rpc) + params_size);
-+	if (IS_ERR(rpc))
-+		return rpc;
-+
-+	rpc->hClient    = client->object.handle;
-+	rpc->hObject    = object->handle;
-+	rpc->cmd	= cmd;
-+	rpc->status     = 0;
-+	rpc->paramsSize = params_size;
-+	return rpc->params;
-+}
-+
-+const struct nvkm_rm_api_ctrl
-+r535_ctrl = {
-+	.get = r535_gsp_rpc_rm_ctrl_get,
-+	.push = r535_gsp_rpc_rm_ctrl_push,
-+	.done = r535_gsp_rpc_rm_ctrl_done,
-+};
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-index 943c932623b6..2f6dc4365589 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-@@ -24,4 +24,5 @@
- const struct nvkm_rm_api
- r535_rm = {
- 	.rpc = &r535_rpc,
-+	.ctrl = &r535_ctrl,
- };
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index 7a0ece979167..9558fbb59ae4 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -13,8 +13,15 @@ struct nvkm_rm_api {
- 			      enum nvkm_gsp_rpc_reply_policy policy, u32 repc);
- 		void (*done)(struct nvkm_gsp *gsp, void *repv);
- 	} *rpc;
-+
-+	const struct nvkm_rm_api_ctrl {
-+		void *(*get)(struct nvkm_gsp_object *, u32 cmd, u32 params_size);
-+		int (*push)(struct nvkm_gsp_object *, void **params, u32 repc);
-+		void (*done)(struct nvkm_gsp_object *, void *params);
-+	} *ctrl;
- };
+ int
+ tu102_gsp_booter_ctor(struct nvkm_gsp *gsp, const char *name, const struct firmware *blob,
+ 		      struct nvkm_falcon *falcon, struct nvkm_falcon_fw *fw)
+@@ -114,6 +146,55 @@ tu102_gsp_reset(struct nvkm_gsp *gsp)
+ 	return gsp->falcon.func->reset_eng(&gsp->falcon);
+ }
  
- extern const struct nvkm_rm_api r535_rm;
- extern const struct nvkm_rm_api_rpc r535_rpc;
-+extern const struct nvkm_rm_api_ctrl r535_ctrl;
- #endif
++int
++tu102_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
++{
++	u32 mbox0 = 0xff, mbox1 = 0xff;
++	int ret;
++
++	ret = r535_gsp_fini(gsp, suspend);
++	if (ret && suspend)
++		return ret;
++
++	nvkm_falcon_reset(&gsp->falcon);
++
++	ret = nvkm_gsp_fwsec_sb(gsp);
++	WARN_ON(ret);
++
++	if (suspend) {
++		mbox0 = lower_32_bits(gsp->sr.meta.addr);
++		mbox1 = upper_32_bits(gsp->sr.meta.addr);
++	}
++
++	ret = tu102_gsp_booter_unload(gsp, mbox0, mbox1);
++	WARN_ON(ret);
++	return 0;
++}
++
++int
++tu102_gsp_init(struct nvkm_gsp *gsp)
++{
++	u32 mbox0, mbox1;
++	int ret;
++
++	if (!gsp->sr.meta.data) {
++		mbox0 = lower_32_bits(gsp->wpr_meta.addr);
++		mbox1 = upper_32_bits(gsp->wpr_meta.addr);
++	} else {
++		r535_gsp_rmargs_init(gsp, true);
++
++		mbox0 = lower_32_bits(gsp->sr.meta.addr);
++		mbox1 = upper_32_bits(gsp->sr.meta.addr);
++	}
++
++	/* Execute booter to handle (eventually...) booting GSP-RM. */
++	ret = tu102_gsp_booter_load(gsp, mbox0, mbox1);
++	if (WARN_ON(ret))
++		return ret;
++
++	return r535_gsp_init(gsp);
++}
++
+ static u64
+ tu102_gsp_vga_workspace_addr(struct nvkm_gsp *gsp, u64 fb_size)
+ {
+@@ -136,14 +217,38 @@ tu102_gsp_vga_workspace_addr(struct nvkm_gsp *gsp, u64 fb_size)
+ int
+ tu102_gsp_oneinit(struct nvkm_gsp *gsp)
+ {
+-	gsp->fb.size = nvkm_fb_vidmem_size(gsp->subdev.device);
++	struct nvkm_device *device = gsp->subdev.device;
++	int ret;
++
++	gsp->fb.size = nvkm_fb_vidmem_size(device);
+ 
+ 	gsp->fb.bios.vga_workspace.addr = tu102_gsp_vga_workspace_addr(gsp, gsp->fb.size);
+ 	gsp->fb.bios.vga_workspace.size = gsp->fb.size - gsp->fb.bios.vga_workspace.addr;
+ 	gsp->fb.bios.addr = gsp->fb.bios.vga_workspace.addr;
+ 	gsp->fb.bios.size = gsp->fb.bios.vga_workspace.size;
+ 
+-	return r535_gsp_oneinit(gsp);
++	ret = gsp->func->booter.ctor(gsp, "booter-load", gsp->fws.booter.load,
++				     &device->sec2->falcon, &gsp->booter.load);
++	if (ret)
++		return ret;
++
++	ret = gsp->func->booter.ctor(gsp, "booter-unload", gsp->fws.booter.unload,
++				     &device->sec2->falcon, &gsp->booter.unload);
++	if (ret)
++		return ret;
++
++	ret = r535_gsp_oneinit(gsp);
++	if (ret)
++		return ret;
++
++	/* Reset GSP into RISC-V mode. */
++	ret = gsp->func->reset(gsp);
++	if (ret)
++		return ret;
++
++	nvkm_falcon_wr32(&gsp->falcon, 0x040, lower_32_bits(gsp->libos.addr));
++	nvkm_falcon_wr32(&gsp->falcon, 0x044, upper_32_bits(gsp->libos.addr));
++	return 0;
+ }
+ 
+ const struct nvkm_falcon_func
+@@ -176,8 +281,8 @@ tu102_gsp_r535_113_01 = {
+ 
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+-	.init = r535_gsp_init,
+-	.fini = r535_gsp_fini,
++	.init = tu102_gsp_init,
++	.fini = tu102_gsp_fini,
+ 	.reset = tu102_gsp_reset,
+ 
+ 	.rm = &r535_gsp_rm,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+index a8c9480b8024..1bc806a18010 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+@@ -35,8 +35,8 @@ tu116_gsp_r535_113_01 = {
+ 
+ 	.dtor = r535_gsp_dtor,
+ 	.oneinit = tu102_gsp_oneinit,
+-	.init = r535_gsp_init,
+-	.fini = r535_gsp_fini,
++	.init = tu102_gsp_init,
++	.fini = tu102_gsp_fini,
+ 	.reset = tu102_gsp_reset,
+ 
+ 	.rm = &r535_gsp_rm,
 -- 
 2.49.0
 
