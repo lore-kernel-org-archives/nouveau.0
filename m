@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AEEBC3ABA5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B73C3ABAA
 	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:40:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C087010E589;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E76A010E590;
 	Tue, 29 Apr 2025 23:40:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="qlOo9Grs";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="E7QV8XMP";
 	dkim-atps=neutral
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2051.outbound.protection.outlook.com [40.107.244.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 825CC10E589
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam11on2049.outbound.protection.outlook.com [40.107.236.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57AB610E584
  for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:40:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dggblFr5VFEPxKyRFjbQTVBoZB3CtMreZg8YfDTPteMYHmXU7RsA0ZPjWuYfVdA1gmrWu+ESQqvaJB558bx+AQyzKtlO4rSj+zHU8NYHxH4AppkUTHo8OX33Afp10vi/8LPn0X/jkD2jTvYJW7JWMEyXl6ylaRl91SAYgzF9etktkAxj7WlrGItHFF9oIcCg/aU2NDXYhx7QAa0ka+yKDrfPXj74WjHFUoZB0y7cJerhQN4e1GAl9gYUauj9Rc8PqIkO9y0XDma+CSSJ9V045sr5Ib37jiDzHnJ8zFrb2dRcREtG5oLGokw4lhcJ0tdhB+mlr6EfI1BPYV4jxw+jcA==
+ b=X1kTluXI22oFU5Gh6jpIF71OdtFOtu09zJeKl+vTEN8GSxjos9hUlsF4dMnr2n+gNMquHSo+ebkDsd+4RAT0sQ4Rrva2k7KKVGaP6lkWqc3pWX4D6GlXsX77y04v9Um/ZkWJhbYoL3kyeOMIV/4gRyNHzepDlllm2E2Y3w6fzTCLpY7wZVZ2RyfFeJzK+OWfu8OcN3B75+0wUpK578ntg+EMMy2jISEUm39LqfQBHIuyhYYWanbcjPgh9DFcmYjkWulTjonqZd1MvYY3kEDCJN9mHVfel7iqXMNrRMhPnz4cmvWa3kvep+MPwzlqa0SO76UtewNII+gW8cgGfmpkUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y3PAX3L8bnUG63CjA4zPRYg/ZXS1/BzJYUjpbuYE9eg=;
- b=Nxc+6VPklDJt1tKEQ7qSuPZW2fi3J3FkDDxgcLYma8veN5yLkXvNjt94acXQDcpR1eG3O4eYqzhTpDxCl1p3/ejbeXONzlT/PWmjeI/1ggbtlY1y1QfMu+BZxxnwno4h46o4ZqfYzDW/R4JntI3HzeVxPKxO+LTGHGqG1qR5YLSsfnw7AqoCbEs9x23YpCE8Wz2R9Ez+R+SY0pB33WxQJsqg4XM4/wJ+D7Bcwe2W+kUQjgLEV/nJJ6KQqyfcyaKm3nn6fc9Lg4q/0IOfyBB9QOEwwCwYE7gh+o7xGdVXDvhwxVuv67k6vqVmMLG9+ZjNrwd32srHCMhAO2OvzCjufw==
+ bh=3xH/uy/QVPy0CpW9A/ZbNcqXza4zGyHsJGXP3/m2je0=;
+ b=K6/UVcI8Zy0gLVAf80dyKLZtZPAnuY1s37X95dA3TQH8gxrvpPMCKIQsWnWD7x/uClWvOGOmUgzFRvn9S1mv79yhO8/2Tavan5T+ha/abvb/j3f7ONtAtMRpYFRgO5ZRBujz2sRZeht4Qn4XEXFofayEjzN0WOHTUM8uM49GXXTkDxNUPK+nHAb70S+VFaHpGGlpnKk8Hh9P5EUd19rrO1By0uUNkLjZ1YNnxDGRHN2dWhZ0YrvMWgT4GKgmplW9E00Hv7iwCzL0YaXBZ4hDremPFIlTj9I6oc4kzgQzU416f/3c+lRX8mj/TydCDuKywTwAZTftB0L8lFitF+kPKQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Y3PAX3L8bnUG63CjA4zPRYg/ZXS1/BzJYUjpbuYE9eg=;
- b=qlOo9Grs5kAJDnZKmz8inDk/PCq2bBcwq8+DACF5tCUh6O7mOOl7q8VYmb2BQA8fQlnx42KKJQKcH2BJP8Dmsb1ps+wMC4Ey4b72AmmMO65BnTNIqM751gaYX10smWqM7g2yuP3hpAE9WSR9NjoMFb3v1BO+rq3gRYhjQlxnxL1i59lxRgzta2NageihYRU3dgTUn2lzSXsYE9OnTwQ43chxSaUv4AYTLpZeURzGqmLaRrB+KoQ7iKqbROZIyJoZohB+42ZERujxGEXnukWQ9VI9bJDnH0kI8cxLc0Y17bJ6pRDr+Wjk+PMlN5qD/LaW81hMqnbc7HuBBOIVyrcPwQ==
-Received: from SJ0PR13CA0155.namprd13.prod.outlook.com (2603:10b6:a03:2c7::10)
- by DS0PR12MB7728.namprd12.prod.outlook.com (2603:10b6:8:13a::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Tue, 29 Apr
- 2025 23:40:33 +0000
-Received: from MWH0EPF000A6734.namprd04.prod.outlook.com
- (2603:10b6:a03:2c7:cafe::c0) by SJ0PR13CA0155.outlook.office365.com
- (2603:10b6:a03:2c7::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8699.16 via Frontend Transport; Tue,
- 29 Apr 2025 23:40:33 +0000
+ bh=3xH/uy/QVPy0CpW9A/ZbNcqXza4zGyHsJGXP3/m2je0=;
+ b=E7QV8XMPuVNEj2tnrS7pEdX2a0zjXbVBWpKkYUL1GPBGawPUyn4Knh5c16hFtKXxNWPROWHrpFk+pB8J47GK0wHhYH2OZfqLfO3itlqZ6NJJrSPNksCd00DSozdTGNQF89SBpqwXMCFzX35GuENMIGoHH6p423TKvve9xJfJyhzwwjlNi3MXtYJ7tlJhn3HK+XoWNq2K+D7KpX0cXTvrV+lY1nkS5SIUSP5qvIhC920sntc6d6jOju4fv9c/vcNogE6YALgShO4E1N+W2L5bmC08qjl8zh8oYZvPXlhc0Rzahj6YlW6duNJX6nEFZe4lvDHHGd1QKPjVUXagwf0CUg==
+Received: from SJ0PR03CA0138.namprd03.prod.outlook.com (2603:10b6:a03:33c::23)
+ by DS5PPF266051432.namprd12.prod.outlook.com (2603:10b6:f:fc00::648)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.34; Tue, 29 Apr
+ 2025 23:40:32 +0000
+Received: from MWH0EPF000A6731.namprd04.prod.outlook.com
+ (2603:10b6:a03:33c:cafe::8b) by SJ0PR03CA0138.outlook.office365.com
+ (2603:10b6:a03:33c::23) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.38 via Frontend Transport; Tue,
+ 29 Apr 2025 23:40:32 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,23 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- MWH0EPF000A6734.mail.protection.outlook.com (10.167.249.26) with Microsoft
+ MWH0EPF000A6731.mail.protection.outlook.com (10.167.249.23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:40:32 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 29 Apr
- 2025 16:40:16 -0700
+ 2025 16:40:13 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.230.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 29 Apr 2025 16:40:15 -0700
+ 15.2.1544.14; Tue, 29 Apr 2025 16:40:12 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 30/60] drm/nouveau/gsp: add hal for fifo.xlat_rm_engine_type()
-Date: Wed, 30 Apr 2025 09:38:58 +1000
-Message-ID: <20250429233929.24363-31-bskeggs@nvidia.com>
+Subject: [PATCH 28/60] drm/nouveau/gsp: add hal for disp.get_static_info()
+Date: Wed, 30 Apr 2025 09:38:56 +1000
+Message-ID: <20250429233929.24363-29-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250429233929.24363-1-bskeggs@nvidia.com>
 References: <20250429233929.24363-1-bskeggs@nvidia.com>
@@ -78,52 +78,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A6734:EE_|DS0PR12MB7728:EE_
-X-MS-Office365-Filtering-Correlation-Id: 557940ea-d313-4189-f2f1-08dd87773bc6
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6731:EE_|DS5PPF266051432:EE_
+X-MS-Office365-Filtering-Correlation-Id: 335cf565-3938-4261-591d-08dd87773b4f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|82310400026|376014|1800799024; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?IP9txORpUaauLlimxDlPgTqdPSnbvC7aHKwKhFn5bR8TY/wK9QNWHsT5VeV6?=
- =?us-ascii?Q?QCO+j4vvySpSeC/VyU9wWOL9AC/cyqFEvaO1k7QAaMHWeoOoJgW8iXoF5Ltw?=
- =?us-ascii?Q?b2sfexaQeNIIQ5bKCqCpfUowoQJErouQcXmMzp/EUZ/Kf4Z/b8Ip0JO0v5uT?=
- =?us-ascii?Q?vt+fyKYA8Wyp1dkygzv0AX6TgypXAbn115VFIb6vqoCJUvzYDDMDQvcM7l2W?=
- =?us-ascii?Q?y26wobgi8at5kU2k+zG3ghZ5yOhJc4NvADHJJClb9zMzgGSe/IVTm7mEx9O7?=
- =?us-ascii?Q?KGFGmoKgzfY9MeKCw6VjSo7A4rPfMbEeMKVTTaaz5K3tXlmeYat3PxQIbUgG?=
- =?us-ascii?Q?J6DNrYad+A5mxGq0iyF9O6ubw2CBQXAieGscEmaDAt0V52bICRQm4cxYEU68?=
- =?us-ascii?Q?5KLMVem4ICAzo75l+EvH5x6Hsu1j9E62Ca4nG5qcZrYlAhNTCclXOwI5wBwg?=
- =?us-ascii?Q?gXGavNB2v0AHV7yNuGZOZPMgXm0kcyUlCdzPNwqg7YhiFRIGGEueklDtBl+X?=
- =?us-ascii?Q?xLs6nPBneouyVrjepohTb8vV4vl4ybxrKLIo+9PE/rQrj3GZYvZCWj8xIk1z?=
- =?us-ascii?Q?/QxxHbu+A4WbOdAmmsZVEzPZgRCIHPsa/MWcpK411eTXlNkbKbzohwODfbqA?=
- =?us-ascii?Q?7xV0aQgp3xFQkI7+KDNLQt2XFTT71/nxXiYLUhRPTyP7L0zZ52Ny4WuqfjH3?=
- =?us-ascii?Q?P/AMMvScRIspTUNstgjDP7LwWufNxgsqdx+INNoF+ro1u0E1y5Oz6zVO/6ye?=
- =?us-ascii?Q?oKkBQpQwQ/bUE0FqCImYOKShvV4fTzfrWs9aM9J9XDL2wevajkw+rG1uF96E?=
- =?us-ascii?Q?aYB8SfwK+yuyNp7b84JZG5ekB+Mx+QQxhQlGZQf+kV0lohdFWdSBRhuxctmB?=
- =?us-ascii?Q?zcxYcc2y8N4kzoM2+YBbrS1H8KQKNIkqtDYIj0B1fci5+Sxk3OaP9WGEaSGK?=
- =?us-ascii?Q?RnU5a3mRFtI3ZLaqcjaxi4ZZ4i3mVXPSymNtUv8r2u0+s4ityjyZRpWnUiSV?=
- =?us-ascii?Q?6sKpKC+LkuoSz5c0iAFFvRNDCZITDiZrkBaJ+RoCne5qUecVDy4qKMWYBXH2?=
- =?us-ascii?Q?dyXk9RnHT0w3/vAW5H1/2s9ktpUrFV2aLq9HaPnA8OKHk1QuQYjqZyJ7Y4vp?=
- =?us-ascii?Q?UgqKrs7BughXa0vGf7gCk/2B0x0LJGeeZqlNQKXqQK0yUbLqzsdPbdUMHNSx?=
- =?us-ascii?Q?lHgv55sWppERBRkKPbImKIQJuUTlJr1V2aPArkHl8/X317hWUI4UQ4bsTK+2?=
- =?us-ascii?Q?xu61O7Zj1SqrBTk8UikRl30jZ230D/MI67bhWa/rs4SiUDYZH0UyWw+galC/?=
- =?us-ascii?Q?T79jvRRiyuXz2bY3i/LnCcMukAHLzEFUuGyl/+5BT3IcnHCXbdRxy1lk7MxG?=
- =?us-ascii?Q?PSYAwc1YN3O36nYkHPolIPzx5YBJBDe81bHfkfX46C9LijD/kcyWhLLa1Pmx?=
- =?us-ascii?Q?3uuWR9dOhu3lQwvAlvpd974S2s/+iFLBroMKO99KhBGdmhxB+QwG6DdTgQ8o?=
- =?us-ascii?Q?+3Hn21YMQmHdY2CGgmyHRl0XhEjiBQyCpBGJ?=
+ ARA:13230040|82310400026|376014|1800799024|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hCejOsj7GwFHxxi04uqnuml5qZHmbfUhvJA23tAeYiJWtgkQasJFulnTF0Yj?=
+ =?us-ascii?Q?yUCVOij53ha5RFSYhodFwbhqUyqsxhH/iUt+qSwWeZG6n7OM+wUK/LjBll0V?=
+ =?us-ascii?Q?Kkfjfp7pQayfW2rc2DiyFRbEB2/xHWstu2gMiKt85oJaivbHcDj0G5P6iV6w?=
+ =?us-ascii?Q?nWARC/E0kp3HZBx/u3rcMzgYK4dYgxuvKa9WdlrNfAD52OgJGQ109BWiZGx8?=
+ =?us-ascii?Q?F1FVdr9K8t2Oa20LToW1YHhReBCInjrhS46pwn9CZoKcnAogfPwO0i8ElMD0?=
+ =?us-ascii?Q?JUmGv/24fwVvIWRTRxoKy0DD5R1mtdnsSFn8pkbe80Gfvxq4FLT0b4qmuBOc?=
+ =?us-ascii?Q?l6lJTp8q5kW1q0AQzMP+ZQNw6htmCPJnakTCtrRjCuoIuWlmF7hc6Ul32q8o?=
+ =?us-ascii?Q?EUBX9EGySbiGvIrtJyWqA8POp0nkT2m8e86LFirjIng2DwfGBG4lopTuYoWy?=
+ =?us-ascii?Q?jZxuHtYqxbpqEMYds/zHZFm93U5DyXthbFz6nmM3UYD3dX8Vr4Pri/nLaWcj?=
+ =?us-ascii?Q?6Dqg06uKUT9bItKQVUhKIt9jKMF32uKhXM2G7ewBoV1Y+FEkh1P929w0lAcu?=
+ =?us-ascii?Q?Qsy6wthZ+tEJWl2BTZCpREUGvOcHiL0A4yE6pkwmu4CUSGQyQTMIji1ohv35?=
+ =?us-ascii?Q?XRY24izWyYFn14pz6HwZBU9G9mXxQT+qPSJtLAqUAjwgwQkJ83OxalesQ8xk?=
+ =?us-ascii?Q?AilyyiaTeyzYy+dZLTh/t6uAwQAd9Wc3Xv1IyEtGTs74Uy6WsSkZn37NssTi?=
+ =?us-ascii?Q?MEDXUNwR+CPkazHC4Fo42SPN5MfQgnjydTPkDzQH8Sd3bm5sS/uHB2L4odcV?=
+ =?us-ascii?Q?L0h84z1S188QKfLca/vgTAS+Bu8cAw4HQfMnu4ukrzcUcAbzwLbyrp2c67Un?=
+ =?us-ascii?Q?Gr5QcZDAMA0m0I9NBZvHDo0kFDCfJwjCF3UjwyzZ8qNAljpd+quH7aCoylDI?=
+ =?us-ascii?Q?tp/HaRUBi9XLGPZ2bnv3KQf0pY4hc+jFoDUCBk4tfYc6Tg5a+7KCoadUVQvo?=
+ =?us-ascii?Q?PgB4yJ0Ad6J923tykml0keMTpUrGyG/J27yt8uKpDD8ps2E1BzYc2mZKNinr?=
+ =?us-ascii?Q?s7h1NghoRVmpNwdJL48txEy1JvPvK/KKd4RDsB6O8zlyncyN2S48m0yS+cnA?=
+ =?us-ascii?Q?ihaw0LxKik7W9e1+cevLK2JhEzBa017WgwCkoRcXaMALkwyDqSkG+ZBA8o3r?=
+ =?us-ascii?Q?Y1KijVf85Fkirks8jTlQlyNUQ+95qvMdgSwMZjApDttNCYyBoaeTfjGD1VI3?=
+ =?us-ascii?Q?r2QZpHEKFVQoka0yGESMJL1pSYrEy2F4meTNSbTkITWw4Pi8xNcvRoz4NxS4?=
+ =?us-ascii?Q?WFaDsZrejJzppwFObuzMU3Uzysd7606V4INdIK2NvAL8P18f5WiabQXbBOjU?=
+ =?us-ascii?Q?4dy4FDeuqL/iZaT0LzeBAQkJNn6XazvU5aV3CWuwnctV6zA+1Y00vszAyL4q?=
+ =?us-ascii?Q?+FGJl9NXMk1NwRmbiRXuCTsDWDCtOvC6SI5Q0p2zbb7mW95n69teFjRI76vo?=
+ =?us-ascii?Q?i2NxH3Se5cy9+MipsWtA0bEw+yZ0nR75nXDZ?=
 X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024); DIR:OUT;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:40:32.9391 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 557940ea-d313-4189-f2f1-08dd87773bc6
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:40:32.1022 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 335cf565-3938-4261-591d-08dd87773b4f
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6734.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6731.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7728
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF266051432
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,193 +138,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-550.40.07 has incompatible changes to RM_ENGINE_TYPE defines.
+550.40.07 has incompatible changes to
+NV2080_CTRL_CMD_INTERNAL_DISPLAY_GET_STATIC_INFO.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- .../nouveau/nvkm/subdev/gsp/rm/r535/fifo.c    | 101 +++++++++---------
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  |   1 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |   6 ++
- 3 files changed, 56 insertions(+), 52 deletions(-)
+ .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 37 ++++++++++++-------
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  2 +
+ 2 files changed, 26 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
-index b4e5112cbad8..21631072926a 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
-@@ -439,56 +439,52 @@ r535_runl = {
- };
- 
- static int
--r535_fifo_2080_type(enum nvkm_subdev_type type, int inst)
-+r535_fifo_xlat_rm_engine_type(u32 rm, enum nvkm_subdev_type *ptype, int *p2080)
- {
--	switch (type) {
--	case NVKM_ENGINE_GR: return NV2080_ENGINE_TYPE_GR0;
--	case NVKM_ENGINE_CE: return NV2080_ENGINE_TYPE_COPY0 + inst;
--	case NVKM_ENGINE_SEC2: return NV2080_ENGINE_TYPE_SEC2;
--	case NVKM_ENGINE_NVDEC: return NV2080_ENGINE_TYPE_NVDEC0 + inst;
--	case NVKM_ENGINE_NVENC: return NV2080_ENGINE_TYPE_NVENC0 + inst;
--	case NVKM_ENGINE_NVJPG: return NV2080_ENGINE_TYPE_NVJPEG0 + inst;
--	case NVKM_ENGINE_OFA: return NV2080_ENGINE_TYPE_OFA;
--	case NVKM_ENGINE_SW: return NV2080_ENGINE_TYPE_SW;
--	default:
--		break;
--	}
-+#define RM_ENGINE_TYPE(RM,NVKM,INST)              \
-+	RM_ENGINE_TYPE_##RM:                      \
-+		*ptype = NVKM_ENGINE_##NVKM;      \
-+		*p2080 = NV2080_ENGINE_TYPE_##RM; \
-+		return INST
- 
--	WARN_ON(1);
--	return -EINVAL;
--}
--
--static int
--r535_fifo_engn_type(RM_ENGINE_TYPE rm, enum nvkm_subdev_type *ptype)
--{
- 	switch (rm) {
--	case RM_ENGINE_TYPE_GR0:
--		*ptype = NVKM_ENGINE_GR;
--		return 0;
--	case RM_ENGINE_TYPE_COPY0...RM_ENGINE_TYPE_COPY9:
--		*ptype = NVKM_ENGINE_CE;
--		return rm - RM_ENGINE_TYPE_COPY0;
--	case RM_ENGINE_TYPE_NVDEC0...RM_ENGINE_TYPE_NVDEC7:
--		*ptype = NVKM_ENGINE_NVDEC;
--		return rm - RM_ENGINE_TYPE_NVDEC0;
--	case RM_ENGINE_TYPE_NVENC0...RM_ENGINE_TYPE_NVENC2:
--		*ptype = NVKM_ENGINE_NVENC;
--		return rm - RM_ENGINE_TYPE_NVENC0;
--	case RM_ENGINE_TYPE_SW:
--		*ptype = NVKM_ENGINE_SW;
--		return 0;
--	case RM_ENGINE_TYPE_SEC2:
--		*ptype = NVKM_ENGINE_SEC2;
--		return 0;
--	case RM_ENGINE_TYPE_NVJPEG0...RM_ENGINE_TYPE_NVJPEG7:
--		*ptype = NVKM_ENGINE_NVJPG;
--		return rm - RM_ENGINE_TYPE_NVJPEG0;
--	case RM_ENGINE_TYPE_OFA:
--		*ptype = NVKM_ENGINE_OFA;
--		return 0;
-+	case RM_ENGINE_TYPE(    GR0,    GR, 0);
-+	case RM_ENGINE_TYPE(  COPY0,    CE, 0);
-+	case RM_ENGINE_TYPE(  COPY1,    CE, 1);
-+	case RM_ENGINE_TYPE(  COPY2,    CE, 2);
-+	case RM_ENGINE_TYPE(  COPY3,    CE, 3);
-+	case RM_ENGINE_TYPE(  COPY4,    CE, 4);
-+	case RM_ENGINE_TYPE(  COPY5,    CE, 5);
-+	case RM_ENGINE_TYPE(  COPY6,    CE, 6);
-+	case RM_ENGINE_TYPE(  COPY7,    CE, 7);
-+	case RM_ENGINE_TYPE(  COPY8,    CE, 8);
-+	case RM_ENGINE_TYPE(  COPY9,    CE, 9);
-+	case RM_ENGINE_TYPE( NVDEC0, NVDEC, 0);
-+	case RM_ENGINE_TYPE( NVDEC1, NVDEC, 1);
-+	case RM_ENGINE_TYPE( NVDEC2, NVDEC, 2);
-+	case RM_ENGINE_TYPE( NVDEC3, NVDEC, 3);
-+	case RM_ENGINE_TYPE( NVDEC4, NVDEC, 4);
-+	case RM_ENGINE_TYPE( NVDEC5, NVDEC, 5);
-+	case RM_ENGINE_TYPE( NVDEC6, NVDEC, 6);
-+	case RM_ENGINE_TYPE( NVDEC7, NVDEC, 7);
-+	case RM_ENGINE_TYPE( NVENC0, NVENC, 0);
-+	case RM_ENGINE_TYPE( NVENC1, NVENC, 1);
-+	case RM_ENGINE_TYPE( NVENC2, NVENC, 2);
-+	case RM_ENGINE_TYPE(NVJPEG0, NVJPG, 0);
-+	case RM_ENGINE_TYPE(NVJPEG1, NVJPG, 1);
-+	case RM_ENGINE_TYPE(NVJPEG2, NVJPG, 2);
-+	case RM_ENGINE_TYPE(NVJPEG3, NVJPG, 3);
-+	case RM_ENGINE_TYPE(NVJPEG4, NVJPG, 4);
-+	case RM_ENGINE_TYPE(NVJPEG5, NVJPG, 5);
-+	case RM_ENGINE_TYPE(NVJPEG6, NVJPG, 6);
-+	case RM_ENGINE_TYPE(NVJPEG7, NVJPG, 7);
-+	case RM_ENGINE_TYPE(     SW,    SW, 0);
-+	case RM_ENGINE_TYPE(   SEC2,  SEC2, 0);
-+	case RM_ENGINE_TYPE(    OFA,   OFA, 0);
- 	default:
- 		return -EINVAL;
- 	}
-+#undef RM_ENGINE_TYPE
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+index 313aa46356c5..736ae9c96616 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+@@ -1439,11 +1439,31 @@ r535_disp_init(struct nvkm_disp *disp)
+ 	return 0;
  }
  
- static int
-@@ -525,7 +521,9 @@ static int
- r535_fifo_runl_ctor(struct nvkm_fifo *fifo)
- {
- 	struct nvkm_subdev *subdev = &fifo->engine.subdev;
--	struct nvkm_gsp *gsp = subdev->device->gsp;
-+	struct nvkm_device *device = subdev->device;
-+	struct nvkm_gsp *gsp = device->gsp;
-+	struct nvkm_rm *rm = gsp->rm;
- 	struct nvkm_runl *runl;
- 	struct nvkm_engn *engn;
- 	u32 cgids = 2048;
-@@ -565,19 +563,13 @@ r535_fifo_runl_ctor(struct nvkm_fifo *fifo)
- 		if (!runl)
- 			continue;
- 
--		inst = r535_fifo_engn_type(rmid, &type);
-+		inst = rm->api->fifo->xlat_rm_engine_type(rmid, &type, &nv2080);
- 		if (inst < 0) {
- 			nvkm_warn(subdev, "RM_ENGINE_TYPE 0x%x\n", rmid);
- 			nvkm_runl_del(runl);
- 			continue;
- 		}
- 
--		nv2080 = r535_fifo_2080_type(type, inst);
--		if (nv2080 < 0) {
--			nvkm_runl_del(runl);
--			continue;
--		}
--
- 		ret = nvkm_rm_engine_new(gsp->rm, type, inst);
- 		if (ret) {
- 			nvkm_runl_del(runl);
-@@ -659,3 +651,8 @@ r535_fifo_new(const struct nvkm_fifo_func *hw, struct nvkm_device *device,
- 
- 	return nvkm_fifo_new_(rm, device, type, inst, pfifo);
- }
++static int
++r535_disp_get_static_info(struct nvkm_disp *disp)
++{
++	NV2080_CTRL_INTERNAL_DISPLAY_GET_STATIC_INFO_PARAMS *ctrl;
++	struct nvkm_gsp *gsp = disp->rm.objcom.client->gsp;
 +
-+const struct nvkm_rm_api_fifo
-+r535_fifo = {
-+	.xlat_rm_engine_type = r535_fifo_xlat_rm_engine_type,
-+};
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-index abd3179ccc44..588a1c344826 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-@@ -46,6 +46,7 @@ r535_api = {
- 	.client = &r535_client,
- 	.device = &r535_device,
- 	.disp = &r535_disp,
-+	.fifo = &r535_fifo,
- 	.ce = &r535_ce,
- 	.nvdec = &r535_nvdec,
- 	.nvenc = &r535_nvenc,
++	ctrl = nvkm_gsp_rm_ctrl_rd(&gsp->internal.device.subdevice,
++				   NV2080_CTRL_CMD_INTERNAL_DISPLAY_GET_STATIC_INFO,
++				   sizeof(*ctrl));
++	if (IS_ERR(ctrl))
++		return PTR_ERR(ctrl);
++
++	disp->wndw.mask = ctrl->windowPresentMask;
++	disp->wndw.nr = fls(disp->wndw.mask);
++
++	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, ctrl);
++	return 0;
++}
++
+ static int
+ r535_disp_oneinit(struct nvkm_disp *disp)
+ {
+ 	struct nvkm_device *device = disp->engine.subdev.device;
+ 	struct nvkm_gsp *gsp = device->gsp;
++	const struct nvkm_rm_api *rmapi = gsp->rm->api;
+ 	NV2080_CTRL_INTERNAL_DISPLAY_WRITE_INST_MEM_PARAMS *ctrl;
+ 	int ret, i;
+ 
+@@ -1476,19 +1496,9 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+ 	if (ret)
+ 		return ret;
+ 
+-	{
+-		NV2080_CTRL_INTERNAL_DISPLAY_GET_STATIC_INFO_PARAMS *ctrl;
+-
+-		ctrl = nvkm_gsp_rm_ctrl_rd(&gsp->internal.device.subdevice,
+-					   NV2080_CTRL_CMD_INTERNAL_DISPLAY_GET_STATIC_INFO,
+-					   sizeof(*ctrl));
+-		if (IS_ERR(ctrl))
+-			return PTR_ERR(ctrl);
+-
+-		disp->wndw.mask = ctrl->windowPresentMask;
+-		disp->wndw.nr = fls(disp->wndw.mask);
+-		nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, ctrl);
+-	}
++	ret = rmapi->disp->get_static_info(disp);
++	if (ret)
++		return ret;
+ 
+ 	/* */
+ 	{
+@@ -1728,6 +1738,7 @@ r535_disp_new(const struct nvkm_disp_func *hw, struct nvkm_device *device,
+ 
+ const struct nvkm_rm_api_disp
+ r535_disp = {
++	.get_static_info = r535_disp_get_static_info,
+ 	.bl_ctrl = r535_bl_ctrl,
+ 	.dp = {
+ 		.set_indexed_link_rates = r535_dp_set_indexed_link_rates,
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index 1a8aa18d2e84..929d66f75ab6 100644
+index 1182f48ddb53..00bbb75297a7 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -85,6 +85,11 @@ struct nvkm_rm_api {
- 		} chan;
- 	} *disp;
+@@ -71,6 +71,8 @@ struct nvkm_rm_api {
+ 	} *device;
  
-+	const struct nvkm_rm_api_fifo {
-+		int (*xlat_rm_engine_type)(u32 rm_engine_type,
-+					   enum nvkm_subdev_type *, int *nv2080_type);
-+	} *fifo;
+ 	const struct nvkm_rm_api_disp {
++		int (*get_static_info)(struct nvkm_disp *);
 +
- 	const struct nvkm_rm_api_engine {
- 		int (*alloc)(struct nvkm_gsp_object *chan, u32 handle, u32 class, int inst,
- 			     struct nvkm_gsp_object *);
-@@ -100,6 +105,7 @@ extern const struct nvkm_rm_api_alloc r535_alloc;
- extern const struct nvkm_rm_api_client r535_client;
- extern const struct nvkm_rm_api_device r535_device;
- extern const struct nvkm_rm_api_disp r535_disp;
-+extern const struct nvkm_rm_api_fifo r535_fifo;
- extern const struct nvkm_rm_api_engine r535_ce;
- void *r535_gr_dtor(struct nvkm_gr *);
- int r535_gr_oneinit(struct nvkm_gr *);
+ 		int (*bl_ctrl)(struct nvkm_disp *, unsigned display_id, bool set, int *val);
+ 
+ 		struct {
 -- 
 2.49.0
 
