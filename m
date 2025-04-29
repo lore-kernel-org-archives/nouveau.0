@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE5BC3ABA5
-	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:40:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C426EC369DC
+	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:40:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9631C10E57D;
-	Tue, 29 Apr 2025 23:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78B5D10E56A;
+	Tue, 29 Apr 2025 23:40:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="DysuBxfB";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gOxH25oi";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2053.outbound.protection.outlook.com [40.107.92.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55A1A10E56A
- for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:40:28 +0000 (UTC)
+Received: from NAM04-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam04on2063.outbound.protection.outlook.com [40.107.102.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B76B10E56A
+ for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:40:30 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CAxt0jY7SOMKw10XiMT4d9wEfqk4wOSgVjaR+EDVfUyBl3Re0ptxSg7g7RY2vwSJKADCypMOdOA+W5fy0NNmeY2tgrH2Lfa812x+Gf1rmCpkJ9pN3Ojh111ihjY7lsEOFedDVYQ9Ft2NRGSoUihTcRoZnkCULLhP9wnv7jiUzv4HYYTmBBr/1kt8ZRhqELoMeW+dGFNnl87wsnOjIz450tyb8xiAN1xotlwel9JIIeKjD0+szIAI8DqvjUrT3ZlFgu82n6cq3hoGtp+71+7WqTj7C37qs316eEH9at5p65AlZNyHM2nwqqmHS0N6bY4+xUqXEoIRbdj/EBgUSWAG4g==
+ b=nmO0budjdUE4YkS3rYmS9MG5TC1KzdrEdAJaVFEVnqqZ+5165SlQd6WLQOeeRo6f25byXffDofDEGf9R9tb+6mduZF3/MWvgch42CqAFe2EtpMoeRwOEmA61JsrlgBV1fVIW6xmJ9BXB4rZPny5MLe2YQq/neWrmUdEZI4aZm5SiqpMqWIZulK6IKxCN+B6lujDxh7KCcHt4CyVVB16b1h2dPtaxItcOjgmiK6N2Dbwy8nYFxUFp7j6kcwZ8Bh2Rb1bOUB+ZY1HZiC0tmw+81Ydytd0JWjyZGu0yh+R/aliDWRrvsbxLjYBwAv09Gz0TYkJTIlrRZG5SPAZyuSoROA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vURZHevoC0yTu6wo7sQOkFIYQ/Ti791e+B21Kzp/Nko=;
- b=X7qnYjcJFvYjGtDNrXA2ZPJxRvEtxfvPyWgM9PnqSc9VQwSBW13hCIJVfWYtzlhGOOuLHp3iEvV+i0p3m3RiBWHqcAh3FN2JeAiX9Qtxwqbno1q/yYBj/50Yp+mIeF8632+1OoxOxeDL3jCHuimRhxs7V1ZuYlQFxq54PGuM9B82N3F7+0dgwaNVHWwywhBR8VewZBOHpjuqxPA/u6Nn836Chtu0jZait7ag9yoNiAF4sNnhwUHbJ+QDyaC9CCP2NU4tNDgLcTLK4UPTZXjM/faiAE/mA8xXq9dN6qKJKgOIFKq9t+fOTmBPvtzRBo+DXOspHJ3n5rqT9YY+pI3MkQ==
+ bh=OJIM23gayWOGW+YEK5/h/NNKGhyWWh/KPoWTyOnp0KM=;
+ b=jknSscO4mfLzFbcLUgBlHBhW9P71ZXH1HpHl+5n9uMfqQCB58xzrfxdYonYyO6TWd71yYSANuDgtczwng9oxX+nmvcrXo+h9wfGz0E9PIxk/fwYV7d5lXDh5GjjfNGUad4WizKkZKkv0BInz4QRTU/ILPmTShtClS2tuz4psB+UFa7pSaTek8nMXSzESXKFz8ig6jTrfg9ni3Doq/sKfC42YVOvTJI0VzhXNOfX2Ns8tOox2/ZYeWPFOCMwX12lFdar1XJG573EfnxAvE5nVnTfIjQedihnSJRlZW0s1NxP7Jn3v8Ze9dUyAAW03pCxJwb3jCdApPS2W6w1TgnXVOQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vURZHevoC0yTu6wo7sQOkFIYQ/Ti791e+B21Kzp/Nko=;
- b=DysuBxfBEIF6WKvk9VG0S1CrYj7saTVqwmJGSCte23jlqtnVecKKQCx+jub9UMG5qqhYqz1rWsEOlby2Ve5tUb+0AK2qvn3adKOapxGARPaIsY+0gyeIRJPF1BkrFTY1dcQcFtSB0MwwGMR0NxwU0BGwBt9IoeSmxeFMUqYTQRjax1d5Uc2aZ0V6GmsQOJsGUw1mJgIQw11vt0fG/HRdurQ6U3mtH0Gg1rzOpNP2ORKJDSf+YObBHRl/uEVGh8FCMD3ckzPX9E54t0cZP/w2p1b3jZ/0ZEcUxIoF2Mky24R26ufOblURNsCt5LA4DJtE8diG75yC/vcRLO/CEcnVkw==
-Received: from SJ0PR03CA0140.namprd03.prod.outlook.com (2603:10b6:a03:33c::25)
- by SN7PR12MB6863.namprd12.prod.outlook.com (2603:10b6:806:264::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.27; Tue, 29 Apr
- 2025 23:40:25 +0000
-Received: from MWH0EPF000A6731.namprd04.prod.outlook.com
- (2603:10b6:a03:33c:cafe::89) by SJ0PR03CA0140.outlook.office365.com
- (2603:10b6:a03:33c::25) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.38 via Frontend Transport; Tue,
- 29 Apr 2025 23:40:25 +0000
+ bh=OJIM23gayWOGW+YEK5/h/NNKGhyWWh/KPoWTyOnp0KM=;
+ b=gOxH25oiBcd2KFtBj7/2pI/0DAHsFQar2XJdh2T0LYm4V00txzYK4qQacr5hnGQFgXWfk8nm69VP0yFTIVBjaKZC7fUQBMHzBgYeU5k28kZPgGlmzbH7bgH4aSmcd2xnobWiPlZZxyAUKBq7lWdUUpNSDUqZ0/G7riGhaVWrs/ZS/eR4NNvIxTpg526RphrkqJzNjT8oLlS2uZTa+nt0bs07ZHvzFOyf63V1vFNS41dPbzHszemN1Re8REqDFrYCVp09Cn58gIOKQ53PjDQFvxItrjvVhWeLXxSTE+lBXbndjACwjifIqHSiAhp2A07GFgQDTIbby8wGNm9+przPXw==
+Received: from PH0PR07CA0088.namprd07.prod.outlook.com (2603:10b6:510:f::33)
+ by SA1PR12MB6773.namprd12.prod.outlook.com (2603:10b6:806:258::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Tue, 29 Apr
+ 2025 23:40:22 +0000
+Received: from MWH0EPF000A6733.namprd04.prod.outlook.com
+ (2603:10b6:510:f:cafe::a7) by PH0PR07CA0088.outlook.office365.com
+ (2603:10b6:510:f::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.36 via Frontend Transport; Tue,
+ 29 Apr 2025 23:40:22 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,23 +50,23 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- MWH0EPF000A6731.mail.protection.outlook.com (10.167.249.23) with Microsoft
+ MWH0EPF000A6733.mail.protection.outlook.com (10.167.249.25) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:40:25 +0000
+ 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:40:21 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 29 Apr
- 2025 16:40:08 -0700
+ 2025 16:40:05 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.230.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 29 Apr 2025 16:40:07 -0700
+ 15.2.1544.14; Tue, 29 Apr 2025 16:40:04 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 23/60] drm/nouveau/gsp: add hal for gsp.get_static_info()
-Date: Wed, 30 Apr 2025 09:38:51 +1000
-Message-ID: <20250429233929.24363-24-bskeggs@nvidia.com>
+Subject: [PATCH 21/60] drm/nouveau/gsp: add hal for wpr config info + meta init
+Date: Wed, 30 Apr 2025 09:38:49 +1000
+Message-ID: <20250429233929.24363-22-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250429233929.24363-1-bskeggs@nvidia.com>
 References: <20250429233929.24363-1-bskeggs@nvidia.com>
@@ -78,52 +78,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A6731:EE_|SN7PR12MB6863:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2e8466c4-089a-42d2-3f3f-08dd8777372e
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6733:EE_|SA1PR12MB6773:EE_
+X-MS-Office365-Filtering-Correlation-Id: df2c043d-4b15-4dc8-8e3b-08dd87773523
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|82310400026|1800799024|36860700013; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?p5Q5R8fjEn2M2rNdPvwoKKTn/rWiCWhlV/EaJOaHPF4SNl1N5VN9X8r6qB9+?=
- =?us-ascii?Q?4YB+C+RVEY+v29rO4hB8fo7oe51dWcMkXUxnAXU6LvUJDmOULs5yNTsZmDlA?=
- =?us-ascii?Q?YO0BAusmmuyW8eEOTGvp+I3JomKuToCylHT8BPzRwX89o36dlhlal28wKCVJ?=
- =?us-ascii?Q?cARHdScUCtB3RAISNqimXphSw2ow0aO88Vsxv8/SQ0Wkkkzh3YFcgEKMaff0?=
- =?us-ascii?Q?LDmptKp1skoU8JVSeDmaUDq6O/w9E7sbcax4sBpqobJtWV8POm6BQ6zJzsEq?=
- =?us-ascii?Q?v78gyPMKH+S3mp26ONyYxtKpJ1WD+TzX88f+xqB7ZzkNILSdBW4FjkIbf9E3?=
- =?us-ascii?Q?6EbzjMh1568SpT57VonSrxmOB+1tyntlsZI4dO45ki17zY/gDV3LI+HCA2lJ?=
- =?us-ascii?Q?TuB3PiJsknRhNMf3q+DCxyUHJ4ZdbvZ0wAWEilgHkb1KGxN8VIkW8PIFI/Qz?=
- =?us-ascii?Q?Ntlh828aOEvHcySUsfZru4poKKKcyIVtYuN1ywXJGYY2OSTBmkvyII/+tuL7?=
- =?us-ascii?Q?U/1M1rOnHLQmWm1mcfj5bbHwMk1lyuDa0rRMEcHSHb8OGgmk78frXqF7ca8M?=
- =?us-ascii?Q?i3XqHFHMecgGIaIsqBR5JfsSATdbJCxniGERoYaBd6M/Dnu0TArLH4r63zCb?=
- =?us-ascii?Q?+C6Xkxio8S1wNpEi6rZ7sGfHcL7Nor924kgRkoJ7rsodn12FRl6W5NnEM6AV?=
- =?us-ascii?Q?FEHb7jTTwj/BLrygYsYnF1vR+UuHbEIbfQIH2eWViI2p2WnoPeNQY0Kltx7D?=
- =?us-ascii?Q?rmoPagjKfCJr0LKkM6drPbiX0fqm9CztxbRRYLE/kZ5NbN8krxhNQ7hJHb0f?=
- =?us-ascii?Q?AsSauo5L8NrfHsHoNxJwTbD3NQNHW5HPsGxV7Pkay0B+hUwGvAY7s7PxdOFY?=
- =?us-ascii?Q?lssINFBBYS2pJnunLR8vc2ow0w8A1AD49ejdeApUSvUMNv3EKnFP4ASpw8uk?=
- =?us-ascii?Q?aj/wcIwMjQ/tQHByqjUo3eOoT5rIJ0YEBkH61Y64mGVaq9y/wXklSRoLKIWI?=
- =?us-ascii?Q?+OusXOS008B6PJSokjecTehlJK4bhX0MoxyseP5lfgOIQi7xfyfS8l6X/jx4?=
- =?us-ascii?Q?9bJwcgjBImi67Rer/+G/AbhLcX6I4C6qLmh++gMzO9Dv8C2jOXBvAH8zfXOd?=
- =?us-ascii?Q?rA0ria0r/QpMcYor5aRLf3noT70ydQAroVGdFkd9fn67Puh79Qjv3kC4S25B?=
- =?us-ascii?Q?ENeRMHEYd9yldo5wUFdpTBHryrpeEwxL9UuaKGSv4xR6wZuE6r4xPO2SJlRM?=
- =?us-ascii?Q?Zl/pGqce+KFbOUktH1XQCAZmffBfI/dg72LrZnPGhFxguto0JeIfrmtpONqr?=
- =?us-ascii?Q?rtybkCrKPFRwIWt6tbl++HJouxI7UsQvSHij9/kF5FpJ40eXbCWjoGWwBfZU?=
- =?us-ascii?Q?YCGjosmCRpcmjJHjaCi9s8eenR2SzCNE3iqT+oUREuSbYEtxj/mZiq1CDbTG?=
- =?us-ascii?Q?9SUkqCS+ExuOpBz4i2INmlTbWdcd6U4KwLAvxB8O0304O7XG942MxduAd5HU?=
- =?us-ascii?Q?bg45Yf7TG1sDLoINUZiAaADQYwci3vohtDr7?=
+ ARA:13230040|1800799024|376014|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7rxR66AIw0GTRF8JtEf6XYL57Vh5Xd2L/c2qyGOjqT3Nv4lVk87YZ5zt/dGo?=
+ =?us-ascii?Q?pHQ0r3HmzS6I3IN1w0rsHl0Oy7cj7JS+9Ap1zU5L7/6MO2Xj2fRpaolK5NVM?=
+ =?us-ascii?Q?JK/ZFpJBLMXeXFUQ7DIAA4fXOOl9YrjP+yODTvdJPOnI2gOonQsu2QqeiVHl?=
+ =?us-ascii?Q?vOt3SU47n7j1VW1M7jp5BPZDOeGwd9OtW6WeDAZ78KDzLIO7qkRNxHc+00NX?=
+ =?us-ascii?Q?cPB6re6QHVXRc0D0mP2sTEmRTlRdJGTVpd26tTlYenNGB+A+Sro+D+Vmy6q/?=
+ =?us-ascii?Q?sgc8LjVkYwBs8io9RLmkqPx+ZjXGuyCKKHcub8LKT3WM4qlrLyevJ0WhaDcQ?=
+ =?us-ascii?Q?yHaqpqwPzPu5mPFwa/uZOjq4ruAWhdWa0tlLOGpE3/SQEPJs/gqAY+aTEUa+?=
+ =?us-ascii?Q?CGNLTyF0mfC00GY2ygjtlAB9Q1Xgg+TZ27qk0OWuIlVseTP2RPd4TiVEkvxB?=
+ =?us-ascii?Q?8NFleEA2UgYwPpLmhj3w7NPWHNPhBrBRmNZb6nYJyBRR/t1cyRvIcQiUuT0S?=
+ =?us-ascii?Q?akKpwWxtFG3K/5PtMMzq/q6k752LgQ1zvNzXJLF6s5hLNYTwI+ZBhGNUP5d+?=
+ =?us-ascii?Q?p7oNgOK/0mPSydNgQyKhRiG8lO9pqKHq8E+dLTEOIAQATwJx2CrbvyQ94AM5?=
+ =?us-ascii?Q?ygk6iM+OJDTOC2ibTC9lHCrvkr9DbmFm5Q6KkmwoPKCbDKxQdiWsAqBqqRax?=
+ =?us-ascii?Q?LmZH5jH1ejOLXLnUklhqK0y94YvTBHlhUq17vMsS69S3hncdXJeCU1juuXq7?=
+ =?us-ascii?Q?yXOKxeEMOCH8fTNFT1K/KIvZVCtjvg80UX2eKRdGNYweYzp5U8X5mJubKIa3?=
+ =?us-ascii?Q?sUNZXVHzuQumc0G+hQQrDf2a7z82H0X9nmMMKCWRF7rD5mGy3e1Y4IIKNaaw?=
+ =?us-ascii?Q?cTV2Jgzxxa7mYA2RIkzisTfRPpg3QzUk99kso4cxdhKHhKJtthQT0Os1TDZO?=
+ =?us-ascii?Q?CfH7N8+9nJWLBwe2JG1t68EI/GjnnldR25OHzR6Zo9nftp6D4jSNRqzO7q3X?=
+ =?us-ascii?Q?lAASin0qsEaEb/J1a0uO98R7ArWfHGMq2xTaF14ZGpFPTr5aFNaahTWXo9f1?=
+ =?us-ascii?Q?aTLPfBTYsRNkNlQJEx/AQ0V6oklYMIb8Agu6Bj9r3QJ349W1PRlAVBbueW57?=
+ =?us-ascii?Q?kotawmdzhPmz/MzRHrp+DI/jXojQci77xUo/OSnlXh0BshaDd5u3HTW0KE0y?=
+ =?us-ascii?Q?bPMSWhwebygZky3Mh+dOmT0qQvJ63YDbECyinFAd06NrcPPhDeuDSoB/pDKU?=
+ =?us-ascii?Q?RH7Z4WzQgzkVtCGXJmWvXb43wdjUOCjDB7NoN4CLPXfazgq/q7ozIqpJPoIF?=
+ =?us-ascii?Q?Wgyg++UBKbqKsHA6eExDnsCPL3PTrqUeqwpGWkZ6tgRaUPsst609MEDetIOa?=
+ =?us-ascii?Q?6BBDw+CoO4Bu4DSLgx2+uQfMx3KRQu/rZXTAEwXh1u4Ws5nk2HKNjjuAcGrE?=
+ =?us-ascii?Q?ph49W8wef9v3tloE8tqa125ajsBCPshkkxgC5yB4tIFMRN20uWcGNohAAoWF?=
+ =?us-ascii?Q?GvLHsDVFP8XFpenZxh/fUr/rRxwNMNyJASED?=
 X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:40:25.1803 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e8466c4-089a-42d2-3f3f-08dd8777372e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:40:21.7557 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: df2c043d-4b15-4dc8-8e3b-08dd87773523
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6731.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6733.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6863
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6773
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,132 +138,468 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-545.23.06 has incompatible changes to a number of definitions that
-impact the layout of GspStaticConfigInfo.
+545.23.06 increases the libos3 heap size requirements, and GH100/GBxxx
+will need their own implementation entirely.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 ---
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 67 +++++++++++--------
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  1 +
- 2 files changed, 39 insertions(+), 29 deletions(-)
+ .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  3 +
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c   |  4 -
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/base.c    |  1 +
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c   |  3 -
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c   |  4 -
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/priv.h    |  6 --
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 92 +-----------------
+ .../nvkm/subdev/gsp/rm/r535/nvrm/gsp.h        |  8 ++
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  | 18 ++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  8 ++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c   | 97 ++++++++++++++++++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c   |  3 -
+ 12 files changed, 134 insertions(+), 113 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
+index 41d77fa0f7ba..6a63abd2af79 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
+@@ -17,6 +17,9 @@ struct nvkm_gsp_mem {
+ 	dma_addr_t addr;
+ };
+ 
++int nvkm_gsp_mem_ctor(struct nvkm_gsp *, size_t size, struct nvkm_gsp_mem *);
++void nvkm_gsp_mem_dtor(struct nvkm_gsp_mem *);
++
+ struct nvkm_gsp_radix3 {
+ 	struct nvkm_gsp_mem lvl0;
+ 	struct nvkm_gsp_mem lvl1;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+index d7933bfc59fd..8ab02d683c90 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+@@ -28,10 +28,6 @@ ad102_gsp = {
+ 
+ 	.sig_section = ".fwsignature_ad10x",
+ 
+-	.wpr_heap.os_carveout_size = 20 << 20,
+-	.wpr_heap.base_size = 8 << 20,
+-	.wpr_heap.min_size = 84 << 20,
+-
+ 	.booter.ctor = ga102_gsp_booter_ctor,
+ 
+ 	.dtor = r535_gsp_dtor,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+index 0f8526aa969f..be6bbf06d58b 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+@@ -148,6 +148,7 @@ nvkm_gsp_new_(const struct nvkm_gsp_fwif *fwif, struct nvkm_device *device,
+ 
+ 		gsp->rm->device = device;
+ 		gsp->rm->gpu = fwif->func->rm.gpu;
++		gsp->rm->wpr = fwif->rm->wpr;
+ 		gsp->rm->api = fwif->rm->api;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+index 77e3501296c9..a6836a85b2ac 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+@@ -45,9 +45,6 @@ ga100_gsp = {
+ 
+ 	.sig_section = ".fwsignature_ga100",
+ 
+-	.wpr_heap.base_size = 8 << 20,
+-	.wpr_heap.min_size = 64 << 20,
+-
+ 	.booter.ctor = tu102_gsp_booter_ctor,
+ 
+ 	.dtor = r535_gsp_dtor,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+index 709a046d86bf..202b5bdc3980 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+@@ -156,10 +156,6 @@ ga102_gsp_r535 = {
+ 
+ 	.sig_section = ".fwsignature_ga10x",
+ 
+-	.wpr_heap.os_carveout_size = 20 << 20,
+-	.wpr_heap.base_size = 8 << 20,
+-	.wpr_heap.min_size = 84 << 20,
+-
+ 	.booter.ctor = ga102_gsp_booter_ctor,
+ 
+ 	.dtor = r535_gsp_dtor,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+index de274f6426c1..d42ae235d2f4 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+@@ -36,12 +36,6 @@ struct nvkm_gsp_func {
+ 
+ 	char *sig_section;
+ 
+-	struct {
+-		u32 os_carveout_size;
+-		u32 base_size;
+-		u64 min_size;
+-	} wpr_heap;
+-
+ 	struct {
+ 		int (*ctor)(struct nvkm_gsp *, const char *name, const struct firmware *,
+ 			    struct nvkm_falcon *, struct nvkm_falcon_fw *);
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-index b225dd06d490..338201b65930 100644
+index 195dd35393d9..bf8fc82b0360 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-@@ -165,36 +165,14 @@ r535_gsp_intr_get_table(struct nvkm_gsp *gsp)
- 	return ret;
+@@ -232,7 +232,7 @@ r535_gsp_rpc_get_gsp_static_info(struct nvkm_gsp *gsp)
+ 	return 0;
+ }
+ 
+-static void
++void
+ nvkm_gsp_mem_dtor(struct nvkm_gsp_mem *mem)
+ {
+ 	if (mem->data) {
+@@ -261,7 +261,7 @@ nvkm_gsp_mem_dtor(struct nvkm_gsp_mem *mem)
+  * so we take a device reference to ensure its lifetime. The reference is
+  * dropped in the destructor.
+  */
+-static int
++int
+ nvkm_gsp_mem_ctor(struct nvkm_gsp *gsp, size_t size, struct nvkm_gsp_mem *mem)
+ {
+ 	mem->data = dma_alloc_coherent(gsp->subdev.device->dev, size, &mem->addr, GFP_KERNEL);
+@@ -1134,55 +1134,6 @@ r535_gsp_msg_run_cpu_sequencer(void *priv, u32 fn, void *repv, u32 repc)
+ 	return 0;
  }
  
 -static int
--r535_gsp_rpc_get_gsp_static_info(struct nvkm_gsp *gsp)
-+static void
-+r535_gsp_get_static_info_fb(struct nvkm_gsp *gsp,
-+			    const struct NV2080_CTRL_CMD_FB_GET_FB_REGION_INFO_PARAMS *info)
+-r535_gsp_wpr_meta_init(struct nvkm_gsp *gsp)
+-{
+-	GspFwWprMeta *meta;
+-	int ret;
+-
+-	ret = nvkm_gsp_mem_ctor(gsp, 0x1000, &gsp->wpr_meta);
+-	if (ret)
+-		return ret;
+-
+-	meta = gsp->wpr_meta.data;
+-
+-	meta->magic = GSP_FW_WPR_META_MAGIC;
+-	meta->revision = GSP_FW_WPR_META_REVISION;
+-
+-	meta->sysmemAddrOfRadix3Elf = gsp->radix3.lvl0.addr;
+-	meta->sizeOfRadix3Elf = gsp->fb.wpr2.elf.size;
+-
+-	meta->sysmemAddrOfBootloader = gsp->boot.fw.addr;
+-	meta->sizeOfBootloader = gsp->boot.fw.size;
+-	meta->bootloaderCodeOffset = gsp->boot.code_offset;
+-	meta->bootloaderDataOffset = gsp->boot.data_offset;
+-	meta->bootloaderManifestOffset = gsp->boot.manifest_offset;
+-
+-	meta->sysmemAddrOfSignature = gsp->sig.addr;
+-	meta->sizeOfSignature = gsp->sig.size;
+-
+-	meta->gspFwRsvdStart = gsp->fb.heap.addr;
+-	meta->nonWprHeapOffset = gsp->fb.heap.addr;
+-	meta->nonWprHeapSize = gsp->fb.heap.size;
+-	meta->gspFwWprStart = gsp->fb.wpr2.addr;
+-	meta->gspFwHeapOffset = gsp->fb.wpr2.heap.addr;
+-	meta->gspFwHeapSize = gsp->fb.wpr2.heap.size;
+-	meta->gspFwOffset = gsp->fb.wpr2.elf.addr;
+-	meta->bootBinOffset = gsp->fb.wpr2.boot.addr;
+-	meta->frtsOffset = gsp->fb.wpr2.frts.addr;
+-	meta->frtsSize = gsp->fb.wpr2.frts.size;
+-	meta->gspFwWprEnd = ALIGN_DOWN(gsp->fb.bios.vga_workspace.addr, 0x20000);
+-	meta->fbSize = gsp->fb.size;
+-	meta->vgaWorkspaceOffset = gsp->fb.bios.vga_workspace.addr;
+-	meta->vgaWorkspaceSize = gsp->fb.bios.vga_workspace.size;
+-	meta->bootCount = 0;
+-	meta->partitionRpcAddr = 0;
+-	meta->partitionRpcRequestOffset = 0;
+-	meta->partitionRpcReplyOffset = 0;
+-	meta->verified = 0;
+-	return 0;
+-}
+-
+ static int
+ r535_gsp_shared_init(struct nvkm_gsp *gsp)
  {
--	GspStaticConfigInfo *rpc;
- 	int last_usable = -1;
+@@ -2184,49 +2135,10 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	/* Release FW images - we've copied them to DMA buffers now. */
+ 	nvkm_gsp_dtor_fws(gsp);
  
--	rpc = nvkm_gsp_rpc_rd(gsp, NV_VGPU_MSG_FUNCTION_GET_GSP_STATIC_INFO, sizeof(*rpc));
--	if (IS_ERR(rpc))
--		return PTR_ERR(rpc);
+-	/* Calculate FB layout. */
+-	gsp->fb.wpr2.frts.size = 0x100000;
+-	gsp->fb.wpr2.frts.addr = ALIGN_DOWN(gsp->fb.bios.addr, 0x20000) - gsp->fb.wpr2.frts.size;
 -
--	gsp->internal.client.object.client = &gsp->internal.client;
--	gsp->internal.client.object.parent = NULL;
--	gsp->internal.client.object.handle = rpc->hInternalClient;
--	gsp->internal.client.gsp = gsp;
--	INIT_LIST_HEAD(&gsp->internal.client.events);
+-	gsp->fb.wpr2.boot.size = gsp->boot.fw.size;
+-	gsp->fb.wpr2.boot.addr = ALIGN_DOWN(gsp->fb.wpr2.frts.addr - gsp->fb.wpr2.boot.size, 0x1000);
 -
--	gsp->internal.device.object.client = &gsp->internal.client;
--	gsp->internal.device.object.parent = &gsp->internal.client.object;
--	gsp->internal.device.object.handle = rpc->hInternalDevice;
+-	gsp->fb.wpr2.elf.size = gsp->fw.len;
+-	gsp->fb.wpr2.elf.addr = ALIGN_DOWN(gsp->fb.wpr2.boot.addr - gsp->fb.wpr2.elf.size, 0x10000);
 -
--	gsp->internal.device.subdevice.client = &gsp->internal.client;
--	gsp->internal.device.subdevice.parent = &gsp->internal.device.object;
--	gsp->internal.device.subdevice.handle = rpc->hInternalSubdevice;
+-	{
+-		u32 fb_size_gb = DIV_ROUND_UP_ULL(gsp->fb.size, 1 << 30);
 -
--	gsp->bar.rm_bar1_pdb = rpc->bar1PdeBase;
--	gsp->bar.rm_bar2_pdb = rpc->bar2PdeBase;
+-		gsp->fb.wpr2.heap.size =
+-			gsp->func->wpr_heap.os_carveout_size +
+-			gsp->func->wpr_heap.base_size +
+-			ALIGN(GSP_FW_HEAP_PARAM_SIZE_PER_GB_FB * fb_size_gb, 1 << 20) +
+-			ALIGN(GSP_FW_HEAP_PARAM_CLIENT_ALLOC_SIZE, 1 << 20);
 -
--	for (int i = 0; i < rpc->fbRegionInfoParams.numFBRegions; i++) {
--		NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO *reg =
--			&rpc->fbRegionInfoParams.fbRegion[i];
-+	for (int i = 0; i < info->numFBRegions; i++) {
-+		const NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO *reg = &info->fbRegion[i];
- 
- 		nvkm_debug(&gsp->subdev, "fb region %d: "
- 			   "%016llx-%016llx rsvd:%016llx perf:%08x comp:%d iso:%d prot:%d\n", i,
-@@ -216,10 +194,39 @@ r535_gsp_rpc_get_gsp_static_info(struct nvkm_gsp *gsp)
- 	}
- 
- 	if (last_usable >= 0) {
--		u32 rsvd_base = rpc->fbRegionInfoParams.fbRegion[last_usable].limit + 1;
-+		u32 rsvd_base = info->fbRegion[last_usable].limit + 1;
- 
- 		gsp->fb.rsvd_size = gsp->fb.heap.addr - rsvd_base;
- 	}
-+}
-+
-+static int
-+r535_gsp_get_static_info(struct nvkm_gsp *gsp)
-+{
-+	GspStaticConfigInfo *rpc;
-+
-+	rpc = nvkm_gsp_rpc_rd(gsp, NV_VGPU_MSG_FUNCTION_GET_GSP_STATIC_INFO, sizeof(*rpc));
-+	if (IS_ERR(rpc))
-+		return PTR_ERR(rpc);
-+
-+	gsp->internal.client.object.client = &gsp->internal.client;
-+	gsp->internal.client.object.parent = NULL;
-+	gsp->internal.client.object.handle = rpc->hInternalClient;
-+	gsp->internal.client.gsp = gsp;
-+	INIT_LIST_HEAD(&gsp->internal.client.events);
-+
-+	gsp->internal.device.object.client = &gsp->internal.client;
-+	gsp->internal.device.object.parent = &gsp->internal.client.object;
-+	gsp->internal.device.object.handle = rpc->hInternalDevice;
-+
-+	gsp->internal.device.subdevice.client = &gsp->internal.client;
-+	gsp->internal.device.subdevice.parent = &gsp->internal.device.object;
-+	gsp->internal.device.subdevice.handle = rpc->hInternalSubdevice;
-+
-+	gsp->bar.rm_bar1_pdb = rpc->bar1PdeBase;
-+	gsp->bar.rm_bar2_pdb = rpc->bar2PdeBase;
-+
-+	r535_gsp_get_static_info_fb(gsp, &rpc->fbRegionInfoParams);
- 
- 	for (int gpc = 0; gpc < ARRAY_SIZE(rpc->tpcInfo); gpc++) {
- 		if (rpc->gpcInfo.gpcMask & BIT(gpc)) {
-@@ -278,9 +285,10 @@ static int
- r535_gsp_postinit(struct nvkm_gsp *gsp)
- {
- 	struct nvkm_device *device = gsp->subdev.device;
-+	const struct nvkm_rm_api *rmapi = gsp->rm->api;
- 	int ret;
- 
--	ret = r535_gsp_rpc_get_gsp_static_info(gsp);
-+	ret = rmapi->gsp->get_static_info(gsp);
+-		gsp->fb.wpr2.heap.size = max(gsp->fb.wpr2.heap.size, gsp->func->wpr_heap.min_size);
+-	}
+-
+-	gsp->fb.wpr2.heap.addr = ALIGN_DOWN(gsp->fb.wpr2.elf.addr - gsp->fb.wpr2.heap.size, 0x100000);
+-	gsp->fb.wpr2.heap.size = ALIGN_DOWN(gsp->fb.wpr2.elf.addr - gsp->fb.wpr2.heap.addr, 0x100000);
+-
+-	gsp->fb.wpr2.addr = ALIGN_DOWN(gsp->fb.wpr2.heap.addr - sizeof(GspFwWprMeta), 0x100000);
+-	gsp->fb.wpr2.size = gsp->fb.wpr2.frts.addr + gsp->fb.wpr2.frts.size - gsp->fb.wpr2.addr;
+-
+-	gsp->fb.heap.size = 0x100000;
+-	gsp->fb.heap.addr = gsp->fb.wpr2.addr - gsp->fb.heap.size;
+-
+-	ret = nvkm_gsp_fwsec_frts(gsp);
+-	if (WARN_ON(ret))
+-		return ret;
+-
+ 	ret = r535_gsp_libos_init(gsp);
  	if (WARN_ON(ret))
  		return ret;
  
-@@ -2156,4 +2164,5 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
- const struct nvkm_rm_api_gsp
- r535_gsp = {
- 	.set_system_info = r535_gsp_set_system_info,
-+	.get_static_info = r535_gsp_get_static_info,
+-	ret = r535_gsp_wpr_meta_init(gsp);
+-	if (WARN_ON(ret))
+-		return ret;
+-
+ 	ret = r535_gsp_rpc_set_system_info(gsp);
+ 	if (WARN_ON(ret))
+ 		return ret;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/gsp.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/gsp.h
+index 085a7dac0405..b6683a5bf870 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/gsp.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/gsp.h
+@@ -814,4 +814,12 @@ typedef struct GSP_MSG_QUEUE_ELEMENT
+     NvU32 elemCount;                 // Number of message queue elements this message has.
+     NV_DECLARE_ALIGNED(rpc_message_header_v rpc, 8);
+ } GSP_MSG_QUEUE_ELEMENT;
++
++#define GSP_FW_HEAP_PARAM_OS_SIZE_LIBOS2                   (0 << 20)   // No FB heap usage
++#define GSP_FW_HEAP_PARAM_OS_SIZE_LIBOS3                  (20 << 20)
++
++#define GSP_FW_HEAP_PARAM_BASE_RM_SIZE_TU10X               (8 << 20)   // Turing thru Ada
++
++#define GSP_FW_HEAP_SIZE_OVERRIDE_LIBOS2_MIN_MB                (64u)
++#define GSP_FW_HEAP_SIZE_OVERRIDE_LIBOS3_BAREMETAL_MIN_MB      (84u)
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
+index e61775c8237f..3355b8be0ee3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
+@@ -21,6 +21,22 @@
+  */
+ #include <rm/rm.h>
+ 
++#include "nvrm/gsp.h"
++
++static const struct nvkm_rm_wpr
++r535_wpr_libos2 = {
++	.os_carveout_size = GSP_FW_HEAP_PARAM_OS_SIZE_LIBOS2,
++	.base_size = GSP_FW_HEAP_PARAM_BASE_RM_SIZE_TU10X,
++	.heap_size_min = GSP_FW_HEAP_SIZE_OVERRIDE_LIBOS2_MIN_MB,
++};
++
++static const struct nvkm_rm_wpr
++r535_wpr_libos3 = {
++	.os_carveout_size = GSP_FW_HEAP_PARAM_OS_SIZE_LIBOS3,
++	.base_size = GSP_FW_HEAP_PARAM_BASE_RM_SIZE_TU10X,
++	.heap_size_min = GSP_FW_HEAP_SIZE_OVERRIDE_LIBOS3_BAREMETAL_MIN_MB,
++};
++
+ static const struct nvkm_rm_api
+ r535_api = {
+ 	.rpc = &r535_rpc,
+@@ -37,10 +53,12 @@ r535_api = {
+ 
+ const struct nvkm_rm_impl
+ r535_rm_tu102 = {
++	.wpr = &r535_wpr_libos2,
+ 	.api = &r535_api,
+ };
+ 
+ const struct nvkm_rm_impl
+ r535_rm_ga102 = {
++	.wpr = &r535_wpr_libos3,
+ 	.api = &r535_api,
  };
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index a0ea5f2f0dd2..cdd2e68b0332 100644
+index bda22703690a..e2bfcfc611fc 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -27,6 +27,7 @@ struct nvkm_rm_wpr {
- struct nvkm_rm_api {
- 	const struct nvkm_rm_api_gsp {
- 		int (*set_system_info)(struct nvkm_gsp *);
-+		int (*get_static_info)(struct nvkm_gsp *);
- 	} *gsp;
+@@ -7,15 +7,23 @@
+ #define __NVKM_RM_H__
  
+ struct nvkm_rm_impl {
++	const struct nvkm_rm_wpr *wpr;
+ 	const struct nvkm_rm_api *api;
+ };
+ 
+ struct nvkm_rm {
+ 	struct nvkm_device *device;
+ 	const struct nvkm_rm_gpu *gpu;
++	const struct nvkm_rm_wpr *wpr;
+ 	const struct nvkm_rm_api *api;
+ };
+ 
++struct nvkm_rm_wpr {
++	u32 os_carveout_size;
++	u32 base_size;
++	u64 heap_size_min;
++};
++
+ struct nvkm_rm_api {
  	const struct nvkm_rm_api_rpc {
+ 		void *(*get)(struct nvkm_gsp *, u32 fn, u32 argc);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+index fef9c4444017..a07f59e5ef7a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+@@ -24,6 +24,8 @@
+ #include <subdev/fb.h>
+ #include <engine/sec2.h>
+ 
++#include <rm/r535/nvrm/gsp.h>
++
+ #include <nvfw/flcn.h>
+ #include <nvfw/fw.h>
+ #include <nvfw/hs.h>
+@@ -195,6 +197,69 @@ tu102_gsp_init(struct nvkm_gsp *gsp)
+ 	return r535_gsp_init(gsp);
+ }
+ 
++static int
++tu102_gsp_wpr_meta_init(struct nvkm_gsp *gsp)
++{
++	GspFwWprMeta *meta;
++	int ret;
++
++	ret = nvkm_gsp_mem_ctor(gsp, sizeof(*meta), &gsp->wpr_meta);
++	if (ret)
++		return ret;
++
++	meta = gsp->wpr_meta.data;
++
++	meta->magic = GSP_FW_WPR_META_MAGIC;
++	meta->revision = GSP_FW_WPR_META_REVISION;
++
++	meta->sysmemAddrOfRadix3Elf = gsp->radix3.lvl0.addr;
++	meta->sizeOfRadix3Elf = gsp->fb.wpr2.elf.size;
++
++	meta->sysmemAddrOfBootloader = gsp->boot.fw.addr;
++	meta->sizeOfBootloader = gsp->boot.fw.size;
++	meta->bootloaderCodeOffset = gsp->boot.code_offset;
++	meta->bootloaderDataOffset = gsp->boot.data_offset;
++	meta->bootloaderManifestOffset = gsp->boot.manifest_offset;
++
++	meta->sysmemAddrOfSignature = gsp->sig.addr;
++	meta->sizeOfSignature = gsp->sig.size;
++
++	meta->gspFwRsvdStart = gsp->fb.heap.addr;
++	meta->nonWprHeapOffset = gsp->fb.heap.addr;
++	meta->nonWprHeapSize = gsp->fb.heap.size;
++	meta->gspFwWprStart = gsp->fb.wpr2.addr;
++	meta->gspFwHeapOffset = gsp->fb.wpr2.heap.addr;
++	meta->gspFwHeapSize = gsp->fb.wpr2.heap.size;
++	meta->gspFwOffset = gsp->fb.wpr2.elf.addr;
++	meta->bootBinOffset = gsp->fb.wpr2.boot.addr;
++	meta->frtsOffset = gsp->fb.wpr2.frts.addr;
++	meta->frtsSize = gsp->fb.wpr2.frts.size;
++	meta->gspFwWprEnd = ALIGN_DOWN(gsp->fb.bios.vga_workspace.addr, 0x20000);
++	meta->fbSize = gsp->fb.size;
++	meta->vgaWorkspaceOffset = gsp->fb.bios.vga_workspace.addr;
++	meta->vgaWorkspaceSize = gsp->fb.bios.vga_workspace.size;
++	meta->bootCount = 0;
++	meta->partitionRpcAddr = 0;
++	meta->partitionRpcRequestOffset = 0;
++	meta->partitionRpcReplyOffset = 0;
++	meta->verified = 0;
++	return 0;
++}
++
++static u64
++tu102_gsp_wpr_heap_size(struct nvkm_gsp *gsp)
++{
++	u32 fb_size_gb = DIV_ROUND_UP_ULL(gsp->fb.size, 1 << 30);
++	u64 heap_size;
++
++	heap_size = gsp->rm->wpr->os_carveout_size +
++		    gsp->rm->wpr->base_size +
++		    ALIGN(GSP_FW_HEAP_PARAM_SIZE_PER_GB_FB * fb_size_gb, 1 << 20) +
++		    ALIGN(GSP_FW_HEAP_PARAM_CLIENT_ALLOC_SIZE, 1 << 20);
++
++	return max(heap_size, gsp->rm->wpr->heap_size_min);
++}
++
+ static u64
+ tu102_gsp_vga_workspace_addr(struct nvkm_gsp *gsp, u64 fb_size)
+ {
+@@ -241,6 +306,35 @@ tu102_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	if (ret)
+ 		return ret;
+ 
++	/* Calculate FB layout. */
++	gsp->fb.wpr2.frts.size = 0x100000;
++	gsp->fb.wpr2.frts.addr = ALIGN_DOWN(gsp->fb.bios.addr, 0x20000) - gsp->fb.wpr2.frts.size;
++
++	gsp->fb.wpr2.boot.size = gsp->boot.fw.size;
++	gsp->fb.wpr2.boot.addr = ALIGN_DOWN(gsp->fb.wpr2.frts.addr - gsp->fb.wpr2.boot.size, 0x1000);
++
++	gsp->fb.wpr2.elf.size = gsp->fw.len;
++	gsp->fb.wpr2.elf.addr = ALIGN_DOWN(gsp->fb.wpr2.boot.addr - gsp->fb.wpr2.elf.size, 0x10000);
++
++	gsp->fb.wpr2.heap.size = tu102_gsp_wpr_heap_size(gsp);
++
++	gsp->fb.wpr2.heap.addr = ALIGN_DOWN(gsp->fb.wpr2.elf.addr - gsp->fb.wpr2.heap.size, 0x100000);
++	gsp->fb.wpr2.heap.size = ALIGN_DOWN(gsp->fb.wpr2.elf.addr - gsp->fb.wpr2.heap.addr, 0x100000);
++
++	gsp->fb.wpr2.addr = ALIGN_DOWN(gsp->fb.wpr2.heap.addr - sizeof(GspFwWprMeta), 0x100000);
++	gsp->fb.wpr2.size = gsp->fb.wpr2.frts.addr + gsp->fb.wpr2.frts.size - gsp->fb.wpr2.addr;
++
++	gsp->fb.heap.size = 0x100000;
++	gsp->fb.heap.addr = gsp->fb.wpr2.addr - gsp->fb.heap.size;
++
++	ret = tu102_gsp_wpr_meta_init(gsp);
++	if (ret)
++		return ret;
++
++	ret = nvkm_gsp_fwsec_frts(gsp);
++	if (WARN_ON(ret))
++		return ret;
++
+ 	/* Reset GSP into RISC-V mode. */
+ 	ret = gsp->func->reset(gsp);
+ 	if (ret)
+@@ -274,9 +368,6 @@ tu102_gsp = {
+ 
+ 	.sig_section = ".fwsignature_tu10x",
+ 
+-	.wpr_heap.base_size = 8 << 20,
+-	.wpr_heap.min_size = 64 << 20,
+-
+ 	.booter.ctor = tu102_gsp_booter_ctor,
+ 
+ 	.dtor = r535_gsp_dtor,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+index 5f279813626f..9e897bdcb647 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+@@ -28,9 +28,6 @@ tu116_gsp = {
+ 
+ 	.sig_section = ".fwsignature_tu11x",
+ 
+-	.wpr_heap.base_size = 8 << 20,
+-	.wpr_heap.min_size = 64 << 20,
+-
+ 	.booter.ctor = tu102_gsp_booter_ctor,
+ 
+ 	.dtor = r535_gsp_dtor,
 -- 
 2.49.0
 
