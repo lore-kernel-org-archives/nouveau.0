@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8303CC3ABA5
-	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:41:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13B52C3ABA9
+	for <nouveau@archiver.kernel.org>; Tue, 29 Apr 2025 23:41:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 394AB10E5B9;
-	Tue, 29 Apr 2025 23:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A75BA10E5BD;
+	Tue, 29 Apr 2025 23:41:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="jjwIMp8p";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ZECKFoNC";
 	dkim-atps=neutral
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2078.outbound.protection.outlook.com [40.107.236.78])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CE2A10E5B5
- for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:41:09 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2052.outbound.protection.outlook.com [40.107.243.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D16010E5B8
+ for <nouveau@lists.freedesktop.org>; Tue, 29 Apr 2025 23:41:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e+Lqspl87kU5OhaNrxX9kgvbZTEtaAIr3DbPrv+VYyFELWAkP/5Dfq7NIjZGYW+ZiC168QeET75Gueu2MO2k5xbO1tebUHYK7fpV6NT08D233kclbPznqWUZoOzRUPJfehIxLJX8q3xrL1dG5Ety0ogDnrUx3CfOZdkooIC/MVeKfjgHGI8BY3lmma2hQO7aRtNHeVvKqyr2+OITnfC/YbJfZkslO2JwX4RrdTox8TTThAqKn7A8M2+YIcSZlNSUhvJQNwqiwZH5lbVuUQnyWY4S7sScYicYEM/Oz12/MsYPiL0VDhYT5EF/FJl2tTtEhQNpcSjxVCG9wfF9pLkLKQ==
+ b=Ur3+b1rcoUtFfFGix3hROMMdRS3NCimXLK4rFo3a6Bioafas7c8NSp9RGPlSwlQVWiE0FNhpPeBXOoZPCR53rEORW81f3yTIa5oWm3Jaw86YeFgy1ZDrrzUVIrfDA17wShuv/Cc9PRi688jhRWg/B4mxzkI//gaaA6PlEyOQHRuUe7ZGwvg0QvmKPB6et7mKEsKgZbeAFcZWluyrY6BIW3HYacnKPPt7MVzm1j5H2Y1Kpg+vs4BzrcEOsrjNhqYb+YKlGmc+GfPm5jvldMzcbpx1e2Bg+d/2IrMoUfQXMPPXoyt+qQ5yOsCKdE7PJFdnzJ2dKrV83NK8s71LnjBfJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sY4GfLhte5LbUpHpos8pHQlF5Pk/pNtd5gJpBfxlZS0=;
- b=GCUDbafV1+yq7SW6WBbcz70MHDCwTG4fJMAj86dA8dKcl9qdgNVSLbRkg0OaXd0g5CuRI3llqczwd0JYxvRemqHO4Kpy0k6jpxZKd6zJjWMVXwIGqRxwSff4GRuGKLWFLL7/7qbjkMB9+uIsbicDW1lhgP+kkKuFOBFZH14Eh0k/dzfI30XnmUp9znzPH2unOXM3Lv1i52DLPwOL55ZTJLZbtLy8D1etQ39k9q6RE7zUkEFWriCL1LmnvUt/hBNaIpk2+vr37JsESfWwburKeJpxExfgmcdI89vrNxaJHNS0mxRA+faCcDEj2IrKROEgpmK4C2L7LKOSEETc4saWvg==
+ bh=zcotJ8XGYlHcpGmgFDnLwKb53vnyrDNmP9TJSHnIjIE=;
+ b=QyfHllq0j0BfdBFOTVnxN4I4Au72D99vYRu5lsFyCz2UttYBESpMRvv214QGHCqgxJsNfL5Q0oxRyUHMmAZrVVf9nvAjNTYSEAUce4p8GvpIpBwvZM6Gx0kzeShQpr1EA+d6WFs7D+BRzsHBTuD3xxiSE5c+LWZ05KSJ7LGrAdPJ01neQFoFgjH/WO/lY2MI6Tnx3dyKvTurlE1+516/a9LxeZ91igKT843CJDxCrbrKtsPskYG7BTkH+9pVpedfOgpRRJ78jk3mlywAqMacPiWXL5jdVdBR5V+YU3y2ATp5/VOAyCKREZS2VaI7a6uugDLb26uSoUCTuDDmKC3prQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sY4GfLhte5LbUpHpos8pHQlF5Pk/pNtd5gJpBfxlZS0=;
- b=jjwIMp8pSJ6hBJXxZuUtBNcjaRa9DN8rzX3/yz1PIbpid4hOvmi1ic8Tvi7fTMXfXrbxAG4Xo5nMQSwFdTtLIr0IW56uqwLNzPmn8/DIS1dTieAHqoTvVQoOFp6cqrmHD2MGAPlNmD79FkVXbep5Ce3O2MSuQZrowmyGRbmu/TbF3j6SPHsDvoc/UVC6J4M8H+r29W8ArKzP87lABIzsr6ev2vgTdxhLX9Tgm/GEBRhKWaBHbcXEsLJnFvuL2V5DWBOAxUG+MqQJ6QxuJIEAeVSoEWT9EUd0ftjEqrw4QXfDKvl+WmFiiA6KTDZnGy1nlbLe+ipTdV5NlYBUSv9PKQ==
-Received: from MW4PR04CA0212.namprd04.prod.outlook.com (2603:10b6:303:87::7)
- by PH8PR12MB6697.namprd12.prod.outlook.com (2603:10b6:510:1cc::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.31; Tue, 29 Apr
- 2025 23:41:02 +0000
-Received: from MWH0EPF000A672E.namprd04.prod.outlook.com
- (2603:10b6:303:87:cafe::b1) by MW4PR04CA0212.outlook.office365.com
- (2603:10b6:303:87::7) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.36 via Frontend Transport; Tue,
- 29 Apr 2025 23:41:01 +0000
+ bh=zcotJ8XGYlHcpGmgFDnLwKb53vnyrDNmP9TJSHnIjIE=;
+ b=ZECKFoNCbOFYiSeQL55WOFXSM65ED3CfN5Ks6Tlr53w4QU+tpThtOFkg967Z6pOBFGT6x9arTCBm2YN81EUCPXb4hErIgclNM7Hbs8Yc+hqR6Xz6iXG7q9VJjn9rv7HiVqmqm8spbIP1hkZW2HphUgejpQeVzWqq0MPYWv+9/2V05MM1n7kDUMXzHG/TNG/JcyX0nUHLQlZ7KHmgvugExMYqcGctfBjMRq2dgxFuKSDpoJqLzHhFIMe5PpmrCshK29vGAvQdA/m9GyerzQtC5TwCBCcI9dCdeGCpMpDul28QjB/PIyoodXruWqx95CimnQ5PWCITXa6KYTgXuWE/rg==
+Received: from SJ0PR13CA0167.namprd13.prod.outlook.com (2603:10b6:a03:2c7::22)
+ by PH7PR12MB7020.namprd12.prod.outlook.com (2603:10b6:510:1ba::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8678.29; Tue, 29 Apr
+ 2025 23:41:07 +0000
+Received: from MWH0EPF000A6734.namprd04.prod.outlook.com
+ (2603:10b6:a03:2c7:cafe::b6) by SJ0PR13CA0167.outlook.office365.com
+ (2603:10b6:a03:2c7::22) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8655.34 via Frontend Transport; Tue,
+ 29 Apr 2025 23:41:07 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,24 +50,24 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- MWH0EPF000A672E.mail.protection.outlook.com (10.167.249.20) with Microsoft
+ MWH0EPF000A6734.mail.protection.outlook.com (10.167.249.26) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:41:00 +0000
+ 15.20.8699.20 via Frontend Transport; Tue, 29 Apr 2025 23:41:07 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Tue, 29 Apr
- 2025 16:40:43 -0700
+ 2025 16:40:51 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.230.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Tue, 29 Apr 2025 16:40:42 -0700
+ 15.2.1544.14; Tue, 29 Apr 2025 16:40:49 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
-CC: Ben Skeggs <bskeggs@nvidia.com>
-Subject: [PATCH 53/60] drm/nouveau: add helper functions for allocating
- pinned/cpu-mapped bos
-Date: Wed, 30 Apr 2025 09:39:21 +1000
-Message-ID: <20250429233929.24363-54-bskeggs@nvidia.com>
+CC: Dave Airlie <airlied@redhat.com>
+Subject: [PATCH 59/60] drm/dp: add option to disable zero sized address only
+ transactions.
+Date: Wed, 30 Apr 2025 09:39:27 +1000
+Message-ID: <20250429233929.24363-60-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250429233929.24363-1-bskeggs@nvidia.com>
 References: <20250429233929.24363-1-bskeggs@nvidia.com>
@@ -79,52 +79,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MWH0EPF000A672E:EE_|PH8PR12MB6697:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5a5587f-66c5-4f6a-b5ad-08dd87774c7e
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A6734:EE_|PH7PR12MB7020:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1352eafc-0913-4bae-4da6-08dd87775051
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xvoWoOvIKpPixnQrAvNEFIOn0Szt/LrmS9FES6IdH7F3dzqU57cgn3UQ3Jol?=
- =?us-ascii?Q?40z3UZYV9hx66xyTP3lH1/7MrmoU0rBFu4ggBX4UnCK7ywe548g62veOfOMa?=
- =?us-ascii?Q?Xt7tyCHQ85hGkRfLZxAvH5cgRhItgtLgLnWJdV5iB+3g5GYezFw73Ea3BjOm?=
- =?us-ascii?Q?U8kiRRa7nP34UEYwllkmwXLLFMLMOfdM40oVsIgL/roA+LxgniTTeT0ifu2Z?=
- =?us-ascii?Q?5tQPHtatOeuUsM0ROhoFQP2Dvf1J+in4HYrfcE3nZgYw76iuXp/E9kAl3q5G?=
- =?us-ascii?Q?xGTBXWt/wcoDFE/qHNcnkSR7YpjW3KhVRtgmYGysYjRc55aTsRbgh0gL4KyF?=
- =?us-ascii?Q?ZX3rKQODmC1pxjcDuwET06rFC6k89PYghmGIF9pQB11xccfZ0snh1BZwZomd?=
- =?us-ascii?Q?G+AMdDGK4b5oD0Z13tB69aN19wgExDvym2qXDKeXSLpBfQNEJa4KjlEIGmpb?=
- =?us-ascii?Q?RPpKppS0O5KqLUxbenMrom1r9GzKZ+dmZrK3ZMJfeDc4CkJZulu+wGPrsTH4?=
- =?us-ascii?Q?mp4iV06+RK2DkofU4Z+PRD9HGSHgHekMje2Byi8I3BM22e6UJ2lh+iiOd0Jb?=
- =?us-ascii?Q?fG1wCTo/Zx5VR2hz0VRE84cox91umFKu59YlAGXExHBz4PJ4xfKQjVVTrZWY?=
- =?us-ascii?Q?rAkWd2E3IwuShXCY5+EiUzjbT4yrxelklPk5kUqQFvY0jPPPah7wDTwvBJIb?=
- =?us-ascii?Q?zavGUc/JZwohaAhsz3YxREFpsOsRpsg5L+bg9q5lBkZCdsFbqWKqKBqR7ZYD?=
- =?us-ascii?Q?3QQ3bAyP8FAftwsxXjO+F3GcqnfDjZhpFlz22yhLmEnWOGRl52ioaxrn/4ob?=
- =?us-ascii?Q?DG7bMgswM8gegw5jci7utbWNOJz5ImQ5RNq1QMQtqvfR1u+8Uw401uep82TN?=
- =?us-ascii?Q?fZRyegnN7wRJGaYJwAoSkB8ZSuaY0zjkT9zGd22D0/Ar8ZoZOwrTisomKy26?=
- =?us-ascii?Q?/+8pqcEsuyHY1QPkHrF3QRr2e8SsqDuudZ5LrZcIH6MXbusOljl/IHeBpZJS?=
- =?us-ascii?Q?Q3OLBw6wlD7TT+X7Y6598irM/KiB17JRa6zpqAxYAXQnEIXetQjJRaXbl6HY?=
- =?us-ascii?Q?xavuRPTKmb4YzAHBEZkymdUSss87YTbTVxDoq+HhHxDiCdJRpuiHsa2VStUg?=
- =?us-ascii?Q?I+G0jPmZIt8vA3BH8MAku+hmTvxv1XW9AEj5UOcQZPPoaU2fErRtnFMQhx7l?=
- =?us-ascii?Q?KvsTeXUqRoOpPqAW8h+6upg7rz9q61jZbvO7ZjsZyPVIBS6CEVXHSousYjc2?=
- =?us-ascii?Q?a36PCdGFNsoViPpwREyo/uN6RYVSqhpx4s6Pc53GKx7g/Rv+mvwoQ6gDEIfK?=
- =?us-ascii?Q?Cc/61HED7nklC6NGk1ZY8DWQGVG0TNN5OyuQexxqK5YeKsLqUv2ANI0hN+5m?=
- =?us-ascii?Q?s+w7NUCfg/jqSWRWSRjK/hFgcwaHXD8UOSWaegiwhoqGDBLiQDH1SbTtHWjP?=
- =?us-ascii?Q?DEMzuyS3SWGbIMZrV05gM0Hr6E8Lg4L58+o3Yyp+q8d3C9z8zwvpirqOLJx5?=
- =?us-ascii?Q?3V4Bth13y4aUgtH9DD8e0fRnwmzYqWslyMRf?=
+ ARA:13230040|1800799024|376014|36860700013|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GLNxPedFSLhVd4XQhEVWZSRq5hCi8gWHG28sgM4xq2NUqq9JeuuVoMVamQ+s?=
+ =?us-ascii?Q?qqTGI/1bC/kUV5PuRsBknJO8UmvxNSTFOAHFmpdwMd46VOaLWuH9PTmVl3b4?=
+ =?us-ascii?Q?xLjg82EGDX+vQ57I5vs6IxwAdEJ2rrgn4CPa/s129y3kjl4DJ5PRsSxoKX3C?=
+ =?us-ascii?Q?u86azo4knubkZ4eQzsAWqs7v1xNNeDM5GfcnMtOutzATY1JWjzG4gV4WzBYn?=
+ =?us-ascii?Q?HrX/eqe9g91NVVm+/gW8xLjAF/EWPGvXmRxaBqS93C7DF2YVh6LifR8GqF9a?=
+ =?us-ascii?Q?YcFsQQ9ZKfk0r9kRBLm4V2bBDTxdYjmXPMWtkC1d+L6iX9ICcFMRLObGvrAq?=
+ =?us-ascii?Q?BZ+2Ksula3MCBSoPtyNly9UxbfdQofmFIJytVjdaR/6ezMVUzI0BFvhd1to4?=
+ =?us-ascii?Q?YQk9AtbK+KNwOMPNFqZPtJvIIbKKICyjUqPlWFPYdrlGjSQmSM53M0C+jqor?=
+ =?us-ascii?Q?ne21cFevpc7LUmqH6fPxjzipY7gmKVRxqU0l0XX5XmWzPegDY2OHF6gtNKb8?=
+ =?us-ascii?Q?3nbVd9EAujxUcK+UbVJVyW2h7SiAvytL/isqUZPgZFRc3/178IHicHuUkv1a?=
+ =?us-ascii?Q?vRH7sg0GuPCEXs9ED45IwCZsXTCd2wUuByOB/EDJ8XBmRqEXUQlosFoxTSiV?=
+ =?us-ascii?Q?ww5EBqeaR6OFbsgyQNcX4y3jrdoUkbzUfxA5GIzUXSbEr+InpyeP3zFLfTYM?=
+ =?us-ascii?Q?x7Mjd3DDpiSkAIJtoti6EwWuVOVUxCY7OYN7sR+bwFIPtQ6xU4p0enQ0qnEk?=
+ =?us-ascii?Q?8/sfJ4cliodzFd0KrWxElB03Sbi0NljKeyhFcmZWmjY+BAfgiemdytGqWcbW?=
+ =?us-ascii?Q?5bxI/oLfhlN52REOvopW1JUdeN4NDaMYt6/TAxWspgsxcqxV+jstqibhLs+T?=
+ =?us-ascii?Q?VZI2KmtXy0dYE7sE7MnrkKVil4j8tnnb+REVbBW7KcanK9kXN42zIu5OncuO?=
+ =?us-ascii?Q?dJSajRLd+6uEpIVHw58zcsNg8Ykst00krvm4bAHM3BiinsGfPphLkHh/TY46?=
+ =?us-ascii?Q?iNouOBNf4QQF++y9PeE2P8p/LXg/vjB752jMtj3iC6xtfuhG7/JLPZO9PtRW?=
+ =?us-ascii?Q?lpuSILwgdS2IEnXnry8sTCCpj622MM/Lv90JPeDNlin7ngDnoOMSj4UbyYcC?=
+ =?us-ascii?Q?NQ2tB1Waxoy2uWImvtPb3YqnoAy2yDueJHK8tcco0oZ41VA2bC3wbuzqWCBH?=
+ =?us-ascii?Q?K+5m/TSC10nPeWj3MfObuNb7+TfE6f20xKD72pvWJoGUhprb0zQSWsNYkTKH?=
+ =?us-ascii?Q?jO138gLHNiaQnk73kLuVEHdG98l9ivnFOvQJ2q0cKk0n7SImoFk984XMC3GJ?=
+ =?us-ascii?Q?h/+5Ci56dwDLkEZIu5fh6CxPZcBwwuVxKux0P6LQj1KvLC6j0itDXrN2AGlR?=
+ =?us-ascii?Q?AD/dfLXbopItJAOC7WEBgyuy+U4ULBV6e+udnnRW4uuzrF+Pd4NIdRfTOH0f?=
+ =?us-ascii?Q?fJtlDccj/jLxC4ojDa1/X/aF2HvyPftJFyjF3Xc4TfdDjhEhq3/jnzQnATYR?=
+ =?us-ascii?Q?qJpTRbnxbt2b7twg/9zMzSep7Cw63LQt4WOW?=
 X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
+ SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:41:00.9331 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5a5587f-66c5-4f6a-b5ad-08dd87774c7e
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Apr 2025 23:41:07.3455 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1352eafc-0913-4bae-4da6-08dd87775051
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A672E.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A6734.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6697
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7020
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,386 +139,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Replace some awkward sequences that are repeated in a number of places
-with helper functions.
+From: Dave Airlie <airlied@redhat.com>
 
-Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
+Some older NVIDIA and some newer NVIDIA hardware/firmware seems to
+have issues with address only transactions (firmware rejects them).
+
+Add an option to the core drm dp to avoid address only transactions,
+This just puts the MOT flag removal on the last message of the transfer
+and avoids the start of transfer transaction.
+
+This with the flag set in nouveau, allows eDP probing on GB203 device.
+
+Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 22 +++-------
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 20 +--------
- drivers/gpu/drm/nouveau/nouveau_bo.c    | 55 +++++++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_bo.h    |  5 +++
- drivers/gpu/drm/nouveau/nouveau_chan.c  | 14 +------
- drivers/gpu/drm/nouveau/nouveau_dmem.c  | 18 +++-----
- drivers/gpu/drm/nouveau/nv10_fence.c    |  6 +--
- drivers/gpu/drm/nouveau/nv17_fence.c    | 15 +------
- drivers/gpu/drm/nouveau/nv50_fence.c    | 15 +------
- drivers/gpu/drm/nouveau/nv84_fence.c    | 19 ++-------
- 10 files changed, 81 insertions(+), 108 deletions(-)
+ drivers/gpu/drm/display/drm_dp_helper.c | 39 +++++++++++++++----------
+ include/drm/display/drm_dp_helper.h     |  5 ++++
+ 2 files changed, 28 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 67146f1e8482..c063756eaea3 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -768,9 +768,7 @@ static void nv_crtc_destroy(struct drm_crtc *crtc)
- 		disp->image[nv_crtc->index] = NULL;
+diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+index 57828f2b7b5a..55b8fd6aa9bf 100644
+--- a/drivers/gpu/drm/display/drm_dp_helper.c
++++ b/drivers/gpu/drm/display/drm_dp_helper.c
+@@ -2137,14 +2137,17 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+ 
+ 	for (i = 0; i < num; i++) {
+ 		msg.address = msgs[i].addr;
+-		drm_dp_i2c_msg_set_request(&msg, &msgs[i]);
+-		/* Send a bare address packet to start the transaction.
+-		 * Zero sized messages specify an address only (bare
+-		 * address) transaction.
+-		 */
+-		msg.buffer = NULL;
+-		msg.size = 0;
+-		err = drm_dp_i2c_do_msg(aux, &msg);
++
++		if (!aux->no_zero_sized) {
++			drm_dp_i2c_msg_set_request(&msg, &msgs[i]);
++			/* Send a bare address packet to start the transaction.
++			 * Zero sized messages specify an address only (bare
++			 * address) transaction.
++			 */
++			msg.buffer = NULL;
++			msg.size = 0;
++			err = drm_dp_i2c_do_msg(aux, &msg);
++		}
+ 
+ 		/*
+ 		 * Reset msg.request in case in case it got
+@@ -2163,6 +2166,8 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
+ 			msg.buffer = msgs[i].buf + j;
+ 			msg.size = min(transfer_size, msgs[i].len - j);
+ 
++			if (j + msg.size == msgs[i].len && aux->no_zero_sized)
++				msg.request &= ~DP_AUX_I2C_MOT;
+ 			err = drm_dp_i2c_drain_msg(aux, &msg);
+ 
+ 			/*
+@@ -2180,15 +2185,17 @@ static int drm_dp_i2c_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs,
  	}
+ 	if (err >= 0)
+ 		err = num;
+-	/* Send a bare address packet to close out the transaction.
+-	 * Zero sized messages specify an address only (bare
+-	 * address) transaction.
+-	 */
+-	msg.request &= ~DP_AUX_I2C_MOT;
+-	msg.buffer = NULL;
+-	msg.size = 0;
+-	(void)drm_dp_i2c_do_msg(aux, &msg);
  
--	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
--	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
--	nouveau_bo_fini(nv_crtc->cursor.nvbo);
-+	nouveau_bo_unpin_del(&nv_crtc->cursor.nvbo);
- 	nvif_event_dtor(&nv_crtc->vblank);
- 	nvif_head_dtor(&nv_crtc->head);
- 	kfree(nv_crtc);
-@@ -1303,6 +1301,7 @@ nv04_crtc_vblank_handler(struct nvif_event *event, void *repv, u32 repc)
- int
- nv04_crtc_create(struct drm_device *dev, int crtc_num)
- {
-+	struct nouveau_cli *cli = &nouveau_drm(dev)->client;
- 	struct nouveau_display *disp = nouveau_display(dev);
- 	struct nouveau_crtc *nv_crtc;
- 	struct drm_plane *primary;
-@@ -1336,20 +1335,9 @@ nv04_crtc_create(struct drm_device *dev, int crtc_num)
- 	drm_crtc_helper_add(&nv_crtc->base, &nv04_crtc_helper_funcs);
- 	drm_mode_crtc_set_gamma_size(&nv_crtc->base, 256);
- 
--	ret = nouveau_bo_new(&nouveau_drm(dev)->client, 64*64*4, 0x100,
--			     NOUVEAU_GEM_DOMAIN_VRAM, 0, 0x0000, NULL, NULL,
--			     &nv_crtc->cursor.nvbo);
--	if (!ret) {
--		ret = nouveau_bo_pin(nv_crtc->cursor.nvbo,
--				     NOUVEAU_GEM_DOMAIN_VRAM, false);
--		if (!ret) {
--			ret = nouveau_bo_map(nv_crtc->cursor.nvbo);
--			if (ret)
--				nouveau_bo_unpin(nv_crtc->cursor.nvbo);
--		}
--		if (ret)
--			nouveau_bo_fini(nv_crtc->cursor.nvbo);
--	}
-+	ret = nouveau_bo_new_map(cli, NOUVEAU_GEM_DOMAIN_VRAM, 64 * 64 * 4, &nv_crtc->cursor.nvbo);
-+	if (ret)
-+		return ret;
- 
- 	nv04_cursor_init(nv_crtc);
- 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index 9bed728cb00e..10485510b539 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -2808,10 +2808,7 @@ nv50_display_destroy(struct drm_device *dev)
- 	nvif_object_dtor(&disp->caps);
- 	nv50_core_del(&disp->core);
- 
--	nouveau_bo_unmap(disp->sync);
--	if (disp->sync)
--		nouveau_bo_unpin(disp->sync);
--	nouveau_bo_fini(disp->sync);
-+	nouveau_bo_unpin_del(&disp->sync);
- 
- 	nouveau_display(dev)->priv = NULL;
- 	kfree(disp);
-@@ -2843,20 +2840,7 @@ nv50_display_create(struct drm_device *dev)
- 	dev->mode_config.normalize_zpos = true;
- 
- 	/* small shared memory area we use for notifiers and semaphores */
--	ret = nouveau_bo_new(&drm->client, 4096, 0x1000,
--			     NOUVEAU_GEM_DOMAIN_VRAM,
--			     0, 0x0000, NULL, NULL, &disp->sync);
--	if (!ret) {
--		ret = nouveau_bo_pin(disp->sync, NOUVEAU_GEM_DOMAIN_VRAM, true);
--		if (!ret) {
--			ret = nouveau_bo_map(disp->sync);
--			if (ret)
--				nouveau_bo_unpin(disp->sync);
--		}
--		if (ret)
--			nouveau_bo_fini(disp->sync);
--	}
--
-+	ret = nouveau_bo_new_map(&drm->client, NOUVEAU_GEM_DOMAIN_VRAM, PAGE_SIZE, &disp->sync);
- 	if (ret)
- 		goto out;
- 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index fbe0144927e8..3a5ddf60380e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -401,6 +401,61 @@ nouveau_bo_new(struct nouveau_cli *cli, u64 size, int align,
- 	return 0;
- }
- 
-+void
-+nouveau_bo_unpin_del(struct nouveau_bo **pnvbo)
-+{
-+	struct nouveau_bo *nvbo = *pnvbo;
-+
-+	if (!nvbo)
-+		return;
-+
-+	nouveau_bo_unmap(nvbo);
-+	nouveau_bo_unpin(nvbo);
-+	nouveau_bo_fini(nvbo);
-+
-+	*pnvbo = NULL;
-+}
-+
-+int
-+nouveau_bo_new_pin(struct nouveau_cli *cli, u32 domain, u32 size, struct nouveau_bo **pnvbo)
-+{
-+	struct nouveau_bo *nvbo;
-+	int ret;
-+
-+	ret = nouveau_bo_new(cli, size, 0, domain, 0, 0, NULL, NULL, &nvbo);
-+	if (ret)
-+		return ret;
-+
-+	ret = nouveau_bo_pin(nvbo, domain, false);
-+	if (ret) {
-+		nouveau_bo_fini(nvbo);
-+		return ret;
++	if (!aux->no_zero_sized) {
++		/* Send a bare address packet to close out the transaction.
++		 * Zero sized messages specify an address only (bare
++		 * address) transaction.
++		 */
++		msg.request &= ~DP_AUX_I2C_MOT;
++		msg.buffer = NULL;
++		msg.size = 0;
++		(void)drm_dp_i2c_do_msg(aux, &msg);
 +	}
-+
-+	*pnvbo = nvbo;
-+	return 0;
-+}
-+
-+int
-+nouveau_bo_new_map(struct nouveau_cli *cli, u32 domain, u32 size, struct nouveau_bo **pnvbo)
-+{
-+	struct nouveau_bo *nvbo;
-+	int ret;
-+
-+	ret = nouveau_bo_new_pin(cli, domain, size, &nvbo);
-+	if (ret)
-+		return ret;
-+
-+	ret = nouveau_bo_map(nvbo);
-+	if (ret) {
-+		nouveau_bo_unpin_del(&nvbo);
-+		return ret;
-+	}
-+
-+	*pnvbo = nvbo;
-+	return 0;
-+}
-+
- static void
- set_placement_range(struct nouveau_bo *nvbo, uint32_t domain)
- {
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-index 596a63a50a20..f402f14bebb0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-@@ -9,6 +9,7 @@ struct nouveau_channel;
- struct nouveau_cli;
- struct nouveau_drm;
- struct nouveau_fence;
-+struct nouveau_vma;
- 
- struct nouveau_bo {
- 	struct ttm_buffer_object bo;
-@@ -89,6 +90,10 @@ void nouveau_bo_sync_for_cpu(struct nouveau_bo *nvbo);
- void nouveau_bo_add_io_reserve_lru(struct ttm_buffer_object *bo);
- void nouveau_bo_del_io_reserve_lru(struct ttm_buffer_object *bo);
- 
-+int nouveau_bo_new_pin(struct nouveau_cli *, u32 domain, u32 size, struct nouveau_bo **);
-+int nouveau_bo_new_map(struct nouveau_cli *, u32 domain, u32 size, struct nouveau_bo **);
-+void nouveau_bo_unpin_del(struct nouveau_bo **);
-+
- /* TODO: submit equivalent to TTM generic API upstream? */
- static inline void __iomem *
- nvbo_kmap_obj_iovirtual(struct nouveau_bo *nvbo)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-index a14aa6715bb9..4b4bbbd8d7b7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-@@ -105,10 +105,7 @@ nouveau_channel_del(struct nouveau_channel **pchan)
- 		nvif_mem_dtor(&chan->mem_userd);
- 		nvif_object_dtor(&chan->push.ctxdma);
- 		nouveau_vma_del(&chan->push.vma);
--		nouveau_bo_unmap(chan->push.buffer);
--		if (chan->push.buffer && chan->push.buffer->bo.pin_count)
--			nouveau_bo_unpin(chan->push.buffer);
--		nouveau_bo_fini(chan->push.buffer);
-+		nouveau_bo_unpin_del(&chan->push.buffer);
- 		kfree(chan);
- 	}
- 	*pchan = NULL;
-@@ -163,14 +160,7 @@ nouveau_channel_prep(struct nouveau_cli *cli,
- 	if (nouveau_vram_pushbuf)
- 		target = NOUVEAU_GEM_DOMAIN_VRAM;
- 
--	ret = nouveau_bo_new(cli, size, 0, target, 0, 0, NULL, NULL,
--			    &chan->push.buffer);
--	if (ret == 0) {
--		ret = nouveau_bo_pin(chan->push.buffer, target, false);
--		if (ret == 0)
--			ret = nouveau_bo_map(chan->push.buffer);
--	}
--
-+	ret = nouveau_bo_new_map(cli, target, size, &chan->push.buffer);
- 	if (ret) {
- 		nouveau_channel_del(pchan);
- 		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 61d0f411ef84..ca4932a150e3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -256,20 +256,15 @@ nouveau_dmem_chunk_alloc(struct nouveau_drm *drm, struct page **ppage)
- 	chunk->pagemap.ops = &nouveau_dmem_pagemap_ops;
- 	chunk->pagemap.owner = drm->dev;
- 
--	ret = nouveau_bo_new(&drm->client, DMEM_CHUNK_SIZE, 0,
--			     NOUVEAU_GEM_DOMAIN_VRAM, 0, 0, NULL, NULL,
--			     &chunk->bo);
-+	ret = nouveau_bo_new_pin(&drm->client, NOUVEAU_GEM_DOMAIN_VRAM, DMEM_CHUNK_SIZE,
-+				 &chunk->bo);
- 	if (ret)
- 		goto out_release;
- 
--	ret = nouveau_bo_pin(chunk->bo, NOUVEAU_GEM_DOMAIN_VRAM, false);
--	if (ret)
--		goto out_bo_free;
--
- 	ptr = memremap_pages(&chunk->pagemap, numa_node_id());
- 	if (IS_ERR(ptr)) {
- 		ret = PTR_ERR(ptr);
--		goto out_bo_unpin;
-+		goto out_bo_free;
- 	}
- 
- 	mutex_lock(&drm->dmem->mutex);
-@@ -292,10 +287,8 @@ nouveau_dmem_chunk_alloc(struct nouveau_drm *drm, struct page **ppage)
- 
- 	return 0;
- 
--out_bo_unpin:
--	nouveau_bo_unpin(chunk->bo);
- out_bo_free:
--	nouveau_bo_fini(chunk->bo);
-+	nouveau_bo_unpin_del(&chunk->bo);
- out_release:
- 	release_mem_region(chunk->pagemap.range.start, range_len(&chunk->pagemap.range));
- out_free:
-@@ -426,8 +419,7 @@ nouveau_dmem_fini(struct nouveau_drm *drm)
- 
- 	list_for_each_entry_safe(chunk, tmp, &drm->dmem->chunks, list) {
- 		nouveau_dmem_evict_chunk(chunk);
--		nouveau_bo_unpin(chunk->bo);
--		nouveau_bo_fini(chunk->bo);
-+		nouveau_bo_unpin_del(&chunk->bo);
- 		WARN_ON(chunk->callocated);
- 		list_del(&chunk->list);
- 		memunmap_pages(&chunk->pagemap);
-diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
-index 8c73f40e3bda..40ee95340814 100644
---- a/drivers/gpu/drm/nouveau/nv10_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv10_fence.c
-@@ -85,10 +85,8 @@ void
- nv10_fence_destroy(struct nouveau_drm *drm)
- {
- 	struct nv10_fence_priv *priv = drm->fence;
--	nouveau_bo_unmap(priv->bo);
--	if (priv->bo)
--		nouveau_bo_unpin(priv->bo);
--	nouveau_bo_fini(priv->bo);
-+
-+	nouveau_bo_unpin_del(&priv->bo);
- 	drm->fence = NULL;
- 	kfree(priv);
+ 	return err;
  }
-diff --git a/drivers/gpu/drm/nouveau/nv17_fence.c b/drivers/gpu/drm/nouveau/nv17_fence.c
-index d09bfd11369f..1b0c0aa3c305 100644
---- a/drivers/gpu/drm/nouveau/nv17_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv17_fence.c
-@@ -130,20 +130,7 @@ nv17_fence_create(struct nouveau_drm *drm)
- 	priv->base.context_del = nv10_fence_context_del;
- 	spin_lock_init(&priv->lock);
  
--	ret = nouveau_bo_new(&drm->client, 4096, 0x1000,
--			     NOUVEAU_GEM_DOMAIN_VRAM,
--			     0, 0x0000, NULL, NULL, &priv->bo);
--	if (!ret) {
--		ret = nouveau_bo_pin(priv->bo, NOUVEAU_GEM_DOMAIN_VRAM, false);
--		if (!ret) {
--			ret = nouveau_bo_map(priv->bo);
--			if (ret)
--				nouveau_bo_unpin(priv->bo);
--		}
--		if (ret)
--			nouveau_bo_fini(priv->bo);
--	}
--
-+	ret = nouveau_bo_new_map(&drm->client, NOUVEAU_GEM_DOMAIN_VRAM, PAGE_SIZE, &priv->bo);
- 	if (ret) {
- 		nv10_fence_destroy(drm);
- 		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
-index 62e28dddf87c..e1f0e8adf313 100644
---- a/drivers/gpu/drm/nouveau/nv50_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fence.c
-@@ -81,20 +81,7 @@ nv50_fence_create(struct nouveau_drm *drm)
- 	priv->base.context_del = nv10_fence_context_del;
- 	spin_lock_init(&priv->lock);
- 
--	ret = nouveau_bo_new(&drm->client, 4096, 0x1000,
--			     NOUVEAU_GEM_DOMAIN_VRAM,
--			     0, 0x0000, NULL, NULL, &priv->bo);
--	if (!ret) {
--		ret = nouveau_bo_pin(priv->bo, NOUVEAU_GEM_DOMAIN_VRAM, false);
--		if (!ret) {
--			ret = nouveau_bo_map(priv->bo);
--			if (ret)
--				nouveau_bo_unpin(priv->bo);
--		}
--		if (ret)
--			nouveau_bo_fini(priv->bo);
--	}
--
-+	ret = nouveau_bo_new_map(&drm->client, NOUVEAU_GEM_DOMAIN_VRAM, PAGE_SIZE, &priv->bo);
- 	if (ret) {
- 		nv10_fence_destroy(drm);
- 		return ret;
-diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
-index aa7dd0c5d917..1765b2cedaf9 100644
---- a/drivers/gpu/drm/nouveau/nv84_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv84_fence.c
-@@ -185,10 +185,8 @@ static void
- nv84_fence_destroy(struct nouveau_drm *drm)
- {
- 	struct nv84_fence_priv *priv = drm->fence;
--	nouveau_bo_unmap(priv->bo);
--	if (priv->bo)
--		nouveau_bo_unpin(priv->bo);
--	nouveau_bo_fini(priv->bo);
+diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+index d9614e2c8939..4d03b591a755 100644
+--- a/include/drm/display/drm_dp_helper.h
++++ b/include/drm/display/drm_dp_helper.h
+@@ -518,6 +518,11 @@ struct drm_dp_aux {
+ 	 * @powered_down: If true then the remote endpoint is powered down.
+ 	 */
+ 	bool powered_down;
 +
-+	nouveau_bo_unpin_del(&priv->bo);
- 	drm->fence = NULL;
- 	kfree(priv);
- }
-@@ -222,19 +220,8 @@ nv84_fence_create(struct nouveau_drm *drm)
- 		  * will lose CPU/GPU coherency!
- 		  */
- 		NOUVEAU_GEM_DOMAIN_GART | NOUVEAU_GEM_DOMAIN_COHERENT;
--	ret = nouveau_bo_new(&drm->client, 16 * drm->chan_total, 0,
--			     domain, 0, 0, NULL, NULL, &priv->bo);
--	if (ret == 0) {
--		ret = nouveau_bo_pin(priv->bo, domain, false);
--		if (ret == 0) {
--			ret = nouveau_bo_map(priv->bo);
--			if (ret)
--				nouveau_bo_unpin(priv->bo);
--		}
--		if (ret)
--			nouveau_bo_fini(priv->bo);
--	}
++	/**
++	 * @no_zero_sized: If the hw can't use zero sized transfers (NVIDIA)
++	 */
++	bool no_zero_sized;
+ };
  
-+	ret = nouveau_bo_new_map(&drm->client, domain, 16 * drm->chan_total, &priv->bo);
- 	if (ret)
- 		nv84_fence_destroy(drm);
- 	return ret;
+ int drm_dp_dpcd_probe(struct drm_dp_aux *aux, unsigned int offset);
 -- 
 2.49.0
 
