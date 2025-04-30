@@ -4,135 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7975CCAC5B8
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15725CCA472
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFFA010E4BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4670B10E4A5;
 	Mon,  6 Oct 2025 20:46:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="O6AjVdW1";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="FggdyCaN";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2046.outbound.protection.outlook.com [40.107.92.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93B3C10EBBE;
- Fri, 29 Aug 2025 13:43:17 +0000 (UTC)
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam11on2073.outbound.protection.outlook.com [40.107.223.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48B4D10E812;
+ Wed, 30 Apr 2025 22:45:20 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pdYKJ7tlQb9Bce1QiKZjo23oOxpEPhEc4qjDyKlms0cdF5PSJp8g+v29omEOdD3xaKu0BI2U+dITFuBTuIsTcAs+pIGJhRmBWSFsNb2Q7BDI1QrUGwP+QMg2bD7WQQhJpf1pp65D6UMIrLB92mKO5Mvmhk5cCn4mu9itOo0gGPcCu6hEaM8mO+eJ5Zcyc+YYUdZ9zDaeU6V1q6l9IfMERLVH/JSdse0Pctisor40g16dRLNKm6AJzxOB6lbSxfboQ4XXgiav+GPsTL008RZWVmCEGRMAOAJkymqnN0npKPB/PQ3MzHyKx9+dQ++6UZOdQlWodNzArlqt2UhCkb2naA==
+ b=qEHfMHN/cwMy1Pf2k6dgrxu1a9SB56+JoyKpPm6w70aasn+Qdh5BTUntJgivxzWV3NSrRxxfE1ZI0TkdRHyFbLVdhB1aDyf1Kwqj+oAbOd5c2Vzl56GMS+RMZPMWEibvplLkrWXhu+u06wkFvDOg7QdaMfVrLegKaUgXf8sNPZMNBrrRoh51cobRfno2vxppHTDEPDwzRCDZI9iXVQMnOhjoxY5DvGYKiJnOuga9E+AuvfcKWwBqLGqyP2+dTZhW+YtbrVMcqDBhL9GQA20yPagW+f/kaiQ7WXszA5r6JED0mIJSRFrTiS4B7WyMlKyYJEp6WJeRU44bkDuPvKdJDw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KUTGx8YrFV/gZw8JM/2oTNot3GlWVI4bY9EGQmOh2w8=;
- b=VwyHF+AH1JVKUp4AYxj4snmNjs8RU7MuSNvV7xZAw8R+P+0DGnbCqUeAyrFNsUDtZoL2NfHwK6J2kmXvBX0VufwWPhsxF8G3HZ3MYChVkRH7kfC6679FNyKW7xmloRg0P1jL54viOrB72JUzZgQB388j6MOR6g0d2Z2lIZly3wCG0mdVgPbo5VDbTNnbXxzMDTkt6FQyrKbYsSnLGTQvkSUIg5aLiE2EuuPG7xx6OA37WY6nN0ardzVdQ5ipBxOGM/5EnMWqJwHWYFex9doH3Nsir55gbtjdETLhgQhwQVv9Ltlgzkt9+8ebJGkiPm5+paRpuWmNfgXtxjuy4BBdwg==
+ bh=H6FuGr6nI2T5GeBMGC5uyvP+uI5MbWg3UCDPBu2y0NI=;
+ b=ZMJOaAwVXrSTbQCR2r1bN92yREAN4Ffm6n6KFpF/y9p9A8zMMifbyXvV47jBVhkP8mhDsAx08MlGJBMwOrDeQZl6rXaRhfObJS88PSSiqPWU8aJVlhMxo13a2ClOqeYci01j484M7yn3F0vt7njUayhaeug8sS9cRjeNOkMaaUOHpyWus3asyDxLf7Mh3Ebx78bO1QRHVKCF0nigZjMNTUXAMJv3urdV0uiB5rbvzyrZ8oIE9MtwXxwCSY/vNUXX4NsN52YzBx5PRY92Mxewn8Je+4K+PtYI83zQcInFkFAAAtJQ2gSSCR0nN7YOOXN4kzbMVAmULvslYGfV+eHC2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KUTGx8YrFV/gZw8JM/2oTNot3GlWVI4bY9EGQmOh2w8=;
- b=O6AjVdW1WpDIv8yTs3r3fXHPwDVZEHjVzZv9GsCRT0O2zdfTehw49JNWa44rzExjFrTdu2Z/5oZacw9OyP55FAoY782BqcDGO+i07Iwr0BD3p3K0nZ7TnJ3iKaa0mf+l//HMer0ugjO6P/QquF8xd7KurFFhsJqebiu1CXYuDW7DxzX3jSCTRcxC8fgD0c4hHJ5WfRULfx3Im/xkLBpP/Xivu5neVE9efcXCoLWC4ACqIIIHPWMnsRXlT9P0YzABz5XOo6gZSJUM9gLU3ATZtdIftyWgwzvHE1gqc8MWkpJzs5FyqluQepxqpuEk6Whgd50PkU3DZHOudQuz/O9vXw==
+ bh=H6FuGr6nI2T5GeBMGC5uyvP+uI5MbWg3UCDPBu2y0NI=;
+ b=FggdyCaNwiQd/mMurzdEHVUmaNsco4Fa1TBrLPcFdndeweRmVmJxQIBPPIWhPbG8MnEWZbE2LWRXl/aTkq4w8NxIXNJAPdgUu1J24v8jiQVKE97v5rapUOepxsMBpYVcSHHKpVT/lebQUlPBnnITloe/yJgIimqTdxblIIwVLxQj4FNkb96iZ+jyX5K/r6VhPuTRJxvTMpUebx9ip5iDzs0bG03MslfNrziyXFc+7ENjhgOQIxeFMfgwtS5Da9s8sqWpoZGcYNewkL+/9hABrBej279FcMdRb+lislT88oX+NBbmMD6/U1W5lNrQ8zjpEBclNVvgnHEeldmue4ce4w==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by IA4PR12MB9809.namprd12.prod.outlook.com (2603:10b6:208:54f::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.15; Fri, 29 Aug
- 2025 13:43:09 +0000
-Received: from SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9052.017; Fri, 29 Aug 2025
- 13:43:09 +0000
-Date: Fri, 29 Aug 2025 09:43:07 -0400
+Received: from PH7PR12MB8056.namprd12.prod.outlook.com (2603:10b6:510:269::21)
+ by DM4PR12MB7528.namprd12.prod.outlook.com (2603:10b6:8:110::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.20; Wed, 30 Apr
+ 2025 22:45:09 +0000
+Received: from PH7PR12MB8056.namprd12.prod.outlook.com
+ ([fe80::5682:7bec:7be0:cbd6]) by PH7PR12MB8056.namprd12.prod.outlook.com
+ ([fe80::5682:7bec:7be0:cbd6%4]) with mapi id 15.20.8699.012; Wed, 30 Apr 2025
+ 22:45:09 +0000
+Message-ID: <1f2a6948-8fb2-4eac-ae05-99d007defc07@nvidia.com>
+Date: Wed, 30 Apr 2025 18:45:05 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 08/16] gpu: nova-core: wait for GFW_BOOT completion
+To: Alexandre Courbot <acourbot@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Jonathan Corbet <corbet@lwn.net>, John Hubbard <jhubbard@nvidia.com>,
+ Ben Skeggs <bskeggs@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20250420-nova-frts-v1-0-ecd1cca23963@nvidia.com>
+ <20250420-nova-frts-v1-8-ecd1cca23963@nvidia.com>
+ <aAd_PBVB5S5pHeP0@cassiopeiae> <D9J4UK3LWDL6.4TE5O7WM6AIP@nvidia.com>
+Content-Language: en-US
 From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] gpu: nova-core: vbios: replace pci::Device with
- device::Device
-Message-ID: <20250829134307.GA1832415@joelbox2>
-References: <20250808-vbios_device-v1-0-834bbbab6471@nvidia.com>
- <20250808-vbios_device-v1-1-834bbbab6471@nvidia.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250808-vbios_device-v1-1-834bbbab6471@nvidia.com>
-X-ClientProxiedBy: MN2PR19CA0012.namprd19.prod.outlook.com
- (2603:10b6:208:178::25) To SN7PR12MB8059.namprd12.prod.outlook.com
- (2603:10b6:806:32b::7)
+In-Reply-To: <D9J4UK3LWDL6.4TE5O7WM6AIP@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BN9PR03CA0918.namprd03.prod.outlook.com
+ (2603:10b6:408:107::23) To PH7PR12MB8056.namprd12.prod.outlook.com
+ (2603:10b6:510:269::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|IA4PR12MB9809:EE_
-X-MS-Office365-Filtering-Correlation-Id: 388598bc-5b2f-46a1-f250-08dde701fdb2
+X-MS-TrafficTypeDiagnostic: PH7PR12MB8056:EE_|DM4PR12MB7528:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3942021e-6b3f-45eb-fac0-08dd8838a8dd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?t7VhfNOso2neVyOQZ3BfgKrMX+oK2ZHGtue4Omukd0YTLxnLMBloTy4S8AKn?=
- =?us-ascii?Q?2LiBfSQT1nvcl2pYSiPeVGbeu++wR3unwX+qc1sZ8D/8J2L+acy2qZQrtAcY?=
- =?us-ascii?Q?pLZUyygeuSzMqYCwHnK8SHfSn4D1ZK4fHW4KNgrDJJV+m5bQ6r8wmx2hWsIn?=
- =?us-ascii?Q?4ilXKgJtyAKle+9pzsZW6G2Fz7TszMEKK5x33EWsnb1m5URJbbX9OuSTqin+?=
- =?us-ascii?Q?f9MzCKWGpckz8RhKcGz0m2G7pVaZ2kXs5rR6stLnvxeZHnbykWw1pqvIoLAE?=
- =?us-ascii?Q?1k/vTZoIb8hWY6LzFRaSUoAYf2TR4y+6wZ/Kl+OLbN6psDuahxONlqh9eCs4?=
- =?us-ascii?Q?vhZSgA8FL31kYu5NIn+CDfGBXYym00A1jGaS05WH5JY0qomN9A4DIY3/d/B/?=
- =?us-ascii?Q?4W33XmS99s5gl2q4bG1M1lcM2z40ajz9NYh8+Ev+rnRPj1SQmfWWPbCxlN6k?=
- =?us-ascii?Q?EdZZJY74r6mnfbpsfxgTR822+/hfzFPJRdv8qe0zHlF6SzieKZpXznbNIBmf?=
- =?us-ascii?Q?b7ACw5y5OLOapSk4q765ZVaEsyU56n1ZnIu6PA4zLbQfBgL3ms25HfExxO4M?=
- =?us-ascii?Q?2VJbHzQlt/viLniSHHVP0HEWnD4syz36WuI75g6m+WD/4VbZE6UCS9wPX7g1?=
- =?us-ascii?Q?U9py0TEySPGaCL8q/khfvSQgozHxkBIGDmkAPK4vxewepeLNk3g8Hf21f7gG?=
- =?us-ascii?Q?JX4Ig3Z7kp/aGt0I3mtfIERmAtqh8GYBfAmwR2yH7HiJLB8ilzh1W88EQpvw?=
- =?us-ascii?Q?9nNT1jaqwJwjXWU0kLwt+oliwcNe4+EP4nUAiXHu7VR9DaotaLcPilIr0G6D?=
- =?us-ascii?Q?D2LLesuEdX1gOTKr4vJiicUWuEEi3lKWQFpF+6wwSJ//j1O/i90lZzYD0gsm?=
- =?us-ascii?Q?LaHfF6JueuiMDS4IUfR3ERAs58j7EJUzfYWozyXx4dOtpz/vQok2qQAz6uOX?=
- =?us-ascii?Q?Dyb5mVmpKO/kZiPWXWh9DAmpVdKmEhZZyAvLdLSERB1eWSRLr+8hy53gB3Js?=
- =?us-ascii?Q?X2pbpSnZ63oWEoZVDy7iRNB+3js+Hq1TdSKdLn1Uvvl0CTzdSGYkJ1IhKadd?=
- =?us-ascii?Q?NRLh3xQOKw4zDGX2kUTVzFgnopnsI6vvmAV3mKXpJEAtWwL/tT0plcdPCz/W?=
- =?us-ascii?Q?fu7AXX9StVgalvLC5SjU5RDB+cPResYF16TREuubtiGj+lmdZoRhdORylroS?=
- =?us-ascii?Q?U6U9x0GVLlFwomJbrf139HHHMjD5MUAK+2Vf6Z7KMzcBghWz6JGUJkPL+V/F?=
- =?us-ascii?Q?6gp/hLoJJyZ9cQRtphn0ImMkxFcuZydQNuP/Wgzo+kZLgz1t+JOlv10Ca7Gs?=
- =?us-ascii?Q?QWAjq3/3LZcg1qhvL6cmpgSRr6dELafrtK05qwjNon2Vnw8RdHwP1oWwKhLA?=
- =?us-ascii?Q?j37DnoqEbfCv+axDB4yzjlmcUWvk4y53LdflmA/rijE953nHl9cbwdApsP5p?=
- =?us-ascii?Q?Qh+aTfEOfXc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?QmcwNzlsS25RZzdsZkF6Wm02Vm9kUUtLTnk1YW0wZExtTFhsTzZNaUJmY0Iz?=
+ =?utf-8?B?WGJ1U2hFSFZqRWJ6QjRQVzY4QVU3bHFCdFE3eFh3aThQM25IN09RR2N2Y3NN?=
+ =?utf-8?B?djR5MzByV0V5QnZhR3piUGRJd3RBQVQyMEFFRDRWSklLS01BamNCZThBeDM5?=
+ =?utf-8?B?QzFyK3BQRUlnTFJtVVJscUNuYkdlMVl3ZXBETjkzazFGVzhaYk5xNWlSYmJv?=
+ =?utf-8?B?SVdOSkNmV2tIUG9ZaUdtREExZU9UZ0FhQTBqb2F3Q2JzTUtlV0g3M1ZCbmRv?=
+ =?utf-8?B?TVdYd2o5Mk5GSUlDNWRtZDdNNkROSUFpd2JKWEdtUDJ0bmM5QmlRWGk2enZF?=
+ =?utf-8?B?MTBlR3pTNFpwdjhEMTRGWUxTeXEvUDNSUUdTZVRKaG04NVEwalFtb3JCRzha?=
+ =?utf-8?B?ZTg2bmxwcG1IVUpEM3FSTlA3YkJpL283WlEvRFZtWm5Zb3VWd29XNkpiZWlr?=
+ =?utf-8?B?cXNxc0ZTWXJvRVNxOUdDdUFEb0FvdjF3VmVHejZET0ZGa3grbzJFT3poMEkw?=
+ =?utf-8?B?UmtTN21qSHBlZS9aYktuYWVTZ1JQZkY3QjNIRXlGZzRhVmU1cjYxTHlxRStJ?=
+ =?utf-8?B?M1hTV1dtRHpGQ3FtWjRmcFlWU3IxWjFreHhCLzBGTWpDNVQ0N3hld3lxZmhY?=
+ =?utf-8?B?WUgxUEE3SnNzdUxMQmFtM3FNck9rUklsNDM2dEZ5bHo4aUFPR3pTQzkrNUhy?=
+ =?utf-8?B?WUp2ZUgxL1B5akNMcEU5SWZYR1pZUjR2K25CQm9qSVFTR3ErN3NQTDNhbDJw?=
+ =?utf-8?B?NTNNYmhDRXNKOVZ4MUQxVWMvUWVzcmx2ZHZqdENUSHJFTEtJQVBOUFIzUmZR?=
+ =?utf-8?B?dVFYVlV4UHZsNXQrNCtxRWtXU0kyR0JySHMxNTJLQ2NxSVp3VWpEaFhuS3Qy?=
+ =?utf-8?B?UHlOa0ZlR1FNSTdYckFlTjhkVFI4SXNvd2VuZUh1N0ViMVRkQ1lobU1PM0ZG?=
+ =?utf-8?B?aVZXejBkWXdjSjNpc0hHRGNVUFlmV2d6aDRPUTVOSDN0aXR5UzVraE5IQUVj?=
+ =?utf-8?B?L2Q3MEg4M0JaNmE3OGdkT3oyTVhodWVDVTdYbVQ1VmVtaEVWWFp3SjIzRUp5?=
+ =?utf-8?B?NTY5ZjZBNGVnWUhrZ05YQWhnM2M4VHJNcU1ab01hTHNVZG4xdlAzcnUwMDkz?=
+ =?utf-8?B?b3czTHBHSExMdXUybms1MUtySCtCeUZFa2V3OE1Bamt2eWJKcHhoVGNqSXNV?=
+ =?utf-8?B?K0lQSmxnQi9tNnBnbndXblprVC9TaythZHRKdHRqdW9WcDJpajAwcFgxdU1X?=
+ =?utf-8?B?MlNLQndvTCtTSGE1VXNhcDJZTW5OVVlmUWRQenVuWWZkejRHWkFrRlJzYkNu?=
+ =?utf-8?B?TFV1OXNpNDFzeGw5R1hMLzJ1OWFsY01ub0lTajduanNpb1VxMldFKzlMdHY0?=
+ =?utf-8?B?NDlMbm9DK004RDBNQXRyeWVpVUE1MVRHODFYc0l4ZWNWWklybjd2N2lCM1NH?=
+ =?utf-8?B?aGw4MWJkNzRjaDFFaFVGMCs3ODlEZmNNMkdJR00vQ3J0VmNTNkZoNzk5dysr?=
+ =?utf-8?B?aVFObC83YVp1NGJIS3g3bHRwNkt5UFVqTEhEVmFKOVNZV0VMWEhRckY1cXpL?=
+ =?utf-8?B?a2FMY1RwQnNPTlpSaWdNWGI4R0pNZFgyU0svSUErTjRIZ3BWYzdOanFSaWU0?=
+ =?utf-8?B?MnhTUHVBclRpamlnWVIvdStYQjdhSmhTZjZwUHVyd0tWUlJUTkRBVitOY0gx?=
+ =?utf-8?B?L2l5ZnFaTnpZS3M5OXl4MThXTHNuOWpKQXdrUVVMQ0ZZaitxVEhFUG94bnFR?=
+ =?utf-8?B?UFN1TFNwTEloR1J6K2c2SURzbzgxZlVPK0ZPdGhZaTZndXBFM0FDV0lFMWZo?=
+ =?utf-8?B?WE1Jb1dleUZRUDNWbEo3amJuSHVjLzNNeXpBQmJvdHcvUm0zQVRuTWV2M0NC?=
+ =?utf-8?B?NjJqWmtHRlNuWDRoUGxxV2Z5YTRCV01ycGRqdTdnN2ZjcEdLNFAyU2FOS2RW?=
+ =?utf-8?Q?US3p9w+lIn8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB8056.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uPCP3dd5NIsEig1fumRi9mDy/4i3c3Ru5mg2JPhhKiAbGInbhc570QSif2gK?=
- =?us-ascii?Q?s9g+HtguEZl2eoLOQ80Zu1QbQGxvDxWKIMuPtTIg4+y7CAFfE4k9dvfrcnLZ?=
- =?us-ascii?Q?EBQsnrwb8f0ecK50FGEfVq80ffmkqPo6NA4kimbEpok24HTXgQLmpwuwZxU2?=
- =?us-ascii?Q?xlifPt4X03r/NXyF0F6/Q3XxBbGstHK5RiUW2K0mXUiO2e6yFjaDvlI8Iibf?=
- =?us-ascii?Q?0JWz19Z+4RlqM9h5DuZUXeJQKWVgCPBZ2idk4zKD9KtJcDVGpTaf1DMsHa26?=
- =?us-ascii?Q?MDXApQYkRrSyQN1jv+Zr1PqtzGhHpxapMPx1Dm9u1LB7pSOcenhOeUslTKHZ?=
- =?us-ascii?Q?9M4E7ct5ddOUHu1C00xsCZnMzdi5/6cKIOu3ga53x3c4Guy4YB7aEcSJV8+l?=
- =?us-ascii?Q?922ZprULUuKyl5jNewJfYgj8tQe3qDdvs1AhyB5EpSmzU1D1dFGEp4JoP/Ol?=
- =?us-ascii?Q?UHRyK1qecEZtVW59KLGoKA0RgulBBqPyMcl1BejEvl2Tr8LBkoWydg/T9IKV?=
- =?us-ascii?Q?hL/m90sUT7fKDicvQ/3tGP/vrtnWKCGH/Qr1SO0nGMqE/RDL77SzeC+7MMSt?=
- =?us-ascii?Q?kMEnWEDX7HLHbCa0DaejootRG7L7LPObtkGSvACkxBQiyKR9/RZKCBoHJM9R?=
- =?us-ascii?Q?lcIyAdcZv5GRIsro+VmGb+KxipD+YRNFe7Y6I9ISiJnVOWQ739cya9WotOli?=
- =?us-ascii?Q?Hix3Pwtq+RX79FIQFbQF7b65ftdqVuDxOvKlny9g71UoKyadUi3KF2JYgEAG?=
- =?us-ascii?Q?XlGkEIp7I3ndq0Gte3RyzZqT7tyUP3Th3hQmzOAq/6iclBtXIOn+mLJLRoGj?=
- =?us-ascii?Q?yklq66yLCFU6J7qx0tBhA6bqLBqYNh6erVn1Ci6IKSeT3PSIS2CVJp7IvCn8?=
- =?us-ascii?Q?CcVL32ABMk7K7iWFC66AMGlffpeCeTatZ0+nf20hIVOr+RkRMc3RfrkMj4+2?=
- =?us-ascii?Q?JdPbq1mci0uhmWZL6PqJnL7jsENj/8YnUyMBs8QEF7UWjGNzKacJun5sJe5P?=
- =?us-ascii?Q?LT7OtGVGeFLoaYUg1su1xHDJPZbh7cKNqv/JbrtFwnnMuQEmIVYasEA/5fqd?=
- =?us-ascii?Q?Csu2Crx7ulOynHwsfstnAc3iWqoGgfVMgUDLNUTJH9TbhBa/MegFs+LF5Lyt?=
- =?us-ascii?Q?nps/Lr2T5bl/6QFI+x3TQ2tRrzjeaguUMee7Mzzoxs+0Z1MV+u+/iSQRscB6?=
- =?us-ascii?Q?qN0yLpcm2qGhSL34Lf93nv62vSp0UhoPFJAMnZDrHdm24WtHAuTaOkMyh27z?=
- =?us-ascii?Q?Fl/dBDAfToP0n1YLAJq0YjG22Y5f5CPPHrZke13cMegGq+ePPIf8PKkLZKyF?=
- =?us-ascii?Q?3S++yA2Mhkqd34nq8aVxATIVDm7OWkbu0HtRdEg8E/GehtNjRD91rMv/3V4n?=
- =?us-ascii?Q?TJO0smXKZvVjYuQHud38AvrOOlmtxaVa9EZfRh1oesy8fJ+xF2uPE8jVzcfY?=
- =?us-ascii?Q?T5clCkpfToqF1RI3eh2kdP6edKvijsEh7Zce63a07Nnh8ys1OGecxUQa17uL?=
- =?us-ascii?Q?KHoYIZkACpRpquHoBtA/wp4lhy8hdZQTTF7DeXX5V5JgsoTmfNYKAvIhOm4S?=
- =?us-ascii?Q?JmWr4LVV7OmAFiL/+SsggmJQi2rjLXjU4075K2cT?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDRTVkMrRjBVN2gvMHJnVi9ZNGVHRXBMbHZwNlhrS0lVd2RibGJLNTFKVDdK?=
+ =?utf-8?B?Q3ZxR0w5dWRnVGdTUy9QVnFpekdmVGlyQ3RNcEVxV1NPQ0hiK2dPVEpxYWFq?=
+ =?utf-8?B?am5WUzEyaWREdWVwU2UyWHhSanhYMURTTVJyTndXM0xLcXZka045ZFBaSWtt?=
+ =?utf-8?B?ZnhHTzlqaHREUUxMYUhUMmxuZnJxTytsZU41N2lYWmZCdWtHZEJ1NThVcE54?=
+ =?utf-8?B?VnBrMXh3ZXBnVTRGZU52MWJpdnl6ZzlibnNnN2gxMEpnOTlIeUJnWE9LdXFz?=
+ =?utf-8?B?QkNiSHBHVmpUd3B4NlRRbG44Rm5MWUcybDhNejl1c1RQa09RYjFRYWRPT3M2?=
+ =?utf-8?B?RDRQV2hYclZxZ25jZTlwN3JLSHByWUluelJBWDY4VnFnbzNQWmIzZ2MrNFhO?=
+ =?utf-8?B?cFBCNWMwNjFIUGNNdUhRb3lBUDA1Y3h0MDJaZ29wdW11OWt3SVg5bUFNVFMw?=
+ =?utf-8?B?cnRGb096aEg2TVlGRy8wcjIrMWE1RERvVGZkS0Z4d1ZmT2lSMjZFR2V6blpT?=
+ =?utf-8?B?WkRldDZ1K2M2MFJnUDFDWVVhc0xxWVZkSCtOOTF6QUlwV3JQV24rdXdBcEtX?=
+ =?utf-8?B?MnJNL0FrYStHNHBHQnlLNllMbUoxNDN3eTlETnVHQUdBTXU4RkZwZGEwZVd4?=
+ =?utf-8?B?NzlJZ1RQb0ZWMVdNWE1pUXVwNEplNHFUc0dHczVPeDJ4MTU3WS9Od1FncU4y?=
+ =?utf-8?B?WktQN1hGM0VBTTBFVVYxZTV1ekU1UmVxVUQvQW1adXp1ekV4dU9XbVU4MDls?=
+ =?utf-8?B?eHRDcytXa1pVQVNIalhKV2tSWlYvUTlEOHZpRlNqKzJ1QlE1MGUxRm4xNWRU?=
+ =?utf-8?B?bDFRWDBYRC93S3JvcnlCSjh3WVdIVGZmc2wvMWN6ZG9OTk9OV2FZOHRFOEov?=
+ =?utf-8?B?bjlOeHJmVnhFYzhBMDYwYzM4WHZRS211ZFJOMnJCWFVCQXBDQnExSGlMOVJI?=
+ =?utf-8?B?RWo3WUFYWXRiR2ZzT2ZPTzB1bWJ1MU1JbW1vV2pwdlVHWUdZK2t1UFVPbi9O?=
+ =?utf-8?B?YUNBemxqYk9jK2tycS9JMEgzeFFzZHI5Sm12ekVodjNZbm5xTSsrOGo3MktG?=
+ =?utf-8?B?QWN4aklWdWRGYmJUYUtsTy9CdDBHdWV0SkkyL1Y1dVJFaG9CeXhVeFlJK0FX?=
+ =?utf-8?B?SXpMVXB6U2VtUVJnVzB3Wjd1V2N6MHpDOG9FZTFRSStLTGgyNW1QSDZCZGV3?=
+ =?utf-8?B?TnBQUHg1STE1WFlSMnloUFNEcW5uYTUzVktvclJTUENjMGZrWFRDazN2eVZ3?=
+ =?utf-8?B?dkNTV3pjVjdyUTEvQkJDZHpXMWRHcWYvLzFtL1duWm9NdHgvRE1xWTZrdmRp?=
+ =?utf-8?B?WE1uL21DSEVNM29TeWl5bk1zWEZ2NUNDOHZsZWhQdEQ0c0YyQlQ3cVFuVTZB?=
+ =?utf-8?B?Zk41bGVzUUxYU01mMlBMeE5BYU9sNnk5YkFPWHRCTDAycTBhejlIbFI1NUFy?=
+ =?utf-8?B?YzlUMHRadHZuVlI2Znk5MmZrL1pDYjR4STUramFObFdpOEJndEZnMjlod0lk?=
+ =?utf-8?B?bmI3S2xvMm1jRkoyZWRUbEltOTJLWHBuZVcydUhCWGVQQm90MG94QVpRVTI5?=
+ =?utf-8?B?bGlMNjNBKzlvejgyUnAxRWhGOXROQjMyaHM1UDZ2dkR4b2lhOUEzUDlMSzZR?=
+ =?utf-8?B?Zy9lUnlGUGx0NEYwQnJDamRzOUIvcEcxeUJMM1ZyYmJoRFcrODlBT2NNMys3?=
+ =?utf-8?B?U2dtcCtUalh0bGFybVR5MU10Vk0wT1lJQVYrTXJjakdmMVMxTWJQS1U5NDRC?=
+ =?utf-8?B?OFpjSVNvTlJBMTFRU042RGFqWmRqOWxlY1Zqb1MwTXhodTMrKzljSFc2aDVJ?=
+ =?utf-8?B?ZFU0blVnb0pnK3cxZVlFd1NiTjRlUzZqQzBHeUNqdUU4TE1oY2IwMCtUNFUy?=
+ =?utf-8?B?ejZIczN0c1A4Q045K00yTW9mQk56MGdZRTlvZ1RHcWFuenQ5c0o0SktOOGtu?=
+ =?utf-8?B?WENLQkxOeVVHQVZhSDMvTXFVQ09rVGlFMDUzOWV5ekhrbVFJb2dqT09WTjcv?=
+ =?utf-8?B?Nmk0YldhOTN4MTZFdkF0YjBzeEdVK0pLM29xUFJndGgwWEI1ekhsUURBd1lO?=
+ =?utf-8?B?V0d5ZnVGYzBGbm5oREJhUmpWSERldUw1SXhpeEtaVldOWW03QnFkYzU2d0FN?=
+ =?utf-8?Q?dPZWPXQHhpXRv/CDLwwiAvLW7?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 388598bc-5b2f-46a1-f250-08dde701fdb2
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3942021e-6b3f-45eb-fac0-08dd8838a8dd
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8056.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 13:43:09.5459 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 22:45:09.3024 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: l4sjlzeIESfFbXwgguX71KncgNg7VNJMipVkmF2Oy0yGjAmhzL1t4txb4y1IBtwF969NMjuINerUsAP4tqvIxg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR12MB9809
+X-MS-Exchange-CrossTenant-UserPrincipalName: mQjXutQakuZcA3cGkPyN+pU/NyN9QiIjT3CBV9xWgZtaDUz7XzP7+DXPBy8Rw4Waq/bJGa07+pDb+wavR1xAeg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7528
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -148,461 +177,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Aug 08, 2025 at 11:46:41AM +0900, Alexandre Courbot wrote:
-> The passed pci::Device is exclusively used for logging purposes, so it
-> can be replaced by a regular device::Device, which allows us to remove
-> the `as_ref()` indirections at each logging site.
-> 
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 
-Reviewed-by: Joel Fernandes <joelagnelf@nvidia.com>
+
+On 4/29/2025 8:48 AM, Alexandre Courbot wrote:
+> On Tue Apr 22, 2025 at 8:36 PM JST, Danilo Krummrich wrote:
+>> On Sun, Apr 20, 2025 at 09:19:40PM +0900, Alexandre Courbot wrote:
+>>> Upon reset, the GPU executes the GFW_BOOT firmware in order to
+>>> initialize its base parameters such as clocks. The driver must ensure
+>>> that this step is completed before using the hardware.
+>>>
+>>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+>>> ---
+>>>  drivers/gpu/nova-core/devinit.rs   | 40 ++++++++++++++++++++++++++++++++++++++
+>>>  drivers/gpu/nova-core/driver.rs    |  2 +-
+>>>  drivers/gpu/nova-core/gpu.rs       |  5 +++++
+>>>  drivers/gpu/nova-core/nova_core.rs |  1 +
+>>>  drivers/gpu/nova-core/regs.rs      | 11 +++++++++++
+>>>  5 files changed, 58 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/nova-core/devinit.rs b/drivers/gpu/nova-core/devinit.rs
+>>> new file mode 100644
+>>> index 0000000000000000000000000000000000000000..ee5685aff845aa97d6b0fbe9528df9a7ba274b2c
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/nova-core/devinit.rs
+>>> @@ -0,0 +1,40 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +
+>>> +//! Methods for device initialization.
+>>> +
+>>> +use kernel::bindings;
+>>> +use kernel::devres::Devres;
+>>> +use kernel::prelude::*;
+>>> +
+>>> +use crate::driver::Bar0;
+>>> +use crate::regs;
+>>> +
+>>> +/// Wait for devinit FW completion.
+>>> +///
+>>> +/// Upon reset, the GPU runs some firmware code to setup its core parameters. Most of the GPU is
+>>> +/// considered unusable until this step is completed, so it must be waited on very early during
+>>> +/// driver initialization.
+>>> +pub(crate) fn wait_gfw_boot_completion(bar: &Devres<Bar0>) -> Result<()> {
+>>> +    let mut timeout = 2000;
+>>> +
+>>> +    loop {
+>>> +        let gfw_booted = with_bar!(
+>>> +            bar,
+>>> +            |b| regs::Pgc6AonSecureScratchGroup05PrivLevelMask::read(b)
+>>> +                .read_protection_level0_enabled()
+>>> +                && (regs::Pgc6AonSecureScratchGroup05::read(b).value() & 0xff) == 0xff
+>>> +        )?;
+>>> +
+>>> +        if gfw_booted {
+>>> +            return Ok(());
+>>> +        }
+>>> +
+>>> +        if timeout == 0 {
+>>> +            return Err(ETIMEDOUT);
+>>> +        }
+>>> +        timeout -= 1;
+>>> +
+>>> +        // SAFETY: msleep should be safe to call with any parameter.
+>>> +        unsafe { bindings::msleep(2) };
+>>
+>> I assume this goes away with [1]? Can we please add a corresponding TODO? Also,
+>> do you mind preparing the follow-up patches for cases like this (there's also
+>> the transmute one), such that we can apply them, once the dependencies did land
+>> and such that we can verify that they suit our needs?
+>>
+>> [1] https://lore.kernel.org/lkml/20250220070611.214262-8-fujita.tomonori@gmail.com/
+> 
+> Good idea. Added the TODO item with a link to the patch.
+> 
+>>
+>>> +    }
+>>> +}
+>>> diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+>>> index a08fb6599267a960f0e07b6efd0e3b6cdc296aa4..752ba4b0fcfe8d835d366570bb2f807840a196da 100644
+>>> --- a/drivers/gpu/nova-core/driver.rs
+>>> +++ b/drivers/gpu/nova-core/driver.rs
+>>> @@ -10,7 +10,7 @@ pub(crate) struct NovaCore {
+>>>      pub(crate) gpu: Gpu,
+>>>  }
+>>>  
+>>> -const BAR0_SIZE: usize = 8;
+>>> +const BAR0_SIZE: usize = 0x1000000;
+>>>  pub(crate) type Bar0 = pci::Bar<BAR0_SIZE>;
+>>>  
+>>>  kernel::pci_device_table!(
+>>> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+>>> index 866c5992b9eb27735975bb4948e522bc01fadaa2..1f7799692a0ab042f2540e01414f5ca347ae9ecc 100644
+>>> --- a/drivers/gpu/nova-core/gpu.rs
+>>> +++ b/drivers/gpu/nova-core/gpu.rs
+>>> @@ -2,6 +2,7 @@
+>>>  
+>>>  use kernel::{device, devres::Devres, error::code::*, pci, prelude::*};
+>>>  
+>>> +use crate::devinit;
+>>>  use crate::driver::Bar0;
+>>>  use crate::firmware::Firmware;
+>>>  use crate::regs;
+>>> @@ -168,6 +169,10 @@ pub(crate) fn new(
+>>>              spec.revision
+>>>          );
+>>>  
+>>> +        // We must wait for GFW_BOOT completion before doing any significant setup on the GPU.
+>>> +        devinit::wait_gfw_boot_completion(&bar)
+>>> +            .inspect_err(|_| pr_err!("GFW boot did not complete"))?;
+>>> +
+>>>          Ok(pin_init!(Self { spec, bar, fw }))
+>>>      }
+>>>  }
+>>> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
+>>> index 0eecd612e34efc046dad852e6239de6ffa5fdd62..878161e060f54da7738c656f6098936a62dcaa93 100644
+>>> --- a/drivers/gpu/nova-core/nova_core.rs
+>>> +++ b/drivers/gpu/nova-core/nova_core.rs
+>>> @@ -20,6 +20,7 @@ macro_rules! with_bar {
+>>>      }
+>>>  }
+>>>  
+>>> +mod devinit;
+>>>  mod driver;
+>>>  mod firmware;
+>>>  mod gpu;
+>>> diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+>>> index e315a3011660df7f18c0a3e0582b5845545b36e2..fd7096f0ddd4af90114dd1119d9715d2cd3aa2ac 100644
+>>> --- a/drivers/gpu/nova-core/regs.rs
+>>> +++ b/drivers/gpu/nova-core/regs.rs
+>>> @@ -13,3 +13,14 @@
+>>>      7:4     major_rev => as u8, "major revision of the chip";
+>>>      28:20   chipset => try_into Chipset, "chipset model"
+>>>  );
+>>> +
+>>> +/* GC6 */
+>>> +
+>>> +register!(Pgc6AonSecureScratchGroup05PrivLevelMask@0x00118128;
+>>> +    0:0     read_protection_level0_enabled => as_bit bool
+>>> +);
+>>> +
+>>> +/* TODO: This is an array of registers. */
+>>> +register!(Pgc6AonSecureScratchGroup05@0x00118234;
+>>> +    31:0    value => as u32
+>>> +);
+>>
+>> Please also document new register definitions.
+> 
+> Thankfully Joel's documentation patches take care of this!
+> 
+Yes, my doc tree (now 8 patches) includes documenting these! Considering the
+register renaming stuff it may conflict, but I'll fix that up. :)
 
 thanks,
 
  - Joel
 
-> ---
->  drivers/gpu/nova-core/gpu.rs   |   2 +-
->  drivers/gpu/nova-core/vbios.rs | 135 +++++++++++++++++------------------------
->  2 files changed, 57 insertions(+), 80 deletions(-)
-> 
-> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-> index 72d40b0124f0c1a2a381484172c289af523511df..33082ac45873ee4cf91d7d8af499efa984af4ba9 100644
-> --- a/drivers/gpu/nova-core/gpu.rs
-> +++ b/drivers/gpu/nova-core/gpu.rs
-> @@ -298,7 +298,7 @@ pub(crate) fn new(
->          let fb_layout = FbLayout::new(spec.chipset, bar)?;
->          dev_dbg!(pdev.as_ref(), "{:#x?}\n", fb_layout);
->  
-> -        let bios = Vbios::new(pdev, bar)?;
-> +        let bios = Vbios::new(pdev.as_ref(), bar)?;
->  
->          Self::run_fwsec_frts(pdev.as_ref(), &gsp_falcon, bar, &bios, &fb_layout)?;
->  
-> diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-> index 5b5d9f38cbb3a6b1c374c1e0eee2509eb8d5660c..b5564b4d3e4758e77178aa403635e4780f0378cc 100644
-> --- a/drivers/gpu/nova-core/vbios.rs
-> +++ b/drivers/gpu/nova-core/vbios.rs
-> @@ -8,7 +8,6 @@
->  use core::convert::TryFrom;
->  use kernel::device;
->  use kernel::error::Result;
-> -use kernel::pci;
->  use kernel::prelude::*;
->  
->  /// The offset of the VBIOS ROM in the BAR0 space.
-> @@ -31,7 +30,7 @@
->  
->  /// Vbios Reader for constructing the VBIOS data.
->  struct VbiosIterator<'a> {
-> -    pdev: &'a pci::Device,
-> +    dev: &'a device::Device,
->      bar0: &'a Bar0,
->      /// VBIOS data vector: As BIOS images are scanned, they are added to this vector for reference
->      /// or copying into other data structures. It is the entire scanned contents of the VBIOS which
-> @@ -46,9 +45,9 @@ struct VbiosIterator<'a> {
->  }
->  
->  impl<'a> VbiosIterator<'a> {
-> -    fn new(pdev: &'a pci::Device, bar0: &'a Bar0) -> Result<Self> {
-> +    fn new(dev: &'a device::Device, bar0: &'a Bar0) -> Result<Self> {
->          Ok(Self {
-> -            pdev,
-> +            dev,
->              bar0,
->              data: KVec::new(),
->              current_offset: 0,
-> @@ -64,7 +63,7 @@ fn read_more(&mut self, len: usize) -> Result {
->          // Ensure length is a multiple of 4 for 32-bit reads
->          if len % core::mem::size_of::<u32>() != 0 {
->              dev_err!(
-> -                self.pdev.as_ref(),
-> +                self.dev,
->                  "VBIOS read length {} is not a multiple of 4\n",
->                  len
->              );
-> @@ -89,7 +88,7 @@ fn read_more(&mut self, len: usize) -> Result {
->      /// Read bytes at a specific offset, filling any gap.
->      fn read_more_at_offset(&mut self, offset: usize, len: usize) -> Result {
->          if offset > BIOS_MAX_SCAN_LEN {
-> -            dev_err!(self.pdev.as_ref(), "Error: exceeded BIOS scan limit.\n");
-> +            dev_err!(self.dev, "Error: exceeded BIOS scan limit.\n");
->              return Err(EINVAL);
->          }
->  
-> @@ -115,7 +114,7 @@ fn read_bios_image_at_offset(
->          if offset + len > data_len {
->              self.read_more_at_offset(offset, len).inspect_err(|e| {
->                  dev_err!(
-> -                    self.pdev.as_ref(),
-> +                    self.dev,
->                      "Failed to read more at offset {:#x}: {:?}\n",
->                      offset,
->                      e
-> @@ -123,9 +122,9 @@ fn read_bios_image_at_offset(
->              })?;
->          }
->  
-> -        BiosImage::new(self.pdev, &self.data[offset..offset + len]).inspect_err(|err| {
-> +        BiosImage::new(self.dev, &self.data[offset..offset + len]).inspect_err(|err| {
->              dev_err!(
-> -                self.pdev.as_ref(),
-> +                self.dev,
->                  "Failed to {} at offset {:#x}: {:?}\n",
->                  context,
->                  offset,
-> @@ -146,10 +145,7 @@ fn next(&mut self) -> Option<Self::Item> {
->          }
->  
->          if self.current_offset > BIOS_MAX_SCAN_LEN {
-> -            dev_err!(
-> -                self.pdev.as_ref(),
-> -                "Error: exceeded BIOS scan limit, stopping scan\n"
-> -            );
-> +            dev_err!(self.dev, "Error: exceeded BIOS scan limit, stopping scan\n");
->              return None;
->          }
->  
-> @@ -192,18 +188,18 @@ impl Vbios {
->      /// Probe for VBIOS extraction.
->      ///
->      /// Once the VBIOS object is built, `bar0` is not read for [`Vbios`] purposes anymore.
-> -    pub(crate) fn new(pdev: &pci::Device, bar0: &Bar0) -> Result<Vbios> {
-> +    pub(crate) fn new(dev: &device::Device, bar0: &Bar0) -> Result<Vbios> {
->          // Images to extract from iteration
->          let mut pci_at_image: Option<PciAtBiosImage> = None;
->          let mut first_fwsec_image: Option<FwSecBiosBuilder> = None;
->          let mut second_fwsec_image: Option<FwSecBiosBuilder> = None;
->  
->          // Parse all VBIOS images in the ROM
-> -        for image_result in VbiosIterator::new(pdev, bar0)? {
-> +        for image_result in VbiosIterator::new(dev, bar0)? {
->              let full_image = image_result?;
->  
->              dev_dbg!(
-> -                pdev.as_ref(),
-> +                dev,
->                  "Found BIOS image: size: {:#x}, type: {}, last: {}\n",
->                  full_image.image_size_bytes(),
->                  full_image.image_type_str(),
-> @@ -234,14 +230,14 @@ pub(crate) fn new(pdev: &pci::Device, bar0: &Bar0) -> Result<Vbios> {
->              (second_fwsec_image, first_fwsec_image, pci_at_image)
->          {
->              second
-> -                .setup_falcon_data(pdev, &pci_at, &first)
-> -                .inspect_err(|e| dev_err!(pdev.as_ref(), "Falcon data setup failed: {:?}\n", e))?;
-> +                .setup_falcon_data(dev, &pci_at, &first)
-> +                .inspect_err(|e| dev_err!(dev, "Falcon data setup failed: {:?}\n", e))?;
->              Ok(Vbios {
-> -                fwsec_image: second.build(pdev)?,
-> +                fwsec_image: second.build(dev)?,
->              })
->          } else {
->              dev_err!(
-> -                pdev.as_ref(),
-> +                dev,
->                  "Missing required images for falcon data setup, skipping\n"
->              );
->              Err(EINVAL)
-> @@ -284,9 +280,9 @@ struct PcirStruct {
->  }
->  
->  impl PcirStruct {
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-> +    fn new(dev: &device::Device, data: &[u8]) -> Result<Self> {
->          if data.len() < core::mem::size_of::<PcirStruct>() {
-> -            dev_err!(pdev.as_ref(), "Not enough data for PcirStruct\n");
-> +            dev_err!(dev, "Not enough data for PcirStruct\n");
->              return Err(EINVAL);
->          }
->  
-> @@ -295,11 +291,7 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->  
->          // Signature should be "PCIR" (0x52494350) or "NPDS" (0x5344504e).
->          if &signature != b"PCIR" && &signature != b"NPDS" {
-> -            dev_err!(
-> -                pdev.as_ref(),
-> -                "Invalid signature for PcirStruct: {:?}\n",
-> -                signature
-> -            );
-> +            dev_err!(dev, "Invalid signature for PcirStruct: {:?}\n", signature);
->              return Err(EINVAL);
->          }
->  
-> @@ -308,7 +300,7 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->  
->          let image_len = u16::from_le_bytes([data[16], data[17]]);
->          if image_len == 0 {
-> -            dev_err!(pdev.as_ref(), "Invalid image length: 0\n");
-> +            dev_err!(dev, "Invalid image length: 0\n");
->              return Err(EINVAL);
->          }
->  
-> @@ -467,7 +459,7 @@ struct PciRomHeader {
->  }
->  
->  impl PciRomHeader {
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-> +    fn new(dev: &device::Device, data: &[u8]) -> Result<Self> {
->          if data.len() < 26 {
->              // Need at least 26 bytes to read pciDataStrucPtr and sizeOfBlock.
->              return Err(EINVAL);
-> @@ -479,7 +471,7 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->          match signature {
->              0xAA55 | 0xBB77 | 0x4E56 => {}
->              _ => {
-> -                dev_err!(pdev.as_ref(), "ROM signature unknown {:#x}\n", signature);
-> +                dev_err!(dev, "ROM signature unknown {:#x}\n", signature);
->                  return Err(EINVAL);
->              }
->          }
-> @@ -538,9 +530,9 @@ struct NpdeStruct {
->  }
->  
->  impl NpdeStruct {
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Option<Self> {
-> +    fn new(dev: &device::Device, data: &[u8]) -> Option<Self> {
->          if data.len() < core::mem::size_of::<Self>() {
-> -            dev_dbg!(pdev.as_ref(), "Not enough data for NpdeStruct\n");
-> +            dev_dbg!(dev, "Not enough data for NpdeStruct\n");
->              return None;
->          }
->  
-> @@ -549,17 +541,13 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Option<Self> {
->  
->          // Signature should be "NPDE" (0x4544504E).
->          if &signature != b"NPDE" {
-> -            dev_dbg!(
-> -                pdev.as_ref(),
-> -                "Invalid signature for NpdeStruct: {:?}\n",
-> -                signature
-> -            );
-> +            dev_dbg!(dev, "Invalid signature for NpdeStruct: {:?}\n", signature);
->              return None;
->          }
->  
->          let subimage_len = u16::from_le_bytes([data[8], data[9]]);
->          if subimage_len == 0 {
-> -            dev_dbg!(pdev.as_ref(), "Invalid subimage length: 0\n");
-> +            dev_dbg!(dev, "Invalid subimage length: 0\n");
->              return None;
->          }
->  
-> @@ -584,7 +572,7 @@ fn image_size_bytes(&self) -> usize {
->  
->      /// Try to find NPDE in the data, the NPDE is right after the PCIR.
->      fn find_in_data(
-> -        pdev: &pci::Device,
-> +        dev: &device::Device,
->          data: &[u8],
->          rom_header: &PciRomHeader,
->          pcir: &PcirStruct,
-> @@ -596,12 +584,12 @@ fn find_in_data(
->  
->          // Check if we have enough data
->          if npde_start + core::mem::size_of::<Self>() > data.len() {
-> -            dev_dbg!(pdev.as_ref(), "Not enough data for NPDE\n");
-> +            dev_dbg!(dev, "Not enough data for NPDE\n");
->              return None;
->          }
->  
->          // Try to create NPDE from the data
-> -        NpdeStruct::new(pdev, &data[npde_start..])
-> +        NpdeStruct::new(dev, &data[npde_start..])
->      }
->  }
->  
-> @@ -669,10 +657,10 @@ fn image_size_bytes(&self) -> usize {
->  
->      /// Create a [`BiosImageBase`] from a byte slice and convert it to a [`BiosImage`] which
->      /// triggers the constructor of the specific BiosImage enum variant.
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-> -        let base = BiosImageBase::new(pdev, data)?;
-> +    fn new(dev: &device::Device, data: &[u8]) -> Result<Self> {
-> +        let base = BiosImageBase::new(dev, data)?;
->          let image = base.into_image().inspect_err(|e| {
-> -            dev_err!(pdev.as_ref(), "Failed to create BiosImage: {:?}\n", e);
-> +            dev_err!(dev, "Failed to create BiosImage: {:?}\n", e);
->          })?;
->  
->          Ok(image)
-> @@ -773,16 +761,16 @@ fn into_image(self) -> Result<BiosImage> {
->      }
->  
->      /// Creates a new BiosImageBase from raw byte data.
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-> +    fn new(dev: &device::Device, data: &[u8]) -> Result<Self> {
->          // Ensure we have enough data for the ROM header.
->          if data.len() < 26 {
-> -            dev_err!(pdev.as_ref(), "Not enough data for ROM header\n");
-> +            dev_err!(dev, "Not enough data for ROM header\n");
->              return Err(EINVAL);
->          }
->  
->          // Parse the ROM header.
-> -        let rom_header = PciRomHeader::new(pdev, &data[0..26])
-> -            .inspect_err(|e| dev_err!(pdev.as_ref(), "Failed to create PciRomHeader: {:?}\n", e))?;
-> +        let rom_header = PciRomHeader::new(dev, &data[0..26])
-> +            .inspect_err(|e| dev_err!(dev, "Failed to create PciRomHeader: {:?}\n", e))?;
->  
->          // Get the PCI Data Structure using the pointer from the ROM header.
->          let pcir_offset = rom_header.pci_data_struct_offset as usize;
-> @@ -791,22 +779,22 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->              .ok_or(EINVAL)
->              .inspect_err(|_| {
->                  dev_err!(
-> -                    pdev.as_ref(),
-> +                    dev,
->                      "PCIR offset {:#x} out of bounds (data length: {})\n",
->                      pcir_offset,
->                      data.len()
->                  );
->                  dev_err!(
-> -                    pdev.as_ref(),
-> +                    dev,
->                      "Consider reading more data for construction of BiosImage\n"
->                  );
->              })?;
->  
-> -        let pcir = PcirStruct::new(pdev, pcir_data)
-> -            .inspect_err(|e| dev_err!(pdev.as_ref(), "Failed to create PcirStruct: {:?}\n", e))?;
-> +        let pcir = PcirStruct::new(dev, pcir_data)
-> +            .inspect_err(|e| dev_err!(dev, "Failed to create PcirStruct: {:?}\n", e))?;
->  
->          // Look for NPDE structure if this is not an NBSI image (type != 0x70).
-> -        let npde = NpdeStruct::find_in_data(pdev, data, &rom_header, &pcir);
-> +        let npde = NpdeStruct::find_in_data(dev, data, &rom_header, &pcir);
->  
->          // Create a copy of the data.
->          let mut data_copy = KVec::new();
-> @@ -848,7 +836,7 @@ fn get_bit_token(&self, token_id: u8) -> Result<BitToken> {
->      ///
->      /// This is just a 4 byte structure that contains a pointer to the Falcon data in the FWSEC
->      /// image.
-> -    fn falcon_data_ptr(&self, pdev: &pci::Device) -> Result<u32> {
-> +    fn falcon_data_ptr(&self, dev: &device::Device) -> Result<u32> {
->          let token = self.get_bit_token(BIT_TOKEN_ID_FALCON_DATA)?;
->  
->          // Make sure we don't go out of bounds
-> @@ -859,14 +847,14 @@ fn falcon_data_ptr(&self, pdev: &pci::Device) -> Result<u32> {
->          // read the 4 bytes at the offset specified in the token
->          let offset = token.data_offset as usize;
->          let bytes: [u8; 4] = self.base.data[offset..offset + 4].try_into().map_err(|_| {
-> -            dev_err!(pdev.as_ref(), "Failed to convert data slice to array");
-> +            dev_err!(dev, "Failed to convert data slice to array");
->              EINVAL
->          })?;
->  
->          let data_ptr = u32::from_le_bytes(bytes);
->  
->          if (data_ptr as usize) < self.base.data.len() {
-> -            dev_err!(pdev.as_ref(), "Falcon data pointer out of bounds\n");
-> +            dev_err!(dev, "Falcon data pointer out of bounds\n");
->              return Err(EINVAL);
->          }
->  
-> @@ -928,7 +916,7 @@ struct PmuLookupTable {
->  }
->  
->  impl PmuLookupTable {
-> -    fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-> +    fn new(dev: &device::Device, data: &[u8]) -> Result<Self> {
->          if data.len() < 4 {
->              return Err(EINVAL);
->          }
-> @@ -940,10 +928,7 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->          let required_bytes = header_len + (entry_count * entry_len);
->  
->          if data.len() < required_bytes {
-> -            dev_err!(
-> -                pdev.as_ref(),
-> -                "PmuLookupTable data length less than required\n"
-> -            );
-> +            dev_err!(dev, "PmuLookupTable data length less than required\n");
->              return Err(EINVAL);
->          }
->  
-> @@ -956,11 +941,7 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
->  
->          // Debug logging of entries (dumps the table data to dmesg)
->          for i in (header_len..required_bytes).step_by(entry_len) {
-> -            dev_dbg!(
-> -                pdev.as_ref(),
-> -                "PMU entry: {:02x?}\n",
-> -                &data[i..][..entry_len]
-> -            );
-> +            dev_dbg!(dev, "PMU entry: {:02x?}\n", &data[i..][..entry_len]);
->          }
->  
->          Ok(PmuLookupTable {
-> @@ -997,11 +978,11 @@ fn find_entry_by_type(&self, entry_type: u8) -> Result<PmuLookupTableEntry> {
->  impl FwSecBiosBuilder {
->      fn setup_falcon_data(
->          &mut self,
-> -        pdev: &pci::Device,
-> +        dev: &device::Device,
->          pci_at_image: &PciAtBiosImage,
->          first_fwsec: &FwSecBiosBuilder,
->      ) -> Result {
-> -        let mut offset = pci_at_image.falcon_data_ptr(pdev)? as usize;
-> +        let mut offset = pci_at_image.falcon_data_ptr(dev)? as usize;
->          let mut pmu_in_first_fwsec = false;
->  
->          // The falcon data pointer assumes that the PciAt and FWSEC images
-> @@ -1025,9 +1006,9 @@ fn setup_falcon_data(
->  
->          if pmu_in_first_fwsec {
->              self.pmu_lookup_table =
-> -                Some(PmuLookupTable::new(pdev, &first_fwsec.base.data[offset..])?);
-> +                Some(PmuLookupTable::new(dev, &first_fwsec.base.data[offset..])?);
->          } else {
-> -            self.pmu_lookup_table = Some(PmuLookupTable::new(pdev, &self.base.data[offset..])?);
-> +            self.pmu_lookup_table = Some(PmuLookupTable::new(dev, &self.base.data[offset..])?);
->          }
->  
->          match self
-> @@ -1040,18 +1021,14 @@ fn setup_falcon_data(
->                  let mut ucode_offset = entry.data as usize;
->                  ucode_offset -= pci_at_image.base.data.len();
->                  if ucode_offset < first_fwsec.base.data.len() {
-> -                    dev_err!(pdev.as_ref(), "Falcon Ucode offset not in second Fwsec.\n");
-> +                    dev_err!(dev, "Falcon Ucode offset not in second Fwsec.\n");
->                      return Err(EINVAL);
->                  }
->                  ucode_offset -= first_fwsec.base.data.len();
->                  self.falcon_ucode_offset = Some(ucode_offset);
->              }
->              Err(e) => {
-> -                dev_err!(
-> -                    pdev.as_ref(),
-> -                    "PmuLookupTableEntry not found, error: {:?}\n",
-> -                    e
-> -                );
-> +                dev_err!(dev, "PmuLookupTableEntry not found, error: {:?}\n", e);
->                  return Err(EINVAL);
->              }
->          }
-> @@ -1059,7 +1036,7 @@ fn setup_falcon_data(
->      }
->  
->      /// Build the final FwSecBiosImage from this builder
-> -    fn build(self, pdev: &pci::Device) -> Result<FwSecBiosImage> {
-> +    fn build(self, dev: &device::Device) -> Result<FwSecBiosImage> {
->          let ret = FwSecBiosImage {
->              base: self.base,
->              falcon_ucode_offset: self.falcon_ucode_offset.ok_or(EINVAL)?,
-> @@ -1067,8 +1044,8 @@ fn build(self, pdev: &pci::Device) -> Result<FwSecBiosImage> {
->  
->          if cfg!(debug_assertions) {
->              // Print the desc header for debugging
-> -            let desc = ret.header(pdev.as_ref())?;
-> -            dev_dbg!(pdev.as_ref(), "PmuLookupTableEntry desc: {:#?}\n", desc);
-> +            let desc = ret.header(dev)?;
-> +            dev_dbg!(dev, "PmuLookupTableEntry desc: {:#?}\n", desc);
->          }
->  
->          Ok(ret)
-> 
-> -- 
-> 2.50.1
-> 
+
