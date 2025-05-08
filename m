@@ -4,55 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 248CFD5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF613D5B15A
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 536A210EAB1;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA3A10EA1E;
+	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="jBA31kvc";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="KwtsKkP9";
 	dkim-atps=neutral
-X-Greylist: delayed 312 seconds by postgrey-1.36 at gabe;
- Mon, 27 Oct 2025 13:05:40 UTC
 Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC48510E485
- for <nouveau@lists.freedesktop.org>; Mon, 27 Oct 2025 13:05:40 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A830C10E38A;
+ Thu,  8 May 2025 11:03:41 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cwDBc5hb1z9str;
- Mon, 27 Oct 2025 14:00:24 +0100 (CET)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZtTlC0xVKz9tCf;
+ Thu,  8 May 2025 13:03:35 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1761570024; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1746702215; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=5788PWM/VBgk1tGTTY2kWxTv5vFa3dzGCv9B4Lw0uE0=;
- b=jBA31kvc5mDtFmdGEQ/0gMKqXWZI5B3jOZpTnCIzzdlnOK2i9w4bYVF4vCiCdoP/FLcmzA
- kLdB03QzkgKDb2rJt+PeEoiffmkTcsbXaMz7Y1pAwiDW+pHzO9A3g1hUrGva46WUhn7yzK
- lZFdfqpLxTyD4XcJ+hqCNkpN8DkmNwdjaBoy/Pzu1ks94NZJKPkkuhltGUdYAsNwDbuL0t
- M4ZxgcqMme5UasmeV1iF0784ST9VdAiMAhEfyHR1uS31C2/Gvx0HrNteRUpqdaQ4f5kOC4
- hiUgqT8oJeuFzT5HnGwo4b5QQVeHJmj6LRx9CZBByYdcVSeqG4iH558CPdOxRw==
-Message-ID: <5b22257b90d5df1c4a6b02f9472f11588208c4b5.camel@mailbox.org>
-Subject: Re: [PATCH] drm/nouveau: Fix race in nouveau_sched_fini()
+ bh=5EXQH6BCiFQKSZOW18WF484owkA/QLDEDighoVoI5Q0=;
+ b=KwtsKkP9JVrcD9N5t2Zm4i6iI26NVgoXDSIJtbDlpQNMDeTwFL7lJF+e76UXBeT2V5iZ1+
+ lWRpj7iXkv1Aj7dCZSvGXLcNRJ5ISVr+Q7+AeGUfcYLT5aUYaVUQ22ebj57uZmf0e76HKm
+ S1q4ORcWUZkuJ2IlJqHVQ8vqACQmMaB6jORjS2Y8X/+yx5d4SVU1RuOc4Vyhn3igKtS47f
+ JJwNsbJJ0LRV/FNQFvKrWYpgubqWLYTD2Lf6tHhGRacRHarKK5yfqI744zaIVltJCFzK4J
+ gDA/L4ZEvPpgCtcSvjtsH4GapNPdqQJ42O0ygzBcxB4w+BPGul5LYJhb5nFJlg==
+Message-ID: <894cf4cdb7e14b2a21dcf87bfeac4776cb695395.camel@mailbox.org>
+Subject: Re: [PATCH v2 6/6] drm/sched: Port unit tests to new cleanup design
 From: Philipp Stanner <phasta@mailbox.org>
-To: Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>
+To: Philipp Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
+ Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Tvrtko
+ Ursulin <tvrtko.ursulin@igalia.com>
 Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Date: Mon, 27 Oct 2025 14:00:15 +0100
-In-Reply-To: <25c97722-e05d-467c-908e-baa31e636a44@kernel.org>
-References: <20251024161221.196155-2-phasta@kernel.org>
- <25c97722-e05d-467c-908e-baa31e636a44@kernel.org>
+ linux-kernel@vger.kernel.org
+Date: Thu, 08 May 2025 13:03:29 +0200
+In-Reply-To: <20250424095535.26119-8-phasta@kernel.org>
+References: <20250424095535.26119-2-phasta@kernel.org>
+ <20250424095535.26119-8-phasta@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-META: t19ydhdbzc3pnxf3frk84k717hbxabab
-X-MBO-RS-ID: ad959cffc22c1f1fbba
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-MBO-RS-META: 8pzanuw3tqj7ojt1ehyhx681kpp7xrro
+X-MBO-RS-ID: 987543049f878c8909b
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,23 +72,92 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, 2025-10-24 at 18:17 +0200, Danilo Krummrich wrote:
-> On 10/24/25 6:12 PM, Philipp Stanner wrote:
-> > nouveau_sched_fini() uses a memory barrier before wait_event().
-> > wait_event(), however, is a macro which expands to a loop which might
-> > check the passed condition several times. The barrier would only take
-> > effect for the first check.
-> >=20
-> > Replace the barrier with a function which takes the spinlock.
-> >=20
-> > Cc: stable@vger.kernel.org=C2=A0# v6.8+
-> > Fixes: 5f03a507b29e ("drm/nouveau: implement 1:1 scheduler - entity rel=
-ationship")
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+On Thu, 2025-04-24 at 11:55 +0200, Philipp Stanner wrote:
+> The unit tests so far took care manually of avoiding memory leaks
+> that
+> might have occurred when calling drm_sched_fini().
 >=20
-> Acked-by: Danilo Krummrich <dakr@kernel.org>
+> The scheduler now takes care by itself of avoiding memory leaks if
+> the
+> driver provides the callback
+> drm_sched_backend_ops.kill_fence_context().
+>=20
+> Implement that callback for the unit tests. Remove the manual cleanup
+> code.
 
-Applied to drm-misc-fixes
-
+@Tvrtko: On a scale from 1-10, how much do you love this patch? :)
 
 P.
+
+>=20
+> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> ---
+> =C2=A0.../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 | 34 +++++++++++=
++-----
+> --
+> =C2=A01 file changed, 21 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> index f999c8859cf7..a72d26ca8262 100644
+> --- a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> +++ b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> @@ -228,10 +228,30 @@ static void mock_sched_free_job(struct
+> drm_sched_job *sched_job)
+> =C2=A0	/* Mock job itself is freed by the kunit framework. */
+> =C2=A0}
+> =C2=A0
+> +static void mock_sched_fence_context_kill(struct drm_gpu_scheduler
+> *gpu_sched)
+> +{
+> +	struct drm_mock_scheduler *sched =3D
+> drm_sched_to_mock_sched(gpu_sched);
+> +	struct drm_mock_sched_job *job;
+> +	unsigned long flags;
+> +
+> +	spin_lock_irqsave(&sched->lock, flags);
+> +	list_for_each_entry(job, &sched->job_list, link) {
+> +		spin_lock(&job->lock);
+> +		if (!dma_fence_is_signaled_locked(&job->hw_fence)) {
+> +			dma_fence_set_error(&job->hw_fence, -
+> ECANCELED);
+> +			dma_fence_signal_locked(&job->hw_fence);
+> +		}
+> +		complete(&job->done);
+> +		spin_unlock(&job->lock);
+> +	}
+> +	spin_unlock_irqrestore(&sched->lock, flags);
+> +}
+> +
+> =C2=A0static const struct drm_sched_backend_ops drm_mock_scheduler_ops =
+=3D {
+> =C2=A0	.run_job =3D mock_sched_run_job,
+> =C2=A0	.timedout_job =3D mock_sched_timedout_job,
+> -	.free_job =3D mock_sched_free_job
+> +	.free_job =3D mock_sched_free_job,
+> +	.kill_fence_context =3D mock_sched_fence_context_kill,
+> =C2=A0};
+> =C2=A0
+> =C2=A0/**
+> @@ -300,18 +320,6 @@ void drm_mock_sched_fini(struct
+> drm_mock_scheduler *sched)
+> =C2=A0		drm_mock_sched_job_complete(job);
+> =C2=A0	spin_unlock_irqrestore(&sched->lock, flags);
+> =C2=A0
+> -	/*
+> -	 * Free completed jobs and jobs not yet processed by the DRM
+> scheduler
+> -	 * free worker.
+> -	 */
+> -	spin_lock_irqsave(&sched->lock, flags);
+> -	list_for_each_entry_safe(job, next, &sched->done_list, link)
+> -		list_move_tail(&job->link, &list);
+> -	spin_unlock_irqrestore(&sched->lock, flags);
+> -
+> -	list_for_each_entry_safe(job, next, &list, link)
+> -		mock_sched_free_job(&job->base);
+> -
+> =C2=A0	drm_sched_fini(&sched->base);
+> =C2=A0}
+> =C2=A0
+
