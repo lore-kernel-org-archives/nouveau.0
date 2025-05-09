@@ -4,80 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C2AD0EE2A
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A55C7D0EE1C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAAD410E475;
-	Tue, 25 Nov 2025 20:47:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03DE410E481;
+	Tue, 25 Nov 2025 20:47:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGCi073F";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="fbAaav7k";
 	dkim-atps=neutral
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
- [209.85.167.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81DE810E69F
- for <nouveau@lists.freedesktop.org>; Wed, 22 Oct 2025 04:13:07 +0000 (UTC)
-Received: by mail-lf1-f42.google.com with SMTP id
- 2adb3069b0e04-58affa66f2bso7495258e87.1
- for <nouveau@lists.freedesktop.org>; Tue, 21 Oct 2025 21:13:07 -0700 (PDT)
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com
+ [209.85.161.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 291A310E262;
+ Fri,  9 May 2025 03:16:45 +0000 (UTC)
+Received: by mail-oo1-f44.google.com with SMTP id
+ 006d021491bc7-604ad6c4d3dso634651eaf.0; 
+ Thu, 08 May 2025 20:16:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761106386; x=1761711186; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=HTarvr5NQrK1UQUHCo4kav4SXNLG6y74vPoWa3KRT+Q=;
- b=PGCi073F10KQkXcS5OfBXAijqviY0QpTEmjwbpaubuKUWnhbMSo7q0Q/H12zte5ttL
- EpwF8cj4vvjWAeJxRejnOdJ5qD4M7fHK234LKlHX6cK2rhs+kv8rkqfbT087/Myy5XX5
- y5g1DEhiF/0h0OPjeHRQnzSUSFmPfumsYyvUzpOrhtloHzZgJATc+W+u3UQboU9sGoGC
- upZdki9vV1GAKgiiWWxM+V8vUSqy/INA66QSqujf8KVwrRMp2ChjMGfhmn3aSSwGRIux
- +QrQ9BDMsBIpnJETNA4h9SbQDxoD9mXx3+wJ9mFSZYJXlK6m2RqCBtb/16gtLoojpxMC
- /Lpg==
+ d=gmail.com; s=20230601; t=1746760604; x=1747365404; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=DJ+SSE57+NVD+voAZIpxys9eSbuHtPfvcAY3huVe52E=;
+ b=fbAaav7kKlAKOjhrjsQMrwrU+xfEoXw+/kSygjZvgSfj7z5m2i1q6XBb6L3aRteMw4
+ Bp/zpxeVjungnqdniezdazNRhTuqycNn24e2kQmLi76NtM9xHS96xzovjgXuFpG0IpBc
+ Ez49OXne4VEIO2ZLiZpaZcD5jBIUbog4LUWAOncm7W1y4cB29+n8X7YYGMGGCU3QZDoq
+ Z5RarlgqXWIj+OgXVEfysbPqMGlkARETjGQWPmZ0nz7ruf/7EYDlTpOtC6z2aejN49Ab
+ JW4iRqT74lk7xG7SsMaQPZMy7xtatKPYriH9V1Zr8CJlcBvTjixmmn1N2kYdQdVS92qO
+ gMcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761106386; x=1761711186;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=HTarvr5NQrK1UQUHCo4kav4SXNLG6y74vPoWa3KRT+Q=;
- b=Y5eJgsR7U29MjokYpdZJD9NbzLCGPPP02dxjpUVGffJpWlc7UdzpOvE0M9+v6znDXg
- iPI5lSpp+JRU0t+Bh8v7IsTP5JIPlmtdmQsiP0C4FgAyDWczepmq/GpQ8+slHnbLPhXe
- UnOsLWQLp/R7aFxdID5mxOrI/x9tL/od2TsedwWM/bTXlIK6DBrxq4XV8RhMM0ESnmPx
- J2/Trw7aDuFwlO0KDur1qu7yP9G5viWCh9CZU6kedQGr2uzLXfz3GwO2ErfSRIdJGNBT
- zcAOd8rlh4ksuwnl7DWmVoTsewRljnfFdNoauGwGLpzQ03I1QR6GSMIZJhQZqtYYp10I
- 906w==
+ d=1e100.net; s=20230601; t=1746760604; x=1747365404;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=DJ+SSE57+NVD+voAZIpxys9eSbuHtPfvcAY3huVe52E=;
+ b=e772wlnrE+gU8x9jg1smIm67ilH8Wheo05fECmvjuMTS85yJDd2zykMal3AyyCAHK4
+ eUyLa7yMYq5sVLXhHmZBjAz/V39WF14JkMcYGekwyj8oSahBgMnP7AIi+Ezr62K0mqK4
+ 4WOrQwdNlFLy9AO64qPwTUgcQYwWXE/7GIRKMTApxEjx4UNH4qdNkSvTWxW1gSYp9Jv9
+ zDGMZEtbDY3BXHjIiYB67RcL565S3cE5mrwznjnaVprMeKU2yAn08ai3lnQJJFFjo+1w
+ B0GBlzVWifdwNp0BrFZ6LRHQICaf35Q8yp1GBW/9YRaavjdA31Bdbzh8msiw8n/FPdgW
+ 46yA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV3gSPg2S04lWjXr/tZ7pjnY/VMtA7REPdPg9P2vqR8BoA3XhIV45AC1+ES+eY7bS4/2dy2k8/t@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzaVwIpvs/wp5qLtPtkn9ZxNIvABWPR3v1MUvyQJPb3g1B9v27E
- ZFvNoXc9uX3Wx0aRH6nw+tXQ7M6ONi6XslZ7QNCnAZ0EisvGQy7SxwSnJZTELnijrX6+iw==
-X-Gm-Gg: ASbGnctPQ2lqCmtDag1600wjfTHrJ9DH1aw6arE2e/+qhFZEqnqipHlk0BXRrmIG1Q8
- Yz8StwnDN+7b1Bo9IRxqML19PNjSJVtCeQU80rD1HG2rYORehsHVL+WyTUpWrTuTurnfcZSWCfT
- OCujceSaCfMljt4nINMkcvkt/COK+71sg6J87Xvahe11EH7+Ig27J9z/W7LVuI0S6jBUbmVNLqw
- axKW20/bqagkwrSMfvB80CzNJdo3yIIgr08xUogT2XGg7s+5UlVxeIa6X4aZ1e1fL6HpMsm4w6Y
- T3pKVYtcZblGw6jd7p99o5nEOjhLWkcgk6+3E7DDzDG/NMYomBrRBaaYP4tBpPMU5CpT9rbnHoE
- oaRq1Z6ZJ5vBy/5xXtTpmcFC0AzVD3QeWFm1kaBwnggikq8GmeF6nWNpyPMYWh9DbgLI2znvPIa
- BRyfbeXmHieVnGGZUjOmZL48eh6ifVNz2Ra+qP6FFl9pcpCiHTecOIZvzG8O85T1/ginoLHH80X
- kjHrAzd
-X-Google-Smtp-Source: AGHT+IHY7I4DBmj7a1FpDVM7msh9gcYm7KPVmZxtgTaCyBA4vmSmAHD2ToTDDsFBgGtcjxwcP6lO+w==
-X-Received: by 2002:a05:6512:220f:b0:567:ef90:f519 with SMTP id
- 2adb3069b0e04-591d850d08fmr6278217e87.12.1761106385519; 
- Tue, 21 Oct 2025 21:13:05 -0700 (PDT)
-Received: from localhost.localdomain
- (broadband-109-173-93-221.ip.moscow.rt.ru. [109.173.93.221])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-591deeaf6e2sm4252192e87.32.2025.10.21.21.13.04
+ AJvYcCWpMKtiVK17sk7vlO1KFHoAlpbOTFplr/NF8V/Vp+lNTtCHemVK/cv+v80qeTm/J/NIl/QAPkSnloM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxn0LsY55/Xd6808QQ7jmfxUcL104w973SnNdWAMR3oGJaUzryG
+ lcnzhgFZh10iz5z2DCmYrTa2sDegyeDrClPfZtC4cqPUSajbrlpf
+X-Gm-Gg: ASbGncsDyLko9o9UibOQUEKVczREoubmmhL7FZSc6wF4wI8wvNRt2B9fAg6x5ZkXPwF
+ 3xYXcQzUzZjTri3ACgPYOasNJkB+i9YKZRT8CocpwOcaOe+g5NWvdre0ty9AXztp9ZILXB7grwx
+ hj/bghFc/L7467FNw4UYooFH2iCXUBfv9G6QrL7J+Qa3goh5igKRYoQAsGAHn89wP5YDn3Ivw7e
+ c2AcUXUe8SNqHCbK9IyDgLKufaxiwRbCMo0y76anv/CoXWGCIJ/G07bdtvU7ACW723e1Ohj62oN
+ 1ddNmJmVGtZzuoP6BiTPZej2pxZRhPRdHh5ucrxM5LXg2KJV/2b67oXa7uADJDRWCbI0lOUtDgR
+ ktb5idsFw1D7u
+X-Google-Smtp-Source: AGHT+IGpMx7dY3dkHvqr4awICZ7vr0q2bv50WztDT96Nqcfn11nY3aHVKib+jqiYd+/U5X2LVifHrA==
+X-Received: by 2002:a4a:ec44:0:b0:606:293f:f37e with SMTP id
+ 006d021491bc7-6084c0ff314mr1382389eaf.6.1746760604235; 
+ Thu, 08 May 2025 20:16:44 -0700 (PDT)
+Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
+ [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
+ 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.16.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Oct 2025 21:13:05 -0700 (PDT)
-From: Alexandr Sapozhnikov <alsp705@gmail.com>
-To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
- Daniel Vetter <daniel@ffwll.ch>
-Cc: Alexandr Sapozhnikov <alsp705@gmail.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org
-Subject: [PATCH] drm/nouveau: handle division by zero and overflow in
- nouveau_bo_fixup_align()
-Date: Wed, 22 Oct 2025 07:12:59 +0300
-Message-ID: <20251022041302.13-1-alsp705@gmail.com>
-X-Mailer: git-send-email 2.43.0
+ Thu, 08 May 2025 20:16:43 -0700 (PDT)
+From: Andrew Ballance <andrewjballance@gmail.com>
+To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
+ benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
+ bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
+ andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
+ andrewjballance@gmail.com, fujita.tomonori@gmail.com,
+ daniel.almeida@collabora.com
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-pci@vger.kernel.org
+Subject: [PATCH 06/11] io: move PIO_OFFSET to linux/io.h
+Date: Thu,  8 May 2025 22:15:19 -0500
+Message-ID: <20250509031524.2604087-7-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250509031524.2604087-1-andrewjballance@gmail.com>
+References: <20250509031524.2604087-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:23 +0000
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,38 +98,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The expression 64 * nvbo->mode can evaluate to 0 when 
-nvbo->mode = U32_MAX/64, which results in division by zero 
-in the do_div() function. A value greater than U32_MAX/64 
-causes a u32 overflow, and the division result may be 
-incorrect. The nvbo->mode value depends on the data 
-passed from the user via ioctl. Generally, the kernel 
-should distrust userspace data (an attacker could operate 
-from there, and there's no guarantee that mesa and similar 
-software are bug-free) and validate it to avoid crashing.
+From: Fiona Behrens <me@kloenk.dev>
 
-Found by Linux Verification Center (linuxtesting.org) with svace.
+Move the non arch specific PIO size to linux/io.h.
 
-Fixes: a0af9add499c ("drm/nouveau: Make the MM aware of pre-G80 tiling.")
+This allows rust to access `PIO_OFFSET`, `PIO_MASK` and
+`PIO_RESERVED`. This is required to implement `IO_COND` in rust.
 
-Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
+Signed-off-by: Fiona Behrens <me@kloenk.dev>
+Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/linux/io.h | 13 +++++++++++++
+ lib/iomap.c        | 13 -------------
+ 2 files changed, 13 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 7daa12eec01b..afe4e73b6190 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -168,7 +168,7 @@ nouveau_bo_fixup_align(struct nouveau_bo *nvbo, int *align, u64 *size)
- 	struct nvif_device *device = &drm->client.device;
+diff --git a/include/linux/io.h b/include/linux/io.h
+index 6a6bc4d46d0a..df032061544a 100644
+--- a/include/linux/io.h
++++ b/include/linux/io.h
+@@ -12,6 +12,19 @@
+ #include <asm/io.h>
+ #include <asm/page.h>
  
- 	if (device->info.family < NV_DEVICE_INFO_V0_TESLA) {
--		if (nvbo->mode) {
-+		if (nvbo->mode && nvbo->mode < U32_MAX / 64) {
- 			if (device->info.chipset >= 0x40) {
- 				*align = 65536;
- 				*size = roundup_64(*size, 64 * nvbo->mode);
++#ifndef HAVE_ARCH_PIO_SIZE
++/*
++ * We encode the physical PIO addresses (0-0xffff) into the
++ * pointer by offsetting them with a constant (0x10000) and
++ * assuming that all the low addresses are always PIO. That means
++ * we can do some sanity checks on the low bits, and don't
++ * need to just take things for granted.
++ */
++#define PIO_OFFSET	0x10000UL
++#define PIO_MASK	0x0ffffUL
++#define PIO_RESERVED	0x40000UL
++#endif
++
+ struct device;
+ 
+ #ifndef __iowrite32_copy
+diff --git a/lib/iomap.c b/lib/iomap.c
+index a65717cd86f7..e13cfe77c32f 100644
+--- a/lib/iomap.c
++++ b/lib/iomap.c
+@@ -24,19 +24,6 @@
+  * implementation and should do their own copy.
+  */
+ 
+-#ifndef HAVE_ARCH_PIO_SIZE
+-/*
+- * We encode the physical PIO addresses (0-0xffff) into the
+- * pointer by offsetting them with a constant (0x10000) and
+- * assuming that all the low addresses are always PIO. That means
+- * we can do some sanity checks on the low bits, and don't
+- * need to just take things for granted.
+- */
+-#define PIO_OFFSET	0x10000UL
+-#define PIO_MASK	0x0ffffUL
+-#define PIO_RESERVED	0x40000UL
+-#endif
+-
+ static void bad_io_access(unsigned long port, const char *access)
+ {
+ 	static int count = 10;
 -- 
-2.43.0
+2.49.0
 
