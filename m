@@ -4,86 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E640D0EE2A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43827D0EE2B
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEE7610E491;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99FE010E4D3;
 	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UERRK5Xu";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="M7ZLybk0";
 	dkim-atps=neutral
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
- [209.85.167.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8585910E269;
- Fri,  9 May 2025 03:17:01 +0000 (UTC)
-Received: by mail-oi1-f178.google.com with SMTP id
- 5614622812f47-3fb3f4bf97aso781098b6e.2; 
- Thu, 08 May 2025 20:17:01 -0700 (PDT)
+Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com
+ [209.85.160.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D930D10E066;
+ Tue, 13 May 2025 15:16:09 +0000 (UTC)
+Received: by mail-oa1-f45.google.com with SMTP id
+ 586e51a60fabf-2c12b7af278so4302240fac.0; 
+ Tue, 13 May 2025 08:16:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746760621; x=1747365421; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=hoqckDBCEduuhxuaJVPjKVAng30GrSpmzU1JLtBRF8I=;
- b=UERRK5XuefxmPMOH2T7ItgSdduPUXD95qZMl/PMg0rwBF8fo7xdUcJLGRWPeoJYxv3
- Thd3mjIVs3LxFJsYPxw372AU3DR7ybpwmlvbfwOh5b9DssF7wn38hpHsyMkPnEWRWXXz
- y3RpMUA5iMZ9yhJQAulOAF18zBt6OD+ngbJ0WjC5PVeB9GkG6JZFZZ+G+qKXNpttZVT6
- wyIXdT65fzegv5oqm8/uPbTyw0tCVs59umtr4luVmLbwKwCaSjFNH5XnNSNZrVLCNuj7
- lV+DrRYySgRjD2CD8u9aD600xDS1upF381rn8NK0a2vxMPiPbMeAA0/O//psmPVWbgK2
- 3mkg==
+ d=gmail.com; s=20230601; t=1747149369; x=1747754169; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=0uh/PTXJRbMcazwRaWv8Bo4RnC9VvZ9wH65449hEE1k=;
+ b=M7ZLybk0vtdzd8WNJj7MZLw3RPNg1+YNLPIhu4httNSv/+cPW3udQYukdehXh/HMNT
+ MoiFoYx+woYMl/FITUTgktHys51ziDYb461thfIW+91Mgg2osppqvwIu3IuT6n1k0/MO
+ oTHsSbXto/GJN6G1jJxiMua2tbjSiN9j0K70Ps+U5n1kMyFoGELvLjqXc/u/LyPfEAtn
+ dzf0AkFPn1R0bIarJTgIjeToke8xoj7jCd5llWuUGdM5Lc90djujPHRfWqynjPZBWzIK
+ UM769RMzc4tSj0zn4R9g2TIL37swHWwKnzYbfroK2Jm59dPGbswg2Ll48bE0cymS/zXi
+ JCbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746760621; x=1747365421;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=hoqckDBCEduuhxuaJVPjKVAng30GrSpmzU1JLtBRF8I=;
- b=b/L5h/BpjkirQkCtJ9UeSyd/Bm487BxujNWF1HIl3UN+7XoSTuqbuOdQvSmTo0GgdN
- sKWuRxHCZ52azopxeg5+BNHcIrSQODDZ2NuRd1uJb3qVAl5DcjmSS6Bw9OpLZYZoaXgn
- JO2y42dRIK5D68XTH5IDW4TtOisMSM1wU9neHYwUBJ3Hjuv1o3ZOSwsmRAHCORVwDnsL
- NqgP763UyjEec0q6MG1W8R8yQdOLNFzP4Ma/4vGZNwFjihuVpKeu4q1l7tMzTueIZD7p
- O6Ej0ImjoLORXC6ySpVFAiqnX9Z3mHm0RonbEOj3uX2LGbjF6KEXw5VT52BjHdlIGQCU
- oo5w==
+ d=1e100.net; s=20230601; t=1747149369; x=1747754169;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=0uh/PTXJRbMcazwRaWv8Bo4RnC9VvZ9wH65449hEE1k=;
+ b=kyohHGOtBwEZSVy3934ni/gQh5MZDk/arKbdahtkQTsPZL1Wa5tSgi7OfcDRTGcGwP
+ AZdb/9MVzTDlM4f9Zp5NVYdHQmZKnQjrji2Lpa/p2yDBDVV29R9e/jwQYjLTIJax+feN
+ 3K4Bxwq1u2/bZa1dsWWE5BxXp5N6pte+mSvwid7ccPQY67kB0jgHgXFHc0OJ/PeLEl0a
+ HqaoXQDTVOrnqIN+ZD9hmzMdQt8s1BgQX+KLIfXazpE6x5xcUvtQNyid16mJn5xe2Ln7
+ jsnJ87yjjD7/jHrqghnWaUUk4TwbIqtvp0sZCyun5zahh59ouefkVi+El6UagO/Idbh/
+ Axsg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV3wnQSRShixoqMp1z8vB3JETqtTE4p9dHQJ2ev+oixWR/0H3x02/L2vjVMnz7YE37WK+QzEysmfDs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzXoTr/0PStWn0jFqDYAyWnEe+EBnitEiEpIeJLosDfXDKHH87H
- opWwU7Gnoo+fr9kUBDOuRbyg6dXnvUd89eIs1GOAHcKkQnCEcWFY
-X-Gm-Gg: ASbGncs86eMi0XQna21fZfrrOarfcnuvd7C3anp0sgZtFP1Cf3SDG54flvQFguPqBDC
- miW/Wh7pEQVq/7jDiROSmcutUnliKPbdVIsfVw1xyaExiU3NTH2pCxw3weXV8A8AId5xrKAIG8d
- C5AFxt8GGROKNURWHkPOzUuVSeRcLGVfAmY07VKKnPedSh1Ch5UL3lTCNpOYew1fotrero+0TLu
- zwiLbzQiFPZZgX8JPMHq8Kz25gH50JOzUxHtNAmtHRtzArYwx1UkZ5Aa4m7wyk3o6I6Y38xID60
- /lW1Dv1Cybz6mL7dKKjnNtJufrvfvbRR6wC2qxqL0d4e6hxJyDTJ7dW0HUGk9w0/+f/kLHd3o04
- 9lWrwaYhYm2uu
-X-Google-Smtp-Source: AGHT+IFJactH9R43mBMIGMb7nbzPeCuDDlGMTikD03Mao0oUkKw8j52bGTKF3TXqX8VwPN7rT3jqPA==
-X-Received: by 2002:a05:6820:1a0b:b0:604:4846:78a with SMTP id
- 006d021491bc7-6083ff0ff81mr1538256eaf.2.1746760620739; 
- Thu, 08 May 2025 20:17:00 -0700 (PDT)
-Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
- [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.16.55
+ AJvYcCUNSl5ODvOG8AA46k0VDeLKyjO0KnvGySfZlMkWm25aCrAkJCwKDdCgb02JPdHfKwksG1qfq60VTQ==@lists.freedesktop.org,
+ AJvYcCXX8yX2Shwrd5FbmfJ+w+SP65xw+cKUEQ11Py31VcMlVm9Vj2T/qRSYfF9P1qXMRgBHZV4PGIMuG0A=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw+4RzyHjLs1kxxbHLy93Zxv4sWq58VDKnOy3PbWvTSMjdOwxFu
+ DHLs00ZjunsRlnMcVGyUJZvuIuxNULkhNAW61+aT7TZ6sJXWbtlY
+X-Gm-Gg: ASbGncuCxwpZ/hkxNcZhSQ47KhH7mJ2CrDBT8eOpm1RZfh3wPbPx1aNjzmPLoitvXPv
+ rUfv2ZkyZyeqUCWpT07OmVXVzezdHWAiNl87Wfx9rP+btooW41xUDl5nZtx3c0XxTk7x55hq5Dv
+ NLphoq9O0jCM9rKvtFs3o1bGsE2xMp+SGV7XKKBTNX/LedIDo2ozrTGHdD2vwFubIwatPQslCmH
+ c0hqxMiQAVXuUolBsQx99tYlhS8nbSUCjSPpFLTxzaiZVLIqZwxeyzawQwcAIUpnuXjefvulyZe
+ caaWRk5zNRvhv/RU15q+OoW/7sj9D2nF26HBQopvDM9bVKjWxTa8EvcdPTwK8+J7uv1RKT2uxxM
+ XYFDr9in1c9TI0+2UPsSgBy7Zis1c
+X-Google-Smtp-Source: AGHT+IGbr/uZ7r4cS/fBNvQYU2fhVqEpCiBt00je02tqMC1tSmemGmi5CB3JGNk1qdmVKM7wKn0FCw==
+X-Received: by 2002:a05:6871:e086:b0:2c4:1b1c:42c3 with SMTP id
+ 586e51a60fabf-2e005bc46camr2217682fac.9.1747149368576; 
+ Tue, 13 May 2025 08:16:08 -0700 (PDT)
+Received: from my-computer (c-73-76-29-249.hsd1.tx.comcast.net. [73.76.29.249])
+ by smtp.gmail.com with ESMTPSA id
+ 586e51a60fabf-2dba0b7f856sm2270445fac.45.2025.05.13.08.16.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 May 2025 20:17:00 -0700 (PDT)
+ Tue, 13 May 2025 08:16:08 -0700 (PDT)
+Date: Tue, 13 May 2025 10:15:24 -0500
 From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
- bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
- andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
- andrewjballance@gmail.com, fujita.tomonori@gmail.com,
- daniel.almeida@collabora.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org
-Subject: [PATCH 09/11] samples: rust: rust_driver_pci: update to use new bar
- and io api
-Date: Thu,  8 May 2025 22:15:22 -0500
-Message-ID: <20250509031524.2604087-10-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509031524.2604087-1-andrewjballance@gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andrew Morton <akpm@linux-foundation.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <benno.lossin@proton.me>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, bhelgaas@google.com,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Raag Jadav <raag.jadav@intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, me@kloenk.dev,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, daniel.almeida@collabora.com,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-pci@vger.kernel.org
+Subject: Re: [PATCH 00/11] rust: add support for Port io
+Message-ID: <aCNiDPgMGZ-tD66n@my-computer>
 References: <20250509031524.2604087-1-andrewjballance@gmail.com>
+ <ff526b49-a033-450d-9e48-699187167712@app.fastmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ff526b49-a033-450d-9e48-699187167712@app.fastmail.com>
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,37 +105,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-update rust_driver_pci.rs to use the new bar and io api.
+On Fri, May 09, 2025 at 07:53:31AM +0200, Arnd Bergmann wrote:
+> Can you describe here why you want to support both "Io" and "PortIo"
+> cases separately? I don't think we need to micro-optimize for
+> legacy ISA devices any more, so I'd hope the "Io" path would be
+> sufficient to cover the common outliers (ata, uart, vga, ipmi, ne2000)
+> that need the iomap indirection and also the legacy devices that only
+> need port I/O (floppy, x86 platform devices, ...).
 
-Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
----
- samples/rust/rust_driver_pci.rs | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Yeah, we probably don`t need the `PortIo` type and can rely on `Io` for
+port io. I`ll remove it for the v2.
 
-diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
-index 2bb260aebc9e..b645155142db 100644
---- a/samples/rust/rust_driver_pci.rs
-+++ b/samples/rust/rust_driver_pci.rs
-@@ -4,7 +4,9 @@
- //!
- //! To make this driver probe, QEMU must be run with `-device pci-testdev`.
- 
--use kernel::{bindings, c_str, device::Core, devres::Devres, pci, prelude::*, types::ARef};
-+use kernel::{
-+    bindings, c_str, device::Core, devres::Devres, io::IoAccess, pci, prelude::*, types::ARef,
-+};
- 
- struct Regs;
- 
-@@ -16,7 +18,7 @@ impl Regs {
-     const END: usize = 0x10;
- }
- 
--type Bar0 = pci::Bar<{ Regs::END }>;
-+type Bar0 = pci::IoBar<{ Regs::END }>;
- 
- #[derive(Debug)]
- struct TestIndex(u8);
--- 
-2.49.0
-
+Best regards
+Andrew Ballance
