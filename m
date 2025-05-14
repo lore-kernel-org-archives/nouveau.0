@@ -4,60 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F592D0EE1C
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10F33D0EE2A
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4545410E4F4;
-	Tue, 25 Nov 2025 20:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 159D710E4A3;
+	Tue, 25 Nov 2025 20:47:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="ZrO0BGTM";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="j4oGoc/r";
 	dkim-atps=neutral
-X-Greylist: delayed 462 seconds by postgrey-1.36 at gabe;
- Sat, 09 Aug 2025 08:08:04 UTC
-Received: from smtp1.iitb.ac.in (smtpd7.iitb.ac.in [103.21.126.62])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7C1F10E27B
- for <nouveau@lists.freedesktop.org>; Sat,  9 Aug 2025 08:08:04 +0000 (UTC)
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
- by smtp1.iitb.ac.in (Postfix) with SMTP id 7B970101C947
- for <nouveau@lists.freedesktop.org>; Sat,  9 Aug 2025 13:30:18 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 7B970101C947
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
- t=1754726418; bh=zisvSLce1+aXq35EDvfK2Fr8uFmjstmeaklYSS/7hDw=;
- h=Date:From:To:Cc:Subject:From;
- b=ZrO0BGTMl4F1Qy/Pq0xjwIaCEW6Guu3oqd8gyl96uLkGcOyg+Xk5P2jEI3P4PmTWa
- 8fS1xT93Pt6HlnaPBgEgHNHej7qTy5H8+4PmG5AnvbighmHPtaydAbQbGCSiyIrsOM
- 2lTztwO/YGwZfKvzkkpqS1hb9R3V1rp0MXerpusc=
-Received: (qmail 21441 invoked by uid 510); 9 Aug 2025 13:30:18 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from
- <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 0.653874 secs;
- 09 Aug 2025 13:30:18 +0530
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
- by ldns1.iitb.ac.in with SMTP; 9 Aug 2025 13:30:17 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
- by ldns1.iitb.ac.in (Postfix) with ESMTP id 25615360083;
- Sat,  9 Aug 2025 13:30:17 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
- (Authenticated sender: akhilesh)
- by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id E483C1E8138A;
- Sat,  9 Aug 2025 13:30:16 +0530 (IST)
-Date: Sat, 9 Aug 2025 13:30:11 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- bskeggs@redhat.com, kherbst@redhat.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, akhileshpatilvnit@gmail.com,
- skhan@linuxfoundation.org
-Subject: [PATCH] drm: nouveau: fifo: ga100: fix null pointer dereferences
-Message-ID: <aJcACwrvcjCq78eH@bhairav-test.ee.iitb.ac.in>
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com
+ [209.85.167.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A4C10E3B2;
+ Wed, 14 May 2025 10:58:34 +0000 (UTC)
+Received: by mail-oi1-f178.google.com with SMTP id
+ 5614622812f47-3f6a92f234dso4360956b6e.3; 
+ Wed, 14 May 2025 03:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1747220313; x=1747825113; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=LKfsulkMnbgwajcoUFefYum3KXkpP1AWjoY1QW06NXk=;
+ b=j4oGoc/rInz6HGvRPVUR3UA+CyhLJRQil3YyByVC8+YpDKjfM6KXwRIj4tLskW8J3N
+ OCkCOwa/ZLQGA7AgVJfW28ufXvTXoqmoHkYfK7Iv5w3Www1eGY2xoBKyvYds5ofXbQI+
+ Dkr3d1I5cggCyWymk1h/kMzC4ium/yHV5vvX81murQoI5J6mpo8vtIV0J+UU7ds01MXd
+ TcQDx0WZyUb4+HX9WlEH0h3Cd8mWFDtq5My7mQIHF03e5KlLhKxjyRJ4E6QOORsohBXF
+ p4SR2/EJtAhWWQqXliUk+ibkkJUqgs+AAs7ly/hzVuxnDGQfg6qwUgFcFoJcLg1OBNfR
+ vzHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1747220313; x=1747825113;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=LKfsulkMnbgwajcoUFefYum3KXkpP1AWjoY1QW06NXk=;
+ b=UnZ7G0PltaJOnHg6hsdOZLtxdg6JwhvgDu4DOElqLSgog8Uc3nY9y9zQYcwTTkYQu3
+ XpZdXXbyKOV7Xy0VbioTti0P/UuLyS4fgGV9Gvyy1SNWHBt32yxcrrxjsibYOCzuaynU
+ ekbgGd/fz11gKCfNALv7DD34EhU9qWAHc7dDHPO7SFhSh8HL3fS9TMHQNnvxFW8tB4Wj
+ ADeVBsQgTekgYUdiGhLmbasphi6bV+kvLDHu5KSuk0rTAT8shldJjW5i33t4jVysscpx
+ yCD2Nc83xWMHh7Bz+e5p6MXrph9H+798Z7b3fc/sSjPTxTaqdT49VAz2yUs50c3gETZh
+ FcEw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXz5ewK09A9EjXIzuGls5AKVjtHfe5rNShplVHVC9e83kJEq4V34/ZAXYqlz1M7lCJXjLDLgaDi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yys9tHmiIWqZuh0O55Ph6pRfvtlziWoThkiTS/qnkvHqEzkPcPC
+ 5IV80uHw1l4VOkuKhyu7rdOIRRezJUXldktCsk9D1y49hJ25J7EZ
+X-Gm-Gg: ASbGnctbZmEnibavfCWl/d/t4pHhUzgimIy0pePbZkcghFVHcnyZaimHGvNI5NRt/49
+ 0BZRVMP1/qxgZwDau8Y/Zqrfoh8PwmYRGSqCmPveHcyY5LurNx3aIUGm373X2D66LXR4+BBFmSn
+ nydOI8tXK5LsW51qIKZo6RMjuFvdJ5hwIrrVklSHy8hX+JfSvy/3VzqJ1oUDv+j3bG+Tklrnddo
+ 5UfFI4JzpYXnLZN5KK0vULVctYNufHF6mI8Qa8Sj2KmtPJuzBZSxTkWyuPHgszG7LjDuPWuqbu5
+ fWYWea0L72iTejHFmOxI9ohvESnPP9z92BhONReLnaiVzI8P15jcfYnFEyydB6gEsQe3SHSPuVF
+ fFD7ZUpJ6iK4kinc1eVi++AA=
+X-Google-Smtp-Source: AGHT+IE+1hE1Q+/pQh+mW7/Ct4/eU4EaXfpxLHVjbsq6qa5H2UcdCaWDv6SmoJgr82fypqkELLhKzg==
+X-Received: by 2002:a05:6870:4591:b0:296:e698:3227 with SMTP id
+ 586e51a60fabf-2e348846b40mr1366801fac.36.1747220313459; 
+ Wed, 14 May 2025 03:58:33 -0700 (PDT)
+Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
+ [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
+ 586e51a60fabf-2dba060be9esm2654535fac.10.2025.05.14.03.58.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 May 2025 03:58:32 -0700 (PDT)
+From: Andrew Ballance <andrewjballance@gmail.com>
+To: dakr@kernel.org, a.hindborg@kernel.org, airlied@gmail.com,
+ akpm@linux-foundation.org, alex.gaynor@gmail.com, aliceryhl@google.com,
+ andrewjballance@gmail.com, andriy.shevchenko@linux.intel.com,
+ arnd@arndb.de, benno.lossin@proton.me, bhelgaas@google.com,
+ bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
+ daniel.almeida@collabora.com, fujita.tomonori@gmail.com, gary@garyguo.net,
+ gregkh@linuxfoundation.org, kwilczynski@kernel.org, me@kloenk.dev,
+ ojeda@kernel.org, raag.jadav@intel.com, rafael@kernel.org, simona@ffwll.ch,
+ tmgross@umich.edu
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH v2 1/6] rust: helpers: io: use macro to generate io accessor
+ functions
+Date: Wed, 14 May 2025 05:57:29 -0500
+Message-ID: <20250514105734.3898411-2-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250514105734.3898411-1-andrewjballance@gmail.com>
+References: <20250514105734.3898411-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:23 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,43 +99,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix potential NULL pointer dereference in ga100_fifo_nonstall_allow()
-and ga100_fifo_nonstall_block() when nvkm_runl_get() returns NULL.
-Fix CVE-476 as reported by coverity tool (CID: 1660771)
+From: Fiona Behrens <me@kloenk.dev>
 
-Fixes: 55e1a5996085 ("drm/nouveau/fifo/ga100-: add per-runlist nonstall intr handling")
-Addresses-Coverity-ID: 1660771
-Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+Generate the `rust_helper_read{b,w,l,q}`, `rust_helper_write{b,w,l,q}`
+and the relaxed version using a C macro.
+
+This removes a lot of redundant code and is in preparation for pio
+functions which uses a similar C macro.
+
+Signed-off-by: Fiona Behrens <me@kloenk.dev>
+Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ rust/helpers/io.c | 105 +++++++++++++---------------------------------
+ 1 file changed, 29 insertions(+), 76 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c
-index e74493a4569e..a441fb602f28 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c
-@@ -520,7 +520,9 @@ ga100_fifo_nonstall_block(struct nvkm_event *event, int type, int index)
- 	struct nvkm_fifo *fifo = container_of(event, typeof(*fifo), nonstall.event);
- 	struct nvkm_runl *runl = nvkm_runl_get(fifo, index, 0);
- 
--	nvkm_inth_block(&runl->nonstall.inth);
-+	WARN_ON(!runl);
-+	if (runl)
-+		nvkm_inth_block(&runl->nonstall.inth);
+diff --git a/rust/helpers/io.c b/rust/helpers/io.c
+index 15ea187c5466..d419b5b3b7c7 100644
+--- a/rust/helpers/io.c
++++ b/rust/helpers/io.c
+@@ -12,90 +12,43 @@ void rust_helper_iounmap(void __iomem *addr)
+ 	iounmap(addr);
  }
  
- static void
-@@ -529,7 +531,9 @@ ga100_fifo_nonstall_allow(struct nvkm_event *event, int type, int index)
- 	struct nvkm_fifo *fifo = container_of(event, typeof(*fifo), nonstall.event);
- 	struct nvkm_runl *runl = nvkm_runl_get(fifo, index, 0);
+-u8 rust_helper_readb(const void __iomem *addr)
+-{
+-	return readb(addr);
+-}
+-
+-u16 rust_helper_readw(const void __iomem *addr)
+-{
+-	return readw(addr);
+-}
+-
+-u32 rust_helper_readl(const void __iomem *addr)
+-{
+-	return readl(addr);
+-}
+-
++#define define_rust_io_read_helper(rust_name, name, type) \
++	type rust_name(void __iomem *addr)                \
++	{                                                 \
++		return name(addr);                        \
++	}
++
++#define define_rust_io_write_helper(rust_name, name, type) \
++	void rust_name(type value, void __iomem *addr)     \
++	{                                                  \
++		name(value, addr);                         \
++	}
++
++define_rust_io_read_helper(rust_helper_readb, readb, u8);
++define_rust_io_read_helper(rust_helper_readw, readw, u16);
++define_rust_io_read_helper(rust_helper_readl, readl, u32);
+ #ifdef CONFIG_64BIT
+-u64 rust_helper_readq(const void __iomem *addr)
+-{
+-	return readq(addr);
+-}
++define_rust_io_read_helper(rust_helper_readq, readq, u64);
+ #endif
  
--	nvkm_inth_allow(&runl->nonstall.inth);
-+	WARN_ON(!runl);
-+	if (runl)
-+		nvkm_inth_allow(&runl->nonstall.inth);
- }
+-void rust_helper_writeb(u8 value, void __iomem *addr)
+-{
+-	writeb(value, addr);
+-}
+-
+-void rust_helper_writew(u16 value, void __iomem *addr)
+-{
+-	writew(value, addr);
+-}
+-
+-void rust_helper_writel(u32 value, void __iomem *addr)
+-{
+-	writel(value, addr);
+-}
+-
++define_rust_io_write_helper(rust_helper_writeb, writeb, u8);
++define_rust_io_write_helper(rust_helper_writew, writew, u16);
++define_rust_io_write_helper(rust_helper_writel, writel, u32);
+ #ifdef CONFIG_64BIT
+-void rust_helper_writeq(u64 value, void __iomem *addr)
+-{
+-	writeq(value, addr);
+-}
++define_rust_io_write_helper(rust_helper_writeq, writeq, u64);
+ #endif
  
- const struct nvkm_event_func
+-u8 rust_helper_readb_relaxed(const void __iomem *addr)
+-{
+-	return readb_relaxed(addr);
+-}
+-
+-u16 rust_helper_readw_relaxed(const void __iomem *addr)
+-{
+-	return readw_relaxed(addr);
+-}
+-
+-u32 rust_helper_readl_relaxed(const void __iomem *addr)
+-{
+-	return readl_relaxed(addr);
+-}
+-
++define_rust_io_read_helper(rust_helper_readb_relaxed, readb_relaxed, u8);
++define_rust_io_read_helper(rust_helper_readw_relaxed, readw_relaxed, u16);
++define_rust_io_read_helper(rust_helper_readl_relaxed, readl_relaxed, u32);
+ #ifdef CONFIG_64BIT
+-u64 rust_helper_readq_relaxed(const void __iomem *addr)
+-{
+-	return readq_relaxed(addr);
+-}
++define_rust_io_read_helper(rust_helper_readq_relaxed, readq_relaxed, u64);
+ #endif
+ 
+-void rust_helper_writeb_relaxed(u8 value, void __iomem *addr)
+-{
+-	writeb_relaxed(value, addr);
+-}
+-
+-void rust_helper_writew_relaxed(u16 value, void __iomem *addr)
+-{
+-	writew_relaxed(value, addr);
+-}
+-
+-void rust_helper_writel_relaxed(u32 value, void __iomem *addr)
+-{
+-	writel_relaxed(value, addr);
+-}
+-
++define_rust_io_write_helper(rust_helper_writeb_relaxed, writeb_relaxed, u8);
++define_rust_io_write_helper(rust_helper_writew_relaxed, writew_relaxed, u16);
++define_rust_io_write_helper(rust_helper_writel_relaxed, writel_relaxed, u32);
+ #ifdef CONFIG_64BIT
+-void rust_helper_writeq_relaxed(u64 value, void __iomem *addr)
+-{
+-	writeq_relaxed(value, addr);
+-}
++define_rust_io_write_helper(rust_helper_writeq_relaxed, writeq_relaxed, u64);
+ #endif
++
 -- 
-2.34.1
+2.49.0
 
