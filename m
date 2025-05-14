@@ -4,85 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DFA3D0EE2D
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E10D0EE1C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8EEF10E4AC;
-	Tue, 25 Nov 2025 20:47:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18C4910E4BC;
+	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ln6Jno3m";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SbnH8/g4";
 	dkim-atps=neutral
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com
- [209.85.161.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD8C310E2B5;
- Sat, 15 Mar 2025 11:15:56 +0000 (UTC)
-Received: by mail-oo1-f47.google.com with SMTP id
- 006d021491bc7-5fcd61e9bcdso1325976eaf.0; 
- Sat, 15 Mar 2025 04:15:56 -0700 (PDT)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+ [209.85.210.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A30B10E60E;
+ Wed, 14 May 2025 10:58:53 +0000 (UTC)
+Received: by mail-ot1-f51.google.com with SMTP id
+ 46e09a7af769-72c40235c34so1871291a34.3; 
+ Wed, 14 May 2025 03:58:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742037355; x=1742642155; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1747220333; x=1747825133; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=fsE4ot+F7yV8gTFDUQj/QcGbskBzPPy0s/mWjVIBgJ4=;
- b=Ln6Jno3m7C87FLymjU9cgvR9DpiQ8azBBUPvb/KaBsC8Q1El5lzpHgyPLCjNsoP/xt
- BcUxflcVFbZZtFXy+lFhRSVJXW3W/RMjuj9PtAkvtYh6pW6QUNmhHK4Z5bkqcUFc6BBi
- HwzETQpAYahhjvL8bJ4AHguCOqFmP+WKdxkh5zEp3i+OhcajtuDmhJpzp5YPTG/3dny3
- +X6y9np6tzh1eu0n6aKPwN4P73wZ4GFvMOSkGmRP2DY6IQNK5VM9Z2SAIHEgJAJyFLne
- 6mJPsazopgFZF00tjLuZPpB4i4ypCLoi4DeytdnKQ6KiHd40Q3Cd4DRsF8k1R0MTSlB1
- 3ZjQ==
+ bh=qD5w6c0a6kvz0Ef85ipEl+D0Znk2XoV05BpXME7RAZc=;
+ b=SbnH8/g45IehITQ+ag7EcNoqkr5DV8Qm7AL4VbmzCOdRHnEbqqqGvO2y30MKuCPbfW
+ 37A1Q+Dan9GcipELLSVV0A3jbnUWckz2FxIINL7MCYAq0y2qma5Rtwj5JNNqAauar4OH
+ Uc3n65XO4SiqoC/QESCfQiOgMxyzrVOOTEqAeWPUHn5bZsCZ0rkmn2OcQSaPE5AcdR0w
+ Bn5Zci/qhlx5N6I/csXM8vCkmaR9aVz3wGi+/uyxChhIaCBY6j/4Cuq28sIOEocK4qT+
+ 6nOLJj0DhSGGhaEYXoYbbjmJRITnD9u6LS+c9HjbpRIScpibkNOW70WDPdHxbnC/XPzb
+ Jlbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742037355; x=1742642155;
+ d=1e100.net; s=20230601; t=1747220333; x=1747825133;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=fsE4ot+F7yV8gTFDUQj/QcGbskBzPPy0s/mWjVIBgJ4=;
- b=rAToWXBonbpPcccfHZQf7h7xQoWcgLsiEpZnNl5fIhhVNsnyzYrDcMjQKL8F6kMmMf
- EgwudDoC5G++7YYBzFSm5EFz5qcowkfhopvH23g3g1RH4jNMcwJy/tzPU5p5Xm2vou/4
- dFw+xDV96IyWyIpeAJBElt3Ii0hORmHAnTO+YdT+YqVEbFp0HDD0tmpu49hGrqkLrCZ2
- /MTJ0TcFjaH6Pp8qneH1W+ipCVO88zF9C0mQm+7htTRNAnZXA2gk8/89SCtch5LG5OpM
- bP3wVKxabLInrADH+oqUs6Kmk/z2NrwDTLSae/tqBRBeRiLpk4pORLaJh1fxf4aGH12F
- y3XA==
+ bh=qD5w6c0a6kvz0Ef85ipEl+D0Znk2XoV05BpXME7RAZc=;
+ b=FhcpmS46grq5SyS6D6tFe6tN03Tz4YoukdhWJQ2rN0YzJVvUfBwe17TykTqSpcD6nZ
+ jbla7tSgR6hbjCpOb2pVhm157J0Yb+OCUapC8t40Ize+OD4eHaQDjnCavCtfdp0FF2gK
+ 3I11Ch3VqCNHhXmq/TjCRkncmSgXEerVZPxF6LTp0znuyUYVMgyEe+otvpZVLA/Pq6dm
+ 1TKuc5gYVmvD+e04KwQKQc/XFPQk8OhI0RRVwf85LDT89Dq7sAgSbdICYcPGDgEIR4SH
+ ojIFzjkdHx8rpuh8E8bjSngvph2qcCWHgPAV62XRb1YcA/dwMGAOe05gh/oNiZlFf66D
+ InmA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWajeKQY0nA5fcRQxqXJEDsMVnaFZsruVIOU6AkTrGyrDtO3IsvbGVo1fUKqoJumGZfR8BN331KLwE=@lists.freedesktop.org,
- AJvYcCXu5M3cEv/3rkOC7u0H4lUs5YCooz7Mc2LCfy2nlTbL3uCL44T9VNxAU9RBJrdUU5oLAnp+LAlC7g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzW/wb7pt6pTUrkkIh/gBks4qa+ofemqpcRjsBdXEYaCnr0UmsN
- EUZUeiVmh9Fl0z5J5cq6IhtI7YZWHFbV2uSqrPlmF3Hj98AIL8wX
-X-Gm-Gg: ASbGncvLo6O0w50wUHw6OfrkigBi6IEv39gdfbTtKvMaq4WhQOb7rFAgqMr/R+GkkMc
- wRdbPW/IC8+RzHpmRS4KIrc3kknTOU/w2hVWMKI/gW/7HGYbr3PCPCoXv49TuPE9Y5G9MH7ZwXF
- OvdlILpEnrRG0KnrL5Sm36kWPZRRweEpNOp+OuR6J14s0DghyZbvdIOjqOpVEmUFOgGcBcvUHQs
- L2EsCLe9h7eaI5KjOtqmLLUL1v++wugGPzfRvNDcpeiNKZgw4RJXhPurvqgcmCOMwRFOMSQg067
- h4v6rm5gotgjiI3OGUqIc7+UxoiaGlspziKRwKk/nW6efmuh+uqaGYl9YhQrFtKgEqNu1ElHDQC
- uw3BR2AF67nBNXGUN
-X-Google-Smtp-Source: AGHT+IEtJfw/w3NFqPpk/9J3e/w+rGmcMb9d2v6gwwk8XdHXokvYktoc9+s3uuIp+BGxQ9A7JuIynw==
-X-Received: by 2002:a4a:ee85:0:b0:600:2ff9:acb9 with SMTP id
- 006d021491bc7-601e45a7a78mr3037153eaf.1.1742037355049; 
- Sat, 15 Mar 2025 04:15:55 -0700 (PDT)
+ AJvYcCU2swPURAG8PGMKiNrySRKOuxcjosYJiq6o0lhkpytL7zNsH98wXZaucnLSNfc/XQUnJ6N3MN7v@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzN7/b0L3NqWBpCrRp57LiI4lBQyBx/97Mgo+R7EnfYqMqfRHFM
+ yPMskDZsEgt2MYfDSrgGVwS1W24Bfy1zFY64w2mwuMeka1kqoNjy
+X-Gm-Gg: ASbGncuyTSSxW9c6TGNZ6cBMtwmXBElCdF75/au7rUeE7AjG+h1DRh+piUt6G24HsNY
+ k+R9wyq1TUb4iF1tWdIMdtl2K0c/IwaRwG9S8fRLrm4VgoxSgg2vkNM6KH6oxtDSjzEzsPtMRvI
+ sQSww6DnrPrecfW/C7fo73+mFvN/4iDsI/jCEl+f/36yaxSCkFhF2Ztahv8xwbwdgArDrIfFina
+ SbYDJnXUAn2M4Gc41RX2BT8ZmowK4T1UK4RmxA8uIQGS/5brqybeTULEhH0S53dfQV20mqNuGFC
+ hQQCrLGB8tVlb498jEeLanC1I4A0Rkwe58GAlHFpXYY6O0I3EDqN78cfoHRKw4HcAvs172VYIxI
+ /Wd/OWgFOntQSi9DFC1qrOP3KQXQAxkDZvQ==
+X-Google-Smtp-Source: AGHT+IE54MfSAuxodqlDuPCWb0IgGKv5g1H7LzyyZwbg9zyX4LOVBOAb43K73rSiK2QfFtlG75L38w==
+X-Received: by 2002:a05:6830:368f:b0:727:345d:3b72 with SMTP id
+ 46e09a7af769-734e144c500mr1437251a34.16.1747220332495; 
+ Wed, 14 May 2025 03:58:52 -0700 (PDT)
 Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
  [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-601db65a010sm913826eaf.1.2025.03.15.04.15.49
+ 586e51a60fabf-2dba060be9esm2654535fac.10.2025.05.14.03.58.50
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 15 Mar 2025 04:15:54 -0700 (PDT)
+ Wed, 14 May 2025 03:58:52 -0700 (PDT)
 From: Andrew Ballance <andrewjballance@gmail.com>
-To: benno.lossin@proton.me
-Cc: a.hindborg@kernel.org, acourbot@nvidia.com, airlied@gmail.com,
- alex.gaynor@gmail.com, aliceryhl@google.com, andrewjballance@gmail.com,
- bjorn3_gh@protonmail.com, boqun.feng@gmail.com, corbet@lwn.net,
- dakr@kernel.org, dri-devel@lists.freedesktop.org, gary@garyguo.net,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- nouveau@lists.freedesktop.org, ojeda@kernel.org,
- rust-for-linux@vger.kernel.org, simona@ffwll.ch, tmgross@umich.edu,
- tzimmermann@suse.de
-Subject: Re: [PATCH 1/3] rust: alloc: add Vec::truncate method
-Date: Sat, 15 Mar 2025 06:15:11 -0500
-Message-ID: <20250315111511.107047-1-andrewjballance@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <D8GRAC8YQIVC.2LS1EIIIRZU3I@proton.me>
-References: <D8GRAC8YQIVC.2LS1EIIIRZU3I@proton.me>
+To: dakr@kernel.org, a.hindborg@kernel.org, airlied@gmail.com,
+ akpm@linux-foundation.org, alex.gaynor@gmail.com, aliceryhl@google.com,
+ andrewjballance@gmail.com, andriy.shevchenko@linux.intel.com,
+ arnd@arndb.de, benno.lossin@proton.me, bhelgaas@google.com,
+ bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
+ daniel.almeida@collabora.com, fujita.tomonori@gmail.com, gary@garyguo.net,
+ gregkh@linuxfoundation.org, kwilczynski@kernel.org, me@kloenk.dev,
+ ojeda@kernel.org, raag.jadav@intel.com, rafael@kernel.org, simona@ffwll.ch,
+ tmgross@umich.edu
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH v2 6/6] rust: pci: make Bar generic over Io
+Date: Wed, 14 May 2025 05:57:34 -0500
+Message-ID: <20250514105734.3898411-7-andrewjballance@gmail.com>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250514105734.3898411-1-andrewjballance@gmail.com>
+References: <20250514105734.3898411-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:23 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,87 +98,237 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sat, Mar 15, 2025 at 10:09:26AM +0000, Benno Lossin wrote:
-> On Sat Mar 15, 2025 at 3:42 AM CET, Andrew Ballance wrote:
-> > implements the equivalent to the std's Vec::truncate
-> > on the kernel's Vec type.
-> >
-> > Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
-> > ---
-> >  rust/kernel/alloc/kvec.rs | 36 ++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 36 insertions(+)
-> >
-> > diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
-> > index ae9d072741ce..75e9feebb81f 100644
-> > --- a/rust/kernel/alloc/kvec.rs
-> > +++ b/rust/kernel/alloc/kvec.rs
-> > @@ -452,6 +452,42 @@ pub fn reserve(&mut self, additional: usize, flags: Flags) -> Result<(), AllocEr
-> >  
-> >          Ok(())
-> >      }
-> > +
-> > +    /// Shortens the vector, setting the length to `len` and drops the removed values.
-> > +    /// If `len` is greater than or equal to the current length, this does nothing.
-> > +    ///
-> > +    /// This has no effect on the capacity and will not allocate.
-> > +    /// # Examples
-> > +    /// ```
-> > +    /// let mut v = kernel::kvec![1, 2, 3]?;
-> > +    /// v.truncate(1);
-> > +    /// assert_eq!(v.len(), 1);
-> > +    /// assert_eq!(&v, &[1]);
-> > +    ///
-> > +    /// # Ok::<(), Error>(())
-> > +    /// ```
-> > +    pub fn truncate(&mut self, len: usize) {
-> > +        if len >= self.len() {
-> > +            return;
-> > +        }
-> > +
-> > +        // [new_len, len) is guaranteed to be valid because [0, len) is guaranteed to be valid
-> > +        let drop_range = len..self.len();
-> > +
-> > +        // SAFETY:
-> > +        // we can safely ignore the bounds check because we already did our own check
-> > +        let ptr: *mut [T] = unsafe { self.get_unchecked_mut(drop_range) };
-> 
-> What's this `get_unchecked_mut` method, I don't see it in `rust-next` or
-> `alloc-next`.
+renames `Bar` to `RawBar` and makes it generic over `IoAccess`.
+a user can give a compile time suggestion when mapping a bar so
+that the type of io can be known.
 
-Vec derefs into a slice which implements get_uncheked_mut
-https://rust.docs.kernel.org/next/kernel/alloc/kvec/struct.Vec.html#method.get_unchecked_mut
+updates nova-core and rust_driver_pci to use new bar api.
 
-> > +
-> > +        // SAFETY:
-> > +        // it is safe to shrink the length because the new length is
-> > +        // guaranteed to be less than the old length
-> 
-> Please take a look at the documentation of `set_len`, in the safety
-> section you'll find what you need to justify here.
-> 
-> > +        unsafe { self.set_len(len) };
-> > +
-> > +        // SAFETY:
-> 
-> A couple points missing:
-> - why is the pointer valid?
-> 
-> > +        // - the dropped values are valid `T`s
-> > +        // - we are allowed to invalidate [new_len, old_len) because we just changed the len
-> 
-> This should justify why the value will never be accessed again.
-> 
+Suggested-by: Danilo Krummrich <dakr@kernel.org>
+Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
+---
+ drivers/gpu/nova-core/driver.rs |   4 +-
+ rust/kernel/pci.rs              | 101 +++++++++++++++++++++++++-------
+ samples/rust/rust_driver_pci.rs |   2 +-
+ 3 files changed, 83 insertions(+), 24 deletions(-)
 
-I will fixup the safety comments for the v2. Thanks.
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index a08fb6599267..c03283d1e60e 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -11,7 +11,7 @@ pub(crate) struct NovaCore {
+ }
+ 
+ const BAR0_SIZE: usize = 8;
+-pub(crate) type Bar0 = pci::Bar<BAR0_SIZE>;
++pub(crate) type Bar0 = pci::MMIoBar<BAR0_SIZE>;
+ 
+ kernel::pci_device_table!(
+     PCI_TABLE,
+@@ -33,7 +33,7 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
+         pdev.enable_device_mem()?;
+         pdev.set_master();
+ 
+-        let bar = pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("nova-core/bar0"))?;
++        let bar = pdev.iomap_region_sized_mmio::<BAR0_SIZE>(0, c_str!("nova-core/bar0"))?;
+ 
+         let this = KBox::pin_init(
+             try_pin_init!(Self {
+diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
+index 9f5ca22d327a..42fbe597b06e 100644
+--- a/rust/kernel/pci.rs
++++ b/rust/kernel/pci.rs
+@@ -11,8 +11,7 @@
+     devres::Devres,
+     driver,
+     error::{to_result, Result},
+-    io::Io,
+-    io::IoRaw,
++    io::{Io, IoAccess, IoRaw, MMIo},
+     str::CStr,
+     types::{ARef, ForeignOwnable, Opaque},
+     ThisModule,
+@@ -259,15 +258,21 @@ pub struct Device<Ctx: device::DeviceContext = device::Normal>(
+ ///
+ /// # Invariants
+ ///
+-/// `Bar` always holds an `IoRaw` inststance that holds a valid pointer to the start of the I/O
++/// `Bar` always holds an `I` inststance that holds a valid pointer to the start of the I/O
+ /// memory mapped PCI bar and its size.
+-pub struct Bar<const SIZE: usize = 0> {
++pub struct RawBar<const SIZE: usize = 0, I: IoAccess<SIZE> = Io<SIZE>> {
+     pdev: ARef<Device>,
+-    io: IoRaw<SIZE>,
++    io: I,
+     num: i32,
+ }
+ 
+-impl<const SIZE: usize> Bar<SIZE> {
++/// a pci bar that can be either PortIo or MMIo
++pub type IoBar<const SIZE: usize = 0> = RawBar<SIZE, Io<SIZE>>;
++
++/// a pci bar that maps a [`MMIo`].
++pub type MMIoBar<const SIZE: usize = 0> = RawBar<SIZE, MMIo<SIZE>>;
++
++impl<const SIZE: usize, I: IoAccess<SIZE>> RawBar<SIZE, I> {
+     fn new(pdev: &Device, num: u32, name: &CStr) -> Result<Self> {
+         let len = pdev.resource_len(num)?;
+         if len == 0 {
+@@ -299,7 +304,7 @@ fn new(pdev: &Device, num: u32, name: &CStr) -> Result<Self> {
+             return Err(ENOMEM);
+         }
+ 
+-        let io = match IoRaw::new(ioptr, len as usize) {
++        let raw = match IoRaw::new(ioptr, len as usize) {
+             Ok(io) => io,
+             Err(err) => {
+                 // SAFETY:
+@@ -311,7 +316,22 @@ fn new(pdev: &Device, num: u32, name: &CStr) -> Result<Self> {
+             }
+         };
+ 
+-        Ok(Bar {
++        // SAFETY:
++        // - `raw` is from `pci_iomap`
++        // - addresses from `pci_iomap` should be accesed through ioread/iowrite
++        let io = match unsafe { I::from_raw_cookie(raw) } {
++            Ok(io) => io,
++            Err(err) => {
++                // SAFETY:
++                // `pdev` is valid by the invariants of `Device`.
++                // `ioptr` is guaranteed to be the start of a valid I/O mapped memory region.
++                // `num` is checked for validity by a previous call to `Device::resource_len`.
++                unsafe { Self::do_release(pdev, ioptr, num) };
++                return Err(err);
++            }
++        };
++
++        Ok(RawBar {
+             pdev: pdev.into(),
+             io,
+             num,
+@@ -338,25 +358,24 @@ fn release(&self) {
+     }
+ }
+ 
+-impl Bar {
++impl RawBar {
+     fn index_is_valid(index: u32) -> bool {
+         // A `struct pci_dev` owns an array of resources with at most `PCI_NUM_RESOURCES` entries.
+         index < bindings::PCI_NUM_RESOURCES
+     }
+ }
+ 
+-impl<const SIZE: usize> Drop for Bar<SIZE> {
++impl<const SIZE: usize, I: IoAccess<SIZE>> Drop for RawBar<SIZE, I> {
+     fn drop(&mut self) {
+         self.release();
+     }
+ }
+ 
+-impl<const SIZE: usize> Deref for Bar<SIZE> {
+-    type Target = Io<SIZE>;
++impl<const SIZE: usize, I: IoAccess<SIZE>> Deref for RawBar<SIZE, I> {
++    type Target = I;
+ 
+     fn deref(&self) -> &Self::Target {
+-        // SAFETY: By the type invariant of `Self`, the MMIO range in `self.io` is properly mapped.
+-        unsafe { Io::from_raw_ref(&self.io) }
++        &self.io
+     }
+ }
+ 
+@@ -379,7 +398,7 @@ pub fn device_id(&self) -> u16 {
+ 
+     /// Returns the size of the given PCI bar resource.
+     pub fn resource_len(&self, bar: u32) -> Result<bindings::resource_size_t> {
+-        if !Bar::index_is_valid(bar) {
++        if !RawBar::index_is_valid(bar) {
+             return Err(EINVAL);
+         }
+ 
+@@ -389,22 +408,62 @@ pub fn resource_len(&self, bar: u32) -> Result<bindings::resource_size_t> {
+         Ok(unsafe { bindings::pci_resource_len(self.as_raw(), bar.try_into()?) })
+     }
+ 
+-    /// Mapps an entire PCI-BAR after performing a region-request on it. I/O operation bound checks
++    /// Maps an entire PCI-BAR after performing a region-request on it. I/O operation bound checks
+     /// can be performed on compile time for offsets (plus the requested type size) < SIZE.
+     pub fn iomap_region_sized<const SIZE: usize>(
+         &self,
+         bar: u32,
+         name: &CStr,
+-    ) -> Result<Devres<Bar<SIZE>>> {
+-        let bar = Bar::<SIZE>::new(self, bar, name)?;
++    ) -> Result<Devres<IoBar<SIZE>>> {
++        self.iomap_region_sized_hint::<SIZE, Io<SIZE>>(bar, name)
++    }
++
++    /// Maps an entire PCI-BAR after performing a region-request on it.
++    pub fn iomap_region(&self, bar: u32, name: &CStr) -> Result<Devres<IoBar>> {
++        self.iomap_region_sized::<0>(bar, name)
++    }
++
++    /// Maps an entire PCI-BAR after performing a region-request on it. I/O operation bound checks
++    /// can be performed on compile time for offsets (plus the requested type size) < SIZE.
++    /// where it is known that the bar is [`MMIo`]
++    pub fn iomap_region_sized_mmio<const SIZE: usize>(
++        &self,
++        bar: u32,
++        name: &CStr,
++    ) -> Result<Devres<MMIoBar<SIZE>>> {
++        self.iomap_region_sized_hint::<SIZE, MMIo<SIZE>>(bar, name)
++    }
++
++    /// Maps an entire PCI-BAR after performing a region-request on it.
++    /// where it is known that the bar is [`MMIo`]
++    pub fn iomap_region_mmio(&self, bar: u32, name: &CStr) -> Result<Devres<MMIoBar>> {
++        self.iomap_region_sized_hint::<0, MMIo<0>>(bar, name)
++    }
++
++    /// Maps an entire PCI-BAR after performing a region-request where the
++    /// type of Io backend is known at compile time.
++    pub fn iomap_region_hint<I: IoAccess>(
++        &self,
++        bar: u32,
++        name: &CStr,
++    ) -> Result<Devres<RawBar<0, I>>> {
++        let bar = RawBar::<0, I>::new(self, bar, name)?;
+         let devres = Devres::new(self.as_ref(), bar, GFP_KERNEL)?;
+ 
+         Ok(devres)
+     }
++    /// Maps an entire PCI-BAR after performing a region-request where the
++    /// type of Io backend is known at compile time. I/O operation bound checks
++    /// can be performed on compile time for offsets (plus the requested type size) < SIZE.
++    pub fn iomap_region_sized_hint<const SIZE: usize, I: IoAccess<SIZE>>(
++        &self,
++        bar: u32,
++        name: &CStr,
++    ) -> Result<Devres<RawBar<SIZE, I>>> {
++        let bar = RawBar::<SIZE, I>::new(self, bar, name)?;
++        let devres = Devres::new(self.as_ref(), bar, GFP_KERNEL)?;
+ 
+-    /// Mapps an entire PCI-BAR after performing a region-request on it.
+-    pub fn iomap_region(&self, bar: u32, name: &CStr) -> Result<Devres<Bar>> {
+-        self.iomap_region_sized::<0>(bar, name)
++        Ok(devres)
+     }
+ }
+ 
+diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
+index a8d292f4c1b3..b645155142db 100644
+--- a/samples/rust/rust_driver_pci.rs
++++ b/samples/rust/rust_driver_pci.rs
+@@ -18,7 +18,7 @@ impl Regs {
+     const END: usize = 0x10;
+ }
+ 
+-type Bar0 = pci::Bar<{ Regs::END }>;
++type Bar0 = pci::IoBar<{ Regs::END }>;
+ 
+ #[derive(Debug)]
+ struct TestIndex(u8);
+-- 
+2.49.0
 
-> ---
-> Cheers,
-> Benno
-> 
-> > +        unsafe { ptr::drop_in_place(ptr) };
-> > +    }
-> >  }
-> >  
-> >  impl<T: Clone, A: Allocator> Vec<T, A> {
-> 
-> 
