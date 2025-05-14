@@ -4,83 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B45ED0EE25
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06A4ED0EE2B
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:48:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF38C10E49E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A7C010E4CE;
 	Tue, 25 Nov 2025 20:47:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="hBnm+Jqy";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ldcn47hJ";
 	dkim-atps=neutral
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
- [209.85.210.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DB2B10E269;
- Fri,  9 May 2025 03:17:12 +0000 (UTC)
-Received: by mail-ot1-f42.google.com with SMTP id
- 46e09a7af769-72fffa03ac6so1321454a34.3; 
- Thu, 08 May 2025 20:17:12 -0700 (PDT)
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
+ [209.85.210.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15C9B10E60C;
+ Wed, 14 May 2025 10:58:45 +0000 (UTC)
+Received: by mail-ot1-f52.google.com with SMTP id
+ 46e09a7af769-731e277a6b0so6177759a34.1; 
+ Wed, 14 May 2025 03:58:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1746760631; x=1747365431; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1747220324; x=1747825124; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=opoK+AzPTNKgO/SAmsMVBjeqSr697aHxwJmC1KlGbRc=;
- b=hBnm+JqyUs5pb2SSseYUoISPu8+SPX1uY4TEQ+b+rdKMJkPbsWr3CZ7msu+DZuEEXu
- YbKcVi3AJHxCJdBawhzRYDlYmxC/R3SA0lVlQNUQW0qW5QOaCCZNL28yw0I+Ob3tKKn2
- rKowowNWEbo4V+N3Q1GH1PyM1Te9p8lPaUUfQYybxZ0z1+NZGvIsOOOMA2D/DaOnc/0B
- RlF1knl4cJR7d/aG6og5LTjC4DBi9l7bkfqD3D39ZOJFyKf+9e+JB2VaiLEjJo2TMzwJ
- tDHVGTdRV2rGfT7WN5OaxT0jIosD4khuaM4V/M06ScNuf89XK5eokvhXn+addRD6bVRb
- AlQA==
+ bh=Hu8TOexpRWewY07dDXJsWt38JoGIzWPjMFqMEoSL2F8=;
+ b=ldcn47hJuuxnNev2vvZH7R07BeAne21gJV/1qYOMwNbe+oS2q0ZpYddSEFHjnZajVP
+ a1KUeFl7Du/3DHGNtCyuoCkncZkKSzc9RR/htkKUFSIIVMvgx5vLZJN2CBb24XzTpuYF
+ vjDfva4shO718MtW4TERHQmn42gqKiYt04ey/wfLsZP4BuGVamFQ3/OtDegWJJF5ogy+
+ 3TgBBWqQZiriNvMb0WT8GADHaIX7He4yjOIUTc2VitMNHg1INmGxT45NLLyu6FyyVYGl
+ IBhVKH46zno8BT26rBmVmnOoWyH6HKRZ17KI/qe8GF/nUdRwmO6klLejdKIWvD5n/BZW
+ I5bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1746760631; x=1747365431;
+ d=1e100.net; s=20230601; t=1747220324; x=1747825124;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=opoK+AzPTNKgO/SAmsMVBjeqSr697aHxwJmC1KlGbRc=;
- b=FGOQulaPPs0i+5Rt0/QXLS9XMd8R7jX+pIZnKi6O/FIdwLFLd49N0sPI3z6LAZ5L8K
- ajq2Lmw+68lZFgJccBcQ/5zRrOeLw0vdkZTJPdASDjuVxIwtsfBQ5ubyHhPHz9REzSA+
- CuZiPcV/ivS+SxYBANMx2c84JWKQ6wVDiamcqKiWVSbG/zEt0bQYPRz2O9MZ44qasxPn
- LSQb3W+G8/w6jSiKTsf+jsSQGsuwh2zuUqSF1SRBTIgKAgGcFjT5+IlBnGpGcrjxwwkx
- hwMte+gBpmwyZaJwalyh5Dx/8cHa0+scO3sbANFKfRQSZVuBQg33vTPHVn4YsM4ZYohV
- Fm3A==
+ bh=Hu8TOexpRWewY07dDXJsWt38JoGIzWPjMFqMEoSL2F8=;
+ b=vbtgGWnflf0Uoi1f3FVsmq3xIv5TEBgo0Upc6b/RZ/ZC0lR2CGxmzgbrazZY2c8ZHG
+ 6VM0gp9Py7iS0DsM10buHtzJ9AsryPwmrZGnRScN4yg0UKfFCX4NScrudLqz8V8Z3AUq
+ 8QWLDiLG13UE2TlDQwVAfZAT/i4ieGyqUkk4ofjaPXy7eZXlsdpXy/Ude1UxTb8iBadT
+ E57WBcp6IqbibxPqQCBwQ1HLnJUtKQu1MkOAq4psBYRPG3qX1b4l7ydIZB3cyzejO2eQ
+ swg0dX9t8bpcvWv/zDZCaaLdkyS7KRDHGlSr9fIO4Muti3EyZKuFOLkB20LLAt/GsEWT
+ 3YDw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXYaoH0RhT4Q2YfXjj+taX2CG2AuIXO4XWSkFOSm30uI3Hm1fDr64OVzZnWovcWpVTxSF+1cRqFtIQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyLCIDgehxeMeAbn6yIiaD9zS+NWQ9CEe5dDpESB0ky0nVyv+T+
- BK8WSy+qe6E4lu5EuYsy17Wv02TUyqkEWxl4wDZIqsBTFEf5AE2c
-X-Gm-Gg: ASbGnctqrxUHTDvElUQm4+qvmBVBKJYQBLuMrL00tvb3uYBxKsAsDpIEHOi8op85o8+
- /5rOMSMR6BFbBaageVBDJQHYWwvQUfMG3Q2IuHcy+R1Tqobu7WLaH7KQUw7wET4y6fABHaa4+KM
- mxVtFsVsM+Riy4m0+/st014hZp9Kf0g3mGu7xN1cotSOE4bg1X7DztbSNORXkiSZmaHmetDbO4/
- 4UqkgMQUsXxvy88DI6bOY6Cc3IAJwJt69hnSm9iVrrJzhRPra0xUKkF5fVrf2RB/Q5O6tOaNfUg
- Y2yVjACjHI2HYBiSS4C8KghYrehLbIGOCcsiy9VLKwcM+NSUx53cuLpEn8PJhJcJTeMfTRIXs+h
- 9zeFQJHU22/HqKmf3m6+jJXY=
-X-Google-Smtp-Source: AGHT+IFr5wDxcxjZ9Q/iUAiLI2ifQ/cRB+9pzvQIRp+QV4tN7rCEAY/Ke6odF2Cy5+AfeYLWPdfhrw==
-X-Received: by 2002:a05:6808:1885:b0:401:e7c0:62bd with SMTP id
- 5614622812f47-4037fe1e47amr1167787b6e.3.1746760631582; 
- Thu, 08 May 2025 20:17:11 -0700 (PDT)
+ AJvYcCWfwzSKmicb+jZ+vDSD7HjHw6z1LSsBCS+guzbb+nQ7qzlvgE3ScVESo+fqPvccNmvaOSVd7vhR@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwuVh0478/BvCzRs9bxlTD78WpZRSW3elyjsqOs72co9ZB+AWOp
+ mDLoQCIipUIuw1dtk5rHZ4MkkpqVYG3obYrSKLkkxysvoGDbc2Ku
+X-Gm-Gg: ASbGncv+Ay3TGB85PCizP+RTNsa8ShncNwow4K6e8VeDpwXslgSdENEoE0HlHM97rPU
+ X0NCWnOA/ODDW7GT+SgtRFNIOFMPrYgy038HejMyHdEF22u08T9qfV36t+1IzGMTXzuFsgMbPNZ
+ 3NitPmjTOpskvrjDaWbiVkLKXc6e+YXeMhH3vGva88gsa0dm7cSboOUdILzv2QU/ONtLRely9uh
+ T+2pB6MyYP5dJ4ROaAPxik+Llvd5HYxfJfm/+f/MLNWEOkBrjGsuxcCwh7Jxz3UtI7qmIG74bjo
+ ZNn6bDOJruOK1eZieYePZn615DITnmUqa9PYN5chXIW3csKUrH+LVFxclBt2nvf8VZ9gxUuwEU1
+ SfXhApVYjmUzLwL3c97JZBmo=
+X-Google-Smtp-Source: AGHT+IGXkVccnY53tGuxSpCAUCholjM/YozYw8rMeLEOV6h73hwItyLwj6abwZHjjSwc7RwgLDceeg==
+X-Received: by 2002:a05:6870:b022:b0:2e0:15a3:3b0f with SMTP id
+ 586e51a60fabf-2e348815239mr1434508fac.31.1747220324164; 
+ Wed, 14 May 2025 03:58:44 -0700 (PDT)
 Received: from my-computer.lan (c-73-76-29-249.hsd1.tx.comcast.net.
  [73.76.29.249]) by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-60842b096desm303745eaf.30.2025.05.08.20.17.06
+ 586e51a60fabf-2dba060be9esm2654535fac.10.2025.05.14.03.58.39
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 08 May 2025 20:17:11 -0700 (PDT)
+ Wed, 14 May 2025 03:58:43 -0700 (PDT)
 From: Andrew Ballance <andrewjballance@gmail.com>
-To: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- akpm@linux-foundation.org, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- benno.lossin@proton.me, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, gregkh@linuxfoundation.org, rafael@kernel.org,
- bhelgaas@google.com, kwilczynski@kernel.org, raag.jadav@intel.com,
- andriy.shevchenko@linux.intel.com, arnd@arndb.de, me@kloenk.dev,
- andrewjballance@gmail.com, fujita.tomonori@gmail.com,
- daniel.almeida@collabora.com
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org
-Subject: [PATCH 11/11] rust: devres: fix doctest
-Date: Thu,  8 May 2025 22:15:24 -0500
-Message-ID: <20250509031524.2604087-12-andrewjballance@gmail.com>
+To: dakr@kernel.org, a.hindborg@kernel.org, airlied@gmail.com,
+ akpm@linux-foundation.org, alex.gaynor@gmail.com, aliceryhl@google.com,
+ andrewjballance@gmail.com, andriy.shevchenko@linux.intel.com,
+ arnd@arndb.de, benno.lossin@proton.me, bhelgaas@google.com,
+ bjorn3_gh@protonmail.com, boqun.feng@gmail.com,
+ daniel.almeida@collabora.com, fujita.tomonori@gmail.com, gary@garyguo.net,
+ gregkh@linuxfoundation.org, kwilczynski@kernel.org, me@kloenk.dev,
+ ojeda@kernel.org, raag.jadav@intel.com, rafael@kernel.org, simona@ffwll.ch,
+ tmgross@umich.edu
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+Subject: [PATCH v2 3/6] rust: io: add new Io type
+Date: Wed, 14 May 2025 05:57:31 -0500
+Message-ID: <20250514105734.3898411-4-andrewjballance@gmail.com>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250509031524.2604087-1-andrewjballance@gmail.com>
-References: <20250509031524.2604087-1-andrewjballance@gmail.com>
+In-Reply-To: <20250514105734.3898411-1-andrewjballance@gmail.com>
+References: <20250514105734.3898411-1-andrewjballance@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:22 +0000
@@ -98,35 +98,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-fix a doc test to use the new Io api.
+adds a new Io type that uses the C ioread/iowrite family of functions
+and implements the IoAccess trait for it and renames the old `Io`
+to `MMIo`.
 
 Signed-off-by: Andrew Ballance <andrewjballance@gmail.com>
 ---
- rust/kernel/devres.rs | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ rust/helpers/io.c |  7 ++++
+ rust/kernel/io.rs | 97 ++++++++++++++++++++++++++++++++++++++++++++---
+ 2 files changed, 98 insertions(+), 6 deletions(-)
 
-diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
-index ddb1ce4a78d9..88d145821ca8 100644
---- a/rust/kernel/devres.rs
-+++ b/rust/kernel/devres.rs
-@@ -45,7 +45,7 @@ struct DevresInner<T> {
- /// # Example
- ///
- /// ```no_run
--/// # use kernel::{bindings, c_str, device::Device, devres::Devres, io::{Io, IoRaw}};
-+/// # use kernel::{bindings, c_str, device::Device, devres::Devres, io::{Io, IoRaw, IoAccess}};
- /// # use core::ops::Deref;
- ///
- /// // See also [`pci::Bar`] for a real example.
-@@ -80,7 +80,7 @@ struct DevresInner<T> {
- ///
- ///    fn deref(&self) -> &Self::Target {
- ///         // SAFETY: The memory range stored in `self` has been properly mapped in `Self::new`.
--///         unsafe { Io::from_raw(&self.0) }
-+///         unsafe { Io::from_raw_ref(&self.0) }
- ///    }
- /// }
- /// # fn no_run() -> Result<(), Error> {
+diff --git a/rust/helpers/io.c b/rust/helpers/io.c
+index d419b5b3b7c7..a138914523c8 100644
+--- a/rust/helpers/io.c
++++ b/rust/helpers/io.c
+@@ -52,3 +52,10 @@ define_rust_io_write_helper(rust_helper_writel_relaxed, writel_relaxed, u32);
+ define_rust_io_write_helper(rust_helper_writeq_relaxed, writeq_relaxed, u64);
+ #endif
+ 
++define_rust_io_read_helper(rust_helper_ioread8, ioread8, u8);
++define_rust_io_read_helper(rust_helper_ioread16, ioread16, u16);
++define_rust_io_read_helper(rust_helper_ioread32, ioread32, u32);
++
++define_rust_io_write_helper(rust_helper_iowrite8, iowrite8, u8);
++define_rust_io_write_helper(rust_helper_iowrite16, iowrite16, u16);
++define_rust_io_write_helper(rust_helper_iowrite32, iowrite32, u32);
+diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
+index 368167d57863..ce044c155b16 100644
+--- a/rust/kernel/io.rs
++++ b/rust/kernel/io.rs
+@@ -264,9 +264,9 @@ pub fn maxsize(&self) -> usize {
+ /// [`read`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
+ /// [`write`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
+ #[repr(transparent)]
+-pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
++pub struct MMIo<const SIZE: usize = 0>(IoRaw<SIZE>);
+ 
+-impl<const SIZE: usize> Io<SIZE> {
++impl<const SIZE: usize> MMIo<SIZE> {
+     /// Convert a [`IoRaw`] into an [`MMIo`] instance, providing the accessors to the MMIO mapping.
+     ///
+     /// # Safety
+@@ -293,7 +293,7 @@ pub unsafe fn from_raw_ref(raw: &IoRaw<SIZE>) -> &Self {
+ }
+ 
+ // SAFETY: as per invariant `raw` is valid
+-unsafe impl<const SIZE: usize> IoAccess<SIZE> for Io<SIZE> {
++unsafe impl<const SIZE: usize> IoAccess<SIZE> for MMIo<SIZE> {
+     #[inline]
+     fn maxsize(&self) -> usize {
+         self.0.maxsize()
+@@ -312,13 +312,13 @@ fn addr(&self) -> usize {
+ }
+ 
+ #[cfg(CONFIG_64BIT)]
+-impl<const SIZE: usize> IoAccess64<SIZE> for Io<SIZE> {
++impl<const SIZE: usize> IoAccess64<SIZE> for MMIo<SIZE> {
+     impl_accessor_fn!(
+         read64_unchecked, readq, write64_unchecked, writeq, u64;
+     );
+ }
+ 
+-impl<const SIZE: usize> IoAccessRelaxed<SIZE> for Io<SIZE> {
++impl<const SIZE: usize> IoAccessRelaxed<SIZE> for MMIo<SIZE> {
+     impl_accessor_fn!(
+         read8_relaxed_unchecked, readb_relaxed, write8_relaxed_unchecked, writeb_relaxed, u8;
+         read16_relaxed_unchecked, readw_relaxed, write16_relaxed_unchecked, writew_relaxed, u16;
+@@ -327,8 +327,93 @@ impl<const SIZE: usize> IoAccessRelaxed<SIZE> for Io<SIZE> {
+ }
+ 
+ #[cfg(CONFIG_64BIT)]
+-impl<const SIZE: usize> IoAccess64Relaxed<SIZE> for Io<SIZE> {
++impl<const SIZE: usize> IoAccess64Relaxed<SIZE> for MMIo<SIZE> {
+     impl_accessor_fn!(
+         read64_relaxed_unchecked, readq_relaxed, write64_relaxed_unchecked, writeq_relaxed, u64;
+     );
+ }
++
++/// Io that can be either PortIo or MMIo,
++/// starting at the base address [`addr`] and spanning [`maxsize`] bytes.
++///
++/// The creator (usually a subsystem / bus such as PCI) is responsible for creating the
++/// mapping, performing an additional region request, etc.
++///
++/// # Invariants
++///
++/// [`addr`] is the start and [`maxsize`] the length of a valid io region of size [`maxsize`].
++///
++/// [`addr`] is valid to access with the C [`ioread`]/[`iowrite`] family of functions.
++///
++/// [`addr`]: IoAccess::addr
++/// [`maxsize`]: IoAccess::maxsize
++/// [`ioread`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
++/// [`iowrite`]: https://docs.kernel.org/driver-api/device-io.html#differences-between-i-o-access-functions
++#[repr(transparent)]
++pub struct Io<const SIZE: usize = 0>(IoRaw<SIZE>);
++
++impl<const SIZE: usize> Io<SIZE> {
++    /// Convert a [`IoRaw`] into an [`Io`] instance, providing the accessors to the
++    /// Io mapping.
++    ///
++    /// # Safety
++    ///
++    /// Callers must ensure that `addr` is the start of a valid I/O region of size `maxsize`.
++    ///
++    /// ```
++    /// use kernel::io::{IoRaw, Io, IoAccess};
++    ///
++    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
++    /// // SAFETY: test, value is not actually written to.
++    /// let io: Io<2> = unsafe { Io::from_raw(raw) };
++    /// # assert_eq!(0xDEADBEEFC0DE, io.addr());
++    /// # assert_eq!(2, io.maxsize());
++    /// ```
++    pub unsafe fn from_raw(raw: IoRaw<SIZE>) -> Self {
++        Self(raw)
++    }
++
++    /// Convert a ref to [`IoRaw`] into an [`Io`] instance, providing the accessors to
++    /// the Io mapping.
++    ///
++    /// # Safety
++    ///
++    /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of
++    /// size `maxsize`.
++    ///
++    /// # Examples
++    ///
++    /// ```
++    /// use kernel::io::{IoRaw, Io, IoAccess};
++    ///
++    /// let raw = IoRaw::<2>::new(0xDEADBEEFC0DE, 2).unwrap();
++    /// // SAFETY: test, value is not actually written to.
++    /// let io: &Io<2> = unsafe { Io::from_raw_ref(&raw) };
++    /// # assert_eq!(raw.addr(), io.addr());
++    /// # assert_eq!(raw.maxsize(), io.maxsize());
++    /// ```
++    #[inline]
++    pub unsafe fn from_raw_ref(raw: &IoRaw<SIZE>) -> &Self {
++        // SAFETY: `Io` is a transparent wrapper around `IoRaw`.
++        unsafe { &*core::ptr::from_ref(raw).cast() }
++    }
++}
++
++// SAFETY: as per invariant `raw` is valid
++unsafe impl<const SIZE: usize> IoAccess<SIZE> for Io<SIZE> {
++    #[inline]
++    fn addr(&self) -> usize {
++        self.0.addr()
++    }
++
++    #[inline]
++    fn maxsize(&self) -> usize {
++        self.0.maxsize()
++    }
++
++    impl_accessor_fn!(
++        read8_unchecked, ioread8, write8_unchecked, iowrite8, u8;
++        read16_unchecked, ioread16, write16_unchecked, iowrite16, u16;
++        read32_unchecked, ioread32, write32_unchecked, iowrite32, u32;
++    );
++}
 -- 
 2.49.0
 
