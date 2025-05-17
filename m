@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93246C3ABD8
-	for <nouveau@archiver.kernel.org>; Sat, 17 May 2025 00:11:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35F4DC3ABC9
+	for <nouveau@archiver.kernel.org>; Sat, 17 May 2025 00:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D9210EBD8;
-	Sat, 17 May 2025 00:11:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E133710EBDA;
+	Sat, 17 May 2025 00:11:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pdg0icef";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="XnizHiAq";
 	dkim-atps=neutral
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A3810EBD8
- for <nouveau@lists.freedesktop.org>; Sat, 17 May 2025 00:11:31 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2046.outbound.protection.outlook.com [40.107.237.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A04A010EBDA
+ for <nouveau@lists.freedesktop.org>; Sat, 17 May 2025 00:11:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WP13zKojg4AfbVytfom9wrfhpDrRUvsA/FzZPu9uZY67HU+iBonIeTD0sJz0AK0d5MnuFXUa9qy4SwxAxDK2yXrkH/E4gKtUtdtLnjz6QwJ2bDDGlDZuLw+4d545t101db+6lhudZ/GEW36NL/dKHql9JMJAJcxbsWsmlGwdR+NHrs/COL/cC6ddL6LcuAMvS0QZ0cNDpF0STM6QbtAgD3QqVCDlwHR5C6HbyrNvQhzIIbte9giZf6IgyUzA9UPRevbI3zLCLi1fyWqQs7lfCwdghZ5fy3jCsAYMehkU1gkqpOkXWZfDo26tH5Xxjp1qMfh9Z70dPYUZMADkhGDOqA==
+ b=Rz3iL7mUPGN+VOeEuHcVbaTV9bKb/1S9DwrJ1Er1+y/VOR1NQ6Oem6gchDbh8D1E8bErJZqdUHaatlfg1lhuv9bIwUpMcPnuXXtBcdxRIv3V3ssRRpLnJnlLL6Ve0+Zi/vYqhvw7PF9ifT6h3lnWBIhRpm6tx7cDdvqOB7sQGaZB+1FIM6U+NfsjVkjNEQNvgXilUYnfIEJz4EccFfSobz1ckiehk9L3goz8+3jMVCI09hGdahLvPnNDtRX9bBaxFJ0Wgh/jcMdiaMAmJO3+CkqQGP/FKHh/rq2r6KW30DdEY+G+BdchTRFIKKWPzotxIzre2KB/KusVhenk6sKGHg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PTZTt/bOGfGMqHLZTrWFLaEtw4T+FRTGOd8eJRnkY0s=;
- b=ijoB5Vf4Sl5SwyFIHg2ayozmGrrHXd8Trs/hUtIdMbd36briTe5QP06Aqh5E+lh0miNMs8Ad+nQG6KdUDv4xaGXukDcHQYQux40dMwr0NKfmxu7nic2f2EtVWVyipVp7KobWD4jZJcYhZiwahlYPrIwSBUOfw8Tp4KwTQNGTLSZy+f+NM4WHarfbqJqsfsxoN27oVx/XtQLflccvK2i5UWVE8LLsLx4DatL9hhVhhn6V+upDqqCo/77IgaxwQOv5fvqH0zguealyHz9Y0ZJ+U9xEkMEoHs0pUoZUVBHpDJZxk5c165q101xvZrzTWTX7QZSX8WFztQ1j0wenet0svg==
+ bh=bm2TFicGL/kcYSyw5neiEWz/C2ViFD2RYuMO+7/vya4=;
+ b=EnpJ9BtwaigE0JvkRbcN+868AGTZJLrvWpqBLzZ0W7SrUsXWjgID/s/ewEwIWLtsQ/ywvWEGjXcMwPGOXw09qbSQgjAGqE2jimOaDLiI6M83EXpIwMPxxfPO7zqF1f5VB5ON6P4gxf12HGHo146EBL4Kb8inGVdT/VT8p8jNZ1KVZFi+QBSyVj1PEnPRYgrWwBqDdzBU8haPrsXAu6p6wStW9TirOxG5DFWHfoiTC9lGH//pyOso5hsC1o/e7T0dcMkZefoDUUz1orm/WFv7/xWcLoBjH0hhvW0MjnLz+oia5kCgdl4HM2leS+pg8zTTTQv2dpuXFMyR5xD6MnC3gg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
@@ -30,18 +30,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PTZTt/bOGfGMqHLZTrWFLaEtw4T+FRTGOd8eJRnkY0s=;
- b=pdg0icefu3ukG8R1QjDATgrFrcI+mCa0PCERE5d1jzxaXAjG5sWQgTTCvQYv6f77wK9Q+u+nMaX3RfMSlz23Obi7FQKT0PbO1Zv08FbwFqbkr9nVHjYzfCTskl8epRRy1FF1srIl/SM9kZ0kbnADOd8NFHYQe0ZpR7RUFObezrrnfErmv1mjGeUBCG0i5U6rjPht62PdF3bTjaDE7/VenH5n9uboAv0CsiMXZ3f/yXq6T5+5hYMrTU54wEwZfZFO9C01MFrbSKx48I0EAcMn6aOHBCK0FOMC1ZxauvmYcVN0HCJMrfIgVcxhU75Tf8KJtqKuaaUkncU24uTdd+Uy6A==
-Received: from SJ0PR05CA0175.namprd05.prod.outlook.com (2603:10b6:a03:339::30)
- by PH8PR12MB6673.namprd12.prod.outlook.com (2603:10b6:510:1c0::20)
+ bh=bm2TFicGL/kcYSyw5neiEWz/C2ViFD2RYuMO+7/vya4=;
+ b=XnizHiAq0cC0hfeSQknCNx5UdF2XS9Cncs3m0agfiq1g9uXszr5MzyXJpGkEX/R4TqtdjTkbUvuQK1gQBmBG75lo0wuojmuFdPRQu/rcJcu4Eyyc7da8+dKIoQJ4BRJzxUwZJT/phGQZhFXu4h0IDTZRhDGXC4emAElEFV0ADc24BQeSg/9bfHr+AWqH301c1yuxo9HghHHGo/2IUBi+FwKP7KxuzvJqmQtnriICog+EdVF3tfxIWKvk8OlBqVtR5/t9TdQSuOYaSbzMXSPqkxL2G4fx6ibWw5FnFgDeoKmJLGYU7JOWU3F4i4Lykq8P5II6tIMwb8yvCjze8J1tcw==
+Received: from PH7PR10CA0009.namprd10.prod.outlook.com (2603:10b6:510:23d::29)
+ by SA1PR12MB6824.namprd12.prod.outlook.com (2603:10b6:806:25f::12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.33; Sat, 17 May
- 2025 00:11:26 +0000
-Received: from CY4PEPF0000FCBF.namprd03.prod.outlook.com
- (2603:10b6:a03:339:cafe::bf) by SJ0PR05CA0175.outlook.office365.com
- (2603:10b6:a03:339::30) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.18 via Frontend Transport; Sat,
- 17 May 2025 00:11:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.29; Sat, 17 May
+ 2025 00:11:20 +0000
+Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
+ (2603:10b6:510:23d:cafe::de) by PH7PR10CA0009.outlook.office365.com
+ (2603:10b6:510:23d::29) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.20 via Frontend Transport; Sat,
+ 17 May 2025 00:11:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
@@ -50,24 +50,24 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- CY4PEPF0000FCBF.mail.protection.outlook.com (10.167.242.101) with Microsoft
+ CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8746.27 via Frontend Transport; Sat, 17 May 2025 00:11:25 +0000
+ 15.20.8746.27 via Frontend Transport; Sat, 17 May 2025 00:11:19 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 16 May
- 2025 17:11:10 -0700
+ 2025 17:11:05 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.231.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 16 May 2025 17:11:08 -0700
+ 15.2.1544.14; Fri, 16 May 2025 17:11:04 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>, Dave Airlie <airlied@redhat.com>, "Timur
  Tabi" <ttabi@nvidia.com>
-Subject: [PATCH v3 42/62] drm/nouveau/gsp: add hal for disp.chan.dmac_alloc()
-Date: Sat, 17 May 2025 10:09:34 +1000
-Message-ID: <20250517000954.35691-43-bskeggs@nvidia.com>
+Subject: [PATCH v3 39/62] drm/nouveau/gsp: add hal for fifo.chan.alloc
+Date: Sat, 17 May 2025 10:09:31 +1000
+Message-ID: <20250517000954.35691-40-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250517000954.35691-1-bskeggs@nvidia.com>
 References: <20250517000954.35691-1-bskeggs@nvidia.com>
@@ -79,52 +79,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBF:EE_|PH8PR12MB6673:EE_
-X-MS-Office365-Filtering-Correlation-Id: e7b1e9b1-26c7-4d01-f128-08dd94d75d46
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|SA1PR12MB6824:EE_
+X-MS-Office365-Filtering-Correlation-Id: 114e6027-d4f3-4509-2876-08dd94d759b5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|1800799024|36860700013|82310400026|376014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?UElmOH+UtKA/IBC64W37b/aM7fylA/k78Y8wQkynL3XUBQPH5sjQyP9aIsk7?=
- =?us-ascii?Q?iCFjX6dDzCuFDrg/Qb8wJ3GLdCZoA7gIuRH0alB7j2l+tkF5ZEwgbN/8VrFm?=
- =?us-ascii?Q?13G5oVmRyAFZlwlehze1RM/JvdcDxUzUIuRTtj5D+f+aMeozQDJvcmeqdYQR?=
- =?us-ascii?Q?ObDLiRQVZf62WXpq9Pw74qRWpqbBPqbkQ5SvrE9vk/sd598ORKu7gu5VoP6N?=
- =?us-ascii?Q?OTG5yJFHzil4gPTsCbnbpY8uS7YcncEJs/Cou/dIT4q1dOVImg6u7myRdTwg?=
- =?us-ascii?Q?Zg93N+jJygm0SnbusayFgTKx588/mNM7GT2TXl9ieLRBXeD3LymYzYmZQW7P?=
- =?us-ascii?Q?ciWdWAWmAlej2P/WGCAx18F95RbUXbP1svzPgqTy/XXu9vJgN6kl3RalWhwC?=
- =?us-ascii?Q?SRKBzmJ4KOjvLfPoEdisqQKbAiNTQfUoyZIby5ZvpQ1IRmm0LaKtb1qcx/K9?=
- =?us-ascii?Q?OOyuJzg78PUmW/fnsEi5bRiIeUWTE/8yQuELm/KU4Rr4aq1OFmdAkxlNodpV?=
- =?us-ascii?Q?iy7KI8YyYyULyDcs9gy3NeI2C+2Pq3L7rYL5cXOKYuylRK8mRqC6ShZn0wEn?=
- =?us-ascii?Q?rBJsFqjirJn/mtLhruwbGEpLbLkyGcdSMzt9fItYeCfWmh/gGlgksrYVH1Uc?=
- =?us-ascii?Q?V5GPRjDtBhMy9Imrs5LR1KLbleUXBzFXF/MlZeghccGdQciRIT2eFL96ta21?=
- =?us-ascii?Q?qlMQBNI4WjUI1CMCNBZzhWfjgM5c3YTyRLSj9/Da+KtvyvWWCa5Fu9/BJcJS?=
- =?us-ascii?Q?fFL1XfC6xrTuS2m6KEKmEDj+wwRa/d8bbXRmYwwnHDQIkr+AC/cGSTJXbqb3?=
- =?us-ascii?Q?4Mhz1iywVXuPG2XXly40pHv/vMc5EtthQaOHIk1ZRdBsllKSM0c6n9Y6w88A?=
- =?us-ascii?Q?rqgAFTDNoMce24FTANq8go4bhda/ayA0abajld4yvMFwYOwNyixgW6CqHFpW?=
- =?us-ascii?Q?uyHd9q31olWGpFEnvzBnHkmBr+xD9TCZHSuBZyuW031YrekDj6XSyOhTSsx3?=
- =?us-ascii?Q?saVIIjB0/cdpVgU07QWfecoHmMq2fTGYziMdZhpqCTua+UYDDMg6d0Zir3a4?=
- =?us-ascii?Q?awWa1NH6rWRMdTNccLLzJClAJq5Zk6CXld6Cv30YEJeBpHKntee/2DW9+71J?=
- =?us-ascii?Q?C1ipNnFlrAi4pA2+y9yK9kr6STR67ABwlKrgv2Ul1g+KWMt3J6UY9USHz1p5?=
- =?us-ascii?Q?iNerIfAUowyYP0GRQz+wCOSCHumU/EqlFqfz8wdLM4zONrNrKScPs9I+i3VC?=
- =?us-ascii?Q?XJ/jAPkDLPpAHMaL7njIJSh6c7amoffoZTFol1h81bhLH7elvmDwcVN3b+kw?=
- =?us-ascii?Q?tVsUxnTuk9DQ/E9hxFjnScJVt0mDIauBrMk8tu9Qe0ROYN2kHCQIW8xJbP36?=
- =?us-ascii?Q?zudxzIOH42XLpcSVqyaGXgQl98EYgNbeSC9eKMDlUM//Pr2bYYao4b+bHQ9D?=
- =?us-ascii?Q?GMW9eAS8EP3jO9QRO5i7F7GRHd1VGdV6NtKRSegpmPDUlsXTzt0fVPuiVtre?=
- =?us-ascii?Q?Eo1LIzU4ROzwI495cj5SKVjTq4/gPl66mpOo?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?cJ0zH0Cm+hk2KpVBo38XxF+fs0rsuRPsV+/eBg7uTu8cagQjcQwxgPeITGeS?=
+ =?us-ascii?Q?kNHES2mU7GJ0nSdtsEn89mdAlZKFqT1EyQ8AlOIc1XgRa7ivfD+hpoOrB22v?=
+ =?us-ascii?Q?u4ayOQfzx8EMIElv+O8FFQcfmAUtueHOLQJj0xO+v881B+OLqHMWvHYSPFa8?=
+ =?us-ascii?Q?SYaI7+3wmkKPDHCX6p2zeS7I1xR7ZJnTAYgUTRQXCLmukBcxGIp20gBLPquW?=
+ =?us-ascii?Q?9aJ4r1V5Xpo04+rr9SU9c8mgqVEGra67em6b5tOlUXnCm+w6MUJ87TkFg3gF?=
+ =?us-ascii?Q?XjQTNGiCO0CV4EovYMypTNt9JgMMWHD0Gzt19w3CFxoYu5heunHE/qpTTUtP?=
+ =?us-ascii?Q?Glv0bmKS2mcXwX9b8sy/kxbf2oYO9oHaT8WuWNyXZkrwcFkJLqJ+W2dzQnK2?=
+ =?us-ascii?Q?HbgfQWgirTsEW4XvPeSS9ARfJpAWJDkNXgitWqvXDtbJlYM/fCi1tQJFoYYt?=
+ =?us-ascii?Q?4cW+W4Wlk/4SBeGllI+YQO0bGhGInd9UtxEAC94NWIjM/yPU2pQ7wcE+5RBW?=
+ =?us-ascii?Q?5AbU4+NLQaQUtvdUEZdK0sKWJVL/YYlNcYSZsWATvBea1USQNGopTV2FKiE9?=
+ =?us-ascii?Q?LcNlidMZOd7RCZcKWQYDCEibLsiOnfiwiDnYPyIfknIwHUwzkadIfudmSA/d?=
+ =?us-ascii?Q?ZXGFWIpSwp4ImJKSDuo75MCre3v9h9VdK9ZILehNh0IK2Al4Ny4oIn6cq5TA?=
+ =?us-ascii?Q?AQaXmOSdKRciwQIDVlgpcgO3he27lrMnLkEw6z5A89A32JE9SbNdkok5AVB1?=
+ =?us-ascii?Q?5T7T+KsMwSX2mE9wdDyVmU0NiS7PyRR99jwFw1cxG83pFLDc1i1v/BpaQ9NF?=
+ =?us-ascii?Q?66tTpoZlCElLykfefjVoNwzxjCWsrHe2dUsnK8ED05T3N31zzqSiRF88V6Ir?=
+ =?us-ascii?Q?qZJL61K6Rkdgk9R5Yo+LnI+uvSt9WwiDD4hWesTR4JQKj57gLfKbcMRX07RW?=
+ =?us-ascii?Q?HHIkFafjcn3OIArX9bm5Iw8Hus7lFRbvC0C2tkV2rEDewIupCq6R+E6tuxn8?=
+ =?us-ascii?Q?ojPBdXKcvi89Qm69KuY7rhG2vF9tsKG7OFK1HVqi6RB8HmWkp1udN41IAnbO?=
+ =?us-ascii?Q?7xCj0lSJduVHlIFWdrmrYi3bxvdI32ggyfMbhflxq+9+VMm3WUwshrx16wrp?=
+ =?us-ascii?Q?b1tb7NUd2Cp7xzBv7ApjF0aRTyUh+YlpM/xdwRNgNOhMXD3Iu2rDGfv9IJVU?=
+ =?us-ascii?Q?ps9MslZoKTO0lwKMJT6aK+1s2n5trrlSR4gKQKCRxyGDZ+YpOAXfjlMBDcjp?=
+ =?us-ascii?Q?MR9yH8ewZiIzoH+2jRDWSBdJOf12vE14gzrKzi8NfiEB3Fbt6X6dRJMymQ3f?=
+ =?us-ascii?Q?NHjgstfavZkMc7b4A8zMrxcONXEwgKJerDLqbT0Jx667OdV/xX0OhxQ3uaMF?=
+ =?us-ascii?Q?MZB8vf0px9VrJEi840Ec9HKuNkpscVb0E6htBxLr+F4mkyLtr/wGBRUmTgm0?=
+ =?us-ascii?Q?odSauMhUKPJsBM98lq5u7vDRBvMO0wW6T8S6y3TcgaskKegUTr7Rlux/ME8b?=
+ =?us-ascii?Q?b+nPq0tDCAj705WvxPKBAGZqPVdkaEtALAu7?=
 X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
  SFS:(13230040)(1800799024)(36860700013)(82310400026)(376014); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2025 00:11:25.9223 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e7b1e9b1-26c7-4d01-f128-08dd94d75d46
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2025 00:11:19.9659 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 114e6027-d4f3-4509-2876-08dd94d759b5
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBF.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBE.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6673
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6824
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,89 +139,281 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-565.57.01 has incompatible changes to
-NV50VAIO_CHANNELDMA_ALLOCATION_PARAMETERS.
+570.86.16 has incompatible changes to NV_CHANNEL_ALLOC_PARAMS.
+
+At the same time, remove the duplicated channel allocation code from
+golden context init.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 Reviewed-by: Dave Airlie <airlied@redhat.com>
 Reviewed-by: Timur Tabi <ttabi@nvidia.com>
 Tested-by: Timur Tabi <ttabi@nvidia.com>
 ---
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 31 ++++++++++++-------
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  2 ++
- 2 files changed, 22 insertions(+), 11 deletions(-)
+ .../nouveau/nvkm/subdev/gsp/rm/r535/fifo.c    | 103 +++++++++++-------
+ .../drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c  |  70 ++----------
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |   7 ++
+ 3 files changed, 76 insertions(+), 104 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 14187e1618b8..7e9e2d3564da 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -164,27 +164,35 @@ r535_dmac_fini(struct nvkm_disp_chan *chan)
- 	r535_chan_fini(chan);
- }
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
+index 58a47c62690a..645706179913 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
+@@ -70,50 +70,29 @@ r535_chan_ramfc_clear(struct nvkm_chan *chan)
+ #define CHID_PER_USERD 8
  
-+static int
-+r535_dmac_alloc(struct nvkm_disp *disp, u32 oclass, int inst, u32 put_offset,
-+		struct nvkm_gsp_object *dmac)
-+{
-+	NV50VAIO_CHANNELDMA_ALLOCATION_PARAMETERS *args;
-+
-+	args = nvkm_gsp_rm_alloc_get(&disp->rm.object, (oclass << 16) | inst, oclass,
-+				     sizeof(*args), dmac);
-+	if (IS_ERR(args))
-+		return PTR_ERR(args);
-+
-+	args->channelInstance = inst;
-+	args->offset = put_offset;
-+
-+	return nvkm_gsp_rm_alloc_wr(dmac, args);
+ static int
+-r535_chan_ramfc_write(struct nvkm_chan *chan, u64 offset, u64 length, u32 devm, bool priv)
++r535_chan_alloc(struct nvkm_gsp_device *device, u32 handle, u32 nv2080_engine_type, u8 runq,
++		bool priv, int chid, u64 inst_addr, u64 userd_addr, u64 mthdbuf_addr,
++		struct nvkm_vmm *vmm, u64 gpfifo_offset, u32 gpfifo_length,
++		struct nvkm_gsp_object *chan)
+ {
+-	struct nvkm_fifo *fifo = chan->cgrp->runl->fifo;
+-	struct nvkm_engn *engn;
+-	struct nvkm_device *device = fifo->engine.subdev.device;
++	struct nvkm_gsp *gsp = device->object.client->gsp;
++	struct nvkm_fifo *fifo = gsp->subdev.device->fifo;
++	const int userd_p = chid / CHID_PER_USERD;
++	const int userd_i = chid % CHID_PER_USERD;
+ 	NV_CHANNELGPFIFO_ALLOCATION_PARAMETERS *args;
+-	const int userd_p = chan->id / CHID_PER_USERD;
+-	const int userd_i = chan->id % CHID_PER_USERD;
+-	u32 eT = ~0;
+-	int ret;
+ 
+-	if (unlikely(device->gr && !device->gr->engine.subdev.oneinit)) {
+-		ret = nvkm_subdev_oneinit(&device->gr->engine.subdev);
+-		if (ret)
+-			return ret;
+-	}
+-
+-	nvkm_runl_foreach_engn(engn, chan->cgrp->runl) {
+-		eT = engn->id;
+-		break;
+-	}
+-
+-	if (WARN_ON(eT == ~0))
+-		return -EINVAL;
+-
+-	chan->rm.mthdbuf.ptr = dma_alloc_coherent(fifo->engine.subdev.device->dev,
+-						  fifo->rm.mthdbuf_size,
+-						  &chan->rm.mthdbuf.addr, GFP_KERNEL);
+-	if (!chan->rm.mthdbuf.ptr)
+-		return -ENOMEM;
+-
+-	args = nvkm_gsp_rm_alloc_get(&chan->vmm->rm.device.object, NVKM_RM_CHAN(chan->id),
+-				     fifo->func->chan.user.oclass, sizeof(*args),
+-				     &chan->rm.object);
++	args = nvkm_gsp_rm_alloc_get(&device->object, handle,
++				     fifo->func->chan.user.oclass, sizeof(*args), chan);
+ 	if (WARN_ON(IS_ERR(args)))
+ 		return PTR_ERR(args);
+ 
+-	args->gpFifoOffset = offset;
+-	args->gpFifoEntries = length / 8;
++	args->gpFifoOffset = gpfifo_offset;
++	args->gpFifoEntries = gpfifo_length / 8;
+ 
+ 	args->flags  = NVDEF(NVOS04, FLAGS, CHANNEL_TYPE, PHYSICAL);
+ 	args->flags |= NVDEF(NVOS04, FLAGS, VPR, FALSE);
+ 	args->flags |= NVDEF(NVOS04, FLAGS, CHANNEL_SKIP_MAP_REFCOUNTING, FALSE);
+-	args->flags |= NVVAL(NVOS04, FLAGS, GROUP_CHANNEL_RUNQUEUE, chan->runq);
++	args->flags |= NVVAL(NVOS04, FLAGS, GROUP_CHANNEL_RUNQUEUE, runq);
+ 	if (!priv)
+ 		args->flags |= NVDEF(NVOS04, FLAGS, PRIVILEGED_CHANNEL, FALSE);
+ 	else
+@@ -136,25 +115,25 @@ r535_chan_ramfc_write(struct nvkm_chan *chan, u64 offset, u64 length, u32 devm,
+ 	args->flags |= NVDEF(NVOS04, FLAGS, MAP_CHANNEL, FALSE);
+ 	args->flags |= NVDEF(NVOS04, FLAGS, SKIP_CTXBUFFER_ALLOC, FALSE);
+ 
+-	args->hVASpace = chan->vmm->rm.object.handle;
+-	args->engineType = eT;
++	args->hVASpace = vmm->rm.object.handle;
++	args->engineType = nv2080_engine_type;
+ 
+-	args->instanceMem.base = chan->inst->addr;
+-	args->instanceMem.size = chan->inst->size;
++	args->instanceMem.base = inst_addr;
++	args->instanceMem.size = fifo->func->chan.func->inst->size;
+ 	args->instanceMem.addressSpace = 2;
+ 	args->instanceMem.cacheAttrib = 1;
+ 
+-	args->userdMem.base = nvkm_memory_addr(chan->userd.mem) + chan->userd.base;
++	args->userdMem.base = userd_addr;
+ 	args->userdMem.size = fifo->func->chan.func->userd->size;
+ 	args->userdMem.addressSpace = 2;
+ 	args->userdMem.cacheAttrib = 1;
+ 
+-	args->ramfcMem.base = chan->inst->addr + 0;
++	args->ramfcMem.base = inst_addr;
+ 	args->ramfcMem.size = 0x200;
+ 	args->ramfcMem.addressSpace = 2;
+ 	args->ramfcMem.cacheAttrib = 1;
+ 
+-	args->mthdbufMem.base = chan->rm.mthdbuf.addr;
++	args->mthdbufMem.base = mthdbuf_addr;
+ 	args->mthdbufMem.size = fifo->rm.mthdbuf_size;
+ 	args->mthdbufMem.addressSpace = 1;
+ 	args->mthdbufMem.cacheAttrib = 0;
+@@ -166,7 +145,44 @@ r535_chan_ramfc_write(struct nvkm_chan *chan, u64 offset, u64 length, u32 devm,
+ 	args->internalFlags |= NVDEF(NV_KERNELCHANNEL, ALLOC_INTERNALFLAGS, ERROR_NOTIFIER_TYPE, NONE);
+ 	args->internalFlags |= NVDEF(NV_KERNELCHANNEL, ALLOC_INTERNALFLAGS, ECC_ERROR_NOTIFIER_TYPE, NONE);
+ 
+-	ret = nvkm_gsp_rm_alloc_wr(&chan->rm.object, args);
++	return nvkm_gsp_rm_alloc_wr(chan, args);
 +}
 +
- static int
- r535_dmac_init(struct nvkm_disp_chan *chan)
- {
- 	const struct nvkm_rm_api *rmapi = chan->disp->rm.objcom.client->gsp->rm->api;
--	NV50VAIO_CHANNELDMA_ALLOCATION_PARAMETERS *args;
- 	int ret;
- 
- 	ret = rmapi->disp->chan.set_pushbuf(chan->disp, chan->object.oclass, chan->head, chan->memory);
++static int
++r535_chan_ramfc_write(struct nvkm_chan *chan, u64 offset, u64 length, u32 devm, bool priv)
++{
++	struct nvkm_fifo *fifo = chan->cgrp->runl->fifo;
++	struct nvkm_engn *engn;
++	struct nvkm_device *device = fifo->engine.subdev.device;
++	const struct nvkm_rm_api *rmapi = device->gsp->rm->api;
++	u32 eT = ~0;
++	int ret;
++
++	if (unlikely(device->gr && !device->gr->engine.subdev.oneinit)) {
++		ret = nvkm_subdev_oneinit(&device->gr->engine.subdev);
++		if (ret)
++			return ret;
++	}
++
++	nvkm_runl_foreach_engn(engn, chan->cgrp->runl) {
++		eT = engn->id;
++		break;
++	}
++
++	if (WARN_ON(eT == ~0))
++		return -EINVAL;
++
++	chan->rm.mthdbuf.ptr = dma_alloc_coherent(fifo->engine.subdev.device->dev,
++						  fifo->rm.mthdbuf_size,
++						  &chan->rm.mthdbuf.addr, GFP_KERNEL);
++	if (!chan->rm.mthdbuf.ptr)
++		return -ENOMEM;
++
++	ret = rmapi->fifo->chan.alloc(&chan->vmm->rm.device, NVKM_RM_CHAN(chan->id),
++				      eT, chan->runq, priv, chan->id, chan->inst->addr,
++				      nvkm_memory_addr(chan->userd.mem) + chan->userd.base,
++				      chan->rm.mthdbuf.addr, chan->vmm, offset, length,
++				      &chan->rm.object);
  	if (ret)
  		return ret;
  
--	args = nvkm_gsp_rm_alloc_get(&chan->disp->rm.object,
--				     (chan->object.oclass << 16) | chan->head,
--				     chan->object.oclass, sizeof(*args), &chan->rm.object);
--	if (IS_ERR(args))
--		return PTR_ERR(args);
--
--	args->channelInstance = chan->head;
--	args->offset = chan->suspend_put;
--
--	return nvkm_gsp_rm_alloc_wr(&chan->rm.object, args);
-+	return rmapi->disp->chan.dmac_alloc(chan->disp, chan->object.oclass, chan->head,
-+					    chan->suspend_put, &chan->rm.object);
- }
- 
- static int
-@@ -1780,5 +1788,6 @@ r535_disp = {
- 	},
- 	.chan = {
- 		.set_pushbuf = r535_disp_chan_set_pushbuf,
-+		.dmac_alloc = r535_dmac_alloc,
- 	}
+@@ -541,4 +557,7 @@ const struct nvkm_rm_api_fifo
+ r535_fifo = {
+ 	.xlat_rm_engine_type = r535_fifo_xlat_rm_engine_type,
+ 	.ectx_size = r535_fifo_ectx_size,
++	.chan = {
++		.alloc = r535_chan_alloc,
++	},
  };
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
+index e0fa88aa608f..cc28de66cfa3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
+@@ -298,74 +298,20 @@ r535_gr_oneinit(struct nvkm_gr *base)
+ 	if (ret)
+ 		goto done;
+ 
+-	{
+-		NV_CHANNELGPFIFO_ALLOCATION_PARAMETERS *args;
+-
+-		args = nvkm_gsp_rm_alloc_get(&golden.vmm->rm.device.object, NVKM_RM_CHAN(0),
+-					     device->fifo->func->chan.user.oclass,
+-					     sizeof(*args), &golden.chan);
+-		if (IS_ERR(args)) {
+-			ret = PTR_ERR(args);
+-			goto done;
+-		}
+-
+-		args->gpFifoOffset = 0;
+-		args->gpFifoEntries = 0x1000 / 8;
+-		args->flags =
+-			NVDEF(NVOS04, FLAGS, CHANNEL_TYPE, PHYSICAL) |
+-			NVDEF(NVOS04, FLAGS, VPR, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_SKIP_MAP_REFCOUNTING, FALSE) |
+-			NVVAL(NVOS04, FLAGS, GROUP_CHANNEL_RUNQUEUE, 0) |
+-			NVDEF(NVOS04, FLAGS, PRIVILEGED_CHANNEL, TRUE) |
+-			NVDEF(NVOS04, FLAGS, DELAY_CHANNEL_SCHEDULING, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_DENY_PHYSICAL_MODE_CE, FALSE) |
+-			NVVAL(NVOS04, FLAGS, CHANNEL_USERD_INDEX_VALUE, 0) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_USERD_INDEX_FIXED, FALSE) |
+-			NVVAL(NVOS04, FLAGS, CHANNEL_USERD_INDEX_PAGE_VALUE, 0) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_USERD_INDEX_PAGE_FIXED, TRUE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_DENY_AUTH_LEVEL_PRIV, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_SKIP_SCRUBBER, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_CLIENT_MAP_FIFO, FALSE) |
+-			NVDEF(NVOS04, FLAGS, SET_EVICT_LAST_CE_PREFETCH_CHANNEL, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_VGPU_PLUGIN_CONTEXT, FALSE) |
+-			NVDEF(NVOS04, FLAGS, CHANNEL_PBDMA_ACQUIRE_TIMEOUT, FALSE) |
+-			NVDEF(NVOS04, FLAGS, GROUP_CHANNEL_THREAD, DEFAULT) |
+-			NVDEF(NVOS04, FLAGS, MAP_CHANNEL, FALSE) |
+-			NVDEF(NVOS04, FLAGS, SKIP_CTXBUFFER_ALLOC, FALSE);
+-		args->hVASpace = golden.vmm->rm.object.handle;
+-		args->engineType = 1;
+-		args->instanceMem.base = nvkm_memory_addr(golden.inst);
+-		args->instanceMem.size = 0x1000;
+-		args->instanceMem.addressSpace = 2;
+-		args->instanceMem.cacheAttrib = 1;
+-		args->ramfcMem.base = nvkm_memory_addr(golden.inst);
+-		args->ramfcMem.size = 0x200;
+-		args->ramfcMem.addressSpace = 2;
+-		args->ramfcMem.cacheAttrib = 1;
+-		args->userdMem.base = nvkm_memory_addr(golden.inst) + 0x1000;
+-		args->userdMem.size = 0x200;
+-		args->userdMem.addressSpace = 2;
+-		args->userdMem.cacheAttrib = 1;
+-		args->mthdbufMem.base = nvkm_memory_addr(golden.inst) + 0x2000;
+-		args->mthdbufMem.size = 0x5000;
+-		args->mthdbufMem.addressSpace = 2;
+-		args->mthdbufMem.cacheAttrib = 1;
+-		args->internalFlags =
+-			NVDEF(NV_KERNELCHANNEL, ALLOC_INTERNALFLAGS, PRIVILEGE, ADMIN) |
+-			NVDEF(NV_KERNELCHANNEL, ALLOC_INTERNALFLAGS, ERROR_NOTIFIER_TYPE, NONE) |
+-			NVDEF(NV_KERNELCHANNEL, ALLOC_INTERNALFLAGS, ECC_ERROR_NOTIFIER_TYPE, NONE);
+-
+-		ret = nvkm_gsp_rm_alloc_wr(&golden.chan, args);
+-		if (ret)
+-			goto done;
+-	}
++	ret = rm->api->fifo->chan.alloc(&golden.vmm->rm.device, NVKM_RM_CHAN(0), 1, 0, true, 0,
++					nvkm_memory_addr(golden.inst),
++					nvkm_memory_addr(golden.inst) + 0x1000,
++					nvkm_memory_addr(golden.inst) + 0x2000,
++					golden.vmm, 0, 0x1000, &golden.chan);
++	if (ret)
++		goto done;
+ 
+ 	/* Fetch context buffer info from RM and allocate each of them here to use
+ 	 * during golden context init (or later as a global context buffer).
+ 	 *
+ 	 * Also build the information that'll be used to create channel contexts.
+ 	 */
+-	ret = gsp->rm->api->gr->get_ctxbufs_info(gr);
++	ret = rm->api->gr->get_ctxbufs_info(gr);
+ 	if (ret)
+ 		goto done;
+ 
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index 1ca5b025eeb4..7aed7cd72e85 100644
+index 01cb97f1e494..29663dbe99e1 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -94,6 +94,8 @@ struct nvkm_rm_api {
- 		struct {
- 			int (*set_pushbuf)(struct nvkm_disp *, s32 oclass, int inst,
- 					   struct nvkm_memory *);
-+			int (*dmac_alloc)(struct nvkm_disp *, u32 oclass, int inst, u32 put_offset,
-+					  struct nvkm_gsp_object *);
- 		} chan;
- 	} *disp;
+@@ -101,6 +101,13 @@ struct nvkm_rm_api {
+ 		int (*xlat_rm_engine_type)(u32 rm_engine_type,
+ 					   enum nvkm_subdev_type *, int *nv2080_type);
+ 		int (*ectx_size)(struct nvkm_fifo *);
++		struct {
++			int (*alloc)(struct nvkm_gsp_device *, u32 handle,
++				     u32 nv2080_engine_type, u8 runq, bool priv, int chid,
++				     u64 inst_addr, u64 userd_addr, u64 mthdbuf_addr,
++				     struct nvkm_vmm *, u64 gpfifo_offset, u32 gpfifo_length,
++				     struct nvkm_gsp_object *);
++		} chan;
+ 	} *fifo;
  
+ 	const struct nvkm_rm_api_engine {
 -- 
 2.49.0
 
