@@ -4,70 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA4E6C54E65
-	for <nouveau@archiver.kernel.org>; Sat, 17 May 2025 00:10:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4E73C3ABD8
+	for <nouveau@archiver.kernel.org>; Sat, 17 May 2025 00:10:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2396A10EBAE;
-	Sat, 17 May 2025 00:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89FA910EBA8;
+	Sat, 17 May 2025 00:10:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="CxqlFLjP";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="apf3z3up";
 	dkim-atps=neutral
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E63F010E119
- for <nouveau@lists.freedesktop.org>; Sat, 17 May 2025 00:10:42 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2056.outbound.protection.outlook.com [40.107.93.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1808310EBAD
+ for <nouveau@lists.freedesktop.org>; Sat, 17 May 2025 00:10:44 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h7BcOjoERIQdPX5YoQSM2/UQ6myVNP8TiIqTtGRHT80bH+M5AB9pm5F94VViOda2jaNW6DASnBizxAqEnxMSTJ0Cu7IwgAQWcciTmHryxeZ0t1zwfWEY5vxl0q68Qr1Y21laPmcYBIujhp0nHPPSBCd5ZY1y2Tidpttn08eW8k0hv9yEALA2oRMiH9eIIgQCaG6t93kfpJ2O4uwLMzlcROIUpP9XKXCuug2E3Px7pkMJMOaYY2V5TmO/jfYLx3mmcOW4eiAMQQU0j32/w9oIzM3NrAo/H+JvuxHCYguHSSEdP9nSmOnaAKehAyvIL2drUK3gX2Jwk0B8pyG4DQzC/g==
+ b=EJvVWJ8wJHNZU6aknk7t1IqYnp8CXYYUpY+3zZao+N3gpd0BYwAnCMk8ZZldq7gQZSp2jyUIGGmibpF6xrMxcMnZsiEtWx2Je49y9b5XM7aiHDKGqXCNZSVFT5eCZx5xs6DEAuy+3guhAYH1bIhvQQBqpR/FWHRZno2hRHMYq/puxciTRB5aOTeuha8V6Ux0VwRg+XzKoddzTo5QX0BRMgyF8VRe11kOQjVsYFkraM9LJWxdxO5EF8CddzwFVl4F4AOh9ZowCWpdL9bEu6HRp7CCgXianXZ1eeYgf48y6EihhRU98tDFFKUJc4zymh5j2L3UeHVyDNUW6q00+LdAxg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A5fVmI131UPsJv5fqsJ4+lyYU3ccgIKZJo5OXnQJiTk=;
- b=qj/u23aqdNc3cQdQaQ8+lgve+g3xLJPCUvpagmGM58JWyH+X40yVKg3eEx0UpTNJqrzp6+IuA5zJ+aJlGqa8Khwah5gTWkiqxXzNYVtjV5Ti6D/I6xEjuw/lt9sDNJcP5K3LIIWUf3gJp+llIPxJhfLKWH8I7Q4p+BLnuQWhzftn+em5wuhn+cgFEskplEDdEyHl8dqUqm7F+x8W7bWALWvaSIDkESqA8t530xRUY5E0SrCjLgSCLdEDGgzTbLxsyW4FDAkDVhsE4uS6PYbPOXjzLz0SAs/YA7VlsP0tzQ+JwcPEUlmG3bMQNzfC2bQxGdqEnbQA3SFmw+yXxAUkmg==
+ bh=ejOSBdiNHcxyozUFCoURWkdxOBFgyE5T0y+JrDKa93o=;
+ b=n0VvmCkNn/QIEiK2hJaTpLE9RjNPYzUko7pn0V/Ru44nI/AhyEEanVLBWAVVRJu4DUaRMc2eMVIiUy1QNl95a7+JjOg18/VrraViTKU8rPM3DrjsNSLVyUwHD14/lDJ+rw/JsUxvjU4Iz1BeSXPbgkqi9F56HYXTiizyg8r+QEKBhLYYLIZu/vqMt+W/OSfVHyTsc8xkz3wpGN8Dk90OcZbVHX75cacKhI3S8egRMz1YS3x3Wwau3IVoteZ3Y2dED6C/ywiX4Uv1lk9sSdy9Kjm1XJg0nv4sAAoPVH6Ez88ZNjG0xcbgaP+/iDaNyB6js3Zj8NZ2MSTIfzL0bfcnYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=lists.freedesktop.org
+ 216.228.117.160) smtp.rcpttodomain=lists.freedesktop.org
  smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
  header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A5fVmI131UPsJv5fqsJ4+lyYU3ccgIKZJo5OXnQJiTk=;
- b=CxqlFLjPeos3I/6UHf7HBkAuhHlmcUZTt6vO50ik3qggzTHaONvMz36/phSuAb2BeCMwCswCiVEchd8MhR5Hj9aJxahs6D6RDMmk77oNg0Rllhiy9S3YsC1JfTaLIF6Kxd4Dbc8rZTNmAhUfbXG8Ke9roaFZ5N1OV3LDhhjUvpika3kM63MsPYA/VdbgTpd2Prb1LVwwTUX+tOBeLKMkKoreaJ6oa6Tuq6/b/T9VGYhp2iDZ1uP4uRlaM2UAiSKhuO7MXwuROeNp3nwkAvE5d5wiyuAlLj2XfuH7E4lFGBG0CgwP5UHM8c+a7MR8lSyxE6pRmOdZwFk58s3YnHFuew==
-Received: from PH7PR10CA0010.namprd10.prod.outlook.com (2603:10b6:510:23d::19)
- by DS0PR12MB7583.namprd12.prod.outlook.com (2603:10b6:8:13f::8) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=ejOSBdiNHcxyozUFCoURWkdxOBFgyE5T0y+JrDKa93o=;
+ b=apf3z3upaxaguNfw1NKzLxCZSBaR9JFVDm7WJfPPy7F0QZb7XlrmLUFjMyGyxCe/HpfybCVDrbqWx6ZA893X+TCAVotdnRn4B9ksx6+KI1isSw/b/i47gPvi0L0J623NXbVI3uxknjMTbf3N0Fs7nN5dcIb5/NHJh91ZNx5EwCJtGh8/WkmKVLdX0Ewn6WuWd1eJIZ560rm0kY+wgiwJt3+F5koNgSiSCaIuD8jkTrFknmIac/hvTKCqg2bMAk1ERTIIY8tfvnnsFQW3A8jlAnOkeKntPRSE89nOYSZzAzutp7ia/rldzhIdeyCFgWClTgPPhCMfxMbpsp5ByQ22uA==
+Received: from CH0PR03CA0370.namprd03.prod.outlook.com (2603:10b6:610:119::11)
+ by PH7PR12MB9223.namprd12.prod.outlook.com (2603:10b6:510:2f2::18)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8722.32; Sat, 17 May
- 2025 00:10:32 +0000
-Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
- (2603:10b6:510:23d:cafe::aa) by PH7PR10CA0010.outlook.office365.com
- (2603:10b6:510:23d::19) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.20 via Frontend Transport; Sat,
- 17 May 2025 00:10:31 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ 2025 00:10:37 +0000
+Received: from CH2PEPF00000148.namprd02.prod.outlook.com
+ (2603:10b6:610:119:cafe::cc) by CH0PR03CA0370.outlook.office365.com
+ (2603:10b6:610:119::11) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8746.18 via Frontend Transport; Sat,
+ 17 May 2025 00:10:37 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CH2PEPF00000148.mail.protection.outlook.com (10.167.244.105) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8746.27 via Frontend Transport; Sat, 17 May 2025 00:10:31 +0000
+ 15.20.8746.27 via Frontend Transport; Sat, 17 May 2025 00:10:37 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 16 May
- 2025 17:10:17 -0700
+ 2025 17:10:24 -0700
 Received: from nv-dev.vdiclient.nvidia.com (10.126.231.35) by
  rnnvmail201.nvidia.com (10.129.68.8) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Fri, 16 May 2025 17:10:15 -0700
+ 15.2.1544.14; Fri, 16 May 2025 17:10:22 -0700
 From: Ben Skeggs <bskeggs@nvidia.com>
 To: <nouveau@lists.freedesktop.org>
 CC: Ben Skeggs <bskeggs@nvidia.com>, Dave Airlie <airlied@redhat.com>, "Timur
  Tabi" <ttabi@nvidia.com>
-Subject: [PATCH v3 06/62] drm/nouveau/gsp: split rpc handling out on its own
-Date: Sat, 17 May 2025 10:08:58 +1000
-Message-ID: <20250517000954.35691-7-bskeggs@nvidia.com>
+Subject: [PATCH v3 11/62] drm/nouveau/gsp: move firmware loading to
+ GPU-specific code
+Date: Sat, 17 May 2025 10:09:03 +1000
+Message-ID: <20250517000954.35691-12-bskeggs@nvidia.com>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250517000954.35691-1-bskeggs@nvidia.com>
 References: <20250517000954.35691-1-bskeggs@nvidia.com>
@@ -79,53 +80,52 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|DS0PR12MB7583:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb0d0b87-2c89-4596-9dfe-08dd94d73cce
+X-MS-TrafficTypeDiagnostic: CH2PEPF00000148:EE_|PH7PR12MB9223:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20884102-32f5-429a-8d3d-08dd94d74052
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|82310400026|1800799024|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?8Z1f187S0HE/z9QIMwI0IZFPD7Me940muJMhSux5uA5IPNjicTVS41HVMjua?=
- =?us-ascii?Q?nYWQcD8HO9leSliXLUDWd/2fGhSKujj6kfOMv/rgZt6hFvS5USkm9M0F6R83?=
- =?us-ascii?Q?u3P+vjJ6+IkNc7Tu4l1uQsuMVt3GbTsvobXJ0XT2mX7bmDRATvJMbZA5WQ9j?=
- =?us-ascii?Q?3gY73BKV4yCi/yvOH9cgBm2GHJltlhYEux21gRuCgn9MkXIA70aSDMNLDbV2?=
- =?us-ascii?Q?enmCrugJPEeARANDSYBfYV3uH5jBENj4R59Dr7UxNCkuCEnBUvZAarEqHYWk?=
- =?us-ascii?Q?1cjCLxsAq4jDC/8J2MWsSp5b0bOpdn/Ro7ulwU/slD4xwOkFyLxxuZcuTceL?=
- =?us-ascii?Q?HCwocLGEX5Dw95TPeCAvE/kfIFRFMM7tMu70DC5CKVSKtv8XGH8fAvB/nOZT?=
- =?us-ascii?Q?1zNELmMN3TEd7e4c+LvYavm9yFx1ZxG9ekpVixVKmyIFq6YMmPLhxtem+u/p?=
- =?us-ascii?Q?BSaFHlzgCrbJ9du6HTat0LYAT1l8kwJQZcd1WwCntUetGQMpZxB2BrHWgHRW?=
- =?us-ascii?Q?ZNVH7+gUT0ReIJPzZASlSakphyxpWQlxWmzaXj7sqTmsl4OecuFYxoGjtSJx?=
- =?us-ascii?Q?JTjOi91jZuGEw052BrFfPlSJ1lM4MyoqIq17il1QFShLyQoie0S9xF7OW2xH?=
- =?us-ascii?Q?m+ZsdCkXqGx/ADiN1+Plcny6tuu9iDjAsgf6S+GKzxnDRDTsoR+hWpvTRTOV?=
- =?us-ascii?Q?6TX6lMdYB+H+Bl4L3pxeVr+jj0EYjxpzRoLrUIBtN9v8OLBVYJYQvkcbv2hm?=
- =?us-ascii?Q?r/nwnMMRv76EQgY0VkReFXZzeInMSOkDHOl0lA9O4Ydv2dFNEAV/Rj4jUIW+?=
- =?us-ascii?Q?cec066wKzSnawgceaE3JPWnxXHyGBN0Nb3icDhbEbtLsBlZTUbyf8V/jTv95?=
- =?us-ascii?Q?G7SYJRuIzOhchqX2vPiBS+1jC4PmRQKeA0eRrb0u2xUxgfG4KIPqeuY9LhQK?=
- =?us-ascii?Q?zuOfP1Ie64Rd7hx48JRDa5y/b/55wttkWM8k2BRT1cz2GSMlUmWAFxKDdIuo?=
- =?us-ascii?Q?fr07R6YuDzheLEx4GstyS6HPLtoKu5W660K676S5RAjAb2U56f7USIchUJFc?=
- =?us-ascii?Q?xQM/lFhurcjilItqkUlGaitZy60zo4tNa+2pAVCEbvavbSNSptTZeCgFmOCe?=
- =?us-ascii?Q?kHtFaPj3QR1czlAJ7TmUCQemYjg9qFlrnDxY3dD/n5Cu25d3cn6c/6bI4JDI?=
- =?us-ascii?Q?6z8ReIOD5eyYqe32HQJB3Wd9PNl4Yqp95FiVrZ2y3PZLJxR9Cd+0+udq/tpF?=
- =?us-ascii?Q?vh3cVDeAYMOK8Glyb9wM082rwKgyL0wpvFGMyXfgBK7Tdsnol7FaPivyt1nd?=
- =?us-ascii?Q?4fyyXkN880rwl4iPVzChjky7qJ9mTeAYdU9tVlPkP5c4gsG4k3EwSJJmofBn?=
- =?us-ascii?Q?vHz4UaZ9bikPoikeb4uNrrfeos+t7urynoDWplgGgOiazpRrb1OrdwpYV3AW?=
- =?us-ascii?Q?GDcw4a/F1fMEpKQn776goYg/sjIwM64eLQwIoHbQ5kAM+Rba71o2+F7ZlzQu?=
- =?us-ascii?Q?LAYxu3+k53Lc3QkZf8W2BjsAf/bd8ufpD6a1vgJcDhbD/z5Fpe/kl5wbvw?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(82310400026)(1800799024)(13003099007);
- DIR:OUT; SFP:1101; 
+ ARA:13230040|376014|82310400026|36860700013|1800799024; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?m/lNhcQiGR6HVYnozc9KQAPuWCA0Ay5p0R+CH/io6w8t6S+lGbpSSLV3eueP?=
+ =?us-ascii?Q?UKUBOaLYYLWOfiXLa36a9iXdKiDedMWVohCzNNvElaboOpSxxCUW/hYQvCGr?=
+ =?us-ascii?Q?P0kULBrmbOLYgEEwr9mj/r31Fd2HBl7fWoS09uuudXQUx/PrHy+4XLLTfJEy?=
+ =?us-ascii?Q?cWHzPneseMLdMk/+0RKwICjrG4RsQJXX3DjZSpx+v8yQaZMhvPcO/s93CKCk?=
+ =?us-ascii?Q?BxVMclS/A+3tXhirXWvJBIRqrKQRV1YJyn5ML2c2fcyvqIt5I1dbvv8c9pVK?=
+ =?us-ascii?Q?cGBS2YuDGOjLqgdkHmtExSPFWTu6yyrxTZiH0kKKIo54gRdl41xeuO2JCqbj?=
+ =?us-ascii?Q?slS7xQDswYLnVhKXTQDNwwHx9937hDpPjaJgMCxKQO37NlrEO+sbgRvY2wOO?=
+ =?us-ascii?Q?kCYOPDi6JEx7Tc1pxowXzBWGEoGcvKF44gBIAavIy6l8Jz5Q+tLCDyoOpbTt?=
+ =?us-ascii?Q?3CCuB4GBOqoXwuG6+Z6V2AvVut1cgjXuETc2u2PSM44RPxpcTpDe2Z/v4TvZ?=
+ =?us-ascii?Q?sTljQpPHj+7tpN+M/PD5RMwzGgt69NDP+dnfdPam8PP+fL1L4Y9j3HVHyKKI?=
+ =?us-ascii?Q?e6DuL35Z053s4mdDAIp3w7g5DvHp93GukMWvnw3Im0UWStnQopjG+M+nrlUJ?=
+ =?us-ascii?Q?DDpfpTLNX3wbrE96n0gtStUvXLnU/D7oHnlxvN3oXpBZCeP6uitAv46IhWb1?=
+ =?us-ascii?Q?6bMcQBHGGi0L/K1TmN3eAFpbASO7xsyQDYyJjjfoPe6uvRQ7NIj05AKnS7Mh?=
+ =?us-ascii?Q?vEVMbvralo3bURGTDGVUduqDS8/wTvTU47ZftR+RxIYamTv2xuI4MKL9XXv3?=
+ =?us-ascii?Q?xO/H+eisijhc+xG0lP0MxEBw11XncdSCWR9QJ50wa+ACdVR8j4ytD+nY/7/W?=
+ =?us-ascii?Q?9opPuJkHyL2YzJo9Z3kPODWLglrG83Uw8HVhdkYhEorRTX8hl2bkrMUCTD55?=
+ =?us-ascii?Q?anwoMJ0W3G0tJVZD1Sj+bE8yoZHwMnFeVkxy4o5VmlbCeVd90aCoGYnnKShS?=
+ =?us-ascii?Q?1nTSC6CJm7LZ9RfPdlYts3zKi63ii3J/KibJ3Z83d7KGHeqzGJsHtYEAyhnT?=
+ =?us-ascii?Q?gh1PuoQ4+ZiRJQtHcHiK/0+zF8f10Lz5hp39lSiAXBW5k7XKjsQPRoHgF2ju?=
+ =?us-ascii?Q?8m36PXEGLdJ+HrC/7rxUCIvwbcO3u/3fN0ULJ3TlqpKCe9CxoCWTUSjGs3vs?=
+ =?us-ascii?Q?HKBFcbV2aP4T8Q7BDS6HK3ZaTKyvHxg0o+1U/Lj2wEVUEICpq8FyYr2bBAJy?=
+ =?us-ascii?Q?0yKAfyXfK0RlvTNgGKabUhFvnZ4lir1VQYiFJlhZImuPx4P36WX5JCPr6PZ4?=
+ =?us-ascii?Q?BoX7V1n1tzNRFuCumDnCJciaA3PYwu6AfL40WXEhcLkc5/pH0PDcvl8j14BE?=
+ =?us-ascii?Q?VOxpgeGbtzy5z490UOL0NSpqmiNoBSQimvMDavprrHIgdlhWyyFQ09vpVNiN?=
+ =?us-ascii?Q?5brBo7HmLEr3aUp5JrMY7N6bBTRXdxQGu33Hf9ypRgtb40jLlR0BRXmVebtb?=
+ =?us-ascii?Q?EHYf+wbuYgp2vvu7itfyfRfsaS/fa8IuXXPO?=
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230040)(376014)(82310400026)(36860700013)(1800799024); DIR:OUT;
+ SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2025 00:10:31.4403 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb0d0b87-2c89-4596-9dfe-08dd94d73cce
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 May 2025 00:10:37.3276 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20884102-32f5-429a-8d3d-08dd94d74052
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000FCBE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: CH2PEPF00000148.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7583
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9223
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,1584 +140,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Later patches in the series add HALs around various RM APIs in order to
-support a newer version of GSP-RM firmware.  In order to do this, begin
-by splitting the code up into "modules" that roughly represent RM's API
-boundaries so they can be more easily managed.
-
-Aside from moving the RPC function pointers, no code change is indended.
+GH100/GBxxx use a slightly different set of firmwares to boot GSP-RM.
 
 Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
 Reviewed-by: Dave Airlie <airlied@redhat.com>
 Reviewed-by: Timur Tabi <ttabi@nvidia.com>
 Tested-by: Timur Tabi <ttabi@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/Kbuild                |   1 +
- .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |  13 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/Kbuild    |   2 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 665 +----------------
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/Kbuild |   5 +
- .../nouveau/nvkm/subdev/gsp/rm/r535/Kbuild    |   6 +
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c  |  10 +
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c | 692 ++++++++++++++++++
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h   |  20 +
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/rpc.h  |  18 +
- 10 files changed, 762 insertions(+), 670 deletions(-)
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/Kbuild
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
- create mode 100644 drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rpc.h
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c   |  8 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/base.c    | 23 ++++++
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c   |  4 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c   |  8 +-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/priv.h    | 12 ++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 78 +------------------
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c   | 52 ++++++++++++-
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c   |  5 +-
+ 8 files changed, 108 insertions(+), 82 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/Kbuild b/drivers/gpu/drm/nouveau/Kbuild
-index 7b863355c5c6..0759ba15954b 100644
---- a/drivers/gpu/drm/nouveau/Kbuild
-+++ b/drivers/gpu/drm/nouveau/Kbuild
-@@ -2,6 +2,7 @@
- ccflags-y += -I $(src)/include
- ccflags-y += -I $(src)/include/nvkm
- ccflags-y += -I $(src)/nvkm
-+ccflags-y += -I $(src)/nvkm/subdev/gsp
- ccflags-y += -I $(src)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+index c849c6299c52..221ea0fd8a51 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ad102.c
+@@ -45,7 +45,7 @@ ad102_gsp_r535_113_01 = {
  
- # NVKM - HW resource manager
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-index 1c12854a8550..b543c31d3d32 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h
-@@ -210,10 +210,7 @@ struct nvkm_gsp {
- 	} gr;
+ static struct nvkm_gsp_fwif
+ ad102_gsps[] = {
+-	{ 0, r535_gsp_load, &ad102_gsp_r535_113_01, "535.113.01", true },
++	{ 0, tu102_gsp_load, &ad102_gsp_r535_113_01, "535.113.01", true },
+ 	{}
+ };
  
- 	const struct nvkm_gsp_rm {
--		void *(*rpc_get)(struct nvkm_gsp *, u32 fn, u32 argc);
--		void *(*rpc_push)(struct nvkm_gsp *gsp, void *argv,
--				  enum nvkm_gsp_rpc_reply_policy policy, u32 repc);
--		void (*rpc_done)(struct nvkm_gsp *gsp, void *repv);
-+		const struct nvkm_rm_api *api;
- 
- 		void *(*rm_ctrl_get)(struct nvkm_gsp_object *, u32 cmd, u32 argc);
- 		int (*rm_ctrl_push)(struct nvkm_gsp_object *, void **argv, u32 repc);
-@@ -272,17 +269,19 @@ nvkm_gsp_rm(struct nvkm_gsp *gsp)
- 	return gsp && (gsp->fws.rm || gsp->fw.img);
+@@ -55,3 +55,9 @@ ad102_gsp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ {
+ 	return nvkm_gsp_new_(ad102_gsps, device, type, inst, pgsp);
  }
- 
-+#include <rm/rm.h>
 +
- static inline void *
- nvkm_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 argc)
- {
--	return gsp->rm->rpc_get(gsp, fn, argc);
-+	return gsp->rm->api->rpc->get(gsp, fn, argc);
++NVKM_GSP_FIRMWARE_BOOTER(ad102, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ad103, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ad104, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ad106, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ad107, 535.113.01);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+index da1bebb896f7..fe1cef1b6324 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/base.c
+@@ -80,6 +80,19 @@ nvkm_gsp_oneinit(struct nvkm_subdev *subdev)
+ 	return gsp->func->oneinit(gsp);
  }
  
- static inline void *
- nvkm_gsp_rpc_push(struct nvkm_gsp *gsp, void *argv,
- 		  enum nvkm_gsp_rpc_reply_policy policy, u32 repc)
- {
--	return gsp->rm->rpc_push(gsp, argv, policy, repc);
-+	return gsp->rm->api->rpc->push(gsp, argv, policy, repc);
- }
- 
- static inline void *
-@@ -311,7 +310,7 @@ nvkm_gsp_rpc_wr(struct nvkm_gsp *gsp, void *argv,
- static inline void
- nvkm_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
- {
--	gsp->rm->rpc_done(gsp, repv);
-+	gsp->rm->api->rpc->done(gsp, repv);
- }
- 
- static inline void *
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/Kbuild
-index 16bf2f1bb780..af6e55603763 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/Kbuild
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/Kbuild
-@@ -10,3 +10,5 @@ nvkm-y += nvkm/subdev/gsp/ga102.o
- nvkm-y += nvkm/subdev/gsp/ad102.o
- 
- nvkm-y += nvkm/subdev/gsp/r535.o
++void
++nvkm_gsp_dtor_fws(struct nvkm_gsp *gsp)
++{
++	nvkm_firmware_put(gsp->fws.bl);
++	gsp->fws.bl = NULL;
++	nvkm_firmware_put(gsp->fws.booter.unload);
++	gsp->fws.booter.unload = NULL;
++	nvkm_firmware_put(gsp->fws.booter.load);
++	gsp->fws.booter.load = NULL;
++	nvkm_firmware_put(gsp->fws.rm);
++	gsp->fws.rm = NULL;
++}
 +
-+include $(src)/nvkm/subdev/gsp/rm/Kbuild
+ static void *
+ nvkm_gsp_dtor(struct nvkm_subdev *subdev)
+ {
+@@ -100,6 +113,16 @@ nvkm_gsp = {
+ 	.fini = nvkm_gsp_fini,
+ };
+ 
++int
++nvkm_gsp_load_fw(struct nvkm_gsp *gsp, const char *name, const char *ver,
++		 const struct firmware **pfw)
++{
++	char fwname[64];
++
++	snprintf(fwname, sizeof(fwname), "gsp/%s-%s", name, ver);
++	return nvkm_firmware_get(&gsp->subdev, fwname, 0, pfw);
++}
++
+ int
+ nvkm_gsp_new_(const struct nvkm_gsp_fwif *fwif, struct nvkm_device *device,
+ 	      enum nvkm_subdev_type type, int inst, struct nvkm_gsp **pgsp)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+index 223f68b532ef..c3be72d3390a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c
+@@ -61,7 +61,7 @@ ga100_gsp_r535_113_01 = {
+ 
+ static struct nvkm_gsp_fwif
+ ga100_gsps[] = {
+-	{  0,  r535_gsp_load, &ga100_gsp_r535_113_01, "535.113.01" },
++	{  0, tu102_gsp_load, &ga100_gsp_r535_113_01, "535.113.01" },
+ 	{ -1, gv100_gsp_nofw, &gv100_gsp },
+ 	{}
+ };
+@@ -72,3 +72,5 @@ ga100_gsp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ {
+ 	return nvkm_gsp_new_(ga100_gsps, device, type, inst, pgsp);
+ }
++
++NVKM_GSP_FIRMWARE_BOOTER(ga100, 535.113.01);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+index 4c4b4168a266..d7385d3989f1 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga102.c
+@@ -178,7 +178,7 @@ ga102_gsp = {
+ 
+ static struct nvkm_gsp_fwif
+ ga102_gsps[] = {
+-	{  0,  r535_gsp_load, &ga102_gsp_r535_113_01, "535.113.01" },
++	{  0, tu102_gsp_load, &ga102_gsp_r535_113_01, "535.113.01" },
+ 	{ -1, gv100_gsp_nofw, &ga102_gsp },
+ 	{}
+ };
+@@ -189,3 +189,9 @@ ga102_gsp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ {
+ 	return nvkm_gsp_new_(ga102_gsps, device, type, inst, pgsp);
+ }
++
++NVKM_GSP_FIRMWARE_BOOTER(ga102, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ga103, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ga104, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ga106, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(ga107, 535.113.01);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+index 9f4a62375a27..601dd5d503bb 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/priv.h
+@@ -15,8 +15,18 @@ struct nvkm_gsp_fwif {
+ 	bool enable;
+ };
+ 
++int nvkm_gsp_load_fw(struct nvkm_gsp *, const char *name, const char *ver,
++		     const struct firmware **);
++void nvkm_gsp_dtor_fws(struct nvkm_gsp *);
++
+ int gv100_gsp_nofw(struct nvkm_gsp *, int, const struct nvkm_gsp_fwif *);
+-int  r535_gsp_load(struct nvkm_gsp *, int, const struct nvkm_gsp_fwif *);
++int tu102_gsp_load(struct nvkm_gsp *, int, const struct nvkm_gsp_fwif *);
++
++#define NVKM_GSP_FIRMWARE_BOOTER(chip,vers)                      \
++MODULE_FIRMWARE("nvidia/"#chip"/gsp/booter_load-"#vers".bin");   \
++MODULE_FIRMWARE("nvidia/"#chip"/gsp/booter_unload-"#vers".bin"); \
++MODULE_FIRMWARE("nvidia/"#chip"/gsp/bootloader-"#vers".bin");    \
++MODULE_FIRMWARE("nvidia/"#chip"/gsp/gsp-"#vers".bin")
+ 
+ struct nvkm_gsp_func {
+ 	const struct nvkm_falcon_func *flcn;
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index 2bb726c0c49f..745d43586bad 100644
+index c292f5a4e1ec..9d5b77b3cb2f 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -19,6 +19,7 @@
-  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
-+#include <rm/rpc.h>
- #include "priv.h"
- 
- #include <core/pci.h>
-@@ -60,578 +61,6 @@
- 
- extern struct dentry *nouveau_debugfs_root;
- 
--#define GSP_MSG_MIN_SIZE GSP_PAGE_SIZE
--#define GSP_MSG_MAX_SIZE (GSP_MSG_MIN_SIZE * 16)
--
--/**
-- * DOC: GSP message queue element
-- *
-- * https://github.com/NVIDIA/open-gpu-kernel-modules/blob/535/src/nvidia/inc/kernel/gpu/gsp/message_queue_priv.h
-- *
-- * The GSP command queue and status queue are message queues for the
-- * communication between software and GSP. The software submits the GSP
-- * RPC via the GSP command queue, GSP writes the status of the submitted
-- * RPC in the status queue.
-- *
-- * A GSP message queue element consists of three parts:
-- *
-- * - message element header (struct r535_gsp_msg), which mostly maintains
-- *   the metadata for queuing the element.
-- *
-- * - RPC message header (struct nvfw_gsp_rpc), which maintains the info
-- *   of the RPC. E.g., the RPC function number.
-- *
-- * - The payload, where the RPC message stays. E.g. the params of a
-- *   specific RPC function. Some RPC functions also have their headers
-- *   in the payload. E.g. rm_alloc, rm_control.
-- *
-- * The memory layout of a GSP message element can be illustrated below::
-- *
-- *    +------------------------+
-- *    | Message Element Header |
-- *    |    (r535_gsp_msg)      |
-- *    |                        |
-- *    | (r535_gsp_msg.data)    |
-- *    |          |             |
-- *    |----------V-------------|
-- *    |    GSP RPC Header      |
-- *    |    (nvfw_gsp_rpc)      |
-- *    |                        |
-- *    | (nvfw_gsp_rpc.data)    |
-- *    |          |             |
-- *    |----------V-------------|
-- *    |       Payload          |
-- *    |                        |
-- *    |   header(optional)     |
-- *    |        params          |
-- *    +------------------------+
-- *
-- * The max size of a message queue element is 16 pages (including the
-- * headers). When a GSP message to be sent is larger than 16 pages, the
-- * message should be split into multiple elements and sent accordingly.
-- *
-- * In the bunch of the split elements, the first element has the expected
-- * function number, while the rest of the elements are sent with the
-- * function number NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD.
-- *
-- * GSP consumes the elements from the cmdq and always writes the result
-- * back to the msgq. The result is also formed as split elements.
-- *
-- * Terminology:
-- *
-- * - gsp_msg(msg): GSP message element (element header + GSP RPC header +
-- *   payload)
-- * - gsp_rpc(rpc): GSP RPC (RPC header + payload)
-- * - gsp_rpc_buf: buffer for (GSP RPC header + payload)
-- * - gsp_rpc_len: size of (GSP RPC header + payload)
-- * - params_size: size of params in the payload
-- * - payload_size: size of (header if exists + params) in the payload
-- */
--
--struct r535_gsp_msg {
--	u8 auth_tag_buffer[16];
--	u8 aad_buffer[16];
--	u32 checksum;
--	u32 sequence;
--	u32 elem_count;
--	u32 pad;
--	u8  data[];
--};
--
--struct nvfw_gsp_rpc {
--	u32 header_version;
--	u32 signature;
--	u32 length;
--	u32 function;
--	u32 rpc_result;
--	u32 rpc_result_private;
--	u32 sequence;
--	union {
--		u32 spare;
--		u32 cpuRmGfid;
--	};
--	u8  data[];
--};
--
--#define GSP_MSG_HDR_SIZE offsetof(struct r535_gsp_msg, data)
--
--#define to_gsp_hdr(p, header) \
--	container_of((void *)p, typeof(*header), data)
--
--#define to_payload_hdr(p, header) \
--	container_of((void *)p, typeof(*header), params)
--
--static int
--r535_rpc_status_to_errno(uint32_t rpc_status)
--{
--	switch (rpc_status) {
--	case 0x55: /* NV_ERR_NOT_READY */
--	case 0x66: /* NV_ERR_TIMEOUT_RETRY */
--		return -EBUSY;
--	case 0x51: /* NV_ERR_NO_MEMORY */
--		return -ENOMEM;
--	default:
--		return -EINVAL;
--	}
--}
--
--static int
--r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *ptime)
--{
--	u32 size, rptr = *gsp->msgq.rptr;
--	int used;
--
--	size = DIV_ROUND_UP(GSP_MSG_HDR_SIZE + gsp_rpc_len,
--			    GSP_PAGE_SIZE);
--	if (WARN_ON(!size || size >= gsp->msgq.cnt))
--		return -EINVAL;
--
--	do {
--		u32 wptr = *gsp->msgq.wptr;
--
--		used = wptr + gsp->msgq.cnt - rptr;
--		if (used >= gsp->msgq.cnt)
--			used -= gsp->msgq.cnt;
--		if (used >= size)
--			break;
--
--		usleep_range(1, 2);
--	} while (--(*ptime));
--
--	if (WARN_ON(!*ptime))
--		return -ETIMEDOUT;
--
--	return used;
--}
--
--static struct r535_gsp_msg *
--r535_gsp_msgq_get_entry(struct nvkm_gsp *gsp)
--{
--	u32 rptr = *gsp->msgq.rptr;
--
--	/* Skip the first page, which is the message queue info */
--	return (void *)((u8 *)gsp->shm.msgq.ptr + GSP_PAGE_SIZE +
--	       rptr * GSP_PAGE_SIZE);
--}
--
--/**
-- * DOC: Receive a GSP message queue element
-- *
-- * Receiving a GSP message queue element from the message queue consists of
-- * the following steps:
-- *
-- * - Peek the element from the queue: r535_gsp_msgq_peek().
-- *   Peek the first page of the element to determine the total size of the
-- *   message before allocating the proper memory.
-- *
-- * - Allocate memory for the message.
-- *   Once the total size of the message is determined from the GSP message
-- *   queue element, the caller of r535_gsp_msgq_recv() allocates the
-- *   required memory.
-- *
-- * - Receive the message: r535_gsp_msgq_recv().
-- *   Copy the message into the allocated memory. Advance the read pointer.
-- *   If the message is a large GSP message, r535_gsp_msgq_recv() calls
-- *   r535_gsp_msgq_recv_one_elem() repeatedly to receive continuation parts
-- *   until the complete message is received.
-- *   r535_gsp_msgq_recv() assembles the payloads of cotinuation parts into
-- *   the return of the large GSP message.
-- *
-- * - Free the allocated memory: r535_gsp_msg_done().
-- *   The user is responsible for freeing the memory allocated for the GSP
-- *   message pages after they have been processed.
-- */
--static void *
--r535_gsp_msgq_peek(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
--{
--	struct r535_gsp_msg *mqe;
--	int ret;
--
--	ret = r535_gsp_msgq_wait(gsp, gsp_rpc_len, retries);
--	if (ret < 0)
--		return ERR_PTR(ret);
--
--	mqe = r535_gsp_msgq_get_entry(gsp);
--
--	return mqe->data;
--}
--
--struct r535_gsp_msg_info {
--	int *retries;
--	u32 gsp_rpc_len;
--	void *gsp_rpc_buf;
--	bool continuation;
--};
--
--static void
--r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl);
--
--static void *
--r535_gsp_msgq_recv_one_elem(struct nvkm_gsp *gsp,
--			    struct r535_gsp_msg_info *info)
--{
--	u8 *buf = info->gsp_rpc_buf;
--	u32 rptr = *gsp->msgq.rptr;
--	struct r535_gsp_msg *mqe;
--	u32 size, expected, len;
--	int ret;
--
--	expected = info->gsp_rpc_len;
--
--	ret = r535_gsp_msgq_wait(gsp, expected, info->retries);
--	if (ret < 0)
--		return ERR_PTR(ret);
--
--	mqe = r535_gsp_msgq_get_entry(gsp);
--
--	if (info->continuation) {
--		struct nvfw_gsp_rpc *rpc = (struct nvfw_gsp_rpc *)mqe->data;
--
--		if (rpc->function != NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD) {
--			nvkm_error(&gsp->subdev,
--				   "Not a continuation of a large RPC\n");
--			r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
--			return ERR_PTR(-EIO);
--		}
--	}
--
--	size = ALIGN(expected + GSP_MSG_HDR_SIZE, GSP_PAGE_SIZE);
--
--	len = ((gsp->msgq.cnt - rptr) * GSP_PAGE_SIZE) - sizeof(*mqe);
--	len = min_t(u32, expected, len);
--
--	if (info->continuation)
--		memcpy(buf, mqe->data + sizeof(struct nvfw_gsp_rpc),
--		       len - sizeof(struct nvfw_gsp_rpc));
--	else
--		memcpy(buf, mqe->data, len);
--
--	expected -= len;
--
--	if (expected) {
--		mqe = (void *)((u8 *)gsp->shm.msgq.ptr + 0x1000 + 0 * 0x1000);
--		memcpy(buf + len, mqe, expected);
--	}
--
--	rptr = (rptr + DIV_ROUND_UP(size, GSP_PAGE_SIZE)) % gsp->msgq.cnt;
--
--	mb();
--	(*gsp->msgq.rptr) = rptr;
--	return buf;
--}
--
--static void *
--r535_gsp_msgq_recv(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
--{
--	struct r535_gsp_msg *mqe;
--	const u32 max_rpc_size = GSP_MSG_MAX_SIZE - sizeof(*mqe);
--	struct nvfw_gsp_rpc *rpc;
--	struct r535_gsp_msg_info info = {0};
--	u32 expected = gsp_rpc_len;
--	void *buf;
--
--	mqe = r535_gsp_msgq_get_entry(gsp);
--	rpc = (struct nvfw_gsp_rpc *)mqe->data;
--
--	if (WARN_ON(rpc->length > max_rpc_size))
--		return NULL;
--
--	buf = kvmalloc(max_t(u32, rpc->length, expected), GFP_KERNEL);
--	if (!buf)
--		return ERR_PTR(-ENOMEM);
--
--	info.gsp_rpc_buf = buf;
--	info.retries = retries;
--	info.gsp_rpc_len = rpc->length;
--
--	buf = r535_gsp_msgq_recv_one_elem(gsp, &info);
--	if (IS_ERR(buf)) {
--		kvfree(info.gsp_rpc_buf);
--		info.gsp_rpc_buf = NULL;
--		return buf;
--	}
--
--	if (expected <= max_rpc_size)
--		return buf;
--
--	info.gsp_rpc_buf += info.gsp_rpc_len;
--	expected -= info.gsp_rpc_len;
--
--	while (expected) {
--		u32 size;
--
--		rpc = r535_gsp_msgq_peek(gsp, sizeof(*rpc), info.retries);
--		if (IS_ERR_OR_NULL(rpc)) {
--			kfree(buf);
--			return rpc;
--		}
--
--		info.gsp_rpc_len = rpc->length;
--		info.continuation = true;
--
--		rpc = r535_gsp_msgq_recv_one_elem(gsp, &info);
--		if (IS_ERR_OR_NULL(rpc)) {
--			kfree(buf);
--			return rpc;
--		}
--
--		size = info.gsp_rpc_len - sizeof(*rpc);
--		expected -= size;
--		info.gsp_rpc_buf += size;
--	}
--
--	rpc = buf;
--	rpc->length = gsp_rpc_len;
--	return buf;
--}
--
--static int
--r535_gsp_cmdq_push(struct nvkm_gsp *gsp, void *rpc)
--{
--	struct r535_gsp_msg *msg = to_gsp_hdr(rpc, msg);
--	struct r535_gsp_msg *cqe;
--	u32 gsp_rpc_len = msg->checksum;
--	u64 *ptr = (void *)msg;
--	u64 *end;
--	u64 csum = 0;
--	int free, time = 1000000;
--	u32 wptr, size, step, len;
--	u32 off = 0;
--
--	len = ALIGN(GSP_MSG_HDR_SIZE + gsp_rpc_len, GSP_PAGE_SIZE);
--
--	end = (u64 *)((char *)ptr + len);
--	msg->pad = 0;
--	msg->checksum = 0;
--	msg->sequence = gsp->cmdq.seq++;
--	msg->elem_count = DIV_ROUND_UP(len, 0x1000);
--
--	while (ptr < end)
--		csum ^= *ptr++;
--
--	msg->checksum = upper_32_bits(csum) ^ lower_32_bits(csum);
--
--	wptr = *gsp->cmdq.wptr;
--	do {
--		do {
--			free = *gsp->cmdq.rptr + gsp->cmdq.cnt - wptr - 1;
--			if (free >= gsp->cmdq.cnt)
--				free -= gsp->cmdq.cnt;
--			if (free >= 1)
--				break;
--
--			usleep_range(1, 2);
--		} while(--time);
--
--		if (WARN_ON(!time)) {
--			kvfree(msg);
--			return -ETIMEDOUT;
--		}
--
--		cqe = (void *)((u8 *)gsp->shm.cmdq.ptr + 0x1000 + wptr * 0x1000);
--		step = min_t(u32, free, (gsp->cmdq.cnt - wptr));
--		size = min_t(u32, len, step * GSP_PAGE_SIZE);
--
--		memcpy(cqe, (u8 *)msg + off, size);
--
--		wptr += DIV_ROUND_UP(size, 0x1000);
--		if (wptr == gsp->cmdq.cnt)
--			wptr = 0;
--
--		off  += size;
--		len -= size;
--	} while (len);
--
--	nvkm_trace(&gsp->subdev, "cmdq: wptr %d\n", wptr);
--	wmb();
--	(*gsp->cmdq.wptr) = wptr;
--	mb();
--
--	nvkm_falcon_wr32(&gsp->falcon, 0xc00, 0x00000000);
--
--	kvfree(msg);
--	return 0;
--}
--
--static void *
--r535_gsp_cmdq_get(struct nvkm_gsp *gsp, u32 gsp_rpc_len)
--{
--	struct r535_gsp_msg *msg;
--	u32 size = GSP_MSG_HDR_SIZE + gsp_rpc_len;
--
--	size = ALIGN(size, GSP_MSG_MIN_SIZE);
--	msg = kvzalloc(size, GFP_KERNEL);
--	if (!msg)
--		return ERR_PTR(-ENOMEM);
--
--	msg->checksum = gsp_rpc_len;
--	return msg->data;
--}
--
--static void
--r535_gsp_msg_done(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg)
--{
--	kvfree(msg);
--}
--
--static void
--r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl)
--{
--	if (gsp->subdev.debug >= lvl) {
--		nvkm_printk__(&gsp->subdev, lvl, info,
--			      "msg fn:%d len:0x%x/0x%zx res:0x%x resp:0x%x\n",
--			      msg->function, msg->length, msg->length - sizeof(*msg),
--			      msg->rpc_result, msg->rpc_result_private);
--		print_hex_dump(KERN_INFO, "msg: ", DUMP_PREFIX_OFFSET, 16, 1,
--			       msg->data, msg->length - sizeof(*msg), true);
--	}
--}
--
--static struct nvfw_gsp_rpc *
--r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 gsp_rpc_len)
--{
--	struct nvkm_subdev *subdev = &gsp->subdev;
--	struct nvfw_gsp_rpc *rpc;
--	int retries = 4000000, i;
--
--retry:
--	rpc = r535_gsp_msgq_peek(gsp, sizeof(*rpc), &retries);
--	if (IS_ERR_OR_NULL(rpc))
--		return rpc;
--
--	rpc = r535_gsp_msgq_recv(gsp, gsp_rpc_len, &retries);
--	if (IS_ERR_OR_NULL(rpc))
--		return rpc;
--
--	if (rpc->rpc_result) {
--		r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
--		r535_gsp_msg_done(gsp, rpc);
--		return ERR_PTR(-EINVAL);
--	}
--
--	r535_gsp_msg_dump(gsp, rpc, NV_DBG_TRACE);
--
--	if (fn && rpc->function == fn) {
--		if (gsp_rpc_len) {
--			if (rpc->length < gsp_rpc_len) {
--				nvkm_error(subdev, "rpc len %d < %d\n",
--					   rpc->length, gsp_rpc_len);
--				r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
--				r535_gsp_msg_done(gsp, rpc);
--				return ERR_PTR(-EIO);
--			}
--
--			return rpc;
--		}
--
--		r535_gsp_msg_done(gsp, rpc);
--		return NULL;
--	}
--
--	for (i = 0; i < gsp->msgq.ntfy_nr; i++) {
--		struct nvkm_gsp_msgq_ntfy *ntfy = &gsp->msgq.ntfy[i];
--
--		if (ntfy->fn == rpc->function) {
--			if (ntfy->func)
--				ntfy->func(ntfy->priv, ntfy->fn, rpc->data,
--					   rpc->length - sizeof(*rpc));
--			break;
--		}
--	}
--
--	if (i == gsp->msgq.ntfy_nr)
--		r535_gsp_msg_dump(gsp, rpc, NV_DBG_WARN);
--
--	r535_gsp_msg_done(gsp, rpc);
--	if (fn)
--		goto retry;
--
--	if (*gsp->msgq.rptr != *gsp->msgq.wptr)
--		goto retry;
--
--	return NULL;
--}
--
--static int
--r535_gsp_msg_ntfy_add(struct nvkm_gsp *gsp, u32 fn, nvkm_gsp_msg_ntfy_func func, void *priv)
--{
--	int ret = 0;
--
--	mutex_lock(&gsp->msgq.mutex);
--	if (WARN_ON(gsp->msgq.ntfy_nr >= ARRAY_SIZE(gsp->msgq.ntfy))) {
--		ret = -ENOSPC;
--	} else {
--		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].fn = fn;
--		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].func = func;
--		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].priv = priv;
--		gsp->msgq.ntfy_nr++;
--	}
--	mutex_unlock(&gsp->msgq.mutex);
--	return ret;
--}
--
--static int
--r535_gsp_rpc_poll(struct nvkm_gsp *gsp, u32 fn)
--{
--	void *repv;
--
--	mutex_lock(&gsp->cmdq.mutex);
--	repv = r535_gsp_msg_recv(gsp, fn, 0);
--	mutex_unlock(&gsp->cmdq.mutex);
--	if (IS_ERR(repv))
--		return PTR_ERR(repv);
--
--	return 0;
--}
--
--static void *
--r535_gsp_rpc_handle_reply(struct nvkm_gsp *gsp, u32 fn,
--			  enum nvkm_gsp_rpc_reply_policy policy,
--			  u32 gsp_rpc_len)
--{
--	struct nvfw_gsp_rpc *reply;
--	void *repv = NULL;
--
--	switch (policy) {
--	case NVKM_GSP_RPC_REPLY_NOWAIT:
--		break;
--	case NVKM_GSP_RPC_REPLY_RECV:
--		reply = r535_gsp_msg_recv(gsp, fn, gsp_rpc_len);
--		if (!IS_ERR_OR_NULL(reply))
--			repv = reply->data;
--		else
--			repv = reply;
--		break;
--	case NVKM_GSP_RPC_REPLY_POLL:
--		repv = r535_gsp_msg_recv(gsp, fn, 0);
--		break;
--	}
--
--	return repv;
--}
--
--static void *
--r535_gsp_rpc_send(struct nvkm_gsp *gsp, void *payload,
--		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
--{
--	struct nvfw_gsp_rpc *rpc = to_gsp_hdr(payload, rpc);
--	u32 fn = rpc->function;
--	int ret;
--
--	if (gsp->subdev.debug >= NV_DBG_TRACE) {
--		nvkm_trace(&gsp->subdev, "rpc fn:%d len:0x%x/0x%zx\n", rpc->function,
--			   rpc->length, rpc->length - sizeof(*rpc));
--		print_hex_dump(KERN_INFO, "rpc: ", DUMP_PREFIX_OFFSET, 16, 1,
--			       rpc->data, rpc->length - sizeof(*rpc), true);
--	}
--
--	ret = r535_gsp_cmdq_push(gsp, rpc);
--	if (ret)
--		return ERR_PTR(ret);
--
--	return r535_gsp_rpc_handle_reply(gsp, fn, policy, gsp_rpc_len);
--}
--
- static void
- r535_gsp_event_dtor(struct nvkm_gsp_event *event)
- {
-@@ -936,99 +365,9 @@ r535_gsp_rpc_rm_ctrl_get(struct nvkm_gsp_object *object, u32 cmd, u32 params_siz
- 	return rpc->params;
+@@ -1960,19 +1960,6 @@ r535_gsp_elf_section(struct nvkm_gsp *gsp, const char *name, const u8 **pdata, u
+ 	return -ENOENT;
  }
  
 -static void
--r535_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
+-r535_gsp_dtor_fws(struct nvkm_gsp *gsp)
 -{
--	struct nvfw_gsp_rpc *rpc = container_of(repv, typeof(*rpc), data);
--
--	r535_gsp_msg_done(gsp, rpc);
+-	nvkm_firmware_put(gsp->fws.bl);
+-	gsp->fws.bl = NULL;
+-	nvkm_firmware_put(gsp->fws.booter.unload);
+-	gsp->fws.booter.unload = NULL;
+-	nvkm_firmware_put(gsp->fws.booter.load);
+-	gsp->fws.booter.load = NULL;
+-	nvkm_firmware_put(gsp->fws.rm);
+-	gsp->fws.rm = NULL;
 -}
 -
--static void *
--r535_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 payload_size)
+ #ifdef CONFIG_DEBUG_FS
+ 
+ struct r535_gsp_log {
+@@ -2209,7 +2196,7 @@ r535_gsp_dtor(struct nvkm_gsp *gsp)
+ 	mutex_destroy(&gsp->msgq.mutex);
+ 	mutex_destroy(&gsp->cmdq.mutex);
+ 
+-	r535_gsp_dtor_fws(gsp);
++	nvkm_gsp_dtor_fws(gsp);
+ 
+ 	nvkm_gsp_mem_dtor(&gsp->rmargs);
+ 	nvkm_gsp_mem_dtor(&gsp->wpr_meta);
+@@ -2284,7 +2271,7 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
+ 		return ret;
+ 
+ 	/* Release FW images - we've copied them to DMA buffers now. */
+-	r535_gsp_dtor_fws(gsp);
++	nvkm_gsp_dtor_fws(gsp);
+ 
+ 	/* Calculate FB layout. */
+ 	gsp->fb.wpr2.frts.size = 0x100000;
+@@ -2349,64 +2336,3 @@ r535_gsp_oneinit(struct nvkm_gsp *gsp)
+ 	idr_init(&gsp->client_id.idr);
+ 	return 0;
+ }
+-
+-static int
+-r535_gsp_load_fw(struct nvkm_gsp *gsp, const char *name, const char *ver,
+-		 const struct firmware **pfw)
 -{
--	struct nvfw_gsp_rpc *rpc;
+-	char fwname[64];
 -
--	rpc = r535_gsp_cmdq_get(gsp, ALIGN(sizeof(*rpc) + payload_size,
--					   sizeof(u64)));
--	if (IS_ERR(rpc))
--		return ERR_CAST(rpc);
--
--	rpc->header_version = 0x03000000;
--	rpc->signature = ('C' << 24) | ('P' << 16) | ('R' << 8) | 'V';
--	rpc->function = fn;
--	rpc->rpc_result = 0xffffffff;
--	rpc->rpc_result_private = 0xffffffff;
--	rpc->length = sizeof(*rpc) + payload_size;
--	return rpc->data;
+-	snprintf(fwname, sizeof(fwname), "gsp/%s-%s", name, ver);
+-	return nvkm_firmware_get(&gsp->subdev, fwname, 0, pfw);
 -}
 -
--static void *
--r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *payload,
--		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
+-int
+-r535_gsp_load(struct nvkm_gsp *gsp, int ver, const struct nvkm_gsp_fwif *fwif)
 -{
--	struct nvfw_gsp_rpc *rpc = to_gsp_hdr(payload, rpc);
--	struct r535_gsp_msg *msg = to_gsp_hdr(rpc, msg);
--	const u32 max_rpc_size = GSP_MSG_MAX_SIZE - sizeof(*msg);
--	const u32 max_payload_size = max_rpc_size - sizeof(*rpc);
--	u32 payload_size = rpc->length - sizeof(*rpc);
--	void *repv;
+-	struct nvkm_subdev *subdev = &gsp->subdev;
+-	int ret;
+-	bool enable_gsp = fwif->enable;
 -
--	mutex_lock(&gsp->cmdq.mutex);
--	if (payload_size > max_payload_size) {
--		const u32 fn = rpc->function;
--		u32 remain_payload_size = payload_size;
+-#if IS_ENABLED(CONFIG_DRM_NOUVEAU_GSP_DEFAULT)
+-	enable_gsp = true;
+-#endif
+-	if (!nvkm_boolopt(subdev->device->cfgopt, "NvGspRm", enable_gsp))
+-		return -EINVAL;
 -
--		/* Adjust length, and send initial RPC. */
--		rpc->length = sizeof(*rpc) + max_payload_size;
--		msg->checksum = rpc->length;
--
--		repv = r535_gsp_rpc_send(gsp, payload, NVKM_GSP_RPC_REPLY_NOWAIT, 0);
--		if (IS_ERR(repv))
--			goto done;
--
--		payload += max_payload_size;
--		remain_payload_size -= max_payload_size;
--
--		/* Remaining chunks sent as CONTINUATION_RECORD RPCs. */
--		while (remain_payload_size) {
--			u32 size = min(remain_payload_size,
--				       max_payload_size);
--			void *next;
--
--			next = r535_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD, size);
--			if (IS_ERR(next)) {
--				repv = next;
--				goto done;
--			}
--
--			memcpy(next, payload, size);
--
--			repv = r535_gsp_rpc_send(gsp, next, NVKM_GSP_RPC_REPLY_NOWAIT, 0);
--			if (IS_ERR(repv))
--				goto done;
--
--			payload += size;
--			remain_payload_size -= size;
--		}
--
--		/* Wait for reply. */
--		repv = r535_gsp_rpc_handle_reply(gsp, fn, policy, payload_size +
--						 sizeof(*rpc));
--	} else {
--		repv = r535_gsp_rpc_send(gsp, payload, policy, gsp_rpc_len);
+-	if ((ret = r535_gsp_load_fw(gsp, "gsp", fwif->ver, &gsp->fws.rm)) ||
+-	    (ret = r535_gsp_load_fw(gsp, "booter_load", fwif->ver, &gsp->fws.booter.load)) ||
+-	    (ret = r535_gsp_load_fw(gsp, "booter_unload", fwif->ver, &gsp->fws.booter.unload)) ||
+-	    (ret = r535_gsp_load_fw(gsp, "bootloader", fwif->ver, &gsp->fws.bl))) {
+-		r535_gsp_dtor_fws(gsp);
+-		return ret;
 -	}
 -
--done:
--	mutex_unlock(&gsp->cmdq.mutex);
--	return repv;
+-	return 0;
 -}
 -
- const struct nvkm_gsp_rm
- r535_gsp_rm = {
--	.rpc_get = r535_gsp_rpc_get,
--	.rpc_push = r535_gsp_rpc_push,
--	.rpc_done = r535_gsp_rpc_done,
-+	.api = &r535_rm,
+-#define NVKM_GSP_FIRMWARE(chip)                                  \
+-MODULE_FIRMWARE("nvidia/"#chip"/gsp/booter_load-535.113.01.bin");   \
+-MODULE_FIRMWARE("nvidia/"#chip"/gsp/booter_unload-535.113.01.bin"); \
+-MODULE_FIRMWARE("nvidia/"#chip"/gsp/bootloader-535.113.01.bin");    \
+-MODULE_FIRMWARE("nvidia/"#chip"/gsp/gsp-535.113.01.bin")
+-
+-NVKM_GSP_FIRMWARE(tu102);
+-NVKM_GSP_FIRMWARE(tu104);
+-NVKM_GSP_FIRMWARE(tu106);
+-
+-NVKM_GSP_FIRMWARE(tu116);
+-NVKM_GSP_FIRMWARE(tu117);
+-
+-NVKM_GSP_FIRMWARE(ga100);
+-
+-NVKM_GSP_FIRMWARE(ga102);
+-NVKM_GSP_FIRMWARE(ga103);
+-NVKM_GSP_FIRMWARE(ga104);
+-NVKM_GSP_FIRMWARE(ga106);
+-NVKM_GSP_FIRMWARE(ga107);
+-
+-NVKM_GSP_FIRMWARE(ad102);
+-NVKM_GSP_FIRMWARE(ad103);
+-NVKM_GSP_FIRMWARE(ad104);
+-NVKM_GSP_FIRMWARE(ad106);
+-NVKM_GSP_FIRMWARE(ad107);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+index 59c5f2b9172a..e7396344cfdf 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c
+@@ -183,9 +183,55 @@ tu102_gsp_r535_113_01 = {
+ 	.rm = &r535_gsp_rm,
+ };
  
- 	.rm_ctrl_get = r535_gsp_rpc_rm_ctrl_get,
- 	.rm_ctrl_push = r535_gsp_rpc_rm_ctrl_push,
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/Kbuild
-new file mode 100644
-index 000000000000..1c07740215ec
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/Kbuild
-@@ -0,0 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
-+# Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
-+
-+include $(src)/nvkm/subdev/gsp/rm/r535/Kbuild
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
-new file mode 100644
-index 000000000000..21c818ec0701
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/Kbuild
-@@ -0,0 +1,6 @@
-+# SPDX-License-Identifier: MIT
-+#
-+# Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
-+
-+nvkm-y += nvkm/subdev/gsp/rm/r535/rm.o
-+nvkm-y += nvkm/subdev/gsp/rm/r535/rpc.o
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-new file mode 100644
-index 000000000000..f28b781abc5c
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rm.c
-@@ -0,0 +1,10 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
-+ */
-+#include <rm/rm.h>
-+
-+const struct nvkm_rm_api
-+r535_rm = {
-+	.rpc = &r535_rpc,
-+};
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
-new file mode 100644
-index 000000000000..ffb4104a7d8c
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c
-@@ -0,0 +1,692 @@
-+/*
-+ * Copyright 2023 Red Hat Inc.
-+ *
-+ * Permission is hereby granted, free of charge, to any person obtaining a
-+ * copy of this software and associated documentation files (the "Software"),
-+ * to deal in the Software without restriction, including without limitation
-+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
-+ * and/or sell copies of the Software, and to permit persons to whom the
-+ * Software is furnished to do so, subject to the following conditions:
-+ *
-+ * The above copyright notice and this permission notice shall be included in
-+ * all copies or substantial portions of the Software.
-+ *
-+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
-+ * THE COPYRIGHT HOLDER(S) OR AUTHOR(S) BE LIABLE FOR ANY CLAIM, DAMAGES OR
-+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
-+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-+ * OTHER DEALINGS IN THE SOFTWARE.
-+ */
-+#include <rm/rpc.h>
-+
-+#include <nvrm/nvtypes.h>
-+#include <nvrm/535.113.01/nvidia/kernel/inc/vgpu/rpc_global_enums.h>
-+
-+#define GSP_MSG_MIN_SIZE GSP_PAGE_SIZE
-+#define GSP_MSG_MAX_SIZE (GSP_MSG_MIN_SIZE * 16)
-+
-+/**
-+ * DOC: GSP message queue element
-+ *
-+ * https://github.com/NVIDIA/open-gpu-kernel-modules/blob/535/src/nvidia/inc/kernel/gpu/gsp/message_queue_priv.h
-+ *
-+ * The GSP command queue and status queue are message queues for the
-+ * communication between software and GSP. The software submits the GSP
-+ * RPC via the GSP command queue, GSP writes the status of the submitted
-+ * RPC in the status queue.
-+ *
-+ * A GSP message queue element consists of three parts:
-+ *
-+ * - message element header (struct r535_gsp_msg), which mostly maintains
-+ *   the metadata for queuing the element.
-+ *
-+ * - RPC message header (struct nvfw_gsp_rpc), which maintains the info
-+ *   of the RPC. E.g., the RPC function number.
-+ *
-+ * - The payload, where the RPC message stays. E.g. the params of a
-+ *   specific RPC function. Some RPC functions also have their headers
-+ *   in the payload. E.g. rm_alloc, rm_control.
-+ *
-+ * The memory layout of a GSP message element can be illustrated below::
-+ *
-+ *    +------------------------+
-+ *    | Message Element Header |
-+ *    |    (r535_gsp_msg)      |
-+ *    |                        |
-+ *    | (r535_gsp_msg.data)    |
-+ *    |          |             |
-+ *    |----------V-------------|
-+ *    |    GSP RPC Header      |
-+ *    |    (nvfw_gsp_rpc)      |
-+ *    |                        |
-+ *    | (nvfw_gsp_rpc.data)    |
-+ *    |          |             |
-+ *    |----------V-------------|
-+ *    |       Payload          |
-+ *    |                        |
-+ *    |   header(optional)     |
-+ *    |        params          |
-+ *    +------------------------+
-+ *
-+ * The max size of a message queue element is 16 pages (including the
-+ * headers). When a GSP message to be sent is larger than 16 pages, the
-+ * message should be split into multiple elements and sent accordingly.
-+ *
-+ * In the bunch of the split elements, the first element has the expected
-+ * function number, while the rest of the elements are sent with the
-+ * function number NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD.
-+ *
-+ * GSP consumes the elements from the cmdq and always writes the result
-+ * back to the msgq. The result is also formed as split elements.
-+ *
-+ * Terminology:
-+ *
-+ * - gsp_msg(msg): GSP message element (element header + GSP RPC header +
-+ *   payload)
-+ * - gsp_rpc(rpc): GSP RPC (RPC header + payload)
-+ * - gsp_rpc_buf: buffer for (GSP RPC header + payload)
-+ * - gsp_rpc_len: size of (GSP RPC header + payload)
-+ * - params_size: size of params in the payload
-+ * - payload_size: size of (header if exists + params) in the payload
-+ */
-+
-+struct r535_gsp_msg {
-+	u8 auth_tag_buffer[16];
-+	u8 aad_buffer[16];
-+	u32 checksum;
-+	u32 sequence;
-+	u32 elem_count;
-+	u32 pad;
-+	u8  data[];
-+};
-+
-+struct nvfw_gsp_rpc {
-+	u32 header_version;
-+	u32 signature;
-+	u32 length;
-+	u32 function;
-+	u32 rpc_result;
-+	u32 rpc_result_private;
-+	u32 sequence;
-+	union {
-+		u32 spare;
-+		u32 cpuRmGfid;
-+	};
-+	u8  data[];
-+};
-+
-+#define GSP_MSG_HDR_SIZE offsetof(struct r535_gsp_msg, data)
-+
-+#define to_gsp_hdr(p, header) \
-+	container_of((void *)p, typeof(*header), data)
-+
-+#define to_payload_hdr(p, header) \
-+	container_of((void *)p, typeof(*header), params)
-+
-+int
-+r535_rpc_status_to_errno(uint32_t rpc_status)
-+{
-+	switch (rpc_status) {
-+	case 0x55: /* NV_ERR_NOT_READY */
-+	case 0x66: /* NV_ERR_TIMEOUT_RETRY */
-+		return -EBUSY;
-+	case 0x51: /* NV_ERR_NO_MEMORY */
-+		return -ENOMEM;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
 +static int
-+r535_gsp_msgq_wait(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *ptime)
++tu102_gsp_load_rm(struct nvkm_gsp *gsp, const struct nvkm_gsp_fwif *fwif)
 +{
-+	u32 size, rptr = *gsp->msgq.rptr;
-+	int used;
-+
-+	size = DIV_ROUND_UP(GSP_MSG_HDR_SIZE + gsp_rpc_len,
-+			    GSP_PAGE_SIZE);
-+	if (WARN_ON(!size || size >= gsp->msgq.cnt))
-+		return -EINVAL;
-+
-+	do {
-+		u32 wptr = *gsp->msgq.wptr;
-+
-+		used = wptr + gsp->msgq.cnt - rptr;
-+		if (used >= gsp->msgq.cnt)
-+			used -= gsp->msgq.cnt;
-+		if (used >= size)
-+			break;
-+
-+		usleep_range(1, 2);
-+	} while (--(*ptime));
-+
-+	if (WARN_ON(!*ptime))
-+		return -ETIMEDOUT;
-+
-+	return used;
-+}
-+
-+static struct r535_gsp_msg *
-+r535_gsp_msgq_get_entry(struct nvkm_gsp *gsp)
-+{
-+	u32 rptr = *gsp->msgq.rptr;
-+
-+	/* Skip the first page, which is the message queue info */
-+	return (void *)((u8 *)gsp->shm.msgq.ptr + GSP_PAGE_SIZE +
-+	       rptr * GSP_PAGE_SIZE);
-+}
-+
-+/**
-+ * DOC: Receive a GSP message queue element
-+ *
-+ * Receiving a GSP message queue element from the message queue consists of
-+ * the following steps:
-+ *
-+ * - Peek the element from the queue: r535_gsp_msgq_peek().
-+ *   Peek the first page of the element to determine the total size of the
-+ *   message before allocating the proper memory.
-+ *
-+ * - Allocate memory for the message.
-+ *   Once the total size of the message is determined from the GSP message
-+ *   queue element, the caller of r535_gsp_msgq_recv() allocates the
-+ *   required memory.
-+ *
-+ * - Receive the message: r535_gsp_msgq_recv().
-+ *   Copy the message into the allocated memory. Advance the read pointer.
-+ *   If the message is a large GSP message, r535_gsp_msgq_recv() calls
-+ *   r535_gsp_msgq_recv_one_elem() repeatedly to receive continuation parts
-+ *   until the complete message is received.
-+ *   r535_gsp_msgq_recv() assembles the payloads of cotinuation parts into
-+ *   the return of the large GSP message.
-+ *
-+ * - Free the allocated memory: r535_gsp_msg_done().
-+ *   The user is responsible for freeing the memory allocated for the GSP
-+ *   message pages after they have been processed.
-+ */
-+static void *
-+r535_gsp_msgq_peek(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
-+{
-+	struct r535_gsp_msg *mqe;
++	struct nvkm_subdev *subdev = &gsp->subdev;
++	bool enable_gsp = fwif->enable;
 +	int ret;
 +
-+	ret = r535_gsp_msgq_wait(gsp, gsp_rpc_len, retries);
-+	if (ret < 0)
-+		return ERR_PTR(ret);
++#if IS_ENABLED(CONFIG_DRM_NOUVEAU_GSP_DEFAULT)
++	enable_gsp = true;
++#endif
++	if (!nvkm_boolopt(subdev->device->cfgopt, "NvGspRm", enable_gsp))
++		return -EINVAL;
 +
-+	mqe = r535_gsp_msgq_get_entry(gsp);
++	ret = nvkm_gsp_load_fw(gsp, "gsp", fwif->ver, &gsp->fws.rm);
++	if (ret)
++		return ret;
 +
-+	return mqe->data;
-+}
++	ret = nvkm_gsp_load_fw(gsp, "bootloader", fwif->ver, &gsp->fws.bl);
++	if (ret)
++		return ret;
 +
-+struct r535_gsp_msg_info {
-+	int *retries;
-+	u32 gsp_rpc_len;
-+	void *gsp_rpc_buf;
-+	bool continuation;
-+};
-+
-+static void
-+r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl);
-+
-+static void *
-+r535_gsp_msgq_recv_one_elem(struct nvkm_gsp *gsp,
-+			    struct r535_gsp_msg_info *info)
-+{
-+	u8 *buf = info->gsp_rpc_buf;
-+	u32 rptr = *gsp->msgq.rptr;
-+	struct r535_gsp_msg *mqe;
-+	u32 size, expected, len;
-+	int ret;
-+
-+	expected = info->gsp_rpc_len;
-+
-+	ret = r535_gsp_msgq_wait(gsp, expected, info->retries);
-+	if (ret < 0)
-+		return ERR_PTR(ret);
-+
-+	mqe = r535_gsp_msgq_get_entry(gsp);
-+
-+	if (info->continuation) {
-+		struct nvfw_gsp_rpc *rpc = (struct nvfw_gsp_rpc *)mqe->data;
-+
-+		if (rpc->function != NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD) {
-+			nvkm_error(&gsp->subdev,
-+				   "Not a continuation of a large RPC\n");
-+			r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
-+			return ERR_PTR(-EIO);
-+		}
-+	}
-+
-+	size = ALIGN(expected + GSP_MSG_HDR_SIZE, GSP_PAGE_SIZE);
-+
-+	len = ((gsp->msgq.cnt - rptr) * GSP_PAGE_SIZE) - sizeof(*mqe);
-+	len = min_t(u32, expected, len);
-+
-+	if (info->continuation)
-+		memcpy(buf, mqe->data + sizeof(struct nvfw_gsp_rpc),
-+		       len - sizeof(struct nvfw_gsp_rpc));
-+	else
-+		memcpy(buf, mqe->data, len);
-+
-+	expected -= len;
-+
-+	if (expected) {
-+		mqe = (void *)((u8 *)gsp->shm.msgq.ptr + 0x1000 + 0 * 0x1000);
-+		memcpy(buf + len, mqe, expected);
-+	}
-+
-+	rptr = (rptr + DIV_ROUND_UP(size, GSP_PAGE_SIZE)) % gsp->msgq.cnt;
-+
-+	mb();
-+	(*gsp->msgq.rptr) = rptr;
-+	return buf;
-+}
-+
-+static void *
-+r535_gsp_msgq_recv(struct nvkm_gsp *gsp, u32 gsp_rpc_len, int *retries)
-+{
-+	struct r535_gsp_msg *mqe;
-+	const u32 max_rpc_size = GSP_MSG_MAX_SIZE - sizeof(*mqe);
-+	struct nvfw_gsp_rpc *rpc;
-+	struct r535_gsp_msg_info info = {0};
-+	u32 expected = gsp_rpc_len;
-+	void *buf;
-+
-+	mqe = r535_gsp_msgq_get_entry(gsp);
-+	rpc = (struct nvfw_gsp_rpc *)mqe->data;
-+
-+	if (WARN_ON(rpc->length > max_rpc_size))
-+		return NULL;
-+
-+	buf = kvmalloc(max_t(u32, rpc->length, expected), GFP_KERNEL);
-+	if (!buf)
-+		return ERR_PTR(-ENOMEM);
-+
-+	info.gsp_rpc_buf = buf;
-+	info.retries = retries;
-+	info.gsp_rpc_len = rpc->length;
-+
-+	buf = r535_gsp_msgq_recv_one_elem(gsp, &info);
-+	if (IS_ERR(buf)) {
-+		kvfree(info.gsp_rpc_buf);
-+		info.gsp_rpc_buf = NULL;
-+		return buf;
-+	}
-+
-+	if (expected <= max_rpc_size)
-+		return buf;
-+
-+	info.gsp_rpc_buf += info.gsp_rpc_len;
-+	expected -= info.gsp_rpc_len;
-+
-+	while (expected) {
-+		u32 size;
-+
-+		rpc = r535_gsp_msgq_peek(gsp, sizeof(*rpc), info.retries);
-+		if (IS_ERR_OR_NULL(rpc)) {
-+			kfree(buf);
-+			return rpc;
-+		}
-+
-+		info.gsp_rpc_len = rpc->length;
-+		info.continuation = true;
-+
-+		rpc = r535_gsp_msgq_recv_one_elem(gsp, &info);
-+		if (IS_ERR_OR_NULL(rpc)) {
-+			kfree(buf);
-+			return rpc;
-+		}
-+
-+		size = info.gsp_rpc_len - sizeof(*rpc);
-+		expected -= size;
-+		info.gsp_rpc_buf += size;
-+	}
-+
-+	rpc = buf;
-+	rpc->length = gsp_rpc_len;
-+	return buf;
-+}
-+
-+static int
-+r535_gsp_cmdq_push(struct nvkm_gsp *gsp, void *rpc)
-+{
-+	struct r535_gsp_msg *msg = to_gsp_hdr(rpc, msg);
-+	struct r535_gsp_msg *cqe;
-+	u32 gsp_rpc_len = msg->checksum;
-+	u64 *ptr = (void *)msg;
-+	u64 *end;
-+	u64 csum = 0;
-+	int free, time = 1000000;
-+	u32 wptr, size, step, len;
-+	u32 off = 0;
-+
-+	len = ALIGN(GSP_MSG_HDR_SIZE + gsp_rpc_len, GSP_PAGE_SIZE);
-+
-+	end = (u64 *)((char *)ptr + len);
-+	msg->pad = 0;
-+	msg->checksum = 0;
-+	msg->sequence = gsp->cmdq.seq++;
-+	msg->elem_count = DIV_ROUND_UP(len, 0x1000);
-+
-+	while (ptr < end)
-+		csum ^= *ptr++;
-+
-+	msg->checksum = upper_32_bits(csum) ^ lower_32_bits(csum);
-+
-+	wptr = *gsp->cmdq.wptr;
-+	do {
-+		do {
-+			free = *gsp->cmdq.rptr + gsp->cmdq.cnt - wptr - 1;
-+			if (free >= gsp->cmdq.cnt)
-+				free -= gsp->cmdq.cnt;
-+			if (free >= 1)
-+				break;
-+
-+			usleep_range(1, 2);
-+		} while(--time);
-+
-+		if (WARN_ON(!time)) {
-+			kvfree(msg);
-+			return -ETIMEDOUT;
-+		}
-+
-+		cqe = (void *)((u8 *)gsp->shm.cmdq.ptr + 0x1000 + wptr * 0x1000);
-+		step = min_t(u32, free, (gsp->cmdq.cnt - wptr));
-+		size = min_t(u32, len, step * GSP_PAGE_SIZE);
-+
-+		memcpy(cqe, (u8 *)msg + off, size);
-+
-+		wptr += DIV_ROUND_UP(size, 0x1000);
-+		if (wptr == gsp->cmdq.cnt)
-+			wptr = 0;
-+
-+		off  += size;
-+		len -= size;
-+	} while (len);
-+
-+	nvkm_trace(&gsp->subdev, "cmdq: wptr %d\n", wptr);
-+	wmb();
-+	(*gsp->cmdq.wptr) = wptr;
-+	mb();
-+
-+	nvkm_falcon_wr32(&gsp->falcon, 0xc00, 0x00000000);
-+
-+	kvfree(msg);
 +	return 0;
 +}
 +
-+static void *
-+r535_gsp_cmdq_get(struct nvkm_gsp *gsp, u32 gsp_rpc_len)
-+{
-+	struct r535_gsp_msg *msg;
-+	u32 size = GSP_MSG_HDR_SIZE + gsp_rpc_len;
-+
-+	size = ALIGN(size, GSP_MSG_MIN_SIZE);
-+	msg = kvzalloc(size, GFP_KERNEL);
-+	if (!msg)
-+		return ERR_PTR(-ENOMEM);
-+
-+	msg->checksum = gsp_rpc_len;
-+	return msg->data;
-+}
-+
-+static void
-+r535_gsp_msg_done(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg)
-+{
-+	kvfree(msg);
-+}
-+
-+static void
-+r535_gsp_msg_dump(struct nvkm_gsp *gsp, struct nvfw_gsp_rpc *msg, int lvl)
-+{
-+	if (gsp->subdev.debug >= lvl) {
-+		nvkm_printk__(&gsp->subdev, lvl, info,
-+			      "msg fn:%d len:0x%x/0x%zx res:0x%x resp:0x%x\n",
-+			      msg->function, msg->length, msg->length - sizeof(*msg),
-+			      msg->rpc_result, msg->rpc_result_private);
-+		print_hex_dump(KERN_INFO, "msg: ", DUMP_PREFIX_OFFSET, 16, 1,
-+			       msg->data, msg->length - sizeof(*msg), true);
-+	}
-+}
-+
-+struct nvfw_gsp_rpc *
-+r535_gsp_msg_recv(struct nvkm_gsp *gsp, int fn, u32 gsp_rpc_len)
-+{
-+	struct nvkm_subdev *subdev = &gsp->subdev;
-+	struct nvfw_gsp_rpc *rpc;
-+	int retries = 4000000, i;
-+
-+retry:
-+	rpc = r535_gsp_msgq_peek(gsp, sizeof(*rpc), &retries);
-+	if (IS_ERR_OR_NULL(rpc))
-+		return rpc;
-+
-+	rpc = r535_gsp_msgq_recv(gsp, gsp_rpc_len, &retries);
-+	if (IS_ERR_OR_NULL(rpc))
-+		return rpc;
-+
-+	if (rpc->rpc_result) {
-+		r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
-+		r535_gsp_msg_done(gsp, rpc);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	r535_gsp_msg_dump(gsp, rpc, NV_DBG_TRACE);
-+
-+	if (fn && rpc->function == fn) {
-+		if (gsp_rpc_len) {
-+			if (rpc->length < gsp_rpc_len) {
-+				nvkm_error(subdev, "rpc len %d < %d\n",
-+					   rpc->length, gsp_rpc_len);
-+				r535_gsp_msg_dump(gsp, rpc, NV_DBG_ERROR);
-+				r535_gsp_msg_done(gsp, rpc);
-+				return ERR_PTR(-EIO);
-+			}
-+
-+			return rpc;
-+		}
-+
-+		r535_gsp_msg_done(gsp, rpc);
-+		return NULL;
-+	}
-+
-+	for (i = 0; i < gsp->msgq.ntfy_nr; i++) {
-+		struct nvkm_gsp_msgq_ntfy *ntfy = &gsp->msgq.ntfy[i];
-+
-+		if (ntfy->fn == rpc->function) {
-+			if (ntfy->func)
-+				ntfy->func(ntfy->priv, ntfy->fn, rpc->data,
-+					   rpc->length - sizeof(*rpc));
-+			break;
-+		}
-+	}
-+
-+	if (i == gsp->msgq.ntfy_nr)
-+		r535_gsp_msg_dump(gsp, rpc, NV_DBG_WARN);
-+
-+	r535_gsp_msg_done(gsp, rpc);
-+	if (fn)
-+		goto retry;
-+
-+	if (*gsp->msgq.rptr != *gsp->msgq.wptr)
-+		goto retry;
-+
-+	return NULL;
-+}
-+
 +int
-+r535_gsp_msg_ntfy_add(struct nvkm_gsp *gsp, u32 fn, nvkm_gsp_msg_ntfy_func func, void *priv)
++tu102_gsp_load(struct nvkm_gsp *gsp, int ver, const struct nvkm_gsp_fwif *fwif)
 +{
-+	int ret = 0;
++	int ret;
 +
-+	mutex_lock(&gsp->msgq.mutex);
-+	if (WARN_ON(gsp->msgq.ntfy_nr >= ARRAY_SIZE(gsp->msgq.ntfy))) {
-+		ret = -ENOSPC;
-+	} else {
-+		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].fn = fn;
-+		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].func = func;
-+		gsp->msgq.ntfy[gsp->msgq.ntfy_nr].priv = priv;
-+		gsp->msgq.ntfy_nr++;
-+	}
-+	mutex_unlock(&gsp->msgq.mutex);
++	ret = tu102_gsp_load_rm(gsp, fwif);
++	if (ret)
++		goto done;
++
++	ret = nvkm_gsp_load_fw(gsp, "booter_load", fwif->ver, &gsp->fws.booter.load);
++	if (ret)
++		goto done;
++
++	ret = nvkm_gsp_load_fw(gsp, "booter_unload", fwif->ver, &gsp->fws.booter.unload);
++
++done:
++	if (ret)
++		nvkm_gsp_dtor_fws(gsp);
++
 +	return ret;
 +}
 +
-+int
-+r535_gsp_rpc_poll(struct nvkm_gsp *gsp, u32 fn)
-+{
-+	void *repv;
+ static struct nvkm_gsp_fwif
+ tu102_gsps[] = {
+-	{  0,  r535_gsp_load, &tu102_gsp_r535_113_01, "535.113.01" },
++	{  0, tu102_gsp_load, &tu102_gsp_r535_113_01, "535.113.01" },
+ 	{ -1, gv100_gsp_nofw, &gv100_gsp },
+ 	{}
+ };
+@@ -196,3 +242,7 @@ tu102_gsp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ {
+ 	return nvkm_gsp_new_(tu102_gsps, device, type, inst, pgsp);
+ }
 +
-+	mutex_lock(&gsp->cmdq.mutex);
-+	repv = r535_gsp_msg_recv(gsp, fn, 0);
-+	mutex_unlock(&gsp->cmdq.mutex);
-+	if (IS_ERR(repv))
-+		return PTR_ERR(repv);
++NVKM_GSP_FIRMWARE_BOOTER(tu102, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(tu104, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(tu106, 535.113.01);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+index 04fbd9ed28b1..a8c9480b8024 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu116.c
+@@ -44,7 +44,7 @@ tu116_gsp_r535_113_01 = {
+ 
+ static struct nvkm_gsp_fwif
+ tu116_gsps[] = {
+-	{  0,  r535_gsp_load, &tu116_gsp_r535_113_01, "535.113.01" },
++	{  0, tu102_gsp_load, &tu116_gsp_r535_113_01, "535.113.01" },
+ 	{ -1, gv100_gsp_nofw, &gv100_gsp },
+ 	{}
+ };
+@@ -55,3 +55,6 @@ tu116_gsp_new(struct nvkm_device *device, enum nvkm_subdev_type type, int inst,
+ {
+ 	return nvkm_gsp_new_(tu116_gsps, device, type, inst, pgsp);
+ }
 +
-+	return 0;
-+}
-+
-+static void *
-+r535_gsp_rpc_handle_reply(struct nvkm_gsp *gsp, u32 fn,
-+			  enum nvkm_gsp_rpc_reply_policy policy,
-+			  u32 gsp_rpc_len)
-+{
-+	struct nvfw_gsp_rpc *reply;
-+	void *repv = NULL;
-+
-+	switch (policy) {
-+	case NVKM_GSP_RPC_REPLY_NOWAIT:
-+		break;
-+	case NVKM_GSP_RPC_REPLY_RECV:
-+		reply = r535_gsp_msg_recv(gsp, fn, gsp_rpc_len);
-+		if (!IS_ERR_OR_NULL(reply))
-+			repv = reply->data;
-+		else
-+			repv = reply;
-+		break;
-+	case NVKM_GSP_RPC_REPLY_POLL:
-+		repv = r535_gsp_msg_recv(gsp, fn, 0);
-+		break;
-+	}
-+
-+	return repv;
-+}
-+
-+static void *
-+r535_gsp_rpc_send(struct nvkm_gsp *gsp, void *payload,
-+		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
-+{
-+	struct nvfw_gsp_rpc *rpc = to_gsp_hdr(payload, rpc);
-+	u32 fn = rpc->function;
-+	int ret;
-+
-+	if (gsp->subdev.debug >= NV_DBG_TRACE) {
-+		nvkm_trace(&gsp->subdev, "rpc fn:%d len:0x%x/0x%zx\n", rpc->function,
-+			   rpc->length, rpc->length - sizeof(*rpc));
-+		print_hex_dump(KERN_INFO, "rpc: ", DUMP_PREFIX_OFFSET, 16, 1,
-+			       rpc->data, rpc->length - sizeof(*rpc), true);
-+	}
-+
-+	ret = r535_gsp_cmdq_push(gsp, rpc);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return r535_gsp_rpc_handle_reply(gsp, fn, policy, gsp_rpc_len);
-+}
-+
-+static void
-+r535_gsp_rpc_done(struct nvkm_gsp *gsp, void *repv)
-+{
-+	struct nvfw_gsp_rpc *rpc = container_of(repv, typeof(*rpc), data);
-+
-+	r535_gsp_msg_done(gsp, rpc);
-+}
-+
-+static void *
-+r535_gsp_rpc_get(struct nvkm_gsp *gsp, u32 fn, u32 payload_size)
-+{
-+	struct nvfw_gsp_rpc *rpc;
-+
-+	rpc = r535_gsp_cmdq_get(gsp, ALIGN(sizeof(*rpc) + payload_size,
-+					   sizeof(u64)));
-+	if (IS_ERR(rpc))
-+		return ERR_CAST(rpc);
-+
-+	rpc->header_version = 0x03000000;
-+	rpc->signature = ('C' << 24) | ('P' << 16) | ('R' << 8) | 'V';
-+	rpc->function = fn;
-+	rpc->rpc_result = 0xffffffff;
-+	rpc->rpc_result_private = 0xffffffff;
-+	rpc->length = sizeof(*rpc) + payload_size;
-+	return rpc->data;
-+}
-+
-+static void *
-+r535_gsp_rpc_push(struct nvkm_gsp *gsp, void *payload,
-+		  enum nvkm_gsp_rpc_reply_policy policy, u32 gsp_rpc_len)
-+{
-+	struct nvfw_gsp_rpc *rpc = to_gsp_hdr(payload, rpc);
-+	struct r535_gsp_msg *msg = to_gsp_hdr(rpc, msg);
-+	const u32 max_rpc_size = GSP_MSG_MAX_SIZE - sizeof(*msg);
-+	const u32 max_payload_size = max_rpc_size - sizeof(*rpc);
-+	u32 payload_size = rpc->length - sizeof(*rpc);
-+	void *repv;
-+
-+	mutex_lock(&gsp->cmdq.mutex);
-+	if (payload_size > max_payload_size) {
-+		const u32 fn = rpc->function;
-+		u32 remain_payload_size = payload_size;
-+
-+		/* Adjust length, and send initial RPC. */
-+		rpc->length = sizeof(*rpc) + max_payload_size;
-+		msg->checksum = rpc->length;
-+
-+		repv = r535_gsp_rpc_send(gsp, payload, NVKM_GSP_RPC_REPLY_NOWAIT, 0);
-+		if (IS_ERR(repv))
-+			goto done;
-+
-+		payload += max_payload_size;
-+		remain_payload_size -= max_payload_size;
-+
-+		/* Remaining chunks sent as CONTINUATION_RECORD RPCs. */
-+		while (remain_payload_size) {
-+			u32 size = min(remain_payload_size,
-+				       max_payload_size);
-+			void *next;
-+
-+			next = r535_gsp_rpc_get(gsp, NV_VGPU_MSG_FUNCTION_CONTINUATION_RECORD, size);
-+			if (IS_ERR(next)) {
-+				repv = next;
-+				goto done;
-+			}
-+
-+			memcpy(next, payload, size);
-+
-+			repv = r535_gsp_rpc_send(gsp, next, NVKM_GSP_RPC_REPLY_NOWAIT, 0);
-+			if (IS_ERR(repv))
-+				goto done;
-+
-+			payload += size;
-+			remain_payload_size -= size;
-+		}
-+
-+		/* Wait for reply. */
-+		repv = r535_gsp_rpc_handle_reply(gsp, fn, policy, payload_size +
-+						 sizeof(*rpc));
-+	} else {
-+		repv = r535_gsp_rpc_send(gsp, payload, policy, gsp_rpc_len);
-+	}
-+
-+done:
-+	mutex_unlock(&gsp->cmdq.mutex);
-+	return repv;
-+}
-+
-+const struct nvkm_rm_api_rpc
-+r535_rpc = {
-+	.get = r535_gsp_rpc_get,
-+	.push = r535_gsp_rpc_push,
-+	.done = r535_gsp_rpc_done,
-+};
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-new file mode 100644
-index 000000000000..7a0ece979167
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -0,0 +1,20 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
-+ */
-+#include <subdev/gsp.h>
-+#ifndef __NVKM_RM_H__
-+#define __NVKM_RM_H__
-+
-+struct nvkm_rm_api {
-+	const struct nvkm_rm_api_rpc {
-+		void *(*get)(struct nvkm_gsp *, u32 fn, u32 argc);
-+		void *(*push)(struct nvkm_gsp *gsp, void *argv,
-+			      enum nvkm_gsp_rpc_reply_policy policy, u32 repc);
-+		void (*done)(struct nvkm_gsp *gsp, void *repv);
-+	} *rpc;
-+};
-+
-+extern const struct nvkm_rm_api r535_rm;
-+extern const struct nvkm_rm_api_rpc r535_rpc;
-+#endif
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rpc.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rpc.h
-new file mode 100644
-index 000000000000..4431e33b3304
---- /dev/null
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rpc.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: MIT
-+ *
-+ * Copyright (c) 2025, NVIDIA CORPORATION. All rights reserved.
-+ */
-+#ifndef __NVKM_RM_RPC_H__
-+#define __NVKM_RM_RPC_H__
-+#include "rm.h"
-+
-+#define to_payload_hdr(p, header) \
-+	container_of((void *)p, typeof(*header), params)
-+
-+int r535_gsp_rpc_poll(struct nvkm_gsp *, u32 fn);
-+
-+struct nvfw_gsp_rpc *r535_gsp_msg_recv(struct nvkm_gsp *, int fn, u32 gsp_rpc_len);
-+int r535_gsp_msg_ntfy_add(struct nvkm_gsp *, u32 fn, nvkm_gsp_msg_ntfy_func, void *priv);
-+
-+int r535_rpc_status_to_errno(uint32_t rpc_status);
-+#endif
++NVKM_GSP_FIRMWARE_BOOTER(tu116, 535.113.01);
++NVKM_GSP_FIRMWARE_BOOTER(tu117, 535.113.01);
 -- 
 2.49.0
 
