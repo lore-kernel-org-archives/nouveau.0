@@ -4,66 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5BBD5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75A57D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A68E10EC55;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59AE910EC62;
 	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ltswyZap";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="ubolpMVR";
 	dkim-atps=neutral
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
- [209.85.167.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9997610E1A9
- for <nouveau@lists.freedesktop.org>; Tue, 18 Mar 2025 18:23:48 +0000 (UTC)
-Received: by mail-lf1-f42.google.com with SMTP id
- 2adb3069b0e04-549b159c84cso5890644e87.3
- for <nouveau@lists.freedesktop.org>; Tue, 18 Mar 2025 11:23:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742322227; x=1742927027; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=pFKYBJkHqX0hzbT4PFFc5FvHM64HyiGYTbKxeJ0wjJ8=;
- b=ltswyZapTx7iS8HerCPfyBIv1AYkRkHs7X98jMWMyCEk1dPh8WsINOVzNYYGdtOgEx
- Lm241gvCfOu3u7E2y3vrbm5YooA+o3On81jFnH+EIiWzxnjDPJeGJwBebhxtKVwUZRVZ
- PdJCKo0LG5LqEadPpfsQ9gEGRQQhoe4y1fqVaAHti3pkYtyB9TpxXMf7yxM9t08CDSRu
- KigHYridvhsGJegb2BeqK5jGFj+DRTBUawqY8qHsiELSc4fffKLSrEqKWL0K9VpoiieW
- 0nSOUQirB+6S93Xa7G8LT8ZJ4cqUtLaYXPjxZHjWRrJNO/fowj3Kknn1+zE0DZ90Jk/h
- zDLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742322227; x=1742927027;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=pFKYBJkHqX0hzbT4PFFc5FvHM64HyiGYTbKxeJ0wjJ8=;
- b=NM1u7Y7GcGYMuC9cqtqacf8vpLXgcrtTtlzC/GIVPIUco6nK0U8jW8x38AxqSy17Wr
- FbZLEf01AzUSPdfIbt2WyBST0j1mejss/afgskSEFcOKCh/3qkbJtLanE51zgaW7G3q3
- Gd0w3JZQcTEg7SD3YpO3SReJDj+2JAo4M4K6Vqv+0lnONVxSBjEPG0yCT0STbycM/8PC
- WGXqZOLbRpt0Rc3GA4YvZpnygW9yBgsCUvY91jus0UXQ7Pkkw5Nw96mWWCKxAYNsoMde
- t5jJEusurg8Cyon0cF9GYs8MLU1Y5Z9V0D2RtA+eCOA5+53US3jET6HQiT563qulRm6C
- wa3g==
-X-Gm-Message-State: AOJu0Yx/b4GYPWdjEV78C7fUInOSBOWBr1SX9LXXFpC/O8WR3b+O7RO4
- pj1Up0PLqI/nAgZFI1WnYC21QabdkDAuB/m3CPcQCcH68xmm9PhGgdC+CEEUfJjhakiG1G4QMrm
- KU6UN/NrsFQ24tUZEJjBN4ukQ8A==
-X-Gm-Gg: ASbGncvPj0fhAQlAT+M24j8/boD2B2ekwkC+XihbQC2xI+kp99MvjntjsTnvcM0AyLx
- wu1VAN5LTsF00BablV4T1in9ChxFl9J1jSoM3F5/5fGxjGpIvX9bdz/2hB+MVYXHvTGD/BCzxxO
- qTMqrKdCtp0JFVKw49Ej2Jqf5pVfnsD0ap3Rmv1g==
-X-Google-Smtp-Source: AGHT+IFN4VJtOVCiYfy6bKBUtdI9o9AX9cjJI17v/ZeplxH++yLd8iXtCcPFYOjXISvJLgWyyW3KyOs1cz1vojgB3zg=
-X-Received: by 2002:a05:6512:e9c:b0:549:7354:e4d1 with SMTP id
- 2adb3069b0e04-54ac9cb591fmr44541e87.38.1742322226520; Tue, 18 Mar 2025
- 11:23:46 -0700 (PDT)
-MIME-Version: 1.0
-From: Naveen Kumar P <naveenkumar.parna@gmail.com>
-Date: Tue, 18 Mar 2025 23:53:34 +0530
-X-Gm-Features: AQ5f1JoazGVw-lIjZ1PX_D9zioJEAGaKuRn-Prk2rQrfjHadNi3e9Q-_2xKGMCM
-Message-ID: <CAMciSVXGcF=mT0UgU8cNTLiDTUovOYSL=cX95b9Wr1u3UwWNWQ@mail.gmail.com>
-Subject: Debugging PCIe Configuration Space Using mmiotrace
-To: rostedt@goodmis.org, mhiramat@kernel.org, karolherbst@gmail.com, 
- ppaalanen@gmail.com, dave.hansen@linux.intel.com, luto@kernel.org, 
- Peter Zijlstra <peterz@infradead.org>
-Cc: nouveau@lists.freedesktop.org, 
- Naveen Kumar P <naveenkumar.parna@gmail.com>
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B2C10ECB7;
+ Thu, 22 May 2025 13:16:32 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4b38251lNrz9tFZ;
+ Thu, 22 May 2025 15:16:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1747919789; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=2xY0ojqhuGBcKzHDlcpTqdk5F5P4zkhEB59bIyA/OVQ=;
+ b=ubolpMVRg9ftBOJo2ByE6Gh0CtGNWIU4Uc0Aux6mIvl+Ze97x5YLo+34A6nlB5rooQNWYi
+ JDko441+ZvW+EzSmD24mnxify0M592Iv9mKgemWy3Ka/pCUJys0YcuUJjzZopzPyC6NPoC
+ xR5Bv/pfwQVMqsd9f589+MrozWiDiwio5xtwnvuKAxQiNnFvIds+nHCj2PUlNff0ywI+e4
+ xX48IjaBDGJimuAdkaeoCQ4uKHfieEWjolVdXKTe/2cogNLO+IaP+IHK3xrv6RXmaKbUe6
+ IpdTon4GXxpoyK8nE+zElOZBoLOmvSVAzrOmgyTpy5ezlsZYeReOl8g9yUt/+g==
+Message-ID: <282de2b9251e3a1b793e02ef23675dace248725b.camel@mailbox.org>
+Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
+ context
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo
+ Krummrich <dakr@kernel.org>
+Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sumit Semwal
+ <sumit.semwal@linaro.org>, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org
+Date: Thu, 22 May 2025 15:16:25 +0200
+In-Reply-To: <ebedece4-9758-47e9-b621-37b40e3f0fc3@amd.com>
+References: <20250522112540.161411-2-phasta@kernel.org>
+ <20250522112540.161411-3-phasta@kernel.org>
+ <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
+ <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
+ <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com> <aC8fpEXYWZ9Oy41J@pollux>
+ <ebedece4-9758-47e9-b621-37b40e3f0fc3@amd.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-MBO-RS-ID: 3c2590ebf42a25dd418
+X-MBO-RS-META: rtwsdkhdwdcmpueph13z64fnzp4ku9sf
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,138 +71,98 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi all,
+On Thu, 2025-05-22 at 15:09 +0200, Christian K=C3=B6nig wrote:
+> On 5/22/25 14:59, Danilo Krummrich wrote:
+> > On Thu, May 22, 2025 at 02:34:33PM +0200, Christian K=C3=B6nig wrote:
+> > > See all the functions inside include/linux/dma-fence.h can be
+> > > used by everybody. It's basically the public interface of the
+> > > dma_fence object.
+> >=20
+> > As you write below, in certain cases it is valid to call this from
+> > drivers, so
+> > it's not unreasonable to have it as part of the public API.
+>=20
+> The question is from which drivers?
+>=20
+> > > So testing if a fence is signaled without calling the callback is
+> > > only allowed by whoever implemented the fence.
+> > >=20
+> > > In other words nouveau can test nouveau fences, i915 can test
+> > > i915 fences, amdgpu can test amdgpu fences etc... But if you have
+> > > the wrapper that makes it officially allowed that nouveau starts
+> > > testing i915 fences and that would be problematic.
+> >=20
+> > In general, I like the=C2=A0 __dma_fence_is_signaled() helper, because
+> > this way we
+> > can document in which cases it is allowed to be used, i.e. the ones
+> > you descibe
+> > above.
+> >=20
+> > test_bit() can be called by anyone and there is no documentation
+> > comment
+> > explaining that it is only allowed under certain conditions.
+>=20
+> That's a rather good argument.
+>=20
+> > Having the __dma_fence_is_signaled() helper properly documented
+> > could get you
+> > rid of having to explain in which case the test_bit() dance is
+> > allowed to do
+> > over and over again. :-)
+>=20
+> That's an even better argument.=20
+>=20
+> > I also think the name is good, since the '__' prefix already
+> > implies that there
+> > are some restrictions on the use of this helper.
+>=20
+> I'm still hesitating. Adding something to the API always made it
+> usable by everybody.
+>=20
+> Now suddenly saying we add that to the include/linux/dma-fence.h
+> header but only certainly code can use it still sounds questionable
+> to me.
 
-I am currently debugging an issue on an x86 machine running the latest
-Linux kernel, involving a PCIe device whose memory is mapped via BAR0.
-I am encountering unexpected behavior when reading its PCI
-configuration space using lspci, and I am seeking guidance on whether
-mmiotrace can help diagnose the problem.
-
-Issue Summary:
-Expected Behavior After Boot:
-lspci -xxx -s 01:00.0 correctly displays valid PCI configuration space
-values, including a properly mapped BAR0.
-
-$ sudo lspci -xxx -s 01:00.0 | grep "10:"
-10: 00 00 40 b0 00 00 00 00 00 00 00 00 00 00 00 00
-
-
-Unexpected Behavior After Uptime:
-After a few days, reading the PCI configuration space (lspci -xxx -s
-01:00.0) sometimes returns all 0xffs for the entire config space.
-dmesg does not log any relevant errors.
-
-$ sudo lspci -xxx -s 01:00.0
-01:00.0 RAM memory: PLDA Device 5555 (rev ff)
-00: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-10: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-20: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-30: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-40: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-50: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-60: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-70: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-80: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-90: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-a0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-b0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-c0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-d0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-e0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-f0: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
-
-
-After Subsequent Reads:
-Re-running lspci -xxx -s 01:00.0 restores non-0xff values, but BAR0
-gets reset to zero.
-
-$ sudo lspci -xxx -s 01:00.0
-01:00.0 RAM memory: PLDA Device 5555
-00: 56 15 55 55 00 00 10 00 00 00 00 05 00 00 00 00
-10: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-20: 00 00 00 00 00 00 00 00 00 00 00 00 00 40 00 00
-30: 00 00 00 00 40 00 00 00 00 00 00 00 ff 01 00 00
-40: 01 48 03 00 08 00 00 00 05 60 00 00 00 00 00 00
-50: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-60: 10 00 02 00 c2 8f 00 00 10 28 01 00 21 f4 03 00
-70: 00 00 21 00 00 00 00 00 00 00 00 00 00 00 00 00
-80: 00 00 00 00 02 00 00 00 00 00 00 00 00 00 00 00
-90: 20 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00
-a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-d0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-e0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-f0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-
-This suggests that some function or driver is resetting BAR0 during or
-after a failed config space read.
+If I understand the current code correctly, the documentation state and
+the question "which driver is allowed to do it?" is the same, because
+the documentation for the signaled callback doesn't specify that:
 
 
-mmiotrace Setup & Results:
-I have enabled mmiotrace and verified it is active:
-# cat /sys/kernel/tracing/available_tracers
-hwlat blk mmiotrace function_graph wakeup_dl wakeup_rt wakeup function nop
-
-# cat current_tracer
-mmiotrace
-
-However, trace_pipe and trace logs remain empty even after reproducing
-the issue:
-
-# cat trace_pipe
-VERSION 20070824
-PCIDEV 0000 80860f00 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 iosf_mbi_pci
-PCIDEV 0010 80860f31 61 b0000000 0 a0000008 0 e081 0 c0002 400000 0
-10000000 0 8 0 20000 i915
-PCIDEV 0098 80860f23 5b e071 e061 e051 e041 e021 b0b17000 0 8 4 8 4 20
-800 0 ahci
-PCIDEV 00a0 80860f35 5a b0b00004 0 0 0 0 0 0 10000 0 0 0 0 0 0 xhci_hcd
-PCIDEV 00b8 80860f50 17 b0b16000 b0b15000 0 0 0 0 0 1000 1000 0 0 0 0
-0 sdhci-pci
-PCIDEV 00d0 80860f18 62 b0900000 b0800000 0 0 0 0 0 100000 100000 0 0
-0 0 0 mei_txe
-PCIDEV 00d8 80860f04 16 b0b10004 0 0 0 0 0 0 4000 0 0 0 0 0 0 snd_hda_intel
-PCIDEV 00e0 80860f48 57 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pcieport
-PCIDEV 00e2 80860f4c 58 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pcieport
-PCIDEV 00e3 80860f4e 59 0 0 0 0 0 0 0 0 0 0 0 0 0 0 pcieport
-PCIDEV 00f8 80860f1c 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 lpc_ich
-PCIDEV 00fb 80860f12 12 b0b14000 0 0 0 e001 0 0 20 0 0 0 20 0 0 i801_smbus
-PCIDEV 0100 15565555 b b0400000 0 0 0 0 0 0 400000 0 0 0 0 0 0
-PCIDEV 0300 80861533 13 b0a00000 0 d001 b0a80000 0 0 0 80000 0 20 4000 0 0 0 igb
-
-cat trace
-# tracer: mmiotrace
-#
-# entries-in-buffer/entries-written: 0/0   #P:1
-#
-#                                _-----=> irqs-off/BH-disabled
-#                               / _----=> need-resched
-#                              | / _---=> hardirq/softirq
-#                              || / _--=> preempt-depth
-#                              ||| / _-=> migrate-disable
-#                              |||| /     delay
-#           TASK-PID     CPU#  |||||  TIMESTAMP  FUNCTION
-#              | |         |   |||||     |         |
+	/**
+	 * @signaled:
+	 *
+	 * Peek whether the fence is signaled, as a fastpath optimization for
+	 * e.g. dma_fence_wait() or dma_fence_add_callback(). Note that this
+	 * callback does not need to make any guarantees beyond that a fence
+	 * once indicates as signalled must always return true from this
+	 * callback. This callback may return false even if the fence has
+	 * completed already, in this case information hasn't propogated throug
+	 * the system yet. See also dma_fence_is_signaled().
+	 *
+	 * May set &dma_fence.error if returning true.
+	 *
+	 * This callback is optional.
+	 */
+	bool (*signaled)(struct dma_fence *fence);
 
 
-Request for Assistance:
-Can mmiotrace help determine the root cause of why reading the PCI
-configuration space results in all 0xffs?
+"optional". What if I don't ipmlement it? Who should implement it?
 
-Is there a way to determine what function or driver is clearing BAR0
-when the values are restored?
+If the callback is optional, then dma_fence_is_signaled() is the same
+as __dma_fence_is_signaled().
 
-If mmiotrace is suitable for this, how can I properly capture the
-relevant trace data to analyze this issue?
+IOW, it already needs to be better documented who needs to implement
+the callback and who doesn't. If we get clarity on that, we also get
+clarity on who may use __dma_fence_is_signaled().
 
-Any insights or suggestions would be greatly appreciated. Please let
-me know if you
-need more details.
 
-Best regards,
-Naveen
+P.
+
+>=20
+> Regards,
+> Christian.
+
