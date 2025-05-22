@@ -4,83 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D13D3D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E2D9D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCA410EB17;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9753710EB1C;
 	Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/TNHY0C";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="R9bWqrrR";
 	dkim-atps=neutral
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
- [209.85.216.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9C4810E45C;
- Sun, 20 Jul 2025 22:58:05 +0000 (UTC)
-Received: by mail-pj1-f47.google.com with SMTP id
- 98e67ed59e1d1-313336f8438so685415a91.0; 
- Sun, 20 Jul 2025 15:58:05 -0700 (PDT)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA8C10E911;
+ Thu, 22 May 2025 08:45:02 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-231ba912ba1so7726055ad.2; 
+ Thu, 22 May 2025 01:45:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753052285; x=1753657085; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1747903502; x=1748508302; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=daKnTV4fSp02pGETIV5FEMpqyBsp4GEPOMMbZuGBz/g=;
- b=e/TNHY0CWcKELNucbm/8hT1f9K3E2V2fzeC1vvb7cuS9YgszQ6gobCg00tFREgB1Wt
- PoI411CfNw5g7uRTjHFZGjcRdbFpgT+JTKcXunKaaXpPjH7tb7BKcqL8RuQm0Px4vN/K
- OWUbHVYt266e1mGbXFm9z/uJKhokcYrIYpmM8RKrjJY/zDyCDWRKEINj3v9PosaDXh1m
- wxIZyRE1TQULll33nbCra62TlWH8o4byXYn1oX36BbLCV2ombd0fliHf3sxYhoXMMIb7
- cyKaMHO5901bl768LetOw814kUoCxJO3DvtMt/nUPWjkqGzRVMoRq6Y9iUu2clEDgScz
- OeDA==
+ bh=e9dormL9HrrIAVH/MkapwqpUc/OQw/GWiqS4n86n8Ls=;
+ b=R9bWqrrRjrRife8Whh7vD9l83PfJrIfa/3PQY8L2pjPHy6C9sq4SNpkd/rNKpJN/T3
+ i2sv5wJDPPyTLLHNRuznaUDz/AzDmRJrKbUGGCIXOdytMBzUITSiAMbHbSN25511FvW2
+ ca51Qg6Chpene8tFYSptWCjlnVJKOUMflEk3qHwm5MO4XKD/q4xS+Lk4tKsjRncOd2T7
+ U8a07SrxoV1p2hAjNVl0BXYGMMddhzdgyXlPF/VuPKvYJ7rB81vKSF5mj/XA0TxqQBY5
+ bef7zdlmMZNTb4GDIRigf8pWP2S4oxXYH2g/LrIw1DKAG2keTOTnImuUOU7iMwH6OvA6
+ WuQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753052285; x=1753657085;
+ d=1e100.net; s=20230601; t=1747903502; x=1748508302;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=daKnTV4fSp02pGETIV5FEMpqyBsp4GEPOMMbZuGBz/g=;
- b=vzv5FQdPGE9fx+0iSC5yGZ5coy+mipSGZgNoiEpgCCiJOqGoXxbYmq/613DuhtpwJT
- 7iA2LO/C1JOF6RxhFBeRrjIZpNil8rp9V48qFrPBxeSnwJhAbESDOH6lDrm24L//8+I4
- cyxCclrULeTnfb3urT3PFtL2GGcd+rGjz2FYNQ6/2h9qlL9SqEIv4fSb49qWDHaNzEwU
- sZQFPNM+jqfd6mhSGsYHVNB7S345dCG47X57DJ8mfHBKUN7dkpZrMzWMIAgEAkYhsFkZ
- GU1Uk7SK9plGwjB132AwXm+4vBZhpLK4D6fi+zDOmtapWZkZJzF5RGVCYDxLPx0/otC8
- 6A5Q==
+ bh=e9dormL9HrrIAVH/MkapwqpUc/OQw/GWiqS4n86n8Ls=;
+ b=SwMMTiIheomQRaPU2Ye3av1LrbvV8t+QTBekL4KtINrCXvI4huwyEpCC1TyBJGrodt
+ SXlN+XrWKxJENbjHYeD5M1CC7npkHK25+lxkopnZgjuGcdRQEviJKByXlLdtdr6OuICq
+ 7HKaeZuAG7WLlmsrOlSH7mLo8nFqyT7XKAIYSRV+5DugXtZknwMoxJD6Ti356FNi2I1T
+ 3HzCW8it2zlNIYmoo2aTYwjGMxhC2fGzjsWjKH0KE90S6kxLPJn6f/VgSACR8bCmnu6h
+ 3Cuj2AosAcXBsax2a6Scd7W04qMjwgTevKJRcGvZIQ64Xz/xihDdbF5f+6gis1xqiUn0
+ Tr/Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVWEGDMI7Q7+8zD8FH90ersiIN4e0vqXo70J53vdwidjYucShmVCbpgfc4LYNYvI5I3/v+OQP21Gg==@lists.freedesktop.org,
- AJvYcCVzVohzftW8ixBFfDoYTM8cAFO/oqOPGPnUb+iWkLCVej00fTnnBpR649XRFNLZ7KDbwvjlfA2Qvfk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwNw7iDhhNSUUVQW2P1vfVvSzgMw9QArMb+EYTwtcEHFLXsTU4i
- njlrLQYdaYUYz6MydlinaEo84hAAsNasfMk4pcVzpDjmJBiFzJSP4s8Gug+qO60DhoaM6p1tocT
- DF1GNzkgF6O8PyllsIPV/2KshffWIA0A=
-X-Gm-Gg: ASbGncuDWmcCvaylPTedqqrNsbAZqFWjWxr4bzevWMCA1SFg1fRCJS1iYLcwY+sS5wj
- CvnpBCu0Xb8fu7QAG2TGWeBZVb5i0iyFrs01Y/owH95fRMT3pA+bxHvAy1Q1RUzNDQlLF73hlIh
- OlkG4TDxCIoJAc3dez0A2QgGwU+emCdstq8Th7AKEq4uljhEFbWmIuOpfdqjaLypeVCdEl/oqna
- /gJVVM4
-X-Google-Smtp-Source: AGHT+IFzjmvc0kMfKRG7U+xZ8wdQiM8shuAqXzIYwkhDrfmjAGRQWO9y1Uiy4Ste1/hFhJYypkZPHvTw/dT2WozP73o=
-X-Received: by 2002:a17:90b:5307:b0:311:b0d3:851 with SMTP id
- 98e67ed59e1d1-31c9e75ef14mr12278425a91.4.1753052285238; Sun, 20 Jul 2025
- 15:58:05 -0700 (PDT)
+ AJvYcCUxYfxlhlZuhQHAIvyZ5hIF65UjpuRGrv0KnQvcakeyRT72gVv8oDFp1rkp0vep4o8iJw01fSlIUKk=@lists.freedesktop.org,
+ AJvYcCW0T7TAo1ggw3zrTw3TMXQH8mGF9TTYSHcY4ynAkUziVAKIV84sX0bhWbc3enEfxhiKb6JzR/gFaQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxegmku8iaricFEe2TPOONXmvrIzIDimm9iMKTfUkIYpT5EwmVU
+ rES9tBNHhHA6TAnzioEFIpcZJzuiK47KKz9x9z4SI6MFAZzWjSuVa3xDDUESJfuQJZZQzwBmX53
+ VUKgAaE20+Gda5ts22Wx+y3JhGTuzjck=
+X-Gm-Gg: ASbGnct0AFcLKbbk11XZ+QJFLwu7tJAHVVnBH8Krdj1eos3uDH8c09ZExgCN6XGDnSP
+ 1YYX0quuKPpDUPPvR010mPHnh12LKZIeKIo1GF8CgqVrP4g6xEg5XJM1GPPzfCKt3oOZmaGak9L
+ l752/FVJXxodMW0S2yuZqx8y0KJ7kJpQiidRVRYUCozhc=
+X-Google-Smtp-Source: AGHT+IHcDoEYiYNfDCdUkacNcMEAOzs+8U1TP1/BcHDhQFdNfXEeXQOFjK7ijS68XWJepFQkaZKUMIQQVff3hXBYuFc=
+X-Received: by 2002:a17:902:eccd:b0:22e:50d1:b8d1 with SMTP id
+ d9443c01a7336-231d437f0e7mr141804895ad.3.1747903502395; Thu, 22 May 2025
+ 01:45:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
-In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+References: <20250521-nova-frts-v4-0-05dfd4f39479@nvidia.com>
+ <20250521-nova-frts-v4-4-05dfd4f39479@nvidia.com>
+ <DA2E1BNC668R.MMCARZ3K2NTS@nvidia.com>
+In-Reply-To: <DA2E1BNC668R.MMCARZ3K2NTS@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 21 Jul 2025 00:57:51 +0200
-X-Gm-Features: Ac12FXxrHoi9ILUmBTRKm1OiT5BshvaFgsQVGJOA5I6_EA8yoKmhyCiVsD11rgg
-Message-ID: <CANiq72mF8v7Gzr-dgfd68OPjJXDp=q+-asMiqcet0R0viqMbkw@mail.gmail.com>
-Subject: Re: [PATCH 0/6] Replace `kernel::str::CStr` with `core::ffi::CStr`
- (cycle 1)
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, 
+Date: Thu, 22 May 2025 10:44:49 +0200
+X-Gm-Features: AX0GCFvCHoNK_pM6k7TEPjfKCmoWB02CvdL9c9h6ygApOUg3uOuHv8pwBTVxdiI
+Message-ID: <CANiq72nQwxqeRGWBW2WSHijUKLs4c26UGQvJFjt-_SpnJJaaYQ@mail.gmail.com>
+Subject: Re: [PATCH v4 04/20] rust: add new `num` module with useful integer
+ operations
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
  Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, 
- Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- linux-pm@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ John Hubbard <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
@@ -98,19 +101,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 4, 2025 at 10:16=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
+On Thu, May 22, 2025 at 6:01=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
 >
-> As this is a large migration that touches many subsystems, it will take
-> place in several cycles, each of which may see multiple series:
+> Either that, or we enable `#![feature(const_trait_impl)]`. I just tried
+> and with it we could indeed define and implement `NumExt` as const,
+> which looks like the cleanest way to do this to me.
 
-Let's start the long road, then...
-
-Applied to `rust-next` -- thanks everyone!
-
-    [ Reworded title. - Miguel ]
-
-    [ Reworded title. - Miguel ]
+Hmm... I think that one is actively being worked on, with a possible
+syntax change in the works. We would need to speak to upstream Rust to
+see when we could reasonably stat to use it, and consider the older
+compilers (e.g. if the syntax changes).
 
 Cheers,
 Miguel
