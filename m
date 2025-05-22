@@ -4,115 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC86DD5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68CDDD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0ECF10EA56;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA2E10EA52;
 	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="WH2Qal3p";
+	dkim=permerror (0-bit key) header.d=ursulin-net.20230601.gappssmtp.com header.i=@ursulin-net.20230601.gappssmtp.com header.b="UZeQoVEq";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D11BF10E86C
- for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:40 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56NHEtIl002051
- for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:date:from:in-reply-to:message-id
- :mime-version:references:subject:to; s=qcppdkim1; bh=ZELAXz6pi1p
- iurD84MhBWtClaTyOdSezyB1Jeim0QzA=; b=WH2Qal3p+RSmJGpTQU+BzLQTAhR
- xcroTPq2W4RSLcU9LWJ6C/zOlzRsFj1FyvukNxvSsU3I0Vr/syn8YWXUHsZiFrz5
- qN3S0IehHR60iwRZmiHZk6+FHE6phaygUMYvtaTbTw4R272AEBtlSCyLN4yXKutb
- z3o0Ods6XELRTtIV2KhB4dFk61xQMfnp2exYrruytEZIBE/y/fZOGZKWH3QFcsn9
- GXKePkOQ06I3WqQk5LgK0WOe1Lrh52QSHhS749CryYQbX7IqJ3es1JnzqBtWuk/v
- ZrMq6f7vX9yF/DgkXHLVkI08bMqeRgmwbHaDTv8lrLEI5+aR+4ibuiNqCug==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com
- [209.85.214.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 481t6w7tvn-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:40 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id
- d9443c01a7336-23827190886so3132555ad.3
- for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 15:12:40 -0700 (PDT)
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+ [209.85.221.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B660210E731
+ for <nouveau@lists.freedesktop.org>; Thu, 22 May 2025 12:57:48 +0000 (UTC)
+Received: by mail-wr1-f44.google.com with SMTP id
+ ffacd0b85a97d-3a37535646aso2999208f8f.0
+ for <nouveau@lists.freedesktop.org>; Thu, 22 May 2025 05:57:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin-net.20230601.gappssmtp.com; s=20230601; t=1747918667; x=1748523467;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=3J9AMbyW3GoHyzEzAk0eTuO9WQLNRNBObnNC+tBgquY=;
+ b=UZeQoVEqCxDhl56RoqeEaSMwRHwb3X3TPc/XzcYj1jzMAIv8HhGT4w7ElhccvI4p8z
+ j7J7bNnxcfZkVvnyGGL2MfCkmAFA7nCYt7XXr1Rj1+TY2NIEmFLzCykEMSdvfRZzkV9o
+ 82rChsjfxWDfQcT4r26z0CAI+9yK3awThIPa9PjrzamNr4CDnXeGxq6JGMHFC4HCCkNZ
+ NLZa4/yCZ6K+lPrIBWx7nxv6zFZlfvfsVkY+i5aTMbVZvYf+L5EPIyqN5F4l/hqCQzCx
+ GIC4n+g12BfGRl9yalsOJNr3/uVjZelBEwT7F1VO8Bw7VOjeqSpvbCklGWgUsFQ1wA1/
+ bM9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753308743; x=1753913543;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=ZELAXz6pi1piurD84MhBWtClaTyOdSezyB1Jeim0QzA=;
- b=cB9Uv1MuMTuDQP8T3DD0Pkebfv+8M1snMaRztSGesqThqp3x/9R2xIYH8NpBzAvD5O
- hd7649jSw22Z1LnBJmcfahTiyeHSXX/Feo6PN8R2N7PDYjMtY4lyUfEYVQinWh05nDZR
- axwIP0iQXpIkhOX2Zyyq4OT0Lrjj/VKa/YjoxqmrHr3/NkEep1UQ2DuT7sA81Q2hRCdK
- dcWkPqixnmypaS0/RhTWoSR1fNnQkLHmm344EDECKiRh1mtgVV4piE2u8jLDKdbOnE8Q
- ZY/1ZX6owLnEo8wWJ9W9P5bypgXTfpq+aXXN1TOx8yQRxlh21RNyXU1UwhLVYL8bxj+v
- W2Kg==
+ d=1e100.net; s=20230601; t=1747918667; x=1748523467;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=3J9AMbyW3GoHyzEzAk0eTuO9WQLNRNBObnNC+tBgquY=;
+ b=r9vmtmxz6g1AJp0SqRVmt/Q1F8/G0xAuQLPu8J1RfzS0JNOlj8N2U8methAdRHk05F
+ gG24e35vOQBfGKYx8vzf68/zoTnaSImO5/kHpyjK+Je301Qsl04Z9NzqgG/1968yuto7
+ UNBCHbddwzCWCxu3CU1pxLcb1jKMhYbyU/c0D+HiOjH0O64HvieJ3ASzMqD6P8qnorHH
+ i204BMcMjRfZl/Fm1wm0AXDJJ9+fZa7jTTogsSzx3+P0h4s+dyR2ssenV+K8kf/uFkmn
+ xJY1Q5xBu6TYwOTfXE+pPsnqkgzUr1PJuV308Hp38KrG3eZwoZql67e9q0o24dDHNF8R
+ wmMA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWogcSB4p7uK8mIde1f14BLIsByb6EsRajjuc9F/3cg/rKkvi5DBxzmnQXUniR0Rcl/pltv2qTR@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyymw1omh1TPdNpqBeeaesDtysSx4QI8thGb9GYc+ZjrIChJ84/
- 9+Wk8380kt/05Z+0g8PlXVLo9HBqaTQvqFTvVvcqF4AklFS2vxFeCpLYkjw1FyaCOqUcwp1Ysun
- g+KSBEnC2JZqdR1NWQXcL8OgHLdzZ93MtnfIYbnJhU73dn55QXCk1xphanzKYkmtPQcg2
-X-Gm-Gg: ASbGnct46gH2pxtdjOgGeG5aWOYMxu32ecCoX3BDrb0wNQhDGLmjKqWKnrCfKpYcrn+
- 1DQknCbvHyyRLPdIKl7xToiesO7l4RkTjR2n8VzJYeEqKYho2H2SF4MFAdXmifiDyxZSQqth4Kr
- NzB24KtLmjYSefU+00N4aFRC1ja/zM/eiHXaVn6p5E+dh5hZ8JnzmrN6kDaZ9hWTrOps0k1J+2Y
- Z5484MizmDmjSyIRKFcp5vC/4RUcgJrJJkHsQ3s+Ud0BckuDDBm88FN9gA4gfBTzCuwSTD6vl11
- jHcgmXoVKNLKrgdEZbQyOojSBlzk22AvYEZT83NZ6yGHTqeeboo=
-X-Received: by 2002:a17:903:3d0d:b0:23d:ddf0:c93b with SMTP id
- d9443c01a7336-23f981b5ff3mr53931395ad.37.1753308743458; 
- Wed, 23 Jul 2025 15:12:23 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFPg+91DANEGZGB4JkXB+cUWEzypyPnxOCrFXbrqyTcN8cw8Ruqrae2h0FkcANM7PlMM5SM5A==
-X-Received: by 2002:a17:903:3d0d:b0:23d:ddf0:c93b with SMTP id
- d9443c01a7336-23f981b5ff3mr53931225ad.37.1753308743040; 
- Wed, 23 Jul 2025 15:12:23 -0700 (PDT)
-Received: from localhost ([2601:1c0:5000:d5c:5b3e:de60:4fda:e7b1])
+ AJvYcCVKM6DQ+CUqcTdWbiWvnK1Xy4hsj6fZV1Kt+kWTOfgvLB95qIjlHKyMYbKeR4ZkzWEzK2vTc7Yy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx4UQzTpyqAt2wVhl9C4GDxhxIUJYLfZgBC9RgiGmA5xxwCQ8q4
+ lUNnNOAHbBaS2fSaM2Uh/A1S2iNHz32ViqAJ97AeY2lg3G1DAqOZ+wSESj5+M2XzVvs=
+X-Gm-Gg: ASbGncsVnX127qvSnFPHM27JAzEEx1q21SkrSavXwMqLos6P3eS688GscML2yx9i68o
+ wDImhXmXycPpu6/NbK+T/flTDQNkH4ratGRUdx6M9VcHwA7Mvshr4aUznplAgwl9i9q05l97FHx
+ NJ19cNQ8wjeNdbWNVcUmVSVBOXFFdZRHzn/4W8seD3ezZah1wH0tOBLWZk9U2jZ3at/9G9+pV0j
+ 1LRbg6T4L94MknLpAgKnPXGXtvldCogUQ37XDOwv9OSI4Fuv7IcJOLjW42Uk/f7fujx+sHRWotH
+ cW1CiWKLTG2f0yZGgZ8j31H6AlYO4Q0l6zyOWS9vy26FXmCGqaXmpi+PvCuxcFMRog==
+X-Google-Smtp-Source: AGHT+IHvgtQQC0r16ZhryOrtlBzgjmQhsHS0R3Z6+yIPce93CHi+ORR3bGFByrXrywpyK9wgMjlkUA==
+X-Received: by 2002:a05:6000:40dd:b0:3a3:7816:3e17 with SMTP id
+ ffacd0b85a97d-3a378163e38mr12097933f8f.8.1747918666820; 
+ Thu, 22 May 2025 05:57:46 -0700 (PDT)
+Received: from [192.168.0.101] ([81.79.92.254])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23fa475f3d3sm644605ad.40.2025.07.23.15.12.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 23 Jul 2025 15:12:22 -0700 (PDT)
-From: Rob Clark <robin.clark@oss.qualcomm.com>
-To: dri-devel@lists.freedesktop.org
-Cc: linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- Danilo Krummrich <dakr@redhat.com>, Connor Abbott <cwabbott0@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- linux-kernel@vger.kernel.org (open list),
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS)
-Subject: [PATCH 1/2] drm/gpuvm: Send in-place re-maps to the driver as remap
-Date: Wed, 23 Jul 2025 15:12:11 -0700
-Message-ID: <20250723221213.36325-2-robin.clark@oss.qualcomm.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250723221213.36325-1-robin.clark@oss.qualcomm.com>
-References: <20250723221213.36325-1-robin.clark@oss.qualcomm.com>
+ ffacd0b85a97d-3a35ca6210asm22857327f8f.41.2025.05.22.05.57.46
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 22 May 2025 05:57:46 -0700 (PDT)
+Message-ID: <096c06b8-2cb6-4231-93aa-7091ea558e22@ursulin.net>
+Date: Thu, 22 May 2025 13:57:45 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
+ context
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ phasta@kernel.org, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+References: <20250522112540.161411-2-phasta@kernel.org>
+ <20250522112540.161411-3-phasta@kernel.org>
+ <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
+ <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
+ <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=SPpCVPvH c=1 sm=1 tr=0 ts=68815e58 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=xqWC_Br6kY4A:10 a=Wb1JkmetP80A:10
- a=EUspDBNiAAAA:8 a=kOSSLaVpcPouW256lEMA:9 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDE5MSBTYWx0ZWRfX2mQ9Bb/FEVjm
- lHfxx8u2bne40c1stXVVlr6oCME0E3RvCq/Uz8T2nrYQzEaqJZG1fZP4fd39PnfSBtiVf/3gRXJ
- vL+m7QwgDt5h3JB+SeT5p+bkNcp6gkAsDS2EZDB3cTYSVKm5w5xyx8B2N1pkZ72usHAuyGoVZYl
- NEHLlXY+Y/ON94kJYxapMhzMSWS8yUICt4jnfRPjvApu8y8GZwE6kKSTt6fTXFmQx4KGuyPU3R7
- 0MFbwK3GTFENFy9zE11FhQRb+aZe0eNMuEFcTk0MCnCy0LPltYzN1C1nHf5A1v53gZ0XR8tHIV5
- cVH2maYaRYlHt9MFcCUL4lyIEO+QeaZ1uBk9Beq/u7nF+CXSqVU5FUBXJx4WVCyk2GIsZA22KNb
- BOX4mGwStw69+SQ59JcdXWlJVuSAoIgSPRM5oOnC1FDan4WxLpwdxWgym9Vsc4zCoI6ealzX
-X-Proofpoint-ORIG-GUID: K9GrINoZXFLDf9lS1307znv0WFuxIYuN
-X-Proofpoint-GUID: K9GrINoZXFLDf9lS1307znv0WFuxIYuN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-07-23_03,2025-07-23_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- mlxscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 mlxlogscore=999 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2507230191
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -127,70 +99,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-The 'keep' hint on the unmap is only half useful, without being able to
-link it to a map cb.  Instead combine the two ops into a remap op to
-give the driver a chance to figure things out.
 
-Signed-off-by: Rob Clark <robin.clark@oss.qualcomm.com>
----
-In theory, drivers should treat an unmap+map combined in a remap step
-the same as discreet unmap+map steps.
+On 22/05/2025 13:34, Christian König wrote:
+> On 5/22/25 14:20, Philipp Stanner wrote:
+>> On Thu, 2025-05-22 at 14:06 +0200, Christian König wrote:
+>>> On 5/22/25 13:25, Philipp Stanner wrote:
+>>>> dma_fence_is_signaled_locked(), which is used in
+>>>> nouveau_fence_context_kill(), can signal fences below the surface
+>>>> through a callback.
+>>>>
+>>>> There is neither need for nor use in doing that when killing a
+>>>> fence
+>>>> context.
+>>>>
+>>>> Replace dma_fence_is_signaled_locked() with
+>>>> __dma_fence_is_signaled(), a
+>>>> function which only checks, never signals.
+>>>
+>>> That is not a good approach.
+>>>
+>>> Having the __dma_fence_is_signaled() means that other would be
+>>> allowed to call it as well.
+>>>
+>>> But nouveau can do that here only because it knows that the fence was
+>>> issued by nouveau.
+>>>
+>>> What nouveau can to is to test the signaled flag directly, but that's
+>>> what you try to avoid as well.
+>>
+>> There's many parties who check the bit already.
+>>
+>> And if Nouveau is allowed to do that, one can just as well provide a
+>> wrapper for it.
+> 
+> No, exactly that's what is usually avoided in cases like this here.
+> 
+> See all the functions inside include/linux/dma-fence.h can be used by everybody. It's basically the public interface of the dma_fence object.
+> 
+> So testing if a fence is signaled without calling the callback is only allowed by whoever implemented the fence.
+> 
+> In other words nouveau can test nouveau fences, i915 can test i915 fences, amdgpu can test amdgpu fences etc... But if you have the wrapper that makes it officially allowed that nouveau starts testing i915 fences and that would be problematic.
 
-AFAICT nouveau is only driver using the keep hint, and this was missing
-for the remap callback.  So I've added that.
+But why? Say for example scheduler dependencies - why the scheduler 
+couldn't ignore them at add time, but it can before trying to install a 
+callback on them, and instead has to opportunistically signal someone 
+else's fences?
 
-But this is only tested on msm.
+I don't see it. But even if there is a reason, advantage of the helper 
+is that it can document this at a centralised place.
 
- drivers/gpu/drm/drm_gpuvm.c            | 21 +++++++++++++++++++++
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 ++-
- 2 files changed, 23 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index bbc7fecb6f4a..e21782a97fbe 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -2125,6 +2125,27 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
- 				 offset == req_offset;
- 
- 			if (end == req_end) {
-+				if (merge) {
-+					/*
-+					 * This is an exact remap of the existing
-+					 * VA (potentially flags change)?  Pass
-+					 * this to the driver as a remap so it can
-+					 * do an in-place update:
-+					 */
-+					struct drm_gpuva_op_map n = {
-+						.va.addr = va->va.addr,
-+						.va.range = va->va.range,
-+						.gem.obj = va->gem.obj,
-+						.gem.offset = va->gem.offset,
-+					};
-+					struct drm_gpuva_op_unmap u = {
-+						.va = va,
-+						.keep = true,
-+					};
-+
-+					return op_remap_cb(ops, priv, NULL, &n, &u);
-+				}
-+
- 				ret = op_unmap_cb(ops, priv, va, merge);
- 				if (ret)
- 					return ret;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 48f105239f42..c3e3a15eb3c8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -820,7 +820,8 @@ op_remap(struct drm_gpuva_op_remap *r,
- 	if (r->next)
- 		end = r->next->va.addr;
- 
--	op_unmap_range(u, addr, end - addr);
-+	if (!u->keep)
-+		op_unmap_range(u, addr, end - addr);
- }
- 
- static int
--- 
-2.50.1
+Tvrtko
+
+>> That has the advantage of centralizing the responsibility and
+>> documenting it.
+>>
+>> P.
+>>
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>> Signed-off-by: Philipp Stanner <phasta@kernel.org>
+>>>> ---
+>>>>   drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
+>>>> b/drivers/gpu/drm/nouveau/nouveau_fence.c
+>>>> index d5654e26d5bc..993b3dcb5db0 100644
+>>>> --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+>>>> +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+>>>> @@ -88,7 +88,7 @@ nouveau_fence_context_kill(struct
+>>>> nouveau_fence_chan *fctx, int error)
+>>>>   
+>>>>   	spin_lock_irqsave(&fctx->lock, flags);
+>>>>   	list_for_each_entry_safe(fence, tmp, &fctx->pending, head)
+>>>> {
+>>>> -		if (error && !dma_fence_is_signaled_locked(&fence-
+>>>>> base))
+>>>> +		if (error && !__dma_fence_is_signaled(&fence-
+>>>>> base))
+>>>>   			dma_fence_set_error(&fence->base, error);
+>>>>   
+>>>>   		if (nouveau_fence_signal(fence))
+>>>
+>>
+> 
 
