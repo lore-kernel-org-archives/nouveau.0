@@ -4,89 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED9CCD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD7E0D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE6C010EAC6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A398D10EA67;
 	Sat, 13 Dec 2025 12:41:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="QS0t9JAU";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="X/GzKpRL";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B60810E284;
- Tue, 29 Oct 2024 14:48:22 +0000 (UTC)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49T91Ow1025858;
- Tue, 29 Oct 2024 14:47:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- +wv4O0Y5GVDH3vUrfYUR55hgvLmKzOGrUOAzL5LkrYY=; b=QS0t9JAUBHqWH02u
- dNtVrgHN86w5CLnNDffItzpLyqgQwNrWLXukh7717iCujg+qac7U0LQNgx8UjmfO
- pNppyLoV0BiCWiWYeQfbQSkEueNjqhpwe3ymQ/5JtmI+7D7lNEAuLZkjWYt7Bad3
- FIWANrEtgFCEbNhs18Z88h7B0VJOTTZcagFhIXvQ7W0zo2pKEUeoAojfMPClCC3w
- ++dX6DXZS2K0/yun7AKEtrTTvl9CbZw4Czd+v0b3ypA1OiaF5hQ72P40HQv1u1dm
- mFSANVwhc7kKC3bU9wQWN7RlliJHoMkvZAvlxYf4h1W0oqtV7QsYssccuvYBrg1q
- QDJmNA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42gsq8gr78-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 29 Oct 2024 14:47:56 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49TEltNx020912
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 29 Oct 2024 14:47:55 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 29 Oct
- 2024 07:47:54 -0700
-Message-ID: <5dd216a0-0c99-6dd5-f06d-60c7c6da1b31@quicinc.com>
-Date: Tue, 29 Oct 2024 08:47:54 -0600
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4324710E802;
+ Thu, 22 May 2025 12:20:13 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4b36n42b4Fz9smv;
+ Thu, 22 May 2025 14:20:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1747916408; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=6les8TOi5wRq0T8kDR8xQDFeOUCbVRDYJE8WXeCcMbk=;
+ b=X/GzKpRLGoUU1TIQgiCFE33WMIXEgo2bOzU2gD+5YBWIA+Xch5he0PNQ5L4B9c50ClsLa0
+ AjpL/vNQ5PL/0zlPieZL2EAYcfWWP/bIBv6d89Kf0PWtotOHOLZ7ZA8biPCX8dC56KGSWG
+ Y8/2y9AWnSS5zLtZUQOBfdXZA7jwqGKTIEP+HeIOzkSQ0921vADAkAE3w233nXJohb09hu
+ uJpNHTUx13lSzntM5QICqUvDqMwqDt5Ci8pzqtl+FIhYpTiocEwbz+lkwNoKYktLfXSIB/
+ o8JOG2n2ugalDzKQawb+80VuNMOtXViSR9pY7rlEHNP0KKrhN7lq2T06KRtSWg==
+Message-ID: <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
+Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
+ context
+From: Philipp Stanner <phasta@mailbox.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Philipp
+ Stanner <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@kernel.org>,  David Airlie <airlied@gmail.com>, Simona
+ Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Date: Thu, 22 May 2025 14:20:03 +0200
+In-Reply-To: <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
+References: <20250522112540.161411-2-phasta@kernel.org>
+ <20250522112540.161411-3-phasta@kernel.org>
+ <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v2 3/3] drm: remove driver date from struct drm_driver and
- all drivers
-Content-Language: en-US
-To: Jani Nikula <jani.nikula@intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>
-CC: Javier Martinez Canillas <javierm@redhat.com>, Alex Deucher
- <alexander.deucher@amd.com>, Simon Ser <contact@emersion.fr>, David Airlie
- <airlied@gmail.com>, Hamza Mahfooz <hamza.mahfooz@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, Simona Vetter
- <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- <amd-gfx@lists.freedesktop.org>, <linux-arm-kernel@lists.infradead.org>,
- <nouveau@lists.freedesktop.org>, <xen-devel@lists.xenproject.org>
-References: <20241028185141.3756176-1-jani.nikula@intel.com>
- <20241028185141.3756176-3-jani.nikula@intel.com>
-From: Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20241028185141.3756176-3-jani.nikula@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: 1zozjE_Cu_2BsSxN4CNnC4fCdn0_-mvH
-X-Proofpoint-ORIG-GUID: 1zozjE_Cu_2BsSxN4CNnC4fCdn0_-mvH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0
- adultscore=0 mlxscore=0 priorityscore=1501 mlxlogscore=982 impostorscore=0
- lowpriorityscore=0 malwarescore=0 clxscore=1011 spamscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410290113
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-MBO-RS-ID: 081f752363f695d129f
+X-MBO-RS-META: zq69kf63muzfjptq7ehgdi67s8374jom
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,24 +67,72 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 10/28/2024 12:51 PM, Jani Nikula wrote:
-> We stopped using the driver initialized date in commit 7fb8af6798e8
-> ("drm: deprecate driver date") and (eventually) started returning "0"
-> for drm_version ioctl instead.
-> 
-> Finish the job, and remove the unused date member from struct
-> drm_driver, its initialization from drivers, along with the common
-> DRIVER_DATE macros.
-> 
-> v2: Also update drivers/accel (kernel test robot)
-> 
-> Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> Acked-by: Simon Ser <contact@emersion.fr>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+On Thu, 2025-05-22 at 14:06 +0200, Christian K=C3=B6nig wrote:
+> On 5/22/25 13:25, Philipp Stanner wrote:
+> > dma_fence_is_signaled_locked(), which is used in
+> > nouveau_fence_context_kill(), can signal fences below the surface
+> > through a callback.
+> >=20
+> > There is neither need for nor use in doing that when killing a
+> > fence
+> > context.
+> >=20
+> > Replace dma_fence_is_signaled_locked() with
+> > __dma_fence_is_signaled(), a
+> > function which only checks, never signals.
+>=20
+> That is not a good approach.
+>=20
+> Having the __dma_fence_is_signaled() means that other would be
+> allowed to call it as well.
+>=20
+> But nouveau can do that here only because it knows that the fence was
+> issued by nouveau.
+>=20
+> What nouveau can to is to test the signaled flag directly, but that's
+> what you try to avoid as well.
 
-For QAIC -
-Acked-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+There's many parties who check the bit already.
+
+And if Nouveau is allowed to do that, one can just as well provide a
+wrapper for it.
+
+That has the advantage of centralizing the responsibility and
+documenting it.
+
+P.
+
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
+> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > index d5654e26d5bc..993b3dcb5db0 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > @@ -88,7 +88,7 @@ nouveau_fence_context_kill(struct
+> > nouveau_fence_chan *fctx, int error)
+> > =C2=A0
+> > =C2=A0	spin_lock_irqsave(&fctx->lock, flags);
+> > =C2=A0	list_for_each_entry_safe(fence, tmp, &fctx->pending, head)
+> > {
+> > -		if (error && !dma_fence_is_signaled_locked(&fence-
+> > >base))
+> > +		if (error && !__dma_fence_is_signaled(&fence-
+> > >base))
+> > =C2=A0			dma_fence_set_error(&fence->base, error);
+> > =C2=A0
+> > =C2=A0		if (nouveau_fence_signal(fence))
+>=20
+
