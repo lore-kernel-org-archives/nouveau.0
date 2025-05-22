@@ -4,67 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA149D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2095D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4A8010EAFD;
-	Sat, 13 Dec 2025 12:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2012910EB08;
+	Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="UejwSlAC";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="IWvWyL2e";
 	dkim-atps=neutral
 Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3769F10E1C8;
- Tue, 22 Apr 2025 12:21:15 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57CDC10E193;
+ Thu, 22 May 2025 14:59:43 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZhhD804jXz9tbP;
- Tue, 22 Apr 2025 14:21:12 +0200 (CEST)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4b3BK81Wh9z9sm6;
+ Thu, 22 May 2025 16:59:40 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1745324472; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1747925980; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=y40ADTZWH+m2e0+9YfjecdER7/iBcMRIQim/kOJPBow=;
- b=UejwSlAC/9Bqc+gDxOsJfMko09BeRm4iLJb/L9tE/MNFHgX3+Gud6Ef3nZo3ulINY0j7+V
- 2u6F72lP5pHuajLyh8Dz4YSdYl4zyBkloBANIMPRxn5qZ5q7nQEMj71ckPtLzKy56hx4Dx
- k0ftBjHM+UfUizaD7cACvSC7HNHRt1n9GEadG0Mjtti3heObhyazVbkYP89nnSaeJAuhOH
- iupsqfGP0lCkg+KvL9/YxJVBMU+ya1L9EEqx/dPyf1ll9ncd6OE7HhL9w4uhwjz5V56tsr
- G44j38F0cNdN4V98aYiNjLxdCafupfZ2U8yI6XZBkIGlAYOSXwIVvuQYfzYl6A==
-Message-ID: <9566a923b606e16f7725c79bd8e0a2c7c80daf9e.camel@mailbox.org>
-Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
+ bh=9hIgVgAiYv5vVjOkhA8xQvDe3ANpNjv4wOvq4t4WLpw=;
+ b=IWvWyL2eylEhzKYLqRvx37xxF0K39+Y1KjagxvStpljHNSnVQw6Y2oWfQVruXmiEWzIliH
+ JT8yK42yp2jwPCe6k0H4BlAWkwdserfNxKdrST09RjotvtB5PhZkWuO1AfqdirdVntY7C4
+ ze2aLUcCpyo5xJbdayKHTqq2ZGS9s1rwu9UQZ71D+X6UnlBA5AJCei1Hk5Txrd4he6QpmD
+ DZrJu9cuNE4LUL0DG0Ijo0fZG+3iKp2rH/CEwU2M7a1jfpMZHMuK0mhyP0iuWKG3Hyv9gj
+ LeLMjVODuVDg2w/tyQbwwbJZ/0O0ZhSn1NY2W8Ac7fy0aVyrkzgJFJrrqW/bdw==
+Message-ID: <a637755cb96de8415b51feb1ae61b8c651e94295.camel@mailbox.org>
+Subject: Re: [PATCH v3 2/5] drm/sched/tests: Port tests to new cleanup method
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Danilo Krummrich
- <dakr@kernel.org>
-Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Tue, 22 Apr 2025 14:21:07 +0200
-In-Reply-To: <d3c0f721-2d19-4a1c-a086-33e8d6bd7be6@igalia.com>
-References: <20250407152239.34429-2-phasta@kernel.org>
- <20250407152239.34429-5-phasta@kernel.org>
- <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
- <3ac34c84-fd84-4598-96e1-239418b7109f@igalia.com> <aADv4ivXZoJpEA7k@pollux>
- <83758ca7-8ece-433e-b904-3d21690ead23@igalia.com>
- <aAEUwjzZ9w9xlKRY@cassiopeiae>
- <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
- <0bfa746ca37de1813db22e518ffb259648d29e02.camel@mailbox.org>
- <5a5d4a33-2f7b-46e4-8707-7445ac3de376@igalia.com>
- <aAd54jUwBwgc-_g2@cassiopeiae>
- <d3c0f721-2d19-4a1c-a086-33e8d6bd7be6@igalia.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Philipp Stanner
+ <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Date: Thu, 22 May 2025 16:59:35 +0200
+In-Reply-To: <b24d5c5e-8a9e-4dfb-886b-b3ad70e62e76@igalia.com>
+References: <20250522082742.148191-2-phasta@kernel.org>
+ <20250522082742.148191-4-phasta@kernel.org>
+ <b24d5c5e-8a9e-4dfb-886b-b3ad70e62e76@igalia.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: af1c449944ba552b068
-X-MBO-RS-META: 5pn75nj6rqfo7qbay4uajqygmjoy1ucq
+X-MBO-RS-ID: b9071dfc324416f6776
+X-MBO-RS-META: jpe4deru47jan9sex4qyichcktzu8sqo
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,116 +72,172 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, 2025-04-22 at 13:07 +0100, Tvrtko Ursulin wrote:
+On Thu, 2025-05-22 at 15:06 +0100, Tvrtko Ursulin wrote:
 >=20
-> On 22/04/2025 12:13, Danilo Krummrich wrote:
-> > On Tue, Apr 22, 2025 at 11:39:11AM +0100, Tvrtko Ursulin wrote:
-> > > Question I raised is if there are other drivers which manage to
-> > > clean up
-> > > everything correctly (like the mock scheduler does), but trigger
-> > > that
-> > > warning. Maybe there are not and maybe mock scheduler is the only
-> > > false
-> > > positive.
+> On 22/05/2025 09:27, Philipp Stanner wrote:
+> > The drm_gpu_scheduler now supports a callback to help
+> > drm_sched_fini()
+> > avoid memory leaks. This callback instructs the driver to signal
+> > all
+> > pending hardware fences.
 > >=20
-> > So far the scheduler simply does not give any guideline on how to
-> > address the
-> > problem, hence every driver simply does something (or nothing,
-> > effectively
-> > ignoring the problem). This is what we want to fix.
+> > Implement the new callback
+> > drm_sched_backend_ops.cancel_pending_fences().
 > >=20
-> > The mock scheduler keeps it's own list of pending jobs and on tear
-> > down stops
-> > the scheduler's workqueues, traverses it's own list and eventually
-> > frees the
-> > pending jobs without updating the scheduler's internal pending
-> > list.
+> > Have the callback use drm_mock_sched_job_complete() with a new
+> > error
+> > field for the fence error.
 > >=20
-> > So yes, it does avoid memory leaks, but it also leaves the
-> > schedulers internal
-> > structures with an invalid state, i.e. the pending list of the
-> > scheduler has
-> > pointers to already freed memory.
+> > Keep the job status as DRM_MOCK_SCHED_JOB_DONE for now, since there
+> > is
+> > no party for which checking for a CANCELED status would be useful
+> > currently.
 > >=20
-> > What if the drm_sched_fini() starts touching the pending list? Then
-> > you'd end up
-> > with UAF bugs with this implementation. We cannot invalidate the
-> > schedulers
-> > internal structures and yet call scheduler functions - e.g.
-> > drm_sched_fini() -
-> > subsequently.
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > =C2=A0 .../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 | 67 +++++++-=
+------
+> > -----
+> > =C2=A0 drivers/gpu/drm/scheduler/tests/sched_tests.h |=C2=A0 4 +-
+> > =C2=A0 2 files changed, 25 insertions(+), 46 deletions(-)
 > >=20
-> > Hence, the current implementation of the mock scheduler is
-> > fundamentally flawed.
-> > And so would be *every* driver that still has entries within the
-> > scheduler's
-> > pending list.
-> >=20
-> > This is not a false positive, it already caught a real bug -- in
-> > the mock
-> > scheduler.
+> > diff --git a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> > b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> > index f999c8859cf7..eca47f0395bc 100644
+> > --- a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> > +++ b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
+> > @@ -55,7 +55,7 @@ void drm_mock_sched_entity_free(struct
+> > drm_mock_sched_entity *entity)
+> > =C2=A0=C2=A0	drm_sched_entity_destroy(&entity->base);
+> > =C2=A0 }
+> > =C2=A0=20
+> > -static void drm_mock_sched_job_complete(struct drm_mock_sched_job
+> > *job)
+> > +static void drm_mock_sched_job_complete(struct drm_mock_sched_job
+> > *job, int err)
+> > =C2=A0 {
+> > =C2=A0=C2=A0	struct drm_mock_scheduler *sched =3D
+> > =C2=A0=C2=A0		drm_sched_to_mock_sched(job->base.sched);
+> > @@ -63,7 +63,9 @@ static void drm_mock_sched_job_complete(struct
+> > drm_mock_sched_job *job)
+> > =C2=A0=C2=A0	lockdep_assert_held(&sched->lock);
+> > =C2=A0=20
+> > =C2=A0=C2=A0	job->flags |=3D DRM_MOCK_SCHED_JOB_DONE;
+> > -	list_move_tail(&job->link, &sched->done_list);
+> > +	list_del(&job->link);
+> > +	if (err)
+> > +		dma_fence_set_error(&job->hw_fence, err);
+> > =C2=A0=C2=A0	dma_fence_signal(&job->hw_fence);
+> > =C2=A0=C2=A0	complete(&job->done);
+> > =C2=A0 }
+> > @@ -89,7 +91,7 @@ drm_mock_sched_job_signal_timer(struct hrtimer
+> > *hrtimer)
+> > =C2=A0=C2=A0			break;
+> > =C2=A0=20
+> > =C2=A0=C2=A0		sched->hw_timeline.cur_seqno =3D job-
+> > >hw_fence.seqno;
+> > -		drm_mock_sched_job_complete(job);
+> > +		drm_mock_sched_job_complete(job, 0);
+> > =C2=A0=C2=A0	}
+> > =C2=A0=C2=A0	spin_unlock_irqrestore(&sched->lock, flags);
+> > =C2=A0=20
+> > @@ -212,26 +214,33 @@ mock_sched_timedout_job(struct drm_sched_job
+> > *sched_job)
+> > =C2=A0=20
+> > =C2=A0 static void mock_sched_free_job(struct drm_sched_job *sched_job)
+> > =C2=A0 {
+> > -	struct drm_mock_scheduler *sched =3D
+> > -			drm_sched_to_mock_sched(sched_job->sched);
+> > =C2=A0=C2=A0	struct drm_mock_sched_job *job =3D
+> > drm_sched_job_to_mock_job(sched_job);
+> > -	unsigned long flags;
+> > =C2=A0=20
+> > -	/* Remove from the scheduler done list. */
+> > -	spin_lock_irqsave(&sched->lock, flags);
+> > -	list_del(&job->link);
+> > -	spin_unlock_irqrestore(&sched->lock, flags);
+> > =C2=A0=C2=A0	dma_fence_put(&job->hw_fence);
+> > -
+> > =C2=A0=C2=A0	drm_sched_job_cleanup(sched_job);
+> > =C2=A0=20
+> > =C2=A0=C2=A0	/* Mock job itself is freed by the kunit framework. */
+> > =C2=A0 }
+> > =C2=A0=20
+> > +static void mock_sched_cancel_pending_fences(struct
+> > drm_gpu_scheduler *gsched)
 >=20
-> To avoid furher splitting hairs on whether real bugs need to be able
-> to=20
-> manifest or not, lets move past this with a conclusion that there are
-> two potential things to do here:
->=20
-> First one is to either send separately or include in this series=20
-> something like:
->=20
-> diff --git a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c=20
-> b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> index f999c8859cf7..7c4df0e890ac 100644
-> --- a/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> +++ b/drivers/gpu/drm/scheduler/tests/mock_scheduler.c
-> @@ -300,6 +300,8 @@ void drm_mock_sched_fini(struct
-> drm_mock_scheduler=20
-> *sched)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 drm_mock_sched_job_complete(job);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spin_unlock_irqrestore(&=
-sched->lock, flags);
->=20
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_fini(&sched->base);
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * Free completed j=
-obs and jobs not yet processed by the DRM
-> scheduler
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * free worker.
-> @@ -311,8 +313,6 @@ void drm_mock_sched_fini(struct
-> drm_mock_scheduler=20
-> *sched)
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 list_for_each_entry_safe=
-(job, next, &list, link)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 mock_sched_free_job(&job->base);
-> -
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_fini(&sched->base);
-> =C2=A0 }
->=20
-> =C2=A0 /**
->=20
-> That should satisfy the requirement to "clear" memory about to be
-> freed=20
-> and be 100% compliant with drm_sched_fini() kerneldoc (guideline b).
->=20
-> But the new warning from 3/5 here will still be there AFAICT and
-> would=20
-> you then agree it is a false positive?
->=20
-> Secondly, the series should modify all drivers (including the unit=20
-> tests) which are known to trigger this false positive.
+> "gsched" feels like a first time invention. Maybe drm_sched?
 
-There is no false positive. I just stated that in my other answer.
+Alright
 
-That said, I agree that the unit tests should be a second user of this
-code in addition to Nouveau. They then should also provide the
-fence_context_kill() callback, though.
+>=20
+> > +{
+> > +	struct drm_mock_sched_job *job, *next;
+> > +	struct drm_mock_scheduler *sched;
+> > +	unsigned long flags;
+> > +
+> > +	sched =3D container_of(gsched, struct drm_mock_scheduler,
+> > base);
+> > +
+> > +	spin_lock_irqsave(&sched->lock, flags);
+> > +	list_for_each_entry_safe(job, next, &sched->job_list,
+> > link)
+> > +		drm_mock_sched_job_complete(job, -ECANCELED);
+> > +	spin_unlock_irqrestore(&sched->lock, flags);
+>=20
+> Canceling of the timers belongs in this call back I think. Otherwise=20
+> jobs are not fully cancelled.
 
-And it seems we also agree that the memory leaks must be solved
-centrally in drm_sched_fini().
+I wouldn't say so =E2=80=93 the timers represent things like the hardware
+interrupts. And those must be deactivated by the driver itself.
+
+See, one big reason why I like my approach is that the contract between
+driver and scheduler is made very simple:
+
+"Driver, signal all fences that you ever returned through run_job() to
+this scheduler!"
+
+That always works, and the driver always has all those fences. It's
+based on the most fundamental agreement regarding dma_fences: they must
+all be signaled.
+
+>=20
+> Hm, I also think, conceptually, the order of first canceling the
+> timer=20
+> and then signaling the fence should be kept.
+
+That's the case here, no?
+
+It must indeed be kept, otherwise the timers could fire after
+everything is torn down -> UAF
+
+>=20
+> At the moment it does not matter hugely, since the timer does not
+> signal=20
+> the jobs directly and will not find unlinked jobs, but if that
+> changes=20
+> in the future, the reversed order could cause double signaling. So if
+> you keep it in the correct logical order that potential gotcha is=20
+> avoided. Basically just keep the two pass approach verbatim, as is in
+> the current drm_mock_sched_fini.
+>=20
+> The rest of the conversion is I think good.
+
+:)
+
+>=20
+> Only a slight uncertainty after I cross-referenced with my version=20
+> (->cancel_job()) around why I needed to add signaling to=20
+> mock_sched_timedout_job() and manual job cleanup to the timeout test.
+> It=20
+> was more than a month ago that I wrote it so can't remember right
+> now.=20
+> You checked for memory leaks and the usual stuff?
+
+Hm, it seems I indeed ran into that leak that you fixed (in addition to
+the other stuff) in your RFC, for the timeout tests.
+
+We should fix that in a separate patch, probably.
 
 
 P.
@@ -199,5 +246,111 @@ P.
 > Regards,
 >=20
 > Tvrtko
+>=20
+> > +}
+> > +
+> > =C2=A0 static const struct drm_sched_backend_ops drm_mock_scheduler_ops
+> > =3D {
+> > =C2=A0=C2=A0	.run_job =3D mock_sched_run_job,
+> > =C2=A0=C2=A0	.timedout_job =3D mock_sched_timedout_job,
+> > -	.free_job =3D mock_sched_free_job
+> > +	.free_job =3D mock_sched_free_job,
+> > +	.cancel_pending_fences =3D mock_sched_cancel_pending_fences,
+> > =C2=A0 };
+> > =C2=A0=20
+> > =C2=A0 /**
+> > @@ -265,7 +274,6 @@ struct drm_mock_scheduler
+> > *drm_mock_sched_new(struct kunit *test, long timeout)
+> > =C2=A0=C2=A0	sched->hw_timeline.context =3D dma_fence_context_alloc(1);
+> > =C2=A0=C2=A0	atomic_set(&sched->hw_timeline.next_seqno, 0);
+> > =C2=A0=C2=A0	INIT_LIST_HEAD(&sched->job_list);
+> > -	INIT_LIST_HEAD(&sched->done_list);
+> > =C2=A0=C2=A0	spin_lock_init(&sched->lock);
+> > =C2=A0=20
+> > =C2=A0=C2=A0	return sched;
+> > @@ -280,38 +288,11 @@ struct drm_mock_scheduler
+> > *drm_mock_sched_new(struct kunit *test, long timeout)
+> > =C2=A0=C2=A0 */
+> > =C2=A0 void drm_mock_sched_fini(struct drm_mock_scheduler *sched)
+> > =C2=A0 {
+> > -	struct drm_mock_sched_job *job, *next;
+> > -	unsigned long flags;
+> > -	LIST_HEAD(list);
+> > +	struct drm_mock_sched_job *job;
+> > =C2=A0=20
+> > -	drm_sched_wqueue_stop(&sched->base);
+> > -
+> > -	/* Force complete all unfinished jobs. */
+> > -	spin_lock_irqsave(&sched->lock, flags);
+> > -	list_for_each_entry_safe(job, next, &sched->job_list,
+> > link)
+> > -		list_move_tail(&job->link, &list);
+> > -	spin_unlock_irqrestore(&sched->lock, flags);
+> > -
+> > -	list_for_each_entry(job, &list, link)
+> > +	list_for_each_entry(job, &sched->job_list, link)
+> > =C2=A0=C2=A0		hrtimer_cancel(&job->timer);
+> > =C2=A0=20
+> > -	spin_lock_irqsave(&sched->lock, flags);
+> > -	list_for_each_entry_safe(job, next, &list, link)
+> > -		drm_mock_sched_job_complete(job);
+> > -	spin_unlock_irqrestore(&sched->lock, flags);
+> > -
+> > -	/*
+> > -	 * Free completed jobs and jobs not yet processed by the
+> > DRM scheduler
+> > -	 * free worker.
+> > -	 */
+> > -	spin_lock_irqsave(&sched->lock, flags);
+> > -	list_for_each_entry_safe(job, next, &sched->done_list,
+> > link)
+> > -		list_move_tail(&job->link, &list);
+> > -	spin_unlock_irqrestore(&sched->lock, flags);
+> > -
+> > -	list_for_each_entry_safe(job, next, &list, link)
+> > -		mock_sched_free_job(&job->base);
+> > -
+> > =C2=A0=C2=A0	drm_sched_fini(&sched->base);
+> > =C2=A0 }
+> > =C2=A0=20
+> > @@ -346,7 +327,7 @@ unsigned int drm_mock_sched_advance(struct
+> > drm_mock_scheduler *sched,
+> > =C2=A0=C2=A0		if (sched->hw_timeline.cur_seqno < job-
+> > >hw_fence.seqno)
+> > =C2=A0=C2=A0			break;
+> > =C2=A0=20
+> > -		drm_mock_sched_job_complete(job);
+> > +		drm_mock_sched_job_complete(job, 0);
+> > =C2=A0=C2=A0		found++;
+> > =C2=A0=C2=A0	}
+> > =C2=A0 unlock:
+> > diff --git a/drivers/gpu/drm/scheduler/tests/sched_tests.h
+> > b/drivers/gpu/drm/scheduler/tests/sched_tests.h
+> > index 27caf8285fb7..22e530d87791 100644
+> > --- a/drivers/gpu/drm/scheduler/tests/sched_tests.h
+> > +++ b/drivers/gpu/drm/scheduler/tests/sched_tests.h
+> > @@ -32,9 +32,8 @@
+> > =C2=A0=C2=A0 *
+> > =C2=A0=C2=A0 * @base: DRM scheduler base class
+> > =C2=A0=C2=A0 * @test: Backpointer to owning the kunit test case
+> > - * @lock: Lock to protect the simulated @hw_timeline, @job_list
+> > and @done_list
+> > + * @lock: Lock to protect the simulated @hw_timeline and @job_list
+> > =C2=A0=C2=A0 * @job_list: List of jobs submitted to the mock GPU
+> > - * @done_list: List of jobs completed by the mock GPU
+> > =C2=A0=C2=A0 * @hw_timeline: Simulated hardware timeline has a @context=
+,
+> > @next_seqno and
+> > =C2=A0=C2=A0 *		 @cur_seqno for implementing a struct dma_fence
+> > signaling the
+> > =C2=A0=C2=A0 *		 simulated job completion.
+> > @@ -49,7 +48,6 @@ struct drm_mock_scheduler {
+> > =C2=A0=20
+> > =C2=A0=C2=A0	spinlock_t		lock;
+> > =C2=A0=C2=A0	struct list_head	job_list;
+> > -	struct list_head	done_list;
+> > =C2=A0=20
+> > =C2=A0=C2=A0	struct {
+> > =C2=A0=C2=A0		u64		context;
 >=20
 
