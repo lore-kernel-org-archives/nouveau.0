@@ -4,83 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AEB7CCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:49:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B71D2CAC5B8
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D3C310E5D7;
-	Mon,  6 Oct 2025 20:49:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F193910E4CB;
+	Mon,  6 Oct 2025 20:57:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="QV4iTuRp";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NG6HPwxK";
 	dkim-atps=neutral
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B2F510E450
- for <nouveau@lists.freedesktop.org>; Mon,  6 Oct 2025 19:14:20 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-3ecde0be34eso3342222f8f.1
- for <nouveau@lists.freedesktop.org>; Mon, 06 Oct 2025 12:14:20 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 751D189F49;
+ Tue, 27 May 2025 14:57:49 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id
+ 38308e7fff4ca-3106217268dso31590761fa.1; 
+ Tue, 27 May 2025 07:57:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759778059; x=1760382859; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1748357868; x=1748962668; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=hAYO5exGw5pBpJwPfJWxaone+f+36yTg5sQQrnulw7c=;
- b=QV4iTuRp6qLDoDQ+RAYLpbcFXWnnoij1wo5sh0CFYUVR/CqGxJPkIn7C2ZK5FW4HRL
- NpnTcg1Z7UyvHA0R1z9WT53DAOn2rraxZT70HmwRzw2s5b1mVRSxr8b9NU+ThjeMuB3s
- 99ZYfBWiopyZHwa8U9ZwNP0E6Z/biZMFEdfhqd4Q9UZyGrvEtMBgKPwKtPNR6rlO6dED
- bhmY9E7uHDKberEfLrun+1TNQPBl34WT7oezk8zzO7SVRCS8pIHdS6eLI1IZIFVGnCwe
- BcZqADLX9l/wEk75znr+O+ydCdvytHM0MaZVavKq6SknmUwTnGCSe5iSwvwjR50xPCtp
- riIQ==
+ bh=SNE3eNQigcgAPplki00LvwTSib7PfNi6+3iBJNr9+88=;
+ b=NG6HPwxK713ughst6Vnmk3ciLetc+DpFSMx30ZvyeRpg/DHaw48WTF4h1xfxUpoRNP
+ ntxAhJT2cZApUqA4zmyKRDmEiEiGAQ2J1rT5op0N6OOeErVsFidXqt5/8MNcr9c4JkAR
+ z0ty8+scYTQEnY/fHIBJbmnlugQWId0l272Pz4BspFxKG0wLewx7RdaZnjl2Xt1I5YWM
+ XhTPSEPfXyUOyOiSnGWYm9BDDsAYNf0mV02Ogfvll+x/+7FJfIkh8vfU+hhDeB2i9hMv
+ vyDBDorfQcCeRFjlVVxaP2FjlmsAsb8Va0nHPiA8shec8W4hlGlZbzwgopprpe1RP+AX
+ 7BMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759778059; x=1760382859;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1748357868; x=1748962668;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hAYO5exGw5pBpJwPfJWxaone+f+36yTg5sQQrnulw7c=;
- b=FWZTbBxDDV42OY+cc/UZOfIlOGofOAUVTyuZjYcglD+h14qZZOFsrD9C0N5o0c/7aZ
- RNenx1etScLxAnVyFA7auH3tpo12x+p/Z3llOP5pWooYljxbLQfW6ew+/UQJ+0q+nmys
- osJVNIME5MBUmFFrtuSv6n221LtNrIpxWAdbpJuIHwacNMVtF4DZoKQDGaqygOWVyYex
- A1VOsNYjTi5/sf1qvijgp50PaKYiSZLn/afOp3soawl2vL8HrVN/f863TZ5vc3nxNNwV
- sptAg3rYtRne+ijkiUNPM7jHWLiU/4M+Ev007IoJBmjF42hF4lexfQs0o0gkaExVtuSJ
- qkWQ==
+ bh=SNE3eNQigcgAPplki00LvwTSib7PfNi6+3iBJNr9+88=;
+ b=Q/K51fbagPV27AKVmWLGGmAs9RuQ9q6vTrfFmYkOlHUlTzc6+re47uAb5X+fHNYGmj
+ fGwa5wJ/pNRoxJ0u4LuRuWUCBYw4nwACnnoxOPffpJLfITAwYvdFv3BCH2weMU7DixsQ
+ rWg/1Nv7zWDJzjxCIrI3R7KTi4qPvraX81hp9VesV7egF4ieltIWbA9i0GSgzWPSumBT
+ NwH4dp79M0o000t6p6Vbbk0BorFBSA6YqVLszwleRPsD1t0Q8O6jtPlnTbv05rDBRop2
+ v3AN6PGkGoOQc3MELcDYxEKxqe5hm8V6Nra9fyG2v7Mpfis42tqr8OydOghFXXrw4jms
+ iKUw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUIzls+mGFGGQY+jZeAfAinnW8Jec0cLGJqgRPWb5AvteXl6gUT0o1Dc3ZZx6d4EencvzQcbkGA@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwSXXCIPK4+c4cEdMO5jSN8MghvkVmbdq8kPejv+Gh1nUaR0+kM
- 4E/wt1xdXZEiFUdTLQBZ2N04lj0c4FAgv5W8uVFsg7maXAMrsfizkwrX
-X-Gm-Gg: ASbGncsT395qhRBRhOUSFZHKg1q8ULS9MkoiGYPjorjZYKbuYylKDwks0HhoozFyeLc
- GebDRgANqZ6jDiJ9+8sjQcHZ34yEhvtX3Flk0LOPihXtQHPG2zia9CSIdUclWBc/aCxMPdBUF70
- yk1f8DD9jXXEpaLDXKTUR7oNUeolSCUIo5fiZHaA5uputlTMP5pO97/guLZC+Lv4rr9rcZCq2va
- b5g3DZ/89890og8T7gcFcMcPWAK9qUQKehspOfuyTAPS9qqc36ZTeZrSNcinMty4Kl9oMrFiBIw
- gOiR7vTLaYC/Ka4TUt9K5U6a4DSnzJlWWYPqfdCh1YdlO9LvQjmv+IXgNqhV2s61eCW0W67OWXp
- kCiCLGUp4ucAYMNC1xibvDxtCxEcE2JLH63y0MGV7gZfCQNu/xY+HdifmPo6WbgmIw+uK
-X-Google-Smtp-Source: AGHT+IFgnvCVizHV0NE+PuzB7sBbTSTfTggo6zyJ+bMeG0+kpzGpMjfhHGaPgBdZXpGwvw+NuYnnuQ==
-X-Received: by 2002:a05:6000:1883:b0:3ec:42f9:952b with SMTP id
- ffacd0b85a97d-425829b61f3mr502699f8f.4.1759778058786; 
- Mon, 06 Oct 2025 12:14:18 -0700 (PDT)
-Received: from fedora ([154.182.208.105]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4256866060fsm16646435f8f.14.2025.10.06.12.14.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 06 Oct 2025 12:14:18 -0700 (PDT)
-From: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
-To: linux-kernel@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org, Mary Guillemard <mary@mary.zone>,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Ben Skeggs <bskeggs@nvidia.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, nouveau@lists.freedesktop.org
-Subject: [PATCH 3/5] drm/nouveau/mmu/gp100: Remove unused/broken support for
- compression
-Date: Mon,  6 Oct 2025 22:13:26 +0300
-Message-ID: <20251006191329.277485-4-mohamedahmedegypt2001@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251006191329.277485-1-mohamedahmedegypt2001@gmail.com>
-References: <20251006191329.277485-1-mohamedahmedegypt2001@gmail.com>
+ AJvYcCVUqDFMpUvQ5/rHF7W8q/tE5nBb/M591aefDAkkID/c2VhKR7q2Q8ox50aDp4HvVjg0VjScaI6/QQo=@lists.freedesktop.org,
+ AJvYcCVl16MYyaygez5Ik6jGqNbrJB5UhZPZTHG+ZrGQOHmB2GQM2RApCb3TTrwzT6ahkgURzB8lYc2yZw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzFngkoaiyoT45iEVfITlbKhRWIocs9Zb4WKp+U4QhEPFXblMof
+ +fo/1mJqld9ebM9P9tV3bubM7naF1stAOXwnLGI6WyzkCUCMOsUJ9BGAXBD0lPoCDCYsDbkhY4E
+ ytTqC2o7Bdy9uTzIBloiz7bobKAIRXvc=
+X-Gm-Gg: ASbGncvJ1nmGO042akD/LKQcgwXkMER2fnrbYgOd3FkbbvkGFnIsjTxR3wufV4KgMH4
+ TgLfMMtbWfCKAG3RIob72hSciqDZkL7nxQHycj54Q3nT6tAkbx9hQ79ZM1djx+CNRUBlYzUDfQ+
+ TSmkF5fOXT8fpSTniK5yFbKtfzV7u8zQQkGcYSaDQF86AE5aB6
+X-Google-Smtp-Source: AGHT+IGMpsgNs0H0v36WCubbxlinvgNLfiVk9IX6EmewrCYJWnUCTsflWg1QTkNc19iE0AzQz3ot/ZAJjdnwjF/SkXc=
+X-Received: by 2002:a2e:8a93:0:b0:32a:604c:504e with SMTP id
+ 38308e7fff4ca-32a604c5122mr6252591fa.38.1748357867433; Tue, 27 May 2025
+ 07:57:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:49:11 +0000
+References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
+ <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
+ <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
+ <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com>
+ <CAH5fLgiUhvp9P7oSf4Rtv5jK1SNebW9-r5YFHVzCZjEwaR=Mjg@mail.gmail.com>
+In-Reply-To: <CAH5fLgiUhvp9P7oSf4Rtv5jK1SNebW9-r5YFHVzCZjEwaR=Mjg@mail.gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Tue, 27 May 2025 10:57:11 -0400
+X-Gm-Features: AX0GCFv2oY8lzrXQtwfj6_dQyq0RFoGjtHhR6-NzX_hnZZ_7RGNdHOXxleigo1M
+Message-ID: <CAJ-ks9=prR2TNFhqip8MsjtTWKkoUhoMG75v2mSLF1UaRNwJLg@mail.gmail.com>
+Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: Benno Lossin <lossin@kernel.org>,
+ Michal Rostecki <vadorovsky@protonmail.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,132 +119,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Ben Skeggs <bskeggs@nvidia.com>
+On Tue, May 27, 2025 at 8:44=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> w=
+rote:
+>
+> On Tue, May 27, 2025 at 12:18=E2=80=AFAM Tamir Duberstein <tamird@gmail.c=
+om> wrote:
+> > > > +}
+> > > > +
+> > > > +fn make_ident<'a, T: IntoIterator<Item =3D &'a str>>(
+> > > > +    span: Span,
+> > > > +    names: T,
+> > > > +) -> impl Iterator<Item =3D TokenTree> + use<'a, T> {
+> > > > +    names.into_iter().flat_map(move |name| {
+> > > > +        [
+> > > > +            TokenTree::Punct(Punct::new(':', Spacing::Joint)),
+> > > > +            TokenTree::Punct(Punct::new(':', Spacing::Alone)),
+> > > > +            TokenTree::Ident(Ident::new(name, span)),
+> > > > +        ]
+> > > > +    })
+> > > > +}
+> > > > diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+> > > > index d31e50c446b0..fa956eaa3ba7 100644
+> > > > --- a/rust/macros/lib.rs
+> > > > +++ b/rust/macros/lib.rs
+> > > > @@ -10,6 +10,7 @@
+> > > >  mod quote;
+> > > >  mod concat_idents;
+> > > >  mod export;
+> > > > +mod fmt;
+> > > >  mod helpers;
+> > > >  mod kunit;
+> > > >  mod module;
+> > > > @@ -196,6 +197,24 @@ pub fn export(attr: TokenStream, ts: TokenStre=
+am) -> TokenStream {
+> > > >      export::export(attr, ts)
+> > > >  }
+> > > >
+> > > > +/// Like [`core::format_args!`], but automatically wraps arguments=
+ in [`kernel::fmt::Adapter`].
+> > > > +///
+> > > > +/// This macro allows generating `core::fmt::Arguments` while ensu=
+ring that each argument is wrapped
+> > > > +/// with `::kernel::fmt::Adapter`, which customizes formatting beh=
+avior for kernel logging.
+> > > > +///
+> > > > +/// Named arguments used in the format string (e.g. `{foo}`) are d=
+etected and resolved from local
+> > > > +/// bindings. All positional and named arguments are automatically=
+ wrapped.
+> > > > +///
+> > > > +/// This macro is an implementation detail of other kernel logging=
+ macros like [`pr_info!`] and
+> > > > +/// should not typically be used directly.
+> > > > +///
+> > > > +/// [`kernel::fmt::Adapter`]: ../kernel/fmt/struct.Adapter.html
+> > > > +/// [`pr_info!`]: ../kernel/macro.pr_info.html
+> > > > +#[proc_macro]
+> > > > +pub fn fmt(input: TokenStream) -> TokenStream {
+> > >
+> > > I'm wondering if we should name this `format_args` instead in order t=
+o
+> > > better communicate that it's a replacement for `core::format_args!`.
+> >
+> > Unfortunately that introduces ambiguity in cases where
+> > kernel::prelude::* is imported because core::format_args is in core's
+> > prelude.
+>
+> I'm pretty sure that glob imports are higher priority than the core
+> prelude? Or is this because there are macros that now incorrectly use
+> kernel::prelude::format_args when they should use the one from core?
 
-From GP100 onwards it's not possible to initialise comptag RAM without
-PMU firmware, which nouveau has no support for.
+compiler says no, e.g.:
 
-As such, this code is essentially a no-op and will always revert to the
-equivalent non-compressed kind due to comptag allocation failure.  It's
-also broken for the needs of VM_BIND/Vulkan.
-
-Remove the code entirely to make way for supporting compression on GPUs
-that support GSM-RM.
-
-Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
----
- .../drm/nouveau/nvkm/subdev/mmu/vmmgp100.c    | 39 ++-----------------
- .../drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c    |  4 +-
- 2 files changed, 6 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-index 851fd847a2a9..ecff1096a1bb 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp100.c
-@@ -21,9 +21,7 @@
-  */
- #include "vmm.h"
- 
--#include <core/client.h>
- #include <subdev/fb.h>
--#include <subdev/ltc.h>
- #include <subdev/timer.h>
- #include <engine/gr.h>
- 
-@@ -117,8 +115,6 @@ gp100_vmm_pgt_pte(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
- {
- 	u64 data = (addr >> 4) | map->type;
- 
--	map->type += ptes * map->ctag;
--
- 	while (ptes--) {
- 		VMM_WO064(pt, vmm, ptei++ * 8, data);
- 		data += map->next;
-@@ -142,7 +138,6 @@ gp100_vmm_pgt_dma(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
- 		while (ptes--) {
- 			const u64 data = (*map->dma++ >> 4) | map->type;
- 			VMM_WO064(pt, vmm, ptei++ * 8, data);
--			map->type += map->ctag;
- 		}
- 		nvkm_done(pt->memory);
- 		return;
-@@ -200,8 +195,6 @@ gp100_vmm_pd0_pte(struct nvkm_vmm *vmm, struct nvkm_mmu_pt *pt,
- {
- 	u64 data = (addr >> 4) | map->type;
- 
--	map->type += ptes * map->ctag;
--
- 	while (ptes--) {
- 		VMM_WO128(pt, vmm, ptei++ * 0x10, data, 0ULL);
- 		data += map->next;
-@@ -411,8 +404,6 @@ gp100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
- 		struct gp100_vmm_map_vn vn;
- 		struct gp100_vmm_map_v0 v0;
- 	} *args = argv;
--	struct nvkm_device *device = vmm->mmu->subdev.device;
--	struct nvkm_memory *memory = map->memory;
- 	u8  kind, kind_inv, priv, ro, vol;
- 	int kindn, aper, ret = -ENOSYS;
- 	const u8 *kindm;
-@@ -450,30 +441,8 @@ gp100_vmm_valid(struct nvkm_vmm *vmm, void *argv, u32 argc,
- 	}
- 
- 	if (kindm[kind] != kind) {
--		u64 tags = nvkm_memory_size(memory) >> 16;
--		if (aper != 0 || !(page->type & NVKM_VMM_PAGE_COMP)) {
--			VMM_DEBUG(vmm, "comp %d %02x", aper, page->type);
--			return -EINVAL;
--		}
--
--		if (!map->no_comp) {
--			ret = nvkm_memory_tags_get(memory, device, tags,
--						   nvkm_ltc_tags_clear,
--						   &map->tags);
--			if (ret) {
--				VMM_DEBUG(vmm, "comp %d", ret);
--				return ret;
--			}
--		}
--
--		if (!map->no_comp && map->tags->mn) {
--			tags = map->tags->mn->offset + (map->offset >> 16);
--			map->ctag |= ((1ULL << page->shift) >> 16) << 36;
--			map->type |= tags << 36;
--			map->next |= map->ctag;
--		} else {
--			kind = kindm[kind];
--		}
-+		/* Revert to non-compressed kind. */
-+		kind = kindm[kind];
- 	}
- 
- 	map->type |= BIT(0);
-@@ -592,8 +561,8 @@ gp100_vmm = {
- 		{ 47, &gp100_vmm_desc_16[4], NVKM_VMM_PAGE_Sxxx },
- 		{ 38, &gp100_vmm_desc_16[3], NVKM_VMM_PAGE_Sxxx },
- 		{ 29, &gp100_vmm_desc_16[2], NVKM_VMM_PAGE_Sxxx },
--		{ 21, &gp100_vmm_desc_16[1], NVKM_VMM_PAGE_SVxC },
--		{ 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SVxC },
-+		{ 21, &gp100_vmm_desc_16[1], NVKM_VMM_PAGE_SVxx },
-+		{ 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SVxx },
- 		{ 12, &gp100_vmm_desc_12[0], NVKM_VMM_PAGE_SVHx },
- 		{}
- 	}
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
-index e081239afe58..5791d134962b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmmgp10b.c
-@@ -34,8 +34,8 @@ gp10b_vmm = {
- 		{ 47, &gp100_vmm_desc_16[4], NVKM_VMM_PAGE_Sxxx },
- 		{ 38, &gp100_vmm_desc_16[3], NVKM_VMM_PAGE_Sxxx },
- 		{ 29, &gp100_vmm_desc_16[2], NVKM_VMM_PAGE_Sxxx },
--		{ 21, &gp100_vmm_desc_16[1], NVKM_VMM_PAGE_SxHC },
--		{ 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SxHC },
-+		{ 21, &gp100_vmm_desc_16[1], NVKM_VMM_PAGE_SxHx },
-+		{ 16, &gp100_vmm_desc_16[0], NVKM_VMM_PAGE_SxHx },
- 		{ 12, &gp100_vmm_desc_12[0], NVKM_VMM_PAGE_SxHx },
- 		{}
- 	}
--- 
-2.51.0
-
+error[E0659]: `format_args` is ambiguous
+    --> rust/doctests_kernel_generated.rs:8783:25
+     |
+8783 |     kernel::kunit::info(format_args!("    #
+rust_doctest_kernel_workqueue_rs_3.location:
+rust/kernel/workqueue.rs:77\n"));
+     |                         ^^^^^^^^^^^ ambiguous name
+     |
+     =3D note: ambiguous because of a conflict between a name from a
+glob import and an outer scope during import or macro resolution
+     =3D note: `format_args` could refer to a macro from prelude
+note: `format_args` could also refer to the macro imported here
+    --> rust/doctests_kernel_generated.rs:8772:9
+     |
+8772 |     use kernel::prelude::*;
+     |         ^^^^^^^^^^^^^^^^^^
+     =3D help: consider adding an explicit import of `format_args` to disam=
+biguate
