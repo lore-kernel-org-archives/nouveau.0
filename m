@@ -4,63 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5731DD5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAA6CD5B15F
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B7EB10E9F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8319110EA31;
 	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="turY0Mg0";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="TJnJr1yD";
 	dkim-atps=neutral
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E969910E31E;
- Mon, 16 Jun 2025 10:08:51 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4EF10E696;
+ Wed, 28 May 2025 14:18:50 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bLQgz507Bz9sqj;
- Mon, 16 Jun 2025 12:08:47 +0200 (CEST)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4b6s792zx3z9swD;
+ Wed, 28 May 2025 16:18:45 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1750068527; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1748441925; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=o3szePmqcHJryvA1er9S8PcvbfWuy6iFHHcrJVIXtWM=;
- b=turY0Mg0O+tfBX/no06qt5IutDn3NPSQsTsTMZLHDtwvFlKz/4uzFzCZFRqpfJxH9n633Q
- XIsvXO9v4YQCXe396xopdx0KS90FHEEc+blHCSQjyeOWFjOhyx0NkFCQPThCrSG3kExsUu
- Qrguz8OgAbVZg8LZJImDkC1jI4+99RqUbMC7hsxu6JDuGzPhpIHjdVuw5o+vmxZm6d1uCn
- 1UGZ2i1P04hU9S/uHS0rnZe9Q/A73/5BlueoyH2/yBf9yilf4X/rkn8Ormy/8T1VgsHewi
- eCamfwEtewpBO6OKYaAWlIvTKAMfFYkE3yLyoEXQ3tIWZevQPXDHHdcLt5BRyQ==
-Message-ID: <d1ecec0124edcf70f682e91e52f3f349c7a1b33c.camel@mailbox.org>
-Subject: Re: [RFC PATCH 1/6] drm/sched: Avoid memory leaks with cancel_job()
- callback
+ bh=zJx6vFfwz0MYTEHthiU61dRG76ot+J1AonqUVhsuUz0=;
+ b=TJnJr1yDLKr7T7cAmicStZcRlA8JXH9j13Oh8esWSeeepjouJBcnEQdg5nD8+CN6fFcVRD
+ nyrSXhLPlMvsOWb5dmXyV57DQWLs4lCg8h21dj0UV1gLhSQ+PqoHzrs0MktM3kcTQOv3Tz
+ VBqJRrdR/oGhIs7WY3mzAjxbRQUhpSTKVqH+6d5h7HpRjGCQIeCsy3PugkdN2ZlS2D8x5G
+ Ft+kRUI2xzuE9c13mTzMYRXoC4wd517ZaJxnNNCcHX1K9j00VDmjGPj748+hdBLFjt/1kN
+ JiF1Ken79t+9APOBjhHOqbJPNBQOCon9xR24tXyu9T4k9QG4wIkinlKw8bWbog==
+Message-ID: <f46f73db6594c7cd40149e35da9f188baa5961a2.camel@mailbox.org>
+Subject: Re: [PATCH v11 00/10] Improve gpu_scheduler trace events + UAPI
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, phasta@kernel.org, Lyude
- Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
- <sumit.semwal@linaro.org>, Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Mon, 16 Jun 2025 12:08:40 +0200
-In-Reply-To: <18cd6b1f-8872-4a16-9ceb-50fd1ecfea39@igalia.com>
-References: <20250603093130.100159-2-phasta@kernel.org>
- <20250603093130.100159-3-phasta@kernel.org>
- <62ff8ddb-b2f1-4e52-a026-290561ab5337@igalia.com>
- <f4f326a0ecb98a9996919c3f827b3247b8207feb.camel@mailbox.org>
- <18cd6b1f-8872-4a16-9ceb-50fd1ecfea39@igalia.com>
+To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+Cc: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Abhinav
+ Kumar <quic_abhinavk@quicinc.com>,  Alex Deucher
+ <alexander.deucher@amd.com>, Boris Brezillon
+ <boris.brezillon@collabora.com>, Danilo Krummrich <dakr@kernel.org>, David
+ Airlie <airlied@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>, Felix
+ Kuehling <Felix.Kuehling@amd.com>, Frank Binns <frank.binns@imgtec.com>,
+ Jonathan Corbet <corbet@lwn.net>, Liviu Dudau <liviu.dudau@arm.com>, Lizhi
+ Hou <lizhi.hou@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>, Lucas
+ Stach <l.stach@pengutronix.de>, Lyude Paul <lyude@redhat.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,  Matt Coster
+ <matt.coster@imgtec.com>, Matthew Brost <matthew.brost@intel.com>, Maxime
+ Ripard <mripard@kernel.org>, Melissa Wen <mwen@igalia.com>, Min Ma
+ <min.ma@amd.com>,  Oded Gabbay <ogabbay@kernel.org>, Philipp Stanner
+ <phasta@kernel.org>, Qiang Yu <yuq825@gmail.com>, Rob Clark
+ <robdclark@gmail.com>, Rob Herring <robh@kernel.org>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Steven Price
+ <steven.price@arm.com>, Sumit Semwal <sumit.semwal@linaro.org>, Thomas
+ Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,  etnaviv@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org,  intel-xe@lists.freedesktop.org,
+ lima@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
+ linux-arm-msm@vger.kernel.org,  linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org,  linux-media@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Date: Wed, 28 May 2025 16:18:30 +0200
+In-Reply-To: <20250526125505.2360-1-pierre-eric.pelloux-prayer@amd.com>
+References: <20250526125505.2360-1-pierre-eric.pelloux-prayer@amd.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-META: xugczu8yqt6ag77z8f3qkcye1jaikzbn
-X-MBO-RS-ID: 549f6941f9059223189
+X-MBO-RS-ID: 71bbfe2918ed815d7c0
+X-MBO-RS-META: 1d87cwrtfwt5qgx3mzet88gb4nq4xi15
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -77,217 +89,143 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 2025-06-16 at 10:27 +0100, Tvrtko Ursulin wrote:
+On Mon, 2025-05-26 at 14:54 +0200, Pierre-Eric Pelloux-Prayer wrote:
+> Hi,
 >=20
-> On 12/06/2025 15:20, Philipp Stanner wrote:
-> > On Thu, 2025-06-12 at 15:17 +0100, Tvrtko Ursulin wrote:
-> > >=20
-> > > On 03/06/2025 10:31, Philipp Stanner wrote:
-> > > > Since its inception, the GPU scheduler can leak memory if the
-> > > > driver
-> > > > calls drm_sched_fini() while there are still jobs in flight.
-> > > >=20
-> > > > The simplest way to solve this in a backwards compatible manner
-> > > > is
-> > > > by
-> > > > adding a new callback, drm_sched_backend_ops.cancel_job(),
-> > > > which
-> > > > instructs the driver to signal the hardware fence associated
-> > > > with
-> > > > the
-> > > > job. Afterwards, the scheduler can savely use the established
-> > > > free_job()
-> > > > callback for freeing the job.
-> > > >=20
-> > > > Implement the new backend_ops callback cancel_job().
-> > > >=20
-> > > > Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> > >=20
-> > > Please just add the link to the patch here (it is only in the
-> > > cover
-> > > letter):
-> > >=20
-> > > Link:
-> > > https://lore.kernel.org/dri-devel/20250418113211.69956-1-tvrtko.ursul=
-in@igalia.com/
-> >=20
-> > That I can do, sure
+> The initial goal of this series was to improve the drm and amdgpu
+> trace events to be able to expose more of the inner workings of
+> the scheduler and drivers to developers via tools.
 >=20
-> Cool, with that, for this patch:
+> Then, the series evolved to become focused only on gpu_scheduler.
+> The changes around vblank events will be part of a different
+> series, as well as the amdgpu ones.
 >=20
-> Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Moreover Sima suggested to make some trace events stable uAPI,
+> so tools can rely on them long term.
 >=20
-> > > And you probably want to take the unit test modifications from
-> > > the
-> > > same
-> > > patch too. You could put them in the same patch or separate.
-> >=20
-> > Necessary adjustments for the unit tests are already implemented
-> > and
-> > are waiting for review separately, since this can be done
-> > independently
-> > from this entire series:
-> >=20
-> > https://lore.kernel.org/dri-devel/20250605134154.191764-2-phasta@kernel=
-.org/
+> The first patches extend and cleanup the gpu scheduler events,
+> then add a documentation entry in drm-uapi.rst.
 >=20
-> For me it would make most sense to fold that into 2/6 from this
-> series.=20
-> I don't see it making sense as standalone. So if you could repost the
-> series with it integrated I will give it a spin and can review that=20
-> patch at least.
+> The last 2 patches are new in v8. One is based on a suggestion
+> from Tvrtko and gets rid of drm_sched_job::id. The other is a
+> cleanup of amdgpu trace events to use the fence=3D%llu:%llu format.
+>=20
+> The drm_sched_job patches don't affect gpuvis which has code to parse
+> the gpu_scheduler events but these events are not enabled.
+>=20
+> Changes since v10:
+> * fixed 2 errors reported by kernel test robot
+> * rebased on drm-misc-next
+>=20
+> Changes since v9:
+> * fixed documentation link syntax
+> * fixed typos in commit messages
+> * spelled out that these events cannot be used before
+> =C2=A0 drm_sched_job_arm has been called
+>=20
+> Changes since v8:
+> * swapped patches 8 & 9
+> * rebased on drm-next
+>=20
+> Changes since v7:
+> * uint64_t -> u64
+> * reworked dependencies tracing (Tvrtko)
+> * use common name prefix for all events (Tvrtko)
+> * dropped drm_sched_job::id (Tvrtko)
+>=20
+> Useful links:
+> - userspace tool using the updated events:
+> https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
+> - v8:
+> https://lists.freedesktop.org/archives/dri-devel/2025-March/496781.html
+>=20
+> Pierre-Eric Pelloux-Prayer (10):
+> =C2=A0 drm/debugfs: Output client_id in in drm_clients_info
+> =C2=A0 drm/sched: Store the drm client_id in drm_sched_fence
+> =C2=A0 drm/sched: Add device name to the drm_sched_process_job event
+> =C2=A0 drm/sched: Cleanup gpu_scheduler trace events
+> =C2=A0 drm/sched: Trace dependencies for GPU jobs
+> =C2=A0 drm/sched: Add the drm_client_id to the drm_sched_run/exec_job
+> events
+> =C2=A0 drm/sched: Cleanup event names
+> =C2=A0 drm: Get rid of drm_sched_job.id
+> =C2=A0 drm/doc: Document some tracepoints as uAPI
+> =C2=A0 drm/amdgpu: update trace format to match gpu_scheduler_trace
 
-It does make sense as an independent patch, because it is: independent.
-It improves the unit tests in a way that they become a better role
-model for the driver callbacks. All fences always must get signaled,
-which is not the case there currently. Unit tests serve as a reference
-implementation for new users, which is why I am stressing that point.
 
-If you disagree with that patch's content, please answer on it
+Applied to drm-misc-next
 
+
+Thanks
 P.
 
 >=20
-> Regards,
->=20
-> Tvrtko
->=20
-> >=20
-> > Thx
-> > P.
-> >=20
-> > >=20
-> > > Regards,
-> > >=20
-> > > Tvrtko
-> > >=20
-> > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > > > ---
-> > > > =C2=A0=C2=A0 drivers/gpu/drm/scheduler/sched_main.c | 34
-> > > > ++++++++++++++++-----
-> > > > -----
-> > > > =C2=A0=C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 9 +++++++
-> > > > =C2=A0=C2=A0 2 files changed, 30 insertions(+), 13 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > index d20726d7adf0..3f14f1e151fa 100644
-> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > @@ -1352,6 +1352,18 @@ int drm_sched_init(struct
-> > > > drm_gpu_scheduler
-> > > > *sched, const struct drm_sched_init_
-> > > > =C2=A0=C2=A0 }
-> > > > =C2=A0=C2=A0 EXPORT_SYMBOL(drm_sched_init);
-> > > > =C2=A0=C2=A0=20
-> > > > +static void drm_sched_kill_remaining_jobs(struct
-> > > > drm_gpu_scheduler
-> > > > *sched)
-> > > > +{
-> > > > +	struct drm_sched_job *job, *tmp;
-> > > > +
-> > > > +	/* All other accessors are stopped. No locking
-> > > > necessary.
-> > > > */
-> > > > +	list_for_each_entry_safe_reverse(job, tmp, &sched-
-> > > > > pending_list, list) {
-> > > > +		sched->ops->cancel_job(job);
-> > > > +		list_del(&job->list);
-> > > > +		sched->ops->free_job(job);
-> > > > +	}
-> > > > +}
-> > > > +
-> > > > =C2=A0=C2=A0 /**
-> > > > =C2=A0=C2=A0=C2=A0 * drm_sched_fini - Destroy a gpu scheduler
-> > > > =C2=A0=C2=A0=C2=A0 *
-> > > > @@ -1359,19 +1371,11 @@ EXPORT_SYMBOL(drm_sched_init);
-> > > > =C2=A0=C2=A0=C2=A0 *
-> > > > =C2=A0=C2=A0=C2=A0 * Tears down and cleans up the scheduler.
-> > > > =C2=A0=C2=A0=C2=A0 *
-> > > > - * This stops submission of new jobs to the hardware through
-> > > > - * drm_sched_backend_ops.run_job(). Consequently,
-> > > > drm_sched_backend_ops.free_job()
-> > > > - * will not be called for all jobs still in
-> > > > drm_gpu_scheduler.pending_list.
-> > > > - * There is no solution for this currently. Thus, it is up to
-> > > > the
-> > > > driver to make
-> > > > - * sure that:
-> > > > - *
-> > > > - *=C2=A0 a) drm_sched_fini() is only called after for all submitte=
-d
-> > > > jobs
-> > > > - *=C2=A0=C2=A0=C2=A0=C2=A0 drm_sched_backend_ops.free_job() has be=
-en called or
-> > > > that
-> > > > - *=C2=A0 b) the jobs for which drm_sched_backend_ops.free_job() ha=
-s
-> > > > not
-> > > > been called
-> > > > - *=C2=A0=C2=A0=C2=A0=C2=A0 after drm_sched_fini() ran are freed ma=
-nually.
-> > > > - *
-> > > > - * FIXME: Take care of the above problem and prevent this
-> > > > function
-> > > > from leaking
-> > > > - * the jobs in drm_gpu_scheduler.pending_list under any
-> > > > circumstances.
-> > > > + * This stops submission of new jobs to the hardware through
-> > > > &struct
-> > > > + * drm_sched_backend_ops.run_job. If &struct
-> > > > drm_sched_backend_ops.cancel_job
-> > > > + * is implemented, all jobs will be canceled through it and
-> > > > afterwards cleaned
-> > > > + * up through &struct drm_sched_backend_ops.free_job. If
-> > > > cancel_job is not
-> > > > + * implemented, memory could leak.
-> > > > =C2=A0=C2=A0=C2=A0 */
-> > > > =C2=A0=C2=A0 void drm_sched_fini(struct drm_gpu_scheduler *sched)
-> > > > =C2=A0=C2=A0 {
-> > > > @@ -1401,6 +1405,10 @@ void drm_sched_fini(struct
-> > > > drm_gpu_scheduler
-> > > > *sched)
-> > > > =C2=A0=C2=A0=C2=A0	/* Confirm no work left behind accessing device
-> > > > structures
-> > > > */
-> > > > =C2=A0=C2=A0=C2=A0	cancel_delayed_work_sync(&sched->work_tdr);
-> > > > =C2=A0=C2=A0=20
-> > > > +	/* Avoid memory leaks if supported by the driver. */
-> > > > +	if (sched->ops->cancel_job)
-> > > > +		drm_sched_kill_remaining_jobs(sched);
-> > > > +
-> > > > =C2=A0=C2=A0=C2=A0	if (sched->own_submit_wq)
-> > > > =C2=A0=C2=A0=C2=A0		destroy_workqueue(sched->submit_wq);
-> > > > =C2=A0=C2=A0=C2=A0	sched->ready =3D false;
-> > > > diff --git a/include/drm/gpu_scheduler.h
-> > > > b/include/drm/gpu_scheduler.h
-> > > > index e62a7214e052..81dcbfc8c223 100644
-> > > > --- a/include/drm/gpu_scheduler.h
-> > > > +++ b/include/drm/gpu_scheduler.h
-> > > > @@ -512,6 +512,15 @@ struct drm_sched_backend_ops {
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-* and it's time to clean it up.
-> > > > =C2=A0=C2=A0=C2=A0	 */
-> > > > =C2=A0=C2=A0=C2=A0	void (*free_job)(struct drm_sched_job *sched_job=
-);
-> > > > +
-> > > > +	/**
-> > > > +	 * @cancel_job: Used by the scheduler to guarantee
-> > > > remaining jobs' fences
-> > > > +	 * get signaled in drm_sched_fini().
-> > > > +	 *
-> > > > +	 * Drivers need to signal the passed job's hardware
-> > > > fence
-> > > > with
-> > > > +	 * -ECANCELED in this callback. They must not free the
-> > > > job.
-> > > > +	 */
-> > > > +	void (*cancel_job)(struct drm_sched_job *sched_job);
-> > > > =C2=A0=C2=A0 };
-> > > > =C2=A0=C2=A0=20
-> > > > =C2=A0=C2=A0 /**
-> > >=20
-> >=20
+> =C2=A0Documentation/gpu/drm-uapi.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++++
+> =C2=A0drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 32 ++----
+> =C2=A0drivers/gpu/drm/drm_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 +-
+> =C2=A0drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c=C2=A0 |=C2=A0=C2=A0 2 =
++-
+> =C2=A0drivers/gpu/drm/imagination/pvr_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/gpu/drm/imagination/pvr_queue.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/lima/lima_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0drivers/gpu/drm/lima/lima_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/lima/lima_trace.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> =C2=A0drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/panfrost/panfrost_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/gpu/drm/panthor/panthor_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0.../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0 | 103 +++++=
+++++++++---
+> --
+> =C2=A0drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0 16 ++-
+> =C2=A0drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 12 +-
+> =C2=A0.../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 |=C2=A0=C2=A0 3 =
++-
+> =C2=A0drivers/gpu/drm/v3d/v3d_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
+> =C2=A0include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 13 ++-
+> =C2=A032 files changed, 191 insertions(+), 101 deletions(-)
 >=20
 
