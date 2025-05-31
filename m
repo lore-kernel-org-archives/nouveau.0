@@ -4,88 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78864D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53841D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 342C110EC01;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76CE310EC0B;
 	Sat, 13 Dec 2025 12:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IN0FRkeD";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="GrDtsTy2";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B93110E00D;
- Thu,  6 Mar 2025 12:56:46 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-2240b4de12bso13277105ad.2; 
- Thu, 06 Mar 2025 04:56:46 -0800 (PST)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D095810E140;
+ Sat, 31 May 2025 14:45:43 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-234b122f2feso1866955ad.0; 
+ Sat, 31 May 2025 07:45:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741265806; x=1741870606; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=04e5QVlW7LFU5EHlao9T7yWPAHQynGYSDz8qPerZSOo=;
- b=IN0FRkeDZThZ9amPWEWNEBa9yNOrDVVWEA33jpRxzuvRDEnJnNeYeqY8DeiIbS8OGm
- Vu/uF4PhZxzSt/3qTMBnlmwlu5Is+26unj62O2n+f8wcTMLQfx1HmpSdpBL25DWvpLPk
- qM0jWxBsKM0wPMIKEd9cFwhOGQiTR/8lO+BXsjmItGp5lvDNKVHLkksoI1wAoqtjL2aR
- tB4ouY/rFVFKPv5fWEylA8wm3Ulu64v3PsaNTCrqusa9iHHWt/fxUJDy9qgj5zwrg9Fu
- OfRW5vFGKgHK4qxi72e/rfwVw00MnpCjL6g0xAcEJ3JeSgJhVFSti0+QaNtPmzTQ90SS
- CyuQ==
+ d=gmail.com; s=20230601; t=1748702743; x=1749307543; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x4wSRF4D7tcqiDPh/zMgCb/oT5kl8g0v4lmEyYJjR80=;
+ b=GrDtsTy2Oy5lZuP7xXbOJJdJUGPofnI8L7HtpYPu3yNnEZUZGMKwXDo7a6EPRHC+hd
+ g/qCNCunqFFXhACKpC0yWtjnk224eYI5q4JD6f1DTB6Fp5Q0kpGP5oj6CEFxYAceRMPA
+ l/AShXjq0ofIqgZtf4V9HCSEFQNVQ925Zb2cKgup4bGbvCboW5j0tVKMR4PIiESgcywR
+ WNoDoetvFalhAVlERFiMqntCTUBIhuYMAvq2P21Xz8BZBG6QPPSOjssCnUxBP8CLkXVi
+ nyU5m8n/UQTtdWXx0XKOKZWfISdy75GNFA0TKvOhL7ptkINLTZBxHKpz2PPX1h6T4vrt
+ zc6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741265806; x=1741870606;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=04e5QVlW7LFU5EHlao9T7yWPAHQynGYSDz8qPerZSOo=;
- b=JmOx5ks/ONZyuRTGmu9dEszWzVw8HJIGCVG1vFCcMosSzW8rFpV5PjEiMK1ToZN2Oq
- S1VDI/WRICPYwqE4cN9ycTlX2V9XbTb6Weur4Q5spCTyCId2izA7dGkuidb4ljjttr5H
- 3RDBuXFZSXUJUP83/MXtv5kJhf7rcsNbiYar1xpwViI8dqXT9D5LILA0IcjX79HiRodO
- lmLN/LHoR7UMsDzau89uYyioroi4BRr0cdGi+Yc9vzLdr9NaRR/E3SkvvmshtJf2S9JF
- l9iXj5L5eKlUo3jh1ZGCtoa08GPYsrVKKqvYIMNu2zf7V++vsCP6kxvbvHnFgmEoAYGT
- l3Sg==
+ d=1e100.net; s=20230601; t=1748702743; x=1749307543;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=x4wSRF4D7tcqiDPh/zMgCb/oT5kl8g0v4lmEyYJjR80=;
+ b=U9x8yKp2hYOkLcm6S2rj2NxyUjlo43LioPe7UkcUxyyqzCwl5eIeLxtgAaV/N/lwLO
+ lR5y4KwcuGe8u1Fm72lv/JmS0YNQ7bcxz2yP8xVgI6QOAuYqcRTt4otJhKp6xKu5mgg1
+ 1qEKpyaMBPZ9DL2f5kXt/CvFTPacTK07+zh4hueCuxFPaPdWFjhBIeG7Phkl8i6mIelA
+ Fs8EThG8x941eticRH75V1xgYfaxLOIoaYFq0AeUUKeB8bKKY3rykRlAZ5xEE7o3KwmC
+ UM+hw6DUqi4kjo5Gu6XQxSVHnsCcsf5iWKRIBW+B3Z43R/B9HqQri576avSY/mJdQyTR
+ XI7Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVPxU3K53dHXtERxYhePNasNX184EV8XvCbKeauOF8z8ST86gMdD1H+6Kc+T/JlGS//GAJgLz6RlQ==@lists.freedesktop.org,
- AJvYcCXnHVsXNoyRx9mIUnxypcyGYbOyb5dVCPfs0t+tX9LrIc8CrIaVmW+f9YUlG+yZiJ0UvM32Y+rRHK8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzJLbpS9ZFeahNDrR1R9HHaY/Sjm8z8xCDKj1wZSLVM2guvCOgZ
- j6yRYmHUOAkKIezzynTXvL/6AXCVHGR0yLhb6L9lEdR85CWG+02o
-X-Gm-Gg: ASbGncuenIbV4dKZhMkjv4WG2VNX07i0XYu8+CVz67YtpYZodVFB05awu00zkrpu04O
- BxeuS9qpvvtnt7Bs7nBCb+s+da0NLiJe3dq8VTt7AUyGxZTsf++1NWRT7+jFsGW3dmLZ7Y8RBob
- p836hLwpipugURtLWnYxMeHWeye+jJwy7DDEmaltDPrkPAR09D7Qek7GD/cryCWbXxJVmUpL+YX
- /FEpzmuGCDZ5rYlMxy/K0IDoJWoEV6pWh5g7dkWiynmgdLLs13BmYLI32+QCQYs3xRDZA+5+qEy
- CwA0r5z3QwRR9wNalGiRI47NX6ImTw5goGAH3i1jVv76YLvhgNUqznfZIPP2rTNP1qXcUDDb94g
- lzeTNkMDQmGbQq/0f+eeCPWfvFLo=
-X-Google-Smtp-Source: AGHT+IE9D2V0PlMV5ZABesh7TdWr7X7Bayt5c+xg1q0luPahNx96F8HAIiwpPIbDk09xv10uSnCpqQ==
-X-Received: by 2002:a17:902:ec8f:b0:224:1dd5:4878 with SMTP id
- d9443c01a7336-2241dd54accmr6811955ad.7.1741265805743; 
- Thu, 06 Mar 2025 04:56:45 -0800 (PST)
-Received: from localhost (p4204131-ipxg22701hodogaya.kanagawa.ocn.ne.jp.
- [153.160.176.131]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-22410a91985sm11384815ad.194.2025.03.06.04.56.39
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Mar 2025 04:56:45 -0800 (PST)
-Date: Thu, 06 Mar 2025 21:56:38 +0900 (JST)
-Message-Id: <20250306.215638.838863448505767234.fujita.tomonori@gmail.com>
-To: dakr@kernel.org
-Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, ajanulgu@redhat.com, lyude@redhat.com,
- pstanner@redhat.com, zhiw@nvidia.com, cjia@nvidia.com,
- jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu,
- gregkh@linuxfoundation.org, mcgrof@kernel.org, russ.weight@linux.dev,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] gpu: nova-core: add initial documentation
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <20250304173555.2496-6-dakr@kernel.org>
-References: <20250304173555.2496-1-dakr@kernel.org>
- <20250304173555.2496-6-dakr@kernel.org>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+ AJvYcCVIzLiwezid1VVKKxhDakb4lbYww5ab/QfCyHBGCOZEEWaUxz4L5FfZ5+2ETnH+0FwABjpOoFYhWA==@lists.freedesktop.org,
+ AJvYcCXiPp15/r/4LKv4Jc989sIDtTMozS4ljNdEkK5yrwsDxOLpzo4fLdCLnmjRVClV0y2a5kwpmGmAdIY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyahKZbgXkbVFMSn8moiTqC6kb202+nfm8+I4+m3WsKrDIaYpWi
+ ptWyEd5V4UgCixoE8rJJzuCMJiftTLzfUcWPgAAYrp4fEWsFZOo6sIQq2EgAv6v9N+/0+vR/qr8
+ il3YDzh0zSdXc3ixw7PHEuTG1xOMgot4=
+X-Gm-Gg: ASbGncswtRw+powlJKOvyruICR8tr3z/kjSllySvGTGak0TOM4ioU94cp3kk5lMoUbX
+ hHVOtXcJzmjxhPs6tCHAxtbXqdchWi1Ph0bMfhDJadaPTee41/wxEmOVHE6aLp0m2LFRYQJxyPA
+ Z/Nl1Toq3ti99q9NVnzAMluK1FMaV166Zh9LtcldT7KmQ=
+X-Google-Smtp-Source: AGHT+IFimDKf0uhMz1Pm+sxkfWAXjxIQKSLG8ZsfEBVP66REKw0R8SSDLyW7zbCkypPq0nHPd0I5KL58g5NH5rGKm2U=
+X-Received: by 2002:a17:902:f684:b0:235:1ae7:a9ab with SMTP id
+ d9443c01a7336-235354f690amr32413915ad.3.1748702742699; Sat, 31 May 2025
+ 07:45:42 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250521-nova-frts-v4-0-05dfd4f39479@nvidia.com>
+ <20250521-nova-frts-v4-11-05dfd4f39479@nvidia.com>
+ <adbf5fa1104978df76ae40705e5df13dfbe59bb8.camel@redhat.com>
+ <CANiq72n42hbKPmED4PnzCADsy8iM-i0R2dizypTd_Vui5GctJg@mail.gmail.com>
+ <aDsUGGrjbJ_8KyrP@pollux>
+In-Reply-To: <aDsUGGrjbJ_8KyrP@pollux>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sat, 31 May 2025 16:45:30 +0200
+X-Gm-Features: AX0GCFuc_Ey-USita16CQWi2QDpIFG9DVBZbSOSdhPXU6kT0GjHTGnfskNlToTs
+Message-ID: <CANiq72mebLFY7X4mRaN2An1sUAO4DuGko-1JPQ0Rnc7wgzKdug@mail.gmail.com>
+Subject: Re: [PATCH v4 11/20] gpu: nova-core: wait for GFW_BOOT completion
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Lyude Paul <lyude@redhat.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <benno.lossin@proton.me>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Ben Skeggs <bskeggs@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
+ Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,21 +101,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue,  4 Mar 2025 18:34:52 +0100
-Danilo Krummrich <dakr@kernel.org> wrote:
+On Sat, May 31, 2025 at 4:37=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> I agreed to take this code without waiting for those abstractions, but wi=
+th a
+> TODO to fix things up once they land.
 
-> +Delay / Sleep abstractions
-> +--------------------------
-> +
-> +Rust abstractions for the kernel's delay() and sleep() functions.
-> +
-> +There is some ongoing work from FUJITA Tomonori [1], which has not seen any updates
-> +since Oct. 24.
-> +
-> +| Complexity: Beginner
-> +| Link: https://lore.kernel.org/netdev/20241001112512.4861-2-fujita.tomonori@gmail.com/ [1]
+That sounds good, yeah.
 
-I posted v11 last month.
-
-https://lore.kernel.org/netdev/20250220070611.214262-1-fujita.tomonori@gmail.com/
-
+Cheers,
+Miguel
