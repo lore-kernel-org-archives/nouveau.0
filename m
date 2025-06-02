@@ -4,68 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 915CECAC5B8
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19001CCD184
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEFCD10E603;
-	Mon,  6 Oct 2025 20:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0708510E60A;
+	Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XTG1XFqn";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XduM1MIY";
 	dkim-atps=neutral
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
- [209.85.208.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C87510E5DC;
- Tue,  1 Jul 2025 16:47:16 +0000 (UTC)
-Received: by mail-lj1-f170.google.com with SMTP id
- 38308e7fff4ca-32b7123edb9so36217621fa.2; 
- Tue, 01 Jul 2025 09:47:16 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9BD10E528;
+ Mon,  2 Jun 2025 13:55:24 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id
+ 38308e7fff4ca-3105ef2a08dso37294111fa.0; 
+ Mon, 02 Jun 2025 06:55:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751388434; x=1751993234; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1748872523; x=1749477323; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ymyz98G6WAIWhgot7OyS3l+nPaHFTvJsU8EnPPnV3hw=;
- b=XTG1XFqnyoucrDnUgMk4lVoxTdY0Xd56kMMwCE8WHS4yn/hPz4mtNoYlwUQrz2QwPy
- Bqs+PCBUvsmaV2oFGDg6gNc3Hzm/qmedwfsgLdOc3CBrRrT2jzXhHfa0peZoZpFxkRFH
- mUrbZsD5VRH0ZqeR6f8V8nTQQAuIECA363k9BrJeS/JJNGmdt3bK8ftP6hY4HZsqyEbp
- 8kIMIFb6NFwecrACmSJV1+qvLxYKtv6w8TBPshg8X/cWe2hs/GVpNIP/0QT9pgKEDa0K
- +cDPKEw2rp7jcjYrYNex9wh90B5GTokfnKgNWlP+vowYgjurQ8iCvidOHQAbYM2V22Ue
- ML9Q==
+ bh=CE13FvVd/oZWld/RcBibj9PFe0iI8IjGbKlr0iRzhJk=;
+ b=XduM1MIYJn/Y87hzxibrkXZVnJ2HbJ8rRA6HImvh+o0yZoFAv/xRDkCuT4KjkZqPGr
+ /1iNajVHrGGnSf7xmXS1GGetmUMEdxY6R72p36/bp4pQRclLAa8u6XS3slj941I30yUi
+ ePoEnAtN5i3Mio4zC5pS8bGTz4/20ekQe8a2jdaEgok8tpe42X0ZrJHCGnpeR2WDdf/S
+ h0+GlluwMVJtBo1teaUP52pyWP0tW4sPDqdaPoMfl5o89tNew9mdmPviFqKJKbUw+IDZ
+ i+neaVRiHG1BUI8i3YRFAtCjQpErgvN+Pe8KSMMmnq63Ok0fr4GfDuZibpz+rDi6gD6E
+ WKsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751388434; x=1751993234;
+ d=1e100.net; s=20230601; t=1748872523; x=1749477323;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ymyz98G6WAIWhgot7OyS3l+nPaHFTvJsU8EnPPnV3hw=;
- b=OfHfq+MWectev3dgElpIoP5UGFUpUnM1U72HCz9D1eAfm45AhQ6f3jNk8+zG/5EO/s
- 6ixNDHolaJ5PGbxYiOUr3ZY6wjQHnhkyJqUvCHaXA3CL5QiyWi+Ej71qNXASpVXkhRdO
- oDTHhri7yJr4XYYYRh91rzccLDMXwi4ci4J9ifsloOvLVlUeew2CmvOU4u6N+t8ZOQzF
- KqPUUgOU7aPICzA0y5Br0Eq2uZfAelGU8zTukAY0u8hj/kn6SaU9uI+dBlJ9F2zNpZOV
- vLeqN7l5zNjV1XKZp9CwYlbVM1+zU9PYzMg+XtWwctWdd4ai9/dCOdazFxvkA9Pj+4El
- qmXg==
+ bh=CE13FvVd/oZWld/RcBibj9PFe0iI8IjGbKlr0iRzhJk=;
+ b=ZFJXCBJRc58Mbjd+/ZyFwaQiOl4GekOYXP4BEwPTfSWtOB8+fAn+O0zXDhhbWRkiQr
+ /2ZkjlvzQ1b2CnN3HP6mcpVk38QdMmsGf1VgijSj1Lz6QYE7zAbsyz4TUzkp1/6nN7cV
+ lNxzdZtraJR2CV3BtwEXoLtWYF5+UKPkSMzLn7D8Gr/I2Yz7qo/JCQFNzPo0ijKTQL6T
+ QTca5P7c8T/fmV9oAPqckcvBhz8sabw0Wauco/wVEhF7SL6bA7WhIznBUwYk+ZydoYas
+ QjdZcU18tBdV6TCJ8J3RM9nglvKN8xaPE7ufgH7mfJWwWc+TfCP/SNi2LrERq1BIBwdF
+ +Q+A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUIA8LnUrxjJo7OqImLXLk/iaCqi+oYTgkl1njp85naIsy/NlBtD1eMDoWF0FQPIHlETO6qmEMJlDg=@lists.freedesktop.org,
- AJvYcCWmucrk/HcpSU7pnndwuH7yzmPnMuhIOyKgVAE4M8YgCdsKbyKOnhQrhha70HzWHRVbNAw+z3Nx0Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwWt8cgsQ7W87hI9y/YnipVRkPGeVBbVoGLLj8IaAzHpABcmBfq
- jtzTfLvTipwaTWcAS1vkxDxXl1Mc3ByCSZQemgtBiEaHDOgcaTVlUc+6iXhVqTRax2lUXgcsxRy
- vJTtbgTwu6MZFL/mT/XVngHraqiblPqE=
-X-Gm-Gg: ASbGncsgkDKTfdsGOC0DP3wLOs3UUPvJIKXxQ0Z9eMdr7zzjEhYX9JieuirEMF3CTWd
- pqqzv+Zlygjka45XJaGjKPRZPY06j67Of0+uA6ojDsbY9wh3BpH3zonGd3x0oNTwGWWf0p+XoBU
- AIooyEkJgHK9JqAO1rAV5ZOr4G8G0KeLAJYYRcZJuqLlsvgYJFa3IJOpjSxSJ8yjYntWR7ut0fP
- 8clJg==
-X-Google-Smtp-Source: AGHT+IFASHXyh6nKAuBWNflJbwzC1dxAvHKvYXKVWM4leUPhMKpN6FRK5U0/hoCDkOtFemkDVZIaXGSG2DOrBLCq8Rk=
-X-Received: by 2002:a2e:7c08:0:b0:32c:a907:491f with SMTP id
- 38308e7fff4ca-32cdc464463mr36198291fa.15.1751388434129; Tue, 01 Jul 2025
- 09:47:14 -0700 (PDT)
+ AJvYcCV7YrYXlQM/10mILpUviCq3TQAbPE7a7CdKGqtlIDw2eSyzK2U6qdusjK7+Tzdx7ysNSjPCj41JfA==@lists.freedesktop.org,
+ AJvYcCW0dH7jSP0wBDjEL3V+QUFGIMfeiZ54xXP6bDbUWMNrfzTy0FN3aTQ5b8/mbuzHy9cAZONuEUUBd90=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzLmXWLUMrGCy1/IWPuCaDWd8hVmrp6ESABzYw5g6EIVsFfnbTo
+ lsoHsJbq3uXY98t+Wg+EQVcFxaUgAZIYLvGithGuHNImTM7ccOSLoDzozPYVNZPt/vogog02NkV
+ N2SAYA6XBGTcvSQd0tHtnhif/MnOVwsn5k9RTMzV1gg==
+X-Gm-Gg: ASbGncvqPtWPs/Wqyw/V//Amja2FdkN9o0+ACKHKyTUbX49gumgPzI6qyiJEmZwV2v/
+ 3oEVuCg7t+AKmcEYx6WKxDDpNu0IDUIdX4Yh+ixGOWFbi/pXJfrhNmTDQLlc3vXo0uuVNY3oQT9
+ asu33m8O0p9eUj5vRuEu8GkrSmS3C2hedEtA+cCVNZx15426Dh
+X-Google-Smtp-Source: AGHT+IHz2uBVrN38mqcMJz16ScrK52REQ3KL0NzpCYQfCXahCS+RixLkxRyOA9nPkDFUugfUGTPzmT74dbDRz5uF7Uw=
+X-Received: by 2002:a05:651c:2223:b0:306:10d6:28b0 with SMTP id
+ 38308e7fff4ca-32a9e99cea5mr28582111fa.1.1748872522258; Mon, 02 Jun 2025
+ 06:55:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250619-cstr-core-v12-0-80c9c7b45900@gmail.com>
- <aGO7-SQUUgg6kSVU@google.com>
-In-Reply-To: <aGO7-SQUUgg6kSVU@google.com>
+References: <20250530-cstr-core-v11-0-cd9c0cbcb902@gmail.com>
+ <20250530-cstr-core-v11-4-cd9c0cbcb902@gmail.com>
+ <aD1knOuEFxv6VQy1@google.com>
+In-Reply-To: <aD1knOuEFxv6VQy1@google.com>
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Tue, 1 Jul 2025 12:46:37 -0400
-X-Gm-Features: Ac12FXw8AGP83JXgR8yzKwPiapZfBBkrNyDazktnve1kCOVkl79eviuMomA9o84
-Message-ID: <CAJ-ks9kbsTRrRN4yP7GmphozPyZHgbaAGJmLXR42NVgJ1ie_SQ@mail.gmail.com>
-Subject: Re: [PATCH v12 0/5] rust: replace kernel::str::CStr w/ core::ffi::CStr
+Date: Mon, 2 Jun 2025 09:54:46 -0400
+X-Gm-Features: AX0GCFttP_CQMaSyNKDR25_XJh3x3vRlTYDuJ8CXsXgGcEC-sRFuWZHUykb5COc
+Message-ID: <CAJ-ks9mmkpvgbQs+EjPeN5N+TwOHKB2-9NV-FauGnymmxhxUrA@mail.gmail.com>
+Subject: Re: [PATCH v11 4/5] rust: replace `kernel::c_str!` with C-Strings
 To: Alice Ryhl <aliceryhl@google.com>
 Cc: Michal Rostecki <vadorovsky@protonmail.com>,
  Miguel Ojeda <ojeda@kernel.org>, 
@@ -96,20 +96,14 @@ Cc: Michal Rostecki <vadorovsky@protonmail.com>,
  Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>,
  Benno Lossin <lossin@kernel.org>, 
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
- linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-clk@vger.kernel.org
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,37 +118,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jul 1, 2025 at 6:44=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> wr=
+On Mon, Jun 2, 2025 at 4:45=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> wr=
 ote:
 >
-> On Thu, Jun 19, 2025 at 11:06:24AM -0400, Tamir Duberstein wrote:
-> > This picks up from Michal Rostecki's work[0]. Per Michal's guidance I
-> > have omitted Co-authored tags, as the end result is quite different.
+> On Fri, May 30, 2025 at 08:27:45AM -0400, Tamir Duberstein wrote:
+> > C-String literals were added in Rust 1.77. Replace instances of
+> > `kernel::c_str!` with C-String literals where possible and rename
+> > `kernel::c_str!` to `str_to_cstr!` to clarify its intended use.
 > >
-> > Link: https://lore.kernel.org/rust-for-linux/20240819153656.28807-2-vad=
-orovsky@protonmail.com/t/#u [0]
 > > Closes: https://github.com/Rust-for-Linux/linux/issues/1075
-> >
 > > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 >
-> Overall LGTM. Only question is whether we should re-export
-> core::ffi::CStr from kernel::ffi. Reason being that right now we are
-> telling people to never use core::ffi as the integer types are wrong,
-> and I think it would be nice if we can continue to tell people "never
-> use core::ffi".
-
-I agree that'd be nice. There are existing references to items in
-`core::ffi` scattered around (e.g. in rust/kernel/drm/file.rs); it
-would be good to clean all those up together with CStr provided we
-have some ability to lint against new occurrences.
-
-I'll leave this as-is for now since this series has already churned
-quite a lot, and the cleanup can be a reasonable first task for
-someone.
-
+> > -/// Creates a new [`CStr`] from a string literal.
+> > +/// Creates a static C string wrapper at compile time.
 >
-> Either way, for the whole series:
-> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> A C string *wrapper*? What do you mean? I would drop the word "wrapper"
+> here.
 
-Thanks! I'll send the rebase on rc3 momentarily.
-Tamir
+Yeah, I don't remember where this wording came from. I'll change it to
+be mostly the same as it was: "Creates a new [`CStr`] at compile
+time.".
