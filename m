@@ -4,62 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4365DD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50B96D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0E5310EC71;
-	Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0134710EC73;
+	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="l+I7zL3t";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="hvdmvmCC";
 	dkim-atps=neutral
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DF210E4F8;
- Tue, 22 Apr 2025 06:06:58 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0B7310E631;
+ Tue,  3 Jun 2025 13:23:48 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZhWwB01d8z9tPV;
- Tue, 22 Apr 2025 08:06:50 +0200 (CEST)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4bBWcs5tVRz9tKm;
+ Tue,  3 Jun 2025 15:23:41 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1745302010; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1748957021; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=P1jZD+v9jZ5SL+C90xvRLg9FRt965u7OFTZRywGcFbA=;
- b=l+I7zL3twFrFfIGwtd8JTYCXEeKTzfRSEBubgvNdAg6Bva4cfNd4H6/ZaIyJlkC9qKpW5I
- gE1NbYPrcFZ2F6IR/1+j1AloTnKDqW2iiRTEATYejSo15e2jo/AAjAIiRwwdThYIDjWp9b
- QNzpjqTE8LI4lpelOuUsUAPw09eTBn3BaCob2gxgToBaJodznPdP2HJwGulNzWSuVud2jf
- 8SBMP+7uHb5P/UkglxgdD0np2pfg5nO+ghjHOKLSGvdL0lfpvI53DA9nMCM0T+3ywpQb1l
- VMg5e2SkuaOgJo6DyLtgw0uP9jFGDTvUACQDHnyZdMGz2kIw1NM1c/u8T0fkUQ==
-Message-ID: <0bfa746ca37de1813db22e518ffb259648d29e02.camel@mailbox.org>
-Subject: Re: [PATCH 3/5] drm/sched: Warn if pending list is not empty
+ bh=9rC9wfImtJeRRZMvS7a471KH44YhZ50t9581jq7fj9c=;
+ b=hvdmvmCCcNvGJiQxq49aEEttREH4Kcrp00Q7oSW5mNn41hphEgaWVBESxXsuO5aLcOxeI4
+ kBM4mKnPCkCpILWBTpCb6PSo3UGOA+WYMyTD//w0wKhPFbYt1rm2rqPCM7fePX1e77+jeK
+ kv5IJ7Ownc7Dgpvx8uJo+/FcwWZmxQxZ+QK9mNCUhxYGb7VbR2kDeUM77ay0lrytJaqx4R
+ 4SCb4ZpTWKItU4FjMCurdR/mZNHHzUKq2NzhZwWbMNcyepX4SgeUKnkMq9GlypG6hp6kIo
+ B9BjVXFnlWUpYZE2CKHcoYfQpuLKVrbvXTmLo6RyC2AdjTwFneDRnaIzGGX+Ug==
+Message-ID: <8256799772c200103124c0c10490a9c1db04e355.camel@mailbox.org>
+Subject: Re: [RFC PATCH 0/6] drm/sched: Avoid memory leaks by canceling
+ job-by-job
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Danilo Krummrich
- <dakr@kernel.org>
-Cc: phasta@kernel.org, Lyude Paul <lyude@redhat.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Matthew Brost
- <matthew.brost@intel.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  linux-kernel@vger.kernel.org
-Date: Tue, 22 Apr 2025 08:06:45 +0200
-In-Reply-To: <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
-References: <20250407152239.34429-2-phasta@kernel.org>
- <20250407152239.34429-5-phasta@kernel.org>
- <9607e5a54b8c5041dc7fc134425cc36c0c70b5f3.camel@mailbox.org>
- <3ac34c84-fd84-4598-96e1-239418b7109f@igalia.com> <aADv4ivXZoJpEA7k@pollux>
- <83758ca7-8ece-433e-b904-3d21690ead23@igalia.com>
- <aAEUwjzZ9w9xlKRY@cassiopeiae>
- <0e8313dc-b1bb-4ce7-b5b7-b8b3e027adb7@igalia.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Philipp Stanner
+ <phasta@kernel.org>, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
+ <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Pierre-Eric Pelloux-Prayer
+ <pierre-eric.pelloux-prayer@amd.com>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
+Date: Tue, 03 Jun 2025 15:23:36 +0200
+In-Reply-To: <fae980fa-e173-4921-90e2-6a4f6b8833a8@igalia.com>
+References: <20250603093130.100159-2-phasta@kernel.org>
+ <fae980fa-e173-4921-90e2-6a4f6b8833a8@igalia.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 64e533af7fffcac7850
-X-MBO-RS-META: fdf3e1ef6pt6kftcik8dofmitmo8mc8j
+X-MBO-RS-ID: cdf397ce994b2e274e3
+X-MBO-RS-META: oepr7uqp6e6ppxxyqmaoqq5ms8qeqiiz
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,278 +75,99 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-04-17 at 17:08 +0100, Tvrtko Ursulin wrote:
+On Tue, 2025-06-03 at 13:27 +0100, Tvrtko Ursulin wrote:
 >=20
-> On 17/04/2025 15:48, Danilo Krummrich wrote:
-> > On Thu, Apr 17, 2025 at 03:20:44PM +0100, Tvrtko Ursulin wrote:
-> > >=20
-> > > On 17/04/2025 13:11, Danilo Krummrich wrote:
-> > > > On Thu, Apr 17, 2025 at 12:27:29PM +0100, Tvrtko Ursulin wrote:
-> > > > >=20
-> > > > > On 17/04/2025 08:45, Philipp Stanner wrote:
-> > > > > > On Mon, 2025-04-07 at 17:22 +0200, Philipp Stanner wrote:
-> > > > >=20
-> > > > > Problem exactly is that jobs can outlive the entities and the
-> > > > > scheduler,
-> > > > > while some userspace may have a dma fence reference to the
-> > > > > job via sync
-> > > > > file. This new callback would not solve it for xe, but if
-> > > > > everything
-> > > > > required was reference counted it would.
-> > > >=20
-> > > > I think you're mixing up the job and the dma_fence here, if a
-> > > > job outlives the
-> > > > scheduler, it clearly is a bug, always has been.
-> > > >=20
-> > > > AFAIK, Xe reference counts it's driver specific job structures
-> > > > *and* the driver
-> > > > specific scheduler structure, such that drm_sched_fini() won't
-> > > > be called before
-> > > > all jobs have finished.
-> > >=20
-> > > Yes, sorry, dma fence. But it is not enough to postpone
-> > > drm_sched_fini until
-> > > the job is not finished. Problem is exported dma fence holds the
-> > > pointer to
-> > > drm_sched_fence (and so oopses in
-> > > drm_sched_fence_get_timeline_name on
-> > > fence->sched->name) *after* job had finished and driver was free
-> > > to tear
-> > > everything down.
+> On 03/06/2025 10:31, Philipp Stanner wrote:
+> > An alternative version to [1], based on Tvrtko's suggestion from
+> > [2].
 > >=20
-> > Well, that's a bug in drm_sched_fence then and independent from the
-> > other topic.
-> > Once the finished fence in a struct drm_sched_fence has been
-> > signaled it must
-> > live independent of the scheduler.
+> > I tested this for Nouveau. Works.
 > >=20
-> > The lifetime of the drm_sched_fence is entirely independent from
-> > the scheduler
-> > itself, as you correctly point out.
+> > I'm having, however, bigger problems properly porting the unit
+> > tests and
+> > have seen various explosions. In the process I noticed that some
+> > things
+> > in the unit tests aren't right and a bit of a larger rework will be
+> > necessary (for example, the timedout job callback must signal the
+> > timedout fence, remove it from the list and so on).
 >=20
-> Connection (re. independent or not) I made was *if* drm_sched would
-> be=20
-> reference counted, would that satisfy both the requirement to keep=20
-> working drm_sched_fence_get_timeline_name and to allow a different=20
-> flavour of the memory leak fix.
+> General approach I follow when implementing any mock component is to=20
+> implement only as much is needed for a test to pass. Only add more
+> and=20
+> rework when a test/functionality is added which requires it.
 >=20
-> I agree drm_sched_fence_get_timeline_name can also be fixed by
-> removing=20
-> the fence->sched dereference and losing the (pretty) name.
-> Historically=20
-> there has been a lot of trouble with those names so maybe that would
-> be=20
-> acceptable.
+> Specifically for timedout callback signaling I see that I had exactly
+> that added in the patch you linked as [2].
+> =C2=A0 > Anyways. Please comment on the general idea.
 >=20
-> Revoking s_fence->sched on job completion as an alternative does not=20
-> sound feasible.
+> I am obviously okay with it. :) Especially now that you verified it=20
+> works well for nouveau.
 >=20
-> To further complicate matters, I suspect rmmod gpu-sched.ko is also=20
-> something which would break exported fences since that would remove
-> the=20
-> fence ops. But that is solvable by module_get/put().
+> What I am not that ecstatic about is only getting the Suggested-by=20
+> credit in 1/6. Given it is basically my patch with some cosmetic
+> changes=20
+> like the kernel doc and the cancel loop extracted to a helper.
 
-Is it a common kernel policy to be immune against crazy people just
-calling rmmod on central, shared kernel infrastructure?
-
-We cannot protect people from everything, especially from themselves.
+Sign the patch off and I give you the authorship if you want.
 
 >=20
-> > Starting to reference count things to keep the whole scheduler etc.
-> > alive as
-> > long as the drm_sched_fence lives is not the correct solution.
+> > @Tvrtko: As briefly brainstormed about on IRC, if you'd be willing
+> > to
+> > take care of the unit tests patch, I could remove that one (and,
+> > maaaaybe, the warning print patch) from the series and we could
+> > merge
+> > this RFC's successor version %N once it's ready. What do you think?
 >=20
-> To catch up on why if you could dig out the links to past discussions
-> it=20
-> would be helpful.
->=20
-> I repeat how there is a lot of attractiveness to reference counting.=20
-> Already mentioned memory leak, s_fence oops, and also not having to=20
-> clear job->entity could be useful for things like tracking per entity
-> submission stats (imagine CFS like scheduling, generic scheduling DRM
-> cgroup controller). So it would be good for me to hear what pitfalls=20
-> were identified in this space.
-
-Reference counting does _appear_ attractive, but our (mostly internal)
-attempts and discussions revealed that it's not feasable.
-
-There was an RFC by me about it last year, but it was incomplete and
-few people reacted:
-
-https://lore.kernel.org/dri-devel/20240903094531.29893-2-pstanner@redhat.co=
-m/
-
-When you try to implement refcounting, you quickly discover that it's
-not enough if submitted jobs refcount the scheduler.
-
-If the scheduler is refcounted, this means that it can now outlive the
-driver. This means that it can continue calling into the driver with
-run_job(), free_job(), timedout_job() and so on.
-
-Since this would fire 500 million UAFs, you, hence, now would have to
-guard *all* drivers' callbacks in some way against the driver being
-unloaded. You might even end up having to refcount thinks like entire
-modules, depending on the driver.
-
-
-So effectively, with refcounting, you would fix a problem in central
-infrastructure (the scheduler) in all users (the driver) =E2=80=93 therefor=
-e,
-you would not fix the problem at all, but just work around the
-scheduler being broken in the drivers. IOW, everything would be exactly
-as it is now, where everyone works around the problem in their own way.
-Nouveau uses its redundant pending list, Xe refcounts and amdgpu does=E2=80=
-=A6=E2=80=A6
-IDK, things.
-
-
-Another problem is the kernel workflow and kernel politics. The
-solution I propose here allows for phasing the problem out, first in
-Nouveau, then step by step others. It's the only minimalist backward-
-compatible solution I can see.
-
-
-That said, if you have the capacity to look deeper into a refcount
-solution, feel free to go for it. But you'd have to find a way to solve
-it in a centralized manner, otherwise we could just leave everything
-be.
-
-
->=20
-> > > > Multiple solutions have been discussed already, e.g. just wait
-> > > > for the pending
-> > > > list to be empty, reference count the scheduler for every
-> > > > pending job. Those all
-> > > > had significant downsides, which I don't see with this
-> > > > proposal.
-> > > >=20
-> > > > I'm all for better ideas though -- what do you propose?
-> > >=20
-> > > I think we need to brainstorm both issues and see if there is a
-> > > solution
-> > > which solves them both, with bonus points for being elegant.
-> >=20
-> > The problems are not related. As mentioned above, once signaled a
-> > drm_sched_fence must not depend on the scheduler any longer.
-> >=20
-> > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > index 6b72278c4b72..ae3152beca14 100644
-> > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > @@ -1465,6 +1465,10 @@ void drm_sched_fini(struct
-> > > > > > > drm_gpu_scheduler
-> > > > > > > *sched)
-> > > > > > > =C2=A0=C2=A0 =C2=A0 sched->ready =3D false;
-> > > > > > > =C2=A0=C2=A0 =C2=A0 kfree(sched->sched_rq);
-> > > > > > > =C2=A0=C2=A0 =C2=A0 sched->sched_rq =3D NULL;
-> > > > > > > +
-> > > > > > > + if (!list_empty(&sched->pending_list))
-> > > > > > > + dev_err(sched->dev, "%s: Tearing down scheduler
-> > > > > > > while jobs are pending!\n",
-> > > > > > > + __func__);
-> > > > >=20
-> > > > > It isn't fair to add this error since it would out of the
-> > > > > blue start firing
-> > > > > for everyone expect nouveau, no? Regardless if there is a
-> > > > > leak or not.
-> > > >=20
-> > > > I think it is pretty fair to warn when detecting a guaranteed
-> > > > bug, no?
-> > > >=20
-> > > > If drm_sched_fini() is call while jobs are still on the
-> > > > pending_list, they won't
-> > > > ever be freed, because all workqueues are stopped.
-> > >=20
-> > > Is it a guaranteed bug for drivers are aware of the
-> > > drm_sched_fini()
-> > > limitation and are cleaning up upon themselves?
-> >=20
-> > How could a driver clean up on itself (unless the driver holds its
-> > own list of
-> > pending jobs)?
-> >=20
-> > Once a job is in flight (i.e. it's on the pending_list) we must
-> > guarantee that
-> > free_job() is called by the scheduler, which it can't do if we call
-> > drm_sched_fini() before the pending_list is empty.
-> >=20
-> > > In other words if you apply the series up to here would it
-> > > trigger for
-> > > nouveau?
-> >=20
-> > No, because nouveau does something very stupid, i.e. replicate the
-> > pending_list.
->=20
-> Ah okay I see it now, it waits for all jobs to finish before calling=20
-> drm_sched_fini(). For some reason I did not think it was doing that=20
-> given the cover letter starts with how that is a big no-no.
->=20
-> > > Reportedly it triggers for the mock scheduler which also has no
-> > > leak.
-> >=20
-> > That sounds impossible. How do you ensure you do *not* leak memory
-> > when you tear
-> > down the scheduler while it still has pending jobs? Or in other
-> > words, who calls
-> > free_job() if not the scheduler itself?
->=20
-> Well the cover letter says it triggers so it is possible. :)
-
-Where does it say that?
-
-I mean, the warning would trigger if a driver is leaking jobs, which is
-clearly a bug (and since a list is leaked, it might then even be a
-false-negative in kmemleak).
-
-It's actually quite simple:
-   1. jobs are being freed by free_job()
-   2. If you call drm_sched_fini(), the work item for free_job() gets
-      deactivated.
-   3. Depending on the load (race), you leak the jobs.
-
-That's not that much of a problem for hardware schedulers, but firmware
-schedulers who tear down scheduler instances all the time could leak
-quite some amount of memory over time.
-
-I can't see why a warning print would ever be bad there. Even Christian
-wants it.
-
-P.
-
->=20
-> Mock scheduler also tracks the pending jobs itself, but different
-> from=20
-> nouveau it does not wait for jobs to finish and free worker to
-> process=20
-> them all, but having stopped the "hw" backend it cancels them and
-> calls=20
-> the free_job vfunc directly.
->=20
-> Going back to the topic of this series, if we go with a solution
-> along=20
-> the lines of the proposed, I wonder if it would be doable without=20
-> mandating that drivers keep a list parallel to pending_list. Instead=20
-> have a vfunc DRM scheduler would call to cancel job at a time from
-> *its*=20
-> pending list. It would go nicely together with
-> prepare/run/timedout/free.
->=20
-> Would it allow getting rid of the new state machinery and just=20
-> cancelling and freeing in one go directly from drm_sched_fini()?
+> Okay in principle but the first thing I would suggest you could try
+> is=20
+> to take my unit tests adaptations from [2] verbatim. Benefit of
+> keeping=20
+> everything in one series is more confidence we are merging a solid=20
+> thing. But I can take it on myself as a follow up too if you want.
 >=20
 > Regards,
 >=20
 > Tvrtko
 >=20
-> > > Also, I asked in my initial reply if we have a list of which of
-> > > the current
-> > > drivers suffer from memory leaks. Is it all or some etc.
 > >=20
-> > Not all, but quite some I think. The last time I looked (which is
-> > about a year
-> > ago) amdgpu for instance could leak memory when you unbind the
-> > driver while
-> > enough jobs are in flight.
+> > P.
+> >=20
+> > [1]
+> > https://lore.kernel.org/dri-devel/20250522082742.148191-2-phasta@kernel=
+.org/
+> > [2]
+> > https://lore.kernel.org/dri-devel/20250418113211.69956-1-tvrtko.ursulin=
+@igalia.com/
+> >=20
+> > Philipp Stanner (6):
+> > =C2=A0=C2=A0 drm/sched: Avoid memory leaks with cancel_job() callback
+> > =C2=A0=C2=A0 drm/sched/tests: Implement cancel_job()
+> > =C2=A0=C2=A0 drm/sched: Warn if pending list is not empty
+> > =C2=A0=C2=A0 drm/nouveau: Make fence container helper usable driver-wid=
+e
+> > =C2=A0=C2=A0 drm/nouveau: Add new callback for scheduler teardown
+> > =C2=A0=C2=A0 drm/nouveau: Remove waitque for sched teardown
+> >=20
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 35 +++++----
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_fence.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 7 ++
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 35 +++++----
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 |=C2=A0 9 +--
+> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_uvmm.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 8 +--
+> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 | 37 ++++++----
+> > =C2=A0 .../gpu/drm/scheduler/tests/mock_scheduler.c=C2=A0 | 71 +++++++-=
+------
+> > -----
+> > =C2=A0 drivers/gpu/drm/scheduler/tests/sched_tests.h |=C2=A0 4 +-
+> > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 9 +++
+> > =C2=A0 9 files changed, 115 insertions(+), 100 deletions(-)
+> >=20
 >=20
 
