@@ -4,59 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58DE9D5AE41
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3632D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9D710EC77;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 797A910EC80;
 	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="H9kbCebU";
+	dkim=permerror (0-bit key) header.d=nppct.ru header.i=@nppct.ru header.b="emr3/nIj";
 	dkim-atps=neutral
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F012F10E800;
- Wed,  9 Apr 2025 08:03:44 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZXb711qMBz9t4w;
- Wed,  9 Apr 2025 10:03:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1744185821; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=7fqznLAyvHu/jJ9za6hfLAeZqCvQ3xojCZMtgLC3XYw=;
- b=H9kbCebUZR1c7HOrQgYjPIYBVEFAXQSWcq6/p1UyaFsQL5RVW8qDJPZJDp+qC3GjKNVxRt
- DRZL0n/rENniKePXYZaCqEJY0i7wRIVO8nj1NZnDeePrW2Dn3W1dB+9XWKWpB33dMcfYJ9
- J2f7juccWHrQ6rBYVzSeuDhek0t6v0Y1omaNC+VbHOyOLNiRNHXjOlg+v77wj55CLq6kZe
- I8GCkSKnPB7VGieK0t/tUrz6+VwPURjf1eHIX/aqKevwbGEZET2BfNY4v4zU1C5ZKlQMsV
- q1BjHRuzslbwi9G5yJVXKkWQP5uTYc6Ftpwgx9gaAtErlzy1rplwxy1+/krYeg==
-Message-ID: <2486e9eba3806f8e7fc3df724e916929a627fac7.camel@mailbox.org>
-Subject: Re: [PATCH v8 00/10] Improve gpu_scheduler trace events + UAPI
-From: Philipp Stanner <phasta@mailbox.org>
-To: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>, Pierre-Eric
- Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Philipp Stanner <phasta@kernel.org>, Danilo
- Krummrich <dakr@kernel.org>, Matthew Brost <matthew.brost@intel.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, nouveau@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 10:03:34 +0200
-In-Reply-To: <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
-References: <20250320095818.40622-1-pierre-eric.pelloux-prayer@amd.com>
- <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3783110E2E4
+ for <nouveau@lists.freedesktop.org>; Thu,  5 Jun 2025 20:19:56 +0000 (UTC)
+Received: from mail.nppct.ru (localhost [127.0.0.1])
+ by mail.nppct.ru (Postfix) with ESMTP id CABCE1C11F0
+ for <nouveau@lists.freedesktop.org>; Thu,  5 Jun 2025 23:19:49 +0300 (MSK)
+Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
+ reason="pass (just generated,
+ assumed good)" header.d=nppct.ru
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
+ content-transfer-encoding:mime-version:x-mailer:message-id:date
+ :date:subject:subject:to:from:from; s=dkim; t=1749154789; x=
+ 1750018790; bh=o1vWj2peYFzT+9B8W1tqxLwFgYA9lzDCmka4MeMf2gg=; b=e
+ mr3/nIjvbsJKIlluD5A2AXt79HamKalwBQHC4j2cvl/O2lIQGo58K3+ROOxiXWEc
+ /wT6BROuNrM1PiriGehwgjCYwpouiEboydme81nqxbdxJQfB3pRm9BQx9jUQHanB
+ NO0Gl8pPh3T1RkrWBhx8GKhPCwPIk57VLI2JOvfPBI=
+X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
+Received: from mail.nppct.ru ([127.0.0.1])
+ by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
+ with ESMTP id qUeVTJnPgHQa for <nouveau@lists.freedesktop.org>;
+ Thu,  5 Jun 2025 23:19:49 +0300 (MSK)
+Received: from localhost.localdomain (unknown [87.249.24.51])
+ by mail.nppct.ru (Postfix) with ESMTPSA id 5176C1C0D75;
+ Thu,  5 Jun 2025 23:19:43 +0300 (MSK)
+From: Alexey Nepomnyashih <sdl@nppct.ru>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Alexey Nepomnyashih <sdl@nppct.ru>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ lvc-project@linuxtesting.org, stable@vger.kernel.org
+Subject: [PATCH v2 1/2] drm/nouveau/instmem/gk20a: fix overflow in IOVA
+ calculation for iommu_map/unmap
+Date: Thu,  5 Jun 2025 20:19:20 +0000
+Message-ID: <20250605201927.339352-1-sdl@nppct.ru>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MBO-RS-META: ac77wnkq97cnh7ipc437xrje46qmhgfq
-X-MBO-RS-ID: 890d0c8e5ddfbadb243
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,155 +65,45 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2025-04-09 at 09:52 +0200, Pierre-Eric Pelloux-Prayer wrote:
-> Hi,
->=20
-> I've rebased the series on top of drm-next, applied the minor tweaks
-> suggested by Tvrtko on v8 and=20
-> the R-b tags. The result can be found on gitlab.fdo:
->=20
-> https://gitlab.freedesktop.org/pepp/linux/-/commits/improve_gpu_scheduler=
-_trace_v9
->=20
-> I believe it's ready to be merged, unless I've missed something?
+Fix possible overflow in the address expression used as the second
+argument to iommu_map() and iommu_unmap(). Without an explicit cast,
+this expression may overflow when 'r->offset' or 'i' are large. Cast
+the result to unsigned long before shifting to ensure correct IOVA
+computation and prevent unintended wraparound.
 
-Has slipped my radar for a while, sorry.
+Found by Linux Verification Center (linuxtesting.org) with SVACE.
 
-I browsed over the series=20
+Cc: stable@vger.kernel.org # v4.4+
+Signed-off-by: Alexey Nepomnyashih <sdl@nppct.ru>
+---
+ drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Can you pro forma send the v9 (with the scheduler maintainers also in
-the cover letter's CC) with the changelog, please?
-
-Then I'd ACK and someone (probably me?) can take it in.
-
-Thanks
-P.
-
->=20
-> Thanks,
-> Pierre-Eric
->=20
-> Le 20/03/2025 =C3=A0 10:57, Pierre-Eric Pelloux-Prayer a =C3=A9crit=C2=A0=
-:
-> > Hi,
-> >=20
-> > The initial goal of this series was to improve the drm and amdgpu
-> > trace events to be able to expose more of the inner workings of
-> > the scheduler and drivers to developers via tools.
-> >=20
-> > Then, the series evolved to become focused only on gpu_scheduler.
-> > The changes around vblank events will be part of a different
-> > series, as well as the amdgpu ones.
-> >=20
-> > Moreover Sima suggested to make some trace events stable uAPI,
-> > so tools can rely on them long term.
-> >=20
-> > The first patches extend and cleanup the gpu scheduler events,
-> > then add a documentation entry in drm-uapi.rst.
-> >=20
-> > The last 2 patches are new in v8. One is based on a suggestion
-> > from Tvrtko and gets rid of drm_sched_job::id. The other is a
-> > cleanup of amdgpu trace events to use the fence=3D%llu:%llu format.
-> >=20
-> > The drm_sched_job patches don't affect gpuvis which has code to
-> > parse
-> > the gpu_scheduler events but these events are not enabled.
-> >=20
-> > Changes since v7:
-> > * uint64_t -> u64
-> > * reworked dependencies tracing (Tvrtko)
-> > * use common name prefix for all events (Tvrtko)
-> > * dropped drm_sched_job::id (Tvrtko)
-> >=20
-> > Useful links:
-> > - userspace tool using the updated events:
-> > https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
-> > - v7:
-> > https://lists.freedesktop.org/archives/dri-devel/2025-January/488117.ht=
-ml
-> >=20
-> > Pierre-Eric Pelloux-Prayer (10):
-> > =C2=A0=C2=A0 drm/debugfs: output client_id in in drm_clients_info
-> > =C2=A0=C2=A0 drm/sched: store the drm client_id in drm_sched_fence
-> > =C2=A0=C2=A0 drm/sched: add device name to the drm_sched_process_job ev=
-ent
-> > =C2=A0=C2=A0 drm/sched: cleanup gpu_scheduler trace events
-> > =C2=A0=C2=A0 drm/sched: trace dependencies for gpu jobs
-> > =C2=A0=C2=A0 drm/sched: add the drm_client_id to the drm_sched_run/exec=
-_job
-> > events
-> > =C2=A0=C2=A0 drm/sched: cleanup event names
-> > =C2=A0=C2=A0 drm/doc: document some tracepoints as uAPI
-> > =C2=A0=C2=A0 drm: get rid of drm_sched_job::id
-> > =C2=A0=C2=A0 drm/amdgpu: update trace format to match gpu_scheduler_tra=
-ce
-> >=20
-> > =C2=A0 Documentation/gpu/drm-uapi.rst=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 19 ++++
-> > =C2=A0 drivers/accel/amdxdna/aie2_ctx.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_job.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 32 ++----
-> > =C2=A0 drivers/gpu/drm/drm_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 =
-+-
-> > =C2=A0 drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c=C2=A0 |=C2=A0=C2=A0=
- 2 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
-> > =C2=A0 drivers/gpu/drm/imagination/pvr_queue.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
-> > =C2=A0 drivers/gpu/drm/lima/lima_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/msm/msm_gem_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
-> > =C2=A0 drivers/gpu/drm/nouveau/nouveau_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/panfrost/panfrost_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_mmu.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
-> > =C2=A0 drivers/gpu/drm/panthor/panthor_sched.h=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 .../gpu/drm/scheduler/gpu_scheduler_trace.h=C2=A0=C2=A0 | 103
-> > +++++++++++++-----
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_entity.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 16 ++-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_fence.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_internal.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/scheduler/sched_main.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 |=C2=A0 11 +-
-> > =C2=A0 drivers/gpu/drm/v3d/v3d_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> > =C2=A0 drivers/gpu/drm/xe/xe_sched_job.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 3 +-
-> > =C2=A0 include/drm/gpu_scheduler.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 13 ++-
-> > =C2=A0 30 files changed, 186 insertions(+), 96 deletions(-)
-> >=20
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+index 201022ae9214..17a0e1a46211 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
+@@ -334,7 +334,7 @@ gk20a_instobj_dtor_iommu(struct nvkm_memory *memory)
+ 	/* Unmap pages from GPU address space and free them */
+ 	for (i = 0; i < node->base.mn->length; i++) {
+ 		iommu_unmap(imem->domain,
+-			    (r->offset + i) << imem->iommu_pgshift, PAGE_SIZE);
++			    ((unsigned long)r->offset + i) << imem->iommu_pgshift, PAGE_SIZE);
+ 		dma_unmap_page(dev, node->dma_addrs[i], PAGE_SIZE,
+ 			       DMA_BIDIRECTIONAL);
+ 		__free_page(node->pages[i]);
+@@ -472,7 +472,7 @@ gk20a_instobj_ctor_iommu(struct gk20a_instmem *imem, u32 npages, u32 align,
+ 
+ 	/* Map into GPU address space */
+ 	for (i = 0; i < npages; i++) {
+-		u32 offset = (r->offset + i) << imem->iommu_pgshift;
++		unsigned long offset = ((unsigned long)r->offset + i) << imem->iommu_pgshift;
+ 
+ 		ret = iommu_map(imem->domain, offset, node->dma_addrs[i],
+ 				PAGE_SIZE, IOMMU_READ | IOMMU_WRITE,
+-- 
+2.43.0
 
