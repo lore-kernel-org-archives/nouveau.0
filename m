@@ -4,107 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0D51D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EFF9D5B15F
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E33A010E9F2;
-	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1071610EA23;
+	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="YlMBmcrV";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Vi6E0YDd";
 	dkim-atps=neutral
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48FA810E1B7;
- Wed, 18 Jun 2025 17:29:38 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id
- 98e67ed59e1d1-313067339e9so1190702a91.2; 
- Wed, 18 Jun 2025 10:29:38 -0700 (PDT)
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C683810E540;
+ Tue, 10 Jun 2025 12:37:45 +0000 (UTC)
+Received: by mail-pf1-f175.google.com with SMTP id
+ d2e1a72fcca58-747c2cc3419so3785289b3a.2; 
+ Tue, 10 Jun 2025 05:37:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750267778; x=1750872578; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1749559065; x=1750163865; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=QHUg/jv+8yS9h0AdG3R183q7U86xb8yvD43XyhKBDE4=;
- b=YlMBmcrV6CU1EuX2Vnxkx8uDDlTJhsCGSHjuCil+cwMZpOu4duFHLoDNb+uB3omioS
- Tx0JvoEToLQ7x9N+pOpzwF0SWUysoQK/k3VGv5nQP+oSUT2bTT1Z1wAZ5IxfKf07sSJL
- rsrqVBnva4qXr8eU/WlEnyBVnwNm10KiPbzEa5mKV8pcdddejaYYqgB+mj0C9yxcIcGL
- iWD6Y6DsllILGkmu3aab4Z+k8F1gzKlSL/JXsNn7hgZNIrgcuHKkv35QpDJTdz170laK
- rxx1JerFng82apomHc/1VzdtsCsbjqve25UEadQoMzmFPc59Rew01eFhQyOgBzEp3XNO
- nrPw==
+ bh=jRQOPbrVNqSVVdbbGZatVj1/1oRXPCI6nL+WDn+7b74=;
+ b=Vi6E0YDd5/Y6IxBjm34HQCoZGm80yHTiM+gl5x5fdW9UP0nZUydauJhfg6G15PH7GN
+ U7I2Il1b0SQ63trUSHq6u+/keU7d2TSR1WPBcw78UdqCoAGjkvhaTi5z30WrXEeJyXtF
+ amydOAuSa3+W9ikXvloSp3LIOTDwmIJ167pRPD9tcNE85+DrCUmRdozDWiAPNuHBwAKv
+ gcQ9b7v4QCuuMVxxRQ9KqLFoy9MXFao0++XX1bwh3d6rjrRG0cAFUVp/2W3MElgO3WDc
+ Z1gbwwa1hdl7e8ACWUEkO8qWPsxFLXb9DE7v7OcpVrHNZquExvj0EILn0FvTYpgJAvvh
+ XOug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750267778; x=1750872578;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1749559065; x=1750163865;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QHUg/jv+8yS9h0AdG3R183q7U86xb8yvD43XyhKBDE4=;
- b=RNLDbZqgZBlkq4EYwwBqJNecPXhEPFaIffIF23NOTFbdt60ZK8xFzKYyfLIWJwqyV0
- AXhqOVaspZVyQKQS7nhN+quUpJ7w9emr/f9cTaxyaaQ0QQVSuoyrElLfg/dt9ZIKpJW6
- 6wHazn9qtWmb7C9xmOagPJlKtgP+rXFqqkuMKx9a23WrQhZ3HC3u7pquinTpy+pAE6p2
- fBEMIBOuz2eBE5mIm9X0gInKq+6+jubMEkwPQQnKtWXlC6BTkK9CteugMoZLrviGQiJ4
- b71Emla6o0sGPkyb+pE6MQG8HGTJpe7QmUOqpqGWZRbSfqI43OTfXUw0vPrbpHXeorRM
- JTBA==
+ bh=jRQOPbrVNqSVVdbbGZatVj1/1oRXPCI6nL+WDn+7b74=;
+ b=wTvTIoNN5lWep8oaGuR6w5A8T/8a63EjvA86S4NpVPJq9K50GIGBQhwNkfbqtqIIxB
+ rF3JaCX0L1XJvYrlGu7irZ2OkBikobzcT623NJG13A4n5tR5uLQ3800dKULRAI3dt5Ci
+ ITVwb250jX3U/gfEa49GRmB1636xhwD+7S0I0sapZnJaWXKQ4Y4FEjlzKzY/BgC6QbBW
+ E+SvGrevFsJC4GF0jnRvOH5FFglENqhlu3P51sPi2I2OM3fktGCXiyvnoqyhJR732XdR
+ bvCi3HkMxlZNrrxK1Bfq4JbX0GZ4wBJXxMv9dshBzq/9zwRthlKSDgWroKRxYyyf2FU0
+ n1lQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUe5Y8h2spEqwUtaf/JKY5BZB7jrivhA2L6FZuCBtwhGaZWur/t7hiz7D7nmkmJC8KoSC/E+qL/LxQ=@lists.freedesktop.org,
- AJvYcCUsQNYVX+s+tOQLIVVqlCBN6St/KD6Ed1weAVCh17ntztoAECiCtrZe4lJ2RKYrdJtVOgUfYREjrw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyCX5xY+B1/nAZevL36WZTWZvQ70IMVyn2SCjEJSDBRXZxq3bDO
- 47m4i54vQCuk4xHSUysWE84ZKWb++tSS+LXmkrN0vudBfzzLZN0MwvTdg/IYRpyYEBPZGPrnSeP
- y+IG/JTpb6jgSf5jXK3w16BIkTTPesSg=
-X-Gm-Gg: ASbGncuF7ZLgpfHzIlW6pDAahB9HGwrQKjQcJBmMCz3VpzkRIYBo2KUj3PW/KtdrvrQ
- +5l1fP15LbPdiC3JJQik9j/B4M+6Vq3aA4MJB1dDQYnDZ9l/HtnSHnqsi3oBV41QJ1opVAf/Zfc
- UXvVb2jb/vVM+B8ndR2RjR3/3tLp1OcfaOdi5XNLXkBZo=
-X-Google-Smtp-Source: AGHT+IFq9ZRT8EBGthi7dxIDQNclEwdJhDhFsEYu8DFI7x0ubODZrG0p5NckRqPFYz4ild8B+/dW6oREHry5ELX+Kuw=
-X-Received: by 2002:a17:90b:4a07:b0:313:151a:8653 with SMTP id
- 98e67ed59e1d1-3158c004765mr67329a91.8.1750267777769; Wed, 18 Jun 2025
- 10:29:37 -0700 (PDT)
+ AJvYcCWijNjF/Y+NAMSHzYcXS4W+EWNedlyne/J/1XqPD+OxeK1mZjL8sh06FTn02F8AAOypzw3s0jiV2UU=@lists.freedesktop.org,
+ AJvYcCWlfpNSf/BY59MGjk80TxH35HrKzWcPlVC7RQDXd41Pc84d5GjZa14K5EpRD5qGatTlQWDnsFQ6Rw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwNVO3KR5uR/vHY7HIsHE3khPRmUR/4W4kPpulsEEHAuZdoY2Ip
+ p6FmpcOU5xXydEOMrtNqCSnCtsym1KuCfz3YWoEUzUpJvzzKHDoTCEzG
+X-Gm-Gg: ASbGncvJysgrvvZGKP5mGUmxXknvmWIhTvetui5qpguwFFEhfmrCivPm1bzmrzL4XTJ
+ 4vzOPYNPPW2yfCm8GT8d7Gv3vmOkpl1bGsEpCqKNjJBzCGTN5dmGhH8IbDhMwe3r25e7ZG3DtH1
+ xhXvqVM4zbuYy9EUfPEqUtagKPIIn1R1JReR4CovBxRQNGY64OnA/w+mCivzk3VMEHlMa92BrYG
+ CbRDYEZvPVcj/ASHHLyNzW0xXOk2BcI5ExskBdNymyLYGiuf2q+gODtVqzee+qLXl/75tZzLI6c
+ 00QtnTrlrJ/CjvGv1jl6hLfynak610IfUpgsdVCsJZ0dUnP/3YAB5AkuTR+WpA==
+X-Google-Smtp-Source: AGHT+IHMtYtVG5PabZhuHRmGJDtif89AiGbDOj70nrBza0cLJnhQteMI3FHrOV9iM3nIwFTlh0+ugw==
+X-Received: by 2002:a05:6a00:13a4:b0:736:5725:59b4 with SMTP id
+ d2e1a72fcca58-74827e51491mr24120722b3a.3.1749559065038; 
+ Tue, 10 Jun 2025 05:37:45 -0700 (PDT)
+Received: from pop-os.. ([201.49.69.163]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-7482b0e9d36sm7318995b3a.157.2025.06.10.05.37.35
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Jun 2025 05:37:44 -0700 (PDT)
+From: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
+To: miguel.ojeda.sandonis@gmail.com
+Cc: a.hindborg@kernel.org, airlied@gmail.com, alex.gaynor@gmail.com,
+ aliceryhl@google.com, anisse@astier.eu, bjorn3_gh@protonmail.com,
+ boqun.feng@gmail.com, dakr@kernel.org, david.m.ertman@intel.com,
+ dri-devel@lists.freedesktop.org, fujita.tomonori@gmail.com,
+ gary@garyguo.net, gregkh@linuxfoundation.org, igor.korotin.linux@gmail.com,
+ ira.weiny@intel.com, leitao@debian.org, leon@kernel.org,
+ linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, lossin@kernel.org,
+ maarten.lankhorst@linux.intel.com, mcgrof@kernel.org, mripard@kernel.org,
+ nouveau@lists.freedesktop.org, ojeda@kernel.org, rafael@kernel.org,
+ russ.weight@linux.dev, rust-for-linux@vger.kernel.org, simona@ffwll.ch,
+ tamird@gmail.com, tmgross@umich.edu, trintaeoitogc@gmail.com,
+ tzimmermann@suse.de, viresh.kumar@linaro.org, walmeida@microsoft.com
+Subject: Re: [PATCH] rust: module: remove deprecated author key
+Date: Tue, 10 Jun 2025 09:37:31 -0300
+Message-Id: <20250610123731.194853-1-trintaeoitogc@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <CANiq72kORZjTe3tPEBueDi57TGF7KfxgTSw4Tn0DQeK_X5hi5A@mail.gmail.com>
+References: <CANiq72kORZjTe3tPEBueDi57TGF7KfxgTSw4Tn0DQeK_X5hi5A@mail.gmail.com>
 MIME-Version: 1.0
-References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
- <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
-In-Reply-To: <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 18 Jun 2025 19:29:25 +0200
-X-Gm-Features: Ac12FXxIuJv_kMbDdBqAZBwk2iCsUdqf0pxgEqDUQ6dB6Y-mWXL8-29ebiQ2HSg
-Message-ID: <CANiq72mn6fFL86-7XjsovdjQ2ySiNNviP4dvE170FmK_4E19OQ@mail.gmail.com>
-Subject: Re: [PATCH v12 3/6] rust: enable `clippy::as_ptr_cast_mut` lint
-To: Tamir Duberstein <tamird@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
- Greg KH <gregkh@linuxfoundation.org>
-Cc: Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
- Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
- Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Nicolas Schier <nicolas.schier@linux.dev>, 
- Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
- Thomas Gleixner <tglx@linutronix.de>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Benno Lossin <lossin@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
- linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
- linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,13 +99,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Jun 15, 2025 at 10:55=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
-> wrote:
->
->  rust/kernel/devres.rs | 2 +-
+Miguel Ojeda <miguel.ojeda.sandonis@gmail.com> wrotes:
+> On Tue, Jun 10, 2025 at 12:12 PM Benno Lossin <lossin@kernel.org> wrote:
+> >
+> > Hmm, I guess a checkpatch lint fits better then?
+> 
+> Yeah, that would work.
+> 
+> Probably for the C side too -- from a quick grep I don't see it.
+Maybe, after this patch we can make a checkpatch change for check the `authors`
+key (and MODULE_AUTHOR for C side), and throw a WARN if the author is a name
+(not a url, or "rust for linux") and don't have a email address. 
 
-Danilo, Greg: for completeness: if you don't want this, please shout. Thank=
-s!
+Unless you guys tell me otherwise, I guess this is not so priority.
 
-Cheers,
-Miguel
+Thanks,
+Guilherme
+
