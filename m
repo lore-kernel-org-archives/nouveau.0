@@ -4,77 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27CAD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D430D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C147A10EB4F;
-	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 366E910EB5C;
+	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Na/2EA/N";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="E8JD63HS";
 	dkim-atps=neutral
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com
- [209.85.161.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A55110E00B;
- Sun, 27 Jul 2025 09:51:15 +0000 (UTC)
-Received: by mail-oo1-f43.google.com with SMTP id
- 006d021491bc7-610cbca60cdso2096481eaf.0; 
- Sun, 27 Jul 2025 02:51:15 -0700 (PDT)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BDB010E53E;
+ Tue, 10 Jun 2025 12:46:54 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-312a806f002so581667a91.3; 
+ Tue, 10 Jun 2025 05:46:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753609874; x=1754214674; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1749559614; x=1750164414; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=nFeZkLi3dXMjYKmhsyulgqSrNnECKk/svpVxCMAGOH4=;
- b=Na/2EA/NeZg4EylQOPQb+T56v39PI/R0VmA5Zvx7VpgHB2KvPOd706A+MU6iIw2RJN
- KfnpKDb5OKdyUGkx9pO9Vnb/a5FXajwpApeKt0TR+Ge29swFTtKuVpNV7efUkDzYBGJp
- iGRk2o1iarQ5iOA0eH3lVjazqtEvGALFJn/zUQSZv6Sppzi4XrcxyUZw+b679DSGmeXk
- z2FQvZA7Rlz7LHUOEsmOx8+boKqB8Z/b5hKGh76P6eSAHdEWoMU5APbR+bpBwJXJvq+o
- FomX4qJIaj4V3o7tNmzYk1TJsnjhcAe/vcKStkqauzdPk9OzLPlsCCCs+9Gnb8ilNIkF
- N/8Q==
+ bh=Ya7o+Lr6b2111pfm+fOXNxAnjNXhwd42toZrtju/Tv4=;
+ b=E8JD63HSBchcrU5vw0hKIf9x0HKHY6ie7iOEXerZFbsJVlPzl2ww3TfaIRVPuO+Zwc
+ hWSI8aJklbOYXRV9WfLBouNtgm6WaJ8SPZJKFSjFwE+/H8usC7O5ilThieYTmy3nYebN
+ ZS7xE3BhNjcG0SQltumigfTp5kCqXkoS0N4MgE+KMjPq8UFUu/0qpOfM67fANLP0oGcm
+ y4Qnia9PVkaolFga6pkLTjYZ3w0cYFVSwY6ulrhgLjR2jY6ZvHxkqKMbH2nh8hvCI6+c
+ trJjeQ11RgBjkgkJ+f4Tisi0uLfwq3BtXNtiGNp5rK/f1KCkQqifiwwxPsryzrjRxtKB
+ fbNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753609874; x=1754214674;
+ d=1e100.net; s=20230601; t=1749559614; x=1750164414;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=nFeZkLi3dXMjYKmhsyulgqSrNnECKk/svpVxCMAGOH4=;
- b=RXsHH4FVsIynglorQMO/LeBVpGNCtNYazlWnAj6sZ3x5TowjeZyGEmQRI8Zt+m4tKc
- AiWnALaV4juTMj9HYxJyo1NSSguVQsj1W3WUsYUkTHJrARrCvTpHRB3hjtP+AUGGVYqN
- 02YH67PWZI7VhV9Uv1XqmYvEwIBA8XPVPdaP0w/C2ZnP+vnGzFtI4GJ+PMwt4TPecB0N
- MGdzIYzxJbWHY0wUL/pdt+d/bLVe2dlECjm0NQ38MJWoqDZWXNR1/FvTbIIGELt9aXZy
- RXWZf34FNfnxvr4tSr9qQ84uU/d1LRqk4nXX7i7eRtUhfnVe6jHJNSt1DkHkH/r/uzDV
- o2rA==
+ bh=Ya7o+Lr6b2111pfm+fOXNxAnjNXhwd42toZrtju/Tv4=;
+ b=dvjDo2VtLFWeN4mWynb9ESc3RjTltUYBNKffPlH7iog1PrRyXlqxDmUvaSpWJRbSiE
+ D1K0vNu9x9TMgE7DhrdwtneRQo1TGvKktXhOuW8cKeWshlW+2xjYbvFbPr/9mGMiF2wF
+ zUSvRvbs/olDja9KttITqh47I7vZCKNkrfPR90/vLBdrDb02SXnGfEQcmhqg0NpDpjKu
+ rMoIxZVJTWJUloInN//a+dkNErNI+kVlcVFV7cILOIBa+/m/QBnlmUF0iXSE2vDCTB9G
+ xtwBy48SHZkA7eklyx5PQfUFubrp8/yc8kxTCpjgDVTQ6FLa7ROilcg9r5Z3mbL1N8Lu
+ R+Tw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUp2PP8nHINWkRrkXmy0xJCQhmrlA+m5/L1+OlF9LLuGDLv19OirbCCFSI8BRrRHzVUTzW3JDPDdTo=@lists.freedesktop.org,
- AJvYcCWw+M4KPcQ7LRKk+Q+/xelF1EpyzJdL9vKnBLrTcXcC/j3tt6qmznbfziehFqqtWTIlxKpbyZFRAw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZk+4+DzxJetR4FkE9Y9LuRQVrczgKw0XldWF+4cTB6mive4gd
- Ej49UtPQJ8qXZmAY4+Yowe2Ly5eEYXylmavO3f2GVArZTkgnYZD14rPOOXJ4OF7iC01m7OkV0eK
- AgpKbVghmQ0/OVCL+UZ4UuqpFyZFfRE4=
-X-Gm-Gg: ASbGncugKmiQHq+TepJS9Ll6rcDZnhoRc+qLh+FL9Wg867a6uS3ZT2DLf5KH6I6+r2I
- CiyrYETZUEi8I4sU9rcbpS4mC8hcxMDh6A9IWQ8CU6ZMYs0YjpOMIFKFeBynQZM5TjYQXh1dzD5
- d2LPaHdxba+qC4SJEyKTwbXRGkzbCAKHLxr/2uU3BLsgrH9gq6ANWIRzTu6C4NVdOVMuDy720dC
- 8wNlBhNmcPwX1qa5+lLdaPUl+b1bpLyuFbmbWrE
-X-Google-Smtp-Source: AGHT+IFrYgebhq8gmtJdDuLT1R1NJegqag8vHwHBlQ7UiW0xS1gBt/xj3wz+uraz0qf/jzt5q2P6fPA8Y+A+zhmLNyg=
-X-Received: by 2002:a4a:ee0f:0:b0:609:dd17:795 with SMTP id
- 006d021491bc7-6190c9b2767mr4863242eaf.6.1753609874595; Sun, 27 Jul 2025
- 02:51:14 -0700 (PDT)
+ AJvYcCUCXRklSsm+9DABNNfPSBacbubXSmu0PD6pVtfhlNOPheGzBUZfLD3WwG10cfM/eNj3OX/3pchQog8=@lists.freedesktop.org,
+ AJvYcCUfo400s0kpBFKjwXugNnjNQ2NIWUXO4XNOt6e7oveL4fF3JuTBTVDl+zOE36FgnJ/L5NFJsipuOA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxaFkMJhVRuj1GyMujf7vH5dK/wGNpBCKiIVKTztwGVGQIUu0Xl
+ AMLhusnMCBhbCNIa8TsT/CciFhiRdYh0BZcQZyqlbXipQl8vSwaD7FfQu8i1Lhy7QboDTk8ejXx
+ 7nlKh7ZKqyaz03S8jaIiQwU/lyRO4I4Y=
+X-Gm-Gg: ASbGncut4RHn7x7Zj8De4OyFV5MBBtNvmkErFHGCRTtQN255/8KG7edFyxEGa94r4mr
+ 9reTuVGJ82ujjdP4Qx9RX+CooivnXw0dJbRxOAtOonIzKBSzfS6vPuZfI7pOwLSZhcDIRNsdvb2
+ uTBQjrxFnCqltr3txki63wcqTlrbsvl1wjv1U2oYE5yTk=
+X-Google-Smtp-Source: AGHT+IEak5d16e/5FrsMogvb1aEvjHnaJk7Qj3Vrs9GwfeQHFh/sg4iyrbpHnOUv6MegVuwuZCa6n+gnNmqXuYGQFIA=
+X-Received: by 2002:a17:90a:d006:b0:311:e9a6:332e with SMTP id
+ 98e67ed59e1d1-3134ded1839mr9415395a91.0.1749559614021; Tue, 10 Jun 2025
+ 05:46:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250718073633.194032-1-krakow20@gmail.com>
- <DBL6BUAHZ250.3UCFP2OB3UEIY@nvidia.com>
- <ab63103c-3b21-451e-b450-a1755b452d77@kernel.org>
-In-Reply-To: <ab63103c-3b21-451e-b450-a1755b452d77@kernel.org>
-From: Rhys Lloyd <krakow20@gmail.com>
-Date: Sun, 27 Jul 2025 02:51:03 -0700
-X-Gm-Features: Ac12FXz6IRrbu5D8lGdf-x7j5aaSoITICjmtxz8OWjJATTXn2XMK8AX82FcIyc8
-Message-ID: <CAH7AjUzfc3+SFNKWDerOY62M3OU8=wX8Qs=Bj_S-uKo6w0nuYQ@mail.gmail.com>
-Subject: Re: [PATCH] gpu: nova-core: vbios: use offset_of in
- PmuLookupTableHeader::new
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, rust-for-linux@vger.kernel.org,
- airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <CANiq72kORZjTe3tPEBueDi57TGF7KfxgTSw4Tn0DQeK_X5hi5A@mail.gmail.com>
+ <20250610123731.194853-1-trintaeoitogc@gmail.com>
+In-Reply-To: <20250610123731.194853-1-trintaeoitogc@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 10 Jun 2025 14:46:41 +0200
+X-Gm-Features: AX0GCFtd5VuHi7D87lqv4TVaYUAR41PmcpqldSut2APhu3FYkvxSfE5YRo6MsDs
+Message-ID: <CANiq72mtY6rQekToxOSWDMVs+0Sdg0NqvNBJn1zRLTKexSmsbA@mail.gmail.com>
+Subject: Re: [PATCH] rust: module: remove deprecated author key
+To: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
+Cc: a.hindborg@kernel.org, airlied@gmail.com, alex.gaynor@gmail.com, 
+ aliceryhl@google.com, anisse@astier.eu, bjorn3_gh@protonmail.com, 
+ boqun.feng@gmail.com, dakr@kernel.org, david.m.ertman@intel.com, 
+ dri-devel@lists.freedesktop.org, fujita.tomonori@gmail.com, gary@garyguo.net, 
+ gregkh@linuxfoundation.org, igor.korotin.linux@gmail.com, ira.weiny@intel.com, 
+ leitao@debian.org, leon@kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, lossin@kernel.org, 
+ maarten.lankhorst@linux.intel.com, mcgrof@kernel.org, mripard@kernel.org, 
+ nouveau@lists.freedesktop.org, ojeda@kernel.org, rafael@kernel.org, 
+ russ.weight@linux.dev, rust-for-linux@vger.kernel.org, simona@ffwll.ch, 
+ tamird@gmail.com, tmgross@umich.edu, tzimmermann@suse.de, 
+ viresh.kumar@linaro.org, walmeida@microsoft.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,22 +95,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 25, 2025 at 7:04=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
+On Tue, Jun 10, 2025 at 2:37=E2=80=AFPM Guilherme Giacomo Simoes
+<trintaeoitogc@gmail.com> wrote:
 >
-> On 7/25/25 3:35 PM, Alexandre Courbot wrote:
-> > This chunk does not apply - on nova-next PmuLookupTableHeader does not
-> > seem to exist. I think I remember you split PmuLookupTableHeader in
-> > another patch, so can you send all the relevant patches as a series tha=
-t
-> > applies cleanly on top of nova-next?
+> Maybe, after this patch we can make a checkpatch change for check the `au=
+thors`
+> key (and MODULE_AUTHOR for C side), and throw a WARN if the author is a n=
+ame
+> (not a url, or "rust for linux") and don't have a email address.
 >
-> If otherwise the series is ready, please wait for -rc1 to be out, and reb=
-ase on
-> -rc1.
->
-> Thanks,
-> Danilo
+> Unless you guys tell me otherwise, I guess this is not so priority.
 
-Strange that it does not apply.  I'll figure out how to send a patch
-series and resend it without any changes.
+It is not a priority, and even if it were, it would be an independent
+change, i.e. not for this patch series, so no worries :)
+
+Cheers,
+Miguel
