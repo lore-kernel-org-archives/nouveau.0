@@ -4,73 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 617FAD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11531D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5AA10EB00;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 407D910EB03;
 	Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="oMTg1HUK";
-	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="8rhNJnqq";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="fhlXrLBU";
 	dkim-atps=neutral
-Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D74FE10E622;
- Wed, 14 May 2025 12:30:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1747225555;
- bh=l7CVYbiYMp3bpjoLvOLIf89
- 4834vFxO7Y79o9x78pyY=; b=oMTg1HUKKUobVlbG1lxjwnSVhtfqSEmona5UDnIjZyLZ4MADxl
- Iu+V4jDnCCa+oX6zJ5zpHnio52K1/GJjoriWc1Bl19m/F9Op7LPsok/s5OcAIziZgoGoGDpL/Gq
- 3DFUKcpBQniDaFPUFgVDsB0pE/7ZCIlPpHGPKafTS6OCDVZ1KeLhvn1hWVbyKe8ryC8P996eUyS
- yoMVJNdLRG9ONuljR661KK1wpqwL5g4LF6x2NFg3Nf03bcRAc2Li+IyvqhLsZ0rbEuM0lWfTQ18
- jSMTrtwtA/eip8TZHZ1M8LwKajaKqlXm5yI+W8s8V9AFFA3EEtABl6/eWFxNl59TMrw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
- c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1747225555; bh=l7CVYbiYMp3bpjoLvOLIf89
- 4834vFxO7Y79o9x78pyY=; b=8rhNJnqqS9bntJ5mODbeO/T1NcD6UqMJSaRqqa55oYbmm812Ve
- EVdgv1k90iVoDZxU6Dwj9GmsxfIwPu7djNBw==;
-Message-ID: <34321866-6991-4aa0-98e9-6d6b7c37e8e4@damsy.net>
-Date: Wed, 14 May 2025 14:25:54 +0200
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6E8C10E4D9;
+ Tue, 10 Jun 2025 10:10:10 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-313336f8438so861740a91.0; 
+ Tue, 10 Jun 2025 03:10:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1749550210; x=1750155010; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=ZRl5cQXysfFPXL6AFBbaJUkmuUlj4Q8VKoGcUuUjP+k=;
+ b=fhlXrLBU/+ZSBU5H+5M49gjoaphC1jJRPveMXJHSgVV1/B/SoBoc0RMXFXJ5WRifv1
+ 71Z30m0OIfKbMae2Jt+1gCCMmTDy1D7Q6Gnwq9uPUJI0bdotk2KOcW4E2u4V7XsgaD6J
+ lpp+Vn3PmNrF+8a65gN0ZACz16T7sqqafyvoenFhpqSuUzHDB/FkTN+yX3mYvTMu6qmF
+ CVVT7eRJNsmba8HevJvRkxPWtueusPbEQjhAjum7cQI8xW5RCqczTkIGLo+4mTILchWS
+ JYWcfyhdZevYPWhffWCIy1470nYnP2cGgv9+Rw9j9QM9VsQy15MNhF92yH2KrQMcizMM
+ mkIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1749550210; x=1750155010;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=ZRl5cQXysfFPXL6AFBbaJUkmuUlj4Q8VKoGcUuUjP+k=;
+ b=FQlCt4bf2LAJ56iJ+ELkDxmmK/lVCrERFy3tVZnFHklFkll2aTH2JD5WMykTjb+5EK
+ awLoTv+hAx3DCHA24uuAIv4r9KABP8D+K1nhLCMcYo0xTEsyWMiOZFRzAoeVl/2iT+mI
+ ezxyd2zqPwXmPGS0dZ/VqkERgSXQfc00Lba2ZVkiVtzvnVZ/q5DmLQj6CIs4PF+SDNGj
+ 99whIe2cFAqTHZtHjcsr193YwX/QGgQSkRrpwdyX7TBtOGs2PStvyIGl9Qrn8ByeqY0Z
+ 5KBsaVRmyqtQzMgl4QmhYhh28H3GQgva9f1rAOHWem3mw3K3YOEuOxOwklOsyFufBmg9
+ gu8Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUu4vEsluGGIRMIR5jRaGF7vMCG3APqSibWE9CYCDDFeAuYWSdJ9cci81js7NT0mfoUvgQxPmb0jWE=@lists.freedesktop.org,
+ AJvYcCXDOumHl9wu5gukXIbo6lFsqM17dvIL1GG3TxO1wKKwQfkFNn8mK6vL3HTw8T7AKVHFT4h7mYZKyQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxzYHiD4RjUc3rANPA7r9ONrV1+LHShlaGDgIjIiLkgkTmc3m1J
+ kxr4tBcgl1LrJ6Yo8a9O9OkixTOqSS3w/Ix0rJ+mxi2DNCpFBiyb3HpNxNGOgT+bJsrcbwUTDlY
+ d389hxMGgBXluHVwT8Y+1Jf4qTGFH5WU=
+X-Gm-Gg: ASbGncuOTSo5V/tKq0g8k3FOvfKCSVeRUmmUrbmknkO60U61aB7brtkDjWbnVSM6sqj
+ fJv9FiQS0EFRRAxF16U0Xa0Ub9PB9lWXFy8rSo0Dky3cuKXaLRU5fN7BKQ7DqtO0zQaW2LBQdx1
+ JD76ym+L3rsUZtTbSY7i9nlSJeRVC+WtcuknX4/2L5Suw=
+X-Google-Smtp-Source: AGHT+IEQw155gVvnxaNkH8ebHs4zS3ADdbJBWxomsZZRx1+0u1ykLUMJIIrhF3RC4Mie1dvmIeEaYGc3fpHk7OOd6YQ=
+X-Received: by 2002:a17:90b:1dcb:b0:311:c1da:3858 with SMTP id
+ 98e67ed59e1d1-3134debe401mr8335583a91.0.1749550210201; Tue, 10 Jun 2025
+ 03:10:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 00/10] Improve gpu_scheduler trace events + UAPI
-To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Philipp Stanner <phasta@kernel.org>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Felix Kuehling
- <Felix.Kuehling@amd.com>, Frank Binns <frank.binns@imgtec.com>,
- Jonathan Corbet <corbet@lwn.net>, Liviu Dudau <liviu.dudau@arm.com>,
- Lizhi Hou <lizhi.hou@amd.com>, Lucas De Marchi <lucas.demarchi@intel.com>,
- Lucas Stach <l.stach@pengutronix.de>, Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Matt Coster <matt.coster@imgtec.com>, Matthew Brost
- <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Melissa Wen <mwen@igalia.com>, Min Ma <min.ma@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Qiang Yu <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>,
- Rob Herring <robh@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Simona Vetter <simona@ffwll.ch>, Steven Price <steven.price@arm.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- lima@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- nouveau@lists.freedesktop.org
-References: <20250424083834.15518-1-pierre-eric.pelloux-prayer@amd.com>
-Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <20250424083834.15518-1-pierre-eric.pelloux-prayer@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+References: <20250609122200.179307-1-trintaeoitogc@gmail.com>
+ <DAIQ9342ZFYD.3VQVI80A18HKX@kernel.org>
+ <CANiq72kC1j-kprAQ5WU0QVV_zhyKfDPJ_M5E9xZ+8+fxt4R6qQ@mail.gmail.com>
+In-Reply-To: <CANiq72kC1j-kprAQ5WU0QVV_zhyKfDPJ_M5E9xZ+8+fxt4R6qQ@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 10 Jun 2025 12:09:58 +0200
+X-Gm-Features: AX0GCFsHP1AlO74yO415mgHq99AB0fqU564MM_NdfP0z3sz9Mc_AdfxhNQWL9po
+Message-ID: <CANiq72mEfFK-iZ24aX2_UdnvPLXkBLNEFZ9r=y_Mhvu3qHXyuQ@mail.gmail.com>
+Subject: Re: [PATCH] rust: module: remove deprecated author key
+To: Benno Lossin <lossin@kernel.org>
+Cc: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>, rafael@kernel.org,
+ viresh.kumar@linaro.org, 
+ dakr@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, mcgrof@kernel.org, 
+ russ.weight@linux.dev, ojeda@kernel.org, alex.gaynor@gmail.com, 
+ boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
+ leitao@debian.org, gregkh@linuxfoundation.org, david.m.ertman@intel.com, 
+ ira.weiny@intel.com, leon@kernel.org, fujita.tomonori@gmail.com, 
+ tamird@gmail.com, igor.korotin.linux@gmail.com, walmeida@microsoft.com, 
+ anisse@astier.eu, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,95 +97,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Philipp,
+On Tue, Jun 10, 2025 at 12:03=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
+>
+> I even saw a URL...
 
-Did you get a chance to take a look at the latest revision of this series?
+i.e. as the sole thing, not as an addition to a company name:
 
-Thanks,
-Pierre-Eric
+    MODULE_AUTHOR("https://www.comedi.org");
 
-Le 24/04/2025 à 10:38, Pierre-Eric Pelloux-Prayer a écrit :
-> Hi,
-> 
-> The initial goal of this series was to improve the drm and amdgpu
-> trace events to be able to expose more of the inner workings of
-> the scheduler and drivers to developers via tools.
-> 
-> Then, the series evolved to become focused only on gpu_scheduler.
-> The changes around vblank events will be part of a different
-> series, as well as the amdgpu ones.
-> 
-> Moreover Sima suggested to make some trace events stable uAPI,
-> so tools can rely on them long term.
-> 
-> The first patches extend and cleanup the gpu scheduler events,
-> then add a documentation entry in drm-uapi.rst.
-> 
-> The last 2 patches are new in v8. One is based on a suggestion
-> from Tvrtko and gets rid of drm_sched_job::id. The other is a
-> cleanup of amdgpu trace events to use the fence=%llu:%llu format.
-> 
-> The drm_sched_job patches don't affect gpuvis which has code to parse
-> the gpu_scheduler events but these events are not enabled.
-> 
-> Changes since v8:
-> * swapped patches 8 & 9
-> * rebased on drm-next
-> 
-> Changes since v7:
-> * uint64_t -> u64
-> * reworked dependencies tracing (Tvrtko)
-> * use common name prefix for all events (Tvrtko)
-> * dropped drm_sched_job::id (Tvrtko)
-> 
-> Useful links:
-> - userspace tool using the updated events:
-> https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
-> - v8:
-> https://lists.freedesktop.org/archives/dri-devel/2025-March/496781.html
-> 
-> Pierre-Eric Pelloux-Prayer (10):
->    drm/debugfs: output client_id in in drm_clients_info
->    drm/sched: store the drm client_id in drm_sched_fence
->    drm/sched: add device name to the drm_sched_process_job event
->    drm/sched: cleanup gpu_scheduler trace events
->    drm/sched: trace dependencies for gpu jobs
->    drm/sched: add the drm_client_id to the drm_sched_run/exec_job events
->    drm/sched: cleanup event names
->    drm: get rid of drm_sched_job::id
->    drm/doc: document some tracepoints as uAPI
->    drm/amdgpu: update trace format to match gpu_scheduler_trace
-> 
->   Documentation/gpu/drm-uapi.rst                |  19 ++++
->   drivers/accel/amdxdna/aie2_ctx.c              |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |   2 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |   8 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |  32 +++---
->   drivers/gpu/drm/drm_debugfs.c                 |  10 +-
->   drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c  |   2 +-
->   drivers/gpu/drm/imagination/pvr_job.c         |   2 +-
->   drivers/gpu/drm/imagination/pvr_queue.c       |   5 +-
->   drivers/gpu/drm/imagination/pvr_queue.h       |   2 +-
->   drivers/gpu/drm/lima/lima_gem.c               |   2 +-
->   drivers/gpu/drm/lima/lima_sched.c             |   6 +-
->   drivers/gpu/drm/lima/lima_sched.h             |   3 +-
->   drivers/gpu/drm/msm/msm_gem_submit.c          |   8 +-
->   drivers/gpu/drm/nouveau/nouveau_sched.c       |   3 +-
->   drivers/gpu/drm/panfrost/panfrost_drv.c       |   2 +-
->   drivers/gpu/drm/panthor/panthor_drv.c         |   3 +-
->   drivers/gpu/drm/panthor/panthor_mmu.c         |   2 +-
->   drivers/gpu/drm/panthor/panthor_sched.c       |   5 +-
->   drivers/gpu/drm/panthor/panthor_sched.h       |   3 +-
->   .../gpu/drm/scheduler/gpu_scheduler_trace.h   | 100 +++++++++++++-----
->   drivers/gpu/drm/scheduler/sched_entity.c      |  16 ++-
->   drivers/gpu/drm/scheduler/sched_fence.c       |   4 +-
->   drivers/gpu/drm/scheduler/sched_internal.h    |   2 +-
->   drivers/gpu/drm/scheduler/sched_main.c        |  11 +-
->   .../gpu/drm/scheduler/tests/mock_scheduler.c  |   2 +-
->   drivers/gpu/drm/v3d/v3d_submit.c              |   2 +-
->   drivers/gpu/drm/xe/xe_sched_job.c             |   3 +-
->   include/drm/gpu_scheduler.h                   |  13 ++-
->   31 files changed, 184 insertions(+), 97 deletions(-)
-> 
+Perhaps we could have a new key or similar for companies/entities, but
+I am not sure if it is important, and we should probably do it in the
+C side too in that case.
+
+After all, we can get contact details from the Git log, `MAINTAINERS`, etc.
+
+Cheers,
+Miguel
