@@ -4,73 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 307D1C71157
-	for <nouveau@archiver.kernel.org>; Fri, 13 Jun 2025 09:05:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3456FC7114A
+	for <nouveau@archiver.kernel.org>; Fri, 13 Jun 2025 09:05:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B39710E937;
-	Fri, 13 Jun 2025 09:04:56 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="qHLyjdMS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="aiYG4tuL";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="qHLyjdMS";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="aiYG4tuL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8593F10E944;
+	Fri, 13 Jun 2025 09:04:59 +0000 (UTC)
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62F6610E936
- for <nouveau@lists.freedesktop.org>; Fri, 13 Jun 2025 09:04:54 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2934B10E943
+ for <nouveau@lists.freedesktop.org>; Fri, 13 Jun 2025 09:04:58 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 36C2421268;
- Fri, 13 Jun 2025 09:04:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1749805486; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5DQwIAKRIxg3GWTw/C3NgciSzFLmICKXiRkRnCfZnVQ=;
- b=qHLyjdMSFzxUZW3WivSTipg68so3HGMQI4Xpi86nsk87WrZywA0GGL73YCGs8Cz3sAOsJi
- oIwl4dF4NgjZEdMwcypNRZEIf7S9C+r/SWEFSIr/goBGd1/LY7BwltLWJQya8phF1jd7+G
- BVCFKZIdE1Pa++y+jSRVlfQFL09Xju4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1749805486;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5DQwIAKRIxg3GWTw/C3NgciSzFLmICKXiRkRnCfZnVQ=;
- b=aiYG4tuLiNAlNMc5qvpWLt46ZC74YwoN6bC12dtPtvhRTsJr+z2TbxERSDUZugdOAl262t
- mstlptHfl+t++YBg==
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 7746F21286;
+ Fri, 13 Jun 2025 09:04:48 +0000 (UTC)
 Authentication-Results: smtp-out1.suse.de;
 	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1749805486; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5DQwIAKRIxg3GWTw/C3NgciSzFLmICKXiRkRnCfZnVQ=;
- b=qHLyjdMSFzxUZW3WivSTipg68so3HGMQI4Xpi86nsk87WrZywA0GGL73YCGs8Cz3sAOsJi
- oIwl4dF4NgjZEdMwcypNRZEIf7S9C+r/SWEFSIr/goBGd1/LY7BwltLWJQya8phF1jd7+G
- BVCFKZIdE1Pa++y+jSRVlfQFL09Xju4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1749805486;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=5DQwIAKRIxg3GWTw/C3NgciSzFLmICKXiRkRnCfZnVQ=;
- b=aiYG4tuLiNAlNMc5qvpWLt46ZC74YwoN6bC12dtPtvhRTsJr+z2TbxERSDUZugdOAl262t
- mstlptHfl+t++YBg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A5C2B13A9C;
- Fri, 13 Jun 2025 09:04:45 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D5FA3137FE;
+ Fri, 13 Jun 2025 09:04:47 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id kDHvJq3pS2inNAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 13 Jun 2025 09:04:45 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id gHjoMq/pS2inNAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 13 Jun 2025 09:04:47 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: simona@ffwll.ch, airlied@gmail.com, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, geert@linux-m68k.org,
@@ -82,32 +41,26 @@ Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
  linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
  intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v5 15/25] drm/omapdrm: Compute dumb-buffer sizes with
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH v5 18/25] drm/renesas/rz-du: Compute dumb-buffer sizes with
  drm_mode_size_dumb()
-Date: Fri, 13 Jun 2025 11:00:34 +0200
-Message-ID: <20250613090431.127087-16-tzimmermann@suse.de>
+Date: Fri, 13 Jun 2025 11:00:37 +0200
+Message-ID: <20250613090431.127087-19-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.49.0
 In-Reply-To: <20250613090431.127087-1-tzimmermann@suse.de>
 References: <20250613090431.127087-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-5.30 / 50.00]; REPLY(-4.00)[];
- BAYES_HAM(-3.00)[100.00%]; SUSPICIOUS_RECIPS(1.50)[];
- MID_CONTAINS_FROM(1.00)[]; NEURAL_HAM_LONG(-1.00)[-1.000];
- R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-0.999];
- MIME_GOOD(-0.10)[text/plain];
- FREEMAIL_TO(0.00)[ffwll.ch,gmail.com,kernel.org,linux.intel.com,linux-m68k.org,ideasonboard.com];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; RCPT_COUNT_TWELVE(0.00)[21];
- FUZZY_BLOCKED(0.00)[rspamd.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- R_RATELIMIT(0.00)[to_ip_from(RLqirfcw6gnbcr9a9yhi49fhi6)];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,suse.de:email,ideasonboard.com:email];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.00 / 50.00];
+	REPLY(-4.00)[]
+X-Rspamd-Queue-Id: 7746F21286
+X-Rspamd-Pre-Result: action=no action; module=replies;
+ Message is reply to one we originated
+X-Rspamd-Action: no action
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,49 +76,44 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
-buffer size. Align the pitch to a multiple of 8.
+buffer size. Align the pitch according to hardware requirements.
+
+v5:
+- include dumb-buffers header for drm_mode_size_dumb() (kernel test robot)
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- drivers/gpu/drm/omapdrm/omap_gem.c | 15 +++++++--------
- 1 file changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/omapdrm/omap_gem.c b/drivers/gpu/drm/omapdrm/omap_gem.c
-index b9c67e4ca360..b8413a2dcdeb 100644
---- a/drivers/gpu/drm/omapdrm/omap_gem.c
-+++ b/drivers/gpu/drm/omapdrm/omap_gem.c
+diff --git a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
+index 55a97691e9b2..d446229bcfe7 100644
+--- a/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
++++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_du_kms.c
 @@ -11,6 +11,7 @@
- #include <linux/pfn_t.h>
- #include <linux/vmalloc.h>
- 
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_device.h>
 +#include <drm/drm_dumb_buffers.h>
- #include <drm/drm_prime.h>
- #include <drm/drm_vma_manager.h>
- 
-@@ -583,15 +584,13 @@ static int omap_gem_object_mmap(struct drm_gem_object *obj, struct vm_area_struc
- int omap_gem_dumb_create(struct drm_file *file, struct drm_device *dev,
- 		struct drm_mode_create_dumb *args)
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_gem_dma_helper.h>
+ #include <drm/drm_gem_framebuffer_helper.h>
+@@ -181,10 +182,11 @@ const struct rzg2l_du_format_info *rzg2l_du_format_info(u32 fourcc)
+ int rzg2l_du_dumb_create(struct drm_file *file, struct drm_device *dev,
+ 			 struct drm_mode_create_dumb *args)
  {
--	union omap_gem_size gsize;
--
--	args->pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
--
--	args->size = PAGE_ALIGN(args->pitch * args->height);
-+	union omap_gem_size gsize = { };
+-	unsigned int min_pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+-	unsigned int align = 16 * args->bpp / 8;
 +	int ret;
  
--	gsize = (union omap_gem_size){
--		.bytes = args->size,
--	};
-+	ret = drm_mode_size_dumb(dev, args, SZ_8, 0);
+-	args->pitch = roundup(min_pitch, align);
++	ret = drm_mode_size_dumb(dev, args, 16 * args->bpp / 8, 0);
 +	if (ret)
 +		return ret;
-+	gsize.bytes = args->size;
  
- 	return omap_gem_new_handle(dev, file, gsize,
- 			OMAP_BO_SCANOUT | OMAP_BO_WC, &args->handle);
+ 	return drm_gem_dma_dumb_create_internal(file, dev, args);
+ }
 -- 
 2.49.0
 
