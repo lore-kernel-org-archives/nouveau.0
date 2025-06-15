@@ -4,49 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35585D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC439D5B15A
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07F6D10EB3A;
-	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA52010E5E1;
- Tue, 25 Jun 2024 08:18:57 +0000 (UTC)
-Received: from icess-ProLiant-DL380-Gen10.. (unknown [183.174.60.14])
- by APP-01 (Coremail) with SMTP id qwCowAA3PRFlfXpm3tmhDA--.2895S2;
- Tue, 25 Jun 2024 16:18:53 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: kherbst@redhat.com, lyude@redhat.com, dakr@redhat.com, airlied@gmail.com,
- daniel@ffwll.ch, make24@iscas.ac.cn
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH] drm/nouveau/dispnv04: fix null pointer dereference in
- nv17_tv_get_ld_modes
-Date: Tue, 25 Jun 2024 16:18:28 +0800
-Message-Id: <20240625081828.2620794-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E410510EA90;
+	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="nW4Da215";
+	dkim-atps=neutral
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF4110E20A;
+ Sun, 15 Jun 2025 09:37:34 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-31306794b30so586645a91.2; 
+ Sun, 15 Jun 2025 02:37:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1749980254; x=1750585054; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/gjcFnYr1zulmPLSgYp/FlvofVHo2jy2BSHVlmNjNfE=;
+ b=nW4Da2151VAV1cC61mcCNhOz6Ctr9aPjbYYpEgxORSwxPhlV2MeJH/bdujvOycG9FK
+ uqKiXhpeY4Wj+PrdACjg7vLVM9U8Gq7U4wak+f8jeg320Gw8v1wkaUfdysVOeTJ4wloy
+ sQkJq05s5PNuymUJMu8mfWxZIEWyDcXLdi4Ew1XI+4T4T1iffQUkbVxdib4Kcbct/QEd
+ g8OGHceVsn8OwfLQ992/gC7LOoAHh1ogFZTMHFmuASn4+W3S/KwU9wrtn2hHhyhFTYfo
+ H2l2E8PDzimTAx1aRIkNE4WRfG3zdkCDCvZEpS+IdPAQ08529pa4TCy4EfnqTTxV227H
+ 6SVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1749980254; x=1750585054;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/gjcFnYr1zulmPLSgYp/FlvofVHo2jy2BSHVlmNjNfE=;
+ b=ThsqxSFAMrtGLhgeHa1UHnbV5wwZfeGyO/FB82OBxzfMHaVtsOuClPBt5nykz59fdG
+ b0DyoxGQ/TJa7/SW1XsohwPgXqGRP3uWLV2ZZN93IEcQpfKkCGtAuKbSjpeNdTQAfC30
+ 8rY0IzAG3Rq1K4DDd2AI9JCYzG0/OcR14/SnXuuPMQ3L90yO/9THwSG8d62UuhVjArNf
+ xjsg1Ti7XU1iTmit/jS8/h01uu9n+yMkXYrXWrdKFeg/gTaZi0aA/lNZ+8jdcxUJLnOs
+ vxW/bvhOCQKXrCzMNGYgC+1KrS8IQ7VsG6oUBwTU2m93fNseOQ+kZthOSE6FHcozbhZ6
+ Wing==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWwzM2SGTPmZ5+gw+STpVllHl2Z1tcNU9bHole6XqVFra80hxcB5ZjwMC5a19+IQzozE+rScosi6Z0=@lists.freedesktop.org,
+ AJvYcCX6SherITeew+P9C0jcDTOpk+DdKaa+0ZtnjvJyTWgd5luCDQuK7r1qzoWcNKIISTgA7GrT6gFWDg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxecV3eFJ+SzhaUDcnBwTzfHmXFfUJf8fC0rDLeoqrssOAgk13u
+ 6TVVrupSFMyPeI/ch3VOeMu1RX/1pUSj04j25ySqWKWKLlvN83hnDTAPYQyNa6gqtMIKg+i3ecp
+ a7pJOub0yndkRGprtO+BKhSa5KgSymCc=
+X-Gm-Gg: ASbGncv7R9GchnlHXYaxdokwFD/t/zrKJDl9sRFTkhiANHdsajIZ3U04rLQOsD+p5Fk
+ SUlgLSFh98CCOiHuZS4U4WOfbV42U01F1F5/PJgiX24+cGgzaMeQt/nR7Z34PaT+CblXjSAuEC6
+ BzwLGw3cUXz5aub3xNw1+4K8IhqA389W4M03VyxuKSeN35n4N1vJOhmQ==
+X-Google-Smtp-Source: AGHT+IGbIX4ZqW4W6JqEhTUKL7JgH4ax75TOpKeUB9Si29+wvmi0/pBeO4Qe4njiFfgTj8c0Ruhx6A+eKMp32rUHjw8=
+X-Received: by 2002:a17:90b:17c8:b0:30a:80bc:ad4 with SMTP id
+ 98e67ed59e1d1-313f18d8384mr2404966a91.0.1749980253763; Sun, 15 Jun 2025
+ 02:37:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: qwCowAA3PRFlfXpm3tmhDA--.2895S2
-X-Coremail-Antispam: 1UD129KBjvdXoW7Jw1xZFWUur1xuF4UKw1Dtrb_yoWfurgEkr
- 18Zr97Gr1Uuw4vyr4DAw1fZr9Ikw4Uua1IyFn29FyrtasrJrn0qry7tryrX3WUAFy8WFyD
- JanrZwn8KrsrGjkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
- 9fnUUIcSsGvfJTRUUUb3kFF20E14v26r4j6ryUM7CY07I20VC2zVCF04k26cxKx2IYs7xG
- 6r1F6r1fM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8w
- A2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Cr0_
- Gr1UM28EF7xvwVC2z280aVAFwI0_Cr1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVW0oV
- Cq3wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
- 0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUGVWUXwAv7VC2z280aVAFwI0_Jr0_Gr
- 1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IE
- rcIFxwACI402YVCY1x02628vn2kIc2xKxwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7x
- kEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E
- 67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCw
- CI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1x
- MIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIda
- VFxhVjvjDU0xZFpf9x0JUAkucUUUUU=
-X-Originating-IP: [183.174.60.14]
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+References: <20250612-nova-frts-v5-0-14ba7eaf166b@nvidia.com>
+ <20250612-nova-frts-v5-5-14ba7eaf166b@nvidia.com>
+In-Reply-To: <20250612-nova-frts-v5-5-14ba7eaf166b@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sun, 15 Jun 2025 11:37:21 +0200
+X-Gm-Features: AX0GCFsoXlgaGr3xG5wD7wf0x5De99vBBegtuz6QksxqbmtS7108VOxDnXnDgxI
+Message-ID: <CANiq72=3nDR=J2OXu9nWwZW_kcWfZ4KhZ3aS12_dcB=1EP2icQ@mail.gmail.com>
+Subject: Re: [PATCH v5 05/23] rust: num: add the `fls` operation
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Benno Lossin <lossin@kernel.org>, John Hubbard <jhubbard@nvidia.com>,
+ Ben Skeggs <bskeggs@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +97,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-In nv17_tv_get_ld_modes(), the return value of drm_mode_duplicate() is
-assigned to mode, which will lead to a possible NULL pointer dereference
-on failure of drm_mode_duplicate(). Add a check to avoid npd.
+On Thu, Jun 12, 2025 at 4:02=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> +            /// ```
+> +            /// use kernel::num::fls_u32;
+> +            ///
+> +            /// assert_eq!(fls_u32(0x0), 0);
+> +            /// assert_eq!(fls_u32(0x1), 1);
+> +            /// assert_eq!(fls_u32(0x10), 5);
+> +            /// assert_eq!(fls_u32(0xffff), 16);
+> +            /// assert_eq!(fls_u32(0x8000_0000), 32);
+> +            /// ```
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
- drivers/gpu/drm/nouveau/dispnv04/tvnv17.c | 2 ++
- 1 file changed, 2 insertions(+)
+For a future patch series: this could provide examples per type
+(passing them in the `impl_fls!` call).
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-index 670c9739e5e1..4a08e61f3336 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/tvnv17.c
-@@ -209,6 +209,8 @@ static int nv17_tv_get_ld_modes(struct drm_encoder *encoder,
- 		struct drm_display_mode *mode;
- 
- 		mode = drm_mode_duplicate(encoder->dev, tv_mode);
-+		if (!mode)
-+			continue;
- 
- 		mode->clock = tv_norm->tv_enc_mode.vrefresh *
- 			mode->htotal / 1000 *
--- 
-2.25.1
+I can create a good first issue if this lands and it is not somewhere alrea=
+dy.
 
+Cheers,
+Miguel
