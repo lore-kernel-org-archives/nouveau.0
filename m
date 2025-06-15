@@ -4,122 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F6FDCCD184
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF22DCCD18B
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F6F510E61A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D4110E627;
 	Mon,  6 Oct 2025 20:57:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SoawMhH/";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pios/v1R";
 	dkim-atps=neutral
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
- [209.85.219.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 491E210E944
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:50 +0000 (UTC)
-Received: by mail-qv1-f46.google.com with SMTP id
- 6a1803df08f44-78e9f48da30so6745296d6.1
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:50 -0700 (PDT)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F08010E241;
+ Sun, 15 Jun 2025 20:55:18 +0000 (UTC)
+Received: by mail-qv1-f41.google.com with SMTP id
+ 6a1803df08f44-6fb3bba0730so36734476d6.0; 
+ Sun, 15 Jun 2025 13:55:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758808549; x=1759413349; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1750020917; x=1750625717; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=YGNwJdiqffAB8BrNoFOc3im0f57lc7sAudNYea1lra0=;
- b=SoawMhH/FXi+01MQv+smfCqyMiavadsEtRO16DrfOILOwYc60vqeIn4/uxNwMxe+5a
- G5f4LyEJ/DyW8YKY0I5qR4ktvMJR6DXIx98VFWvkRB29LmTZy1sCYu39X6pyn/s8MJoY
- 3LqIODUW938eMj/TJklz9oXLI0RghvHWBwZYqWIlUEfOW7OAv+AefQX/tNwApSxKm8yr
- 5sgVHP17FX4f9vlQlbfb6o2wRb++Fq+S4l+Go2UEfLdO01M1w0WsLWnkSRXOz3SHuj8f
- c9V3PYqm+rPKLPl5qrAmLzMd9i+yTAHz3yYSYhV9Rg5lkMlyQb34/ajXo/W4vXhuihaf
- wohg==
+ :reply-to; bh=BwuzOkwr2WXLbNIqZ4PjxHxYIhjL5EaV2fkU8tqfaYg=;
+ b=Pios/v1RUWcU6dcu+KPWFWwRA05JE1OinUFx929js/9RYKV/sLppOI0r4feNQCM0V9
+ lbkfQZtZAzBlVso/Tcy2VfPxy2Pz6jyBuwU/KiVnAA/l4RizczexzfLfxeXTNZb+EWJV
+ vQ0R4qKxlrnD08tyP/r0X2VHrfcnWxRDJRSHZj0FNPBq/L6gFHkpLVR4lQl7hlUy9TAT
+ eNjeSDs9KZwLMpqSEwI1CqitM8LNpEx4wtTpAZqmL5uHtvQCuvQjYVgZGk1nk2Xjabk4
+ ussPr40/inL9dhkQJmiMImQIHYoYFi7MICZJAZyGFXt5x34OQj/PjyyNR5y85s722kP4
+ WWXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758808549; x=1759413349;
+ d=1e100.net; s=20230601; t=1750020917; x=1750625717;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=YGNwJdiqffAB8BrNoFOc3im0f57lc7sAudNYea1lra0=;
- b=tRfNUe75PZZd5mvstRSlzBewdrTEFE27Qp1KRWhMNfwlIA35jcDl+nQGReIGqdGu9Z
- wjVBeru4DnIOVvMlo1+wl41k2xibXFSvqBZkgnBRubxPmqsHkvD8yIBMlv9g1Njs0sF6
- e3sxcqra4ene1UgYIklpE3rTTlylrsuCJP3CdoBXsP2gblJ19BTvfTrYUYZ/UcX6oEh2
- tcrj0waZpG5jtwv3Wi19NK78LoBk/TOs2QqnF8Z5q/lH3fIpHce8vEvJwnQx7a6aPvE2
- 1Z61lrqiRd/OTkqro839XmYavu7HUgU3PnDA6GiBOIDvDuBNp8V5eiPUrS9tU5TgAR9I
- ZsOw==
+ bh=BwuzOkwr2WXLbNIqZ4PjxHxYIhjL5EaV2fkU8tqfaYg=;
+ b=PYobx3MiZPXWcpbYfb/fw3xumgZNgoTjT+b5FpNhTmKbkKv0Zvi5yA1B4rbYAWGAj1
+ nLzTvJ/GrcmTSeSPVVjMshWwJjnVU04c8nIE1jhQ6VceEE/Xm7bBBSCc1l1CEx/nZA2E
+ 4Y+IO2AesyTSOLNLiPFDKvbuWemS7pOcMi20fe8vrlxoD8nhRmx8cNx0XPVpTxlHGyzX
+ 4Z8J/n+Jc60pUwnKS9/RhoY2ivfg2LH2lkrAExPV6zxw+FMZGIDrtnn/yWOGC+wyN/dP
+ 5gybG/N7J0Yhjp5rcl7G8Z6EGFgM25V4Z+KgVCMHqLEu3YJpjUglJyV0SF4Hjt4105u+
+ NqmA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVPCYIBhrhNVFaALk4VnTng4vXsgwSSrz7mlW80TF2aa2lXquNW4mEAZ7EoSOf+rwyntJx5c40n@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyomUCJ40QSHB5Cnbk4B8tiekMQu2/rXH8PcaaQ+EXkYyri5uKL
- Em7ux3aGyTzJfoLYEjv6jjXdfkjCiVSEdqNgzYrnK8+uSXgbAKiE3Tra
-X-Gm-Gg: ASbGnct+XaAFeiCgsMA/hshWmeYaZV6KkytrulPCXfLMi8qy8RmisMPRjWy1Vc9BrHx
- nl3F/sNKKd9HXw5PZ2Iktm5scIGcFuNjsLD9aOtxcTbPAcf4ulpN5Ajn74fjb1fjJJGRZmz8daE
- LRmra6UXiYhymU7eWH4rj+QLQKR2FBOiGpBb0OSXVl9z7qeYwKRu7lDY5UcsN7utx2CXL3X8rbs
- Q2TFQMlFVagk+9cpNPKeP9CShK8j0GVAomFl05K7+uKA9FVB6O7tLZq34ARVkXsYUCt84PLxIof
- 5jUL/8chdvMSx+cmUfE0Afc4zLnjhcmriGFyd9ZAwKNDANnWjURULqWM398E1n/z6fURCyeTFOj
- i2bjwqs/C9Qmqi5kbyYMTFZCbf4Bhb2vwaIFWTPu/nXCLIa5T8vYgdOygVP0E/7tuHbbpr8vSi2
- or+vb4pnyEwpE9qXuN+NM+p0ko8/+ZmAcSSUEFGeSJZN3FZeqj1+WONsp2Zcd1GEVyOf90
-X-Google-Smtp-Source: AGHT+IHxxrN1qiYt8CkNZDH6mAY2ag9p3EBYWx12nFthYZnZa+rBx1Nas4oNQjITBFEWvlFgd3yNGw==
-X-Received: by 2002:a05:6214:27c3:b0:7f0:e84e:b2b2 with SMTP id
- 6a1803df08f44-7fc451680aemr56106776d6.57.1758808548877; 
- Thu, 25 Sep 2025 06:55:48 -0700 (PDT)
-Received: from 137.1.168.192.in-addr.arpa
- ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
+ AJvYcCUOtxkhq4ITlQjda0nlyvMqFTcLppdQtZ+pFG1I13Lm3IUB2txRXs1Ltu7Lh5La1ZQyVFxa0fEwLg==@lists.freedesktop.org,
+ AJvYcCXeEFWmnW3sQ6zzv1SNZhdW7C5XeziRLFJiXRf/J03ljWo+ik+w2vUC/km05toe7LM+IQr8ZrDixuI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYTbKTO969yqunDbShaJGIQAsbUTCIT1Vlk3xechS5BlDyQjpW
+ p/hOgaNKF+kmABzpIeiVahJc2DTeDvNqSutR3TnXisdzWIbtCTBqlteN
+X-Gm-Gg: ASbGnctSiThLu2MjygalPGhPAU//uuPL9FqYtmtAyoAYgrwVwOEzTlZdcQRoddrubWS
+ o4KTsAEo+s6vUBkWdDxUrHOFRJVkPbtSp60//2Dp76ZAP4HIKATI3ARHaCKJSINlH0qH88k47U1
+ tzZOTkOO9z3leMnEiazHqdfuu4qnuF0P+YL8Ek4hIzfUsSkTHW8sfFPbehdTHwNMIqTacb01QQ8
+ bNY//tu4jxs28pCZE7Ax0lmhl9Q2mTX1HyIbdX2Vt/1O5h1EMdhiJa8zNvU/N80upu+Sd+0pUgj
+ 306SFvYudToM3P0tPJpg9QHzL0OKqrbocuv1Zd/YaPBpYRaq05FbPmfEHC8JG++WeWNLiA==
+X-Google-Smtp-Source: AGHT+IEgmK9+Bj58C8dqWwTYX0gZlBqZMRj5psT70nx4i2bPfqmKaepd9+hxp6sh8BMt38kvfV7yAg==
+X-Received: by 2002:a05:6214:76d:b0:6f8:c53f:48e with SMTP id
+ 6a1803df08f44-6fb459eecb2mr143148166d6.0.1750020917091; 
+ Sun, 15 Jun 2025 13:55:17 -0700 (PDT)
+Received: from tamird-mac.local ([2600:4041:5be7:7c00:b0c6:92db:d807:21a6])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.55.43
+ 6a1803df08f44-6fb35c84148sm43468176d6.109.2025.06.15.13.55.15
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Sep 2025 06:55:48 -0700 (PDT)
+ Sun, 15 Jun 2025 13:55:16 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 25 Sep 2025 09:54:03 -0400
-Subject: [PATCH v2 15/19] rust: seq_file: replace `kernel::c_str!` with
- C-Strings
+Date: Sun, 15 Jun 2025 16:55:07 -0400
+Subject: [PATCH v12 3/6] rust: enable `clippy::as_ptr_cast_mut` lint
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-core-cstr-cstrings-v2-15-78e0aaace1cd@gmail.com>
-References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+In-Reply-To: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+To: Masahiro Yamada <masahiroy@kernel.org>, 
+ Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
  Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, 
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Robin Murphy <robin.murphy@arm.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, 
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>, 
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>, 
  =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ Nicolas Schier <nicolas.schier@linux.dev>
+Cc: linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ Tamir Duberstein <tamird@gmail.com>, Benno Lossin <lossin@kernel.org>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1758808438; l=1328;
- i=tamird@gmail.com; h=from:subject:message-id;
- bh=/zHlMKa0b7Nk9siO6gKcN+x/h82Zk8zkURVvpzNt6AA=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
- MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QAXSvElYTE8YxZCsGrWl/FvFn0PcrKAZK3BdoNzxQTxfQ/m2OpN47pZ17tScZDRCYR8bMK67o/2
- oeQSiKFoeSw0=
-X-Developer-Key: i=tamird@gmail.com; a=openssh;
- fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,40 +125,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-C-String literals were added in Rust 1.77. Replace instances of
-`kernel::c_str!` with C-String literals where possible.
+In Rust 1.66.0, Clippy introduced the `as_ptr_cast_mut` lint [1]:
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Benno Lossin <lossin@kernel.org>
+> Since `as_ptr` takes a `&self`, the pointer won’t have write
+> permissions unless interior mutability is used, making it unlikely
+> that having it as a mutable pointer is correct.
+
+There is only one affected callsite, and the change amounts to replacing
+`as _` with `.cast_mut().cast()`. This doesn't change the semantics, but
+is more descriptive of what's going on.
+
+Apply this change and enable the lint -- no functional change intended.
+
+Link: https://rust-lang.github.io/rust-clippy/master/index.html#as_ptr_cast_mut [1]
+Reviewed-by: Benno Lossin <benno.lossin@proton.me>
+Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/seq_file.rs | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ Makefile              | 1 +
+ rust/kernel/devres.rs | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/rust/kernel/seq_file.rs b/rust/kernel/seq_file.rs
-index 855e533813a6..518265558d66 100644
---- a/rust/kernel/seq_file.rs
-+++ b/rust/kernel/seq_file.rs
-@@ -4,7 +4,7 @@
- //!
- //! C header: [`include/linux/seq_file.h`](srctree/include/linux/seq_file.h)
+diff --git a/Makefile b/Makefile
+index 5eeddfbf5900..bb33023f87c3 100644
+--- a/Makefile
++++ b/Makefile
+@@ -479,6 +479,7 @@ export rust_common_flags := --edition=2021 \
+ 			    -Wrust_2018_idioms \
+ 			    -Wunreachable_pub \
+ 			    -Wclippy::all \
++			    -Wclippy::as_ptr_cast_mut \
+ 			    -Wclippy::ignored_unit_patterns \
+ 			    -Wclippy::mut_mut \
+ 			    -Wclippy::needless_bitwise_bool \
+diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
+index e5475ff62da3..237182446db3 100644
+--- a/rust/kernel/devres.rs
++++ b/rust/kernel/devres.rs
+@@ -140,7 +140,7 @@ fn remove_action(this: &Arc<Self>) {
+             bindings::devm_remove_action_nowarn(
+                 this.dev.as_raw(),
+                 Some(this.callback),
+-                this.as_ptr() as _,
++                this.as_ptr().cast_mut().cast(),
+             )
+         };
  
--use crate::{bindings, c_str, fmt, str::CStrExt as _, types::NotThreadSafe, types::Opaque};
-+use crate::{bindings, fmt, str::CStrExt as _, types::NotThreadSafe, types::Opaque};
- 
- /// A utility for generating the contents of a seq file.
- #[repr(transparent)]
-@@ -36,7 +36,7 @@ pub fn call_printf(&self, args: fmt::Arguments<'_>) {
-         unsafe {
-             bindings::seq_printf(
-                 self.inner.get(),
--                c_str!("%pA").as_char_ptr(),
-+                c"%pA".as_char_ptr(),
-                 core::ptr::from_ref(&args).cast::<crate::ffi::c_void>(),
-             );
-         }
 
 -- 
-2.51.0
+2.49.0
 
