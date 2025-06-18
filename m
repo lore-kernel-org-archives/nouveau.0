@@ -4,63 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39A45D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1FDDD5B160
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97BBA10EA35;
-	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC8410EA46;
+	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="j/4N1Uj1";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MAbH26SI";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB5B10EB01;
- Thu, 22 May 2025 13:44:02 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org
- [IPv6:2001:67c:2050:b231:465::202])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4b38dq2Y6Dz9tm8;
- Thu, 22 May 2025 15:43:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1747921439; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=bIJnvIa/3Jg8aseopOpG6NZGewhauVo4xSa65DTl6Lc=;
- b=j/4N1Uj1pxTvp+9++CpwUW7n6iU3QIss/sZ4y2driv53w6ZAboqFy7Yn8LU0pT+8306Tdn
- E8FcvGFLbqVGO+xe8uPHXCWPgJBK+9ubVj4isn/agviHD2QSCfo7O+j9eEfVpsCjZ9kIzk
- Q4xnIWGnQ1Yc2OTtX0fNw5az4sntOkaXBNPDZZMMUmTncb6xkRQBiw6fZN3rSAJ0DVkMy3
- r5moh98TLUsbWuRQCLidncXcRao4r5gcFwkhzfEsHVcGZR0JG43xF0oYFoloXp9kGHwgw6
- H2tuMB4u4+nZC3AQ5yREkvO/QAGbJBmf/bflePZfEH1pJ8EwRdZbW55vYYUK4A==
-Message-ID: <3dda25c3108747bf1c7ab2974b2429a26f0762d0.camel@mailbox.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
- context
-From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Danilo Krummrich <dakr@kernel.org>
-Cc: Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, 
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Thu, 22 May 2025 15:43:56 +0200
-In-Reply-To: <dcc9f52a-4f46-4f24-bb33-b3af583a1956@amd.com>
-References: <20250522112540.161411-2-phasta@kernel.org>
- <20250522112540.161411-3-phasta@kernel.org>
- <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
- <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
- <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com> <aC8fpEXYWZ9Oy41J@pollux>
- <ebedece4-9758-47e9-b621-37b40e3f0fc3@amd.com>
- <282de2b9251e3a1b793e02ef23675dace248725b.camel@mailbox.org>
- <dcc9f52a-4f46-4f24-bb33-b3af583a1956@amd.com>
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE34A10E90C;
+ Wed, 18 Jun 2025 17:50:20 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-313756c602fso1093016a91.3; 
+ Wed, 18 Jun 2025 10:50:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750269020; x=1750873820; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=y8FicD/fgNk5GmRRD6awNlCWX8z/26EGV8z9+xgODLg=;
+ b=MAbH26SIUbMljNbM1phrDIl5M+EnKnsAsfhseHf+oCmJKj3/JLTGdtDSmnhG1xWcxR
+ vnwLIm5MxV+WXawgz/5/Ne+RZa3waVayN8ivyPYt08vG0ED+WIc0DYoXohAzmoM+ZzWj
+ ku8oiVwAqVFrVoWrhIH+xnH4i+3bRhEMIbHzTL5GfkS3d3Ul9ehI/Tyb3Sxt9PtFXKrk
+ FpbTSRR0mTOHYadKCrQmzNBv2aHbdWAFOsjtV7WpC5NXAem7i5SJhPjvIBYK/MC59CL/
+ 5790kzUhJefviFhJrv6dK3hblOjN2OHFtbglK1uWq822GtgqJHh4GivpkUMZJEYWZk31
+ TQXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750269020; x=1750873820;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=y8FicD/fgNk5GmRRD6awNlCWX8z/26EGV8z9+xgODLg=;
+ b=apKvDTM/t0uG7/uTnUanWSp+/wUtJ6QZJAoam5qYNT6U0nNnoJTYiWS3u9JFUv5IRY
+ 7OKersKlZrDatEIeJQ42JRW9NNcOUu0mnl53GtORm0K3qetqxqzzHbDPReU7gLidcy/x
+ huFeAHVeQM5wQR3GxAYMSpV2LUGa1UbKFkUl/ANZXSS877qclNmoXIVdqUVAjy9E0Urg
+ DpD6oAx8hyeCDdkwNDcFYx3fgf0Lei0w8HcOqnh0ny8Vn7tbKsZMqa/CnBQ3wx1zlc/m
+ O3CKcdY/6anMM3A21/P+bDAS7B2rrh3bFUJ7CTBcTajMwsowN2jnNLMZSMAUdOQRJZ+2
+ OOBQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW+7bUDm0xKyEmGEAjuOfRSKk2WD7UQmv8FbpdGaOjPG4HMeKqv74tLmA1A3xaCmEpIC/e/29sNzFg=@lists.freedesktop.org,
+ AJvYcCXLDDLJ0KE/vbQwFL/2yJYqq3BVZWM4LMjYSyetDUe/TaGKVB+qZ+lXB5Swb/UR6TiP50Tq4lvl2w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz/NETvbA7cl+DlQRwm2yFf2P70uhWjYxopv+AWow3p/j5XVAHU
+ Af1lBexNKqx24Ld/Pxg2E/QELYX9kDTBSBy7br2Hw3/L9I+4ApLwi11UtrG8hnUa5zykNqrLUd9
+ UBmh1MbxstHVxIGhwO0M6LR6T509PK60=
+X-Gm-Gg: ASbGnctuc9q+Cnwn9onaAUPRPrJ5COtjRsVZjSqgmGf9Ady6tovzOtscDTz64Vys27v
+ 2BzH+P+Sx7IQ9qmyYysABmOskFdY6TwAXGFT26S8pZ+R+aM2WNoi4Tx2JfnlF8Pq8aqzAgvlbH3
+ Xs/CvDXRq/XI7SEeRVCono6sbKOIe5633a89zRO2yXoQ8=
+X-Google-Smtp-Source: AGHT+IGwBEuoz7ZkZcRjBpUqCxdbqSbY0pSB/07XdCAmHEONw2uE7rmOXu2mtjhcBLdh+UgbAYF1+iUixf8L1GxnymM=
+X-Received: by 2002:a17:90b:3d82:b0:311:c5d9:2c8b with SMTP id
+ 98e67ed59e1d1-3158bfee2acmr131081a91.5.1750269019586; Wed, 18 Jun 2025
+ 10:50:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
+ <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
+In-Reply-To: <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Jun 2025 19:50:06 +0200
+X-Gm-Features: Ac12FXzgdlmcKkLec41X9ZU6lwhGyCLefBHdsMy9eFFNw8WZHynLVcdkmU58X90
+Message-ID: <CANiq72mOHbxt3xOJw8f=j184TRYs9y3wvcopH-h6P2SLe4jVNQ@mail.gmail.com>
+Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Tamir Duberstein <tamird@gmail.com>, Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-MBO-RS-ID: c2dc99f67bb1c59b743
-X-MBO-RS-META: aew4iha5nipx3gxxwrb9xtkauejjr1xe
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,160 +119,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-05-22 at 15:24 +0200, Christian K=C3=B6nig wrote:
-> On 5/22/25 15:16, Philipp Stanner wrote:
-> > On Thu, 2025-05-22 at 15:09 +0200, Christian K=C3=B6nig wrote:
-> > > On 5/22/25 14:59, Danilo Krummrich wrote:
-> > > > On Thu, May 22, 2025 at 02:34:33PM +0200, Christian K=C3=B6nig
-> > > > wrote:
-> > > > > See all the functions inside include/linux/dma-fence.h can be
-> > > > > used by everybody. It's basically the public interface of the
-> > > > > dma_fence object.
-> > > >=20
-> > > > As you write below, in certain cases it is valid to call this
-> > > > from
-> > > > drivers, so
-> > > > it's not unreasonable to have it as part of the public API.
-> > >=20
-> > > The question is from which drivers?
-> > >=20
-> > > > > So testing if a fence is signaled without calling the
-> > > > > callback is
-> > > > > only allowed by whoever implemented the fence.
-> > > > >=20
-> > > > > In other words nouveau can test nouveau fences, i915 can test
-> > > > > i915 fences, amdgpu can test amdgpu fences etc... But if you
-> > > > > have
-> > > > > the wrapper that makes it officially allowed that nouveau
-> > > > > starts
-> > > > > testing i915 fences and that would be problematic.
-> > > >=20
-> > > > In general, I like the=C2=A0 __dma_fence_is_signaled() helper,
-> > > > because
-> > > > this way we
-> > > > can document in which cases it is allowed to be used, i.e. the
-> > > > ones
-> > > > you descibe
-> > > > above.
-> > > >=20
-> > > > test_bit() can be called by anyone and there is no
-> > > > documentation
-> > > > comment
-> > > > explaining that it is only allowed under certain conditions.
-> > >=20
-> > > That's a rather good argument.
-> > >=20
-> > > > Having the __dma_fence_is_signaled() helper properly documented
-> > > > could get you
-> > > > rid of having to explain in which case the test_bit() dance is
-> > > > allowed to do
-> > > > over and over again. :-)
-> > >=20
-> > > That's an even better argument.=20
-> > >=20
-> > > > I also think the name is good, since the '__' prefix already
-> > > > implies that there
-> > > > are some restrictions on the use of this helper.
-> > >=20
-> > > I'm still hesitating. Adding something to the API always made it
-> > > usable by everybody.
-> > >=20
-> > > Now suddenly saying we add that to the include/linux/dma-fence.h
-> > > header but only certainly code can use it still sounds
-> > > questionable
-> > > to me.
-> >=20
-> > If I understand the current code correctly, the documentation state
-> > and
-> > the question "which driver is allowed to do it?" is the same,
-> > because
-> > the documentation for the signaled callback doesn't specify that:
-> >=20
-> >=20
-> > 	/**
-> > 	 * @signaled:
-> > 	 *
-> > 	 * Peek whether the fence is signaled, as a fastpath
-> > optimization for
-> > 	 * e.g. dma_fence_wait() or dma_fence_add_callback(). Note
-> > that this
-> > 	 * callback does not need to make any guarantees beyond
-> > that a fence
-> > 	 * once indicates as signalled must always return true
-> > from this
-> > 	 * callback. This callback may return false even if the
-> > fence has
-> > 	 * completed already, in this case information hasn't
-> > propogated throug
-> > 	 * the system yet. See also dma_fence_is_signaled().
-> > 	 *
-> > 	 * May set &dma_fence.error if returning true.
-> > 	 *
-> > 	 * This callback is optional.
-> > 	 */
-> > 	bool (*signaled)(struct dma_fence *fence);
-> >=20
-> >=20
-> > "optional". What if I don't ipmlement it? Who should implement it?
-> >=20
-> > If the callback is optional, then dma_fence_is_signaled() is the
-> > same
-> > as __dma_fence_is_signaled().
-> >=20
-> > IOW, it already needs to be better documented who needs to
-> > implement
-> > the callback and who doesn't. If we get clarity on that, we also
-> > get
-> > clarity on who may use __dma_fence_is_signaled().
->=20
-> Well there is no need to implement it, but when it is implemented the
-> caller *must* call it when polling.
+On Wed, Jun 18, 2025 at 7:38=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> Shouldn't this be `c_long`?
 
-I don't understand. Please elaborate on that a bit more. If there's no
-need to implement it, then why can't one have a
-__dma_fence_is_signaled(), which is then identical?
+Yeah, agreed, it is clearer -- I mentioned that for similar ones in a
+previous version.
 
->=20
-> IIRC the background that we didn't allowed this was that we already
-> had the case that users only looked at the signaling bit and then
-> where surprised that it never changed.
-
-Why would anyone expect that a fence gets signaled by calling a
-function with the name "dma_fence_is_signaled()"? :-)
-
-That was my original point, the name is not intuitive at all.
-
-For example, if a driver doesn't implement that callback but signals
-fences in interrupt handlers, and then forgets to (re-)activate the
-interrupt, fences will never get signaled and callers to
-dma_fence_is_signaled() will never read 'true', which isn't surprising.
-
-Again, the point remains the same: the driver must guarantee that
-fences will get signaled. Independently from how consumers of the fence
-check it. Consumers could just stop calling dma_fence_is_signaled()
-after the point in time T alltogether and then the driver would still
-have to signal everything.
-
-
-P.
-
-
-
->=20
-> Regards,
-> Christian.
->=20
-> >=20
-> >=20
-> > P.
-> >=20
-> > >=20
-> > > Regards,
-> > > Christian.
-> >=20
->=20
-
+Cheers,
+Miguel
