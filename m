@@ -4,106 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19001CCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 850D0CCD186
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0708510E60A;
-	Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E918B10E608;
+	Mon,  6 Oct 2025 20:57:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XduM1MIY";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="irZjxVv/";
 	dkim-atps=neutral
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E9BD10E528;
- Mon,  2 Jun 2025 13:55:24 +0000 (UTC)
-Received: by mail-lj1-f181.google.com with SMTP id
- 38308e7fff4ca-3105ef2a08dso37294111fa.0; 
- Mon, 02 Jun 2025 06:55:24 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CFEB10E05F;
+ Wed, 18 Jun 2025 17:56:46 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id
+ 38308e7fff4ca-32addf54a01so75586821fa.3; 
+ Wed, 18 Jun 2025 10:56:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748872523; x=1749477323; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1750269405; x=1750874205; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=CE13FvVd/oZWld/RcBibj9PFe0iI8IjGbKlr0iRzhJk=;
- b=XduM1MIYJn/Y87hzxibrkXZVnJ2HbJ8rRA6HImvh+o0yZoFAv/xRDkCuT4KjkZqPGr
- /1iNajVHrGGnSf7xmXS1GGetmUMEdxY6R72p36/bp4pQRclLAa8u6XS3slj941I30yUi
- ePoEnAtN5i3Mio4zC5pS8bGTz4/20ekQe8a2jdaEgok8tpe42X0ZrJHCGnpeR2WDdf/S
- h0+GlluwMVJtBo1teaUP52pyWP0tW4sPDqdaPoMfl5o89tNew9mdmPviFqKJKbUw+IDZ
- i+neaVRiHG1BUI8i3YRFAtCjQpErgvN+Pe8KSMMmnq63Ok0fr4GfDuZibpz+rDi6gD6E
- WKsA==
+ bh=RFrhjba+jX00ww6cE0VuGNNBUQaISwhdA2R1o+tAwj8=;
+ b=irZjxVv/a2ID6a5h8JsfVg2ZqHiX20uLph5zxWs7x6MdW3JZn0UrwBDY+S5GnlIF8t
+ 4IzFw8hfAPSX9EDRicG2BMQw0pTKjdSgxHN6NjckD7oP5rAngMpe1+ll5gfO8fhdYGv8
+ UizvuooYaofmJhLbJZaHVQhMXZ1bz3tKrcpzOF9IXan1Khy/7Fz7XaetLlhm8xSvrlur
+ 4qQ38MTcsmIjq9v1EuQmp3iRqae0JaEIe+fS0LGA7yHqwHwVriFJyWQXBCRM/jG8OijA
+ 73XQNBixp6I6vxQKcVZ8HsNYqO+TWX8GRJijLeaCD/vB9jD6C5Gkvrk7qIaSBkgPtKed
+ Zlog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748872523; x=1749477323;
+ d=1e100.net; s=20230601; t=1750269405; x=1750874205;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=CE13FvVd/oZWld/RcBibj9PFe0iI8IjGbKlr0iRzhJk=;
- b=ZFJXCBJRc58Mbjd+/ZyFwaQiOl4GekOYXP4BEwPTfSWtOB8+fAn+O0zXDhhbWRkiQr
- /2ZkjlvzQ1b2CnN3HP6mcpVk38QdMmsGf1VgijSj1Lz6QYE7zAbsyz4TUzkp1/6nN7cV
- lNxzdZtraJR2CV3BtwEXoLtWYF5+UKPkSMzLn7D8Gr/I2Yz7qo/JCQFNzPo0ijKTQL6T
- QTca5P7c8T/fmV9oAPqckcvBhz8sabw0Wauco/wVEhF7SL6bA7WhIznBUwYk+ZydoYas
- QjdZcU18tBdV6TCJ8J3RM9nglvKN8xaPE7ufgH7mfJWwWc+TfCP/SNi2LrERq1BIBwdF
- +Q+A==
+ bh=RFrhjba+jX00ww6cE0VuGNNBUQaISwhdA2R1o+tAwj8=;
+ b=o6Ne453yuTrCRuwIShZEJPMuZjYqAAgSg/whEEhu7hDqHuafyA4+EhTFf5Dx4ZEI83
+ 0C6f882H0ECp1qxgQOa6kh7wLfenY7FN0OVsIitZbMvVpVD74GYcUxeOmbDVsCba0uUe
+ /mho3mKtRKy7XSpih9v41A13egiaYY2me3+kp8X8C/bW7xOEvKognw3eafqWRpi+i6S6
+ irmIpCwIN+/qe5f/gJAq33OZDLB9HoiRjmJ2PGTp22PYMm+gEN/3nOt0H0dDmRzRYwPz
+ Ujm1pt6B5HHCHGN/Otsysv6T/RXeyO5TyTcdcSkLEdprYOarjVECZh4uTrhO4YmyquFS
+ XIuA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV7YrYXlQM/10mILpUviCq3TQAbPE7a7CdKGqtlIDw2eSyzK2U6qdusjK7+Tzdx7ysNSjPCj41JfA==@lists.freedesktop.org,
- AJvYcCW0dH7jSP0wBDjEL3V+QUFGIMfeiZ54xXP6bDbUWMNrfzTy0FN3aTQ5b8/mbuzHy9cAZONuEUUBd90=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzLmXWLUMrGCy1/IWPuCaDWd8hVmrp6ESABzYw5g6EIVsFfnbTo
- lsoHsJbq3uXY98t+Wg+EQVcFxaUgAZIYLvGithGuHNImTM7ccOSLoDzozPYVNZPt/vogog02NkV
- N2SAYA6XBGTcvSQd0tHtnhif/MnOVwsn5k9RTMzV1gg==
-X-Gm-Gg: ASbGncvqPtWPs/Wqyw/V//Amja2FdkN9o0+ACKHKyTUbX49gumgPzI6qyiJEmZwV2v/
- 3oEVuCg7t+AKmcEYx6WKxDDpNu0IDUIdX4Yh+ixGOWFbi/pXJfrhNmTDQLlc3vXo0uuVNY3oQT9
- asu33m8O0p9eUj5vRuEu8GkrSmS3C2hedEtA+cCVNZx15426Dh
-X-Google-Smtp-Source: AGHT+IHz2uBVrN38mqcMJz16ScrK52REQ3KL0NzpCYQfCXahCS+RixLkxRyOA9nPkDFUugfUGTPzmT74dbDRz5uF7Uw=
-X-Received: by 2002:a05:651c:2223:b0:306:10d6:28b0 with SMTP id
- 38308e7fff4ca-32a9e99cea5mr28582111fa.1.1748872522258; Mon, 02 Jun 2025
- 06:55:22 -0700 (PDT)
+ AJvYcCUfztxGQBgQl/S665VlU5r5rV5qxPPuZDFICNaubgwefeGqvv6z7u0+m9ynq3YauCEP5hnsbAmmkg==@lists.freedesktop.org,
+ AJvYcCX+rFpGNVPO3U7DQBiA+yzYYvgsa94jH+EIs0waUD0bD/PiHrvJppMg6xg2Rhi5abM+xcrApcHZ5u0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwiKEetwL9OAHG/69jemMi6PVs7wImO0YPAdETUChBRlB6Q1t0F
+ mfhMUS5FxjhHnHNFh511rDQ22cJf8RWp1OsYmxrz88hY6VHXXxrcCXWnpA71k6flV+2y+0i1pFU
+ yOGzUvvDdpUYaDJ8N0aVXKbX5ldt91gQ=
+X-Gm-Gg: ASbGncue1LtHERE44J4nz0O8KhyVo0sP0T5aXAWrqdC4hE447v7pZrTk1JvJ/YeCF+t
+ YQTUo4yCD70ViZ8YJi7H0ggoVT2kCvrlYPYOKZ1aPGqPKNHBEH510H2vAnaPeRiEb+ggjLQXrSL
+ w/qBgHTt837XSCJJx5QrzBuJEmKI+PqD1l3ilRRY1YYPTPWrmbq6CxuDjvMxdup+HV57353Q==
+X-Google-Smtp-Source: AGHT+IFYpQNeIBg62gf2bJKGY02IKzd8mHZl9tpr1i/aaJGRezLkroXz7FNXVmmWP0ibkJJnM2113j3XPbjKe0XRBDs=
+X-Received: by 2002:a2e:a7c1:0:b0:32b:53b1:c86a with SMTP id
+ 38308e7fff4ca-32b53b1ce9fmr41415971fa.24.1750269404558; Wed, 18 Jun 2025
+ 10:56:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250530-cstr-core-v11-0-cd9c0cbcb902@gmail.com>
- <20250530-cstr-core-v11-4-cd9c0cbcb902@gmail.com>
- <aD1knOuEFxv6VQy1@google.com>
-In-Reply-To: <aD1knOuEFxv6VQy1@google.com>
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
+ <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
+ <CANiq72mOHbxt3xOJw8f=j184TRYs9y3wvcopH-h6P2SLe4jVNQ@mail.gmail.com>
+In-Reply-To: <CANiq72mOHbxt3xOJw8f=j184TRYs9y3wvcopH-h6P2SLe4jVNQ@mail.gmail.com>
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 2 Jun 2025 09:54:46 -0400
-X-Gm-Features: AX0GCFttP_CQMaSyNKDR25_XJh3x3vRlTYDuJ8CXsXgGcEC-sRFuWZHUykb5COc
-Message-ID: <CAJ-ks9mmkpvgbQs+EjPeN5N+TwOHKB2-9NV-FauGnymmxhxUrA@mail.gmail.com>
-Subject: Re: [PATCH v11 4/5] rust: replace `kernel::c_str!` with C-Strings
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
+Date: Wed, 18 Jun 2025 13:56:08 -0400
+X-Gm-Features: AX0GCFtQa8QSLL1IyAtkspzHqh-LWDey5MUYh6_rGpgLIHwPpEpm3BqmaQGaU5c
+Message-ID: <CAJ-ks9nnNjBfzCasOtFZGXBj=UKqZxuyh3-Emj3yFrz=9f8tmg@mail.gmail.com>
+Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
  Gary Guo <gary@garyguo.net>,
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
- Rae Moar <rmoar@google.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>,
- Benno Lossin <lossin@kernel.org>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>,
  =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,23 +123,21 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jun 2, 2025 at 4:45=E2=80=AFAM Alice Ryhl <aliceryhl@google.com> wr=
-ote:
+On Wed, Jun 18, 2025 at 1:50=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
 >
-> On Fri, May 30, 2025 at 08:27:45AM -0400, Tamir Duberstein wrote:
-> > C-String literals were added in Rust 1.77. Replace instances of
-> > `kernel::c_str!` with C-String literals where possible and rename
-> > `kernel::c_str!` to `str_to_cstr!` to clarify its intended use.
+> On Wed, Jun 18, 2025 at 7:38=E2=80=AFPM Danilo Krummrich <dakr@kernel.org=
+> wrote:
 > >
-> > Closes: https://github.com/Rust-for-Linux/linux/issues/1075
-> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > Shouldn't this be `c_long`?
 >
-> > -/// Creates a new [`CStr`] from a string literal.
-> > +/// Creates a static C string wrapper at compile time.
->
-> A C string *wrapper*? What do you mean? I would drop the word "wrapper"
-> here.
+> Yeah, agreed, it is clearer -- I mentioned that for similar ones in a
+> previous version.
 
-Yeah, I don't remember where this wording came from. I'll change it to
-be mostly the same as it was: "Creates a new [`CStr`] at compile
-time.".
++1
+
+Miguel, would you mind taking care of this on apply? Quite a big
+series to send again.
+
+Cheers.
+Tamir
