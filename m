@@ -4,68 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7DCFD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 783E8D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35EB010EAB7;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8B2F10EB51;
+	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=asahilina.net header.i=@asahilina.net header.b="Ji5IC4Py";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZBEqLe7";
 	dkim-atps=neutral
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1989210E28A;
- Sun,  2 Feb 2025 13:52:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: sendonly@marcansoft.com)
- by mail.marcansoft.com (Postfix) with ESMTPSA id 5B93B4269B;
- Sun,  2 Feb 2025 13:45:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
- s=default; t=1738503910;
- bh=3AvMwJ2jULJvu6H8cVIc1G7+NuSo81Y/MeyNFbPbV8I=;
- h=From:Subject:Date:To:Cc;
- b=Ji5IC4PydnxsZxDxaqzMBdWkRSyC74+bIxQs1UCGEKyTynR95nD7ygDHzTYpmsCBr
- jU51iUNuu3VzDWU+uLunEBdeXUlGs/20+/BaR96jKexDIhEO2WnfVB52HDbOKcOQqM
- MZXy687jmGWPiW+jrxj5f/tmnvbNsHiCo1J9uXic8mtMqao5kzj8lGogI7vqunzL+U
- lMMYpL3CB5y2t2eyegRjnOKZ+OSqA+7sw6s8oDBfXUwAHnJKJ6wOU24QP6oDAvJtd1
- bFASQDpb9uhDzNVc5nBzGsqLknGti8rQARaozoodEiZoVMnRzOB7AgW8ZrprbTRMv1
- qfOJcwaPLJnUg==
-From: Asahi Lina <lina@asahilina.net>
-Subject: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
-Date: Sun, 02 Feb 2025 22:34:49 +0900
-Message-Id: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD1C810E8E9;
+ Wed, 18 Jun 2025 17:58:47 +0000 (UTC)
+Received: by mail-pj1-f53.google.com with SMTP id
+ 98e67ed59e1d1-313dc7be67aso961997a91.0; 
+ Wed, 18 Jun 2025 10:58:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750269527; x=1750874327; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FkPigFeNGfIgRpgDFtGW/mxVfhQYOSm7TXujD5qRUiQ=;
+ b=IZBEqLe7x9/4CIdTXk5OpXfiWnsjTzavuw/U/GRPQBeA3toVRHYte9hYm0RUHLbNP/
+ n7WzcWYefnBzcEbs3hZUoKFWk+aVGjIlsxVofChcD8QlOBokENaArTRc+8uI8Jaeg1ab
+ uAJaF3JWqcGq4ed+TrlYOA2ZCdfyUAWvs+n0cTFfVqA+X1twdqzo6O4aCNnb5eYxgjaN
+ hdCHZ1X+/PaN0ihFNDhThqyJzqayTYLNVyLZVcqv9BK6BIQ48zMmqsnNVP3C0x17qVRO
+ zE/qaYfgO0tbme9AP2/e58XZ72i3MoR2bt2i5klkDKoAE0qzN3bkLFrIs/3S0NZdRSlQ
+ OZsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750269527; x=1750874327;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=FkPigFeNGfIgRpgDFtGW/mxVfhQYOSm7TXujD5qRUiQ=;
+ b=QqbBSAn2gSTnjilBMnBcdlUiqKnBdfPTLtoeHbtquUL2085PYS10NdmC5hhfbAbcxU
+ 2ZJpIp3gnoWB0ui27x7yAAKBkJVhzVDuxEnrhLW8MmAi6FJhxc2grwgQUcdzvH3P5733
+ kcFMDZ7he0Xqr03nYVoo53ZN9qS/dlYaxLyZISvyOmkCO8LvTgMPKKgQSIngKMf/2nH/
+ Flf68yq8H0Nm5VANtOxH273Iz+W95Kmb9inFME/DnQycYdWvcV3tS/w3SubfBGAVPltu
+ AFU7PSRy+FaChYz9G88gvplxcnZh2hdGNi6TsBekl7WE2iLV/q2xYlqCBaLNZArgTa+5
+ sL1A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUmGIdD2IQ+qV+1FC1SH481G/yFPI5Iwr2fn6lP92LHbUQsL/i4hE4xd+BrEwoPtOBJCxpbzjY5aQ==@lists.freedesktop.org,
+ AJvYcCWAApd0sRPsENoJU2A3Ww2pxG43A89RumYdU9WZJ38kmjCTpzi/0a+xnbc0a2xmVQDYtJBTyRD83qs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzi+hgXvuvUwhhj28YUA4vQtUiA3iZj35415+8W8UHePcwiEEfh
+ 1ndm6GuYCq62CGUfoHUSZwMo/gfdl4ZZKZJKAQH2kcpEWbTyxo9MwSYnH1IfsNbsCNrCFORNrKo
+ yibkScxlR5iYNvTwGMGMpSYZweUh4X1U=
+X-Gm-Gg: ASbGncvyn1cQzrLMxd3Nr4C6IhkEApVbLhUbbOPJaFOw/bslnFdMJw9FYjdNgJOqH/p
+ HkNH+mW14Sl1SFmFaH+o9wlq4LlVxsxbjdf0VmnMguHy+GoLqKLHPENJtZA1B/eKFKx9wCsV62L
+ RqMx5LXfsKxZARPphxEad9j9+sFRhsR5iahtuch6W3Mp0=
+X-Google-Smtp-Source: AGHT+IHQA2vB+4lILhLPisOadhxH9fnkiGb8fP5PoJh3YCmrD5jDUJpuN04m9Eq8KLRXTUak2OObg3c6xBn/ciPLwLY=
+X-Received: by 2002:a17:90b:2889:b0:312:db8:dbd3 with SMTP id
+ 98e67ed59e1d1-3158bfeae60mr147244a91.6.1750269527292; Wed, 18 Jun 2025
+ 10:58:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHl0n2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDIKGbXlBalqtbnJmXnpOqW5AIVGBkamxsYpZobmJmbq4E1FdQlJqWWQE
- 2Mzq2thYAixoWp2MAAAA=
-X-Change-ID: 20250202-gpuvm-single-page-253346a74677
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738503908; l=2980;
- i=lina@asahilina.net; s=20240902; h=from:subject:message-id;
- bh=3AvMwJ2jULJvu6H8cVIc1G7+NuSo81Y/MeyNFbPbV8I=;
- b=N+BAOegpxo9UAn5W5vwEtkBj+YvWzILm1x1cmu8zmxtnc3lvtyTW+g9+kRg303d2e7RY12OKB
- fJ7OLEyFGHQDqA/Bf1+k/DzKPmhK2sTSI5HbJZj+/gUYsnzLVK2HZtn
-X-Developer-Key: i=lina@asahilina.net; a=ed25519;
- pk=tpv7cWfUnHNw5jwf6h4t0gGgglt3/xcwlfs0+A/uUu8=
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
+ <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
+ <CANiq72mOHbxt3xOJw8f=j184TRYs9y3wvcopH-h6P2SLe4jVNQ@mail.gmail.com>
+ <CAJ-ks9nnNjBfzCasOtFZGXBj=UKqZxuyh3-Emj3yFrz=9f8tmg@mail.gmail.com>
+In-Reply-To: <CAJ-ks9nnNjBfzCasOtFZGXBj=UKqZxuyh3-Emj3yFrz=9f8tmg@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Jun 2025 19:58:35 +0200
+X-Gm-Features: Ac12FXyGUkldbEIksi1ogTddUr_YiD6acvLXBSTJ1-Ey0i-LXdAiD6xde1bhgwA
+Message-ID: <CANiq72=9VyakSh_bXJjPPeXJP80OtB7iqKBM-p3bEMX3TYF5WQ@mail.gmail.com>
+Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
+ Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,68 +124,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Some hardware requires dummy page mappings to efficiently implement
-Vulkan sparse features. These mappings consist of the same physical
-memory page, repeated for a large range of address space (e.g. 16GiB).
+On Wed, Jun 18, 2025 at 7:56=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
+>
+> Miguel, would you mind taking care of this on apply? Quite a big
+> series to send again.
 
-Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
-ranges to correspond 1:1 to virtual memory ranges that are mapped, and
-does math on the BO offset accordingly. To make single page mappings
-work, we need a way to turn off that math, keeping the BO offset always
-constant and pointing to the same page (typically BO offset 0).
-
-To make this work, we need to handle all the corner cases when these
-mappings intersect with regular mappings. The rules are simply to never
-mix or merge a "regular" mapping with a single page mapping.
-
-drm_gpuvm has support for a flags field in drm_gpuva objects. This is
-normally managed by drivers directly. We can introduce a
-DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
-sm_map and friends need to know ahead of time whether the new mapping is
-a single page mapping or not. Therefore, we need to add an argument to
-these functions so drivers can provide the flags to be filled into
-drm_gpuva.flags.
-
-These changes should not affect any existing drivers that use drm_gpuvm
-other than the API change:
-
-- imagination: Does not use flags at all
-- nouveau: Only uses drm_gpuva_invalidate(), which is only called on
-  existing drm_gpuva objects (after the map steps)
-- panthor: Does not use flags at all
-- xe: Does not use drm_gpuva_init_from_op() or
-  drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
-flags field of the gpuva object is managed by the driver only, so these
-changes cannot clobber it.
-
-Note that the way this is implemented, drm_gpuvm does not need to know
-the GPU page size. It only has to never do math on the BO offset to meet
-the requirements.
-
-I suspect that after this change there could be some cleanup possible in
-the xe driver (which right now passes flags around in various
-driver-specific ways from the map step through to drm_gpuva objects),
-but I'll leave that to the Xe folks.
-
-Signed-off-by: Asahi Lina <lina@asahilina.net>
----
-Asahi Lina (4):
-      drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
-      drm/gpuvm: Plumb through flags into drm_gpuva_op_map
-      drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
-      drm/gpuvm: Plumb through flags into drm_gpuva_init
-
- drivers/gpu/drm/drm_gpuvm.c            | 72 ++++++++++++++++++++++++++--------
- drivers/gpu/drm/imagination/pvr_vm.c   |  3 +-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 +-
- drivers/gpu/drm/panthor/panthor_mmu.c  |  3 +-
- drivers/gpu/drm/xe/xe_vm.c             |  3 +-
- include/drm/drm_gpuvm.h                | 26 +++++++++---
- 6 files changed, 84 insertions(+), 26 deletions(-)
----
-base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
-change-id: 20250202-gpuvm-single-page-253346a74677
+Yeah, of course.
 
 Cheers,
-~~ Lina
-
+Miguel
