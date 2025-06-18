@@ -4,99 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB57D5B15A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0D51D5B15B
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 006A310EA20;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E33A010E9F2;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="WLOQONYO";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="YlMBmcrV";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A85110E52F
- for <nouveau@lists.freedesktop.org>; Tue, 30 Jul 2024 14:44:27 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46U94WDv031483;
- Tue, 30 Jul 2024 14:43:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- MasjXBbdtti/tUvRQO3a+/9TKxAw1hY5TGiQuO0YhoY=; b=WLOQONYOiNCH48Np
- ju1A//moaWTI9oYA3FYloq4jY5lveT5/75u0BW5rhe4BXRLtClm3CGeHFfLgUVSd
- 4dMe+QSiVx2jQIZDxGbt8QweYYISgaciACGqgKW16d+X/vbh/6j6G4cLCQZjOTy/
- R5r/qD5J3tbUn5hy/UtMZhT7KVD8FUXkwKxNWTkysDyp/mtQINI/JWzmDq8+Yfh6
- Azg/qCtaY9xBetMKw1EvzXjvPG1Vfw5CGGkCEX6SunBIFoTsO3B+AGP187faviPq
- t3zzymhj6wNet3e+YW0soVvOL1f0FSiAr4vvon/iWMayKjJ6mUlfV2Mz/Yi9gTc9
- 8xocvQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40mqw77tnv-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 30 Jul 2024 14:43:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 46UEhMXU024190
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 30 Jul 2024 14:43:23 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Jul
- 2024 07:43:23 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Tue, 30 Jul 2024 07:43:19 -0700
-Subject: [PATCH 2/5] x86/mm: add testmmiotrace MODULE_DESCRIPTION()
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
+ [209.85.216.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48FA810E1B7;
+ Wed, 18 Jun 2025 17:29:38 +0000 (UTC)
+Received: by mail-pj1-f51.google.com with SMTP id
+ 98e67ed59e1d1-313067339e9so1190702a91.2; 
+ Wed, 18 Jun 2025 10:29:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750267778; x=1750872578; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=QHUg/jv+8yS9h0AdG3R183q7U86xb8yvD43XyhKBDE4=;
+ b=YlMBmcrV6CU1EuX2Vnxkx8uDDlTJhsCGSHjuCil+cwMZpOu4duFHLoDNb+uB3omioS
+ Tx0JvoEToLQ7x9N+pOpzwF0SWUysoQK/k3VGv5nQP+oSUT2bTT1Z1wAZ5IxfKf07sSJL
+ rsrqVBnva4qXr8eU/WlEnyBVnwNm10KiPbzEa5mKV8pcdddejaYYqgB+mj0C9yxcIcGL
+ iWD6Y6DsllILGkmu3aab4Z+k8F1gzKlSL/JXsNn7hgZNIrgcuHKkv35QpDJTdz170laK
+ rxx1JerFng82apomHc/1VzdtsCsbjqve25UEadQoMzmFPc59Rew01eFhQyOgBzEp3XNO
+ nrPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750267778; x=1750872578;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=QHUg/jv+8yS9h0AdG3R183q7U86xb8yvD43XyhKBDE4=;
+ b=RNLDbZqgZBlkq4EYwwBqJNecPXhEPFaIffIF23NOTFbdt60ZK8xFzKYyfLIWJwqyV0
+ AXhqOVaspZVyQKQS7nhN+quUpJ7w9emr/f9cTaxyaaQ0QQVSuoyrElLfg/dt9ZIKpJW6
+ 6wHazn9qtWmb7C9xmOagPJlKtgP+rXFqqkuMKx9a23WrQhZ3HC3u7pquinTpy+pAE6p2
+ fBEMIBOuz2eBE5mIm9X0gInKq+6+jubMEkwPQQnKtWXlC6BTkK9CteugMoZLrviGQiJ4
+ b71Emla6o0sGPkyb+pE6MQG8HGTJpe7QmUOqpqGWZRbSfqI43OTfXUw0vPrbpHXeorRM
+ JTBA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUe5Y8h2spEqwUtaf/JKY5BZB7jrivhA2L6FZuCBtwhGaZWur/t7hiz7D7nmkmJC8KoSC/E+qL/LxQ=@lists.freedesktop.org,
+ AJvYcCUsQNYVX+s+tOQLIVVqlCBN6St/KD6Ed1weAVCh17ntztoAECiCtrZe4lJ2RKYrdJtVOgUfYREjrw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyCX5xY+B1/nAZevL36WZTWZvQ70IMVyn2SCjEJSDBRXZxq3bDO
+ 47m4i54vQCuk4xHSUysWE84ZKWb++tSS+LXmkrN0vudBfzzLZN0MwvTdg/IYRpyYEBPZGPrnSeP
+ y+IG/JTpb6jgSf5jXK3w16BIkTTPesSg=
+X-Gm-Gg: ASbGncuF7ZLgpfHzIlW6pDAahB9HGwrQKjQcJBmMCz3VpzkRIYBo2KUj3PW/KtdrvrQ
+ +5l1fP15LbPdiC3JJQik9j/B4M+6Vq3aA4MJB1dDQYnDZ9l/HtnSHnqsi3oBV41QJ1opVAf/Zfc
+ UXvVb2jb/vVM+B8ndR2RjR3/3tLp1OcfaOdi5XNLXkBZo=
+X-Google-Smtp-Source: AGHT+IFq9ZRT8EBGthi7dxIDQNclEwdJhDhFsEYu8DFI7x0ubODZrG0p5NckRqPFYz4ild8B+/dW6oREHry5ELX+Kuw=
+X-Received: by 2002:a17:90b:4a07:b0:313:151a:8653 with SMTP id
+ 98e67ed59e1d1-3158c004765mr67329a91.8.1750267777769; Wed, 18 Jun 2025
+ 10:29:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240730-module_description_orphans-v1-2-7094088076c8@quicinc.com>
-References: <20240730-module_description_orphans-v1-0-7094088076c8@quicinc.com>
-In-Reply-To: <20240730-module_description_orphans-v1-0-7094088076c8@quicinc.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andrew Morton
- <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, Russell King
- <linux@armlinux.org.uk>, Steven Rostedt <rostedt@goodmis.org>, "Masami
- Hiramatsu" <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>,
- "Pekka Paalanen" <ppaalanen@gmail.com>, Dave Hansen
- <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter
- Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo
- Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, <x86@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, "Alexandre Torgue"
- <alexandre.torgue@foss.st.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Michael Ellerman
- <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy
- <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Jeremy Kerr <jk@ozlabs.org>,
- Joel Stanley <joel@jms.id.au>, Alistar Popple <alistair@popple.id.au>,
- Eddie James <eajames@linux.ibm.com>, Andrew Jeffery
- <andrew@codeconstruct.com.au>, Will Deacon <will@kernel.org>, Waiman Long
- <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>,
- <linux-stm32@st-md-mailman.stormreply.com>, <linux-pm@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>, <linux-fsi@lists.ozlabs.org>,
- <linux-aspeed@lists.ozlabs.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.14.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: ti9c1oLGTxJ4R50aylyu_ScVMIASYCzE
-X-Proofpoint-GUID: ti9c1oLGTxJ4R50aylyu_ScVMIASYCzE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-30_12,2024-07-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- mlxlogscore=899 spamscore=0 impostorscore=0 lowpriorityscore=0
- clxscore=1015 bulkscore=0 adultscore=0 suspectscore=0 malwarescore=0
- phishscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407300100
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
+In-Reply-To: <20250615-ptr-as-ptr-v12-3-f43b024581e8@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Jun 2025 19:29:25 +0200
+X-Gm-Features: Ac12FXxIuJv_kMbDdBqAZBwk2iCsUdqf0pxgEqDUQ6dB6Y-mWXL8-29ebiQ2HSg
+Message-ID: <CANiq72mn6fFL86-7XjsovdjQ2ySiNNviP4dvE170FmK_4E19OQ@mail.gmail.com>
+Subject: Re: [PATCH v12 3/6] rust: enable `clippy::as_ptr_cast_mut` lint
+To: Tamir Duberstein <tamird@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Greg KH <gregkh@linuxfoundation.org>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,25 +119,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix the following 'make W=1' warning:
+On Sun, Jun 15, 2025 at 10:55=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
+> wrote:
+>
+>  rust/kernel/devres.rs | 2 +-
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in arch/x86/mm/testmmiotrace.o
+Danilo, Greg: for completeness: if you don't want this, please shout. Thank=
+s!
 
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
----
- arch/x86/mm/testmmiotrace.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
-index bda73cb7a044..ae295659ca14 100644
---- a/arch/x86/mm/testmmiotrace.c
-+++ b/arch/x86/mm/testmmiotrace.c
-@@ -144,3 +144,4 @@ static void __exit cleanup(void)
- module_init(init);
- module_exit(cleanup);
- MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Test module for mmiotrace");
-
--- 
-2.42.0
-
+Cheers,
+Miguel
