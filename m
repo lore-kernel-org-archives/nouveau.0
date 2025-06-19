@@ -4,99 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A0ECD5B154
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C88D5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5A1B10EC7D;
-	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22BDF10EC7F;
+	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="p6s9VYHn";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="B7lGJ7Fr";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9417D10E538
- for <nouveau@lists.freedesktop.org>; Tue, 30 Jul 2024 14:44:43 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 46U8oTu8030643;
- Tue, 30 Jul 2024 14:43:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- cc:content-transfer-encoding:content-type:date:from:message-id
- :mime-version:subject:to; s=qcppdkim1; bh=VTmK3GjGI/TBE6OcQTcx58
- PFaZ9r/Rx2aijf6ZEGqEI=; b=p6s9VYHn9TETG5axfmxtd5gqA2n5j1jQPNwlGx
- 8Zua/2vQqxHiQpf68K7BoczHsZ8MFWoLOVbWeqKxvGnLFGcP9pE40T2vxhFGNo2k
- StZ2wTlDUtLzh8JzUA0l+ZJgZg4gmNDcgtNehGXyErG4x1zthlAcQZwUB/MqN44j
- hDFINNM9FfM0XjkI9L5WqF/wbuyZGtHQT1H6ox+mujEAmVu/1cvQkzxKiqVDbbRj
- Qff8U8WSJMn8nRbY1/ShLdVI+5b5/Njh/mw5/gR7R/zg7KuRRXqTgNozC7LCm6s5
- OyPagNcZJWN+vAmKg4034J0TvDndsF1CTgsItM9TQT8UUlog==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 40ms96qw3b-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 30 Jul 2024 14:43:24 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA05.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 46UEhMXS024190
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 30 Jul 2024 14:43:22 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 30 Jul
- 2024 07:43:22 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Subject: [PATCH 0/5] treewide: add missing MODULE_DESCRIPTION() macros
-Date: Tue, 30 Jul 2024 07:43:17 -0700
-Message-ID: <20240730-module_description_orphans-v1-0-7094088076c8@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAX8qGYC/x3M3QqDMAxA4VeRXK9Q3epgrzKG9CfOgLYl0SGI7
- 75slx8czgGCTCjwaA5g/JBQyYr20kCcfH6joaSGznY3e79as5S0zTgklMhUV82HwlVTMTE47Ny
- Ibe960EFlHGn/z58vdfCCJrDPcfotZ8rbbhYvKzKc5xewh/gziwAAAA==
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Andrew Morton
- <akpm@linux-foundation.org>, Arnd Bergmann <arnd@arndb.de>, Russell King
- <linux@armlinux.org.uk>, Steven Rostedt <rostedt@goodmis.org>, "Masami
- Hiramatsu" <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>,
- "Pekka Paalanen" <ppaalanen@gmail.com>, Dave Hansen
- <dave.hansen@linux.intel.com>, Andy Lutomirski <luto@kernel.org>, Peter
- Zijlstra <peterz@infradead.org>, Thomas Gleixner <tglx@linutronix.de>, Ingo
- Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>, <x86@kernel.org>,
- "H. Peter Anvin" <hpa@zytor.com>, Maxime Coquelin
- <mcoquelin.stm32@gmail.com>, "Alexandre Torgue"
- <alexandre.torgue@foss.st.com>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, Michael Ellerman
- <mpe@ellerman.id.au>, Nicholas Piggin <npiggin@gmail.com>, Christophe Leroy
- <christophe.leroy@csgroup.eu>,
- Naveen N Rao <naveen@kernel.org>, Jeremy Kerr <jk@ozlabs.org>,
- Joel Stanley <joel@jms.id.au>, Alistar Popple <alistair@popple.id.au>,
- Eddie James <eajames@linux.ibm.com>, Andrew Jeffery
- <andrew@codeconstruct.com.au>, Will Deacon <will@kernel.org>, Waiman Long
- <longman@redhat.com>, Boqun Feng <boqun.feng@gmail.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>,
- <linux-stm32@st-md-mailman.stormreply.com>, <linux-pm@vger.kernel.org>,
- <linuxppc-dev@lists.ozlabs.org>, <linux-fsi@lists.ozlabs.org>,
- <linux-aspeed@lists.ozlabs.org>, Jeff Johnson <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.14.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: KtDrELCmddYI6T-uWPbmkiTEYMVdwz7x
-X-Proofpoint-GUID: KtDrELCmddYI6T-uWPbmkiTEYMVdwz7x
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-07-30_12,2024-07-30_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0
- impostorscore=0 mlxlogscore=738 bulkscore=0 malwarescore=0 phishscore=0
- priorityscore=1501 clxscore=1011 lowpriorityscore=0 spamscore=0
- adultscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2407110000 definitions=main-2407300100
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65A3D10E992;
+ Thu, 19 Jun 2025 05:18:40 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-23694cec0feso3945235ad.2; 
+ Wed, 18 Jun 2025 22:18:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750310320; x=1750915120; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
+ :reply-to; bh=/ASTVkIJ/zIGMOA+ht2vHucxDWTZ9iKbrXVkoSRNYqU=;
+ b=B7lGJ7FrksgcNWbZNsurMqLJ0ztIpiiSpIookcK11hXD47sAnZpzBViZ1Dvl/6De88
+ Z1gycjSg7Z8vh3dibzMxTislo019nTUkLborYB6gkF1htDlXS5i4FFo4n2fZL6KaWaTS
+ seNQiYrr2WCvbyBhs3n4ge/tXJFph2SomDZU1s9tkSEc/CxI7cwY4SIugOwBacjNDd/Z
+ NRt4iu1jnDfBF51RpQBhk6QWlGX8RAfS+ArN2/9ECyG6AZfpWsYMftyPe5JtraBDOs8P
+ FF0nTDxBjMD00dyPo6QcW8wov5vtVMYxl+2yQyB7TPrXEy0LSXYy0DVvZZKvrltFMDC/
+ NNdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750310320; x=1750915120;
+ h=content-transfer-encoding:mime-version:references:in-reply-to:from
+ :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=/ASTVkIJ/zIGMOA+ht2vHucxDWTZ9iKbrXVkoSRNYqU=;
+ b=GLC418c5n5HqduRTXao7f6x9/5CuVL2ThUibOYb+NyRyRgCEautzMC9fbq/3LmewI4
+ qOXxLHz28+mlgX/Sz5FcQBVJqP+zbkUAVabXgtQGUEScGICT9ZzUp2sWQQHRbWiQpO2V
+ JKOMhoHjFpSbNnENWR30rcW6FbBkxgR3q5P5f6AYf+VQQQX5yJtiz/Tp3ZPDuh7uYND7
+ ADTpUwEu4+a46/pgkVzVnM344b1Nb/Sw950LPIeq5RDgXzjE0jSUX8wkceMciwOoYzbk
+ OZqEP7hZ4Yo7v1Lu6vvrPfs6haeS7LIlbuQiCV9bGUxXFc6ekhlSjslJtLqCwI/69lR4
+ i4TQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV0B1q2AO3DPfUHXS0X8v01bLad6o/U6f85yxO+5cIJa2+nq69DFztBXhdGgP0ZEzHB0L6iXuKXM/U=@lists.freedesktop.org,
+ AJvYcCVnvuQDPN6iejIXQ0DtTNph62sAcL3MYKFANHCcsia4ZIXzwARs7uRKiWc1vhTXY60ZlcigLcU0Kg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YygvFKrB2YyOnjyxqZlQBJPdnbwaY4JUsUczgh6EYtVmMPJhpVt
+ 2TuxMRevNk/7qMaz86ZabMKnpHYF/yBb2Xjc17ROswQoHqF0i3vTRGl/
+X-Gm-Gg: ASbGnctkXOsufh5RKBPfA9Burvg2jkxrJ4rvcleC8vUV/WS4+DtEETXtyo+FOfSqJwt
+ 7xACFF952xDMSihIYuMsekzqrU4BHg/wpawQ8KPek/QJ6vRH9kEyt/nfyGhrrY6o6uag/4l3u3u
+ EfMO/dRfKY/bDRlu05yP9f7FxJAmo3p+gUNGk9/sUNTtNnd0ca7p9PdwjDgm7ji/MZMhKua8DMG
+ 69m26c5IsITfqMKeOTGdLm1V9nXVcMsPZ+3ixCjeP8nGoWTyebBxI8qWgssVx4kdmjyGiW0Hgxx
+ 3/6IkF/OB6wqjNAkVH8NigDj8pk01jrA1JnHbRtPmUvYh6Ccz9NMZz8CvTVH71piEAmC3KTSazc
+ SkHEKjGVk/Sd58d0R4ON89ApmO/RrYVJkCS2EaaeG
+X-Google-Smtp-Source: AGHT+IEvcoWS+/mpCBS9HRGMoVVCn5GZ2BtlFZ10WJnLh4P0CWaOXTjNBc1tb/94RF8WfyU78YJazg==
+X-Received: by 2002:a17:903:4b4c:b0:235:6e1:3edf with SMTP id
+ d9443c01a7336-2366b122194mr301022585ad.34.1750310319710; 
+ Wed, 18 Jun 2025 22:18:39 -0700 (PDT)
+Received: from localhost (p5332007-ipxg23901hodogaya.kanagawa.ocn.ne.jp.
+ [180.34.120.7]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2365deca344sm110992075ad.203.2025.06.18.22.18.29
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Jun 2025 22:18:39 -0700 (PDT)
+Date: Thu, 19 Jun 2025 14:18:17 +0900 (JST)
+Message-Id: <20250619.141817.2042938522863410452.fujita.tomonori@gmail.com>
+To: tamird@gmail.com
+Cc: masahiroy@kernel.org, nathan@kernel.org, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com,
+ tmgross@umich.edu, dakr@kernel.org, gregkh@linuxfoundation.org,
+ rafael@kernel.org, brendan.higgins@linux.dev, davidgow@google.com,
+ rmoar@google.com, bhelgaas@google.com, mcgrof@kernel.org,
+ russ.weight@linux.dev, robh@kernel.org, saravanak@google.com,
+ abdiel.janulgue@gmail.com, daniel.almeida@collabora.com,
+ robin.murphy@arm.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ simona@ffwll.ch, fujita.tomonori@gmail.com, nicolas.schier@linux.dev,
+ frederic@kernel.org, lyude@redhat.com, tglx@linutronix.de,
+ anna-maria@linutronix.de, lossin@kernel.org, kwilczynski@kernel.org,
+ jstultz@google.com, sboyd@kernel.org, lorenzo.stoakes@oracle.com,
+ Liam.Howlett@oracle.com, leitao@debian.org, viresh.kumar@linaro.org,
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org,
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org,
+ linux-mm@kvack.org, linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v12 5/6] rust: enable `clippy::cast_lossless` lint
+From: FUJITA Tomonori <fujita.tomonori@gmail.com>
+In-Reply-To: <20250615-ptr-as-ptr-v12-5-f43b024581e8@gmail.com>
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+ <20250615-ptr-as-ptr-v12-5-f43b024581e8@gmail.com>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=iso-8859-7
+Content-Transfer-Encoding: base64
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,66 +109,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
-description is missing"), a module without a MODULE_DESCRIPTION() will
-result in a warning when built with make W=1.
-
-Recently, multiple developers have been eradicating these warnings
-treewide, and I personally submitted almost 300 patches over the past
-few months. Almost all of my patches landed by 6.11-rc1, either by
-being merged in a 6.10-rc or by being merged in the 6.11 merge
-window. However, a few of my patches did not land.
-
-In some cases I see them in linux-next, but they did not land during
-the merge window. I'm still monitoring those.
-
-In a few cases I have not had any feedback that the patches have been
-accepted into a maintainer's tree. At the advice of Greg KH I've
-consolidated those patches into this single series with the hope these
-can still land before 6.11-final.
-https://lore.kernel.org/all/2024071518-ridden-election-8118@gregkh/
-
-Links to the original individual patches:
-
-crypto: arm/xor - add missing MODULE_DESCRIPTION() macro
-https://lore.kernel.org/all/20240711-md-arm-arch-arm-lib-v2-1-ab08653dc106@quicinc.com/
-
-x86/mm: add testmmiotrace MODULE_DESCRIPTION()
-https://lore.kernel.org/all/20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com/
-
-cpufreq: powerpc: add missing MODULE_DESCRIPTION() macros
-https://lore.kernel.org/all/20240722-md-powerpc-drivers-cpufreq-v2-1-bb84d715eb3d@quicinc.com/
-
-fsi: add missing MODULE_DESCRIPTION() macros
-https://lore.kernel.org/all/20240605-md-drivers-fsi-v1-1-fefc82d81b12@quicinc.com/
-
-locking/ww_mutex/test: add MODULE_DESCRIPTION()
-https://lore.kernel.org/all/20240528-md-test-ww_mutex-v2-1-a2a19e920b12@quicinc.com/
-
----
-Jeff Johnson (5):
-      crypto: arm/xor - add missing MODULE_DESCRIPTION() macro
-      x86/mm: add testmmiotrace MODULE_DESCRIPTION()
-      cpufreq: powerpc: add missing MODULE_DESCRIPTION() macros
-      fsi: add missing MODULE_DESCRIPTION() macros
-      locking/ww_mutex/test: add MODULE_DESCRIPTION()
-
- arch/arm/lib/xor-neon.c           | 1 +
- arch/x86/mm/testmmiotrace.c       | 1 +
- drivers/cpufreq/maple-cpufreq.c   | 1 +
- drivers/cpufreq/pasemi-cpufreq.c  | 1 +
- drivers/cpufreq/pmac64-cpufreq.c  | 1 +
- drivers/cpufreq/powernv-cpufreq.c | 1 +
- drivers/cpufreq/ppc_cbe_cpufreq.c | 1 +
- drivers/fsi/fsi-core.c            | 1 +
- drivers/fsi/fsi-master-aspeed.c   | 1 +
- drivers/fsi/fsi-master-ast-cf.c   | 3 ++-
- drivers/fsi/fsi-master-gpio.c     | 1 +
- drivers/fsi/fsi-master-hub.c      | 1 +
- drivers/fsi/fsi-scom.c            | 1 +
- kernel/locking/test-ww_mutex.c    | 1 +
- 14 files changed, 15 insertions(+), 1 deletion(-)
----
-base-commit: 94ede2a3e9135764736221c080ac7c0ad993dc2d
-change-id: 20240730-module_description_orphans-cb5e25fe1656
-
+T24gU3VuLCAxNSBKdW4gMjAyNSAxNjo1NTowOSAtMDQwMA0KVGFtaXIgRHViZXJzdGVpbiA8dGFt
+aXJkQGdtYWlsLmNvbT4gd3JvdGU6DQoNCj4gQmVmb3JlIFJ1c3QgMS4yOS4wLCBDbGlwcHkgaW50
+cm9kdWNlZCB0aGUgYGNhc3RfbG9zc2xlc3NgIGxpbnQgWzFdOg0KPiANCj4+IFJ1c3SicyBgYXNg
+IGtleXdvcmQgd2lsbCBwZXJmb3JtIG1hbnkga2luZHMgb2YgY29udmVyc2lvbnMsIGluY2x1ZGlu
+Zw0KPj4gc2lsZW50bHkgbG9zc3kgY29udmVyc2lvbnMuIENvbnZlcnNpb24gZnVuY3Rpb25zIHN1
+Y2ggYXMgYGkzMjo6ZnJvbWANCj4+IHdpbGwgb25seSBwZXJmb3JtIGxvc3NsZXNzIGNvbnZlcnNp
+b25zLiBVc2luZyB0aGUgY29udmVyc2lvbiBmdW5jdGlvbnMNCj4+IHByZXZlbnRzIGNvbnZlcnNp
+b25zIGZyb20gYmVjb21pbmcgc2lsZW50bHkgbG9zc3kgaWYgdGhlIGlucHV0IHR5cGVzDQo+PiBl
+dmVyIGNoYW5nZSwgYW5kIG1ha2VzIGl0IGNsZWFyIGZvciBwZW9wbGUgcmVhZGluZyB0aGUgY29k
+ZSB0aGF0IHRoZQ0KPj4gY29udmVyc2lvbiBpcyBsb3NzbGVzcy4NCj4gDQo+IFdoaWxlIHRoaXMg
+ZG9lc24ndCBlbGltaW5hdGUgdW5jaGVja2VkIGBhc2AgY29udmVyc2lvbnMsIGl0IG1ha2VzIHN1
+Y2gNCj4gY29udmVyc2lvbnMgZWFzaWVyIHRvIHNjcnV0aW5pemUuICBJdCBhbHNvIGhhcyB0aGUg
+c2xpZ2h0IGJlbmVmaXQgb2YNCj4gcmVtb3ZpbmcgYSBkZWdyZWUgb2YgZnJlZWRvbSBvbiB3aGlj
+aCB0byBiaWtlc2hlZC4gVGh1cyBhcHBseSB0aGUNCj4gY2hhbmdlcyBhbmQgZW5hYmxlIHRoZSBs
+aW50IC0tIG5vIGZ1bmN0aW9uYWwgY2hhbmdlIGludGVuZGVkLg0KPiANCj4gTGluazogaHR0cHM6
+Ly9ydXN0LWxhbmcuZ2l0aHViLmlvL3J1c3QtY2xpcHB5L21hc3Rlci9pbmRleC5odG1sI2Nhc3Rf
+bG9zc2xlc3MgWzFdDQo+IFN1Z2dlc3RlZC1ieTogQmVubm8gTG9zc2luIDxiZW5uby5sb3NzaW5A
+cHJvdG9uLm1lPg0KPiBMaW5rOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvRDhPUlRYU1VU
+S0dMLjFLT0pBR0JNOEY4VE5AcHJvdG9uLm1lLw0KPiBSZXZpZXdlZC1ieTogQmVubm8gTG9zc2lu
+IDxiZW5uby5sb3NzaW5AcHJvdG9uLm1lPg0KPiBSZXZpZXdlZC1ieTogQm9xdW4gRmVuZyA8Ym9x
+dW4uZmVuZ0BnbWFpbC5jb20+DQo+IFNpZ25lZC1vZmYtYnk6IFRhbWlyIER1YmVyc3RlaW4gPHRh
+bWlyZEBnbWFpbC5jb20+DQo+IC0tLQ0KPiAgTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgIHwgMSArDQo+ICBkcml2ZXJzL2dwdS9kcm0vZHJtX3BhbmljX3FyLnJzICAgICAgfCA0
+ICsrLS0NCj4gIGRyaXZlcnMvZ3B1L25vdmEtY29yZS9yZWdzLnJzICAgICAgICB8IDIgKy0NCj4g
+IGRyaXZlcnMvZ3B1L25vdmEtY29yZS9yZWdzL21hY3Jvcy5ycyB8IDIgKy0NCj4gIHJ1c3QvYmlu
+ZGluZ3MvbGliLnJzICAgICAgICAgICAgICAgICB8IDEgKw0KPiAgcnVzdC9rZXJuZWwvbmV0L3Bo
+eS5ycyAgICAgICAgICAgICAgIHwgNCArKy0tDQo+ICBydXN0L3VhcGkvbGliLnJzICAgICAgICAg
+ICAgICAgICAgICAgfCAxICsNCj4gIDcgZmlsZXMgY2hhbmdlZCwgOSBpbnNlcnRpb25zKCspLCA2
+IGRlbGV0aW9ucygtKQ0KDQpGb3IgUEhZIHBhcnQ6DQoNCkFja2VkLWJ5OiBGVUpJVEEgVG9tb25v
+cmkgPGZ1aml0YS50b21vbm9yaUBnbWFpbC5jb20+DQo=
