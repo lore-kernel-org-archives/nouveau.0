@@ -4,120 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E4CACCD18D
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47442CCD186
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2625410E639;
-	Mon,  6 Oct 2025 20:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5C410E62E;
+	Mon,  6 Oct 2025 20:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="co4RHL4J";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="f0BMvbBk";
 	dkim-atps=neutral
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
- [209.85.208.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00AE210EA6F;
- Fri,  4 Jul 2025 19:38:49 +0000 (UTC)
-Received: by mail-lj1-f169.google.com with SMTP id
- 38308e7fff4ca-32b78b5aa39so12427991fa.1; 
- Fri, 04 Jul 2025 12:38:49 -0700 (PDT)
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+ [209.85.160.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05BBB10EA7D;
+ Thu, 19 Jun 2025 15:06:43 +0000 (UTC)
+Received: by mail-qt1-f176.google.com with SMTP id
+ d75a77b69052e-4a589b7dd5fso12047881cf.0; 
+ Thu, 19 Jun 2025 08:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751657928; x=1752262728; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=+1vlZgumgifEwNecl68EJAlB8Sprq//BvrO4WzNYsMM=;
- b=co4RHL4J4HQvFukPXlwEQT+8IWjOS3EzyB4yzKshxR0MXUTe/21q+CsTkwxW5BhOIR
- OhXbZznbrb4D3tt47kR0UBwifCjZejyFoebWb/7sdLx98cb8FHOaNyOI77WBNu8haJmi
- lqhbZ40rF6PFQHIYy3YiaCGZY9bju/MM3Gxmb9Y38P9hBfrdxnaYTHMSfjZNDwruuyXw
- 9PwCfbczUklpGpDUY01UtEysteN4v8Ltokn/A/J8ZsZeLxehrkTNK60Kj91Prq4vEUqR
- 4PCQVZX3s/s2VWZiYsAQhGAFCW2XNM7wtSZoa/HRBhhMSPZWnelqH6NXg2MDmRFa+Poq
- c00w==
+ d=gmail.com; s=20230601; t=1750345602; x=1750950402; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=5xoCQMyUZdiymxphEC03ILw2GU1bmk/Og/jkmdkTje0=;
+ b=f0BMvbBkUAlxVBH+Bv5C0P/CU5c/F80wAArcIR82iQLsnlPcDnb6ST7K60LrcMAo+J
+ PgLXesy4nN2Kf5l8bWnQj5hUzTNhyQTRiT0jGRVwT6P8YF9XN2H1dzF1o1PUiDdj/gcf
+ OZGtzZwxXXyUIOVkwSVVdkj6/Rgv/Y/mu2QCCsxeHzlM4UK/p7nN3Lc/Qb4gD2x41DMf
+ /qGRzYCtmvFO93Go7vreVtiNWFadE7ZyrhP97jnumq40bULR1p3/8oqfHPZJpYXQ+VgG
+ Cp8KjMoUk8LGNG8Om2cSXu3q1NkwODcUAyGwrZztZ0Aa1S2MrqWR+CppcHtRzL0NqGuD
+ WZug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751657928; x=1752262728;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1750345602; x=1750950402;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=+1vlZgumgifEwNecl68EJAlB8Sprq//BvrO4WzNYsMM=;
- b=jp2/IxR/ES/xchOMXU49sU7YsSG15dJEfnW+jTQ5vwG9mdi7F2DEySHIb7Ze67jbcW
- 7cfa/Fxcea1MdxsSdplOYzE6P8hsw4zpARY0jkKbo6dZqZxFTXrbRLMM2QEjZVU0mipQ
- f3hbJktVWZ/obL+pj6Cp2bW+83B1KL3MDUhMCfTaSMdya1ZKVwN5sqv+6UhcuKD0BJIA
- F/Z0ManxNnZqKTps/1y8+KbDegcfivc9Jh9nyQX/o2ZCaDbvUQiNZkxLQEUJH6zicuG6
- YhXQdpz7RMy4tDQq4KrODctHStsnGpniuHqD0836/ybJudiwPBIkV0Dn2omxB18SkmQn
- WZtQ==
+ bh=5xoCQMyUZdiymxphEC03ILw2GU1bmk/Og/jkmdkTje0=;
+ b=klyHfgIiXIdfMjzj/OX5C7uZ0OLOwQ6hxzsVmR4i1tYH7T2o0/P+SeNLeXhTkhTAMb
+ 3OhkFzwrc8i4pWZ2wCOLL7dHM7zP98uHADuCqMPSooLNwDSl6KZHPaJDbeDI5jUu+3Cx
+ YrL+D5stQz959R73orah97hUARNQGba7aHQdug7Ua7O799NPbG9xq0QdhOx3XcF3OYU5
+ gfDGyiG2vo5q/Ko2gveq8nlz0aHwdLmKkiRLsE0R+UYJqkZ2SS3MsE5COrcYG2J89SgC
+ bH2JYuFkgr+dFSVY4oOFVeUee4Or+KzX5dmIOrF39RSoHIehzekNGF8wtMNKFaDuwEuY
+ B2kQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUGnVUhnYALkedrd2RNiyJAiRio+MnTKIIeZAJsC4HHfrD9y7IfTZqKIYEFFC4ZsEL/vsNnPr4DpPQ=@lists.freedesktop.org,
- AJvYcCWoOfQ2RuIm2e4YMHgFmSS6pelzM9DjSywXTL+gbloT7/2Ag8V9WXR1p3ENKp4JvuxW85tap35s5w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxAZGVpIiehC6J/ZZZLAdP/mbNfRIQ9vTDqdPtJhHRu+on8yuZ9
- 6Oe4+h6/hxn8PRmNCJVkWdzCfmCo214T00uTbHoV2oMhyBRYXJEJ8JQzN5s3SDJLzsvjg0i6Cnz
- S0WvUJIBwi3O2aj3qD/xt+uOhADVE9/o=
-X-Gm-Gg: ASbGncvL5uuB/be4GRs61/N9mYFB+ApjGogCLUZwX+UNccvf8aOwBbtj0KOrxCwVOTU
- m+o+VE2LAi9Suk23LmQ4wZMejRccK5E1WLj91U1ngvkUdjKHhnjFgmGxgKZayY6RUSoQrVAKQW4
- w+ZsMvZomyYledupE0vrtgWPK264+giO1BtuYeSu2om79f9dHz/AKQdq53iOKtLtqDxtH+6484y
- tvc3eBmUS+6lLPH
-X-Google-Smtp-Source: AGHT+IEtZIZHyQdOcRcbH+zRF5QnKwCn2iKXPxprHvYuNR2jSg6UqBw9KbMdEWrPUWxqoAE0oN54aToeuNsJtUiGyRY=
-X-Received: by 2002:a05:651c:542:b0:32c:a097:4198 with SMTP id
- 38308e7fff4ca-32f00c63744mr9980551fa.1.1751657927846; Fri, 04 Jul 2025
- 12:38:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
- <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
- <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
- <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
- <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
- <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
- <CAJ-ks9=WmuXLJ6KkMEOP2jTvM_YBJO10SNsq0DU2J+_d4jp7qw@mail.gmail.com>
- <CAJ-ks9kNiOgPO7FF3cAbaSNtTWs0_PzQ4k4W0AxjHNFuMJnDcQ@mail.gmail.com>
- <DB36T5JWBL10.2F56EDJ1XKAD0@kernel.org>
- <CAJ-ks9=Jutg+UAwCVER_X91BGxWzmVq=OdStDgLZjTyMQSEX6Q@mail.gmail.com>
- <CANiq72nZhgpbWOD4Evy-qw2J=G=RY4Hsoq9_rj6HGWMQW=2kTw@mail.gmail.com>
-In-Reply-To: <CANiq72nZhgpbWOD4Evy-qw2J=G=RY4Hsoq9_rj6HGWMQW=2kTw@mail.gmail.com>
+ AJvYcCUJzqbzFto8TZf8LVVeJh+1e1RfnaDoVMLaR/2I2arLP0FJuOevWCzVKGvG3uV7jIq6JVe4X9DkeQ==@lists.freedesktop.org,
+ AJvYcCX0QjeaJKU87pkLqRrUhbv/R4jd5YGp73g/LPEke6xE5jVFfftV728CiahPnjlLpEaFBDjnwUQ++04=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yypr25w/l1CY6d98p80Xrb2IQ3Uf8h/pW8jO0IkvPEFdpAp8w8g
+ 3bU4TCGDP5hQP6bF3E0FNzDbkvOpbfPqkZnFDdTEEvL8bqhVGrmH/wVb
+X-Gm-Gg: ASbGncviGbroDaOinfeQwpJ1SUOQx/HxlEcYsP8OXZcyicVh40v55yJIHl6bRQMA4sh
+ BKu/xZ6h183wrQKqdwdxjiN6FMw1rfOLtrY/sa/q/IvA92DEkm4sTbxlBXsZbwj78Dh9GnS7Met
+ 0+pwRyXBjvviNreIeFVM9jVXjANTQWarvFCU8DBlKBm+f18S+B7ZcnRZJHLMP+dFy3ellDuv+5j
+ N89hF4JZSwwcOg6o8OGoJqfHxUg48UDBMn2zQ0YoDzqf/DNjgus1iXv9HhVYmiVSMB2eeKhghsp
+ wga1T+3ZM/ihk6Oz8yy4SS5zjkp/BxhM/BYUYklBN2pPBJqCHzPw16Ed2Ta0p2kno+siLLmjenc
+ =
+X-Google-Smtp-Source: AGHT+IEqmTpc96rboKslmuRTquphlyw0Zcc9gekEPB0vHF2vqy/jAPnfqpoCelyKrMnO6WiuC0UBsA==
+X-Received: by 2002:ac8:668e:0:b0:4a4:4103:f301 with SMTP id
+ d75a77b69052e-4a747b33f90mr243573421cf.0.1750345601664; 
+ Thu, 19 Jun 2025 08:06:41 -0700 (PDT)
+Received: from tamird-mac.local ([2600:4041:5be7:7c00:5c8a:fc6a:b57c:e57f])
+ by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4a7785aaacdsm250531cf.39.2025.06.19.08.06.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 19 Jun 2025 08:06:41 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Fri, 4 Jul 2025 15:38:11 -0400
-X-Gm-Features: Ac12FXw768F_Lk3HRxkz7eCyR4EleC6ZiRWgAxdQvNU_x7ZQ7VCNlmwZ-Al3Xv8
-Message-ID: <CAJ-ks9m4S1jujQvyt9TOvNMewjNSztps8vayGga+MnNU+0YUcQ@mail.gmail.com>
-Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Benno Lossin <lossin@kernel.org>,
- Michal Rostecki <vadorovsky@protonmail.com>, 
+Date: Thu, 19 Jun 2025 11:06:28 -0400
+Subject: [PATCH v12 4/5] rust: replace `kernel::c_str!` with C-Strings
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250619-cstr-core-v12-4-80c9c7b45900@gmail.com>
+References: <20250619-cstr-core-v12-0-80c9c7b45900@gmail.com>
+In-Reply-To: <20250619-cstr-core-v12-0-80c9c7b45900@gmail.com>
+To: Michal Rostecki <vadorovsky@protonmail.com>, 
  Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
  Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ Trevor Gross <tmgross@umich.edu>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
  FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+ Nathan Chancellor <nathan@kernel.org>, 
  Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
  Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
  Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
- linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ Stephen Boyd <sboyd@kernel.org>
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, linux-block@vger.kernel.org, 
+ linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -133,17 +128,802 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 4, 2025 at 8:15=E2=80=AFAM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
->
-> On Fri, Jul 4, 2025 at 1:59=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
-> wrote:
-> >
-> > That would probably work. We will probably see regressions because we
-> > can't just replace `core::fmt` imports with `kernel::fmt`, so new code
-> > may appear that uses the former.
->
-> That is fine -- it happens all the time with this sort of approach.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible and rename
+`kernel::c_str!` to `str_to_cstr!` to clarify its intended use.
 
-OK, with all the splitting requested, this comes out to ~54 patches.
-I'll send the first bit (which can go in cycle 0) as v14.
+Closes: https://github.com/Rust-for-Linux/linux/issues/1075
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+---
+ drivers/block/rnull.rs                |  2 +-
+ drivers/cpufreq/rcpufreq_dt.rs        |  5 ++---
+ drivers/gpu/drm/nova/driver.rs        | 10 +++++-----
+ drivers/gpu/nova-core/driver.rs       |  6 +++---
+ drivers/net/phy/ax88796b_rust.rs      |  7 +++----
+ drivers/net/phy/qt2025.rs             |  5 ++---
+ rust/kernel/clk.rs                    |  6 ++----
+ rust/kernel/configfs.rs               |  9 +++++----
+ rust/kernel/cpufreq.rs                |  3 +--
+ rust/kernel/devres.rs                 |  2 +-
+ rust/kernel/drm/ioctl.rs              |  2 +-
+ rust/kernel/firmware.rs               |  6 +++---
+ rust/kernel/kunit.rs                  |  7 ++++---
+ rust/kernel/net/phy.rs                |  6 ++----
+ rust/kernel/platform.rs               |  4 ++--
+ rust/kernel/str.rs                    | 24 ++++++++++++++++--------
+ rust/kernel/sync.rs                   |  7 +++----
+ rust/kernel/sync/lock/global.rs       |  3 ++-
+ rust/kernel/workqueue.rs              |  8 ++++----
+ rust/macros/kunit.rs                  | 10 +++++-----
+ rust/macros/module.rs                 |  2 +-
+ samples/rust/rust_configfs.rs         |  5 ++---
+ samples/rust/rust_driver_auxiliary.rs |  4 ++--
+ samples/rust/rust_driver_faux.rs      |  4 ++--
+ samples/rust/rust_driver_pci.rs       |  4 ++--
+ samples/rust/rust_driver_platform.rs  |  4 ++--
+ samples/rust/rust_misc_device.rs      |  3 +--
+ scripts/rustdoc_test_gen.rs           |  4 ++--
+ 28 files changed, 81 insertions(+), 81 deletions(-)
+
+diff --git a/drivers/block/rnull.rs b/drivers/block/rnull.rs
+index 6366da12c5a5..9aa79b862b63 100644
+--- a/drivers/block/rnull.rs
++++ b/drivers/block/rnull.rs
+@@ -55,7 +55,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+         })();
+ 
+         try_pin_init!(Self {
+-            _disk <- new_mutex!(disk?, "nullb:disk"),
++            _disk <- new_mutex!(disk?, c"nullb:disk"),
+         })
+     }
+ }
+diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
+index 43c87d0259b6..9056298fffda 100644
+--- a/drivers/cpufreq/rcpufreq_dt.rs
++++ b/drivers/cpufreq/rcpufreq_dt.rs
+@@ -3,7 +3,6 @@
+ //! Rust based implementation of the cpufreq-dt driver.
+ 
+ use kernel::{
+-    c_str,
+     clk::Clk,
+     cpu, cpufreq,
+     cpumask::CpumaskVar,
+@@ -56,7 +55,7 @@ impl opp::ConfigOps for CPUFreqDTDriver {}
+ 
+ #[vtable]
+ impl cpufreq::Driver for CPUFreqDTDriver {
+-    const NAME: &'static CStr = c_str!("cpufreq-dt");
++    const NAME: &'static CStr = c"cpufreq-dt";
+     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+     const BOOST_ENABLED: bool = true;
+ 
+@@ -201,7 +200,7 @@ fn register_em(policy: &mut cpufreq::Policy) {
+     OF_TABLE,
+     MODULE_OF_TABLE,
+     <CPUFreqDTDriver as platform::Driver>::IdInfo,
+-    [(of::DeviceId::new(c_str!("operating-points-v2")), ())]
++    [(of::DeviceId::new(c"operating-points-v2"), ())]
+ );
+ 
+ impl platform::Driver for CPUFreqDTDriver {
+diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
+index b28b2e05cc15..87480ee8dbae 100644
+--- a/drivers/gpu/drm/nova/driver.rs
++++ b/drivers/gpu/drm/nova/driver.rs
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+-use kernel::{auxiliary, c_str, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
++use kernel::{auxiliary, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
+ 
+ use crate::file::File;
+ use crate::gem::NovaObject;
+@@ -22,12 +22,12 @@ pub(crate) struct NovaData {
+     major: 0,
+     minor: 0,
+     patchlevel: 0,
+-    name: c_str!("nova"),
+-    desc: c_str!("Nvidia Graphics"),
++    name: c"nova",
++    desc: c"Nvidia Graphics",
+ };
+ 
+-const NOVA_CORE_MODULE_NAME: &CStr = c_str!("NovaCore");
+-const AUXILIARY_NAME: &CStr = c_str!("nova-drm");
++const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
++const AUXILIARY_NAME: &CStr = c"nova-drm";
+ 
+ kernel::auxiliary_device_table!(
+     AUX_TABLE,
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index 8c86101c26cb..d76e992021ca 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+-use kernel::{auxiliary, bindings, c_str, device::Core, pci, prelude::*};
++use kernel::{auxiliary, bindings, device::Core, pci, prelude::*};
+ 
+ use crate::gpu::Gpu;
+ 
+@@ -34,14 +34,14 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
+         pdev.enable_device_mem()?;
+         pdev.set_master();
+ 
+-        let bar = pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("nova-core/bar0"))?;
++        let bar = pdev.iomap_region_sized::<BAR0_SIZE>(0, c"nova-core/bar0")?;
+ 
+         let this = KBox::pin_init(
+             try_pin_init!(Self {
+                 gpu <- Gpu::new(pdev, bar)?,
+                 _reg: auxiliary::Registration::new(
+                     pdev.as_ref(),
+-                    c_str!("nova-drm"),
++                    c"nova-drm",
+                     0, // TODO: Once it lands, use XArray; for now we don't use the ID.
+                     crate::MODULE_NAME
+                 )?,
+diff --git a/drivers/net/phy/ax88796b_rust.rs b/drivers/net/phy/ax88796b_rust.rs
+index bc73ebccc2aa..2d24628a4e58 100644
+--- a/drivers/net/phy/ax88796b_rust.rs
++++ b/drivers/net/phy/ax88796b_rust.rs
+@@ -5,7 +5,6 @@
+ //!
+ //! C version of this driver: [`drivers/net/phy/ax88796b.c`](./ax88796b.c)
+ use kernel::{
+-    c_str,
+     net::phy::{self, reg::C22, DeviceId, Driver},
+     prelude::*,
+     uapi,
+@@ -41,7 +40,7 @@ fn asix_soft_reset(dev: &mut phy::Device) -> Result {
+ #[vtable]
+ impl Driver for PhyAX88772A {
+     const FLAGS: u32 = phy::flags::IS_INTERNAL;
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88772A");
++    const NAME: &'static CStr = c"Asix Electronics AX88772A";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_exact_mask(0x003b1861);
+ 
+     // AX88772A is not working properly with some old switches (NETGEAR EN 108TP):
+@@ -105,7 +104,7 @@ fn link_change_notify(dev: &mut phy::Device) {
+ #[vtable]
+ impl Driver for PhyAX88772C {
+     const FLAGS: u32 = phy::flags::IS_INTERNAL;
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88772C");
++    const NAME: &'static CStr = c"Asix Electronics AX88772C";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_exact_mask(0x003b1881);
+ 
+     fn suspend(dev: &mut phy::Device) -> Result {
+@@ -125,7 +124,7 @@ fn soft_reset(dev: &mut phy::Device) -> Result {
+ 
+ #[vtable]
+ impl Driver for PhyAX88796B {
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88796B");
++    const NAME: &'static CStr = c"Asix Electronics AX88796B";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_model_mask(0x003b1841);
+ 
+     fn soft_reset(dev: &mut phy::Device) -> Result {
+diff --git a/drivers/net/phy/qt2025.rs b/drivers/net/phy/qt2025.rs
+index 0b9400dcb4c1..9ccc75f70219 100644
+--- a/drivers/net/phy/qt2025.rs
++++ b/drivers/net/phy/qt2025.rs
+@@ -9,7 +9,6 @@
+ //!
+ //! The QT2025 PHY integrates an Intel 8051 micro-controller.
+ 
+-use kernel::c_str;
+ use kernel::error::code;
+ use kernel::firmware::Firmware;
+ use kernel::net::phy::{
+@@ -36,7 +35,7 @@
+ 
+ #[vtable]
+ impl Driver for PhyQT2025 {
+-    const NAME: &'static CStr = c_str!("QT2025 10Gpbs SFP+");
++    const NAME: &'static CStr = c"QT2025 10Gpbs SFP+";
+     const PHY_DEVICE_ID: phy::DeviceId = phy::DeviceId::new_with_exact_mask(0x0043a400);
+ 
+     fn probe(dev: &mut phy::Device) -> Result<()> {
+@@ -69,7 +68,7 @@ fn probe(dev: &mut phy::Device) -> Result<()> {
+         // The micro-controller will start running from the boot ROM.
+         dev.write(C45::new(Mmd::PCS, 0xe854), 0x00c0)?;
+ 
+-        let fw = Firmware::request(c_str!("qt2025-2.0.3.3.fw"), dev.as_ref())?;
++        let fw = Firmware::request(c"qt2025-2.0.3.3.fw", dev.as_ref())?;
+         if fw.data().len() > SZ_16K + SZ_8K {
+             return Err(code::EFBIG);
+         }
+diff --git a/rust/kernel/clk.rs b/rust/kernel/clk.rs
+index 6041c6d07527..c43a2aa154b6 100644
+--- a/rust/kernel/clk.rs
++++ b/rust/kernel/clk.rs
+@@ -100,13 +100,12 @@ mod common_clk {
+     /// The following example demonstrates how to obtain and configure a clock for a device.
+     ///
+     /// ```
+-    /// use kernel::c_str;
+     /// use kernel::clk::{Clk, Hertz};
+     /// use kernel::device::Device;
+     /// use kernel::error::Result;
+     ///
+     /// fn configure_clk(dev: &Device) -> Result {
+-    ///     let clk = Clk::get(dev, Some(c_str!("apb_clk")))?;
++    ///     let clk = Clk::get(dev, Some(c"apb_clk"))?;
+     ///
+     ///     clk.prepare_enable()?;
+     ///
+@@ -272,13 +271,12 @@ fn drop(&mut self) {
+     /// device. The code functions correctly whether or not the clock is available.
+     ///
+     /// ```
+-    /// use kernel::c_str;
+     /// use kernel::clk::{OptionalClk, Hertz};
+     /// use kernel::device::Device;
+     /// use kernel::error::Result;
+     ///
+     /// fn configure_clk(dev: &Device) -> Result {
+-    ///     let clk = OptionalClk::get(dev, Some(c_str!("apb_clk")))?;
++    ///     let clk = OptionalClk::get(dev, Some(c"apb_clk"))?;
+     ///
+     ///     clk.prepare_enable()?;
+     ///
+diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
+index ee83692fbb1e..9c99fee19a5c 100644
+--- a/rust/kernel/configfs.rs
++++ b/rust/kernel/configfs.rs
+@@ -21,7 +21,6 @@
+ //!
+ //! ```ignore
+ //! use kernel::alloc::flags;
+-//! use kernel::c_str;
+ //! use kernel::configfs_attrs;
+ //! use kernel::configfs;
+ //! use kernel::new_mutex;
+@@ -50,7 +49,7 @@
+ //!
+ //!         try_pin_init!(Self {
+ //!             config <- configfs::Subsystem::new(
+-//!                 c_str!("rust_configfs"), item_type, Configuration::new()
++//!                 c"rust_configfs", item_type, Configuration::new()
+ //!             ),
+ //!         })
+ //!     }
+@@ -66,7 +65,7 @@
+ //! impl Configuration {
+ //!     fn new() -> impl PinInit<Self, Error> {
+ //!         try_pin_init!(Self {
+-//!             message: c_str!("Hello World\n"),
++//!             message: c"Hello World\n",
+ //!             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
+ //!         })
+ //!     }
+@@ -1008,7 +1007,9 @@ macro_rules! configfs_attrs {
+                     static [< $data:upper _ $name:upper _ATTR >]:
+                         $crate::configfs::Attribute<$attr, $data, $data> =
+                             unsafe {
+-                                $crate::configfs::Attribute::new(c_str!(::core::stringify!($name)))
++                                $crate::configfs::Attribute::new(
++                                    $crate::str_to_cstr!(::core::stringify!($name)),
++                                )
+                             };
+                 )*
+ 
+diff --git a/rust/kernel/cpufreq.rs b/rust/kernel/cpufreq.rs
+index e98fa609cbea..b53769e6cee5 100644
+--- a/rust/kernel/cpufreq.rs
++++ b/rust/kernel/cpufreq.rs
+@@ -841,7 +841,6 @@ fn register_em(_policy: &mut Policy) {
+ /// ```
+ /// use kernel::{
+ ///     cpufreq,
+-///     c_str,
+ ///     device::{Core, Device},
+ ///     macros::vtable,
+ ///     of, platform,
+@@ -854,7 +853,7 @@ fn register_em(_policy: &mut Policy) {
+ ///
+ /// #[vtable]
+ /// impl cpufreq::Driver for SampleDriver {
+-///     const NAME: &'static CStr = c_str!("cpufreq-sample");
++///     const NAME: &'static CStr = c"cpufreq-sample";
+ ///     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+ ///     const BOOST_ENABLED: bool = true;
+ ///
+diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
+index 0f79a2ec9474..b1af2e29298a 100644
+--- a/rust/kernel/devres.rs
++++ b/rust/kernel/devres.rs
+@@ -45,7 +45,7 @@ struct DevresInner<T> {
+ /// # Example
+ ///
+ /// ```no_run
+-/// # use kernel::{bindings, c_str, device::{Bound, Device}, devres::Devres, io::{Io, IoRaw}};
++/// # use kernel::{bindings, device::{Bound, Device}, devres::Devres, io::{Io, IoRaw}};
+ /// # use core::ops::Deref;
+ ///
+ /// // See also [`pci::Bar`] for a real example.
+diff --git a/rust/kernel/drm/ioctl.rs b/rust/kernel/drm/ioctl.rs
+index 445639404fb7..e67c9fe9cb91 100644
+--- a/rust/kernel/drm/ioctl.rs
++++ b/rust/kernel/drm/ioctl.rs
+@@ -153,7 +153,7 @@ macro_rules! declare_drm_ioctls {
+                         Some($cmd)
+                     },
+                     flags: $flags,
+-                    name: $crate::c_str!(::core::stringify!($cmd)).as_char_ptr(),
++                    name: $crate::str_to_cstr!(::core::stringify!($cmd)).as_char_ptr(),
+                 }
+             ),*];
+             ioctls
+diff --git a/rust/kernel/firmware.rs b/rust/kernel/firmware.rs
+index 582ab648b14c..09fd3a27bcf0 100644
+--- a/rust/kernel/firmware.rs
++++ b/rust/kernel/firmware.rs
+@@ -51,13 +51,13 @@ fn request_nowarn() -> Self {
+ /// # Examples
+ ///
+ /// ```no_run
+-/// # use kernel::{c_str, device::Device, firmware::Firmware};
++/// # use kernel::{device::Device, firmware::Firmware};
+ ///
+ /// # fn no_run() -> Result<(), Error> {
+ /// # // SAFETY: *NOT* safe, just for the example to get an `ARef<Device>` instance
+ /// # let dev = unsafe { Device::get_device(core::ptr::null_mut()) };
+ ///
+-/// let fw = Firmware::request(c_str!("path/to/firmware.bin"), &dev)?;
++/// let fw = Firmware::request(c"path/to/firmware.bin", &dev)?;
+ /// let blob = fw.data();
+ ///
+ /// # Ok(())
+@@ -203,7 +203,7 @@ macro_rules! module_firmware {
+     ($($builder:tt)*) => {
+         const _: () = {
+             const __MODULE_FIRMWARE_PREFIX: &'static $crate::str::CStr = if cfg!(MODULE) {
+-                $crate::c_str!("")
++                c""
+             } else {
+                 <LocalModule as $crate::ModuleMetadata>::NAME
+             };
+diff --git a/rust/kernel/kunit.rs b/rust/kernel/kunit.rs
+index 4927aa0b656e..2bab61910f1e 100644
+--- a/rust/kernel/kunit.rs
++++ b/rust/kernel/kunit.rs
+@@ -57,9 +57,10 @@ macro_rules! kunit_assert {
+                 break 'out;
+             }
+ 
+-            static FILE: &'static $crate::str::CStr = $crate::c_str!($file);
++            static FILE: &'static $crate::str::CStr = $file;
+             static LINE: i32 = ::core::line!() as i32 - $diff;
+-            static CONDITION: &'static $crate::str::CStr = $crate::c_str!(stringify!($condition));
++            static CONDITION: &'static $crate::str::CStr =
++                $crate::str_to_cstr!(stringify!($condition));
+ 
+             // SAFETY: FFI call without safety requirements.
+             let kunit_test = unsafe { $crate::bindings::kunit_get_current_test() };
+@@ -246,7 +247,7 @@ pub const fn kunit_case_null() -> kernel::bindings::kunit_case {
+ /// }
+ ///
+ /// static mut KUNIT_TEST_CASES: [kernel::bindings::kunit_case; 2] = [
+-///     kernel::kunit::kunit_case(kernel::c_str!("name"), test_fn),
++///     kernel::kunit::kunit_case(c"name", test_fn),
+ ///     kernel::kunit::kunit_case_null(),
+ /// ];
+ /// kernel::kunit_unsafe_test_suite!(suite_name, KUNIT_TEST_CASES);
+diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
+index 34239106bd27..5e654403c21b 100644
+--- a/rust/kernel/net/phy.rs
++++ b/rust/kernel/net/phy.rs
+@@ -781,7 +781,6 @@ const fn as_int(&self) -> u32 {
+ ///
+ /// ```
+ /// # mod module_phy_driver_sample {
+-/// use kernel::c_str;
+ /// use kernel::net::phy::{self, DeviceId};
+ /// use kernel::prelude::*;
+ ///
+@@ -800,7 +799,7 @@ const fn as_int(&self) -> u32 {
+ ///
+ /// #[vtable]
+ /// impl phy::Driver for PhySample {
+-///     const NAME: &'static CStr = c_str!("PhySample");
++///     const NAME: &'static CStr = c"PhySample";
+ ///     const PHY_DEVICE_ID: phy::DeviceId = phy::DeviceId::new_with_exact_mask(0x00000001);
+ /// }
+ /// # }
+@@ -809,7 +808,6 @@ const fn as_int(&self) -> u32 {
+ /// This expands to the following code:
+ ///
+ /// ```ignore
+-/// use kernel::c_str;
+ /// use kernel::net::phy::{self, DeviceId};
+ /// use kernel::prelude::*;
+ ///
+@@ -829,7 +827,7 @@ const fn as_int(&self) -> u32 {
+ ///
+ /// #[vtable]
+ /// impl phy::Driver for PhySample {
+-///     const NAME: &'static CStr = c_str!("PhySample");
++///     const NAME: &'static CStr = c"PhySample";
+ ///     const PHY_DEVICE_ID: phy::DeviceId = phy::DeviceId::new_with_exact_mask(0x00000001);
+ /// }
+ ///
+diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
+index 5b21fa517e55..338b8d7c65ee 100644
+--- a/rust/kernel/platform.rs
++++ b/rust/kernel/platform.rs
+@@ -123,7 +123,7 @@ macro_rules! module_platform_driver {
+ /// # Example
+ ///
+ ///```
+-/// # use kernel::{bindings, c_str, device::Core, of, platform};
++/// # use kernel::{bindings, device::Core, of, platform};
+ ///
+ /// struct MyDriver;
+ ///
+@@ -132,7 +132,7 @@ macro_rules! module_platform_driver {
+ ///     MODULE_OF_TABLE,
+ ///     <MyDriver as platform::Driver>::IdInfo,
+ ///     [
+-///         (of::DeviceId::new(c_str!("test,device")), ())
++///         (of::DeviceId::new(c"test,device"), ())
+ ///     ]
+ /// );
+ ///
+diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+index e884ec1ce5c8..9908b09868bc 100644
+--- a/rust/kernel/str.rs
++++ b/rust/kernel/str.rs
+@@ -266,15 +266,14 @@ impl crate::fmt::Display for CStr {
+     /// Formats printable ASCII characters, escaping the rest.
+     ///
+     /// ```
+-    /// # use kernel::c_str;
+     /// # use kernel::prelude::fmt;
+     /// # use kernel::str::CStr;
+     /// # use kernel::str::CString;
+-    /// let penguin = c_str!("🐧");
++    /// let penguin = c"🐧";
+     /// let s = CString::try_from_fmt(fmt!("{}", penguin))?;
+     /// assert_eq!(s.to_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
+     ///
+-    /// let ascii = c_str!("so \"cool\"");
++    /// let ascii = c"so \"cool\"";
+     /// let s = CString::try_from_fmt(fmt!("{}", ascii))?;
+     /// assert_eq!(s.to_bytes_with_nul(), "so \"cool\"\0".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
+@@ -364,19 +363,28 @@ fn as_ref(&self) -> &BStr {
+     }
+ }
+ 
+-/// Creates a new [`CStr`] from a string literal.
++/// Creates a new [`CStr`] at compile time.
+ ///
+-/// The string literal should not contain any `NUL` bytes.
++/// Rust supports C string literals since Rust 1.77, and they should be used instead of this macro
++/// where possible. This macro exists to allow static *non-literal* C strings to be created at
++/// compile time. This is most often used in other macros.
++///
++/// # Panics
++///
++/// This macro panics if the operand contains an interior `NUL` byte.
+ ///
+ /// # Examples
+ ///
+ /// ```
+-/// # use kernel::c_str;
++/// # use kernel::str_to_cstr;
+ /// # use kernel::str::CStr;
+-/// const MY_CSTR: &CStr = c_str!("My awesome CStr!");
++/// const MY_CSTR: &CStr = str_to_cstr!(concat!(file!(), ":", line!(), ": My CStr!"));
+ /// ```
+ #[macro_export]
+-macro_rules! c_str {
++macro_rules! str_to_cstr {
++    // NB: we could write `($str:lit) => compile_error!("use a C string literal instead");` here but
++    // that would trigger when the literal is at the top of several macro expansions. That would be
++    // too limiting to macro authors, so we rely on the name as a hint instead.
+     ($str:expr) => {{
+         const S: &str = concat!($str, "\0");
+         const C: &$crate::str::CStr = match $crate::str::CStr::from_bytes_with_nul(S.as_bytes()) {
+diff --git a/rust/kernel/sync.rs b/rust/kernel/sync.rs
+index 36a719015583..e38629147f42 100644
+--- a/rust/kernel/sync.rs
++++ b/rust/kernel/sync.rs
+@@ -41,7 +41,6 @@ impl LockClassKey {
+     ///
+     /// # Example
+     /// ```
+-    /// # use kernel::c_str;
+     /// # use kernel::alloc::KBox;
+     /// # use kernel::types::ForeignOwnable;
+     /// # use kernel::sync::{LockClassKey, SpinLock};
+@@ -53,7 +52,7 @@ impl LockClassKey {
+     /// {
+     ///     stack_pin_init!(let num: SpinLock<u32> = SpinLock::new(
+     ///         0,
+-    ///         c_str!("my_spinlock"),
++    ///         c"my_spinlock",
+     ///         // SAFETY: `key_ptr` is returned by the above `into_foreign()`, whose
+     ///         // `from_foreign()` has not yet been called.
+     ///         unsafe { <Pin<KBox<LockClassKey>> as ForeignOwnable>::borrow(key_ptr) }
+@@ -106,9 +105,9 @@ macro_rules! static_lock_class {
+ #[macro_export]
+ macro_rules! optional_name {
+     () => {
+-        $crate::c_str!(::core::concat!(::core::file!(), ":", ::core::line!()))
++        $crate::str_to_cstr!(::core::concat!(::core::file!(), ":", ::core::line!()))
+     };
+     ($name:literal) => {
+-        $crate::c_str!($name)
++        $name
+     };
+ }
+diff --git a/rust/kernel/sync/lock/global.rs b/rust/kernel/sync/lock/global.rs
+index 79d0ef7fda86..9caa9b419f09 100644
+--- a/rust/kernel/sync/lock/global.rs
++++ b/rust/kernel/sync/lock/global.rs
+@@ -267,7 +267,8 @@ macro_rules! global_lock {
+         $pub enum $name {}
+ 
+         impl $crate::sync::lock::GlobalLockBackend for $name {
+-            const NAME: &'static $crate::str::CStr = $crate::c_str!(::core::stringify!($name));
++            const NAME: &'static $crate::str::CStr =
++                $crate::str_to_cstr!(::core::stringify!($name));
+             type Item = $valuety;
+             type Backend = $crate::global_lock_inner!(backend $kind);
+ 
+diff --git a/rust/kernel/workqueue.rs b/rust/kernel/workqueue.rs
+index d092112d843f..dbec533fd31f 100644
+--- a/rust/kernel/workqueue.rs
++++ b/rust/kernel/workqueue.rs
+@@ -51,7 +51,7 @@
+ //!     fn new(value: i32) -> Result<Arc<Self>> {
+ //!         Arc::pin_init(pin_init!(MyStruct {
+ //!             value,
+-//!             work <- new_work!("MyStruct::work"),
++//!             work <- new_work!(c"MyStruct::work"),
+ //!         }), GFP_KERNEL)
+ //!     }
+ //! }
+@@ -98,8 +98,8 @@
+ //!         Arc::pin_init(pin_init!(MyStruct {
+ //!             value_1,
+ //!             value_2,
+-//!             work_1 <- new_work!("MyStruct::work_1"),
+-//!             work_2 <- new_work!("MyStruct::work_2"),
++//!             work_1 <- new_work!(c"MyStruct::work_1"),
++//!             work_2 <- new_work!(c"MyStruct::work_2"),
+ //!         }), GFP_KERNEL)
+ //!     }
+ //! }
+@@ -215,7 +215,7 @@ pub fn try_spawn<T: 'static + Send + FnOnce()>(
+         func: T,
+     ) -> Result<(), AllocError> {
+         let init = pin_init!(ClosureWork {
+-            work <- new_work!("Queue::try_spawn"),
++            work <- new_work!(c"Queue::try_spawn"),
+             func: Some(func),
+         });
+ 
+diff --git a/rust/macros/kunit.rs b/rust/macros/kunit.rs
+index 81d18149a0cc..c64df1a01b9d 100644
+--- a/rust/macros/kunit.rs
++++ b/rust/macros/kunit.rs
+@@ -89,8 +89,8 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+     // unsafe extern "C" fn kunit_rust_wrapper_bar(_test: *mut ::kernel::bindings::kunit) { bar(); }
+     //
+     // static mut TEST_CASES: [::kernel::bindings::kunit_case; 3] = [
+-    //     ::kernel::kunit::kunit_case(::kernel::c_str!("foo"), kunit_rust_wrapper_foo),
+-    //     ::kernel::kunit::kunit_case(::kernel::c_str!("bar"), kunit_rust_wrapper_bar),
++    //     ::kernel::kunit::kunit_case(c"foo", kunit_rust_wrapper_foo),
++    //     ::kernel::kunit::kunit_case(c"bar", kunit_rust_wrapper_bar),
+     //     ::kernel::kunit::kunit_case_null(),
+     // ];
+     //
+@@ -109,7 +109,7 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+         writeln!(kunit_macros, "{kunit_wrapper}").unwrap();
+         writeln!(
+             test_cases,
+-            "    ::kernel::kunit::kunit_case(::kernel::c_str!(\"{test}\"), {kunit_wrapper_fn_name}),"
++            "    ::kernel::kunit::kunit_case(c\"{test}\", {kunit_wrapper_fn_name}),"
+         )
+         .unwrap();
+         writeln!(
+@@ -119,7 +119,7 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+ #[allow(unused)]
+ macro_rules! assert {{
+     ($cond:expr $(,)?) => {{{{
+-        kernel::kunit_assert!("{test}", "{path}", 0, $cond);
++        kernel::kunit_assert!("{test}", c"{path}", 0, $cond);
+     }}}}
+ }}
+ 
+@@ -127,7 +127,7 @@ macro_rules! assert {{
+ #[allow(unused)]
+ macro_rules! assert_eq {{
+     ($left:expr, $right:expr $(,)?) => {{{{
+-        kernel::kunit_assert_eq!("{test}", "{path}", 0, $left, $right);
++        kernel::kunit_assert_eq!("{test}", c"{path}", 0, $left, $right);
+     }}}}
+ }}
+         "#
+diff --git a/rust/macros/module.rs b/rust/macros/module.rs
+index 2ddd2eeb2852..ec528cd86db5 100644
+--- a/rust/macros/module.rs
++++ b/rust/macros/module.rs
+@@ -234,7 +234,7 @@ pub(crate) fn module(ts: TokenStream) -> TokenStream {
+             type LocalModule = {type_};
+ 
+             impl ::kernel::ModuleMetadata for {type_} {{
+-                const NAME: &'static ::kernel::str::CStr = ::kernel::c_str!(\"{name}\");
++                const NAME: &'static ::kernel::str::CStr = c\"{name}\";
+             }}
+ 
+             // Double nested modules, since then nobody can access the public items inside.
+diff --git a/samples/rust/rust_configfs.rs b/samples/rust/rust_configfs.rs
+index 02641dc06f25..4f362be5c7df 100644
+--- a/samples/rust/rust_configfs.rs
++++ b/samples/rust/rust_configfs.rs
+@@ -3,7 +3,6 @@
+ //! Rust configfs sample.
+ 
+ use kernel::alloc::flags;
+-use kernel::c_str;
+ use kernel::configfs;
+ use kernel::configfs_attrs;
+ use kernel::new_mutex;
+@@ -35,7 +34,7 @@ struct Configuration {
+ impl Configuration {
+     fn new() -> impl PinInit<Self, Error> {
+         try_pin_init!(Self {
+-            message: c_str!("Hello World\n"),
++            message: c"Hello World\n",
+             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
+         })
+     }
+@@ -61,7 +60,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+ 
+         try_pin_init!(Self {
+             config <- configfs::Subsystem::new(
+-                c_str!("rust_configfs"), item_type, Configuration::new()
++                c"rust_configfs", item_type, Configuration::new()
+             ),
+         })
+     }
+diff --git a/samples/rust/rust_driver_auxiliary.rs b/samples/rust/rust_driver_auxiliary.rs
+index 3e15e6d002bb..0b38729bbab7 100644
+--- a/samples/rust/rust_driver_auxiliary.rs
++++ b/samples/rust/rust_driver_auxiliary.rs
+@@ -5,14 +5,14 @@
+ //! To make this driver probe, QEMU must be run with `-device pci-testdev`.
+ 
+ use kernel::{
+-    auxiliary, bindings, c_str, device::Core, driver, error::Error, pci, prelude::*, str::CStr,
++    auxiliary, bindings, device::Core, driver, error::Error, pci, prelude::*, str::CStr,
+     InPlaceModule,
+ };
+ 
+ use pin_init::PinInit;
+ 
+ const MODULE_NAME: &CStr = <LocalModule as kernel::ModuleMetadata>::NAME;
+-const AUXILIARY_NAME: &CStr = c_str!("auxiliary");
++const AUXILIARY_NAME: &CStr = c"auxiliary";
+ 
+ struct AuxiliaryDriver;
+ 
+diff --git a/samples/rust/rust_driver_faux.rs b/samples/rust/rust_driver_faux.rs
+index ecc9fd378cbd..23add3160693 100644
+--- a/samples/rust/rust_driver_faux.rs
++++ b/samples/rust/rust_driver_faux.rs
+@@ -2,7 +2,7 @@
+ 
+ //! Rust faux device sample.
+ 
+-use kernel::{c_str, faux, prelude::*, Module};
++use kernel::{faux, prelude::*, Module};
+ 
+ module! {
+     type: SampleModule,
+@@ -20,7 +20,7 @@ impl Module for SampleModule {
+     fn init(_module: &'static ThisModule) -> Result<Self> {
+         pr_info!("Initialising Rust Faux Device Sample\n");
+ 
+-        let reg = faux::Registration::new(c_str!("rust-faux-sample-device"), None)?;
++        let reg = faux::Registration::new(c"rust-faux-sample-device", None)?;
+ 
+         dev_info!(reg.as_ref(), "Hello from faux device!\n");
+ 
+diff --git a/samples/rust/rust_driver_pci.rs b/samples/rust/rust_driver_pci.rs
+index 15147e4401b2..4ba5fcd2b357 100644
+--- a/samples/rust/rust_driver_pci.rs
++++ b/samples/rust/rust_driver_pci.rs
+@@ -4,7 +4,7 @@
+ //!
+ //! To make this driver probe, QEMU must be run with `-device pci-testdev`.
+ 
+-use kernel::{bindings, c_str, device::Core, devres::Devres, pci, prelude::*, types::ARef};
++use kernel::{bindings, device::Core, devres::Devres, pci, prelude::*, types::ARef};
+ 
+ struct Regs;
+ 
+@@ -73,7 +73,7 @@ fn probe(pdev: &pci::Device<Core>, info: &Self::IdInfo) -> Result<Pin<KBox<Self>
+         pdev.enable_device_mem()?;
+         pdev.set_master();
+ 
+-        let bar = pdev.iomap_region_sized::<{ Regs::END }>(0, c_str!("rust_driver_pci"))?;
++        let bar = pdev.iomap_region_sized::<{ Regs::END }>(0, c"rust_driver_pci")?;
+ 
+         let drvdata = KBox::new(
+             Self {
+diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
+index 8b42b3cfb363..e6487a970a59 100644
+--- a/samples/rust/rust_driver_platform.rs
++++ b/samples/rust/rust_driver_platform.rs
+@@ -2,7 +2,7 @@
+ 
+ //! Rust Platform driver sample.
+ 
+-use kernel::{c_str, device::Core, of, platform, prelude::*, types::ARef};
++use kernel::{device::Core, of, platform, prelude::*, types::ARef};
+ 
+ struct SampleDriver {
+     pdev: ARef<platform::Device>,
+@@ -14,7 +14,7 @@ struct SampleDriver {
+     OF_TABLE,
+     MODULE_OF_TABLE,
+     <SampleDriver as platform::Driver>::IdInfo,
+-    [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
++    [(of::DeviceId::new(c"test,rust-device"), Info(42))]
+ );
+ 
+ impl platform::Driver for SampleDriver {
+diff --git a/samples/rust/rust_misc_device.rs b/samples/rust/rust_misc_device.rs
+index c881fd6dbd08..12b64296e912 100644
+--- a/samples/rust/rust_misc_device.rs
++++ b/samples/rust/rust_misc_device.rs
+@@ -98,7 +98,6 @@
+ use core::pin::Pin;
+ 
+ use kernel::{
+-    c_str,
+     device::Device,
+     fs::File,
+     ioctl::{_IO, _IOC_SIZE, _IOR, _IOW},
+@@ -133,7 +132,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+         pr_info!("Initialising Rust Misc Device Sample\n");
+ 
+         let options = MiscDeviceOptions {
+-            name: c_str!("rust-misc-device"),
++            name: c"rust-misc-device",
+         };
+ 
+         try_pin_init!(Self {
+diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
+index 507d36875196..0e86bdf1b5b1 100644
+--- a/scripts/rustdoc_test_gen.rs
++++ b/scripts/rustdoc_test_gen.rs
+@@ -173,7 +173,7 @@ pub extern "C" fn {kunit_name}(__kunit_test: *mut ::kernel::bindings::kunit) {{
+     macro_rules! assert {{
+         ($cond:expr $(,)?) => {{{{
+             ::kernel::kunit_assert!(
+-                "{kunit_name}", "{real_path}", __DOCTEST_ANCHOR - {line}, $cond
++                "{kunit_name}", c"{real_path}", __DOCTEST_ANCHOR - {line}, $cond
+             );
+         }}}}
+     }}
+@@ -183,7 +183,7 @@ macro_rules! assert {{
+     macro_rules! assert_eq {{
+         ($left:expr, $right:expr $(,)?) => {{{{
+             ::kernel::kunit_assert_eq!(
+-                "{kunit_name}", "{real_path}", __DOCTEST_ANCHOR - {line}, $left, $right
++                "{kunit_name}", c"{real_path}", __DOCTEST_ANCHOR - {line}, $left, $right
+             );
+         }}}}
+     }}
+
+-- 
+2.50.0
+
