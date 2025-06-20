@@ -4,136 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3174D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5575BD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5085A10EAFA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BABC10EBA4;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="HxGCbSNY";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Us7pqBjI";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 607C110E593
- for <nouveau@lists.freedesktop.org>; Tue,  1 Jul 2025 11:05:45 +0000 (UTC)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5619t08G029524
- for <nouveau@lists.freedesktop.org>; Tue, 1 Jul 2025 11:05:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- ZogMt6KKsiaz5/xedtL9aHF64V+0fejV+AuVX29tpF8=; b=HxGCbSNYdM9dEslB
- SjttVn99Amwenu1R7wnkDaKhJaGda/8kM8YFf53/KU128vsYXxNaf/6p19urg5Hm
- mYCDLIZ9YNp0bV30kTJ+Rt4Foy0l704s9vQWadf1pTdTdPoXhVRtrebwpprrgpCi
- UY3DodkPK3T9pc+OLDNmF4JSjRfRTeHRljUvYejXugYVPq2SzWPo2HounfW42x9K
- v188gBN9G0wwqxoqbexRfJGHSn+RRnABE9Pa5gYXip7lwwcUgs+8NTYf5SI0+Mbu
- YEfwZlOmCdqKzcOvF6RoyxB1GUM8rC9ES7eG3VmqFoaRNnK+/03UvbjwbEYabwFJ
- l02HNw==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
- [209.85.222.199])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 47j95j0dq7-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Tue, 01 Jul 2025 11:05:44 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id
- af79cd13be357-7d44ff55c98so615729485a.0
- for <nouveau@lists.freedesktop.org>; Tue, 01 Jul 2025 04:05:44 -0700 (PDT)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60A1510E23C
+ for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 17:06:27 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-313290ea247so360893a91.3
+ for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 10:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750439185; x=1751043985; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nR8JCkDCS0gb3QmY+xkreXhapsXDdGblPAP/bOLVoRc=;
+ b=Us7pqBjIWOL6zHG+gaAbbrD/D/M9ke9V0QJf8c+iaBmvTvj/XpFet6jOh7qmicTqvs
+ rWOXsd3r6Do8S8RyMU6mZ9DX+YQgyD94jrG+BYD8vuKuXtaBWlE4luCs9JMhSdorGqDZ
+ DgCN4OQqK2XttU+6zv80QL2boIYWv3xQa6z4QbjAJIThNsHkrJ2wVypZP7wiPrlgh71P
+ TWh35pdAoUIlDKiDAH4pWcYb+omM8UWjADpuBZCBfMKUN2M3HNBNwpbVuTWgJHnbnv/s
+ RWgKKg+DpfWgiaFeZvNsx5TPgEdZs5EuFpvPBrTYg4cfrs3iIV2uWUdhM+0Kf11NdSdj
+ pUjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751367943; x=1751972743;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ZogMt6KKsiaz5/xedtL9aHF64V+0fejV+AuVX29tpF8=;
- b=DBWUbW/f1IZfmV/v1csh8jh55x7YnEVQoWa2gn4WAZRzsufpIbuE3lgt93WbFH2ayH
- /6rxSvGSoUBXQaE3U80P4lL8mWdR0GLQ4DNkAdApKsJSPB9An5uU3luFIrqnAYHNR9yV
- egx+qDcAxgS/8y5eDA6zKCaMoL18JROJmjSjiKk8IETy+FgLslMbFETLhoedotlAeoqh
- IJgyCcodAN/4lr2Uhn4JoiumxW1aaAHmPOsmb0aI1prgLnBHq3rX8ucqkI8B3GpjUk/v
- WSkL2fyjBjrCmsWndnrSkRFfOfGIqgcjlL8The7j0c3IJw1Axk/GLS+tudMetxixmlQ2
- 4tdQ==
+ d=1e100.net; s=20230601; t=1750439185; x=1751043985;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nR8JCkDCS0gb3QmY+xkreXhapsXDdGblPAP/bOLVoRc=;
+ b=Erv8mKXSfP9Z+IWO65d5UfC8EJdp+5QC89OansHLBKeYVLo4Vs+nH4XYsGjpujYq6b
+ 7IwVb+Xgg4evqQoCU2mx9eAj6MPPJWHbVH4SZ6evPdnEN/Y2NTNCtp42uDbqhrSg94fI
+ FRxhxzY9JD0MMovydMF4BEPUy5qfBPBixAa+R0laNL3xuDLSvi85+m9wgQF6J6rt7qV0
+ kFzqftsjtNrslqS/j43XIHvK/QvMKsuZmkx2q7tD8P41kmgijdZh1uNZDb9v+8WteDdf
+ ke7GJGhYE1QLL98D5n4wQbWhMtrGowAiNe4xW/USsKTLBcbDMdEpF3Od7khTv7KRb0cT
+ S3dA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUipbTIWPOW0AHy/BwKqHDvMExSVk9N6iM1AbYMsftToP6swky9MdF8NvXNLX4mOTKoRh7x3AAq@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YycKjDDCIew88jRZVMOunqDUxT7vXEAt8H9JqEXwg14O8rlnyff
- Nje2Pqp4YpP3yjUvJtxhUV/KtJtsPMc0sT0SjzTp19W0vwUeK34CXaZ9UeZM0tMJOOjIFyW9toM
- F2MkhqgFyJdvBIuyBoo0E4ZK1KuSHy33xKLXsklEgEslhwOis3TNAvnrtvTtHlSb8e3Sp
-X-Gm-Gg: ASbGnctXxbzLvFUd/vpBOPSSN5iuYq2s21xP1db4BW3tjanh7MKqUHOlsf+U5GLh0u0
- +cGIeEFwoxeDu2HYwJvH7fIqfTJK2SoFiavR8J4Vu1RPVNsJttyhv2xBCQJAcA8+uxMoZQAaFUk
- 2D2aAo9FUniz9sBc49grRvK7dfG2g0uIO2CxkT0kD9c1sypGLHG3cxpPnZ5rn/ggTFUDB8Iq0W/
- mnOekgIVyH4NJUhUXrMLH2Ets+pXNMETCI7t5SZKlmZlWy1I+EfNel8DkMwclNXxA0AyaXF09k6
- RVlmoAuhNhMKVl8ydLCmuNFfA9GqpV705cg56Tgj48vxIjCVEkGI7386znRRC/csg3K8Kr0BsgU
- cBm9Kbe4hnT9fJEY93bMI9XSUCEIh8BwRfPY=
-X-Received: by 2002:a05:620a:84c3:b0:7c5:5a51:d2d1 with SMTP id
- af79cd13be357-7d44398f399mr2458870585a.55.1751367943285; 
- Tue, 01 Jul 2025 04:05:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEkaK5r4kmwq1bTXLA+Z1Z3MCVlUfECWUH1iOnueMEvJSOkDSVRInqR72D3IhCu8jIVuwHmSw==
-X-Received: by 2002:a05:620a:84c3:b0:7c5:5a51:d2d1 with SMTP id
- af79cd13be357-7d44398f399mr2458863485a.55.1751367942731; 
- Tue, 01 Jul 2025 04:05:42 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5550b24048dsm1783299e87.28.2025.07.01.04.05.41
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 01 Jul 2025 04:05:41 -0700 (PDT)
-Date: Tue, 1 Jul 2025 14:05:39 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Alex Deucher <alexander.deucher@amd.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Russell King <linux@armlinux.org.uk>, Inki Dae <inki.dae@samsung.com>,
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Thierry Reding <thierry.reding@gmail.com>,
- Mikko Perttunen <mperttunen@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- amd-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v2 05/19] drm: Allow the caller to pass in the format
- info to drm_helper_mode_fill_fb_struct()
-Message-ID: <t6yywwa4z42d3knc3ihr4d4hzenhtzm5noln5y57uwzlotdkxq@6neoszj33sgx>
-References: <20250701090722.13645-1-ville.syrjala@linux.intel.com>
- <20250701090722.13645-6-ville.syrjala@linux.intel.com>
+ AJvYcCWIL3NR0TEz8w93qVvP2LlOo03TDODIDTWDOXbuhjBwIzlzH+JyBk3e6clopDotc0bfNp2oT5jP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwAOJcli1SSGhe6u9jQtA00Y/MctBL0ORMNerg0qqLb6lNhjT/9
+ Pzj82rIHkHa4P8KDtTdOPSJS1f6Z4fvdYGDRV3t+AoJILvFm/taf56+cd8jDrwhw8/b9K1Wavk4
+ MdxKfM1sRKpxzP5XZXsSDn5do1HfjzrU=
+X-Gm-Gg: ASbGnctEX+dHF5/qMNb9P5tkaxkLICC+ShUz88bnSEz+UnwMX9i0MCTv0NFmY6DWVC6
+ 8TTYP+KUwW+xX1ACvPMIZPOTvXAz4YMj42VN2I8OPbwFZQgLsBCzHsVwxXIUk/IkB5HbycmZdTh
+ RdqI9btDg9/2qb0ic4mGyJRKhZLkhqClIJzlb+WWk0CpixgJ72wOL3Yw==
+X-Google-Smtp-Source: AGHT+IFUdRD9ff/2AXzkajZ014jgzqnnrOctCnqUh751BOw8Une3qB2C2bF1iaF/ptF/GHz1mrxH1fQWMGB98YE9euA=
+X-Received: by 2002:a17:90b:51c3:b0:311:a314:c2dd with SMTP id
+ 98e67ed59e1d1-3159d8c6cedmr2366780a91.4.1750439185108; Fri, 20 Jun 2025
+ 10:06:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250701090722.13645-6-ville.syrjala@linux.intel.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzAxMDA2NiBTYWx0ZWRfX76GAwltyz0xe
- UQFQo9ijw93hPHmOq7713LvWpP0bC/BFMGJW7i7k7mX97J2pFJCxItGjMqeM7UiIynkOCxk5B/p
- Ssr2n6Ig+oid5fOFd/pyXIhs9yh9LGiZKA+CTNqY0KOGHaTX4v8k9YU/cyjqvYEK/4chx5fIWO5
- rGAN4yTI7ilGBn0SqhJ0u8ve/MvinsCmQ0a9Z1PgS2zLqbfYPAtSaUk5iXDYjhH/VUnrayn/hhG
- BSJ/3Pol3orRB+UlZOGaLi6/X3+VYmPcHC7t4cpkFR5yjfsWqqlIyGLzpu+n0XwWluBF1Rzp1SJ
- x4uYcopKs+hJG0rMyDaynDfZW0t/Alb/h9zENIECajza+UfDr9IWhU4yJlUVXvlaDas9TQJylzO
- eYEg1dkFj+4BoukKiUft63yUpWnAnkT57Y0VG6V6VOgvqw935KYvZHTpWrFQ+DEtSZsRUgvZ
-X-Proofpoint-ORIG-GUID: K0cBm0vSvHw6LbOSmz0Vk9qRrGiBGiPf
-X-Authority-Analysis: v=2.4 cv=EuHSrTcA c=1 sm=1 tr=0 ts=6863c108 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=Wb1JkmetP80A:10 a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=p4Kof4svB8ImVrqtDUEA:9
- a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=zZCYzV9kfG8A:10
- a=bTQJ7kPSJx9SKPbeHEYW:22
-X-Proofpoint-GUID: K0cBm0vSvHw6LbOSmz0Vk9qRrGiBGiPf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.7,FMLib:17.12.80.40
- definitions=2025-07-01_02,2025-06-27_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1011 mlxlogscore=622 malwarescore=0 mlxscore=0 phishscore=0
- spamscore=0 adultscore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- impostorscore=0 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2507010066
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+References: <20250620-num-v1-0-7ec3d3fb06c9@nvidia.com>
+ <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
+ <CANiq72=BSnom-nQgzLvv-cqwSknK1uJ=CXGP51r0WRj1Y553Ew@mail.gmail.com>
+ <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
+In-Reply-To: <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Fri, 20 Jun 2025 19:06:12 +0200
+X-Gm-Features: Ac12FXy9impNFri4YJFlzwQ3T6GDHruzREl_6st0yjIG4jjsANoToHYXbGIIsEw
+Message-ID: <CANiq72=kfhLwpXL0s2HWbW79QEZNTvJ1UKBSzp6MHyoVEUAC1A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] rust: add `num` module with `PowerOfTwo` type
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,21 +91,20 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Jul 01, 2025 at 12:07:08PM +0300, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Soon all drivers should have the format info already available in the
-> places where they call drm_helper_mode_fill_fb_struct(). Allow it to
-> be passed along into drm_helper_mode_fill_fb_struct() instead of doing
-> yet another redundant lookup.
-> 
-> Start by always passing in NULL and still doing the extra lookup.
-> The actual changes to avoid the lookup will follow.
-> 
+On Fri, Jun 20, 2025 at 3:59=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> This reminds me that I should also check whether upstream Rust would be
+> interested in `prev_multiple_of` and `last_set_bit`. The docs I've read
+> for contributing looked a bit intimidating, with RFCs to write and all.
+> Would you have a pointer for where I should start? Maybe a Zulip thread?
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+I would say it is actually quite straightforward compared to, say, WG14/21.
 
+The first thing I added was a method too, to see how things worked,
+and I started just by sending the PR.
 
--- 
-With best wishes
-Dmitry
+So I would say, go for it! :)
+
+Cheers,
+Miguel
