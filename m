@@ -4,52 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2034CD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C085CD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00E5C10E9E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECE110E660;
 	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=freemail.hu header.i=@freemail.hu header.b="jvt7JZkL";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RGqpv40Y";
 	dkim-atps=neutral
-Received: from smtp-out.freemail.hu (fmfe36.freemail.hu [46.107.16.241])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25CAB10E0A3;
- Fri, 11 Oct 2024 10:24:45 +0000 (UTC)
-Received: from [192.168.0.16] (catv-178-48-208-49.catv.fixed.vodafone.hu
- [178.48.208.49])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.freemail.hu (Postfix) with ESMTPSA id 4XQ2mn4GPSzD8J;
- Fri, 11 Oct 2024 12:24:41 +0200 (CEST)
-Message-ID: <264890a1-7234-407e-b7ba-078f32462afe@freemail.hu>
-Date: Fri, 11 Oct 2024 12:23:18 +0200
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0131110E0E0;
+ Sun, 22 Jun 2025 22:50:45 +0000 (UTC)
+Received: by mail-pj1-f53.google.com with SMTP id
+ 98e67ed59e1d1-313756c602fso357274a91.3; 
+ Sun, 22 Jun 2025 15:50:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750632645; x=1751237445; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2XyaOPS+SVDJS2nuVakOU+h3pEZcqv0KxHASicqOHR0=;
+ b=RGqpv40YSldTbQXr2/VYzPUzgV1Wkt8LRCBAjgByrxQgxPSqsMHG8fceWxsK4OxzkJ
+ y5jv6GpglVqTasAGuvnvqv8ne0bSnVixtjgIJcRSdPkTEv9+PkQFYN365bTyqWyUo/Go
+ dIcxUm9QKVteP/QAKu9OvsuZI8DLWgrZcStkM0/2e54pcGSnRIhGpCnEoOGAAvaR7Mrq
+ YC7RFg/gDvSyAbx2C85jciIfnkPL+90i+Nuok7o1Of4b45pxi8za7G+822uFbYnr5q1t
+ t369geC7sAIX/WTGLzK61VKl95U5JF1Qx5JlNvPAidp3lOyPwfMp3YmtOKyqIN5WKx0M
+ zPow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750632645; x=1751237445;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=2XyaOPS+SVDJS2nuVakOU+h3pEZcqv0KxHASicqOHR0=;
+ b=G8ahcmQd99MihZw6xm91fME+W4LqeI5WGOa+ij2HFUWyFse3G7I/XmRtKoQHwCC92G
+ jCCIn5m9krbjW8BNRgdb5z9HhdUgYLZrPeOWT0OycxuEFiXCjj3wNQUsqAfoAA34j1iZ
+ PKH5K2qZLUNb4BFL/prr5+Ks/3bfWD79svF7IFgPgO1hWJQQpwzEY81hn5GIHlfVX+Bk
+ Oe1XQaCme30A0hfkOfFqZMUgyz/5mPGm0cuJzocJn0yYeBngbjeMOoy+8mgaUOgOZ0At
+ gp7CcsTTgoLA7DNVBzyM1AD04+OGQGTChl2Ua/Pfvyj538Qc6cTXhCO8LMMm7njOk16T
+ MoVA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWl/c2tiYmLKjFxCw7XbPJJ09MFGPYk5+Udy7vHujAXHgGuTlr/LlqWlhXDUAjxPqhClTKrLzU82iU=@lists.freedesktop.org,
+ AJvYcCXCT+PkxerXa+ZIiCd6rqSwf4qF547UwRNr3d29Zitx3+MXhDEx7zz4ykYeZVWWXQRFnRLjBWhgeg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxoiucLPgNfmHjNJ0eAexrd7+jTw29JyCkEMhlpwaByMlWA9rer
+ YcP9EkI449Vrh0va2VXd3/DNCHKNYcj/t2ZqOjIiu1oFZR+ddsVmxLHPoAb7OnUar0LLmtm9VTy
+ d7TsLBCux+re+XEDaUsDZ02TSoU6WL7k=
+X-Gm-Gg: ASbGnctNQASii5WwtdA3qIgnORSCZL+ua/MqYnv+LrERNZ3sWeoFQmWCX1nbw/wc0RR
+ yku5wp6bHiUuS+65/4V1t7HtnRAZxNyB875p/Q7bYoiCRVOA7bB5LvKxkCH74MLgT+KqL8pOWdI
+ Od/AyZC/IJvfrJX/4vrhhnYXwpTV9uTpgtFAV5DLwH6dinQvOQxDxNfg==
+X-Google-Smtp-Source: AGHT+IHkK5VxbDTzDH+78CGWNybiQ0lflBEpMpSVRH6uwkYDUKXtQuR/kJbEABJn7CeEMEkyXPjXtmArCfcPAjxsRNU=
+X-Received: by 2002:a17:90b:3a43:b0:311:fde5:c4ae with SMTP id
+ 98e67ed59e1d1-3159d8e2be9mr5684021a91.6.1750632645432; Sun, 22 Jun 2025
+ 15:50:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/nouveau/i2c: rename aux.c and aux.h to auxch.c and
- auxch.h
-To: Lyude Paul <lyude@redhat.com>, bskeggs@nvidia.com, kherbst@redhat.com,
- airlied@gmail.com, daniel@ffwll.ch, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
-References: <20240603091558.35672-1-egyszeregy@freemail.hu>
- <114482fe-0d91-4742-8ea1-5eaef8254c45@freemail.hu>
- <40b4b653e8c0c15343e211ff88ac8fe3f4d53e20.camel@redhat.com>
-Content-Language: hu
-From: =?UTF-8?Q?Sz=C5=91ke_Benjamin?= <egyszeregy@freemail.hu>
-In-Reply-To: <40b4b653e8c0c15343e211ff88ac8fe3f4d53e20.camel@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=simple/relaxed; t=1728642282; 
- s=20181004; d=freemail.hu;
- h=Message-ID:Date:MIME-Version:Subject:To:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
- l=8454; bh=wmH4MV95rwYFIztY5AXfM1HAtK2mdhjrRiZSZ1fyGyI=;
- b=jvt7JZkLPIQ6RukzGrSHqrANt5slZDKVr7MCcTZk3XVh8rlmADWvccTnvoL7Joja
- exzlJxeZwQfIsPtQbOv7VSxxCqwHrt+OkAHeoqRhq3hmy+buUqmvpsxPtHGRM/U9a76
- KmF3kW39DsrugrYBUdcl/mHq0A8c0wap4I1362Zi+uHIZBSuMtU/LI8vzmRw5rCKuth
- mQ8QxAQQe4VUoux6iTpECTDVzJjTHiYh+uMswQqlfvh6CGhd6El5pYBxB2zz36OFyyS
- gSfNmIHJyCXUvhPbkAiEAREZSwynScVYylanCsTte4Ked3zCXjbuPAoRQn72MWvNuPQ
- VlZ82Shwrg==
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+In-Reply-To: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 23 Jun 2025 00:50:31 +0200
+X-Gm-Features: Ac12FXzAp4qUKl_aNT741tylL3I37tb5s--GlJccgcY1EV1oeXS1Teju6Ztan0w
+Message-ID: <CANiq72=xmyHuBYEGbCMi=Um_NvNbf5TfMmJB5YPpVp41FcPdJA@mail.gmail.com>
+Subject: Re: [PATCH v12 0/6] rust: reduce `as` casts, enable related lints
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Masahiro Yamada <masahiroy@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
+ Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>, 
+ Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
+ Thomas Gleixner <tglx@linutronix.de>,
+ Anna-Maria Behnsen <anna-maria@linutronix.de>, 
+ Benno Lossin <lossin@kernel.org>,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+ linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
+ linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
+ linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ Christian Brauner <brauner@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,210 +120,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-2024. 10. 10. 23:17 keltezéssel, Lyude Paul írta:
-> Hi - how did you send this message? This patch comes out looking quite strange
-> on my machine, perhaps you don't have the encoding set to UTF-8 or aren't
-> using git send-email?
-> 
-> On Mon, 2024-09-23 at 22:18 +0200, Szőke Benjamin wrote:
->> 	s=20181004; d=freemail.hu;
->> 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:In-Reply-To:Content-Type:Content-Transfer-Encoding;
->> 	l=6727; bh=sJL9AOsUJH2ovHr5PYMU/rHzKoMeXVYsbJRkD0TaT5E=;
->> 	b=qY1DL1nlKnhWn0mpbbrefaus7g0fXuyQgL10k8YLW7EoFYdwaqOeDl6O+oQvVNmk
->> 	SvFiAJ5gdZeuP+2ZqTy3J1GOrOWP4HE77uQ4mJh9vyF3orZv2QtyIksudyXdHHiWwSS
->> 	IV7i4YkfUElv4+pFlUQ+hMRRXAOiqU/RVo1xBF0MBe/XGM1dt2UOj96u6lDp/vR7KP4
->> 	Tc7OCbj3h2I+07VEElEunHRpDFgZer+RV3SBLWBjiYBFtuUj3+iMnO/z36DlNJyHAj5
->> 	fySgG1IiRjIheKlzc5H7ikpMRfchALaeD+t1ayA7CERE4zDvIcBse8S5Oxkxvg7zwIW
->> 	Elv65cjloA==
->> Content-Transfer-Encoding: quoted-printable
->>
->> 2024. 06. 03. 11:15 keltez=C3=A9ssel, egyszeregy@freemail.hu =C3=ADrta:
->>> From: Benjamin Sz=C5=91ke <egyszeregy@freemail.hu>
->>> =20
->>> The goal is to clean-up Linux repository from AUX file names, because
->>> the use of such file names is prohibited on other operating systems
->>> such as Windows, so the Linux repository cannot be cloned and
->>> edited on them.
->>> =20
->>> Signed-off-by: Benjamin Sz=C5=91ke <egyszeregy@freemail.hu>
->>> ---
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild             | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c          | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c =3D> auxch.c} | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h =3D> auxch.h} | 0
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c           | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c         | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c         | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c             | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c           | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c         | 2 +-
->>>    drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c         | 2 +-
->>>    11 files changed, 10 insertions(+), 10 deletions(-)
->>>    rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.c =3D> auxch.c} (=
->> 99%)
->>>    rename drivers/gpu/drm/nouveau/nvkm/subdev/i2c/{aux.h =3D> auxch.h} (=
->> 100%)
->>> =20
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild b/drivers/g=
->> pu/drm/nouveau/nvkm/subdev/i2c/Kbuild
->>> index 819703913a00..2c551bdc9bc9 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/Kbuild
->>> @@ -25,7 +25,7 @@ nvkm-y +=3D nvkm/subdev/i2c/busnv50.o
->>>    nvkm-y +=3D nvkm/subdev/i2c/busgf119.o
->>>    nvkm-y +=3D nvkm/subdev/i2c/bit.o
->>>   =20
->>> -nvkm-y +=3D nvkm/subdev/i2c/aux.o
->>> +nvkm-y +=3D nvkm/subdev/i2c/auxch.o
->>>    nvkm-y +=3D nvkm/subdev/i2c/auxg94.o
->>>    nvkm-y +=3D nvkm/subdev/i2c/auxgf119.o
->>>    nvkm-y +=3D nvkm/subdev/i2c/auxgm200.o
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c b/driver=
->> s/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
->>> index dd391809fef7..6c76e5e14b75 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/anx9805.c
->>> @@ -24,7 +24,7 @@
->>>    #define anx9805_pad(p) container_of((p), struct anx9805_pad, base)
->>>    #define anx9805_bus(p) container_of((p), struct anx9805_bus, base)
->>>    #define anx9805_aux(p) container_of((p), struct anx9805_aux, base)
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "bus.h"
->>>   =20
->>>    struct anx9805_pad {
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c b/drivers/gp=
->> u/drm/nouveau/nvkm/subdev/i2c/auxch.c
->>> similarity index 99%
->>> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
->>> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
->>> index d063d0dc13c5..fafc634acbf6 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.c
->>> @@ -24,7 +24,7 @@
->>>   =20
->>>    #include <linux/string_helpers.h>
->>>   =20
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "pad.h"
->>>   =20
->>>    static int
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h b/drivers/gp=
->> u/drm/nouveau/nvkm/subdev/i2c/auxch.h
->>> similarity index 100%
->>> rename from drivers/gpu/drm/nouveau/nvkm/subdev/i2c/aux.h
->>> rename to drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxch.h
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c b/drivers=
->> /gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
->>> index 47068f6f9c55..854bb4b5fdb4 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxg94.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs <bskeggs@redhat.com>
->>>     */
->>>    #define g94_i2c_aux(p) container_of((p), struct g94_i2c_aux, base)
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>   =20
->>>    struct g94_i2c_aux {
->>>    	struct nvkm_i2c_aux base;
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c b/drive=
->> rs/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
->>> index dab40cd8fe3a..c17d5647cb99 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgf119.c
->>> @@ -19,7 +19,7 @@
->>>     * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE=
->>   OR
->>>     * OTHER DEALINGS IN THE SOFTWARE.
->>>     */
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>   =20
->>>    static const struct nvkm_i2c_aux_func
->>>    gf119_i2c_aux =3D {
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c b/drive=
->> rs/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
->>> index 8bd1d442e465..3c5005e3b330 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/auxgm200.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs <bskeggs@redhat.com>
->>>     */
->>>    #define gm200_i2c_aux(p) container_of((p), struct gm200_i2c_aux, base=
->> )
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>   =20
->>>    struct gm200_i2c_aux {
->>>    	struct nvkm_i2c_aux base;
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c b/drivers/g=
->> pu/drm/nouveau/nvkm/subdev/i2c/base.c
->>> index 976539de4220..ab86e11e7780 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/base.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs
->>>     */
->>>    #include "priv.h"
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "bus.h"
->>>    #include "pad.h"
->>>   =20
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c b/drivers=
->> /gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
->>> index 5904bc5f2d2a..cc26cd677917 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padg94.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs
->>>     */
->>>    #include "pad.h"
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "bus.h"
->>>   =20
->>>    void
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c b/drive=
->> rs/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
->>> index 3bc4d0310076..1797c6c65979 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgf119.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs
->>>     */
->>>    #include "pad.h"
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "bus.h"
->>>   =20
->>>    static const struct nvkm_i2c_pad_func
->>> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c b/drive=
->> rs/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
->>> index 7d417f6a816e..5afc1bf8e798 100644
->>> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
->>> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/i2c/padgm200.c
->>> @@ -22,7 +22,7 @@
->>>     * Authors: Ben Skeggs
->>>     */
->>>    #include "pad.h"
->>> -#include "aux.h"
->>> +#include "auxch.h"
->>>    #include "bus.h"
->>>   =20
->>>    static void
->>
->> @Ben Skeggs
->> When it will be merged? Your hints was done and ready in this renaming pa=
->> tch.
->>
-> 
+On Sun, Jun 15, 2025 at 10:55=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
+> wrote:
+>
+> This started with a patch that enabled `clippy::ptr_as_ptr`. Benno
+> Lossin suggested I also look into `clippy::ptr_cast_constness` and I
+> discovered `clippy::as_ptr_cast_mut`. This series now enables all 3
+> lints. It also enables `clippy::as_underscore` which ensures other
+> pointer casts weren't missed.
+>
+> As a later addition, `clippy::cast_lossless` and `clippy::ref_as_ptr`
+> are also enabled.
+>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-It was sent via git send-email and it used UTF-8 in default.
+Applied to `rust-next` -- thanks everyone!
 
-In the patch website there is no any problem about encoding looks good, please 
-check your mailing client.
-https://lore.kernel.org/all/4fbfe84b-c092-4648-819f-4368add9ec4a@nvidia.com/T/
+    [ Added `.cast()` for `opp`. - Miguel ]
 
+    [ Changed `isize` to `c_long`. - Miguel ]
+
+It would still be nice to get the couple remaining Acked-bys (happy to
+rebase to apply them), but I feel we are in good shape, and it is a
+good time to put it into linux-next so that people see the lint before
+they start applying new code into their branches.
+
+Cheers,
+Miguel
