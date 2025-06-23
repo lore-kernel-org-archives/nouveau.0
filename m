@@ -4,84 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70097D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14119D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 898AB10EB66;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D38910EAB9;
 	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="D5db6Br7";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VLtGbtHy";
 	dkim-atps=neutral
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
- [209.85.222.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A690110E0CD
- for <nouveau@lists.freedesktop.org>; Fri, 10 Oct 2025 17:20:18 +0000 (UTC)
-Received: by mail-qk1-f175.google.com with SMTP id
- af79cd13be357-875d55217a5so254362885a.2
- for <nouveau@lists.freedesktop.org>; Fri, 10 Oct 2025 10:20:18 -0700 (PDT)
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
+ [209.85.216.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D189891D9
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 15:14:41 +0000 (UTC)
+Received: by mail-pj1-f53.google.com with SMTP id
+ 98e67ed59e1d1-3137c20213cso4340774a91.3
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 08:14:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760116817; x=1760721617; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=xylsV5kIIIabKxOiN0kRoFNPX4aPhbzh0EYKMeP+Hkw=;
- b=D5db6Br7F17EXsk1WK7HO0w+d7eKShMvzxGPDH0hujYQ2ocrejmTqVbsgkR/RTsysc
- DYiDrT5lweSp+A0ErwHZOncnyzmABcc6fEZVSYAREj6Qbd5K/wGilicvZ5Cnxd8MWHeD
- AtzjznyTetmDro3sNkw/nBnUJjpIXZ74CtNjZOacM/eTFH02eKwgPEEJ4j7mtE6JZV/d
- NHkwxG1cU1bts7GEeoTl7ozQY2ZpT904HtnoNfvgcsPuSxaRK2cvkiHEojw28gTEHWwv
- DIj+kiM8JQvR3LyZ3mS9O4VmogmSS1E+o3WrpQRA9jExhxxK73ugsCCUiLM6eMVdEQ7w
- 9pug==
+ d=gmail.com; s=20230601; t=1750691681; x=1751296481; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=fJl0bofvsCNb/IhdYpO8yEuEs+fLAbcokn6DAhbWI2Y=;
+ b=VLtGbtHy/RBOv61a2DyJ6EfmrXrNsHwRKH7JYgYDXc8iRKpJOGy+nCFeOrGH3TgA7X
+ jQKvjyTpOdZCc/xey37GAIdYrI17L/USf8K7TRwKURYhYIyKE3cYdEFr3JoWP+HJCs/j
+ cuBHX3knpP7miSRqXEp+SOIj4pMO1dEMHDvDg6IOwSMRsjKDPn8K0gKTH4LdClYaQYZv
+ C0FeU5PKje3yYIUfYK3RVR7HWkuNzXnh5oFz85G4/3gaDf6ghm0asvYTcMBt0CpFipkQ
+ UwcM/PoBzMO2/2DzJiSki5qF570ssgckBxzMe6Wos7K0Eud9mOuf2c0iS58HzYB02CMs
+ AL8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760116817; x=1760721617;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xylsV5kIIIabKxOiN0kRoFNPX4aPhbzh0EYKMeP+Hkw=;
- b=P7tTa/ocf0NrTtO+NQs4GANwzb60V8Rh7jQjRWMyxfmdJ6RLOnS6p3AIBJFYEHMUeH
- rDlFfmewho48OBo4Bor4XONRscfiezkleevaiGckSK7QfRooNLB/1WdSJraX61WVzWFc
- aJpNfi34408JHnveZAeOG+K9YBSIM5V55SrVunELCm0PiJSxsmfZoaJFJ0evo7kLfOFb
- Z6OZNEUV0JRZoF+0W0DIuTdjejLk4prodcAMQgxhud89ahL41YyDHZvmmv9IAn5XMwhX
- BO3rAutvAGX3mjR6FoKhMADw3kr7nDQ7id5Hk/MnEWGuSLJVATatWM+gWgPR6dbU/Bvy
- 6RrQ==
+ d=1e100.net; s=20230601; t=1750691681; x=1751296481;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=fJl0bofvsCNb/IhdYpO8yEuEs+fLAbcokn6DAhbWI2Y=;
+ b=rpj4/9ODI60geMb2plnSo76EPCs06buotTTa0YSobKIZb2dJF0DTuCPIvoU5n1YUvg
+ bRE+BrXMpRRtCUOqtqqUF0MMvMUj7XwBPFq4RKRrnt4kU2iWKiphYz9s9S39JgqrJU/a
+ aCY6q0+mpXHP2S99ffXSKDA9/jEFbqvTRzDPj2Zn/rIRTjNEKVZQIQQXn+bFNEg6fU31
+ DLnRvtFGchQl2P6akNELOw6/Se/jzLpkw2vk5f3mfU61VSQAMV7NBAFeZepaa1o49KEi
+ tg6yksFd6G2UbsfymgEVIJy8AlIyPVRwzZ6XGwQAFSHGcqa9R+FTVwQmCrX5lqp6j7Aa
+ gM9Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXthkcVzi5jFMZyqCGPL3ZL+107bTFFGA7m6BZQ5EyAAaubCT8oUYtbEDbEDywKxCxev59avBjc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwT3JRrd5HY2PPc3D2xRebvo/gNBJpYLPTx5qgeUH0nyGGfI2kl
- qlnt1Gq/k+3b0EoEIf+u8YkPe0Iu9RbytMffnbgfgqztANQXEScTCqSd
-X-Gm-Gg: ASbGnctMwz72boWgciSijFvEWMg7YplDwCLwAghmoIFM93ONZt2rGWb3oGRiGcwGLsd
- nbgKtyleJO25b6KDTm9cBwxIjERBFXmUmjwBokOBuYBrJppS3o/6HDnt+tfK34POrDmtd0grPdp
- zu3KAiuD2lEIEIOfbdNikitHtqtCWtksSdBJHLp4hS8sUWC1wim73MKUvqFUkt55wAxg9l6y3fA
- vUhjwCoqOUrVKnPcxoyqbsFxDE+orUoDH5CHixt9Mz4LXN5VE57FgtGBsCWrk4CRb/sdeDgnUp8
- QrIVKjEAcDhzhPEex++LO5N81h0aLusdeP4nEYG/dwoTTCkjFeW+NVrhpWE0IOxNEY6kjhwJjrp
- TeYWYg4TDaYvJlmxCTHN6B1aInl7gmWsEIl0XcA==
-X-Google-Smtp-Source: AGHT+IF3YmHCTvIfvD1GXE14cMoEXlCAzP1Rdx8G5vNHAkuYwhBNSOsWkfDL8D3LLQCVaHGU9tSuLA==
-X-Received: by 2002:a05:622a:90f:b0:4b7:95f2:ddf with SMTP id
- d75a77b69052e-4e6ead54bb0mr159732141cf.45.1760116817164; 
- Fri, 10 Oct 2025 10:20:17 -0700 (PDT)
-Received: from localhost ([12.22.141.131]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4e70d134a3csm12356431cf.9.2025.10.10.10.20.15
+ AJvYcCWgch1SBjMK3/BUC9Hr+o6i5IgEr8ll9pPIpD03XMz+P4K8DfNF203esAh9FmO6mbpvIUfRIq15@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRkicrc4k7qzz+GoXjT8Zp/EG0YL24up5AaBGF4Pu/23cC5JdU
+ 4zWF+DKigLleXsGmJrK7uqwLnCs3qW0N+ZAnRQy3aHqS/RWH2R7fLD9i6StXaRq52mQ=
+X-Gm-Gg: ASbGncuXfaPcEqyW6rt+Y/z7tfHlPYXtoql+f43JYC14TVUTb1vcvmhW4W7bL6gzctq
+ pwvna2dI3E1EWtviNkJx1PUb5zLLIn2foFggu0yGxp8JIdmru41RRryXZ45hbwMUSDGa5A9s0Co
+ javhpHXeQdAvQH16FbplEgeLa23uQVOVoCkhUQxLflb5hMxA2tFKi1cOZ3jYUqE5jCaTXtTYrGv
+ vAgyxlF1uIHvkPC9LTVHBKQCsMC5hTYLhaOed+zEF3YxWJpqP5r+Jf8EJaklxY4Q6fYc+iRzZCd
+ /MC5Eqp/qsWxSykd9eoBVgULbFJTvuzoQ3QE4SbO4nzQ/t9h0xmqCYqfhSDiQ0co7WVR7r3kT7w
+ v3YiJmds=
+X-Google-Smtp-Source: AGHT+IGKsva6kVgzg4Cok11z5b+GUl9qeuWFMNPVQGJXb1rtZHDejue9tGLjW0VLzgTh0jN+h79VWQ==
+X-Received: by 2002:a17:90b:3d50:b0:311:a314:c2cf with SMTP id
+ 98e67ed59e1d1-3159d8f7de2mr17582857a91.30.1750691681066; 
+ Mon, 23 Jun 2025 08:14:41 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3159df71cd6sm8338512a91.4.2025.06.23.08.14.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Oct 2025 10:20:16 -0700 (PDT)
-Date: Fri, 10 Oct 2025 13:20:01 -0400
-From: Yury Norov <yury.norov@gmail.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
- Jesung Yang <y.j3ms.n@gmail.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feong@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Mon, 23 Jun 2025 08:14:40 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH RFC v2 3/3] gpu: nova-core: use BoundedInt
-Message-ID: <aOlAQaDo5HwlvRUk@yury>
-References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
- <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com>
- <aOflmmHe8O6Nx9Hp@yury> <DDEJ3X0C2RNH.13YEXJI3CTSPF@nvidia.com>
+ Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH 0/4] rust: add `FromPrimitive` support
+Date: Mon, 23 Jun 2025 15:14:26 +0000
+Message-Id: <cover.1750689857.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DDEJ3X0C2RNH.13YEXJI3CTSPF@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,217 +91,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Oct 10, 2025 at 06:19:17PM +0900, Alexandre Courbot wrote:
-> On Fri Oct 10, 2025 at 1:40 AM JST, Yury Norov wrote:
-> > Hi Alexandre,
-> >
-> > On Thu, Oct 09, 2025 at 09:37:10PM +0900, Alexandre Courbot wrote:
-> >> Use BoundedInt with the register!() macro and adapt the nova-core code
-> >> accordingly. This makes it impossible to trim values when setting a
-> >> register field, because either the value of the field has been inferred
-> >> at compile-time to fit within the bounds of the field, or the user has
-> >> been forced to check at runtime that it does indeed fit.
-> >
-> > In C23 we've got _BitInt(), which works like:
-> >
-> >         unsigned _BitInt(2) a = 5; // compile-time error
-> >
-> > Can you consider a similar name and syntax in rust?
-> 
-> I like the shorter `BitInt`! For the syntax, we will have to conform to
-> what is idiomatic Rust. And I don't think we can make something similar
-> to `= 5` work here - that would require overloading the `=` operator,
-> which cannot be done AFAICT. A constructor is a requirement.
+This patch series introduces a new `FromPrimitive` trait along with its
+corresponding derive macro.
 
-Sure, BitInt + constructor is nice.
+A few enhancements were made to the custom `quote!` macro to write the
+derive macro. These include support for additional punctuation tokens
+and a fix for an unused variable warning when quoting simple forms.
+Detailed information about these enhancements is provided in the
+relevant patches.
 
-> >> The use of BoundedInt actually simplifies register fields definitions,
-> >> as they don't need an intermediate storage type (the "as ..." part of
-> >> fields definitions). Instead, the internal storage type for each field
-> >> is now the bounded integer of its width in bits, which can optionally be
-> >> converted to another type that implements `From`` or `TryFrom`` for that
-> >> bounded integer type.
-> >> 
-> >> This means that something like
-> >> 
-> >>   register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
-> >>       3:3     status_valid as bool,
-> >>       31:8    addr as u32,
-> >>   });
-> >> 
-> >> Now becomes
-> >> 
-> >>   register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
-> >>       3:3     status_valid => bool,
-> >>       31:8    addr,
-> >>   });
-> >
-> > That looks nicer, really. But now that you don't make user to provide
-> > a representation type, how would one distinguish signed and unsigned
-> > fields? Assuming that BoundedInt is intended to become a generic type,
-> > people may want to use it as a storage for counters and other
-> > non-bitfield type of things. Maybe:
-> >
-> >    register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
-> >        s 3:0     cnt,
-> >          7:4     flags, // implies unsigned - ?
-> >        u 31:8    addr,
-> >    });
+While cleaning up the implementations, I came across an alternative
+form of the `FromPrimitive` trait that might better suit the current
+use case. Since types that implement this trait may often rely on just
+one `from_*` method, the following design could be a simpler fit:
 
-> The expectation would be to use the `=>` syntax to convert the field to
-> a signed type (similarly to how `status_valid` is turned into a `bool`
-> in my example).
- 
-So, you suggest like this?
+    trait FromPrimitive: Sized {
+        type Primitive;
 
-    register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
-        3:0     cnt => i8,
-        7:4     flags, // implied unsigned
-        31:8    addr,  // implied unsigned
-    });
+        fn from_bool(b: bool) -> Option<Self>
+        where
+            <Self as FromPrimitive>::Primitive: From<bool>,
+        {
+            Self::from_primitive(b.into())
+        }
 
-That answers my question. Can you please highlight this use case
-in commit message?
+        fn from_primitive(n: Self::Primitive) -> Option<Self>;
+    }
 
-And just to wrap up:
+This is just a thought and not something I feel strongly about, but I
+wanted to share it in case others find the idea useful. Feedback or
+suggestions are very welcome.
 
- - all fields by default are unsigned integers;
- - one may use '=>' to switch to signed integers, enums or booleans;
- - all other types are not allowed.
+The original discussion of FromPrimitive can be found on Zulip [1].
 
-Is that correct?
- 
-> >> (here `status_valid` is infallibly converted to a bool for convenience
-> >> and to remain compatible with the previous semantics)
-> >> 
-> >> The field setter/getters are also simplified. If a field has no target
-> >> type, then its setter expects any type that implements `Into` to the
-> >> field's bounded integer type. Due to the many `From` implementations for
-> >> primitive types, this means that most calls can be left unchanged. If
-> >> the caller passes a value that is potentially larger than the field's
-> >> capacity, it must use the `try_` variant of the setter, which returns an
-> >> error if the value cannot be converted at runtime.
-> >> 
-> >> For fields that use `=>` to convert to another type, both setter and
-> >> getter are always infallible.
-> >> 
-> >> For fields that use `?=>` to fallibly convert to another type, only the
-> >> getter needs to be fallible as the setter always provide valid values by
-> >> design.
-> >
-> > Can you share a couple examples? Not sure I understand this part,
-> > especially how setters may not be fallible, and getters may fail.
-> 
-> Imagine you have this enum:
-> 
->   enum GpioState {
->     Low = 0,
->     High = 1,
->     Floating = 2,
->   }
-> 
-> and this field:
-> 
->   2:0 gpio_state ?=> GpioState,
-> 
-> When you set it, you must pass an instance of `GpioState` as argument,
-> which means that the value will always be valid. However, when you try
-> to access the field, you have no guarantee at all that the value of the
-> field won't be `3` - the IO space might be inaccessible, or the register
-> value be forged arbitrarily. Thus the getter needs to return a
-> `Result<GpioState>`.
+[1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089/topic/x/near/524427350
 
-Ack, thanks.
-  
-> >> Outside of the register macro, the biggest changes occur in `falcon.rs`,
-> >> which defines many enums for fields - their conversion implementations
-> >> need to be changed from the original primitive type of the field to the
-> >> new corresponding bounded int type. Hopefully the TryFrom/Into derive
-> >> macros [1] can take care of implementing these, but it will need to be
-> >> adapted to support bounded integers... :/
-> >> 
-> >> But overall, I am rather happy at how simple it was to convert the whole
-> >> of nova-core to this.
-> >> 
-> >> Note: This RFC uses nova-core's register!() macro for practical
-> >> purposes, but the hope is to move this patch on top of the bitfield
-> >> macro after it is split out [2].
-> >> 
-> >> [1] https://lore.kernel.org/rust-for-linux/cover.1755235180.git.y.j3ms.n@gmail.com/
-> >> [2] https://lore.kernel.org/rust-for-linux/20251003154748.1687160-1-joelagnelf@nvidia.com/
-> >> 
-> >> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> >> ---
-> >
-> > ...
-> >
-> >>          regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-> >> -            .set_base((dma_start >> 40) as u16)
-> >> +            .try_set_base(dma_start >> 40)?
-> >>              .write(bar, &E::ID);
-> >
-> > Does it mean that something like the following syntax is possible?
-> >
-> >         regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-> >             .try_set_base1(base1 >> 40)?        // fail here
-> >             .try_set_base2(base2 >> 40)?        // skip
-> >             .write(bar, &E::ID) else { pr_err!(); return -EINVAL };
-> >
-> > This is my main concern: Rust is advertised a as runtime-safe language
-> > (at lease safer than C), but current design isn't safe against one of
-> > the most common errors: type overflow.
-> 
-> Not sure I understand what you mean, but if you are talking about fields
-> overflow, this cannot happen with the current design. The non-fallible
-> setter can only be invoked if the compiler can prove that the argument
-> does fit withing the field. Otherwise, one has to use the fallible
-> setter (as this chunk does, because `dma_start >> 40` can still spill
-> over the capacity of `base`), which performs a runtime check and returns
-> `EOVERFLOW` if the value didn't fit.
- 
-Yeah, this design addresses my major question to the bitfields series
-from Joel: setters must be fallible. I played with this approach, and
-it does exactly what I have in mind.
+Jesung Yang (4):
+  rust: introduce `FromPrimitive` trait
+  rust: macros: extend custom `quote!` macro
+  rust: macros: prefix variable `span` with underscore
+  rust: macros: add derive macro for `FromPrimitive`
 
-I still have a question regarding compile-time flavor of the setter.
-In C we've got a builtin_constant_p, and use it like:
-        
-   static inline int set_base(unsigned int base)
-   {
-        BUILD_BUG_ON_ZERO(const_true(base > MAX_BASE));
+ rust/kernel/convert.rs | 154 +++++++++++++++++++++++++++++
+ rust/kernel/lib.rs     |   1 +
+ rust/macros/convert.rs | 217 +++++++++++++++++++++++++++++++++++++++++
+ rust/macros/lib.rs     |  71 ++++++++++++++
+ rust/macros/quote.rs   |  46 ++++++++-
+ 5 files changed, 487 insertions(+), 2 deletions(-)
+ create mode 100644 rust/kernel/convert.rs
+ create mode 100644 rust/macros/convert.rs
 
-        // Eliminated for compile-time 'base'
-        if (base > MAX_BASE)
-                return -EOVERFLOW;
 
-        __set_base(base);
+base-commit: dc35ddcf97e99b18559d0855071030e664aae44d
+-- 
+2.39.5
 
-        return 0;
-   }
-
-Can we do the same trick in rust? Would be nice to have a single
-setter for both compile and runtime cases.
-
-> > If your syntax above allows to handle errors in .try_set() path this way
-> > or another, I think the rest is manageable. 
-> >
-> > As a side note: it's a huge pain in C to grep for functions that
-> > defined by using a macro. Here you do a similar thing. One can't
-> > easily grep the 'try_set_base' implementation, and would have to
-> > make a not so pleasant detour to the low-level internals. Maybe
-> > switch it to:
-> >         
-> >         regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-> >             .try_set(base, dma_start >> 40)?
-> >             .write(bar, &E::ID);
-> 
-> `base` here is passed by value, what type would it be? I don't think it
-> is easily doable without jumping through many hoops.
-> 
-> Using LSP with Rust actually makes it very easy to jump to either the
-> definition of the register, or of the `try_set` block in the macro - 
-> I've done this many times. LSP is pretty much a requirement to code
-> efficiently in Rust, so I think it is reasonable to rely on it here.
-
-OK, then this one is also addressed. If LSP is a requirement, maybe
-it's worth to mention it in Documentation?
