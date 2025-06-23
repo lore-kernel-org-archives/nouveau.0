@@ -4,76 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53C05D5B162
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEAE3D5B161
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A45A10EA2E;
-	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.209.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA8C210E6AE
- for <nouveau@lists.freedesktop.org>; Wed,  4 Sep 2024 07:50:23 +0000 (UTC)
-X-QQ-GoodBg: 2
-X-BAN-DOWNLOAD: 1
-X-BAN-SHARE: 1
-X-QQ-SSF: 0040000000000060
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-XMAILINFO: Nr9+mHXfAFYqb2u4o6mSFCAOExMD1FGLWnwGwcUeX3N6XxGOeVorxTvu
- EH5tmqwIqoQxeXLeahN9e3t+it338Qt8aMk+PYfV/ANiLXvoDB0WNlkHeHGIa6EIFmrIOdk
- eq/nBJR3xzdSfazkSml1T+tZ5R9X+0/0PBd1eETCxXYw028pFxKEgK/LE7ti4UiBBgNavKr
- 3ps3T1vuwURDzw++W4zzoENthW9gtld0V0PqRcJmsM4ln555I34sdkgBKz5l3YI8NOAvYYc
- H2xQJweTb1F34/dmasDtZ/BJCHLjkwx6YQcp4xvZBua2cRQUQZPfQCOELprY2ugrp6XYW8L
- B/gCkjyEq1iDv/yZXd8qDpArJM21L6ccoFpuiSGO2nRXgWpEO78FG4C8ByP9VQdw2Xp63sz
- LVs5q6JQ/DSbstcYne9ybTPUnykGHtPVU0pv8cxlyHIf81fQwEfdNmMVP05gKfu8M8OWS3N
- aFLRkrC3wtK8lcGJBVuPHS7PjDpZfc+ZNLBmi8WTlPsGOAJSaTyFGevrwBmRjptLh0tzfj6
- HZHPvpyaa6/RVEoLP4ELDLyBF6rRJW4hNqU3HgRPl++vdUGi/Qg4PlDBwS8wX21cR3Qcjj3
- GybrycRl26PmOO5w5aj318IqVLHodZm7Tj+cwHkNLNgGZA/38IJUYR8YLbLVfgLXvFac2f5
- PkTrErM0EVGZZcCRk086GwNNegceITBQ9I2Aw/pOSmZQ8t52R/4w7P8EKqdkWItN7/y9k3+
- 2/3ehMPm6sc+f0eas5ZBMox3AZFDEvkbDgDYyKSonAtSIARlY/f0X3wLkxehVZoDU/5GYIJ
- wYjWavWs+nNuX/RHovCvSDcgoRWHQ0VbYh45cQtfasjSrFscDXr4qV7DJjCgk0Osn1wws8C
- DvkBuIgWmW1WgZA0G7TPAEnN2CUdF9LG
-X-QQ-FEAT: D4aqtcRDiqQpBpTnjIJt3/f21w9WO3enREO5ZSgO7MU=
-X-QQ-BUSINESS-ORIGIN: 2
-X-QQ-Originating-IP: E7inRcGMD3FFQkYdnvBRHVe92HC6Hxe27PpmZrNNZek=
-X-Originating-IP: 180.171.234.62
-X-QQ-STYLE: 
-X-QQ-mid: t6gz5a-0t1725436046t4155309
-From: "=?utf-8?B?6Jme6ZmG6ZOt?=" <luming.yu@shingroup.cn>
-To: "=?utf-8?B?WWFuZyBKaWFsb25nIOadqOS9s+m+mQ==?=" <jialong.yang@shingroup.cn>,
- "=?utf-8?B?bXBl?=" <mpe@ellerman.id.au>,
- "=?utf-8?B?bnBpZ2dpbg==?=" <npiggin@gmail.com>,
- "=?utf-8?B?Y2hyaXN0b3BoZS5sZXJveQ==?=" <christophe.leroy@csgroup.eu>,
- "=?utf-8?B?TmF2ZWVuIE4uIFJhbw==?=" <naveen.n.rao@linux.ibm.com>
-Cc: "=?utf-8?B?c2hlbmdodWkucXU=?=" <shenghui.qu@shingroup.cn>,
- "=?utf-8?B?bGludXhwcGMtZGV2?=" <linuxppc-dev@lists.ozlabs.org>,
- "=?utf-8?B?bGludXgta2VybmVs?=" <linux-kernel@vger.kernel.org>,
- "=?utf-8?B?U3RldmVuIFJvc3RlZHQ=?=" <rostedt@goodmis.org>,
- "=?utf-8?B?TWFzYW1pIEhpcmFtYXRzdQ==?=" <mhiramat@kernel.org>,
- "=?utf-8?B?S2Fyb2wgSGVyYnN0?=" <karolherbst@gmail.com>,
- "=?utf-8?B?UGVra2EgUGFhbGFuZW4=?=" <ppaalanen@gmail.com>,
- "=?utf-8?B?bm91dmVhdQ==?=" <nouveau@lists.freedesktop.org>
-Subject: Re: [PATCH v1 1/2] powerpc/mmiotrace: Add MMIO Tracing tool for
- PowerPC
-Mime-Version: 1.0
-Content-Type: text/plain;
-	charset="utf-8"
-Content-Transfer-Encoding: base64
-Date: Wed, 4 Sep 2024 15:47:25 +0800
-X-Priority: 3
-Message-ID: <tencent_525B0DBF67E67116595BAF23@qq.com>
-X-QQ-MIME: TCMime 1.0 by Tencent
-X-Mailer: QQMail 2.x
-X-QQ-Mailer: QQMail 2.x
-References: <2bf90acf7d29641ba6643934ff8dbba897dbd2d9.1718873074.git.jialong.yang@shingroup.cn>
- <87h6ddlfc7.fsf@mail.lhotse>
- <2CCFA0BD64E5F2E0+e4c7fc43-47b1-4788-a7d2-44f6a33cff66@shingroup.cn>
-In-Reply-To: <2CCFA0BD64E5F2E0+e4c7fc43-47b1-4788-a7d2-44f6a33cff66@shingroup.cn>
-X-QQ-ReplyHash: 4089120458
-X-BIZMAIL-ID: 6568626761907018191
-X-QQ-SENDSIZE: 520
-Received: from qq.com (unknown [127.0.0.1]) by smtp.qq.com (ESMTP) with SMTP
- id ; Wed, 04 Sep 2024 15:47:27 +0800 (CST)
-Feedback-ID: t:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz8a-0
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4CB210EA1D;
+	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MDGHWxCL";
+	dkim-atps=neutral
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
+ [209.85.215.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 184FE891D9
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 15:14:46 +0000 (UTC)
+Received: by mail-pg1-f174.google.com with SMTP id
+ 41be03b00d2f7-b31f22d706aso2682601a12.0
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 08:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1750691685; x=1751296485; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4L+SLp5sEjKp/3F3270exGqS9NQW7oUMk/S+cCYt5Es=;
+ b=MDGHWxCLa8ZEM2QeRcC3xkErx2W7jOsvp2pkHxMn9HZjPFbyY7TGqrh6YRNf2d/MGl
+ r6XPw7BOFZAAhBVBZIsoAQHqIuQ35Wmbul59+BotyD0CJS2PcyGt2HaHid/RWcX2hiJG
+ pjaT0umR0uPuJFZJSZi9+wRO4V4/xI/nS4F7WYmesIDQFj/+GCANJLTjXYrGU5SlU7Ad
+ beHk0QirAU6s4CvLe8lUmHBf+neyz9uBJOlzM5yZeltUD9omO8HIihFNgBnNesjd2fep
+ YtD5sme2DXZMeSxygkVdtfC4PcjCEOb7bCYmQ+L25YwuZoHL8UKMwVKjRopBL/R4WKte
+ 2LzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1750691685; x=1751296485;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=4L+SLp5sEjKp/3F3270exGqS9NQW7oUMk/S+cCYt5Es=;
+ b=Xy3Z/jQwDfzPmYcX4IN9KCiqOSLRno9+5PcLtJ1KpMYUFC/vd4F3xctWQ0nLRoNdbX
+ U8Dx8e6iW6dl6FwU9NwbWDa76Z04R62f4I9Ehl9lrXkxJ+VrBqHophBLC55FKCDDC1XU
+ yXeC4AvveKxElMtqSVxOlgTLFVB+IXI4LoC/DHczOFR8KHleHRz7591rj6FX2NuzCojW
+ uVoGwOFFYbYVKvXH+yBk+ANc95NNdwttFjpn9/EtxfpAAHHGB7lMy8KsYlabJ6YNkVVM
+ BBdmshTrsxJ0wRr4iWIwgqoGimbBiGs+F2YzEMpgC0X6ksqasAxF5KbjE6EoA+fcs24f
+ 5zlA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV8byJWVMCKmav2Fs2HCS1gxn6xkWnEjo8GyVJJNHQaDQNqiu/k6rt0R7hgJM1Qu3npm3vY6w7f@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyPy6yVdNa+Xn/8e7t/DPr4aiEot+qeOMw7BnRQNE2zSLIzqmHe
+ bCdi2oIDRZIU9jgMtI/DpNw4tDb05Vc1WX1bmM9Ssm5qf+MYOXo2MXeW
+X-Gm-Gg: ASbGncs/kKRrPs4llh83+FWBjsu0vgWU4Aw37QuYRDNBKw1w9wHlSGEtMXMB4cmcGR+
+ eo33597dlIkEgP8DBlezZ3/xDMlZpMWY1mfvvpHBNVY7owote2uGyAzXsHyqmziAMSWOE3cQMRR
+ 1QxUmNdK94IFtp6c0BjxwhM+7DYm5MT7LRFS5kiqvDNOEfjwgveUzhyG+q1Tr9Z4VrC5trvjQMe
+ q4rU1PzF4vtkxpx0amU70PNXUOpRAn9BT/ZPorZZLLWmmOT2RAlVMWGS6Ise9n+PF9LB/TD+2K1
+ k9GmVeNGw/RY7tUPoQhbY3rjkYatIZCZPbIcwSuvHDQwmmHAj27newYMolS7Ymym+CJo3sEua5P
+ hSuyKRdQ=
+X-Google-Smtp-Source: AGHT+IHjXjnNaJs4mpv+QbUUX8obW8sAmU/EZar1U85z03oyOBaK0Zh98OMIpjOXdxPItTkxI0ZxFA==
+X-Received: by 2002:a17:90b:4f46:b0:312:e49b:c972 with SMTP id
+ 98e67ed59e1d1-3159d68a9cbmr18302917a91.15.1750691685273; 
+ Mon, 23 Jun 2025 08:14:45 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3159df71cd6sm8338512a91.4.2025.06.23.08.14.41
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 23 Jun 2025 08:14:44 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH 1/4] rust: introduce `FromPrimitive` trait
+Date: Mon, 23 Jun 2025 15:14:27 +0000
+Message-Id: <702d21d34368b1dcd896343771b00a2303e9a312.1750689857.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1750689857.git.y.j3ms.n@gmail.com>
+References: <cover.1750689857.git.y.j3ms.n@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,101 +94,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-SGksDQoNCnRoZSBwYXRjaCBzZXQgYW5kIG1taW8gdHJhY2UgY2FwYWJpbGl0eSBoZWxwZWQg
-dXMgdG8gdHJhY2sgZG93biB0byB0aGUgcm9vdCBjYXVzZSBvZiAgYSBteXN0ZXJpb3VzIEVF
-SCBvbmx5IG9uIHBvd2VybnYgcGxhdGZvcm0NCiB0cmlnZ2VyZWQgYnkgYSB0ZXN0cG1kIGRw
-ZGsgdXNlciBtb2RlIGRyaXZlciAoVUlPKSBieSBjb21wYXJpbmcgdGhlIG1taW8gdHJhY2Ug
-ZnJvbSBVSU8gYW5kIG5hdGl2ZSBrZXJuZWwgZHJpdmVyIGZyb20gdGhlIHNhbWUgbmljLiAN
-CkFuZCB0aGUgcHJvYmxlbSBpcyBzb2x2ZWQgYnkgc3dpdGNoIHRvIFZGSU8gZHJpdmVyIGFz
-IGJhY2tlbmQuDQoNCnRoZSBwcm9ibGVtIGlzIHRoZSBtbWlvdHJhY2UgY291bGQgbm90IGNh
-cHR1cmUgdXNlciBtb2RlIG1taW8gd2hpY2ggSSB0aGluayBpdCBjb3VsZCBiZSBsaW1pdGF0
-aW9uIGJ5IGl0cyBjdXJyZW50IGRlc2lnbi4NCg0Kc28sIEkgdGhpbmsgd2UgY291bGQgdGlk
-eSB1cCB0aGUgcGF0Y2ggYW5kIGRvIHNvbWUgZmVhdHVyZSBlbmhhbmNlbWVudCB0aGVuIHdl
-IGNhbiBzdWJtaXQgYWdhaW4gZm9yIHRoZSBkZWJ1ZyB2YWx1ZSBvZiB0aGUgcGF0Y2guDQpB
-cyBpdCByZWFsbHkgaXMgcGFpbmZ1bCB3aGVuIEVFSCBBL0IgcmVjb3JkIGRvZXNuJ3QgcG9p
-bnQgdG8gYSBjbGVhciByb290IGNhdXNlIG9yIHN1ZmZpZW50IGRldGFpbHMgdGhhdCBjYW4g
-aGVscCB1cyB0byBmaXggIGRyaXZlciBjb2RlIGZvciB0aGUgdW5hbGlnbmVkDQpNTUlPIGZv
-ciBhIDNyZCBwYXJ0eSBuaWMgdmVuZG9yIG9uIHBvd2VybnYgcGxhdGZvcm0uDQogDQpDaGVl
-cnMsDQpMdW1pbmcNCi0tLS0tLS0tLS0tLS0tLS0tLSBPcmlnaW5hbCAtLS0tLS0tLS0tLS0t
-LS0tLS0NCkZyb206ICAiWWFuZyBKaWFsb25nIOadqOS9s+m+mSI8amlhbG9uZy55YW5nQHNo
-aW5ncm91cC5jbj47DQpEYXRlOiAgRnJpLCBKdW4gMjgsIDIwMjQgMDQ6MjEgUE0NClRvOiAg
-Im1wZSI8bXBlQGVsbGVybWFuLmlkLmF1PjsgIm5waWdnaW4iPG5waWdnaW5AZ21haWwuY29t
-PjsgImNocmlzdG9waGUubGVyb3kiPGNocmlzdG9waGUubGVyb3lAY3Nncm91cC5ldT47ICJO
-YXZlZW4gTi4gUmFvIjxuYXZlZW4ubi5yYW9AbGludXguaWJtLmNvbT47IA0KQ2M6ICAi6Jme
-6ZmG6ZOtIjxsdW1pbmcueXVAc2hpbmdyb3VwLmNuPjsgInNoZW5naHVpLnF1IjxzaGVuZ2h1
-aS5xdUBzaGluZ3JvdXAuY24+OyAibGludXhwcGMtZGV2IjxsaW51eHBwYy1kZXZAbGlzdHMu
-b3psYWJzLm9yZz47ICJsaW51eC1rZXJuZWwiPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5v
-cmc+OyAiU3RldmVuIFJvc3RlZHQiPHJvc3RlZHRAZ29vZG1pcy5vcmc+OyAiTWFzYW1pIEhp
-cmFtYXRzdSI8bWhpcmFtYXRAa2VybmVsLm9yZz47ICJLYXJvbCBIZXJic3QiPGthcm9saGVy
-YnN0QGdtYWlsLmNvbT47ICJQZWtrYSBQYWFsYW5lbiI8cHBhYWxhbmVuQGdtYWlsLmNvbT47
-ICJub3V2ZWF1Ijxub3V2ZWF1QGxpc3RzLmZyZWVkZXNrdG9wLm9yZz47IA0KU3ViamVjdDog
-IFJlOiBbUEFUQ0ggdjEgMS8yXSBwb3dlcnBjL21taW90cmFjZTogQWRkIE1NSU8gVHJhY2lu
-ZyB0b29sIGZvciBQb3dlclBDDQoNCiANCg0KDQrlnKggMjAyNC82LzI4IDE1OjAyLCBNaWNo
-YWVsIEVsbGVybWFuIOWGmemBkzoNCj4gSmlhbG9uZyBZYW5nIDxqaWFsb25nLnlhbmdAc2hp
-bmdyb3VwLmNuPiB3cml0ZXM6DQo+PiBtbWlvdHJhY2UgaXMgYSB1c2VmdWwgdG9vbCB0byB0
-cmFjZSBNTUlPIGFjY2Vzc2VzLiBOb3dhZGF5cywgaXQgb25seQ0KPj4gc3VwcG9ydGVkIG9u
-IHg4NiBhbmQgeDg2XzY0IHBsYXRmb3Jtcy4NCj4gSSd2ZSBuZXZlciB1c2VkIG1taW90cmFj
-ZSwgYW5kIGRvbid0IGtub3cgaXQgd2VsbC4NCj4NCj4gSSdtIG5vdCBuZWNlc3NhcmlseSBv
-cHBvc2VkIHRvIG1lcmdpbmcgaXQsIGJ1dCBBRkFJSyBpdCB3YXMgbW9zdGx5IHVzZWQNCj4g
-Zm9yIHJldmVyc2UgZW5naW5lZXJpbmcgcHJvcHJpZXRhcnkgZHJpdmVycywgd2hlcmUgdGhl
-IGRyaXZlciBpdHNlbGYNCj4gY291bGRuJ3QgYmUgZWFzaWx5IGluc3RydW1lbnRlZC4gSXMg
-dGhhdCB3aGF0IHlvdSdyZSB1c2luZyBpdCBmb3I/DQoNClllcy4gSnVzdCBsaWtlIHlvdSB0
-aGluay4gV2UgaGF2ZSB1c2VkIGl0IGZvciBuZXR3b3JrIHN0YWNrIGRlYnVnIGluIA0KcHBj
-NjRsZS4NCg0KDQo+DQo+IEZvciBkcml2ZXJzIHdoZXJlIHdlIGhhdmUgdGhlIHNvdXJjZSB3
-b3VsZG4ndCBpdCBiZSBlYXNpZXIgdG8ganVzdCB1c2UNCj4gdHJhY2Vwb2ludHMgaW4gdGhl
-IE1NSU8gYWNjZXNzb3JzPw0KDQoNClRyYWNlcG9pbnRzIG5lZWQgcHJlLWRlZmluZWQuIEFu
-ZCBpbiBzb21lIGJpZyBkcml2ZXIsIGl0J3Mgbm90IGVhc3kgdG8gDQpvdmVyd3JpdGUNCg0K
-YWxsIHBvaW50cyB3aGVyZSBhY2Nlc3MgcmVnaXN0ZXJzIGluIGlvIGFyZWEuIEFuZCB0cmFj
-ZXBvaW50IGlzIEMgDQpmdW5jdGlvbiBsZXZlbCBmaWx0ZXIuDQoNCm1taW90cmFjZSBpcyBz
-aW1pbGFyIHRvIHNldCB0cmFjZXBvaW50cyBpbiB3cml0ZWwvcmVhZGwuLi4gQnV0IGl0IGNh
-biBkbyANCmRlZXBlcmx5Lg0KDQptbWlvdHJhY2UgaXMgYSBhc20gbGV2ZWwgZmlsdGVyIHRv
-b2wuIEl0IGRvZXNuJ3QgY2FyZSB3aGF0IGhhdmUgZG9uZSBpbiANCkMgbGV2ZWwuIEl0IHdp
-bGwNCg0Kb25seSBmaW5kIHdoYXQgaGF2ZSBkb25lIGJ5IGFzbSwgc3VjaCBhcyBzdHcoc3Rv
-cmUgd29yZCkvbHcobG9hZCB3b3JkKSwgIA0KanVzdCBsaWtlIHN0YW5kaW5nDQoNCmluIHRo
-ZSB2aWV3IG9mIGRldmljZS4NCg0KDQo+DQo+IElzIGl0IHN0aWxsIGluLXVzZS9tYWludGFp
-bmVkIG9uIHRoZSB4ODYgc2lkZT8NCg0KDQpIZXJlIGlzIHNvbWUgY29yZSBmaWxlIHBhdGNo
-ZXMgbnVtYmVyIGluIHg4NjoNCg0KfCAgICAgIHwgbW1pb19tb2QuYyB8IGttbWlvLmMgfCBw
-Zl9pbi4qIHwgdGVzdG1taW90cmFjZS5jIHwNCnwtLS0tLS0rLS0tLS0tLS0tLS0tKy0tLS0t
-LS0tLSstLS0tLS0tLS0rLS0tLS0tLS0tLS0tLS0tLS18DQp8IDIwMjIgfCAgICAgICAgICAg
-ICAgIDEgfCAgICAgICAgICAgIDMgfCB8ICAgICAgICAgICAgICAgICAgfA0KfCAyMDIxIHwg
-ICAgICAgICAgICAgICAyIHwgICAgICAgICAgICAxIHwgICAgICAgICAgICAgICB8ICAgICAg
-ICAgfA0KfCAyMDIwIHwgICAgICAgICAgICAgICA0IHwgICAgICAgICAgICA0IHwgfCAgICAg
-ICAgICAgICAgIDEgfA0KfCAyMDE5IHwgICAgICAgICAgICAgICAyIHwgICAgICAgICAgICAx
-IHwgICAgICAgICAgICAxIHwgICAgICAgICAgICAgICA0IHwNCnwgMjAxOCB8ICAgICAgICAg
-ICAgICAgICAgfCAgICAgICAgICAgIDIgfCAgICAgICAgICAgICAgIHwgICAgICAgICAgfA0K
-fCAyMDE3IHwgICAgICAgICAgICAgICAyIHwgICAgICAgICAgICAyIHwgfCAgICAgICAgICAg
-ICAgIDEgfA0KfCAyMDE2IHwgICAgICAgICAgICAgICAxIHwgICAgICAgICAgICAyIHwgICAg
-ICAgICAgICAxIHwgICAgICAgIHwNCnwgMjAxNCB8ICAgICAgICAgICAgICAgICAgfCAgICAg
-ICAgICAgIDEgfCAgICAgICAgICAgICAgIHwgICAgICAgICAgfA0KfCAyMDEzIHwgICAgICAg
-ICAgICAgICAxIHwgICAgICAgICAgICAgICB8ICAgICAgICAgICAgICAgfCAgICAgICAgICB8
-DQp8IDIwMTIgfCAgICAgICAgICAgICAgIDEgfCAgICAgICAgICAgICAgIHwgfCAgICAgICAg
-ICAgICAgICAgIHwNCnwgMjAxMSB8ICAgICAgICAgICAgICAgMyB8ICAgICAgICAgICAgICAg
-fCAgICAgICAgICAgIDEgfCAgICAgICAgIHwNCnwgMjAxMCB8ICAgICAgICAgICAgICAgMSB8
-ICAgICAgICAgICAgMyB8ICAgICAgICAgICAgMiB8ICAgICAgICAgICAgICAgMSB8DQp8IDIw
-MDkgfCAgICAgICAgICAgICAgIDQgfCAgICAgICAgICAxOSB8IHwgICAgICAgICAgICAgICAz
-IHwNCnwgMjAwOCB8ICAgICAgICAgICAgIDEzIHwgICAgICAgICAgICA1IHwgICAgICAgICAg
-ICAyIHwgICAgICAgICAgICAgICAzIHwNCg0KPg0KPj4gSGVyZSBpcyBhIHN1cHBvcnQgZm9y
-IHBvd2VycGMuDQo+PiBUaGUgbWFudWFsIGlzIGxvY2F0ZWQgYXQgRG9jdW1lbnRhdGlvbi90
-cmFjZS9tbWlvdHJhY2UucnN0IHdoaWNoIG1lYW5zDQo+PiBJIGhhdmUgbm90IGNoYW5nZWQg
-dXNlciBBUEkuIFBlb3BsZSB3aWxsIGJlIGVhc3kgdG8gdXNlIGl0Lg0KPj4gQWxtb3N0IGFs
-bCBmaWxlcyBhcmUgY29waWVkIGZyb20geDg2L21tLCB0aGVyZSBhcmUgb25seSBzb21lDQo+
-PiBkaWZmZXJlbmNlcyBmcm9tIGhhcmR3YXJlIGFuZCBhcmNoaXRlY3R1cmVzIHNvZnR3YXJl
-Lg0KPj4NCj4+IExJTks6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2xrbWwvMjAwODAxMjcx
-OTU1MzYuNTA4MDk5NzRAZGFlZGFsdXMucHEuaWtpLmZpLw0KPj4NCj4+IFNpZ25lZC1vZmYt
-Ynk6IEppYWxvbmcgWWFuZyA8amlhbG9uZy55YW5nQHNoaW5ncm91cC5jbj4NCj4+IC0tLQ0K
-Pj4gICBhcmNoL3Bvd2VycGMvS2NvbmZpZy5kZWJ1ZyAgICAgICB8ICAgMyArDQo+PiAgIGFy
-Y2gvcG93ZXJwYy9tbS9NYWtlZmlsZSAgICAgICAgIHwgICAxICsNCj4+ICAgYXJjaC9wb3dl
-cnBjL21tL2ttbWlvLmMgICAgICAgICAgfCA2NDkgKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKw0KPj4gICBhcmNoL3Bvd2VycGMvbW0vbW1pby1tb2QuYyAgICAgICB8IDQxNCAr
-KysrKysrKysrKysrKysrKysrKw0KPj4gICBhcmNoL3Bvd2VycGMvbW0vbW1pb3RyYWNlX2Fy
-Y2guYyB8IDE0OSArKysrKysrDQo+PiAgIGFyY2gvcG93ZXJwYy9tbS9tbWlvdHJhY2VfYXJj
-aC5oIHwgIDI1ICsrDQo+PiAgIGFyY2gvcG93ZXJwYy9tbS9wZl9pbi5jICAgICAgICAgIHwg
-MTg1ICsrKysrKysrKw0KPj4gICBhcmNoL3Bvd2VycGMvbW0vcGZfaW4uaCAgICAgICAgICB8
-ICAzMyArKw0KPj4gICA4IGZpbGVzIGNoYW5nZWQsIDE0NTkgaW5zZXJ0aW9ucygrKQ0KPiAg
-ICANCj4gQXQgYSBnbGFuY2UgbW9zdCBvZiB0aGF0IGNvZGUgY291bGQgYmUgc2hhcmVkIGJl
-dHdlZW4gYXJjaGVzLiBJIGRvbid0DQo+IHRoaW5rIEkgY2FuIG1lcmdlIHRoYXQgYXMtaXMs
-IHdpdGhvdXQgc29tZSBhdHRlbXB0IHRvIHNwbGl0IHRoZSBnZW5lcmljDQo+IHBhcnRzIG91
-dC4NCg0KDQpSaWdodC4NCg0KSSBqdXN0IGNvcHkgdGhlbSBmcm9tIGFyY2gveDg2L21tLiBU
-aGVyZSBhcmUgbWFueSBjb2RlIG5vdCBhcmNoIHNwZWNpZmljLg0KDQoNCj4gY2hlZXJzDQo+
+Introduce a new `FromPrimitive` trait under `kernel::convert` that
+enables fallible conversion from primitive types to user-defined
+types.
 
+This is useful when numeric values need to be interpreted as structured
+representations such as enums. These situations often arise when
+working with low-level data sources, for example when reading values
+from hardware registers.
+
+Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+---
+ rust/kernel/convert.rs | 154 +++++++++++++++++++++++++++++++++++++++++
+ rust/kernel/lib.rs     |   1 +
+ 2 files changed, 155 insertions(+)
+ create mode 100644 rust/kernel/convert.rs
+
+diff --git a/rust/kernel/convert.rs b/rust/kernel/convert.rs
+new file mode 100644
+index 000000000000..fb01a0e1507a
+--- /dev/null
++++ b/rust/kernel/convert.rs
+@@ -0,0 +1,154 @@
++// SPDX-License-Identifier: GPL-2.0
++
++//! Traits for type conversion.
++
++/// A trait for fallible conversions from primitive types.
++///
++/// [`FromPrimitive`] allows converting from various built-in primitive types
++/// (such as integers and `bool`) into a user-defined type, typically an `enum`.
++///
++/// At least [`from_i64`] and [`from_u64`] should be implemented. All other methods
++/// have default implementations that convert to `i64` or `u64` using fallible casts and
++/// delegate to those two core methods.
++///
++/// Enums with wide representations such as `#[repr(i128)]` or `#[repr(u128)]` may lose
++/// information through narrowing in the default implementations. In such cases, override
++/// [`from_i128`] and [`from_u128`] explicitly.
++///
++/// This trait can be used with `#[derive]`.
++/// See [`FromPrimitive`](../../macros/derive.FromPrimitive.html) derive macro for more
++/// information.
++///
++/// [`from_i64`]: FromPrimitive::from_i64
++/// [`from_i128`]: FromPrimitive::from_i128
++/// [`from_u64`]: FromPrimitive::from_u64
++/// [`from_u128`]: FromPrimitive::from_u128
++///
++/// # Examples
++///
++/// ```rust
++/// use kernel::convert::FromPrimitive;
++///
++/// #[derive(PartialEq)]
++/// enum Foo {
++///     A,
++///     B = 0x17,
++///     C = -2,
++/// }
++///
++/// impl FromPrimitive for Foo {
++///     fn from_i64(n: i64) -> Option<Self> {
++///         match n {
++///             0 => Some(Self::A),
++///             0x17 => Some(Self::B),
++///             -2 => Some(Self::C),
++///             _ => None,
++///         }
++///     }
++///
++///     fn from_u64(n: u64) -> Option<Self> {
++///         i64::try_from(n).ok().and_then(Self::from_i64)
++///     }
++/// }
++///
++/// assert_eq!(Foo::from_u64(0), Some(Foo::A));
++/// assert_eq!(Foo::from_u64(0x17), Some(Foo::B));
++/// assert_eq!(Foo::from_i64(-2), Some(Foo::C));
++/// assert_eq!(Foo::from_i64(-3), None);
++/// ```
++pub trait FromPrimitive: Sized {
++    /// Attempts to convert a `bool` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_bool(b: bool) -> Option<Self> {
++        Self::from_u64(u64::from(b))
++    }
++
++    /// Attempts to convert an `isize` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_isize(n: isize) -> Option<Self> {
++        i64::try_from(n).ok().and_then(Self::from_i64)
++    }
++
++    /// Attempts to convert an `i8` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_i8(n: i8) -> Option<Self> {
++        Self::from_i64(i64::from(n))
++    }
++
++    /// Attempts to convert an `i16` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_i16(n: i16) -> Option<Self> {
++        Self::from_i64(i64::from(n))
++    }
++
++    /// Attempts to convert an `i32` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_i32(n: i32) -> Option<Self> {
++        Self::from_i64(i64::from(n))
++    }
++
++    /// Attempts to convert an `i64` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    fn from_i64(n: i64) -> Option<Self>;
++
++    /// Attempts to convert an `i128` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    ///
++    /// The default implementation delegates to [`from_i64`](FromPrimitive::from_i64)
++    /// by downcasting from `i128` to `i64`, which may result in information loss.
++    /// Consider overriding this method if `Self` can represent values outside the
++    /// `i64` range.
++    #[inline]
++    fn from_i128(n: i128) -> Option<Self> {
++        i64::try_from(n).ok().and_then(Self::from_i64)
++    }
++
++    /// Attempts to convert a `usize` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_usize(n: usize) -> Option<Self> {
++        u64::try_from(n).ok().and_then(Self::from_u64)
++    }
++
++    /// Attempts to convert a `u8` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_u8(n: u8) -> Option<Self> {
++        Self::from_u64(u64::from(n))
++    }
++
++    /// Attempts to convert a `u16` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_u16(n: u16) -> Option<Self> {
++        Self::from_u64(u64::from(n))
++    }
++
++    /// Attempts to convert a `u32` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    #[inline]
++    fn from_u32(n: u32) -> Option<Self> {
++        Self::from_u64(u64::from(n))
++    }
++
++    /// Attempts to convert a `u64` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    fn from_u64(n: u64) -> Option<Self>;
++
++    /// Attempts to convert a `u128` to `Self`. Returns `Some(Self)` if the input
++    /// corresponds to a known value; otherwise, `None`.
++    ///
++    /// The default implementation delegates to [`from_u64`](FromPrimitive::from_u64)
++    /// by downcasting from `u128` to `u64`, which may result in information loss.
++    /// Consider overriding this method if `Self` can represent values outside the
++    /// `u64` range.
++    #[inline]
++    fn from_u128(n: u128) -> Option<Self> {
++        u64::try_from(n).ok().and_then(Self::from_u64)
++    }
++}
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index 6b4774b2b1c3..861c9340d9c2 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -61,6 +61,7 @@
+ pub mod clk;
+ #[cfg(CONFIG_CONFIGFS_FS)]
+ pub mod configfs;
++pub mod convert;
+ pub mod cpu;
+ #[cfg(CONFIG_CPU_FREQ)]
+ pub mod cpufreq;
+-- 
+2.39.5
 
