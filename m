@@ -4,73 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BD19D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59BAAD5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22D9E10EB7F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED3D10EB8E;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="mJifflvi";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="I7RCtM0q";
 	dkim-atps=neutral
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com
- [209.85.210.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9CD010E272
- for <nouveau@lists.freedesktop.org>; Sat, 12 Jul 2025 01:30:47 +0000 (UTC)
-Received: by mail-ot1-f43.google.com with SMTP id
- 46e09a7af769-73cdff9a27aso648376a34.0
- for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 18:30:47 -0700 (PDT)
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+ [209.85.215.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4950891D9
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 15:14:54 +0000 (UTC)
+Received: by mail-pg1-f171.google.com with SMTP id
+ 41be03b00d2f7-b26f7d2c1f1so4550843a12.0
+ for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 08:14:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752283847; x=1752888647; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1750691694; x=1751296494; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=wzChdIDMvXquT0FReP/JOP0d0Ci6sqsMjGUDFeUN5hc=;
- b=mJifflvi2c9rykjkExI9Bvu6E6JZTbUclnkawZ9sSCD2lIrm2jq2Nr6xhpxz0++v7a
- SxOcDn6Cz7IkMPBl613OVK2s7AOp6nraEifvQHHJU3TwjbBwMRFgVsDR0Z6/geW9e2TA
- RHAME/AGChFYrc7fMU7QyWAH9SIkODUYT7yXFdsLh0TceAigzSWxJRDpUdchIP75A5J3
- Dsxhk+Hq1HLQ2jetcZuo5KU6Ddo/J4276S2pFY/R47di+R0sO0mFUzzTwNDt9eKoChV9
- hmvK/xfB/YMs4RAZZWZ9SBUGhG2x55ndXiHgTxJRbR8pZuld6la/fPzMPKoGsBKHOhWl
- XXEA==
+ bh=uqJIIUX1RcMuJD/oxLXivkAND/EflsQl1f/q6RQcXXU=;
+ b=I7RCtM0qvcFNZ7sHl8zHgmhCyZrrA+kSeST6b6MeBFfZWkd8JeK2yleyQUWo7bqyEV
+ T70BmIzHLq8gh18Cvxhlu0dxLUbSdtR2kIgLBwloSZlzeNZEVLjJJhhDdwfltfFNOGQ5
+ o8ngiSfx2a6S9sqFLsBvh1eUKK+vhI40UnR3nvfi/rqgGhfUVCGUIot9LgtEsUgUJ+hZ
+ ij98O7aZr379AAPmSI5Npx4xaV0c8PvI1EYszswEHgLKTQTRFxZIVqcOtqmiUuy/gpBX
+ /gk7cqnyApxwzCwG0q6MKAbRwioug9w29v+62RDkpqMyXOEzVfPCTHXh0RR8J9HF8KXd
+ HmNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752283847; x=1752888647;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1750691694; x=1751296494;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=wzChdIDMvXquT0FReP/JOP0d0Ci6sqsMjGUDFeUN5hc=;
- b=AT4hAbgjdljwSB0Dp104ozFPRnirGOyYMZeXODRAZGl5qwmReTeUnZ8ykDzxGWGhfc
- o7gpQg+MYzhhCycuBJONr+nCezbnp9zwHGTmrsKg269J2ywR+uoX6mT7v/PncMnkyHQu
- 10VhCWIqfiDRi2n4rCGCSRii4c2PnWkPbYvrG2mE/yCaOfWMU9UzJmS9AGXaWSxl3HtS
- zUb08VLXEHut4FrVUrcV+kUH0HPmRfePCCUmOcLoXvx4xSUhhuTaGeedinpKX0tVJftt
- Vtp6ejvH1BGglSOFqmllL1pwc+f2bOQSgACehtcfS/1B14BsN94hVKerJ2WL1yJHv+Ao
- daFw==
-X-Gm-Message-State: AOJu0YwWMha0z2Lyx9vZ/iqwRxgsNg3vmhjbjokTfSO5fWqLBgKgcvsO
- ZJC2VelsSxl2uxKosrI2c3qJqa3mVUH7+KEvaYXXIohvScba57cPEnQRCTH8aOo3eVufVfroMII
- NmC8MB1BOQhTJBYDimY4xXCD8zwOykjc=
-X-Gm-Gg: ASbGncuTNcauYns8Ktt05vraihWUSlHOKX7g28XKtfOn3kpy47PguxCwkdZh11lBFHq
- xku2hixsgV7EW4AykFVADU98Kr1AVKoBSmAI7pPNd1KscKzRl+/AqxjoczCivcml9NhF2KdE7yB
- GMSCeWmXfRzNAzGAWnrM24lVswSCHm+nXVN6sCpNWbxLegUx0KzeuYSpCSzZDWkPuFFBzNAMcpy
- bFyHqtQvpwznuSunIY8FU4LVKfOeaAbiV6a0hbw
-X-Google-Smtp-Source: AGHT+IF3K+3TbtDk3dLuD6OeyCRPvMu7Lvn8pky+XKcd6S60lQlNZrzDYQqX/ZmrJVW+eZX1VYQltq51vaOdQeXXKBw=
-X-Received: by 2002:a05:6871:c708:b0:2d6:109d:2598 with SMTP id
- 586e51a60fabf-2ff267485f9mr4177867fac.5.1752283846912; Fri, 11 Jul 2025
- 18:30:46 -0700 (PDT)
+ bh=uqJIIUX1RcMuJD/oxLXivkAND/EflsQl1f/q6RQcXXU=;
+ b=B4neR7AhZHCSHNbxAnAhnt/svAEiJxbMsJFX88XAtOkDVUXeLiuoqm1AAksRCXQS1q
+ qsmXbXBa80/rnplvmldJYIASQTL13x9dhtOCb4rJSIcQlNKWU9xEM4mr2kktxIVTKY/x
+ v4S8RhXye7xkQBRU4OZLFWJH3T31kTc9ixJED60wx0vdf5EzUzJtbBaZWNwF6ruRLndy
+ CKbhyXjhC/sk7Dm/+0/xj4uAHMlaEqPHJSKYlRrUBYUc1TEDxuZ6RUOD8hAKvJzD4d9t
+ 3ls1CaKR4mRErd9101GIf5glzCH9a19U+uDLkL8N3/Gt9Gp7mEqPcZtrLf0v3iwTkbQc
+ 1IzA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXrufcBLLKNTvc4yVM7J+gHND0GbA4Q9HPJ+SS3NCzNfnSYBiFW1xfQzL+OiORAwXe3/q2Pq+Qb@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx/gObaCHFAvbpzADn8QnB9aUxUnQ4S8teUCKAcjvCM/81hIqDU
+ 3Xjzi11l7ruzuhxNwuXOTsKmy057IKstnjr9oPzEUaFPwnQPgvxmcItJ
+X-Gm-Gg: ASbGncs+2Ps83ng1mlqJB82IipqVOQdYQ6qut2J3jqVF29FdTxh6MOQzdiQ2ZdYmMHj
+ d/FQI+b7BvWM7eED3u62rVszNJWN/z+0usjfcs7FNSIGVgIGEFf0IH9flcGcwXswSvWG2XC25OS
+ F3a+4AMQkyu4gNGOSkxNow4n4hpRFx5GvlmwWYjz52JGRfRJPlRi/4F+ofzG/0VEECS6WyfRK+H
+ eF4EXdYmMmITdJ9gCtOhcv2VV0KI+g4X8z+cYcUs8CuHpivEmZDjeujNovPq7WmBPO9xCwvg7OB
+ BwayIszQdqWbPpFjHOGs4wy9FQtmle5hZWlkoXeBGfJf3HlsJbJF9fJ5uWto0bnXG1T7q7jLfXo
+ serylrzM=
+X-Google-Smtp-Source: AGHT+IGyPrHLryPORGsprOtDMijB7hbNnK12I6gc10XEvKh4YRH0MVHZxU7ZJO4C5upE0HZ9B5wtGg==
+X-Received: by 2002:a17:90b:1fcc:b0:311:b0ec:135b with SMTP id
+ 98e67ed59e1d1-3159d8d6282mr22412103a91.24.1750691694156; 
+ Mon, 23 Jun 2025 08:14:54 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3159df71cd6sm8338512a91.4.2025.06.23.08.14.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 23 Jun 2025 08:14:53 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH 3/4] rust: macros: prefix variable `span` with underscore
+Date: Mon, 23 Jun 2025 15:14:29 +0000
+Message-Id: <eca1e3239800028ee7be4971fe10c145bd583913.1750689857.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1750689857.git.y.j3ms.n@gmail.com>
+References: <cover.1750689857.git.y.j3ms.n@gmail.com>
 MIME-Version: 1.0
-References: <20250711093015.28785-1-krakow20@gmail.com>
- <DB9F9VX833TY.1UG2ZE2K2ZGNQ@kernel.org>
-In-Reply-To: <DB9F9VX833TY.1UG2ZE2K2ZGNQ@kernel.org>
-From: Rhys Lloyd <krakow20@gmail.com>
-Date: Fri, 11 Jul 2025 18:30:36 -0700
-X-Gm-Features: Ac12FXzVkzkejdHxkvnE5qELuT456HapzQsx7LLMKhM9Rqas2gGBC_FFvDVzVRM
-Message-ID: <CAH7AjUyHZnf96D5wSeX6pi-YmqrqhY1HGymvkugFeU7-ne4MfA@mail.gmail.com>
-Subject: Re: [PATCH] gpu: nova-core: fix bounds check In
- PmuLookupTableEntry::new, 
- data is sliced from 2..6, but the bounds check data.len() < 5 does not
- satisfy those bounds.
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: nouveau@lists.freedesktop.org, acourbot@nvidia.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,42 +94,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Danilo,
-I didn't understand the maintainers list yesterday, so all the patches
-I sent are missing mailing lists and recipients.  I sent a second copy
-as requested in
-https://gitlab.freedesktop.org/drm/nova/-/merge_requests/4#note_3003142,
-and my mailing list mistakes were pointed out in detail.  I also sent
-a fixed up v2 to the rust-for-linux mailing list only.  If I need to
-send out another copy let me know, thanks.
+Prefix the variable `span` in `quote_spanned!` macro with an underscore
+to silence unused variable warnings.
 
-On Fri, Jul 11, 2025 at 11:03=E2=80=AFAM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> Hi Rhys,
->
-> On Fri Jul 11, 2025 at 11:30 AM CEST, Quaternions wrote:
-> > Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
->
-> Thanks for your contribution.
->
-> When sending patches, please make sure to follow the kernel's patch submi=
-ssion
-> guidelines [1].
->
-> In particular, please stick to short and meaningful commit subject, follo=
-wed by
-> a commit description, even if the patch is simple and obvious.
->
-> Also make sure to run ./scripts/checkpatch.pl and ./scripts/get_maintaine=
-r.pl to
-> get your patches checked and find the correct list of people to send them=
- to.
->
-> Finally, please also consider the Rust submit checklist [2].
->
-> Thanks,
-> Danilo
->
-> [1] https://docs.kernel.org/process/submitting-patches.html
-> [2] https://rust-for-linux.com/contributing#submit-checklist-addendum
+The warning occurs when the macro is used without any uninterpolated
+identifiers. For example:
+
+    // Triggers a warning: "unused variable: `span`"
+    quote! { #foo }
+
+    // This is fine
+    quote! { Some(#foo) }
+
+There is no good reason to disallow such quoting patterns, so fix the
+warning instead.
+
+Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+---
+ rust/macros/quote.rs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
+index d05f60f55623..e6c36bd7f925 100644
+--- a/rust/macros/quote.rs
++++ b/rust/macros/quote.rs
+@@ -63,8 +63,8 @@ macro_rules! quote_spanned {
+         #[allow(clippy::vec_init_then_push)]
+         {
+             tokens = ::std::vec::Vec::new();
+-            let span = $span;
+-            quote_spanned!(@proc tokens span $($tt)*);
++            let _span = $span;
++            quote_spanned!(@proc tokens _span $($tt)*);
+         }
+         ::proc_macro::TokenStream::from_iter(tokens)
+     }};
+-- 
+2.39.5
+
