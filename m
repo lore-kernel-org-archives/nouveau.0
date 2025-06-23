@@ -4,87 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231E4D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8754D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4D810EBC6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB39A10EA37;
 	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TXpZAKSN";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RzBVhatz";
 	dkim-atps=neutral
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AADA10E32B;
- Thu, 28 Aug 2025 11:26:47 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-2488be81066so1821925ad.1; 
- Thu, 28 Aug 2025 04:26:47 -0700 (PDT)
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B28F110E3F3;
+ Mon, 23 Jun 2025 16:06:59 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-23496600df1so9692935ad.2; 
+ Mon, 23 Jun 2025 09:06:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756380407; x=1756985207; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1750694818; x=1751299618; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TB49lARAguv+2novlKNuN0CFuq7GTPMP7W+cgTo2Hmc=;
- b=TXpZAKSN/R9WGjSmiRuTzDr3tOBf358pOnECW2OJwtD1aLYKO7Da9UphAManmnWhBO
- ri8mSB9gtWndmOoSYo6wKHiGjuQbLsv/QD/sZda8LbkZU0bxF7kdTdOZ69Gdpe+lyRdG
- /YveO/ouaG2imX3PUAbIextgnFW6ti2DyLrptnIzw+7ggnXl9kN4HgJAwmnbR0foQ9Eb
- IE3F52xDcFDwZcRWDqSgij1I5mOilj0tNpowd8x6OlqplhgKRBv2fWzwzZA7jFBjQmH4
- WWN+tBQBWcLuZgV23MfvO/Hvn6W/wgYbBMG3AFgxTd0dleVylc4B3YN1U8oea4YpcXdV
- MBNA==
+ bh=0geRFgwyhl/h2PdBdo1H4e4Lzu++xXp44QjAHfPHcpE=;
+ b=RzBVhatzY6U2KEdR5YbZTLSMiKgiPdCb5n8d1BLoXU53GrR/63PxRrb4B+XS+0E9XO
+ qHh0XUyjMBuQtYLt+CG5NrutuxNA3sY9pKWp6+Ip1vm/gVahpGvjmdosLnXHVmv7w2+b
+ hj+GvSFbcWQMwXysE6HyNuMdYbj6f52f7B0kLRAsWFdpNeUSVdMtEN+rI+ngmqQjVrjr
+ wmKuqtwV2LwoovBmHyHWJYuWtw9+WwIjZ59tWfYljSvPst4nWKx2Au2PtVQklNXf/2VZ
+ dhbUiJWbbjATXMUehlp/8OOvOttIwtsPwmbbuuC+YKNW+CM8N5GzTGe2oZCAEfO5wpdm
+ HSBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756380407; x=1756985207;
+ d=1e100.net; s=20230601; t=1750694818; x=1751299618;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=TB49lARAguv+2novlKNuN0CFuq7GTPMP7W+cgTo2Hmc=;
- b=gyyuCS9LZqQSIOjPvo9xYu/MjXnDLujxeUoYlI+YgyPO/bLEZcNNG6S/gT79TblTJJ
- aDPhfv8czUMU4uloa3OaUnBE6lSnIKnFWCbb2Z1uqsS+e0lL4asYU1wlD9ydLLcNZ9i2
- YtVrqBsF9/L4zLsAXBoO6cVF5UASUZwFvgLnV07kyhaoUNKAn8mYeBJOW2bMsYGf0a97
- k3Rf6w3qnjwVlMAl+0xZ2GUseSIb+fXBlgO9X+Qa5pegvqnfRjfmntzmOBq4bmV42RRN
- 74nVOsACyoGuQ/c7q3AfrqlZrK5FlwzOSjaYHPu8jUyCbx78DGUt9GgqO8FPjUvc9NtY
- qSkg==
+ bh=0geRFgwyhl/h2PdBdo1H4e4Lzu++xXp44QjAHfPHcpE=;
+ b=t1WOaMdHoLvwxeMDDPnKJh8UclMQXR+ylxrXa5gJSL8sM271s3sjqttfkGsacvCQz6
+ 6kP6uBGQtwqhEfZdw66MoNf4zh3L3Xm6TynD7ZticMGZd5fHSqb99tsGuSNqlTfG3Sys
+ gE9Bo5ZJzes7qvekxRaqD92DAUHKOtv9UQrziZlmWZgEcNwV/eXvu3l84I7hQ88PCPDv
+ s3XkeyTw2YF/7LtuRKn6sB2+6N84We9e50xrazWaE7OLo+ivxMG+TPD746NMenYXGLG0
+ eLVG9Rrchr2KlbcosQbEGvOCxpBIZVBlBx+350ldsY5NK33zGm7eA1b3bKGx91msmy4o
+ m69w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWwo8REp8Q6og2a3dpPBtS9+tKuC87krw4ffFNjuCBKq1tu1zoxYlRVOPtTOeFrreDUcm8aY4XNKCE=@lists.freedesktop.org,
- AJvYcCXt5t2Gneu/35MyvpBKEAD1sDSRv/xoHZBBUOpfa6wiceJ6ku9d6CCUhvuGE5npSXNTmTX9XCP8zQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzNTPY1xWLM4JMEMoyly88UehDVOj/ryp0R+rHXbnSTwpU95+ET
- yIA3AdEj/a511PvtbVClL9sCTsX/uUrig4FymMDP4z/2NkIZSiMgwqUHf6eb9LMe+Jguq9zT2bW
- s1yKYUS6s4NUfbcLbV1RF3QYW+JeyiBw=
-X-Gm-Gg: ASbGncvoTHY0plk7VomRYemQolVqq9REkSrqTjgYyxh7Qm12JfZRT8kqkQ04qg1wTFo
- 5PHTHs7XqbjyC2NuZZmb4sKz8PB4/So1yIWktrGgxZgWMdMzMtlisAzw0OmtUMp/wnzFdgkSk0o
- BXGvjRyar08Bd6YWp8rjGOQfu4JTKOIlcLgnM1/wHTAOR5yu3EjY/hoEnU54WVO6cgHXTX7rf2e
- VdtpQxK6ZWy6VwYHdHOtM9955NN//CyQLot+XDlziTrq9ToIwBWaX1JNATO01sgTAxsQqWj9S8O
- FdtQtl8Lh7CHPgJNSChH8eWiwX6KWGVxo6i89iqlh6gqqdE=
-X-Google-Smtp-Source: AGHT+IHHmDIHqxhO7l79GLUkJwaWQ7dZNpLn1zpLg1iQnq0+hdNtOQx1/t6zWJjm/sSiYUD2aH3gJhMn/p7bQf7ZDaE=
-X-Received: by 2002:a17:902:f60d:b0:248:847b:8906 with SMTP id
- d9443c01a7336-248847b8b62mr52656055ad.11.1756380406614; Thu, 28 Aug 2025
- 04:26:46 -0700 (PDT)
+ AJvYcCVowm1U23jccEo7NUgcjAhHQrPiXU7X2lHMtFcBKBjtXwpntJJnewVO+q2LwyZiV5SsKGwMIU+PdMI=@lists.freedesktop.org,
+ AJvYcCX3lIMvG9BECQ0NRc48uzwb2u9M8CjeKvz/ca4BB4lIQnSHcbBSMnHnkLGW93dildYviTSwohdMjg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyZpUDOArZywGY36Kp3x3j1dr/+zMVr2ToICrRH+lKTY3yhUiTq
+ SFqewQ3TbScZ+8DDhOq1ODqhxGr19rZRZtYXa3fgDcyur7T2m1jomqbXh/4qhnquLboOUIGwTiG
+ /F8Pr846ea8wvjncHnS2i6CmA7Qt/7Jw=
+X-Gm-Gg: ASbGncvvR+6wnIvfa14UgGumvmuV9k2tbQ2NTFVF4ThjMYkheqBR9OZS4fHAP57NZWb
+ GwKSmdF1K4y95O0/eyOrXYs5wPL73tDqEo/aFwns1/ivuMxBzHI/LDk9la3D/Ryy+KNIbyecIbs
+ jiGReObVh+o3Uc6cByKcA4qRURIak4M6I45P85ma+ydOrvaupJ3TuvxQ==
+X-Google-Smtp-Source: AGHT+IFR44j/1R0shLJ61EnHnectkEfaJDYb54OjRunDNzkmTMtDm7NOHONuQN3UupNHtxtD9voN35iKKcokHj+Ly+Q=
+X-Received: by 2002:a17:903:186:b0:234:ef42:5d52 with SMTP id
+ d9443c01a7336-237d995b838mr77988655ad.6.1750694817904; Mon, 23 Jun 2025
+ 09:06:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
- <20250826-nova_firmware-v2-2-93566252fe3a@nvidia.com>
- <9adb92d4-6063-4032-bf76-f98dcfe2c824@nvidia.com>
- <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
-In-Reply-To: <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
+References: <20250619-nova-frts-v6-0-ecf41ef99252@nvidia.com>
+ <20250619-nova-frts-v6-5-ecf41ef99252@nvidia.com>
+In-Reply-To: <20250619-nova-frts-v6-5-ecf41ef99252@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 28 Aug 2025 13:26:34 +0200
-X-Gm-Features: Ac12FXzy24K1wGe7TQOMJcL6Fdf60t07YBP-70leUEy1vm3L-w174pbiaRtsL7M
-Message-ID: <CANiq72=nGbziZCKt=AneE_vXw76i=+td0dSVfbOJ8kJ9eYHw9w@mail.gmail.com>
-Subject: Re: [PATCH v2 2/8] gpu: nova-core: firmware: add support for common
- firmware header
+Date: Mon, 23 Jun 2025 18:06:46 +0200
+X-Gm-Features: Ac12FXzdlCfbzJ08ThqRc5NtvH3ui4qmOJA_sGg1WT42WuqZ4jQEejRTIJpoPoE
+Message-ID: <CANiq72ny5vSdLDLpr8D2rVb6dEboq55T6JQ1KJkmEORsj-3kfQ@mail.gmail.com>
+Subject: Re: [PATCH v6 05/24] rust: sizes: add constants up to SZ_2G
 To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Alistair Popple <apopple@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Benno Lossin <lossin@kernel.org>, John Hubbard <jhubbard@nvidia.com>,
+ Ben Skeggs <bskeggs@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -103,48 +97,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Aug 27, 2025 at 10:47=E2=80=AFAM Alexandre Courbot <acourbot@nvidia=
-.com> wrote:
+On Thu, Jun 19, 2025 at 3:24=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
 >
-> However, `fw_start + fw_size` can panic in debug configuration if it
-> overflows. In a release build I believe it will just happily wrap, and
+> nova-core will need to use SZ_1M, so make the remaining constants
+> available.
+>
+> Reviewed-by: Boqun Feng <boqun.feng@gmail.com>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 
-In the kernel, it is a panic in the default configuration, not just a debug=
- one.
-
-We have debug assertions too -- and those are disabled by default, but
-they are separate from the overflow checking, which is the one enabled
-by default.
-
-So, any use of those operators is limited to cases where one knows,
-somehow, that it will not overflow. And e.g. user-controlled inputs
-cannot use them at all.
-
-So, conceptually, something like this:
-
-  - Static assert if the compiler knows it cannot fail.
-  - Build assert if the optimizer knows it cannot fail.
-  - Unfallible (like the possibly panicking operators) if the
-developer knows it cannot fail.
-  - Fallible/wrapping/saturating/... if the developer isn't sure or it
-simply cannot be known until runtime. User-derived inputs must use
-this option (or rarely the unsafe one).
-  - Unsafe if the developer knows it cannot fail and the other options
-are not acceptable for some reason. Ideally paired with a debug
-assertion (the compiler adds these already for many unsafe
-preconditions).
-
-In the past I requested upstream Rust a way to have a "third mode"
-("report and continue") for the operators so that it would wrap (like
-the non-panicking mode) but allowing us to add a customization point
-so that we can e.g. `WARN_ON_ONCE`.
-
-That would be ideal, because it is a nice middle ground that is not as
-punishing if a developer gets it wrong, especially for "normal users",
-where panics typically mean lost reports etc. And other kernel users,
-like cloud operators, can keep the panicking mode.
-
-As for discussing no-panic, sure!
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
 Cheers,
 Miguel
