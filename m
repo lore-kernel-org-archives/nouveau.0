@@ -4,101 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A258D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D64D7D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92F5E10EA92;
-	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF3110EA6D;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="ZGoZo2ZB";
+	dkim=pass (2048-bit key; secure) header.d=iki.fi header.i=@iki.fi header.b="VC7rXLXV";
+	dkim=pass (1024-bit key; secure) header.d=iki.fi header.i=@iki.fi header.b="GmIzAikO";
 	dkim-atps=neutral
-X-Greylist: delayed 331 seconds by postgrey-1.36 at gabe;
- Wed, 09 Apr 2025 12:57:23 UTC
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1576210E039;
- Wed,  9 Apr 2025 12:57:23 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+X-Greylist: delayed 543 seconds by postgrey-1.36 at gabe;
+ Wed, 25 Jun 2025 08:26:05 UTC
+Received: from lahtoruutu.iki.fi (lahtoruutu.iki.fi [185.185.170.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93CF910E1BF;
+ Wed, 25 Jun 2025 08:26:05 +0000 (UTC)
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4ZXjdp6qNnz9ss3;
- Wed,  9 Apr 2025 14:57:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1744203438; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
+ by lahtoruutu.iki.fi (Postfix) with ESMTPS id 4bRvmc4kkRz49Q5s;
+ Wed, 25 Jun 2025 11:16:48 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=lahtoruutu; 
+ t=1750839408;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=Tq5WAuk54cs3/N97rx9htWFxoF+txtk1JT/rPAcwMQE=;
- b=ZGoZo2ZBuYYbkCYzDI8SCaoFxp2d+HcsIBxZz603lXaxsaHk1ztKwnM8dS1+ygPDAFxa0o
- PC/g1QZjB8Lrjh4S+Nk/fs1WdHrJwAXaEab2IUIL4T5c1Ww/GMPkP6qvXfxNp/LrcId3OT
- hX3RbJgjljfzAh7NvI1OgJRDglsE/2vPtC52qUWYU0Y+WJGBGnDzCIGEzgCZdI/nA6hFMI
- oqIcw+CFTyp3BO2nfdeAVhSjt7g8CrU+ecBLZpx5ptMCjGjZn4n8lbP12qhjCUhDcIruzG
- 4f+J4JRRX7z+Y0PCwkQUQ30na91K+8YIJ8GtSDqKkLH/J7c/A9uaazfM2G7lYw==
-Message-ID: <72eb974dfea8fa1167cf97e29848672223f6fc5b.camel@mailbox.org>
-Subject: Re: [PATCH 1/2] dma-fence: Rename dma_fence_is_signaled()
-From: Philipp Stanner <phasta@mailbox.org>
-To: phasta@kernel.org, Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>, Gustavo Padovan
- <gustavo@padovan.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, Lucas Stach
- <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,  Jani Nikula
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Frank Binns
- <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, Qiang Yu
- <yuq825@gmail.com>, Rob Clark <robdclark@gmail.com>, Sean Paul
- <sean@poorly.run>,  Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
- <dmitry.baryshkov@linaro.org>, Marijn Suijten
- <marijn.suijten@somainline.org>,  Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>, Rob Herring <robh@kernel.org>,  Steven Price
- <steven.price@arm.com>, Dave Airlie <airlied@redhat.com>, Gerd Hoffmann
- <kraxel@redhat.com>,  Matthew Brost <matthew.brost@intel.com>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Melissa Wen
- <mwen@igalia.com>, =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Zack
- Rusin <zack.rusin@broadcom.com>, Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Bas Nieuwenhuizen
- <bas@basnieuwenhuizen.nl>,  Yang Wang <kevinyang.wang@amd.com>, Jesse Zhang
- <jesse.zhang@amd.com>, Tim Huang <tim.huang@amd.com>,  Sathishkumar S
- <sathishkumar.sundararaju@amd.com>, Saleemkhan Jamadar
- <saleemkhan.jamadar@amd.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo
- Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Ma Jun
- <Jun.Ma2@amd.com>, Yunxiang Li <Yunxiang.Li@amd.com>, Eric Huang
- <jinhuieric.huang@amd.com>, Asad Kamal <asad.kamal@amd.com>, Srinivasan
- Shanmugam <srinivasan.shanmugam@amd.com>,  Jack Xiao <Jack.Xiao@amd.com>,
- Friedrich Vock <friedrich.vock@gmx.de>, Michel =?ISO-8859-1?Q?D=E4nzer?=
- <mdaenzer@redhat.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, Thomas Gleixner
- <tglx@linutronix.de>, Frederic Weisbecker <frederic@kernel.org>, Dan
- Carpenter <dan.carpenter@linaro.org>,  linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org,  linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org,  amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org,  intel-gfx@lists.freedesktop.org,
- lima@lists.freedesktop.org,  linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,  nouveau@lists.freedesktop.org,
- virtualization@lists.linux.dev,  spice-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Date: Wed, 09 Apr 2025 14:56:58 +0200
-In-Reply-To: <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
-References: <20250409120640.106408-2-phasta@kernel.org>
- <20250409120640.106408-3-phasta@kernel.org>
- <20250409143917.31303d22@collabora.com>
- <73d41cd84c73b296789b654e45125bfce88e0dbf.camel@mailbox.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
+ b=VC7rXLXVw4vwp8IoATh/qxtDmh+Xrgz/LT+GGq/IKtHxPt01XOPLPR3pth6nPvetvGQEsw
+ CRf874lMculCF3ibIlkbCqoG8J9KJfAuMfnb6gVLv3NZ42G4RgRev8/sWaI+lZvutxSXiy
+ GfZMwg6o8vb2mHYQPiaKaWiqb27RPVL0Hpm1QcQFaEHJJhpE5uI/injgxCsAlv9lFOySTY
+ oaJVX7ndRxJIXJAK7HDap4+HSXlPdlDwifivwv6H1Xps9sIK2ZUjnQ+xzdH+6srFJOtYZr
+ 3R2lGjLIgVY2gBslroRDRj1ANaW5NhPF6kloms5nvzSsEYEj9frdMcp59zlzlw==
+Received: from hillosipuli.retiisi.eu
+ (2a00-1190-d1dd-0-127c-61ff-fee2-b97e.v6.cust.suomicom.net
+ [IPv6:2a00:1190:d1dd:0:127c:61ff:fee2:b97e])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: sailus)
+ by meesny.iki.fi (Postfix) with ESMTPSA id 4bRvmT67FTzyQ5;
+ Wed, 25 Jun 2025 11:16:41 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+ t=1750839402;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
+ b=GmIzAikOby6iq36P4gbjFfrehlkARIALWJD2C4Pt9zr0js+tvGgzLgBS6sf6rOR4V9voM2
+ gMi/s07tIWdNmzBPiVDEU/zsr4zh/0U13YtSE3ZZc5TQ/r86nYBs/5x75RjU9MkPSChGUZ
+ fz73PKHwybahYhbnxNcN7vty7Iiv9vk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+ s=meesny; t=1750839402;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=MrQC7Tos4anaJUbtszYmQNSsMU7siWR0u74LO5jbtxY=;
+ b=Ka7TTCIx8rxkMORpPwCxAY+72JgTmJ5cmHt2CXIA2Ay+9KqTo55Tias/0AgmHFx+v7CQOX
+ ScbAJjSaXPJdyJ+bRqMeSW1raUhbPIa8EXXheuiRAwRa2ehj0HHI0/H3JxJrQ2cUyS67jp
+ T00a5rgfepnNUDzK3mt6DjMVXOYS4qA=
+ARC-Authentication-Results: i=1; ORIGINATING;
+ auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1750839402; a=rsa-sha256; cv=none;
+ b=xD3eINPrld3VHOT5rKZPM1aHuLa9bV+jNMVMC/qRCUqgSx0UoeMXzgUYas5lxATMxd+N4T
+ Ebt9qbHqX7ccx+yhjzbfWK1RvFHZyv5Urb4bji6LShku+DSQFr4ASv2qZFSGbYvybd0gLK
+ kYL4NMPRpIu0doLGv2tsvaiE9ntz4pA=
+Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 2B2FA634C93;
+ Wed, 25 Jun 2025 11:16:41 +0300 (EEST)
+Date: Wed, 25 Jun 2025 08:16:40 +0000
+From: Sakari Ailus <sakari.ailus@iki.fi>
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH 1/1] drm/nouveau/disp: Use dev->dev to get the device
+Message-ID: <aFuwaMpjbvWgcwYV@valkosipuli.retiisi.eu>
+References: <20250409103344.3661603-1-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-X-MBO-RS-META: qn5jmk7am4aitmyfzw96fhabh5raicqw
-X-MBO-RS-ID: 069014a3f81ce6e0501
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250409103344.3661603-1-sakari.ailus@linux.intel.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,86 +97,15 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2025-04-09 at 14:51 +0200, Philipp Stanner wrote:
-> On Wed, 2025-04-09 at 14:39 +0200, Boris Brezillon wrote:
-> > Hi Philipp,
-> >=20
-> > On Wed,=C2=A0 9 Apr 2025 14:06:37 +0200
-> > Philipp Stanner <phasta@kernel.org> wrote:
-> >=20
-> > > dma_fence_is_signaled()'s name strongly reads as if this function
-> > > were
-> > > intended for checking whether a fence is already signaled. Also
-> > > the
-> > > boolean it returns hints at that.
-> > >=20
-> > > The function's behavior, however, is more complex: it can check
-> > > with a
-> > > driver callback whether the hardware's sequence number indicates
-> > > that
-> > > the fence can already be treated as signaled, although the
-> > > hardware's /
-> > > driver's interrupt handler has not signaled it yet. If that's the
-> > > case,
-> > > the function also signals the fence.
-> > >=20
-> > > (Presumably) this has caused a bug in Nouveau (unknown commit),
-> > > where
-> > > nouveau_fence_done() uses the function to check a fence, which
-> > > causes a
-> > > race.
-> > >=20
-> > > Give the function a more obvious name.
-> >=20
-> > This is just my personal view on this, but I find the new name just
-> > as
-> > confusing as the old one. It sounds like something is checked, but
-> > it's
-> > clear what, and then the fence is forcibly signaled like it would
-> > be
-> > if
-> > you call drm_fence_signal(). Of course, this clarified by the doc,
-> > but
-> > given the goal was to make the function name clearly reflect what
-> > it
-> > does, I'm not convinced it's significantly better.
-> >=20
-> > Maybe dma_fence_check_hw_state_and_propagate(), though it might be
-> > too long of name. Oh well, feel free to ignore this comments if a
-> > majority is fine with the new name.
->=20
-> Yoa, the name isn't perfect (the perfect name describing the whole
-> behavior would be
-> dma_fence_check_if_already_signaled_then_check_hardware_state_and_pro
-> pa
-> gate() ^^'
->=20
-> My intention here is to have the reader realize "watch out, the fence
-> might get signaled here!", which is probably the most important event
-> regarding fences, which can race, invoke the callbacks and so on.
->=20
-> For details readers will then check the documentation.
->=20
-> But I'm of course open to see if there's a majority for this or that
-> name.
+On Wed, Apr 09, 2025 at 01:33:44PM +0300, Sakari Ailus wrote:
+> The local variable dev points to drm->dev already, use dev directly.
+> 
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 
-how about:
+Ping.
 
-dma_fence_check_hw_and_signal() ?
-
-P.
-
->=20
-> P.
->=20
->=20
-> >=20
-> > Regards,
-> >=20
-> > Boris
->=20
-
+-- 
+Sakari Ailus
