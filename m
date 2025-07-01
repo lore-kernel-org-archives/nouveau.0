@@ -4,104 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DAABD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16B90D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77AD110EB2C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E1610EB36;
 	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ebq8u23T";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="AA28ZGDG";
 	dkim-atps=neutral
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E50E10E2BA;
- Wed, 29 Jan 2025 08:09:25 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-2ee51f8c47dso9129353a91.1; 
- Wed, 29 Jan 2025 00:09:25 -0800 (PST)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
+ [209.85.210.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3355410E5FB;
+ Tue,  1 Jul 2025 17:07:56 +0000 (UTC)
+Received: by mail-pf1-f177.google.com with SMTP id
+ d2e1a72fcca58-74917867678so476221b3a.0; 
+ Tue, 01 Jul 2025 10:07:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738138165; x=1738742965; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1751389676; x=1751994476; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ye4JntaIkIF7a+w6DTbO0kIk9MLJPFfMjPP4/iHk7/A=;
- b=ebq8u23TuRkn8CC6IhZNDLrV58lsc1q+MetDloLDjsmHUezseSQC7k76j08PvP4/6k
- HLq3uZG4KheMDwm0ru7tQDM+WOZyTQSUlhBPHO2gtrFfM64fxcfZ4jbwdvcKs3cttxUw
- dg7Uh6YbmK0ecJPhzNw3fBPapwtP2kE7O7RgemB93CCxr+Cfba736KOC/1WIwbVWtTng
- 8HxygpDqHw1KjRCG0hxEq3CQdYvOk5uF8dVzY9UvO2+YsCj33WS1QJONJ61D6JTGQWXe
- ppfTncsHH9jW4m1JMjXCsbtWtBns6MUvk8bM65jJLZ40WdvsTPnljIa8Qpuwuu5PbM/w
- +m6w==
+ bh=otvAmKrNgrGmm953h66f4Y1tIUJExy7j19EPbj8H6iA=;
+ b=AA28ZGDG+nB4IChojqo5hx9cAvd8EaIIc8kFygsmX8qe2/77VRQliGM01kVpm4xexc
+ wMPFsOrbEEzGFQ6NCO5mhtwTxEvAV3h+KgX6YyKx9v0RT2Y6QjARcXFrRyWtos//Sypv
+ ykeVAO6F9XOMU1JMNoGT3YRYys4CpiG+lMek2CvmQ4ppmGqp1ANhij3wilQ0TvB7usOB
+ Sn9QS0WZxZhFGUeCnep0pHXy1Suyp41Lg8RHfUSqs9RZLEOiSMIVt9kWAKYgJYlV5qFy
+ K20W5RsiLfbYUBEWuLLakDKRBefdOtrGUrl02UOfBQOLL3SJEvTyKfhEaPYrl0siCuwp
+ QOBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738138165; x=1738742965;
+ d=1e100.net; s=20230601; t=1751389676; x=1751994476;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ye4JntaIkIF7a+w6DTbO0kIk9MLJPFfMjPP4/iHk7/A=;
- b=QPqlf4E7KN5zsGJcjNjgVdlxeK/tsuIH1217F9mH9skW6NH0CdMY+bKD8RnNvtF/aB
- qMYNErz35MiawQ11Hqo+j4b0jFIrb8O1Nlzf7Czb/VjZUJIu17Xcak+ZXu4/nE7hXFM1
- pCFF1AqM2nFoZ/3KYoqXV1qjyfGJxS1St+seTnqv0qwBu1EflSYfPymbRkq8YY2G4i2B
- sM4kk1GdhFkskU+1CMTyBYhGnEFkpSRDnXd1jLGEchEdJxO4AcuQ0Jg+PBiLzHcB2Qlq
- rYvxKGHe3zbKOO4eD2HRtZzsa8TNaGmuOFnESo9rNT4pr4fp3laMQkhwyqSF1ljNPs6K
- m7XA==
+ bh=otvAmKrNgrGmm953h66f4Y1tIUJExy7j19EPbj8H6iA=;
+ b=Z2VrpsKb0Mv3iw6t9f6HgSlicobisnzi4ygYV0ekmb4coprELbZZkVmoZ5HiU/HBX3
+ dw2IrFKzbemWf+5zVsk+KbNzaz4beer8XDH3eS6PlEfYEvJtZWubWVMA3e2znRi0kAxb
+ W5/L7XltGlUgfN6VcFey7IStt1CzdvMwS3bbVsLwuwg+8TCuj7kWqD3zXMQsmf/iSyUh
+ zvujqXhryTO0d3DV5iSzepwx2MlqlTsIhaHOihigPaLGXkwLL4zM/W9bSkcYHmmSeK3k
+ M2DVkUVEDFIB/xsE7x86gg9ONaLsKsPjxbusrrbsP4NAF1trKxjTpIz+JPwpYHndkDKJ
+ o1Tw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU2lTvc4KujnjwuknReOVr96i1YdP/YihbcfT5MYFSgwL262GUinil/rBgfTbL66vaZC0okbU6J/pF2@lists.freedesktop.org,
- AJvYcCUI7UiMIGjOjGAstU5ctaIg1CbbKTpVecS1aHx0006hRoyG4eIeqZ2J1onIf8uDEeC4rLXIitCUSg==@lists.freedesktop.org,
- AJvYcCUjQ+0KxP7O/qvapaNotZgbXcCCHhJVrle6w/3YFOaCEXnbp/AiQd00J+BNcO9cHYf1wy9SiyZr3QU=@lists.freedesktop.org,
- AJvYcCVdEwTnA4hp1bdBfdBASLes3BnIcJsiZljp4VGbEyieGMkS67F1cvd9S2Dg45x1VlBgf/goOg==@lists.freedesktop.org,
- AJvYcCVeR2Okr1zThxSGF4hw0o+atgBf6T7UP7C3u4khCi1E9X43eysQ7fAPA2Ooy3dodbqRX6TcI2npcGkm@lists.freedesktop.org,
- AJvYcCXCj2m0TaxdK+Sm20gX5w3Za9fai63COrEn3n6dJdn2E1elNnleRDujCBrzxSATofvCDsxVlXgx@lists.freedesktop.org,
- AJvYcCXV21nCc16JefuhhkcodwNi6204d/JbEwMqvDFYWw7cP+pl5nUYn0zbbORIy9RgLl5NoChHV89wOQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YziNfHVOPWzBJ/tOAJvzc2gUo5oda9KOtoKOHKaaQCMfKgwFgzQ
- 58OAe4JuVirEe6oWD9tkcDsrykPG3oqv6AHuN+TLm/qvCGC/jarmsMFYyYamdDDDO1iZJX/PPYt
- bUueWczw6C6zd7VJRitZSm6AvrdU=
-X-Gm-Gg: ASbGnct6zFfDgA5VfVDCWKevonTnwC2DJj1lAeO7tAyhP2yKDw5TWZEASWdHE28PeHx
- /T32c8GBbEwuhFopG8nXLZnhQug6+z+pU5FjmbjbwIisvFf22aCA+folYlt2+bZiXyrvLXkk=
-X-Google-Smtp-Source: AGHT+IFL/+Ix8PJzhRPGezz0BS/aPmM+Mu6yVPfAQpJZPpemGpHRcd0USeaMTeXX7cwj2kNE9lfyVb+Qeot2NIY7ikQ=
-X-Received: by 2002:a62:f20c:0:b0:72f:d7ce:5003 with SMTP id
- d2e1a72fcca58-72fd7ce50abmr734741b3a.22.1738138164688; Wed, 29 Jan 2025
- 00:09:24 -0800 (PST)
+ AJvYcCV3i7CSanbxGIAS/r251KgidA5tTD5xrYc2N9d09wSBoiufVAhBdViUv4mlkuxwGx3M0gVDfDqF5gA=@lists.freedesktop.org,
+ AJvYcCVxWz0nO20t/JmPsDClQZIdqn+xyej6q3vTRGwmkU68lJYGlZg03mht58mkBAwK8V+3edVDX2KcPQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxhOFKJ4Y9pdIu7cbE196lmyJtfp9Zi8FFmTU2LPdYRuiltMV0h
+ g4A5iYBBUAAEy2Bg0FO/EDxmNJaJQEgc3UqdOwK2OOjnbMABAq0RW5Fist1uguXp8jKrRC3LJeB
+ pGDGqvVAjC1oLxq4YJVy6+M2U3mwVByw=
+X-Gm-Gg: ASbGnctkYGTR6SEJOBwR243Lk1eFFcBHocPBG9yfvp5OAPdT2i/Zpxd3ULRzIYXyr6B
+ hAcYe7GnZ2spbzYzfr9ZXz8Rl0b17y8zmMGAHvEE3lKjwT5EG0fKCGN0LFQc2OTGKEzQ4aPs+cy
+ 1xtAALXiQ5jbgVPocP0XHh/VmnMRwnqEWG+xZOQc6Q4eyy/m5nU9Tkvw==
+X-Google-Smtp-Source: AGHT+IGgyj2cxaLL1I/RbT9oFzMdK+mMcfN6YoSZuvCYWImRFjEfnNWMRG/RDCPN3KNKY0Jv5Rbef8Y4TKqAiOAmPyk=
+X-Received: by 2002:a17:90b:1843:b0:314:29ff:6845 with SMTP id
+ 98e67ed59e1d1-319519ee90bmr2461781a91.4.1751389675613; Tue, 01 Jul 2025
+ 10:07:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250128142927.103290-2-phasta@kernel.org>
-In-Reply-To: <20250128142927.103290-2-phasta@kernel.org>
-From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Date: Wed, 29 Jan 2025 09:09:12 +0100
-X-Gm-Features: AWEUYZk3uXItrn_mY6Y0468bmDyISJSZEOiGbSbsZd4jSdwj-_i30tdpr-sVXDQ
-Message-ID: <CAH9NwWcokvvJSRQ_kbV+jiH+ag-SA+Y87n6Bw34s8GP3vop4og@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/sched: Use struct for drm_sched_init() params
-To: Philipp Stanner <phasta@kernel.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,
- Rob Clark <robdclark@gmail.com>, 
- Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>, 
- Boris Brezillon <boris.brezillon@collabora.com>, Rob Herring <robh@kernel.org>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Matthew Brost <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>, 
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, 
- Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- etnaviv@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+In-Reply-To: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 1 Jul 2025 19:07:43 +0200
+X-Gm-Features: Ac12FXxPrxBmeSfKO3xPaPnHZ9Ojlak6uQ0jVcG0JF2jdPMZA5As1xRK0OZ6894
+Message-ID: <CANiq72kb5b-Q4OwASfGg6gz94fCQSLH34u29umQRsF8MEhR+6g@mail.gmail.com>
+Subject: Re: [PATCH v13 0/5] rust: replace kernel::str::CStr w/ core::ffi::CStr
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>,
+ Benno Lossin <lossin@kernel.org>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:53 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,51 +122,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Tue, Jul 1, 2025 at 6:49=E2=80=AFPM Tamir Duberstein <tamird@gmail.com> =
+wrote:
 >
-> drm_sched_init() has a great many parameters and upcoming new
-> functionality for the scheduler might add even more. Generally, the
-> great number of parameters reduces readability and has already caused
-> one missnaming in:
+> This picks up from Michal Rostecki's work[0]. Per Michal's guidance I
+> have omitted Co-authored tags, as the end result is quite different.
 >
-> commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in nouveau_sched=
-_init()").
+> Link: https://lore.kernel.org/rust-for-linux/20240819153656.28807-2-vador=
+ovsky@protonmail.com/t/#u [0]
+> Closes: https://github.com/Rust-for-Linux/linux/issues/1075
 >
-> Introduce a new struct for the scheduler init parameters and port all
-> users.
->
-> Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> ---
-> Changes in v2:
->   - Point out that the hang-limit is deprecated. (Christian)
->   - Initialize the structs to 0 at declaration. (Planet Earth)
->   - Don't set stuff explicitly to 0 / NULL. (Tvrtko)
->   - Make the structs const where possible. (Boris)
->   - v3d: Use just 1, universal, function for sched-init. (Ma=C3=ADra)
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 18 ++++--
->  drivers/gpu/drm/etnaviv/etnaviv_sched.c    | 20 +++----
->  drivers/gpu/drm/imagination/pvr_queue.c    | 18 ++++--
->  drivers/gpu/drm/lima/lima_sched.c          | 16 +++--
->  drivers/gpu/drm/msm/msm_ringbuffer.c       | 17 +++---
->  drivers/gpu/drm/nouveau/nouveau_sched.c    | 15 +++--
->  drivers/gpu/drm/panfrost/panfrost_job.c    | 20 ++++---
->  drivers/gpu/drm/panthor/panthor_mmu.c      | 16 +++--
->  drivers/gpu/drm/panthor/panthor_sched.c    | 29 +++++----
->  drivers/gpu/drm/scheduler/sched_main.c     | 50 ++++++----------
->  drivers/gpu/drm/v3d/v3d_sched.c            | 68 +++++++++-------------
->  drivers/gpu/drm/xe/xe_execlist.c           | 16 +++--
->  drivers/gpu/drm/xe/xe_gpu_scheduler.c      | 17 +++++-
->  include/drm/gpu_scheduler.h                | 37 ++++++++++--
->  14 files changed, 206 insertions(+), 151 deletions(-)
->
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-etnaviv changes are
+Thanks for keeping this up.
 
-Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com>
+Let's see if we get some Acked-by's -- otherwise, we may want to split
+by subsystem and avoid flagday changes wherever possible.
 
---=20
-greets
---
-Christian Gmeiner, MSc
-
-https://christian-gmeiner.info/privacypolicy
+Cheers,
+Miguel
