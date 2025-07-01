@@ -4,115 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52E82CCD186
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B609DCCD184
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEDF410E619;
-	Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19AFD10E61C;
+	Mon,  6 Oct 2025 20:57:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NqJotm/T";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="QJ4G4gd0";
 	dkim-atps=neutral
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
- [209.85.208.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5A4210E912;
- Thu,  3 Jul 2025 22:42:01 +0000 (UTC)
-Received: by mail-lj1-f179.google.com with SMTP id
- 38308e7fff4ca-32e14ce168eso4131081fa.1; 
- Thu, 03 Jul 2025 15:42:01 -0700 (PDT)
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
+ [209.85.222.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C24E10E5E0;
+ Tue,  1 Jul 2025 16:49:49 +0000 (UTC)
+Received: by mail-qk1-f169.google.com with SMTP id
+ af79cd13be357-7d09a17d2f7so322635885a.1; 
+ Tue, 01 Jul 2025 09:49:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751582520; x=1752187320; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=D1Qg1F6O8BBVdVvv4eHMsC5wNUKHIHHTTLEMuZoIZA4=;
- b=NqJotm/TXHRxrxEFY4AMfHZ9plp1kHR/lyOP8YP0ug4VESKm4Bh9rPODV1VZe3Motv
- GyfjfPVohYe5UupBuaN3UhQUfZFJTcnW4NaM8eh6shptk/KdxgHMe7fPXLgruWJ/fIQS
- vJS0UgU5yeSIfcFGJ1no6DwvSkWeWQ9mPsYzXUorJw1YjDNgWxZ5m/X1FGRjjgxhP5my
- dAv822ltn30WdINpt13ZhtvE/RvHy09fHebTL9VLOScNfuHkKSPt6OtO3xZbR5IhjY1W
- YRwclpKajChpKB8X/fbkXjhw92vunf45dVbesINHlfwLfZ9HUoIC37fK1tySIfNr5Q1o
- vcQg==
+ d=gmail.com; s=20230601; t=1751388588; x=1751993388; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=KPiSjh0N/D3OxLvptKuG8AXPpYOOl5hUxlwQvU9k874=;
+ b=QJ4G4gd0Bpbt86wkgfky0jugc+pGaO+IkEgeyHJ3JinW6j88k3Sb4ynPz1O4Ab5SaZ
+ bmXSWGIM3Zy3yhsn9IMNwLvnmunzKthUfzDjxiUmaO2WPAu9GDYb3WTlAfOAhqTFVjFN
+ XOiROjIxQVc6QHBaskvCxLrpHTxMuwhFPw+LblqbajKr5SKz8VegL+nCe8ymDMl2Z7Ql
+ nn2U2BAfUK7fveGL5OhDK6q95APaXRaWUa29vF34korrbYLfql/irUy0PskoDaV4uNiK
+ rL2ulVlKitzsHi0SWwCBpEMAyX9ninauLNwkXsPZnx/wLsfaxnIJsu+zdH2n6CsuBrHj
+ 3/vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751582520; x=1752187320;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1751388588; x=1751993388;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=D1Qg1F6O8BBVdVvv4eHMsC5wNUKHIHHTTLEMuZoIZA4=;
- b=hw1TOpDx1+iasUsza1g/HCbnXHrzF7kuy1TsD0ThKCp3T7zfOS+eBW6g/DGv5RCnA0
- ljJ+5PnXd0EnEn/630M4mRV1RzTBTI2g2f6/AVFLIVMIHOPwMenXCtDlUhL/Jyd8WAZC
- ZJeRDo8SqOYKVJPUhTJGyMbINkMTwsmBjLJ5fPMo29x6fCs/0qDk1GVi3FPtmGeozOgz
- 2CSFFZtd4Mv0C/Ks60d5cPKuCgc5OBlZwwxBTWovRBKqQPqNFYwqp3vcYKrc4jV27k7w
- Z5twX+yg57EjqS5MAQIDUYj/4assiZ9ZV9yMvXjXVwyYTpDe8GY7DIGcsH7ANsM4nrgD
- rH9Q==
+ bh=KPiSjh0N/D3OxLvptKuG8AXPpYOOl5hUxlwQvU9k874=;
+ b=etzlI2I/pPh+XhspwgykDzXu12Rf1uxcySWQuTsURiFYFFd7lZ4ambf4sXoWc8E64Y
+ euf1C/AP/nPqdX6QqXIQTmeHPgRUC8tjReYDawrc+N28Hu8QTRbqEONfJSLpoXuzuEYE
+ TjZAcW/cbcWmDkI+42n60N6ldBayNLse79NW/WgKQUV8WPCFpVpEKrIWoNcSPf6EZKuc
+ 0ilirbxOf9v0R/NZoprIDXKOHb4dPGiTNy6i5v6foOAK2iJyTz+zY/pOvnMpRJH+nHfM
+ JQi+6xn4wwtWTu5sjn7EGSsLjcWm8iSZzMff4HjVa498g7h8D+uFsZQBH4ewR49NfSjF
+ 5qmw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUHIZ402kVlCRzyyjXZzWUljsPvkhEs8ZQIj3WqE1gXtaB2jZILlpkYdwdP+qPG9B09kZRMvVxJcpM=@lists.freedesktop.org,
- AJvYcCUK6OxBIIYXxs6Wbykdokv1nQQg+2PJ6lLqpqahY4kJWHyET66dGOqFo+jqcxbzrmT0Nj58/Pdh0w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy5PDdgJ3tS3qBn7hak7/2aEWdrrMyhrArbSW+4j1ZOTWkwYYDB
- iVz+8jXMH5tNUftL7dtBqNZwUBKuj1pblOZycZPYWo9F/wtrENMiTQGQeB0zHX8zTeDqwKM+H73
- qQFc/05ONNggTarYgRf19zgWXueipmw8=
-X-Gm-Gg: ASbGnctd+NynoSHQc7CTlwswHeS+VE83AR0vKS52+lG2YU/MCEOKkM9blKrO/YpIh3K
- NDDKtTYb1JcEiI5vp3+QYpEi4doZePOuk6o+gJdQvfvsPsplDjOjdItNljgFGuNTL2PglIBwq2m
- MIp4rFkJHPmaW8W6lqlbeFXYqMDzArXblDFs2fS6dKDT9stJVe9+6vPa7RKVdLoxCG1YrQBzVhb
- ZLmJQ==
-X-Google-Smtp-Source: AGHT+IF/t3ZEtmjCL9D2hV/pUOr7MKQyCU+hJLvbY3a+HlkEEdLNrViyvM7S6Yvq56dYm7fbL0DEEZ7CtTi3HmveDVA=
-X-Received: by 2002:a2e:b8d5:0:b0:32a:6312:bfc1 with SMTP id
- 38308e7fff4ca-32e5f5e9318mr633481fa.24.1751582519435; Thu, 03 Jul 2025
- 15:41:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
- <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
- <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
- <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
- <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
- <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
-In-Reply-To: <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
+ AJvYcCU984u+uHbB5S0VJzQ10l8YyMN5RVcnvS+VAKM3HhPuh0K9OFwhp/Xl/8ia751g7CpQ4FAM6QjcaQ==@lists.freedesktop.org,
+ AJvYcCUUzFnak3VVED1qvzjZinYNBhcMjweOE4inR03gUWqN9CW8cmjFuF9X9IOKX4y6cCBNmK4K9fGX9T0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyHErUkVVsQtnZmS8/8Hov8Gmaec4EnR2T9Q/9KS50sm1nwEytX
+ AGOWOqfiTwiklZLBidJ4YR3/zNbWJCqwiAxgmAu5DGKcsDkSRRBpmefm
+X-Gm-Gg: ASbGnct47JDLltYhvGUOMlM6l9HGosBx7Fu5Jhhi/LNPlsOlJ1rhXIgOitD90dgZsZP
+ k5tskOvcmcIzq30jDutwVdaD1xzmYmxg1IydTF2G2KvMh1LPIzy7nx81vZ3OWpy5/PFCAmQNno9
+ R0q22PkrJaYv0sDWTG9IELvVGXMrbt/KkGRWk2lxdjN4T4LK7RtO8CK9zP3csXVtEoC/dhHpcP7
+ rIWhLgsyTcPsTDO+ruRrdVamZ1PXu48syPBynyg9eb2Zj/7NY9SFkhisXHHgTop43H7Hech2GGZ
+ JXr2A7NtoB2DHZMb7H1km/yG4kPwSGCiGg+mXd7EkPccn5BCa0LDNT7zEa3rAe2RDKmzEytMFdJ
+ Id0DC2+Esq0I24x0eow206wy5/OaoCXfyp2509aBS5wKFAeoeyvNyhI5IVr9xolFftA3IWeUr0g
+ ==
+X-Google-Smtp-Source: AGHT+IGGs/fA6BbM/mtl8WZrhsacYrqQT0Q7w79xZLNS42IorGM0Z4Es17kL4nrws8MX53BCDx11XA==
+X-Received: by 2002:a05:620a:1713:b0:7d2:284f:e471 with SMTP id
+ af79cd13be357-7d44394fd4dmr2546821385a.33.1751388588025; 
+ Tue, 01 Jul 2025 09:49:48 -0700 (PDT)
+Received: from
+ a.1.b.d.0.e.7.9.6.4.2.0.b.3.4.b.0.0.1.1.e.f.b.5.1.4.0.4.0.0.6.2.ip6.arpa
+ ([2600:4041:5bfe:1100:70ac:5fd8:4c25:89ec])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7d44317e285sm793098885a.45.2025.07.01.09.49.46
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 01 Jul 2025 09:49:47 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 3 Jul 2025 18:41:23 -0400
-X-Gm-Features: Ac12FXx5T1CWZv8EzyusKcnGahP16LvJ8y4OiMbwugKJnpUmBKST0YNjwC9XD5U
-Message-ID: <CAJ-ks9=WmuXLJ6KkMEOP2jTvM_YBJO10SNsq0DU2J+_d4jp7qw@mail.gmail.com>
-Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
-To: Benno Lossin <lossin@kernel.org>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+Date: Tue, 01 Jul 2025 12:49:33 -0400
+Subject: [PATCH v13 1/5] rust: macros: reduce collections in `quote!` macro
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250701-cstr-core-v13-1-29f7d3eb97a6@gmail.com>
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+In-Reply-To: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+To: Michal Rostecki <vadorovsky@protonmail.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ Trevor Gross <tmgross@umich.edu>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
+ Danilo Krummrich <dakr@kernel.org>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
  FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, 
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
+ Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
+ Nathan Chancellor <nathan@kernel.org>, 
  Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
  Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
  Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
  Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
- netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
- linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
- linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ Stephen Boyd <sboyd@kernel.org>
+Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, linux-block@vger.kernel.org, 
+ linux-pm@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openssh-sha256; t=1751388583; l=8684;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=chk1wwizZG1MPIiCNwD46/EZhbEvHPTiZmXZqpThA3c=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QHncOK9jmTcSRpxenCz1qsF8Hfzh6VWwhvz5AFOmB20gAplsko5e7ie0TE/e9Kxqo9sKSUIwLiU
+ Iq3d0s+9OwQ4=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -128,170 +140,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jul 3, 2025 at 4:36=E2=80=AFPM Benno Lossin <lossin@kernel.org> wro=
-te:
->
-> On Thu Jul 3, 2025 at 8:55 PM CEST, Tamir Duberstein wrote:
-> > On Thu, Jul 3, 2025 at 11:08=E2=80=AFAM Benno Lossin <lossin@kernel.org=
-> wrote:
-> >> On Thu Jul 3, 2025 at 3:55 PM CEST, Tamir Duberstein wrote:
-> >> > On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.o=
-rg> wrote:
-> >> >> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
-> >> >> > Introduce a `fmt!` macro which wraps all arguments in
-> >> >> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This e=
-nables
-> >> >> > formatting of foreign types (like `core::ffi::CStr`) that do not
-> >> >> > implement `core::fmt::Display` due to concerns around lossy conve=
-rsions which
-> >> >> > do not apply in the kernel.
-> >> >> >
-> >> >> > Replace all direct calls to `format_args!` with `fmt!`.
-> >> >> >
-> >> >> > Replace all implementations of `core::fmt::Display` with implemen=
-tations
-> >> >> > of `kernel::fmt::Display`.
-> >> >> >
-> >> >> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
-> >> >> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089=
--General/topic/Custom.20formatting/with/516476467
-> >> >> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> >> >> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-> >> >> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-> >> >> > ---
-> >> >> >  drivers/block/rnull.rs       |  2 +-
-> >> >> >  drivers/gpu/nova-core/gpu.rs |  4 +-
-> >> >> >  rust/kernel/block/mq.rs      |  2 +-
-> >> >> >  rust/kernel/device.rs        |  2 +-
-> >> >> >  rust/kernel/fmt.rs           | 89 ++++++++++++++++++++++++++++++=
-+++++++++
-> >> >> >  rust/kernel/kunit.rs         |  6 +--
-> >> >> >  rust/kernel/lib.rs           |  1 +
-> >> >> >  rust/kernel/prelude.rs       |  3 +-
-> >> >> >  rust/kernel/print.rs         |  4 +-
-> >> >> >  rust/kernel/seq_file.rs      |  2 +-
-> >> >> >  rust/kernel/str.rs           | 22 ++++------
-> >> >> >  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++=
-++++++++++++++
-> >> >> >  rust/macros/lib.rs           | 19 +++++++++
-> >> >> >  rust/macros/quote.rs         |  7 ++++
-> >> >> >  scripts/rustdoc_test_gen.rs  |  2 +-
-> >> >> >  15 files changed, 236 insertions(+), 28 deletions(-)
-> >> >>
-> >> >> This would be a lot easier to review if he proc-macro and the call
-> >> >> replacement were different patches.
-> >> >>
-> >> >> Also the `kernel/fmt.rs` file should be a different commit.
-> >> >
-> >> > Can you help me understand why? The changes you ask to be separated
-> >> > would all be in different files, so why would separate commits make =
-it
-> >> > easier to review?
-> >>
-> >> It takes less time to go through the entire patch and give a RB. I can
-> >> take smaller time chunks and don't have to get back into the entire
-> >> context of the patch when I don't have 30-60min available.
-> >
-> > Ah, I see what you mean. Yeah, the requirement to RB the entire patch
-> > does mean there's a benefit to smaller patches.
-> >
-> >> In this patch the biggest problem is the rename & addition of new
-> >> things, maybe just adding 200 lines in those files could be okay to go
-> >> together, see below for more.
-> >
-> > After implementing your suggestion of re-exporting things from
-> > `kernel::fmt` the diffstat is
-> >
-> > 26 files changed, 253 insertions(+), 51 deletions(-)
-> >
-> > so I guess I could do all the additions in one patch, but then
-> > *everything* else has to go in a single patch together because the
-> > formatting macros either want core::fmt::Display or
-> > kernel::fmt::Display; they can't work in a halfway state.
->
-> I don't understand, can't you just do:
->
-> * add `rust/kernel/fmt.rs`,
-> * add `rust/macros/fmt.rs`,
-> * change all occurrences of `core::fmt` to `kernel::fmt` and
->   `format_args!` to `fmt!`.
+Remove a handful of unncessary intermediate vectors and token streams;
+mainly the top-level stream can be directly extended with the notable
+exception of groups.
 
-Yes, such a split could be done - I will do so in the next spin
+Remove an unnecessary `#[allow(dead_code)]` added in commit dbd5058ba60c
+("rust: make pin-init its own crate").
 
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+---
+ rust/macros/quote.rs | 104 ++++++++++++++++++++++++---------------------------
+ 1 file changed, 49 insertions(+), 55 deletions(-)
 
-> The last one could be split by subsystem, no? Some subsystems might
-> interact and thus need simultaneous splitting, but there should be some
-> independent ones.
+diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
+index 92cacc4067c9..acc140c18653 100644
+--- a/rust/macros/quote.rs
++++ b/rust/macros/quote.rs
+@@ -2,7 +2,6 @@
+ 
+ use proc_macro::{TokenStream, TokenTree};
+ 
+-#[allow(dead_code)]
+ pub(crate) trait ToTokens {
+     fn to_tokens(&self, tokens: &mut TokenStream);
+ }
+@@ -47,121 +46,116 @@ fn to_tokens(&self, tokens: &mut TokenStream) {
+ /// `quote` crate but provides only just enough functionality needed by the current `macros` crate.
+ macro_rules! quote_spanned {
+     ($span:expr => $($tt:tt)*) => {{
+-        let mut tokens: ::std::vec::Vec<::proc_macro::TokenTree>;
+-        #[allow(clippy::vec_init_then_push)]
++        let mut tokens = ::proc_macro::TokenStream::new();
+         {
+-            tokens = ::std::vec::Vec::new();
+             let span = $span;
+             quote_spanned!(@proc tokens span $($tt)*);
+         }
+-        ::proc_macro::TokenStream::from_iter(tokens)
++        tokens
+     }};
+     (@proc $v:ident $span:ident) => {};
+     (@proc $v:ident $span:ident #$id:ident $($tt:tt)*) => {
+-        let mut ts = ::proc_macro::TokenStream::new();
+-        $crate::quote::ToTokens::to_tokens(&$id, &mut ts);
+-        $v.extend(ts);
++        $crate::quote::ToTokens::to_tokens(&$id, &mut $v);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident #(#$id:ident)* $($tt:tt)*) => {
+         for token in $id {
+-            let mut ts = ::proc_macro::TokenStream::new();
+-            $crate::quote::ToTokens::to_tokens(&token, &mut ts);
+-            $v.extend(ts);
++            $crate::quote::ToTokens::to_tokens(&token, &mut $v);
+         }
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident ( $($inner:tt)* ) $($tt:tt)*) => {
+         #[allow(unused_mut)]
+-        let mut tokens = ::std::vec::Vec::<::proc_macro::TokenTree>::new();
++        let mut tokens = ::proc_macro::TokenStream::new();
+         quote_spanned!(@proc tokens $span $($inner)*);
+-        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
++        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
+             ::proc_macro::Delimiter::Parenthesis,
+-            ::proc_macro::TokenStream::from_iter(tokens)
+-        )));
++            tokens,
++        ))]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident [ $($inner:tt)* ] $($tt:tt)*) => {
+-        let mut tokens = ::std::vec::Vec::new();
++        let mut tokens = ::proc_macro::TokenStream::new();
+         quote_spanned!(@proc tokens $span $($inner)*);
+-        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
++        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
+             ::proc_macro::Delimiter::Bracket,
+-            ::proc_macro::TokenStream::from_iter(tokens)
+-        )));
++            tokens,
++        ))]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident { $($inner:tt)* } $($tt:tt)*) => {
+-        let mut tokens = ::std::vec::Vec::new();
++        let mut tokens = ::proc_macro::TokenStream::new();
+         quote_spanned!(@proc tokens $span $($inner)*);
+-        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
++        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
+             ::proc_macro::Delimiter::Brace,
+-            ::proc_macro::TokenStream::from_iter(tokens)
+-        )));
++            tokens,
++        ))]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident :: $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Joint)
+-        ));
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::Spacing::Joint, ::proc_macro::Spacing::Alone].map(|spacing| {
++            ::proc_macro::TokenTree::Punct(::proc_macro::Punct::new(':', spacing))
++        }));
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident : $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident , $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new(',', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new(',', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident @ $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new('@', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new('@', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident ! $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new('!', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new('!', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident ; $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new(';', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new(';', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident + $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new('+', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new('+', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident = $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident # $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Punct(
+-                ::proc_macro::Punct::new('#', ::proc_macro::Spacing::Alone)
+-        ));
++        $v.extend([::proc_macro::TokenTree::Punct(
++            ::proc_macro::Punct::new('#', ::proc_macro::Spacing::Alone),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident _ $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Ident(::proc_macro::Ident::new("_", $span)));
++        $v.extend([::proc_macro::TokenTree::Ident(
++            ::proc_macro::Ident::new("_", $span),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+     (@proc $v:ident $span:ident $id:ident $($tt:tt)*) => {
+-        $v.push(::proc_macro::TokenTree::Ident(::proc_macro::Ident::new(stringify!($id), $span)));
++        $v.extend([::proc_macro::TokenTree::Ident(
++            ::proc_macro::Ident::new(stringify!($id), $span),
++        )]);
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
+ }
 
-Yes, it probably can. As you say, some subsystems might interact - the
-claimed benefit of doing this subsystem-by-subsystem split is that it
-avoids conflicts with ongoing work that will conflict with a large
-patch, but this is also the downside; if ongoing work changes the set
-of interactions between subsystems then a maintainer may find
-themselves unable to emit the log message they want (because one
-subsystem is using kernel::fmt while another is still on core::fmt).
+-- 
+2.50.0
 
->
-> >> > I prefer to keep things in one commit because the changes are highly
-> >> > interdependent. The proc macro doesn't make sense without
-> >> > kernel/fmt.rs and kernel/fmt.rs is useless without the proc macro.
-> >>
-> >> I think that `Adapter`, the custom `Display` and their impl blocks
-> >> don't need to be in the same commit as the proc-macro. They are relate=
-d,
-> >> but maybe someone is not well-versed in proc-macros and thus doesn't
-> >> want to review that part.
-> >
-> > Sure, I guess I will split them. But as noted above: changing the
-> > formatting macros and all the types' trait implementations has to be a
-> > "flag day" change.
->
-> See above.
->
-> >> >> > +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Bina=
-ry, Pointer, LowerExp, UpperExp);
-> >> >> > +
-> >> >> > +/// A copy of [`fmt::Display`] that allows us to implement it fo=
-r foreign types.
-> >> >> > +///
-> >> >> > +/// Types should implement this trait rather than [`fmt::Display=
-`]. Together with the [`Adapter`]
-> >> >> > +/// type and [`fmt!`] macro, it allows for formatting foreign ty=
-pes (e.g. types from core) which do
-> >> >> > +/// not implement [`fmt::Display`] directly.
-> >> >> > +///
-> >> >> > +/// [`fmt!`]: crate::prelude::fmt!
-> >> >> > +pub trait Display {
-> >> >> > +    /// Same as [`fmt::Display::fmt`].
-> >> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result;
-> >> >> > +}
-> >> >> > +
-> >> >> > +impl<T: ?Sized + Display> Display for &T {
-> >> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-> >> >> > +        Display::fmt(*self, f)
-> >> >> > +    }
-> >> >> > +}
-> >> >> > +
-> >> >> > +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
-> >> >> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-> >> >> > +        let Self(t) =3D self;
-> >> >> > +        Display::fmt(t, f)
-> >> >>
-> >> >> Why not `Display::fmt(&self.0, f)`?
-> >> >
-> >> > I like destructuring because it shows me that there's only one field=
-.
-> >> > With `self.0` I don't see that.
-> >>
-> >> And what is the benefit here?
-> >
-> > In general the benefit is that the method does not ignore some portion
-> > of `Self`. A method that uses `self.0` would not provoke a compiler
-> > error in case another field is added, while this form would.
->
-> Yeah, but why would that change happen here? And even if it got another
-> field, why would that invalidate the impl of `fn fmt`?
-
-I don't know, but I would rather force a person to make that decision
-when they add another field rather than assume that such an addition
-wouldn't require changes here.
