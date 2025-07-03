@@ -4,83 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9ED07D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49009D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDA7210EB6E;
-	Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A32B10EB70;
+	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="GRbjvvlm";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LPOC1hA2";
 	dkim-atps=neutral
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3850A10E06E;
- Mon,  9 Jun 2025 12:22:27 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-73bf5aa95e7so3110809b3a.1; 
- Mon, 09 Jun 2025 05:22:27 -0700 (PDT)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C74F310E8F8;
+ Thu,  3 Jul 2025 21:38:40 +0000 (UTC)
+Received: by mail-pl1-f174.google.com with SMTP id
+ d9443c01a7336-2352b04c7c1so622045ad.3; 
+ Thu, 03 Jul 2025 14:38:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749471747; x=1750076547; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=YBch+ffur1O0Rgja7qluq4MVSQH3W827o3L8nkl80n0=;
- b=GRbjvvlmMwuoc0s5sz2gvE12okDQHv/WsweSIRbYZL3cEH/Jud4+C79ge/Gz79XB6t
- cPRw/e++1ALap2+3ST7qq7ORqJOzDrzab3vU44+226QkJQcsjCWlwuURBaGnjQF1hUvv
- 83oLiev+Uos9bxms+dpe8Yx/LY0rVZ3nOZNY2SX2aeATVccB6c2QTDEJfMAmezRQLCY+
- fSHavWXOKNt0XJ69roU+xdhjESzXukD5ZXvX/h2YiN+CwOIo6vO6Lnk/kwIcXpLXl7nF
- eepS9Hfjkwv14dOeD7a8J9/3lNBLrKy1nQ0uykVdpGpSi6ZFjF+SnJwACkpd67GfSSup
- s0nA==
+ d=gmail.com; s=20230601; t=1751578720; x=1752183520; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pHNodlGoraqosvL2in94YD46DI6OCuusa8x3ST+BCu8=;
+ b=LPOC1hA2MiOizLOeiR7A3XibECWw3jmCvhAiH/pJCkwzTDAJpuHMndGhO2N1L+ubCR
+ iEQ3RQQVHYICLsQdLLH+nTRqlsCi+5g9rlbr+NFmMc2ue4fmN7KgWmr+5Ov4goLbX2+e
+ T/UhtOxz5xKZRk+V5M8yR2LUk1on4SZvx9bSU05WTiNMT+xefXOYkUYTzKchTgCurkcI
+ BFDu1+RJNttVzfG+3uhqzMjlGYpJTvZSyTFaVdCIGeLHKuLoa0aMT6h0u2xAujeRZY4e
+ txWxvVncCcSF+3YeYxx7LGILPE8eTWyBOChIFs+1/IK4eLogMSMakXYasHPC01Yanpju
+ biKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749471747; x=1750076547;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=YBch+ffur1O0Rgja7qluq4MVSQH3W827o3L8nkl80n0=;
- b=vhPC5V+/X4jsB09v2yRRXTfkzDaOswwpmDXQgSFmNfBHqdyRVXIzdYHUFvtm3CiuQf
- xW/BJ/QO6QTvcRz9MButn9wr8Cp+YLywkGhsTB/5TQfS6ekZz7LA4vdnWIOFFP1d4nd5
- jZ5ZV8nbOGiJpxvLoLORSGJxELN/ximLc01k0cv2yCjZYMiAyPq1Tsun7FGgfJh3l8Zu
- F/APbs2gvag8rn7DK6sxeS2hqtw1c7GFqRzAZkJJsKE80utKPe/4QXxo2UxzTjrdSVg8
- zsXslVkL6g0RIv7HdLAep47G3n29plepMZczMlf9ULMo64G4vbS1MIXRyXxVzyjyXL3c
- JUXQ==
+ d=1e100.net; s=20230601; t=1751578720; x=1752183520;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=pHNodlGoraqosvL2in94YD46DI6OCuusa8x3ST+BCu8=;
+ b=XDhFAw+1jTEhz/93p6+MCKjEBbJnqphFRyrVMzvGf7RUWDT3YHzJ/T7B7ZGnLCjmMr
+ 7gZ1gkf9uGe9J5/0+fTl1w03kW3/F9OTqNfgO3Nt1OGSjqeMf2idE/K4wtm7cSBWexOd
+ /IdwCshoKGpjialEuvE+eFLsXgO8UyuRRlZY+ccZcH/Mff4UC03XFx1BTKI8ecKpf7sl
+ 24zw0VTAN1LuKdh4qQ9VnuNgboDhqiGm/10VsZJkDxoC4d7hbQ5zN8JHfJ+e3Qb6krdw
+ q0X835g7eI273CvOopx9dY2jid0fPJ24QpOrvO+ngo7LiXGpc0M78h1n4RgEhw9s1giX
+ qldQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWKDS1RG7RPtQacvbRwAa7QZemfCgws69tvlzTu7kkoChuVzzTNFu6Z44W4HfXV6Kfve2p7d4daig==@lists.freedesktop.org,
- AJvYcCXaW5/uC/bucENfCAqlBr3WtdomKC7pr4Fh2RjhHdR9b/ED4ZjK3xg+LzdYYiv22jIrCPEVoezIBno=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwDsDHPOiBgN/G49bDb3caJDRMlodvJZZnBYDyn2QKoTo2H9Jkd
- HQ3eGvr+vieSAMjUgPMu8MgSgUdAVsGhFaa8+zQybaoCI5jRG1f52U8S
-X-Gm-Gg: ASbGncsFJ91DgpXczzLqrSHQuLo5ZULHnrsBZtYm0DAWBxaasFnRmwX2hOsoRQ0RTB+
- MJVOw2aN48DUXqpPKQy/pcYtJi7qPbQzIXzSvmOwSfP7VspQV5mJn4sC3XKE7Wr+OltDQdrr8Th
- si4yqCkl3NI/Pe5imm+p94efBsI3UXjykytfF3tltuVOQlQgo2B2FFQUlSFu3CtRyhXWHG9g3zM
- QE/LKledvac4Ib88S/6TcMhbGBwC/n43KuM0PdNXN+1gfemGIlk8JoVl/hTEGgzybwa2DUl6zE+
- y4pXlX0Vn7eaT06OEmrJrmJYQb/bg91EGhU4ssb4iMM0NQyEGeeNUd+mNV3iHhKKTzDJJrWX
-X-Google-Smtp-Source: AGHT+IFN/6jpjwnUWAnmieziowXquVGyIPIEOCFl8zdXOz/2r+NiQoJ5BLmsN49W1/EDBbcGUv3y0g==
-X-Received: by 2002:a05:6a21:6e41:b0:21f:62e7:cd08 with SMTP id
- adf61e73a8af0-21f62e7ce8dmr5864666637.8.1749471746484; 
- Mon, 09 Jun 2025 05:22:26 -0700 (PDT)
-Received: from pop-os.. ([201.49.69.163]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-b2f5f7827c0sm5170285a12.62.2025.06.09.05.22.17
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 09 Jun 2025 05:22:26 -0700 (PDT)
-From: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
-To: rafael@kernel.org, viresh.kumar@linaro.org, dakr@kernel.org,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, mcgrof@kernel.org,
- russ.weight@linux.dev, ojeda@kernel.org, alex.gaynor@gmail.com,
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com,
- lossin@kernel.org, a.hindborg@kernel.org, aliceryhl@google.com,
- tmgross@umich.edu, leitao@debian.org, gregkh@linuxfoundation.org,
- david.m.ertman@intel.com, ira.weiny@intel.com, leon@kernel.org,
- fujita.tomonori@gmail.com, tamird@gmail.com, igor.korotin.linux@gmail.com,
- walmeida@microsoft.com, anisse@astier.eu
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, trintaeoitogc@gmail.com
-Subject: [PATCH] rust: module: remove deprecated author key
-Date: Mon,  9 Jun 2025 09:22:00 -0300
-Message-Id: <20250609122200.179307-1-trintaeoitogc@gmail.com>
-X-Mailer: git-send-email 2.34.1
+ AJvYcCUJWcu2mYaVkBy7/LF2OzpoFUxBz6UjNZSzDNdYB12tKx5I61m4zCvyzTRU2g0kVJ5WjRpOhyPNRg==@lists.freedesktop.org,
+ AJvYcCV4NkajbVb0zweDARWHNLTs2vm3zk1jsprwt7yjNJkbTP2eDhiWPNBsPlNodl94Nb1HIdYkaG5Lt18=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzVIHlk1FsG9IToJn5O1FTI4/KascR5U+7JLH2cTA1dicF1NHcA
+ XbHnAz9GajjQ6bYVo1T/ewgAUN8EdF1wHv7kuQNR7jeTc129oUIpgTbfaej/HwXelbLrZpTPlgb
+ lCa4RdNSAUoBBG3tQoFfC3f62DurdXrc=
+X-Gm-Gg: ASbGnctVks0Sof//tt7PAZUpYsBfrElrXFP3zQ/yIUVRyWKBkacQ0gbaI758IZam1sb
+ EIAE8e5HeThR7/aOdhM/W0jr49vjNqeNe3pjMRgXAONsF3irHHXdK4dE1nVa7MZzdDFi7gtv5Be
+ 7HaVrP1VNkqxXis+Am70mogP9YNAkRW18ykUF7y0UYEVo=
+X-Google-Smtp-Source: AGHT+IELtB5XgtVh1TIl503YSOBpKDzFFV0lUuu4UGNcygnKkLkVRq6ABgmlhe/GC2s+Ns1XtRhxYcb0/TcFag3V8H0=
+X-Received: by 2002:a17:902:c404:b0:234:f4a3:f73e with SMTP id
+ d9443c01a7336-23c85ec795bmr1697845ad.9.1751578720047; Thu, 03 Jul 2025
+ 14:38:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
+ <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
+ <34c00dfa-8302-45ee-8d80-58b97a08e52e@lunn.ch>
+In-Reply-To: <34c00dfa-8302-45ee-8d80-58b97a08e52e@lunn.ch>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 3 Jul 2025 23:38:27 +0200
+X-Gm-Features: Ac12FXwdXJJ0hQiiGaabkdHfelYANMQVK7rSTVhFAhKXDapeaUgG2_fvXL2LwP0
+Message-ID: <CANiq72ksOG10vc36UDdBytsM-LT7PdgjcZ9B0dkqSETH6a0ezA@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Tamir Duberstein <tamird@gmail.com>, Benno Lossin <lossin@kernel.org>, 
+ Michal Rostecki <vadorovsky@protonmail.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,141 +126,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Commit 38559da6afb2 ("rust: module: introduce `authors` key") introduced
-a new `authors` key to support multiple module authors, while keeping
-the old `author` key for backward compatibility.
+On Thu, Jul 3, 2025 at 11:28=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> A small patch tends to be more obviously correct than a big patch. The
+> commit message is more focused and helpful because it refers to a
+> small chunk of code. Because the commit message is more focused, it
+> can answer questions reviewers might ask, before they ask them. If i
 
-Now that all in-tree modules have migrated to `authors`, remove:
-1. The deprecated `author` key support from the module macro
-2. Legacy `author` entries from remaining modules
+Yeah, also better for smaller reverts, as well as typically easier to
+backport if needed, etc.
 
-Signed-off-by: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
----
- drivers/cpufreq/rcpufreq_dt.rs        | 2 +-
- drivers/gpu/drm/nova/nova.rs          | 2 +-
- drivers/gpu/nova-core/nova_core.rs    | 2 +-
- rust/kernel/firmware.rs               | 2 +-
- rust/macros/module.rs                 | 6 ------
- samples/rust/rust_configfs.rs         | 2 +-
- samples/rust/rust_driver_auxiliary.rs | 2 +-
- 7 files changed, 6 insertions(+), 12 deletions(-)
-
-diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
-index 94ed81644fe1..bdf4b844de42 100644
---- a/drivers/cpufreq/rcpufreq_dt.rs
-+++ b/drivers/cpufreq/rcpufreq_dt.rs
-@@ -220,7 +220,7 @@ fn probe(
- module_platform_driver! {
-     type: CPUFreqDTDriver,
-     name: "cpufreq-dt",
--    author: "Viresh Kumar <viresh.kumar@linaro.org>",
-+    authors: ["Viresh Kumar <viresh.kumar@linaro.org>"],
-     description: "Generic CPUFreq DT driver",
-     license: "GPL v2",
- }
-diff --git a/drivers/gpu/drm/nova/nova.rs b/drivers/gpu/drm/nova/nova.rs
-index 902876aa14d1..64fd670e99e1 100644
---- a/drivers/gpu/drm/nova/nova.rs
-+++ b/drivers/gpu/drm/nova/nova.rs
-@@ -12,7 +12,7 @@
- kernel::module_auxiliary_driver! {
-     type: NovaDriver,
-     name: "Nova",
--    author: "Danilo Krummrich",
-+    authors: ["Danilo Krummrich"],
-     description: "Nova GPU driver",
-     license: "GPL v2",
- }
-diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-index 618632f0abcc..f405d7a99c28 100644
---- a/drivers/gpu/nova-core/nova_core.rs
-+++ b/drivers/gpu/nova-core/nova_core.rs
-@@ -13,7 +13,7 @@
- kernel::module_pci_driver! {
-     type: driver::NovaCore,
-     name: "NovaCore",
--    author: "Danilo Krummrich",
-+    authors: ["Danilo Krummrich"],
-     description: "Nova Core GPU driver",
-     license: "GPL v2",
-     firmware: [],
-diff --git a/rust/kernel/firmware.rs b/rust/kernel/firmware.rs
-index 2494c96e105f..ed2fc20cba9b 100644
---- a/rust/kernel/firmware.rs
-+++ b/rust/kernel/firmware.rs
-@@ -181,7 +181,7 @@ unsafe impl Sync for Firmware {}
- /// module! {
- ///    type: MyModule,
- ///    name: "module_firmware_test",
--///    author: "Rust for Linux",
-+///    authors: ["Rust for Linux"],
- ///    description: "module_firmware! test module",
- ///    license: "GPL",
- /// }
-diff --git a/rust/macros/module.rs b/rust/macros/module.rs
-index 2ddd2eeb2852..5dd276a2e5cb 100644
---- a/rust/macros/module.rs
-+++ b/rust/macros/module.rs
-@@ -94,7 +94,6 @@ struct ModuleInfo {
-     type_: String,
-     license: String,
-     name: String,
--    author: Option<String>,
-     authors: Option<Vec<String>>,
-     description: Option<String>,
-     alias: Option<Vec<String>>,
-@@ -108,7 +107,6 @@ fn parse(it: &mut token_stream::IntoIter) -> Self {
-         const EXPECTED_KEYS: &[&str] = &[
-             "type",
-             "name",
--            "author",
-             "authors",
-             "description",
-             "license",
-@@ -134,7 +132,6 @@ fn parse(it: &mut token_stream::IntoIter) -> Self {
-             match key.as_str() {
-                 "type" => info.type_ = expect_ident(it),
-                 "name" => info.name = expect_string_ascii(it),
--                "author" => info.author = Some(expect_string(it)),
-                 "authors" => info.authors = Some(expect_string_array(it)),
-                 "description" => info.description = Some(expect_string(it)),
-                 "license" => info.license = expect_string_ascii(it),
-@@ -179,9 +176,6 @@ pub(crate) fn module(ts: TokenStream) -> TokenStream {
-     // Rust does not allow hyphens in identifiers, use underscore instead.
-     let ident = info.name.replace('-', "_");
-     let mut modinfo = ModInfoBuilder::new(ident.as_ref());
--    if let Some(author) = info.author {
--        modinfo.emit("author", &author);
--    }
-     if let Some(authors) = info.authors {
-         for author in authors {
-             modinfo.emit("author", &author);
-diff --git a/samples/rust/rust_configfs.rs b/samples/rust/rust_configfs.rs
-index 60ddbe62cda3..af04bfa35cb2 100644
---- a/samples/rust/rust_configfs.rs
-+++ b/samples/rust/rust_configfs.rs
-@@ -14,7 +14,7 @@
- module! {
-     type: RustConfigfs,
-     name: "rust_configfs",
--    author: "Rust for Linux Contributors",
-+    authors: ["Rust for Linux Contributors"],
-     description: "Rust configfs sample",
-     license: "GPL",
- }
-diff --git a/samples/rust/rust_driver_auxiliary.rs b/samples/rust/rust_driver_auxiliary.rs
-index 3e15e6d002bb..abf3d55ed249 100644
---- a/samples/rust/rust_driver_auxiliary.rs
-+++ b/samples/rust/rust_driver_auxiliary.rs
-@@ -114,7 +114,7 @@ fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
- module! {
-     type: SampleModule,
-     name: "rust_driver_auxiliary",
--    author: "Danilo Krummrich",
-+    authors: ["Danilo Krummrich"],
-     description: "Rust auxiliary driver",
-     license: "GPL v2",
- }
--- 
-2.34.1
-
+Cheers,
+Miguel
