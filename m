@@ -4,124 +4,114 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 388AECCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89406CCA470
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00B9B10E5DA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155D510E5DD;
 	Mon,  6 Oct 2025 20:57:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="eLb78sY+";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SRQEIJsj";
 	dkim-atps=neutral
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E60810E774;
- Wed, 13 Aug 2025 16:00:09 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-7e1d89fcc31so664548185a.1; 
- Wed, 13 Aug 2025 09:00:09 -0700 (PDT)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+ [209.85.208.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1FA310E013;
+ Thu,  3 Jul 2025 19:17:20 +0000 (UTC)
+Received: by mail-lj1-f172.google.com with SMTP id
+ 38308e7fff4ca-32cd0dfbd66so1943141fa.3; 
+ Thu, 03 Jul 2025 12:17:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755100808; x=1755705608; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=3Cr4skJMToxR5ZDNlOWKhFrCtS61lHTyy++Kenuer/M=;
- b=eLb78sY+3eHBJhyg0eNUolcIZi4uZRaWCm2ccHg2opdq020UHBexeJ/9siY1Dg2Ghy
- 8t1WM+80iAt9zTIZQK2H3bdqEfIQ/xCNf1Ug+GM10fqGvdgHM1z6DbZ8hc0Sl7pMCats
- rY2ugBNvVR+alMede3HMbDbBGzxYO3iAzR+ST3EsZCcrvUW4TZXoIMZw2XDgnjq6KYp3
- rb7+dhGwlNdGIH7C3P0KoJhM34K+CLeQwSwYhckj0NLXlz06c5RYILkiT7JTO8kmcxbr
- cusV3chZYs3mKOmYFHEX9njkJIp5maFOfaLBJQhynB5VlnggipBZIVpdhQbW/ri2w5bf
- Je4Q==
+ d=gmail.com; s=20230601; t=1751570239; x=1752175039; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=R3Barr3IhXzrNTPGC2RTs5bswjpJKBTkkOzXAPniR4c=;
+ b=SRQEIJsjjyPfoW7UIRrgm9Jn45nd1lOd46e29rRYnVSMdpE6E0RlVtjQmubqSEV8uJ
+ i1utAYo3nN0Opsp5m9trFMv2E67Julo9rPbr+YDHfyQdpiSSqzJ9n4N/7zs/j1bdE+hA
+ qBcjJgVTeGqvfxyDBlvP9Uq1Z4Z5/fC5/SDnybDCTl9xwG1EPv2N26EAxWycwXpURGlW
+ oVIA3ebpic1y596PEaoZ2kRkBG81NXRaoqbbdlcbmAvfSIOLs2ToKjSz9S2YxhCG1Y11
+ uU8rw//MmXaxtb04vhR2SAgVXXFaRIyXKjbep6XtUDnj4fh7U6/u0JeRH22BkvgcnLtj
+ NqHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755100808; x=1755705608;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1751570239; x=1752175039;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=3Cr4skJMToxR5ZDNlOWKhFrCtS61lHTyy++Kenuer/M=;
- b=oVA3JGMLlE/jIWl5JG1Zw9KjBUbIi6/y1WPh7mDtMl31Jo+O4dZS18E2SUznDjPsFB
- MU30ZPYgFBgkUN55GjQcjcoB9QIwGsFbZWFCChcgx6lQD7RoXW2WqMd/CgJfPJWSiNP3
- ZYQPENi93stlMWBgx5aSPRITNAPiTgdBYRzkfP5EkkrqPNkzjYpr6bFc3ur24bVJs0WN
- bd6VmyyT0cusv7hwOfp4t9xVjBXA7astgtqBFCE5emXwWf9cRO27OUpvyba0h6JJ7VGG
- UY7bVc8aYe/rvtcllbovco6rINKfihOvgVMXrKB/tt8ZEkuK5k/J3+7Sbk8WujOtvgzf
- ZUVg==
+ bh=R3Barr3IhXzrNTPGC2RTs5bswjpJKBTkkOzXAPniR4c=;
+ b=BtQ+cWxx4VCuS2N/vp9fK8WrMbV7plRzjNNOpCOYUQFmRu9+lGjmofng4aUTATZT0Q
+ +u9BIBBFdh8rtwqjMOKUWP/G2yjxONpCKCM8LF3B1noHmvVY7iHO2vxh8VWCaG1+nskC
+ wn8ID+k1DjQXN+zF9VepGOqW7gACJ65xjmpOFE64fGF2yZyJChyFh8tMhjVgujkdTe+A
+ d8Bpe0ue5xjORc5Rn6txwXpPuO9q5t16Xvb/v6EJqckjRub6yZdOS9zw017zLeCndI+q
+ ihz3+DyQ55ysv2Y0etV8610NMHmo+vQyWRgKazr581ku4Z1+pSdiKJXZheQOw6t+WG04
+ RsXA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU/UsKGeNBrV6eQkEZL1YhGM4B02IQKpqTLdqeoTkFyxy2zcfL4IpJAosFLoxtXdRg7Aur/47+M3A==@lists.freedesktop.org,
- AJvYcCX4QbyI6bhLNkUutbuWU5LPxDBh6ST2W//xpjbqaI6rgFyOlVgZDz0+FBfmrha7Bu2+oJVYQaZ+0Cw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YywCT/QDNewra0HABARe9H8WgXnIULq7hukKMufSQ69Q11Rz1lp
- B4xSsth7e6G6tOEDmVxAVHgjoIBUIDgO9vRxcP+FMhvGqGRH3wh1nwdQ
-X-Gm-Gg: ASbGnctQZCu8y79XDM5jxC9SfIZ3sZkFq3fp3o/0Lz9NJeecW8+OK6yRRnKk9qz7wyR
- ObfQ8Zx8bjrL9pP+3Tg4Os5KOz3MqPRcjsvnhiD9iXe9m/HJMfqy372x/gosBCG9bCx8mmGsjDV
- PDTdliWz7GL+qY6R66cK0LtF3nzxMFjVLjlyPpLiOsLhFFm7SRpEJoXKXetLlh3N9VCY8EPC+fF
- QA98JkF9e48IZvC3Nh2t+gsJo4jjrzWTjDwE6K6MSGip4Xoa64uytfukrj/t3GJoJiIZ9VgfnXQ
- KiJ7UuyBaQssWB58ZFZsx4UNhQ2eqeYQVEqpn6ggndnVgZ92pZUOE7yXknk4KQWCf+GDrYZuZLt
- bczhv+0MOmC1EkK7CIjejOObhbZ+us0G6zGRx5fXwNKHBx5czQmIlgxrv0GcWXd1IhxSHaE2Wq2
- n1HYnu1psMSBUiDUyf5LLMGgVZfR6h
-X-Google-Smtp-Source: AGHT+IF1FFwwiRWC7nkgIovb5g4WYGiTjLbCyBJ9eafSJnT0C/86p14jE6MKiVaAhyWdeKkN/zlclQ==
-X-Received: by 2002:a05:620a:915f:b0:7e3:3894:113a with SMTP id
- af79cd13be357-7e86524c97cmr375547385a.16.1755100807777; 
- Wed, 13 Aug 2025 09:00:07 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4808:6353:5c00:d445:7694:2051:518c])
- by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4b085ad7d08sm124482211cf.53.2025.08.13.09.00.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Aug 2025 09:00:07 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 13 Aug 2025 11:59:24 -0400
-Subject: [PATCH v2 14/19] rust: platform: replace `kernel::c_str!` with
- C-Strings
+ AJvYcCXenZhzghLf03Njbdxl0KBKNHuD2fA20VhH68fKIMf+K5WadgkdEWpNdhIELSLrwMEdrS7SoVFNJKc=@lists.freedesktop.org,
+ AJvYcCXoJLpvCuXvcHtzfEjI+u6UeeXx7OC016GrZjYg2kSXCob0wkg7t8nbFNCjGz9I3rpqy4ujscGxTA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywbm3ZpxiV8PKQ4KqRW+8caHXNmhPB1oG0ZBE0wLEl49LJD/V+V
+ 77cVL6ew4LetyJLvSWC41sF9ijX49C/caIbYlElrYOhkTkTs+FYyRPQZessQZPqbjDiTJHSA+zF
+ NzcoBOVjMpbnfhyZDxNNnDxSOKh6a48Y=
+X-Gm-Gg: ASbGncuxV+QElrWoeFpZ9AX4l8MpLgSFlV8oimxzNu/7b7JocNlDfKxX5bLyjAnfg/X
+ VYGDyeE4lWN2S2pOQ6UEjJmyAzivRLvE1pJjsZEisJoWyjEy6Nxu1TdI7fDTRie3uKTvU8cIdJ8
+ hqwbiv+Rj9b2v7/uzuNp9kD14Qc6VtChn3El4mHf35bRaXSQ==
+X-Google-Smtp-Source: AGHT+IGjC0TGXLvqJzlq7AH9t/Q8+27F2aQQEGTeZqTm6S+IuruBMFgglwnG67+02iIc84HBQzCfPbXa93QdJ3TTD74=
+X-Received: by 2002:a05:651c:3c2:b0:327:fec0:b85d with SMTP id
+ 38308e7fff4ca-32e00049994mr27628221fa.21.1751570238849; Thu, 03 Jul 2025
+ 12:17:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-core-cstr-cstrings-v2-14-00be80fc541b@gmail.com>
-References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
-In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
+ <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
+In-Reply-To: <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Thu, 3 Jul 2025 15:16:42 -0400
+X-Gm-Features: Ac12FXxZ9om-DmQ4Jtb_QO5Js54rwUi8z1hnIkmX71Lj1sGPMSjTGrGnMcngSCg
+Message-ID: <CAJ-ks9nCHCBqfM5nG3XpBBsWSqGpJLexV53UGL2i3KTdRiWRXQ@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Benno Lossin <lossin@kernel.org>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
  Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
  Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1755100760; l=6208;
- i=tamird@gmail.com; h=from:subject:message-id;
- bh=WdNf+rNMPJXvic2D/eUcktVEJW6IWJS1FHmVPimoUkg=;
- b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
- MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QMbMNG4YU/3mJ20aJZ2/qg6/JFicKqrYK50E3yuOLMOfQVP1/s/6nskEMQz/DX+ne69Xn25k7GG
- 4YI8+/fuWpgo=
-X-Developer-Key: i=tamird@gmail.com; a=openssh;
- fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
+ Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,165 +126,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-C-String literals were added in Rust 1.77. Replace instances of
-`kernel::c_str!` with C-String literals where possible.
+On Thu, Jul 3, 2025 at 2:55=E2=80=AFPM Tamir Duberstein <tamird@gmail.com> =
+wrote:
+>
+> On Thu, Jul 3, 2025 at 11:08=E2=80=AFAM Benno Lossin <lossin@kernel.org> =
+wrote:
+> >
+> > On Thu Jul 3, 2025 at 3:55 PM CEST, Tamir Duberstein wrote:
+> > > On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.or=
+g> wrote:
+> > >> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+> > >> > Introduce a `fmt!` macro which wraps all arguments in
+> > >> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This en=
+ables
+> > >> > formatting of foreign types (like `core::ffi::CStr`) that do not
+> > >> > implement `core::fmt::Display` due to concerns around lossy conver=
+sions which
+> > >> > do not apply in the kernel.
+> > >> >
+> > >> > Replace all direct calls to `format_args!` with `fmt!`.
+> > >> >
+> > >> > Replace all implementations of `core::fmt::Display` with implement=
+ations
+> > >> > of `kernel::fmt::Display`.
+> > >> >
+> > >> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> > >> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-=
+General/topic/Custom.20formatting/with/516476467
+> > >> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > >> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> > >> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > >> > ---
+> > >> >  drivers/block/rnull.rs       |  2 +-
+> > >> >  drivers/gpu/nova-core/gpu.rs |  4 +-
+> > >> >  rust/kernel/block/mq.rs      |  2 +-
+> > >> >  rust/kernel/device.rs        |  2 +-
+> > >> >  rust/kernel/fmt.rs           | 89 +++++++++++++++++++++++++++++++=
+++++++++
+> > >> >  rust/kernel/kunit.rs         |  6 +--
+> > >> >  rust/kernel/lib.rs           |  1 +
+> > >> >  rust/kernel/prelude.rs       |  3 +-
+> > >> >  rust/kernel/print.rs         |  4 +-
+> > >> >  rust/kernel/seq_file.rs      |  2 +-
+> > >> >  rust/kernel/str.rs           | 22 ++++------
+> > >> >  rust/macros/fmt.rs           | 99 +++++++++++++++++++++++++++++++=
++++++++++++++
+> > >> >  rust/macros/lib.rs           | 19 +++++++++
+> > >> >  rust/macros/quote.rs         |  7 ++++
+> > >> >  scripts/rustdoc_test_gen.rs  |  2 +-
+> > >> >  15 files changed, 236 insertions(+), 28 deletions(-)
+> > >>
+> > >> This would be a lot easier to review if he proc-macro and the call
+> > >> replacement were different patches.
+> > >>
+> > >> Also the `kernel/fmt.rs` file should be a different commit.
+> > >
+> > > Can you help me understand why? The changes you ask to be separated
+> > > would all be in different files, so why would separate commits make i=
+t
+> > > easier to review?
+> >
+> > It takes less time to go through the entire patch and give a RB. I can
+> > take smaller time chunks and don't have to get back into the entire
+> > context of the patch when I don't have 30-60min available.
+>
+> Ah, I see what you mean. Yeah, the requirement to RB the entire patch
+> does mean there's a benefit to smaller patches.
+>
+> > In this patch the biggest problem is the rename & addition of new
+> > things, maybe just adding 200 lines in those files could be okay to go
+> > together, see below for more.
+>
+> After implementing your suggestion of re-exporting things from
+> `kernel::fmt` the diffstat is
+>
+> 26 files changed, 253 insertions(+), 51 deletions(-)
+>
+> so I guess I could do all the additions in one patch, but then
+> *everything* else has to go in a single patch together because the
+> formatting macros either want core::fmt::Display or
+> kernel::fmt::Display; they can't work in a halfway state.
+>
+> >
+> > > I prefer to keep things in one commit because the changes are highly
+> > > interdependent. The proc macro doesn't make sense without
+> > > kernel/fmt.rs and kernel/fmt.rs is useless without the proc macro.
+> >
+> > I think that `Adapter`, the custom `Display` and their impl blocks
+> > don't need to be in the same commit as the proc-macro. They are related=
+,
+> > but maybe someone is not well-versed in proc-macros and thus doesn't
+> > want to review that part.
+>
+> Sure, I guess I will split them. But as noted above: changing the
+> formatting macros and all the types' trait implementations has to be a
+> "flag day" change.
+>
+> >
+> > >> > diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
+> > >> > new file mode 100644
+> > >> > index 000000000000..348d16987de6
+> > >> > --- /dev/null
+> > >> > +++ b/rust/kernel/fmt.rs
+> > >> > @@ -0,0 +1,89 @@
+> > >> > +// SPDX-License-Identifier: GPL-2.0
+> > >> > +
+> > >> > +//! Formatting utilities.
+> > >> > +
+> > >> > +use core::fmt;
+> > >>
+> > >> I think we should pub export all types that we are still using from
+> > >> `core::fmt`. For example `Result`, `Formatter`, `Debug` etc.
+> > >>
+> > >> That way I can still use the same pattern of importing `fmt` and the=
+n
+> > >> writing
+> > >>
+> > >>     impl fmt::Display for MyType {
+> > >>         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {}
+> > >>     }
+> > >
+> > > Great idea, done for the next spin. It would be nice to be able to
+> > > lint against references to `core::fmt` outside of kernel/fmt.rs.
+> >
+> > I think there was something in clippy that can do that globally and we
+> > could allow that in this file?
+>
+> I didn't find anything suitable. Do you have one in mind?
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- rust/kernel/platform.rs              |  6 +++---
- samples/rust/rust_driver_faux.rs     |  4 ++--
- samples/rust/rust_driver_platform.rs | 30 ++++++++++++++----------------
- 3 files changed, 19 insertions(+), 21 deletions(-)
-
-diff --git a/rust/kernel/platform.rs b/rust/kernel/platform.rs
-index 8f028c76f9fa..d1cc5cee1cf5 100644
---- a/rust/kernel/platform.rs
-+++ b/rust/kernel/platform.rs
-@@ -135,7 +135,7 @@ macro_rules! module_platform_driver {
- /// # Examples
- ///
- ///```
--/// # use kernel::{acpi, bindings, c_str, device::Core, of, platform};
-+/// # use kernel::{acpi, bindings, device::Core, of, platform};
- ///
- /// struct MyDriver;
- ///
-@@ -144,7 +144,7 @@ macro_rules! module_platform_driver {
- ///     MODULE_OF_TABLE,
- ///     <MyDriver as platform::Driver>::IdInfo,
- ///     [
--///         (of::DeviceId::new(c_str!("test,device")), ())
-+///         (of::DeviceId::new(c"test,device"), ())
- ///     ]
- /// );
- ///
-@@ -153,7 +153,7 @@ macro_rules! module_platform_driver {
- ///     MODULE_ACPI_TABLE,
- ///     <MyDriver as platform::Driver>::IdInfo,
- ///     [
--///         (acpi::DeviceId::new(c_str!("LNUXBEEF")), ())
-+///         (acpi::DeviceId::new(c"LNUXBEEF"), ())
- ///     ]
- /// );
- ///
-diff --git a/samples/rust/rust_driver_faux.rs b/samples/rust/rust_driver_faux.rs
-index ecc9fd378cbd..23add3160693 100644
---- a/samples/rust/rust_driver_faux.rs
-+++ b/samples/rust/rust_driver_faux.rs
-@@ -2,7 +2,7 @@
- 
- //! Rust faux device sample.
- 
--use kernel::{c_str, faux, prelude::*, Module};
-+use kernel::{faux, prelude::*, Module};
- 
- module! {
-     type: SampleModule,
-@@ -20,7 +20,7 @@ impl Module for SampleModule {
-     fn init(_module: &'static ThisModule) -> Result<Self> {
-         pr_info!("Initialising Rust Faux Device Sample\n");
- 
--        let reg = faux::Registration::new(c_str!("rust-faux-sample-device"), None)?;
-+        let reg = faux::Registration::new(c"rust-faux-sample-device", None)?;
- 
-         dev_info!(reg.as_ref(), "Hello from faux device!\n");
- 
-diff --git a/samples/rust/rust_driver_platform.rs b/samples/rust/rust_driver_platform.rs
-index ad08df0d73f0..b3fe45a43043 100644
---- a/samples/rust/rust_driver_platform.rs
-+++ b/samples/rust/rust_driver_platform.rs
-@@ -63,7 +63,7 @@
- //!
- 
- use kernel::{
--    acpi, c_str,
-+    acpi,
-     device::{
-         self,
-         property::{FwNodeReferenceArgs, NArgs},
-@@ -85,14 +85,14 @@ struct SampleDriver {
-     OF_TABLE,
-     MODULE_OF_TABLE,
-     <SampleDriver as platform::Driver>::IdInfo,
--    [(of::DeviceId::new(c_str!("test,rust-device")), Info(42))]
-+    [(of::DeviceId::new(c"test,rust-device"), Info(42))]
- );
- 
- kernel::acpi_device_table!(
-     ACPI_TABLE,
-     MODULE_ACPI_TABLE,
-     <SampleDriver as platform::Driver>::IdInfo,
--    [(acpi::DeviceId::new(c_str!("LNUXBEEF")), Info(0))]
-+    [(acpi::DeviceId::new(c"LNUXBEEF"), Info(0))]
- );
- 
- impl platform::Driver for SampleDriver {
-@@ -126,49 +126,47 @@ impl SampleDriver {
-     fn properties_parse(dev: &device::Device) -> Result {
-         let fwnode = dev.fwnode().ok_or(ENOENT)?;
- 
--        if let Ok(idx) =
--            fwnode.property_match_string(c_str!("compatible"), c_str!("test,rust-device"))
--        {
-+        if let Ok(idx) = fwnode.property_match_string(c"compatible", c"test,rust-device") {
-             dev_info!(dev, "matched compatible string idx = {}\n", idx);
-         }
- 
--        let name = c_str!("compatible");
-+        let name = c"compatible";
-         let prop = fwnode.property_read::<CString>(name).required_by(dev)?;
-         dev_info!(dev, "'{name}'='{prop:?}'\n");
- 
--        let name = c_str!("test,bool-prop");
--        let prop = fwnode.property_read_bool(c_str!("test,bool-prop"));
-+        let name = c"test,bool-prop";
-+        let prop = fwnode.property_read_bool(c"test,bool-prop");
-         dev_info!(dev, "'{name}'='{prop}'\n");
- 
--        if fwnode.property_present(c_str!("test,u32-prop")) {
-+        if fwnode.property_present(c"test,u32-prop") {
-             dev_info!(dev, "'test,u32-prop' is present\n");
-         }
- 
--        let name = c_str!("test,u32-optional-prop");
-+        let name = c"test,u32-optional-prop";
-         let prop = fwnode.property_read::<u32>(name).or(0x12);
-         dev_info!(dev, "'{name}'='{prop:#x}' (default = 0x12)\n");
- 
-         // A missing required property will print an error. Discard the error to
-         // prevent properties_parse from failing in that case.
--        let name = c_str!("test,u32-required-prop");
-+        let name = c"test,u32-required-prop";
-         let _ = fwnode.property_read::<u32>(name).required_by(dev);
- 
--        let name = c_str!("test,u32-prop");
-+        let name = c"test,u32-prop";
-         let prop: u32 = fwnode.property_read(name).required_by(dev)?;
-         dev_info!(dev, "'{name}'='{prop:#x}'\n");
- 
--        let name = c_str!("test,i16-array");
-+        let name = c"test,i16-array";
-         let prop: [i16; 4] = fwnode.property_read(name).required_by(dev)?;
-         dev_info!(dev, "'{name}'='{prop:?}'\n");
-         let len = fwnode.property_count_elem::<u16>(name)?;
-         dev_info!(dev, "'{name}' length is {len}\n");
- 
--        let name = c_str!("test,i16-array");
-+        let name = c"test,i16-array";
-         let prop: KVec<i16> = fwnode.property_read_array_vec(name, 4)?.required_by(dev)?;
-         dev_info!(dev, "'{name}'='{prop:?}' (KVec)\n");
- 
-         for child in fwnode.children() {
--            let name = c_str!("test,ref-arg");
-+            let name = c"test,ref-arg";
-             let nargs = NArgs::N(2);
-             let prop: FwNodeReferenceArgs = child.property_get_reference_args(name, nargs, 0)?;
-             dev_info!(dev, "'{name}'='{prop:?}'\n");
-
--- 
-2.50.1
-
+I think we want https://github.com/rust-lang/rust-clippy/issues/14807.
