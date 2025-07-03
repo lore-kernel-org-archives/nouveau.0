@@ -4,114 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D91CCD189
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C24FFCCD18A
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46F0710E62B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4563E10E621;
 	Mon,  6 Oct 2025 20:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGNHwc4q";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bb8zWtmi";
 	dkim-atps=neutral
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
- [209.85.222.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542D510E136;
- Sat, 24 May 2025 20:33:29 +0000 (UTC)
-Received: by mail-qk1-f176.google.com with SMTP id
- af79cd13be357-7c560c55bc1so110076485a.1; 
- Sat, 24 May 2025 13:33:29 -0700 (PDT)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+ [209.85.208.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D6710E84B;
+ Thu,  3 Jul 2025 13:56:30 +0000 (UTC)
+Received: by mail-lj1-f179.google.com with SMTP id
+ 38308e7fff4ca-32b43846e8cso68364471fa.0; 
+ Thu, 03 Jul 2025 06:56:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748118808; x=1748723608; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Mcw9qiZ7QEuufOafEbGfX9hczgDaUuvzSu49Nz+/dWs=;
- b=JGNHwc4qlyLfOhfRGAT+/jszGxSKq629MTnW0ZwHELyk7yK32FyBZKuSJnmuZlATk0
- iNcjNpQaGAv+e1DSOqMbyTAqO5aj6zk6BkMChIA43up19o9lkRXEvMjfbVOXzwBmwPC/
- pV8ZS9sWDrjpIt5eCfUgHlDx5PPz5QOAmeWk5tkNaITg/dG4xd0JrkTEfVNb2YgGwVFs
- xZo6nqcMHWeYrW9NK+V/PRX9uRTDLWm3oEE07IEL2CkmdJPSvnU9v43isSxh/XZY49ld
- oFbHIIqATHrFIk4jsPHSwZPFNp8XK18CovG1ds1Ish4lIEZ1D7jGC5y9Pa+2Cg0iwAXZ
- vwqA==
+ d=gmail.com; s=20230601; t=1751550989; x=1752155789; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=XroVTgiipbMk92z/0akuSiUYeZttfe/ce+IMaIERceI=;
+ b=bb8zWtmifPJxkoosl7JwOtUiQrv8tyYx0Gfqbxd9FFPxMdWXk6p3L9fS1ozlNtgzLd
+ wklSDOQ11N2RuDWbNMsHpkbySuTSuHwoL5EYffe1xSGpWF0dvAmumJNAOR6gBbImmL4m
+ n8+sR3OgQPjS6RzaZJE8j2acK6zejgTqW2Oq21oBJsyIh7E21vns+CmS3ZxL9ZhbeV+C
+ UGRgyZpXBeeAgInxKwUrhZ12aWG9hLxHVDfWbvC8X0ivKw6acPFrTi2l5eIY8ihuYyuU
+ UhRN8D1Cgm4o6iONMeSirSH4zrWa5c1ZHTmx7y6t669wYwAp9MlsRfab2aS14UVuLuoT
+ PThw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748118808; x=1748723608;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1751550989; x=1752155789;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Mcw9qiZ7QEuufOafEbGfX9hczgDaUuvzSu49Nz+/dWs=;
- b=MP8NI1cQCZ3t2Ws5CCaQRtYTIHIpiovtqxUqk7WSCJIfiqwJ4Ccf/yUMAFswOZfx7J
- /P8zJU7QPUg+p0d6cXM88J+mG7ZCJJdcGbU3cGB60n6vpyKfqeGk5p5t4+4Hlrr6l79V
- AbUB98C1u2J4uFKBu5ir+pKt68StYSsnDOSJlJYwQXms8t+2+/xm4pSAFZjWlC9evIaH
- yML8BFnjfylQ/gVUg//J6gOOBPIn8yMMNI2C08H/+jAcG7J/6CarFBJjzW8Dn3kloSfg
- 8Z14mHo4CHRPzEl4A4oZy3HWZWEQhnIPtoyEvEf05BMuXTvC3Xp9yRFwuvNtbEdjqcwF
- Vy0A==
+ bh=XroVTgiipbMk92z/0akuSiUYeZttfe/ce+IMaIERceI=;
+ b=AmcF00AUaD7EQtd30PUioD6qOhFsmbodbIXxSq5fr47GNx10NSMij1DkWOCxBtnMBf
+ VKAZ2EVvNJ5gp4mtP1R3VHWwQyQbdqj/ZhAN9rS8fObmHSnJnHQS+p1m+vPVLOhy82PB
+ GNA4RnGD3JB2JwbEBe+0TtrnaeiV629ytEhwalJMrf0hwq72QAxyoiUlGQFGRYsI4WRO
+ PwFH7zJouyf1fyKCseJgoVl/nBlWw7gEfkX5ZIGIY8pUnB4rT6UPaye69BE7+8CNjk7h
+ JSqFETi41uP877ZzW6kUoOQRDi2bpKgizNeLEcyli79WC5tL/XUsaUWSeWx50fEfCHMZ
+ 8QBw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUNl5Tfp3moEbcVVTdPwSaNByY7M/qBHIozSfAtT8cNd0fGmHwvhfeyM52cVusph8BBoBdyLqFPJgU=@lists.freedesktop.org,
- AJvYcCV6EoLEhZ48OTK48pzxLeYLO8cSj+PxrJnJ/LOlaGAMFL7Km3VpSS67m5bIwXvBbfBup21VAKoaCA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzNw7Xylk9uqt+fTSu4WIx0w3dPKMAkvmcGUBQfMD9eSQEWiCIG
- 6Pol6KbEbZiepK489BSpFA1OqrIvvdeUx8jHtRae8O2dib2bWdrhh8sm
-X-Gm-Gg: ASbGncsrq3iii0er+46bJHzpeDEU43IIdtOZ+CxbdDMfceRj3FfNPQp8svuYzomsRfl
- AcUjCKJQswFm+a+xbI42Ns6s4bZcOH4Z93ph4Y3Do1/okyYFK8ieyVvx9zCtH7u5EiCIFy7OXiD
- XS/9Xf/RbKL0ohMBwYaxRY8xiJ5o/yL9Cqm/Yqie0x1QKYOPFMHT6RK/2/dY3OnWeXKZNrwBFDH
- 1TRuZNgtO8cZgmlJPdn+CKs4DULC1mRXC1nkiLCAO9fd1NwSMy/ZZs3AX65oajoUASk9HMtF8sI
- hPlmw1Xl/02N52+GTup+Zwddafl6vUPBxYE0V7Nko+8hTw8wi9uxLF+TNdaKkYT722DOmD3y2b2
- utuCMf6wdMICthsjJBjW15GeYD6J580DBrzf3Z4rOfVtzueofQX0PWbRmFWrpWrWEPt8vh2uEZ4
- RcN9A=
-X-Google-Smtp-Source: AGHT+IHk25PY1k2ZgXNEvWmxFrXKhKqSy6zzVr7t0ph2b59szGzbLRgZX6AHE+1Vyv3WlYPfZ4UJ3Q==
-X-Received: by 2002:a05:620a:3184:b0:7cc:7704:bf87 with SMTP id
- af79cd13be357-7ceecc0b810mr479743785a.42.1748118807900; 
- Sat, 24 May 2025 13:33:27 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4041:5be7:7c00:8563:e370:791f:7436])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7cd467d7fd1sm1379590085a.29.2025.05.24.13.33.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 24 May 2025 13:33:27 -0700 (PDT)
-From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 24 May 2025 16:33:03 -0400
-Subject: [PATCH v10 3/5] rust: replace `CStr` with `core::ffi::CStr`
+ AJvYcCU1TC1WqxzEyWjGgpI77tGG+oOgVlowog8nW9bO7nlZS/+3R39XAdwNncRjaVfM6oQIERyMYwTMPrs=@lists.freedesktop.org,
+ AJvYcCXRNLpxUUZSoPiOOwCE4F8uUhAmoiJW+q83y3dXT/zJ1ELJhMF37HO/hhrNjNsv7kIC9bKIjal+NA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwKsO/P3xGfiGECIMBkbQpNsO8qWCduDwz1rJ9STLKZA18SRnSi
+ 8z4Z3rMCuGbNuRWyFJRMMm4//bxOUQEJ++vE6ow1+0WSNlb//q+pwdMOiGn5NxLRT4j14q0zR94
+ iiou1FUZwx/0r442CEV2CLxb9G1Hb20g=
+X-Gm-Gg: ASbGncu1uXeHigRbAKLq5OMjBexpnwFRE7ZUa00e4VaJN7nIU59EtozNs40P4gkuSDw
+ PJiWHp+GGp4EvL9uSXAvZ2co2MUVXTDKc75VlB3HE35wKVfh18mifPutzX0NG3FnarMZNj5w31E
+ LiDWppn2Lqjw6ueSLCy2rmMRDcGn7kyaFjW2vS4MO6a9lK
+X-Google-Smtp-Source: AGHT+IHecHJqinQ0GtjAARewm2enIQAyyQD5rKLXQHe+ItluA3s82XioLx3xqz+ougAgIvj7CA1kgvJIs3FoZ5ExGxI=
+X-Received: by 2002:a2e:a369:0:b0:32c:bc69:e921 with SMTP id
+ 38308e7fff4ca-32e0cfaac22mr12120091fa.9.1751550988404; Thu, 03 Jul 2025
+ 06:56:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250524-cstr-core-v10-3-6412a94d9d75@gmail.com>
-References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
-In-Reply-To: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
-To: Michal Rostecki <vadorovsky@protonmail.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+In-Reply-To: <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+From: Tamir Duberstein <tamird@gmail.com>
+Date: Thu, 3 Jul 2025 09:55:52 -0400
+X-Gm-Features: Ac12FXwkwRINIecE-FwYN90tPuGpGFKpT2Ln86Mwgefjv5UkGbvTZ6CcK0fiY_k
+Message-ID: <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Benno Lossin <lossin@kernel.org>
+Cc: Michal Rostecki <vadorovsky@protonmail.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
+ Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>, 
+ Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  "Rafael J. Wysocki" <rafael@kernel.org>, 
  Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
  FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
- Nathan Chancellor <nathan@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
  Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
- Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Benno Lossin <lossin@kernel.org>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
-X-Mailer: b4 0.15-dev
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,773 +123,357 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-`std::ffi::CStr` was moved to `core::ffi::CStr` in Rust 1.64. Replace
-`kernel::str::CStr` with `core::ffi::CStr` now that we can.
+On Thu, Jul 3, 2025 at 5:32=E2=80=AFAM Benno Lossin <lossin@kernel.org> wro=
+te:
+>
+> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+> > Introduce a `fmt!` macro which wraps all arguments in
+> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This enables
+> > formatting of foreign types (like `core::ffi::CStr`) that do not
+> > implement `core::fmt::Display` due to concerns around lossy conversions=
+ which
+> > do not apply in the kernel.
+> >
+> > Replace all direct calls to `format_args!` with `fmt!`.
+> >
+> > Replace all implementations of `core::fmt::Display` with implementation=
+s
+> > of `kernel::fmt::Display`.
+> >
+> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-Gener=
+al/topic/Custom.20formatting/with/516476467
+> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > ---
+> >  drivers/block/rnull.rs       |  2 +-
+> >  drivers/gpu/nova-core/gpu.rs |  4 +-
+> >  rust/kernel/block/mq.rs      |  2 +-
+> >  rust/kernel/device.rs        |  2 +-
+> >  rust/kernel/fmt.rs           | 89 ++++++++++++++++++++++++++++++++++++=
++++
+> >  rust/kernel/kunit.rs         |  6 +--
+> >  rust/kernel/lib.rs           |  1 +
+> >  rust/kernel/prelude.rs       |  3 +-
+> >  rust/kernel/print.rs         |  4 +-
+> >  rust/kernel/seq_file.rs      |  2 +-
+> >  rust/kernel/str.rs           | 22 ++++------
+> >  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  rust/macros/lib.rs           | 19 +++++++++
+> >  rust/macros/quote.rs         |  7 ++++
+> >  scripts/rustdoc_test_gen.rs  |  2 +-
+> >  15 files changed, 236 insertions(+), 28 deletions(-)
+>
+> This would be a lot easier to review if he proc-macro and the call
+> replacement were different patches.
+>
+> Also the `kernel/fmt.rs` file should be a different commit.
 
-C-String literals were added in Rust 1.77. Opportunistically replace
-instances of `kernel::c_str!` with C-String literals where other code
-changes were already necessary; the rest will be done in a later commit.
+Can you help me understand why? The changes you ask to be separated
+would all be in different files, so why would separate commits make it
+easier to review?
 
-Signed-off-by: Tamir Duberstein <tamird@gmail.com>
----
- drivers/gpu/drm/drm_panic_qr.rs |   2 +-
- rust/kernel/device.rs           |   4 +-
- rust/kernel/error.rs            |   4 +-
- rust/kernel/firmware.rs         |  11 +-
- rust/kernel/kunit.rs            |   6 +-
- rust/kernel/miscdevice.rs       |   2 +-
- rust/kernel/net/phy.rs          |   2 +-
- rust/kernel/of.rs               |   2 +-
- rust/kernel/prelude.rs          |   5 +-
- rust/kernel/seq_file.rs         |   4 +-
- rust/kernel/str.rs              | 358 +++++++++-------------------------------
- rust/kernel/sync/condvar.rs     |   2 +-
- rust/kernel/sync/lock.rs        |   2 +-
- rust/kernel/sync/lock/global.rs |   2 +-
- 14 files changed, 112 insertions(+), 294 deletions(-)
+I prefer to keep things in one commit because the changes are highly
+interdependent. The proc macro doesn't make sense without
+kernel/fmt.rs and kernel/fmt.rs is useless without the proc macro.
 
-diff --git a/drivers/gpu/drm/drm_panic_qr.rs b/drivers/gpu/drm/drm_panic_qr.rs
-index f2a99681b998..d8192a9bef63 100644
---- a/drivers/gpu/drm/drm_panic_qr.rs
-+++ b/drivers/gpu/drm/drm_panic_qr.rs
-@@ -922,7 +922,7 @@ fn draw_all(&mut self, data: impl Iterator<Item = u8>) {
-         // nul-terminated string.
-         let url_cstr: &CStr = unsafe { CStr::from_char_ptr(url) };
-         let segments = &[
--            &Segment::Binary(url_cstr.as_bytes()),
-+            &Segment::Binary(url_cstr.to_bytes()),
-             &Segment::Numeric(&data_slice[0..data_len]),
-         ];
-         match EncodedMsg::new(segments, tmp_slice) {
-diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-index 99d99a76934c..9074322c79e8 100644
---- a/rust/kernel/device.rs
-+++ b/rust/kernel/device.rs
-@@ -12,7 +12,7 @@
- use core::{fmt, ptr};
- 
- #[cfg(CONFIG_PRINTK)]
--use crate::c_str;
-+use crate::str::CStrExt as _;
- 
- /// A reference-counted device.
- ///
-@@ -176,7 +176,7 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::Arguments<'_>) {
-             bindings::_dev_printk(
-                 klevel as *const _ as *const crate::ffi::c_char,
-                 self.as_raw(),
--                c_str!("%pA").as_char_ptr(),
-+                c"%pA".as_char_ptr(),
-                 &msg as *const _ as *const crate::ffi::c_void,
-             )
-         };
-diff --git a/rust/kernel/error.rs b/rust/kernel/error.rs
-index 3dee3139fcd4..933c048c04f1 100644
---- a/rust/kernel/error.rs
-+++ b/rust/kernel/error.rs
-@@ -164,6 +164,8 @@ pub fn name(&self) -> Option<&'static CStr> {
-         if ptr.is_null() {
-             None
-         } else {
-+            use crate::str::CStrExt as _;
-+
-             // SAFETY: The string returned by `errname` is static and `NUL`-terminated.
-             Some(unsafe { CStr::from_char_ptr(ptr) })
-         }
-@@ -188,7 +190,7 @@ fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-             Some(name) => f
-                 .debug_tuple(
-                     // SAFETY: These strings are ASCII-only.
--                    unsafe { core::str::from_utf8_unchecked(name) },
-+                    unsafe { core::str::from_utf8_unchecked(name.to_bytes()) },
-                 )
-                 .finish(),
-         }
-diff --git a/rust/kernel/firmware.rs b/rust/kernel/firmware.rs
-index 2494c96e105f..582ab648b14c 100644
---- a/rust/kernel/firmware.rs
-+++ b/rust/kernel/firmware.rs
-@@ -4,7 +4,14 @@
- //!
- //! C header: [`include/linux/firmware.h`](srctree/include/linux/firmware.h)
- 
--use crate::{bindings, device::Device, error::Error, error::Result, ffi, str::CStr};
-+use crate::{
-+    bindings,
-+    device::Device,
-+    error::Error,
-+    error::Result,
-+    ffi,
-+    str::{CStr, CStrExt as _},
-+};
- use core::ptr::NonNull;
- 
- /// # Invariants
-@@ -290,7 +297,7 @@ const fn push_module_name(self) -> Self {
-         let module_name = this.module_name;
- 
-         if !this.module_name.is_empty() {
--            this = this.push_internal(module_name.as_bytes_with_nul());
-+            this = this.push_internal(module_name.to_bytes_with_nul());
- 
-             if N != 0 {
-                 // Re-use the space taken by the NULL terminator and swap it with the '.' separator.
-diff --git a/rust/kernel/kunit.rs b/rust/kernel/kunit.rs
-index c29e34192553..e5621d596ed3 100644
---- a/rust/kernel/kunit.rs
-+++ b/rust/kernel/kunit.rs
-@@ -100,12 +100,12 @@ unsafe impl Sync for Location {}
-             unsafe impl Sync for UnaryAssert {}
- 
-             static LOCATION: Location = Location($crate::bindings::kunit_loc {
--                file: FILE.as_char_ptr(),
-+                file: $crate::str::as_char_ptr_in_const_context(FILE),
-                 line: LINE,
-             });
-             static ASSERTION: UnaryAssert = UnaryAssert($crate::bindings::kunit_unary_assert {
-                 assert: $crate::bindings::kunit_assert {},
--                condition: CONDITION.as_char_ptr(),
-+                condition: $crate::str::as_char_ptr_in_const_context(CONDITION),
-                 expected_true: true,
-             });
- 
-@@ -175,7 +175,7 @@ pub const fn kunit_case(
- ) -> kernel::bindings::kunit_case {
-     kernel::bindings::kunit_case {
-         run_case: Some(run_case),
--        name: name.as_char_ptr(),
-+        name: kernel::str::as_char_ptr_in_const_context(name),
-         attr: kernel::bindings::kunit_attributes {
-             speed: kernel::bindings::kunit_speed_KUNIT_SPEED_NORMAL,
-         },
-diff --git a/rust/kernel/miscdevice.rs b/rust/kernel/miscdevice.rs
-index b4c5f74de23d..d684ec4ef4d0 100644
---- a/rust/kernel/miscdevice.rs
-+++ b/rust/kernel/miscdevice.rs
-@@ -34,7 +34,7 @@ pub const fn into_raw<T: MiscDevice>(self) -> bindings::miscdevice {
-         // SAFETY: All zeros is valid for this C type.
-         let mut result: bindings::miscdevice = unsafe { MaybeUninit::zeroed().assume_init() };
-         result.minor = bindings::MISC_DYNAMIC_MINOR as _;
--        result.name = self.name.as_char_ptr();
-+        result.name = crate::str::as_char_ptr_in_const_context(self.name);
-         result.fops = MiscdeviceVTable::<T>::build();
-         result
-     }
-diff --git a/rust/kernel/net/phy.rs b/rust/kernel/net/phy.rs
-index a59469c785e3..652e060e47bd 100644
---- a/rust/kernel/net/phy.rs
-+++ b/rust/kernel/net/phy.rs
-@@ -504,7 +504,7 @@ unsafe impl Sync for DriverVTable {}
- pub const fn create_phy_driver<T: Driver>() -> DriverVTable {
-     // INVARIANT: All the fields of `struct phy_driver` are initialized properly.
-     DriverVTable(Opaque::new(bindings::phy_driver {
--        name: T::NAME.as_char_ptr().cast_mut(),
-+        name: crate::str::as_char_ptr_in_const_context(T::NAME).cast_mut(),
-         flags: T::FLAGS,
-         phy_id: T::PHY_DEVICE_ID.id,
-         phy_id_mask: T::PHY_DEVICE_ID.mask_as_int(),
-diff --git a/rust/kernel/of.rs b/rust/kernel/of.rs
-index 04f2d8ef29cb..12ea65df46de 100644
---- a/rust/kernel/of.rs
-+++ b/rust/kernel/of.rs
-@@ -29,7 +29,7 @@ fn index(&self) -> usize {
- impl DeviceId {
-     /// Create a new device id from an OF 'compatible' string.
-     pub const fn new(compatible: &'static CStr) -> Self {
--        let src = compatible.as_bytes_with_nul();
-+        let src = compatible.to_bytes_with_nul();
-         // Replace with `bindings::of_device_id::default()` once stabilized for `const`.
-         // SAFETY: FFI type is valid to be zero-initialized.
-         let mut of: bindings::of_device_id = unsafe { core::mem::zeroed() };
-diff --git a/rust/kernel/prelude.rs b/rust/kernel/prelude.rs
-index ef1efcb9d945..97e8bcf73669 100644
---- a/rust/kernel/prelude.rs
-+++ b/rust/kernel/prelude.rs
-@@ -35,7 +35,10 @@
- 
- pub use super::error::{code::*, Error, Result};
- 
--pub use super::{str::CStr, ThisModule};
-+pub use super::{
-+    str::{CStr, CStrExt as _},
-+    ThisModule,
-+};
- 
- pub use super::init::InPlaceInit;
- 
-diff --git a/rust/kernel/seq_file.rs b/rust/kernel/seq_file.rs
-index 627bc2f7b3d2..1011743dd0ce 100644
---- a/rust/kernel/seq_file.rs
-+++ b/rust/kernel/seq_file.rs
-@@ -4,7 +4,7 @@
- //!
- //! C header: [`include/linux/seq_file.h`](srctree/include/linux/seq_file.h)
- 
--use crate::{bindings, c_str, types::NotThreadSafe, types::Opaque};
-+use crate::{bindings, str::CStrExt as _, types::NotThreadSafe, types::Opaque};
- 
- /// A utility for generating the contents of a seq file.
- #[repr(transparent)]
-@@ -36,7 +36,7 @@ pub fn call_printf(&self, args: core::fmt::Arguments<'_>) {
-         unsafe {
-             bindings::seq_printf(
-                 self.inner.get(),
--                c_str!("%pA").as_char_ptr(),
-+                c"%pA".as_char_ptr(),
-                 &args as *const _ as *const crate::ffi::c_void,
-             );
-         }
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index 302423ca5eb0..586644912414 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -4,7 +4,7 @@
- 
- use crate::alloc::{flags::*, AllocError, KVec};
- use core::fmt::{self, Write};
--use core::ops::{self, Deref, DerefMut, Index};
-+use core::ops::{Deref, DerefMut, Index};
- 
- use crate::error::{code::*, Error};
- 
-@@ -57,11 +57,11 @@ impl fmt::Display for BStr {
-     /// # use kernel::{prelude::fmt, b_str, str::{BStr, CString}};
-     /// let ascii = b_str!("Hello, BStr!");
-     /// let s = CString::try_from_fmt(fmt!("{}", ascii))?;
--    /// assert_eq!(s.as_bytes(), "Hello, BStr!".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "Hello, BStr!".as_bytes());
-     ///
-     /// let non_ascii = b_str!("🦀");
-     /// let s = CString::try_from_fmt(fmt!("{}", non_ascii))?;
--    /// assert_eq!(s.as_bytes(), "\\xf0\\x9f\\xa6\\x80".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\\xf0\\x9f\\xa6\\x80".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-@@ -89,11 +89,11 @@ impl fmt::Debug for BStr {
-     /// // Embedded double quotes are escaped.
-     /// let ascii = b_str!("Hello, \"BStr\"!");
-     /// let s = CString::try_from_fmt(fmt!("{:?}", ascii))?;
--    /// assert_eq!(s.as_bytes(), "\"Hello, \\\"BStr\\\"!\"".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\"Hello, \\\"BStr\\\"!\"".as_bytes());
-     ///
-     /// let non_ascii = b_str!("😺");
-     /// let s = CString::try_from_fmt(fmt!("{:?}", non_ascii))?;
--    /// assert_eq!(s.as_bytes(), "\"\\xf0\\x9f\\x98\\xba\"".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\"\\xf0\\x9f\\x98\\xba\"".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-@@ -175,55 +175,19 @@ macro_rules! b_str {
-     }};
- }
- 
--/// Possible errors when using conversion functions in [`CStr`].
--#[derive(Debug, Clone, Copy)]
--pub enum CStrConvertError {
--    /// Supplied bytes contain an interior `NUL`.
--    InteriorNul,
-+pub use core::ffi::CStr;
- 
--    /// Supplied bytes are not terminated by `NUL`.
--    NotNulTerminated,
-+/// Returns a C pointer to the string.
-+// It is a free function rather than a method on an extension trait because:
-+//
-+// - error[E0379]: functions in trait impls cannot be declared const
-+#[inline]
-+pub const fn as_char_ptr_in_const_context(c_str: &CStr) -> *const crate::ffi::c_char {
-+    c_str.as_ptr().cast()
- }
- 
--impl From<CStrConvertError> for Error {
--    #[inline]
--    fn from(_: CStrConvertError) -> Error {
--        EINVAL
--    }
--}
--
--/// A string that is guaranteed to have exactly one `NUL` byte, which is at the
--/// end.
--///
--/// Used for interoperability with kernel APIs that take C strings.
--#[repr(transparent)]
--pub struct CStr([u8]);
--
--impl CStr {
--    /// Returns the length of this string excluding `NUL`.
--    #[inline]
--    pub const fn len(&self) -> usize {
--        self.len_with_nul() - 1
--    }
--
--    /// Returns the length of this string with `NUL`.
--    #[inline]
--    pub const fn len_with_nul(&self) -> usize {
--        if self.0.is_empty() {
--            // SAFETY: This is one of the invariant of `CStr`.
--            // We add a `unreachable_unchecked` here to hint the optimizer that
--            // the value returned from this function is non-zero.
--            unsafe { core::hint::unreachable_unchecked() };
--        }
--        self.0.len()
--    }
--
--    /// Returns `true` if the string only includes `NUL`.
--    #[inline]
--    pub const fn is_empty(&self) -> bool {
--        self.len() == 0
--    }
--
-+/// Extensions to [`CStr`].
-+pub trait CStrExt {
-     /// Wraps a raw C string pointer.
-     ///
-     /// # Safety
-@@ -231,54 +195,9 @@ pub const fn is_empty(&self) -> bool {
-     /// `ptr` must be a valid pointer to a `NUL`-terminated C string, and it must
-     /// last at least `'a`. When `CStr` is alive, the memory pointed by `ptr`
-     /// must not be mutated.
--    #[inline]
--    pub unsafe fn from_char_ptr<'a>(ptr: *const crate::ffi::c_char) -> &'a Self {
--        // SAFETY: The safety precondition guarantees `ptr` is a valid pointer
--        // to a `NUL`-terminated C string.
--        let len = unsafe { bindings::strlen(ptr) } + 1;
--        // SAFETY: Lifetime guaranteed by the safety precondition.
--        let bytes = unsafe { core::slice::from_raw_parts(ptr as _, len) };
--        // SAFETY: As `len` is returned by `strlen`, `bytes` does not contain interior `NUL`.
--        // As we have added 1 to `len`, the last byte is known to be `NUL`.
--        unsafe { Self::from_bytes_with_nul_unchecked(bytes) }
--    }
--
--    /// Creates a [`CStr`] from a `[u8]`.
--    ///
--    /// The provided slice must be `NUL`-terminated, does not contain any
--    /// interior `NUL` bytes.
--    pub const fn from_bytes_with_nul(bytes: &[u8]) -> Result<&Self, CStrConvertError> {
--        if bytes.is_empty() {
--            return Err(CStrConvertError::NotNulTerminated);
--        }
--        if bytes[bytes.len() - 1] != 0 {
--            return Err(CStrConvertError::NotNulTerminated);
--        }
--        let mut i = 0;
--        // `i + 1 < bytes.len()` allows LLVM to optimize away bounds checking,
--        // while it couldn't optimize away bounds checks for `i < bytes.len() - 1`.
--        while i + 1 < bytes.len() {
--            if bytes[i] == 0 {
--                return Err(CStrConvertError::InteriorNul);
--            }
--            i += 1;
--        }
--        // SAFETY: We just checked that all properties hold.
--        Ok(unsafe { Self::from_bytes_with_nul_unchecked(bytes) })
--    }
--
--    /// Creates a [`CStr`] from a `[u8]` without performing any additional
--    /// checks.
--    ///
--    /// # Safety
--    ///
--    /// `bytes` *must* end with a `NUL` byte, and should only have a single
--    /// `NUL` byte (or the string will be truncated).
--    #[inline]
--    pub const unsafe fn from_bytes_with_nul_unchecked(bytes: &[u8]) -> &CStr {
--        // SAFETY: Properties of `bytes` guaranteed by the safety precondition.
--        unsafe { core::mem::transmute(bytes) }
--    }
-+    // This function exists to paper over the fact that `CStr::from_ptr` takes a `*const
-+    // core::ffi::c_char` rather than a `*const crate::ffi::c_char`.
-+    unsafe fn from_char_ptr<'a>(ptr: *const crate::ffi::c_char) -> &'a Self;
- 
-     /// Creates a mutable [`CStr`] from a `[u8]` without performing any
-     /// additional checks.
-@@ -287,77 +206,16 @@ pub const fn from_bytes_with_nul(bytes: &[u8]) -> Result<&Self, CStrConvertError
-     ///
-     /// `bytes` *must* end with a `NUL` byte, and should only have a single
-     /// `NUL` byte (or the string will be truncated).
--    #[inline]
--    pub unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut CStr {
--        // SAFETY: Properties of `bytes` guaranteed by the safety precondition.
--        unsafe { &mut *(bytes as *mut [u8] as *mut CStr) }
--    }
-+    unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut Self;
- 
-     /// Returns a C pointer to the string.
--    #[inline]
--    pub const fn as_char_ptr(&self) -> *const crate::ffi::c_char {
--        self.0.as_ptr()
--    }
--
--    /// Convert the string to a byte slice without the trailing `NUL` byte.
--    #[inline]
--    pub fn as_bytes(&self) -> &[u8] {
--        &self.0[..self.len()]
--    }
--
--    /// Convert the string to a byte slice containing the trailing `NUL` byte.
--    #[inline]
--    pub const fn as_bytes_with_nul(&self) -> &[u8] {
--        &self.0
--    }
--
--    /// Yields a [`&str`] slice if the [`CStr`] contains valid UTF-8.
--    ///
--    /// If the contents of the [`CStr`] are valid UTF-8 data, this
--    /// function will return the corresponding [`&str`] slice. Otherwise,
--    /// it will return an error with details of where UTF-8 validation failed.
--    ///
--    /// # Examples
--    ///
--    /// ```
--    /// # use kernel::str::CStr;
--    /// let cstr = CStr::from_bytes_with_nul(b"foo\0")?;
--    /// assert_eq!(cstr.to_str(), Ok("foo"));
--    /// # Ok::<(), kernel::error::Error>(())
--    /// ```
--    #[inline]
--    pub fn to_str(&self) -> Result<&str, core::str::Utf8Error> {
--        core::str::from_utf8(self.as_bytes())
--    }
--
--    /// Unsafely convert this [`CStr`] into a [`&str`], without checking for
--    /// valid UTF-8.
--    ///
--    /// # Safety
--    ///
--    /// The contents must be valid UTF-8.
--    ///
--    /// # Examples
--    ///
--    /// ```
--    /// # use kernel::c_str;
--    /// # use kernel::str::CStr;
--    /// let bar = c_str!("ツ");
--    /// // SAFETY: String literals are guaranteed to be valid UTF-8
--    /// // by the Rust compiler.
--    /// assert_eq!(unsafe { bar.as_str_unchecked() }, "ツ");
--    /// ```
--    #[inline]
--    pub unsafe fn as_str_unchecked(&self) -> &str {
--        // SAFETY: TODO.
--        unsafe { core::str::from_utf8_unchecked(self.as_bytes()) }
--    }
-+    // This function exists to paper over the fact that `CStr::as_ptr` returns a `*const
-+    // core::ffi::c_char` rather than a `*const crate::ffi::c_char`.
-+    fn as_char_ptr(&self) -> *const crate::ffi::c_char;
- 
-     /// Convert this [`CStr`] into a [`CString`] by allocating memory and
-     /// copying over the string data.
--    pub fn to_cstring(&self) -> Result<CString, AllocError> {
--        CString::try_from(self)
--    }
-+    fn to_cstring(&self) -> Result<CString, AllocError>;
- 
-     /// Converts this [`CStr`] to its ASCII lower case equivalent in-place.
-     ///
-@@ -368,11 +226,7 @@ pub fn to_cstring(&self) -> Result<CString, AllocError> {
-     /// [`to_ascii_lowercase()`].
-     ///
-     /// [`to_ascii_lowercase()`]: #method.to_ascii_lowercase
--    pub fn make_ascii_lowercase(&mut self) {
--        // INVARIANT: This doesn't introduce or remove NUL bytes in the C
--        // string.
--        self.0.make_ascii_lowercase();
--    }
-+    fn make_ascii_lowercase(&mut self);
- 
-     /// Converts this [`CStr`] to its ASCII upper case equivalent in-place.
-     ///
-@@ -383,11 +237,7 @@ pub fn make_ascii_lowercase(&mut self) {
-     /// [`to_ascii_uppercase()`].
-     ///
-     /// [`to_ascii_uppercase()`]: #method.to_ascii_uppercase
--    pub fn make_ascii_uppercase(&mut self) {
--        // INVARIANT: This doesn't introduce or remove NUL bytes in the C
--        // string.
--        self.0.make_ascii_uppercase();
--    }
-+    fn make_ascii_uppercase(&mut self);
- 
-     /// Returns a copy of this [`CString`] where each character is mapped to its
-     /// ASCII lower case equivalent.
-@@ -398,13 +248,7 @@ pub fn make_ascii_uppercase(&mut self) {
-     /// To lowercase the value in-place, use [`make_ascii_lowercase`].
-     ///
-     /// [`make_ascii_lowercase`]: str::make_ascii_lowercase
--    pub fn to_ascii_lowercase(&self) -> Result<CString, AllocError> {
--        let mut s = self.to_cstring()?;
--
--        s.make_ascii_lowercase();
--
--        Ok(s)
--    }
-+    fn to_ascii_lowercase(&self) -> Result<CString, AllocError>;
- 
-     /// Returns a copy of this [`CString`] where each character is mapped to its
-     /// ASCII upper case equivalent.
-@@ -415,13 +259,7 @@ pub fn to_ascii_lowercase(&self) -> Result<CString, AllocError> {
-     /// To uppercase the value in-place, use [`make_ascii_uppercase`].
-     ///
-     /// [`make_ascii_uppercase`]: str::make_ascii_uppercase
--    pub fn to_ascii_uppercase(&self) -> Result<CString, AllocError> {
--        let mut s = self.to_cstring()?;
--
--        s.make_ascii_uppercase();
--
--        Ok(s)
--    }
-+    fn to_ascii_uppercase(&self) -> Result<CString, AllocError>;
- }
- 
- impl fmt::Display for crate::fmt::Adapter<&CStr> {
-@@ -434,16 +272,16 @@ impl fmt::Display for crate::fmt::Adapter<&CStr> {
-     /// # use kernel::str::CString;
-     /// let penguin = c_str!("🐧");
-     /// let s = CString::try_from_fmt(fmt!("{}", penguin))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
-+    /// assert_eq!(s.to_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
-     ///
-     /// let ascii = c_str!("so \"cool\"");
-     /// let s = CString::try_from_fmt(fmt!("{}", ascii))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "so \"cool\"\0".as_bytes());
-+    /// assert_eq!(s.to_bytes_with_nul(), "so \"cool\"\0".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-         let Self(cstr) = self;
--        for &c in cstr.as_bytes() {
-+        for &c in cstr.to_bytes() {
-             if (0x20..0x7f).contains(&c) {
-                 // Printable character.
-                 f.write_char(c as char)?;
-@@ -455,98 +293,75 @@ fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-     }
- }
- 
--impl fmt::Debug for CStr {
--    /// Formats printable ASCII characters with a double quote on either end, escaping the rest.
--    ///
--    /// ```
--    /// # use kernel::c_str;
--    /// # use kernel::prelude::fmt;
--    /// # use kernel::str::CStr;
--    /// # use kernel::str::CString;
--    /// let penguin = c_str!("🐧");
--    /// let s = CString::try_from_fmt(fmt!("{:?}", penguin))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "\"\\xf0\\x9f\\x90\\xa7\"\0".as_bytes());
--    ///
--    /// // Embedded double quotes are escaped.
--    /// let ascii = c_str!("so \"cool\"");
--    /// let s = CString::try_from_fmt(fmt!("{:?}", ascii))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "\"so \\\"cool\\\"\"\0".as_bytes());
--    /// # Ok::<(), kernel::error::Error>(())
--    /// ```
--    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
--        f.write_str("\"")?;
--        for &c in self.as_bytes() {
--            match c {
--                // Printable characters.
--                b'\"' => f.write_str("\\\"")?,
--                0x20..=0x7e => f.write_char(c as char)?,
--                _ => write!(f, "\\x{c:02x}")?,
--            }
--        }
--        f.write_str("\"")
--    }
-+/// Converts a mutable C string to a mutable byte slice.
-+///
-+/// # Safety
-+///
-+/// The caller must ensure that the slice ends in a NUL byte and contains no other NUL bytes before
-+/// the borrow ends and the underlying [`CStr`] is used.
-+unsafe fn to_bytes_mut(s: &mut CStr) -> &mut [u8] {
-+    // SAFETY: the cast from `&CStr` to `&[u8]` is safe since `CStr` has the same layout as `&[u8]`
-+    // (this is technically not guaranteed, but we rely on it here). The pointer dereference is
-+    // safe since it comes from a mutable reference which is guaranteed to be valid for writes.
-+    unsafe { &mut *(s as *mut CStr as *mut [u8]) }
- }
- 
--impl AsRef<BStr> for CStr {
-+impl CStrExt for CStr {
-     #[inline]
--    fn as_ref(&self) -> &BStr {
--        BStr::from_bytes(self.as_bytes())
-+    unsafe fn from_char_ptr<'a>(ptr: *const crate::ffi::c_char) -> &'a Self {
-+        // SAFETY: The safety preconditions are the same as for `CStr::from_ptr`.
-+        unsafe { CStr::from_ptr(ptr.cast()) }
-     }
--}
- 
--impl Deref for CStr {
--    type Target = BStr;
-+    #[inline]
-+    unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut Self {
-+        // SAFETY: the cast from `&[u8]` to `&CStr` is safe since the properties of `bytes` are
-+        // guaranteed by the safety precondition and `CStr` has the same layout as `&[u8]` (this is
-+        // technically not guaranteed, but we rely on it here). The pointer dereference is safe
-+        // since it comes from a mutable reference which is guaranteed to be valid for writes.
-+        unsafe { &mut *(bytes as *mut [u8] as *mut CStr) }
-+    }
- 
-     #[inline]
--    fn deref(&self) -> &Self::Target {
--        self.as_ref()
-+    fn as_char_ptr(&self) -> *const crate::ffi::c_char {
-+        self.as_ptr().cast()
-     }
--}
- 
--impl Index<ops::RangeFrom<usize>> for CStr {
--    type Output = CStr;
-+    fn to_cstring(&self) -> Result<CString, AllocError> {
-+        CString::try_from(self)
-+    }
- 
--    #[inline]
--    fn index(&self, index: ops::RangeFrom<usize>) -> &Self::Output {
--        // Delegate bounds checking to slice.
--        // Assign to _ to mute clippy's unnecessary operation warning.
--        let _ = &self.as_bytes()[index.start..];
--        // SAFETY: We just checked the bounds.
--        unsafe { Self::from_bytes_with_nul_unchecked(&self.0[index.start..]) }
-+    fn make_ascii_lowercase(&mut self) {
-+        // SAFETY: This doesn't introduce or remove NUL bytes in the C string.
-+        unsafe { to_bytes_mut(self) }.make_ascii_lowercase();
-     }
--}
- 
--impl Index<ops::RangeFull> for CStr {
--    type Output = CStr;
-+    fn make_ascii_uppercase(&mut self) {
-+        // SAFETY: This doesn't introduce or remove NUL bytes in the C string.
-+        unsafe { to_bytes_mut(self) }.make_ascii_uppercase();
-+    }
- 
--    #[inline]
--    fn index(&self, _index: ops::RangeFull) -> &Self::Output {
--        self
-+    fn to_ascii_lowercase(&self) -> Result<CString, AllocError> {
-+        let mut s = self.to_cstring()?;
-+
-+        s.make_ascii_lowercase();
-+
-+        Ok(s)
-     }
--}
- 
--mod private {
--    use core::ops;
-+    fn to_ascii_uppercase(&self) -> Result<CString, AllocError> {
-+        let mut s = self.to_cstring()?;
- 
--    // Marker trait for index types that can be forward to `BStr`.
--    pub trait CStrIndex {}
-+        s.make_ascii_uppercase();
- 
--    impl CStrIndex for usize {}
--    impl CStrIndex for ops::Range<usize> {}
--    impl CStrIndex for ops::RangeInclusive<usize> {}
--    impl CStrIndex for ops::RangeToInclusive<usize> {}
-+        Ok(s)
-+    }
- }
- 
--impl<Idx> Index<Idx> for CStr
--where
--    Idx: private::CStrIndex,
--    BStr: Index<Idx>,
--{
--    type Output = <BStr as Index<Idx>>::Output;
--
-+impl AsRef<BStr> for CStr {
-     #[inline]
--    fn index(&self, index: Idx) -> &Self::Output {
--        &self.as_ref()[index]
-+    fn as_ref(&self) -> &BStr {
-+        BStr::from_bytes(self.to_bytes())
-     }
- }
- 
-@@ -630,15 +445,6 @@ fn test_cstr_to_str_panic() {
-         checked_cstr.to_str().unwrap();
-     }
- 
--    #[test]
--    fn test_cstr_as_str_unchecked() {
--        let good_bytes = b"\xf0\x9f\x90\xA7\0";
--        let checked_cstr = CStr::from_bytes_with_nul(good_bytes).unwrap();
--        // SAFETY: The contents come from a string literal which contains valid UTF-8.
--        let unchecked_str = unsafe { checked_cstr.as_str_unchecked() };
--        assert_eq!(unchecked_str, "🐧");
--    }
--
-     #[test]
-     fn test_cstr_display() {
-         let hello_world = CStr::from_bytes_with_nul(b"hello, world!\0").unwrap();
-@@ -854,11 +660,11 @@ fn write_str(&mut self, s: &str) -> fmt::Result {
- /// use kernel::{str::CString, prelude::fmt};
- ///
- /// let s = CString::try_from_fmt(fmt!("{}{}{}", "abc", 10, 20))?;
--/// assert_eq!(s.as_bytes_with_nul(), "abc1020\0".as_bytes());
-+/// assert_eq!(s.to_bytes_with_nul(), "abc1020\0".as_bytes());
- ///
- /// let tmp = "testing";
- /// let s = CString::try_from_fmt(fmt!("{tmp}{}", 123))?;
--/// assert_eq!(s.as_bytes_with_nul(), "testing123\0".as_bytes());
-+/// assert_eq!(s.to_bytes_with_nul(), "testing123\0".as_bytes());
- ///
- /// // This fails because it has an embedded `NUL` byte.
- /// let s = CString::try_from_fmt(fmt!("a\0b{}", 123));
-@@ -928,7 +734,7 @@ impl<'a> TryFrom<&'a CStr> for CString {
-     fn try_from(cstr: &'a CStr) -> Result<CString, AllocError> {
-         let mut buf = KVec::new();
- 
--        buf.extend_from_slice(cstr.as_bytes_with_nul(), GFP_KERNEL)?;
-+        buf.extend_from_slice(cstr.to_bytes_with_nul(), GFP_KERNEL)?;
- 
-         // INVARIANT: The `CStr` and `CString` types have the same invariants for
-         // the string data, and we copied it over without changes.
-diff --git a/rust/kernel/sync/condvar.rs b/rust/kernel/sync/condvar.rs
-index caebf03f553b..0b6bc7f2878d 100644
---- a/rust/kernel/sync/condvar.rs
-+++ b/rust/kernel/sync/condvar.rs
-@@ -8,7 +8,7 @@
- use super::{lock::Backend, lock::Guard, LockClassKey};
- use crate::{
-     ffi::{c_int, c_long},
--    str::CStr,
-+    str::{CStr, CStrExt as _},
-     task::{
-         MAX_SCHEDULE_TIMEOUT, TASK_FREEZABLE, TASK_INTERRUPTIBLE, TASK_NORMAL, TASK_UNINTERRUPTIBLE,
-     },
-diff --git a/rust/kernel/sync/lock.rs b/rust/kernel/sync/lock.rs
-index e82fa5be289c..a777a22976e0 100644
---- a/rust/kernel/sync/lock.rs
-+++ b/rust/kernel/sync/lock.rs
-@@ -7,7 +7,7 @@
- 
- use super::LockClassKey;
- use crate::{
--    str::CStr,
-+    str::{CStr, CStrExt as _},
-     types::{NotThreadSafe, Opaque, ScopeGuard},
- };
- use core::{cell::UnsafeCell, marker::PhantomPinned, pin::Pin};
-diff --git a/rust/kernel/sync/lock/global.rs b/rust/kernel/sync/lock/global.rs
-index d65f94b5caf2..79d0ef7fda86 100644
---- a/rust/kernel/sync/lock/global.rs
-+++ b/rust/kernel/sync/lock/global.rs
-@@ -5,7 +5,7 @@
- //! Support for defining statics containing locks.
- 
- use crate::{
--    str::CStr,
-+    str::{CStr, CStrExt as _},
-     sync::lock::{Backend, Guard, Lock},
-     sync::{LockClassKey, LockedBy},
-     types::Opaque,
+>
+> > diff --git a/rust/kernel/fmt.rs b/rust/kernel/fmt.rs
+> > new file mode 100644
+> > index 000000000000..348d16987de6
+> > --- /dev/null
+> > +++ b/rust/kernel/fmt.rs
+> > @@ -0,0 +1,89 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +//! Formatting utilities.
+> > +
+> > +use core::fmt;
+>
+> I think we should pub export all types that we are still using from
+> `core::fmt`. For example `Result`, `Formatter`, `Debug` etc.
+>
+> That way I can still use the same pattern of importing `fmt` and then
+> writing
+>
+>     impl fmt::Display for MyType {
+>         fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {}
+>     }
 
--- 
-2.49.0
+Great idea, done for the next spin. It would be nice to be able to
+lint against references to `core::fmt` outside of kernel/fmt.rs.
 
+> > +
+> > +/// Internal adapter used to route allow implementations of formatting=
+ traits for foreign types.
+> > +///
+> > +/// It is inserted automatically by the [`fmt!`] macro and is not mean=
+t to be used directly.
+> > +///
+> > +/// [`fmt!`]: crate::prelude::fmt!
+> > +#[doc(hidden)]
+> > +pub struct Adapter<T>(pub T);
+> > +
+> > +macro_rules! impl_fmt_adapter_forward {
+> > +    ($($trait:ident),* $(,)?) =3D> {
+> > +        $(
+> > +            impl<T: fmt::$trait> fmt::$trait for Adapter<T> {
+> > +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Resu=
+lt {
+> > +                    let Self(t) =3D self;
+> > +                    fmt::$trait::fmt(t, f)
+> > +                }
+> > +            }
+> > +        )*
+> > +    };
+> > +}
+> > +
+> > +impl_fmt_adapter_forward!(Debug, LowerHex, UpperHex, Octal, Binary, Po=
+inter, LowerExp, UpperExp);
+> > +
+> > +/// A copy of [`fmt::Display`] that allows us to implement it for fore=
+ign types.
+> > +///
+> > +/// Types should implement this trait rather than [`fmt::Display`]. To=
+gether with the [`Adapter`]
+> > +/// type and [`fmt!`] macro, it allows for formatting foreign types (e=
+.g. types from core) which do
+> > +/// not implement [`fmt::Display`] directly.
+> > +///
+> > +/// [`fmt!`]: crate::prelude::fmt!
+> > +pub trait Display {
+> > +    /// Same as [`fmt::Display::fmt`].
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result;
+> > +}
+> > +
+> > +impl<T: ?Sized + Display> Display for &T {
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> > +        Display::fmt(*self, f)
+> > +    }
+> > +}
+> > +
+> > +impl<T: ?Sized + Display> fmt::Display for Adapter<&T> {
+> > +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> > +        let Self(t) =3D self;
+> > +        Display::fmt(t, f)
+>
+> Why not `Display::fmt(&self.0, f)`?
+
+I like destructuring because it shows me that there's only one field.
+With `self.0` I don't see that.
+
+> > +    }
+> > +}
+> > +
+> > +macro_rules! impl_display_forward {
+> > +    ($(
+> > +        $( { $($generics:tt)* } )? $ty:ty $( { where $($where:tt)* } )=
+?
+> > +    ),* $(,)?) =3D> {
+> > +        $(
+> > +            impl$($($generics)*)? Display for $ty $(where $($where)*)?=
+ {
+> > +                fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Resu=
+lt {
+> > +                    fmt::Display::fmt(self, f)
+> > +                }
+> > +            }
+> > +        )*
+> > +    };
+> > +}
+> > +
+> > +impl_display_forward!(
+> > +    bool,
+> > +    char,
+> > +    core::panic::PanicInfo<'_>,
+> > +    fmt::Arguments<'_>,
+> > +    i128,
+> > +    i16,
+> > +    i32,
+> > +    i64,
+> > +    i8,
+> > +    isize,
+> > +    str,
+> > +    u128,
+> > +    u16,
+> > +    u32,
+> > +    u64,
+> > +    u8,
+> > +    usize,
+> > +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>: fmt:=
+:Display},
+> > +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::Unique=
+Arc<T>: fmt::Display},
+> > +);
+>
+> > diff --git a/rust/macros/fmt.rs b/rust/macros/fmt.rs
+> > new file mode 100644
+> > index 000000000000..edc37c220a89
+> > --- /dev/null
+> > +++ b/rust/macros/fmt.rs
+> > @@ -0,0 +1,99 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +use proc_macro::{Ident, TokenStream, TokenTree};
+> > +use std::collections::BTreeSet;
+> > +
+> > +/// Please see [`crate::fmt`] for documentation.
+> > +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
+> > +    let mut input =3D input.into_iter();
+> > +
+> > +    let first_opt =3D input.next();
+> > +    let first_owned_str;
+> > +    let mut names =3D BTreeSet::new();
+> > +    let first_lit =3D {
+> > +        let Some((mut first_str, first_lit)) =3D (match first_opt.as_r=
+ef() {
+> > +            Some(TokenTree::Literal(first_lit)) =3D> {
+> > +                first_owned_str =3D first_lit.to_string();
+> > +                Some(first_owned_str.as_str()).and_then(|first| {
+> > +                    let first =3D first.strip_prefix('"')?;
+> > +                    let first =3D first.strip_suffix('"')?;
+> > +                    Some((first, first_lit))
+>
+> You're only using first_lit to get the span later, so why not just get
+> the span directly here?
+
+Good point. I was probably using it for more stuff in an earlier iteration.
+
+>
+> > +                })
+> > +            }
+> > +            _ =3D> None,
+> > +        }) else {
+> > +            return first_opt.into_iter().chain(input).collect();
+> > +        };
+> > +        while let Some((_, rest)) =3D first_str.split_once('{') {
+>
+> Let's put a comment above this loop mentioning [1] and saying that it
+> parses the identifiers from the format arguments.
+>
+> [1]: https://doc.rust-lang.org/std/fmt/index.html#syntax
+
+=F0=9F=91=8D
+
+>
+> > +            first_str =3D rest;
+> > +            if let Some(rest) =3D first_str.strip_prefix('{') {
+> > +                first_str =3D rest;
+> > +                continue;
+> > +            }
+> > +            if let Some((name, rest)) =3D first_str.split_once('}') {
+> > +                first_str =3D rest;
+> > +                let name =3D name.split_once(':').map_or(name, |(name,=
+ _)| name);
+> > +                if !name.is_empty() && !name.chars().all(|c| c.is_asci=
+i_digit()) {
+> > +                    names.insert(name);
+> > +                }
+> > +            }
+> > +        }
+> > +        first_lit
+> > +    };
+> > +
+> > +    let first_span =3D first_lit.span();
+> > +    let adapter =3D quote_spanned! {
+> > +        first_span =3D> ::kernel::fmt::Adapter
+> > +    };
+>
+> I think we should follow the formatting convention from the quote crate:
+>
+>     let adapter =3D quote_spanned!(first_span=3D> ::kernel::fmt::Adapter)=
+;
+
+Sure.
+
+>
+> > +
+> > +    let mut args =3D TokenStream::from_iter(first_opt);
+> > +    {
+> > +        let mut flush =3D |args: &mut TokenStream, current: &mut Token=
+Stream| {
+>
+> You don't need to pass `args` as a closure argument, since you always
+> call it with `&mut args`.
+
+This doesn't work because of the borrow checker. If I wrote what you
+suggest, then `args` is mutably borrowed by the closure, which
+prohibits the mutable borrow needed for the .extend() call here:
+
+        for tt in input {
+            match &tt {
+                TokenTree::Punct(p) if p.as_char() =3D=3D ',' =3D> {
+                    flush(&mut args, &mut current);
+                    &mut args
+                }
+                _ =3D> &mut current,
+            }
+            .extend([tt]);
+        }
+
+>
+> > +            let current =3D std::mem::take(current);
+> > +            if !current.is_empty() {
+> > +                let (lhs, rhs) =3D (|| {
+> > +                    let mut current =3D current.into_iter();
+> > +                    let mut acc =3D TokenStream::new();
+> > +                    while let Some(tt) =3D current.next() {
+> > +                        // Split on `=3D` only once to handle cases li=
+ke `a =3D b =3D c`.
+> > +                        if matches!(&tt, TokenTree::Punct(p) if p.as_c=
+har() =3D=3D '=3D') {
+> > +                            names.remove(acc.to_string().as_str());
+> > +                            // Include the `=3D` itself to keep the ha=
+ndling below uniform.
+> > +                            acc.extend([tt]);
+> > +                            return (Some(acc), current.collect::<Token=
+Stream>());
+> > +                        }
+> > +                        acc.extend([tt]);
+> > +                    }
+> > +                    (None, acc)
+> > +                })();
+> > +                args.extend(quote_spanned! {
+> > +                    first_span =3D> #lhs #adapter(&#rhs)
+> > +                });
+> > +            }
+> > +        };
+> > +
+> > +        let mut current =3D TokenStream::new();
+>
+> Define this before the closure, then you don't need to pass it as an
+> argument.
+
+Same reason as above. Borrow checker says no.
+
+>
+> ---
+> Cheers,
+> Benno
+>
+> > +        for tt in input {
+> > +            match &tt {
+> > +                TokenTree::Punct(p) if p.as_char() =3D=3D ',' =3D> {
+> > +                    flush(&mut args, &mut current);
+> > +                    &mut args
+> > +                }
+> > +                _ =3D> &mut current,
+> > +            }
+> > +            .extend([tt]);
+> > +        }
+> > +        flush(&mut args, &mut current);
+> > +    }
+> > +
+> > +    for name in names {
+> > +        let name =3D Ident::new(name, first_span);
+> > +        args.extend(quote_spanned! {
+> > +            first_span =3D> , #name =3D #adapter(&#name)
+> > +        });
+> > +    }
+> > +
+> > +    quote_spanned! {
+> > +        first_span =3D> ::core::format_args!(#args)
+> > +    }
+> > +}
