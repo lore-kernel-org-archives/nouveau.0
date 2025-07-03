@@ -4,74 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56E23CCD187
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEC07CCD184
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED86210E5DC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC38C10E5A6;
 	Mon,  6 Oct 2025 20:57:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lM8Sk+FN";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jNXitEQS";
 	dkim-atps=neutral
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
- [209.85.208.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FCC910EA6B;
- Fri,  4 Jul 2025 19:39:08 +0000 (UTC)
-Received: by mail-lj1-f177.google.com with SMTP id
- 38308e7fff4ca-32b78b5aa39so12429721fa.1; 
- Fri, 04 Jul 2025 12:39:08 -0700 (PDT)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+ [209.85.167.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FA8910E077;
+ Thu,  3 Jul 2025 18:57:53 +0000 (UTC)
+Received: by mail-lf1-f47.google.com with SMTP id
+ 2adb3069b0e04-553b3316160so278861e87.2; 
+ Thu, 03 Jul 2025 11:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751657947; x=1752262747; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1751569072; x=1752173872; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=q6BEyCDqiSgiBGBJ1ZkhyuwdBxeuGxHXg+GwZGubRJQ=;
- b=lM8Sk+FNBfG+OmNV9nL1GZgvbtozgBmZ2B5FrznMhJkr2ynu9L27WvR/U+08l0keMJ
- NgE0XU5jE7BCX0q2nvNcKIaJWIir6M5MwkW2a7zJ5OBbvSkDFOroTYE9Hor7+ugH/Lcx
- 5OB1u5y/nGYeZ1zkmsX85ZVLfF9nJs0+SQmZ06sNssBLpSgR/NBtqbdJ1yeqVuZWWPBh
- BHMj6ABKJMzwyohW95Y3sobINfif8nvscJqNCop5uW2IKNSDMgrViB5RHITC5sJ8L4PG
- jZUSFuwaUp3O1+Q/wwhcB7JvXsUVIhIAFsdrrwSIqUo28DbyvERdU2e/OhWNTPVKk/ww
- 7rVA==
+ bh=FiAe0ywj3ALVyYeVpMIymC5Jme4Ulve8NgwE7MU7/y0=;
+ b=jNXitEQSMsoGVoG2QoXBbtCsE9ISJFQ40OmJ3baZCUiMxY4sXvxnsBYMxmIKj8uTZB
+ WyfQ3NL5yG2M6bQuCVKQOTdyX0ng0d0EzxhNxnAtKxR0YkTH1v/8DtYKGkXOtjlu8DzV
+ u82GHJNNMzhkzIa5dqipVDfWKx62HmjItCoX8cXj66JcQLz7a60L1X5xgmjBv1e38sbV
+ OT/zaXEA2Ngsy2mmtC4eZQFPmeibXq86kpwCT13S3ga0nIfSuCi7WicHAWeL8dzC3q1e
+ SCSOUHk2B2JC2dMfErnzOS4fD841Y1FF9KU8oIC3A2sjESLpU0tm+oFUwpJ0X3DnVQZw
+ dhHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751657947; x=1752262747;
+ d=1e100.net; s=20230601; t=1751569072; x=1752173872;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=q6BEyCDqiSgiBGBJ1ZkhyuwdBxeuGxHXg+GwZGubRJQ=;
- b=aaSJf3y1neNxubaD74BM7bCCe++OIMjqu20LfTdI+/EU6R0rxypzwIoRwBVI1orVVi
- Dfu3ioCub3XWsbGvN1VdpYlpdO8/WtgFAL9a6rDG3Ib30fxCp3jdkT+ukbpTVKmcM9z3
- quVgbIrqWNF33zt5UhDGRkhJzu3qnnWg+7tNIPQbIdrdeSl6UYxY7ctoXLxxuhK7nSTa
- LiJN4vk3JxhY9ouveahg8pXQIf6lMs+XXGXXOAlGsEpdUlmp8g+4b9CL4K2pVZo1rDhG
- XlS3DSf6j3j2YuCvD1THTY/oBeLnuL7AP1iBqGkBhdLEBc6NTAJTQO8CwBiVxhCfqor/
- Cagg==
+ bh=FiAe0ywj3ALVyYeVpMIymC5Jme4Ulve8NgwE7MU7/y0=;
+ b=vr08jqe2m4pAFAw+GB8sQt3sgihCjT4Ny+urwRgDr0Gg0DRoKp34L7c/tk8cGkiq3L
+ CRKKPKSqv5ojN/GfenKQCPHc3I/42zYaFhh8WX5H8SbHdi6fCl8I63Dg30eK/eIWJ5M4
+ 1jXIQM0qWoAKQaWp6xyAKTEpmMxqsZ/7gJivBzr8Y3MSM4UPC74OW+lJRgEKG55Rtjvh
+ 0WIFChyVc/z1IKFyQEK2zMw/K9Po/zJhWDz8WYcQGAQ2Vfx8jYrJYFH2xiYCHFnkrZKS
+ ZmWLeKrHQYJhZqcSsIxvV9MJRxp0DZlOUg3fq/X7n4QDUm7CDlJpM7/Uxxt+u50V9BrA
+ i06g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVUtbu1koLM+QTu8e3j3h1uHNU7PlBx+NoyJ+02qCKk0CVH9sjR0VQTj7KkljmwbU3Jytu+Z4JQJrM=@lists.freedesktop.org,
- AJvYcCX3xriUxWuXX+GEjF72tek8HHoocED6/7x41WvAt9ZSdK1VN/BqgDg0YnLYc9klUaqRsfmE12n06Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy2H9ZhwRLUv5KKF2RpJUFqZjRnGoXZCUQZBwfTLwMK7TM52bRN
- mHEgW/4yAtRvS7IEuXFsVR+4yL0l8JtqLe0k48lsmDgiVg4UZkDZD27PHkWFnhqNicAAygGm33W
- elIIcHth1f6gn6yXk+ZbckBLm0JY9ePM=
-X-Gm-Gg: ASbGncswuJyrtHFV24/+2dhmHmgbFeJk62l/+i0CY4kXCf/4ufVgfCAp0hscK2i6eMJ
- iW7hZUkmQtkopXKenyWNST+GJ2GhsTZrd6CerLL1ZmKgp4AqpTInWce7/Iph6N9t3KxFsJLHxO1
- wtu/mcctsLCZ1pEFO/QJfmHpPBpSzPt73Ej4BlKZ0R7Pd6P6xd1v45L9Kmpd/Sgnrxr+I1kaoPG
- 8b1MQ==
-X-Google-Smtp-Source: AGHT+IELI7uW8JvZwN3QEoftXB7GsVNoqVv/ET67tZt2kJkg2u9kQKOlY5/6R0W6vFvmdwe3YBxK7+LcpnDSocUkLi4=
-X-Received: by 2002:a2e:a554:0:b0:32b:43a3:68a1 with SMTP id
- 38308e7fff4ca-32efb0afa55mr11642311fa.0.1751657946651; Fri, 04 Jul 2025
- 12:39:06 -0700 (PDT)
+ AJvYcCVzYzqcMz0uHv+8g9O0nlPtD5/KkRBTNKFJXuMAHFmCAU/TyentKMkoHuJS7sc9cjFjTHKriVgz5mI=@lists.freedesktop.org,
+ AJvYcCWyeAQlfY5W+d89J52Dm1RUvqf5g/jZA7vw/DsDk1gAu5a95tlx+tW/CdsYIToXXao3tmlEFfhgww==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwcE4lFCcgFMBZoAZA896lF+H99pnvVHUXIL7RrSyxDI4aaCwh3
+ jRUJJootrhqiV3i7DDeVNHkbI+V1PihbAHuTBh4hSaUnO0kATWW+R5fL9OfT1jIPNsE1BlUQYia
+ C1IuRKW+9RCYtrbyMAZqpCIs3qZsh26E=
+X-Gm-Gg: ASbGncv7khJ40xZoSPfNLrsOsmNr08NH80gO0cSfXwdHQNOHPqNacr98vW1Jz7V3gtI
+ g9rx3H4xFV+//+VN7bnSE4gqNWc65g8gXBeIHhRHXUyNeGdgKBTOf9kZtESgh6uKt82F4MhLYaV
+ jzrNmtDO+0id71y0e/YJfOIq2RLC68fE3bH4QI4R+MPLPl/g==
+X-Google-Smtp-Source: AGHT+IG03u1s/dKr5lqrvPNQ09T92o4JjB8rN5Nj67CbTA0x433vtUSLN5UqSf5eZDmLPvVjVfuvUqvcmHi9wOrWOOw=
+X-Received: by 2002:a05:6512:31c6:b0:550:d4f3:8491 with SMTP id
+ 2adb3069b0e04-556283804d8mr3415342e87.41.1751569071362; Thu, 03 Jul 2025
+ 11:57:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
- <20250701-cstr-core-v13-4-29f7d3eb97a6@gmail.com>
- <DB3AGL1QO4M4.2HANWHX9TF9WN@kernel.org>
-In-Reply-To: <DB3AGL1QO4M4.2HANWHX9TF9WN@kernel.org>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <CANiq72=61JhEf97JTkineo+FX+JG+Q9x9x86MC_hukSa9YSX3g@mail.gmail.com>
+In-Reply-To: <CANiq72=61JhEf97JTkineo+FX+JG+Q9x9x86MC_hukSa9YSX3g@mail.gmail.com>
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Fri, 4 Jul 2025 15:38:30 -0400
-X-Gm-Features: Ac12FXwvxhLPYgvBPM4F9xT26zkuHTZMocL5-5BvcjZhSL1NesztAaUplyK7LaY
-Message-ID: <CAJ-ks9kcW8PzUWPmwo-WQ1dJTgoXTvY6G8UppsLKehf9O0bUqQ@mail.gmail.com>
-Subject: Re: [PATCH v13 4/5] rust: replace `kernel::c_str!` with C-Strings
-To: Benno Lossin <lossin@kernel.org>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
+Date: Thu, 3 Jul 2025 14:57:15 -0400
+X-Gm-Features: Ac12FXyZZloauRegGbOIuXfH_Sgil7e4CwfUR1COZp9IX8xKJZCjuiY3W9nvJEk
+Message-ID: <CAJ-ks9mvLEPLMJS6E_UPc4bkRN1q09zYC_oL_pZ=E_Ff161USA@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Benno Lossin <lossin@kernel.org>,
+ Michal Rostecki <vadorovsky@protonmail.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
  Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
@@ -124,15 +125,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 4, 2025 at 9:01=E2=80=AFAM Benno Lossin <lossin@kernel.org> wro=
-te:
+On Thu, Jul 3, 2025 at 12:26=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
 >
-> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
-> > C-String literals were added in Rust 1.77. Replace instances of
-> > `kernel::c_str!` with C-String literals where possible and rename
-> > `kernel::c_str!` to `str_to_cstr!` to clarify its intended use.
+> On Thu, Jul 3, 2025 at 3:56=E2=80=AFPM Tamir Duberstein <tamird@gmail.com=
+> wrote:
+> >
+> > Can you help me understand why? The changes you ask to be separated
+> > would all be in different files, so why would separate commits make it
+> > easier to review?
 >
-> These two things can also be split? And it should also be possible to do
-> this by-subsystem, right?
+> By the way, if we are talking about splitting, it is easier to land
+> patches that can go independently into different subsystems and
+> avoiding flag day changes (or making those as small as possible), i.e.
+> ideally being able to land big changes across more than one kernel
+> cycle.
 
-Yes.
+Understood, though in this case I don't see how it's workable. The
+formatting macros can either wrap in fmt::Adapter (and thus require
+kernel::fmt::Display) or not (and thus require core::fmt::Display),
+but I don't see how they can work in a mixed world. We can't have half
+the subsystems implement core::fmt::Display and the other half
+implement kernel::fmt::Display.
