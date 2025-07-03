@@ -4,83 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B8B4C83F03
-	for <nouveau@archiver.kernel.org>; Thu,  3 Jul 2025 21:56:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E6C6C83F05
+	for <nouveau@archiver.kernel.org>; Thu,  3 Jul 2025 22:12:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEF2C10E8F9;
-	Thu,  3 Jul 2025 21:56:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B13910E1E1;
+	Thu,  3 Jul 2025 22:12:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LSZ1MI2A";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=lunn.ch header.i=@lunn.ch header.b="Nas0qbwd";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D356310E8F9
- for <nouveau@lists.freedesktop.org>; Thu,  3 Jul 2025 21:56:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1751579806;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6fYR7VZlgABLKP1NRozT8CE9xb7sNdOcfvOJxK/ixyQ=;
- b=LSZ1MI2AEWHuC0duIoOJXC4nefGh0AlQJqVUGCXFXsRvvwy3xFb13f8Vmk3VYXXHlUx/Ap
- AYmDV8J1ALNfay6PUOrfARLWQ4+QqGNZ8MbURXBofuQsGELHo1qnvwcxFmzCcVbL01LLew
- Z0lSwjR43mf7Y1ngpmHJxVgz6F02neA=
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com
- [209.85.216.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-554-vAmsdHodNDCA-1XhHkQ_nQ-1; Thu, 03 Jul 2025 17:56:44 -0400
-X-MC-Unique: vAmsdHodNDCA-1XhHkQ_nQ-1
-X-Mimecast-MFC-AGG-ID: vAmsdHodNDCA-1XhHkQ_nQ_1751579804
-Received: by mail-pj1-f71.google.com with SMTP id
- 98e67ed59e1d1-313fb0ec33bso297229a91.2
- for <nouveau@lists.freedesktop.org>; Thu, 03 Jul 2025 14:56:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751579804; x=1752184604;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6fYR7VZlgABLKP1NRozT8CE9xb7sNdOcfvOJxK/ixyQ=;
- b=S81+KXDhAiMpxvWWvfa89umdZ2jFfX8QRD7PXZS9/6kNpz+mEdKeQTo6n8zh+BGgbc
- M65BMzTMD5bkSqY7L6Wp3FLBbUayGVKW4Y1GLcHpWr4TRM92zhF/zadsvl8Aiujbu41x
- HRi9TF0kHIj1XYi3xOHaB78RfBuP5QpFxtodkS3wPd3PA00yzUgkeprS+02yR3wEn2mN
- U0nVr0Rt/ldTd+1yWDRCvq7PEwghb+q5TCBqow0WWxsEGpvry5K96/zPZjFL4UHTnXj7
- 22kCtUEkE74KxCd+YyMHtOLsZd22Q5mFC67/0rzoR604TPVnZrNi43yVj4mitV5WbCA1
- tHiQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXvSWT3CAOaZurpRM+GoB4Zd2VeQNvlRZOOqkqvkN/Xj+Jl7AEqgaf0mByWCQ9mIggeLXvudNQQ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzaX5EKYq74Ho7ZziyHgubrNKl0xH9j+JFQK/thZDXRVtOLjO9O
- 2azqWLZKiJtCaF9/iN+WH+fqbWFpf16BOwzKs7e/9XQL79ergdsAKiYe3iKiEYeSiaDqOUoxc29
- rA7IvOTw5ZFyRzK+kyKgKZL8TZj8N+QNUFfnklnd0cWEdK7NSs7iif4bQ7pAoj1XVxblZVM7BiN
- m44xJOXyJBzvIS6El4GsrTu0OBEd9KM6Gou771HW2RxQ==
-X-Gm-Gg: ASbGnctzjJQwo8bVvbmYHe8VhhTLen0CN3kVruYNqyrrj+5VTzEn8Y9swfzJmBvJujn
- sKqdCVHuguB7hwu9gu8Zc+IOCAbhk4hvHRA+xQE/aV+toOzpOB8+GlTDv7zrt0gFSxkHG1jccDt
- jOCw==
-X-Received: by 2002:a17:90b:394a:b0:315:6f2b:ce53 with SMTP id
- 98e67ed59e1d1-31aac4f0f17mr282532a91.25.1751579803657; 
- Thu, 03 Jul 2025 14:56:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH8QsL4/4lbdu2VgAxra8OjeGaMaz7G/joe/hTMUWVrl3BwEfAgKyvMvBLL8Evt3sQY1YZL6uZ/fwzabaaILsk=
-X-Received: by 2002:a17:90b:394a:b0:315:6f2b:ce53 with SMTP id
- 98e67ed59e1d1-31aac4f0f17mr282508a91.25.1751579803345; Thu, 03 Jul 2025
- 14:56:43 -0700 (PDT)
+X-Greylist: delayed 2589 seconds by postgrey-1.36 at gabe;
+ Thu, 03 Jul 2025 22:12:00 UTC
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B0810E1E1
+ for <nouveau@lists.freedesktop.org>; Thu,  3 Jul 2025 22:12:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+ s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+ Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+ Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+ In-Reply-To:References; bh=A83NKRGoevWzL/NcvqijuYTaZ0xDTVIZ9pvu0pc07Jk=; b=Na
+ s0qbwdL6B67K0wS+f7tbNlfneHHctNev/cTniYFhLMkwezOAunGEDatFtpLb4g+PG761JVmPtbDzC
+ rfpydruVCCrDayQ33cjSGl/o6BiA+VGkuX6ILQmO0/nR1G4/Ap/W5RcWrBNuhbzqrUhTrrpdbnIlt
+ YvmVDe7keP8zJfo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+ (envelope-from <andrew@lunn.ch>)
+ id 1uXRTN-0008hX-2p; Thu, 03 Jul 2025 23:28:01 +0200
+Date: Thu, 3 Jul 2025 23:28:01 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Benno Lossin <lossin@kernel.org>,
+ Michal Rostecki <vadorovsky@protonmail.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>,
+ Jens Axboe <axboe@kernel.dk>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Dave Ertman <david.m.ertman@intel.com>,
+ Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>,
+ Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ llvm@lists.linux.dev, linux-pci@vger.kernel.org,
+ nouveau@lists.freedesktop.org, linux-block@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+Message-ID: <34c00dfa-8302-45ee-8d80-58b97a08e52e@lunn.ch>
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
+ <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20250702232707.175679-1-airlied@gmail.com>
- <3bdcc576-5c5a-4735-9e6f-e56ead2270b8@kernel.org>
-In-Reply-To: <3bdcc576-5c5a-4735-9e6f-e56ead2270b8@kernel.org>
-From: David Airlie <airlied@redhat.com>
-Date: Fri, 4 Jul 2025 07:56:30 +1000
-X-Gm-Features: Ac12FXw0hcVP8Zqb-SDWuNhKXYrwwVhPaZMMQvb2YOUWY3UayM2Wo2HazJUMMhI
-Message-ID: <CAMwc25ob7F+4jTttyvqgBrNraAX9jdCjN4=unt0WJWZLbY+vNw@mail.gmail.com>
-Subject: Re: [PATCH] nouveau/gsp: add a 50ms delay between fbsr and driver
- unload rpcs
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Dave Airlie <airlied@gmail.com>, dri-devel@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, Ben Skeggs <bskeggs@nvidia.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 8wAHsBZbuKZj6O97YqmX-n87KbU4RqelnACTWZE5zRg_1751579804
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,63 +102,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 4, 2025 at 7:46=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> w=
-rote:
->
-> On 7/3/25 1:27 AM, Dave Airlie wrote:
-> > From: Dave Airlie <airlied@redhat.com>
+On Thu, Jul 03, 2025 at 02:55:30PM -0400, Tamir Duberstein wrote:
+> On Thu, Jul 3, 2025 at 11:08 AM Benno Lossin <lossin@kernel.org> wrote:
 > >
-> > This fixes a bunch of command hangs after runtime suspend/resume.
+> > On Thu Jul 3, 2025 at 3:55 PM CEST, Tamir Duberstein wrote:
+> > > On Thu, Jul 3, 2025 at 5:32 AM Benno Lossin <lossin@kernel.org> wrote:
+> > >> On Tue Jul 1, 2025 at 6:49 PM CEST, Tamir Duberstein wrote:
+> > >> > Introduce a `fmt!` macro which wraps all arguments in
+> > >> > `kernel::fmt::Adapter` and a `kernel::fmt::Display` trait. This enables
+> > >> > formatting of foreign types (like `core::ffi::CStr`) that do not
+> > >> > implement `core::fmt::Display` due to concerns around lossy conversions which
+> > >> > do not apply in the kernel.
+> > >> >
+> > >> > Replace all direct calls to `format_args!` with `fmt!`.
+> > >> >
+> > >> > Replace all implementations of `core::fmt::Display` with implementations
+> > >> > of `kernel::fmt::Display`.
+> > >> >
+> > >> > Suggested-by: Alice Ryhl <aliceryhl@google.com>
+> > >> > Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/Custom.20formatting/with/516476467
+> > >> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > >> > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> > >> > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+> > >> > ---
+> > >> >  drivers/block/rnull.rs       |  2 +-
+> > >> >  drivers/gpu/nova-core/gpu.rs |  4 +-
+> > >> >  rust/kernel/block/mq.rs      |  2 +-
+> > >> >  rust/kernel/device.rs        |  2 +-
+> > >> >  rust/kernel/fmt.rs           | 89 +++++++++++++++++++++++++++++++++++++++
+> > >> >  rust/kernel/kunit.rs         |  6 +--
+> > >> >  rust/kernel/lib.rs           |  1 +
+> > >> >  rust/kernel/prelude.rs       |  3 +-
+> > >> >  rust/kernel/print.rs         |  4 +-
+> > >> >  rust/kernel/seq_file.rs      |  2 +-
+> > >> >  rust/kernel/str.rs           | 22 ++++------
+> > >> >  rust/macros/fmt.rs           | 99 ++++++++++++++++++++++++++++++++++++++++++++
+> > >> >  rust/macros/lib.rs           | 19 +++++++++
+> > >> >  rust/macros/quote.rs         |  7 ++++
+> > >> >  scripts/rustdoc_test_gen.rs  |  2 +-
+> > >> >  15 files changed, 236 insertions(+), 28 deletions(-)
+> > >>
+> > >> This would be a lot easier to review if he proc-macro and the call
+> > >> replacement were different patches.
+> > >>
+> > >> Also the `kernel/fmt.rs` file should be a different commit.
+> > >
+> > > Can you help me understand why? The changes you ask to be separated
+> > > would all be in different files, so why would separate commits make it
+> > > easier to review?
 > >
-> > This fixes a regression caused by code movement in the commit below,
-> > the commit seems to just change timings enough to cause this to happen
-> > now, and adding the sleep seems to avoid it.
-> >
-> > I've spent some time trying to root cause it to no great avail,
-> > it seems like a bug on the firmware side, but it could be a bug
-> > in our rpc handling that I can't find.
-> >
-> > Either way, we should land the workaround to fix the problem,
-> > while we continue to work out the root cause.
->
-> I think we should add a TODO above the msleep(); what do you think would =
-be a
-> good comment here?
+> > It takes less time to go through the entire patch and give a RB. I can
+> > take smaller time chunks and don't have to get back into the entire
+> > context of the patch when I don't have 30-60min available.
+> 
+> Ah, I see what you mean. Yeah, the requirement to RB the entire patch
+> does mean there's a benefit to smaller patches.
 
-TODO: debug the gsp firmware or the rpc handling to find out why this
-is happening and why it's Turing specific.
+I often tell kernel newbies:
 
-Don't really have a lot to go on,
+Lots of small patches which are obviously correct.
 
-Dave.
->
-> I can add it when applying the patch if you want.
->
-> > Signed-off-by: Dave Airlie <airlied@redhat.com>
-> > Cc: Ben Skeggs <bskeggs@nvidia.com>
-> > Cc: Danilo Krummrich <dakr@kernel.org>
-> > Fixes: 21b039715ce9 ("drm/nouveau/gsp: add hals for fbsr.suspend/resume=
-()")
-> > ---
-> >   drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c | 3 +++
-> >   1 file changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c b/dr=
-ivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-> > index baf42339f93e..ff362a6d9f5c 100644
-> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c
-> > @@ -1744,6 +1744,9 @@ r535_gsp_fini(struct nvkm_gsp *gsp, bool suspend)
-> >                       nvkm_gsp_sg_free(gsp->subdev.device, &gsp->sr.sgt=
-);
-> >                       return ret;
-> >               }
-> > +
-> > +             /* without this Turing ends up resetting all channels aft=
-er resume. */
-> > +             msleep(50);
-> >       }
-> >
-> >       ret =3D r535_gsp_rpc_unloading_guest_driver(gsp, suspend);
->
+A small patch tends to be more obviously correct than a big patch. The
+commit message is more focused and helpful because it refers to a
+small chunk of code. Because the commit message is more focused, it
+can answer questions reviewers might ask, before they ask them. If i
+can spend 60 seconds looking at a patch and decide it looks correct,
+i'm more likely to actually look at it and give a reviewed by. If i
+need to find 10 minutes, it is going to get put off for a later
+time. Many reviewers just have a few minutes here, a few there,
+slotted into time between other tasks, while drinking coffee, etc.
 
+	Andrew
