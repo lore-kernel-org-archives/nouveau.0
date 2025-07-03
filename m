@@ -4,87 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE79D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FC3DD5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BE110EB8B;
-	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41DAC10EB5F;
+	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kXNgv9iO";
+	dkim=permerror (0-bit key) header.d=aaront.org header.i=@aaront.org header.b="dqoXjpFe";
+	dkim=pass (2048-bit key; secure) header.d=aaront.org header.i=@aaront.org header.b="v/BVgkC3";
 	dkim-atps=neutral
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7058210E1DA
- for <nouveau@lists.freedesktop.org>; Wed,  8 Oct 2025 16:57:05 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-27ec3db6131so58325ad.1
- for <nouveau@lists.freedesktop.org>; Wed, 08 Oct 2025 09:57:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759942625; x=1760547425; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BtxsZvw7ZUfiZlsMlvMyfedw4t0xzCAElKBhmmA01y8=;
- b=kXNgv9iOqUCM2MZT+tXSj+widJYBO1qLuIl4C5+MZsk0bHVmlkrm+Rm2m/o7cWcdtE
- Fyb3Ka4FX8h/4fd90AD12IKoQBSGOeXZqR52Ybo6C1/gdzBqykIARf0bqgMCwpBIZDB+
- UfFXz0h3+NxOa4HQvfOzvKfYC7X4sZCdXV4LCaJI4fyrBjNE6t/HLSurgBMlKDHZiDNQ
- GZLRoK30fdzqCsw8Q1jtBLLhCj24Htg9Thas+XhOp+lDse7uKp8Cz3lZvUusZ7GMqJUu
- eVVMjmzfdL/FPtQdXAyraj/vFbY/5otf/0+htbGiOpaeYVKUVjhhM1ihMMOFrYWrA5sY
- ZZBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759942625; x=1760547425;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=BtxsZvw7ZUfiZlsMlvMyfedw4t0xzCAElKBhmmA01y8=;
- b=MXxY+UbZgt0S/ox1G/Aq6FmxzfoF6otZmwyNqVpQcbzi2iO85qaEvaGbxOWdABX5P/
- L/VXkZjSLi5nZzyGxGab3y6i1nu87UNIcT3qUNlOxD3Tx/UvgovA41vIcYkhgjheyi/B
- 7lq9Dgmugt8lIxe1CHutKDAiuMxR8wandgFTKaJGQFzS01+yvPPGAeR5DDjkpjr2Odvs
- S5Ok2E2wDRjylTWnyqBxw8mXoVrkjmHEp0qn6lYgE9spi5Zjrm5scuW2aJTDD3RoJ5A2
- 1/flv82WkYruIGLnf552nQNrrHh/Wf8y4G0sCpZa6nxpYl1unBWuyMgYkraGtkrE/NX9
- gsjg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVjzD0fodnQVOQme+y5s0qlPWACsoZI/7U3LagBE3rW0Y8Qa3ITcsVl1C2bSx/Nx1K82j5VWA5I@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxTK7fuGVWxIyVrc3RvmPgC2HBC+AZyYkELl5RPk/Zo4BtXC9LC
- mcDXDiaKO6EtH6b9QbIIbheuV68FdJDgZMHNgHI0+rknCSNBUhYYbr+5ojs4wgwkDKoCUgLiDqy
- 5q6G5l+WYD9j8b0uI+0vynUoTAgt85ZM=
-X-Gm-Gg: ASbGnctRHehPaYlr37WN9lCiu/gh9awwBk7fdX1oGLObw4JIQUrAUDyvZqyShanP6Py
- joTdlO2EfEhuTJR9p9LKcHJgUhakfN+it3dBBeFh0YFQMCDnuuJCZ7kIlq1XA6ZvkneumOEQQfe
- KiEetcwae4BstElUbp50E9VBxuVXIiTeEto9rEJGeo9C+sOg582auJ6/ipR4ypzTqMh4WjKmlfX
- gc0xD9N5cr+I0ZKnbkSCk4knZE2aAJwfNClLI5KtEJQMdQmMLKzqU/zt1Bc8vCJd6kATbEiPpH5
- EQBGDctAAjxg41XOk8n4jv+1Pp740z0LHgVyxhcLnPhc/EOQ4w==
-X-Google-Smtp-Source: AGHT+IE+hV5XvZK2LLA5Zj8MS65c8DKZNoLYsUmppQ2+DVDFH0vWuOn4hQEUZM9Ru/QEpwQVpwGiPDgdVyGxI0qTssQ=
-X-Received: by 2002:a17:902:d4d2:b0:25c:9c28:b425 with SMTP id
- d9443c01a7336-2902745c0a2mr34349905ad.11.1759942624756; Wed, 08 Oct 2025
- 09:57:04 -0700 (PDT)
+X-Greylist: delayed 436 seconds by postgrey-1.36 at gabe;
+ Thu, 03 Jul 2025 21:27:29 UTC
+Received: from smtp-out0.aaront.org (smtp-out0.aaront.org [52.10.12.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E35710E8F5;
+ Thu,  3 Jul 2025 21:27:29 +0000 (UTC)
+Received: from smtp-send0.aaront.org (localhost [IPv6:::1])
+ by smtp-out0.aaront.org (Postfix) with ESMTP id 4bY8mq5CtwzMY;
+ Thu,  3 Jul 2025 21:20:11 +0000 (UTC)
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/simple; d=aaront.org;
+ h=from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=3r7feyyp; bh=/kZmNYWZNOTJQa4opCPhE
+ 9MeAHI82FTFippa+nVrA1o=; b=dqoXjpFePZxdEULpDnRSc1iIU4UTydj/TLfKH
+ HPMBaqlkHTLVMC3dGVYex9NVU6iBEYzQmXt8W7LxEMeYThhAQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aaront.org; h=
+ from:to:cc:subject:date:message-id:mime-version
+ :content-transfer-encoding; s=4x7dsrm2; bh=/kZmNYWZNOTJQa4opCPhE
+ 9MeAHI82FTFippa+nVrA1o=; b=v/BVgkC3yRTStqMBR2f8EZeF/HuMKVSqzUfqb
+ HxVf5nKI7XyG5CgmhaI4PA6+MoQIVykqJYaxMC4e9JYhTBMI8Oh9/3O1B3vQAJzA
+ yT2qo3NmNXZx/dWD34nULC8n6maD5SQR/xGNsh5iNgOJIrUxOV2McxS++VvkUKhq
+ dUDyj0q+yqm1NV4nNraI9k9HuU/OO/G1hgnJsho3gpx3WQRKYpNqNhP26Cf+J6UW
+ ZACEQtJm0eJV4qEn5NmRynCJAFU8SnrjpamGAqpqgz6HEktS8gABBh8nvkeNHtqe
+ icIBqKWKHm0g67l8+0EPGXIG9g2CgVUc+/O3lNR0i3LQ2J98w==
+Received: by smtp-send0.aaront.org (Postfix) id 4bY8mq323rzJm;
+ Thu,  3 Jul 2025 21:20:11 +0000 (UTC)
+From: Aaron Thompson <dev@aaront.org>
+To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Timur Tabi <ttabi@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Aaron Thompson <dev@aaront.org>,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/nouveau: Do not fail module init on debugfs errors
+Date: Thu,  3 Jul 2025 21:19:49 +0000
+Message-Id: <20250703211949.9916-1-dev@aaront.org>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-References: <20251008001253.437911-1-apopple@nvidia.com>
- <20251008001253.437911-5-apopple@nvidia.com>
-In-Reply-To: <20251008001253.437911-5-apopple@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 8 Oct 2025 18:56:52 +0200
-X-Gm-Features: AS18NWBIne5rc-AVIeVWCfebGQh2r5eidrg652ppzGpIdVO4I8s2bzW85Um8QvY
-Message-ID: <CANiq72k5f3f8Kys40sRmaKR8eeq8-4DsDkWDkwMPZ0A1JSFj8g@mail.gmail.com>
-Subject: Re: [PATCH v4 04/13] gpu: nova-core: Add a slice-buffer (sbuffer)
- datastructure
-To: Alistair Popple <apopple@nvidia.com>
-Cc: rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- dakr@kernel.org, acourbot@nvidia.com, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,32 +65,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Oct 8, 2025 at 2:13=E2=80=AFAM Alistair Popple <apopple@nvidia.com>=
- wrote:
->
-> +/// Example:
-> +///
-> +/// let mut buf1 =3D [0u8; 3];
-> +/// let mut buf2 =3D [0u8; 5];
-> +/// let mut sbuffer =3D SWriteBuffer::new([&buf1, &buf2]);
-> +///
-> +/// let data =3D b"hellowo";
-> +/// let result =3D sbuffer.write_all(0, data);
-> +///
-> +/// A sliding window of slices to proceed.
+From: Aaron Thompson <dev@aaront.org>
 
-Please write documentation in the expected format, i.e. using a code
-block and a header:
+If CONFIG_DEBUG_FS is enabled, nouveau_drm_init() returns an error if it
+fails to create the "nouveau" directory in debugfs. One case where that
+will happen is when debugfs access is restricted by
+CONFIG_DEBUG_FS_ALLOW_NONE or by the boot parameter debugfs=off, which
+cause the debugfs APIs to return -EPERM.
 
-    https://docs.kernel.org/rust/coding-guidelines.html#code-documentation
+So just ignore errors from debugfs. Note that nouveau_debugfs_root may
+be an error now, but that is a standard pattern for debugfs. From
+include/linux/debugfs.h:
 
-Eventually, this documentation will get rendered just like the
-`kernel` crate (and the examples building/running as tests etc.),
-which requires following the expected conventions.
+"NOTE: it's expected that most callers should _ignore_ the errors
+returned by this function. Other debugfs functions handle the fact that
+the "dentry" passed to them could be an error and they don't crash in
+that case. Drivers should generally work fine even if debugfs fails to
+init anyway."
 
-By the way, is the sentence "A sliding window of slices to proceed." cut?
+Fixes: 97118a1816d2 ("drm/nouveau: create module debugfs root")
+Cc: stable@vger.kernel.org
+Signed-off-by: Aaron Thompson <dev@aaront.org>
+---
+ drivers/gpu/drm/nouveau/nouveau_debugfs.c | 6 +-----
+ drivers/gpu/drm/nouveau/nouveau_debugfs.h | 5 ++---
+ drivers/gpu/drm/nouveau/nouveau_drm.c     | 4 +---
+ 3 files changed, 4 insertions(+), 11 deletions(-)
 
-Thanks!
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.c b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+index 200e65a7cefc..c7869a639bef 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.c
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.c
+@@ -314,14 +314,10 @@ nouveau_debugfs_fini(struct nouveau_drm *drm)
+ 	drm->debugfs = NULL;
+ }
+ 
+-int
++void
+ nouveau_module_debugfs_init(void)
+ {
+ 	nouveau_debugfs_root = debugfs_create_dir("nouveau", NULL);
+-	if (IS_ERR(nouveau_debugfs_root))
+-		return PTR_ERR(nouveau_debugfs_root);
+-
+-	return 0;
+ }
+ 
+ void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_debugfs.h b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
+index b7617b344ee2..d05ed0e641c4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_debugfs.h
++++ b/drivers/gpu/drm/nouveau/nouveau_debugfs.h
+@@ -24,7 +24,7 @@ extern void nouveau_debugfs_fini(struct nouveau_drm *);
+ 
+ extern struct dentry *nouveau_debugfs_root;
+ 
+-int  nouveau_module_debugfs_init(void);
++void nouveau_module_debugfs_init(void);
+ void nouveau_module_debugfs_fini(void);
+ #else
+ static inline void
+@@ -42,10 +42,9 @@ nouveau_debugfs_fini(struct nouveau_drm *drm)
+ {
+ }
+ 
+-static inline int
++static inline void
+ nouveau_module_debugfs_init(void)
+ {
+-	return 0;
+ }
+ 
+ static inline void
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 0c82a63cd49d..1527b801f013 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1461,9 +1461,7 @@ nouveau_drm_init(void)
+ 	if (!nouveau_modeset)
+ 		return 0;
+ 
+-	ret = nouveau_module_debugfs_init();
+-	if (ret)
+-		return ret;
++	nouveau_module_debugfs_init();
+ 
+ #ifdef CONFIG_NOUVEAU_PLATFORM_DRIVER
+ 	platform_driver_register(&nouveau_platform_driver);
 
-Cheers,
-Miguel
+base-commit: d0b3b7b22dfa1f4b515fd3a295b3fd958f9e81af
+-- 
+2.39.5
+
