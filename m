@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 109CBC83F05
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jul 2025 07:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11B9DC83F03
+	for <nouveau@archiver.kernel.org>; Fri,  4 Jul 2025 07:26:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68E2310E957;
-	Fri,  4 Jul 2025 07:25:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC91110E95D;
+	Fri,  4 Jul 2025 07:26:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="SSIE7rTV";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="byXzmlba";
 	dkim-atps=neutral
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com
- (mail-bn7nam10on2051.outbound.protection.outlook.com [40.107.92.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E06510E950;
- Fri,  4 Jul 2025 07:25:55 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2040.outbound.protection.outlook.com [40.107.94.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0589A10E95A;
+ Fri,  4 Jul 2025 07:26:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MvDzExKrHP4o6qLAgo/Uohzn6btFKt3oDEMh6EDXdAvcubV3vpntZJWUyLz0ep7p4FyiuWY7fmoFjeQZGz/bX5G58PY7/y4g6lzillP6LmsoFFZVLwmEppBCftGNLugo5disD1B02kzjT905fwUCFUH+oueOnwrQv0y7zRNm6bqeuG1qxQ6hs9C7PlAQ4uoxM6wfc+gKzwI7JaR7zgqaVhGbMd7o4Wu6pkpKxSrpHHJevU2Zvfg/iHoxbPgc3N8Gp04Gp6tyLyOVluvgfGmvfMU5HuNz0oGa8J/8O6cNkPIs9J5ftojztuGm6z+/4bkvhyXHOUJ/Qs6c/Gl80fz3wA==
+ b=RKoen62ehCgwOGzPXxYRjdOnUINfyD1CN1U258pMdOGDx/Dv7/q38SMwdAO7wYtSgLfyx/4Rf34eV1mqZUsYsJ92QVQKd9XkvDvh+BsfJ+bPFviF+yAtBKOoDVC1S0WtP7T2ROzF2btfarsve768Yop0Tt6dfy91Ym0XJ3yXrER96LZsCfQYAOchbwe9KkzNt6Y/wjRdSPxl5RnyW1iDVm763nltf6u85H7XxhJH7HiYul8bFqnlnYYUwLah030H3MsL4lopUg8onVOK+iKHX5QD5jNSom9ga0g3m2IG9OehEwkRHHZ4n6bgCbKq9192mnJELGFAgAqjU2xZcy51QA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7uTrdfpIlt4vCDartqaTeHmWvrQhBGQ9t5ida3m0EYo=;
- b=fVT2RxaoMYQaOtNUpnL3bc3gj6TZ9a1aE0iMyhVWqI/LVgKamulOfMn3eOkAQR8r2ElkJgb2p7ttWlnSArLxOI6EVZk/FjZoKqK6na5OA4VWHIRjB1mwvhnyaMJMnhNSBhVY4DiIAdM8asc5fhrJm75eQuTt6MtKcnxptXRCj7bxrnvPOa9wIKG7DPOmGASe1QjPrDwXtqSpMdpEz3iqLNL1LsKh+4M7Lfz6KK28OyWl64n2L1a6MM6vbUdDVl3xOCNsF/m2aia2NoNTY4e1tEXsPIqNhkJLchrd6oPRX1T68tbhNEdZvPiaeMUnS8463+nbHZFczY1bdowiC6DBxA==
+ bh=Mv5OVQdQ+6M2fpADlSUgstMcN9mjAi6gx7zJ0ds7TRg=;
+ b=mUn8ON2lpKuZTTwxwAsGZVj26VpsX7fDR289b08hNBPFMkIWqtMOYRHER6nlC9wXKXN776TjoC4dzVNRUAZwdcN3YH+E9Q5m9hTgAk6lF8tmpQlTcXBs3/N9W9BMzKxrqnjf4uFW7jqezvwRCksZA+ISpyG0f1NcOJfqX3XxRpCWXJUtRvnOKOG7EYf817W0iYgBrlqaWYmY7U4LSGcGEx0KxDaGlrLO/lDFF7sgJqjTZLHF6TpPF1lNklfQlhAfc0qe1WuQl1wDhf+ZA7sP7UV1rPjFcF+HaMupXKRRns4aBMlsLms6UEYzmlAIqjW1PKD8ok2NM2wujF1lDu+5/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7uTrdfpIlt4vCDartqaTeHmWvrQhBGQ9t5ida3m0EYo=;
- b=SSIE7rTVZJK29rhKDF01YApLWglz5FtVGpDcJZfIE3FTkFMhHHgUejGX71tpW56FJ3HK1H7AGLLnKdYbyc690Peia3WJLJGi61ccLCMYxGOV8frQRz98mOyj2vU+JCT+NLlaUo1AGnSkrYP2cY+DLgyWWf4+mpW1fpfE/9c4KI+/OBvGyv0Cz9YUYwM14GmJD0ZmhJB03n+1bj0NykNVdhtZ/42NCrruoVCRgeZSueI8ZCnigJNE4HrNcYz2bmFiMVnxNFPe6Zn4S1MiJpr009hK/atm5ifMau1eHcJDI//fbUoGzalUlWOIigF+fToi3vgc6D7GPSneChSUaAnimQ==
+ bh=Mv5OVQdQ+6M2fpADlSUgstMcN9mjAi6gx7zJ0ds7TRg=;
+ b=byXzmlbaI9ll8CNf5589yQu9XWuW+veBak7ANRPqEHkyJ2P2cMImd6xQIK0bOLohmD43pwmGYGbJhwWHt36sbEmer2GWvl0pmRKE3B+o/+Gl1r5quS65rXIkaoX6eM14bVeubpkcfhWDbFRCZtQ3Un9eGCKZ9QxWhSSa31izgdiBnuI2uprZatzSmqHUJz2CEGFQfIuN8jSGiCFUNrmSB8MHKlJuhFGHqTMfK4+KdoVAOPAUhXz7vZ1D0nm1zqnqt8PwEdVYLZ44ntYZJyD1rAaKlfplQP7x22aWfmeLUpQYLEAks1pbLyv7mfBR+L7WXJvFYH3thJGvDZca0JgcBw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
  by MN0PR12MB6341.namprd12.prod.outlook.com (2603:10b6:208:3c2::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.23; Fri, 4 Jul
- 2025 07:25:53 +0000
+ 2025 07:26:00 +0000
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com
  ([fe80::6e37:569f:82ee:3f99]) by CH2PR12MB3990.namprd12.prod.outlook.com
  ([fe80::6e37:569f:82ee:3f99%4]) with mapi id 15.20.8901.018; Fri, 4 Jul 2025
- 07:25:53 +0000
+ 07:25:59 +0000
 From: Alexandre Courbot <acourbot@nvidia.com>
-Date: Fri, 04 Jul 2025 16:25:10 +0900
-Subject: [PATCH 09/18] gpu: nova-core: register: add fields dispatcher
- internal rule
+Date: Fri, 04 Jul 2025 16:25:12 +0900
+Subject: [PATCH 11/18] gpu: nova-core: register: generate correct `Default`
+ implementation
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-nova-regs-v1-9-f88d028781a4@nvidia.com>
+Message-Id: <20250704-nova-regs-v1-11-f88d028781a4@nvidia.com>
 References: <20250704-nova-regs-v1-0-f88d028781a4@nvidia.com>
 In-Reply-To: <20250704-nova-regs-v1-0-f88d028781a4@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
@@ -60,101 +60,100 @@ Cc: Daniel Almeida <daniel.almeida@collabora.com>,
  dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
  linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>
 X-Mailer: b4 0.14.2
-X-ClientProxiedBy: TYAPR01CA0033.jpnprd01.prod.outlook.com
- (2603:1096:404:28::21) To CH2PR12MB3990.namprd12.prod.outlook.com
+X-ClientProxiedBy: TYCP301CA0003.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:386::9) To CH2PR12MB3990.namprd12.prod.outlook.com
  (2603:10b6:610:28::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|MN0PR12MB6341:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1adb1cc3-0e81-487f-55cc-08ddbacc026e
+X-MS-Office365-Filtering-Correlation-Id: 2226f8bb-9e91-41ab-9c32-08ddbacc062b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|7416014|376014|1800799024|366016|10070799003; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WnRjVEdwRVNiOWkrSDRlQkt2Tms4a28zUmJWbDFjcGhuUldEZ0JDQURlZXli?=
- =?utf-8?B?c2UrelV0TkxjbUZ6RHBibjhDVUVMNVF3d0lHME1MbFYyRVA2aEJzRE9xbWlH?=
- =?utf-8?B?TVRBeEVxTFZoSkprS2NqYVY3Kzc2SmFuYTk5V1FiV0l2SThKS3hJQVlxNG4x?=
- =?utf-8?B?RDRRUW1SSExjRTNXcTJLYzJkL1dVVmgzNDhXcHUweUMveVY1WklQa2l5OFN0?=
- =?utf-8?B?K3hZZysxZ0tuN0RiTlRFNGJ5eVNZcUtxeks0TSsrTDFGS1FzN0l4RERKUlBG?=
- =?utf-8?B?eUJkcnFnNlRRMXZNSlJ3cHM0R2xUTjRnRmRRSW1rU2ZiVE0yS0s3ZFFwUFlS?=
- =?utf-8?B?WkJnMUdrdkhsWk1qQmpJWEdpNDAxYmE1bVhxOGtSN0p4aFozRlFzZnI3MmV4?=
- =?utf-8?B?VFNuMDVpaXloby9Ta0lGQWRGM2FwZXpuQTA3M2NObXRocWlKY3pDUDNUNW5D?=
- =?utf-8?B?RitGWEVIbVp4MVdoKzgzS0plQUNPR1U2ZzNPZ1dGK1BhWXQ4T0lIb2NpNlNn?=
- =?utf-8?B?MjRCV3luZlVkQnV0WUJGVmlhTDNvazAzdTQzbC9XczZ5OFN5Q05QVUJpb2kz?=
- =?utf-8?B?bDRRYWdCb3pFbU5qTVFjZkNPSzJRdmY0SW55YjlyVFREYnlwczkzMXBRRlFV?=
- =?utf-8?B?Z2MzVTRkOFliZG5GQmUzYlVzdHAwZDVXNm94aGl3cHgvZjRyczA4V1cvT1pE?=
- =?utf-8?B?UWViRXE2QUJOQTB1VVdwSWZWMWRnMDZKa0FhMjNZMTVOcVdXd0dYVHQ4RGJT?=
- =?utf-8?B?M2JsdmpsNllQTjB2R3lKNmZ2R0pjYndNTlVOemtML2NndGpQNFc2ZkJuakdD?=
- =?utf-8?B?UXM0bTRmVnJFV3RrYnFSZ3hGbDcwNURQaE1BSVdITjZoTU9qMnFYQ2tTZDFk?=
- =?utf-8?B?OUNHSThFMld3U0c4TDdJZU90V2QxVEVNU1U1S2trSE82aXlUZ1hMOW1Nd2Nk?=
- =?utf-8?B?VXRRUzZGY3dmekxpdWdrTDFDU21kRDNRZnJHVHpKNTc1OVgvU1U0OUlKVTl0?=
- =?utf-8?B?b1d2OUJ5Qm1icXdvSjVub2VXeUs4L1JLbEpuRllBd3pmTlowUkpWeEw3L1Rz?=
- =?utf-8?B?NGJaaDBDUUxmcXl3RUtNdDdEUjI2Nk8waCtaRytVT2lsMmFoMkdqaGN2dkpC?=
- =?utf-8?B?NUxySGZ5VmthaUoxaWhxWWRJRTl3MVd0WHp0ZUR6ZmpHUlN6WHduNkVvQTRM?=
- =?utf-8?B?Nm9mejBpSG9VQU4yNDdJUlk4TXVjTVQwNmxEMC94ejdYZkxvQTFHNy9QN1ZU?=
- =?utf-8?B?RWFQVmNxSHVON0l1YytFeUtsWkFtTmdteVhkdnFFanA1eTBHWDBVK0tpWE1R?=
- =?utf-8?B?ZFhaZkZ0WmN5NjFHc0FTL0YvSENhTllsQmpOcThJa0w4MnMrSEU5RG9UTXg4?=
- =?utf-8?B?OFQ1TXFyTGFHUThpRDcwMXZwejROZlJmc0wwM3VrZlp3WndFaEFiTmk0SFg1?=
- =?utf-8?B?U09SWi9Ua0ZDTTZsMlZhSHcreFNTNDYzNzRHZmpKc0E1eElPcCtRU0VRTGdW?=
- =?utf-8?B?dm9TOHRYMkZxQ3VBSjRkTmw5YzNsVWJxWjBwcjNyVEM3ckE5S295cUtUTHVF?=
- =?utf-8?B?Ulh3OG5LRlVGS3JmdktFb0FiazVBTThOSCtkbDg1SzZhQkx2aVdLTTYzVmcz?=
- =?utf-8?B?RlllTndLNWRjQ2FJZTV3NS9JYkxhZTRaa1RXWDBRalFMcExibGdkQitub05D?=
- =?utf-8?B?Mk1QMDF3TXpGeTEwaGdGV28wdzBhekMzQjdlc293N2JVSEl0QU4yNVlZRklu?=
- =?utf-8?B?YzBrenl1bTlIcmxjUXpVblMvWjVLUU1QdXU0VGEyVURvL2JwUCsrRzE5WGUw?=
- =?utf-8?B?akw5a0Qvajl5MVB5amZNOVBwaVR1MlBXYUg0VXd5Q0VWWGpvZmM2Y3RXQWtt?=
- =?utf-8?B?ZFgyYUM2cEplSjVHQ0lNTUFmdFZVWmZwdnVtakNYNStLTDFLNk5pVWpxd1U1?=
- =?utf-8?Q?QcrGQGZMb+A=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?ZWF6clNSaEZpRmp3OUIyREVnK0ZNT2VVYVRZeE5pRG13eE90c1FYQWpLMGhK?=
+ =?utf-8?B?UW9PUzdGbXFlR2kwZStXTmNMZk9zQkQ3V21hY1gwSlZDUTVYK04wMHpDbWRi?=
+ =?utf-8?B?WkQ5YzVkN1IreGhicjNHdVVWRXFnemFjTHlUeVhXZXNmZFFtbG84S1FQY3M5?=
+ =?utf-8?B?MEJhTmNTZ051NnJvZ3NZZ1NNNmZiTTBNenJHQ1llQytoVVYrcjRPWUdpc0dM?=
+ =?utf-8?B?cTM4bmpOQlZFclMwdDVpQXRIL3hNSzUwYXBXSHc4U0U1UkQyTy9PK1dEZUdM?=
+ =?utf-8?B?VUdxQnF6aHUyNDZYcC9YM2tlWDcwM3ZaSStTTHEvOEs1ZDV4SlRhN3RCOHVL?=
+ =?utf-8?B?QXU3NlRTZ21xbkhUeUNOTi9QNlJobkRVWTVveTVsMVNLQ1B2M05FTlpDSUM2?=
+ =?utf-8?B?REdGQmR4L0s5RVBHMzFrY1BYeWFkMjhKRVZ1NUdpTVZENmFHbVFBOXd1ZzBh?=
+ =?utf-8?B?T3h5SUtvS0MxYkJZckZSN1VjNFFjZFJmWEFwUE9TZEdXS2djWno2bkVQR0pL?=
+ =?utf-8?B?cnFFS3lzL1F0V25Nd3diblNzMjNmUTRaSTcveG1IMVZGSFJmbjk5RGVTdThz?=
+ =?utf-8?B?VHlUSG45M0Y3WmdJc2ZtS0dCMEdXWE9sdmR4cVRVbmoxaWczS3pnU0ZCcHFV?=
+ =?utf-8?B?dWlWYzZPWVJKWHo3bTRIRDMvTEdPOEQ4YWo2WXFoVHphTnpRcGlHNlhiZyt4?=
+ =?utf-8?B?VExITnFtenNuZWNxU2t1WENSbXlvSHI2WFJ6K1hVY1RxdVVIV1d3ZG11Z3or?=
+ =?utf-8?B?RWtxaTRxaUphWXRHSTF4K1cyUCtnYXh4Q1J0UW5SZnFsZmdkc1VtMUdUaytk?=
+ =?utf-8?B?U0NBbVZKcWZhNmI2a2NOWXFyUHZpSWh5VTJwL0RsbkFLTk10N0xQY1I1K3J2?=
+ =?utf-8?B?MmpNTTU4dFFLcjFqcjR4eGNuZVV0WDljNGNCbHljd3ZBaHduT2lBc21ETjNl?=
+ =?utf-8?B?cEVFYWMzUzB1dk44WVVxenZMaFFhMlpxZk15QmZZSXliRkZmRDhRYlVtUjln?=
+ =?utf-8?B?R3djb012V0FOSzYyNmxwU21qMy84L2FGcHFLNWZQZ3dxUVpuSFVzZUFubFZZ?=
+ =?utf-8?B?bkN6Ky9weW43R3EzQUpKVnhEMVlLTDBkZ0plNUttZlIxcFU5VzQ4TjFnV2Fa?=
+ =?utf-8?B?Y0JmU2MxV0FWSGRhRit2TnMxTm1wNTZMZnBXS25TUUQyUEdJdjhHN1EwSWV4?=
+ =?utf-8?B?Slh2c2ViZC9wcGdIbFVCajBUN2d3Kzh3S2FRZjNDQktBWUVvQTh2M3lhZFJa?=
+ =?utf-8?B?ZFdWQWZRNEk0bGVXdTVKUVBWKzZMK1hnYUdkQ2ExUjZueDN5dzFRcVRCbXVC?=
+ =?utf-8?B?Rmp0aTdYNklOK2hSaDlLMjl3UVEzNjR1ODNyMkc3MG1yVkFoM2MzeEVpVEFz?=
+ =?utf-8?B?ZWdQTld5ejdZZDhXRWEzZGV5dnVTOEFEbG5xUFdZaWZNZFNpdVBBYm85YU1M?=
+ =?utf-8?B?TzNaOTB3Qk41V2RRZElld1FVSHBQdXRxdDFvYUo0KzY2WXFjMEVJT0ZmelBP?=
+ =?utf-8?B?bk1EOUFGckxKdS8yYUdKdThBZ1RRbGxXT28ydUJnVkhPUDZSZHhsUFJHNFRj?=
+ =?utf-8?B?VmIyTE5ucENtWFVnT3NzcjRXMmMwMXVyMUpvdzMyRWJrWUIzS0xJc0RRU21D?=
+ =?utf-8?B?N1JGMlhCblk3d0dWbFdteFNGNHlBWk9DcGxWSGw2V041UURscUFDM1ZnQVBm?=
+ =?utf-8?B?blNIQjI3V3ErSENPbWtQYW1wWDNqaVFUMDFIUVFTU21uMFFRTW9lZy9pVUtK?=
+ =?utf-8?B?dXEvWXd2YlN1TEhRRU5hdER5NnE0cDRrd3JSRzRFVFdDV2VVWEZkT2dlUTBD?=
+ =?utf-8?B?MmFwUHdJZEZMVTBQL0p6QWhLT245cWsyNFB2Tk1jb3JSa0JYTlJIK3pySmI5?=
+ =?utf-8?B?aVNxZTlkWWpZRnkzZHg4SVBmb1N0cHBZYkVQVm5qVUViMlE9PQ==?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(7416014)(376014)(1800799024)(366016)(10070799003); DIR:OUT;
  SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b3hPNkl1MlRaelNDZ0ZJajhBQ1FlYjYrdXpRd0xrRlk0NkJleTREVFhVL0Y3?=
- =?utf-8?B?c1hPMFRhNllwaHZ2VkNhbFZMWmtPUnpJaXlPVUlsRWdLa0JqNmNJdzFramNH?=
- =?utf-8?B?eUQrSWtoM0JyOXk0TUl3NWtGQVB0NjJvYTJ0OVpDQ2sxQUc2MS9GUGlpeEs0?=
- =?utf-8?B?amtST2hHam9CMTcxbi9kM0Jxem5NOUR2VTBET3FqcTJ1bVE2SytmYXVEN3Rm?=
- =?utf-8?B?TU5NbytDdDNuTm9lSkdndk1TdTNHalBOUlFtcGFMalNhMDZCSmJtZVFYdk1H?=
- =?utf-8?B?NWc2d1ozeGJFYmtldVh6SzNuSFA0VjFUY2hFUDd5bVYrOUFGcnd1amFibXlP?=
- =?utf-8?B?YUsrRlFDWmk3bUJ4SDNHZEJPbThUbmFqN1M4QS9NSitHSG94Mk8xK095MytH?=
- =?utf-8?B?N0ZNVkgyYTZvNk52bzZJVllkTlRrUTNnTDg4a3JZaHlONHM4bEE1aHlnVnhj?=
- =?utf-8?B?emFXdE9DYnVBS0hqREdLcytKMnhWWTZwVjNEQkt0SVV1enVEc0NoTlpqSzFh?=
- =?utf-8?B?R0RkVlhhVmY3Ti9rbXhTdm1PTElIbU1RenRMcmxvRmhBaUMyYXhBTSs0RXBK?=
- =?utf-8?B?Z0E5bzhaLzNTRkxKTVpjK21Lb29VNlI0bERKaE43OERoLzNqTTNYUkhpNVBv?=
- =?utf-8?B?STlxY09Zb3dCVFJ6L2NSYnhmazNncExHZXd0R1FmS29CMnJVV085V3ZjQWE5?=
- =?utf-8?B?L1lHczMxeG5JTmN3RU1wUC9kc25EYkVOK2pMRmduTlNSS0VrWnAyTTFmVlJm?=
- =?utf-8?B?c21sVTdibS9xL1VBL3FtS21NVExGeDUvc1R2cDJpU2NhcEVmQlJ0KzFoYVZh?=
- =?utf-8?B?NnFOR1JNWTVRTStJTFpFS1VHZGFvMmkzTEpVOXpQbWlmYndsWGlBWjI1clkr?=
- =?utf-8?B?WWlvUDhzWUdIRmcvOWNhcWJYSnZzQlFyZGIzWWdMdE1oS2cvWTU0NmVTUzFQ?=
- =?utf-8?B?YkVSUEpQbVBKVG40WHdRYnZLSjRrdGd5UzladTliUFNMZWRJcHlaLy9DTTJz?=
- =?utf-8?B?L3ZaTW5mUjhHSnJrK2VzTGdmREtPcTBNcG5kRGJyUUNyRjNTbjg2d2hERHly?=
- =?utf-8?B?Z09SdVM5anBZNnQxTngvVURIM05uRkNJQTluUTBvUVozRDd6OEZIaVJrenIw?=
- =?utf-8?B?Nm5uVlVWRFdrd1BLMS9PVlArVnhleVBIbDVXVHE0TitHWmo4L2oydk1ja1Qy?=
- =?utf-8?B?SW9pTVc2OFkrSUVVbHBHM3ROMTBLaTdCOHFpaWtwZDB5RHlRMCtxYjhNd01B?=
- =?utf-8?B?cGo2WUFVaElCTjF0eUU4NTZ0RDVLL2x4UXdxcnVGcm1PTUtzVnNWbkJvKzY3?=
- =?utf-8?B?aFN2REpEUFJNWVlQYkdnZDB4WCs3cGo5ODR4aE1NQ2ZvaVZMYWc3WkF4ekln?=
- =?utf-8?B?bzRzaUFXeDIrUFFqclBsdlR5TmVCS2VuSjlCNkc0L2Zady80cWxJeldTRStC?=
- =?utf-8?B?ei9vRVBvMll3dUJQWklaVmJWeGMwcTRzYjJqbCt2UXprSVZXTStKbUJoQkM2?=
- =?utf-8?B?N05ZSVRLWmNoQko2VHRqdXk1Ylg1TVJSNEppdEFZSlFaUXpWREk4TXo2Z0py?=
- =?utf-8?B?TG1kWjBiRHBXRTZBaFpRcmZINlZqakQrbzRBaXZaQXVpL1dDQWhqNkppdjlt?=
- =?utf-8?B?MGdTTXFkVGhuT2w4L0cyYjZ5eGlBdDg5cHVUd0VwTkxFM0hTcE5Fd1FyRUVv?=
- =?utf-8?B?Vm80dTMvWG5HaHYyQWRoanVCU1Q0S0JnZUFFWDZhZjN0MExCU1lUTlFHWXRG?=
- =?utf-8?B?VklmQk56VU1FTUhWMVEzZnhoUGxPY0tFbVFZbVQ4aXhhWG5CMlFvVWpwME9T?=
- =?utf-8?B?djZMdVZuSExHQzJlbU0vOW1kNzQzamp1NytnMjRrOCtEOTdLQldZeFBJS2lV?=
- =?utf-8?B?aGZMRGh5U0N5T1FLSGRDUFJIanU3ZHRPS0ZKakZHNFJvZ0ttdUZkUCtmRGJT?=
- =?utf-8?B?dWZoT2hRMDRJa050bDQvd0FJVzg1bjNZbzNIZVFhYWJpQjJ1ZGhoUzJUa1lR?=
- =?utf-8?B?blBlYlRFS2trcVhiUHdubDF2S3JlSjltSzdDTkkyR29Jd1dkblBzN0ZUQjhj?=
- =?utf-8?B?alBvamluRnJuRGtEbTlpTzRIRHQ2WVFWSVJzVU40U2R3MDZ0RGJpVVN0cDd2?=
- =?utf-8?B?U0R4Q2w5RzF6VjQ4RU9TZG45eVJXVHVKUGZ0RThvZHFoajR2d2JYQTBrdkNi?=
- =?utf-8?Q?zLgRskGmzAotks4gnlC8my5mb2YIN1Rtv63J8DGkXFyd?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjlQT2tvRUFTQ1A2d2xsUkNYN2NHZCtSTUdGSGpxRDlPZU40ektKbXN1ZEdr?=
+ =?utf-8?B?NHA0WGhJaVRXWDNVV0o2WHBqUERKZS9nZUNUdUU0RzB2OWZqNmZJejh4YTdu?=
+ =?utf-8?B?WmluZ2dYcGtUUXZEV0hURk53RS9xcHc2T3NObncvTTlxL0J4aWN5V1RnSWxC?=
+ =?utf-8?B?YUlTSjlCN0Rmd2ppMUU3RDlJMG1FSEpGUGpiVEowMnllc0FiOStrMEV6MjVJ?=
+ =?utf-8?B?TXJJMExVVVBSSHhHM2FQVW5vWHhGZjNkbTZWNkIwVWxQVytsbFZyMDJZREFl?=
+ =?utf-8?B?b25SYU1ieUVqdjAxdkw3aERzcUJLZVlnY1NsczZMV2hVRDg5cy9WRzRNWUMw?=
+ =?utf-8?B?WHQxNEJaSnFIRlZiOFVqMkp0cGl1VGtSenlvdXhob2VMTjBaOE5tdVNHQmhP?=
+ =?utf-8?B?MjhBQzQxUDdmMFhCSXdOc0xMM3dKUHo1MGlSVnRHMUp4dVQ0cDdxNi9HTDda?=
+ =?utf-8?B?Qi9mejJjalA2M2JqNE1aVVE4R1hQb01qeEcvWXBiZnNSbjVWVmlWUGxFclVW?=
+ =?utf-8?B?RTVkMlRvMVI2RXIwcy9aYXVQTWhzbnVjU0FMeGlnUzRzTSt6a3V4a0NqaW0z?=
+ =?utf-8?B?MWpTOUlZSUF1ZE1ZeWtQb3U1UUdXRElNUkl5ZndvMk1GQlIyYXlRVUdra1VY?=
+ =?utf-8?B?VVBhOWVjcG1YejZpTi93NWpyZFRiRDN2WFNGTk9tM1I4OWlEOFZhdHNHc1E1?=
+ =?utf-8?B?SVlCY0JGT3ZDbnFrS2lZTFU0ZElBMnVOT3JON3NISVhYek44a0ZjR1BvTG03?=
+ =?utf-8?B?NC82M1NxS0pOeGpXRnJrdmJVSnB4QjRhempaanJzSDYrSXY4UWFPTjlCSHBo?=
+ =?utf-8?B?eWxLelFLNG5JSTlESFp6UkZVY0cva2R1S2NCRWZTZ09NV2VPczUxNFAxZGZY?=
+ =?utf-8?B?bWtSQ2pmcGdIOHJNSDlxVmxmb1NOb1RDeWs2ampSMXhEakNmcGNUeklnYmxN?=
+ =?utf-8?B?T0U0QkZ1STVhS3hZNmljS2dxVWlBZWgxV2czc0I2M3I0bmI4TkFVOWhBTmN2?=
+ =?utf-8?B?eGpTN2ZTR3ZZaWRjVU5VblFjd1FneHVtZ3pxWlRHMGtxMjFCZGVxNUxrZ3Nl?=
+ =?utf-8?B?ZmVTNDJpN0E0N1BhbXA5TjJvWCtWYnFFODFsK3lqZ1lNT1JsV1ZhY2NQUnM1?=
+ =?utf-8?B?YURzMGdTRllXMU1GbmMyeTFxMHVTTFhnWDhCRDBZS3c4ZkE0MGt5UWNkUlJV?=
+ =?utf-8?B?YWFkdVc0NUVoeWJLTjNDRGsrMGFHdnlEalliZ3dEaUQzbXhLOFZvbVJFV2lV?=
+ =?utf-8?B?Qm4zek85ekdxUzlqc0ZDNEM1UVpVbG9TV0M1V25iMEhzSnlnK0p1NnpxSmhh?=
+ =?utf-8?B?bG9EeVRpVjVBLzE3ckZUMEUxc0luSlhLWkNoNlh1QnY2cW40SEpSSUEwcExM?=
+ =?utf-8?B?WjlIUEsxVkd6N08rSGhIMEpLL1V5M2Q5amNQdjRGaThZYTdsVWttY0MwMkhl?=
+ =?utf-8?B?SGgwNGFXN01HY09uTVp5OXY4c0drOEtTZTMzNFZRSkFLbnVKMGJSVlp0ZHBC?=
+ =?utf-8?B?ZUNGekZOSGJDU1NITEdER05YbFFRb2FwTVNNaU1NaGpDUldJc3JnZnhmdVNu?=
+ =?utf-8?B?STE0L1I3R2tiQnprNFJUY09COE5tZ3hoOGFiWVIxd2xiSk5uaHN2MUlaYm5N?=
+ =?utf-8?B?NjVyVHhqcHllZmpKaHRwRlVCVTVSMXBQbmV6ZmtGTHBSQlVIa1Y4dlNsL0U1?=
+ =?utf-8?B?eGNLUFVTVUxMdzFzYUhTd29rZExrUnpnRlB1M3RLMkh3TCtldWZ0ZU9SMU95?=
+ =?utf-8?B?a1I2SmR1Qmh1R3BPSk1xZDhBUTFMQ1lycEdTRFVxS1JqOFJCYVppcHcrUlc0?=
+ =?utf-8?B?WEVVV1dPaExnRzk0RFRlc21uMy9CeGF3NDlPTGFSeXZnL1FubzJTRTdWN0xq?=
+ =?utf-8?B?ZEs5WEFrSktrcjhMT2d0bUQwbWIydkh0SmFDSWlRUjNuTU1KZ3lCZHZiT2hO?=
+ =?utf-8?B?QkhldGIwdEdtQk9tNGdQOVBvQmpaU1hHelZxdm9vc0U2SGdENTczZmY5cW9Y?=
+ =?utf-8?B?TjgreXpYcFBtMktJaFd3U1ZBL29wMFZ3bS9RYjVVVHNUMG4rcytUTUFEMnJP?=
+ =?utf-8?B?SG1OUi90SkFSV0R1ZXhyMmN0ODJwbHVjckxWL3g5QVpzN1dUc1lxY1lTVDBJ?=
+ =?utf-8?B?SXp0OE1HZWhuempFdUo3OFp4VE9YNVpLYzZnRGZjblBGVm1lYlAvUVM5bG8x?=
+ =?utf-8?Q?TumMvmyHytihIlRf8HJc8J9/7ngPnpGXDyJW66yec1Px?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1adb1cc3-0e81-487f-55cc-08ddbacc026e
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2226f8bb-9e91-41ab-9c32-08ddbacc062b
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 07:25:53.4298 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Jul 2025 07:25:59.8683 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: umWuw02N3iM/+x0kTPE8bLjEKx1Th31W2P+hq1/zPsmNRraRw1URIQRVpGCizz4IUwU6Gbx6mnkjelfyGfkQSw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: yIrf0Jl6gi2kGh9gd9WSY9DF9eRbpQVZbk83RJFm88DpZll79XzMbLv+nSN0L26og2y6y/bZGkT5kbIKG8jUEg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6341
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,105 +169,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fields are complex and cumbersome to match in a rule, and were only
-captured in order to generate the field accessors. However, there are
-other places (like the `Debug` and `Default` implementations) where we
-would benefit from having access to at least some of the field
-information, but refrained from doing so because it would have meant
-matching the whole fields in a rule more complex than we need.
-
-Introduce a new `@fields_dispatcher` internal rule that captures all the
-field information and passes it to `@field_accessors`. It does not
-provide any functional change in itself, but allows us to reuse the
-captured field information partially to provide better `Debug` and
-`Default` implementations in following patches.
+The `Default` implementation of a register should be the aggregate of
+the default values of all its fields, and not simply be zeroed.
 
 Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 ---
- drivers/gpu/nova-core/regs/macros.rs | 42 +++++++++++++++++++++++++++---------
- 1 file changed, 32 insertions(+), 10 deletions(-)
+ drivers/gpu/nova-core/regs/macros.rs | 26 +++++++++++++++++++++++---
+ 1 file changed, 23 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
-index 60e5e6a2250a9db453a7a648108af6acaa047342..1d473ceb7b97e18e36246569abf0bb04e7b02060 100644
+index 75b7b742b117240543ad292fc69e5e1341728174..97895800ff7031d287b3bbd03a00b1ca71014aa8 100644
 --- a/drivers/gpu/nova-core/regs/macros.rs
 +++ b/drivers/gpu/nova-core/regs/macros.rs
-@@ -88,37 +88,33 @@
- macro_rules! register {
-     // Creates a register at a fixed offset of the MMIO space.
-     ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
--        register!(@common $name $(, $comment)?);
--        register!(@field_accessors $name { $($fields)* });
-+        register!(@core $name $(, $comment)? { $($fields)* } );
-         register!(@io $name @ $offset);
-     };
- 
-     // Creates an alias register of fixed offset register `alias` with its own fields.
-     ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
--        register!(@common $name $(, $comment)?);
--        register!(@field_accessors $name { $($fields)* });
-+        register!(@core $name $(, $comment)? { $($fields)* } );
-         register!(@io $name @ $alias::OFFSET);
-     };
- 
-     // Creates a register at a relative offset from a base address.
-     ($name:ident @ + $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
--        register!(@common $name $(, $comment)?);
--        register!(@field_accessors $name { $($fields)* });
-+        register!(@core $name $(, $comment)? { $($fields)* } );
-         register!(@io $name @ + $offset);
-     };
- 
-     // Creates an alias register of relative offset register `alias` with its own fields.
-     ($name:ident => + $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
--        register!(@common $name $(, $comment)?);
--        register!(@field_accessors $name { $($fields)* });
-+        register!(@core $name $(, $comment)? { $($fields)* } );
-         register!(@io $name @ + $alias::OFFSET);
-     };
+@@ -112,14 +112,14 @@ macro_rules! register {
  
      // All rules below are helpers.
  
-     // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`, `BitOr`,
--    // and conversion to regular `u32`).
--    (@common $name:ident $(, $comment:literal)?) => {
-+    // and conversion to the value type) and field accessor methods.
-+    (@core $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
+-    // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`, `BitOr`,
+-    // and conversion to the value type) and field accessor methods.
++    // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`,
++    // `Default`, `BitOr`, and conversion to the value type) and field accessor methods.
+     (@core $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
          $(
          #[doc=$comment]
          )?
-@@ -149,6 +145,32 @@ fn from(reg: $name) -> u32 {
-                 reg.0
-             }
-         }
-+
-+        register!(@fields_dispatcher $name { $($fields)* });
-+    };
-+
-+    // Captures the fields and passes them to all the implementers that require field information.
-+    //
-+    // Used to simplify the matching rules for implementers, so they don't need to match the entire
-+    // complex fields rule even though they only make use of part of it.
-+    (@fields_dispatcher $name:ident {
-+        $($hi:tt:$lo:tt $field:ident as $type:tt
-+            $(?=> $try_into_type:ty)?
-+            $(=> $into_type:ty)?
-+            $(, $comment:literal)?
-+        ;
-+        )*
-+    }
-+    ) => {
-+        register!(@field_accessors $name {
-+            $(
-+                $hi:$lo $field as $type
-+                $(?=> $try_into_type)?
-+                $(=> $into_type)?
-+                $(, $comment)?
-+            ;
-+            )*
-+        });
+         #[repr(transparent)]
+-        #[derive(Clone, Copy, Default)]
++        #[derive(Clone, Copy)]
+         pub(crate) struct $name(u32);
+ 
+         impl ::core::ops::BitOr for $name {
+@@ -162,6 +162,7 @@ fn from(reg: $name) -> u32 {
+             )*
+         });
+         register!(@debug $name { $($field;)* });
++        register!(@default $name { $($field;)* });
      };
  
      // Defines all the field getter/methods methods for `$name`.
+@@ -321,6 +322,25 @@ fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+         }
+     };
+ 
++    // Generates the `Default` implementation for `$name`.
++    (@default $name:ident { $($field:ident;)* }) => {
++        /// Returns a value for the register where all fields are set to their default value.
++        impl ::core::default::Default for $name {
++            fn default() -> Self {
++                #[allow(unused_mut)]
++                let mut value = Self(Default::default());
++
++                ::kernel::macros::paste!(
++                $(
++                value.[<set_ $field>](Default::default());
++                )*
++                );
++
++                value
++            }
++        }
++    };
++
+     // Generates the IO accessors for a fixed offset register.
+     (@io $name:ident @ $offset:expr) => {
+         #[allow(dead_code)]
 
 -- 
 2.50.0
