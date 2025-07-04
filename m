@@ -4,105 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EF2ACCD185
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B3CCCD189
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C344A10E561;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70D7810E57D;
 	Mon,  6 Oct 2025 20:57:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NyUMWl2R";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Qd8Clkfx";
 	dkim-atps=neutral
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com
- [209.85.167.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08CD310E09C;
- Sun,  1 Jun 2025 19:43:09 +0000 (UTC)
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-54998f865b8so3542984e87.3; 
- Sun, 01 Jun 2025 12:43:09 -0700 (PDT)
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
+ [209.85.160.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15FAA10EA72;
+ Fri,  4 Jul 2025 20:16:05 +0000 (UTC)
+Received: by mail-qt1-f177.google.com with SMTP id
+ d75a77b69052e-4a58f79d6e9so15127881cf.2; 
+ Fri, 04 Jul 2025 13:16:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748806988; x=1749411788; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zlttJep6rq3I8+o8EQ7DmNCSKFq6mJq8IUZsLPjanpw=;
- b=NyUMWl2RIB/ozSc9O5j54P6lw075LTTvqTEzFUkLHX/YZM8CBuwS1EqKfCm9pgLNL5
- 8YppaGmjiikJhs864l0TJFnrn00/wL2aVncJ4dc74DdD6UN5m1ck/CtuO9v1JUITBatf
- jp4P0tL5LFx2PkavNkHgsnIBK6FcDTQyS/oGWSVZEclhuJOxG2KaxVmvAV9zjCZq3grv
- Wp/YZryjkXSaGE604vsxaJeCDaQoXS27hNYHBCmDwNw/HG+oTHI+vyvivv0ssbII6oa2
- DdwhyqgLMvDWU7lTj6EFmuaMfJtO4Fbrd0yaRc2DCOX8ghXT8ZqKUa3V8sZs8sim0DBD
- RDHw==
+ d=gmail.com; s=20230601; t=1751660164; x=1752264964; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=ytj/U1rka5vUlSmFzHnNuz0MRFUCm7uq4gnATea5MG4=;
+ b=Qd8Clkfx1QMJiCTdkey0kgjt5WTDPU2cRLiYg76qE1EQnAbd0jn2goXmF7OnYkAMm8
+ SEeVSY4tU2OlhOe2jXQlsyc8t1D0kwtgEpLg8xxNtrP/JTK6WGirZfQw4HhdzeGsaTQy
+ Qyk9BMsfK38UkU/KB05vurICk3bOJMoSHLew+mUXBSinYxEYmU90tdKnjbodiVslxPgc
+ EGHBkTRS8pt5Keh8DTAffksZ7rn+dWS8szK4FcTTdl0rEVrJp5J38xZ5ilTQbtnB65Gb
+ CL555vmul+taPy1ys/rTmrUyalF02FLAaFIv1b0CltNqx4wsqGEkV01tOsmft0Ct0oY+
+ V2MQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748806988; x=1749411788;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1751660164; x=1752264964;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=zlttJep6rq3I8+o8EQ7DmNCSKFq6mJq8IUZsLPjanpw=;
- b=sF6rsfk3vuinWfHo4hRfODOk7Lz9UGbdTFRuuGu6dMY8z+ruExA3DVc3Z9yLn7nkXR
- GB6Ti6nAWmu90/TQJ5LpyMnWar/hNE6eUPxfuHSd0OD2Q6ASH76pTmP22ptjIe+QevzD
- biusfSOVCiVoYEFc9iQ5bREE0wKpTUveT4bS96moxjTxK1V8LZOU5J0LeEObrP+vKuH1
- QbDRSkxHQd2x7RWCTdpLrrsPl0R4n9TueWD/lENLg74gX1Vd3vF2VIpwGPeCjxoA0OGJ
- wFKbXZfJOsUDqfVnWEpEVE0pMvMHg97FLyDbCuagiTDsJ9I7vWickAEEFY+eNIU7HxUF
- /irA==
+ bh=ytj/U1rka5vUlSmFzHnNuz0MRFUCm7uq4gnATea5MG4=;
+ b=tXmCsK7ZqqOdeJkCgs4R96gB5IDrpAvZmY+I98i5IPhA5zsNG+1GNFWTfvHRot66np
+ FTOcFimwybHerlx+CcdoPFFOFOGwEL+PR7t7xBJApy03hrijkS65hj+p/CF0X4kJ6Lh3
+ rA+j1nkLFBV9WbZqSExSVQf6OUdVwLKYMbZ0dpyHuUICfTr973q/s9/UdI5V+95yC3y1
+ DqHImujzE7puKUmdY4242h+UEAeVecfR5408J51Xk4pVpsIGIorHJkUZ46iKU3hTwNxb
+ AlQDvu19xoCBj0cg2X4QCid0Hb84TAKlyxrv/wkChW/8y/OovdsqUm//kYDFhPrCT19q
+ hxqw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW3URIb9dFlFg65osgh7j9lpR2iSANX/AAqEUsWwlIh/jilMy0uLBvwKojZBQ7JO7XJU3ChHd4gLg==@lists.freedesktop.org,
- AJvYcCWjeR054Ap3QbvuJkJVMMXHdalO8jpBmvJNeALf5Q2ILfuXUHNkH0L5/e5ub4mk2IPTCDH3F9deUH8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxD0YD7/m8NLRhJyp1nRF8oF9pGB1k6wMRHuSkQqK/488ViVCIp
- xDNVm681Z/3zxmORoUZxcmaYNDg1qGKdjSrCWdK8lmiFCdc0wxcxoHPKuHjaMMxJW0ayoAxrpQ3
- pRBGQ4kc8iE8usVNp73tC4ipqpEUpRho=
-X-Gm-Gg: ASbGncsUVMIda+SQufikF43Rhw8mpSm+G55f+ww5mxpipJX28xfjqYP1/iNipGnOrCM
- xwLFkNKG6hygpiKFoOyOhGShtCMRcmJg2SDgeSDHim0cRFcfUdHpTBp1WgQ5+4sw69UzFee6l3A
- JXN3pKbAmH+Q4iAXy+0SJqHOIy7aI3hZXfs5dg755G2uN3mlKqD+tqaXDiyCuthaIAipE=
-X-Google-Smtp-Source: AGHT+IHtRgXkoammUnbUpN1dYXGck9bKGEUGn5GT5cV3fPbuB+pGOqAmc7vwPC05DiWkj0JlBHypesZfOXv6vLdnG6Q=
-X-Received: by 2002:a05:6512:3d28:b0:553:2c58:f967 with SMTP id
- 2adb3069b0e04-5533b93b8f9mr3282822e87.56.1748806987505; Sun, 01 Jun 2025
- 12:43:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250530-cstr-core-v11-0-cd9c0cbcb902@gmail.com>
- <20250530-cstr-core-v11-1-cd9c0cbcb902@gmail.com>
- <DABC3ZAQ01GG.1VT5NL7PIMTEO@kernel.org>
-In-Reply-To: <DABC3ZAQ01GG.1VT5NL7PIMTEO@kernel.org>
+ AJvYcCUrxKR1bn8mp5+Z/0tEAVabWUYLby9KAP46asVlDaRHf4hSEy3Eyx2CQ1nSl8f2L43ME2+tkgOVFN8=@lists.freedesktop.org,
+ AJvYcCXVKfN0o7udIUqG3kA+zU/v34bR5iGRWZ5kpxxuivxj42jluWp7g3KdykmWNdO9w6U1nfOKQdbubg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyixTnywlfrBL4d+j0JwtU9HTXj04DnIQ28Pn2Uiowi7p0QI/fV
+ 92dpXRlFSucrqGN61bkFCTy0mtL8CRrlrPIxC/jjs1j3nAAki7BIsV80
+X-Gm-Gg: ASbGncvqLgSJWTJZBQj2lHzKcKjXHVJRasrt3ldKJ028YiAlWnWgvGB/UDwMQMqLZWW
+ 22LjdU2et9o/9t7S/NCwlM9/FiCOovNK5xNY2sJ3dcqc2hVexL9x/hIy6gh15LDyTbvPF2z8SAH
+ r+BFhQR+y6+fdjfnGtD30Z6E8T4xmhEFVoXL7RmXEhnt+sG0Z06rMblQQGcCcYQJFajFJs70oQL
+ cnr6ZGdpovHwObxmXCsPkEd4t/cBnEQtfs+lT1jgYNgGwYf7JXf9W2xPxFUedUHM1sSLq9Eh/xG
+ J95ROTDi17J6XK7jt0Q3QssYIgCS7muCsefOjqsRuUKD9aIqTHO80GLzyh9UehNH9ZnZ2a9hY3i
+ foWB2hiY=
+X-Google-Smtp-Source: AGHT+IFEHuArpM8TIRSfH3/PNk3fgwhnpLrdJuiimaZA+jC0FuRTqewTYv7paL4gvO9Vh/4dQDMg8w==
+X-Received: by 2002:ac8:7e86:0:b0:4a6:c5ee:6ced with SMTP id
+ d75a77b69052e-4a9a6d5f372mr751781cf.4.1751660163869; 
+ Fri, 04 Jul 2025 13:16:03 -0700 (PDT)
+Received: from 156.1.168.192.in-addr.arpa
+ ([2600:4041:5c29:e400:94f3:d2bb:5ace:77a1])
+ by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4a9949e5221sm19772941cf.2.2025.07.04.13.16.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 04 Jul 2025 13:16:03 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Sun, 1 Jun 2025 15:42:30 -0400
-X-Gm-Features: AX0GCFsKjS9hgEwmEsRuHll_MOXzoBWv1p_-8FxpcxZc3tsgxztATvJimliHSmg
-Message-ID: <CAJ-ks9=awTggTjr-_dkaWLQRkQVwkBQKiJzdP9dA7_=zFKRY+g@mail.gmail.com>
-Subject: Re: [PATCH v11 1/5] rust: macros: reduce collections in `quote!` macro
-To: Benno Lossin <lossin@kernel.org>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+Date: Fri, 04 Jul 2025 16:14:52 -0400
+Subject: [PATCH 1/6] rust: kernel: remove `fmt!`, fix
+ clippy::uninlined-format-args
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250704-core-cstr-prepare-v1-1-a91524037783@gmail.com>
+References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Danilo Krummrich <dakr@kernel.org>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openssh-sha256; t=1751660160; l=8814;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=0eE29d4BDbrbeYPny4FZm2lEWg1f3s4QbLWbmMdfS2Q=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QBTfUwC+8+4Q7FidFkzWZ9u87I5aWLRGbg8aJnPxxBijaaEp1K9afxbrP+TMPnlXRRmGa9ue8Lk
+ J89tQ+BdPTgY=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,20 +110,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Jun 1, 2025 at 12:24=E2=80=AFPM Benno Lossin <lossin@kernel.org> wr=
-ote:
->
-> On Fri May 30, 2025 at 2:27 PM CEST, Tamir Duberstein wrote:
-> > Remove a handful of unncessary intermediate vectors and token streams;
-> > mainly the top-level stream can be directly extended with the notable
-> > exception of groups.
->
-> What's the motivation for this?
+Rather than export a macro that delegates to `core::format_args`, simply
+re-export `core::format_args` as `fmt` from the prelude. This exposes
+clippy warnings which were previously obscured by this macro, such as:
 
-I was squinting at the macro to understand how it worked and spotted
-these oddities.
+    warning: variables can be used directly in the `format!` string
+      --> ../drivers/cpufreq/rcpufreq_dt.rs:21:43
+       |
+    21 |     let prop_name = CString::try_from_fmt(fmt!("{}-supply", name)).ok()?;
+       |                                           ^^^^^^^^^^^^^^^^^^^^^^^
+       |
+       = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#uninlined_format_args
+       = note: `-W clippy::uninlined-format-args` implied by `-W clippy::all`
+       = help: to override `-W clippy::all` add `#[allow(clippy::uninlined_format_args)]`
+    help: change this to
+       |
+    21 -     let prop_name = CString::try_from_fmt(fmt!("{}-supply", name)).ok()?;
+    21 +     let prop_name = CString::try_from_fmt(fmt!("{name}-supply")).ok()?;
+       |
 
-> I wouldn't spend much effort on this file, as it'll go away when we add t=
-he `quote` crate.
+Thus fix them in the same commit. This could possibly be fixed in two
+stages, but the diff is small enough (outside of kernel/str.rs) that I
+hope it can taken in a single commit.
 
-Eh, this seems to be in the "I'll believe it when I see it" category.
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+---
+ drivers/cpufreq/rcpufreq_dt.rs    |  3 +--
+ drivers/gpu/nova-core/firmware.rs |  5 +++--
+ rust/kernel/opp.rs                |  2 +-
+ rust/kernel/prelude.rs            |  2 +-
+ rust/kernel/str.rs                | 34 ++++++++++++++--------------------
+ 5 files changed, 20 insertions(+), 26 deletions(-)
+
+diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
+index 30a170570c0e..4608d2286fa1 100644
+--- a/drivers/cpufreq/rcpufreq_dt.rs
++++ b/drivers/cpufreq/rcpufreq_dt.rs
+@@ -9,7 +9,6 @@
+     cpumask::CpumaskVar,
+     device::{Core, Device},
+     error::code::*,
+-    fmt,
+     macros::vtable,
+     module_platform_driver, of, opp, platform,
+     prelude::*,
+@@ -19,7 +18,7 @@
+ 
+ /// Finds exact supply name from the OF node.
+ fn find_supply_name_exact(dev: &Device, name: &str) -> Option<CString> {
+-    let prop_name = CString::try_from_fmt(fmt!("{}-supply", name)).ok()?;
++    let prop_name = CString::try_from_fmt(fmt!("{name}-supply")).ok()?;
+     dev.property_present(&prop_name)
+         .then(|| CString::try_from_fmt(fmt!("{name}")).ok())
+         .flatten()
+diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/firmware.rs
+index 4b8a38358a4f..e503a4fddae0 100644
+--- a/drivers/gpu/nova-core/firmware.rs
++++ b/drivers/gpu/nova-core/firmware.rs
+@@ -24,11 +24,12 @@ pub(crate) struct Firmware {
+ 
+ impl Firmware {
+     pub(crate) fn new(dev: &device::Device, chipset: Chipset, ver: &str) -> Result<Firmware> {
+-        let mut chip_name = CString::try_from_fmt(fmt!("{}", chipset))?;
++        let mut chip_name = CString::try_from_fmt(fmt!("{chipset}"))?;
+         chip_name.make_ascii_lowercase();
++        let chip_name = &*chip_name;
+ 
+         let request = |name_| {
+-            CString::try_from_fmt(fmt!("nvidia/{}/gsp/{}-{}.bin", &*chip_name, name_, ver))
++            CString::try_from_fmt(fmt!("nvidia/{chip_name}/gsp/{name_}-{ver}.bin"))
+                 .and_then(|path| firmware::Firmware::request(&path, dev))
+         };
+ 
+diff --git a/rust/kernel/opp.rs b/rust/kernel/opp.rs
+index 0e94cb2703ec..5a161ad12bf7 100644
+--- a/rust/kernel/opp.rs
++++ b/rust/kernel/opp.rs
+@@ -345,7 +345,7 @@ fn drop(&mut self) {
+ /// impl ConfigOps for Driver {}
+ ///
+ /// fn configure(dev: &ARef<Device>) -> Result<ConfigToken> {
+-///     let name = CString::try_from_fmt(fmt!("{}", "slow"))?;
++///     let name = CString::try_from_fmt(fmt!("slow"))?;
+ ///
+ ///     // The OPP configuration is cleared once the [`ConfigToken`] goes out of scope.
+ ///     Config::<Driver>::new()
+diff --git a/rust/kernel/prelude.rs b/rust/kernel/prelude.rs
+index 2f30a398dddd..3ca934885797 100644
+--- a/rust/kernel/prelude.rs
++++ b/rust/kernel/prelude.rs
+@@ -31,9 +31,9 @@
+ // `super::std_vendor` is hidden, which makes the macro inline for some reason.
+ #[doc(no_inline)]
+ pub use super::dbg;
+-pub use super::fmt;
+ pub use super::{dev_alert, dev_crit, dev_dbg, dev_emerg, dev_err, dev_info, dev_notice, dev_warn};
+ pub use super::{pr_alert, pr_crit, pr_debug, pr_emerg, pr_err, pr_info, pr_notice, pr_warn};
++pub use core::format_args as fmt;
+ 
+ pub use super::{try_init, try_pin_init};
+ 
+diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+index cbc8b459ed41..10399fb7af45 100644
+--- a/rust/kernel/str.rs
++++ b/rust/kernel/str.rs
+@@ -54,13 +54,13 @@ impl fmt::Display for BStr {
+     /// Formats printable ASCII characters, escaping the rest.
+     ///
+     /// ```
+-    /// # use kernel::{fmt, b_str, str::{BStr, CString}};
++    /// # use kernel::{prelude::fmt, b_str, str::{BStr, CString}};
+     /// let ascii = b_str!("Hello, BStr!");
+-    /// let s = CString::try_from_fmt(fmt!("{}", ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
+     /// assert_eq!(s.as_bytes(), "Hello, BStr!".as_bytes());
+     ///
+     /// let non_ascii = b_str!("🦀");
+-    /// let s = CString::try_from_fmt(fmt!("{}", non_ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{non_ascii}"))?;
+     /// assert_eq!(s.as_bytes(), "\\xf0\\x9f\\xa6\\x80".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
+     /// ```
+@@ -85,14 +85,14 @@ impl fmt::Debug for BStr {
+     /// escaping the rest.
+     ///
+     /// ```
+-    /// # use kernel::{fmt, b_str, str::{BStr, CString}};
++    /// # use kernel::{prelude::fmt, b_str, str::{BStr, CString}};
+     /// // Embedded double quotes are escaped.
+     /// let ascii = b_str!("Hello, \"BStr\"!");
+-    /// let s = CString::try_from_fmt(fmt!("{:?}", ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{ascii:?}"))?;
+     /// assert_eq!(s.as_bytes(), "\"Hello, \\\"BStr\\\"!\"".as_bytes());
+     ///
+     /// let non_ascii = b_str!("😺");
+-    /// let s = CString::try_from_fmt(fmt!("{:?}", non_ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{non_ascii:?}"))?;
+     /// assert_eq!(s.as_bytes(), "\"\\xf0\\x9f\\x98\\xba\"".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
+     /// ```
+@@ -429,15 +429,15 @@ impl fmt::Display for CStr {
+     ///
+     /// ```
+     /// # use kernel::c_str;
+-    /// # use kernel::fmt;
++    /// # use kernel::prelude::fmt;
+     /// # use kernel::str::CStr;
+     /// # use kernel::str::CString;
+     /// let penguin = c_str!("🐧");
+-    /// let s = CString::try_from_fmt(fmt!("{}", penguin))?;
++    /// let s = CString::try_from_fmt(fmt!("{penguin}"))?;
+     /// assert_eq!(s.as_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
+     ///
+     /// let ascii = c_str!("so \"cool\"");
+-    /// let s = CString::try_from_fmt(fmt!("{}", ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
+     /// assert_eq!(s.as_bytes_with_nul(), "so \"cool\"\0".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
+     /// ```
+@@ -459,16 +459,16 @@ impl fmt::Debug for CStr {
+     ///
+     /// ```
+     /// # use kernel::c_str;
+-    /// # use kernel::fmt;
++    /// # use kernel::prelude::fmt;
+     /// # use kernel::str::CStr;
+     /// # use kernel::str::CString;
+     /// let penguin = c_str!("🐧");
+-    /// let s = CString::try_from_fmt(fmt!("{:?}", penguin))?;
++    /// let s = CString::try_from_fmt(fmt!("{penguin:?}"))?;
+     /// assert_eq!(s.as_bytes_with_nul(), "\"\\xf0\\x9f\\x90\\xa7\"\0".as_bytes());
+     ///
+     /// // Embedded double quotes are escaped.
+     /// let ascii = c_str!("so \"cool\"");
+-    /// let s = CString::try_from_fmt(fmt!("{:?}", ascii))?;
++    /// let s = CString::try_from_fmt(fmt!("{ascii:?}"))?;
+     /// assert_eq!(s.as_bytes_with_nul(), "\"so \\\"cool\\\"\"\0".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
+     /// ```
+@@ -578,7 +578,7 @@ mod tests {
+ 
+     macro_rules! format {
+         ($($f:tt)*) => ({
+-            CString::try_from_fmt(::kernel::fmt!($($f)*))?.to_str()?
++            CString::try_from_fmt(fmt!($($f)*))?.to_str()?
+         })
+     }
+ 
+@@ -840,7 +840,7 @@ fn write_str(&mut self, s: &str) -> fmt::Result {
+ /// # Examples
+ ///
+ /// ```
+-/// use kernel::{str::CString, fmt};
++/// use kernel::{str::CString, prelude::fmt};
+ ///
+ /// let s = CString::try_from_fmt(fmt!("{}{}{}", "abc", 10, 20))?;
+ /// assert_eq!(s.as_bytes_with_nul(), "abc1020\0".as_bytes());
+@@ -930,9 +930,3 @@ fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+         fmt::Debug::fmt(&**self, f)
+     }
+ }
+-
+-/// A convenience alias for [`core::format_args`].
+-#[macro_export]
+-macro_rules! fmt {
+-    ($($f:tt)*) => ( ::core::format_args!($($f)*) )
+-}
+
+-- 
+2.50.0
+
