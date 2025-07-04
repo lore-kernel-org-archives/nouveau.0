@@ -4,60 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D971D5B15E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C3FD5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A76E10EA75;
-	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB3A10EA89;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ti.com header.i=@ti.com header.b="iEYljnBg";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="HvjbTIn/";
 	dkim-atps=neutral
-X-Greylist: delayed 1314 seconds by postgrey-1.36 at gabe;
- Mon, 29 Apr 2024 09:41:12 UTC
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9FC110FE3D
- for <nouveau@lists.freedesktop.org>; Mon, 29 Apr 2024 09:41:12 +0000 (UTC)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
- by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 43T9JHf3110209;
- Mon, 29 Apr 2024 04:19:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
- s=ti-com-17Q1; t=1714382357;
- bh=GAeJutmBfbXi2G1J44pQsF+mK6WtMQQGoTi+2ZHgAFI=;
- h=Date:Subject:To:References:From:In-Reply-To;
- b=iEYljnBglN1umF0i0eKBO28GZYJEVrBWJ2wcntfpRn7l/oQMlQqlR8Bk72Jr/bM4b
- 4nMvuIvuDF3XW653x9aBPUgnLqcgpPQO2sbxXDy4i4A/b7OJl2XCEejuZuqX21aIEo
- MJRGBCGToX7Ra9u9CAszPvBe0crDw5ucGLl3egc4=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
- by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 43T9JHKx001675
- (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
- Mon, 29 Apr 2024 04:19:17 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 29
- Apr 2024 04:19:16 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 29 Apr 2024 04:19:16 -0500
-Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
- by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 43T9JD0G118263;
- Mon, 29 Apr 2024 04:19:14 -0500
-Message-ID: <c5ff8d3e-ecfc-4970-86c0-540b75b4be2e@ti.com>
-Date: Mon, 29 Apr 2024 14:49:13 +0530
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
+ [209.85.216.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ED0C10E081;
+ Fri,  4 Jul 2025 12:15:41 +0000 (UTC)
+Received: by mail-pj1-f44.google.com with SMTP id
+ 98e67ed59e1d1-31384c8ba66so182823a91.1; 
+ Fri, 04 Jul 2025 05:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1751631340; x=1752236140; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=JTF27XEasyApS1nP/vyqUwBctBYmx+jAOL8SGdjCGlg=;
+ b=HvjbTIn/podv9zGc0ayQJvvbAyP9qFrjkN6U3xY7ccog/MBTqxmVLcr2wRAUwvhQ5M
+ 4YuB00D37MfaUyVDa1Ac+TFMgRPz/Uj7cIBGRUYjF8MeN9SStRXjHjsmZEHUctorCKlj
+ UyXxm5a49rn29RfCIMFHM9njhSWko2nVOatLj7I36IdXAGodnu+MpXs5uYm7MDSIrGvy
+ KgVJhF4I7+mVbZOW4gmsyIZvs+SkN+v03oFaVAusYbtKhM5p6E1hvGokQTWLGaIrlogq
+ rlkA67Z2rNoO6ErLwA9ryQwRQVWf/c1MtkvO7aUm9ciN7RGMV2Any7zJmTTVr1rdd1/o
+ aH8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1751631340; x=1752236140;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=JTF27XEasyApS1nP/vyqUwBctBYmx+jAOL8SGdjCGlg=;
+ b=dNYUNI2Luq3trBhYRYGnDTsuhQpySpvooMe1d90hinqnM/suo77DjZUJv2aq7SQBYY
+ OqfRHE2SbLGabHtPZ929myS1e86EgFkTMT11v1zp7bt5kATETwm/xojB6wlDUFkel5tR
+ oP00BWaHzUwVskuGXWqcihE5mJZ4imzrnHhWycdQQ9F5Sri0mcbC4FVSTTSMARMnvenr
+ VZ9+1rvR8qYJcWeLlo5P7HB+aRkAmcZaDlXxcsZbXS9AZOPvxWGcvhO+1lnRqr2igq0k
+ De5Nujjxx2slWqgqfixHUwQFYDQ+am3KvSo9mxAmidm1wCcIo5mNxiBESUQogz4rmNHI
+ SFAg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVXuaQXohZI0ItiBY0qxUMttLzS8bu9mt0Ua7h6l6n3x7tR188BSZozvtVo9d1pqAJe4iWsH102P2k=@lists.freedesktop.org,
+ AJvYcCWZ52YZM5AiNeIqzxFumBdXYdCfdevvgbQmjfARLeMdjrmMtZileb4TUEKtnAjWx1EMvEmITKJU+A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyvzFce8cWokQybLb+jMT32VN2CByktogG2HncpoegGO2NXkqjh
+ HkFHwQsdEaNe64KkqWyTVUNS4vg7bZ881ew64pHAvn1LWVj9rLJaAmD+XmBkhJuyMfCoVX062i6
+ n0+JIQ450yGbnQfUdizX6YyyaFs+0pN0=
+X-Gm-Gg: ASbGncvJZi7BTJuUGwO5TW095uAUIlGdtBbvUtsZMK2XlFndX7o66kMx751N/9htxbU
+ 5M8aOIbQNyZZcGpgAsGCDpUtwCrPwk8OiVV10EWvEJw/tinZTlyNC+w84gNNdBmwbtLBjA1oalY
+ VOJ9mO8T5AHOKZkz28vIOwRonM5FmQ/FqWchFpXi0REKY=
+X-Google-Smtp-Source: AGHT+IGMzjCKsb3QoFjzETIEVKGlrEiZLPHE+Z9w68l6rNpjdGz0kB0KwvlouvJt/ly+yLKAz3cW4FDCb2lbzAAjjzI=
+X-Received: by 2002:a17:90b:3fc3:b0:311:a314:c2c9 with SMTP id
+ 98e67ed59e1d1-31aac44a149mr1478613a91.1.1751631340480; Fri, 04 Jul 2025
+ 05:15:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] [v7] nouveau: add command-line GSP-RM registry support
-Content-Language: en-US
-To: Timur Tabi <ttabi@nvidia.com>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@redhat.com>, Dave Airlie <airlied@redhat.com>,
- <bskeggs@nvidia.com>, <nouveau@lists.freedesktop.org>
-References: <20240417215317.3490856-1-ttabi@nvidia.com>
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20240417215317.3490856-1-ttabi@nvidia.com>
+References: <20250701-cstr-core-v13-0-29f7d3eb97a6@gmail.com>
+ <20250701-cstr-core-v13-2-29f7d3eb97a6@gmail.com>
+ <DB2BDSN1JH51.14ZZPETJORBC6@kernel.org>
+ <CAJ-ks9nC=AyBPXRY3nJ0NuZvjFskzMcOkVNrBEfXD2hZ5uRntQ@mail.gmail.com>
+ <DB2IJ9HBIM0W.3N0JVGKX558QI@kernel.org>
+ <CAJ-ks9nF5+m+_bn0Pzi9yU0pw0TyN7Fs4x--mQ4ygyHz4A6hzg@mail.gmail.com>
+ <DB2PIGAQHCJR.3BF8ZHECYH3KB@kernel.org>
+ <CAJ-ks9=WmuXLJ6KkMEOP2jTvM_YBJO10SNsq0DU2J+_d4jp7qw@mail.gmail.com>
+ <CAJ-ks9kNiOgPO7FF3cAbaSNtTWs0_PzQ4k4W0AxjHNFuMJnDcQ@mail.gmail.com>
+ <DB36T5JWBL10.2F56EDJ1XKAD0@kernel.org>
+ <CAJ-ks9=Jutg+UAwCVER_X91BGxWzmVq=OdStDgLZjTyMQSEX6Q@mail.gmail.com>
+In-Reply-To: <CAJ-ks9=Jutg+UAwCVER_X91BGxWzmVq=OdStDgLZjTyMQSEX6Q@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Fri, 4 Jul 2025 14:15:26 +0200
+X-Gm-Features: Ac12FXzPtonKP26H72mazeNQheIxGcJYasTsJs3cNwtUf90Sdk9qUBYY8YzvhN4
+Message-ID: <CANiq72nZhgpbWOD4Evy-qw2J=G=RY4Hsoq9_rj6HGWMQW=2kTw@mail.gmail.com>
+Subject: Re: [PATCH v13 2/5] rust: support formatting of foreign types
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Benno Lossin <lossin@kernel.org>,
+ Michal Rostecki <vadorovsky@protonmail.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
+ Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Bjorn Helgaas <bhelgaas@google.com>, 
+ Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, dri-devel@lists.freedesktop.org, 
+ netdev@vger.kernel.org, devicetree@vger.kernel.org, llvm@lists.linux.dev, 
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ linux-block@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-clk@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,146 +131,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Timur Tabi,
+On Fri, Jul 4, 2025 at 1:59=E2=80=AFPM Tamir Duberstein <tamird@gmail.com> =
+wrote:
+>
+> That would probably work. We will probably see regressions because we
+> can't just replace `core::fmt` imports with `kernel::fmt`, so new code
+> may appear that uses the former.
 
-On 18/04/24 3:23 am, Timur Tabi wrote:
-> Add the NVreg_RegistryDwords command line parameter, which allows
-> specifying additional registry keys to be sent to GSP-RM.  This
-> allows additional configuration, debugging, and experimentation
-> with GSP-RM, which uses these keys to alter its behavior.
-> 
-> Note that these keys are passed as-is to GSP-RM, and Nouveau does
-> not parse them.  This is in contrast to the Nvidia driver, which may
-> parse some of the keys to configure some functionality in concert with
-> GSP-RM.  Therefore, any keys which also require action by the driver
-> may not function correctly when passed by Nouveau.  Caveat emptor.
-> 
-> The name and format of NVreg_RegistryDwords is the same as used by
-> the Nvidia driver, to maintain compatibility.
-> 
+That is fine -- it happens all the time with this sort of approach.
 
-This patch seems to be breaking latest linux-next (tag: next-20240429).
-While building kernel for arm64 on latest linux-next with defconfig, I
-see build failure with below error.
-
-❯ make -j$(nproc) ARCH=arm64 CROSS_COMPILE=aarch64-none-linux-gnu-
-
-  CALL    scripts/checksyscalls.sh
-  CC [M]  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function
-‘build_registry’:
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at
-end of compound statement
- 1266 |   default:
-      |   ^~~~~~~
-make[6]: *** [scripts/Makefile.build:244:
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
-make[5]: *** [scripts/Makefile.build:485: drivers/gpu/drm/nouveau] Error 2
-make[4]: *** [scripts/Makefile.build:485: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:485: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:485: drivers] Error 2
-make[1]: *** [/home/danish/workspace/linux-next/Makefile:1924: .] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
-
-> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
-> ---
-> v7:
->   rebase onto drm-misc-next
->   rename vlen to alloc_size
-> 
->  .../gpu/drm/nouveau/include/nvkm/subdev/gsp.h |   6 +
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/r535.c    | 355 ++++++++++++++++--
->  2 files changed, 337 insertions(+), 24 deletions(-)
-
-[...]
-
-> +
-> +/**
-> + * build_registry -- create the registry RPC data
-> + * @gsp: gsp pointer
-> + * @registry: pointer to the RPC payload to fill
-> + *
-> + * After all registry key/value pairs have been added, call this function to
-> + * build the RPC.
-> + *
-> + * The registry RPC looks like this:
-> + *
-> + * +-----------------+
-> + * |NvU32 size;      |
-> + * |NvU32 numEntries;|
-> + * +-----------------+
-> + * +----------------------------------------+
-> + * |PACKED_REGISTRY_ENTRY                   |
-> + * +----------------------------------------+
-> + * |Null-terminated key (string) for entry 0|
-> + * +----------------------------------------+
-> + * |Binary/string data value for entry 0    | (only if necessary)
-> + * +----------------------------------------+
-> + *
-> + * +----------------------------------------+
-> + * |PACKED_REGISTRY_ENTRY                   |
-> + * +----------------------------------------+
-> + * |Null-terminated key (string) for entry 1|
-> + * +----------------------------------------+
-> + * |Binary/string data value for entry 1    | (only if necessary)
-> + * +----------------------------------------+
-> + * ... (and so on, one copy for each entry)
-> + *
-> + *
-> + * The 'data' field of an entry is either a 32-bit integer (for type DWORD)
-> + * or an offset into the PACKED_REGISTRY_TABLE (for types BINARY and STRING).
-> + *
-> + * All memory allocated by add_registry() is released.
-> + */
-> +static void build_registry(struct nvkm_gsp *gsp, PACKED_REGISTRY_TABLE *registry)
-> +{
-> +	struct registry_list_entry *reg, *n;
-> +	size_t str_offset;
-> +	unsigned int i = 0;
-> +
-> +	registry->numEntries = list_count_nodes(&gsp->registry_list);
-> +	str_offset = struct_size(registry, entries, registry->numEntries);
-> +
-> +	list_for_each_entry_safe(reg, n, &gsp->registry_list, head) {
-> +		registry->entries[i].type = reg->type;
-> +		registry->entries[i].length = reg->vlen;
-> +
-> +		/* Append the key name to the table */
-> +		registry->entries[i].nameOffset = str_offset;
-> +		memcpy((void *)registry + str_offset, reg->key, reg->klen);
-> +		str_offset += reg->klen;
-> +
-> +		switch (reg->type) {
-> +		case REGISTRY_TABLE_ENTRY_TYPE_DWORD:
-> +			registry->entries[i].data = reg->dword;
-> +			break;
-> +		case REGISTRY_TABLE_ENTRY_TYPE_BINARY:
-> +		case REGISTRY_TABLE_ENTRY_TYPE_STRING:
-> +			/* If the type is binary or string, also append the value */
-> +			memcpy((void *)registry + str_offset, reg->binary, reg->vlen);
-> +			registry->entries[i].data = str_offset;
-> +			str_offset += reg->vlen;
-> +			break;
-> +		default:
-
-This line seems to be the culprit.
-
-> +		}
-> +
-> +		i++;
-> +		list_del(&reg->head);
-> +		kfree(reg);
-> +	}
-> +
-> +	/* Double-check that we calculated the sizes correctly */
-> +	WARN_ON(gsp->registry_rpc_size != str_offset);
-> +
-> +	registry->size = gsp->registry_rpc_size;
-> +}
-> +
-
-[...]
-
--- 
-Thanks and Regards,
-Danish
+Cheers,
+Miguel
