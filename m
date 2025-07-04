@@ -4,124 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F40C4CCA472
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775BCCCD186
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B26410E5E6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FDAF10E5EE;
 	Mon,  6 Oct 2025 20:57:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="cmm2iPzA";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="DK9wm1D/";
 	dkim-atps=neutral
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
- [209.85.222.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F9210E77C;
- Wed, 13 Aug 2025 15:59:37 +0000 (UTC)
-Received: by mail-qk1-f178.google.com with SMTP id
- af79cd13be357-7e6399d0654so503407685a.0; 
- Wed, 13 Aug 2025 08:59:37 -0700 (PDT)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4300110EA76;
+ Fri,  4 Jul 2025 20:16:10 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-7d5dedad887so83602385a.0; 
+ Fri, 04 Jul 2025 13:16:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755100777; x=1755705577; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1751660169; x=1752264969; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=0B/Rl80M2RF+JrMNdMpIaLoO99EqPe4tcyPYcOz885g=;
- b=cmm2iPzAr1Gzr8uf45UcWByr65+GXX7APnnQQDLX3sWprlG82jr0pM8Wzm+SWWD06o
- ahb9XOTQW9a7BXl2VKOV913bym360Yl0WAergyyFvmy1AKNBKcFPGdBalmjHWRNe8EhW
- sAqGR2vUhXpdE0djtA00f6mX0XVVllUg0ciB6wl0Ehfj4pYilQETk6+oXcszBfjtGvzY
- 5ElFEH7EwWQqftZn/9Jq/a753sR5hj9kcb2p03FGinc6SVBSvmlYaIO+JHFnBIlaXVNf
- +5mIDP3panTWhFY/JIbi/i3JAx1XRt57h83UEPadR9UJLxRfT9Q+ZEEvZ7ddLAxzM060
- Kf3w==
+ :reply-to; bh=RRnCMuqdD131ZlyvTYi0z/+zkxHVEj8TfOGSz4lWZYk=;
+ b=DK9wm1D/2YpoSgzhFGZHrxEvf1NEjcRZ676T5hLjFz5vjTh4XK9tsevn7G8hot7xsJ
+ PBw1VqeQ8cnkdwvuoNKzsG9lLeHlfniOABOGIuDxc2ULj44txs+T98WdDH/EH+Hy+hPX
+ R56180pN5wjT9W7/dzfk/oOaxAhX9j1ogkwsY+2G0Lo16vumZ9qylIXBZ9mRfW42EAZD
+ R6OgrQ1kfs1g7Tu/kjZpLKmTcdOSCpt/DM9SbVTvSwoV9G5rs+UYH1aZ88AB2eDJu/Fx
+ LDdRaXnhux3qlY04IzZd3Q5UwD3QX/9flB1MWJ7SYGS7EFOxYD9Hu+Y9SZ7wP8GdTqQC
+ KtUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755100777; x=1755705577;
+ d=1e100.net; s=20230601; t=1751660169; x=1752264969;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=0B/Rl80M2RF+JrMNdMpIaLoO99EqPe4tcyPYcOz885g=;
- b=e7KjFpDo7eS3cPmQdSALoHtq5NFOU0p1+bsyg/Ov07FwgGU5+FpKngf9RWsqlify8k
- yrTWbHvAlpjmQEfVc7S2Xj6nhPOUpwtz9AS9cZo3C3Tms4i8WTuS5BW93ZjwNcfdtlrV
- Hqpu53xhkX0FEcxboxOF+u2Rg6J/ljjuU9FMgmquk8/Evi+AyDi/iwm+m01i9RT6m2GL
- za/KCXam1myt0b8OjojoGVdwuOBJQ84QYUxqVsa3HbUFx2U1K2Y9o/CG13npkFf6Sxa4
- YXF0ZE9GD+ov6NvPpNvGz2HXRobtWqPkgfG4v222b0M6BwT99J7HIF1iQB2LwsGjgdip
- iXYw==
+ bh=RRnCMuqdD131ZlyvTYi0z/+zkxHVEj8TfOGSz4lWZYk=;
+ b=h8jCuAgQtOBluPFCRqWnXqiAWzWQWYPTEW2Jf2tVYtjeLW1BME49dMDdQ2HJ6Q0Voy
+ NjGQr1Ku8Jc+14KXKYAmiZjuC0M1dkMTrx8AXVAcOmaoVrWxiTelcsgonobemwWxob5b
+ qtfb+ni/7FXheEA2jeRDdCZprjknYC5SROvkl8D3ACvIJsAlaTIvrxR6OEeNDKETmKto
+ Onb0OlJKmjBnGz+7EBrc1+5eL4K84mVdCLonXEwKMMljILFIr4DxBPyRiIurcTQEq56U
+ sKrs8FTsHvXT/SKR0Ss8XftPAwNDeXtAo7IrQDsRPnuwFhoZrmKAkd/7PWmz8Q53PxLJ
+ 3rUA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUrIoX4L/tj0O9usm5VtW65rsl5herGhxesEpEzcvg0f/RxV0i57hyqRL4Hx2VLsdNvO1ZP2WOwIPU=@lists.freedesktop.org,
- AJvYcCXdJS2GkWLMcfCLCIoBpWHRCHyLZTY96b63nb3uVBKquTUihF/wAkN/kVC/Nms3gMuRCWuZN8l4rw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxVjiqV0uBiMa1dG8uKSe2QYN3o+H2ZIRMrQsQulAKlCplCps5L
- DP7ZputXuynaI9zvTIinM5AXBQkcEy6CF/+i04/pONsf86d6ZzHtMMpy
-X-Gm-Gg: ASbGncsD/nCif18Lj/KVatzEsXtdS+H6vwmgbIIzaIeh5y/i0s8orbgBk0loGp0nKsL
- 8ASlu+Wq/inKuGLbZqOzUkm2a9mXgL6eymzSpioU+uOLByWSipwfQlK7chDmHU61oak5MkHVPEM
- N4NmKRpldZvxL2msItZx97yPW40kUymxyHRobOYyGjiwkDS9h3RAwGmYI/kaOJEha5elPrKaqbb
- jTwlRleGErBIV0R8tEfaWqsWJ8CSfzz708StvLlpjhsN0C+0CvR1q+X+p178f2rIVhVjmQAv/eW
- n+Pw8zZA9UdCVkco9LFCqYl28hGn5yRU7PmK7o+i9CzL2lxKp99jTfCv5noC0tyM6139JwlJ7eE
- sfLkdrbay72gQ3xpxTqLpKUD00ock+9IdB30ZFelwQRVVzCPLMFVh6QRl4wvY77YH4K17xne0Yc
- 4X4Ipv1j837Su4EguS1A4rZ0qL+6TlvYxWqPvBpmE=
-X-Google-Smtp-Source: AGHT+IGXAuHbm5U1Y4n3fl9DFmAOsvOkx0F/inmIBEc5qoVGXJ6UExGE17RCyI2F88NmRNkKJHgt9g==
-X-Received: by 2002:a05:620a:46a9:b0:7e8:6551:64e3 with SMTP id
- af79cd13be357-7e86551689cmr488086185a.56.1755100776729; 
- Wed, 13 Aug 2025 08:59:36 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4808:6353:5c00:d445:7694:2051:518c])
+ AJvYcCVnvV+D4Nv0bEl7Rh2DkcalZogaLyqXrq+FkEpVqvUFpVnSf776eQNaMOEHuHSk7sFYFzVCTCiFy84=@lists.freedesktop.org,
+ AJvYcCXJ4epMuRzXim5AUAAn0gBBwv9Fv45wpxFwjnbs/ysmFUhUGlbblEHjIn7V9GQn9654He3eaJW2bw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyXDpoNfSN0bizSv4h3ImHOF/K2iQRSZawWlvJdLmfv7/14zTMH
+ gl2Zk9wcD13gwbJwQS/x1eHuwQxXit6UEG99DsT+hNMiVAt/2RHRHjUz
+X-Gm-Gg: ASbGnctSZShthbah6qxvoz6Z1zUUcwjwvnGCY9qybXpQaCfywRE7GIqQaPy+wxb0uFN
+ 3YwTfOrCVHjj+DeIIo4V0DuVpl6Y06BJno50n7rjU2aeeL9EqX6PIk8q3ONcuu4PJOwRJ9s5rW7
+ paMjDKbiiwPgf29XnVkdaqF2X5W3vWLNXAaU5QEw87P3punAOi+AopsSkBCqShivZpaPQ+2fEb0
+ 8sRfU1xEzOy1cl4xo8hp3F0elLgtah406aZxMrQgrnhnuV1+7WbJdpxCVRRyDnWNSITzAG7SvLJ
+ 8Pev/evVaABSmrw2ISr7d7EHBSY0jOw+7/GaluQBvalu8Udj0UYuS3HAzLO/L6gvv7xG8XA2/y1
+ aA7CGfrE=
+X-Google-Smtp-Source: AGHT+IEPhl7M3pPKVKJRRGXgxtNYr3mSuepsFyT/fNiRn/kJBm9O1QrZ8LLvefwHdmgY4q+idaONGw==
+X-Received: by 2002:a05:620a:4456:b0:7d4:2925:91b8 with SMTP id
+ af79cd13be357-7d5ef7c4961mr28485585a.16.1751660169087; 
+ Fri, 04 Jul 2025 13:16:09 -0700 (PDT)
+Received: from 156.1.168.192.in-addr.arpa
+ ([2600:4041:5c29:e400:94f3:d2bb:5ace:77a1])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4b085ad7d08sm124482211cf.53.2025.08.13.08.59.33
+ d75a77b69052e-4a9949e5221sm19772941cf.2.2025.07.04.13.16.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Aug 2025 08:59:36 -0700 (PDT)
+ Fri, 04 Jul 2025 13:16:08 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 13 Aug 2025 11:59:14 -0400
-Subject: [PATCH v2 04/19] rust: clk: replace `kernel::c_str!` with
- C-Strings
+Date: Fri, 04 Jul 2025 16:14:56 -0400
+Subject: [PATCH 5/6] rust: add `CStr` methods matching `core::ffi::CStr`
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-core-cstr-cstrings-v2-4-00be80fc541b@gmail.com>
-References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
-In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+Message-Id: <20250704-core-cstr-prepare-v1-5-a91524037783@gmail.com>
+References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Danilo Krummrich <dakr@kernel.org>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>
 Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1755100759; l=1737;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1751660161; l=3187;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=kr82Gyb3wJcxQA+MDJPetUwZA3ndNFP5TJoRT0zX8oM=;
+ bh=ijekkld9R1wbyb2cvN5FAg3adFOAIGh+Sl7Wg4UqSo0=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QIlIhhB4BGisD/SuihGvNGHWqLUmAuy/tzhcAeWkBxzWuNh9scLQItFeaGY7gyP1Qw+o3qXno4q
- 0C9ZKgq+ekgw=
+ QPIwxczA1HLqncTECE1BZLwn/UXLVbajrq24i9LGs2u/GwbE2mHvzVz95Yp9yW1WgfD35PH8Hrr
+ KgvLRh39BRgE=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,53 +109,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-C-String literals were added in Rust 1.77. Replace instances of
-`kernel::c_str!` with C-String literals where possible.
+Prepare for replacing `CStr` with `core::ffi::CStr` by soft-deprecating
+methods which don't exist on `core::ffi::CStr`.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Benno Lossin <lossin@kernel.org>
+We could keep `as_bytes{,_with_nul}` through an extension trait but
+seeing as we have to introduce `as_char_ptr_in_const_context` as a free
+function, we may as well introduce `to_bytes{,_with_nul}` here to allow
+downstream code to migrate in one cycle rather than two.
+
+Link: https://github.com/Rust-for-Linux/linux/issues/1075
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-Acked-by: Stephen Boyd <sboyd@kernel.org>
 ---
- rust/kernel/clk.rs | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ rust/kernel/str.rs | 37 ++++++++++++++++++++++++++++++++++---
+ 1 file changed, 34 insertions(+), 3 deletions(-)
 
-diff --git a/rust/kernel/clk.rs b/rust/kernel/clk.rs
-index 1e6c8c42fb3a..09469277e95b 100644
---- a/rust/kernel/clk.rs
-+++ b/rust/kernel/clk.rs
-@@ -104,13 +104,12 @@ mod common_clk {
-     /// The following example demonstrates how to obtain and configure a clock for a device.
+diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+index f326f0c40ab0..cbb357fc0111 100644
+--- a/rust/kernel/str.rs
++++ b/rust/kernel/str.rs
+@@ -175,6 +175,15 @@ macro_rules! b_str {
+     }};
+ }
+ 
++/// Returns a C pointer to the string.
++// It is a free function rather than a method on an extension trait because:
++//
++// - error[E0379]: functions in trait impls cannot be declared const
++#[inline]
++pub const fn as_char_ptr_in_const_context(c_str: &CStr) -> *const c_char {
++    c_str.0.as_ptr()
++}
++
+ /// Possible errors when using conversion functions in [`CStr`].
+ #[derive(Debug, Clone, Copy)]
+ pub enum CStrConvertError {
+@@ -294,23 +303,45 @@ pub unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut CStr {
+     }
+ 
+     /// Returns a C pointer to the string.
++    ///
++    /// Using this function in a const context is deprecated in favor of
++    /// [`as_char_ptr_in_const_context`] in preparation for replacing `CStr` with `core::ffi::CStr`
++    /// which does not have this method.
+     #[inline]
+     pub const fn as_char_ptr(&self) -> *const c_char {
+-        self.0.as_ptr()
++        as_char_ptr_in_const_context(self)
+     }
+ 
+     /// Convert the string to a byte slice without the trailing `NUL` byte.
+     #[inline]
+-    pub fn as_bytes(&self) -> &[u8] {
++    pub fn to_bytes(&self) -> &[u8] {
+         &self.0[..self.len()]
+     }
+ 
++    /// Convert the string to a byte slice without the trailing `NUL` byte.
++    ///
++    /// This function is deprecated in favor of [`Self::to_bytes`] in preparation for replacing
++    /// `CStr` with `core::ffi::CStr` which does not have this method.
++    #[inline]
++    pub fn as_bytes(&self) -> &[u8] {
++        self.to_bytes()
++    }
++
+     /// Convert the string to a byte slice containing the trailing `NUL` byte.
+     #[inline]
+-    pub const fn as_bytes_with_nul(&self) -> &[u8] {
++    pub const fn to_bytes_with_nul(&self) -> &[u8] {
+         &self.0
+     }
+ 
++    /// Convert the string to a byte slice containing the trailing `NUL` byte.
++    ///
++    /// This function is deprecated in favor of [`Self::to_bytes_with_nul`] in preparation for
++    /// replacing `CStr` with `core::ffi::CStr` which does not have this method.
++    #[inline]
++    pub const fn as_bytes_with_nul(&self) -> &[u8] {
++        self.to_bytes_with_nul()
++    }
++
+     /// Yields a [`&str`] slice if the [`CStr`] contains valid UTF-8.
      ///
-     /// ```
--    /// use kernel::c_str;
-     /// use kernel::clk::{Clk, Hertz};
-     /// use kernel::device::Device;
-     /// use kernel::error::Result;
-     ///
-     /// fn configure_clk(dev: &Device) -> Result {
--    ///     let clk = Clk::get(dev, Some(c_str!("apb_clk")))?;
-+    ///     let clk = Clk::get(dev, Some(c"apb_clk"))?;
-     ///
-     ///     clk.prepare_enable()?;
-     ///
-@@ -272,13 +271,12 @@ fn drop(&mut self) {
-     /// device. The code functions correctly whether or not the clock is available.
-     ///
-     /// ```
--    /// use kernel::c_str;
-     /// use kernel::clk::{OptionalClk, Hertz};
-     /// use kernel::device::Device;
-     /// use kernel::error::Result;
-     ///
-     /// fn configure_clk(dev: &Device) -> Result {
--    ///     let clk = OptionalClk::get(dev, Some(c_str!("apb_clk")))?;
-+    ///     let clk = OptionalClk::get(dev, Some(c"apb_clk"))?;
-     ///
-     ///     clk.prepare_enable()?;
-     ///
+     /// If the contents of the [`CStr`] are valid UTF-8 data, this
 
 -- 
-2.50.1
+2.50.0
 
