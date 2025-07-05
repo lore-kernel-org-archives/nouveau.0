@@ -4,41 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1764CC83F03
-	for <nouveau@archiver.kernel.org>; Fri,  4 Jul 2025 22:38:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF40EC8303D
+	for <nouveau@archiver.kernel.org>; Sat,  5 Jul 2025 08:04:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7647C10E0F2;
-	Fri,  4 Jul 2025 22:38:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ECCD10E1CD;
+	Sat,  5 Jul 2025 08:04:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="b098uLEQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UyGAt+uj";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAB6E10E035;
- Fri,  4 Jul 2025 22:38:32 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F410A10E0C1;
+ Sat,  5 Jul 2025 08:04:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id E25A76146E;
- Fri,  4 Jul 2025 22:38:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A19E4C4CEE3;
- Fri,  4 Jul 2025 22:38:27 +0000 (UTC)
+ by dfw.source.kernel.org (Postfix) with ESMTP id ABD6F5C484C;
+ Sat,  5 Jul 2025 08:04:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5A94C4CEE7;
+ Sat,  5 Jul 2025 08:04:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1751668711;
- bh=Voy1QjVh9xLwt9TKt2YCENbqa5daJHJYGpU8RXQaEQg=;
- h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
- b=b098uLEQJJwJl0enNLeKq5Jlcx9dlu6MANF80Yjb1KmLVkxLSL0iSY7pnZ75ZKx7V
- MZdrr5xGVRc0+laLXAL8pwyvtVf/jUZW0B5wOm+C0m2PBgCbLvaH3lfQgkbKUY7esV
- oO0t8l3g0U+Px6/GfufA0StnMcyyM5gk2h4oCr+55nc4RS9Us/7zcrRFc+Kilpmd9f
- TSTIbOtcmiEQhyLhGaiyj/pHg/uN6SrSvxud4HqFOQj6Mvpt/DxRKkPZ8VMduXHEUG
- TZHc+MShxJXCPKzkz4Qz7uTj42DbRhm8SZTZnlSkW9VjCAZS+uGaq/ZL9RYI2Iu2lW
- w1+S+NlaEiSHQ==
+ s=k20201202; t=1751702674;
+ bh=gno/0LEj5ipEWscOXuFUP5p23Zzxa+r2Bh8Hv/hJ5GQ=;
+ h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+ b=UyGAt+ujqFDZpp0LdmolpxWu5svih6F5sD6IBytgX99q2v7Y0ipuz2k3Sr8Doxaw4
+ +PfDTDaltJq8WKa0xmXkchGcMTia5mOVKOp9PS7q0qKexSZXm0jTUHt/ws2Kcd9kNA
+ NR0DMVoP7SrS312+w548r4N4Q/RNP4mZEKQ1oyEqNnThA10JzLG0oVe3WC55nfD27h
+ 3OHamxalhB7m+kAipSlJwkr2KTyO65HaHtWEF9vIS4QbtzL39sIJcIK+hPFN6jgyo4
+ FHv3MIA4Vbo3fb/OSQpxxjyKYDQvSbPYTqhUZcUkYU/fxJnCz42RNtxSny5Jy/6ptN
+ E4q4OovmoPf8w==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Sat, 05 Jul 2025 00:38:26 +0200
-Message-Id: <DB3MQEHYUAIU.1HRTOLR014FKZ@kernel.org>
-Cc: <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>
-Subject: Re: [PATCH 2/6] rust: kernel: add `fmt` module
+Date: Sat, 05 Jul 2025 10:04:28 +0200
+Message-Id: <DB3YRSRVRGVN.B7EBLCMSZG3P@kernel.org>
+Subject: Re: [PATCH 4/6] rust: str: remove unnecessary qualification
 From: "Benno Lossin" <lossin@kernel.org>
 To: "Tamir Duberstein" <tamird@gmail.com>, "Rafael J. Wysocki"
  <rafael@kernel.org>, "Viresh Kumar" <viresh.kumar@linaro.org>, "Danilo
@@ -49,10 +46,13 @@ To: "Tamir Duberstein" <tamird@gmail.com>, "Rafael J. Wysocki"
  <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
  <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
  "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>
+Cc: <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>
 X-Mailer: aerc 0.20.1
 References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
- <20250704-core-cstr-prepare-v1-2-a91524037783@gmail.com>
-In-Reply-To: <20250704-core-cstr-prepare-v1-2-a91524037783@gmail.com>
+ <20250704-core-cstr-prepare-v1-4-a91524037783@gmail.com>
+In-Reply-To: <20250704-core-cstr-prepare-v1-4-a91524037783@gmail.com>
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,9 +68,7 @@ Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 On Fri Jul 4, 2025 at 10:14 PM CEST, Tamir Duberstein wrote:
-> `kernel::fmt` is a facade over `core::fmt` that can be used downstream,
-> allowing future changes to the formatting machinery to be contained
-> within the kernel crate without downstream code needing to be modified.
+> `core::ffi::*` is in the prelude, which is imported here.
 >
 > Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
@@ -81,6 +79,5 @@ Cheers,
 Benno
 
 > ---
->  rust/kernel/fmt.rs | 7 +++++++
->  rust/kernel/lib.rs | 1 +
->  2 files changed, 8 insertions(+)
+>  rust/kernel/str.rs | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
