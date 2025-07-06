@@ -4,51 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3531D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92EBBD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2825710EAB5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9B98310EB94;
 	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LBc2/Das";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="J8xYCmvB";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CDBE10E104
- for <nouveau@lists.freedesktop.org>; Fri, 26 Jul 2024 15:41:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 909776181E;
- Fri, 26 Jul 2024 15:41:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C8AEC32782;
- Fri, 26 Jul 2024 15:41:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722008469;
- bh=LMzbVZA4QYawYf4BRRlbZ4n/Y3AGIuAifB0ECz0TYWk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LBc2/DasYPuibayilf6QlhnErzKO11OVZA6Cj6XW5Zh1XYv1H9ou/JyO2aufIJWar
- YM8RKJ5XFYhWe0/yZzZyYt3/mZiOSTfI39iBtRxAKlyGNCke0G5yz8oSnJO1ptp5/l
- 0oX+wMTkDQzyffJbyfV3aTFILTsdxWEuRUrZ8bS2KHWeO+FFKnUbVLfRxl3HJ/nruO
- l7M8CuvHClUyl7hm/UtbXlsQp7//3PBOQkrxTk0sTFmYDMssP34ftyO/C/cY5asYKI
- CpYdPSfcQ+A162eBwKklspKpy4IcjWpUwi8Sq9lH7m+2TiVbNoYh0L+QFvFzCxRNdj
- ZtuHxIFUiuLZw==
-Date: Fri, 26 Jul 2024 17:41:05 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Ben Skeggs <bskeggs@nvidia.com>
-Cc: nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v2 02/37] drm/nouveau: handle pci/tegra drm_dev_{alloc,
- register} from common code
-Message-ID: <ZqPDkZ2t5MjXX4Sx@cassiopeiae>
-References: <20240704183721.25778-1-bskeggs@nvidia.com>
- <20240704183721.25778-3-bskeggs@nvidia.com>
- <Zo1UP-aapSyf2Rnj@pollux>
- <e67e0c36-5c21-4f37-b489-78ec45298c4e@nvidia.com>
- <ZppJuiWfgfkEKeCH@pollux>
- <9760d7df-dfbf-478e-9b0e-ddc7768b8de1@nvidia.com>
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
+ [209.85.215.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B43DC10E086;
+ Sun,  6 Jul 2025 13:42:26 +0000 (UTC)
+Received: by mail-pg1-f178.google.com with SMTP id
+ 41be03b00d2f7-b31c8eed8f2so82469a12.3; 
+ Sun, 06 Jul 2025 06:42:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1751809346; x=1752414146; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=x9p/OUC5tbbC2lQw5VTLyJND4KlM7wvMWqPSiwnuyFw=;
+ b=J8xYCmvBeDrIsyeYrfRzJlUJ4eG3b2cfo1lNG06EYKLl3Vl20lH4DCrJmY1gvAiqwh
+ kQfzY6OSJE1hkWTBHkyoGOQoXI1f4077pd0j9h5F5EHhdArMGd9Golzfokb6oFwiucgs
+ hG8Ms0RNBWUcW05WBwm9YKCxKFSjD7kCDKtiMEHQQtU45i8OhaabpIPT2qzaib735Qsr
+ Df7dtqccI2DOxbrhAHLYfdaGKj7ixRx7TTNXPdlsTFJ1wMrKXQAwqeqr7VS5g04nioS9
+ eSn1dudr9YiAHrmszW9Lx8FO2MKqL34zxpTSzgk8B7qWUti8EAsiZ0VRnO/gVIJbmSxL
+ Q6tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1751809346; x=1752414146;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=x9p/OUC5tbbC2lQw5VTLyJND4KlM7wvMWqPSiwnuyFw=;
+ b=ut9lmTpFjGyhOMjK0iNa72dYJD4jW/FQ6xq612X0CIHK2SpoTD38T8ufthfnm5mYsU
+ LDBjJEbMBPiPs3q04TO5KHf8rrgT9ZvXWToPENvT+dm7PRnHX9N+9e+uDQ/KGE+/p4pD
+ 7N8OjqL2cC3H3HrKTGIF3HT4x0ZP8AB47Snv471QEAVKKNzqG4FHRXXxUofzl/apSqEH
+ cRDSwNkCEAp0Y2ZdtA1vRmdj+Ugp7aU/0mAjTu60lfQbTEtdv6Lkb9nIfPT4xD3EdCtJ
+ 6KW2SQcYmcig2B8SLFsD+oR68ltzDS9rVsOes0SaHYilS0YWaPFQh2EYSJJPeuKHKv2F
+ H/3Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUhgye0FUfcolEHYLeSDKmjE+hjVsuYWSTd11o0VKgIlkihNzwecHemr6xI0zfJN5pA2lmjmVks/A==@lists.freedesktop.org,
+ AJvYcCWJsFxCrWvrayJXvNw+8YL0MDcI3otbxur9qLFT2D7k22SxLPZg1aTy7MKKN8jzUbO5T4WDPQzNkEE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyhYC4XJ4F6lVX32ZzluN7FQDvO7ci5l9+zo+YsIf2EwzzoZM/s
+ uS+sbucsja0ioZSBekDRypb+ERj/ysnxXnZC1qFCZ5eGgeNgZT9bWbPXbvwwPjKbsOhZveNCq0E
+ MTHYxkrfQ1ZS7kwF1B4MXyK7+nb/Cifk=
+X-Gm-Gg: ASbGncvtkKws5A30t0rkSEsFpdPd6xQOfbAEVpPU/amuzov6trvKf/o83zPOXNqBj3K
+ Go+j5mjKYKLSSux28jvRBuej7A4IzarMNWT8lYYd1g7QhrDpeAK1SpgwMrcLOm+KDzBiQeK85Wa
+ e//S/Vye2rhZYLQSCoAR/6mmHrG1HtknFfz6avIJMlYz3a
+X-Google-Smtp-Source: AGHT+IEUJFZL2JU8xJSFulzsZPwp7Y5KKKb4k5Vl4oukDhrgiu5ve9lkLrK/mtQ4PMRZ7/XS+4qg94PJ9RHtwPTgAOs=
+X-Received: by 2002:a17:90b:258c:b0:312:1ae9:1537 with SMTP id
+ 98e67ed59e1d1-31aaca78f48mr5496701a91.0.1751809346077; Sun, 06 Jul 2025
+ 06:42:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9760d7df-dfbf-478e-9b0e-ddc7768b8de1@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+References: <20250702-nova-docs-v3-0-f362260813e2@nvidia.com>
+ <20250702-nova-docs-v3-1-f362260813e2@nvidia.com>
+In-Reply-To: <20250702-nova-docs-v3-1-f362260813e2@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sun, 6 Jul 2025 15:42:13 +0200
+X-Gm-Features: Ac12FXy1CaP3o3WtkbtVOog3-QiqhLt2Ifo86odUyVkUt2_fgezqFSeaSXeO-AY
+Message-ID: <CANiq72kUoyhbwiTeB3Bwv3X0iGLbiVWeQCBvKshOaNMqkEsUPw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/7] gpu: nova-core: Add code comments related to
+ devinit
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
+ nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ Joel Fernandes <joelagnelf@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,99 +93,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 26, 2024 at 02:27:53PM +1000, Ben Skeggs wrote:
-> > > > > +
-> > > > > +static struct nouveau_drm *
-> > > > > +nouveau_drm_device_new(const struct drm_driver *drm_driver, struct device *parent,
-> > > > > +		       struct nvkm_device *device)
-> > > > > +{
-> > > > > +	struct nouveau_drm *drm;
-> > > > > +	int ret;
-> > > > > +
-> > > > > +	drm = kzalloc(sizeof(*drm), GFP_KERNEL);
-> > > > > +	if (!drm)
-> > > > > +		return ERR_PTR(-ENOMEM);
-> > > > > +
-> > > > > +	drm->dev = drm_dev_alloc(drm_driver, parent);
-> > > > Since you're reworking this anyways, can we switch to devm_drm_dev_alloc()?
-> > > > 
-> > > > This also gets us rid of nouveau_drm_device_del().
-> > > No, we can't.  I originally had this change as a cleanup patch in the series
-> > > I posted implementing aux bus support.  However it turns out that in order
-> > > to avoid breaking udev etc, we can't use the aux device as parent of the drm
-> > Can you please expand a bit on what was breaking?
-> 
-> Sorry, I meant to say PRIME, not udev.  The device selection logic ties the
-> DRM device back to its sysfs node, and doesn't understand the auxiliary
-> bus.  So, if nouveau were to use its auxiliary device as parent of the DRM
-> device, PRIME breaks.
+On Wed, Jul 2, 2025 at 1:04=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
+>
+> +        // Check that FWSEC has lowered its protection level before read=
+ing the GFW_BOOT status.
 
-The Vulkan device selector stuff looks like it should mostly work.
+`GFW_BOOT` (another one below), since it is written like that above.
 
-However, I guess you refer to the loader stuff in Mesa that uses
-drmGetDevices2() from libdrm? This stuff indeed whitelists busses it accepts to
-report DRM device from:
+> -/* PGC6 */
+> +/*
+> + * PGC6 register space.
+> + *
+> + * `GC6` is a GPU low-power state where VRAM is in self-refresh and the =
+GPU is powered down (except
+> + * for power rails needed to keep self-refresh working and important reg=
+isters and hardware
+> + * blocks).
+> + *
+> + * These scratch registers remain powered on even in a low-power state a=
+nd have a designated group
+> + * number.
+> + */
 
-	{ "/pci", DRM_BUS_PCI },
-	{ "/usb", DRM_BUS_USB },
-	{ "/platform", DRM_BUS_PLATFORM },
-	{ "/spi", DRM_BUS_PLATFORM },
-	{ "/host1x", DRM_BUS_HOST1X },
-	{ "/virtio", DRM_BUS_VIRTIO },
+I noticed the file uses `/*` in a couple files -- could `//` be used
+or there is a reason for it?
 
-Not a big deal to just add it for a new driver, but obviously we can't just do
-this for an existing one.
+(I guess maybe in a different series, since it is already there for
+PMC in mainline. It could be a good first issue.)
 
-> Fortunately it didn't turn out to be necessary, and we
-> can happily probe() against the auxiliary device and still use the PCI
-> device as the DRM device's parent.
+The idea is to only use `/*` when `//` cannot be used, e.g. within
+code, so that they have a different purpose.
 
-At a first glance, I guess this should work. But, before we introduce
-workarounds like this one and add even more complexity, I wonder what's the
-benefit of doing this for Nouveau in the first place? I think we agreed to this
-split for Nova, for the reasons discussed in [1].
-
-[1] https://lore.kernel.org/dri-devel/20240613170211.88779-1-bskeggs@nvidia.com/
-
-> 
-> > 
-> > > device and instead have to continue passing the pci/platform device as we do
-> > > now.
-> > > 
-> > > Using devm_drm_dev_alloc() with the pci device as parent would tie the
-> > > lifetime of the drm device to the pci device, which is owned by nvkm (after
-> > How does this tie the lifetime of the drm device to the pci device? It's the
-> > other way around, the drm device takes a reference of its parent (i.e. the pci
-> > device).
-> > 
-> > I don't think there's anything wrong with that.
-> 
-> My understanding is that devres will cleanup allocations when the driver
-> detaches from the device.
-
-Right, I think I took that too literally.
-
-The lifetime of the DRM device (or more precisely one of its references) is
-bound to the binding between the parent device and its corresponding driver.
-
-But the lifetime of the parent device itself is bound to the DRM device.
-
-So, yes this doesn't work, and proves the point that initializing the DRM device
-with the parent's parent is just a workaround.
-
-> With the auxdev changes, it's *NVKM* that's
-> attached to the PCI device, not the DRM driver (which is attached to an
-> auxiliary device instead).
-> 
-> This means that the devm_drm_dev_init_release() won't be called when the DRM
-> driver detaches from its auxiliary device as it should, but when NVKM
-> detaches from the PCI device, which isn't the most obvious and could lead to
-> confusion.
-> 
-> It also entirely blows up in the split module case as nouveau.ko is unloaded
-> already by the time NVKM detaches and drm_dev_put() gets called.
-> 
-> > 
-> > > the auxdev series).  We could look at changing devm_drm_dev_alloc() of
-> > > course, but I think that's best left until later.
-> > I don't think that this is necessary.
+Cheers,
+Miguel
