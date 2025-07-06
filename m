@@ -4,78 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70618D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A28BD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAA3610EB54;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1F2310EA7F;
 	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ki4/z4Jc";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="KZsJUpTd";
 	dkim-atps=neutral
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
- [209.85.222.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1344710E29D;
- Thu, 24 Jul 2025 19:59:28 +0000 (UTC)
-Received: by mail-qk1-f174.google.com with SMTP id
- af79cd13be357-7e32c95775aso157710385a.3; 
- Thu, 24 Jul 2025 12:59:28 -0700 (PDT)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A54210E2B5;
+ Sun,  6 Jul 2025 13:46:25 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-312a806f002so433356a91.3; 
+ Sun, 06 Jul 2025 06:46:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753387168; x=1753991968; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=2glPXiLDXj+7i+zys0K4XQZSPXsH6Jhnylbt4ZU6Pz8=;
- b=Ki4/z4JckEC/8lvzC/q5pcUq/sU2yKv+0RvoVrUHjGyNhjbFYUK4hiJAS9qafpooLR
- Jo1VkMz2PBNQNygEzg0+tiy0hH6DeULh5dEkI2XHa0ELM2AwYuH7f8HkqtS10q6LtWHw
- bxE7qAPozB0u5hZx39y+AZK0tXUI+tTu3TtCGWXMHXr8ckKkgaSjPTJiR1pdgL7WBbqN
- NcfEObUSR4COcmXpjnJ+6wzhp493noRtyKtsa75Csw9xpRXnTg0+PGFOmYsbLeXsRPP3
- F4tX5ttoWOkhejKv1BNYxged0oCT5xniqkKGMJiujyPzzZEmy0Dd5JbO29JeGjKw2TnC
- xPFQ==
+ d=gmail.com; s=20230601; t=1751809585; x=1752414385; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=gKLTNgJgTfofCTlF/JST0qzlC2FbwxSOsAmEM7FOTgU=;
+ b=KZsJUpTdaD+c6ovB/lzBSIegPdzWXv8MV/fHrtreAQI7mdTw3bnK9FPd2KW33XC+xO
+ dzegukY4Mw/1AGIbtF3JqUBbey6QY/riV0XxwxClUUy0Y/BTBkyUHgjRKX55bztO89q4
+ n/pO4083c3cSRhtUDqzSXOaDV84Xu4D+5piv2SD3XXQBeZ1weOPdTH3C0er9A0JeMVlT
+ fjhk1GgLwgrVha0FBw5veprr+Q+b++5Iy50DOOe9V4lBjyqPCjr1EYLqg8qfMpPTAqWk
+ k9BCjMEJVpS5KwQOUpeF65t9YlCzGZimDxwogZqdKlgaMUUSXP9V2evM8rvDhNQb7PBN
+ gcxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753387168; x=1753991968;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=2glPXiLDXj+7i+zys0K4XQZSPXsH6Jhnylbt4ZU6Pz8=;
- b=tis+KmOfjOSXAndCqdDyVf6S5QuaUAM+8CS8/61/q4Tmj0nNsQkG46w2X9da1G1Pq9
- q0VbQNQQdoZRBsJMpzuLZAr+otFQVkvMB4WpZ0X6YJH+KcpV+77P3nfIm8aQXaF8sx9A
- NN/PgaQ8QJdGnkbRrKwgyYy5nRP8uwy1bt+xHhkxzbE94Bfmu236JfObPGSDxgSkwo+c
- uVTSmWupTuhMDDcunyqLgIBgtysS1KzgFqydpGPosbf6ys013/p1NMRoIxI3HZXRGIt5
- 8U7v32fMYnoDvqLI5nNVzxvjqhJN8YIB7Tg82ASxSwQ7Ur6dRSKg0yd/b0U9K68Llwoq
- 0Q5Q==
+ d=1e100.net; s=20230601; t=1751809585; x=1752414385;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=gKLTNgJgTfofCTlF/JST0qzlC2FbwxSOsAmEM7FOTgU=;
+ b=W2GwyP6qL1GoVdlz4Z5Ri8t3/xp/wujSGsph5EzcsldcVb7OwkbO9FVsJXqsF9xM5A
+ nz1+RpQbGSW4GtVlzlEXqT3nmix+ZE+GI7Sp0YTXk03stCun0Jtkc6jAvuQvRzbiiexo
+ AAbhsidFLyymunhogABAxBSSkJBiyjSi6Nmhpf9CErCViTu6hFBOLDVuYb2hvPzIhAgO
+ EoWzwyFFtITbMiGy1JihWev7WA1RFeryxdLmHP0DX5o8gaI+6rrO8s6c7lV2RBI4DR93
+ ljneYwAtJZVvchgAZa/+kJ1Tj9+cK8fBt+umTJ2XkN/yOhG5Eqr1upuhy4Jhz/KPvzkT
+ X2+A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXUxTVl9QxL3JkQFjwCc5+yfYwADBtFg3s7WJqnA/yrUhBqXktSd9qKxuk0x+jpgW/msuwWHCM0@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx/wLyplcewpdSUIPnI5Szj3DAgSDt98kZlCdxg/+4SGaeXT+oF
- Z+o3u7VAyqQTzUIIXtWFgsaElJM8RworTrFsWd4bt7C6cDJIyJBe9bjk
-X-Gm-Gg: ASbGnctdcsftUz0l28Y4D44Ag9Idsz7qDiyVWbD42n2s5k9mLu2tdWj0bqbZRR41EMp
- HjrU8sCYkf/985PeNevTEQGmXFJcM6xbkzEOYjUfmJ3mmeWIiLBBPLr0GHWgoHXxXCpTnXct6fp
- +d98jGH6pIG0sdh53Rc8blTqhawnLYuc+GxpAswWXqdyKcgiS9MsjJHlXmopPv4ibk+WPOZ9s2S
- RtYnRbbhsUt1Qb+PI0VcEUrhRbifcSTQRErNItJVQmHEn5MZUtmDov0sSLPtg4Kv0a/ArtSRQrg
- oYn8lz28ubZM0u+bKkgeuWuD1o5/md7uXF860Wt/oyH7/OnI5ENCnsBrro703flCu0IxvNa25tw
- c80E2yHSILXKBdfvsH2oy4g==
-X-Google-Smtp-Source: AGHT+IE8tiKXPF+rPmVC2uaEgbgWJXzxROd8gqRk6866T7szqRWjDH57DUs1ux8XzdCpbhD/gUk/rg==
-X-Received: by 2002:a05:620a:306:b0:7d4:4e42:7b43 with SMTP id
- af79cd13be357-7e62a17cd67mr977879985a.30.1753387167675; 
- Thu, 24 Jul 2025 12:59:27 -0700 (PDT)
-Received: from iman-pc.home ([142.186.9.88]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7e632e1a687sm165994985a.50.2025.07.24.12.59.26
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 24 Jul 2025 12:59:27 -0700 (PDT)
-From: Seyediman Seyedarab <imandevel@gmail.com>
-X-Google-Original-From: Seyediman Seyedarab <ImanDevel@gmail.com>
-To: lyude@redhat.com,
-	dakr@kernel.org,
-	airlied@gmail.com,
-	simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Seyediman Seyedarab <ImanDevel@gmail.com>
-Subject: [PATCH] drm/nouveau: replace snprintf() with scnprintf() in
- nvkm_snprintbf()
-Date: Thu, 24 Jul 2025 15:59:13 -0400
-Message-ID: <20250724195913.60742-1-ImanDevel@gmail.com>
-X-Mailer: git-send-email 2.50.1
+ AJvYcCVQiNPwav27RnQ4ggl9mSJSeTw/3GaVx8CGW2ezCRInH4LPCPSltrxquR6VvI3VuKWY4csNbW2yqg==@lists.freedesktop.org,
+ AJvYcCWbRqJekImM9ln38QI5YUl6PCL8Utfyv29pzv76duG2UTFL7gh73LaLBjtVZfnnT31YCxA0c/z+A4c=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwiUEB3R/CwDFdoEerVenT3a3133bDBHJbNKlN1EBoX+J32i16O
+ mCLLDH2bHEQBHTVLSXBzZ0Ug3rqVu2l0nRrwScG2aUjLCbPbg4sbV3sRwIihPAXU3ZdcXQr355K
+ POYeos3ls4WblxFeYdOnafRPqWmP3Gro=
+X-Gm-Gg: ASbGncu3QGbKclL9Ny7VJbhnDMuG0WWw2Oefht1EYMYFgSHBOzyfIwbE/YLfcwjo3ZS
+ WiADcZIhm26jN3qhonh6S65bON0ycx00jn9sUO3sicoObx+M8UcrQgwUiNMhtOmNJiRxNtcrFh6
+ rIWQ2FALuv82D0DbnUANDxEL2F28MAUuf6asRbUDDJj3e8ZrgNJYoX3HM=
+X-Google-Smtp-Source: AGHT+IHOv9GZgJf2WFKprOIy64F5CrgixXl8Scf2KyipOzlw7oCckduzujowyADaYXCyuHIJ4iHyaN1QrOx7fForFnk=
+X-Received: by 2002:a17:902:d4c5:b0:234:ed31:fc9f with SMTP id
+ d9443c01a7336-23c873bd881mr55359015ad.11.1751809584805; Sun, 06 Jul 2025
+ 06:46:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+References: <20250702-nova-docs-v3-0-f362260813e2@nvidia.com>
+ <20250702-nova-docs-v3-2-f362260813e2@nvidia.com>
+In-Reply-To: <20250702-nova-docs-v3-2-f362260813e2@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sun, 6 Jul 2025 15:46:12 +0200
+X-Gm-Features: Ac12FXwSGwFmNVg0dK0RITOBy2nrTS1QW7QBJAFG70NZ191EM-5_o7Lr9NDvmZQ
+Message-ID: <CANiq72nh71s9to5v1KHJWN79bEFv97zN6jcGJyEQkaJZ5UuJfg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] gpu: nova-core: Clarify sysmembar operations
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
+ nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ Joel Fernandes <joelagnelf@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,32 +92,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-snprintf() returns the number of characters that *would* have been
-written, which can overestimate how much you actually wrote to the
-buffer in case of truncation. That leads to 'data += this' advancing
-the pointer past the end of the buffer and size going negative.
+On Wed, Jul 2, 2025 at 1:05=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
+>
+> +/// driver initialization, and before any falcon is reset.
+> +//
+>  /// Users are responsible for manually calling [`Self::unregister`] befo=
+re dropping this object,
 
-Switching to scnprintf() prevents potential buffer overflows and ensures
-consistent behavior when building the output string.
+Missing slash.
 
-Signed-off-by: Seyediman Seyedarab <ImanDevel@gmail.com>
----
- drivers/gpu/drm/nouveau/nvkm/core/enum.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Added the possibility of catching this automatically in e.g. `rustdoc` to:
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/core/enum.c b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-index b9581feb24cc..a23b40b27b81 100644
---- a/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-@@ -44,7 +44,7 @@ nvkm_snprintbf(char *data, int size, const struct nvkm_bitfield *bf, u32 value)
- 	bool space = false;
- 	while (size >= 1 && bf->name) {
- 		if (value & bf->mask) {
--			int this = snprintf(data, size, "%s%s",
-+			int this = scnprintf(data, size, "%s%s",
- 					    space ? " " : "", bf->name);
- 			size -= this;
- 			data += this;
--- 
-2.50.1
+    https://github.com/Rust-for-Linux/linux/issues/350
 
+> +// These two registers together hold the physical system memory address =
+that is used by the GPU for
+> +// perform sysmembar operation (see [`crate::fb::SysmemFlush`]).
+
+This is a normal comment, so the intra-doc link will (sadly) not do anythin=
+g.
+
+Cheers,
+Miguel
