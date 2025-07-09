@@ -4,109 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D68CCD184
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 152D6CAC5B8
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9E5910E58E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E88DD10E58D;
 	Mon,  6 Oct 2025 20:57:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="aO3Z4jnM";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MQDWb8eu";
 	dkim-atps=neutral
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com
- [209.85.208.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E377410E250;
- Thu, 29 May 2025 22:08:31 +0000 (UTC)
-Received: by mail-lj1-f178.google.com with SMTP id
- 38308e7fff4ca-310447fe59aso14408391fa.0; 
- Thu, 29 May 2025 15:08:31 -0700 (PDT)
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+ [209.85.160.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB3E10E83A;
+ Wed,  9 Jul 2025 20:00:18 +0000 (UTC)
+Received: by mail-qt1-f180.google.com with SMTP id
+ d75a77b69052e-4a58f79d6e9so3807421cf.2; 
+ Wed, 09 Jul 2025 13:00:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748556510; x=1749161310; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=rpJVcptDcpTpszgwiBlbfF17mFy9KW509xkzZ9NUjik=;
- b=aO3Z4jnM/B9bJl0tnsdFxbrG7ADpyxc2pFwsrbQAuam5kSBd5rHziOgo0Lh6xsKEP3
- KMH9izNMFotx0rQPYftVYVBbQnIEBeJX9dfLgIMzgDRfQEf0wyCVHOi/w4elgSyzB5XH
- jvFbk3O97dnw9sYmOtGnlPz1I4Gkk8fJlU+R0WZviMMQG+NS1BpGejM6DB+DQKrOgCBX
- LmQVxZnH8CMiO7HnhiRoZzcRcU/YzrUaBvo5sHe+rxr1d5tsFdMXhDIWj8SgJn9a55dL
- 6R1yNgaeu33Q23bJhAJD5qqjvErmLo7jC9aMxMN61xzk4AgFnPaQwZEoGdzW90mFF72V
- TEZg==
+ d=gmail.com; s=20230601; t=1752091217; x=1752696017; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=FtAb0bRzj6kkU1aoRo4HWiBiB02s3rvT49BZnRuUOhI=;
+ b=MQDWb8euqQpHknYeXdrH/2aZl/+v2ZhQWgVxHf0O6Je/6XAv3T53u7XaIC87zQxUWT
+ S4NTidJX15zKLwySLiASlD1/iTnHoaA2RBLIoKty/xKrktXn0J9aMb7CvReyl3XqHgkW
+ h2ysfp6da+//L4osgvVkVsBTfWf4PCvmNvtCcx9QegUh+BT815Qyq+SNKObLfU8FFlfB
+ GvtOZ3ES7M0cwDnb6jFrb5YYC0be0IXtyBDCickigrgbYEfLVgRC4kj+7WVWS+uNxnPr
+ g2fY4S5w11cgzIL9K4VFs39LNN/ThY87CiRP+7/lQNqWuTtKSG8z/ux7ycAeSsiBb7Gp
+ Cxfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748556510; x=1749161310;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1752091217; x=1752696017;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=rpJVcptDcpTpszgwiBlbfF17mFy9KW509xkzZ9NUjik=;
- b=rECQ4eCvYEVLOPJ+HyhkjUZcbtjFqo2DmrqfxgrGFdvUnhzhNBR87N/YtWeweuuXk+
- 1A8YWxwQZIbV93SVA72wJR7eBqHyHgvoMjQ0cRmLuwcu+r58lc5s06PfpVRQ/Igup6YS
- z5AgmfXt8b3guXjePC7soWb+QydQ59SMmJ4oIAeKHoi8xybvWdCHLvwEbbixfSko9AyU
- 5kpn9iUXMqP7Ob3rEWeSPXaEplRRyv1vKd9QaDtjgnB9V418gQaJmmZudMatWEsEBatX
- 8kVu+XGADn6Xj/5dJ4F9kzI82B4/3WxVwdrLoIp9LotDoz0Qyk5bpZ+7cNExvOBDAha6
- pBGQ==
+ bh=FtAb0bRzj6kkU1aoRo4HWiBiB02s3rvT49BZnRuUOhI=;
+ b=Gz9OTvZ1eLn0w+17xc/St8Gq3QKG9qQXYW+vELc1HJQ0H9lB3V/L61KLhikcmIpBdh
+ TgCzHT/qyW4/myz3ea5psJ+bBkhZbVlvk4bYc4VXAoctMHTGBZWkFk8sTlubHUTbOF+Q
+ BI/R5deBzDZYPTWuw4Taoe2ROtwv2hgRu6crQtP7me5xdfPInvrgJHKGyvtQ7/rcE+Iz
+ KtpsNLf3NdMELGNO3huUTmpNueX6mpxnP8QUTK7yaoGgb4Lflvs31McUVjNQWwQqFX41
+ +iAh/IN6QgrxytKgltAn2Rm4UEKG+pvLiP+jtQ6ugzTB3Zf1d1XPv1NrKvJiD67+q9o+
+ TvHQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUqShqqAGybdedTU/4+KyYsPsRr9AHJdry4kfP9bg7uRYyaga0AqPPeITwobBGzsBFNuMpO48HR8j4=@lists.freedesktop.org,
- AJvYcCVVcJwLelN9JSwFGheDhd7YbaOgcEehp27HQRkTxpG40VGkCezKtrfgOdLovY+eDzbnOhCER0ZZLQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy5ZY/mKcvbcr4OaXUpeTJBOEk7XOnX9grgFEOYg/U39rKXTfHz
- nAsbf8hZV+aTxx4GL0TYtK7INz+DPjuDa3a/efj1iPCRC8syCeVgpf8R6pBI++V/sMeW9aCO9uq
- 00THlKcS+urFfXYvGJkuluSMWId85dX4=
-X-Gm-Gg: ASbGncv4pE+WrAnNZEgMdz0mdMKE9MaaI1+BZVHBxDK/Y1tGlC5tTLSjr0b7n3w7MS1
- aX0U2CdyPI4F0qWt2hLfw8+pWDV+X/OzCIjTfgqj16UWxaWTdRpVeSg4AgB/A4ugvili/YQUDxv
- vLEqYCCNLgNRJJ7YT+9ApTXyDamcrZGw++RDOO5CbyYCtv8YGgT/8fVocYXCHz56X0UA==
-X-Google-Smtp-Source: AGHT+IF7xscUHJvyGi+GvuMMKxSnSgP5AcyU3GpJtxmnO/5KSLUzYGntXscHYyM85fadDL0Kyjmy6YDgmBtNFpFE8dI=
-X-Received: by 2002:a2e:b8c6:0:b0:32a:8916:55a1 with SMTP id
- 38308e7fff4ca-32a8cd3fd89mr5150041fa.7.1748556509725; Thu, 29 May 2025
- 15:08:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
- <20250524-cstr-core-v10-2-6412a94d9d75@gmail.com>
- <DA66BBX1PDGI.10NHLG3D4CIT7@kernel.org>
- <CAJ-ks9m48gmar0WWP9WknV2JLqkKNU0X4nwXaQ+JdG+b-EcVxA@mail.gmail.com>
- <DA6GSMHMLRFM.YH9RGZWLY2X4@kernel.org>
- <CAJ-ks9nTf4dCoDdg4+YSkXM1sJsZ-0vuSC7wybc2JMAoGemhXQ@mail.gmail.com>
- <DA78MDRNCNB8.X69904APMYCB@kernel.org>
-In-Reply-To: <DA78MDRNCNB8.X69904APMYCB@kernel.org>
+ AJvYcCUiDIoYcnggVgFSaKdkM9xmAE4osoxCdmxof0HjswiiBAxDzMtxlJlhMHDCkgpMu6ZvgBPtq1+B16I=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx8e4IcSrigeVSTWumkY8bkZGc64/8aXsp5sMc8Jj/tqC+8juqb
+ sG4waewVM18RJ4g20U4CZRKGOV0oQmFvx7SXnfhI/N6YH1JuTWUJ61eu
+X-Gm-Gg: ASbGncvZ05PCrb5uAjWhqVKq4yhpot+MkTqgWKL7zRDh725Zw55GWJoqcFc/oBs4bV7
+ pGMuRXqgmsmraQiZHMwoYXKF2OWsKSwmX+rl8c1aic7BbMUzdSstV5ed1tq++BtYYg6rfq9hfAA
+ 1L/7dqkRioKNtuBsbb/gz5wvM0vS6OtRF5otXcGctembEX+fWSD2mGLfAcF8la96y/v762g2txd
+ ZnQfex/b2H6DGcSQyTod8wJ9r+yc83rsAHdSkAm0WnZz/5X4jYTU7rX2E5/Jrqji7pEX1TYSvIk
+ /s8AXQt+alLltdx1LEH/JuNt8tY3mxwI4Do4AQBeYcV8n5G9qYZvj2oAIDm/iuoAUynvmAjXwMe
+ hQ7xwCOI5he42nWK4yjwGYgdTuau6Qu/AJWRJib182a2WSkoILCCB/ss9vJT0aenoEv3t
+X-Google-Smtp-Source: AGHT+IHINhIqlUa7DCpDjHN+II+KrfU91sr0X+Nh9ajVLFRJzCxP8B8BUPyzTg89wGo0r7WtCvZq4Q==
+X-Received: by 2002:ac8:5ed3:0:b0:4a6:c5ee:6ced with SMTP id
+ d75a77b69052e-4a9dfe6c7eamr50950701cf.4.1752091216860; 
+ Wed, 09 Jul 2025 13:00:16 -0700 (PDT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4a9949e4aaasm100432891cf.3.2025.07.09.13.00.11
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Jul 2025 13:00:11 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 29 May 2025 18:07:52 -0400
-X-Gm-Features: AX0GCFu41pC0z7_KQ2CYQPyB1pil2qNhuH6L70S1ECJZkmQT9P0P8s6oLTTUl3c
-Message-ID: <CAJ-ks9=OsopMhr6Ui3PLD-ZkBo736ha9Ltkw=0ZaBzrQLC60Eg@mail.gmail.com>
-Subject: Re: [PATCH v10 2/5] rust: support formatting of foreign types
-To: Benno Lossin <lossin@kernel.org>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
+Date: Wed, 09 Jul 2025 16:00:03 -0400
+Subject: [PATCH 4/9] rust: device: use `kernel::{fmt,prelude::fmt!}`
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250709-core-cstr-fanout-1-v1-4-64308e7203fc@gmail.com>
+References: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
+In-Reply-To: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
  "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752091204; l=1197;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=ulVPEZq9Jbltpj5m+ZKcCOATlnirfkaWcJbMC12CGGQ=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QKa+9W1qEMCIC5nwDM5pzqB0yrk8C6OiT/Eck8hVU2yYFOH0UcdQB5HSqXCLqIEzznx1uAPJMxt
+ Yys2X7knfKQU=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,192 +112,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, May 27, 2025 at 4:49=E2=80=AFPM Benno Lossin <lossin@kernel.org> wr=
-ote:
->
-> On Tue May 27, 2025 at 5:02 PM CEST, Tamir Duberstein wrote:
-> > On Mon, May 26, 2025 at 7:01=E2=80=AFPM Benno Lossin <lossin@kernel.org=
-> wrote:
-> >> On Tue May 27, 2025 at 12:17 AM CEST, Tamir Duberstein wrote:
-> >> > On Mon, May 26, 2025 at 10:48=E2=80=AFAM Benno Lossin <lossin@kernel=
-.org> wrote:
-> >> >> On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
-> >> >> > +impl_display_forward!(
-> >> >> > +    bool,
-> >> >> > +    char,
-> >> >> > +    core::panic::PanicInfo<'_>,
-> >> >> > +    crate::str::BStr,
-> >> >> > +    fmt::Arguments<'_>,
-> >> >> > +    i128,
-> >> >> > +    i16,
-> >> >> > +    i32,
-> >> >> > +    i64,
-> >> >> > +    i8,
-> >> >> > +    isize,
-> >> >> > +    str,
-> >> >> > +    u128,
-> >> >> > +    u16,
-> >> >> > +    u32,
-> >> >> > +    u64,
-> >> >> > +    u8,
-> >> >> > +    usize,
-> >> >> > +    {<T: ?Sized>} crate::sync::Arc<T> {where crate::sync::Arc<T>=
-: fmt::Display},
-> >> >> > +    {<T: ?Sized>} crate::sync::UniqueArc<T> {where crate::sync::=
-UniqueArc<T>: fmt::Display},
-> >> >> > +);
-> >> >>
-> >> >> If we use `{}` instead of `()`, then we can format the contents
-> >> >> differently:
-> >> >>
-> >> >>     impl_display_forward! {
-> >> >>         i8, i16, i32, i64, i128, isize,
-> >> >>         u8, u16, u32, u64, u128, usize,
-> >> >>         bool, char, str,
-> >> >>         crate::str::BStr,
-> >> >>         fmt::Arguments<'_>,
-> >> >>         core::panic::PanicInfo<'_>,
-> >> >>         {<T: ?Sized>} crate::sync::Arc<T> {where Self: fmt::Display=
-},
-> >> >>         {<T: ?Sized>} crate::sync::UniqueArc<T> {where Self: fmt::D=
-isplay},
-> >> >>     }
-> >> >
-> >> > Is that formatting better? rustfmt refuses to touch it either way.
-> >>
-> >> Yeah rustfmt doesn't touch macro parameters enclosed in `{}`. I think
-> >> it's better.
-> >
-> > OK, but why? This seems entirely subjective.
->
-> If more types are added to the list, it will grow over one screen size.
-> With my formatting, leaving related types on a single line, that will
-> only happen much later.
->
-> >> >> > +/// Please see [`crate::fmt`] for documentation.
-> >> >> > +pub(crate) fn fmt(input: TokenStream) -> TokenStream {
-> >> >> > +    let mut input =3D input.into_iter();
-> >> >> > +
-> >> >> > +    let first_opt =3D input.next();
-> >> >> > +    let first_owned_str;
-> >> >> > +    let mut names =3D BTreeSet::new();
-> >> >> > +    let first_lit =3D {
-> >> >> > +        let Some((mut first_str, first_lit)) =3D (match first_op=
-t.as_ref() {
-> >> >> > +            Some(TokenTree::Literal(first_lit)) =3D> {
-> >> >> > +                first_owned_str =3D first_lit.to_string();
-> >> >> > +                Some(first_owned_str.as_str()).and_then(|first| =
-{
-> >> >> > +                    let first =3D first.strip_prefix('"')?;
-> >> >> > +                    let first =3D first.strip_suffix('"')?;
-> >> >> > +                    Some((first, first_lit))
-> >> >> > +                })
-> >> >> > +            }
-> >> >> > +            _ =3D> None,
-> >> >> > +        }) else {
-> >> >> > +            return first_opt.into_iter().chain(input).collect();
-> >> >> > +        };
-> >> >>
-> >> >> This usage of let-else + match is pretty confusing and could just b=
-e a
-> >> >> single match statement.
-> >> >
-> >> > I don't think so. Can you try rewriting it into the form you like?
-> >>
-> >>     let (mut first_str, first_lit) match first_opt.as_ref() {
-> >>         Some(TokenTree::Literal(lit)) if lit.to_string().starts_with('=
-"') =3D> {
-> >>             let contents =3D lit.to_string();
-> >>             let contents =3D contents.strip_prefix('"').unwrap().strip=
-_suffix('"').unwrap();
-> >>             ((contents, lit))
-> >>         }
-> >>         _ =3D> return first_opt.into_iter().chain(input).collect(),
-> >>     };
-> >
-> > What happens if the invocation is utterly malformed, e.g.
-> > `fmt!("hello)`? You're unwrapping here, which I intentionally avoid.
->
-> That example won't even survive lexing (macros always will get valid
-> rust tokens as input). If a literal begins with a `"`, it also will end
-> with one AFAIK.
->
-> >> Yes it will error like that, but if we do the replacement only when th=
-e
-> >> syntax is correct, there also will be compile errors because of a
-> >> missing `Display` impl, or is that not the case?
-> >
-> > I'm not sure - I would guess syntax errors "mask" typeck errors.
->
-> I checked and it seems to be so, that's good.
+Reduce coupling to implementation details of the formatting machinery by
+avoiding direct use for `core`'s formatting traits and macros.
 
-=F0=9F=91=8D
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+---
+ rust/kernel/device.rs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
->
-> >> >> > +                    first_str =3D rest;
-> >> >> > +                    continue;
-> >> >> > +                }
-> >> >> > +                let name =3D name.split_once(':').map_or(name, |=
-(name, _)| name);
-> >> >> > +                if !name.is_empty() && !name.chars().all(|c| c.i=
-s_ascii_digit()) {
-> >> >> > +                    names.insert(name);
-> >> >> > +                }
-> >> >> > +                break;
-> >> >> > +            }
-> >> >> > +        }
-> >> >> > +        first_lit
-> >> >>
-> >> >> `first_lit` is not modified, so could we just the code above it int=
-o a
-> >> >> block instead of keeping it in the expr for `first_lit`?
-> >> >
-> >> > As above, can you suggest the alternate form you like better? The
-> >> > gymnastics here are all in service of being able to let malformed
-> >> > input fall through to core::format_args which will do the hard work =
-of
-> >> > producing good diagnostics.
-> >>
-> >> I don't see how this is hard, just do:
-> >>
-> >>     let (first_str, first_lit) =3D ...;
-> >
-> > It requires you to unwrap, like you did above, which is what I'm
-> > trying to avoid.
->
-> How so? What do you need to unwrap?
+diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
+index 5c946af3a4d5..9e9ecdb1beec 100644
+--- a/rust/kernel/device.rs
++++ b/rust/kernel/device.rs
+@@ -5,11 +5,11 @@
+ //! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
+ 
+ use crate::{
+-    bindings,
++    bindings, fmt,
+     str::CStr,
+     types::{ARef, Opaque},
+ };
+-use core::{fmt, marker::PhantomData, ptr};
++use core::{marker::PhantomData, ptr};
+ 
+ #[cfg(CONFIG_PRINTK)]
+ use crate::c_str;
+@@ -345,7 +345,7 @@ macro_rules! impl_device_context_into_aref {
+ macro_rules! dev_printk {
+     ($method:ident, $dev:expr, $($f:tt)*) => {
+         {
+-            ($dev).$method(::core::format_args!($($f)*));
++            ($dev).$method($crate::prelude::fmt!($($f)*));
+         }
+     }
+ }
 
-I was referring to your unwraps above.
+-- 
+2.50.0
 
-> >> >> > +    };
-> >> >> > +
-> >> >> > +    let first_span =3D first_lit.span();
-> >> >> > +    let adapt =3D |expr| {
-> >> >> > +        let mut borrow =3D
-> >> >> > +            TokenStream::from_iter([TokenTree::Punct(Punct::new(=
-'&', Spacing::Alone))]);
-> >> >> > +        borrow.extend(expr);
-> >> >> > +        make_ident(first_span, ["kernel", "fmt", "Adapter"])
-> >> >> > +            .chain([TokenTree::Group(Group::new(Delimiter::Paren=
-thesis, borrow))])
-> >> >>
-> >> >> This should be fine with using `quote!`:
-> >> >>
-> >> >>     quote!(::kernel::fmt::Adapter(&#expr))
-> >> >
-> >> > Yeah, I have a local commit that uses quote_spanned to remove all th=
-e
-> >> > manual constructions.
-> >>
-> >> I don't think that you need `quote_spanned` here at all. If you do, th=
-en
-> >> let me know, something weird with spans is going on then.
-> >
-> > You need to give idents a span, so each of `kernel`, `fmt`, and
-> > `adapter` need a span. I *could* use `quote!` and get whatever span it
-> > uses (mixed_site) but I'd rather retain control.
->
-> Please use `quote!` if it works. No need to make this more complex than
-> it already is. If it doesn't work then that's another story.
-
-Let's adjudicate that on v11, where you can see the code.
