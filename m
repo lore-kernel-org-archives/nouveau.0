@@ -4,73 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAAC5CCD188
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AC50CCD184
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8877610E600;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7EFC10E614;
 	Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IJZan1xn";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NcE0v36m";
 	dkim-atps=neutral
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
- [209.85.160.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E00FF10E834;
- Wed,  9 Jul 2025 20:00:10 +0000 (UTC)
-Received: by mail-qt1-f177.google.com with SMTP id
- d75a77b69052e-4a43d2d5569so4324041cf.0; 
- Wed, 09 Jul 2025 13:00:10 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+ [209.85.160.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8007510E82C;
+ Wed,  9 Jul 2025 20:00:07 +0000 (UTC)
+Received: by mail-qt1-f170.google.com with SMTP id
+ d75a77b69052e-4a58d95ea53so4621131cf.0; 
+ Wed, 09 Jul 2025 13:00:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752091210; x=1752696010; darn=lists.freedesktop.org;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=cVzLXa8kSNeGO3MSdRL/brp+J/B65R+0jBRIcOEDB2s=;
- b=IJZan1xnoK8ev3L5p94woVCNTbfQHGP1yijqI8/XrihyFnNWnudzWgkgsp6sHUNxxr
- ewiogQzmA3tHPEmMhBgz6/ztK/YFNtoQq0MNlNvzO63ThjdODgf0nP9UWT+vsdCMOhRT
- G9hm7BA3KU0G0Jk77g9oCW3puZ+qOEX18QLdDCTtFMdAOj0IdCAecqpJ+5X1VYPJNMWT
- VzSO9U8ABawPmTMhBa22CTIXx7+UO1AnjTOwnL7rD1eYN4Z5ZMgtTK1s9gt7F5I3OEGR
- RjeJw7EMOfAdKmkoo6eCH9P0U1MUMjDHbX9avTGTkKfQlr7LG++ZGeCrruEh+koSPkkO
- iDAg==
+ d=gmail.com; s=20230601; t=1752091206; x=1752696006; darn=lists.freedesktop.org;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=bBPH7FnIuiVsSiPlIYMq7bGgWWPkIuqhlOH0NbxWPbw=;
+ b=NcE0v36m14NDLgVEplqaqf0uQWOTYhruRKL3iQq00XUolYylzDt6V2QgPREyvHMTCf
+ 0re9AiyN5QTQVD3Kbf40ESCX7c+abqxJFyr3HKDS7KJyGrXC2n6u9W1N++/K3UnVUCUx
+ maXbD/2SD4V9d1tJu5kg8imJsNvr/e00y2MdNDDC/IGupuYNAg7qly6f2pF8Osr0KXQh
+ oA8BijjtEUIyQc3Ss5GCJKfzbc4s4Znqh5AJCFhd7Nzs0rDWCYD5dFl+AB1BJmE4+8Eq
+ 6nx4mBOqOqJVBE8s8G2z1WBC18q6lscNprCdjw3kk3ZwfqfZMDlpbgbqLUWnxVyJ6dbv
+ jRhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752091210; x=1752696010;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :mime-version:subject:date:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=cVzLXa8kSNeGO3MSdRL/brp+J/B65R+0jBRIcOEDB2s=;
- b=gaF0e/xHOR/WAM84dL0UOMqNjnshpg7Wj1mg6tKJ9Eo4FMOIwTym2lp8RHvPQskodn
- PYdldohH4Z4Z6vgcrmzPN2d0m4wOTrV18b+K/Nbe5j4SFkRFe0XuXeaIvknS3K51lN5F
- pSbjUf9XGbMhCOvoQrIvHCPzJ5sHemK7AVRZGVHNHCEhWDLaB6Q7KCwscUtVXQT1hskH
- PE5Fok7Y/dtPcsjl8IELLBciZnZ4xRU/zdlQ/xPFW9kBj+k5ncR2i8Qy75muaO9dPEcZ
- 5jIjLtqeBwahRK1j5TsUS6im0k809cxxnWAtMdO1Abg0YSs8Z/yDzKN0EMKCUCHMIkYy
- s0Cw==
+ d=1e100.net; s=20230601; t=1752091206; x=1752696006;
+ h=cc:to:content-transfer-encoding:mime-version:message-id:date
+ :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=bBPH7FnIuiVsSiPlIYMq7bGgWWPkIuqhlOH0NbxWPbw=;
+ b=PKOlDst11gIeu6bHnt2625e/lGtJkSCGqMa9+RGGSybo5NTr4Lu7tYsfgcZVxB/JR2
+ 8FK9FdFiERWAXtBBOyjXhDNeGQMQwh88AhwbdvrkYQb1gtnzr+7hUh39qXOOrCBREhVi
+ SpCv6yhSn4zir3LjKSSmNu/57WR7oWdLYFLlXZ40EQrp7e6JR/+uWJ2NpngFP1mMNdO2
+ rDqkl8voREMN32m8rSBG9CasdbgBQuMvteRuwKnMME/B3jOiiys4gPN5sQ8gsu+nG6rz
+ 2DUD2vFdn2qyLsPUq6rg20ic3PUOYU2OOVbSK5VpPTt5DK96l16T7hbh2P3oFgFuueS5
+ 0KWA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXWzJCA0bz95EWpESpdSFJk7RzxwxZGCvm6OuKteZI+nzg8lu5XN606cqikwOyxbuH+MbDpairzUOM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx9ffl5+Ccy950TO7jhS5vRyhMXTtMvXALeh+GtKQu9ZglEUzUa
- +V+LMeTxT8815rNMT4ZEajy/pmRAukmfcSkf5RkdqcC7Ov+YuhhuWLnN
-X-Gm-Gg: ASbGncs1aW7Brj0ovuoxDK1yINnPGe0hdR8D7bN3fGBQwFlJm40a60ePUppmOVU8sEr
- psy95reEhDQtA4uUHy1fE7fdyf1mK3OgMD28u1oQyi5+y/WHmZ/i/gDsMpV7D6/iI68nt1cxHjL
- 4eDB0lV9czHq3EKO0AHuKClNM4SA3nZrEwiUbNIF/qRchMjHOE81qNyT0HhBBSiaIitUSXJvruV
- 5ZcGsgxgoehk4gm6z3A/iJOctdrTmrSu6mvikH09GKNjYDny1qvHakmobehIcG3ZpOkV74knXdR
- 0VctWb8TYvzyVoYAFB3LfA+UCFvztvAMN1b6K+qVjIN6TXx7q3Ks0ooUlDdc0ftTHKscD5qP0jG
- sJi3ndHsG5O/KHvvnl4WcA0KFS3GfCpMt9k8aWEo82edtLhwky8sYDO+Mxw==
-X-Google-Smtp-Source: AGHT+IGXtHAw7tU6Iy2swGDNMQZPoa2ogZIinUn8nn1RGEZpotaHpL4uCE654v9GUCOGSaI9YTFbag==
-X-Received: by 2002:ac8:59cf:0:b0:4a9:91fa:7ff4 with SMTP id
- d75a77b69052e-4a9e9401dfdmr14926921cf.33.1752091209513; 
- Wed, 09 Jul 2025 13:00:09 -0700 (PDT)
+ AJvYcCVPMzvpEubJcRwIFJvkc3iu37/Us6iJhrd+4tuEEHnvbVoCUewIfR/IxE7oKLAcTABbo9xafOHvvgM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxVF1FqG7WaWPF8barzyHp/YlGQjZ/eduv6NCu+tDpQNAUeYfw9
+ Yw4/dLROr8qsbhlym1XEAIVM5o2s2ndTRNsoG48SB00gTXJ23mYZbLAQ
+X-Gm-Gg: ASbGncve1Xk0vIEZgIgOvHiHkstWY2mzOrT9fPVJemhJ+mKDBZpHB/bFgsHELcPiY14
+ OdTgZAkZGh6OvWZDKJCkQE0vqa49GJoaWcQyffIdoUJk6pYPgIIAg8JzDqZkCuBosm3F4jdpMul
+ IasL+u6+nyes7yvf35m6egB1Na4zRin7YL8quXmAuYNJcH7IU0PpeJBmG0Ox//rT67qKTroEYsm
+ G/Mqtd/kW0PUa85UYuOs8YIVgyXvO4oOGItDP9KSp6qwosahk8kKn5CJQ+3865Fv/vonuxIsg+j
+ A1D2CwFcOFkFpInVUAAKMSyLrAufZBzL5OG7GaVwymAN0gyZUS+KMfvmbvbS7KcWLnNG0+5qLGI
+ pGnqDRJBu92hEBgPv8c06G0jrMHPd6VKeIPj9Vjx2egKNV6QsoMBFF3sm/Q==
+X-Google-Smtp-Source: AGHT+IEjvhAx4Fexn1s+7YjFkkN49k26NgQzpiKzVdxw5gpNGSXQ/darWIe+uClarfZ+hMNJzu4LEQ==
+X-Received: by 2002:a05:622a:53c4:b0:4a7:6408:b449 with SMTP id
+ d75a77b69052e-4a9e9bf79afmr13743511cf.2.1752091206317; 
+ Wed, 09 Jul 2025 13:00:06 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
  ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4a9949e4aaasm100432891cf.3.2025.07.09.13.00.08
+ d75a77b69052e-4a9949e4aaasm100432891cf.3.2025.07.09.13.00.04
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 09 Jul 2025 13:00:09 -0700 (PDT)
+ Wed, 09 Jul 2025 13:00:05 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 09 Jul 2025 16:00:01 -0400
-Subject: [PATCH 2/9] rust: alloc: use `kernel::{fmt,prelude::fmt!}`
+Subject: [PATCH 0/9] rust: use `kernel::{fmt,prelude::fmt!}`
+Date: Wed, 09 Jul 2025 15:59:59 -0400
+Message-Id: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250709-core-cstr-fanout-1-v1-2-64308e7203fc@gmail.com>
-References: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
-In-Reply-To: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAD/KbmgC/02OzQ7CIBAGX6XZsySwpaz0VYwHfhblYKvQGpOm7
+ y5RDx5nk51vNqhcMlcYuw0KP3PN89RAHToIVzddWOTYGFDiIElaEebCItSliOSmeV2EEgmlUer
+ YIxJCe7wXTvn1kZ7OXy78WJt7+R7Bu9ok8+2Wl7EjY7lH7Y3xMlqMUqdeDVEGPTiZCKmnQNpq+
+ G8au1+R/itqQ3fXwHrLxpGPA/H4VHDe9zfyzQPq6QAAAA==
+X-Change-ID: 20250709-core-cstr-fanout-1-f20611832272
 To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
  Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
@@ -88,13 +91,13 @@ Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
  kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752091203; l=1962;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752091203; l=2543;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=3q8XWZjySCzinOtTT6aFMskjuBTX2M/x4Doe4ersSAs=;
+ bh=3uVzBwpZOZRwh4aQxcecwTnih0t2Su/HW/bH4b6okHs=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QPHgX8yope2oPhej/PN7N7SAIUDyJ62uVe7A1FlJtghi0M7GvDbe+kOqnz6MGtbjArlwKEf4KPX
- SUaEPP4askAo=
+ QOFx1gBF76r4ZDYB2EZOTwsUwSVSVp3sKW88+0lIx1FnbguWzfge/GtyFqlJhS0kWl0FJEONZDI
+ dw5ZmS5n/ygg=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
@@ -112,66 +115,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Reduce coupling to implementation details of the formatting machinery by
-avoiding direct use for `core`'s formatting traits and macros.
+This is series 2a/5 of the migration to `core::ffi::CStr`[0].
+20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+This series depends on the prior series[0] and is intended to go through
+the rust tree to reduce the number of release cycles required to
+complete the work.
+
+Subsystem maintainers: I would appreciate your `Acked-by`s so that this
+can be taken through Miguel's tree (where the other series must go).
+
+[0] https://lore.kernel.org/all/20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com/
+
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/alloc/kbox.rs        | 2 +-
- rust/kernel/alloc/kvec.rs        | 2 +-
- rust/kernel/alloc/kvec/errors.rs | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Tamir Duberstein (9):
+      gpu: nova-core: use `kernel::{fmt,prelude::fmt!}`
+      rust: alloc: use `kernel::{fmt,prelude::fmt!}`
+      rust: block: use `kernel::{fmt,prelude::fmt!}`
+      rust: device: use `kernel::{fmt,prelude::fmt!}`
+      rust: file: use `kernel::{fmt,prelude::fmt!}`
+      rust: kunit: use `kernel::{fmt,prelude::fmt!}`
+      rust: pin-init: use `kernel::{fmt,prelude::fmt!}`
+      rust: seq_file: use `kernel::{fmt,prelude::fmt!}`
+      rust: sync: use `kernel::{fmt,prelude::fmt!}`
 
-diff --git a/rust/kernel/alloc/kbox.rs b/rust/kernel/alloc/kbox.rs
-index ccf1df7da96c..96db3cf8d782 100644
---- a/rust/kernel/alloc/kbox.rs
-+++ b/rust/kernel/alloc/kbox.rs
-@@ -7,7 +7,6 @@
- use super::{AllocError, Allocator, Flags};
- use core::alloc::Layout;
- use core::borrow::{Borrow, BorrowMut};
--use core::fmt;
- use core::marker::PhantomData;
- use core::mem::ManuallyDrop;
- use core::mem::MaybeUninit;
-@@ -16,6 +15,7 @@
- use core::ptr::NonNull;
- use core::result::Result;
- 
-+use crate::fmt;
- use crate::init::InPlaceInit;
- use crate::types::ForeignOwnable;
- use pin_init::{InPlaceWrite, Init, PinInit, ZeroableOption};
-diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
-index 0477041cbc03..a642bdc9cea2 100644
---- a/rust/kernel/alloc/kvec.rs
-+++ b/rust/kernel/alloc/kvec.rs
-@@ -7,8 +7,8 @@
-     layout::ArrayLayout,
-     AllocError, Allocator, Box, Flags,
- };
-+use crate::fmt;
- use core::{
--    fmt,
-     marker::PhantomData,
-     mem::{ManuallyDrop, MaybeUninit},
-     ops::Deref,
-diff --git a/rust/kernel/alloc/kvec/errors.rs b/rust/kernel/alloc/kvec/errors.rs
-index 348b8d27e102..21a920a4b09b 100644
---- a/rust/kernel/alloc/kvec/errors.rs
-+++ b/rust/kernel/alloc/kvec/errors.rs
-@@ -2,7 +2,7 @@
- 
- //! Errors for the [`Vec`] type.
- 
--use core::fmt::{self, Debug, Formatter};
-+use kernel::fmt::{self, Debug, Formatter};
- use kernel::prelude::*;
- 
- /// Error type for [`Vec::push_within_capacity`].
+ drivers/block/rnull.rs               | 2 +-
+ drivers/gpu/nova-core/gpu.rs         | 3 +--
+ drivers/gpu/nova-core/regs/macros.rs | 6 +++---
+ rust/kernel/alloc/kbox.rs            | 2 +-
+ rust/kernel/alloc/kvec.rs            | 2 +-
+ rust/kernel/alloc/kvec/errors.rs     | 2 +-
+ rust/kernel/block/mq.rs              | 2 +-
+ rust/kernel/block/mq/gen_disk.rs     | 2 +-
+ rust/kernel/block/mq/raw_writer.rs   | 3 +--
+ rust/kernel/device.rs                | 6 +++---
+ rust/kernel/fs/file.rs               | 5 +++--
+ rust/kernel/init.rs                  | 4 ++--
+ rust/kernel/kunit.rs                 | 8 ++++----
+ rust/kernel/seq_file.rs              | 6 +++---
+ rust/kernel/sync/arc.rs              | 3 +--
+ scripts/rustdoc_test_gen.rs          | 2 +-
+ 16 files changed, 28 insertions(+), 30 deletions(-)
+---
+base-commit: 769e324b66b0d92d04f315d0c45a0f72737c7494
+change-id: 20250709-core-cstr-fanout-1-f20611832272
+prerequisite-change-id: 20250704-core-cstr-prepare-9b9e6a7bd57e:v1
+prerequisite-patch-id: 83b1239d1805f206711a5a936bbb61c83227d573
+prerequisite-patch-id: a0355dd0efcc945b0565dc4e5a0f42b5a3d29c7e
+prerequisite-patch-id: 8585bf441cfab705181f5606c63483c2e88d25aa
+prerequisite-patch-id: 04ec344c0bc23f90dbeac10afe26df1a86ce53ec
+prerequisite-patch-id: a2fc6cd05fce6d6da8d401e9f8a905bb5c0b2f27
+prerequisite-patch-id: f14c099c87562069f25fb7aea6d9aae4086c49a8
 
--- 
-2.50.0
+Best regards,
+--  
+Tamir Duberstein <tamird@gmail.com>
 
