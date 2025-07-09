@@ -4,115 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25085D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A39A9D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF0510EBFE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AA9D10EC1B;
 	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="I8hVdAa9";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="WDgn0IoC";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8CD610E278
- for <nouveau@lists.freedesktop.org>; Tue,  5 Aug 2025 14:59:40 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 575AcPlx012479
- for <nouveau@lists.freedesktop.org>; Tue, 5 Aug 2025 14:59:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:reply-to:subject:to; s=
- qcppdkim1; bh=5VP7v53va29cpzA7nUn1M5nUaw4K/K2gvLeC0gIRIqI=; b=I8
- hVdAa9vHymGy1m3iqE1rs/uXu0OxpGYo0/rAmvtRC4Q/PiSAZwvxA/qCJisjakNh
- e2DEkDS1CHYTABLl0zmGtlUxrpHB7v/ghPhYbiMGGXngaMUaw06Mo8SmOZ9rkrQf
- gFKl9fjcURWaeAcDWUyl5L0qS1IfxKZrmiEqDOmpZqeHw29W+DSqlFtjrLMJJWfS
- MoVALtRJcU55xSvftDaGkMbH3/vArzFMwvUiS9OcT9pzkW1I+lWW0FPh4qTPF3YA
- O8AScuGwREufjFmwMp4xLNnyXM8neUrewBTadujJJS5br7Ag5OeSzmeFosh0ksZe
- Owsr3HGl8OC29rOEmY6g==
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com
- [209.85.167.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48b8ag229d-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Tue, 05 Aug 2025 14:59:39 +0000 (GMT)
-Received: by mail-oi1-f200.google.com with SMTP id
- 5614622812f47-43240e39770so4552935b6e.0
- for <nouveau@lists.freedesktop.org>; Tue, 05 Aug 2025 07:59:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754405979; x=1755010779;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :reply-to:in-reply-to:references:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5VP7v53va29cpzA7nUn1M5nUaw4K/K2gvLeC0gIRIqI=;
- b=l5Fz84252rcdvHrJtdX83PXmvr7goPuOxeaeX1id039WXa/+7+nXaWEB1cL/IAKBQT
- ZSvYytRXQuImOs/BYc7FD1/C6SjCPJdjN07hoFx8QOrxlkekLubjoAqBeHYcWTjawbTB
- Qq84CfFOBZhEbMNO1Xv3wJXKZOVldZxSdI8wlBzRdoc2VaidquJqJZ0ndXZodZ9zzzF0
- uiuLZN63pUuKeDrnHxy0D8SB1tQVfvSFGRF9aufl3nZfAeQNF4U8QbofJmstrzsmk2Eq
- OADkgh6IaEn56fR2Wrm8OSUaXz5nbfWCv45av2YitE9hHHfmDhVrQpBqHj8W5rBAjtBf
- S0uA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXIYJwpaMg67hhDm734SoI+oFD87uaduCf9R32AoQtA8zVrcXTXqokvkzHv9CJ3iX4j5rUacO3O@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyaR7m+QZKuNfaNLatH1SI88DkIYz1dJyZyS3G2HE1WUwdZ+qkb
- FHHb92boAueRvuajFkHhDcLT1m+QwX9ca//xeBZiaOHs5v8PjIIK0A2eR1TvVsbkToTRdFfvNfH
- 5WOxYaVu8wC4Mb8ByYZMh/ZuSBWYGmFwmLOkRw17UnbHoytCigaQWHng1cJUBGCJ+z3Qq7BQdMX
- eprRurvnvLHherAbUwae9DOolzVNlW6jsUyXkK+8wNb7c=
-X-Gm-Gg: ASbGncvlCpToiGW54t4bP426elxq8uO0lgytj6migARcKQOzQ7vg2dAPvJwX/JGYZJd
- ol5YKItPoPu0WU+gXSdDzYv8DB9VsmZ597QCe5Qqsr7m2Fw0G2ieAVTX9rW0FAF3bKFB49ar17O
- HVdDpV/A9gKlWjsX5Uh8i3kvTv/Ad7sD7KrIw7+H/T6CkpkFs8sQ+h
-X-Received: by 2002:a05:6808:124a:b0:401:e721:8b48 with SMTP id
- 5614622812f47-433f020d6f7mr7919652b6e.8.1754405978913; 
- Tue, 05 Aug 2025 07:59:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+6ybutU9RtNNd8gKO1lElM7QyIOMCpne6QzqtryagfoJGG3ah1wcU/O0jC53ssU8ygi7M+t21QA06+nZ7Szo=
-X-Received: by 2002:a05:6808:124a:b0:401:e721:8b48 with SMTP id
- 5614622812f47-433f020d6f7mr7919636b6e.8.1754405978390; Tue, 05 Aug 2025
- 07:59:38 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
- <20250804214317.658704-2-robin.clark@oss.qualcomm.com>
- <DBUE2QU2CH9N.3C32KHT9LHMMB@kernel.org>
- <CACSVV0270Zk4ApR_pGZ+sKgoi14kvfOo_NvzVq3-QALE0mpFsQ@mail.gmail.com>
- <DBUKRNHY14ZN.95GVIGMY7RAN@kernel.org>
-In-Reply-To: <DBUKRNHY14ZN.95GVIGMY7RAN@kernel.org>
-From: Rob Clark <rob.clark@oss.qualcomm.com>
-Date: Tue, 5 Aug 2025 07:59:27 -0700
-X-Gm-Features: Ac12FXyia9P5tgbRPxVXrZTiL6VK4xUgl9aLrubrFFRerh-QJyYy5THAuzSUSx8
-Message-ID: <CACSVV01zZ=o55YY=GHTKaJY1HorRUu73KA+5Puz2MonqH7JwuQ@mail.gmail.com>
-Subject: Re: [PATCH RESEND 1/2] drm/gpuvm: Send in-place re-maps to the driver
- as remap
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, Danilo Krummrich <dakr@redhat.com>,
- Connor Abbott <cwabbott0@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lyude Paul <lyude@redhat.com>, open list <linux-kernel@vger.kernel.org>,
- "open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO GPUS"
- <nouveau@lists.freedesktop.org>
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E530010E789;
+ Wed,  9 Jul 2025 10:15:13 +0000 (UTC)
+Received: from smtp2.mailbox.org (smtp2.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::2])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4bcYkk5Z6Tz9v0W;
+ Wed,  9 Jul 2025 12:15:10 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1752056110; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=mFira+KRxdt8d2FwCbb09WeKAggOn2O87AQVoaADDDg=;
+ b=WDgn0IoCwgiKpF286Do31Pin7PJ2guwZj4o9mUTgcnO0KxKRTMpqV1aW5zxiX3N5htkerQ
+ kLhuJfncnmUQFLRQycp7T3gADDfsZpqselBwPENiHlokvruIwHszV22QpuL2+jmHRmt6SC
+ 2yWvgFkRY9erkLCMUhDcYQiYSuAD9QcIo7iKFxOvDGh2JLrZV6jU9u+yBUUarJcP9qa938
+ xzxeTJYjxtsL2NhiXfY1Iu86YK4LH1w0II4PxVwZh64bszBzCJlB/lXJnIgWpIqwwXfUWN
+ OnrrZ4LsSmNbTztfn1SQlVuOOhFrIzV65WwXMXNPPStL+o/Z9X9QGj9JNOiJlQ==
+Message-ID: <acb81a4e86f4f683c4f83509afdc5f24ea01e64d.camel@mailbox.org>
+Subject: Re: [PATCH v4] drm/sched: Use struct for drm_sched_init() params
+From: Philipp Stanner <phasta@mailbox.org>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Philipp Stanner
+ <phasta@kernel.org>, Min Ma <min.ma@amd.com>, Lizhi Hou
+ <lizhi.hou@amd.com>,  Oded Gabbay <ogabbay@kernel.org>, Alex Deucher
+ <alexander.deucher@amd.com>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Lucas Stach
+ <l.stach@pengutronix.de>, Russell King <linux+etnaviv@armlinux.org.uk>, 
+ Christian Gmeiner <christian.gmeiner@gmail.com>, Frank Binns
+ <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>,  Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu
+ <yuq825@gmail.com>,  Rob Clark <robdclark@gmail.com>, Sean Paul
+ <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,  Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Dmitry Baryshkov
+ <dmitry.baryshkov@linaro.org>, Marijn Suijten
+ <marijn.suijten@somainline.org>, Karol Herbst <kherbst@redhat.com>, Lyude
+ Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>, Boris
+ Brezillon <boris.brezillon@collabora.com>, Rob Herring <robh@kernel.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Matthew Brost <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Lucas De Marchi
+ <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sunil Khatri <sunil.khatri@amd.com>,  Lijo Lazar <lijo.lazar@amd.com>,
+ Hawking Zhang <Hawking.Zhang@amd.com>, Mario Limonciello
+ <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, Yunxiang Li
+ <Yunxiang.Li@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, etnaviv@lists.freedesktop.org, 
+ lima@lists.freedesktop.org, linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Christian Gmeiner <cgmeiner@igalia.com>
+Date: Wed, 09 Jul 2025 12:14:54 +0200
+In-Reply-To: <b5d0921c-7cbf-4d55-aa47-c35cd7861c02@igalia.com>
+References: <20250211111422.21235-2-phasta@kernel.org>
+ <b5d0921c-7cbf-4d55-aa47-c35cd7861c02@igalia.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Proofpoint-ORIG-GUID: 83P33kIFTcA7ifPGlIuKIMOJ7s6bhuze
-X-Proofpoint-GUID: 83P33kIFTcA7ifPGlIuKIMOJ7s6bhuze
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA1MDEwOCBTYWx0ZWRfX+XPkQua5+b4c
- bd/co0yKAE1UIbIyAMmgn/iAJXK3/Y5EMhqXpvHH/nqt8WtZJLsKGduwC6ey/jQ3EwNxvv8XJN9
- RqGTcEStxEQ3A94N/68N7kscq/OLsOU3cqWK5JbEcsfdytKYygKYz4ENnymPErUWNSmWtHXf77P
- pxm5daxAnGwXtJVrbnqb1SuZn2SP+KMLFIo7uk5l2L14jBNGEnO8YWuhwPE25m4A53sLZ1Z9Tyc
- Q7U95HnXwUjBsqp1N57v9tPSOToh2NO4PshqyzBcJG3dRghhYU7BV5pokHrelSIjV6mGjvpec2+
- VfFQIcyLSjLT9x3oinCQnk+FeBsbKaaqgmY6FtA+gU61x4W5nT4N1vdpJZ6UxksL4fCW6FKfxBm
- KK1m0v9yHSjy76UwP4qApTjn6WveRiEN4QH6KRJojvoy5v+2Ngsk5Mxz2c/DJwl2fDI++cx7
-X-Authority-Analysis: v=2.4 cv=aJvwqa9m c=1 sm=1 tr=0 ts=68921c5b cx=c_pps
- a=AKZTfHrQPB8q3CcvmcIuDA==:117 a=IkcTkHD0fZMA:10 a=2OwXVqhp2XgA:10
- a=VwQbUJbxAAAA:8 a=gugPwdCod9cupdveROQA:9 a=QEXdDO2ut3YA:10
- a=pF_qn-MSjDawc0seGVz6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-05_04,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 suspectscore=0 mlxscore=0 adultscore=0
- priorityscore=1501 mlxlogscore=999 spamscore=0 impostorscore=0 clxscore=1015
- bulkscore=0 phishscore=0 classifier=spam authscore=0 authtc=n/a authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
- definitions=main-2508050108
+MIME-Version: 1.0
+X-MBO-RS-ID: 2cfb6c6c64b390fa220
+X-MBO-RS-META: ay4k4wqr33dnoj1dmtnedfghmj9cfjnj
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -125,139 +91,149 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: rob.clark@oss.qualcomm.com
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Aug 5, 2025 at 7:48=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> w=
-rote:
->
-> On Tue Aug 5, 2025 at 4:32 PM CEST, Rob Clark wrote:
-> > On Tue, Aug 5, 2025 at 2:33=E2=80=AFAM Danilo Krummrich <dakr@kernel.or=
-g> wrote:
-> >> On Mon Aug 4, 2025 at 11:43 PM CEST, Rob Clark wrote:
-> >> > diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm=
-.c
-> >> > index bbc7fecb6f4a..e21782a97fbe 100644
-> >> > --- a/drivers/gpu/drm/drm_gpuvm.c
-> >> > +++ b/drivers/gpu/drm/drm_gpuvm.c
-> >> > @@ -2125,6 +2125,27 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
-> >> >                                offset =3D=3D req_offset;
-> >> >
-> >> >                       if (end =3D=3D req_end) {
-> >> > +                             if (merge) {
-> >> > +                                     /*
-> >> > +                                      * This is an exact remap of t=
-he existing
-> >> > +                                      * VA (potentially flags chang=
-e)?  Pass
-> >> > +                                      * this to the driver as a rem=
-ap so it can
-> >> > +                                      * do an in-place update:
-> >> > +                                      */
-> >> > +                                     struct drm_gpuva_op_map n =3D =
-{
-> >> > +                                             .va.addr =3D va->va.ad=
-dr,
-> >> > +                                             .va.range =3D va->va.r=
-ange,
-> >> > +                                             .gem.obj =3D va->gem.o=
-bj,
-> >> > +                                             .gem.offset =3D va->ge=
-m.offset,
-> >> > +                                     };
-> >> > +                                     struct drm_gpuva_op_unmap u =
-=3D {
-> >> > +                                             .va =3D va,
-> >> > +                                             .keep =3D true,
-> >> > +                                     };
-> >> > +
-> >> > +                                     return op_remap_cb(ops, priv, =
-NULL, &n, &u);
-> >> > +                             }
-> >>
-> >> I don't see why this is necessary, a struct drm_gpuva_op_unmap carries=
- the
-> >> struct drm_gpuva to unmap. You can easily compare this to the original=
- request
-> >> you gave to GPUVM, i.e. req_addr, req_range, req_obj, req_offset, etc.
-> >>
-> >> Which is what you have to do for any other unmap operation that has ke=
-ep =3D=3D true
-> >> anyways, e.g. if D is the exact same as A, B and C.
-> >>
-> >>         Cur
-> >>         ---
-> >>         1                       N
-> >>         |---A---|---B---|---C---|
-> >>
-> >>         Req
-> >>         ---
-> >>         1                       N
-> >>         |-----------D-----------|
-> >
-> > Ugg, this means carrying around more state between the unmap and map
-> > callbacks, vs. just handing all the data to the driver in a single
-> > callback.  For the keep=3D=3Dtrue case, nouveau just seems to skip the
-> > unmap.. I guess in your case the map operation is tolerant of
-> > overwriting existing mappings so this works out, which isn't the case
-> > with io_pgtable.
->
-> There is no "your case" as far as I'm concerned. Please don't think that =
-I don't
-> care about solving a problem, just because it's not relevant for any of t=
-he
-> drivers or subsystems I maintain. :)
+On Tue, 2025-07-08 at 14:02 +0100, Tvrtko Ursulin wrote:
+>=20
+>=20
+> On 11/02/2025 11:14, Philipp Stanner wrote:
+> > drm_sched_init() has a great many parameters and upcoming new
+> > functionality for the scheduler might add even more. Generally, the
+> > great number of parameters reduces readability and has already
+> > caused
+> > one missnaming, addressed in:
+> >=20
+> > commit 6f1cacf4eba7 ("drm/nouveau: Improve variable name in
+> > nouveau_sched_init()").
+> >=20
+> > Introduce a new struct for the scheduler init parameters and port
+> > all
+> > users.
+> >=20
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > Reviewed-by: Liviu Dudau <liviu.dudau@arm.com>
+> > Acked-by: Matthew Brost <matthew.brost@intel.com> # for Xe
+> > Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com> # for
+> > Panfrost and Panthor
+> > Reviewed-by: Christian Gmeiner <cgmeiner@igalia.com> # for Etnaviv
+> > Reviewed-by: Frank Binns <frank.binns@imgtec.com> # for Imagination
+> > Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com> # for Sched
+> > Reviewed-by: Ma=C3=ADra Canal <mcanal@igalia.com> # for v3d
+> > ---
+> > Changes in v4:
+> > =C2=A0=C2=A0 - Add forgotten driver accel/amdxdna. (Me)
+> > =C2=A0=C2=A0 - Rephrase the "init to NULL" comments. (Tvrtko)
+> > =C2=A0=C2=A0 - Apply RBs by Tvrtko and Maira.
+> > =C2=A0=C2=A0 - Terminate the last struct members with a comma, so that =
+future
+> > =C2=A0=C2=A0=C2=A0=C2=A0 fields can be added with a minimal patch diff.=
+ (Me)
+> >=20
+> > Changes in v3:
+> > =C2=A0=C2=A0 - Various formatting requirements.
+> >=20
+> > Changes in v2:
+> > =C2=A0=C2=A0 - Point out that the hang-limit is deprecated. (Christian)
+> > =C2=A0=C2=A0 - Initialize the structs to 0 at declaration. (Planet Eart=
+h)
+> > =C2=A0=C2=A0 - Don't set stuff explicitly to 0 / NULL. (Tvrtko)
+> > =C2=A0=C2=A0 - Make the structs const where possible. (Boris)
+> > =C2=A0=C2=A0 - v3d: Use just 1, universal, function for sched-init. (Ma=
+=C3=ADra)
+> > ---
+>=20
+> 8><
+>=20
+> > diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c
+> > b/drivers/gpu/drm/panfrost/panfrost_job.c
+> > index 9b8e82fb8bc4..5657106c2f7d 100644
+> > --- a/drivers/gpu/drm/panfrost/panfrost_job.c
+> > +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
+> > @@ -836,8 +836,16 @@ static irqreturn_t
+> > panfrost_job_irq_handler(int irq, void *data)
+> > =C2=A0=20
+> > =C2=A0 int panfrost_job_init(struct panfrost_device *pfdev)
+> > =C2=A0 {
+> > +	struct drm_sched_init_args args =3D {
+> > +		.ops =3D &panfrost_sched_ops,
+> > +		.num_rqs =3D DRM_SCHED_PRIORITY_COUNT,
+> > +		.credit_limit =3D 2,
+> > +		.timeout =3D msecs_to_jiffies(JOB_TIMEOUT_MS),
+> > +		.timeout_wq =3D pfdev->reset.wq,
+>=20
+> ^^^
+>=20
+> > +		.name =3D "pan_js",
+> > +		.dev =3D pfdev->dev,
+> > +	};
+> > =C2=A0=C2=A0	struct panfrost_job_slot *js;
+> > -	unsigned int nentries =3D 2;
+> > =C2=A0=C2=A0	int ret, j;
+> > =C2=A0=20
+> > =C2=A0=C2=A0	/* All GPUs have two entries per queue, but without
+> > jobchain
+> > @@ -845,7 +853,7 @@ int panfrost_job_init(struct panfrost_device
+> > *pfdev)
+> > =C2=A0=C2=A0	 * so let's just advertise one entry in that case.
+> > =C2=A0=C2=A0	 */
+> > =C2=A0=C2=A0	if (!panfrost_has_hw_feature(pfdev,
+> > HW_FEATURE_JOBCHAIN_DISAMBIGUATION))
+> > -		nentries =3D 1;
+> > +		args.credit_limit =3D 1;
+> > =C2=A0=20
+> > =C2=A0=C2=A0	pfdev->js =3D js =3D devm_kzalloc(pfdev->dev, sizeof(*js),
+> > GFP_KERNEL);
+> > =C2=A0=C2=A0	if (!js)
+>=20
+> Stumbled on this while looking at drm_sched_init() workqueue usage.
+>=20
+> I think this patch might need a fixup. Because somewhere around here
+> in=20
+> the code there is this:
+>=20
+> 	pfdev->reset.wq =3D alloc_ordered_workqueue("panfrost-reset",
+> 0);
+> 	if (!pfdev->reset.wq)
+> 		return -ENOMEM;
+>=20
+> Which means that after the patch panfrost is using system_wq for the=20
+> timeout handler instead the one it creates.
 
-Sorry, I didn't mean to imply that.. I was just trying to point out a
-constraint that you might not be aware of :-)
+Ouch yes, that's definitely a very subtle bug. AFAICS it comes to be by
+pfdev being initialized to 0.
 
-> > I guess I could handle the specific case of an exact in-place remap in
-> > the driver to handle this specific case.  But the example you give
-> > with multiple mappings would be harder to cope with.
-> >
-> > I still feel there is some room for improvement in gpuvm to make this
-> > easier for drivers.  Maybe what I proposed isn't the best general
-> > solution, but somehow giving the drivers info about both the unmaps
-> > and maps in the same callback would make things easier (and the remap
-> > callback is _almost_ that).
->
-> I generally agree with that, my concern is more about this specific patch=
-.
->
-> There are patches on the list that replace all the req_* arguments of
-> __drm_gpuvm_sm_map() with a new struct drm_gpuvm_map_req.
->
-> Maybe the unmap callbacks could simply provide a pointer to this object?
+Let me provide a fix..
 
-I think that would help.. I'd probably want some additional
-information about overlapping 'keep' unmaps in the map callback as
-well, or at least the range of the 'keep' unmaps so the map callback
-knows that part of the new va is already mapped. But this seems
-doable.
+P.
 
-BR,
--R
+>=20
+> > @@ -875,13 +883,7 @@ int panfrost_job_init(struct panfrost_device
+> > *pfdev)
+> > =C2=A0=C2=A0	for (j =3D 0; j < NUM_JOB_SLOTS; j++) {
+> > =C2=A0=C2=A0		js->queue[j].fence_context =3D
+> > dma_fence_context_alloc(1);
+> > =C2=A0=20
+> > -		ret =3D drm_sched_init(&js->queue[j].sched,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 &panfrost_sched_ops, NULL,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 DRM_SCHED_PRIORITY_COUNT,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 nentries, 0,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0
+> > msecs_to_jiffies(JOB_TIMEOUT_MS),
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 pfdev->reset.wq,
+> > -				=C2=A0=C2=A0=C2=A0=C2=A0 NULL, "pan_js", pfdev->dev);
+> > +		ret =3D drm_sched_init(&js->queue[j].sched, &args);
+>=20
+> ^^^
+>=20
+> > =C2=A0=C2=A0		if (ret) {
+> > =C2=A0=C2=A0			dev_err(pfdev->dev, "Failed to create
+> > scheduler: %d.", ret);
+> > =C2=A0=C2=A0			goto err_sched;
+>=20
+> Regards,
+>=20
+> Tvrtko
+>=20
 
-> > BR,
-> > -R
-> >
-> >>
-> >> In this case you get three unmap ops with keep =3D=3D true, which you =
-can compare to
-> >> your request to figure out that you can keep the corresponding PTEs.
-> >>
-> >> Besides that it changes the semantics that the documentation mentions =
-and that
-> >> drivers are allowed to rely on, i.e. a struct drm_gpuva_op_remap repre=
-sents
-> >> an actual change and any call to __drm_gpuvm_sm_map() results in an ar=
-bitrary
-> >> number of unmap ops, a maximum of two remap ops and exactly one map op=
-eration.
-> >>
-> >> >                               ret =3D op_unmap_cb(ops, priv, va, mer=
-ge);
-> >> >                               if (ret)
-> >> >                                       return ret;
->
