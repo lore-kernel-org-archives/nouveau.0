@@ -4,88 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56D0CCCD187
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA8A5CCD185
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 626CA10E607;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF1C10E60C;
 	Mon,  6 Oct 2025 20:57:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NqlzqzrK";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NHDI+DBL";
 	dkim-atps=neutral
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
- [209.85.208.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D5010E55F;
- Wed, 19 Mar 2025 17:23:03 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-307c13298eeso12584761fa.0; 
- Wed, 19 Mar 2025 10:23:03 -0700 (PDT)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07D9110E83E;
+ Wed,  9 Jul 2025 20:00:12 +0000 (UTC)
+Received: by mail-qt1-f169.google.com with SMTP id
+ d75a77b69052e-4a6f0bcdf45so3707091cf.0; 
+ Wed, 09 Jul 2025 13:00:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742404981; x=1743009781; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=hsaYUgrXM5qfLvhH06tltZQdRCjc5tEs2EI/X9vdw2c=;
- b=NqlzqzrKgd0yr2SXj9hIwr2qPm7jjhQWMs+kYUpFXrOt9sCuG6cEOph/vZgEewfTWR
- 9u8z/f2k8BriaTynw7bqmPHaFZ59OMhTsPvhF0vjR4oBTzZxwhilxal8NxZwt1gGWSQm
- sNBnXmOTI/KtbmSnQYHLb/77GaECZmU6tYb+e8no1RWnuYBAB+vHLF+hqpYHcqhqWGOS
- eeXkDWrxuNcr+L5OOm708kvw2fqug9jDzdjEVmkQ+EU8xDxjmABkeElb0pJwRKrdCn6t
- oTMuZj8JXYW+jpRJcPDHhM/xhlYZP5zbNpLGIFS82A/sloTbS9ETHIDJ0r5fBxGEQlAo
- Ap7Q==
+ d=gmail.com; s=20230601; t=1752091211; x=1752696011; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=tDFRnPeUzhs4/PEdwk7+RvokosNdr/JcVURCFBZ4l74=;
+ b=NHDI+DBLGHx1/E9oVrXG+612THsmuBoX0vi/ZY/2uwiXKnKvqoOl85yftDcPVE3T+u
+ v5hc78pxunXfDILfpj49ZpLYVmm7DU/BT6ZXY8gRZqJhK2jhGuDSr2nSYduRv0EMMDUJ
+ 6kNwR8XGKk/TZT1b9gQP0mSUuo4hl9a1ZOp826dNlS9TA2XskNozSMtZEMawo6IB+EtV
+ i2mDqt02oILqkb3E6cSdzZHjYIJmOO/5Y2g+YSA/ZAVut9Ev+OmdG3a6AOZrPdDkBXI9
+ ssgXikfKP996Yt0LAMDymVXY+4YM3FOX50+nGDkrHirLZWtXtoxt3+zETBibTzaewXsa
+ WvyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742404981; x=1743009781;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1752091211; x=1752696011;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hsaYUgrXM5qfLvhH06tltZQdRCjc5tEs2EI/X9vdw2c=;
- b=H+dfHiQjuXlIwAoQ7VQmG+Wkes7sa3gh1CRbJb4JFPtxRHG7/4s4xrMreaAfcAn+iD
- zcBipTTaHMiJHMC+Nge9dXReRqY+kHaR7CxG01rbFjGXz44eNapMfvGFs/SsZEnZgug2
- 0k5ag6I/EGsf8aYhy3U21xEs28miWL0PrP2hTm/pz3+Zh9KAgYy5YjzIuIEf2sqzqe6L
- Yoft9TA46ZM8OUQHfh1co6J4IpphsXhuXMf6tGLiHBz4m3ua87ODMIXR27FjFqSXr/aV
- Y/AMaMDPat5sLVeEDMtn3u10RWAogqc7kDCrY2uXPhtDzpvKC5WgEYodyjW6MSUp/1KK
- 9OdA==
+ bh=tDFRnPeUzhs4/PEdwk7+RvokosNdr/JcVURCFBZ4l74=;
+ b=kY4J+w3Q8L31ERSDbU7F6c3zTxv6RKwW5Gw1ZSQBPwyfpT20DqNIKGtPIAEh9aNawZ
+ ZqG+SKDB+XzX3YjbUi6vjJ8C69dW8k8B5iglCnJ3aeuPvavuEnz7VG2ELw57fMouphre
+ 4/0uz6trhmT6NYKEUYKMo2Hu4iZX8cgW/fA3KJkVosL/ZeXyjef8Jll05LfcXV5aasBk
+ nQsROjml2lEl206yrylO3KSckPLDqqjWuewJv2oga4JH96Gs9jdIwKWzTzGLR8nKjbcP
+ UMNVni6PTaKh9mKaCfXzNleM5WeKemx0NPyIIuJAuyD4A96SCSAUL/lih7u70FmZ8a2m
+ Zf8g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUZNO/xRq+RNxMptV1M1iEKhfYXQL+JZqWQZSxg7A4Eov2oPfyoSpxtAzHZWuiUy1Baoz5658i7eBE=@lists.freedesktop.org,
- AJvYcCXPRwl87wp0qtXwrs0SQWCZwmJ+5avZMs7F4kRK93SzPLgFMX9jp6ftt2dW5bf+KIfn+Ao0U5qsYQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwwhWmsKsBZlGszLK9yGjSjRC9BjNgf7S3xUeEwSb4yIy1oTIgI
- X20Br1VkJ58j224IVUAN7z97tbDU+G9kiPWHmqk88dnPPeBV+avhnmvUhPMsoQsB8BJQYUA/pGi
- nYp16BVTdDcc1UFl0ML36GmC8Hfs=
-X-Gm-Gg: ASbGncus7zOJs7Uo/JBjn4T/wH59fbOlPWDlT9/weWTdjl3L8O6vaqgaqOJq1Cllo1z
- V2y34Ym3BkHggHC2daZhwg7JA9aPNQEAUChMhzqxD7Yil1G0fqsPIWjAEbFzquY0zdgzCqsCqJ9
- 2PFOrv/fX9SW2WCMVBNN75hQJ50yKxCYs2FrPfnkvsjhWAWCxJ4DZ1
-X-Google-Smtp-Source: AGHT+IEjO2m1zIXw4HFAj9tm3S3oc43HEXQnmavT/Wdw9EFY3wTfyK5+LzJIIT2UTtXDcjxCFrMJwxSj2WzQC4KjEys=
-X-Received: by 2002:a2e:90c5:0:b0:30b:e73e:e472 with SMTP id
- 38308e7fff4ca-30d727aac9fmr1171781fa.14.1742404981302; Wed, 19 Mar 2025
- 10:23:01 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250316111644.154602-1-andrewjballance@gmail.com>
- <20250316111644.154602-3-andrewjballance@gmail.com>
- <CAJ-ks9kAROOfyPtxMe6LE4-UPsvXca2sQ2VDjhRchZp3HLddGg@mail.gmail.com>
- <D8JTWL8JY7DM.3IVH6FZ4M49CB@proton.me>
- <CAJ-ks9k+A1+0CWXZmD2m0+jRqTRTNFn-=d9VXqytiOqvn4BR0w@mail.gmail.com>
- <D8KBFC9M74H5.4ZJ2SJK06SGR@proton.me>
- <CAJ-ks9=NQrz3ySacKt+XXm2vS+Fn9gjmtqAaaoz1k=iTG_1HXw@mail.gmail.com>
- <CANiq72mnT73Mb7RJhZjf4de=_Orv4pipunMhOersOj_aqrFA-g@mail.gmail.com>
- <CAJ-ks9=23qEqxT5rivsbfNYC6iUP4RXsKbcDU9XDx32ERnKbYg@mail.gmail.com>
- <CANiq72kfgDVkKAeX1SiahEoo13+kHrcvVY3hMAfRPGjwErCt6A@mail.gmail.com>
-In-Reply-To: <CANiq72kfgDVkKAeX1SiahEoo13+kHrcvVY3hMAfRPGjwErCt6A@mail.gmail.com>
+ AJvYcCX+6x1tvYY6aJAy4CYy9NwfXy98C9wL8Ig/2NglgFRU6Tb/L/J3tSDodIfLmyBJpXCwivS6KkANgNc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzKCAJBlGCmdywNWwfk1K1ViDsinMWKTUhOkk3o1DMtyPrNWATE
+ zMLxFWCB5sOMWIBTNNxwr6+Ixq7j0n4ODUX9ozd4Qg1UGf1F7BJn+/K3At/Dk/I4BgwG4g==
+X-Gm-Gg: ASbGncvqkm6Ua1jSfH/B0ryQBoosfLE7fy972srzvN/weMbw78O22tWN1UojtW2xxyJ
+ w0s69nXCm5yxpvJDtm02SJvRxLYkP5Qls5oDpzbKNaFPRHBqhcp2z2fgShyYhVxX1NeM1DeF2yQ
+ Qtj9N8+Z6IcdNtd4Ur9vZ1imMwHDRtlz5Dto5CQYU1ulSaVtRLZFgibg2FejkyFl/Ai6yMWkGYu
+ DqIlpwN3g/Ue5W7oJz4WwCq+vHA/D2nscBxaxE5Ijl3MfNp8TfPhgHRQR/Eo0n5Lkwt4BPOm9KS
+ kWXt4hthyJjllCI4tvGeM7nDyI19kj6NkRPm6eNkkDC2VJN7Na+aVq2Vvxcpn/OwmYMREfLXH6u
+ BlbwG+DRQ5US2LuYGEgvqRyWxmabvchBNQFuhF7gOKP+tvGYCUFJfo7LR7A==
+X-Google-Smtp-Source: AGHT+IEV6Rr16PRiwu3F1M2RaV4vh1L7T1b438g7CdovMwJxpF1Aa+qhWAUTQ0cv9RCM1Yx5la3GsA==
+X-Received: by 2002:a05:622a:4c14:b0:4a4:3c3e:5754 with SMTP id
+ d75a77b69052e-4a9e93de7b1mr20714551cf.32.1752091210920; 
+ Wed, 09 Jul 2025 13:00:10 -0700 (PDT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4a9949e4aaasm100432891cf.3.2025.07.09.13.00.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 09 Jul 2025 13:00:10 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 19 Mar 2025 13:22:25 -0400
-X-Gm-Features: AQ5f1JrVVB0KaF0SOHg6B4PqxeZ26bWmx4gdmbRKGmZX3gyzx8re07gIpcxQEmU
-Message-ID: <CAJ-ks9=mbqMdguFmnRP+t-P2OC+oYGVDU2oLtT1dZzY=USESEg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] rust: alloc: add Vec::resize method
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Benno Lossin <benno.lossin@proton.me>,
- Andrew Ballance <andrewjballance@gmail.com>, dakr@kernel.org, 
- airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
- mripard@kernel.org, tzimmermann@suse.de, corbet@lwn.net, ojeda@kernel.org, 
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net, 
- bjorn3_gh@protonmail.com, a.hindborg@kernel.org, aliceryhl@google.com, 
- tmgross@umich.edu, acourbot@nvidia.com, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+Date: Wed, 09 Jul 2025 16:00:02 -0400
+Subject: [PATCH 3/9] rust: block: use `kernel::{fmt,prelude::fmt!}`
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250709-core-cstr-fanout-1-v1-3-64308e7203fc@gmail.com>
+References: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
+In-Reply-To: <20250709-core-cstr-fanout-1-v1-0-64308e7203fc@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752091204; l=2816;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=9xXXRD/lyfY7gXMurVbMC3UhE6y1ksuC3Zml49oUENo=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QI10u++JHbxVt0b/U9QTw+AgNRfy7j5OE9AiY1OYHAJi16zIiYSv2aE7ZTqvhjldKfBXZ5FbGeV
+ TsnZVhVEVzAc=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,31 +112,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Mar 19, 2025 at 12:43=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
->
-> On Wed, Mar 19, 2025 at 5:13=E2=80=AFPM Tamir Duberstein <tamird@gmail.co=
-m> wrote:
-> >
-> > No, I meant avoiding the check. The existing code already explicitly
-> > checks `new_len > self.len()` before evaluating `new_len -
-> > self.len()`. This means the check occurs twice. `checked_sub` reduces
-> > the number of checks by 1. Perhaps my wording could have been clearer
-> > ("avoid *an* underflow check").
->
-> Ah, you mean in the function you suggested, I see.
->
-> I think it they all may compile down to the same thing, whether
-> overflows checks are enabled or not, and whether the version in the
-> patch or `checked_sub` is used or not. At least in a quick Compiler
-> Explorer test it seems so, but I didn't check in an actual kernel
-> build.
->
-> The implicit check is gated behind the other one, so that one can be
-> removed, even if values are unknown -- we always have optimizations
-> enabled, even under "debug" builds (assuming "debug" means overflow
-> checking enabled).
+Reduce coupling to implementation details of the formatting machinery by
+avoiding direct use for `core`'s formatting traits and macros.
 
-Yeah, this elision is what I was trying to allude to in the original
-wording. I still think the suggested code is simpler, but gave my RB
-either way.
+Suggested-by: Alice Ryhl <aliceryhl@google.com>
+Link: https://rust-for-linux.zulipchat.com/#narrow/channel/288089-General/topic/Custom.20formatting/with/516476467
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+---
+ drivers/block/rnull.rs             | 2 +-
+ rust/kernel/block/mq.rs            | 2 +-
+ rust/kernel/block/mq/gen_disk.rs   | 2 +-
+ rust/kernel/block/mq/raw_writer.rs | 3 +--
+ 4 files changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/block/rnull.rs b/drivers/block/rnull.rs
+index d07e76ae2c13..6366da12c5a5 100644
+--- a/drivers/block/rnull.rs
++++ b/drivers/block/rnull.rs
+@@ -51,7 +51,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+                 .logical_block_size(4096)?
+                 .physical_block_size(4096)?
+                 .rotational(false)
+-                .build(format_args!("rnullb{}", 0), tagset)
++                .build(fmt!("rnullb{}", 0), tagset)
+         })();
+ 
+         try_pin_init!(Self {
+diff --git a/rust/kernel/block/mq.rs b/rust/kernel/block/mq.rs
+index 831445d37181..61ea35bba7d5 100644
+--- a/rust/kernel/block/mq.rs
++++ b/rust/kernel/block/mq.rs
+@@ -82,7 +82,7 @@
+ //!     Arc::pin_init(TagSet::new(1, 256, 1), flags::GFP_KERNEL)?;
+ //! let mut disk = gen_disk::GenDiskBuilder::new()
+ //!     .capacity_sectors(4096)
+-//!     .build(format_args!("myblk"), tagset)?;
++//!     .build(fmt!("myblk"), tagset)?;
+ //!
+ //! # Ok::<(), kernel::error::Error>(())
+ //! ```
+diff --git a/rust/kernel/block/mq/gen_disk.rs b/rust/kernel/block/mq/gen_disk.rs
+index cd54cd64ea88..494c95623b97 100644
+--- a/rust/kernel/block/mq/gen_disk.rs
++++ b/rust/kernel/block/mq/gen_disk.rs
+@@ -6,9 +6,9 @@
+ //! C header: [`include/linux/blk_mq.h`](srctree/include/linux/blk_mq.h)
+ 
+ use crate::block::mq::{raw_writer::RawWriter, Operations, TagSet};
++use crate::fmt::{self, Write};
+ use crate::{bindings, error::from_err_ptr, error::Result, sync::Arc};
+ use crate::{error, static_lock_class};
+-use core::fmt::{self, Write};
+ 
+ /// A builder for [`GenDisk`].
+ ///
+diff --git a/rust/kernel/block/mq/raw_writer.rs b/rust/kernel/block/mq/raw_writer.rs
+index 7e2159e4f6a6..d311e24e2595 100644
+--- a/rust/kernel/block/mq/raw_writer.rs
++++ b/rust/kernel/block/mq/raw_writer.rs
+@@ -1,8 +1,7 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+-use core::fmt::{self, Write};
+-
+ use crate::error::Result;
++use crate::fmt::{self, Write};
+ use crate::prelude::EINVAL;
+ 
+ /// A mutable reference to a byte buffer where a string can be written into.
+
+-- 
+2.50.0
+
