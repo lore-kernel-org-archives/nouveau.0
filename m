@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39C2ECCA472
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA915CCD186
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0E710E5E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4135210E5FA;
 	Mon,  6 Oct 2025 20:57:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ky3js8yS";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="G8H8UlJw";
 	dkim-atps=neutral
-Received: from mail-il1-f174.google.com (mail-il1-f174.google.com
- [209.85.166.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA8810E905;
- Thu, 10 Jul 2025 15:31:45 +0000 (UTC)
-Received: by mail-il1-f174.google.com with SMTP id
- e9e14a558f8ab-3ddb4a7ac19so4598635ab.3; 
- Thu, 10 Jul 2025 08:31:45 -0700 (PDT)
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com
+ [209.85.167.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61B0710E8F6;
+ Thu, 10 Jul 2025 15:31:36 +0000 (UTC)
+Received: by mail-oi1-f179.google.com with SMTP id
+ 5614622812f47-40b54ee16ddso694288b6e.1; 
+ Thu, 10 Jul 2025 08:31:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752161504; x=1752766304; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752161495; x=1752766295; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Pk9yBfYr9s3i/fDmLyzx3AytEEzdMrcwMBN15yX6MyM=;
- b=Ky3js8yShVkYa9T8UkixAzCsLHcs5jBJa0OteD7bagpRzNo7kzNvJ56988B7vZ/WLN
- DkP7jERMKoK64Q1YWlV7t3zXOoPBnsZZjyY9SUJDVbNM3t9pmHmrXCE9UECUgZiCpim4
- du5YXiDGhWKdSozVLxuSy9QqrpwfCSYSTrWulO92ExtCDHzETMMgJObUYDYmjxun4ufu
- r+u/UPhm79LaeZdoFvJ+QILqZ6oyme2GN1MUqeT8RxWHXQL/P7bAMTXk9k6L78+lQtHH
- oZNGVLa+ZIOBdRw2R3BMVIJmXKi6ZRtpwbc21qi97n2GE0U7K3g26C6m5NnphRPy8Ago
- xTRw==
+ :reply-to; bh=Thg/YcRGWCxcUDbNpBIJmKFEPbrVlfqS0d2bmRRNzHg=;
+ b=G8H8UlJwnqHgTQHcD6wxxj+gSO5JZwxDAjUKYo3yL/We5ZiirTiZMunuvLQ+LGpPdr
+ M594IKaDiZe1LDmAUGGvtztyKmmAkQLlLp26lFFzo2bewwSxhRmEfMR33jd2gbY//UtZ
+ U4s+7g2wBdbbadnvGNIIUpe/PIpn/w86nUpmlQiuNpVaHABYeygPIVEBXUBuVjjwI45V
+ NCDzgHPiZ+xzZ0Uo7FwpF0TVZGkCjZornlRCgKgObc6fPn+wTAIdmCFAcyzcgBZglo3C
+ qxEWUijSUWs/UF3XRhdKwqsQ8nCPNP+i+K99l3+Ubp62uaVYyP4ZB2dmaOC9IUGnpoSN
+ mpmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752161504; x=1752766304;
+ d=1e100.net; s=20230601; t=1752161495; x=1752766295;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Pk9yBfYr9s3i/fDmLyzx3AytEEzdMrcwMBN15yX6MyM=;
- b=YUpUTyDNa+Ee436bmwLFOMKWmtZAKlKAi8QKJxY98yutOg4WqbSsFIRUKkSHA1UutN
- wqQvdkCOx1ys3HlLBJb9ecYVTZSIQppqMJqEmXcfos+M0kivdjReKrbCEgJleRdvkOMq
- l3OLk5zTIlEB3d5eXCvY8wARAB6pM1BdEEmwdonkmlH8jwxDUhGktT7IHsLW2qm9zNrx
- w3siiOd4bwau1ZY1Vjq9vV/l1UxsHSVd57v3Fd+SHIBn3pJrtz14JEPdkKvdJtYS1h1J
- m02jdYTB8LebNTm+Je9VDUTeW9G8grqt6RQVlgYdVpbLsyDVDK+JB1QF6kwTJTuAwZJ3
- BLIQ==
+ bh=Thg/YcRGWCxcUDbNpBIJmKFEPbrVlfqS0d2bmRRNzHg=;
+ b=HYp6ivX2dph+/v7Rtky1Rm4PxsYKN5G4SFwQDmV3XawCPBWWXJOtKglKu5tzm7KU+y
+ Za0hlraIV/mVkhBZ323KQOvu0to+1YFSZgG/V3ZK48JYRWPK9R8F5iDoZ4Ap88TBdt0A
+ 7Jqie76vaYc8LJdfnf3Y0zq08khzorbWPibzICobdPSGv3ds/C3l5wiVeLyIJprQIfW5
+ 6y4tkB+ebObWZUjZbuQB/QukYIpLEI+ERQmG7FteSoUk9y08TLNSC6qmQCWSZmJCOBhy
+ FjbSf4mrJQjn/wZik/hUOCESuLC+KZ6erpykr9tsQyjWAjnf1Py01NvZeYYblAH0pZ0b
+ fIZQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUXYjFfAkEgEzlHJBZUVhPz3kEQk87AAtcm+eNrNwNUQIOxEo2sNoxGOP4vG7T76jzS6KWFnpl45A==@lists.freedesktop.org,
- AJvYcCUeKv8qCoR4Nu38TVr8Rwe+El9tJBH+EcS10vCfoAhcf1u9k647otOqY4BmTeKsUHOhaUR5WyrVHBE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwEba81pMj9bgNDdV1Kvxj02HZtG2A0MLjJAJ5LdPXOMuJnE9lX
- JmlWGWVRB3QU29rgJ0WtLAqTPiSV0EuWBkzZWN6PGFkfbMEGGwax/MSf
-X-Gm-Gg: ASbGnctLv6m08dSrzAYbQiHCoq2l1RtgzmdB2ABietDu6UTTlrIM3I8MGZfZQUmIC6+
- vuEcHu0G5HQSDJC79DPuB2DuHfzvJFLiA0e2yUQ5qvITceFu2hsK4DWgUkzOij7LVfi0jtsKxHD
- amHgHFSScTN+6UeU8T+CD/49MIB4y80gz4Tf7OQtYGT4hafNAgATSwBsxvhCU9oLZ1LqwURM2/q
- Oxjzswd/KKdErextjYFNxvEENnfiLOajV8JfxmL8xDW+Ya6hHQcVHRKTprBDctG0DxHJ5q+C0qE
- aByPKmM+S3BpdUG1Yxa3NJYotXPhN1Lsx6gbCYQ07LsN/4KmzlO1pPILU32NYWT6i3YW6CnxPjp
- z+5OhOtmGvu7ocmlQF8QICppCkwfmjHffLkdYeonZT8lLBy09jXGYFTKcPg==
-X-Google-Smtp-Source: AGHT+IGD6IulrTtq7XJJHp+fBg0G4KoR4rFCaX6uY+nRZVwSVNUZXwzRxJL6DK9cdBhYXCisVCq1Wg==
-X-Received: by 2002:a05:6e02:2703:b0:3dd:f338:6361 with SMTP id
- e9e14a558f8ab-3e243fad673mr39944225ab.6.1752161504011; 
- Thu, 10 Jul 2025 08:31:44 -0700 (PDT)
+ AJvYcCVcPn2Jh9qwxoaCGP4x/BHRbxzJVjHWgUTPBKYYom/Fg9kjHt04IoRX7fIQEKmkSrostJB1rZg0KIQ=@lists.freedesktop.org,
+ AJvYcCWWKgG2w19tIqeXmD7SIcxsUK5TRjGS++RpoPXxbefL+xFNKbPl5gINx9k0o93i/gnQ3vt5rqEhrg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy1RIG7WuTsdCZcVoWGqt3nQ189w6UgxhGYuEF5iHgQYsa5GRIT
+ NmDOPLivaz4cTxhvYYobXj+lIS6s9e9xTlKz3URg20Hv18gCxMRmYwcU
+X-Gm-Gg: ASbGncvjaQHjiPL5O6POs1YZsWbInwgodWFTxNHQxmPRDFLgtVaRfgrrMZXde72DreI
+ zKMKIiqNag3m0bfjfoQSMbWYaJ7CshNSsTJcfjg4YmfThk5bk/VXLsFRMm+52My5aXTvVD0Mg36
+ mOyBmjCZEq7o4c0tgJVEQamguAGDkUXKa5RLOuc6PVPjUDM3+rJJooHPRqQEmi0XHTn7LvmVWI+
+ sM/lSh71CdArNsC7ScfwjSPSMb78erC0g/y20FCxfRqlT+JfQfgbFVdooaNRFfQFYboXwQ9cPsq
+ fqyt3+OA58VC6X71qMyaIE4zAH9+RulwpyQoGN9mIT3C1et3r2xAYE95pbEarKY7awunJ8OPdOe
+ 2AwmyR/g3htETT0yASKk1eaykbbx5ikfRCeHZ3a3MufG0Q5wuK1fhaRYPlw==
+X-Google-Smtp-Source: AGHT+IFCEP/L3bXBqs/Es3rdbPAg2su8LejciUhcU1gz4fMvPZB8zY7ZN8+0SGHQrEiHpdqhCeVpUg==
+X-Received: by 2002:a05:6808:1689:b0:3f9:36ec:dab3 with SMTP id
+ 5614622812f47-413ac356179mr2847725b6e.14.1752161495338; 
+ Thu, 10 Jul 2025 08:31:35 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
  ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.31.41
+ 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.31.33
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jul 2025 08:31:43 -0700 (PDT)
+ Thu, 10 Jul 2025 08:31:34 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 10 Jul 2025 11:31:08 -0400
-Subject: [PATCH 05/17] rust: configfs: replace `kernel::c_str!` with C-Strings
+Date: Thu, 10 Jul 2025 11:31:04 -0400
+Subject: [PATCH 01/17] drivers: net: replace `kernel::c_str!` with
+ C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-core-cstr-cstrings-v1-5-027420ea799e@gmail.com>
+Message-Id: <20250710-core-cstr-cstrings-v1-1-027420ea799e@gmail.com>
 References: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
 In-Reply-To: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -105,13 +106,13 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
  linux-block@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752161489; l=2514;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752161489; l=3319;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=af7hQUrBJ3daMKChg+zbV28e67c6tFE/LW/j16AENwg=;
+ bh=SMbg/QZQA19CCgHGmkrUm3ENNSdod+XX5AR8EKjC0Ng=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QNZwSCTvhx189kCCr7+aSgexpeSI6tU5D5MB3shP5Z3q8AlIw1OPYf9wRw5vEVrf3gxS0l1TJdN
- IQXvUr3fPrQ8=
+ QN3w5ONsQPO4V7WoDPlzbqmPUAfhN5mJcoMl5G7WybG2qCB9U5TBgYrxU4+N1jE5/MMqUyoMUTi
+ 8t9YDb9Lcwws=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
@@ -136,70 +137,79 @@ Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/configfs.rs       | 5 ++---
- samples/rust/rust_configfs.rs | 5 ++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
+ drivers/net/phy/ax88796b_rust.rs | 7 +++----
+ drivers/net/phy/qt2025.rs        | 5 ++---
+ 2 files changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
-index d4797c41ba77..9e7308e4d4ce 100644
---- a/rust/kernel/configfs.rs
-+++ b/rust/kernel/configfs.rs
-@@ -21,7 +21,6 @@
+diff --git a/drivers/net/phy/ax88796b_rust.rs b/drivers/net/phy/ax88796b_rust.rs
+index bc73ebccc2aa..2d24628a4e58 100644
+--- a/drivers/net/phy/ax88796b_rust.rs
++++ b/drivers/net/phy/ax88796b_rust.rs
+@@ -5,7 +5,6 @@
  //!
- //! ```ignore
- //! use kernel::alloc::flags;
--//! use kernel::c_str;
- //! use kernel::configfs_attrs;
- //! use kernel::configfs;
- //! use kernel::new_mutex;
-@@ -50,7 +49,7 @@
- //!
- //!         try_pin_init!(Self {
- //!             config <- configfs::Subsystem::new(
--//!                 c_str!("rust_configfs"), item_type, Configuration::new()
-+//!                 c"rust_configfs", item_type, Configuration::new()
- //!             ),
- //!         })
- //!     }
-@@ -66,7 +65,7 @@
- //! impl Configuration {
- //!     fn new() -> impl PinInit<Self, Error> {
- //!         try_pin_init!(Self {
--//!             message: c_str!("Hello World\n"),
-+//!             message: c"Hello World\n",
- //!             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
- //!         })
- //!     }
-diff --git a/samples/rust/rust_configfs.rs b/samples/rust/rust_configfs.rs
-index 5005453f874d..ea84c23b784b 100644
---- a/samples/rust/rust_configfs.rs
-+++ b/samples/rust/rust_configfs.rs
-@@ -3,7 +3,6 @@
- //! Rust configfs sample.
+ //! C version of this driver: [`drivers/net/phy/ax88796b.c`](./ax88796b.c)
+ use kernel::{
+-    c_str,
+     net::phy::{self, reg::C22, DeviceId, Driver},
+     prelude::*,
+     uapi,
+@@ -41,7 +40,7 @@ fn asix_soft_reset(dev: &mut phy::Device) -> Result {
+ #[vtable]
+ impl Driver for PhyAX88772A {
+     const FLAGS: u32 = phy::flags::IS_INTERNAL;
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88772A");
++    const NAME: &'static CStr = c"Asix Electronics AX88772A";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_exact_mask(0x003b1861);
  
- use kernel::alloc::flags;
+     // AX88772A is not working properly with some old switches (NETGEAR EN 108TP):
+@@ -105,7 +104,7 @@ fn link_change_notify(dev: &mut phy::Device) {
+ #[vtable]
+ impl Driver for PhyAX88772C {
+     const FLAGS: u32 = phy::flags::IS_INTERNAL;
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88772C");
++    const NAME: &'static CStr = c"Asix Electronics AX88772C";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_exact_mask(0x003b1881);
+ 
+     fn suspend(dev: &mut phy::Device) -> Result {
+@@ -125,7 +124,7 @@ fn soft_reset(dev: &mut phy::Device) -> Result {
+ 
+ #[vtable]
+ impl Driver for PhyAX88796B {
+-    const NAME: &'static CStr = c_str!("Asix Electronics AX88796B");
++    const NAME: &'static CStr = c"Asix Electronics AX88796B";
+     const PHY_DEVICE_ID: DeviceId = DeviceId::new_with_model_mask(0x003b1841);
+ 
+     fn soft_reset(dev: &mut phy::Device) -> Result {
+diff --git a/drivers/net/phy/qt2025.rs b/drivers/net/phy/qt2025.rs
+index 0b9400dcb4c1..9ccc75f70219 100644
+--- a/drivers/net/phy/qt2025.rs
++++ b/drivers/net/phy/qt2025.rs
+@@ -9,7 +9,6 @@
+ //!
+ //! The QT2025 PHY integrates an Intel 8051 micro-controller.
+ 
 -use kernel::c_str;
- use kernel::configfs;
- use kernel::configfs_attrs;
- use kernel::new_mutex;
-@@ -35,7 +34,7 @@ struct Configuration {
- impl Configuration {
-     fn new() -> impl PinInit<Self, Error> {
-         try_pin_init!(Self {
--            message: c_str!("Hello World\n"),
-+            message: c"Hello World\n",
-             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
-         })
-     }
-@@ -61,7 +60,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+ use kernel::error::code;
+ use kernel::firmware::Firmware;
+ use kernel::net::phy::{
+@@ -36,7 +35,7 @@
  
-         try_pin_init!(Self {
-             config <- configfs::Subsystem::new(
--                c_str!("rust_configfs"), item_type, Configuration::new()
-+                c"rust_configfs", item_type, Configuration::new()
-             ),
-         })
-     }
+ #[vtable]
+ impl Driver for PhyQT2025 {
+-    const NAME: &'static CStr = c_str!("QT2025 10Gpbs SFP+");
++    const NAME: &'static CStr = c"QT2025 10Gpbs SFP+";
+     const PHY_DEVICE_ID: phy::DeviceId = phy::DeviceId::new_with_exact_mask(0x0043a400);
+ 
+     fn probe(dev: &mut phy::Device) -> Result<()> {
+@@ -69,7 +68,7 @@ fn probe(dev: &mut phy::Device) -> Result<()> {
+         // The micro-controller will start running from the boot ROM.
+         dev.write(C45::new(Mmd::PCS, 0xe854), 0x00c0)?;
+ 
+-        let fw = Firmware::request(c_str!("qt2025-2.0.3.3.fw"), dev.as_ref())?;
++        let fw = Firmware::request(c"qt2025-2.0.3.3.fw", dev.as_ref())?;
+         if fw.data().len() > SZ_16K + SZ_8K {
+             return Err(code::EFBIG);
+         }
 
 -- 
 2.50.0
