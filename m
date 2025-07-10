@@ -4,109 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 783E8D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B856D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8B2F10EB51;
-	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ACFE10EB60;
+	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IZBEqLe7";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FbTY2aO2";
 	dkim-atps=neutral
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD1C810E8E9;
- Wed, 18 Jun 2025 17:58:47 +0000 (UTC)
-Received: by mail-pj1-f53.google.com with SMTP id
- 98e67ed59e1d1-313dc7be67aso961997a91.0; 
- Wed, 18 Jun 2025 10:58:47 -0700 (PDT)
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0A7110E942;
+ Thu, 10 Jul 2025 19:06:39 +0000 (UTC)
+Received: by mail-pf1-f175.google.com with SMTP id
+ d2e1a72fcca58-748fadc0bc5so228130b3a.0; 
+ Thu, 10 Jul 2025 12:06:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750269527; x=1750874327; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752174399; x=1752779199; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=FkPigFeNGfIgRpgDFtGW/mxVfhQYOSm7TXujD5qRUiQ=;
- b=IZBEqLe7x9/4CIdTXk5OpXfiWnsjTzavuw/U/GRPQBeA3toVRHYte9hYm0RUHLbNP/
- n7WzcWYefnBzcEbs3hZUoKFWk+aVGjIlsxVofChcD8QlOBokENaArTRc+8uI8Jaeg1ab
- uAJaF3JWqcGq4ed+TrlYOA2ZCdfyUAWvs+n0cTFfVqA+X1twdqzo6O4aCNnb5eYxgjaN
- hdCHZ1X+/PaN0ihFNDhThqyJzqayTYLNVyLZVcqv9BK6BIQ48zMmqsnNVP3C0x17qVRO
- zE/qaYfgO0tbme9AP2/e58XZ72i3MoR2bt2i5klkDKoAE0qzN3bkLFrIs/3S0NZdRSlQ
- OZsw==
+ bh=68qpC4Y4uSheoQEbmMxx5RKOE+wIAn+KKwc+9lT74pM=;
+ b=FbTY2aO2vhNiTQb09I97V0oZF/Aq0TPs7bB02BP+bmnbbKzLsaY6/46gHsx/qOVdYo
+ huszeuDdnnIW16K4C7vPBn6BqO+b+lAG3ifPrFUF8Niw36Xh2Dx4OapkksFSlPweS8YL
+ TeM8CqgFk/JG9Y9xGQlsoKu0YYwGVaxNOvNojemL6a9y1TDU9e5vp8493u8ClWetKKnC
+ 2ukSKqoGH+FLkevh6RV6jRIC4Vcp1CJKHaxzVF58qMQRk4pTDWIcGTxgZqSyrJx4bj3l
+ UbirBhJ2dqR2p5abPZynCuvkmQl68TUuhLfKdd4doUc0/IzOY0uRsqLEWUHVbOGKIN6I
+ h5Rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750269527; x=1750874327;
+ d=1e100.net; s=20230601; t=1752174399; x=1752779199;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=FkPigFeNGfIgRpgDFtGW/mxVfhQYOSm7TXujD5qRUiQ=;
- b=QqbBSAn2gSTnjilBMnBcdlUiqKnBdfPTLtoeHbtquUL2085PYS10NdmC5hhfbAbcxU
- 2ZJpIp3gnoWB0ui27x7yAAKBkJVhzVDuxEnrhLW8MmAi6FJhxc2grwgQUcdzvH3P5733
- kcFMDZ7he0Xqr03nYVoo53ZN9qS/dlYaxLyZISvyOmkCO8LvTgMPKKgQSIngKMf/2nH/
- Flf68yq8H0Nm5VANtOxH273Iz+W95Kmb9inFME/DnQycYdWvcV3tS/w3SubfBGAVPltu
- AFU7PSRy+FaChYz9G88gvplxcnZh2hdGNi6TsBekl7WE2iLV/q2xYlqCBaLNZArgTa+5
- sL1A==
+ bh=68qpC4Y4uSheoQEbmMxx5RKOE+wIAn+KKwc+9lT74pM=;
+ b=tRZpAsVfYX+dVYBkHuYouBhNfO8dtm8iVV5b+lvOKPWuf1SYIBNJJaboao573uepaA
+ 76Z07rbhb373Xx2qlKtMhQc4U0zeA2BBaNA+ZtPC3SsdB+H3yT4k4Nigmwy8KPofHTdZ
+ uZEvsIQKf4g66tp9pzFTOCQm6VwdVRuCk2/yApCnYQJ3TfqE0DXCA7DjVXEgiZ52UARA
+ uAjRKBC8/mNvDSBS9V5kzEslkS5XbGi/Ysc0QCp6CpDunC/O6KheJ2W5QNMdwlq1DZ2j
+ tAlTuqSadOl3YT+X5Yii8ORO6I9rw5Lb3kegwK8xtpoTMBhRtqFg/9ywbGn6RFEKcYaK
+ f1Eg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUmGIdD2IQ+qV+1FC1SH481G/yFPI5Iwr2fn6lP92LHbUQsL/i4hE4xd+BrEwoPtOBJCxpbzjY5aQ==@lists.freedesktop.org,
- AJvYcCWAApd0sRPsENoJU2A3Ww2pxG43A89RumYdU9WZJ38kmjCTpzi/0a+xnbc0a2xmVQDYtJBTyRD83qs=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzi+hgXvuvUwhhj28YUA4vQtUiA3iZj35415+8W8UHePcwiEEfh
- 1ndm6GuYCq62CGUfoHUSZwMo/gfdl4ZZKZJKAQH2kcpEWbTyxo9MwSYnH1IfsNbsCNrCFORNrKo
- yibkScxlR5iYNvTwGMGMpSYZweUh4X1U=
-X-Gm-Gg: ASbGncvyn1cQzrLMxd3Nr4C6IhkEApVbLhUbbOPJaFOw/bslnFdMJw9FYjdNgJOqH/p
- HkNH+mW14Sl1SFmFaH+o9wlq4LlVxsxbjdf0VmnMguHy+GoLqKLHPENJtZA1B/eKFKx9wCsV62L
- RqMx5LXfsKxZARPphxEad9j9+sFRhsR5iahtuch6W3Mp0=
-X-Google-Smtp-Source: AGHT+IHQA2vB+4lILhLPisOadhxH9fnkiGb8fP5PoJh3YCmrD5jDUJpuN04m9Eq8KLRXTUak2OObg3c6xBn/ciPLwLY=
-X-Received: by 2002:a17:90b:2889:b0:312:db8:dbd3 with SMTP id
- 98e67ed59e1d1-3158bfeae60mr147244a91.6.1750269527292; Wed, 18 Jun 2025
- 10:58:47 -0700 (PDT)
+ AJvYcCVUdb5lTIE19YnnODvBIV/sJxBhwWtPNkEezlZUZRzXgdeGXpipJy9iOERXuZYVYs0pVjqJzLuwuQ==@lists.freedesktop.org,
+ AJvYcCViCZsD8xlhSB4610esPwIGtOKFyo7qs/3v9tHmhjy8WaWZEi9145cIXzIMRuhv3WeQf3ipcTEMWgo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yznv0l64TqBzULSZktb2m+uvlnPhqJk/eTKD8hBZdCSJt4p6joG
+ BZggFgrryhJlVToOwo8pglg6tP8/3v8qRxZTNPem9QTMRztLgG/kVmC6rxtoHKw0bJCSxcRLLHZ
+ wMUqZq06zA4+cecvlqPyUai/bnoV61gM=
+X-Gm-Gg: ASbGncsQ5TQOt+IfiGMU+HOGYI3TA27OTKvPAU13L+s/wDO58wGJjytxF2Jjh8p6jU3
+ jgr0CWOx6+hUFexToLdvoB824CtS0iuliLFtRaFPf/ZdHjtkwyUK/kVbLQKqjV6I/8YrD9nSInm
+ geFtuW5idp1aXf9LYW+Acbwrpb111jYc++EiG7uQFZ
+X-Google-Smtp-Source: AGHT+IG0VJqe3uNAcjU3Xxte+v+hYbWn4ghp69RsSsnwscX/+eeuYBtfenFCSddGxjjaiQm1KOImr0VmDgF/3kDaWcw=
+X-Received: by 2002:a17:90b:5645:b0:312:1ae9:1537 with SMTP id
+ 98e67ed59e1d1-31c4c972591mr333377a91.0.1752174399128; Thu, 10 Jul 2025
+ 12:06:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250615-ptr-as-ptr-v12-0-f43b024581e8@gmail.com>
- <20250615-ptr-as-ptr-v12-4-f43b024581e8@gmail.com>
- <de30bc80-3dc9-4fac-afe8-bf6b0df42ea9@kernel.org>
- <CANiq72mOHbxt3xOJw8f=j184TRYs9y3wvcopH-h6P2SLe4jVNQ@mail.gmail.com>
- <CAJ-ks9nnNjBfzCasOtFZGXBj=UKqZxuyh3-Emj3yFrz=9f8tmg@mail.gmail.com>
-In-Reply-To: <CAJ-ks9nnNjBfzCasOtFZGXBj=UKqZxuyh3-Emj3yFrz=9f8tmg@mail.gmail.com>
+References: <20250702-nova-docs-v3-0-f362260813e2@nvidia.com>
+ <20250702-nova-docs-v3-2-f362260813e2@nvidia.com>
+ <CANiq72nh71s9to5v1KHJWN79bEFv97zN6jcGJyEQkaJZ5UuJfg@mail.gmail.com>
+In-Reply-To: <CANiq72nh71s9to5v1KHJWN79bEFv97zN6jcGJyEQkaJZ5UuJfg@mail.gmail.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 18 Jun 2025 19:58:35 +0200
-X-Gm-Features: Ac12FXyGUkldbEIksi1ogTddUr_YiD6acvLXBSTJ1-Ey0i-LXdAiD6xde1bhgwA
-Message-ID: <CANiq72=9VyakSh_bXJjPPeXJP80OtB7iqKBM-p3bEMX3TYF5WQ@mail.gmail.com>
-Subject: Re: [PATCH v12 4/6] rust: enable `clippy::as_underscore` lint
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Masahiro Yamada <masahiroy@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Luis Chamberlain <mcgrof@kernel.org>, 
- Russ Weight <russ.weight@linux.dev>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>, 
+Date: Thu, 10 Jul 2025 21:06:25 +0200
+X-Gm-Features: Ac12FXw_q-goG-jOjFcf1y4t2ncn8eM_tujmaC9ue0dJR_ud1nXJSMx9bb--WFg
+Message-ID: <CANiq72n6759SXO4_8jUryge3s0scp00hiKBnkhnbieObQdqL7Q@mail.gmail.com>
+Subject: Re: [PATCH v3 2/7] gpu: nova-core: Clarify sysmembar operations
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Nicolas Schier <nicolas.schier@linux.dev>, 
- Frederic Weisbecker <frederic@kernel.org>, Lyude Paul <lyude@redhat.com>, 
- Thomas Gleixner <tglx@linutronix.de>,
- Anna-Maria Behnsen <anna-maria@linutronix.de>, 
- Benno Lossin <lossin@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- John Stultz <jstultz@google.com>, Stephen Boyd <sboyd@kernel.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Breno Leitao <leitao@debian.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
- linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, linux-pci@vger.kernel.org, 
- linux-block@vger.kernel.org, devicetree@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, linux-mm@kvack.org, 
- linux-pm@vger.kernel.org, nouveau@lists.freedesktop.org
+ Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
+ nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-doc@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ Joel Fernandes <joelagnelf@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
@@ -124,13 +93,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jun 18, 2025 at 7:56=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
+On Sun, Jul 6, 2025 at 3:46=E2=80=AFPM Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> wrote:
 >
-> Miguel, would you mind taking care of this on apply? Quite a big
-> series to send again.
+> Added the possibility of catching this automatically in e.g. `rustdoc` to=
+:
+>
+>     https://github.com/Rust-for-Linux/linux/issues/350
 
-Yeah, of course.
+Filled: https://github.com/rust-lang/rust-clippy/issues/15245 so that
+they have it upstream.
 
 Cheers,
 Miguel
