@@ -4,75 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFEB2CCD187
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BB58CCD185
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB2BC10E62D;
-	Mon,  6 Oct 2025 20:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2177C10E638;
+	Mon,  6 Oct 2025 20:58:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kpwuyibs";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="gn4zlhC5";
 	dkim-atps=neutral
-Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com
- [209.85.219.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8AE10E944
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:55 +0000 (UTC)
-Received: by mail-qv1-f52.google.com with SMTP id
- 6a1803df08f44-792f273fbe4so4558766d6.3
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:55 -0700 (PDT)
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
+ [209.85.219.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CC6D10E910;
+ Thu, 10 Jul 2025 15:32:10 +0000 (UTC)
+Received: by mail-qv1-f47.google.com with SMTP id
+ 6a1803df08f44-6fadb9a0325so9307956d6.2; 
+ Thu, 10 Jul 2025 08:32:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758808555; x=1759413355; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752161529; x=1752766329; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=IbRi9B/DaIaW8U9NAWZIVdIpXCsTnUCErxxV4ovxvuk=;
- b=kpwuyibsEXTMkN1LEUhWg+qHsebR+OiXi++aOoIUgaDXBcZ+Eq7OnjS83pwgyWjdf8
- gibFyHwbQMd+gbsxycUNtifWqURvGsF+M4nVOy0R39kmMy9mYvxVu329Z5nUUu0lhn5s
- oUNtknSpiIlRaNCZ6zEeLAstazgDKdmsKsY6gYZeKS7QvmkMIE4WNCH6HtttSqzB1ZBA
- 88wh3tMQRSExn98YrD7wAF7YXE1j+6CKT8gpjIjhxqXF/m7gN4YAx74tv9VSbpZcfLky
- c6Lr24UoX3wlGvf97T5gSoWI6O7Xc9UAx7C55He/4sgZjBIbvspMmCBDqAab1eQ5UUmO
- E5nQ==
+ :reply-to; bh=qg9MyoLzW2O/wZTFQuwcCSu9JeslcLq4bzCQcPCtBGw=;
+ b=gn4zlhC5U5VqY760TCYZ4Ra0eAkVydtQeqEokPJvtH7JyMyDpxpQOTWwuXLgjkrO4Z
+ kyf7mLHCBOCiVZdZwfNhSzUM5eQZlE0zIZqG9pU/fiJs0cXgVTz4d0uBAbBjv/HXAhnQ
+ j9P7Fl0f2AGUOeZESIpxqZmhOkQURUVjciaK8IjgHfB3MBTDaoJhJjIm5sxVyGq7twcN
+ 0G+jUVUq6ZxxufHb2IX/3Vx7Dk6OZqr6cuCVdllSR7NRCrbuMIltN+EfkrcN7eHFquTy
+ molUBNUwW3lXJgjIqO/6uY/kTddMYfXtg5+bXA0uWG044E7S/Uk09/r1NUXh0Z2hbek/
+ +/cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758808555; x=1759413355;
+ d=1e100.net; s=20230601; t=1752161529; x=1752766329;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=IbRi9B/DaIaW8U9NAWZIVdIpXCsTnUCErxxV4ovxvuk=;
- b=ui4jCyOKg8xVpPSDeoPxuEbPPBdw1NkcsVGtpFKDKMgJPhAEDkT0mY5vxGARioXSSi
- pHjUv1i/4qeX6QQPprSsQL9mgzQzmeOZaJevFYWhy95jzTUwb6HPXygbwrOxJCwVM2RJ
- 2ywOb1PX/ij0mdhnMKzi03TZQJbtx7dGBuMmcX0XwfrIkmbnl4nsNNH5j4taltcaKzxB
- 0/j8u+bhDsHHHGDll7C4qgLzMHI/1uGm9+UESm5WLLZZEsLGEPh5pV+tmiod3L8zu3Bl
- KlHqCO846Toj9YAx/VFDriV4svY0PVsLUp8STsLVuMh0W5/XXurHkXVJm0HK1jZeoA9v
- 3X1Q==
+ bh=qg9MyoLzW2O/wZTFQuwcCSu9JeslcLq4bzCQcPCtBGw=;
+ b=UjEd7wprASDbZbKe7AYwjZARDGq0IPXvdKH/Bj4RSQQkHDZjYOLWGPa4XAPV4RJNlm
+ sIttKT6LaAGK0R9FbcVrBh7B8tGB2V52fpADquUu30wWvy1XKxFgQ8gZ27qjQhcOFnIo
+ I6DR5GA9aX3yBq+xKANG5nzRLQVf04XgRE0rn8Ich3wJOXsjkGBDbm8VNTkt2hWRzpuM
+ WEHgyKFbb9Uo53yqcX7aW2s0ExvQkDEMrD4wx5eF2jiDLqBN5Xqdtfa7xzhmMgHqmzKu
+ NvIRiREI0CmDDUwe6Jtp8rU3AOqW8E/WheDcz2x+tJvSZlNSp2RJddPEqVxL/R9MxIOe
+ S4hA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUCvSNp7wIwqlOC46gZ2wA+uI4t+uIiIUNBuh8cj2Benw0nPnNNTA3Ryf+oquUWoP/AG7ju0fQg@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzUvHTONkGK4S2aMG5CwR4EO+L6kcWIkSXKnx1Bk1ROvd2fwdiE
- siDC9I+a+FfGE5oPUdp57Fwbn27hxR240g60eFqjEya0UcvjhKYdd+0I
-X-Gm-Gg: ASbGncucNPR+p/ozU62GbYZGltVJgDq9aKlqG/gsPNVgMUMeOqaUr0u5smwcBC24qJ9
- YPKmyx1Vae6DEW68THvnLtC5XlZmFhiTnNgPM9+ttWVdcuKFrp22+qKcb03SO7uPRphKoaH87V0
- luznaJhvqcFSeeevCchGUugl2x0GdYbVrd7pQML3VjbFD2S4bgDdR9MPBUjfs0fWHseR4wYeV93
- 9dvUKYpKPlYEodN6ijuHCfHmMes1GKF/w4vZgJrE1SVhquhcQYkgdNYLy/UUjKTn/tUqRmSY5rz
- Y4eNVSyEmaAcnVrmC5UlSdutomjcAb9i5n2CrDkDXBf5ef0lxDrwd6N650sZ1m6IkEqUfQSTMrL
- BkQbrnadc7bOQig9fF8F8UXV3aH8sCl9nIk4FzyzPAx5TllyNJMdaFZj8Q7VFEQW0fcdQBrCA+x
- oPP5LrvZnS3m1Ygr+7S0Up+68ynbjQyHLp4YnrYnDWtjv9FSHvM4W1vu8J7xVwe+c5H1Zr
-X-Google-Smtp-Source: AGHT+IG7SCiSfqv22MjkqMAx69OdDcsv0d2XWfzHnQ58HqF/5wRLVKKYuW5rQhqneJzNL2eu5F8jIg==
-X-Received: by 2002:a05:6214:5198:b0:77f:4415:6d8b with SMTP id
- 6a1803df08f44-7fc28076ae1mr36287846d6.8.1758808554316; 
- Thu, 25 Sep 2025 06:55:54 -0700 (PDT)
-Received: from 137.1.168.192.in-addr.arpa
- ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.55.49
+ AJvYcCVmWW4qC2uA8yo6ib2YWsdrHXUZshH2L180fX5ivav1HSUayYhoHvPcsMDcXHIScy2fd7LJXF4tZeU=@lists.freedesktop.org,
+ AJvYcCX8TFiZgeGlOkQYcRGoZkTF1JwnLa/t25Mcin5hk/2BMNN/Xbx6CTF+uXtKLS4vqBx5f1VoNh+TrQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyo44HrbtEP5ug/lzCT0216cwA5iIWx5VR4nAGWVjvRCeeciAsr
+ dXzsql5rAGfdinPa+xhGrtphBpoauOR8PyozuqCOpRyvFxxFAz9Z0oU/
+X-Gm-Gg: ASbGncv6g4od94soE7j6Vc5oXau9qk0/P5j7mAG5v/JTElcqHrCWKf0cngm9l9kXNwN
+ Y3s86V0QqWeWKjHtJbTTGhNkfIk0sYtMT6+bRcS8jsyPZkyP08W9dAwdjZo4NdpcxT98JQ/Qpmh
+ fnVEoNndmh+waN95c6Nce4BpkHlhbO3Uuw1Je3qN5SOIFwsp1oR/Fgnw7w7UQ31mVIrA9fXAgd6
+ GKmQsBMec9Qln5qPCc7NTphZT7YJGwYkmVZYlsO9FUWxkPjLfL/8XHu6XjHpnZBvfbwQdbYI7RA
+ VSHZgBanzWlTqBD+0r80ZCSgsEVBbPIBDyetyvJukIU/5ahkVgWX7hiLgxvk/x1qAPz5WLFSo8e
+ j4/62knPA5QmpznnuLfrk8SZfG06QuGsscjl/90zhlnf2EPOEroFYrPJddw==
+X-Google-Smtp-Source: AGHT+IGR2RRZQW2bcini0bMXKS9fKRmwAOf5eVXkkfrEVuuKui6PaVOKJy0ulnbPEP69BzEKMolKgw==
+X-Received: by 2002:a05:6214:328e:b0:6fa:bb26:1459 with SMTP id
+ 6a1803df08f44-70494eeb96cmr79324366d6.7.1752161529395; 
+ Thu, 10 Jul 2025 08:32:09 -0700 (PDT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.32.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Sep 2025 06:55:53 -0700 (PDT)
+ Thu, 10 Jul 2025 08:32:08 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 25 Sep 2025 09:54:04 -0400
-Subject: [PATCH v2 16/19] rust: str: replace `kernel::c_str!` with
- C-Strings
+Date: Thu, 10 Jul 2025 11:31:20 -0400
+Subject: [PATCH 17/17] rust: sync: replace `kernel::c_str!` with C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250925-core-cstr-cstrings-v2-16-78e0aaace1cd@gmail.com>
-References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250710-core-cstr-cstrings-v1-17-027420ea799e@gmail.com>
+References: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
+In-Reply-To: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
  Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
@@ -98,25 +97,21 @@ To: "Rafael J. Wysocki" <rafael@kernel.org>,
  =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
  Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+ Jens Axboe <axboe@kernel.dk>
 Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
  rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
  linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- Tamir Duberstein <tamird@gmail.com>
+ linux-block@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1758808438; l=1351;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752161491; l=3792;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=TE76Xl7EtGwiL3k522JoFNelrGIHYPV5uXDUZx193fk=;
+ bh=lLdnM+NUEuXkQdsCZ2Zc/ZWA5W8wgiORDQ2a6677Zzo=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QNEkH2K217WCJVB+0mC1S+mvJu9BnNI6eCwPt0AKaTiMW7gojiLm71MaiB58vh7llyUCTN8zCSP
- N0RCtgv8pDgg=
+ QEQCLdocV7E4OivASyLh0mReapGH3HAqrlKw6p+xfkfcFh+9TajU5mVNbgdK6iJLvlwtkJLY9Sp
+ YR4gNbcIrDgs=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -139,35 +134,103 @@ C-String literals were added in Rust 1.77. Replace instances of
 
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Benno Lossin <lossin@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/str.rs | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/block/rnull.rs         | 2 +-
+ rust/kernel/sync.rs            | 5 ++---
+ rust/kernel/sync/completion.rs | 2 +-
+ rust/kernel/workqueue.rs       | 8 ++++----
+ 4 files changed, 8 insertions(+), 9 deletions(-)
 
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index 624386cb07be..4203ce34ce98 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -272,15 +272,14 @@ impl fmt::Display for CStr {
-     /// Formats printable ASCII characters, escaping the rest.
+diff --git a/drivers/block/rnull.rs b/drivers/block/rnull.rs
+index 6366da12c5a5..9aa79b862b63 100644
+--- a/drivers/block/rnull.rs
++++ b/drivers/block/rnull.rs
+@@ -55,7 +55,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+         })();
+ 
+         try_pin_init!(Self {
+-            _disk <- new_mutex!(disk?, "nullb:disk"),
++            _disk <- new_mutex!(disk?, c"nullb:disk"),
+         })
+     }
+ }
+diff --git a/rust/kernel/sync.rs b/rust/kernel/sync.rs
+index 63c99e015ad6..9a6d2753937d 100644
+--- a/rust/kernel/sync.rs
++++ b/rust/kernel/sync.rs
+@@ -43,7 +43,6 @@ impl LockClassKey {
      ///
+     /// # Examples
      /// ```
 -    /// # use kernel::c_str;
-     /// # use kernel::prelude::fmt;
-     /// # use kernel::str::CStr;
-     /// # use kernel::str::CString;
--    /// let penguin = c_str!("🐧");
-+    /// let penguin = c"🐧";
-     /// let s = CString::try_from_fmt(fmt!("{penguin}"))?;
-     /// assert_eq!(s.to_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
-     ///
--    /// let ascii = c_str!("so \"cool\"");
-+    /// let ascii = c"so \"cool\"";
-     /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
-     /// assert_eq!(s.to_bytes_with_nul(), "so \"cool\"\0".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
+     /// # use kernel::alloc::KBox;
+     /// # use kernel::types::ForeignOwnable;
+     /// # use kernel::sync::{LockClassKey, SpinLock};
+@@ -55,7 +54,7 @@ impl LockClassKey {
+     /// {
+     ///     stack_pin_init!(let num: SpinLock<u32> = SpinLock::new(
+     ///         0,
+-    ///         c_str!("my_spinlock"),
++    ///         c"my_spinlock",
+     ///         // SAFETY: `key_ptr` is returned by the above `into_foreign()`, whose
+     ///         // `from_foreign()` has not yet been called.
+     ///         unsafe { <Pin<KBox<LockClassKey>> as ForeignOwnable>::borrow(key_ptr) }
+@@ -111,6 +110,6 @@ macro_rules! optional_name {
+         $crate::c_str!(::core::concat!(::core::file!(), ":", ::core::line!()))
+     };
+     ($name:literal) => {
+-        $crate::c_str!($name)
++        $name
+     };
+ }
+diff --git a/rust/kernel/sync/completion.rs b/rust/kernel/sync/completion.rs
+index c50012a940a3..97d39c248793 100644
+--- a/rust/kernel/sync/completion.rs
++++ b/rust/kernel/sync/completion.rs
+@@ -34,7 +34,7 @@
+ /// impl MyTask {
+ ///     fn new() -> Result<Arc<Self>> {
+ ///         let this = Arc::pin_init(pin_init!(MyTask {
+-///             work <- new_work!("MyTask::work"),
++///             work <- new_work!(c"MyTask::work"),
+ ///             done <- Completion::new(),
+ ///         }), GFP_KERNEL)?;
+ ///
+diff --git a/rust/kernel/workqueue.rs b/rust/kernel/workqueue.rs
+index cce23684af24..432624c69c72 100644
+--- a/rust/kernel/workqueue.rs
++++ b/rust/kernel/workqueue.rs
+@@ -51,7 +51,7 @@
+ //!     fn new(value: i32) -> Result<Arc<Self>> {
+ //!         Arc::pin_init(pin_init!(MyStruct {
+ //!             value,
+-//!             work <- new_work!("MyStruct::work"),
++//!             work <- new_work!(c"MyStruct::work"),
+ //!         }), GFP_KERNEL)
+ //!     }
+ //! }
+@@ -98,8 +98,8 @@
+ //!         Arc::pin_init(pin_init!(MyStruct {
+ //!             value_1,
+ //!             value_2,
+-//!             work_1 <- new_work!("MyStruct::work_1"),
+-//!             work_2 <- new_work!("MyStruct::work_2"),
++//!             work_1 <- new_work!(c"MyStruct::work_1"),
++//!             work_2 <- new_work!(c"MyStruct::work_2"),
+ //!         }), GFP_KERNEL)
+ //!     }
+ //! }
+@@ -215,7 +215,7 @@ pub fn try_spawn<T: 'static + Send + FnOnce()>(
+         func: T,
+     ) -> Result<(), AllocError> {
+         let init = pin_init!(ClosureWork {
+-            work <- new_work!("Queue::try_spawn"),
++            work <- new_work!(c"Queue::try_spawn"),
+             func: Some(func),
+         });
+ 
 
 -- 
-2.51.0
+2.50.0
 
