@@ -4,106 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31799CCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9CABCCA470
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5A110E5E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E83510E5D9;
 	Mon,  6 Oct 2025 20:57:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="OXX6XrgP";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WZPyMI+5";
 	dkim-atps=neutral
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
- [209.85.222.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5D210E0FC;
- Sat, 19 Jul 2025 22:42:11 +0000 (UTC)
-Received: by mail-qk1-f178.google.com with SMTP id
- af79cd13be357-7e34399cdb2so344319885a.3; 
- Sat, 19 Jul 2025 15:42:11 -0700 (PDT)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
+ [209.85.219.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5172610E90A;
+ Thu, 10 Jul 2025 15:31:47 +0000 (UTC)
+Received: by mail-qv1-f42.google.com with SMTP id
+ 6a1803df08f44-6fad8b4c927so10268296d6.0; 
+ Thu, 10 Jul 2025 08:31:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752964930; x=1753569730; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752161506; x=1752766306; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=k8zwWmF5N009AGIXlDD+XsD4K4+mEgy8HqbF8g/gLNE=;
- b=OXX6XrgPIgIBHUXqrNnzoZIFK5E73n04TVlou/FB6OUNsPVCawnUoFfNs/Fvi6UpLQ
- 5WDrH13eU04HHr+2QIwJD3x4h8/9et/KAOMwbvDhG3n3CcyQ+BsYf247BuJhCQrjII4N
- 64ZCt7pAEWC/rfswqCPiJQyiuhUF38zW6I3q0pwrqKcfbheG0Bp+HumybPhrBQ2HqG3z
- ZA+N4nsx7J1hw5Eb5ERRw306PtL8OVfQAZr/ceMZ7l1q+VI0A4Wj4eDrLNRYr838j2ot
- gxh/a5cX/5Lnd0BAhIQZmlEDcJankp9bASc9+q7ONGAq60BPvJlEjBtXPDqlUKtqnBb4
- lwYg==
+ :reply-to; bh=A0zIVbcphTDjCV/BRYSz6swPeiPXn1qULo40NKxP67Q=;
+ b=WZPyMI+521evQmQ/HmyEuXElce76k8d8AZkLBmDfU9Sokp7T/YhMarXrzN72pVxJ8F
+ Vbvbyn4x3QJbSvetuDuQ56x9lcC5NYx1LTKd8JvIOBZUyKVOWRDJhu+0SxRiqTRwLDuS
+ OkMb0vPSZzDecQ1Qic3mqYwL8csAkeLrCBauuz8ggKyR1rIjMdEVIpsG1Pbjk2IbGu3+
+ M1LBqcLmhCU1IKn6Skp35+92RI5RUtOAuUVXVPp0Z1+VX3+nzdy172i7A1YNE6OEFJA7
+ yPShgHdQZOKpqvsbsPNwxN5u+QAb8U/Z01s32rRWYqabkpjFUaaiPlEd1IiQTqLskgas
+ kOXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752964930; x=1753569730;
+ d=1e100.net; s=20230601; t=1752161506; x=1752766306;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=k8zwWmF5N009AGIXlDD+XsD4K4+mEgy8HqbF8g/gLNE=;
- b=QDXRIgTAMqCihI14BltIgKRrxxEMQ24AKdNwtKhi9cfYNsvvUxemAGHl0SxWDsrWEA
- XBR/ksogzW9GjPga7eGQBLQVZNXA2cQgNKOFahOpBDOhHcYsIhM4i2diilcRTAJUS/tg
- fEnUKGdmTAjgahPCdq6tY0/BUhRIr1hx+fuhG8IJVfwY8zyo6L3mqhACquUZcnVx4L4w
- CzbLorppj/csIJrgz6o2gii6QBrUHeUSw7lnF2N2GeTvLwze+dTtGPq+K3adWEaZbYPO
- n9x3tE+yoU1s365b+PfYoc5/24oLAPneshv3QQQa6qYwPvy7AqkYD04BnBCy3t8e/SCP
- Nn8A==
+ bh=A0zIVbcphTDjCV/BRYSz6swPeiPXn1qULo40NKxP67Q=;
+ b=wCSc4sLO7ZC+z3zH91YaynhDQm4lMtO70O9QdvtfA5nda/4BqZGzZAYA9tKgPHs2Hu
+ m8UD2uCNi34gNpehmeYQPJKikgkmDfPURfqaHsoE/k1D0+PawJhBZe3rzJaZJuU2uG+s
+ yKsXkfY4Iv9Ifbmbhxwbjfu5fayIC1SA3izTCMxbp+Ur9nMDYXmFUloJNx1dUb2G9Br5
+ eB1Y6kS58ELNMFpFF6MQYL5U3tbtiSrawVCRq4SE3PPvO7WnaMJ+yJqN3sNDZpBEZx54
+ IuUbev8dcvuGremM2iXD+QOCm508ZyviNX8+LIolVjCVLkCN3nWSKA8P6vXxOtb5FZGi
+ QMLg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXjqeEU4+ufvkh+N+RMjpavbIAylqkf2X2rqmnDc7ndWIRJ2r4AxOLavAki6tc/+Kqsna/5OG2WMJg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yydnz7x53am7DmI58m8eAeasqAvAh0T52Kk8m0snd8RPIYbAXm4
- rVXCkI2X1GcS8xn8Nj7Ty2iAJmpjXmyHKynA1a0YPOFbSesVcwovSZJZ
-X-Gm-Gg: ASbGncsnuOe9QHGEICdIFwe5Sy6mxBZLqKZ4tbk4/f8mh1GZFtTuGU8sB0qvduaDIhz
- UlIc5bNsvWsnvhmXB3xw9lYHQLEvorKza8q8Y/C7tkHYimfEVpnCEZyivHZX7BVNJwGXlkaWj+0
- U0e7AtzrXLZ1fcb2bQBGO2NcZs5kRL69NjHpF7fEn0nGqiYiBqrT5rGe9JeToN/XkwtgNGsXIAa
- JlMB8pu3PipAbrKZqBxwWP43Q43SIquZmTpNLxxTmDt2j2SOqZAjyC2usQbvdRMpMHOIc1xsrM1
- 88Xv/DuBN9Mv5Iqm8fA/oFB2Gjxkr2cw0pZrQ8FCoE7lUzJCVfG9vHViAT+jKC4UaOW8Ffce014
- PY4R2ZOAWnvF7JjIC7QHygbSufsF00/ihYkhGn590YN1zt9edSrrGAA75hYbYcK0YyHhn7AQZjE
- /kDT+/8TX0ZQnVwrGCVzH+eZszZAHq
-X-Google-Smtp-Source: AGHT+IFcM5vlTfHbMZcHG4vqLu6GDVA0CvWxAR99Lsxdw7SvuJC/8vqOcsbiSG0Ai/sIgQPyOGsC9g==
-X-Received: by 2002:a05:620a:4113:b0:7e3:46da:9e2f with SMTP id
- af79cd13be357-7e346daa47bmr1530803485a.34.1752964930511; 
- Sat, 19 Jul 2025 15:42:10 -0700 (PDT)
+ AJvYcCWTz1hZ46s9OoO0Cc+Dm8Yy4eUzOn/xaqTbZnRSybW3Jm/rDuK/hfTEuAeWu3D/klZzl910ud9mO6o=@lists.freedesktop.org,
+ AJvYcCWZ6Ig7imQIUqo1WYZHfaUpxb9oRVSfnwA7K659M0YQ+rtnZaolzgFG76Dqloh9deFYQo5D3fuSyw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxzeUgulSMiOmrWUkFZ5UAom1HpBlttBbWZt89Taj8LjJMoj84O
+ t9w7lgarXGnWFncwkMTn1Tq8o6eQpWpjzGAWWs5kp/o4byJyPCWpxD3b
+X-Gm-Gg: ASbGnctQC8w2xg/I2mOXSU7M+IIb8k5EQPH7q3RFpTRNxj+0GqL08+Py3o/kjrzEse7
+ F1ZJ4ptsvPl1R4UlxPBrycIhM0aWzztdCFnJtPkRxOd36d0yKWoiAHFbrLSeXhzqcZgMBh9v5Hz
+ K9F5OdQe/0QrQQ41atm/DmjfYfQKHAK8VwL8H2CwmQZCs2S6tTi8juxm0d9ks5LA7u0dCcBi9JC
+ RVYn8uTe5d4INWQXilO8i5iJ/D/CT5StCCl+SKJGSKyIFrTmNE417mHR3141CuPpaIWjnSRte14
+ awH5Xpc9bYvpfHbqNdoK2lX208QxS8HKz6mGxgdVMIBJQ8JmadN13i7Lm47pC141HOf6zQ3AyZ2
+ kq5XujARClnB8DeiCqEbGNkGdsHmxFGNl/4jEtg2GPPZgtCCSVRY6W6xMEQ==
+X-Google-Smtp-Source: AGHT+IGcu2AWwgL23R/GZcRg4GNhqiTRg3tVkCGWznIBgtE8Kyf5DTvce0/bAy+ygow+T8DZUkNSVg==
+X-Received: by 2002:ad4:5aa9:0:b0:6fb:6114:1034 with SMTP id
+ 6a1803df08f44-70495068decmr72119166d6.39.1752161506061; 
+ Thu, 10 Jul 2025 08:31:46 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4041:5c29:e400:78d6:5625:d350:50d1])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7e356c75cf5sm251550785a.84.2025.07.19.15.42.08
+ ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.31.44
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 19 Jul 2025 15:42:09 -0700 (PDT)
+ Thu, 10 Jul 2025 08:31:45 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 19 Jul 2025 18:41:51 -0400
-Subject: [PATCH v2 2/8] rust: alloc: use `kernel::{fmt,prelude::fmt!}`
+Date: Thu, 10 Jul 2025 11:31:09 -0400
+Subject: [PATCH 06/17] rust: cpufreq: replace `kernel::c_str!` with C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250719-core-cstr-fanout-1-v2-2-1ab5ba189c6e@gmail.com>
-References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-In-Reply-To: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
+Message-Id: <20250710-core-cstr-cstrings-v1-6-027420ea799e@gmail.com>
+References: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
+In-Reply-To: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
  Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Jens Axboe <axboe@kernel.dk>, 
+ Danilo Krummrich <dakr@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Vlastimil Babka <vbabka@suse.cz>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Uladzislau Rezki <urezki@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
+ Jens Axboe <axboe@kernel.dk>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ linux-block@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752964924; l=2090;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752161489; l=2282;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=PSL4iigvbqQ2ksUQBIiw94ADQQA5vnHuf37BheuwWG4=;
+ bh=VNZQXHbrPNQTjnCfNmCZZ01KeKVkMs9GB6vXbtVxjro=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QAwYmtmzbTS+G2HAZWq+qi6aK1Plu95PH7CqyAf94mKBaAcFJcRxRwncs1NkLrq9OJGSXys5/Ti
- sWn8TxIy+UgQ=
+ QJt8ypGIS+ehjdJ0134iQriRSNjL+xYEiSlM8eZgFuoZS1V3HRYbC3s63Q2FJIma29BKt9XxA5D
+ 3g7BKjvyMGgk=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,69 +129,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Reduce coupling to implementation details of the formatting machinery by
-avoiding direct use for `core`'s formatting traits and macros.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible.
 
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/alloc/kbox.rs        | 2 +-
- rust/kernel/alloc/kvec.rs        | 2 +-
- rust/kernel/alloc/kvec/errors.rs | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ drivers/cpufreq/rcpufreq_dt.rs | 5 ++---
+ rust/kernel/cpufreq.rs         | 3 +--
+ 2 files changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/rust/kernel/alloc/kbox.rs b/rust/kernel/alloc/kbox.rs
-index 856d05aa60f1..563187d09a8e 100644
---- a/rust/kernel/alloc/kbox.rs
-+++ b/rust/kernel/alloc/kbox.rs
-@@ -7,7 +7,6 @@
- use super::{AllocError, Allocator, Flags};
- use core::alloc::Layout;
- use core::borrow::{Borrow, BorrowMut};
--use core::fmt;
- use core::marker::PhantomData;
- use core::mem::ManuallyDrop;
- use core::mem::MaybeUninit;
-@@ -17,6 +16,7 @@
- use core::result::Result;
+diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
+index 4608d2286fa1..0b4feb27b4f4 100644
+--- a/drivers/cpufreq/rcpufreq_dt.rs
++++ b/drivers/cpufreq/rcpufreq_dt.rs
+@@ -3,7 +3,6 @@
+ //! Rust based implementation of the cpufreq-dt driver.
  
- use crate::ffi::c_void;
-+use crate::fmt;
- use crate::init::InPlaceInit;
- use crate::types::ForeignOwnable;
- use pin_init::{InPlaceWrite, Init, PinInit, ZeroableOption};
-diff --git a/rust/kernel/alloc/kvec.rs b/rust/kernel/alloc/kvec.rs
-index 3c72e0bdddb8..4a1b2c26209a 100644
---- a/rust/kernel/alloc/kvec.rs
-+++ b/rust/kernel/alloc/kvec.rs
-@@ -7,9 +7,9 @@
-     layout::ArrayLayout,
-     AllocError, Allocator, Box, Flags,
- };
-+use crate::fmt;
- use core::{
-     borrow::{Borrow, BorrowMut},
--    fmt,
-     marker::PhantomData,
-     mem::{ManuallyDrop, MaybeUninit},
-     ops::Deref,
-diff --git a/rust/kernel/alloc/kvec/errors.rs b/rust/kernel/alloc/kvec/errors.rs
-index 348b8d27e102..21a920a4b09b 100644
---- a/rust/kernel/alloc/kvec/errors.rs
-+++ b/rust/kernel/alloc/kvec/errors.rs
-@@ -2,7 +2,7 @@
+ use kernel::{
+-    c_str,
+     clk::Clk,
+     cpu, cpufreq,
+     cpumask::CpumaskVar,
+@@ -55,7 +54,7 @@ impl opp::ConfigOps for CPUFreqDTDriver {}
  
- //! Errors for the [`Vec`] type.
+ #[vtable]
+ impl cpufreq::Driver for CPUFreqDTDriver {
+-    const NAME: &'static CStr = c_str!("cpufreq-dt");
++    const NAME: &'static CStr = c"cpufreq-dt";
+     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+     const BOOST_ENABLED: bool = true;
  
--use core::fmt::{self, Debug, Formatter};
-+use kernel::fmt::{self, Debug, Formatter};
- use kernel::prelude::*;
+@@ -200,7 +199,7 @@ fn register_em(policy: &mut cpufreq::Policy) {
+     OF_TABLE,
+     MODULE_OF_TABLE,
+     <CPUFreqDTDriver as platform::Driver>::IdInfo,
+-    [(of::DeviceId::new(c_str!("operating-points-v2")), ())]
++    [(of::DeviceId::new(c"operating-points-v2"), ())]
+ );
  
- /// Error type for [`Vec::push_within_capacity`].
+ impl platform::Driver for CPUFreqDTDriver {
+diff --git a/rust/kernel/cpufreq.rs b/rust/kernel/cpufreq.rs
+index 71d601f7c261..0f316dfeb5dd 100644
+--- a/rust/kernel/cpufreq.rs
++++ b/rust/kernel/cpufreq.rs
+@@ -841,7 +841,6 @@ fn register_em(_policy: &mut Policy) {
+ /// ```
+ /// use kernel::{
+ ///     cpufreq,
+-///     c_str,
+ ///     device::{Core, Device},
+ ///     macros::vtable,
+ ///     of, platform,
+@@ -854,7 +853,7 @@ fn register_em(_policy: &mut Policy) {
+ ///
+ /// #[vtable]
+ /// impl cpufreq::Driver for SampleDriver {
+-///     const NAME: &'static CStr = c_str!("cpufreq-sample");
++///     const NAME: &'static CStr = c"cpufreq-sample";
+ ///     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+ ///     const BOOST_ENABLED: bool = true;
+ ///
 
 -- 
-2.50.1
+2.50.0
 
