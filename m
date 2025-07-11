@@ -4,94 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B72D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBEC8D5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C64410ECA5;
-	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E90C310EC92;
+	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R8GOA/u+";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lgpf/c2+";
 	dkim-atps=neutral
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
- [209.85.208.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2434A10E0CF
- for <nouveau@lists.freedesktop.org>; Sun,  7 Dec 2025 08:59:18 +0000 (UTC)
-Received: by mail-lj1-f181.google.com with SMTP id
- 38308e7fff4ca-37b95f87d64so30539281fa.2
- for <nouveau@lists.freedesktop.org>; Sun, 07 Dec 2025 00:59:18 -0800 (PST)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+ [209.85.210.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC2A10E9DB
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 09:33:23 +0000 (UTC)
+Received: by mail-pf1-f173.google.com with SMTP id
+ d2e1a72fcca58-7399a2dc13fso2141346b3a.2
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 02:33:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765097956; x=1765702756; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=5b12hRnRWv6onGjF90Cte/QEE3Sc5Ju08UGYaWm18PI=;
- b=R8GOA/u+C+ipEXhlsi4Mk1Kz2Y8qfTjg2ktLLqSbTmesNJtohY4SbOLUlQSDYwn1Yg
- vPysCFISESRCPp4ikQzOXfw4cmVVWEkfLHXzq92Xxuv60ByKwBR05qk6JhyQuBY457P8
- tvljWYsXfYlhg7uLYWswGOJMFschT9rfh6TYhobOmJWlZn2PXxW/0RHUytjTSMEHPLAs
- zXk7pVtUxWZROdlh1DobBcA1e7jr4lH9OfiTd2Snn7L6Whssmto1tKcbvnmB6/h9YHeJ
- PDG9b/eVI1KR7ndakLggwzSEbCC/lvrdrisWvRqm3VyTR8WeDmEihQZg+PWcYmHDniVu
- 2l9Q==
+ d=gmail.com; s=20230601; t=1752226402; x=1752831202; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=h5iCt+AL9f4UNEya1UkmziIpzAIFx+Cs0OtkGEYlA34=;
+ b=lgpf/c2+BmF0nN2mFbvpAyOGkdjhfpFG59XNSTsKLhgjsUnNV17AWudkbcqBIZECrO
+ ncOx99JvJ24v3mvBC9b1N93E78m1cb6sZPF3USP5ww3PcQRSy7WvBp9HDa40YhMy/Xmd
+ b9RGY+FmLaf5jm+9gX21ti1NMPkyWNC/7Ggfoz9ijOxMfqEL6MPcbdZKOzsYhvscyqYD
+ OLGrzR/rQtBY8sx7IZYETPOH7tR+MVDwfjKSHO4AHaXiOp5wvUBI6oZe5jlpcVncBE5C
+ L2hOmmGpnYVTBIbQVktXidGR/jI23YzjHuHnGSbDsPhBIBmnEflKwrYGpxzALEW09Ty3
+ ES0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765097956; x=1765702756;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=5b12hRnRWv6onGjF90Cte/QEE3Sc5Ju08UGYaWm18PI=;
- b=cIcZEXuQe/QeCx/i9/9/0qPyuPLQGH6UGMyEl08OcaSuwRLXtx4xl/sPCxNkoYM4BC
- HXQzkYOiOk2mgO+s84JUdiHiny2jpdkf2axzTpAIpJfdlxEWY/NV8XcXyrN5OzAmHHpx
- spMFFwxukgR1z0nbIalt4NDY7o3FtAhU5pH+2vVW6PN+MojMznUFv0CLohlf4fM30PXJ
- Ei2u5cHdJeXwL8/QMKYOrhezE9MtMK5fXUQUOT9d3xTSqaltNLU7ameh2NFD3cc9QJ44
- SNoOUDaNmpz98Yvfx7GATSaHsvhse9FpeeVtliIkWFDoBjYWGNqoswdB8wuJhnsIcs4K
- lL8A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU90Zb4jz2lKKDS8dHCwYYRrCaQH/RCwlksKWko1Lt9Ls0gh1wbFRfQ8VtPzcKwQtTPotjwPf6h@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8tSWpN4zYzEeIDqWqIhzdCcOAenTc+Kmqs52gSMtNHdZejqLf
- M2YRLD6Xz0kvvKA9tiXNS+vhW3D4tNS2ixhKxjHL6evUFhngv2hkvTiY
-X-Gm-Gg: ASbGncvmqekCR69I5w0bFllVZldhVsp1dtMU4s09ZoULeY3MQdPm9Zwik0z0RFex34R
- RAdYomGnvU27Pu1D4tRc2i03BJ9m8BgQr1qrdeEI4BQp57nQn0h7Lf+ngwzGJKRDm5bxRZwTLqT
- x4KCuxVRQXMJfpkVJDo77TpWdyMMOvSubLsS0EQN3z1SGdgLdnNGn9jXLeor/GRaXb21CwWNXNY
- OHZ9iub2YFMihBYYEyg1OQCNxAYIRnnaGC9KNIwpTtRZGoxUduCG19y14MMStR1ZXOLJZD0kZPD
- PH1NI4iWykFAYENon/V/EsP/tSyoPkZCW6k1GovO04fVIQ2OSuK9VxhpTqVaUnf+LjdM/ppVIwA
- Hud+W/QnsvBjJTDlhwhXOewR7RUOl+xt0XxkavToS9vkdEML4w9dac/8GO9Jq0awprHMpbf6FIi
- lKHTT2R7AbOIBhSpQE4BWkT+F9aBtm3BiyH2eXdZGXCcTzDwO7FWSoumSP9i353aaHd+2vH6BXX
- LWOTnioXYMuDZd8ymrWsE5RdTnVUF5t1yr2aP8EuumJ+u7UDGACaA==
-X-Google-Smtp-Source: AGHT+IHkpbBEjUpSSNR6c1N0xrVq9kG40VYKHC/sRRQKwimb+t89Kzoar8J3mhxBoq7JhZtP7BsBvQ==
-X-Received: by 2002:a05:6000:430d:b0:42b:5448:7b08 with SMTP id
- ffacd0b85a97d-42f89f094b2mr4983612f8f.5.1765091533868; 
- Sat, 06 Dec 2025 23:12:13 -0800 (PST)
-Received: from ?IPV6:2003:df:bf22:3c00:1c42:64e:ef2a:93cd?
- (p200300dfbf223c001c42064eef2a93cd.dip0.t-ipconnect.de.
- [2003:df:bf22:3c00:1c42:64e:ef2a:93cd])
+ d=1e100.net; s=20230601; t=1752226402; x=1752831202;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=h5iCt+AL9f4UNEya1UkmziIpzAIFx+Cs0OtkGEYlA34=;
+ b=DB+mVWP8cuWX9UVAve7j+xQtEl3jIrUpKGANkBMAW5ZcLmPYMA/28NnIzhQmWNvQqo
+ +kQHipfMpGM8U2/Sim9lXjMPPVPKEix0X7mADMzvNvJBlTeoPF/J2fgksWbPOCLN6TIf
+ 1CK82T8NnSLoBmu40Ft49iFmKBc6lUjCWMWuuvX4KDbxmv5/XCbLXs3Ikzrm/84ozpG8
+ vykqvXM6R58tVp1VduPLiS9jGm++pfwPjOSZlvRoqCT0Qzy4P1K9xLt0EdqMnLRUhrjp
+ JOg7AOH4ldEGKrytX+0dHa+WPuhSah9jidJybi6o5wqrvoSQZBQq/Ubd3cIjX0h5bbbe
+ HQIQ==
+X-Gm-Message-State: AOJu0Yw5OanTkRbQEHKuNFjv5lKNCOZh5ukFDzgY5W4cbN7Cpe8PdorV
+ Fzlg5qX2nqJbh9TDpS31uqeU30FQj7h0kFv5ZDGSFNdOTIKwR+A1W5gT
+X-Gm-Gg: ASbGncsI7fSGogclRsggo+lJki3jyPM0UV4KXO2HektH0Vt+0A7qCMJTvW+QldTjT+j
+ ZW5wC6m8B3tvxcfJV0r027FjnqAg+VMdaQRc8Y5QTPU2+F6u2GESDy8XYhwsFU6gfIVXFVQ+1ft
+ u1VDTR86WL6jPmRAFy0EpAbtUtOCkIPURTjK692LMFUS24EfO6OPua8XbGrEXyAfFNHUa3SO6bl
+ UGMIE+2/zsmNPA/bYOgulnKOgSup5VYCAeBi91MJUzPdWChMKNiQmAkQ+Ci7RpWhy1g0VVXRFfy
+ dEM89y4fpyvPs0HXIhvCOzQert6LsmVYui0Hh1J/gtvG3961L1sPScE2IReZCxh8ENVKhQj2MNW
+ dklbJl5AwokFo4oAtuxC0Yd3wIehIi/H3jV4=
+X-Google-Smtp-Source: AGHT+IH3B/iJUKxoaQt0Ls6NL/GvCauufAHie/v74wXh4JpTVt8aHREkaECXuuJho7MHYZSPgFJwdQ==
+X-Received: by 2002:a05:6a20:9c99:b0:20b:a75e:fa32 with SMTP id
+ adf61e73a8af0-2311fa06643mr5181002637.40.1752226402536; 
+ Fri, 11 Jul 2025 02:33:22 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-42f7cc090bdsm18354202f8f.19.2025.12.06.23.12.11
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sat, 06 Dec 2025 23:12:13 -0800 (PST)
-Message-ID: <ca549425-e10b-4d54-aebe-278d90c8cb92@gmail.com>
-Date: Sun, 7 Dec 2025 08:12:10 +0100
+ 41be03b00d2f7-b3bbe6bc84asm4557889a12.44.2025.07.11.02.33.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Jul 2025 02:33:22 -0700 (PDT)
+From: Quaternions <krakow20@gmail.com>
+To: dakr@kernel.org
+Cc: nouveau@lists.freedesktop.org,
+	Quaternions <krakow20@gmail.com>
+Subject: [PATCH] gpu: nova-core: define named constants for magic numbers
+Date: Fri, 11 Jul 2025 02:30:15 -0700
+Message-ID: <20250711093015.28785-2-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250711093015.28785-1-krakow20@gmail.com>
+References: <20250711093015.28785-1-krakow20@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 1/7] rust: pci: expose sriov_get_totalvfs() helper
-To: Zhi Wang <zhiw@nvidia.com>, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: airlied@gmail.com, dakr@kernel.org, aliceryhl@google.com,
- bhelgaas@google.com, kwilczynski@kernel.org, ojeda@kernel.org,
- alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
- bjorn3_gh@protonmail.com, lossin@kernel.org, a.hindborg@kernel.org,
- tmgross@umich.edu, markus.probst@posteo.de, helgaas@kernel.org,
- cjia@nvidia.com, alex@shazbot.org, smitra@nvidia.com, ankita@nvidia.com,
- aniketa@nvidia.com, kwankhede@nvidia.com, targupta@nvidia.com,
- acourbot@nvidia.com, joelagnelf@nvidia.com, jhubbard@nvidia.com,
- zhiwang@kernel.org
-References: <20251206124208.305963-1-zhiw@nvidia.com>
- <20251206124208.305963-2-zhiw@nvidia.com>
-Content-Language: de-AT-frami, en-US
-From: Dirk Behme <dirk.behme@gmail.com>
-In-Reply-To: <20251206124208.305963-2-zhiw@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -106,98 +87,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 06.12.25 13:42, Zhi Wang wrote:
-> Add a wrapper for the `pci_sriov_get_totalvfs()` helper, allowing drivers
-> to query the number of total SR-IOV virtual functions a PCI device
-> supports.
-> 
-> This is useful for components that need to conditionally enable features
-> based on SR-IOV capability.
-> 
-> Signed-off-by: Zhi Wang <zhiw@nvidia.com>
-> ---
->  rust/kernel/pci.rs | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
-> 
-> diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-> index 7fcc5f6022c1..9a82e83dfd30 100644
-> --- a/rust/kernel/pci.rs
-> +++ b/rust/kernel/pci.rs
-> @@ -514,6 +514,18 @@ pub fn pci_class(&self) -> Class {
->          // SAFETY: `self.as_raw` is a valid pointer to a `struct pci_dev`.
->          Class::from_raw(unsafe { (*self.as_raw()).class })
->      }
-> +
-> +    /// Returns total number of VFs, or `Err(ENODEV)` if none available.
-> +    pub fn sriov_get_totalvfs(&self) -> Result<i32> {
-> +        // SAFETY: `self.as_raw()` is a valid pointer to a `struct pci_dev`.
-> +        let vfs = unsafe { bindings::pci_sriov_get_totalvfs(self.as_raw()) };
-> +
-> +        if vfs != 0 {
-> +            Ok(vfs)
-> +        } else {
-> +            Err(ENODEV)
-> +        }
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-In the thread [1] there was some discussion about the `if {} else {}`
-"style". From that discussion I "distilled" 6 options [2] which I
-liked for having an overview :) Of course not all of these applied
-there (const), neither will they here. And all have pros and cons. I
-think in the end option #4 was selected.
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 5b5d9f38cbb3..d456c494374d 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -364,8 +364,9 @@ struct BitHeader {
+ }
+ 
+ impl BitHeader {
++    const MIN_LEN: usize = 12;
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 12 {
++        if data.len() < Self::MIN_LEN {
+             return Err(EINVAL);
+         }
+ 
+@@ -467,8 +468,9 @@ struct PciRomHeader {
+ }
+ 
+ impl PciRomHeader {
++    const MIN_LEN: usize = 26;
+     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
+-        if data.len() < 26 {
++        if data.len() < Self::MIN_LEN {
+             // Need at least 26 bytes to read pciDataStrucPtr and sizeOfBlock.
+             return Err(EINVAL);
+         }
+@@ -772,10 +774,11 @@ fn into_image(self) -> Result<BiosImage> {
+         BiosImage::try_from(self)
+     }
+ 
++    const MIN_LEN: usize = 26;
+     /// Creates a new BiosImageBase from raw byte data.
+     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
+         // Ensure we have enough data for the ROM header.
+-        if data.len() < 26 {
++        if data.len() < Self::MIN_LEN {
+             dev_err!(pdev.as_ref(), "Not enough data for ROM header\n");
+             return Err(EINVAL);
+         }
+@@ -900,8 +903,9 @@ struct PmuLookupTableEntry {
+ }
+ 
+ impl PmuLookupTableEntry {
++    const MIN_LEN: usize = 6;
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 6 {
++        if data.len() < Self::MIN_LEN {
+             return Err(EINVAL);
+         }
+ 
+@@ -928,8 +932,9 @@ struct PmuLookupTable {
+ }
+ 
+ impl PmuLookupTable {
++    const MIN_LEN: usize = 4;
+     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
+-        if data.len() < 4 {
++        if data.len() < Self::MIN_LEN {
+             return Err(EINVAL);
+         }
+ 
+-- 
+2.50.1
 
-What's about to do something similar here (and in the 2/7 patch as well)?
-
-if vfs == 0 {
-    return Err(ENODEV);
-}
-
-Ok(vfs)
-
-Dirk
-
-[1]
-https://lore.kernel.org/rust-for-linux/CANiq72kiscT5euAUjcSzvxMzM9Hdj8aQGeUN_pVF-vHf3DhBuQ@mail.gmail.com/
-
-[2] Options distilled from the thread [1]:
-
-1.
-
-if let Some(sum) = addr.checked_add(PAGE_SIZE - 1) {
-    return Some(sum & PAGE_MASK);
-}
-None
-
-
-2.
-
-addr.checked_add(PAGE_SIZE - 1).map(|sum| sum & PAGE_MASK)
-
-
-3.
-
-if let Some(sum) = addr.checked_add(PAGE_SIZE - 1) {
-   Some(sum & PAGE_MASK);
-} else {
-   None
-}
-
-
-4.
-
-let Some(sum) = addr.checked_add(PAGE_SIZE - 1) else {
-    return None;
-};
-
-Some(sum & PAGE_MASK)
-
-
-5.
-
-match addr.checked_add(PAGE_SIZE - 1) {
-  Some(v) => Some(v & PAGE_MASK),
-  None => None,
-}
-
-6.
-
-Some(addr.checked_add(PAGE_SIZE - 1)? & PAGE_MASK)
