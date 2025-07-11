@@ -4,57 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6827D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2760DD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1ADC10EA7D;
-	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B42210EAAD;
+	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="OoTQx7nv";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bjFUHRrP";
 	dkim-atps=neutral
-Received: from mail-106110.protonmail.ch (mail-106110.protonmail.ch
- [79.135.106.110])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D355210E298
- for <nouveau@lists.freedesktop.org>; Fri,  5 Sep 2025 22:29:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
- s=protonmail3; t=1757110953; x=1757370153;
- bh=0krcnuYf+HRb0KjbYvjUYhVudHL1dFh9Fxl804g3Gyg=;
- h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:From:To:
- Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=OoTQx7nvROXMbGTTMKr2KrB9vMeZGUs8NF/QGckVlupEa8uHVv0sdpk7svn7KU+rw
- +X+q0csk8oM2g/AjCBXU9WziWapJV9LCHcDaj3qy1OOOswBQnPvDQxNQKDvEOrKbTN
- /FOmQPgYfqFZspIdGAmQz2iJCzkAreNOnsONqq6m8/C9SRT5pocHqRj6MhHo+Pp0+7
- N+XWT4DHMXYAEZ/N82k3y6phwxDo4NJPOBM0Uzx2/MQ8j0Js8ueemRWSjPwUWUVLtu
- CzB3Kdy+lLBX/daRDnYcM7axuQqN9Cb1tJLkKAnhtqzczN5dg4RzpdP1Kv4HbLjmWY
- Vef9J0lru9SLw==
-X-Pm-Submission-Id: 4cJW7B25rPz1DDYP
-Date: Fri, 5 Sep 2025 22:22:27 +0000
-From: Elle Rhumsaa <elle@weathered-steel.dev>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] nova-core: bitstruct: Add support for custom
- visiblity
-Message-ID: <aLtio1FbGy9Qx9rL@archiso>
-References: <20250903215428.1296517-1-joelagnelf@nvidia.com>
- <20250903215428.1296517-4-joelagnelf@nvidia.com>
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
+ [209.85.210.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD2C110E9DB
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 09:33:15 +0000 (UTC)
+Received: by mail-pf1-f179.google.com with SMTP id
+ d2e1a72fcca58-748d982e97cso1678553b3a.1
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 02:33:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1752226395; x=1752831195; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=8wFTFvOPl9z0oMG+Q2qe8rihqJLxAx1U3xn0MBTrYNM=;
+ b=bjFUHRrPik7rZ0OfDXxGSFLOKPCsEnMCUq9vrepteEwqkXg3boW1VpCybJkSm076qU
+ IZ6xEEBgJ/NeyxuA4GYNu0njxkgeRK6NVTaEqubUi5MRuZbS5vEmW7xKJg4Kc8uctFgK
+ xdUGoy4j37kLNXfcYDXENE9C40nRvxH6ahxAMw8jmE/Z5F3aJWLb1IKKZI2cybaVpAJq
+ GxKHM91MXPEa9oLhSmACz7hkek0qiBnu2CWFL2gNFIlha9mddnhqFl7a93oN0IoaDijW
+ NawWDXh72WnOAtS1fet3OZaj3JJC7UQvjV4mqApbyVrG/OKSD76O05KPWBiP7k4u8fYx
+ yZLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752226395; x=1752831195;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8wFTFvOPl9z0oMG+Q2qe8rihqJLxAx1U3xn0MBTrYNM=;
+ b=Tqe6rPzxaT1h3diJq/d9yJNvMSJWkDuPUjJ4Az7m+QxnZwXXSONZUUTdz4r3NhQWFq
+ XUUlsTDwWRfZ8rhVRIRDK8h9CeNVChnNQM5/SOiWn8EDyD+Je1OkhFppKsyIPUEyNA+i
+ s8221eFUOfrwuI1BBuWluFy1pCiMUQyC9cheKR1CV4pWiKe0OpZrJU7ycvJPJKiZhiws
+ /m0WR1EV40YgLd2NcD52ThNle4glzOO6AVhT6j4wjuYpely9CoIn4r5w+b2mQEEfhkzP
+ hjqYPbI6/zjKEPTuxTQPpvhvJwIy3ErfRyoBcBTr1q4U984iI2dYCzJKokhbUUxefcdK
+ lfZA==
+X-Gm-Message-State: AOJu0Yw2p68jyPfzZUxYFQL7pkgEgd4D9fei0hz1ivAGzYBt9LaWCSQn
+ CKp1F0cK6nBzOAEeYkb1SE8Iw2LfkoHPbnTQZRp/1SjoYdrk2YkZ8ukqUUZis+EfsI0=
+X-Gm-Gg: ASbGncsF4Nm8bZMF1NhKTcrQYaKryiYAlpaCvNeUMP1QJRBtZ/4k9z+5k3YCjmEA00b
+ SqEk4/MctSjT6ZjB2jZzF45e7w7jqIr3C6VAde0cQyTQBE8rzHChJAincp0qIMwv5ooqnl1Z62l
+ oDKIkmlx2NtFMWm3OAzX8y3ktLNrWzYUNoE4MZhP+54GRZBq972g4YuZ0BA0ZChzEu2BWtLwKCG
+ 35bK1c4RnjZXu49b1l/Hq3ypgbUnSjk47fBpKGoFDGkFckvF8ty+VBngl5aCHOIJLNONcK5Isfg
+ KLCCgm4EVd+ekyeQ963Qwryz1YhUPbfR79rhZig2TYumJg+CZk699ACz0ml+4LEVV5v+jeiDnxn
+ 9RcFeHURUIsdybGo/Xna2e6+U
+X-Google-Smtp-Source: AGHT+IFFSuwIaCLVBb5ZROldrGzN0JMgD47p666PcsnY0hEhFbgeDqm2l5kN/9yg7CgsXFKs8rYxeg==
+X-Received: by 2002:a05:6a20:6f03:b0:21c:fbf0:21bb with SMTP id
+ adf61e73a8af0-2311ee4b155mr4208715637.24.1752226395106; 
+ Fri, 11 Jul 2025 02:33:15 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-b3bbe6bc84asm4557889a12.44.2025.07.11.02.33.14
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 11 Jul 2025 02:33:14 -0700 (PDT)
+From: Quaternions <krakow20@gmail.com>
+To: dakr@kernel.org
+Cc: nouveau@lists.freedesktop.org,
+	Quaternions <krakow20@gmail.com>
+Subject: [PATCH] gpu: nova-core: fix bounds check In PmuLookupTableEntry::new,
+ data is sliced from 2..6,
+ but the bounds check data.len() < 5 does not satisfy those bounds.
+Date: Fri, 11 Jul 2025 02:30:14 -0700
+Message-ID: <20250711093015.28785-1-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903215428.1296517-4-joelagnelf@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,256 +86,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Sep 03, 2025 at 05:54:27PM -0400, Joel Fernandes wrote:
-> Add support for custom visiblity to allow for users to control visibility
-> of the structure and helpers.
-> 
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  drivers/gpu/nova-core/bitstruct.rs   | 46 ++++++++++++++--------------
->  drivers/gpu/nova-core/regs/macros.rs | 16 +++++-----
->  2 files changed, 31 insertions(+), 31 deletions(-)
-> 
-> diff --git a/drivers/gpu/nova-core/bitstruct.rs b/drivers/gpu/nova-core/bitstruct.rs
-> index 068334c86981..1047c5c17e2d 100644
-> --- a/drivers/gpu/nova-core/bitstruct.rs
-> +++ b/drivers/gpu/nova-core/bitstruct.rs
-> @@ -9,7 +9,7 @@
->  ///
->  /// ```rust
->  /// bitstruct! {
-> -///     struct ControlReg: u32 {
-> +///     pub struct ControlReg: u32 {
->  ///         3:0       mode        as u8 ?=> Mode;
->  ///         7:4       state       as u8 => State;
->  ///     }
-> @@ -34,21 +34,21 @@
->  ///   and returns the result. This is useful with fields for which not all values are valid.
->  macro_rules! bitstruct {
->      // Main entry point - defines the bitfield struct with fields
-> -    (struct $name:ident : $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
-> -        bitstruct!(@core $name $storage $(, $comment)? { $($fields)* });
-> +    ($vis:vis struct $name:ident : $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
-> +        bitstruct!(@core $name $vis $storage $(, $comment)? { $($fields)* });
->      };
->  
->      // All rules below are helpers.
->  
->      // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`,
->      // `Default`, `BitOr`, and conversion to the value type) and field accessor methods.
-> -    (@core $name:ident $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
-> +    (@core $name:ident $vis:vis $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
->          $(
->          #[doc=$comment]
->          )?
->          #[repr(transparent)]
->          #[derive(Clone, Copy)]
-> -        pub(crate) struct $name($storage);
-> +        $vis struct $name($vis $storage);
->  
->          impl ::core::ops::BitOr for $name {
->              type Output = Self;
-> @@ -64,14 +64,14 @@ fn from(val: $name) -> $storage {
->              }
->          }
->  
-> -        bitstruct!(@fields_dispatcher $name $storage { $($fields)* });
-> +        bitstruct!(@fields_dispatcher $name $vis $storage { $($fields)* });
->      };
->  
->      // Captures the fields and passes them to all the implementers that require field information.
->      //
->      // Used to simplify the matching rules for implementers, so they don't need to match the entire
->      // complex fields rule even though they only make use of part of it.
-> -    (@fields_dispatcher $name:ident $storage:ty {
-> +    (@fields_dispatcher $name:ident $vis:vis $storage:ty {
->          $($hi:tt:$lo:tt $field:ident as $type:tt
->              $(?=> $try_into_type:ty)?
->              $(=> $into_type:ty)?
-> @@ -80,7 +80,7 @@ fn from(val: $name) -> $storage {
->          )*
->      }
->      ) => {
-> -        bitstruct!(@field_accessors $name $storage {
-> +        bitstruct!(@field_accessors $name $vis $storage {
->              $(
->                  $hi:$lo $field as $type
->                  $(?=> $try_into_type)?
-> @@ -95,7 +95,7 @@ fn from(val: $name) -> $storage {
->  
->      // Defines all the field getter/setter methods for `$name`.
->      (
-> -        @field_accessors $name:ident $storage:ty {
-> +        @field_accessors $name:ident $vis:vis $storage:ty {
->          $($hi:tt:$lo:tt $field:ident as $type:tt
->              $(?=> $try_into_type:ty)?
->              $(=> $into_type:ty)?
-> @@ -111,7 +111,7 @@ fn from(val: $name) -> $storage {
->          #[allow(dead_code)]
->          impl $name {
->              $(
-> -            bitstruct!(@field_accessor $name $storage, $hi:$lo $field as $type
-> +            bitstruct!(@field_accessor $name $vis $storage, $hi:$lo $field as $type
->                  $(?=> $try_into_type)?
->                  $(=> $into_type)?
->                  $(, $comment)?
-> @@ -145,11 +145,11 @@ impl $name {
->  
->      // Catches fields defined as `bool` and convert them into a boolean value.
->      (
-> -        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
-> +        @field_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
->              $(, $comment:literal)?;
->      ) => {
->          bitstruct!(
-> -            @leaf_accessor $name $storage, $hi:$lo $field
-> +            @leaf_accessor $name $vis $storage, $hi:$lo $field
->              { |f| <$into_type>::from(if f != 0 { true } else { false }) }
->              $into_type => $into_type $(, $comment)?;
->          );
-> @@ -157,17 +157,17 @@ impl $name {
->  
->      // Shortcut for fields defined as `bool` without the `=>` syntax.
->      (
-> -        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
-> +        @field_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
->      ) => {
-> -        bitstruct!(@field_accessor $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
-> +        bitstruct!(@field_accessor $name $vis $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
->      };
->  
->      // Catches the `?=>` syntax for non-boolean fields.
->      (
-> -        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
-> +        @field_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
->              $(, $comment:literal)?;
->      ) => {
-> -        bitstruct!(@leaf_accessor $name $storage, $hi:$lo $field
-> +        bitstruct!(@leaf_accessor $name $vis $storage, $hi:$lo $field
->              { |f| <$try_into_type>::try_from(f as $type) } $try_into_type =>
->              ::core::result::Result<
->                  $try_into_type,
-> @@ -178,24 +178,24 @@ impl $name {
->  
->      // Catches the `=>` syntax for non-boolean fields.
->      (
-> -        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
-> +        @field_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
->              $(, $comment:literal)?;
->      ) => {
-> -        bitstruct!(@leaf_accessor $name $storage, $hi:$lo $field
-> +        bitstruct!(@leaf_accessor $name $vis $storage, $hi:$lo $field
->              { |f| <$into_type>::from(f as $type) } $into_type => $into_type $(, $comment)?;);
->      };
->  
->      // Shortcut for non-boolean fields defined without the `=>` or `?=>` syntax.
->      (
-> -        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
-> +        @field_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
->              $(, $comment:literal)?;
->      ) => {
-> -        bitstruct!(@field_accessor $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
-> +        bitstruct!(@field_accessor $name $vis $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
->      };
->  
->      // Generates the accessor methods for a single field.
->      (
-> -        @leaf_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident
-> +        @leaf_accessor $name:ident $vis:vis $storage:ty, $hi:tt:$lo:tt $field:ident
->              { $process:expr } $to_type:ty => $res_type:ty $(, $comment:literal)?;
->      ) => {
->          ::kernel::macros::paste!(
-> @@ -218,7 +218,7 @@ impl $name {
->          #[doc=$comment]
->          )?
->          #[inline(always)]
-> -        pub(crate) fn $field(self) -> $res_type {
-> +        $vis fn $field(self) -> $res_type {
->              ::kernel::macros::paste!(
->              const MASK: $storage = $name::[<$field:upper _MASK>];
->              const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
-> @@ -234,7 +234,7 @@ pub(crate) fn $field(self) -> $res_type {
->          #[doc=$comment]
->          )?
->          #[inline(always)]
-> -        pub(crate) fn [<set_ $field>](mut self, value: $to_type) -> Self {
-> +        $vis fn [<set_ $field>](mut self, value: $to_type) -> Self {
->              const MASK: $storage = $name::[<$field:upper _MASK>];
->              const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
->              let value = (<$storage>::from(value) << SHIFT) & MASK;
-> diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
-> index bbfeab147c9f..22a53a73b765 100644
-> --- a/drivers/gpu/nova-core/regs/macros.rs
-> +++ b/drivers/gpu/nova-core/regs/macros.rs
-> @@ -284,25 +284,25 @@ pub(crate) trait RegisterBase<T> {
->  macro_rules! register {
->      // Creates a register at a fixed offset of the MMIO space.
->      ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_fixed $name @ $offset);
->      };
->  
->      // Creates an alias register of fixed offset register `alias` with its own fields.
->      ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_fixed $name @ $alias::OFFSET);
->      };
->  
->      // Creates a register at a relative offset from a base address provider.
->      ($name:ident @ $base:ty [ $offset:literal ] $(, $comment:literal)? { $($fields:tt)* } ) => {
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_relative $name @ $base [ $offset ]);
->      };
->  
->      // Creates an alias register of relative offset register `alias` with its own fields.
->      ($name:ident => $base:ty [ $alias:ident ] $(, $comment:literal)? { $($fields:tt)* }) => {
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_relative $name @ $base [ $alias::OFFSET ]);
->      };
->  
-> @@ -313,7 +313,7 @@ macro_rules! register {
->          }
->      ) => {
->          static_assert!(::core::mem::size_of::<u32>() <= $stride);
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_array $name @ $offset [ $size ; $stride ]);
->      };
->  
-> @@ -334,7 +334,7 @@ macro_rules! register {
->              $(, $comment:literal)? { $($fields:tt)* }
->      ) => {
->          static_assert!(::core::mem::size_of::<u32>() <= $stride);
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_relative_array $name @ $base [ $offset [ $size ; $stride ] ]);
->      };
->  
-> @@ -356,7 +356,7 @@ macro_rules! register {
->          }
->      ) => {
->          static_assert!($idx < $alias::SIZE);
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_relative $name @ $base [ $alias::OFFSET + $idx * $alias::STRIDE ] );
->      };
->  
-> @@ -365,7 +365,7 @@ macro_rules! register {
->      // to avoid it being interpreted in place of the relative register array alias rule.
->      ($name:ident => $alias:ident [ $idx:expr ] $(, $comment:literal)? { $($fields:tt)* }) => {
->          static_assert!($idx < $alias::SIZE);
-> -        bitstruct!(struct $name: u32 $(, $comment)? { $($fields)* } );
-> +        bitstruct!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
->          register!(@io_fixed $name @ $alias::OFFSET + $idx * $alias::STRIDE );
->      };
->  
-> -- 
-> 2.34.1
-> 
-> 
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 663fc50e8b66..5b5d9f38cbb3 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -901,7 +901,7 @@ struct PmuLookupTableEntry {
+ 
+ impl PmuLookupTableEntry {
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 5 {
++        if data.len() < 6 {
+             return Err(EINVAL);
+         }
+ 
+-- 
+2.50.1
+
