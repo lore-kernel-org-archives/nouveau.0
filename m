@@ -4,98 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67D42C83F1A
-	for <nouveau@archiver.kernel.org>; Fri, 11 Jul 2025 18:11:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88257C83F1A
+	for <nouveau@archiver.kernel.org>; Fri, 11 Jul 2025 18:11:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F0EC10E3B9;
-	Fri, 11 Jul 2025 18:11:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3644510EAA7;
+	Fri, 11 Jul 2025 18:11:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="EkufkGqD";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="BcOLyHdW";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=mark.filion@collabora.com header.b="JGoXc5nH";
 	dkim-atps=neutral
-X-Greylist: delayed 548 seconds by postgrey-1.36 at gabe;
- Fri, 11 Jul 2025 18:11:10 UTC
-Received: from fhigh-a2-smtp.messagingengine.com
- (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8EAA210E3B9
- for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 18:11:10 +0000 (UTC)
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal
- [10.202.2.45])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 68F30140010F;
- Fri, 11 Jul 2025 14:02:01 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-05.internal (MEProxy); Fri, 11 Jul 2025 14:02:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1752256921;
- x=1752343321; bh=ViqQEitTA2AtRCPGhVTpWzvVqc5soWd+CPn7R0uYCtU=; b=
- EkufkGqDS5HcVWBW4Yo8S4jDHibXCcchp/jcjJaVsbDLe1Mn0TRI72/n/vUVrR2T
- vq1Bh8mkDARZrIIZr/NU+8FD1NzF3lFHaMJyu64NqlwVQE+OSSZcyeM/bgdMqVGv
- v5BqttemmGKCwlnwXHvQVp96gqqGMLL/emY4OpV+G0bw6JL261VcNVdq0LoXxSoq
- Ei1x7LJ/NOC1XrmndN7EB6YpRxRm29A56007MdgvGe2WhmuiU9UZ4+AJEsOUi+45
- pHLELgAHMC5XQRZ9uLWuD8k9GgrNxgdB8d70dX5UVElwuzSS0DGp9wksqLmCTlac
- LYv9wWmiGZezDi2PPGxUpA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1752256921; x=
- 1752343321; bh=ViqQEitTA2AtRCPGhVTpWzvVqc5soWd+CPn7R0uYCtU=; b=B
- cOLyHdWV5Az3GIEKPLW6MicLBf8A5BPEFGvZipUSGnAM7cuV1tZtiOrn0PovgjGV
- 43lt5/pxg/xbL2YQRG5yCBfSh10ur4MRVqXeYdp+/y9KIjAl6LhwCZtAjXcJ8AIw
- lN2KBLMrtNINRavzP6RnZZyE/sQjewDR/K9VQx/fnNz++vzvVNXXiiK8ChMPa6hY
- yIEFhh2BqDm1+NvWGN4lrlszCFCLVMbla87R2yhyZzPQ6hZdNgqzuiZhHMWUybrm
- 3nxOgk5+B1JANNzoUUtFFBQnDFpLIGFHldi0in5/PoBbEnNE+w2kyzuHvMaaAqRB
- 4ZnqVYr7DlYITDNtwqIiA==
-X-ME-Sender: <xms:mFFxaMKFod8MHhVr8NwROtAGlQzR_9lEl7WF7AnqTdb-bWUY1TJAXg>
- <xme:mFFxaMJbwCgm51dud8-WDkbzrF2hAdQq9c6lL0CcJEXoJ1cs1AHAjhiAOiaYOFbPt
- LyxPn0PlL1ijQGZKqQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdefgdegfeellecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
- ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
- hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
- uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
- hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
- ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
- esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedufedpmhhouggvpehsmhhtphhouhht
- pdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopegrihhrlh
- hivggusehgmhgrihhlrdgtohhmpdhrtghpthhtoheprghrnhgusehkvghrnhgvlhdrohhr
- ghdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepughrih
- dquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthho
- pehnohhuvhgvrghusehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhgpdhrtghpth
- htohepsghskhgvghhgshesnhhvihguihgrrdgtohhmpdhrtghpthhtohepthhtrggsihes
- nhhvihguihgrrdgtohhmpdhrtghpthhtoheprghirhhlihgvugesrhgvughhrghtrdgtoh
- hm
-X-ME-Proxy: <xmx:mFFxaAQhMLOsXk25VIb3itD4WmXklckNeHv7YYHGe1lhCetJ1CqiVw>
- <xmx:mFFxaFD0TjiR3i609iQMkg5SSx2yLZe0PgG64NQbC4zCneuGE_JzpA>
- <xmx:mFFxaIstXrN_dLpKmfkn6xPjLq-yTQn9gy_Jz5ClAZBn1HiJDTectw>
- <xmx:mFFxaD_OkqHW-_k_Q9Y9C6MF0AO170XMah7yfNLIOc2KR-xssqZMUw>
- <xmx:mVFxaAvYFPbpk8PsXV3b7Fp-6ljQAPE3syY_c-8haspNeuKfVg8w4q0K>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id C3DE9700068; Fri, 11 Jul 2025 14:02:00 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8921410EAA5
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 18:11:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1752257502; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=khqiJ0U4Iea5vMcNiswVyAYuwiEdqY0yON0QGqhM+cLDOgQxtWGL7Gm1AMbeQP1sCFRnBM11Eh5cgW2vx2XedbjgddaJSpCbPbKHhFiWfdVBJihNfnZZ6Vm+Sc6bLaIjhPGvoc8C7x5dWmyLIUB6+NTN3/NGEGO2knAIkUvsT6k=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1752257502;
+ h=Content-Type:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To:Cc;
+ bh=esFtPuK6G8IJ67ANvD1UxrX5bWpXNLFZ3mIMrFkDccQ=; 
+ b=iEedKJky5grq0VAgpy+IngTMfZxqvHogDXkuqysZU3C2gVKSnHeA2GG/DdJMkPYSj92mw/c/k2KMLqVgYs4RZmLXLETT/t4SLailcCCGqvaIgqKqAeagnRZKmVoOcmJGLvfstXCk7uHCJfpmd+Q4U73SZtOXCKsrmD7bSNUVObA=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=mark.filion@collabora.com;
+ dmarc=pass header.from=<mark.filion@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752257501; 
+ s=zohomail; d=collabora.com; i=mark.filion@collabora.com;
+ h=Message-ID:Subject:Subject:From:From:To:To:Date:Date:Content-Type:MIME-Version:Message-Id:Reply-To:Cc;
+ bh=esFtPuK6G8IJ67ANvD1UxrX5bWpXNLFZ3mIMrFkDccQ=;
+ b=JGoXc5nHT2cmjRyNclODcoMKdqOQUPopc/7++MIXbzvh0EGM5mWuUlaqJwcrCE+n
+ NgeZC9eTxbRlmLtbzX4uvYXD+U9dWPcq9m5H6zY5+j6nQ3YBrdKwPIow2E4+pbAtPjb
+ jJOy+kLKuKEVeACF1Hikxc+W1I0KJ5OIcNsxeUyQ=
+Received: by mx.zohomail.com with SMTPS id 1752257499150380.6617269809408;
+ Fri, 11 Jul 2025 11:11:39 -0700 (PDT)
+Message-ID: <a435461a4028af5cf9227ad0e361440541154198.camel@collabora.com>
+Subject: XDC 2025 - Call for Proposals ends tonight at 23:59 CEST!
+From: Mark Filion <mark.filion@collabora.com>
+To: nouveau@lists.freedesktop.org
+Date: Fri, 11 Jul 2025 14:11:38 -0400
+Content-Type: multipart/alternative; boundary="=-MrF0zRRlmP9QarkhioG5"
+User-Agent: Evolution 3.56.2 (3.56.2-1.fc42app2) 
 MIME-Version: 1.0
-X-ThreadId: T5e909394477f2510
-Date: Fri, 11 Jul 2025 20:01:40 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Danilo Krummrich" <dakr@kernel.org>, "Arnd Bergmann" <arnd@kernel.org>
-Cc: "Lyude Paul" <lyude@redhat.com>, "Dave Airlie" <airlied@gmail.com>,
- "Simona Vetter" <simona@ffwll.ch>, "bskeggs@redhat.com" <bskeggs@redhat.com>, 
- "Ben Skeggs" <bskeggs@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
- "Dave Airlie" <airlied@redhat.com>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- linux-kernel@vger.kernel.org
-Message-Id: <0a66b263-0d5d-4758-b6b5-fc3905612d10@app.fastmail.com>
-In-Reply-To: <DB9ET7AG2N2D.YCVQRF9398V2@kernel.org>
-References: <20250711072458.2665325-1-arnd@kernel.org>
- <DB9ET7AG2N2D.YCVQRF9398V2@kernel.org>
-Subject: Re: [PATCH] drm/nouveau: check ioctl command codes better
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,22 +60,217 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 11, 2025, at 19:41, Danilo Krummrich wrote:
-> On Fri Jul 11, 2025 at 9:24 AM CEST, Arnd Bergmann wrote:
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
->> index 1527b801f013..506eeb44f0d4 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
->> @@ -1284,6 +1284,9 @@ nouveau_ioctls[] = {
->>  	DRM_IOCTL_DEF_DRV(NOUVEAU_EXEC, nouveau_exec_ioctl_exec, DRM_RENDER_ALLOW),
->>  };
->>  
->> +#define DRM_IOCTL_NOUVEAU_NVIV _IOC(_IOC_READ|_IOC_WRITE, DRM_IOCTL_BASE, \
->> +				    DRM_COMMAND_BASE + DRM_NOUVEAU_NVIF, 0)
->
-> Is there any intention behind NVIV vs NVIF? Indicator that size is not
-> considered?
+--=-MrF0zRRlmP9QarkhioG5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-No, just a typo, my mistake.
+Hello!
 
-      Arnd
+The CfP for XDC 2025 ends tonight at=C2=A023:59 CEST! You still have a few
+hours left to submit your proposal, don't wait!
+
+=C2=A0=C2=A0=C2=A0=C2=A0https://xdc2025.x.org
+=C2=A0=C2=A0
+As usual, the conference is free of charge and open to the general
+public. If you plan on attending, please make sure to register as early
+as possible:
+
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/registratio=
+ns/
+
+In addition to registration, the CfP is now open for talks, demos, and
+workshops at XDC 2025. While any serious proposal will be gratefully
+considered, topics of interest to X.Org and freedesktop.org developers
+are encouraged. The program focus is on new development, ongoing
+challenges and anything else that will spark discussions among
+attendees in the hallway track.
+
+We are open to talks across all layers of the graphics stack, from the
+kernel to desktop environments / graphical applications and about how
+to make things better for the developers who build them. Head to the
+CfP page to learn more:
+
+=C2=A0=C2=A0=C2=A0=C2=A0https://indico.freedesktop.org/event/10/abstracts/
+
+The deadline for submissions Friday, 11 July 2025.
+
+We are looking forward to seeing you in Vienna! If you have any
+questions, please email the organizer (hfink at snap.com), adding on
+CC the X.org board (board at foundation.x.org).
+
+And don't forget, you can follow us on Mastodon for all the latest
+updates and to stay connected:
+
+=C2=A0=C2=A0=C2=A0=C2=A0https://floss.social/@XOrgDevConf
+
+Best,
+
+Mark
+
+--=-MrF0zRRlmP9QarkhioG5
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style>pre,code,address {
+  margin: 0px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+}
+ol,ul {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+blockquote {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+</style></head><body><div style=3D"caret-color: rgb(0, 0, 0); color: rgb(0,=
+ 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: normal; font-var=
+iant-caps: normal; font-weight: 400; letter-spacing: normal; text-align: st=
+art; text-indent: 0px; text-transform: none; white-space: normal; word-spac=
+ing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webkit-text-str=
+oke-width: 0px; text-decoration: none; unicode-bidi: plaintext;">H<span sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;">ello!</span></div><div style=3D"caret-color: rgb(0=
+, 0, 0); color: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-s=
+tyle: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: =
+normal; text-align: start; text-indent: 0px; text-transform: none; white-sp=
+ace: normal; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, =
+0.4); -webkit-text-stroke-width: 0px; text-decoration: none; unicode-bidi: =
+plaintext;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb=
+(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;=
+;">The CfP for XDC 2025 ends tonight at&nbsp;</span><span style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;">23:59 CEST! You still have a few<br>hours left to submit your pr=
+oposal, don't wait!</span></div><div style=3D"caret-color: rgb(0, 0, 0); co=
+lor: rgb(0, 0, 0); font-family: &quot;Adwaita Sans&quot;; font-style: norma=
+l; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; tex=
+t-align: start; text-indent: 0px; text-transform: none; white-space: normal=
+; word-spacing: 0px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.4); -webk=
+it-text-stroke-width: 0px; text-decoration: none; unicode-bidi: plaintext;"=
+><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-fa=
+mily: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&n=
+bsp;&nbsp;&nbsp;</span><a href=3D"https://xdc2025.x.org/" title=3D"Click to=
+ open https://xdc2025.x.org/" style=3D"color: rgb(46, 52, 54); font-family:=
+ &quot;Adwaita Mono&quot;;">https://xdc2025.x.org</a><br style=3D"caret-col=
+or: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mon=
+o&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;</span><br style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">As usual, the confere=
+nce is free of charge and open to the general</span><br style=3D"caret-colo=
+r: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono=
+&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54=
+); font-family: &quot;Adwaita Mono&quot;;">public. If you plan on attending=
+, please make sure to register as early</span><br style=3D"caret-color: rgb=
+(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;=
+;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fon=
+t-family: &quot;Adwaita Mono&quot;;">as possible:</span><br style=3D"caret-=
+color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita =
+Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;">&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=3D"https://indico.freedesktop.or=
+g/event/10/registrations/" title=3D"Click to open https://indico.freedeskto=
+p.org/event/10/registrations/" style=3D"color: rgb(46, 52, 54); font-family=
+: &quot;Adwaita Mono&quot;;">https://indico.freedesktop.org/event/10/regist=
+rations/</a><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 5=
+4); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(4=
+6, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"=
+><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-=
+family: &quot;Adwaita Mono&quot;;">In addition to registration, the CfP is =
+now open for talks, demos, and</span><br style=3D"caret-color: rgb(46, 52, =
+54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span =
+style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family:=
+ &quot;Adwaita Mono&quot;;">workshops at XDC 2025. While any serious propos=
+al will be gratefully</span><br style=3D"caret-color: rgb(46, 52, 54); colo=
+r: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"=
+caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Ad=
+waita Mono&quot;;">considered, topics of interest to X.Org and freedesktop.=
+org developers</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(=
+46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-c=
+olor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita M=
+ono&quot;;">are encouraged. The program focus is on new development, ongoin=
+g</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); =
+font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46,=
+ 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">c=
+hallenges and anything else that will spark discussions among</span><br sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color=
+: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">attendees in the=
+ hallway track.</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb=
+(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;">We are open to talks across al=
+l layers of the graphics stack, from the</span><br style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); fo=
+nt-family: &quot;Adwaita Mono&quot;;">kernel to desktop environments / grap=
+hical applications and about how</span><br style=3D"caret-color: rgb(46, 52=
+, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><spa=
+n style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-famil=
+y: &quot;Adwaita Mono&quot;;">to make things better for the developers who =
+build them. Head to the</span><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">CfP page to learn more:</span><br style=3D"caret-col=
+or: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mon=
+o&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54)=
+; font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(4=
+6, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"=
+>&nbsp;&nbsp;&nbsp;&nbsp;</span><a href=3D"https://indico.freedesktop.org/e=
+vent/10/abstracts/" title=3D"Click to open https://indico.freedesktop.org/e=
+vent/10/abstracts/" style=3D"color: rgb(46, 52, 54); font-family: &quot;Adw=
+aita Mono&quot;;">https://indico.freedesktop.org/event/10/abstracts/</a><br=
+ style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family=
+: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); col=
+or: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D=
+"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;A=
+dwaita Mono&quot;;">The deadline for submissions Friday, 11 July 2025.</spa=
+n><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-f=
+amily: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54)=
+; color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span sty=
+le=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &q=
+uot;Adwaita Mono&quot;;">We are looking forward to seeing you in Vienna! If=
+ you have any</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(4=
+6, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-co=
+lor: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mo=
+no&quot;;">questions, please email the organizer (hfink at snap.com), addin=
+g on</span><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54=
+); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(=
+46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;=
+">CC the X.org board (board at foundation.x.org).</span><br style=3D"caret-=
+color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita =
+Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, =
+54); font-family: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rg=
+b(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot=
+;;">And don't forget, you can follow us on Mastodon for all the latest</spa=
+n><br style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-f=
+amily: &quot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 5=
+4); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">updates=
+ and to stay connected:</span><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br style=3D"=
+caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quot;Ad=
+waita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color: rgb(=
+46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">&nbsp;&nbsp;&nbsp;&nbs=
+p;</span><a href=3D"https://floss.social/@XOrgDevConf" title=3D"Click to op=
+en https://floss.social/@XOrgDevConf" style=3D"color: rgb(46, 52, 54); font=
+-family: &quot;Adwaita Mono&quot;;">https://floss.social/@XOrgDevConf</a><b=
+r style=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-famil=
+y: &quot;Adwaita Mono&quot;;"><br style=3D"caret-color: rgb(46, 52, 54); co=
+lor: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><span style=
+=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &quo=
+t;Adwaita Mono&quot;;">Best,</span><br style=3D"caret-color: rgb(46, 52, 54=
+); color: rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;"><br styl=
+e=3D"caret-color: rgb(46, 52, 54); color: rgb(46, 52, 54); font-family: &qu=
+ot;Adwaita Mono&quot;;"><span style=3D"caret-color: rgb(46, 52, 54); color:=
+ rgb(46, 52, 54); font-family: &quot;Adwaita Mono&quot;;">Mark</span></div>=
+<div><span></span></div></body></html>
+
+--=-MrF0zRRlmP9QarkhioG5--
