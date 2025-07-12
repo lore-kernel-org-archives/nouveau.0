@@ -4,78 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F11EAD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BD19D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1464C10EB7D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D9E10EB7F;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="aM5eeVz1";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="mJifflvi";
 	dkim-atps=neutral
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A76A10E0C5
- for <nouveau@lists.freedesktop.org>; Mon,  4 Aug 2025 14:17:38 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-24050da1b9eso5220915ad.3
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 07:17:38 -0700 (PDT)
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com
+ [209.85.210.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9CD010E272
+ for <nouveau@lists.freedesktop.org>; Sat, 12 Jul 2025 01:30:47 +0000 (UTC)
+Received: by mail-ot1-f43.google.com with SMTP id
+ 46e09a7af769-73cdff9a27aso648376a34.0
+ for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 18:30:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754317058; x=1754921858; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752283847; x=1752888647; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=cj5LMXFCZ1M7KQUj/Qw+ZYW8TP1RxMgPY8c23lvf4BM=;
- b=aM5eeVz10ePYzyO9H9v1L8O6dA/Z5W804v5G5Ktb9dlycPHFMgHl89XsI6pcuBup/N
- S7iAztp+GuKUUryYhv5J+5J7FVW38aW9o7zWVmTnOrDotKTB8KD/T64kJA3mGgtc+kZr
- Uow6YxLHtQJ/tRi1kgQ89Rul4tsg7Ux74uXwiDDvPo13NWfy6TiAe7gm55lPdUw8mESb
- 6jY8IC+5y9Vsnz8HNLfx2qwWbxg2JNrhEAH3x4aXJ9zERti0JQhzEVl9KByxdN5Mtssb
- ZRp3aDevzNDSyEGs7gCXWEuTOQg8YA9sWYjOisQj88L20alRG4u5zlzrfDspbpFx+j/q
- 8srw==
+ bh=wzChdIDMvXquT0FReP/JOP0d0Ci6sqsMjGUDFeUN5hc=;
+ b=mJifflvi2c9rykjkExI9Bvu6E6JZTbUclnkawZ9sSCD2lIrm2jq2Nr6xhpxz0++v7a
+ SxOcDn6Cz7IkMPBl613OVK2s7AOp6nraEifvQHHJU3TwjbBwMRFgVsDR0Z6/geW9e2TA
+ RHAME/AGChFYrc7fMU7QyWAH9SIkODUYT7yXFdsLh0TceAigzSWxJRDpUdchIP75A5J3
+ Dsxhk+Hq1HLQ2jetcZuo5KU6Ddo/J4276S2pFY/R47di+R0sO0mFUzzTwNDt9eKoChV9
+ hmvK/xfB/YMs4RAZZWZ9SBUGhG2x55ndXiHgTxJRbR8pZuld6la/fPzMPKoGsBKHOhWl
+ XXEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754317058; x=1754921858;
+ d=1e100.net; s=20230601; t=1752283847; x=1752888647;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=cj5LMXFCZ1M7KQUj/Qw+ZYW8TP1RxMgPY8c23lvf4BM=;
- b=KgmiUlkCd0iETX1BfPUO3FGb+leMC7AijC/BDr8HYWcvJ5aBOvtzWPADvcaeOwlAku
- IJFgDPPuMhZLrq7ezkojZhUthvKrqe4/1/3HsPg71JtGx/dCNjLcjbEbcxg+lt+Gdk04
- rwsE5JosFKk4jqWEfRE82AeU2T0j7uzjGf/crWLSmUomDXF+ezrmGW/xY56i3OtiBQgn
- /Gt79kgZxjhX9Gp7nCrovu+QDTgLsaoMnjWX5h0eYU2Dp5vxySuSVszGQ2pYxo/7eQUl
- Pxazwg68QYX3+CJc24w2+v20uQRUG76g5zNaOF7h6gS2R06mTF7ZgQkZht+dzUoVYXKd
- JaNA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXgU29cGfvZwF+3EdRP5J4VlEhF+cys22IaHInqvN77bx7a2KD40BcpvfNw/yFBmNusiYCBfTjL@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUeub+bGWqmLy/ggh/H9OpoWDTim7Z43FzCRrNrS7iNpGDS5ot
- ALbKvtiJ82eezBfZPS1UwuvqIidmPubMAOCmnNtH3FJmwYmrPSF13vrY4S7FX7qDLDcngytkWy0
- hXepiziqmc2oMzMSSKA/P2dHgWeu3/TI=
-X-Gm-Gg: ASbGncvbhEpxZ7jrabKknAma+VA8eNL4eAjVYna7pw/BfPNLHCAohXu8nSq/6OXgX+T
- qhFOYFs7684BSCsCpOfARHAbpjAdV+0tAQhV5W8s93s+5qkj6rdbA7I6oV+65RTqQBJ+kHNKUl9
- UbJtyn+ONs1vyiB65w4lKnnweuavDSIBzrynmg1VKk5o2CHe5/Bnk5dl79C3vxEY1N20xqF/UAC
- GyAGpTn
-X-Google-Smtp-Source: AGHT+IHoIKRTao7XkfgA4kePRWm3e59NNTaknJ0r8ZXP5Lhp3Ma7eKeiuMTWnPj5rGZqOm7Zr5ROoZlk5pWcnXNkUMQ=
-X-Received: by 2002:a17:902:e743:b0:240:71db:fd0 with SMTP id
- d9443c01a7336-24246fcb42emr54973825ad.8.1754317057946; Mon, 04 Aug 2025
- 07:17:37 -0700 (PDT)
+ bh=wzChdIDMvXquT0FReP/JOP0d0Ci6sqsMjGUDFeUN5hc=;
+ b=AT4hAbgjdljwSB0Dp104ozFPRnirGOyYMZeXODRAZGl5qwmReTeUnZ8ykDzxGWGhfc
+ o7gpQg+MYzhhCycuBJONr+nCezbnp9zwHGTmrsKg269J2ywR+uoX6mT7v/PncMnkyHQu
+ 10VhCWIqfiDRi2n4rCGCSRii4c2PnWkPbYvrG2mE/yCaOfWMU9UzJmS9AGXaWSxl3HtS
+ zUb08VLXEHut4FrVUrcV+kUH0HPmRfePCCUmOcLoXvx4xSUhhuTaGeedinpKX0tVJftt
+ Vtp6ejvH1BGglSOFqmllL1pwc+f2bOQSgACehtcfS/1B14BsN94hVKerJ2WL1yJHv+Ao
+ daFw==
+X-Gm-Message-State: AOJu0YwWMha0z2Lyx9vZ/iqwRxgsNg3vmhjbjokTfSO5fWqLBgKgcvsO
+ ZJC2VelsSxl2uxKosrI2c3qJqa3mVUH7+KEvaYXXIohvScba57cPEnQRCTH8aOo3eVufVfroMII
+ NmC8MB1BOQhTJBYDimY4xXCD8zwOykjc=
+X-Gm-Gg: ASbGncuTNcauYns8Ktt05vraihWUSlHOKX7g28XKtfOn3kpy47PguxCwkdZh11lBFHq
+ xku2hixsgV7EW4AykFVADU98Kr1AVKoBSmAI7pPNd1KscKzRl+/AqxjoczCivcml9NhF2KdE7yB
+ GMSCeWmXfRzNAzGAWnrM24lVswSCHm+nXVN6sCpNWbxLegUx0KzeuYSpCSzZDWkPuFFBzNAMcpy
+ bFyHqtQvpwznuSunIY8FU4LVKfOeaAbiV6a0hbw
+X-Google-Smtp-Source: AGHT+IF3K+3TbtDk3dLuD6OeyCRPvMu7Lvn8pky+XKcd6S60lQlNZrzDYQqX/ZmrJVW+eZX1VYQltq51vaOdQeXXKBw=
+X-Received: by 2002:a05:6871:c708:b0:2d6:109d:2598 with SMTP id
+ 586e51a60fabf-2ff267485f9mr4177867fac.5.1752283846912; Fri, 11 Jul 2025
+ 18:30:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250804-num-v2-0-a96b9ca6eb02@nvidia.com>
- <20250804-num-v2-2-a96b9ca6eb02@nvidia.com>
-In-Reply-To: <20250804-num-v2-2-a96b9ca6eb02@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 4 Aug 2025 16:17:26 +0200
-X-Gm-Features: Ac12FXzf9euOeG2E0bVmnruyqbjbiK7AJnC-T013YUx-5fpBzzCknyhtAiw29Y8
-Message-ID: <CANiq72miQSuEEzKZsOhHKDah1kP+8PYcmODGqwtcaRwAggF-+g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] rust: add `Alignment` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+References: <20250711093015.28785-1-krakow20@gmail.com>
+ <DB9F9VX833TY.1UG2ZE2K2ZGNQ@kernel.org>
+In-Reply-To: <DB9F9VX833TY.1UG2ZE2K2ZGNQ@kernel.org>
+From: Rhys Lloyd <krakow20@gmail.com>
+Date: Fri, 11 Jul 2025 18:30:36 -0700
+X-Gm-Features: Ac12FXzVkzkejdHxkvnE5qELuT456HapzQsx7LLMKhM9Rqas2gGBC_FFvDVzVRM
+Message-ID: <CAH7AjUyHZnf96D5wSeX6pi-YmqrqhY1HGymvkugFeU7-ne4MfA@mail.gmail.com>
+Subject: Re: [PATCH] gpu: nova-core: fix bounds check In
+ PmuLookupTableEntry::new, 
+ data is sliced from 2..6, but the bounds check data.len() < 5 does not
+ satisfy those bounds.
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: nouveau@lists.freedesktop.org, acourbot@nvidia.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,52 +85,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Aug 4, 2025 at 1:45=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
-om> wrote:
+Hi Danilo,
+I didn't understand the maintainers list yesterday, so all the patches
+I sent are missing mailing lists and recipients.  I sent a second copy
+as requested in
+https://gitlab.freedesktop.org/drm/nova/-/merge_requests/4#note_3003142,
+and my mailing list mistakes were pointed out in detail.  I also sent
+a fixed up v2 to the rust-for-linux mailing list only.  If I need to
+send out another copy let me know, thanks.
+
+On Fri, Jul 11, 2025 at 11:03=E2=80=AFAM Danilo Krummrich <dakr@kernel.org>=
+ wrote:
 >
-> +/// align down/up operations. The alignment operations are done using th=
-e [`align_up!`] and
-> +/// [`align_down!`] macros.
-
-These intra-doc links don't work (they are not macros in this version at le=
-ast).
-
-> +    /// Returns the alignment of `T`.
-> +    #[inline(always)]
-> +    pub const fn of<T>() -> Self {
-> +        // INVARIANT: `align_of` always returns a power of 2.
-> +        Self(unsafe { NonZero::new_unchecked(align_of::<T>()) })
-
-Missing safety comment (`CLIPPY=3D1` spots it).
-
-Also, cannot we use `new()` here? i.e. the value will be known at compile-t=
-ime.
-
-> +        if !self.0.is_power_of_two() {
-> +            // SAFETY: per the invariants, `self.0` is always a power of=
- two so this block will
-> +            // never be reached.
-> +            unsafe { core::hint::unreachable_unchecked() }
-> +        }
-
-I guess this one is here to help optimize users after they inline the
-cal? Is there a particular case you noticed? i.e. it may be worth
-mentioning it.
-
-> +    pub const fn mask(self) -> usize {
-> +        // INVARIANT: `self.as_usize()` is guaranteed to be a power of t=
-wo (i.e. non-zero), thus
-> +        // `1` can safely be substracted from it.
-> +        self.as_usize() - 1
-> +    }
-
-I am not sure why there is `// INVARIANT` here, since we are not
-creating a new `Self`.
-
-I guess by "safely" you are trying to say there is no overflow risk --
-I would be explicit and avoid "safe", since it is safe to overflow.
-
-Typo: subtracted
-
-Cheers,
-Miguel
+> Hi Rhys,
+>
+> On Fri Jul 11, 2025 at 11:30 AM CEST, Quaternions wrote:
+> > Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+>
+> Thanks for your contribution.
+>
+> When sending patches, please make sure to follow the kernel's patch submi=
+ssion
+> guidelines [1].
+>
+> In particular, please stick to short and meaningful commit subject, follo=
+wed by
+> a commit description, even if the patch is simple and obvious.
+>
+> Also make sure to run ./scripts/checkpatch.pl and ./scripts/get_maintaine=
+r.pl to
+> get your patches checked and find the correct list of people to send them=
+ to.
+>
+> Finally, please also consider the Rust submit checklist [2].
+>
+> Thanks,
+> Danilo
+>
+> [1] https://docs.kernel.org/process/submitting-patches.html
+> [2] https://rust-for-linux.com/contributing#submit-checklist-addendum
