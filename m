@@ -4,138 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A558FD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 763DCD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67CB510EB2A;
-	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8AEE10EB4D;
+	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=de.bosch.com header.i=@de.bosch.com header.b="RIOZeZlh";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jKceVKa+";
 	dkim-atps=neutral
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com
- (mail-am6eur05on2086.outbound.protection.outlook.com [40.107.22.86])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 171CC10E8CA;
- Thu, 20 Feb 2025 06:23:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ei9Qllv8rZ5Z0rNTwdU0MGCF55A78yZMTNIkvK3+wKLB8Q7MC+H6Ip3U8Cf0CruuAEhfIiSpXk7RH4UJyHG9ET1OIvzmwrVlpqV8NrLkB//m06uJZ0pGn6FqKazl2nPTk0rgtG6w/DWKY+LUqImijI5H87JsVWXHz9dfXyhczRIid5ktg9O9VlQ1C5QaYS/jBeZo8a2A3Z8NPbppAJQYuP13qE67022iVKoYrzHQ5jNHj4bm8IZl2KS7E2PxlEx1wAktU1B63j+B5ZHu4FWlW/UBbK4F251PweS62weAJlQ8vo+doz7L2ES87phyIYdbFu7mtAeS1xTXvBJ5zemraA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3s/D5YZOhh6AmuqgdpyWT9gp340ibbCmeMR9Gyf/BJw=;
- b=KjZgtI+iZYi5+LPnsTUyjXiFGVoxellORIl3MDXaql1oCj8d4zz1A/a7RtbRG3I7YmTr1dYuBdW+40Hi8OOUv48q80HiAIfy4LBU68TFdaIteeBSu6GF7QXH12MYhwinVprjV7XO6hHqbqB1iXl1EmY8/6Af+qMkNX0C94BOL65jl9j2y+cyOuuUf6FmscO1Yld4/eBqyO1eJcILQU/bj8VvIrbN7NDCiE53lI2OOY+oo8x7/r5btPEywDvovpOMbWoEPP4uv/SFrUhkSevJKVDghufc84T3CoXLfQeLDYKYvjvh7/lom7kxHhxL+jZIm3eL/dS8Pukhqb2vHn5yRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.205) smtp.rcpttodomain=nvidia.com smtp.mailfrom=de.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3s/D5YZOhh6AmuqgdpyWT9gp340ibbCmeMR9Gyf/BJw=;
- b=RIOZeZlhn+JlYuJDligr4IQ7qgb2DgLbuD38JfU2ns6iVZjQjtViy94SOHHKL3rfUG3+K0WNqN7GI15f7i13I2F5Bsozbj/R9LQJFAy0CvBb40IHah6oooEJ0oKfT92J/VAo325PRJL6vJ6RAqOxykYcOQKlySjuG9z4l4a7iRmCATBLyV0aCnLckR5iYmYcQ0Cj5y4H5mRqdRV20FHr4xeJL1F1axOmmJH8N6bnYMHF+IUccc9TIEtoyQrCTp/s7rbA9WJ1VUDwrF/BtSM66mV6dgeIN+Q15bgkO7kShE6IBfVIEiq/PxUgcnZl6SGXSUAeph9zuJWDqZniuRtOOw==
-Received: from DU7PR01CA0014.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:50f::21) by AS2PR10MB7687.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:20b:642::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8466.13; Thu, 20 Feb
- 2025 06:23:47 +0000
-Received: from DB1PEPF000509E9.eurprd03.prod.outlook.com
- (2603:10a6:10:50f:cafe::76) by DU7PR01CA0014.outlook.office365.com
- (2603:10a6:10:50f::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8466.16 via Frontend Transport; Thu,
- 20 Feb 2025 06:24:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.205)
- smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=de.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
- 139.15.153.205 as permitted sender)
- receiver=protection.outlook.com; 
- client-ip=139.15.153.205; helo=eop.bosch-org.com; pr=C
-Received: from eop.bosch-org.com (139.15.153.205) by
- DB1PEPF000509E9.mail.protection.outlook.com (10.167.242.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8466.11 via Frontend Transport; Thu, 20 Feb 2025 06:23:47 +0000
-Received: from SI-EXCAS2000.de.bosch.com (10.139.217.201) by eop.bosch-org.com
- (139.15.153.205) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.13; Thu, 20 Feb
- 2025 07:23:47 +0100
-Received: from [10.34.219.93] (10.139.217.196) by SI-EXCAS2000.de.bosch.com
- (10.139.217.201) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.43; Thu, 20 Feb
- 2025 07:23:46 +0100
-Message-ID: <af1afdfd-56fc-4101-812f-e33a370cc4e4@de.bosch.com>
-Date: Thu, 20 Feb 2025 07:23:41 +0100
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC1310E033;
+ Sun, 13 Jul 2025 02:53:26 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-315c1b0623cso3292319a91.1; 
+ Sat, 12 Jul 2025 19:53:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1752375206; x=1752980006; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=acNe71zhPgHfE83GbVhM4d777Q2BYU21y6svlMAOGRE=;
+ b=jKceVKa++K3XA0lrbkSsbxMRm8D4trvQViaEaRMtjxgeJ2ii2aiyoxo8egdrjGU3C9
+ x73W7dRa8ExWIc9gQanA689rW6Fs2SJFxOFQ38GNZohk9tNFaonpKp6o8h7AMUS7UTYP
+ EkKc/EGh+xSEG6o+LKiMWVCgOtPIqCw+7eVw0Ov9Z8/oAjLJPa90unR+D9YYubx6V7Ol
+ /DsOn73ZGxHHrkQTEMF+32rtp2fjOsGJ6J/BqPpvMjgfHXyVrBH1s90B/RqD9J+0iOZY
+ +fbNXS4lK1rSkRW0p+wn9CkR0U65Qv1GX22v32au6ZhKMoITHJy8Xi5PXhTjcQX4MvBo
+ 3Xww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752375206; x=1752980006;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=acNe71zhPgHfE83GbVhM4d777Q2BYU21y6svlMAOGRE=;
+ b=gjT0EjG9VWD7ZIsom62q96Aa8KFEQScVi8318712F3pyw45ejCajWUmzjK1wNAwdNP
+ xoC1uLyj/0vzqzDSU6u7fFWblTPot0fefXsSq3sB6FfJjGmikn6Fw7Hgyx+MAz+lS9km
+ qYTSSbgz2m2Kc6i0qPfuI6M7neIxfaHFsJlksq3pyOSTZjH7AlZwonwIrSRcKvZhHiSR
+ DZwzuuch72TdjoZDLfncO0BkUUb5VVN8F6TXmpGVNoz+MSWIKsZj3nZgWsQ5pX8uMdtw
+ O6f/UBNsAHA+E8FTzuS240cUbkqhfk5ijqgud3IJvjDiVEvYoY5kwAYcMKVRbsQ7K3pb
+ hZjA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUdEXts5lFFwHoVAxqEYDcTgYPs0nHXseAvLcm8HAKotLOPcylOxkmvsa4sDDnf3RjVYWmTpfpbE00=@lists.freedesktop.org,
+ AJvYcCWaT93SiBMPX7qbUPWPtWHyo4zQtrOV5bqOvlKBVQF6K7M65IdRtYWw+913SI36Busz5GNCmvadbA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzpcU64iVOkMh0c2hOw9+XybKAvcUcUOYOMwfW27Y/fx4Lyy5+Z
+ mDDQ139XEzJrEwBsNywAsoZo+cwf74MjZpFE+H4lomwGZMN2usbxXQ4h
+X-Gm-Gg: ASbGnctwA5G9JTjFVWPw05l2ZtL+PuCFhySG7g9XOUffJp4loQcq7rVKX/hRPT9+8ff
+ E7wjhvNoUtB6Rd7dtSgdeOefiVA+dtsShP2WpBmNczNWtSn3XVDCRFlKhf+uKXwP+gc1q4LcXcP
+ B1Pfhqgn2nEa/ITgUNVjsiCHUIxgs4yNENs2ytHfAKb+KkUzrjnjHEd6U8n1iuSAn/4/Acs/JJ+
+ tuCiefdCZfzAfHkBvuUgq7QYM3QfIzkqWl/TdB0tl8iNukcNu+PVEWaXUHh1TmORPQjtlQCBg6A
+ oCPDCYbcPIBLFfyJQ77z+C4LhD7GLPx2SfNTJOb41aIF7KWZi2i1dnmG9Dw3/2eYP1ufXGyVYux
+ HU/RJQHIxztxDnaynxf5MwKnR
+X-Google-Smtp-Source: AGHT+IGd8q7vYPk8tC8e4wXZEeiN7rexsxjv5S+Uzeguwh00QdTa0AZAe4a4z+mwvG8FjYaTfd9Kvw==
+X-Received: by 2002:a17:90a:da8d:b0:311:b6d2:4c36 with SMTP id
+ 98e67ed59e1d1-31c4f5ad1e1mr10884033a91.26.1752375206071; 
+ Sat, 12 Jul 2025 19:53:26 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23de4286da3sm76345145ad.34.2025.07.12.19.53.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 12 Jul 2025 19:53:25 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: dakr@kernel.org,
+	acourbot@nvidia.com
+Cc: airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, Rhys Lloyd <krakow20@gmail.com>
+Subject: [PATCH] gpu: nova-core: fix bounds check in PmuLookupTableEntry::new
+Date: Sat, 12 Jul 2025 19:51:08 -0700
+Message-ID: <20250713025108.9364-2-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH RFC 1/3] rust: add useful ops for u64
-To: Alexandre Courbot <acourbot@nvidia.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, John Hubbard
- <jhubbard@nvidia.com>, Ben Skeggs <bskeggs@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
-References: <20250217-nova_timer-v1-0-78c5ace2d987@nvidia.com>
- <20250217-nova_timer-v1-1-78c5ace2d987@nvidia.com>
- <8d95cfde-30bc-4937-99d3-0077df43867a@de.bosch.com>
- <D7VLEXCQ5VYN.3N0G7XXCVLH6L@nvidia.com>
-Content-Language: en-GB
-From: Dirk Behme <dirk.behme@de.bosch.com>
-In-Reply-To: <D7VLEXCQ5VYN.3N0G7XXCVLH6L@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.139.217.196]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509E9:EE_|AS2PR10MB7687:EE_
-X-MS-Office365-Filtering-Correlation-Id: 81896265-b0f3-471b-d7b6-08dd5177224b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|36860700013|1800799024|82310400026|7053199007|13003099007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?YnROZEdIRG1pb0kzN1FLM0IrdHB5bmxYc2xNaEpvQlg1RnZwR0tKcEMyY3M1?=
- =?utf-8?B?KzBUNjF4czU4enc0KzJJUUZkVkZZS0xYUVdka3k0NGtIVGNUUTJKWXozSkd4?=
- =?utf-8?B?UzhMKzUvZVhtU3BTVnZRVUoyaCtVUDN0UDBKcCtUaTFUZS9veG13WXBoOE5R?=
- =?utf-8?B?U2E2SkE5Mlp0ZkM4ak1CeExtTHhyeTRBTzVybDRvdUYvemgzb2JjcHRKcEE4?=
- =?utf-8?B?dVpsMldRdFVPSkdCY0ZHeVUrSFRaSEhVV2NEb0I4VmRWdDN4SEc5R1RkYWxn?=
- =?utf-8?B?TmQwUEVJU3pLNHBjeEFkUzd3UFRMRUF1Nmg1NzdieFB0OG5XZ2JrL2NINm9B?=
- =?utf-8?B?dmJWdW5WNitkd3g2N255MlNiRk9lVVJhdUQ1WU1RZTN6L2g3Y1pHbXU5U0w1?=
- =?utf-8?B?djY5WCtDVDNtUitaS3FiMGJhQ2twbVhmenVUYUZCTGJxbTBPUjI3NWFtTHBU?=
- =?utf-8?B?T0lZNTlRVWJVZkdjR0VFSXZzU1dDbzczMExTQ3E2L0VqcW5iallWQ1BNc2NU?=
- =?utf-8?B?dXk5Z3ZQOER5a1JaSDhNZUZjSFpoZk05TWFOdVhkT1BVdHFCUkFNV253dG9n?=
- =?utf-8?B?OENRTzBGTmJERmUyN1VHdzVCdnhDWDZRRDNzbjA5T1NkWUlwbTQ5R05NcGU4?=
- =?utf-8?B?QTVwYXF5V3U3Q2pxWWNIdksyY1RZS284WGxXOUZKNXIrd2RjeHBranJacFp3?=
- =?utf-8?B?SkhJZUhpL0hmaHZqRGJpRTJ0eWxpWklpdkk5eldOQ0c4cFNhbnVNb2VWL2VC?=
- =?utf-8?B?Z2x6Z1Fxbk5CdzFNUzZST3RnTHRxQlN2L2krUVUvYjc5NkdadWFoUG9mbWJQ?=
- =?utf-8?B?RzloOXhGSmVCaEl4SVpuaWJ4eWgwcUVsUzlnb29HVFAwRUJsZ1JiWWtpTHpo?=
- =?utf-8?B?Ymo2VllnbEtBbGVrdFJyT1pZSmtWVXhwbWZMaHFaVURQaGxvV0dlbjkrUHpx?=
- =?utf-8?B?V0M5T2JRUWl0Z1JrSVlWam9Od0E4cElMMDhiRVJoK29udzlWOXhHVTlwdm9Z?=
- =?utf-8?B?bGh5UTRqYlFwUEFUbksycC9KOUJrSTJmQ1NraXZSZ3k0aUVjTWdPU1haSUJB?=
- =?utf-8?B?WHR4NUk4b0ltVTRJNlRLQ0NYSFdiazJycXVzZnd1Y3pnZld3eHo1aEtPWjJF?=
- =?utf-8?B?WkdGVWdpTVl0eDNSRTFCTGFjeUdSeGNxTGRTU0VpUGVOTmRHclBzcGUzZjI4?=
- =?utf-8?B?KzVOdU51TlQxK3N2ZWhTSTB1bnBIdlI4eFRLMVJNQVFYNnBGY3V5UTBRSVFi?=
- =?utf-8?B?cWk5T2QxVE1MRmVSOG9UemkvUUhwZHhRWHI4SFRMRmdZOFkvRUdxRUFCQkhE?=
- =?utf-8?B?YUdneDRvWXZYSU5iMFNIdFYyY1g2aEI5OXpWaEtxaCtmcjVLNU1Xd01zQlFi?=
- =?utf-8?B?TkNGZUp1VXI0NER6QmpObCtJNE9rRU9ENUh4L2hVdUV0T0dyZEdDTnA5SHNr?=
- =?utf-8?B?blRrYWxuZlBBMnM5ZGpJL0V6MnJEOFRnRWpBYjRjNU9YeVdoNGlmSVNQM1hE?=
- =?utf-8?B?RElBT1E0aWRWdlozT3RCYzhaOTBQUkVjbyswMXlGLy9JSFRCNVBzbURLZ0VJ?=
- =?utf-8?B?ZGc5c0hnRjFzME03OHZQVzRMMnZwNnBmVUUvU0xyZTlYWHZMWjdoMVBwcFU5?=
- =?utf-8?B?b1NrRTUvVHRVOUNYc3dxR1RZWVJ4SEgxbmJob2tacGxIVFJXTjBodFBFRDlX?=
- =?utf-8?B?WERxcDZvTGFwN3EwMUtVOThrRnFJZGVuOXJiV2hFWE53SEpMK1VUMmJtcDhT?=
- =?utf-8?B?WnBwcWJHR2dnYXdiQ3hITk9ybFFqRUVpTHBZVVhlcFpTRWFtMXRJeENJL1Za?=
- =?utf-8?B?RDhmVmxZMmRoU0V3QWtheDNzNVVObzYwNUxlbFd5VGxoSEEyMDAxaXJ2OFZM?=
- =?utf-8?B?b2d3UU1ZTU5Fd0pPQ2JlbW5DL3g3a3praklrN21BME5GNkpCMGFUZzJDRnlk?=
- =?utf-8?Q?8CpODyr4F+I=3D?=
-X-Forefront-Antispam-Report: CIP:139.15.153.205; CTRY:DE; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:eop.bosch-org.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026)(7053199007)(13003099007);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: de.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2025 06:23:47.3894 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 81896265-b0f3-471b-d7b6-08dd5177224b
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4; Ip=[139.15.153.205];
- Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource: DB1PEPF000509E9.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR10MB7687
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -151,114 +89,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 18/02/2025 14:07, Alexandre Courbot wrote:
-> On Tue Feb 18, 2025 at 7:07 PM JST, Dirk Behme wrote:
->> On 17/02/2025 15:04, Alexandre Courbot wrote:
->>> It is common to build a u64 from its high and low parts obtained from
->>> two 32-bit registers. Conversely, it is also common to split a u64 into
->>> two u32s to write them into registers. Add an extension trait for u64
->>> that implement these methods in a new `num` module.
->>>
->>> It is expected that this trait will be extended with other useful
->>> operations, and similar extension traits implemented for other types.
->>>
->>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
->>> ---
->>>  rust/kernel/lib.rs |  1 +
->>>  rust/kernel/num.rs | 32 ++++++++++++++++++++++++++++++++
->>>  2 files changed, 33 insertions(+)
->>>
->>> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
->>> index 496ed32b0911a9fdbce5d26738b9cf7ef910b269..8c0c7c20a16aa96e3d3e444be3e03878650ddf77 100644
->>> --- a/rust/kernel/lib.rs
->>> +++ b/rust/kernel/lib.rs
->>> @@ -59,6 +59,7 @@
->>>  pub mod miscdevice;
->>>  #[cfg(CONFIG_NET)]
->>>  pub mod net;
->>> +pub mod num;
->>>  pub mod of;
->>>  pub mod page;
->>>  #[cfg(CONFIG_PCI)]
->>> diff --git a/rust/kernel/num.rs b/rust/kernel/num.rs
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..5e714cbda4575b8d74f50660580dc4c5683f8c2b
->>> --- /dev/null
->>> +++ b/rust/kernel/num.rs
->>> @@ -0,0 +1,32 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +
->>> +//! Numerical and binary utilities for primitive types.
->>> +
->>> +/// Useful operations for `u64`.
->>> +pub trait U64Ext {
->>> +    /// Build a `u64` by combining its `high` and `low` parts.
->>> +    ///
->>> +    /// ```
->>> +    /// use kernel::num::U64Ext;
->>> +    /// assert_eq!(u64::from_u32s(0x01234567, 0x89abcdef), 0x01234567_89abcdef);
->>> +    /// ```
->>> +    fn from_u32s(high: u32, low: u32) -> Self;
->>> +
->>> +    /// Returns the `(high, low)` u32s that constitute `self`.
->>> +    ///
->>> +    /// ```
->>> +    /// use kernel::num::U64Ext;
->>> +    /// assert_eq!(u64::into_u32s(0x01234567_89abcdef), (0x1234567, 0x89abcdef));
->>> +    /// ```
->>> +    fn into_u32s(self) -> (u32, u32);
->>> +}
->>> +
->>> +impl U64Ext for u64 {
->>> +    fn from_u32s(high: u32, low: u32) -> Self {
->>> +        ((high as u64) << u32::BITS) | low as u64
->>> +    }
->>> +
->>> +    fn into_u32s(self) -> (u32, u32) {
->>> +        ((self >> u32::BITS) as u32, self as u32)
->>> +    }
->>> +}
->> Just as a question: Would it make sense to make this more generic?
->>
->> For example
->>
->> u64 -> u32, u32 / u32, u32 -> u64 (as done here)
->> u32 -> u16, u16 / u16, u16 -> u32
->> u16 -> u8, u8 / u8, u8 -> u16
->>
->> Additionally, I wonder if this might be combined with the Integer trait
->> [1]? But the usize and signed ones might not make sense here...
->>
->> Dirk
->>
->> [1] E.g.
->>
->> https://github.com/senekor/linux/commit/7291dcc98e8ab74e34c1600784ec9ff3e2fa32d0
-> 
-> I agree something more generic would be nice. One drawback I see though
-> is that it would have to use more generic (and lengthy) method names -
-> i.e. `from_components(u32, u32)` instead of `from_u32s`.
-> 
-> I quickly tried to write a completely generic trait where the methods
-> are auto-implemented from constants and associated types, but got stuck
-> by the impossibility to use `as` in that context without a macro.
+data is sliced from 2..6, but the bounds check data.len() < 5
+does not satisfy those bounds.
 
+Fixes: 47c4846e4319 ("gpu: nova-core: vbios: Add support for FWSEC ucode extraction")
 
-Being inspired by the Integer trait example [1] above, just as an idea,
-I wonder if anything like
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+Changes in v2:
+- Ensure commit description does not spill into commit message
+- Fix author to match SoB
+- Add "Fixes:" tag
+- Add base commit
 
-impl_split_merge! {
-    (u64, u32),
-    (u32, u16),
-    (u16, u8),
-}
+---
+ drivers/gpu/nova-core/vbios.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-would be implementable?
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 663fc50e8b66..5b5d9f38cbb3 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -901,7 +901,7 @@ struct PmuLookupTableEntry {
+ 
+ impl PmuLookupTableEntry {
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 5 {
++        if data.len() < 6 {
+             return Err(EINVAL);
+         }
+ 
 
+base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
+-- 
+2.50.1
 
-> Regardless, I was looking for an already existing trait/module to
-> leverage instead of introducing a whole new one, maybe the one you
-> linked is what I was looking for?
-Cheers,
-
-Dirk
