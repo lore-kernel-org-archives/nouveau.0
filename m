@@ -4,80 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 444C7D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C8FCD5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4B6210EC6B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8C5E10EC88;
 	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="lyW10yfs";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="f9NtvMl+";
 	dkim-atps=neutral
-X-Greylist: delayed 598 seconds by postgrey-1.36 at gabe;
- Thu, 23 Jan 2025 07:43:14 UTC
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5067110E780;
- Thu, 23 Jan 2025 07:43:14 +0000 (UTC)
-Received: from smtp1.mailbox.org (unknown [10.196.197.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4Ydt2x1QV9z9sWp;
- Thu, 23 Jan 2025 08:33:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1737617593; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=pafGZP171TKVXmmTNtfdIkH/JLfRofR6L9YfhmD45jE=;
- b=lyW10yfsdoKC9khVw9jNmQQjpXd/IpvM0GENMUQG4ShV8XOOqjm/LPE0R7H2th4muEIaww
- WjWGoh0BAWCFJX9B1qk8du3Kt58QKRUC0Ge1iJGXX7tDbaRkH3zzd1MyOqNFUNE4LWtTnA
- ZHxS83eGnU7TcUn45ektfe2nG2rLtuoSRq3Z3UwhPFP4g9edzj2p7EtYo96EGGNiALZVWP
- c9S2JgPiw/mfMODTFYK5JEz9pj8xFBlTNA+rQvHuuNZjMKghxgF7TAx8WQAiasC8dCWHJE
- a5A29twSa5ZfOqnphJ+ERRMcVAtkimJEY1P1GJC5V+sjGzEqGq0UxhYyBuaG5Q==
-Message-ID: <af5aac800f7d2153aa3c315584f70c55378c1b2b.camel@mailbox.org>
-Subject: Re: [PATCH] drm/sched: Use struct for drm_sched_init() params
-From: Philipp Stanner <phasta@mailbox.org>
-To: Boris Brezillon <boris.brezillon@collabora.com>, Philipp Stanner
- <phasta@kernel.org>
-Cc: Alex Deucher <alexander.deucher@amd.com>, Christian
- =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Xinhui Pan
- <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>, Russell King
- <linux+etnaviv@armlinux.org.uk>,  Christian Gmeiner
- <christian.gmeiner@gmail.com>, Frank Binns <frank.binns@imgtec.com>, Matt
- Coster <matt.coster@imgtec.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,  Rob
- Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, Konrad Dybcio
- <konradybcio@kernel.org>,  Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Marijn Suijten
- <marijn.suijten@somainline.org>, Karol Herbst <kherbst@redhat.com>, Lyude
- Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Rob Herring
- <robh@kernel.org>, Steven Price <steven.price@arm.com>, Liviu Dudau
- <liviu.dudau@arm.com>, Luben Tuikov <ltuikov89@gmail.com>, Matthew Brost
- <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
- =?ISO-8859-1?Q?Ma=EDra?= Canal <mcanal@igalia.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Sunil Khatri <sunil.khatri@amd.com>,  Lijo Lazar <lijo.lazar@amd.com>,
- Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,  linux-kernel@vger.kernel.org,
- etnaviv@lists.freedesktop.org,  lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org,  freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org,  intel-xe@lists.freedesktop.org
-Date: Thu, 23 Jan 2025 08:33:01 +0100
-In-Reply-To: <20250122181227.491b7881@collabora.com>
-References: <20250122140818.45172-3-phasta@kernel.org>
- <20250122181227.491b7881@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
+ [209.85.210.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A99C10E452;
+ Mon, 14 Jul 2025 10:45:20 +0000 (UTC)
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-74264d1832eso5239100b3a.0; 
+ Mon, 14 Jul 2025 03:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1752489920; x=1753094720; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=DThnUhw5TFFjYMJ6Q+QpynsJ5dmeEt17gTWIuYiMaTo=;
+ b=f9NtvMl+FrHzjHMrbLfB/e904p3JWrl4o7DYINwcy44InYm1FISZ+TYWBnfn+0f0ha
+ 5NWdDi2jxp3QL2N18VNfJmbkH7sdAsjvXYniDXF1U4AoFV379nqv4aP/oy6wAXYZf/O5
+ /m5J0tsRiGFnPlO57dQc5jx/p3MoBLHNiK/+sMeJqnlGqMTAPUkcdnFQZ5H8tsCv2MWa
+ OhQ8Ww0vtE8bPpyxoQmNlt+gEPHW5yJJP+gfffS/J4oA9GBLF26JzEaCdrTI/6Nea/Kh
+ xbPn00GI50uwl3z2TyD+E3Prh/ymiMvucx5FvUBmVz+LxeRUb0lzv+oBkF4jRWdWG2WK
+ ZNMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1752489920; x=1753094720;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=DThnUhw5TFFjYMJ6Q+QpynsJ5dmeEt17gTWIuYiMaTo=;
+ b=vfnsWk6ZHAZ0AfDUfbiAbIfhLx4BfDZvH7xsxj2qpB3S8+3gROF+/H1lAIIfOz4YL/
+ sbKazIJcckvlUfitxIcw72s8IBhfL+htR8evMV8gM0fLedaMc8F0GpW/wAVrd2odKVtn
+ qq8f0wEq9AZECCkitmQ92wm1HVPRLCpksF1YAmqSRV3rZSAffYWqr971xILTY05s/JWZ
+ 49w3ZnMkcR6TDNZzSrikv2wKJ2ybE0QpQhMIrEaMg2H7SS57jIAWx0BtNEG5XWWJ4w+7
+ E/9u6RHwakjy23lq02lIvarY4zke5wFbn20zc0STQ0NJ5lnBBZ88s55RbPi60JTz7Vn3
+ 54fA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWSWpoFIqtwOF6FqzO6Ku+zx4rwkblbbC6WnlUiRSVX/mL96R/bnPxecXZXLAXrZAYW3RwkfWWg7vw=@lists.freedesktop.org,
+ AJvYcCWt89AEcgTlMSbvJ3VgEDf7iRwr/GFd8/wUZeOM84wl5u6bjlUZEeN3kNs3CnqqprVmodR6qI28sA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxjpAzrmQi5x6wPOGx6L0nZxvj5a1HQWWUxNMJS42udWIremqSd
+ yUnCTjC+xL/q6BLdZ0TmNQB1PesAZBBkLMlv7DLqfTyLEQx4e81YQh5MWOCkqcTxAjU=
+X-Gm-Gg: ASbGncsZ5SjaKKsr9311cULBJX9UnXKAXs9w6P4PZvL/uiRO+gqAUm+uOVIAhFugNHE
+ 9sWg/VTk3Zqi+X+w1wUhmhYtsNuS4Y2YRaFlOW0MO3jfbcvmmRNAMFy0DuyetFNIpGGV260g5yI
+ cnp9RQgJzJBGsjplhfykzpAqxNaHpScKh8O6dqi/FX7qRC7lqZbK3p/7LQomZVY3LGqjTxuwMN+
+ 94tYEublqaBKcCapNQqJbm8VNraLppCum1Zy3VT3Ld0Mfn9mrCNlhnA3lr+wApsLF7Ug6ymUpeo
+ BRRk/nFoSWMeU96AAWSQwrRc8VHxkEQs7TO0Bibw4KFhoRUFw5ve6LTJ/NfBhSbY5qxA/z9Qk2M
+ 89jKsAp5g75mUjKoNOb14W1JX
+X-Google-Smtp-Source: AGHT+IHh8nvQAWLf0IaWZQL6rQlZ7/oYqf00LH67GRlU2rIWMZm1c6jUnva8RdcSbzLdp26M/41yaA==
+X-Received: by 2002:a05:6a21:3318:b0:1fa:9819:c0a5 with SMTP id
+ adf61e73a8af0-231363657d3mr19458861637.11.1752489919804; 
+ Mon, 14 Jul 2025 03:45:19 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-74eb9e058fesm10320909b3a.40.2025.07.14.03.45.19
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Jul 2025 03:45:19 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: acourbot@nvidia.com,
+	dakr@kernel.org
+Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] gpu: nova-core: vbios: change PmuLookupTableEntry to relax
+ alignment
+Date: Mon, 14 Jul 2025 03:43:12 -0700
+Message-ID: <20250714104322.100511-1-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-X-MBO-RS-ID: 8a70febfe27100aa303
-X-MBO-RS-META: sw7fmubqh1x18f97mnek9yippijrrm9p
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,33 +87,66 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, 2025-01-22 at 18:16 +0100, Boris Brezillon wrote:
-> On Wed, 22 Jan 2025 15:08:20 +0100
-> Philipp Stanner <phasta@kernel.org> wrote:
->=20
-> > =C2=A0int drm_sched_init(struct drm_gpu_scheduler *sched,
-> > - =C2=A0=C2=A0 const struct drm_sched_backend_ops *ops,
-> > - =C2=A0=C2=A0 struct workqueue_struct *submit_wq,
-> > - =C2=A0=C2=A0 u32 num_rqs, u32 credit_limit, unsigned int hang_limit,
-> > - =C2=A0=C2=A0 long timeout, struct workqueue_struct *timeout_wq,
-> > - =C2=A0=C2=A0 atomic_t *score, const char *name, struct device *dev);
-> > + const struct drm_sched_init_params *params);
->=20
->=20
-> Another nit: indenting is messed up here.
+Instead of the data field containing a u32 and changing the alignment,
+change data to [u8; 4] and convert to u32 with a helper function.
+Removes another magic number by making the struct the same size as
+the data it needs to read, allowing the use of
+`size_of::<PmuLookupTableEntry>()`
 
-That was done on purpose.
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
 
-I never got why so many like to intend to the opening brackets,
-because:
-   1. The kernel coding guide line does not demand it
-   2. It mixes tabs with spaces
-   3. It doesn't create an identical level of intendation
-   4. It wastes huge amount of space and does not solve the problem of
-      long names, but might even make it worse:
-      https://elixir.bootlin.com/linux/v6.13-
-      rc3/source/drivers/gpu/drm/scheduler/sched_main.c#L1296
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 5b5d9f38cbb3..40244485283c 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -896,21 +896,26 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
+ struct PmuLookupTableEntry {
+     application_id: u8,
+     target_id: u8,
+-    data: u32,
++    data: [u8; 4],
+ }
+ 
+ impl PmuLookupTableEntry {
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 6 {
++        if data.len() < core::mem::size_of::<Self>() {
+             return Err(EINVAL);
+         }
+ 
+         Ok(PmuLookupTableEntry {
+             application_id: data[0],
+             target_id: data[1],
+-            data: u32::from_le_bytes(data[2..6].try_into().map_err(|_| EINVAL)?),
++            data: [data[2], data[3], data[4], data[5]],
+         })
+     }
++
++    /// Construct a u32 from `self.data`.
++    fn get_data(&self) -> u32 {
++        u32::from_le_bytes(self.data)
++    }
+ }
+ 
+ /// The [`PmuLookupTableEntry`] structure is used to find the [`PmuLookupTableEntry`] for a given
+@@ -1037,7 +1042,7 @@ fn setup_falcon_data(
+             .find_entry_by_type(FALCON_UCODE_ENTRY_APPID_FWSEC_PROD)
+         {
+             Ok(entry) => {
+-                let mut ucode_offset = entry.data as usize;
++                let mut ucode_offset = entry.get_data() as usize;
+                 ucode_offset -= pci_at_image.base.data.len();
+                 if ucode_offset < first_fwsec.base.data.len() {
+                     dev_err!(pdev.as_ref(), "Falcon Ucode offset not in second Fwsec.\n");
+
+base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
+prerequisite-patch-id: d80f92d314a0693d4c89ffb7810d9ab6990336fa
+-- 
+2.50.1
+
