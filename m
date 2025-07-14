@@ -4,92 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47481D5AE41
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7565D5B15C
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 805C010EC96;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E98A10EC94;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="N2Ix8ile";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/weZmP9";
 	dkim-atps=neutral
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2584610E382
- for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 10:01:12 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-24aacdf40a2so16479485ad.1
- for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 03:01:12 -0700 (PDT)
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C4F10E452;
+ Mon, 14 Jul 2025 10:45:51 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-747fba9f962so3352645b3a.0; 
+ Mon, 14 Jul 2025 03:45:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757498471; x=1758103271; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1752489951; x=1753094751; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=q4uYyjZeT3X1uLSrC3Wk71Cjszm5hRnmgp8XTdb5gD4=;
- b=N2Ix8ilefwmgCIehumuaci152t5SV3Im2BveiuJrL8TFqP6rJ7Oo2tlxI3kxBnGWCY
- NNaFYZ/dwqBb4p3un40YMqqAUag3DmWtgJr4TUHCX2mvzdcTgy56aCiIWkR16rofZeE/
- Ay60uNgX/+yMCoHVRXfYR4dD/gUjifmo6L8IvD7jsJmKqyCuHl9bAlMUCOfwf1Yk8O9Q
- w7i+CN+T4QeoPgnrLz52pXy6pCjIwxY6tj+EKbz2NFZLLZlt7H/7DjWV+/blXwk1zcrA
- JOv86dINu26DAzCgveVwWQ+uwGM5MONpZrinoIzV6EK+wUH+4LgtMOxW79ur06LWL6Bc
- 5wrA==
+ bh=lACXWrIyx0XepFzYp8lYN3B6VObrUZBjQ6Rart3u69s=;
+ b=f/weZmP95+b6x/YdPFKREiiC/90Osd8EvZj8PX76mDcrdpO11zirndDlexmwVJPPnQ
+ PPyMrvhljGSQuqvKB3wWmEaWZXYbLXLKut1LOIuy3IYAq7VtcWmH5I0SWi0miljerP9x
+ F+Z5p4fUtYy2E0Vd+CItGLV/7xbbNJbymMPE1+iV80GCn9h9Fmsva/sTVmWvyhr9oVqZ
+ LFI6g/toIOIz7xUV6zSx1R0ge5Qdoxaos1CcW1AGflKsQeOUHcfnhGDikjo147n9wd+K
+ pd0M/cL8Iu17HnhEEqOuJ+cizr0GJeXYVW8ymaglZwTuygU8r/Se7wl6Qpz7jeoHJllm
+ oUlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757498471; x=1758103271;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1752489951; x=1753094751;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=q4uYyjZeT3X1uLSrC3Wk71Cjszm5hRnmgp8XTdb5gD4=;
- b=pJd+yYw/x6ZI/a6jAWqQSCXT+en/8fsXirwWOyjR9usprIqMUOpczIo22wCvDlItW7
- c5ZnK+FuxY0TE7s9YjaG1N1KPx8aEiZAjadB79kBRdhsHw66BamWMYky8rZ2wgZ0nlE8
- 4bXswTVcS3YLapfYbcXjA1ddcC9pidu8fwTQcK8jNUK+PcZ0T+FK8+TF/7O7LmVmUPaf
- TykNZSf2pwZzodLFSE0fJlGc22J/yqVKv80bd9MLbM+jHmJzLu+Gy0IGTdsavLIxUUWw
- PO/lQoZsUHRrtlcN/1iWsoF/8vTBZvCWdC8x920dwUStMTHCOHiD3BT4+kC682WrcXus
- tBPg==
+ bh=lACXWrIyx0XepFzYp8lYN3B6VObrUZBjQ6Rart3u69s=;
+ b=cYKHifq7duG2Hv3HTEihsjTurp0nGgl4zeWXWoQBTXQNW5zbJ88zkPwqIQWX8fIgaL
+ gnSPG8kGXvhwD7nUxAyQtmheBC7iUCS0ckpqmITHYEqPFJFgk5ZgTCLBDAsJCrn/OR1Q
+ 29SKw3di6UOqXDNNUK3i5E05MR3vOSIlXy5Rp/xNPXhQaS+D5vDzeQczfa/mBKqPJ6dC
+ d1/q+s3AnKV6GeiiOFouxkaqB7Fwav6yOnRxFYb8jtU8b2EV3ES8ubrWeronEiGGh11w
+ bAnekeCZ1EuALJtN69XYYLqMhP8vevzTLaz8HiYZ1q4HvxrZIl8TiA6B194W89Y+iytm
+ v3ZA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXEtvxUzya+gxf7Ziy/4Iro46ejQpVn2ey929D4Y38DEJbYolPAgqpdyj70HnwJkGrMB5rYR741@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywfr+dThNLIChQAxQJb8zWcY07Nn39f4BYL6LwuZeQVpShqlCbQ
- LmbH1wjRO0wCh0D7TfvW7HBGMi4vt7kYhno0UPAsNK+hJHxnDiFyyHMwQ8x+wC8MjOq+3Ir+3S/
- 9MdZ971zt58siiI790yhnMcIDMtIDydU=
-X-Gm-Gg: ASbGncuUUaT9OwCf8HHdsOyJQb2yPQwCwdDjuWr69gtFsCTUzGLBp1Ef1aCNUlo4EYo
- lxWfzDGx5h2XE0+z4OIRlYl978tD9TOSMPwyYJxF9RyI8z7SEFL3ViteuRndv/VKz4DTB+Gmhfd
- AT9zmgi1Vnur7jOFEMuVJ9ddHSleReA77QOfU50lrVsvmfXLM3J5CKb/lnfRWtBypyJt8A0hjQ8
- kSwRZyZGawtThOdMJpF7lUD3VCI+hJpPEVztDBXotS+4EgWJ3h/3RwXJS7p0WIOLImVduYN4gk6
- nEPu1+tQFljcgLVQJKrD9LOn5GoxXu95epw2
-X-Google-Smtp-Source: AGHT+IEAL6fPEIytHux98x5koSeZTz+GJXocZx4VGKO9evNP7NMBw73sdhCn/m6+6whVEQTC76oWfQxflZiVR9UaSxU=
-X-Received: by 2002:a05:6a21:6da1:b0:246:d43a:3865 with SMTP id
- adf61e73a8af0-2533e950b02mr12197267637.1.1757498471364; Wed, 10 Sep 2025
- 03:01:11 -0700 (PDT)
+ AJvYcCWbMy1uxaLXqLIo2QIemATCQyL5+/8ergl7ec1LlHxBitlese/h6pv42x+0tqVU3CvE5NG3bkpGwHQ=@lists.freedesktop.org,
+ AJvYcCWervY65Cf4AGZWAIEFN+Yf0WpZD7P8l8xL0zSmIqQvjwRxJSeVZ6lvmoh1z6hkUzsZOjflBBMEGw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqV+8VDzZLh//B5s4HNKkfXKG+vV+DmL6tcxlgmlXiZrTvmSSb
+ KmhUlVAAsxbbt1b+GqRRybBJ4mkyFwfaPr3oCQKumXHKcN/U79Nfvgfs
+X-Gm-Gg: ASbGncuPrCeWo7GJEzWnLqlgvx67or7A0BoYB6zwX+MtE2znn1dp02cpViX/p8+C5j2
+ 9kvJHtPH1fEYiZJfJyizsBChGPPv5DcIHWk7ByDGIX0wsDozUSAR13v8hJGx5rA0Jmh0iA7FspW
+ a+wRAbau8gbI1XA9X8nK7Lb2cpSC8+YiQiHKgR6pi/uxOq3D/+1et4Qli81s31rnZw0bn5jokrM
+ YaAMz8HlH96JbK74zdu1ZIddnO/Olx/L077f90cxChf4An3CYr6zunzstyaq8jsjk+u35iCeDJY
+ bmplxLV6u+KzGfmGTca0ELWWcIHokWAHzQDJ/zzDzdy7/zdU2McTF4sMkPfOa5qJeG/sf9wgbF6
+ ja00TQ0GGDwrb7hzdgG6kGzyK
+X-Google-Smtp-Source: AGHT+IFLPKx1BZNNAyFNyKEkIkORD8Kmtj8nI6gAHdSOXogrL29N95gdsu5VKoCLvgamTF6GYkS1+Q==
+X-Received: by 2002:a05:6a20:9d96:b0:220:898b:2ca1 with SMTP id
+ adf61e73a8af0-231285725fdmr17928439637.21.1752489951050; 
+ Mon, 14 Jul 2025 03:45:51 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-74eb9e058fesm10320909b3a.40.2025.07.14.03.45.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 14 Jul 2025 03:45:50 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: acourbot@nvidia.com,
+	dakr@kernel.org
+Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] gpu: nova-core: vbios: use size_of instead of magic number
+Date: Mon, 14 Jul 2025 03:43:14 -0700
+Message-ID: <20250714104322.100511-3-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250714104322.100511-1-krakow20@gmail.com>
+References: <20250714104322.100511-1-krakow20@gmail.com>
 MIME-Version: 1.0
-References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
- <20250826-nova_firmware-v2-2-93566252fe3a@nvidia.com>
- <9adb92d4-6063-4032-bf76-f98dcfe2c824@nvidia.com>
- <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
- <CANiq72=nGbziZCKt=AneE_vXw76i=+td0dSVfbOJ8kJ9eYHw9w@mail.gmail.com>
- <DCOVRI3TVJBN.3OGDSK8HW74LL@nvidia.com>
-In-Reply-To: <DCOVRI3TVJBN.3OGDSK8HW74LL@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 10 Sep 2025 12:00:59 +0200
-X-Gm-Features: AS18NWB3P1o-FQ07s_jB_zwoyBitfxkjABJvrHdFdftaj751AhGxluVMI4T6kjw
-Message-ID: <CANiq72n-q0vdzp=Tb=brue+BMoNYdCTKsqcMYUsvKgvu9ZqGoQ@mail.gmail.com>
-Subject: Re: Implicit panics (was: [PATCH v2 2/8] gpu: nova-core: firmware:
- add support for common firmware header)
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Alistair Popple <apopple@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,55 +92,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Sep 10, 2025 at 7:45=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> That would be nice, but also wouldn't cover all the cases where implicit
-> panics can happen, like out-of-bounds slice accesses - we can't have a
-> "report-and-continue" mode for these.
+12 is identical to the value of `size_of::<BitHeader>()`,
+so use the latter instead.
 
-In principle, it could cover OOBs (even if it is a bad idea).
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> But perception matters, and such crashes can be damaging to the reputatio=
-n of the project.
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 663fc50e8b66..ac35415b4ffb 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -365,7 +365,7 @@ struct BitHeader {
+ 
+ impl BitHeader {
+     fn new(data: &[u8]) -> Result<Self> {
+-        if data.len() < 12 {
++        if data.len() < core::mem::size_of::<Self>() {
+             return Err(EINVAL);
+         }
+ 
 
-Yes, we are well aware -- we have had it in our wish list for upstream
-Rust for a long time.
+base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
+-- 
+2.50.1
 
-We are tackling these things as we go -- e.g. we solved the `alloc`
-panics and the ball on the report-and-continue mode for overflows
-started moving.
-
-Part of Rust for Linux is about making Rust the best language for
-kernel development it can be, after all, and so far upstream Rust has
-been quite helpful on giving us the features we need -- we meet with
-them every two weeks, please join if you have time!
-
-(Side note: the "safety" that Rust "sells" isn't really about avoiding
-panics, although obviously it would be a nice feature to have.)
-
-> Writing a uC topic proposal for Plumbers right now. :)
-
-I see it there, thanks! I can briefly mention the topic in Kangrejos,
-since we will have Rust representation, including from the language
-team.
-
-I don't think the discussion should focus much on "Do we need this?"
-but rather more on "What exactly do we want? Would we be OK with a
-local solution? Do we need/want a global one? Would we be OK with LSP?
-Would we be OK with no panics after optimizations, e.g. a link time
-check? Or do we want full support in the language for guaranteed
-non-panicking functions? Do we need exceptional carve-outs on such
-checking for particular language constructs?" and so on. And, of
-course, "Who has time to write an RFC and implement an experiment
-upstream if an approach is decided".
-
-Getting data on "in practice, how much of an issue it is on the Rust
-side" would help too -- those with actual users running Rust kernel
-code probably can tell us something.
-
-What I would personally expect to happen is that, over time, we
-understand better what are the worst cases we must tackle.
-
-Cheers,
-Miguel
