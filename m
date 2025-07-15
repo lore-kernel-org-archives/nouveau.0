@@ -4,150 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82972C83F1A
-	for <nouveau@archiver.kernel.org>; Mon, 14 Jul 2025 21:25:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72E5CC83F34
+	for <nouveau@archiver.kernel.org>; Tue, 15 Jul 2025 15:18:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BF4910E4E6;
-	Mon, 14 Jul 2025 21:25:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE6210E5F4;
+	Tue, 15 Jul 2025 15:18:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="D4B6z2ip";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=caterina.shablia@collabora.com header.b="cq9ZLRkt";
 	dkim-atps=neutral
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2045.outbound.protection.outlook.com [40.107.237.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8040610E4E6;
- Mon, 14 Jul 2025 21:25:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Pg4Ltk+bKSnF/gEM9jRtJb74guslMyfuKAoyZviUYRVafxNb7mkV1VCm3n54S631qk7emiGNrAQCOi8s5Tpeiq8s8YkFDCofXJ21spHtoZ4Hp6zJOhARGzL/sOYMCdCYG6TdPzYcAOKexVmtuzIboZeODUHhe7GqHm16eVwzv+I/8SE8c1HW9CzlAWlFUJb7D+Pu8qPsnkJNA2ximt+NZndO8c88R4n896E++tkwzUcGRYnJWg7/GKjcSvcZGDVGu5KkLhHEjlW8L4i9GI06RyHIdJJHJWqPW1/2dgbI5Fp7Ts5MhM29B/YFkkMtMkIAh6zsOehPZdpo7EOqrlK3kA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=07+LlyG6D2wBmBxf5XYk4DQeOVpMSSc+9PKP3/Py6Mk=;
- b=RM9Dl2WA0bqOBUQ+Q4jwtj9P3nwFhGpE7ysf/SKJNaFbXDJ0gay8gTXyD1sNeUL0NKYBvyTcA9XgQGv4NKHO6NzXGcf41aBNtlxCfuNwn1J6KfBOsqkAFjBykru8UGoJNTLsj/5ntDfjsok0DfGk46l0hhPc7LmIQq6Sk+s6y0T+o8NP1zfaGCrXBvuOV6oXOtRQpWigNANr8IeiYreMR/XQ+oB8wooP6+cSTLpNXy675mY1MLSgGk56v74DW5ZGTrd2YiDo4/1ku7Bl/QttyTGMiqaoPXqi2w5IBogtCwZBrUtf2gHGn5+DL55USTLV5al7oqCRdmRIosuMdB6tCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=darkrefraction.com
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=07+LlyG6D2wBmBxf5XYk4DQeOVpMSSc+9PKP3/Py6Mk=;
- b=D4B6z2ipKR/ZRbCwFptWgu0Hzbmp+eQ50k6FwIigPhHcbj2G2Yft4F0dQo06l+2wyn7Mj7oCjqM5LShPEAH2kbep/7i60ncU0GhX2rkqGm4BpOcm5cEFynKByjAm+erBFMaihpcm+KtMtzLI7NqFPkDU2vWy/C//XGYtrqqJhkue2pnK5iIpQ9U9Om+JV5A1+tXAlFIw75/juvc1R8uTU+zKaoHrfg+7Qhnusky05eaD80jdbLs1OzxHO5w1BYnZXs80lYGkcjagllipERJyz3eAWndgBPegwJvYnmL1Aq+RwSvoN+k+pv9b9zabXPQhcK1ItmciBlti0oGfqeZZSA==
-Received: from MN0PR03CA0029.namprd03.prod.outlook.com (2603:10b6:208:52f::34)
- by PH0PR12MB8173.namprd12.prod.outlook.com (2603:10b6:510:296::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8901.35; Mon, 14 Jul
- 2025 21:25:38 +0000
-Received: from MN1PEPF0000ECD5.namprd02.prod.outlook.com
- (2603:10b6:208:52f:cafe::c1) by MN0PR03CA0029.outlook.office365.com
- (2603:10b6:208:52f::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8922.32 via Frontend Transport; Mon,
- 14 Jul 2025 21:25:38 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- MN1PEPF0000ECD5.mail.protection.outlook.com (10.167.242.133) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8922.22 via Frontend Transport; Mon, 14 Jul 2025 21:25:37 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 14 Jul
- 2025 14:25:23 -0700
-Received: from [10.2.181.66] (10.126.231.35) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Mon, 14 Jul
- 2025 14:25:20 -0700
-Message-ID: <d82a8e9a-d111-4599-8979-58a2e38cb59e@nvidia.com>
-Date: Tue, 15 Jul 2025 07:25:12 +1000
+X-Greylist: delayed 581 seconds by postgrey-1.36 at gabe;
+ Tue, 15 Jul 2025 15:18:02 UTC
+Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com
+ [136.143.188.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F5B610E129;
+ Tue, 15 Jul 2025 15:18:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1752592679; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=Fndm1p3XY5VUtXUznHxsr37QvXGPyVQ/izu/qWxpECvo63V6IudxHJcwomj6lXMd4ilFz4JhPhp9q1wV31QTamkzm/ggxiiFGviKI40GTWje9+K8YRwBd2Wzn9bV6+cbsSCXSNwcGrbPpm9+lWnUBnzd8IW5Yuf08wC6XR+mcWo=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1752592679;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=YV4WQYFhL2aoKIsjeEhRwx446ZAHBheNflvhlLsqO3M=; 
+ b=LMm0cGaLkUbvjxQEfk044XSQ5V+soVxArzWDIA7syClB/HqpJBAraqRx/upUgsDtjO+JNFj3DZ1ayAibZEwB+ylm3I4zd+IisYdLlnb8Y1xSS0j4HF5pH9yAeV07B7FmrH+58PdANV7Qh/5PH6khTyVoEhQL2s+VowWY11vFUmQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=caterina.shablia@collabora.com;
+ dmarc=pass header.from=<caterina.shablia@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1752592679; 
+ s=zohomail; d=collabora.com; i=caterina.shablia@collabora.com; 
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=YV4WQYFhL2aoKIsjeEhRwx446ZAHBheNflvhlLsqO3M=;
+ b=cq9ZLRktPoCTFLd+X6RpACLPGX+GGO9nDljmbK8Q3fOGrpsjjax5oqRXK5y8NECd
+ X/Ha/4T9sZfvqr7ZKnbDqvC5t9ROQof9tVe4x2K4M5x7tbp/DlvETPbhbnfb0derDub
+ 9GLvSjUCLqCVKmsGPAbCTw6WtrxrtQbG78bWO65Q=
+Received: by mx.zohomail.com with SMTPS id 1752592677569906.1945990416046;
+ Tue, 15 Jul 2025 08:17:57 -0700 (PDT)
+From: Caterina Shablia <caterina.shablia@collabora.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
+ Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Steven Price <steven.price@arm.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
+Subject: Re: [PATCH v4 7/7] drm/panthor: Add support for repeated mappings
+Date: Tue, 15 Jul 2025 17:17:50 +0200
+Message-ID: <2244038.Hq7AAxBmiT@xps>
+In-Reply-To: <414aabbe-763b-4786-a85c-a2670475ece5@arm.com>
+References: <20250707170442.1437009-1-caterina.shablia@collabora.com>
+ <20250707170442.1437009-8-caterina.shablia@collabora.com>
+ <414aabbe-763b-4786-a85c-a2670475ece5@arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/nouveau: Remove nvkm_gsp_fwif.enable
-To: M Henning <mhenning@darkrefraction.com>
-CC: Timur Tabi <ttabi@nvidia.com>, "kherbst@redhat.com" <kherbst@redhat.com>, 
- "martin.peres@free.fr" <martin.peres@free.fr>,
- "faith.ekstrand@collabora.com"
- <faith.ekstrand@collabora.com>, "dri-devel@lists.freedesktop.org"
- <dri-devel@lists.freedesktop.org>, "nouveau@lists.freedesktop.org"
- <nouveau@lists.freedesktop.org>, "dakr@kernel.org" <dakr@kernel.org>,
- "lyude@redhat.com" <lyude@redhat.com>
-References: <20250623220909.7591-1-mhenning@darkrefraction.com>
- <20250623220909.7591-3-mhenning@darkrefraction.com>
- <c3902fcf8bc963cf315e9bfbb9ca4c66e28857cf.camel@nvidia.com>
- <CAAgWFh05pj_9rk7Wcx24tFWR2sgMZH4WtBsm3hYrqM3svwniOQ@mail.gmail.com>
- <127e866b4bb4fd3a77e1cbfc5b709bcb2533c744.camel@nvidia.com>
- <CAAgWFh2vZt7Oay0NGs4ttSTdJ5oP7qv+wWeRz0MRr=L5LeF8JA@mail.gmail.com>
- <3c368bab-8f66-45f8-8b07-b8e62d43c8a9@nvidia.com>
- <CAAgWFh1N1_j+jXpMm+fcC9tPTs99QKACb8Ox7mph=UWx28zVjQ@mail.gmail.com>
-Content-Language: en-US
-From: Ben Skeggs <bskeggs@nvidia.com>
-In-Reply-To: <CAAgWFh1N1_j+jXpMm+fcC9tPTs99QKACb8Ox7mph=UWx28zVjQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
- rnnvmail202.nvidia.com (10.129.68.7)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD5:EE_|PH0PR12MB8173:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2229b394-3e9f-4c2b-f76a-08ddc31cfa33
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026|41080700001; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Nkg4cmxBNkdObWloelJRd1Zza1NTckJVUXE5a3M3SHZzc3IyRHQwbENvQ0or?=
- =?utf-8?B?eUhQS0lPWVJ5b3VCcjMxTzJGNDcrZTJKdmphQnF3Z3JYS0pvSGFIbWF6b1Fw?=
- =?utf-8?B?OThUMlI2V3doVWhxcnh6QldQU1ZhK1I0YWNFWFVkVXU1Y0JGUjcxdE1qRGFk?=
- =?utf-8?B?dmxINzJnZmwvRzlUcFBaYi9kTTV2d3ljSkY1V1JXR2FGaVZXTlNLUG5GRXBU?=
- =?utf-8?B?bVFKc0pMWjNaRkp0dmladUJ4RXVxSVdxVFhHVUNrOXgyeER4Wk44Ry9YbHh4?=
- =?utf-8?B?eUd0cysxSnpHV3VJL2x5WjcySE5udWtPWnJnRnpKMFo4ZHMvZDdYbUpXTFVY?=
- =?utf-8?B?TkUyK3NPMVIzQzlDaWQ5YjJ2T2lONU1mcFlLZFVyQnFHVmp1M0xnbm91RHhF?=
- =?utf-8?B?U0ZMQU9HYzQ2aVA2N2hiTmJDei90YVc5LzV2dWtBdjZDNFE4RS95N2c3RjNQ?=
- =?utf-8?B?dS9sRXNCQ0xVU2tWT1psdkNPMVMrSnQxTWlMajVXa3VnZFlWVVgrdURDb1hl?=
- =?utf-8?B?aWZ6RnB5dUxuQXZMYTVZeW85RUREUnE3Y050V20zbzJpSjZCeGtucVNjWHRD?=
- =?utf-8?B?Tld2eVdMbDB0djQrdGFldktWOXRVQ20xRzFlQ0ZLUFRzeXk4a2VwSGcxOEkw?=
- =?utf-8?B?ZGFKcEFYNExaaFM2dlpBMmcvOTVMc2Jya1dBd0hyeWg3U1dUT0RVdzlWaTRB?=
- =?utf-8?B?bUdxN0lxZFFaZEdCRytkcDZqcnF6QllSU09kdVNhLzJPUEt4bTJUanVDczFP?=
- =?utf-8?B?SzZpU0JMUGprTXRWaGVNUzZqNG81QlFyQVVWYllRcmdPbzJNKzkxdThaNG1x?=
- =?utf-8?B?L2xXeXliczROYWp4Y2g0eUxIRURJK2x3eTVmeThDVk9ZbzBaNFBtVHhvZnpj?=
- =?utf-8?B?UkJQY0I3dytMZEt6SDRlTTE5amVtanBKcndIUmZFK21Qbm42dHl4aFV1SmMz?=
- =?utf-8?B?eHJIR2VqeHpMa1BlclZld0ZYUXBtNzYwQ3dtNUpvRVkzaitybFRqclQwaTlS?=
- =?utf-8?B?OFIvK3hTUFhuUW1yNVVXYUVkMWNJR2hhN25GUGhSMTQ1VHVNR1VIdWhWRkVG?=
- =?utf-8?B?UmtZTEYrSy9KUG1sbEF5SnZPRG14U3pCZ0hwTVBaWitkNEtmditmdk92UHFz?=
- =?utf-8?B?WmsrWm9qU3Jickh4MmE1V2MvV1ovNnZ4Ty8yWDJJTzNVYy9EOExDMlI2M3Ir?=
- =?utf-8?B?VksvZnVUamEvVXRQQjlPby9CNFJkQmdYc2xJQnNxejlVWSsvZXJveExKeTR6?=
- =?utf-8?B?dE5sR0V0NHFtZjNQdlhMallKOGt0SGZGZ2xsdll6ZnRWTjdRTE5odDQ0NXVN?=
- =?utf-8?B?dXN2eHpiMUJ5L2RNOGIyNE5PNVpqNzhXQTVKTVY4YWdFd2dEMngrbG01WEtG?=
- =?utf-8?B?NGNKU25sczBiRER3QjJJM21UNCszOWpoeWdoOHkrTmlaV0xMeXIzK2ZpTzhD?=
- =?utf-8?B?TFplWmo0NHBzOGZvRzExVnZTc010NTVyN2x2WVhmcjNrVlN4VEtrNEJOTStN?=
- =?utf-8?B?VysxVm1pUGZEYUJiNVNuR21BVFBORXhTWDErekdwT2JhWWJweVRoaXQ4L3A0?=
- =?utf-8?B?M2hkTXhvcExjL1BzaDJGNjdsRklpbldpUXNGK1dyWEFuY3NaSUlLcGRXNmQ4?=
- =?utf-8?B?b1ZJczlTSlZYRFBPQXo5TGhnWnBJa2V2WW9OQXc2N0ppZWxWUDhDMUdhcDFD?=
- =?utf-8?B?Y3VGaTE5QmcwN0trQVB2cGxHNkh3YzhqV2pEbys0SDdETm5IYTFaQ041RFJF?=
- =?utf-8?B?UExFU214Q0FPTjlCd3U1NEdpQ09rYituT3hrWHN4SFRFL0lPeUxhdkNEMzFz?=
- =?utf-8?B?NU9hRFB6NENKVkg5VXMvYkgwVDNrWCtjMGZ2eWNPbG1XTnlsTENBYURtZ2xy?=
- =?utf-8?B?RmZ2L25iSDNKN1BzcmI4dDYzdTMwL09QOG1RcmVtdFdPaDNvOWczU3RQRndp?=
- =?utf-8?B?OWRsQTJqN0VNRk02bWNwT1dFZ1NGY2ltMzRYQzlKYnI5eWJuUFpXSGhBa29Y?=
- =?utf-8?B?V1VwQUV4VFNCV2RLMkN1cjhZTXBUd3g5UVJmNWVxVUVuMXVKWVNuU3hvalJ3?=
- =?utf-8?B?S1NJOWxFM3E2U3lJUXhlV0txU0gyWE9QRS90UzRWTGxtekpSMHo3T1F1T2Mz?=
- =?utf-8?Q?cpiA=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026)(41080700001);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jul 2025 21:25:37.8835 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2229b394-3e9f-4c2b-f76a-08ddc31cfa33
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECD5.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8173
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,26 +78,383 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 7/15/25 02:04, M Henning wrote:
+El viernes, 11 de julio de 2025 16:03:26 (hora de verano de Europa central)=
+,=20
+Steven Price escribi=C3=B3:
+> On 07/07/2025 18:04, Caterina Shablia wrote:
+> > From: Boris Brezillon <boris.brezillon@collabora.com>
+> >=20
+> > This allows us to optimize mapping of a relatively small
+> > portion of a BO over and over in a large VA range, which
+> > is useful to support Vulkan sparse bindings in an efficient
+> > way.
+> >=20
+> > Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
+> > Co-developed-by: Caterina Shablia <caterina.shablia@collabora.com>
+> > Signed-off-by: Caterina Shablia <caterina.shablia@collabora.com>
+>=20
+> This looks like the right sort of shape. From an uAPI perspective I'm
+> not sure whether u32 is the right type for bo_repeat_range. While I
+> can't immediately see a use for having a large repeat range it seems a
+> little silly to close it off when we're going to have padding afterwards
+> anyway. Obviously the kernel would reject large values because the
+> internal APIs are only u32. But it would enable this to be fixed if we
+> ever discover a usecase without a uAPI change.
+>=20
+> > ---
+> >=20
+> >  drivers/gpu/drm/panthor/panthor_drv.c |  3 +-
+> >  drivers/gpu/drm/panthor/panthor_mmu.c | 78 ++++++++++++++++++++++++---
+> >  include/uapi/drm/panthor_drm.h        | 23 ++++++++
+> >  3 files changed, 95 insertions(+), 9 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/panthor/panthor_drv.c
+> > b/drivers/gpu/drm/panthor/panthor_drv.c index 1116f2d2826e..585c07b07c42
+> > 100644
+> > --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> > +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> > @@ -1608,6 +1608,7 @@ static void panthor_debugfs_init(struct drm_minor
+> > *minor)>=20
+> >   * - 1.3 - adds DRM_PANTHOR_GROUP_STATE_INNOCENT flag
+> >   * - 1.4 - adds DRM_IOCTL_PANTHOR_BO_SET_LABEL ioctl
+> >   * - 1.5 - adds DRM_PANTHOR_SET_USER_MMIO_OFFSET ioctl
+> >=20
+> > + * - 1.6 - adds DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT flag
+> >=20
+> >   */
+> > =20
+> >  static const struct drm_driver panthor_drm_driver =3D {
+> > =20
+> >  	.driver_features =3D DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ |
+> >=20
+> > @@ -1621,7 +1622,7 @@ static const struct drm_driver panthor_drm_driver=
+ =3D
+> > {
+> >=20
+> >  	.name =3D "panthor",
+> >  	.desc =3D "Panthor DRM driver",
+> >  	.major =3D 1,
+> >=20
+> > -	.minor =3D 5,
+> > +	.minor =3D 6,
+> >=20
+> >  	.gem_create_object =3D panthor_gem_create_object,
+> >  	.gem_prime_import_sg_table =3D drm_gem_shmem_prime_import_sg_table,
+> >=20
+> > diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c
+> > b/drivers/gpu/drm/panthor/panthor_mmu.c index f0a22b775958..4ce9fff67d69
+> > 100644
+> > --- a/drivers/gpu/drm/panthor/panthor_mmu.c
+> > +++ b/drivers/gpu/drm/panthor/panthor_mmu.c
+> > @@ -202,6 +202,9 @@ struct panthor_vm_op_ctx {
+> >=20
+> >  		/** @map.bo_offset: Offset in the buffer object. */
+> >  		u64 bo_offset;
+> >=20
+> > +		/** @map.bo_repeat_range: Repeated BO range. */
+> > +		u32 bo_repeat_range;
+> > +
+> >=20
+> >  		/**
+> >  	=09
+> >  		 * @map.sgt: sg-table pointing to pages backing the GEM=20
+object.
+> >  		 *
+> >=20
+> > @@ -1007,6 +1010,26 @@ panthor_vm_map_pages(struct panthor_vm *vm, u64
+> > iova, int prot,>=20
+> >  	return 0;
+> > =20
+> >  }
+> >=20
+> > +static int
+> > +panthor_vm_repeated_map_pages(struct panthor_vm *vm, u64 iova, int pro=
+t,
+> > +			      struct sg_table *sgt, u64 offset, u64=20
+size,
+> > +			      u64 count)
+> > +{
+> > +	/* FIXME: we really need to optimize this at the io_pgtable level.=20
+*/
+>=20
+> Do you have plans for optimizing this?=20
+I personally don't have any plans, no, but maybe Boris does. I'll forward t=
+his=20
+question to him once he's back from his vacation.
+> How bad is the performance
+> without optimizing?
+It's better than the alternative of poking vm_bind with a morbillion=20
+drm_panthor_vm_bind_ops. More seriously, I don't really have any workloads=
+=20
+beside VK CTS to measure, for now. There's some stuff we should try to do i=
+n=20
+panvk first, like using a 2M dummy_page and doing some gymnastics when mapp=
+ing=20
+it so we get huge mappings, which will hopefully lessen the pressure on thi=
+s=20
+loop.
+>=20
+> > +	for (u64 i =3D 0; i < count; i++) {
+> > +		int ret;
+> > +
+> > +		ret =3D panthor_vm_map_pages(vm, iova + (size * i), prot,
+> > +					   sgt, offset, size);
+> > +		if (ret) {
+> > +			panthor_vm_unmap_pages(vm, iova, size * (i -=20
+1));
+> > +			return ret;
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> >=20
+> >  static int flags_to_prot(u32 flags)
+> >  {
+> > =20
+> >  	int prot =3D 0;
+> >=20
+> > @@ -1203,12 +1226,14 @@ panthor_vm_op_ctx_prealloc_vmas(struct
+> > panthor_vm_op_ctx *op_ctx)>=20
+> >  	(DRM_PANTHOR_VM_BIND_OP_MAP_READONLY | \
+> >  =09
+> >  	 DRM_PANTHOR_VM_BIND_OP_MAP_NOEXEC | \
+> >  	 DRM_PANTHOR_VM_BIND_OP_MAP_UNCACHED | \
+> >=20
+> > +	 DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT | \
+> >=20
+> >  	 DRM_PANTHOR_VM_BIND_OP_TYPE_MASK)
+> > =20
+> >  static int panthor_vm_prepare_map_op_ctx(struct panthor_vm_op_ctx
+> >  *op_ctx,
+> > =20
+> >  					 struct panthor_vm=20
+*vm,
+> >  					 struct=20
+panthor_gem_object *bo,
+> >  					 u64 offset,
+> >=20
+> > +					 u32 repeat_range,
+> >=20
+> >  					 u64 size, u64 va,
+> >  					 u32 flags)
+> > =20
+> >  {
+> >=20
+> > @@ -1224,9 +1249,22 @@ static int panthor_vm_prepare_map_op_ctx(struct
+> > panthor_vm_op_ctx *op_ctx,>=20
+> >  	    (flags & DRM_PANTHOR_VM_BIND_OP_TYPE_MASK) !=3D
+> >  	    DRM_PANTHOR_VM_BIND_OP_TYPE_MAP)>  	=09
+> >  		return -EINVAL;
+> >=20
+> > -	/* Make sure the VA and size are aligned and in-bounds. */
+> > -	if (size > bo->base.base.size || offset > bo->base.base.size -=20
+size)
+> > -		return -EINVAL;
+> > +	if (!(flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT)) {
+> > +		/* Make sure the VA and size are in-bounds. */
+> > +		if (size > bo->base.base.size || offset > bo-
+>base.base.size - size)
+> > +			return -EINVAL;
+> > +	} else {
+> > +		/* Make sure the repeat_range is in-bounds. */
+> > +		if (repeat_range > bo->base.base.size || offset > bo-
+>base.base.size -
+> > repeat_range) +			return -EINVAL;
+> > +
+> > +		/* Make sure size is a multiple of repeat_range */
+> > +
+> > +		u64 repeat_count =3D size;
+> > +
+> > +		if (do_div(repeat_count, repeat_range))
+> > +			return -EINVAL;
+> > +	}
+> >=20
+> >  	/* If the BO has an exclusive VM attached, it can't be mapped to=20
+other
+> >  	VMs. */ if (bo->exclusive_vm_root_gem &&
+> >=20
+> > @@ -1295,6 +1333,7 @@ static int panthor_vm_prepare_map_op_ctx(struct
+> > panthor_vm_op_ctx *op_ctx,>=20
+> >  		drm_gem_shmem_unpin(&bo->base);
+> >  =09
+> >  	op_ctx->map.bo_offset =3D offset;
+> >=20
+> > +	op_ctx->map.bo_repeat_range =3D repeat_range;
+> >=20
+> >  	/* L1, L2 and L3 page tables.
+> >  =09
+> >  	 * We could optimize L3 allocation by iterating over the sgt and=20
+merging
+> >=20
+> > @@ -2112,9 +2151,22 @@ static int panthor_gpuva_sm_step_map(struct
+> > drm_gpuva_op *op, void *priv)>=20
+> >  	panthor_vma_init(vma, op_ctx->flags & PANTHOR_VM_MAP_FLAGS);
+> >=20
+> > -	ret =3D panthor_vm_map_pages(vm, op->map.va.addr,
+> > flags_to_prot(vma->flags), -				  =20
+op_ctx->map.sgt, op->map.gem.offset,
+> > -				   op->map.va.range);
+> > +	if (op_ctx->flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT) {
+> > +		u64 repeat_count =3D op->map.va.range;
+> > +
+> > +		do_div(repeat_count, op->map.gem.range);
+> > +		ret =3D panthor_vm_repeated_map_pages(vm, op-
+>map.va.addr,
+> > +						   =20
+flags_to_prot(vma->flags),
+> > +						    op_ctx-
+>map.sgt,
+> > +						    op-
+>map.gem.offset,
+> > +						    op-
+>map.gem.range,
+> > +						   =20
+repeat_count);
+> > +	} else {
+> > +		ret =3D panthor_vm_map_pages(vm, op->map.va.addr,
+> > +					   flags_to_prot(vma-
+>flags),
+> > +					   op_ctx->map.sgt,=20
+op->map.gem.offset,
+> > +					   op->map.va.range);
+> > +	}
+> >=20
+> >  	if (ret)
+> >  =09
+> >  		return ret;
+> >=20
+> > @@ -2237,7 +2289,7 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct
+> > panthor_vm_op_ctx *op,>=20
+> >  	switch (op_type) {
+> >  	case DRM_PANTHOR_VM_BIND_OP_TYPE_MAP: {
+> >=20
+> > -		const struct drm_gpuvm_map_req map_req =3D {
+> > +		struct drm_gpuvm_map_req map_req =3D {
+> >=20
+> >  			.va.addr =3D op->va.addr,
+> >  			.va.range =3D op->va.range,
+> >  			.gem.obj =3D op->map.vm_bo->obj,
+> >=20
+> > @@ -2249,6 +2301,11 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct
+> > panthor_vm_op_ctx *op,>=20
+> >  			break;
+> >  	=09
+> >  		}
+> >=20
+> > +		if (op->flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT) {
+> > +			map_req.flags |=3D DRM_GPUVA_REPEAT;
+> > +			map_req.gem.range =3D op->map.bo_repeat_range;
+> > +		}
+> > +
+> >=20
+> >  		ret =3D drm_gpuvm_sm_map(&vm->base, vm, &map_req);
+> >  		break;
+> >  =09
+> >  	}
+> >=20
+> > @@ -2497,6 +2554,7 @@ panthor_vm_bind_prepare_op_ctx(struct drm_file
+> > *file,
+> >=20
+> >  		ret =3D panthor_vm_prepare_map_op_ctx(op_ctx, vm,
+> >  	=09
+> >  						    gem ?=20
+to_panthor_bo(gem) : NULL,
+> >  						    op-
+>bo_offset,
+> >=20
+> > +						    op-
+>bo_repeat_range,
+> >=20
+> >  						    op-
+>size,
+> >  						    op->va,
+> >  						    op-
+>flags);
+> >=20
+> > @@ -2698,7 +2756,11 @@ int panthor_vm_map_bo_range(struct panthor_vm *v=
+m,
+> > struct panthor_gem_object *bo>=20
+> >  	struct panthor_vm_op_ctx op_ctx;
+> >  	int ret;
+> >=20
+> > -	ret =3D panthor_vm_prepare_map_op_ctx(&op_ctx, vm, bo, offset, size,=
+=20
+va,
+> > flags); +	/* TODO: would be nice to replace with assert instead */
+>=20
+> If you don't expect this to happen then this can be a "if (WARN_ON(...))".
+>=20
+> > +	if (flags & DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT)
+> > +		return -EINVAL;
+> > +
+> > +	ret =3D panthor_vm_prepare_map_op_ctx(&op_ctx, vm, bo, offset, 0,=20
+size,
+> > va, flags);>=20
+> >  	if (ret)
+> >  =09
+> >  		return ret;
+> >=20
+> > diff --git a/include/uapi/drm/panthor_drm.h
+> > b/include/uapi/drm/panthor_drm.h index e1f43deb7eca..ad278bc234b0 100644
+> > --- a/include/uapi/drm/panthor_drm.h
+> > +++ b/include/uapi/drm/panthor_drm.h
+> > @@ -496,6 +496,17 @@ enum drm_panthor_vm_bind_op_flags {
+> >=20
+> >  	 */
+> >  =09
+> >  	DRM_PANTHOR_VM_BIND_OP_MAP_UNCACHED =3D 1 << 2,
+> >=20
+> > +	/**
+> > +	 * @DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT: Repeat a BO range
+> > +	 *
+> > +	 * Only valid with DRM_PANTHOR_VM_BIND_OP_TYPE_MAP.
+> > +	 *
+> > +	 * When this is set, a BO range is repeated over the VA range.
+> > +	 * drm_panthor_vm_bind_op::bo_repeat_range defines the size of the
+> > +	 * BO range to repeat.
+> > +	 */
+> > +	DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT =3D 1 << 3,
+> > +
+> >=20
+> >  	/**
+> >  =09
+> >  	 * @DRM_PANTHOR_VM_BIND_OP_TYPE_MASK: Mask used to determine the=20
+type of
+> >  	 operation. */
+> >=20
+> > @@ -560,6 +571,18 @@ struct drm_panthor_vm_bind_op {
+> >=20
+> >  	 */
+> >  =09
+> >  	struct drm_panthor_obj_array syncs;
+> >=20
+> > +	/**
+> > +	 * @bo_repeat_range: The size of the range to be repeated.
+> > +	 *
+> > +	 * Must be zero if DRM_PANTHOR_VM_BIND_OP_MAP_REPEAT is not set in
+> > +	 * flags.
+> > +	 *
+> > +	 * Size must be a multiple of bo_repeat_range.
+> > +	 */
+> > +	__u32 bo_repeat_range;
+> > +
+> > +	/** @pad: Padding field. MBZ. */
+> > +	__u32 pad;
+>=20
+> If we're going to have the padding then the kernel needs to check that
+> this padding is zero, so that it can be available for future use.
+I decided to go with your suggestion to change bo_repeat_range to be an __u=
+64,=20
+but rejecting vm_binds with values above 2^32-1 for now.
+>=20
+> Steve
+>=20
+> >  };
+> > =20
+> >  /**
 
-> On Sun, Jul 13, 2025 at 11:19 PM Ben Skeggs <bskeggs@nvidia.com> wrote:
->> Yeah, the GPUs that don't support GSP-RM can't hit the code that used
->> fwif.enable anyway, so the series should be fine as it is.
-> We're actually talking about the reverse case. That is, on Ada what
-> happens if you set nouveau.config=NvGspRm=0 on the kernel command
-> line?
 
-The last entry in fwif[] for GPUs prior to Ada is one that always 
-succeeds, and sets up some minimal GSP stuff that's needed for booting 
-the pre-GSP-RM firmwares.  Ada onwards lack this, and the driver will 
-cleanly fail to load as if no firmware were present.
 
-The error message could be better for sure, and you can just add an 
-nvkm_error(&gsp->subdev, ...) after the attempt to call 
-nvkm_firmware_load() in subdev/gsp/base.c.
-
-This should work fine without needing to add any kind of "needs GSP-RM" 
-field anywhere.
-
-Ben.
 
