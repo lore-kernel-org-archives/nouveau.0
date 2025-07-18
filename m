@@ -4,83 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB0ED5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DC11D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5960E10EC36;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A4B10EC1F;
 	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3uG78OA";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQCAzwGC";
 	dkim-atps=neutral
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com
- [209.85.166.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E68910E1B1
- for <nouveau@lists.freedesktop.org>; Mon,  3 Nov 2025 00:18:48 +0000 (UTC)
-Received: by mail-il1-f176.google.com with SMTP id
- e9e14a558f8ab-4330d2ea04eso12684235ab.3
- for <nouveau@lists.freedesktop.org>; Sun, 02 Nov 2025 16:18:48 -0800 (PST)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BECC310E91D;
+ Fri, 18 Jul 2025 07:37:19 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-236192f8770so12984095ad.0; 
+ Fri, 18 Jul 2025 00:37:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762129127; x=1762733927; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=lbukBbCI6fFMOGWwEkWiHxAZwAf/KbN3KB3I9KpMMx8=;
- b=i3uG78OA8U2Pl0M/58E3turUsZhsgkSg99lPm3ZsLdeUudhvb5MDuKbnEJWKqn/wnY
- aWaXl9DcNtJpInh/aLDMl1CCfJFf2w/QEVs6PV0ZnOHCeZTcOTld9ayYO+O5/nAT5Xv8
- XYSn/9nrhOaFvwR0cT65wiWE8bPlxDT+jZ62rBFp5BjPm9cIZJp72qZUDCLL9qoyiFNx
- nc32f54uVCCfZASxfk6Gs+RFUc2Npo7PJk9IolmMWpef8OGx/wngFpcDdfSmN2vSDSey
- +vQLqk54BiLX8HrmmZo6gDv4d5ckmlF8nbxsabkRWQyNb0HAEswQb6yXEvQ6pLH7k+6S
- JUqA==
+ d=gmail.com; s=20230601; t=1752824239; x=1753429039; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Ai6AIsNYmiqglCkswHUmAaEoqz48shBaAddMej2UzY8=;
+ b=JQCAzwGC9VybZZqv1F40r6LfxbDoJaPEMIp+nTU43XtR+cWUWQES7+M0XEvmvh0Y8r
+ +XgwUNdX5Ai/ahJpEHXvP6NOD7RT8YKj8ZxWnx43iFTXzCHhxCCrQA7UT8WWICqbww8p
+ NYOtWzh5kERTovVsptjpneN8ECDNr2zo+RLjslP4dPhH/285eeYrExK/+u5BShMlbac6
+ T313rPH6p4JfPjH81M2Moh3ELt7vwaPzUWU2v5NDJwf548owguUVgAknUgCOZLLUuJnw
+ wgumt40UsgLyFCn0quH3Jk3vB4whlPfwuaZS3zlQu/NKd7rU1VO80wYCycdoNlF7InYB
+ 8G3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762129127; x=1762733927;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ d=1e100.net; s=20230601; t=1752824239; x=1753429039;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=lbukBbCI6fFMOGWwEkWiHxAZwAf/KbN3KB3I9KpMMx8=;
- b=emxJ9ZU/TAIT2JzkCCxpcupYbcjaGAEAd32+Zx78LBBj9D+Am7RU50eCO8FJOdWPoz
- XUs+l51NxSZ67AoZ60+/qOZVSBTBJbnJQ214pfX+NflfihHoTQcoj17Aw19YaqT6I4iv
- vnWqDNOGKD+B4c8BxYXyMsOcfRkAazsrS0RavLdU2eQXvfahNStHHVm6YP7HEx1amu7/
- C7j3maZ/HHr8MFc+oGhDiDEdYAFCOQKjuY8BTfbm6BbyMKa430+NzmR1Radcxk3uneRO
- qDY0j07cY64C5iGxAtF4V+hzSaolLOQ5P7uw/euZGHe4FsM/fM8jY1Xyw9dU1C1WGrdU
- 1KNA==
+ bh=Ai6AIsNYmiqglCkswHUmAaEoqz48shBaAddMej2UzY8=;
+ b=JTFd0KB8MPoBwIR+qx627rY0959GKM1yZW1uyHgQGuvWMp2XczsMYPI5FjnKINYuvh
+ wBz8mqqQttqwf/ETpSeDgu/h0adCPHkRUJ5l7yaJYfT+jX6m678IsHNN1iwDmS0bgjM4
+ 8N/zTjTA8HIJMECqy8gd2vjKZb8Pb6rsXbLi+lTcni+mZHhlQQGeZbDfjRUbGFT9umjp
+ i/D+TNIHIAv5zYGGCufTbod2lyMLtj9JbcYdg5UOuDhq/vHNguCqw5IPaeA4Z11I+E7u
+ 7uJV6zGYFc2b/ezrLgSEeLnqx/AvwmDYs4943IgAfhsWsEA5wpLNAl699ImZmsyPlx1P
+ qCUA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWCCb/OJtqVv4Co69sU/BJl86Dp4J1l2OLDprZCT8+SmqC3EZE2n8oLJ57w0dFVTRadMEaMV3cp@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YziUpeT5PFvCHtjsS4EdFwWlsd3khj2oHfmzBNw3mJQ52CFSSFT
- NcVOiNi6iy0vyfR8Z2s3MUqQmrze0qF83XDJD5kMt7lsZYZr40pTOg+sLn9I8w93Nvrjg+jSv4S
- RjpLQNC42YVfWymCTLspHy0Zi6G3XGdM=
-X-Gm-Gg: ASbGncu6W+1uaSQIIfeBwh+9nNDiwFVzoeilFcgQbuicLmpHrmfj7Gt8c71gGzoZ18K
- Ffy6mn0MZULj4xQSHFFh2yXFp8EE356VIkFg56D+GhesRDklqWb763R0mJN8t0wuyeoQb5t7eGY
- Mv+imn6wG6Q2miQ/7tKReEU/N7JhTKGjsnS9KmcKlgEFPCKtn4iDCzqcEIqKBdXgmWSVFC1I3OS
- i00Pqjux7I2m2MEB42nEoRBck/K/jaymogiErVbIw3C/yuAPT0f566mjO1mQ9JgxPpOnsR56mVa
- /O8=
-X-Google-Smtp-Source: AGHT+IEinxxKyGpY13CBZYEiEZRj5ZtrHLcrvHXjjmmISTFYSNVaHSlve6zbB1g6ISy0GNLADF79gcMJCySg/fAhlK4=
-X-Received: by 2002:a05:6e02:221e:b0:433:2d0f:e95d with SMTP id
- e9e14a558f8ab-4332d0ff57fmr29075505ab.27.1762129127059; Sun, 02 Nov 2025
- 16:18:47 -0800 (PST)
+ AJvYcCWDNsFWIeIHVlxsJDRAswlnn9BQnYJZsWviZ/8eaimdiqODbKAf55g71pwwqc4AyluwLIdrNWAu9Q==@lists.freedesktop.org,
+ AJvYcCXZGQv4L/gUKZWE3OjHEHFQwjJf8w4k4DTniYATTbNlXQHGHVXsJMT2I2BlsT5Q1sHQQhKWbRURmCk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw69QBlcCJh1dgUJu09o3qpWBt/DJxAf93XyeKyQy6Dzy4HcT5a
+ Y1OCdvHHKJJc8UQs+4A7jEXpSiE8vww9Mh8aNFj+8TlbrcdH7IrTSnWmWYdlxMk5KOg=
+X-Gm-Gg: ASbGnctUC7ohIWCIV/P/CqnuUphBjflNaw/jIM71eCHvUk89n9hrX35pKn0VvxuJgMK
+ +ZoyIjaMxNXw9aWNcK9bafvttecpNSq9GWf1Q6RZKI49mflo1Bqy/r4m5PCT1N6gkjPQR/8KkKJ
+ /52/szbw8zWp9ykxP4aBBvwx6CIjWvFBEYXSxLgJd705Y91L8jig0wNW8fFGmxfbk8DAfRraL13
+ OWntr7TLqezxbCbVa/bVn0uJkQ8Ow4+b0JYIP8492CnhYzEaRB8GnZ+r805GbDY4Lj9H8EbTQGA
+ AQew1f4tw4p8g+L64rJggCBzL4ctgx8Rh5OGCAwJDK3753nZ19NxCFVIUS/0Ea0k1CmdPsnUL0E
+ ecqP+CwhPMR6veaVUSI6QoqfP
+X-Google-Smtp-Source: AGHT+IGhzhjEyANqqp1/SDgKHIG6htiJ1z7iWroAuAfjCn4qbOsU8XvNCKF51G1XeSxmyeC5vQFokA==
+X-Received: by 2002:a17:903:19eb:b0:221:751f:cfbe with SMTP id
+ d9443c01a7336-23e2f73fea7mr100230355ad.19.1752824239054; 
+ Fri, 18 Jul 2025 00:37:19 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-23e3b6b4e84sm7671725ad.104.2025.07.18.00.37.18
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 18 Jul 2025 00:37:18 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: acourbot@nvidia.com,
+	dakr@kernel.org
+Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] gpu: nova-core: vbios: use offset_of in
+ PmuLookupTableHeader::new
+Date: Fri, 18 Jul 2025 00:36:23 -0700
+Message-ID: <20250718073633.194032-1-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <cover.1755235180.git.y.j3ms.n@gmail.com>
- <CANiq72nbERSOWKRUTJ96YYKCDeAoHLBuiVP+XkDUKg7JYkoyiA@mail.gmail.com>
- <CA+tqQ4KG98XcWh3rkAxEOiACSUtPf7KM0Wqh9Af=POgVDHJzzw@mail.gmail.com>
- <CANiq72kE89ukxpf3L0_jFOdv51TDtjjj3r=1mjJzdGWJwmAbaQ@mail.gmail.com>
- <CA+tqQ4J7_z7_NmUNojJttF1e8GRR8Ua9w0Rap1t-U4gYPhQ1Yg@mail.gmail.com>
- <DDHU4LL4GGIY.16OJMIL7ZK58P@nvidia.com>
-In-Reply-To: <DDHU4LL4GGIY.16OJMIL7ZK58P@nvidia.com>
-From: Jesung Yang <y.j3ms.n@gmail.com>
-Date: Mon, 3 Nov 2025 09:18:35 +0900
-X-Gm-Features: AWmQ_bmjwfOG0Fsadhki6hbGrYasLvIYy1-mvKZIH8xEYEub_dTdviKWOD4hlxE
-Message-ID: <CA+tqQ4+NY2zFJrr2omGqQcVG1N4cJBgYNO8qH=TFi5UG_vLfTA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] rust: add `TryFrom` and `Into` derive macros
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,124 +90,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Oct 14, 2025 at 3:35 PM Alexandre Courbot <acourbot@nvidia.com> wrote:
-[...]
-> This might not be too difficult to shoehorn as there is an
-> `is_in_bounds!` macro (which we can turn into a const method if that's
-> more suitable) that your proc macro could leverage, but I can't help but
-> thing that maybe there is a better, more general solution than
-> special-casing this?
->
-> [1] https://lore.kernel.org/rust-for-linux/20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com/
+Use the offset_of macro for each struct field, annotate the
+`PmuLookupTableHeader` struct with `#[repr(C)]` attribute,
+and add a TODO message to use FromBytes when available.
 
-I've tried your `BitInt` series, and I think I can generalize (at
-least the overflow check) even without the help of `fits_within!`.
-Since I can retrieve the number of valid bits and the signedness of a
-given integer type (including `BitInt`) while parsing the helper
-attributes, I can use that information to check whether casting from
-a value of type T to type U would overflow. Here's a sketch using
-declarative macro syntax to demonstrate the idea:
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-```
-// I'll write a function that returns equivalent `TokenStream`, which
-// is suitable for procedural macros.
-macro_rules! check_overflow {
-    ($val:expr, $src_ty:ty, $dst_ty:ty, $dst_nbits:expr) => {{
-        let val: $src_ty = $val;
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index a77d7a4c8595..cedfcf3476bb 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -893,6 +893,7 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
+ ///
+ /// See the [`PmuLookupTable`] description for more information.
+ #[expect(dead_code)]
++#[repr(C)]
+ struct PmuLookupTableHeader {
+     version: u8,
+     header_len: u8,
+@@ -901,16 +902,17 @@ struct PmuLookupTableHeader {
+ }
+ 
+ impl PmuLookupTableHeader {
++    // TODO[TRSM]: use FromBytes::from_bytes when it becomes available.
+     fn new(data: &[u8]) -> Result<Self> {
+         if data.len() < core::mem::size_of::<Self>() {
+             return Err(EINVAL);
+         }
+ 
+         Ok(PmuLookupTableHeader {
+-            version: data[0],
+-            header_len: data[1],
+-            entry_len: data[2],
+-            entry_count: data[3],
++            version: data[const { core::mem::offset_of!(PmuLookupTableHeader, version) }],
++            header_len: data[const { core::mem::offset_of!(PmuLookupTableHeader, header_len) }],
++            entry_len: data[const { core::mem::offset_of!(PmuLookupTableHeader, entry_len) }],
++            entry_count: data[const { core::mem::offset_of!(PmuLookupTableHeader, entry_count) }],
+         })
+     }
+ }
 
-        // For every integer type (including `BitInt`), its minimum
-        // value always fits in `i128`.
-        let dst_min =
-            (<$dst_ty>::MIN >> (<$dst_ty>::BITS - ($dst_nbits))) as i128;
-        // For every integer type (including `BitInt`), its maximum
-        // value always fits in `u128`.
-        let dst_max =
-            (<$dst_ty>::MAX >> (<$dst_ty>::BITS - ($dst_nbits))) as u128;
+base-commit: 14ae91a81ec8fa0bc23170d4aa16dd2a20d54105
+prerequisite-patch-id: 6f9311de987d56f4313d5fbdd85ed8c48a44e78c
+-- 
+2.50.1
 
-        #[allow(unused_comparisons)]
-        let is_src_signed = <$src_ty>::MIN < 0;
-        #[allow(unused_comparisons)]
-        let is_dst_signed = dst_min < 0;
-
-        let fits = if is_src_signed && is_dst_signed {
-            // Casting from a signed value to `i128` does not
-            // overflow since `i128` is the largest signed
-            // primitive integer type.
-            (val as i128) >= dst_min && val <= dst_max
-        } else if !is_src_signed && !is_dst_signed {
-            // Casting from an unsigned value to `u128` does not
-            // overflow since `u128` is the largest unsigned
-            // primitive integer type.
-            (val as u128) <= dst_max
-        } else if is_src_signed && !is_dst_signed {
-            // Casting from a signed value greater than 0 to `u128`
-            // does not overflow since since `u128::MAX` is
-            // greater than `i128::MAX`.
-            val >= 0 && (val as u128) <= dst_max
-        } else {
-            // Casting from an unsigned value to `u128` does not
-            // overflow since `u128` is the largest unsigned
-            // primitive integer type.
-            (val as u128) <= dst_max
-        };
-
-        !fits
-    }};
-    // Yes, we can also support `bool`!
-    ($val:expr, $src_ty:ty, bool) => {{
-        let val: $src_ty = $val;
-
-        let fits = val == 0 || val == 1;
-
-        !fits
-    }};
-}
-
-// For a `#[repr(i32)]` enum with `#[try_from(BitInt<u8, 4>)]` and
-// `#[into(BitInt<u8, 4>)]`:
-check_overflow!(Enum::A as i32, i32, u8, 4);
-
-// For a `#[repr(i32)]` enum with `#[try_from(u8)]` and `#[into(u8)]`:
-check_overflow!(Enum::A as i32, i32, u8, u8::BITS);
-
-// For a `#[repr(i32)]` enum with `#[try_from(bool)]` and
-// `#[into(bool)]`:
-check_overflow!(Enum::A as i32, i32, bool);
-```
-
-It is somewhat similar to `fits_within!`, but it also cares signedness
-differences between source and destination types.
-
-It might help if `BitInt` exposed `MIN` and `MAX` associated constants
-in terms of its backing type:
-
-```
-macro_rules! impl_max_min {
-    ($($type:ty),+) => {
-        $(
-        impl<const NUM_BITS: u32> BitInt<$type, NUM_BITS> {
-            pub const MIN: $type =
-                <$type>::MIN >> (<$type>::BITS - NUM_BITS);
-            pub const MAX: $type =
-                <$type>::MAX >> (<$type>::BITS - NUM_BITS);
-        }
-        )+
-    };
-}
-impl_max_min!(u8, u16, u32, u64, i8, i16, i32, i64);
-```
-
-... but for consistency with existing primitive integer types, these
-constants would ideally be of type `BitInt` instead of the backing
-type, which unfortunately limits their usefulness in implementing
-`check_overflow!`.
-
-As a final side note: as you're already aware, breaking changes to
-`BitInt` will also affect the `TryFrom` and `Into` derive macros, since
-these macros depend on certain public APIs provided by `BitInt`. The
-same applies to any future custom types that require support from these
-macros. That said, I'll do my best to minimize the dependency wherever
-possible.
-
-Best Regards,
-Jesung
