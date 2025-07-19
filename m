@@ -4,97 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E0CBCCD18C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E82CACCD188
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D0C010E63C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5817A10E630;
 	Mon,  6 Oct 2025 20:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="R1Ajk/tc";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XD+snZgQ";
 	dkim-atps=neutral
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
- [209.85.160.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3892910EA78;
- Fri,  4 Jul 2025 20:16:11 +0000 (UTC)
-Received: by mail-qt1-f173.google.com with SMTP id
- d75a77b69052e-4a9741b513eso26494161cf.1; 
- Fri, 04 Jul 2025 13:16:11 -0700 (PDT)
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
+ [209.85.222.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 050D110E35D;
+ Sat, 19 Jul 2025 22:42:17 +0000 (UTC)
+Received: by mail-qk1-f182.google.com with SMTP id
+ af79cd13be357-7e34607e575so571389285a.2; 
+ Sat, 19 Jul 2025 15:42:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751660170; x=1752264970; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1752964936; x=1753569736; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=rFX61eKYEcol9kAG3M8tjgApkaTg0NmTOXaZhr2OWW4=;
- b=R1Ajk/tcHMHKOqz6iT+0zQ/3g32b1gnBtH//ZijmFu1R49BcxyjQuRsDBHDKLumrzW
- 79kiNgPovUdIvcO4MtDkjANOWktieIgOvuXvRibNEyBINloYUIj3ombwpY65HMbBsaBO
- lBjjNPgreySXDkLeFwUNOATSKp9epLLYRfQlNJeCf4p2HZH+uIQvWK4Fcwc/k3eeVvhv
- VQkl87rbBN1UIxPTOvs+Y1saLc6saP8IqXawpmZ1N+zfx0XqZo3Z0BuWBnhoFnZcNbFz
- 3hMbz/AaRqYlHnawc9hjd0x0ZAnBH5840LLN+LoLXb73toytLT2UL76WQ+VbnIPbcdUL
- Idjg==
+ :reply-to; bh=cMiFmax83DBHXL/VqrofbEg17y34QjNQwBZrlkLA1Pc=;
+ b=XD+snZgQyoYB5yBWhaVbLXcKv6yLC87lJVP2nb0FO7G5ogn9LT2rFVtKafPjJHGOjs
+ jcc8m+4uiqGoUOsas5xdZ/oBD0OdzwCrSiVHrtvaTQqU0c+ckALrT7wlUYWqPS9fCnEl
+ /CdfqMI5nzR3moA+6gxuy+zjNdx+vULWox2o+b7whl7htXrdtwhj2eFu80rrPvUInX0b
+ rxMPQMhvDu3IKqA/bRlFUUjrXYUFH7dgMIj4WMmcTpZUb2hS9wFvkdI6KEV9sCZupbTQ
+ vJTyFDVcnvpzjLoRWJu55mISyb8hFa5eRmMEifmB4huMtZtyzDwap0roQ8d0qa9AFhMe
+ M64g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751660170; x=1752264970;
+ d=1e100.net; s=20230601; t=1752964936; x=1753569736;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=rFX61eKYEcol9kAG3M8tjgApkaTg0NmTOXaZhr2OWW4=;
- b=TMF/G9QU/pDvLqU3FRAXpsFXotIcRqFsZ4TSVc0X4CxmUpG5yTg5vXDTyuRrW/Zfzc
- jG7dfswL5xHV+BG9q1XCA2ZNN6SRCnB6z7HmXb2YU77Qs632lxrQ5safo2cUGbyxNYgh
- /aKVh8xxzqInvyItqdmDYDf5/m6VvJr5a5ALwnRNF2I1Oze30Gq896y/zjTsVHpWMsHF
- H6nIGMRTAY/cnYcb2KxFCI6zQXFsTDukQNHpZFJFJZxPR49EZWhi3xiKFFT+LFWX7J1+
- pppvg73tNuNTKfsA0IrsGkMaK16XnMMEEUyJX2aVRgP9U3fSLcWBE0gEBr4hvGSKdamk
- IqRw==
+ bh=cMiFmax83DBHXL/VqrofbEg17y34QjNQwBZrlkLA1Pc=;
+ b=WY5aazRVlPdzuSnEDPBoynwDXXiZ/DZo2/YxcrwhRCoSa38vcA3+dPMizyTPR1Lb6z
+ KR4TDSYVogRKJkpCH/CcPIq9wymEzGbs2zTcoKgJ9JLX/lg7Zp4v1VMqx2t7oFpPseLH
+ gos9RZsOFJ+5X1wMb1+JeP/rG/BMQpqvr07iGdJ3oWms1IGSzrAvgRqLhoX4OYFR1YUE
+ BLqWT06Dq9WYydNRATvhKiSAuwsObWOaUUgPfe1CIOQC0jYRCh8Z30gt5HSZX1pgp7iA
+ 4kCRoOSm6JkGoWQIi/uppZggU9DfR/PF1sAeGimnZmDL278I76f+9swAyHwQ0lnCXFel
+ PLTA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWsKMn8pjVLPwJb9GvqX+Kjkqq0ADqWQfUX4SdyXtQXRFXD5DUBQIYNlImwzLvubaBhoiGQuFKPTg==@lists.freedesktop.org,
- AJvYcCX+aYTXGKUcCmjiygmP8xcnjN4J7R5G/NfSEHgLI0cebvysnZNqsmCfDwrLZJVxjMVmPq4sSA+E+0w=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxnehhZcq+Q8eZB8aidthLya1TrG97iH3H76mu2cckFbzO6QQxO
- aV/lDVFcfbDup4coNYoLLF+9j79miGL+/Xofa3OVbZGnUxivkYe6JHfu
-X-Gm-Gg: ASbGncs3yguAXmY6iUEZwns4UZscdioXb6C5SkLGCNkb0i9+dSXFPPa6wfOYAeBcLjL
- XOskfz6azmTvH+mBs9QRZU9VdIgFjqvP647ila1PSB1UvZnBIyIhBLJBkqIDwy40Yb+6muUlCQQ
- p7abo+Pynqtxi2hCXgVdbRjDus3/xgzb7Y9U9uloalGyQZdxD8iTIkFyWd0I8wejI0accy96Oyj
- GynyrU3x6jlkyN/9ZKJtT5HsLS465zVnsDpy8qzq2t3lztftMdvX9/K5TAyzmmXy7ZzGcUGTWVZ
- eoSDYrEPAB6QASGfX5Ecs7oVWOFc+CuZCPwm++UcC/8lbc6vKEtk0HRstvyLzxpgWWKskS7KpYI
- wCtR4dhI=
-X-Google-Smtp-Source: AGHT+IHCClMp3qYZhSGQu4QEJmyo61DmZpj8XQCRl0CIpaNBHANR9wOTxi6Qz7IzHn6a7YD26jNiWw==
-X-Received: by 2002:ac8:7f8f:0:b0:494:59b0:7347 with SMTP id
- d75a77b69052e-4a9a69f76cfmr2280131cf.37.1751660170283; 
- Fri, 04 Jul 2025 13:16:10 -0700 (PDT)
-Received: from 156.1.168.192.in-addr.arpa
- ([2600:4041:5c29:e400:94f3:d2bb:5ace:77a1])
+ AJvYcCUOE+Xl45sIMReWmgrJXOKsh6tEEOOUBnCRmqYARiqy/GWJadF0gy1SO94Goq+CxqP/ruNI/4zD3zo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzOZJFLBrbRbkd4O9KMXFizHF1T9A8XO/M6su+Molf8rSay3CnZ
+ SFVVWi18rp3g+++IP3sTKFomZwO81ieBl9UUpq3/WoyKzNUFkFjOUbPP
+X-Gm-Gg: ASbGncuyhKJcB80w3x1hGz6u6X4gjIM8Qmdo/xHFFPein21+Obj5UT2xbe40Q/gcVPb
+ 0b9ZyXKc7vuyEwlDl6Dz3cHu+a1EfC47nfEWmHqUrseJ7IethCWKUi+9olmBxR4IOLcNQnp+YKr
+ IhGohrbHUozST7HJKLNVGAan+Jek3nN2HHy+noPkwvVBMIqcovCfP73LWOZFjc63s7Oe03RJfTI
+ R416XDqayBo3y+cAaZdizbJtpxMNpMA3s6CIwJhX9XthX43lhm6Vfpm2LJQ41FgTPnZ8aYDpl0S
+ JEgKc7JgSq2k92uAUDOU64a8YNv4rYdKyWumHOBXIOfvql4bu5LMm4YrQpu1EIPDQpkY6sRgTzc
+ OF8fP9ll+/VkiCZPXO455OSZnRN1kRt6HXbkChHGeVQS19E87UY0PwqOO8uw3f+U5XdEfdtPWcf
+ wXGbSMr0Wdvw9MMid7esRUxA7+m0KD
+X-Google-Smtp-Source: AGHT+IGVo1i2TaQIfqAE4SlKOOW0XT2MULeIOXkGaUKBOzQ48pQ7CM6UfPlu3A7MsQxB2vk/ikPF8g==
+X-Received: by 2002:a05:620a:4095:b0:7e3:3da8:1d06 with SMTP id
+ af79cd13be357-7e356b282efmr1102367685a.54.1752964936028; 
+ Sat, 19 Jul 2025 15:42:16 -0700 (PDT)
+Received: from
+ 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
+ ([2600:4041:5c29:e400:78d6:5625:d350:50d1])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4a9949e5221sm19772941cf.2.2025.07.04.13.16.09
+ af79cd13be357-7e356c75cf5sm251550785a.84.2025.07.19.15.42.14
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jul 2025 13:16:09 -0700 (PDT)
+ Sat, 19 Jul 2025 15:42:15 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Fri, 04 Jul 2025 16:14:57 -0400
-Subject: [PATCH 6/6] rust: use `core::ffi::CStr` method names
+Date: Sat, 19 Jul 2025 18:41:54 -0400
+Subject: [PATCH v2 5/8] rust: file: use `kernel::{fmt,prelude::fmt!}`
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250704-core-cstr-prepare-v1-6-a91524037783@gmail.com>
-References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
-In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Danilo Krummrich <dakr@kernel.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250719-core-cstr-fanout-1-v2-5-1ab5ba189c6e@gmail.com>
+References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+In-Reply-To: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Uladzislau Rezki <urezki@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1751660161; l=4785;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1752964924; l=1180;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=Gr5Y82FzFOHSFgE4bAXR4LJsBEIiMIFEwMxnG28mI/k=;
+ bh=pXR+pneQEkVan1ORZtdC4QLLw1pF+V8ExOh8drAAHsM=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QLas4zvU0lCc78yU+Yb9DLjcVMQs5g7e5Va+eCFZgvaWEOcJlCw4GoHKAaftU93fC6280TgpoTe
- TE2iS8TMjrAY=
+ QDn9tcAkIdM1tWcaE/g1fRFUadSDfcLW0qfYjUzPTHiL3CXZbnVUx7cxTfPOCZum2i3seyeZdwF
+ 2Wk7ChT8O9A8=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,107 +118,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Prepare for `core::ffi::CStr` taking the place of `kernel::str::CStr` by
-avoiding methods that only exist on the latter.
+Reduce coupling to implementation details of the formatting machinery by
+avoiding direct use for `core`'s formatting traits and macros.
 
-Also avoid `Deref<Target=BStr> for CStr` as that impl doesn't exist on
-`core::ffi::CStr`.
-
-Link: https://github.com/Rust-for-Linux/linux/issues/1075
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
+Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/error.rs |  2 +-
- rust/kernel/str.rs   | 20 ++++++++++----------
- 2 files changed, 11 insertions(+), 11 deletions(-)
+ rust/kernel/fs/file.rs | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/rust/kernel/error.rs b/rust/kernel/error.rs
-index ffa8efd2d547..e29a5d76300e 100644
---- a/rust/kernel/error.rs
-+++ b/rust/kernel/error.rs
-@@ -188,7 +188,7 @@ fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-             Some(name) => f
-                 .debug_tuple(
-                     // SAFETY: These strings are ASCII-only.
--                    unsafe { core::str::from_utf8_unchecked(name) },
-+                    unsafe { core::str::from_utf8_unchecked(name.to_bytes()) },
-                 )
-                 .finish(),
-         }
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index cbb357fc0111..6c892550c0ba 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -57,11 +57,11 @@ impl fmt::Display for BStr {
-     /// # use kernel::{prelude::fmt, b_str, str::{BStr, CString}};
-     /// let ascii = b_str!("Hello, BStr!");
-     /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
--    /// assert_eq!(s.as_bytes(), "Hello, BStr!".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "Hello, BStr!".as_bytes());
-     ///
-     /// let non_ascii = b_str!("🦀");
-     /// let s = CString::try_from_fmt(fmt!("{non_ascii}"))?;
--    /// assert_eq!(s.as_bytes(), "\\xf0\\x9f\\xa6\\x80".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\\xf0\\x9f\\xa6\\x80".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-@@ -89,11 +89,11 @@ impl fmt::Debug for BStr {
-     /// // Embedded double quotes are escaped.
-     /// let ascii = b_str!("Hello, \"BStr\"!");
-     /// let s = CString::try_from_fmt(fmt!("{ascii:?}"))?;
--    /// assert_eq!(s.as_bytes(), "\"Hello, \\\"BStr\\\"!\"".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\"Hello, \\\"BStr\\\"!\"".as_bytes());
-     ///
-     /// let non_ascii = b_str!("😺");
-     /// let s = CString::try_from_fmt(fmt!("{non_ascii:?}"))?;
--    /// assert_eq!(s.as_bytes(), "\"\\xf0\\x9f\\x98\\xba\"".as_bytes());
-+    /// assert_eq!(s.to_bytes(), "\"\\xf0\\x9f\\x98\\xba\"".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-@@ -465,15 +465,15 @@ impl fmt::Display for CStr {
-     /// # use kernel::str::CString;
-     /// let penguin = c_str!("🐧");
-     /// let s = CString::try_from_fmt(fmt!("{penguin}"))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
-+    /// assert_eq!(s.to_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
-     ///
-     /// let ascii = c_str!("so \"cool\"");
-     /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
--    /// assert_eq!(s.as_bytes_with_nul(), "so \"cool\"\0".as_bytes());
-+    /// assert_eq!(s.to_bytes_with_nul(), "so \"cool\"\0".as_bytes());
-     /// # Ok::<(), kernel::error::Error>(())
-     /// ```
-     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
--        for &c in self.as_bytes() {
-+        for &c in self.to_bytes() {
-             if (0x20..0x7f).contains(&c) {
-                 // Printable character.
-                 f.write_char(c as char)?;
-@@ -874,11 +874,11 @@ fn write_str(&mut self, s: &str) -> fmt::Result {
- /// use kernel::{str::CString, prelude::fmt};
- ///
- /// let s = CString::try_from_fmt(fmt!("{}{}{}", "abc", 10, 20))?;
--/// assert_eq!(s.as_bytes_with_nul(), "abc1020\0".as_bytes());
-+/// assert_eq!(s.to_bytes_with_nul(), "abc1020\0".as_bytes());
- ///
- /// let tmp = "testing";
- /// let s = CString::try_from_fmt(fmt!("{tmp}{}", 123))?;
--/// assert_eq!(s.as_bytes_with_nul(), "testing123\0".as_bytes());
-+/// assert_eq!(s.to_bytes_with_nul(), "testing123\0".as_bytes());
- ///
- /// // This fails because it has an embedded `NUL` byte.
- /// let s = CString::try_from_fmt(fmt!("a\0b{}", 123));
-@@ -948,7 +948,7 @@ impl<'a> TryFrom<&'a CStr> for CString {
-     fn try_from(cstr: &'a CStr) -> Result<CString, AllocError> {
-         let mut buf = KVec::new();
+diff --git a/rust/kernel/fs/file.rs b/rust/kernel/fs/file.rs
+index 35fd5db35c46..67a3654f0fd3 100644
+--- a/rust/kernel/fs/file.rs
++++ b/rust/kernel/fs/file.rs
+@@ -11,6 +11,7 @@
+     bindings,
+     cred::Credential,
+     error::{code::*, Error, Result},
++    fmt,
+     types::{ARef, AlwaysRefCounted, NotThreadSafe, Opaque},
+ };
+ use core::ptr;
+@@ -460,8 +461,8 @@ fn from(_: BadFdError) -> Error {
+     }
+ }
  
--        buf.extend_from_slice(cstr.as_bytes_with_nul(), GFP_KERNEL)?;
-+        buf.extend_from_slice(cstr.to_bytes_with_nul(), GFP_KERNEL)?;
- 
-         // INVARIANT: The `CStr` and `CString` types have the same invariants for
-         // the string data, and we copied it over without changes.
+-impl core::fmt::Debug for BadFdError {
+-    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
++impl fmt::Debug for BadFdError {
++    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+         f.pad("EBADF")
+     }
+ }
 
 -- 
-2.50.0
+2.50.1
 
