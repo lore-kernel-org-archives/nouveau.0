@@ -4,82 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ED62D5B15E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D13D3D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9771910EB24;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCA410EB17;
 	Sat, 13 Dec 2025 12:41:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wj/cAGbH";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/TNHY0C";
 	dkim-atps=neutral
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33A4A10E00E
- for <nouveau@lists.freedesktop.org>; Sun,  3 Aug 2025 14:21:31 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-76bfd457607so244411b3a.0
- for <nouveau@lists.freedesktop.org>; Sun, 03 Aug 2025 07:21:31 -0700 (PDT)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9C4810E45C;
+ Sun, 20 Jul 2025 22:58:05 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-313336f8438so685415a91.0; 
+ Sun, 20 Jul 2025 15:58:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754230890; x=1754835690; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1753052285; x=1753657085; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=114e6dFe36rXGszuWHRDJN4O+b6P/WGKkf7Q+pRcpDg=;
- b=Wj/cAGbHClp8aT6azNo5/u3gnfjRv/QnbjUk2qnRbuycI3dJbufSEyAi7MX/eIlIJz
- wFSycYwz58c2/r7rTdw96yPJmM+yiX09MfZEnYOnPG9KQKjX9wtbDJNjudvK6AmWwwSH
- i9BWuD19Rw+7Js6HxLGIgINHBMo65fxcAv+sFSb2dDuXjx55DkuT35lSH7d9B94DmHdC
- x0EWAXycR5hIgMYSxxRP9oc7F9JlbNOrQsn4bZyoGV6t4Zfgu5VifufF49SJS+AmLw61
- FlgOY+8z8QfRvN38HF7XvYSsTp/WLbw08D9hk0MUTMamEAc8X/Yq+wsi6dJiIUCmOKj8
- 1EQQ==
+ bh=daKnTV4fSp02pGETIV5FEMpqyBsp4GEPOMMbZuGBz/g=;
+ b=e/TNHY0CWcKELNucbm/8hT1f9K3E2V2fzeC1vvb7cuS9YgszQ6gobCg00tFREgB1Wt
+ PoI411CfNw5g7uRTjHFZGjcRdbFpgT+JTKcXunKaaXpPjH7tb7BKcqL8RuQm0Px4vN/K
+ OWUbHVYt266e1mGbXFm9z/uJKhokcYrIYpmM8RKrjJY/zDyCDWRKEINj3v9PosaDXh1m
+ wxIZyRE1TQULll33nbCra62TlWH8o4byXYn1oX36BbLCV2ombd0fliHf3sxYhoXMMIb7
+ cyKaMHO5901bl768LetOw814kUoCxJO3DvtMt/nUPWjkqGzRVMoRq6Y9iUu2clEDgScz
+ OeDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754230890; x=1754835690;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1753052285; x=1753657085;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=114e6dFe36rXGszuWHRDJN4O+b6P/WGKkf7Q+pRcpDg=;
- b=OsR/1dVnOfLdVeiUNbKExvFafeG40etFAawTdETOgRPACViPSIq7weqoj/gzNspsr9
- LecfyJl4zJ4m44jkpEqHv5AcIyIKeMLKn8k7fbF7w3NXjIJuhJorAFJBtnhZBFXAbwlo
- Y4eBOR0zk+y7/h2M3DfJWrSX/r61wyIK0R+rtnjHf7bGGSeyhCwcMfPjMd/1ColY/2Jo
- Icn9H3sLJUytDbhcULOWcTreDCOIogcbeeLlGT30/4eyztQ6Hg5YxKGS70a0PatU5gwV
- ey+Glqbtso/Z5vZawSqyEp3JkR+5tEb7EBRdA2S5tElSUC+quUKzktuFA+Z2fs2zuSIN
- 3t1g==
+ bh=daKnTV4fSp02pGETIV5FEMpqyBsp4GEPOMMbZuGBz/g=;
+ b=vzv5FQdPGE9fx+0iSC5yGZ5coy+mipSGZgNoiEpgCCiJOqGoXxbYmq/613DuhtpwJT
+ 7iA2LO/C1JOF6RxhFBeRrjIZpNil8rp9V48qFrPBxeSnwJhAbESDOH6lDrm24L//8+I4
+ cyxCclrULeTnfb3urT3PFtL2GGcd+rGjz2FYNQ6/2h9qlL9SqEIv4fSb49qWDHaNzEwU
+ sZQFPNM+jqfd6mhSGsYHVNB7S345dCG47X57DJ8mfHBKUN7dkpZrMzWMIAgEAkYhsFkZ
+ GU1Uk7SK9plGwjB132AwXm+4vBZhpLK4D6fi+zDOmtapWZkZJzF5RGVCYDxLPx0/otC8
+ 6A5Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUEqlcJQUiJWlA5QVr9vEzAk2Gj1J8H8aXAaSbkmTxZb8Bq+byCyAquMU2Hswu0lYGuN3EyMdLy@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyfSN6Ra7krxLOu4RrgmZbTZiSvh0jhtu1OD8/exihFkFMS2N25
- z7C3/32VVxKEn5OOZO7Lp9Gnc2GzyO94uw3zBpr+dsGnUShoO8FTRBNp
-X-Gm-Gg: ASbGncs7K2g3scZw3udBcFVRaOzE7mjuc+ETF6MFzKvna18LSi9FmTdX3d0BREna19T
- ZACriZ7FMlb7HwaRNlIUZghKoNdy6hily++Ru8PsbOFaT54AXG8q44+R+xlAFCwNN9vh5EOoDyY
- 2Caubl9nzQEcavGZueV8RHbG4l2EPM575CUYKlu5lOuWBZXOa5h9KxeTlMzS3pK5Ld90sx1Jq1t
- hCEzhjJEiVtI48R7pm9p5sYyIbELj62Ls6Jdbi0zu0e5JSy5bZLvgRNrgXq1X4EsXBaHcaXzzAc
- Jell0mn3wFy8QPPAXGQPWQGdENJtNAwuaX7ji4mxycnUC+nXxRxRg6QAqlvEitJYMrbc4nVt/s1
- 4ime8VHrQo8mh8WqVk8LBvpqcHdyiXew8/A==
-X-Google-Smtp-Source: AGHT+IHKX7auywt4u3zIKgU2fIOKGxq02XNCOJ7Xi4MWV+Fhm3m6UNnqEL+P/ENvgfCJ4sKMDzFRxg==
-X-Received: by 2002:a05:6a00:1884:b0:76b:49af:eceb with SMTP id
- d2e1a72fcca58-76bec4d1ef6mr6004641b3a.20.1754230890481; 
- Sun, 03 Aug 2025 07:21:30 -0700 (PDT)
-Received: from localhost.localdomain ([104.28.217.213])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-76bccfd0279sm8431306b3a.98.2025.08.03.07.21.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 03 Aug 2025 07:21:30 -0700 (PDT)
-From: Jesung Yang <y.j3ms.n@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
-Subject: [PATCH 1/4] rust: macros: extend custom `quote!()` macro
-Date: Sun,  3 Aug 2025 14:20:51 +0000
-Message-Id: <c9637a605dd718ce25311c736d208ac9ecff18ad.1754228164.git.y.j3ms.n@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1754228164.git.y.j3ms.n@gmail.com>
-References: <cover.1754228164.git.y.j3ms.n@gmail.com>
+ AJvYcCVWEGDMI7Q7+8zD8FH90ersiIN4e0vqXo70J53vdwidjYucShmVCbpgfc4LYNYvI5I3/v+OQP21Gg==@lists.freedesktop.org,
+ AJvYcCVzVohzftW8ixBFfDoYTM8cAFO/oqOPGPnUb+iWkLCVej00fTnnBpR649XRFNLZ7KDbwvjlfA2Qvfk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwNw7iDhhNSUUVQW2P1vfVvSzgMw9QArMb+EYTwtcEHFLXsTU4i
+ njlrLQYdaYUYz6MydlinaEo84hAAsNasfMk4pcVzpDjmJBiFzJSP4s8Gug+qO60DhoaM6p1tocT
+ DF1GNzkgF6O8PyllsIPV/2KshffWIA0A=
+X-Gm-Gg: ASbGncuDWmcCvaylPTedqqrNsbAZqFWjWxr4bzevWMCA1SFg1fRCJS1iYLcwY+sS5wj
+ CvnpBCu0Xb8fu7QAG2TGWeBZVb5i0iyFrs01Y/owH95fRMT3pA+bxHvAy1Q1RUzNDQlLF73hlIh
+ OlkG4TDxCIoJAc3dez0A2QgGwU+emCdstq8Th7AKEq4uljhEFbWmIuOpfdqjaLypeVCdEl/oqna
+ /gJVVM4
+X-Google-Smtp-Source: AGHT+IFzjmvc0kMfKRG7U+xZ8wdQiM8shuAqXzIYwkhDrfmjAGRQWO9y1Uiy4Ste1/hFhJYypkZPHvTw/dT2WozP73o=
+X-Received: by 2002:a17:90b:5307:b0:311:b0d3:851 with SMTP id
+ 98e67ed59e1d1-31c9e75ef14mr12278425a91.4.1753052285238; Sun, 20 Jul 2025
+ 15:58:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 21 Jul 2025 00:57:51 +0200
+X-Gm-Features: Ac12FXxrHoi9ILUmBTRKm1OiT5BshvaFgsQVGJOA5I6_EA8yoKmhyCiVsD11rgg
+Message-ID: <CANiq72mF8v7Gzr-dgfd68OPjJXDp=q+-asMiqcet0R0viqMbkw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] Replace `kernel::str::CStr` with `core::ffi::CStr`
+ (cycle 1)
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ linux-pm@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,73 +98,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Implement the `ToTokens` trait for `&T` where `T` implements `ToTokens`.
-This allows users to use the `quote!()` macro with references directly,
-avoiding the need to clone values.
+On Fri, Jul 4, 2025 at 10:16=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
+>
+> As this is a large migration that touches many subsystems, it will take
+> place in several cycles, each of which may see multiple series:
 
-Extend the `quote_spanned!()` macro to support additional punctuation
-tokens: `->`, `<`, `>`, and `==`. This symbols are commonly needed when
-dealing with functions, generic bounds, and equality comparisons.
+Let's start the long road, then...
 
-Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
----
- rust/macros/quote.rs | 36 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+Applied to `rust-next` -- thanks everyone!
 
-diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
-index 92cacc4067c9..24764b04a07d 100644
---- a/rust/macros/quote.rs
-+++ b/rust/macros/quote.rs
-@@ -7,6 +7,12 @@ pub(crate) trait ToTokens {
-     fn to_tokens(&self, tokens: &mut TokenStream);
- }
- 
-+impl<T: ToTokens> ToTokens for &T {
-+    fn to_tokens(&self, tokens: &mut TokenStream) {
-+        (*self).to_tokens(tokens);
-+    }
-+}
-+
- impl<T: ToTokens> ToTokens for Option<T> {
-     fn to_tokens(&self, tokens: &mut TokenStream) {
-         if let Some(v) = self {
-@@ -144,6 +150,36 @@ macro_rules! quote_spanned {
-         ));
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-+    (@proc $v:ident $span:ident -> $($tt:tt)*) => {
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('-', ::proc_macro::Spacing::Joint)
-+        ));
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alone)
-+        ));
-+        quote_spanned!(@proc $v $span $($tt)*);
-+    };
-+    (@proc $v:ident $span:ident < $($tt:tt)*) => {
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('<', ::proc_macro::Spacing::Alone)
-+        ));
-+        quote_spanned!(@proc $v $span $($tt)*);
-+    };
-+    (@proc $v:ident $span:ident > $($tt:tt)*) => {
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alone)
-+        ));
-+        quote_spanned!(@proc $v $span $($tt)*);
-+    };
-+    (@proc $v:ident $span:ident == $($tt:tt)*) => {
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Joint)
-+        ));
-+        $v.push(::proc_macro::TokenTree::Punct(
-+                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
-+        ));
-+        quote_spanned!(@proc $v $span $($tt)*);
-+    };
-     (@proc $v:ident $span:ident = $($tt:tt)*) => {
-         $v.push(::proc_macro::TokenTree::Punct(
-                 ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
--- 
-2.39.5
+    [ Reworded title. - Miguel ]
 
+    [ Reworded title. - Miguel ]
+
+Cheers,
+Miguel
