@@ -4,60 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6239D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20602D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6F4D10EB75;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3448F10EAB2;
+	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="dEiCNUlN";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="k6IZRKXS";
 	dkim-atps=neutral
-Received: from mx-out1.startmail.com (mx-out1.startmail.com [145.131.90.139])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29F8010E765;
- Thu,  2 Oct 2025 02:16:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
- s=startmail1; t=1759371385;
- bh=cg5vUyT7oDKdkucLj/bIi19jBd516XoDYIn8kEEdYI8=;
- h=Message-ID:Date:Mime-Version:Subject:To:References:From:
- In-Reply-To:Content-Type:Content-Transfer-Encoding:From:Subject:To:
- Date:Sender:Content-Type:Content-Transfer-Encoding:
- Content-Disposition:Mime-Version:Reply-To:In-Reply-To:References:
- Message-Id:List-Unsubscribe:List-Unsubscribe-Post:Autocrypt;
- b=dEiCNUlNXjY+9iO0E55l3UVhW2vWmsGPSVzF69DIQSDfnZZMEtbcH7KgTACiceju7
- r/eiG4JkYY6i7Puje4zLsqNplpaz4hnD3133o6PwA+tePFXUL5kDjxF/R/8z28NtDh
- y8Wtxuh9zhrUw0LgEBMbXDgjv+m6e/jBQGVkmsBI5phccCCIs80NLi/+zq6+GFzgXA
- CbR62/tD+6HQkR8rMNhjCjP8dMXTRLs0fDYNaSg2l5/Vg3nLdS1BqMM7dm78oHR/+G
- qiCbFBXFvUcb6dFFyROnik43TLpUM6YZ+8NgYPHzJfkIUntIlFGEq3iMTxouyYIn9w
- fHIHhDze6Psyw==
-Message-ID: <d238d9b7-8ec5-4063-8217-885d951d2f0c@weathered-steel.dev>
-Date: Thu, 2 Oct 2025 02:16:16 +0000
-Mime-Version: 1.0
-Subject: Re: [PATCH v5 6/9] rust: bitfield: Add KUNIT tests for bitfield
-To: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dakr@kernel.org
-Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC2C710E3C8;
+ Mon, 21 Jul 2025 21:25:22 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-313862d48e7so660986a91.1; 
+ Mon, 21 Jul 2025 14:25:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1753133122; x=1753737922; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=9iFLdp2ndiNM8RNps+ppve+VMxv1HIOTDVN1LN5NGOw=;
+ b=k6IZRKXShXCj89TqP5DM1T3dmaNY2CXPU0PiC24+BibEr1zIXAUnsJxds7PAl3H0km
+ qynIjUMZuwlUsw6tWwmM8wiLbOrQljjUpM8Yb1qDT93MTfJMRSMRC8zOzDxGCbfHzSz5
+ QlaJfbumwkD7qFICzAE19BLKxKsmWnZQjUsDIpS54nXYHOYF6zau9XxnkQ5jtgXeDFR5
+ RM/owI7mM21UtEmDOBeAy0fb4TMifqNwF3/nhWqExse3PBnTeR+q02hX9uNmddJeoQWn
+ +XWyXIbUC+8vYERSOr71bhI4ntMpy1D2OBocV6Nv4PTV0CJrbE5GyLuSmVxt34+qZoyj
+ tqCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753133122; x=1753737922;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=9iFLdp2ndiNM8RNps+ppve+VMxv1HIOTDVN1LN5NGOw=;
+ b=Rz127/APDJXn7ClOF+Inc9Z3H0YVcW/3+ue4kGUiBq5BWPTSG/icmUYiftSitdsrzO
+ 9IXiuNT8gfKEroAsRJQ4jP6P48SYwJXGSyaR3CJXsFBeKkM9iRyLoCwsAdifbwkMLqta
+ dYsqgjKRUuRaLVNPEOUftj5VdvzHxaVjr9kutOCPGTuwHqLm93IjS92z75oE7OYu/+wq
+ 16JTvuqi8t5Id7JYgp57B+SZ1/Vhy36sxqcCFO4apRrGB9Bs38+0cvAlFgw/5pO+hy7k
+ Tcak0pjUaCwJDUO866MQh2nOdLG+uJ4/K4XA/69AVSQLWHK6FsIBV52G77xrq0Zl7mkL
+ G45A==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV+6qeBhkw4t7Cu6iPYXFtK5sXdJqh7wd5ZY+XsqqwF7ihtIMr1KOvcoQhDVdAICBaCxUIkm82gAIs=@lists.freedesktop.org,
+ AJvYcCWLFX9OKMFYw3Erm2BgeTUGJkGLeHlIxW6e6k4DTOEGYXsYbvNbTsAbbCd+Tb1zqSYdKYVsrl3T/g==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxz6wmDXCDLJTxMsulBzC6WeEkgzQq7gcrM9Wn/Kw8CVT0u9VkI
+ TyRpcgv/s8d5bx6sGrFQKiCuGlCpajPlfspf7YlUOVxpHXsBLs2772Qv6psMqLKlSqEqf41HqWT
+ UlrtzoA+UgHaOuptIAIa0qdmtoZLB//E=
+X-Gm-Gg: ASbGncvq7FHM0ihlKcKpvLWOjqY2E4dS4WkGc6kZAE3VaYpaLLzHDPSsXPh91q1x81q
+ WccDoQ2OcIMFFhoiLsk6+Z1rEpbDX5w4Ymqls6DUYZR6OYxYftL0E55g7id0WVpitSMpM+AdF17
+ G8uU5ftifsJnjtBA8TbJK/dFpLkzbzvkwZ6mb3jsmPzLbgqNjlCdCBaK2XaPjdglokXRoWYgluu
+ bDX0pQExJ6HOJVp3gM=
+X-Google-Smtp-Source: AGHT+IGMwqakNKOUFXVAu2/3PXle8MucW9ApQqtEvS19+SeB54BAypNZzC2R/JPDOK0p7gPei/ELcvNLwjB5DUmNGHY=
+X-Received: by 2002:a17:90b:4a85:b0:312:1d2d:18f8 with SMTP id
+ 98e67ed59e1d1-31c9e7a47d2mr12006266a91.7.1753133122141; Mon, 21 Jul 2025
+ 14:25:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+ <20250719-core-cstr-fanout-1-v2-7-1ab5ba189c6e@gmail.com>
+In-Reply-To: <20250719-core-cstr-fanout-1-v2-7-1ab5ba189c6e@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 21 Jul 2025 23:25:07 +0200
+X-Gm-Features: Ac12FXx1fxLwm1B3q35hYDSm0FBUzbFOkBoCCwDTqVlcqaSOlmPogm9Pbry1ihw
+Message-ID: <CANiq72nQT=uX4E997rVDOjNGzVbEx0_kqpa70OkAXPHy7bffSw@mail.gmail.com>
+Subject: Re: [PATCH v2 7/8] rust: seq_file: use `kernel::{fmt,prelude::fmt!}`
+To: Tamir Duberstein <tamird@gmail.com>, Christian Brauner <brauner@kernel.org>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Yury Norov <yury.norov@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-References: <20250930144537.3559207-1-joelagnelf@nvidia.com>
- <20250930144537.3559207-7-joelagnelf@nvidia.com>
- <DD7GCYCZU3P3.1KK174S7MQ5BW@nvidia.com>
-Content-Language: en-US
-From: Elle Rhumsaa <elle@weathered-steel.dev>
-In-Reply-To: <DD7GCYCZU3P3.1KK174S7MQ5BW@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Uladzislau Rezki <urezki@gmail.com>, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-block@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>, 
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,201 +103,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 10/2/25 1:41 AM, Alexandre Courbot wrote:
-
-> On Tue Sep 30, 2025 at 11:45 PM JST, Joel Fernandes wrote:
->> Add KUNIT tests to make sure the macro is working correctly.
->>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> ---
->>   rust/kernel/bitfield.rs | 321 ++++++++++++++++++++++++++++++++++++++++
->>   1 file changed, 321 insertions(+)
->>
->> diff --git a/rust/kernel/bitfield.rs b/rust/kernel/bitfield.rs
->> index fed19918c3b9..9a20bcd2eb60 100644
->> --- a/rust/kernel/bitfield.rs
->> +++ b/rust/kernel/bitfield.rs
->> @@ -402,3 +402,324 @@ fn default() -> Self {
->>           }
->>       };
->>   }
->> +
->> +#[::kernel::macros::kunit_tests(kernel_bitfield)]
->> +mod tests {
->> +    use core::convert::TryFrom;
->> +
->> +    // Enum types for testing => and ?=> conversions
->> +    #[derive(Debug, Clone, Copy, PartialEq)]
->> +    enum MemoryType {
->> +        Unmapped = 0,
->> +        Normal = 1,
->> +        Device = 2,
->> +        Reserved = 3,
->> +    }
->> +
->> +    impl Default for MemoryType {
->> +        fn default() -> Self {
->> +            MemoryType::Unmapped
->> +        }
->> +    }
-> Tip: you can add `Default` to the `#[derive]` marker of `MemoryType` and
-> mark the variant you want as default with `#[default]` instead of
-> providing a full impl block:
+On Sun, Jul 20, 2025 at 12:42=E2=80=AFAM Tamir Duberstein <tamird@gmail.com=
+> wrote:
 >
->      #[derive(Debug, Default, Clone, Copy, PartialEq)]
->      enum MemoryType {
->          #[default]
->          Unmapped = 0,
->          Normal = 1,
->          Device = 2,
->          Reserved = 3,
->      }
-
-I would alternatively recommend to provide a `MemoryType::new` impl with 
-a `const` definition:
-
-```rust
-impl MemoryType {
-     pub const fn new() -> Self {
-
-         Self::Unmapped
-
-     }
-}
-
-impl Default for MemoryType {
-     fn default() -> Self {
-         Self::new()
-     }
-}
-```
-
-This pattern allows using `MemoryType::new()` in `const` contexts, while 
-also providing the `Default` impl using the same default. It's somewhat 
-of a workaround until we get `const` traits.
-
->> +
->> +    impl TryFrom<u8> for MemoryType {
->> +        type Error = u8;
->> +        fn try_from(value: u8) -> Result<Self, Self::Error> {
->> +            match value {
->> +                0 => Ok(MemoryType::Unmapped),
->> +                1 => Ok(MemoryType::Normal),
->> +                2 => Ok(MemoryType::Device),
->> +                3 => Ok(MemoryType::Reserved),
->> +                _ => Err(value),
->> +            }
->> +        }
->> +    }
->> +
->> +    impl From<MemoryType> for u64 {
->> +        fn from(mt: MemoryType) -> u64 {
->> +            mt as u64
->> +        }
->> +    }
->> +
->> +    #[derive(Debug, Clone, Copy, PartialEq)]
->> +    enum Priority {
->> +        Low = 0,
->> +        Medium = 1,
->> +        High = 2,
->> +        Critical = 3,
->> +    }
->> +
->> +    impl Default for Priority {
->> +        fn default() -> Self {
->> +            Priority::Low
->> +        }
->> +    }
->> +
->> +    impl From<u8> for Priority {
->> +        fn from(value: u8) -> Self {
->> +            match value & 0x3 {
->> +                0 => Priority::Low,
->> +                1 => Priority::Medium,
->> +                2 => Priority::High,
->> +                _ => Priority::Critical,
->> +            }
->> +        }
->> +    }
->> +
->> +    impl From<Priority> for u16 {
->> +        fn from(p: Priority) -> u16 {
->> +            p as u16
->> +        }
->> +    }
->> +
->> +    bitfield! {
->> +        struct TestPageTableEntry(u64) {
->> +            0:0       present     as bool;
->> +            1:1       writable    as bool;
->> +            11:9      available   as u8;
->> +            13:12     mem_type    as u8 ?=> MemoryType;
->> +            17:14     extended_type as u8 ?=> MemoryType;  // For testing failures
->> +            51:12     pfn         as u64;
->> +            51:12     pfn_overlap as u64;
->> +            61:52     available2  as u16;
->> +        }
->> +    }
->> +
->> +    bitfield! {
->> +        struct TestControlRegister(u16) {
->> +            0:0       enable      as bool;
->> +            3:1       mode        as u8;
->> +            5:4       priority    as u8 => Priority;
->> +            7:4       priority_nibble as u8;
->> +            15:8      channel     as u8;
->> +        }
->> +    }
->> +
->> +    bitfield! {
->> +        struct TestStatusRegister(u8) {
->> +            0:0       ready       as bool;
->> +            1:1       error       as bool;
->> +            3:2       state       as u8;
->> +            7:4       reserved    as u8;
->> +            7:0       full_byte   as u8;  // For entire register
->> +        }
->> +    }
->> +
->> +    #[test]
->> +    fn test_single_bits() {
->> +        let mut pte = TestPageTableEntry::default();
->> +
->> +        assert!(!pte.present());
->> +        assert!(!pte.writable());
->> +
->> +        pte = pte.set_present(true);
->> +        assert!(pte.present());
->> +
->> +        pte = pte.set_writable(true);
->> +        assert!(pte.writable());
->> +
->> +        pte = pte.set_writable(false);
->> +        assert!(!pte.writable());
->> +
->> +        assert_eq!(pte.available(), 0);
->> +        pte = pte.set_available(0x5);
->> +        assert_eq!(pte.available(), 0x5);
-> I'd suggest testing the actual raw value of the register on top of
-> invoking the getter. That way you also test that:
+> Reduce coupling to implementation details of the formatting machinery by
+> avoiding direct use for `core`'s formatting traits and macros.
 >
-> - The right field is actually written (i.e. if the offset is off by one,
->    the getter will return the expected result even though the bitfield
->    has the wrong value),
-> - No other field has been affected.
->
-> So something like:
->
->      pte = pte.set_present(true);
->      assert!(pte.present());
->      assert(pte.into(), 0x1u64);
->
->      pte = pte.set_writable(true);
->      assert!(pte.writable());
->      assert(pte.into(), 0x3u64);
->
-> It might look a bit gross, but it is ok since these are not doctests
-> that users are going to take as a reference, so we case improve test
-> coverage at the detriment of readability.
->
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> Reviewed-by: Benno Lossin <lossin@kernel.org>
+> Acked-by: Danilo Krummrich <dakr@kernel.org>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+
+VFS should be Cc'd on this one, so doing so here.
+
+Christian: I will eventually apply this series, so please let me know
+if you are against this one (Acked-by's appreciated, of course),
+thanks!
+
+Cheers,
+Miguel
