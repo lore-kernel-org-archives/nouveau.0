@@ -4,85 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DF8CD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76665D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7203D10EBA9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1E3C10EB8A;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rexpznn2";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="DszeMJ84";
 	dkim-atps=neutral
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A31AC10E279
- for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 19:50:38 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-3ee15505cdeso1335095f8f.0
- for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 12:50:38 -0700 (PDT)
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com
+ [209.85.216.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4F6E10E3BD;
+ Mon, 21 Jul 2025 21:24:58 +0000 (UTC)
+Received: by mail-pj1-f44.google.com with SMTP id
+ 98e67ed59e1d1-313756c602fso949120a91.3; 
+ Mon, 21 Jul 2025 14:24:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760557837; x=1761162637; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1753133098; x=1753737898; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=VFRVqaDMnH4SBXpwWtqNUxjwC6dLm5pDnJjbqzI+Vnc=;
- b=Rexpznn2VrLmdLwro2dbIjc+EXI3i8cAdqGyfjXrvKu9FvqAA8kt3luhn0wKKgZIt3
- 99jaUU1jX+NDkhYLzRtIwwJRL13UWABoijb1RMv1KvbDvoBFrjOXb8e9Vccg1xo+6qkf
- 8lwAVwhsYuQquoq68N4jALSZBLR9/9HmXo8w87jeOp55NedLQ6gcTiUMDvUu//s6kT88
- 8GQsyUAs3ErwIXJBH0Yo0EstNRBRSsW6D8Y6K2s3x3c6xLuQiCHd0YXU3YeccWd9u7bp
- E5+ufzRcwaic9OTjvvn6AZxuV2eQov2VNkWXaDfPkIGmgyB0Yq024ol2mqw0YHqoqkZy
- EBkA==
+ bh=9iFLdp2ndiNM8RNps+ppve+VMxv1HIOTDVN1LN5NGOw=;
+ b=DszeMJ84MqMr1q9VwNaZh9LL8a4ZHPB1rgJcZi1omkK98B33ymRvUKNIOw4oz8//Af
+ T6MuMhwg9HUvy+1yR+7lrmS/Yqw8noaD0q4sRp2o5ZrqLt66VQEa7nSRM3ajUt/B5/6I
+ fydf080rJrNy5G4F/cwWU2y1jd/w/o5gVzsR6/lexoaQB8m1cf6QYhPfCe2cXmWmkry8
+ GIMVvoAuHTFektn5HZNJnUQt7aWJMIUYrVYtHJOXdgSPCzNsH2ivfZfGo00tz0FF/CMH
+ k7xm+0ztdcPOJEm3PcCpqhuvwqBYGyGuM4HGZ+c7Bnh6IhBzzSDTgJm9d0CUrxDRmD54
+ vTUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760557837; x=1761162637;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1753133098; x=1753737898;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VFRVqaDMnH4SBXpwWtqNUxjwC6dLm5pDnJjbqzI+Vnc=;
- b=juTHNGTU2zLV1QATOFsPDf60MU5ifDjn5/o7o+wcW/ddztKdhVheCJqJ7dYVdoJ99Z
- H6YznDflXYrYg0YXmFawqFyCukn6c4G1uQbapDsQuC1DeKKuEGhRC2dEYxMMFLiSXPVf
- Fq9ZbUqTypZmpvzQnidtKvg5dIJu94nXJ7SjBZOCnZKHMZVzOb/Lgh0/pE5wx+CxFxKq
- NudEFX/jexrr8VEpynliWF+7BG+fTlZdLhgN8VK5XRZNMnQMIiCFBrNb72vLPD2CXm3V
- ZTPW5Ikglg134E1RIHa0RnpN8dR56HK5wRGa1W0sTCV0o9Evs/0pThnvqjhC5D7ttWYe
- r0Qg==
-X-Gm-Message-State: AOJu0Yx19Lk+wtW86AzPwg050Lfo8kpZyqUhZu94pQZ7QWMb0lBKqQlV
- qxNf0dwg6C60Dp5mTD0Uoj4ZQR0s/Bh7ns0QfRfPw6XMDdQosgcbMYLt
-X-Gm-Gg: ASbGncuTuGI1WlKlvCcZCzbwVMEtg1qR13rVR44yaZrD0NNIfizUz98IJgX9ZhsW9jO
- AIG/F+qjZ6CK3WI85lddZFNzf55GOd6aiCDoC03hZlSo5BGiQNPktoUaYCmDv5xL/IS4GD5HVlL
- 4x8J++iBs32uMM+VRo7swnBVAY3JY/QLM/3TPvA8kXIpg2+OHT90UQEnCL2lKsaKs+UNObaJ9yn
- cELrzaENwdpxPkHb2uMua70HVNasdC6UebY5kmGBviRITCCpuSUKBvJGy4lgXF6M+T7PSzo4y85
- EJ7+JLMZGe5ZLvMw6zteIsx/y1RqwEiUTnKxIf/o9ZxXQ2bk1+h+raLNYnucY5AAnLUQVm2Zf/R
- WlITlkoaI7auS6J8N9R1fWMVHq40Fh1FtyoMGz/wRKqNTwEDDPvTtveRW+0Yihex/wvLBS6NOYa
- jzXn3bR95dvmeVLHE=
-X-Google-Smtp-Source: AGHT+IFewXtBswgFkJ+PxuKCQAic+eavwTJGRRYaxnccnJwiMsIC69bQdFW+noWi4hvllo/GJsJtPQ==
-X-Received: by 2002:a05:6000:40db:b0:3ec:42f9:953e with SMTP id
- ffacd0b85a97d-426fb6a7131mr971099f8f.7.1760557837106; 
- Wed, 15 Oct 2025 12:50:37 -0700 (PDT)
-Received: from archito.cern.ch ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-46fc155143fsm281464675e9.11.2025.10.15.12.50.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Oct 2025 12:50:36 -0700 (PDT)
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org,
- Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-Subject: [PATCH 2/2] Update the nova todo list
-Date: Wed, 15 Oct 2025 21:49:36 +0200
-Message-ID: <20251015194936.121586-2-delcastillodelarosadaniel@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
-References: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
+ bh=9iFLdp2ndiNM8RNps+ppve+VMxv1HIOTDVN1LN5NGOw=;
+ b=Q1wusWrhpdARFTRNr8vIIajibCGG0+ED2NMo2YlEiJjr4x2oSLDIlnG9cE1Pksd3jH
+ MF78mb8jX99D0a7Dky49w5/uoF6oL+Sd1lALaq5VKzzGjbkCT9PszcvOy9qvIcHMopQv
+ Yda5mCvY0WUgBfqdriN0+4j3wuL+mutE7lYUEj6swBi6rhahk04QlMlK4x+6KbqnrH9I
+ kESOoQ1hSe7OSYj4xp2F3p6NZ53czLp5cbIXeUTiUGBqVVEsQO6yFBTV6wlLK//yOOvU
+ 7jJp432gnLpz77E1Uuj6W47J5cXXxFUwpYh8ZYNfrMUYH/T6G5V1u0m839cTY9XJsZLX
+ LTZw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUKXZzC6HkzK0F/Xr/MoeS6IWCEI29M6cwwgmAajbFTBlSETBFEjjBeUK1Dm6weeWgFMMow13oZ9vU=@lists.freedesktop.org,
+ AJvYcCVNUp5VeN3iex1tcv1E9aRFvTv9b/ggYXzHb3LTQSyWqT38erRTY1z16PYwt2o0kNSqmXZJeJ3uDg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwTnLAnbyDWQqub7FouIfVW92hXYkJikJ4AafefWKKJ/XH88q9K
+ Q1gWuaBp97NpsocvJMza+ARZBSziU4v4CdjIXyt2/0mA5Y2GeaWYiWIr1jgERggcVHy9X9L0WSL
+ PMDMTvFaFTamaxeIutnJYd/A00zS1OnU=
+X-Gm-Gg: ASbGncspo6TykHoOhXVHU/nDt2lEPfuEadTUArB/s3STT/d6LwLZ0DU+FfLvjBVo4vH
+ ZH7Sl0Ae5gYH7fwK88R1RV1NVOrExjW0NfmP3Eqo0EDuPqVyxfUEFVw8/rvWEL7X+BKlHZAcu1u
+ J2/+xmdqMg1yezSTC8SoLVeW8K7Qfbn7mzYPtPuQnFUnKoVH2gIJQrwWf9CrJ488osjll4j8VIy
+ oOCFVKn
+X-Google-Smtp-Source: AGHT+IE0OY7j57nPCKJ0BdsYahqNyN4nWsTb/RzoD5KDOD/WbbJfSbNPT9Nrk4IsCyqaxcHOFNn3XGvOFDRdAz5jjUw=
+X-Received: by 2002:a17:90b:1cc3:b0:311:c5d9:2c8b with SMTP id
+ 98e67ed59e1d1-31c9e7767fbmr12172720a91.5.1753133098418; Mon, 21 Jul 2025
+ 14:24:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+ <20250719-core-cstr-fanout-1-v2-5-1ab5ba189c6e@gmail.com>
+In-Reply-To: <20250719-core-cstr-fanout-1-v2-5-1ab5ba189c6e@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 21 Jul 2025 23:24:45 +0200
+X-Gm-Features: Ac12FXyOfRpHyH2Hg4yjOdknVbhdKtQMd07LdKW2ll06eE6NGx73z6HhQYfeb4A
+Message-ID: <CANiq72=wxjOwpbSKvmRV4Nb1Na_fsvajGYCbaiCdD7NwZkgc7A@mail.gmail.com>
+Subject: Re: [PATCH v2 5/8] rust: file: use `kernel::{fmt,prelude::fmt!}`
+To: Tamir Duberstein <tamird@gmail.com>, Christian Brauner <brauner@kernel.org>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Uladzislau Rezki <urezki@gmail.com>, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, linux-block@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>, 
+ linux-fsdevel <linux-fsdevel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,44 +103,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This small patch updates the nova todo list to
-remove some tasks that have been solved lately.
+On Sun, Jul 20, 2025 at 12:42=E2=80=AFAM Tamir Duberstein <tamird@gmail.com=
+> wrote:
+>
+> Reduce coupling to implementation details of the formatting machinery by
+> avoiding direct use for `core`'s formatting traits and macros.
+>
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> Reviewed-by: Benno Lossin <lossin@kernel.org>
+> Acked-by: Danilo Krummrich <dakr@kernel.org>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
----
- Documentation/gpu/nova/core/todo.rst | 19 -------------------
- 1 file changed, 19 deletions(-)
+VFS should be Cc'd on this one, so doing so here.
 
-diff --git a/Documentation/gpu/nova/core/todo.rst b/Documentation/gpu/nova/core/todo.rst
-index 48b20656dcb1..be8063030d44 100644
---- a/Documentation/gpu/nova/core/todo.rst
-+++ b/Documentation/gpu/nova/core/todo.rst
-@@ -44,25 +44,6 @@ automatically generates the corresponding mappings between a value and a number.
- | Complexity: Beginner
- | Link: https://docs.rs/num/latest/num/trait.FromPrimitive.html
- 
--Conversion from byte slices for types implementing FromBytes [TRSM]
---------------------------------------------------------------------
--
--We retrieve several structures from byte streams coming from the BIOS or loaded
--firmware. At the moment converting the bytes slice into the proper type require
--an inelegant `unsafe` operation; this will go away once `FromBytes` implements
--a proper `from_bytes` method.
--
--| Complexity: Beginner
--
--CoherentAllocation improvements [COHA]
----------------------------------------
--
--`CoherentAllocation` needs a safe way to write into the allocation, and to
--obtain slices within the allocation.
--
--| Complexity: Beginner
--| Contact: Abdiel Janulgue
--
- Generic register abstraction [REGA]
- -----------------------------------
- 
--- 
-2.51.0
+Christian: I will eventually apply this series, so please let me know
+if you are against this one (Acked-by's appreciated, of course),
+thanks!
 
+Cheers,
+Miguel
