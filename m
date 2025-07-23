@@ -4,45 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D970D5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12387D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5373610E9FD;
-	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5261610EA6B;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CvAyf0pm";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="BKX9qAAC";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D177410E82E
- for <nouveau@lists.freedesktop.org>; Sat, 27 Jul 2024 01:58:46 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 1BE4B6172E;
- Sat, 27 Jul 2024 01:58:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C411C32782;
- Sat, 27 Jul 2024 01:58:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1722045525;
- bh=QWkpOyQ8skDBYJJuo1q56u4T3/WsmyzpazhCLyqKVyo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=CvAyf0pmfrTbkFRkCmWKcYEnRjAbeag+cHWOzeQXjBfnX8E7B8723dOKkjnqq8gWI
- QRNZgHxUsM6hL2LbO0raYbbwI2gFOMWKy9yXhZdNeGMCBQKVq9whck2b9sxXJDZaNi
- Rm4i9A1Dn72WwVTlrB5Rh2FWqVTGL9d0Rbszu9dZgF8roD/BfOrrbaRGvQP1jbD8QX
- xWGwiTaCk9+tVkUmTmWOvMgItHsSmsRohkrWUw1BwgVPHn0Ha6MVg0AwzD98cG0hx7
- V4GbI0hg8LUVm6jL1RQLeA5dUMGOy0vbn2Tc5kiKcSdlHvdWNA0wZBUER4HxZU3aLB
- V8eAZQAX0LFkA==
-Date: Sat, 27 Jul 2024 03:58:41 +0200
-From: Danilo Krummrich <dakr@kernel.org>
-To: Ben Skeggs <bskeggs@nvidia.com>
-Cc: nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v3 00/37] drm/nouveau: misc. cleanups and removal of
- unused apis
-Message-ID: <ZqRUUavTiEUdi62f@cassiopeiae>
-References: <20240726043828.58966-1-bskeggs@nvidia.com>
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C42010E863
+ for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:23 +0000 (UTC)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 56NH7iA5016061
+ for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:date:from:message-id:mime-version
+ :subject:to; s=qcppdkim1; bh=Es8yYGkoaL9WsWMGWRUXzp1VH7ftdQ84HcS
+ owvwXJBw=; b=BKX9qAACOypq9Ag3a8Xu0cg0OGsi6d8peARGUYNgHeyAeVeMLC6
+ /d5xKbC77jzx63L3x8nsw1HKEHHaiMNzoptPWhtADvfZ2+VS9FNxn3e969zHmbrx
+ ZwwpDowpS/xwL1f+JeqfdOX3wphq+JUArvuO5wMHQGR59Wb1FTf27Y2F55dxi9PW
+ E5TqDpnUrfo+rEwAVKUbMwmHFzqxOY8yDh6ZVQj6Qv9yyjPxHbZu52Jj49o3w9PE
+ 0OmYQxXFjwj20Gjpo5/3v/CyLdzceHWam08SQwgiv98y/jpvKh/pOmr2ssoL55ol
+ n6Rd5jrXEgHQv6Mgdz9VAhQHCn7hZHYJVFg==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com
+ [209.85.215.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48048vd158-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 22:12:22 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id
+ 41be03b00d2f7-b2c37558eccso220093a12.1
+ for <nouveau@lists.freedesktop.org>; Wed, 23 Jul 2025 15:12:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753308742; x=1753913542;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Es8yYGkoaL9WsWMGWRUXzp1VH7ftdQ84HcSowvwXJBw=;
+ b=RDbw6ODPiGqUo+G52SwJH9NMhyq086EgiT4zUj69rlLuLck0lSeRQf+QazMZklzfKC
+ LCJkfTDyf1xNciqIwtY1OntR0AQTZxZPIwL8hVnPQ7+K5+zbV2MV7+8VQp+pLPXSMRCr
+ 3icqAW+PQRgWZ4+S8HKXQhJIk9M6fuGxkSmsHwfZy/c46ET8jKZBTZvYXwGQOo14ObZk
+ dsyO0bk5KpRbfafezuoG+QKC3lQTS8MB8J+eLqfkoN8Yuc3fB6tWYdtN2GHDVCsO0jnx
+ LgPIKpMa/poZ/xI7jS47Ehgnp0W1GRqjWdi0rTlvNUaxkP1tZHMk4i7xqw6k0S1be8ej
+ PHCQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWqlHOtnRkBFZkcUjhv84eun82cL60FJH1CwEIs2r6Yjq2VPvjDhscvpR95wX9VNRMycPctaprE@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxBjk+xmI7O6AMY6B+T3tKmwNRgkexuZND/tOfIgd8lQS2KG7Ll
+ cYl63FFHGt09Y+zqMb/Po3k2LS1PS2Kf48DckSwGBjlKxYIjwN+Z6fqt/VOrNlODICg4vHK/0t+
+ O5MLKKyBN8joKBPBXLG8T7WE4Yn3OV7gEDypK6qj7BhEh6sjVnAs/sngZd1/WdiKMz5An
+X-Gm-Gg: ASbGncuwWaUg1KVgnu3OQz5L6Qq9sRUmONahkLLhFabsOob94Hnvj1jgqVCO2poVXQp
+ I62uRAlQbglVYy3XDsSkSiPX+/IeSHHmfgzMGa8LQewiF36KotkuQC9o9G68tFqBnk1TkTLFXQy
+ q0k1W96GOgsqALqYRoOElpUTOdhrpTAiyTzo3b+dBznFeqIR8AKwSCoayvhnCR+nweMS662luLU
+ fAvmylf+RWQTaOrcOUKFXwgqsGuZl+C1w78pVi44nxgrWHhsCdZXiLPMEC27WGlIivWd1Kj0K3Y
+ pc7YUW9wppaCTg2Eg9n+zXi075QE/xcuyViUFsTh48C8b84rnsk=
+X-Received: by 2002:a17:90b:3d4c:b0:313:f6fa:5bca with SMTP id
+ 98e67ed59e1d1-31e507c451bmr5990917a91.22.1753308742102; 
+ Wed, 23 Jul 2025 15:12:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHzd56I31a4tiJMX9/aFKEr6IuO0MhOWD335Z5swX27LPpZumR9v/x7YlbWBlBa4lwLXzCKwQ==
+X-Received: by 2002:a17:90b:3d4c:b0:313:f6fa:5bca with SMTP id
+ 98e67ed59e1d1-31e507c451bmr5990882a91.22.1753308741676; 
+ Wed, 23 Jul 2025 15:12:21 -0700 (PDT)
+Received: from localhost ([2601:1c0:5000:d5c:5b3e:de60:4fda:e7b1])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-31e639f6c1esm72938a91.14.2025.07.23.15.12.21
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 23 Jul 2025 15:12:21 -0700 (PDT)
+From: Rob Clark <robin.clark@oss.qualcomm.com>
+To: dri-devel@lists.freedesktop.org
+Cc: linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ Danilo Krummrich <dakr@redhat.com>, Connor Abbott <cwabbott0@gmail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ linux-kernel@vger.kernel.org (open list), Lyude Paul <lyude@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maxime Ripard <mripard@kernel.org>,
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), Sean Paul <sean@poorly.run>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 0/2] drm/gpuvm+msm: Handle in-place remaps
+Date: Wed, 23 Jul 2025 15:12:10 -0700
+Message-ID: <20250723221213.36325-1-robin.clark@oss.qualcomm.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240726043828.58966-1-bskeggs@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: 1fTKqDSVaCVUyXUOIpryaTYnbtJFmF_E
+X-Authority-Analysis: v=2.4 cv=SYL3duRu c=1 sm=1 tr=0 ts=68815e47 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=xqWC_Br6kY4A:10 a=Wb1JkmetP80A:10
+ a=r9eiMqSCUvIwoLEqkV8A:9 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwNzIzMDE5MCBTYWx0ZWRfX3GzFFDo76/sy
+ y/n2yS1tjOD2Ze79oMtNJCBrbwUHHJLSpnTY+KSGkEOjMn9tXgyEmcCs7SZrbjzXoPu4zN87QJV
+ ePKrFdwS/czbodXCOvh1b7rHI8Rg9bmuISG1ADAQmiL5B9dWrHBGq53r6cz+iOmZzVZaMzY+CpE
+ MP5irQPYp7eilSVlGNROIuvhwPEG+jph7vNWFEmjR3D+vKe78KYLyGWrzpyQfIIruegnK+Ci9Eo
+ OI1TNVtcVHN9h4rZKa0Foh75IOxCqPxnCvl4NxRWWk6zuKGGtkDmxYCVrylpDtJsKAUM+EAD7Vw
+ UBsgDg2CvnBRrnLgPucfrK3b+meUts3b/XKujOqpl6vYpgIWHvbS7W3rjwlww+OSCEeMaAYAHYo
+ 5jTwJMcMnLNMPb+svgd5MJRYyzeV64s6u98oZEujOx6sBwcojOmGK2wC2I4rMuhd1F3mEOeM
+X-Proofpoint-ORIG-GUID: 1fTKqDSVaCVUyXUOIpryaTYnbtJFmF_E
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-07-23_03,2025-07-23_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 suspectscore=0 mlxscore=0 bulkscore=0 mlxlogscore=731
+ lowpriorityscore=0 phishscore=0 malwarescore=0 spamscore=0 clxscore=1011
+ priorityscore=1501 adultscore=0 classifier=spam authscore=0 authtc=n/a
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2505280000 definitions=main-2507230190
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,225 +128,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jul 26, 2024 at 02:37:51PM +1000, Ben Skeggs wrote:
-> This series is a smaller subset of the prior series I posted, that aimed
-> to remove the ioctl layer between NVKM and the nouveau DRM driver.
-> 
-> Whilst this series doesn't go the full way, it aims to remove a bunch of
-> internal APIs that aren't useful anymore so they don't have to be ported,
-> and to cleanup a few paths in the DRM driver that have suffered from bit-
-> rot over the years to ensure it's safe to remove the ioctl layer next.
-> 
-> There's more details of the specific changes in the relevant commits.
-> 
-> A git tree is available at [1], and the remaining commits that were in
-> the prior series, but not this one, are available at [2].
-> 
-> v2:
-> - prepended a couple of patches that begin to cleanup pci vs tegra
->   paths, addressing some comments about variable naming, more in a
->   future series
-> - rebased on current drm-misc-next
-> - other changes mentioned in their relevant commits
-> v3:
-> - remove unnecessary change to nouveau_name()
-> - reword some commit messages/comments
-> 
-> [1] https://gitlab.freedesktop.org/bskeggs/nouveau/-/tree/00.00-cleanup
-> [2] https://gitlab.freedesktop.org/bskeggs/nouveau/-/tree/00.01-remove-ioctl
+turnip+msm uses a DUMP flag on the gpuva to indicate VA ranges to dump
+(ie. for devcoredump).  In most cases (internal BOs like shader
+instructions) this is known at the time the BO is MAPd, and the DUMP
+flag can be set at the same time as the BO is initially bound into the
+VM.  But for descriptor buffers, this isn't known until VkBuffer is
+bound to the already mapped VkDeviceMemory, requiring an atomic remap
+to set the flag.
 
-Applied to drm-misc-next, thanks!
+The problem is that drmvm turns this into discreet unmap and remap
+steps.  So there is a window where the VA is not mapped, which can
+race with cmdstream exec (SUBMIT).
 
-> 
-> Ben Skeggs (37):
->   drm/nouveau: move nouveau_drm_device_fini() above init()
->   drm/nouveau: handle pci/tegra drm_dev_{alloc,register} from common
->     code
->   drm/nouveau: replace drm_device* with nouveau_drm* as dev drvdata
->   drm/nouveau: create pci device once
->   drm/nouveau: store nvkm_device pointer in nouveau_drm
->   drm/nouveau: move allocation of root client out of nouveau_cli_init()
->   drm/nouveau: add nouveau_cli to nouveau_abi16
->   drm/nouveau: handle limited nvif ioctl in abi16
->   drm/nouveau: remove abi16->device
->   drm/nouveau: remove abi16->handles
->   drm/nouveau/nvkm: remove detect/mmio/subdev_mask from device args
->   drm/nouveau/nvkm: remove perfmon
->   drm/nouveau/nvkm: remove nvkm_client_search()
->   drm/nouveau/nvif: remove support for userspace backends
->   drm/nouveau/nvif: remove route/token
->   drm/nouveau/nvif: remove nvxx_object()
->   drm/nouveau/nvif: remove nvxx_client()
->   drm/nouveau/nvif: remove driver keep/fini
->   drm/nouveau/nvif: remove client device arg
->   drm/nouveau/nvif: remove client version
->   drm/nouveau/nvif: remove client devlist
->   drm/nouveau/nvif: remove client fini
->   drm/nouveau/nvif: remove device args
->   drm/nouveau: always map device
->   drm/nouveau/nvif: remove device rd/wr
->   drm/nouveau/nvif: remove disp chan rd/wr
->   drm/nouveau: move nvxx_* definitions to nouveau_drv.h
->   drm/nouveau: add nvif_mmu to nouveau_drm
->   drm/nouveau: pass drm to nouveau_mem_new(), instead of cli
->   drm/nouveau: pass drm to nv50_dmac_create(), rather than device+disp
->   drm/nouveau: pass cli to nouveau_channel_new() instead of drm+device
->   drm/nouveau: remove nouveau_chan.device
->   drm/nouveau: remove chan->drm
->   drm/nouveau: remove master
->   drm/nouveau: remove push pointer from nouveau_channel
->   drm/nouveau/kms: remove a few unused struct members and fn decls
->   drm/nouveau/kms: remove push pointer from nv50_dmac
-> 
->  drivers/gpu/drm/nouveau/Kbuild                |   1 -
->  drivers/gpu/drm/nouveau/dispnv04/crtc.c       |  14 +-
->  drivers/gpu/drm/nouveau/dispnv04/dac.c        |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/dfp.c        |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/disp.c       |   7 +-
->  drivers/gpu/drm/nouveau/dispnv04/disp.h       |   2 +-
->  drivers/gpu/drm/nouveau/dispnv04/hw.c         |   9 +-
->  drivers/gpu/drm/nouveau/dispnv04/tvnv04.c     |   4 +-
->  drivers/gpu/drm/nouveau/dispnv04/tvnv17.c     |   6 +-
->  drivers/gpu/drm/nouveau/dispnv50/base507c.c   |  21 +-
->  drivers/gpu/drm/nouveau/dispnv50/base827c.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/base907c.c   |  10 +-
->  drivers/gpu/drm/nouveau/dispnv50/core507d.c   |   8 +-
->  drivers/gpu/drm/nouveau/dispnv50/corec37d.c   |   6 +-
->  drivers/gpu/drm/nouveau/dispnv50/corec57d.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/crc907d.c    |   4 +-
->  drivers/gpu/drm/nouveau/dispnv50/crcc37d.c    |   4 +-
->  drivers/gpu/drm/nouveau/dispnv50/crcc57d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/dac507d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/dac907d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/disp.c       |  74 +-
->  drivers/gpu/drm/nouveau/dispnv50/disp.h       |  14 +-
->  drivers/gpu/drm/nouveau/dispnv50/head507d.c   |  24 +-
->  drivers/gpu/drm/nouveau/dispnv50/head827d.c   |  10 +-
->  drivers/gpu/drm/nouveau/dispnv50/head907d.c   |  26 +-
->  drivers/gpu/drm/nouveau/dispnv50/head917d.c   |   6 +-
->  drivers/gpu/drm/nouveau/dispnv50/headc37d.c   |  18 +-
->  drivers/gpu/drm/nouveau/dispnv50/headc57d.c   |  12 +-
->  drivers/gpu/drm/nouveau/dispnv50/ovly507e.c   |   6 +-
->  drivers/gpu/drm/nouveau/dispnv50/ovly827e.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/ovly907e.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/pior507d.c   |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/sor507d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/sor907d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/sorc37d.c    |   2 +-
->  drivers/gpu/drm/nouveau/dispnv50/wimmc37b.c   |   7 +-
->  drivers/gpu/drm/nouveau/dispnv50/wndwc37e.c   |  24 +-
->  drivers/gpu/drm/nouveau/dispnv50/wndwc57e.c   |  10 +-
->  drivers/gpu/drm/nouveau/dispnv50/wndwc67e.c   |   2 +-
->  drivers/gpu/drm/nouveau/include/nvif/cl0080.h |   7 -
->  drivers/gpu/drm/nouveau/include/nvif/class.h  |   3 -
->  drivers/gpu/drm/nouveau/include/nvif/client.h |  11 +-
->  drivers/gpu/drm/nouveau/include/nvif/device.h |  37 +-
->  drivers/gpu/drm/nouveau/include/nvif/driver.h |   5 -
->  drivers/gpu/drm/nouveau/include/nvif/if0000.h |  10 -
->  drivers/gpu/drm/nouveau/include/nvif/if0002.h |  39 -
->  drivers/gpu/drm/nouveau/include/nvif/if0003.h |  34 -
->  drivers/gpu/drm/nouveau/include/nvif/ioctl.h  |  27 -
->  drivers/gpu/drm/nouveau/include/nvif/object.h |  24 +-
->  drivers/gpu/drm/nouveau/include/nvif/os.h     |  19 +
->  .../drm/nouveau/include/nvkm/core/client.h    |   1 -
->  .../drm/nouveau/include/nvkm/core/device.h    |   1 -
->  .../drm/nouveau/include/nvkm/core/layout.h    |   1 -
->  .../drm/nouveau/include/nvkm/core/object.h    |  14 -
->  .../drm/nouveau/include/nvkm/core/oclass.h    |   2 -
->  .../gpu/drm/nouveau/include/nvkm/core/os.h    |  19 -
->  .../gpu/drm/nouveau/include/nvkm/core/pci.h   |   1 -
->  .../gpu/drm/nouveau/include/nvkm/core/tegra.h |   1 -
->  .../gpu/drm/nouveau/include/nvkm/engine/pm.h  |  29 -
->  drivers/gpu/drm/nouveau/nouveau_abi16.c       | 330 +++++--
->  drivers/gpu/drm/nouveau/nouveau_abi16.h       |   6 +-
->  drivers/gpu/drm/nouveau/nouveau_bios.c        |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_bios.h        |   1 +
->  drivers/gpu/drm/nouveau/nouveau_bo.c          |  10 +-
->  drivers/gpu/drm/nouveau/nouveau_bo0039.c      |   6 +-
->  drivers/gpu/drm/nouveau/nouveau_bo5039.c      |   6 +-
->  drivers/gpu/drm/nouveau/nouveau_bo74c1.c      |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_bo85b5.c      |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_bo9039.c      |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_bo90b5.c      |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_boa0b5.c      |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_chan.c        |  96 +-
->  drivers/gpu/drm/nouveau/nouveau_chan.h        |   8 +-
->  drivers/gpu/drm/nouveau/nouveau_display.c     |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_display.h     |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_dma.c         |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_dmem.c        |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c         | 387 ++++----
->  drivers/gpu/drm/nouveau/nouveau_drv.h         |  61 +-
->  drivers/gpu/drm/nouveau/nouveau_fence.c       |  17 +-
->  drivers/gpu/drm/nouveau/nouveau_gem.c         |  21 +-
->  drivers/gpu/drm/nouveau/nouveau_hwmon.c       |  46 +-
->  drivers/gpu/drm/nouveau/nouveau_led.c         |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_mem.c         |  38 +-
->  drivers/gpu/drm/nouveau/nouveau_mem.h         |   4 +-
->  drivers/gpu/drm/nouveau/nouveau_nvif.c        |   2 -
->  drivers/gpu/drm/nouveau/nouveau_platform.c    |  11 +-
->  drivers/gpu/drm/nouveau/nouveau_sgdma.c       |   2 +-
->  drivers/gpu/drm/nouveau/nouveau_ttm.c         |  12 +-
->  drivers/gpu/drm/nouveau/nouveau_usif.c        | 194 ----
->  drivers/gpu/drm/nouveau/nouveau_usif.h        |  10 -
->  drivers/gpu/drm/nouveau/nouveau_vga.c         |  14 +-
->  drivers/gpu/drm/nouveau/nv04_fence.c          |   2 +-
->  drivers/gpu/drm/nouveau/nv10_fence.c          |   2 +-
->  drivers/gpu/drm/nouveau/nv17_fence.c          |  10 +-
->  drivers/gpu/drm/nouveau/nv50_fence.c          |   2 +-
->  drivers/gpu/drm/nouveau/nv84_fence.c          |  12 +-
->  drivers/gpu/drm/nouveau/nvc0_fence.c          |   4 +-
->  drivers/gpu/drm/nouveau/nvif/client.c         |  32 +-
->  drivers/gpu/drm/nouveau/nvif/device.c         |  15 +-
->  drivers/gpu/drm/nouveau/nvif/driver.c         |  32 +-
->  drivers/gpu/drm/nouveau/nvif/object.c         |  40 -
->  drivers/gpu/drm/nouveau/nvkm/core/client.c    |  64 +-
->  drivers/gpu/drm/nouveau/nvkm/core/ioctl.c     |  91 +-
->  drivers/gpu/drm/nouveau/nvkm/core/object.c    |  50 -
->  drivers/gpu/drm/nouveau/nvkm/core/oproxy.c    |  42 -
->  drivers/gpu/drm/nouveau/nvkm/core/uevent.c    |   4 +-
->  drivers/gpu/drm/nouveau/nvkm/engine/Kbuild    |   1 -
->  .../gpu/drm/nouveau/nvkm/engine/device/base.c | 479 +++++-----
->  .../gpu/drm/nouveau/nvkm/engine/device/pci.c  |   4 +-
->  .../gpu/drm/nouveau/nvkm/engine/device/priv.h |   2 -
->  .../drm/nouveau/nvkm/engine/device/tegra.c    |   5 +-
->  .../gpu/drm/nouveau/nvkm/engine/device/user.c |  93 +-
->  .../gpu/drm/nouveau/nvkm/engine/disp/chan.c   |  24 -
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/Kbuild |  11 -
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c | 867 ------------------
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/g84.c  | 165 ----
->  .../gpu/drm/nouveau/nvkm/engine/pm/gf100.c    | 243 -----
->  .../gpu/drm/nouveau/nvkm/engine/pm/gf100.h    |  20 -
->  .../gpu/drm/nouveau/nvkm/engine/pm/gf108.c    |  66 --
->  .../gpu/drm/nouveau/nvkm/engine/pm/gf117.c    |  80 --
->  .../gpu/drm/nouveau/nvkm/engine/pm/gk104.c    | 184 ----
->  .../gpu/drm/nouveau/nvkm/engine/pm/gt200.c    | 157 ----
->  .../gpu/drm/nouveau/nvkm/engine/pm/gt215.c    | 138 ---
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.c | 123 ---
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.h |  15 -
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/nv50.c | 175 ----
->  drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h | 105 ---
->  128 files changed, 1119 insertions(+), 4194 deletions(-)
->  delete mode 100644 drivers/gpu/drm/nouveau/include/nvif/if0002.h
->  delete mode 100644 drivers/gpu/drm/nouveau/include/nvif/if0003.h
->  delete mode 100644 drivers/gpu/drm/nouveau/include/nvkm/engine/pm.h
->  delete mode 100644 drivers/gpu/drm/nouveau/nouveau_usif.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nouveau_usif.h
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/Kbuild
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/base.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/g84.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf100.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf100.h
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf108.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gf117.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gk104.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gt200.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/gt215.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv40.h
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/nv50.c
->  delete mode 100644 drivers/gpu/drm/nouveau/nvkm/engine/pm/priv.h
-> 
-> -- 
-> 2.45.1
-> 
+This series attempts to avoid that by turning an exact-remap into a
+remap op instead, where the driver can handle the special case since
+it can see both the unmap and map steps at the same time.
+
+Rob Clark (2):
+  drm/gpuvm: Send in-place re-maps to the driver as remap
+  drm/msm: Handle in-place remaps
+
+ drivers/gpu/drm/drm_gpuvm.c            | 21 +++++++++++++++++++++
+ drivers/gpu/drm/msm/msm_gem_vma.c      | 17 +++++++++++++++--
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 ++-
+ 3 files changed, 38 insertions(+), 3 deletions(-)
+
+-- 
+2.50.1
+
