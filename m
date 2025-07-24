@@ -4,46 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 082A5D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 546A0D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF0710EAA6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D09F10EA3A;
 	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F67910E13B;
- Fri, 30 Aug 2024 01:33:58 +0000 (UTC)
-Received: from mail.maildlp.com (unknown [172.19.163.252])
- by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4Ww0RD4XbVzQqks;
- Fri, 30 Aug 2024 09:09:12 +0800 (CST)
-Received: from kwepemd500012.china.huawei.com (unknown [7.221.188.25])
- by mail.maildlp.com (Postfix) with ESMTPS id 2FDCB1800C4;
- Fri, 30 Aug 2024 09:14:04 +0800 (CST)
-Received: from huawei.com (10.90.53.73) by kwepemd500012.china.huawei.com
- (7.221.188.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.34; Fri, 30 Aug
- 2024 09:14:03 +0800
-From: Li Zetao <lizetao1@huawei.com>
-To: <alexander.deucher@amd.com>, <christian.koenig@amd.com>,
- <Xinhui.Pan@amd.com>, <airlied@gmail.com>, <daniel@ffwll.ch>,
- <kherbst@redhat.com>, <lyude@redhat.com>, <dakr@redhat.com>,
- <felix.kuehling@amd.com>, <zhenguo.yin@amd.com>,
- <srinivasan.shanmugam@amd.com>, <shashank.sharma@amd.com>,
- <Jesse.Zhang@amd.com>
-CC: <lizetao1@huawei.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>
-Subject: [PATCH -next 1/3] drm/amd: use clamp() in amdgpu_pll_get_fb_ref_div()
-Date: Fri, 30 Aug 2024 09:22:14 +0800
-Message-ID: <20240830012216.603623-2-lizetao1@huawei.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240830012216.603623-1-lizetao1@huawei.com>
-References: <20240830012216.603623-1-lizetao1@huawei.com>
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SQ3PRlaV";
+	dkim-atps=neutral
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+ [209.85.214.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD82B10E109;
+ Thu, 24 Jul 2025 17:57:54 +0000 (UTC)
+Received: by mail-pl1-f182.google.com with SMTP id
+ d9443c01a7336-234b122f2feso117485ad.0; 
+ Thu, 24 Jul 2025 10:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1753379874; x=1753984674; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+8UvJuIn0OPJI+DjMgO3jk5kaVoeuzRgCCA1dECQ/gA=;
+ b=SQ3PRlaVBom8q1NBcjyZwOtUwsUei+ujjxQ7fE2bx0w9mCWfxMTZ7jn+Fz8dMt5Gfv
+ o1NmTkY7VF+x5n7YQ70GrJ4qbMqzXBfhJPKmUjycaLLKP2gl2iJAJf8wJcDt9XGkFWW1
+ gGcqzM61p3Z8JAMf4ZEX/CG36qK07tJLF3GUTbeS7qbftV2Od/YhJBmqECWIQq5feBYr
+ SU+vLBoFU93l6Ea8asOxHM+PdmiGdzeAFUBC9lLZ8txjmt9OVDxxPwiFLu9f9qMcZtgw
+ F3iqCnWKlT52hQOLEnekmpjtQxrFCNAJzHr2yxQsoasAT9r5ryPu+Ewn/AHz7ZGKmEDc
+ rUjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753379874; x=1753984674;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=+8UvJuIn0OPJI+DjMgO3jk5kaVoeuzRgCCA1dECQ/gA=;
+ b=BLT8X+Yfup4rbzaFtLZcZ3cotsxd6uy3XNnT6PgsiCXr4K0HpnaIQYJrbQICsAtbtE
+ K4o/hQXn4wUBUA/ye+eZnXJZHiqIm+ixzWugucBWlgjotfRNIlbETNdFggOSF82redTg
+ DwVBbwMNwb6P13afukHSJ8PCxobLHnWRau5OTURs9RmEDyh2ClAWnarqP9S8+Dw6ffu0
+ Pwj0e4vf12M8pPho9lEBc3P9d7YbqC6On65B+dA4VZqryf6vY08OHiPina7dYK4VOQ8e
+ Q2x8Xk9RS71PFw//fTNOckVL381ZAkDBL3a0GVYlLMULTIPVZsYZ76VFFAt4etdOG39n
+ ftow==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWoR2zpO3E/eRkgk8q4JztNf8fnTFEtsk/V3owaS9sAYSB74SpbfXv8T02nB3OgnmXkQpAUWKCGSzM=@lists.freedesktop.org,
+ AJvYcCXqG6tU25ExDNdYtjjHgO3pfw7f32FR4zxbGrzROdQwMzmXOSA/GtklOOKr8Q8aUnS7x5nRqQTzmA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YytmSsLY+nxCxmkMS9Ge2J2Mgm0aWrT8Yfst8/UFWnQG+u68lfn
+ QMRk/k9/S9DbDvs1jtbCxDP1rPdu0jYy9kMcBKxLGW9t+LfExJngXtoNFYYyvqhNrFu1I/qzCUL
+ sH7XYw5ly7Cm6JtNv2aQCdN+0hcMVo1Q=
+X-Gm-Gg: ASbGnctZN5LYNoUPjJWt1G7hCKQZyyuz1xzNawrH1wYUjbDJQBpRtledBI/KO66uSXv
+ FVlXR2lZ+DH62LZX2UUbLmOLrO1u5O3tM+WkQAjkE49Zcq7OHJhjmTQmVYNGOqSsomt5pwVbsap
+ KO75Std3LlbhYglUCIZi26ICPdpqXNPBUl53Y1xD6CKOolaFfRivM7cHunvsOApATULmzvYZHzB
+ wHPSmyB
+X-Google-Smtp-Source: AGHT+IEAhOyud9kcbqXxowjJUbxNlqWbJT7GJpdyKPEF2m9XE+mf16rjfgmV2MlnEZtVjRLDvU7+lrC48/cD3la2z1c=
+X-Received: by 2002:a17:903:1aac:b0:23f:9aae:6f0d with SMTP id
+ d9443c01a7336-23f9aae7183mr37615165ad.6.1753379873956; Thu, 24 Jul 2025
+ 10:57:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.90.53.73]
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemd500012.china.huawei.com (7.221.188.25)
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+References: <20250724165441.2105632-1-ojeda@kernel.org>
+ <DBKG6CA32OO0.368N1Y6VMIUTL@kernel.org>
+In-Reply-To: <DBKG6CA32OO0.368N1Y6VMIUTL@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 24 Jul 2025 19:57:40 +0200
+X-Gm-Features: Ac12FXwN0CMehniS1G7J0FWaHdQIDWYqXa1YTpgsiVMs45pPNA405NE1QlSsAHI
+Message-ID: <CANiq72ktx9JsTXN_HTfjGWHxpBh430tkxHE2xL_1BQB2yb16rA@mail.gmail.com>
+Subject: Re: [PATCH] drm: nova-drm: fix 32-bit arm build
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, patches@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,27 +94,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-When it needs to get a value within a certain interval, using clamp()
-makes the code easier to understand than min(max()).
+On Thu, Jul 24, 2025 at 7:05=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> I think I will follow up with a function to perform the conversion in a s=
+ingle
+> place, but I really like the idea of a special clippy annotation to tell =
+clippy
+> to not warn about unnecessary into() conversions for a specific type alia=
+s, such
+> as ResourceSize.
+>
+> Do we agree that we want something like this? Do we even have a feature r=
+equest
+> for this already?
 
-Signed-off-by: Li Zetao <lizetao1@huawei.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I think we should at least ask -- done here:
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c
-index 0bb2466d539a..675aa138ea11 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_pll.c
-@@ -94,7 +94,7 @@ static void amdgpu_pll_get_fb_ref_div(struct amdgpu_device *adev, unsigned int n
- 		ref_div_max = min(128 / post_div, ref_div_max);
- 
- 	/* get matching reference and feedback divider */
--	*ref_div = min(max(DIV_ROUND_CLOSEST(den, post_div), 1u), ref_div_max);
-+	*ref_div = clamp(DIV_ROUND_CLOSEST(den, post_div), 1u, ref_div_max);
- 	*fb_div = DIV_ROUND_CLOSEST(nom * *ref_div * post_div, den);
- 
- 	/* limit fb divider to its maximum */
--- 
-2.34.1
+    https://github.com/rust-lang/rust-clippy/issues/15337
 
+Though, thinking about it, an explicit function may provide value
+nevertheless to clearly see where this happens, and it also means that
+when we see `into()` we know it cannot be a no-op.
+
+Having said that, regardless of what we do for that lint, giving more
+information to the compiler is generally a good idea, even if only for
+notes/diagnostics etc.
+
+Cheers,
+Miguel
