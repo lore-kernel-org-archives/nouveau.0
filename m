@@ -4,89 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8205AD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62767D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E697510EAB3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46A2510EABF;
 	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ULZaOTcX";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MOqWaG8+";
 	dkim-atps=neutral
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A8A910E33D
- for <nouveau@lists.freedesktop.org>; Thu, 16 Oct 2025 19:19:06 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-27eca7297a7so1574455ad.1
- for <nouveau@lists.freedesktop.org>; Thu, 16 Oct 2025 12:19:06 -0700 (PDT)
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
+ [209.85.216.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9788F10E00B;
+ Sun, 27 Jul 2025 09:51:14 +0000 (UTC)
+Received: by mail-pj1-f54.google.com with SMTP id
+ 98e67ed59e1d1-313154270bbso3637760a91.2; 
+ Sun, 27 Jul 2025 02:51:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760642346; x=1761247146; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QkNb2DeKO+13qtb+PBXoKP6RFeVYVbqfpbvDK5KSaF0=;
- b=ULZaOTcXb2h1JC7Bl7LMad0whuqjedwsD6TdJjIQ6E1YJxLqx7JFnWu64tg5368A+7
- rpeojB8hGpjxareQ9tTlQ2Ov1y+SadNpYHg97us1Vs4Hb2z6QkpIo1HFymyxBw1ELhrv
- aKY9ciYPERyiSkW1iYN6weZLC8RtohxTHmkWTKGpJR715jaXdvd/q2SRo5stCcvl2t0y
- yEK4qfTJ8+4GdXcFfkC53yiKnPUzmW/8WHutx1c6M+9Z52nP0GGtmtfn+sO03uvQzmSB
- TBiQoZMr9Y4UhyWPmViGOc60Ci/SxVINIS8m9siDxwXh37OrswD3qsmEdDx93wbiIuak
- vv3Q==
+ d=gmail.com; s=20230601; t=1753609874; x=1754214674; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=t1kXiH/iOIPgD/M4/LDkpVx0cWkoY7aI0S+hOevU85Y=;
+ b=MOqWaG8+AuIM/OvlwvfiH9tZHtCFL4ayXi+jff3ZiHhKLos6SbYfajK5v2KIqIAxMI
+ EXVXjPJG2TCZlS80bxNCtO9JzISfQsVz+uKaJwQzTmhv8K9+QyHmmirEU1ipPbP//rvZ
+ 5j4YInS5+OzS0Wux1IuHIofhyv6eAnsQIMlGWiYtLHqK7jH0hXmv6k4DjTTFf/MUL2L8
+ W/P9ZdTzFErMyAX29Ujdw7Dx3mcLB8NCITzdjFCGJvr9WaMeH1YXO2MImkWEj/7kqiug
+ TNuUneb4czmPsRP/2hEUaYDzSzbmhs/cM67V+Rya6KnK7Pt/Mln8to0U21OakJZJVwIu
+ TqJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760642346; x=1761247146;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=QkNb2DeKO+13qtb+PBXoKP6RFeVYVbqfpbvDK5KSaF0=;
- b=HYz2VUM0KdL6ZUfLAPkWvZCamvRGJVdVdosxaB3i+NWzANr3erQgUH1ais89wF0geX
- XI7+i6smeA6JQ7dx5i79268e57b8X/xmZAYZA0tP7jcxpW3EqxEqWkrkXZ+va5Iqonuj
- DgF8kgbmHywv1EbWl3DGCeHbQ/wqJSEIJeBZnlKtkcrcAy0tPvCmIoO/A/gu2ZhlaKaf
- JXUkswatsNoOI5fSdmRfqNKslxhpp9mkKpTnCuVbvaCINCkHWZvvBEoW0be9BW+U5zNa
- xQUMxqBhODUnIf2M6rXZwhQe4ZgmVyJemluS/qhqMYWsxzLif8wpJDzvSmfFippAUvNc
- XkOQ==
+ d=1e100.net; s=20230601; t=1753609874; x=1754214674;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=t1kXiH/iOIPgD/M4/LDkpVx0cWkoY7aI0S+hOevU85Y=;
+ b=Di2qipVWG4rcB2qDgovnzBKR8R9ExsfHfafVEmA5R1xYWxPWFUAwRSmxFsQkXJ6dS2
+ 5kpkyLEpSUGNnr0QqVh0aFAVmjaYerCWjxco83JdkeWAdKj7u7Juq+wsjkjoQzjOEFPK
+ eBLhqRfeAORcPTgVewvhEYog0FRvbssawHD2TpeIe68hbx7U8bWRZCv8xPHFmWChzNlN
+ GC5UfyFmOsldHy38tTSx28QPRGoyNnEsyUmP7H7JROt4Y1pDdHHTd0Kwuu0PWs40/uqc
+ PqjBEIFBGclovx14vvedw0g4e8Z0oYAlwFKwBC8uKBn1RhjDsaMvL3CDcSip78fB1+le
+ rv8g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXVnJHk/X0+fKLOUP0qgvjcXrxA1McRaws8af9KCO8H33tpiUtdAhCBs2VTIIdQRcTxxaWe/5O/@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzCnfnmEvceA/4MYojzu1EuDuaEwVCV2WzxIlhPL54xcTlL4PTO
- NHvN8xA27G0kGRuNkLcEoOStgxWWdJUR+yEYFGZymhCuJ4nkKOls0uuG1H3qVDbQAUyuNrlICEc
- IJww6cR72TkKsYNUR/Ho0odI9Np3PNog=
-X-Gm-Gg: ASbGncvYfsXC1bIa7gfsopMbUBthXWmQzKdZkpXfCHmb29PBtGXm0gTnSqFwjycQQsE
- WjoVKvxmbvnSg0RcmthftMe4EQYPWovU+1279I1uX0FtG8YvpobNTcp/4YwXxnOaZFdek/Cd1HR
- axqFJs7we8y3oo+tZugKrij0PVbfVffi3Dp80K0iDr1uyDXj4Fe8T0M5QEupC6L72iQlzxNpi3d
- D7zjBZ/IGIgW2OGYxJidWc4WX1xgOiDIN3LGOcArD0Ywjd/HunI1n8QESrC2PgpEhqEXtdWJPWU
- vWqqVYMHkuuFe8dekXdqF+vqvQF4GflltiYVrMlfIcn2t8N4pIwTamt160TnhZaZuSw28/6rvZ5
- kZmU=
-X-Google-Smtp-Source: AGHT+IH0YWgGKSo65cgBPX5W3p7j4HkK3bVU7l78fZ+js9jI7tU4OLEp6GPUbGx58mDOvsKGfrW9fh+1rWFnGpM/2VM=
-X-Received: by 2002:a17:902:e950:b0:290:7634:6d7e with SMTP id
- d9443c01a7336-290cc4ea8f2mr6194375ad.11.1760642345509; Thu, 16 Oct 2025
- 12:19:05 -0700 (PDT)
+ AJvYcCXZl0uKhigOzO011APdeSKKo/x3ebu9WjDoP+5SWoMBN4NfHCxavov0hS3A7jg4lOsnxHjF7NplsA==@lists.freedesktop.org,
+ AJvYcCXgIdwqn6ENCn5AjayM9tppGx3CT+iT0X9ELPlpmE4qNNQOd4IWj7T4KV92/GMbQGgs9C4EKrcS6eg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyC8MyHQ5p99iSremFk7TOdRJB1B+d59B/5Sk68G3sHJdJ5bAYW
+ RpBP1uY2t82V6dKBo1OgnRQl6X4EKLskMZfKUlYhol+FMibw4VcZObQ6
+X-Gm-Gg: ASbGncss6N27ZimctF/utjNznCmIfdQuUssqolcYXQxlNbb2rbyc9VPqxdWeV1a82FB
+ kZL99xh42C0aFINPLNMeT4ZcLTPEOWJOoTtpPKxiNQ2u27cdkhrTHd9bD57+weTk4IVL/f7tsXB
+ rGtAmcD+yJMv8oAIQjQXY+5uyqyRgmab5hc6+I45bdJzBaEJVfgon3z/UngKYjmJ6R1hbharVcr
+ AmzpXlw2alRJIgYmW+yuqzvdYl6dqlHaeDCvRfV7ZO+PXf6IDpIpKu0+IHtrXtbKvooXeujABw6
+ w+utByd33EjNRkEMrDXIrkaBBnLj5VIliDD99YClt7hEuj/+wIU8PrKALyZCMvCyJjpES66li7N
+ 4APwfVM6+VwUxIVGxzsNnBBxn
+X-Google-Smtp-Source: AGHT+IHAGa1LiA4U0ZjULerVSzNUQ9qnTdRAU1E1dly2dZnZK61QY6vXTJDFJnRt1D8ULLgYMQEINA==
+X-Received: by 2002:a17:90b:224d:b0:31c:c085:fde6 with SMTP id
+ 98e67ed59e1d1-31e77636196mr14021956a91.0.1753609873917; 
+ Sun, 27 Jul 2025 02:51:13 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-31ea8c1770dsm2012652a91.36.2025.07.27.02.51.13
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Jul 2025 02:51:13 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: acourbot@nvidia.com,
+	dakr@kernel.org
+Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] gpu: nova-core: vbios: split out PmuLookupTableHeader
+ from PmuLookupTable
+Date: Sun, 27 Jul 2025 02:48:59 -0700
+Message-ID: <20250727094903.20483-1-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20251013062041.1639529-1-apopple@nvidia.com>
- <20251013062041.1639529-5-apopple@nvidia.com>
- <DDJJ4P7ED3LJ.6YD2M62RB5VY@nvidia.com>
-In-Reply-To: <DDJJ4P7ED3LJ.6YD2M62RB5VY@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 16 Oct 2025 21:18:52 +0200
-X-Gm-Features: AS18NWCOXO5Nlj8i8ZNj-U23NNA7RJ1ucE47naAt3VXCGXJAjL5KZrU7UJiyBhk
-Message-ID: <CANiq72kpgPT8=-UPj8Bez_ui=MTVauCPg7CabDau=jxOB8qdow@mail.gmail.com>
-Subject: Re: [PATCH v5 04/14] gpu: nova-core: Add a slice-buffer (sbuffer)
- datastructure
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Alistair Popple <apopple@nvidia.com>, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,40 +90,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Oct 16, 2025 at 8:23=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> On Mon Oct 13, 2025 at 3:20 PM JST, Alistair Popple wrote:
-> >
-> > +/// # Example:
-> > +///
-> > +/// ```
-> > +/// let mut buf1 =3D [0u8; 5];
-> > +/// let mut buf2 =3D [0u8; 5];
-> > +/// let mut sbuffer =3D SBufferIter::new_writer([&buf1, &buf2]);
-> > +///
-> > +/// let data =3D b"hello";
-> > +/// let result =3D sbuffer.write_all(data);
-> > +/// ```
->
-> This example doesn't build - there are several things wrong with it. It
-> is also missing statements to confirm and show the expected result. Here
-> is a fixed and slightly improved version:
+Separating the header allows the use of `size_of::<PmuLookupTableHeader>()`
+instead of the magic number 4.
 
-Yeah, I mentioned this one in a previous version -- the section header
-is also still wrong too.
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 56 +++++++++++++++++++++-------------
+ 1 file changed, 35 insertions(+), 21 deletions(-)
 
-Alistair, please check the link I gave:
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index 5b5d9f38cbb3..a77d7a4c8595 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -889,6 +889,32 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
+     }
+ }
+ 
++/// The [`PmuLookupTableHeader`] structure is header information for [`PmuLookupTable`].
++///
++/// See the [`PmuLookupTable`] description for more information.
++#[expect(dead_code)]
++struct PmuLookupTableHeader {
++    version: u8,
++    header_len: u8,
++    entry_len: u8,
++    entry_count: u8,
++}
++
++impl PmuLookupTableHeader {
++    fn new(data: &[u8]) -> Result<Self> {
++        if data.len() < core::mem::size_of::<Self>() {
++            return Err(EINVAL);
++        }
++
++        Ok(PmuLookupTableHeader {
++            version: data[0],
++            header_len: data[1],
++            entry_len: data[2],
++            entry_count: data[3],
++        })
++    }
++}
++
+ /// The [`PmuLookupTableEntry`] structure is a single entry in the [`PmuLookupTable`].
+ ///
+ /// See the [`PmuLookupTable`] description for more information.
+@@ -918,24 +944,18 @@ fn new(data: &[u8]) -> Result<Self> {
+ ///
+ /// The table of entries is pointed to by the falcon data pointer in the BIT table, and is used to
+ /// locate the Falcon Ucode.
+-#[expect(dead_code)]
+ struct PmuLookupTable {
+-    version: u8,
+-    header_len: u8,
+-    entry_len: u8,
+-    entry_count: u8,
++    header: PmuLookupTableHeader,
+     table_data: KVec<u8>,
+ }
+ 
+ impl PmuLookupTable {
+     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
+-        if data.len() < 4 {
+-            return Err(EINVAL);
+-        }
++        let header = PmuLookupTableHeader::new(data)?;
+ 
+-        let header_len = data[1] as usize;
+-        let entry_len = data[2] as usize;
+-        let entry_count = data[3] as usize;
++        let header_len = header.header_len as usize;
++        let entry_len = header.entry_len as usize;
++        let entry_count = header.entry_count as usize;
+ 
+         let required_bytes = header_len + (entry_count * entry_len);
+ 
+@@ -963,27 +983,21 @@ fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
+             );
+         }
+ 
+-        Ok(PmuLookupTable {
+-            version: data[0],
+-            header_len: header_len as u8,
+-            entry_len: entry_len as u8,
+-            entry_count: entry_count as u8,
+-            table_data,
+-        })
++        Ok(PmuLookupTable { header, table_data })
+     }
+ 
+     fn lookup_index(&self, idx: u8) -> Result<PmuLookupTableEntry> {
+-        if idx >= self.entry_count {
++        if idx >= self.header.entry_count {
+             return Err(EINVAL);
+         }
+ 
+-        let index = (idx as usize) * self.entry_len as usize;
++        let index = (idx as usize) * self.header.entry_len as usize;
+         PmuLookupTableEntry::new(&self.table_data[index..])
+     }
+ 
+     // find entry by type value
+     fn find_entry_by_type(&self, entry_type: u8) -> Result<PmuLookupTableEntry> {
+-        for i in 0..self.entry_count {
++        for i in 0..self.header.entry_count {
+             let entry = self.lookup_index(i)?;
+             if entry.application_id == entry_type {
+                 return Ok(entry);
 
-    https://docs.kernel.org/rust/coding-guidelines.html#code-documentation
+base-commit: 14ae91a81ec8fa0bc23170d4aa16dd2a20d54105
+-- 
+2.50.1
 
-or other code in the `kernel` crate for examples on how it is usually done.
-
-It is not critical today, of course, but the further it is from what
-will be needed in a few months, the harder it will become to start
-building the docs and running the examples as KUnit tests.
-
-Thanks!
-
-Cheers,
-Miguel
