@@ -4,60 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BB07D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC637D5B15C
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EDF010EAD1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8791210EAF2;
 	Sat, 13 Dec 2025 12:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="DXOoGT8M";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="miiOkEJp";
 	dkim-atps=neutral
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3ECC10E4A6;
- Mon,  7 Jul 2025 13:54:37 +0000 (UTC)
-Received: from smtp2.mailbox.org (smtp2.mailbox.org
- [IPv6:2001:67c:2050:b231:465::2])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4bbQhp2bbYz9snN;
- Mon,  7 Jul 2025 15:54:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; 
- t=1751896474; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=2BqhwT8Nr4vG7FFUJaWUmxP9QQSwgaOjItrDKQSh2ZI=;
- b=DXOoGT8MhARLRaliROBmSJNijpxY/AbJ1O2N+jsG4asOTxRB2QMjWeigPRlxYJ19SFGNAB
- H78kQ3V6kMaRn5qC9e0bVKE3bg7a3N+yhqp+UwMMVZuksOuojGriUpoNOkWuPIubPoxRlF
- bQEluWwQELB92vGG+VKzOI7RB8a25NY+BsW8/tx2d4NHVok3qpujZv97NnMYg76/jCDoFf
- 4/404RsQyMoxxzVQghu+dDOeTDXLU0h1x2JhTzlY+AZlShxjk5gREAu6K58ychlZUC/Cyq
- ymms1NCjYmdCo3qpHT/4vFCpMaaqbjqL3TaoXdlw779PSJQ/jiQYHvBC6klDag==
-Message-ID: <7d5137a8c71c525c4e806f8ff06102d2e3a47ccc.camel@mailbox.org>
-Subject: Re: [PATCH v2 7/7] drm/nouveau: Remove waitque for sched teardown
-From: Philipp Stanner <phasta@mailbox.org>
-To: Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>
-Cc: Lyude Paul <lyude@redhat.com>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Sumit Semwal
- <sumit.semwal@linaro.org>, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Mon, 07 Jul 2025 15:54:26 +0200
-In-Reply-To: <89b0a4bf-2a66-4610-93d2-8f2f096592a3@kernel.org>
-References: <20250707134221.34291-2-phasta@kernel.org>
- <20250707134221.34291-9-phasta@kernel.org>
- <89b0a4bf-2a66-4610-93d2-8f2f096592a3@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
+ [209.85.216.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7186B10E398;
+ Sun, 27 Jul 2025 09:51:25 +0000 (UTC)
+Received: by mail-pj1-f48.google.com with SMTP id
+ 98e67ed59e1d1-3190fbe8536so3152759a91.3; 
+ Sun, 27 Jul 2025 02:51:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1753609885; x=1754214685; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Q75mBtp8jcS9+B1UD9cGfUNuIFaVl8oU2VgPg7QjKsg=;
+ b=miiOkEJpjhNDnnwPfGh9PM8m4mNbcHTZbhpzd/f5Ux+CRo/Ol5Bj/4zc3E0eay52b3
+ UUalCOb7kIWJO+tmRNaGhLiqSkGMY0Gy33MhCX7kdatVF6fo9uoT+tCvGKJpmDCdTeKB
+ 6r2ZXgshz07nH83BsUNsqgKVMrZ+eUaEr8+OPKleJSDDQXGIosmxPdPL2nGqtYDNEfMw
+ i4aQzj9A9BuB8URcRw9QRYI4ddTkGHGdfnHQ1frNcb2Hf/q8zxZhK2ROPopf6wNPI2/J
+ i8+A/MwVc+BQpCACXZJKSa8Cst25W3OzI3++nadqy1RAK6ZaJDELSXhKI90lerF5BxSu
+ nMRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1753609885; x=1754214685;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Q75mBtp8jcS9+B1UD9cGfUNuIFaVl8oU2VgPg7QjKsg=;
+ b=OV5jneSBzbihJcobbXnaHH58BjhxwaEitPKDR5NCk5aKs1Hz4vhLLAetjyNBo01bFW
+ xb2r6kQsGDw0GCb3/zWKVDcD52DFqGQza4FxlyukHJHhh43uHRSH0OFnz4CckLY6N24T
+ k07nVHN5M62bLWo32IyzwK6XyisVHd89WI/4hp2Ccm+YW738k4S53NFkcVwiz1BOsKAb
+ 2eWvGDu7fGWmTq2GPyn4u+c+HEQDnHDPNY5jlBRDLTjZL7sd3Pp/lxec3iTTTewMMwdf
+ 3n3n3FCFVZYsNw+PjB6FAz74i9ciuSfyXa0TMzq0nudOUX65gUFF0hUNprjpn2TbAYGZ
+ 5fqw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUhm/d7IpLL40/4/MCSB5ZwkwMu4eU7AGltjsDDh7vs8CeHV2oxPXNrzZX8hMg7MjtDD+LLoOpxiAk=@lists.freedesktop.org,
+ AJvYcCWsD3QB3MRST0Tt/R+womo7/YN9YLt5diGAMqptrhhYku41bACcKoq75E1fGQmB8GwAvM5dUMpkiw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwP0uG0l0bWNEzSfFxbbUNltKnRMn9995INqR+TD8e3QAgF5T5d
+ m/ORnanw5+dVbQ88oUhAx7e5x6agfNVc6kjHYhZ+AEERCEp+Z3+QNJYh
+X-Gm-Gg: ASbGncs3k87P5NWo+sAy5m5b7aC9pIV0J4BHkFhKHYc7iFGaOviT+QcEtoOc2fwrPTL
+ rwFS+Y7E8jMejzGiwcuS6lWlEz3JP0ar6KzG5VyUJCA25RKSuyTPtMky1hk7u1EbaondJbGDOvL
+ MFTG4RQiX4tnDIVmcmxBylXJZSRAQAOaLpdZZW++ht7rCksYvD/qjJv/CAEDzcDbaFt41a7xB9Z
+ SAbPtp+5NDFntcnE4O2nwiZH1LebYMJ89lAsJNZmnG78SLFZ2KkeYy86xeNmK2lsOzeLcfYv9ma
+ yA+Jjd2ijEFDClRAd6voXIkYmYQ1Bnlnk+flQBo3oitQZl8hQmBJCkQfGGqJVtqpd/uN1ZQqzEN
+ 93KjZyeUDzng0S1Xct3rBqZzf
+X-Google-Smtp-Source: AGHT+IFphsUeaQG/0HS39YHZVYaXChSqW9BbhaZJq4ICXtoyWmtTBglaeojibI0sGzaXO/VryFY/5A==
+X-Received: by 2002:a17:90b:58b0:b0:31e:e3e1:3686 with SMTP id
+ 98e67ed59e1d1-31ee3e137eamr293498a91.19.1753609884768; 
+ Sun, 27 Jul 2025 02:51:24 -0700 (PDT)
+Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-31ea8c1770dsm2012652a91.36.2025.07.27.02.51.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 27 Jul 2025 02:51:24 -0700 (PDT)
+From: Rhys Lloyd <krakow20@gmail.com>
+To: acourbot@nvidia.com,
+	dakr@kernel.org
+Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] gpu: nova-core: vbios: use offset_of in
+ PmuLookupTableHeader::new
+Date: Sun, 27 Jul 2025 02:49:00 -0700
+Message-ID: <20250727094903.20483-2-krakow20@gmail.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250727094903.20483-1-krakow20@gmail.com>
+References: <20250727094903.20483-1-krakow20@gmail.com>
 MIME-Version: 1.0
-X-MBO-RS-ID: b05b9421ee7d28b08f7
-X-MBO-RS-META: kuh7iboedyuumzst34pgyixoy47xmkat
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,34 +90,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, 2025-07-07 at 15:47 +0200, Danilo Krummrich wrote:
-> On 7/7/25 3:42 PM, Philipp Stanner wrote:
-> > struct nouveau_sched contains a waitque needed to prevent
-> > drm_sched_fini() from being called while there are still jobs
-> > pending.
-> > Doing so so far would have caused memory leaks.
-> >=20
-> > With the new memleak-free mode of operation switched on in
-> > drm_sched_fini() by providing the callback
-> > nouveau_sched_fence_context_kill() the waitque is not necessary
-> > anymore.
-> >=20
-> > Remove the waitque.
-> >=20
-> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
->=20
-> Doesn't this break the driver until fixed up by the subsequent patch?
->=20
+Use the offset_of macro for each struct field, annotate the
+`PmuLookupTableHeader` struct with `#[repr(C)]` attribute,
+and add a TODO message to use FromBytes when available.
 
-Did you mean to answer to patch 6?
+Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
+---
+ drivers/gpu/nova-core/vbios.rs | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-Patch 6 implements the cancel_job() callback for nouveau, which makes
-sure the (still existing) waitque will never block. The, now redundant,
-waitque then gets removed in patch 7.
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index a77d7a4c8595..cedfcf3476bb 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -893,6 +893,7 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
+ ///
+ /// See the [`PmuLookupTable`] description for more information.
+ #[expect(dead_code)]
++#[repr(C)]
+ struct PmuLookupTableHeader {
+     version: u8,
+     header_len: u8,
+@@ -901,16 +902,17 @@ struct PmuLookupTableHeader {
+ }
+ 
+ impl PmuLookupTableHeader {
++    // TODO[TRSM]: use FromBytes::from_bytes when it becomes available.
+     fn new(data: &[u8]) -> Result<Self> {
+         if data.len() < core::mem::size_of::<Self>() {
+             return Err(EINVAL);
+         }
+ 
+         Ok(PmuLookupTableHeader {
+-            version: data[0],
+-            header_len: data[1],
+-            entry_len: data[2],
+-            entry_count: data[3],
++            version: data[const { core::mem::offset_of!(PmuLookupTableHeader, version) }],
++            header_len: data[const { core::mem::offset_of!(PmuLookupTableHeader, header_len) }],
++            entry_len: data[const { core::mem::offset_of!(PmuLookupTableHeader, entry_len) }],
++            entry_count: data[const { core::mem::offset_of!(PmuLookupTableHeader, entry_count) }],
+         })
+     }
+ }
+-- 
+2.50.1
 
-
-P.
