@@ -4,83 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 564C2D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D27CAD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35C1E10EAAF;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C147A10EB4F;
+	Sat, 13 Dec 2025 12:41:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RtHEPuWt";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Na/2EA/N";
 	dkim-atps=neutral
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65EC710E3FB;
- Mon, 14 Jul 2025 06:10:39 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-2350fc2591dso36817295ad.1; 
- Sun, 13 Jul 2025 23:10:39 -0700 (PDT)
+Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com
+ [209.85.161.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A55110E00B;
+ Sun, 27 Jul 2025 09:51:15 +0000 (UTC)
+Received: by mail-oo1-f43.google.com with SMTP id
+ 006d021491bc7-610cbca60cdso2096481eaf.0; 
+ Sun, 27 Jul 2025 02:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752473439; x=1753078239; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=OfFqMeZyU9HS+WHoyGh+rEgFUDR1EqSVoqNyn1ejI2E=;
- b=RtHEPuWtp9KcLoqxKxeWOlgQsQL/wyJQF7HxfRAAJLLNgljG1c/jvkdnli3ilwS2//
- SFDWGzXEmdgUJyDN8JtZCRbWxenz2J8HZGgWgJuKNlKM7PDRxLO2swF/4YcDbrbPeuy9
- UfCIU2hX2li5HgXMupxNOtFYpi3ShJCPEpbaw7gRcZRMgrGr6BxvxsAIB/vSE1nbiCWs
- VrDghWxVmvCZQ+swXnSp3gm5BEVlMWObDYZV3uaGsyX9xzs4uQqzzXC+/yf0ncIAWHiM
- 7C71yNV6ib/U8LmA2h5FMg92jSGRP/PiRKb+0FTPjRuJZOYx3TPWuHJwiNBROpvsVSUp
- ztCw==
+ d=gmail.com; s=20230601; t=1753609874; x=1754214674; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=nFeZkLi3dXMjYKmhsyulgqSrNnECKk/svpVxCMAGOH4=;
+ b=Na/2EA/NeZg4EylQOPQb+T56v39PI/R0VmA5Zvx7VpgHB2KvPOd706A+MU6iIw2RJN
+ KfnpKDb5OKdyUGkx9pO9Vnb/a5FXajwpApeKt0TR+Ge29swFTtKuVpNV7efUkDzYBGJp
+ iGRk2o1iarQ5iOA0eH3lVjazqtEvGALFJn/zUQSZv6Sppzi4XrcxyUZw+b679DSGmeXk
+ z2FQvZA7Rlz7LHUOEsmOx8+boKqB8Z/b5hKGh76P6eSAHdEWoMU5APbR+bpBwJXJvq+o
+ FomX4qJIaj4V3o7tNmzYk1TJsnjhcAe/vcKStkqauzdPk9OzLPlsCCCs+9Gnb8ilNIkF
+ N/8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752473439; x=1753078239;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=OfFqMeZyU9HS+WHoyGh+rEgFUDR1EqSVoqNyn1ejI2E=;
- b=gisIm1vaMrSArbdClyAJfjD9IuaSoYsfgdyJA6dseDE+SLeRA3AbJZWrruTzt2ICX4
- WCdAArdZdxV3JixD7aZjlCSjlVrVocjZuj7ipt0jotCkYbMbFPX6WvqEr4uwA8X8RYe7
- GZP+SRzFG1VMvT2cGLFs+0b9wrhzPSwCohehh+qpE+OmPne+EcnqnSZtlZ17tyfYzkPP
- ZAI69U3FZ/NSALUEJZr2Quysc3vRNPNwKKVDv8+AsHsfPkvipL6fw9W3RIaKrBZVTMYG
- lfYQ9OMxs7GtsgL7yCbX62t/C4E02lSQvwtgj3XWUxN9CXThlV+CAm/RxlatBzZ2HQQm
- P/Yg==
+ d=1e100.net; s=20230601; t=1753609874; x=1754214674;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=nFeZkLi3dXMjYKmhsyulgqSrNnECKk/svpVxCMAGOH4=;
+ b=RXsHH4FVsIynglorQMO/LeBVpGNCtNYazlWnAj6sZ3x5TowjeZyGEmQRI8Zt+m4tKc
+ AiWnALaV4juTMj9HYxJyo1NSSguVQsj1W3WUsYUkTHJrARrCvTpHRB3hjtP+AUGGVYqN
+ 02YH67PWZI7VhV9Uv1XqmYvEwIBA8XPVPdaP0w/C2ZnP+vnGzFtI4GJ+PMwt4TPecB0N
+ MGdzIYzxJbWHY0wUL/pdt+d/bLVe2dlECjm0NQ38MJWoqDZWXNR1/FvTbIIGELt9aXZy
+ RXWZf34FNfnxvr4tSr9qQ84uU/d1LRqk4nXX7i7eRtUhfnVe6jHJNSt1DkHkH/r/uzDV
+ o2rA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVU4pHyT2WMCJLzRFJDn911nnt7wFtpwylz2Z4CGtwdh175EKH9Rb6stcr1YkRsGAd4g050RobvxvU=@lists.freedesktop.org,
- AJvYcCX7D4zUaqWZ5Ys2s7NyrN/BtF3snsX+ximbF4fZBPHm/Tsk4++U+Gmvr++P9DXK8T5eYzcQWywLKg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxzdswIxMqOaG0tHDR+fkzoyHSkYbDCewIZlzLhV/YdETPq7ZLU
- 8sjoKcg3+hy0Tr+9sMiL/vWRn5q5zQCN1FlKOAG7irToEgqzQJNBUm3S
-X-Gm-Gg: ASbGncuuYpYegFRMFT6rFP8K4IyTnBx+EJ4KmmCDhj1BYdotFZipFrt20mWYq0WCTKU
- 3OwpgLONw9lOff6patr67XQjoZx3Pw2/EawLJoPyZ0ZVxatQD1+tGTvSVnWhb/dDwSlIdw9v1DG
- zyBS1JnKUNso0/75rRObLzqAxDclLYmjgKSq03XQsz7DFdGeytgTkxMJg+S2pu/Q+Nj7DQjdwbX
- ik6Unxx4BEGeKtsQGyNBDsW/a3pIKw0FCObX/VzCkV9Vv37fJh8WMH2i/3Cvc3GLBt1/ix/6gW1
- a06Fyp+aCAfOnyGA/5biDopwm/B9F2pTTxRav47FLZERIvUzNJhprnF/AjHeJPLHesLGOPG4Ieq
- oRT7WbRXJlnbWUohE5zY/H9B0FAyETKqQm8sFSyuCwT2t88rarUHIrVyqOJmjMbSMtZhE
-X-Google-Smtp-Source: AGHT+IEh5rmOi9OTdgxMZ+ZYCCwxnVNNOCtSZ7HLSFh73cHwYUInliH9Wmy7ojp7o6gQDl2FOpbi5w==
-X-Received: by 2002:a17:902:f606:b0:23c:6d5e:db4e with SMTP id
- d9443c01a7336-23de2f47919mr267449435ad.8.1752473438744; 
- Sun, 13 Jul 2025 23:10:38 -0700 (PDT)
-Received: from ?IPV6:2001:569:514a:9100:3f23:7b0f:f6a2:1ebd?
- ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23de43655fbsm83226305ad.239.2025.07.13.23.10.38
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 13 Jul 2025 23:10:38 -0700 (PDT)
-Message-ID: <cda61d51-ad85-4464-a637-426b960a83c6@gmail.com>
-Date: Sun, 13 Jul 2025 23:10:37 -0700
+ AJvYcCUp2PP8nHINWkRrkXmy0xJCQhmrlA+m5/L1+OlF9LLuGDLv19OirbCCFSI8BRrRHzVUTzW3JDPDdTo=@lists.freedesktop.org,
+ AJvYcCWw+M4KPcQ7LRKk+Q+/xelF1EpyzJdL9vKnBLrTcXcC/j3tt6qmznbfziehFqqtWTIlxKpbyZFRAw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZk+4+DzxJetR4FkE9Y9LuRQVrczgKw0XldWF+4cTB6mive4gd
+ Ej49UtPQJ8qXZmAY4+Yowe2Ly5eEYXylmavO3f2GVArZTkgnYZD14rPOOXJ4OF7iC01m7OkV0eK
+ AgpKbVghmQ0/OVCL+UZ4UuqpFyZFfRE4=
+X-Gm-Gg: ASbGncugKmiQHq+TepJS9Ll6rcDZnhoRc+qLh+FL9Wg867a6uS3ZT2DLf5KH6I6+r2I
+ CiyrYETZUEi8I4sU9rcbpS4mC8hcxMDh6A9IWQ8CU6ZMYs0YjpOMIFKFeBynQZM5TjYQXh1dzD5
+ d2LPaHdxba+qC4SJEyKTwbXRGkzbCAKHLxr/2uU3BLsgrH9gq6ANWIRzTu6C4NVdOVMuDy720dC
+ 8wNlBhNmcPwX1qa5+lLdaPUl+b1bpLyuFbmbWrE
+X-Google-Smtp-Source: AGHT+IFrYgebhq8gmtJdDuLT1R1NJegqag8vHwHBlQ7UiW0xS1gBt/xj3wz+uraz0qf/jzt5q2P6fPA8Y+A+zhmLNyg=
+X-Received: by 2002:a4a:ee0f:0:b0:609:dd17:795 with SMTP id
+ 006d021491bc7-6190c9b2767mr4863242eaf.6.1753609874595; Sun, 27 Jul 2025
+ 02:51:14 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] gpu: nova-core: define named constants for magic numbers
-To: Alexandre Courbot <acourbot@nvidia.com>, dakr@kernel.org
-Cc: airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-References: <20250713025108.9364-2-krakow20@gmail.com>
- <20250713025108.9364-4-krakow20@gmail.com>
- <DBBG6Q86XAAQ.43DPC0D210TI@nvidia.com>
-Content-Language: en-US
+References: <20250718073633.194032-1-krakow20@gmail.com>
+ <DBL6BUAHZ250.3UCFP2OB3UEIY@nvidia.com>
+ <ab63103c-3b21-451e-b450-a1755b452d77@kernel.org>
+In-Reply-To: <ab63103c-3b21-451e-b450-a1755b452d77@kernel.org>
 From: Rhys Lloyd <krakow20@gmail.com>
-In-Reply-To: <DBBG6Q86XAAQ.43DPC0D210TI@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Date: Sun, 27 Jul 2025 02:51:03 -0700
+X-Gm-Features: Ac12FXz6IRrbu5D8lGdf-x7j5aaSoITICjmtxz8OWjJATTXn2XMK8AX82FcIyc8
+Message-ID: <CAH7AjUzfc3+SFNKWDerOY62M3OU8=wX8Qs=Bj_S-uKo6w0nuYQ@mail.gmail.com>
+Subject: Re: [PATCH] gpu: nova-core: vbios: use offset_of in
+ PmuLookupTableHeader::new
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, rust-for-linux@vger.kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,34 +89,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 7/13/25 8:11 PM, Alexandre Courbot wrote:
-> On Sun Jul 13, 2025 at 11:51 AM JST, Rhys Lloyd wrote:
->> Introduce an associated constant `MIN_LEN` for each struct that checks
->> the length of the input data in its constructor against a magic number.
->>
->> Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
-> As I mentioned in [1], I think this would be better addressed by working
-> in terms of `sizeof` upon the relevant structures, after making them
-> `#[repr(C)]`. It might require splitting them a bit since some contain
-> other data (or we can maybe turn them into DSTs).
+On Fri, Jul 25, 2025 at 7:04=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
+wrote:
 >
-> [1] https://lore.kernel.org/rust-for-linux/DB97X8JAJFI4.3G1I8ZPC1MWLS@nvidia.com/
+> On 7/25/25 3:35 PM, Alexandre Courbot wrote:
+> > This chunk does not apply - on nova-next PmuLookupTableHeader does not
+> > seem to exist. I think I remember you split PmuLookupTableHeader in
+> > another patch, so can you send all the relevant patches as a series tha=
+t
+> > applies cleanly on top of nova-next?
+>
+> If otherwise the series is ready, please wait for -rc1 to be out, and reb=
+ase on
+> -rc1.
+>
+> Thanks,
+> Danilo
 
-As far as I can tell, only one of the five structs with `MIN_LEN` have 
-the same layout in-memory as they do in the `data` byte slice, that 
-being `BitHeader`.  Perhaps `#[repr(packed)]` could be used for 
-`PmuLookupTableEntry`, sacrificing alignment, but that is undesirable as 
-it comes with its own footguns such as unaligned loads.  The other 
-structs include optional values and vectors which do not have the same 
-encoding when reading from the `data` byte slice as they do in memory.  
-I have worked with DSTs before, but I don't recommend them for 
-non-library code since they are not first-class citizens in Rust.  
-Notably the fat pointer is not resized when taking a reference to the 
-unsized struct field, and constructing such objects is cumbersome.  
-Also, in the current version of Rust (1.88), DSTs cannot yet live 
-comfortably on the stack.
-
-This patch can be dropped if it's not valuable enough to warrant the 
-change, I only made it because of your comment here: 
-https://gitlab.freedesktop.org/drm/nova/-/merge_requests/4#note_2999761
-
+Strange that it does not apply.  I'll figure out how to send a patch
+series and resend it without any changes.
