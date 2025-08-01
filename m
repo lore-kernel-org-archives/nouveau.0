@@ -4,59 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28987D5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6630D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F16B89167;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 550E310EAC9;
 	Sat, 13 Dec 2025 12:41:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="l43TTqeD";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="oLva7SuN";
 	dkim-atps=neutral
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CAA910E8CC;
- Thu, 22 May 2025 12:42:40 +0000 (UTC)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F90B10E315;
+ Fri,  1 Aug 2025 19:33:28 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4b37H110tnz9tmV;
- Thu, 22 May 2025 14:42:37 +0200 (CEST)
+ by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4btx2F1VR0z9sd6;
+ Fri,  1 Aug 2025 21:33:25 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1747917757; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1754076805; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=EZRaaTqj5Cjmu8Cm39Xc6qLz7c51j9UUiiCjsfDUhMU=;
- b=l43TTqeDEP4Xf9nqEFSLqYxzhHhSGues+VdzMZzP/bRVlgsJg7U/wVjgphvoPjEpO97V34
- drn4g+OXgnkN9fCwrHXDPaYiyGqA/6zGdEXzQu/dH+fyo2nlz8dC0Eh+raeCbs0y+WJsrG
- kVEdB3m2ZsnIwroZSF6A5vYyUXUFZgug518LU816/oQh+42NZuVgZoG1dfxeUFk5r2sIMS
- 5h4hXnYFljtf3JsyCJeoMOy3MKrPFd+HNb6f/jxV9sqf7SfxOhbLJxPDFBDJn3JukvmFEZ
- tN/nFzKieH1Qsa7NcXgHwW2TqcuQMMV3RYhvfw1xyR5STPjIJux/NximcCDmow==
-Message-ID: <e5d74c0be68d641171271cdff2e71ec5eb312377.camel@mailbox.org>
-Subject: Re: [PATCH 2/2] drm/nouveau: Don't signal when killing the fence
- context
+ bh=RWaNLhbm24FN2VPxqLS0wEWVP3ckHjc8299w5KEB5CM=;
+ b=oLva7SuNT6tG4OnBJa4DIwGdgJee+Xi/k6nkZqFA27OyTG4xVhvDr2FZ3QNHzWzTJPDgW6
+ UXPi0gQBJj/z3AWvs7XOEUcv6XRqbmv7wHga/9WMH8GRsCxVkaXHuaBlVLssknjafQqcNu
+ 04PyyEWVyG1RMzDZMiJ8WJSWD16P2OXKNweUWT13DnDJk1AY9zrWCf6aAkv7UG6IQgFJKK
+ 4lmi7CSfnP8EQT5pMFz3f78IJA81j8cBCIA5vFED9Mvez0Hh3b579ncTZQGz98a+qm8Lu1
+ lKMpWONxvlUtKBf59G5KNThsqkOmTeOhBSzw3y0GFEcQ6QQXZD+jZypzxDe0bw==
+Message-ID: <f429ce1c4c818d5e622bb6e9dc485e8e6b776e56.camel@mailbox.org>
+Subject: Re: [PATCH] drm/nouveau: Remove surplus struct member
 From: Philipp Stanner <phasta@mailbox.org>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
- phasta@kernel.org, Lyude Paul <lyude@redhat.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org
-Date: Thu, 22 May 2025 14:42:33 +0200
-In-Reply-To: <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com>
-References: <20250522112540.161411-2-phasta@kernel.org>
- <20250522112540.161411-3-phasta@kernel.org>
- <af03b541-0b69-4b3d-b498-b68e0beb3dcb@amd.com>
- <06210b9dc5e5ea8365295b77942c3ca030f02729.camel@mailbox.org>
- <eae0ff0f-31a6-433a-b255-9bdb4727a940@amd.com>
+To: Timur Tabi <ttabi@nvidia.com>, "dakr@kernel.org" <dakr@kernel.org>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
+ "phasta@kernel.org" <phasta@kernel.org>, "nouveau@lists.freedesktop.org"
+ <nouveau@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Fri, 01 Aug 2025 21:33:22 +0200
+In-Reply-To: <39dac3cf6ecef55a0e3dac7a381670491f09b8aa.camel@nvidia.com>
+References: <20250801074531.79237-2-phasta@kernel.org>
+ <809d2ff29bb87f782f7a813d67d3d604882db320.camel@nvidia.com>
+ <DBR6S322NP7E.1T932OJTX6A63@kernel.org>
+ <39dac3cf6ecef55a0e3dac7a381670491f09b8aa.camel@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MBO-RS-ID: 8c291cbe92786a4703e
-X-MBO-RS-META: 1uap477khfoygdr83y94pwexqf8u73fz
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+X-MBO-RS-ID: 13c93f890bca2754489
+X-MBO-RS-META: xa1yr743g3p4es4ok5cfrhg7m5n13iux
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,123 +70,54 @@ Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 2025-05-22 at 14:34 +0200, Christian K=C3=B6nig wrote:
-> On 5/22/25 14:20, Philipp Stanner wrote:
-> > On Thu, 2025-05-22 at 14:06 +0200, Christian K=C3=B6nig wrote:
-> > > On 5/22/25 13:25, Philipp Stanner wrote:
-> > > > dma_fence_is_signaled_locked(), which is used in
-> > > > nouveau_fence_context_kill(), can signal fences below the
-> > > > surface
-> > > > through a callback.
-> > > >=20
-> > > > There is neither need for nor use in doing that when killing a
-> > > > fence
-> > > > context.
-> > > >=20
-> > > > Replace dma_fence_is_signaled_locked() with
-> > > > __dma_fence_is_signaled(), a
-> > > > function which only checks, never signals.
+On Fri, 2025-08-01 at 15:42 +0000, Timur Tabi wrote:
+> On Fri, 2025-08-01 at 17:12 +0200, Danilo Krummrich wrote:
+> > On Fri Aug 1, 2025 at 4:50 PM CEST, Timur Tabi wrote:
+> > > Does mean that the TODO has been done, or that someone completely for=
+got and now your patch
+> > > is
+> > > remove all reminders?
 > > >=20
-> > > That is not a good approach.
-> > >=20
-> > > Having the __dma_fence_is_signaled() means that other would be
-> > > allowed to call it as well.
-> > >=20
-> > > But nouveau can do that here only because it knows that the fence
-> > > was
-> > > issued by nouveau.
-> > >=20
-> > > What nouveau can to is to test the signaled flag directly, but
-> > > that's
-> > > what you try to avoid as well.
+> > > If it's the format, maybe add a fixes: tag for the commit that resolv=
+ed the TODO?
 > >=20
-> > There's many parties who check the bit already.
+> > The TODO was introduced by commit ebb945a94bba ("drm/nouveau: port all =
+engines
+> > to new engine module format") from 2012.
 > >=20
-> > And if Nouveau is allowed to do that, one can just as well provide
-> > a
-> > wrapper for it.
+> > It's a bit hard to know what exactly resolves "this will be reworked in=
+ the near
+> > future" for a commit with the following diffstat. :)
+> >=20
+> > 	146 files changed, 14219 insertions(+), 11099 deletions(-)
+> >=20
+> > The last remains of accel_done were removed with commit
+> > 4e2ec2500bfc ("drm/nouveau: Remove file nouveau_fbcon.c"), but I don't =
+think we
+> > should mention this commit, given that apparently no one knows what was=
+ intended
+> > to be reworked here [1].
+> >=20
+> > We could mention the above in the commit message, though it will also b=
+e
+> > available through the lore link in the commit message once the patch is=
+ applied.
 >=20
-> No, exactly that's what is usually avoided in cases like this here.
->=20
-> See all the functions inside include/linux/dma-fence.h can be used by
-> everybody. It's basically the public interface of the dma_fence
-> object.
->=20
-> So testing if a fence is signaled without calling the callback is
-> only allowed by whoever implemented the fence.
+> It's your call, I'm just leery of removing a TODO without any mention of =
+whether it's actually
+> done.
 
-Why?
+We can't really tell whether "it" is done or not, because the original
+author didn't write down *what* exactly needs to be done, which makes
+the TODO kind of useless.
 
-See, who owns the callback? -> the driver which emitted the fence. If
-the driver doesn't guarantee that all fences will be signaled, the
-callback (always returning false) doesn't help you in any way.
-
-I think the issue you're seeing is more that a party that only ever
-checks a fence's state through callbacks (and doesn't signal them
-through interrupts for example) would run danger of fences never
-getting signaled.
-
-But that's already the case if someone doesn't implement the callback.
-
-The fundamental basis is always the same: The driver must guarantee
-that all fences get signaled. Independently from other users checking
-the fence this or that way, independently from the callback being
-implemented.
-
->=20
-> In other words nouveau can test nouveau fences, i915 can test i915
-> fences, amdgpu can test amdgpu fences etc... But if you have the
-> wrapper that makes it officially allowed that nouveau starts testing
-> i915 fences and that would be problematic.
-
-I don't see the context here. That applies to the other functions as
-well.
-
+Since that information is lost forever, removing it arguably is
+alright.
 
 P.
 
 >=20
-> Regards,
-> Christian.
+> > NIT: Please don't top post, use interleaved style [2] instead.
 >=20
-> >=20
-> > That has the advantage of centralizing the responsibility and
-> > documenting it.
-> >=20
-> > P.
-> >=20
-> > >=20
-> > > Regards,
-> > > Christian.
-> > >=20
-> > > >=20
-> > > > Signed-off-by: Philipp Stanner <phasta@kernel.org>
-> > > > ---
-> > > > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 2 +-
-> > > > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > index d5654e26d5bc..993b3dcb5db0 100644
-> > > > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-> > > > @@ -88,7 +88,7 @@ nouveau_fence_context_kill(struct
-> > > > nouveau_fence_chan *fctx, int error)
-> > > > =C2=A0
-> > > > =C2=A0	spin_lock_irqsave(&fctx->lock, flags);
-> > > > =C2=A0	list_for_each_entry_safe(fence, tmp, &fctx->pending,
-> > > > head)
-> > > > {
-> > > > -		if (error &&
-> > > > !dma_fence_is_signaled_locked(&fence-
-> > > > > base))
-> > > > +		if (error && !__dma_fence_is_signaled(&fence-
-> > > > > base))
-> > > > =C2=A0			dma_fence_set_error(&fence->base,
-> > > > error);
-> > > > =C2=A0
-> > > > =C2=A0		if (nouveau_fence_signal(fence))
-> > >=20
-> >=20
->=20
+> Sorry, coffee didn't kick in yet.
 
