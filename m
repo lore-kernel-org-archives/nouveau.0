@@ -4,49 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0586CD5B154
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6FA2D5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B2B610EAFC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706BC10EB74;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=cse.ust.hk header.i=@cse.ust.hk header.b="rr1hTbhk";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7zE4w18";
 	dkim-atps=neutral
-X-Greylist: delayed 818 seconds by postgrey-1.36 at gabe;
- Mon, 06 Oct 2025 17:02:37 UTC
-Received: from cse.ust.hk (cssvr7.cse.ust.hk [143.89.41.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA5710E039;
- Mon,  6 Oct 2025 17:02:37 +0000 (UTC)
-Received: from homelab ([58.82.196.128]) (authenticated bits=0)
- by cse.ust.hk (8.18.1/8.12.5) with ESMTPSA id 596GmgIw1681762
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Tue, 7 Oct 2025 00:48:48 +0800
-ARC-Seal: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse; t=1759769329; cv=none;
- b=u6BffOttA8edvq5IIWlw9D1OXn2Vr3IujB1iv5/YVGSAyYWdvDXGKTveF+Qwt0EbM3s/zbje00wKGaV22g7Kjmeqad4oeTKo++3wNbK0UiDmEOT51cQmpI318YD3P5bUFI85a0z0KpdV4IskRWzE1R13hfLqd7+2P2maZJhNDOA=
-ARC-Message-Signature: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse;
- t=1759769329; c=relaxed/relaxed;
- bh=oGM5vpkyAsmTUtIk5RM/tQs1EUajj7ebFZCNrR8AKuM=;
- h=DKIM-Signature:Date:From:To:Subject:Message-ID:MIME-Version;
- b=dWG2tclzCd7pY3zf9u139f/jMzECNovrotpDIJz2ntrNKiiWcf7TR2piWkJ2/PRTacxjNwkCGb14W5JaMh8Nhq32pp66/2LesOrcygahuAQWrSNCBNjtJ9Bi6Up3JmUgmY49dEUug5akuW+toF8CWsJio3xW92P4fp9C+FtcrJc=
-ARC-Authentication-Results: i=1; cse.ust.hk
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cse.ust.hk;
- s=cseusthk; t=1759769329;
- bh=oGM5vpkyAsmTUtIk5RM/tQs1EUajj7ebFZCNrR8AKuM=;
- h=Date:From:To:Cc:Subject:From;
- b=rr1hTbhk3kH283RzkS+LstTZ/Q6xtM/rNNbKf32pI4LBMi9nX0E7z1NbamBUsCqMD
- bQal8nrd73l9hHOSSXoYylr6ep+jsG5Utz4tOs2dMap+dj/M7Ni+fTepHvfLhAfUEb
- s97sW8Zkyo4FWz1TQz+wTDNhJNZIybfmOjeS28cw=
-Date: Tue, 7 Oct 2025 00:48:37 +0800
-From: Shuhao Fu <sfual@cse.ust.hk>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
-Subject: [PATCH] drm/nouveau: Fix refcount leak in nouveau_connector_detect
-Message-ID: <aOPy5aCiRTqb9kjR@homelab>
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
+ [209.85.219.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C04710E002;
+ Sat,  2 Aug 2025 21:25:10 +0000 (UTC)
+Received: by mail-qv1-f50.google.com with SMTP id
+ 6a1803df08f44-707389a2fe3so32759326d6.2; 
+ Sat, 02 Aug 2025 14:25:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1754169909; x=1754774709; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Cume3DFrFO7u3pL9Y1K1ypuZDFhhQLKijYnO66hZ+p0=;
+ b=g7zE4w18y4MjQq0SIS0749xEyh6543vI2rY9ph/+zm866rqYGul1T4szgTfHgC6HoZ
+ sVSq3dKmjHA9CnDX33g8gjbmYIm8s3rnjgPujPe0ztD7mo72qzali8W1AC/TJlvdHQF7
+ 1+Hz2CjYOKh5C+LZ8I6yAXo0u+ovVq+Q33RKUG/FiFHEaGF3PAHiyobzDrMRZU7o6qzt
+ EkX/OHD5fkTd98tfYcBETxHqnAb4ZqD6qm1aUFPDNeEvU9Fg8vs+OnC+i8dq7OHHBQIA
+ o6IkXZsMVY0UuzVCmenE1fv6efFvVLGcbhmuSAXUoHYgMu7Kq3LTQmoKoBOPR8gCReMR
+ 3KFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1754169909; x=1754774709;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Cume3DFrFO7u3pL9Y1K1ypuZDFhhQLKijYnO66hZ+p0=;
+ b=h37lw38fkqG9o+BIYQbtm7rymSJNmPNYxASMrxgGF8i/vsStpaOJus/V5J3IX3fEdZ
+ 8nzNanNmeAqrKhZZsUHqgZRDsZaBXZwq8BNOOKoV3ib9GKH8Tab1do1c+RPyHhwpqSBY
+ etuyWtapBLfSQWwh2f3NJnKl+DYN3XlaQRyFgnqckfqfslUZtIcbLrFJMLDhvaNvnQO3
+ I5jHTkYQ4YEYRxcL/Y7c12oGXeU31dFYA6tFpqeiq63HaHKsFnZgsvtBx2vq9+pMuZhG
+ z548z/SpG/WBXXSD/RoAgrVvwEl1JTpDd7RGmydoPYTl7xNwpY40Un0O960zGFz35xlv
+ HGBw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW4w9eTWj1ipWsXs2uah9CE2yMPhEG7pn2A2gzOnqFBLdqYBr8pKBqBxz3sK7orIhf1OOYJx8kM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy0I1fmuHSTZsb29lo7xNa1LhmLuaPaAfP5KVTbOe3cHAxRPGl0
+ isgnm/n95FaaSG7TvzAq9FxF0nSUuvaU8/Sup4br1jr5HUvL6VQjf0JJ
+X-Gm-Gg: ASbGncs6W+UCqiV7CIfj8g9eUW/jXfpDWF7G8FNuhOJznDzvSqZxjAsrsl3nzolDp6y
+ 04oC2UkrGXrKZHFaL7hSOPins3CHQ4ctbB8SZifGJqCns5E06L1WpGAMRczEEsJDMV8fAue1fVY
+ ywcmV1agOyXVIE3MWrDi1oL+OtA8GZ3VCsW6YzVcZ2IVMfGZbuiDbGFD0R44ruYEtwJHr8Itd5E
+ +9qvtCoKrqR59JsdJpLeLbBhItkhLN5WJ3DerjPfNEESeeoO+TishfM5GdJ9jgGer7jBlblFLgM
+ YcVKDuywOKKgw83M6n7H60kz9MJjlB1/l95ruriqnszTykFbJ8QxKXDfQatotTx81n+QSLAVdOQ
+ d74wbqb3nNZq5N/82KmJeShc9z1x9
+X-Google-Smtp-Source: AGHT+IHa0klRSXCFoybBuOxSnH60N2w1w4ZPxIlHjK/RY58F32+CUo39TEE2TF8g+Okjk48Ak292RQ==
+X-Received: by 2002:a05:6214:c49:b0:707:61a9:8bdf with SMTP id
+ 6a1803df08f44-70935fb5a2amr67384806d6.22.1754169909270; 
+ Sat, 02 Aug 2025 14:25:09 -0700 (PDT)
+Received: from localhost ([142.186.9.88]) by smtp.gmail.com with UTF8SMTPSA id
+ 6a1803df08f44-7077c9da463sm39398046d6.9.2025.08.02.14.25.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 02 Aug 2025 14:25:08 -0700 (PDT)
+From: Seyediman Seyedarab <imandevel@gmail.com>
+X-Google-Original-From: Seyediman Seyedarab <ImanDevel@gmail.com>
+Date: Sat, 2 Aug 2025 17:24:53 -0400
+To: lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/nouveau: replace snprintf() with scnprintf() in
+ nvkm_snprintbf()
+Message-ID: <kbskd3rnp76mslqfxhy4fdnz3joce6ukzfq5au2c5p7vgmyhfe@f65dzwx7bd5j>
+References: <20250724195913.60742-1-ImanDevel@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Env-From: sfual
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+In-Reply-To: <20250724195913.60742-1-ImanDevel@gmail.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,37 +89,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-A possible inconsistent refcount update has been identified in function
-`nouveau_connector_detect`, which may cause a resource leak.
+On 25/07/24 03:59PM, Seyediman Seyedarab wrote:
+> snprintf() returns the number of characters that *would* have been
+> written, which can overestimate how much you actually wrote to the
+> buffer in case of truncation. That leads to 'data += this' advancing
+> the pointer past the end of the buffer and size going negative.
+> 
+> Switching to scnprintf() prevents potential buffer overflows and ensures
+> consistent behavior when building the output string.
+> 
+> Signed-off-by: Seyediman Seyedarab <ImanDevel@gmail.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/core/enum.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/core/enum.c b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
+> index b9581feb24cc..a23b40b27b81 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/core/enum.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
+> @@ -44,7 +44,7 @@ nvkm_snprintbf(char *data, int size, const struct nvkm_bitfield *bf, u32 value)
+>  	bool space = false;
+>  	while (size >= 1 && bf->name) {
+>  		if (value & bf->mask) {
+> -			int this = snprintf(data, size, "%s%s",
+> +			int this = scnprintf(data, size, "%s%s",
+>  					    space ? " " : "", bf->name);
+>  			size -= this;
+>  			data += this;
+> -- 
+> 2.50.1
+> 
 
-After calling `pm_runtime_get_*(dev->dev)`, the usage counter of `dev->dev`
-gets increased. In case function `nvif_outp_edid_get` returns negative,
-function `nouveau_connector_detect` returns without decreasing the usage
-counter of `dev->dev`, causing a refcount inconsistency.
+Hi there,
 
-Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
-Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/450
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Just following up on this patch. Please let me know if there's any
+feedback or if further changes are needed.
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index 63621b151..45caccade 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -600,8 +600,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
- 				new_edid = drm_get_edid(connector, nv_encoder->i2c);
- 		} else {
- 			ret = nvif_outp_edid_get(&nv_encoder->outp, (u8 **)&new_edid);
--			if (ret < 0)
--				return connector_status_disconnected;
-+			if (ret < 0) {
-+				conn_status = connector_status_disconnected;
-+				goto out;
-+			}
- 		}
- 
- 		nouveau_connector_set_edid(nv_connector, new_edid);
--- 
-2.39.5
-
+Regards,
+Seyediman
