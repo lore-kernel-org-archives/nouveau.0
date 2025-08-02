@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CD7D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4369D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB7010EC9C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3F0F10EC9E;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VbqWbkts";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WO9Fw4kt";
 	dkim-atps=neutral
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
- [209.85.215.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4407E10E80A
- for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 18:34:52 +0000 (UTC)
-Received: by mail-pg1-f176.google.com with SMTP id
- 41be03b00d2f7-b9da0ae5763so1446a12.0
- for <nouveau@lists.freedesktop.org>; Wed, 03 Dec 2025 10:34:52 -0800 (PST)
+Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com
+ [209.85.216.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01B1B10E0F6;
+ Sat,  2 Aug 2025 14:18:23 +0000 (UTC)
+Received: by mail-pj1-f47.google.com with SMTP id
+ 98e67ed59e1d1-31ec977d203so568756a91.0; 
+ Sat, 02 Aug 2025 07:18:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764786892; x=1765391692; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1754144303; x=1754749103; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2CMWZ3qAwUwyBhAnMKin7Wcb6R/EuH1ID91cRmby9KI=;
- b=VbqWbktsGUvquUadyCN7mI63l0IHioUZk3iumP+8a6HF+N1pD9E71Y7yfcxF2ghVUY
- H3utWJU5lmrGRqF0vWYS4h6BwRMrLxi2nZ1mN5ktVjKM88haoHVhPPyGzN1FBYZHvdDg
- ROyyLxT/Bk1+fRh+3jEigOeugPFdPWe4q8V0wea8AbeGK6kwT4Lc2kfccO84XJniCtEL
- Zl4rQH0id1gTBU2qzWJE9nBZHq/89l81bc16QXYGKqWgOOTzi1UxeN06B8xyxgkiGo2F
- tOGos1JflpfyWi+6Guqr5LIoMesaRhRU8BZuiz41VtIaLbmvL0gX0oOnetIX5WvDUWB4
- lojQ==
+ bh=RL+4avU1H8oGKZXlNOwDFTlYSKmu/Vf7eqNV14tYb/M=;
+ b=WO9Fw4ktDO9DAXVzf91XiN+zt1kmzt92XXM+TH4QOxwrfzVcPDTlqnDaMa43mwIDZ+
+ LXdk8i2gyb++/gIL3VCuYNycJfBVQFXVuvpmnGW6ioUE3SgSqtLs0kGl0z4ftfWQVe+a
+ 2/Jb9ecK2H8H8dr8/aq1DdB+vcKcSbdinoNHJ1eE6T8u9QB0N5+ohWOEDGK98L6RtoHU
+ BcYjqa42qx5Cin07+E0YoZHUXDaZz2ypsP5syHsSiNRonT33IKhO9iRuCfAmEzA0xfeX
+ b5bL2RoCIf4wd40Yt+Us+9BUAKaBTyNG/biPklFYZem+wrEPntAqzQGfaz2SkJV/JCew
+ OhUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764786892; x=1765391692;
+ d=1e100.net; s=20230601; t=1754144303; x=1754749103;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=2CMWZ3qAwUwyBhAnMKin7Wcb6R/EuH1ID91cRmby9KI=;
- b=eZ0ENfphykbWy5WdBM05wkIfTBsPVR/6xFs8MKA/TP0AQyZUIMOGnB/+plpRgHLNnS
- oOc5sP0xfryslAORX2EbvUOtpzdsBAN0clkeBSVL2qaO+IYwS9qBAu97j8R8jmqBSc4f
- hikJM1JfvPHZFzE7x8jbJ8qrNRxak/9bu2rn9ypcuHoQhHTcm7BtGo48vooo/cWa3wQz
- l6+xGZhUVUypK8XOENFWhJAGz3kfEHGN98AUDiFN+LAR969ukF4GKmC/7QeoLimKGKFu
- iIOCMgTu5AfZkf+/8IUNqeAmXvzQYuLmIDbVa7Bay+CqzsuwptN4lQKr+pjdiN8T2+Sr
- TjCg==
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=RL+4avU1H8oGKZXlNOwDFTlYSKmu/Vf7eqNV14tYb/M=;
+ b=WriEHlqNgiC9ZUNKu8UFqp7P9BK8kcLpuCILNVgXldM0SypZiwlDpgBQ1QqQaY7WKI
+ HcBSawRCFPfTDbK7ocG2O4NTR3j7maOUZyNJAweI+IZWanPvE3LbC1mGbBd5zfMXulbf
+ 5zXxbl9bhWMub4h0bk+gGYJOUd+MwxOu6iQfY4ejkvTS2nlNH4jwnPRbVVacUt77+/Sx
+ fQKQuxm0ve0PxGVMo9DR4yoskMs+mPsB5DCOdgPI683FZc8/jleZ1pJy2OOnbp/m/+pv
+ jW9MrM6wR0cMsUQDm4uMt4BlK6ffo6iQqrpFovFkOw8mXgy5OsVnp9Of+bYmF10oHu/E
+ jwQQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUou7RCYKZtelFJ36jWfBzJNsH6+IxKO9ljZFY1Z5CMoHx/eUwZFhGcT4tmB0SAEjSJUVjKmiAZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyXxtcKPqkj0fzjKfPwIi42XxAcbyFn5VSA67BycKzViPAZ7nnx
- lNfxbvoi24hzoExQQFlNu0m4JVTkvK5V/ytRcCa92Jf7xGE9GdeYGk+8Q9BmQDN8hYTUlJqOyQj
- lEoErwYM/Xw95q52unk6dZWwjY0WP6Tw=
-X-Gm-Gg: ASbGnctgLostDStM0VTzgylIw07o3iaY4MZ28rG4JKt43b3SQTN7VE0Q0UKP8vrhyTr
- PDvBwDTAmyUuvgvc7eURjpjT8ATO3FINFnpKKDv890rpqaad1vYiKQlNZruqDhMUeM1CIxVG5nA
- ltjB6lrFtz5B8R5r/gq0QTT7WyqrD9ymgVg1K54bY7+8auw6C1P42KRUICXwnNefWumSCov2kPq
- M/J46e8N7A4tNjjZDKySRSFIF53N8uYpnvWDgHR3/BJ3wSKe8Yr9IQRES0Cy+RCUfYNQBG4F/lG
- hn93nUkr5qtVIV3F/+iIXpO0V7udtz6FgF3HZCU46RtG49vZ1E0bnh3TFpbG4No03IYO0Cnc2X2
- 6IJexSq6x7cYUhg==
-X-Google-Smtp-Source: AGHT+IFa4V+Y9FyhlTVYSyy1JMkmi9f/NngzmjjE3IEzgbmLwubfh9xfKe7h/9zsaCRjThZ3LBCKnOLaWeErPRtNuyM=
-X-Received: by 2002:a05:7301:e0d:b0:2a4:3593:5fc8 with SMTP id
- 5a478bee46e88-2ab97ca970amr1171255eec.2.1764786891475; Wed, 03 Dec 2025
- 10:34:51 -0800 (PST)
+ AJvYcCV9AfQl79R1Vv5akW4OdwXcu/NBF/Xi+E5H78rY/onhIFlLMeJFcX1uU36n8olo30L6B2p0gTWFcw==@lists.freedesktop.org,
+ AJvYcCXPgTamA46e8rQgKhUs7+soSWzK4P7tTHO8NiNR+eL+qXXgvl6nLteRdK5bgV0Ib30rKRSuTfap8tWZQ+FL6AE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxa5UnGJN+Kabb2GQlokNykXRyv8bKRF1TQzoO5U/W82LENYkg3
+ qdPLUJ0cGJFttCWqBDS6WtF3miFGhH/ecpb6NC9XFPiLtdIwIOx+Ws352nTGVfRhVWSndw/7DQ0
+ sDEZVW+PPatOGlXTy1MVGk/n21o8Wsuw=
+X-Gm-Gg: ASbGnct8J9PEHkwVR+rXy0hCXxxUyNKriFBuYZon/uSNxFIRpVuk+qEikwSAttj20gw
+ kBh6eLcnOXmxADIKtP2pjbVUYSoVzPm8T13HGlIzIwjkekCA1jAekMYqiwxheGMjU2rUrCPdwTk
+ TQD/q9MRjC6ncFgRiirEmw1ZuRUUA9RUf//xPieYUIw1bBo12IeQusZXTEyYr9O8WZyZXxHF6TY
+ A5wbn9K
+X-Google-Smtp-Source: AGHT+IEYyK4FnrbzDvIfn4l13uARdRAi1BsUu+rKXOV0Jybw3LuyofhD64+Vp6yv6vQyxgpYLpFrKDkYAuq4rhRVUTw=
+X-Received: by 2002:a17:90b:38cf:b0:31f:3f2d:25ad with SMTP id
+ 98e67ed59e1d1-321162b5699mr1806962a91.3.1754144303280; Sat, 02 Aug 2025
+ 07:18:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251114233045.2512853-1-ttabi@nvidia.com>
- <20251114233045.2512853-11-ttabi@nvidia.com>
- <DECCV8XB5U56.1NBFD1KFJ59LU@nvidia.com>
- <b28cff274d79de78496c7f0fcc3627b2f816d3dc.camel@nvidia.com>
- <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
-In-Reply-To: <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
+References: <20250620-num-v1-0-7ec3d3fb06c9@nvidia.com>
+ <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
+ <CANiq72=BSnom-nQgzLvv-cqwSknK1uJ=CXGP51r0WRj1Y553Ew@mail.gmail.com>
+ <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
+ <CAH5fLghRJ7QqGKJdUq5Nic542cJsHKX_C+EL+xma_rFJrHd2QQ@mail.gmail.com>
+ <DBRZX7EAK13R.LTIJJPA9CCSO@nvidia.com>
+In-Reply-To: <DBRZX7EAK13R.LTIJJPA9CCSO@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 3 Dec 2025 19:34:39 +0100
-X-Gm-Features: AWmQ_blu305YpWSaZPgtyEsvUY-AE81K5BtUh2D6y_BVZiUesA5SswVgugi5Dmg
-Message-ID: <CANiq72n-E3Yhgn=zioZvOLbKStLbrTfqDbEVY1-vbETqRYmWxA@mail.gmail.com>
-Subject: Re: [PATCH 10/11] gpu: nova-core: LibosMemoryRegionInitArgument size
- must be page aligned
+Date: Sat, 2 Aug 2025 16:18:11 +0200
+X-Gm-Features: Ac12FXzP6tbJ3FK59a8caJxtumpeBsG760k67kwwrIw1GCiks-gr_mjRWnNBb2Q
+Message-ID: <CANiq72mjT5jJiRG2J4KAL7pupv5WoCb-T+hXJ=H5NG_4n0HLOQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] rust: add `num` module with `PowerOfTwo` type
 To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Timur Tabi <ttabi@nvidia.com>, 
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- "dakr@kernel.org" <dakr@kernel.org>, 
- "lyude@redhat.com" <lyude@redhat.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- John Hubbard <jhubbard@nvidia.com>, 
- "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>, 
- "nouveau-bounces@lists.freedesktop.org"
- <nouveau-bounces@lists.freedesktop.org>
+Cc: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,32 +97,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Dec 3, 2025 at 12:54=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
+On Sat, Aug 2, 2025 at 4:02=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
 >
-> I know it's a very edge case, and clearly indicates a bug, but the
-> general rule is: don't panic the kernel. And in Rust, if possible, don't
-> even let me compiler insert panic-handling code. If you don't want to
-> change the return type of the method, then maybe use `unwrap_or` and
-> `inspect_err` to print an error before returning e.g. `0`.
+> Belated thanks for the suggestion; I have finally opened an ACP for
+> `last_set_bit` (and `first_set_bit` while we are at it):
+> https://github.com/rust-lang/libs-team/issues/631
+>
+> I am still entangled with how to best leverage `Alignment` for our
+> purposes, but think I am getting close to a v2 of this patchset.
 
-In general, indeed, but if it is truly something that cannot ever
-happen (as in one can prove it due to how the local code looks like),
-then adding error paths for it isn't good, especially if they change a
-signature.
+Thanks for filling that one -- linked now from our usual lists :)
 
-In any case, if it is decided to continue execution (either with an
-error or with a "default" value etc.), then please use EB, i.e. adding
-`debug_assert!` and possibly `pr_warn!` (or perhaps `pr_warn_once!`
-once available).
-
-Thanks!
-
-> But others have already thought "naah, that's never gonna happen" and
-> got burnt very publicly [1], so let's learn from that. :P
-
-That sounded to me like a higher-level design issue, not so much about
-`unwrap()`.
+    https://github.com/Rust-for-Linux/linux/issues/514
 
 Cheers,
 Miguel
