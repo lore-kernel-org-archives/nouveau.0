@@ -4,85 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3AFA2D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A918D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72C9110EBDF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D650310EB30;
 	Sat, 13 Dec 2025 12:41:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TsRvTRkk";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="eV88R8Qk";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68B0910E3B9;
- Mon, 21 Jul 2025 20:25:26 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-23c71b21f72so8225445ad.2; 
- Mon, 21 Jul 2025 13:25:26 -0700 (PDT)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com
+ [209.85.215.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C23B610E00E;
+ Sun,  3 Aug 2025 15:15:40 +0000 (UTC)
+Received: by mail-pg1-f172.google.com with SMTP id
+ 41be03b00d2f7-b42309a87easo484345a12.1; 
+ Sun, 03 Aug 2025 08:15:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753129526; x=1753734326; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1754234140; x=1754838940; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=f8KRAlo0QLnfXVhaUwy/xRDf2SviIgIlGB4FAr6L1pM=;
- b=TsRvTRkko96A/Y9ymvhhj3n9XAd1tdVm/bv7MOxF9gdg2dAvKFoOOGBZxoqAKS9Qcs
- g64m9w5iJCIhangapdVrCzjwvyFTJT2ZPjmaF9XHDH3f2dpdhNWF/0S70nmQpzFYXiVB
- JtQ6UjCeoSUndVUYvRNsCfla648FXmmpn4pvbp5dLe1oFfw36IwEx7/+DPXMWOaw9gLl
- GUAKzOSpNKFs8ahSCIFzf+o0U3/HHSdq0ELVUIEQRnDumSCs4Gc3vu4a+Q7Mb2WrISXW
- gUYRkmvdSZrExOIFD+rCetIzJ+ysvSEFu7wdzYLeu0RcAXTqnJJ3BcFyRoJPSmCFA2Bm
- MO5w==
+ bh=wS2ZQ64JMN79CNmjPInj6p4XsgBG9AkgGO1OR+ihdmo=;
+ b=eV88R8QkxA/5edfKP2vR+RBmMq48NFfx8Jn0avmFZ0G0UGvMqi+NN0pOr+4AMyHR2/
+ I4c7UHeeuaJAAPfDikZLKWTr44lbeCp7T9QTET9UVqVh/21+gOAuC4/ulJs14qVCPBRD
+ crK8Mrvz2fj+ZFldLrWMcNuN+Cl1e02ngraS/4VUJOono5vjmrbYHJNff1oYm/MNDHs4
+ w9zeKojBcKtyQnDnFKVMTD06Wx4Dh92miomKh4t02a+zfTDJ3QFP03FvCmEZRAV1CPwQ
+ SFJFqBH5gcl+HB9XiiHJkJ1BRFTyPebIP8woqBLk7t8ETwfaKRmd7b7XlU89xTc9n/C0
+ 87gQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753129526; x=1753734326;
+ d=1e100.net; s=20230601; t=1754234140; x=1754838940;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=f8KRAlo0QLnfXVhaUwy/xRDf2SviIgIlGB4FAr6L1pM=;
- b=aMQtgkzUxIElbAxHlLwZ3zllKnBNPeGNWw74iWRKTAbjg3zAPMKUsfV0Eis79lOb94
- cRZFLYX5NdkulC9a5WnEaxCK9Qs5qIeLXc6aUeMDbhnaZZkZ9VuznVF1AfPcwfGpZHK8
- BVnMVUstJKnTlZwwcmnqK359n+MQSo6MHC8Dkr67UJ5dISKSUYXGl8nbygU+3Pk+8Onf
- wOvJHwdBfOm+VjqjUTFHRczEG5aU+LMhncSFyTjbMfSK5Ir9Bg1ptb5J4Xpg9jACEXOp
- Q9aMMI8XMfMipEnSfKFT8VOmn1lmPYov0QfJytoP8pflj8ypB/lz18bjrBRwtv2GkG7K
- rfOQ==
+ bh=wS2ZQ64JMN79CNmjPInj6p4XsgBG9AkgGO1OR+ihdmo=;
+ b=K8XPxy4nL8utz7zHLgV7Ck2dMFkR1uIcPJ5zb9TYdAp2BcKBhAsgwdqVOfV5W4/ajz
+ 16TjGCPQc3UfJhVv4WcZl/+N4KjdGcyCOH2R/T0F4QgIk3xgLyjWQTClQxib0shHp8se
+ 2z9zgLOaXukkISsh2V7iqKLyCkpiUDwwwQi0qs8hsZvEdo9lYuEMLicDi3/k2gCvJoot
+ SUjQrI7Me6t2IDkMDIMoxKqUPktYVsGYO4vOJYnipj/3xKbf2u5sm9vo7uZtrnQFIVgr
+ Z6XuCAYPK+yHo1XroP1M7V3qnNxHSAXij3GLt3UBx6rAFhcikRibNFBkVdklvJ4xLg5C
+ oL+Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUWjRVOr2v5XpggUVJ4BWEvWuAK06icng9r+7UIvBC1siyGHk/zfZRvgdLqgQK7KMq5HQSpGUJEZg==@lists.freedesktop.org,
- AJvYcCUjjFMjNQ0YrlEN+6q6i4v2WTmbcjIm6asyfqTwvUhsKNP8JgOJZ0RdR1u5FdO8YB1rbuq7MbEkhhk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzetRyVyYWgxl2jJf3CNM3Gj8JTqOm80MU85gdNYFIk0vveGkTE
- JPR/MkPftTNniTJ2LRHTd/LfN9LWS3rK0vgFowSQahsX/ygxThKNt9ANYVmq0wNT2OVXSISTe0R
- 4VXlWrgOExRPg3MUzleCabkPenYQrkLs=
-X-Gm-Gg: ASbGncv6vcPfpib54OchbiggKyM2Oh0q4/vsPxeGJ8JAt6gcSOOzr7YEXwITd4bKYoI
- geIUDS6JysAdR9o0zWMPG54BGAriKwVvZRZ/fBfbg1GH3OgyaZprVaqJrWY/AldBaZ4oGRFrpQk
- etSw+8pa9nqzUxI9Ip+rJwGLeEIU6o6ochOy6DuH/L1Un20U72ggnWQGJwkfcHYJFaKYCpcZTTP
- EH/yNjs
-X-Google-Smtp-Source: AGHT+IEF5YN5432flc4/QE1zXKc1vo1Qf6L24RfKDUkpQAWK8t4LLjpclkw1eCW9FSShKm7fPI0nlYBcZRk2yoWmOxs=
-X-Received: by 2002:a17:902:ecce:b0:236:9302:bf11 with SMTP id
- d9443c01a7336-23e24fb217cmr121257125ad.13.1753129525871; Mon, 21 Jul 2025
- 13:25:25 -0700 (PDT)
+ AJvYcCVA5olcoDFfZnsOpcMvdr1W1V1DCwN3WYGemDPbUMSc7SCPdWn7Sk4ELqcGUNLmSDKSDh82YRqFRT5JFqKatRQ=@lists.freedesktop.org,
+ AJvYcCWmVZlsSLA9YhPEXcTVfI1lYaFMB7bS7/HC6Ktgmcn3321ns9JEeiZDuPIUYY/oY5SV4FKxNVTMnA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwSEr99mFFPY8O2vOBujkOvkgflrUbBIpZ0zBH4NN1VqRALBv5h
+ x6ymSFLre8JL1u8DQ28zHjQPdBOIhkAqMsNI9YE5+JISoNOftGQnrStHD7rIo2GW5IN0dt0mJX/
+ xruw1cSaG0GCc6EwC2neHqnM4lXNCpbFcHufu
+X-Gm-Gg: ASbGncsvAlfsq1P+zf4Y+7113eeMsTOCo4guISjXL4wLT+FWmsOxlTPLPZlvUkqbCaB
+ rNfKtA4PDznJXxe3VGjvp+xLLgHNTVgZ49k1bW4I9NNSNpBXavmR2y3LzSl5vgHlJWP6ckjnDdC
+ ZWg2OyqwrGO4pXgn9SZ3/JKEZKNRrLmdDIWCiqCzP7JzcarMRZZ89PeCX+yD8+ncCurSWc8B3kg
+ 6Iez6iICQi955haElo=
+X-Google-Smtp-Source: AGHT+IHqgBoMTYQAjZYRy/NgnlRibK1XTFSf+41lsaqpZtXit+NR5xBn313BlZqHreigej+f3dIGY4kEoQHDi4FMj4o=
+X-Received: by 2002:a05:6a20:9f86:b0:231:242:2596 with SMTP id
+ adf61e73a8af0-23df907ad0fmr4579577637.5.1754234140028; Sun, 03 Aug 2025
+ 08:15:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-In-Reply-To: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+References: <20250620-num-v1-0-7ec3d3fb06c9@nvidia.com>
+ <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
+ <CANiq72=BSnom-nQgzLvv-cqwSknK1uJ=CXGP51r0WRj1Y553Ew@mail.gmail.com>
+ <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
+ <CAH5fLghRJ7QqGKJdUq5Nic542cJsHKX_C+EL+xma_rFJrHd2QQ@mail.gmail.com>
+ <DBRZX7EAK13R.LTIJJPA9CCSO@nvidia.com>
+ <CANiq72mjT5jJiRG2J4KAL7pupv5WoCb-T+hXJ=H5NG_4n0HLOQ@mail.gmail.com>
+ <DBSTIFXLOTMQ.3TTS2O1PDIR95@nvidia.com>
+In-Reply-To: <DBSTIFXLOTMQ.3TTS2O1PDIR95@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 21 Jul 2025 22:25:12 +0200
-X-Gm-Features: Ac12FXx9U3N74aGu_SHuXKRdBAKhnaP347PEyM-2E4UxAJ_SLOxUcgsXScqoJqg
-Message-ID: <CANiq72nxL9RORJA-w=rtnkwMKcXcLva3dGbMDLc71o1bqAHUsw@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] rust: use `kernel::{fmt,prelude::fmt!}`
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+Date: Sun, 3 Aug 2025 17:15:28 +0200
+X-Gm-Features: Ac12FXxirE0lWx5ricQYZYpLZRTFS8QojNMzDEVSWYmJtosPsvKX9UIzXFb0rZY
+Message-ID: <CANiq72=AtpG=B+VcyWoX+qL_tk-uUtgiLXYJD0epOfnwYfPD7Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] rust: add `num` module with `PowerOfTwo` type
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Jens Axboe <axboe@kernel.dk>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
- Rae Moar <rmoar@google.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Vlastimil Babka <vbabka@suse.cz>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Uladzislau Rezki <urezki@gmail.com>, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, linux-block@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
@@ -100,20 +99,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Jul 20, 2025 at 12:42=E2=80=AFAM Tamir Duberstein <tamird@gmail.com=
-> wrote:
+On Sun, Aug 3, 2025 at 3:13=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
 >
-> Subsystem maintainers: I would appreciate your `Acked-by`s so that this
-> can be taken through Miguel's tree (where the other series must go).
+> We got some interesting feedback on the ACP already. I have been pointed
+> to `checked_ilog2` as an equivalent of `last_set_bit`, and it *does*
+> indeed work well as a replacement - with the caveat that the name is
+> not very natural to me (or anyone familiar with the C interface). Is
+> this something we can live with? If we decide to go with the existing
+> standard library method, how can we make sure that folks looking for an
+> equivalent of `fls` find `checked_ilog2`?
 
-Same here as in step 2b/5, i.e. Danilo's Acked-by was picked up for
-things he didn't Acked-by.
+One option is using the `doc(alias =3D ...)` attribute, which makes it
+appear in the search in the rendered docs, and would show easily in
+greps too.
 
-I imagine it was automatically done by `b4`, but that is why we need
-to be careful about automatically applying tags. I am mentioning this
-mainly to confirm I am not confused and to avoid forgetting about it,
-and also I hope it helps if you eventually apply patches yourself,
-e.g. if you eventually take care of a branch yourself.
+Another option is simply wrapping it in an `inline(always)`, I guess,
+but I think we can just use the upstream ones, unless we want slightly
+different semantics.
 
 Cheers,
 Miguel
