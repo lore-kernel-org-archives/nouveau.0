@@ -4,79 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A138D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80282D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 215D810E451;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56E6F10E56F;
 	Sat, 13 Dec 2025 12:40:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="aZnXbmof";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="gIvPB8cF";
 	dkim-atps=neutral
-Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com
- [209.85.216.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22B8E10ED65;
- Wed, 29 May 2024 00:28:39 +0000 (UTC)
-Received: by mail-pj1-f51.google.com with SMTP id
- 98e67ed59e1d1-2bf5bb3508fso254958a91.1; 
- Tue, 28 May 2024 17:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1716942518; x=1717547318; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=4eMuIJmm0synmzUpAEjB2/Qw25q266fbvF5PpgPMIUM=;
- b=aZnXbmof+hrRcQqUQNzAqjYic5IXtj45z4FgiZQ009/2DkLDFvOgQR2j8HuWdnkARK
- OjPx9ws7vxL+H32aaXxK6Jc4DEkfM4jvig1cj+RLz1noU4xMtjzZViPs38cEzpeNCaAx
- qsR/W+3TYvdAeiuUTA7S7dfoyF0pw3Tyaxum9sEJIDPZ6WbI7+sYaBILcI4GXv3y31yb
- JUkNO+arL5KTqeeqPBlyawfW4rI2epQhdnMo7SdlqqAsAk50eXop0eiu4b5XYgFaFKAB
- lAWbLnuPFnLrFJy8txOAX8A1xR17hZ6IPYV15xN5mLBnTMy38MjtBJjgMvGEJvpgYrCE
- hGLQ==
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9813910E45D
+ for <nouveau@lists.freedesktop.org>; Mon,  4 Aug 2025 21:43:22 +0000 (UTC)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574GbvTj021762
+ for <nouveau@lists.freedesktop.org>; Mon, 4 Aug 2025 21:43:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:date:from:in-reply-to:message-id
+ :mime-version:references:subject:to; s=qcppdkim1; bh=4iMQZAqx3JH
+ WA1prynQ+6hJlCX8ujFNqsZgwdOw+rDs=; b=gIvPB8cFPv1IRFNTmqYWqEWuixR
+ Rwv7bmlaMzqpBylwNtRi/TG3UiM5k84mwatQE10PeUBNVzoEhsZC/kEPjRmRctDC
+ +4ryya9XDg//UPR17UUtiH/UY+Becav0ePCMrFVJlEzmhGQalUXJG9cFtGnElobB
+ qlSlHwe5N9O8RqWjBAnqJ8u1dxf87h6e8PXE5AZAC8ytxEBqBzKaeLCFYkRG+iXS
+ ZPKaXijDwUfqLCd6gmGJkhRVPcGNg/6HUPKEFA9trUtMYvvoMAgwYgrrRcN7XsLw
+ 7GLN1tfWws+oetwv6VI5XGTLxVbDC8BxqoxJmILgFmZRwmtdCQzjbkQWuKQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com
+ [209.85.214.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 489byc6a8s-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+ for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 21:43:22 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id
+ d9443c01a7336-2403e4c82ddso36418555ad.1
+ for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 14:43:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1716942518; x=1717547318;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=4eMuIJmm0synmzUpAEjB2/Qw25q266fbvF5PpgPMIUM=;
- b=ZHpEsJnTxVYfZoLTr7BZ7wX59pDcnU5j5xdAcfRzZxFtacZjdkZn1MReqmdBWivdBg
- R/57ncdWg5tKxYHKfgKnOiYTgTclWtf2Nc5WlvECUoG3vg29SAh3LlkcRBTl68kDXmM/
- juVQkSijO0cxuFu0i8lasLD9CfMJa0133e5v/mPjRAFpxLWVh6nLfnvhA4WUPfVRIO6J
- zChj61pN2vSf9HoMyKsU2XH+iSDVy4EQ6IIe9FOqSulviQRRgZWWm7p4foUJ2EzAzDyj
- BL3f39/3pYfiiJEEF8+BHwJ8NKcwcjboXtYLw3THumEwGDJaImZwWccbF4H/MDSOR+Zk
- js1A==
+ d=1e100.net; s=20230601; t=1754343801; x=1754948601;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=4iMQZAqx3JHWA1prynQ+6hJlCX8ujFNqsZgwdOw+rDs=;
+ b=eayB6YocwY4uYhdyiZdHagRUMt+C3wCHvvIXK7+HlsXVlmhF9Hnch1CyUefFKL1cM8
+ 4d11I3eMZ5AAmUMxaXg6j+wiqD05rC3gWHoURrSIgy0GxVqxpHlHn0dUQznIEY5vbrsZ
+ zvyX1smZBM4KLHtwvSEQhyWnAX4te7CODn+P02SapRM2kBnu+k4t/qRkBqaah1kDziSq
+ HVukRS/0MY6mFw1VObuoM+7pVZituGrLRbsxNJcj6q01Z0TFOGPsn2OvqMJHpEk15hwK
+ O1D+pUJUlybfQbnP2qafESFkWc1TLGjqAn0Flsft2F0i9hSlEDPM3GNt7l30THPJOgNt
+ 2EIw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUYVurTztggYHIEiUpIIFi9VCE4YFeQ8CZf+DKtYGyRcWPJxvJX2n1dVqAHgFCoHisY51ahNdxMnzWJdyo71pZDYk4o8/5W7r2pHG+y91XB2nTF0kO0j0s3nNOfOKDWnnFe/lTx1lXP90uLSHpkLQ==
-X-Gm-Message-State: AOJu0YwoPlpUjBNJfJ5MGN4sfcHNkCLB1NduuzlsZ6He2BqV/7i9y3Yr
- pLNavR+1VtulRaj4Thf5mhTjIpe6nB7+dHu1mrAf+gcVXVkzDlVz
-X-Google-Smtp-Source: AGHT+IGc9ZzqXE5VI7kAmJ+mY5TMUDEyuSRao39hpUlFK4aO54sLIH9Yegqm8gK1UZH+FfXdl/BHbQ==
-X-Received: by 2002:a17:903:2347:b0:1f4:4618:8948 with SMTP id
- d9443c01a7336-1f4486eacc4mr161493165ad.2.1716942518346; 
- Tue, 28 May 2024 17:28:38 -0700 (PDT)
-Received: from localhost (p5261226-ipxg23801hodogaya.kanagawa.ocn.ne.jp.
- [180.15.241.226]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-1f44c9c2a65sm86550575ad.272.2024.05.28.17.28.33
+ AJvYcCUQcpq+E/e2Z649Y+Mh9d7GidJyS1Ml4UZEcTcuuxFtTPpjrR+t3nNz8aFpDHvA5PVvdhqlutTi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyx8bFWmRlNkheEy6hjWhJUkHT7eVecYVrhnMhBkuo7s1uuzzFa
+ 45znGkAmuf1jWA6qvHwqZFhQJ70OLUgazT8qfC4dR9MdaN6fS4H7bj+ocANl5mGbVTIxFu1Tr3V
+ dympbKaboZP8TRACWwDnaFfe69m7Ysxsxfp4510Nmr5Rdzij4R7yzfoOCRd1F7qA1KzOs
+X-Gm-Gg: ASbGncsf7/myb4l7cSHRMcDeqkQV+WgwFkOy9FYB2qeFBcMbpqHLdJB+NmqZupt+9jo
+ hZohIdPILGyo/siX8sfDOqVZLc5Ceu/ayZtVa03yvtpH+q4Vn9DohXDpD5GkQZyaxfefjQdplNI
+ euplhiRrs3//xyZafd5lKJoBv6KFlsXq9qvs+S0mkp170mzUmdhZ0SvOKdcm72wVMYTncZAIz9Q
+ /1KtTH4Yv18kvHe8scrozVGd7u1R0vTUPQNIuhuENnhtUoqVch9EvhpilGG4NQdX7Mu9L5SoM4k
+ KoLDdy7XM0RfqYLN8m3Ja6Cd2erj0X53u/TDtBCaNQemsQLVOdI=
+X-Received: by 2002:a17:902:c951:b0:240:25f3:2115 with SMTP id
+ d9443c01a7336-24246f66529mr161881545ad.12.1754343801267; 
+ Mon, 04 Aug 2025 14:43:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEJ42SvcJgCxFfQN88b9q64GCmdPYqi/gv07LLosxuO/N73EtGwR8zNcDRPko1iT53bOia+0w==
+X-Received: by 2002:a17:902:c951:b0:240:25f3:2115 with SMTP id
+ d9443c01a7336-24246f66529mr161881165ad.12.1754343800876; 
+ Mon, 04 Aug 2025 14:43:20 -0700 (PDT)
+Received: from localhost ([2601:1c0:5000:d5c:5b3e:de60:4fda:e7b1])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-31f63da57b4sm15506076a91.5.2025.08.04.14.43.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 28 May 2024 17:28:38 -0700 (PDT)
-Date: Wed, 29 May 2024 09:28:21 +0900 (JST)
-Message-Id: <20240529.092821.1593412345609718860.fujita.tomonori@gmail.com>
-To: gregkh@linuxfoundation.org
-Cc: dakr@redhat.com, fujita.tomonori@gmail.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, daniel@ffwll.ch, ojeda@kernel.org,
- alex.gaynor@gmail.com, wedsonaf@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@samsung.com, aliceryhl@google.com, lina@asahilina.net,
- pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, mcgrof@kernel.org, russ.weight@linux.dev
-Subject: Re: [RFC PATCH 7/8] rust: add firmware abstractions
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <2024052816-makeshift-irrigate-cef5@gregkh>
-References: <20240528.200126.99248529380429957.fujita.tomonori@gmail.com>
- <ZlXLzCYiwdMxic3X@pollux>
- <2024052816-makeshift-irrigate-cef5@gregkh>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+ Mon, 04 Aug 2025 14:43:20 -0700 (PDT)
+From: Rob Clark <robin.clark@oss.qualcomm.com>
+To: dri-devel@lists.freedesktop.org
+Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ Danilo Krummrich <dakr@redhat.com>, Connor Abbott <cwabbott0@gmail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ linux-kernel@vger.kernel.org (open list),
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS)
+Subject: [PATCH RESEND 1/2] drm/gpuvm: Send in-place re-maps to the driver as
+ remap
+Date: Mon,  4 Aug 2025 14:43:15 -0700
+Message-ID: <20250804214317.658704-2-robin.clark@oss.qualcomm.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
+References: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: r70CAJ5ZrM5VSmv8eIJB2MXRL5bxDWW_
+X-Authority-Analysis: v=2.4 cv=Y6D4sgeN c=1 sm=1 tr=0 ts=6891297a cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=xqWC_Br6kY4A:10 a=2OwXVqhp2XgA:10
+ a=EUspDBNiAAAA:8 a=-LggB1lm2EvgG5rjBn0A:9 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: r70CAJ5ZrM5VSmv8eIJB2MXRL5bxDWW_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDEzMCBTYWx0ZWRfX+x8UQcnlYJNi
+ C78OlYgQ+sC/8639YxLCxKbe3JZ3GJLwmaQSsOuFR3fgkfMORmAU9sap0gqiX2Y6YNPEi4+V8Ja
+ 7lKpWswqPkzYftXM9HKSLOzf6OzrPOcXSBsy+W7mZnNgpJszWV1r/86I4hxVhfMmgq2jBoyLRAi
+ Lzi4fuJ+pPRHtjYCL4nOuGkfSwzgZ0iwi86h4sEyEm5zXq+K79LwncUxrM81Jz83mg61HDNqiPc
+ QcQId60LZ+4gjb+gTRPZjJvdl5D8Ofdsxu0K8B6xTWug7+oqDdR48aUm/UCiMdKC7ORNDlz7WF6
+ /3TxkDvcVhHraSgAaYaeZBJCP/6QDsRqSX1HD36aPU3uX28thOqxDOtSLaYBzB7Q9ORyI5jveIH
+ U1yiEXOcBAevLeTmiiLKjgob/ZP2wpLvPnrpJy/DsTrPfjOndTzCqvTPs5YLsJgjV31Yjazf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-08-04_09,2025-08-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ mlxscore=0 mlxlogscore=999 suspectscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 malwarescore=0 adultscore=0 spamscore=0 impostorscore=0
+ priorityscore=1501 bulkscore=0 classifier=spam authscore=0 authtc=n/a authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2505280000
+ definitions=main-2508040130
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,74 +128,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+The 'keep' hint on the unmap is only half useful, without being able to
+link it to a map cb.  Instead combine the two ops into a remap op to
+give the driver a chance to figure things out.
 
-On Tue, 28 May 2024 14:45:02 +0200
-Greg KH <gregkh@linuxfoundation.org> wrote:
+Signed-off-by: Rob Clark <robin.clark@oss.qualcomm.com>
+---
+ drivers/gpu/drm/drm_gpuvm.c            | 21 +++++++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 ++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-> On Tue, May 28, 2024 at 02:19:24PM +0200, Danilo Krummrich wrote:
->> However, if you have a driver that needs the firmware abstractions, I would be
->> surprised if there were any hesitations to already merge the minimum device
->> abstractions [1] and this one (once reviewed) without the rest. At least there
->> aren't any from my side.
->> 
->> [1] https://lore.kernel.org/rust-for-linux/20240520172554.182094-2-dakr@redhat.com/
-> 
-> No, the device abstractions are NOT ready for merging just yet, sorry,
-> if for no other reason than a non-RFC has never been posted :)
-
-Indeed, I understand that you aren't convinced.
-
-We can start with much simpler device abstractions than the above
-minimum for the firmware abstractions.
-
-All the firmware abstractions need is wrapping C's pointer to a device
-object with Rust struct only during a caller knows the pointer is
-valid. No play with the reference count of a struct device.
-
-For a Rust PHY driver, you know that you have a valid pointer to C's
-device object of C's PHY device during the probe callback. The driver
-creates a Rust device object to wrap the C pointer to the C's device
-object and passes it to the firmware abstractions. The firmware
-abstractions gets the C's pointer from the Rust object and calls C's
-function to load firmware, returns the result.
-
-You have concerns about the simple code like the following?
-
-
-diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-new file mode 100644
-index 000000000000..6144437984a9
---- /dev/null
-+++ b/rust/kernel/device.rs
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: GPL-2.0
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index bbc7fecb6f4a..e21782a97fbe 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -2125,6 +2125,27 @@ __drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm,
+ 				 offset == req_offset;
+ 
+ 			if (end == req_end) {
++				if (merge) {
++					/*
++					 * This is an exact remap of the existing
++					 * VA (potentially flags change)?  Pass
++					 * this to the driver as a remap so it can
++					 * do an in-place update:
++					 */
++					struct drm_gpuva_op_map n = {
++						.va.addr = va->va.addr,
++						.va.range = va->va.range,
++						.gem.obj = va->gem.obj,
++						.gem.offset = va->gem.offset,
++					};
++					struct drm_gpuva_op_unmap u = {
++						.va = va,
++						.keep = true,
++					};
 +
-+//! Generic devices that are part of the kernel's driver model.
-+//!
-+//! C header: [`include/linux/device.h`](srctree/include/linux/device.h)
++					return op_remap_cb(ops, priv, NULL, &n, &u);
++				}
 +
-+use crate::types::Opaque;
-+
-+#[repr(transparent)]
-+pub struct Device(Opaque<bindings::device>);
-+
-+impl Device {
-+    /// Creates a new [`Device`] instance from a raw pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// For the duration of 'a, the pointer must point at a valid `device`.
-+    pub unsafe fn from_raw<'a>(ptr: *mut bindings::device) -> &'a Self {
-+        // CAST: `Self` is a `repr(transparent)` wrapper around `bindings::device`.
-+        let ptr = ptr.cast::<Self>();
-+        // SAFETY: by the function requirements the pointer is valid and we have unique access for
-+        // the duration of `'a`.
-+        unsafe { &mut *ptr }
-+    }
-+
-+    /// Returns the raw pointer to the device.
-+    pub fn as_raw(&self) -> *mut bindings::device {
-+        self.0.get()
-+    }
-+}
+ 				ret = op_unmap_cb(ops, priv, va, merge);
+ 				if (ret)
+ 					return ret;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 48f105239f42..c3e3a15eb3c8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -820,7 +820,8 @@ op_remap(struct drm_gpuva_op_remap *r,
+ 	if (r->next)
+ 		end = r->next->va.addr;
+ 
+-	op_unmap_range(u, addr, end - addr);
++	if (!u->keep)
++		op_unmap_range(u, addr, end - addr);
+ }
+ 
+ static int
+-- 
+2.50.1
+
