@@ -4,95 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2CABD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B42D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2B9010EC2E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4B10EC1E;
 	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFAsxLEG";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bpVMEvVV";
 	dkim-atps=neutral
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com
- [209.85.219.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4426410E83B
- for <nouveau@lists.freedesktop.org>; Wed,  8 Oct 2025 14:28:19 +0000 (UTC)
-Received: by mail-qv1-f51.google.com with SMTP id
- 6a1803df08f44-791875a9071so73520246d6.1
- for <nouveau@lists.freedesktop.org>; Wed, 08 Oct 2025 07:28:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759933698; x=1760538498; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=C3nyMQNps0AyLL97xzttuk+phB0DdoZh7JjDzOjB4po=;
- b=MFAsxLEGjCRTAdsXcqihNtVC6waBb8ZYlCNYSdQlhMwUM8A83fJpW0lpgIPTODBtrk
- FPjjNaKjD24dI8fbVDpcBBhTT90YCn6fwVMnrGk/HnQ2STGx2tMi1O+dNb+/AkunXV+b
- mFx8+0o8LMkIglLKMAgUU5lXRWpOXFIjCMqlB+aGYrT7Mg3TgTspT4+nJsqAthqvb9Gi
- ODmc78XC2Jn1v69t7tTqVyFIHmkVWlPxCGyeCWy6CCITohfuwoQk8yyjvwox9D7W8SY0
- N+sHpM7qiv/TSrdYendR4j5ss/Op4gypgH8on+NiAH/ci1naS2PHbfHNZdE9+rrmB5D7
- 5qNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759933698; x=1760538498;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=C3nyMQNps0AyLL97xzttuk+phB0DdoZh7JjDzOjB4po=;
- b=gFSatKeR1aZSyV3O53PCFIeknLwZRls4HmXeH7kJXgxweCH95RPHL3DtzC3p7+nKOj
- RD/tSpo1OjrTYSO8dA4xrGKtgHRzDtTGPy+MOrHAM+RYJncyKdfadjJFboglWci/GD0E
- Lqj/z8UNCk/Wp4iHCdY4FjSbmqZWlplrQRTg7NVVHU9LYmkGbQu/KqxoVN3Sooac8MrC
- xI7FupCSPGL+e5+tzTB+gXyPNxzuVrrVulK9qUju/70h+7USHwpR+p3nNxbMTu8SdruJ
- kmdu51iPC5fh2iWABvNu6m1Nl33I+mvj+f6FJ7mMOBnqAmAvhBSD+szycNiHZvtll6D4
- kPzA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW+KJs87q0ZTPcEL7sSiPumGylec3FuEuaixaRjDK/EGoYtxGEp0RG6LbQKnGYSyO/h4p6+Z4W2@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEFL3N/mmH+dHMmhnWlBmc0do0SmMp2wdmroRl/HuvMk5z2J3E
- rMg6cjJv7dYxZIyDmrfdqcWHGc0WiLxGW+tb9y0XRm9lOadDvD50YC4z
-X-Gm-Gg: ASbGncu00puOeUxg/Xyp8g4GtEwpv0BEcgRJynTBYt9YsQsx6VgJqgPqgiZYYZUviIh
- bWBtNLzTpHsXAFE52i2mkh/Hq7Z1FgFNw8NoI4Q7KF8O+18wPEri+x0T0DaNtDhhpcDfexv6uAB
- zXXM4xcXTbndWYVjBVPhKVgDxEBUnNv6Y2OR7cl4070ouIHPSqCaTWceaZskNSN8eyGwaiSKrSn
- xTRIQCe0nHWIsTOGCM+V03UXTEn0HQ5MhcxOiyUvmZcM9F+rT1/X6NQo12xiv67Sd/kRWSN0xY6
- ycDGTCP9uN2IhwIijuzJy+yJYPeXoCRKKs1S3cvnNzttwixjO/+WGWmTHMKc4P7okNeqFMGlo5Z
- Q0WQuixZ/a95RMco/sdNUm22ayWLfDnuoIOAVRVyz3SI=
-X-Google-Smtp-Source: AGHT+IFntZefp3Ss0mi+6jECEAXuwb7eOj/bzue7nh8gRQKVbgbOiMWHYq2oEKWHI2USmbbKcqsDDg==
-X-Received: by 2002:a05:6214:2a87:b0:789:d698:d384 with SMTP id
- 6a1803df08f44-87b2103104bmr48809406d6.20.1759933697907; 
- Wed, 08 Oct 2025 07:28:17 -0700 (PDT)
-Received: from localhost ([12.22.141.131]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-878be61f6bcsm163723216d6.65.2025.10.08.07.28.16
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 08 Oct 2025 07:28:17 -0700 (PDT)
-Date: Wed, 8 Oct 2025 10:28:15 -0400
-From: Yury Norov <yury.norov@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
- rust/kernel/
-Message-ID: <aOZ0_7YQw81lyMWt@yury>
-References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
- <aORCwckUwZspBMfv@yury> <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
- <DDC49ZIRX79X.2Q4KW0UY7WUF3@kernel.org>
- <faa99188-7ccb-4c7c-b705-3a207f5acd17@nvidia.com>
- <DDCFLM3P5MCC.NEBRVTU7X2G3@kernel.org>
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6419010E911;
+ Fri,  8 Aug 2025 10:45:59 +0000 (UTC)
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
+ [91.158.153.178])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6F313185B;
+ Fri,  8 Aug 2025 12:45:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1754649908;
+ bh=brJMRHo/8Tl3e7xMygG9eyiFT2hDjy5O7wtChHaeNYM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=bpVMEvVV/KjgNPSTx09Y1zAid5VLUpMgHxMncGlh/eIqSnOEbYo/e7pfZcCaLnvMR
+ a4WP/S0JCHnwihLwBpo0WvGkuChuDoTi3adY52UACj4F5WD116oIVmo+wa34Zq++Sp
+ qyMsD/KygsGrVig9ySGURL4Ju5+a5JMr5a6kJVSM=
+Message-ID: <20be7c9d-ad67-4157-b03e-18f91534a1cd@ideasonboard.com>
+Date: Fri, 8 Aug 2025 13:45:54 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DDCFLM3P5MCC.NEBRVTU7X2G3@kernel.org>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 17/25] drm/renesas/rcar-du: Compute dumb-buffer sizes
+ with drm_mode_size_dumb()
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, simona@ffwll.ch,
+ airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ geert@linux-m68k.org
+References: <20250613090431.127087-1-tzimmermann@suse.de>
+ <20250613090431.127087-18-tzimmermann@suse.de>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+In-Reply-To: <20250613090431.127087-18-tzimmermann@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,25 +67,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Oct 08, 2025 at 12:08:59AM +0200, Danilo Krummrich wrote:
+On 13/06/2025 12:00, Thomas Zimmermann wrote:
+> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
+> buffer size. Align the pitch according to hardware requirements.
+> 
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> ---
+>  drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> index 4c8fe83dd610..dd353fb858ef 100644
+> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
+> @@ -11,6 +11,7 @@
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_crtc.h>
+>  #include <drm/drm_device.h>
+> +#include <drm/drm_dumb_buffers.h>
+>  #include <drm/drm_framebuffer.h>
+>  #include <drm/drm_gem_dma_helper.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+> @@ -407,8 +408,8 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
+>  			struct drm_mode_create_dumb *args)
+>  {
+>  	struct rcar_du_device *rcdu = to_rcar_du_device(dev);
+> -	unsigned int min_pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
+>  	unsigned int align;
+> +	int ret;
+>  
+>  	/*
+>  	 * The R8A7779 DU requires a 16 pixels pitch alignment as documented,
+> @@ -419,7 +420,9 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
+>  	else
+>  		align = 16 * args->bpp / 8;
+>  
+> -	args->pitch = roundup(min_pitch, align);
+> +	ret = drm_mode_size_dumb(dev, args, align, 0);
+> +	if (ret)
+> +		return ret;
+>  
+>  	return drm_gem_dma_dumb_create_internal(file, dev, args);
+>  }
 
-> Regarding the bitfields for page table management: Are we
-> sure that we can use raw bitfields for this?
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-As per my current understanding we can't. Bitfields are not suitable for
-direct I/O and considered as a data storage. In the current scheme:
+ Tomi
 
-        regs::NV_PFALCON_FALCON_DMATRFBASE::default()
-            .set_base((dma_start >> 8) as u32)
-            .write(bar, &E::ID);
-
-we account for endianess in the .write() method, which would be a part
-of register API, not bitfields.
-
-FYI: ARM64 is in process of dropping BE, and Linus announced the end
-of BE support for RISC-V:
-
-https://lore.kernel.org/all/CAHk-=wgYcOiFvsJzFb+HfB4n6Wj6zM5H5EghUMfpXSCzyQVSfA@mail.gmail.com/
-
-Thanks,
-Yury
