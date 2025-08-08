@@ -4,82 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 994E2D5B162
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F3CAD5B15F
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D948E10EA3B;
-	Sat, 13 Dec 2025 12:40:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1E5B10EA54;
+	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XSfXnQSc";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y/CInVcK";
 	dkim-atps=neutral
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 384F510E47A;
- Mon, 23 Jun 2025 23:13:36 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-313862d48e7so710175a91.1; 
- Mon, 23 Jun 2025 16:13:36 -0700 (PDT)
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9688210E4DA;
+ Fri,  8 Aug 2025 07:39:27 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-2402774851fso16811945ad.1; 
+ Fri, 08 Aug 2025 00:39:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750720416; x=1751325216; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=2HXruGsRkrnO4T0LtQG3CCRxkdrPRNW2kXRz195ROg8=;
- b=XSfXnQScpJ2N7lMWMbGjXQ/ZaqEB0B/TCGCiPJtgsJAl/0sWVDgivBu2VbEk6BAcL5
- C2rWEKoiCbrA/B2/nGL+EDU0/eL3aEAu2qF4Wn9CmC/t/TIoQk5IbbjoZEAtLnCnLMN5
- VYdlstDaLw/oXMb+ZoBxTWjsLV2BKl1JUsQgZyTTvSbkV4PY9UquFOI39bw4T1DTIypw
- 8itHLRv46tTucuJwsDJlJERyZCL++W7TFyRcH92ZgQ1gtE8p/nRJoE76eYXpkuVQ66Gp
- u3JRTwA97SVF0AddR4zQSA8QeZos4vKsw1+vd6r2xV6cJ6ec6zNR5INlrQ8Ko8yPWVrn
- iYXQ==
+ d=gmail.com; s=20230601; t=1754638767; x=1755243567; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=yO1YpKtKP+ptfoFXdPV58S+ud0mO9FZrS4sipO+FnaU=;
+ b=Y/CInVcKECFDXWA4Wf8aF/bPeT9QICxHmEEcZrOUirHUcNjpklJdYZBQQH+B3aFmtT
+ BHxs+huOoBRehcPhAoeX0RDOJNXVhMO9UgsRFIgmvYHSOwecWm+6u3ldmo56oxes3odv
+ i+NWG/SfGbbtkQKqS+glQBCOtBbDkv3e7HmlLUX4OSCa+KXksfK1TSEjMIP1h94E/+RH
+ Q0GpSdMPjwZUOeD8wVIOp5+q+r7GrUg49lK7IAGUqQ1l8/LJAk9U8GycbG2iHCzmmHDX
+ ad0Q+Kf/BB+iO5cD07rayzEtu9DeoE2iOab51aRQ4x+qUUqSy/OZNMVFPVrQiC4uFEo5
+ JiMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750720416; x=1751325216;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=2HXruGsRkrnO4T0LtQG3CCRxkdrPRNW2kXRz195ROg8=;
- b=veZOOmJsp6Nr4JoD1kcJy9mjZmMcc/OPpXK/+qNM5ZvioUNUY9u/pyaCTjZVFg4YSt
- yBnrLhqwcaEMZ8NXx6skpcNFCTIuL4ZTsrGNe1PqWNhQdt1GBw2eWZBqqjPHZF2OFEwp
- +N6uDVPwoXEiPlXFR9WeOU7Q++jPtVozCkeCN1EBRBkmK1qCig/01qEdjyYo8GjWgO1H
- sH54V1IAs3TRq0vhsds/LnmKSVW9R+UC+Do7S3YhDggr3qyANMhhr8IWJjiE09TxWCBi
- pQWrhjxBenP/bEQ9bZAxe9rQg/TPOaXzpzu4fv2i7ArbW2JaSg+t5Tq/qkeEQEiD+H0T
- 5m5g==
+ d=1e100.net; s=20230601; t=1754638767; x=1755243567;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=yO1YpKtKP+ptfoFXdPV58S+ud0mO9FZrS4sipO+FnaU=;
+ b=KmAtw1e0DvTjh3lFMxs1sTRnQUxc6PdF5cMZD26EkmCDNrIV9g9TyRZNMdk92iEllx
+ OrGy6L392dfXK7l8djEBB3APMjz4lEBGEs1A+GYItlALrakm3bo3IVHbIau/AmsR/YaU
+ A8u0DxMk/73/E/6MfmB/mNCOh8eL8HJ0pxlhkeDinGHC5QbsScj8bagKbCUiphQtzvOr
+ vkdORhdSsthJ9rixNACY5Bq3x+T1cRri3sKGsks85nUYUElcQ3S27Va3zc3xVrJTE59K
+ 1ElbIruHesE1dHxhakdDHT9i1St5SOgfHgPq7a8dw1+PQcG8zNFakXcYS2H8UpiNjbBj
+ Wbug==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW5Hoc1xokaZuicL34k9V+/jCc7rz/4NLka2B+1VfoLk+TwecHIIrsaWr/Y2OwMdzTOD7o8eTMLYw==@lists.freedesktop.org,
- AJvYcCXG8tQwpaWHkPQlhKG/0j3nmRRqvuTHt5pIULnx1HQ+Gc6eacSYW0+C/bhrY/OpmTQgPwfofINHg3s=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxpk68tK2nxbI+uZsxYK4A/eDaAbtGzARLEtkfVfRxR2l7wVFjC
- NDbsziEVVLmkDtGfXPZDcJsyBFNfLqPTGICwNmzOIjTmvtrjmf+wBecxtpM0E2nflbZVFffwPII
- yyxbPVE4srMOD0JHD6Jg8QuTOtQRT36Q=
-X-Gm-Gg: ASbGncuoNpCC6aqJEI02kTDjbfvL2iNgQm9TUcV/SGOYZiiKVYQN3h4Un99bBvyPP2Y
- 7Svxl+1KKu2eJotbGlUoFiYx4qbeCXtoEVgw368An0GSVgxgfaODWvpZDTZLNL144mv7DLMaJG4
- /wVokXb4zQ4Unys0kFKSTCUp8ZQ5C/IZfpcQoaMXtC1P0=
-X-Google-Smtp-Source: AGHT+IH7XVvohyW/cz0YuCPytHgywdDr9SzijVJMsGTdwBGX+kM/pF+FLLchYSGNnYqk9nn2La4vwv67m+JjzET5PAE=
-X-Received: by 2002:a17:90a:d64f:b0:312:1ae9:1537 with SMTP id
- 98e67ed59e1d1-3159d577d0cmr6882432a91.0.1750720415660; Mon, 23 Jun 2025
- 16:13:35 -0700 (PDT)
+ AJvYcCWsTFC3P990fZ7ootDjfY0hL3sd8WVgcMqJTuF2JYPGMqgRP1uWceSub9xu6hOI+XOrbJjgPVb3rOM=@lists.freedesktop.org,
+ AJvYcCWvjIS4IdAucMt/bzGleKrJuqVrvoVxaO3Wkor5erofpZnUmoGW6Rh1DIlXHZrXMXmiDzhQ0yf3Zw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx3rv/zRgPk2UIazDe8IpYHVbTsRkVCttioCAckfvxGL+s8V5IH
+ IyUwxpVPAy4vKiF2QDj5tx9UBWJtaUZZ8yFa+IjTj60INag3X4pN6G5A
+X-Gm-Gg: ASbGncvbcU74Nh2xyxPNOi/Ad0iRGYEYR6r/xBmPssCW77BLMu8MVVQ+dBIgkJuSV/G
+ kTyKGl/EBuqoTCv48YREIqy6fNF0K+Li/g5OnlymOr8o3SKzxvRG7dqZrJT0QMo1vpieMf+mul6
+ 4oiK9VHAwDdK4a++dknoEp26edBu/dwP+dEdmSkLdAFZCrKt3RGwxR0nKDMiNoiQ48uYcREqWId
+ IZ9Mk+DzkmiOj6uwK6lHAei7Sbe4RtOr85MUxggEUlsVFgwDzYBeEm8R0wO7R2YoJufTS5+WC+w
+ +ZfKDB8IzhcE+zDVpWH248H1pGo4hhzI0XlhwhD4G3saG/zwvhZ73OSHWegJ7DwIMyzMxqXfD33
+ tQmmPjrd6tLAhyBjaI4QGByY18A==
+X-Google-Smtp-Source: AGHT+IHJAphSCGcCrKjr0TL4KujAuKvrfgHh/ezbsFmtY7IQENr8gP6eoXWCL6JC+pybzPRmoIEHjA==
+X-Received: by 2002:a17:903:40d1:b0:240:1831:eeeb with SMTP id
+ d9443c01a7336-242c22c59bemr31998535ad.40.1754638766916; 
+ Fri, 08 Aug 2025 00:39:26 -0700 (PDT)
+Received: from archlinux ([2409:40d6:1b:7e6e:e637:1b70:a72e:cd3d])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2426dec66desm121202935ad.54.2025.08.08.00.39.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 08 Aug 2025 00:39:26 -0700 (PDT)
+From: Madhur Kumar <madhurkumar004@gmail.com>
+To: lyude@redhat.com
+Cc: dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, skhan@linuxfoundation.org,
+ Madhur Kumar <madhurkumar004@gmail.com>
+Subject: [PATCH] drm/nouveau: fix typos in comments
+Date: Fri,  8 Aug 2025 13:08:40 +0530
+Message-ID: <20250808073840.376764-1-madhurkumar004@gmail.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-References: <20250609122200.179307-1-trintaeoitogc@gmail.com>
-In-Reply-To: <20250609122200.179307-1-trintaeoitogc@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 24 Jun 2025 01:13:22 +0200
-X-Gm-Features: Ac12FXzn7V6XJa8kRyU5bxAVt4CroqqcMGg3veONxVG0AI0fCukO93xidJUyyDo
-Message-ID: <CANiq72=5XhSd5qbWV5PTWQk18-roFKCs=kqF0iEbcn99tKhOoA@mail.gmail.com>
-Subject: Re: [PATCH] rust: module: remove deprecated author key
-To: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
-Cc: rafael@kernel.org, viresh.kumar@linaro.org, dakr@kernel.org, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
- airlied@gmail.com, simona@ffwll.ch, mcgrof@kernel.org, russ.weight@linux.dev, 
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
- gary@garyguo.net, bjorn3_gh@protonmail.com, lossin@kernel.org, 
- a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu, 
- leitao@debian.org, gregkh@linuxfoundation.org, david.m.ertman@intel.com, 
- ira.weiny@intel.com, leon@kernel.org, fujita.tomonori@gmail.com, 
- tamird@gmail.com, igor.korotin.linux@gmail.com, walmeida@microsoft.com, 
- anisse@astier.eu, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,25 +89,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jun 9, 2025 at 2:22=E2=80=AFPM Guilherme Giacomo Simoes
-<trintaeoitogc@gmail.com> wrote:
->
-> Commit 38559da6afb2 ("rust: module: introduce `authors` key") introduced
-> a new `authors` key to support multiple module authors, while keeping
-> the old `author` key for backward compatibility.
->
-> Now that all in-tree modules have migrated to `authors`, remove:
-> 1. The deprecated `author` key support from the module macro
-> 2. Legacy `author` entries from remaining modules
->
-> Signed-off-by: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>
+Fixed three spelling mistakes in nouveau_exec.c comments:
+ - alloctor -> allocator
+ - exectued -> executed
+ - depent -> depend
 
-Applied to `rust-next` -- thanks everyone!
+No functional changes.
 
-    [ Reworded slightly. - Miguel ]
+Signed-off-by: Madhur Kumar <madhurkumar004@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_exec.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I don't see any new/missing ones in -next, so this should be clean. Let's s=
-ee...
+diff --git a/drivers/gpu/drm/nouveau/nouveau_exec.c b/drivers/gpu/drm/nouveau/nouveau_exec.c
+index 41b7c608c905..46294134f294 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_exec.c
++++ b/drivers/gpu/drm/nouveau/nouveau_exec.c
+@@ -60,14 +60,14 @@
+  * virtual address in the GPU's VA space there is no guarantee that the actual
+  * mappings are created in the GPU's MMU. If the given memory is swapped out
+  * at the time the bind operation is executed the kernel will stash the mapping
+- * details into it's internal alloctor and create the actual MMU mappings once
++ * details into it's internal allocator and create the actual MMU mappings once
+  * the memory is swapped back in. While this is transparent for userspace, it is
+  * guaranteed that all the backing memory is swapped back in and all the memory
+  * mappings, as requested by userspace previously, are actually mapped once the
+  * DRM_NOUVEAU_EXEC ioctl is called to submit an exec job.
+  *
+  * A VM_BIND job can be executed either synchronously or asynchronously. If
+- * exectued asynchronously, userspace may provide a list of syncobjs this job
++ * executed asynchronously, userspace may provide a list of syncobjs this job
+  * will wait for and/or a list of syncobj the kernel will signal once the
+  * VM_BIND job finished execution. If executed synchronously the ioctl will
+  * block until the bind job is finished. For synchronous jobs the kernel will
+@@ -82,7 +82,7 @@
+  * Since VM_BIND jobs update the GPU's VA space on job submit, EXEC jobs do have
+  * an up to date view of the VA space. However, the actual mappings might still
+  * be pending. Hence, EXEC jobs require to have the particular fences - of
+- * the corresponding VM_BIND jobs they depent on - attached to them.
++ * the corresponding VM_BIND jobs they depend on - attached to them.
+  */
+ 
+ static int
+-- 
+2.50.1
 
-Cheers,
-Miguel
