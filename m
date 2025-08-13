@@ -4,54 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 287D6D5AE45
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DCE8D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 274EB10E426;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1067010E421;
 	Sat, 13 Dec 2025 12:17:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=intel.com header.i=@intel.com header.b="azQe1gde";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D47010E4D9;
- Tue, 30 Apr 2024 13:24:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1714483482; x=1746019482;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=11X3wEMQbR/b7C50eaFbyjqplYHvHzwuI/0HIjyuc9Y=;
- b=azQe1gdeysjLqkqxZkYon/spLqcUGuP+MxawkNezUvJG+J6mXieGuhUl
- eWYlRlr8r44WlSjrsGru8loONZlm6UAhJrg2MDV29ZNXvJP39mltFY95k
- 55YtqD4QssnZ3onZK/M06spLrU8qvXLkCxnmKsTVOKt2CAUIqDtrydbtI
- eF6rJGZrqeKM4DXAv+zHXi2MlLkWoIjZdXyRxgix7sXbriKuJIoZ/JjyF
- HeqDidJhnZGD6Tm0dKZ3m9Y2SqrpMrY4tVuYqRdpeEQplr4T3H8CiiDEk
- JDLlIE7aVEAvkGNhUJ+Z2sYybxlo8Y9gme+ELuQzSyy7D/NDPkwoaA3mU Q==;
-X-CSE-ConnectionGUID: 8wd136OXSWi0g0QXmYWXhg==
-X-CSE-MsgGUID: DwsbaLsQREu+2hxrPNwoqA==
-X-IronPort-AV: E=McAfee;i="6600,9927,11060"; a="27638678"
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="27638678"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2024 06:24:38 -0700
-X-CSE-ConnectionGUID: YX4Wz8PzSy2+Y0ETSgzmJQ==
-X-CSE-MsgGUID: 9WnaRiHxRVW2zfs+VqbDFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.07,242,1708416000"; d="scan'208";a="26328991"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa010.jf.intel.com with ESMTP; 30 Apr 2024 06:24:35 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: nouveau@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: ttabi@nvidia.com, lucas.demarchi@intel.com, dakr@redhat.com,
- airlied@redhat.com, lyude@redhat.com, bskeggs@nvidia.com
-Subject: [PATCH] nouveau: Add missing break statement
-Date: Tue, 30 Apr 2024 18:48:40 +0530
-Message-Id: <20240430131840.742924-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Received: from nyc.source.kernel.org (nyc.source.kernel.org [147.75.193.91])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5424410E0BC;
+ Wed, 13 Aug 2025 20:12:06 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by nyc.source.kernel.org (Postfix) with ESMTP id F27F8A57F1C;
+ Wed, 13 Aug 2025 20:12:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4096C4CEEF;
+ Wed, 13 Aug 2025 20:11:53 +0000 (UTC)
+Date: Wed, 13 Aug 2025 21:11:51 +0100
+From: Mark Brown <broonie@debian.org>
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>,
+ Dave Ertman <david.m.ertman@intel.com>,
+ Ira Weiny <ira.weiny@intel.com>, Leon Romanovsky <leon@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
+ Liam Girdwood <lgirdwood@gmail.com>, linux-pm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-kselftest@vger.kernel.org,
+ kunit-dev@googlegroups.com, linux-block@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org
+Subject: Re: [PATCH v2 00/19] rust: replace `kernel::c_str!` with C-Strings
+Message-ID: <34d384af-6123-4602-bde0-85ca3d14fe09@sirena.org.uk>
+References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="6FVk2V0LrGBjdKpm"
+Content-Disposition: inline
+In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+X-Cookie: Turn the other cheek.
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:00 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,38 +82,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add the missing break statement that causes the following build error
 
-	  CC [M]  drivers/gpu/drm/i915/display/intel_display_device.o
-	../drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c: In function ‘build_registry’:
-	../drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c:1266:3: error: label at end of compound statement
-	1266 |   default:
-	      |   ^~~~~~~
-	  CC [M]  drivers/gpu/drm/amd/amdgpu/gfx_v10_0.o
-	  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
-	  CC [M]  drivers/gpu/drm/amd/amdgpu/imu_v11_0.o
-	make[7]: *** [../scripts/Makefile.build:244: drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.o] Error 1
-	make[7]: *** Waiting for unfinished jobs....
+--6FVk2V0LrGBjdKpm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fixes: b58a0bc904ff ("nouveau: add command-line GSP-RM registry support")
-Closes: https://lore.kernel.org/all/913052ca6c0988db1bab293cfae38529251b4594.camel@nvidia.com/T/#m3c9acebac754f2e74a85b76c858c093bb1aacaf0
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, Aug 13, 2025 at 11:59:10AM -0400, Tamir Duberstein wrote:
+> This series depends on step 3[0] which depends on steps 2a[1] and 2b[2]
+> which both depend on step 1[3].
+>=20
+> This series also has a minor merge conflict with a small change[4] that
+> was taken through driver-core-testing. This series is marked as
+> depending on that change; as such it contains the post-conflict patch.
+>=20
+> Subsystem maintainers: I would appreciate your `Acked-by`s so that this
+> can be taken through Miguel's tree (where the previous series must go).
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-index 0b46db5c77b8..63619512e7f6 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/r535.c
-@@ -1264,6 +1264,7 @@ static void build_registry(struct nvkm_gsp *gsp, PACKED_REGISTRY_TABLE *registry
- 			str_offset += reg->vlen;
- 			break;
- 		default:
-+			break;
- 		}
- 
- 		i++;
--- 
-2.25.1
+Something seems to have gone wrong with your posting, both my mail
+server and the mail archives stop at patch 15.  If it were just rate
+limiting or greylisting I'd have expected things to have sorted
+themselves out by now for one or the other.
 
+--6FVk2V0LrGBjdKpm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmic8YYACgkQJNaLcl1U
+h9Cumwf/YkCiNa2FUFyl0xap34GT0uNu8Xh2QH5gQa+2jI19lL8u1OybvUdzWI8N
+dryQmdo4BgnkEFiIeCiAWIUh8fHachIQqfAZfj8yJRexfSk3R0S/Nrg8CfGa9myh
+jkwom0F4sUSvZpsacG1c/oCya64UwN/bCgC+Yw2fivCPjjw/vz1JE5gtarpJEQly
+EJBbiexaSe0XYdtZ3cIT4wm0YElZqekk8U953MglLhWOOLXzt59bkslAam/8fori
+si1u/uVgWv1vyziB8dYHRa26Gsgy9OkgjCD0P64YWkoAV/uSnxsEo5wtWBx2ys1n
+pZ4kmgo8dh16iRQ7pqHeV2g3wE9HiQ==
+=xgNk
+-----END PGP SIGNATURE-----
+
+--6FVk2V0LrGBjdKpm--
