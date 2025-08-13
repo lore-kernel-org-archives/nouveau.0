@@ -4,118 +4,110 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF1DECCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AB09CAC5B8
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85E6810E635;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 697DF10E653;
 	Mon,  6 Oct 2025 20:58:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MB70nv5/";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bHEHY7f6";
 	dkim-atps=neutral
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com
- [209.85.166.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4B110E8FF;
- Thu, 10 Jul 2025 15:31:49 +0000 (UTC)
-Received: by mail-il1-f173.google.com with SMTP id
- e9e14a558f8ab-3df2f20f4bbso4088705ab.0; 
- Thu, 10 Jul 2025 08:31:49 -0700 (PDT)
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
+ [209.85.222.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 900C410E74F;
+ Wed, 13 Aug 2025 15:40:06 +0000 (UTC)
+Received: by mail-qk1-f174.google.com with SMTP id
+ af79cd13be357-7e1d89fcc31so662366985a.1; 
+ Wed, 13 Aug 2025 08:40:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752161508; x=1752766308; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1755099606; x=1755704406; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=WVFjfPNTbi6R66/7pUgl3ALTHRI4zFg3YUCk14hLoUg=;
- b=MB70nv5/AfaDOd9xBwHxRmp0e713mNZZCE6I2ldqT3xp4dhTFudPAATv3CfvNcjO82
- Ve4Q5AupeuXKcw0J2pjBbBt404l2krWobynPaMmrTyVG/nLufG1Qv9+BJsJubuqvHGJl
- ZWPerw602dSSRMGFVXTiFtYALP8haVnxXIg0URVBhp4vex5M1kFjLgAmUeD9CjMKEx4k
- Lxr9OWB6ypnNmgR1cTXiw2biDDPoGo1GL0ev9jK3S7yEz9LMmHPkozG9Js8LDGVCENVp
- QSQTTV/ZSewUjZILQ/dMAouaH/IkAl7ja6vYnM+7senmDReQbNPAlBz4Mf0JCB7qicFS
- UE5g==
+ :reply-to; bh=tKQyJUeEwCiLmV9wAMTey92Pv78BxejTGsU885hQL84=;
+ b=bHEHY7f6AnlOlzj4qFtE/ALOfhL77mSNN7cwYIVWMYuJJK9Kq7s4hy1P3d4iefsA3l
+ /b3/HcnIEJizTKtrCy8Qk/rjH1ipCbj6N/gt1ZHSwYvXN0UEZfO/7uizkT3B/V1FXR5L
+ Ic22z6P/EFfQSmrpb3FpCLWjVuW2a5k0xs8fYY8fvgIGNCH7w0GblOVl60Bu49ACSady
+ cEdHbtvqL9dfLrGgxSnmfRfRse5RC0k+I7RN2Kt93yyZcggkFy5HDo4l1xjqLnkPRe61
+ 8/ZdUHRcgKeFVAQdZlLYP0RuarCrnqd6v1lu/yV7jlUG990HDdeRoe7vDSzQph++QcAi
+ Xu8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752161508; x=1752766308;
+ d=1e100.net; s=20230601; t=1755099606; x=1755704406;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WVFjfPNTbi6R66/7pUgl3ALTHRI4zFg3YUCk14hLoUg=;
- b=U61twbieUFAx9sAqVb1Il61mJJESlxUYUSePz5NYV0jF9VWKMtTx4Sh3aX66snschc
- Mhluy7EYDHJ95EHrgsdPxMcPqdagT7nme76grKhALTWVz+UZ17+QRZJ7wLef/x4WOliR
- wqOyJzNA3K+rSmz2FIN4JG/DIDfLsnxBCLCNlVeqadonGYuns+a48qxmqICjQ+T6wzlK
- AqEvk8wbLX1Wz40RdJnc4GmZYY4kF/ZyJTla6yL82E0phzSHheHPlj23Ir5t70tKu94G
- W8sJ78a1K8yc88JbbfZSYHAzjZGLSxrLXQyhY4WPNMQu3Bb61d5xbouVgZ12kcTTFA+q
- 5lCg==
+ bh=tKQyJUeEwCiLmV9wAMTey92Pv78BxejTGsU885hQL84=;
+ b=p1dyGkLcdmBWVx7gvVlbg1KbISP/5/M14N+SqM6BtPOvqAgsyIU2P5XaOMlHe1OOcC
+ jyXKHnyruAXV9v4D3IAAWCwz0FQ1G3nKK2xmjgS8BweAx6NiobI259hwJ26fS18qWJx/
+ yrz9NEqcDumfYIXnZfcRw0qD0Uoy+/sjv/KEmxppOKw4QWDnSyVNnpZk6pfjmAtgGue+
+ r4t2HxJJk8McxuKZxsWqkAx4YVtC012nkvRZ5tLHfDX136F4jWPDGYejcLOXM21mW9kf
+ Q26Yk1Dy8MULjDAIvXFU39MnYaZL2r9zxTYt0RAZ/6Jf9uIZMBHwc8z2OQk5qFwPS6Q0
+ nlJw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVQRJ4DpcS8Rg1tDVtb9fYkxOiExt4FY1Y65mq1qW9TqdJHeFBFyhcnKga3Iclj1eUCYXAxE7v3KLw=@lists.freedesktop.org,
- AJvYcCWVaCIgPr5YfmeEFXWVYqoORrwvcgAgZNL3HXwAUFxA4lobedu0oOeofOB4jjVRXWQyb6XgB+VBfQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywrhs6XLyWR8mFOtqLCvjvSXIlnL2/Z7aEPhhmWT+dN6DS0BClD
- 7XJZxl0oLltb5fG0PMbp3cnsOZRFiDFqJCTHtOFfpSTQl1w6FKzc7MQH
-X-Gm-Gg: ASbGnctTaBdZrVE1r8Vyltgkfc76CdLXXxWqOoIBiC+KVjDRuZdbai7CLWMSFApuelJ
- lQXz3O22egx9nKpd2t/mI5j6ppBPQP26ms+T/3A8i+eRXab65oyTxJ9NcAwWr7R8zc+FI36Wdiv
- l3+FiqrCUjHNJSuUfsg22bUo9EuesPWUleH0rCf2W2OI6pr07629ijct/u+6L1PFY4WCQz943lV
- m0FItagQHmf2jjE1ay+tPMFE8iol+6jSWtVeg42CGhyX8dbytvucrmP9fmkw1q+EbdL5C4aPLnQ
- jR4qhOZgwYbuNhKB8OloU12KLJwMsOGyVnc4hUNuKuwQWxyPDwbm/JPBpVm2HSdPNUSvvlubse+
- LI6+GSWUOElJt9UhW1WlyiU9pwc+O3Mau0gs/yTFK/CQUOzC1U6+eY9iJfg==
-X-Google-Smtp-Source: AGHT+IFCym+xBGoaFaMTBAc6u039EKWRGAB/Yd6+c7XI6q8JLxZTaP4UxwS5DlA2tuk9iufaO/epKQ==
-X-Received: by 2002:a05:6e02:b42:b0:3de:2102:f1d8 with SMTP id
- e9e14a558f8ab-3e244019ab8mr53662575ab.18.1752161508131; 
- Thu, 10 Jul 2025 08:31:48 -0700 (PDT)
+ AJvYcCWhAsaLjJo/DjY6OgdbnZAD5y2vFcSC/7mGrAeH/XRs+RRy3ton/f9rDQb8MWAT6F6CiOHjLw8New8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwfVKiZRhIaosDN37S2/hCX9Psne2r3LkUOjikFtvyNpsX//6Pc
+ S0XNwAugvnmnHR++TtX4z+9aQURH9mhJTauke2bTS2bSFawabBCwwVn8
+X-Gm-Gg: ASbGncsqCnuKDxF6G7MNSiwxt0lzcKCaMi3npLGUsmkm2k2ehbybPubn+xIYGxv7dnt
+ KWvlxwh4D3/W0AqRYdlIFzSVs6gJiYQ4HF2mflGY22rfloLO4mFhWILj84QZAw8n/tAiFOln75I
+ PsoGM1hAqRR5WlyyJVqc22s1jxLRzEF3T+fU1CN61Yynf8N5LhPvFGgpJsFM62WeaAk9liKwrx7
+ CUXmqUvaUACDZFyRH3btKjNls4xqJo0OXbtgu9wgypmIulc1g+s11wyBvbqJ7iiqEVh0Nlg6Oz7
+ jU9oK9agSqhLsdkOYinUl97XxojjRcYnpLXZpwGtRAmanN29jzydzegKEX7Lfx4WOxHTvXpsG8m
+ Xgld+3H45ibb6gvDFJqj6bh/USpTlRgn1iaWcT13KaifG6x/dGSXW6VYvCrtFccVeAuEZ7Md9K9
+ Xd3lGtPdJE7tdfLSusBa/52JndZbsA5cjTzw==
+X-Google-Smtp-Source: AGHT+IG14Ou5jKogZhVRtk4/jsabABzOGdHRDYRyYwlXybd5iqYGKxAQsMBHFwVEi3/l9Z9yMLj/Cg==
+X-Received: by 2002:a05:620a:3707:b0:7e7:fafc:c6f with SMTP id
+ af79cd13be357-7e86526c55bmr457281385a.22.1755099605519; 
+ Wed, 13 Aug 2025 08:40:05 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.31.46
+ ([2600:4808:6353:5c00:d445:7694:2051:518c])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-7e67f728a6asm1976119385a.64.2025.08.13.08.40.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jul 2025 08:31:47 -0700 (PDT)
+ Wed, 13 Aug 2025 08:40:05 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 10 Jul 2025 11:31:10 -0400
-Subject: [PATCH 07/17] rust: device: replace `kernel::c_str!` with
- C-Strings
+Date: Wed, 13 Aug 2025 11:39:51 -0400
+Subject: [PATCH v3 6/9] rust: kunit: use `kernel::{fmt,prelude::fmt!}`
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-core-cstr-cstrings-v1-7-027420ea799e@gmail.com>
-References: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
-In-Reply-To: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
+Message-Id: <20250813-core-cstr-fanout-1-v3-6-a15eca059c51@gmail.com>
+References: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
+In-Reply-To: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
  Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Jens Axboe <axboe@kernel.dk>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Uladzislau Rezki <urezki@gmail.com>, 
+ Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752161489; l=1137;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1755099590; l=2471;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=lKArFG3jk79KbI1Ip2d9VIpBoj3sVr8YWgzpzTTR72M=;
+ bh=NMYBijI5MjCpRRYFrsF0rVf9eokObKfR9KrctSSofPM=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QAzd5arAmJGDCeVxbMUwisyHuguGLVYd1t94JvFxCxzK/cekAHr5Rtjw+6FA4xzDvfKhCkirXSB
- JiQdbWuO4ygU=
+ QLKIxkqmYjvgREAtIt6jqTnawH9+7pVTy/Un6pR53J21I51aGM8aOXhOurMFKVJYH2NWvrbQfzx
+ uG07vM7LPJgM=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,39 +122,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-C-String literals were added in Rust 1.77. Replace instances of
-`kernel::c_str!` with C-String literals where possible.
+Reduce coupling to implementation details of the formatting machinery by
+avoiding direct use for `core`'s formatting traits and macros.
 
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/device.rs | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ rust/kernel/kunit.rs        | 8 ++++----
+ scripts/rustdoc_test_gen.rs | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-index b34173536230..ff300e1d014b 100644
---- a/rust/kernel/device.rs
-+++ b/rust/kernel/device.rs
-@@ -11,8 +11,6 @@
- };
- use core::{marker::PhantomData, ptr};
+diff --git a/rust/kernel/kunit.rs b/rust/kernel/kunit.rs
+index 41efd87595d6..cf58a204b222 100644
+--- a/rust/kernel/kunit.rs
++++ b/rust/kernel/kunit.rs
+@@ -6,8 +6,8 @@
+ //!
+ //! Reference: <https://docs.kernel.org/dev-tools/kunit/index.html>
  
--#[cfg(CONFIG_PRINTK)]
--use crate::c_str;
- use crate::str::CStrExt as _;
++use crate::fmt;
+ use crate::prelude::*;
+-use core::fmt;
  
- /// A reference-counted device.
-@@ -198,7 +196,7 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::Arguments<'_>) {
-             bindings::_dev_printk(
-                 klevel.as_ptr().cast::<crate::ffi::c_char>(),
-                 self.as_raw(),
--                c_str!("%pA").as_char_ptr(),
-+                c"%pA".as_char_ptr(),
-                 core::ptr::from_ref(&msg).cast::<crate::ffi::c_void>(),
-             )
-         };
+ #[cfg(CONFIG_PRINTK)]
+ use crate::c_str;
+@@ -74,14 +74,14 @@ macro_rules! kunit_assert {
+                 // mistake (it is hidden to prevent that).
+                 //
+                 // This mimics KUnit's failed assertion format.
+-                $crate::kunit::err(format_args!(
++                $crate::kunit::err($crate::prelude::fmt!(
+                     "    # {}: ASSERTION FAILED at {FILE}:{LINE}\n",
+                     $name
+                 ));
+-                $crate::kunit::err(format_args!(
++                $crate::kunit::err($crate::prelude::fmt!(
+                     "    Expected {CONDITION} to be true, but is false\n"
+                 ));
+-                $crate::kunit::err(format_args!(
++                $crate::kunit::err($crate::prelude::fmt!(
+                     "    Failure not reported to KUnit since this is a non-KUnit task\n"
+                 ));
+                 break 'out;
+diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
+index abb34ada2508..c8f9dc2ab976 100644
+--- a/scripts/rustdoc_test_gen.rs
++++ b/scripts/rustdoc_test_gen.rs
+@@ -202,7 +202,7 @@ macro_rules! assert_eq {{
+     // This follows the syntax for declaring test metadata in the proposed KTAP v2 spec, which may
+     // be used for the proposed KUnit test attributes API. Thus hopefully this will make migration
+     // easier later on.
+-    ::kernel::kunit::info(format_args!("    # {kunit_name}.location: {real_path}:{line}\n"));
++    ::kernel::kunit::info(fmt!("    # {kunit_name}.location: {real_path}:{line}\n"));
+ 
+     /// The anchor where the test code body starts.
+     #[allow(unused)]
 
 -- 
-2.50.0
+2.50.1
 
