@@ -4,111 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D63FCCA472
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E3D1CCD18B
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8292F10E631;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEB2910E62F;
 	Mon,  6 Oct 2025 20:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZY6FQq6Z";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RwlW1T/X";
 	dkim-atps=neutral
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
- [209.85.160.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F4310E824;
- Fri, 30 May 2025 12:27:53 +0000 (UTC)
-Received: by mail-qt1-f176.google.com with SMTP id
- d75a77b69052e-4774d68c670so27713201cf.0; 
- Fri, 30 May 2025 05:27:53 -0700 (PDT)
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+ [209.85.160.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C23E710E774;
+ Wed, 13 Aug 2025 15:59:34 +0000 (UTC)
+Received: by mail-qt1-f172.google.com with SMTP id
+ d75a77b69052e-4b109c5ac7bso222421cf.3; 
+ Wed, 13 Aug 2025 08:59:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748608072; x=1749212872; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1755100774; x=1755705574; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=c+wMSD1Dwm7glxPAzfDIlQ5fBj5tVpqxlsikhfI0xG8=;
- b=ZY6FQq6Zwl2awoi8XvLyStw4NmLWiAiSdVF6UTKdLbXQ/rpCB7G12cXNP79AB1/G7O
- 52RJkVZyjjleymcFSyioFW5SXLpa5yE32M2tcpDFeRTbQqTRWat4mmkkCTZsf7OG6wSP
- FnyU41DrWDkxqS9nWySKdKnF9s32oJ3U/rVbsG78AINJA3gGohWFHQplFRYTLnbiDjZD
- SdkaNIn8fZoiSUrVJdnPLf12VTtsYNNLg/epYjZUuYKpEBTymAEbh2yzWvao7pAalBZM
- 7p2QerM/SYxhNYf87WNOLlmlU4BnL4e0xkv8Kj0xjP6LyI0MqFpAjYlEXIURKLS/yMjc
- MObQ==
+ :reply-to; bh=PQkqhCR+X2AcT/u+sPVE1u8ILZHP3FwYk8GsseoCqig=;
+ b=RwlW1T/XjROoniD+z5MyXqLYillJ5FK9j6Tbi1Xbgl9H8MofybWNVdueM7ZhUE45u5
+ cgXH+Wn1wUaK3eTTYxULp9vJHhMzJVggZ9mPS8t/y1J9YDb5M+m1We7XVGXBn51e23FY
+ qiqdMQqxKMrN1yHG8TyRsJ08KP/eJPO+UIpScdDIfdPb/flArKRzgGDAZpTXGZ/M3HRz
+ r2RriUwimDsLOKWgZHPIy81AZFkK5k68IWjFGD8ezn7Z/7b20SqpMiV7CChRa9EqCKk+
+ 5KdZhWK3nWB4ZOIDiUAp7emkJQq43WRgPkZvs5jqLsc9ViV1ZFKA+cX4f9fUl+3m63jJ
+ dpnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748608072; x=1749212872;
+ d=1e100.net; s=20230601; t=1755100774; x=1755705574;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=c+wMSD1Dwm7glxPAzfDIlQ5fBj5tVpqxlsikhfI0xG8=;
- b=PgPNbSqecpZbsMqK6/i+s6bcaHF7OqYH0hf83a+UhOF5e4D69ZlXr1oE6ZJ9cvYM0S
- doWxrlymsW2xFyx54gl8NBQi2p8sgqJw6MF1P1dn7SPlc8d6k8MSWROkiYI9XhJquOaO
- vqZltgX2HzS1HrjaksecbXFb+p1tPRBSTkier9+I8CK/vatkKJNgsuNasqB4o3QH4S/B
- qp1gKPvclv3Ec8JEIhe03/nPq49fPVGWvAHZdseaT29DRgJvjZJaRBn6qyxja6G+Djvi
- CLgF7zyQiZs+B/oIBq68gv+IRUvLk+hwC9NdzBvPKVPcXwpDK47c24tU5+DZ62o1yGFh
- g6Sg==
+ bh=PQkqhCR+X2AcT/u+sPVE1u8ILZHP3FwYk8GsseoCqig=;
+ b=K2cMecVXHFna3HyziYrPHn7n02DuF1+XDBnQZzSO6EwN+q7ZUnpWkXKVihoUxDaTHb
+ NJU3CsgBg9IWMolk8SoRbGpIE76aE3b/FCrTEkF1QQ/g2Uwnfa5GkdjVnEpMYtFaZgz1
+ 2W56yZLaG4SBmt2TggGqpLkE7htRO4X1Owjr4DFqM4/32L+ZQFEP9GHJroRnvoqk9/aQ
+ 0YgV/Mo5VReueJfiOMYdTCnCqprcCRK/apLrW6PB75xs9ylqC4VFzwTv+tNixUabCdJg
+ RGxxqUf5f9ENrSQuExCRieKYw738O0/BtQDt12taIkx7Ck05vfeS8NwLF05+pYMyHgf4
+ W7ZQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVirvzjlB8NZdq84KYb6nDknEzyqgp+5s+cYT6dmIyeKKEF4twTUbDTbJWGwE9TBgYHSQ7p7NZNfUU=@lists.freedesktop.org,
- AJvYcCXoMNCRBGlLh6RAHDdk+3HYfp8nvpfQ3tMLaliTlfF5oGOazQty+CH0R1jvh5sILaP0v52LbfQgRg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyya2G/+3d5RSChVu/stsAaVAFy6zisTZDZnzUs3dztD2qBFO+f
- IiDrPG7yFAeOMVHglRV8nTO9VQ3Pp+j4i/ZW/wcRBoTz8uvexUc2y857
-X-Gm-Gg: ASbGnct9xCCwWWwKxvVgqAbId2dhkBjC+BUm+tSAAJeFTRTQhRoORe2GQ2ygzjKOlxz
- mdtVIC8isjQvo8HjfsWQxzODIhEnUculvvXBvMoX23nLR9HwZx0FW3J/HTsjRTw5l6W4bWAhNnD
- ksdcl2u/ntkPXTzMA1jDXTM4ee/CbIRelHIxjxgzk5EIwqrGjXpCPMcYlPgLu06DCHaU9pfsGMj
- V9wPGaV2hvPylL6qPJJ2RyIFmqV2Mb0W830WxsIcP/Qt3EFOPzcGsIbOe3XNZQyqF4+bkDFungW
- BgoXVR0IocKjtN3zpM6alCKRwnQ86DqxXfPpEbnpYajJRbQ/Ef9qpnolXHNx2FJcff457IbOMmp
- gOBaScgXrSXSfCC93T1FLEsdXyz6Lf6hrk6bcv1mD9N9ARZlzVIsM4bct7psrZiAseBoFnF8=
-X-Google-Smtp-Source: AGHT+IHllZwMW953zKjfQoM/7NDgz/SVcSwbgf6gKReVIC7BGucY1R0y5SR3FN4Y+Ww2STJYdoUfQg==
-X-Received: by 2002:a05:622a:4d4b:b0:477:4df:9a58 with SMTP id
- d75a77b69052e-4a443c6ef39mr34511191cf.18.1748608072168; 
- Fri, 30 May 2025 05:27:52 -0700 (PDT)
+ AJvYcCWbN0htTzOSHNF7b3s86l7uTdOAmSgmfBc0sZTsHaFeYvaVzCBBCUGmYAqNt8GNcqintMSvUmm9vA==@lists.freedesktop.org,
+ AJvYcCX4KgGGpoACgG93bEoi7w1EwtWOWIy6OIjswd671Z3tRzvVBXZ8tOgIkbRTaIMfZ8cUEQ10fqCQkjY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwLuDwn4E9WsJWoVtknCG0HYWHpAHcaxgo/HV+tkOJX2qZTNkJn
+ I8yq9YV61xYGtqrKzB8obc92+VXlu5UpsMaTkHfeJxGcuAeRMXrZdltMawUopKMkc8c=
+X-Gm-Gg: ASbGncsGlnVoNgAKiku85UcjeRZp6TK1ZpFxveiBn1nIlbu9JPByKALHcg6frem28gm
+ ib949LmnNmzrn2IO9fvne8Dcuxl0WGLhEiRx5VwVqapaq5d3tOnPITV2ddFA2L+Dmxn3x5d11vU
+ 72OwPngQ3haBcorShg82XsTsFRO0lXUL3/xSN/YOJbQqhy/SgINXMaYepJmA/YhyHdpFHKivk6h
+ R7JSYXzybc8FIwffrQBNfR9QyENbZV+mK1PSIF1XWu/RP26ymHqIDznZAjW2G2DKoBuGNiK79FT
+ sNvhQbtO7Ceh3obiG2kc3LrNzNhXJnUpW2PyRJ9AXQl2/TulSSpuI1109SgqWfVVcQ0wmNvC8Tv
+ WmAk8wmxK+BMTJ4vl6giJEwxH5x2zN24Nmeqfr3bR87sg1zaVtBwrsHZ5Og4l8hhz9t22iKDisF
+ o7j+FdEzFfTIXULBj+B66UjPHaFnAv
+X-Google-Smtp-Source: AGHT+IHZq3i1a9XTbFXQTxJJeihLgQb42x6jyJXFxK6dZtNdBD0dLMgXlffMglfu4O/TMFdzQ1T2Rw==
+X-Received: by 2002:a05:622a:549:b0:4b0:83b4:5965 with SMTP id
+ d75a77b69052e-4b0fc6ba555mr47290341cf.14.1755100773657; 
+ Wed, 13 Aug 2025 08:59:33 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2620:10d:c091:600::1:fbe8]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4a4358ad334sm19700201cf.27.2025.05.30.05.27.49
+ ([2600:4808:6353:5c00:d445:7694:2051:518c])
+ by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4b085ad7d08sm124482211cf.53.2025.08.13.08.59.30
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 30 May 2025 05:27:50 -0700 (PDT)
+ Wed, 13 Aug 2025 08:59:33 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Fri, 30 May 2025 08:27:42 -0400
-Subject: [PATCH v11 1/5] rust: macros: reduce collections in `quote!` macro
+Date: Wed, 13 Aug 2025 11:59:13 -0400
+Subject: [PATCH v2 03/19] rust: auxiliary: replace `kernel::c_str!` with
+ C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250530-cstr-core-v11-1-cd9c0cbcb902@gmail.com>
-References: <20250530-cstr-core-v11-0-cd9c0cbcb902@gmail.com>
-In-Reply-To: <20250530-cstr-core-v11-0-cd9c0cbcb902@gmail.com>
-To: Michal Rostecki <vadorovsky@protonmail.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+Message-Id: <20250813-core-cstr-cstrings-v2-3-00be80fc541b@gmail.com>
+References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
  Danilo Krummrich <dakr@kernel.org>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
- Will Deacon <will@kernel.org>, Waiman Long <longman@redhat.com>, 
- Nathan Chancellor <nathan@kernel.org>, 
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
  Russell King <linux@armlinux.org.uk>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
  Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, Arnd Bergmann <arnd@arndb.de>, 
- Jens Axboe <axboe@kernel.dk>, Benno Lossin <lossin@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Cc: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
  Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+X-Developer-Signature: v=1; a=openssh-sha256; t=1755100759; l=1276;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=F2nw+1+uvnPsEnvQVrrTk2VbbpWrYF1uYr4G8N1u7x4=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QGMx/5kaMnlNTrXaGDrsiX78ZIRKLC+Iqyye94EgnMxhSsrGEv9tVHC8fuvWEciKzlDqn7iENLx
+ rBu+o34IoWwg=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,202 +136,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove a handful of unncessary intermediate vectors and token streams;
-mainly the top-level stream can be directly extended with the notable
-exception of groups.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible.
 
-Remove an unnecessary `#[allow(dead_code)]` added in commit dbd5058ba60c
-("rust: make pin-init its own crate").
-
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
+Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/macros/quote.rs | 104 ++++++++++++++++++++++++---------------------------
- 1 file changed, 49 insertions(+), 55 deletions(-)
+ samples/rust/rust_driver_auxiliary.rs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
-index 92cacc4067c9..acc140c18653 100644
---- a/rust/macros/quote.rs
-+++ b/rust/macros/quote.rs
-@@ -2,7 +2,6 @@
+diff --git a/samples/rust/rust_driver_auxiliary.rs b/samples/rust/rust_driver_auxiliary.rs
+index f2a820683fc3..7c916eb11b64 100644
+--- a/samples/rust/rust_driver_auxiliary.rs
++++ b/samples/rust/rust_driver_auxiliary.rs
+@@ -5,13 +5,13 @@
+ //! To make this driver probe, QEMU must be run with `-device pci-testdev`.
  
- use proc_macro::{TokenStream, TokenTree};
+ use kernel::{
+-    auxiliary, bindings, c_str, device::Core, driver, error::Error, pci, prelude::*, InPlaceModule,
++    auxiliary, bindings, device::Core, driver, error::Error, pci, prelude::*, InPlaceModule,
+ };
  
--#[allow(dead_code)]
- pub(crate) trait ToTokens {
-     fn to_tokens(&self, tokens: &mut TokenStream);
- }
-@@ -47,121 +46,116 @@ fn to_tokens(&self, tokens: &mut TokenStream) {
- /// `quote` crate but provides only just enough functionality needed by the current `macros` crate.
- macro_rules! quote_spanned {
-     ($span:expr => $($tt:tt)*) => {{
--        let mut tokens: ::std::vec::Vec<::proc_macro::TokenTree>;
--        #[allow(clippy::vec_init_then_push)]
-+        let mut tokens = ::proc_macro::TokenStream::new();
-         {
--            tokens = ::std::vec::Vec::new();
-             let span = $span;
-             quote_spanned!(@proc tokens span $($tt)*);
-         }
--        ::proc_macro::TokenStream::from_iter(tokens)
-+        tokens
-     }};
-     (@proc $v:ident $span:ident) => {};
-     (@proc $v:ident $span:ident #$id:ident $($tt:tt)*) => {
--        let mut ts = ::proc_macro::TokenStream::new();
--        $crate::quote::ToTokens::to_tokens(&$id, &mut ts);
--        $v.extend(ts);
-+        $crate::quote::ToTokens::to_tokens(&$id, &mut $v);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident #(#$id:ident)* $($tt:tt)*) => {
-         for token in $id {
--            let mut ts = ::proc_macro::TokenStream::new();
--            $crate::quote::ToTokens::to_tokens(&token, &mut ts);
--            $v.extend(ts);
-+            $crate::quote::ToTokens::to_tokens(&token, &mut $v);
-         }
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident ( $($inner:tt)* ) $($tt:tt)*) => {
-         #[allow(unused_mut)]
--        let mut tokens = ::std::vec::Vec::<::proc_macro::TokenTree>::new();
-+        let mut tokens = ::proc_macro::TokenStream::new();
-         quote_spanned!(@proc tokens $span $($inner)*);
--        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-+        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-             ::proc_macro::Delimiter::Parenthesis,
--            ::proc_macro::TokenStream::from_iter(tokens)
--        )));
-+            tokens,
-+        ))]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident [ $($inner:tt)* ] $($tt:tt)*) => {
--        let mut tokens = ::std::vec::Vec::new();
-+        let mut tokens = ::proc_macro::TokenStream::new();
-         quote_spanned!(@proc tokens $span $($inner)*);
--        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-+        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-             ::proc_macro::Delimiter::Bracket,
--            ::proc_macro::TokenStream::from_iter(tokens)
--        )));
-+            tokens,
-+        ))]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident { $($inner:tt)* } $($tt:tt)*) => {
--        let mut tokens = ::std::vec::Vec::new();
-+        let mut tokens = ::proc_macro::TokenStream::new();
-         quote_spanned!(@proc tokens $span $($inner)*);
--        $v.push(::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-+        $v.extend([::proc_macro::TokenTree::Group(::proc_macro::Group::new(
-             ::proc_macro::Delimiter::Brace,
--            ::proc_macro::TokenStream::from_iter(tokens)
--        )));
-+            tokens,
-+        ))]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident :: $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Joint)
--        ));
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::Spacing::Joint, ::proc_macro::Spacing::Alone].map(|spacing| {
-+            ::proc_macro::TokenTree::Punct(::proc_macro::Punct::new(':', spacing))
-+        }));
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident : $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new(':', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident , $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new(',', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new(',', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident @ $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new('@', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new('@', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident ! $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new('!', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new('!', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident ; $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new(';', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new(';', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident + $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new('+', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new('+', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident = $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident # $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Punct(
--                ::proc_macro::Punct::new('#', ::proc_macro::Spacing::Alone)
--        ));
-+        $v.extend([::proc_macro::TokenTree::Punct(
-+            ::proc_macro::Punct::new('#', ::proc_macro::Spacing::Alone),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident _ $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Ident(::proc_macro::Ident::new("_", $span)));
-+        $v.extend([::proc_macro::TokenTree::Ident(
-+            ::proc_macro::Ident::new("_", $span),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
-     (@proc $v:ident $span:ident $id:ident $($tt:tt)*) => {
--        $v.push(::proc_macro::TokenTree::Ident(::proc_macro::Ident::new(stringify!($id), $span)));
-+        $v.extend([::proc_macro::TokenTree::Ident(
-+            ::proc_macro::Ident::new(stringify!($id), $span),
-+        )]);
-         quote_spanned!(@proc $v $span $($tt)*);
-     };
- }
+ use pin_init::PinInit;
+ 
+ const MODULE_NAME: &CStr = <LocalModule as kernel::ModuleMetadata>::NAME;
+-const AUXILIARY_NAME: &CStr = c_str!("auxiliary");
++const AUXILIARY_NAME: &CStr = c"auxiliary";
+ 
+ struct AuxiliaryDriver;
+ 
 
 -- 
-2.49.0
+2.50.1
 
