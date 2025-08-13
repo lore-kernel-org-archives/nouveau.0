@@ -4,75 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C15EBCCD186
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F90ACAC5B8
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC53D10E646;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8B1810E64A;
 	Mon,  6 Oct 2025 20:58:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Upe/MGUM";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ba8VITux";
 	dkim-atps=neutral
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
- [209.85.222.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48F5210E35D;
- Sat, 19 Jul 2025 22:42:22 +0000 (UTC)
-Received: by mail-qk1-f169.google.com with SMTP id
- af79cd13be357-7e29d5f7672so296689585a.3; 
- Sat, 19 Jul 2025 15:42:22 -0700 (PDT)
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+ [209.85.222.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A56610E756;
+ Wed, 13 Aug 2025 15:40:10 +0000 (UTC)
+Received: by mail-qk1-f170.google.com with SMTP id
+ af79cd13be357-7e69960c557so1016290485a.1; 
+ Wed, 13 Aug 2025 08:40:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752964941; x=1753569741; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1755099609; x=1755704409; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=QdbbYgm/iXkAkxwQMWH0ycz2sZVChnbra180vU+zHz0=;
- b=Upe/MGUMP24jsDUYBQ4zixLGKD5z380GWXhJyNsA2tYDyt+ufOVNnaY1fL6hdc2xut
- Eysstdt1jJd8JUwenfFW039GzlmJUmDGQTeD5LVfGRb0lyiYoNmye/TP/fw6oyv0zH56
- j19ODK4C5oi2a7W4UPpCSv90FMjoR3V/RkBp+B+NkZHqNMSn0EaG1kuJ95dhiUHlLyGG
- 8I11m3OYNyQ0XJZHimy07Rae4N21fbihAOWWZJWFOuqK4Ddfu2wFaEl1BzAo32xYP2ot
- OoKXM9g0sNMhbczhE/0MTLzqJtcl1LE3ksnPK9NS8oPBc9P+S/Qhq+ACROYYlKstgrtB
- nKeQ==
+ :reply-to; bh=Txy/cJf0GBJ+o0igtkYkmxWlbfspCRXzkvSHCuYjmpk=;
+ b=Ba8VITuxqi/lxd8EZXui+qPcNjSEkodJ6udnVIByNrk2CC5c38V2HJBbIMUq5r7pT3
+ s5+RMJ9UZXKBc/8E9LKBAnxjMMBrnFuN5Hr6tAXuQOLrdV7KvqqhGNZcRrkqv+GL350v
+ d6SgITcgk12NIWzy5Oa05B/A13b/tojbpCWWKSjAzelSmWd6rPy27KnJVW1ISvI26p6W
+ 6Fl62Z+4q4D+oWiLseSObuI8bA1rfLKQLBqrsEI4K90jwgHb/wOCtOEPuQVn9AT4LMRO
+ zQOGrSTqm+uq7d7d1yvrsz10tur6AoKk9cuOHtqT/mdt3xotzmWD+myfOFLbBXNqCaT5
+ 7ErA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752964941; x=1753569741;
+ d=1e100.net; s=20230601; t=1755099609; x=1755704409;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=QdbbYgm/iXkAkxwQMWH0ycz2sZVChnbra180vU+zHz0=;
- b=ElJHgyx7ApxL375MHnb8uud9ZSLJQpPsZ7xagGmqVe2UMD0bhiOSJplIE6pj77y6/u
- yebz3zuFyaJR8ZgpT24LQytsl7ghhw9w7TS9Olv/Fs837uOZ8YS4UDS5JkTc0tacv6sf
- KXIn7RZRnIEjqF8EfAlBKo4VeJceAnwiNZhr73Pnn+K04ei+64KB5yYH/GWe9HmFkaZE
- KDe4kZaKs1aVchHWc1Aw21SGlbDDUxzCwcMcyyQmFDMo4BEhyRtGOFPOr7dvAqdavgtZ
- 4yq/AFWGKyxd6dIhMAgrq55Zx+1bvls/+tX2UZrYvnsYmWMC0ePSqf1kL34yYu4bxd82
- J0Xg==
+ bh=Txy/cJf0GBJ+o0igtkYkmxWlbfspCRXzkvSHCuYjmpk=;
+ b=LrV8nYqJxgf2287Ha6qeIvG5y152YDjT082leN20FusS/Se4eCK8S5t1tzn8SxqsYj
+ uie3cTJ4Z1Wpz/JJGmZSlE9WoEuUD4FRO3lJFCGzaFOtYB8+DKWgD+YUH/MiRg0Gj3z7
+ MDr655IcMQvg8elCYI2uGCpHlUp2w4/aLmJ1BreZ73ziN+0JHEwZ/mvrUTIHypF7Iarr
+ 3QBCecZqsvCIL+eabmVJHEf/ytm3bybc68WEjBV/6koIxvctLCy25zt0HQDlCC8CLXI8
+ BmFNLGUgiCNjWyH5IIhtmWpa7wo3kAPSBV8w+5ItNQkw/3CxlvMOrtM2BbkQJ9V0Hmch
+ a1JA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUfUaXsEF/ISuHr+CvCHvYYbiomXBMME4wt1qxWXOSQr23G1WpWytH3PF/3qKVqYO/4RsCn3syIhDk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx1MGVrk8cOkT4ezWqrAo1LAWGmKO5kF3EuIB/N+7Fa12N31yeE
- uFSdkhprAFdfFscj8ngHZ/XWgbeBdVlj6eAP8i7PnZFiyVp84sp82UA1prqhBy6PTDznQQ==
-X-Gm-Gg: ASbGncthXFmdbuPB/oHc/N/tRAB/P39DZfxLElINB9HMLn8/KM/ccWHCjtKmYaw4LHX
- FTWbNg+e0AiGDA/t8NQY5qGz2WDi4FKunW4waRXFqzlci0hxDchLfG+J44Bj60J8SQYrzjbor08
- Xuv3lrHlp8oQ/Ij4xGpOa8HAF1E9WaZ14O4A/RtOm44zhS8T8sMgb61JBVHgzJBfn/08M5UYyw8
- MFGjldMy8j45NbLtQ/XouN0g+chv0iOKPRh9+jTdd3VF47Sb6Kl28snShqcrMV5OPNXOWjIjzmL
- Lnf689Rn1/fa9pL8D8SnO6OoN10RTOv2ytzwaZuwgP10y8vL8gl2qsYoteXT3kTO/J3kQq7472b
- A+RNwaNWRzGWAxXonXMAihENojNTc/zv1SIx4Vp9kVMJio/Y53DoCu6FzNPnkqTh8iaKZVkABuq
- UPrhiM2maio3TN5Tci5TQ+RnTU9u4r
-X-Google-Smtp-Source: AGHT+IExJ0S3QQDaiGbPTBsZmpSjuOQIlR5bLS/MkE3qOes24LnmbTk8ROv7AcJo9jNAjk73PAhZ2Q==
-X-Received: by 2002:a05:620a:2603:b0:7d6:f963:8764 with SMTP id
- af79cd13be357-7e342b37069mr1693903085a.34.1752964941355; 
- Sat, 19 Jul 2025 15:42:21 -0700 (PDT)
+ AJvYcCXLmt95wNtvAnMkHKjgenY8OTXVmCVH5+W2zYeuitwLR7nNyQOYq8FRK9U99ZP+wu3IlQ9I7aFuk7Q=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxo38+nNuWFdAfQ71EPLsXg5gZC4fxtJOcBsiYdzvJvaWK5Jdgm
+ PApxJBr+NAZuv5VD+X9UNhWgO+/XCJDBBO44ykl3DBA3j24fNxuv8FZU
+X-Gm-Gg: ASbGncsTAFfM+eOLVmnrIAvv11eWpqbaRo+CGSxaF9kmfpCZXO08VbQv1iwSG3kpv1v
+ vKMYUPPjzodB5iU3nxaIIF+1A58x65ogReQYMn0J7UAAMWilSArYzOIgZZujRtOQ3DaRhsFTA6I
+ ygft4e1ZEf/8wRwD68jGmkVnUQXcumppWUvYouj/Fdq+cC2yfqjyYqL/ydHoxRvrFEDOCYhq4kU
+ CLzO7Btc9E7oZJDiCxuuZqia3saHV2neW/8Bf887Uwl/U0v0MybU4zFkcCCrv0odtNvbVHGdZMx
+ UT/0ldigSWhe8VnppEpk3vofimd4w46tn9Y5S2/vaj711sbqxBq6sU/5IlXJFAoTGvswP2+Dvns
+ ln4VvODjXGobD6Y9dgBhouWMElMQgi3Lxy6401eJ9GXvmkW1XKGa+lBhR3Z+PwW4b3xND8Tm9DJ
+ ZUmyM3hPgiF4duFUNSFm8veS75ZzZ9eCeg1w==
+X-Google-Smtp-Source: AGHT+IFxJagWPZZZ2hzouDkHBzhG5TPmQTOcmugjvUWSzlYtPNO6sC6jEyzc3aC/S1mkWUBCIwCCGQ==
+X-Received: by 2002:a05:620a:4897:b0:7e8:21af:3d6f with SMTP id
+ af79cd13be357-7e865276f4emr408733985a.17.1755099609321; 
+ Wed, 13 Aug 2025 08:40:09 -0700 (PDT)
 Received: from
  1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4041:5c29:e400:78d6:5625:d350:50d1])
+ ([2600:4808:6353:5c00:d445:7694:2051:518c])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7e356c75cf5sm251550785a.84.2025.07.19.15.42.19
+ af79cd13be357-7e67f728a6asm1976119385a.64.2025.08.13.08.40.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 19 Jul 2025 15:42:20 -0700 (PDT)
+ Wed, 13 Aug 2025 08:40:08 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 19 Jul 2025 18:41:57 -0400
-Subject: [PATCH v2 8/8] rust: sync: use `kernel::{fmt,prelude::fmt!}`
+Date: Wed, 13 Aug 2025 11:39:53 -0400
+Subject: [PATCH v3 8/9] rust: sync: use `kernel::{fmt,prelude::fmt!}`
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250719-core-cstr-fanout-1-v2-8-1ab5ba189c6e@gmail.com>
-References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-In-Reply-To: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
+Message-Id: <20250813-core-cstr-fanout-1-v3-8-a15eca059c51@gmail.com>
+References: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
+In-Reply-To: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
 To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
  Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
@@ -88,19 +88,23 @@ To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
  Vlastimil Babka <vbabka@suse.cz>, 
  "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Uladzislau Rezki <urezki@gmail.com>
+ Uladzislau Rezki <urezki@gmail.com>, 
+ Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>
 Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
  linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
  linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
+ kunit-dev@googlegroups.com, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752964924; l=1044;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1755099591; l=998;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=JT4wt4ZGHRcX28Gp51Np/HdVIFSoSzvSxV6NKAkiYZQ=;
+ bh=GRf55CBaIXfcLimWiztzt2WPB2t4kstaCplsKmlIKbc=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QLEQxox4uw29M7Ga/wSxO4/q3iC5xttqA8XggKW3e209GRzKxBr13fwKRE/61UufHZ5HECtWBet
- gOEf03vWiSw8=
+ QOAIUsQflz2HGM4AvRq77QQJYK6O5RKw6D4n7a/7jWYfKPgD+405KYQHwXHJu4uUN1IVy1k31PV
+ 2UmoGqrCUOQI=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -124,7 +128,6 @@ avoiding direct use for `core`'s formatting traits and macros.
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
  rust/kernel/sync/arc.rs | 2 +-
