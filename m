@@ -4,137 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77E35D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BA90D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EFD510EB31;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5150410EB19;
 	Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="QiRKeaDc";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q9TRTGJM";
 	dkim-atps=neutral
-Received: from OS8PR02CU002.outbound.protection.outlook.com
- (mail-japanwestazon11012020.outbound.protection.outlook.com [40.107.75.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BEC610E357;
- Fri, 15 Aug 2025 13:36:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DBQgj8EAMVMrb3k1ZM11E03sgP8Mmxis0u3AhVMKVh6ecWgOkuOQ9Shk71FMdUezuBvc3OvywJeTcrNedJvn1oh0YRLAOdjJ0pVd486POJ4OY32MlP3MEks5x3MIWAvD1LZW8GtQ3/L95ugHL84dd8kBGwdkQhfbDrGzTnodGRAtjwiLUBDT33GLw1XXTLJljr/ffgVWV6HqXWTCGfJjeVt9QtIIWFhsN+fb5chRIaE7uNZDRaCM79NeNC8emD1q6lA1jjO+gwnoZh9mlRgb0goYZ3x/J0A6XOkQGRY60zkT+E6LtpUunmrJ21piT/btCXguWQRIEBY93YQLwvcDVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5KULFvgfDBnVZopY9OrLOC2udHnpFrGwGBrPGa8ckE0=;
- b=QXoX6xBkNM/AZswkypg8brwqXwoS6uuRvrzc/r6DqMBgxK/2zjTUUPyz2YFbpcEp3bE8q5+vSvJEdiuBYptGlBENgHilkEHA1kQrmIqpNRUgD6pErSPmOh3qvM1gDQWIdxbCsh/ykCdMPRiY6lodIXm4hgwtXICsPjdN9ApDBcVnnOryhp0wTZUOD05wFWSX01Fl6F/VzSdga08A78aMYmMpxbwsTRKen6CbylwOUGLVj1h0akBcGzY3Wv7in3ITEFfVwiPL0Oe6JTIVgiJrmhOORbY9ZAmOKDGmS4mn/gSV/iGwZlfdPloNUONekS9unvqs68SnUPq1czAQ+9IcQg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
- dkim=pass header.d=vivo.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5KULFvgfDBnVZopY9OrLOC2udHnpFrGwGBrPGa8ckE0=;
- b=QiRKeaDc4qbOa8nIzbdLl1MCvnVY5+lswL2nZCIoKahP2KAPNCKQUL7aIbg0I9nryFe72f09TgeQvkOUPEIhf0xrQoBfHH+MCfbwtmsX2Xgfek4mYbzxKbLVh8NPDPijGKL0f2BYAhuJ4DCDs0S3kXEO7szT9c50/xJkTvec8+qGYf3nXTkeuNptXd2yCkfPiun/cDoBL1VKcNkMzAgRg2B67preqVytMtJUWzll8Px3jQVir1OocdsgE7hbi3GwvOLeLxsSYMdbAZrSWaXqpgypwNvPzFc66187gjbAi5byoTZctqIvhz+/OoX3GuvQsKJvEwA3yW3GudRrpjrh5w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=vivo.com;
-Received: from SEZPR06MB5576.apcprd06.prod.outlook.com (2603:1096:101:c9::14)
- by OSQPR06MB7277.apcprd06.prod.outlook.com (2603:1096:604:29a::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9031.18; Fri, 15 Aug
- 2025 13:36:53 +0000
-Received: from SEZPR06MB5576.apcprd06.prod.outlook.com
- ([fe80::5c0a:2748:6a72:99b6]) by SEZPR06MB5576.apcprd06.prod.outlook.com
- ([fe80::5c0a:2748:6a72:99b6%5]) with mapi id 15.20.9031.014; Fri, 15 Aug 2025
- 13:36:53 +0000
-From: Liao Yuanhong <liaoyuanhong@vivo.com>
-To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
- GEFORCE/QUADRO GPUS), 
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), linux-kernel@vger.kernel.org (open list)
-Cc: Liao Yuanhong <liaoyuanhong@vivo.com>
-Subject: [PATCH] drm/nouveau: Replace redundant return value judgment with
- PTR_ERR_OR_ZERO()
-Date: Fri, 15 Aug 2025 21:36:43 +0800
-Message-Id: <20250815133643.418089-1-liaoyuanhong@vivo.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TYWP286CA0017.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:178::10) To SEZPR06MB5576.apcprd06.prod.outlook.com
- (2603:1096:101:c9::14)
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75E3410E1AB
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Aug 2025 05:32:37 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-76e39ec6f52so1205485b3a.1
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Aug 2025 22:32:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755235957; x=1755840757; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=QXSg086tVDmosf88eO3jx6G+rWDU/dGxOYa3gmyNHdQ=;
+ b=Q9TRTGJMmG7nxPiilG5yuJaTLfKzSlzyYGK7leGEQSNFjMdE+2FxxiqYFU8LYPFZ+5
+ ATQr17tyc1fMigvN5zFG4VVDU0eU/2iyac79Kg1Oq69A231Alwfifj6i4vLr56d2Px98
+ 72KtveReP/6RCzmUx+bMRilmIorxVea4G1F14MSzlLJxZl+Kx6AjO1FRoYVnQIqzhL+/
+ Wpec/OBx8mD15QuD7MHpHQKJ6VJHfakZiKt/iWaiRKxi26YGkVsQP4WkIgZF7V5fShNw
+ RHC3Z+Y3JaAiWONu4TO6GEBcJA4D0zhTHSuVJcvGk3z+VJjF7TMln+L/BNJQBYGL4Ns9
+ q4Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755235957; x=1755840757;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=QXSg086tVDmosf88eO3jx6G+rWDU/dGxOYa3gmyNHdQ=;
+ b=d1FbY2V71jibbYbQW0rWom2MJ9GAm8JVsmLpS70yg6Vt430fWfeA2iQgyPxi9sbDKO
+ 9weX3xk7Kvt3XhxQ4y6p0dOWyaVrJRi1plMFVBBImUz+UCvIeBrNnnt5EdlfqHG8nOTa
+ Qb4Q2Vwnq3Fk83IynCo0bF3Kw+f9K/3PoEP+VswJ4T86fskaQ6gKppmcHq52lveLG/1+
+ bF5wN7zVuCeLDlSFKIFruO+gZRMJJqoTZW6UnVZkDZ0XG3cyY7z/Wv9Yx94u/KAdZXIb
+ SGw5Z2pHwHtr3L4bLmJuxfASuz0qgzpv6Dwt2pjSVl1KQ0wifwoamryouP5nXT/zys9i
+ 9gUw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWAmFLEhfY7T3q7gDNkITaEkAm7SOE9t5o8/YueyJPnfocdv3JhGgbk7y03Z+PcZsVVHTeAAdre@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyeAcnGlwCFiUbFGTXnvlEObilCOza6CE+bURjTc8stC9h7Cuko
+ rMdCz4cNBSBBZYrhqR9NYT9I5SMADoqzuMgReQfTXZhYwFvUh600L0i/
+X-Gm-Gg: ASbGncshY1AclNEMqjwgcybP8oqaORP8QjonpP9Nqsv9UueCXm4mxAGIRYBxa5Ck2lH
+ KYgwx9y2yLb5oaIHTuf9FATrUULAqSprleyAN32cI4WVfUfY8HLqJsQD/E83MRkx8Y89Xg8hv4l
+ KRCSXIbT8ZWfZLps+M1n5hpPHNMgcLtsknxuP3PwU8HRJooNxAtsnxfViVhDq55yvk6ZjIrFklA
+ XEAv/6gfHdL4UOGzSMqASvTLJ2LtLz0p7JtBMYYPovlckXt3eCilqWWdMP0R5JBkGzyQ+htkw9J
+ GlUs1AGhYq+hyHeEODRoxQvzwYWQhOXzBEYNLhVg0QIdNjQgXqkux3jqVTC45kb6nzziAehOYd+
+ 5YGhF12Hr55feXQmcRkeOYEd6rge1yhCojB2c4OkhUB0=
+X-Google-Smtp-Source: AGHT+IG4HU8MP0xJ+330waF1yTeFRAjq/5O+h8g/Lloz/jm6OtLbcslz6UUMOu+0mWZdRzPENl618A==
+X-Received: by 2002:a05:6a00:14c8:b0:76b:42e5:fa84 with SMTP id
+ d2e1a72fcca58-76e446ee0afmr1193988b3a.7.1755235956849; 
+ Thu, 14 Aug 2025 22:32:36 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-76e4556692bsm335234b3a.61.2025.08.14.22.32.31
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Aug 2025 22:32:36 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH v2 2/5] rust: macros: extend custom `quote!()` macro
+Date: Fri, 15 Aug 2025 05:32:12 +0000
+Message-Id: <948a28f26a0e9924d82eb1d8d377e3ddc7335b24.1755235180.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1755235180.git.y.j3ms.n@gmail.com>
+References: <cover.1755235180.git.y.j3ms.n@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB5576:EE_|OSQPR06MB7277:EE_
-X-MS-Office365-Filtering-Correlation-Id: da61e9a1-c95d-4620-4b3b-08dddc00cb58
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|52116014|376014|38350700014; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?1VgbV4XTUmshr9HUnMsrEZITpn1JcO3laWHUZlr6QWouQeJ4GtUxBe78Acp5?=
- =?us-ascii?Q?qKxSwg9uajTLvRM1OHzuPnrO8dxhocMfu4oI3p7tqX9Fs8bioSMgQyR8lLBE?=
- =?us-ascii?Q?OLa4b9eyjlQy22y+oO8cLAFEynh8pxqo8iM8i9oArCDr5uVog5bPFy2PMVj/?=
- =?us-ascii?Q?4lTK+pGJokXx2nIWq4rKCSgEzWsRanK7j8qY6wS0Lmax1KSTojvblVI6cn/V?=
- =?us-ascii?Q?w2o8rVofYTRdtdNfk0MAqtwVFTeBnZBt/uBhcu6LCQqiwXUujOaVw8Q/ZDnz?=
- =?us-ascii?Q?VIJq6ZMsIT1xk8ToNCWVeM5SzOZR2Hglt1Gtf9liQFMAS73geuDFp6Vix9R5?=
- =?us-ascii?Q?x4w9fSJo8sCqQBz5Af9xht2YuUjFFpBu6A+91oIPcVZHN3n2tGERrnfp6eh7?=
- =?us-ascii?Q?VLnQxnlK+noHC7VcskQuWZxtwpGK20lMOD9Y1fsaLtb1FHfm44I9JjPGUD/n?=
- =?us-ascii?Q?m1kHfRx7tkwS5z1zJ03YgkEizD2/rnPdtwBC5gkKvTIa4kVWUdvrIgNSmK6j?=
- =?us-ascii?Q?B+qs8U0osPXL5NG/ys+1joVSW47NpyBuL73xX9WsktvxdpmZpxjlmguXoccW?=
- =?us-ascii?Q?+/zpThnPX18aOyKhMb1z+pMEiCb8Rt8UN7RDHdKcuXHrWDvaNHoykI8GpbzJ?=
- =?us-ascii?Q?Z+nZnDxzVskv3RPbfVW1chinA+YsqpI3zgqtnj8p9XJQNuGvu8BuPV/xeNov?=
- =?us-ascii?Q?ktz345NruYD7JErfBV4eH3Uq4AkcsjwEaMtyGjMQWgrymSedcg6SkQ4zSJY+?=
- =?us-ascii?Q?An/MiDqHH9LtPciQ7GrJmcUwUgTRmhfOsnyy+zWZyxjSepjNVmd83Iej1B/D?=
- =?us-ascii?Q?HKx01Yr9TE3Z3ZA3F498C/CuMfi5TvcdddHZuuYIbjDsmFKyMddzi2yu5iin?=
- =?us-ascii?Q?eULJdzHZTNcmeBhv5J5dbDHhiCx2ZJ5WcYgb56hf32ad2dsHryKb3Ivec2g/?=
- =?us-ascii?Q?Msc7TSsMPJVVqqUUSXRa9lpkhmRqP54A12P7WSnuVKcMJEMDORfQ2jg8cj3b?=
- =?us-ascii?Q?XVKCQ85EClubntHLGT2NLczL13XVqLf3mX+TseFNCgY9yo4W2FSRAn9KOnZ+?=
- =?us-ascii?Q?WT+/YBQn7CpCkZUeycrUQLPrLCc4nnUB1TkSlX37VHlM3rGy0aB67GR+76u5?=
- =?us-ascii?Q?1QA1bmHa23rDE4+w8eOs7jlQ5Ngq6qXCRD9DtGNpLtVO5aTnI+Lr6xX9BM8h?=
- =?us-ascii?Q?rfJjprGRWNItdg0pWxbdPK2f7Hku2fQ5bIqP1G9P7rfntdtrbSOttkLtiQwZ?=
- =?us-ascii?Q?94gOuKs1VpN5+9jcckkkOy4Q9w9/pd9fKcXO/18/kdUGuRM6XLVfyQpgos3P?=
- =?us-ascii?Q?aCBxq+8MLON720wbXtpaMsNkiAf79iAwEZ5qoYH0Ed0+zfKwg7wQzAAU0j+W?=
- =?us-ascii?Q?ELWrD2yuLU8WSQcQWtplsj2bKnewWoZScONp8NMjTrxOA2LpUNIkXv2FdXrH?=
- =?us-ascii?Q?YWT0JsGzrZmrLThzVIMowDcJLvrPQglPXnQPWWuY9SqYqaRHBG3y1Q=3D=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SEZPR06MB5576.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(52116014)(376014)(38350700014); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qfmpysxa0d9ijVGCbwpxDu6pGQbWSQRw3Mcosp78TxLsycq1gBeS7FWk4JNa?=
- =?us-ascii?Q?DaZbo07qrmLau1mn6o/WiytjDFIpuvYvsRdyKBU73LhvegLxczRuEzQy7TJa?=
- =?us-ascii?Q?Wx9ZLGR9VqhgQIa9TKIlb6hRJ/f9lPwcJ6IObjcZPFZl6Qcf9GR5Z8VMjC/o?=
- =?us-ascii?Q?P3s0P6QROAyOLU4t57bFXRGElOpsMaLQo9vNxtfCesBJOfiYRoKDA6ihh+03?=
- =?us-ascii?Q?ExW3DuZm/Thg7dganmqU0ygLvb67/wY8c6LfOKXGJn/0DNlhst7W1Ey/9dma?=
- =?us-ascii?Q?z5Khu8WfNDkiHCQ8jaR0ykwYwJAHCS6IoRn7Pq62kGMnsuKZVgxdy8sQcsSP?=
- =?us-ascii?Q?0ghPEnEd92YVFuI/laEbI5NAdBQitKMgWKTtzV5ctBTNjjlqnI0JbVHFoz/A?=
- =?us-ascii?Q?SMh/FnRvPckr/oidD8U713Bn5BPrMPt8v01xIUrVnacAj0mGKyi/0AIzMXRc?=
- =?us-ascii?Q?SgFmu6VSN2Ns+LR1IRV4Rb+CjxDQDX+OjMfFZVWIC92tjzXBqC8uRFEJoa2o?=
- =?us-ascii?Q?vViKen+YDbs6m4ND1AMQftLo433IZ8WDqio1btSwLn0e9qLW5nMLpT3Yot/s?=
- =?us-ascii?Q?wrwQNetzV+fXMUhpQLi0xFSJ7Huwgs7lF/M2FdFoW3uDpEBPiV5fypC4OJ9M?=
- =?us-ascii?Q?HcXzBJLQVT51rFTmDuoil8OzjjzBxycOwdaxVSsstLnL1g9WUA+EcFPgXLuS?=
- =?us-ascii?Q?Tb1M3Vg1Gf0ovYXuh5MGveDCfy6mV7z9J4HlR9TnEtYL1DKzq/xxJUiSDTsx?=
- =?us-ascii?Q?vFr5KH9XxUyZq7zZlaUKZyL4a831FQRNYeWqWK1ewd6gMg58z+QDNYU5E5lw?=
- =?us-ascii?Q?AFls602pPbzFoMIaXKOhSBUnYzi80BvTG6hdpwgXxOTHmByo4FugLb0w3JRL?=
- =?us-ascii?Q?EOTibMaRW36FDcy4h/PBFhKxkNDGpX2XldIaIxkUfUf2oBVxuPl4QCqbmt40?=
- =?us-ascii?Q?HUrppNx/9ouZ1LbkjCBXM6RBNKPwkqVKSJ7f+ENI46Y1cpYXE0UZJSflSeyr?=
- =?us-ascii?Q?et0RVjg2bX8G0XgaAthltJgmTPCh/0dgc9u+5YcFVYuWH+25gIHAQNZ/q5HX?=
- =?us-ascii?Q?0joWdia+ckGwN9XBXcA90aLI2aFvDdTO6SVtp58tEje7Z16/M1QtqzO3XmHE?=
- =?us-ascii?Q?DE8qr2SUBEHu52tWLAG7jfw119DkG7sO2B0figzRTwR9XMPhTgKr21ld5BCD?=
- =?us-ascii?Q?RDrcVl26z+YWH/j/UfFPXr/+ftGQpndsdZ7UDM2gOLFcWD4XTb6Y6hjKI2hY?=
- =?us-ascii?Q?Qj8PCUqTIwnqtBV2WGLT1f3WGiSppNiBVE/13ej2uq+vHW6SI73qgSb14wYS?=
- =?us-ascii?Q?25MylPas9eRqPV+vKp8IU9/THM/GHhS7WdQJrAyiENQk/f0n3MEE5ZG7NXEl?=
- =?us-ascii?Q?lq3LxNA/NfZeb8nGDmRMJ33VIgP0akIu4f9vaw3oiPvuFJbAjTV0Y3EJJUMG?=
- =?us-ascii?Q?BjiZsB5OoM0mrXtkMyDIoI663cEj0DqEespZGXGz9+Uw09f9yJOjRz+m/mat?=
- =?us-ascii?Q?lZYy/AeZ86GAp9ao8wf0J375vO2F7OGoGFKVrwHWOilMVEB26o4HhkqlMuhh?=
- =?us-ascii?Q?tbPdzG4LIQoIjyKbtjBKQpdgz/bjqUZcu20JrY4+?=
-X-OriginatorOrg: vivo.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: da61e9a1-c95d-4620-4b3b-08dddc00cb58
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB5576.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Aug 2025 13:36:52.8172 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YjGomE+vH0WwnQLdsIU+yqbGvSNMCXjy1iiICiltxHDs7iND2U6nuqQcwRZdT6ExcXZ5GPgrJkUQ/2tX5F2s1A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSQPR06MB7277
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,30 +94,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Replace redundant return value judgment with PTR_ERR_OR_ZERO() to
-enhance code readability.
+Extend the `quote_spanned!()` macro to support additional punctuation
+tokens: `->`, `<`, `>`, and `==`. This symbols are commonly needed when
+dealing with functions, generic bounds, and equality comparisons.
 
-Signed-off-by: Liao Yuanhong <liaoyuanhong@vivo.com>
+Tested-by: Alexandre Courbot <acourbot@nvidia.com>
+Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_platform.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ rust/macros/quote.rs | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_platform.c b/drivers/gpu/drm/nouveau/nouveau_platform.c
-index a5ce8eb4a3be..8d5853deeee4 100644
---- a/drivers/gpu/drm/nouveau/nouveau_platform.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_platform.c
-@@ -30,10 +30,7 @@ static int nouveau_platform_probe(struct platform_device *pdev)
- 	func = of_device_get_match_data(&pdev->dev);
- 
- 	drm = nouveau_platform_device_create(func, pdev, &device);
--	if (IS_ERR(drm))
--		return PTR_ERR(drm);
--
--	return 0;
-+	return PTR_ERR_OR_ZERO(drm);
- }
- 
- static void nouveau_platform_remove(struct platform_device *pdev)
+diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
+index 8a89f0b1e785..24764b04a07d 100644
+--- a/rust/macros/quote.rs
++++ b/rust/macros/quote.rs
+@@ -150,6 +150,36 @@ macro_rules! quote_spanned {
+         ));
+         quote_spanned!(@proc $v $span $($tt)*);
+     };
++    (@proc $v:ident $span:ident -> $($tt:tt)*) => {
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('-', ::proc_macro::Spacing::Joint)
++        ));
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alone)
++        ));
++        quote_spanned!(@proc $v $span $($tt)*);
++    };
++    (@proc $v:ident $span:ident < $($tt:tt)*) => {
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('<', ::proc_macro::Spacing::Alone)
++        ));
++        quote_spanned!(@proc $v $span $($tt)*);
++    };
++    (@proc $v:ident $span:ident > $($tt:tt)*) => {
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alone)
++        ));
++        quote_spanned!(@proc $v $span $($tt)*);
++    };
++    (@proc $v:ident $span:ident == $($tt:tt)*) => {
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Joint)
++        ));
++        $v.push(::proc_macro::TokenTree::Punct(
++                ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
++        ));
++        quote_spanned!(@proc $v $span $($tt)*);
++    };
+     (@proc $v:ident $span:ident = $($tt:tt)*) => {
+         $v.push(::proc_macro::TokenTree::Punct(
+                 ::proc_macro::Punct::new('=', ::proc_macro::Spacing::Alone)
 -- 
-2.34.1
+2.39.5
 
