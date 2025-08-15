@@ -4,85 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81DC3D5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F173D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5AE910EBB0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE4C210EBBD;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BXviROPu";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="hLk27NuC";
 	dkim-atps=neutral
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com
- [209.85.128.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 206BC10EAA9
- for <nouveau@lists.freedesktop.org>; Thu,  9 Oct 2025 16:41:01 +0000 (UTC)
-Received: by mail-yw1-f175.google.com with SMTP id
- 00721157ae682-71d6051afbfso12644167b3.2
- for <nouveau@lists.freedesktop.org>; Thu, 09 Oct 2025 09:41:01 -0700 (PDT)
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
+ [209.85.210.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D27C710E1AB
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Aug 2025 05:32:26 +0000 (UTC)
+Received: by mail-pf1-f179.google.com with SMTP id
+ d2e1a72fcca58-76e34c4ce54so1209298b3a.0
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Aug 2025 22:32:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760028060; x=1760632860; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=OEYS4ZG7BzvAgxNTt2hNL73MyYfFtHwZYP++pTe5XoE=;
- b=BXviROPuBAU48TkmDYs6EBVW56xJgYXjQ/P/J/rCaR2CAz5Z21ekkM4zD+TETAD3ss
- tba7FbeUoOk8IGWUWKIwnbDlZZ/3DqMgG3R4iyf5J7K6+4YPeyLaC5ggYDf2YLfEBvKB
- 27Z76VA2Btwl2+OBYdk6f1/8uVf+b1J9Fi2vLUAO8ua6k9H/t5iqtuujXfU/FcoEPbHt
- UaudDDiM1J4XrnmlgcMRaJt6uf6x7deLnj9hq2sblS/ZVVWZU9QARpIs+VHFQnryNBcQ
- SKbsyxITfjO2u+kN/oyUd3R6qphsdpd2TrUNNQbys2PtJymPqRnGF4y3af5nGLeI17Cn
- RzMQ==
+ d=gmail.com; s=20230601; t=1755235946; x=1755840746; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=Tj8alhnC42zOgdWmbReIStJyeIvcsx7DOGYTDPXIH3o=;
+ b=hLk27NuC4mznhMaNo1gDrZ+TI7CQktGlP7hP7eR40lXs1GgqpF8X06Un5kSVwrwetP
+ j2Ulz0A2CQHHvajo8EWb6oUW8Xm+Q1e/89fOjOK2HQiRSuThhxlUTVl+aD9etzqxmH4j
+ jjBVLyHfiDH6oaPgUNHc1MGkDFpcqHjx3EGY1dCdNYClV5JNeO8Q1jPdjQraMjQC8Vv/
+ OC/1Cp7FoVCBri/JXk5mnJliT0iRl5WzG3CQ2x20wr8zMr/VOU63RgKEyEvNTLmXcwtb
+ IsO3E0Prxw+X9Rrx140f5qWwiu0qTsr3Esrl3XPDJZ1u4iKVse/93gyh9PqUV+Lr0qpf
+ BLCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760028060; x=1760632860;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=OEYS4ZG7BzvAgxNTt2hNL73MyYfFtHwZYP++pTe5XoE=;
- b=QmlawlqLJNtDXq6w9mxF+MFesJysK3UR7F7xtaxhst+AB069DF21Atma2n0BmVFlgJ
- HpFesXg56tsRpH1rnbinc+sf4kxBMM1hhtn92G2/FRJieXxX2Swca7DZrLJiwQfvPwMJ
- NLuhTqKPp6ru28IH9YSe9NE8c3YYQ0vNgb3tTsB7T1sUlNGih1r65AglxM7plKO5kkjq
- xsdtWFsmWSmRuAz+dCM2KgK00tSVXx30SvVSHwdI7DjIorhLo/wmrf5DfFcOsvCKCFpC
- DerEzgxJbC4y2ptNtLyTO810aY7pQvrluLvDdxJEa2xreu0/FB3R/RenvblAgCh20lQM
- pWWQ==
+ d=1e100.net; s=20230601; t=1755235946; x=1755840746;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Tj8alhnC42zOgdWmbReIStJyeIvcsx7DOGYTDPXIH3o=;
+ b=abFNvlMBRSw91o1xcii7N8A6fAdhBIUfbsGLr7ECCzEECCvZyGP3+AKnLai/rJGLY4
+ ROMk7p/VNwqOQUGq6RiAa9td4Mw5VuIOrLp6qnSGG8H/WzlCzI1vDws6lxXJq7cyMPy8
+ Y/ig46TIlhguPKQo4sCJfg3B9Mxo4xFBL+MXyx6+0a8WiOzUvDacIHyj/1RkJTRKzLdH
+ PBaWN2YCKA+2Ca1T1ZG20NlMVRtY0RIMdELIzz54+Fd+USwP5WElK1dFNDaEcfnk+YyK
+ mP/Ch8ehrshAvHJiG40g6JsAUoqnIsw7EgO3ckm/m/ifaXtSYtEvCGTysUDfcb8R0mi4
+ 7f6Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVGqkeXAXehpvdNCSPHa89mbEVgD6Z5Hwge4MtXWFyCKZ8/9+T1IeTZglHjHdanrLZh57n/kIxY@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxZjfBuZkNFCXiv/ZVLgiG5b6hXblmqA1pDpB+oCRF+D8cy00Rc
- c2U+Ag00G8Gp7RGL3O2g+Qhz6UvpGbUIFO1fPZlGcYyHW/l1lht/Wigo
-X-Gm-Gg: ASbGncs1fa9JOtDY1qe3GI6Xq94z1kcQ8qnDgSeIccrAE3wUQYm+jFe2tPNs+kTotSE
- vDZ14I5u+aApPdOMMvFkRTeeI5yhnWtQHaAjfQMoNcLHqeXGm502C6tzPvm6RyIGqFh6f2n6N6m
- uFnBB7hy8nlWS6FXT40cUs8YfCSR9jeefT1x1bqPru/hoU1j81dBNeQRSfbILFeHxOqLBoLvXe/
- 1/nsTgrc9Nne2mCHq0zD4fkos8FgFs9ANVlDEosAosHw2trOEcS7unEhtxt25/uyfrneOu4Qdh4
- 7pByk+fQ/FZMOJUHrG13ihrQx+qay8sen5pmpNCsTnLNz4jqX/hHX4rHhA4QJaiy1eEvJC66Adg
- VhymKEajra5QLO9+VymTx8XP7rU8W33pcoxuThJRXApUXMmnGjwbQtKOV9D6psXrF3HzZR0b5rx
- Go9iY=
-X-Google-Smtp-Source: AGHT+IE4I8ejY06OQV5+iuuha8UY69T0yHmq+uCkeg2u0Wguug06p8yYPejnOQd8b6WXnlG7VNxZFg==
-X-Received: by 2002:a05:690c:4d43:b0:76c:e8b7:a625 with SMTP id
- 00721157ae682-780e1476fbdmr110455167b3.21.1760028059826; 
- Thu, 09 Oct 2025 09:40:59 -0700 (PDT)
-Received: from localhost (c-73-105-0-253.hsd1.fl.comcast.net. [73.105.0.253])
+ AJvYcCWGTY+1PZJd0kU1AV9rK1cQFZd5RctPvFWEI69ziXO+MYS5l3uj2d62lUlzK6budfVBosZ+xiek@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyUwHYJ2qJ9gOo2EPVBOkstjiBGU0QHy6+orXjZsFcPqdrFubsD
+ ntcjzKS69dvp/Zl6szWIowarrm7WhE7Y2QUogOakdJzIIRNOiKtlZVKzTzmCl82P
+X-Gm-Gg: ASbGncu4iGHMhxorArXg9JoqtN1H3XaqVioUNGuJYjQKa3xIn5M/Zfy6o+PcPwBsRJW
+ 1EW5jVAZbrtqNpyPFkCPUtCRBwWA/nHp/f3eCNFHbkuIKfwwJBnWdOWtaTL3IoZZW0VyVGkQR5b
+ ie7nvPkVZpNqTReib/Z1ummXRpZzl0hPb4tH0rDGsWshNpVpNpY59ErKdqQ7Xayig6YN2gqoAl5
+ RUJcGpjeXhXaGHwkVclQnsY/E9TGGEQap3hJwNOvLMxvqMCsEf34quVNhRqvJlTMpwLU8SgcQvc
+ +ZMvRchejoOmJa4W0gRfY9Bxzyz57WIOogNAPPEe2uEtQziHtLt4Qs460+B16bjCSsR0kDEM3Iq
+ 1kemykjeKzYQIYYveFmd1mVnxWWT1D52xeVYssPoOnUA=
+X-Google-Smtp-Source: AGHT+IFCsRaNxSKfgdKIzJGdC3kmDJE1saL5U/096QghmpyQmx94QRHF2hQOXKrFPWiqlWYXXcOugw==
+X-Received: by 2002:a05:6a00:6f1a:b0:76c:44b5:4f62 with SMTP id
+ d2e1a72fcca58-76e320e4f97mr7429186b3a.0.1755235946165; 
+ Thu, 14 Aug 2025 22:32:26 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
  by smtp.gmail.com with ESMTPSA id
- 00721157ae682-77f81e4d6dbsm74906357b3.59.2025.10.09.09.40.58
+ d2e1a72fcca58-76e4556692bsm335234b3a.61.2025.08.14.22.32.20
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Oct 2025 09:40:59 -0700 (PDT)
-Date: Thu, 9 Oct 2025 12:40:58 -0400
-From: Yury Norov <yury.norov@gmail.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
- Jesung Yang <y.j3ms.n@gmail.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feong@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Thu, 14 Aug 2025 22:32:25 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH RFC v2 3/3] gpu: nova-core: use BoundedInt
-Message-ID: <aOflmmHe8O6Nx9Hp@yury>
-References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
- <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com>
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH v2 0/5] rust: add `TryFrom` and `Into` derive macros
+Date: Fri, 15 Aug 2025 05:32:10 +0000
+Message-Id: <cover.1755235180.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,125 +91,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Alexandre,
+This patch series introduces derive macros for `TryFrom` and `Into`
+traits.
 
-On Thu, Oct 09, 2025 at 09:37:10PM +0900, Alexandre Courbot wrote:
-> Use BoundedInt with the register!() macro and adapt the nova-core code
-> accordingly. This makes it impossible to trim values when setting a
-> register field, because either the value of the field has been inferred
-> at compile-time to fit within the bounds of the field, or the user has
-> been forced to check at runtime that it does indeed fit.
+A few enhancements were made to the custom `quote!()` macro to write
+the derive macro. These include support for additional punctuation
+tokens and a fix for an unused variable warning when quoting simple
+forms. Detailed information about these enhancements is provided in the
+relevant patches.
 
-In C23 we've got _BitInt(), which works like:
+This series builds on the previous work [1], where the `FromPrimitive`
+trait was considered too heavy for the current use cases. In response
+to the emerging need for functionality similar to `ToPrimitive`, this
+series also implements the `Into` derive macro.
 
-        unsigned _BitInt(2) a = 5; // compile-time error
+The original discussion can be found on Zulip [2].
 
-Can you consider a similar name and syntax in rust?
+[1] https://lore.kernel.org/rust-for-linux/cover.1750689857.git.y.j3ms.n@gmail.com/
+[2] https://rust-for-linux.zulipchat.com/#narrow/channel/288089/topic/x/near/524335626
 
-> The use of BoundedInt actually simplifies register fields definitions,
-> as they don't need an intermediate storage type (the "as ..." part of
-> fields definitions). Instead, the internal storage type for each field
-> is now the bounded integer of its width in bits, which can optionally be
-> converted to another type that implements `From`` or `TryFrom`` for that
-> bounded integer type.
-> 
-> This means that something like
-> 
->   register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
->       3:3     status_valid as bool,
->       31:8    addr as u32,
->   });
-> 
-> Now becomes
-> 
->   register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
->       3:3     status_valid => bool,
->       31:8    addr,
->   });
+Changes in v2 (no functional changes):
+  - Split the patch "rust: macros: extend custom `quote!()` macro"
+    into two separate patches.
+  - Remove unnecessary spaces between tags.
+  - Use a consistent commit subject prefix: "rust: macros:".
+  - Add Tested-by tags.
 
-That looks nicer, really. But now that you don't make user to provide
-a representation type, how would one distinguish signed and unsigned
-fields? Assuming that BoundedInt is intended to become a generic type,
-people may want to use it as a storage for counters and other
-non-bitfield type of things. Maybe:
 
-   register!(NV_PDISP_VGA_WORKSPACE_BASE @ 0x00625f04 {
-       s 3:0     cnt,
-         7:4     flags, // implies unsigned - ?
-       u 31:8    addr,
-   });
- 
-> (here `status_valid` is infallibly converted to a bool for convenience
-> and to remain compatible with the previous semantics)
-> 
-> The field setter/getters are also simplified. If a field has no target
-> type, then its setter expects any type that implements `Into` to the
-> field's bounded integer type. Due to the many `From` implementations for
-> primitive types, this means that most calls can be left unchanged. If
-> the caller passes a value that is potentially larger than the field's
-> capacity, it must use the `try_` variant of the setter, which returns an
-> error if the value cannot be converted at runtime.
-> 
-> For fields that use `=>` to convert to another type, both setter and
-> getter are always infallible.
-> 
-> For fields that use `?=>` to fallibly convert to another type, only the
-> getter needs to be fallible as the setter always provide valid values by
-> design.
+Jesung Yang (5):
+  rust: macros: allow conversion from `&T` to `TokenStream`
+  rust: macros: extend custom `quote!()` macro
+  rust: macros: prefix variable `span` with underscore
+  rust: macros: add derive macro for `TryFrom`
+  rust: macros: add derive macro for `Into`
 
-Can you share a couple examples? Not sure I understand this part,
-especially how setters may not be fallible, and getters may fail.
- 
-> Outside of the register macro, the biggest changes occur in `falcon.rs`,
-> which defines many enums for fields - their conversion implementations
-> need to be changed from the original primitive type of the field to the
-> new corresponding bounded int type. Hopefully the TryFrom/Into derive
-> macros [1] can take care of implementing these, but it will need to be
-> adapted to support bounded integers... :/
-> 
-> But overall, I am rather happy at how simple it was to convert the whole
-> of nova-core to this.
-> 
-> Note: This RFC uses nova-core's register!() macro for practical
-> purposes, but the hope is to move this patch on top of the bitfield
-> macro after it is split out [2].
-> 
-> [1] https://lore.kernel.org/rust-for-linux/cover.1755235180.git.y.j3ms.n@gmail.com/
-> [2] https://lore.kernel.org/rust-for-linux/20251003154748.1687160-1-joelagnelf@nvidia.com/
-> 
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
+ rust/macros/convert.rs | 361 +++++++++++++++++++++++++++++++++++++++++
+ rust/macros/lib.rs     | 239 +++++++++++++++++++++++++++
+ rust/macros/quote.rs   |  40 ++++-
+ 3 files changed, 638 insertions(+), 2 deletions(-)
+ create mode 100644 rust/macros/convert.rs
 
-...
 
->          regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-> -            .set_base((dma_start >> 40) as u16)
-> +            .try_set_base(dma_start >> 40)?
->              .write(bar, &E::ID);
+base-commit: dff64b072708ffef23c117fa1ee1ea59eb417807
+-- 
+2.39.5
 
-Does it mean that something like the following syntax is possible?
-
-        regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-            .try_set_base1(base1 >> 40)?        // fail here
-            .try_set_base2(base2 >> 40)?        // skip
-            .write(bar, &E::ID) else { pr_err!(); return -EINVAL };
-
-This is my main concern: Rust is advertised a as runtime-safe language
-(at lease safer than C), but current design isn't safe against one of
-the most common errors: type overflow.
-
-If your syntax above allows to handle errors in .try_set() path this way
-or another, I think the rest is manageable. 
-
-As a side note: it's a huge pain in C to grep for functions that
-defined by using a macro. Here you do a similar thing. One can't
-easily grep the 'try_set_base' implementation, and would have to
-make a not so pleasant detour to the low-level internals. Maybe
-switch it to:
-        
-        regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
-            .try_set(base, dma_start >> 40)?
-            .write(bar, &E::ID);
-
-Thanks,
-Yury
