@@ -4,69 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5802AD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B37FFD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D612810EA99;
-	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DEB210EA69;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=asahilina.net header.i=@asahilina.net header.b="uD0v39eA";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bRBHMhdX";
 	dkim-atps=neutral
-X-Greylist: delayed 429 seconds by postgrey-1.36 at gabe;
- Sun, 02 Feb 2025 13:52:21 UTC
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC3210E0E5;
- Sun,  2 Feb 2025 13:52:21 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: sendonly@marcansoft.com)
- by mail.marcansoft.com (Postfix) with ESMTPSA id 9CE30426E2;
- Sun,  2 Feb 2025 13:45:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
- s=default; t=1738503912;
- bh=uu52xMGokrDDgENtthfQJ71LyZloD14w6rOxRrrh344=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=uD0v39eASsjcf1/3SXk5cmzdi4EhXYnO7sVMISYU13gDT7VcjsfmoLzKdqlUGLKHj
- PtSwxIcHvYP17ei55bcX+FvkNaA1p61nuMtlbVQN3PzN4Ltm+nwo47Yt/iS1dkZ1pa
- j68AmpGGGIZFcRZy71jFo9A2nVRnPpynE/Upt+PfYBNK44u0b0SUGoxQFgIxPqt3r0
- lJwDu5st9ljEUeI5DJT3bfiDXF3+xzt9LjQ5NprGlwhdyC98KaKvCYSOdb1SDFcMzX
- CW69PJpAh8I2fLvbOa6nAHHxUUzXgeRoTt0guPesw5bquoouV6kVd11pgWOVNB5h5Z
- vjjeEswiIKQDQ==
-From: Asahi Lina <lina@asahilina.net>
-Date: Sun, 02 Feb 2025 22:34:50 +0900
-Subject: [PATCH 1/4] drm/gpuvm: Add a flags argument to
- drm_gpuvm_sm_map[_*]
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+ [209.85.210.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C0910E1AB
+ for <nouveau@lists.freedesktop.org>; Fri, 15 Aug 2025 05:32:42 +0000 (UTC)
+Received: by mail-pf1-f174.google.com with SMTP id
+ d2e1a72fcca58-76e2ead794eso1436547b3a.2
+ for <nouveau@lists.freedesktop.org>; Thu, 14 Aug 2025 22:32:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1755235962; x=1755840762; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5ItkcH2oOrHmGXKS1kIzQCIhIchwgBZlnH8595tjW2Y=;
+ b=bRBHMhdX2gk2QPBv5ZxlboBlTsi9cg810W+n0+8dEa02ccdg7jUF+/j4hY5YXhdG23
+ 2N7R0vINonu/ep7vgUWYgLtmPqyZs6AVLvqRcP0lm0zQT/DIc0V0/751Whs0MSO+DAgS
+ Q5K6jytZS06DLA1QIXRMMTlgxcC+xdOhYOsgCXftIHa5UP+abEdPWwD5a9+t5MGuJYf8
+ DcaRz5f8ioEVaMk5krwEpTjRw0xnvYNTCmF6zYRRVkECCnZslD2W4uCZdlkWV0h9jw5z
+ Ml6+E0cgAoRPgOtHqEK8g+My6+HdlMPuzB1XjUhIqkl4N5ogaX5pgzgkBs1SshBdE2Do
+ RdFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1755235962; x=1755840762;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5ItkcH2oOrHmGXKS1kIzQCIhIchwgBZlnH8595tjW2Y=;
+ b=g8eIBb6Rvu7sXHvhcyEULSVBoqvPKCfRz2SoBCL2yQa8se+ro8piE76qQx8/ZIxSgh
+ 9k2YSHg1kXLkPcBARmgA6eYH9t+RKf83JsxuRxiww2k3EgfcEma1AV50ChiKdpOCzyPy
+ dBm1OqaQzjqCB65jVINfZGIunGyj3YX/lupQyPbmzeLsCL23bJYodChjLX4vdBHx8z1V
+ vDTgjvPf4Y6V59BISN+8nBdU3oCiUF9X+xD6jaWHjc74JwGNT7e0vCuSIPeEHwCcI1Iu
+ /dUixYYct5IhMJIpaxpV4riOFwYe6jCcdoJG48Ip8waYswQH8DXUbyJHJeecl6FkdCOx
+ Bd4g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVjLpZHTDRtmGjd7ZNuNpAoesr7VtQraK6nfnScqeaX48iXVIr1RBtxwrfy1rCEK5VmtOREipth@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxb2XYcVNagdkn95sg2PZtaRnkgXGa722jHjejPaVAp2YcDwzQw
+ +GFRG1nwD38ok99q6eAgazXDpIoA6d83trkOevf7CNkDww5N3Q2/DNfRTfL/YQ==
+X-Gm-Gg: ASbGnct++YR+YkswwWmDipS3jfWa7M8DY0zEa8FOetZvZlGM6QZmGAa/mku9ZSuy9oY
+ D8SGZNYA316yvO08qdT69906mLcK5RGcm67KrBB2UkjFW5cQavVb+KPVP5nFx8x0z0vc8953O0b
+ IYgFNIs5imQmjseKnkkKZrrhgfiYJAUj/k3pcwQjwLFzXZAOl52Z3GhobaGZ6TB9ilVtAs2qoJ5
+ rdOkb8c/e3w3MJmiWmRO/gR2AaEIDR6xekeFUOd+Zv3y6SdaYeEDqeF3OV/3RZb7eze7HJoTgVs
+ cHpJF+kSB2dq/piNdRotTernEpSDxjXhS6w6YDHZHSCHcMjExP5fU9QqhzBbFaSC0QcZE0y/cK3
+ WPhEO1OwzrpvCf5muBz0U6IqdOfNt9oPMSqAWPxQw/bz7ROMz2K876g==
+X-Google-Smtp-Source: AGHT+IG6RpS5kBDo1uNCaTTuFsahy7gN7SvHmXtqbjLO2J8QO2AfC+R3FC64Kl85jAXYtBoEFXRCqg==
+X-Received: by 2002:a05:6a00:92a4:b0:76b:fcac:f2ad with SMTP id
+ d2e1a72fcca58-76e44847105mr1187592b3a.20.1755235961994; 
+ Thu, 14 Aug 2025 22:32:41 -0700 (PDT)
+Received: from localhost.localdomain ([112.149.32.52])
+ by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-76e4556692bsm335234b3a.61.2025.08.14.22.32.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 14 Aug 2025 22:32:41 -0700 (PDT)
+From: Jesung Yang <y.j3ms.n@gmail.com>
+To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+Subject: [PATCH v2 3/5] rust: macros: prefix variable `span` with underscore
+Date: Fri, 15 Aug 2025 05:32:13 +0000
+Message-Id: <1455d8540acc62ad3acc1dd8ead71b1ad38935da.1755235180.git.y.j3ms.n@gmail.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1755235180.git.y.j3ms.n@gmail.com>
+References: <cover.1755235180.git.y.j3ms.n@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250202-gpuvm-single-page-v1-1-8cbd44fdcbd4@asahilina.net>
-References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
-In-Reply-To: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>, 
- Danilo Krummrich <dakr@kernel.org>, 
- Boris Brezillon <boris.brezillon@collabora.com>, 
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- asahi@lists.linux.dev, Asahi Lina <lina@asahilina.net>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1738503908; l=5456;
- i=lina@asahilina.net; s=20240902; h=from:subject:message-id;
- bh=uu52xMGokrDDgENtthfQJ71LyZloD14w6rOxRrrh344=;
- b=C9WT1JzSXVS8oXNUsibvBt3bied9shp4kP5FTP0VMuo5Qk8Rez4F3DdxZyQlD5cqz2SnBJ2kF
- UCP+cz0Ar4xBqSxG/kmEYB912yJQDgnkqlN1duZfiu1GFLzqraxIwCC
-X-Developer-Key: i=lina@asahilina.net; a=ed25519;
- pk=tpv7cWfUnHNw5jwf6h4t0gGgglt3/xcwlfs0+A/uUu8=
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,132 +94,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-drm_gpuva objects have a flags field. Currently, this can be managed by
-drivers out-of-band, without any special handling in drm_gpuvm.
+Prefix the variable `span` in `quote_spanned!()` macro with an
+underscore to silence unused variable warnings.
 
-To be able to introduce flags that do affect the logic in the drm_gpuvm
-core, we need to plumb it through the map calls. This will allow the
-core to check the flags on map and alter the merge/split logic depending
-on the requested flags and the flags of the existing drm_gpuva ranges
-that are being split.
+The warning occurs when the macro is used without any uninterpolated
+identifiers. For example:
 
-First, just add the argument to the API and do nothing with it.
+    // Triggers a warning: "unused variable: `span`"
+    quote! { #foo }
 
-Signed-off-by: Asahi Lina <lina@asahilina.net>
+    // This is fine
+    quote! { Some(#foo) }
+
+There is no good reason to disallow such quoting patterns, so fix the
+warning instead.
+
+Tested-by: Alexandre Courbot <acourbot@nvidia.com>
+Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c            | 6 ++++--
- drivers/gpu/drm/imagination/pvr_vm.c   | 3 ++-
- drivers/gpu/drm/nouveau/nouveau_uvmm.c | 3 ++-
- drivers/gpu/drm/panthor/panthor_mmu.c  | 3 ++-
- drivers/gpu/drm/xe/xe_vm.c             | 3 ++-
- include/drm/drm_gpuvm.h                | 6 ++++--
- 6 files changed, 16 insertions(+), 8 deletions(-)
+ rust/macros/quote.rs | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index f9eb56f24bef291e084a15d844d4ececda8412d9..9733460d737667035541b488657154afb56872e3 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -2333,7 +2333,8 @@ __drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm,
- int
- drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
- 		 u64 req_addr, u64 req_range,
--		 struct drm_gem_object *req_obj, u64 req_offset)
-+		 struct drm_gem_object *req_obj, u64 req_offset,
-+		 enum drm_gpuva_flags req_flags)
- {
- 	const struct drm_gpuvm_ops *ops = gpuvm->ops;
- 
-@@ -2516,7 +2517,8 @@ static const struct drm_gpuvm_ops gpuvm_list_ops = {
- struct drm_gpuva_ops *
- drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
- 			    u64 req_addr, u64 req_range,
--			    struct drm_gem_object *req_obj, u64 req_offset)
-+			    struct drm_gem_object *req_obj, u64 req_offset,
-+			    enum drm_gpuva_flags req_flags)
- {
- 	struct drm_gpuva_ops *ops;
- 	struct {
-diff --git a/drivers/gpu/drm/imagination/pvr_vm.c b/drivers/gpu/drm/imagination/pvr_vm.c
-index 363f885a709826efa3d45a906c5f65131f7ed7b9..c57c7adcbe987dfc559bc00fc24862f5d99bbc0e 100644
---- a/drivers/gpu/drm/imagination/pvr_vm.c
-+++ b/drivers/gpu/drm/imagination/pvr_vm.c
-@@ -190,7 +190,8 @@ static int pvr_vm_bind_op_exec(struct pvr_vm_bind_op *bind_op)
- 					bind_op, bind_op->device_addr,
- 					bind_op->size,
- 					gem_from_pvr_gem(bind_op->pvr_obj),
--					bind_op->offset);
-+					bind_op->offset,
-+					0);
- 
- 	case PVR_VM_BIND_TYPE_UNMAP:
- 		return drm_gpuvm_sm_unmap(&bind_op->vm_ctx->gpuvm_mgr,
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 48f105239f42d8ffa3cefd253bd83d52dbb3255f..d548154c0a38c08c74cfbb9c66d703699d8d882b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1304,7 +1304,8 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job,
- 							      op->va.addr,
- 							      op->va.range,
- 							      op->gem.obj,
--							      op->gem.offset);
-+							      op->gem.offset,
-+							      0);
- 			if (IS_ERR(op->ops)) {
- 				ret = PTR_ERR(op->ops);
- 				goto unwind_continue;
-diff --git a/drivers/gpu/drm/panthor/panthor_mmu.c b/drivers/gpu/drm/panthor/panthor_mmu.c
-index a49132f3778b3a7a0855de37e4ab008e9476f740..ebfb399af8752afdd26c33723b8ac6f616d02fc5 100644
---- a/drivers/gpu/drm/panthor/panthor_mmu.c
-+++ b/drivers/gpu/drm/panthor/panthor_mmu.c
-@@ -2155,7 +2155,8 @@ panthor_vm_exec_op(struct panthor_vm *vm, struct panthor_vm_op_ctx *op,
- 		}
- 
- 		ret = drm_gpuvm_sm_map(&vm->base, vm, op->va.addr, op->va.range,
--				       op->map.vm_bo->obj, op->map.bo_offset);
-+				       op->map.vm_bo->obj, op->map.bo_offset,
-+				       0);
- 		break;
- 
- 	case DRM_PANTHOR_VM_BIND_OP_TYPE_UNMAP:
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c99380271de62f8659fdd909a5bd9980d09de4d9..2d1fde089c382c363e354200cfb0281869b97f56 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1926,7 +1926,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 	case DRM_XE_VM_BIND_OP_MAP:
- 	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
- 		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
--						  obj, bo_offset_or_userptr);
-+						  obj, bo_offset_or_userptr,
-+						  0);
- 		break;
- 	case DRM_XE_VM_BIND_OP_UNMAP:
- 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 00d4e43b76b6c12e10e422d250ab0ac1c9009bc5..cb045378803646a9645c002c57183c915d35befb 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -1056,7 +1056,8 @@ struct drm_gpuva_ops {
- struct drm_gpuva_ops *
- drm_gpuvm_sm_map_ops_create(struct drm_gpuvm *gpuvm,
- 			    u64 addr, u64 range,
--			    struct drm_gem_object *obj, u64 offset);
-+			    struct drm_gem_object *obj, u64 offset,
-+			    enum drm_gpuva_flags flags);
- struct drm_gpuva_ops *
- drm_gpuvm_sm_unmap_ops_create(struct drm_gpuvm *gpuvm,
- 			      u64 addr, u64 range);
-@@ -1201,7 +1202,8 @@ struct drm_gpuvm_ops {
- 
- int drm_gpuvm_sm_map(struct drm_gpuvm *gpuvm, void *priv,
- 		     u64 addr, u64 range,
--		     struct drm_gem_object *obj, u64 offset);
-+		     struct drm_gem_object *obj, u64 offset,
-+		     enum drm_gpuva_flags flags);
- 
- int drm_gpuvm_sm_unmap(struct drm_gpuvm *gpuvm, void *priv,
- 		       u64 addr, u64 range);
-
+diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
+index 24764b04a07d..75367a93e0d3 100644
+--- a/rust/macros/quote.rs
++++ b/rust/macros/quote.rs
+@@ -57,8 +57,8 @@ macro_rules! quote_spanned {
+         #[allow(clippy::vec_init_then_push)]
+         {
+             tokens = ::std::vec::Vec::new();
+-            let span = $span;
+-            quote_spanned!(@proc tokens span $($tt)*);
++            let _span = $span;
++            quote_spanned!(@proc tokens _span $($tt)*);
+         }
+         ::proc_macro::TokenStream::from_iter(tokens)
+     }};
 -- 
-2.47.1
+2.39.5
 
