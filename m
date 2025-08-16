@@ -4,79 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14119D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8652D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D38910EAB9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 751E010EB63;
 	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VLtGbtHy";
+	dkim=pass (2048-bit key; unprotected) header.d=vivo.com header.i=@vivo.com header.b="fYE1FImX";
 	dkim-atps=neutral
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com
- [209.85.216.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D189891D9
- for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 15:14:41 +0000 (UTC)
-Received: by mail-pj1-f53.google.com with SMTP id
- 98e67ed59e1d1-3137c20213cso4340774a91.3
- for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 08:14:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750691681; x=1751296481; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=fJl0bofvsCNb/IhdYpO8yEuEs+fLAbcokn6DAhbWI2Y=;
- b=VLtGbtHy/RBOv61a2DyJ6EfmrXrNsHwRKH7JYgYDXc8iRKpJOGy+nCFeOrGH3TgA7X
- jQKvjyTpOdZCc/xey37GAIdYrI17L/USf8K7TRwKURYhYIyKE3cYdEFr3JoWP+HJCs/j
- cuBHX3knpP7miSRqXEp+SOIj4pMO1dEMHDvDg6IOwSMRsjKDPn8K0gKTH4LdClYaQYZv
- C0FeU5PKje3yYIUfYK3RVR7HWkuNzXnh5oFz85G4/3gaDf6ghm0asvYTcMBt0CpFipkQ
- UwcM/PoBzMO2/2DzJiSki5qF570ssgckBxzMe6Wos7K0Eud9mOuf2c0iS58HzYB02CMs
- AL8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750691681; x=1751296481;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=fJl0bofvsCNb/IhdYpO8yEuEs+fLAbcokn6DAhbWI2Y=;
- b=rpj4/9ODI60geMb2plnSo76EPCs06buotTTa0YSobKIZb2dJF0DTuCPIvoU5n1YUvg
- bRE+BrXMpRRtCUOqtqqUF0MMvMUj7XwBPFq4RKRrnt4kU2iWKiphYz9s9S39JgqrJU/a
- aCY6q0+mpXHP2S99ffXSKDA9/jEFbqvTRzDPj2Zn/rIRTjNEKVZQIQQXn+bFNEg6fU31
- DLnRvtFGchQl2P6akNELOw6/Se/jzLpkw2vk5f3mfU61VSQAMV7NBAFeZepaa1o49KEi
- tg6yksFd6G2UbsfymgEVIJy8AlIyPVRwzZ6XGwQAFSHGcqa9R+FTVwQmCrX5lqp6j7Aa
- gM9Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWgch1SBjMK3/BUC9Hr+o6i5IgEr8ll9pPIpD03XMz+P4K8DfNF203esAh9FmO6mbpvIUfRIq15@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyRkicrc4k7qzz+GoXjT8Zp/EG0YL24up5AaBGF4Pu/23cC5JdU
- 4zWF+DKigLleXsGmJrK7uqwLnCs3qW0N+ZAnRQy3aHqS/RWH2R7fLD9i6StXaRq52mQ=
-X-Gm-Gg: ASbGncuXfaPcEqyW6rt+Y/z7tfHlPYXtoql+f43JYC14TVUTb1vcvmhW4W7bL6gzctq
- pwvna2dI3E1EWtviNkJx1PUb5zLLIn2foFggu0yGxp8JIdmru41RRryXZ45hbwMUSDGa5A9s0Co
- javhpHXeQdAvQH16FbplEgeLa23uQVOVoCkhUQxLflb5hMxA2tFKi1cOZ3jYUqE5jCaTXtTYrGv
- vAgyxlF1uIHvkPC9LTVHBKQCsMC5hTYLhaOed+zEF3YxWJpqP5r+Jf8EJaklxY4Q6fYc+iRzZCd
- /MC5Eqp/qsWxSykd9eoBVgULbFJTvuzoQ3QE4SbO4nzQ/t9h0xmqCYqfhSDiQ0co7WVR7r3kT7w
- v3YiJmds=
-X-Google-Smtp-Source: AGHT+IGKsva6kVgzg4Cok11z5b+GUl9qeuWFMNPVQGJXb1rtZHDejue9tGLjW0VLzgTh0jN+h79VWQ==
-X-Received: by 2002:a17:90b:3d50:b0:311:a314:c2cf with SMTP id
- 98e67ed59e1d1-3159d8f7de2mr17582857a91.30.1750691681066; 
- Mon, 23 Jun 2025 08:14:41 -0700 (PDT)
-Received: from localhost.localdomain ([112.149.32.52])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3159df71cd6sm8338512a91.4.2025.06.23.08.14.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Jun 2025 08:14:40 -0700 (PDT)
-From: Jesung Yang <y.j3ms.n@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
-Subject: [PATCH 0/4] rust: add `FromPrimitive` support
-Date: Mon, 23 Jun 2025 15:14:26 +0000
-Message-Id: <cover.1750689857.git.y.j3ms.n@gmail.com>
-X-Mailer: git-send-email 2.39.5
-MIME-Version: 1.0
+Received: from SEYPR02CU001.outbound.protection.outlook.com
+ (mail-koreacentralazon11013018.outbound.protection.outlook.com
+ [40.107.44.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0561710E376;
+ Sat, 16 Aug 2025 14:38:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sqKTc4S1tnRP/roTv+LNOcrbXxbT92rUBCRtzBB8magPU28zmVHuLyK3jhBa871T42H6c2D6owRSlD8sVCwDdzrBszUxXheLO2K50+V9CRgif5EwEQNZhU11UhIrX2Tm6dLzFy/QN0k7VR+CduP6zNEMhM/G8R+FLeI3lyCHUV/5Q1rn3UzkIuFS/usPXcR/V5Kg4Q5KQeCNW0pHjloKDwTGNPwx1Cv5M0H/MMmuyj01e1wwXMcu8m7soiim64jdWJxsrwsdJjQq/GdOLlBdtQ2vi9mxEcB3NFVWBBw1x2iqT9T2hBHXbA9PbInJ7BfHpXPXmetQikyxDuDT5adhUQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=53777gLqZn14VpBZlSIZfX0rRI3OkjlUqZzwqlXaC6k=;
+ b=BnRkZUl6dJgkdoDIqkwh5qOd9ePx62/4VhIDrUT7DcaKlgc1Owv9kn0E0JdwGbn2HgLoJi651jAq1JYJ/mj9sKCfzhHDoXVi6YT09aUE7cDrpSCVTHuWg+ueA2DbsTbSKESMAhK4izPbdjN5FDTyxdMMX5wPK7aHPsysk3tgSpLhCSKei6BQBU689FPD1X3NAI2tFUPtwAeNYU+4tDNmmYcMUfbCerlIzZT10v0fXpVUJiWzRPEsRU/itWU9bM0zI0Ooos6Z5hgIgPV9j6Iw8rOf8igRzm/ak2T4JRAufTRB6zkMeI2gRbFKyPEXfgHTaKB3+5A4W1M1dhKfJ3nTVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=vivo.com; dmarc=pass action=none header.from=vivo.com;
+ dkim=pass header.d=vivo.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivo.com; s=selector2; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=53777gLqZn14VpBZlSIZfX0rRI3OkjlUqZzwqlXaC6k=;
+ b=fYE1FImXbJ2llCZbQTNjUl1C5rjmt+metSJVThS4iTpyPK65mCIX6MNv7kWIVATRq4XcJ0SDinQ0vAA29TYFJi5poeZtd3dkp3zdCLlNQCq1mjYVkpRK9jrOyrEmZ5F7Jvbs4+KH/I0hJk78MWasXvccEUp3esTMQVw6qcp/vnVU37eeRY3T0PfoAdaJMAAmoArxnrxhka/dSJCJoiBzB8gB9BQdSfTfijtaPZq+s9u+pK2jmHVB0M0RADt2/KBeGcQn4qWcRBp9lAU0/vpVcaErm2LfQ6A5qyVEjeAZBlNkRLED06SXCfN4wpsh0+3hmkfm4DuqvHyqpjst/kBoBg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=vivo.com;
+Received: from SI2PR06MB5140.apcprd06.prod.outlook.com (2603:1096:4:1af::9) by
+ TYZPR06MB6771.apcprd06.prod.outlook.com (2603:1096:400:459::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9031.18; Sat, 16 Aug 2025 14:38:05 +0000
+Received: from SI2PR06MB5140.apcprd06.prod.outlook.com
+ ([fe80::468a:88be:bec:666]) by SI2PR06MB5140.apcprd06.prod.outlook.com
+ ([fe80::468a:88be:bec:666%5]) with mapi id 15.20.9031.018; Sat, 16 Aug 2025
+ 14:38:05 +0000
+From: Qianfeng Rong <rongqianfeng@vivo.com>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ dri-devel@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA
+ GEFORCE/QUADRO GPUS), 
+ nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
+ GPUS), linux-kernel@vger.kernel.org (open list)
+Cc: Qianfeng Rong <rongqianfeng@vivo.com>
+Subject: [PATCH 1/2] drm/nouveau: Use vmalloc_array to simplify code
+Date: Sat, 16 Aug 2025 22:37:50 +0800
+Message-Id: <20250816143752.397973-2-rongqianfeng@vivo.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250816143752.397973-1-rongqianfeng@vivo.com>
+References: <20250816143752.397973-1-rongqianfeng@vivo.com>
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0014.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::9) To SI2PR06MB5140.apcprd06.prod.outlook.com
+ (2603:1096:4:1af::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SI2PR06MB5140:EE_|TYZPR06MB6771:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85d1e244-1869-4127-160f-08dddcd2829e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|52116014|376014|38350700014; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ha3sOHKe95fDZUzCq/frjfpl3wE0dd03Gbi6/sO7Vkej/bZqWDACXWuhNoke?=
+ =?us-ascii?Q?hQYi7JuPthHXygDdKvfYPTuqSfSSu91fMOsvU3Wvb/PHbiD4leHamGFtuBiE?=
+ =?us-ascii?Q?+Icol/U3PIKGV2HV7Lj2CSsRBo/+7JZ81Ud6WwI1ryP/dkBTO3w3HockGMNT?=
+ =?us-ascii?Q?piELTHERQOVD9SdkKp+2pLtcLxdl84EfvOhXeACmhN3XsV6EUEltelQFGJQW?=
+ =?us-ascii?Q?fhudeX/w448fBocEJKqS2h0Cr2H1YqZJ11Y+ibDdhkVIzKbKVkeiBQgthB3q?=
+ =?us-ascii?Q?RvOL+f1RqTZ2w0aO0bVoEnq/3yK1FXtL3oGksVJYgxxfOyROzu5mUhaF7YEK?=
+ =?us-ascii?Q?ilWalH7XVrrXc5pDCQ02Oo1F1TGP9QjCiPr54ARDxOI1jc1JmDF3Nv2vcJUT?=
+ =?us-ascii?Q?BtSIJyc47TFZ2OzdXBV334wXRXUW9H6AaH7oHja3DXOC8O+l73/H8AGWif6O?=
+ =?us-ascii?Q?jM8pW76fS9C5mWl3vFu/6ZkM7ExCYo7NhTE1+BTSEmQPRKBL/8A2rQ9zVkXi?=
+ =?us-ascii?Q?YuvgV70TJZsWO6mB/QlcqHJ64WOjccah7xISoENLLf94E02jhyfOANigN+C+?=
+ =?us-ascii?Q?m734EhXtXRKl3DtDE1nzAubdxOCqDBSN6ojxo1LSqhu5lFPcHdlP+UxH4aWX?=
+ =?us-ascii?Q?7YbqQDJUip3yXuzSeJyw1hOnVIs+mxeYOPrH0+mFbmMF4z/76g81nOeZZ2pD?=
+ =?us-ascii?Q?qg7VC7RtMzzrTjjR5kDG5nClln50nVIKkRqmlyfTRAuZMT5sahks4P0jQxoX?=
+ =?us-ascii?Q?7bScI5JnmyZD8GaGZLqGxdcZvFlSPf7L63qlcWEjOJBI1rato1bnuJ0IvQ+B?=
+ =?us-ascii?Q?1Sxf7d49l3iuE47V9roAMJcQMNL3ESjfX73VA9K9/DOscd+GUy3ANVyZ+Xhl?=
+ =?us-ascii?Q?tmvH8oGfarFLSobTNHvgnlHAqk01DMzIpOudiDzVLpsSLuDsp5SsX/Ni3mMK?=
+ =?us-ascii?Q?hK3z/ZTA53a6pv8MmVxfYVZq5MlUzjQp6Ug9240ep4uQeK6p8i5WtpYAeoAn?=
+ =?us-ascii?Q?PDj5qLHavVvX35sgAVAIjN0xCfQFQRPA0exfn92ALuUuIa0evCaV0y1P8jAM?=
+ =?us-ascii?Q?ZEcVZmcVdG++bJW5KSibUH6mNH9m7zNRv+FlupeB9NiOfDsoSHZ6lhbywcMN?=
+ =?us-ascii?Q?BnTu5vRrzoPJhiT1HaYArHPjqjtfAedWqC0sRZctf6owVAhv8GMXS5EhNZnv?=
+ =?us-ascii?Q?3DfZ027vAUbMzJfkPwKePL9k5qV28A8lPhZ46VoilMxsiW8Tdk0brg+hUTbV?=
+ =?us-ascii?Q?kQ2hWKLtKb6nuhM8RDrvfn9FpVxzH/YQg2AkKQjewxLS0C5/8DuMKO//Rbb9?=
+ =?us-ascii?Q?7ntvWgpbIQsR/5ZUuu3phHaB0HWbgACQyL7TR45Cw8UrNNhJYMuhyeASk1zK?=
+ =?us-ascii?Q?qcLNpl1yAb6kqoF311FN1XxNuhOiUTS24dIZPcVWk5A3KL36SWWzrgushBLr?=
+ =?us-ascii?Q?sphTGWEjhtmiUNwG5FKrD7PMwNMG5x7LpSEG/wtziC1o6Kn5ASxFHw=3D=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SI2PR06MB5140.apcprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(52116014)(376014)(38350700014); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?stQ0sVsB02k36DOYZE7VqqAFAuX7bxUfWor9GluhKJbOGGCdA9fJVl+1CX8G?=
+ =?us-ascii?Q?zkYru3u03uCba18vDeYLdqgHaT/SBLGddJbmt86tCGIaTJ8wCc+2vhmAYO19?=
+ =?us-ascii?Q?jCJARPLAikliRTmjNHCsEfCYPjsuJcMLRcx9jduOxom+b+VhqOZ6Xao12GL1?=
+ =?us-ascii?Q?Mutk5HvGdQ2i4G9IlG7ztQpxznfYSbKa4kVnMMLXuEmrCbMiR7QbresqEAMq?=
+ =?us-ascii?Q?u1RgC15hIMzZel7bzUnPXIWoN+edzIW/d0GZDseHRcPuMrYQ166TsGv+mTss?=
+ =?us-ascii?Q?sPDycrRY3lG75RzYTJWmdXLtgkB0Yeb+kysCQ9uG4NSObTSSMue44cqlpuTw?=
+ =?us-ascii?Q?2UA5iaZXwtmAkQSyQwmp454F2IdyLqq8grT0VBCdO4hO49Ew/CgoAV2n+fQy?=
+ =?us-ascii?Q?FE6Gz7ALhbfTbRE/uUYkTWgbTDactuob8geK3Y1d3hlXnWvycnDgcPRqRVLO?=
+ =?us-ascii?Q?CxVVMm5Pe9nn2l6GxXeUl1sIwHbQ9PtT7hGrmPjUz0TjRkN1+G2+oOWR3ybq?=
+ =?us-ascii?Q?iaXoP1zDznvOScJQZZLyJO5CLrY97FqmLRhgOkvNhfUaJu4lRb0rZPNB+PMI?=
+ =?us-ascii?Q?2r3cKrZlDzttqEVUJCTwswMHUk1kOTKJDG2DLYbUTtQPKFiMe3kbJbycVJ8W?=
+ =?us-ascii?Q?Zx1RFdLh714qfi8YRWQ+KzShz41l8INjf3R7VijodRUIVcCthiEeS9RmQ8eQ?=
+ =?us-ascii?Q?nYIkBonzBuy/uu2jGGkfKlrqBwmCPFv3ZGoRHLPO4MKqQSGTuKpbf0eN3sAo?=
+ =?us-ascii?Q?aK9n7trCelAwmflVIQow4gvcDcCfKQAJO7q1HVhRGQahuoACbSXB0kPJLsvk?=
+ =?us-ascii?Q?JFKDNIbWvbQCwrjzwK1CeGyK+3rMazDYrnRsxM2uO/QX4w26LlF+7hFEqfAL?=
+ =?us-ascii?Q?viDIq3YZOy6++586H6WD3JKSQKLyJE1wiHWCXgspMNisGAKqM8ozX4EHcq0x?=
+ =?us-ascii?Q?L0ryLVc4qQ1zmtSP68rews0ufKVdUtdDAjDvepiGFvEsYHfbh9kiUGnlSFhf?=
+ =?us-ascii?Q?FjY2W3s2gOugXJxxW8pqXPfbjY+fgqhZz06vvCax/AV4IQrscwQnQzDWbT6F?=
+ =?us-ascii?Q?Nh6ipc3G9HcyFkYJyN0UqH6xGVSQp1xRxF7TQyJJnBNMzng4v1WDCKuaogrH?=
+ =?us-ascii?Q?AGMyZ2o3lOfXcnYPm2S2AAelOcHIJqbNg2zG9GHhBkhUlaEwM/LJ/4Qi6Oxd?=
+ =?us-ascii?Q?4n/FmHgGTSlfn5St1O9oD86Gh1W2VDhtDGJA4apAOEs9SquAIhPFFf8oVI2l?=
+ =?us-ascii?Q?VaaKHPS7za0oUMD5VUZc9uoVtHeOGYxbPliEPATUj45HV/xt2sHDgSvqcH0I?=
+ =?us-ascii?Q?KCWUFgaWqim/EUuwGoW636beuikW6pTM4hslAAhmxgJwAMBL2TfOLvreuCkd?=
+ =?us-ascii?Q?JHfOkq/v/Ezqgmkf9Rnadi1f40r5xsDRo1CMD6RlIAuqAf3JqvxWJUqXaDn4?=
+ =?us-ascii?Q?/CaXOAz/P92rw6Sz+GzMaOOhfomJ4IC1cKYUEvuv6DkAjAsZXk5ec/gh1rnk?=
+ =?us-ascii?Q?ifu6Z22hPL5F+sZUfjxZImCrOgnI7Aufti38b+eSuCyfOzVJrXTFZO7Effeh?=
+ =?us-ascii?Q?Bnlo1z9itHD+x6MLdA7/lrc4j7iyNRVHHOTpme/s?=
+X-OriginatorOrg: vivo.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85d1e244-1869-4127-160f-08dddcd2829e
+X-MS-Exchange-CrossTenant-AuthSource: SI2PR06MB5140.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2025 14:38:05.0768 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 923e42dc-48d5-4cbe-b582-1a797a6412ed
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: rmgJYi7EC2SqugHp0lc82MfIqB8LK4pLMPM53AQWD7Eo+BqQ9kSDbSxtjMAOBEjZIBN8Xp9ylMGWSo1rdfub0g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6771
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,58 +151,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch series introduces a new `FromPrimitive` trait along with its
-corresponding derive macro.
+Use vmalloc_array() instead of vmalloc() to simplify the functions
+nv84_fence_suspend().
 
-A few enhancements were made to the custom `quote!` macro to write the
-derive macro. These include support for additional punctuation tokens
-and a fix for an unused variable warning when quoting simple forms.
-Detailed information about these enhancements is provided in the
-relevant patches.
+vmalloc_array() is also optimized better, resulting in less instructions
+being used.
 
-While cleaning up the implementations, I came across an alternative
-form of the `FromPrimitive` trait that might better suit the current
-use case. Since types that implement this trait may often rely on just
-one `from_*` method, the following design could be a simpler fit:
+Signed-off-by: Qianfeng Rong <rongqianfeng@vivo.com>
+---
+ drivers/gpu/drm/nouveau/nv84_fence.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-    trait FromPrimitive: Sized {
-        type Primitive;
-
-        fn from_bool(b: bool) -> Option<Self>
-        where
-            <Self as FromPrimitive>::Primitive: From<bool>,
-        {
-            Self::from_primitive(b.into())
-        }
-
-        fn from_primitive(n: Self::Primitive) -> Option<Self>;
-    }
-
-This is just a thought and not something I feel strongly about, but I
-wanted to share it in case others find the idea useful. Feedback or
-suggestions are very welcome.
-
-The original discussion of FromPrimitive can be found on Zulip [1].
-
-[1] https://rust-for-linux.zulipchat.com/#narrow/channel/288089/topic/x/near/524427350
-
-Jesung Yang (4):
-  rust: introduce `FromPrimitive` trait
-  rust: macros: extend custom `quote!` macro
-  rust: macros: prefix variable `span` with underscore
-  rust: macros: add derive macro for `FromPrimitive`
-
- rust/kernel/convert.rs | 154 +++++++++++++++++++++++++++++
- rust/kernel/lib.rs     |   1 +
- rust/macros/convert.rs | 217 +++++++++++++++++++++++++++++++++++++++++
- rust/macros/lib.rs     |  71 ++++++++++++++
- rust/macros/quote.rs   |  46 ++++++++-
- 5 files changed, 487 insertions(+), 2 deletions(-)
- create mode 100644 rust/kernel/convert.rs
- create mode 100644 rust/macros/convert.rs
-
-
-base-commit: dc35ddcf97e99b18559d0855071030e664aae44d
+diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
+index 1765b2cedaf9..63a477e631ae 100644
+--- a/drivers/gpu/drm/nouveau/nv84_fence.c
++++ b/drivers/gpu/drm/nouveau/nv84_fence.c
+@@ -158,7 +158,7 @@ nv84_fence_suspend(struct nouveau_drm *drm)
+ 	struct nv84_fence_priv *priv = drm->fence;
+ 	int i;
+ 
+-	priv->suspend = vmalloc(array_size(sizeof(u32), drm->chan_total));
++	priv->suspend = vmalloc_array(drm->chan_total, sizeof(u32));
+ 	if (priv->suspend) {
+ 		for (i = 0; i < drm->chan_total; i++)
+ 			priv->suspend[i] = nouveau_bo_rd32(priv->bo, i*4);
 -- 
-2.39.5
+2.34.1
 
