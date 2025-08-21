@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0C85D5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0254D5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E71D410EA5D;
-	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A11910EA63;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=nppct.ru header.i=@nppct.ru header.b="TLxqil1W";
+	dkim=pass (2048-bit key; unprotected) header.d=listout.xyz header.i=@listout.xyz header.b="UZNI/jFG";
 	dkim-atps=neutral
-Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591EF10E766
- for <nouveau@lists.freedesktop.org>; Fri, 23 May 2025 07:50:33 +0000 (UTC)
-Received: from mail.nppct.ru (localhost [127.0.0.1])
- by mail.nppct.ru (Postfix) with ESMTP id 4F3D41C118F
- for <nouveau@lists.freedesktop.org>; Fri, 23 May 2025 10:50:24 +0300 (MSK)
-Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
- reason="pass (just generated,
- assumed good)" header.d=nppct.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
- content-transfer-encoding:mime-version:x-mailer:message-id:date
- :date:subject:subject:to:from:from; s=dkim; t=1747986623; x=
- 1748850624; bh=rR3vPAPlUJEfRssL5GiwmgHjwvovtafRJtml2i1CacQ=; b=T
- Lxqil1W0wc6J8ZbOZNvlAt+gde3rmNzxtgsGs8bQjb33Y4axC67muacweDXiZIbd
- Tr68qhQFQsJHFcZFbhDDODtFjXagIdYmfIc2PzkNZSurjYreYykl4AyGWxzqrGKD
- IkmcQe/Ymm75u0KFRyry0Lhg/wnOQeYySOIBPpFQt4=
-X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
-Received: from mail.nppct.ru ([127.0.0.1])
- by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id rORtlXhm3EGW for <nouveau@lists.freedesktop.org>;
- Fri, 23 May 2025 10:50:23 +0300 (MSK)
-Received: from localhost.localdomain (unknown [87.249.24.51])
- by mail.nppct.ru (Postfix) with ESMTPSA id 91B471C0DAB;
- Fri, 23 May 2025 10:50:22 +0300 (MSK)
-From: Alexey Nepomnyashih <sdl@nppct.ru>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Alexey Nepomnyashih <sdl@nppct.ru>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
- stable@vger.kernel.org
-Subject: [PATCH] drm/nouveau/mmu: fix potential overflow in PFN size
- calculation
-Date: Fri, 23 May 2025 07:50:14 +0000
-Message-ID: <20250523075015.884716-1-sdl@nppct.ru>
-X-Mailer: git-send-email 2.43.0
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3CF910E0CC;
+ Thu, 21 Aug 2025 12:01:47 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4c723r4GRNz9tVh;
+ Thu, 21 Aug 2025 14:01:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=listout.xyz; s=MBO0001;
+ t=1755777704;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=52AW3vX2G/gONvQRliEmju8kdN4K7aQivHGiuzDOHmM=;
+ b=UZNI/jFGRxXIPtCOaLdXc/juSYAvmv03H0pNFcW5s4NxgiePdwJd88IPqacCR5uB1Xbx6F
+ eKQeHKBJM1gy/A62HEXboWY+scZ7qrwR84W6AFxzu7VSGJaz/D1hpTfRgPh7DVQsQd3Vne
+ HB8Grj+yUxgxECax3Yl98YgeKvwi9aD7ZurdAO/N7oHHiwK3oNWyH/0YkrgggyyWDh7QYc
+ ztkQ0UANPB1yv/q6Qzvf/4Naeq5xzU7K1OG/usgpFaVh+s0ixFAxIjY7XLKkGwE/PBuFpl
+ gNkDYWBIVjtLW1nTizy0XZnfw+uxGNIQ9/eLAy6g3omzQpHtbA5m+8m3a2oJwg==
+Authentication-Results: outgoing_mbo_mout; dkim=none;
+ spf=pass (outgoing_mbo_mout: domain of listout@listout.xyz designates
+ 2001:67c:2050:b231:465::1 as permitted sender)
+ smtp.mailfrom=listout@listout.xyz
+From: Brahmajit Das <listout@listout.xyz>
+To: Simona Vetter <simona@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org
+Subject: [PATCH v2] drm/amd/display: clean-up dead code in dml2_mall_phantom
+Date: Thu, 21 Aug 2025 17:31:33 +0530
+Message-ID: <20250821120133.6174-1-listout@listout.xyz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 4c723r4GRNz9tVh
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,32 +64,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On most Linux-supported platforms, `int` is 32-bit, making (1 << 47)
-undefined and potentially dangerous. To ensure defined behavior and
-correct 64-bit arithmetic, replace `1` with `1ULL`.
+pipe_idx in funtion dml2_svp_validate_static_schedulabilit, although set
+is never actually used. While building with GCC 16 this gives a warning:
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c: In function ‘set_phantom_stream_timing’:
+drivers/gpu/drm/amd/amdgpu/../display/dc/dml2/dml2_mall_phantom.c:657:25: warning: variable ‘pipe_idx’ set but not used [-Wunused-but-set-variable=]
+  657 |         unsigned int i, pipe_idx;
+      |                         ^~~~~~~~
 
-Cc: stable@vger.kernel.org # v5.1+
-Fixes: a5ff307fe1f2 ("drm/nouveau/mmu: add a privileged method to directly manage PTEs")
-Signed-off-by: Alexey Nepomnyashih <sdl@nppct.ru>
+Signed-off-by: Brahmajit Das <listout@listout.xyz>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+v1 -> v2: leaving declaration above
+---
+ drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-index 9c97800fe037..29da1acbe3a8 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -1383,7 +1383,7 @@ nvkm_vmm_pfn_map(struct nvkm_vmm *vmm, u8 shift, u64 addr, u64 size, u64 *pfn)
- 			 */
- 			while (size) {
- 				pfn[pi++] = NVKM_VMM_PFN_NONE;
--				size -= 1 << page->shift;
-+				size -= 1ULL << page->shift;
- 			}
- 		} else {
- 			pi += size >> page->shift;
+diff --git a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
+index a56e75cdf712..c59f825cfae9 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
++++ b/drivers/gpu/drm/amd/display/dc/dml2/dml2_mall_phantom.c
+@@ -654,14 +654,14 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
+ 				     unsigned int svp_height,
+ 				     unsigned int svp_vstartup)
+ {
+-	unsigned int i, pipe_idx;
++	unsigned int i;
+ 	double line_time, fp_and_sync_width_time;
+ 	struct pipe_ctx *pipe;
+ 	uint32_t phantom_vactive, phantom_bp, pstate_width_fw_delay_lines;
+ 	static const double cvt_rb_vblank_max = ((double) 460 / (1000 * 1000));
+ 
+ 	// Find DML pipe index (pipe_idx) using dc_pipe_idx
+-	for (i = 0, pipe_idx = 0; i < ctx->config.dcn_pipe_count; i++) {
++	for (i = 0; i < ctx->config.dcn_pipe_count; i++) {
+ 		pipe = &state->res_ctx.pipe_ctx[i];
+ 
+ 		if (!pipe->stream)
+@@ -669,8 +669,6 @@ static void set_phantom_stream_timing(struct dml2_context *ctx, struct dc_state
+ 
+ 		if (i == dc_pipe_idx)
+ 			break;
+-
+-		pipe_idx++;
+ 	}
+ 
+ 	// Calculate lines required for pstate allow width and FW processing delays
 -- 
-2.43.0
+2.51.0
 
