@@ -4,38 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07785D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28419D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B44A10EB7B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4BB10EB95;
 	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
-X-Greylist: delayed 400 seconds by postgrey-1.36 at gabe;
- Tue, 08 Jul 2025 23:23:10 UTC
-Received: from audible.transient.net (audible.transient.net [24.143.126.66])
- by gabe.freedesktop.org (Postfix) with SMTP id C888C10E6F2
- for <nouveau@lists.freedesktop.org>; Tue,  8 Jul 2025 23:23:10 +0000 (UTC)
-Received: (qmail 4351 invoked from network); 8 Jul 2025 23:16:28 -0000
-Received: from cucamonga.audible.transient.net (192.168.2.5)
- by canarsie.audible.transient.net with QMQP; 8 Jul 2025 23:16:28 -0000
-Received: (nullmailer pid 16665 invoked by uid 1000);
- Tue, 08 Jul 2025 23:16:28 -0000
-Date: Tue, 8 Jul 2025 23:16:28 +0000
-From: Jamie Heilman <jamie@audible.transient.net>
-To: Rui Salvaterra <rsalvaterra@gmail.com>
-Cc: bskeggs@nvidia.com, airlied@gmail.com, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [REGRESSION] NVIDIA ION graphics broken with Linux 6.16-rc*
-Message-ID: <aG2mzB58k3tkxvK-@audible.transient.net>
-Mail-Followup-To: Rui Salvaterra <rsalvaterra@gmail.com>,
- bskeggs@nvidia.com, airlied@gmail.com,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <CALjTZvZgH0N43rMTcZiDVSX93PFL680hsYPwtp8=Ja1OWPvZ1A@mail.gmail.com>
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="fKPtOMew";
+	dkim-atps=neutral
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8AD210E1BE
+ for <nouveau@lists.freedesktop.org>; Sat, 23 Aug 2025 09:21:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
+ s=rl64zi2ngng6tgcaqnoh2i5lv4.protonmail; t=1755940905; x=1756200105;
+ bh=ufk4SYaEWMAJDshKyM5H95NJ9GXGHLsx+dTIn2DQ8Sg=;
+ h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+ Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=fKPtOMewVGZ9IZfOPgEBQnYA/oU3stOD0SxyKOiQ3i9SbLC4TqGhn/GA6KRsPsqsS
+ +0Ios3ldknkQzWYoQGEcmbbb5tWJ4qj9HVqrEXFVE/KXcvkRFp3MQWv7QHfW6ic3V+
+ eLFHzGFk6SbCt9KFZhXR3e+KucUJhx2kep0sJGltARENoZpJdNO/P+rz1xaBMHnU0l
+ qGFt7aLYE+ukCEjgwdrQLJW0WoxWKCDnjBx6rxPS5ziTbQ4m6XurvSo3ObbZWo/0v8
+ hvwUaU9G0o5U7s9MKSzBqjVsF5bPV305g91EFkUYM9JSuqe+mxoTyh+drd5Eco3bcc
+ iDiBltN2/vd1Q==
+Date: Sat, 23 Aug 2025 09:21:37 +0000
+To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>
+From: phil995511 <phil995511@proton.me>
+Subject: Nova driver and Steam launcher
+Message-ID: <_trd5DnxfNxvHOp4yX2zUcOakg8tDJIRYS3arLD7MijSybPMqPyFIdKzr2U8Ii9LtMcBYQmpO_RDt7W9wIQnXCvuBRTzih-QXvk9OPf2iIA=@proton.me>
+Feedback-ID: 128908939:user:proton
+X-Pm-Message-ID: 50e2aab618e67218328de5493c4dcb453d686fde
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CALjTZvZgH0N43rMTcZiDVSX93PFL680hsYPwtp8=Ja1OWPvZ1A@mail.gmail.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,85 +51,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Rui Salvaterra wrote:
-> Hi,
-> 
-> 
-> The machine (Atom 330 CPU, ION chipset, GeForce 9400M graphics) works,
-> but graphics are dead. Dmesg shows the following (Linux 6.16-rc5):
->
-> [   34.408331] BUG: kernel NULL pointer dereference, address: 0000000000000000
-> [   34.408351] #PF: supervisor instruction fetch in kernel mode
-> [   34.408358] #PF: error_code(0x0010) - not-present page
-> [   34.408364] PGD 0 P4D 0
-> [   34.408373] Oops: Oops: 0010 [#1] SMP
-> [   34.408383] CPU: 2 UID: 0 PID: 583 Comm: Xorg Not tainted
-> 6.16.0-rc5-dbg+ #187 PREEMPTLAZY
-> [   34.408393] Hardware name: To Be Filled By O.E.M. To Be Filled By
-> O.E.M./To be filled by O.E.M., BIOS 080015  08/13/2009
-> [   34.408399] RIP: 0010:0x0
-> [   34.408414] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> [   34.408420] RSP: 0018:ffff88800378bc08 EFLAGS: 00010202
-> [   34.408428] RAX: ffffffff82071c60 RBX: ffff888008e6f000 RCX: 0000000000000978
-> [   34.408434] RDX: 0000000000000020 RSI: 0000000000000002 RDI: ffff888008e6f000
-> [   34.408440] RBP: ffff88800378bd18 R08: 0000000000000000 R09: 00000000000003ff
-> [   34.408445] R10: 0000000000000000 R11: ffff88800378bcc0 R12: ffff88800378bdb8
-> [   34.408451] R13: ffff888007dad9c0 R14: ffff888004285680 R15: ffff888007e671c0
-> [   34.408457] FS:  00007f2cc7b2eb00(0000) GS:ffff888149ecf000(0000)
-> knlGS:0000000000000000
-> [   34.408464] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [   34.408469] CR2: ffffffffffffffd6 CR3: 0000000008a08000 CR4: 00000000000006f0
-> [   34.408475] Call Trace:
-> [   34.408482]  <TASK>
-> [   34.408486]  nouveau_gem_ioctl_pushbuf+0x10d8/0x1240
-> [   34.408504]  ? nouveau_gem_ioctl_new+0x160/0x160
-> [   34.408513]  drm_ioctl_kernel+0x7a/0xe0
-> [   34.408524]  drm_ioctl+0x1ef/0x490
-> [   34.408532]  ? nouveau_gem_ioctl_new+0x160/0x160
-> [   34.408541]  ? __handle_mm_fault+0xff2/0x1510
-> [   34.408552]  nouveau_drm_ioctl+0x50/0xa0
-> [   34.408560]  __x64_sys_ioctl+0x4be/0xa90
-> [   34.408570]  ? handle_mm_fault+0xb5/0x1a0
-> [   34.408578]  ? lock_mm_and_find_vma+0x34/0x170
-> [   34.408587]  do_syscall_64+0x51/0x1d0
-> [   34.408596]  entry_SYSCALL_64_after_hwframe+0x4b/0x53
-> [   34.408605] RIP: 0033:0x7f2cc7d2f9dd
-> [   34.408612] Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10
-> c7 45 b0 10 00 00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00
-> 00 0f 05 <89> c2 3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00
-> 00 00
-> [   34.408620] RSP: 002b:00007fff6a501ee0 EFLAGS: 00000246 ORIG_RAX:
-> 0000000000000010
-> [   34.408628] RAX: ffffffffffffffda RBX: 000055c7792b3f78 RCX: 00007f2cc7d2f9dd
-> [   34.408634] RDX: 00007fff6a501fa0 RSI: 00000000c0406481 RDI: 0000000000000011
-> [   34.408640] RBP: 00007fff6a501f30 R08: 0000000000000978 R09: 000055c7792af740
-> [   34.408645] R10: 0000000000000002 R11: 0000000000000246 R12: 00007fff6a501fa0
-> [   34.408651] R13: 00000000c0406481 R14: 0000000000000011 R15: 000055c7792ac700
-> [   34.408660]  </TASK>
-> [   34.408664] Modules linked in:
-> [   34.408671] CR2: 0000000000000000
-> [   34.408678] ---[ end trace 0000000000000000 ]---
-> [   34.408682] RIP: 0010:0x0
-> [   34.408691] Code: Unable to access opcode bytes at 0xffffffffffffffd6.
-> [   34.408696] RSP: 0018:ffff88800378bc08 EFLAGS: 00010202
-> [   34.408703] RAX: ffffffff82071c60 RBX: ffff888008e6f000 RCX: 0000000000000978
-> [   34.408709] RDX: 0000000000000020 RSI: 0000000000000002 RDI: ffff888008e6f000
-> [   34.408715] RBP: ffff88800378bd18 R08: 0000000000000000 R09: 00000000000003ff
-> [   34.408720] R10: 0000000000000000 R11: ffff88800378bcc0 R12: ffff88800378bdb8
-> [   34.408726] R13: ffff888007dad9c0 R14: ffff888004285680 R15: ffff888007e671c0
-> [   34.408731] FS:  00007f2cc7b2eb00(0000) GS:ffff888149ecf000(0000)
-> knlGS:0000000000000000
-> [   34.408738] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [   34.408743] CR2: ffffffffffffffd6 CR3: 0000000008a08000 CR4: 00000000000006f0
-> [   34.408750] note: Xorg[583] exited with irqs disabled
-> 
-> Unfortunately, bisecting is not feasible for me.
+Hello,
 
-That looks pretty similar to the problem I posted
-(https://lore.kernel.org/lkml/aElJIo9_Se6tAR1a@audible.transient.net/)
-that I bisected to 862450a85b85 ("drm/nouveau/gf100-: track chan
-progress with non-WFI semaphore release").  It still reverts cleanly
-as of v6.16-rc5 so you might want to give that a shot.
+First of all, I wanted to thank you for your wonderful Nova driver.
 
--- 
-Jamie Heilman                     http://audible.transient.net/~jamie/
+I use a dual-GPU Intel and Nvidia laptop running Debian 13, Kernel 6.16, an=
+d it runs wonderfully with Nova. It offers excellent performance and is ver=
+y easy to use for switching GPUs.
+
+It seems that Nvidia's proprietary driver consumes more power than Nova. An=
+d I must say that under Debian, Nvidia's official solutions for switching G=
+PUs have never given me satisfaction, nor has their proprietary driver. Unt=
+il now, on this laptop, I only used the Intel GPU.
+
+However, I have a small problem with the Steam launcher :
+
+https://github.com/ValveSoftware/steam-for-linux/issues/12285
+
+I reported a breakdown and they asked me to contact you...
+
+Intuitively, I wonder if this isn't a 32-bit compatibility issue ?
+
+Thank you again for your wonderful work and thank you by advance to support=
+ us for resolving this small issue with Steam luncher and developers.
+
+Best regards.
+
+Philippe
+
+PS I posted a message on Zulip Chat but no one is replying.
+
+
+
+
+Envoy=C3=A9 avec un e-mail s=C3=A9curis=C3=A9 Proton Mail.
