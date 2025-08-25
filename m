@@ -4,88 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C9AFD5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E71B0D5B15A
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B5B10EB72;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A6210EBA8;
+	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bwmjthrt";
+	dkim=permerror (0-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="Kw7HvHkO";
 	dkim-atps=neutral
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
- [209.85.216.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E7910E03D
- for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 11:42:09 +0000 (UTC)
-Received: by mail-pj1-f46.google.com with SMTP id
- 98e67ed59e1d1-3307e8979f2so983527a91.2
- for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 04:42:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758454928; x=1759059728; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=K916KUx2pRc33+DQRqSv33PWW4YfoGyNBVmdt55/SZs=;
- b=bwmjthrtidLvmDxNnuHHFxe/SZ8vjugVfbHNo65Y8hplPrTkqXvc/Ohm8tl2eRwPsr
- 8zKe0Y7O8u1FwNy0ktZLGGN1wiTcRi2xpPdIqrLR5k0xa50WrgJql6psZv48LDI55xN9
- MXk50in5qUcULwulchrAV1kJron30GbKJLFEdama+pfvTWtplOQdEavPIUDZnwsUhLLE
- aHVtVKMKLV+4mPyLCNn2aMis/dARwaCqGL6NX601gsw5eOw9U2KNAPTlrEA0kGVfFwbX
- dfbT3wqT/eNox0fzN6l9Ue8T6zQqJ5kI8WPk5RW0w2fBrKzPKvTix1iKffEkp6uVN8ax
- iFvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758454928; x=1759059728;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=K916KUx2pRc33+DQRqSv33PWW4YfoGyNBVmdt55/SZs=;
- b=ij/Py8dX+0GOIUg30OaPL2j8LcBHvaZm3Zm1OS5rTb6BXVqHgu1+5hfwL/VTP8IiOd
- puD2mcE3hq01mvtu7VJdoN8VhwuSSwlqwZhxicuojSpKXrpBBs8rd7cI6T+nLZ6FIqDT
- 3vJPij7214NijjtIEECylxbnVQ7tVSFe61M3MukHXG28/pq+QalAxhNq6MafS4iYNESV
- FbGh7IBqneePvJnGeIRyeks7MVFXkpr2B50fpB5R6RSVxqfTg8Xc6suMe83huEEiRrjb
- agIhTevWVV9B2lIQtxZHLihzQC4p7/poEGYoDDmcYFwojPtLpkLx4f/lWi88+A1mKt8W
- /ilg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXVGMeTq35bEG6dM22nAG8LTBnlZXI7kDSWWnxCC4mxtQXd33CbqcpU2liRz9xP7sif3DQrAMJP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwqYaFfHhEv+EmMkcXuJufbYLe+k292deePEzYnFwpKEzlQwYXC
- 7XKE5XHUY7wXuRsWPOD90Zqwy7NuIrlEp8FN2dgwJOfd9L6ea49sWxPzeaPqYP1BnN7J5A4L18w
- cxBzKK0km+U+xuukOCIcKBQvUAoczJNc=
-X-Gm-Gg: ASbGncu+cMdNx0pQ6+l9t3/kh4fGlb3VUcGi/i33on/rcyz+48klxiLYEd7QLp4Yfz3
- N88vbIg7PJYoCRxmoiFnhOnEGTnULHYO+CKKXGuubFXW18RGoH/UufWs/FWb4iNF2SHJ+cFvxp+
- T/rlAAfIv7/zs14Cov4SSBo3nae7kB3eudWFaU1w7VT/Ger8GpVaKKO8AkE5ECr7cwrsysjhwx8
- zQ0DqAH808vzA8dzXIl2i4g7OkjL0Ap94iYDFZ4wu2F3mv2gipDMXOXZ6wMWXBef3jmY5uerOj3
- ArZA9mDqtA3YlnKvP2h/vdNF6LX8ymRkT04b
-X-Google-Smtp-Source: AGHT+IFRSGavmihE0jeFmf3/2ErrEQ7lVZdNPzc90R+azLE4QPTS7uO3XKCP8dBGdcZnR+PQiMPrb7CuZa2GRwXI02k=
-X-Received: by 2002:a17:902:da81:b0:258:a3a1:9aa5 with SMTP id
- d9443c01a7336-269ba26087cmr64556325ad.0.1758454928589; Sun, 21 Sep 2025
- 04:42:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250909212039.227221-1-joelagnelf@nvidia.com>
- <20250909212039.227221-6-joelagnelf@nvidia.com> <aMDq2ln1ivFol_Db@yury>
- <bbd6c5f8-8ad2-4dac-a3a4-b08de52f187b@nvidia.com> <aMIqGBoNaJ7rUrYQ@yury>
- <20250916095918.GA1647262@joelbox2> <20250920003916.GA2009525@joelbox2>
-In-Reply-To: <20250920003916.GA2009525@joelbox2>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 21 Sep 2025 13:41:55 +0200
-X-Gm-Features: AS18NWAEK_G6m5-8BL_C3aor80z6U_cj8cDpyNPkB8wcxKLKwKj_z5k0IO6zsJc
-Message-ID: <CANiq72=uycGrGAVH=8KjVQ3e-P_-B0c=_mUBa1__sh44eiQ3=Q@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] rust: Add KUNIT tests for bitfield
+Received: from mail-4321.protonmail.ch (mail-4321.protonmail.ch [185.70.43.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43CA710E5A5
+ for <nouveau@lists.freedesktop.org>; Mon, 25 Aug 2025 23:20:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
+ s=protonmail3; t=1756164027; x=1756423227;
+ bh=dbfxHDr+4prCVmBev/sJiog2Lc66l2bjBKk57p6NvnI=;
+ h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:From:To:
+ Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+ b=Kw7HvHkOW/t/7aBcbbaxEWgJIAosTbK9FiF/6CDyQESX2BXBlTRAFBUsx8tZMfYAr
+ db6I272BNYVLGhyhLUyUt86/sxo7RmXvwpjm8C+Jjkr6JyInW0/IQOAJVfpeF90Zzj
+ 5+nWo4hHFKRADJMvcZTjlkhAKamuNUw58vSUs7fVOJwNUZ+ypNoX6ybtgrOTqt75Yx
+ yea2VWK69D3FhqUjpwyABmkcfz2XUDQq1VoKse3WnJus3t53cG1bvF/aEuAhTVNkiR
+ BfCPH2IfwZzREM40vUa2Qc7C0DylCv6VtERKOBfbExqguu0BHpwvtB36zuKpOjPWJ6
+ 8cI9ZlrrjiWNA==
+X-Pm-Submission-Id: 4c9mx60wYnz1DDLJ
+Date: Mon, 25 Aug 2025 23:20:22 +0000
+From: Elle Rhumsaa <elle@weathered-steel.dev>
 To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com, 
- Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Cc: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH 1/2] nova-core: Add a library for bitfields in Rust structs
+Message-ID: <aKzvpFf9PkTHYNet@archiso>
+References: <20250824135954.2243774-1-joelagnelf@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250824135954.2243774-1-joelagnelf@nvidia.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,19 +64,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sat, Sep 20, 2025 at 2:39=E2=80=AFAM Joel Fernandes <joelagnelf@nvidia.c=
-om> wrote:
->
-> The C checks use BUILD_BUG_ON, in rust-for-linux we have build_assert but=
- it
-> is fragile and depends on the value being a constant.
+On Sun, Aug 24, 2025 at 09:59:52AM -0400, Joel Fernandes wrote:
+> Add a minimal bitfield library for defining in Rust structures (called
+> bitstruct), similar in concept to bit fields in C structs. This will be used
+> for defining page table entries and other structures in nova-core.
+> 
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/bitstruct.rs | 149 +++++++++++++++++++++++++++++
+>  drivers/gpu/nova-core/nova_core.rs |   1 +
+>  2 files changed, 150 insertions(+)
+>  create mode 100644 drivers/gpu/nova-core/bitstruct.rs
+> 
+> diff --git a/drivers/gpu/nova-core/bitstruct.rs b/drivers/gpu/nova-core/bitstruct.rs
+> new file mode 100644
+> index 000000000000..661a75da0a9c
+> --- /dev/null
+> +++ b/drivers/gpu/nova-core/bitstruct.rs
+> @@ -0,0 +1,149 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +// bitstruct.rs — C-style library for bitfield-packed Rust structures
+> +//
+> +// A library that provides support for defining bit fields in Rust
+> +// structures to circumvent lack of native language support for this.
+> +//
+> +// Similar usage syntax to the register! macro.
+> +
+> +use kernel::prelude::*;
+> +
+> +/// Macro for defining bitfield-packed structures in Rust.
+> +/// The size of the underlying storage type is specified with #[repr(TYPE)].
+> +///
+> +/// # Example (just for illustration)
+> +/// ```rust
+> +/// bitstruct! {
+> +///     #[repr(u64)]
+> +///     pub struct PageTableEntry {
+> +///         0:0       present     as bool,
+> +///         1:1       writable    as bool,
+> +///         11:9      available   as u8,
+> +///         51:12     pfn         as u64,
+> +///         62:52     available2  as u16,
+> +///         63:63     nx          as bool,
+> +///     }
+> +/// }
+> +/// ```
+> +///
+> +/// This generates a struct with methods:
+> +/// - Constructor: `default()` sets all bits to zero.
+> +/// - Field accessors: `present()`, `pfn()`, etc.
+> +/// - Field setters: `set_present()`, `set_pfn()`, etc.
+> +/// - Builder methods: `with_present()`, `with_pfn()`, etc.
+> +/// - Raw conversion: `from_raw()`, `into_raw()`
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct {
+> +    (
+> +        #[repr($storage:ty)]
+> +        $vis:vis struct $name:ident {
+> +            $(
+> +                $hi:literal : $lo:literal $field:ident as $field_type:tt
+> +            ),* $(,)?
+> +        }
+> +    ) => {
+> +        #[repr(transparent)]
+> +        #[derive(Copy, Clone, Default)]
+> +        $vis struct $name($storage);
+> +
+> +        impl $name {
+> +            /// Create from raw value
+> +            #[inline(always)]
+> +            $vis const fn from_raw(val: $storage) -> Self {
+> +                Self(val)
+> +            }
+> +
+> +            /// Get raw value
+> +            #[inline(always)]
+> +            $vis const fn into_raw(self) -> $storage {
+> +                self.0
+> +            }
+> +        }
+> +
+> +        impl core::fmt::Debug for $name {
+> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+> +                write!(f, "{}({:#x})", stringify!($name), self.0)
+> +            }
+> +        }
+> +
+> +        // Generate all field methods
+> +        $(
+> +            bitstruct_field_impl!($vis, $name, $storage, $hi, $lo, $field as $field_type);
+> +        )*
+> +    };
+> +}
+> +
+> +/// Helper to calculate mask for bit fields
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct_mask {
+> +    ($hi:literal, $lo:literal, $storage:ty) => {{
+> +        let width = ($hi - $lo + 1) as usize;
+> +        let storage_bits = 8 * core::mem::size_of::<$storage>();
+> +        if width >= storage_bits {
+> +            <$storage>::MAX
+> +        } else {
+> +            ((1 as $storage) << width) - 1
+> +        }
+> +    }};
+> +}
+> +
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct_field_impl {
+> +    ($vis:vis, $struct_name:ident, $storage:ty, $hi:literal, $lo:literal, $field:ident as $field_type:tt) => {
+> +        impl $struct_name {
+> +            #[inline(always)]
+> +            $vis const fn $field(&self) -> $field_type {
+> +                let field_val = (self.0 >> $lo) & bitstruct_mask!($hi, $lo, $storage);
+> +                bitstruct_cast_value!(field_val, $field_type)
+> +            }
+> +        }
+> +        bitstruct_make_setters!($vis, $struct_name, $storage, $hi, $lo, $field, $field_type);
+> +    };
+> +}
+> +
+> +/// Helper macro to convert extracted value to target type
+> +///
+> +/// Special handling for bool types is required because the `as` keyword
+> +/// cannot be used to convert to bool in Rust. For bool fields, we check
+> +/// if the extracted value is non-zero. For all other types, we use the
+> +/// standard `as` conversion.
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct_cast_value {
+> +    ($field_val:expr, bool) => {
+> +        $field_val != 0
+> +    };
+> +    ($field_val:expr, $field_type:tt) => {
+> +        $field_val as $field_type
+> +    };
+> +}
+> +
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct_write_bits {
+> +    ($raw:expr, $hi:literal, $lo:literal, $val:expr, $storage:ty) => {{
+> +        let mask = bitstruct_mask!($hi, $lo, $storage);
+> +        ($raw & !(mask << $lo)) | ((($val as $storage) & mask) << $lo)
+> +    }};
+> +}
+> +
+> +#[allow(unused_macros)]
+> +macro_rules! bitstruct_make_setters {
+> +    ($vis:vis, $struct_name:ident, $storage:ty, $hi:literal, $lo:literal, $field:ident, $field_type:tt) => {
+> +        ::kernel::macros::paste! {
+> +            impl $struct_name {
+> +                #[inline(always)]
+> +                #[allow(dead_code)]
+> +                $vis fn [<set_ $field>](&mut self, val: $field_type) {
+> +                    self.0 = bitstruct_write_bits!(self.0, $hi, $lo, val, $storage);
+> +                }
+> +
+> +                #[inline(always)]
+> +                #[allow(dead_code)]
+> +                $vis const fn [<with_ $field>](mut self, val: $field_type) -> Self {
+> +                    self.0 = bitstruct_write_bits!(self.0, $hi, $lo, val, $storage);
+> +                    self
+> +                }
+> +            }
+> +        }
+> +    };
+> +}
 
-What do you mean?
+This is awesome. Is there a place for this to live outside of
+`nova-core`? I would think this would be extremely useful as a general
+helper for bitfield struct definitions.
 
-`build_assert!` works essentially like `BUILD_BUG_ON`, i.e. after the
-optimizer, and does not depend on the value being a constant.
+> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
+> index cb2bbb30cba1..54505cad4a73 100644
+> --- a/drivers/gpu/nova-core/nova_core.rs
+> +++ b/drivers/gpu/nova-core/nova_core.rs
+> @@ -2,6 +2,7 @@
+>  
+>  //! Nova Core GPU Driver
+>  
+> +mod bitstruct;
+>  mod dma;
+>  mod driver;
+>  mod falcon;
+> -- 
+> 2.34.1
 
-You may be thinking of `static_assert!`, which is the compiler-based one.
-
-Cheers,
-Miguel
+Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
