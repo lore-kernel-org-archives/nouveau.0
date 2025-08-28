@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF2ACA0FF6
-	for <nouveau@archiver.kernel.org>; Thu, 28 Aug 2025 21:01:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C827CA0FF6
+	for <nouveau@archiver.kernel.org>; Thu, 28 Aug 2025 21:28:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8810A10EADE;
-	Thu, 28 Aug 2025 21:01:45 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9866410EAD7
- for <nouveau@lists.freedesktop.org>; Thu, 28 Aug 2025 21:01:43 +0000 (UTC)
-Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-167-8136KvKeMQ2PGwpZWQZYig-1; Thu,
- 28 Aug 2025 16:55:27 -0400
-X-MC-Unique: 8136KvKeMQ2PGwpZWQZYig-1
-X-Mimecast-MFC-AGG-ID: 8136KvKeMQ2PGwpZWQZYig_1756414526
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 7ADA019560BB; Thu, 28 Aug 2025 20:55:26 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.67.32.4])
- by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 2AD5919560AB; Thu, 28 Aug 2025 20:55:23 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org,
-	dakr@kernel.org
-Subject: [PATCH 2/2] nouveau: Membar before between semaphore writes and the
- interrupt
-Date: Fri, 29 Aug 2025 06:55:17 +1000
-Message-ID: <20250828205517.1553768-2-airlied@gmail.com>
-In-Reply-To: <20250828205517.1553768-1-airlied@gmail.com>
-References: <20250828205517.1553768-1-airlied@gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: hDhZdj78kv5XgyQXSu22g5qBEeprHkbncBd0CYjJI9A_1756414526
-X-Mimecast-Originator: gmail.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 746A210EAE6;
+	Thu, 28 Aug 2025 21:27:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="C1cmWuxP";
+	dkim-atps=neutral
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91F4610EAE3;
+ Thu, 28 Aug 2025 21:27:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 6F70860139;
+ Thu, 28 Aug 2025 21:27:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3ED67C4CEEB;
+ Thu, 28 Aug 2025 21:27:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1756416475;
+ bh=qA1BcQ3hWIOqTfWw0aAFTPIJL30bc08GdeoDPGTnu4U=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=C1cmWuxPqxaSGqPC5BDtl+YVTDKgdfUwazddCx+jtuYDM0FAEFDgrW081DIHEtoU2
+ XK6G6aZK4ZTXOQC5+10V8VGaI7TD/m9PtC5KK2lmWfyi21oWFrT52HPMNjdwBhd563
+ GGrirRrmzTbLAYOu0RMAqzolC0Wxp76GwGr0i3U8piMzc5SEfih9130z2BNRa0uFuB
+ H+blxdTf8LCswMiRfsDuUYncxqOQJjbOwheAa4m/6TwKPwJ6XIBcO0fkfmLclWc4oa
+ 3goXTB3MHAFxTomVp958Z/K01KUOoOUsizlYZmx15hdGW3If0QpjcSWjH68puD09rc
+ X8wIEFav6LnqA==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 28 Aug 2025 23:27:51 +0200
+Message-Id: <DCEDOBPT4VLP.R2K3EWY871F1@kernel.org>
+Subject: Re: gpu: nova-core: arm32 build errors
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Alexandre Courbot"
+ <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, <nouveau@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+To: "Miguel Ojeda" <miguel.ojeda.sandonis@gmail.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20250828160247.37492-1-ojeda@kernel.org>
+ <b680c343-ba97-4eb4-b426-56e318dce492@kernel.org>
+ <DCEB1J2P3MZS.3IGXEYP0MAC5H@kernel.org>
+ <CANiq72mkPqFnb4ztiCokE6+ntVSmgOTgERshg-4SMmLboFOqNg@mail.gmail.com>
+ <CANiq72=6Ji97UW96V-VjjbRG=ouGeHA7QXpP2gBOJYFx=oJ19w@mail.gmail.com>
+ <DCEBRUJ383TE.R6W8YCRNZP1O@kernel.org>
+In-Reply-To: <DCEBRUJ383TE.R6W8YCRNZP1O@kernel.org>
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,233 +64,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-From: Faith Ekstrand <faith.ekstrand@collabora.com>
+On Thu Aug 28, 2025 at 9:58 PM CEST, Danilo Krummrich wrote:
+> On Thu Aug 28, 2025 at 9:36 PM CEST, Miguel Ojeda wrote:
+>> On Thu, Aug 28, 2025 at 9:31=E2=80=AFPM Miguel Ojeda
+>> <miguel.ojeda.sandonis@gmail.com> wrote:
+>>>
+>>> and a `DmaAddress`
+>>> newtype, not just a typedef, could perhaps be nice anyway?
+>>
+>> The one from your linked patch is not a newtype though, so I guess
+>> there is a reason for that.
+>
+> No specific reason, I didn't see a lot of value in a newtype in the first
+> place, depending on you answer in the other thread, may we just found som=
+e
+> value. :)
 
-This ensures that the memory write and the interrupt are properly
-ordered and we won't wake up the kernel before the semaphore write has
-hit memory.
+To expand a bit, the typdef is also for simplicity. Eventually, drivers wil=
+l do
+some arithmetic on the DMA address, etc.
 
-Fixes: b1ca384772b6 ("drm/nouveau/gv100-: switch to volta semaphore methods=
-")
-Cc: stable@vger.kernel.org
-Signed-off-by: Faith Ekstrand <faith.ekstrand@collabora.com>
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/gv100_fence.c         |  7 +-
- .../drm/nouveau/include/nvhw/class/clc36f.h   | 85 +++++++++++++++++++
- 2 files changed, 91 insertions(+), 1 deletion(-)
+So, if we have a new type, we'd probably want to provide methods for doing =
+the
+most common arithmetic operations, because we don't want to convert to/from=
+ the
+corresponding primitive type all the time.
 
-diff --git a/drivers/gpu/drm/nouveau/gv100_fence.c b/drivers/gpu/drm/nouvea=
-u/gv100_fence.c
-index cccdeca72002..317e516c4ec7 100644
---- a/drivers/gpu/drm/nouveau/gv100_fence.c
-+++ b/drivers/gpu/drm/nouveau/gv100_fence.c
-@@ -18,7 +18,7 @@ gv100_fence_emit32(struct nouveau_channel *chan, u64 virt=
-ual, u32 sequence)
- =09struct nvif_push *push =3D &chan->chan.push;
- =09int ret;
-=20
--=09ret =3D PUSH_WAIT(push, 8);
-+=09ret =3D PUSH_WAIT(push, 13);
- =09if (ret)
- =09=09return ret;
-=20
-@@ -32,6 +32,11 @@ gv100_fence_emit32(struct nouveau_channel *chan, u64 vir=
-tual, u32 sequence)
- =09=09  NVDEF(NVC36F, SEM_EXECUTE, PAYLOAD_SIZE, 32BIT) |
- =09=09  NVDEF(NVC36F, SEM_EXECUTE, RELEASE_TIMESTAMP, DIS));
-=20
-+=09PUSH_MTHD(push, NVC36F, MEM_OP_A, 0,
-+=09=09=09=09MEM_OP_B, 0,
-+=09=09=09=09MEM_OP_C, NVDEF(NVC36F, MEM_OP_C, MEMBAR_TYPE, SYS_MEMBAR),
-+=09=09=09=09MEM_OP_D, NVDEF(NVC36F, MEM_OP_D, OPERATION, MEMBAR));
-+
- =09PUSH_MTHD(push, NVC36F, NON_STALL_INTERRUPT, 0);
-=20
- =09PUSH_KICK(push);
-diff --git a/drivers/gpu/drm/nouveau/include/nvhw/class/clc36f.h b/drivers/=
-gpu/drm/nouveau/include/nvhw/class/clc36f.h
-index 8735dda4c8a7..338f74b9f501 100644
---- a/drivers/gpu/drm/nouveau/include/nvhw/class/clc36f.h
-+++ b/drivers/gpu/drm/nouveau/include/nvhw/class/clc36f.h
-@@ -7,6 +7,91 @@
-=20
- #define NVC36F_NON_STALL_INTERRUPT                                 (0x0000=
-0020)
- #define NVC36F_NON_STALL_INTERRUPT_HANDLE                                 =
-31:0
-+// NOTE - MEM_OP_A and MEM_OP_B have been replaced in gp100 with methods f=
-or
-+// specifying the page address for a targeted TLB invalidate and the uTLB =
-for
-+// a targeted REPLAY_CANCEL for UVM.
-+// The previous MEM_OP_A/B functionality is in MEM_OP_C/D, with slightly
-+// rearranged fields.
-+#define NVC36F_MEM_OP_A                                            (0x0000=
-0028)
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_CANCEL_TARGET_CLIENT_UNIT_ID       =
- 5:0  // only relevant for REPLAY_CANCEL_TARGETED
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_INVALIDATION_SIZE                  =
- 5:0  // Used to specify size of invalidate, used for invalidates which are=
- not of the REPLAY_CANCEL_TARGETED type
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_CANCEL_TARGET_GPC_ID               =
-10:6  // only relevant for REPLAY_CANCEL_TARGETED
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_CANCEL_MMU_ENGINE_ID               =
- 6:0  // only relevant for REPLAY_CANCEL_VA_GLOBAL
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_SYSMEMBAR                         1=
-1:11
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_SYSMEMBAR_EN                 0x0000=
-0001
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_SYSMEMBAR_DIS                0x0000=
-0000
-+#define NVC36F_MEM_OP_A_TLB_INVALIDATE_TARGET_ADDR_LO                    3=
-1:12
-+#define NVC36F_MEM_OP_B                                            (0x0000=
-002c)
-+#define NVC36F_MEM_OP_B_TLB_INVALIDATE_TARGET_ADDR_HI                     =
-31:0
-+#define NVC36F_MEM_OP_C                                            (0x0000=
-0030)
-+#define NVC36F_MEM_OP_C_MEMBAR_TYPE                                       =
- 2:0
-+#define NVC36F_MEM_OP_C_MEMBAR_TYPE_SYS_MEMBAR                      0x0000=
-0000
-+#define NVC36F_MEM_OP_C_MEMBAR_TYPE_MEMBAR                          0x0000=
-0001
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB                                =
- 0:0
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_ONE                      0x0000=
-0000
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_ALL                      0x0000=
-0001  // Probably nonsensical for MMU_TLB_INVALIDATE_TARGETED
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_GPC                                =
- 1:1
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_GPC_ENABLE                   0x0000=
-0000
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_GPC_DISABLE                  0x0000=
-0001
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY                             =
- 4:2  // only relevant if GPC ENABLE
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_NONE                  0x0000=
-0000
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_START                 0x0000=
-0001
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_START_ACK_ALL         0x0000=
-0002
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_CANCEL_TARGETED       0x0000=
-0003
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_CANCEL_GLOBAL         0x0000=
-0004
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_REPLAY_CANCEL_VA_GLOBAL      0x0000=
-0005
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACK_TYPE                           =
- 6:5  // only relevant if GPC ENABLE
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACK_TYPE_NONE                0x0000=
-0000
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACK_TYPE_GLOBALLY            0x0000=
-0001
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACK_TYPE_INTRANODE           0x0000=
-0002
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE                        =
- 9:7 //only relevant for REPLAY_CANCEL_VA_GLOBAL
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_READ              =
-   0
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_WRITE             =
-   1
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_ATOMIC_STRONG     =
-   2
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_RSVRVD            =
-   3
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_ATOMIC_WEAK       =
-   4
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_ATOMIC_ALL        =
-   5
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_WRITE_AND_ATOMIC  =
-   6
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_ACCESS_TYPE_VIRT_ALL               =
-   7
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL                   =
- 9:7  // Invalidate affects this level and all below
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_ALL         0x0000=
-0000  // Invalidate tlb caches at all levels of the page table
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_PTE_ONLY    0x0000=
-0001
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE0  0x0000=
-0002
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE1  0x0000=
-0003
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE2  0x0000=
-0004
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE3  0x0000=
-0005
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE4  0x0000=
-0006
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PAGE_TABLE_LEVEL_UP_TO_PDE5  0x0000=
-0007
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_APERTURE                       =
-   11:10  // only relevant if PDB_ONE
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_APERTURE_VID_MEM             0x=
-00000000
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_APERTURE_SYS_MEM_COHERENT    0x=
-00000002
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_APERTURE_SYS_MEM_NONCOHERENT 0x=
-00000003
-+#define NVC36F_MEM_OP_C_TLB_INVALIDATE_PDB_ADDR_LO                       3=
-1:12  // only relevant if PDB_ONE
-+#define NVC36F_MEM_OP_C_ACCESS_COUNTER_CLR_TARGETED_NOTIFY_TAG            =
-19:0
-+// MEM_OP_D MUST be preceded by MEM_OPs A-C.
-+#define NVC36F_MEM_OP_D                                            (0x0000=
-0034)
-+#define NVC36F_MEM_OP_D_TLB_INVALIDATE_PDB_ADDR_HI                        =
-26:0  // only relevant if PDB_ONE
-+#define NVC36F_MEM_OP_D_OPERATION                                        3=
-1:27
-+#define NVC36F_MEM_OP_D_OPERATION_MEMBAR                            0x0000=
-0005
-+#define NVC36F_MEM_OP_D_OPERATION_MMU_TLB_INVALIDATE                0x0000=
-0009
-+#define NVC36F_MEM_OP_D_OPERATION_MMU_TLB_INVALIDATE_TARGETED       0x0000=
-000a
-+#define NVC36F_MEM_OP_D_OPERATION_L2_PEERMEM_INVALIDATE             0x0000=
-000d
-+#define NVC36F_MEM_OP_D_OPERATION_L2_SYSMEM_INVALIDATE              0x0000=
-000e
-+// CLEAN_LINES is an alias for Tegra/GPU IP usage
-+#define NVC36F_MEM_OP_B_OPERATION_L2_INVALIDATE_CLEAN_LINES         0x0000=
-000e
-+#define NVC36F_MEM_OP_D_OPERATION_L2_CLEAN_COMPTAGS                 0x0000=
-000f
-+#define NVC36F_MEM_OP_D_OPERATION_L2_FLUSH_DIRTY                    0x0000=
-0010
-+#define NVC36F_MEM_OP_D_OPERATION_L2_WAIT_FOR_SYS_PENDING_READS     0x0000=
-0015
-+#define NVC36F_MEM_OP_D_OPERATION_ACCESS_COUNTER_CLR                0x0000=
-0016
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TYPE                           =
- 1:0
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TYPE_MIMC                0x0000=
-0000
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TYPE_MOMC                0x0000=
-0001
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TYPE_ALL                 0x0000=
-0002
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TYPE_TARGETED            0x0000=
-0003
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TARGETED_TYPE                  =
- 2:2
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TARGETED_TYPE_MIMC       0x0000=
-0000
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TARGETED_TYPE_MOMC       0x0000=
-0001
-+#define NVC36F_MEM_OP_D_ACCESS_COUNTER_CLR_TARGETED_BANK                  =
- 6:3
- #define NVC36F_SEM_ADDR_LO                                         (0x0000=
-005c)
- #define NVC36F_SEM_ADDR_LO_OFFSET                                         =
-31:2
- #define NVC36F_SEM_ADDR_HI                                         (0x0000=
-0060)
---=20
-2.50.1
+At the same time we could take this further and also provide a DmaRange typ=
+e,
+which also considers the size for those operations.
 
+DmaRange is actually something that I had in mind to implement subsequently=
+,
+because I'm not too happy with CoherentAllocation::dma_handle_with_offset()=
+,
+it's just too specific and insufficient.
+
+Given that, I thought there's not that much value in making DmaAddress a ne=
+w
+type. (Mybe saying "no specific reason" was a slight understatement. :)
+
+So, if the idea was to have from/to helpers, we can also do them on DmaRang=
+e.
+
+However, given that also the above only helps in a limited way for the case=
+s
+discussed in the other thread, I feel like the best option might still be t=
+o
+depend on 64-bit for Nova.
