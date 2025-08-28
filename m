@@ -4,106 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E2BDD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231E4D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54CF910EBDD;
-	Sat, 13 Dec 2025 12:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D4D810EBC6;
+	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="A8YBKcob";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TXpZAKSN";
 	dkim-atps=neutral
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9B110E253
- for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 19:57:42 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-27eca7297a7so7733705ad.1
- for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 12:57:42 -0700 (PDT)
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
+ [209.85.214.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AADA10E32B;
+ Thu, 28 Aug 2025 11:26:47 +0000 (UTC)
+Received: by mail-pl1-f171.google.com with SMTP id
+ d9443c01a7336-2488be81066so1821925ad.1; 
+ Thu, 28 Aug 2025 04:26:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759175862; x=1759780662; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1756380407; x=1756985207; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ILAe+VRfX0Fc+b5qLvaJzfBUJ4qz7jOpbJP92apYs7g=;
- b=A8YBKcobEtAIa5QOJq/qdapdzMpIZ8KLC5ncWD+GBNHFUyWwccYdsd6VmdFelqJnYb
- EoalWCr4vhAVTyeeAdj34gbv5SlOfjBxhCWcr5Z0QyhwqJvi8j6cUiiNVxXN+U4D8Ajw
- XqJ72YtDaWoTSiojaVmz3d2Jq7lWKY6Nw5C2/V+wuG0sawMcMl87zJTysTuqo9eRAScE
- yMq+Gnmw6CeEaMTjT8Vd8NTYoJtfg5an9LRdboVWnOPEbXIiWTolIsRpPilf06QWSBNw
- uvQ0vBKD3QMHKe9IdUwTg7hXxIXtrrQTO6lRpzfPp2unpxmIhWTnpfXfYSrhn6sD/Yh9
- 46Ag==
+ bh=TB49lARAguv+2novlKNuN0CFuq7GTPMP7W+cgTo2Hmc=;
+ b=TXpZAKSN/R9WGjSmiRuTzDr3tOBf358pOnECW2OJwtD1aLYKO7Da9UphAManmnWhBO
+ ri8mSB9gtWndmOoSYo6wKHiGjuQbLsv/QD/sZda8LbkZU0bxF7kdTdOZ69Gdpe+lyRdG
+ /YveO/ouaG2imX3PUAbIextgnFW6ti2DyLrptnIzw+7ggnXl9kN4HgJAwmnbR0foQ9Eb
+ IE3F52xDcFDwZcRWDqSgij1I5mOilj0tNpowd8x6OlqplhgKRBv2fWzwzZA7jFBjQmH4
+ WWN+tBQBWcLuZgV23MfvO/Hvn6W/wgYbBMG3AFgxTd0dleVylc4B3YN1U8oea4YpcXdV
+ MBNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759175862; x=1759780662;
+ d=1e100.net; s=20230601; t=1756380407; x=1756985207;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ILAe+VRfX0Fc+b5qLvaJzfBUJ4qz7jOpbJP92apYs7g=;
- b=X777jBsYR428TVdH7/MXjgZSDZp8n6/rFTCsfX2322HmvPb/q/I5eqKYE93jXBFZLD
- TYjca3+y9qRw4KHfFGVs41wZPGM06qbbF0NdY/TFrX35ER7OBeLIqzo0c3sfBf909XBN
- JXwK80mxIdlCP44My8aywaRhfbsCG7lt3xcTKAXWLN0fJ4EnOJua8sc21RyMRs1dvkcG
- 3OkIvYgi+MCtZP2TJ+lJOsALGwrxO3L3zJAj7n2QBiODzgZmYMY9pG04YxB/RwCueRUW
- T6pw6HdYOAVRyM+Uka2ncJB0xgqSddP7l3BE4FUTfRXLicMxcFuIYWvgdHRngbBi+bJQ
- YiJA==
+ bh=TB49lARAguv+2novlKNuN0CFuq7GTPMP7W+cgTo2Hmc=;
+ b=gyyuCS9LZqQSIOjPvo9xYu/MjXnDLujxeUoYlI+YgyPO/bLEZcNNG6S/gT79TblTJJ
+ aDPhfv8czUMU4uloa3OaUnBE6lSnIKnFWCbb2Z1uqsS+e0lL4asYU1wlD9ydLLcNZ9i2
+ YtVrqBsF9/L4zLsAXBoO6cVF5UASUZwFvgLnV07kyhaoUNKAn8mYeBJOW2bMsYGf0a97
+ k3Rf6w3qnjwVlMAl+0xZ2GUseSIb+fXBlgO9X+Qa5pegvqnfRjfmntzmOBq4bmV42RRN
+ 74nVOsACyoGuQ/c7q3AfrqlZrK5FlwzOSjaYHPu8jUyCbx78DGUt9GgqO8FPjUvc9NtY
+ qSkg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW5kT6HOBsbHOfcSEvFLbY90FQXd6oypOl+dqGrNrzjtFaUcsEp8hZvlwh4AhmCb7ndoNw+jg5f@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyXwMahVONCpiF67fi/dqR0DGCLxdOwteHAPITxZgGjeqBAUaqH
- k9t5N9cM790I59owZKwN/kRZ2pniucognic1MHWcpe4mRg9R3HrJlPL09/EFhoq34f7INS9r8jd
- 0yeAW42zsQWGhCHpgUOlWHObVk8aZz0E=
-X-Gm-Gg: ASbGncvZwnnhrtVMUALQ9A4MXcFRJloHxOopv4uFeZNOx1kJ2qWFgP/MiyvdulfAha3
- HMmxxWxp82khbt/dIUUTstoUg7Z2fOYpj1HXBBn0hH+uvKR55MMfnbG8Vmo7u+ireHm7oqOEPJJ
- q0B0dFkLEpLSAePLTPGDaLSBUrmFh4PN1klyk4n+S3tr1kWGdu7fuD6VKf4SyGkkqGwdt41q5x2
- uh7ZdvL7wF/O0dF5BL9GVAAAuKMt6Cwp6AfW4879SHl8QKSjkT8vAmlCCJ0VRZbDrim/g+NQjG7
- Pi51RwH7jPl8S7AtLMn+S1RP2GwUR0mKVyPs
-X-Google-Smtp-Source: AGHT+IGYfATe7mmNTC4A+jEkwD5MzSelb1z0lWF68kS0t/NWgoEWKg6nD9jI4X3FoSNWbDyeH2i7qWWFajxt0X+1x5w=
-X-Received: by 2002:a17:902:d501:b0:277:c230:bfc7 with SMTP id
- d9443c01a7336-27ed4a5d82bmr113039375ad.11.1759175862141; Mon, 29 Sep 2025
- 12:57:42 -0700 (PDT)
+ AJvYcCWwo8REp8Q6og2a3dpPBtS9+tKuC87krw4ffFNjuCBKq1tu1zoxYlRVOPtTOeFrreDUcm8aY4XNKCE=@lists.freedesktop.org,
+ AJvYcCXt5t2Gneu/35MyvpBKEAD1sDSRv/xoHZBBUOpfa6wiceJ6ku9d6CCUhvuGE5npSXNTmTX9XCP8zQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzNTPY1xWLM4JMEMoyly88UehDVOj/ryp0R+rHXbnSTwpU95+ET
+ yIA3AdEj/a511PvtbVClL9sCTsX/uUrig4FymMDP4z/2NkIZSiMgwqUHf6eb9LMe+Jguq9zT2bW
+ s1yKYUS6s4NUfbcLbV1RF3QYW+JeyiBw=
+X-Gm-Gg: ASbGncvoTHY0plk7VomRYemQolVqq9REkSrqTjgYyxh7Qm12JfZRT8kqkQ04qg1wTFo
+ 5PHTHs7XqbjyC2NuZZmb4sKz8PB4/So1yIWktrGgxZgWMdMzMtlisAzw0OmtUMp/wnzFdgkSk0o
+ BXGvjRyar08Bd6YWp8rjGOQfu4JTKOIlcLgnM1/wHTAOR5yu3EjY/hoEnU54WVO6cgHXTX7rf2e
+ VdtpQxK6ZWy6VwYHdHOtM9955NN//CyQLot+XDlziTrq9ToIwBWaX1JNATO01sgTAxsQqWj9S8O
+ FdtQtl8Lh7CHPgJNSChH8eWiwX6KWGVxo6i89iqlh6gqqdE=
+X-Google-Smtp-Source: AGHT+IHHmDIHqxhO7l79GLUkJwaWQ7dZNpLn1zpLg1iQnq0+hdNtOQx1/t6zWJjm/sSiYUD2aH3gJhMn/p7bQf7ZDaE=
+X-Received: by 2002:a17:902:f60d:b0:248:847b:8906 with SMTP id
+ d9443c01a7336-248847b8b62mr52656055ad.11.1756380406614; Thu, 28 Aug 2025
+ 04:26:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
-In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
+ <20250826-nova_firmware-v2-2-93566252fe3a@nvidia.com>
+ <9adb92d4-6063-4032-bf76-f98dcfe2c824@nvidia.com>
+ <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
+In-Reply-To: <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 29 Sep 2025 21:57:28 +0200
-X-Gm-Features: AS18NWCM9kbfT7mylXQdGB8ZyL_b6RmUa1M3XR6zo5RoraO0TPm_DutHWVTmZ7c
-Message-ID: <CANiq72m=TJMWFZhHSSU_-A3+tr5h8vA+X+oKb9TcieXQ6gHyJg@mail.gmail.com>
-Subject: Re: [PATCH v2 00/19] rust: replace `kernel::c_str!` with C-Strings
-To: Tamir Duberstein <tamird@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+Date: Thu, 28 Aug 2025 13:26:34 +0200
+X-Gm-Features: Ac12FXzy24K1wGe7TQOMJcL6Fdf60t07YBP-70leUEy1vm3L-w174pbiaRtsL7M
+Message-ID: <CANiq72=nGbziZCKt=AneE_vXw76i=+td0dSVfbOJ8kJ9eYHw9w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] gpu: nova-core: firmware: add support for common
+ firmware header
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Breno Leitao <leitao@debian.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Alistair Popple <apopple@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,12 +103,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Sep 25, 2025 at 3:54=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
- wrote:
+On Wed, Aug 27, 2025 at 10:47=E2=80=AFAM Alexandre Courbot <acourbot@nvidia=
+.com> wrote:
 >
-> Changes in v2:
+> However, `fw_start + fw_size` can panic in debug configuration if it
+> overflows. In a release build I believe it will just happily wrap, and
 
-For future reference, this is v3.
+In the kernel, it is a panic in the default configuration, not just a debug=
+ one.
+
+We have debug assertions too -- and those are disabled by default, but
+they are separate from the overflow checking, which is the one enabled
+by default.
+
+So, any use of those operators is limited to cases where one knows,
+somehow, that it will not overflow. And e.g. user-controlled inputs
+cannot use them at all.
+
+So, conceptually, something like this:
+
+  - Static assert if the compiler knows it cannot fail.
+  - Build assert if the optimizer knows it cannot fail.
+  - Unfallible (like the possibly panicking operators) if the
+developer knows it cannot fail.
+  - Fallible/wrapping/saturating/... if the developer isn't sure or it
+simply cannot be known until runtime. User-derived inputs must use
+this option (or rarely the unsafe one).
+  - Unsafe if the developer knows it cannot fail and the other options
+are not acceptable for some reason. Ideally paired with a debug
+assertion (the compiler adds these already for many unsafe
+preconditions).
+
+In the past I requested upstream Rust a way to have a "third mode"
+("report and continue") for the operators so that it would wrap (like
+the non-panicking mode) but allowing us to add a customization point
+so that we can e.g. `WARN_ON_ONCE`.
+
+That would be ideal, because it is a nice middle ground that is not as
+punishing if a developer gets it wrong, especially for "normal users",
+where panics typically mean lost reports etc. And other kernel users,
+like cloud operators, can keep the panicking mode.
+
+As for discussing no-panic, sure!
 
 Cheers,
 Miguel
