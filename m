@@ -4,78 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C33CD5B161
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B915FD5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FBF510EAB0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B890710E9F1;
 	Sat, 13 Dec 2025 12:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="GV5p2vey";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="dQPFiFEE";
 	dkim-atps=neutral
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
- [209.85.214.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCB9010E462;
- Mon, 14 Jul 2025 11:02:49 +0000 (UTC)
-Received: by mail-pl1-f180.google.com with SMTP id
- d9443c01a7336-2352400344aso37316535ad.2; 
- Mon, 14 Jul 2025 04:02:49 -0700 (PDT)
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com
+ [209.85.216.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C81E110E1D4;
+ Thu, 28 Aug 2025 11:45:55 +0000 (UTC)
+Received: by mail-pj1-f49.google.com with SMTP id
+ 98e67ed59e1d1-325006ff07eso77467a91.1; 
+ Thu, 28 Aug 2025 04:45:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752490969; x=1753095769; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=zY2RufSpt2fWThIm+JO9PtJKALSoq3fBtnelRxK+RwU=;
- b=GV5p2veyqOdnRyIJfSoJWThznMajp8Fuct5Fsu/zshGxPyGlPkVjEvWdMO6+Z7rrc5
- hyO3lE4Ace4AEPt4EL0/w9ERXIOgRJwWHW37do4a51kh8P8b6Ihuh8rkGV02gq2TEhOu
- wuCkcqiUvDcnUHJ6VMgfnM7W1H40QrWJr6C4OkT+LvnlV/8sNKEgbya60TfQzlcHAmrK
- XNHw+MVWlxAJuTZura+YHmYBHPSk3TqYHQsMWdYBt5bj2rLRQiK8+I37bzrMrLO+EW9O
- v1HJs436jAku9rkLLgJeE4ZkAVx3HItAZ8FBTy6thkzbgbVYpoRdVSZbYO5Z4lzW8U4m
- PcDQ==
+ d=gmail.com; s=20230601; t=1756381555; x=1756986355; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=I2H56yO/8NFGXQtE7p7bHZ/o1E70dyX3AMAnCJlBt6w=;
+ b=dQPFiFEE5trpogGtFcs+sw4czMozzXgKuhR/Mz5mNVeIwKmOB0PHHAvV9bLf98oYbb
+ RZ+oxHSY0PSFM72xzTveyPEZRdm2nbn3m4WYViQwDNSsz6gaox9rW57GAd0vX8nNu5wU
+ AhFNGUcuOz88GuZu7Wq1yn9hEQAhcrsMR+a3JH4G/fWNvUFoTAioaJcw8czbw/E3DRLy
+ oMokxgcVmaf3yCjjgD4QflUQSLRkjw02RnMsyGvVUwICGpg2pfPpxt+u2cx58nh9gFe4
+ CmBxWaEFiBIBfXHFVUGGFP7L9NpmqPh6LPFtsJJEYmGTEVDHK5dQ4V3wgeb3wNGIisk3
+ cKPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752490969; x=1753095769;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=zY2RufSpt2fWThIm+JO9PtJKALSoq3fBtnelRxK+RwU=;
- b=tsEHs1dviU8A0Bd+m+Pww+NH9ft1EX6mJhAUH2eSTWDgLKvT+ycSJQXXcOfG1knIgy
- sWgsvk02aGL658v/FuXjsm966q468wKtZV9wn4FaRjej5MV/U9TG1zT+gBusqduGRnjk
- z/p9EoXAvaJ5EpIVbY+AQf2AXfl440vRzvZfohHxiPFy22DzGsMklLt4C7qf5ezQRb7w
- RHxKf/ykyIoRPfx4z6TJhushlrqaHyPEsccAGkc0s0jV5MfY99b5fKRMIqntR/U5x8em
- VhLFLdKEheE7IbftK6mEeij/lLViBWx25m6i+ON73nRSnk8Q09j32qylAL1Qm8iQoTTa
- xSGg==
+ d=1e100.net; s=20230601; t=1756381555; x=1756986355;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=I2H56yO/8NFGXQtE7p7bHZ/o1E70dyX3AMAnCJlBt6w=;
+ b=LqTVXMFEvigGbaEELmR9ef4RlEehGwqI6Is8Dgqv95gUgwQWlxfI1QB4rfYVbeJ5si
+ u5vtW59tqVV1dYbHabLKiUR5FQY2FncnyHvlqOn9uBIDAllBCEXilXSfB4PulJD7fZ9p
+ txq7hr19NTW8UfoVbLNr+GodL6G2ls7J4VLrwSOw0rg82t/C+9XbrNgm7Y6qozesZPgj
+ kmCRelgyeE+0EBI76ddGKj8N4jAOUiH2lcr7YN8EQIdegqOBoc4mYqH16TDAZ3QwS7Ax
+ moOLwP6h3Kak9qe4XzpbWmH4M9AX547LPQ9aiV1bJd+vwRqeJekp30+Zy0/pEMQ/fbnx
+ uMAw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUb1y5EZ3qm/6BhtPM4SYX7/u1B16JwFVb1cbJF5M8i/7YD1Vj+NRNsL40X5k8MzHOMBbhjq8yRiE8=@lists.freedesktop.org,
- AJvYcCXXbNMai/0pE7FVc2bAx+qZiCFnKK5O2Bdb2GibwuWB+1Xqzd/87fIDkYD/+oh9CYMCSwZZAygvJQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyz3ny3+el4EfOASyCY/WArSlk7KCkRJK9A0kGLEUs0I+Gsk4rN
- YF4oLn4xnD3Azu1/aizou0v+H6gMUopOcl5l8+dOOYAAFbwWd+q0cL1s
-X-Gm-Gg: ASbGncu1TIAUajFhD+y75aQi2NfLXzvJjkMMHjJx3811Nr/Z4I9z7yBVaons8fK2C/h
- PJT6nCB3b1/+ru/DIyMcqG5Wn8rP58hzlEsh6TaMcS4AkwGTtCye2eRJFW8pP6MtPva3XHq7ott
- tYDSrq5XEUf4dA2jFzKXM6TmlNTAQ0DsnXmyW/26Euewb8Pky8H1oZX6Fgm5BXiRvWtB6Px6mCQ
- pEOLfAfNmbLcVGdiO4/HfFcIkglAtAK2y7TNrdGEDTbwGSBH/znnIyPejikRc1p8yvQtSssV+/A
- ecCqOBffsNLS3fMU3aJy3d/Ohg3Ly1NGAy5dKWh338sYOLKiWO/KMl/+L0VSR4Rb4LKQPbX8QEh
- phNJxhPqFnBZoLrW1/+D/02XO
-X-Google-Smtp-Source: AGHT+IG6MvbACALZhHxOleL2gcaqp+TEs087W9l8VZmEIwt1vhqvLmUpApCU4JU0NP+hWfxq2ez7lw==
-X-Received: by 2002:a17:902:e88c:b0:238:d19:864b with SMTP id
- d9443c01a7336-23df093eba5mr200332105ad.41.1752490968886; 
- Mon, 14 Jul 2025 04:02:48 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23de42ad2fesm95136035ad.70.2025.07.14.04.02.48
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Jul 2025 04:02:48 -0700 (PDT)
-From: Rhys Lloyd <krakow20@gmail.com>
-To: acourbot@nvidia.com,
-	dakr@kernel.org
-Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
- airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] gpu: nova-core: vbios: change PmuLookupTableEntry to relax
- alignment
-Date: Mon, 14 Jul 2025 04:02:23 -0700
-Message-ID: <20250714110229.141221-1-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
+ AJvYcCVnMzjgIummVbDCp9QK8DofnOLb/+LcOmppIxtlPpPQmE9TWmcWpxRa3e1+/6paxVTSnNlXvoTufw0=@lists.freedesktop.org,
+ AJvYcCXAebKHvaJYmMM6KqRHda/TDhrU0Wyl/a71wLC9mOMA12QYfOqCkcphyoEk9X4IZ4GQhZkqDgwqOg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1cqKdOuJ+nJiSFshqkicr7EJ1PiLgtfdt3yHj3tUBe5TY2Xhs
+ X6cQfDnZXwAO+9W2CEJnXKbro0gGi48MPd4fwr93YOMj6W9+rbj6GkFyPiF7bNK2vseHr5eCTvW
+ IVJskXuF0lNj1kCoX8JydoOcE42ycnvY=
+X-Gm-Gg: ASbGncu5qFtNiuSX2k7vj1sUBupjZad/mbNTyFOcNQ2u6f3zB1kTRXWedm47UXWrqXm
+ vzaT9w7Da4nSUa7GjyzCQUTRO8rhvYSQQ/bxH4Fp8en64Zletq01wCAj9KyZawXxDoIQLMWoAM2
+ lQ3NGsMnjlWub9val/YccOCdOMVA4HuN88xuHQTGFNoPC9dN24qIthSuDxYwI9iech63rY04grz
+ j8QIOc/NUPmf/G2z6jRj762faOSZokWnslmhYjQdXFwkQs5Tqe7dmyUPVR3TQkUN+vlZWmknK+Q
+ voTy822yl/VMuwLQRIIk+L0j+aPNkt/7Ci/3
+X-Google-Smtp-Source: AGHT+IG1ihsWTuJC99RCEFetl0OaKKf7I0MSOaGMg4ugbXGYCXUCMWGrBO89xxuGWPNGJExxHbx0h7dAYm9Df/5VgN0=
+X-Received: by 2002:a17:90b:4d01:b0:31f:3d6:6d98 with SMTP id
+ 98e67ed59e1d1-32515ee8b50mr16448907a91.5.1756381555273; Thu, 28 Aug 2025
+ 04:45:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
+ <20250826-nova_firmware-v2-1-93566252fe3a@nvidia.com>
+ <DCE0VZXSP39I.FKGHKONUTB5L@nvidia.com>
+In-Reply-To: <DCE0VZXSP39I.FKGHKONUTB5L@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 28 Aug 2025 13:45:43 +0200
+X-Gm-Features: Ac12FXzDZTEvSN_jSpG0n7-NSUbagH20PpVfLwEy9ehcrmoj8GVXqea9N91DQ_U
+Message-ID: <CANiq72=Z26jzVMbGfqL-_Wq8boX5qApmPCVGA1D6cwzOxgWWLg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/8] rust: transmute: add `from_bytes_copy` method to
+ `FromBytes` trait
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
+ Timur Tabi <ttabi@nvidia.com>, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,67 +101,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Instead of the data field containing a u32 and changing the alignment,
-change data to [u8; 4] and convert to u32 with a helper function.
-Removes another magic number by making the struct the same size as
-the data it needs to read, allowing the use of
-`size_of::<PmuLookupTableEntry>()`
+On Thu, Aug 28, 2025 at 1:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> We got 3 Reviewed-by on this patch - Miguel, are you ok if I merge it
+> together with Christian's `from_bytes` patch, since they are closely
+> related?
 
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
----
-Changes in v2:
-- get_data helper function renamed to data
+If you are taking this series this cycle, then sure!
 
----
- drivers/gpu/nova-core/vbios.rs | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 5b5d9f38cbb3..339c66e63c7e 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -896,21 +896,26 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
- struct PmuLookupTableEntry {
-     application_id: u8,
-     target_id: u8,
--    data: u32,
-+    data: [u8; 4],
- }
- 
- impl PmuLookupTableEntry {
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 6 {
-+        if data.len() < core::mem::size_of::<Self>() {
-             return Err(EINVAL);
-         }
- 
-         Ok(PmuLookupTableEntry {
-             application_id: data[0],
-             target_id: data[1],
--            data: u32::from_le_bytes(data[2..6].try_into().map_err(|_| EINVAL)?),
-+            data: [data[2], data[3], data[4], data[5]],
-         })
-     }
-+
-+    /// Construct a u32 from `self.data`.
-+    fn data(&self) -> u32 {
-+        u32::from_le_bytes(self.data)
-+    }
- }
- 
- /// The [`PmuLookupTableEntry`] structure is used to find the [`PmuLookupTableEntry`] for a given
-@@ -1037,7 +1042,7 @@ fn setup_falcon_data(
-             .find_entry_by_type(FALCON_UCODE_ENTRY_APPID_FWSEC_PROD)
-         {
-             Ok(entry) => {
--                let mut ucode_offset = entry.data as usize;
-+                let mut ucode_offset = entry.data() as usize;
-                 ucode_offset -= pci_at_image.base.data.len();
-                 if ucode_offset < first_fwsec.base.data.len() {
-                     dev_err!(pdev.as_ref(), "Falcon Ucode offset not in second Fwsec.\n");
+Thanks!
 
-base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
-prerequisite-patch-id: d80f92d314a0693d4c89ffb7810d9ab6990336fa
--- 
-2.50.1
-
+Cheers,
+Miguel
