@@ -4,71 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 338ADCA0FF2
-	for <nouveau@archiver.kernel.org>; Fri, 29 Aug 2025 02:17:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4841BCA0EED
+	for <nouveau@archiver.kernel.org>; Fri, 29 Aug 2025 02:17:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF73610E1EE;
-	Fri, 29 Aug 2025 02:17:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JFn4yMSU";
-	dkim-atps=neutral
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D655810E090;
- Fri, 29 Aug 2025 02:17:42 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-afefc7be9d4so65605366b.1; 
- Thu, 28 Aug 2025 19:17:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1756433861; x=1757038661; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=2zNq7nTrPyuvfyWDRfXFepylMjeAYocF2SPbgXmN+NY=;
- b=JFn4yMSUJ77p6/W25emwJ6KEmhoREUdb51V/vN4grIR0xLEtgybOZpBawFbNLFKTNq
- z8tdQ6v+JUPDD3gS3TbzxzpxAllelsVbLYI09EZAzG3gR1dJpWik1grXk2jQ9SHuywnc
- iQL4z1kI2NDWnGH6+y5HcaEUVeeys9cABWg/MKJEgGmowoqmSX0h2jExPLDABLwrYGjz
- NyM2GLZ+FGqmF0kIL5Hfrgn76YfAC8DMNKHmV0NfYwEDe07GKwtF868faHmY80BRCCkf
- mMh+wgAAkBda+b3spYe9WdVumFeROCTSP4US3LC9PvWEuB3tZELX8iWaryKXHI2AblUB
- dAYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1756433861; x=1757038661;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=2zNq7nTrPyuvfyWDRfXFepylMjeAYocF2SPbgXmN+NY=;
- b=tYGkXZLPCh47N8eZlquXmaV6WsVuBtr0NuEI645GINdhME1sJnKWNrvbZWrg3t9rJD
- PqMDsfUm7CjEIkv0Cgl6YpO8KU4+9RdrrPgFHYQGZbGXKLQ+M//EpqVuHKDryr6yTYjZ
- b3YBM/jJ5rmrzEWCJfE+QozGK1xEetTGYUFQBOAgjCwUROT3Eld2ZdZIXqE4cy0GA1BD
- uDKsyqsY2FIkTuuLO+1ew47JarhnImgJVXrdw5vjxC0lGSsOFuXUG4XF0Wqc2upQ17z8
- 9AgMhgCQ41pJvKNDMDQO6DIKaR0O4lri2GxQvVXBltu1ys6tdlUG9enaLMM8cx0TZe9J
- uBxQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXke+YwMn8Mfdk87DJahx5q5FNj81a0MONLuOgLH1P2X+F7FAgfkivCmzelvU3hQyJRBOtvfUN+@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw1f7kMD6tNv0LMo9uS2iIHGUdFeeuQtRmrtQwSEpFl7z5Ifk4T
- MMUd9TrGl499b65XiYpwd63C19Vn4x4olWmf8/zh/ZAQNcU0tpvauk4aHns+fiyHS8t51H1CEe7
- D5hWm96Xd0pigA7GJ7MJZDUzWNFP5ztg=
-X-Gm-Gg: ASbGncsTLSR07PWfWOp+Sp3or2NNS3A3meHqJguKPwAhyBC/olF/Rd4d5OqtyBfQwZV
- MVVGZurnIfqsy8/kcmVMA0Gsl0Tq0fk+j06Tbtu+IhWcc0ssHaChZWqX6l54ctAOnKsJAZLZh7I
- EosWKQO+j0vu6C1q80LGh4IByK+9Llysse/BMsSi8N9oVWDc7zEkr/X7AFApRa+pdXNeqUlWfpO
- MQw2Q==
-X-Google-Smtp-Source: AGHT+IHXFQhjHCz4WRh3Z6nwd1kt85DmecDfzWJx/U2I59eH5vdudxcMKiNPeYrOPOCwuNRjHx4BglqZ4CqT80/chds=
-X-Received: by 2002:a17:907:e895:b0:afe:d499:a450 with SMTP id
- a640c23a62f3a-afed499a769mr567379466b.64.1756433861163; Thu, 28 Aug 2025
- 19:17:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250828205517.1553768-1-airlied@gmail.com>
- <CAOFGe94kJQfGirjjyDCAD-Ryc7N=U4exd10rTWy_YhiemkZW3Q@mail.gmail.com>
-In-Reply-To: <CAOFGe94kJQfGirjjyDCAD-Ryc7N=U4exd10rTWy_YhiemkZW3Q@mail.gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C602410EB28;
+	Fri, 29 Aug 2025 02:17:51 +0000 (UTC)
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C3FD10EB28
+ for <nouveau@lists.freedesktop.org>; Fri, 29 Aug 2025 02:17:50 +0000 (UTC)
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-226-Z6gLkaVyOmml4Mc3alxCVA-1; Thu,
+ 28 Aug 2025 22:16:40 -0400
+X-MC-Unique: Z6gLkaVyOmml4Mc3alxCVA-1
+X-Mimecast-MFC-AGG-ID: Z6gLkaVyOmml4Mc3alxCVA_1756433799
+Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id D5DFD195609D; Fri, 29 Aug 2025 02:16:38 +0000 (UTC)
+Received: from dreadlord.redhat.com (unknown [10.67.32.4])
+ by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 7C1BF19560B4; Fri, 29 Aug 2025 02:16:36 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 29 Aug 2025 12:17:30 +1000
-X-Gm-Features: Ac12FXwILmhT4Tjt0Pef5kwUx2JqQ_VQ8dGk_ebDd7LFjxOhqYVeL3eMfC6KmUk
-Message-ID: <CAPM=9tw8fsJHEBJbahACLqmjVOFxLqx1LeLFosUu-EdAAYyCYA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] nouveau: fix disabling the nonstall irq due to storm
- code.
-To: Faith Ekstrand <faith@gfxstrand.net>
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- dakr@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+To: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org,
+	dakr@kernel.org
+Subject: [PATCH 1/2] nouveau: fix disabling the nonstall irq due to storm
+ code. (v2)
+Date: Fri, 29 Aug 2025 12:16:32 +1000
+Message-ID: <20250829021633.1674524-1-airlied@gmail.com>
+MIME-Version: 1.0
+X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: fwu5bBRAKaoU29MRwsiNbgfGwZdyOD-gf5yU8EPoXSg_1756433799
+X-Mimecast-Originator: gmail.com
+Content-Transfer-Encoding: quoted-printable
+content-type: text/plain; charset=WINDOWS-1252; x-default=true
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,25 +59,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-> > +}
-> > +
-> >  int
-> >  ga100_fifo_runl_ctor(struct nvkm_fifo *fifo)
-> >  {
-> > @@ -599,6 +604,7 @@ ga100_fifo = {
-> >         .runl_ctor = ga100_fifo_runl_ctor,
-> >         .mmu_fault = &tu102_fifo_mmu_fault,
-> >         .nonstall_ctor = ga100_fifo_nonstall_ctor,
-> > +       .nonstall_dtor = ga100_fifo_nonstall_dtor,
->
-> You're missing the corresponding update in ga102.c, which is what
-> actually covers most of the drivers.  Honestly, I'm not even sure why
-> there are two files. They look identical to me.
+From: Dave Airlie <airlied@redhat.com>
 
-Indeed, the r535 change is all that really matters since it's the GSP
-path, and we shouldn't use non-gsp on these paths.
+Nouveau has code that when it gets an IRQ with no allowed handler
+it disables it to avoid storms.
 
-I've fixed it up anyways in a v2.
+However with nonstall interrupts, we often disable them from
+the drm driver, but still request their emission via the push submission.
 
-Thanks,
-Dave.
+Just don't disable nonstall irqs ever in normal operation, the
+event handling code will filter them out, and the driver will
+just enable/disable them at load time.
+
+This fixes timeouts we've been seeing on/off for a long time,
+but they became a lot more noticable on Blackwell.
+
+This doesn't fix all of them, there is a subsequent fence emission
+fix to fix the last few.
+
+Fixes: 3ebd64aa3c4f ("drm/nouveau/intr: support multiple trees, and explici=
+t interfaces")
+Cc: stable@vger.kernel.org
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+
+---
+v2: add missing ga102.
+---
+ .../gpu/drm/nouveau/nvkm/engine/fifo/base.c   |  2 ++
+ .../gpu/drm/nouveau/nvkm/engine/fifo/ga100.c  | 22 ++++++++++++-------
+ .../gpu/drm/nouveau/nvkm/engine/fifo/ga102.c  |  1 +
+ .../gpu/drm/nouveau/nvkm/engine/fifo/priv.h   |  2 ++
+ .../nouveau/nvkm/subdev/gsp/rm/r535/fifo.c    |  2 +-
+ 5 files changed, 20 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.c b/drivers/gpu/=
+drm/nouveau/nvkm/engine/fifo/base.c
+index fdffa0391b31..6fd4e60634fb 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/base.c
+@@ -350,6 +350,8 @@ nvkm_fifo_dtor(struct nvkm_engine *engine)
+ =09nvkm_chid_unref(&fifo->chid);
+=20
+ =09nvkm_event_fini(&fifo->nonstall.event);
++=09if (fifo->func->nonstall_dtor)
++=09=09fifo->func->nonstall_dtor(fifo);
+ =09mutex_destroy(&fifo->mutex);
+=20
+ =09if (fifo->func->dtor)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c b/drivers/gpu=
+/drm/nouveau/nvkm/engine/fifo/ga100.c
+index e74493a4569e..81beae473122 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga100.c
+@@ -517,19 +517,11 @@ ga100_fifo_nonstall_intr(struct nvkm_inth *inth)
+ static void
+ ga100_fifo_nonstall_block(struct nvkm_event *event, int type, int index)
+ {
+-=09struct nvkm_fifo *fifo =3D container_of(event, typeof(*fifo), nonstall.=
+event);
+-=09struct nvkm_runl *runl =3D nvkm_runl_get(fifo, index, 0);
+-
+-=09nvkm_inth_block(&runl->nonstall.inth);
+ }
+=20
+ static void
+ ga100_fifo_nonstall_allow(struct nvkm_event *event, int type, int index)
+ {
+-=09struct nvkm_fifo *fifo =3D container_of(event, typeof(*fifo), nonstall.=
+event);
+-=09struct nvkm_runl *runl =3D nvkm_runl_get(fifo, index, 0);
+-
+-=09nvkm_inth_allow(&runl->nonstall.inth);
+ }
+=20
+ const struct nvkm_event_func
+@@ -564,12 +556,25 @@ ga100_fifo_nonstall_ctor(struct nvkm_fifo *fifo)
+ =09=09if (ret)
+ =09=09=09return ret;
+=20
++=09=09nvkm_inth_allow(&runl->nonstall.inth);
++
+ =09=09nr =3D max(nr, runl->id + 1);
+ =09}
+=20
+ =09return nr;
+ }
+=20
++void
++ga100_fifo_nonstall_dtor(struct nvkm_fifo *fifo)
++{
++=09struct nvkm_runl *runl;
++=09nvkm_runl_foreach(runl, fifo) {
++=09=09if (runl->nonstall.vector < 0)
++=09=09=09continue;
++=09=09nvkm_inth_block(&runl->nonstall.inth);
++=09}
++}
++
+ int
+ ga100_fifo_runl_ctor(struct nvkm_fifo *fifo)
+ {
+@@ -599,6 +604,7 @@ ga100_fifo =3D {
+ =09.runl_ctor =3D ga100_fifo_runl_ctor,
+ =09.mmu_fault =3D &tu102_fifo_mmu_fault,
+ =09.nonstall_ctor =3D ga100_fifo_nonstall_ctor,
++=09.nonstall_dtor =3D ga100_fifo_nonstall_dtor,
+ =09.nonstall =3D &ga100_fifo_nonstall,
+ =09.runl =3D &ga100_runl,
+ =09.runq =3D &ga100_runq,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c b/drivers/gpu=
+/drm/nouveau/nvkm/engine/fifo/ga102.c
+index 755235f55b3a..18a0b1f4eab7 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/ga102.c
+@@ -30,6 +30,7 @@ ga102_fifo =3D {
+ =09.runl_ctor =3D ga100_fifo_runl_ctor,
+ =09.mmu_fault =3D &tu102_fifo_mmu_fault,
+ =09.nonstall_ctor =3D ga100_fifo_nonstall_ctor,
++=09.nonstall_dtor =3D ga100_fifo_nonstall_dtor,
+ =09.nonstall =3D &ga100_fifo_nonstall,
+ =09.runl =3D &ga100_runl,
+ =09.runq =3D &ga100_runq,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/priv.h b/drivers/gpu/=
+drm/nouveau/nvkm/engine/fifo/priv.h
+index 5e81ae195329..fff1428ef267 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/fifo/priv.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/fifo/priv.h
+@@ -41,6 +41,7 @@ struct nvkm_fifo_func {
+ =09void (*start)(struct nvkm_fifo *, unsigned long *);
+=20
+ =09int (*nonstall_ctor)(struct nvkm_fifo *);
++=09void (*nonstall_dtor)(struct nvkm_fifo *);
+ =09const struct nvkm_event_func *nonstall;
+=20
+ =09const struct nvkm_runl_func *runl;
+@@ -200,6 +201,7 @@ u32 tu102_chan_doorbell_handle(struct nvkm_chan *);
+=20
+ int ga100_fifo_runl_ctor(struct nvkm_fifo *);
+ int ga100_fifo_nonstall_ctor(struct nvkm_fifo *);
++void ga100_fifo_nonstall_dtor(struct nvkm_fifo *);
+ extern const struct nvkm_event_func ga100_fifo_nonstall;
+ extern const struct nvkm_runl_func ga100_runl;
+ extern const struct nvkm_runq_func ga100_runq;
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c b/drive=
+rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
+index 1ac5628c5140..b8be0a872e7a 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/fifo.c
+@@ -601,7 +601,7 @@ r535_fifo_new(const struct nvkm_fifo_func *hw, struct n=
+vkm_device *device,
+ =09rm->chan.func =3D &r535_chan;
+ =09rm->nonstall =3D &ga100_fifo_nonstall;
+ =09rm->nonstall_ctor =3D ga100_fifo_nonstall_ctor;
+-
++=09rm->nonstall_dtor =3D ga100_fifo_nonstall_dtor;
+ =09return nvkm_fifo_new_(rm, device, type, inst, pfifo);
+ }
+=20
+--=20
+2.50.1
+
