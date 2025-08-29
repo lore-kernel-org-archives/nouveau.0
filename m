@@ -4,77 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF30D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EC3BD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F039C10EC32;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA4DC10EC44;
 	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="k3s9bARV";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uk5F46ny";
 	dkim-atps=neutral
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
- [209.85.210.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB7210E0C5
- for <nouveau@lists.freedesktop.org>; Mon,  4 Aug 2025 14:16:38 +0000 (UTC)
-Received: by mail-pf1-f172.google.com with SMTP id
- d2e1a72fcca58-75f7fc34691so259616b3a.1
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 07:16:38 -0700 (PDT)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF33C10E204;
+ Fri, 29 Aug 2025 10:01:20 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-32326e6fa7dso172890a91.3; 
+ Fri, 29 Aug 2025 03:01:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754316997; x=1754921797; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1756461680; x=1757066480; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=JgDAHWFhVwGpRNKhb0AEdmDTrFYe+pHDBd5Ka/1/dW4=;
- b=k3s9bARVFAC0mdHg9CpsKzWF/7hwK70QB61AKXmdyp6GojrI/33GHro6O4/ImA/6IN
- NWfzwiMPvxmYESkth4jeisNdmIKAW/j/9s/fJ71NN50RTGvIowbRyXcqb63fb6uDipgd
- 6ofh5/y2YC0JtZ2a2YJzuddPN9o3RcYwnyGFpSRooJu6AmObRbQYDAo7gUv1jDUFbZ5T
- +I/iSW7fAABu6p+RpRMXK0hAaNLtMORVsheWMCI36KsnyqSDF5M0Lvp2BomVw+zZw59u
- Q9lH1UeOIkycHOA29HOw0GdlpAtzTWtDGQBiW0hc8SEI29z9ojQF8b6lKoqioJeasGw3
- Af9g==
+ bh=oRH8f0w1otAreNEGbebgngaGLPIDb4bCYEPCriBHAFA=;
+ b=Uk5F46nyTt0YGsYdinnXIvrNPDv6cwq68KR3jfjsMlCNYgR3SzL8qoD2kHUImIVQkE
+ BnvwuV9HawQm1XTOdPDtiaXPR6GDynN2z3aYB6mo42j/raQrw335sTU1w6HxMhjtmjsu
+ JEQlVzyECCzoloIK6gefn8I8kmRUsBlDaJ28Q1tgCCakkDYLykNMA45/Jmp2um3PSiK3
+ SvaZzQZFkKXQ45HFydYwX7xyMTEpSGIm7wdsG9bD6K8yhdd0ChfJt1LVhAWGrh0qt7Fk
+ 9XHAhoyEoMQ/4fD5KYO3M8IUz47n+XGi8pflfpBmlFCmVZKw5hCqCD2K6cffxJzrU23K
+ jcvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754316997; x=1754921797;
+ d=1e100.net; s=20230601; t=1756461680; x=1757066480;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JgDAHWFhVwGpRNKhb0AEdmDTrFYe+pHDBd5Ka/1/dW4=;
- b=hKfaXuGmniTDwpSBuNCBWPP8M6yt7lRaWTb5+QqFAAiheEs8Wd1LKVthei9DIbiBbz
- VIqcJnOPQ3DJVm8R5dnvY2f39K8wy665DQnZxl1EYvcqI/UragBicXi4tSf2DOKkdtUc
- QiyLa+Qh6iGvaVDXlpc4NGXcqT9hR1mcCNZwCTTQYgG6mGCTBnziTNaP3dmJHAcyHbFU
- fojAD5Ey2BPQRx/9jnAoF7Y16gQueUKovs0ythHyny95t5AV+o7m1g79papcSebLyzNJ
- bgREK2i6qmrWTX8Pg35p51tO94kfeGOF+bWlDRgzw5YvqYc67efyrsur01+k/x7tJa+e
- XM1A==
+ bh=oRH8f0w1otAreNEGbebgngaGLPIDb4bCYEPCriBHAFA=;
+ b=C6fiVNzVzs8d0fOt1rXchTgX2ltbVtot/HgiuMfL9AA3jMI5V5xlz1yVDVBIh7emGH
+ c7MQv64yQZtQb1ltardCDcYjviy8MCY4Y/fjneKXWylgocgAeUOYg4q0o3LYRvtZWST+
+ 1emu5aJ+DkrDfPaNtz4Nb3XAnQqwGt6GqYtMmWD0zKIeIB3msROZb1Y6AWBRmCewFC7p
+ pICNhQ8jKEBBBvhDeJHwhqlZZJ2W8Gj5jy+TWkOn/kBynXgI0Uu0qAqTDwpSxIBPL3r5
+ vt4yqhGjSTFaVg2BIqi7u9M6Of0+nhnbBYPhUZ+ZgrRvcaLbI1WERdMLyjzpgGbYGOeX
+ 7/Ag==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW3RQ0Nl80Cp5bTjkcn1LsVpTTe63ecu6VUJrhfDkzC/zYhvAad36F77dik5rhfZuhyU3dx8jDK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzSRP5y4ml77kHo5j/4NXC8jS1L4KRESaJpSaNuDJ7xWYAhO0va
- 4MYa/QcCEAN0hnx0F5RDNeXM5FK8/0a7rRsgAOtNbDL/lhBK+7K/RkS9EG3IGXkKN+P3QcY+yk0
- tenkBG/bRazpDA4AT5FFHI22EDhKQaF4=
-X-Gm-Gg: ASbGnct/76CNOL0g4CrHfMd7DJOG4mr4Ci5Y3iyj1nUtFOlEJWH+PzZ3mXj8nTx6PAR
- M0JOvYu3TfJ7h6QeQvmk3laHFSBRgnTf/e3CY6SPdY5z2YBbvoq6RqdsoBLW+1uSQEBit1MoXug
- Lb6aE8NtCFm259Lep4hZauwn4WSNoRY9pHrvqbGwlMg9fKz7GtBHpGJFqCAdOOk0CvVpbDaDhxR
- DgYX8X4l46JbkaLSmc=
-X-Google-Smtp-Source: AGHT+IHHggR0XTFbQEEybwLhQWYFEh3VycMYEY6HgdFW8J7vPcer8wJi9FGlCMFZ72vcVudiPgvVRU7PL/+X8CjpuXU=
-X-Received: by 2002:a05:6a20:c6c1:b0:240:17b3:3851 with SMTP id
- adf61e73a8af0-24017b33c2dmr1069613637.1.1754316997374; Mon, 04 Aug 2025
- 07:16:37 -0700 (PDT)
+ AJvYcCWXkiM3AJbrcnz1BtTo4BywDPFKktnl634ihbp9f++gGk9Vj8ihmkbgUVf10T8wp3qQfXsiiq3EGMA=@lists.freedesktop.org,
+ AJvYcCX1hQm3GqGLeRR+n0P8VqqNHr7E/BWmjQO+W7ukx0T0/qaK/Xklz7eHp4oeC7UQnD+GRKRE1ugYRw==@lists.freedesktop.org,
+ AJvYcCXLbct3XsPZp3z6tCw753Vg+GbLqHlkW0COxMSf4Zp2OFFz2sxM7jdE2a1jlYL4Bt0nF9THgyN+q3kvUlqgR5Yx@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuYBk/mHIMxvXCnNnG1Hpcwl5gZYpKxwp1Sq33gZOwUitCPHKH
+ 21p3NZDyP26T27ZqYWmarrcHUPqwtr4IJHEzwOZ1Ff44aHFiN9dTyWo+6JqAj6NFPkpS6DuGaof
+ qmKRvKag8eqmOU95QHgkQLLHh1gmwIlU=
+X-Gm-Gg: ASbGncu40Lkbj4gcCDvZg3fu5ra4PrWXM1BgRBfTtCdpT7XPVNJPQPPHLxnKVFq+OvG
+ ZW3MW1VZhV67JEEoKEYXDfzbeu1RadwJ3//JA+Q6Qg52mbm1ymTDaXff0JHXllFVxe1Dn1TZ/U2
+ HqfQBFWqQqVB0Z2daD1L2PxGRk5yJAN2K0rq6g0OLTh2fYjwApbjoT9UlaLvfVVNy4pe+ikvL6z
+ 6Uy/QXhRYLfDjJWo2QEQWtvCawRlyUjLiM73htnz9/73fOWCF7hOPPqi3Bfl8A8ox+m/YUhX8Do
+ euj/QeY3Mr8uhVd3O+qedUt2pH0v1khhXNgb
+X-Google-Smtp-Source: AGHT+IGJ2lYXuFya1m4Ramq705Evx78C2MmKVqkr3itmOClvIB24UWN1rI/gpubgLX/l8W3IhjN7k4QwxP207019zQA=
+X-Received: by 2002:a17:90b:4a90:b0:325:cce7:f661 with SMTP id
+ 98e67ed59e1d1-327f5b1c87dmr666852a91.1.1756461679909; Fri, 29 Aug 2025
+ 03:01:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250804-num-v2-0-a96b9ca6eb02@nvidia.com>
-In-Reply-To: <20250804-num-v2-0-a96b9ca6eb02@nvidia.com>
+References: <20250827082015.959430-1-apopple@nvidia.com>
+ <20250828083737.22214-1-ojeda@kernel.org>
+ <DCEKTF8CP2GF.ED9G9ECQMBHM@nvidia.com>
+ <6f32c400-1f8c-4367-8be9-f7082ea87626@kernel.org>
+In-Reply-To: <6f32c400-1f8c-4367-8be9-f7082ea87626@kernel.org>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 4 Aug 2025 16:16:25 +0200
-X-Gm-Features: Ac12FXzU7NmSVNVwYMFLEOWr49mfh3wxZZCCON1MnCd2t8fHQm-Ufjf7MXkUMZ0
-Message-ID: <CANiq72mEDhT_OvSo1b=z4Z4VhND8+DFzeGBY_NNfXhq9jy5GhA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] rust: add `Alignment` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+Date: Fri, 29 Aug 2025 12:01:07 +0200
+X-Gm-Features: Ac12FXznrXiVcLbGyYEw1vb2wal1r3wZH6fiCopGfQPJ8S6r4KIMuLcfzgZ6bWs
+Message-ID: <CANiq72n5N3yHU_vxjiHk=TeJ0ouW1+xLDw43hcOVv6qSPFa=sg@mail.gmail.com>
+Subject: Re: [PATCH 00/10] gpu: nova-core: Boot GSP to RISC-V active
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ apopple@nvidia.com, 
+ a.hindborg@kernel.org, airlied@gmail.com, alex.gaynor@gmail.com, 
+ aliceryhl@google.com, bjorn3_gh@protonmail.com, boqun.feng@gmail.com, 
+ dri-devel@lists.freedesktop.org, gary@garyguo.net, jhubbard@nvidia.com, 
+ joelagnelf@nvidia.com, linux-kernel@vger.kernel.org, lossin@kernel.org, 
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+ nouveau@lists.freedesktop.org, simona@ffwll.ch, tmgross@umich.edu, 
+ ttabi@nvidia.com, tzimmermann@suse.de, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,50 +98,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Aug 4, 2025 at 1:45=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
-om> wrote:
+On Fri, Aug 29, 2025 at 9:40=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
+wrote:
 >
-> - The `last_set_bit` function is dropped, with the recommendation to use
->   the standard library's `checked_ilog2` which does essentially the same
->   thing.
+> I'm happy about every potential additional reviewer for Nova, but I'm not=
+ sure
+> it scales very well for the rust-for-linux if we get more drivers. :)
 
-Yeah, let's see what people think about this one on the kernel side.
+Yeah, it is an informal rule I/we added back then so that people
+interested in Rust in the early days can follow everything in that
+list.
 
-I don't mind either way, i.e. to have a few wrappers with slightly
-different semantics if that is more common/understandable.
+The expectation was that eventually it would go away organically as
+time passed if Rust grew -- I mentioned it here since I saw people
+mentioned explicitly otherwise.
 
-> The upstream `Alignment` is more constrained than the `PowerOfTwo` of
-> the last revision: it uses `usize` internally instead of a generic
-> value, and does not provide `align_down` or `align_up` methods.
+@Alexandre As for your `MAINTAINERS` suggestion, up to all of you --
+other entries do that currently, but it is not a requirement, and you
+are big enough already (have several people looking at patches etc.).
 
-`PowerOfTwo` seemed fine to me as well (or even implementing one in
-terms of the other).
-
-> These two shortcomings come together very nicely to gift us with a nice
-> headache: we need to align values potentially larger than `usize`, thus
-> need to make `align_down` and `align_up` generic. The generic parameter
-> needs to be constrained on the operations used to perform the alignment
-> (e.g. `BitAnd`, `Not`, etc) and there is one essential operation for
-> which no trait exists in the standard library: `checked_add`. Thus the
-> first patch of this series introduces a trait for it in the `num` module
-> and implements it for all integer types. I suspect we will need
-> something alongside these lines for other purposes anyway, and probably
-> other traits too.
-
-This part could be avoided implementing them the other way around,
-right? i.e. as an extension trait on the other side.
-
-It may also be also a bit easier to understand on the call site, too,
-since value would be first.
-
-> This generic nature also restricts these methods to being non-const,
-> unfortunately. I have tried to implement them as macros instead, but
-> quickly hit a wall due to the inability to convert `Alignment`'s `usize`
-> into the type of the value to align.
-
-I guess we could also just have one per type like for other ones to
-have them `const`, like we do for other similar things like
-`bit`/`genmask`.
+Thanks!
 
 Cheers,
 Miguel
