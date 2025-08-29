@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C44CCD185
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BF3CCD187
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D506910E4B5;
-	Mon,  6 Oct 2025 20:46:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4552910E4C4;
+	Mon,  6 Oct 2025 20:46:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Mmd/1fFq";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ink2n9sk";
 	dkim-atps=neutral
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2084.outbound.protection.outlook.com [40.107.94.84])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E4D210E7F5;
- Tue,  9 Sep 2025 21:21:01 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2047.outbound.protection.outlook.com [40.107.220.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F326310E168;
+ Fri, 29 Aug 2025 17:33:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rh0OiA/Nsvru58TEIZjFiJw9ilGw2UXIpM7j1OVxsbvgRG/OjBipARLQOVQOVSLhL/Vbr2oVETifeVxu+Je/QHnHx+T0v7rv4iAzEcfjsGGeUPkAsN9Mx7F1pm11jG0rozByJcSdfDJPKCwYmlnKrIBgkvwHIusLQQo2sCmEBwgb51vqiKAkzK0g3pSfq5NzpeCCrr55k/j+QPuXoBFnM7ygSyQp3AUCGSRng/X8G9Aog0Mb3xS/aSPPc0Q2nKjTqMqhjlkYUs48+OWmVmfBTbtLe/VB4qCJoRpVodske5mrhnrLQnOqLgTDR48xhN9WcR9yHxfTGWiepCpMtXOp2g==
+ b=q1ZK+PqpMSFBlEjXKKEG5manjcZWcOD1NEtXAlvFUN8LWa+zpf23F2E4UUpMuOkwFfyLgqiDMAV52QDnsmhfcX+O6CL1Woj4iXxVBlXmePlD7vqT4+z7HU0OkZXcFHLSOkZLtSgFIuE1B45SwBnQNfNu/6j8d0edjalLIjHFbkA0FJv7D1tGOe4QuX+sz0xlibnWuYmLd4fJAVS0JHQmX9oRD0cjeXwgJ0PbtYgOoFW83wwLcs2y8g5kwnj3JcM+0dfixx1QDDjtN+H2BqCTNF5OlBrP6TgQ9IHyctSmjie/7gD4MWwIH1uoNPtl31pmdKSKrjewn91CgN9bouU/aw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vB/0m+dC+kJDCLBn5gX+R4R0eoiOjIzPaz0uX11EHQw=;
- b=FHGauCtvBv2K8pIrqwBV97k4pstBFLzR+g/9SPj6gsOdb1xccoz7bNCxDcSIZP4SXyymKdZN9X90+NEBUbuD87u9j7Go4PtAUHzarQpM+PiALkdEMLJPArK5xVfTQOIauIKSuRXzWD1jcnhOqY8iSrs0M6cdKTsondFG2Ir3JFEUSMh8OQEtFdiYHtgiQP93T95GwIwRE3FK//gwRZ5ZuW56upHwL03dOtTXxmcSrcC6SOqTXwY29tlw8LtnkHL61JtqlIzXnNIy4ug3uBKypektqrE9A17exzs0Wt0UMAV7LWVvtCOvGbIpYjHSG/OJBRrr2lRez6MEngjgW8PBsw==
+ bh=r8Fbc4Tze5Mg0aEcu3bovuKOJEUp1XYoM1x5p3ZUe00=;
+ b=tj0/TFmFGh1Po4QZErO3Ov4XEB80F2ObBx/lctgdfo7tOW9AE5ZXFf6WoVt82K589KSH/FGOZhmoI3vwlBhWhIls/zmUWOJd2pCZ0eqkaGm5RAD9//htJdDX26Hbpplp6XyACx0Ro9M5NnxVr5dElWW6rBQdzOrwwSogHZDQ7qDjMRK2HZ60Twzxlr9ufxgYP/s2Fp6pXsR/UzrFaSlTwSdJpxBe+v31tl9Zo/yIxwxLoQwJXx5ya9smROl5biP+Ukw1yXAKMknZw9+VPwpcFKOMBS0S3oJfLL7qEBQHJjZF5IHuhIiWGZzZ8DAVMlwE5jax8O+46uaOXuekGy2NVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vB/0m+dC+kJDCLBn5gX+R4R0eoiOjIzPaz0uX11EHQw=;
- b=Mmd/1fFqp0QQ0+q8k+l/7s4iodikNmeeoASsCI53lovyOb1p+XUcBbhjqmyic3OhXvcxRcKMz5UaWFJyJPMowIu7zJ9E9H1K9aH5nUXoj9gwI4zkKIGa8W+FacHZrhipX1gpBErtjTcavmUl4CkpivILf3pu0lJOv/IDLm20XANSQYAPdQuuLJAEdeW/jnsYJ4m/mUMdLc795oVfdKHFXHzVYqD4pPOTRhOfjOAHFnZp5XdaJw5z8gwkz76EPM5PUu80+oAmogCiXkTw0AmtAiAaTPwoZzHmiAi1HL35cQzDSGGV3NHxWum3xdVFu0i5pLolJUJRe7wxc/Km6N/vog==
+ bh=r8Fbc4Tze5Mg0aEcu3bovuKOJEUp1XYoM1x5p3ZUe00=;
+ b=Ink2n9skaOWBRU6d9bg1PN0+rbk+UILDOot4TiEkZZbjQaZNotb5ZtWyGgto+0T5KaqsL1R4kvs34DuWVN0Qz7lwu+yuCrsllwPJHdDAoD6AYS14zRbUduzgguXoaw9PAvZ20qPfAYH5HLMTQ9c4qWgPT76vPw8zbdBrFt9pud4WXgfgKzVbvDV4pO7bkSUFo7Ic9jM7PEFEIk/KEYL9BV4HwBWMDib+AslIL/Ep+RITZTqqBl/D3L6a/ZSoP15z+updkylGyzXtJwRQu4cHHAPOTImiMUv7/IamDIhFXsB3Zgn1akH+tjhNZ9/InTHQlofujQZOCmX2qbSta4yXrA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB8044.namprd12.prod.outlook.com (2603:10b6:8:148::14)
- by MN0PR12MB6031.namprd12.prod.outlook.com (2603:10b6:208:3cd::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
- 2025 21:20:57 +0000
-Received: from DS0PR12MB8044.namprd12.prod.outlook.com
- ([fe80::49af:9ef0:2373:1515]) by DS0PR12MB8044.namprd12.prod.outlook.com
- ([fe80::49af:9ef0:2373:1515%6]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
- 21:20:56 +0000
+Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
+ by IA1PR12MB6017.namprd12.prod.outlook.com (2603:10b6:208:3d7::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.22; Fri, 29 Aug
+ 2025 17:33:10 +0000
+Received: from SN7PR12MB8059.namprd12.prod.outlook.com
+ ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9052.017; Fri, 29 Aug 2025
+ 17:33:10 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
  dakr@kernel.org, acourbot@nvidia.com
@@ -56,93 +56,91 @@ Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
  John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
  Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
- Elle Rhumsaa <elle@weathered-steel.dev>, Yury Norov <yury.norov@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org
-Subject: [PATCH v3 4/5] rust: Move register and bitfield macros out of Nova
-Date: Tue,  9 Sep 2025 17:20:38 -0400
-Message-Id: <20250909212039.227221-5-joelagnelf@nvidia.com>
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Subject: [PATCH 01/17] nova-core: falcon: Move waiting until halted to a helper
+Date: Fri, 29 Aug 2025 13:32:38 -0400
+Message-Id: <20250829173254.2068763-2-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250909212039.227221-1-joelagnelf@nvidia.com>
-References: <20250909212039.227221-1-joelagnelf@nvidia.com>
+In-Reply-To: <20250829173254.2068763-1-joelagnelf@nvidia.com>
+References: <20250829173254.2068763-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MN0P221CA0011.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:208:52a::8) To DS0PR12MB8044.namprd12.prod.outlook.com
- (2603:10b6:8:148::14)
+X-ClientProxiedBy: MN2PR17CA0013.namprd17.prod.outlook.com
+ (2603:10b6:208:15e::26) To SN7PR12MB8059.namprd12.prod.outlook.com
+ (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB8044:EE_|MN0PR12MB6031:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95d36632-35f7-49a8-2c24-08ddefe6c3f1
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|IA1PR12MB6017:EE_
+X-MS-Office365-Filtering-Correlation-Id: 93fd070e-0e31-4d8d-7adc-08dde7221f61
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?atyHYDPmx5c0MsYYyreeRQ6HtWnJhIjGGWx7MZ4vXWnbrjD3UbRqh6PM9Xc+?=
- =?us-ascii?Q?PA6vGtxLjeJJ+rzn0HSnhutr+FIXj+Ey75+fytmdxLq/Ukj8WHwJye6W6UxS?=
- =?us-ascii?Q?Fa8f3mixOT2eput+Lrymiy2yzLLGJrz891Tv3Q1a+6T34N55MEc54uJMrnDJ?=
- =?us-ascii?Q?Rr6OhcXZSGM3WFICzdHH9gebRgMDQAHnDdA8fvpcUX+CAwaQ+m0mHb4tKRo9?=
- =?us-ascii?Q?8kILyMr2mysrVAO66k3CqajFXjvjyYHDESmGM2mZcsYpqTqD7NaK24zVIeXn?=
- =?us-ascii?Q?IqSb6H9ZXYqsV+ExWpdsFbQDdTYPVPfVc5UjXPuapPNToWICl82oCxETXbcj?=
- =?us-ascii?Q?oAp2rd9dl1JkfV9wV+zN85/IMAH16qUtjSQtH91oq/jhxYz/8l40BsJ5fwNE?=
- =?us-ascii?Q?WDAT5qNRaWvnOVAuNatyrBhKNzdR55CoZv2JYft1JFBZPrWjIGdTBo2Io3G7?=
- =?us-ascii?Q?FTsGryjplwG2Rb+Icnz+HFASKnTNqvHL1Q8JKriB8JaU377dvhzRC1jfgz/e?=
- =?us-ascii?Q?3EPzHTU44Knrv8SGXT3Ra5ZTPJmE8oyZrqXYZcS6NADcp2wdUMg1KbCQbsoM?=
- =?us-ascii?Q?srOXSMnW+gtw00io62yTUtUrDMuvqWnnhhVjsXphXZDXza6Ts3FdSPbdT3TF?=
- =?us-ascii?Q?EuiY6Dd6eKK4BLaAxunNd4ZBmQmREvmjzqKMLUhNj5g+ltUqK5bPItPx/9ta?=
- =?us-ascii?Q?Ohi3wixAcuDj3KETw0caMjxZ14MrEYqs70Mf+zsvF1JvHFNPwAhDlptPdJEE?=
- =?us-ascii?Q?H19nJfF+vNxbd8VP+N8fceuGVHGg2MOzQOd7MXB8OS8fkYrmYYK9KUqAxdv+?=
- =?us-ascii?Q?06qTrVJaiy4gzeq8bavbKijG7dv2e6BqiP/lZMaF8Jctlng8yi1UtCIgJijx?=
- =?us-ascii?Q?UDcT3o0Er8RVH1k656RBE3N0wggwJQutCvN3nwui95lejuKATMuEoNZisSID?=
- =?us-ascii?Q?mDxhvBPhY4gzucGI1VqRjnCxAOyiHXxYMlq7zxzHPlZBFipJs2Ys8XREl/1v?=
- =?us-ascii?Q?cTqsjCq1vgEmZy0JpAKKbkB2TSD92NN/1d7tpSIGcslgVrre930RDYaclbR8?=
- =?us-ascii?Q?Z5/i9CC+ym5o/9yUG7fV0cz3rrbi6lUPwBaxJLda+eL2DZsrAhBbfyfCHqyM?=
- =?us-ascii?Q?ZtNkHPbc34gl4PCWoLA6Il1WFd0vkpEMq4OOWejFml9jSqJzZE3zGowJg6as?=
- =?us-ascii?Q?W8J5YdKy2V/aknxhGoXjUoPOj47AJL5Agq8OVQF9HaTyDGx25pPXVGvKru9m?=
- =?us-ascii?Q?BBw/WLeL8hlbT0CXGi90KF2eknxovAxWBctPJF2JclA6D/evfboqMujGy+a5?=
- =?us-ascii?Q?73coDxp5cFF0oXA7BIRX2D4yBmzUx+Mn0/82l4f9iliRJI5s6m8x3fff7VEn?=
- =?us-ascii?Q?jrRXuxEELaHrE7eM77uCzmyAaLexkl4VYfMfGIz04UL+6ghYZmzupq/5jGDj?=
- =?us-ascii?Q?szb0LGuOxL0=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?bs64wQGuDlHlOvCQkhBI/uzE+LsMGBZYQKsaYmV4BcdhXeU6KVhc39Zl6wU/?=
+ =?us-ascii?Q?DLstfMwfehQzk4aflye7ttQ9x7KyerqkMOaUvMhOKjklgBAeK+Flek+nwRaS?=
+ =?us-ascii?Q?0sC4oxCdFnsskD0HO50r9b2PTc1/FQbmaNh7H200i+Iq7+vyGqVp1FML00AS?=
+ =?us-ascii?Q?tcqTs1/7ioYNjJw8FsQNJCdlYE+Q4m2PtoIYBbcb1fRdgFkqruP5eOBFVJ0y?=
+ =?us-ascii?Q?tNKHQOk7A3BNoRcc08Z2GPFQztaDMGprFzxxJPA9BOmnFJvCcuqO18t+1F+n?=
+ =?us-ascii?Q?MI4iN75lgtn1xUU/QKGmkfK/sCbx4SpTHmCzsJ0PLzUAuC88C0rEdr9PBq2w?=
+ =?us-ascii?Q?YP2i67MZDp+QjydIG8G9vIuwlQv6HajPzzAAHZL4ObEOdO57Amndxggxf4Xd?=
+ =?us-ascii?Q?EzDRqDy+2wMWLZAh36a6PifreoJxB06llZT1L6Vrul9WczV5YRArg73oqm1f?=
+ =?us-ascii?Q?O/RL6qf+rnG21l5MNTAHMJlnOUPZhq9kjMyCalVZEzcsqrKXyZOsQFZ6Snda?=
+ =?us-ascii?Q?ZgF+viY69Q+2VaAbUEhJaJKYX+XkdEMxyHyIB6sIxc6uE3JzxxsOOdDsMJ9y?=
+ =?us-ascii?Q?guuQXyAmRVl6rbjp9hwuBbPLmJAM7fmKeGhFMw3UwV6dfmJ8JaVCpKGehY7V?=
+ =?us-ascii?Q?IThGbXTzdKLySltI09qgUyipc3mfODKjtywvy02LuJpfQsh7YnAJZSX21Lhu?=
+ =?us-ascii?Q?UKY63CzlzSBvoyD9xGt6GUkc9JfzEaD+CnAnTrJnTCIQwMFO6pzIc92ayDpF?=
+ =?us-ascii?Q?QNWX/dHJwItmQBMDDGv5m1AonaOhTeCcM0R7zpd3ahsSJTFRg+oim7ll7hEM?=
+ =?us-ascii?Q?ZAossIbbUUTbsWlqUdKJ0Ucf/9Bc94zZ6AE3qdsUDHzbuX0MoJVPGAUxhZzx?=
+ =?us-ascii?Q?ymtW67C8FfT9dYvqQIyZfdsI5ZGn1XS3BC+IkUARG6WU6i8qbqEAwcLxbreh?=
+ =?us-ascii?Q?+vP6JwRjT0HKBZmqX2rYFS48OS3F5+Q4rasnmtgU0yhvG6J8hn4eLOTA8u+I?=
+ =?us-ascii?Q?M+8NCK5JpuZAQx6jIXenKGXgbGwrfUvzunY8p+PPcHy+xzDOjliJ8qwxpfC8?=
+ =?us-ascii?Q?UMp83PZaEl8Ne0MjoRP0eMTfZHT4rnwOGVhI1Gmwvv4Pms3F1lNoPa313cCr?=
+ =?us-ascii?Q?kusql56yliLjo4R5C1ACQ8+J36mVHTixG3JqxO2ctqFXifpt6S16495v3pgv?=
+ =?us-ascii?Q?x3MZBGcLvRvi/FSZ8mN07TCP3xYd7eHlEWmOL85Xb0YeL9sgTQOH+c+1Fs0e?=
+ =?us-ascii?Q?pPE0RyE76oVqLsYoR5v24RWvYOsXZuX5hsVSRGkp2wka2srnYYpBUxg5yjwY?=
+ =?us-ascii?Q?kMP7YrOBuBvcTC6qbDYWRpNY0OT1nEJkhpazzUVzCH+LTKReVwS+hKKzrSSX?=
+ =?us-ascii?Q?o3nfi2cPlNR85AUjHSpCE1JW/JpSRgEMJWmbtKrhFKPhJHmzLyL1jyTvSBES?=
+ =?us-ascii?Q?H042JlaE4i0=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB8044.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?m432szmTzqhSuk3qfovH/OrFx3Wma81EDBYBYuW8QnbeOw0OfqgK2og6FxLm?=
- =?us-ascii?Q?TgwycRHgkXTWSdne047A1b5dMWno69y4SfYlPJ6ZDh0YabRhzCF0oh+hzM9D?=
- =?us-ascii?Q?L3I7O0v3eyIXdv1kgHTMkCFBjRyKSiIy1oFvL1EpUS2PpBJM3Fq6nBAROHRz?=
- =?us-ascii?Q?Bxy253/SQacJtaU8dJXV46OOupKd8sDWxzu+uYYjLX8lA954YwD8SmBb7YqV?=
- =?us-ascii?Q?3myNgXhvDC3aZlFfEr5/uE+lM5BcVEOdP41148dOg5al6oRLVyBTJGefurK6?=
- =?us-ascii?Q?J1ODg8nSkHJ4nuqJsVHsO12NhYyHGZ/TE/qZHpbMqrP9ANYE2cC37mZPfI/t?=
- =?us-ascii?Q?uTmHe5J7KD9Wek8fA7UXSv+yc2BjALYbEVs4NHB/3JpxoLg23qPLvnmNMRvH?=
- =?us-ascii?Q?sDwZIk1/C0N4waySY+3oVrz18MUrfGIZ4aEmkFQWy8sQuDAfuIRO0L52fDpT?=
- =?us-ascii?Q?lU2g7S+QOip875K1jr2mfvIazn900w6EMeXgpz7IZFODGsVzHBVfAlcF4zhF?=
- =?us-ascii?Q?5lA65daMtlbpmEhGK/d18Ov6LGIQBBbgpec7n1AOX3IFf3FdQNhulqJvzwDz?=
- =?us-ascii?Q?o8DucNJg4lp/sVKTXskCWeK303xNFgNpY26yGNaDxehe0Vd5iU33ALz3QIAx?=
- =?us-ascii?Q?kK/j4v8IbwEP6u05yDzi51jMWSvd6oBDIKGMEEirWgrjma4EPaQ2UTurblgx?=
- =?us-ascii?Q?HTkHYzRA5QKEdmv1hyKmyV5sOzjAMmoDaOchvQAZ1zkiG8F9nViRZJmE9l0G?=
- =?us-ascii?Q?pasKrqiBZpJ327D4Uju++mK681qWy2ye1wKbaemb9FlyehqZS7+qArohFGmZ?=
- =?us-ascii?Q?u0NDLxzGhb2X/bVAO3RtxpTXorg+ojAsn+2aYcwizlcK1iMAms69N4WScApQ?=
- =?us-ascii?Q?YrUuALV6V86huEHDVICsjifTgtreOg0aE5x2n9CAEEowWQJ9NprssDQL8VGL?=
- =?us-ascii?Q?M9CAdrVgEup0kT+5VTHHzXgFEeWxNnihgOXyEOE2qrNKnv2ZzQXsuMYKYLDO?=
- =?us-ascii?Q?pgieAp0oHRV5SHAE2DauQ96m0ONq5MIP2WP771cW23Qbv3CDQWynCmghSv6w?=
- =?us-ascii?Q?9j8K4O8NbnKxch3Dls4OaLTcFA8DeAOEIaKLBQHnyOAprT6qDWyu23kASdJR?=
- =?us-ascii?Q?2WFfzbOjp0FRebpHlOWec0DxsQklraRx2JCa8vg4xqIuMa04Ctx5Diqp9FKQ?=
- =?us-ascii?Q?cFGiH3N9ACNFTzQMh5jkcAtlSqmNAA4s1I4ffW728ewH+EjEgNylTOoZyOyf?=
- =?us-ascii?Q?DuUV8t1MdrcStQutro56lZyd1AhYn6rTLUxrOR5l8UPYzkgehnAFOZBEjy8B?=
- =?us-ascii?Q?JMURTBqRKOROvXlmANmMG9W8xMe3rhntTtzXajj+j1A5pE76xD0+7T1wBMyh?=
- =?us-ascii?Q?Z+BCr9XN9fn4ARl4bGNYIcZBPW4LHqV0jjd8+LcyPEEfpmBc8WQzQOIlVU72?=
- =?us-ascii?Q?Yt/C5SJo2fKYsHPy1OqA7J24Nl914Q0b/So6Rzg7sZvLlE1pS/ziNssWFeAR?=
- =?us-ascii?Q?sH+6tdAB9c+TKaA4SDAspQJ2EyiRaUxogDmYSJHcUmB+dppMYE92I3uE4L5b?=
- =?us-ascii?Q?Gz0Vi9aOeA9GLYs1gt+G455Q0MCEGivp7HsXSQFi?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1lsO2edoy0GEoSmxi596PVijeHupASHw27oNer4qk5u/Y9hN9coV/4kEnX04?=
+ =?us-ascii?Q?fzX8rNfNWTCvPxVmMLYcsN3oTa+VTFS0XyuE4jND1r8aTjN5l1HaFos9FcsN?=
+ =?us-ascii?Q?fzqu2hEuMaYy3jTeIOiVLzL6lG9oY2m+5EzoNO5gs6P1ZjuANUMF/jv0KxTK?=
+ =?us-ascii?Q?RTBe605VvVrQGEwkoeP6TR7NKhdQCkVpQWhObmrNpDXISjcrbxlp75BZEoZu?=
+ =?us-ascii?Q?jAu+72PVsqjVoSkTLBD6wSrbcDVqnexzPIn+/3zLiOxc+Lc7Okx2b5ZHPX5v?=
+ =?us-ascii?Q?yXiY1owk/t2L5u1qFSodJfx7GGsFwevWBvKjCMUY1qKIOgjd2JxZrCgtlNJ8?=
+ =?us-ascii?Q?EHYr9P5jaZpQfC5p6qQ2UgB2NJPFyNFLrkHjQKxNjxRsO/5XGWXzXvZ6h/0z?=
+ =?us-ascii?Q?YIEFeHNoPkGI+gJHfvnBSWrqYgAObsTAW9HMEr6Ve2bjSL1AeDOg/RZc3fYM?=
+ =?us-ascii?Q?xfG8uotMPbOekU3+l36N8FvJtB3/0HYvp5QNLVlZETmVpSZcuDZyKvAoAQO0?=
+ =?us-ascii?Q?n+6kdnTiYLNoOhdKyKfrF8G6uzZ4sspXPbQltyyiqrXkVTfFwTBJNtOd5P69?=
+ =?us-ascii?Q?dlKBsJzOPC5MoTKAsl9/zx9SjvMp2ESzyuhci/VfC5bRhQONY0lJ13RFoz0T?=
+ =?us-ascii?Q?Q1gfBMhMZWVxk3205DpPALd9w/sGvxJF5FCukJzh21g12k3PQuddZ5hkUVuh?=
+ =?us-ascii?Q?YEyaswbJR4Up4cj/ylBWRNYajj1yp1VH10oUl7MjVrv6xALXPhDtxue+JLga?=
+ =?us-ascii?Q?koQEHxJT9oGikoPnMWCSQk1d2B5PYGniV22oyoNZ8k9DKwmWg5RH6z+P8tw7?=
+ =?us-ascii?Q?jPcw/xRoHCE9cXsF38HF1OHXKgu+4Lrsr7rTWGMnkiIuLqM9UY1lIpzZjdeo?=
+ =?us-ascii?Q?rrHbeakXY12+cMNmwd3Rto9IA3yFe5gNJfLymQVL/Jsm8On4+PBlhkJunI/g?=
+ =?us-ascii?Q?Mf4lGtbB21FdIEZp2TAOcrrysAKmwtmo1Pw4pfn+3+MCk/oeTnuvqrEKQlXR?=
+ =?us-ascii?Q?kukw9jy3Od7lkFyKQL6TpeQSlQkI2QuBr4yfziv1+Zj2Sc9XyrPtEauKXvd4?=
+ =?us-ascii?Q?FHDV651D1Pf3CIPIE3vaU0OjPM807BlxZuaCMukU7LM4CUIK17fAKD4iS/N4?=
+ =?us-ascii?Q?hZP3e1xv5R+GJRkOmuBoHQ3I10s6IaE4fC/M9udlxV+GFO3sBbzufbxsrNap?=
+ =?us-ascii?Q?yHY/seEoYA2WvrviJz8GEI0zXaD8M6QRXVZUZQu0a+e13CctCi6Icuc45Pj2?=
+ =?us-ascii?Q?A4+lNJhW8I3pj9Ntuve8QoIDIKI3uZgZ2kDyQtXxb9eI+xNWr+Z/3FBI203G?=
+ =?us-ascii?Q?9IswdOotILllQCmOYE/Q+0i2KBf2ZEgdMXD4ZV4fSMCzIb9z0kJzhYLnKym8?=
+ =?us-ascii?Q?VwajAEpgLVmSmprXRiCbEhZLW/qcfHZ7nz0YLk6xN8dVAoHeRT4fRNJPFEFl?=
+ =?us-ascii?Q?FYQkANTzpaaq+Vn7Lj8mjGWMn+6YOOKqqUwfoiId7GuCLV+YdUVsQezWBZ91?=
+ =?us-ascii?Q?2UexgvjeTma/PrS8/Bbii+ytRtxWzLPdGE6LSLs5143ltT41fYSRG6RkhkCE?=
+ =?us-ascii?Q?fqRwwWF9J6ODX0VAcBviFxjt4Tu7+l9mbDAUxpqK?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95d36632-35f7-49a8-2c24-08ddefe6c3f1
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB8044.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 93fd070e-0e31-4d8d-7adc-08dde7221f61
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 21:20:56.7733 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 17:33:09.9201 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aulbIjhxZoI8Mu0rN/cf+qcMSgUpgjN82ROYbxfJXI4SD12rW1BSAIwldnUpPsN2B9Q4UJ6J5iUK5BWLIb+E5g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6031
+X-MS-Exchange-CrossTenant-UserPrincipalName: dxop3ZZ28Hz7IJfU/6uHKAYYHonmh6frGe0kz8YlrIWnxsTOoZnBlSMnmHyqNpWjgtqJWvASAa4ziPbe6HEtxQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6017
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,473 +156,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Out of broad need for these macros in Rust, move them out. Several folks
-have shown interest (Nova, Tyr GPU drivers).
+Move the "waiting until halted" functionality into a helper so that we
+can use it in the sequencer, which is a separate sequencer operation.
 
-bitfield moved into bits modules - defines bitfields in Rust structs similar to C.
-register moved into io module - defines hardware registers and accessors.
-
-[Added F: record to MAINTAINERS file entry as suggested by Yury.]
-
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- MAINTAINERS                                   |  1 +
- drivers/gpu/nova-core/falcon.rs               |  2 +-
- drivers/gpu/nova-core/falcon/gsp.rs           |  3 +-
- drivers/gpu/nova-core/falcon/sec2.rs          |  2 +-
- drivers/gpu/nova-core/nova_core.rs            |  3 --
- drivers/gpu/nova-core/regs.rs                 |  6 +--
- rust/kernel/bits.rs                           |  2 +
- .../kernel/bits}/bitfield.rs                  | 27 ++++++-----
- rust/kernel/io.rs                             |  1 +
- .../macros.rs => rust/kernel/io/register.rs   | 46 ++++++++++---------
- 10 files changed, 50 insertions(+), 43 deletions(-)
- rename {drivers/gpu/nova-core => rust/kernel/bits}/bitfield.rs (91%)
- rename drivers/gpu/nova-core/regs/macros.rs => rust/kernel/io/register.rs (93%)
+ drivers/gpu/nova-core/falcon.rs | 25 ++++++++++++++++---------
+ 1 file changed, 16 insertions(+), 9 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b97760467f09..ca9132fa4055 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4313,6 +4313,7 @@ F:	include/asm-generic/bitops.h
- F:	include/linux/bitops.h
- F:	lib/test_bitops.c
- F:	tools/*/bitops*
-+F:	rust/kernel/bits*
- 
- BLINKM RGB LED DRIVER
- M:	Jan-Simon Moeller <jansimon.moeller@gmx.de>
 diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
-index 938f25b556a8..55f03f435138 100644
+index 0c8ee7761f70..83e40a7abde0 100644
 --- a/drivers/gpu/nova-core/falcon.rs
 +++ b/drivers/gpu/nova-core/falcon.rs
-@@ -6,6 +6,7 @@
- use hal::FalconHal;
- use kernel::device;
- use kernel::dma::DmaAddress;
-+use kernel::io::register::RegisterBase;
- use kernel::prelude::*;
- use kernel::sync::aref::ARef;
- use kernel::time::Delta;
-@@ -14,7 +15,6 @@
- use crate::driver::Bar0;
- use crate::gpu::Chipset;
- use crate::regs;
--use crate::regs::macros::RegisterBase;
- use crate::util;
- 
- pub(crate) mod gsp;
-diff --git a/drivers/gpu/nova-core/falcon/gsp.rs b/drivers/gpu/nova-core/falcon/gsp.rs
-index c9ab375fd8a1..04920a619246 100644
---- a/drivers/gpu/nova-core/falcon/gsp.rs
-+++ b/drivers/gpu/nova-core/falcon/gsp.rs
-@@ -1,12 +1,13 @@
- // SPDX-License-Identifier: GPL-2.0
- 
-+use kernel::io::register::RegisterBase;
- use kernel::prelude::*;
- use kernel::time::Delta;
- 
- use crate::{
-     driver::Bar0,
-     falcon::{Falcon, FalconEngine, PFalcon2Base, PFalconBase},
--    regs::{self, macros::RegisterBase},
-+    regs,
-     util::wait_on,
- };
- 
-diff --git a/drivers/gpu/nova-core/falcon/sec2.rs b/drivers/gpu/nova-core/falcon/sec2.rs
-index 815786c8480d..81717868a8a8 100644
---- a/drivers/gpu/nova-core/falcon/sec2.rs
-+++ b/drivers/gpu/nova-core/falcon/sec2.rs
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- 
- use crate::falcon::{FalconEngine, PFalcon2Base, PFalconBase};
--use crate::regs::macros::RegisterBase;
-+use kernel::io::register::RegisterBase;
- 
- /// Type specifying the `Sec2` falcon engine. Cannot be instantiated.
- pub(crate) struct Sec2(());
-diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-index eaba6ad22f7a..4dbc7e5daae3 100644
---- a/drivers/gpu/nova-core/nova_core.rs
-+++ b/drivers/gpu/nova-core/nova_core.rs
-@@ -2,9 +2,6 @@
- 
- //! Nova Core GPU Driver
- 
--#[macro_use]
--mod bitfield;
--
- mod dma;
- mod driver;
- mod falcon;
-diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
-index c214f8056d6e..07533eb6f64e 100644
---- a/drivers/gpu/nova-core/regs.rs
-+++ b/drivers/gpu/nova-core/regs.rs
-@@ -4,15 +4,13 @@
- // but are mapped to types.
- #![allow(non_camel_case_types)]
- 
--#[macro_use]
--pub(crate) mod macros;
--
- use crate::falcon::{
-     DmaTrfCmdSize, FalconCoreRev, FalconCoreRevSubversion, FalconFbifMemType, FalconFbifTarget,
-     FalconModSelAlgo, FalconSecurityModel, PFalcon2Base, PFalconBase, PeregrineCoreSelect,
- };
- use crate::gpu::{Architecture, Chipset};
- use kernel::prelude::*;
-+use kernel::register;
- 
- // PMC
- 
-@@ -352,6 +350,7 @@ pub(crate) fn mem_scrubbing_done(self) -> bool {
- 
- pub(crate) mod gm107 {
-     // FUSE
-+    use kernel::register;
- 
-     register!(NV_FUSE_STATUS_OPT_DISPLAY @ 0x00021c04 {
-         0:0     display_disabled as bool;
-@@ -360,6 +359,7 @@ pub(crate) mod gm107 {
- 
- pub(crate) mod ga100 {
-     // FUSE
-+    use kernel::register;
- 
-     register!(NV_FUSE_STATUS_OPT_DISPLAY @ 0x00820c04 {
-         0:0     display_disabled as bool;
-diff --git a/rust/kernel/bits.rs b/rust/kernel/bits.rs
-index 553d50265883..590a77d99ad7 100644
---- a/rust/kernel/bits.rs
-+++ b/rust/kernel/bits.rs
-@@ -201,3 +201,5 @@ pub const fn [<genmask_ $ty>](range: RangeInclusive<u32>) -> $ty {
-     /// assert_eq!(genmask_u8(0..=7), u8::MAX);
-     /// ```
- );
-+
-+pub mod bitfield;
-diff --git a/drivers/gpu/nova-core/bitfield.rs b/rust/kernel/bits/bitfield.rs
-similarity index 91%
-rename from drivers/gpu/nova-core/bitfield.rs
-rename to rust/kernel/bits/bitfield.rs
-index 39354e60360c..0837fefc270f 100644
---- a/drivers/gpu/nova-core/bitfield.rs
-+++ b/rust/kernel/bits/bitfield.rs
-@@ -78,10 +78,13 @@
- //! - `as <type> ?=> <try_into_type>` calls `<try_into_type>`'s `TryFrom::<<type>>` implementation
- //!   and returns the result. This is useful with fields for which not all values are valid.
- //!
-+
-+/// bitfield macro definition
-+#[macro_export]
- macro_rules! bitfield {
-     // Main entry point - defines the bitfield struct with fields
-     ($vis:vis struct $name:ident : $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
--        bitfield!(@core $vis $name $storage $(, $comment)? { $($fields)* });
-+        ::kernel::bitfield!(@core $vis $name $storage $(, $comment)? { $($fields)* });
-     };
- 
-     // All rules below are helpers.
-@@ -116,7 +119,7 @@ fn from(val: $storage) -> Self {
-             }
-         }
- 
--        bitfield!(@fields_dispatcher $vis $name $storage { $($fields)* });
-+        ::kernel::bitfield!(@fields_dispatcher $vis $name $storage { $($fields)* });
-     };
- 
-     // Captures the fields and passes them to all the implementers that require field information.
-@@ -132,7 +135,7 @@ fn from(val: $storage) -> Self {
-         )*
+@@ -547,6 +547,21 @@ pub(crate) fn dma_load<F: FalconFirmware<Target = E>>(&self, bar: &Bar0, fw: &F)
+         Ok(())
      }
-     ) => {
--        bitfield!(@field_accessors $vis $name $storage {
-+        ::kernel::bitfield!(@field_accessors $vis $name $storage {
-             $(
-                 $hi:$lo $field as $type
-                 $(?=> $try_into_type)?
-@@ -141,8 +144,8 @@ fn from(val: $storage) -> Self {
-             ;
-             )*
-         });
--        bitfield!(@debug $name { $($field;)* });
--        bitfield!(@default $name { $($field;)* });
-+        ::kernel::bitfield!(@debug $name { $($field;)* });
-+        ::kernel::bitfield!(@default $name { $($field;)* });
-     };
  
-     // Defines all the field getter/setter methods for `$name`.
-@@ -157,7 +160,7 @@ fn from(val: $storage) -> Self {
++    /// Wait until the falcon CPU is halted.
++    pub(crate) fn wait_till_halted(&self, bar: &Bar0) -> Result<()> {
++        // TIMEOUT: arbitrarily large value, firmwares should complete in less than 2 seconds.
++        util::wait_on(Delta::from_secs(2), || {
++            let r = regs::NV_PFALCON_FALCON_CPUCTL::read(bar, &E::ID);
++            if r.halted() {
++                Some(())
++            } else {
++                None
++            }
++        })?;
++
++        Ok(())
++    }
++
+     /// Runs the loaded firmware and waits for its completion.
+     ///
+     /// `mbox0` and `mbox1` are optional parameters to write into the `MBOX0` and `MBOX1` registers
+@@ -581,15 +596,7 @@ pub(crate) fn boot(
+                 .write(bar, &E::ID),
          }
-     ) => {
-         $(
--            bitfield!(@check_field_bounds $hi:$lo $field as $type);
-+            ::kernel::bitfield!(@check_field_bounds $hi:$lo $field as $type);
-         )*
  
-         #[allow(dead_code)]
-@@ -169,7 +172,7 @@ impl $name {
-             }
+-        // TIMEOUT: arbitrarily large value, firmwares should complete in less than 2 seconds.
+-        util::wait_on(Delta::from_secs(2), || {
+-            let r = regs::NV_PFALCON_FALCON_CPUCTL::read(bar, &E::ID);
+-            if r.halted() {
+-                Some(())
+-            } else {
+-                None
+-            }
+-        })?;
++        self.wait_till_halted(bar)?;
  
-             $(
--            bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type
-+            ::kernel::bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type
-                 $(?=> $try_into_type)?
-                 $(=> $into_type)?
-                 $(, $comment)?
-@@ -206,7 +209,7 @@ impl $name {
-         @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(
-+        ::kernel::bitfield!(
-             @leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$into_type>::from(if f != 0 { true } else { false }) }
-             $into_type => $into_type $(, $comment)?;
-@@ -217,7 +220,7 @@ impl $name {
-     (
-         @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
-     ) => {
--        bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
-+        ::kernel::bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
-     };
- 
-     // Catches the `?=>` syntax for non-boolean fields.
-@@ -225,7 +228,7 @@ impl $name {
-         @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-+        ::kernel::bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$try_into_type>::try_from(f as $type) } $try_into_type =>
-             ::core::result::Result<
-                 $try_into_type,
-@@ -239,7 +242,7 @@ impl $name {
-         @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-+        ::kernel::bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$into_type>::from(f as $type) } $into_type => $into_type $(, $comment)?;);
-     };
- 
-@@ -248,7 +251,7 @@ impl $name {
-         @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
-+        ::kernel::bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
-     };
- 
-     // Generates the accessor methods for a single field.
-diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-index 03b467722b86..a79b603604b1 100644
---- a/rust/kernel/io.rs
-+++ b/rust/kernel/io.rs
-@@ -8,6 +8,7 @@
- use crate::{bindings, build_assert, ffi::c_void};
- 
- pub mod mem;
-+pub mod register;
- pub mod resource;
- 
- pub use resource::Resource;
-diff --git a/drivers/gpu/nova-core/regs/macros.rs b/rust/kernel/io/register.rs
-similarity index 93%
-rename from drivers/gpu/nova-core/regs/macros.rs
-rename to rust/kernel/io/register.rs
-index 6a4f3271beb3..088a8590db92 100644
---- a/drivers/gpu/nova-core/regs/macros.rs
-+++ b/rust/kernel/io/register.rs
-@@ -17,7 +17,8 @@
- /// The `T` generic argument is used to distinguish which base to use, in case a type provides
- /// several bases. It is given to the `register!` macro to restrict the use of the register to
- /// implementors of this particular variant.
--pub(crate) trait RegisterBase<T> {
-+pub trait RegisterBase<T> {
-+    /// The base address for the register.
-     const BASE: usize;
- }
- 
-@@ -273,28 +274,29 @@ pub(crate) trait RegisterBase<T> {
- /// # Ok(())
- /// # }
- /// ```
-+#[macro_export]
- macro_rules! register {
-     // Creates a register at a fixed offset of the MMIO space.
-     ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $offset);
-     };
- 
-     // Creates an alias register of fixed offset register `alias` with its own fields.
-     ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $alias::OFFSET);
-     };
- 
-     // Creates a register at a relative offset from a base address provider.
-     ($name:ident @ $base:ty [ $offset:literal ] $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $offset ]);
-     };
- 
-     // Creates an alias register of relative offset register `alias` with its own fields.
-     ($name:ident => $base:ty [ $alias:ident ] $(, $comment:literal)? { $($fields:tt)* }) => {
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $alias::OFFSET ]);
-     };
- 
-@@ -305,7 +307,7 @@ macro_rules! register {
-         }
-     ) => {
-         static_assert!(::core::mem::size_of::<u32>() <= $stride);
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_array $name @ $offset [ $size ; $stride ]);
-     };
- 
-@@ -326,7 +328,7 @@ macro_rules! register {
-             $(, $comment:literal)? { $($fields:tt)* }
-     ) => {
-         static_assert!(::core::mem::size_of::<u32>() <= $stride);
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_relative_array $name @ $base [ $offset [ $size ; $stride ] ]);
-     };
- 
-@@ -348,7 +350,7 @@ macro_rules! register {
-         }
-     ) => {
-         static_assert!($idx < $alias::SIZE);
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $alias::OFFSET + $idx * $alias::STRIDE ] );
-     };
- 
-@@ -357,7 +359,7 @@ macro_rules! register {
-     // to avoid it being interpreted in place of the relative register array alias rule.
-     ($name:ident => $alias:ident [ $idx:expr ] $(, $comment:literal)? { $($fields:tt)* }) => {
-         static_assert!($idx < $alias::SIZE);
--        bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-+        ::kernel::bitfield!(pub(crate) struct $name: u32 $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $alias::OFFSET + $idx * $alias::STRIDE );
-     };
- 
-@@ -414,12 +416,12 @@ pub(crate) fn read<const SIZE: usize, T, B>(
-                 base: &B,
-             ) -> Self where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 const OFFSET: usize = $name::OFFSET;
- 
-                 let value = io.read32(
--                    <B as crate::regs::macros::RegisterBase<$base>>::BASE + OFFSET
-+                    <B as ::kernel::io::register::RegisterBase<$base>>::BASE + OFFSET
-                 );
- 
-                 Self(value)
-@@ -435,13 +437,13 @@ pub(crate) fn write<const SIZE: usize, T, B>(
-                 base: &B,
-             ) where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 const OFFSET: usize = $name::OFFSET;
- 
-                 io.write32(
-                     self.0,
--                    <B as crate::regs::macros::RegisterBase<$base>>::BASE + OFFSET
-+                    <B as ::kernel::io::register::RegisterBase<$base>>::BASE + OFFSET
-                 );
-             }
- 
-@@ -455,7 +457,7 @@ pub(crate) fn alter<const SIZE: usize, T, B, F>(
-                 f: F,
-             ) where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-                 F: ::core::ops::FnOnce(Self) -> Self,
-             {
-                 let reg = f(Self::read(io, base));
-@@ -600,11 +602,11 @@ pub(crate) fn read<const SIZE: usize, T, B>(
-                 idx: usize,
-             ) -> Self where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 build_assert!(idx < Self::SIZE);
- 
--                let offset = <B as crate::regs::macros::RegisterBase<$base>>::BASE +
-+                let offset = <B as ::kernel::io::register::RegisterBase<$base>>::BASE +
-                     Self::OFFSET + (idx * Self::STRIDE);
-                 let value = io.read32(offset);
- 
-@@ -622,11 +624,11 @@ pub(crate) fn write<const SIZE: usize, T, B>(
-                 idx: usize
-             ) where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 build_assert!(idx < Self::SIZE);
- 
--                let offset = <B as crate::regs::macros::RegisterBase<$base>>::BASE +
-+                let offset = <B as ::kernel::io::register::RegisterBase<$base>>::BASE +
-                     Self::OFFSET + (idx * Self::STRIDE);
- 
-                 io.write32(self.0, offset);
-@@ -643,7 +645,7 @@ pub(crate) fn alter<const SIZE: usize, T, B, F>(
-                 f: F,
-             ) where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-                 F: ::core::ops::FnOnce(Self) -> Self,
-             {
-                 let reg = f(Self::read(io, base, idx));
-@@ -662,7 +664,7 @@ pub(crate) fn try_read<const SIZE: usize, T, B>(
-                 idx: usize,
-             ) -> ::kernel::error::Result<Self> where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 if idx < Self::SIZE {
-                     Ok(Self::read(io, base, idx))
-@@ -684,7 +686,7 @@ pub(crate) fn try_write<const SIZE: usize, T, B>(
-                 idx: usize,
-             ) -> ::kernel::error::Result where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-             {
-                 if idx < Self::SIZE {
-                     Ok(self.write(io, base, idx))
-@@ -707,7 +709,7 @@ pub(crate) fn try_alter<const SIZE: usize, T, B, F>(
-                 f: F,
-             ) -> ::kernel::error::Result where
-                 T: ::core::ops::Deref<Target = ::kernel::io::Io<SIZE>>,
--                B: crate::regs::macros::RegisterBase<$base>,
-+                B: ::kernel::io::register::RegisterBase<$base>,
-                 F: ::core::ops::FnOnce(Self) -> Self,
-             {
-                 if idx < Self::SIZE {
+         let (mbox0, mbox1) = (
+             regs::NV_PFALCON_FALCON_MAILBOX0::read(bar, &E::ID).value(),
 -- 
 2.34.1
 
