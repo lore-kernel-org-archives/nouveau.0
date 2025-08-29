@@ -4,168 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 701F1CCA472
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:48:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24858CCD186
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B15610E53F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 089C510E538;
 	Mon,  6 Oct 2025 20:47:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Vu+a5cM6";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sUlmT8X0";
 	dkim-atps=neutral
-Received: from CH4PR04CU002.outbound.protection.outlook.com
- (mail-northcentralusazon11013019.outbound.protection.outlook.com
- [40.107.201.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7094E10E059;
- Tue, 30 Sep 2025 22:06:55 +0000 (UTC)
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com
+ (mail-mw2nam10on2080.outbound.protection.outlook.com [40.107.94.80])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7862B10E1E0;
+ Fri, 29 Aug 2025 17:33:42 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lKEGEDCs9Jv8gsbHZDWDek3S9k/t9OnygrFz0ez01v0vOPhMYvzmiW+DBGsCJERNGyC/Z29E5ozbbFHw8ND5YhoP6IxYIaYvmDYSFoZtBUXuEaHoHRTDFyWxNioqzhuxFYjesPMRONBwzaGy6SFda8PbA5Rc/ivy3biAL6ULpvXJhhdqcja4gXHEi91rrVo02vaTXf+R7H+xHA9tDQB7cwfhVBNjsjVbcCL2tfECnCdHVlLNOVhJns2hUO9xAjVwtFdLEtlIAkmnbpqXymaQWTQHxw7RoVN3EuantSHKX1/Cs8P/Q62KqVBHNfbZ5idMOACGv5kdtwsOoxhIFaGaxw==
+ b=AmUR8fQk2oNZgm+/ml600W58or/mHCgCXcdnWu/avpbs0Lq2BdgKYH6XXcG5To8lsupIaqeyYqFCZGAtOh5Kb9gw1M60TNzj9vJq6e0+EyhTbGpn0LPQl9PGfmRSWW8+RG1C/Ba9NRWTlHs9jc7+dOnfuPw3DpFb2dGawfflFzEHyUnNfPWGgmUuLsYUV9UDlsi9xufgbkgWY6ES/EmXiZuMPWTFEtiDB0aXrKSAaLf4DOKDSQIH7hL/DUq5l0zGOUL4UYupzLWbP+Hn/b3PRDAKwoCCtc1z9e3kgKmRH6b2I5/pGUE3kCQ3nstBVjpc2g0M0/DrC0zkExCf6nZzow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=x32K2eG5lO3x1x9Ry7Lk/Fyen7NxTsxwUetwUNoaGr8=;
- b=CF75VvsWdPIlmXUsqbrK1FyRwmJiAQfzX4urwFn/HQhv6UIo6fOm3UOs6bpps2ETKNzkc2RzOgT2PDGnt2QYh/rGsx9v1oGVKhoh6xBBIYcHsNYq5uo6m7wM66MNGO+gsW9HJdIr4TS6zGi7ZAqiMM176hzqUm3nYZXp+yYA9XB6ThKtH+kzfKeHXFM3tVkYDsxpzQb5sjycJxQ0D/fFRDfdV9UG8DJq9dEB7WD36RULzpoSrvJ3qBKV5XQn9DQB/BddkQIU1BkceUnpRN4SXz7UcGz7wwYS6RH9z8qQIUV5iYCV9/vjJKCOkdFinqlBRkrViIiJXdma1B8cqEdS7Q==
+ bh=U3QKz3IEFDPdEB5zzV6/37NKQDkIlXA/e5oExKOgZR4=;
+ b=xvbD1eyGcCRMGyfgtRcLR0jA/pRO3+MyWPAD/Fl+Okve+9u+nWGtjeuWYp7gAqUFE+LggG+wqt1il+O6L8AzDwyBCAIXOM8GzZnMZ5oKbDDrjReujvGvHDxLARsmm8twth/mqNpq+1XYedgiiWRNdBhRhpoiwpFJC9dgTnrKUOa1UNwVGT9KeFr+dC7imuD0x9P3sCW0BxObF2I63QiYzLelfP73Nn/M3NxqtlJ2Iv1fa2DN8aC1n/y+gWXoL5v7fmiv1yaOhpp4KvN0grjZ4pU7z89Y927q3xEo6hmCHOvzddUZyvfJ5fS3RRqsj9MVukdi5uMYPvypYKf+NK5xrQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=x32K2eG5lO3x1x9Ry7Lk/Fyen7NxTsxwUetwUNoaGr8=;
- b=Vu+a5cM6IMYW6TNZc3q2Jtkx2oyiC/qxq+PQpW9h3R98VyuAv+PzEffH6uZUUAy6O1t/zqXkktZ883fTNqqv2rL/qItpYxnjxBuKV01p1ipNGsLnfbt5rW7bpRFBLL01b9BKFc5EApPM2F95ECG5SvOmdDtiQ1NyPFS42Q17MlJ1MI7vA161V6VlLPUKoPbCB+LVHIzPGeolTjI31zEXAydGsndMRCyxqDHpRlwquRo746dK5Vda0QU2SvLtbB25w233/xIdktVpA1PwpYduWOFUZu9kNtCQqNJNDHwN6KbttF0A1PG5sOfX195FTWYtsY7xm0VASspqigVoqI3oog==
+ bh=U3QKz3IEFDPdEB5zzV6/37NKQDkIlXA/e5oExKOgZR4=;
+ b=sUlmT8X0AvB0+W2HEIHTpBW4hDnJE1iYDWpDtbroBKQs2VrXz+f1wrvEgp98K48z4zE30sOx8gDKwPbQdp5t26iE3KJnI6DUSDOk+GUBw3yeN7zCXaz33OmLXqzeYchiSyc7OjPxia8Kz8HtRKH33duWbjJ9O2ptOaNLhdnRFvZbYcG/FrniGhdt3EQhU93yIi+CKbk4zO924DqQ1KvZCOxkMx5f9+eTVwmLctVd+AcR2nHTn940Jz44j1h1M0YMUFoVMnvr6mgrDzvS+yBPCz97Yu3gbo0UIr9QBKzxnOldTv8L7mtK0x76Z6tsLy4LPpYfgQSjV/cdGXp4AAhWIA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by CY5PR12MB6106.namprd12.prod.outlook.com (2603:10b6:930:29::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.16; Tue, 30 Sep
- 2025 22:06:51 +0000
+ by CH2PR12MB4069.namprd12.prod.outlook.com (2603:10b6:610:ac::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.16; Fri, 29 Aug
+ 2025 17:33:32 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9160.015; Tue, 30 Sep 2025
- 22:06:51 +0000
-Message-ID: <954d7a5a-e77e-4506-b662-e3d52116a145@nvidia.com>
-Date: Tue, 30 Sep 2025 18:06:48 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 8/9] rust: bitfield: Add hardening for out of bounds
- access
-To: Yury Norov <yury.norov@gmail.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com,
- Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9052.017; Fri, 29 Aug 2025
+ 17:33:32 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dakr@kernel.org, acourbot@nvidia.com
+Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
  Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-References: <20250930144537.3559207-1-joelagnelf@nvidia.com>
- <20250930144537.3559207-9-joelagnelf@nvidia.com> <aNwbeQ6iXuKIsQHK@yury>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <aNwbeQ6iXuKIsQHK@yury>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR20CA0056.namprd20.prod.outlook.com
- (2603:10b6:208:235::25) To SN7PR12MB8059.namprd12.prod.outlook.com
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Subject: [PATCH 13/17] nova-core: Ada: basic GPU identification
+Date: Fri, 29 Aug 2025 13:32:50 -0400
+Message-Id: <20250829173254.2068763-14-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250829173254.2068763-1-joelagnelf@nvidia.com>
+References: <20250829173254.2068763-1-joelagnelf@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BN9P220CA0012.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:408:13e::17) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|CY5PR12MB6106:EE_
-X-MS-Office365-Filtering-Correlation-Id: 64356c73-ad34-4616-ec64-08de006da85a
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|CH2PR12MB4069:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1f10c14f-b640-4bb7-47ff-08dde7222cba
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?eFRTVHJoa0h4ejIzZmplS0p3S3JTRS9FaHlkK2l6NkRPYWxYd0NuVzQyaG9Q?=
- =?utf-8?B?dXZRaVBUd2tRY1Qwa21FTlJTRVBqd0tJRURCN21qQThVc1daUXBVRlBMR1Fw?=
- =?utf-8?B?aDV3V0hFMzZSeGczenFxaXBxeUJjSU9BVlMxRVlLVzVEU3Buc0ZBTXM3YXY0?=
- =?utf-8?B?Q0RCNi8xcHVsOFFCZzZqWlFKZlFvcGhWTkJIQ2dqaGhHemp3cEtYVE9mWTI2?=
- =?utf-8?B?bGMyK1R4amlJZ2RDQXNUMHgrRjJwU2FVUU4zMXpQek1iVGZuQktzekNnS080?=
- =?utf-8?B?Q3RucnBIRUV6ejM3bnhteDRzekxyYVhxdm15TDJ3OVM2STQ3YnpKeFV0VEdn?=
- =?utf-8?B?b1l5anFucHpPUVZ6UEUrUllBampzMHZvbTNBY3M5a2Z4cklNd3FQaWpiTVo2?=
- =?utf-8?B?aTRyQkQ2R3lzRVpYcGxZZ3VxK2tEOG9YTkNXVXhmUXl5QTZGQUdkeHBDVks2?=
- =?utf-8?B?MDE4ZlZjbTV6VW5jWFNwekFQbVo2MTU2Nk4zazZLN3g5bnJoWHM2K29FRG15?=
- =?utf-8?B?QW14RWhKQjZyckErVFFCU2dKdm5nNU5BSnFSRmczN3ZNbnA3NDRvOEZ2NjRq?=
- =?utf-8?B?Skt0TEg0NHZkanBJeWh4MFV4SmNqVkhkZlUxVzRZL0ZVL2RGYW82SDV0UmJE?=
- =?utf-8?B?aW9FK3dJL0lQZnFBc0VTakRFWXYyZHVPVFNDQ1Z0Y04wNmlvbzJNaVBjNGtw?=
- =?utf-8?B?VFJWVjc3MS83UXNXQ09oRitJWm92Q3huR2NmVC9rL0VpeEN2Zmp5T2hldCtJ?=
- =?utf-8?B?K3d5WWtYQS9meWhYQS9jbkhGRDNHRHpHeHllalpJS0pGWDFONEtDRG11SzdZ?=
- =?utf-8?B?UHlJS04ydTZCTjZoSGljblNDeEtDK3U2NG5vd1pCTmtScytBRm9mK1BoK2xi?=
- =?utf-8?B?UGNpKys3MHpEMERhMk4vWU5FV2I3RlBXK0xpUFdLUnRvZGREZUxrRlZEWmpX?=
- =?utf-8?B?blhUVEVvS0tkcHY5RUpUcDJlMkNXeVR1ekdSV25Temk4WjExMy93U0d3TFR6?=
- =?utf-8?B?RUtjaWZlYm1NS1hyRE95d3FIaUwyTngwTm9vaTdTdWJWWDYrUkdPTytCTUtp?=
- =?utf-8?B?KzZ4Znlpam54YWw5ZG41Z1RRNGRDVWkwSitDc1g3bU45dW10bFUwZUtQWWFH?=
- =?utf-8?B?RFdIdWRyaUpla1VDb3BYZkVJdmNBaTQ0Z1ZLR3hjQVVBSnZyMjJRcmgrZS9K?=
- =?utf-8?B?V1lnTllaeDZXWlVRTS9ORUd6UVM3dmhKa1FvSUVUeE9POUVLTC81bUtXNjJ0?=
- =?utf-8?B?K2hEZXZ2N0tFTW1naGZqUnhIUjByTmJEL1hleDJKRWN5anBTZ25seUVvazR1?=
- =?utf-8?B?cm9NTHF5U3U5NU55RVpvd0VVNGdNeTRRbGVXTzJtZkYvTmhlcTA4c056ZmxU?=
- =?utf-8?B?RC91endYbTFoWXJpQnRpUy9aMW5vZ01VY2FjL0pyR2pOWkFubEpZM3JPa3E3?=
- =?utf-8?B?Y3NtWG5tMnJIWXBCZUcxc1EzNXB4QW16UFdHS2RZaVZsU3kxVThVUHcvR1Nz?=
- =?utf-8?B?TE5xcXJ6djZ5TFZSUjRyV1FndlE3VmhtL0YzN1Zwb1JlS3R4dmVwb3RTdmpF?=
- =?utf-8?B?WHptRitMbDgzbkt1L1oxQ0RvRVE2dEpxZWhnbDhDMnExRU5laEtKdjVnYyto?=
- =?utf-8?B?dEJVL2RLdjhsUDBkWksyRTRRQmRYeGovY0FKWUk2MEhZTHYvM3QvS0NJVyt6?=
- =?utf-8?B?V0pnUDFBdlVSN3h5eGpLajZodjFxTTllU1dlTlp3eTA1Z2JzdlhVNXpCTGc1?=
- =?utf-8?B?NXdqbXV6ZFJzQWMvUURtcEpobWdSV3hrd2krNS9samx2REJPOHd3N2h3cTdV?=
- =?utf-8?B?N3dOKzg5YS9RQzlTM0lCUHc3eEtaUm5JVE9HejdUemR6NUJpbmN3MlZxclNs?=
- =?utf-8?B?ZEZTd0tSZzJEUEZVQUhvVTl4enE2a3B1NDkvOUloMHA4MmtaY3Q2UXBIU2Nn?=
- =?utf-8?Q?z+bSA/CAWFAhVpBiO3U7dmCMFD0NuAZ/?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3KsWeW4U/GTlrBgMHKHZD0FMTgwETMsP83yCiK3HzUwLHaSBihOBSq1q9idS?=
+ =?us-ascii?Q?opTXWl6UtfTVRbPIHmvPriPTe+aHuZ2pMeU9lnA/sDpOR7oxZJ7u6Nipj4qY?=
+ =?us-ascii?Q?3e0n3ijTWR4d9k7eC3X5ZVG/L1d2WjlyBcjVoGxideBzygfJRQSaUOTxAFva?=
+ =?us-ascii?Q?byUQYVfpeZKNM0cmZcE4sxgV4amWeqYguN1R3AjxgZ57Mx/gxAHq9M1TpU6n?=
+ =?us-ascii?Q?8Mr4qpKKd7vtSPMD+98gEIChmGECFE2TnHe5oI4d8M+qTSBr529FoJ1gl0J+?=
+ =?us-ascii?Q?GSwxTIRultg8KnZHTITB+EyFbEUA1kQIn2h9zXkTdj01tB/nhEaZZnn0HSev?=
+ =?us-ascii?Q?Vs7qhf17VpCGubF0q26FKnYPfcCWgCS8XHsdIhNczS7ljoKDbn4RB0LeyYVn?=
+ =?us-ascii?Q?KVSlYt3oyn3Tbt5XVBGO6+76JduN1fc+n0aFkiowStOFyrMUUfEufbTHxCHg?=
+ =?us-ascii?Q?OtnQV+EjId1PhPC+W5FoI+o5sgRD5kyMx+6HaRWctpTAhVh8a0Xbm0+xm+KY?=
+ =?us-ascii?Q?TBOf2xaecTPszXSh0yyb6a+SgAvFMeKDbkM9kbtpMunhmBoqaK40kSjVJCpw?=
+ =?us-ascii?Q?8bXXM8xhEYdocyNw4Spvb85fGFsqz3sOYGoFDs1cE31ZEiPUfLyPH8y8PQiG?=
+ =?us-ascii?Q?n9on72UN4CVMPUoC0hDUHe4sqUbw9QKhsH2RFiGCRHOGtGTFRJHmxG/4wHu6?=
+ =?us-ascii?Q?x997HcwO2LcBN+74cZMDbESPc7EGVB8ccqZ+izLtPLyLR2yxFSKyaQXETemv?=
+ =?us-ascii?Q?ZXiGXED8DF8oeGkf6EaxcwdRa/k4jYQ/x011fdjv3xzGLzt7WMdFdr0/jjCR?=
+ =?us-ascii?Q?TB8BCafdM6/wNifIkp5i1TmClAUomMdQlwjsWV/W2Hod747kwH6+zFuYuHk3?=
+ =?us-ascii?Q?FsdyQUn7GZQzMVc6y/RnayMsCd1I/SuKjA9Db04O7+s7rI/J8CEhtQChKkTm?=
+ =?us-ascii?Q?QAfaNIoeDNPxQBVGXXfzGyAvRMEw8IIWI2TGqha2CETZ6//x39ZUQ/mBsT9v?=
+ =?us-ascii?Q?OWTC2OoYWGjXQPFM4daarm49/GsavCF+Ttl3Yn/JEH8pfSZWd3vdQglVrr+W?=
+ =?us-ascii?Q?fBjlv5/lE9diJtgf+LTSaMe6TMMFqgfxCnAVLa0aHkA4yIe8GHfm7qX+nux1?=
+ =?us-ascii?Q?FZoTtSPJtx9R6/IFKseUsUxTSx0BJ1xg+sGTokOD+gspXnKlN5wFK2SRFk0H?=
+ =?us-ascii?Q?Y1ahBTladeODmMPtkRYFK7cqyAdbdz5S+3ga38n32tDydfqJMoYkhKbsYmDy?=
+ =?us-ascii?Q?oXiURZA5KptrB+ZJqp+jTTsGXtA1OqO3AMXYIpKAkWkVYU+IayO1w0ectXJB?=
+ =?us-ascii?Q?P9QESVt+KE8U3KnXDw1CYFACP3I/XLEBFaC9z0j03unevY64/NVzZdNOGRcD?=
+ =?us-ascii?Q?yXZsuuKLooq5nvUIGANppux7/W9uHWDPNTRTL+xVL8DcCre4hbEN/7bHOU60?=
+ =?us-ascii?Q?glGEyoDO5qI=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(7053199007); DIR:OUT;
- SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Lzc0SEZBc0R3QTVEdzc2c1l2bEg2aCsxQkhMSFRYWjVhdGV6UEZxMUdDbmJX?=
- =?utf-8?B?Mldmd2VtaWE1ZFJaVG5hNUs1WmJvZjNUanhnRy9rWlRiUGZXcmJiK2FsS0tZ?=
- =?utf-8?B?b2JkYVlWWllUUFpZVHNWUTREL0xuQ1dZKzFiZ3hiTzhsOVowNmlMeDVxNXV1?=
- =?utf-8?B?VFVSTWJNRlpYbGRpNW1jL04yWElsV0ZuSkNqaDJoQzVsc2YwcmFpQUk3VXlS?=
- =?utf-8?B?WkhJQmZDc2lVZzFHUHA5RzQ0dWxQdmluRCt0UkRCNStyM2xGVEk3MjMxMG92?=
- =?utf-8?B?MU1IN21tRW9ocHAydGxyNEUvRTEwajdPVWpwNGxJUjVKV2dFUERCdzl6ZnZ1?=
- =?utf-8?B?a1UzMGVIa0g4VjlyZFErcnhJeEVITU5yc05FSkhZejF2RTN2OG5hemlpcjN1?=
- =?utf-8?B?VWdZRFh2dmkySDR5aVkvWkR5d1k3Y3FtaE1idFpod1dFYTZMZEdnTTcvbC9v?=
- =?utf-8?B?OUZBSEFoNGtCWFJEcW03VVlmQklFemRMc0tBUkxSSmlyWmxXMzBnVXFhcktj?=
- =?utf-8?B?ZWduV0t2cEFUSEZ0YVRRbjQ5cktQcGVZeWU2aTlaZStTOHo4cTdzZzNQOWRJ?=
- =?utf-8?B?elNhTkZXZTBNaFdtRXdxWTFkK1NYaDEwbHNMSThVR3NuVjcyaG9wS2VKVTNk?=
- =?utf-8?B?dDkrQlM5U0tZMnNSS2xucGdLUFJmdkZyemZ0ampLYzhTYWZDQ3lseWFNakpZ?=
- =?utf-8?B?TzhRQTZYMGZCbmRNc2pXM0szUkpBWUY1NFBUcm02bmx5dFE3U1AwT3ZhWVJE?=
- =?utf-8?B?UjYyajR1aDB6RVNMZU9ZVlVLdUtiOUZMR21xeXMyaExBRU03SHhoVW1RcUFt?=
- =?utf-8?B?cjVuaUhidDBGOTBjQ25QR3J5UVNQZlV4SGYxS3BqMXp5RUZ4cVBPTHJZUXRv?=
- =?utf-8?B?cU1jVmZhOFA2c3pLNXR1NmdTRmxqWXl0WVh1M3YvUlRaTlBPZTFveWRsMlYy?=
- =?utf-8?B?b1BYWGJRSDZRWmlkSTRoTWR4eFpDV0srbE96cU5iOVU4KzBuVm13OEdUQk1H?=
- =?utf-8?B?Mm5ORDRDbUJwYTVlL3k3elVvQW5XQndLc0h0djdXMzV1dWU2OHJ0NW8xV0FM?=
- =?utf-8?B?RU1sMnJVWVkwaC8wV1NGOHB0OEVNZUV6N2NVVUxBZHJrQUlkNEZ1d2VzMmRY?=
- =?utf-8?B?VEY2MnR2R3ptVHNzd2loZzMrWS9wQ0RVT01ZbUNxYjhHRDdBcnR0MGhkQ0M0?=
- =?utf-8?B?eFplSDN5L0FGeVRxUTJVcjFxUCtIT0NkUENHMkVPcWl5VlJpUE9RQkVxeFJk?=
- =?utf-8?B?b3BxZE9wQ1BRQ2NNdTFFMHdDMitEUllGeUgrWVZNRlRWRlBBYTk3dEk1T3VJ?=
- =?utf-8?B?M2FpS0hWZGNtS3BweWE5NXZYaFk0SWhyRkdOOFZyV3FqSjJ3SGVNdzJTYldX?=
- =?utf-8?B?Zkh2cFZkU2toL2hDTEFWNEY5L20rdXFWVTQ0Y2dVWU9velc5QVd2Y0ZMY3Fv?=
- =?utf-8?B?M2l0cDRDQnV4VVYwZytyUktHaWd4TFROdnpUa3hoVitqMU9weDBFbU5RMm9Q?=
- =?utf-8?B?S3ZkRzBmL3BwVUJxS3J4em9odms2dTJQaXJGNFVLRUFWY0FMVGFadHFEeXVq?=
- =?utf-8?B?TUdGTmhmUmlsMTFIc2N2TjhvRjkxZ1VYZUlKQkNUbXQ5aGpsTVVuYnZhT3Jl?=
- =?utf-8?B?WFJOck9CbkhlMzdpeWZscEZkTWV0WURTTWduY3dNL09vVGRtZGhBVGV1Rm5v?=
- =?utf-8?B?VkFuQ3hKNUNSMjNYZWMzcHdENUIvQUJFSXExN3RiZDBJbEpyUTZrcjBBbm04?=
- =?utf-8?B?Wk91bHhHNUorOXdUZWU3bDBLNkpmc3VkM2xOZTQ0cDZ5SmVTT2ZSMjVkY0V6?=
- =?utf-8?B?UzB0eDdXcmt5Z0ZRNzlqWk9rcGI4bGV5U2EzZDlJQ3RMcFAvRU1OTWo0Z1Yw?=
- =?utf-8?B?bUt2eUZkZkk0REExZHhYY0dsUW5Lcm54a0VPbjQzUXpRTmtNaFN6ZDFXNUZp?=
- =?utf-8?B?TURsdzhTeTZMZjJ4N0VsR3NGNDVnaTJkVWoxZis4cWRWaU53eU03M01FT0Ra?=
- =?utf-8?B?azR4ejBXWGlIMEN5QzFQYVFLM1NGMEo3Mm5vNVI4ckplT1NaSDhOcXZXb1VL?=
- =?utf-8?B?YmdQUnU1TXRqRjkrcWY0Y3ByNlNsdWFZTmlYMktGamhLWFl6NXdmaVFxTXpC?=
- =?utf-8?Q?pbnuIM2ytYBQHl2pcMsEZuF74?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?n/2Xv7n0+gRC4F8rKnmLXsfpxSS3UxrWceOTMZbjgSOQdN1vuSqHRneltf8R?=
+ =?us-ascii?Q?FehkE/7uqJyKU67SNye7/g6EgG2fcPqnh3LW/z0dnGPWdktekUl1ATqu9pPF?=
+ =?us-ascii?Q?355IUxy/fMagx9GyL3ITTXjMngLjPX+/qh0OnqFjpAE7Z3rpQdK+fkncZaAl?=
+ =?us-ascii?Q?PkDx8fLWABx7HlhTzFaB3fDJ1cChjwb1G6e02J1v2wFXrz2fazYfRnBBbVdx?=
+ =?us-ascii?Q?OL4OQsOkyn28lS7XkgK7Lv2nF2BCGw9g18MkDOYUfRXB/Ij5Ao06xBwhIx5m?=
+ =?us-ascii?Q?wakXclySDXEa+1jOfT2GLac+VoiNb57ZRYHPJiFGCnj7/QfAVvGm2A4dWyfL?=
+ =?us-ascii?Q?FpMwzbxGlw0IOK03Vr+zGxDk7h/zVcJw444LIObt9WjdYdqthzDPos5WTPFc?=
+ =?us-ascii?Q?4/mElVhhqJy2nSxmQeoYNGHmcXvQNfa8ifSVHKQ4rPeU8K3UlZKrm4u9BbN3?=
+ =?us-ascii?Q?s14WFblm/X1m2Pi+zRhY7Z1WjxZwRIPNuHaUbL8gHwGkrK8CrulphoMVBLBZ?=
+ =?us-ascii?Q?Yb/9qHrFWsAVzHpr9/H6OXlsbnJ6bO5FFzN4dTMXwApoN9gty/vPQXsytNlX?=
+ =?us-ascii?Q?dIH90VN+0a2YkdPr/dsj1f+Nb3xdQtHXd02nucWvLHiGkF3/jsqjkAJkqirM?=
+ =?us-ascii?Q?WxsISNYtsfIvk3/+f+vsr24VrR78jVUyl4MN72yWsrwppClLCHh3Oaub6uOC?=
+ =?us-ascii?Q?+f1KI9qymUiBAPDvvqmjhA7zTPgEi6PbIcf9pwKwUgFs5FJRt2hMnOVK8/6H?=
+ =?us-ascii?Q?shkjWsWG3IjS6bRD24lHpHb79+dROpO5QF2LbI7fhYdZSAqt/XMt9uBHCOIw?=
+ =?us-ascii?Q?NV9azALuLsusqSGoznuNVuoAX/wJTjkvn6ahBe6d7RbVUziCbkaE6aDXaokr?=
+ =?us-ascii?Q?qCp1E8D8OB8AbqZ9KTSWSSW0WBgF3GfBazBIXJ4ATf3APHD2ubGTzf19jtYk?=
+ =?us-ascii?Q?7emgsTZDAFTjuJowns2yi8I2735OWQZyWXDeKIMxD1ddyUHO/jpaFyhgrynL?=
+ =?us-ascii?Q?NqbWL9+vGELmBMqr8mKJrfTo2MvvQ26+rL++LhT+Gpgc0ZEuXJsmG2x2GgKr?=
+ =?us-ascii?Q?MirvGIrwPXeOjfGePAvgxDCRQnWhx5cFuHKmMawf+nEWAegVP9VS9lwjvxoN?=
+ =?us-ascii?Q?IvWJMGLRC+ipRxwJFfcsf0iO4XBbAcfR1SxNHXrXhRcxZnkhnnCR+/yVX9PO?=
+ =?us-ascii?Q?wtxcyrBVoMRSIFFEH07uwLlbc6MGA0Ad9P7MTnRLCyOaYRQAJv1+CimEuSof?=
+ =?us-ascii?Q?moxFOXOfNadxEI3xzcTd3XyC9Gg4yESLHaorkptsEX42yW3Sv+NwT/sVf63s?=
+ =?us-ascii?Q?k9ssh57CoNWecs9egmjzpZE5ndFjr5ZW0LlVkGeQC5JZFsC8z45ke79FW1Io?=
+ =?us-ascii?Q?EgmbypydjYhCzCkMqxgGeUvsWTZvIIUgUDJD3ggz6BFfLTTB8nNGEUINBzJW?=
+ =?us-ascii?Q?4N0kWTL9wXa+RXJVBcbNrI17k4IuFD0FhQFI9EgX7oTE5da6Eu5lEo1wvJaN?=
+ =?us-ascii?Q?/v9TC/Zxbp1q84KnBKtsD40JOxnkgnvGE4DV4/gIwoE/+64+YAZdu/+bG/gR?=
+ =?us-ascii?Q?BiCqalPe2GDJBmhjTlMb0ANf64xMhikqyBDv9MiP?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64356c73-ad34-4616-ec64-08de006da85a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f10c14f-b640-4bb7-47ff-08dde7222cba
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2025 22:06:51.1040 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 17:33:32.3335 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bk4/wDRWAgNPFt7Tu/ngeOR7wYssFOGlSp1tuaneZyPtyPdJreL2nh6Az+e3KwJJ2BllOqI0tjXusSyqDTh1zQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6106
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: b+QbTnSDdPrifuqk+7FSfoUsM741oupYxBt6jfVFKnmbERi/LHi6c5onzExx3WF27MpeolraKxyF/HsvFPwlQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4069
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,256 +156,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello, Yury,
+From: John Hubbard <jhubbard@nvidia.com>
 
-On 9/30/2025 2:03 PM, Yury Norov wrote:
-> On Tue, Sep 30, 2025 at 10:45:36AM -0400, Joel Fernandes wrote:
->> Similar to bitmap.rs, add hardening to print errors or assert if the
->> setter API is used to write out-of-bound values.
->>
->> Suggested-by: Yury Norov <yury.norov@gmail.com>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> ---
->>  rust/kernel/bitfield.rs    | 32 +++++++++++++++++++++++++++++++-
->>  security/Kconfig.hardening |  9 +++++++++
->>  2 files changed, 40 insertions(+), 1 deletion(-)
->>
->> diff --git a/rust/kernel/bitfield.rs b/rust/kernel/bitfield.rs
->> index a74e6d45ecd3..655f940479f1 100644
->> --- a/rust/kernel/bitfield.rs
->> +++ b/rust/kernel/bitfield.rs
->> @@ -29,6 +29,20 @@ pub const fn into_raw(self) -> T {
->>      }
->>  }
->>  
->> +/// Assertion macro for bitfield
->> +#[macro_export]
->> +macro_rules! bitfield_assert {
->> +    ($cond:expr, $($arg:tt)+) => {
->> +        #[cfg(CONFIG_RUST_BITFIELD_HARDENED)]
->> +        ::core::assert!($cond, $($arg)*);
->> +
->> +        #[cfg(not(CONFIG_RUST_BITFIELD_HARDENED))]
->> +        if !($cond) {
->> +            $crate::pr_err!($($arg)+);
->> +        }
->> +    }
->> +}
-> 
-> Can you discuss performance implication? I'm OK if you decided to make
-> the check always on, but we need to understand the cost of it.
+...which is sufficient to make Ada GPUs work, because they use the
+pre-existing Ampere GPU code, unmodified.
 
-Sure, so the cost is zero if either CONFIG_RUST_BITFIELD_HARDENED is disabled or
-the value being checked is a constant. That is, the compiler eliminates the dead
-code. Otherwise the cost is a single shift instruction and a single conditional
-jump on x86. I verified this. As such, I think it is a good idea to keep the
-check on.
+Tested on AD102 (RTX 6000 Ada).
 
-> 
->>  /// Bitfield macro definition.
->>  /// Define a struct with accessors to access bits within an inner unsigned integer.
->>  ///
->> @@ -358,9 +372,25 @@ impl $name {
->>          $vis fn [<set_ $field>](mut self, value: $to_type) -> Self {
->>              const MASK: $storage = $name::[<$field:upper _MASK>];
->>              const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
->> +            const BITS: u32 = ($hi - $lo + 1) as u32;
->> +            const MAX_VALUE: $storage =
->> +                if BITS >= (::core::mem::size_of::<$storage>() * 8) as u32 {
-> 
-> If BITS > storage then it should be a compile time error.
+Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+---
+ drivers/gpu/nova-core/falcon/hal.rs | 2 +-
+ drivers/gpu/nova-core/firmware.rs   | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-Yes, that case is a compile time error.
-
-> Can you> elaborate under which condition this check makes sense, and is not
-> covered with the "(1<<BITS) - 1" case?
-If BITS is 64, then the else should not execute, because it would become (1 <<
-64) which is UB.
-
-I am Ok with changing the condition to: "if BITS ==
-(::core::mem::size_of::<$storage>() * 8)" considering the compiler time error,
-but I am also Ok with leaving it as it is.
-
-
-> 
->> +                    !0
->> +                } else {
->> +                    (1 << BITS) - 1
->> +                };
->> +
->> +            // Check for overflow - value should fit within the field's bits.
->>              // Here we are potentially narrowing value from a wider bit value
->>              // to a narrower bit value. So we have to use `as` instead of `::from()`.
-> 
-> The new comment sounds opposite to the old one: if you check for
-> overflow, then there's no chance to "potentially narrow the value".
-
-No, this a compile-time issue. Even if there is no overflow, you cannot use
-'::from()' because it will cause a compile-time error because it is narrowing
-potentially a wider width (like u32) to a narrower width (like u8). It is not so
-much about the value itself, as much as it is about the type of value.
-
-> 
-> This "potentially" wording simply means undefined behavior.
-> 
->> -            let val = ((value as $storage) << SHIFT) & MASK;
->> +            let raw_field_value = value as $storage;
->> +
->> +            $crate::bitfield_assert!(
->> +                raw_field_value <= MAX_VALUE,
->> +                "value {} exceeds {} for a {} bit field", raw_field_value, MAX_VALUE, BITS
->> +            );
-> 
-> Can you hide all the internals in the assertion function? Like:
-> 
->             $crate::bitfield_set_assert!(bitfield, field, value, "your message", ...);
-> 
-> We don't need assertion implementation in the main function body.
-
-Why? That's more unreadable IMO. Having the condition itself in the assert,
-clearly shows what the condition is in the context of the surrounding code. I
-don't think we should more macros to do asserts when we already have a macro.
-
-> 
->> +
->> +            let val = (raw_field_value << SHIFT) & MASK;
->>              let new_val = (self.raw() & !MASK) | val;
->>         all the internals in the assertion     self.0 = ::kernel::bitfield::BitfieldInternalStorage::from_raw(new_val);
-> 
-> User wants to set an inappropriate value, and you know that because
-> you just have tested for it. But here you're accepting a definitely
-> wrong request. This doesn't look right.
-> 
-> On previous rounds you said you can't fail in setter because that
-> would break the "chain of setters" design. I understand that, but I
-> think that it's more important to have a clear defensive API that
-> returns an error when people do wrong things.
-> 
-> So please either find a way to return an error from the setter, or
-> some other mechanism to abort erroneous request and notify the user.
-
-There's no way to do that other than always panicking, or introducing a new API.
- There's also no way to do this at compile time, because 'value' may not always
-be a constant.
-
-I see your point, but I think since we already panicking at runtime in a
-hardened config (or printing an error otherwise), we already have that covered
-right? The user is already notified and it does not go by silently. If this is
-really a problem, we can always panic (in other words, always keep it as
-hardened config?).
-
-> 
-> This "chain of setters" thing looks weird to me as I already said. So
-> if it messes with a clear API, just drop it.
-
-I don't think we can/should drop that because this library is also used by the
-register macro, and that uses the setter API (I just moved this code from
-there). Also builder pattern is a common paradigm in Rust programs and I'd say
-one of the key features of the bitfield macro so we should support it.
-
-How else will you do something like:
-
-        let status2 = TestStruct::default()
-            .set_ready(true)
-            .set_state(0x2)
-            .set_reserved(0x5);
-
-? :-)
-
-As an aside, you can check literature on the builder pattern as well, it keeps
-code super clean and readable.
-
-> 
-> And to that extend,
-> 
->         a = a.set_field1()
-> 
-> looks more questionable than just
-> 
->         a.set_field1()
-> 
-> because it implies an extra copy.
-
-a.set_field1() on its own wont work, because the value returned (self) is discarded.
-
-and,
-a = a.set_field1()
-a = a.set_field2()
-a = a.set_field3()
-
-doesn't really do multiple copies, the compiler optimizes things and eliminates
-copies. I verified this in the asm as well.
-
-> If I do 
-> 
->         b = a.set_field1()
-> 
-> would it change the content of 'a'?
-> 
-> Can I do just 'a.set_field1()'? There's no such an example in your
-> test.
-> Is that 'a = a.set_field()' thing really a zero-cost comparing to just
-> 'a.set_field()'?
-
-You can't do that in the current implementation, it is a NO-OP. We can certainly
-add a new API for that, initially I was planning to do add a 'with_field*()'
-accessor for the builder pattern, and do the 'set_field*()' API as you mentioned.
-
-So it would look like:
-
-        let status2 = TestStruct::default()
-            .with_ready(true)
-            .with_state(0x2)
-            .with_reserved(0x5);
-
-Or one could do:
-        let status2 = TestStruct::default();
-        status2.set_ready(true);
-        status2.set_state(0x2);
-        status2.set_reserved(0x5);
-
-Would that address your concern?
-
-> Can you ensure it holds, say, on 32-bit machine when> 'a' is a 64-bit bitfield?
-
-I don't think this is an issue. If the user writes a = a.set_fieldXX() multiple
-times, it will be optimized as I mentioned above. I have verified (in release
-builds) that the compiler does not create multiple intermediate copies.
-
-> Would it work if we decide to support bitfields larger than 64-bit, like C does?
-
-Certainly, the struct has the Copy trait. 'a = a.set_field()' will work for
-larger than 64-bit just fine, if/when we support it. I verified that as well.
-
-thanks,
-
- - Joel
-
-
-
-> Thanks,
-> Yury
-> 
->> diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
->> index 86f8768c63d4..e9fc6dcbd6c3 100644
->> --- a/security/Kconfig.hardening
->> +++ b/security/Kconfig.hardening
->> @@ -265,6 +265,15 @@ config RUST_BITMAP_HARDENED
->>  
->>  	  If unsure, say N.
->>  
->> +config RUST_BITFIELD_HARDENED
->> +	bool "Check integrity of bitfield Rust API"
->> +	depends on RUST
->> +	help
->> +	  Enables additional assertions in the Rust Bitfield API to catch
->> +	  values that exceed the bitfield bounds.
->> +
->> +	  If unsure, say N.
->> +
->>  config BUG_ON_DATA_CORRUPTION
->>  	bool "Trigger a BUG when data corruption is detected"
->>  	select LIST_HARDENED
->> -- 
->> 2.34.1
+diff --git a/drivers/gpu/nova-core/falcon/hal.rs b/drivers/gpu/nova-core/falcon/hal.rs
+index b233bc365882..f061f67f1072 100644
+--- a/drivers/gpu/nova-core/falcon/hal.rs
++++ b/drivers/gpu/nova-core/falcon/hal.rs
+@@ -44,7 +44,7 @@ pub(super) fn falcon_hal<E: FalconEngine + 'static>(
+     use Chipset::*;
+ 
+     let hal = match chipset {
+-        GA102 | GA103 | GA104 | GA106 | GA107 => {
++        GA102 | GA103 | GA104 | GA106 | GA107 | AD102 | AD103 | AD104 | AD106 | AD107 => {
+             KBox::new(ga102::Ga102::<E>::new(), GFP_KERNEL)? as KBox<dyn FalconHal<E>>
+         }
+         _ => return Err(ENOTSUPP),
+diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/firmware.rs
+index d35f1affaa28..4da3c94f50d0 100644
+--- a/drivers/gpu/nova-core/firmware.rs
++++ b/drivers/gpu/nova-core/firmware.rs
+@@ -153,6 +153,7 @@ pub(crate) fn new(
+ 
+         let gsp_sigs_section = match chipset.arch() {
+             Architecture::Ampere => ".fwsignature_ga10x",
++            Architecture::Ada => ".fwsignature_ad10x",
+             _ => return Err(ENOTSUPP),
+         };
+         let gsp_sigs = elf::elf64_section(gsp_fw.data(), gsp_sigs_section)
+-- 
+2.34.1
 
