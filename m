@@ -4,144 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E25CCCA472
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54ADECCA470
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E83610E580;
-	Mon,  6 Oct 2025 20:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E467510E574;
+	Mon,  6 Oct 2025 20:46:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="qixTgRDS";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MPBg9Y/T";
 	dkim-atps=neutral
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012009.outbound.protection.outlook.com
- [40.93.195.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76B8010E37E;
- Thu,  2 Oct 2025 18:39:42 +0000 (UTC)
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam12on2055.outbound.protection.outlook.com [40.107.243.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0CF510E8B3;
+ Wed,  3 Sep 2025 15:15:21 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HAVSnVjRlzNdEy833nrR/WpWE5kRXjAO4oKQ8wgHxHY+S/yUq0FPXGDbSIrStAtXe04IX6gz6cXHaUMwIL3plwt0fq3fb1IUonpkpPioZNrZlAZ/GEk8ozSvWfoMNcJhOz7i+ABPVXotb4odtXLiTgActbJsB2emNtx7nOKdSg/cDa7wjCLxrq+D/OfKs6Ic6lEAvIkpP0pPEhsKQT5WGPVwAm9mvAqsvMxYXVPVjje41SxAhRZttjcX4ctubvc2wuDFqLJDpmsdbbAGgi715uU3IJeDKzkB2WytrSz5A4wa3NdeTfmktgS4P8rT34JsaeOEsBj4oAqYNEB/ps5NpA==
+ b=Q/c5G9s4eQTn10CsZ6QNTaEKYgVmj8K6asXCorW+VXvRPvRPyHeCX1quvSGgDzdiwEjTpx4AXpJLFP2sF8R4sWk+PXeWB5dwqaRj/bLXk9vxgHq/WHuZ//G/yirvRDzYmNwBU7b04FqgFMO8OZpnizw5E2zwkrqGnYg6IjXOuVE1Rl0Gje78uDU0D18L5OT5RIoQj0wv+CBuyZSMlJ//Xy22SVigE/YiHIAomZz/f7VuuBD6Z0I3GBR4Kx1BCFMxKuJbX9ukpwKD93+NbZniGEfx6w9OvWevGAbMaogGDHPoJ9FQ1LnF9OpyLwMmuIIePAgyRkZ37Besq6IMexsIjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kklKnTVz/rS+78gfHIPB/CTw3jB06c3vvIJfJC4Z0Q4=;
- b=Ri/+blWqLOceEx8Ra2ZhJGu0C1KSWYQDLpf7KZT1oDhR1kRNeMiFJnCx6C/Y+eYw3D/9r4UBCi2lhydRgM8VeZ3pvwnN0ySIu/ySrnqI+Yg11AYTVaVLuMqZ28el1TR4TMEfLXPN1ilslry3ipcvrrRgGzFufUWmTvEPiwlV1eOlN3P5hwBoEvaYGKKJKBLeJWbC6yHDdeZlOn44k7XD8YWyhrPHz7CphtTyMChlPaobPD67wmj49OJ8kPgMT/p9zJqfygadvXPUSznRiD2pUMXowCDDlGCThAvkOB0uzJXISJi3+d3GJsdXevsXjdRdJkO+1664xQnOaGxOcos9yQ==
+ bh=H9tUCO5q/qQ+A2bGu+7DVhMrLiwI/+uo8HEDbsnsH+k=;
+ b=LYFQO3EIY7JSaVmA+kjPNmqC87OStcJm9Q+V74c7AnAlQECsonX5UbTenqap9lJUEZifnF70Isd6E/BFIQJYokHda6g3/LdBf8uQAUL0UZEbU/4e36s8mn0fm1kkeRpQSTw0IU9H2XsRwq/mZ68oQNWNOxvNhfSopk9UZNXcUXRzjHdQAklfRisY0yjlDvSkIS1MDoocdlcX8jNBND9AIbchWhVKwnCZ5E0XcNPkYxSxrAvdB+WK167hP/M3mQYJp53PaS+MXtjCK9f5qbfBriLcYONLf03UuqCngQcvVDLCqYRP9Hkc2Wz7CLJUAkKZjzRzK9JFLWSEQ/iBqsqYOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kklKnTVz/rS+78gfHIPB/CTw3jB06c3vvIJfJC4Z0Q4=;
- b=qixTgRDS2A0UQG+11+EMJCaeiYmlPkP0uypxAwgA9ny6v9ObWZ5kCAa1DvHQFTn/tg+9yMbu7rm6yUqsFcsYV3B/NeGiBQm1/h9YKfNBh/BXXlXEA3nIHtgDNxcE+7+zjBiBdpa9cYMWqmO7C5AsKWznH2BFuOAQVpAH5lI29VYpVsCNLg69xJRSU/2C1adgpclqt44TntOqz7GRoDEjH3bEqzWvg/UBeTHMTmUITIs26cWgiHCSB64AAoRhSDfIlxc+hn51gzeXllqDKcRljKWXjYWwalyFPecYaLvakDM2SpCyKp7YvzZ4AMdEwM2HB6DeSiC1uM3rIOIEhTvvrg==
+ bh=H9tUCO5q/qQ+A2bGu+7DVhMrLiwI/+uo8HEDbsnsH+k=;
+ b=MPBg9Y/TgAvHIePS28UtOLVc6K/ITpOzm9L/7RWPsfKMy8+VQZV+BvyBXnF24VkodZaneLw9wz5kaMBsIRqi1fk3EdIkKUxS5+EBxlFVVTXl4Gl4xiEkVHnwYJgJS75AayenkeAmsb9ILo1Hgy8/yPjbzAjxQdu5Ad4rKlUmv6Re8MruC0YDwHPmr34/niNmTsJHATkNkZZC+bc0K3tbHCq15OH5uV5J/Aw6KPxVHFkIWnlUgAdmGcOkvGxxhNN9Dd3SZr78FIzRAjPsGmPcgy7EamGhJdsaf4s7C1SahUsMazuJGPq/pEmWimuFqQsxtwwKy7EJ1XV0mn2qJzv3dQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by SA1PR12MB7344.namprd12.prod.outlook.com (2603:10b6:806:2b7::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.18; Thu, 2 Oct
- 2025 18:39:34 +0000
+ by DM4PR12MB6063.namprd12.prod.outlook.com (2603:10b6:8:b1::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Wed, 3 Sep
+ 2025 15:15:16 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9160.017; Thu, 2 Oct 2025
- 18:39:34 +0000
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9073.021; Wed, 3 Sep 2025
+ 15:15:14 +0000
+Message-ID: <444ebd64-7a90-46a6-b885-2c114aa59284@nvidia.com>
+Date: Wed, 3 Sep 2025 11:15:06 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] nova-core: Add a library for bitfields in Rust structs
+To: Alexandre Courbot <acourbot@nvidia.com>, linux-kernel@vger.kernel.org,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>
+Cc: John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, 
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
+References: <20250824135954.2243774-1-joelagnelf@nvidia.com>
+ <DCBGLCQVD1RF.6V5UT0NQ4GLB@nvidia.com>
+Content-Language: en-US
 From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-pci@vger.kernel.org, dakr@kernel.org
-Cc: acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>
-Subject: [PATCH v2] rust: pci: Allocate and manage PCI interrupt vectors
-Date: Thu,  2 Oct 2025 14:39:12 -0400
-Message-Id: <20251002183912.1096508-1-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
+In-Reply-To: <DCBGLCQVD1RF.6V5UT0NQ4GLB@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MN0P220CA0030.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:52e::24) To SN7PR12MB8059.namprd12.prod.outlook.com
+X-ClientProxiedBy: BN9P223CA0025.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:408:10b::30) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|SA1PR12MB7344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4815df2c-4aa5-4767-a04e-08de01e307fe
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|DM4PR12MB6063:EE_
+X-MS-Office365-Filtering-Correlation-Id: fda70361-c085-482a-455b-08ddeafcaece
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?S+j9S/ShscR9HmZz0eH3zsWtrc0srqpOw9iFezNpv/LsZVF+4rQu7dJlpA2v?=
- =?us-ascii?Q?wqQf1uuLZUd0tXz+PcmBMkh4DFXJdGe4Z4NFjn+im4mrBRKqMrdKWlCWofLe?=
- =?us-ascii?Q?b5lnXI2I75TMfY7Zqtk/0IVwXdHJS2+VkeyX6gBFd21TLF8NNh5Yzhj5S6AW?=
- =?us-ascii?Q?2hxtyW4D/Q+kUIrgZMfnedi/7vwciA1XB5uRh/5pyfAwIIMUNDzXBEmJRTqy?=
- =?us-ascii?Q?fkIesWqVX+Cmx8xxW7f4w84WJMPlkkszBs7cHtKRG2XsiMnDWDz91YCgYL9f?=
- =?us-ascii?Q?2YZ6r7YAqSw/mF7UtYAoK4YP67t5xZtYda8MGYRUHTMV0XNzPL7NbeNXhiZ2?=
- =?us-ascii?Q?RBmfeW5E4vdx1Hi7AaymCXlAIUPW/4u9F0WDJ+GRPa4X7R9EV0UCYSxRqiqd?=
- =?us-ascii?Q?qpQLnivSa+cSCLJ+Fy4AM/vradb5U168l2/uKkuIcR9kJyU72JZppfF9pheV?=
- =?us-ascii?Q?tNba9x+pL7+YdsR3G14wM83gDpy3qVpzpxmEJ1RL1pyVwNT12X1U5oph1uEi?=
- =?us-ascii?Q?5ByXNLe7giccOAtSAuuowmCvzvBHByVjl+WXhDDokezzfFofKDgbH/tQORJ0?=
- =?us-ascii?Q?uWS85CW702mkbMVpbZQ/0uY0NPYhro6NbV4F4XnCTS6MUnkAvsgmxFlC0ADK?=
- =?us-ascii?Q?oh+B7Rz/q8eWyNW8QvTgFYz3xCn4cPY5cfKSTnon1y6PsmlZljRLR7WB0vF8?=
- =?us-ascii?Q?hCskSyq8AwiNADK3u0BUwMSvCFv3+Hzy+d7nmO/ar+grug5Gp+dPuD29o2SN?=
- =?us-ascii?Q?ytXj7f+INIrSpw4pn+YDt0ladwjfoKH5IFh3VOLGErw99LX/ZpBUiu22Tesb?=
- =?us-ascii?Q?lmjXLi4Plbs2v20UJKrsJQJVlkL0V/292yJ1XQRNwYvhFe4pcTBwODVvpbFa?=
- =?us-ascii?Q?DiECDPZhtqlWYm6wakBTQCP2egArL2oaAj6eIOfKxjIPh/gqcAtYyenPYZKo?=
- =?us-ascii?Q?nuhtudqlfuDLZ572S2AsS1C1KKBnAQvwXYMGkRAd1OF7vQVe00LXqwhj6w/u?=
- =?us-ascii?Q?3lSMzC20A15XdUwUYJWrsoClqrDlphrwDSireuGRkItOzgkDDaoVJYgwlEOe?=
- =?us-ascii?Q?k0HTpFa3EylVKHWJm08Mq8MPrU65ef48LFm4+siSw4IGaTJivAgVfN7uBh9U?=
- =?us-ascii?Q?YC3tJC1Q5TWis1Eeh3vGR12nxLBP/JiDbi4V7pgbD4wiS+iErjqhamM+xVqQ?=
- =?us-ascii?Q?2hb7FPo2F4xZjOJ6/fXIFmqsTgSzvWXV/7sZvHa/AuCWMum6U5pjXPiys6VL?=
- =?us-ascii?Q?14nvIJzqKL8lEi8IM4gxgvYpiyDAfyZaMZGCnf2IYi1Rac39CtcZyprMvl2q?=
- =?us-ascii?Q?c4Nbpxsd+ALMJ6JmNMnT9WX1jDhC6aQsyYz8QWDShCZOKf3rbxhM1mzkp9ZG?=
- =?us-ascii?Q?YDjeCsgFK4AwRpdSYEHZ+FTPkw5djOHdv4nztvND2acso33j0gC2rFEH8zGF?=
- =?us-ascii?Q?ghIim3PlePDLqyQQxf6w6rgO8HNf8LKUxd606qy9xcDq1a4r5YJEGA=3D=3D?=
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|7416014|376014|921020; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Z1NKRWtTN3NpelF6UWYyTC96YkxRMit1ZFA2TmFkc0w0N2p4VURCbCtUMThP?=
+ =?utf-8?B?eVdCR2RXbFJ2RjAzaXg4U0ExQm5sWWlRWXZBME13MHhsU0ZzUEFOTDZCUTZi?=
+ =?utf-8?B?QWNwbUFWbDQrMFVsRG1vbnhzS0tkMHBLdGhqQVBpQys4bHlwNmdyVEtzTDVZ?=
+ =?utf-8?B?cm5uSmtWU2xCMXhRNC9zeGx3dnFwOE9ubVVQOUZUSjBJVlVYdUs0T3lrVEhw?=
+ =?utf-8?B?VDB1d1YxZVprblNudWp4THR3dlVsU2R6OVUrUitBOHZPV3BUNkFQa29iSkJy?=
+ =?utf-8?B?OTdleWkvUlFsWU0xaUc0M1FoK2JkUGlFZmEwM2xzekYvenZIUnh2NW9mcWlo?=
+ =?utf-8?B?R1lZQ2tiT0hhcGplUndHRUwxNGJrOHJiTnBRWC80YjlhL1JJNVBUR3ArMFJa?=
+ =?utf-8?B?OTJtRnd6WjZMTzlTT1FlcFllalkzZlNDSURqM01MZGozYzFicVVGM1FIR2tv?=
+ =?utf-8?B?VzBkSlpyQU10ZjBGVk9KWEsweGo4SXZ2czIzVDJyMDFoYkg0UHFpZURCOU54?=
+ =?utf-8?B?MUVJQm9NWUI0ZDN5ajg2MXVXb1J3aGNhWWVUeVllNFNhZUdhUU1WM25keDBs?=
+ =?utf-8?B?ZWYrN2YzOUFhbEplQmRSdmROSjRXa3lxVGtjdXltWlZ0NG5oRWpQVDh3WjZo?=
+ =?utf-8?B?SUxzMDdvb3RNbk1pcS92elQ2SzlpeUJ4bkI0VUEzRFpnZ0xaeFZkRVg5OVdN?=
+ =?utf-8?B?Q1NwR2FCZkduWnRLcDZxSnhKUnFSNWNlWFlTU0dpRmd4NHQ0MGE5VGJNYi90?=
+ =?utf-8?B?Tyt0NjNmb052cEhHYnVSSVFNaVQ4WEFKRDZiN1d2c0ZDL2ZYWkZ6UmU2eHdY?=
+ =?utf-8?B?a210ZFRSRW1aK3VPNVJMeTBHbzRSUjJXM3ZCZk5KaUg2ZVhEd0tzOGhvQXRC?=
+ =?utf-8?B?eU5uejhSbXJZUzU2MVZvNForM3FzaXVFYWtySlNRQndJdVFwTExCaTh1Sy9Y?=
+ =?utf-8?B?a0xkQzJHRVhtVTA4RG9PNDNoUUFDOWdrTU5HVFo3bXROS0hlRzliTUtIMGxy?=
+ =?utf-8?B?Sy9wNTdHR0FzbVJaaitDV1NHQkhZeE9WL0dvd2NLQjVYWmJRWkExd1FRT29w?=
+ =?utf-8?B?cExtSXJpbEFkeXNub2J5RCt1bis5R1I2K29JUU9VNkVROGpFMW4yeW9Ldm5O?=
+ =?utf-8?B?Z1A3eWJ4elB0cEQyeHhLWlIyZkJtSDRscFRZd3lwMENucXJxalZtWngvckF0?=
+ =?utf-8?B?OHpkUUdoYnc0VmhudjUrZFhUS2Q1aHlETzlIWG9IMUgxRWU2WHdYWTU1VFhU?=
+ =?utf-8?B?MlVxVjhQOXkwYkh6SmRJbjVQc2J3S25MTUxzSE9maVVGZGdpbFlTdWxiWTk5?=
+ =?utf-8?B?bUkzeUkrRFJUSkZ5WW5xZGZMM2dEWllqRS9Gc29iT0dVMWRZVHNBUktLUnR1?=
+ =?utf-8?B?Q1QrSys1akF6anROMlF1V2syUnVwRlFkbVFaaURzcUhvZjlZdzRSbVpTRUc1?=
+ =?utf-8?B?Y2lQNmgxMUFwQlpqQW1DMFgyTkdaVXllbnZJRHFiblQ5d0dZMm9mVEtESHBo?=
+ =?utf-8?B?WXhMUHN0YnVpc2NBa2lOUGJqM3FZU3ovQzZXU241UVhxUGxCZGRPNmlhY0Zo?=
+ =?utf-8?B?N3pzU1I0Njd4UE03UVdWdjRGNmo4cklhUm93S3pBZVBTcDlDMmdJeUx3QlJU?=
+ =?utf-8?B?d29SVXFjTFQ1WTFtaHNueGRGUTJ1cnN6SzBMUDgxUThxUEs4WkdOWXpseTho?=
+ =?utf-8?B?Q1dob3pyRk9XUEFhbjVNb2hRYjhVMkNwL3lkcUh2RWo2dElmTnlsMVFScUxu?=
+ =?utf-8?B?TFh6d3N1cFJGamFuRldiTGY5aUtFNmlrNDlKQTI5cVpSc0pGcHdyc0FJMlVJ?=
+ =?utf-8?B?NHpod09odnNCMU9ublNxTE9yQ3BYYzl2dHFKcEpSTlJnZlNIclB0YXJ5S2Y0?=
+ =?utf-8?B?Qzh6dzgxdmpyZFRaMFN5ck0rS1ZFcEx6dXV1Z0h6WHBYU3dReEJOMFI2VVZM?=
+ =?utf-8?B?SjU3QkppS0hQSzNSemFkdzFnTHlrb0xYMEhtam9Sa1JsZlpHcHRwZjNtTHBa?=
+ =?utf-8?B?TnRJSk1rMGZBPT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(921020); DIR:OUT; SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EqqNSqNR3fabiZhfVMsUt56V7XAMyQZ75lnQjxQZL195nx+yb1g+hWXsYNqX?=
- =?us-ascii?Q?c99SkcFmrDL1w67yKCDIsfU5FqxkoXWbKauEzhAzbwE/pt3ecnJxMMInVTxp?=
- =?us-ascii?Q?XjORRS0RxMKYfEnd4iw7rseEACIfYDpQyDTUk6yR77YkWAT7cCeYgOWE11A8?=
- =?us-ascii?Q?dRLeXWRpplbPXYgjMvcUcG2NY6Kv/rp9j5wOSLHIVqJb262tklwNbObE8xCy?=
- =?us-ascii?Q?dMWoNNPJpKbn9pvbz7oe4x2/C7eVp26i1dz4nAO2cmLaWltoQSXR8j3zBe3J?=
- =?us-ascii?Q?xCD/opu/Si31bQvboOnxuJb0g2svTDovLkOv26LS7JI/RDbr44oZw47iavfQ?=
- =?us-ascii?Q?av84p7Wh6TuG/hoaMUp0LgEwPQGHtTKN/hODf5XkM6IpST2xjjEKZVfNYlo+?=
- =?us-ascii?Q?4+mPyPs67pYFZpilk8PCRVk0o9+bqn03TYHlO2MfaRpp6rc6jsnRlVcz1sKZ?=
- =?us-ascii?Q?IV1seyPdpwg8GSEZok1pBolTomyWSXAfKZpvGs8MnG5o0q9E1RjVxDXCqH+P?=
- =?us-ascii?Q?2Jko6M/Ny5UIE7uVfRHeEE8OmRYl2VsJIZxSEGO/ouRjmlp5LBiqrcatI78j?=
- =?us-ascii?Q?TA3H6bDgl6ozze7wI5Vh8Nr1yqs9Sda6a5cktuQJob/Nj8Fc6nwY6KH+Su39?=
- =?us-ascii?Q?qFWQ4Q1fKbF6QSDE+mh+140ehbGMGjdT5EgxZ0OnYxTgE/WtvK1xC/tUJ80e?=
- =?us-ascii?Q?g39H5Glgvyz24Ud4pIOM08xgC+C6U/sMIvAMOHwReoe11yRTTVG8lhtmO4yW?=
- =?us-ascii?Q?IGHYouAlU5IYXgnK/ItH5xkTdmAcVZdiSYsQUfRZm12yInSlfxGlO1BLyyDi?=
- =?us-ascii?Q?60UD1yw59Wqwz98p9kCF5fdiMlrE6VJVIKXZ8Lg4lbxbDwLMvgS1uZ/EJKpv?=
- =?us-ascii?Q?H12PTV7jDYuclv+FIkOxdqEFfSoie9v2PPv5HPU6l4heCl6viphlumiJ1oxB?=
- =?us-ascii?Q?3g0ynJrUCRY6BxqjgRIjXKuwtc0tvWm/Jma44MzuBtZQt6CUnW2dwM2GCVto?=
- =?us-ascii?Q?1LL0Lf477CKWzyqKv83ZQAy99ICmaiGx7bd2Jl98losrMMMytxgncj7e0hQu?=
- =?us-ascii?Q?zDKRu6wlMhL1j9VbOSd9KFQc9loV2MY+3YXHWv0E/Bp4UROy26I/QaO27Yyf?=
- =?us-ascii?Q?MzEzdWhGTQHhD0f6uzlFQkHesuOokd3oExVQyGIDmzrosK1nQFoRFgaduDi9?=
- =?us-ascii?Q?u2BtxdtQomXLbox4JDCHzGT698yOh7HDhxZC0VLyzjUIYC5RzzKA5FFJ5TJH?=
- =?us-ascii?Q?+9AYbADgLKAkx23bGhyI80kuRGfPpQjS4xUCd5D7nIjaMWuwQi+yzMbHRzFv?=
- =?us-ascii?Q?+zNxVJ0rG79CuxVhnY2MZMWkCR5nZ+gUG+jOWTz1wloAxOEGu+LkXmhxU0F2?=
- =?us-ascii?Q?z8YwQubjdwcJmxOphHX4dnJXlscrizid3iIeVWkUk54wkhbu21olp0MDUJ2m?=
- =?us-ascii?Q?0NQHL6XTh11NahXObhpBpU+DnFwBY2KJzSa2bfudgCjVdC7Z4S2KYuLRCp4v?=
- =?us-ascii?Q?hdmEbMZMy0GNoK+Qhiy0yDh8moejQz78nNqSoO1WsU/NerdFi7oxy4s98y6S?=
- =?us-ascii?Q?1ZGOpZx47bZYePV/KCYf8DAuWzFg2iF5DM9Y7/7K?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N3RYemxYWEdIMzZSKzdJRmNEZGNlbXNnR1lBbXpFZUF2UnpYaU50b2ZMSEE5?=
+ =?utf-8?B?RC92UlYydVREczlJeXZ3SW0wNFhwYWorcWdXL1h5RHR4NGhHem9ydllVOFhC?=
+ =?utf-8?B?ZUprU0MrNHpDTnVhNVU0RVZPMURXYStJckxtU3p6YVoyMGVyVjFONVo2RE1m?=
+ =?utf-8?B?NVVWVmxvNE84a0VMWlkyVjlqdzFUWnBRWVFYamthVzNmUGpuVlkzZW9GeXdl?=
+ =?utf-8?B?L1dvekRRaTBBSERGZjRJUE8yaEcvY0U0K2F2cTBCOXR3S281bG85QTI4ZjI3?=
+ =?utf-8?B?RDVNWkRncUJ2c1ZYSlFoa3JrTTNvc0F0ekxyaGRxeWhxaXhLdTlCQzkzWitM?=
+ =?utf-8?B?T2J5K1lZR1U1Y29JTHVPNTkwV3lNa2NtM2tVTGR1emZKYWJKQnFRYWhUT2JS?=
+ =?utf-8?B?Sm5iQ2lqbC9DTm83UEt2aFZHNENEWXVyK3lmd1hXWTFrUCtvNUhHMGlmMmpW?=
+ =?utf-8?B?MkR2L0hqZUFmNTdUa0ttMU5ETENtVkZkVDhTU3IzVmE3aHNwUitPMUZqSVR3?=
+ =?utf-8?B?SHBCU2Z4aEdGbUNnQUMrWWhJVUp4ZVkzL0dyZU1UOUVEWVI4NDlaZjVCM0xz?=
+ =?utf-8?B?c0pscEJDVWRxeTVNUTJqTHYzRi81ZUlDZ1pzMmZuSllyQXpFKzJPTDVyZ1VX?=
+ =?utf-8?B?ZEc4OEhYa3FwMVNFdmRyMWVCSjJEdmFieGxrbEVsZDR6K3diZ2ZNeEMvc1pG?=
+ =?utf-8?B?a3ZQMVJFOS9uMm90RVJ2bm5ZUzBxRzg2am9ydlVYSDVES2dmRFllUVhXMTVm?=
+ =?utf-8?B?VFBFQkJOZ3pTbmJhTHVMRXpNM1RIMjdLWWFWYTMrd3pmS3NobU1EU2J0eHhH?=
+ =?utf-8?B?UU8ybUpVcUFNTEttVTdMTVdmODVUVjZZeU0rdnZIczNNUWdKRllzZG40bGhH?=
+ =?utf-8?B?eUVuc0doWVJvQWtKbUdGRGZ2dGZZUnlRNGV0WUJEcVp6RzlTMTh4RVBJWXlV?=
+ =?utf-8?B?TTFzbVQyWTJEdWRSNHJSQ2dLd0owVmpabE1qMWhBY01JMThLU1RSbmFwL2dt?=
+ =?utf-8?B?UHlaNkswdDY0dGtHeWVhaktCVTRtalpRdWJOaWFMM3dIT2FYT2NKTEN5WUlk?=
+ =?utf-8?B?RG42TUVDYit0M1VuV0o0WCsxK1IrNVIySnE1eCtHVUFaaStPMVZ4YXFVblh5?=
+ =?utf-8?B?WEEvc0hhWFBmbm0zQ0tPY2ZIUWkxVHNSNS9zZHVKbjAweDRIV0RGaTdXODFj?=
+ =?utf-8?B?L2tmNDVqQ0VMamZzQVFOSjZ2UHlyZVRvQXpoU1A2VTkyWHM5a2M1bmRuUmFv?=
+ =?utf-8?B?YWJPSmZHRXZrVEFsNWcxZzFUcmRqd1hIQnF0aHlZMXpRZk5LaGR6NlNkeFVD?=
+ =?utf-8?B?cFV4R3RZOGNPK1lqcnI5L0wrWGt6ODF4djFMSWNIQ0VIRWcwRFY3UzRVY0lS?=
+ =?utf-8?B?S3VBa0cvcHpUUU1sYlgyMU5kdHpLdWVqMkpDVHVqZkNhY2dGQ0lTNmNGVUMw?=
+ =?utf-8?B?YmxISlpoVU1LSHNJU2V0TGRGdEFGZHNjd01Ram5oQldVU3NCNmJ6b20zOW5M?=
+ =?utf-8?B?NHR0YzFkdXViVEd5b0o1VFpJeU52MHdCdkJjcVZ1eFpDYnZKVmtaOVNKVHdU?=
+ =?utf-8?B?S2oxNVRHVXI2VWQ2YzlvRVpkb3hwTnh6eDZlLzl6ZVhrZmQ5eWdDcFJhdW5D?=
+ =?utf-8?B?d3djVFYxMEwxV3ZvN05aUTB5RlZST3BSOHZiS1V2S0hUbzZyQjBEcmxPaGpk?=
+ =?utf-8?B?NHVtRkF4em1SYi9nN1owZnU2U2ZXNUYxOVVSSGdEaTYzUFJNeW1mODZmV1cr?=
+ =?utf-8?B?RVR6dTlkUFRUa2lZUTE2QTVqRUh2d09JcTc2dUVyWmh4RnVNVlNUQ00zQk1T?=
+ =?utf-8?B?eUlGcy9jNHlEWUk4M1pLNmIwVEN5VlZYcDJUSm1Yb3RndFNBekVwTVk2aEow?=
+ =?utf-8?B?YVdLNVlOcU5UdnpkeWs4ckNBL1dPL05HQ3BVZ1d0a0l5bkJvVU9aeDQyQkx2?=
+ =?utf-8?B?bC9SOU5DVFY0MUdIUTY1blRGcU5sak04dDlRTFVWZGswVU1rWE5FSjA5a2FI?=
+ =?utf-8?B?SmFyVlQ3QWZIQXpaZ24zTFhndU9NdjZORllpQmQ2QUwvd09zUTVSbDQ0QUcv?=
+ =?utf-8?B?R0t3Vm9lUHNwN1NIeHFVZS91M0picllkS0FLTFpobTBGOWt4ZHVUVDdicWpn?=
+ =?utf-8?Q?B6bXNcxTrdbCmuDqN6jW6ec2I?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4815df2c-4aa5-4767-a04e-08de01e307fe
+X-MS-Exchange-CrossTenant-Network-Message-Id: fda70361-c085-482a-455b-08ddeafcaece
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2025 18:39:33.9284 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2025 15:15:14.4485 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BS7cXztn19tMr/PybXhDuX1EdYW4d7HtLAgRodaFfJUVIGMrFZZyhr+Li1DddFxUtdm7cEQrVk3Ia0BGowGyHw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7344
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: IuV1h/EFZWm/sooOG6giy/PdQ9wgPDY44Ca7UOs7i4RNHBjVFhhiX0dm+k2AuvQuJZMFAqioi0Ga9eZygCXTqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6063
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,285 +174,248 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add support to PCI rust module to allocate, free and manage IRQ vectors.
-Integrate with devres for managing the allocated resources.
+Hi Alex,
 
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
-Previous patch was here:
-https://lore.kernel.org/all/20250910035415.381753-1-joelagnelf@nvidia.com/
+On 8/25/2025 7:07 AM, Alexandre Courbot wrote:
+> Hi Joel,
+> 
+> On Sun Aug 24, 2025 at 10:59 PM JST, Joel Fernandes wrote:
+>> Add a minimal bitfield library for defining in Rust structures (called
+>> bitstruct), similar in concept to bit fields in C structs. This will be used
+>> for defining page table entries and other structures in nova-core.
+> 
+> This is basically a rewrite (with some improvements, and some missing
+> features) of the part of the `register!` macro that deals with
+> bitfields. We planned to extract it into its own macro, and the split is
+> already effective in its internal rules, so I'd suggest to just move the
+> relevant rules into a new macro (as it will give you a couple useful
+> features, like automatic conversion to enum types), and then apply your
+> improvements on top of it. Otherwise we will end up with two
+> implementations of the same thing, for no good justification IMHO.
+> 
+> We were also planning to move the `register!` macro into the kernel
+> crate this cycle so Tyr can use it, but this changes the plan a bit.
+> Actually it is helpful, since your version implements one thing that we
+> needed in the `register!` macro before moving it: visibility specifiers.
+> So I would do things in this order:
+> 
+> 1. Extract the bitfield-related code from the `register!` macro into its
+>    own macro (in nova-core), and make `register!` call into it,
+> 2. Add support for visibility specifiers and non-u32 types in your macro and
+>    `register!`,
+> 3. Move both macros to the kernel crate (hopefully in time for the next
+>    merge window so Tyr can make use of them).
+> 
+> A few more comments inline.
+> 
 
- rust/kernel/pci.rs | 199 ++++++++++++++++++++++++++++++++++++++++++---
- 1 file changed, 186 insertions(+), 13 deletions(-)
+Ok, all these sound good to me.
 
-diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-index 78271bf88cea..f97a6a36cf5e 100644
---- a/rust/kernel/pci.rs
-+++ b/rust/kernel/pci.rs
-@@ -6,8 +6,9 @@
- 
- use crate::{
-     bindings, container_of, device,
-+    device::Bound,
-     device_id::{RawDeviceId, RawDeviceIdIndex},
--    devres::Devres,
-+    devres::{self, Devres},
-     driver,
-     error::{from_result, to_result, Result},
-     io::{Io, IoRaw},
-@@ -19,7 +20,7 @@
- };
- use core::{
-     marker::PhantomData,
--    ops::Deref,
-+    ops::{Deref, RangeInclusive},
-     ptr::{addr_of_mut, NonNull},
- };
- use kernel::prelude::*;
-@@ -28,6 +29,59 @@
- 
- pub use self::id::{Class, ClassMask, Vendor};
- 
-+/// IRQ type flags for PCI interrupt allocation.
-+#[derive(Debug, Clone, Copy)]
-+pub enum IrqType {
-+    /// Legacy INTx interrupts
-+    Legacy,
-+    /// Message Signaled Interrupts (MSI)
-+    Msi,
-+    /// Extended Message Signaled Interrupts (MSI-X)
-+    MsiX,
-+}
-+
-+impl IrqType {
-+    /// Convert to the corresponding kernel flags
-+    const fn as_raw(self) -> u32 {
-+        match self {
-+            IrqType::Legacy => bindings::PCI_IRQ_INTX,
-+            IrqType::Msi => bindings::PCI_IRQ_MSI,
-+            IrqType::MsiX => bindings::PCI_IRQ_MSIX,
-+        }
-+    }
-+}
-+
-+/// Set of IRQ types that can be used for PCI interrupt allocation.
-+#[derive(Debug, Clone, Copy, Default)]
-+pub struct IrqTypes(u32);
-+
-+impl IrqTypes {
-+    /// Create a set containing all IRQ types (MSI-X, MSI, and Legacy)
-+    pub const fn all() -> Self {
-+        Self(bindings::PCI_IRQ_ALL_TYPES)
-+    }
-+
-+    /// Build a set of IRQ types
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```ignore
-+    /// // Create a set with only MSI and MSI-X (no legacy interrupts)
-+    /// let msi_only = IrqTypes::default()
-+    ///     .with(IrqType::Msi)
-+    ///     .with(IrqType::MsiX);
-+    /// ```
-+    pub const fn with(mut self, irq_type: IrqType) -> Self {
-+        self.0 |= irq_type.as_raw();
-+        self
-+    }
-+
-+    /// Get the raw flags value
-+    const fn as_raw(self) -> u32 {
-+        self.0
-+    }
-+}
-+
- /// An adapter for the registration of PCI drivers.
- pub struct Adapter<T: Driver>(T);
- 
-@@ -516,6 +570,76 @@ pub fn pci_class(&self) -> Class {
-     }
- }
- 
-+/// Represents an allocated IRQ vector for a specific PCI device.
-+///
-+/// This type ties an IRQ vector to the device it was allocated for,
-+/// ensuring the vector is only used with the correct device.
-+#[derive(Clone, Copy)]
-+pub struct IrqVector<'a> {
-+    dev: &'a Device<Bound>,
-+    index: u32,
-+}
-+
-+impl<'a> IrqVector<'a> {
-+    /// Creates a new `IrqVector` for the given device and index.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - `index` must be a valid IRQ vector index for `dev`.
-+    unsafe fn new(dev: &'a Device<Bound>, index: u32) -> Self {
-+        Self { dev, index }
-+    }
-+
-+    /// Returns the raw vector index.
-+    fn index(&self) -> u32 {
-+        self.index
-+    }
-+}
-+
-+/// Represents an IRQ vector allocation for a PCI device.
-+///
-+/// This type ensures that IRQ vectors are properly allocated and freed by
-+/// tying the allocation to the lifetime of this registration object.
-+struct IrqVectorRegistration {
-+    dev: ARef<Device>,
-+}
-+
-+impl IrqVectorRegistration {
-+    /// Allocate IRQ vectors for the given PCI device.
-+    ///
-+    /// Returns the registration object and a range of valid IRQ vectors.
-+    fn new<'a>(
-+        dev: &'a Device<Bound>,
-+        min_vecs: u32,
-+        max_vecs: u32,
-+        irq_types: IrqTypes,
-+    ) -> Result<(Self, RangeInclusive<IrqVector<'a>>)> {
-+        // SAFETY: `dev.as_raw()` is guaranteed to be a valid pointer to a `struct pci_dev`
-+        // by the type invariant of `Device`.
-+        // `pci_alloc_irq_vectors` internally validates all parameters and returns error codes.
-+        let ret = unsafe {
-+            bindings::pci_alloc_irq_vectors(dev.as_raw(), min_vecs, max_vecs, irq_types.as_raw())
-+        };
-+
-+        to_result(ret)?;
-+        let count = ret as u32;
-+
-+        // SAFETY: Vectors are 0-based, so valid indices are [0, count-1].
-+        // pci_alloc_irq_vectors guarantees count >= min_vecs > 0, so count - 1 is valid.
-+        let range = unsafe { IrqVector::new(dev, 0)..=IrqVector::new(dev, count - 1) };
-+
-+        Ok((Self { dev: dev.into() }, range))
-+    }
-+}
-+
-+impl Drop for IrqVectorRegistration {
-+    fn drop(&mut self) {
-+        // SAFETY: `self.dev` is a valid ARef to a `struct pci_dev` that has successfully
-+        // allocated IRQ vectors.
-+        unsafe { bindings::pci_free_irq_vectors(self.dev.as_raw()) };
-+    }
-+}
-+
- impl Device<device::Bound> {
-     /// Mapps an entire PCI-BAR after performing a region-request on it. I/O operation bound checks
-     /// can be performed on compile time for offsets (plus the requested type size) < SIZE.
-@@ -536,10 +660,15 @@ pub fn iomap_region<'a>(
-         self.iomap_region_sized::<0>(bar, name)
-     }
- 
--    /// Returns an [`IrqRequest`] for the IRQ vector at the given index, if any.
--    pub fn irq_vector(&self, index: u32) -> Result<IrqRequest<'_>> {
-+    /// Returns an [`IrqRequest`] for the given IRQ vector.
-+    pub fn irq_vector(&self, vector: IrqVector<'_>) -> Result<IrqRequest<'_>> {
-+        // Verify that the vector belongs to this device
-+        if !core::ptr::eq(vector.dev.as_raw(), self.as_raw()) {
-+            return Err(EINVAL);
-+        }
-+
-         // SAFETY: `self.as_raw` returns a valid pointer to a `struct pci_dev`.
--        let irq = unsafe { crate::bindings::pci_irq_vector(self.as_raw(), index) };
-+        let irq = unsafe { crate::bindings::pci_irq_vector(self.as_raw(), vector.index()) };
-         if irq < 0 {
-             return Err(crate::error::Error::from_errno(irq));
-         }
-@@ -547,35 +676,79 @@ pub fn irq_vector(&self, index: u32) -> Result<IrqRequest<'_>> {
-         Ok(unsafe { IrqRequest::new(self.as_ref(), irq as u32) })
-     }
- 
--    /// Returns a [`kernel::irq::Registration`] for the IRQ vector at the given
--    /// index.
-+    /// Returns a [`kernel::irq::Registration`] for the given IRQ vector.
-     pub fn request_irq<'a, T: crate::irq::Handler + 'static>(
-         &'a self,
--        index: u32,
-+        vector: IrqVector<'_>,
-         flags: irq::Flags,
-         name: &'static CStr,
-         handler: impl PinInit<T, Error> + 'a,
-     ) -> Result<impl PinInit<irq::Registration<T>, Error> + 'a> {
--        let request = self.irq_vector(index)?;
-+        let request = self.irq_vector(vector)?;
- 
-         Ok(irq::Registration::<T>::new(request, flags, name, handler))
-     }
- 
--    /// Returns a [`kernel::irq::ThreadedRegistration`] for the IRQ vector at
--    /// the given index.
-+    /// Returns a [`kernel::irq::ThreadedRegistration`] for the given IRQ vector.
-     pub fn request_threaded_irq<'a, T: crate::irq::ThreadedHandler + 'static>(
-         &'a self,
--        index: u32,
-+        vector: IrqVector<'_>,
-         flags: irq::Flags,
-         name: &'static CStr,
-         handler: impl PinInit<T, Error> + 'a,
-     ) -> Result<impl PinInit<irq::ThreadedRegistration<T>, Error> + 'a> {
--        let request = self.irq_vector(index)?;
-+        let request = self.irq_vector(vector)?;
- 
-         Ok(irq::ThreadedRegistration::<T>::new(
-             request, flags, name, handler,
-         ))
-     }
-+
-+    /// Allocate IRQ vectors for this PCI device with automatic cleanup.
-+    ///
-+    /// Allocates between `min_vecs` and `max_vecs` interrupt vectors for the device.
-+    /// The allocation will use MSI-X, MSI, or legacy interrupts based on the `irq_types`
-+    /// parameter and hardware capabilities. When multiple types are specified, the kernel
-+    /// will try them in order of preference: MSI-X first, then MSI, then legacy interrupts.
-+    ///
-+    /// The allocated vectors are automatically freed when the device is unbound, using the
-+    /// devres (device resource management) system.
-+    ///
-+    /// # Arguments
-+    ///
-+    /// * `min_vecs` - Minimum number of vectors required
-+    /// * `max_vecs` - Maximum number of vectors to allocate
-+    /// * `irq_types` - Types of interrupts that can be used
-+    ///
-+    /// # Returns
-+    ///
-+    /// Returns a range of IRQ vectors that were successfully allocated, or an error if the
-+    /// allocation fails or cannot meet the minimum requirement.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```ignore
-+    /// // Allocate using any available interrupt type in the order mentioned above.
-+    /// let vectors = dev.alloc_irq_vectors(1, 32, IrqTypes::all())?;
-+    ///
-+    /// // Allocate MSI or MSI-X only (no legacy interrupts)
-+    /// let msi_only = IrqTypes::default()
-+    ///     .with(IrqType::Msi)
-+    ///     .with(IrqType::MsiX);
-+    /// let vectors = dev.alloc_irq_vectors(4, 16, msi_only)?;
-+    /// ```
-+    pub fn alloc_irq_vectors(
-+        &self,
-+        min_vecs: u32,
-+        max_vecs: u32,
-+        irq_types: IrqTypes,
-+    ) -> Result<RangeInclusive<IrqVector<'_>>> {
-+        let (irq_vecs, range) = IrqVectorRegistration::new(self, min_vecs, max_vecs, irq_types)?;
-+
-+        devres::register(self.as_ref(), irq_vecs, GFP_KERNEL)?;
-+
-+        Ok(range)
-+    }
- }
- 
- impl Device<device::Core> {
--- 
-2.34.1
+>>
+>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>> ---
+>>  drivers/gpu/nova-core/bitstruct.rs | 149 +++++++++++++++++++++++++++++
+>>  drivers/gpu/nova-core/nova_core.rs |   1 +
+>>  2 files changed, 150 insertions(+)
+>>  create mode 100644 drivers/gpu/nova-core/bitstruct.rs
+>>
+>> diff --git a/drivers/gpu/nova-core/bitstruct.rs b/drivers/gpu/nova-core/bitstruct.rs
+>> new file mode 100644
+>> index 000000000000..661a75da0a9c
+>> --- /dev/null
+>> +++ b/drivers/gpu/nova-core/bitstruct.rs
+> 
+> I wonder whether this should go under the existing `bits.rs`, or be its
+> own module?
+
+I'd say its own since it is related to structures and keeps the file smaller.
+
+>> @@ -0,0 +1,149 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +//
+>> +// bitstruct.rs — C-style library for bitfield-packed Rust structures
+>> +//
+>> +// A library that provides support for defining bit fields in Rust
+>> +// structures to circumvent lack of native language support for this.
+>> +//
+>> +// Similar usage syntax to the register! macro.
+> 
+> Eventually the `register!` macro is the one that should reference this
+> (simpler) one, so let's make it the reference. :)
+
+Ah true, already fixed.
+
+> 
+>> +
+>> +use kernel::prelude::*;
+>> +
+>> +/// Macro for defining bitfield-packed structures in Rust.
+>> +/// The size of the underlying storage type is specified with #[repr(TYPE)].
+>> +///
+>> +/// # Example (just for illustration)
+>> +/// ```rust
+>> +/// bitstruct! {
+>> +///     #[repr(u64)]
+>> +///     pub struct PageTableEntry {
+>> +///         0:0       present     as bool,
+>> +///         1:1       writable    as bool,
+>> +///         11:9      available   as u8,
+>> +///         51:12     pfn         as u64,
+>> +///         62:52     available2  as u16,
+>> +///         63:63     nx          as bool,
+> 
+> A note on syntax: for nova-core, we may want to use the `H:L` notation,
+> as this is what OpenRM uses, but in the larger kernel we might want to
+> use inclusive ranges (`L..=H`) as it will look more natural in Rust
+> code (and is the notation the `bits` module already uses).
+
+Perhaps future add-on enhancement to have both syntax? I'd like to initially
+keep H:L and stabilize the code first, what do you think?
+
+> 
+>> +///     }
+>> +/// }
+>> +/// ```
+>> +///
+>> +/// This generates a struct with methods:
+>> +/// - Constructor: `default()` sets all bits to zero.
+>> +/// - Field accessors: `present()`, `pfn()`, etc.
+>> +/// - Field setters: `set_present()`, `set_pfn()`, etc.
+>> +/// - Builder methods: `with_present()`, `with_pfn()`, etc.
+>> +/// - Raw conversion: `from_raw()`, `into_raw()`
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct {
+>> +    (
+>> +        #[repr($storage:ty)]
+>> +        $vis:vis struct $name:ident {
+>> +            $(
+>> +                $hi:literal : $lo:literal $field:ident as $field_type:tt
+>> +            ),* $(,)?
+>> +        }
+>> +    ) => {
+>> +        #[repr(transparent)]
+>> +        #[derive(Copy, Clone, Default)]
+>> +        $vis struct $name($storage);
+>> +
+>> +        impl $name {
+>> +            /// Create from raw value
+>> +            #[inline(always)]
+>> +            $vis const fn from_raw(val: $storage) -> Self {
+>> +                Self(val)
+>> +            }
+>> +
+>> +            /// Get raw value
+>> +            #[inline(always)]
+>> +            $vis const fn into_raw(self) -> $storage {
+>> +                self.0
+>> +            }
+>> +        }
+>> +
+>> +        impl core::fmt::Debug for $name {
+>> +            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
+>> +                write!(f, "{}({:#x})", stringify!($name), self.0)
+>> +            }
+>> +        }
+>> +
+>> +        // Generate all field methods
+>> +        $(
+>> +            bitstruct_field_impl!($vis, $name, $storage, $hi, $lo, $field as $field_type);
+> 
+> Maybe use internal rules [1] instead of a private macro (that cannot be so
+> private :))
+> 
+> [1] https://lukaswirth.dev/tlborm/decl-macros/patterns/internal-rules.html
+
+Sure, done.
+
+> 
+>> +        )*
+>> +    };
+>> +}
+>> +
+>> +/// Helper to calculate mask for bit fields
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct_mask {
+>> +    ($hi:literal, $lo:literal, $storage:ty) => {{
+>> +        let width = ($hi - $lo + 1) as usize;
+>> +        let storage_bits = 8 * core::mem::size_of::<$storage>();
+>> +        if width >= storage_bits {
+>> +            <$storage>::MAX
+>> +        } else {
+>> +            ((1 as $storage) << width) - 1
+>> +        }
+>> +    }};
+>> +}
+> 
+> Is there a way to leverage the `genmask_*` functions of the `bits` module?
+> 
+
+Maybe, I'll look into it, thanks.
+
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct_field_impl {
+>> +    ($vis:vis, $struct_name:ident, $storage:ty, $hi:literal, $lo:literal, $field:ident as $field_type:tt) => {
+>> +        impl $struct_name {
+>> +            #[inline(always)]
+>> +            $vis const fn $field(&self) -> $field_type {
+>> +                let field_val = (self.0 >> $lo) & bitstruct_mask!($hi, $lo, $storage);
+>> +                bitstruct_cast_value!(field_val, $field_type)
+>> +            }
+>> +        }
+>> +        bitstruct_make_setters!($vis, $struct_name, $storage, $hi, $lo, $field, $field_type);
+>> +    };
+>> +}
+>> +
+>> +/// Helper macro to convert extracted value to target type
+>> +///
+>> +/// Special handling for bool types is required because the `as` keyword
+>> +/// cannot be used to convert to bool in Rust. For bool fields, we check
+>> +/// if the extracted value is non-zero. For all other types, we use the
+>> +/// standard `as` conversion.
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct_cast_value {
+>> +    ($field_val:expr, bool) => {
+>> +        $field_val != 0
+>> +    };
+>> +    ($field_val:expr, $field_type:tt) => {
+>> +        $field_val as $field_type
+>> +    };
+>> +}
+>> +
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct_write_bits {
+>> +    ($raw:expr, $hi:literal, $lo:literal, $val:expr, $storage:ty) => {{
+>> +        let mask = bitstruct_mask!($hi, $lo, $storage);
+>> +        ($raw & !(mask << $lo)) | ((($val as $storage) & mask) << $lo)
+>> +    }};
+>> +}
+>> +
+>> +#[allow(unused_macros)]
+>> +macro_rules! bitstruct_make_setters {
+>> +    ($vis:vis, $struct_name:ident, $storage:ty, $hi:literal, $lo:literal, $field:ident, $field_type:tt) => {
+>> +        ::kernel::macros::paste! {
+>> +            impl $struct_name {
+>> +                #[inline(always)]
+>> +                #[allow(dead_code)]
+>> +                $vis fn [<set_ $field>](&mut self, val: $field_type) {
+>> +                    self.0 = bitstruct_write_bits!(self.0, $hi, $lo, val, $storage);
+>> +                }
+>> +
+>> +                #[inline(always)]
+>> +                #[allow(dead_code)]
+>> +                $vis const fn [<with_ $field>](mut self, val: $field_type) -> Self {
+>> +                    self.0 = bitstruct_write_bits!(self.0, $hi, $lo, val, $storage);
+>> +                    self
+>> +                }
+>> +            }
+>> +        }
+>> +    };
+>> +}
+> 
+> Yep, I think you definitely want to put these into internal rules - see
+> how `register!` does it, actually it should be easy to extract these
+> rules only and implement your improvements on top.
+Ack, done.
+ - Joel
+
 
