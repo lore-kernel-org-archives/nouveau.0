@@ -4,78 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79D7DCA1016
-	for <nouveau@archiver.kernel.org>; Thu,  4 Sep 2025 21:49:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB0BECA0FED
+	for <nouveau@archiver.kernel.org>; Fri,  5 Sep 2025 07:19:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C87610EAF1;
-	Thu,  4 Sep 2025 21:49:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65A0810E2C4;
+	Fri,  5 Sep 2025 07:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=rocketmail.com header.i=@rocketmail.com header.b="h+g9r8ei";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="Lg5sDZtI";
 	dkim-atps=neutral
-Received: from sonic315-20.consmr.mail.ne1.yahoo.com
- (sonic315-20.consmr.mail.ne1.yahoo.com [66.163.190.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C61810E209
- for <nouveau@lists.freedesktop.org>; Sun, 24 Aug 2025 18:25:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048;
- t=1756059932; bh=riuMY4w7cvKfr8QnlJhyF/8TF+qHU/ywBh9+rVEu/4U=;
- h=From:To:Cc:Subject:Date:References:From:Subject:Reply-To;
- b=h+g9r8eiyl0d785OI4GFYtwnd5GPg7N8Zq+6z6HTcsnbRydDtmWenh8rFp13sqAUvNpQIt/iP3U2NpwI+EpTcyQZG8Xk56wuhDbLUbz9CAkGJvXOgoOxe2nVimB8kvm5Om4dxRd54Moxj0EMon4nJJlfkaD3Ru5lVHFPh/xazuWq+yU6QbZM/9+D15bproZKVMFRG3gF8KBuNTT9qaMObffm3hsa6Qz0LSoqavfffVvz8TMQGBtI0NBFgHtHtr7xjMimcsgphyJMH3Tw1bpOgxD1QQQ0ea6jsQDcYpaUmu9QcLIaUcPfpGaCRpDjl/ygMQlCsE8+gxGiJ+k1zgY3Iw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
- t=1756059932; bh=HflnqLOwIrwod5MpkAIbPL9MTT1R6xpVMKMAhTMn3Wm=;
- h=X-Sonic-MF:From:To:Subject:Date:From:Subject;
- b=GEqJbG9DNj/+hxvFxt8kqj1CFbuuj+ZqrpHXTQBl62+Md5eOQfz5EpS6Nhf+/Sf0YGVSCEw/6D6Fy0mzrbK8oiL1AqMpCAqqcoOvvrLMudMw+KpgpudURZKBc9JA+z7MF+E0zCbTkm3vHFBzftwOlZEsyWukHk9NDeFl2eW0dvy4TA0rrtTGna9nZ7UzkmG22b4wrWyygyuAz5FDOYmVDPRwAEk09Gav5g6whLs/cNcXFqoDRpqjfGq3Izi2Ib0m4QyaVeEZBqZ5GuX5vjAnoQdra65avZuns8PimuBKTtA4AE1BXZJ05YylvG1KGFdpZkeuzRgWhbsS4Gm1BvANrA==
-X-YMail-OSG: kVzDG_AVM1lEDYW.FGytvSohCDx94tb7CluJ.EaaKcvVMf5vLLRfr6B5VrLjxB4
- Fr4wq4Ug7TGzv7gNCIv4_0xlzDskSzcmEEz6kjMyrGkaHGl16X1IGYVygGwFMYcnIZ12pVkXdj8S
- 3uKeVtTKUNwG9ftPLhmvvt9QsBWx._rvyglSSVa0ci8iJAzJjRLz1p9yuT9u8mFjHpwCgntHC9oJ
- 1bG2gdHXvzpWHyzKS7TdzXaqZWtSDDgQQ5I.bOs4vEE.JeUnGX.3hyQ0k0.r0Pcu3S6nMjz2t1XN
- krVYCKCkLu.Vx_hZAdWYk8CeMGoac9C.xJvvN4G1TItMwcZMkv3Wo5_nXY7_oBSXDe_aL3OFLmih
- YUPPyMGrXjxsBrrbBa2RIUdZreqBg2Lc_PaU7UCG3stCoxE1Rew5a7tQdfyJnRZFeuwpULsRr.Uj
- EhdHfFTma4YBlCp8ozwV35EIlG0PNQYO8qdTYmTAKg8km9kTrDvmilZfxrqm2gKgAJeoCN6lXMnW
- Q.CVKEQ9EypLtqJ35s6oES.4ndEi4.fTp9dRtVwdOJSC3dcvzm8LQUBjjy.hKAAvNGi6rE6dI_kS
- CsUFPDjAaSyiA91L2cRHkLhZxdN1zChu.1hcqU_0Zmu4N2YrXQ7dRmDRdeO8E3KVIuZYeKck9qsy
- HwQKLStsjaC6S.atUj89GuVZAp.hzLSB.IFrQjbtrISyqm3EiB7o0_FDJbSqet9GO0GtylYmP9S7
- V5sAP5hwCRmq0d7D7G91QP4X6aKDCqUS_IZDJLh674c4wIw5zedsiPSFjQMhcDBpNAsyCNzaKybv
- lX5XTGYL24vJMSdCUZ3eo5wTiKfkyeGhB8gcxDMySAqGK0v3IPOSl39EydUaujTFsLU48GORADwD
- SFb6BU_fYb8b8Ak1GV_j56zbqSIL1cOSj5IrLuFCr6TqlHWz1YhFRKb64WLj47AC967ESkNeQvTe
- d9gnavL.PtU6dpc4MGhdOEdCyraU05JuaAXUkbSrBbRK8gvVqmrcNPlNXY2yO.tBZGu_xgZMl5NB
- 5JhV7oVLQjDv3Kv9NIXRmhQOT5R2FkL0tvoLzv.fNd3aCOj1I6jbNYDC9D4fMEJlYS5ibY1_1MY2
- EOMEpU8pxAFcqL.YXU9dX39x_LMQRQu0yF29eArXaYKau9H2tGeyB9YPSV8PoT3S_4IjNcGjN00P
- 9iSbqGmS_lKLan7PNIBajxyB4iuFqoXkTHmAW_yFjMpeXI.0vHdS_psEJNRA5Su87TBzvAzJBt5J
- CWz9NDN.NJY7Ik.8c2BlrFFYJFft8Z6sysb4.Ob3yOQk8Q0luuhVuk.O5l03whp9PUD0j3vnEfSE
- XSsadnp.S1wi8E1hShv8WtWQDLSkXdO9kG3RPLCOk8QRxXzidlCHoq3yi0ILyNTk4XJ6MsuWnUCO
- SXs3YXmhFGdZH7_jxuUmUdxisucXu9Ye9qf8K90tycocLYyrtm.ECuE5ZbgeRNiB9wJBYAKHZHb4
- Qch37NdUqjvjv0utNvgW9JvjAoZk3sfoXxkk5iigU8o1jWkqyE8m5GcCVjhsDz70NyHCSVApW5jr
- rHskHTguTaCs_rvW0p2GRK0WjaRYLNuaKPk.Lv62Hz9nsV9eCdV0AbJcXiOC7YtG2sMycgyM6WDH
- yhyjc2aDaj3t6tUm1sWI6Vzshifmkgig6yQ2qMQiKNut_MTQQHMtR5qWqSG.haPkPwIwmgJ8Rif0
- MNRkEu1Uj3sLU9zacQd6x70LWA.ZjYmY3ZApe6eWr9kJJ.gjSY6MnTtQAUtm.9ca6QdaTaTjVxX.
- q7uPtoz1b45nk1hhx75LH0b7BWdrzJDHF6WqsPNKq4m4GZpmlCdcEcD1ag4o1xUQBN11fxDT4kVd
- LmarxGyPmspZNI9G_W07f1upGFYK7mhhtWsdXtiISQeixcU_hkqR4NhiqjUbjseQHKtCo_YoKmNz
- jcsJRlzn8vXt2b.A0Tb3a7XEtNMiU0LyRe5yjP3KwzeA3rp8xFVg2sAwQzL8HFwlyfOqTu8SDu8.
- gjhY7HCO.naLxusuYau4MbMYpqxA8Vpmru.Mv_OoyuPPEUNitfIjTNKkBkRDOhee5U4cChBWe.rA
- RKom9N2wZBDwtu9wzkzzgCuoDBr7ez6QnsL5cCpPE_ECn6vSdT5H3FK5_0Y5izTw4QZSlh20jPWV
- KEn4f6RPzajqfkdwz0MAEHhDI2inZys_ll3E5yedwvpqAEOJXL0YWzLZZ62brlQG_CxKJ2MjIksZ
- AQmN80wPTqDhkgz70uLAn.cUKOVvyaIrD5nut7Gjeazqjzf427Yb85pEj74qTIjqY1Nse6UlGcU7
- w2LKXBs.BEs92I7j7UJR38hf_4eF6XFMgyqvP
-X-Sonic-MF: <lxrmrz732@rocketmail.com>
-X-Sonic-ID: fe19be37-8c48-47b7-8c7b-d5cd093ba0b5
-Received: from sonic.gate.mail.ne1.yahoo.com by
- sonic315.consmr.mail.ne1.yahoo.com with HTTP; Sun, 24 Aug 2025 18:25:32 +0000
-Received: by hermes--production-bf1-689c4795f-hxt8q (Yahoo Inc. Hermes SMTP
- Server) with ESMTPA ID b3624d997c049b6cbbd96c0e621a8e66; 
- Sun, 24 Aug 2025 18:25:30 +0000 (UTC)
-From: =?UTF-8?q?Alex=20Ram=C3=ADrez?= <lxrmrz732@rocketmail.com>
-To: nouveau@lists.freedesktop.org
-Cc: =?UTF-8?q?Alex=20Ram=C3=ADrez?= <lxrmrz732@rocketmail.com>
-Subject: [PATCH 0/2] drm/nouveau: add and implement missing DCB connector
- values
-Date: Sun, 24 Aug 2025 14:07:26 -0400
-Message-ID: <20250824182520.13655-1-lxrmrz732@rocketmail.com>
-X-Mailer: git-send-email 2.51.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-References: <20250824182520.13655-1-lxrmrz732.ref@rocketmail.com>
-X-Mailman-Approved-At: Thu, 04 Sep 2025 21:49:39 +0000
+Received: from mail-wm1-f73.google.com (mail-wm1-f73.google.com
+ [209.85.128.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2B3C10E2C4
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Sep 2025 07:19:36 +0000 (UTC)
+Received: by mail-wm1-f73.google.com with SMTP id
+ 5b1f17b1804b1-45cb6d8f42bso15244795e9.2
+ for <nouveau@lists.freedesktop.org>; Fri, 05 Sep 2025 00:19:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1757056775; x=1757661575;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=nzDQDuZjxVC6oySC+SReVx9M1aCW1txUI5kRYOyeNM8=;
+ b=Lg5sDZtItKTz/09mio8+zEEoUziPmhyy7aD5OCktKYcQXDVqx7hLzSWg8PtR4hRoPn
+ bOTOH3jGaBPAvmzeoOuNoYt3dg5Mfobs7cdSO2TjzB5HL6lCnoDtqDXv1OHEbTf0Oh9y
+ bK2CT2hPtfxSKobqUK56yw815qj6BC3C4qrQqVappKOTLpWdal57LcOCvzGu8VHZUCiz
+ C8ztFr/UigjIq26PanalLyDhp1XBiewX3YYMulsZ9gQrgLesYXAtQH5hAxbmIGz7Z0Ej
+ X2q6d2WMaogvcG1EeuVoOrCDZXrkKozanYsnCJxB8bd0TvP9BGoDSVyu+Bv4UMRBYeFq
+ QOZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1757056775; x=1757661575;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=nzDQDuZjxVC6oySC+SReVx9M1aCW1txUI5kRYOyeNM8=;
+ b=Ap2jMFJr3t3uT4BoILvsTsCHrQYlkCgLrXVCFWVyNOo31k2KTKEJXPvoDz0EawkeJm
+ NGol9gkEmHkH6bFZY6Lf/xYdv+4lhhQjTNF/C5cBhAStSbr2oHbTEgQbgI/oG1GZ2aRX
+ 2nUPfCsVGoGC+DN7lEf+anHg7StbHai2Td/NhG+VwQe4RnsSK8FmpB2GkBM0RIObhCxD
+ EsrZsWlUyZmwgVDxq3ynM05WYWuZeddr14uWSh3IHXUBdB01R+bfL7KMzeNcRIUn2z8R
+ 8E8hIF1Ux9ffJqCdr/BotlH4Pm4xx4oVc0/EhwFOA1BHnrlTHLaYFLOtD6Pov8wLZbOM
+ 2ujA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXUWrLA0KzITX1lPHwPHefLy7UCKybPhLXswmnrVw6UuTWzPbGXzkytGao5OOiqn7IR1cs00AST@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy6L4bVoCbD95gU+Mp2S0yEBaXuUrhZfII6VEM0mIWYtXHvyZrW
+ I7lW/HjJpTolXlVOwHzwKl9pW+PtbZWIL/l5q+0vuilGtHtUqXeawByknjygKWxX+gfuLaViVbZ
+ 6ge/8mkXiQrl7rWW9Nw==
+X-Google-Smtp-Source: AGHT+IHMbd1cgOBQqeIHZBAcbJF/pQ0YegzqkDP/pVp9v6OrwLpQzRk9eV1m5hUFWBGmD9QF/W3bgJQ5m0Nq3FM=
+X-Received: from wmqd22.prod.google.com ([2002:a05:600c:34d6:b0:45b:4777:8063])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:c4aa:b0:45b:47e1:ef69 with SMTP id
+ 5b1f17b1804b1-45b855beda0mr160151915e9.36.1757056775334; 
+ Fri, 05 Sep 2025 00:19:35 -0700 (PDT)
+Date: Fri, 5 Sep 2025 07:19:34 +0000
+In-Reply-To: <20250901202850.208116-1-dakr@kernel.org>
+Mime-Version: 1.0
+References: <20250901202850.208116-1-dakr@kernel.org>
+Message-ID: <aLqPBqXZX7lERvoU@google.com>
+Subject: Re: [PATCH] MAINTAINERS: Add drm-rust tree for Rust DRM drivers and
+ infrastructure
+From: Alice Ryhl <aliceryhl@google.com>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, acourbot@nvidia.com, 
+ daniel.almeida@collabora.com, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,21 +82,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-uconn.c's handling of display connectors was refactored for Linux v6.5,
-causing a regression that issues a warning on boot for 8600m GT (MacBookPro4,1)
-and likely other legacy GPUs.
+On Mon, Sep 01, 2025 at 10:26:39PM +0200, Danilo Krummrich wrote:
+> Multiple DRM Rust drivers (e.g. nova-core, nova-drm, Tyr, rvkms) are in
+> development, with at least Nova and (soon) Tyr already upstream. Having a
+> shared tree will ease and accelerate development, since all drivers can
+> consume new infrastructure in the same release cycle.
+> 
+> This includes infrastructure shared with other subsystem trees (e.g. Rust
+> or driver-core). By consolidating in drm-rust, we avoid adding extra
+> burden to drm-misc maintainers, e.g. dealing with cross-tree topic
+> branches.
+> 
+> The drm-misc tree is not a good fit for this stage of development, since
+> its documented scope is small drivers with occasional large series.
+> 
+> Rust drivers in development upstream, however, regularly involve large
+> patch series, new infrastructure, and shared topic branches, which may
+> not align well with drm-misc at this stage.
+> 
+> The drm-rust tree may not be a permanent solution. Once the core Rust,
+> DRM, and KMS infrastructure have stabilized, drivers and infrastructure
+> changes are expected to transition into drm-misc or standalone driver
+> trees respectively. Until then, drm-rust provides a dedicated place to
+> coordinate development without disrupting existing workflows too much.
+> 
+> Cc: Alice Ryhl <aliceryhl@google.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Alexandre Courbot <acourbot@nvidia.com>
+> Cc: Daniel Almeida <daniel.almeida@collabora.com>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-Implement the missing DCB connector values per NVIDIA spec, and change the WARN_ON macro
-to a printk message to more gracefully handle unknown connector types without issuing a warning.
-
-Alex Ramírez (2):
-  drm/nouveau: add missing DCB connector types
-  drm/nouveau: implement missing DCB connector types
-
- .../nouveau/include/nvkm/subdev/bios/conn.h   | 85 ++++++++++++++-----
- .../gpu/drm/nouveau/nvkm/engine/disp/uconn.c  | 73 +++++++++++-----
- 2 files changed, 117 insertions(+), 41 deletions(-)
-
--- 
-2.51.0
+Applied to drm-rust-fixes. Thanks!
 
