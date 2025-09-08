@@ -4,63 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA584D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA5A3D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D72EA10EC52;
-	Sat, 13 Dec 2025 12:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F31210EC57;
+	Sat, 13 Dec 2025 12:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="ABEqRy9q";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UQng9Q4o";
 	dkim-atps=neutral
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com
- [IPv6:2a00:1450:4864:20::232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D848C10E205
- for <nouveau@lists.freedesktop.org>; Fri, 17 Jan 2025 21:38:38 +0000 (UTC)
-Received: by mail-lj1-x232.google.com with SMTP id
- 38308e7fff4ca-30227ccf803so22944911fa.2
- for <nouveau@lists.freedesktop.org>; Fri, 17 Jan 2025 13:38:38 -0800 (PST)
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+ [209.85.215.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B455D10E531
+ for <nouveau@lists.freedesktop.org>; Mon,  8 Sep 2025 14:21:39 +0000 (UTC)
+Received: by mail-pg1-f181.google.com with SMTP id
+ 41be03b00d2f7-b47174b335bso450634a12.2
+ for <nouveau@lists.freedesktop.org>; Mon, 08 Sep 2025 07:21:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1737149916; x=1737754716; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
- :date:message-id:reply-to;
- bh=R+sEC43MTLW7s5/hUQjXwzHtBrFiyUSAtrcUHGeR3ng=;
- b=ABEqRy9qHcvza6X791Gd2rtNISAgXCLHQI0XORqvHd7oakQzVZjggxnEkdiYIG8NJw
- 9HsLQSuFn2xskgcZxiGjSUT7EaWUr3pG2ojNXeBNwFJQW66hTy8pHrdGv1CT7/4BB/bD
- EobLbRvnKbbYHCsxcMPc5AZM1bA+PrQWi2xymHKjn79EdMypAe9I/7mLagKa5FUx5E8V
- SmKdP+7LOvR8d06Q6T+P3M2DUcXXC+6p/VdJHGYfu4W/6A3QjqUPV6xbBBFFnuZX4ErQ
- +0b9NH8d93BuqNvEX+ZwkXf6x08uscDXztZ2USdKULHB1wTcEknfJ1RSLUiEZN9+xQZE
- CamQ==
+ d=gmail.com; s=20230601; t=1757341299; x=1757946099; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=4fX9DC1fZNQkRHn2ACjPhGN+9jbwsbcB0Idr+2XnvFo=;
+ b=UQng9Q4o0gS3EZXRnDWcfYK9o1xv3TPrm+sdxwpl1aoBCGf4QebZcP0R7wel5pwn9e
+ 76wvVoUzqjUAG5LzF22BuvSuA0eMHbg922XaRAQAcz7qZt5wVk4sBKSeUXe42arw91Yi
+ ViSXylURx3Ufy86ICVI1LY5jH38YW471pBwVhbLCu2M7Yq9zTjKrYfKQYptMFROEyvD4
+ 4ofMjYfwz+jS2O4NYZfd6P6SmTHDN+qXhco4u0WqLItFMavHTI5W61HygFXH5Rhud50A
+ 0uLSkgcbZ4Rfn8xwkX0U1JyzuQbj1/pxkgWK6a7He1Cf/zkyDSaJwNauQntI4xKnTLjT
+ ii9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1737149916; x=1737754716;
- h=cc:to:subject:message-id:date:from:mime-version:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=R+sEC43MTLW7s5/hUQjXwzHtBrFiyUSAtrcUHGeR3ng=;
- b=j/BM7+4FtMVYssqSfaXg3xAVClcGe4XWEaksg+bk1SLlekZmdnjT9CAV2WERLCYhJq
- vnjXgnIEv9rJz/bkvW1WBrvlvf5sOOi/IDPJepAZ7wm/sSCfzfS4M7TWuGUuMw4inKv3
- shaHXnAIe/yuvrA8FWnuviC4M1w9VuYoX/ayTdGsc8POjbAyudjk8yQPHP9ChLoeXYCG
- lhis7mW03NoyWcv/NYPpbpQ5lgAmaCSjRUTnlTzOW8od1yzcEYgvYRADUdOTWDfzd2/s
- 0ETBi7Axc/g1/xe0S9ninyeQQRG0PjNBA3HMuZ9A5J+SgdzNxI6Vm8WR493kSZJUku6y
- OUJA==
-X-Gm-Message-State: AOJu0Yz3I+gO+kwrTMdSwsA0/l5BzO70rmh5CZHeqAbevotTEzD6jdcX
- hi9h8g34nCah/Wks7cq/EdY0QoWK/21nDdSJz6QfoQVyNhwwXBK0p/q+DrLM97mvcQwBZoTifho
- FkCeaAvwexMYjElDZVB26yowpk4ctgg8tTkc=
-X-Gm-Gg: ASbGncsjZhvL8DvoBqqPfPO8SMi2cdpGFtQwqxxBk/2Yq1lAM2p07RbXkkj+zXIIeD8
- eZOdBH+tk5FgA9GvNZXzp7DWqzmXbbhijQw4ZwQ==
-X-Google-Smtp-Source: AGHT+IE09mufhDsc1zOcrEeT3pHsclF1FrKt5o8o9b3BQarKQLYDcthrzle3/fpI0V2igIyGPV8wCSdyWYZNpYHjRg0=
-X-Received: by 2002:a05:651c:10af:b0:2ff:cb47:3c77 with SMTP id
- 38308e7fff4ca-3072cb1f2bdmr15111031fa.26.1737149916198; Fri, 17 Jan 2025
- 13:38:36 -0800 (PST)
+ d=1e100.net; s=20230601; t=1757341299; x=1757946099;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=4fX9DC1fZNQkRHn2ACjPhGN+9jbwsbcB0Idr+2XnvFo=;
+ b=uHFvWtC0HdLmmK/JcWPRYhImgnpGE0KN3a8moVwUFlR3HowuB0UNQwhV/8f5hujQNj
+ U0PY+3luRv6jK2UkjwW112Wbbgt/f3zP+6m4D14Q++VXgAjll3Nbq84PLhseoCdK3qIn
+ yUYBRzNzZn+btfXcfFfrL7qO37DGvogpCYLgRnyGpCahi6wMQRD4gesxZuYNFsR8tnbx
+ 8iCLQ8TQ1a7QNxl4+H4Pp8sxKonNnt5cmeZjcEJF9ba+3FRPJ11r/ZJwNUcmcAa1+G9w
+ K+ZbWzHsRIHqRLL26AeC5EpgMbUdut9/naBcZncZySpFYmurqyjK3we7M3ZvmjBB5+nu
+ wjTw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWDX6CHAPE2RzaOv6Ycx40gI3NByf9yBJdWTcuaBqI5SPefqr0/Xh5G4uvqpY1KByGu48vt95Ft@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw6s6bkIBWeNdhbnnTNcE0NscPZMVwHi+IPOgPYxwleFWbof18M
+ 8eV0Nx8KaGDMjMIX1renH2xgxRKasqdjhOpJwxNT0mMEOrvN8sqy/jgdHo/mu2VLuQozYeJdltW
+ ww8Kx1cA4kKU5V7HJTE16sZSTXf3Lcao=
+X-Gm-Gg: ASbGncv5ZOAQpIG3JtakNTnOIAawEU7nNXl0k0EBxxrFOAxTtA3pfLvuJmCYGwx04Qv
+ YeGTQ4jbduU8HmVq0eEpvqnxVrF9JSb5uKzapuHcLaPnh1YpXiwmOJdWu/Wg+4wi+OPlTeCVRp7
+ CUUw99HexAJahekhGcbny44/fbZj5+uQIS6dmfoJtHmPS3FHLHWFZvOoGvJ/g6I5GRx1V2SZQ2a
+ 4yEgyVCn9nketnTH9VylZoqp5U9bD15MLgs1eITFXyIRtKYy6oPaCHGtk8jgHs/gCpf6J6+9YRH
+ HrFJwgSDZVtaXZ0g9Ht41Q+Ki8MydYi3ToRV
+X-Google-Smtp-Source: AGHT+IGFDNWEzR+hV5I6QdUVy03a1/7tXTmOQLf+GpNdlfKZ504RA/zXUJf2avq4t3EcVfEw/QWRxQ/DDabXjK9CYqI=
+X-Received: by 2002:a17:90b:1e53:b0:32b:7082:b4 with SMTP id
+ 98e67ed59e1d1-32d43eff842mr6514245a91.1.1757341299091; Mon, 08 Sep 2025
+ 07:21:39 -0700 (PDT)
 MIME-Version: 1.0
-From: Serkan Kurt <sserkk@gmail.com>
-Date: Sat, 18 Jan 2025 00:38:24 +0300
-X-Gm-Features: AbW1kvZOqM2H4JvUxOsoN7iCAAZnkHyUcgNnKf20BioHVbgXJXL76MjqJ7oxOUI
-Message-ID: <CABbDMJB-SitepFJXVfiiv8JECJyca0dtYR=rV7Ycm3Us0TaRPw@mail.gmail.com>
-Subject: Texts on the Blender screen are not visible. Error messages for
- Nouveau appear in the dmesg output.
-To: nouveau@lists.freedesktop.org
-Cc: 1092189@bugs.debian.org
+References: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
+ <20250908-num-v5-1-c0f2f681ea96@nvidia.com>
+In-Reply-To: <20250908-num-v5-1-c0f2f681ea96@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 8 Sep 2025 16:21:26 +0200
+X-Gm-Features: AS18NWAfR5raXlS_a2FxsPSSP3cBVpNTWSI1d9yZGzogiu6fnijmKILcUd_FVZM
+Message-ID: <CANiq72kUsG10+E-W6zhFXhexZV+O_a-K1Px0kGkWPKvMMhAztQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] rust: add `Alignment` type
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,12 +91,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hello,
+On Mon, Sep 8, 2025 at 3:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
+>
+> +        if ALIGN.is_power_of_two() {
+> +            // INVARIANT: `align` is a power of two.
+> +            // SAFETY: `align` is a power of two, and thus non-zero.
+> +            Self(unsafe { NonZero::new_unchecked(ALIGN) })
+> +        } else {
+> +            build_error!("Provided alignment is not a power of two.");
+> +        }
 
-I have an NVIDIA 8600M-GS graphics card on my computer. The texts in
-the "Blender" menus are not visible on Debian 12 amd64. I provided
-more detailed information at the following address
-"https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1092189". I present
-it to your information.
+Would `build_assert!` at the top work instead?
 
-Best regards.
+> +    /// Returns this alignment as a `usize`.
+
+Intra-doc link.
+
+> +            // SAFETY: per the invariants, `self.0` is always a power of=
+ two so this block will
+
+"Per".
+
+I can pick this, with or without the user -- or do you need this in
+Nova this cycle?
+
+Thanks!
+
+Cheers,
+Miguel
