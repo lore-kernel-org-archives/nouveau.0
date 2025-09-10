@@ -4,143 +4,163 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43EB3CAC5B8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB782CCD185
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D85810E523;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C88410E527;
 	Mon,  6 Oct 2025 20:46:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="aetsdzm8";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="h48NlxF8";
 	dkim-atps=neutral
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2072.outbound.protection.outlook.com [40.107.223.72])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BEDE10E1B2;
- Fri, 29 Aug 2025 17:33:24 +0000 (UTC)
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com
+ (mail-bn7nam10on2059.outbound.protection.outlook.com [40.107.92.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F041E10E9EB;
+ Wed, 10 Sep 2025 23:22:10 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LOye8F8DVptJiAqyD8/mPOgNgeVtne9CXLRrsHJ0y+1BeuIa3Plg81W9LcRYlQ6YfvEVxSIwj3ZbP+w4GqQcPoogIgbXQG/tUngdDI1qe5B502FfVtksplgcNGEwgqEDpoae/nwoo/FEtrXCXsR8E4s7LzzOZdEJaBYmqntkrynMFrQDBAMsIxa8Jt2dchgrxL4FHeLLHel0406KQMbXdUtGepQgG9HM0fTxjmTiMAhTW3DReFOHUPjwfLcMc94YCUjeu+erGvizhBVdUJFbERq/88m21ybjZP1ImCVlJVzQiDHPVrvg1G2O+ccIbf9ENsmRJV6t68r1v3XTAszkbg==
+ b=bjVvdLuQ8NyMMWEJ3vn9Al9YJRoU2NxKrAfoXOGXCRSRpzsaRFJA3hgpqgO3L9WWVZvAiu9pirQzv0agEBlV9ZbLDhUR1ilgt9cvzCsgUZgucp6z8FlWNWpzJzGh4TOdo6HBBlOkKw1CetNO0h2BOc49JzloqUR1q+TDWO7RhYMj5EAS+LeD7MtxjMLEBIAwRCS8zw7KdJgaiFM1SavQj74jEHzqi18dpDNvhYQZi4KHukKhZuhjTausI8ZgtFqofMf/5YT+1vjL4rasNlvpYNppeuPZM4bd+u44EL06YHSWf+3BOO7klOoS1UbT20sQVWtpXr/4vzet40R2JjFx/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EDgMvAlNOcGuIe6AbIkPIQ96yqPmwFXO3Ge+RN3awy8=;
- b=TN2iQc8eAGLQZGzCbAulEpSEQZYyxbWYuHpHwf3naziXqD0UIhUs0tBHhd3BL52NYRf+pjkuywsBUm7EvMjdec/cbBEP8hkFAbqgZgG2E5ORURnVb61hm/gwU2Fw+6zUZ6Q2h8Pxfy2LIuym0LOMq/2HoljUBPrqORfVwrCsjJAtEgbBxYelr7eH0BhTV8g2K8PM2RTWdFttAaxk//HAQNzopYMYT+RfpXqKV8fzPgoImYYFIzPxiFUee25EhGiEAR5Rya7clgLz2P+nrjieXN9Uq+toy6UVgPjRc/UDUqCyM2SyX25Q8oMkU2onAmIblD0flNpRErU1LTo5aLUlyw==
+ bh=6SU/Eghwj+7aUHAhfrC1jqVxE9Ob0ksMLPDcqqm7XKk=;
+ b=bmKY/WmCgmz8AhBTHBU3u8L286sP5TZgrkYZjuvihzgEVyJeX92fuXyjn4ysWwGi3GV82DYuLN2G0QjdPBBTUtYE76iExpZe6HpI/mVq0V9/36N0xdmdmC8iuq82IXbXrI3LQBpG9h/vPpZ3Z+1LOW5gGbjkgxStaMn/+IpszDh9g+YBXzXGG8DDJZUAldUdZk0M1haiAMTkmsCI4+PjeDFRYwwNSW0RKKGO964LSDomoSqXRS/uGyaISyuBEtdyySu9TY8v96lOWs7i9cysdTZToJ9jdhbDw/u9r9bPicO861a/opJHKXB4dr6CeGZNRzwKdfIV2qK2RiT+Kmo9nw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EDgMvAlNOcGuIe6AbIkPIQ96yqPmwFXO3Ge+RN3awy8=;
- b=aetsdzm8ip89L5Y27B7CmqeIKZk22QTAhMkKO4hvzINTG3b1DeMoI5vmpxfJiirYTIglQaWiJ3vjI3BquRlxszv6fbMlgqMqBv4OZ0cTdnn8IZM4YR+xv5MiEzHFvQloYanidQy/MrMe2pDWtAgiOA3iKNUoz/1c3lZ2Jj+8wre7+O+A+UV0tjRA/Hsbz3Fc/wIazC08pncu/sqNegD3JZ+8ZLsCMz1Vu0LtpEvo/ruc3Zb01cZV9n+HWPeYTh4LPF3TSJJ7bK3E8yPzDrPJIB4SG60tk+DXB9u3CE75mmz4H/hcXPkGCwyJ9zo2PT/h6d3vD9fnWey4wXIRkHjCwA==
+ bh=6SU/Eghwj+7aUHAhfrC1jqVxE9Ob0ksMLPDcqqm7XKk=;
+ b=h48NlxF8gGujuD1YCIBZPL909dsqnc4RclJ4SqjmdxRbLydnPQ9H6MQyKrzs4L1F+ASw9OOB4WY6VwjlAsmJAlFr1rVhXwiidrFWpQEsnXDm3EUn+hT5z46Ow5F8Z+qER/5J5yI6mLvu6Ca0aA5MlMTfMuf3YxozOXvJTtX9QV6xZt0XLFiBBC3Hi0GrPGe4ho5zn1cFCTagPoWSigAiLKECrCm4unDCAqhJuRgw/fuXf++BtqCNa7FVUJDV787jXcYfN6tMff24txif9tQiqioB9lLrAy/rNFViGW24ZIujXRU9T9+ug3KUEuzyVod/NedHifmTw4v51Ui8riE+3w==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by IA1PR12MB6017.namprd12.prod.outlook.com (2603:10b6:208:3d7::8)
+ by SA0PR12MB7464.namprd12.prod.outlook.com (2603:10b6:806:24b::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.22; Fri, 29 Aug
- 2025 17:33:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
+ 2025 23:22:07 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9052.017; Fri, 29 Aug 2025
- 17:33:19 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dakr@kernel.org, acourbot@nvidia.com
-Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
+ 23:22:07 +0000
+Message-ID: <5642a7f2-c18f-46cf-8136-9fccd1c121ae@nvidia.com>
+Date: Wed, 10 Sep 2025 19:22:03 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/5] rust: Add KUNIT tests for bitfield
+To: Yury Norov <yury.norov@gmail.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Subject: [PATCH 06/17] nova-core: Add bindings required by GSP sequencer
-Date: Fri, 29 Aug 2025 13:32:43 -0400
-Message-Id: <20250829173254.2068763-7-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250829173254.2068763-1-joelagnelf@nvidia.com>
-References: <20250829173254.2068763-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BL1PR13CA0214.namprd13.prod.outlook.com
- (2603:10b6:208:2bf::9) To SN7PR12MB8059.namprd12.prod.outlook.com
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org
+References: <20250909212039.227221-1-joelagnelf@nvidia.com>
+ <20250909212039.227221-6-joelagnelf@nvidia.com> <aMDq2ln1ivFol_Db@yury>
+Content-Language: en-US
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <aMDq2ln1ivFol_Db@yury>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: IA4P220CA0008.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:208:558::6) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|IA1PR12MB6017:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4faa23bd-6a3e-4677-2761-08dde722252a
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|SA0PR12MB7464:EE_
+X-MS-Office365-Filtering-Correlation-Id: 00c8af6f-c383-4d43-be85-08ddf0c0dbfd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uMLWs6ZIohAmeyITg6fq5t7KCiLiwYlIEM80cZgAy5F64iUr0nb0yltxXnL4?=
- =?us-ascii?Q?DfI7z8ayXTweOXtWMXJAjoSev5ONC/tYTcUZ4+gSPNS+9+GBzRFGWlUYUcZz?=
- =?us-ascii?Q?GV4/yC8AhP2YRAKkxyI60To3+3ZB17tr7uVaojYW/2oibfV3aV98G9GMQv7K?=
- =?us-ascii?Q?LUYkfZZxbYHgZ7d/sgtAJ1HUhGNa+EtY/g61yvQpC+7HOl60CcGYHn7fbcqg?=
- =?us-ascii?Q?003US+jIBwwosfz4WbLAXdgEnmLLt2rvlm8bQnkx0xSqGbi1sFYwRAH8XoOp?=
- =?us-ascii?Q?aHo7I2Z0DU/lDGRN6UbLEmLonXr9+fTflOf6+4G4hMrl7QmweDPg5xDeq7sk?=
- =?us-ascii?Q?N054LCaeGyyF454y3xx4W81AUqjQ1dlsj7JXj1bs16C6Hk4vqr7L8nO9EXoU?=
- =?us-ascii?Q?nh0DtVFX9mBnvpdxZT5bdDEP8zXSHStNry6k5lJxUSpJ7PxlpfWMiVuStFSo?=
- =?us-ascii?Q?HT3japGgJPal7JduV03CWDkF0bDBhhXN9Un5roxREtWmg26LNHfwvmvcSrAb?=
- =?us-ascii?Q?1qhJcFCzU191fxVov2TSKUYPVQfxOEfRQtZyK0Y9Z0ipX31qDQ1avU5l6crm?=
- =?us-ascii?Q?+STL3ju+zFPfaOwgkBfxvvATL833rXy6WGrAqCR5dXbPth5Qscr+DiQiDeaF?=
- =?us-ascii?Q?MNGkThnnSGJSh8NAWjIP1Wx1Sb7amn/GVs/d/qSBhLcL4k9quekXgD9Nr9ez?=
- =?us-ascii?Q?ix5FUKdf1fjQoL2SbxNHgOFXqUkGBlKB8CBoApsRbO1OcVaZPi8/5VRAa8Gv?=
- =?us-ascii?Q?FuTMzdawAuymmdmT8HcwphxUoZhBl3rJpRCx3aN8AHaTNla54JCkmqvu/fuW?=
- =?us-ascii?Q?tPruImdXqZfGgc8jDc9aRUi/mycZOGkkELa95OAKM/IO2YDcGS2cHIr74uAt?=
- =?us-ascii?Q?AjJhnhOB1cmlNUlG7aplysctjhE548EJFdMlFWgaJjQbvk/0z1hAQY0jg1o4?=
- =?us-ascii?Q?bDSbcL7QAeKX1SC7SM6dANhutQ3E4BKWZh/0ZijFA3BLD03pZv4hoytrzU9g?=
- =?us-ascii?Q?0fzeLEcnuoldLhoYvPyfy1siJB0RGyVl2skR8QMp+a3oIaYq7HUeLM+KuLag?=
- =?us-ascii?Q?/aDSOmKFOViLwuDktGWDjJOsTFXZvudEEewZF1vIFb7T9nv7JP4btv1kzsno?=
- =?us-ascii?Q?At+x0qctVqvr/pCqqrfUEbOnmNyOj8cbLWK0GxVbWIPkX6WcKRKqnWm+m5G4?=
- =?us-ascii?Q?KEggvApf62MXNMLQmINc4ezvr46jG185CInlvS6Hnl/um5XPLs3HdJe5EV/K?=
- =?us-ascii?Q?e4TMTUESQj5g80w8uQQb+l2I2orIHZb4hKbp874muvGO0t2W3Niw3JQ+KHV8?=
- =?us-ascii?Q?k4SGvoXeIY/u+yvwpw2nt8SFHe2OypBkFhFhQfGcBozGEHagE/hSLjgZRQBi?=
- =?us-ascii?Q?tic3CDKhMlnHb+l256VsqVKe0gLLCwmCIa68aXnDFa/LswCUjT7CPPaxhRr8?=
- =?us-ascii?Q?yDfi8/IbuMU=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?UW02SGxtQjd5OWxOSzgzdXV0ZVVYZkp5UVpWMmNQSGNMcHNsUFdSaEZzQnRG?=
+ =?utf-8?B?aXJwTnZiblpUY0VZSURycXNobDRhdWhpekdOeDRBVmsrQU5jSG5zdmc1eEJr?=
+ =?utf-8?B?WUZLelNSOFg1RDhhM0FpWmZObWI5MCtYTVEwRlhSeFVjZVkxNHZ2bHJTWWZj?=
+ =?utf-8?B?RUJpdk9qVEptc09PdVR2NTRsSGNnMk5iNWhVWmIzMG12WlpEcUhzUm8xcnJi?=
+ =?utf-8?B?UUsvWmtKUlJVaGFBeVIvdzBjalgyU1ZZUUp3NFFselM3SEtsSUZBVGVIN1Jj?=
+ =?utf-8?B?bFRlYlV2cFdSOWFhM0FOcnpMTDNaM0k1eE15bW9xMW9WTU9WWnh3SWNqaFNv?=
+ =?utf-8?B?bUl3NWpEZzhZUnlSK25OS0VmSVdHV0Z3UUx1QlNRR0VlKzBaamR6eTkyZita?=
+ =?utf-8?B?dTdoSVNtS2srTEh4YmdIV1I4VGFvYVlQUkswcmxBc1dBZGo3UWxjeU1FUEpC?=
+ =?utf-8?B?eElWRFNJWHNOZHg1bE1LYU5kUW4zRjVneWZuTU1RaWtjR04rVkxvZ1cvOUx5?=
+ =?utf-8?B?d0RadDl0RVBTaEZ4WWhWT3Y3K2dkaHprVkRyL0R1SmY3SmN3NERLVFFrVUpM?=
+ =?utf-8?B?c0ZZRHBobUgraEhBcElwbHIvbi90dWhsb3A1bGJ0Uk5aRk1pRTAyMm9wTUlw?=
+ =?utf-8?B?aHdETGNIVlF4VU53VXJrQVErV0VCMTNCc2Z6R2RoN0ErcklETWNIRnFzNm9N?=
+ =?utf-8?B?SGF2a1psQjVRR1NYdCswZDJyNlpUTHphSkJ0VWxyNWJGMDA5UGxSNkhmYktz?=
+ =?utf-8?B?MEcrQmgvSXdlb0t3VTZYMy9Ta2twWjI5RStXRW52TWsyZEwzaTVCUFh2d2Vz?=
+ =?utf-8?B?Zk9oK1hRNHFLZU5kS1BqN0M3azFxRnFBYmlyVWdUSFE2Q0R0SHhoVHVxektL?=
+ =?utf-8?B?UXpsY3FHMjdRYStwZ0FlWW1HVHFZeHVndU5waG8vOGhXZ2hVVkJGQ3ZDWXR6?=
+ =?utf-8?B?NlVGMmNQNFE1ME14dVM5Nk9hMUVxUWRPUVc2OEhlWDg5VTB3OFFGekVNU1dT?=
+ =?utf-8?B?eHhYaUF6bEUrVUhEbkdvcEJUQ3Q3UncrYTRKc0Vtd1hxV3JVNkhTWERsMlNK?=
+ =?utf-8?B?R1JveEJOVFNwSy95YmVBN3o3QmFuOFBHdWVUYmIrT1NtcTFOWFRxQzYzVit4?=
+ =?utf-8?B?eGQvZXNYOWpqSVlQOGNlZThjL29LREdwMzROQW1ZWDlYZE9rVUpzUC95aHRq?=
+ =?utf-8?B?aWFhdEdZdHAzT2FOZFlmcWV6RjhmUWJKS2U1blVsazhCcm44a3dNWVRxU2dm?=
+ =?utf-8?B?ekFWSjNzS05XWUZ1bGE4WUp0d3JsRVRvdzQ4RDFJQjNGZXZUblMxbXhTcUhW?=
+ =?utf-8?B?d0FxL0ZQZ0NqTHViNTdmcjhsdDg3M3g1b29PL1kySlJqWTlBYms1QzJpL0hN?=
+ =?utf-8?B?TjcwN0JUcGlyeFB2U3ZmQU9tU1g5S0VlWFhDcG1xQVhsZXFLd282WE52dFIr?=
+ =?utf-8?B?TmtZQm01d1JRNGxTQkxCcVdxLzZwWWpQL2J6bDJ0bURLU2YyQzNNUk9ZdlIy?=
+ =?utf-8?B?ZTk4RXF1a2dxRlFna2RDQXMrekpwdjQ3SlY4QlRjQ3hVUUV2c1lSU0Y3S3Vw?=
+ =?utf-8?B?V25GZXhqQ2piUzNMM2E4ZXhRWURYeEVVTXZFS0JXRURxZFozdXhSYXRpeXNm?=
+ =?utf-8?B?SWZRVXh5aEppaXdJdk9SWWhySHA4YVBaTEFBZVBDRlkvMjQ1aGo4ZTJlMFFL?=
+ =?utf-8?B?WWVzMVZHVWplM0ExUkZIdmQ1SnkxblRTektUOVlFKzJ1ZVVsOXR4R2VaMXpR?=
+ =?utf-8?B?a1M4R0V1cThJa3BablJlNTVrWE1GV1pubG02RjB2K3FSTlRMcjZLR3ByUnZa?=
+ =?utf-8?B?cm1YblRRR2NtQ0RCTW1LZVgvYitpV3E3RmpXVUcrdzdEOHZXYUtjek5DZWlB?=
+ =?utf-8?B?M2NIUUEvSURsQTNDc2dxSTB4dU9JbmovaXRuaVIvM3g5YnRrblloZzRhZXBm?=
+ =?utf-8?Q?8OR35XAfmZ4=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?uzq+Ap5Sq7GSIbi6601u8HoYLMW1QMgOq4dhkCj9s8mmdJMvRPU2iKNccwHZ?=
- =?us-ascii?Q?Rf6SoCyYNHM3CMGNua1IOek1DYXdwiFntppt8FyexQNgBuoPUbrNM1lKsLnl?=
- =?us-ascii?Q?xLa5YA+4/J5sLyLV6flsRK1iC6/4fa426ezobgJ6NCdizCLo4EWJgFNQpe5V?=
- =?us-ascii?Q?SnVSTuTCzqV1WgzMsrY1OMouuMHcHop/gysxJ8emnNwKF58ZF4/12O/BrBPo?=
- =?us-ascii?Q?hvyeWDYEARLZtjDn/MgoZxyqznW3UnA90dxJuBBEI/VQW22Ap00XyWnDgg9o?=
- =?us-ascii?Q?YcLIRJRgImdF941BnIIA6ON8Bw2eolKxPWim/x10bd7Z++Nci1gOqt8TY3HT?=
- =?us-ascii?Q?a48qLqme79L7Wdrb/HKnaSdrUvk8spqrX1mi7fUNKndeqwe0ZedCKaOKMm/s?=
- =?us-ascii?Q?lJutyNov48dlYzcT+NwewXMDH1KsaxFm9XJFcQ7WKw9yYdYZ85CdRUcJlcBW?=
- =?us-ascii?Q?s9xxrXSJ8WA2BL3t8mmquI0n3rVMTHc8w4xA+7q64I3/QQTqoQAarV4eBWLl?=
- =?us-ascii?Q?200ARdTkDRg11/60cu/vwuCpIIfoJ3IryIjiSbwX7kqC5xmxBdMt84gk9Pm8?=
- =?us-ascii?Q?OA3NYHVdmNUPUT/6kWhFQRF6zs3xK2uPdXS9aBwKqXD9V0PA5u5+lPic9AOf?=
- =?us-ascii?Q?cEpUmvhOTW7Z7QJwvyWeBOffskcwb5mDq42TIz/i3sfKCd9bWEU9fI996Ygt?=
- =?us-ascii?Q?YLA/A285TswL910A4jlbroGHb+IN0RUnv3uWkWLltJZtSpAVdixwrG+rb0CN?=
- =?us-ascii?Q?UA51QMwvQcL3gMb+m6+5xCLUEzZY6Qcq9hkKFJuAh0y0Tm+VbUwg1aHLxyZO?=
- =?us-ascii?Q?5cHDVfMpEJ7ZE4ZgrFtXCwHe9inOKFjmEYy/hr0lgRSTHIrBy6DVadkEkC/w?=
- =?us-ascii?Q?W08O6Gmyy6EW5OrX1cbSUaQCHw8QQFXLB47OUnY+nX+LiVuUrarvs5/gALyk?=
- =?us-ascii?Q?Ac7PzAMLFKfrSDjN4vrJeUUEvPepjmVyD+dOitUC2Aivkol8qVHPupQfSjb2?=
- =?us-ascii?Q?l1tXpdBdv751RnB/g5kdqwy8VpYAMxhv9ZUrWFAgrpNbinUMoSbt/zBwwE1U?=
- =?us-ascii?Q?AcG5p64O7Gpgp8qWmMDdxhGhcSxJNt+FPFmZiGZZk1UUJ7h4ADBLMHLObwWs?=
- =?us-ascii?Q?dszUl8mH+nklY7SoVP6hfGHHGLOFJf3a8RPE4fKOjGhPUhNZqe/l4V076DYY?=
- =?us-ascii?Q?/lb3Wbc9Sm/fWBY3BvWrIgmTgB/3/4+3fGqBWjSAgvMy6tJfBmLyYHPhLssB?=
- =?us-ascii?Q?Fr0wJdsMn2nfTGLsKfi5GvuPm4AIeOKZ3UoXo1DzDGwD2kr/yhQu5M7WS0y8?=
- =?us-ascii?Q?ZvY1gbD4wlVNFNLBD1t9N/A/W6hChqjfmN005GgyzvZ2N3VPHK9tLUU+qHOX?=
- =?us-ascii?Q?XBSdPg5s8xurFWgD/myQrXJAy/XCi0MJWcjGl122qEuriBuMGMfsYXStFjv+?=
- =?us-ascii?Q?vckFFtuKGJ/aEc3jUE4SHWFXQlpFWTK7hxiKXTHgiUw1fb0Lu0UuYO0NRpCU?=
- =?us-ascii?Q?1dH4dJTNe1rcoWtwudBrQVtPvVwAQ+2qQlGa61X8YT9vG//6cuYy3CMGzYRy?=
- =?us-ascii?Q?CkSUU1Qw1mI3KthMJzc7vSwFiTEPk50JUGRCreyv?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MzFiNTBiVEl1d3FncDA0N29ZTy9LRlU2djhickh5Y0JqT0hZZnRSZDJqUnJI?=
+ =?utf-8?B?TzNGeEgyNm1EcEszQ3BPcDFZK2FiVGtjcll1M2k5ZzYvcldEU3pJZGVGL0FW?=
+ =?utf-8?B?OTNnZkJmWG56Q2dqalZobG95NHVIZ0JwdVkranlIK2xnaDM5RDJtR0lON0lU?=
+ =?utf-8?B?MUpON1FWcEcyMzJyRmZQbGEyT0dtWHNwKzVTMWN5UEsyWnhvUUpmOU5hTTY4?=
+ =?utf-8?B?WHdhcHFydVJiY3V4dUswUG9oYUNWVS9aZC9KNU9yVllybm9Sdm93dzhMVzdC?=
+ =?utf-8?B?d21qRjlKK09uZUV1RXZxKzlrUkVyQ20rd3lNM1lPYm02NzZLUUg2QUdtQ2Ir?=
+ =?utf-8?B?MTVGdElSQytsb1NCdGlvVitZVU1JZnJlU2xsaE5zWmhtU0Y1dkx5Rmppb1dK?=
+ =?utf-8?B?R0dtK282SkZFY1g1M3pwR1h3VzRMd3VtMWxkeGIzWUtZN1h0bUZLbUMzUGtY?=
+ =?utf-8?B?QTN3aW1CUnRCTmhTRDd3NEJ4eGtLNW9MUFBsQTBYTHhDd01LUkhPQzE0VU9u?=
+ =?utf-8?B?QTVwV0lEWlVZb3ZMbTFDSlZXNk1QenBBbXN2dndDRTNRMjVKekpLcVpqQzNB?=
+ =?utf-8?B?U2F0RWo3aXd1YkU1Z1I2THlIRzZBN0NBZ2xRYk5MUHpwZk1zV2ZGNWdKajhS?=
+ =?utf-8?B?RmtxWEJEZUVVd0tYYXpVdkJkWjBaOTB2WlBjSjhYbXJNcnVrTG9FbDVMMHF1?=
+ =?utf-8?B?clhxK09aZm85bGtRVjJ2R3hkekpxY3FuY0JKVG5zL2NHK1BxR3lrR01ONFRh?=
+ =?utf-8?B?ZzcwajR4UXhsZWhZd3VnRUhHeVJOUzFaS2ViallzclJEOG5LODFGK3BqTGFI?=
+ =?utf-8?B?U2h6S09FODVSbVRLZzRGdWI5bkRYZmdJbi9ST2RUUHZiblJOaFc5cHhrTWVl?=
+ =?utf-8?B?WjdFVUo4QzlKbVhZMUE3bnJzS1pPd3d2aURCNzBiODk5VThYV3UxZjNiRDFY?=
+ =?utf-8?B?S2plU2dBUXNScDV1Kzc1V01GbERSTUxHK1NNZzZxOUxZYWNKc0lCTWpwNFZi?=
+ =?utf-8?B?Q25PUERzOWhzb1djVUZSL2MxNlprYXdEVVBWK1NLYkdoalpBZm5wYTlVWmR0?=
+ =?utf-8?B?aEtUc3ZjSVo4VTdPeUNKUHZIakdFbzl5RTYzMnp4akNucnR2TklMZXB4cHhP?=
+ =?utf-8?B?a3ZZK0QwWDJzSTAreVduQjNhY0oxK25pTHV1Rm90aklwV0pOT2RzWG1YTkdL?=
+ =?utf-8?B?UEFIK3drRHZTSFg1UG15OEl1UkQ0eWxTUi9oSDFMaWJCV1A0V1N4clIyeTMx?=
+ =?utf-8?B?VTAwU2pWbDkvTTZLMHB2ekZaaGpDWTZ1VCs4Q2lZMVpBTTROSVRUYjVWNzE1?=
+ =?utf-8?B?WlRuUlo1VVB1RXg4Y3J4RDlwTGpUdmV1R05UdXQ1UGFOc284cjRndDBVKytV?=
+ =?utf-8?B?aWJaajBvcXR6ajJyeTArOTFkNGZ6a1BOMmJNeWc0KzFJV21iaVMrMEUyWjBn?=
+ =?utf-8?B?Z01kekdnbUgrdG1oUW91ZTE0Nlg4NTVHNjcvV0l1SUJpdjQvemMwd1UrM0VR?=
+ =?utf-8?B?ZGxGSm1nY1hJR0dFWm9HT0N1UitEdkMzK3kwdmtjb0p6T2c0Y0RJNiswend3?=
+ =?utf-8?B?VktBOTBKY0VRWlF4NDRVdEFMSEdCMXBnWHJlaFNmZWk1a242Y3psSm9hRU5X?=
+ =?utf-8?B?NysyeXlhNnpDSGp3dmo1UVpHY3pvd0FFZ0ltNFdyRmMrYVgwVUd0UDNQMGg0?=
+ =?utf-8?B?VDRldnllUWhUNCtoQ0JIQUZ6cGtkSXo5ZTd5ZisxZWsxU0FkSHducHF6dDB3?=
+ =?utf-8?B?WW9QWHhYSVVLMVZIdkZlTmM3QjZkbnFRTHM3eHRpTGlpK1BMNGxPc1NtNHdJ?=
+ =?utf-8?B?dW40ekc5a2c4TWFzcEt3QXpoRGJTNmNpR1RFMmMzN0twZzdFeDNWMXZWVEVy?=
+ =?utf-8?B?d2ozSHR2YUFHTHVRWHo0aVhvNUxzSGFsZ0NOVFNUR2tTTTlQS1dDNXdnR28x?=
+ =?utf-8?B?L3pnLzdOL2R0MkY3Tk1rSmJvbXBUeFQ4QnNaZHZJeGJXVmZMajgzUFBOdXQ3?=
+ =?utf-8?B?bVNKZmJJaE03NDY1L3A5ODUxWmVRNXZ3eGlqbndmTnJ6TlZQbE9Ic24weGFG?=
+ =?utf-8?B?RmR3cVU3Nmp2aVFYOFRSMkZSRmt4aEc5aE85Ym1pL1BVU2FYZVdXNCtESXhk?=
+ =?utf-8?B?ZTk2QXBCQlFyNXZ1VElXcGZ4U1VhbGJRUG9OTDZBc2gwc1AxWXAzS2JGN281?=
+ =?utf-8?B?WGc9PQ==?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4faa23bd-6a3e-4677-2761-08dde722252a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 00c8af6f-c383-4d43-be85-08ddf0c0dbfd
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 17:33:19.6533 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 23:22:07.3208 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iSBTAeznHzZS4rkr1NheMlyVXYGYh7jteJSJtTo8U8FdkwCFoMfpSZzHX4Pt4+9uaDSFDFgpxk98dydR38xf7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6017
+X-MS-Exchange-CrossTenant-UserPrincipalName: WkQ9GIlrA1NQmrpfXgToAKwok6y46QmerOefpMsrvRXRb1HGeQtha03Iifz6FcjcYf7VMq0ykUmvmj+/LC6ufA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7464
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,152 +176,212 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add several firmware bindings required by GSP sequencer code.
+Hi Jury,
 
-Co-developed-by: Alistair Popple <apopple@nvidia.com>
-Signed-off-by: Alistair Popple <apopple@nvidia.com>
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- drivers/gpu/nova-core/nvfw.rs                 | 25 ++++++
- .../gpu/nova-core/nvfw/r570_144_bindings.rs   | 84 +++++++++++++++++++
- 2 files changed, 109 insertions(+)
+Some reason I messed up with my email client while trimming, so I am re-sending.
+Sorry :)
 
-diff --git a/drivers/gpu/nova-core/nvfw.rs b/drivers/gpu/nova-core/nvfw.rs
-index aa883d458838..0b44a922fe5d 100644
---- a/drivers/gpu/nova-core/nvfw.rs
-+++ b/drivers/gpu/nova-core/nvfw.rs
-@@ -41,7 +41,9 @@ pub(crate) struct LibosParams {
- /// addresses of the GSP bootloader and firmware.
- pub(crate) use r570_144::GspFwWprMeta;
- 
-+#[expect(unused_imports)]
- pub(crate) use r570_144::{
-+    rpc_run_cpu_sequencer_v17_00,
-     // Core GSP structures
-     GspSystemInfo,
- 
-@@ -55,6 +57,29 @@ pub(crate) struct LibosParams {
-     // GSP firmware constants
-     GSP_FW_WPR_META_MAGIC,
-     GSP_FW_WPR_META_REVISION,
-+
-+    // GSP sequencer structures
-+    GSP_SEQUENCER_BUFFER_CMD,
-+    GSP_SEQ_BUF_OPCODE,
-+
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_RESET,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_RESUME,
-+
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_START,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_WAIT_FOR_HALT,
-+    // GSP sequencer opcode constants
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_DELAY_US,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_MODIFY,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_POLL,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_STORE,
-+    GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_WRITE,
-+    // GSP sequencer payload structures
-+    GSP_SEQ_BUF_PAYLOAD_DELAY_US,
-+    GSP_SEQ_BUF_PAYLOAD_REG_MODIFY,
-+    GSP_SEQ_BUF_PAYLOAD_REG_POLL,
-+    GSP_SEQ_BUF_PAYLOAD_REG_STORE,
-+    GSP_SEQ_BUF_PAYLOAD_REG_WRITE,
-+
-     GSP_SR_INIT_ARGUMENTS,
- 
-     // RM message queue parameters
-diff --git a/drivers/gpu/nova-core/nvfw/r570_144_bindings.rs b/drivers/gpu/nova-core/nvfw/r570_144_bindings.rs
-index 3832d0b7a0b9..607d99ac2221 100644
---- a/drivers/gpu/nova-core/nvfw/r570_144_bindings.rs
-+++ b/drivers/gpu/nova-core/nvfw/r570_144_bindings.rs
-@@ -625,3 +625,87 @@ pub struct PACKED_REGISTRY_TABLE {
-     pub numEntries: u32_,
-     pub entries: __IncompleteArrayField<PACKED_REGISTRY_ENTRY>,
- }
-+#[repr(C)]
-+#[derive(Debug, Default)]
-+pub struct rpc_run_cpu_sequencer_v17_00 {
-+    pub bufferSizeDWord: u32_,
-+    pub cmdIndex: u32_,
-+    pub regSaveArea: [u32_; 8usize],
-+    pub commandBuffer: __IncompleteArrayField<u32_>,
-+}
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_WRITE: GSP_SEQ_BUF_OPCODE = 0;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_MODIFY: GSP_SEQ_BUF_OPCODE = 1;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_POLL: GSP_SEQ_BUF_OPCODE = 2;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_DELAY_US: GSP_SEQ_BUF_OPCODE = 3;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_REG_STORE: GSP_SEQ_BUF_OPCODE = 4;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_RESET: GSP_SEQ_BUF_OPCODE = 5;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_START: GSP_SEQ_BUF_OPCODE = 6;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_WAIT_FOR_HALT: GSP_SEQ_BUF_OPCODE = 7;
-+pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_RESUME: GSP_SEQ_BUF_OPCODE = 8;
-+pub type GSP_SEQ_BUF_OPCODE = ffi::c_uint;
-+#[repr(C)]
-+#[derive(Debug, Default, Copy, Clone)]
-+pub struct GSP_SEQ_BUF_PAYLOAD_REG_WRITE {
-+    pub addr: u32_,
-+    pub val: u32_,
-+}
-+#[repr(C)]
-+#[derive(Debug, Default, Copy, Clone)]
-+pub struct GSP_SEQ_BUF_PAYLOAD_REG_MODIFY {
-+    pub addr: u32_,
-+    pub mask: u32_,
-+    pub val: u32_,
-+}
-+#[repr(C)]
-+#[derive(Debug, Default, Copy, Clone)]
-+pub struct GSP_SEQ_BUF_PAYLOAD_REG_POLL {
-+    pub addr: u32_,
-+    pub mask: u32_,
-+    pub val: u32_,
-+    pub timeout: u32_,
-+    pub error: u32_,
-+}
-+#[repr(C)]
-+#[derive(Debug, Default, Copy, Clone)]
-+pub struct GSP_SEQ_BUF_PAYLOAD_DELAY_US {
-+    pub val: u32_,
-+}
-+#[repr(C)]
-+#[derive(Debug, Default, Copy, Clone)]
-+pub struct GSP_SEQ_BUF_PAYLOAD_REG_STORE {
-+    pub addr: u32_,
-+    pub index: u32_,
-+}
-+#[repr(C)]
-+#[derive(Copy, Clone)]
-+pub struct GSP_SEQUENCER_BUFFER_CMD {
-+    pub opCode: GSP_SEQ_BUF_OPCODE,
-+    pub payload: GSP_SEQUENCER_BUFFER_CMD__bindgen_ty_1,
-+}
-+#[repr(C)]
-+#[derive(Copy, Clone)]
-+pub union GSP_SEQUENCER_BUFFER_CMD__bindgen_ty_1 {
-+    pub regWrite: GSP_SEQ_BUF_PAYLOAD_REG_WRITE,
-+    pub regModify: GSP_SEQ_BUF_PAYLOAD_REG_MODIFY,
-+    pub regPoll: GSP_SEQ_BUF_PAYLOAD_REG_POLL,
-+    pub delayUs: GSP_SEQ_BUF_PAYLOAD_DELAY_US,
-+    pub regStore: GSP_SEQ_BUF_PAYLOAD_REG_STORE,
-+}
-+impl Default for GSP_SEQUENCER_BUFFER_CMD__bindgen_ty_1 {
-+    fn default() -> Self {
-+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-+        unsafe {
-+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-+            s.assume_init()
-+        }
-+    }
-+}
-+impl Default for GSP_SEQUENCER_BUFFER_CMD {
-+    fn default() -> Self {
-+        let mut s = ::core::mem::MaybeUninit::<Self>::uninit();
-+        unsafe {
-+            ::core::ptr::write_bytes(s.as_mut_ptr(), 0, 1);
-+            s.assume_init()
-+        }
-+    }
-+}
--- 
-2.34.1
+On 9/9/2025 11:04 PM, Yury Norov wrote:
+[...]
+>> +    #[test]
+>> +    fn test_range_fields() {
+>> +        let mut pte = TestPageTableEntry::default();
+>> +
+>> +        pte = pte.set_pfn(0x123456);
+>> +        assert_eq!(pte.pfn(), 0x123456);
+>> +        // Test overlapping field reads same value
+>> +        assert_eq!(pte.pfn_overlap(), 0x123456);
+>> +
+>> +        pte = pte.set_available(0x7);
+>> +        assert_eq!(pte.available(), 0x7);
+>> +
+>> +        pte = pte.set_available2(0x3FF);
+>> +        assert_eq!(pte.available2(), 0x3FF);
+>> +
+>> +        // Test TryFrom with ?=> for MemoryType
+>> +        pte = pte.set_mem_type(MemoryType::Device);
+>> +        assert_eq!(pte.mem_type(), Ok(MemoryType::Device));
+>> +
+>> +        pte = pte.set_mem_type(MemoryType::Normal);
+>> +        assert_eq!(pte.mem_type(), Ok(MemoryType::Normal));
+>> +
+>> +        // Test all valid values for mem_type
+>> +        pte = pte.set_mem_type(MemoryType::Reserved); // Valid value: 3
+>> +        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
+>> +
+>> +        // Test failure case using extended_type field which has 4 bits (0-15)
+>> +        // MemoryType only handles 0-3, so values 4-15 should return Err
+>> +        let mut raw = pte.raw();
+>> +        raw = (raw & !(0xF << 14)) | (0x7 << 14); // Set bits 17:14 to 7 (invalid for MemoryType)
+>> +        let invalid_pte = TestPageTableEntry::from(raw);
+>> +        assert_eq!(invalid_pte.extended_type(), Err(0x7)); // Should return Err with the invalid value
+> 
+> Please make sure your lines don't exceed 100 chars, preferably less
+> than 80.
+
+Ok.
+
+>> +
+>> +        // Test a valid value after testing invalid to ensure both cases work
+>> +        raw = (raw & !(0xF << 14)) | (0x2 << 14); // Set bits 17:14 to 2 (valid: Device)
+> 
+> Can you use genmask!() here and everywhere else?
+
+Ok.
+
+>> +    #[test]
+>> +    fn test_u8_bitfield() {
+>> +        let mut status = TestStatusRegister::default();
+>> +
+>> +        assert!(!status.ready());
+>> +        assert!(!status.error());
+>> +        assert_eq!(status.state(), 0);
+>> +        assert_eq!(status.reserved(), 0);
+>> +        assert_eq!(status.full_byte(), 0);
+>> +
+>> +        status = status.set_ready(true);
+>> +        assert!(status.ready());
+>> +        assert_eq!(status.full_byte(), 0x01);
+>> +
+>> +        status = status.set_error(true);
+>> +        assert!(status.error());
+>> +        assert_eq!(status.full_byte(), 0x03);
+>> +
+>> +        status = status.set_state(0x3);
+>> +        assert_eq!(status.state(), 0x3);
+>> +        assert_eq!(status.full_byte(), 0x0F);
+>> +
+>> +        status = status.set_reserved(0xA);
+>> +        assert_eq!(status.reserved(), 0xA);
+>> +        assert_eq!(status.full_byte(), 0xAF);
+>> +
+>> +        // Test overlapping field
+>> +        status = status.set_full_byte(0x55);
+>> +        assert_eq!(status.full_byte(), 0x55);
+>> +        assert!(status.ready());
+>> +        assert!(!status.error());
+>> +        assert_eq!(status.state(), 0x1);
+>> +        assert_eq!(status.reserved(), 0x5);
+>> +
+>> +        let status2 = TestStatusRegister::default()
+>> +            .set_ready(true)
+>> +            .set_state(0x2)
+>> +            .set_reserved(0x5);
+>> +
+>> +        assert!(status2.ready());
+>> +        assert!(!status2.error());
+>> +        assert_eq!(status2.state(), 0x2);
+>> +        assert_eq!(status2.reserved(), 0x5);
+>> +        assert_eq!(status2.full_byte(), 0x59);
+>> +
+>> +        let raw_value: u8 = 0x59;
+>> +        let status3 = TestStatusRegister::from(raw_value);
+>> +        assert_eq!(status3.raw(), raw_value);
+>> +        assert!(status3.ready());
+>> +        assert!(!status3.error());
+>> +        assert_eq!(status3.state(), 0x2);
+>> +        assert_eq!(status3.reserved(), 0x5);
+>> +        assert_eq!(status3.full_byte(), 0x59);
+> 
+> You've got only one negative test that covers the .from() method.
+> Can you add more?
+> 
+
+Sure, by negative you mean the test that returned an error code? If so, just to
+note, we can only add negative tests if there is a chance of
+runtime failure, which at runtime can mainly happen with the fallible usage (?=>
+pattern). Also just to note, we already at ~300 lines of test code now :)
+
+> What if I create a bitfield from a runtime value that exceeds
+> the capacity?
+> 
+>     bitfield! {
+>         struct bf: u8 {
+>             0:0       ready       as bool;
+>             1:1       error       as bool;
+>             3:2       state       as u32;
+
+Here you mean 'as u8', otherwise it wont compile.
+
+>        }
+>     }
+> 
+>     let raw_value: u8 = 0xff;
+>     let bf = bf::from(raw_value);
+> 
+> I guess you'd return None or similar.
+
+No, we would ignore the extra bits sent. There is a .raw() method and 'bf' is
+8-bits, bf.raw() will return 0xff. So it is perfectly valid to do so. I don't
+think we should return None here, this is also valid in C.
+
+> Can you add such a test?
+
+Sure, I added such a test.
+
+> The same question for the setters. What would happen for this:
+> 
+>     let bf = bf::default()
+>              .set_state(0xf)
+>              .set_ready(true);
+> 
+> I think that after the first out-of-boundary in set_state(), you
+> should abort the call chain, make sure you're not touching memory
+> in set_ready() and returning some type of error.
+
+Here, on out of boundary, we just ignore the extra bits passed to set_state. I
+think it would be odd if we errored out honestly. We are using 'as u8' in the
+struct so we would accept any u8 as input, but then if we complained that extra
+bits were sent, that would be odd. In C also this is valid. If you passed a
+higher value than what the bitfield can hold, the compiler will still just use
+the bits that it needs and ignore the rest.
+
+Now, I am not opposed to error'ing out on that, but that's not what we currently
+do and it is also not easy to do. The setters in the patch return Self, not
+Result<Self>, so they are infallible, which is what allows them to be chained as
+well (builder pattern).
+
+I added another test here as well, to ensure the behavior is as I describe.
+
+> 
+> And for this:
+> 
+>     let ret: u32 = -EINVAL;
+>     bf = bf::default();
+>     bf = bf.set_state(ret);
+> 
+> For compile-time initializes, it should be a compile-time error, right?
+
+Yes, since the struct in this example is u8, this wont compile. Yes, I will add
+a comment.
+
+> Can you drop a comment on that?
+
+Yes, I will do so.
+> (In C we've got FIELD_{GET,MODIFY,PREP}. They cover all the static
+> cases.)
+> 
+>> +        let status4 = TestStatusRegister::from(0xFF);
+>> +        assert!(status4.ready());
+>> +        assert!(status4.error());
+>> +        assert_eq!(status4.state(), 0x3);
+>> +        assert_eq!(status4.reserved(), 0xF);
+>> +        assert_eq!(status4.full_byte(), 0xFF);
+>> +    }
+>> +}
+>> -- 
+>> 2.34.1
+> 
+> I tried to apply your series on top of master, but it failed. So
+> my apologies for not finding the answers to some questions above
+> by myself.
+
+Oh ok, I applied it on top of drm-rust-next. I will rebase on -next for the next
+revision, thanks.
+
+> For the next version, can you make sure your series is applicable
+> on top of master or -next?
+Sure, thanks,
+
+ - Joel
 
