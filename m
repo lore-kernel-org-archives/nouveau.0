@@ -4,85 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFD1D5B15E
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47481D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECD110EC95;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 805C010EC96;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BmPVfkkC";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="N2Ix8ile";
 	dkim-atps=neutral
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D28F10E940
- for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 20:52:00 +0000 (UTC)
-Received: by mail-ed1-f44.google.com with SMTP id
- 4fb4d7f45d1cf-63c0c9a408aso2135059a12.3
- for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 13:52:00 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2584610E382
+ for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 10:01:12 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-24aacdf40a2so16479485ad.1
+ for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 03:01:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761252719; x=1761857519; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1757498471; x=1758103271; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=UAPXNY+YzoexJ0d/TkSSgHS667VNidACYdJWMiQnzPM=;
- b=BmPVfkkCZ2026DLOXWANitdPpdgbQaLf1l4ds+a+7jYMVRQUcdQLwZxY/ugWkun9Eg
- uWnauuGoNL9T6Ux7LQgv8gZ3CiEtg/F7y9RVxCKwHZpjUHOGtqx7BUD9Xxw7sO3X9Vvq
- LaJtHDvwsGuteZdUiiS/3znnQlunCf41nrzaVipl41xAmF9ksNa4cWYMqZ3ZT0pt2JEQ
- D9gXiXEs3AoBJ5kZxbAXmqHj+U/XrtX50GZ93oPiR7ii9AWK116JXWgodjHKi/y2vfDv
- 2VdrAB3P8U79n6FuMYjCOU409fTfehAT63wBfwSbWRjLFN05fwGExN4tVFfjFR0PchPM
- QoPA==
+ bh=q4uYyjZeT3X1uLSrC3Wk71Cjszm5hRnmgp8XTdb5gD4=;
+ b=N2Ix8ilefwmgCIehumuaci152t5SV3Im2BveiuJrL8TFqP6rJ7Oo2tlxI3kxBnGWCY
+ NNaFYZ/dwqBb4p3un40YMqqAUag3DmWtgJr4TUHCX2mvzdcTgy56aCiIWkR16rofZeE/
+ Ay60uNgX/+yMCoHVRXfYR4dD/gUjifmo6L8IvD7jsJmKqyCuHl9bAlMUCOfwf1Yk8O9Q
+ w7i+CN+T4QeoPgnrLz52pXy6pCjIwxY6tj+EKbz2NFZLLZlt7H/7DjWV+/blXwk1zcrA
+ JOv86dINu26DAzCgveVwWQ+uwGM5MONpZrinoIzV6EK+wUH+4LgtMOxW79ur06LWL6Bc
+ 5wrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761252719; x=1761857519;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1757498471; x=1758103271;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=UAPXNY+YzoexJ0d/TkSSgHS667VNidACYdJWMiQnzPM=;
- b=C/M7/21EXt3115EmAozCOOoGVX3bk2IDNU8xFjiLWZQmi8YDifi0Fs10EPRPLK4Nu+
- DcBeeV0FktJT+1wADT9As9Y6o3JMIl2B8WjEcmg+zMoNuaxIbAe89ipQa68+RTRoKU6e
- a7YGKIEDAYs+1Gs4L+Lw4y5tEc9u8c2AezmJr5kyp7yqhHaOBI9q+jI5XO6HS4Hw6Dk/
- P+CnGAAkSir2ixq/xL9ViOqmUyUFXdDcjGtZQTUN86iYn3v+fUJyqKnCtedc16srptcF
- 4xBC5D8XAiAYmhbC/Gx05zwaM95iaxsxXQxEPzTySAH5bSReXAuCNJFuMVJ/BBmNBwnL
- GFrQ==
-X-Gm-Message-State: AOJu0YxPK0H8ceUkFa6tv2VuVfgSF0iOhbB2sQM+T4TilhtQP+PcjuWE
- Ja7ICs0QZNosZMa70lO1GourP9DwqGzrk+yrcciqudsodxnnsqkiyIej
-X-Gm-Gg: ASbGncuHd01016K6/RzMp3nWeASxI/N02KqSIlZeUI0wpsm1JE0tIRPJALkz2SLxs8J
- 9pBVNQB5rywUia+u0+8c2PsBR2J1/T+776n0wMBwrzkZe3U1f2cbqvYXSh6gQ2K455FZINkLK/q
- LHHw4upJdHJRHuKmsvNERwF0uClnRGSSBR0+bFPlhvBjAIPf3kNX7z4a1IDQfiHklLMW7PFsiIo
- phUW4cZaAGfrPbwYVQGKo7ns6sON4WOZHu6Gs6yHO4LAp4llGaOuqc2vWRKMBc3s/rRGLH33T+6
- BRiVcxjq3btZFjFGHbZLT+t7d4b9cBbigahgbc4rh3KB+dfD148kNPCnj5swHN2EdssxssyGMdp
- FOaHShdQhQBrnFgjOkX5EPzOxoKR0MO82oPrSCDYqnX6OzxdjiM/RzcefXlP3pCasyxPkhtP0ZD
- 5fOb0iSTnyu1SrW35m0w==
-X-Google-Smtp-Source: AGHT+IFOkN+DkcmLNJzRNIqysto7sYM8LlsTGTSLlhGfULzr9KAi+B1XnIznbLvzFcpxukEGtb28dQ==
-X-Received: by 2002:a05:6402:51d1:b0:63c:3efe:d996 with SMTP id
- 4fb4d7f45d1cf-63c3efeee79mr22748502a12.20.1761252718877; 
- Thu, 23 Oct 2025 13:51:58 -0700 (PDT)
-Received: from archito ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-63e3ebb3299sm2564120a12.2.2025.10.23.13.51.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Oct 2025 13:51:58 -0700 (PDT)
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org,
- Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-Subject: [PATCH v2 3/3] nova: Update the nova todo list
-Date: Thu, 23 Oct 2025 22:51:37 +0200
-Message-ID: <20251023205146.196042-3-delcastillodelarosadaniel@gmail.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
-References: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
+ bh=q4uYyjZeT3X1uLSrC3Wk71Cjszm5hRnmgp8XTdb5gD4=;
+ b=pJd+yYw/x6ZI/a6jAWqQSCXT+en/8fsXirwWOyjR9usprIqMUOpczIo22wCvDlItW7
+ c5ZnK+FuxY0TE7s9YjaG1N1KPx8aEiZAjadB79kBRdhsHw66BamWMYky8rZ2wgZ0nlE8
+ 4bXswTVcS3YLapfYbcXjA1ddcC9pidu8fwTQcK8jNUK+PcZ0T+FK8+TF/7O7LmVmUPaf
+ TykNZSf2pwZzodLFSE0fJlGc22J/yqVKv80bd9MLbM+jHmJzLu+Gy0IGTdsavLIxUUWw
+ PO/lQoZsUHRrtlcN/1iWsoF/8vTBZvCWdC8x920dwUStMTHCOHiD3BT4+kC682WrcXus
+ tBPg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXEtvxUzya+gxf7Ziy/4Iro46ejQpVn2ey929D4Y38DEJbYolPAgqpdyj70HnwJkGrMB5rYR741@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywfr+dThNLIChQAxQJb8zWcY07Nn39f4BYL6LwuZeQVpShqlCbQ
+ LmbH1wjRO0wCh0D7TfvW7HBGMi4vt7kYhno0UPAsNK+hJHxnDiFyyHMwQ8x+wC8MjOq+3Ir+3S/
+ 9MdZ971zt58siiI790yhnMcIDMtIDydU=
+X-Gm-Gg: ASbGncuUUaT9OwCf8HHdsOyJQb2yPQwCwdDjuWr69gtFsCTUzGLBp1Ef1aCNUlo4EYo
+ lxWfzDGx5h2XE0+z4OIRlYl978tD9TOSMPwyYJxF9RyI8z7SEFL3ViteuRndv/VKz4DTB+Gmhfd
+ AT9zmgi1Vnur7jOFEMuVJ9ddHSleReA77QOfU50lrVsvmfXLM3J5CKb/lnfRWtBypyJt8A0hjQ8
+ kSwRZyZGawtThOdMJpF7lUD3VCI+hJpPEVztDBXotS+4EgWJ3h/3RwXJS7p0WIOLImVduYN4gk6
+ nEPu1+tQFljcgLVQJKrD9LOn5GoxXu95epw2
+X-Google-Smtp-Source: AGHT+IEAL6fPEIytHux98x5koSeZTz+GJXocZx4VGKO9evNP7NMBw73sdhCn/m6+6whVEQTC76oWfQxflZiVR9UaSxU=
+X-Received: by 2002:a05:6a21:6da1:b0:246:d43a:3865 with SMTP id
+ adf61e73a8af0-2533e950b02mr12197267637.1.1757498471364; Wed, 10 Sep 2025
+ 03:01:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
+ <20250826-nova_firmware-v2-2-93566252fe3a@nvidia.com>
+ <9adb92d4-6063-4032-bf76-f98dcfe2c824@nvidia.com>
+ <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
+ <CANiq72=nGbziZCKt=AneE_vXw76i=+td0dSVfbOJ8kJ9eYHw9w@mail.gmail.com>
+ <DCOVRI3TVJBN.3OGDSK8HW74LL@nvidia.com>
+In-Reply-To: <DCOVRI3TVJBN.3OGDSK8HW74LL@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 10 Sep 2025 12:00:59 +0200
+X-Gm-Features: AS18NWB3P1o-FQ07s_jB_zwoyBitfxkjABJvrHdFdftaj751AhGxluVMI4T6kjw
+Message-ID: <CANiq72n-q0vdzp=Tb=brue+BMoNYdCTKsqcMYUsvKgvu9ZqGoQ@mail.gmail.com>
+Subject: Re: Implicit panics (was: [PATCH v2 2/8] gpu: nova-core: firmware:
+ add support for common firmware header)
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Alistair Popple <apopple@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ rust-for-linux@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,48 +104,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This small patch updates the nova todo list to
-remove some tasks that have been solved lately:
-* COHA is solved in this patch series
-* TRSM was solved recently [1]
+On Wed, Sep 10, 2025 at 7:45=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> That would be nice, but also wouldn't cover all the cases where implicit
+> panics can happen, like out-of-bounds slice accesses - we can't have a
+> "report-and-continue" mode for these.
 
-[1] https://lore.kernel.org/rust-for-linux/DCEJ9SV4LBJL.11EUZVXX6EB9H@nvidia.com/
+In principle, it could cover OOBs (even if it is a bad idea).
 
-Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
----
- Documentation/gpu/nova/core/todo.rst | 19 -------------------
- 1 file changed, 19 deletions(-)
+> But perception matters, and such crashes can be damaging to the reputatio=
+n of the project.
 
-diff --git a/Documentation/gpu/nova/core/todo.rst b/Documentation/gpu/nova/core/todo.rst
-index 48b20656dcb1..be8063030d44 100644
---- a/Documentation/gpu/nova/core/todo.rst
-+++ b/Documentation/gpu/nova/core/todo.rst
-@@ -44,25 +44,6 @@ automatically generates the corresponding mappings between a value and a number.
- | Complexity: Beginner
- | Link: https://docs.rs/num/latest/num/trait.FromPrimitive.html
- 
--Conversion from byte slices for types implementing FromBytes [TRSM]
---------------------------------------------------------------------
--
--We retrieve several structures from byte streams coming from the BIOS or loaded
--firmware. At the moment converting the bytes slice into the proper type require
--an inelegant `unsafe` operation; this will go away once `FromBytes` implements
--a proper `from_bytes` method.
--
--| Complexity: Beginner
--
--CoherentAllocation improvements [COHA]
----------------------------------------
--
--`CoherentAllocation` needs a safe way to write into the allocation, and to
--obtain slices within the allocation.
--
--| Complexity: Beginner
--| Contact: Abdiel Janulgue
--
- Generic register abstraction [REGA]
- -----------------------------------
- 
--- 
-2.51.1
+Yes, we are well aware -- we have had it in our wish list for upstream
+Rust for a long time.
 
+We are tackling these things as we go -- e.g. we solved the `alloc`
+panics and the ball on the report-and-continue mode for overflows
+started moving.
+
+Part of Rust for Linux is about making Rust the best language for
+kernel development it can be, after all, and so far upstream Rust has
+been quite helpful on giving us the features we need -- we meet with
+them every two weeks, please join if you have time!
+
+(Side note: the "safety" that Rust "sells" isn't really about avoiding
+panics, although obviously it would be a nice feature to have.)
+
+> Writing a uC topic proposal for Plumbers right now. :)
+
+I see it there, thanks! I can briefly mention the topic in Kangrejos,
+since we will have Rust representation, including from the language
+team.
+
+I don't think the discussion should focus much on "Do we need this?"
+but rather more on "What exactly do we want? Would we be OK with a
+local solution? Do we need/want a global one? Would we be OK with LSP?
+Would we be OK with no panics after optimizations, e.g. a link time
+check? Or do we want full support in the language for guaranteed
+non-panicking functions? Do we need exceptional carve-outs on such
+checking for particular language constructs?" and so on. And, of
+course, "Who has time to write an RFC and implement an experiment
+upstream if an approach is decided".
+
+Getting data on "in practice, how much of an issue it is on the Rust
+side" would help too -- those with actual users running Rust kernel
+code probably can tell us something.
+
+What I would personally expect to happen is that, over time, we
+understand better what are the worst cases we must tackle.
+
+Cheers,
+Miguel
