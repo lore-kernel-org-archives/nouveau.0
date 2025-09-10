@@ -4,134 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9B4DCAC5B8
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6708ACCD185
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3029D10E4C0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56F2B10E4C6;
 	Mon,  6 Oct 2025 20:46:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="mrxBWRfc";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="U0kHgsVB";
 	dkim-atps=neutral
 Received: from NAM10-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam10on2061.outbound.protection.outlook.com [40.107.94.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFDA710E164;
- Sun, 24 Aug 2025 14:00:13 +0000 (UTC)
+ (mail-mw2nam10on2048.outbound.protection.outlook.com [40.107.94.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C97F10E30A;
+ Wed, 10 Sep 2025 18:10:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hNU14o418Pyi56DmvKapGZiF8eB6G1Pw6D79pyXBiZLbC3t+0YL5wJCwAuVjzR6+JramIasb/bPgEDrd7Q9OB9cWp02D5MQXPYaxmonrKzIU7AatR+/DQa0dxL2exwYGHMLNrmfAg8JXt/LO9KfKbYomVvq6v4aBhpGBUuJoKe5Wkxaz1pL6u8TvdKmfYnXD11CXYDe5076KvORkvcch0+zQ3XVrcahBClFe3xbqjjXkRYBybRsCTi1GpGTXxMtSJ/OczcydzNriMe+ZH9qDu5lyxl8VvgeggQ4cj2W930ei6mXJVF6cPsWzfmiGAFwbUKBg7vPnN5tVRduWk/h9yQ==
+ b=q9H/RpwWCbwbmVeWgeF4pR8Z0IQ7caPm9hIOmtLPS75TUMEt3HXNR/hHj/E86XdjkCslwoH6DBPADVxPRIuf6bV81Yor3/a9UisPr5fsXUaiEcQc/LEAMbHcPceQwWDOP43cJlK8XRNpBbO+VKgfknatlgsBCHB/N7qztY8TyG7Fx2rszqugU2Ae8bpYR7Q7ECdcxN6J1A/9n8Ry/B2Q0zj4d/O98Lxtw1jrz5a6ruFxyepbWxAg6pnPOoAcA0ss+TuVERHThAxkcGz+X1W5eUfphIRtqLhX8LCUJS9/5HdGuM7K1MGAll6q7Pad9T7BGcKx+RwS8MbVePevQ+RS5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nv1NqhIMtl8sX7i8vDm/uHPwUoaUG6yFxAfzZWPecec=;
- b=raSXaqsDqVS7Bjl3VypnZsIcSjfD+w+Bcu+dAb23Kp7UtoND+1xUe2lj4GzoNKtsISgUVG4Qt0TUeOgzr7EHH1NyPQSsjbLnIGo7dyLG996zHyuiWLMPOJwUbUkOK5ecG5HHmGCwaDIIcm43Uxt31MP5NMWk+AQxzkRGiKRXIsOuG/9T6fJU1zvUBQy3VDOHpbLAciIfBl+J5dnjZgvalPy9DwrZOTeFKIjvCTYIjvD557GihGvYQRwLO5iujMTKGFg6qTnwhw/0MU9hiGQz8ysYPzvvtwq1/goBpqNP6rvIrhA6AdIBEIbTgTHVMvTFClXsQMMv7lzgS5PxVE1REg==
+ bh=MWiIpJWrhfDIsBu+iDrginfVPcc5u5MN4r3Avx+i1FE=;
+ b=rYi385H94HL6+q1PbVqR9CaL+BUjC5rcCS6lx8bOCP7QWkPslvDXzpuDZIT9r/mxs+K7iYcUU0isPplG37wJ2Kzz/B5ohfk+tVHZt9T7CGkqXeGgJOg3CXrYrRWiiCem/15txOIQBQAa/na5Vu3P7m13BZvQ2LGplyV2FQu474dog0F1uWsnpRq1C+E2INNYBgXqf64jsaXEFGAP5ZqZfj7bxmY2WXcwYh3nq1iocq01cZUjMM5DMjeGyGcKG3PlsjtiFOHFmVg3OGrkji/rwumvdGIQ/V61Ewg16wmY4U/VmmIrgp2h3Q6qCP4rFREJrEcY9GKJKu5p/B9yal+YMg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nv1NqhIMtl8sX7i8vDm/uHPwUoaUG6yFxAfzZWPecec=;
- b=mrxBWRfc9txlMHzIEhdLc4zyBG8XCT8GN+aldYbuB4T1Q8tdYPesXU9cAo4e2hcz1YyPI1tmBfQHXh8t7VH0VZ8B843utzwE4jXShBUOrVgKSVk0qdYHlLtDTplSpWXjRo87UH+ZfXff8Am/br0PdlwHxSwH+NtgmDrKUju5eC8cDDUReJEbWBSeN3UX2Z7L/8YjxNDQFX1GctdhMxgVQWzlI/0hl6se31fsQ755ztNChgS9/9KAEn14Iy1stHWEnSWdgsKwsyaBIb+rJdh/fgZhH62sQiNgez+Ec5H8WSXGdsSryCyLCy0PSSjZi7gumRXvCsUShY1GRJa3QlYWng==
+ bh=MWiIpJWrhfDIsBu+iDrginfVPcc5u5MN4r3Avx+i1FE=;
+ b=U0kHgsVBjfMmXa3+4TriERio9evBIKr1tIXgIxoZdcqLNw/oZELK9WWpGqHFbyl/uocxsG3mslJRe95PkKwEJVJofg7YpACSIbI6ryLI+b2mNud9TXZuWbwedw4Hvnmth8R4eKa5q3Jl0y6qmb+muIl8a7qJWhDoyr8x6Iy8IrUxxIVfQ/9TW3+S5RVMzaiT1nJ8St/xD1N/SbNoECiPUMt8BO1POd2RYEBsa6tfgNxGWf/Xtrew37qFe8BI0A2b9rx4jbl51hEqah6sguZ02ueQ7r5GY06FQPEE+qgQfI5tf2C+5S2mheG1Jex4j49m2T/4R+472xElmQy9KkGetg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by PH0PR12MB7814.namprd12.prod.outlook.com (2603:10b6:510:288::15)
+ by MN0PR12MB6367.namprd12.prod.outlook.com (2603:10b6:208:3d3::10)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.20; Sun, 24 Aug
- 2025 14:00:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
+ 2025 18:09:56 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9052.017; Sun, 24 Aug 2025
- 14:00:10 +0000
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9094.021; Wed, 10 Sep 2025
+ 18:09:56 +0000
+Date: Wed, 10 Sep 2025 14:09:55 -0400
 From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/2] nova-core: Add KUNIT tests for bitstruct
-Date: Sun, 24 Aug 2025 09:59:53 -0400
-Message-Id: <20250824135954.2243774-2-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250824135954.2243774-1-joelagnelf@nvidia.com>
-References: <20250824135954.2243774-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BN8PR15CA0065.namprd15.prod.outlook.com
- (2603:10b6:408:80::42) To SN7PR12MB8059.namprd12.prod.outlook.com
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-pci@vger.kernel.org, acourbot@nvidia.com,
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Daniel Almeida <daniel.almeida@collabora.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>
+Subject: Re: [PATCH] rust: pci: add PCI interrupt allocation and management
+ support
+Message-ID: <20250910180955.GA598866@joelbox2>
+References: <20250910035415.381753-1-joelagnelf@nvidia.com>
+ <DCOZMX59W82I.1AH7XVW3RUX2D@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DCOZMX59W82I.1AH7XVW3RUX2D@kernel.org>
+X-ClientProxiedBy: BL1P223CA0040.NAMP223.PROD.OUTLOOK.COM
+ (2603:10b6:208:5b6::13) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|PH0PR12MB7814:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52935c02-b53b-40c6-5588-08dde3168a0d
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|MN0PR12MB6367:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc526f58-867f-45a0-e81a-08ddf0953f9e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?pkokDVH+XhJV7051HUDw/6kvT+UccJdpo9rxQJbOGeEOzSrAlNpG11OPEa/C?=
- =?us-ascii?Q?B8EGywxJqmDjvvK6axwdTd46mGjGOGXwPmnN0QOP4aPHrmH3f3O6y5X4s8ID?=
- =?us-ascii?Q?vleeTfS/g0ReadJKaOzqvUcUQJYSK3RpvF0FHrJjwvz8q//D0lcYRXSHF5zn?=
- =?us-ascii?Q?P9KzLBkh2eXW9QzjA/YcJODEHADuhZTNtOLjLXBPr3RsuplQPLOWYMSfCRkd?=
- =?us-ascii?Q?VR/PNQRO1YW6aS2HV0Hh5l/fmyOqLqaQGFVuUQzCxzMuRENNlmifLTffPJ7G?=
- =?us-ascii?Q?G59zU0ftRPN4JOM6CCXxIEoRTnCaw/pIeAS5gzX3Oj7vzj/Ayi5QRW/2ZmNh?=
- =?us-ascii?Q?fqD80tEc7X92qHXSOThzr2kLrxwsg/1iBgFeA2vQJJeBlbxiraLbbuIIztrn?=
- =?us-ascii?Q?RbUDHXBMl+nlfneMmYSA+WLKnXLMf6GLgazBJXf69gvaq1E11Rh6hbUF55XE?=
- =?us-ascii?Q?3hZhGby5ml+F2GKQ6iNhsebFgn0we/2/fzl/p2lPoO8QM5EEOHWbCGsr5qP3?=
- =?us-ascii?Q?8M8IcGoX3YeFceI9tXGUTrIIOnfh6rk9UKHUGsEqJn8suSxxbLZwivhPh34P?=
- =?us-ascii?Q?cedO/NRWB4bosEp4/gd63wxLXdqSqYi6rEtA9Igl0qdKQabgQT2xhGaPzi95?=
- =?us-ascii?Q?Ti+swJQgAUUJTY/BUSlvpc2gEij016C4bQXD9cauBCdqCncfHuCG3BkZnkEv?=
- =?us-ascii?Q?Qc7sNiGI3EKbFnvkNPwe9i713QWzVSHVdFZ1z9+bjUWgCQQmYEjvAm50fzq2?=
- =?us-ascii?Q?wqrlw9cupjzFpOhince6i4Aw/asdHs/gMXy42VN83JTfDKoy2vfejmX9rwcV?=
- =?us-ascii?Q?3x/PKNfqUX7MDCgAaEvM+40NcsXVw+zRUqo0yQc9cqIsHF2A89dK4DSKk3qO?=
- =?us-ascii?Q?q8ksBc5xyFMHGE0T0WbuvTGlzUYYto2rJf3ZjSdv4Fph1rnZao+NoSgkFHln?=
- =?us-ascii?Q?Byfp1R2q1/oDHomt0/CkKFaURETdKsQYXA/iFV38yEvZWWO+CQhiMaMR4kS1?=
- =?us-ascii?Q?vC8yIedvsXQYU+F2iYd1HrLZlK95HvGZE0uhHZ4wkSlbvFm02s3I0s5QNKUx?=
- =?us-ascii?Q?ynAjpuZlu/D84zFqjn1F6GBqBouO8BzX4UAJaNgmTgx5oubQ/joKCiwnf8TD?=
- =?us-ascii?Q?OTtZm4nUjhz+PNGeMf1lbI3RAOSME7pBNQC1ikxn4Gqdk0yjHYvY/f41+VGR?=
- =?us-ascii?Q?KTbS+L669fGNk3e4XYZtH1vMusMYBENH3xtWCgz6NHu+sC7E3VHwOOmXTVPQ?=
- =?us-ascii?Q?WvlpTZrcK1O3bg8UlXklRU7FxxRl8hd58YnvOpdpI3qHC8PFtR2gtB83Ubrg?=
- =?us-ascii?Q?s+2/LWBz0HJGjOJAlHdykfmanNjQ+tVcNArT5mG45RAwCKNDYOVv2BWO5aLK?=
- =?us-ascii?Q?vqzZiNtLgvSQYZnDA1+o/+42ZCZQvQs2FyPUOg8bf9jFQ3rZRQ=3D=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?fGMbzt2s+iYQSijQsHlOERfRT0/TVCmWKmxkb5SeUKbZpQn6ygooNcnkM9ob?=
+ =?us-ascii?Q?BmBAV6QTsqEVuY3ITxoQmo654+UVI6UL++I0yVHZEoHsvocw8Ho7MtGBda+R?=
+ =?us-ascii?Q?KOihNrX2xlXn0vh2012rp9y4npD1gnmbO/rabaRcDW02DWLQYGmI8xvoDLGZ?=
+ =?us-ascii?Q?vj9LP7yTmS0eMe0zGXxsWUt+2wRFMtIiV4y7GL2ls1uddszu6WBoZFzipKsy?=
+ =?us-ascii?Q?VfOJJ04w1WLKmUX/Ts5Ze4J2aGOtaKnZh2KGPn9rtl7jMPQNYV2KHxBshV6J?=
+ =?us-ascii?Q?VE39+NEWQy0tR+AHP7IrJL7GDGa8OtEjC12eBC+R1TCt/7MjO0qXDEbUuvJm?=
+ =?us-ascii?Q?7yb+/7g9XiqRfAfOn6FgdSIQN/ikmaQQ7iPHWpLdq9rG+nhp4XSvQ1P0sA1v?=
+ =?us-ascii?Q?WeSN4Sz57si185Cz5lH82m7rjri4rg0jhkbRQM3U/F5f9GyA+mKs6Sulz8li?=
+ =?us-ascii?Q?1rS21sALKLqLET4HloJjyBf2eOgivnPa7KwqEVfFrr1v1CYi/iwagwgFzJU9?=
+ =?us-ascii?Q?MeDYVVqg0iPg7520lEO3+9016xsMZrBY2CaogfY2OpoK7g8qNzLQcwVCOGNP?=
+ =?us-ascii?Q?0fsWMKVhdDtqEkj4xDlZIhsdR/rH5q8ScBQEL/3tMDCbu/J8BY+ptRHIahES?=
+ =?us-ascii?Q?qGRv7AMNFhPg7CeJPxXEm5XW20ZKHVdvObXLT0RsPCIBLdBCoIrSR8roR9/E?=
+ =?us-ascii?Q?4n4yaqMg3HJAcOFksa4OltGKC5bEl6kbOBV4Acy9ESEs3rrd8WFOyVs//i+m?=
+ =?us-ascii?Q?6G4WwEXAma/+Q/LOBMM+1M3GPl5Edg6XwOVzbmaf8EaXRlCKjlquCJskOuck?=
+ =?us-ascii?Q?XEqdLIqjEbOi3kaLI+ZFwFcYULe00MktuYzZOrJ/D7MET1FwtWGN44+WSYa2?=
+ =?us-ascii?Q?3nlSXAJuEUdxqc6dusL+Ak9dtL3Ofj0Hyf7avIbQQOVmV7l4QLt697Lk4PNy?=
+ =?us-ascii?Q?5WfJaMD6W9b6CkZRvXunPcK4QTTFRDahq/AlIwBn+o7Z5fhXZWYe6cJvkoAt?=
+ =?us-ascii?Q?kIU/cMVTTT2U3V4y4DfYZha0eAp4vEZvtTUMWZdUU/HhVWxqCDhivAkVtA1k?=
+ =?us-ascii?Q?FiORy3T7KJhrhKPafB1T+r90/Gf70tCB81Aq6vw/xXn7jagK+1OlPB6DhViK?=
+ =?us-ascii?Q?9I3qysP2MdvTDA0Z2362VCz5H6GIR8jva6Gr686RdIjhXOJ2em1Bwc3H85Is?=
+ =?us-ascii?Q?W38Kuf/1+ss+BgQyV7muJWmu4e9ZNPUYnF2MyMjO/4s0YO+TH3muuvEl7Qw7?=
+ =?us-ascii?Q?1ss5o+OeKonxXQYankTZJyMQ0GhAj6IavLXKhTWhF/Tt9wKZ+xzFspq+LzLU?=
+ =?us-ascii?Q?IAObDOWCI0vTPjF7KCORSnS+U3Gk+5aT8jZbDvsB0oZaqqDx7MxrFcEX6ZUK?=
+ =?us-ascii?Q?WXwvpblALRj3tHgOrTpI6OYO3dPIwD1zZTXIyJsR8iMVElbfUx+NDRcVGoeL?=
+ =?us-ascii?Q?XY+W5N6Mnzw=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?FsfaB0mJMWD3UgqKxNM79W0v8ULByT9A+goekcqcbJrvvJxUgcbdFUg+mgon?=
- =?us-ascii?Q?nMYIImVjdLHf53pz5cbw4GfsU4wJYzUhUOpLdNcToL5BTyYbkZBp0CJOF1DT?=
- =?us-ascii?Q?opkbnVWUH9FgOLvBVi22Vvtjz2nIltwTema0SEwbfVAq93ZXiUAxmDNqIvcR?=
- =?us-ascii?Q?rVJuc+hsEp2t2opC/pYHWx7zT2z6bN5gAGTtHn04lRqFVPzdYFwje0yDp//D?=
- =?us-ascii?Q?AkKa0BqbpjLqZGtSVH/GR0vX/lv4xb27N+SoWlLuBoCCHTbUEAv+4M8+cYdU?=
- =?us-ascii?Q?1FnN7WWXxaKL+UgAcOCswfSQ3GJsxOG7ryy58mprGBOb2q6653UavmykhVwH?=
- =?us-ascii?Q?hKl+EO9endiwkkayTiL7HSdsZzyyW2j+gGfPM988Ju3HKEnX5BkZMvD9KpTA?=
- =?us-ascii?Q?KKzTpCA59q2sG4G96jBCgI0QDNX0oyKRwJMMdJVjEkcmMzGRF84hkVnI2y/E?=
- =?us-ascii?Q?ghRSNEjEhvv6U0jHSpl7LxML2Dn9l9F2SnZ2FOhMwF1NBivcyz5okl++/n8d?=
- =?us-ascii?Q?pwDRWLCZt7MqluKitJke48UuWRlwvgyKTAUBV+bBe5tH42ifErRuFWgpOBxk?=
- =?us-ascii?Q?3pMj17BRuE6rSVFF1YCm29IYKPogODkS1qig0KoFzx7FF0mhsK0tsBKdSgK+?=
- =?us-ascii?Q?iX8HBUWjjvL266m9SrWBVB2zEzRqqdptEiqLZG28+kwkYvqVxfzIeJZg2WD6?=
- =?us-ascii?Q?LIAnHPDmvF+p2CKIPURhVmWSYyeymjf0OCiEgZH4Ww40bZTkY22QcQ4vf28v?=
- =?us-ascii?Q?mQmCo2b86wqA96JY55cM6y4F9NXnA/wf87WRjAfgqoFv0gPd/Q5ZxnRyTBTS?=
- =?us-ascii?Q?NeU/ufRhUi0KNxYgBrXh4o+3SLU5RdzmB/8Z2hQyuJsqp9WGrRefz7BsIrn1?=
- =?us-ascii?Q?K2b2o0fQ/FRnEp8Vd74spLZu1frr35ICRYbbHlGczeayADjTTkLYf85zjTyO?=
- =?us-ascii?Q?2r82fmA9Sdr2hMrcV4Nk1qqIoHCX8E4/TyK3xkWClYI98oOekzjeDQpycrYq?=
- =?us-ascii?Q?Zy76MYyRJSfkKdGUI1jerK/5abpQ/RdEAmLw5zhTvYXpFudxW9jyH+0hZu55?=
- =?us-ascii?Q?FQ5xMNIz7Gupq+VLWXuWYBIDX2fCvDkvsePBP/3yGeiWZAwEvF/tl0wlOfc5?=
- =?us-ascii?Q?0e3IuZp8pQtk0ZhySn/j502PeeJvkTFwZ1D482ghVntrAX+x0H8D1L0TCCyz?=
- =?us-ascii?Q?jWiPkJiip4efAFGwiU3+tJaV3yofWXsUmBE8h7wLMfKNTpZ5zGfxMmLYbG/l?=
- =?us-ascii?Q?hqr+Mx0c3qMx+5dWG9kUa+UglzHw7Q8MDs/QxOSLniXCXsfwteb1szkn4H0b?=
- =?us-ascii?Q?zhXWEGE30z41rULVjdptb7EXuI56k4zFM8f0ksyyTAd5pCwrEclPYvbmASte?=
- =?us-ascii?Q?h8zbtMlEtPSdnWrtEaDusWjD/exdOUPKseeu0wavnc/b8T/WDjQVo7STZm59?=
- =?us-ascii?Q?PrZErO1tCUv4QDOs+65VIIo33TqVMf41mFKVuhHiSNr7lTSBLRKD6a/xuBzJ?=
- =?us-ascii?Q?wPLCFITxLpVgsKA2rJFlIFRe7K4iKB7zgSRt+l9usdVQLoFJaVdbJaqqYxtz?=
- =?us-ascii?Q?r9ErDhKA2+Lm0ahQ+k0uzYt1wbIBub3rJWG+tU/L?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?h99G/PSxpznkHxSIXlF9W8zAqGNDIJgoR9mYasCxAuL9RacpvGVtr2xz4yO1?=
+ =?us-ascii?Q?AYbNFFvzQLA1LF+10fiD5iczN9LdLJ/WugK08SVHrtOUT5GWOjouQwk0REu4?=
+ =?us-ascii?Q?6YTO2gcvky/cs/GBDE+8VLoNd4kFWuETG43EMg/lyTdmdmnZhf8CxN/0f4X0?=
+ =?us-ascii?Q?HVawCshg/Ch4l2AUVJWODe1cEHqLcrd1tZbb8h+i8UBpTglctnWKseAiLHR5?=
+ =?us-ascii?Q?njd/OHuEN+pTFj3y5ipoB05Xq0p4Vyl10yV3G4MYoA0r3beTA6QimcNxUJU0?=
+ =?us-ascii?Q?jBeoXKOYISK7O6+wXl5IcuiFS/c7u9sJ+dN5PRrnfGXI7LdrgaTA0MYYYUb/?=
+ =?us-ascii?Q?mGYfmMJR69kz2iVubIxSHqiTJCUud0VrOiaBWK2D0cYo13s4vXlsjMseVujr?=
+ =?us-ascii?Q?68DkHli5hH8qDBF5Lc38Ork7bclXhf8bXyqFM2u1L8VpDvkxKNK56nE588EY?=
+ =?us-ascii?Q?FVVYDp9yOBeLzPZJxVwF4lQX4dVT0QE3jKBBkQkC2jQhgesJEsw4IeTKDkX4?=
+ =?us-ascii?Q?X+daWpTxf8X4wqMD+ayM76snpr6X9ziHid70TF94ljyoKla/u8VTuUzx9qO4?=
+ =?us-ascii?Q?C9s3pAF54Ytr2tcTRR30MJJgBW84j5s3OQK/n0dyTMHE4xtLhvBIJbB95dBu?=
+ =?us-ascii?Q?ivflSHEkd5vNH2eNgHUkU/CgSx8kYCmgeP+RFyk7wOGbdxtWAdeHWLRjKacD?=
+ =?us-ascii?Q?ma4q55TBhPkyKSAReLmhyrCJA+VGwcxKIwTl0aiNi4CZODHlEqSugssP5d4R?=
+ =?us-ascii?Q?OD5lsNiJ+PNcZddyZKUpRGShoK09KGWdvYPQoKNeITF38YDqjmxqHgvrcqR/?=
+ =?us-ascii?Q?0Jp/fN7jlSrEQyYhQnI47RSvhPgSjUHwg6TLmA8JSUUAd3D3bNexqbW7WVYC?=
+ =?us-ascii?Q?uJASFKVhtetnrLANM9+GJmQ0YSGbDBl3D8rYcn9uF7ZBROXMVMj3ACd4F3uU?=
+ =?us-ascii?Q?Wxf1D8NocUnxI4ZfdgnR5ZepCWPXd/bTY7CrO1o4zW6M+LuRMlZombdbzsyk?=
+ =?us-ascii?Q?neUvR//qZ0hpOEDMBVzfFv7sq+pRijDUbx0PnGK7Oa/MtOf0coOF4THm85vH?=
+ =?us-ascii?Q?X0JJ+ipP5uT1D5+mFRMBateFD9csh7m8b5HpQ5ly7ASr2bpUO81odjvCEF7V?=
+ =?us-ascii?Q?ptiWpPKj8usOrRPO+80AOFLX7Lxv3/qm5AYR0jShutnGt+pZPFfUAlfMyv99?=
+ =?us-ascii?Q?SoZBrHZGjKrFd4TGV9gdR3OvZhQuiLgbPSeSqcBEm3dA3mEDl/+uPeCLA+aQ?=
+ =?us-ascii?Q?pBrppuczrAkIeoAo9Wwne4OOARp+9wVuzhG29+ml52X0yLXBr6W50yYGSwlA?=
+ =?us-ascii?Q?F20DXXO2BSfG15iNk8533vgytog+kkD7iN4ebWYJhYHVhtmGJtVSEOPud5wD?=
+ =?us-ascii?Q?u72SAiUNVXodsMUbBW+bRAmHA35/bKLWSV/ioAcCgTf7CX5ur/nv0ybrvo3D?=
+ =?us-ascii?Q?u2b0UcgZPjjYjWW9ppcsbFSS0Ws5BTmagQapyveUgV3MXNtr4NJUTYfZY2Ot?=
+ =?us-ascii?Q?t7tsebitTPKvAKYA2lJKoqniidOyIT/dfYaBbMa7yu8Zs8jzi0m+7n6kzmuR?=
+ =?us-ascii?Q?dEU4ETDgx8pZ1b3dF99UcS3bF7mJ8/Tf3Cf4TqGZ?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52935c02-b53b-40c6-5588-08dde3168a0d
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc526f58-867f-45a0-e81a-08ddf0953f9e
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2025 14:00:10.2689 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 18:09:56.6115 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +iHhQJqZX6rZ80sQ7pEmK2wwLME1a4LsLhjHxw/AHCgcu6AQMGWmDH1aMMIM7Gat1+jwvnyoDGLnIaKSmw+7kQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7814
+X-MS-Exchange-CrossTenant-UserPrincipalName: //n0JNta1c0gREpagwcG8oLLVPx+coqHty3lElsdvpI544a/9BxuRI/678r/rLhz9IuB4971qNYIj6WxD2qBjA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6367
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -147,219 +158,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add KUNIT tests to make sure the macros are working correctly.
+On Wed, Sep 10, 2025 at 10:47:05AM +0200, Danilo Krummrich wrote:
+> On Wed Sep 10, 2025 at 5:54 AM CEST, Joel Fernandes wrote:
+> >  impl Device<device::Bound> {
+> 
+> The Bound context is not enough for some of the methods below, some of them
+> require the Core context, more below.
 
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- drivers/gpu/nova-core/bitstruct.rs | 198 +++++++++++++++++++++++++++++
- 1 file changed, 198 insertions(+)
+Actually my patch already does that, the diff format creates confusion. Some
+of the below methods (like alloc) are in fact added to the device::Core
+context.
 
-diff --git a/drivers/gpu/nova-core/bitstruct.rs b/drivers/gpu/nova-core/bitstruct.rs
-index 661a75da0a9c..7ce2f4ecfbba 100644
---- a/drivers/gpu/nova-core/bitstruct.rs
-+++ b/drivers/gpu/nova-core/bitstruct.rs
-@@ -147,3 +147,201 @@ impl $struct_name {
-         }
-     };
- }
-+
-+#[kunit_tests(nova_core_bitstruct)]
-+mod kunit_tests {
-+    // These are dummy structures just for testing (not real hardware).
-+    bitstruct! {
-+        #[repr(u64)]
-+        struct TestPageTableEntry {
-+            0:0       present     as bool,
-+            1:1       writable    as bool,
-+            11:9      available   as u8,
-+            51:12     pfn         as u64,
-+            61:52     available2  as u16,
-+        }
-+    }
-+
-+    bitstruct! {
-+        #[repr(u16)]
-+        struct TestControlRegister {
-+            0:0       enable      as bool,
-+            3:1       mode        as u8,
-+            7:4       priority    as u8,
-+            15:8      channel     as u8,
-+        }
-+    }
-+
-+    bitstruct! {
-+        #[repr(u8)]
-+        struct TestStatusRegister {
-+            0:0       ready       as bool,
-+            1:1       error       as bool,
-+            3:2       state       as u8,
-+            7:4       reserved    as u8,
-+        }
-+    }
-+
-+    #[test]
-+    fn test_single_bits() {
-+        let mut pte = TestPageTableEntry::default();
-+
-+        // Test initial state of boolean fields - expected false
-+        assert!(!pte.present());
-+        assert!(!pte.writable());
-+
-+        pte.set_present(true);
-+        assert!(pte.present());
-+
-+        pte.set_writable(true);
-+        assert!(pte.writable());
-+
-+        pte.set_writable(false);
-+        assert!(!pte.writable());
-+
-+        // Test available field (3 bits)
-+        assert_eq!(pte.available(), 0);
-+        pte.set_available(0x5);
-+        assert_eq!(pte.available(), 0x5);
-+    }
-+
-+    #[test]
-+    fn test_range_fields() {
-+        let mut pte = TestPageTableEntry::default();
-+
-+        pte.set_pfn(0x123456);
-+        assert_eq!(pte.pfn(), 0x123456);
-+
-+        pte.set_available(0x7);
-+        assert_eq!(pte.available(), 0x7);
-+
-+        pte.set_available2(0x3FF);
-+        assert_eq!(pte.available2(), 0x3FF);
-+
-+        let max_pfn = (1u64 << 40) - 1; // 40 bits for pfn
-+        pte.set_pfn(max_pfn);
-+        assert_eq!(pte.pfn(), max_pfn);
-+    }
-+
-+    #[test]
-+    fn test_builder_pattern() {
-+        let pte = TestPageTableEntry::default()
-+            .with_present(true)
-+            .with_writable(true)
-+            .with_available(0x7)
-+            .with_pfn(0xABCDEF)
-+            .with_available2(0x3FF);
-+
-+        assert!(pte.present());
-+        assert!(pte.writable());
-+        assert_eq!(pte.available(), 0x7);
-+        assert_eq!(pte.pfn(), 0xABCDEF);
-+        assert_eq!(pte.available2(), 0x3FF);
-+    }
-+
-+    #[test]
-+    fn test_raw_operations() {
-+        let raw_value = 0x3FF0000000123E03u64;
-+        let pte = TestPageTableEntry::from_raw(raw_value);
-+        assert_eq!(pte.into_raw(), raw_value);
-+
-+        assert!(pte.present()); // bit 0
-+        assert!(pte.writable()); // bit 1
-+        assert_eq!(pte.available(), 0x7); // bits 9-11: 0xE00 >> 9 = 0x7
-+        assert_eq!(pte.pfn(), 0x123); // bits 12-51: 0x123 << 12
-+        assert_eq!(pte.available2(), 0x3FF); // bits 52-61: 0x3FF << 52
-+    }
-+
-+    #[test]
-+    fn test_u16_bitstruct() {
-+        let mut ctrl = TestControlRegister::default();
-+
-+        // Test initial state
-+        assert!(!ctrl.enable());
-+        assert_eq!(ctrl.mode(), 0);
-+        assert_eq!(ctrl.priority(), 0);
-+        assert_eq!(ctrl.channel(), 0);
-+
-+        ctrl.set_enable(true);
-+        assert!(ctrl.enable());
-+
-+        ctrl.set_mode(0x5);
-+        assert_eq!(ctrl.mode(), 0x5);
-+
-+        ctrl.set_priority(0xF);
-+        assert_eq!(ctrl.priority(), 0xF);
-+
-+        ctrl.set_channel(0xAB);
-+        assert_eq!(ctrl.channel(), 0xAB);
-+
-+        // Test u16 builder pattern
-+        let ctrl2 = TestControlRegister::default()
-+            .with_enable(true)
-+            .with_mode(0x3)
-+            .with_priority(0x8)
-+            .with_channel(0x42);
-+
-+        assert!(ctrl2.enable());
-+        assert_eq!(ctrl2.mode(), 0x3);
-+        assert_eq!(ctrl2.priority(), 0x8);
-+        assert_eq!(ctrl2.channel(), 0x42);
-+
-+        // Test u16 raw operations
-+        let raw_value: u16 = 0x4281;
-+        let ctrl3 = TestControlRegister::from_raw(raw_value);
-+        assert_eq!(ctrl3.into_raw(), raw_value);
-+        assert!(ctrl3.enable());
-+        assert_eq!(ctrl3.priority(), 0x8);
-+        assert_eq!(ctrl3.channel(), 0x42);
-+    }
-+
-+    #[test]
-+    fn test_u8_bitstruct() {
-+        let mut status = TestStatusRegister::default();
-+
-+        // Test initial state
-+        assert!(!status.ready());
-+        assert!(!status.error());
-+        assert_eq!(status.state(), 0);
-+        assert_eq!(status.reserved(), 0);
-+
-+        status.set_ready(true);
-+        assert!(status.ready());
-+
-+        status.set_error(true);
-+        assert!(status.error());
-+
-+        status.set_state(0x3);
-+        assert_eq!(status.state(), 0x3);
-+
-+        status.set_reserved(0xA);
-+        assert_eq!(status.reserved(), 0xA);
-+
-+        // Test u8 builder pattern
-+        let status2 = TestStatusRegister::default()
-+            .with_ready(true)
-+            .with_state(0x2)
-+            .with_reserved(0x5);
-+
-+        assert!(status2.ready());
-+        assert!(!status2.error());
-+        assert_eq!(status2.state(), 0x2);
-+        assert_eq!(status2.reserved(), 0x5);
-+
-+        // Test u8 raw operations
-+        let raw_value: u8 = 0x59;
-+        let status3 = TestStatusRegister::from_raw(raw_value);
-+        assert_eq!(status3.into_raw(), raw_value);
-+        assert!(status3.ready());
-+        assert!(!status3.error());
-+        assert_eq!(status3.state(), 0x2);
-+        assert_eq!(status3.reserved(), 0x5);
-+
-+        // Test max raw value - all bits set
-+        let status4 = TestStatusRegister::from_raw(0xFF);
-+        assert!(status4.ready());
-+        assert!(status4.error());
-+        assert_eq!(status4.state(), 0x3);
-+        assert_eq!(status4.reserved(), 0xF);
-+    }
-+}
--- 
-2.34.1
+> > +    /// Free all allocated IRQ vectors for this device.
+> > +    ///
+> > +    /// This should be called to release interrupt resources when they are no longer needed,
+> > +    /// during driver unbind or removal.
+> > +    pub fn free_irq_vectors(&self) {
+> > +        // SAFETY: `self.as_raw` is guaranteed to be a pointer to a valid `struct pci_dev`.
+> > +        // `pci_free_irq_vectors` is safe to call even if no vectors are currently allocated.
+> > +        unsafe { bindings::pci_free_irq_vectors(self.as_raw()) };
+> > +    }
+> 
+> This requires the Core context, but we should not provide this method at all to
+> begin with; it puts the burden on drivers to remember calling this.
+> Instead, alloc_irq_vectors() should register a devres object with
+> devres::register(), so this gets called automatically when the device is
+> unbound.
 
+Great idea, thanks I will try this out.
+> 
+> Note that a cleanup through devres is not in conflict with the Core context
+> requirement.
+
+Got it.
+
+> > +    /// Allocate IRQ vectors for this PCI device.
+> > +    ///
+> > +    /// Allocates between `min_vecs` and `max_vecs` interrupt vectors for the device.
+> > +    /// The allocation will use MSI-X, MSI, or legacy interrupts based on the `irq_types`
+> > +    /// parameter and hardware capabilities. When multiple types are specified, the kernel
+> > +    /// will try them in order of preference: MSI-X first, then MSI, then legacy interrupts.
+> > +    /// This is called during driver probe.
+> > +    ///
+> > +    /// # Arguments
+> > +    ///
+> > +    /// * `min_vecs` - Minimum number of vectors required
+> > +    /// * `max_vecs` - Maximum number of vectors to allocate
+> > +    /// * `irq_types` - Types of interrupts that can be used
+> > +    ///
+> > +    /// # Returns
+> > +    ///
+> > +    /// Returns the number of vectors successfully allocated, or an error if the allocation
+> > +    /// fails or cannot meet the minimum requirement.
+> > +    ///
+> > +    /// # Examples
+> > +    ///
+> > +    /// ```
+> > +    /// // Allocate using any available interrupt type in the order mentioned above.
+> > +    /// let nvecs = dev.alloc_irq_vectors(1, 32, IrqTypes::all())?;
+> > +    ///
+> > +    /// // Allocate MSI or MSI-X only (no legacy interrupts)
+> > +    /// let msi_only = IrqTypes::default()
+> > +    ///     .with(IrqType::Msi)
+> > +    ///     .with(IrqType::MsiX);
+> > +    /// let nvecs = dev.alloc_irq_vectors(4, 16, msi_only)?;
+> > +    /// ```
+> > +    pub fn alloc_irq_vectors(
+> > +        &self,
+> > +        min_vecs: u32,
+> > +        max_vecs: u32,
+> > +        irq_types: IrqTypes,
+> > +    ) -> Result<u32> {
+> > +        // SAFETY: `self.as_raw` is guaranteed to be a pointer to a valid `struct pci_dev`.
+> > +        // `pci_alloc_irq_vectors` internally validates all parameters and returns error codes.
+> > +        let ret = unsafe {
+> > +            bindings::pci_alloc_irq_vectors(self.as_raw(), min_vecs, max_vecs, irq_types.raw())
+> > +        };
+> > +
+> > +        to_result(ret)?;
+> > +        Ok(ret as u32)
+> > +    }
+> 
+> This is only valid to be called from the Core context, as it modifies internal
+> fields of the inner struct device.
+
+It is called from core context, the diff format confuses.
+> 
+> Also, it would be nice if it would return a new type that can serve as argument
+> for irq_vector(), such that we don't have to rely on random integers.
+
+Makes sense, I will do that.
+
+> > +
+> > +    /// Get the Linux IRQ number for a specific vector.
+> > +    ///
+> > +    /// This is called during driver probe after successful IRQ allocation
+> > +    /// to obtain the IRQ numbers for registering interrupt handlers.
+> > +    ///
+> > +    /// # Arguments
+> > +    ///
+> > +    /// * `vector` - The vector index (0-based)
+> > +    ///
+> > +    /// # Returns
+> > +    ///
+> > +    /// Returns the Linux IRQ number for the specified vector, or an error if the vector
+> > +    /// index is invalid or no vectors are allocated.
+> > +    pub fn irq_vector(&self, vector: u32) -> Result<u32> {
+> 
+> This method is already staged for inclusion in v6.18 in driver-core-next. Please
+> make sure to base changes on top of the tree mentioned in the maintainers file,
+> driver-core in this case.
+> 
+> The signature of the existing method is:
+> 
+> 	pub fn irq_vector(&self, index: u32) -> Result<IrqRequest<'_>>
+> 
+> We return an IrqRequest, which captures the IRQ number *and* the corresponding
+> device, such that you can't get the combination wrong.
+> 
+> Maybe it's worth looking at improving the index argument with a new type as
+> mentioned above.
+
+Ah Ok, thanks for pointing this out. I will rebase and reuse this.
+
+thanks,
+
+ - Joel
+
+> 
+> > +        // SAFETY: `self.as_raw` is guaranteed to be a pointer to a valid `struct pci_dev`.
+> > +        let irq = unsafe { bindings::pci_irq_vector(self.as_raw(), vector) };
+> > +
+> > +        to_result(irq)?;
+> > +        Ok(irq as u32)
+> > +    }
+> >  }
