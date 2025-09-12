@@ -4,85 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58A1CD5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D00AD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5522E10EBB5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E6A010EBAE;
 	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lCjY8R+t";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VOQqYwWd";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E894310E303
- for <nouveau@lists.freedesktop.org>; Sun, 26 Oct 2025 16:11:15 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-28d18e933a9so5136325ad.3
- for <nouveau@lists.freedesktop.org>; Sun, 26 Oct 2025 09:11:15 -0700 (PDT)
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
+ [209.85.208.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE63210E38C
+ for <nouveau@lists.freedesktop.org>; Fri, 12 Sep 2025 07:08:07 +0000 (UTC)
+Received: by mail-lj1-f182.google.com with SMTP id
+ 38308e7fff4ca-336b0b3d753so14809891fa.1
+ for <nouveau@lists.freedesktop.org>; Fri, 12 Sep 2025 00:08:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761495075; x=1762099875; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1757660886; x=1758265686; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=AQau2nuAPBGeqn7nXR606yrFTjooTnZ5gmJ89ZW511o=;
- b=lCjY8R+tE1vtQQ2xzH6BMxRC10J1SeS4wXL1PBGfTWffhiu5Mr37eO62YowBqF/Yqw
- DtYPhlXuhQYrnJeqMMWzp8+/HK9hB8ew4OHnuXmN3DXVyyqcIvbFClucEKwpePzvLgQu
- 7oP2viLZge46XS+VzBMcqPTIHypqQKhZUshbzhuxblH9+bYrnMa0EsrsEGgUcNlRePZB
- lAgwygTJ1374hDNAJjWI7XB0Ijx6z775dCWs6oDcP/B4+/0lnIOMlPWqB2o14+TQgbNJ
- hmTXbLLDxH/Jr3J5nk6ano66xgZ7XCHaRDXhCxhacU2Rfqxv4hauTLl4YUj4vOll8iW2
- sl7Q==
+ bh=W7sa4dPPTPYoYuKBZuN8JhwzRLpV6rUI5E+79YIK4mc=;
+ b=VOQqYwWd/lErihBg7wTLJNi1jFfn8FXpMyk5BLNYbh9n2vAtsSuVwj7pm4UMmG80/E
+ y2ki9AE01jCBBA9XUKp9lYgJ7A3BN3x0oAA/oyS51h8Zjg+iwjvIN7T15LN0sVrhnYQE
+ QoclPcYbNluO4DvfLTajlgcOkM9HkvFSru/uZ1wUHxK8rXGWm2tQW+lkXB0kc1oh8F3o
+ z9iAL6+HmRnTy/2KzO4TEVYPH7ivmc4K3HWGVfsibxToWTXlyTq+yID/HpZEd7evXXvN
+ 5ttD4wR6MnvMWzUxLFCU3D+EMonf+qmt0JqbmHUL48mLJz+P1E2C30VG+zMXBof3TGxC
+ IzIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761495075; x=1762099875;
+ d=1e100.net; s=20230601; t=1757660886; x=1758265686;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=AQau2nuAPBGeqn7nXR606yrFTjooTnZ5gmJ89ZW511o=;
- b=ZmMgo4o06xqzltuXzPacQ1ILAURHcZETxC/PdYpCX0XXAR7jY/TpPvlrzgc7Vm2EhO
- QOcihRBfR7hXjY64MCFMm3GCi3noDKOijAq5crXl/MxQBe9BfbvYl9tEXtufIn3KzFM2
- 4OpbvEfT+hKWIkLnk9C48TBbYNqPicWSY61eQtZSB3qU+E30Fir1jIO2xWIKzh8sTPZI
- FaoX5fNmgafhr9wURgY73CaTYLt0Xnt3t+bLhc0x0JTdk8UtksRqRRX05TqjljVUFWXt
- lcr+SNuYfo4TcMaPOIHxG1dLg1IXwnbWYOrwOHQGNpXmUtGmQ6c5LD7bDfXYc9QcHZso
- a5/g==
+ bh=W7sa4dPPTPYoYuKBZuN8JhwzRLpV6rUI5E+79YIK4mc=;
+ b=vtibA1NFZTX3GvsPPKKHWM7AqDoSEUMtWdax96GtGQ14gm6hyTiiNge/YXXsAJP9Gi
+ LSWnKNqxSIn5ghBtj+m2bpTVIlkeQH2Krs22V+7wrTq2yLSHaWvZL7LBByEFN2lAiXKI
+ AutCOsR1p0uHpz3R0Y/PuYBkjZhjmAtfr6a5+rZTvSST0PJOJE3Ibf9ya4QXQ2LAvmeN
+ e+Mo9rVnoolJHgQvTaibfqYNahinA+OYDzLa5E+jn8WKmx9+xyFCrdHbtf0D8ZH8RKdp
+ +R2lDU4h45MP0XqvQvyE/MwLhahEUVRnpiSPIc8d2Z3oKD8uICGkU2Tf/iWQzAs9ZCIn
+ XFEg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV9vhkNQ3j3eHuSZhbgynKwq6t5d6mgnWeF71ujuUyIjsKhC3l8+9Mz7KNe6qJQI6H9eqavXqEc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwrkoZ6LHKA34Dmq+eVK+tLJpYGgLhKoAAGMt5EGh6jm14Yt5Tr
- L6JczC4bUPSTJ7WAeuSlFZe05RUlOreDHXM1uCEdxZvBD1op+F2RKWv8zsyoftM5Xy3lApyBMZ3
- I1Uulsb2mHBT6O6IcCEnOsofen8ocXRQ=
-X-Gm-Gg: ASbGnctiZC1PrLGxsvAkccwrUUCZUMCnA9lxYb1S0REW2TFgXVTaNpNtO/t68SY+038
- DmBtReuQvgewBKlNz7NtpylzyOH5UsmNSSl85CI/+8b8hYtY8khNppkYlhJIkxj99y5uB3k+w2f
- kOBImMAPwr7ubtDF3CIBANjUUgEcrlZGG75gshJtzbIPXvLwJC61fA7a47Oh2YFz5PbXuI+hsjL
- qZvpyOlSArzvwhAXMretoh3+6eIqNeyqgxgd4DvV0KAFjdXcxzCABbeJ4HWAuO0Hk9CxY4UQ40h
- acOVuyNSBIFZMHw3Byp2B99hmVbaG0qldYTJDQ+wbFFfuRSj0UyTWWFpQGMok9Q0t2WwX4klfOQ
- t0/k=
-X-Google-Smtp-Source: AGHT+IFI6sg3xeU/Y+7ewS/quTbjQS82OqC83SGue3QsM3IMT+1H7kuNPGEtqVWO3pz2NXoXOmWS4q2L435vkLC65I8=
-X-Received: by 2002:a17:903:1a0b:b0:27e:eb9b:b80f with SMTP id
- d9443c01a7336-292d3e50f14mr137740975ad.2.1761495075335; Sun, 26 Oct 2025
- 09:11:15 -0700 (PDT)
+ AJvYcCWD8q0XsDgnz/jC4zsizxzLpEx98UBBclrr7rz8GoqPS4BOg1zlF8vDv2sa1FyfHqd66ouyaqBd@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxVi/DnvcvzbZU9PM/bbNThAWr8i1bGAj/hJHDeOyjXTUIN3MNn
+ yeLQUqvyu0VHpeGrW1QqTOCvEc1CQbLpVKmonUE9VSR4Cuu6LL4i88YApuke5VrWMOKOCaBXpLD
+ 235sHEVt/npGeLrq2j3/JkwqESCSZWlE=
+X-Gm-Gg: ASbGncsM8RA4ZuLnQHvNezz+oj3P/k6hkfwaSXpdzAXC/ocAxgsNWeWudAKhig1cHZZ
+ xBh42q3jGzaVqbDvgmpUWkOlCYx2bv3WDXsWtP2kcLtrDSlQpeiH1+pdaI0qrdEeE530ZxPyCf0
+ MKQYneUMSoTb6GiKRfi39kUTHGn/3qNkc8ZJQsql+ioHYN5c7SYfK3hw+XcvFgb6akJo1fS8l9l
+ Agczh9eGlwONEocsQ==
+X-Google-Smtp-Source: AGHT+IG0a/RzAkySA0zv4GtRtoMgb7fMz40QqFaDmGNUnRd1h2GrriKeQPDg7VZPJxieR37sFPCZyvmxOEUrMUgnUno=
+X-Received: by 2002:a05:651c:542:b0:32a:6aa0:2173 with SMTP id
+ 38308e7fff4ca-3513fc37bd3mr5450921fa.20.1757660885920; Fri, 12 Sep 2025
+ 00:08:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251026-nova-as-v1-0-60c78726462d@nvidia.com>
- <20251026-nova-as-v1-7-60c78726462d@nvidia.com>
-In-Reply-To: <20251026-nova-as-v1-7-60c78726462d@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 26 Oct 2025 17:11:03 +0100
-X-Gm-Features: AWmQ_blYJsh-bUnlNpdDu-je1LAAZ23ehLx8sNiiMWM4JI3qmhDsJ4Jmtvqb2i4
-Message-ID: <CANiq72m9ms-OznWQ5+4_JvAs4yruwgBRcm1u0gCAnasqO8uJOA@mail.gmail.com>
-Subject: Re: [PATCH 7/7] gpu: nova-core: justify remaining uses of `as`
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>
+References: <20250831-gk20a-devfreq-v1-1-c25a8f1169a8@gmail.com>
+ <4f3d9122f3fe552f94827b83a7dce5d3bbdc23e2.camel@redhat.com>
+ <CALHNRZ-h2ee5pyOx2YDDBDQzFnXxDFX5EzhjX5+DT25UbKj1MQ@mail.gmail.com>
+ <rvfjkkpsqvk3uedaahzhwrao7bgnxvbn7hdm6goa2bn6co7ctk@2hbiwwvn6y2j>
+In-Reply-To: <rvfjkkpsqvk3uedaahzhwrao7bgnxvbn7hdm6goa2bn6co7ctk@2hbiwwvn6y2j>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Fri, 12 Sep 2025 02:07:54 -0500
+X-Gm-Features: Ac12FXwznuijRqzCnopDIstfQghwKQCFmHybp4tbVUQN04WRkgdFV7WmBtzwMqA
+Message-ID: <CALHNRZ_hZ5rjGpt4rDmMvxcBBcW2fK6Q2Z_1oKzj+eBi6U-1+g@mail.gmail.com>
+Subject: Re: [PATCH] drm/nouveau: Support devfreq for Tegra
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jonathan Hunter <jonathanh@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,18 +91,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Oct 26, 2025 at 3:40=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
+On Tue, Sep 9, 2025 at 7:05=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
+.com> wrote:
 >
-> +            // `as u32` is used on purpose since we do want to strip the=
- upper bits, which will be
-> +            // written to `NV_PFALCON_FALCON_DMATRFBASE1`.
->              .set_base((dma_start >> 8) as u32)
->              .write(bar, &E::ID);
+> On Sat, Sep 06, 2025 at 08:01:27PM -0500, Aaron Kling wrote:
+> [...]
+> > I should note that I have only actively tested this on gm20b and
+> > gp10b. I am currently unable to get nouveau running on any gk20a
+> > device I own. I am trying to target consumer devices such as the
+> > shield tablet, which use the android bootloader. I can boot the kernel
+> > just fine and tegra-drm works as well, however when nouveau tries to
+> > probe, it hangs the first time it tries to access a register. I have
+> > not yet been able to figure out why.
+>
+> These types of hangs typically indicate that the hardware is not powered
+> on, not clocked or in reset. It's odd that it would hang during register
+> access on gk20a because nothing significant has changed in any of the
+> related drivers, as far as I know.
+>
+> One thing that you could try is passing the clk_ignore_unused and
+> pd_ignore_unused command-line parameters when booting the kernel. If it
+> works with those, try finding out which one of them is causing things to
+> break to narrow down what we need to fix.
 
-We are not very consistent on this yet, but I would suggest using `//
-CAST:`. We are working on getting `// PANIC:` in Clippy, and we could
-get others like this one eventually.
+The ignore_unused params didn't make a difference, but this got me
+looking closer at the power rails. I noticed that vdd-gpu for the
+jetson-tk1 is set to always-on for mainline, which it is not on the
+downstream kernel. Mirroring that to ardbeg resulted in nouveau
+successfully probing. One of my other devices needed a pwm-regulator
+for vdd-gpu, after which it also probes as expected. I will need to
+double check the rest of my devices as well. Is there a known reason
+why if vdd-gpu is a pmic regulator, it needs to be always-on, or is
+this another unsolved mystery?
 
-Cheers,
-Miguel
+This change looks to be working okay on gk20a. It does a couple
+transitions on startup. I'm having other issues getting full rendering
+started, though. Kasan slab-out-of-bounds in nvkm_falcon_v1_load_imem
+when drm_hwcomposer tries to start up. Looking into that separately
+now, but that shouldn't block any of my open patches.
+
+Aaron
