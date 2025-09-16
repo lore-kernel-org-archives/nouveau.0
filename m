@@ -4,81 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56CAAD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 035AAD5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05E5F10EB57;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13B9910EB5D;
 	Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lsdvfmTT";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="A3/0huDO";
 	dkim-atps=neutral
 Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
  [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6020C10E91F;
- Fri, 18 Jul 2025 07:37:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B471E10E749
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Sep 2025 09:25:49 +0000 (UTC)
 Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-23636167b30so17078735ad.1; 
- Fri, 18 Jul 2025 00:37:48 -0700 (PDT)
+ d9443c01a7336-26654749271so2937055ad.1
+ for <nouveau@lists.freedesktop.org>; Tue, 16 Sep 2025 02:25:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752824268; x=1753429068; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1758014749; x=1758619549; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=F331rKpZ7Oe6FYaTJXdFG2PxN8OlPB5pXAO1vVr7BtA=;
- b=lsdvfmTT64yn7wzWDesRD9eO7Gp2ZvtJYhLGMHYNNHF/UPrNHx7ONf5HM5NEIb/qpN
- DXtqE2AntYvdNeebzJSJNhelomda7Ao6WXNIRon23rEXkFya918CPJ1Okn7cG5dyCzmZ
- VYQqSNqEGJt/S65vuj0ko86ZwtYDgY8xvrHlXoeqQJW9ImDdji9zD4OdV4W8psZEHz+H
- oN2HRg57UQukeHIQoGww2VG5wI6t3La6w1j5bB2XhVxCyjPDKjZpj8u2BzmJbMX9W2ZQ
- XMUEfT5mXXf+XZzp3ZUhwzXMjXJVWD4VukpXENZeoS90F8lhNN/+Fh4dFGGtecvpyMWw
- 98mQ==
+ bh=IaRryEebvbTqiupWQqjYkSHOIl894hb08zd2AGUVKwQ=;
+ b=A3/0huDObh1JWX76oxi7XWwtHiSsh0vG6TrikgrE08wGPSi5abL5M98mDWipvB2u26
+ rXNfofrsAXz0tXIJxd9/fDd6Sa5R3sWovBC59nhQFcvsPDuFzLKJA+6xAQoWA9LnXbUj
+ mtpFn80pjDLkjcPxCIW5Etad0GkYVl+bRHJBnP/jhoKD++AB5HbJk/oZ6BmjW42XDK0C
+ ombI5WkH1RnIkhz4odogGAxwlV5OXVWbHipgrT+FRZSjOyNLYO6K8EYJriNqHdjzz83k
+ peySLM4Ja2x3oJbXuDGjpel56lpmdZVmF1VpCFbHQMBqI/CEm7p08ACLGkSFSoT4Oj5d
+ d2iw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752824268; x=1753429068;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1758014749; x=1758619549;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=F331rKpZ7Oe6FYaTJXdFG2PxN8OlPB5pXAO1vVr7BtA=;
- b=lZOfi78UfGhMc4xKCZhiea+9aBjAh5i42256I3hcQDZ08O/54ujtSwaw5aJ3TBIa/Q
- Bz1xlU05BDkk0Wlk6Vq4LStPLMLOQna0U/50Flcu54xUl/WouhCBj+1hD0UAgaqSq3Tq
- ilwtUgYx+B2EFwNC4qGd+TtqTdBAll/rD+Kki+mTlF6adSH8r1Kh4vzki9Fku3efE8JM
- 2Pt9cglCHkC5ZcMZQnIbAaXDfAQEpTfQVEZ0Yw0WW6RaIpv0bnVqnXWkP45U2GzLWeJU
- uIBFA3rMy4IMElezqxv/k/87l6gPJGBD1vmZb18NX0zVnGFIgenodt9iUYXTJoIp51Hj
- ISmg==
+ bh=IaRryEebvbTqiupWQqjYkSHOIl894hb08zd2AGUVKwQ=;
+ b=DJW1IKXSy42NH+dVphP16hiXkae9HM8IYGyYwAN35X2VSLJ9LZZz+3u9596cS78/1p
+ SRRuVNirZCudZCnM2+Gk7WkP9lWBjNIlzF7Ia25I/WhURC8jEn+vxf7nYYfgeg2ZgCqz
+ mD8c/x2i5U03473v3Dde4oWx2CmEzrG+eDB4IWnPMXINgEoFQUnExp6YeuLJcdjdkErm
+ N/MYRbA0LwDlheXjz6WiitJLpxppTv1OohzUcnaN3pM/K6X/M7jJSAgzfg4kGuhKjoB6
+ s/wdCazQLCE7K/V81n+d9a9fWRfnvwxb0QZfnJD5D2JAmxjzaBEqv+aX/Rx2hTpUHO6Z
+ XoLA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUhRl3zcYxsi7PxMdJL2D0oqwI6Iy6QgviqW2f/ReB334gBBofbXWbDQyRvn6aIIvB4nQsRLh/DXrw=@lists.freedesktop.org,
- AJvYcCWAsVk04b7/CnkNDmK26ybRdB6KPcuCaUO3A0mHIxKkjkDuZ9c0dtmxTEEnSEHoShqUMuH8WAVnlg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyRkRbFYXSANW3bev6Nq8ud6YCdrCIrnAjhyASx1zq1aqWVUtBO
- hb+z3hDosANeNmpcXHUtX3cn9p0Z46i44fSuSptOmoRG4p0i50RwuV9V
-X-Gm-Gg: ASbGncvVcel5WNLhb1TE/ioHhZ0RXt4ynO70C7xtgMaprrb0vtyfbT1m4wiRIhqQuG7
- yzEb8GSnayxarpQ5VOPtPmAtgxpMxc4wuGJ7xKwtZTqIfmz94b1WxCXCvuNuGXygmbp0z3sWJMM
- wCVHl/h4N+glX3xYcgvf2Opz9sRzbcM15v4nS+cOXu7cal1D9l5vfE3KFkJQG2jPG31n2i6YZau
- XOgMXstUPCZGhDEEQG+UETPTRod0kFblxsnhja+SmULuR51YP8iyrT9c7reW+ou2DNcHrJlcGJw
- B0FgVib+LZrq3HdcYlUb/4+6EAPb5xAwWODuXROVDIU1iQJQBjlzumpwxV7iMlYQtNmsKEiGnhp
- 6kpQrNA0fR6HJihRVZ9Fvq1Fb81zLi8EaIp0=
-X-Google-Smtp-Source: AGHT+IETRPva4ck7C9Si6yZrkvK+/vXb7rDOjcKQ4Tbk1nNlqyAeaw2WVm2q8RtQKEDPzQzyQtR9Rg==
-X-Received: by 2002:a17:902:c941:b0:234:c2e7:a103 with SMTP id
- d9443c01a7336-23e2572ffe3mr115592075ad.33.1752824267824; 
- Fri, 18 Jul 2025 00:37:47 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23e3b6b4e84sm7671725ad.104.2025.07.18.00.37.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jul 2025 00:37:47 -0700 (PDT)
-From: Rhys Lloyd <krakow20@gmail.com>
-To: acourbot@nvidia.com,
-	dakr@kernel.org
-Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
- airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] gpu: nova-core: vbios: change PmuLookupTableEntry to use
- size_of
-Date: Fri, 18 Jul 2025 00:36:25 -0700
-Message-ID: <20250718073633.194032-3-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250718073633.194032-1-krakow20@gmail.com>
-References: <20250718073633.194032-1-krakow20@gmail.com>
+ AJvYcCV6/Sr9vcRal2xb/hxqrR6zG/2HpA2ZoqIwk0dyckSVJ2twCUMxW4IvnhkT0+C4moAbm+0KuANP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyBMK41GlF3KodKoOM1LGwQlWBwTlipn9WhVWy9oAcNqZRY/X/o
+ fHqLrvnYnCnp6FyvheX4lUsJQmHCR3w+b1fYZ52TzUvaHLp20COLhAlFNm9HS0hEMVhs1JJhXq+
+ Nc4bJ/bh/p6Hdk6oZCLBCq7ILgl9Tvdk=
+X-Gm-Gg: ASbGncsSQY5PSYgjH2iiZPRnft6QAtkprkHo2WXO5F49qCUULP7zhuAfQDbfsyOlSF9
+ nJ0dsltt+QdNXv7Gi81evuLPKueo+DtkQ5sjgGlmH4n5zGhLqDaxiaUcPA/XyUiH2k2SafrHZGG
+ wJ8evE6rg/aUiDJJS7NhNLLyvCLUv/u/UfBhsCmDLsq/qAPA4GKP3MxzOV3EuWDrzaYErpE/wbC
+ QAA30apiOz+RD41A3jwWyT9Q5tr4ZzLv7SFOqKS94jN+9SEA13GvWmIfQaioNjSw3pX7e8uxhsh
+ D4DpElb58qYS6ZRwgF+xhG4Dgw==
+X-Google-Smtp-Source: AGHT+IFbZW+x9x9wRPjcu0fUDKKV+FI4Ux2olLrfd71XqGlZeb06RKz20GRATJ3RhC04PqeZ4amtqqROnzbUAvJFtis=
+X-Received: by 2002:a17:903:234e:b0:267:b357:b63f with SMTP id
+ d9443c01a7336-267b357ba4cmr28322155ad.11.1758014749004; Tue, 16 Sep 2025
+ 02:25:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+References: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
+In-Reply-To: <20250813-core-cstr-fanout-1-v3-0-a15eca059c51@gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 16 Sep 2025 11:25:35 +0200
+X-Gm-Features: AS18NWBte47JR71hFkT2j6pdf07EXnpt9Cw80lEcllpwl7SjI3e6diSfmzb9hqQ
+Message-ID: <CANiq72mrY92-msShBgiqqRpewiTqLANb-uH8+nPfAqKivCWjUw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] rust: use `kernel::{fmt,prelude::fmt!}`
+To: Tamir Duberstein <tamird@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Jens Axboe <axboe@kernel.dk>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, 
+ Rae Moar <rmoar@google.com>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Uladzislau Rezki <urezki@gmail.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ kunit-dev@googlegroups.com, linux-fsdevel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,46 +103,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Annotate the PmuLookupTableEntry with an `#[repr(C, packed)]` attribute.
-Removes another magic number by making the struct the same size as
-the data it needs to read, allowing the use of
-`size_of::<PmuLookupTableEntry>()`
+On Wed, Aug 13, 2025 at 5:39=E2=80=AFPM Tamir Duberstein <tamird@gmail.com>=
+ wrote:
+>
+> This is series 2a/5 of the migration to `core::ffi::CStr`[0].
+> 20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com.
+>
+> This series depends on the prior series[0] and is intended to go through
+> the rust tree to reduce the number of release cycles required to
+> complete the work.
+>
+> Subsystem maintainers: I would appreciate your `Acked-by`s so that this
+> can be taken through Miguel's tree (where the other series must go).
+>
+> [0] https://lore.kernel.org/all/20250704-core-cstr-prepare-v1-0-a91524037=
+783@gmail.com/
+>
+> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
----
-Changes in v2:
-- get_data helper function renamed to data
-Changes in v3:
-- Change PmuLookupTableEntry.data back to u32
-- Remove helper function
-- Annotate `PmuLookupTableEntry` with `#[repr(C, packed)]`
+Applied to `rust-next` -- thanks everyone!
 
----
- drivers/gpu/nova-core/vbios.rs | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+If any maintainer has a problem with this, please shout.
 
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 5b5d9f38cbb3..4c8368946bd6 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -893,6 +893,7 @@ fn try_from(base: BiosImageBase) -> Result<Self> {
- ///
- /// See the [`PmuLookupTable`] description for more information.
- #[expect(dead_code)]
-+#[repr(C, packed)]
- struct PmuLookupTableEntry {
-     application_id: u8,
-     target_id: u8,
-@@ -901,7 +902,7 @@ struct PmuLookupTableEntry {
-
- impl PmuLookupTableEntry {
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 6 {
-+        if data.len() < core::mem::size_of::<Self>() {
-             return Err(EINVAL);
-         }
-
-
-base-commit: 14ae91a81ec8fa0bc23170d4aa16dd2a20d54105
---
-2.50.1
+Cheers,
+Miguel
