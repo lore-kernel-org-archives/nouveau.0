@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B884CCD185
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20721CCD184
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3B9510E511;
-	Mon,  6 Oct 2025 20:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C17710E526;
+	Mon,  6 Oct 2025 20:46:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="lz/ZBOUC";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="CbZRnYM/";
 	dkim-atps=neutral
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012060.outbound.protection.outlook.com [52.101.53.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B996010E90A;
- Fri,  3 Oct 2025 15:48:07 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010064.outbound.protection.outlook.com
+ [40.93.198.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03B2F10E2D3;
+ Sat, 20 Sep 2025 18:23:17 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D+8LvHn89dENH8Q/e+XYDFEfnepJ/fBFBauLKPEnMdrlXtJajXu5AKY15KJWVQ3osth3yJTSbo68XKqn/a7o8rjpQt3f8Y5NnBVinFZ8rQF/ccNEqoU9kABmsxXJY78KRHi8DPxywCq99Ecy02vqGIUrZdlDgIYTqmPSdsRk4N+99aiukE+JfauxscV3lDTy+jTu3vHooVzeJSYPNqYGsr4cIl98BtcoPDq7YF4HP8QEmU6KPo9ufS2BlUbTDl/tKoNa/Zqw4Yh0nn6mvAW5Nd1+VuofuoPA4IGbrM5JqhyCSKHpmab4J5PmbSECk5tiuN7h3rf15O9HdmKqnh3fQg==
+ b=isY2CFC/K3hKOI20WTY8krKaa2NZA3xqHbA1yq1BvYPyIkXijoKromE7BmjPJJVte5LEk/xk5cd3bR37UGHOTMZoRP+WW4RN6HmOEIup2jKNbwOLSxjDmToraWpThuO0UzJbk1ffjCO7inkFAYDkeZmAg2c0kWDilpAw1SqP1MEEktK/5xwd8Quje7lrNVFoe6m3NUJmeTCvTw2+7fmP7gjasmFEmxRkMK28cC5rKEJbhqW8LY2vzwWvQSpi/XCKJr65feX2JRMrclMsZEpgeELxqjG/NthZJnJE4rZKYQfd70qRC6ZzXxdC0yWrHbZywKEB3lbzGa29Si9qFL8p5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7WtHuucVr0mioG8hMK3CYr/acoECPocCMbDaWYL6yQc=;
- b=NS8tGEAcNWrYwbB3Joglp7GHOmWt/BOccINr3SX5s/Tc7nvBClgW0AfW93BViCvcq38ErW8lOhkJvhIIF90oqjJ40gLLgzIURW1fUMPPRbCIdAhxpy5o4rgFEBdUdjrtWodfUrwBFgKyMZ3WsTV9EpCaVM3A0c8YGtYEZgndyC+B1C5X/YLaEHkCWu0vjPgB8HnPuoxzaH7LTWg/N6kapLE16ysDt5Z83EURwrI3jsuTZ2ppp1u19OnTgVxuHUXXRKW3kTe8eXHnT+yWDZhh3E4QfaafRmzLvvoRr/cQs57DlJKZLGGD7KlLdW4t4JJgL7Uq+xeUpX4xMpvoe+enKw==
+ bh=ONc/ZUW2asDMfHW/bkWXo0meLgThi5wMSmDKqGUvB+0=;
+ b=RNpVu/uRZyWLGOKwrpNVPIc32llNeG34BDwdytfmExizbnqno0viBMOVuVvWzPKldOP63gHOr73p1ua+OjAzxRE5pLJzglXnPUUcamJxCHWAkY3r3Hg0pylB8Ub5aIgfrwCZvc+hZ302bnIPSpmuThc07031Cl0IfhKUePs6Zb8Ev/uUUjTaK7+BtLzBBY6X45/BUeAJr/YQ5FW492tHIo5NJAyFDYuS0Y1Fkj4EKInqCFTFHbqGbv6GK6+JCAn9aTg15s0n9RTURKr9duKr+Xp1tfsjzqT4cefc0y+uxiT4C5NDSiHtGSo0FDk0pHOHE299h4c8rsXKDiG5A3Woiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7WtHuucVr0mioG8hMK3CYr/acoECPocCMbDaWYL6yQc=;
- b=lz/ZBOUCAuPfuRb0uzs45Ofhz1J5oWFhBwB39Ig8zWlVJNR38elMwqZ/ziw/VXzoQ55D2JOd4QZb9vYyrFDgMPJNMFmmo53o1Ox9WGgDQnCaky0nBtwMVtsnYZrLuQf1GaDNZgiWe6LtDn+usmQVWxFMjjrwsXxzJTZFy/RVCTeQr+CfoPv79bUM1T3JZBU6hib4h/EaGq2Y8H15vunaxWMTMBCqToy74axwatsJcuqOJw3sK1XHPJg68mS+jQ7rulP714NNJHM/YX84FGucnXgwJEloPiC0jRY+aODj+OEvu3U3YP3sc4cWNG1UFtR6JDpnkMr8eW3aw2WKuBA92A==
+ bh=ONc/ZUW2asDMfHW/bkWXo0meLgThi5wMSmDKqGUvB+0=;
+ b=CbZRnYM/7wKIFvBByzsND2eDTabojytud1/5YjMDEHfPJ80WRgax/XPazR6X11BJtiBApCX9WjtfA2FkoB9g2q0Qj0rHjpDN7VHkSXqwrRTY4dmMkqF1JsO1Uyq1iczkP+5UrcC0fGe1QIS5/mA6t+2wsBhq7VTqkhzLqWPTT2WAX8yVLDc9VpsaKz6WYBIe4UYzSozFUd1H43I6loPSiNrLaQ+OG3GBxeAgm4cMJkPBQ+tG2sLg1TlTAxTWhRofWA4GIRxw64883rf9Gb7LukNTQy5ItskggBtnm6l++p7lN6HnA33Jrm/pHtngmrfi41nx6OyoRkNONbKYtwPWBw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by PH0PR12MB8152.namprd12.prod.outlook.com (2603:10b6:510:292::14)
+ by MW6PR12MB8913.namprd12.prod.outlook.com (2603:10b6:303:247::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.16; Fri, 3 Oct
- 2025 15:47:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.18; Sat, 20 Sep
+ 2025 18:23:13 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9160.017; Fri, 3 Oct 2025
- 15:47:59 +0000
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9137.018; Sat, 20 Sep 2025
+ 18:23:13 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com
@@ -58,91 +59,91 @@ Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
  Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
  Elle Rhumsaa <elle@weathered-steel.dev>, Yury Norov <yury.norov@gmail.com>,
  Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-Subject: [PATCH v6 3/5] nova-core: bitfield: Add support for custom visiblity
-Date: Fri,  3 Oct 2025 11:47:46 -0400
-Message-Id: <20251003154748.1687160-4-joelagnelf@nvidia.com>
+ nouveau@lists.freedesktop.org
+Subject: [PATCH v4 5/6] rust: Add KUNIT tests for bitfield
+Date: Sat, 20 Sep 2025 14:22:31 -0400
+Message-Id: <20250920182232.2095101-6-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251003154748.1687160-1-joelagnelf@nvidia.com>
-References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+In-Reply-To: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BN9P223CA0024.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:408:10b::29) To SN7PR12MB8059.namprd12.prod.outlook.com
+X-ClientProxiedBy: BN0PR04CA0099.namprd04.prod.outlook.com
+ (2603:10b6:408:ec::14) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|PH0PR12MB8152:EE_
-X-MS-Office365-Filtering-Correlation-Id: 088bd8cd-c219-4822-ee74-08de02943a55
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|MW6PR12MB8913:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac6812de-b667-49a1-88a0-08ddf872bd09
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0j6PKnmBa6hyVeLasbw/li9Qpi4T9BcoFIRL+dsVRxqJQy1w+qHSclDbgujk?=
- =?us-ascii?Q?LC5ny2L0byG4PreHHNcdcchHbfDPDrXuw0KtdpcTpgh+6po+GeQ4vyV3cJtk?=
- =?us-ascii?Q?JICPgKMiT2U1utvXQv+6VcKu05rhrviBD20CxfliXGE+qPsd4T37DSGIJJtK?=
- =?us-ascii?Q?hqIzWEUWfTjyXYuXbfkXbOT04FDRnH/yRUnzdPG/YYW4XfxsmHfh4w9x+W5S?=
- =?us-ascii?Q?U7pSW5FDp0vHn5zN0PZnXtF0wE6a/Kog9CzD41pkbahmKLeNJBZbWWTFjOKo?=
- =?us-ascii?Q?BjBJCvRT35O1JljrxJ3UFrZe0v7qNzHwvZ+3fHV6rbd7hlSwks2Br/Zrhir2?=
- =?us-ascii?Q?kWS323DhrNEkdQX3UxMXCkEVmQ3JxVgarii1JIW9uqFoMS4mPZr8UrZMPITJ?=
- =?us-ascii?Q?/DcXb2GHFZnghvOMANnm99wGdNSivTUWQZEfr+rjLGDSZl/+F5sQfwQPn43M?=
- =?us-ascii?Q?DGULAS/5HcnIDRu940vsWzJZ7IgUP29I8K2qPt/PKnlbh6vUrvraWmBoZ8/q?=
- =?us-ascii?Q?lMrjwlSogsZy/k2V7YztE2kXbZJQjKL4VPAPxx+4kZ1YtbIvdshm58nsFcit?=
- =?us-ascii?Q?Et25+nVuvL7qRYL6vdZsGnPA5HJ3/YRoeXgX+JdYWN4oz2ENGaKxoJem5plQ?=
- =?us-ascii?Q?E8lEAxfHJvSeVuUSuq0y/206CCxnuPIJ2EN0KqvzwX04Qi/hHDKGRgrHJq2v?=
- =?us-ascii?Q?P+xD1lUtTQkM+dNcZQxzvZc83GZ+j7IqAxhGOz82J/UNzHnkkyhgwcSz/LXf?=
- =?us-ascii?Q?mmtnt4N9Vwj4Av9GPVvjyFcQKZmqbz2EsbFrr94NzFAJfKU7c9DZxMvW5MhD?=
- =?us-ascii?Q?JNcAuJQR6PVRaHYVCge9JYXDeLYXG2Fzsfnf4G3jePkcyqc+IIadzxoq9gGB?=
- =?us-ascii?Q?8g0nxSpI5fCiDgioSDFBVoXL9xYQ3WpOveB14koeuruLj/+odzQdaDXE0U/p?=
- =?us-ascii?Q?h3Trybzn7JSA2KcQ1+zj9SUM4xITUaasitSEV6/DN8xAaK0ljPSL/M7spG95?=
- =?us-ascii?Q?F3gHqUy0IhQy3kO0rtEASeLtoXuaqWX2NrfYzM87y7p3pQFxZ4Wc0iqlcKfT?=
- =?us-ascii?Q?TrcDU1vIr3JhDo8H2j32a1nYns3OKblL9khJK/M9ILEwGLvTo4V+kPa024r8?=
- =?us-ascii?Q?h/4Zczx/BnIOqzpLGpBuiSXLBdDN2m2S6PONC7dl5k7JeBiQUJdq8XdhLaKh?=
- =?us-ascii?Q?atVIg5eLPKK22o7PVdYbKo9Ri1FhXrp0r2l8RcRUJb5GhVO/0G28CiR8VO+3?=
- =?us-ascii?Q?x1IFssGfldNkOOGnPLZibQovrKbAI8vJa79BHIr9Jno44hk0Mz6EcGFkWwSG?=
- =?us-ascii?Q?ZADHFFSOUhvV5q6NbR1pZRA0qeUDYDEZTWe9ARSBoiIa1e3pDbR03KxspdYN?=
- =?us-ascii?Q?KvZwPvd4JV9qL2Mf6JRKxeBQ1T5urRhxX28CCNkmg1NIrk4/4LxO4m4jWUT+?=
- =?us-ascii?Q?GrE2qcjRqKNPtghUvJnUd/NKOgftSTx7?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?gCas7HM96mVMH4mMxX4geJJ4qyxmh6avhw4fFeHCjIFqL/ohixwTZhfU+EwN?=
+ =?us-ascii?Q?vTHFR+Sx0FJLC/EjUAKO7YiZvxxQRheHBxzYPVWmuUrh2sbbXQE6PZK0LxDb?=
+ =?us-ascii?Q?ANFzOjHD6Fs7q/ZReeLBj44STxINIDB4NulqgbVYjA9GAwdc2KsXqZJ/1qjH?=
+ =?us-ascii?Q?IH0MqFEROprVO/bGf16PPSTj0iDNWmY1zvEHmzdK+uyuSrnA8d9H4RHScJAW?=
+ =?us-ascii?Q?o1TJEZkqXfkIMHqOOfZbvSEEGO5CHAxoQ27C9/BneOsxFWeu2sXKGWgpTjBV?=
+ =?us-ascii?Q?Z+e4kB01v3g/7/JNdxEnxWAv/MP9o/dOcsEKOYW1kGUc4/TG9bRKhPd0aqCA?=
+ =?us-ascii?Q?HocqrOPqQktrq7eZIjq+84sH+QwnhYk4H0dmEtHYKtGHRs2yCpri9QpScgXU?=
+ =?us-ascii?Q?ewcbtflU19NGJiy2EG7NJHSMKMerYzkqQZLhfZpDK8R2gE0woeWVYoAGBl6L?=
+ =?us-ascii?Q?5jse7U0Q4Ns78G2hUOOPz9OXJQmXRvGX0Cle4CPbgyPpXEna3eE+cwlP5nqv?=
+ =?us-ascii?Q?WwO0ydzlskkBaMiKSRdM82vHYH2VSd+WemYcaYPZeib4pHOdTx251LaLpHvZ?=
+ =?us-ascii?Q?gSm9dsznTrZhmOv7qiAhgHUCh9gja62cm+gZnXnPtK/4F7gY82u3GQQ8QnXN?=
+ =?us-ascii?Q?LvUcEQMaB3nqt3JKslOnRe+4s8iq+GE57hEwS34fY2p/eY92X+T0uQXpQ0v4?=
+ =?us-ascii?Q?aR6uufzOfTip5Bd7Er8hn7Xf65VCrQ+HhO3qvVmwT4M6pbrBa8yG4cECQcW9?=
+ =?us-ascii?Q?Fpx31RBmHwAkRT1culY23gGE2A2exGnjg7ZJGjqyDFqIWFJdPGuo3AHWuTdH?=
+ =?us-ascii?Q?XRZvZcgmMlt0OyITgZV0i1udSKoFCQJtSHH3/mf5XFSp1uNkIw+bQ5UEJ2cy?=
+ =?us-ascii?Q?yMKSfmzTFI/+Z/P82Ku1pTs3jAxkI/inqUekC+0ADKyZQiCQxlZJpSwdkOCX?=
+ =?us-ascii?Q?IuVYaQY1bEae2NixXRuHfzcqla85bClmTwMDt9eIhiaq5jXLspUXFemZehtB?=
+ =?us-ascii?Q?dBY6o5KOHgvS7bgHizXZTMUarsI610c+CvrrIy30RCfs8jHwUFZGsj2JAaIj?=
+ =?us-ascii?Q?H9Osp3mtWMngNlFQ8irZgFndmfaClsniBYD6A2QxegFGP7F02+lcjfDt1fHl?=
+ =?us-ascii?Q?r7sYnqBO2kV6flCEFjqnjgIRCHJGfVMVZVEqPHy2Y04QZk54VGcsucCI/6kg?=
+ =?us-ascii?Q?LTvcXEmelNzek4XSNJou+Z63ZPfS4VpE9COt1GqEeXvU2ohD5u+ZLcz/lbTd?=
+ =?us-ascii?Q?U58q60Qx6G9tMCXE7H1AeIRx5tDJyNas3dq15Rx50PX/mMrqi6uRUxGd3Ctl?=
+ =?us-ascii?Q?+2vnySWr77obbGOc6lahfbQXNlI+vd2dFy8nhWnt0Q+uekM5EZ0CznBoEFIq?=
+ =?us-ascii?Q?k2lhoYf73wtFkdgPKR9FmVcJ7KkAWJ+ZzsK7hd7QmT0uA/xbHRUYtDfhW5Hr?=
+ =?us-ascii?Q?sD//IAxcllA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e+zkdSFWI1WB/Q3OUsGiHwjV5sNUe3sdBC8TzFgXeMXa9M+3C8kmrWb6btnf?=
- =?us-ascii?Q?Dw5KNpncWoueL0C1/M6S952AtUmU7k079B0E7lOuqcayAuGmh3FNGFFDzr5p?=
- =?us-ascii?Q?DBQ8ThS4FZtPj2LxFcsN6J+ZsLfnth+9uWTkkBZX7Qwsq/UEs/rTxn+J88Dd?=
- =?us-ascii?Q?j4L3wtYu9buF5ZMW8pezY3Ag8R5W/HJBZZM2yT1r2o+YCxuIC+nV4lQlqGAO?=
- =?us-ascii?Q?d4v1x5BbDEeIziZlztwYcRHxJUtawxVMGshsk5vSI2miEClKJNU1i0uxDw9Y?=
- =?us-ascii?Q?8ybZ8y3uTeFdWLrbQ9jfqQ8DeU8fhbpXHBjsMPlO0WTU8JG6peCAmUOKPNF1?=
- =?us-ascii?Q?phYOA0VbZItE+pu2C6BG4ZCedZwva82dh7Nd//BXZNVo7UI1ju/Ayyjk4hzM?=
- =?us-ascii?Q?ZzxsZ4LfV+DjjMEbE9+gYCNA4MvMt1NSkxPgnpsPHH+kdpYg2d6gYb4YErCs?=
- =?us-ascii?Q?XqntHv5Pi1R7WTEOO567ou8CqkUkmSu84kBZVxYsbG9aRA/BnBpbpVRb9ppu?=
- =?us-ascii?Q?rKe7rVIHt/h37b9++k/hnGXMgpc+x4hZUnBNcwJYDM//60PnsqOa0iM4zNqa?=
- =?us-ascii?Q?872KV+biMrC/ZK9FyQdSPxh+KwC4NrEFFqtPvEQe7Ae/W4uPNeWXpA7or5LK?=
- =?us-ascii?Q?FEs+3Jk07HrxYsCJlMoo1BUOTRo39+0n2qaqHQbWdUc3nKcIUtDa5vPp/3z2?=
- =?us-ascii?Q?LhCFcPh465OLxw/Dhxf+OlVBqAdhd/McaEIsdZw/5G+Wg2B2lDuyfnzrsAdb?=
- =?us-ascii?Q?u86Szs/tgRK9WR1MaOfcoObuvZYPpz1cCapQEsxf15f0qAbSkrifId/GTXQW?=
- =?us-ascii?Q?XElT1xq7snaCXx5ZdY2zC8ha2T2BVIZL53nmR2RVDosUp6DPaxW/9s6PUKlj?=
- =?us-ascii?Q?3VY52Ym4IqhYKo2BY1UHkyzbspmBq510XwIUcQiJHothpKChW+cL1IraePzW?=
- =?us-ascii?Q?rFxyJjNjTwMsM7vMas9+Ct7s/qMVTFI/6KTI1ZD6nly3ZkOk9Yf58rX7RbpT?=
- =?us-ascii?Q?xjUW+PUHHz+p8EzLaeLk2bDDnpKrcsxaqUpa2BbXZAZ5u4CT/N2iK5JMOlym?=
- =?us-ascii?Q?mfMsRhhOsFgGsLGH7W+xJAbnzHKVZs4AjS/8iKzh+ZkQ1zQhph1MULmu8FGX?=
- =?us-ascii?Q?0Iw5d3je+S71jvaVGi3q172VEZCdCUjeYrUtdIeNKRcnBW8E09UOzxu55a/G?=
- =?us-ascii?Q?R41BoYSkV+5VoO4xk4Lo4HYvRpFalbPnbXuUz+JZT3ueaofdzAtGT0FSmvUq?=
- =?us-ascii?Q?TCyOS3VPzjXu9+XXzl6vy4JcHkZDFNB1S7JRzRNzDEoa8eKOKGMV2Q2ro8yU?=
- =?us-ascii?Q?vWy3auREiQrzn3fQ+5pk5etx7RGtlETbBZQD+2tHS18wXSu5jUR4lTjRwJRQ?=
- =?us-ascii?Q?oC8RGWLw6abqwywb2xkJd2gbJz2bUXzl4v6MqlCszb4is3jzWZ/nBPqwhX4F?=
- =?us-ascii?Q?1NhbjyP2vxZ4uTPdMdMRmrW7r+1LtF/GS2YWYf55WXY4/VSffbL4uHjWiMwO?=
- =?us-ascii?Q?8uSgYPZL7q7GcFuPuSr6r601mJOq8u3SUq7dOa8Z+Q3YVhEqYQf+BkjMa/75?=
- =?us-ascii?Q?8ZqmQX1dLAK5BBshA9VCFr1OyAGVTcrcJrowNBow?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1udNHi2GMvk1sniumNCecbDZ5nMMKROVmUfZvCo3OSUT9kETPCSMnsqZ4icn?=
+ =?us-ascii?Q?pgphWCMnglbXZk5a4eKGiFJJt/tBC5mteaCwdRh8hNRfu7aoTsjcURVxc0xy?=
+ =?us-ascii?Q?aRHMZHM3S1pcUM55oDadtptyJIUb3djI+4OFNdti2F3wjRlOmyQpqEEjIzNh?=
+ =?us-ascii?Q?4Wj2u7L/ulm38xmO8OeowoOubZz5eNmddQp0pIfBOKIBpalhyxE6eFCYDTZP?=
+ =?us-ascii?Q?Tzb8JMZIeUAU0G/6CX7IBfcfaJApvaPOQVpgvFSErhhOd5noEefyyzrCThoX?=
+ =?us-ascii?Q?lSZHEMtcHW4HI4L4UTroqXn0dYGIOFeH47K0rLD4jD0k7FMUVSfC1qtq/nJK?=
+ =?us-ascii?Q?ur3yelAWt4gwM/4Gg07eWugqqcIlEtzotTx1Cl3GqaMEZgeOC3cAEhtOX5T0?=
+ =?us-ascii?Q?poLG28QcFHe+9ROHBd7qMWksf76/kmtK9RwT29lAuhHF9N9qQXea72LTC9C6?=
+ =?us-ascii?Q?6sBu+LNY1xs34IEauRxyMLRiy6/GwmOvYwnpr3mgBzUf3BNhboUjI/aWxHe4?=
+ =?us-ascii?Q?tW2cQ4+sPzRHiIqhWHgWOJxpe+txU488W5zTq8coJ5VcHs/VMvNFc6GRbQK2?=
+ =?us-ascii?Q?1LGSGkmu/APt18Lgfm8TMtAa22WfhAlMLnccYsCWRXMyiacK3w6kUulso8qs?=
+ =?us-ascii?Q?6D03x26YdlePwp0OaOkAKrPaq7jSEcdSkyyt2ZW7GJRtnk3QT+0RqsAFiFrI?=
+ =?us-ascii?Q?mTPsnMpsCaQlNoeM03vluyBmDtkPxKwLb6cYNNR6T2k9K1LX5RTIeKami9Sz?=
+ =?us-ascii?Q?snP3PRcct5BdoYbg29/BJUkyOEihRF4D3wB5UFg9t0CVZLVIWoX/P/4wC/x1?=
+ =?us-ascii?Q?VHp0uLLU2fkGOxO96K8xUtsLnO65mVub4qiWXFLqrOFYU20eBawxdBmMZw1h?=
+ =?us-ascii?Q?bn32fZHYNMsCsV8fU6qw28h/pClNr3wkkgU/zqKvQL116b/wSrNKDGd26cb7?=
+ =?us-ascii?Q?pQITMIWNYlSdAChATwgBhmC0qqT7IH+OdXTL/DhzW6bDLz7TmT5jkNrbbUjg?=
+ =?us-ascii?Q?L4+hSdGohsnEgJEABY/uBRDZPOCzuZZR140RrbaDJupRQopAZtxM8iTOP+fu?=
+ =?us-ascii?Q?HGPgxxszxods2DUrkQnOgFo5FLMZ+eVYy01P+zThJBAXGEIJ9eVvoc+kZ2PA?=
+ =?us-ascii?Q?5s0jXeSGFr7l3yz0GgoN1S+ynVhgVO42DUq3bF+SOFbTepBnIm+2tHW38d9p?=
+ =?us-ascii?Q?hpMe2bFVH8oEg5Hy/l8ZV45/hEDZmyemIY5F6u/xg/T7oIRhb/btvWppWybc?=
+ =?us-ascii?Q?k6TeYmatjNbl1wl+AmGKycU0X6u5kVjcnSeDsik4bntfXyWeXhxmTRbLUKTA?=
+ =?us-ascii?Q?t0JnoJU6KJRtJzlD2BzISJmnub+9e9dSXO6T1oMg0aindk4eQLkMQVOeWmIe?=
+ =?us-ascii?Q?dITXM3uSeDYF9a1sJpph802zGuvGHT+lcPFdPOmjLpgKDTjy8t0DmMNhwnBl?=
+ =?us-ascii?Q?emGit4jXuXHx6OsrpT0yxLYBM3MkxELEMXtl2O1K7+jeN1lX1gJpChKcyxTN?=
+ =?us-ascii?Q?Yb+5Ctn48jzueTOCFjHOTCKGWH62MEAFBJaY28hB3IOC8CVV4YLW5HbXd5zt?=
+ =?us-ascii?Q?E7JhYLlyKH8HihJ5jEXsGiwD2H/So6vZLXKixNDq?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 088bd8cd-c219-4822-ee74-08de02943a55
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac6812de-b667-49a1-88a0-08ddf872bd09
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 15:47:59.2386 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2025 18:23:03.9116 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aP1Zl45JViJHhmgKJmwIxLbnp1A5b8Y5C9C27qvfVVpnKsaJ7HZAEm97H4a0sxPfXzYZudyluq/jMpSN2Md2CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8152
+X-MS-Exchange-CrossTenant-UserPrincipalName: U4UnMF6eosgZ55LsAGCMeaOsjRn3+nQdKPpbRWcbwi9TzhbmlFQw+xQOifck+9XD/e9aMZV1G3C2vKiBP6h7dQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8913
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,264 +159,370 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Add support for custom visiblity to allow for users to control visibility
-of the structure and helpers.
+Add KUNIT tests to make sure the macro is working correctly.
 
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- drivers/gpu/nova-core/bitfield.rs    | 49 +++++++++++++++-------------
- drivers/gpu/nova-core/regs/macros.rs | 16 ++++-----
- 2 files changed, 34 insertions(+), 31 deletions(-)
+ rust/kernel/bits/bitfield.rs | 349 +++++++++++++++++++++++++++++++++++
+ 1 file changed, 349 insertions(+)
 
-diff --git a/drivers/gpu/nova-core/bitfield.rs b/drivers/gpu/nova-core/bitfield.rs
-index 75de1c0fcb3b..cbedbb0078f6 100644
---- a/drivers/gpu/nova-core/bitfield.rs
-+++ b/drivers/gpu/nova-core/bitfield.rs
-@@ -57,7 +57,7 @@
- /// }
- ///
- /// bitfield! {
--///     struct ControlReg(u32) {
-+///     pub struct ControlReg(u32) {
- ///         3:0 mode as u8 ?=> Mode;
- ///         7:7 state as bool => State;
- ///     }
-@@ -71,6 +71,9 @@
- ///   struct's storage size.
- /// - Debug and Default implementations.
- ///
-+/// Note: Field accessors and setters inherit the same visibility as the struct itself.
-+/// In the example above, both `mode()` and `set_mode()` methods will be `pub`.
-+///
- /// Fields are defined as follows:
- ///
- /// - `as <type>` simply returns the field value casted to <type>, typically `u32`, `u16`, `u8` or
-@@ -81,21 +84,21 @@
- ///   and returns the result. This is useful with fields for which not all values are valid.
- macro_rules! bitfield {
-     // Main entry point - defines the bitfield struct with fields
--    (struct $name:ident($storage:ty) $(, $comment:literal)? { $($fields:tt)* }) => {
--        bitfield!(@core $name $storage $(, $comment)? { $($fields)* });
-+    ($vis:vis struct $name:ident($storage:ty) $(, $comment:literal)? { $($fields:tt)* }) => {
-+        bitfield!(@core $vis $name $storage $(, $comment)? { $($fields)* });
-     };
- 
-     // All rules below are helpers.
- 
-     // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`,
-     // `Default`, `BitOr`, and conversion to the value type) and field accessor methods.
--    (@core $name:ident $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
-+    (@core $vis:vis $name:ident $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
-         $(
-         #[doc=$comment]
-         )?
-         #[repr(transparent)]
-         #[derive(Clone, Copy)]
--        pub(crate) struct $name($storage);
-+        $vis struct $name($storage);
- 
-         impl ::core::ops::BitOr for $name {
-             type Output = Self;
-@@ -111,14 +114,14 @@ fn from(val: $name) -> $storage {
-             }
+diff --git a/rust/kernel/bits/bitfield.rs b/rust/kernel/bits/bitfield.rs
+index 6089f3cdbd1b..99e443580b36 100644
+--- a/rust/kernel/bits/bitfield.rs
++++ b/rust/kernel/bits/bitfield.rs
+@@ -341,3 +341,352 @@ fn default() -> Self {
          }
- 
--        bitfield!(@fields_dispatcher $name $storage { $($fields)* });
-+        bitfield!(@fields_dispatcher $vis $name $storage { $($fields)* });
      };
- 
-     // Captures the fields and passes them to all the implementers that require field information.
-     //
-     // Used to simplify the matching rules for implementers, so they don't need to match the entire
-     // complex fields rule even though they only make use of part of it.
--    (@fields_dispatcher $name:ident $storage:ty {
-+    (@fields_dispatcher $vis:vis $name:ident $storage:ty {
-         $($hi:tt:$lo:tt $field:ident as $type:tt
-             $(?=> $try_into_type:ty)?
-             $(=> $into_type:ty)?
-@@ -127,7 +130,7 @@ fn from(val: $name) -> $storage {
-         )*
-     }
-     ) => {
--        bitfield!(@field_accessors $name $storage {
-+        bitfield!(@field_accessors $vis $name $storage {
-             $(
-                 $hi:$lo $field as $type
-                 $(?=> $try_into_type)?
-@@ -142,7 +145,7 @@ fn from(val: $name) -> $storage {
- 
-     // Defines all the field getter/setter methods for `$name`.
-     (
--        @field_accessors $name:ident $storage:ty {
-+        @field_accessors $vis:vis $name:ident $storage:ty {
-         $($hi:tt:$lo:tt $field:ident as $type:tt
-             $(?=> $try_into_type:ty)?
-             $(=> $into_type:ty)?
-@@ -158,7 +161,7 @@ fn from(val: $name) -> $storage {
-         #[allow(dead_code)]
-         impl $name {
-             $(
--            bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type
-+            bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type
-                 $(?=> $try_into_type)?
-                 $(=> $into_type)?
-                 $(, $comment)?
-@@ -192,11 +195,11 @@ impl $name {
- 
-     // Catches fields defined as `bool` and convert them into a boolean value.
-     (
--        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
-+        @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
-             $(, $comment:literal)?;
-     ) => {
-         bitfield!(
--            @leaf_accessor $name $storage, $hi:$lo $field
-+            @leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$into_type>::from(if f != 0 { true } else { false }) }
-             $into_type => $into_type $(, $comment)?;
-         );
-@@ -204,17 +207,17 @@ impl $name {
- 
-     // Shortcut for fields defined as `bool` without the `=>` syntax.
-     (
--        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
-+        @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
-     ) => {
--        bitfield!(@field_accessor $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
-+        bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
-     };
- 
-     // Catches the `?=>` syntax for non-boolean fields.
-     (
--        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
-+        @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
-+        bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$try_into_type>::try_from(f as $type) } $try_into_type =>
-             ::core::result::Result<
-                 $try_into_type,
-@@ -225,24 +228,24 @@ impl $name {
- 
-     // Catches the `=>` syntax for non-boolean fields.
-     (
--        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
-+        @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
-+        bitfield!(@leaf_accessor $vis $name $storage, $hi:$lo $field
-             { |f| <$into_type>::from(f as $type) } $into_type => $into_type $(, $comment)?;);
-     };
- 
-     // Shortcut for non-boolean fields defined without the `=>` or `?=>` syntax.
-     (
--        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
-+        @field_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
-             $(, $comment:literal)?;
-     ) => {
--        bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
-+        bitfield!(@field_accessor $vis $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
-     };
- 
-     // Generates the accessor methods for a single field.
-     (
--        @leaf_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident
-+        @leaf_accessor $vis:vis $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident
-             { $process:expr } $to_type:ty => $res_type:ty $(, $comment:literal)?;
-     ) => {
-         ::kernel::macros::paste!(
-@@ -265,7 +268,7 @@ impl $name {
-         #[doc=$comment]
-         )?
-         #[inline(always)]
--        pub(crate) fn $field(self) -> $res_type {
-+        $vis fn $field(self) -> $res_type {
-             ::kernel::macros::paste!(
-             const MASK: $storage = $name::[<$field:upper _MASK>];
-             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
-@@ -281,7 +284,7 @@ pub(crate) fn $field(self) -> $res_type {
-         #[doc=$comment]
-         )?
-         #[inline(always)]
--        pub(crate) fn [<set_ $field>](mut self, value: $to_type) -> Self {
-+        $vis fn [<set_ $field>](mut self, value: $to_type) -> Self {
-             const MASK: $storage = $name::[<$field:upper _MASK>];
-             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
-             let value = (<$storage>::from(value) << SHIFT) & MASK;
-diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
-index ffd7d5cb73bb..c0a5194e8d97 100644
---- a/drivers/gpu/nova-core/regs/macros.rs
-+++ b/drivers/gpu/nova-core/regs/macros.rs
-@@ -276,25 +276,25 @@ pub(crate) trait RegisterBase<T> {
- macro_rules! register {
-     // Creates a register at a fixed offset of the MMIO space.
-     ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $offset);
-     };
- 
-     // Creates an alias register of fixed offset register `alias` with its own fields.
-     ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $alias::OFFSET);
-     };
- 
-     // Creates a register at a relative offset from a base address provider.
-     ($name:ident @ $base:ty [ $offset:literal ] $(, $comment:literal)? { $($fields:tt)* } ) => {
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $offset ]);
-     };
- 
-     // Creates an alias register of relative offset register `alias` with its own fields.
-     ($name:ident => $base:ty [ $alias:ident ] $(, $comment:literal)? { $($fields:tt)* }) => {
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $alias::OFFSET ]);
-     };
- 
-@@ -305,7 +305,7 @@ macro_rules! register {
-         }
-     ) => {
-         static_assert!(::core::mem::size_of::<u32>() <= $stride);
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_array $name @ $offset [ $size ; $stride ]);
-     };
- 
-@@ -326,7 +326,7 @@ macro_rules! register {
-             $(, $comment:literal)? { $($fields:tt)* }
-     ) => {
-         static_assert!(::core::mem::size_of::<u32>() <= $stride);
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_relative_array $name @ $base [ $offset [ $size ; $stride ] ]);
-     };
- 
-@@ -348,7 +348,7 @@ macro_rules! register {
-         }
-     ) => {
-         static_assert!($idx < $alias::SIZE);
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_relative $name @ $base [ $alias::OFFSET + $idx * $alias::STRIDE ] );
-     };
- 
-@@ -357,7 +357,7 @@ macro_rules! register {
-     // to avoid it being interpreted in place of the relative register array alias rule.
-     ($name:ident => $alias:ident [ $idx:expr ] $(, $comment:literal)? { $($fields:tt)* }) => {
-         static_assert!($idx < $alias::SIZE);
--        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
-+        bitfield!(pub(crate) struct $name(u32) $(, $comment)? { $($fields)* } );
-         register!(@io_fixed $name @ $alias::OFFSET + $idx * $alias::STRIDE );
-     };
- 
+ }
++
++#[::kernel::macros::kunit_tests(kernel_bitfield)]
++mod tests {
++    use core::convert::TryFrom;
++
++    // Enum types for testing => and ?=> conversions
++    #[derive(Debug, Clone, Copy, PartialEq)]
++    enum MemoryType {
++        Unmapped = 0,
++        Normal = 1,
++        Device = 2,
++        Reserved = 3,
++    }
++
++    impl Default for MemoryType {
++        fn default() -> Self {
++            MemoryType::Unmapped
++        }
++    }
++
++    impl TryFrom<u8> for MemoryType {
++        type Error = u8;
++        fn try_from(value: u8) -> Result<Self, Self::Error> {
++            match value {
++                0 => Ok(MemoryType::Unmapped),
++                1 => Ok(MemoryType::Normal),
++                2 => Ok(MemoryType::Device),
++                3 => Ok(MemoryType::Reserved),
++                _ => Err(value),
++            }
++        }
++    }
++
++    impl From<MemoryType> for u64 {
++        fn from(mt: MemoryType) -> u64 {
++            mt as u64
++        }
++    }
++
++    #[derive(Debug, Clone, Copy, PartialEq)]
++    enum Priority {
++        Low = 0,
++        Medium = 1,
++        High = 2,
++        Critical = 3,
++    }
++
++    impl Default for Priority {
++        fn default() -> Self {
++            Priority::Low
++        }
++    }
++
++    impl From<u8> for Priority {
++        fn from(value: u8) -> Self {
++            match value & 0x3 {
++                0 => Priority::Low,
++                1 => Priority::Medium,
++                2 => Priority::High,
++                _ => Priority::Critical,
++            }
++        }
++    }
++
++    impl From<Priority> for u16 {
++        fn from(p: Priority) -> u16 {
++            p as u16
++        }
++    }
++
++    bitfield! {
++        struct TestPageTableEntry: u64 {
++            0:0       present     as bool;
++            1:1       writable    as bool;
++            11:9      available   as u8;
++            13:12     mem_type    as u8 ?=> MemoryType;
++            17:14     extended_type as u8 ?=> MemoryType;  // For testing failures
++            51:12     pfn         as u64;
++            51:12     pfn_overlap as u64;
++            61:52     available2  as u16;
++        }
++    }
++
++    bitfield! {
++        struct TestControlRegister: u16 {
++            0:0       enable      as bool;
++            3:1       mode        as u8;
++            5:4       priority    as u8 => Priority;
++            7:4       priority_nibble as u8;
++            15:8      channel     as u8;
++        }
++    }
++
++    bitfield! {
++        struct TestStatusRegister: u8 {
++            0:0       ready       as bool;
++            1:1       error       as bool;
++            3:2       state       as u8;
++            7:4       reserved    as u8;
++            7:0       full_byte   as u8;  // For entire register
++        }
++    }
++
++    bitfield! {
++        struct TestPartialBits: u8 {
++            0:0       ready       as bool;
++            1:1       error       as bool;
++            3:2       state       as u8;
++        }
++    }
++
++    #[test]
++    fn test_single_bits() {
++        let mut pte = TestPageTableEntry::default();
++
++        assert!(!pte.present());
++        assert!(!pte.writable());
++
++        pte = pte.set_present(true);
++        assert!(pte.present());
++
++        pte = pte.set_writable(true);
++        assert!(pte.writable());
++
++        pte = pte.set_writable(false);
++        assert!(!pte.writable());
++
++        assert_eq!(pte.available(), 0);
++        pte = pte.set_available(0x5);
++        assert_eq!(pte.available(), 0x5);
++    }
++
++    #[test]
++    fn test_range_fields() {
++        let mut pte = TestPageTableEntry::default();
++
++        pte = pte.set_pfn(0x123456);
++        assert_eq!(pte.pfn(), 0x123456);
++        // Test overlapping field reads same value
++        assert_eq!(pte.pfn_overlap(), 0x123456);
++
++        pte = pte.set_available(0x7);
++        assert_eq!(pte.available(), 0x7);
++
++        pte = pte.set_available2(0x3FF);
++        assert_eq!(pte.available2(), 0x3FF);
++
++        // Test TryFrom with ?=> for MemoryType
++        pte = pte.set_mem_type(MemoryType::Device);
++        assert_eq!(pte.mem_type(), Ok(MemoryType::Device));
++
++        pte = pte.set_mem_type(MemoryType::Normal);
++        assert_eq!(pte.mem_type(), Ok(MemoryType::Normal));
++
++        // Test all valid values for mem_type
++        pte = pte.set_mem_type(MemoryType::Reserved); // Valid value: 3
++        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
++
++        // Test failure case using extended_type field which has 4 bits (0-15)
++        // MemoryType only handles 0-3, so values 4-15 should return Err
++        let mut raw = pte.raw();
++        // Set bits 17:14 to 7 (invalid for MemoryType)
++        raw = (raw & !::kernel::bits::genmask_u64(14..=17)) | (0x7 << 14);
++        let invalid_pte = TestPageTableEntry::from(raw);
++        // Should return Err with the invalid value
++        assert_eq!(invalid_pte.extended_type(), Err(0x7));
++
++        // Test a valid value after testing invalid to ensure both cases work
++        // Set bits 17:14 to 2 (valid: Device)
++        raw = (raw & !::kernel::bits::genmask_u64(14..=17)) | (0x2 << 14);
++        let valid_pte = TestPageTableEntry::from(raw);
++        assert_eq!(valid_pte.extended_type(), Ok(MemoryType::Device));
++
++        let max_pfn = ::kernel::bits::genmask_u64(0..=39);
++        pte = pte.set_pfn(max_pfn);
++        assert_eq!(pte.pfn(), max_pfn);
++        assert_eq!(pte.pfn_overlap(), max_pfn);
++    }
++
++    #[test]
++    fn test_builder_pattern() {
++        let pte = TestPageTableEntry::default()
++            .set_present(true)
++            .set_writable(true)
++            .set_available(0x7)
++            .set_pfn(0xABCDEF)
++            .set_mem_type(MemoryType::Reserved)
++            .set_available2(0x3FF);
++
++        assert!(pte.present());
++        assert!(pte.writable());
++        assert_eq!(pte.available(), 0x7);
++        assert_eq!(pte.pfn(), 0xABCDEF);
++        assert_eq!(pte.pfn_overlap(), 0xABCDEF);
++        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
++        assert_eq!(pte.available2(), 0x3FF);
++    }
++
++    #[test]
++    fn test_raw_operations() {
++        let raw_value = 0x3FF0000003123E03u64;
++
++        // Test using ::from() syntax
++        let pte = TestPageTableEntry::from(raw_value);
++        assert_eq!(pte.raw(), raw_value);
++
++        assert!(pte.present());
++        assert!(pte.writable());
++        assert_eq!(pte.available(), 0x7);
++        assert_eq!(pte.pfn(), 0x3123);
++        assert_eq!(pte.pfn_overlap(), 0x3123);
++        assert_eq!(pte.mem_type(), Ok(MemoryType::Reserved));
++        assert_eq!(pte.available2(), 0x3FF);
++
++        // Test using direct constructor syntax TestStruct(value)
++        let pte2 = TestPageTableEntry(raw_value);
++        assert_eq!(pte2.raw(), raw_value);
++    }
++
++    #[test]
++    fn test_u16_bitfield() {
++        let mut ctrl = TestControlRegister::default();
++
++        assert!(!ctrl.enable());
++        assert_eq!(ctrl.mode(), 0);
++        assert_eq!(ctrl.priority(), Priority::Low);
++        assert_eq!(ctrl.priority_nibble(), 0);
++        assert_eq!(ctrl.channel(), 0);
++
++        ctrl = ctrl.set_enable(true);
++        assert!(ctrl.enable());
++
++        ctrl = ctrl.set_mode(0x5);
++        assert_eq!(ctrl.mode(), 0x5);
++
++        // Test From conversion with =>
++        ctrl = ctrl.set_priority(Priority::High);
++        assert_eq!(ctrl.priority(), Priority::High);
++        assert_eq!(ctrl.priority_nibble(), 0x2); // High = 2 in bits 5:4
++
++        ctrl = ctrl.set_channel(0xAB);
++        assert_eq!(ctrl.channel(), 0xAB);
++
++        // Test overlapping fields
++        ctrl = ctrl.set_priority_nibble(0xF);
++        assert_eq!(ctrl.priority_nibble(), 0xF);
++        assert_eq!(ctrl.priority(), Priority::Critical); // bits 5:4 = 0x3
++
++        let ctrl2 = TestControlRegister::default()
++            .set_enable(true)
++            .set_mode(0x3)
++            .set_priority(Priority::Medium)
++            .set_channel(0x42);
++
++        assert!(ctrl2.enable());
++        assert_eq!(ctrl2.mode(), 0x3);
++        assert_eq!(ctrl2.priority(), Priority::Medium);
++        assert_eq!(ctrl2.channel(), 0x42);
++
++        let raw_value: u16 = 0x4217;
++        let ctrl3 = TestControlRegister::from(raw_value);
++        assert_eq!(ctrl3.raw(), raw_value);
++        assert!(ctrl3.enable());
++        assert_eq!(ctrl3.priority(), Priority::Medium);
++        assert_eq!(ctrl3.priority_nibble(), 0x1);
++        assert_eq!(ctrl3.channel(), 0x42);
++    }
++
++    #[test]
++    fn test_u8_bitfield() {
++        let mut status = TestStatusRegister::default();
++
++        assert!(!status.ready());
++        assert!(!status.error());
++        assert_eq!(status.state(), 0);
++        assert_eq!(status.reserved(), 0);
++        assert_eq!(status.full_byte(), 0);
++
++        status = status.set_ready(true);
++        assert!(status.ready());
++        assert_eq!(status.full_byte(), 0x01);
++
++        status = status.set_error(true);
++        assert!(status.error());
++        assert_eq!(status.full_byte(), 0x03);
++
++        status = status.set_state(0x3);
++        assert_eq!(status.state(), 0x3);
++        assert_eq!(status.full_byte(), 0x0F);
++
++        status = status.set_reserved(0xA);
++        assert_eq!(status.reserved(), 0xA);
++        assert_eq!(status.full_byte(), 0xAF);
++
++        // Test overlapping field
++        status = status.set_full_byte(0x55);
++        assert_eq!(status.full_byte(), 0x55);
++        assert!(status.ready());
++        assert!(!status.error());
++        assert_eq!(status.state(), 0x1);
++        assert_eq!(status.reserved(), 0x5);
++
++        let status2 = TestStatusRegister::default()
++            .set_ready(true)
++            .set_state(0x2)
++            .set_reserved(0x5);
++
++        assert!(status2.ready());
++        assert!(!status2.error());
++        assert_eq!(status2.state(), 0x2);
++        assert_eq!(status2.reserved(), 0x5);
++        assert_eq!(status2.full_byte(), 0x59);
++
++        let raw_value: u8 = 0x59;
++        let status3 = TestStatusRegister::from(raw_value);
++        assert_eq!(status3.raw(), raw_value);
++        assert!(status3.ready());
++        assert!(!status3.error());
++        assert_eq!(status3.state(), 0x2);
++        assert_eq!(status3.reserved(), 0x5);
++        assert_eq!(status3.full_byte(), 0x59);
++
++        let status4 = TestStatusRegister::from(0xFF);
++        assert!(status4.ready());
++        assert!(status4.error());
++        assert_eq!(status4.state(), 0x3);
++        assert_eq!(status4.reserved(), 0xF);
++        assert_eq!(status4.full_byte(), 0xFF);
++    }
++
++    #[test]
++    fn test_partial_bitfield() {
++        // Test creating a bitfield from a runtime value that has bits set
++        // beyond what the defined fields can handle.
++        let raw_value: u8 = 0xff; // All bits set
++        let bf = TestPartialBits::from(raw_value);
++        assert_eq!(bf.raw(), 0xff);
++
++        // Test individual field extraction from the runtime value
++        assert!(bf.ready());
++        assert!(bf.error());
++        assert_eq!(bf.state(), 3); // bits 3:2 are both set
++
++        // Test overflow of setters
++        let mut bf2 = TestPartialBits::default();
++        bf2 = bf2.set_state(0x55);
++        assert_eq!(bf2.state(), 0x1);
++    }
++}
 -- 
 2.34.1
 
