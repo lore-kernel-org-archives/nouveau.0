@@ -4,166 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B04CCCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B78C4CAC5B8
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:47:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 437F210E4E1;
-	Mon,  6 Oct 2025 20:46:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70DF910E50A;
+	Mon,  6 Oct 2025 20:46:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="eBrSEImG";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="bGnpftm/";
 	dkim-atps=neutral
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam10on2054.outbound.protection.outlook.com [40.107.93.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C94710E7B6;
- Wed, 30 Apr 2025 14:38:19 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010069.outbound.protection.outlook.com [52.101.46.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C52F510E2CF;
+ Sat, 20 Sep 2025 18:23:01 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vrOdUgORFD/OWXVw2y6FLexN/OZ7a3Jr+tIqBlkRAIBYzSfyR5mCR2AGN0x6AEN0uHLCfntm7ZaeCH7re2FbKgHrx+nVQ54vaCEmqEhhK/EG4c6i4dnCRfO+NLIKyIfDycUr2mZUeV8QBhHF9eeaQz1haTOspMx/c7KhbgolwLT611mnYkoJOiwhfK0xMEswCLHY01hrV+6wOE0IF9x97BL5MOtHZPYNgzAT7jvzL9GQ/O9GexbSMohOewom0Xna/aY8K/sU0wlTESrZM+Cag5dLqSLuI5Ti5WJJv3vLUfgr3CfpZEbxVOJo2PE+srYiDU0kJA/gcHuMkWidRYmeBw==
+ b=zTHo1PkaM3CX81mnyYlP2REtKOFuCZLYpjuIVQvap7rC5jtJxkSJ43ygcvaGdR9tEV1w7/NtIUd7rVHPM52e3BKXvOlKkhAXDzdZdZGlKqh3deoXV55UzZdWkfBouMBjnktuzsHHc0RCbCOBKLq8e7YUqbF9jPpOHkGlNKYEigxjCW3x0I4YmOc2TorD0yGk9woNS7SmDnwp/rBDFu74m2IoKiFSO/BuA+Hq2OrmQzjHigoIxRrnygmoW5getBtMONrok8sI7xi/IvFNQNX3TYrypeWPEjG6KKgbhS/jGQHAAKL2QuyevDEQuuvlN7Poe9YbLWg1Ykhw5SMil2UI4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1MDfyf477uxFIA7tIOCNclBzOQ+78TIs/UF7jBFsUAc=;
- b=FTt4U2XcGahLs5BdnPhBS5ttW2NY5HMNfajJRSVuMxupYBma97h7YWkzaHsKtXg22ivg89BrAFV3jeNxZIlkfPfHRVJBs9JN1Sdp3tWojXOQjBAobksL1vjJCVbhBH0EXwKk8riWTVR7NTC3Mwri0AxqIhY5mUl70gunMUflARLhhFBfa9YpSitDpdXm0L+xmit+EfcECcwLLOr4nhDQNRUDBJx78KjljKdNxV1T/HCUdBk9eZINeKRfC01XsQb9h1WrT5V0d/d8bBItnj1pWoB9JlBdOz8zH548iSe87HGdOGnKZf9v3UFr08Bd7LlqFyohzByP2/7AynMBykgekA==
+ bh=JCUgMFP/ID99WRhBLRx1XUrPh8nG03YWX+xxN37diiQ=;
+ b=hsocxYJtza40I5LSSKKkrH+Enj2ilcJ0dBMlVl3durN1Mv3qdtCul1gJth1SLKOqTu+033vDcLo4WKboL13KI1ichU692EaF/LUKG+inXx5Ayj8doC9sRp1VH9se1eizOzfdoXBeO40gf9SJq89AFJ+cIa7keJ4grmFQD8knRTvhp+4Hmj5V4cmab9UkpciFySgtyqEWlGqSASVTUhLtBcyW0TlJPcfaPLlrKqwiQ7ZWh5N3g2RQFvWHFeG7wN0oSNYfGtFWw6seQIFdytf46z8DdAdFPbPjzCis/KKJ8gsgr5ljxOp3g0NopU2nMCRsh/yENWDHk1t3iXYvePkCEg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1MDfyf477uxFIA7tIOCNclBzOQ+78TIs/UF7jBFsUAc=;
- b=eBrSEImGd3c9WOMkGjmnVFjWJt7yywI98XE2cIfOXY8Ng6gOtkBNMyTqjjaRnT4MdmwosMtSkA6pgxJEClSrYsNgZF+PV4qx1fAmbx6Zr+JKzZva6t1xvYyQ7lFpHPEUA1+DBRcd8FIbtreALlfsE2dxwbvFYlYLF0RpEfnepcT8ML7x1cyfqn+BFACl+qU5zZsxWJpH6ott1d29ihUylBZZ1RxZW/ch48BlKzcAoHIJAduszQ6sqiUAejk+h3xR8QlCtZKzVrf4JhNwVkVrRmv1xLGqSTeJ+1ve906I5fZEIbWpSHZZEkgfui9T/dacmsXy5/qPFigLnXZA4Stm0g==
+ bh=JCUgMFP/ID99WRhBLRx1XUrPh8nG03YWX+xxN37diiQ=;
+ b=bGnpftm/2IOadar8DlmFfE2Cunm4Wb8rYBjGJNBbdMLQ66kX358yjdqIoyfTvBAkjXY+GsR9gsK69wocQ97qRNWopRnHQlqoUT8dWE92wyAZWypiHbvhHxVz32YFCqlfIQmPQ5oBNUaY6fdwsXilkFwmiSZpzX26GHWPkh87dYbHV5VYXOStPN6UDW/9bSD35sPk6575JQVkdMJBYe0Jfxq8JItmtyO54zmgf5FiMrBYu1wqgHpgI7/fRYOn+qqxZjUcxQJdEJAg9XfwImn8b6aBRakWvt9ogtgm4mgar2GIdsJotY2NxlIEfw8u9CDLuQL/bLe7YZjJyX36yCPWSQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB8056.namprd12.prod.outlook.com (2603:10b6:510:269::21)
- by DM4PR12MB7527.namprd12.prod.outlook.com (2603:10b6:8:111::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8699.19; Wed, 30 Apr
- 2025 14:38:16 +0000
-Received: from PH7PR12MB8056.namprd12.prod.outlook.com
- ([fe80::5682:7bec:7be0:cbd6]) by PH7PR12MB8056.namprd12.prod.outlook.com
- ([fe80::5682:7bec:7be0:cbd6%4]) with mapi id 15.20.8699.012; Wed, 30 Apr 2025
- 14:38:15 +0000
-Message-ID: <9977ad2e-ce2d-48b5-a222-f74a821abfeb@nvidia.com>
-Date: Wed, 30 Apr 2025 10:38:11 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/16] gpu: nova-core: add falcon register definitions and
- base code
-To: Alexandre Courbot <acourbot@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jonathan Corbet <corbet@lwn.net>, John Hubbard <jhubbard@nvidia.com>,
- Ben Skeggs <bskeggs@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20250420-nova-frts-v1-0-ecd1cca23963@nvidia.com>
- <20250420-nova-frts-v1-11-ecd1cca23963@nvidia.com>
- <aAerWF9j5d01pQv0@cassiopeiae> <D9K09AU4KTQJ.3TVVZPMDB0H7I@nvidia.com>
-Content-Language: en-US
+Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
+ by MW6PR12MB8913.namprd12.prod.outlook.com (2603:10b6:303:247::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.18; Sat, 20 Sep
+ 2025 18:22:57 +0000
+Received: from SN7PR12MB8059.namprd12.prod.outlook.com
+ ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
+ ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.9137.018; Sat, 20 Sep 2025
+ 18:22:57 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <D9K09AU4KTQJ.3TVVZPMDB0H7I@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN6PR17CA0046.namprd17.prod.outlook.com
- (2603:10b6:405:75::35) To PH7PR12MB8056.namprd12.prod.outlook.com
- (2603:10b6:510:269::21)
+To: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com
+Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
+ Elle Rhumsaa <elle@weathered-steel.dev>, Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ nouveau@lists.freedesktop.org
+Subject: [PATCH v4 2/6] nova-core: bitfield: Add support for different storage
+ widths
+Date: Sat, 20 Sep 2025 14:22:28 -0400
+Message-Id: <20250920182232.2095101-3-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BN0PR04CA0182.namprd04.prod.outlook.com
+ (2603:10b6:408:e9::7) To SN7PR12MB8059.namprd12.prod.outlook.com
+ (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB8056:EE_|DM4PR12MB7527:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57aae9b3-c01c-4461-7850-08dd87f4a426
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|MW6PR12MB8913:EE_
+X-MS-Office365-Filtering-Correlation-Id: 24fa61cf-593b-450d-5be2-08ddf872b95c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?ang4RW9leGhsbEpORlBWZTNMWG8xQ2tCVjl6N09pK1JJMTg2Q3BYcWU4SC9V?=
- =?utf-8?B?SjVHcC9GRXpEbFR1aDVXcU8vYVBQbmh6cVBJWHNPa2tFMkkrVmJjOUoxRXhX?=
- =?utf-8?B?OGwzSVZnSzVpMXAveHpJYndLN000OVI2WGUxanhXOXNQYzVwdk5uVUsxR2Q3?=
- =?utf-8?B?b0hoV2dlT0dDUjlUN1BIZnh2bHBvN3dFcndLV3ZBQm9UbVVPRjVqdVhlYm5X?=
- =?utf-8?B?WGphazZNNko5MVFOa01iQkI3ZE9hTUg0SGtBaTQ0NDBWZTVuOXhOSkh0Mk5F?=
- =?utf-8?B?b1NuNzVBdmNSWlJPa0JKbzhEL1lEcy9HQm9DK1dMTDR1MkZOTlNXQ0xFZkNl?=
- =?utf-8?B?VTVzeGQrWExFSzkyS2tTRDNERC8wVmYxVW5QQnhLdm1XbHNEblRucWh5dDd2?=
- =?utf-8?B?VGJEakcwY2lmaUxlUFpKOSt3V050NEFGOHRCR0x6UkZubTdKd1dJaG9SUnJO?=
- =?utf-8?B?aFkvZHc3aEJwcTBCV1VBa1JDeThBR0Z3eEJGN3ZDL1NvVUp4MVhSeEEybWhH?=
- =?utf-8?B?WHFXS3dMVU4yWDhBenliKzhGUHhOK3ZGM21aM295V1VDUUQ1bFZua3VRdFdB?=
- =?utf-8?B?cW52Ri9rSGdZVnQ0TlJNUXNvSWs3YWdvYmxpeXp0Tm95U1hxVFdQczNxRU16?=
- =?utf-8?B?SGZNRGYxS1BVOE9wVDlvOWg2eHZmbi9YUGY4SFk4aHhLcmlPOFVIYlUvVU1C?=
- =?utf-8?B?bmhyaGhmN3ZxMlI0L0xWejZkdWx6czBHbSt1dk0wTTE0cWx6amthSmd5bEJW?=
- =?utf-8?B?dVpBbUtGL1pYNE1kNzBYU1pZQ2ZkMkRkajZnVjc1Skpsb08rajVqTlNJZzNq?=
- =?utf-8?B?QWR2THJmTGg2YTVmSSt0VmQ2a3BqSmR1M0RnaUZDSkQ5ejUxZkwzK0c5RGY4?=
- =?utf-8?B?YWJOMk8wd1hRY0ltdjgwL3Jzb2NLMU9QdVhVVnJjcEJ0dXB1R2lDZThraVE1?=
- =?utf-8?B?THRVYTVJc2ZnM005U1NHa0lBOXpEdFJKWUVSMHNZd2RoQzU0b0xSU3JvSGF4?=
- =?utf-8?B?VkQyUlA5cHJiTGVFZ3lSek04dlQ0bXovL3kyZDRLNFhCbjNSM3NPQXd5ZjVD?=
- =?utf-8?B?MnFuQkJiSzV4NUJLbnFaelRnTGJXSGNtbS83RmNzVU9SdFBCVXBPaHFSZlpB?=
- =?utf-8?B?R1g4VVYrQTVBZm1vRlk2bmNBdWpMcFJBKzVLWWVOOVRmRk55UCtBbTdRVnRW?=
- =?utf-8?B?S0hxQTlwbXpwUDg5Yk5pbnMzaGR3WlYyR0pGcXptbllUK0Z2SEk3UzhEcXk3?=
- =?utf-8?B?a25QOGJZQ3o3eWFmL2kvbUh5bG5MdllrVjJFSGpncU5BNjdrRzhqeTBFQkh4?=
- =?utf-8?B?dGRFQ0hwaGorSHR2REhvT0M1M3o0MGN4NjlaRnNwYUZBcmhxamV1U016M0ox?=
- =?utf-8?B?WkFUbU1SRStiWWMwWHpaRjdSQkxiNzB6L2VyY24yNVAySnhlUnl3dUhhWFFW?=
- =?utf-8?B?SUF0OVgyZlJGWXFtTWlWSkdsNFhNZmRKOFNJWG9UY0hTQ0xWdlJCODIwR0tK?=
- =?utf-8?B?WjAzb05JSnBDKytha2dvOFliTWhJYUNkUkpWTVloY2JVRnJIcjhLUHZndjBY?=
- =?utf-8?B?SUl4bkxsTkhGeVN5TC9xaExEbzFXSFdOL0t4bmxzRXJ5eGpzSXUzZzlLWkJO?=
- =?utf-8?B?b2J0c1RvRUxyT2FOZkZJTDV6UGxjRmZzUFYzdkRzNjA1QzJvRkFpcGpDS0Jj?=
- =?utf-8?B?bERmYzRGWXNkUzhIRzlKUTJBcEpUdFF6cUR1eGp1TnV0TVVJZnJmU0grMksv?=
- =?utf-8?B?Ukxua0crRU9HaXUyVHN3WXdVM1hhTy9RbHhMbVVNQmgrNGYrSHVDNmFBZmhk?=
- =?utf-8?B?YnZ5Q2ptRkpScW5aNEkyaXc5YXlFMTN4WmtuU25JUEh6NFlyWmFkVktCRnJS?=
- =?utf-8?B?ZjEyK0pSZzJqeC94MWxraDQvb09vVWw1endnRUJXUmlzRFNJUDdicjF1RTRF?=
- =?utf-8?Q?4eYQ9iAUJYo=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XOlrCdu7yv3EA6tpqiliy1tOQ/J1qZCrGZgs6NC0JOkVgeOI5sDFqny22tDX?=
+ =?us-ascii?Q?sKvuaQOtdPTLwgVGAzsMkEJx+VNrR691JqXrkKf6iJnT82zkGawYnhYPm/L0?=
+ =?us-ascii?Q?wWgTQvADhle22OY6OaQJbVyOjmwqtKS+TA43an8QIhVU+nAhFJSD0SGCUszU?=
+ =?us-ascii?Q?3853NXQ6jnBPaCNPDLFe0tzLfKP5F1pf76MuXobZiWSyt+u2BEKjVdweCgLK?=
+ =?us-ascii?Q?4Dd8gkPT7ptgfmbHTMLPQz1T23/Z1YelRF+CMSYW1MQuAMgo1jd8b7Q4Z9z9?=
+ =?us-ascii?Q?nCAgKV/y+aBCx8WN46WdLwnFhi4/Xkcw2G7JIcog/2SfzE1km5sAYhL2k1t1?=
+ =?us-ascii?Q?Nx+hm15MrbSy3kOrSdiZq7kOg+87KzEXQ3xnNcb01nrOqu1JqSjXDbVB8p1D?=
+ =?us-ascii?Q?F1KtUI8A9XeGfHI44Ptesaj867hbkFHAy/X54v2wcOfYEfkXGMQU0+HhdTf5?=
+ =?us-ascii?Q?3zlmKVaTG09+BkfPXglH7o6CT7pt4Rf7lFJu8UUCz3vbPDENymV4UXaoSLR1?=
+ =?us-ascii?Q?/zau+6bG1EwdTPV1bzH6a4lepCH6B/FRvALGFfg9Mgo5PrqNbDCy/d31F4HJ?=
+ =?us-ascii?Q?sNiQjaI787gBZzBcSTPmc6dw3xB7vZh3E9rcJ6PD42gqpvxtMt4RvJKOI/jE?=
+ =?us-ascii?Q?9iH+MgZS5iv8zalQQNQDEsTk75DnxZdNFICcij7zDIIpEV/W/tvbPw12N0kk?=
+ =?us-ascii?Q?vSuOPmS1pBBLqFtDcJfiE5ffp4G3itfPqWqiITn7JvneDiy6LETnigCTYzxe?=
+ =?us-ascii?Q?RwGclBD3IKVv5wuaHxyCJ1jP2QxO9zKzK2n3keJvtEobTFPOZrvDjMIqyOS8?=
+ =?us-ascii?Q?U9+6UPrf3q8GcR8L2VT8nmjcmc2kCqGokiq6Rewm0mSyjsvGoRWriOkYUcmI?=
+ =?us-ascii?Q?Br6d1rzCrl5lopwbt53t0uyasuDNqZqOOUZnmG4YHhFV2xU1Sa8236FqlJqU?=
+ =?us-ascii?Q?QpdJUpgzbdHj41i9wvxeGpCYBRprIE/l+dkurqlp+kYuLMVQ1cXHP9bsNtOX?=
+ =?us-ascii?Q?x/vGEDmn0SwSjE399zp88IGb9XTyk1nKknv/IpI1KDnjkgrjzV7O7M+rpxmG?=
+ =?us-ascii?Q?+F7rFO5+762HJ1PL5unnsyD8Uy3PZ1pXCx1y5rAb80RYc1B2nqly9fyiHra5?=
+ =?us-ascii?Q?N6pOr4KWG6izsr5H5b2bZqKzwzM7XxI+TUh0RD9Aqsy73YzC3egWMzyu85YU?=
+ =?us-ascii?Q?QT3DJkKoWV3SLJYMstQFDmSELyP5qDMvYNCMEjMwcDuUDiqKKjszDiUJa3GH?=
+ =?us-ascii?Q?+X0A/sH0pNfcRxR6d1kYpxkQUjeKCMAk5fy76dY4iyADcefA+PYBaGlQwzXO?=
+ =?us-ascii?Q?6L0gce1I/aBagxxjBS837odYMf4oQ6Ar/0OAC4ZtGFGzLemCvI51S7W3FKkt?=
+ =?us-ascii?Q?fRTnLLorFJD+zi+v8+Emh3mwI+AVKvqbK+D7nA8AUMqt5L51cL/pGSEumCBo?=
+ =?us-ascii?Q?26Z/5HxnGgc=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB8056.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWdQanlsUlRxbDlCVHVXREEvNndxelFhcnh4MDI4d2Zxa1Rxc2Vkd1pxUU1V?=
- =?utf-8?B?ZWtNd3ZaV2hxclIzemo5c1FCL2VneFdmR1dpdmxscHRHSWRHYisyQitjdmpi?=
- =?utf-8?B?MEZMV1QxTmtCaVVUTTRPQktFQUdSdXY5a1N6MHpGZXJsR0tIWVA1QXBUR1c4?=
- =?utf-8?B?dlN1TytPOXBGRkM4RlRUTWc4QVBCeHFKRmRqZVUvZlRNS3B5V2ZDcUlkVGFQ?=
- =?utf-8?B?VXV1OWlBK3FaTHdQeXpFNVI5MStnN3RoMTZET0VxOU1Cb2ZZQmlRT0FGNGE2?=
- =?utf-8?B?aUNFWjJwWWk1anpYYm1Ed0ZnTmZITHl3Z2Q2YkJWYkhsU2Q3NFJjcTBuWHpz?=
- =?utf-8?B?Zk1JWUxxZjM1Q3hNS3R3NnVNWTUrQVJVSzBnamU3cmhiMDBoSklOeGNaeGVL?=
- =?utf-8?B?R0U0cDFBZUZERWxHWE5YdFRYY1Q4YnZIZWsyQm15ODRlc29zREFtSzJFNHp5?=
- =?utf-8?B?a2tERGI5ZC81QWNXbDlPUXo5UWtLQ0lMWmUxN09JekNNUVJ0ZkRweUZUcE1F?=
- =?utf-8?B?RERFSkNvUWdueG1sd3ZoVjhmOFJDUlN5TUJ5VWZhWms0U3p6MkJXL0R1dVVR?=
- =?utf-8?B?VkVOTlR0M2ZsYUV4Z3VoeEh5cUg1SnJTOG9UTE4vdTdEUUcyZUN4NkVoa21j?=
- =?utf-8?B?YzBiNkZVL0FLRWY2dkhWQ1RJbUhpSEhwbm02YXBaSE1WcGpqNUlkMjNGbjFP?=
- =?utf-8?B?cE5zUlkxbEQxNUc4b2l6MVhEeWpXM3MzSU81WkcrSnBVSG5WUjQwdUFQb1BX?=
- =?utf-8?B?TlYwYkFNSjlJTERadWdmQ3ZvWnpLaUpOclFEcWlhZGVBOTJvaElyVmhFSXdX?=
- =?utf-8?B?ZEoycUIzREpYUFc3REdNNzlYVWRWQlJUbEc4aTY3UlVMWEJSZGFKY1lkYmdn?=
- =?utf-8?B?UXd0a1NPUWFXaUdmN3FmK3F1OE5BUHRsSXR3SEtWMHVMd2NLY3BreHRTN0lQ?=
- =?utf-8?B?UXN5SXU4L1Y1cjVMTkRnMGMvRG11TmFtM2FsVzUySDNMeGJDRGtnZzczQm5a?=
- =?utf-8?B?RHdROERsYmgyOXJQdlBzUFVDcGY1bnZmWTRERGFtSkN5MzlCb2YzR0REK2dR?=
- =?utf-8?B?bG03RWRNd1lCYmRjRU5BVkU0U2FHcmdkaEZZNkhYTzYrUThSTnVaNmFCeUlH?=
- =?utf-8?B?UDRPWnMyOWFMMkt0Z0IxUllOaTJmZi9RRWVnUjVHaHZLTVBIVGtHSkxPN0R4?=
- =?utf-8?B?T2N6RFdTeWRLL0REeW1pSDZMQ05UekJ4bUpYY3dGbWhyY3VUTjNMUW8wNGQx?=
- =?utf-8?B?Tm51bkU3REk3SzRsaUFjaTE4U2pJNHBuZ1lRRUs1aTFxVkJORUZRVkNVMDJV?=
- =?utf-8?B?amV4aFppbkxrUjhWeEh6V1VSd0RLenJTN0Zhckg1VkZuOTh5SUp2dFZXK0RB?=
- =?utf-8?B?VFpWMTEwdnk0bXVGeXdHNzl3K0w5eXArTVBUVEM3S0NUU2NBalhMZFdsdk5K?=
- =?utf-8?B?RTg4dDhlN1E2Y2ljQUtJOEc4Y2hmbzZGbDhCYWRmOTEvZ1Bxbm01dlNWM1pv?=
- =?utf-8?B?NEhlaHdjcVIwMWxmRkpEU2tDd1ppNUhhN3FmSDRSMEFmcUp5Q1hwajhwSlpy?=
- =?utf-8?B?VmVGN2xadlAvdVM2SFdjaXB2V0cvNk1BeG5qaUhqWllDV3NkbmNMTDFxSFp6?=
- =?utf-8?B?VklzV3Q4YmRWa1ZkeFAyL2tubGpjQ0RieEc0VHg0bTBKWkh2cGtrNWFwZHFi?=
- =?utf-8?B?NWtEQVFGZHRQdGpEc2p5dHQzdjlPck4vU2hUZUlXd295dGhhODNXekJzNVNY?=
- =?utf-8?B?NTQreU51NnN3UURMVUI2VGdmUVpsRjUwaGZOWFNKUkg0dXlDZ3o2aDkxVW0w?=
- =?utf-8?B?UHNzK21rNkhZVmxsR1d3bGlmbDFNSjhSd3I5RlZPVXV5dkhmaTU1dzhSSkxR?=
- =?utf-8?B?TmJpeFl2M1Z5a0t6Vk02ZDJqbTVmdXhUKzhwWkkyUjlCTU02bk0zWVdCbGQ2?=
- =?utf-8?B?SlFidjJFSERZdU9tSDFlbHA1cDcycWdIamVJTGNicUZQYk5oZlZUZ0Q1RCsw?=
- =?utf-8?B?emg5cGJoS1JlTlRYM3FwUDJCWnltOFR3Mm1UQjBOK1VSTW10U2lSbHpoZkdu?=
- =?utf-8?B?MFEvT3ozRUcrbG0wZjZKVCtsWkYrcXBZQTluNzl4MkRHc0dnR3NmSm4yc1R3?=
- =?utf-8?Q?g76ZawPf/M3N0l3nqrEoZVaYf?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IIrJoKR37keZQjRE00vyQ+w5ojGlQLvLK9fYlIvaTvJ0n7/t8/cVx38SCABZ?=
+ =?us-ascii?Q?0VN0D8Wi4LwmahrQKlwdq1umwbEXwWA4B3tJ8hcrOEesxD9tFUZ8j+B2fkqa?=
+ =?us-ascii?Q?7YinlbNg2ca45ab1PucAPkHAJ8ZWhtUI+43Hhegxvr85wv5FEFGwTBnwvcT2?=
+ =?us-ascii?Q?SsC9UqmQQZvNuruAt0HNpHr+5dDUh0ctVYuSSWW4M2jDMxmBUAwiqQP9uPWS?=
+ =?us-ascii?Q?eICvF74RLGnC2s3ohCwrPe2GSvDu7bITyi6NzCd7q19a5KDyv63eBz4UbnSJ?=
+ =?us-ascii?Q?YKXD/wOy/7bRTGglaCuRBFU9Lzt6DEVjd1SN9AuBuPw+9UNOpX+EFrtDdCiR?=
+ =?us-ascii?Q?pu/RaMQ2mEAOG4rKUynTwguA/XEELt0yZpuZqX5t4lMRa3cZjdz0mtf+qZgf?=
+ =?us-ascii?Q?F+CKgaL6p7ahQDx3KHPuFBxX1jAtyy12Mo0R3ZWVyXUaizxH5qkuogiWNiUG?=
+ =?us-ascii?Q?E9DGcEN5qpJzFugRVXX/T662dBT4jJA8jGQpUEiaXU84c6bxS0UsUnxhHi98?=
+ =?us-ascii?Q?QkwEnZTd/aZxEWI5C82HyQD++Uube1t2z/fE/cKlX/+3qgDOdIiVFIGAIaAj?=
+ =?us-ascii?Q?0WyzifhN+5vGBRKXrkcBQYXRemdOmCtAigTulxWGrVwlCfkpHpAyxsMqz6yG?=
+ =?us-ascii?Q?cDPBvJknzCjHkwqrVz+iG0VYsFZ2T2g7r3efGPYbGwn2g9QovidhZ/r2TH6B?=
+ =?us-ascii?Q?5xCS+5Bb/pDrkA0tJmugILPxuXqlS3kKhqHEo5v6j3dkLFIk8enSBzihItjX?=
+ =?us-ascii?Q?i6Meq+y+n/qLPo/FaHIjru0QxbHXdEK3WStHxWYvqWiYZhlqepQf2J0COWD8?=
+ =?us-ascii?Q?28boHfHRdlX0xkAhJOe5fHXAj8+JD6mcL6kcw0YoJ/agNe9fKzOnXIXhj5My?=
+ =?us-ascii?Q?+MCQg5Mez3dMsje2ZNLaduG/+OSodByMU94byWsv0jUmGDOa/8zkJP4Rc25A?=
+ =?us-ascii?Q?wMhN0jSccjhOsvClXy0pXUcYobpbBd6UKpI6xYZE5S3THqMdqfzZdpJvd9bE?=
+ =?us-ascii?Q?5KNvUUmhykLm1B3/tRSv8BtnKR/FBzp67Sp6AEEpaWAWNgzn0COL0phZAJvj?=
+ =?us-ascii?Q?d3VHpKFMNd6szcYG3hIhb35PDYysF5Roc5qC/ZuU4MbFpY6gS1Nqn/6fwL7P?=
+ =?us-ascii?Q?pvq4CGjHxdN1Wm9v7iN0pfy5sBu7MjtkjnM7J3tjtloGj1wi03IxREt3jJV8?=
+ =?us-ascii?Q?+szTynOxVmnCN3SSoLr3ThydRHkEB4WGD40HWYxCgNm61QgenuuD647qWqvU?=
+ =?us-ascii?Q?vkK2l+M2TVyVW3RmAY41BQUndc7FPLsxOSzE1bqv6D8JVIy0vG2DRTT1gcVC?=
+ =?us-ascii?Q?TFwQ00clPxgXS0F2uT409ud2cx4VYq3ZYPZNr5qmVffsmHvmKIPI4n9Orv04?=
+ =?us-ascii?Q?JZyr9g26WKYrYkmT2DgoUAXiOro9JpQKl/at6N8wudQIN62QPeuJLVDHJ92F?=
+ =?us-ascii?Q?xEd11JqZXriSWJtpedo+7t4pPc49SI/M3t/ZKvBT4HGTQzsJEHQ9BcovIAkf?=
+ =?us-ascii?Q?jqAsLhvwnnl29CSXlIh7a0MzgwhsbqYFhbqrK9rUgOPtvDmesmHtM+hdiQMe?=
+ =?us-ascii?Q?d/FJ4GdnC2R1vcHPJeqc2rd9hercyaVea5HZJi5P?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57aae9b3-c01c-4461-7850-08dd87f4a426
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB8056.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 24fa61cf-593b-450d-5be2-08ddf872b95c
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2025 14:38:15.4878 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2025 18:22:57.7481 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eqoO/WfMwIdIt3heex2MLOh75FHwsHjt/TvWS/IwyUmQ/MBTKuMisH0tCwPh0BKarZACgnMM6xfDCfFCeWq+sQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7527
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: rxc9WXfTm0qFIjt7jZg8bAIJ4GqDK0UL+M7jyXj8M6lFgerBO3fJ01halnNNuIYGD4JbTx7nFDp6L/lQBOE8XQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8913
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,362 +159,297 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+Previously, bitfields were hardcoded to use u32 as the underlying
+storage type.  Add support for different storage types (u8, u16, u32,
+u64) to the bitfield macro.
 
+New syntax is: struct Name: <type ex., u32> { ... }
 
-On 4/30/2025 9:25 AM, Alexandre Courbot wrote:
-> Hi Danilo,
-> 
-> On Tue Apr 22, 2025 at 11:44 PM JST, Danilo Krummrich wrote:
->> This patch could probably split up a bit, to make it more pleasant to review. :)
-> 
-> Probably yes. I thought since it is mostly new files, splitting up
-> wouldn't change much. Let me see what I can do.
-> 
->>
->> On Sun, Apr 20, 2025 at 09:19:43PM +0900, Alexandre Courbot wrote:
->>>
->>> +#[repr(u8)]
->>> +#[derive(Debug, Default, Copy, Clone)]
->>> +pub(crate) enum FalconSecurityModel {
->>> +    #[default]
->>> +    None = 0,
->>> +    Light = 2,
->>> +    Heavy = 3,
->>> +}
->>
->> Please add an explanation for the different security modules. Where are the
->> differences?
->>
->> I think most of the structures, registers, abbreviations, etc. introduced in
->> this patch need some documentation.
-> 
-> I've documented things a bit better for the next revision.
-> 
->>
->> Please see https://docs.kernel.org/gpu/nova/guidelines.html#documentation.
->>
->>> +
->>> +impl TryFrom<u32> for FalconSecurityModel {
->>> +    type Error = Error;
->>> +
->>> +    fn try_from(value: u32) -> core::result::Result<Self, Self::Error> {
->>> +        use FalconSecurityModel::*;
->>> +
->>> +        let sec_model = match value {
->>> +            0 => None,
->>> +            2 => Light,
->>> +            3 => Heavy,
->>> +            _ => return Err(EINVAL),
->>> +        };
->>> +
->>> +        Ok(sec_model)
->>> +    }
->>> +}
->>> +
->>> +#[repr(u8)]
->>> +#[derive(Debug, Default, Copy, Clone, PartialEq, Eq, PartialOrd, Ord)]
->>> +pub(crate) enum FalconCoreRevSubversion {
->>> +    #[default]
->>> +    Subversion0 = 0,
->>> +    Subversion1 = 1,
->>> +    Subversion2 = 2,
->>> +    Subversion3 = 3,
->>> +}
->>> +
->>> +impl From<u32> for FalconCoreRevSubversion {
->>> +    fn from(value: u32) -> Self {
->>> +        use FalconCoreRevSubversion::*;
->>> +
->>> +        match value & 0b11 {
->>> +            0 => Subversion0,
->>> +            1 => Subversion1,
->>> +            2 => Subversion2,
->>> +            3 => Subversion3,
->>> +            // SAFETY: the `0b11` mask limits the possible values to `0..=3`.
->>> +            4..=u32::MAX => unsafe { unreachable_unchecked() },
->>> +        }
->>
->> FalconCoreRev uses TryFrom to avoid unsafe code, I think FalconCoreRevSubversion
->> should do the same thing.
-> 
-> Since the field from which `FalconCoreRevSubversion` is built is only 2
-> bits, I thought we could avoid using `TryFrom` since we are effectively
-> covering all possible values (I wish Rust has n-bit integer types :)).
-> But yeah I have probably overthought that, and that unsafe block is
-> unsightly. Converted to `TryFrom`.
-> 
->>
->>> +/// Trait defining the parameters of a given Falcon instance.
->>> +pub(crate) trait FalconEngine: Sync {
->>> +    /// Base I/O address for the falcon, relative from which its registers are accessed.
->>> +    const BASE: usize;
->>> +}
->>> +
->>> +/// Represents a portion of the firmware to be loaded into a particular memory (e.g. IMEM or DMEM).
->>> +#[derive(Debug)]
->>> +pub(crate) struct FalconLoadTarget {
->>> +    /// Offset from the start of the source object to copy from.
->>> +    pub(crate) src_start: u32,
->>> +    /// Offset from the start of the destination memory to copy into.
->>> +    pub(crate) dst_start: u32,
->>> +    /// Number of bytes to copy.
->>> +    pub(crate) len: u32,
->>> +}
->>> +
->>> +#[derive(Debug)]
->>> +pub(crate) struct FalconBromParams {
->>> +    pub(crate) pkc_data_offset: u32,
->>> +    pub(crate) engine_id_mask: u16,
->>> +    pub(crate) ucode_id: u8,
->>> +}
->>> +
->>> +pub(crate) trait FalconFirmware {
->>> +    type Target: FalconEngine;
->>> +
->>> +    /// Returns the DMA handle of the object containing the firmware.
->>> +    fn dma_handle(&self) -> bindings::dma_addr_t;
->>> +
->>> +    /// Returns the load parameters for `IMEM`.
->>> +    fn imem_load(&self) -> FalconLoadTarget;
->>> +
->>> +    /// Returns the load parameters for `DMEM`.
->>> +    fn dmem_load(&self) -> FalconLoadTarget;
->>> +
->>> +    /// Returns the parameters to write into the BROM registers.
->>> +    fn brom_params(&self) -> FalconBromParams;
->>> +
->>> +    /// Returns the start address of the firmware.
->>> +    fn boot_addr(&self) -> u32;
->>> +}
->>> +
->>> +/// Contains the base parameters common to all Falcon instances.
->>> +pub(crate) struct Falcon<E: FalconEngine> {
->>> +    pub hal: Arc<dyn FalconHal<E>>,
->>
->> This should probably be private and instead should be exposed via Deref.
-> 
-> Agreed - actually not all the HAL is supposed to be exposed, so I've
-> added a proxy method for the only method that needs to be called from
-> outside this module.
-> 
->>
->> Also, please see my comment at create_falcon_hal() regarding the dynamic
->> dispatch.
->>
->>> +}
->>> +
->>> +impl<E: FalconEngine + 'static> Falcon<E> {
->>> +    pub(crate) fn new(
->>> +        pdev: &pci::Device,
->>> +        chipset: Chipset,
->>> +        bar: &Devres<Bar0>,
->>> +        need_riscv: bool,
->>> +    ) -> Result<Self> {
->>> +        let hwcfg1 = with_bar!(bar, |b| regs::FalconHwcfg1::read(b, E::BASE))?;
->>> +        // Ensure that the revision and security model contain valid values.
->>> +        let _rev = hwcfg1.core_rev()?;
->>> +        let _sec_model = hwcfg1.security_model()?;
->>> +
->>> +        if need_riscv {
->>> +            let hwcfg2 = with_bar!(bar, |b| regs::FalconHwcfg2::read(b, E::BASE))?;
->>> +            if !hwcfg2.riscv() {
->>> +                dev_err!(
->>> +                    pdev.as_ref(),
->>> +                    "riscv support requested on falcon that does not support it\n"
->>> +                );
->>> +                return Err(EINVAL);
->>> +            }
->>> +        }
->>> +
->>> +        Ok(Self {
->>> +            hal: hal::create_falcon_hal(chipset)?,
->>
->> I'd prefer to move the contents of create_falcon_hal() into this constructor.
-> 
-> I think it is actually beneficial to have this in a dedicated method:
-> that way the individual HAL constructors do not need to be visible to
-> the `falcon` module and can be contained in the `hal` sub-module, which
-> I think helps keeping things at their place. Is there a good reason to
-> prefer doing it here?
-> 
-> Ah, maybe you are thinking that we are returning a Boxed HAL because we
-> are going through this function? It's actually on purpose - see below.
-> 
->>> +pub(crate) struct Gsp;
->>> +impl FalconEngine for Gsp {
->>> +    const BASE: usize = 0x00110000;
->>> +}
->>> +
->>> +pub(crate) type GspFalcon = Falcon<Gsp>;
->>
->> Please drop this type alias, Falcon<Gsp> seems simple enough and is much more
->> obvious IMHO.
-> 
-> Yeah, I wanted to avoid having to import two symbols into the gpu
-> module, but I've probably been overthinking it again.
-> 
->>
->>> +
->>> +impl Falcon<Gsp> {
->>> +    /// Clears the SWGEN0 bit in the Falcon's IRQ status clear register to
->>> +    /// allow GSP to signal CPU for processing new messages in message queue.
->>> +    pub(crate) fn clear_swgen0_intr(&self, bar: &Devres<Bar0>) -> Result<()> {
->>> +        with_bar!(bar, |b| regs::FalconIrqsclr::default()
->>> +            .set_swgen0(true)
->>> +            .write(b, Gsp::BASE))
->>> +    }
->>> +}
->>> diff --git a/drivers/gpu/nova-core/falcon/hal.rs b/drivers/gpu/nova-core/falcon/hal.rs
->>> new file mode 100644
->>> index 0000000000000000000000000000000000000000..5ebf4e88f1f25a13cf47859a53507be53e795d34
->>> --- /dev/null
->>> +++ b/drivers/gpu/nova-core/falcon/hal.rs
->>> @@ -0,0 +1,54 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +
->>> +use kernel::devres::Devres;
->>> +use kernel::prelude::*;
->>> +use kernel::sync::Arc;
->>> +
->>> +use crate::driver::Bar0;
->>> +use crate::falcon::{FalconBromParams, FalconEngine};
->>> +use crate::gpu::Chipset;
->>> +use crate::timer::Timer;
->>> +
->>> +mod ga102;
->>> +
->>> +/// Hardware Abstraction Layer for Falcon cores.
->>> +///
->>> +/// Implements chipset-specific low-level operations. The trait is generic against [`FalconEngine`]
->>> +/// so its `BASE` parameter can be used in order to avoid runtime bound checks when accessing
->>> +/// registers.
->>> +pub(crate) trait FalconHal<E: FalconEngine>: Sync {
->>> +    // Activates the Falcon core if the engine is a risvc/falcon dual engine.
->>> +    fn select_core(&self, _bar: &Devres<Bar0>, _timer: &Timer) -> Result<()> {
->>> +        Ok(())
->>> +    }
->>> +
->>> +    fn get_signature_reg_fuse_version(
->>> +        &self,
->>> +        bar: &Devres<Bar0>,
->>> +        engine_id_mask: u16,
->>> +        ucode_id: u8,
->>> +    ) -> Result<u32>;
->>> +
->>> +    // Program the BROM registers prior to starting a secure firmware.
->>> +    fn program_brom(&self, bar: &Devres<Bar0>, params: &FalconBromParams) -> Result<()>;
->>> +}
->>> +
->>> +/// Returns a boxed falcon HAL adequate for the passed `chipset`.
->>> +///
->>> +/// We use this function and a heap-allocated trait object instead of statically defined trait
->>> +/// objects because of the two-dimensional (Chipset, Engine) lookup required to return the
->>> +/// requested HAL.
->>
->> Do we really need the dynamic dispatch? AFAICS, there's only E::BASE that is
->> relevant to FalconHal impls?
->>
->> Can't we do something like I do in the following example [1]?
->>
->> ```
->> use std::marker::PhantomData;
->> use std::ops::Deref;
->>
->> trait Engine {
->>     const BASE: u32;
->> }
->>
->> trait Hal<E: Engine> {
->>     fn access(&self);
->> }
->>
->> struct Gsp;
->>
->> impl Engine for Gsp {
->>     const BASE: u32 = 0x1;
->> }
->>
->> struct Sec2;
->>
->> impl Engine for Sec2 {
->>     const BASE: u32 = 0x2;
->> }
->>
->> struct GA100<E: Engine>(PhantomData<E>);
->>
->> impl<E: Engine> Hal<E> for GA100<E> {
->>     fn access(&self) {
->>         println!("Base: {}", E::BASE);
->>     }
->> }
->>
->> impl<E: Engine> GA100<E> {
->>     fn new() -> Self {
->>         Self(PhantomData)
->>     }
->> }
->>
->> //struct Falcon<E: Engine>(GA100<E>);
->>
->> struct Falcon<H: Hal<E>, E: Engine>(H, PhantomData<E>);
->>
->> impl<H: Hal<E>, E: Engine> Falcon<H, E> {
->>     fn new(hal: H) -> Self {
->>         Self(hal, PhantomData)
->>     }
->> }
->>
->> impl<H: Hal<E>, E: Engine> Deref for Falcon<H, E> {
->>     type Target = H;
->>
->>     fn deref(&self) -> &Self::Target {
->>         &self.0
->>     }
->> }
->>
->> fn main() {
->>     let gsp = Falcon::new(GA100::<Gsp>::new());
->>     let sec2 = Falcon::new(GA100::<Sec2>::new());
->>
->>     gsp.access();
->>     sec2.access();
->> }
->> ```
->>
->> [1] https://play.rust-lang.org/?version=stable&mode=debug&edition=2024&gist=bf7035a07e79a4047fb6834eac03a9f2
-> 
-> So are you have noticed there are two dimensions from which the falcons
-> can be instantiated:
-> 
-> - The engine, which determines its register BASE,
-> - The HAL, which is determined by the chipset.
-> 
-> For the engine, I want to keep things static for the main reason that if
-> BASE was dynamic, we would have to do all our IO using
-> try_read()/try_write() and check for an out-of-bounds error at each
-> register access. The cost of monomorphization is limited as there are
-> only a handful of engines.
-> 
-> But the HAL introduces a second dimension to this, and if we support N
-> engines then the amount of monomorphized code would then increase by N
-> for each new HAL we add. Chipsets are released at a good cadence, so
-> this is the dimension that risks growing the most.
-> 
-> It is also the one that makes use of methods to abstract things (vs.
-> fixed parameters), so it is a natural candidate for using virtual
-> methods. I am not a fan of having ever-growing boilerplate match
-> statements for each method that needs to be abstracted, especially since
-> this is that virtual methods do without requiring extra code, and for a
-> runtime penalty that is completely negligible in our context and IMHO
-> completely balanced by the smaller binary size that results from their
-> use.
-Adding to what Alex said, note that the runtime cost is still there even without
-using dyn. Because at runtime, the match conditionals need to route function
-calls to the right place. I am just not seeing the benefits of not using dyn for
-this use case and only drawbacks. IMHO, we should try to not be doing the
-compiler's job.
+Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+---
+ drivers/gpu/nova-core/bitfield.rs    | 71 +++++++++++++++++-----------
+ drivers/gpu/nova-core/regs/macros.rs | 16 +++----
+ 2 files changed, 52 insertions(+), 35 deletions(-)
 
-Maybe the only benefit is you don't need an Arc or Kbox wrapper?
-
- - Joel
+diff --git a/drivers/gpu/nova-core/bitfield.rs b/drivers/gpu/nova-core/bitfield.rs
+index ba6b7caa05d9..687ef234be75 100644
+--- a/drivers/gpu/nova-core/bitfield.rs
++++ b/drivers/gpu/nova-core/bitfield.rs
+@@ -51,7 +51,7 @@
+ //! }
+ //!
+ //! bitfield! {
+-//!     struct ControlReg {
++//!     struct ControlReg: u32 {
+ //!         3:0       mode        as u8 ?=> Mode;
+ //!         7         state       as bool => State;
+ //!     }
+@@ -61,6 +61,8 @@
+ //! This generates a struct with:
+ //! - Field accessors: `mode()`, `state()`, etc.
+ //! - Field setters: `set_mode()`, `set_state()`, etc. (supports chaining with builder pattern).
++//!   Note that the compiler will error out if the size of the setter's arg exceeds the
++//!   struct's storage size.
+ //! - Debug and Default implementations
+ //!
+ //! The field setters can be used with the builder pattern, example:
+@@ -77,21 +79,21 @@
+ //!
+ macro_rules! bitfield {
+     // Main entry point - defines the bitfield struct with fields
+-    (struct $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
+-        bitfield!(@core $name $(, $comment)? { $($fields)* });
++    (struct $name:ident : $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
++        bitfield!(@core $name $storage $(, $comment)? { $($fields)* });
+     };
+ 
+     // All rules below are helpers.
+ 
+     // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`,
+     // `Default`, `BitOr`, and conversion to the value type) and field accessor methods.
+-    (@core $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
++    (@core $name:ident $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
+         $(
+         #[doc=$comment]
+         )?
+         #[repr(transparent)]
+         #[derive(Clone, Copy)]
+-        pub(crate) struct $name(u32);
++        pub(crate) struct $name($storage);
+ 
+         impl ::core::ops::BitOr for $name {
+             type Output = Self;
+@@ -101,20 +103,26 @@ fn bitor(self, rhs: Self) -> Self::Output {
+             }
+         }
+ 
+-        impl ::core::convert::From<$name> for u32 {
+-            fn from(val: $name) -> u32 {
++        impl ::core::convert::From<$name> for $storage {
++            fn from(val: $name) -> $storage {
+                 val.0
+             }
+         }
+ 
+-        bitfield!(@fields_dispatcher $name { $($fields)* });
++        impl ::core::convert::From<$storage> for $name {
++            fn from(val: $storage) -> Self {
++                Self(val)
++            }
++        }
++
++        bitfield!(@fields_dispatcher $name $storage { $($fields)* });
+     };
+ 
+     // Captures the fields and passes them to all the implementers that require field information.
+     //
+     // Used to simplify the matching rules for implementers, so they don't need to match the entire
+     // complex fields rule even though they only make use of part of it.
+-    (@fields_dispatcher $name:ident {
++    (@fields_dispatcher $name:ident $storage:ty {
+         $($hi:tt:$lo:tt $field:ident as $type:tt
+             $(?=> $try_into_type:ty)?
+             $(=> $into_type:ty)?
+@@ -123,7 +131,7 @@ fn from(val: $name) -> u32 {
+         )*
+     }
+     ) => {
+-        bitfield!(@field_accessors $name {
++        bitfield!(@field_accessors $name $storage {
+             $(
+                 $hi:$lo $field as $type
+                 $(?=> $try_into_type)?
+@@ -138,7 +146,7 @@ fn from(val: $name) -> u32 {
+ 
+     // Defines all the field getter/setter methods for `$name`.
+     (
+-        @field_accessors $name:ident {
++        @field_accessors $name:ident $storage:ty {
+         $($hi:tt:$lo:tt $field:ident as $type:tt
+             $(?=> $try_into_type:ty)?
+             $(=> $into_type:ty)?
+@@ -154,7 +162,7 @@ fn from(val: $name) -> u32 {
+         #[allow(dead_code)]
+         impl $name {
+             $(
+-            bitfield!(@field_accessor $name $hi:$lo $field as $type
++            bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type
+                 $(?=> $try_into_type)?
+                 $(=> $into_type)?
+                 $(, $comment)?
+@@ -188,11 +196,11 @@ impl $name {
+ 
+     // Catches fields defined as `bool` and convert them into a boolean value.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+         bitfield!(
+-            @leaf_accessor $name $hi:$lo $field
++            @leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$into_type>::from(if f != 0 { true } else { false }) }
+             $into_type => $into_type $(, $comment)?;
+         );
+@@ -200,17 +208,17 @@ impl $name {
+ 
+     // Shortcut for fields defined as `bool` without the `=>` syntax.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@field_accessor $name $hi:$lo $field as bool => bool $(, $comment)?;);
++        bitfield!(@field_accessor $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
+     };
+ 
+     // Catches the `?=>` syntax for non-boolean fields.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@leaf_accessor $name $hi:$lo $field
++        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$try_into_type>::try_from(f as $type) } $try_into_type =>
+             ::core::result::Result<
+                 $try_into_type,
+@@ -221,29 +229,38 @@ impl $name {
+ 
+     // Catches the `=>` syntax for non-boolean fields.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@leaf_accessor $name $hi:$lo $field
++        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$into_type>::from(f as $type) } $into_type => $into_type $(, $comment)?;);
+     };
+ 
+     // Shortcut for non-boolean fields defined without the `=>` or `?=>` syntax.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@field_accessor $name $hi:$lo $field as $type => $type $(, $comment)?;);
++        bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
+     };
+ 
+     // Generates the accessor methods for a single field.
+     (
+-        @leaf_accessor $name:ident $hi:tt:$lo:tt $field:ident
++        @leaf_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident
+             { $process:expr } $to_type:ty => $res_type:ty $(, $comment:literal)?;
+     ) => {
+         ::kernel::macros::paste!(
+         const [<$field:upper _RANGE>]: ::core::ops::RangeInclusive<u8> = $lo..=$hi;
+-        const [<$field:upper _MASK>]: u32 = ((((1 << $hi) - 1) << 1) + 1) - ((1 << $lo) - 1);
++        const [<$field:upper _MASK>]: $storage = {
++            // Generate mask for shifting
++            match ::core::mem::size_of::<$storage>() {
++                1 => ::kernel::bits::genmask_u8($lo..=$hi) as $storage,
++                2 => ::kernel::bits::genmask_u16($lo..=$hi) as $storage,
++                4 => ::kernel::bits::genmask_u32($lo..=$hi) as $storage,
++                8 => ::kernel::bits::genmask_u64($lo..=$hi) as $storage,
++                _ => ::kernel::build_error!("Unsupported storage type size")
++            }
++        };
+         const [<$field:upper _SHIFT>]: u32 = Self::[<$field:upper _MASK>].trailing_zeros();
+         );
+ 
+@@ -254,7 +271,7 @@ impl $name {
+         #[inline(always)]
+         pub(crate) fn $field(self) -> $res_type {
+             ::kernel::macros::paste!(
+-            const MASK: u32 = $name::[<$field:upper _MASK>];
++            const MASK: $storage = $name::[<$field:upper _MASK>];
+             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
+             );
+             let field = ((self.0 & MASK) >> SHIFT);
+@@ -269,9 +286,9 @@ pub(crate) fn $field(self) -> $res_type {
+         )?
+         #[inline(always)]
+         pub(crate) fn [<set_ $field>](mut self, value: $to_type) -> Self {
+-            const MASK: u32 = $name::[<$field:upper _MASK>];
++            const MASK: $storage = $name::[<$field:upper _MASK>];
+             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
+-            let value = (u32::from(value) << SHIFT) & MASK;
++            let value = (<$storage>::from(value) << SHIFT) & MASK;
+             self.0 = (self.0 & !MASK) | value;
+ 
+             self
+diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
+index 945d15a2c529..d34c7f37fb93 100644
+--- a/drivers/gpu/nova-core/regs/macros.rs
++++ b/drivers/gpu/nova-core/regs/macros.rs
+@@ -276,25 +276,25 @@ pub(crate) trait RegisterBase<T> {
+ macro_rules! register {
+     // Creates a register at a fixed offset of the MMIO space.
+     ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $offset);
+     };
+ 
+     // Creates an alias register of fixed offset register `alias` with its own fields.
+     ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $alias::OFFSET);
+     };
+ 
+     // Creates a register at a relative offset from a base address provider.
+     ($name:ident @ $base:ty [ $offset:literal ] $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $offset ]);
+     };
+ 
+     // Creates an alias register of relative offset register `alias` with its own fields.
+     ($name:ident => $base:ty [ $alias:ident ] $(, $comment:literal)? { $($fields:tt)* }) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $alias::OFFSET ]);
+     };
+ 
+@@ -305,7 +305,7 @@ macro_rules! register {
+         }
+     ) => {
+         static_assert!(::core::mem::size_of::<u32>() <= $stride);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_array $name @ $offset [ $size ; $stride ]);
+     };
+ 
+@@ -326,7 +326,7 @@ macro_rules! register {
+             $(, $comment:literal)? { $($fields:tt)* }
+     ) => {
+         static_assert!(::core::mem::size_of::<u32>() <= $stride);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_relative_array $name @ $base [ $offset [ $size ; $stride ] ]);
+     };
+ 
+@@ -348,7 +348,7 @@ macro_rules! register {
+         }
+     ) => {
+         static_assert!($idx < $alias::SIZE);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $alias::OFFSET + $idx * $alias::STRIDE ] );
+     };
+ 
+@@ -357,7 +357,7 @@ macro_rules! register {
+     // to avoid it being interpreted in place of the relative register array alias rule.
+     ($name:ident => $alias:ident [ $idx:expr ] $(, $comment:literal)? { $($fields:tt)* }) => {
+         static_assert!($idx < $alias::SIZE);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name: u32 $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $alias::OFFSET + $idx * $alias::STRIDE );
+     };
+ 
+-- 
+2.34.1
 
