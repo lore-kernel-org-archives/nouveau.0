@@ -4,75 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBEC8D5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 931D3D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E90C310EC92;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6E0D10ECA0;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lgpf/c2+";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="NodQgKxP";
 	dkim-atps=neutral
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
- [209.85.210.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC2A10E9DB
- for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 09:33:23 +0000 (UTC)
-Received: by mail-pf1-f173.google.com with SMTP id
- d2e1a72fcca58-7399a2dc13fso2141346b3a.2
- for <nouveau@lists.freedesktop.org>; Fri, 11 Jul 2025 02:33:23 -0700 (PDT)
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
+ [209.85.214.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E6510E06B
+ for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 09:59:19 +0000 (UTC)
+Received: by mail-pl1-f177.google.com with SMTP id
+ d9443c01a7336-26808b24a00so6384775ad.1
+ for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 02:59:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752226402; x=1752831202; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1758448758; x=1759053558; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=h5iCt+AL9f4UNEya1UkmziIpzAIFx+Cs0OtkGEYlA34=;
- b=lgpf/c2+BmF0nN2mFbvpAyOGkdjhfpFG59XNSTsKLhgjsUnNV17AWudkbcqBIZECrO
- ncOx99JvJ24v3mvBC9b1N93E78m1cb6sZPF3USP5ww3PcQRSy7WvBp9HDa40YhMy/Xmd
- b9RGY+FmLaf5jm+9gX21ti1NMPkyWNC/7Ggfoz9ijOxMfqEL6MPcbdZKOzsYhvscyqYD
- OLGrzR/rQtBY8sx7IZYETPOH7tR+MVDwfjKSHO4AHaXiOp5wvUBI6oZe5jlpcVncBE5C
- L2hOmmGpnYVTBIbQVktXidGR/jI23YzjHuHnGSbDsPhBIBmnEflKwrYGpxzALEW09Ty3
- ES0w==
+ bh=EWKmsQdl2jsGwScL3RcU3RgGD8V6ji7p/wbvV6vfnGU=;
+ b=NodQgKxP8s4XG85Z5nuFoQN9gso1SpDNaz8Is0GPlUW/l2O6C7EiESA1ztWqLKYeNU
+ w/MpknwFRo1enhNgvrUDRJkEwXu9Gkll5ZLHWyiObklmwbxVOVbzRDOjLMdoZn5Qgwb/
+ G3afBuZDJPoTjLbN1IjXyqXNVfgjJjxttdXo4AiGvqen/nV/tyQdzcwT3yd3rPw40G87
+ NqaN+9AxpvGwh8MdAJaHQ8MjzqqeOblJtq9tZMA2cgr72xVVlHw1gUK8/hpdgP7bng0m
+ 2cxDWBxtBZyV4tN0YsQDYF/ZirLFqBU++hVOcbAzHwfprs2KiMzLM/T2WekZq4IQeekF
+ Y4Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752226402; x=1752831202;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1758448758; x=1759053558;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=h5iCt+AL9f4UNEya1UkmziIpzAIFx+Cs0OtkGEYlA34=;
- b=DB+mVWP8cuWX9UVAve7j+xQtEl3jIrUpKGANkBMAW5ZcLmPYMA/28NnIzhQmWNvQqo
- +kQHipfMpGM8U2/Sim9lXjMPPVPKEix0X7mADMzvNvJBlTeoPF/J2fgksWbPOCLN6TIf
- 1CK82T8NnSLoBmu40Ft49iFmKBc6lUjCWMWuuvX4KDbxmv5/XCbLXs3Ikzrm/84ozpG8
- vykqvXM6R58tVp1VduPLiS9jGm++pfwPjOSZlvRoqCT0Qzy4P1K9xLt0EdqMnLRUhrjp
- JOg7AOH4ldEGKrytX+0dHa+WPuhSah9jidJybi6o5wqrvoSQZBQq/Ubd3cIjX0h5bbbe
- HQIQ==
-X-Gm-Message-State: AOJu0Yw5OanTkRbQEHKuNFjv5lKNCOZh5ukFDzgY5W4cbN7Cpe8PdorV
- Fzlg5qX2nqJbh9TDpS31uqeU30FQj7h0kFv5ZDGSFNdOTIKwR+A1W5gT
-X-Gm-Gg: ASbGncsI7fSGogclRsggo+lJki3jyPM0UV4KXO2HektH0Vt+0A7qCMJTvW+QldTjT+j
- ZW5wC6m8B3tvxcfJV0r027FjnqAg+VMdaQRc8Y5QTPU2+F6u2GESDy8XYhwsFU6gfIVXFVQ+1ft
- u1VDTR86WL6jPmRAFy0EpAbtUtOCkIPURTjK692LMFUS24EfO6OPua8XbGrEXyAfFNHUa3SO6bl
- UGMIE+2/zsmNPA/bYOgulnKOgSup5VYCAeBi91MJUzPdWChMKNiQmAkQ+Ci7RpWhy1g0VVXRFfy
- dEM89y4fpyvPs0HXIhvCOzQert6LsmVYui0Hh1J/gtvG3961L1sPScE2IReZCxh8ENVKhQj2MNW
- dklbJl5AwokFo4oAtuxC0Yd3wIehIi/H3jV4=
-X-Google-Smtp-Source: AGHT+IH3B/iJUKxoaQt0Ls6NL/GvCauufAHie/v74wXh4JpTVt8aHREkaECXuuJho7MHYZSPgFJwdQ==
-X-Received: by 2002:a05:6a20:9c99:b0:20b:a75e:fa32 with SMTP id
- adf61e73a8af0-2311fa06643mr5181002637.40.1752226402536; 
- Fri, 11 Jul 2025 02:33:22 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-b3bbe6bc84asm4557889a12.44.2025.07.11.02.33.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 11 Jul 2025 02:33:22 -0700 (PDT)
-From: Quaternions <krakow20@gmail.com>
-To: dakr@kernel.org
-Cc: nouveau@lists.freedesktop.org,
-	Quaternions <krakow20@gmail.com>
-Subject: [PATCH] gpu: nova-core: define named constants for magic numbers
-Date: Fri, 11 Jul 2025 02:30:15 -0700
-Message-ID: <20250711093015.28785-2-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250711093015.28785-1-krakow20@gmail.com>
-References: <20250711093015.28785-1-krakow20@gmail.com>
+ bh=EWKmsQdl2jsGwScL3RcU3RgGD8V6ji7p/wbvV6vfnGU=;
+ b=QYq6njz/tsc+uFzOvi2R9gvjmdbiHCCXiYuXgNKOD2v/mThArRQQKReU2djfenkRu4
+ vH4NEbhP8acaUwQm0RHfN7WJjo/tA3totoz2fP684PmTdB71h3srBAGcfVZ6x456PXvF
+ u36Ft3K22bbBmQzyTeDLchZZRvx5Kr54cIO9HrntvT/i885XPJN8bAglI5BLXq+FDdK7
+ 6HDzZRCs3VShGBDWJGTwINLXc07bhj2B2vK7VOuvt964xhXJ6F7BPOMYYRFdI5H/fIQh
+ JWWsQGZs5pzf0XMVW3XAnxbXXURwqn8gLFSQBIX28m1PEQrFbc3/RIuDMom1iWGLPXzE
+ aFqQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCULvttliorRf0XB3t4nsWbeWR2V2h75kdreEj/yvXy/KUazrzkV4BN0Tb0qFKhw7RZQ3T3HycL8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwlZvK33/ejbgOxHvJUfL+BCOp2FTrwDMZ/cIrCoRti24AbVBKB
+ QXrj/CLKW34241om8WptkeNKtlJQQ4faTofDNd9NdPAcRNBrTTTuaz9/TmX5q7CGdtAiMs3dQiE
+ 1nfJzqX5d30Pv+eV57agh5aFNO6o38oI=
+X-Gm-Gg: ASbGncvbStYN4e8buGxRlOpDhbyEkVxVCMvvyRBOMBKp07vT/BsKPJPItKslbMkvymi
+ F0Amrxms8Ree6Db/qIHNu4aWkv6f+vOUBvHmZdUeWZKkLdiuGJl9Z56TKQFdkaO6neVZvpKWaT5
+ 7CqmE79lXl2uslb4KpFzx51XnneFpDXp7PeWy9Y9ikjFT9lG9UXU7xnoCgVsAWasFZn4e5cXk8W
+ KkSD+pH+pGC0ZdRsYY9YtcWSLEoJNCAx8fg1I1Uwdm4wpfP1wwlNCqQEZVWmib3LPiFoEcidgR8
+ WXAZ5O6/omwo+vvY7QcPeDkMF/IDe5gZd9dS
+X-Google-Smtp-Source: AGHT+IE/M5n7k5EV9oBMoTKSdZYNJ8k/u28SAzpBTSTXvI/1sciYsCvywr3oY6EDALdphOvsgrpqPOmhVakNTvvKCsI=
+X-Received: by 2002:a17:903:110c:b0:266:914a:2e7a with SMTP id
+ d9443c01a7336-269ba50450bmr70599375ad.6.1758448758376; Sun, 21 Sep 2025
+ 02:59:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+ <20250920182232.2095101-2-joelagnelf@nvidia.com>
+ <2025092157-pauper-snap-aad1@gregkh>
+In-Reply-To: <2025092157-pauper-snap-aad1@gregkh>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sun, 21 Sep 2025 11:59:05 +0200
+X-Gm-Features: AS18NWAX2coIcjtRAeKTjf4CFDI4YK6EYgm8hWO5NK1pOl2WGGAfjpcS8VVdy_0
+Message-ID: <CANiq72mk1-Ew11RB0kfep5BtB8M_5H6o_Rb2MwamrZd-FmzFWA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] nova-core: bitfield: Move bitfield-specific code
+ from register! into new macro
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,72 +103,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
----
- drivers/gpu/nova-core/vbios.rs | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+On Sun, Sep 21, 2025 at 11:36=E2=80=AFAM Greg KH <gregkh@linuxfoundation.or=
+g> wrote:
+>
+> And where does this allow us to define things like BIT(2) for values?
+> (ok, that's kind of not the point of this patch series, but it will come
+> up over time...)
 
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 5b5d9f38cbb3..d456c494374d 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -364,8 +364,9 @@ struct BitHeader {
- }
- 
- impl BitHeader {
-+    const MIN_LEN: usize = 12;
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 12 {
-+        if data.len() < Self::MIN_LEN {
-             return Err(EINVAL);
-         }
- 
-@@ -467,8 +468,9 @@ struct PciRomHeader {
- }
- 
- impl PciRomHeader {
-+    const MIN_LEN: usize = 26;
-     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
--        if data.len() < 26 {
-+        if data.len() < Self::MIN_LEN {
-             // Need at least 26 bytes to read pciDataStrucPtr and sizeOfBlock.
-             return Err(EINVAL);
-         }
-@@ -772,10 +774,11 @@ fn into_image(self) -> Result<BiosImage> {
-         BiosImage::try_from(self)
-     }
- 
-+    const MIN_LEN: usize = 26;
-     /// Creates a new BiosImageBase from raw byte data.
-     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
-         // Ensure we have enough data for the ROM header.
--        if data.len() < 26 {
-+        if data.len() < Self::MIN_LEN {
-             dev_err!(pdev.as_ref(), "Not enough data for ROM header\n");
-             return Err(EINVAL);
-         }
-@@ -900,8 +903,9 @@ struct PmuLookupTableEntry {
- }
- 
- impl PmuLookupTableEntry {
-+    const MIN_LEN: usize = 6;
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 6 {
-+        if data.len() < Self::MIN_LEN {
-             return Err(EINVAL);
-         }
- 
-@@ -928,8 +932,9 @@ struct PmuLookupTable {
- }
- 
- impl PmuLookupTable {
-+    const MIN_LEN: usize = 4;
-     fn new(pdev: &pci::Device, data: &[u8]) -> Result<Self> {
--        if data.len() < 4 {
-+        if data.len() < Self::MIN_LEN {
-             return Err(EINVAL);
-         }
- 
--- 
-2.50.1
+We have the `bits` module since 6.17:
 
+    https://rust.docs.kernel.org/kernel/bits/index.html
+
+(Or do you mean something else?)
+
+Cheers,
+Miguel
