@@ -4,81 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92EBBD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C9AFD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B98310EB94;
-	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D5B5B10EB72;
+	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="J8xYCmvB";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bwmjthrt";
 	dkim-atps=neutral
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com
- [209.85.215.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B43DC10E086;
- Sun,  6 Jul 2025 13:42:26 +0000 (UTC)
-Received: by mail-pg1-f178.google.com with SMTP id
- 41be03b00d2f7-b31c8eed8f2so82469a12.3; 
- Sun, 06 Jul 2025 06:42:26 -0700 (PDT)
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
+ [209.85.216.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26E7910E03D
+ for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 11:42:09 +0000 (UTC)
+Received: by mail-pj1-f46.google.com with SMTP id
+ 98e67ed59e1d1-3307e8979f2so983527a91.2
+ for <nouveau@lists.freedesktop.org>; Sun, 21 Sep 2025 04:42:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751809346; x=1752414146; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758454928; x=1759059728; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=x9p/OUC5tbbC2lQw5VTLyJND4KlM7wvMWqPSiwnuyFw=;
- b=J8xYCmvBeDrIsyeYrfRzJlUJ4eG3b2cfo1lNG06EYKLl3Vl20lH4DCrJmY1gvAiqwh
- kQfzY6OSJE1hkWTBHkyoGOQoXI1f4077pd0j9h5F5EHhdArMGd9Golzfokb6oFwiucgs
- hG8Ms0RNBWUcW05WBwm9YKCxKFSjD7kCDKtiMEHQQtU45i8OhaabpIPT2qzaib735Qsr
- Df7dtqccI2DOxbrhAHLYfdaGKj7ixRx7TTNXPdlsTFJ1wMrKXQAwqeqr7VS5g04nioS9
- eSn1dudr9YiAHrmszW9Lx8FO2MKqL34zxpTSzgk8B7qWUti8EAsiZ0VRnO/gVIJbmSxL
- Q6tw==
+ bh=K916KUx2pRc33+DQRqSv33PWW4YfoGyNBVmdt55/SZs=;
+ b=bwmjthrtidLvmDxNnuHHFxe/SZ8vjugVfbHNo65Y8hplPrTkqXvc/Ohm8tl2eRwPsr
+ 8zKe0Y7O8u1FwNy0ktZLGGN1wiTcRi2xpPdIqrLR5k0xa50WrgJql6psZv48LDI55xN9
+ MXk50in5qUcULwulchrAV1kJron30GbKJLFEdama+pfvTWtplOQdEavPIUDZnwsUhLLE
+ aHVtVKMKLV+4mPyLCNn2aMis/dARwaCqGL6NX601gsw5eOw9U2KNAPTlrEA0kGVfFwbX
+ dfbT3wqT/eNox0fzN6l9Ue8T6zQqJ5kI8WPk5RW0w2fBrKzPKvTix1iKffEkp6uVN8ax
+ iFvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751809346; x=1752414146;
+ d=1e100.net; s=20230601; t=1758454928; x=1759059728;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=x9p/OUC5tbbC2lQw5VTLyJND4KlM7wvMWqPSiwnuyFw=;
- b=ut9lmTpFjGyhOMjK0iNa72dYJD4jW/FQ6xq612X0CIHK2SpoTD38T8ufthfnm5mYsU
- LDBjJEbMBPiPs3q04TO5KHf8rrgT9ZvXWToPENvT+dm7PRnHX9N+9e+uDQ/KGE+/p4pD
- 7N8OjqL2cC3H3HrKTGIF3HT4x0ZP8AB47Snv471QEAVKKNzqG4FHRXXxUofzl/apSqEH
- cRDSwNkCEAp0Y2ZdtA1vRmdj+Ugp7aU/0mAjTu60lfQbTEtdv6Lkb9nIfPT4xD3EdCtJ
- 6KW2SQcYmcig2B8SLFsD+oR68ltzDS9rVsOes0SaHYilS0YWaPFQh2EYSJJPeuKHKv2F
- H/3Q==
+ bh=K916KUx2pRc33+DQRqSv33PWW4YfoGyNBVmdt55/SZs=;
+ b=ij/Py8dX+0GOIUg30OaPL2j8LcBHvaZm3Zm1OS5rTb6BXVqHgu1+5hfwL/VTP8IiOd
+ puD2mcE3hq01mvtu7VJdoN8VhwuSSwlqwZhxicuojSpKXrpBBs8rd7cI6T+nLZ6FIqDT
+ 3vJPij7214NijjtIEECylxbnVQ7tVSFe61M3MukHXG28/pq+QalAxhNq6MafS4iYNESV
+ FbGh7IBqneePvJnGeIRyeks7MVFXkpr2B50fpB5R6RSVxqfTg8Xc6suMe83huEEiRrjb
+ agIhTevWVV9B2lIQtxZHLihzQC4p7/poEGYoDDmcYFwojPtLpkLx4f/lWi88+A1mKt8W
+ /ilg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUhgye0FUfcolEHYLeSDKmjE+hjVsuYWSTd11o0VKgIlkihNzwecHemr6xI0zfJN5pA2lmjmVks/A==@lists.freedesktop.org,
- AJvYcCWJsFxCrWvrayJXvNw+8YL0MDcI3otbxur9qLFT2D7k22SxLPZg1aTy7MKKN8jzUbO5T4WDPQzNkEE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyhYC4XJ4F6lVX32ZzluN7FQDvO7ci5l9+zo+YsIf2EwzzoZM/s
- uS+sbucsja0ioZSBekDRypb+ERj/ysnxXnZC1qFCZ5eGgeNgZT9bWbPXbvwwPjKbsOhZveNCq0E
- MTHYxkrfQ1ZS7kwF1B4MXyK7+nb/Cifk=
-X-Gm-Gg: ASbGncvtkKws5A30t0rkSEsFpdPd6xQOfbAEVpPU/amuzov6trvKf/o83zPOXNqBj3K
- Go+j5mjKYKLSSux28jvRBuej7A4IzarMNWT8lYYd1g7QhrDpeAK1SpgwMrcLOm+KDzBiQeK85Wa
- e//S/Vye2rhZYLQSCoAR/6mmHrG1HtknFfz6avIJMlYz3a
-X-Google-Smtp-Source: AGHT+IEUJFZL2JU8xJSFulzsZPwp7Y5KKKb4k5Vl4oukDhrgiu5ve9lkLrK/mtQ4PMRZ7/XS+4qg94PJ9RHtwPTgAOs=
-X-Received: by 2002:a17:90b:258c:b0:312:1ae9:1537 with SMTP id
- 98e67ed59e1d1-31aaca78f48mr5496701a91.0.1751809346077; Sun, 06 Jul 2025
- 06:42:26 -0700 (PDT)
+ AJvYcCXVGMeTq35bEG6dM22nAG8LTBnlZXI7kDSWWnxCC4mxtQXd33CbqcpU2liRz9xP7sif3DQrAMJP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwqYaFfHhEv+EmMkcXuJufbYLe+k292deePEzYnFwpKEzlQwYXC
+ 7XKE5XHUY7wXuRsWPOD90Zqwy7NuIrlEp8FN2dgwJOfd9L6ea49sWxPzeaPqYP1BnN7J5A4L18w
+ cxBzKK0km+U+xuukOCIcKBQvUAoczJNc=
+X-Gm-Gg: ASbGncu+cMdNx0pQ6+l9t3/kh4fGlb3VUcGi/i33on/rcyz+48klxiLYEd7QLp4Yfz3
+ N88vbIg7PJYoCRxmoiFnhOnEGTnULHYO+CKKXGuubFXW18RGoH/UufWs/FWb4iNF2SHJ+cFvxp+
+ T/rlAAfIv7/zs14Cov4SSBo3nae7kB3eudWFaU1w7VT/Ger8GpVaKKO8AkE5ECr7cwrsysjhwx8
+ zQ0DqAH808vzA8dzXIl2i4g7OkjL0Ap94iYDFZ4wu2F3mv2gipDMXOXZ6wMWXBef3jmY5uerOj3
+ ArZA9mDqtA3YlnKvP2h/vdNF6LX8ymRkT04b
+X-Google-Smtp-Source: AGHT+IFRSGavmihE0jeFmf3/2ErrEQ7lVZdNPzc90R+azLE4QPTS7uO3XKCP8dBGdcZnR+PQiMPrb7CuZa2GRwXI02k=
+X-Received: by 2002:a17:902:da81:b0:258:a3a1:9aa5 with SMTP id
+ d9443c01a7336-269ba26087cmr64556325ad.0.1758454928589; Sun, 21 Sep 2025
+ 04:42:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250702-nova-docs-v3-0-f362260813e2@nvidia.com>
- <20250702-nova-docs-v3-1-f362260813e2@nvidia.com>
-In-Reply-To: <20250702-nova-docs-v3-1-f362260813e2@nvidia.com>
+References: <20250909212039.227221-1-joelagnelf@nvidia.com>
+ <20250909212039.227221-6-joelagnelf@nvidia.com> <aMDq2ln1ivFol_Db@yury>
+ <bbd6c5f8-8ad2-4dac-a3a4-b08de52f187b@nvidia.com> <aMIqGBoNaJ7rUrYQ@yury>
+ <20250916095918.GA1647262@joelbox2> <20250920003916.GA2009525@joelbox2>
+In-Reply-To: <20250920003916.GA2009525@joelbox2>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 6 Jul 2025 15:42:13 +0200
-X-Gm-Features: Ac12FXy1CaP3o3WtkbtVOog3-QiqhLt2Ifo86odUyVkUt2_fgezqFSeaSXeO-AY
-Message-ID: <CANiq72kUoyhbwiTeB3Bwv3X0iGLbiVWeQCBvKshOaNMqkEsUPw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/7] gpu: nova-core: Add code comments related to
- devinit
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
+Date: Sun, 21 Sep 2025 13:41:55 +0200
+X-Gm-Features: AS18NWAEK_G6m5-8BL_C3aor80z6U_cj8cDpyNPkB8wcxKLKwKj_z5k0IO6zsJc
+Message-ID: <CANiq72=uycGrGAVH=8KjVQ3e-P_-B0c=_mUBa1__sh44eiQ3=Q@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] rust: Add KUNIT tests for bitfield
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com, 
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Jonathan Corbet <corbet@lwn.net>,
- nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-doc@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- Joel Fernandes <joelagnelf@nvidia.com>
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,37 +100,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jul 2, 2025 at 1:04=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+On Sat, Sep 20, 2025 at 2:39=E2=80=AFAM Joel Fernandes <joelagnelf@nvidia.c=
 om> wrote:
 >
-> +        // Check that FWSEC has lowered its protection level before read=
-ing the GFW_BOOT status.
+> The C checks use BUILD_BUG_ON, in rust-for-linux we have build_assert but=
+ it
+> is fragile and depends on the value being a constant.
 
-`GFW_BOOT` (another one below), since it is written like that above.
+What do you mean?
 
-> -/* PGC6 */
-> +/*
-> + * PGC6 register space.
-> + *
-> + * `GC6` is a GPU low-power state where VRAM is in self-refresh and the =
-GPU is powered down (except
-> + * for power rails needed to keep self-refresh working and important reg=
-isters and hardware
-> + * blocks).
-> + *
-> + * These scratch registers remain powered on even in a low-power state a=
-nd have a designated group
-> + * number.
-> + */
+`build_assert!` works essentially like `BUILD_BUG_ON`, i.e. after the
+optimizer, and does not depend on the value being a constant.
 
-I noticed the file uses `/*` in a couple files -- could `//` be used
-or there is a reason for it?
-
-(I guess maybe in a different series, since it is already there for
-PMC in mainline. It could be a good first issue.)
-
-The idea is to only use `/*` when `//` cannot be used, e.g. within
-code, so that they have a different purpose.
+You may be thinking of `static_assert!`, which is the compiler-based one.
 
 Cheers,
 Miguel
