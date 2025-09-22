@@ -4,56 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBDF5D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62B00D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BDEF10EA4F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD3610EA58;
 	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="GpcTHbhN";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uat1NaoW";
 	dkim-atps=neutral
-Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50D9610E698
- for <nouveau@lists.freedesktop.org>; Wed, 20 Aug 2025 03:48:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
- s=protonmail3; t=1755661696; x=1755920896;
- bh=qIDOe0QSvA2p3uohZj2DaxRg0Kq5ls/HnNnWTRUdDrE=;
- h=Date:From:To:Cc:Subject:Message-ID:References:In-Reply-To:From:To:
- Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
- b=GpcTHbhNWGLmNYiGuteRHZmUj5G+dd1Oq4feazckGhttqPzBF61QGT1JPM8xnbdqV
- yI7TaX8pdW568cSuRPacdBrmD3AC6m+lFkniTBRjyxdB2oGvwjHBdCAEMGllqxVpTt
- GGTVHGM1GA6nCliN7hNViwLzKZ5etZY2bCJo0lw8IPG7eNHz8WIUFxroz0XqYZX8Tk
- +PhbOXC0Fg9fRlg/jDK6dMpv5ta7Kr3iARTVNVKUcdZoCq0Cq7wC7a0nvGAZk4pPHB
- MfBr4LJicXSUjn7FsAu3B3tm7eYbhy0JJJwJgUsrUwh1B7wcyPC0YiOsy4b/AUNtfV
- zKDH6EGUx+huQ==
-X-Pm-Submission-Id: 4c6C8s63rSz2Sccc
-Date: Wed, 20 Aug 2025 03:48:10 +0000
-From: Elle Rhumsaa <elle@weathered-steel.dev>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, linux-pci@vger.kernel.org,
- rust-for-linux@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/3] rust: pci: provide access to PCI Class, subclass, 
- implementation values
-Message-ID: <aKVFVO3wbzClcLwg@archiso>
-References: <20250818013305.1089446-1-jhubbard@nvidia.com>
- <20250818013305.1089446-2-jhubbard@nvidia.com>
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
+ [209.85.214.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07E4410E1E6
+ for <nouveau@lists.freedesktop.org>; Mon, 22 Sep 2025 21:59:49 +0000 (UTC)
+Received: by mail-pl1-f181.google.com with SMTP id
+ d9443c01a7336-267fa729a63so9357845ad.3
+ for <nouveau@lists.freedesktop.org>; Mon, 22 Sep 2025 14:59:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1758578388; x=1759183188; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=kTVCircg+kesKPnjuiU2zmcPm3Wk8hx0LgVUotPUxPg=;
+ b=Uat1NaoWlUDqP21/wa+Kqj0+//tnYRAHH0CmKGlA+HrhdbRHzQQp7+XgyGTDy1XCEi
+ L88k0lIbTgJkr9pSMJ5riW0xvV+OITxUi9gZ+Sh/ZVO6pGPLJSDCAyCojcPBZTH7rjJi
+ RGkR/vaG1RxVW55USKAzL3UQP+vYtDXPeZSndFWPQB/D2e+p2FiJoeNO5MpVdBdANlVo
+ MIOobk64VHKWE0yKgkU+S6ve/fvSD9neNU+ZASUSJTIofuBjOm8Fo01BNXxVxNUPLt9q
+ hon+Dk6YEnXy5uw57juiYgvNHdmsMBzLohi9ixDleo77ul8yVIPLaAsdkGUwPmFN7CpB
+ KZKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1758578388; x=1759183188;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=kTVCircg+kesKPnjuiU2zmcPm3Wk8hx0LgVUotPUxPg=;
+ b=H35slczpsHuzDmiXlzpEUz+StM6KCHMk7ue/jUZ/chEdEiC3dF/sP08uYZ0Gb+QKSU
+ H5fKAZEnF/6L+8SK3oBRk3MluzljnRlBQEZUGUPgDp4q1EOKxgVQLZxhb63Jvc7+CF/d
+ YOZhfP/tist2/6/K1URk82nWv9hAKvLt28l7xs0fE46qpv2bJQmv4aljYJG32Zga9INp
+ KuK9BFwMXKNhjGYP+ogs23k961sELtu8DakRW/GtJuRlMRBqORREcFxPtaZwroVKc08k
+ 7NPj8xIeBktFzTZc11tHU0D6j3yMiEmeuTNI4hXAFoO/nE2tbEz8Q1+S2tFbZiLbqWLG
+ 7GgQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWQTQc31+EnMvF6R6BMORXoO1uPjRY+7/X/bZFl1iVUSbMOQhUdXlwmIEUkfPQotlIRux7IUVY8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YybPz+HimiCHZdKHiWY3XCN8yegoaIfbZw4fopTgXC/WemwXK4N
+ JPLI74nJ9TtGtw/rtqJiNg/0uh4hN8deCYZnfGzf0w5sZPJ0dFC7g73xSiTSRRFShHP5GoUvn0x
+ vTG16FflyOZBpSpsRoTCbANU8e+Shaiw=
+X-Gm-Gg: ASbGncuwIxP9L1es0sblyQVO396fbC9AmRQopkoQT14/ijw/c8do58+Z+hpFZ57eHG8
+ paAPEFHz24J1XYYX0R0kcgQ52OCsmLQV2tts8myByhM9un9ALFCb2DZRVZI4vSLdXj6T6MLqzPT
+ EteoslO6kkfkhjFXgLTWQAitbM7CW9Fbtww+CeBWelVBCe9Gguod+h74dVJU1VpM56xd2QIp3kU
+ 1LT3svRHkQYHWi3aGVS/C5GYNIvToUFxo7d0Hg2WJaW2iFPzqdVdKh1MktHMQ65zOVpCl9AnHZ5
+ j7utXryLufoIJ+t+Iq8YHizzdA==
+X-Google-Smtp-Source: AGHT+IHO8cJKGFmF6HkfxzDA37dCzzF2eb1sWGALw/BM92tVXUO+gzQ5qLlWsYCyw1t7RNfA8rfVA2phVEot6qjLLv8=
+X-Received: by 2002:a17:902:ec8d:b0:269:67e9:4c20 with SMTP id
+ d9443c01a7336-27cc41d582fmr2476225ad.5.1758578388477; Mon, 22 Sep 2025
+ 14:59:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250818013305.1089446-2-jhubbard@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
+References: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
+In-Reply-To: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 22 Sep 2025 23:59:36 +0200
+X-Gm-Features: AS18NWD8TsrWVNTwE-9v0GFvv0Ifjza16a049-IVfVsrSbDAQ6mxb5XW5HdMIaY
+Message-ID: <CANiq72nP_VwSnFzyM4HKk5GTAwJw+MeX5JXqA-yLBa9JLe9YOQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/2] rust: add `Alignment` type
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,141 +90,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Aug 17, 2025 at 06:33:03PM -0700, John Hubbard wrote:
-> Allow callers to write Class::STORAGE_SCSI instead of
-> bindings::PCI_CLASS_STORAGE_SCSI, for example.
-> 
-> New APIs:
->     Class::STORAGE_SCSI, Class::NETWORK_ETHERNET, etc.
->     Class::from_u32(), as_u32()
->     Class::MASK_FULL, MASK_CLASS_SUBCLASS
->     DeviceId::from_class_and_vendor()
->     Device::class_code_raw(), class_enum()
-> 
-> Cc: Danilo Krummrich <dakr@kernel.org>
-> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
-> ---
->  rust/kernel/pci.rs | 202 +++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 202 insertions(+)
-> 
-> diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-> index 887ee611b553..9caa1d342d52 100644
-> --- a/rust/kernel/pci.rs
-> +++ b/rust/kernel/pci.rs
-> @@ -23,6 +23,179 @@
->  };
->  use kernel::prelude::*;
->  
-> +macro_rules! define_all_pci_classes {
-> +    (
-> +        $($variant:ident = $binding:expr,)+
-> +    ) => {
-> +        /// Converts a PCI class constant to 24-bit format.
-> +        ///
-> +        /// Many device drivers use only the upper 16 bits (base class and subclass), but some
-> +        /// use the full 24 bits. In order to support both cases, store the class code as a 24-bit
-> +        /// value, where 16-bit values are shifted up 8 bits.
-> +        const fn to_24bit_class(val: u32) -> u32 {
-> +            if val > 0xFFFF { val } else { val << 8 }
-> +        }
-> +
-> +        /// PCI device class codes.
-> +        ///
-> +        /// Each entry contains the full 24-bit PCI class code (base class in bits 23-16, subclass
-> +        /// in bits 15-8, programming interface in bits 7-0).
-> +        ///
-> +        #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-> +        #[repr(transparent)]
-> +        pub struct Class(u32);
-> +
-> +        impl Class {
-> +            $(
-> +                #[allow(missing_docs)]
-> +                pub const $variant: Self = Self(to_24bit_class($binding));
-> +            )+
-> +
-> +            /// Match the full class code.
-> +            pub const MASK_FULL: u32 = 0xffffff;
-> +
-> +            /// Match the upper 16 bits of the class code (base class and subclass only).
-> +            pub const MASK_CLASS_SUBCLASS: u32 = 0xffff00;
-> +
-> +            /// Create a `Class` from the raw class code value, or `None` if the value doesn't
-> +            /// match any known class.
-> +            pub fn from_u32(value: u32) -> Option<Self> {
-> +                match value {
-> +                    $(x if x == Self::$variant.0 => Some(Self::$variant),)+
-> +                    _ => None,
-> +                }
-> +            }
-> +
-> +            /// Get the raw 24-bit class code value.
-> +            pub const fn as_u32(self) -> u32 {
-> +                self.0
-> +            }
-> +        }
-> +    };
-> +}
-> +
-> +define_all_pci_classes! {
-> +    NOT_DEFINED                = bindings::PCI_CLASS_NOT_DEFINED,                // 0x000000
-> +
-> +    ...
-> +
-> +    OTHERS                     = bindings::PCI_CLASS_OTHERS,                     // 0xff0000
-> +}
-> +
->  /// An adapter for the registration of PCI drivers.
->  pub struct Adapter<T: Driver>(T);
->  
-> @@ -157,6 +330,23 @@ pub const fn from_class(class: u32, class_mask: u32) -> Self {
->              override_only: 0,
->          })
->      }
-> +
-> +    /// Create a new `pci::DeviceId` from a class number, mask, and specific vendor.
-> +    ///
-> +    /// This is more targeted than [`DeviceId::from_class`]: in addition to matching by Vendor, it
-> +    /// also matches the PCI Class (up to the entire 24 bits, depending on the mask).
-> +    pub const fn from_class_and_vendor(class: Class, class_mask: u32, vendor: u32) -> Self {
-> +        Self(bindings::pci_device_id {
-> +            vendor,
-> +            device: DeviceId::PCI_ANY_ID,
-> +            subvendor: DeviceId::PCI_ANY_ID,
-> +            subdevice: DeviceId::PCI_ANY_ID,
-> +            class: class.as_u32(),
-> +            class_mask,
-> +            driver_data: 0,
-> +            override_only: 0,
-> +        })
-> +    }
->  }
->  
->  // SAFETY: `DeviceId` is a `#[repr(transparent)]` wrapper of `pci_device_id` and does not add
-> @@ -410,6 +600,18 @@ pub fn resource_len(&self, bar: u32) -> Result<bindings::resource_size_t> {
->          // - by its type invariant `self.as_raw` is always a valid pointer to a `struct pci_dev`.
->          Ok(unsafe { bindings::pci_resource_len(self.as_raw(), bar.try_into()?) })
->      }
-> +
-> +    /// Returns the full 24-bit PCI class code as stored in hardware.
-> +    /// This includes base class, subclass, and programming interface.
-> +    pub fn class_code_raw(&self) -> u32 {
-> +        // SAFETY: `self.as_raw` is a valid pointer to a `struct pci_dev`.
-> +        unsafe { (*self.as_raw()).class }
-> +    }
-> +
-> +    /// Returns the PCI class as a `Class` struct, or `None` if the class code is invalid.
-> +    pub fn class_enum(&self) -> Option<Class> {
-> +        Class::from_u32(self.class_code_raw())
-> +    }
->  }
->  
->  impl Device<device::Bound> {
-> -- 
-> 2.50.1
+On Mon, Sep 8, 2025 at 3:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
+>
+> The first patch makes two additions:
+>
+> - Bring an equivalent of the nightly upstream `Alignment` type [1] with
+>   an near-identical public interface,
+> - Add a new `Alignable` extension trait that provides a way to align
+>   values up or down according to an `Alignment`, and implement it on
+>   unsigned integer types.
+>
+> The second patch makes use of these in the Nova driver.
+>
+> [1] https://doc.rust-lang.org/std/ptr/struct.Alignment.html
+>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 
-All of the functions could probably be `#[inline]`ed, though I'm not
-sure how much it affects the `const` functions, since they're already
-evaluated at compile-time.
+Applied to `rust-next` -- thanks everyone!
 
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+    [ Used `build_assert!`, added intra-doc link, `allow`ed
+      `clippy::incompatible_msrv`, added `feature(const_option)`, capitaliz=
+ed
+      safety comment. - Miguel ]
+
+Cheers,
+Miguel
