@@ -4,78 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7240D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F586D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AE1410EB61;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CE7010EB5E;
 	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XkWyyBel";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="RgXGPCiZ";
 	dkim-atps=neutral
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com
- [209.85.166.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6DD610E87E
- for <nouveau@lists.freedesktop.org>; Thu, 26 Jun 2025 14:23:13 +0000 (UTC)
-Received: by mail-il1-f181.google.com with SMTP id
- e9e14a558f8ab-3df2f97258eso8931055ab.0
- for <nouveau@lists.freedesktop.org>; Thu, 26 Jun 2025 07:23:13 -0700 (PDT)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F61D10E73F
+ for <nouveau@lists.freedesktop.org>; Wed, 24 Sep 2025 14:38:18 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-77f3580ab80so3998706b3a.2
+ for <nouveau@lists.freedesktop.org>; Wed, 24 Sep 2025 07:38:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750947793; x=1751552593; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3PmJhzf1sJs2FN8a0RHNKuha/3rAM6VtFHnWa30sHCs=;
- b=XkWyyBel8siJAWPeDXL6+pac7l2SmEqc/+q4gCycahFOhhjXjVn63hlnuBi7eE43n2
- QXY8ReBG0V1HC5eLNVYFJgg61zp1MqiFMKFLQenRujqQ+78knAJUWVAg/VRmvls6ZUd8
- ZFzscVxll/IpcpDuinTwmDOcTQn4+22IkabY03MtqWbQLtsJ+V80k1Wmw58cXwkTBw+g
- 7QrFQRTrxxBaK+YQw7YwoLARzdiu23HK7hhVoRhZGjQ99XKm0AsU03ohwjL5y3mNMdvd
- rvz5Gbd9NHk1tMdCrKVlQy+3xht/571NZxSq4m2ZgKqj/iyPJcVXcVw3EWsno516Grup
- benw==
+ d=gmail.com; s=20230601; t=1758724697; x=1759329497; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Eg4vhWciPFps4M4OUQazNr9EqiFhSJh6FT393Od5Kbo=;
+ b=RgXGPCiZ38K0KNjpFKgGmnIbCMNF9bvp1LaNHwPem1X4eAGhe/3LZirUY8T5Jku7Bm
+ 4EbSt0a8OUTjJbJTPN6Dl08yKKhUU+b5shZaOrbZW0i6kGZHJcgDmw4dl+nfMBp2L3O8
+ zR6u8ZBMtiCjKuVf/UvXhLNYMxM4gzPEkcSKAp8rXoGt6wgKmbJCbIM5RkVvyog2VwyX
+ QS4jpAWDkg250huUWNhYsa2kEUpppP7czq2DvCZYhtQ024+1E8vpDc5W5mxDPwQge3vo
+ 6YioKA+MWTqz0fSxIScegNEVnBSLjwpCpoYFj3tVFgLVry/3kriWjaZmp4YFuczhN1kQ
+ g5vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750947793; x=1751552593;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=3PmJhzf1sJs2FN8a0RHNKuha/3rAM6VtFHnWa30sHCs=;
- b=FreHs4mKFX2ekPIGn7x+cICAqiJwizJnfWkuynL40bkCiTksFaEJsdka7TghPGTZpj
- 1E1yHHF80bEDWnyJuje/GaHLrqIHpYu/bRyO4Mdnj8L2Ovm5Du2Od8uqaVuIxowsk2Kf
- Nr01vwoiVSWTJa192OAHAyzduaT3nmnui3qT1PGfp+8VPqhCQ1IJ+fMNZko1tG5tbYZ5
- tuzV1hGom8SI6DaC9uQgmMmVdYSOpUAjzT1JsqawOqMH9sRsziTSnffLUXhk6IYQcc5M
- nlsiHPPtD3ApDYUF2UzXa3oHYnv4RL95Hx+DiLq9U98g8yvGEWxq52hZn6a6V0Tngpbk
- F5XA==
+ d=1e100.net; s=20230601; t=1758724697; x=1759329497;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Eg4vhWciPFps4M4OUQazNr9EqiFhSJh6FT393Od5Kbo=;
+ b=JkWbANA9yNfxh12m4ac4UERl1xzwmO2AZGXDAPaa34v/TALMNTt67RDtS2qCwTLu5z
+ u5a7qITUG1nnEWvnRoQys9fq0+PxjR9F4HS93pMJ0K5yRkWjUB+TEmlYidlrU+emhurO
+ JdK32PuYWd0oW717qEf4Dz8DmDPRUJdXl7NRJLUy/zHk+1fOlzJXC8Ig/7ISzGPkQZ/N
+ gEMIa/IcOoRKeIvwxOt+XihNutp4SjLObOYgVNREzZgArWdYi/IHzZB3G0o/3LB5QblW
+ nRuiNXEx+8AzR3/r5nRVdv52LyY3vCJxirMVjqTLAVkr1UDl25FANlfn+rgLiq9TgvJY
+ lJWQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWD1xGMun6KrxsJWzpLCTeUX2e9nGSrzJJkBZOq/u/R0TRt3TWCTEM6+RBP4eGq5JpDT1M3c3on@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzAIqZYGWE4AbrTkpBON2PQNsN4yd2XUkDYsqLuyhBPtVxWlC+f
- 9RSsTFYxl6DUDx0sXtmTSMs87MBuYatem0aNR2kY0YYFWT+w8BTgTubelo+IrYCKMeiXR0lcEr1
- IriIYoI2M58zHzU2VL+Mh1z4speOXXiY=
-X-Gm-Gg: ASbGncszWWe3+t6IcQa8gDydEj/cV26Be9Yoi4w/CILINFJDI4qPPCfTjklTQBUuQ8j
- jhWxP2K0qyyQ3zyOMRd0or7+HDVRdfT29BPKb152o+fpCSMxGmnMpbHnXP06xrPYxoGeKOlSc5W
- udOGwcDiQieyImTT8n8ASYcB6tO5uLB2fNfvEAYWQyrXg=
-X-Google-Smtp-Source: AGHT+IF3rE0mC2CPX+Ugvjxi6nBUgivlndxS0obHPchi2LG/zWvKMmmAwuBdqywvKq+VzZiCw1orp74px1+xkgYq9ik=
-X-Received: by 2002:a05:6e02:378c:b0:3dc:8b2c:4bc7 with SMTP id
- e9e14a558f8ab-3df32852952mr95072965ab.1.1750947792809; Thu, 26 Jun 2025
- 07:23:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1750689857.git.y.j3ms.n@gmail.com>
- <DAVO878E49AN.1L5TPHANBBHE6@nvidia.com>
-In-Reply-To: <DAVO878E49AN.1L5TPHANBBHE6@nvidia.com>
-From: Jesung Yang <y.j3ms.n@gmail.com>
-Date: Thu, 26 Jun 2025 23:23:01 +0900
-X-Gm-Features: Ac12FXzfN9fk03al47GYWZapf9guorVxLElMTuSPKfESyeSLvx8gJf-MiJnO3vM
-Message-ID: <CA+tqQ4Ji486i=Gzy5oEsdZLOFDmGHpxT=Wkng2cyZpJ=u14FPA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] rust: add `FromPrimitive` support
-To: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ AJvYcCW1ArHs3a+cHUCS0Q0/84aI5GT0PWtT4kuxz7TJenfZPBmoTmLbPEeMzsCx1t02bH6Xz2hJlF/h@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGNkcjrCQdhjAQNvLLFVXSfTXgPUsvRp3KMU5yl8o1IL8SQa7d
+ J1lwy7T+fiZCfcJKY9vDLcye+wApsYpgXs6+xEovy7fXzJkCcU1XB6fI
+X-Gm-Gg: ASbGncuUQRNeX/rPP0Vs/jlXKbVSinF7hSPWZp+GUoJIl1UynshhAlighqxunM5wHqR
+ f4UhXf2Mr/e9/XHtej4j4VrFqIrvi9WJd3U8j4EhAMoOJjRP9JPf/hTXl3yGjtXZ1KaH7YjX1jN
+ 482cDhdyj8yvc4+r66HVR6Kzko4UaFSdysnJ6vF7rsxu/mQX9fACvgZvm4yDrgLuH2LzFd9t7HD
+ pGQwY/WutSFg1LlymnQ6ZqCw3VFgxP71obDIaLGqGjiplb2jVxj2m+BFKXinZFJtPBYLaumHDwi
+ cJhY92qhY5NDrqkSMFSb+CBXPfCkZ9ujlxk1Fy5DGA+NwQPyn5PqAWJuZq/bg7ZbvAdsDRR9BB3
+ IdzJjNs50wCU+TwHRJMrNFg==
+X-Google-Smtp-Source: AGHT+IENwMEQzhAq/TYA+R4mvEKMicY7gTqR8AJL3WpiI0Dqquz1Gu+IYnL5yycGh6NnH1/2ZJiBVg==
+X-Received: by 2002:a05:6a00:1304:b0:772:5513:ba3b with SMTP id
+ d2e1a72fcca58-780fcddd1famr238921b3a.5.1758724697118; 
+ Wed, 24 Sep 2025 07:38:17 -0700 (PDT)
+Received: from localhost ([216.228.125.130]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-780f9acb5f4sm712020b3a.30.2025.09.24.07.38.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 24 Sep 2025 07:38:16 -0700 (PDT)
+Date: Wed, 24 Sep 2025 10:38:14 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: Danilo Krummrich <dakr@kernel.org>, Benno Lossin <lossin@kernel.org>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, acourbot@nvidia.com,
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
  nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Subject: Re: [PATCH v4 1/6] nova-core: bitfield: Move bitfield-specific code
+ from register! into new macro
+Message-ID: <aNQCVslEIHHSm8f5@yury>
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+ <20250920182232.2095101-2-joelagnelf@nvidia.com>
+ <2025092157-pauper-snap-aad1@gregkh>
+ <DCYHCLM67KRZ.366VS9PDKLYKY@kernel.org>
+ <2025092125-urban-muppet-1c2f@gregkh>
+ <DCYIX8URVIWM.2ZK3GHH3J82XQ@kernel.org>
+ <2025092432-entrust-citizen-0232@gregkh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2025092432-entrust-citizen-0232@gregkh>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,30 +109,225 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Jun 25, 2025 at 11:07=E2=80=AFPM Alexandre Courbot <acourbot@nvidia=
-.com> wrote:
->
-> If you add an associated type, I guess this means the derive macro
-> should have a helper attribute to specify it?
+On Wed, Sep 24, 2025 at 12:52:41PM +0200, Greg KH wrote:
+> On Sun, Sep 21, 2025 at 03:47:55PM +0200, Danilo Krummrich wrote:
+> > On Sun Sep 21, 2025 at 2:45 PM CEST, Greg KH wrote:
+> > > Again, regmap handles this all just fine, why not just make bindings to
+> > > that api here instead?
+> > 
+> > The idea is to use this for the register!() macro, e.g.
+> > 
+> > 	register!(NV_PMC_BOOT_0 @ 0x00000000, "Basic revision information about the GPU" {
+> > 	    28:24   architecture_0 as u8, "Lower bits of the architecture";
+> > 	    23:20   implementation as u8, "Implementation version of the architecture";
+> > 	    8:8     architecture_1 as u8, "MSB of the architecture";
+> > 	    7:4     major_revision as u8, "Major revision of the chip";
+> > 	    3:0     minor_revision as u8, "Minor revision of the chip";
+> > 	});
+> > 
+> > (More examples in [1].)
+> 
+> Wonderful, but I fail to see where the endian-ness of this is set
+> anywhere.  Am I just missing that?  The regmap api enforces this idea,
+> and so the 
+> 
+> > 
+> > This generates a structure with the relevant accessors; we can also implement
+> > additional logic, such as:
+> > 
+> > 	impl NV_PMC_BOOT_0 {
+> > 	    /// Combines `architecture_0` and `architecture_1` to obtain the architecture of the chip.
+> > 	    pub(crate) fn architecture(self) -> Result<Architecture> {
+> > 	        Architecture::try_from(
+> > 	            self.architecture_0() | (self.architecture_1() << Self::ARCHITECTURE_0_RANGE.len()),
+> > 	        )
+> > 	    }
+> > 	
+> > 	    /// Combines `architecture` and `implementation` to obtain a code unique to the chipset.
+> > 	    pub(crate) fn chipset(self) -> Result<Chipset> {
+> > 	        self.architecture()
+> > 	            .map(|arch| {
+> > 	                ((arch as u32) << Self::IMPLEMENTATION_RANGE.len())
+> > 	                    | u32::from(self.implementation())
+> > 	            })
+> > 	            .and_then(Chipset::try_from)
+> > 	    }
+> > 	}
+> > 
+> > This conviniently allows us to read the register with
+> > 
+> > 	let boot0 = regs::NV_PMC_BOOT_0::read(bar);
+> > 
+> > and obtain an instance of the entire Chipset structure with
+> > 
+> > 	let chipset = boot0.chipset()?;
+> > 
+> > or pass it to a constructor that creates a Revision instance
+> > 
+> > 	let rev = Revision::from_boot0(boot0);
+> > 
+> > Analogously it allows us to modify and write registers without having to mess
+> > with error prone shifts, masks and casts, because that code is generated by the
+> > register!() macro. (Of course, unless we have more complicated cases where
+> > multiple fields have to be combined as illustrated above.)
+> > 
+> > Note that bar is of type pci::Bar<BAR0_SIZE> where BAR0_SIZE in our case is
+> > SZ_16M.
+> > 
+> > However, the type required by read() as generated by the register!() macro
+> > actually only requires something that implements an I/O backend, i.e
+> > kernel::io::Io<SIZE>.
+> > 
+> > pci::Bar is a specific implementation of kernel::io::Io.
+> > 
+> > With this we can let the actual I/O backend handle the endianness of the bus.
+> 
+> Ok, great, but right now it's not doing that from what I am seeing when
+> reading the code.  Shouldn't IoMem::new() take that as an argument?
+> 
+> But, that feels odd as our current iomem api in C doesn't care about
+> endian issues at all because it "assumes" that the caller has already
+> handle this properly and all that the caller "wants" is to write/read to
+> some memory chunk and not twiddle bits.
+> 
+> > (Actually, we could even implement an I/O backend that uses regmap.)
+> 
+> That would probably be best to do eventually as most platform drivers
+> use regmap today as it's the sanest api we have at the moment.
+> 
+> > So, I think the register!() stuff is rather orthogonal.
+> 
+> I think it's very relevant as people seem to just be "assuming" that all
+> the world (hardware and cpus) are little-endian, while in reality, they
+> are anything but.  As proof, the code that uses this register!() logic
+> today totally ignores endian issues and just assumes that it is both
+> running on a little-endian system, AND the hardware is little-endian.
+> 
+> As a crazy example, look at the USB host controllers that at runtime,
+> have to be queried to determine what endian they are running on and the
+> kernel drivers have to handle this "on the fly".  Yes, one can argue
+> that the hardware developers who came up with that should be forced to
+> write the drivers as penance for such sins, but in the end, it's us that
+> has to deal with it...
+> 
+> So ignoring it will get us quite a ways forward with controlling sane
+> hardware on sane systems, but when s390 finally realizes they can be
+> writing their drivers in rust, we are going to have to have these
+> conversations again :)
 
-The current implementation tries to detect the enum's representation
-(e.g., `#[repr(u8)]`) and falls back to `isize` if nothing is provided,
-since it's the default [1]. However, when `#[repr(C)]` is used, the
-internal representation is not controlled on the Rust side. To quote
-the reference [2]:
+Hi Greg, all,
 
-For field-less enums, the C representation has the size and
-alignment of the default enum size and alignment for the target
-platform's C ABI.
+Endianess is not the only problem when dealing with registers mapped
+to the memory, right?
 
-Given this, it would definitely help with determinism if users provided
-an explicit attribute. Being explicit also often improves clarity and
-makes the intent more obvious.
+I recall some built-in 12-bit ADCs in 8-bit AVR microcontrollers. That
+required to read 4-bit LO register before 8-bit HI, if you didn't want to
+loose those 4 bits.
 
-[1]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.en=
-um.discriminant.repr-rust
-[2]: https://doc.rust-lang.org/reference/type-layout.html?highlight=3Drepr#=
-r-layout.repr.c.enum
+Bitfields don't address that issue as well. In my understanding, it's
+done on purpose: bitfields encapsulate shifts and masks, and don't
+pretend that they are suitable for direct access to a hardware.
 
-Best regards,
-Jesung
+Notice another rust bitfield project. It tries to account for endianess
+and everything else:
+
+https://docs.rs/bitfield-struct/latest/bitfield_struct/
+
+I didn't ask explicitly, and maybe it's a good time to ask now: Joel,
+Danilo and everyone, have you considered adopting this project in
+kernel?
+
+The bitfield_struct builds everything into the structure:
+
+        use bitfield_struct::bitfield;
+        
+        #[bitfield(u8, order = Msb)]
+        struct MyMsbByte {
+            /// The first field occupies the *most* significant bits
+            #[bits(4)]
+            kind: usize,
+            system: bool,
+            #[bits(2)]
+            level: usize,
+            present: bool
+        }
+        let my_byte_msb = MyMsbByte::new()
+            .with_kind(10)
+            .with_system(false)
+            .with_level(2)
+            .with_present(true);
+        
+        //                          .- kind
+        //                          |    .- system
+        //                          |    | .- level
+        //                          |    | |  .- present
+        assert_eq!(my_byte_msb.0, 0b1010_0_10_1);
+
+Here MSB is not BE. For BE you'd specify:
+
+        #[bitfield(u16, repr = be16, from = be16::from_ne, into = be16::to_ne)]
+        struct MyBeBitfield {
+            #[bits(4)]
+            first_nibble: u8,
+            #[bits(12)]
+            other: u16,
+        }
+
+The "from = be16::from_ne",  is seemingly the same as cpu_to_be32() here.
+
+It looks like bitfield_struct tries to resolve hw access problems
+by outsourcing them to 'from' and 'to' callbacks, and that looks
+similar to what regmap API does (is that correct?).
+
+Greg, Is that what you're asking about?
+
+This is another bitfield crate with the similar approach 
+
+https://crates.io/crates/bitfield
+
+So we're not the first, and we need to discuss what is already done.
+
+As far as I understand, Joel decided to go in the other direction:
+bitfields are always native in terms of endianess and not designed to
+be mapped on registers directly. Which means they don't specify order
+of accesses, number of accesses, access timing, atomicity, alignment,
+cacheability and whatever else I/O related.
+
+I discussed with Joel about the hw register access and he confirmed
+that the idea of his bitfields is to be a simple wrapper around logical
+ops, while the I/O is a matter of 'backbone', which is entirely different
+thing:
+
+        reg = nova_register(addr, be64,
+                                strong_ordered, lo_first, ...)
+        reg.read()
+        bf = reg.bf()
+        val = bf.field1() | MY_FLAG
+        bf.set_field1(val)
+        reg.set_bf()
+        reg.write()
+
+In this design, .read() and .write() are the only accessors to the
+mapped registers memory, they do endianess conversion if needed,
+and everything else.
+
+I'm not an expert in regmaps, but from what I can see, the complexity
+of the backbone I/O might exceed complexity of bitfields themself; and
+what the bitfield_struct (and the other project I've googled) does
+looks like dictating to potentially more complex projects about how
+their API should look.
+
+Because rust has no out-of-the-box bitfields, like C does, I think
+that we should have simple API that resembles C bitfields syntax and
+functionality. Joel mentioned rcu_special, and I can guess there's
+more examples like flags, where people just need a compact data
+structure with a per-bit access capability.  
+
+With that, from bitops perspective I think bitfields are anyways useful
+addition to rust. How the rust code would address I/O problems is a more
+complex and seemingly not immediately related subject.
+
+Does that make sense?
+
+Thanks,
+Yury
