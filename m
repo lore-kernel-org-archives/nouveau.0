@@ -4,105 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 775ECCCD18C
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 037EFCCA472
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81AF210E5AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B2E210E5E5;
 	Mon,  6 Oct 2025 20:57:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="EI57zU2n";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="iCyK85vJ";
 	dkim-atps=neutral
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
- [209.85.208.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7091A10E432;
- Mon, 26 May 2025 22:30:24 +0000 (UTC)
-Received: by mail-lj1-f174.google.com with SMTP id
- 38308e7fff4ca-32a658c4cc4so9001071fa.2; 
- Mon, 26 May 2025 15:30:24 -0700 (PDT)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
+ [209.85.219.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1B8C10E93C
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:54:48 +0000 (UTC)
+Received: by mail-qv1-f49.google.com with SMTP id
+ 6a1803df08f44-78ed682e9d3so7145206d6.0
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:54:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1748298623; x=1748903423; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=DeRtQfopGgqdSMrju5Mssh4B08QuGYql7A9ITbZgjgA=;
- b=EI57zU2nHZQGAjjztBKUPmKIRvtJqRE90nHtI5+wK6QKxhvLyjMyK5cC2fHaZeQvCc
- ccbhlyFHxEt+y9taeJpxpsxF+vQTSxEfZ/o30GlYJOUumNLZcjyiVZkmfBsHemagPevG
- SADb4ljVepREPAns9b38yM32PTbZEyTZAmNuez9KvFgU/yg1RkM/VtDl984AhVgA2y+o
- ouMHkw8R+gxdQAsIWyXBej6vb75eWjiG/cM/FOQcBapjucYJoiA8Uic0/MW5RclS3BDV
- GtAojHMg3uz86s2qGaJqJs7u82i7K1Kv77Wzo+6sXOaFt7nPo8+GDRW82QJ1Bm0NueUZ
- f/mA==
+ d=gmail.com; s=20230601; t=1758808488; x=1759413288; darn=lists.freedesktop.org;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+ :reply-to; bh=BVNYKpGpulAPMt7+7S4cKU51h0g+oImaV0zrihGhT7E=;
+ b=iCyK85vJ8yv3hJ190Kgh5vwrUdLze5zqZug9unjWfyuHpCdUEORSwOVgTMBxr3fl2G
+ PaqsRY49bzM1Dt9Fh+n6BHmeb67IKURRzCUHPwRjTbf3dwtAcWCONpWRKo3Tv+f4ASPI
+ TfEEDDB8cs6yS+tKU8u4lvyJ8ZhEgYvxSgzksftkCPtjIWhzAj8QTEl3d8YqL64G7Ani
+ QXSDJMOQGAYwNexK97viLEnUZyEwZxyBEw6hLSwBInIoCMONy7rdJ2Hdlt/q67AUXiMF
+ By/G6dpHyISBK1WWYtE7Kx9YIgIYxaljTJ7M78ajG78sHSUAq1umUKPra5aIdU3EOQsQ
+ xpbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1748298623; x=1748903423;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1758808488; x=1759413288;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=DeRtQfopGgqdSMrju5Mssh4B08QuGYql7A9ITbZgjgA=;
- b=dQdf4yZqKfN2VDVpF16yQvbopJQXS4ODxyBiQVjnc/Ie386GYiJQdhLhfELqkSZs0y
- tC0+WZEa7+MaEv8upPlqECtefdDMS/oztnreO5tD6SCc40F3RiTAbJBNvYGMGch/Jhf+
- r8grt4+9nEfWIoUxC7VZ1PE6luoAMA/qCg6aeScTDIKuVRPsaObI68QvCeWf7/Iadqu4
- NKnbScpz05HK2vBzL6OynxJwHyeMAraehfkz8gf+vUbOUo2+9mCUsfsn2ljkA3lFRD+V
- hsoyBRRB6VV2aDWmQuY06KAifot1VpoGAbEcFgWmHvuJuYhcC23IJaZUZd4qtrxsPqNG
- tcSQ==
+ bh=BVNYKpGpulAPMt7+7S4cKU51h0g+oImaV0zrihGhT7E=;
+ b=SnOeYuC5YiVScxXMLgNN0t3kO/PINx/A57nElh30f5r8itAW6l9n1+8YX28rc5+zh3
+ O7fmOS4yZrabpZ3VPPu+emrMKYrspJFgbQEzsG5EGo0gzx3MzKNr/wdGDJOPi/chJjeh
+ NCUD1dhUhW29ORXSBv19EQAMbAiHUtzIQxK7roxovyGemoGPyluHeqP+IgzrEn4B8bJb
+ yDj0CoC4+VmFir+CaGpeuKi7kVhCI9U9JlLXh9ZOjf5LEzX03YUS8rjXp4EslG2cg6mg
+ imMKCB6bGRXk0243C78dO/ZfkFZ3l8SABNmTJoAVfxHtJXS4Xc7FUEyzjPvFQXOF7xoX
+ bIlg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVP8b905NiPYMpC1C4WznzxNEApS/zOYoY90n9Kz/X1KjtnQ0LHUO0oxptFUjK5tm9g6DYgGbeui78=@lists.freedesktop.org,
- AJvYcCXldZkp6EPah7159HFA1SiC+7dM3ulxLyWxQGr7Ym/E3fCKCYe6r59RNlEf9MgeWUQxkIZQw2sl8w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzIens3oTKa0/ADJ86pH9rUNdxRSwE6VAQq6RlYa9/bydARFmOa
- 8IeKBuXRbGjQCOFZ33Y55j/2tZ+y23ucq2kZJkKbsf5dp6UKLh4zdKTjsW30CrsnXTI75nI7qBi
- wxKf0sh6CAQrkrq8eA2hpWPgMI/R43Jw=
-X-Gm-Gg: ASbGncsgdoj7NDjHo/00CMHOpfpI7cWnfG8G1+dcoQAByQMq6/KNPlQVmcCQBAv61Xv
- 3yhbDNeQs2WOM8rIU36Ccq5CSyPNMviZ+SofyOmnZADxG4Fl3IEBi3RKUPo/jf8K5hgY2dS6WB9
- ALXdq9eaiOEhe/wW7gV0hxKhvJW6DaNtFgH/hxdmUsHzvi60lqfhtEZK1cN1unVMkPgHg=
-X-Google-Smtp-Source: AGHT+IHobXPM6nV57q0LkxjWMI5y+a9fqFFRAaaAVdT/IiyU5kBtoHLbzkKYgFh6GOZFHTnYbitctcnCYMHIu3rZzy0=
-X-Received: by 2002:a05:651c:1b11:b0:32a:6bef:7587 with SMTP id
- 38308e7fff4ca-32a6bef7741mr3018881fa.20.1748298622556; Mon, 26 May 2025
- 15:30:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250524-cstr-core-v10-0-6412a94d9d75@gmail.com>
- <20250524-cstr-core-v10-4-6412a94d9d75@gmail.com>
- <DA66NJXU86M4.1HU12P6E79JLO@kernel.org>
-In-Reply-To: <DA66NJXU86M4.1HU12P6E79JLO@kernel.org>
+ AJvYcCXvyiI5NxONHFxkWYj4NQP4BvidWvvx21wMP5ikdJUVBHC60zIfftliNyTEAFZa0A9xDwrmUd8p@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwNvaOJzzdE3tJxnAoIQ8r+3DGdjOPccQgHaly1TwwBKm/ojfBl
+ gPlS9l1Fev7pCpBq4VWIX9qN7sDGfeH5LRqRwkI/JljjO6c3vATpboJu
+X-Gm-Gg: ASbGnctqU8z9pQaHKiPzz2ctrnkR2zfYYa91R3MTcoDa8WSQxzWGLBkbj3V+bZj6hJq
+ r/khE63wPic7woY7LVO9ykZ2b/f8rLUhQCaJf6I15My7cIw+Dsd+FRlwgXUWAs4O76bv2BMBjQX
+ tp4lEySWi0c+Syl4TFEIHvYzEQSIICEkpb03Qr+ZnpZA6TDw6ARUzUxWzBJ3lD9Q7QdQOTevJ/w
+ TBS+toTYLGKwKJoj1l+nl8ocn8NnXxRZrrTncUjYlcLx0iTS/ABilzOmQO38nABc4kEFZqtAKOK
+ kYbxuJs90biEJiM8PbcV+YyVrvBbjOegh1IqzcZywrZKmc30aKXjsbEfHPs5VUYLZFQDSWLIP5m
+ 0EzSMR2OSi91aZ1uAYHvigpZScCBRbVJsatXYBH7Rfr06K3dMKredlMgJ/N/F5kjU7e4DW4Ybfv
+ AHWzo1XjXJg0hhktvsn8fSpGBgSzLBxbx5AF2PuPWkxwUnJTAaIEWW7EAq3hAuDWwT4uIL
+X-Google-Smtp-Source: AGHT+IGcSCDHxLWEAv2+tvuTndpWh14kIE0XwxqS1qORz7M/FkaXk4hS2hKSF3fui4XqH/sHYATWuw==
+X-Received: by 2002:a05:6214:c87:b0:77e:443f:dfab with SMTP id
+ 6a1803df08f44-7fc3bf7dbbfmr47922816d6.32.1758808487268; 
+ Thu, 25 Sep 2025 06:54:47 -0700 (PDT)
+Received: from 137.1.168.192.in-addr.arpa
+ ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.54.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 25 Sep 2025 06:54:46 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Mon, 26 May 2025 18:29:46 -0400
-X-Gm-Features: AX0GCFuvvdq9fWPFcsB31U1UA0LVEWVFnDG5B-zpmEiF_aWL5P9UrGYE0gqlG8U
-Message-ID: <CAJ-ks9nd6_iGK+ie-f+F0x4kwpyEGJ-kQiQGt-ffdbVN5S6kOg@mail.gmail.com>
-Subject: Re: [PATCH v10 4/5] rust: replace `kernel::c_str!` with C-Strings
-To: Benno Lossin <lossin@kernel.org>
-Cc: Michal Rostecki <vadorovsky@protonmail.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
+Date: Thu, 25 Sep 2025 09:53:53 -0400
+Subject: [PATCH v2 05/19] rust: configfs: replace `kernel::c_str!` with
+ C-Strings
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250925-core-cstr-cstrings-v2-5-78e0aaace1cd@gmail.com>
+References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- Trevor Gross <tmgross@umich.edu>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Danilo Krummrich <dakr@kernel.org>,
+ Gary Guo <gary@garyguo.net>, 
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Rob Herring <robh@kernel.org>, 
- Saravana Kannan <saravanak@google.com>, Peter Zijlstra <peterz@infradead.org>, 
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Waiman Long <longman@redhat.com>, Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>, 
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
  "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Bjorn Helgaas <bhelgaas@google.com>, 
- Arnd Bergmann <arnd@arndb.de>, Jens Axboe <axboe@kernel.dk>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, llvm@lists.linux.dev, linux-pci@vger.kernel.org, 
- nouveau@lists.freedesktop.org, linux-block@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:14 +0000
+ linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=3197;
+ i=tamird@gmail.com; h=from:subject:message-id;
+ bh=JsC9L09JB7c5Qto+RbQqrQ01xP/c2mn8RT/NxDHSNBk=;
+ b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
+ MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
+ QCiWFaUQLEh7L6qOIxKWop5VB/xMpVQ3YvBt09OraNycfeOEzMuEQ7DscsvKM0CSzPbqArJQKNv
+ 7EXOamgAaLgc=
+X-Developer-Key: i=tamird@gmail.com; a=openssh;
+ fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,49 +134,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, May 26, 2025 at 11:04=E2=80=AFAM Benno Lossin <lossin@kernel.org> w=
-rote:
->
-> On Sat May 24, 2025 at 10:33 PM CEST, Tamir Duberstein wrote:
-> > +macro_rules! c_str_avoid_literals {
->
-> I don't like this name, how about `concat_to_c_str` or
-> `concat_with_nul`?
->
-> This macro also is useful from macros that have a normal string literal,
-> but can't turn it into a `c""` one.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible.
 
-Uh, can you give an example? I'm not attached to the name.
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
+Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+Acked-by: Andreas Hindborg <a.hindborg@kernel.org>
+---
+ rust/kernel/configfs.rs       | 9 +++++----
+ samples/rust/rust_configfs.rs | 5 ++---
+ 2 files changed, 7 insertions(+), 7 deletions(-)
 
->
-> > +    // NB: we could write `($str:lit) =3D> compile_error!("use a C str=
-ing literal instead");` here but
-> > +    // that would trigger when the literal is at the top of several ma=
-cro expansions. That would be
-> > +    // too limiting to macro authors, so we rely on the name as a hint=
- instead.
-> >      ($str:expr) =3D> {{
-> > -        const S: &str =3D concat!($str, "\0");
-> > -        const C: &$crate::str::CStr =3D match $crate::str::CStr::from_=
-bytes_with_nul(S.as_bytes()) {
-> > -            Ok(v) =3D> v,
-> > -            Err(_) =3D> panic!("string contains interior NUL"),
-> > -        };
-> > +        const S: &'static str =3D concat!($str, "\0");
-> > +        const C: &'static $crate::str::CStr =3D
-> > +            match $crate::str::CStr::from_bytes_with_nul(S.as_bytes())=
- {
->
-> Why is this still our CStr?
+diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
+index 9fb5ef825e41..69bb1fb53543 100644
+--- a/rust/kernel/configfs.rs
++++ b/rust/kernel/configfs.rs
+@@ -21,7 +21,6 @@
+ //!
+ //! ```ignore
+ //! use kernel::alloc::flags;
+-//! use kernel::c_str;
+ //! use kernel::configfs_attrs;
+ //! use kernel::configfs;
+ //! use kernel::new_mutex;
+@@ -50,7 +49,7 @@
+ //!
+ //!         try_pin_init!(Self {
+ //!             config <- configfs::Subsystem::new(
+-//!                 c_str!("rust_configfs"), item_type, Configuration::new()
++//!                 c"rust_configfs", item_type, Configuration::new()
+ //!             ),
+ //!         })
+ //!     }
+@@ -66,7 +65,7 @@
+ //! impl Configuration {
+ //!     fn new() -> impl PinInit<Self, Error> {
+ //!         try_pin_init!(Self {
+-//!             message: c_str!("Hello World\n"),
++//!             message: c"Hello World\n",
+ //!             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
+ //!         })
+ //!     }
+@@ -1000,7 +999,9 @@ macro_rules! configfs_attrs {
+                     static [< $data:upper _ $name:upper _ATTR >]:
+                         $crate::configfs::Attribute<$attr, $data, $data> =
+                             unsafe {
+-                                $crate::configfs::Attribute::new(c_str!(::core::stringify!($name)))
++                                $crate::configfs::Attribute::new(
++                                    $crate::c_str!(::core::stringify!($name)),
++                                )
+                             };
+                 )*
+ 
+diff --git a/samples/rust/rust_configfs.rs b/samples/rust/rust_configfs.rs
+index 5005453f874d..ea84c23b784b 100644
+--- a/samples/rust/rust_configfs.rs
++++ b/samples/rust/rust_configfs.rs
+@@ -3,7 +3,6 @@
+ //! Rust configfs sample.
+ 
+ use kernel::alloc::flags;
+-use kernel::c_str;
+ use kernel::configfs;
+ use kernel::configfs_attrs;
+ use kernel::new_mutex;
+@@ -35,7 +34,7 @@ struct Configuration {
+ impl Configuration {
+     fn new() -> impl PinInit<Self, Error> {
+         try_pin_init!(Self {
+-            message: c_str!("Hello World\n"),
++            message: c"Hello World\n",
+             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
+         })
+     }
+@@ -61,7 +60,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
+ 
+         try_pin_init!(Self {
+             config <- configfs::Subsystem::new(
+-                c_str!("rust_configfs"), item_type, Configuration::new()
++                c"rust_configfs", item_type, Configuration::new()
+             ),
+         })
+     }
 
-Good question. I'll just revert all the changes here, I don't need to
-touch this.
+-- 
+2.51.0
 
->
-> > +                Ok(v) =3D> v,
-> > +                Err(err) =3D> {
-> > +                    let _: core::ffi::FromBytesWithNulError =3D err;
->
-> Is this really necessary?
-
-No. Reverted in v11.
