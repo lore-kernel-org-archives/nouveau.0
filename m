@@ -4,103 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEDECCCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBDEDCCD188
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E78F10E676;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 278A110E65F;
 	Mon,  6 Oct 2025 20:58:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WoLwGTDC";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JflZ5DDe";
 	dkim-atps=neutral
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3DD710E0DB;
- Sat, 19 Jul 2025 22:42:09 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-7dfdcded923so358550785a.1; 
- Sat, 19 Jul 2025 15:42:09 -0700 (PDT)
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com
+ [209.85.219.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2AF10E93F
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:13 +0000 (UTC)
+Received: by mail-qv1-f46.google.com with SMTP id
+ 6a1803df08f44-795773ac2a2so7634536d6.1
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752964929; x=1753569729; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808512; x=1759413312; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=zFFgiza+Dl5GdaqwlbzwLTdeCZ/jp+2BcZVRLKHMbXE=;
- b=WoLwGTDC7qFs3BRQNkPHhBJ9jc0iZwmLzrLDXerdpF8gZ5MCAsQya9h/xny6iKFHgX
- eLxA5S4cHCzJcUEYU+GoVS44LMavRrG0M+wdr26UStouc24cR7mEBeaDZYLRKWdhGCGM
- uwkQEVBzr36q9BGFHVNXuo81d5WXtHQoljql8763xbkzaAcu2I6GZaHkLGOmvwIb1i22
- HGlRb9EMxILdK9vJdaYgnt7FgDKEEg2BthXpgYNw4aqIJAwH79WwJJ/eZvldTSVaiIc+
- +p9Vz+13iHfW+i2qow6C85+TzrlRcRCYT4x00F5+z0yUxjnuNbY3bG1+IBhep9tfz/38
- Pykg==
+ :reply-to; bh=U63Q3tKt4yvUc7kEZBTozLak/g9U24aoTdz7wTOUUn8=;
+ b=JflZ5DDea2gZ8ZxceOxpCJYJS1QmT0gpfNtAiEO8ZUPjP6E1fDJ5nfGJ3SnZSGuY2u
+ AwKLeI8dTN5zrv/klqVH8RRwIWvH36wPx802LS8e7dbChW0yhoM6df170Q/G4TwKPn27
+ 0vZM2GJ+F5UbSKq7q/0yF1l/HCfr6WCPFN4zIz5OpTZswX/G2S2obfV2ISYqMEhxijyj
+ 2M4i3vVYNJwdp6Ns0tx7uIeicfBWot4XxcdDkaJMAz7xOgwOrk5RamyA8C4Hc9PY/xuv
+ iih7D7dTNFVreNQIKDUbffCvZEqPDg2/r1IYGLxxfKRJHz5ZxoCZCTzZEZBtrEe2eKTM
+ G/1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752964929; x=1753569729;
+ d=1e100.net; s=20230601; t=1758808512; x=1759413312;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=zFFgiza+Dl5GdaqwlbzwLTdeCZ/jp+2BcZVRLKHMbXE=;
- b=plcHQE6nfFMLLTrQI8tkiMHmgovr1YBgPF8Essa3ZKddAiyOzKdKTsOz2wzI6wT6Zc
- 6JZchPA88//V7M2MMPWMcSqWrnFwZmEbMPgVBC38huZytdDZ7U98kOGIw/53+gP6IM1b
- +4+DOVl7BLPBAGGzQ9XEFJbd5cECKYYQ+aP5aoAXGqwXA6Kv+OIEXiOQGT5SUgl9jkFa
- 7npzLDUS8hqQiBoMZV7cWIKbENbKZVuG6+o8CKCczv/FwXwW1Sc1sYBPv6ek9hisO3KX
- nP1fltUsFX1IM+CcBcjCrduND8GL+dJeu1R6xod6bnEb67+GgFrVw+xR0Lp0RinrTCWb
- 3kaQ==
+ bh=U63Q3tKt4yvUc7kEZBTozLak/g9U24aoTdz7wTOUUn8=;
+ b=TtKt+RFJQ/8QLrIPNjYbDa3FgLDM+8ELz7I/PkDNpRsqQUvcQycZE1WQKi+2uYg4Jz
+ kO4KjcgkezL/W5eeLYnsIyqZ2eiOK16flDT2HomqvDSPi3X63vZrVMUYB1PnFGeZpdwC
+ KUlmWSyaDmIZ7PiEVVOXXL142eIxFXnGthmRfXYFtkTk6BUPm70d7vmCFD3X03Fkx2ki
+ Rx4OdkfS25kfZDIqH3k1WcamWkI5arJGN5sZYk5gVmpUFn8nWKw9HI0xpu5gspuYDp0D
+ hyJy8P6DMRFtM0LiMzSIChM0+lcRq5cCxqAAnga5i/rE3DOWbcTwjWKUeU4f5rD+sCM1
+ Ug0Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWCLMdguoA/tR/2HlsOUVH1hbYHP3sDEdUPv74qPqY7ghizjTvnwdCd89kJ8grK0ftF6Mwj65H1Zv4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxFXoiLc/vbcT7MNu3Ls1I+FmTL6zDVAttykzgYX5Ak3QxPVsEz
- RLLa5D/RG3JWQJAWHI3/uyEEUCk8qIgoK7eQ5xFtowSzGS2jh1cTJ8TL
-X-Gm-Gg: ASbGncsg22iRpbzTnKYZBcbPf4lpvhTL39LH2uo8sa3O9gJ5z7x+euOzPjOaIeqmuvH
- IN4aOFYgnQE7XoCsqxi9fV9J9hg1dHu61bqeOG1E452/wwaSu54NAb1nZW0a9DaId8NU1roviSD
- sZvb/LAfnh8iWBatrWEzvZJr8Jvkv8/ECzseIA960prM5oTed4cu8RMcgHajhOJhJnBmPYyb9BR
- nl2zN161Ex1Sgj+mdP5SvPF85C9TSEhlGxS9LTNgKYxxzdFQriy6pEmM4KeYwyRonFZ2hMhQNU9
- OJ3FO+xNXEfKoz7n2liH2BsG196easEvXw9vhaaOgSYHa4+nsBZe/pfT9p/8cZbbQE4RXpxSUq4
- X6WOOAGusEmh+b+ef6BBiIs98pxlNGkvae3YSweLRMDkNph07202/Nvw2TGm9I5pjTpKUTO6Nb1
- yxvjzIwSTnchUdkWDOfYoZMqnakbT+
-X-Google-Smtp-Source: AGHT+IGidME1gL5I/0fPjfeSylawYS4pDe10fawmQtGosH0orgzM7W+Vd2E9cgU88UEhGWwteFt0yg==
-X-Received: by 2002:a05:620a:f0b:b0:7e0:e2d7:e03 with SMTP id
- af79cd13be357-7e34d11a7e5mr1856621385a.7.1752964928659; 
- Sat, 19 Jul 2025 15:42:08 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4041:5c29:e400:78d6:5625:d350:50d1])
+ AJvYcCV3U5WS4VDkgnbs53eUwJ2rVL7SdfHE8eJTappIcuGijZY2s4oECop3LmP0/70f98iBnQB3Eqzq@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwDnZXFTVbfFUBsTbNaj9a7bjPCkT7djUFo0g5YNncYtOk7yjnw
+ 8EBiICknaX1J5dg13m3DYWtzNz87Y4LFuWfMU0a/n51JsjGHh1tBU1mQ
+X-Gm-Gg: ASbGnctlzBF56Ag7jqYOPyn6DGTK4wK8iWrquuYE5KcNHMbXaEH7juwoOy0DEPqf33f
+ kab4P3TyvCpS49D7QFSGVexTVQlSbIJ38+zuPanSiu/48YEQRbhN0KysiJxQcLeFUw3mMMCYw+R
+ mY129v4y5i6bi0jUux8uhNR++ZenXGyIN8i9hc2OsxDtql9uWZJvLz94kNHuAHLKmXBfJQNW1NJ
+ u1C9KBlVwS5LrrSc7o4LlXivuSZDeYdZou4IzH5LE6gpKKt8AyDAMf2j20OEt/RaBhp8DhLurfX
+ hl7tfUZV22r9XdnKF/XsXY8leawJ7IF/CI6T/nElZwBTtuui5VoOyva0cTul636UikXeC8wAQyU
+ 3cTdQF0OfcFbzwsI3k6i/I5KhXdYgUpGGR9Q+wwRD2OeErqHJAdMi6QGVSvT+xklpVT7UvHx5aE
+ vFBwYtUq/RUQ3UbGPmtE8qJge7t0g8p0rAbjACaCid38NvaWG+aL+uUFFglYStPTdgRS7N
+X-Google-Smtp-Source: AGHT+IFWMR0iD5S1X6cXwZlRMEtzfoP6D2Qm79oKix9BQEH2yFaei3OpgngEmHA9hP1GVazSKMs5EQ==
+X-Received: by 2002:ad4:5ba8:0:b0:7ef:f440:2b40 with SMTP id
+ 6a1803df08f44-7fc400b2becmr55283556d6.53.1758808511621; 
+ Thu, 25 Sep 2025 06:55:11 -0700 (PDT)
+Received: from 137.1.168.192.in-addr.arpa
+ ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7e356c75cf5sm251550785a.84.2025.07.19.15.42.06
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.55.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 19 Jul 2025 15:42:07 -0700 (PDT)
+ Thu, 25 Sep 2025 06:55:10 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Sat, 19 Jul 2025 18:41:50 -0400
-Subject: [PATCH v2 1/8] gpu: nova-core: use `kernel::{fmt,prelude::fmt!}`
+Date: Thu, 25 Sep 2025 09:53:57 -0400
+Subject: [PATCH v2 09/19] rust: kunit: replace `kernel::c_str!` with C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250719-core-cstr-fanout-1-v2-1-1ab5ba189c6e@gmail.com>
-References: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-In-Reply-To: <20250719-core-cstr-fanout-1-v2-0-1ab5ba189c6e@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>, 
+Message-Id: <20250925-core-cstr-cstrings-v2-9-78e0aaace1cd@gmail.com>
+References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
  Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Jens Axboe <axboe@kernel.dk>, 
+ Danilo Krummrich <dakr@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Brendan Higgins <brendan.higgins@linux.dev>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Vlastimil Babka <vbabka@suse.cz>, 
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Uladzislau Rezki <urezki@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- linux-block@vger.kernel.org, linux-kselftest@vger.kernel.org, 
- kunit-dev@googlegroups.com, Tamir Duberstein <tamird@gmail.com>
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752964923; l=2160;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=5270;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=iDkIB5rvX8tJR4OLhXYS4HL4jEYmtSfHiux6Jv9xhWk=;
+ bh=300cxburWPWmY9lTssmajDxSN3zcFF24g06h9nRYs20=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QCEQK33g2u0Gt1gVO/tbX+OT6Hyrjr11/cEuKmthxY1k5d8m0r0rWBWJTpdLTKfL3Hd05d1yLgf
- tmc3AOoa3WAQ=
+ QF54YtyD7aRAwHefr9LP1bPC0QTAqFHSUYTCpwBSPQUvl7eHVoDyM2m+1w0mdq8s608UqPwa3aB
+ hTCM+d3+ziQ4=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -118,56 +133,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Reduce coupling to implementation details of the formatting machinery by
-avoiding direct use for `core`'s formatting traits and macros.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible.
 
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- drivers/gpu/nova-core/gpu.rs         | 3 +--
- drivers/gpu/nova-core/regs/macros.rs | 6 +++---
- 2 files changed, 4 insertions(+), 5 deletions(-)
+ rust/kernel/kunit.rs        | 11 ++++-------
+ rust/macros/kunit.rs        | 10 +++++-----
+ scripts/rustdoc_test_gen.rs |  4 ++--
+ 3 files changed, 11 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-index 60b86f370284..f1d72da7fddd 100644
---- a/drivers/gpu/nova-core/gpu.rs
-+++ b/drivers/gpu/nova-core/gpu.rs
-@@ -1,12 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0
+diff --git a/rust/kernel/kunit.rs b/rust/kernel/kunit.rs
+index 3a43886cc14e..6223a5ac801c 100644
+--- a/rust/kernel/kunit.rs
++++ b/rust/kernel/kunit.rs
+@@ -9,9 +9,6 @@
+ use crate::fmt;
+ use crate::prelude::*;
  
--use kernel::{device, devres::Devres, error::code::*, pci, prelude::*};
-+use kernel::{device, devres::Devres, error::code::*, fmt, pci, prelude::*};
- 
- use crate::driver::Bar0;
- use crate::firmware::{Firmware, FIRMWARE_VERSION};
- use crate::regs;
- use crate::util;
--use core::fmt;
- 
- macro_rules! define_chipset {
-     ({ $($variant:ident = $value:expr),* $(,)* }) =>
-diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
-index 6851af8b5885..759773a19480 100644
---- a/drivers/gpu/nova-core/regs/macros.rs
-+++ b/drivers/gpu/nova-core/regs/macros.rs
-@@ -106,10 +106,10 @@ macro_rules! register {
- 
-         // TODO: display the raw hex value, then the value of all the fields. This requires
-         // matching the fields, which will complexify the syntax considerably...
--        impl ::core::fmt::Debug for $name {
--            fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-+        impl ::kernel::fmt::Debug for $name {
-+            fn fmt(&self, f: &mut ::kernel::fmt::Formatter<'_>) -> ::kernel::fmt::Result {
-                 f.debug_tuple(stringify!($name))
--                    .field(&format_args!("0x{0:x}", &self.0))
-+                    .field(&::kernel::prelude::fmt!("0x{0:x}", &self.0))
-                     .finish()
+-#[cfg(CONFIG_PRINTK)]
+-use crate::c_str;
+-
+ /// Prints a KUnit error-level message.
+ ///
+ /// Public but hidden since it should only be used from KUnit generated code.
+@@ -22,7 +19,7 @@ pub fn err(args: fmt::Arguments<'_>) {
+     #[cfg(CONFIG_PRINTK)]
+     unsafe {
+         bindings::_printk(
+-            c_str!("\x013%pA").as_char_ptr(),
++            c"\x013%pA".as_char_ptr(),
+             core::ptr::from_ref(&args).cast::<c_void>(),
+         );
+     }
+@@ -38,7 +35,7 @@ pub fn info(args: fmt::Arguments<'_>) {
+     #[cfg(CONFIG_PRINTK)]
+     unsafe {
+         bindings::_printk(
+-            c_str!("\x016%pA").as_char_ptr(),
++            c"\x016%pA".as_char_ptr(),
+             core::ptr::from_ref(&args).cast::<c_void>(),
+         );
+     }
+@@ -60,7 +57,7 @@ macro_rules! kunit_assert {
+                 break 'out;
              }
-         }
+ 
+-            static FILE: &'static $crate::str::CStr = $crate::c_str!($file);
++            static FILE: &'static $crate::str::CStr = $file;
+             static LINE: i32 = ::core::line!() as i32 - $diff;
+             static CONDITION: &'static $crate::str::CStr = $crate::c_str!(stringify!($condition));
+ 
+@@ -249,7 +246,7 @@ pub const fn kunit_case_null() -> kernel::bindings::kunit_case {
+ /// }
+ ///
+ /// static mut KUNIT_TEST_CASES: [kernel::bindings::kunit_case; 2] = [
+-///     kernel::kunit::kunit_case(kernel::c_str!("name"), test_fn),
++///     kernel::kunit::kunit_case(c"name", test_fn),
+ ///     kernel::kunit::kunit_case_null(),
+ /// ];
+ /// kernel::kunit_unsafe_test_suite!(suite_name, KUNIT_TEST_CASES);
+diff --git a/rust/macros/kunit.rs b/rust/macros/kunit.rs
+index 81d18149a0cc..c64df1a01b9d 100644
+--- a/rust/macros/kunit.rs
++++ b/rust/macros/kunit.rs
+@@ -89,8 +89,8 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+     // unsafe extern "C" fn kunit_rust_wrapper_bar(_test: *mut ::kernel::bindings::kunit) { bar(); }
+     //
+     // static mut TEST_CASES: [::kernel::bindings::kunit_case; 3] = [
+-    //     ::kernel::kunit::kunit_case(::kernel::c_str!("foo"), kunit_rust_wrapper_foo),
+-    //     ::kernel::kunit::kunit_case(::kernel::c_str!("bar"), kunit_rust_wrapper_bar),
++    //     ::kernel::kunit::kunit_case(c"foo", kunit_rust_wrapper_foo),
++    //     ::kernel::kunit::kunit_case(c"bar", kunit_rust_wrapper_bar),
+     //     ::kernel::kunit::kunit_case_null(),
+     // ];
+     //
+@@ -109,7 +109,7 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+         writeln!(kunit_macros, "{kunit_wrapper}").unwrap();
+         writeln!(
+             test_cases,
+-            "    ::kernel::kunit::kunit_case(::kernel::c_str!(\"{test}\"), {kunit_wrapper_fn_name}),"
++            "    ::kernel::kunit::kunit_case(c\"{test}\", {kunit_wrapper_fn_name}),"
+         )
+         .unwrap();
+         writeln!(
+@@ -119,7 +119,7 @@ pub(crate) fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+ #[allow(unused)]
+ macro_rules! assert {{
+     ($cond:expr $(,)?) => {{{{
+-        kernel::kunit_assert!("{test}", "{path}", 0, $cond);
++        kernel::kunit_assert!("{test}", c"{path}", 0, $cond);
+     }}}}
+ }}
+ 
+@@ -127,7 +127,7 @@ macro_rules! assert {{
+ #[allow(unused)]
+ macro_rules! assert_eq {{
+     ($left:expr, $right:expr $(,)?) => {{{{
+-        kernel::kunit_assert_eq!("{test}", "{path}", 0, $left, $right);
++        kernel::kunit_assert_eq!("{test}", c"{path}", 0, $left, $right);
+     }}}}
+ }}
+         "#
+diff --git a/scripts/rustdoc_test_gen.rs b/scripts/rustdoc_test_gen.rs
+index c8f9dc2ab976..b0b70a3d0f54 100644
+--- a/scripts/rustdoc_test_gen.rs
++++ b/scripts/rustdoc_test_gen.rs
+@@ -174,7 +174,7 @@ pub extern "C" fn {kunit_name}(__kunit_test: *mut ::kernel::bindings::kunit) {{
+     macro_rules! assert {{
+         ($cond:expr $(,)?) => {{{{
+             ::kernel::kunit_assert!(
+-                "{kunit_name}", "{real_path}", __DOCTEST_ANCHOR - {line}, $cond
++                "{kunit_name}", c"{real_path}", __DOCTEST_ANCHOR - {line}, $cond
+             );
+         }}}}
+     }}
+@@ -184,7 +184,7 @@ macro_rules! assert {{
+     macro_rules! assert_eq {{
+         ($left:expr, $right:expr $(,)?) => {{{{
+             ::kernel::kunit_assert_eq!(
+-                "{kunit_name}", "{real_path}", __DOCTEST_ANCHOR - {line}, $left, $right
++                "{kunit_name}", c"{real_path}", __DOCTEST_ANCHOR - {line}, $left, $right
+             );
+         }}}}
+     }}
 
 -- 
-2.50.1
+2.51.0
 
