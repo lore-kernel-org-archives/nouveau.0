@@ -4,73 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 188FFCCD185
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 143E0CCA472
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A269010E5FB;
-	Mon,  6 Oct 2025 20:58:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D6C3F10E63F;
+	Mon,  6 Oct 2025 20:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lNrklmo9";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CMbtw7mZ";
 	dkim-atps=neutral
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com
- [209.85.219.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43F8410E93A
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:54:41 +0000 (UTC)
-Received: by mail-qv1-f43.google.com with SMTP id
- 6a1803df08f44-79a7d439efbso7608086d6.0
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:54:41 -0700 (PDT)
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
+ [209.85.160.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6C110E938
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:54:28 +0000 (UTC)
+Received: by mail-qt1-f178.google.com with SMTP id
+ d75a77b69052e-4b61161dd37so6515971cf.3
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:54:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758808480; x=1759413280; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808467; x=1759413267; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=r6lalX/iBRsGnpItoRbVPuxYp6EIBWS28tOUXJUE06A=;
- b=lNrklmo9Y0BYOkdtSVQAAFB8+gD8JHT0iiNxawKvbdUvZijP/35HU5EbsGxRa2F629
- gMRg7sXI3Z+LBlMUmmenodyKbk52rHE5yV9Rhkv52VIgstq8urz6Wkp9fpTriUFRo3NB
- +pz6WYlev0J5WCr0wEYdfHkuw3uUKbQMlDSocGsu+4xdhS4P0Fi7El2KhdW9o7uchAKw
- kkzMwGSs5EqGCdFBIg/OBSBrq27YlsV4IuY849SxPqroGEiot5OwczKQzE8JqNL6XVus
- r8Nqec8+DhTR7TEhQMTT0hxuMHT8tF72L13ms4erMbYu5qhtp/2Z4V+qq+Z2p+VDtk5A
- nNng==
+ :reply-to; bh=gUijmF9iuJuAB0zjmMxkDhFa2siruE3gGN7H1MY79is=;
+ b=CMbtw7mZ0w5t3O9WKhUNQByePuBQ0tdciPBa4qsndC09b+gOtUNibRlcX3qrrkppH5
+ G47Lb2CbQdtCgMjGUmon/pDejtrsncE2I6O5Y+VeMicdp5MOuCLRYSq3L4xFBi/5oDJP
+ UW4p0VIxKmOSf5Hxu8p9sg3AFAF5CvT6TK1KRsTApTmu4no3W7QK0tETten4OwAWnsXm
+ Hl9XgEtiVKSU/ihs++uGe66Q/12bPEqSyVWGO1Kng9I0mQwoUHQ+APXQwu4evKxW84RT
+ UaMLDzWwyYWajOE+lh5v/ZWj5KV6juB02xASy8/S7GDMIQrshEi+xmrobdDxjMpBLtjR
+ uuBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758808480; x=1759413280;
+ d=1e100.net; s=20230601; t=1758808467; x=1759413267;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=r6lalX/iBRsGnpItoRbVPuxYp6EIBWS28tOUXJUE06A=;
- b=NuTGpAr2oqUcGzlW9xquvBotkaokh3x5vokKHZpa4NvI5pqR/rNgQvAIkknvAIwOtY
- V417XfHmjT6uxulfkWEBrnzvP3BvMDThksJsp+/z7+g+QfBWx6Ngi3CwHPw7NhaTDxQF
- nzpimKnO8LYqyCCPZ2sub7/lAFYW2XVyfACQdJqgxrF9VaEaAH5WW/Als6XZj+SiehXc
- chUD7fp/J3spIUXv1e8mzMoEKtDO8vRQMYjamutoCEM4fo9jFLPTivHQqeDqItY/K39w
- GrWx6atIJ9+k774E6hoeoNlevcIQP09zAUi+BxqfyStqoGu3zYLfIwT4tjuihruzVdCJ
- xzmw==
+ bh=gUijmF9iuJuAB0zjmMxkDhFa2siruE3gGN7H1MY79is=;
+ b=UTo0CO+TV1xgoKeJKqraXPpd+2eCgwW06nXL9Q0slEiXKAofSU5k3IQ4f4Kp4IAaO0
+ q30BCFCnnNnZMSWlcthmEcZ6cV1ODI7PPcVfbaHJPDYJus0D/AOJyhITdn5l9TTM3ypM
+ BrgQopMM8yLjNjGgAytryisHKFf7UmhkNpW6gR8DVZ9c/91K1GYMINjRJgR+Y/a2zGMV
+ 6HqtO9BM7ZEC+5AMUWr1Mz0la+1CM7wxvTtgPCMyNoVAf/YdyIWomcIZq0qe5x5f2n5I
+ yDlfRTqV1qYY9lZYsi2Bsg9EuccApGbirOj8tlXJcnq0MCVPd3OAWIYqnOxN0K09Hpkv
+ CmUQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXmBfPb+Rnk4jfAZ3cCA7MhpjMrJSbyrpdVJx1oitT0KcSDREciVM5BtvlB0AwVi+wGHHIGnvV+@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzmiefThrZhxTKjHKnMH1WfyFx0sLCIKj3b1b9TDB1Et0DqWiFj
- ZOT2/VO8MTaedwIdqh8bNDoAXzLWN+waD0sq3SBW4of73uWQ3FnJeMsh
-X-Gm-Gg: ASbGncvdeEbMw+DVzf6urAZuZY6NDVAGNO+dWwDKdFWSVcqvW9gN4idwW3lUG+LbnRJ
- 2UrooHDy59zGJR0gO8Cntve1c1QBPdXg4Ac+ApqnQOyGc0IMLM/b3oDWqw3EE/CdHth8KQKtwju
- Gxx+FJLRTopr6+AOFJ+tnhc//jQwWnS6uNQzqQ4cwwni+cPW+I0GRnw8zWa7k8VGpflJ7mfjULS
- zG3UG64gPWu0TAqWYNit2N+PqwJ6cK9ataCxHm8DVjMaKBB2v0orDyv0/RvfRTk8cMvmVJEtUuw
- XFn0xM6D3yxsZjBymbXnWTICV/4VYRtphunx6CyFHxG+I13o76HjN3vXZNKpZlWzIgz65P87Ril
- qCCa1Z8StKNmutcTOvbZTxphaPoBt6PjylVmgEtvS1kwQEDEZroF/EvmgjAGPobepBvZ3FSxorG
- UdmqcLkdzT1Iq9UXMKP5xm7FicdIMeR6Kk+VuN9mT0XOecQc0H6dRvGhvvcd7lFLNeEMbV
-X-Google-Smtp-Source: AGHT+IHepv29FfYPtTdxgOoNZgUW8YipGs8v8IsYeK+WMtrN5j7d3Ey2ZO1H0B0PLPCt/i6MFpqqEg==
-X-Received: by 2002:a05:6214:e44:b0:782:1086:f659 with SMTP id
- 6a1803df08f44-7fc39463963mr48276926d6.26.1758808479997; 
- Thu, 25 Sep 2025 06:54:39 -0700 (PDT)
+ AJvYcCUAJ7avJiN+ASjXyuVLbbuTCwj4B6DNd9KD/xl0XPi0hE1gtPhLCLFY5bvtYMP2nX9MBMzQq8ws@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzDiuBl2LTG4mbfxZzUuixfKq6ogyniz10Bc4jnskRqGiYzKM9f
+ svHoWeQSCXKsKJdRNhcnlDJwFeVbW6Hmg8kqOzztBmOP+lVLffA+GJpT
+X-Gm-Gg: ASbGnctry0PIwLVjhPrR8KJTHEdFnxhffYbx0UR0aVjwc7r57BKj8drQPo0OjZvmEGJ
+ IXj7vSHV8jkuvwGVaFOTIy8Yw/QnOx/gXuIbDXMGOMC7clkBWn8iNviQRHwZsR+DVljO/mLaGZC
+ BE+89jGThMkhgVKN9Q6jFoVTI41348lXMjWz2nWFU3Stbr91Kmq9HnT/eNkTqPJxkCUwVkXIjRq
+ fSplQOSc7zK12RATWwNMlBJf99+pF3gZNiYozfu9Llh9wTR9Ad31Y6QpPzXl2FwJJYYpZ7AdFNZ
+ TkDlwqHfPdl+3tT/rfluzG7vGxp8bFZI55mQxmAFMTbHJa1shF6z9erZiMaao8BJTdvpP41UUWJ
+ F5b09vYNE/EH77BSQl3Yxkajddy0abnRiVOB1jsP5SeAN5o9zi5EbZgYjF0IAdx51T3EgumBQAM
+ FRP7ux7tWdZwYyAJbnDlNPkBd5nCL1wkyvLQZg0wrNi0cTDt/7oDQGZHDjbGMWnohZ40O6
+X-Google-Smtp-Source: AGHT+IFfyTZ0Kg2oYHDkA6MZ/FXiX6A/UvU5m7OAHMKeDgQlNpiMwRGrpCfne5Uk/q1fSoRc2LB+qg==
+X-Received: by 2002:a05:6214:1301:b0:766:30e3:eb9e with SMTP id
+ 6a1803df08f44-7fc3a0df24fmr47841866d6.37.1758808466670; 
+ Thu, 25 Sep 2025 06:54:26 -0700 (PDT)
 Received: from 137.1.168.192.in-addr.arpa
  ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.54.33
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.54.19
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Sep 2025 06:54:39 -0700 (PDT)
+ Thu, 25 Sep 2025 06:54:25 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 25 Sep 2025 09:53:52 -0400
-Subject: [PATCH v2 04/19] rust: clk: replace `kernel::c_str!` with
+Date: Thu, 25 Sep 2025 09:53:50 -0400
+Subject: [PATCH v2 02/19] gpu: nova-core: replace `kernel::c_str!` with
  C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-core-cstr-cstrings-v2-4-78e0aaace1cd@gmail.com>
+Message-Id: <20250925-core-cstr-cstrings-v2-2-78e0aaace1cd@gmail.com>
 References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -110,13 +110,13 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
  Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=1787;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808436; l=2917;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=bBVznekpj7qdZ0+04IhJTyz4wbdj27t8Hhu1jfona5I=;
+ bh=a28D2oz73aX2HfdAyFfsKbL334Gi28aqVXRfaJ6AmKs=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QIaSBovkrkMRrRLSQD5J+u5uy+nbEnxtyP0CB8hGaKgQan89NKIGBwidRQmE8SW0OYKsdw9ArOG
- kkgFhmd1d2QA=
+ QHLcRDKGO1UNO1Fhu+96/NdqIONmVEz9UH+4kwXhhoYDAdY/CR9wCCd91BlfzpgIkfI2NRm4QuH
+ Pm2Zu/FAx5Qo=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -140,47 +140,73 @@ C-String literals were added in Rust 1.77. Replace instances of
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Stephen Boyd <sboyd@kernel.org>
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Acked-by: Danilo Krummrich <dakr@kernel.org>
+Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/clk.rs | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/nova/driver.rs  | 10 +++++-----
+ drivers/gpu/nova-core/driver.rs |  6 +++---
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/rust/kernel/clk.rs b/rust/kernel/clk.rs
-index 1e6c8c42fb3a..09469277e95b 100644
---- a/rust/kernel/clk.rs
-+++ b/rust/kernel/clk.rs
-@@ -104,13 +104,12 @@ mod common_clk {
-     /// The following example demonstrates how to obtain and configure a clock for a device.
-     ///
-     /// ```
--    /// use kernel::c_str;
-     /// use kernel::clk::{Clk, Hertz};
-     /// use kernel::device::Device;
-     /// use kernel::error::Result;
-     ///
-     /// fn configure_clk(dev: &Device) -> Result {
--    ///     let clk = Clk::get(dev, Some(c_str!("apb_clk")))?;
-+    ///     let clk = Clk::get(dev, Some(c"apb_clk"))?;
-     ///
-     ///     clk.prepare_enable()?;
-     ///
-@@ -272,13 +271,12 @@ fn drop(&mut self) {
-     /// device. The code functions correctly whether or not the clock is available.
-     ///
-     /// ```
--    /// use kernel::c_str;
-     /// use kernel::clk::{OptionalClk, Hertz};
-     /// use kernel::device::Device;
-     /// use kernel::error::Result;
-     ///
-     /// fn configure_clk(dev: &Device) -> Result {
--    ///     let clk = OptionalClk::get(dev, Some(c_str!("apb_clk")))?;
-+    ///     let clk = OptionalClk::get(dev, Some(c"apb_clk"))?;
-     ///
-     ///     clk.prepare_enable()?;
-     ///
+diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
+index b28b2e05cc15..87480ee8dbae 100644
+--- a/drivers/gpu/drm/nova/driver.rs
++++ b/drivers/gpu/drm/nova/driver.rs
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+-use kernel::{auxiliary, c_str, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
++use kernel::{auxiliary, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
+ 
+ use crate::file::File;
+ use crate::gem::NovaObject;
+@@ -22,12 +22,12 @@ pub(crate) struct NovaData {
+     major: 0,
+     minor: 0,
+     patchlevel: 0,
+-    name: c_str!("nova"),
+-    desc: c_str!("Nvidia Graphics"),
++    name: c"nova",
++    desc: c"Nvidia Graphics",
+ };
+ 
+-const NOVA_CORE_MODULE_NAME: &CStr = c_str!("NovaCore");
+-const AUXILIARY_NAME: &CStr = c_str!("nova-drm");
++const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
++const AUXILIARY_NAME: &CStr = c"nova-drm";
+ 
+ kernel::auxiliary_device_table!(
+     AUX_TABLE,
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index 274989ea1fb4..2f1a37be3107 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -1,6 +1,6 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+-use kernel::{auxiliary, bindings, c_str, device::Core, pci, prelude::*, sizes::SZ_16M, sync::Arc};
++use kernel::{auxiliary, bindings, device::Core, pci, prelude::*, sizes::SZ_16M, sync::Arc};
+ 
+ use crate::gpu::Gpu;
+ 
+@@ -35,7 +35,7 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
+         pdev.set_master();
+ 
+         let bar = Arc::pin_init(
+-            pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("nova-core/bar0")),
++            pdev.iomap_region_sized::<BAR0_SIZE>(0, c"nova-core/bar0"),
+             GFP_KERNEL,
+         )?;
+ 
+@@ -44,7 +44,7 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
+                 gpu <- Gpu::new(pdev, bar)?,
+                 _reg: auxiliary::Registration::new(
+                     pdev.as_ref(),
+-                    c_str!("nova-drm"),
++                    c"nova-drm",
+                     0, // TODO[XARR]: Once it lands, use XArray; for now we don't use the ID.
+                     crate::MODULE_NAME
+                 )?,
 
 -- 
 2.51.0
