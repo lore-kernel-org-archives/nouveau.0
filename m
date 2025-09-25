@@ -4,97 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2377ACCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 123E6CCA470
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:57:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD80410E5F3;
-	Mon,  6 Oct 2025 20:57:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B786C10E071;
+	Mon,  6 Oct 2025 20:57:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LSN5mJdY";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MyWFhvzr";
 	dkim-atps=neutral
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
- [209.85.160.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF8FB10EA76;
- Fri,  4 Jul 2025 20:16:08 +0000 (UTC)
-Received: by mail-qt1-f175.google.com with SMTP id
- d75a77b69052e-4a7a8c2b7b9so17462241cf.1; 
- Fri, 04 Jul 2025 13:16:08 -0700 (PDT)
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
+ [209.85.219.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9D9B10E93A
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:54:53 +0000 (UTC)
+Received: by mail-qv1-f45.google.com with SMTP id
+ 6a1803df08f44-78ea15d3489so7122816d6.3
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1751660168; x=1752264968; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808493; x=1759413293; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=JftnGw2ieRIMfPF9FeFktko6aUdoxCz5p+LPiScYnD8=;
- b=LSN5mJdYb+24JRsuJnhmIKo/h9E0hJz99KgHFvXtwweYOswopUHqSU9iBtSpwy4gnS
- RNdzJOytUltKq1UpBqOFpSyz1zCdjJvKW7R7HYmgGRRS4jK1cALeECGVaKa1g5JiO9nS
- XZw1LI8Yc7XXzbyVdQyND1yW4tOKSg3hySgOUtWwEzH6AIcljuZZV3id0g0NWywg/7N7
- apPT78uSq6lxEVet6flaVFzTYNXADUUokuQ78oMXq3DIDLBvfQxEoJDUtBM8/bdiQIov
- bRBOJAbjfeQFUHh7NXlxT0EVxNvSL08i+y7+jCAQPHdlUCZOCDtKvXU4lQsuBnxRo02/
- sylA==
+ :reply-to; bh=NcH0HLOTSj/FtySm//oEeXI3qjx7RwnfgKjEtc013kc=;
+ b=MyWFhvzrQv07ccPjqzCHMxQAU5CJSSYlVltP6ONvxObO31obgbWJucb8jR5t9O+AIi
+ va96i2Dww1Lv+xNYqpUUYgBenzZTICWEYEJ07avugmUYbe4YitVIPKAPQ0pz6sMy5X3D
+ QWLwHo5v5ty2CodfuvCDGO7fLzghLtc0MFLuyO4WX2mffxrdixFZrucAANDOZHWxCUV+
+ Xdna4kKWryyvcz5uGxqaIxAlFsNdWJCMt3jA8/taQ85MNpLi6hVfU3KlX7SiN89xytwU
+ UR0dWgVwg5vFqOM85hDMNDAcECX+kPy2zyepHHT6CvVvI79emdXf8q1zv26fe5jHBr6b
+ DpXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1751660168; x=1752264968;
+ d=1e100.net; s=20230601; t=1758808493; x=1759413293;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=JftnGw2ieRIMfPF9FeFktko6aUdoxCz5p+LPiScYnD8=;
- b=krrrQtD4KT8PiNWy5MZ/TqQqs502GWbt10OorpOGFDSPkKhR9hwddSwL3J8L39dcMA
- InAQxLxDEdOMhgHfpi1x18pjsTtZ45ZTEstNCwC7EUVBCkCIofVnrbnlf+JkM+B2e6lp
- 8ID69dAyWyx7czRMqiCe7/KfDE3if6MaWBj29FS847W6CKHXhRqJ0iGYvXVRQw3YbbZx
- QmbHHXoL1/GtqYaMgfh8ZIIkCqaim0qptZswuQV949LN690QsxsGpDMkElYAau945xDC
- 58EwH64jjvLn6UGTYzcmnWX3fI9bOiaEviffg83yCm7cMasCFFbQPX7lNwv0OtOKCrVu
- /J4A==
+ bh=NcH0HLOTSj/FtySm//oEeXI3qjx7RwnfgKjEtc013kc=;
+ b=FpH+sySBhopNWLtDSlxlQrVEbS7SQmOv6bx747VISrQP/jXnxfwZFZvwF0qP7DxV2/
+ riXCziCIKI93YpygdMsH0nS0Q2c7U9If0JPPdVcT6TpNyBf4CxsXdfvdewcv6x9X1ONs
+ zUYS1LnNvoq2wuiPO+1Dm/V6v5NvN7XRG4DeW/VIELemV73l88b15aOMygVJf9u5j1Ry
+ Lb3c+xiJLkUAPDy94yJ2Y/g/UK95KsrGNlOK1p2FZBEGspnUX/CVZusFunnaXorcUW6O
+ 2JKKPQ/LCgrV5/WruD+43UlQjO91AJkdQBCkeaq9/XQ3KF+uo28Tt0hSiUA4bihfgU6K
+ Rd9Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUkP7/5kaFazjJ1YJpjoZSF5qIbN09VMOjx2WhiEZH6f5qLhu3B0yBKJT5ed0UvbVqC6jWiiFKoWA==@lists.freedesktop.org,
- AJvYcCXZy+8N7T5MToiMSNyjU7IW+qwGMMS6zkzQZ2v8BdAa2vSJL64NaQ+h0rXm/RqsQ3547mJiGcYwM4I=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwU8Jes0k42DZR7YiOPoV58FZnbpVDzUuMWE3ocJCeoR4phP5vy
- kCFJYu3FvCXB/AZ/8/ICdjQBQhnJYrsWRHPV/oZjSAG79PRffhekIr/N
-X-Gm-Gg: ASbGncvpN9Uky8Y4BFLmDkiJ+YFy7U3XSle+Dexs3rHPFanv1Z5tgBDvv2t2bV1Mkpb
- WyGa+DnA+79H+KXvHf+VEMIolCCwILScGKIH8OmD4Oz8mo9ckklTRE6IaaH4z9QO4w3fZwAIdrs
- MS9mp1Am/XYRfe6alhJ28T5ty93ORrpaLzGztgPutE/TH6qX//Ew2+LL3nHwk6R2HAwLyLYmhaY
- Q/IFg293cf9VrfzkvBQN3IMxB6fbHCpYde1duBYDyZ/Ik08CgC2namaSSu5QuLlWbvj69c5l55H
- faFXZQ6tiSNMG8obDTAZt7G4bMgrdoHx/lcJ3TIB1YSagSIlZacgY3Thr5UfxUL16X6cOKTvf+3
- dNyvNcgrxVHVaujQehg==
-X-Google-Smtp-Source: AGHT+IF1t1aKHOe1fk9iSK6MMX3BAmHjjyKwyg4+tGB5Y4Nti+Dmbb5QN0nFVxAZPfxMG3QwhMXk+A==
-X-Received: by 2002:ac8:5fcf:0:b0:4a4:3d6e:57d4 with SMTP id
- d75a77b69052e-4a99883ca50mr51364261cf.46.1751660167869; 
- Fri, 04 Jul 2025 13:16:07 -0700 (PDT)
-Received: from 156.1.168.192.in-addr.arpa
- ([2600:4041:5c29:e400:94f3:d2bb:5ace:77a1])
+ AJvYcCVkMXqAOw19zthBG5IaAsWzgi2Sic5dMKoCc5lwzC4bf3+g/UNR8x5bqHW5oYXaO+vI4BZJ1gRr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxbFr1X5mwE0UsZL4z0tySFrUikwQG/wXNd9XU8Yx59R3llnjjx
+ 1b836ySbW3zb+1c8C6pkLAP53utrgyZNVhwtxwk1vBkiXWDE4mWTI8e8
+X-Gm-Gg: ASbGncurjjK5XbuI3RcWVZrLkGhQRPl7ocRXmPXxQ1esCiYL4AoOuvzHLfXm7BorXLH
+ 1aX07wFES/koCkQ0CcHxMcmfZqH4ztCE8mF2kJSwPb78Vc/wvwyxdfkS4/TIu5IM/7GJZLzu4jh
+ dAyf9mtI9iduK/BdtPhFJcksbbHM0i2UyrdBOoHBgFhy7B1aOPNzpk1iXwK0m+zEDxWucoy+PuC
+ 7qSb7XBwvGbKC8U++PdaFyCy7QoL6HgvrEmYJzJ7QnGFFJR9lRQvg0LVGDqfummrzqKAUtLCk7t
+ 3crRdt182QTeCUAENoA4zaFhu44mcjiq7bAUJb23+T06CODnLr+5p2xiOt2m2mKqA1qe0YaJcAV
+ OTpj7izQmeg5Q1wSq5pE07b7vzC226wgH2HsJBnnuyItulDnv4zc+9Lbf7AlVbEfx2UGG3PcCmN
+ xw0CZ3sZctBmQXuxkfSUkNe6QgyZlT+C5CL3tSrTOOjOzm0o8A5wAyFvF5v/msXbJd13cR
+X-Google-Smtp-Source: AGHT+IFFa6JfDTmizjqmxfQvOyAEd2lLRtwY0ex2OgZ0+m8iJA/xUn2p1/EJZbMyBxylc7ieBx66XA==
+X-Received: by 2002:a05:6214:20e5:b0:786:50ca:73dd with SMTP id
+ 6a1803df08f44-7fc40d25d17mr51916906d6.46.1758808492358; 
+ Thu, 25 Sep 2025 06:54:52 -0700 (PDT)
+Received: from 137.1.168.192.in-addr.arpa
+ ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4a9949e5221sm19772941cf.2.2025.07.04.13.16.06
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.54.47
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Jul 2025 13:16:07 -0700 (PDT)
+ Thu, 25 Sep 2025 06:54:51 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Fri, 04 Jul 2025 16:14:55 -0400
-Subject: [PATCH 4/6] rust: str: remove unnecessary qualification
+Date: Thu, 25 Sep 2025 09:53:54 -0400
+Subject: [PATCH v2 06/19] rust: cpufreq: replace `kernel::c_str!` with
+ C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250704-core-cstr-prepare-v1-4-a91524037783@gmail.com>
-References: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
-In-Reply-To: <20250704-core-cstr-prepare-v1-0-a91524037783@gmail.com>
+Message-Id: <20250925-core-cstr-cstrings-v2-6-78e0aaace1cd@gmail.com>
+References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Danilo Krummrich <dakr@kernel.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, 
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Breno Leitao <leitao@debian.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
+ Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+ Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
+ David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
 Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
+ linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
+ linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
+ linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1751660160; l=1218;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=2379;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=sfKyAlpcVUQy80XFUpORKTGMx+OCz/EQm3USwht0+Yk=;
+ bh=Min9lnjKt/hlKTHKx8DHe+UjEz1oTNKYHDrlD//vrww=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QHvRIVvJtq07S1R75iYq2AMmkTap/2F2AhnqArHL10X6H2X/PDdiObvGpzgmEBt9fR6VL1UeMvw
- 7vloZt88VjAw=
+ QO2LsZad4F+RVkixHdOcMhyCY96m5gE5v9iNO38GMhdV/J/W7PblbDJmxH/UCygnEMUNp04FBPV
+ HU86loJ89jQs=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,36 +134,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-`core::ffi::*` is in the prelude, which is imported here.
+C-String literals were added in Rust 1.77. Replace instances of
+`kernel::c_str!` with C-String literals where possible.
 
+Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
+Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/str.rs | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/cpufreq/rcpufreq_dt.rs | 5 ++---
+ rust/kernel/cpufreq.rs         | 3 +--
+ 2 files changed, 3 insertions(+), 5 deletions(-)
 
-diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
-index 48d9a518db96..f326f0c40ab0 100644
---- a/rust/kernel/str.rs
-+++ b/rust/kernel/str.rs
-@@ -232,7 +232,7 @@ pub const fn is_empty(&self) -> bool {
-     /// last at least `'a`. When `CStr` is alive, the memory pointed by `ptr`
-     /// must not be mutated.
-     #[inline]
--    pub unsafe fn from_char_ptr<'a>(ptr: *const crate::ffi::c_char) -> &'a Self {
-+    pub unsafe fn from_char_ptr<'a>(ptr: *const c_char) -> &'a Self {
-         // SAFETY: The safety precondition guarantees `ptr` is a valid pointer
-         // to a `NUL`-terminated C string.
-         let len = unsafe { bindings::strlen(ptr) } + 1;
-@@ -295,7 +295,7 @@ pub unsafe fn from_bytes_with_nul_unchecked_mut(bytes: &mut [u8]) -> &mut CStr {
+diff --git a/drivers/cpufreq/rcpufreq_dt.rs b/drivers/cpufreq/rcpufreq_dt.rs
+index 7e1fbf9a091f..1120a8f5edd7 100644
+--- a/drivers/cpufreq/rcpufreq_dt.rs
++++ b/drivers/cpufreq/rcpufreq_dt.rs
+@@ -3,7 +3,6 @@
+ //! Rust based implementation of the cpufreq-dt driver.
  
-     /// Returns a C pointer to the string.
-     #[inline]
--    pub const fn as_char_ptr(&self) -> *const crate::ffi::c_char {
-+    pub const fn as_char_ptr(&self) -> *const c_char {
-         self.0.as_ptr()
-     }
+ use kernel::{
+-    c_str,
+     clk::Clk,
+     cpu, cpufreq,
+     cpumask::CpumaskVar,
+@@ -56,7 +55,7 @@ impl opp::ConfigOps for CPUFreqDTDriver {}
  
+ #[vtable]
+ impl cpufreq::Driver for CPUFreqDTDriver {
+-    const NAME: &'static CStr = c_str!("cpufreq-dt");
++    const NAME: &'static CStr = c"cpufreq-dt";
+     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+     const BOOST_ENABLED: bool = true;
+ 
+@@ -201,7 +200,7 @@ fn register_em(policy: &mut cpufreq::Policy) {
+     OF_TABLE,
+     MODULE_OF_TABLE,
+     <CPUFreqDTDriver as platform::Driver>::IdInfo,
+-    [(of::DeviceId::new(c_str!("operating-points-v2")), ())]
++    [(of::DeviceId::new(c"operating-points-v2"), ())]
+ );
+ 
+ impl platform::Driver for CPUFreqDTDriver {
+diff --git a/rust/kernel/cpufreq.rs b/rust/kernel/cpufreq.rs
+index 86c02e81729e..43ecdc56cb59 100644
+--- a/rust/kernel/cpufreq.rs
++++ b/rust/kernel/cpufreq.rs
+@@ -840,7 +840,6 @@ fn register_em(_policy: &mut Policy) {
+ /// ```
+ /// use kernel::{
+ ///     cpufreq,
+-///     c_str,
+ ///     device::{Core, Device},
+ ///     macros::vtable,
+ ///     of, platform,
+@@ -853,7 +852,7 @@ fn register_em(_policy: &mut Policy) {
+ ///
+ /// #[vtable]
+ /// impl cpufreq::Driver for SampleDriver {
+-///     const NAME: &'static CStr = c_str!("cpufreq-sample");
++///     const NAME: &'static CStr = c"cpufreq-sample";
+ ///     const FLAGS: u16 = cpufreq::flags::NEED_INITIAL_FREQ_CHECK | cpufreq::flags::IS_COOLING_DEV;
+ ///     const BOOST_ENABLED: bool = true;
+ ///
 
 -- 
-2.50.0
+2.51.0
 
