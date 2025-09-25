@@ -4,74 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AF4DCCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CECBCCD188
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43D4E10E660;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CF9C10E64B;
 	Mon,  6 Oct 2025 20:58:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="aiVDUkqU";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="S6Y+vaGU";
 	dkim-atps=neutral
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
- [209.85.222.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2CD310E902;
- Thu, 10 Jul 2025 15:31:38 +0000 (UTC)
-Received: by mail-qk1-f173.google.com with SMTP id
- af79cd13be357-7d21cecc11fso202497185a.3; 
- Thu, 10 Jul 2025 08:31:38 -0700 (PDT)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2A7010E94E
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:56:08 +0000 (UTC)
+Received: by mail-qv1-f41.google.com with SMTP id
+ 6a1803df08f44-78e9f48da30so6748576d6.1
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:56:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752161498; x=1752766298; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808568; x=1759413368; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=VRlT5YcC4Px+mPxn03mYZBsKKJl7yAFNq/vZwOxvJC8=;
- b=aiVDUkqUVfMoi5WzDKRXIEqY8PpIumS2EMfrjys6vLB5V+uQnkj9TF9aNWBst5v+7s
- 0Z2whvZTfJGB+wq/PDFECsNksUwHUxupymyFXRLMUgP+u+ARbmDfPwosWSzalqoO0Y8O
- NkUsbujXv+lQsJNnjbrBOFItCcxQQHP0Mxz2p49vk1ifwsMygVDFEM0b8L/qFqbZLtmK
- SvXWkEDH5PYzY+6BjS2n1tuSMbCGLFpfZoJDzAo0f7LIZCEIwX389fEl12y/ZGewpsZo
- ITe40+k4AmHCw4Ewnht12WbDxA6J2wdw7L7ydx1KlIBcopheWOnMIpy5I2dH7kmto+g7
- CdBA==
+ :reply-to; bh=Sq31dC2vDN2a94utvC/B02Ptv/MXvCOxOItQtZFE3ic=;
+ b=S6Y+vaGUija8INOlgHOfyrQ72w9LLuyu3tjrXPybQ0idW0ypZFAIDxWk0WJ8EmjGjH
+ neuXeN8oq9p2f85Za0PbotoZnRfhry6GmvCKB5ETfvSun/iBpd3YwzxUjSH/2gzZ7b7y
+ f/te+xvEV+sfiqS+MF6x+swgYvJxHGC/TtPWTlu90MJ8DEVvAZxwUkfc4asx0Eq2rwKS
+ bCWdbHl3c06bsGrRfU/Wp3MURTn/Rr/8Jd+VFYDToq1ZLTcuQ6SG1GUFRZyO2wJDexwg
+ aoRCAhBsNs4leOUcIjjsJZ9m5i3E7UpQ9cvzpJx6zvjGCZRHE5XuJZBJt6N5Mw6S+lRv
+ FZEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752161498; x=1752766298;
+ d=1e100.net; s=20230601; t=1758808568; x=1759413368;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=VRlT5YcC4Px+mPxn03mYZBsKKJl7yAFNq/vZwOxvJC8=;
- b=kskWe1vLZW01lwY+CsdfocTng7nh6iVDsrgfS+6YhEg5P3fyI62/qWwYjtbdQX/brP
- 30n3LJGj1XxHA4Iwp9ZA7Lwu7zQvqxrEFMN190gKUZsITF4U5s1m+mIEsh1/B9mcz7j6
- 5BX7CRO6f0YInVTmQN+YMLa6I1msTouGcKh+OGL0FwpdQHVQ8f46p+i+rdt1NH/wd9PV
- VG0O9ibpteFtgjdHIB7np+35wKiU0KSMqDZSyHOCwWLJW0Zezkky8lbF9YNCYlnERQBr
- k6iFTlV782HxCucuBe/mwOJlG9WaRv1gIP2gQLLitIDvFx2Y0ldT31ynQyyFHyhFg1IW
- eudQ==
+ bh=Sq31dC2vDN2a94utvC/B02Ptv/MXvCOxOItQtZFE3ic=;
+ b=dBkAFzVjAng57vD4E0X9gI0FNMynyxjrwIbQF6kRdd3e+WJLbFijv/lRD1QDFZl4Gv
+ yl0lyHcXJS6oM1pmY/lqEcQjg5T9LI36Dg/zN3GJo670NoNYBXx091ettjgbHKmSD/nS
+ I9SQsTIoFH77zmrTKcYVKN1gx2oABe828QA5we+CXvFdphbGvpAaTSXuNb/cSgIPqLJ1
+ gULVUbfUAiRPsyzxr3p3ANWNKNiAzskJ0Yn9gcgMzAfPQa3CgehXi4PPw+6HKTwHTVnq
+ 8OTO7Egv7uAhf88J89VP+Ba7oJGMKfPqTKMvffPWBRYhIV6JdVww/0gitIaXFmIY2ANr
+ CpLw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUAZADY/JasRBFimW7WDQ1pJh5/ofyEb0qHYoEZ8auFX/uISW204Y8odihMO3tDiYKZ2pEfrZ8VOR4=@lists.freedesktop.org,
- AJvYcCWZ0HAXYcfIHgL+1SNsgftvoh3bL1E93mkJaJrxdywW8EnucyqVgMla3L27+TkRX08+7UDXbCCs0Q==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxS5n2BuzELiATgw1AvW9m9xhJOLJrmMnIJ8PlrEQNZCjdwhq2y
- EgV2qJIFUAOZauWEb1JuW2jskz+WrI77/qXI9nkoCoGotnhuZLh55vm1
-X-Gm-Gg: ASbGncsHd51E1kLDd+bKyvy/8BjYyUyhtaq96jds2JuO4z3tTuE6FoBsPV1WkFYG24U
- 4ljKMrw72F7ph2O8mX6JJ2uuklnbyOXyEJRcHJDaQPfJ2nKuDqLcQZvS1TUNQOLRDd5bHYFSzXR
- Td1c4ErPYM966qDVu7SzIQqtImR+mVQ1EGEBDQCqDP3exflg6lD7xBLZmVMt6K46kSAhLBltywW
- A9FHqv/4f6FB++bq3MaTlfDBYny8aF7zys17PEYsCMYE4LzYP+iQhrZCewMJjh21e4BIiLPrj/q
- s1fPjUu470C4KytGN2aGyBowsVgxMb1KRBEQM8j8fAqQ1+50lXPuc+YVoZxynyL17VrUahqh7sl
- i+CDGlKpEQimL+F1wPitqyerE7SANpuHmrMYPx1UaXblQM/a26KrAAm8fvA==
-X-Google-Smtp-Source: AGHT+IEbHnc/thQlN/cyxkVseSvn6XEvlMVnH9dmo92154uWAjWA+CuUka5sntlNHeO5E59hD3lXgA==
-X-Received: by 2002:ad4:576a:0:b0:6e8:f470:2b11 with SMTP id
- 6a1803df08f44-70494f829cemr82415736d6.23.1752161497573; 
- Thu, 10 Jul 2025 08:31:37 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([148.76.185.197]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-704979dbc3asm9449496d6.38.2025.07.10.08.31.35
+ AJvYcCWVpPRooZK1QIIvHLTr6MKvfIl9ej0AXJ68gElOdVXXPnBP7poHaC14Z2S6v+kUj4WcNkmuHSAQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz1FnGwtOr+chJfTjsQNdh5MegW3kpQRDiDBYa09cqwJtfYeKwH
+ zAQbFsIPLkM17JukDE9/c+s7H6orCCJ20G4rYQL1Cm3sCyqV+dijbR6T
+X-Gm-Gg: ASbGnctUORV9hwQCzL1+wb+fA2m2DL74kCE3MrfCaa7TH1I/9sjVt8f3EqULNXjMGyw
+ RG4dBTafQKdIsgmpzoKKI+S/iwSsJwNDVtvDjlvtrpOpvILf3V3eEJoHEQ75oOnvKCtMPVPjoIL
+ AN/n6GxEDr8xp0uVFw9f6fdNHIsBoL4cRJuZ78f0zD1oZ8w0k/4AVWTaruEACmNGnxanQhu7aHU
+ s85XewL9rqFF7DMS5Ca/QXKKr+oihFgyUQ1yJ8YkeQ0AP8xLPGSM/nBG8/Ebd1arMP+qybnmITn
+ rOZgRp8unOHVhHf3dkROnl68T+pb2lys+tPYz33QzJeNC0qy2fK2Q7nv6IuU+PhzSzTBQLeYWeA
+ 47IIoE/W8VxEbuJ9P8IUSsf/8NBcSZHF8yQiwrinG0vLCoqE/KBWIbnUmupukg7MlOtFUM3cK9n
+ c1ht6f1ukcTM+nXs6xSht6wM9E+D8rRAvSl3POQqZrta1y8JSpEyrhuDjSC9VpXH9rGpT7hP6I9
+ ixwBvI=
+X-Google-Smtp-Source: AGHT+IEZhM30AGXNdbFILEQiyz/kr05nZm4O0BE8w754iMuzz8n1eM1enRH3Kra7C8BiuYUbQtPrdA==
+X-Received: by 2002:a05:6214:3014:b0:80e:4f6d:23be with SMTP id
+ 6a1803df08f44-80e4f6d25a9mr15832686d6.62.1758808567133; 
+ Thu, 25 Sep 2025 06:56:07 -0700 (PDT)
+Received: from 137.1.168.192.in-addr.arpa
+ ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.56.01
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 10 Jul 2025 08:31:36 -0700 (PDT)
+ Thu, 25 Sep 2025 06:56:06 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 10 Jul 2025 11:31:05 -0400
-Subject: [PATCH 02/17] gpu: nova-core: replace `kernel::c_str!` with C-Strings
+Date: Thu, 25 Sep 2025 09:54:06 -0400
+Subject: [PATCH v2 18/19] rust: io: replace `kernel::c_str!` with C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250710-core-cstr-cstrings-v1-2-027420ea799e@gmail.com>
-References: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
-In-Reply-To: <20250710-core-cstr-cstrings-v1-0-027420ea799e@gmail.com>
+Message-Id: <20250925-core-cstr-cstrings-v2-18-78e0aaace1cd@gmail.com>
+References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
  Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
@@ -97,24 +98,28 @@ To: "Rafael J. Wysocki" <rafael@kernel.org>,
  =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
  Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
  David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, 
- Jens Axboe <axboe@kernel.dk>
+ Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alexander Viro <viro@zeniv.linux.org.uk>, 
+ Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
 Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
  rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
  dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
  linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
  linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>
+ linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1752161489; l=2662;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808438; l=1724;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=jWoII9lc0uOqozr99B/x/dDSCK5rJfT2DvtrFXqOZyg=;
+ bh=cd10vY+LdNFm15kjf9buohLVZDsgfigdMJZaOhvjUZ4=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QMZas2KzwEMZU/sgiAbM9CbclvQutwrXcG0/5lwfR+8HPYuE3tYEpf9CUwqyhzKlL5//kLxflaj
- 9SaeU9bFc9AI=
+ QNf162nJINfyau54ApOtSNUKBNqSEvAN/RUj/VaS1rCjXvJ9mtYy/yqZWgJQlP/HSnYEPjCYYdQ
+ IPwDjgyMc4w4=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:15 +0000
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,73 +137,51 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 C-String literals were added in Rust 1.77. Replace instances of
 `kernel::c_str!` with C-String literals where possible.
 
-Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- drivers/gpu/drm/nova/driver.rs  | 10 +++++-----
- drivers/gpu/nova-core/driver.rs |  6 +++---
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ rust/kernel/io/mem.rs | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
-index b28b2e05cc15..87480ee8dbae 100644
---- a/drivers/gpu/drm/nova/driver.rs
-+++ b/drivers/gpu/drm/nova/driver.rs
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
+diff --git a/rust/kernel/io/mem.rs b/rust/kernel/io/mem.rs
+index 6f99510bfc3a..2e42eb906061 100644
+--- a/rust/kernel/io/mem.rs
++++ b/rust/kernel/io/mem.rs
+@@ -4,7 +4,6 @@
  
--use kernel::{auxiliary, c_str, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
-+use kernel::{auxiliary, device::Core, drm, drm::gem, drm::ioctl, prelude::*, types::ARef};
+ use core::ops::Deref;
  
- use crate::file::File;
- use crate::gem::NovaObject;
-@@ -22,12 +22,12 @@ pub(crate) struct NovaData {
-     major: 0,
-     minor: 0,
-     patchlevel: 0,
--    name: c_str!("nova"),
--    desc: c_str!("Nvidia Graphics"),
-+    name: c"nova",
-+    desc: c"Nvidia Graphics",
- };
+-use crate::c_str;
+ use crate::device::Bound;
+ use crate::device::Device;
+ use crate::devres::Devres;
+@@ -44,7 +43,7 @@ pub(crate) unsafe fn new(device: &'a Device<Bound>, resource: &'a Resource) -> S
+     /// illustration purposes.
+     ///
+     /// ```no_run
+-    /// use kernel::{bindings, c_str, platform, of, device::Core};
++    /// use kernel::{bindings, platform, of, device::Core};
+     /// struct SampleDriver;
+     ///
+     /// impl platform::Driver for SampleDriver {
+@@ -102,7 +101,7 @@ pub fn iomap_exclusive_sized<const SIZE: usize>(
+     /// illustration purposes.
+     ///
+     /// ```no_run
+-    /// use kernel::{bindings, c_str, platform, of, device::Core};
++    /// use kernel::{bindings, platform, of, device::Core};
+     /// struct SampleDriver;
+     ///
+     /// impl platform::Driver for SampleDriver {
+@@ -164,7 +163,7 @@ impl<const SIZE: usize> ExclusiveIoMem<SIZE> {
+     fn ioremap(resource: &Resource) -> Result<Self> {
+         let start = resource.start();
+         let size = resource.size();
+-        let name = resource.name().unwrap_or(c_str!(""));
++        let name = resource.name().unwrap_or_default();
  
--const NOVA_CORE_MODULE_NAME: &CStr = c_str!("NovaCore");
--const AUXILIARY_NAME: &CStr = c_str!("nova-drm");
-+const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
-+const AUXILIARY_NAME: &CStr = c"nova-drm";
- 
- kernel::auxiliary_device_table!(
-     AUX_TABLE,
-diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
-index a0e435dc4656..16cd7e36662c 100644
---- a/drivers/gpu/nova-core/driver.rs
-+++ b/drivers/gpu/nova-core/driver.rs
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- 
--use kernel::{auxiliary, bindings, c_str, device::Core, pci, prelude::*};
-+use kernel::{auxiliary, bindings, device::Core, pci, prelude::*};
- 
- use crate::gpu::Gpu;
- 
-@@ -34,14 +34,14 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
-         pdev.enable_device_mem()?;
-         pdev.set_master();
- 
--        let bar = pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("nova-core/bar0"))?;
-+        let bar = pdev.iomap_region_sized::<BAR0_SIZE>(0, c"nova-core/bar0")?;
- 
-         let this = KBox::pin_init(
-             try_pin_init!(Self {
-                 gpu <- Gpu::new(pdev, bar)?,
-                 _reg: auxiliary::Registration::new(
-                     pdev.as_ref(),
--                    c_str!("nova-drm"),
-+                    c"nova-drm",
-                     0, // TODO: Once it lands, use XArray; for now we don't use the ID.
-                     crate::MODULE_NAME
-                 )?,
+         let region = resource
+             .request_region(
 
 -- 
-2.50.0
+2.51.0
 
