@@ -4,72 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A5A4CAC5B8
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFEB2CCD187
 	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:58:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C93B910E62A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB2BC10E62D;
 	Mon,  6 Oct 2025 20:58:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="EnVJ4NFo";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kpwuyibs";
 	dkim-atps=neutral
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com
- [209.85.219.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7416010E953
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:00 +0000 (UTC)
-Received: by mail-qv1-f44.google.com with SMTP id
- 6a1803df08f44-7900f7f4ba9so7671916d6.0
- for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:00 -0700 (PDT)
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com
+ [209.85.219.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8AE10E944
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:55 +0000 (UTC)
+Received: by mail-qv1-f52.google.com with SMTP id
+ 6a1803df08f44-792f273fbe4so4558766d6.3
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758808499; x=1759413299; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808555; x=1759413355; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=XVSYVBz+/C/3yUXq0+Xlzki5tMQiQIQTN1ASo1OgvYI=;
- b=EnVJ4NFouyHZDNgP/ps+hRLj7i+uX1otf1sr3m48D8GBupsrXUBcheVeTvBgGKiIEE
- ejGZtN9Dg0e1Ual73eFlvgc81KxnmQ1pXHGno9zcgUnl5nMLW9mmuY5yhPEBjtm1rbfr
- xXepCj0TmxDgFuD7w+9nQX0LjCbFnxTSnY5OMLnreDBKAiMR9jvhqwbYSso8tec2INPu
- vc8AN5AsDOe60jA5Ns8jo/YUnLlxtUVP+jXvun/f9od6uDD8pP8elHK2m40eis+5O1dH
- 0icwULpisjYDJ6y2uJpUFk/k/JXd5y2MGAxyi2rnIPmDv5IhWOeXkKo0G4odIO5fUuGn
- uVGQ==
+ :reply-to; bh=IbRi9B/DaIaW8U9NAWZIVdIpXCsTnUCErxxV4ovxvuk=;
+ b=kpwuyibsEXTMkN1LEUhWg+qHsebR+OiXi++aOoIUgaDXBcZ+Eq7OnjS83pwgyWjdf8
+ gibFyHwbQMd+gbsxycUNtifWqURvGsF+M4nVOy0R39kmMy9mYvxVu329Z5nUUu0lhn5s
+ oUNtknSpiIlRaNCZ6zEeLAstazgDKdmsKsY6gYZeKS7QvmkMIE4WNCH6HtttSqzB1ZBA
+ 88wh3tMQRSExn98YrD7wAF7YXE1j+6CKT8gpjIjhxqXF/m7gN4YAx74tv9VSbpZcfLky
+ c6Lr24UoX3wlGvf97T5gSoWI6O7Xc9UAx7C55He/4sgZjBIbvspMmCBDqAab1eQ5UUmO
+ E5nQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758808499; x=1759413299;
+ d=1e100.net; s=20230601; t=1758808555; x=1759413355;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=XVSYVBz+/C/3yUXq0+Xlzki5tMQiQIQTN1ASo1OgvYI=;
- b=JbEjJK/Vc5SR9pNP2VrQf7H9hPx0Og06hJW2P91ep8UiTtaa6ufTsakOBjzl1IAhWR
- hcy1GK23s/48nvzejk4QXY29S0q9xdj5eKri8S7LZAEL0jF9U9/oyXCh9bXnj87CmsPa
- nEa/3kAt+Sa1yUyCbCHaa6VjgUXo3v0rfeyzeAm9gjXXmALrRspyghHQsCc4nK3JOXFl
- eZIOzdfCVc1jzj65bP8U+bpY0zZnwdmBAmEwS2lWCJDvDYBOV72t2wVHYIi/4+HvMaTG
- mo/9bEF2V8PUpzUmdXXX5gdXjtGXCHBipdOQ3r2WW25nirnbNIUkcxNy+mqBnm8WRLIb
- +4Ow==
+ bh=IbRi9B/DaIaW8U9NAWZIVdIpXCsTnUCErxxV4ovxvuk=;
+ b=ui4jCyOKg8xVpPSDeoPxuEbPPBdw1NkcsVGtpFKDKMgJPhAEDkT0mY5vxGARioXSSi
+ pHjUv1i/4qeX6QQPprSsQL9mgzQzmeOZaJevFYWhy95jzTUwb6HPXygbwrOxJCwVM2RJ
+ 2ywOb1PX/ij0mdhnMKzi03TZQJbtx7dGBuMmcX0XwfrIkmbnl4nsNNH5j4taltcaKzxB
+ 0/j8u+bhDsHHHGDll7C4qgLzMHI/1uGm9+UESm5WLLZZEsLGEPh5pV+tmiod3L8zu3Bl
+ KlHqCO846Toj9YAx/VFDriV4svY0PVsLUp8STsLVuMh0W5/XXurHkXVJm0HK1jZeoA9v
+ 3X1Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWOscErb4uKURoo4fQNMHt3PGIyjyxq0iNhwef1N6wjZOG6DMR0ZI0EXLhKnZ7qgbluhNUFxcE5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxzENM0jU0d23dLA9g+AqljtNf6anNLQNeIVU1lgZ0Yf2DMrBVn
- EuXuhpyYE8WXCwdyfkQu8lH2D19hwhsv7ErSEbHg7HCKCf34PHS513lr
-X-Gm-Gg: ASbGnctd1cWp/B4kuaW9X48oHkn0cOwLLfdyy52j58oNcPeRToDIdv5yLpmuwOqCaqG
- sbTm9nlFxuOP2ZZFZZmwXEYs+eGvBRm4QOzsXztFI/C4/GdlPZcoZ/183zubqjvvFRKmZuhNDAF
- xAgpwt/6bgoSA71ayFIfIfuJky7TgrOvlBMkIeSdvJdVz1Wrxix08zFHAuv9rdx1o0MltlJzKKe
- 1vdu32FuwTmFGnICSezVqUzsgL8TJrgn1HTImT+QS5iAS6qWYO+F2lqy2CENwBKWNxQ+dsKt8Th
- 1ytQ5/tZ4GP/daSqoIOnCmn9RSDLMp0C84Hsr4OETNFUAASPMB+a54MPXPKejnoiR1bwexqSpi6
- 57W+yGzSU8idCa0U7Ba4bV6o54bb7Ju17PBrfd2OurQVdFuNUF6hn4quYcnuPBdjkcWPebaWJ2P
- gN6NYgoMcHqqbZpTt64j+p5yrWIZG/DeLlXRw/Sn37oDy8iRFHVXowX3mIxNj4gohwoHwO
-X-Google-Smtp-Source: AGHT+IEssEmLNZcem/aKdLWetF1Fs16YPcmtFsn6hozzBuZs4Wn/CLmfl+Df8wHKJRPpg5SfyGzrZA==
-X-Received: by 2002:ad4:5deb:0:b0:78e:c5c7:1209 with SMTP id
- 6a1803df08f44-7fc3e015bc2mr57974806d6.56.1758808499295; 
- Thu, 25 Sep 2025 06:54:59 -0700 (PDT)
+ AJvYcCUCvSNp7wIwqlOC46gZ2wA+uI4t+uIiIUNBuh8cj2Benw0nPnNNTA3Ryf+oquUWoP/AG7ju0fQg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzUvHTONkGK4S2aMG5CwR4EO+L6kcWIkSXKnx1Bk1ROvd2fwdiE
+ siDC9I+a+FfGE5oPUdp57Fwbn27hxR240g60eFqjEya0UcvjhKYdd+0I
+X-Gm-Gg: ASbGncucNPR+p/ozU62GbYZGltVJgDq9aKlqG/gsPNVgMUMeOqaUr0u5smwcBC24qJ9
+ YPKmyx1Vae6DEW68THvnLtC5XlZmFhiTnNgPM9+ttWVdcuKFrp22+qKcb03SO7uPRphKoaH87V0
+ luznaJhvqcFSeeevCchGUugl2x0GdYbVrd7pQML3VjbFD2S4bgDdR9MPBUjfs0fWHseR4wYeV93
+ 9dvUKYpKPlYEodN6ijuHCfHmMes1GKF/w4vZgJrE1SVhquhcQYkgdNYLy/UUjKTn/tUqRmSY5rz
+ Y4eNVSyEmaAcnVrmC5UlSdutomjcAb9i5n2CrDkDXBf5ef0lxDrwd6N650sZ1m6IkEqUfQSTMrL
+ BkQbrnadc7bOQig9fF8F8UXV3aH8sCl9nIk4FzyzPAx5TllyNJMdaFZj8Q7VFEQW0fcdQBrCA+x
+ oPP5LrvZnS3m1Ygr+7S0Up+68ynbjQyHLp4YnrYnDWtjv9FSHvM4W1vu8J7xVwe+c5H1Zr
+X-Google-Smtp-Source: AGHT+IG7SCiSfqv22MjkqMAx69OdDcsv0d2XWfzHnQ58HqF/5wRLVKKYuW5rQhqneJzNL2eu5F8jIg==
+X-Received: by 2002:a05:6214:5198:b0:77f:4415:6d8b with SMTP id
+ 6a1803df08f44-7fc28076ae1mr36287846d6.8.1758808554316; 
+ Thu, 25 Sep 2025 06:55:54 -0700 (PDT)
 Received: from 137.1.168.192.in-addr.arpa
  ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
  by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.54.52
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.55.49
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 25 Sep 2025 06:54:58 -0700 (PDT)
+ Thu, 25 Sep 2025 06:55:53 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Thu, 25 Sep 2025 09:53:55 -0400
-Subject: [PATCH v2 07/19] rust: device: replace `kernel::c_str!` with C-Strings
+Date: Thu, 25 Sep 2025 09:54:04 -0400
+Subject: [PATCH v2 16/19] rust: str: replace `kernel::c_str!` with
+ C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-core-cstr-cstrings-v2-7-78e0aaace1cd@gmail.com>
+Content-Transfer-Encoding: 8bit
+Message-Id: <20250925-core-cstr-cstrings-v2-16-78e0aaace1cd@gmail.com>
 References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
@@ -109,13 +110,13 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
  Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=2297;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808438; l=1351;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=tEhBaBJnhQFO++GmUh6w8m63Mr6JSvoXu3wOHmq14e0=;
+ bh=TE76Xl7EtGwiL3k522JoFNelrGIHYPV5uXDUZx193fk=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QFEkzUjb+lD/w38vqtw9O/htNaxJTX/sabnw4QloRojDdlHFE7uz1iz3IfwN44ls/ZjS7SJYOQu
- /SzXo2WM/nAo=
+ QNEkH2K217WCJVB+0mC1S+mvJu9BnNI6eCwPt0AKaTiMW7gojiLm71MaiB58vh7llyUCTN8zCSP
+ N0RCtgv8pDgg=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -139,54 +140,33 @@ C-String literals were added in Rust 1.77. Replace instances of
 Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Reviewed-by: Benno Lossin <lossin@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
 ---
- rust/kernel/device.rs          | 4 +---
- rust/kernel/device/property.rs | 6 +++---
- 2 files changed, 4 insertions(+), 6 deletions(-)
+ rust/kernel/str.rs | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/rust/kernel/device.rs b/rust/kernel/device.rs
-index f3718da11871..242286162c8b 100644
---- a/rust/kernel/device.rs
-+++ b/rust/kernel/device.rs
-@@ -10,8 +10,6 @@
- };
- use core::{marker::PhantomData, ptr};
- 
--#[cfg(CONFIG_PRINTK)]
--use crate::c_str;
- use crate::str::CStrExt as _;
- 
- pub mod property;
-@@ -378,7 +376,7 @@ unsafe fn printk(&self, klevel: &[u8], msg: fmt::Arguments<'_>) {
-             bindings::_dev_printk(
-                 klevel.as_ptr().cast::<crate::ffi::c_char>(),
-                 self.as_raw(),
--                c_str!("%pA").as_char_ptr(),
-+                c"%pA".as_char_ptr(),
-                 core::ptr::from_ref(&msg).cast::<crate::ffi::c_void>(),
-             )
-         };
-diff --git a/rust/kernel/device/property.rs b/rust/kernel/device/property.rs
-index 3a332a8c53a9..3eb3f36d66d0 100644
---- a/rust/kernel/device/property.rs
-+++ b/rust/kernel/device/property.rs
-@@ -178,11 +178,11 @@ pub fn property_count_elem<T: PropertyInt>(&self, name: &CStr) -> Result<usize>
-     /// # Examples
+diff --git a/rust/kernel/str.rs b/rust/kernel/str.rs
+index 624386cb07be..4203ce34ce98 100644
+--- a/rust/kernel/str.rs
++++ b/rust/kernel/str.rs
+@@ -272,15 +272,14 @@ impl fmt::Display for CStr {
+     /// Formats printable ASCII characters, escaping the rest.
      ///
      /// ```
--    /// # use kernel::{c_str, device::{Device, property::FwNode}, str::CString};
-+    /// # use kernel::{device::{Device, property::FwNode}, str::CString};
-     /// fn examples(dev: &Device) -> Result {
-     ///     let fwnode = dev.fwnode().ok_or(ENOENT)?;
--    ///     let b: u32 = fwnode.property_read(c_str!("some-number")).required_by(dev)?;
--    ///     if let Some(s) = fwnode.property_read::<CString>(c_str!("some-str")).optional() {
-+    ///     let b: u32 = fwnode.property_read(c"some-number").required_by(dev)?;
-+    ///     if let Some(s) = fwnode.property_read::<CString>(c"some-str").optional() {
-     ///         // ...
-     ///     }
-     ///     Ok(())
+-    /// # use kernel::c_str;
+     /// # use kernel::prelude::fmt;
+     /// # use kernel::str::CStr;
+     /// # use kernel::str::CString;
+-    /// let penguin = c_str!("🐧");
++    /// let penguin = c"🐧";
+     /// let s = CString::try_from_fmt(fmt!("{penguin}"))?;
+     /// assert_eq!(s.to_bytes_with_nul(), "\\xf0\\x9f\\x90\\xa7\0".as_bytes());
+     ///
+-    /// let ascii = c_str!("so \"cool\"");
++    /// let ascii = c"so \"cool\"";
+     /// let s = CString::try_from_fmt(fmt!("{ascii}"))?;
+     /// assert_eq!(s.to_bytes_with_nul(), "so \"cool\"\0".as_bytes());
+     /// # Ok::<(), kernel::error::Error>(())
 
 -- 
 2.51.0
