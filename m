@@ -4,77 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C949ACCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:59:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E170BCAC5B8
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:59:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 803FA10E68B;
-	Mon,  6 Oct 2025 20:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 751EF10E68E;
+	Mon,  6 Oct 2025 20:59:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UfBRAMjT";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bqmPBTfR";
 	dkim-atps=neutral
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
- [209.85.160.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC27910E77B;
- Wed, 13 Aug 2025 15:59:40 +0000 (UTC)
-Received: by mail-qt1-f174.google.com with SMTP id
- d75a77b69052e-4b109be3726so265801cf.2; 
- Wed, 13 Aug 2025 08:59:40 -0700 (PDT)
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com
+ [209.85.219.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C6F10E93F
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 13:55:18 +0000 (UTC)
+Received: by mail-qv1-f42.google.com with SMTP id
+ 6a1803df08f44-7970e8d1cfeso10207526d6.1
+ for <nouveau@lists.freedesktop.org>; Thu, 25 Sep 2025 06:55:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755100780; x=1755705580; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1758808517; x=1759413317; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=/uSi0/KFXiiCYmcIUU0pjTetKZWsYlG+no8vKmb84iA=;
- b=UfBRAMjTWbyhzCcdrgjVaivlf4Pix7OcehNscT/nziW31GX3TpeN8YUpnoF8cefEKw
- D0XU8Kn/u+vsFiziQPiil3Ot+Dv+aFAI3YWnGDdKFGPnnfx/Ghm6aVOtTBdEYoyAozWi
- gNxV68wTPU4cb+XsNEtxFyLuM8kz4f6iZXaUmyE4l0RvDa20BplHbNA82sqqpK2HIVNu
- 7EQlMS4+JkdXT/ei3u32f5Zg/iUaK18apDHxLBjO0kAyNod59r3fXlackV4vqGG4aJtt
- YwR8TpAWIOpHNTAAGdHCi5me9TenQitINdTgKbxqHZvywJRD/nVZbOZF6qmdxNr2SiTr
- FjTA==
+ :reply-to; bh=NYha/ksIy3nvgxYlzdJIQEddJjIGfcGOB5STOc36XYg=;
+ b=bqmPBTfR8EZ8rNhQgHDPSMLks8WujIya0p+f2X1ZKwD/u/JZX+pwf4BCxlJYeBvBTB
+ cIgxwGlxSDcksyMO82W3kjDNuLyCYR0GcrzH1W1xKBJBVvj0PuFEfX7PeOoVwVovsWt6
+ zOqmWZxdaUdWHxbbPc1x5/tfMxnyyKeGTUzy1nVTKkHFYLRO68DD6NQBrfQP27neCKWw
+ DuF5dAn81ZSg8d3OChJaZY6g+Z7GrHKX7gi4b+30Aw24hbdjfRIkHJ58Idp6eyeqcQzz
+ 6iNxaApXS7dpdnelkYcvUS601FDZq3YNWlnPk59CzPas7CkJINi8orFWXLa0wMIFJgnB
+ 8uAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755100780; x=1755705580;
+ d=1e100.net; s=20230601; t=1758808517; x=1759413317;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=/uSi0/KFXiiCYmcIUU0pjTetKZWsYlG+no8vKmb84iA=;
- b=AizoA0NZGCPpIe2lCN+9EnqBq/pZ0Vh6K8crtPwH3zphRFhlMAPThTHUeJuGl7sveJ
- PmwvbYpS1eWZTMXmpbPeMbzdU2XUczFc8y17ApK2jx4fp9Y4LOgY5JwCQkMgCx6tsGwo
- WU+OWpCeaWhxUH5EdffxcyyNfIsYsyr4PWbja6EUwfPln1LQyBFFpOc//qpwmh2dpZwL
- MSBTfjA5vzOFWEcABNd6Jw40gxK8O3NINI+zVKUCPB53KjjkxeMEwOO6odKVjJw5dC/K
- bDTsjN31g2M60+1FotnuPx3LZFefBzFvAS0rsMP4xUInsvxJ6arWlYJ+qP5uXYCwmrPC
- dw1A==
+ bh=NYha/ksIy3nvgxYlzdJIQEddJjIGfcGOB5STOc36XYg=;
+ b=wIDf0ItU5EmIGJgMfw6cnjuuh+eIGWmqv2f0gZkeCirN+PfJkWE+R2m7JY07pmynvv
+ c8MY4H1ND4U2vvrGgS9obI67QFvoPnBsq1cmdYTSar9zSxoh5T0SNv0tfQzZaqvP2LdB
+ FiEjfErTlOdidIaArf+2Un6uiC6GfTradqqt1LjWlDIKE7mz6a0RpogC8zXelx1IVtyc
+ t7BmdNvLbeYFxwj5ZyxwEA3ZjsMEt+dyjjV33FIgFVyWcVdyBo/HJN7tCXAI8UtrKuw2
+ KTXU/bZihjIOEtbL3FnmCIW4IBXqUr6CQrbTFsoiEiGFnexp/yYyD9dVvCZQr/YO8WA2
+ KcJw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUj4ptv95RGchymNV5bisF9HYFoFkrgDgOh3+p4uvNqXaJMcMP/5cKA/PcZ5/e+esrzveHQAGhuIg==@lists.freedesktop.org,
- AJvYcCX7bzdRpmMhqOGJPjnM0zwVc7sx54a6cGlfpc7OapccqLJj3K8dU2dXZJGc1obEM6H+NLk1Mv+wOw4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywb4fCEWB91jZW/yumEZCzAEb9TME962oV58Ti+k5R2aKJf+SIw
- KuG0PcJoeyaF/2pZ11mhklrM0zQeSMjHaXzPC4TsxOpMm5T11766mO9t
-X-Gm-Gg: ASbGncu48ScwW+cYuztSbL3IjCz5LLOccQD+XEbBuREurj/74aIr1UGe8BnU8+0GPHl
- l+G2MKWS2dnnXg3lsD+VZm11r2nB7VsDIyQotIkayCHo2VZeWbIZm26A+u3GV0GHN7MU0SndgF9
- l6AX1hs5X38gRW6jG8NNywIrY7qlBVG+zaRY2zFYD8Hu55r27LDvyK8UHUW6sNK3rH7UsxL0slQ
- qh+2D5Vb8iDL6moU9PbcjYvVM7Dk0ZZgEwH7YIAV7yMh/HKwcwDnejMENjd+HivACgsLUkreJlm
- FLNbsSmRanJvw0QrTt4wABomnGK5qp/ba0idGsbKQ0o0/IxCk8fkVX2BP3nQMTyeMGRYlHkV2/c
- ZOtFamy/PkC8L3NfdPoQ4LMDcwbHpW8k6ph2wL8+yR77U1r4UDUY0BoXYWeZdzqa8z68lKmp70o
- JcQDoJqJ0X5wchZGmBBN8qDONPOt+QksjojQdEZqI=
-X-Google-Smtp-Source: AGHT+IEAmj18QhxLoJhKv5gl7oxN5rOUOYsu7xtf/ad0LtVX2HZm2WUPSGMiEf/0bbq/rLPvLyA/eg==
-X-Received: by 2002:a05:622a:4811:b0:4af:230a:dadb with SMTP id
- d75a77b69052e-4b0fc6be691mr50407091cf.5.1755100779635; 
- Wed, 13 Aug 2025 08:59:39 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([2600:4808:6353:5c00:d445:7694:2051:518c])
+ AJvYcCWWrZXlhjVE3ra4F2VG7KX45tUFDNsLaK5Zbt1+eHYvkAMzJmL/yhty4gnTP9vL1ttkko5BxVEn@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwZNg/4H9lHcbXYt9jrc+cfwcLEsA5IqrLxFaVwmZVOh3h8VXro
+ z2rv11AUh0i7e25R/DVCTjbQwDAP9WjvHFVvlhJwgfwkXRlHN3636Bm9
+X-Gm-Gg: ASbGncukV/aMi6e/L8+m+/4MHX7XBq0BvbdajymXBiHs5DoKbug32CmiPC+DgYQYBdG
+ STVosUdkmBLdx/ms97f6mL9eCCvUExG54ToSSaVxwQb5lX/wFeuRAZBB7PdMEEBQZkrIGnOnx+u
+ fOy8k9IyjiOHSwxiCfD6EnWBNW82bFHzHI6kOGUslhet3dQIM6ALtA+oMp3ZVaMFdBD6pog/2fE
+ QfZPq9J1dEfuwheqnk7Xtk/ROFc8H9u0E2FPu9t/971QrDc7RqCnzLipTiPGmlHDLWX9fGOAdUa
+ K6qQzW9ypQ8aojVfjcYDDGj2+0/G+787JwdjExMiqGUhOdElfQaXYci+01Cuj0pLIT8EEwDxZMV
+ WUPPB1oL2siFQItT2QEjZC/F04XWZVvWK6glPKQPpEIOrhiUFP5vDG9rcj/NO1SKue5GP7N7bKT
+ 8h3acXrjJ6V4j+P9FyzvAsPV5bXcTf58PpTXu1Eim87BsaXL0k4mToAa7jMSAayeRpbezv
+X-Google-Smtp-Source: AGHT+IEZqYEZb8mISdLJuHBwRf4k0Tn3piTiphxdju20VgZskXS1fQZSSYTbb7BgZgibnFeCDmQS/g==
+X-Received: by 2002:a05:6214:27cd:b0:78a:e10c:1f6a with SMTP id
+ 6a1803df08f44-7fc2864221fmr42029446d6.1.1758808516914; 
+ Thu, 25 Sep 2025 06:55:16 -0700 (PDT)
+Received: from 137.1.168.192.in-addr.arpa
+ ([2600:4808:6353:5c00:7c:b286:dba3:5ba8])
  by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-4b085ad7d08sm124482211cf.53.2025.08.13.08.59.36
+ 6a1803df08f44-80135968d5esm11536916d6.12.2025.09.25.06.55.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 13 Aug 2025 08:59:39 -0700 (PDT)
+ Thu, 25 Sep 2025 06:55:16 -0700 (PDT)
 From: Tamir Duberstein <tamird@gmail.com>
-Date: Wed, 13 Aug 2025 11:59:15 -0400
-Subject: [PATCH v2 05/19] rust: configfs: replace `kernel::c_str!` with
- C-Strings
+Date: Thu, 25 Sep 2025 09:53:58 -0400
+Subject: [PATCH v2 10/19] rust: macros: replace `kernel::c_str!` with C-Strings
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250813-core-cstr-cstrings-v2-5-00be80fc541b@gmail.com>
-References: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
-In-Reply-To: <20250813-core-cstr-cstrings-v2-0-00be80fc541b@gmail.com>
+Message-Id: <20250925-core-cstr-cstrings-v2-10-78e0aaace1cd@gmail.com>
+References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
+In-Reply-To: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
 To: "Rafael J. Wysocki" <rafael@kernel.org>, 
  Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
@@ -112,13 +109,13 @@ Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
  Tamir Duberstein <tamird@gmail.com>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openssh-sha256; t=1755100759; l=3197;
+X-Developer-Signature: v=1; a=openssh-sha256; t=1758808437; l=1049;
  i=tamird@gmail.com; h=from:subject:message-id;
- bh=EQZo1upB9M1x1JFdTpaV8Cq+trhQfkvbEQ0ucCR/Veg=;
+ bh=zng85sA8+SsVec6zNo4TiEoP/H6f+tIcV689AAppDzE=;
  b=U1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgtYz36g7iDMSkY5K7Ab51ksGX7hJgs
  MRt+XVZTrIzMVIAAAAGcGF0YXR0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5AAAA
- QMestgupOVA5qzlqQPukztYt1+taScdgyyamOqF0bRx/0xpl4F7OS1NMKmSJTbYBoooWukzcpGj
- E2jFgDmWmiQs=
+ QIVNC06tKtgyxIKxAK3EObC8MiCaZE3yn180AX/LsynQ5F4vys0WrFsiwfjmzPM+0UA7iPHoZU6
+ G25wrGtAh8gk=
 X-Developer-Key: i=tamird@gmail.com; a=openssh;
  fpr=SHA256:264rPmnnrb+ERkS7DDS3tuwqcJss/zevJRzoylqMsbc
 X-Mailman-Approved-At: Mon, 06 Oct 2025 20:57:16 +0000
@@ -143,84 +140,24 @@ Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 Reviewed-by: Benno Lossin <lossin@kernel.org>
 Signed-off-by: Tamir Duberstein <tamird@gmail.com>
-Acked-by: Andreas Hindborg <a.hindborg@kernel.org>
 ---
- rust/kernel/configfs.rs       | 9 +++++----
- samples/rust/rust_configfs.rs | 5 ++---
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ rust/macros/module.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/rust/kernel/configfs.rs b/rust/kernel/configfs.rs
-index 9fb5ef825e41..69bb1fb53543 100644
---- a/rust/kernel/configfs.rs
-+++ b/rust/kernel/configfs.rs
-@@ -21,7 +21,6 @@
- //!
- //! ```ignore
- //! use kernel::alloc::flags;
--//! use kernel::c_str;
- //! use kernel::configfs_attrs;
- //! use kernel::configfs;
- //! use kernel::new_mutex;
-@@ -50,7 +49,7 @@
- //!
- //!         try_pin_init!(Self {
- //!             config <- configfs::Subsystem::new(
--//!                 c_str!("rust_configfs"), item_type, Configuration::new()
-+//!                 c"rust_configfs", item_type, Configuration::new()
- //!             ),
- //!         })
- //!     }
-@@ -66,7 +65,7 @@
- //! impl Configuration {
- //!     fn new() -> impl PinInit<Self, Error> {
- //!         try_pin_init!(Self {
--//!             message: c_str!("Hello World\n"),
-+//!             message: c"Hello World\n",
- //!             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
- //!         })
- //!     }
-@@ -1000,7 +999,9 @@ macro_rules! configfs_attrs {
-                     static [< $data:upper _ $name:upper _ATTR >]:
-                         $crate::configfs::Attribute<$attr, $data, $data> =
-                             unsafe {
--                                $crate::configfs::Attribute::new(c_str!(::core::stringify!($name)))
-+                                $crate::configfs::Attribute::new(
-+                                    $crate::c_str!(::core::stringify!($name)),
-+                                )
-                             };
-                 )*
+diff --git a/rust/macros/module.rs b/rust/macros/module.rs
+index 5ee54a00c0b6..8cef6cc958b5 100644
+--- a/rust/macros/module.rs
++++ b/rust/macros/module.rs
+@@ -228,7 +228,7 @@ pub(crate) fn module(ts: TokenStream) -> TokenStream {
+             type LocalModule = {type_};
  
-diff --git a/samples/rust/rust_configfs.rs b/samples/rust/rust_configfs.rs
-index 5005453f874d..ea84c23b784b 100644
---- a/samples/rust/rust_configfs.rs
-+++ b/samples/rust/rust_configfs.rs
-@@ -3,7 +3,6 @@
- //! Rust configfs sample.
+             impl ::kernel::ModuleMetadata for {type_} {{
+-                const NAME: &'static ::kernel::str::CStr = ::kernel::c_str!(\"{name}\");
++                const NAME: &'static ::kernel::str::CStr = c\"{name}\";
+             }}
  
- use kernel::alloc::flags;
--use kernel::c_str;
- use kernel::configfs;
- use kernel::configfs_attrs;
- use kernel::new_mutex;
-@@ -35,7 +34,7 @@ struct Configuration {
- impl Configuration {
-     fn new() -> impl PinInit<Self, Error> {
-         try_pin_init!(Self {
--            message: c_str!("Hello World\n"),
-+            message: c"Hello World\n",
-             bar <- new_mutex!((KBox::new([0; PAGE_SIZE], flags::GFP_KERNEL)?, 0)),
-         })
-     }
-@@ -61,7 +60,7 @@ fn init(_module: &'static ThisModule) -> impl PinInit<Self, Error> {
- 
-         try_pin_init!(Self {
-             config <- configfs::Subsystem::new(
--                c_str!("rust_configfs"), item_type, Configuration::new()
-+                c"rust_configfs", item_type, Configuration::new()
-             ),
-         })
-     }
+             // Double nested modules, since then nobody can access the public items inside.
 
 -- 
-2.50.1
+2.51.0
 
