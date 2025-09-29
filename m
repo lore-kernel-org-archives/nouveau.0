@@ -4,65 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 121C6D5B15B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A69C4D5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3E6610EADD;
-	Sat, 13 Dec 2025 12:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6241010EAE9;
+	Sat, 13 Dec 2025 12:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=icloud.com header.i=@icloud.com header.b="okfSpUKp";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="W43ofVqS";
 	dkim-atps=neutral
-X-Greylist: delayed 447 seconds by postgrey-1.36 at gabe;
- Fri, 13 Sep 2024 11:32:19 UTC
-Received: from pv50p00im-zteg10011501.me.com (pv50p00im-zteg10011501.me.com
- [17.58.6.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B63710E14A
- for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 11:32:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
- s=1a1hai; t=1726226691;
- bh=OjgbjKJ8ePomEEUTsZ+wSrryAAYuLrVcsFsL8h9/F6k=;
- h=Message-ID:Date:MIME-Version:From:Subject:To:Content-Type;
- b=okfSpUKpwnWiJyMnIDFDX+mu5CY551yKgc50UDPEFIG7WQR95y9tjTNiVRQ2brzVf
- bSI0343NNgeEki4OE5JqXY6GhSp/DnnJzo+ktQ7oY87bQSxA1L61qUV1dTCPVpVfm9
- uZca7OPv90lzNUY4mpmTZjOop5um12+LkY+lJw9j7lmyLSU+oOvQ9/bEFbbBi6A+PU
- 64vqYTNZdBPYmynWJ0h+8vPmgRTaWJ3onqKyxgtnRpRD01ezWV00SaA8Y3wp+s3Dtb
- J1ut3DaHv2Tu7coxe6bHvHWI93eyygc73i3zFDLLdGSVmiISvDLMotbx9YhaUGrfG2
- ymClbtspfq8ZQ==
-Received: from [192.168.31.220] (pv50p00im-dlb-asmtp-mailmevip.me.com
- [17.56.9.10])
- by pv50p00im-zteg10011501.me.com (Postfix) with ESMTPSA id 1BBFE4A03E9
- for <nouveau@lists.freedesktop.org>; Fri, 13 Sep 2024 11:24:48 +0000 (UTC)
-Message-ID: <c80b78c2-fb29-4996-bf02-52149c9f3d22@icloud.com>
-Date: Fri, 13 Sep 2024 19:24:45 +0800
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+ [209.85.214.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0E3310E433
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 14:38:26 +0000 (UTC)
+Received: by mail-pl1-f170.google.com with SMTP id
+ d9443c01a7336-27ec3db6131so10873775ad.1
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 07:38:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1759156706; x=1759761506; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=6wxzuRD2+UgfGobNcQjA07eqzttSMbasZ+Ip7tu3YNU=;
+ b=W43ofVqSnrumy6nxQgZIIE94r9l6wH588+eChhCM/M6oWcSKt6AYViJAqj3bDRQ+FD
+ xTmTReii+ly8VKsJnbMbDQJIcCdEbCIUgOdIHv5uTzKX7QttXym0bSC30juttAKUL3Cq
+ 0NkgZpd4kK+X+shRyZaAwK6jAC1un49GKC6i/6r1fCvtJvYwN+aBf+CYpJ+XnloG4OFf
+ KSIXDvjXcDxqGkfI4RDmj6ugSu7GSlbhURwP2+DbUbpL8r5NYFMXa96bDke2JiUUY25R
+ 1zE3N/mRSlj8zvxbsgDvoJhnxVQUDPuFhNKWqurU86pENK9k/Tr2GWhTgdq1DxvH6ub1
+ TY3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1759156706; x=1759761506;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=6wxzuRD2+UgfGobNcQjA07eqzttSMbasZ+Ip7tu3YNU=;
+ b=BBCXI3tNx5xk/nhte+ChNWyyxSRaEhVpY6MlYkvPNBMT8DI8GcJGnQUR8jgdWTngQC
+ Ske5lShTTSDa65bJhvm/hHYDfgV9MgcbdY+Ys8dnyOfo3a2ZfizEPi+lrmmKzpGwpZAK
+ XFzqcXaiAIWlurFIkFp+zcuWWdwJG+cK1VD46y7SYJZvDOQIGkaZOzROpy1Q5y6kNE5Q
+ EzpL1xsi++5XIfVGCMj8Z0AHgfAQ+RZd/H1mV3veandoYK0ezINb0/UjKoTYP7benzy0
+ KYll7HSH1R/VM4wpliEAB0mId9/8HotRr4fj/KCSGbsZtPzB8arxHo/x2s0InZBNDbZx
+ WJVg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXOHWydOSXs29K+d4CfrgTrq/XGTfz/g1+HEIk211Ntwiw8s0RO0s+LZSvIUqXDXRMD8fuZKqzm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGXJTKggWurd9wb/HHlGhw0aikMqpkXtKZL7STGqqpHlzIXTZc
+ Z11B7d8b44iTBFtx/2kIkuItfqOf1oiGnUcRKj3Ae3mmmoifjTj1X2uZ81Ou/+tJkdWbodMVo4/
+ P1B1fKnDO/kLGO312ilIedxwvpWc4rKs=
+X-Gm-Gg: ASbGncuE0+wsKd0EnP/XZL+ZrNVYEWhCVYCgZJ5f0bhAHYI7yZDPSMrXbnsI/6Li3Tl
+ OyAA0FUkAVWaGhrHF6v0yqNCasoIzb7iNW6UtFN00Eq26dSCN0nE9c0fPIMpSxV0CTxIYvfPkTJ
+ 6BwUuqKlIBHqgSFjDG5sZ+s6jNRZCgYfiM4AjSsCMOBxOYyKEYeCe+eq/bzeZitBUJ4DyCHt9tx
+ fYe6Ot/PfiEnUVxYpv06FSv93P4yivCo1uvM8Jryhd/3+0AsuP+PpQxRghGaJ4jpZZA5gK+Gone
+ VPV9kuJVtAmMSMa1oMuCu8EUMWkgubvjQHtvlb0cJNwg8ZA=
+X-Google-Smtp-Source: AGHT+IEuajVdRt/zkJ/UX7z6Wnp/1y6NOw3KWFiaL0wSJ/2A6J51idlMClGnkDk/Tn16oxOvOKsoW449qVwpqNver/w=
+X-Received: by 2002:a17:903:1a68:b0:275:c066:33dd with SMTP id
+ d9443c01a7336-27ed4ab64a4mr106185325ad.10.1759156706206; Mon, 29 Sep 2025
+ 07:38:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Kimiblock Moe <kimiblock@icloud.com>
-Subject: Locking GPU frequency on GSP-enabled cards
-To: nouveau@lists.freedesktop.org
-Content-Language: en-US, en-US-large
-Autocrypt: addr=kimiblock@icloud.com; keydata=
- xjMEZceOOxYJKwYBBAHaRw8BAQdAgSthMh6TJIM5zkC5XFh4f9iXS6FHragDj5mat+bMgY/N
- IEtpbWlibG9jayA8a2ltaWJsb2NrQGljbG91ZC5jb20+wpMEExYKADsWIQQN01jB/BRX8rHy
- TqBCp1dTTVQnKAUCZceOOwIbAwULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIXgAAKCRBCp1dT
- TVQnKCddAQCa4Yf9ZcXLcFLjr6hscb+ajN8eiAIOTD89CB/4o544AwD/dM3jFiYmEYcB4Rbn
- nP+N/WQwFImaqFJ4lmCDnjCjVQ7OOARlx447EgorBgEEAZdVAQUBAQdAAPqggEFwWz66Q52x
- mowSFknTTFEI6bbRktVcNszxASoDAQgHwngEGBYKACAWIQQN01jB/BRX8rHyTqBCp1dTTVQn
- KAUCZceOOwIbDAAKCRBCp1dTTVQnKMH8AQC8tmDpeOoO3t8HxX2y+E/dUAD+SsUARA0dlZHv
- QU9pMAEAlZIGCQcPGBZaIlUtlQLI2rgFo8ncDCUGDv+0l+swCgY=
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------a964SMoLJ0ukmsOEUSy5076d"
-X-Proofpoint-GUID: HRmolHNCpW_9blCthd4az4zAT8qLkMOU
-X-Proofpoint-ORIG-GUID: HRmolHNCpW_9blCthd4az4zAT8qLkMOU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-13_09,2024-09-13_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
- phishscore=0 mlxscore=0
- adultscore=0 bulkscore=0 mlxlogscore=568 suspectscore=0 clxscore=1011
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2409130079
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+References: <20250922113026.3083103-1-apopple@nvidia.com>
+ <20250922113026.3083103-6-apopple@nvidia.com>
+ <DD2GCDGQ7Q4W.1CSFYSETFSN5H@nvidia.com>
+ <7brvf66smc3ltqrw7tm7smth6wnefeqykdm2n4qahi5xnr6d5o@4l5xfdbznlp3>
+ <DD5CXDR294YD.2RL474PWBDWTV@nvidia.com>
+In-Reply-To: <DD5CXDR294YD.2RL474PWBDWTV@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 29 Sep 2025 16:38:12 +0200
+X-Gm-Features: AS18NWBU5ftnpGhJqKd4k_6D7IlxaPNAUhkxayMY9q8yLGmTLeUS7TVSiAU2z4g
+Message-ID: <CANiq72k3qkj1HxjnCoknAdWhdM7O1ZBkZDqBsVS7vxYH-tRCWg@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] gpu: nova-core: gsp: Add GSP command queue
+ handling
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Alistair Popple <apopple@nvidia.com>, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,68 +101,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------a964SMoLJ0ukmsOEUSy5076d
-Content-Type: multipart/mixed; boundary="------------4YUNKeMnmDg628bSr9QnmpsX";
- protected-headers="v1"
-From: Kimiblock Moe <kimiblock@icloud.com>
-To: nouveau@lists.freedesktop.org
-Message-ID: <c80b78c2-fb29-4996-bf02-52149c9f3d22@icloud.com>
-Subject: Locking GPU frequency on GSP-enabled cards
+On Mon, Sep 29, 2025 at 4:34=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> I think you will also need to explicitly enable the feature somewhere -
+> for the kernel crate it is in `rust/kernel/lib.rs`, but Nova being a
+> different crate I am not sure where we are supposed to do it...
 
---------------4YUNKeMnmDg628bSr9QnmpsX
-Content-Type: multipart/mixed; boundary="------------AVtedLXTrpRv0IphyyheoMWJ"
+`rust_allowed_features` in `scripts/Makefile.build`.
 
---------------AVtedLXTrpRv0IphyyheoMWJ
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+I hope that helps!
 
-SGksDQoNCkkgYW0gdXNpbmcgYSBsYXB0b3Agd2l0aCA0MCBzZXJpZXMgY2FyZC4gQ3VycmVu
-dGx5IGlmIHRoZSBkaXNjcmV0ZSBHUFUgDQpzaXRzIGlkbGUgZm9yIHNvbWUgdGltZSwgdGhl
-IGRpc3BsYXkgY29ubmVjdGVkIHRvIGl0IHdpbGwgc3RhcnQgdG8gbGFnIA0KYmFkbHkuIFRo
-aXMgcHJvYmxlbSBpcyBhbHNvIHByZXNlbnQgd2hlbiBib3RoIGRpc3BsYXlzIGFyZSBjb25u
-ZWN0ZWQgdG8gDQp0aGUgTlZJRElBIEdQVSBhbmQgdXNpbmcgcHJvcHJpZXRhcnkgZHJpdmVy
-cywgYnV0IGNhbiBiZSBtaXRpZ2F0ZWQgYnkgDQpsb2NraW5nIHRoZSBHUFUgZnJlcXVlbmN5
-IHVzaW5nICJudmlkaWEtc21pIC1sZ2MgMjAwMCw0MDAwMCIuIFRoaXMgc3RvcHMgDQp0aGUg
-ZGlzY3JldGUgR1BVIGZyb20gbG93ZXJpbmcgaXRzIGNsb2NrIHNwZWVkIGFuZCByZXN1bHRz
-IGluIGEgc21vb3RoIA0KZGVza3RvcCBleHBlcmllbmNlLiBJIHdvbmRlciBpZiB0aGlzIGlz
-IHBvc3NpYmxlIHdpdGggbm91dmVhdT8gVGhhbmtzIQ0KDQotLSANCi0tDQpTaW5jZXJlbHks
-DQpLaW1pYmxvY2sNCg0K
---------------AVtedLXTrpRv0IphyyheoMWJ
-Content-Type: application/pgp-keys; name="OpenPGP_0x42A757534D542728.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x42A757534D542728.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xjMEZceOOxYJKwYBBAHaRw8BAQdAgSthMh6TJIM5zkC5XFh4f9iXS6FHragDj5ma
-t+bMgY/NIEtpbWlibG9jayA8a2ltaWJsb2NrQGljbG91ZC5jb20+wpMEExYKADsW
-IQQN01jB/BRX8rHyTqBCp1dTTVQnKAUCZceOOwIbAwULCQgHAgIiAgYVCgkICwIE
-FgIDAQIeBwIXgAAKCRBCp1dTTVQnKCddAQCa4Yf9ZcXLcFLjr6hscb+ajN8eiAIO
-TD89CB/4o544AwD/dM3jFiYmEYcB4RbnnP+N/WQwFImaqFJ4lmCDnjCjVQ7OOARl
-x447EgorBgEEAZdVAQUBAQdAAPqggEFwWz66Q52xmowSFknTTFEI6bbRktVcNszx
-ASoDAQgHwngEGBYKACAWIQQN01jB/BRX8rHyTqBCp1dTTVQnKAUCZceOOwIbDAAK
-CRBCp1dTTVQnKMH8AQC8tmDpeOoO3t8HxX2y+E/dUAD+SsUARA0dlZHvQU9pMAEA
-lZIGCQcPGBZaIlUtlQLI2rgFo8ncDCUGDv+0l+swCgY=3D
-=3DMBfY
------END PGP PUBLIC KEY BLOCK-----
-
---------------AVtedLXTrpRv0IphyyheoMWJ--
-
---------------4YUNKeMnmDg628bSr9QnmpsX--
-
---------------a964SMoLJ0ukmsOEUSy5076d
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQQN01jB/BRX8rHyTqBCp1dTTVQnKAUCZuQg/QUDAAAAAAAKCRBCp1dTTVQnKBhi
-AQC1kN6nGgqv/3ZjgnfIwK9xdzNQmLcZjmD6Vwcth/jJ5QD9Gaod4JntlgXW+lKFs3Ip2dyRoBDC
-bhOf0vFm/Cz4KQA=
-=Leky
------END PGP SIGNATURE-----
-
---------------a964SMoLJ0ukmsOEUSy5076d--
+Cheers,
+Miguel
