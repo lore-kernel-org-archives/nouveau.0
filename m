@@ -4,92 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B41D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 615DED5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A85210EB12;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3580710EB0F;
 	Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="lEL/kamK";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUVEpjwx";
 	dkim-atps=neutral
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C773D10E59F
- for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 11:58:17 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-26808b24a00so8831815ad.1
- for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 04:58:17 -0700 (PDT)
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
+ [209.85.215.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB61110E450
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 15:26:58 +0000 (UTC)
+Received: by mail-pg1-f173.google.com with SMTP id
+ 41be03b00d2f7-b55197907d1so3623268a12.0
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 08:26:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759233497; x=1759838297; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VcwjoiI7Z+OQfUBE/J+XJHgAGKhZ1AOP0RhfLRLtwcY=;
- b=lEL/kamK4kg5Fii76eDT7d+VTcU30muMbirBzFF5j3at5lZqoAbPrafSbP/w3t2Ds0
- icPZLJEH3zdFZam5LrMndDyLC5z1qVBljGLt0kvz+mzld61Vf3t0OqFvPjudfrDdFAq6
- jiJg6jkxluq0CsNFnJVOkApZLa9YK0VQKeFR+CE/jmeuIMwq+jIkmiR3Gb7rSsMpnyWP
- +epxMiLMUz2/kR7NJSd5IWXPPTkkZ+mH9OoA9zjKT3bJg9XGLcKsDWUlcjddOlSgdyxH
- MnoJuJ0nP3dFgNLlqTXHrN+y2Ru0MN62fqqwONLTbWLOdPI98rWGMrGcK7XaslY8MCao
- XKUQ==
+ d=gmail.com; s=20230601; t=1759159618; x=1759764418; darn=lists.freedesktop.org;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=QUFfHCZ9kPQnI/DGEJ/PgzLIjVfpKbTJMrrLjEY+ghE=;
+ b=BUVEpjwxJcwkzyVRIy+wrHu7MU1SRyMrxaBRwnzrmB2NBdxMBeSBwCUh0afthjMvrN
+ AUM4RtiKNCNde+w5+gByLzsyNA1NwfVukbbpMasMTqkYndjfJ3sS03mn3p3WKFT5FF86
+ qRBbZ2TZNSMW2SxFEubnJTUoDzXL+rqn0GQYavtRWHzatizpWLfaP71HaJJUbNyxgCGW
+ Lv4/4BGkFrJrAeNc1bcz2m8YOg4uY4AJRR/EufV0anPNaHDsunLC8+t5ctgEKjc0LTAd
+ EX3SK++AiX6elxQWQ+FPzhVA1UqBFuAdXzbx539ySJK/UtnxWJTXjEQhjnS33eGxjy5p
+ WYsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759233497; x=1759838297;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VcwjoiI7Z+OQfUBE/J+XJHgAGKhZ1AOP0RhfLRLtwcY=;
- b=IV9DyaC8zkAy5sno8vvsrK41PU2EW9DkzfqmnbVCTJ2RhWEKd9zee/9T0z6INooRDs
- Z9pOH51gNWyte/jWRadG/4sn+/JXKM5DDoYDdZ7Lt3A8zuT7K+yxY9gMbswFelMktJaX
- RLCEI2UXk4Q7CfvKin2njG+f3UTppwTCZ+w0/pDeg25hAEySaAnjPVGxgO0e8S+mukyc
- AgOqRfsNVtskRub0SI3JKKNlYI0X8PSjY8orMgtepcL637X7oBg4MHuNsPSOzIGt+s0c
- LkjcYarc0d5N160T+ILGQ09K5qvspBd2R5s3KNH5A40tnHXCz7WiI78wlxPWga5t4+64
- g4qg==
+ d=1e100.net; s=20230601; t=1759159618; x=1759764418;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=QUFfHCZ9kPQnI/DGEJ/PgzLIjVfpKbTJMrrLjEY+ghE=;
+ b=CEq3X3cDtcVKOOduHrMIWIxW1Lt5PXAHeUt4mkkuE1ZkTEnEvRQGxFI92mlHWS6MyM
+ 2H1O6n2JvgWTrvVWHFfqhPJQi0fQ1Zh7islgCH4JCrgi8jdKjZz0uHYIvi8AL3qGwpCc
+ qojLNVo2yv8HfRjvZ6t0shy+QqwBfRkt8k4m79JGNMAMmd0aPW9hL/37ZlcpAH5qjkLQ
+ 01v4wZE0kDtEtkcCZWrdOXao/HRNgmT8KLllkM/B+Vuw6q5ebEkX1zBvlD3j1O8wb9KM
+ 8GSn6fgNQTeU/3s0NLxuu9ZC7RV2b58XIYfT7GL+TD8XGAQjWSYDw1DfLL/8iTbEjnm4
+ +6lg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUIkvRl11WJa5SMqrTYG9zbBhLWf5iiuRkB9FFLZh3fWMjqNRUdA0CrqPMTFnUxl5nk6j6Zzh2M@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhGj0iDq5nbY4+ZD2SH6bGn0Xr9pxg5D4TNbcssHqjho9chgLD
- K1Jms4aF/PtDPoWMq0nMD56V9yTwvhds52aXVm1LbQXbZBfxYvYv5M5fWCeFYsaGG3EuEFhjEns
- 4R2uG4FEJOoTGzfxPnvm3R8JCuCxD53Y=
-X-Gm-Gg: ASbGnctJiEme5Vhg5t2/NVAxcRfWTOkPwD3qxhLLS5xjDtTfr0GSmYNCM+iaVueFaky
- RJyVbBUT+v0Fz2/uLl6FuSO0DLH8wwlzxdBhgEgppCXOwJcUDs0guIyoRzoaDqvdByZelj43CKA
- 1GfbH4nZnvNVWQ0XCDBjot00PdWoPaMto4yWAvwvYoYdOOxZFrE5dgrmOyktDFcqdrA22VJTy0w
- nNMXGSwZ/SLV0XWHmD1Mkl5JiQJ9/yQx2bzSuzdfeeXlOq0Sxa2t0au6srQuVE9EcE1D8tNQvw1
- LmQH9ZiqvbXiPLb9rGLBYl7vBktKUfWTcbZreO/uGz+iv4OhHg==
-X-Google-Smtp-Source: AGHT+IHJ4gNihkr+mad+gS8QEVDP5CM9acJAgm5Gq0rNyMMXGiM3fVx5RNRww0KuhYTEhtNZfq1z3GOBVp8XDPlUzw0=
-X-Received: by 2002:a17:903:1105:b0:269:85aa:3776 with SMTP id
- d9443c01a7336-27ed4b5dcf1mr121341885ad.11.1759233497228; Tue, 30 Sep 2025
- 04:58:17 -0700 (PDT)
-MIME-Version: 1.0
-References: <20250922113026.3083103-1-apopple@nvidia.com>
- <20250922113026.3083103-6-apopple@nvidia.com>
- <DD2GCDGQ7Q4W.1CSFYSETFSN5H@nvidia.com>
- <7brvf66smc3ltqrw7tm7smth6wnefeqykdm2n4qahi5xnr6d5o@4l5xfdbznlp3>
- <DD5CXDR294YD.2RL474PWBDWTV@nvidia.com>
- <CANiq72k3qkj1HxjnCoknAdWhdM7O1ZBkZDqBsVS7vxYH-tRCWg@mail.gmail.com>
- <DD5D5SRBMW4P.3JJPQVDF5BZLU@nvidia.com>
- <had7hms7ex4w4bvy2mfwtltyyt2xhsn572brrxvibvufxt6fuf@lppudpzwct4a>
-In-Reply-To: <had7hms7ex4w4bvy2mfwtltyyt2xhsn572brrxvibvufxt6fuf@lppudpzwct4a>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 30 Sep 2025 13:58:04 +0200
-X-Gm-Features: AS18NWCdBljfozdePu6TUcKqSpCpdgxpMnivW-rYDv0CmHf3eUP5HKxAK6E3ccI
-Message-ID: <CANiq72=hmkF=FNiWknrKXeLz4EK_eqLQa2647ejJSfukb9B+-Q@mail.gmail.com>
-Subject: Re: [PATCH v2 05/10] gpu: nova-core: gsp: Add GSP command queue
- handling
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ AJvYcCX7hyJRIeXel/Spm0M1svihzqscOa/pOGNdCtcn5pvgojULku9KZZtcq17IHU7vaXTc9W2DKYXC@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxvQgqr6jSBDp00Q1pq7wU09xOt4TE/PoNYUh/WG6+84JwYhWDE
+ tHUPml/l2CWDpAJo0qIP1xd+ssW0Wnhc0++GkZHevHHXxVy/+dflj1TZ
+X-Gm-Gg: ASbGncvzNyXyK9yIJ60jmHgjKNFh5x14Co1lj/kEA0de5k2qUCQ5iGW6M0hBkSMsw1H
+ de5NXFrwVN0Jgqc2mQXhmjqFs0tiJfE5d4NBqfz1jKgBChUWZ3rojdIJ9BwYL0LgVHD559hf1gX
+ KKCXtO7AxSO1TECP9fBhGk4LX/pTYmeIAioeiUyndcQuOn3sh2nMRbWi2j6K/dfpZWnGtmm03Tf
+ H35WE7DQJpRBOj8CBNilXTNWf+nu6WeBsZNY7eKeLvPfxgWFhpRHdOZIH5KZAC6Yh3WtgY4WsRQ
+ 8I0kXeFZhZj6eXQyqiYNnOarKz5wQT6vcrQe41/bdYTGy8waVYZ9l820nQtCci2tPK/kxT2OFQR
+ p5xtfrQFCBEXBqHYDg+VzEICNYD7Q1wTZdU4f9uXpDmE=
+X-Google-Smtp-Source: AGHT+IGlrXcMqMEE95Bpk6Fvp2Z3JkSBS53/nlBPtQ4p3saTyAp/aYHA69EYxK3FJ+53fX34h/VJMw==
+X-Received: by 2002:a17:902:f786:b0:240:3b9e:dd65 with SMTP id
+ d9443c01a7336-27ed4aab57bmr188196505ad.38.1759159618299; 
+ Mon, 29 Sep 2025 08:26:58 -0700 (PDT)
+Received: from localhost ([216.228.125.130]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-27ed66d37casm134991565ad.8.2025.09.29.08.26.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 29 Sep 2025 08:26:57 -0700 (PDT)
+Date: Mon, 29 Sep 2025 11:26:55 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v4 6/6] rust: bitfield: Use 'as' operator for setter type
+ conversion
+Message-ID: <aNqlPzZn9jUjSKfE@yury>
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+ <20250920182232.2095101-7-joelagnelf@nvidia.com>
+ <CANiq72k3kE-6KPkKwiDLgfkGHCQj4a2K7h9c4T13WMa5b4BAnQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANiq72k3kE-6KPkKwiDLgfkGHCQj4a2K7h9c4T13WMa5b4BAnQ@mail.gmail.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,22 +106,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Sep 30, 2025 at 1:42=E2=80=AFPM Alistair Popple <apopple@nvidia.com=
-> wrote:
->
-> Thanks. Is it still expected that `#[allow(clippy::incompatible_msrv)]` i=
-s
-> required? Just adding it to `rust_allowed_features` doesn't make the warn=
-ing go
-> away without the allow, but maybe I'm just doing something wrong...
+On Mon, Sep 29, 2025 at 03:59:32PM +0200, Miguel Ojeda wrote:
+> On Sat, Sep 20, 2025 at 8:23 PM Joel Fernandes <joelagnelf@nvidia.com> wrote:
+> >
+> > The bitfield macro's setter currently uses the From trait for type
+> > conversion, which is overly restrictive and prevents use cases such as
+> > narrowing conversions (e.g., u32 storage size to u8 field size) which
+> > aren't supported by From.
+> 
+> Being restrictive is a good thing -- it would be nice to know more
+> context about this change, like Alexandre points out.
+> 
+> In particular, the line:
+> 
+>     .set_nibble(0x12345678_u32)    // truncated to 0x8
+> 
+> sounds fairly alarming, and not what we usually want. Why cannot the
+> caller cast on their side, if they really want that?
 
-The warning is independent of the allowed features, and yeah, it is
-expected that the Clippy may trigger (at this moment when we dance
-with these features), so you can just allow it locally.
+It was my suggestion to relax the type requirement. The reasoning is
+as follows.
 
-If it is too cumbersome, I may disable it globally.
+Consider a bitfield bf with bits 5:3 described as field1. The storage
+for bf is u8, but the type is u32. This is OK, because storage and
+representation are simply different matters. And no matter how you
+declare the field inside the bitfield, you can't prevent overflow
+followed by silent truncation by just syntax measures.
 
-I hope that helps!
+I suggested to relax the requirement that field representation must
+match (not exceed in fact) storage type, and instead bring explicit
+check in the setter. With the check, if user tries to overflow the
+field, we either throw a warning, or panic if hardening is enabled,
+or do nothing in performance-critical builds.
 
-Cheers,
-Miguel
+As far as I can say, Joel scheduled this in v5.
+
+Thanks,
+Yury
