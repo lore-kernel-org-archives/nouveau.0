@@ -4,91 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 191E5D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4E95D5B15D
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AC6E10EA84;
-	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F3510EA64;
+	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="X/aaX0WF";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TKuaER3t";
 	dkim-atps=neutral
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com
- [209.85.216.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6971810E9E4
- for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 20:58:05 +0000 (UTC)
-Received: by mail-pj1-f46.google.com with SMTP id
- 98e67ed59e1d1-32baaf13944so893489a91.3
- for <nouveau@lists.freedesktop.org>; Wed, 10 Sep 2025 13:58:05 -0700 (PDT)
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+ [209.85.214.178])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1196A10E44F
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 15:17:40 +0000 (UTC)
+Received: by mail-pl1-f178.google.com with SMTP id
+ d9443c01a7336-26e81c17d60so9350705ad.0
+ for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 08:17:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757537885; x=1758142685; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759159059; x=1759763859; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=BxoYv6ear/flR5rAr5c7A/wGu93sOLIbo2XqrISjEys=;
- b=X/aaX0WFGcT8WqlnOHCjAaNPEddhWowfbJ7wDt8wWXmTo2nSXK6JW6YiUM9YBTu05N
- GRABE7F5Jiuq3u5f4h0dANNuSRPV1Z6zy0VxgvbjZAVvWre4KJKm9vo4DVki0vXbb13M
- obScn7TCWBhuvUW3rELr08skDLVX7zB9oYdIAy/M+R7OtJ4CVLsG7rnBUkWlypZdoNcv
- dJb0bZOOS5TqXa9fGiNorlTWDodptTRUwzF4+dm3wGFwGb+uR5P3/QN23pIF8UiTbIOp
- 0OI2ITCJKDCqh5nnkpjlU6Cyq41GXa+rUUox67lES0qEoIIHhGopTIDBlaoo4/31u9Qu
- m8zA==
+ bh=1iLyMxHlvLqemJX+awTsijKkDTe2O7NspoX88eyf7wY=;
+ b=TKuaER3tkbwMkbGgV3XH0EF3yBC4+dK1/KgKLRlvB6B9yhsI22OSucPs5Dn17pAKcg
+ EE8SLQkErDHLwHmTWvnMXGL75PC1irQJr2aDolEqKT/advNIMy1UNpg9tNncwh/AI0MU
+ nc1oDP9QtuffyUOqw1zGSxXeG0YEducasRNx1DcNhK4ObyhHSBEKhucUxdbZcO86WXgY
+ pDmp7tYyxhfab5zbL6Ya9bf8zBcfFvmqo9AVgIA/cJd/27kGF37AkkRALWThmVLRrlNz
+ dA72mmlKNDeEPeAe4Nw4YZ8QfbUUYzZbyoopgcrotO79sJ6w22BM/J4rXoBeNxRtvVJp
+ kYZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757537885; x=1758142685;
+ d=1e100.net; s=20230601; t=1759159059; x=1759763859;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=BxoYv6ear/flR5rAr5c7A/wGu93sOLIbo2XqrISjEys=;
- b=o7zo9lZBw5WfjUtCEyxFtpJA5qrSAL88BuDx+f7R9gimwyHIUuvjMvWFFeA+s0dmRB
- cFbzizBRLaJNwghDK8tdk0xO2KmgogvGu2NaMlrxsLPjE/+E8n/kSQ0/UusrB7eB876n
- S/9AEoi6k+kwX788CbxwCtA17tsyRLop6iOcP3OHqHwN8dE2Oqxz9qoJij56NTM+dsjK
- Z9c+zewxDIQkJrtQeNBodP3TiEtkU9PWHRI0Wlf0hcSDbJlprSc3LGbiUkqWbJD6fRto
- 9xKRxB7xV7xP8GL9+XsNvoHfIZ68I33UYX/rDv60+2EQoTbuZ9oL70aj2X70CPWgH5iq
- rt2g==
+ bh=1iLyMxHlvLqemJX+awTsijKkDTe2O7NspoX88eyf7wY=;
+ b=OKI0kns6UoWUegSuEoqbTDzpxcD733mRB/ajC474FCWR/0+VkLmhAiTXfmqkHq7MHL
+ pZQqzeIVex9XKBVF2n+1U112a7urMLIUcjnErPBIxtrPNcW1UWvUwg9pWIqv0nzWkT6Q
+ fXqmGwMHPX+dOT1c98TrON4BLrZov5C4t8Wk65x9oiP4bxsmh/Fc/TOv5aDpc8xPlB+O
+ Wlh8mSvWjEQ4Ws6eeOIkZg/MILPbKjREJTpz2F1LxlHWrmhH6zLrlA/2DYVtUknn+IgM
+ 6XFXT3aoCBvHlv0TXUJLP1R9PmKyOrSTXfcM7Q3b3Fu1KeHoZjuE/fLyCzky1sH0GO4x
+ 2iVw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW5FIiRcEpqMA8DM9DoBz5VWts1f0d8irtnprYXPsbZLJzDFuFEBWe1LXAgcdTQ/IwOqvc2H0RV@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxXgEIrSdNqSaUlgVmzNs+DJ7kn9wuLNg5vZbpJ2RBnl13OOvfw
- 97XspU6JWnOT465nQnhbPBWnO6XEc2oWx0jViOwkJhrtYlKs9K4FmnkH9LB18XDIiPvhq2Ygta7
- /MlE2Hrz4F0RFumNvai1gPoqHDUugSSY=
-X-Gm-Gg: ASbGncsokQLerI4EufKrVVf+1QXMpwhVDYJj5cZO6K6RmkKaXZhRU3P0Sut9m8/Ryjq
- Kd0p7deJA+x7Da69SesDDkNBu3wW76gdbuK//7HZjQn6T9N3fpZI8Qrybm+E/xpvQ8eolCNk+nE
- aB6trN26F6ctxohGUCOBI7oobdHsIwKHS9kiQabg0lxbZsBWhJr9niLRDiotEXrR9oZo0U+z9oZ
- Pfo9Ram6RcUE+dfbVfmo4b5toFWG2YyGfDNoRmBZlTTQNrxC6guZgtWri2zXB/mSoZIC24b/V9b
- cfwoRijpiYSxM2Sxgi4TYFPxH/Pbtz/Z19jj
-X-Google-Smtp-Source: AGHT+IHOtyqVloSPxzWiVhs1DHE+nqj8s6NxjWWTZ+mliqirt76YYBTxY96SyGIZl1OENRfeSA3lt8/1dOvRBF8z1YY=
-X-Received: by 2002:a17:90b:4a92:b0:32b:87ef:5faa with SMTP id
- 98e67ed59e1d1-32d43f91aadmr12103792a91.4.1757537884710; Wed, 10 Sep 2025
- 13:58:04 -0700 (PDT)
+ AJvYcCV6eQj09vrH57DDdMiSKr1QHB+IHOSXJRvy+dMAVN38sYbNl1A3gh+ROYNoMAAzPs3zh0dpzfgr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyRzNuC9sIDCe8v1f+b2X5EQ5L/bpiiv3uQXrXNj9wB7U2+FvPj
+ TRDUR0qNmSsBchwV/cSVkgDyz6/8EfX6BkiNa2N01TgSr/4PV0K+JcbjtFQuohW2gAu18UiyDc/
+ eRiz8BmefuwHzlSiyS3tyKlA7DL9XczyX9nr/
+X-Gm-Gg: ASbGncviNRgfs31nhiOTAf/5BMkt1qWCfNdua6v501MNlN9fLIHECmWXUIvRg5XH2+S
+ KjZM8PQGnhTLFR2A9LuuI0InGaROtkYmgEKqlKVsnfIcVFje7uzyFTzH+DQYRnydpcOURJNf2py
+ FH1y3b4fk3U+g3WFdklZ3KEG6X+9MGWrrAMybx0qPXik32CoZSVhkLPH792cOqppzigfus1SFkQ
+ C2xUlTAc/tfbbEOu4rErP/ApGUmVegyQKy3iumGdV63DT1zCmWeOnG8GWlWWWYFQurcFikL6y6B
+ QPHBYKExV1xaGpsXvICPtNLUYw==
+X-Google-Smtp-Source: AGHT+IF+JvH4jpihgghfd5nlg8ufLea8+tJ9snOXOMk1JKbPQlxyBxaIt2jz343GE+cDEAtKIOGKVPpUKeLyULsn0zo=
+X-Received: by 2002:a17:903:1386:b0:267:8b4f:df1f with SMTP id
+ d9443c01a7336-27ed4f8284dmr68541345ad.1.1759159059465; Mon, 29 Sep 2025
+ 08:17:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250826-nova_firmware-v2-0-93566252fe3a@nvidia.com>
- <20250826-nova_firmware-v2-2-93566252fe3a@nvidia.com>
- <9adb92d4-6063-4032-bf76-f98dcfe2c824@nvidia.com>
- <DCD2VJ1WJW2O.VM7E4PD3DFYO@nvidia.com>
- <CANiq72=nGbziZCKt=AneE_vXw76i=+td0dSVfbOJ8kJ9eYHw9w@mail.gmail.com>
- <DCOVRI3TVJBN.3OGDSK8HW74LL@nvidia.com>
- <CANiq72n-q0vdzp=Tb=brue+BMoNYdCTKsqcMYUsvKgvu9ZqGoQ@mail.gmail.com>
- <DCP66O4WE3CE.3P5ZHC9P62LOZ@nvidia.com>
-In-Reply-To: <DCP66O4WE3CE.3P5ZHC9P62LOZ@nvidia.com>
+References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
+ <20250920182232.2095101-7-joelagnelf@nvidia.com>
+ <CANiq72k3kE-6KPkKwiDLgfkGHCQj4a2K7h9c4T13WMa5b4BAnQ@mail.gmail.com>
+ <DD5D59FH4JTT.2G5WEXF3RBCQJ@nvidia.com>
+In-Reply-To: <DD5D59FH4JTT.2G5WEXF3RBCQJ@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 10 Sep 2025 22:57:51 +0200
-X-Gm-Features: AS18NWDK5sDVUBXgL53C4CuHgNvckurg2KJki-Oyxxcp6gSr_EFeu2funPREjNc
-Message-ID: <CANiq72=2VhHBZbTL7mdF9C+eBabft8rpP0_8FjxKi2d_2ZMbCQ@mail.gmail.com>
-Subject: Re: Implicit panics (was: [PATCH v2 2/8] gpu: nova-core: firmware:
- add support for common firmware header)
+Date: Mon, 29 Sep 2025 17:17:27 +0200
+X-Gm-Features: AS18NWCkUheGDFaapzA6FmlukqlhAVxssnWmdmmXWlzMCMUthOlFQRmkWB4hggM
+Message-ID: <CANiq72nTrp0Mt72hJ_5qwZtJYSg_ir10ENcX5nXELC_=5vvpew@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] rust: bitfield: Use 'as' operator for setter type
+ conversion
 To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
  Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Alistair Popple <apopple@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- rust-for-linux@vger.kernel.org, 
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
@@ -106,83 +104,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Sep 10, 2025 at 3:55=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+On Mon, Sep 29, 2025 at 4:45=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
 com> wrote:
 >
-> The only two options are either allowing user-space to crash the kernel
-> through a module with a missing bound check, or letting it tamper with
+> A bit radical maybe, but correcness ensues. :)
 
-So we are definitely not aiming to allow that on purpose, i.e. I know
-you said "missing", but just to clarify: they would of course be
-considered a bug, just like hitting similar facilities in C code.
+I am all for Ada/Pascal-like ranges and similar ones as long as we can
+make them ergonomic enough with our current Rust and as long as we
+still define newtypes over those when appropriate.
 
-(In general, if we get into the situation where we can actually crash
-the kernel from userspace, that is a CVE with the current rules
-(modulo exceptional cases, e.g. the recent discussion about debugging
-tools, for instance), regardless of whether it was due to a Rust panic
-or not.)
-
-The Rust panic is, as you say, the last line of defense, attempting to
-limit the damage. I think that is worth it for at least some users
-that want it (like cloud providers) and some parts of the kernel.
-Sometimes it can be worse, though, i.e. perhaps the OOB or the
-overflow was not actually a "big issue" "in practice" for a particular
-case.
-
-I think it will likely depend on the kind of code we are talking about
--- not all panics are the same, and not all code is the same. For
-random modules, for instance, yes, we should definitely prevent
-developers from writing panics as much as possible (or not at all);
-the same way we try to prevent them from writing unsafe code -- after
-all, panicking operations and unsafe code are both an statement that
-we are sure "something cannot happen".
-
-So the more we prevent APIs that do not need to rely on panicking (nor
-unsafe code) on drivers etc., the better.
-
-I also think forcing to have no panics at all (i.e. globally) would
-force us to handle way more truly impossible cases than C does
-(unsafely so), which isn't great and has downsides too (increased
-complexity, for one, which can also lead to more bugs). And we don't
-want to go memory unsafe for all those either (I mean, it could be an
-option, but I wouldn't recommend it, and it would still be a bug if
-hit). So for certain cases panicking may be a reasonable option in
-practice -- that is where I wanted us to get more experience to know
-how we fare vs. C here and thus the data request.
-
-It will also depend on what upstream Rust can give us (more on that
-below). For instance, having an enforced way with carve-outs that need
-to be annotated would at least make it stand out to reviewers and make
-developers think thrice.
-
-> Thanks, these are great directions to explore. I see that some thinking
-> has already been done on this, do we have a bug or tracking issue so I
-> can catch up with the discussions that have already taken place?
-
-In general, I do my best to track this kind of thing in the issues
-linked from issue #2 ("Rust features" in this case:
-https://github.com/Rust-for-Linux/linux/issues/354), and you can see
-some pointers for the overflow part. For no panics there is also an
-entry for a long time, but I don't think there has been any "deep"
-discussion on it -- I mean between Rust and the kernel (there are of
-course discussions in upstream Rust, and there also have been in our
-side in the mailing list). I just added a couple recent pointers, I
-can look for more.
-
-In that meeting I mentioned with them, I raised this a month or two
-ago, and I did so today too, and mentioned that you wanted to discuss
-it in LPC. If you (or e.g. someone from NVIDIA) have time to work on
-this, including in upstream Rust (e.g. writing an RFC, implementing an
-experiment...), then please let me know. They are open to the
-possibility of having a Rust project goal for the next round on no
-panics (2026H1), so it is a good chance to move things forward. We had
-today a discussion on potential forms it could take (an attribute on a
-function, guaranteed or not, escape hatches or not, lints, an enforced
-comment, Klint, the report-and-continue feature...) and related
-ongoing efforts (having a `nopanic` effect, `target_feature(enable
-=3D`...).
-
-I hope that helps, and thanks!
+Rust may get support for that eventually too (called pattern types),
+but we may want to do our own thing meanwhile, just like `Alignment`.
 
 Cheers,
 Miguel
