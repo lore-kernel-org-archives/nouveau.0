@@ -4,98 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B6C9D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4FAD5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A68710ECB7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7083C10EC75;
 	Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BTL3JQJf";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JQ1mSrqt";
 	dkim-atps=neutral
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5334910E31E
- for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 19:06:54 +0000 (UTC)
-Received: by mail-pf1-f169.google.com with SMTP id
- d2e1a72fcca58-78283098d7dso289865b3a.0
- for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 11:06:54 -0800 (PST)
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
+ [209.85.166.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C884F10E503
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 07:17:27 +0000 (UTC)
+Received: by mail-io1-f43.google.com with SMTP id
+ ca18e2360f4ac-91524f5e6a8so322612239f.0
+ for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 00:17:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762283214; x=1762888014; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759216647; x=1759821447; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=/wAeCuRxzb2BXeoNq8+i8slzGY9RtvDmLaGwdLPgLzA=;
- b=BTL3JQJf+Ua+ddF6AOWaB2Gs0IwA5O2DN1wWc5WA+Y20SC0+PwHXdH5xK6YnESF5rQ
- 9ntgrsCYKs8ktJQIVPYfLdOPKCwTX4GCl9M2SeQhW7AhfDWnFTw+R71rHLv74DsEKxRx
- 4Bdpw0BpWx+2VPOuBuhyU5YlPZC9gWgH7/0hjh3Kmj/OXpN/eaRb4704w6hAzNNQuQgp
- pm3xxope3GW9BVi3Nd2aQHLZ2TvpUGrd1T59Zkg+LQqb5khVcUSCz/HkqFcyQabiGQTk
- IjEvqIk1+nE1Yo0rC8N+nIyb+Dk3Up9C+089PBi52j64T6Jr/revAfVPoX8uwf9gRamI
- 36LQ==
+ bh=M/RLYL9C2/J8Q8nWHpTOfcWgDV+Di6Gs1p9meRtJDAk=;
+ b=JQ1mSrqtxVZYbbzh/YvlCYoxBjz7Qt2rF8UfyllTvbj1/vFnwXOssUs/kTrLyF6xvc
+ tOUAdhxJYFNhbZT/HXyXE2Wtv/5Z6QMeDL2p1ZdLwDN8gjzVK4me8TWyqm8oICmzAdaK
+ oxzzKsTxBBtkxxjXf1Cyebp2jDqhQ2+2e7FsT+iAFGh9GkCU7SULeJN+QvIsQalGSpAl
+ dyTKMIFr195Bc+mm4wMCdFff8FkfSAxBh1RXQlpcEOIwoJcXIlrWLp4/uCIqAR+F2yKs
+ FAoDo3iVuoV7WJEOrd8eP1NQ7gQPTp+/qKRaWznBjz99quvG/hDbEQ6dNBEF4OKuYIfx
+ 7l4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762283214; x=1762888014;
+ d=1e100.net; s=20230601; t=1759216647; x=1759821447;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=/wAeCuRxzb2BXeoNq8+i8slzGY9RtvDmLaGwdLPgLzA=;
- b=g4T0in/VjkJj7r3ri0NtdEo/bxPrHC0KDSYCGyqR+2QNQxLRBLEq9SHX76KFEIVTm9
- O0AzbJGD2IMGN25Wzd4E/+EjPXOyvu2b2DgDlDZYq5EZvtwb6uyB4AWgqkzDe5uZePyz
- b6Yg6LXQ0ggOqdeorfflZuJ/d/S93QWqH87GT854smP5xOkGJV/BMJCvNhYY3dVqBWwH
- nWqNZA4G5dY9Kc7NFlY7Esvi/BY2zFj7W8iGCtfvH7Jce7XQJ3QH5wXxFqL2+G9O7AX2
- jDXxtFLDKng0OiH/HDYoq2SgPIPbXIUBtSbMyyrT2KaUK7tlhUyKOa+QZxXEwL+7nCsZ
- VPsg==
+ bh=M/RLYL9C2/J8Q8nWHpTOfcWgDV+Di6Gs1p9meRtJDAk=;
+ b=rtrKZ1O7ich160yly1ogBoiTuaF/TZPJSO13x9d2cvCjLZBBGDVvoXgwXaNXFrUvoH
+ Hyw/dberxyWvfjdBRedJjxQT1Sy5VtXHiL/1tRnP93AhAvf6Fj47CoZgIeoDQE/VSJ8l
+ U70KbK02ShvTkNz/gksPQnc2/hmjQiR4XPC+m2cUIaHpeCvp5OvrTDT7BaDC+bnHRdFw
+ ccAXAYsMPU8osExFYepKJrx3jtunK1ZF86QDZQmEFO8We4bIrkVO+jLuPU+hVgiv7C36
+ Xk0UBjEnVg4AK0afi977uxhu40MAFMCzSGDxpAu9ejUkxEwcC1eYzObbXpoIlA5NB4Id
+ EqaQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXrYleUc5t3gEXmOKA/+mqzF5jHU3d/oV71QKj3Sryj+NLDwxfbH2Bq19u17RJU+VlfIKFnkvgd@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyaV4QhXdPp3enNvN2Pv114ZOkbfEtD9nYSUXTsQl3x9MmE8z7H
- C9AeREyLmHszAVEKO2pjdNcvZFQJgRDm10PPaT7sayJQ3sf7dUjn+vJazALPZuI+HBvwhg8Bsgn
- 4aYGnRB+seuYmsg7bCxlBWOeOoiXfsiQ=
-X-Gm-Gg: ASbGncvNCCAV4wo/DghZx4EMfGsUy/Yaz3BUZ9id1OWASezUvREw6CZKKToWhJNq71s
- nx99tPwl/MDv7SnmDkz5cPQYmeB2ZbPPT1DEICz9Z/bnV2C9hkwypWHPZS2ditfUXwzbWqDb5tW
- VkK+W1v8s0CtF/20g0drQZ29oQ6sgRYLwh6YAw17FogLC8uv9i5osT7TagGiIs0Nb5L71OFgYvY
- UnJfUD/gk4l/IFx1BzMdqQeAAADqADvMBPXlfItYdr81c9md3lSZA8NL2AYAWudXWEERwVzQjkd
- 5ldld24zYhLmNpVzoib66IYbMLZnzPYYX9s9Z2+qaX+sAZ+8W4U3w8N+ET+CVX1MPESaD3dE/gP
- uJm4=
-X-Google-Smtp-Source: AGHT+IE6zMw0orjCDwKe71BtT9keGPs74U4T3Nt51J7XxmrJZBuNOyX0hJ52/hdnOd+9OYS5PomAI+ZTVm+Zm9uBsjU=
-X-Received: by 2002:a05:6a20:3d8f:b0:341:29af:3be7 with SMTP id
- adf61e73a8af0-34f86d04830mr209534637.7.1762283213593; Tue, 04 Nov 2025
- 11:06:53 -0800 (PST)
+ AJvYcCXK/v7raWidKYVqJHKiVBmMvwAadQnMBIf3fHCytpUZgRqK6JsNi7wOxtTUurO2Z1V1gTjsuEFJ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzlngzg49wuMZZVMIi8eCPqPjnjSuPrM8NbfktL2sRUdeJlwGWQ
+ wcM4Xbj7yQ7BZl58vVSLuPj9SriJazX014TnaxL7dqVqjnqYw6ubVBEbnq/BdLygDgGXy/OHDaw
+ 5UDlJGbeiUGvsew+BiCcvwH7CRylaJmE=
+X-Gm-Gg: ASbGncuVvnlEzn+P5b5zsCo40uM3jX4F25rkUZneoiVEjUSOLW/0gzngvYr88rtLOHX
+ e4jmYcgsTcq5ac92eQTPQTzGpnKKu9/2j9jYe/HJ+piCekl7rAXkh1uICn1z+jpdQePtvvQ5H38
+ GdPBkIwCmSXZ3OTs44IxQzF0lVY7kbtjjYYGT8vXSJ3iKPsK6ZAAnkZCfgG4ssGrcBWxXcOh7SO
+ Uu6oHLBCM0cqvUFtF4LHBJ4VUMJUuYTTjhlIgGt8g==
+X-Google-Smtp-Source: AGHT+IF6oX4c1oT2QtGdImEkUmXn1fXUlDQYi0f+7OA8UeT8rnRYJ0Dbg7DVj5ZgRDIjPNT7QjcBtGER6b7SwehrbY4=
+X-Received: by 2002:a05:6e02:1686:b0:427:511c:f86f with SMTP id
+ e9e14a558f8ab-42bfab93823mr84067065ab.17.1759216646727; Tue, 30 Sep 2025
+ 00:17:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
- <20251030190613.1224287-2-joelagnelf@nvidia.com>
- <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
- <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
- <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
- <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
- <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
-In-Reply-To: <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 4 Nov 2025 20:06:41 +0100
-X-Gm-Features: AWmQ_bnwMN6fmA9J5YYRK5sVTYidOU0VW_dN7yFlDXkN-QCauIAosWdhzgT_uW8
-Message-ID: <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
- linked lists
-To: Guillaume Gomez <guillaume1.gomez@gmail.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+References: <cover.1755235180.git.y.j3ms.n@gmail.com>
+ <948a28f26a0e9924d82eb1d8d377e3ddc7335b24.1755235180.git.y.j3ms.n@gmail.com>
+ <DD5VAPG2QFWA.2A58AL13VHPN2@nvidia.com>
+In-Reply-To: <DD5VAPG2QFWA.2A58AL13VHPN2@nvidia.com>
+From: Jesung Yang <y.j3ms.n@gmail.com>
+Date: Tue, 30 Sep 2025 16:17:15 +0900
+X-Gm-Features: AS18NWCt4CiaOBLLw6E3ZJGY5ZpvbTCUTklAJf6rpPrTAabktBULuqhmTF6POuo
+Message-ID: <CA+tqQ4L9PN9n0e2A5BfGhn4n02v8LKSK+BRpHcfbK_fNUKBJPA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] rust: macros: extend custom `quote!()` macro
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- nouveau@lists.freedesktop.org, 
- Nouveau <nouveau-bounces@lists.freedesktop.org>
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,42 +91,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 4, 2025 at 7:35=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
+Hi,
+
+On Tue, Sep 30, 2025 at 1:58=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+[...]
+> On Fri Aug 15, 2025 at 2:32 PM JST, Jesung Yang wrote:
+> > Extend the `quote_spanned!()` macro to support additional punctuation
+> > tokens: `->`, `<`, `>`, and `=3D=3D`. This symbols are commonly needed =
+when
+> > dealing with functions, generic bounds, and equality comparisons.
+> >
+> > Tested-by: Alexandre Courbot <acourbot@nvidia.com>
+> > Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+> > ---
 >
-> Orthogonally, the script that generates the doctests could perhaps
-> help to automate some of that. For instance, we could have a way to
-> specify an "environment" for a given Rust file or Rust `mod` or
-> similar, and then every doctests would have the code prefixed to them.
+> Note that this patch doesn't apply cleanly in `rust-next`, I've had to
+> add the following on top of it.
 
-I guess this could probably best generalized as "tagging" doctests
-with custom tags that `rustdoc` just forwards in the generated JSON.
+Thanks for pointing out the conflict. I see that the commit
+9578c3906c7d ("rust: macros: reduce collections in `quote!` macro") was
+added after my patch series.
 
-Something like:
+> I suggest waiting for -rc1 to be released and using it as a base for a
+> new version - hopefully this will also give time for more feedback to
+> come.
 
-    /// ```tag:foo,tag:bar
+Sure, happy to wait until -rc1 and perhaps we'll get more feedback by
+then. Once it's out, I'll rebase on top of it and send v3.
 
-would give us a:
+Best Regards,
+Jesung
 
-    "tags": ["foo", "bar"]
-
-in the JSON. Then a custom generator like the one we have could do
-whatever it needs with it, including prepending code or other things.
-
-Now, I see there is already an `unknown` field in the attributes which
-already give us the unrecognized ones, which is great and we could
-potentially use that.
-
-However, should there be a particular way/namespace we should create
-our custom tags so that we don't conflict in the future with `rustdoc`
-ones?
-
-I have added it to the usual list:
-
-    https://github.com/Rust-for-Linux/linux/issues/350
-
-(There is also the question about supporting the old non-JSON way for
-things like this, but I am ignoring that for now)
-
-Cheers,
-Miguel
+>
+> diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
+> index 76a99f7e01c4..bb6970fd2a26 100644
+> --- a/rust/macros/quote.rs
+> +++ b/rust/macros/quote.rs
+> @@ -147,33 +147,33 @@ macro_rules! quote_spanned {
+>          quote_spanned!(@proc $v $span $($tt)*);
+>      };
+>      (@proc $v:ident $span:ident -> $($tt:tt)*) =3D> {
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('-', ::proc_macro::Spacing::Joi=
+nt)
+> -        ));
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        )]);
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alo=
+ne)
+> -        ));
+> +        )]);
+>          quote_spanned!(@proc $v $span $($tt)*);
+>      };
+>      (@proc $v:ident $span:ident < $($tt:tt)*) =3D> {
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('<', ::proc_macro::Spacing::Alo=
+ne)
+> -        ));
+> +        )]);
+>          quote_spanned!(@proc $v $span $($tt)*);
+>      };
+>      (@proc $v:ident $span:ident > $($tt:tt)*) =3D> {
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('>', ::proc_macro::Spacing::Alo=
+ne)
+> -        ));
+> +        )]);
+>          quote_spanned!(@proc $v $span $($tt)*);
+>      };
+>      (@proc $v:ident $span:ident =3D=3D $($tt:tt)*) =3D> {
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('=3D', ::proc_macro::Spacing::J=
+oint)
+> -        ));
+> -        $v.push(::proc_macro::TokenTree::Punct(
+> +        )]);
+> +        $v.extend([::proc_macro::TokenTree::Punct(
+>                  ::proc_macro::Punct::new('=3D', ::proc_macro::Spacing::A=
+lone)
+> -        ));
+> +        )]);
+>          quote_spanned!(@proc $v $span $($tt)*);
+>      };
+>      (@proc $v:ident $span:ident # $($tt:tt)*) =3D> {
