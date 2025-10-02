@@ -4,80 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7565D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8415FD5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E98A10EC94;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91F9E10EC9A;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="f/weZmP9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=weathered-steel.dev header.i=@weathered-steel.dev header.b="rHFw3M5x";
 	dkim-atps=neutral
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
- [209.85.210.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6C4F10E452;
- Mon, 14 Jul 2025 10:45:51 +0000 (UTC)
-Received: by mail-pf1-f174.google.com with SMTP id
- d2e1a72fcca58-747fba9f962so3352645b3a.0; 
- Mon, 14 Jul 2025 03:45:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752489951; x=1753094751; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=lACXWrIyx0XepFzYp8lYN3B6VObrUZBjQ6Rart3u69s=;
- b=f/weZmP95+b6x/YdPFKREiiC/90Osd8EvZj8PX76mDcrdpO11zirndDlexmwVJPPnQ
- PPyMrvhljGSQuqvKB3wWmEaWZXYbLXLKut1LOIuy3IYAq7VtcWmH5I0SWi0miljerP9x
- F+Z5p4fUtYy2E0Vd+CItGLV/7xbbNJbymMPE1+iV80GCn9h9Fmsva/sTVmWvyhr9oVqZ
- LFI6g/toIOIz7xUV6zSx1R0ge5Qdoxaos1CcW1AGflKsQeOUHcfnhGDikjo147n9wd+K
- pd0M/cL8Iu17HnhEEqOuJ+cizr0GJeXYVW8ymaglZwTuygU8r/Se7wl6Qpz7jeoHJllm
- oUlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752489951; x=1753094751;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=lACXWrIyx0XepFzYp8lYN3B6VObrUZBjQ6Rart3u69s=;
- b=cYKHifq7duG2Hv3HTEihsjTurp0nGgl4zeWXWoQBTXQNW5zbJ88zkPwqIQWX8fIgaL
- gnSPG8kGXvhwD7nUxAyQtmheBC7iUCS0ckpqmITHYEqPFJFgk5ZgTCLBDAsJCrn/OR1Q
- 29SKw3di6UOqXDNNUK3i5E05MR3vOSIlXy5Rp/xNPXhQaS+D5vDzeQczfa/mBKqPJ6dC
- d1/q+s3AnKV6GeiiOFouxkaqB7Fwav6yOnRxFYb8jtU8b2EV3ES8ubrWeronEiGGh11w
- bAnekeCZ1EuALJtN69XYYLqMhP8vevzTLaz8HiYZ1q4HvxrZIl8TiA6B194W89Y+iytm
- v3ZA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbMy1uxaLXqLIo2QIemATCQyL5+/8ergl7ec1LlHxBitlese/h6pv42x+0tqVU3CvE5NG3bkpGwHQ=@lists.freedesktop.org,
- AJvYcCWervY65Cf4AGZWAIEFN+Yf0WpZD7P8l8xL0zSmIqQvjwRxJSeVZ6lvmoh1z6hkUzsZOjflBBMEGw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqV+8VDzZLh//B5s4HNKkfXKG+vV+DmL6tcxlgmlXiZrTvmSSb
- KmhUlVAAsxbbt1b+GqRRybBJ4mkyFwfaPr3oCQKumXHKcN/U79Nfvgfs
-X-Gm-Gg: ASbGncuPrCeWo7GJEzWnLqlgvx67or7A0BoYB6zwX+MtE2znn1dp02cpViX/p8+C5j2
- 9kvJHtPH1fEYiZJfJyizsBChGPPv5DcIHWk7ByDGIX0wsDozUSAR13v8hJGx5rA0Jmh0iA7FspW
- a+wRAbau8gbI1XA9X8nK7Lb2cpSC8+YiQiHKgR6pi/uxOq3D/+1et4Qli81s31rnZw0bn5jokrM
- YaAMz8HlH96JbK74zdu1ZIddnO/Olx/L077f90cxChf4An3CYr6zunzstyaq8jsjk+u35iCeDJY
- bmplxLV6u+KzGfmGTca0ELWWcIHokWAHzQDJ/zzDzdy7/zdU2McTF4sMkPfOa5qJeG/sf9wgbF6
- ja00TQ0GGDwrb7hzdgG6kGzyK
-X-Google-Smtp-Source: AGHT+IFLPKx1BZNNAyFNyKEkIkORD8Kmtj8nI6gAHdSOXogrL29N95gdsu5VKoCLvgamTF6GYkS1+Q==
-X-Received: by 2002:a05:6a20:9d96:b0:220:898b:2ca1 with SMTP id
- adf61e73a8af0-231285725fdmr17928439637.21.1752489951050; 
- Mon, 14 Jul 2025 03:45:51 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-74eb9e058fesm10320909b3a.40.2025.07.14.03.45.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 14 Jul 2025 03:45:50 -0700 (PDT)
-From: Rhys Lloyd <krakow20@gmail.com>
-To: acourbot@nvidia.com,
-	dakr@kernel.org
-Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
- airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] gpu: nova-core: vbios: use size_of instead of magic number
-Date: Mon, 14 Jul 2025 03:43:14 -0700
-Message-ID: <20250714104322.100511-3-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250714104322.100511-1-krakow20@gmail.com>
-References: <20250714104322.100511-1-krakow20@gmail.com>
-MIME-Version: 1.0
+Received: from mx-out1.startmail.com (mx-out1.startmail.com [145.131.90.139])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B585D10E05B;
+ Thu,  2 Oct 2025 03:35:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=weathered-steel.dev;
+ s=startmail1; t=1759376112;
+ bh=1xyKrTZsjcargDYNHt+NS6g+2E+KNZ01uBZXtO8X4ew=;
+ h=Message-ID:Date:Mime-Version:Subject:To:References:From:
+ In-Reply-To:Content-Type:Content-Transfer-Encoding:From:Subject:To:
+ Date:Sender:Content-Type:Content-Transfer-Encoding:
+ Content-Disposition:Mime-Version:Reply-To:In-Reply-To:References:
+ Message-Id:List-Unsubscribe:List-Unsubscribe-Post:Autocrypt;
+ b=rHFw3M5xlAts0ia2uw2jww5WKJG1Vsf18gQg1t/rinjELHZafqNg4b0yozZAduXtG
+ zX2wHm93B/8h+a2YojU/jKsE0LnxZfgxIhQum1OLG0kk5a3lr94JScbfpXCvAI9SvQ
+ pSQzGjQiV7CTIfo6UkUaILniVPkeqoJHVtNcNHs07LEW06Ey3qUfMzChuihQL03Nsr
+ hO3WHPFRNuBvrBRgGg5T31pN6QF3Nrp6zepk4an7PoL6DLRS5lW+i7k888u3zjPj0d
+ VO5s/XzN0nJ0Vt9sWfUt9klkneN9gB8Nfe6yLm8zlvZ1G9+PufITnP6o+NX2OaIVcu
+ T54PI6pGVoO5A==
+Message-ID: <a7acc840-8d95-451a-b431-f3755ad6f37c@weathered-steel.dev>
+Date: Thu, 2 Oct 2025 03:35:03 +0000
+Mime-Version: 1.0
+Subject: Re: [PATCH v5 6/9] rust: bitfield: Add KUNIT tests for bitfield
+To: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dakr@kernel.org
+Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
+References: <20250930144537.3559207-1-joelagnelf@nvidia.com>
+ <20250930144537.3559207-7-joelagnelf@nvidia.com>
+ <DD7GCYCZU3P3.1KK174S7MQ5BW@nvidia.com>
+ <d238d9b7-8ec5-4063-8217-885d951d2f0c@weathered-steel.dev>
+ <DD7HUD8WZAHD.12RKL7EGBWBFY@nvidia.com>
+Content-Language: en-US
+From: Elle Rhumsaa <elle@weathered-steel.dev>
+In-Reply-To: <DD7HUD8WZAHD.12RKL7EGBWBFY@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,29 +74,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-12 is identical to the value of `size_of::<BitHeader>()`,
-so use the latter instead.
 
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
----
- drivers/gpu/nova-core/vbios.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 10/2/25 2:51 AM, Alexandre Courbot wrote:
+> On Thu Oct 2, 2025 at 11:16 AM JST, Elle Rhumsaa wrote:
+>> On 10/2/25 1:41 AM, Alexandre Courbot wrote:
+>>
+>>> On Tue Sep 30, 2025 at 11:45 PM JST, Joel Fernandes wrote:
+>>>> Add KUNIT tests to make sure the macro is working correctly.
+>>>>
+>>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>>>> ---
+>>>>    rust/kernel/bitfield.rs | 321 ++++++++++++++++++++++++++++++++++++++++
+>>>>    1 file changed, 321 insertions(+)
+>>>>
+>>>> diff --git a/rust/kernel/bitfield.rs b/rust/kernel/bitfield.rs
+>>>> index fed19918c3b9..9a20bcd2eb60 100644
+>>>> --- a/rust/kernel/bitfield.rs
+>>>> +++ b/rust/kernel/bitfield.rs
+>>>> @@ -402,3 +402,324 @@ fn default() -> Self {
+>>>>            }
+>>>>        };
+>>>>    }
+>>>> +
+>>>> +#[::kernel::macros::kunit_tests(kernel_bitfield)]
+>>>> +mod tests {
+>>>> +    use core::convert::TryFrom;
+>>>> +
+>>>> +    // Enum types for testing => and ?=> conversions
+>>>> +    #[derive(Debug, Clone, Copy, PartialEq)]
+>>>> +    enum MemoryType {
+>>>> +        Unmapped = 0,
+>>>> +        Normal = 1,
+>>>> +        Device = 2,
+>>>> +        Reserved = 3,
+>>>> +    }
+>>>> +
+>>>> +    impl Default for MemoryType {
+>>>> +        fn default() -> Self {
+>>>> +            MemoryType::Unmapped
+>>>> +        }
+>>>> +    }
+>>> Tip: you can add `Default` to the `#[derive]` marker of `MemoryType` and
+>>> mark the variant you want as default with `#[default]` instead of
+>>> providing a full impl block:
+>>>
+>>>       #[derive(Debug, Default, Clone, Copy, PartialEq)]
+>>>       enum MemoryType {
+>>>           #[default]
+>>>           Unmapped = 0,
+>>>           Normal = 1,
+>>>           Device = 2,
+>>>           Reserved = 3,
+>>>       }
+>> I would alternatively recommend to provide a `MemoryType::new` impl with
+>> a `const` definition:
+>>
+>> ```rust
+>> impl MemoryType {
+>>       pub const fn new() -> Self {
+>>
+>>           Self::Unmapped
+>>
+>>       }
+>> }
+>>
+>> impl Default for MemoryType {
+>>       fn default() -> Self {
+>>           Self::new()
+>>       }
+>> }
+>> ```
+>>
+>> This pattern allows using `MemoryType::new()` in `const` contexts, while
+>> also providing the `Default` impl using the same default. It's somewhat
+>> of a workaround until we get `const` traits.
+> That's an elegant pattern generally speaking, but I don't think we would
+> benefit from using it in these unit tests.
 
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 663fc50e8b66..ac35415b4ffb 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -365,7 +365,7 @@ struct BitHeader {
- 
- impl BitHeader {
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 12 {
-+        if data.len() < core::mem::size_of::<Self>() {
-             return Err(EINVAL);
-         }
- 
-
-base-commit: 215a3f91713383a3c0d2da82d223a608a3c17ac1
--- 
-2.50.1
+*facepalm* right, I lost the context that these data structures were 
+KUNIT-specific. Please disregard.
 
