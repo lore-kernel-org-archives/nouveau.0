@@ -4,165 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEBF1CCD186
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D69B6CCA470
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:46:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 98E4610E48C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3BA910E490;
 	Mon,  6 Oct 2025 20:46:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sjLEfNyL";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pgU1ep49";
 	dkim-atps=neutral
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com
- (mail-dm6nam11on2051.outbound.protection.outlook.com [40.107.223.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D58FE10E3B3;
- Tue, 20 May 2025 07:55:15 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012010.outbound.protection.outlook.com [52.101.43.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC5610E1F3;
+ Fri,  3 Oct 2025 15:48:05 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QPI8kxRzsvaT2pk6MiDC37LZRFdpmQOHbA0djvvTvifw40P99lEI7ybVq0Gx3JeitFPv8yFeLeX/SOiFPFTcR2XVnxD0xC/rsXQpfzw6SRGAmVs/t6eZ2rpJ5UQTMXxTAp8Ts0jdB2dXhRs5ya0I+lBy5DDL869GLVUhFe6alUXAo9+9S+aAFoI10g/wfdIM13rCtCzdr4rrecOIuUA/BzJGGVgUsXAGNsoylNm3Bt/pgllA45AiH1KpCD5r+QAKk/i07mVr21TcxjzM46WdzhWfEtGCq6KU39fyvYObLDTruQx3435PuseMEOY+FHHVHBB6G4D9jt04qjFxBHqz4w==
+ b=f5ateWKaZpKywhgrTmslP/WYUBXC4wDWEUrbygQKpoWUrqrORzPfe7Ux5Qk4UTLDyiySXwBwwHJJA8u/tXnqcHqY04K2wdTjiZaVqtcvdm3YtW/XiWxYqmw973HhZcy8nE7ngAryTg9OZMG+XWzhEb0pS/mw6KWVIp70thl0g3UXVx3Xq243KNhvR89q2gtEu1YhiATBYj5/dq5ftp03GgJUWSfv0/KcvJQTGc2Jfdgu7HLk6vj5ZsE7plKDc3ury3GSpIBQEenju9ZpRD4fSU91wvcq7ZSRierKvHdZG6AKEVAvvOrOYVtkI9v8YV0hOT/xje5qdHeTCA1p82aApA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OGTJKDn75C2oA4+VyEkhJgenXoxNsdxFDxfekg/UPBU=;
- b=RXmigJO3vsrJkLGzfGw0XjJbe94P0+G1obFGpxJGfQt999LAgMT77YDEYsjn3xKIVq2+PsyRnnADmy3tbVMFuYpT9Ie7RJudpzFL+M2zRHUsaZ1ThAdvEhgkQwc3be9g7POSYbT/4UASN3FM0EClGKEhTpEbUUxVcJp2NeE8IM+v3ZPRTPHE+2rxsqFbewzazBgDcP+XrHi98EI8f7XkGXQnQohFGu91VQqRNP0z2WtbXSkQivjtqavyixPl4ZxS4H3D3yRqDM0DhHuUMpfWQa4A1ajnWAN54VL/Wzwfjj4RTYI264JvUMAIOhrYtCdRrTFV+iLmJFsE+ePg8c7rbA==
+ bh=77FTNcbClWOmC09KHfDOzykWUuFW3CunLJr7B7Oaw3E=;
+ b=mOupyrm7nGYcs4cyyc/90zlMyNJ0+fdlJ0JhMzBZosWGN3dZ5urS9LP7DKrgFEm8if77Hyj2KtJDrkIB78jlEB0uKnnDpMl+0noTLCfhuCATpGd70LyvAO0O+jhvD051k4XAzKAPHJahikhWOf9TFBZjH3KzuoUiB7xyXdwg52zuChO1zwY9ycB8p0px7gXCK8GdWqgBLYsM/HplnCnStI5rSRJJZFEdMXjkREY4srpAtcTRtZIuo5+tNJ9/xCT6MWyD9aMPJdXTtfX+hgdubwKfDcrxLT0nlsoT/KTZdr9EvbjsGnYBj/nVRHFzbeJ8hUCD9QFZ3oFTX2BM0aFOaA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OGTJKDn75C2oA4+VyEkhJgenXoxNsdxFDxfekg/UPBU=;
- b=sjLEfNyLpR6Nc4Xbz7BSWMqFUQUlvN1g+LbaI5xhTsmV4QQVzlqSe+mCO31bcs2uGEglScmx1pGsAjiKeVH/ygFMhX5xN+QwE2Az2EJRAZXD+5JoAhfZ/y9aXeyHOJ8PA2n4zJfAL5Gu9X/W4S3d86s0cfZrBkL6esCx9FocplIms6G/bL57npz+/9gE/omtJj6ieozos5RccxLXLIwLlUQsVSkd5JYWYW9RrlGQUsBF31ReULA/qQmhTe5/8tOj3yT2QWMqAAxE+6fbTsTdrSeEEjUYiaOVedIf3FXiOZQzl6sB/hKovMCVKe/S0gP7YbeyOvPykxcAfrIL8rRoAw==
+ bh=77FTNcbClWOmC09KHfDOzykWUuFW3CunLJr7B7Oaw3E=;
+ b=pgU1ep49A2g2Io4Z6kOyvKCEgTjCZwat7mlE/hOB3du0Ya8YEp4kfJtLkKj/JV51jdR0tskVqy2Il03soK1vxI7kHhfIF5i3ssmkvq54jCSw8NKAyiJzYNMoSlgZ4sqtB43hJJ9iYq79nlywoIE9lbQxmPWoiGhuliBrY7uVbuMWan5JbeAXvyoU8EWo6yGnqrVs04m0ZPRL/lCXXG0LMWLbqadKY6lZAqlWdkby9M/MXkxIgtjqrm/LD981EQQKgmHVPT00Yl7FfT/LKHPXZ4w6HVgqEdV/IGDVyDfrDa/WJcQck94CO8B1oophHl8+lFbWS/WxN6pOs5A9EpfBSw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by PH7PR12MB5805.namprd12.prod.outlook.com (2603:10b6:510:1d1::13)
+ by PH0PR12MB8152.namprd12.prod.outlook.com (2603:10b6:510:292::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8746.30; Tue, 20 May
- 2025 07:55:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.16; Fri, 3 Oct
+ 2025 15:47:57 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
- ([fe80::4ee2:654e:1fe8:4b91%3]) with mapi id 15.20.8746.030; Tue, 20 May 2025
- 07:55:10 +0000
-Message-ID: <4fee85be-a8c5-4a99-8397-c93e79d72d15@nvidia.com>
-Date: Tue, 20 May 2025 03:55:06 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 16/19] nova-core: Add support for VBIOS ucode
- extraction for boot
-To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
-References: <20250507-nova-frts-v3-0-fcb02749754d@nvidia.com>
- <20250507-nova-frts-v3-16-fcb02749754d@nvidia.com> <aCN_PIYEEzs73AqT@pollux>
-Content-Language: en-US
+ ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9160.017; Fri, 3 Oct 2025
+ 15:47:57 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <benno.lossin@proton.me>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
+To: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com
+Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Jonathan Corbet <corbet@lwn.net>, John Hubbard <jhubbard@nvidia.com>,
- Ben Skeggs <bskeggs@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Shirish Baskaran <sbaskaran@nvidia.com>
-In-Reply-To: <aCN_PIYEEzs73AqT@pollux>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BLAPR05CA0047.namprd05.prod.outlook.com
- (2603:10b6:208:335::28) To SN7PR12MB8059.namprd12.prod.outlook.com
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, joel@joelfernandes.org,
+ Elle Rhumsaa <elle@weathered-steel.dev>, Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
+Subject: [PATCH v6 2/5] nova-core: bitfield: Add support for different storage
+ widths
+Date: Fri,  3 Oct 2025 11:47:45 -0400
+Message-Id: <20251003154748.1687160-3-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BN9PR03CA0766.namprd03.prod.outlook.com
+ (2603:10b6:408:13a::21) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|PH7PR12MB5805:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3aac79c6-f4f2-42e1-bf8c-08dd9773a4bf
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|PH0PR12MB8152:EE_
+X-MS-Office365-Filtering-Correlation-Id: d8216167-4dd7-431d-bf33-08de02943921
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TDJSMjRTMGZLTU1aOHpDRkUrRnhLZ3EzejVHaWVPZnFueHB1aFdlMmFTMXNx?=
- =?utf-8?B?cUQzdkp5US9lTkUvbEFnVDczMlpGNFhMRjhUdFNEZU9oVHpUc09nakJrTkVD?=
- =?utf-8?B?ZFE5d1EyMnRKRXEvZWd2aEVKK0FCODlmY3dOeDErb2V1WGRhMGlISWlIOXV6?=
- =?utf-8?B?Y3ZlQ0VQNnVRM1pZV1dxbzIyWEg5WUlhZGdQbjFBZ0ttSnJ1ZUhONEFPVUlO?=
- =?utf-8?B?NXRWWkhRMWZyS3hVbURuajVrZWkyRS96QWR0TEZGckROaWp0RThUamNHdVFm?=
- =?utf-8?B?UEFyY1hKaVVZdURmcVNxa0ZBZWRSN0UyQllWMUFGMEhIYy9raWJnU05NQk4v?=
- =?utf-8?B?clQ0bTNtdzdMdk5ZbTBPV3dhaThRUHRnYnk3ZUZkN1hWYmVNa0R5c1hFeUJu?=
- =?utf-8?B?VTk5Zko4QVlhUmZqZUY2ZDdZUkozUGkrc1dpUUJ2cExMb1IxS01JbTZ2RmI1?=
- =?utf-8?B?eE9hV05GanZzeFdGd1BxZ2g1OElnWXIxUHBkMlJUS3pMNXd6UnRjWDRHaGVq?=
- =?utf-8?B?VWNyL0VkZkYyZUNwc0NYZ0xrSXJGZW0xOHR0T1R0dnJva3hWdmExZHZQL2tS?=
- =?utf-8?B?QytRQjNQNUFtempnYTliYkEyMjJmWjNiREk5d2tSS09TYmVST01kZDllbk9p?=
- =?utf-8?B?RjRMbERsRmM5cFBjdXlacTh5Y1FxWTR6UDAvbDZPRWJDd3N1TnVlU2VCKzVa?=
- =?utf-8?B?VlI3SVMzQlJPNzVoRmxadXdvMEs1NllJTEFSc2NHVWV3K2VzUnFvNHFtQWx2?=
- =?utf-8?B?TGZxZFp0UmNPZDI4U0VFcWRZZFQ0UjMrenZSYm8vYXlUWTJvTXBZL01wMHEx?=
- =?utf-8?B?Z3dJd1l2bU5yUktET3lGaWNnWUh2cUhhQ21kd2J6RGtFZjFSNWNHd0gxdlRx?=
- =?utf-8?B?R1BZaTlVajk2MEZwUkMrWDRhQ2FmaGY1QTdmN1BsZXJLeisyT0xBdFlVSkM3?=
- =?utf-8?B?Q3YrL3FvVitOVzNIeFc1YkFLYm0weHA3MTIwRCtyaVZQbWxBUmg4dHVSMFRY?=
- =?utf-8?B?eFUvYzVUZUM0TDVqL3NZWDhKME90Q1pzcFliaWVRZngzSjJjZTFkNlhuSVll?=
- =?utf-8?B?QS9sTDRvMWJ5ZHhudlJYa0UyY3FrNytyK0JQaEFPMVdWaldIa1V3NEpsU0FS?=
- =?utf-8?B?V0xTMHRPMzRja2F2aE5ZS1AzcDJSWmZnVHBtdWlaeUxmZUNINDR0OGlPVUxs?=
- =?utf-8?B?YUVySmR2T2h4SHZqenpheU02M2N1aXNnYUpwSitIcTRiQXpvTHBreVlwT1Rl?=
- =?utf-8?B?TERpdGxOZVJEOXZHZi9idjgwUHplbG4xTGVOS09aejlCaVhDYjhNbXdVUFZu?=
- =?utf-8?B?eWpIVzFqZHhWZWRTTTZDOHk3WVdoSjN0RGdON1dzUjNCdVlVNC91NStoTW1i?=
- =?utf-8?B?U0hUYUNSNE5pYWw1QTYxQUhKdWtja1dDRUNwZkswbCtFbVBFelhIdmhmdFdq?=
- =?utf-8?B?aGRWYVNBRjN0ZzRNSG9wZWYzOE1mT1hXcjk4VFBRL0Q2NVJzM1JLLytMZ2dN?=
- =?utf-8?B?ZFg4aVVkdkwrOUwyRlppWXdBNXFKRUtMbnZLSnZNMHhkNVhFd1BNT2tJVkFp?=
- =?utf-8?B?bGhsRnZMNkk5TmY1TTlLK2NvMS9jSEtZMklaTzUwL0pKSXVpV2JsWjFoUDd2?=
- =?utf-8?B?QUhZVnYyMkl4NjA3dGJkaytVQjJjTHltMUJzSFZwZlRLWDAwTjJNSnRROXAx?=
- =?utf-8?B?ek9QZTVtVXZLWU1lTG9NTTc1c2JscmgxTWVDMjQrNWhNV1Jvb0s3d3FLaTRp?=
- =?utf-8?B?TEtsdmFVL0hjYWNyNmRRSDROS25yR0FuQlRJeWZ3c0hWbHprOFU1cHEzS0tC?=
- =?utf-8?B?OWhZSGI5Z1FlN3dQYW10VVFSNFZGTzlaTzh6WWYweGJYTGZIa0Z4WlNXaExY?=
- =?utf-8?B?cVlyN3Q5ZnhxeHNTWUdaLzFUZW81aUpuS2ZlLzlueEY5Szk0b0VlTDZjMVhD?=
- =?utf-8?Q?Fe+/cGtZd/4=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9YTsrBYkh9yzJFVUz6B2UuYbndv6/iLx7ChP2rw4kRyTe/5yGWHzzSaV+f50?=
+ =?us-ascii?Q?+xV0Am9Si4O8UxaLXtJStlzderoy5X2iVJ5NSFtHzWakgDh3xE4t8xmS7UIn?=
+ =?us-ascii?Q?o3xoyMfEww1u6wRrTJjSSXmQbrVigIGe6x75pA+qhWPdzOP4ZOgpNIKntLFA?=
+ =?us-ascii?Q?q9oGAFzsQ8C0OB0PkFhgvStFRxWcLsEu5WSNUca4h2tO5kJyfvmEam/WGLie?=
+ =?us-ascii?Q?gMPIc9rxa9dXYVAhcN+VKmucoJ6tju984pwp3fOkKvp+xgr/aFg1CA0NJZNs?=
+ =?us-ascii?Q?kMjZbWQ6cTzeCiS6rHQNHZlhX8BX0k2hKlL2umAa0Xxp0ixxpmsMOzI3knww?=
+ =?us-ascii?Q?PiIgVjTLlyTEWejq4IwhbYIxcM6A9TQC+p8k/HEP5zjxeTBlfynZJa/F9UXH?=
+ =?us-ascii?Q?2WrYjhwp4vRca3jJVmHnTBhgrqRWpzkB9bdmMXDjcodIznRM5KQaPU5yYydX?=
+ =?us-ascii?Q?oWsk6Smsw39lIehEPjntsfircBVxGVvHiqUGN/seA+ukT4Y3QBxd7y+r0Up4?=
+ =?us-ascii?Q?WRiTBD8t9vJLGrEo1vu1vlsijrJsDjXWE7zSLVYA9TBW/LkSAS0GsM0/y07l?=
+ =?us-ascii?Q?cMi/vkUKt7GqciQOZI12n4Vuz5QQ3Z4Mb3V1I7I+ewZtD55TsizOcHpBLk+L?=
+ =?us-ascii?Q?OfOzGO3dIGF1G+qfNoR+tB6N3wFjXnO0KKvYowC16laxF7yD7L9PZX/dG1DL?=
+ =?us-ascii?Q?Xy6QsmBC/N4vDSsKloHnRitu8+z/luJX60y2uCcI5R86+NuqZlQPQ+AInfWN?=
+ =?us-ascii?Q?bUEW+GPaBp6xOjmcZPkSCbgZq9TloUBGPdDvd21H+gWDC3nGBUd10+Zqay9/?=
+ =?us-ascii?Q?G2+kpfLH5dYlOnYlyFLl3VwB1QMJ+Hfh9bXYapT5KIW7EnSCNdf361l5S5dY?=
+ =?us-ascii?Q?lbhnWvqPatWyBbaWntHBXG2qltkb/R+x0lb2c+q82Cse8oCr21tKOm91gyeh?=
+ =?us-ascii?Q?YB849NDgZ2P4KZeFSc/9aWhU+MhkwcSJ7dqcNH9G7ndWgqRI7/c+Gm/xDwEs?=
+ =?us-ascii?Q?ibDJ67s95b7FLBkd3B/nF00LhaJVHpKTnOcq4zBszqLBOG7RdcWbCVhXklMi?=
+ =?us-ascii?Q?VLQDrBaazFCQq6zRWrZTjcrXveoXlkKxrcygBDoQ1ydQEV9rMLDtkLZNwS+h?=
+ =?us-ascii?Q?yV4LiF7WmnqywOWK/VRA1zyl2qOLtUmyIaKQcJbbjfOvmDX3HxHJcoBrQySa?=
+ =?us-ascii?Q?lAIiuvJAgXQBiGUs9a0ykBIFS8ZK3TmQv0GBdCFTdxwoPuVNXCR8mUHuU8XH?=
+ =?us-ascii?Q?Lfvt4aR9E4p4UTYvTjPSKktmhGwgIs7rvoHkvaXBg626Nz5SC8IAOKpxjQql?=
+ =?us-ascii?Q?DaPA6XjmlZEVKwVWE0TUGMeqxW8FTdc6Tcw38EpB8yoFRtMD5XIiadpRNj7s?=
+ =?us-ascii?Q?5JjQ4dMpKkmMfYBj1quaR6LdCByk8euTmYJhxi3/+1fQhqz1iKPLMseJ18rb?=
+ =?us-ascii?Q?w0y6CaebaBMvJvfJ9NkgSOsD+kzi1KPV?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q3p1NzFTU3EwTGJWSnIrYW9xYjZYdkp1MWNGYnJZYk4vUExFQVZ4U1QxejU5?=
- =?utf-8?B?bE1ZUy9QUzVPeHNJc3V6Vm1CZFhCRFJOTzBiUEJjSjZsdHBUV1NaUUNUaExC?=
- =?utf-8?B?Vm8yNkV4OHZrcno1OVhCOWlRTzFJQWs3OUdiQTBpRGVBZzh4b3RwVGxNUTZ5?=
- =?utf-8?B?N2pyMmR3Z1E0SFM1T0k0M1d5L2hKSUtPWFplSXkxQUNmK2xkMmM1SytNcGZ4?=
- =?utf-8?B?ZDdzM1VYVlJ4TEZhRHB3MkZYTVpqSzBTb3RlOUs4eXZyR25IUk9Jd3lIdzY4?=
- =?utf-8?B?NDBGRzd3cytoRk1SSFEyZ1lTZjhmMUZZOXM4UDZMMURlbDZGWmQ2Qm1IdGhl?=
- =?utf-8?B?QStUdTdoK2pGOEZIN1VJK2hjQUdZS0NybGxRa0s1Rmh3U05VUEx2SHh2Qzk1?=
- =?utf-8?B?aG1EYkI3UVp4bHlpNGRic2lvNGV6Q21SR1U2ZDEyVkh6Q2FGc3hkYTFsdTZp?=
- =?utf-8?B?OHFJcUFCNVdrNU5LNGZHejhTNFJvSjZCZm1jaHlUYjZkL0RKcEhMUnlxbkJx?=
- =?utf-8?B?U3NxTHFoRFRYcHZRS1crOWJoOHg3bm5NRG1vNDcyekdrWmJQNTlPYUNRR3dl?=
- =?utf-8?B?N1NtcW9LYWtLQlNNV2tDUjgycU13Ymc1cVJyL2t6NGQrOWZBU1VUaFhjUU1u?=
- =?utf-8?B?SVhOR3h6S210TDE3UWl0bjNjTERrUzNJRGI1a0FQQlJpRHVwRytkVkh2R0hG?=
- =?utf-8?B?WHE5TCswbFczVlBKVWdqdGdpSlZZRi9za1UyaXJSeWN5VmI5eVRuRWV6WlYv?=
- =?utf-8?B?Q3hVSUY2eG03N01QR2pCUCtxU0MrYXhYSEF3cUpBNzR3cnlGNFFOL0NWUjNx?=
- =?utf-8?B?c1F3NHhlMzhXWm16bjVaSzJzTzFDelY1UzE5RWxLVEZpY29ScDJnWk5TdS9a?=
- =?utf-8?B?OXBmbVVHUWlrSU10bUhiQ0hIZTZiVE93REcwYmd5OUl2aDlpOWpyaHFwdzNu?=
- =?utf-8?B?SC82Z3BiaFJsWWhyTFF1aEl6UURjbmo3RHV4bmh5d0FwTElpYWNnK0VvbDZ6?=
- =?utf-8?B?SlpvYVAvclAzVDRjRjd2YndFUnlaeFVnanJnMWo1WEpyNEhxWVdHcGRySlhN?=
- =?utf-8?B?ZlViZ2tldXk4YzZMOWhqeVJxVUVTUU5DT2dTT21LS0hRRENoZDhiWFk2Sm10?=
- =?utf-8?B?aklVUHlTclBVZXRhaGg0Z1VQZGlFR2xtYWNIVFpSNzhGV0hWNk5xZVorUW8v?=
- =?utf-8?B?VDYwTHdZclp0S2VkVGxSUGNSK1cwZkwweng5bTlyNE9IQ1VFVGlkU0ZvMG9h?=
- =?utf-8?B?aWY4eDZ3YVlzTWpPWUJNY0JnbU9JNTYwOHppaktmTXJpVFZRK0d4N3Rvc3ZP?=
- =?utf-8?B?R3hzY3NPZFJoT0ZNUU0vU3R0dG1LaUsxUFlab3gvSTFLVzAybUxSQS9WQ0pV?=
- =?utf-8?B?TjlHVU5CTEhaRXJzQXdvbE8zVWl5TE5PZjRUQnNSYTZzQWFGWkZCelJTRGM2?=
- =?utf-8?B?U0R4SUIvQkFKM0tFS3dTMlh2aGFBMGsvTnpLYnU0eCt1REJ4dVR1cW9BU1RK?=
- =?utf-8?B?WkNFK1E0eE9TOHlQRitldE5yNlNsSk1VbHZBZXo5bmdmYXlkMW91QVdkZUZi?=
- =?utf-8?B?V0ZINFNFZWNLMllxeG1HamVCdEs5cEh6YW1LWjdNeUgxVGs1NHgrVS9yaS84?=
- =?utf-8?B?YXl3SHV6UE11N1BKK0lDcjQ1WEJsSEtJb0hGeDdIUTlnZitNM1J6T3RxT21x?=
- =?utf-8?B?dzRucG92QVp0UVE0MS96WWdmdDYzUnoxWGcxSFZ6TW9BaEtvN0tGU1JLK1do?=
- =?utf-8?B?RkJXWkFidnAxeWpXdEx0TWFFY0t2aXEwM1U4emVwMGZoSis1WVRTV2lRSldp?=
- =?utf-8?B?NGZqdTduQkNOcytRZ1dkU25Dd3Vyd2xjTzZGa1NrZ1VYTHNER0pOY25pL2d5?=
- =?utf-8?B?S1hCZTZWU1MzWXdkWHdSUHMrSGNoNVJEUU1uMHhxL3Nlck5oTmNJU3hTcDhM?=
- =?utf-8?B?UXRncW5VVS9iQjV6bUZXM0YrSjNaeE9lOSt3MjhuY3RFbGUrbWlyNXlOaVAr?=
- =?utf-8?B?OVk1b1hQdERwVDRYT3k0VzBUeDdxZlQrMDNaQ3A0R3BscXlGRG0vQmpxTW1W?=
- =?utf-8?B?VDZjK2FEd2NwMVlNSlFJZnpRWjdBdzdNcDdWNmpwNnhpMm5tbnl2VjNlSVh5?=
- =?utf-8?Q?bFX0eFgifdxUm7dUaGUkCUjhB?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CRkRrhAjSA7P2MpYHpUlWLfuTSUVrUTb//901zcTMX/wXT/mp3E/MnP+ST74?=
+ =?us-ascii?Q?bYZzGvJNsP5jfDAGvNBfQOSfwFt1HlTuJgGF237atp87MS9NlRUNBboD9vyT?=
+ =?us-ascii?Q?pwty53RlHdQqFW9bWrFINCW/t3K/MHuSIFC/xfH2bwEwBh5RpoR99DeSmtLa?=
+ =?us-ascii?Q?azuWIUuLsWUQy2kbanWwmhjDiSw337cEZHC/zo+sUl5aGz1e7uiKEKLEzwQU?=
+ =?us-ascii?Q?YZhT8cMLgTNKC15pgTuCxL7USIQ1zjYvVap/rOQ5GzzQCfV0SythcYKNx78k?=
+ =?us-ascii?Q?7DNpm2Vvobx3znxrEUzOE8PDqC7BwLrd7lSD2up1BK5/QpbmMVQ8wCThqbgI?=
+ =?us-ascii?Q?brs8ZNfAjKfxKlrp5T2HFeyv5PmByHT9xaraAR4BLNPl1FXxXtaPbbHS9QDo?=
+ =?us-ascii?Q?VQPEfMfGei+X3voh+s5nQ9KAbRxIQakTQOWbZ+LvvU9We9V6V3QYfiURRzqv?=
+ =?us-ascii?Q?MpnU1jGbhy5BuN2e5RKhoWBhYfzfweqwe/kUlxK8dVlO1RxfYqdjQ4otfsEK?=
+ =?us-ascii?Q?iv0hSU7NCyyqi60gNfPOs/jfhcxmhfo03JN1G7NE+bYazsLpXSy0dW86Mkud?=
+ =?us-ascii?Q?OEox/R2CZp4KNSJMMgLZY7KCTBHoprygjj6rHqtowykzY7AaOJJ/mJ9UPKUB?=
+ =?us-ascii?Q?2TkFmz4xoAMaP6E7QnxMxpC3DN6nPpRYann2xQvMQdlrJeQNAtcF7ipdOoWM?=
+ =?us-ascii?Q?ywCLj6yyhacnCQuOQlrhoBMcjmQhtnAHs4Su+yuLk9o1K1/0TP/PbA15y3Fu?=
+ =?us-ascii?Q?H9leGil7Vqt0Pf1wM+8iWaTtJ0x8tAKuPVRBFhlGJ9Iubb4M6cAu8P4H/Lme?=
+ =?us-ascii?Q?gf3WmpwbnVTVm/1XioCta+vftSUbqQl9UXOl93xiAWqHLf6HrEkMksOSlo9k?=
+ =?us-ascii?Q?OMCZj71IMOUhRf71iik2Q85iigMQFs57QWFokNZ8zjmMhl8WkQf1ET1W18ZL?=
+ =?us-ascii?Q?JDFHPNa2PrHKjdyYU5ipeNWu9DttMpIEO1L7XVdt7ZQg1/vPrFEBsYt9HzUo?=
+ =?us-ascii?Q?cp5/y/R8SUbPbYhrrPK7TeIJSElu+5oCJOszf74mzdeM15NEfQOAAmg0G5d0?=
+ =?us-ascii?Q?qZjTua25tW3/xeOY/94TQXeN0Sg03DXz4FdCfBcVdCZCIt6rLbGxKTdZnX+C?=
+ =?us-ascii?Q?RDT2GSYdgRCHnvifRHps+uGS3plXhaIIsPHjraX0q6FWe0GSxpf2bFoPavpf?=
+ =?us-ascii?Q?4/8fqr1V+CERfns8euUHCMxCZTwoCD/savl09sq1Gov3s1D522Qaxsrz5IAa?=
+ =?us-ascii?Q?6D0b3WTBFT/1ONsE9z4sucfzQQdkgxhGlnRqjuQcOqpKuODXvmO6tEe+MsP5?=
+ =?us-ascii?Q?el5K4GzKZ7Bn7/6VACaSkChULg5Lmyz9gM7DT3QeDLvDUzzD3exvwl47rQ4N?=
+ =?us-ascii?Q?RwmtzTwld2j/ZAxFSQuU7DXxs79G5jkBpr75t5CFEyRiEaN674KXdzWQdUqX?=
+ =?us-ascii?Q?DDwwnhv3Vr/vakEYszc6gfyG/k1lvUbweoWl19i1gHttgempnOyWVYYEMr2a?=
+ =?us-ascii?Q?Sjsmp/WE/41zmw7thNK1ERZHWT7ZvhHDHpqowGSgmRgzUtkcW6Z4irXlKQZ0?=
+ =?us-ascii?Q?IjvbJn+VHrsKgNO3slZEubmql6DONHT7nAHB2iP6?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3aac79c6-f4f2-42e1-bf8c-08dd9773a4bf
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8216167-4dd7-431d-bf33-08de02943921
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 May 2025 07:55:09.9667 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2025 15:47:57.1800 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Cov+j5reekWUr5StNsrVGt0E+q3gACeUCa29/2WbVKuMUlZ+fwDzd2zvGBX+tNuIiRqKC8yvDYkEXKpsIGnJ9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5805
-X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:16 +0000
+X-MS-Exchange-CrossTenant-UserPrincipalName: +NbSCBJlZgDehdxA4sSUk/04hXA7NLnSuONWM7Gb/wswXcbh6Fsfcdhg5xaKlMCueH85JD54qZ1VA/IomtOt1g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8152
+X-Mailman-Approved-At: Mon, 06 Oct 2025 20:46:17 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,305 +159,292 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Danilo,
+Previously, bitfields were hardcoded to use u32 as the underlying
+storage type.  Add support for different storage types (u8, u16, u32,
+u64) to the bitfield macro.
 
-On 5/13/2025 1:19 PM, Danilo Krummrich wrote:
-> On Wed, May 07, 2025 at 10:52:43PM +0900, Alexandre Courbot wrote:
->> From: Joel Fernandes <joelagnelf@nvidia.com>
->>
->> Add support for navigating and setting up vBIOS ucode data required for
->> GSP to boot. The main data extracted from the vBIOS is the FWSEC-FRTS
->> firmware which runs on the GSP processor. This firmware runs in high
->> secure mode, and sets up the WPR2 (Write protected region) before the
->> Booter runs on the SEC2 processor.
->>
->> Also add log messages to show the BIOS images.
->>
->> [102141.013287] NovaCore: Found BIOS image at offset 0x0, size: 0xfe00, type: PciAt
->> [102141.080692] NovaCore: Found BIOS image at offset 0xfe00, size: 0x14800, type: Efi
->> [102141.098443] NovaCore: Found BIOS image at offset 0x24600, size: 0x5600, type: FwSec
->> [102141.415095] NovaCore: Found BIOS image at offset 0x29c00, size: 0x60800, type: FwSec
->>
->> Tested on my Ampere GA102 and boot is successful.
->>
->> [applied changes by Alex Courbot for fwsec signatures]
->> [applied feedback from Alex Courbot and Timur Tabi]
->> [applied changes related to code reorg, prints etc from Danilo Krummrich]
->> [acourbot@nvidia.com: fix clippy warnings]
->> [acourbot@nvidia.com: remove now-unneeded Devres acquisition]
->> [acourbot@nvidia.com: fix read_more to read `len` bytes, not u32s]
->>
->> Cc: Alexandre Courbot <acourbot@nvidia.com>
->> Cc: John Hubbard <jhubbard@nvidia.com>
->> Cc: Shirish Baskaran <sbaskaran@nvidia.com>
->> Cc: Alistair Popple <apopple@nvidia.com>
->> Cc: Timur Tabi <ttabi@nvidia.com>
->> Cc: Ben Skeggs <bskeggs@nvidia.com>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
->> ---
->>  drivers/gpu/nova-core/firmware.rs  |    2 -
->>  drivers/gpu/nova-core/gpu.rs       |    3 +
->>  drivers/gpu/nova-core/nova_core.rs |    1 +
->>  drivers/gpu/nova-core/vbios.rs     | 1147 ++++++++++++++++++++++++++++++++++++
->>  4 files changed, 1151 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/firmware.rs
->> index 1eb216307cd01d975b3d5beda1dc516f34b4b3f2..960982174d834c7c66a47ecfb3a15bf47116b2c5 100644
->> --- a/drivers/gpu/nova-core/firmware.rs
->> +++ b/drivers/gpu/nova-core/firmware.rs
->> @@ -80,8 +80,6 @@ pub(crate) struct FalconUCodeDescV3 {
->>      _reserved: u16,
->>  }
->>  
->> -// To be removed once that code is used.
->> -#[expect(dead_code)]
->>  impl FalconUCodeDescV3 {
->>      pub(crate) fn size(&self) -> usize {
->>          ((self.hdr & 0xffff0000) >> 16) as usize
->> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
->> index ece13594fba687f3f714e255b5436e72d80dece3..4bf7f72247e5320935a517270b5a0e1ec2becfec 100644
->> --- a/drivers/gpu/nova-core/gpu.rs
->> +++ b/drivers/gpu/nova-core/gpu.rs
->> @@ -9,6 +9,7 @@
->>  use crate::firmware::Firmware;
->>  use crate::regs;
->>  use crate::util;
->> +use crate::vbios::Vbios;
->>  use core::fmt;
->>  
->>  macro_rules! define_chipset {
->> @@ -238,6 +239,8 @@ pub(crate) fn new(
->>  
->>          let _sec2_falcon = Falcon::<Sec2>::new(pdev.as_ref(), spec.chipset, bar, true)?;
->>  
->> +        let _bios = Vbios::new(pdev, bar)?;
-> 
-> Please add a comment why, even though unused, it is important to create this
-> instance.
-> 
-> Also, please use `_` if it's not intended to ever be used.
+New syntax is: struct Name(<type ex., u32>) { ... }
 
-If I add a comment, it will simply be removed by the next patch. I can add that
-though so it makes it more clear.
+Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+---
+ drivers/gpu/nova-core/bitfield.rs    | 65 ++++++++++++++++------------
+ drivers/gpu/nova-core/regs/macros.rs | 16 +++----
+ 2 files changed, 46 insertions(+), 35 deletions(-)
 
-[...]
->> +impl<'a> Iterator for VbiosIterator<'a> {
->> +    type Item = Result<BiosImage>;
->> +
->> +    /// Iterate over all VBIOS images until the last image is detected or offset
->> +    /// exceeds scan limit.
->> +    fn next(&mut self) -> Option<Self::Item> {
->> +        if self.last_found {
->> +            return None;
->> +        }
->> +
->> +        if self.current_offset > BIOS_MAX_SCAN_LEN {
->> +            dev_err!(
->> +                self.pdev.as_ref(),
->> +                "Error: exceeded BIOS scan limit, stopping scan\n"
->> +            );
->> +            return None;
->> +        }
->> +
->> +        // Parse image headers first to get image size
->> +        let image_size = match self
->> +            .read_bios_image_at_offset(
->> +                self.current_offset,
->> +                BIOS_READ_AHEAD_SIZE,
->> +                "parse initial BIOS image headers",
->> +            )
->> +            .and_then(|image| image.image_size_bytes())
->> +        {
->> +            Ok(size) => size,
->> +            Err(e) => return Some(Err(e)),
->> +        };
->> +
->> +        // Now create a new BiosImage with the full image data
->> +        let full_image = match self.read_bios_image_at_offset(
->> +            self.current_offset,
->> +            image_size,
->> +            "parse full BIOS image",
->> +        ) {
->> +            Ok(image) => image,
->> +            Err(e) => return Some(Err(e)),
->> +        };
->> +
->> +        self.last_found = full_image.is_last();
->> +
->> +        // Advance to next image (aligned to 512 bytes)
->> +        self.current_offset += image_size;
->> +        self.current_offset = self.current_offset.align_up(512);
->> +
->> +        Some(Ok(full_image))
->> +    }
->> +}
->> +
->> +pub(crate) struct Vbios {
->> +    pub fwsec_image: Option<FwSecBiosImage>,
-> 
-> Please use pub(crate) instead or provide an accessor.
-> 
-> Also, this shouldn't be an Option, see below comment in Vbios::new().
-
-Ok, I just removed pub altogether, since the users all within this module.
-
->> +}
->> +
->> +impl Vbios {
->> +    /// Probe for VBIOS extraction
->> +    /// Once the VBIOS object is built, bar0 is not read for vbios purposes anymore.
->> +    pub(crate) fn new(pdev: &pci::Device, bar0: &Bar0) -> Result<Vbios> {
->> +        // Images to extract from iteration
->> +        let mut pci_at_image: Option<PciAtBiosImage> = None;
->> +        let mut first_fwsec_image: Option<FwSecBiosImage> = None;
->> +        let mut second_fwsec_image: Option<FwSecBiosImage> = None;
->> +
->> +        // Parse all VBIOS images in the ROM
->> +        for image_result in VbiosIterator::new(pdev, bar0)? {
->> +            let full_image = image_result?;
->> +
->> +            dev_info!(
-> 
-> Let's use dev_dbg!() instaed.
-
-Done.
-
-> 
->> +                pdev.as_ref(),
->> +                "Found BIOS image: size: {:#x}, type: {}, last: {}\n",
->> +                full_image.image_size_bytes()?,
->> +                full_image.image_type_str(),
->> +                full_image.is_last()
->> +            );
->> +
->> +            // Get references to images we will need after the loop, in order to
->> +            // setup the falcon data offset.
->> +            match full_image {
->> +                BiosImage::PciAt(image) => {
->> +                    pci_at_image = Some(image);
->> +                }
->> +                BiosImage::FwSec(image) => {
->> +                    if first_fwsec_image.is_none() {
->> +                        first_fwsec_image = Some(image);
->> +                    } else {
->> +                        second_fwsec_image = Some(image);
->> +                    }
->> +                }
->> +                // For now we don't need to handle these
->> +                BiosImage::Efi(_image) => {}
->> +                BiosImage::Nbsi(_image) => {}
->> +            }
->> +        }
->> +
->> +        // Using all the images, setup the falcon data pointer in Fwsec.
->> +        // We need mutable access here, so we handle the Option manually.
->> +        let final_fwsec_image = {
->> +            let mut second = second_fwsec_image; // Take ownership of the option
->> +
->> +            if let (Some(second), Some(first), Some(pci_at)) =
->> +                (second.as_mut(), first_fwsec_image, pci_at_image)
->> +            {
->> +                second
->> +                    .setup_falcon_data(pdev, &pci_at, &first)
->> +                    .inspect_err(|e| {
->> +                        dev_err!(pdev.as_ref(), "Falcon data setup failed: {:?}\n", e)
->> +                    })?;
->> +            } else {
->> +                dev_err!(
->> +                    pdev.as_ref(),
->> +                    "Missing required images for falcon data setup, skipping\n"
->> +                );
->> +                return Err(EINVAL);
-> 
-> This means that if second == None we fail, which makes sense, so why store an
-> Option in Vbios? All methods of Vbios fail if fwsec_image == None.
-> 
-
-Well, if first and pci_at are None, we will fail as well. Not just second. But
-we don't know until we finish parsing all the images in the prior loop, if we
-found all the images. So we store it as Option during the prior loop, and check
-it later. Right?
-
->> +            }
->> +            second
->> +        };
-> 
-> I think this should be:
-> 
-> 	let mut second = second_fwsec_image;
-> 	
-> 	if let (Some(second), Some(first), Some(pci_at)) =
-> 	    (second.as_mut(), first_fwsec_image, pci_at_image)
-> 	{
-> 	    second
-> 	        .setup_falcon_data(pdev, &pci_at, &first)
-> 	        .inspect_err(|e| {
-> 	            dev_err!(pdev.as_ref(), "Falcon data setup failed: {:?}\n", e)
-> 	        })?;
-> 	
-> 	    Ok(Vbios(second)
-> 	} else {
-> 	    dev_err!(
-> 	        pdev.as_ref(),
-> 	        "Missing required images for falcon data setup, skipping\n"
-> 	    );
-> 	
-> 	    Err(EINVAL)
-> 	}
-> 
-> where Vbios can just be
-> 
-> 	pub(crate) struct Vbios(FwSecBiosImage);
-
-But your suggestion here still considers second as an Option? That's why you
-wrote 'Some(second)' ?
-
-> 
->> +
->> +        Ok(Vbios {
->> +            fwsec_image: final_fwsec_image,
->> +        })
->> +    }
->> +
->> +    pub(crate) fn fwsec_header(&self, pdev: &device::Device) -> Result<&FalconUCodeDescV3> {
->> +        let image = self.fwsec_image.as_ref().ok_or(EINVAL)?;
->> +        image.fwsec_header(pdev)
->> +    }
->> +
->> +    pub(crate) fn fwsec_ucode(&self, pdev: &device::Device) -> Result<&[u8]> {
->> +        let image = self.fwsec_image.as_ref().ok_or(EINVAL)?;
->> +        image.fwsec_ucode(pdev, image.fwsec_header(pdev)?)
->> +    }
->> +
->> +    pub(crate) fn fwsec_sigs(&self, pdev: &device::Device) -> Result<&[u8]> {
->> +        let image = self.fwsec_image.as_ref().ok_or(EINVAL)?;
->> +        image.fwsec_sigs(pdev, image.fwsec_header(pdev)?)
->> +    }
-> 
-> Those then become infallible, e.g.
-> 
-> 	pub(crate) fn fwsec_sigs(&self, pdev: &device::Device) -> &[u8] {
-> 	    self.0.fwsec_sigs(pdev, self.fwsec_header(pdev))
-> 	}
-> 
-
-Nope, I think you are wrong there. fwsec_sigs() of the underlying .0 returns a
-Result.
-
-Also in Vbios::new(), I extract the Option when returning:
-
-        Ok(Vbios {
-            fwsec_image: final_fwsec_image.ok_or(EINVAL)?,
-        })
-
-But fwsec_header() still has to return a Result:
-    pub(crate) fn fwsec_header(&self, pdev: &device::Device) ->
-              Result<FalconUCodeDescV3> {
-        self.fwsec_image.fwsec_header(pdev)
-    }
-
-thanks,
-
- - Joel
+diff --git a/drivers/gpu/nova-core/bitfield.rs b/drivers/gpu/nova-core/bitfield.rs
+index dd0ef2016ff8..75de1c0fcb3b 100644
+--- a/drivers/gpu/nova-core/bitfield.rs
++++ b/drivers/gpu/nova-core/bitfield.rs
+@@ -57,7 +57,7 @@
+ /// }
+ ///
+ /// bitfield! {
+-///     struct ControlReg {
++///     struct ControlReg(u32) {
+ ///         3:0 mode as u8 ?=> Mode;
+ ///         7:7 state as bool => State;
+ ///     }
+@@ -67,6 +67,8 @@
+ /// This generates a struct with:
+ /// - Field accessors: `mode()`, `state()`, etc.
+ /// - Field setters: `set_mode()`, `set_state()`, etc. (supports chaining with builder pattern).
++///   Note that the compiler will error out if the size of the setter's arg exceeds the
++///   struct's storage size.
+ /// - Debug and Default implementations.
+ ///
+ /// Fields are defined as follows:
+@@ -79,21 +81,21 @@
+ ///   and returns the result. This is useful with fields for which not all values are valid.
+ macro_rules! bitfield {
+     // Main entry point - defines the bitfield struct with fields
+-    (struct $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
+-        bitfield!(@core $name $(, $comment)? { $($fields)* });
++    (struct $name:ident($storage:ty) $(, $comment:literal)? { $($fields:tt)* }) => {
++        bitfield!(@core $name $storage $(, $comment)? { $($fields)* });
+     };
+ 
+     // All rules below are helpers.
+ 
+     // Defines the wrapper `$name` type, as well as its relevant implementations (`Debug`,
+     // `Default`, `BitOr`, and conversion to the value type) and field accessor methods.
+-    (@core $name:ident $(, $comment:literal)? { $($fields:tt)* }) => {
++    (@core $name:ident $storage:ty $(, $comment:literal)? { $($fields:tt)* }) => {
+         $(
+         #[doc=$comment]
+         )?
+         #[repr(transparent)]
+         #[derive(Clone, Copy)]
+-        pub(crate) struct $name(u32);
++        pub(crate) struct $name($storage);
+ 
+         impl ::core::ops::BitOr for $name {
+             type Output = Self;
+@@ -103,20 +105,20 @@ fn bitor(self, rhs: Self) -> Self::Output {
+             }
+         }
+ 
+-        impl ::core::convert::From<$name> for u32 {
+-            fn from(val: $name) -> u32 {
++        impl ::core::convert::From<$name> for $storage {
++            fn from(val: $name) -> $storage {
+                 val.0
+             }
+         }
+ 
+-        bitfield!(@fields_dispatcher $name { $($fields)* });
++        bitfield!(@fields_dispatcher $name $storage { $($fields)* });
+     };
+ 
+     // Captures the fields and passes them to all the implementers that require field information.
+     //
+     // Used to simplify the matching rules for implementers, so they don't need to match the entire
+     // complex fields rule even though they only make use of part of it.
+-    (@fields_dispatcher $name:ident {
++    (@fields_dispatcher $name:ident $storage:ty {
+         $($hi:tt:$lo:tt $field:ident as $type:tt
+             $(?=> $try_into_type:ty)?
+             $(=> $into_type:ty)?
+@@ -125,7 +127,7 @@ fn from(val: $name) -> u32 {
+         )*
+     }
+     ) => {
+-        bitfield!(@field_accessors $name {
++        bitfield!(@field_accessors $name $storage {
+             $(
+                 $hi:$lo $field as $type
+                 $(?=> $try_into_type)?
+@@ -140,7 +142,7 @@ fn from(val: $name) -> u32 {
+ 
+     // Defines all the field getter/setter methods for `$name`.
+     (
+-        @field_accessors $name:ident {
++        @field_accessors $name:ident $storage:ty {
+         $($hi:tt:$lo:tt $field:ident as $type:tt
+             $(?=> $try_into_type:ty)?
+             $(=> $into_type:ty)?
+@@ -156,7 +158,7 @@ fn from(val: $name) -> u32 {
+         #[allow(dead_code)]
+         impl $name {
+             $(
+-            bitfield!(@field_accessor $name $hi:$lo $field as $type
++            bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type
+                 $(?=> $try_into_type)?
+                 $(=> $into_type)?
+                 $(, $comment)?
+@@ -190,11 +192,11 @@ impl $name {
+ 
+     // Catches fields defined as `bool` and convert them into a boolean value.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool => $into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+         bitfield!(
+-            @leaf_accessor $name $hi:$lo $field
++            @leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$into_type>::from(if f != 0 { true } else { false }) }
+             $into_type => $into_type $(, $comment)?;
+         );
+@@ -202,17 +204,17 @@ impl $name {
+ 
+     // Shortcut for fields defined as `bool` without the `=>` syntax.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as bool $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@field_accessor $name $hi:$lo $field as bool => bool $(, $comment)?;);
++        bitfield!(@field_accessor $name $storage, $hi:$lo $field as bool => bool $(, $comment)?;);
+     };
+ 
+     // Catches the `?=>` syntax for non-boolean fields.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt ?=> $try_into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@leaf_accessor $name $hi:$lo $field
++        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$try_into_type>::try_from(f as $type) } $try_into_type =>
+             ::core::result::Result<
+                 $try_into_type,
+@@ -223,29 +225,38 @@ impl $name {
+ 
+     // Catches the `=>` syntax for non-boolean fields.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt => $into_type:ty
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@leaf_accessor $name $hi:$lo $field
++        bitfield!(@leaf_accessor $name $storage, $hi:$lo $field
+             { |f| <$into_type>::from(f as $type) } $into_type => $into_type $(, $comment)?;);
+     };
+ 
+     // Shortcut for non-boolean fields defined without the `=>` or `?=>` syntax.
+     (
+-        @field_accessor $name:ident $hi:tt:$lo:tt $field:ident as $type:tt
++        @field_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident as $type:tt
+             $(, $comment:literal)?;
+     ) => {
+-        bitfield!(@field_accessor $name $hi:$lo $field as $type => $type $(, $comment)?;);
++        bitfield!(@field_accessor $name $storage, $hi:$lo $field as $type => $type $(, $comment)?;);
+     };
+ 
+     // Generates the accessor methods for a single field.
+     (
+-        @leaf_accessor $name:ident $hi:tt:$lo:tt $field:ident
++        @leaf_accessor $name:ident $storage:ty, $hi:tt:$lo:tt $field:ident
+             { $process:expr } $to_type:ty => $res_type:ty $(, $comment:literal)?;
+     ) => {
+         ::kernel::macros::paste!(
+         const [<$field:upper _RANGE>]: ::core::ops::RangeInclusive<u8> = $lo..=$hi;
+-        const [<$field:upper _MASK>]: u32 = ((((1 << $hi) - 1) << 1) + 1) - ((1 << $lo) - 1);
++        const [<$field:upper _MASK>]: $storage = {
++            // Generate mask for shifting
++            match ::core::mem::size_of::<$storage>() {
++                1 => ::kernel::bits::genmask_u8($lo..=$hi) as $storage,
++                2 => ::kernel::bits::genmask_u16($lo..=$hi) as $storage,
++                4 => ::kernel::bits::genmask_u32($lo..=$hi) as $storage,
++                8 => ::kernel::bits::genmask_u64($lo..=$hi) as $storage,
++                _ => ::kernel::build_error!("Unsupported storage type size")
++            }
++        };
+         const [<$field:upper _SHIFT>]: u32 = Self::[<$field:upper _MASK>].trailing_zeros();
+         );
+ 
+@@ -256,7 +267,7 @@ impl $name {
+         #[inline(always)]
+         pub(crate) fn $field(self) -> $res_type {
+             ::kernel::macros::paste!(
+-            const MASK: u32 = $name::[<$field:upper _MASK>];
++            const MASK: $storage = $name::[<$field:upper _MASK>];
+             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
+             );
+             let field = ((self.0 & MASK) >> SHIFT);
+@@ -271,9 +282,9 @@ pub(crate) fn $field(self) -> $res_type {
+         )?
+         #[inline(always)]
+         pub(crate) fn [<set_ $field>](mut self, value: $to_type) -> Self {
+-            const MASK: u32 = $name::[<$field:upper _MASK>];
++            const MASK: $storage = $name::[<$field:upper _MASK>];
+             const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
+-            let value = (u32::from(value) << SHIFT) & MASK;
++            let value = (<$storage>::from(value) << SHIFT) & MASK;
+             self.0 = (self.0 & !MASK) | value;
+ 
+             self
+diff --git a/drivers/gpu/nova-core/regs/macros.rs b/drivers/gpu/nova-core/regs/macros.rs
+index 945d15a2c529..ffd7d5cb73bb 100644
+--- a/drivers/gpu/nova-core/regs/macros.rs
++++ b/drivers/gpu/nova-core/regs/macros.rs
+@@ -276,25 +276,25 @@ pub(crate) trait RegisterBase<T> {
+ macro_rules! register {
+     // Creates a register at a fixed offset of the MMIO space.
+     ($name:ident @ $offset:literal $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $offset);
+     };
+ 
+     // Creates an alias register of fixed offset register `alias` with its own fields.
+     ($name:ident => $alias:ident $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $alias::OFFSET);
+     };
+ 
+     // Creates a register at a relative offset from a base address provider.
+     ($name:ident @ $base:ty [ $offset:literal ] $(, $comment:literal)? { $($fields:tt)* } ) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $offset ]);
+     };
+ 
+     // Creates an alias register of relative offset register `alias` with its own fields.
+     ($name:ident => $base:ty [ $alias:ident ] $(, $comment:literal)? { $($fields:tt)* }) => {
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $alias::OFFSET ]);
+     };
+ 
+@@ -305,7 +305,7 @@ macro_rules! register {
+         }
+     ) => {
+         static_assert!(::core::mem::size_of::<u32>() <= $stride);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_array $name @ $offset [ $size ; $stride ]);
+     };
+ 
+@@ -326,7 +326,7 @@ macro_rules! register {
+             $(, $comment:literal)? { $($fields:tt)* }
+     ) => {
+         static_assert!(::core::mem::size_of::<u32>() <= $stride);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_relative_array $name @ $base [ $offset [ $size ; $stride ] ]);
+     };
+ 
+@@ -348,7 +348,7 @@ macro_rules! register {
+         }
+     ) => {
+         static_assert!($idx < $alias::SIZE);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_relative $name @ $base [ $alias::OFFSET + $idx * $alias::STRIDE ] );
+     };
+ 
+@@ -357,7 +357,7 @@ macro_rules! register {
+     // to avoid it being interpreted in place of the relative register array alias rule.
+     ($name:ident => $alias:ident [ $idx:expr ] $(, $comment:literal)? { $($fields:tt)* }) => {
+         static_assert!($idx < $alias::SIZE);
+-        bitfield!(struct $name $(, $comment)? { $($fields)* } );
++        bitfield!(struct $name(u32) $(, $comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $alias::OFFSET + $idx * $alias::STRIDE );
+     };
+ 
+-- 
+2.34.1
 
