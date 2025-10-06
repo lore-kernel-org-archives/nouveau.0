@@ -4,78 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62B00D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4873FD5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCD3610EA58;
-	Sat, 13 Dec 2025 12:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 637F410EA8C;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uat1NaoW";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="hbNEKZQf";
 	dkim-atps=neutral
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com
- [209.85.214.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07E4410E1E6
- for <nouveau@lists.freedesktop.org>; Mon, 22 Sep 2025 21:59:49 +0000 (UTC)
-Received: by mail-pl1-f181.google.com with SMTP id
- d9443c01a7336-267fa729a63so9357845ad.3
- for <nouveau@lists.freedesktop.org>; Mon, 22 Sep 2025 14:59:48 -0700 (PDT)
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+ [209.85.160.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A213D10E0C4
+ for <nouveau@lists.freedesktop.org>; Mon,  6 Oct 2025 22:29:26 +0000 (UTC)
+Received: by mail-qt1-f181.google.com with SMTP id
+ d75a77b69052e-4db0b56f6e7so58788611cf.1
+ for <nouveau@lists.freedesktop.org>; Mon, 06 Oct 2025 15:29:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758578388; x=1759183188; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=kTVCircg+kesKPnjuiU2zmcPm3Wk8hx0LgVUotPUxPg=;
- b=Uat1NaoWlUDqP21/wa+Kqj0+//tnYRAHH0CmKGlA+HrhdbRHzQQp7+XgyGTDy1XCEi
- L88k0lIbTgJkr9pSMJ5riW0xvV+OITxUi9gZ+Sh/ZVO6pGPLJSDCAyCojcPBZTH7rjJi
- RGkR/vaG1RxVW55USKAzL3UQP+vYtDXPeZSndFWPQB/D2e+p2FiJoeNO5MpVdBdANlVo
- MIOobk64VHKWE0yKgkU+S6ve/fvSD9neNU+ZASUSJTIofuBjOm8Fo01BNXxVxNUPLt9q
- hon+Dk6YEnXy5uw57juiYgvNHdmsMBzLohi9ixDleo77ul8yVIPLaAsdkGUwPmFN7CpB
- KZKA==
+ d=gmail.com; s=20230601; t=1759789765; x=1760394565; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=NVmyDp3clLGLS8kIW7yJXXQisPoyp+nIoQv6rloL8GA=;
+ b=hbNEKZQfvA+2vxNaLnQTqynoyWqUT5deE3mZ2pC3Ug8lGSATExKxWOIfMH0JgNW5Ze
+ JQQyx0RQW25E0yggkSfQGfM0csra7fS6r4yhDdpg8NGbFwRb7PbUXoAXgm7msPEyPFDm
+ JAn0pO18ct5jf/JvrcVP5ZQ8+orN9L5aUi4qO9A7ROMKxV7N2z6htcS2u7rcoLE/otbx
+ J/PxthuzngZhcI8XC/TQnfF9IsdnFtTAbb2+fswZwz8Zk6WETzEjhYitM/4adS3aX5v0
+ 24jk6CFfEpBivXEQL1ziBSJCoIN/J8kFT8eTcc/KbF719FtAKbYs3GLW7FZvMuo/5BQs
+ WMxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758578388; x=1759183188;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=kTVCircg+kesKPnjuiU2zmcPm3Wk8hx0LgVUotPUxPg=;
- b=H35slczpsHuzDmiXlzpEUz+StM6KCHMk7ue/jUZ/chEdEiC3dF/sP08uYZ0Gb+QKSU
- H5fKAZEnF/6L+8SK3oBRk3MluzljnRlBQEZUGUPgDp4q1EOKxgVQLZxhb63Jvc7+CF/d
- YOZhfP/tist2/6/K1URk82nWv9hAKvLt28l7xs0fE46qpv2bJQmv4aljYJG32Zga9INp
- KuK9BFwMXKNhjGYP+ogs23k961sELtu8DakRW/GtJuRlMRBqORREcFxPtaZwroVKc08k
- 7NPj8xIeBktFzTZc11tHU0D6j3yMiEmeuTNI4hXAFoO/nE2tbEz8Q1+S2tFbZiLbqWLG
- 7GgQ==
+ d=1e100.net; s=20230601; t=1759789765; x=1760394565;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=NVmyDp3clLGLS8kIW7yJXXQisPoyp+nIoQv6rloL8GA=;
+ b=w6bUMf6c7CWWkygwp7tnKjVkCCXncsRhYjmXYejMQKY3gkZ3xI4fvI3qrWVONFd2az
+ l88OdS8rTJGMApcG10fJ1Qb4UAKLYYDFjRYMJ9hKyAuK+hmuFTwIHIkrrPdr8pCvhKmA
+ dIVGsTgK5po08uFyHl7BZ9uKh3CInGVJN/zm7U7BYir2X99WQZ3ifyZ7CZwUik2b8kD0
+ rOofAXaAcMQJxMAOUDx57y5f2K8EQXKtWv0+E0koYPIIl1DhdvYPVKcI8o+cy3Nfdeq9
+ /cgO1ECJ5qByPhX08skJLTMPmEdzw7anNOTushWvieF137Lso23HpjPjed8Ibf9ePzGy
+ 0WeA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWQTQc31+EnMvF6R6BMORXoO1uPjRY+7/X/bZFl1iVUSbMOQhUdXlwmIEUkfPQotlIRux7IUVY8@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YybPz+HimiCHZdKHiWY3XCN8yegoaIfbZw4fopTgXC/WemwXK4N
- JPLI74nJ9TtGtw/rtqJiNg/0uh4hN8deCYZnfGzf0w5sZPJ0dFC7g73xSiTSRRFShHP5GoUvn0x
- vTG16FflyOZBpSpsRoTCbANU8e+Shaiw=
-X-Gm-Gg: ASbGncuwIxP9L1es0sblyQVO396fbC9AmRQopkoQT14/ijw/c8do58+Z+hpFZ57eHG8
- paAPEFHz24J1XYYX0R0kcgQ52OCsmLQV2tts8myByhM9un9ALFCb2DZRVZI4vSLdXj6T6MLqzPT
- EteoslO6kkfkhjFXgLTWQAitbM7CW9Fbtww+CeBWelVBCe9Gguod+h74dVJU1VpM56xd2QIp3kU
- 1LT3svRHkQYHWi3aGVS/C5GYNIvToUFxo7d0Hg2WJaW2iFPzqdVdKh1MktHMQ65zOVpCl9AnHZ5
- j7utXryLufoIJ+t+Iq8YHizzdA==
-X-Google-Smtp-Source: AGHT+IHO8cJKGFmF6HkfxzDA37dCzzF2eb1sWGALw/BM92tVXUO+gzQ5qLlWsYCyw1t7RNfA8rfVA2phVEot6qjLLv8=
-X-Received: by 2002:a17:902:ec8d:b0:269:67e9:4c20 with SMTP id
- d9443c01a7336-27cc41d582fmr2476225ad.5.1758578388477; Mon, 22 Sep 2025
- 14:59:48 -0700 (PDT)
+ AJvYcCU+bLXiohqKip6EZX8UMwS/w3yTrsIgtsjsVDYoiYK7goYpPRIDvZyFD+pdhuDI6r247Q71SbaS@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyC9CGitmEl7cBTOpMskHe0InKxuF6t7xgcq+enkth8YHgdPPL0
+ ogYOQ2etUsl+BoDSamd/kiKgG4zpEMJ/mFFE3fCuEqlSZGkDdYz5sOMI
+X-Gm-Gg: ASbGncuaUxXIIWyepZRk35hLZrwShnCSXj6Yr8DOn7bpsOPj5V7N9QwbnU9cCZ65BnC
+ GRXKERMgH61R7laqYYXvPBa0Ky1QjWW+tnBF7/w/tG5NXhWBw8MlNVtalboCZXzrwuFPYk4VgcH
+ 2YAQIO5XRq4OW27jC/GlPXLPhTVBByd9N/6C/ffl1cbCYotMpPGua3oQKJoIS4pRlQr7hhKqas9
+ TQ4tGF1nkeAk9rO96rLG12K2FSJnZ/EnqzTFaNupS1oVbeam6ul/tTXI0gFSUUmkyysHca/fcKy
+ ceU2WI9Mt+pjoabMbSXt3cCFhPGXjzHPTn2uGzBKbzLxZ9uJH1E1JjYb/cePzq86nZLIXH5rX0Z
+ sArPMG7JyNPAGnVKXLI4nM1K1nFS+8J5yiacJznlXaNk=
+X-Google-Smtp-Source: AGHT+IHPqikPMwG5q0hEpff7no1z9szaNg+f/yIWTC45aDjchAEueYobJpT+cU5Ru6SV8Xq4v0V8Ug==
+X-Received: by 2002:a05:622a:1807:b0:4ab:6e3d:49b4 with SMTP id
+ d75a77b69052e-4e6de794646mr17493561cf.7.1759789765354; 
+ Mon, 06 Oct 2025 15:29:25 -0700 (PDT)
+Received: from localhost ([12.22.141.131]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4e55c9e77bcsm131484451cf.24.2025.10.06.15.29.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 06 Oct 2025 15:29:23 -0700 (PDT)
+Date: Mon, 6 Oct 2025 18:29:21 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, dakr@kernel.org,
+ acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
+ rust/kernel/
+Message-ID: <aORCwckUwZspBMfv@yury>
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
 MIME-Version: 1.0
-References: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
-In-Reply-To: <20250908-num-v5-0-c0f2f681ea96@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 22 Sep 2025 23:59:36 +0200
-X-Gm-Features: AS18NWD8TsrWVNTwE-9v0GFvv0Ifjza16a049-IVfVsrSbDAQ6mxb5XW5HdMIaY
-Message-ID: <CANiq72nP_VwSnFzyM4HKk5GTAwJw+MeX5JXqA-yLBa9JLe9YOQ@mail.gmail.com>
-Subject: Re: [PATCH v5 0/2] rust: add `Alignment` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,29 +102,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Sep 8, 2025 at 3:26=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
-om> wrote:
->
-> The first patch makes two additions:
->
-> - Bring an equivalent of the nightly upstream `Alignment` type [1] with
->   an near-identical public interface,
-> - Add a new `Alignable` extension trait that provides a way to align
->   values up or down according to an `Alignment`, and implement it on
->   unsigned integer types.
->
-> The second patch makes use of these in the Nova driver.
->
-> [1] https://doc.rust-lang.org/std/ptr/struct.Alignment.html
->
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+On Fri, Oct 03, 2025 at 11:47:43AM -0400, Joel Fernandes wrote:
+> Hello!
+> 
+> These patches extract and enhance the bitfield support in the register macro in
+> nova to define Rust structures with bitfields. It then moves out the bitfield
+> support into the kenrel crate.
+> 
+> Since v5, I dropped several patches and only kept the simple ones that do code
+> movement, added a few features and added a KUNIT test. After Alex's bounded
+> integer [1] support is in, we can rewrite the dropped patches.
+> 
+> I also dropped the MAINTAINER entry for now, pending more clarity around that.
+> I am happy to maintain it, but I need more input on who all will co-maintain,
+> now that the last 4 patches were dropped. Perhaps we can maintain it was a part
+> of the core rust-for-linux? I suggest let us create the maintainer entry once
+> Alex's bounded integer support is integrated but I am open to suggestions.
+> 
+> Here are the v5 patches [2].
+> 
+> [1] https://lore.kernel.org/all/20251002-bounded_ints-v1-0-dd60f5804ea4@nvidia.com/
+> [2] https://lore.kernel.org/all/20250930144537.3559207-1-joelagnelf@nvidia.com/
 
-Applied to `rust-next` -- thanks everyone!
+Hi Joel,
 
-    [ Used `build_assert!`, added intra-doc link, `allow`ed
-      `clippy::incompatible_msrv`, added `feature(const_option)`, capitaliz=
-ed
-      safety comment. - Miguel ]
+I returned back to v5 today to just find that you have posted a v6.
 
-Cheers,
-Miguel
+There's just 3 days between the versions, and I'm pretty sure most
+people were not able to even read the material. Moreover, there's
+an -rc1 window ongoing, which means that people may be busy.
+
+You're still receiving feedback to v5, and this makes even more mess
+because now I'm completely lost about what I should review and what
+should ignore.
+
+Please allow a usual 2 weeks between versions to let people have
+a chance to give you a valuable feedback.
+
+It seems that you decided to drop some material, comparing to v5, but
+don't even notice what exactly has been removed, except that vague
+"code movement and few features" notice.
+
+Regardless, I don't think that this is the right path to move the
+bitfields into the core. The natural path for a feature that has
+been originally developed on driver side is to mature in there and
+get merged to core libraries after a while. Resctrl from Intel is one
+recent example.
+
+With that said, I'm OK if you move the bitfields as a whole, like you
+do in v5, and I'm also OK if you split out the part essential for nova
+and take it into the driver. In that case the bitfields will stay in 
+drivers and you'll be able to focus on the features that _you_ need,
+not on generic considerations.
+
+I'm not OK to move bitfields in their current (v6) incomplete form in
+rust/kernel. We still have no solid understanding on the API and
+implementation that we've been all agreed on.
+
+On maintenance: no core functionality can be merged unmaintained - it's
+a strict rule. While in drivers, bitfields are maintained by the nova
+maintainers as part of the driver. If you make it a generic library,
+you need to define a responsible person(s) in advance. It's also a good
+practice to add a core maintainer as a reviewer or co-maintainer. Alice
+and Burak added me for bitmap/rust because I already look after bitmaps
+in C. You can do the same for bitfields, for the same reason.
+
+It looks like you have some offline discussions on the bitfields.
+(Particularly with me.) Before we move forward, can you please wrap
+up all the input you've got, so we'll all be sure that we are on the
+same page. Right now the process look really messy.
+
+Thanks,
+Yury
