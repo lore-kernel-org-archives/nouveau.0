@@ -4,79 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5575BD5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0586CD5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BABC10EBA4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B2B610EAFC;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Us7pqBjI";
+	dkim=pass (1024-bit key; unprotected) header.d=cse.ust.hk header.i=@cse.ust.hk header.b="rr1hTbhk";
 	dkim-atps=neutral
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com
- [209.85.216.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 60A1510E23C
- for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 17:06:27 +0000 (UTC)
-Received: by mail-pj1-f54.google.com with SMTP id
- 98e67ed59e1d1-313290ea247so360893a91.3
- for <nouveau@lists.freedesktop.org>; Fri, 20 Jun 2025 10:06:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750439185; x=1751043985; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=nR8JCkDCS0gb3QmY+xkreXhapsXDdGblPAP/bOLVoRc=;
- b=Us7pqBjIWOL6zHG+gaAbbrD/D/M9ke9V0QJf8c+iaBmvTvj/XpFet6jOh7qmicTqvs
- rWOXsd3r6Do8S8RyMU6mZ9DX+YQgyD94jrG+BYD8vuKuXtaBWlE4luCs9JMhSdorGqDZ
- DgCN4OQqK2XttU+6zv80QL2boIYWv3xQa6z4QbjAJIThNsHkrJ2wVypZP7wiPrlgh71P
- TWh35pdAoUIlDKiDAH4pWcYb+omM8UWjADpuBZCBfMKUN2M3HNBNwpbVuTWgJHnbnv/s
- RWgKKg+DpfWgiaFeZvNsx5TPgEdZs5EuFpvPBrTYg4cfrs3iIV2uWUdhM+0Kf11NdSdj
- pUjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750439185; x=1751043985;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=nR8JCkDCS0gb3QmY+xkreXhapsXDdGblPAP/bOLVoRc=;
- b=Erv8mKXSfP9Z+IWO65d5UfC8EJdp+5QC89OansHLBKeYVLo4Vs+nH4XYsGjpujYq6b
- 7IwVb+Xgg4evqQoCU2mx9eAj6MPPJWHbVH4SZ6evPdnEN/Y2NTNCtp42uDbqhrSg94fI
- FRxhxzY9JD0MMovydMF4BEPUy5qfBPBixAa+R0laNL3xuDLSvi85+m9wgQF6J6rt7qV0
- kFzqftsjtNrslqS/j43XIHvK/QvMKsuZmkx2q7tD8P41kmgijdZh1uNZDb9v+8WteDdf
- ke7GJGhYE1QLL98D5n4wQbWhMtrGowAiNe4xW/USsKTLBcbDMdEpF3Od7khTv7KRb0cT
- S3dA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWIL3NR0TEz8w93qVvP2LlOo03TDODIDTWDOXbuhjBwIzlzH+JyBk3e6clopDotc0bfNp2oT5jP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwAOJcli1SSGhe6u9jQtA00Y/MctBL0ORMNerg0qqLb6lNhjT/9
- Pzj82rIHkHa4P8KDtTdOPSJS1f6Z4fvdYGDRV3t+AoJILvFm/taf56+cd8jDrwhw8/b9K1Wavk4
- MdxKfM1sRKpxzP5XZXsSDn5do1HfjzrU=
-X-Gm-Gg: ASbGnctEX+dHF5/qMNb9P5tkaxkLICC+ShUz88bnSEz+UnwMX9i0MCTv0NFmY6DWVC6
- 8TTYP+KUwW+xX1ACvPMIZPOTvXAz4YMj42VN2I8OPbwFZQgLsBCzHsVwxXIUk/IkB5HbycmZdTh
- RdqI9btDg9/2qb0ic4mGyJRKhZLkhqClIJzlb+WWk0CpixgJ72wOL3Yw==
-X-Google-Smtp-Source: AGHT+IFUdRD9ff/2AXzkajZ014jgzqnnrOctCnqUh751BOw8Une3qB2C2bF1iaF/ptF/GHz1mrxH1fQWMGB98YE9euA=
-X-Received: by 2002:a17:90b:51c3:b0:311:a314:c2dd with SMTP id
- 98e67ed59e1d1-3159d8c6cedmr2366780a91.4.1750439185108; Fri, 20 Jun 2025
- 10:06:25 -0700 (PDT)
+X-Greylist: delayed 818 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Oct 2025 17:02:37 UTC
+Received: from cse.ust.hk (cssvr7.cse.ust.hk [143.89.41.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA5710E039;
+ Mon,  6 Oct 2025 17:02:37 +0000 (UTC)
+Received: from homelab ([58.82.196.128]) (authenticated bits=0)
+ by cse.ust.hk (8.18.1/8.12.5) with ESMTPSA id 596GmgIw1681762
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Tue, 7 Oct 2025 00:48:48 +0800
+ARC-Seal: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse; t=1759769329; cv=none;
+ b=u6BffOttA8edvq5IIWlw9D1OXn2Vr3IujB1iv5/YVGSAyYWdvDXGKTveF+Qwt0EbM3s/zbje00wKGaV22g7Kjmeqad4oeTKo++3wNbK0UiDmEOT51cQmpI318YD3P5bUFI85a0z0KpdV4IskRWzE1R13hfLqd7+2P2maZJhNDOA=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse;
+ t=1759769329; c=relaxed/relaxed;
+ bh=oGM5vpkyAsmTUtIk5RM/tQs1EUajj7ebFZCNrR8AKuM=;
+ h=DKIM-Signature:Date:From:To:Subject:Message-ID:MIME-Version;
+ b=dWG2tclzCd7pY3zf9u139f/jMzECNovrotpDIJz2ntrNKiiWcf7TR2piWkJ2/PRTacxjNwkCGb14W5JaMh8Nhq32pp66/2LesOrcygahuAQWrSNCBNjtJ9Bi6Up3JmUgmY49dEUug5akuW+toF8CWsJio3xW92P4fp9C+FtcrJc=
+ARC-Authentication-Results: i=1; cse.ust.hk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cse.ust.hk;
+ s=cseusthk; t=1759769329;
+ bh=oGM5vpkyAsmTUtIk5RM/tQs1EUajj7ebFZCNrR8AKuM=;
+ h=Date:From:To:Cc:Subject:From;
+ b=rr1hTbhk3kH283RzkS+LstTZ/Q6xtM/rNNbKf32pI4LBMi9nX0E7z1NbamBUsCqMD
+ bQal8nrd73l9hHOSSXoYylr6ep+jsG5Utz4tOs2dMap+dj/M7Ni+fTepHvfLhAfUEb
+ s97sW8Zkyo4FWz1TQz+wTDNhJNZIybfmOjeS28cw=
+Date: Tue, 7 Oct 2025 00:48:37 +0800
+From: Shuhao Fu <sfual@cse.ust.hk>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Subject: [PATCH] drm/nouveau: Fix refcount leak in nouveau_connector_detect
+Message-ID: <aOPy5aCiRTqb9kjR@homelab>
 MIME-Version: 1.0
-References: <20250620-num-v1-0-7ec3d3fb06c9@nvidia.com>
- <20250620-num-v1-1-7ec3d3fb06c9@nvidia.com>
- <CANiq72=BSnom-nQgzLvv-cqwSknK1uJ=CXGP51r0WRj1Y553Ew@mail.gmail.com>
- <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
-In-Reply-To: <DAREXAUV51B6.7X7TPOJKK249@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 20 Jun 2025 19:06:12 +0200
-X-Gm-Features: Ac12FXy9impNFri4YJFlzwQ3T6GDHruzREl_6st0yjIG4jjsANoToHYXbGIIsEw
-Message-ID: <CANiq72=kfhLwpXL0s2HWbW79QEZNTvJ1UKBSzp6MHyoVEUAC1A@mail.gmail.com>
-Subject: Re: [PATCH 1/3] rust: add `num` module with `PowerOfTwo` type
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+X-Env-From: sfual
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,20 +61,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Fri, Jun 20, 2025 at 3:59=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> This reminds me that I should also check whether upstream Rust would be
-> interested in `prev_multiple_of` and `last_set_bit`. The docs I've read
-> for contributing looked a bit intimidating, with RFCs to write and all.
-> Would you have a pointer for where I should start? Maybe a Zulip thread?
+A possible inconsistent refcount update has been identified in function
+`nouveau_connector_detect`, which may cause a resource leak.
 
-I would say it is actually quite straightforward compared to, say, WG14/21.
+After calling `pm_runtime_get_*(dev->dev)`, the usage counter of `dev->dev`
+gets increased. In case function `nvif_outp_edid_get` returns negative,
+function `nouveau_connector_detect` returns without decreasing the usage
+counter of `dev->dev`, causing a refcount inconsistency.
 
-The first thing I added was a method too, to see how things worked,
-and I started just by sending the PR.
+Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
+Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/450
+---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-So I would say, go for it! :)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 63621b151..45caccade 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -600,8 +600,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+ 				new_edid = drm_get_edid(connector, nv_encoder->i2c);
+ 		} else {
+ 			ret = nvif_outp_edid_get(&nv_encoder->outp, (u8 **)&new_edid);
+-			if (ret < 0)
+-				return connector_status_disconnected;
++			if (ret < 0) {
++				conn_status = connector_status_disconnected;
++				goto out;
++			}
+ 		}
+ 
+ 		nouveau_connector_set_edid(nv_connector, new_edid);
+-- 
+2.39.5
 
-Cheers,
-Miguel
