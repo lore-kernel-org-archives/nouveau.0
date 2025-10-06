@@ -4,51 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A5FCCA470
-	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:29:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27C0ECCA470
+	for <nouveau@archiver.kernel.org>; Mon,  6 Oct 2025 20:39:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C949610E058;
-	Mon,  6 Oct 2025 20:29:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BBD010E466;
+	Mon,  6 Oct 2025 20:39:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HSZF/EXw";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bfFJxe4m";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F118210E058;
- Mon,  6 Oct 2025 20:29:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F38810E466;
+ Mon,  6 Oct 2025 20:39:02 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A01184362A;
- Mon,  6 Oct 2025 20:29:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34F4DC4CEF5;
- Mon,  6 Oct 2025 20:29:45 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 451C9440CA;
+ Mon,  6 Oct 2025 20:39:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 438CEC4CEF5;
+ Mon,  6 Oct 2025 20:39:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1759782587;
- bh=y/7OMzRn5Emn0tuB5k5g03xdsBv55C6TulHJkQ+VKnc=;
- h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
- b=HSZF/EXwPAWIcHSQ1nHZRon6QmHQEqH/Pf+/Sx2vBDBwHUcDIzDlfS+mp/ds83k4Z
- Bx7fnV+g96ZKAJH3GYD06SeCQucOx2jWGieNhrAftARr0ldoSWPPDDNZziJDjeVfXS
- gAA68TW89gVWVz1SJBNlHlZm4MlHiCEVaYZJpdY4FC30UCYVDIy2aKh4gHrWO6WqTc
- stPAlxvehTg8kdv6SAfDWCB7BIqbZG9q3uo7lBK1idVQi8MV4qGTcDc6vSyEewcsXw
- PZzE70Li4zIVDa0YzSSBT04RHp0gaVh5xXAZtAgmSGq0nNqlIg6YkJMRdzoetVPzfz
- VO/z275MhrKag==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+ s=k20201202; t=1759783142;
+ bh=1F3yR8HVkURa8WwisEPfn7+RUwEt2ebKWI3pRZ5T+jU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=bfFJxe4mu4iYY9tJpNihCb5imFngU0VWbkIBwccbaAym15CAP7WKw6wDFRv8AZbi1
+ NGFtw+wLB+yDIdUQb0vZJZIncxwdElVH+t+n7MLuH3u4j/jyA1EOOsJE6M/A5SgGPg
+ F+ttGB83uYrDkbag3M1lgC2Hbwc2fstoipQVhGAVl/RB6zPFBdKCEfaVj8zk2AMhLJ
+ wmSrQ7pNdeYJY98LMxvXvAPGozYmK/G7vdr968PDp33HddO+ksWCkmxxZPJ/UqKnuO
+ aYD1Ar4iJrgxMZC9n7Up7Aw/2KMmQcfqFTAj6ssIBS9W9xCcs4UgJGBsQWQQFXfsqM
+ gpS6XziN4LOVA==
+Message-ID: <fd9d9eb4-c870-4f02-a399-ace58fc1f16f@kernel.org>
+Date: Mon, 6 Oct 2025 22:38:59 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/nouveau: Fix refcount leak in nouveau_connector_detect
+To: Shuhao Fu <sfual@cse.ust.hk>
+Cc: Lyude Paul <lyude@redhat.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+References: <aOPy5aCiRTqb9kjR@homelab>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <aOPy5aCiRTqb9kjR@homelab>
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 06 Oct 2025 22:29:43 +0200
-Message-Id: <DDBIV2C6FH2L.3NH6D76Q26GYD@kernel.org>
-Cc: <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>, "Mary
- Guillemard" <mary@mary.zone>, "Faith Ekstrand"
- <faith.ekstrand@collabora.com>, "Lyude Paul" <lyude@redhat.com>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- <nouveau@lists.freedesktop.org>
-To: "Mohamed Ahmed" <mohamedahmedegypt2001@gmail.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH 5/5] drm/nouveau/drm: Bump the driver version to 1.4.1
- to report new features
-References: <20251006191329.277485-1-mohamedahmedegypt2001@gmail.com>
- <20251006191329.277485-6-mohamedahmedegypt2001@gmail.com>
-In-Reply-To: <20251006191329.277485-6-mohamedahmedegypt2001@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,11 +58,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon Oct 6, 2025 at 9:13 PM CEST, Mohamed Ahmed wrote:
-> This is so that NVK can enable compression for kernels that support it an=
-d
-> avoid cases where an older kernel would MMU fault when a newer mesa would
-> try to use compression.
-
-A slightly more detailed version of this would be great to see in a cover
-letter. :)
+On 10/6/25 6:48 PM, Shuhao Fu wrote:
+> A possible inconsistent refcount update has been identified in function
+> `nouveau_connector_detect`, which may cause a resource leak.
+> 
+> After calling `pm_runtime_get_*(dev->dev)`, the usage counter of `dev->dev`
+> gets increased. In case function `nvif_outp_edid_get` returns negative,
+> function `nouveau_connector_detect` returns without decreasing the usage
+> counter of `dev->dev`, causing a refcount inconsistency.
+> 
+> Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
+> Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/450
+Can you please add a corresponding Fixes: tag and Cc: the stable list?
