@@ -4,86 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 837B9D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382E3D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5644A10EB73;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55B9010E111;
 	Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TNXVP7mo";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHGR4XKy";
 	dkim-atps=neutral
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8194A10E1FA;
- Fri, 25 Jul 2025 12:20:44 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-454f428038eso19532145e9.2; 
- Fri, 25 Jul 2025 05:20:44 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF3E10E6E4
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Oct 2025 16:12:20 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-7811d363caaso713482b3a.3
+ for <nouveau@lists.freedesktop.org>; Tue, 07 Oct 2025 09:12:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1753446043; x=1754050843; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=VA1aVk5ATgGwWP5YvZwY73Pqu6/2aciSmLuZYBAcU5o=;
- b=TNXVP7mouv7n/Crc0jr2LN9LYVBGhNMTOhR8j4BKcCsdICTgWtl3DxhYKekzVwbm3H
- D5Dj/YGT3MrYoxvZPxTogz5u15oXPOGnTlSPqIR86ToeSckwuyh9c6aM6vNx/Ed3k8Jx
- KR7lTkpmYj7iJMVU+jwI3xoSLzIgyk0YXYIgojpQ3B2x0lA3Yp3vFSJUG46gxG+UDnQw
- 0/uuHwwqqvFc9tLieZcgwlnS5zueJhgV8ACE6i6UVJpSuQxePTd7C3H+8R1blyQKWRhB
- xA3w6JGSs5JfUGCxIm5uofMk5SdTdykdZCrMG0L6hHTdNbkJsz18AsMnUy7/yTM5kfW6
- BZ2g==
+ d=gmail.com; s=20230601; t=1759853540; x=1760458340; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=5E7iWUmZ2vIjSTqtzT1C1NtPApyBCh7aJPO7S699wwM=;
+ b=CHGR4XKyAuhKXhgngWTLtRQhUQaMf3rm/8JD+SZ95duuwGhcosnlouIgAq194mV0Y0
+ q2swAiVcVD7Rq5vzHaJOpIGaenHKiSkng+BP60rw9FJZ47ikzBTot1pc1HRJG51TIrnm
+ JurFTPpZ/run7+bNOREIY6R2aW4mnkzubNVH2khduwrmgyP6pWjkFf3mhIfyF50ETmc5
+ u0YuSxICtHYAu4s1gAuaLJNbhC8nI5/T8eZSm65qPo40UqZz4ooW71rbDOGH2RhoTGrK
+ 9QflvJUrM1jGQnPthgAl/UHK0nUURh5drSmwU9R5Z7C22x8RKz13EMNPVTG0PLxZjtId
+ gRIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1753446043; x=1754050843;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=VA1aVk5ATgGwWP5YvZwY73Pqu6/2aciSmLuZYBAcU5o=;
- b=tRMSwXGyFBhjXkg+kY4I54nDot+FI2DWuZvcZBpm1/8AeVGNCHpfrnMXcK5MTifOjx
- q6Uz5DoXIlNhqg4BimE+h0qLEDr+kZxz9UHGkw0GJWsL71V+ozARq2nSf0CWO4THCE8T
- z2RXJWwTk4VA9jBUv7/LW5B5sCFUO7u1SVwSjguWstHYCLQkFXhtbidI2wlefCbJpmY3
- ZMQyWTtXdv9yr6Ck7D6WqaQJH58ZnxzZoOs1jmd5cyLjf1QmBxP2itkQJz1nwJUo7CpK
- naQtTWFYSss4PQOplNPHwxKh5cP4rI5ig3W5IZbwJQYQVo7Ggy0/MBbv/46gwpPA7oRX
- FvHg==
+ d=1e100.net; s=20230601; t=1759853540; x=1760458340;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=5E7iWUmZ2vIjSTqtzT1C1NtPApyBCh7aJPO7S699wwM=;
+ b=WHyHwplE3Q+vsNcldQTYrG47Tec3OV7N0lNSpVdHUBYAj3vTosAqmWgqIou+820hm3
+ 32TuVistyihvGsPJ6jFA7zmCJ6TZsakDSbKagR5T6YMEQFyTiT5O++m3pwTDalniAS69
+ a63sbLR1GJDdenFB7TI3V/u/KkuKlgDn/yujvZYxI4gxEhxe0OvyIiigVdnYYnod84zQ
+ sCZMf9AbFD2uvUbM/R//or+Hhp+r6Xu+ML10WUTOyhT+Cmw7kKAvNykJUDkNSmLE27zC
+ HHPCKo4x0+VF4/YTa6dw3EsIwU5cQR4zm8t8mfALSmww7cyE7YK/IUnMpEGGy/WlEl8E
+ ZlpQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWjo7ieol/nGuZj7Bm/1OKVxEmZkQZJrajsRvdkbIHsqjGwmHwJYK0gmTLgFfV28+RdHSXj/tgPUy4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwZGw6h77C2tH40Ed3BE8GKTT91yEudHbNdrahx2UKmqHx6LTub
- IAE6MnMQwLXyhJ8ughZqVRzQXHXhUwqqwcBdVCDct4spcxSRWTKxVrJv
-X-Gm-Gg: ASbGncsBjQ+Z9W+Tr9IR8Rw38k4nxpVmhGnWLUwDCEWmvtN9OgzbcpThd2aw/rcDCHE
- hNWjwvBZeW/5XSxVvd8QzZRK2rsAMNuKXde1kIS6hP7Yg1dJjnAaKNeZiRTr8tEYh5PxL9Svse/
- TknC+4UpgcZLmKA08n5ZsFis6riH8Gn7XytdQSWD9q1AKMhCCDrNEJs+oSMUOAvHham9JSHFNLN
- dBzsd1osdZfZGFQ8TRIbw0eO26ZWB0TF6L7b+7OBOFVfala5Ic8BVc6u8UWCuFH8QXS7sD++uEr
- N5JwxeZnRxULEjdWRhJHmh2l2D32nYZbkXFKtZWCfM9oV10hIC7N+RIJrwG9Y0wkWHqpWICmxij
- jzdrQ00Lnm3dy/syi+V/tOhoLaGKsYJppzoY=
-X-Google-Smtp-Source: AGHT+IHSdaknPrqijioY9HDWLiOWQTIycCby2q675AueD5MlPYeEPC0uzrUjYIL3oulhKhqiN6JSTw==
-X-Received: by 2002:a05:600c:8b11:b0:456:1d34:97a with SMTP id
- 5b1f17b1804b1-4587631561fmr18307095e9.9.1753446042665; 
- Fri, 25 Jul 2025 05:20:42 -0700 (PDT)
-Received: from ?IPV6:2001:871:22a:3587::1ad1? ([2001:871:22a:3587::1ad1])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4587054f686sm51705225e9.14.2025.07.25.05.20.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 25 Jul 2025 05:20:42 -0700 (PDT)
-Message-ID: <5b2951af-517b-4d5c-887f-417f486fd9a2@gmail.com>
-Date: Fri, 25 Jul 2025 14:20:40 +0200
+ AJvYcCUHHLvp+N4UI/VRZpdwwXu2HklSEcoj2dh+tE0SZ5okEHNR1qWUVfcW4l6VJNoZorCIN9xQwDR7@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy3Y+hhtWh0yVz6WompwXAgATMCqRNoCf9UJq9+IkGhsWihOxO+
+ X01iOK7ZFa3JPG2WfyTCA18JTXz3BYHIRXUH/NSsQ/jBbOyY4TrgWF+nsg9F0nOMJgWLNPCg/SV
+ +01PMjH+V0Q4QmksxV0eNlutyWv5GsQk=
+X-Gm-Gg: ASbGncuZ03XOnqkWYCez2bloNeaATJiO9uho3wvYa71/xzr/36cyy3vIvS+zc3AThZN
+ RKbWIYpFvHIRjaKq96/FHIO2tVWBtIm1H12nqI8KP8yIYHqEsQ/N7zcEY0LZEk/cfgjYQYGrA0G
+ B8amCEks2AQYKscvnJHggmuTUeaEfpOSsXQ6W10H1GiGceEzqdi8a1A2EkIDS9AFEm43xGvhx1f
+ P5LmhJowpyTGz3ZUNlTWOQFHhI9kxEetAvY6PIljOqKHAd4tH/p79awMmC43pceDQyXYiKcolq5
+ NkPRBA3mmkIvH0sLHW0wGCZ2hJjKlGU0oYJ9q0W5zIrHaEI3Ug==
+X-Google-Smtp-Source: AGHT+IFCzHpcrXLGR1ie60smXpk8UuckeKOb000I2PbnwCKR7UoPdsv6hdVQqjL0vFW9FH9QZdEfImMvB9toz+HjmvQ=
+X-Received: by 2002:a17:903:1a68:b0:274:944f:9d84 with SMTP id
+ d9443c01a7336-2902733fb0dmr2059795ad.11.1759853540296; Tue, 07 Oct 2025
+ 09:12:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm: nova-drm: fix 32-bit arm build
-To: Miguel Ojeda <ojeda@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
- patches@lists.linux.dev
-References: <20250724165441.2105632-1-ojeda@kernel.org>
-Content-Language: en-US, de-DE
-From: Christian Schrefl <chrisi.schrefl@gmail.com>
-In-Reply-To: <20250724165441.2105632-1-ojeda@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+ <aORCwckUwZspBMfv@yury> <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
+ <CANiq72m1eiGVJHNyym+JwM=tQ9bGnmoW0+OuKQ3Vxo_AQOy5dg@mail.gmail.com>
+ <DDC4DA0BPHRC.3P5M2CXSJYYTI@nvidia.com>
+In-Reply-To: <DDC4DA0BPHRC.3P5M2CXSJYYTI@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 7 Oct 2025 18:12:07 +0200
+X-Gm-Features: AS18NWAPdykPHVe-VPSk9QmwsEQUF86AhW888gSoYNbxgNmy_9MCu-o1i7ygLqA
+Message-ID: <CANiq72kykzwdv2fOmRMeJ_FPztkkU2a=PFDH1fo9+XbGAeKsaQ@mail.gmail.com>
+Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
+ rust/kernel/
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Yury Norov <yury.norov@gmail.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, Andrea Righi <arighi@nvidia.com>,
+ nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,46 +103,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Miguel,
+On Tue, Oct 7, 2025 at 3:21=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
+om> wrote:
+>
+> Ack - how do you expect things to work in terms of code flow? Do we need
+> to have a dedicated tree and send you pull requests? If so, should we
+> host it under the Rust-for-Linux Github org?
 
-On 24.07.25 6:54 PM, Miguel Ojeda wrote:
-> In 32-bit arm, the build fails with:
-> 
->     error[E0308]: mismatched types
->       --> drivers/gpu/drm/nova/file.rs:42:28
->        |
->     42 |         getparam.set_value(value);
->        |                  --------- ^^^^^ expected `u64`, found `u32`
->        |                  |
->        |                  arguments to this method are incorrect
->        |
->     note: method defined here
->       --> drivers/gpu/drm/nova/uapi.rs:29:12
->        |
->     29 |     pub fn set_value(&self, v: u64) {
->        |            ^^^^^^^^^        ------
->     help: you can convert a `u32` to a `u64`
->        |
->     42 |         getparam.set_value(value.into());
->        |                                 +++++++
-> 
-> The reason is that `Getparam::set_value` takes a `u64` (from the UAPI),
-> but `pci::Device::resource_len()` returns a `resource_size_t`, which is a
-> `phys_addr_t`, which may be 32- or 64-bit.
-> 
-> Thus add an `into()` call to support the 32-bit case, while allowing the
-> Clippy lint that complains in the 64-bit case where the type is the same.
-> 
-> Fixes: cdeaeb9dd762 ("drm: nova-drm: add initial driver skeleton")
-> Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
-> ---
-> As discussed, it may be best to have a newtype, or at least a function
-> to perform this -- here it is the minimal fix nevertheless.
+In general, if there is a better tree (i.e. an existing C subsystem),
+then what we always do is ask those maintainers first.
 
-I agree we should at least have a specific conversion function, but for now:
+But, otherwise, if there is no good choice because it is something too
+generic/core, then yes, what you propose would be ideal (and it should
+be easy since you are already maintainers of other trees etc.).
 
-Reviewed-by: Christian Schrefl <chrisi.schrefl@gmail.com>
+If the amount of patches ends up being very low, we can skip the tree
+and I can take the patches, but PRs are simpler and scale better for
+me.
 
-Cheers Christian
+Thanks!
 
-
+Cheers,
+Miguel
