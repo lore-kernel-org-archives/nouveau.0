@@ -4,83 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8081FD5B160
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EF1FD5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50DE310EAE6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C5AC10EAED;
 	Sat, 13 Dec 2025 12:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="F0zt/v0D";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WEvSJ2eS";
 	dkim-atps=neutral
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
- [209.85.214.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D0810E425;
- Mon,  9 Jun 2025 17:40:09 +0000 (UTC)
-Received: by mail-pl1-f176.google.com with SMTP id
- d9443c01a7336-235248ba788so5247515ad.0; 
- Mon, 09 Jun 2025 10:40:09 -0700 (PDT)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C970D10E369
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Oct 2025 10:42:54 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-26987b80720so10377705ad.2
+ for <nouveau@lists.freedesktop.org>; Tue, 07 Oct 2025 03:42:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749490809; x=1750095609; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759833774; x=1760438574; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=xGeznkUaKCcPLr7t1/y1lEo9GbVM0sYWdQrm6riBKNU=;
- b=F0zt/v0D6nePwGzXRrjF875ibVrR8dJKyznvjSubOuYuvdjXHNfk2HBwMSmqVlnnS2
- 3GFib1aQipy128j3owTEQ0IuuBOrSkIPOaDWOBZNiHz/SukObtU03XY9d1SdddlLNFJi
- 7IvkI5JN5tvAknHBIQB+DAVEI7OGSkMuN4TWtBdErvmaHDJPuFsoZtur/H/m1HNqkiaR
- 1JSW1IOGWyRFczsi5a+v1LEk7seJ/ZEAk5o7dEOyzDIExgFZWuUqSljF+XtLmCaiH2Xe
- JDA43mlXrstJke4TkuvrDLDnyBXudR1NZ9GzA09TPIiICRAMNckGNINEA+quh5mrBdbo
- 9wDw==
+ bh=t48xr98QD61VaWXPvBpaZ2yaPisBwVUmg9uYlxv8ngk=;
+ b=WEvSJ2eSxSMWEij/zUfx3j/+82TVDLsFs2CLHAHws2sqBFy3JOSBvEt6V1Z9DcKnyj
+ IwOF2sedKqjABewEqURwmz2YNULgbN3tCkNCrB9Qmzss+6oAhuC9hUnJFS0IsQTkd1Y1
+ 4yYs1dIiqwWuCNmWO3+kIg3L46K7icJLDJF7c47vwfLkxTkwA4DBKahOcTDPxW1jqD0p
+ taw+pGeku7ARWwcpAs3zkOz0PKvaj6tRh3YS/sv1Ixl9X2CyWtvbOSlpsV3jzsHzlr+f
+ giM+8bfOFKkv0P+jsuKq/ONdVkTrZd2DTPL9rRAGEUN+loi0ehpij8lb5WijouHGWGqt
+ 2pZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749490809; x=1750095609;
+ d=1e100.net; s=20230601; t=1759833774; x=1760438574;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=xGeznkUaKCcPLr7t1/y1lEo9GbVM0sYWdQrm6riBKNU=;
- b=PeDTAYrxZtU2nocC60BoK+1iiZIxhZrD1QlWJtDSY7lntOgXmy2lwq1FxnZUgHM0je
- cG294qX60Ph42j+qO5wmG7q2amRUfpdxAzNmYUZMHrANnorxvF8cGn2oCxfp4HRC9YLK
- wg5rt+ErmUt+FU3EznioXogLiY0JwPmwfZzAHMu5ydEDy1rCBg8nyGbmKisXAO6dCA8V
- spLqblMhxYAGN8wL/N7WnX3CTk8CH7KyWiVV/Vd1ueZmmCwThM9hPbMDXEZ6HsEqUmV8
- oiP6iwDnByxspOr7Iwd+nJz8mlcejl6+/bWPLNcrQn6qmvJoj74XghJFn5mLtubEYZnL
- e/Ng==
+ bh=t48xr98QD61VaWXPvBpaZ2yaPisBwVUmg9uYlxv8ngk=;
+ b=q2cyI8UgAk860vgFeS89BI7oN/mUiw+kxwlMKKllOK9YB4kRhjOynaP0DJ/+0SjtJP
+ bxDFV9p3A2vMCnzU/9jovLaPiEAK4bsyAp492iOwaUrg5jnrQeiM/rW3KW9icGf3tLMl
+ F0GLU3UYekTpBwooBLSEfK6UL0qXgBpJBG0sHPNfQ3gNdvOE/fGLXcVui1FbxDX9Msmm
+ a1A8UxkJGeKBgJMSdYPJcx/9Tmc7L69rPRtMbFIW3nOyBbD0TPcWREUjfZDG+x6RwqfQ
+ 3IsH1HCpV3L64xfQGwEOCEab+gXyKlL70NIbtjxi9Q3kmrqDaUtvW4AWWHDlj0D5ynxK
+ LSrg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWc8Cl9kB5Mb4PnADeD2X5td6+YjojHrCqU7PpYHmWPS1TcGka+YHyiJZwKAYuzqu9hO7IK51Vb1ZY=@lists.freedesktop.org,
- AJvYcCWqpLxU4BpTkTRdymKMs04iI8r8fD1blFKkYyIP3sM5hBSk6IRP1z2fBqyWnaaDulTsrPQaiVFuSA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxnvKz032uKDwOwGVoffmlLxlr63yiyu4f/cuiL4bFpktRYsVZu
- hlF5yzmXIvUrpiYdqeqkC3COqTTPKu915nNbeq3L2NL1ahTKHRJDr+XTLpuR+Vd0jQl9Ghpmgde
- mQbh7IYg7v17fCsciTJAemzJZPk7DkQQ=
-X-Gm-Gg: ASbGnctTXHxNg3NiriuOOZBpOtBg91y35MYeP5pTMITjZOq9GVottQTIx5K5JNzqTdF
- S/e5ZchtVgk6PKlimXI5P3ulCRNv4uVh2ZYGGZ18QLyEb261WrzHGqQT2v5bjV6VK3z6OzY+nIF
- z5wQHV60sk0T2VcKDArHTRO4Ra3anzX2DLluQYMbuAd0c=
-X-Google-Smtp-Source: AGHT+IFThlC3n9covTxeLg3gK9Kv9OvvHHRuR1HhvfFCCaCGVX93rTuPcJWuuY6ebE2DHabcjVjjFluviWfrbtz9GnY=
-X-Received: by 2002:a17:903:2348:b0:235:ed02:2866 with SMTP id
- d9443c01a7336-23601d2278emr67580725ad.4.1749490809234; Mon, 09 Jun 2025
- 10:40:09 -0700 (PDT)
+ AJvYcCU71EKT8508HDrW1Xhuac9WRLwZC202wcKTeCcGWDeZvzP7LzgRYLrQgLMFhSjtXIZUNcpCjbwA@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwCbzOyiN9TcNpzfwL17bye7JwjMdNX0ZKWJ53NaevHGTSY6cIP
+ u6qlI7O80FJduHXkTF+Bo7NAeFVtzSClctYhvQe0cBrgnz7YaIODtRI+9b8+Jk45HKjfO7UFWh+
+ cyZKfunIP/Z/mgG6Qi6HlP8Wpfzou/Xg=
+X-Gm-Gg: ASbGncvI/vSdQ5tug27tKrALKBm6k7s4K7z7sUdIfjqcN8ncOu7S2+QvbQadWYCxom7
+ VPmvjlVgVSrcPxBSW6pslY5jR9InKSGuS4tWS+Wlg662s97m9GjplEAc/ow7L2N1CYOza1MfzVZ
+ xv9BX7Esy6Bl2EJy8EVomQ+yBSqksNhlAd9vxoA1lboDuW081cIkrCKIZHjw0AKAqZ/S7b7g9Ry
+ NphggpS/LGmknKp1oVRG0v4ICvenENEw2AevoUnhNwTUDOLcfHC9zv5lI/eT1is2nAARMBCwT3a
+ w2tPKbv1RMhmV5xDJ1/V+etnyjMFYO2opfeamFHGNZReiZFaXw==
+X-Google-Smtp-Source: AGHT+IG/tceer4xDFHi1fbtvymQWQEX0cfdjfz7qa3VEV1S1lLa9ROogqCppnvlWvrXrppWg7CAeyI7raGFpenio+L4=
+X-Received: by 2002:a17:903:1a68:b0:272:2bf1:6a1f with SMTP id
+ d9443c01a7336-28e9a5a2ea2mr112471585ad.4.1759833774205; Tue, 07 Oct 2025
+ 03:42:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250609122200.179307-1-trintaeoitogc@gmail.com>
-In-Reply-To: <20250609122200.179307-1-trintaeoitogc@gmail.com>
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+ <aORCwckUwZspBMfv@yury> <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
+In-Reply-To: <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 9 Jun 2025 19:39:57 +0200
-X-Gm-Features: AX0GCFt_1gEBX3323QkaeUgTuypBv0Rlai8JsNNbMvX6Wk8PlfCLW1weXoSbCmI
-Message-ID: <CANiq72==Xybm956Ete95e3YH7MTresNd3szxLg7GdzvhW1O+jg@mail.gmail.com>
-Subject: Re: [PATCH] rust: module: remove deprecated author key
-To: Guilherme Giacomo Simoes <trintaeoitogc@gmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>, 
- Danilo Krummrich <dakr@kernel.org>, Greg KH <gregkh@linuxfoundation.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>
-Cc: rafael@kernel.org, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, mcgrof@kernel.org,
- russ.weight@linux.dev, ojeda@kernel.org, alex.gaynor@gmail.com, 
- boqun.feng@gmail.com, gary@garyguo.net, bjorn3_gh@protonmail.com, 
- lossin@kernel.org, aliceryhl@google.com, tmgross@umich.edu, leitao@debian.org, 
- david.m.ertman@intel.com, ira.weiny@intel.com, leon@kernel.org, 
- fujita.tomonori@gmail.com, tamird@gmail.com, igor.korotin.linux@gmail.com, 
- anisse@astier.eu, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org
+Date: Tue, 7 Oct 2025 12:42:41 +0200
+X-Gm-Features: AS18NWDpvGktuowJke8BSxfgUaurFD3miGBpRkLVS9T4zoCecLy6NtllLzWGBNs
+Message-ID: <CANiq72m1eiGVJHNyym+JwM=tQ9bGnmoW0+OuKQ3Vxo_AQOy5dg@mail.gmail.com>
+Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
+ rust/kernel/
+To: Alexandre Courbot <acourbot@nvidia.com>, Yury Norov <yury.norov@gmail.com>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Daniel Almeida <daniel.almeida@collabora.com>, Andrea Righi <arighi@nvidia.com>,
+ nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,26 +101,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Jun 9, 2025 at 2:22=E2=80=AFPM Guilherme Giacomo Simoes
-<trintaeoitogc@gmail.com> wrote:
+On Tue, Oct 7, 2025 at 12:36=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
 >
-> Now that all in-tree modules have migrated to `authors`, remove:
+> We can assume maintainership of this of course, but is there a problem
+> if this falls under the core Rust umbrella? As this is a pretty core
+> functionality. Miguel and other core folks, WDYT?
 
-Nit: I would have said "most modules", since we have new/remaining
-ones (no need for a new version for this).
-
-I think this patch is OK -- we could wait to do this more cycles, but
-if we are doing it, then probably the sooner we do it, the simpler.
-
->  drivers/cpufreq/rcpufreq_dt.rs        | 2 +-
->  drivers/gpu/drm/nova/nova.rs          | 2 +-
->  drivers/gpu/nova-core/nova_core.rs    | 2 +-
->  rust/kernel/firmware.rs               | 2 +-
->  samples/rust/rust_configfs.rs         | 2 +-
->  samples/rust/rust_driver_auxiliary.rs | 2 +-
-
-Andreas, Danilo, Greg, Viresh: if nobody is against it, I will apply
-it this cycle. Acked-by's for your bits appreciated, of course.
+I think what Yury may mean is that this should get an explicit
+`MAINTAINERS` subentry even if it falls under `rust/kernel/` -- I
+agree that is a good idea.
 
 Thanks!
 
