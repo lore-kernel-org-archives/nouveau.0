@@ -4,87 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3997D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CAD0D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78D1910EC3C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8B3A10EC3F;
 	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="iQopb7Px";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="VMM0QYu8";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="nF+t+9Fi";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="VMM0QYu8";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="nF+t+9Fi";
 	dkim-atps=neutral
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
- [209.85.214.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 100A710E2F5
- for <nouveau@lists.freedesktop.org>; Sun, 26 Oct 2025 16:44:22 +0000 (UTC)
-Received: by mail-pl1-f171.google.com with SMTP id
- d9443c01a7336-290aaff26c1so10930625ad.3
- for <nouveau@lists.freedesktop.org>; Sun, 26 Oct 2025 09:44:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761497061; x=1762101861; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=6wILLtfeNYO6vlF1lVdjizAOVshwGgLXWHD0xoxegrM=;
- b=iQopb7Pxq6WRRzM3OsLEQjas3/zNqDcyH1QRoSyrymxfy3stBir16az+fcBoQJr+oG
- FUFVZNCa0Da0XTUb1LJ+zsCx1O/whlxqod46SJRDA0L0Z3IVm/piLg0xNKooJ8iTJM7A
- 1LdWZj2ScqlxZU4QSVYI8gEmqHV/XWmYjlbKwjSg311G2uromNa00imhI97k2mGh7txp
- KYoPQREJ6b/qYKbgf1GoS8EZ7QHcG88747WtcxBEr8GBmMldjSm8bp/qq7PhingzVqz6
- xrSCzn9gJ3j0qJurNCjU3vN48NeV+Erk/QkvoMkFUH/OkplfeM3l9VvZf88oxVFpT2Xh
- yO0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761497061; x=1762101861;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=6wILLtfeNYO6vlF1lVdjizAOVshwGgLXWHD0xoxegrM=;
- b=qVo+sV56LqCdRu52MdcmwcuX7/NGJkjSRXFxyMPaIZaW/Vj2F6BAEjTlx55re89Juo
- VrFjuYApRl9tEZcgfZ4sxcIRH8VZJDLIxwdVWLVChh8leP81h5SGqnlow0Ysbdi0QbHV
- 5Bbs9+3xgvKMHFinGPjjENeQTykCOkQtB18Iqg5Rta30BpsSN0x+jaSuhXRgbSYFQJGD
- 9H7K/NfREp66AOqme5NKMinEmCs2zEGhv4hrhavDZ0aHbOKZ4YXFJ3arpCODMO4FLcy7
- 1DW7MTMv2tyczz4TqmEyugHfeEaNiYGlSTuSh64u5zLMjp4hUVms6ecfapylFu26UOyo
- 1vbQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX1rmo5PISWlN6RDMVZVrTWGu/fKmhhtbRwv5xela/zt52mVgar0ZZuWKb/j3vxKrqDtWkA+HPb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzn4sEtRh1SXWF6oQ8u/eyX9DPBvS/XcZwOGyhau9F6HDVjEL3M
- WS/XR6k+Ztjjn4GpqkHoiW9sALpqsE5HcL6WWgcfRj2jz4t7l9tIIKNP3qlPjdYSQvKalVz1k8k
- DwthPVeoifIY2tJ9feN1GC4ebx1+x9nsAOd0q+gg=
-X-Gm-Gg: ASbGncsTBUbgynmERhN/dRYVsmDCsUqmcD06EIGc78bAo9ZaXnkgMqN1ntb8mE84mJW
- PWFS9VOh7oJPl4S+AUy5KqbXtHtunAY25/M6bzq5gOe+dcp2C3gomgGkQjV+N/rXa2uvF0I9aj4
- /39YZjxipyjfBP5xKQquv8BkwbJRPQfLfiQ8MNqCTuhr3gz1461S+RICR4X+2RkSbi4Zbd++okx
- z2nZ161Xxiw0Hdsbya6urq9IJzGAs9vKrrDHIhn++3PUgj5ylfI7SG9Ks/bLIxdOCmnhI3dByiY
- JDmKZLTwEgnO6JNeVGQODp1O7Ii4TewJPVGojrBu1rEPtDjXF5vMN4Ak2+Exan+CTEJJEyO44gc
- nTwHdtvlU+JwllwQakukmjtVw
-X-Google-Smtp-Source: AGHT+IGcKNBiOeJRVxt2uo6Hqt2C6o0CYIe4RfW4BEVkfN4Gc0z8gi+UAYPMQz7pRTqkzl3cw39cqdYTdggHuWXBRN4=
-X-Received: by 2002:a17:903:1ac8:b0:267:8b4f:df1f with SMTP id
- d9443c01a7336-292d3e5084dmr130371015ad.1.1761497061350; Sun, 26 Oct 2025
- 09:44:21 -0700 (PDT)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13DD310E6C3
+ for <nouveau@lists.freedesktop.org>; Tue,  7 Oct 2025 15:04:02 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id CA3F31F7C5;
+ Tue,  7 Oct 2025 15:04:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1759849440; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=iiOdJ2MgSNByPM0WExeyOL23baz3N+sIvlTx4qo3pxM=;
+ b=VMM0QYu8F8JaDlEHRosOOBTAw5T22NRFJRlTydUrull1ABmbqwX1sqrhfmrevQj8lxphrR
+ GI/h6pGAF8WvWssRBw+HR7BMiKG4uLi4g4QWNPS/L1U7YcwEuemgWG/IAkUjDxxo0+OrwD
+ ACkKPMSiqNgYSY41pUlLLXv9lGu6iw8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1759849440;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=iiOdJ2MgSNByPM0WExeyOL23baz3N+sIvlTx4qo3pxM=;
+ b=nF+t+9FiNsh8U04SqybsJNGZo5K0adp3ADRwN4b0WVcDU6D+5qiAru+XtUoC/TqtfjjJyz
+ TJV58zkSYl0XElCA==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1759849440; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=iiOdJ2MgSNByPM0WExeyOL23baz3N+sIvlTx4qo3pxM=;
+ b=VMM0QYu8F8JaDlEHRosOOBTAw5T22NRFJRlTydUrull1ABmbqwX1sqrhfmrevQj8lxphrR
+ GI/h6pGAF8WvWssRBw+HR7BMiKG4uLi4g4QWNPS/L1U7YcwEuemgWG/IAkUjDxxo0+OrwD
+ ACkKPMSiqNgYSY41pUlLLXv9lGu6iw8=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1759849440;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=iiOdJ2MgSNByPM0WExeyOL23baz3N+sIvlTx4qo3pxM=;
+ b=nF+t+9FiNsh8U04SqybsJNGZo5K0adp3ADRwN4b0WVcDU6D+5qiAru+XtUoC/TqtfjjJyz
+ TJV58zkSYl0XElCA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8C79813693;
+ Tue,  7 Oct 2025 15:04:00 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id RWSCIOAr5WioRwAAD6G6ig
+ (envelope-from <pvorel@suse.cz>); Tue, 07 Oct 2025 15:04:00 +0000
+From: Petr Vorel <pvorel@suse.cz>
+To: nouveau@lists.freedesktop.org
+Cc: Petr Vorel <pvorel@suse.cz>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Takashi Iwai <tiwai@suse.de>,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Danilo Krummrich <dakr@redhat.com>, Dave Airlie <airlied@redhat.com>,
+ Faith Ekstrand <faith.ekstrand@collabora.com>
+Subject: [RFC PATCH 1/1] Avoid NOUVEAU_GETPARAM_HAS_VMA_TILEMODE on nv177
+Date: Tue,  7 Oct 2025 17:03:49 +0200
+Message-ID: <20251007150349.7100-1-pvorel@suse.cz>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <20251026-nova-as-v1-0-60c78726462d@nvidia.com>
- <20251026-nova-as-v1-5-60c78726462d@nvidia.com>
-In-Reply-To: <20251026-nova-as-v1-5-60c78726462d@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 26 Oct 2025 17:44:08 +0100
-X-Gm-Features: AWmQ_bkdt-5-XZk5dwhGctE3nBdh_GyjtSn8Bs5HCiaG241yBI4aSb7WE_0r3tU
-Message-ID: <CANiq72mgoW_TyWf9Nv=5t3Qij_dsDjicNpGsa=F1t+sg23vxSA@mail.gmail.com>
-Subject: Re: [PATCH 5/7] gpu: nova-core: add extra conversion functions and
- traits
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Alice Ryhl <aliceryhl@google.com>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>, 
- Matthew Wilcox <willy@infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00]; BAYES_HAM(-3.00)[99.99%];
+ NEURAL_HAM_LONG(-1.00)[-1.000]; MID_CONTAINS_FROM(1.00)[];
+ R_MISSING_CHARSET(0.50)[]; NEURAL_HAM_SHORT(-0.20)[-1.000];
+ MIME_GOOD(-0.10)[text/plain]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ RCVD_VIA_SMTP_AUTH(0.00)[];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; ARC_NA(0.00)[];
+ MIME_TRACE(0.00)[0:+];
+ FREEMAIL_CC(0.00)[suse.cz,suse.de,gmail.com,redhat.com,collabora.com];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.cz:email,suse.cz:mid];
+ FROM_HAS_DN(0.00)[]; RCPT_COUNT_SEVEN(0.00)[8];
+ RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
+ FROM_EQ_ENVFROM(0.00)[]; TO_DN_SOME(0.00)[];
+ DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,60 +105,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Oct 26, 2025 at 3:40=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
-com> wrote:
->
-> +/// Infallibly converts a `usize` to `u64`.
-> +///
-> +/// This conversion is always lossless as Linux only supports 32-bit and=
- 64-bit platforms, thus a
-> +/// `usize` is always smaller than or of the same size as a `u64`.
-> +///
-> +/// Prefer this over the `as` keyword to ensure no lossy conversions are=
- performed.
-> +///
-> +/// This is for use from a `const` context. For non `const` use, prefer =
-the [`FromAs`] and
-> +/// [`IntoAs`] traits.
-> +pub(crate) const fn usize_as_u64(value: usize) -> u64 {
-> +    kernel::static_assert!(size_of::<u64>() >=3D size_of::<usize>());
-> +
-> +    value as u64
-> +}
+959314c438ca broke behavior at least on GA107GLM RTX A1000 on Thinkpad
+P16, which has GPU in dock. unplugging dock freezes GUI on KDE5 Plasma,
+plugging dock freezes GUI on GNOME.
 
-Since you have the static asserts, this is fine today.
+As a workaround avoid setting value on NOUVEAU_GETPARAM_HAS_VMA_TILEMODE
+for nv177.
 
-However, we may actually get 128-bit architectures in the
-not-so-distant future -- Matthew suggests to be ready by 2035:
+Signed-off-by: Petr Vorel <pvorel@suse.cz>
+---
+Hi all,
 
-    https://lwn.net/Articles/908026/
+obviously this is not a solution (that's why RFC and I don't set Fixes:
+959314c438ca), but it documents that hardware is unusable with 959314c438ca.
 
-So this one in particular may actually not be true "soon" -- we also
-had related discussions about these assumptions, e.g.:
+FYI we are going to not set getparam->value for
+NOUVEAU_GETPARAM_HAS_VMA_TILEMODE for any GPU on openSUSE Tumbleweed.
+https://bugzilla.suse.com/show_bug.cgi?id=1198108
 
-    https://lore.kernel.org/rust-for-linux/CANiq72m9AeqFKHrRniQ5Nr9vPv2MmUM=
-HFTuuj5ydmqo+OYn60A@mail.gmail.com/
+Kind regards,
+Petr
 
-So we should consider having the `cfg` already to prevent people from
-assuming it will be always available, and likely a note in its docs,
-i.e. we may introducing trouble to port later on to new architectures.
-Similarly, the docs of the trait may need rewording.
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-What do you think?
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index a3ba07fc48a08..fefaf7287723c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -323,7 +323,12 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 		break;
+ 	}
+ 	case NOUVEAU_GETPARAM_HAS_VMA_TILEMODE:
+-		getparam->value = 1;
++		if (drm->client.device.info.chipset != 0x177) {
++			getparam->value = 1;
++		} else {
++			NV_PRINTK(dbg, cli, "Ignoring NOUVEAU_GETPARAM_HAS_VMA_TILEMODE for 0x%x\n",
++				  drm->client.device.info.chipset);
++		}
+ 		break;
+ 	default:
+ 		NV_PRINTK(dbg, cli, "unknown parameter %lld\n", getparam->param);
+-- 
+2.51.0
 
-Regarding the `.into_as()` name, it makes sense, but it can be a bit
-surprising when reading out of context... The standalone functions are
-super clear, in comparison. But I am not sure what could be better.
-`into_in_this_arch()` or similar could emphasize that this will only
-work in certain architectures, i.e. it is "an `into()` for this arch"
-rather than the general one.
-That would go well with the idea that you didn't implement it for
-other obvious types, which I guess was to avoid developers using this
-instead of `into()` by mistake, right?
-
-(By the way, please use intra-doc links on the primitives too.)
-
-Thanks!
-
-Cheers,
-Miguel
