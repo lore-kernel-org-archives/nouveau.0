@@ -4,86 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C68BD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F270D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E6110EC9F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A69010ECAA;
 	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wkjkww1U";
+	dkim=pass (1024-bit key; unprotected) header.d=cse.ust.hk header.i=@cse.ust.hk header.b="jfn+RmI1";
 	dkim-atps=neutral
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com
- [209.85.208.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B0CD10E953
- for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 20:51:58 +0000 (UTC)
-Received: by mail-ed1-f43.google.com with SMTP id
- 4fb4d7f45d1cf-62fc0b7bf62so1971162a12.2
- for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 13:51:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761252716; x=1761857516; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=4UlHNTGv7yFHhaTac79ENYscEry1rz6cX/llqQj2Xi4=;
- b=Wkjkww1UxhS30n2haOpGjns/zW0hiNgbmiGv9KA4xiMT1wfE3WoAIyIbPxEcx918yB
- lKXjWnZyq4ByJR9jEADClBRdV6GXY7R8Cb8lmTo/+nAPHkJoDzKeu1g+6kql+gzwBRnb
- XOBFXr0anmEewdQBD4gEnsuduD9mbwtMEkkGVyx1FMS2x8hLQMaqnwAD4uM6KCgMRpjW
- 2mOiIAOWPaYfUPMVPcuqmuBstV25CHtj8G4UJnav4UY9eKnT5WU9RLMcRi9ZljqtSzQm
- rKEi8CDOiGzD8BcH7rarTwh/uvseu6sLNiuM/BX4PND8C9JAgL6doADfqr+ZAp3iox3I
- 2Pvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761252716; x=1761857516;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=4UlHNTGv7yFHhaTac79ENYscEry1rz6cX/llqQj2Xi4=;
- b=wXnYMtarjUh/O8NOICoqyCwD4frUmmPW4TYqhGP0jhLaF9ierUIuhXWkx4vmgMfmzv
- jL+81tU6yC65qgoLLYokrNLcTwq1LRS1DDHebkE0XEIFbPHvQ8oQhMbHWM2RT4Tgp/Hi
- 8Jd0581EpZoLxtJR7dUg++Rb78dkiYaYH/+MRrEDnG7eHF9s06eo6NL86KX/WOiNxMJP
- daEhA5xiiX+BbDOlVtg6MXybrrOlM002pRbPh+pMhv9YuGDHwXSGgXRYY82yG8ZhJ2qy
- /VG8mG31Pef9ldrnK5sOSpBs5mYESx+QqRVE3KgVuWl6KKwzJxOV6b6x/Oj0z3v+PagL
- IO9g==
-X-Gm-Message-State: AOJu0YyQNXpqklPyJrgs9fjGvcVPRmgmnfOw+Ci590FywburGEOmhv+y
- KCvfKkNTF2I5j0FjTW0ejGYZnIvHU90xIPzVR2Tw32fKkBL8mo8UhCIu
-X-Gm-Gg: ASbGncvNeQI9duav0dzOB07P1nCtJTIOccQyEbNkXO9NXiXkt8afxhf26zr+gRnoYP0
- ZExxZUoQYlWy8I1H1paPcqldq8nIC/9bSNjthtxuBnTNXfH7tbxAkKCyGKtEYSxliQr/37UbDzf
- meudLUlPQqzyoDOjnetIwQHflBb9eRdXw1690H7xsiXqCGgAySVN9MztRVkhAxwd6SvFAvX8Hd3
- DHPVJKlyd76qBCPP+BA5zL1BHWr2siqRDHZqsb96s12A1TFJGjC9oA/zpBzyukFtYT2Urhlf2x6
- 5KZMfWMmhMuQqhACohlbmYPtsv24qRnUpFmRL1b4ZqQe/NrChwu1qvidWIDcm85m90A7BBweQCP
- rp9V2JdgpsaryQe1FtJz19fkHLAmr4scCQ13xM0Az0Ljoo3dsHVQ+5ei7JHALAEPUTOrqPF9U4F
- xU4c3ddhxSi7jldvJlSA==
-X-Google-Smtp-Source: AGHT+IFX0S8naZatH+IeZ+gFwMfUpBUu0mzJ5xLs/IvrcDwpmdXZobGQxw0XYiP34F1iyLjV8n51aQ==
-X-Received: by 2002:a05:6402:50cb:b0:63b:ef0e:dfa7 with SMTP id
- 4fb4d7f45d1cf-63c1f62ccccmr27493360a12.6.1761252716410; 
- Thu, 23 Oct 2025 13:51:56 -0700 (PDT)
-Received: from archito ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-63e3ebb3299sm2564120a12.2.2025.10.23.13.51.55
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Oct 2025 13:51:56 -0700 (PDT)
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org,
- Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-Subject: [PATCH v2 2/3] nova-core: Simplify `DmaObject::from_data` in
- nova-core/dma.rs
-Date: Thu, 23 Oct 2025 22:51:36 +0200
-Message-ID: <20251023205146.196042-2-delcastillodelarosadaniel@gmail.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
-References: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
+Received: from cse.ust.hk (cssvr7.cse.ust.hk [143.89.41.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA9A210E028;
+ Tue,  7 Oct 2025 04:04:11 +0000 (UTC)
+Received: from homelab ([58.82.196.128]) (authenticated bits=0)
+ by cse.ust.hk (8.18.1/8.12.5) with ESMTPSA id 59743mdj1771219
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Tue, 7 Oct 2025 12:03:55 +0800
+ARC-Seal: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse; t=1759809836; cv=none;
+ b=T1WbFvfnBYEUNuIOIvGpFDE9orlW8x1mdVxnfaj4txoooaus4Q9n2tHW9XOONrSOlddmyMXYJWyA0070MwNETOkQDKjIGh61aSg2SJMzhZtPtKxE7efi/3T2IFrN8j4iGxxfF4blaQLl9tOf5B+5uNC2jbVUaNtD09X8wibtnR0=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse;
+ t=1759809836; c=relaxed/relaxed;
+ bh=2BuDrMCvXr8B/qHQB25frmKIvNC9+6LCEg5JZzFlymM=;
+ h=DKIM-Signature:Date:From:To:Subject:Message-ID:MIME-Version;
+ b=oxxn7q6HkNFPdef6+6k7iJ2nNoi8IWeMTm+UbmxwsXM+PQgp59Z1JSRqk9CSEKZq04rC3/o0x/aRZ8M0uJg/cm6ETbATkv0GxSK+B+TDvlUX9N6mt4zpZUZm7R9Ibt2biKW2AucFl+cgtJzo/FSQxJ0kWvYFPKRdYs1HNCo9tf8=
+ARC-Authentication-Results: i=1; cse.ust.hk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cse.ust.hk;
+ s=cseusthk; t=1759809836;
+ bh=2BuDrMCvXr8B/qHQB25frmKIvNC9+6LCEg5JZzFlymM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=jfn+RmI1LhrzmfgZHBXmjkWlFqeBxz9oJMiMU5pObEau78tJ++bQn8rfcpHhWuxxz
+ masxt3EChGz6Wi3B5MD5o0dZ1vn/whblbKhG2OT7HS4h8Xb5Qj3KxWcfrcC19PNy1X
+ mrU87mE2Z2pyl1lJVixZf+EMK1YCfRuKF5iB+4jM=
+Date: Tue, 7 Oct 2025 12:03:42 +0800
+From: Shuhao Fu <sfual@cse.ust.hk>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Subject: [PATCH v2] drm/nouveau: Fix refcount leak in nouveau_connector_detect
+Message-ID: <aOSRHjpaLTzeImD5@homelab>
+References: <aOPy5aCiRTqb9kjR@homelab>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aOPy5aCiRTqb9kjR@homelab>
+X-Env-From: sfual
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,47 +61,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This patch solves one of the existing mentions of COHA, a task
-in the Nova task list about improving the `CoherentAllocation` API.
-It uses the `write` method from `CoherentAllocation`.
+A possible inconsistent refcount update has been identified in function
+`nouveau_connector_detect`, which may cause a resource leak.
 
-Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+After calling `pm_runtime_get_*(dev->dev)`, the usage counter of `dev->dev`
+gets increased. In case function `nvif_outp_edid_get` returns negative,
+function `nouveau_connector_detect` returns without decreasing the usage
+counter of `dev->dev`, causing a refcount inconsistency.
 
+Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
+Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/450
+Fixes: 0cd7e0718139 ("drm/nouveau/disp: add output method to fetch edid")
+Cc: stable@vger.kernel.org
+
+Change in v2:
+- Add "Fixes" and "Cc" tags
 ---
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-V1 -> V2: Split previous patch into two. One per reference to COHA.
-          Added more details in Safety comment. Let me know your thoughts
-          Kept the original map to avoid a temporary variable
----
- drivers/gpu/nova-core/dma.rs | 15 +++------------
- 1 file changed, 3 insertions(+), 12 deletions(-)
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 63621b151..45caccade 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -600,8 +600,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+                                new_edid = drm_get_edid(connector, nv_encoder->i2c);
+                } else {
+                        ret = nvif_outp_edid_get(&nv_encoder->outp, (u8 **)&new_edid);
+-                       if (ret < 0)
+-                               return connector_status_disconnected;
++                       if (ret < 0) {
++                               conn_status = connector_status_disconnected;
++                               goto out;
++                       }
+                }
 
-diff --git a/drivers/gpu/nova-core/dma.rs b/drivers/gpu/nova-core/dma.rs
-index 94f44bcfd748..620d31078858 100644
---- a/drivers/gpu/nova-core/dma.rs
-+++ b/drivers/gpu/nova-core/dma.rs
-@@ -26,18 +26,9 @@ pub(crate) fn new(dev: &device::Device<device::Bound>, len: usize) -> Result<Sel
- 
-     pub(crate) fn from_data(dev: &device::Device<device::Bound>, data: &[u8]) -> Result<Self> {
-         Self::new(dev, data.len()).map(|mut dma_obj| {
--            // TODO[COHA]: replace with `CoherentAllocation::write()` once available.
--            // SAFETY:
--            // - `dma_obj`'s size is at least `data.len()`.
--            // - We have just created this object and there is no other user at this stage.
--            unsafe {
--                core::ptr::copy_nonoverlapping(
--                    data.as_ptr(),
--                    dma_obj.dma.start_ptr_mut(),
--                    data.len(),
--                );
--            }
--
-+            // SAFETY: We have just allocated the DMA memory, we are the only users and
-+            // we haven't made the device aware of the handle yet.
-+            unsafe { dma_obj.write(data, 0)? }
-             dma_obj
-         })
-     }
--- 
-2.51.1
+                nouveau_connector_set_edid(nv_connector, new_edid);
+--
+2.39.5
 
