@@ -4,80 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFEFFD5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2CABD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A49D710EC2B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B9010EC2E;
 	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FYzMZ3MR";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFAsxLEG";
 	dkim-atps=neutral
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F1A510E91C;
- Fri, 18 Jul 2025 07:37:36 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-2350fc2591dso18907335ad.1; 
- Fri, 18 Jul 2025 00:37:36 -0700 (PDT)
+Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com
+ [209.85.219.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4426410E83B
+ for <nouveau@lists.freedesktop.org>; Wed,  8 Oct 2025 14:28:19 +0000 (UTC)
+Received: by mail-qv1-f51.google.com with SMTP id
+ 6a1803df08f44-791875a9071so73520246d6.1
+ for <nouveau@lists.freedesktop.org>; Wed, 08 Oct 2025 07:28:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1752824255; x=1753429055; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VlvIN4gw3K/irnbr3ye+l1lLYYjCQPCt7Dolbh9+AFM=;
- b=FYzMZ3MRLBdQZ2WARfHojJ7vXX8WfK+D0B5HdEjm02u82zsNLZMhW8+/r69be2Mkqm
- Zu9wwrkJY256Vj608TreiD+aaMoG/zoOAy3ll/Q/utedXG7cFsREzUmbYDHzKF3xe9x6
- VEGjO4VEEBK0lhpcXZ0H979CcCJj1Zt2uIe7bORODoH0scECPt3gL6iY1Xh26g+PEKVI
- OOvuU/hnYxTkgsLeMEZZHidBPPUht2jf0bJQ7nrB+KRYovqviCcEuKYVoredc6EzAfqP
- TrcmktUVlElhBAh4Jim4+ZyPajekfO9j3gd9Gkd88lQmuiac3GwE8DY9KFjj/8zuttqg
- HldA==
+ d=gmail.com; s=20230601; t=1759933698; x=1760538498; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=C3nyMQNps0AyLL97xzttuk+phB0DdoZh7JjDzOjB4po=;
+ b=MFAsxLEGjCRTAdsXcqihNtVC6waBb8ZYlCNYSdQlhMwUM8A83fJpW0lpgIPTODBtrk
+ FPjjNaKjD24dI8fbVDpcBBhTT90YCn6fwVMnrGk/HnQ2STGx2tMi1O+dNb+/AkunXV+b
+ mFx8+0o8LMkIglLKMAgUU5lXRWpOXFIjCMqlB+aGYrT7Mg3TgTspT4+nJsqAthqvb9Gi
+ ODmc78XC2Jn1v69t7tTqVyFIHmkVWlPxCGyeCWy6CCITohfuwoQk8yyjvwox9D7W8SY0
+ N+sHpM7qiv/TSrdYendR4j5ss/Op4gypgH8on+NiAH/ci1naS2PHbfHNZdE9+rrmB5D7
+ 5qNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1752824255; x=1753429055;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=VlvIN4gw3K/irnbr3ye+l1lLYYjCQPCt7Dolbh9+AFM=;
- b=LmfqdDigY7bxMvlN6qti8dPCF1hjDfiSN0X2qQBi7dcka6LU5Fp63CROaFhs3z0M0C
- yBlZVVx9Gvszlvu2x5qWxdlaLVUdX9iuxJklN6h6J3KdY8VXxyUWk4e+G39NJiA1aVXO
- Sd4NF+GYswsr65ABsuOL13d4Y3Ppqn0VnJ9LsWRTpu8AZ4dgXC0EmCT+5q2qeVth97zC
- yZM/SEqOKS4TfaznXVP/FTx3FFXPFV7TetfSSICL9/wxUa75rgnGicVUym44EM6q1UcB
- 1apgl24wayhyUH3HtM6pmSwR5asftOx7ATCTOXTFUGFzynunBWwy+CV7AbvXdn4ihZd/
- NGFg==
+ d=1e100.net; s=20230601; t=1759933698; x=1760538498;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=C3nyMQNps0AyLL97xzttuk+phB0DdoZh7JjDzOjB4po=;
+ b=gFSatKeR1aZSyV3O53PCFIeknLwZRls4HmXeH7kJXgxweCH95RPHL3DtzC3p7+nKOj
+ RD/tSpo1OjrTYSO8dA4xrGKtgHRzDtTGPy+MOrHAM+RYJncyKdfadjJFboglWci/GD0E
+ Lqj/z8UNCk/Wp4iHCdY4FjSbmqZWlplrQRTg7NVVHU9LYmkGbQu/KqxoVN3Sooac8MrC
+ xI7FupCSPGL+e5+tzTB+gXyPNxzuVrrVulK9qUju/70h+7USHwpR+p3nNxbMTu8SdruJ
+ kmdu51iPC5fh2iWABvNu6m1Nl33I+mvj+f6FJ7mMOBnqAmAvhBSD+szycNiHZvtll6D4
+ kPzA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXYZVrkOxIngP/ofEzvrC05goDrObC9kaHClMG0m5Mqp3magNt1Ak6VXXnAxNXUiXH8hnADGMdbQg==@lists.freedesktop.org,
- AJvYcCXiSYNQ8idTWIeyhMA+77Sy9t9eMaXnHSSNrnZRHzweYy5vC8zpRgVb+X6R4la7EAuEyW0s9oFmnIE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyTVsttO/u/10ZPI2RbhpyHlRkUg2CpB3W7StRI6Eg7KSA7qHsP
- NfALlPx9PTJHM2oKEHXxnx5+hdohYxPadG/yP3GFA6UNF3MOXequov8L
-X-Gm-Gg: ASbGnct+aXF7xq5RsdH83to5mvTrh9NhJZPO0f+OiI/KwCssVavy6JBtqU2U126DAy7
- w5Vv8VUMBlAQ1P+NA5MbH1jXwb4VZ2g7oyEvEjHDFe+JY770uTzqxMbRUEf+lPebEDT2GSJxLOE
- GY1UazaTnSyNbgkfnY7tj7MsNTojbvISvXwa4r+e3f2/9Zf9xIxsa6J913RQjXSNE4lyrhnChpX
- PWhyGnuGBc0sDK+bZyc8h1oAHpkcVhwZpR7D7iExr60KNjePlEws2TlpDQuB0efyQJUDAwxO5gm
- dlN3ckJXjTqs6KT8dRIt/XCPQoBsPn3JzD+fPR4zrEdsl9uiac4fPri+oYw+3LHASDPvsUsaXLF
- nkeHRyy2l23hV4EwfCGkDhpuI
-X-Google-Smtp-Source: AGHT+IE4KnqF7Fpi+Oaw+hIzsHnb/lyisTQ8PFgnzh/ZzYpbtRnlDetOG91r/+F5ZBfJXXfvgIqSNQ==
-X-Received: by 2002:a17:902:da87:b0:23e:35f3:7ffa with SMTP id
- d9443c01a7336-23e35f380c5mr71364715ad.14.1752824255391; 
- Fri, 18 Jul 2025 00:37:35 -0700 (PDT)
-Received: from quat-desktop ([2001:569:514a:9100:3f23:7b0f:f6a2:1ebd])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-23e3b6b4e84sm7671725ad.104.2025.07.18.00.37.34
+ AJvYcCW+KJs87q0ZTPcEL7sSiPumGylec3FuEuaixaRjDK/EGoYtxGEp0RG6LbQKnGYSyO/h4p6+Z4W2@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxEFL3N/mmH+dHMmhnWlBmc0do0SmMp2wdmroRl/HuvMk5z2J3E
+ rMg6cjJv7dYxZIyDmrfdqcWHGc0WiLxGW+tb9y0XRm9lOadDvD50YC4z
+X-Gm-Gg: ASbGncu00puOeUxg/Xyp8g4GtEwpv0BEcgRJynTBYt9YsQsx6VgJqgPqgiZYYZUviIh
+ bWBtNLzTpHsXAFE52i2mkh/Hq7Z1FgFNw8NoI4Q7KF8O+18wPEri+x0T0DaNtDhhpcDfexv6uAB
+ zXXM4xcXTbndWYVjBVPhKVgDxEBUnNv6Y2OR7cl4070ouIHPSqCaTWceaZskNSN8eyGwaiSKrSn
+ xTRIQCe0nHWIsTOGCM+V03UXTEn0HQ5MhcxOiyUvmZcM9F+rT1/X6NQo12xiv67Sd/kRWSN0xY6
+ ycDGTCP9uN2IhwIijuzJy+yJYPeXoCRKKs1S3cvnNzttwixjO/+WGWmTHMKc4P7okNeqFMGlo5Z
+ Q0WQuixZ/a95RMco/sdNUm22ayWLfDnuoIOAVRVyz3SI=
+X-Google-Smtp-Source: AGHT+IFntZefp3Ss0mi+6jECEAXuwb7eOj/bzue7nh8gRQKVbgbOiMWHYq2oEKWHI2USmbbKcqsDDg==
+X-Received: by 2002:a05:6214:2a87:b0:789:d698:d384 with SMTP id
+ 6a1803df08f44-87b2103104bmr48809406d6.20.1759933697907; 
+ Wed, 08 Oct 2025 07:28:17 -0700 (PDT)
+Received: from localhost ([12.22.141.131]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-878be61f6bcsm163723216d6.65.2025.10.08.07.28.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 18 Jul 2025 00:37:34 -0700 (PDT)
-From: Rhys Lloyd <krakow20@gmail.com>
-To: acourbot@nvidia.com,
-	dakr@kernel.org
-Cc: Rhys Lloyd <krakow20@gmail.com>, rust-for-linux@vger.kernel.org,
- airlied@gmail.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2] gpu: nova-core: vbios: use size_of instead of magic number
-Date: Fri, 18 Jul 2025 00:36:24 -0700
-Message-ID: <20250718073633.194032-2-krakow20@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250718073633.194032-1-krakow20@gmail.com>
-References: <20250718073633.194032-1-krakow20@gmail.com>
+ Wed, 08 Oct 2025 07:28:17 -0700 (PDT)
+Date: Wed, 8 Oct 2025 10:28:15 -0400
+From: Yury Norov <yury.norov@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
+ rust/kernel/
+Message-ID: <aOZ0_7YQw81lyMWt@yury>
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+ <aORCwckUwZspBMfv@yury> <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
+ <DDC49ZIRX79X.2Q4KW0UY7WUF3@kernel.org>
+ <faa99188-7ccb-4c7c-b705-3a207f5acd17@nvidia.com>
+ <DDCFLM3P5MCC.NEBRVTU7X2G3@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DDCFLM3P5MCC.NEBRVTU7X2G3@kernel.org>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,40 +107,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-12 is identical to the value of `size_of::<BitHeader>()`,
-so use the latter instead.
+On Wed, Oct 08, 2025 at 12:08:59AM +0200, Danilo Krummrich wrote:
 
-Signed-off-by: Rhys Lloyd <krakow20@gmail.com>
----
-Changes in v2:
-- Added `#[repr(C)]` to `BitHeader`
+> Regarding the bitfields for page table management: Are we
+> sure that we can use raw bitfields for this?
 
----
- drivers/gpu/nova-core/vbios.rs | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+As per my current understanding we can't. Bitfields are not suitable for
+direct I/O and considered as a data storage. In the current scheme:
 
-diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 5b5d9f38cbb3..912698308102 100644
---- a/drivers/gpu/nova-core/vbios.rs
-+++ b/drivers/gpu/nova-core/vbios.rs
-@@ -346,6 +346,7 @@ fn image_size_bytes(&self) -> usize {
- /// [`FwSecBiosImage`].
- #[derive(Debug, Clone, Copy)]
- #[expect(dead_code)]
-+#[repr(C)]
- struct BitHeader {
-     /// 0h: BIT Header Identifier (BMP=0x7FFF/BIT=0xB8FF)
-     id: u16,
-@@ -365,7 +366,7 @@ struct BitHeader {
+        regs::NV_PFALCON_FALCON_DMATRFBASE::default()
+            .set_base((dma_start >> 8) as u32)
+            .write(bar, &E::ID);
 
- impl BitHeader {
-     fn new(data: &[u8]) -> Result<Self> {
--        if data.len() < 12 {
-+        if data.len() < core::mem::size_of::<Self>() {
-             return Err(EINVAL);
-         }
+we account for endianess in the .write() method, which would be a part
+of register API, not bitfields.
 
+FYI: ARM64 is in process of dropping BE, and Linus announced the end
+of BE support for RISC-V:
 
-base-commit: 14ae91a81ec8fa0bc23170d4aa16dd2a20d54105
---
-2.50.1
+https://lore.kernel.org/all/CAHk-=wgYcOiFvsJzFb+HfB4n6Wj6zM5H5EghUMfpXSCzyQVSfA@mail.gmail.com/
+
+Thanks,
+Yury
