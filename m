@@ -4,94 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 615DED5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47209D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3580710EB0F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58D7710EB1D;
 	Sat, 13 Dec 2025 12:41:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BUVEpjwx";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="FSDMMQK5";
 	dkim-atps=neutral
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB61110E450
- for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 15:26:58 +0000 (UTC)
-Received: by mail-pg1-f173.google.com with SMTP id
- 41be03b00d2f7-b55197907d1so3623268a12.0
- for <nouveau@lists.freedesktop.org>; Mon, 29 Sep 2025 08:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759159618; x=1759764418; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=QUFfHCZ9kPQnI/DGEJ/PgzLIjVfpKbTJMrrLjEY+ghE=;
- b=BUVEpjwxJcwkzyVRIy+wrHu7MU1SRyMrxaBRwnzrmB2NBdxMBeSBwCUh0afthjMvrN
- AUM4RtiKNCNde+w5+gByLzsyNA1NwfVukbbpMasMTqkYndjfJ3sS03mn3p3WKFT5FF86
- qRBbZ2TZNSMW2SxFEubnJTUoDzXL+rqn0GQYavtRWHzatizpWLfaP71HaJJUbNyxgCGW
- Lv4/4BGkFrJrAeNc1bcz2m8YOg4uY4AJRR/EufV0anPNaHDsunLC8+t5ctgEKjc0LTAd
- EX3SK++AiX6elxQWQ+FPzhVA1UqBFuAdXzbx539ySJK/UtnxWJTXjEQhjnS33eGxjy5p
- WYsg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759159618; x=1759764418;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=QUFfHCZ9kPQnI/DGEJ/PgzLIjVfpKbTJMrrLjEY+ghE=;
- b=CEq3X3cDtcVKOOduHrMIWIxW1Lt5PXAHeUt4mkkuE1ZkTEnEvRQGxFI92mlHWS6MyM
- 2H1O6n2JvgWTrvVWHFfqhPJQi0fQ1Zh7islgCH4JCrgi8jdKjZz0uHYIvi8AL3qGwpCc
- qojLNVo2yv8HfRjvZ6t0shy+QqwBfRkt8k4m79JGNMAMmd0aPW9hL/37ZlcpAH5qjkLQ
- 01v4wZE0kDtEtkcCZWrdOXao/HRNgmT8KLllkM/B+Vuw6q5ebEkX1zBvlD3j1O8wb9KM
- 8GSn6fgNQTeU/3s0NLxuu9ZC7RV2b58XIYfT7GL+TD8XGAQjWSYDw1DfLL/8iTbEjnm4
- +6lg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX7hyJRIeXel/Spm0M1svihzqscOa/pOGNdCtcn5pvgojULku9KZZtcq17IHU7vaXTc9W2DKYXC@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxvQgqr6jSBDp00Q1pq7wU09xOt4TE/PoNYUh/WG6+84JwYhWDE
- tHUPml/l2CWDpAJo0qIP1xd+ssW0Wnhc0++GkZHevHHXxVy/+dflj1TZ
-X-Gm-Gg: ASbGncvzNyXyK9yIJ60jmHgjKNFh5x14Co1lj/kEA0de5k2qUCQ5iGW6M0hBkSMsw1H
- de5NXFrwVN0Jgqc2mQXhmjqFs0tiJfE5d4NBqfz1jKgBChUWZ3rojdIJ9BwYL0LgVHD559hf1gX
- KKCXtO7AxSO1TECP9fBhGk4LX/pTYmeIAioeiUyndcQuOn3sh2nMRbWi2j6K/dfpZWnGtmm03Tf
- H35WE7DQJpRBOj8CBNilXTNWf+nu6WeBsZNY7eKeLvPfxgWFhpRHdOZIH5KZAC6Yh3WtgY4WsRQ
- 8I0kXeFZhZj6eXQyqiYNnOarKz5wQT6vcrQe41/bdYTGy8waVYZ9l820nQtCci2tPK/kxT2OFQR
- p5xtfrQFCBEXBqHYDg+VzEICNYD7Q1wTZdU4f9uXpDmE=
-X-Google-Smtp-Source: AGHT+IGlrXcMqMEE95Bpk6Fvp2Z3JkSBS53/nlBPtQ4p3saTyAp/aYHA69EYxK3FJ+53fX34h/VJMw==
-X-Received: by 2002:a17:902:f786:b0:240:3b9e:dd65 with SMTP id
- d9443c01a7336-27ed4aab57bmr188196505ad.38.1759159618299; 
- Mon, 29 Sep 2025 08:26:58 -0700 (PDT)
-Received: from localhost ([216.228.125.130]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-27ed66d37casm134991565ad.8.2025.09.29.08.26.57
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 29 Sep 2025 08:26:57 -0700 (PDT)
-Date: Mon, 29 Sep 2025 11:26:55 -0400
-From: Yury Norov <yury.norov@gmail.com>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v4 6/6] rust: bitfield: Use 'as' operator for setter type
- conversion
-Message-ID: <aNqlPzZn9jUjSKfE@yury>
-References: <20250920182232.2095101-1-joelagnelf@nvidia.com>
- <20250920182232.2095101-7-joelagnelf@nvidia.com>
- <CANiq72k3kE-6KPkKwiDLgfkGHCQj4a2K7h9c4T13WMa5b4BAnQ@mail.gmail.com>
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A992410E774;
+ Wed,  8 Oct 2025 07:34:30 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4chPsH0yF2z9tLj;
+ Wed,  8 Oct 2025 09:34:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1759908867; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=SqsYZSEv3wPkkO5CjL60oHf/kDiHMVtuA54/1pd5yLc=;
+ b=FSDMMQK5HbVIUqxT3oioKTUgynIczROfwnDNepIrRvWqsFMZl5hv2fk71dcBz2DjY1foKT
+ wxELCJI5w/c6clR0S9Z9ikGNruabThtOvMP2MwBnyzgU8C7R1jkXNf3AG+Q29BEqtotXoC
+ h1a6oTaB4wKR/jkYw5HhMbFnnodgOHw8HfB0VAQwOQUdighb1CQsIiybkQtwnvlLpA+UzF
+ mE7/DFX5WIMT1uoM86Bea25KS0T+u35+hmbBYCYmle054p0Gkqowv4ONnoRmh7BUX9sHsG
+ lADrs1J5RgctJ7DfQLx0qgAfKpXl4iMO8rZBYAVXAeMhAPDhQV3BQcIxKZD8vg==
+Message-ID: <6ecf62805e3d3bb6007d9bf645ed10006b599349.camel@mailbox.org>
+Subject: Re: [PATCH v2] Revert "drm/nouveau: Remove waitque for sched teardown"
+From: Philipp Stanner <phasta@mailbox.org>
+To: Matthew Brost <matthew.brost@intel.com>, Philipp Stanner
+ <phasta@kernel.org>
+Cc: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Date: Wed, 08 Oct 2025 09:34:22 +0200
+In-Reply-To: <aOVKt1kQlBEYxctO@lstrano-desk.jf.intel.com>
+References: <20250901083107.10206-2-phasta@kernel.org>
+ <aOVKt1kQlBEYxctO@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANiq72k3kE-6KPkKwiDLgfkGHCQj4a2K7h9c4T13WMa5b4BAnQ@mail.gmail.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+X-MBO-RS-META: iiacjepudk81ydpppfc6q3f174z8ez4j
+X-MBO-RS-ID: 1586c1d58911504b8ff
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,43 +66,281 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
  <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Sep 29, 2025 at 03:59:32PM +0200, Miguel Ojeda wrote:
-> On Sat, Sep 20, 2025 at 8:23 PM Joel Fernandes <joelagnelf@nvidia.com> wrote:
-> >
-> > The bitfield macro's setter currently uses the From trait for type
-> > conversion, which is overly restrictive and prevents use cases such as
-> > narrowing conversions (e.g., u32 storage size to u8 field size) which
-> > aren't supported by From.
-> 
-> Being restrictive is a good thing -- it would be nice to know more
-> context about this change, like Alexandre points out.
-> 
-> In particular, the line:
-> 
->     .set_nibble(0x12345678_u32)    // truncated to 0x8
-> 
-> sounds fairly alarming, and not what we usually want. Why cannot the
-> caller cast on their side, if they really want that?
+On Tue, 2025-10-07 at 10:15 -0700, Matthew Brost wrote:
+> On Mon, Sep 01, 2025 at 10:31:08AM +0200, Philipp Stanner wrote:
+> > This reverts:
+> >=20
+> > commit bead88002227 ("drm/nouveau: Remove waitque for sched teardown")
+> > commit 5f46f5c7af8c ("drm/nouveau: Add new callback for scheduler teard=
+own")
+>=20
+> I've been scanning some recent DRM scheduler changes.
+>=20
+> I think we should likely revert:
+>=20
+> bf8bbaefaa6a drm/sched: Avoid memory leaks with cancel_job() callback
+>=20
+> 5f46f5c7af8c was the only user of cancel_job. I'm not sure why we'd
+> carry dead code in DRM scheduler unless you have plans to make use of
+> this function soon.
 
-It was my suggestion to relax the type requirement. The reasoning is
-as follows.
+That will be added back to Nouveau soon. The reason it was removed from
+Nouveau was not that cancel_job() is broken, but that removing the
+waitqueue is not possible for other reasons.
 
-Consider a bitfield bf with bits 5:3 described as field1. The storage
-for bf is u8, but the type is u32. This is OK, because storage and
-representation are simply different matters. And no matter how you
-declare the field inside the bitfield, you can't prevent overflow
-followed by silent truncation by just syntax measures.
+Implementing cancel_job() has the canonical way of handling the
+difficult life time issues and memory leaks associated with drm_sched
+has been discussed literally for about 8-9 months on the lists.
 
-I suggested to relax the requirement that field representation must
-match (not exceed in fact) storage type, and instead bring explicit
-check in the setter. With the check, if user tries to overflow the
-field, we either throw a warning, or panic if hardening is enabled,
-or do nothing in performance-critical builds.
+If we can't get to a solution for a problem after 9 months of on-list
+discussions, then we are lost.
 
-As far as I can say, Joel scheduled this in v5.
+P.
 
-Thanks,
-Yury
+>=20
+> Matt
+>=20
+> >=20
+> > from the drm/sched teardown leak fix series:
+> >=20
+> > https://lore.kernel.org/dri-devel/20250710125412.128476-2-phasta@kernel=
+.org/
+> >=20
+> > The aforementioned series removed a blocking waitqueue from
+> > nouveau_sched_fini(). It was mistakenly assumed that this waitqueue onl=
+y
+> > prevents jobs from leaking, which the series fixed.
+> >=20
+> > The waitqueue, however, also guarantees that all VM_BIND related jobs
+> > are finished in order, cleaning up mappings in the GPU's MMU. These job=
+s
+> > must be executed sequentially. Without the waitqueue, this is no longer
+> > guaranteed, because entity and scheduler teardown can race with each
+> > other.
+> >=20
+> > Revert all patches related to the waitqueue removal.
+> >=20
+> > Fixes: bead88002227 ("drm/nouveau: Remove waitque for sched teardown")
+> > Suggested-by: Danilo Krummrich <dakr@kernel.org>
+> > Signed-off-by: Philipp Stanner <phasta@kernel.org>
+> > ---
+> > Changes in v2:
+> > =C2=A0 - Don't revert commit 89b2675198ab ("drm/nouveau: Make fence con=
+tainer helper usable driver-wide")
+> > =C2=A0 - Add Fixes-tag
+> > ---
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.c | 15 -----------
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_fence.h |=C2=A0 1 -
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.c | 35 ++++++++++----------=
+-----
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_sched.h |=C2=A0 9 ++++---
+> > =C2=A0drivers/gpu/drm/nouveau/nouveau_uvmm.c=C2=A0 |=C2=A0 8 +++---
+> > =C2=A05 files changed, 24 insertions(+), 44 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/=
+nouveau/nouveau_fence.c
+> > index 9f345a008717..869d4335c0f4 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
+> > @@ -240,21 +240,6 @@ nouveau_fence_emit(struct nouveau_fence *fence)
+> > =C2=A0	return ret;
+> > =C2=A0}
+> > =C2=A0
+> > -void
+> > -nouveau_fence_cancel(struct nouveau_fence *fence)
+> > -{
+> > -	struct nouveau_fence_chan *fctx =3D nouveau_fctx(fence);
+> > -	unsigned long flags;
+> > -
+> > -	spin_lock_irqsave(&fctx->lock, flags);
+> > -	if (!dma_fence_is_signaled_locked(&fence->base)) {
+> > -		dma_fence_set_error(&fence->base, -ECANCELED);
+> > -		if (nouveau_fence_signal(fence))
+> > -			nvif_event_block(&fctx->event);
+> > -	}
+> > -	spin_unlock_irqrestore(&fctx->lock, flags);
+> > -}
+> > -
+> > =C2=A0bool
+> > =C2=A0nouveau_fence_done(struct nouveau_fence *fence)
+> > =C2=A0{
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.h b/drivers/gpu/drm/=
+nouveau/nouveau_fence.h
+> > index 9957a919bd38..183dd43ecfff 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_fence.h
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_fence.h
+> > @@ -29,7 +29,6 @@ void nouveau_fence_unref(struct nouveau_fence **);
+> > =C2=A0
+> > =C2=A0int=C2=A0 nouveau_fence_emit(struct nouveau_fence *);
+> > =C2=A0bool nouveau_fence_done(struct nouveau_fence *);
+> > -void nouveau_fence_cancel(struct nouveau_fence *fence);
+> > =C2=A0int=C2=A0 nouveau_fence_wait(struct nouveau_fence *, bool lazy, b=
+ool intr);
+> > =C2=A0int=C2=A0 nouveau_fence_sync(struct nouveau_bo *, struct nouveau_=
+channel *, bool exclusive, bool intr);
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/=
+nouveau/nouveau_sched.c
+> > index 0cc0bc9f9952..e60f7892f5ce 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_sched.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+> > @@ -11,7 +11,6 @@
+> > =C2=A0#include "nouveau_exec.h"
+> > =C2=A0#include "nouveau_abi16.h"
+> > =C2=A0#include "nouveau_sched.h"
+> > -#include "nouveau_chan.h"
+> > =C2=A0
+> > =C2=A0#define NOUVEAU_SCHED_JOB_TIMEOUT_MS		10000
+> > =C2=A0
+> > @@ -122,9 +121,11 @@ nouveau_job_done(struct nouveau_job *job)
+> > =C2=A0{
+> > =C2=A0	struct nouveau_sched *sched =3D job->sched;
+> > =C2=A0
+> > -	spin_lock(&sched->job_list.lock);
+> > +	spin_lock(&sched->job.list.lock);
+> > =C2=A0	list_del(&job->entry);
+> > -	spin_unlock(&sched->job_list.lock);
+> > +	spin_unlock(&sched->job.list.lock);
+> > +
+> > +	wake_up(&sched->job.wq);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0void
+> > @@ -305,9 +306,9 @@ nouveau_job_submit(struct nouveau_job *job)
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	/* Submit was successful; add the job to the schedulers job list=
+. */
+> > -	spin_lock(&sched->job_list.lock);
+> > -	list_add(&job->entry, &sched->job_list.head);
+> > -	spin_unlock(&sched->job_list.lock);
+> > +	spin_lock(&sched->job.list.lock);
+> > +	list_add(&job->entry, &sched->job.list.head);
+> > +	spin_unlock(&sched->job.list.lock);
+> > =C2=A0
+> > =C2=A0	drm_sched_job_arm(&job->base);
+> > =C2=A0	job->done_fence =3D dma_fence_get(&job->base.s_fence->finished);
+> > @@ -392,23 +393,10 @@ nouveau_sched_free_job(struct drm_sched_job *sche=
+d_job)
+> > =C2=A0	nouveau_job_fini(job);
+> > =C2=A0}
+> > =C2=A0
+> > -static void
+> > -nouveau_sched_cancel_job(struct drm_sched_job *sched_job)
+> > -{
+> > -	struct nouveau_fence *fence;
+> > -	struct nouveau_job *job;
+> > -
+> > -	job =3D to_nouveau_job(sched_job);
+> > -	fence =3D to_nouveau_fence(job->done_fence);
+> > -
+> > -	nouveau_fence_cancel(fence);
+> > -}
+> > -
+> > =C2=A0static const struct drm_sched_backend_ops nouveau_sched_ops =3D {
+> > =C2=A0	.run_job =3D nouveau_sched_run_job,
+> > =C2=A0	.timedout_job =3D nouveau_sched_timedout_job,
+> > =C2=A0	.free_job =3D nouveau_sched_free_job,
+> > -	.cancel_job =3D nouveau_sched_cancel_job,
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0static int
+> > @@ -458,8 +446,9 @@ nouveau_sched_init(struct nouveau_sched *sched, str=
+uct nouveau_drm *drm,
+> > =C2=A0		goto fail_sched;
+> > =C2=A0
+> > =C2=A0	mutex_init(&sched->mutex);
+> > -	spin_lock_init(&sched->job_list.lock);
+> > -	INIT_LIST_HEAD(&sched->job_list.head);
+> > +	spin_lock_init(&sched->job.list.lock);
+> > +	INIT_LIST_HEAD(&sched->job.list.head);
+> > +	init_waitqueue_head(&sched->job.wq);
+> > =C2=A0
+> > =C2=A0	return 0;
+> > =C2=A0
+> > @@ -493,12 +482,16 @@ nouveau_sched_create(struct nouveau_sched **psche=
+d, struct nouveau_drm *drm,
+> > =C2=A0	return 0;
+> > =C2=A0}
+> > =C2=A0
+> > +
+> > =C2=A0static void
+> > =C2=A0nouveau_sched_fini(struct nouveau_sched *sched)
+> > =C2=A0{
+> > =C2=A0	struct drm_gpu_scheduler *drm_sched =3D &sched->base;
+> > =C2=A0	struct drm_sched_entity *entity =3D &sched->entity;
+> > =C2=A0
+> > +	rmb(); /* for list_empty to work without lock */
+> > +	wait_event(sched->job.wq, list_empty(&sched->job.list.head));
+> > +
+> > =C2=A0	drm_sched_entity_fini(entity);
+> > =C2=A0	drm_sched_fini(drm_sched);
+> > =C2=A0
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.h b/drivers/gpu/drm/=
+nouveau/nouveau_sched.h
+> > index b98c3f0bef30..20cd1da8db73 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_sched.h
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_sched.h
+> > @@ -103,9 +103,12 @@ struct nouveau_sched {
+> > =C2=A0	struct mutex mutex;
+> > =C2=A0
+> > =C2=A0	struct {
+> > -		struct list_head head;
+> > -		spinlock_t lock;
+> > -	} job_list;
+> > +		struct {
+> > +			struct list_head head;
+> > +			spinlock_t lock;
+> > +		} list;
+> > +		struct wait_queue_head wq;
+> > +	} job;
+> > =C2=A0};
+> > =C2=A0
+> > =C2=A0int nouveau_sched_create(struct nouveau_sched **psched, struct no=
+uveau_drm *drm,
+> > diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/n=
+ouveau/nouveau_uvmm.c
+> > index d94a85509176..79eefdfd08a2 100644
+> > --- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> > +++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+> > @@ -1019,8 +1019,8 @@ bind_validate_map_sparse(struct nouveau_job *job,=
+ u64 addr, u64 range)
+> > =C2=A0	u64 end =3D addr + range;
+> > =C2=A0
+> > =C2=A0again:
+> > -	spin_lock(&sched->job_list.lock);
+> > -	list_for_each_entry(__job, &sched->job_list.head, entry) {
+> > +	spin_lock(&sched->job.list.lock);
+> > +	list_for_each_entry(__job, &sched->job.list.head, entry) {
+> > =C2=A0		struct nouveau_uvmm_bind_job *bind_job =3D to_uvmm_bind_job(__j=
+ob);
+> > =C2=A0
+> > =C2=A0		list_for_each_op(op, &bind_job->ops) {
+> > @@ -1030,7 +1030,7 @@ bind_validate_map_sparse(struct nouveau_job *job,=
+ u64 addr, u64 range)
+> > =C2=A0
+> > =C2=A0				if (!(end <=3D op_addr || addr >=3D op_end)) {
+> > =C2=A0					nouveau_uvmm_bind_job_get(bind_job);
+> > -					spin_unlock(&sched->job_list.lock);
+> > +					spin_unlock(&sched->job.list.lock);
+> > =C2=A0					wait_for_completion(&bind_job->complete);
+> > =C2=A0					nouveau_uvmm_bind_job_put(bind_job);
+> > =C2=A0					goto again;
+> > @@ -1038,7 +1038,7 @@ bind_validate_map_sparse(struct nouveau_job *job,=
+ u64 addr, u64 range)
+> > =C2=A0			}
+> > =C2=A0		}
+> > =C2=A0	}
+> > -	spin_unlock(&sched->job_list.lock);
+> > +	spin_unlock(&sched->job.list.lock);
+> > =C2=A0}
+> > =C2=A0
+> > =C2=A0static int
+> > --=20
+> > 2.49.0
+> >=20
+
