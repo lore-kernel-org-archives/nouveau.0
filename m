@@ -4,82 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59BAAD5B15D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A99D5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ED3D10EB8E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A91810EB35;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="I7RCtM0q";
+	dkim=pass (1024-bit key; unprotected) header.d=cse.ust.hk header.i=@cse.ust.hk header.b="O1mWmbhe";
 	dkim-atps=neutral
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
- [209.85.215.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4950891D9
- for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 15:14:54 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id
- 41be03b00d2f7-b26f7d2c1f1so4550843a12.0
- for <nouveau@lists.freedesktop.org>; Mon, 23 Jun 2025 08:14:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1750691694; x=1751296494; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=uqJIIUX1RcMuJD/oxLXivkAND/EflsQl1f/q6RQcXXU=;
- b=I7RCtM0qvcFNZ7sHl8zHgmhCyZrrA+kSeST6b6MeBFfZWkd8JeK2yleyQUWo7bqyEV
- T70BmIzHLq8gh18Cvxhlu0dxLUbSdtR2kIgLBwloSZlzeNZEVLjJJhhDdwfltfFNOGQ5
- o8ngiSfx2a6S9sqFLsBvh1eUKK+vhI40UnR3nvfi/rqgGhfUVCGUIot9LgtEsUgUJ+hZ
- ij98O7aZr379AAPmSI5Npx4xaV0c8PvI1EYszswEHgLKTQTRFxZIVqcOtqmiUuy/gpBX
- /gk7cqnyApxwzCwG0q6MKAbRwioug9w29v+62RDkpqMyXOEzVfPCTHXh0RR8J9HF8KXd
- HmNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1750691694; x=1751296494;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=uqJIIUX1RcMuJD/oxLXivkAND/EflsQl1f/q6RQcXXU=;
- b=B4neR7AhZHCSHNbxAnAhnt/svAEiJxbMsJFX88XAtOkDVUXeLiuoqm1AAksRCXQS1q
- qsmXbXBa80/rnplvmldJYIASQTL13x9dhtOCb4rJSIcQlNKWU9xEM4mr2kktxIVTKY/x
- v4S8RhXye7xkQBRU4OZLFWJH3T31kTc9ixJED60wx0vdf5EzUzJtbBaZWNwF6ruRLndy
- CKbhyXjhC/sk7Dm/+0/xj4uAHMlaEqPHJSKYlRrUBYUc1TEDxuZ6RUOD8hAKvJzD4d9t
- 3ls1CaKR4mRErd9101GIf5glzCH9a19U+uDLkL8N3/Gt9Gp7mEqPcZtrLf0v3iwTkbQc
- 1IzA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXrufcBLLKNTvc4yVM7J+gHND0GbA4Q9HPJ+SS3NCzNfnSYBiFW1xfQzL+OiORAwXe3/q2Pq+Qb@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx/gObaCHFAvbpzADn8QnB9aUxUnQ4S8teUCKAcjvCM/81hIqDU
- 3Xjzi11l7ruzuhxNwuXOTsKmy057IKstnjr9oPzEUaFPwnQPgvxmcItJ
-X-Gm-Gg: ASbGncs+2Ps83ng1mlqJB82IipqVOQdYQ6qut2J3jqVF29FdTxh6MOQzdiQ2ZdYmMHj
- d/FQI+b7BvWM7eED3u62rVszNJWN/z+0usjfcs7FNSIGVgIGEFf0IH9flcGcwXswSvWG2XC25OS
- F3a+4AMQkyu4gNGOSkxNow4n4hpRFx5GvlmwWYjz52JGRfRJPlRi/4F+ofzG/0VEECS6WyfRK+H
- eF4EXdYmMmITdJ9gCtOhcv2VV0KI+g4X8z+cYcUs8CuHpivEmZDjeujNovPq7WmBPO9xCwvg7OB
- BwayIszQdqWbPpFjHOGs4wy9FQtmle5hZWlkoXeBGfJf3HlsJbJF9fJ5uWto0bnXG1T7q7jLfXo
- serylrzM=
-X-Google-Smtp-Source: AGHT+IGyPrHLryPORGsprOtDMijB7hbNnK12I6gc10XEvKh4YRH0MVHZxU7ZJO4C5upE0HZ9B5wtGg==
-X-Received: by 2002:a17:90b:1fcc:b0:311:b0ec:135b with SMTP id
- 98e67ed59e1d1-3159d8d6282mr22412103a91.24.1750691694156; 
- Mon, 23 Jun 2025 08:14:54 -0700 (PDT)
-Received: from localhost.localdomain ([112.149.32.52])
- by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3159df71cd6sm8338512a91.4.2025.06.23.08.14.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 23 Jun 2025 08:14:53 -0700 (PDT)
-From: Jesung Yang <y.j3ms.n@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
-Subject: [PATCH 3/4] rust: macros: prefix variable `span` with underscore
-Date: Mon, 23 Jun 2025 15:14:29 +0000
-Message-Id: <eca1e3239800028ee7be4971fe10c145bd583913.1750689857.git.y.j3ms.n@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1750689857.git.y.j3ms.n@gmail.com>
-References: <cover.1750689857.git.y.j3ms.n@gmail.com>
+Received: from cse.ust.hk (cssvr7.cse.ust.hk [143.89.41.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9208210E741;
+ Wed,  8 Oct 2025 03:20:23 +0000 (UTC)
+Received: from osx.local (ecs-119-8-240-33.compute.hwclouds-dns.com
+ [119.8.240.33]) (authenticated bits=0)
+ by cse.ust.hk (8.18.1/8.12.5) with ESMTPSA id 5983K89V1969764
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 8 Oct 2025 11:20:14 +0800
+ARC-Seal: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse; t=1759893615; cv=none;
+ b=rcPP8yLtXjCv4k/DLipdIwhSVZ5CwYt/xRFq7i0sc44nIC1QHO6MKK6f4NMvuQ8kYDya1k01xg07pUe2fM3cXzrsuq+OJWSQdo8LQCS9USU+itC8yK2FujLsLpkMTCmEiHkvUa3UPZ9mfTNiDN7YE8cQdqJhQjQDQJ2rOQyn4Rw=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=cse.ust.hk; s=arccse;
+ t=1759893615; c=relaxed/relaxed;
+ bh=WuLSA2EjkrLhSQFnaBGCNZGIYOqkvds6auE54bA3lWQ=;
+ h=DKIM-Signature:Date:From:To:Subject:Message-ID:MIME-Version;
+ b=cSCrFM+NEka5AqGCOg0vIypTESoI7v1+4r5/Iw+kIN7yny9+mcqkVFeAOpPi2vuB63bMjH9YfY+PwtIsi39lRszyy0eNcDlHUkBd47H0omi5RdOmJpJ6rmwT0PsW6f3y3S2JAcL3PwByrbKkfCTykeSXiS35+nefRX9kbPdq0w0=
+ARC-Authentication-Results: i=1; cse.ust.hk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cse.ust.hk;
+ s=cseusthk; t=1759893615;
+ bh=WuLSA2EjkrLhSQFnaBGCNZGIYOqkvds6auE54bA3lWQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=O1mWmbhe3wxDfirmk6JKjwo4Qc+QANnMrDAiMaxMv6vbHp21QI7HEUmaDtREupztT
+ ITsS1D23MTLgcXf6uISKfRLSIZ43UdPgZs0z8dh//rgVL68sU0qEaYGtX3KX+x5a4p
+ SIjm8/XVkjp/qyzWU2cfbTulg9rsFvv7Ircqe+jo=
+Date: Wed, 8 Oct 2025 11:20:03 +0800
+From: Shuhao Fu <sfual@cse.ust.hk>
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ stable@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3] drm/nouveau: Fix refcount leak in nouveau_connector_detect
+Message-ID: <aOXYV5pgilTvqMxR@osx.local>
+References: <aOPy5aCiRTqb9kjR@homelab>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aOPy5aCiRTqb9kjR@homelab>
+X-Env-From: sfual
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,41 +63,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Prefix the variable `span` in `quote_spanned!` macro with an underscore
-to silence unused variable warnings.
+A possible inconsistent refcount update has been identified in function
+`nouveau_connector_detect`, which may cause a resource leak.
 
-The warning occurs when the macro is used without any uninterpolated
-identifiers. For example:
+After calling `pm_runtime_get_*(dev->dev)`, the usage counter of `dev->dev`
+gets increased. In case function `nvif_outp_edid_get` returns negative,
+function `nouveau_connector_detect` returns without decreasing the usage
+counter of `dev->dev`, causing a refcount inconsistency.
 
-    // Triggers a warning: "unused variable: `span`"
-    quote! { #foo }
+Closes: https://gitlab.freedesktop.org/drm/nouveau/-/issues/450
+Fixes: 0cd7e0718139 ("drm/nouveau/disp: add output method to fetch edid")
+Signed-off-by: Shuhao Fu <sfual@cse.ust.hk>
+Cc: stable@vger.kernel.org
 
-    // This is fine
-    quote! { Some(#foo) }
-
-There is no good reason to disallow such quoting patterns, so fix the
-warning instead.
-
-Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+Change in v3:
+- Cc stable
+Change in v2:
+- Add "Fixes" and "Cc" tags
 ---
- rust/macros/quote.rs | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_connector.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/rust/macros/quote.rs b/rust/macros/quote.rs
-index d05f60f55623..e6c36bd7f925 100644
---- a/rust/macros/quote.rs
-+++ b/rust/macros/quote.rs
-@@ -63,8 +63,8 @@ macro_rules! quote_spanned {
-         #[allow(clippy::vec_init_then_push)]
-         {
-             tokens = ::std::vec::Vec::new();
--            let span = $span;
--            quote_spanned!(@proc tokens span $($tt)*);
-+            let _span = $span;
-+            quote_spanned!(@proc tokens _span $($tt)*);
-         }
-         ::proc_macro::TokenStream::from_iter(tokens)
-     }};
--- 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index 63621b151..45caccade 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -600,8 +600,10 @@ nouveau_connector_detect(struct drm_connector *connector, bool force)
+                                new_edid = drm_get_edid(connector, nv_encoder->i2c);
+                } else {
+                        ret = nvif_outp_edid_get(&nv_encoder->outp, (u8 **)&new_edid);
+-                       if (ret < 0)
+-                               return connector_status_disconnected;
++                       if (ret < 0) {
++                               conn_status = connector_status_disconnected;
++                               goto out;
++                       }
+                }
+
+                nouveau_connector_set_edid(nv_connector, new_edid);
+--
 2.39.5
 
