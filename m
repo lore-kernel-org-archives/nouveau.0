@@ -4,91 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA550D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FE79D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CBB10EB86;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76BE110EB8B;
 	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="L1ztI35s";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kXNgv9iO";
 	dkim-atps=neutral
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
- [209.85.215.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A6810E5DB
- for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 13:52:16 +0000 (UTC)
-Received: by mail-pg1-f182.google.com with SMTP id
- 41be03b00d2f7-b62e55af64aso389575a12.1
- for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 05:52:16 -0800 (PST)
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
+ [209.85.214.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7058210E1DA
+ for <nouveau@lists.freedesktop.org>; Wed,  8 Oct 2025 16:57:05 +0000 (UTC)
+Received: by mail-pl1-f173.google.com with SMTP id
+ d9443c01a7336-27ec3db6131so58325ad.1
+ for <nouveau@lists.freedesktop.org>; Wed, 08 Oct 2025 09:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762264336; x=1762869136; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1759942625; x=1760547425; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=WgxSC2aKqxilandHAezVm5gKzGGQcz0P4+qV+dri/oU=;
- b=L1ztI35sVSOx+hFlHTBdwSkV6fYmyA7jTo0io5W3EV7SiLVDrnmq1D8+6wPs4fCy5F
- SAwdZdAvob8l3j6y3du0l8WAguilj5RW+emiE6zSsLY9lul+uVIFdKBXWUclP8028Y4A
- dlC4P0fd9X2TmqEfBf5/FzVtUN4F4HpiZ99aKSNYsXEgXLD9Ixv3hj7vOaYuYSIIqCUG
- ff7HtYRWT+NruF0S2dJF9seajxGaSrse7yhKbdCCVxbJ+JVFKmAYZVU1CdqdegXErQxm
- NYUPWeM+Zv+G2sHBstyuPjwPD1k9XW/nZJPKtmKBtU5YRzYzFnqaBVzGv58nOTZZqfaX
- V/ug==
+ bh=BtxsZvw7ZUfiZlsMlvMyfedw4t0xzCAElKBhmmA01y8=;
+ b=kXNgv9iOqUCM2MZT+tXSj+widJYBO1qLuIl4C5+MZsk0bHVmlkrm+Rm2m/o7cWcdtE
+ Fyb3Ka4FX8h/4fd90AD12IKoQBSGOeXZqR52Ybo6C1/gdzBqykIARf0bqgMCwpBIZDB+
+ UfFXz0h3+NxOa4HQvfOzvKfYC7X4sZCdXV4LCaJI4fyrBjNE6t/HLSurgBMlKDHZiDNQ
+ GZLRoK30fdzqCsw8Q1jtBLLhCj24Htg9Thas+XhOp+lDse7uKp8Cz3lZvUusZ7GMqJUu
+ eVVMjmzfdL/FPtQdXAyraj/vFbY/5otf/0+htbGiOpaeYVKUVjhhM1ihMMOFrYWrA5sY
+ ZZBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762264336; x=1762869136;
+ d=1e100.net; s=20230601; t=1759942625; x=1760547425;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=WgxSC2aKqxilandHAezVm5gKzGGQcz0P4+qV+dri/oU=;
- b=h8URhHGONfXnOGDGkmvJq678hE2jh+Kos18qLzGIoFYax7M5LXjw3xGGNmXVtQVLYb
- SbCdjbH6iL6VlhGZh2xv9y393JThuH7bpwrBo+jG28fbklH1FmU3VV5Yj5fB9Chbpfh/
- owz3STW4KSWa8xuFxIn0dlSSnY0bKSwdjx24r7JnUWiwfnRVUHPMs4z2OGJ2Ap/HjOId
- GV8SKEC5dFrLHQbocXWcB3OQK4VHYwpznZVvF0GkWPeSuPWhXKcDF1iNY/8fQDFE0JiG
- YM46VjC7gqkWDSdX+cvb002cbpeYt5MhhYOcJVAMOyUOK8uRRlmQLRKV830eMf3kvc3W
- 6ktA==
+ bh=BtxsZvw7ZUfiZlsMlvMyfedw4t0xzCAElKBhmmA01y8=;
+ b=MXxY+UbZgt0S/ox1G/Aq6FmxzfoF6otZmwyNqVpQcbzi2iO85qaEvaGbxOWdABX5P/
+ L/VXkZjSLi5nZzyGxGab3y6i1nu87UNIcT3qUNlOxD3Tx/UvgovA41vIcYkhgjheyi/B
+ 7lq9Dgmugt8lIxe1CHutKDAiuMxR8wandgFTKaJGQFzS01+yvPPGAeR5DDjkpjr2Odvs
+ S5Ok2E2wDRjylTWnyqBxw8mXoVrkjmHEp0qn6lYgE9spi5Zjrm5scuW2aJTDD3RoJ5A2
+ 1/flv82WkYruIGLnf552nQNrrHh/Wf8y4G0sCpZa6nxpYl1unBWuyMgYkraGtkrE/NX9
+ gsjg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX+Vk+SRP4WOa2WitMEDNqx/xeCSrO1uMX/YhUF8T2YcQOB/7UGJMDGkOC0Rw6qk+r+xVtPyTn4@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxsxJEM+AL/ShZHnrx01Fg7Ho3pVnUPv5YZylLDDjTkQJkLemwO
- fBzcUUGanwoZ/wRl5KFl6Z65P8W4IJaXjoy/I0MKD4XGhMUwu26IhmLQZ5cBwCOa5KOkuAjIqJ2
- UO7XA71PP+N1yCY/kLKyN+9i4RJR18y4=
-X-Gm-Gg: ASbGncvZZ4EaJAWV6QmP9BhENBkNZrX7L+0RvEj7IggcwfEFEGk3MCIy20/Tf2QI9Fq
- HAC+0M7D2qPxM9uMW4ROd6s716Apbcz1tee7whkDCgErMkvr/Z7pL3aU1QU9/Trs4Xe78cSptuF
- Uc06QqNNSpQz7CWFuPBId78F7vTgSyBRCJAWRHCVm86/KfW0j39X7yQ0Q+Vtnnl+0uUfRQHZ7oL
- ZSH82CyYqpb1VZ0akp+b8E+YXVz24X7cSvF8yqwhq4iCv9W1s4fSGJ1d32kcXZbyWgezwAZ2sRm
- JnUbRTB28cNb7g28mUif9xQcSwGtMNiir2lFFNLFBsooVB5jBLY1oEh5zLcYlwZjRZdjMj8W1eE
- qzkI=
-X-Google-Smtp-Source: AGHT+IEHIHWibqjAZGWyvY0H8m2w47BvrG2lZbXh2UQMD9AI1DeCBy/GvhFpcB4QhflEwGDTQ3v2/JNfuI82Byb03zs=
-X-Received: by 2002:a17:90b:3b87:b0:340:b8f2:250c with SMTP id
- 98e67ed59e1d1-340b8f22df9mr9464706a91.1.1762264336293; Tue, 04 Nov 2025
- 05:52:16 -0800 (PST)
+ AJvYcCVjzD0fodnQVOQme+y5s0qlPWACsoZI/7U3LagBE3rW0Y8Qa3ITcsVl1C2bSx/Nx1K82j5VWA5I@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxTK7fuGVWxIyVrc3RvmPgC2HBC+AZyYkELl5RPk/Zo4BtXC9LC
+ mcDXDiaKO6EtH6b9QbIIbheuV68FdJDgZMHNgHI0+rknCSNBUhYYbr+5ojs4wgwkDKoCUgLiDqy
+ 5q6G5l+WYD9j8b0uI+0vynUoTAgt85ZM=
+X-Gm-Gg: ASbGnctRHehPaYlr37WN9lCiu/gh9awwBk7fdX1oGLObw4JIQUrAUDyvZqyShanP6Py
+ joTdlO2EfEhuTJR9p9LKcHJgUhakfN+it3dBBeFh0YFQMCDnuuJCZ7kIlq1XA6ZvkneumOEQQfe
+ KiEetcwae4BstElUbp50E9VBxuVXIiTeEto9rEJGeo9C+sOg582auJ6/ipR4ypzTqMh4WjKmlfX
+ gc0xD9N5cr+I0ZKnbkSCk4knZE2aAJwfNClLI5KtEJQMdQmMLKzqU/zt1Bc8vCJd6kATbEiPpH5
+ EQBGDctAAjxg41XOk8n4jv+1Pp740z0LHgVyxhcLnPhc/EOQ4w==
+X-Google-Smtp-Source: AGHT+IE+hV5XvZK2LLA5Zj8MS65c8DKZNoLYsUmppQ2+DVDFH0vWuOn4hQEUZM9Ru/QEpwQVpwGiPDgdVyGxI0qTssQ=
+X-Received: by 2002:a17:902:d4d2:b0:25c:9c28:b425 with SMTP id
+ d9443c01a7336-2902745c0a2mr34349905ad.11.1759942624756; Wed, 08 Oct 2025
+ 09:57:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
- <20251030190613.1224287-2-joelagnelf@nvidia.com>
- <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
- <20251104005812.GA2101511@joelbox2>
-In-Reply-To: <20251104005812.GA2101511@joelbox2>
+References: <20251008001253.437911-1-apopple@nvidia.com>
+ <20251008001253.437911-5-apopple@nvidia.com>
+In-Reply-To: <20251008001253.437911-5-apopple@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 4 Nov 2025 14:52:03 +0100
-X-Gm-Features: AWmQ_blJ7jEt0nl7CKtiOJzaUdItBJ90fhDQUgIcURkC12jl_69-w8beSolcQvU
-Message-ID: <CANiq72m692bb+W32QN1G+LJa7sHs=gU8k6dri3mu95Smj7GiRw@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
- linked lists
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- dakr@kernel.org, David Airlie <airlied@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, 
+Date: Wed, 8 Oct 2025 18:56:52 +0200
+X-Gm-Features: AS18NWBIne5rc-AVIeVWCfebGQh2r5eidrg652ppzGpIdVO4I8s2bzW85Um8QvY
+Message-ID: <CANiq72k5f3f8Kys40sRmaKR8eeq8-4DsDkWDkwMPZ0A1JSFj8g@mail.gmail.com>
+Subject: Re: [PATCH v4 04/13] gpu: nova-core: Add a slice-buffer (sbuffer)
+ datastructure
+To: Alistair Popple <apopple@nvidia.com>
+Cc: rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, acourbot@nvidia.com, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- nouveau@lists.freedesktop.org, 
- Nouveau <nouveau-bounces@lists.freedesktop.org>
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ linux-kernel@vger.kernel.org, 
+ nouveau@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
@@ -106,17 +99,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Nov 4, 2025 at 1:58=E2=80=AFAM Joel Fernandes <joelagnelf@nvidia.co=
-m> wrote:
+On Wed, Oct 8, 2025 at 2:13=E2=80=AFAM Alistair Popple <apopple@nvidia.com>=
+ wrote:
 >
-> Perhaps wrapping it is #cfg is sufficient.
+> +/// Example:
+> +///
+> +/// let mut buf1 =3D [0u8; 3];
+> +/// let mut buf2 =3D [0u8; 5];
+> +/// let mut sbuffer =3D SWriteBuffer::new([&buf1, &buf2]);
+> +///
+> +/// let data =3D b"hellowo";
+> +/// let result =3D sbuffer.write_all(0, data);
+> +///
+> +/// A sliding window of slices to proceed.
 
-`cfg` attributes and the `cfg!` macro should work in doctests -- we
-have already a few instances, e.g. this hidden one:
+Please write documentation in the expected format, i.e. using a code
+block and a header:
 
-    /// ```
-    /// # #![cfg(CONFIG_OF)]
-    /// use kernel::clk::Hertz;
+    https://docs.kernel.org/rust/coding-guidelines.html#code-documentation
+
+Eventually, this documentation will get rendered just like the
+`kernel` crate (and the examples building/running as tests etc.),
+which requires following the expected conventions.
+
+By the way, is the sentence "A sliding window of slices to proceed." cut?
+
+Thanks!
 
 Cheers,
 Miguel
