@@ -4,85 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E38FBD5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A12AAD5B15F
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D898110EAF9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECBDA10EAFB;
 	Sat, 13 Dec 2025 12:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JEpTaZ5K";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="gFjJyDTO";
 	dkim-atps=neutral
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
- [209.85.128.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C756710E134;
- Wed, 26 Mar 2025 12:52:14 +0000 (UTC)
-Received: by mail-wm1-f42.google.com with SMTP id
- 5b1f17b1804b1-4394036c0efso43495785e9.2; 
- Wed, 26 Mar 2025 05:52:14 -0700 (PDT)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
+ [209.85.160.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E07710EAC7
+ for <nouveau@lists.freedesktop.org>; Thu,  9 Oct 2025 18:28:13 +0000 (UTC)
+Received: by mail-qt1-f182.google.com with SMTP id
+ d75a77b69052e-4d9f38478e0so13711441cf.1
+ for <nouveau@lists.freedesktop.org>; Thu, 09 Oct 2025 11:28:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1742993533; x=1743598333; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=VwyiSIykfOMTFP9Glhet0fsRm/PA8s+JphWFgIm15/U=;
- b=JEpTaZ5KW+Dq0dReX6VsEc1HlKaw8fAswj00uid7WxYnSwYAbEKa1A4cStg1aiRGYd
- N5MlvLNLns2HIJ3Oh2vaIVbz7x8e4XHu8tdt1nnQfWe7/ZxBpbn5/xHhwYKGOE9qV8BW
- L4YglY8IgVfQM7kj8e0hP69tfk5UjY+Hnhp/hRZqee5O+WoDzubuADg1ghDItjIjCRPV
- /zOuyMRrknZxRTX6UMCqnkOoaidKhvM+ICsHpFiyRTHBIKguWnsJ2MR46oWSlZPYwR3y
- AML+WCOlKziX1cxKUPflTO0xHZVHD7Is69MhMjUpWMGQuOMjkUfLg2RZ4EbNOvofKO48
- 2XrA==
+ d=gmail.com; s=20230601; t=1760034492; x=1760639292; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=m5CEm/k2cKSkdb8l0Unz1Qn9/RiaqPf8uIpBe3eDtIE=;
+ b=gFjJyDTO1kKXdV8Dr1aVriW4ZUprth92t3eAncGQyZnBqiCari4oAlB5uxT01hkbG3
+ BczwJefAN2y09q218aZQFjVfxKK2LZIbbTfxC4NF+8YPdZ8PE6OySIWdhaeNxhHUXOWl
+ YxAlhVFT2xTJxdSr3xk+GgeDjhvza4YFATlPM6YyWmuq9ehh0bDMZp91HqZQnZZwt7cf
+ +1BjfLwzYq+cV0hSXj6eAzQsuR6A6fqnAH5QJRVnsdf8e8X+5MAO9RH9mFpgZcPhJym3
+ b3X8Desb6jNKqLG127RNcAuLx0LiKlpSF3N54nlU5J/AvBLcGcfuj6v9/xHjbXkynm5I
+ grAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1742993533; x=1743598333;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=VwyiSIykfOMTFP9Glhet0fsRm/PA8s+JphWFgIm15/U=;
- b=BXwHraKNp1Si6oEDF4jaq+WHWovxynDzSoXupP4XSfUR5ClS8LtMJbNVms0rEceDRB
- eU+8FKtELnvDWVn/w+xjDQLw3fx2Wx7d+w4vZqBBPoslqsoBWP69c8oKZ08w/71gMA3u
- pmullZIO7//xJCazNuS/aLYv5Cu3q2aNsGwlxZgA4uf1PmghaTcyVH3q4hYGrRzjZ+Hu
- 6sIVufQZC6ilZjpX8vwEuwWv3MuR+MgsqKvxL/n/30T33+sszMGMCLI1c0aRszx/ZjYb
- XBi4PUHBaz8GqlQ7x4FID0s3pGttlzOLBXi/npFM1hIZN3udeYpMRLkTjpUUCsh7//uB
- CvAw==
+ d=1e100.net; s=20230601; t=1760034492; x=1760639292;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=m5CEm/k2cKSkdb8l0Unz1Qn9/RiaqPf8uIpBe3eDtIE=;
+ b=Epdn55tz1S1cXpmE1aemjpbTdzHKR4MEuEirtRdvEU4QsD7WGcN6r1x8Dc7T5aZbub
+ D/2mG4objbTyNigv+AeqonWc/+O2vZRK0Ho/xoLdEb9uC/t5lnqR3oMZ6Nr+WD5hK+bH
+ YhHyfOm1r6RtQCtMoIe91us66kpu4niqMuh6RcNtUrwAYNzncJhyMvHv3rGCW/UoCawD
+ D8GJpvZ490DF1Hd+tCacxvjApu+GWQVH5sfD+V9sBPLVg24jl3ZWYIPDlBBmXdaIE6rC
+ fpx70p8QINqAS14ET+5pqy0AdoB5sI3BdDgRyWyO8VoQh/Mzhc5ft13JHz8zxWTY2mpA
+ eu5Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUwMk9goSSFyBqjxArFfWJSQ7jdwRvI4D05oTZcbms/jS79omyNEEE+5WAdJhbMWnWktAihBj7Dlg==@lists.freedesktop.org,
- AJvYcCVY8lI04w3GHEBgaQ/13KPEWGoCL+fCb8nLMo7mwt2+uQGgtNGpYtRFv4i92BkAAB6ivX6WLb6OjXA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxGKZPwYtcBmLjQ0moxIIfcX1AFfEnADyMmvshgJZVcO2wKuszE
- M9W7SFGXzFubR6KxH3/duma7j5m/sGgjzgyjBO/MvB7km3cNwjza
-X-Gm-Gg: ASbGncsYyFl0sQe7gndQo4p6Grs/muX4qjKf4i02uiiyB0usw/v1796uANgRludA1vl
- Qo40CWeM9ezEBwDz3+OqeN9Ev8pqPi83q+xm4q6D28xMokLYgSnYWutrXYOPs/A3VafZwDCBD56
- OyRMUECB8ZDsCcl6/7I54WnIDQQPtADCtfmqGBwQ0FvjCGKU19IJ/R5yOAKPyjURYqUEJB5G8iK
- 6vUHLYfT58hHNtfXkwEgaz7PkuibXRUtP0eXs7QHLiOXvxgeGdbApbwV2t9g+uu/gEz0dSYHeXp
- 7dQY3BNy+BPk681MwupIiY0Sp9wE1Hd8FGNTjri5oZi8yYI8ApNI1q+n
-X-Google-Smtp-Source: AGHT+IGcTlIycYodg67QYlVQjgNPDS68QFaDqKlEuvleRpjGOkZDEWYNZY5cUwYW2nHxjKcverj1vw==
-X-Received: by 2002:a05:600c:5488:b0:43d:db5:7af8 with SMTP id
- 5b1f17b1804b1-43d50a31981mr155787395e9.21.1742993532805; 
- Wed, 26 Mar 2025 05:52:12 -0700 (PDT)
-Received: from debian.local ([2a0a:ef40:4d4:f101:e41a:977a:f788:910f])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-43d82dedc88sm1252805e9.1.2025.03.26.05.52.11
+ AJvYcCVqL45QpNqzlh/9wgUgUU4JplWbzysDZD50Ss4gk8P3HWoFV6fs/TQnJ8q5f0LP6zogphCUcw9H@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yztqw+x70MZbxAn8tHfl2ZexynkZCSZ8UljhfQVkxFpXJRM7hlA
+ 5IzeNLRwC2WEza0cNS0DtKtMItgp9HKvekx5opLHs6oUFZ84dEP1fb+o
+X-Gm-Gg: ASbGncusHLRVpXwaqHHMXxFrsQVYAncOnPA0z2IwQxm0dPwg+8Qe/ILPyE6QiOB9AjZ
+ JIKNrM4w+6ldw5U4MCzXqiHGvo277Qn5edqFngA9t/myZN11a2kpieWnNr8OCWG2M7uejp641V2
+ eDrBe2WOTAR61CZLVkV6h8PlNIpBiPTd1iqn6EMOicYJbgKMRF25DcJKcs7y9OKOkA/WxtaM5gB
+ BUqnEeBns0A5O5vobU93i3MC+puI6Gie444EW20vjZIK9rLQiOIrY0ZQm2mF3UTmWmB0FDPguna
+ dzwSWqy07FvQeJXgkGDOg/Z7s1MI+R52zpLCOnm7DzI3AfZRE+7GLf4B+RzsUTMgJeePpRyxd5b
+ DBDWr+WeRP4xtO3j1G24uI7fu3XVbx+6TG63bNwf5hvCQGdLDeepfGw==
+X-Google-Smtp-Source: AGHT+IF00kjXS/Ks4W3W0yL60FVuYiaJ0yikXglyJUl4wFsoNXCdTMygWhDLSE1zqjZH94GRSgJ02Q==
+X-Received: by 2002:ac8:5d4d:0:b0:4d2:ba6f:28fa with SMTP id
+ d75a77b69052e-4e6de8b5d39mr194435231cf.34.1760034491694; 
+ Thu, 09 Oct 2025 11:28:11 -0700 (PDT)
+Received: from localhost ([12.22.141.131]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-4e706b96a97sm2841951cf.5.2025.10.09.11.28.10
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 26 Mar 2025 05:52:12 -0700 (PDT)
-Date: Wed, 26 Mar 2025 12:52:10 +0000
-From: Chris Bainbridge <chris.bainbridge@gmail.com>
+ Thu, 09 Oct 2025 11:28:11 -0700 (PDT)
+Date: Thu, 9 Oct 2025 14:28:09 -0400
+From: Yury Norov <yury.norov@gmail.com>
 To: Danilo Krummrich <dakr@kernel.org>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- nouveau@lists.freedesktop.org, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
- simona@ffwll.ch, lyude@redhat.com, sumit.semwal@linaro.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3] drm/nouveau: prime: fix ttm_bo_delayed_delete oops
-Message-ID: <Z-P4epVK8k7tFZ7C@debian.local>
-References: <Z9GHj-edWJmyzpdY@debian.local>
- <00e4d9c4-ecfc-4784-b603-12db04cda806@amd.com>
- <Z9q-ggKKgTsvW-Rz@debian.local> <Z9rA0G2urlVHFOSx@cassiopeiae>
- <1f4a534f-8883-4793-b191-60c2773f6217@amd.com>
- <Z9rSTkXlub-JZAz0@cassiopeiae>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Jesung Yang <y.j3ms.n@gmail.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feong@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org
+Subject: Re: [PATCH RFC v2 3/3] gpu: nova-core: use BoundedInt
+Message-ID: <aOf-s-XuhbN7MUlx@yury>
+References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
+ <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com>
+ <aOflmmHe8O6Nx9Hp@yury> <DDDYOBOZTF7Q.124VJDF4C76B6@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z9rSTkXlub-JZAz0@cassiopeiae>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+In-Reply-To: <DDDYOBOZTF7Q.124VJDF4C76B6@kernel.org>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,104 +97,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix an oops in ttm_bo_delayed_delete which results from dererencing a
-dangling pointer:
+On Thu, Oct 09, 2025 at 07:18:33PM +0200, Danilo Krummrich wrote:
+> On Thu Oct 9, 2025 at 6:40 PM CEST, Yury Norov wrote:
+> > On Thu, Oct 09, 2025 at 09:37:10PM +0900, Alexandre Courbot wrote:
+> >> Use BoundedInt with the register!() macro and adapt the nova-core code
+> >> accordingly. This makes it impossible to trim values when setting a
+> >> register field, because either the value of the field has been inferred
+> >> at compile-time to fit within the bounds of the field, or the user has
+> >> been forced to check at runtime that it does indeed fit.
+> >
+> > In C23 we've got _BitInt(), which works like:
+> >
+> >         unsigned _BitInt(2) a = 5; // compile-time error
+> >
+> > Can you consider a similar name and syntax in rust?
+> 
+> Rust is a different language and has its own syntax, I think we should not try
+> to use C syntax instead.
 
-Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b7b: 0000 [#1] PREEMPT SMP
-CPU: 4 UID: 0 PID: 1082 Comm: kworker/u65:2 Not tainted 6.14.0-rc4-00267-g505460b44513-dirty #216
-Hardware name: LENOVO 82N6/LNVNB161216, BIOS GKCN65WW 01/16/2024
-Workqueue: ttm ttm_bo_delayed_delete [ttm]
-RIP: 0010:dma_resv_iter_first_unlocked+0x55/0x290
-Code: 31 f6 48 c7 c7 00 2b fa aa e8 97 bd 52 ff e8 a2 c1 53 00 5a 85 c0 74 48 e9 88 01 00 00 4c 89 63 20 4d 85 e4 0f 84 30 01 00 00 <41> 8b 44 24 10 c6 43 2c 01 48 89 df 89 43 28 e8 97 fd ff ff 4c 8b
-RSP: 0018:ffffbf9383473d60 EFLAGS: 00010202
-RAX: 0000000000000001 RBX: ffffbf9383473d88 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-RBP: ffffbf9383473d78 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000000 R12: 6b6b6b6b6b6b6b6b
-R13: ffffa003bbf78580 R14: ffffa003a6728040 R15: 00000000000383cc
-FS:  0000000000000000(0000) GS:ffffa00991c00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000758348024dd0 CR3: 000000012c259000 CR4: 0000000000f50ef0
-PKRU: 55555554
-Call Trace:
- <TASK>
- ? __die_body.cold+0x19/0x26
- ? die_addr+0x3d/0x70
- ? exc_general_protection+0x159/0x460
- ? asm_exc_general_protection+0x27/0x30
- ? dma_resv_iter_first_unlocked+0x55/0x290
- dma_resv_wait_timeout+0x56/0x100
- ttm_bo_delayed_delete+0x69/0xb0 [ttm]
- process_one_work+0x217/0x5c0
- worker_thread+0x1c8/0x3d0
- ? apply_wqattrs_cleanup.part.0+0xc0/0xc0
- kthread+0x10b/0x240
- ? kthreads_online_cpu+0x140/0x140
- ret_from_fork+0x40/0x70
- ? kthreads_online_cpu+0x140/0x140
- ret_from_fork_asm+0x11/0x20
- </TASK>
+Up to you guys. But having in mind that C is the only language that
+really works for system engineering, I would rather consider to stay
+in line with it on semantic level.
 
-The cause of this is:
-
-- drm_prime_gem_destroy calls dma_buf_put(dma_buf) which releases the
-  reference to the shared dma_buf. The reference count is 0, so the
-  dma_buf is destroyed, which in turn decrements the corresponding
-  amdgpu_bo reference count to 0, and the amdgpu_bo is destroyed -
-  calling drm_gem_object_release then dma_resv_fini (which destroys the
-  reservation object), then finally freeing the amdgpu_bo.
-
-- nouveau_bo obj->bo.base.resv is now a dangling pointer to the memory
-  formerly allocated to the amdgpu_bo.
-
-- nouveau_gem_object_del calls ttm_bo_put(&nvbo->bo) which calls
-  ttm_bo_release, which schedules ttm_bo_delayed_delete.
-
-- ttm_bo_delayed_delete runs and dereferences the dangling resv pointer,
-  resulting in a general protection fault.
-
-Fix this by moving the drm_prime_gem_destroy call from
-nouveau_gem_object_del to nouveau_bo_del_ttm. This ensures that it will
-be run after ttm_bo_delayed_delete.
-
-Signed-off-by: Chris Bainbridge <chris.bainbridge@gmail.com>
-Suggested-by: Christian König <christian.koenig@amd.com>
-Fixes: 22b33e8ed0e3 ("22b33e8ed0e3nouveau: add PRIME support")
-Closes: https://gitlab.freedesktop.org/drm/amd/-/issues/3937
-Cc: <Stable@vger.kernel.org>
----
- drivers/gpu/drm/nouveau/nouveau_bo.c  | 3 +++
- drivers/gpu/drm/nouveau/nouveau_gem.c | 3 ---
- 2 files changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index db961eade225..2016c1e7242f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -144,6 +144,9 @@ nouveau_bo_del_ttm(struct ttm_buffer_object *bo)
- 	nouveau_bo_del_io_reserve_lru(bo);
- 	nv10_bo_put_tile_region(dev, nvbo->tile, NULL);
+If your goal is to make rust adopted by system engineers, you may
+want to make your language somewhat familiar to what people already
+know.
  
-+	if (bo->base.import_attach)
-+		drm_prime_gem_destroy(&bo->base, bo->sg);
-+
- 	/*
- 	 * If nouveau_bo_new() allocated this buffer, the GEM object was never
- 	 * initialized, so don't attempt to release it.
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index 9ae2cee1c7c5..67e3c99de73a 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -87,9 +87,6 @@ nouveau_gem_object_del(struct drm_gem_object *gem)
- 		return;
- 	}
- 
--	if (gem->import_attach)
--		drm_prime_gem_destroy(gem, nvbo->bo.sg);
--
- 	ttm_bo_put(&nvbo->bo);
- 
- 	pm_runtime_mark_last_busy(dev);
--- 
-2.47.2
+> >>          regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
+> >> -            .set_base((dma_start >> 40) as u16)
+> >> +            .try_set_base(dma_start >> 40)?
+> >>              .write(bar, &E::ID);
+> >
+> > Does it mean that something like the following syntax is possible?
+> >
+> >         regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
+> >             .try_set_base1(base1 >> 40)?        // fail here
+> 
+> Note that try_set_base1() returns a Result [1], which is handled immediately by
+> the question mark operator [2]. I.e. if try_set_base1() returns an error it is
+> propagated to the caller right away without executing any of the code below.
 
+Thanks for the links. I am definitely the very beginning on the
+learning curve for this.
+ 
+> >             .try_set_base2(base2 >> 40)?        // skip
+> >             .write(bar, &E::ID) else { pr_err!(); return -EINVAL };
+> >
+> > This is my main concern: Rust is advertised a as runtime-safe language
+> > (at lease safer than C), but current design isn't safe against one of
+> > the most common errors: type overflow.
+> 
+> Where do you see a potential runtime overflows in the register!() code?
+
+Assuming base is 10-bit,
+        
+        let ret = some_c_wrapper()      // 0..1024 or -EINVAL
+        regs::NV_PFALCON_FALCON_DMATRFBASE1::default()
+             .try_set_base1(ret)
+
+Or maybe I misunderstood the question, because if there's no possibility
+to overflow a field, what for the .try_set_xxx() is needed at all?
+
+> [1] https://rust.docs.kernel.org/kernel/error/type.Result.html
+> [2] https://doc.rust-lang.org/reference/expressions/operator-expr.html?highlight=question%20mark#the-question-mark-operator
