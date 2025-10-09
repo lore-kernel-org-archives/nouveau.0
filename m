@@ -4,105 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80DB2D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 085E7D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B81010EC79;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 559C510EC8F;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="k0xuHfjg";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LttzFiya";
 	dkim-atps=neutral
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com
- [209.85.216.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0DFD10E2BA;
- Wed, 29 Jan 2025 07:58:58 +0000 (UTC)
-Received: by mail-pj1-f48.google.com with SMTP id
- 98e67ed59e1d1-2ef28f07dbaso9106908a91.2; 
- Tue, 28 Jan 2025 23:58:58 -0800 (PST)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D900210E23A
+ for <nouveau@lists.freedesktop.org>; Thu,  9 Oct 2025 19:19:54 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-339d7c401d8so231325a91.2
+ for <nouveau@lists.freedesktop.org>; Thu, 09 Oct 2025 12:19:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1738137538; x=1738742338; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=mBHIAN7JpxixHgHVdW3YNOvZJZHJ6etB6CsRRxzIqFo=;
- b=k0xuHfjgjNx0HZjVTzirqzOctmYWIUAgNxpwkHCGanAll9h5G8/8TWuLE2c55viiz2
- alHcLLwLAb1AUBiVivpH3ZIm+/pUSyn7RDp8rBde+FpEmyCkRTtladTFDMhr4omaD8O4
- VysUND1ipBB7AvUdL84Avz/7gRkbGqA3LM+A+3J4EyhR9Wb9XJN+0ZxhhJVnr2EXhLe2
- av4GxUNRSDmsXzkNZJp5oR3dwgKoRrUkQl77mON+rULP967pYiluNTOy3uc4xFbOa8T1
- +hYLurX1e7ko3RaqaFAkWe7uAJUA2RID+1fwFRoH1a4v9bV+BJ7/kikhNKep5iZ4U+mN
- 8uCQ==
+ d=gmail.com; s=20230601; t=1760037594; x=1760642394; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=rcXwgJGTpWZU2t3OdSFiom5bqnzub6a4TGqV+K3Njdc=;
+ b=LttzFiyaqJMC47q/A0XafUZwvmvoVFQaCos9WLkmtf/RlndvzxUN59XW5lAveA/a3G
+ Y8uKNSV7/BmE47lzgRI9V2RPkS8Oy+HYhhnyM2Kd2z11xO47UVISQO9J8UaKDdplqlBm
+ D46fJvZotl+U5+s9lWDQJXW2qFHeD6ypDZNWxLlLOZG/VVnkfelNzo8fiHYt/mc4LvPe
+ UieOf3QH07svyEObdpvpW55ijx97eLOJM86Piw0syde1Inf6KiPt3L+Mz5BXMMlVB+l+
+ j48UxClS77xPdGxLC9rQo9WrsWc9x/HrcL6E/MvL6Ei00CGBOrmGs9SsigSrWPnAfEyA
+ bfrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1738137538; x=1738742338;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=mBHIAN7JpxixHgHVdW3YNOvZJZHJ6etB6CsRRxzIqFo=;
- b=BD2Gz93Mptc+oNojBo08qwEVj8NUauvHM8LRX2xHak2ERxTCm93s04XCt6BnpxNDUI
- AM/qpYOd8ZC2V+n4MdzKw74ALW4IgHkLoPRZvUPRL6Go+7Ul8zj/NhSRvMNwcyuEbXg2
- sbluNGhEv5aJK0ozjsNgKwu6Ixy5fZpvHrKJOca2JQwNRxy6dj2iSvgWXutA1nJijUyJ
- IMtQc2/usoaKZWy5OJf5GZz1pAzZRpyESowk/f1DOkwoHnx7xo+ckHXtKkpeWFnhR3/g
- AkNYGiS8SUZOqRi55SqQe2RMVlkLQdn4teTBrNr3pU23J/QjhAj3yIcGvQcwxEuTKDOh
- VOvw==
+ d=1e100.net; s=20230601; t=1760037594; x=1760642394;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=rcXwgJGTpWZU2t3OdSFiom5bqnzub6a4TGqV+K3Njdc=;
+ b=B0StLiDyP7Ibo1x8AtWTOVOAhMU07y4cOQQDN8OvznazGoM/Z3n62IRwrGRvzge+IJ
+ gPlDbaz8CyXPzdWqmjwhTgTwtIIzXwmjHJFxKP1ikpubP/GeB/+ZjrXopudldl+xE5AS
+ 7eSe0pxTDQ5fMN2jbohTdZxw9kqw/BtO+C0WE+m03SqEQeA9jGMUUxQR136G9DNKihdi
+ Lnl57roBvcbhGUhmWdnymvNKWvJDYbf1b8YfnxUQMTVZjL207H44uuc4udu+bu2G3hlb
+ Jh8rr2FvmOyN4Y/pbv3EX9J1+nZZNUc3zjj/HBf9L11kdHphG4jo3H3+KnHAFtdqnV4K
+ QM8A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVZjCIEsOnAXEhekm8iZ5uhobCXVdj1VdgfYYrpbjlQCY6Wc/VoftU+g48wqaQXsCj2st57vw==@lists.freedesktop.org,
- AJvYcCVsU98HLTBAlXs2G0X+4snBX5zLxcGkmrYhXlFYSEhi9K86nJayoQvUU4qj/fwLhYUTKV4SCSnJfQ==@lists.freedesktop.org,
- AJvYcCVwa2dduB+iGH5wZOMlf6yEWHxU1pHY/JnPD+5/PI3WR/sOBXbTSSbqjbk+qrufyYMqHyUBSiBj@lists.freedesktop.org,
- AJvYcCWc3TmXjc+3e2Gdr67AX9Wbx+vXvnC2ooGkWXXTa+45GPvXj3jS2UOdEgC5HmkS22UMPdlTQemamQ==@lists.freedesktop.org,
- AJvYcCWlP5/xQn2Q3QgyL1IA3ECAzT2fM1uY/Zn65zQtcC5bCfw5g7q8+GdxPUlc2A+5sBiJdGq1EjgJ2g8K@lists.freedesktop.org,
- AJvYcCXWQI0WYZR3w9GeAwkLycAX8tmdjqnjuVH3BlRDtFsAnPaxMjxuxjR8F9UcAxzrcs8dTb54tddT29U=@lists.freedesktop.org,
- AJvYcCXoTGKoV+lJCV15ilW2CWbNMD8IzIKGTqrgzGPwUp9dbOfj1+GfnLUpZG1ppIhKlF/CC8cOY23YDl2S@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwSUSpkPO/GHAO7rM3chprJ6SjgzbSCedFOlpC0p6Zn62QXtcMV
- wnMuXmH11v6qqjEtGuL5b1/D5TDe3csOyyFg1klMNOWAvLibBRTCVB8j/J6Ea1L98poWWNv4YBc
- ykMYKhOVnMpJbBEAPWVQsq06QsxI=
-X-Gm-Gg: ASbGncuIVtgBsNbLyeyfoeXORT0z4X++eAjOLaTVYQVNt7PspciVcCFzFbj2gKxVMlO
- QkRrJMUDhoPEbsDQSJ2m0/VsZV0/nuvfZmTNs8LxvSWa5SLhEenUJYLbLIcEnN4HXbDRUS6E=
-X-Google-Smtp-Source: AGHT+IG3r4vUiKlWHwTQkZvS7+VVNNq+4vIcWf1DrOqg/M9EOigTA4eFhbCTA0u2oYA8j4fsp5P00rPgbnSpKao2ckA=
-X-Received: by 2002:a05:6a00:4b9a:b0:72f:d4eb:48ee with SMTP id
- d2e1a72fcca58-72fd4eb492emr1158389b3a.12.1738137538327; Tue, 28 Jan 2025
- 23:58:58 -0800 (PST)
+ AJvYcCXA/4dnexe4+slRbJ92SJMlkIbSClMaBoDlBaeVfpM/JMG/bNPo8/Ca8UC5UD6e+dPk8bPRMUgO@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzBQXj90zkiIidD+9t9pkRC09P1TDPO91SgHvD0AYrkMJZEzQjq
+ 60d/iZpV3G1g/LiWn3sz7DBGCXjHx+ogsEqDmaz9lSF56wJCqzEUKuo2HGqSyE8YHD9WTkRg4/e
+ frcX7prKxQd27h8HsVaWDTF9Dti4OvpQ=
+X-Gm-Gg: ASbGncuhKey6FxAWX/lB+G+REos1P11FQSj8chUg4qHpzu/mek0sBDg+cnVXzfrTHqe
+ T9RqhHLVIQ7WWU0sSAUj177mA2qcU0hx0z+9pBTZmSccDy5K+MAaM902PeO4XDJmqWSVD6ayoXs
+ JNKkzUhzODRemxRThc1SQo2KwC1mp7mqr3/0DhIPRDmNGpoFUgpRhGpbPz5/3SfHfxNEzIQFX9J
+ 4+PFP3GmtLRVZ690uZptj0p8wB9bjM6AQrESN5Ar/44JkxfPaIs4uiIT6G+I3TEpMNqDOQqyzMP
+ KuZMph7kCd6wKo3PopLt3NkxbpNCeGGAJ37yXRqREgcelLPnww==
+X-Google-Smtp-Source: AGHT+IGoblUKEeISrZbv72jxa9PiUckqqLQlj3DZjUWlLcO9V1Ny9+gENsT9PTdE7jTdp3qFnpKB0Hp3UsFuterm8Ys=
+X-Received: by 2002:a17:902:d2c9:b0:269:96d2:9c96 with SMTP id
+ d9443c01a7336-2902724dcb1mr61748135ad.0.1760037594340; Thu, 09 Oct 2025
+ 12:19:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20250128142927.103290-2-phasta@kernel.org>
- <CAH9NwWeTVv3kABmADJD8mNcE1Psq2ToLfzjO4HzbSfJ4+gkxDw@mail.gmail.com>
- <20250129085625.502ab114@collabora.com>
-In-Reply-To: <20250129085625.502ab114@collabora.com>
-From: Christian Gmeiner <christian.gmeiner@gmail.com>
-Date: Wed, 29 Jan 2025 08:58:46 +0100
-X-Gm-Features: AWEUYZmAfGxLzIZNC3w4bsXkufJYOdKgnDes_maHi6cPE_lb4PoKfKm-HgqiaWw
-Message-ID: <CAH9NwWdaAyPXbUmR=65uC0RTNB4rvKJxXi0DMhjC2F1fKRYA4g@mail.gmail.com>
-Subject: Re: [PATCH v2] drm/sched: Use struct for drm_sched_init() params
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Philipp Stanner <phasta@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Xinhui Pan <Xinhui.Pan@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>, 
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Qiang Yu <yuq825@gmail.com>,
- Rob Clark <robdclark@gmail.com>, 
- Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Karol Herbst <kherbst@redhat.com>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- Rob Herring <robh@kernel.org>, 
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
- Matthew Brost <matthew.brost@intel.com>, Melissa Wen <mwen@igalia.com>, 
- =?UTF-8?B?TWHDrXJhIENhbmFs?= <mcanal@igalia.com>, 
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Sunil Khatri <sunil.khatri@amd.com>, 
- Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, 
- Mario Limonciello <mario.limonciello@amd.com>, Ma Jun <Jun.Ma2@amd.com>, 
- Yunxiang Li <Yunxiang.Li@amd.com>, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- etnaviv@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
+ <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com> <aOflmmHe8O6Nx9Hp@yury>
+ <DDDYOBOZTF7Q.124VJDF4C76B6@kernel.org> <aOf-s-XuhbN7MUlx@yury>
+In-Reply-To: <aOf-s-XuhbN7MUlx@yury>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 9 Oct 2025 21:19:42 +0200
+X-Gm-Features: AS18NWAcMteSg_vVIc0g1AxzGZB7uiQHfY0qKY6Biz_FAtZhjrTWuqxAC8PWrD4
+Message-ID: <CANiq72n7i7mpP3SXnY_opUKAm=UjOne=kECc4QdyXo4gz0qWVA@mail.gmail.com>
+Subject: Re: [PATCH RFC v2 3/3] gpu: nova-core: use BoundedInt
+To: Yury Norov <yury.norov@gmail.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Jesung Yang <y.j3ms.n@gmail.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feong@gmail.com>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:53 +0000
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,23 +94,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Thu, Oct 9, 2025 at 8:28=E2=80=AFPM Yury Norov <yury.norov@gmail.com> wr=
+ote:
 >
-> > >  int etnaviv_sched_init(struct etnaviv_gpu *gpu)
-> > >  {
-> > > -       int ret;
-> > > +       const struct drm_sched_init_args args = {
-> >
-> > Why not declare it as static const struct drm_sched_init_args args = { ?
+> Up to you guys. But having in mind that C is the only language that
+> really works for system engineering, I would rather consider to stay
+> in line with it on semantic level.
 >
-> Because some bits in there are not static, in this particular case,
-> gpu->dev is not static for instance.
->
+> If your goal is to make rust adopted by system engineers, you may
+> want to make your language somewhat familiar to what people already
+> know.
 
-Ah.. yes - thanks.
+I am not sure what you mean here, but just to clarify: our goal is to
+improve Linux with Rust, not to increase its adoption (even if
+obviously many of us would like that). And just in case, it is not
+"our" language either -- most of us do not come from upstream Rust.
 
--- 
-greets
---
-Christian Gmeiner, MSc
+In general, we do try to make things as familiar as possible, but
+sometimes it doesn't make much sense, so we don't follow C blindly.
 
-https://christian-gmeiner.info/privacypolicy
+For instance, C23 also got checked integer arithmetic macros, but that
+doesn't mean we should start using names like `ckd_add`, returning
+booleans and, worse, using macros for those. C23 also got `nullptr_t`
+-- similar story.
+
+Cheers,
+Miguel
