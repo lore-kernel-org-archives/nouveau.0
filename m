@@ -4,74 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C826CCD184
-	for <nouveau@archiver.kernel.org>; Sat, 11 Oct 2025 10:33:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B9DECCD185
+	for <nouveau@archiver.kernel.org>; Mon, 13 Oct 2025 06:20:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D35210E15A;
-	Sat, 11 Oct 2025 10:33:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8740610E39D;
+	Mon, 13 Oct 2025 06:20:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="LYDOZqYW";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fiXDGD1w";
 	dkim-atps=neutral
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
- [209.85.128.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB8EE10E15A
- for <nouveau@lists.freedesktop.org>; Sat, 11 Oct 2025 10:33:12 +0000 (UTC)
-Received: by mail-wm1-f74.google.com with SMTP id
- 5b1f17b1804b1-46e4fa584e7so15660725e9.0
- for <nouveau@lists.freedesktop.org>; Sat, 11 Oct 2025 03:33:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1760178791; x=1760783591;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=UEMAqpRvkk1CnOEEkWJ/ybbuyMvUoPKtuwUvs4qymvU=;
- b=LYDOZqYWINKcTlsBYvgSeWqchcm7az0R1nBc2o7/6Nuse8/Qh++4u3Tr8OVH8vEyiX
- bajqRy8ckEYM8FZN1wCyxLQNjB6+NT0J1xF/L0ruLXh1dScftDQs5DrmIh9qZdeHv48r
- +Ib/+xEUt2oYFwmHyzsNGyNuVi4GFlbLUXFYggsEvtcu9K3uOyjUseiUAs/E61zMWgv3
- 2TwznGS8CkZ6Mk/x7jYIJQn6l+5tulqfH6Dok3kQ8aa/WexsCcY2ozjktY24oC6LjXgt
- HL5j/YxWA1r9KS5nP6SON30j77ET9UaJCtop2W/JNtkG+hcVL6+gpbVuSIIAOjVJWg/n
- HZ9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760178791; x=1760783591;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=UEMAqpRvkk1CnOEEkWJ/ybbuyMvUoPKtuwUvs4qymvU=;
- b=X3GhFbJ48t+0oNzQA0zYgSB2g4rygAD9XYzxqNEtwZFQyJBTfyN6/QliX6M+pWDv8L
- 7wj/2zN3gShEvXOwKC+TUTT0VCoCAAQkmrfQJi8JPJ+WurIUUqYhQiOkuXjN+DG8Zg3G
- IpLcezINkAWhlU3tAsYNYdbsSkwpLOUGQjdTStACRxntNJGubvqdaUwKx7kJwZW3OjIj
- lX/5BmRau0ubgSJgzBJOITIqLQxqX6Y8fJf0/nJfkZ63Y/zso02p+WbamDzZrG29AfBj
- fkClRAP+MCocoizml1lzsCe4AgPpNu06OSRJ4C7nIvnyAyYu1IlpZXLFPipXmDYFFxCY
- 50bQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVaw2jgU9GXsCZEpjmTv5mznJ5A3PnsWknpZ8rw0vlK+v87zoP6GRROepZRE5HRJvCwz0cDgWBS@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8459j0y7b+B2tsqcaquAwOCy3yMCYxlnBpOhWfs674IUPedTw
- 2umgoRzRJaqC81AfZRtm0zd95zr0Go99A8yZaSLQeUkL2/1ktwTFh/J8zG3jNwA7FRIlRJ8NSR3
- X+rkzAjLWhdHfjXPteA==
-X-Google-Smtp-Source: AGHT+IE95szyP/U8+8WhwLLID98VXllUKscYx6ym55wS0AieLc/ikoex6vLfoIyhhX1iRrMI6+QUlbXsF49wksQ=
-X-Received: from wmcn2.prod.google.com ([2002:a05:600c:c0c2:b0:45f:28dd:87d9])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600d:416b:b0:46e:3dc3:b645 with SMTP id
- 5b1f17b1804b1-46fa9a87f3emr103546595e9.3.1760178791259; 
- Sat, 11 Oct 2025 03:33:11 -0700 (PDT)
-Date: Sat, 11 Oct 2025 10:33:10 +0000
-In-Reply-To: <20251009-bounded_ints-v2-2-ff3d7fee3ffd@nvidia.com>
-Mime-Version: 1.0
-References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
- <20251009-bounded_ints-v2-2-ff3d7fee3ffd@nvidia.com>
-Message-ID: <aOoySkWjPcJLVDrG@google.com>
-Subject: Re: [PATCH RFC v2 2/3] rust: kernel: add bounded integer types
-From: Alice Ryhl <aliceryhl@google.com>
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
- Yury Norov <yury.norov@gmail.com>, Jesung Yang <y.j3ms.n@gmail.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- "=?utf-8?B?QmrDtnJu?= Roy Baron" <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, 
- Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="utf-8"
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010059.outbound.protection.outlook.com
+ [52.101.193.59])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9A4B10E0A7;
+ Mon, 13 Oct 2025 06:20:54 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DJL1Qo42SAAuNzCdClBmmuFI49rLvSdlNeCreqV8f8jNCr8+TIVWW6WjY+x+MY1VNygsTmzKQLHobjyw9lJOT2hFySAyTZcJKY5hMt1K0xklQV4FnPNnf/Ep8cubP63fEtGKdamhMZh/hCDPzzfE7kPkjUELmTnu2WrjHOcpEpglBunmnvvZflIE+EmWuG09YTqkXEhog85orJtkPPL33F1e1YkzpyqxcNNOzR9IybLgoUNVcGQ4FCj81alIKheLRuCtyuJkg03M8FgBzyIYz+V5dUckjLGbUgnR7bsjziar3cnGzImIRm8atZIjOhprJTjnaLagpIv0b+RGOz5ZEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9FZJyBWca6d79asUN580Cmt9UYfxWkNoK9JHvgF7HgM=;
+ b=ljTbFmnvTpQOhx6hTvW4eMFcX9sQX5qWZ3yR3bLw+QSC879CancIAl+sbX+9fdpTjqOtdHyZc8F/5MHZ23eRRm6n/hS8T7XE4W12w+eRrN14D6XAhiXnIQk/B+GfrNmPgUtIoxlKOhn2Uhovb2+BL3VtDUtWf4RmCwVilVckIStDzD+BXsCIWGmj1gKnscws1Lv5JFhIVdAbrPC3UQyJjV8HwT0no8W6BDLrGrx0GmEdCZD8RtkdQgs/SIbRoXPDhOZF0DmdBrGWsOFrRsVXOpLgNtetTmIorI4RlNQ9GyrH06b0FKL+WCyyvHEF66hoNWQo59Nbjb8Zjk43a3WPQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9FZJyBWca6d79asUN580Cmt9UYfxWkNoK9JHvgF7HgM=;
+ b=fiXDGD1woUlYnfThq1HOxxcjmZ48sI4z/ld1K+GzKnmB+o8w/d2YY61SRErWh1+pbPf4foComhittf/A4v4bOqF0XSlq6glILGPOEQV0ZTXByQUDbaaTzoi8JsZ9dmhXCQUFFiARtjVIIthYS57YH0Ejt5ArwAK4NNykaDmC5pDF7fMfNGqaedug+A4I9bC22CJAJcv3nLt7hTOpbejhHX331kteA7aUN5csvgjbu6fnfdRsIH493MDtFrYpjxP0xwtjCOEJi0yRnIVneohTknNIVAAwY9uKLtWCYM02Rt6v+G3Vtyhlf67DmZ02wIweS5k028eacCYHtgp6o5SDTA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
+ CY5PR12MB6406.namprd12.prod.outlook.com (2603:10b6:930:3d::18) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9203.12; Mon, 13 Oct 2025 06:20:52 +0000
+Received: from DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe]) by DS0PR12MB7726.namprd12.prod.outlook.com
+ ([fe80::953f:2f80:90c5:67fe%4]) with mapi id 15.20.9203.009; Mon, 13 Oct 2025
+ 06:20:52 +0000
+From: Alistair Popple <apopple@nvidia.com>
+To: rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ dakr@kernel.org, acourbot@nvidia.com
+Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org
+Subject: [PATCH v5 01/14] gpu: nova-core: Set correct DMA mask
+Date: Mon, 13 Oct 2025 17:20:27 +1100
+Message-ID: <20251013062041.1639529-2-apopple@nvidia.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20251013062041.1639529-1-apopple@nvidia.com>
+References: <20251013062041.1639529-1-apopple@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SY5P282CA0119.AUSP282.PROD.OUTLOOK.COM
+ (2603:10c6:10:20b::16) To DS0PR12MB7726.namprd12.prod.outlook.com
+ (2603:10b6:8:130::6)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|CY5PR12MB6406:EE_
+X-MS-Office365-Filtering-Correlation-Id: e82e202e-2d21-41af-30c1-08de0a20a8a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?J8EJve2tP5+ugfP0rcwVyV6Oy8+035r8p6PcvNzEo2OVV2fYH8VYBGgfSIpy?=
+ =?us-ascii?Q?8eH+GcWIywpZQdrt6BsVyH7f0jVVWYFHoqxFOfMb5pw+gy90nJExiA2lbNy8?=
+ =?us-ascii?Q?pXSiRSSCubZWlc0eJYzqmZE5N1dvoKjzC5SNEGfs9VvRjrKkj1WFvzxh76/G?=
+ =?us-ascii?Q?ZxYUBmbHTaTlGjUAuV9cjCR9/0bycUA+vrtRWIs0X7xv5XJ/bStWoFaG+1Qt?=
+ =?us-ascii?Q?SC747X9tuLK1Bym64rAsQvNCVj2cca0VZ6XDCCJVDZd2Valv2oYGQiP8aGZ6?=
+ =?us-ascii?Q?jCxNm14mlBy9Z/Jl5fKFK6YtTwOpXbbs65yXSHTlNYwm8smFKm8l2N2DmkZf?=
+ =?us-ascii?Q?ttst5KwC0vGGfUHYBD9fvv7NAmR8M0hfufQXjY3h2TFrM3mxw913i/fNtzXK?=
+ =?us-ascii?Q?WyZkyy4dlVXwkMR0lLj1e0v8EH3HmCPl1mQC7nmAh5e33A8pnXICaYCtQFCE?=
+ =?us-ascii?Q?9mSw/azOTz+dJiRGqDIkB3RxIt+Goxc4MpcmEX54wkEg4G8bggfB8lDlp3RB?=
+ =?us-ascii?Q?pSzskgnN0uWlgqCcG2q1zK9sgbHi143+Bm59fSiVv5Od4Ymys1/44OL+SVpe?=
+ =?us-ascii?Q?zfaiGFHob0WB399hxQt8Vv2XR0Cb1RDtV3YmKJIgzEqOfiNeJdYq2vMSf2w0?=
+ =?us-ascii?Q?qsSyN5BlNomRRl4uUn38/tz59HD4x5ObpgiL1C6QQvcapjxNzCg11BcquWEs?=
+ =?us-ascii?Q?1FZHBOG+NMis2l4EahabvKi3lkYEBuiw/KeA2A6fPJFlkrCVm07yqXYlot+2?=
+ =?us-ascii?Q?5J3q47K9s5X8FZyY48XStWugGIm3xUNjluax2BjNQX5VDDKtkYdWLEo7ncew?=
+ =?us-ascii?Q?Ow/RIMJYnAPegHfuS9QdPh7TTDBY5Fzo0Fe5u/NKT6cV0LlyDHTL1lTrzfYt?=
+ =?us-ascii?Q?dGlqK6phCWHZTlTvj4f01/FlxJ/XPyCZHf+MK2F4p69FVv0DL7mejdT6438f?=
+ =?us-ascii?Q?HBBdk/hrzcfWztAlT7BIjz842k6U7WtSrUGgTNJ13R1fFFLKZsvscGk+Ejo6?=
+ =?us-ascii?Q?GP6VD4vVVPwDjKPfKLLOckCHBSixLcvCaxBqydnE/jr3TkHHMLpz1CXZvWFm?=
+ =?us-ascii?Q?lwTuAO3lbRkA10AxDTBIoTHd++jMjakRFd0CivqopOsg68yFEIEjwnaLE/TO?=
+ =?us-ascii?Q?kTk9rhGMUaQy+sqAADDgomRvQmZX9Dkw8al5EP6x+IxDVJQraPJNHNWcbbRB?=
+ =?us-ascii?Q?xNev5v8Gq//DC6NB6SwOK7pTxYI+7O9gLoX7Nw2U9vNkjPHL9w6wifMrBLhS?=
+ =?us-ascii?Q?czuEnUHFiuFBJOl1b/hwQH/6EQ4t75wD16SmIT6ZtQ1EZu2D0zcEhdhUV7cE?=
+ =?us-ascii?Q?4OvgKctDr77fRYI+GR+77HEMV0VyyO6T0t5zFi4Hkz21hiGO51MBPm0G0QOo?=
+ =?us-ascii?Q?RieLWy8EuUaFLul0FoeLN65rSD7S5p3Ql56CeRsZH/2buAg8yuDIiS17yje0?=
+ =?us-ascii?Q?n/liP9m9YlL8XNjCI/tcK+DF2cnzbtbv?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WLLq1u4+HFOntwLGo9Wiu8vpiHxGJkLSbLp+iSfgUnMUMeYejETHsoudNrCm?=
+ =?us-ascii?Q?pbsDEpkn16NGl5gG1JARhH5RNvnsaZgTxgQgVlYvwO40nIZVI8w6kgK1MyOV?=
+ =?us-ascii?Q?ioonXzf0WQbWK/E7CMEPsad8EhhjXx/Nwq+bUDyon84Q2rVydhoXdBjZUW66?=
+ =?us-ascii?Q?cFNOJvHK9VedtUflyZOE/BfiOIYQOa4MQ39hKVXejROyoWXhZm93cwNeNeo/?=
+ =?us-ascii?Q?vyU0N8h8V6pW1uppXWCvJh4vhGDZejGp2Ie3X+D5phrfAB+D3ATTPIRY4LF+?=
+ =?us-ascii?Q?1BGZwLRE0/20TdYpziwZQ3RY8lq8Me3q2JNxKzxisdzrnX+XnwiOOnYb7UQk?=
+ =?us-ascii?Q?w2Q+ueAPjmhkp/A0qk7kgy7QRm0PgHJjRc8nTs9eSnPC1mcSIv16sBifzMyj?=
+ =?us-ascii?Q?WX5/DbyG4/riLU64U9VqzKaMJNN74d2oNDgtEnshISf710lEy3x3WIuVMmWG?=
+ =?us-ascii?Q?QwCh9lHg7PP5UYmuzuyRsSM0M+isNsGkgfadXI19jYE811x2MtjW7XZ3FQ10?=
+ =?us-ascii?Q?y1GKZaG4h3dSF7PaMm0CplmUwbYiSElA7wr7sRLiiHUJ9fR9mgg6uglLoDu6?=
+ =?us-ascii?Q?ALOH2Wut8gywimjD7XWENPcb3nq/rMKTJHdNr4A4+wxP8s9VliNy1upEHu6s?=
+ =?us-ascii?Q?Ppytt+mrBqvmi89GlttHo74RJHb1B/jpHKQ8F1Uc/5GtMFW4moHAQTKn8pt7?=
+ =?us-ascii?Q?W5wjUY7rt+IcK0+lVkz6NEeGFLnQjY4iKjoKreIR7cLdfux85XjLgMZ1Ty/y?=
+ =?us-ascii?Q?54T6fYKPW9F/g8UXAUSv8T2CHRvhxzdXlHJRujNK78Nbml5XSbH5RM/vAfnc?=
+ =?us-ascii?Q?vAouK/O3Uy3KDKElnW2RFI7+8NOeiRFioeatIly1t76rvxr8CPnN9urI4qef?=
+ =?us-ascii?Q?i3FE6PR/GAcywgkXWtKuPXN26Dgg6SR+WXnq2eHWxM+TD57NO+aXOCb2O2e0?=
+ =?us-ascii?Q?3Ubwgqj8pziGi18jGubOKcCOIqCXFwd0LBTLsrmz8P4TAMUsdR0LjqKbX4dv?=
+ =?us-ascii?Q?GyRBby8MRiRid7Q8JstqcbND4FsTnPiIH6kwh/5XrR2+kBnupUp+FdAdrPGj?=
+ =?us-ascii?Q?Uq8xgqIO5QmsDmDulCo7d1OdF6xiJVunNa/34o4T2hHTjMc2fS4ssisqz0Y3?=
+ =?us-ascii?Q?/3/oQzscEcyAKEVcEZJdU3Sp0EgfW88/TAb0U2l8w2wboN7FRU09qlG/ReJx?=
+ =?us-ascii?Q?XWb4SKDkzqTmtNO1gtAOgjnaLHUIPltkZqjOTwdiGzxVIP8EHIofMKgkd05f?=
+ =?us-ascii?Q?R0Hc3Ab2/jgCbXqPZDVXJo+z+kefF1C/WDYfOfgbY/jG8+mNLHHIGpgsjuGn?=
+ =?us-ascii?Q?CeNx8lDzvQ+vBA37Ho1LIqzZaOQIq883QDir2KyPd42K9zVe/oXvJRFwneDO?=
+ =?us-ascii?Q?6wmTHEWd8SCKf3yNKd//+6vIYJ+r7eAIXEgtnW32e+Y39n6RutAod1wgjCKk?=
+ =?us-ascii?Q?gN3yO3IjuuOOpzjY2eN1rlW5zbVhaVpU87bi6sr2o9VkjXllXIFKmuoX9+PA?=
+ =?us-ascii?Q?8gpVpPfD54soox+P2L4V0rHS7z/mk19to+RBevPzxzc8rXz4TM3XsFTVJU+t?=
+ =?us-ascii?Q?wrRNU9ybSasE1PATblnxqYe3J9pMHV3Y8msVqknd?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e82e202e-2d21-41af-30c1-08de0a20a8a9
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2025 06:20:51.9816 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QVQh07iSk5CGglUnQbLUtY2LV0eRKLBzHT0SQ2HjOPqP1QKVnDuQMLmkt6cki4LWNuT/o1mOa+0PO83p3RggHA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6406
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,28 +157,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Oct 09, 2025 at 09:37:09PM +0900, Alexandre Courbot wrote:
-> Add the BoundedInt type, which restricts the number of bits allowed to
-> be used in a given integer value. This is useful to carry guarantees
-> when setting bitfields.
-> 
-> Alongside this type, many `From` and `TryFrom` implementations are
-> provided to reduce friction when using with regular integer types. Proxy
-> implementations of common integer traits are also provided.
-> 
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+Set the correct DMA mask. Without this DMA will fail on some setups.
 
-> +    pub const fn enlarge<const NEW_NUM_BITS: u32>(self) -> BoundedInt<T, NEW_NUM_BITS>
-> +    where
-> +        T: Boundable<NEW_NUM_BITS>,
-> +        T: Copy,
-> +    {
-> +        build_assert!(NEW_NUM_BITS >= NUM_BITS);
+Signed-off-by: Alistair Popple <apopple@nvidia.com>
 
-This assertion can be evaluated in const context.
+---
 
-const {
-    assert!(NEW_NUM_BITS >= NUM_BITS);
-}
+Changes for v5:
+ - Update SAFETY comment for dma_set_mask_and_coherent()
+ - Add TODO for using different masks when we support more GPU models
 
-Alice
+Changes for v4:
+ - Use a const (GPU_DMA_BITS) instead of a magic number
+
+Changes for v2:
+ - Update DMA mask to correct value for Ampere/Turing (47 bits)
+---
+ drivers/gpu/nova-core/driver.rs | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
+
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index edc72052e27a..2407d0ab15e2 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -3,6 +3,8 @@
+ use kernel::{
+     auxiliary, c_str,
+     device::Core,
++    dma::Device,
++    dma::DmaMask,
+     pci,
+     pci::{Class, ClassMask, Vendor},
+     prelude::*,
+@@ -20,6 +22,15 @@ pub(crate) struct NovaCore {
+ }
+ 
+ const BAR0_SIZE: usize = SZ_16M;
++
++// For now we only support Ampere which can use up to 47-bit DMA addresses.
++//
++// TODO: Add an abstraction for this to support newer GPUs which may support
++// larger DMA addresses. Limiting these GPUs to smaller address widths won't
++// have any adverse affects, unless installed on systems which require larger
++// DMA addresses. These systems should be quite rare.
++const GPU_DMA_BITS: u32 = 47;
++
+ pub(crate) type Bar0 = pci::Bar<BAR0_SIZE>;
+ 
+ kernel::pci_device_table!(
+@@ -57,6 +68,11 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> Result<Pin<KBox<Self
+         pdev.enable_device_mem()?;
+         pdev.set_master();
+ 
++        // SAFETY: No concurrent DMA allocations or mappings can be made because
++        // the device is still being probed and therefore isn't being used by
++        // other threads of execution.
++        unsafe { pdev.dma_set_mask_and_coherent(DmaMask::new::<GPU_DMA_BITS>())? };
++
+         let devres_bar = Arc::pin_init(
+             pdev.iomap_region_sized::<BAR0_SIZE>(0, c_str!("nova-core/bar0")),
+             GFP_KERNEL,
+-- 
+2.50.1
+
