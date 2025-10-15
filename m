@@ -4,77 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6FA2D5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DF8CD5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 706BC10EB74;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7203D10EBA9;
 	Sat, 13 Dec 2025 12:41:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="g7zE4w18";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rexpznn2";
 	dkim-atps=neutral
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
- [209.85.219.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C04710E002;
- Sat,  2 Aug 2025 21:25:10 +0000 (UTC)
-Received: by mail-qv1-f50.google.com with SMTP id
- 6a1803df08f44-707389a2fe3so32759326d6.2; 
- Sat, 02 Aug 2025 14:25:10 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A31AC10E279
+ for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 19:50:38 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-3ee15505cdeso1335095f8f.0
+ for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 12:50:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1754169909; x=1754774709; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
- bh=Cume3DFrFO7u3pL9Y1K1ypuZDFhhQLKijYnO66hZ+p0=;
- b=g7zE4w18y4MjQq0SIS0749xEyh6543vI2rY9ph/+zm866rqYGul1T4szgTfHgC6HoZ
- sVSq3dKmjHA9CnDX33g8gjbmYIm8s3rnjgPujPe0ztD7mo72qzali8W1AC/TJlvdHQF7
- 1+Hz2CjYOKh5C+LZ8I6yAXo0u+ovVq+Q33RKUG/FiFHEaGF3PAHiyobzDrMRZU7o6qzt
- EkX/OHD5fkTd98tfYcBETxHqnAb4ZqD6qm1aUFPDNeEvU9Fg8vs+OnC+i8dq7OHHBQIA
- o6IkXZsMVY0UuzVCmenE1fv6efFvVLGcbhmuSAXUoHYgMu7Kq3LTQmoKoBOPR8gCReMR
- 3KFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754169909; x=1754774709;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1760557837; x=1761162637; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=Cume3DFrFO7u3pL9Y1K1ypuZDFhhQLKijYnO66hZ+p0=;
- b=h37lw38fkqG9o+BIYQbtm7rymSJNmPNYxASMrxgGF8i/vsStpaOJus/V5J3IX3fEdZ
- 8nzNanNmeAqrKhZZsUHqgZRDsZaBXZwq8BNOOKoV3ib9GKH8Tab1do1c+RPyHhwpqSBY
- etuyWtapBLfSQWwh2f3NJnKl+DYN3XlaQRyFgnqckfqfslUZtIcbLrFJMLDhvaNvnQO3
- I5jHTkYQ4YEYRxcL/Y7c12oGXeU31dFYA6tFpqeiq63HaHKsFnZgsvtBx2vq9+pMuZhG
- z548z/SpG/WBXXSD/RoAgrVvwEl1JTpDd7RGmydoPYTl7xNwpY40Un0O960zGFz35xlv
- HGBw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW4w9eTWj1ipWsXs2uah9CE2yMPhEG7pn2A2gzOnqFBLdqYBr8pKBqBxz3sK7orIhf1OOYJx8kM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy0I1fmuHSTZsb29lo7xNa1LhmLuaPaAfP5KVTbOe3cHAxRPGl0
- isgnm/n95FaaSG7TvzAq9FxF0nSUuvaU8/Sup4br1jr5HUvL6VQjf0JJ
-X-Gm-Gg: ASbGncs6W+UCqiV7CIfj8g9eUW/jXfpDWF7G8FNuhOJznDzvSqZxjAsrsl3nzolDp6y
- 04oC2UkrGXrKZHFaL7hSOPins3CHQ4ctbB8SZifGJqCns5E06L1WpGAMRczEEsJDMV8fAue1fVY
- ywcmV1agOyXVIE3MWrDi1oL+OtA8GZ3VCsW6YzVcZ2IVMfGZbuiDbGFD0R44ruYEtwJHr8Itd5E
- +9qvtCoKrqR59JsdJpLeLbBhItkhLN5WJ3DerjPfNEESeeoO+TishfM5GdJ9jgGer7jBlblFLgM
- YcVKDuywOKKgw83M6n7H60kz9MJjlB1/l95ruriqnszTykFbJ8QxKXDfQatotTx81n+QSLAVdOQ
- d74wbqb3nNZq5N/82KmJeShc9z1x9
-X-Google-Smtp-Source: AGHT+IHa0klRSXCFoybBuOxSnH60N2w1w4ZPxIlHjK/RY58F32+CUo39TEE2TF8g+Okjk48Ak292RQ==
-X-Received: by 2002:a05:6214:c49:b0:707:61a9:8bdf with SMTP id
- 6a1803df08f44-70935fb5a2amr67384806d6.22.1754169909270; 
- Sat, 02 Aug 2025 14:25:09 -0700 (PDT)
-Received: from localhost ([142.186.9.88]) by smtp.gmail.com with UTF8SMTPSA id
- 6a1803df08f44-7077c9da463sm39398046d6.9.2025.08.02.14.25.08
+ bh=VFRVqaDMnH4SBXpwWtqNUxjwC6dLm5pDnJjbqzI+Vnc=;
+ b=Rexpznn2VrLmdLwro2dbIjc+EXI3i8cAdqGyfjXrvKu9FvqAA8kt3luhn0wKKgZIt3
+ 99jaUU1jX+NDkhYLzRtIwwJRL13UWABoijb1RMv1KvbDvoBFrjOXb8e9Vccg1xo+6qkf
+ 8lwAVwhsYuQquoq68N4jALSZBLR9/9HmXo8w87jeOp55NedLQ6gcTiUMDvUu//s6kT88
+ 8GQsyUAs3ErwIXJBH0Yo0EstNRBRSsW6D8Y6K2s3x3c6xLuQiCHd0YXU3YeccWd9u7bp
+ E5+ufzRcwaic9OTjvvn6AZxuV2eQov2VNkWXaDfPkIGmgyB0Yq024ol2mqw0YHqoqkZy
+ EBkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1760557837; x=1761162637;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=VFRVqaDMnH4SBXpwWtqNUxjwC6dLm5pDnJjbqzI+Vnc=;
+ b=juTHNGTU2zLV1QATOFsPDf60MU5ifDjn5/o7o+wcW/ddztKdhVheCJqJ7dYVdoJ99Z
+ H6YznDflXYrYg0YXmFawqFyCukn6c4G1uQbapDsQuC1DeKKuEGhRC2dEYxMMFLiSXPVf
+ Fq9ZbUqTypZmpvzQnidtKvg5dIJu94nXJ7SjBZOCnZKHMZVzOb/Lgh0/pE5wx+CxFxKq
+ NudEFX/jexrr8VEpynliWF+7BG+fTlZdLhgN8VK5XRZNMnQMIiCFBrNb72vLPD2CXm3V
+ ZTPW5Ikglg134E1RIHa0RnpN8dR56HK5wRGa1W0sTCV0o9Evs/0pThnvqjhC5D7ttWYe
+ r0Qg==
+X-Gm-Message-State: AOJu0Yx19Lk+wtW86AzPwg050Lfo8kpZyqUhZu94pQZ7QWMb0lBKqQlV
+ qxNf0dwg6C60Dp5mTD0Uoj4ZQR0s/Bh7ns0QfRfPw6XMDdQosgcbMYLt
+X-Gm-Gg: ASbGncuTuGI1WlKlvCcZCzbwVMEtg1qR13rVR44yaZrD0NNIfizUz98IJgX9ZhsW9jO
+ AIG/F+qjZ6CK3WI85lddZFNzf55GOd6aiCDoC03hZlSo5BGiQNPktoUaYCmDv5xL/IS4GD5HVlL
+ 4x8J++iBs32uMM+VRo7swnBVAY3JY/QLM/3TPvA8kXIpg2+OHT90UQEnCL2lKsaKs+UNObaJ9yn
+ cELrzaENwdpxPkHb2uMua70HVNasdC6UebY5kmGBviRITCCpuSUKBvJGy4lgXF6M+T7PSzo4y85
+ EJ7+JLMZGe5ZLvMw6zteIsx/y1RqwEiUTnKxIf/o9ZxXQ2bk1+h+raLNYnucY5AAnLUQVm2Zf/R
+ WlITlkoaI7auS6J8N9R1fWMVHq40Fh1FtyoMGz/wRKqNTwEDDPvTtveRW+0Yihex/wvLBS6NOYa
+ jzXn3bR95dvmeVLHE=
+X-Google-Smtp-Source: AGHT+IFewXtBswgFkJ+PxuKCQAic+eavwTJGRRYaxnccnJwiMsIC69bQdFW+noWi4hvllo/GJsJtPQ==
+X-Received: by 2002:a05:6000:40db:b0:3ec:42f9:953e with SMTP id
+ ffacd0b85a97d-426fb6a7131mr971099f8f.7.1760557837106; 
+ Wed, 15 Oct 2025 12:50:37 -0700 (PDT)
+Received: from archito.cern.ch ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-46fc155143fsm281464675e9.11.2025.10.15.12.50.36
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 02 Aug 2025 14:25:08 -0700 (PDT)
-From: Seyediman Seyedarab <imandevel@gmail.com>
-X-Google-Original-From: Seyediman Seyedarab <ImanDevel@gmail.com>
-Date: Sat, 2 Aug 2025 17:24:53 -0400
-To: lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/nouveau: replace snprintf() with scnprintf() in
- nvkm_snprintbf()
-Message-ID: <kbskd3rnp76mslqfxhy4fdnz3joce6ukzfq5au2c5p7vgmyhfe@f65dzwx7bd5j>
-References: <20250724195913.60742-1-ImanDevel@gmail.com>
+ Wed, 15 Oct 2025 12:50:36 -0700 (PDT)
+From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ rust-for-linux@vger.kernel.org,
+ Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+Subject: [PATCH 2/2] Update the nova todo list
+Date: Wed, 15 Oct 2025 21:49:36 +0200
+Message-ID: <20251015194936.121586-2-delcastillodelarosadaniel@gmail.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
+References: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250724195913.60742-1-ImanDevel@gmail.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,41 +97,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 25/07/24 03:59PM, Seyediman Seyedarab wrote:
-> snprintf() returns the number of characters that *would* have been
-> written, which can overestimate how much you actually wrote to the
-> buffer in case of truncation. That leads to 'data += this' advancing
-> the pointer past the end of the buffer and size going negative.
-> 
-> Switching to scnprintf() prevents potential buffer overflows and ensures
-> consistent behavior when building the output string.
-> 
-> Signed-off-by: Seyediman Seyedarab <ImanDevel@gmail.com>
-> ---
->  drivers/gpu/drm/nouveau/nvkm/core/enum.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/core/enum.c b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-> index b9581feb24cc..a23b40b27b81 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/core/enum.c
-> @@ -44,7 +44,7 @@ nvkm_snprintbf(char *data, int size, const struct nvkm_bitfield *bf, u32 value)
->  	bool space = false;
->  	while (size >= 1 && bf->name) {
->  		if (value & bf->mask) {
-> -			int this = snprintf(data, size, "%s%s",
-> +			int this = scnprintf(data, size, "%s%s",
->  					    space ? " " : "", bf->name);
->  			size -= this;
->  			data += this;
-> -- 
-> 2.50.1
-> 
+This small patch updates the nova todo list to
+remove some tasks that have been solved lately.
 
-Hi there,
+Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+---
+ Documentation/gpu/nova/core/todo.rst | 19 -------------------
+ 1 file changed, 19 deletions(-)
 
-Just following up on this patch. Please let me know if there's any
-feedback or if further changes are needed.
+diff --git a/Documentation/gpu/nova/core/todo.rst b/Documentation/gpu/nova/core/todo.rst
+index 48b20656dcb1..be8063030d44 100644
+--- a/Documentation/gpu/nova/core/todo.rst
++++ b/Documentation/gpu/nova/core/todo.rst
+@@ -44,25 +44,6 @@ automatically generates the corresponding mappings between a value and a number.
+ | Complexity: Beginner
+ | Link: https://docs.rs/num/latest/num/trait.FromPrimitive.html
+ 
+-Conversion from byte slices for types implementing FromBytes [TRSM]
+--------------------------------------------------------------------
+-
+-We retrieve several structures from byte streams coming from the BIOS or loaded
+-firmware. At the moment converting the bytes slice into the proper type require
+-an inelegant `unsafe` operation; this will go away once `FromBytes` implements
+-a proper `from_bytes` method.
+-
+-| Complexity: Beginner
+-
+-CoherentAllocation improvements [COHA]
+---------------------------------------
+-
+-`CoherentAllocation` needs a safe way to write into the allocation, and to
+-obtain slices within the allocation.
+-
+-| Complexity: Beginner
+-| Contact: Abdiel Janulgue
+-
+ Generic register abstraction [REGA]
+ -----------------------------------
+ 
+-- 
+2.51.0
 
-Regards,
-Seyediman
