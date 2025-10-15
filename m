@@ -4,116 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A4BFD5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E368D5B15B
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B43910EB14;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C935B10EA7B;
 	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="U1I2kJOX";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="MajzK9qS";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 658F210E45E
- for <nouveau@lists.freedesktop.org>; Mon,  4 Aug 2025 21:43:21 +0000 (UTC)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 574D02rl018248
- for <nouveau@lists.freedesktop.org>; Mon, 4 Aug 2025 21:43:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:date:from:message-id:mime-version
- :subject:to; s=qcppdkim1; bh=Es8yYGkoaL9WsWMGWRUXzp1VH7ftdQ84HcS
- owvwXJBw=; b=U1I2kJOXu5Ur4+sTw5Sjtrk6MaCayoLLEJ7Y3QgF2BJtdTpyCSy
- 1ibQv0Xan7sDVGeT5SdNiPJfB9RfP82+zQ/K9kDoHoXQGb8fS9s1DFhAfx/kd7Fe
- KyWn42hhOhM4+kZcA23Ky7/8+f3sYt+Mk0ZdOWAZz6dqS+Oh3PTBDlhoYCuPzyH+
- f49Lgr7QfXcZf8FLh4GrwMeWeknEt6yzoZctsFOi8HsP4nc1D1/N6L2YJ0zc3uId
- gVTOQG4nijVeiO4XrLNcpJhoq523VzB+QZqXEPAYbP1HU+lfhL/hppHEdsuWkC9D
- 1dkCL0sQDAUSfSDhwcRjeeuSOt7vy5yLtGg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com
- [209.85.214.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48aqyv2k3j-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 21:43:20 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id
- d9443c01a7336-24249098fd0so30288465ad.0
- for <nouveau@lists.freedesktop.org>; Mon, 04 Aug 2025 14:43:20 -0700 (PDT)
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com
+ [209.85.128.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A39410E8E9
+ for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 19:50:26 +0000 (UTC)
+Received: by mail-wm1-f43.google.com with SMTP id
+ 5b1f17b1804b1-4710665e7deso4599405e9.1
+ for <nouveau@lists.freedesktop.org>; Wed, 15 Oct 2025 12:50:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1760557825; x=1761162625; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=bdStip0PmH8uNxqvUSt7q9Mj9fkGcDmvgx0joPS4jZo=;
+ b=MajzK9qSSDnJdxVhAMbLaenaan2i0j1laS0sigU/w/bbMAYoVd+QZiW9olaKl3x+jT
+ G88SAvKAegjHG1YISlZlGyL9KjxWlw7Y/S3VlsZeupdMNZ2pCyoaPN2iDrDecWTIZXVH
+ knHsTH314GojSSxyGlawhgBZDQH83Zsn8ef2cZVSkiZVAP8TgLOEfo7rtCurHiD74ojJ
+ jXAS/rhOzVpCMxZ0fuBa+BoDh8zNZKTKds+QqXue2zOvVqpwS77l6WbR9s6cWwS0UflL
+ R5/u3qtPObVKo81ymYLB0w7Ia/7jqdls7Ift/2o7+2DBVHgfqHAbHo0+nCBoNxjKCgMv
+ Niyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1754343800; x=1754948600;
+ d=1e100.net; s=20230601; t=1760557825; x=1761162625;
  h=content-transfer-encoding:mime-version:message-id:date:subject:cc
  :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=Es8yYGkoaL9WsWMGWRUXzp1VH7ftdQ84HcSowvwXJBw=;
- b=QqxMEDoBC+wsALV/vKZ5tGCd7czjRoP6HJbkZuY1DNCUj1zfy8tf7DSyrQKdqoqaoD
- QD/ql1mr0TruTO2oeeBz2MSWJS17r+wh6qFotU6St6xgw3vct7aR4byax/Kp29Si1+Bu
- jJYQFRXryOcPDrnjW+j2IxgmTVNiNnJ2jMlRnHfNfLWYJnp05zQ141I41WyyuO2e6vNa
- 3KgXsqrCdGvn8aC0exnZaU/WRFNk+kGjqFWeRBfO41Wlc6AGqa7ggXJW5v/uZ3qda3VK
- GA3+58T0zw6uITp4Oo9BULa17aDVvS14h8jhNlHItJHnO/hJunvq8hKlVDJk6qrZPS3J
- blsQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW7EBdupxhdl2pb/XhroWjyafmUI68uVQ8/nLsfO+Tq4XMyozwN8U7DPvJJ6xHYJT+KXRw2dxSU@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyYH9T22L8AdiRb4LnS4NrIxyKHIVtVW5TrJxUQgn3af0uWrOfi
- adm0EI0axPk3qJgsHgxHtKPg36V7qiKAHeA6jVSQBi/X4Lzlk0z3ANBpHFLzIGKYGMiNXfFKEE6
- FCgCs9S3MiR4lIWdeHis0nTrtyUNERglwJVAKzB9wsiS0MPbb8zUehoCa81s3hHeHitoN
-X-Gm-Gg: ASbGncugr87CY1e0bvYbmh1AjEZAIRoTrMFNxfQlK1L4VZ6/BW2RbitmUuOwmtKtZis
- vxCa+0zq6Rg4F099bgMis0KV4dnl7lzqd17Uy1pX/5lI4nxHT2D4mXYRMRfOcK6KLyYUT78ABfr
- yw1Vw8QVjbR0aYjOCvGTQ524/jWlaVPv2hjb0IFvatQJiqXFk/b05r6s/roy3uXx1j+G6U7BpPH
- rngSnq4LoeMItPOLxvLI/njvoR4NHQwD1vF+3H3qjL4JAlxMlriHNBvTNACZCLbXl385/nMI+Ka
- wUWPvq5zRJvf4/F2mP80qRvrzsLEhVebqa46bXKLiGzw/trCygs=
-X-Received: by 2002:a17:902:db03:b0:240:a559:be6a with SMTP id
- d9443c01a7336-24246ffc07fmr168919705ad.34.1754343799941; 
- Mon, 04 Aug 2025 14:43:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGMENcFBVOU5CPFNiVaukbmJxZDsOzIZHTpJidiDWnGmFiPem5d1xxZ1nYXWM9QrZ0SYd5T+A==
-X-Received: by 2002:a17:902:db03:b0:240:a559:be6a with SMTP id
- d9443c01a7336-24246ffc07fmr168919345ad.34.1754343799505; 
- Mon, 04 Aug 2025 14:43:19 -0700 (PDT)
-Received: from localhost ([2601:1c0:5000:d5c:5b3e:de60:4fda:e7b1])
+ bh=bdStip0PmH8uNxqvUSt7q9Mj9fkGcDmvgx0joPS4jZo=;
+ b=r+dqlXWxuWKMyEeHNTNAemAHb1PjrEKOUODKLRyLSYUBeKyJTr6rGH+4R88nGhJmch
+ c0pKQdbfOSbiJUjbtInYiEG+wV8X2cIvksuqAmjhRo+1jQIX6sdrXjkalTtVYT2kPDWo
+ FkwzQuzkMnADZ1NhEZl2LeqF3qfawURERBQ7ytMdg3nijPNA0WYRuzjvGb2G+0BxD0Vt
+ Xz9sAUdO3xPltnmDSDKT1HF+2grlSpIcI1PNgsqVPIH9y3ERm83+YViZayyhTZIUWRgI
+ GrFuiN0fL8V0OsWl2qkMB5VopIvMARipfQ8rOKGxBcHJjJLu/cUx1YeZKi8SUK8091o3
+ JlkA==
+X-Gm-Message-State: AOJu0YzXsAa1MdqFH+awpkxfaMRwOtHMRMZbEPadGVmit1pQTI4Sk9Z/
+ V8ArZW4WbF5ucg23DUUiblF127AIS+ARlzFNzVpE6aaH2971kGH1Vt2i
+X-Gm-Gg: ASbGncsDJkFK/uNIkAP9UeyO9Y3InBjdMmCOuZtgQRHd+lHNbxEEUyVW7eTImrmoVKc
+ snQSN61yMdge+XFfmWS75DX/AjuH7jx3LufhTFjvwnhfjUkJ0P2mLlg9EmclLa2vPwC43uJjem1
+ 6ZtmOo3/FnTErCEmnJJqcNtJXV596ZXr4uPpl+inr8NwC+zNO6XXetnr4hLWj1zftcmu5yngELx
+ uU9Ob0PJE27ZzmRudIYOM8eaygO2jJN9OZIotJTnT7F3l7liHlrBPy0d2202L89V+0rpIyJoBLL
+ H79hyE8IioCNm47dJL/R0p5lfpn6hcXqf8xP7gxWdna1xzJrjZyIasrUNU3ZLaZrRVihh80u8eg
+ FXi5meoPs+baRHLW7eRiPZuO5BxysZO3ye/utrYTj41usEF6dLb0VuOEBFLGomjHCk69iNI3fNT
+ Zc69g6mFPsMammMTx9irYHtMrNP1Sg
+X-Google-Smtp-Source: AGHT+IGddGrpCxX7OrSl23A+tvIURBAgb57PvaARooGLmVHLlO5kmYWtSLkEff3kH7Jc2lvzrUziFw==
+X-Received: by 2002:a05:600c:1990:b0:46e:37af:f90e with SMTP id
+ 5b1f17b1804b1-46fa9a8f085mr218854435e9.6.1760557824618; 
+ Wed, 15 Oct 2025 12:50:24 -0700 (PDT)
+Received: from archito.cern.ch ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-241e8976cfdsm116217775ad.101.2025.08.04.14.43.18
+ 5b1f17b1804b1-46fc155143fsm281464675e9.11.2025.10.15.12.50.23
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 Aug 2025 14:43:19 -0700 (PDT)
-From: Rob Clark <robin.clark@oss.qualcomm.com>
-To: dri-devel@lists.freedesktop.org
-Cc: freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Danilo Krummrich <dakr@redhat.com>, Connor Abbott <cwabbott0@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- linux-kernel@vger.kernel.org (open list), Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Maxime Ripard <mripard@kernel.org>,
- nouveau@lists.freedesktop.org (open list:DRM DRIVER FOR NVIDIA GEFORCE/QUADRO
- GPUS), Sean Paul <sean@poorly.run>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH RESEND 0/2] drm/gpuvm+msm: Handle in-place remaps
-Date: Mon,  4 Aug 2025 14:43:14 -0700
-Message-ID: <20250804214317.658704-1-robin.clark@oss.qualcomm.com>
-X-Mailer: git-send-email 2.50.1
+ Wed, 15 Oct 2025 12:50:24 -0700 (PDT)
+From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ rust-for-linux@vger.kernel.org,
+ Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+Subject: [PATCH 1/2] nova-core: Solve mentions of `CoherentAllocation`
+ improvements [COHA]
+Date: Wed, 15 Oct 2025 21:49:35 +0200
+Message-ID: <20251015194936.121586-1-delcastillodelarosadaniel@gmail.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: YuL0jOgQ3rwK7Barp0he0VPMfM83f83c
-X-Authority-Analysis: v=2.4 cv=F/xXdrhN c=1 sm=1 tr=0 ts=68912978 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=xqWC_Br6kY4A:10 a=2OwXVqhp2XgA:10
- a=r9eiMqSCUvIwoLEqkV8A:9 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-ORIG-GUID: YuL0jOgQ3rwK7Barp0he0VPMfM83f83c
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODA0MDEzMiBTYWx0ZWRfXwqcuLxJBx+HT
- /besWqM6gz2AJZfJMutW14sbxoVnxfNkymumBK5RWkinauwa3Tq9opOIproblXUh+wqp4UCzy5l
- w5zo3tJlE96HAlJcma/stgkaevQPP8v2h+GDhYDWLPLLZzsYP14gTQYqmtsQac6l5ZJ44P3peps
- +7yJ0lwgRe0UUDdZ5BBamy4VZEyOor7bUVqJUz2+SyjZan0RhsiMBYIeA1stO5IaXtupKuZYoAF
- FQPLcdztwi+F/EJBov1B9jNILxR2elMzHTIKMJEW9Ro9PgjzgZaYOq5wDoL6nmOfBQ5B/cegdaU
- e4InUTKDq0rHpkn8+44G/NmqoN325SZBQMopnr+sujLU3Fflb3bszLYGWvhfb4XYBrU1+p2DixE
- 2lA/nZdx+eTiXcG4l5hcFW5F5WsT2Bt99UbZHZBGUWGHhDY+xMWrsOMg9lMlbGJ8IZ7JrFQI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-04_09,2025-08-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 mlxscore=0 phishscore=0 bulkscore=0 adultscore=0
- clxscore=1015 mlxlogscore=728 priorityscore=1501 impostorscore=0
- malwarescore=0 lowpriorityscore=0 classifier=spam authscore=0 authtc=n/a
- authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2505280000 definitions=main-2508040132
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,31 +95,244 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-turnip+msm uses a DUMP flag on the gpuva to indicate VA ranges to dump
-(ie. for devcoredump).  In most cases (internal BOs like shader
-instructions) this is known at the time the BO is MAPd, and the DUMP
-flag can be set at the same time as the BO is initially bound into the
-VM.  But for descriptor buffers, this isn't known until VkBuffer is
-bound to the already mapped VkDeviceMemory, requiring an atomic remap
-to set the flag.
+This patch solves the existing mentions of COHA, a task
+in the Nova task list about improving the `CoherentAllocation` API.
+I confirmed by talking to Alexandre Courbot, that the reading/writing
+methods in `CoherentAllocation` can never be safe, so
+this patch doesn't actually change `CoherentAllocation`, but rather
+tries to solve the existing references to [COHA].
 
-The problem is that drmvm turns this into discreet unmap and remap
-steps.  So there is a window where the VA is not mapped, which can
-race with cmdstream exec (SUBMIT).
+Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+---
+ drivers/gpu/nova-core/dma.rs            |  20 ++---
+ drivers/gpu/nova-core/firmware/fwsec.rs | 104 ++++++++++--------------
+ 2 files changed, 50 insertions(+), 74 deletions(-)
 
-This series attempts to avoid that by turning an exact-remap into a
-remap op instead, where the driver can handle the special case since
-it can see both the unmap and map steps at the same time.
-
-Rob Clark (2):
-  drm/gpuvm: Send in-place re-maps to the driver as remap
-  drm/msm: Handle in-place remaps
-
- drivers/gpu/drm/drm_gpuvm.c            | 21 +++++++++++++++++++++
- drivers/gpu/drm/msm/msm_gem_vma.c      | 17 +++++++++++++++--
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  3 ++-
- 3 files changed, 38 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/nova-core/dma.rs b/drivers/gpu/nova-core/dma.rs
+index 94f44bcfd748..639a99cf72c4 100644
+--- a/drivers/gpu/nova-core/dma.rs
++++ b/drivers/gpu/nova-core/dma.rs
+@@ -25,21 +25,11 @@ pub(crate) fn new(dev: &device::Device<device::Bound>, len: usize) -> Result<Sel
+     }
+ 
+     pub(crate) fn from_data(dev: &device::Device<device::Bound>, data: &[u8]) -> Result<Self> {
+-        Self::new(dev, data.len()).map(|mut dma_obj| {
+-            // TODO[COHA]: replace with `CoherentAllocation::write()` once available.
+-            // SAFETY:
+-            // - `dma_obj`'s size is at least `data.len()`.
+-            // - We have just created this object and there is no other user at this stage.
+-            unsafe {
+-                core::ptr::copy_nonoverlapping(
+-                    data.as_ptr(),
+-                    dma_obj.dma.start_ptr_mut(),
+-                    data.len(),
+-                );
+-            }
+-
+-            dma_obj
+-        })
++        let mut dma_obj = Self::new(dev, data.len())?;
++        // SAFETY: We have just created this object and there is no other user at this stage.
++        unsafe { dma_obj.write(data, 0)? };
++
++        Ok(dma_obj)
+     }
+ }
+ 
+diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
+index 8edbb5c0572c..cc5a6200d0de 100644
+--- a/drivers/gpu/nova-core/firmware/fwsec.rs
++++ b/drivers/gpu/nova-core/firmware/fwsec.rs
+@@ -11,12 +11,12 @@
+ //! - The ucode signature, so the GSP falcon can run FWSEC in HS mode.
+ 
+ use core::marker::PhantomData;
+-use core::mem::{align_of, size_of};
++use core::mem::size_of;
+ use core::ops::Deref;
+ 
+ use kernel::device::{self, Device};
+ use kernel::prelude::*;
+-use kernel::transmute::FromBytes;
++use kernel::transmute::{AsBytes, FromBytes};
+ 
+ use crate::dma::DmaObject;
+ use crate::driver::Bar0;
+@@ -70,6 +70,8 @@ struct FalconAppifDmemmapperV3 {
+ }
+ // SAFETY: any byte sequence is valid for this struct.
+ unsafe impl FromBytes for FalconAppifDmemmapperV3 {}
++// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
++unsafe impl AsBytes for FalconAppifDmemmapperV3 {}
+ 
+ #[derive(Debug)]
+ #[repr(C, packed)]
+@@ -82,6 +84,8 @@ struct ReadVbios {
+ }
+ // SAFETY: any byte sequence is valid for this struct.
+ unsafe impl FromBytes for ReadVbios {}
++// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
++unsafe impl AsBytes for ReadVbios {}
+ 
+ #[derive(Debug)]
+ #[repr(C, packed)]
+@@ -94,6 +98,8 @@ struct FrtsRegion {
+ }
+ // SAFETY: any byte sequence is valid for this struct.
+ unsafe impl FromBytes for FrtsRegion {}
++// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
++unsafe impl AsBytes for FrtsRegion {}
+ 
+ const NVFW_FRTS_CMD_REGION_TYPE_FB: u32 = 2;
+ 
+@@ -104,6 +110,8 @@ struct FrtsCmd {
+ }
+ // SAFETY: any byte sequence is valid for this struct.
+ unsafe impl FromBytes for FrtsCmd {}
++// SAFETY: any byte sequence is valid and it contains no padding nor kernel pointers.
++unsafe impl AsBytes for FrtsCmd {}
+ 
+ const NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS: u32 = 0x15;
+ const NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB: u32 = 0x19;
+@@ -149,24 +157,9 @@ impl FirmwareSignature<FwsecFirmware> for Bcrt30Rsa3kSignature {}
+ ///
+ /// Callers must ensure that the region of memory returned is not written for as long as the
+ /// returned reference is alive.
+-///
+-/// TODO[TRSM][COHA]: Remove this and `transmute_mut` once `CoherentAllocation::as_slice` is
+-/// available and we have a way to transmute objects implementing FromBytes, e.g.:
+-/// https://lore.kernel.org/lkml/20250330234039.29814-1-christiansantoslima21@gmail.com/
+-unsafe fn transmute<'a, 'b, T: Sized + FromBytes>(
+-    fw: &'a DmaObject,
+-    offset: usize,
+-) -> Result<&'b T> {
+-    if offset + size_of::<T>() > fw.size() {
+-        return Err(EINVAL);
+-    }
+-    if (fw.start_ptr() as usize + offset) % align_of::<T>() != 0 {
+-        return Err(EINVAL);
+-    }
+-
+-    // SAFETY: we have checked that the pointer is properly aligned that its pointed memory is
+-    // large enough the contains an instance of `T`, which implements `FromBytes`.
+-    Ok(unsafe { &*(fw.start_ptr().add(offset).cast::<T>()) })
++unsafe fn transmute<T: Sized + FromBytes>(fw: &DmaObject, offset: usize) -> Result<&T> {
++    // SAFETY: Guaranteed by the safety requirements of the function.
++    T::from_bytes(unsafe { fw.as_slice(offset, size_of::<T>())? }).ok_or(EINVAL)
+ }
+ 
+ /// Reinterpret the area starting from `offset` in `fw` as a mutable instance of `T` (which must
+@@ -176,20 +169,12 @@ unsafe fn transmute<'a, 'b, T: Sized + FromBytes>(
+ ///
+ /// Callers must ensure that the region of memory returned is not read or written for as long as
+ /// the returned reference is alive.
+-unsafe fn transmute_mut<'a, 'b, T: Sized + FromBytes>(
+-    fw: &'a mut DmaObject,
++unsafe fn transmute_mut<T: Sized + FromBytes + AsBytes>(
++    fw: &mut DmaObject,
+     offset: usize,
+-) -> Result<&'b mut T> {
+-    if offset + size_of::<T>() > fw.size() {
+-        return Err(EINVAL);
+-    }
+-    if (fw.start_ptr_mut() as usize + offset) % align_of::<T>() != 0 {
+-        return Err(EINVAL);
+-    }
+-
+-    // SAFETY: we have checked that the pointer is properly aligned that its pointed memory is
+-    // large enough the contains an instance of `T`, which implements `FromBytes`.
+-    Ok(unsafe { &mut *(fw.start_ptr_mut().add(offset).cast::<T>()) })
++) -> Result<&mut T> {
++    // SAFETY: Guaranteed by the safety requirements of the function.
++    T::from_bytes_mut(unsafe { fw.as_slice_mut(offset, size_of::<T>())? }).ok_or(EINVAL)
+ }
+ 
+ /// The FWSEC microcode, extracted from the BIOS and to be run on the GSP falcon.
+@@ -260,32 +245,38 @@ fn new_fwsec(dev: &Device<device::Bound>, bios: &Vbios, cmd: FwsecCommand) -> Re
+ 
+         // Find the DMEM mapper section in the firmware.
+         for i in 0..hdr.entry_count as usize {
+-            let app: &FalconAppifV1 =
+             // SAFETY: we have exclusive access to `dma_object`.
+-            unsafe {
++            let app: &FalconAppifV1 = unsafe {
+                 transmute(
+                     &dma_object,
+-                    hdr_offset + hdr.header_size as usize + i * hdr.entry_size as usize
++                    hdr_offset + hdr.header_size as usize + i * hdr.entry_size as usize,
+                 )
+             }?;
+ 
+             if app.id != NVFW_FALCON_APPIF_ID_DMEMMAPPER {
+                 continue;
+             }
++            let dmem_base = app.dmem_base;
+ 
+             // SAFETY: we have exclusive access to `dma_object`.
+             let dmem_mapper: &mut FalconAppifDmemmapperV3 = unsafe {
+-                transmute_mut(
+-                    &mut dma_object,
+-                    (desc.imem_load_size + app.dmem_base) as usize,
+-                )
++                transmute_mut(&mut dma_object, (desc.imem_load_size + dmem_base) as usize)
+             }?;
+ 
++            dmem_mapper.init_cmd = match cmd {
++                FwsecCommand::Frts {
++                    frts_addr: _,
++                    frts_size: _,
++                } => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS,
++                FwsecCommand::Sb => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB,
++            };
++            let cmd_in_buffer_offset = dmem_mapper.cmd_in_buffer_offset;
++
+             // SAFETY: we have exclusive access to `dma_object`.
+             let frts_cmd: &mut FrtsCmd = unsafe {
+                 transmute_mut(
+                     &mut dma_object,
+-                    (desc.imem_load_size + dmem_mapper.cmd_in_buffer_offset) as usize,
++                    (desc.imem_load_size + cmd_in_buffer_offset) as usize,
+                 )
+             }?;
+ 
+@@ -296,24 +287,19 @@ fn new_fwsec(dev: &Device<device::Bound>, bios: &Vbios, cmd: FwsecCommand) -> Re
+                 size: 0,
+                 flags: 2,
+             };
+-
+-            dmem_mapper.init_cmd = match cmd {
+-                FwsecCommand::Frts {
+-                    frts_addr,
+-                    frts_size,
+-                } => {
+-                    frts_cmd.frts_region = FrtsRegion {
+-                        ver: 1,
+-                        hdr: size_of::<FrtsRegion>() as u32,
+-                        addr: (frts_addr >> 12) as u32,
+-                        size: (frts_size >> 12) as u32,
+-                        ftype: NVFW_FRTS_CMD_REGION_TYPE_FB,
+-                    };
+-
+-                    NVFW_FALCON_APPIF_DMEMMAPPER_CMD_FRTS
+-                }
+-                FwsecCommand::Sb => NVFW_FALCON_APPIF_DMEMMAPPER_CMD_SB,
+-            };
++            if let FwsecCommand::Frts {
++                frts_addr,
++                frts_size,
++            } = cmd
++            {
++                frts_cmd.frts_region = FrtsRegion {
++                    ver: 1,
++                    hdr: size_of::<FrtsRegion>() as u32,
++                    addr: (frts_addr >> 12) as u32,
++                    size: (frts_size >> 12) as u32,
++                    ftype: NVFW_FRTS_CMD_REGION_TYPE_FB,
++                };
++            }
+ 
+             // Return early as we found and patched the DMEMMAPPER region.
+             return Ok(Self(dma_object, PhantomData));
 -- 
-2.50.1
+2.51.0
 
