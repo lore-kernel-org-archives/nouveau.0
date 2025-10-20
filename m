@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBDC6CCD1AB
-	for <nouveau@archiver.kernel.org>; Mon, 20 Oct 2025 18:56:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B9D9CCD1AD
+	for <nouveau@archiver.kernel.org>; Mon, 20 Oct 2025 18:56:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 837CF10E4E8;
-	Mon, 20 Oct 2025 18:55:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21F6610E4EB;
+	Mon, 20 Oct 2025 18:56:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rs6D4Eqa";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="azKrgy3b";
 	dkim-atps=neutral
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012011.outbound.protection.outlook.com [52.101.43.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E766610E4E1;
- Mon, 20 Oct 2025 18:55:57 +0000 (UTC)
+Received: from BN8PR05CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11011011.outbound.protection.outlook.com [52.101.57.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 408D310E4E9;
+ Mon, 20 Oct 2025 18:56:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=u9vpy+r/DFh8HVML8F8IIyUdldyVloRnu40iXhiHa7LHQt3BwIS93BUYA4KGYW5XDuzpx9khxtABvODNTkVQiX7QezRVYHIQm1NFM6O9yKNI5FPHO3tZepiMWHmeSFx6W+6/cM66Y0uM64lXMKrRltY8CljCqaXAgI7Zp9p+zT6rlb/vDJozqi6jKJBny5uK6nKaIGdbaWSNRaLw5fa4QC9Yr1/ab/qZqpqfEJ5HCKXaL6NTaKi2ucXq+V4FnvJzK1zRfyj5nHE8H5bpWSKUviMkPlkX7HZr7ardTf5L3PpY2F7dUHJy5+OvMR5yW8tK5jONpFPAvjG3xL0TM+TgKw==
+ b=kv8H8/2sGkQzutpsAsOFPspqjU/8pKazfa3ASZZdSrvT2SoHIs1xkfuSymJxRG8MnlJYoPqMazyTFExBcJa9x2/9eRJxcfp7xrP6FuU+jrE/d7C17ImVAYpDs5bvC+Nvc6k12/sAIRREy98J6l8Vp/qmoM95hfn0NisnFXv1BJ6zJc8IBxEWPw8ZNHQzej8rmIckuRltpjBisu9mhKdtJmsxyPJ3ngxQRIYy/anNxorQVgzjh9ZFT1uJc31grONXysUZves6pXq7JyXg0xmhXbbo1Txwhu/+vBV/LOtKs2/kD22nar7Fw87RG4AFOidMyg7N6xHOZlzTOaOu6rd1hg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QrKdIs3/h04VVCdjJUe4Di1idqqzTXwYNxzsveTKnVU=;
- b=PD7kTV+23rzQrCmwD7nT6hnQxQkwZHUH5e8e4SehJKqyl2zb/heHYBQedJ1EvU9lQGlcvP/ny/uowpoIihjGlv3BIQOnnbGMJpfpdifWtO+ko5Lg1s4rPFiNnBB+SDxx5kLGK4bDvMMxB1Mip1tubL2pRq5IsnlJuXJy/h/kLAWI9Mr9TsoBWklpqlAJ7d6ieD65o2o7lSTPf8RNHoINK6rWT7oCUx3cRuGsNEWOHv+o1+cQGebhR2tGCP01n0uq6A2kWYsrdEJbcGl0xYLkjU8aJuz8aMXGt1RbM0OlNb8+WXQ8Uv/aDgNKmB6htMgsHjRFHUzquy2fjZ2PXTjWEg==
+ bh=YkkoMmoHMjUPWt50vjyFNzk47vMs0swawDnj4prvvdM=;
+ b=sfrF9ml18oHUuP74xxaRTYyc37FPBcK2wDYMne/ZL2qJ5Lk0nZZTVhdJDAuD8VEWAfC7DPSUoSk8Avk2wNkvt9xQflmcQG4zqsKaVxu+jqLGvSR5HMGJP5gNtsBkXLML3Io4C/DrZTugmTbgQtz2nYyB/6PehoiyIdEirFpQa9rl4ZwuEtBHjhs4W5HrcSARdjK/HE8ziXQvR0x+vLJDEYC7I5Oc8q+i1eeieBq+Q3c2wC0v3YcZ2iSMwngIC3LyCtatF94OZ+6QHzBH6VhfRRU2TMu4HoIAC72B5i4ti5DLQPHSsUSp48yt7siRbCrs6Vta01oOcjds8KY3MBDU9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QrKdIs3/h04VVCdjJUe4Di1idqqzTXwYNxzsveTKnVU=;
- b=rs6D4EqagcW8y8gWjpZHW+R1TSr7m7KVJow6ErhEju7RFcGsm1wvNGYvrffnxNkVJeFNd6x30wED5saQXPRNEU+Kku4az3KpPQAA4RLA2j6Dq1pkHdO3tKEikVDZUJQ5EGAe4SuR0J8wMO4rR2xLWjWJbrswiubIv45T2BojJbm2Oq0RdYPrhOAMv/hDxb1fVkYROaDE2lcrCsFRpUrVAq4QPj8BWQ4aAElmNqWvDOHTfZgBM316yTiqaZxw5uWvxYOlDiF+IA5KG2z4nFm++mPsBX//EgfBnbiaFRXnA2LFyNReXfzEII2MmjF0GlO8UoeacchVKBu5trlIwhPYYw==
+ bh=YkkoMmoHMjUPWt50vjyFNzk47vMs0swawDnj4prvvdM=;
+ b=azKrgy3bgN+GaerlH3xQxb5Zow4x1sFkhhCydpjmRbi2y/PYzsrHKXj7lWrsEjkEA5iEmro92rLlU76pZzX7CQzPVkiGYJVP8X5IT+DqyabPNYeEhDKkHZIfH2K9yC68P7kuk+DzLozIRsX383LozqnYFls4EFo3zNpg6OQLbjKN6hWbcmhuoVS1t+tw2/zFzt7Sh5+XqnC1b9Qd8siMZwEk9at+BoFhmLin8JWhvyBzgl5RfB0sSgELoS7eG/md9ux5pTJyHF8Y3MdsMkxnuO89zhgSFknpIoI+fwHSFVJ7ChX2QkUmE2KF9r7egV1VceCOeRVtM0JdLuJDHbvDaQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
  by CH3PR12MB9316.namprd12.prod.outlook.com (2603:10b6:610:1ce::21)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9228.16; Mon, 20 Oct
- 2025 18:55:54 +0000
+ 2025 18:55:57 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9228.015; Mon, 20 Oct 2025
- 18:55:54 +0000
+ 18:55:57 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com
@@ -59,90 +59,90 @@ Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
  Elle Rhumsaa <elle@weathered-steel.dev>,
  Daniel Almeida <daniel.almeida@collabora.com>,
  nouveau@lists.freedesktop.org
-Subject: [PATCH 3/7] docs: gpu: nova-core: Document GSP RPC message queue
- architecture
-Date: Mon, 20 Oct 2025 14:55:35 -0400
-Message-Id: <20251020185539.49986-4-joelagnelf@nvidia.com>
+Subject: [PATCH 5/7] gpu: nova-core: Add support for managing GSP falcon
+ interrupts
+Date: Mon, 20 Oct 2025 14:55:37 -0400
+Message-Id: <20251020185539.49986-6-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251020185539.49986-1-joelagnelf@nvidia.com>
 References: <20251020185539.49986-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BN0PR10CA0012.namprd10.prod.outlook.com
- (2603:10b6:408:143::10) To SN7PR12MB8059.namprd12.prod.outlook.com
+X-ClientProxiedBy: BN0PR10CA0019.namprd10.prod.outlook.com
+ (2603:10b6:408:143::8) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|CH3PR12MB9316:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3fd9e52-f9a1-4fe3-39ed-08de100a4bd7
+X-MS-Office365-Filtering-Correlation-Id: 9c7280a5-5c2f-4764-7f10-08de100a4db6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?f47vv5jNK55VcGOOAQ5mmj4EBiUt9MZTn3tHsqIueKTCBrN/oRpgPraAEbwx?=
- =?us-ascii?Q?y8NSiIPioAtR/PBkdfyNaGhwu4YSiDoIOSe0gUBUXoGzjQ/9RIqWOQQ7B98n?=
- =?us-ascii?Q?WC9qoagypbNCff7hWxiSlTa5lVryWCBcTDhSwuJ31lDcv7yUMx5uv8MX2ye8?=
- =?us-ascii?Q?iIVc0E/LmtiU0OPhMsMkll1+UjQ1V7Pex9sjivhfbP+atxF6C/JKbp6z6LQ6?=
- =?us-ascii?Q?9BwlVl9XC/UNenmphAd+eLB/BedgWCPo4sY5mdBywLAQ7x4Y+lLGtzQktue9?=
- =?us-ascii?Q?E+qz3AXP0KyMK3U9y3sf2+GONRySSoBfYnpNwJU3i0xH47LbBLhxwFDIp9sI?=
- =?us-ascii?Q?zUy5kbzYVUCbnwUc49ALJ1u9+z5P0kB7sGYwHDRuyrO3WtYYDEzXr/UubFJE?=
- =?us-ascii?Q?/O8nxsIT0fWcpQDLX84icsN0JX6Bay0IGs+xmGj47voTvk7XRf4v7MeqO127?=
- =?us-ascii?Q?lW2dcCiO4ZBVmez4OQty/cbcEww3iazFiosGjhv1CJqy67lFRC6pzI0ulaiR?=
- =?us-ascii?Q?qQaoAcNZeShbB2/PLjMDdnIYgyMi8wUVRmuK5juQqpqJLIaAm8kmlm0yc4+W?=
- =?us-ascii?Q?XNvnRq8Dd2N6sGu2x+kvR3OwplSZIkJLPRIHYIYyA1y8+ujFxWCdLHXuqOzX?=
- =?us-ascii?Q?7oTkErrpB5ZrmNh7wAGPUcqM3PwERNSuOx7ucX4f3edVOQ6ew2deRcKF2OL1?=
- =?us-ascii?Q?SzLgE4LIwCqb5C4SU/hV5dEqQpG5SDkkwpYd/UfDb0pdAYMIZsoA3QKO1Nj/?=
- =?us-ascii?Q?X0XROROW817F9iJHkQzlDwtZjQlz0z0t/junUVqhi0JSlpATTLeNbRq6fk9g?=
- =?us-ascii?Q?vp4WtDLDNZGlU8ymPJHX8PztFGI6Qxj3hk84sZwJzWY5tMYdTyTaufKTiLCE?=
- =?us-ascii?Q?T4D8+E29zPwfEWR4lXo6q0aVjcaDo++ygFN7r/NdOOEOPG8Yq6Z0FQ/YPNjj?=
- =?us-ascii?Q?mTMjH074j/VztzM35lSI42T9G81DGiXZ9TsDnBtBUgeIsDkf18mR6IOrLYeL?=
- =?us-ascii?Q?ItWw9SX9y8r+IAz1tBK0Oy082EMuy3AKa3mhTl0cM073QZTjO5FgSENHT1Lh?=
- =?us-ascii?Q?ZUHw6alUgOhhD40cA9Tq9wBX4Mov94iYknJRfDbd/I7x6c0o1+bLkcduq9GN?=
- =?us-ascii?Q?V+ms+bJPc6OeHvDwxhsFzntUbkrreje9mCbd+dliBwyW1ImI2PJvXcdb5NQw?=
- =?us-ascii?Q?9iBeRz/Bz7awNb6XptbRJnZVUF8WaTKMYmokOcHt25xxwLX9ykhr4u9HHbMs?=
- =?us-ascii?Q?rQwLAFrObUUNg8FG4W5SQB78RbuGN968qDCBE/TL1S6cY6EXzgBfGcd673HR?=
- =?us-ascii?Q?LPaPYPNjSEbLdF+xoskygxLRH6eMGeptvjkqc2MttBJXXpazi3UuUyzAxKyi?=
- =?us-ascii?Q?NgCLxhgwoVrKivarASkTQAzF8BatOKApR7Vi8yvOfXjUzdFjD+WAKqDaJ6LR?=
- =?us-ascii?Q?nW5T1NgmECFk3Ye5d1GLgKWtiXaN3tz4?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?vYupJ2F9gCF/kfKf+5FQMP44uzVQSxBnM5v6X75u4CPv3n414asBEH81aC9i?=
+ =?us-ascii?Q?htrqZSTjp5nMlWNqyOB1NW8TLMdZVJMYQ33Ej7CzDcdGBm+1/bm+Az1ANIQ4?=
+ =?us-ascii?Q?V7bbeIJWw58I/uk60emgxHILsOkZB5ejf7Uu4eSocnYX6MHaQIIe93Lk9GUj?=
+ =?us-ascii?Q?etINgLyaWbHoclKfPV6QG3EfIWB+28UxVpQYVkD97Kx5yLWdX9znbMVSEMc1?=
+ =?us-ascii?Q?ALHoMyor89sCT+okS9ZNeyo+rU0FK75I2MMNRFaOO7u8cgwOduJT5YdrM1D/?=
+ =?us-ascii?Q?LdvaM0UXCjiley47LDUP9utMhJUlHH43ngnH6OUtQ8dhH4V0WdKEVuq6kvG6?=
+ =?us-ascii?Q?WRChz0X+HecvhvEIBlb+jOGlsiC+qZ8fKleHtgvAVFx5ta6g+2uTSBu8WgCA?=
+ =?us-ascii?Q?Hoq8ZKzO9W8M2WaGOVoOeHE78F774sGWbADYOx7gnQZOHjrQ3n6iNvgxQ08T?=
+ =?us-ascii?Q?GAmiO60Vs0wj1z0Q/TK32WJi5lOB8tT8e3xrTtr+Khm3MWf90206YBn9hgR/?=
+ =?us-ascii?Q?v4yjwghENOZiFM3e9TMQJvcKZ9huvISymJI5J6symD20YPcAj4WygHCC43Ja?=
+ =?us-ascii?Q?r3lQD/0ase0w/xWBIKqf//wqCRYOd4zUDZflsHcKdSeoFNCiLVozbaubAIqd?=
+ =?us-ascii?Q?le58qMfSaZy+eyCNFhH6OAPN/zNqg3ZCQUgEyCCcapJap8aU9XhtPqhz3VSm?=
+ =?us-ascii?Q?r5ZHr3xpq9RkV/zImsZrJmYNeAwXj6qW7gDOk06k7zUZG0xVhQ0+0dkiI4lO?=
+ =?us-ascii?Q?5YzwFLW9I9UreZZ6ZVvpX6+jSQel4n/w6AiSaJAOuYn1xspazWd6m/fk3Pzr?=
+ =?us-ascii?Q?RgtOtPHpec1cRN329qlz+w0t7e9O2kKXId2pXpaIyi9i4MSPwO2hpJAw1nU5?=
+ =?us-ascii?Q?anG5P3WrXIpZKr0yAyrtoovB4YdE81theXGgzNQjY5kpoxkFJjcH+jfZypZW?=
+ =?us-ascii?Q?O1fWg8N5ImEqVNGuaAY6iv7DRC0vQRV3bY2mUFMTa22S1TNQQnYxJQhpZaor?=
+ =?us-ascii?Q?u90X0wyTPMw7hDXXsdU9qxsKjsEhHZz1oT7StsWQbUkdYg/cAAMjx8h0PnXB?=
+ =?us-ascii?Q?Q4Pz2iQ/gtLw7uh9Vzl3NvNqr2QWaz+4Aps6RxSiyFHfWN0t+K9cuf0i8LDW?=
+ =?us-ascii?Q?SK2mbhDVhDPDWcfEbR3+x3hAfMRS6ne5UPvi+NwNMAWdZWf3s8dwfRvQaV3b?=
+ =?us-ascii?Q?WrORcAuxVgm8Nz8xXLyQK0HiGeY9t+u8rlWM+4Wg38jBk15/u5aK/qxOXUOA?=
+ =?us-ascii?Q?avXi0uq5VixD7OzE6Rj3vKVeA8gd4MMV8ElnMcfpyg+dvlYZ9k0Z5UK2rF5G?=
+ =?us-ascii?Q?gsGQDqBcCZiZrjlJW3Thstr5ZO6iRT1x26ykSrAWozI7xYeT5cNm1alNuNy2?=
+ =?us-ascii?Q?w2K0Xb31L5p5JbUowWekqe8VHS8Hfq3I350dIH8Bmua2PN6q4KoMO4p4oqiR?=
+ =?us-ascii?Q?CYqSIkukYRIno7rDvOIBztXj294iatBM?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(7416014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jhEHhmtAyxUkeeJx0h0/b/kxZZDJC8/1mhJzVA8wdq4yl0NBS1ENAujqcq1y?=
- =?us-ascii?Q?nVKpNquRG61jqQap1TvjZHbPcaLdULfOLttg/rnSaaxbyexycOzl+x8cRF1p?=
- =?us-ascii?Q?EseXdVyTyJsbfbZt4DWT3XD/A9+eBllCKRpm8S6qBau1NWZ9IUNeiLM1mlob?=
- =?us-ascii?Q?diKmNGTc0Ba9tNQ4j4xItY2QdqdArQGC/er/mWaadGmyu/A90L2k897SJCP9?=
- =?us-ascii?Q?4vW2KvzQ66whwe0HWs/cdInd37M0yZzDD2NCw/ON1KIuAbVvCmpoScLFXr9z?=
- =?us-ascii?Q?SU8NZgBWwK7NU48HaNrba1NpNc2OwJ1W4GOzVUVDJ7eV0t1auyKe1QZSIbd7?=
- =?us-ascii?Q?Kgf15wZT2phZ+ihfJL9StJMr8HHQQ7xVWdhP3EdhFWUH0ZXXmeyitMqXycD+?=
- =?us-ascii?Q?ctb5Lw8KBROJb0KRPrYTM+1YQKjdNMr11M0puASdqjbkjgbiA/B8FzarWfQv?=
- =?us-ascii?Q?2EKnoFliZ1GhRjJHINULU688zUzWIioW3JQY++x7jmtdaLqsRxvoMPUlGiyE?=
- =?us-ascii?Q?nSeBZR72aFW7FYSGU0maF62TxZnITSOxG/x4TeA9gvdQ6EUtezYLurqqaMfj?=
- =?us-ascii?Q?J23AZ2tAJgeKSp65/Mbokz3EtCf5mE4cScRqwV559ezCJKk7D3YA+mL8CST2?=
- =?us-ascii?Q?OxMlfajOCYYL5IN9t+bWZ+BBVy+EHOdLES5xNkHmy98w8Ea2LDtqQzOTCnpB?=
- =?us-ascii?Q?tI7ONvZ8I4Gubx7rb7ARDNaZ5FRy8XsSt7blCXRqxrZ4RaJdrU3HYtGg2xxW?=
- =?us-ascii?Q?MHnWxG5v6qGWav9x2r6dct6CPYgjdvEPEq6xTeLfm4LCo6F/QGASNZ3wT8EU?=
- =?us-ascii?Q?xaXk3TP05I5dpBhyg2oO/ZJzBNA9yy1V7ltdyKAMozauABbiL7h+itQNzKFY?=
- =?us-ascii?Q?M051bMrPBhBpD8KAFW4RwLVGPsZQNYCXd6J8FQnH6o3bGeQiUfgav0LVpdMX?=
- =?us-ascii?Q?RFgT7avKLJOMQbID7TnRmTNnS8EP20IMarStU2erUU9dnjJidCL8yQsXawdN?=
- =?us-ascii?Q?eAijtzXtrEDXVj9sJf+gXruub6XNLiVBakgci5QKqBQYbRTyCzwTnuFM3Mel?=
- =?us-ascii?Q?m2XVFsOeA77wm9N4z1+VaQ8Y6uYkOIzrH+45mej3WIynQ6TwRLAYgp5AEl8l?=
- =?us-ascii?Q?L+K2Wd0YQRObDej45x7LB61dRynKW/gjLY4caXuXWjtewTA/iRYPW3DA2qm7?=
- =?us-ascii?Q?eQ2/A4qkToXHqNTk3GgMfWh+WPIppZaalLVDEG6QwS2Ukv0ZuE8kWw1BX7N6?=
- =?us-ascii?Q?oVL45+EmS2pNRR1wvuFkHp7SbL1wouCuKgv6JdLLiLLyQooTk3y3wbRl3aSF?=
- =?us-ascii?Q?Rqt4oEYr5hTOkFkATjSu33DLg0tsaXXsk05+xh5o74QRLza/iskdooLnwkgQ?=
- =?us-ascii?Q?1g2owuc9HG50dOihyVo/Utu7LpSG64zix+3RbjERLdna2VS9EhMza7WdV3aq?=
- =?us-ascii?Q?MqK39x9DInR6GM+ffHRi5i4gHk4eDOasspvgG6qUf9GnEjEamDyGxkieJJWi?=
- =?us-ascii?Q?enU53gsV3bIBlWPq7+3rW822JZYYiJ7ffYeVeAPcw4y/Y4myJI54zpGTCKxv?=
- =?us-ascii?Q?RxJPl9Kin9/zb4Ze2Z/V50ATVsg+Y1tQ5MMM1K8p?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?r8nQTXpU1WStyecGDxA7g/XirDRF/oFFrRLNeZSLwhef9j+zI3CniD/k9DBw?=
+ =?us-ascii?Q?r9k/Xl+XT6e7w03FYEmQjWRxX2WdYPsItdm3Eodinsw0aCllH7j7I1rSYRy0?=
+ =?us-ascii?Q?TuWHBCHH7XoJzIVY7glz4fFuhcxucPJe+GF8SfJhRt2CHZKxEWhLdFyTeyKE?=
+ =?us-ascii?Q?3HpRfeLZZ1nzfsbETPXt+KsYt+3ztkN+WzqefvT0sqZ7Z6RdH+oZeEmvstV3?=
+ =?us-ascii?Q?C/Sip/FFADKPM73K2LO0gP0tSNlguPFupxWwzopDGC3XXbw4jT6weAZxRjmJ?=
+ =?us-ascii?Q?32qmJgrDu+uCInv18jFK7cB2LTcFbmnRgHMC4yZXNik5WgqwvXizGVsWqIg1?=
+ =?us-ascii?Q?7lbvEG/dqygvwlLBiFB4aWA+PA5eeRCkVt7og10CUSm+bTNvAq7jCDeMUNUg?=
+ =?us-ascii?Q?UaiNI+NvCxKMEhn1XlrShdsXOkeSSMutRpsRMwP7j0bYR/2o+bhVxTSikPFf?=
+ =?us-ascii?Q?3G/wCsSUchbFM2d33c0ndjfe7k/CE2mCdJfFmSw7ZTJ777/2wTgDhuQ8XvoV?=
+ =?us-ascii?Q?LHK6OERSki22UZX9kDCZhqiOBx8fYkcRrr1tHPov53pwJ30zOXWe0JU4Liul?=
+ =?us-ascii?Q?G4Kq/UOl9zsKD/xR783tCIM7y3Ikx1z2jlr5EUigYhLJTp2HYYRIWyRGKrcQ?=
+ =?us-ascii?Q?akwuGE73/zYSQCY+aPWKaMWz4ZwFTR9rWHpaj1xI1l+Fx8cb7egopavayuva?=
+ =?us-ascii?Q?o4m8acz2FxQ1YLXdP1AiFaSsxgqn3NcD1Kh+ASCEQ5UjQTy1a/byVeuhlCJF?=
+ =?us-ascii?Q?qzF88txMbcUQmvT4Pzap08XdTuSPlhDmOrTpRbfTigEVYyOLm3NZD23MKtG3?=
+ =?us-ascii?Q?dWru+eYVQoGZTK3unlIQDnhTSjyAAMDE8UR8OHsvUzCsXeAmgut9Lf2UogS7?=
+ =?us-ascii?Q?6j8ZntBHd24lv9Mm2/k3rOU1jYmKRRJJH063NTWiX88w8AseEKpvyjggqTeG?=
+ =?us-ascii?Q?c5O01PNYTCOLZci9xfUbYk/LZuZ5TbVlokFWPimSgCMZxQ0vNt8lghaEGT+A?=
+ =?us-ascii?Q?5ZpCHomEbyOBfwfRUXy8vPw+2g59jK1JBbQzBfF7OumyqZS8oxp0Pu+U3YDL?=
+ =?us-ascii?Q?PTkkf+gTOp2H8PF3eOI0munIzOhKj5B6QlxUo0li2EfzTrP3nhVl6A83XM+h?=
+ =?us-ascii?Q?73JVCvdM04UzsrvWWFdPQlqNoB+itr5WdTBbGDWllPjb9KBrTHlWYsn86kp7?=
+ =?us-ascii?Q?Zw+Fnl8gWPnsHTxG3g6RqXzKPmNxzI2N+3+84IUPzRBiYSli97xB47lAdTEa?=
+ =?us-ascii?Q?no0mxXAtKTikr3VoZZlN69RKew6Nv3FpVxb0/qPbJlR/uQkBZ+Vje876ON9M?=
+ =?us-ascii?Q?x27I2qKgxk5TlLKxFQAAO0adXNtOR7MBKSpaZBxvqzM4KoAlrB8CPoETYfUa?=
+ =?us-ascii?Q?K0OKz8zxq1oPbcBkSLc7HCkAnyOgZKflze7XyoBiFxgCyvluOK2HTF9+Re+M?=
+ =?us-ascii?Q?fb4HGsG5qBnoYW+8Eso2gTBaZpIV2b97mBtTgVbv7NDNJsjeYYdsq1YzY9KI?=
+ =?us-ascii?Q?NjaVE+dZ27qonQFyFQ55nuBLliMsWz5Tq3iXVL2Ep/8crpyXi32VpYMZ/e1f?=
+ =?us-ascii?Q?iCLIzVsW3XrQ3qSMUNb9moeTeQgHb6Xv7S9eeztv?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3fd9e52-f9a1-4fe3-39ed-08de100a4bd7
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9c7280a5-5c2f-4764-7f10-08de100a4db6
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 18:55:54.2762 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2025 18:55:57.4259 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nevxwV0YUprTMGv1906odz2PN5TwoSGOmuwcrC62bUHFzYMKB5POn6H4HHT8qsNYyu4zXqLcjtdbb9pvUzVifA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: jWDSKDSQNwQ5p7wtvEKNpPBx26D4/CG6JepHkcmv57ri0TQAw3/salW2YlDtyHRJ9yLyCj8pmJCHWUBE7otjiw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9316
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -158,189 +158,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Document the GSP RPC message queue architecture in detail.
+Add support for managing GSP falcon interrupts. These are required for
+GSP message queue interrupt handling.
+
+Also rename clear_swgen0_intr() to enable_msq_interrupt() for
+readability.
 
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- Documentation/gpu/nova/core/msgq.rst | 159 +++++++++++++++++++++++++++
- Documentation/gpu/nova/index.rst     |   1 +
- 2 files changed, 160 insertions(+)
- create mode 100644 Documentation/gpu/nova/core/msgq.rst
+ drivers/gpu/nova-core/falcon/gsp.rs | 26 +++++++++++++++++++++++---
+ drivers/gpu/nova-core/gpu.rs        |  2 +-
+ drivers/gpu/nova-core/regs.rs       | 10 ++++++++++
+ 3 files changed, 34 insertions(+), 4 deletions(-)
 
-diff --git a/Documentation/gpu/nova/core/msgq.rst b/Documentation/gpu/nova/core/msgq.rst
-new file mode 100644
-index 000000000000..84e25be69cd6
---- /dev/null
-+++ b/Documentation/gpu/nova/core/msgq.rst
-@@ -0,0 +1,159 @@
-+.. SPDX-License-Identifier: GPL-2.0
+diff --git a/drivers/gpu/nova-core/falcon/gsp.rs b/drivers/gpu/nova-core/falcon/gsp.rs
+index f17599cb49fa..6da63823996b 100644
+--- a/drivers/gpu/nova-core/falcon/gsp.rs
++++ b/drivers/gpu/nova-core/falcon/gsp.rs
+@@ -22,11 +22,31 @@ impl FalconEngine for Gsp {
+ }
+ 
+ impl Falcon<Gsp> {
+-    /// Clears the SWGEN0 bit in the Falcon's IRQ status clear register to
+-    /// allow GSP to signal CPU for processing new messages in message queue.
+-    pub(crate) fn clear_swgen0_intr(&self, bar: &Bar0) {
++    /// Enable the GSP Falcon message queue interrupt (SWGEN0 interrupt).
++    #[expect(dead_code)]
++    pub(crate) fn enable_msgq_interrupt(&self, bar: &Bar0) {
++        regs::NV_PFALCON_FALCON_IRQMASK::alter(bar, &Gsp::ID, |r| r.set_swgen0(true));
++    }
 +
-+=========================================
-+Nova GPU RPC Message Passing Architecture
-+=========================================
++    /// Check if the message queue interrupt is pending.
++    #[expect(dead_code)]
++    pub(crate) fn has_msgq_interrupt(&self, bar: &Bar0) -> bool {
++        regs::NV_PFALCON_FALCON_IRQSTAT::read(bar, &Gsp::ID).swgen0()
++    }
 +
-+.. note::
-+   The following description is approximate and current as of the Ampere family.
-+   It may change for future generations and is intended to assist in understanding
-+   the driver code.
++    /// Clears the message queue interrupt to allow GSP to signal CPU
++    /// for processing new messages.
++    pub(crate) fn clear_msgq_interrupt(&self, bar: &Bar0) {
+         regs::NV_PFALCON_FALCON_IRQSCLR::default()
+             .set_swgen0(true)
+             .write(bar, &Gsp::ID);
+     }
 +
-+Overview
-+========
++    /// Acknowledge all pending GSP interrupts.
++    #[expect(dead_code)]
++    pub(crate) fn ack_all_interrupts(&self, bar: &Bar0) {
++        // Read status and write the raw value to IRQSCLR to clear all pending interrupts.
++        let status = regs::NV_PFALCON_FALCON_IRQSTAT::read(bar, &Gsp::ID);
++        regs::NV_PFALCON_FALCON_IRQSCLR::from(u32::from(status)).write(bar, &Gsp::ID);
++    }
+ }
+diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+index af20e2daea24..fb120cf7b15d 100644
+--- a/drivers/gpu/nova-core/gpu.rs
++++ b/drivers/gpu/nova-core/gpu.rs
+@@ -216,7 +216,7 @@ pub(crate) fn new<'a>(
+                 bar,
+                 spec.chipset > Chipset::GA100,
+             )
+-            .inspect(|falcon| falcon.clear_swgen0_intr(bar))?,
++            .inspect(|falcon| falcon.clear_msgq_interrupt(bar))?,
+ 
+             sec2_falcon: Falcon::new(pdev.as_ref(), spec.chipset, bar, true)?,
+ 
+diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+index 206dab2e1335..a3836a01996b 100644
+--- a/drivers/gpu/nova-core/regs.rs
++++ b/drivers/gpu/nova-core/regs.rs
+@@ -198,6 +198,16 @@ pub(crate) fn vga_workspace_addr(self) -> Option<u64> {
+ 
+ // PFALCON
+ 
++register!(NV_PFALCON_FALCON_IRQMASK @ PFalconBase[0x00000014] {
++    4:4     halt as bool;
++    6:6     swgen0 as bool;
++});
 +
-+The Nova GPU driver communicates with the GSP (GPU System Processor) firmware
-+using an RPC (Remote Procedure Call) mechanism built on top of circular message
-+queues in shared memory. This document describes the structure of RPC messages
-+and the mechanics of the message passing system.
++register!(NV_PFALCON_FALCON_IRQSTAT @ PFalconBase[0x00000008] {
++    4:4     halt as bool;
++    6:6     swgen0 as bool;
++});
 +
-+Message Queue Architecture
-+==========================
-+
-+The communication between CPU and GSP uses two unidirectional circular queues:
-+
-+1. **CPU Queue (cpuq)**: CPU writes, GSP reads
-+2. **GSP Queue (gspq)**: GSP writes, CPU reads
-+
-+The advantage of this approach is no synchronization is required to access the
-+queues, if one entity wants to communicate with the other (CPU or GSP), they
-+simply write into their own queue.
-+
-+Memory Layout
-+-------------
-+
-+The shared memory region (GspMem) where the queues reside has the following
-+layout::
-+
-+    +------------------------+ GspMem DMA Handle (base address)
-+    |    PTE Array (4KB)     |  <- Self-mapping page table
-+    | PTE[0] = base + 0x0000 |     Points to this page
-+    | PTE[1] = base + 0x1000 |     Points to CPU queue Header page
-+    | PTE[2] = base + 0x2000 |     Points to first page of CPU queue data
-+    | ...                    |     ...
-+    | ...                    |     ...
-+    +------------------------+ base + 0x1000
-+    |    CPU Queue Header    |  MsgqTxHeader + MsgqRxHeader
-+    |    - TX Header (32B)   |
-+    |    - RX Header (4B)    | (1 page)
-+    |    - Padding           |
-+    +------------------------+ base + 0x2000
-+    |    CPU Queue Data      | (63 pages)
-+    |    (63 x 4KB pages)    |  Circular buffer for messages
-+    | ...                    |     ...
-+    +------------------------+ base + 0x41000
-+    |    GSP Queue Header    |  MsgqTxHeader + MsgqRxHeader
-+    |    - TX Header (32B)   |
-+    |    - RX Header (4B)    | (1 page)
-+    |    - Padding           |
-+    +------------------------+ base + 0x42000
-+    |    GSP Queue Data      | (63 pages)
-+    |    (63 x 4KB pages)    |  Circular buffer for messages
-+    | ...                    |     ...
-+    +------------------------+ base + 0x81000
-+
-+
-+Message Passing Mechanics
-+-------------------------
-+The split read/write pointer design allows bidirectional communication between the
-+CPU and GSP without synchronization (if it were a shared queue), for example, the
-+following diagram illustrates pointer updates, when CPU sends message to GSP::
-+
-+    +--------------------------------------------------------------------------+
-+    |                     DMA coherent Shared Memory (GspMem)                  |
-+    +--------------------------------------------------------------------------+
-+    |                          (CPU sending message to GSP)                    |
-+    |  +-------------------+                      +-------------------+        |
-+    |  |   GSP Queue       |                      |   CPU Queue       |        |
-+    |  |                   |                      |                   |        |
-+    |  | +-------------+   |                      | +-------------+   |        |
-+    |  | |  TX Header  |   |                      | |  TX Header  |   |        |
-+    |  | | write_ptr   |   |                      | | write_ptr   |---+----,   |
-+    |  | |             |   |                      | |             |   |    |   |
-+    |  | +-------------+   |                      | +-------------+   |    |   |
-+    |  |                   |                      |                   |    |   |
-+    |  | +-------------+   |                      | +-------------+   |    |   |
-+    |  | |  RX Header  |   |                      | |  RX Header  |   |    |   |
-+    |  | |  read_ptr ------+-------,              | |  read_ptr   |   |    |   |
-+    |  | |             |   |       |              | |             |   |    |   |
-+    |  | +-------------+   |       |              | +-------------+   |    |   |
-+    |  |                   |       |              |                   |    |   |
-+    |  | +-------------+   |       |              | +-------------+   |    |   |
-+    |  | |   Page 0    |   |       |              | |   Page 0    |   |    |   |
-+    |  | +-------------+   |       |              | +-------------+   |    |   |
-+    |  | |   Page 1    |   |       `--------------> |   Page 1    |   |    |   |
-+    |  | +-------------+   |                      | +-------------+   |    |   |
-+    |  | |   Page 2    |   |                      | |   Page 2    |<--+----'   |
-+    |  | +-------------+   |                      | +-------------+   |        |
-+    |  | |     ...     |   |                      | |     ...     |   |        |
-+    |  | +-------------+   |                      | +-------------+   |        |
-+    |  | |   Page 62   |   |                      | |   Page 62   |   |        |
-+    |  | +-------------+   |                      | +-------------+   |        |
-+    |  |   (63 pages)      |                      |   (63 pages)      |        |
-+    |  +-------------------+                      +-------------------+        |
-+    |                                                                          |
-+    +--------------------------------------------------------------------------+
-+
-+When the CPU sends a message to the GSP, it writes the message to its own
-+queue (CPU queue) and updates the write pointer in its queue's TX header. The GSP
-+then reads the read pointer in its own queue's RX header and knows that there are
-+pending messages from the CPU because its RX header's read pointer is behind the
-+CPU's TX header's write pointer. After reading the message, the GSP updates its RX
-+header's read pointer to catch up. The same happens in reverse.
-+
-+Page-based message passing
-+--------------------------
-+The message queue is page-based, which means that the message is stored in a
-+page-aligned buffer. The page size is 4KB. Each message starts at the beginning of
-+a page. If the message is shorter than a page, the remaining space in the page is
-+wasted. The next message starts at the beginning of the next page no matter how
-+small the previous message was.
-+
-+Note that messages larger than a page will span multiple pages. This means that
-+it is possible that the first part of the message lands on the last page, and the
-+second part of the message lands on the first page, thus requiring out-of-order
-+memory access. The SBuffer data structure in Nova tackles this use case.
-+
-+RPC Message Structure:
-+======================
-+
-+An RPC message is also called a "Message Element". The entire message has
-+multiple headers. There is a "message element" header which handles message
-+queue specific details and integrity, followed by a "RPC" header which handles
-+the RPC protocol details::
-+
-+    +----------------------------------+
-+    |        GspMsgHeader (64B)        | (aka, Message Element Header)
-+    +----------------------------------+
-+    | auth_tag_buffer[16]              | --+
-+    | aad_buffer[16]                   |   |
-+    | checksum        (u32)            |   +-- Security & Integrity
-+    | sequence        (u32)            |   |
-+    | elem_count      (u32)            |   |
-+    | pad             (u32)            | --+
-+    +----------------------------------+
-+    |        GspRpcHeader (32B)        |
-+    +----------------------------------+
-+    | header_version  (0x03000000)     | --+
-+    | signature       (0x43505256)     |   |
-+    | length          (u32)            |   +-- RPC Protocol
-+    | function        (u32)            |   |
-+    | rpc_result      (u32)            |   |
-+    | rpc_result_private (u32)         |   |
-+    | sequence        (u32)            |   |
-+    | cpu_rm_gfid     (u32)            | --+
-+    +----------------------------------+
-+    |                                  |
-+    |        Payload (Variable)        | --- Function-specific data
-+    |                                  |
-+    +----------------------------------+
-diff --git a/Documentation/gpu/nova/index.rst b/Documentation/gpu/nova/index.rst
-index e39cb3163581..46302daace34 100644
---- a/Documentation/gpu/nova/index.rst
-+++ b/Documentation/gpu/nova/index.rst
-@@ -32,3 +32,4 @@ vGPU manager VFIO driver and the nova-drm driver.
-    core/devinit
-    core/fwsec
-    core/falcon
-+   core/msgq
+ register!(NV_PFALCON_FALCON_IRQSCLR @ PFalconBase[0x00000004] {
+     4:4     halt as bool;
+     6:6     swgen0 as bool;
 -- 
 2.34.1
 
