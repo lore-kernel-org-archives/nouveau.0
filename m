@@ -4,58 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D884D0EE2C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C2AD0EE2A
 	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 20:47:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 857F510E47C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAAD410E475;
 	Tue, 25 Nov 2025 20:47:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=proton.me header.i=@proton.me header.b="jOJAu7pW";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="PGCi073F";
 	dkim-atps=neutral
-X-Greylist: delayed 3972 seconds by postgrey-1.36 at gabe;
- Wed, 05 Mar 2025 23:37:12 UTC
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com
- [51.77.79.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9596310E86A
- for <nouveau@lists.freedesktop.org>; Wed,  5 Mar 2025 23:37:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
- s=protonmail; t=1741217824; x=1741477024;
- bh=Gxk41D0aEqbdm+zd94pkZqxTTDSqmpgclDrTYWEtmOU=;
- h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
- Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
- Message-ID:BIMI-Selector:List-Unsubscribe:List-Unsubscribe-Post;
- b=jOJAu7pWZF5YNcHCbbVPZ4Fkebu/IyTtsQPmQsnttyTD0DL599Ek2Pb7/DQwV6Anj
- kFmvU5ZkfUcIsDFuUcsNb/99bl5sNLQV2E0t9r9uVi5/i4PJbNRR15kWVPf0RpV30i
- i7L+/QxnHgzNCEGyv+aDgcZ23NRGTQzFykPqCUDvuQz3livsEWVMnbsel4heR8sYIX
- SiOahehcGiHt5tgQoSJFyW2VXaXpc6ZwG68MnmRXttIau09KAUKaBge5yAMbVeHUxL
- xzo7BUSGvahj4wi1j5zCYwp4oGqMsiaWeQlKmQ8QadrHR3Z6btPMOIduRUE5IPk5Ij
- 2cwQm7Sab+yag==
-Date: Wed, 05 Mar 2025 23:36:54 +0000
-To: Danilo Krummrich <dakr@kernel.org>
-From: Benno Lossin <benno.lossin@proton.me>
-Cc: airlied@gmail.com, simona@ffwll.ch, corbet@lwn.net,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- ajanulgu@redhat.com, lyude@redhat.com, pstanner@redhat.com, zhiw@nvidia.com,
- cjia@nvidia.com, jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, a.hindborg@kernel.org,
- aliceryhl@google.com, tmgross@umich.edu, gregkh@linuxfoundation.org,
- mcgrof@kernel.org, russ.weight@linux.dev, dri-devel@lists.freedesktop.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 2/5] rust: firmware: introduce
- `firmware::ModInfoBuilder`
-Message-ID: <D88Q7503C8FF.2TMMBSEMOGKU1@proton.me>
-In-Reply-To: <Z8jSV5CpZDcXrviY@pollux>
-References: <20250304173555.2496-1-dakr@kernel.org>
- <20250304173555.2496-3-dakr@kernel.org> <D88OSC9XJXZL.C5HXWFYCG9U6@proton.me>
- <Z8jSV5CpZDcXrviY@pollux>
-Feedback-ID: 71780778:user:proton
-X-Pm-Message-ID: f41048d72c2b4fded541320cd54a9e6ca4066086
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+ [209.85.167.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81DE810E69F
+ for <nouveau@lists.freedesktop.org>; Wed, 22 Oct 2025 04:13:07 +0000 (UTC)
+Received: by mail-lf1-f42.google.com with SMTP id
+ 2adb3069b0e04-58affa66f2bso7495258e87.1
+ for <nouveau@lists.freedesktop.org>; Tue, 21 Oct 2025 21:13:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1761106386; x=1761711186; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=HTarvr5NQrK1UQUHCo4kav4SXNLG6y74vPoWa3KRT+Q=;
+ b=PGCi073F10KQkXcS5OfBXAijqviY0QpTEmjwbpaubuKUWnhbMSo7q0Q/H12zte5ttL
+ EpwF8cj4vvjWAeJxRejnOdJ5qD4M7fHK234LKlHX6cK2rhs+kv8rkqfbT087/Myy5XX5
+ y5g1DEhiF/0h0OPjeHRQnzSUSFmPfumsYyvUzpOrhtloHzZgJATc+W+u3UQboU9sGoGC
+ upZdki9vV1GAKgiiWWxM+V8vUSqy/INA66QSqujf8KVwrRMp2ChjMGfhmn3aSSwGRIux
+ +QrQ9BDMsBIpnJETNA4h9SbQDxoD9mXx3+wJ9mFSZYJXlK6m2RqCBtb/16gtLoojpxMC
+ /Lpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761106386; x=1761711186;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=HTarvr5NQrK1UQUHCo4kav4SXNLG6y74vPoWa3KRT+Q=;
+ b=Y5eJgsR7U29MjokYpdZJD9NbzLCGPPP02dxjpUVGffJpWlc7UdzpOvE0M9+v6znDXg
+ iPI5lSpp+JRU0t+Bh8v7IsTP5JIPlmtdmQsiP0C4FgAyDWczepmq/GpQ8+slHnbLPhXe
+ UnOsLWQLp/R7aFxdID5mxOrI/x9tL/od2TsedwWM/bTXlIK6DBrxq4XV8RhMM0ESnmPx
+ J2/Trw7aDuFwlO0KDur1qu7yP9G5viWCh9CZU6kedQGr2uzLXfz3GwO2ErfSRIdJGNBT
+ zcAOd8rlh4ksuwnl7DWmVoTsewRljnfFdNoauGwGLpzQ03I1QR6GSMIZJhQZqtYYp10I
+ 906w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV3gSPg2S04lWjXr/tZ7pjnY/VMtA7REPdPg9P2vqR8BoA3XhIV45AC1+ES+eY7bS4/2dy2k8/t@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzaVwIpvs/wp5qLtPtkn9ZxNIvABWPR3v1MUvyQJPb3g1B9v27E
+ ZFvNoXc9uX3Wx0aRH6nw+tXQ7M6ONi6XslZ7QNCnAZ0EisvGQy7SxwSnJZTELnijrX6+iw==
+X-Gm-Gg: ASbGnctPQ2lqCmtDag1600wjfTHrJ9DH1aw6arE2e/+qhFZEqnqipHlk0BXRrmIG1Q8
+ Yz8StwnDN+7b1Bo9IRxqML19PNjSJVtCeQU80rD1HG2rYORehsHVL+WyTUpWrTuTurnfcZSWCfT
+ OCujceSaCfMljt4nINMkcvkt/COK+71sg6J87Xvahe11EH7+Ig27J9z/W7LVuI0S6jBUbmVNLqw
+ axKW20/bqagkwrSMfvB80CzNJdo3yIIgr08xUogT2XGg7s+5UlVxeIa6X4aZ1e1fL6HpMsm4w6Y
+ T3pKVYtcZblGw6jd7p99o5nEOjhLWkcgk6+3E7DDzDG/NMYomBrRBaaYP4tBpPMU5CpT9rbnHoE
+ oaRq1Z6ZJ5vBy/5xXtTpmcFC0AzVD3QeWFm1kaBwnggikq8GmeF6nWNpyPMYWh9DbgLI2znvPIa
+ BRyfbeXmHieVnGGZUjOmZL48eh6ifVNz2Ra+qP6FFl9pcpCiHTecOIZvzG8O85T1/ginoLHH80X
+ kjHrAzd
+X-Google-Smtp-Source: AGHT+IHY7I4DBmj7a1FpDVM7msh9gcYm7KPVmZxtgTaCyBA4vmSmAHD2ToTDDsFBgGtcjxwcP6lO+w==
+X-Received: by 2002:a05:6512:220f:b0:567:ef90:f519 with SMTP id
+ 2adb3069b0e04-591d850d08fmr6278217e87.12.1761106385519; 
+ Tue, 21 Oct 2025 21:13:05 -0700 (PDT)
+Received: from localhost.localdomain
+ (broadband-109-173-93-221.ip.moscow.rt.ru. [109.173.93.221])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-591deeaf6e2sm4252192e87.32.2025.10.21.21.13.04
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 21 Oct 2025 21:13:05 -0700 (PDT)
+From: Alexandr Sapozhnikov <alsp705@gmail.com>
+To: Ben Skeggs <bskeggs@redhat.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>
+Cc: Alexandr Sapozhnikov <alsp705@gmail.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ lvc-project@linuxtesting.org
+Subject: [PATCH] drm/nouveau: handle division by zero and overflow in
+ nouveau_bo_fixup_align()
+Date: Wed, 22 Oct 2025 07:12:59 +0300
+Message-ID: <20251022041302.13-1-alsp705@gmail.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:19 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 25 Nov 2025 20:47:23 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,117 +92,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed Mar 5, 2025 at 11:38 PM CET, Danilo Krummrich wrote:
-> On Wed, Mar 05, 2025 at 10:30:31PM +0000, Benno Lossin wrote:
->> On Tue Mar 4, 2025 at 6:34 PM CET, Danilo Krummrich wrote:
->> > +    /// Push an additional path component.
->> > +    ///
->> > +    /// After a new [`ModInfoBuilder`] instance has been created, [`M=
-odInfoBuilder::prepare`] must
->> > +    /// be called before adding path components.
->> > +    pub const fn push(self, s: &str) -> Self {
->> > +        if N !=3D 0 && self.n =3D=3D 0 {
->> > +            crate::build_error!("Must call prepare() before push().")=
-;
->>
->> This will only prevent the first `prepare` call being missed, right?
->
-> Correct, unfortunately there's no way to detect subsequent ones.
+The expression 64 * nvbo->mode can evaluate to 0 when 
+nvbo->mode = U32_MAX/64, which results in division by zero 
+in the do_div() function. A value greater than U32_MAX/64 
+causes a u32 overflow, and the division result may be 
+incorrect. The nvbo->mode value depends on the data 
+passed from the user via ioctl. Generally, the kernel 
+should distrust userspace data (an attacker could operate 
+from there, and there's no guarantee that mesa and similar 
+software are bug-free) and validate it to avoid crashing.
 
-Does it make sense to do that one in the constructor?
+Found by Linux Verification Center (linuxtesting.org) with svace.
 
-(After looking at the example below) Ah maybe you can't do that, since
-then you would have two `prepare()` calls for the example below...?
+Fixes: a0af9add499c ("drm/nouveau: Make the MM aware of pre-G80 tiling.")
 
->> > +        }
->> > +
->> > +        self.push_internal(s.as_bytes())
->> > +    }
->> > +
->> > +    const fn prepare_module_name(self) -> Self {
->> > +        let mut this =3D self;
->> > +        let module_name =3D this.module_name;
->> > +
->> > +        if !this.module_name.is_empty() {
->> > +            this =3D this.push_internal(module_name.as_bytes_with_nul=
-());
->> > +
->> > +            if N !=3D 0 {
->> > +                // Re-use the space taken by the NULL terminator and =
-swap it with the '.' separator.
->> > +                this.buf[this.n - 1] =3D b'.';
->> > +            }
->> > +        }
->> > +
->> > +        this.push_internal(b"firmware=3D")
->> > +    }
->> > +
->> > +    /// Prepare for the next module info entry.
->> > +    ///
->> > +    /// Must be called before [`ModInfoBuilder::push`] can be called.
->>
->> If you always have to call this before `push`, why not inline it there?
->
-> You can push() multiple times to compose the firmware path string (which =
-is the
-> whole purpose :).
-
-Ah I see, I only looked at the example you have in the next patch. All
-in all, I think this patch could use some better documentation, since I
-had to read a lot of the code to understand what everything is supposed
-to do...
-
-It might also make sense to make this more generic, since one probably
-also needs this in other places? Or do you think this will only be
-required for modinfo?
-
+Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
 ---
-Cheers,
-Benno
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> Example from nova-core:
->
-> =09pub(crate) struct ModInfoBuilder<const N: usize>(firmware::ModInfoBuil=
-der<N>);
->
-> =09impl<const N: usize> ModInfoBuilder<N> {
-> =09    const fn make_entry_file(self, chipset: &str, fw: &str) -> Self {
-> =09        let version =3D "535.113.01";
->
-> =09        ModInfoBuilder(
-> =09            self.0
-> =09                .prepare()
-> =09                .push("nvidia/")
-> =09                .push(chipset)
-> =09                .push("/gsp/")
-> =09                .push(fw)
-> =09                .push("-")
-> =09                .push(version)
-> =09                .push(".bin"),
-> =09        )
-> =09    }
->
-> =09    const fn make_entry_chipset(self, chipset: &str) -> Self {
-> =09        self.make_entry_file(chipset, "booter_load")
-> =09            .make_entry_file(chipset, "booter_unload")
-> =09            .make_entry_file(chipset, "bootloader")
-> =09            .make_entry_file(chipset, "gsp")
-> =09    }
->
-> =09    pub(crate) const fn create(
-> =09        module_name: &'static kernel::str::CStr,
-> =09    ) -> firmware::ModInfoBuilder<N> {
-> =09        let mut this =3D Self(firmware::ModInfoBuilder::new(module_nam=
-e));
-> =09        let mut i =3D 0;
->
-> =09        while i < gpu::Chipset::NAMES.len() {
-> =09            this =3D this.make_entry_chipset(gpu::Chipset::NAMES[i]);
-> =09            i +=3D 1;
-> =09        }
->
-> =09        this.0
-> =09    }
-> =09}
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 7daa12eec01b..afe4e73b6190 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -168,7 +168,7 @@ nouveau_bo_fixup_align(struct nouveau_bo *nvbo, int *align, u64 *size)
+ 	struct nvif_device *device = &drm->client.device;
+ 
+ 	if (device->info.family < NV_DEVICE_INFO_V0_TESLA) {
+-		if (nvbo->mode) {
++		if (nvbo->mode && nvbo->mode < U32_MAX / 64) {
+ 			if (device->info.chipset >= 0x40) {
+ 				*align = 65536;
+ 				*size = roundup_64(*size, 64 * nvbo->mode);
+-- 
+2.43.0
 
