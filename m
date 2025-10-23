@@ -4,82 +4,85 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 085E7D5B158
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFD1D5B15E
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 559C510EC8F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECD110EC95;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="LttzFiya";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="BmPVfkkC";
 	dkim-atps=neutral
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
- [209.85.216.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D900210E23A
- for <nouveau@lists.freedesktop.org>; Thu,  9 Oct 2025 19:19:54 +0000 (UTC)
-Received: by mail-pj1-f52.google.com with SMTP id
- 98e67ed59e1d1-339d7c401d8so231325a91.2
- for <nouveau@lists.freedesktop.org>; Thu, 09 Oct 2025 12:19:54 -0700 (PDT)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D28F10E940
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 20:52:00 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-63c0c9a408aso2135059a12.3
+ for <nouveau@lists.freedesktop.org>; Thu, 23 Oct 2025 13:52:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760037594; x=1760642394; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1761252719; x=1761857519; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=rcXwgJGTpWZU2t3OdSFiom5bqnzub6a4TGqV+K3Njdc=;
- b=LttzFiyaqJMC47q/A0XafUZwvmvoVFQaCos9WLkmtf/RlndvzxUN59XW5lAveA/a3G
- Y8uKNSV7/BmE47lzgRI9V2RPkS8Oy+HYhhnyM2Kd2z11xO47UVISQO9J8UaKDdplqlBm
- D46fJvZotl+U5+s9lWDQJXW2qFHeD6ypDZNWxLlLOZG/VVnkfelNzo8fiHYt/mc4LvPe
- UieOf3QH07svyEObdpvpW55ijx97eLOJM86Piw0syde1Inf6KiPt3L+Mz5BXMMlVB+l+
- j48UxClS77xPdGxLC9rQo9WrsWc9x/HrcL6E/MvL6Ei00CGBOrmGs9SsigSrWPnAfEyA
- bfrA==
+ bh=UAPXNY+YzoexJ0d/TkSSgHS667VNidACYdJWMiQnzPM=;
+ b=BmPVfkkCZ2026DLOXWANitdPpdgbQaLf1l4ds+a+7jYMVRQUcdQLwZxY/ugWkun9Eg
+ uWnauuGoNL9T6Ux7LQgv8gZ3CiEtg/F7y9RVxCKwHZpjUHOGtqx7BUD9Xxw7sO3X9Vvq
+ LaJtHDvwsGuteZdUiiS/3znnQlunCf41nrzaVipl41xAmF9ksNa4cWYMqZ3ZT0pt2JEQ
+ D9gXiXEs3AoBJ5kZxbAXmqHj+U/XrtX50GZ93oPiR7ii9AWK116JXWgodjHKi/y2vfDv
+ 2VdrAB3P8U79n6FuMYjCOU409fTfehAT63wBfwSbWRjLFN05fwGExN4tVFfjFR0PchPM
+ QoPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760037594; x=1760642394;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ d=1e100.net; s=20230601; t=1761252719; x=1761857519;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=rcXwgJGTpWZU2t3OdSFiom5bqnzub6a4TGqV+K3Njdc=;
- b=B0StLiDyP7Ibo1x8AtWTOVOAhMU07y4cOQQDN8OvznazGoM/Z3n62IRwrGRvzge+IJ
- gPlDbaz8CyXPzdWqmjwhTgTwtIIzXwmjHJFxKP1ikpubP/GeB/+ZjrXopudldl+xE5AS
- 7eSe0pxTDQ5fMN2jbohTdZxw9kqw/BtO+C0WE+m03SqEQeA9jGMUUxQR136G9DNKihdi
- Lnl57roBvcbhGUhmWdnymvNKWvJDYbf1b8YfnxUQMTVZjL207H44uuc4udu+bu2G3hlb
- Jh8rr2FvmOyN4Y/pbv3EX9J1+nZZNUc3zjj/HBf9L11kdHphG4jo3H3+KnHAFtdqnV4K
- QM8A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXA/4dnexe4+slRbJ92SJMlkIbSClMaBoDlBaeVfpM/JMG/bNPo8/Ca8UC5UD6e+dPk8bPRMUgO@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzBQXj90zkiIidD+9t9pkRC09P1TDPO91SgHvD0AYrkMJZEzQjq
- 60d/iZpV3G1g/LiWn3sz7DBGCXjHx+ogsEqDmaz9lSF56wJCqzEUKuo2HGqSyE8YHD9WTkRg4/e
- frcX7prKxQd27h8HsVaWDTF9Dti4OvpQ=
-X-Gm-Gg: ASbGncuhKey6FxAWX/lB+G+REos1P11FQSj8chUg4qHpzu/mek0sBDg+cnVXzfrTHqe
- T9RqhHLVIQ7WWU0sSAUj177mA2qcU0hx0z+9pBTZmSccDy5K+MAaM902PeO4XDJmqWSVD6ayoXs
- JNKkzUhzODRemxRThc1SQo2KwC1mp7mqr3/0DhIPRDmNGpoFUgpRhGpbPz5/3SfHfxNEzIQFX9J
- 4+PFP3GmtLRVZ690uZptj0p8wB9bjM6AQrESN5Ar/44JkxfPaIs4uiIT6G+I3TEpMNqDOQqyzMP
- KuZMph7kCd6wKo3PopLt3NkxbpNCeGGAJ37yXRqREgcelLPnww==
-X-Google-Smtp-Source: AGHT+IGoblUKEeISrZbv72jxa9PiUckqqLQlj3DZjUWlLcO9V1Ny9+gENsT9PTdE7jTdp3qFnpKB0Hp3UsFuterm8Ys=
-X-Received: by 2002:a17:902:d2c9:b0:269:96d2:9c96 with SMTP id
- d9443c01a7336-2902724dcb1mr61748135ad.0.1760037594340; Thu, 09 Oct 2025
- 12:19:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com>
- <20251009-bounded_ints-v2-3-ff3d7fee3ffd@nvidia.com> <aOflmmHe8O6Nx9Hp@yury>
- <DDDYOBOZTF7Q.124VJDF4C76B6@kernel.org> <aOf-s-XuhbN7MUlx@yury>
-In-Reply-To: <aOf-s-XuhbN7MUlx@yury>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 9 Oct 2025 21:19:42 +0200
-X-Gm-Features: AS18NWAcMteSg_vVIc0g1AxzGZB7uiQHfY0qKY6Biz_FAtZhjrTWuqxAC8PWrD4
-Message-ID: <CANiq72n7i7mpP3SXnY_opUKAm=UjOne=kECc4QdyXo4gz0qWVA@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 3/3] gpu: nova-core: use BoundedInt
-To: Yury Norov <yury.norov@gmail.com>
-Cc: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, Jesung Yang <y.j3ms.n@gmail.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feong@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ bh=UAPXNY+YzoexJ0d/TkSSgHS667VNidACYdJWMiQnzPM=;
+ b=C/M7/21EXt3115EmAozCOOoGVX3bk2IDNU8xFjiLWZQmi8YDifi0Fs10EPRPLK4Nu+
+ DcBeeV0FktJT+1wADT9As9Y6o3JMIl2B8WjEcmg+zMoNuaxIbAe89ipQa68+RTRoKU6e
+ a7YGKIEDAYs+1Gs4L+Lw4y5tEc9u8c2AezmJr5kyp7yqhHaOBI9q+jI5XO6HS4Hw6Dk/
+ P+CnGAAkSir2ixq/xL9ViOqmUyUFXdDcjGtZQTUN86iYn3v+fUJyqKnCtedc16srptcF
+ 4xBC5D8XAiAYmhbC/Gx05zwaM95iaxsxXQxEPzTySAH5bSReXAuCNJFuMVJ/BBmNBwnL
+ GFrQ==
+X-Gm-Message-State: AOJu0YxPK0H8ceUkFa6tv2VuVfgSF0iOhbB2sQM+T4TilhtQP+PcjuWE
+ Ja7ICs0QZNosZMa70lO1GourP9DwqGzrk+yrcciqudsodxnnsqkiyIej
+X-Gm-Gg: ASbGncuHd01016K6/RzMp3nWeASxI/N02KqSIlZeUI0wpsm1JE0tIRPJALkz2SLxs8J
+ 9pBVNQB5rywUia+u0+8c2PsBR2J1/T+776n0wMBwrzkZe3U1f2cbqvYXSh6gQ2K455FZINkLK/q
+ LHHw4upJdHJRHuKmsvNERwF0uClnRGSSBR0+bFPlhvBjAIPf3kNX7z4a1IDQfiHklLMW7PFsiIo
+ phUW4cZaAGfrPbwYVQGKo7ns6sON4WOZHu6Gs6yHO4LAp4llGaOuqc2vWRKMBc3s/rRGLH33T+6
+ BRiVcxjq3btZFjFGHbZLT+t7d4b9cBbigahgbc4rh3KB+dfD148kNPCnj5swHN2EdssxssyGMdp
+ FOaHShdQhQBrnFgjOkX5EPzOxoKR0MO82oPrSCDYqnX6OzxdjiM/RzcefXlP3pCasyxPkhtP0ZD
+ 5fOb0iSTnyu1SrW35m0w==
+X-Google-Smtp-Source: AGHT+IFOkN+DkcmLNJzRNIqysto7sYM8LlsTGTSLlhGfULzr9KAi+B1XnIznbLvzFcpxukEGtb28dQ==
+X-Received: by 2002:a05:6402:51d1:b0:63c:3efe:d996 with SMTP id
+ 4fb4d7f45d1cf-63c3efeee79mr22748502a12.20.1761252718877; 
+ Thu, 23 Oct 2025 13:51:58 -0700 (PDT)
+Received: from archito ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-63e3ebb3299sm2564120a12.2.2025.10.23.13.51.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 23 Oct 2025 13:51:58 -0700 (PDT)
+From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+To: Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+ rust-for-linux@vger.kernel.org,
+ Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+Subject: [PATCH v2 3/3] nova: Update the nova todo list
+Date: Thu, 23 Oct 2025 22:51:37 +0200
+Message-ID: <20251023205146.196042-3-delcastillodelarosadaniel@gmail.com>
+X-Mailer: git-send-email 2.51.1
+In-Reply-To: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
+References: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,29 +97,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Oct 9, 2025 at 8:28=E2=80=AFPM Yury Norov <yury.norov@gmail.com> wr=
-ote:
->
-> Up to you guys. But having in mind that C is the only language that
-> really works for system engineering, I would rather consider to stay
-> in line with it on semantic level.
->
-> If your goal is to make rust adopted by system engineers, you may
-> want to make your language somewhat familiar to what people already
-> know.
+This small patch updates the nova todo list to
+remove some tasks that have been solved lately:
+* COHA is solved in this patch series
+* TRSM was solved recently [1]
 
-I am not sure what you mean here, but just to clarify: our goal is to
-improve Linux with Rust, not to increase its adoption (even if
-obviously many of us would like that). And just in case, it is not
-"our" language either -- most of us do not come from upstream Rust.
+[1] https://lore.kernel.org/rust-for-linux/DCEJ9SV4LBJL.11EUZVXX6EB9H@nvidia.com/
 
-In general, we do try to make things as familiar as possible, but
-sometimes it doesn't make much sense, so we don't follow C blindly.
+Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+---
+ Documentation/gpu/nova/core/todo.rst | 19 -------------------
+ 1 file changed, 19 deletions(-)
 
-For instance, C23 also got checked integer arithmetic macros, but that
-doesn't mean we should start using names like `ckd_add`, returning
-booleans and, worse, using macros for those. C23 also got `nullptr_t`
--- similar story.
+diff --git a/Documentation/gpu/nova/core/todo.rst b/Documentation/gpu/nova/core/todo.rst
+index 48b20656dcb1..be8063030d44 100644
+--- a/Documentation/gpu/nova/core/todo.rst
++++ b/Documentation/gpu/nova/core/todo.rst
+@@ -44,25 +44,6 @@ automatically generates the corresponding mappings between a value and a number.
+ | Complexity: Beginner
+ | Link: https://docs.rs/num/latest/num/trait.FromPrimitive.html
+ 
+-Conversion from byte slices for types implementing FromBytes [TRSM]
+--------------------------------------------------------------------
+-
+-We retrieve several structures from byte streams coming from the BIOS or loaded
+-firmware. At the moment converting the bytes slice into the proper type require
+-an inelegant `unsafe` operation; this will go away once `FromBytes` implements
+-a proper `from_bytes` method.
+-
+-| Complexity: Beginner
+-
+-CoherentAllocation improvements [COHA]
+---------------------------------------
+-
+-`CoherentAllocation` needs a safe way to write into the allocation, and to
+-obtain slices within the allocation.
+-
+-| Complexity: Beginner
+-| Contact: Abdiel Janulgue
+-
+ Generic register abstraction [REGA]
+ -----------------------------------
+ 
+-- 
+2.51.1
 
-Cheers,
-Miguel
