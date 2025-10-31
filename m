@@ -4,55 +4,88 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B42D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19F31D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00C4B10EC1E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBC2910EC1C;
 	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bpVMEvVV";
+	dkim=permerror (0-bit key) header.d=suse.com header.i=@suse.com header.b="Zhbcz02f";
 	dkim-atps=neutral
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6419010E911;
- Fri,  8 Aug 2025 10:45:59 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6F313185B;
- Fri,  8 Aug 2025 12:45:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1754649908;
- bh=brJMRHo/8Tl3e7xMygG9eyiFT2hDjy5O7wtChHaeNYM=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=bpVMEvVV/KjgNPSTx09Y1zAid5VLUpMgHxMncGlh/eIqSnOEbYo/e7pfZcCaLnvMR
- a4WP/S0JCHnwihLwBpo0WvGkuChuDoTi3adY52UACj4F5WD116oIVmo+wa34Zq++Sp
- qyMsD/KygsGrVig9ySGURL4Ju5+a5JMr5a6kJVSM=
-Message-ID: <20be7c9d-ad67-4157-b03e-18f91534a1cd@ideasonboard.com>
-Date: Fri, 8 Aug 2025 13:45:54 +0300
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
+ [209.85.221.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BC0E10EAF8
+ for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 10:20:31 +0000 (UTC)
+Received: by mail-wr1-f48.google.com with SMTP id
+ ffacd0b85a97d-3ee15b5435bso1555374f8f.0
+ for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 03:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1761906030; x=1762510830; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=/u+awZrbSzQ6eDfqV7nDtHfvXhS1UpzbuBjH1UCPs0c=;
+ b=Zhbcz02fqu1/BP1Jl6q7KkM5oCidczad0aFj3YvNmRT3UkLJHW6iByh8CAwP8kbr4v
+ LmB/FAXTMusf5w2Hbud2K/zMLiN7S3Yx7sHRjZ6B1S4bvu603h726Fh2Uph7gblV6agL
+ bWWDJS647L8v6GwUHO1POusHuvdEV9sZd5MJ0175kMmb5WxUEjS2VnQh2mqvPzMkSQaf
+ yt5USNLTFn9mycQbeEmBliA8fKriOYfJbGvk63FF/CG06CaEWAuy/7GxD6HB2jKCFQxY
+ pwum4ptrdfiCEu4DZ6AjbGU8Bxclbkzhhn3grspxhPZC2uBZR2f8VGweUv2gBUOEfc+T
+ sbYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1761906030; x=1762510830;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=/u+awZrbSzQ6eDfqV7nDtHfvXhS1UpzbuBjH1UCPs0c=;
+ b=nGlXHf6jgenoZVYugMwqqiwQPJtSSCFZPxK1hFaC3XTZcm/LnRZ2rr17rDgSWbGJBB
+ ho7m+s7EyG5PTR7BmY7xPAMUvHh5SZ7iyQTeqDISdQOVgjnHqJWaY1Kft0JVxRF4008L
+ Fv1WmDBu7i9OU89w6ISqPJLIR/w2HdAthv/JS6nZqKiskFS1xCN9NJUNi71rZQxG5Sc4
+ sqrmQ0wg8PZB/80fQQecQ0tGOjor7icDgSk1/ZN7FcALQwqCylU0qz1LlhcMsNOHAesS
+ yR3iXZFPVgi6zYWoy7c36s0tk+OsiipdsTA0b5sHh9/KnriyyWCrJSdBDeb8VBiK6JOR
+ 14sA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXRTvPFA91dmLluf73vaJ3ZnBJAmartxaZ/WwMgGfiM4JiNjqD9HAVYxOYgGHhjo3OVX0SgeBj5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw9flX21tJ8IuQZG4mBfVaOAfHVQC5BtgzGIS8vHGeCpZyoklib
+ dtyUp+003mjSKa58kHRmxr6Q0sTJo9Ekib02rl5u2MTHIfsJFU8DBVvGkoCIKGJGRUE=
+X-Gm-Gg: ASbGncuBBb8IeAX32mJhBDDzKbQxuG/3lzy9K7AoucWcKS82KLgnYxf0GgPbsRwmVIp
+ h+Wa7NXDjwWABSnWHMrTvEPRACW3YbhMD8brwYjIkvp2/hZIhkjvGaMjWS+BvyS55C2e3A7jq1k
+ 5ibOhPh07YVDa7bZ8x2zGSD5X5KN7+03PqnTZ8VWOjwocdQer70Oxe3VXC41wu5TC0ry8cOok7O
+ Q14a0fqRt3qLFMT38C4rIZuk6OacTTwsOAZymzWxC8nmqO0Ns1Y+fr+Z80wsVpwUW3OjmQOySPY
+ +WEz25SxQ5Eqlyxighu3o02H81SndJCqUrHx53FlDaXwNtD/gwqCRkIFWvPj/oI5yhTCO0HV20z
+ T7wfnMITGz0ttLM72kNxZJS6EaZVjlc9NpywBZs7otQhGesCWY3+AreeyhuOAZmxDRdOJiOfaXV
+ puW0+Bi7/QPobTLwswxCYAunZgCfuXuJFVt1VRDPY+5XeEWg==
+X-Google-Smtp-Source: AGHT+IFGDvTKB2rxlJh5yej09wy7WNNlEMpaWtu5SfSjAIP63L2LKeKXvN3qht8svwvhZJc5Fdl6Ag==
+X-Received: by 2002:a05:6000:2f86:b0:3f0:2ab8:710f with SMTP id
+ ffacd0b85a97d-429bd671cc6mr2113941f8f.8.1761906029644; 
+ Fri, 31 Oct 2025 03:20:29 -0700 (PDT)
+Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-429c110037asm3090410f8f.3.2025.10.31.03.20.28
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 31 Oct 2025 03:20:29 -0700 (PDT)
+From: Marco Crivellari <marco.crivellari@suse.com>
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Michal Hocko <mhocko@suse.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 2/2] drm/nouveau: WQ_PERCPU added to alloc_workqueue users
+Date: Fri, 31 Oct 2025 11:20:20 +0100
+Message-ID: <20251031102020.95349-3-marco.crivellari@suse.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251031102020.95349-1-marco.crivellari@suse.com>
+References: <20251031102020.95349-1-marco.crivellari@suse.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 17/25] drm/renesas/rcar-du: Compute dumb-buffer sizes
- with drm_mode_size_dumb()
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- imx@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, simona@ffwll.ch,
- airlied@gmail.com, mripard@kernel.org, maarten.lankhorst@linux.intel.com,
- geert@linux-m68k.org
-References: <20250613090431.127087-1-tzimmermann@suse.de>
- <20250613090431.127087-18-tzimmermann@suse.de>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-In-Reply-To: <20250613090431.127087-18-tzimmermann@suse.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,52 +100,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 13/06/2025 12:00, Thomas Zimmermann wrote:
-> Call drm_mode_size_dumb() to compute dumb-buffer scanline pitch and
-> buffer size. Align the pitch according to hardware requirements.
-> 
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> ---
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-> index 4c8fe83dd610..dd353fb858ef 100644
-> --- a/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-> +++ b/drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c
-> @@ -11,6 +11,7 @@
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_device.h>
-> +#include <drm/drm_dumb_buffers.h>
->  #include <drm/drm_framebuffer.h>
->  #include <drm/drm_gem_dma_helper.h>
->  #include <drm/drm_gem_framebuffer_helper.h>
-> @@ -407,8 +408,8 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
->  			struct drm_mode_create_dumb *args)
->  {
->  	struct rcar_du_device *rcdu = to_rcar_du_device(dev);
-> -	unsigned int min_pitch = DIV_ROUND_UP(args->width * args->bpp, 8);
->  	unsigned int align;
-> +	int ret;
->  
->  	/*
->  	 * The R8A7779 DU requires a 16 pixels pitch alignment as documented,
-> @@ -419,7 +420,9 @@ int rcar_du_dumb_create(struct drm_file *file, struct drm_device *dev,
->  	else
->  		align = 16 * args->bpp / 8;
->  
-> -	args->pitch = roundup(min_pitch, align);
-> +	ret = drm_mode_size_dumb(dev, args, align, 0);
-> +	if (ret)
-> +		return ret;
->  
->  	return drm_gem_dma_dumb_create_internal(file, dev, args);
->  }
+Currently if a user enqueue a work item using schedule_delayed_work() the
+used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
+WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
+schedule_work() that is using system_wq and queue_work(), that makes use
+again of WORK_CPU_UNBOUND.
+This lack of consistentcy cannot be addressed without refactoring the API.
 
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+alloc_workqueue() treats all queues as per-CPU by default, while unbound
+workqueues must opt-in via WQ_UNBOUND.
 
- Tomi
+This default is suboptimal: most workloads benefit from unbound queues,
+allowing the scheduler to place worker threads where they’re needed and
+reducing noise when CPUs are isolated.
+
+This change adds a new WQ_PERCPU flag to explicitly request
+alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
+
+With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
+any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
+must now use WQ_PERCPU.
+
+Once migration is complete, WQ_UNBOUND can be removed and unbound will
+become the implicit default.
+
+Suggested-by: Tejun Heo <tj@kernel.org>
+Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c   | 2 +-
+ drivers/gpu/drm/nouveau/nouveau_sched.c | 3 ++-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 1527b801f013..5a2970ef27d4 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -631,7 +631,7 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
+ 	struct drm_device *dev = drm->dev;
+ 	int ret;
+ 
+-	drm->sched_wq = alloc_workqueue("nouveau_sched_wq_shared", 0,
++	drm->sched_wq = alloc_workqueue("nouveau_sched_wq_shared", WQ_PERCPU,
+ 					WQ_MAX_ACTIVE);
+ 	if (!drm->sched_wq)
+ 		return -ENOMEM;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+index e60f7892f5ce..79cf157ab2a5 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sched.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+@@ -416,7 +416,8 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ 	int ret;
+ 
+ 	if (!wq) {
+-		wq = alloc_workqueue("nouveau_sched_wq_%d", 0, WQ_MAX_ACTIVE,
++		wq = alloc_workqueue("nouveau_sched_wq_%d", WQ_PERCPU,
++				     WQ_MAX_ACTIVE,
+ 				     current->pid);
+ 		if (!wq)
+ 			return -ENOMEM;
+-- 
+2.51.0
 
