@@ -4,91 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382E3D5B154
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0DE4D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55B9010E111;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AAAC10EB76;
 	Sat, 13 Dec 2025 12:41:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CHGR4XKy";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="JMtQk9up";
 	dkim-atps=neutral
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFF3E10E6E4
- for <nouveau@lists.freedesktop.org>; Tue,  7 Oct 2025 16:12:20 +0000 (UTC)
-Received: by mail-pf1-f169.google.com with SMTP id
- d2e1a72fcca58-7811d363caaso713482b3a.3
- for <nouveau@lists.freedesktop.org>; Tue, 07 Oct 2025 09:12:20 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+ [209.85.221.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52BAE10E166
+ for <nouveau@lists.freedesktop.org>; Sat,  1 Nov 2025 18:51:21 +0000 (UTC)
+Received: by mail-wr1-f46.google.com with SMTP id
+ ffacd0b85a97d-3ee15b5435bso2311955f8f.0
+ for <nouveau@lists.freedesktop.org>; Sat, 01 Nov 2025 11:51:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759853540; x=1760458340; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=5E7iWUmZ2vIjSTqtzT1C1NtPApyBCh7aJPO7S699wwM=;
- b=CHGR4XKyAuhKXhgngWTLtRQhUQaMf3rm/8JD+SZ95duuwGhcosnlouIgAq194mV0Y0
- q2swAiVcVD7Rq5vzHaJOpIGaenHKiSkng+BP60rw9FJZ47ikzBTot1pc1HRJG51TIrnm
- JurFTPpZ/run7+bNOREIY6R2aW4mnkzubNVH2khduwrmgyP6pWjkFf3mhIfyF50ETmc5
- u0YuSxICtHYAu4s1gAuaLJNbhC8nI5/T8eZSm65qPo40UqZz4ooW71rbDOGH2RhoTGrK
- 9QflvJUrM1jGQnPthgAl/UHK0nUURh5drSmwU9R5Z7C22x8RKz13EMNPVTG0PLxZjtId
- gRIw==
+ d=gmail.com; s=20230601; t=1762023080; x=1762627880; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=w0yBSAofgQOyjuw5PvpAMID/+vYPOzSWVbrrAKxMhQU=;
+ b=JMtQk9upiDS96cpcwPwn2L3Xu+MRvmWeonRcGkQCtYZ5IpjqI6HR+x32tqYBEfjOR+
+ 7aO1KkI0Qj4MTlRgCAeB71VOToNAX9czDWp1qpnzcW4KZFc46yUIbaMBnB8Ccos8Qy8R
+ zUprXh9EhZ8sjt42dHwfij2UvfXqXHjEmPQum3XFcSro+1UJ+9g0i96C8kDhsNtlGGDk
+ +FX5XC3bCsALWZg4yU0XrGWfG0BE3vvLSURRFUciiN849fyEu67kWXRP0YmLsG3WD3Fc
+ f6qIZPnhTcH3fOnGPBDH+vSQrrdhKj4AheJW0TlQO2/l40cek55A54OmmR+1DLNpsf2f
+ wnQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759853540; x=1760458340;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5E7iWUmZ2vIjSTqtzT1C1NtPApyBCh7aJPO7S699wwM=;
- b=WHyHwplE3Q+vsNcldQTYrG47Tec3OV7N0lNSpVdHUBYAj3vTosAqmWgqIou+820hm3
- 32TuVistyihvGsPJ6jFA7zmCJ6TZsakDSbKagR5T6YMEQFyTiT5O++m3pwTDalniAS69
- a63sbLR1GJDdenFB7TI3V/u/KkuKlgDn/yujvZYxI4gxEhxe0OvyIiigVdnYYnod84zQ
- sCZMf9AbFD2uvUbM/R//or+Hhp+r6Xu+ML10WUTOyhT+Cmw7kKAvNykJUDkNSmLE27zC
- HHPCKo4x0+VF4/YTa6dw3EsIwU5cQR4zm8t8mfALSmww7cyE7YK/IUnMpEGGy/WlEl8E
- ZlpQ==
+ d=1e100.net; s=20230601; t=1762023080; x=1762627880;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=w0yBSAofgQOyjuw5PvpAMID/+vYPOzSWVbrrAKxMhQU=;
+ b=DfIw4e6lCaa+pI4HkGaKg8XMiOJc2/31mvF4RQWk3bWZS0czlPPeERRMh6R5KPOZmi
+ yqiICL3k+IebdWJh+D9DAuS/nUlN9T6ylEQsSd4Ug/DRCJrMo5f/CMAnpduDKWYN8LAA
+ 3lxBRVZGCV1xzefhuXhg9VMBYB3+lM+nmaROnwpyVv7dJpBvxB0zbhLKZVWops1tQztr
+ 1ftFiVqE5HkXRroy5hzNbe2/ERArBbNW0WJnnRBfcSP8gzqFK3UHRcsyQ0s7muiHNZ9g
+ Pv4HXtN/aSjFyWmBxzLHWfhiFtPyhs/RtatfnyQktWpnge3qHlBWY4V0ioyoKhhr3DfX
+ j79Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUHHLvp+N4UI/VRZpdwwXu2HklSEcoj2dh+tE0SZ5okEHNR1qWUVfcW4l6VJNoZorCIN9xQwDR7@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy3Y+hhtWh0yVz6WompwXAgATMCqRNoCf9UJq9+IkGhsWihOxO+
- X01iOK7ZFa3JPG2WfyTCA18JTXz3BYHIRXUH/NSsQ/jBbOyY4TrgWF+nsg9F0nOMJgWLNPCg/SV
- +01PMjH+V0Q4QmksxV0eNlutyWv5GsQk=
-X-Gm-Gg: ASbGncuZ03XOnqkWYCez2bloNeaATJiO9uho3wvYa71/xzr/36cyy3vIvS+zc3AThZN
- RKbWIYpFvHIRjaKq96/FHIO2tVWBtIm1H12nqI8KP8yIYHqEsQ/N7zcEY0LZEk/cfgjYQYGrA0G
- B8amCEks2AQYKscvnJHggmuTUeaEfpOSsXQ6W10H1GiGceEzqdi8a1A2EkIDS9AFEm43xGvhx1f
- P5LmhJowpyTGz3ZUNlTWOQFHhI9kxEetAvY6PIljOqKHAd4tH/p79awMmC43pceDQyXYiKcolq5
- NkPRBA3mmkIvH0sLHW0wGCZ2hJjKlGU0oYJ9q0W5zIrHaEI3Ug==
-X-Google-Smtp-Source: AGHT+IFCzHpcrXLGR1ie60smXpk8UuckeKOb000I2PbnwCKR7UoPdsv6hdVQqjL0vFW9FH9QZdEfImMvB9toz+HjmvQ=
-X-Received: by 2002:a17:903:1a68:b0:274:944f:9d84 with SMTP id
- d9443c01a7336-2902733fb0dmr2059795ad.11.1759853540296; Tue, 07 Oct 2025
- 09:12:20 -0700 (PDT)
+ AJvYcCXK20QpUwe/G6mg+w9Kmj0JpBvS5bNIeP8rnWEnUASEQFRYcmVBKrfoX/+rwLR39g+b3GMHBUq0@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx3m/WikeKgxu3ie2K440WOz6R7Youbm2bmO2SawAKvhHsxvT07
+ EUhNdRjDLHpPJ1WV5wzOaSiIOYrhqVy8gL8RdosvlkEMHPv8BTgZt74N
+X-Gm-Gg: ASbGncusE/OZ00Ai13fjF2wE+qe2Vgw3gMtqwHki68WPRYKrP5GwrqpAYmLT2XxYpQy
+ S051DHTBu6ccDPkGmDqMQyhaXEyDoFcIhGjXjnT5abP5NlKgJta/1CcjmIrW7G+WcqSodKFMxQz
+ amQKCxNnUl+IbRdwrd81j5ch0PCNS1MmQCmrrmhEmuBn8fA27fu8G8F5GfCj58QihMXWO4rPT3b
+ m1NIQ1yDsrV4QhkEe87+PVB1HVsOOhE9sVcCv/0qTjChvvSIZiY4fz7u93iHCUOTHoB7V5apQ+P
+ 6zZnmZ1GNyHwgRjYc1F+TdBoUUALQcbtFk0sLcLWRlu5DO74vk/jxyyjz590MCxEUHTbOuZOM7V
+ 5CL+jeGfYC9gl1fFCXeS9dC46QmYCJ/+QOBIIZ89yrgylwEcPmliJ2iWJpCL5YFe/hNTcI18Ob3
+ XSPC4Mp0vS7sIWG9j7PVtcguHAx93Vo6B01/vAaZFbIfjvxQLt68Ziqz4Qn/P7XA1aF0R2w5S1H
+ XQ695J46y1M+loHwiWzzNEGS4fj/7e2na7VtQtVrp7qaQ==
+X-Google-Smtp-Source: AGHT+IHZnuzUsk099QOW4MOvybDJX2Pw811XdLL6RZyljGX0/ACMY03TL3YhEgmFs5GYLczbAtd9SQ==
+X-Received: by 2002:a5d:5d09:0:b0:429:ce02:c883 with SMTP id
+ ffacd0b85a97d-429ce02ca54mr2659f8f.14.1762023079376; 
+ Sat, 01 Nov 2025 11:51:19 -0700 (PDT)
+Received: from ?IPV6:2003:df:bf22:3c00:b24b:879f:58a0:f24a?
+ (p200300dfbf223c00b24b879f58a0f24a.dip0.t-ipconnect.de.
+ [2003:df:bf22:3c00:b24b:879f:58a0:f24a])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-429c13e1d8bsm10360744f8f.25.2025.11.01.11.51.17
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 01 Nov 2025 11:51:18 -0700 (PDT)
+Message-ID: <7dd6c190-2598-4a68-8431-e03e41b276ea@gmail.com>
+Date: Sat, 1 Nov 2025 19:51:16 +0100
 MIME-Version: 1.0
-References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
- <aORCwckUwZspBMfv@yury> <DDC0VAHL5OCP.DROT6CPKE5H5@nvidia.com>
- <CANiq72m1eiGVJHNyym+JwM=tQ9bGnmoW0+OuKQ3Vxo_AQOy5dg@mail.gmail.com>
- <DDC4DA0BPHRC.3P5M2CXSJYYTI@nvidia.com>
-In-Reply-To: <DDC4DA0BPHRC.3P5M2CXSJYYTI@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 7 Oct 2025 18:12:07 +0200
-X-Gm-Features: AS18NWAPdykPHVe-VPSk9QmwsEQUF86AhW888gSoYNbxgNmy_9MCu-o1i7ygLqA
-Message-ID: <CANiq72kykzwdv2fOmRMeJ_FPztkkU2a=PFDH1fo9+XbGAeKsaQ@mail.gmail.com>
-Subject: Re: [PATCH v6 0/5] Introduce bitfield and move register macro to
- rust/kernel/
-To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: Yury Norov <yury.norov@gmail.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/5] rust: Move register and bitfield macros out of Nova
+To: Alexandre Courbot <acourbot@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Daniel Almeida <daniel.almeida@collabora.com>, Andrea Righi <arighi@nvidia.com>,
- nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Yury Norov <yury.norov@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org,
+ Dirk Behme <dirk.behme@de.bosch.com>
+References: <20251003154748.1687160-1-joelagnelf@nvidia.com>
+ <20251003154748.1687160-5-joelagnelf@nvidia.com>
+ <5a5bd549-f5b7-41ec-b493-bda427d1218f@de.bosch.com>
+ <DDDQZ8LM2OGP.VSEG03ZE0K04@kernel.org>
+ <DDDR8DIW6K4L.21F81P26KM64W@nvidia.com>
+Content-Language: de-AT-frami, en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <DDDR8DIW6K4L.21F81P26KM64W@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,25 +113,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Oct 7, 2025 at 3:21=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.c=
-om> wrote:
->
-> Ack - how do you expect things to work in terms of code flow? Do we need
-> to have a dedicated tree and send you pull requests? If so, should we
-> host it under the Rust-for-Linux Github org?
+On 09.10.25 13:28, Alexandre Courbot wrote:
+> On Thu Oct 9, 2025 at 8:16 PM JST, Danilo Krummrich wrote:
+>> On Thu Oct 9, 2025 at 8:59 AM CEST, Dirk Behme wrote:
+>>> Assuming that register.rs is supposed to become the "generic" way to 
+>>> access hardware registers I started to have a look to it. Some weeks 
+>>> back testing interrupts I used some quite simple timer with 4 registers 
+>>> [1]. Now, thinking about converting it to register!() I have three 
+>>> understanding / usage questions:
+>>>
+>>> * At the moment register!() is for 32-bit registers, only? So it can't 
+>>> be used for my example having 8-bit and 16-bit registers as well?
+>>
+>> Yes, currently the register!() macro always generates a 32-bit register type
+>> (mainly because nova-core did not need anything else). However, this will of
+>> course be generalized (which should be pretty straight forward).
+>>
+>> Having a brief look at the TMU datasheet it looks like you should be able to
+>> treat TSTR and TCR as 32-bit registers without any issues for testing the
+>> register!() macro today. I.e. you can just define it as:
+>>
+>> 	register!(TSTR @ 0x04, "Timer Start Register" {
+>> 	    2:2    str2 as bool, "Specifies whether TCNT2 is operated or stopped.";
+>> 	    1:1    str1 as bool, "Specifies whether TCNT1 is operated or stopped.";
+>> 	    0:0    str0 as bool, "Specifies whether TCNT0 is operated or stopped.";
+>> 	});
+>>
+>> Same for TCR.
+> 
+> Patch 2 of this series actually adds support for 16 and 8 bit register
+> storage.
 
-In general, if there is a better tree (i.e. an existing C subsystem),
-then what we always do is ask those maintainers first.
+Hmm, how to use that with the register!() macro? I mean patch 2 adds
+support for different storage widths for *bitfields*. But looking at
+patch 4 [2] it looks like *register!()* still uses $name(u32)? With
+that it looks like that the register!() macro still just supports 32
+bit registers? Or what have I missed?
 
-But, otherwise, if there is no good choice because it is something too
-generic/core, then yes, what you propose would be ideal (and it should
-be easy since you are already maintainers of other trees etc.).
+What I'm looking for is a way to specify if a register is 8, 16 or 32
+bit. Using the example from above something like
 
-If the amount of patches ends up being very low, we can skip the tree
-and I can take the patches, but PRs are simpler and scale better for
-me.
+register!(TSTR<u8> @ ....
 
-Thanks!
+Thanks
 
-Cheers,
-Miguel
+Dirk
+
+[2]
+
+https://lore.kernel.org/rust-for-linux/20251003154748.1687160-5-joelagnelf@nvidia.com/
+
+...
++#[macro_export]
+ macro_rules! register {
+     // Creates a register at a fixed offset of the MMIO space.
+     ($name:ident @ $offset:literal $(, $comment:literal)? {
+$($fields:tt)* } ) => {
+-        bitfield!(pub(crate) struct $name(u32) $(, $comment)? {
+$($fields)* } );
++        ::kernel::bitfield!(pub(crate) struct $name(u32) $(,
+$comment)? { $($fields)* } );
+         register!(@io_fixed $name @ $offset);
+     };
+...
+
