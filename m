@@ -4,102 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD99D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A204D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 708B410ECC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 966F310ECB5;
 	Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/bYqC/V";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="bdtZYyTK";
 	dkim-atps=neutral
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
- [209.85.214.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65B9710E126
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:20 +0000 (UTC)
-Received: by mail-pl1-f169.google.com with SMTP id
- d9443c01a7336-2953e415b27so41070955ad.2
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:20 -0800 (PST)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
+ [209.85.221.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C38B10E0DD
+ for <nouveau@lists.freedesktop.org>; Sun,  2 Nov 2025 14:56:20 +0000 (UTC)
+Received: by mail-wr1-f42.google.com with SMTP id
+ ffacd0b85a97d-429c82bf86bso987460f8f.1
+ for <nouveau@lists.freedesktop.org>; Sun, 02 Nov 2025 06:56:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763890040; x=1764494840; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=cuE/I+mSjy5RFqX89Pi5DjFF+u40p6VYH+8i+leWPLg=;
- b=R/bYqC/VuMHFKRnaEf2MrgxBblNMvC99q6gv9wQyH5BcTx3S0dMKP10IegXug8KXF8
- 7rqxxXlUTK2MEVuu3SJyrsIx39K6FbCA20N+U5E5exklZZ+AmMYGcmQ1Z4KdqQw2Q6Fk
- JzWYO2n3NXmVGMM97N0j5RQZErKF5xMguUJdgZ3MFe5tvaaK/MZC7uACOLeiLHVJpC9l
- njdu21k5siC/vvLR6Vl4/pTQB0KKhxGfV+zUeR1ir83WSyfokmNF12ni9mv7ONg5qwxx
- iQeO1WI0jp2GB9vqf57IQSs87Ou3gTesuAJhi9qr5bJ16/VJgtKRFUlzp+1sg2NJmKMC
- lAQQ==
+ d=gmail.com; s=20230601; t=1762095379; x=1762700179; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=WNRp8GBQqKKuNk9ZiQRhReDm9E3VEBrBLSW1DlgX55M=;
+ b=bdtZYyTK2fdKMwaLxsrsXgRtVU970xOA7S+9X3r4gGNzV7p8r0UUj4QhP5PVTgjdxB
+ nMs0lJmpvZOXDW8xCsY9jFVqEq/7CGSEDRGBABnGP/n8/n4nGiUQfRehML2Eguru8F6J
+ bfVR2BnxudgYWqp7GaRWcQl360V16SGtsRzwlKK5YGuuRk+vpU5+pFDbvp3Nq4nlmAZi
+ 52z5hX3gw8iPy4dgdTwlq0foP+DDFanvJyPvgAwccXsUJdHWYdhb8aWJql63Oqec1+6G
+ WTl/ge66OhgZ4ASSOJk7UvOu1FDy+QRBOaP8UFQAd92DXnlYixj667uBwZPFdhLwLlNy
+ 3Pdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763890040; x=1764494840;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=cuE/I+mSjy5RFqX89Pi5DjFF+u40p6VYH+8i+leWPLg=;
- b=tvNkD54gtwKm2OpHze6fKZuNkksRVb28qRu4lzTHd/rcd+VJzY4nx3BO9+NItPiwla
- e8EcHZdtYYu5ExhHkSYMQnpUeaVLtZuDlJGINBG42308M7b1Ak3PdG0lXbL30U1QK8Ah
- EDW0htJ8qy5fK7fEYQBrc8WPgJx6V8hJy7HgdAC9UMImYYYz+jsCTcC0Sv3JAn5q48+6
- spE0kp10fGb8UscsyLmnZlr+uVUlLU/ITbv4o8kSdFa20AQyu5/NyuqiuPXmZGFltSul
- ca75yHjzV1HDARZFpOjgGTmPu8y9lMKVJVNMhtlFCy5v1i3FlhzLraxVdb+mtu/FzsMn
- O0tA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXY03c1R1aFdRH9dkDjS1xWLNM6X0Yk2AO2t9cBWa0VW82O3mau0FGrfvM6bukSVRKrLs3MSfwf@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzC0EWBwUEH96aHiWdDAseSqozJpAgXZW46HX/7pfE+/c6paeVr
- w2lWnbRQrY/KYUxDxv6OQvjWE31XHBV3iZMSAW5XIuTjS4e1iOU/gfEZ
-X-Gm-Gg: ASbGncs7ffJdn2OaJ3qsR7iKOrPQDu07MLxKAV+/W2UWucPY/nicRQLLealWXxp9eyt
- NXHBQFJHx2uKUXpMSooSkK6kO5ms2IO0rBsT2AZTvRKbsYM3aOJ+JufRI5IHk2DfMZYHVQbdQYM
- ONWa8RrLXTcZdw6hPHQIOC1QNmGzsLVg/h8gEmLJxlYvIDE86QX1ERlgLyVsY+nqYrdgzBCo9gS
- Dlzsrssy3rF16yZwz6qvQCqReR4K1+t6JTyDSl5+W1bOdZ8Afak3BjsMuDGSwa5s4vAf2+g2n5f
- gdupOiMO4c1c/gxR2cjH6blMGnHc+nMtpkDGYlwhY0pjYuPIXtzrOCvQIFdUZq3WMeHIA6Tetk+
- E2zabJxqcl2GoPGz/HtKDID0udMf63F6Z+vgIv8UUvf+Rg+hm3z758Yx2PaKtxOwO1h/UpLGpbs
- r7LamLShq5B0rOWae5jmaGi/jo6A==
-X-Google-Smtp-Source: AGHT+IFMN2aUokRTTtS+sIFfNu4kcDd93MwuGAJrh+xf6L/Jjr+U1cR7WS31QoNboosVEzIBjpWEvQ==
-X-Received: by 2002:a17:903:2c06:b0:297:fc22:3a9f with SMTP id
- d9443c01a7336-29b6bf19f1dmr93932225ad.38.1763890039910; 
- Sun, 23 Nov 2025 01:27:19 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
+ d=1e100.net; s=20230601; t=1762095379; x=1762700179;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=WNRp8GBQqKKuNk9ZiQRhReDm9E3VEBrBLSW1DlgX55M=;
+ b=f12LOEzblNUqBxRrYHKs6uqKrTfPOnwEUpoInSnumR4rITqX+KbAcpJOv/zbbBUq9A
+ KMQ3kz2zZ3sfphN8v+Z0CXaiv7vM/WdNgmngicLFZEgEVvMo19lV0f6W4lFJWeIvBj67
+ gQd1PrZEKZsV5WNMHRshNIjIBUtbhHNs4pzEQ8AGwdhpkYGT0KkVBPsPjDh34LT+Q3O9
+ Fh6Q/JLk3hAAGAxea6OdaSG8SlZ7Ae6cr0mZX9Yq6Hm3m5dZhDh3j1fb/kXojCf98eG+
+ rClaz/Qj4kF1DFx0kFxj3FGBrT4uAH9BoevWJPAb8o5FSAmDjaOkR+aHzDLto2/Ztmau
+ JA/w==
+X-Gm-Message-State: AOJu0YywbqDRdYj8UGpxw+L2INgInPAhfarIm7H30+aTtPW6WIOPPS7k
+ FV4xCjVdFiAJYtcSAfyExJGWsrGu0CRY33Pndt7PZUMOq5qN0DqRTJ0L
+X-Gm-Gg: ASbGncvGxyJvlOCNnIPsY9SQjnIbeHQTAwmwiJ394YgjCw7La0xcCEd2rVtwtKu+nKO
+ sQQUUgB52soP8hNqDjZAuP8KDD4mvamC8l3TFCuafTOB76v6uPpM5JTSJBsP61J1Iftc43vMlrQ
+ iFLYqmadKO2e/lb6PlavzWCxyrTYPUIO2qMfVyaeDPK8Kke1spH7xvYAyyUKlU6C4LceS8Ll6l9
+ i1F84Zm3YEVnuJC7Vk0JEWpKo3ahPmm0lSQcytBgbXVspTzM7exMPKV5/UgVo5L+Kql8FfWb6bW
+ 9BO4/LLzU43SHar5ZpX7XhOcM2RTFtu9tHryzjufvlOiQU6Bv6rPX6Y1Ivatdd6HNjp5hngS2w8
+ VBl8+26/l4RfhRql34IGufMSkpA4KYUrEQmmEur17s7DHacsDmorjaQG76VcXpHpIqhkKTzRdgv
+ 51OB738Z7rqjInwzSR2cKr6Vkv4vwny+48VL9f4CGFSxc33UdPaz49m5C8Mzj5W6EAhNQ=
+X-Google-Smtp-Source: AGHT+IEAwtgyxniTz4Ai5mtawKx2HjkKK2OW7gZ2ITGD+2oJ/4ffgGzrS5E/3uRYJ89wkLzNjfq3hg==
+X-Received: by 2002:a05:6000:1a85:b0:429:d2a9:5dea with SMTP id
+ ffacd0b85a97d-429d2a95f05mr675088f8f.15.1762095378417; 
+ Sun, 02 Nov 2025 06:56:18 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:acc:bb60:756b:64e3:20ef:1d08?
+ ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
  by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.27.08
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:27:19 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 08/10] rust: kernel: Update AlwaysRefCounted imports to use
- sync::aref
-Date: Sun, 23 Nov 2025 14:54:36 +0530
-Message-Id: <20251123092438.182251-9-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ ffacd0b85a97d-429c13f2b5asm14807337f8f.40.2025.11.02.06.56.17
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 02 Nov 2025 06:56:18 -0800 (PST)
+Message-ID: <51200cc6-042a-4e83-81b0-720385c67bb5@gmail.com>
+Date: Sun, 2 Nov 2025 15:56:16 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] nova-core: Simplify `DmaObject::from_data` in
+ nova-core/dma.rs
+To: Alexandre Courbot <acourbot@nvidia.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, rust-for-linux@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
+References: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
+ <20251023205146.196042-2-delcastillodelarosadaniel@gmail.com>
+ <DDXC0YKKJJT4.18JQ1MJQ7I31Y@nvidia.com>
+Content-Language: en-US
+From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+In-Reply-To: <DDXC0YKKJJT4.18JQ1MJQ7I31Y@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,33 +102,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update call sites in `usb.rs` to import `AlwaysRefCounted`
-from `sync::aref` instead of `types`.
+Hi Alexandre,
 
-This aligns with the ongoing effort to move `ARef` and
-`AlwaysRefCounted` to sync.
+On 11/1/25 12:46, Alexandre Courbot wrote:
+> On Fri Oct 24, 2025 at 5:51 AM JST, Daniel del Castillo wrote:
+>> This patch solves one of the existing mentions of COHA, a task
+>> in the Nova task list about improving the `CoherentAllocation` API.
+>> It uses the `write` method from `CoherentAllocation`.
+>>
+>> Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+>>
+>> ---
+>>
+>> V1 -> V2: Split previous patch into two. One per reference to COHA.
+>>           Added more details in Safety comment. Let me know your thoughts
+>>           Kept the original map to avoid a temporary variable
+>> ---
+>>  drivers/gpu/nova-core/dma.rs | 15 +++------------
+>>  1 file changed, 3 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/drivers/gpu/nova-core/dma.rs b/drivers/gpu/nova-core/dma.rs
+>> index 94f44bcfd748..620d31078858 100644
+>> --- a/drivers/gpu/nova-core/dma.rs
+>> +++ b/drivers/gpu/nova-core/dma.rs
+>> @@ -26,18 +26,9 @@ pub(crate) fn new(dev: &device::Device<device::Bound>, len: usize) -> Result<Sel
+>>  
+>>      pub(crate) fn from_data(dev: &device::Device<device::Bound>, data: &[u8]) -> Result<Self> {
+>>          Self::new(dev, data.len()).map(|mut dma_obj| {
+>> -            // TODO[COHA]: replace with `CoherentAllocation::write()` once available.
+>> -            // SAFETY:
+>> -            // - `dma_obj`'s size is at least `data.len()`.
+>> -            // - We have just created this object and there is no other user at this stage.
+>> -            unsafe {
+>> -                core::ptr::copy_nonoverlapping(
+>> -                    data.as_ptr(),
+>> -                    dma_obj.dma.start_ptr_mut(),
+>> -                    data.len(),
+>> -                );
+>> -            }
+>> -
+>> +            // SAFETY: We have just allocated the DMA memory, we are the only users and
+>> +            // we haven't made the device aware of the handle yet.
+>> +            unsafe { dma_obj.write(data, 0)? }
+> 
+> This doesn't build for me:
+> 
+>     error[E0277]: the `?` operator can only be used in a closure that returns `Result` or `Option` (or another type that implements `core::ops::FromResidual`)
+>       --> ../drivers/gpu/nova-core/dma.rs:31:44
+>       |
+>     28 |         Self::new(dev, data.len()).map(|mut dma_obj| {
+>       |                                        ------------- this function should return `Result` or `Option` to accept `?`
+>     ...
+>     31 |             unsafe { dma_obj.write(data, 0)? }
+>       |                                            ^ cannot use the `?` operator in a closure that returns `dma::DmaObject`
+> 
+> Could you double-check? I guess you will need to change the `map` into
+> `and_then`.
 
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- rust/kernel/usb.rs | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/rust/kernel/usb.rs b/rust/kernel/usb.rs
-index d10b65e9fb6a..79ff2f881572 100644
---- a/rust/kernel/usb.rs
-+++ b/rust/kernel/usb.rs
-@@ -12,7 +12,8 @@
-     error::{from_result, to_result, Result},
-     prelude::*,
-     str::CStr,
--    types::{AlwaysRefCounted, Opaque},
-+    sync::aref::AlwaysRefCounted,
-+    types::Opaque,
-     ThisModule,
- };
- use core::{
--- 
-2.34.1
-
+You are totally right. I'm not sure what happened. I'll fix it. Thanks!
