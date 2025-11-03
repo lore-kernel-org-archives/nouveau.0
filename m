@@ -4,91 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03304D5B15D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB0ED5B154
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F37010EC2C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5960E10EC36;
 	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="hmF2zwOP";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3uG78OA";
 	dkim-atps=neutral
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
- [209.85.210.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DEDD10E641
- for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 18:03:40 +0000 (UTC)
-Received: by mail-pf1-f178.google.com with SMTP id
- d2e1a72fcca58-77f605f22easo5718191b3a.2
- for <nouveau@lists.freedesktop.org>; Tue, 30 Sep 2025 11:03:40 -0700 (PDT)
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com
+ [209.85.166.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E68910E1B1
+ for <nouveau@lists.freedesktop.org>; Mon,  3 Nov 2025 00:18:48 +0000 (UTC)
+Received: by mail-il1-f176.google.com with SMTP id
+ e9e14a558f8ab-4330d2ea04eso12684235ab.3
+ for <nouveau@lists.freedesktop.org>; Sun, 02 Nov 2025 16:18:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1759255420; x=1759860220; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=0kzqY2GXdADZuJoQ7BaFhRIAR3HFmpw/5lK4k+D6Ym4=;
- b=hmF2zwOP6rDE5G0pYhQT5hti8mE7NpIwVr5MkO2Ao9yvN3fJQKxwfBMHPU8uVVQ1nU
- yR6HoeoML1V8awLq3p5+LX2/oqwO3qBDrXv/aFNpfpKy5H0O+rwDI2EIrhCNm6gtQMBp
- Md3VfB3cOvV0iKOLjHp+ZeNq4xA7leOoXo60pJ9Jt7Zc5FEhqHn7bJd0b7y8ZPPCKuNt
- 8vWyKjndxTbg7WyfBmh78GVTwwFwsbal9tQDaTALJeoU/IC5sDyaOI8fUId9FSy83q7n
- ijXmsQD8sD/Gqk471cE0rIBE281y7JkIt8vkcFp+OC93/L0i8Sbd0v93nlZVnq/CLzEJ
- EWog==
+ d=gmail.com; s=20230601; t=1762129127; x=1762733927; darn=lists.freedesktop.org;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=lbukBbCI6fFMOGWwEkWiHxAZwAf/KbN3KB3I9KpMMx8=;
+ b=i3uG78OA8U2Pl0M/58E3turUsZhsgkSg99lPm3ZsLdeUudhvb5MDuKbnEJWKqn/wnY
+ aWaXl9DcNtJpInh/aLDMl1CCfJFf2w/QEVs6PV0ZnOHCeZTcOTld9ayYO+O5/nAT5Xv8
+ XYSn/9nrhOaFvwR0cT65wiWE8bPlxDT+jZ62rBFp5BjPm9cIZJp72qZUDCLL9qoyiFNx
+ nc32f54uVCCfZASxfk6Gs+RFUc2Npo7PJk9IolmMWpef8OGx/wngFpcDdfSmN2vSDSey
+ +vQLqk54BiLX8HrmmZo6gDv4d5ckmlF8nbxsabkRWQyNb0HAEswQb6yXEvQ6pLH7k+6S
+ JUqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1759255420; x=1759860220;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=0kzqY2GXdADZuJoQ7BaFhRIAR3HFmpw/5lK4k+D6Ym4=;
- b=DYYCCCFKUh/EmSjoJgjXpjNlUU5irZbHecejhNjXBpgSl/z8pf/oayblbhCODcBF/U
- JY5sLWf8yiGtacpbLdeL60JvXgYI7qoLqPSKde3eXQpr62DXqX5YMHFkUNVanpkBEEub
- R+hCzgBSQ1IckPW3vuDflR0u3F1igAqlb9d4LgSRvvw9oNgqrsGmOD33qaxGTTs/Xukv
- eYwqu3KsqONSdZcXWQy9fu0gtwpfY52CK7fYVDVYaPpmIwLudWejluEqJvU95Q6AAdkZ
- F3dLc16H8Vc/zDnHz15aDHpeKPzUmGvjxYiRPPHQP14lE/SOPKQiL9Y7UNC1WAXnVZdC
- vnHA==
+ d=1e100.net; s=20230601; t=1762129127; x=1762733927;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=lbukBbCI6fFMOGWwEkWiHxAZwAf/KbN3KB3I9KpMMx8=;
+ b=emxJ9ZU/TAIT2JzkCCxpcupYbcjaGAEAd32+Zx78LBBj9D+Am7RU50eCO8FJOdWPoz
+ XUs+l51NxSZ67AoZ60+/qOZVSBTBJbnJQ214pfX+NflfihHoTQcoj17Aw19YaqT6I4iv
+ vnWqDNOGKD+B4c8BxYXyMsOcfRkAazsrS0RavLdU2eQXvfahNStHHVm6YP7HEx1amu7/
+ C7j3maZ/HHr8MFc+oGhDiDEdYAFCOQKjuY8BTfbm6BbyMKa430+NzmR1Radcxk3uneRO
+ qDY0j07cY64C5iGxAtF4V+hzSaolLOQ5P7uw/euZGHe4FsM/fM8jY1Xyw9dU1C1WGrdU
+ 1KNA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVnYQ5jqNZtAClaw+9YCygJLVWZ9onQa4cqcwZg+OUnTcNruloYEKlaXeur/NhXaxCTgOWyRnhm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzNKSEweI2H1AS90fNB9bZ5Rn1bE/Z8WkXOdeLV7wnkecqd1KjL
- 8Cf8FojjBsFmeskVhp6e+1ieIWS7q8/RhlGEZyAhYR6M0YLdCsnUpyaS
-X-Gm-Gg: ASbGncvW5sm7VpzpzaWbwPDXkIFgyYV/qzRcUoJstIt+reeqrSXKYWT2H8Thz0WM/4u
- G3tuoaMOjOedneQC7iDxoRA0d3vMoMhuhBly4eR41s2TY1R4eZ8CGjA+wLV+L0tNg4DTvNiQGxA
- 4iE+ZmYmogTLp6VhwIhzOipYO87i9Yi50T0pTzigZJ6PbKmCvpbN8sQ5T58l/Btv0BICdwfezcL
- wWhEUbFiOsXHfSY/DIdbfCUIQuUv73skcUyQnGB3M3rtfGTh08r4eZl9RMt/XKVs6CfEP+N3XUe
- MyFISc3zDnuK7E5Z7huQJF6zaAV6CGtPkSJJIFCyLwOb0+dAuLik8mSBgpeHA8ODrZRllHgR95k
- xbPLFNl8q+YwJyhRmFdH1jml8iGPDRoy0aNGO+o3qbe2H+K68WYVGqPuVIkewCaJdkb0=
-X-Google-Smtp-Source: AGHT+IGlqklnb+3B8yX2mbys2RSKE1rUzSRhGovSCTwzJgtKy5reTE4M+Y3TOYyZYCHCr6FA4M71yg==
-X-Received: by 2002:a05:6a20:6a1f:b0:2df:37cb:6b73 with SMTP id
- adf61e73a8af0-321d7f8c0cbmr788120637.11.1759255419738; 
- Tue, 30 Sep 2025 11:03:39 -0700 (PDT)
-Received: from localhost ([216.228.125.130]) by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-78102c06fe8sm14239678b3a.77.2025.09.30.11.03.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 30 Sep 2025 11:03:38 -0700 (PDT)
-Date: Tue, 30 Sep 2025 14:03:37 -0400
-From: Yury Norov <yury.norov@gmail.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- dri-devel@lists.freedesktop.org, dakr@kernel.org,
- acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v5 8/9] rust: bitfield: Add hardening for out of bounds
- access
-Message-ID: <aNwbeQ6iXuKIsQHK@yury>
-References: <20250930144537.3559207-1-joelagnelf@nvidia.com>
- <20250930144537.3559207-9-joelagnelf@nvidia.com>
+ AJvYcCWCCb/OJtqVv4Co69sU/BJl86Dp4J1l2OLDprZCT8+SmqC3EZE2n8oLJ57w0dFVTRadMEaMV3cp@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YziUpeT5PFvCHtjsS4EdFwWlsd3khj2oHfmzBNw3mJQ52CFSSFT
+ NcVOiNi6iy0vyfR8Z2s3MUqQmrze0qF83XDJD5kMt7lsZYZr40pTOg+sLn9I8w93Nvrjg+jSv4S
+ RjpLQNC42YVfWymCTLspHy0Zi6G3XGdM=
+X-Gm-Gg: ASbGncu6W+1uaSQIIfeBwh+9nNDiwFVzoeilFcgQbuicLmpHrmfj7Gt8c71gGzoZ18K
+ Ffy6mn0MZULj4xQSHFFh2yXFp8EE356VIkFg56D+GhesRDklqWb763R0mJN8t0wuyeoQb5t7eGY
+ Mv+imn6wG6Q2miQ/7tKReEU/N7JhTKGjsnS9KmcKlgEFPCKtn4iDCzqcEIqKBdXgmWSVFC1I3OS
+ i00Pqjux7I2m2MEB42nEoRBck/K/jaymogiErVbIw3C/yuAPT0f566mjO1mQ9JgxPpOnsR56mVa
+ /O8=
+X-Google-Smtp-Source: AGHT+IEinxxKyGpY13CBZYEiEZRj5ZtrHLcrvHXjjmmISTFYSNVaHSlve6zbB1g6ISy0GNLADF79gcMJCySg/fAhlK4=
+X-Received: by 2002:a05:6e02:221e:b0:433:2d0f:e95d with SMTP id
+ e9e14a558f8ab-4332d0ff57fmr29075505ab.27.1762129127059; Sun, 02 Nov 2025
+ 16:18:47 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250930144537.3559207-9-joelagnelf@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+References: <cover.1755235180.git.y.j3ms.n@gmail.com>
+ <CANiq72nbERSOWKRUTJ96YYKCDeAoHLBuiVP+XkDUKg7JYkoyiA@mail.gmail.com>
+ <CA+tqQ4KG98XcWh3rkAxEOiACSUtPf7KM0Wqh9Af=POgVDHJzzw@mail.gmail.com>
+ <CANiq72kE89ukxpf3L0_jFOdv51TDtjjj3r=1mjJzdGWJwmAbaQ@mail.gmail.com>
+ <CA+tqQ4J7_z7_NmUNojJttF1e8GRR8Ua9w0Rap1t-U4gYPhQ1Yg@mail.gmail.com>
+ <DDHU4LL4GGIY.16OJMIL7ZK58P@nvidia.com>
+In-Reply-To: <DDHU4LL4GGIY.16OJMIL7ZK58P@nvidia.com>
+From: Jesung Yang <y.j3ms.n@gmail.com>
+Date: Mon, 3 Nov 2025 09:18:35 +0900
+X-Gm-Features: AWmQ_bmjwfOG0Fsadhki6hbGrYasLvIYy1-mvKZIH8xEYEub_dTdviKWOD4hlxE
+Message-ID: <CA+tqQ4+NY2zFJrr2omGqQcVG1N4cJBgYNO8qH=TFi5UG_vLfTA@mail.gmail.com>
+Subject: Re: [PATCH v2 0/5] rust: add `TryFrom` and `Into` derive macros
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,149 +95,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Sep 30, 2025 at 10:45:36AM -0400, Joel Fernandes wrote:
-> Similar to bitmap.rs, add hardening to print errors or assert if the
-> setter API is used to write out-of-bound values.
-> 
-> Suggested-by: Yury Norov <yury.norov@gmail.com>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  rust/kernel/bitfield.rs    | 32 +++++++++++++++++++++++++++++++-
->  security/Kconfig.hardening |  9 +++++++++
->  2 files changed, 40 insertions(+), 1 deletion(-)
-> 
-> diff --git a/rust/kernel/bitfield.rs b/rust/kernel/bitfield.rs
-> index a74e6d45ecd3..655f940479f1 100644
-> --- a/rust/kernel/bitfield.rs
-> +++ b/rust/kernel/bitfield.rs
-> @@ -29,6 +29,20 @@ pub const fn into_raw(self) -> T {
->      }
->  }
->  
-> +/// Assertion macro for bitfield
-> +#[macro_export]
-> +macro_rules! bitfield_assert {
-> +    ($cond:expr, $($arg:tt)+) => {
-> +        #[cfg(CONFIG_RUST_BITFIELD_HARDENED)]
-> +        ::core::assert!($cond, $($arg)*);
-> +
-> +        #[cfg(not(CONFIG_RUST_BITFIELD_HARDENED))]
-> +        if !($cond) {
-> +            $crate::pr_err!($($arg)+);
-> +        }
-> +    }
-> +}
+On Tue, Oct 14, 2025 at 3:35 PM Alexandre Courbot <acourbot@nvidia.com> wrote:
+[...]
+> This might not be too difficult to shoehorn as there is an
+> `is_in_bounds!` macro (which we can turn into a const method if that's
+> more suitable) that your proc macro could leverage, but I can't help but
+> thing that maybe there is a better, more general solution than
+> special-casing this?
+>
+> [1] https://lore.kernel.org/rust-for-linux/20251009-bounded_ints-v2-0-ff3d7fee3ffd@nvidia.com/
 
-Can you discuss performance implication? I'm OK if you decided to make
-the check always on, but we need to understand the cost of it.
+I've tried your `BitInt` series, and I think I can generalize (at
+least the overflow check) even without the help of `fits_within!`.
+Since I can retrieve the number of valid bits and the signedness of a
+given integer type (including `BitInt`) while parsing the helper
+attributes, I can use that information to check whether casting from
+a value of type T to type U would overflow. Here's a sketch using
+declarative macro syntax to demonstrate the idea:
 
->  /// Bitfield macro definition.
->  /// Define a struct with accessors to access bits within an inner unsigned integer.
->  ///
-> @@ -358,9 +372,25 @@ impl $name {
->          $vis fn [<set_ $field>](mut self, value: $to_type) -> Self {
->              const MASK: $storage = $name::[<$field:upper _MASK>];
->              const SHIFT: u32 = $name::[<$field:upper _SHIFT>];
-> +            const BITS: u32 = ($hi - $lo + 1) as u32;
-> +            const MAX_VALUE: $storage =
-> +                if BITS >= (::core::mem::size_of::<$storage>() * 8) as u32 {
+```
+// I'll write a function that returns equivalent `TokenStream`, which
+// is suitable for procedural macros.
+macro_rules! check_overflow {
+    ($val:expr, $src_ty:ty, $dst_ty:ty, $dst_nbits:expr) => {{
+        let val: $src_ty = $val;
 
-If BITS > storage then it should be a compile time error. Can you
-elaborate under which condition this check makes sense, and is not
-covered with the "(1<<BITS) - 1" case?
+        // For every integer type (including `BitInt`), its minimum
+        // value always fits in `i128`.
+        let dst_min =
+            (<$dst_ty>::MIN >> (<$dst_ty>::BITS - ($dst_nbits))) as i128;
+        // For every integer type (including `BitInt`), its maximum
+        // value always fits in `u128`.
+        let dst_max =
+            (<$dst_ty>::MAX >> (<$dst_ty>::BITS - ($dst_nbits))) as u128;
 
-> +                    !0
-> +                } else {
-> +                    (1 << BITS) - 1
-> +                };
-> +
-> +            // Check for overflow - value should fit within the field's bits.
->              // Here we are potentially narrowing value from a wider bit value
->              // to a narrower bit value. So we have to use `as` instead of `::from()`.
+        #[allow(unused_comparisons)]
+        let is_src_signed = <$src_ty>::MIN < 0;
+        #[allow(unused_comparisons)]
+        let is_dst_signed = dst_min < 0;
 
-The new comment sounds opposite to the old one: if you check for
-overflow, then there's no chance to "potentially narrow the value".
+        let fits = if is_src_signed && is_dst_signed {
+            // Casting from a signed value to `i128` does not
+            // overflow since `i128` is the largest signed
+            // primitive integer type.
+            (val as i128) >= dst_min && val <= dst_max
+        } else if !is_src_signed && !is_dst_signed {
+            // Casting from an unsigned value to `u128` does not
+            // overflow since `u128` is the largest unsigned
+            // primitive integer type.
+            (val as u128) <= dst_max
+        } else if is_src_signed && !is_dst_signed {
+            // Casting from a signed value greater than 0 to `u128`
+            // does not overflow since since `u128::MAX` is
+            // greater than `i128::MAX`.
+            val >= 0 && (val as u128) <= dst_max
+        } else {
+            // Casting from an unsigned value to `u128` does not
+            // overflow since `u128` is the largest unsigned
+            // primitive integer type.
+            (val as u128) <= dst_max
+        };
 
-This "potentially" wording simply means undefined behavior.
+        !fits
+    }};
+    // Yes, we can also support `bool`!
+    ($val:expr, $src_ty:ty, bool) => {{
+        let val: $src_ty = $val;
 
-> -            let val = ((value as $storage) << SHIFT) & MASK;
-> +            let raw_field_value = value as $storage;
-> +
-> +            $crate::bitfield_assert!(
-> +                raw_field_value <= MAX_VALUE,
-> +                "value {} exceeds {} for a {} bit field", raw_field_value, MAX_VALUE, BITS
-> +            );
+        let fits = val == 0 || val == 1;
 
-Can you hide all the internals in the assertion function? Like:
+        !fits
+    }};
+}
 
-            $crate::bitfield_set_assert!(bitfield, field, value, "your message", ...);
+// For a `#[repr(i32)]` enum with `#[try_from(BitInt<u8, 4>)]` and
+// `#[into(BitInt<u8, 4>)]`:
+check_overflow!(Enum::A as i32, i32, u8, 4);
 
-We don't need assertion implementation in the main function body.
+// For a `#[repr(i32)]` enum with `#[try_from(u8)]` and `#[into(u8)]`:
+check_overflow!(Enum::A as i32, i32, u8, u8::BITS);
 
-> +
-> +            let val = (raw_field_value << SHIFT) & MASK;
->              let new_val = (self.raw() & !MASK) | val;
->         all the internals in the assertion     self.0 = ::kernel::bitfield::BitfieldInternalStorage::from_raw(new_val);
+// For a `#[repr(i32)]` enum with `#[try_from(bool)]` and
+// `#[into(bool)]`:
+check_overflow!(Enum::A as i32, i32, bool);
+```
 
-User wants to set an inappropriate value, and you know that because
-you just have tested for it. But here you're accepting a definitely
-wrong request. This doesn't look right.
+It is somewhat similar to `fits_within!`, but it also cares signedness
+differences between source and destination types.
 
-On previous rounds you said you can't fail in setter because that
-would break the "chain of setters" design. I understand that, but I
-think that it's more important to have a clear defensive API that
-returns an error when people do wrong things.
+It might help if `BitInt` exposed `MIN` and `MAX` associated constants
+in terms of its backing type:
 
-So please either find a way to return an error from the setter, or
-some other mechanism to abort erroneous request and notify the user.
+```
+macro_rules! impl_max_min {
+    ($($type:ty),+) => {
+        $(
+        impl<const NUM_BITS: u32> BitInt<$type, NUM_BITS> {
+            pub const MIN: $type =
+                <$type>::MIN >> (<$type>::BITS - NUM_BITS);
+            pub const MAX: $type =
+                <$type>::MAX >> (<$type>::BITS - NUM_BITS);
+        }
+        )+
+    };
+}
+impl_max_min!(u8, u16, u32, u64, i8, i16, i32, i64);
+```
 
-This "chain of setters" thing looks weird to me as I already said. So
-if it messes with a clear API, just drop it.
+... but for consistency with existing primitive integer types, these
+constants would ideally be of type `BitInt` instead of the backing
+type, which unfortunately limits their usefulness in implementing
+`check_overflow!`.
 
-And to that extend,
+As a final side note: as you're already aware, breaking changes to
+`BitInt` will also affect the `TryFrom` and `Into` derive macros, since
+these macros depend on certain public APIs provided by `BitInt`. The
+same applies to any future custom types that require support from these
+macros. That said, I'll do my best to minimize the dependency wherever
+possible.
 
-        a = a.set_field1()
-
-looks more questionable than just
-
-        a.set_field1()
-
-because it implies an extra copy. If I do 
-
-        b = a.set_field1()
-
-would it change the content of 'a'?
-
-Can I do just 'a.set_field1()'? There's no such an example in your
-test.
-
-Is that 'a = a.set_field()' thing really a zero-cost comparing to just
-'a.set_field()'? Can you ensure it holds, say, on 32-bit machine when
-'a' is a 64-bit bitfield? Would it work if we decide to support
-bitfields larger than 64-bit, like C does?
-
-Thanks,
-Yury
-
-> diff --git a/security/Kconfig.hardening b/security/Kconfig.hardening
-> index 86f8768c63d4..e9fc6dcbd6c3 100644
-> --- a/security/Kconfig.hardening
-> +++ b/security/Kconfig.hardening
-> @@ -265,6 +265,15 @@ config RUST_BITMAP_HARDENED
->  
->  	  If unsure, say N.
->  
-> +config RUST_BITFIELD_HARDENED
-> +	bool "Check integrity of bitfield Rust API"
-> +	depends on RUST
-> +	help
-> +	  Enables additional assertions in the Rust Bitfield API to catch
-> +	  values that exceed the bitfield bounds.
-> +
-> +	  If unsure, say N.
-> +
->  config BUG_ON_DATA_CORRUPTION
->  	bool "Trigger a BUG when data corruption is detected"
->  	select LIST_HARDENED
-> -- 
-> 2.34.1
+Best Regards,
+Jesung
