@@ -4,85 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2ECED5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B0F3D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D596110EC40;
-	Sat, 13 Dec 2025 12:42:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C08A10EC07;
+	Sat, 13 Dec 2025 12:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=samsung.com header.i=@samsung.com header.b="tiRnR90C";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="EL2KtXge";
 	dkim-atps=neutral
-X-Greylist: delayed 369 seconds by postgrey-1.36 at gabe;
- Wed, 26 Nov 2025 11:40:36 UTC
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com
- [210.118.77.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B86A10E545
- for <nouveau@lists.freedesktop.org>; Wed, 26 Nov 2025 11:40:36 +0000 (UTC)
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
- by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id
- 20251126113425euoutp0207410ed3fde7d7fb681922cd80c86f37~7i1KQG6Df3162131621euoutp02_;
- Wed, 26 Nov 2025 11:34:25 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com
- 20251126113425euoutp0207410ed3fde7d7fb681922cd80c86f37~7i1KQG6Df3162131621euoutp02_
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
- s=mail20170921; t=1764156865;
- bh=Mlk/8cVuM1r8cgr34kGmewo0VCLvDAclx64Kzq7IU10=;
- h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
- b=tiRnR90C/z2zgZPKygxThBoTiu4KqlPU0OaQwH6dp6i76ubEfSiAM9znavX/GF7Rb
- RAFCNSTuOurGjRXsJvkb8/G0My+M92lJmm6hMlawYDQO2TxN8UKncGYm6UuLhBWRpA
- P0cee2QTEJo4ppVsAjcc2gTALBB+yYyV4JExx53Y=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
- eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
- 20251126113425eucas1p20472c28098c08344e4348a1ee22407ae~7i1J8Jf2K2271922719eucas1p2R;
- Wed, 26 Nov 2025 11:34:25 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
- eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
- 20251126113423eusmtip1f3fa48d667a8b110b0790a7b70bca88e~7i1Ij3pon2329423294eusmtip1h;
- Wed, 26 Nov 2025 11:34:23 +0000 (GMT)
-Message-ID: <cca5c7e8-d9c4-4e28-8da2-62dd521ceea3@samsung.com>
-Date: Wed, 26 Nov 2025 12:34:23 +0100
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+ [209.85.210.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B7B2D10E60F
+ for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 14:35:50 +0000 (UTC)
+Received: by mail-ot1-f51.google.com with SMTP id
+ 46e09a7af769-7c69476dd8cso3063162a34.2
+ for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 06:35:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1762266950; x=1762871750; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=zOvuDFw8E3IMboZLcv+wNk+hwh0bnRBGIEk5JfF2cuE=;
+ b=EL2KtXge8/KRzy0tGa1tYMtE46iLjXusA/h4n50xPhNQNtNfW9/SHTlzi8pocQFecs
+ /VRR8rAwrCOoZslL9+H5ekpNaOKqTpoGiouLvFlVymqO7VCjW4GZdKGMFGoEzcTg41vD
+ pmW/gB4culqNBMcBuusgtmJXyUmSQA9o4R13KFGuj+xkFtAeHBZtWjGAkIwnFCrfXiB1
+ O8KCX+CrzzuX3VcZXPke9JgcJ/EK+e2wlAtkyqlIOgQv4b5VUxcBavxtbVyldoO+AjzM
+ dYcG2L0KiAcoirqAUomYbALu0YbiXpBnptK+ix+Pro0bqWPZOUISlG/0EdnNV5PvJGAE
+ H6rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762266950; x=1762871750;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=zOvuDFw8E3IMboZLcv+wNk+hwh0bnRBGIEk5JfF2cuE=;
+ b=CzbY88ubD97Nm22XILsRR+omjmY8wIAOmXYdrtTm0FvYPHVL56cKK8RQE0dLuJHOpp
+ irRYln+trnvBZ6lY40BaxPKlrcNTkygjThvEDCz3e8bng4ZqwdooGU/DpjAkfiv/xsyo
+ BP0l4sDUQFYAxm6XPwon44r7s3k+d/aU7dzQxxzS5Tum9oOEoMkYBDDo+d1AqWG+AhYM
+ /i+oMQR9zew41i85LsrfUCFTEvr7UZ1zAdFbejO+VgkhajUc1rS5HZGno5BcQGlfz4Lx
+ EoMMT4Yn4ezuGCavtzuiLXqkZvsJZElTo5G1F0OoSMr0mY7fhRoMCRcHIolcXooh+O6N
+ 6vKg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXzv3pnSRy75a24JK0N5f/+6TK0hl11FeAE95P7kAksa6HTeS/1tny0lCt1tBylDGZnD/xhGau5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxkFwHapddCR+tdqRQuykrLqp9ClQoFUP4w1UH8rA4Qyc7KrMRA
+ QVr9r2K/yEyjMX8ex3N9fptRM//TSupPkOUEjlPXhKk1Hj3ptwZ+EPOYe3frsJ5C6LIpYqE3YXv
+ B6mARsCw6MZPxDQQENJEK+dRAELfxY5s=
+X-Gm-Gg: ASbGncvIlnMpqm/3GUnRBi4AQSzti1wstfg4PffUGYk9e8a2ZEhnanTAicfLZvpnq5z
+ FUpqvXcC56aIS6Dw5lUAksIbxsi8IVDjztqJRidQRVJi+Nw8qqhMi9SFGE94bpVGGknPrRwUvK3
+ m2RY9hjOKmulvQUOzYM9siKJLGBl0/PFdFt2qwWAbWBvNw1WyIRaRahHV/t4i7QNDDM9UE4BVmj
+ QKx5KqEbZgBD9o0WjTPVWpfRkTRq+PXJvgsZ3nUvqeJ3bleDQNhsaztQ+Kb
+X-Google-Smtp-Source: AGHT+IH4OCkFruz7BGxua5FpIyeWRlYQkDUOWfGwgmmxmCKwpvX6Z4Dm1zHFn09KPDIAh4UKGSRMn0mdbsaJbqb/nak=
+X-Received: by 2002:a05:6808:1791:b0:44d:a99e:45c7 with SMTP id
+ 5614622812f47-44f95fe6b3dmr6712173b6e.61.1762266949648; Tue, 04 Nov 2025
+ 06:35:49 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/10] rust: kernel: Update ARef and AlwaysRefCounted
- imports to use sync::aref
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Shankari Anand <shankari.ak0208@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?=
- <arve@android.com>, Todd Kjos <tkjos@android.com>, Martijn Coenen
- <maco@android.com>, Joel Fernandes <joelagnelf@nvidia.com>, Christian
- Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>, Suren
- Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>, Alice
- Ryhl <aliceryhl@google.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Igor Korotin
- <igor.korotin.linux@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
- <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Andreas
- Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, Daniel
- Almeida <daniel.almeida@collabora.com>, Abdiel Janulgue
- <abdiel.janulgue@gmail.com>, Robin Murphy <robin.murphy@arm.com>,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <CANiq72mQ4cu9wehGKxS92EK2H3kcX8XPpRmv2DdYmn6Ve9iDAw@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20251126113425eucas1p20472c28098c08344e4348a1ee22407ae
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20251125123134eucas1p230415281df788e787f4b71e4d7b3ac3f
-X-EPHeader: CA
-X-CMS-RootMailID: 20251125123134eucas1p230415281df788e787f4b71e4d7b3ac3f
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
- <20251123092438.182251-7-shankari.ak0208@gmail.com>
- <44gv3fhqppn4fyg5fnxkhhanlbbxr2slqq7k3kr3owx7frpnxw@idgwxlcv4otn>
- <CGME20251125123134eucas1p230415281df788e787f4b71e4d7b3ac3f@eucas1p2.samsung.com>
- <CANiq72mQ4cu9wehGKxS92EK2H3kcX8XPpRmv2DdYmn6Ve9iDAw@mail.gmail.com>
+References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
+ <20251030190613.1224287-2-joelagnelf@nvidia.com>
+ <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
+ <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
+ <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
+In-Reply-To: <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
+From: Guillaume Gomez <guillaume1.gomez@gmail.com>
+Date: Tue, 4 Nov 2025 15:35:38 +0100
+X-Gm-Features: AWmQ_bkVG2efaCRVFs-QREr4TF_4XAydKse4BHYewSEAhSr6252jH2iQIzSA-jQ
+Message-ID: <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
+ linked lists
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,38 +106,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+You can use `cfg(doc)` and `cfg(doctest)` to only include parts of the
+docs when running doctests (if that's what this is about).
 
-
-On 11/25/25 13:31, Miguel Ojeda wrote:
-> On Mon, Nov 24, 2025 at 5:10 PM Uwe Kleine-König
-> <u.kleine-koenig@baylibre.com> wrote:
->>
->> having no clue about Rust:
->>
->> Can this patch be applied independent of the others via the pwm tree? If
->> I understand correctly it's only patch #10 that depends on the previous
->> patches, right?
->>
->> Is there already a merge plan for this series?
-> 
-> Yeah, if subsystems pick the independent patches at their own pace,
-> then that is great, so please do!
-> 
-> Then, after 1 or 2 cycles, we can do the flag day change on the Rust
-> tree (with any last changes needed Ack'd, but ideally there will be
-> none remaining).
-> 
-> It is what did in similar cases for renaming (or moving across the
-> path hierarchy) things in Rust. For simple things that get Ack'd quick
-> enough by everyone, sometimes we may be able to take everything in the
-> Rust tree.
-> 
-> Thanks!
-> 
+Le mar. 4 nov. 2025 =C3=A0 15:07, Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> a =C3=A9crit :
+>
+> On Tue, Nov 4, 2025 at 2:42=E2=80=AFPM Alexandre Courbot <acourbot@nvidia=
+.com> wrote:
+> >
+> > What I'm more worried about is that it might be a PITA to write. :/ But
+> > maybe the core folks have an example for how this could be done cleanly
+> > and in a reusable way (i.e. we don't want to duplicate the dummy list
+> > creation code for every example).
+>
+> Using a shared module/file may be good enough, as long as the `#[path
+> =3D ...] mod ...;` or `include!(...)` is hidden with `#`, i.e. as long
+> as the user does not need to see that to understand the example.
+>
+> But, yeah, we have already a few places in the tree with fake `mod
+> bindings` for doctests and things like that.
+>
+> Cc'ing Guillaume in case there is a better way to do this. The "have
+> something applied to several parts of docs" has come up before for
+> references too (the "external references map" I proposed).
+>
+> In any case, even if the example does not run, it is still way better
+> to have it at least build instead of completely ignored, because that
+> means it will not become stale.
+>
 > Cheers,
 > Miguel
-> 
-
-I think code wise it's fine, provided the subject is fixed like Uwe suggested.
-
-Acked-by: Michal Wilczynski <m.wilczynski@samsung.com>
