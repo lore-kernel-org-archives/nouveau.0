@@ -4,78 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7A0FD5B15A
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA550D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E8610EAC2;
-	Sat, 13 Dec 2025 12:41:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62CBB10EB86;
+	Sat, 13 Dec 2025 12:41:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="cFFqLOfv";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="L1ztI35s";
 	dkim-atps=neutral
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 099E810ED74;
- Wed, 19 Jun 2024 18:26:54 +0000 (UTC)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 45JEw3Nm025061;
- Wed, 19 Jun 2024 18:26:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- JATlb9CSfXVF9/tchTt64JGPel3o+cysxTNpcdLTY58=; b=cFFqLOfvlR5r+nbk
- Prc/+9JsNBGIT6hR2knBQGrxmnys9QcvSuNImliSfWEW8ZJGFAf2TAySmxo3bpqM
- qU4a1hLsbyfQDvIttp5ZljYGIXCccpJdfTNgSZw3fOthKQfyjfQ1j0kWb7u7rHxc
- /E2DdBY404xuTr9yeydt/Qs7RkBdBIYZLPVKL+Ft5tNg55SFWuiRt5vHn4oP4oO6
- Za+io6MB7+/9KFb3kuModlufTktK7IUjzHqb8K8fzxJqEeWF8tN6u65YJP8ZOCdb
- du1sMzwtnn/oZwTck5NNx/p8kg1luFT8+fWM/PQAbZnuOHKtGcvH2uNTXkEWEyu6
- iSDp/A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3yv1j90ebc-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 19 Jun 2024 18:26:53 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA02.qualcomm.com (8.17.1.19/8.17.1.19) with ESMTPS id
- 45JIQqN8032573
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Wed, 19 Jun 2024 18:26:52 GMT
-Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 19 Jun
- 2024 11:26:52 -0700
-Message-ID: <a8ab46d9-8845-4635-9742-11525dd843b0@quicinc.com>
-Date: Wed, 19 Jun 2024 11:26:51 -0700
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02A6810E5DB
+ for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 13:52:16 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-b62e55af64aso389575a12.1
+ for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 05:52:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1762264336; x=1762869136; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=WgxSC2aKqxilandHAezVm5gKzGGQcz0P4+qV+dri/oU=;
+ b=L1ztI35sVSOx+hFlHTBdwSkV6fYmyA7jTo0io5W3EV7SiLVDrnmq1D8+6wPs4fCy5F
+ SAwdZdAvob8l3j6y3du0l8WAguilj5RW+emiE6zSsLY9lul+uVIFdKBXWUclP8028Y4A
+ dlC4P0fd9X2TmqEfBf5/FzVtUN4F4HpiZ99aKSNYsXEgXLD9Ixv3hj7vOaYuYSIIqCUG
+ ff7HtYRWT+NruF0S2dJF9seajxGaSrse7yhKbdCCVxbJ+JVFKmAYZVU1CdqdegXErQxm
+ NYUPWeM+Zv+G2sHBstyuPjwPD1k9XW/nZJPKtmKBtU5YRzYzFnqaBVzGv58nOTZZqfaX
+ V/ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762264336; x=1762869136;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=WgxSC2aKqxilandHAezVm5gKzGGQcz0P4+qV+dri/oU=;
+ b=h8URhHGONfXnOGDGkmvJq678hE2jh+Kos18qLzGIoFYax7M5LXjw3xGGNmXVtQVLYb
+ SbCdjbH6iL6VlhGZh2xv9y393JThuH7bpwrBo+jG28fbklH1FmU3VV5Yj5fB9Chbpfh/
+ owz3STW4KSWa8xuFxIn0dlSSnY0bKSwdjx24r7JnUWiwfnRVUHPMs4z2OGJ2Ap/HjOId
+ GV8SKEC5dFrLHQbocXWcB3OQK4VHYwpznZVvF0GkWPeSuPWhXKcDF1iNY/8fQDFE0JiG
+ YM46VjC7gqkWDSdX+cvb002cbpeYt5MhhYOcJVAMOyUOK8uRRlmQLRKV830eMf3kvc3W
+ 6ktA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX+Vk+SRP4WOa2WitMEDNqx/xeCSrO1uMX/YhUF8T2YcQOB/7UGJMDGkOC0Rw6qk+r+xVtPyTn4@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxsxJEM+AL/ShZHnrx01Fg7Ho3pVnUPv5YZylLDDjTkQJkLemwO
+ fBzcUUGanwoZ/wRl5KFl6Z65P8W4IJaXjoy/I0MKD4XGhMUwu26IhmLQZ5cBwCOa5KOkuAjIqJ2
+ UO7XA71PP+N1yCY/kLKyN+9i4RJR18y4=
+X-Gm-Gg: ASbGncvZZ4EaJAWV6QmP9BhENBkNZrX7L+0RvEj7IggcwfEFEGk3MCIy20/Tf2QI9Fq
+ HAC+0M7D2qPxM9uMW4ROd6s716Apbcz1tee7whkDCgErMkvr/Z7pL3aU1QU9/Trs4Xe78cSptuF
+ Uc06QqNNSpQz7CWFuPBId78F7vTgSyBRCJAWRHCVm86/KfW0j39X7yQ0Q+Vtnnl+0uUfRQHZ7oL
+ ZSH82CyYqpb1VZ0akp+b8E+YXVz24X7cSvF8yqwhq4iCv9W1s4fSGJ1d32kcXZbyWgezwAZ2sRm
+ JnUbRTB28cNb7g28mUif9xQcSwGtMNiir2lFFNLFBsooVB5jBLY1oEh5zLcYlwZjRZdjMj8W1eE
+ qzkI=
+X-Google-Smtp-Source: AGHT+IEHIHWibqjAZGWyvY0H8m2w47BvrG2lZbXh2UQMD9AI1DeCBy/GvhFpcB4QhflEwGDTQ3v2/JNfuI82Byb03zs=
+X-Received: by 2002:a17:90b:3b87:b0:340:b8f2:250c with SMTP id
+ 98e67ed59e1d1-340b8f22df9mr9464706a91.1.1762264336293; Tue, 04 Nov 2025
+ 05:52:16 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/nouveau/nvkm: separate out into nvkm.ko
-To: Ben Skeggs <bskeggs@nvidia.com>, <nouveau@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>
-References: <20240613170211.88779-1-bskeggs@nvidia.com>
- <20240613170211.88779-3-bskeggs@nvidia.com>
-Content-Language: en-US
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <20240613170211.88779-3-bskeggs@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-ORIG-GUID: QbsYZvfLszFS-bn6wpMjIjS45RjP20-4
-X-Proofpoint-GUID: QbsYZvfLszFS-bn6wpMjIjS45RjP20-4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.28.16
- definitions=2024-06-19_02,2024-06-19_01,2024-05-17_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0
- impostorscore=0 bulkscore=0 suspectscore=0 mlxlogscore=836
- lowpriorityscore=0 priorityscore=1501 phishscore=0 mlxscore=0 adultscore=0
- clxscore=1011 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405170001 definitions=main-2406190139
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
+ <20251030190613.1224287-2-joelagnelf@nvidia.com>
+ <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
+ <20251104005812.GA2101511@joelbox2>
+In-Reply-To: <20251104005812.GA2101511@joelbox2>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 4 Nov 2025 14:52:03 +0100
+X-Gm-Features: AWmQ_blJ7jEt0nl7CKtiOJzaUdItBJ90fhDQUgIcURkC12jl_69-w8beSolcQvU
+Message-ID: <CANiq72m692bb+W32QN1G+LJa7sHs=gU8k6dri3mu95Smj7GiRw@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
+ linked lists
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, David Airlie <airlied@gmail.com>,
+ Alistair Popple <apopple@nvidia.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,13 +106,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On 6/13/24 10:02, Ben Skeggs wrote:
-> Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
-...
-> +
-> +MODULE_LICENSE("GPL and additional rights");
-> +module_init(nvkm_init);
-> +module_exit(nvkm_exit);
+On Tue, Nov 4, 2025 at 1:58=E2=80=AFAM Joel Fernandes <joelagnelf@nvidia.co=
+m> wrote:
+>
+> Perhaps wrapping it is #cfg is sufficient.
 
-missing MODULE_DESCRIPTION() which will cause a warning with make W=1
+`cfg` attributes and the `cfg!` macro should work in doctests -- we
+have already a few instances, e.g. this hidden one:
 
+    /// ```
+    /// # #![cfg(CONFIG_OF)]
+    /// use kernel::clk::Hertz;
+
+Cheers,
+Miguel
