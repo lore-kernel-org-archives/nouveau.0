@@ -4,81 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC648D5B15B
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F14BD5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:44:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8586810EBBF;
-	Sat, 13 Dec 2025 12:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E12C10EAC5;
+	Sat, 13 Dec 2025 12:41:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UGWNpJ9x";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FD2ez7ad";
 	dkim-atps=neutral
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
- [209.85.166.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A39110E0C7
- for <nouveau@lists.freedesktop.org>; Sat, 11 Oct 2025 14:53:13 +0000 (UTC)
-Received: by mail-io1-f45.google.com with SMTP id
- ca18e2360f4ac-91e578e2a61so129193939f.2
- for <nouveau@lists.freedesktop.org>; Sat, 11 Oct 2025 07:53:13 -0700 (PDT)
+Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com
+ [209.85.216.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C180F10E29D
+ for <nouveau@lists.freedesktop.org>; Tue,  4 Nov 2025 17:56:14 +0000 (UTC)
+Received: by mail-pj1-f52.google.com with SMTP id
+ 98e67ed59e1d1-340299fd35aso1030352a91.1
+ for <nouveau@lists.freedesktop.org>; Tue, 04 Nov 2025 09:56:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760194392; x=1760799192; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1762278974; x=1762883774; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ax786NHBHHpTg8NhBwV3RBjSy/8C3s4oYnbb7WT6QLw=;
- b=UGWNpJ9x1yADBpBzRorQaOgYFLG0ax5NqL/GtftPkMAVQge6JDaBHFGZWpLe01x2DO
- Vos52965otnh7YZuWvafU6G09n3neWyotz4CxPZC6VFPX/uz3XNRPRwWXpakt87fkvn8
- 61NBQ/SANJPiTM9r3NQdsIEof5ZAlSheowXLe7mBUvJTH3cyqHaDR7sFMU4GKxL3YyuS
- llOpGgZGVMLWLV7dqN4PdagKqRSaLHAQjihoeD3NkaBtNasINzSstWkyDSkGcJTnaATd
- WnLBi788p7nk71QYZCujur5G3GLYk++ML38kbIepDgIhkEMU6LvoJNy23F/GMdQAF+0E
- L0gg==
+ bh=cdbFu86UvaH/Ty0UuDTWSO6wJfAjqp1mmNJzmWiSQ2c=;
+ b=FD2ez7adPbAFlZonGRGYZoquMJwqRa4S1Xjo/gvAR6A7cQc6qz6CYubWNCkGBfpNRF
+ Ou+ThqUO/SHrug5dOMc2ekXgxAsv4yrmvyyR5W9sN1EJCvXEnKf01AgYTC+7MFd7+PbF
+ jCc4Zt7o9nmcOTZOCxJ406y8wQcbzeN8CVerU8rnLUHd4rfGcv1x+Uqj9JXRka2qKK8P
+ vGhf0dQqr5FPgQ/T3CKBkmSWwT2VE3G5vy2A2vaVkKSulEtBRag3NVDQm2yOufvp1Prr
+ BDZ9rzH5/CCQ9noeFFBTbgfZFvTrvZo9gDi2S9STp0276OfYTfcxvsfmHm6TeW8WzZzS
+ wQzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760194392; x=1760799192;
+ d=1e100.net; s=20230601; t=1762278974; x=1762883774;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ax786NHBHHpTg8NhBwV3RBjSy/8C3s4oYnbb7WT6QLw=;
- b=bpS0bAalfpQymbZQ5R5MW5iwsC9hDktZSQY2T1yyDv9hCx7VT2bLomff5MbcZMUCqa
- UwvuWgi8dWwHUwGqzemIUuH08Bjlk3542TL5v4ROUOKinLhNFgHmIBt9B1Wa68HkJ1ex
- 5qLJLejBeQS/xB9V0hcCQoA6nmzcFyg9kJ571MtxtXGt1voRDYRXIHfORoNIpUATpGio
- unBCekSwNKSLZZj56kSWhYu8pY7o1YTBevHSJXT2imN9asoWbw/AaXNjADoTQbnTolz3
- mSoqFofxRPoUqdJW0HIPWnZ5cxxGOS/qaNiNNZxcReofZBocZNRV5TPU4bjPOONWemUT
- 50kg==
+ bh=cdbFu86UvaH/Ty0UuDTWSO6wJfAjqp1mmNJzmWiSQ2c=;
+ b=Pop/LjSsjqaio6GgeL2geKqTE725BP62HghTJfQhXjVUOnXBGJwsm8dqhmeMkYy1Zw
+ MZpuBIMjPt0IEYULw//tQf1tI//NvrD4Fo5t9+MMC0WEwRQQN1dF5R6CT0tPV/pUo3fI
+ 8YMTAkPx+71yvqx7aOpeR8pppxQbCbllnQ/bpkozFZBRvuJ0u7+6CzBl2nt20M4F1cVp
+ lDBEa3rfDseJx1zITHwI+CITEnmWP2GqGCVGw/tt3903ulxrTL0jbFc2HX9UsN3SqeWd
+ 0tb/W/tfOy35tFwcdDDxqaMz+2CSx2Nbw052bEmZjNbVOin1d8/X82Gi2FdljFbybQgf
+ QMlA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUlstpzeCt996CeiMlWuVQDgECv6HKKY0moUSGPnS9kwpxS5uFisBrTC5YOzFIqUJ9ccjx07NKu@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyCt5aivgQvUsWuKKH7cImmIvgpyJHSxLpHlhvsE2iHX22a6oLe
- bbX0DQLCqO+NqIspvep6o/2V5w8AMhy1a5Wj/YvP1Le554/loAfG2j4lqgw3E2y/hyELwCf9aW2
- qEKupbJ09y0iASQY0dL2ITerx4+SKSP0=
-X-Gm-Gg: ASbGncs4LLccvLuM0A/RuWntdvzJzhjinCyLODdw/yph6ZYNF/H40sMYawnpEmfr2ne
- FMR+lrUkBQjlqr4dp/a+1x1asjhr41PZXkiO6f4A2ybnbGT9cGYwknGOKNzmDmEzv18+lcvdbo9
- Z65LDVwJYQ8UZ6LILJppW+4it/EL2IZss4bcqyqa4uYxsBboWyKfAjkV2ywHL+ZqQL1K7AhVV9i
- 5SuWTgVW2JjDORcrJvZmZvzKbW/c2ote9cRft0S32dn10f81w2i
-X-Google-Smtp-Source: AGHT+IGelNAChiwvd1QIIsVjXT8otgdB/o8fUu1FJvzWGsfqv3ACbWv9Myx5ycGYbMHeIh8AcUX+c3ga6qd1PGeON+w=
-X-Received: by 2002:a05:6e02:148d:b0:42f:9708:168f with SMTP id
- e9e14a558f8ab-42f9708183emr109556905ab.16.1760194392237; Sat, 11 Oct 2025
- 07:53:12 -0700 (PDT)
+ AJvYcCW/bynfLXw4vQDX/cE2/eq71Xg497tfOOeyvq8ES3xDdUm9SgFZxJMna5y07ulLDEw5gRs1Xz5b@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwH/XMxMp007Aaxnx8x6dBylfSehzE6Buy8k/bg6sslhb120Gf0
+ QbjqTChSnCfX3tMKnS/FPxxlQvn1UvAUXTeZwZ87PDI5dj28TnTyVK3taT/V1Gkmr7pozfhifrN
+ vBsXxRPivxO+5zpZkWnNA6xHsJEMhJkk=
+X-Gm-Gg: ASbGnctMrEg0QgEjCEFolGbmGmnmMYi7cdSfGBq22DjUACLoVj7tRAxSxkB142XY1Fo
+ SILl6eBtv65kngTgjspIcO5zGw3fNtXujPsTqIB3eVdvOo5X8CxsIVEqi3ZsMsVSm9L+EqdOW+a
+ pA76545ZvRzaOgqzLgj2peUFdB8CB9DRl43uulQsbEtP1c+vRgbPy53MQh4071Ym90bogboRS+7
+ h4EeM1Fmcw25p5Mz0KviM4qidmGKmbiuWBloN7Kg58qwvpv/479mRpbid/r0SsIvb2OHZaXie8L
+ LX/g7LGx4VSKqtkdXG/KnTXyt660J09sRoG1JvutgIKIV7EIrKl6Kim5BvAEdiDgTPLT6p1MSDz
+ Wpb8=
+X-Google-Smtp-Source: AGHT+IFmGK+yppNjtlfVt3PYHnSU7LCIeOR2djeBicyIzVEbAacDaOZ31AyCC8o6I/noT3LJVN5NEf+tFApmxdym8ME=
+X-Received: by 2002:a17:902:db0d:b0:295:f960:be2a with SMTP id
+ d9443c01a7336-2962ae6819fmr2827005ad.8.1762278974105; Tue, 04 Nov 2025
+ 09:56:14 -0800 (PST)
 MIME-Version: 1.0
-References: <cover.1755235180.git.y.j3ms.n@gmail.com>
- <CANiq72nbERSOWKRUTJ96YYKCDeAoHLBuiVP+XkDUKg7JYkoyiA@mail.gmail.com>
- <CA+tqQ4KG98XcWh3rkAxEOiACSUtPf7KM0Wqh9Af=POgVDHJzzw@mail.gmail.com>
- <CANiq72kE89ukxpf3L0_jFOdv51TDtjjj3r=1mjJzdGWJwmAbaQ@mail.gmail.com>
-In-Reply-To: <CANiq72kE89ukxpf3L0_jFOdv51TDtjjj3r=1mjJzdGWJwmAbaQ@mail.gmail.com>
-From: Jesung Yang <y.j3ms.n@gmail.com>
-Date: Sat, 11 Oct 2025 23:53:00 +0900
-X-Gm-Features: AS18NWBxitqWPgx67xtxY0Tu7rDxhSjoDZ4dv9U5mH8wQ6n3kHU_eUVN0pCdWYk
-Message-ID: <CA+tqQ4J7_z7_NmUNojJttF1e8GRR8Ua9w0Rap1t-U4gYPhQ1Yg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/5] rust: add `TryFrom` and `Into` derive macros
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+References: <20251020185539.49986-1-joelagnelf@nvidia.com>
+ <20251020185539.49986-8-joelagnelf@nvidia.com>
+ <CANiq72=SSQ5nSjt9yzX_A3Tgo2ByGM5CV0VqFnF1cTOzrZ-pbg@mail.gmail.com>
+ <02d37e88-8bfe-45ab-86da-0afa98fa1ebe@nvidia.com>
+In-Reply-To: <02d37e88-8bfe-45ab-86da-0afa98fa1ebe@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Tue, 4 Nov 2025 18:56:01 +0100
+X-Gm-Features: AWmQ_bnuMtNId367X4k07V77YebHWkraMiqGBtJ_zKIeC98ruZBIIlgN0L2q9E0
+Message-ID: <CANiq72mR8jpsi4ekNWM3CZCtVYinjFjUhhnGtF+cNn+Q2qiTOw@mail.gmail.com>
+Subject: Re: [PATCH 7/7] nova-core: mm: Add data structures for page table
+ management
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ nouveau@lists.freedesktop.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,88 +103,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
-
-On Fri, Oct 10, 2025 at 10:04=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
-[...]
-> But what case do you think we cannot assert? We can always take the
-> discriminant and reject whatever inputs (e.g. ranges) we decide, no?
-> And we know what type we are going into, so we can always decide what
-> the values to check will be, i.e. we could in principle even support
-> infallible conversions of the discriminant to other types like, say,
-> the bounded integers or powers of two.
+On Mon, Nov 3, 2025 at 8:29=E2=80=AFPM John Hubbard <jhubbard@nvidia.com> w=
+rote:
 >
-> Maybe the issue is in what you say at "the discriminant value
-> interpreted as the target type" -- I am not sure what you mean by
-> "interpreted", i.e. I would think of this as accepting only some bit
-> patterns, i.e. working with in the discriminant space, not the target
-> type one.
->
-> I may be missing something, but in any case, at the end of the day,
-> within a proc macro "everything" should be possible one way or another
-> -- even if we had to inspect manually the literals :) And it seems
-> worth to remove the pitfall.
->
-> If really needed, we can always drop support for certain combinations.
-> We already do, in the sense that we don't cover every single other
-> type out there, like the ones I mention above, e.g. `Alignment`. But,
-> just in case, I assume with that approach you mean skipping some
-> combinations early (the ones that cannot be checked) and then still
-> asserting the discriminants, right? Otherwise the caveat is still
-> there.
+> As Joel also was hinting at, is there any easy way to get this sort
+> of thing automatically checked? This is what scripts/checkpatch.pl
+> helps us out with on the C side, and maybe it is also the right
+> tool for Rust...?
 
-Sorry about the confusion -- the rough sketch I shared earlier had
-several mistakes.
+We have a few patches for that script (including for at least one of
+the things above), but lately I have been thinking we may want to have
+a different script or tools, ideally written in Rust, to encourage
+contributions and reviews and tests and so on.
 
-My actual intention was to emit a compile-time error using
-`compile_error!()` whenever a conversion could overflow. With this
-approach, the caveat wouldn't exist, since proc macro users wouldn't be
-able to generate `TryFrom` or `Into` (`From`) implementations that
-could potentially cause overflow issues. For example:
+Moreover, for some of the cases above it is better to put it into
+other tooling like `rustdoc`, Clippy, `rustfmt` or even klint,
+depending on what it is -- over time I have opened quite a few
+suggestions and some were implemented and work great, see e.g.
 
-    // This emits a compile-time error because not all `i128` values
-    // can be converted to `u128`, even though 0 and 1 are valid `u128`
-    // values.
-    #[derive(TryFrom, Into)]
-    #[try_from(u128)]
-    #[into(u128)]
-    #[repr(i128)]
-    enum MyEnum {
-        A =3D 0,
-        B =3D 1,
-    }
+    https://github.com/Rust-for-Linux/linux/issues/349
 
-To make this idea work as intended, I should have revised the earlier
-sketch as follows:
+If someone wants to help with some of that, of course, please ping me!
 
-- const U128_ALLOWED: [&str; 9] =3D
--     ["u8", "i8", "u16", "i16", "i32", "u32", "u64", "i64", "u128"];
-- const I128_ALLOWED: [&str; 9] =3D
--     ["u8", "i8", "u16", "i16", "i32", "u32", "u64", "i64", "i128"];
-+ // Allowed helper inputs when `repr(u128)` is used.
-+ const U128_ALLOWED: [&str; 1] =3D ["u128"];
-+ // Allowed helper inputs when `repr(i128)` is used.
-+ const I128_ALLOWED: [&str; 1] =3D ["i128"];
+I also had a bot I wrote back then when we used GitHub, with quite a
+few checks (especially around development process for newcomers to the
+kernel, e.g. using the right SoB and tags etc.) which people seemed to
+appreciate (to the point of someone mentioning it in a talk... :).
 
-The downside of this approach is that, as you can see, it is overly
-restrictive for large target types such as `u128` and `i128`, because
-the remaining numeric types cannot accommodate their full range. As a
-result, the macros could reject some valid use cases, for example when
-the actual discriminants can be converted without overflow, since the
-check operates at the type level rather than on specific discriminants.
+A long time ago I asked about making the bot send messages to the
+mailing list when we migrated, but it wasn't OK'd back then. I can try
+again, or perhaps it would make sense to make it send messages in
+private.
 
-Considering this, and as you suggested, I think the right direction is
-to introduce a compile-time check for each discriminant. I initially
-thought it would be difficult, but after some exploration, it seems
-doable.
+Finally, nowadays, I imagine an LLM could do a reasonable job for some
+of these as well, if there is available AI time somewhere (please see
+my reply to Joel on that too).
 
-Thanks a lot for your feedback, I really appreciate it!
-
-Best Regards,
-Jesung
-
-> Thanks!
->
-> Cheers,
-> Miguel
+Cheers,
+Miguel
