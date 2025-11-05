@@ -4,100 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B62FBD5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AC1D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DB5D10EBF5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9F3110EBF8;
 	Sat, 13 Dec 2025 12:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SmmKXNog";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5FyoGFW";
 	dkim-atps=neutral
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
- [209.85.214.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98D4210E126
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:32 +0000 (UTC)
-Received: by mail-pl1-f173.google.com with SMTP id
- d9443c01a7336-298145fe27eso54064965ad.1
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:32 -0800 (PST)
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com
+ [209.85.161.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E86CC10E6FD
+ for <nouveau@lists.freedesktop.org>; Wed,  5 Nov 2025 10:54:15 +0000 (UTC)
+Received: by mail-oo1-f42.google.com with SMTP id
+ 006d021491bc7-656c07e3241so66655eaf.1
+ for <nouveau@lists.freedesktop.org>; Wed, 05 Nov 2025 02:54:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763890052; x=1764494852; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1762340055; x=1762944855; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=kNN0MI0LidT4OFHOALkJ5vSdl55jONLNA9sdMaqYtkE=;
- b=SmmKXNogTgWL7/+QckBoeTrsid66XjyA36t4RZjflJr6rwef6velMcD5tarkyqrobi
- 1Z0B8ihffdStbDGukcdWO2DwDyTYJg9BKklViuKiNoE3jtdqMElUUiDjDGj1WSxwbvGg
- VLzFco9BHq93DknCAUeZp+KhXPaVZZlW+eiqt5wd7d0D0+P8zH5Xu/dhyiKAHgBLyuXU
- gG3bSlB6B3dXi+Uc5Cj1HLYNkpG1E9VwW8FO1t6duYR6IBEyPg9cWLYFeH6MN/2X/C+y
- 2RaXnTLSPj3bXNw9DqbN7WFcR+aVRqt6vlfWXIKKRtWvAU7QuhTGot1H858w2simEmVP
- dQWw==
+ bh=UI+zvnrKdhRN8SIehVxo9mkD9QgvEwvxC3LXtBEgkQ0=;
+ b=i5FyoGFWlwiloplPVhtZ5VWpADiwqkWdedmD+en5NtwC2HmfUcz1t/K9nFRZUhlhbK
+ EnCvSPkO0Ekx6C4Fub1du+ySIZgXtEXEPKwx3PNIu70IadBmzA79L+0BuUTZE3Xzsw1w
+ YgQOg5W6qTI/TokfcjaxGUybXtZ118+DUTqv5684J+78I/yPgMaLEtqZfSZKGj+fD5/Q
+ uE/UE2PgfolIm4BML2+iAsdthFQgqfmVCeNAqKHynopQA/YIIMaE1dSbnMdp0965Exbo
+ o02K0wowVYlWX/Ae7d1ocvGvg+PMDTPYBV49lGO2wW0wsG52k3JQl7aIs81DSoWB/r+1
+ KrtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763890052; x=1764494852;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=kNN0MI0LidT4OFHOALkJ5vSdl55jONLNA9sdMaqYtkE=;
- b=HjGkCHY0kORn9j+cxzxyiyjwEyEcVllR20gA6FgVEeBYZl+0eq5kp/HNwgQbIUgCmO
- /Xjk/YtTw4M2AJE7DkOkOockOnHs4oW8vNYHo5wRURvhSeBsbywXMqBWuIAcFGTClVLm
- WejvhNSDYpgY7pXMNUWx6iNkZ1iOfBqpnOb722FUgBZHZMiJwg+dciLJDCWpRIBvIEjL
- /4zF0Ts/+vynSghSJNfq0H2dISr0xrnxtpPpMPs4ZoFrtEG/Av/MTNl6V0gWF4/d9MNJ
- uyUM64RTr8vP7GjLurICpcdD2v9AsChi2AdPkq8CDETi7OouEDOBeSffW/vonARtQ4WN
- UmMg==
+ d=1e100.net; s=20230601; t=1762340055; x=1762944855;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=UI+zvnrKdhRN8SIehVxo9mkD9QgvEwvxC3LXtBEgkQ0=;
+ b=JE5YK8lqnQAcoY20odrZ3m2LMRTcoFQd3knqVoI0imUm7lhLhdTYg4Lvn0iE+hIu86
+ XjevFx5uFO2HQoH+eZp7VP1Hi3Nj6STHt/QtWgtk7u3t0Fk/OHDSSo1Mdfn2/DaegTNQ
+ 4nET09tTCeTaWRr1yhuwH+PpmAMEBPB4/vDCX4Wl68jn+cy0m7NjSN2v1/DJErwSbnJ6
+ s5mDXQ3Gltel6lBUzEOpzQFQ6Iiri/5UUtyJyIz7qGkn43UlarWJ2FQ5PkS5UZFssMPA
+ yQwD2g0F0r4vQ+xpuMG7vGFfhxoCUN1NjV89U08N9a3RqpkFZduUloc4yTFfoQWQfbxb
+ xZWA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWJcWvDta3vLW84Jn4Wy9oc+dEIpgUBAu3HTZsPqlyhp48ht7x71eTWqaN/HWZWpxHJ4GUzHsKZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwmF/J5GkmCfKXfDlv94kEBA18rPXqqISi76AKvWp4imXq4cvP/
- t9mapKFtk/XhA+WnxFtFLFBLblLyHfejGYip+4R9Co2MM6wurCrgkrNx
-X-Gm-Gg: ASbGncshbpCrGyxDtpz2xnlt49OhM49nRUgKa9esy6L3Jyx4WSjjFmlf1vIRFHEZs+f
- wYc3DaaXU1wlgadq6CbyXwnIkctS2xFjLZp1LYKs1GgcfTcraNmWTTJKkbH82zNhw4DlTsPAiwN
- 5+4d3DcY1O0nGy8dgR8AMG//vDVvwsH6YHVDZ7ZIMhrv0sIEMac/6ezBSI6y07FqKEV+yKdwuRE
- uZgP+YPPDOrWHHKQrwHMN09/wNpfEv1ibY8BHgrO9U94LkT708MNd9STRwAZyAu1mFRMqUNEyTb
- D0FSa5kwINs7AALYyg4MJWz9sG1RMSYtP6SounP8dRzUps4y7VyiU7qTDXM5sjzVc9jJ3LXzBsG
- 1n1D41ewpZn5NQyKvmmu+p6eq1R+/qbx6Xlfj7P7gvjI5kW+zQbmSv/HA9o4u+DDHBJ9r1W5WRS
- J6Dm/NSgx3VSFplnwAgYx9xtm17A==
-X-Google-Smtp-Source: AGHT+IFee8cb2TNSz47vMFblRZKC7Ldla9Ih927BxHiIgXSYRbtyZ2DKKrYa3dNyowUaxQz5HqlIJw==
-X-Received: by 2002:a17:903:2f86:b0:295:7806:1d7b with SMTP id
- d9443c01a7336-29b6bf37e59mr102978025ad.45.1763890052139; 
- Sun, 23 Nov 2025 01:27:32 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.27.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:27:31 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 09/10] samples: rust: Update ARef imports to use sync::aref
-Date: Sun, 23 Nov 2025 14:54:37 +0530
-Message-Id: <20251123092438.182251-10-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ AJvYcCUr0AoHd5WnFWfLu/ZUB8UFwb1Z+ftpK6V+H7L3yhgUMGUlub3cIPWXUsvuwRPXbCFoJGVzr9Y5@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz172bixeyUyWbCeGKVOmejWBmKQ21d+f/Yyj6mriV2s0Epwjb+
+ pZz2UkEPtG4C06z20HCy2tSkrX2HtEaRZphV/e8KCX4VDpJRrHp+EIilAK6+p0KaXyuioeHJwaV
+ h0I67mkppuJ3QP9l57iLs+2CB1NsEtmU=
+X-Gm-Gg: ASbGnctIXYoiQGcUZmPLIinHYWHRC+gSduxGmy6DqYwbM7Z2FmRZBdVJ0/SxndL2byz
+ SRD6ZU/XN6sf2GGulfE1rpxBj6NLWJUUcEx4PXPr9EUy90jtPY4lmFalHVrouYiZHpYj82msdA4
+ bi0YuW9TDkf84TmKwvh6LCawwVfsjv1vCrUnB9gOdiUgChIPSzfIdUu27jQY90wUmMK29cykJNw
+ NDwkpcJcfVgQwM+DniiQEZHMaP+6h9F8T73Gq5f7TyBI7ErgFfE1/bi7ALX4Bh16cqybtQ=
+X-Google-Smtp-Source: AGHT+IGOrCYrmHNMLavSyZ02ydICrKRBss+q8PZq/0Rzc5ZPlgYctyKGHcxtmk3f5rN9LiTKlT/v4xGFjERNNmxuico=
+X-Received: by 2002:a05:6808:21a3:b0:43f:5e91:d556 with SMTP id
+ 5614622812f47-44fed48970cmr1063735b6e.44.1762340054900; Wed, 05 Nov 2025
+ 02:54:14 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
+ <20251030190613.1224287-2-joelagnelf@nvidia.com>
+ <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
+ <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
+ <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
+ <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
+ <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
+ <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
+In-Reply-To: <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
+From: Guillaume Gomez <guillaume1.gomez@gmail.com>
+Date: Wed, 5 Nov 2025 11:54:03 +0100
+X-Gm-Features: AWmQ_bkMmilAyN1uUJZCacC-4Uedu5I4tT8-UDX7Z-O78YpFpr8K3EAt082H5zI
+Message-ID: <CAAOQCfSRVqFZAJN_m-kGLe6fnqKYyhLUf_WOKdHHMW-C6NShkA@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
+ linked lists
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -113,32 +109,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update call sites in `rust_debugfs.rs` to import `ARef`
-from `sync::aref` instead of `types`.
+You can add your own tags in the doctests, and with our patch waiting
+to use the new rustdoc doctests extraction, it should be pretty easy
+to plug such a feature into it. We can check it together if you want
+when the patch is merged to see if we already have everything needed
+or if I need to add more things on rustdoc side.
 
-This aligns with the ongoing effort to move `ARef` and
-`AlwaysRefCounted` to sync.
-
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- samples/rust/rust_debugfs.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/samples/rust/rust_debugfs.rs b/samples/rust/rust_debugfs.rs
-index 025e8f9d12de..be245da577a1 100644
---- a/samples/rust/rust_debugfs.rs
-+++ b/samples/rust/rust_debugfs.rs
-@@ -39,7 +39,7 @@
- use kernel::sizes::*;
- use kernel::sync::atomic::{Atomic, Relaxed};
- use kernel::sync::Mutex;
--use kernel::{acpi, device::Core, of, platform, str::CString, types::ARef};
-+use kernel::{acpi, device::Core, of, platform, str::CString, sync::aref::ARef};
- 
- kernel::module_platform_driver! {
-     type: RustDebugFs,
--- 
-2.34.1
-
+Le mar. 4 nov. 2025 =C3=A0 20:06, Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> a =C3=A9crit :
+>
+> On Tue, Nov 4, 2025 at 7:35=E2=80=AFPM Miguel Ojeda
+> <miguel.ojeda.sandonis@gmail.com> wrote:
+> >
+> > Orthogonally, the script that generates the doctests could perhaps
+> > help to automate some of that. For instance, we could have a way to
+> > specify an "environment" for a given Rust file or Rust `mod` or
+> > similar, and then every doctests would have the code prefixed to them.
+>
+> I guess this could probably best generalized as "tagging" doctests
+> with custom tags that `rustdoc` just forwards in the generated JSON.
+>
+> Something like:
+>
+>     /// ```tag:foo,tag:bar
+>
+> would give us a:
+>
+>     "tags": ["foo", "bar"]
+>
+> in the JSON. Then a custom generator like the one we have could do
+> whatever it needs with it, including prepending code or other things.
+>
+> Now, I see there is already an `unknown` field in the attributes which
+> already give us the unrecognized ones, which is great and we could
+> potentially use that.
+>
+> However, should there be a particular way/namespace we should create
+> our custom tags so that we don't conflict in the future with `rustdoc`
+> ones?
+>
+> I have added it to the usual list:
+>
+>     https://github.com/Rust-for-Linux/linux/issues/350
+>
+> (There is also the question about supporting the old non-JSON way for
+> things like this, but I am ignoring that for now)
+>
+> Cheers,
+> Miguel
