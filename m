@@ -4,77 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8862D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1801D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB45510ECCA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCBBD10ECC9;
 	Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="cXKYHKCB";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="CnQrDaOy";
 	dkim-atps=neutral
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
- [209.85.214.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2ACA910E086
- for <nouveau@lists.freedesktop.org>; Thu,  4 Dec 2025 11:40:30 +0000 (UTC)
-Received: by mail-pl1-f179.google.com with SMTP id
- d9443c01a7336-29555b384acso8659805ad.1
- for <nouveau@lists.freedesktop.org>; Thu, 04 Dec 2025 03:40:30 -0800 (PST)
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+ [209.85.128.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFAA510E9DA
+ for <nouveau@lists.freedesktop.org>; Thu,  6 Nov 2025 21:25:02 +0000 (UTC)
+Received: by mail-wm1-f52.google.com with SMTP id
+ 5b1f17b1804b1-47754b9b050so330675e9.2
+ for <nouveau@lists.freedesktop.org>; Thu, 06 Nov 2025 13:25:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1764848429; x=1765453229; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=VOLP0XruPd1QOq3grXNaxKngGKdOYC2kF7NcMiuxQlI=;
- b=cXKYHKCBEjlXy7HJVjoNREJ43Zy+K/sBT5pLnqb5qzvzrxjSVhVfHhpkxWY6jxpbnU
- xuviJrnrkCAPMvK4r8z3DiF/FnClVDK5fasEnoUsnKd6+KIujKK8dBJ1EtBHF2xWeBqs
- LYkfUSRjYCetYcWIzuj6iDtiaQoA5qWxE2kmjdpVWWaFgWhwh+qyLyIRqV66+Wtbw46C
- UGgUM0BppWSu8NPr96VCp+HVoARa6nBFIWwDiXBwTeM9sk/u8B11UEjvrguvj1D4BCrX
- GVygc2lAAZvsdDKq92UMZNzzZCalthw9ufIoh8N/E3A3JAeVK6VnyDuAKoED97qOpXQb
- Ofwg==
+ d=gmail.com; s=20230601; t=1762464301; x=1763069101; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=YKes0XVjNGJ2FggkAmqRR788Mxk3TjUGRm3n1mueSWg=;
+ b=CnQrDaOyC3tkAso3tecfhttGehls4MispX2XH6/Q+VLIeE1XTZP0NzKMxUbBFClU7v
+ pNaQDAevtX75LXlC7KL/AmUjX43V8CPfxMfvnRPFm5yaWkGOfBdjEsHdWDkjgPW9iW76
+ kz9SBcV047cW5fz87jd9MRWtYBLu8N82DA32uJ3m/HbL7s5U3sd4oEn6WL6278fj67Zf
+ nB3HLvixc7XEn7YOTfMRn6VU7jXlplkRHqxYA7PqcfoMhM53nn8GlaZKRY/tHw3KTOfl
+ Rrkkm9DW0TkMvG0th5Nzzqnh89RpR710e9hANgfyyaOUR0Y3L9RbbjKbsxpe44kAynUn
+ RvJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764848429; x=1765453229;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VOLP0XruPd1QOq3grXNaxKngGKdOYC2kF7NcMiuxQlI=;
- b=tHZUTjYbTUIpPv/btTtW7+JZjuh26YJzVdpbyCUsKWwZN9Da0kd8SObsTiBe7Wh5/W
- nSmo97hAJYthYJ2D1iumvC37mJU0LXqaZCilj7VWl1BUB1UNPnaMpxu4uTyIuZwoylQz
- ZL4hh9rGAZ5y/4NoO8xt3y6fZ6yVJMgOgcB6fYFJt78tWwb4DUUPYNNunFUjogZeDlej
- doZiWQUdNrHYapDG0+cn+yG8+xPhn3I6chEg4SuKtJO4czbNjbyMBgUWXJUydzrEyQY3
- t3Xe8M75ZP1svLbcEyhCoRo449mEmj0h73lTz1C/l1GsrVWYONA6zXWmKkf+UGxFI/mN
- PoDA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXWj01Ssont1uY7FD9OK7rLZrOetL/WPUppYdY7a6Z2U19OWkLQwicgA+XXjCj3Ilv+QtHbWW0j@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzSFYnbA0b01HH9pY5Hq/dYs6JTxd5OVLBWHWCVZ+sM1EzN9/5K
- KIROa+NB07bpybbF87mBaBw4ae9uCZhiwNvsOBFO/2/4XjddccChxRkK
-X-Gm-Gg: ASbGncsc/1IQ9nZ2sRhn78ZKjXnBK9iGZot0OEwLcaOQRClKolWpAmYyO8P/LpCzZ0c
- Rp9t4/C50X182rPUxN/e4CBA9MIN2t1efTzC6sPAb2wnhoiLIm+YUPdvsDnL8ho3F6GHMs1FYrD
- BCY6XbARP92DokuxakYNGTt6p5zXEs4GIT0i8hiSKoNW4HyjvEZ26dSC8BMy1EUMCIOK3sj1O3c
- a/bU6ymunB8SaJbwPm5Mfh04HN9OSgrwMWfoBPPIK5vP4grzTpwRJdtcUaIv002EKpT8I3BwgBp
- tUBh/V06w1rs7puvDtA8Vaq6AovNXNNsADWXiMIMpNZXDiZEjIKh3FTXmEeqL2g/YMCJE5e7MHB
- UexYkX5Qk/1W5nt9ngYn+bkE9uG2Jyn4kzytii4c4YWNiiOpd/GIPGq4AbVHx/mwQ5mgekkTCG9
- xSZCXtIJbpsqxcGk8B0yBu9tM=
-X-Google-Smtp-Source: AGHT+IEOyFNQpZDBuG6E+IFuy81iiipGlnmTigN6oxFceckZ0M6BWW7ltYQKjSJV9ixoVX2TZKIuZQ==
-X-Received: by 2002:a17:903:2d0:b0:298:60d5:d272 with SMTP id
- d9443c01a7336-29d682f4b2amr84735045ad.17.1764848429504; 
- Thu, 04 Dec 2025 03:40:29 -0800 (PST)
-Received: from archlinux ([36.255.84.59]) by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29daeae6ad1sm17734215ad.90.2025.12.04.03.40.25
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 04 Dec 2025 03:40:28 -0800 (PST)
-From: Madhur Kumar <madhurkumar004@gmail.com>
-To: lyude@redhat.com,
-	dakr@kernel.org
-Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- Madhur Kumar <madhurkumar004@gmail.com>
-Subject: [PATCH] drm/nouveau : refactor deprecated strcpy
-Date: Thu,  4 Dec 2025 17:10:21 +0530
-Message-ID: <20251204114021.36719-1-madhurkumar004@gmail.com>
-X-Mailer: git-send-email 2.52.0
+ d=1e100.net; s=20230601; t=1762464301; x=1763069101;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=YKes0XVjNGJ2FggkAmqRR788Mxk3TjUGRm3n1mueSWg=;
+ b=YELQxmXtbc+1j9s7dAbJ25S30USJYUAZrW5E6ByLAQ3MIjfaP3upwoxA8nyoFaBBw2
+ Arbjc+VwBvDHYrYUzxWaCSAB1DTWyj9b+6je1D3kn/aDYzzCdOUKRLrpm41IE0xqg/XG
+ An/tiI9pC0KDFH00ujGGDL2Pv1nD/4cKql+hV9GuQU024PQ3UL58Ftsco+PsUrMjxSmg
+ h+YelwXMcOA+PhXCNIPoog4LGFejqyu3dg0vHpm1F6TtIQ2TiY3uxkawn1nozBRS9L+T
+ L9vval+YqXDoM7ag5dSbWJ5gYWPsfxPuBa/u98WTTVQj8B9lWPWqJ58jLTNlA0SA6n/f
+ dlZg==
+X-Gm-Message-State: AOJu0YxR0p5IfofI5l9izAd4ebJaDNm40FyHMi2XoUTtf0TUBcUIvmjl
+ dtAKLsGVCU/CdKTX+CFbV7UqV7jo/LLtOb92lAIKQUnKtjFHl+1fs5ZX
+X-Gm-Gg: ASbGncv1hCRnD0SBMUcsnyR59Rg9w0F+Pq/iC9HBK94Q4dV0WT8zIV3z6V+fMBQRhSy
+ WL+1kuTaLP9cl/TFd/ywZEgum7IsxpmPipHz+8Bb28Uge3pXMnpvxYfP1HuJSiMAiWsgibROH7j
+ 6rgaW6Bmm/x8uv0ooy0YVUoA7VQD9HS/+si4laIVYps9JuqBbAex+J9jIs9felt76sruWbOfcEU
+ YmOrQ9XLHAv5twD/bVB3PG9GoJQ9STOrgPQg/FBvUm7ZLTdV85Ru64Pb93VATHzXy9KmI7pnjIb
+ 5D8np0xV2i71FzbJk64/Y26uXtgzXAByGlPv+9kz18NUvLFvxjOw5A6p7atUjcem2aRm8wsMJZ2
+ NSFJeuWpXYsS/UTuvvbVWAg3Tigx8kd1Rh2DxrARuzRGXYLDHEZgazWj9daVLgRcTqKLRYhB5ft
+ FzmJO+zYrzH9BljLnNltIpSlixfppigclxhB/FWQOhk4LaWf7eCy2rmNg9WP+LNx+wLWw=
+X-Google-Smtp-Source: AGHT+IFRtleD8p3GDaRn7y4cLlgvtrJ8k9u0N/dFUXsYAq553rRak+Diry9dTEA+SBjhoD9RJ2Xd8A==
+X-Received: by 2002:a05:600c:1384:b0:46f:aac5:daf with SMTP id
+ 5b1f17b1804b1-4776bcfd091mr7371805e9.35.1762464301183; 
+ Thu, 06 Nov 2025 13:25:01 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:acc:bb60:756b:64e3:20ef:1d08?
+ ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42ac67920fcsm1257502f8f.39.2025.11.06.13.24.59
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 06 Nov 2025 13:25:00 -0800 (PST)
+Message-ID: <ff95096e-83de-433c-9048-55a35dab3dde@gmail.com>
+Date: Thu, 6 Nov 2025 22:24:59 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] nova-core: Simplify `transmute` and
+ `transmute_mut` in fwsec.rs
+To: Alexandre Courbot <acourbot@nvidia.com>,
+ Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>
+Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, rust-for-linux@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
+References: <20251104193756.57726-1-delcastillodelarosadaniel@gmail.com>
+ <DE1H0USFAGNU.FFRA802H95RG@nvidia.com>
+Content-Language: en-US
+From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+In-Reply-To: <DE1H0USFAGNU.FFRA802H95RG@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,34 +102,24 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-strcpy() has been deprecated because it performs no bounds checking on the
-destination buffer, which can lead to buffer overflows. Use the safer
-strscpy() instead.
+Hi Alexandre,
 
-Signed-off-by: Madhur Kumar <madhurkumar004@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_fence.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+On 11/6/25 09:32, Alexandre Courbot wrote:
+> On Wed Nov 5, 2025 at 4:37 AM JST, Daniel del Castillo wrote:
+>> This patch solves one of the existing mentions of COHA, a task
+>> in the Nova task list about improving the `CoherentAllocation` API.
+>> It uses the new `from_bytes` method from the `FromBytes` trait as
+>> well as the `as_slice` and `as_slice_mut` methods from
+>> `CoherentAllocation`.
+>>
+>> Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
+> 
+> Thanks, this looks great so I am staging this series for pushing after a
+> short grace period (probably tomorrow if nobody screams).
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_fence.c b/drivers/gpu/drm/nouveau/nouveau_fence.c
-index 869d4335c0f4..100c7dff4ff8 100644
---- a/drivers/gpu/drm/nouveau/nouveau_fence.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_fence.c
-@@ -183,11 +183,11 @@ nouveau_fence_context_new(struct nouveau_channel *chan, struct nouveau_fence_cha
- 	fctx->context = drm->runl[chan->runlist].context_base + chan->chid;
- 
- 	if (chan == drm->cechan)
--		strcpy(fctx->name, "copy engine channel");
-+		strscpy(fctx->name, "copy engine channel", sizeof(fctx->name));
- 	else if (chan == drm->channel)
--		strcpy(fctx->name, "generic kernel channel");
-+		strscpy(fctx->name, "generic kernel channel", sizeof(fctx->name));
- 	else
--		strcpy(fctx->name, cli->name);
-+		strscpy(fctx->name, cli->name, sizeof(fctx->name));
- 
- 	kref_init(&fctx->fence_ref);
- 	if (!priv->uevent)
--- 
-2.52.0
+Perfect. Thanks for all the help!
 
+> One nit, the prefix for Nova patches is typically "gpu: nova-core:", but
+> I will fix it when pushing.
+
+I'll keep it in mind for the next time ;)
