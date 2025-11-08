@@ -4,72 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10B58CCF9E3
-	for <nouveau@archiver.kernel.org>; Mon, 10 Nov 2025 17:05:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A0B8CCFA13
+	for <nouveau@archiver.kernel.org>; Mon, 10 Nov 2025 17:05:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC1FC10E443;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C227910E450;
 	Mon, 10 Nov 2025 17:05:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=mary.zone header.i=@mary.zone header.b="burPOSjm";
+	dkim=pass (2048-bit key; secure) header.d=mary.zone header.i=@mary.zone header.b="MlqUYMJs";
 	dkim-atps=neutral
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com
- [209.85.128.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E779810E858
- for <nouveau@lists.freedesktop.org>; Wed, 22 Oct 2025 21:39:52 +0000 (UTC)
-Received: by mail-yw1-f180.google.com with SMTP id
- 00721157ae682-7815092cd0bso716277b3.2
- for <nouveau@lists.freedesktop.org>; Wed, 22 Oct 2025 14:39:52 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com
+ [209.85.128.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB8710E1AB
+ for <nouveau@lists.freedesktop.org>; Sat,  8 Nov 2025 19:30:21 +0000 (UTC)
+Received: by mail-yw1-f174.google.com with SMTP id
+ 00721157ae682-787cc9de986so13585677b3.2
+ for <nouveau@lists.freedesktop.org>; Sat, 08 Nov 2025 11:30:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mary.zone; s=google; t=1761169191; x=1761773991; darn=lists.freedesktop.org; 
+ d=mary.zone; s=google; t=1762630220; x=1763235020; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=XY/fVzl28BJXNG49hJlcZcehSDNURMQ7FS8BdFDQScQ=;
- b=burPOSjm6sv+2rTFzfgP48VuAYtJ9Dkmd4jhLdfMD0u6BZWV0IGde08xtqFi3xuCln
- EsK1W0l1XWah50nk+Cx2SDba262Cd/5mRmAzi7SlECS5U4o2aDTCsC4/azJa3bcdIbnQ
- 0zGGG2uVGtqT1Q7Ov6eS/DxvZ1iVww5yY6laOw0rRxodCPXx/fhqNvCs/42iSifpxEDn
- bihUBP5kTrxzrHukxDKq63LeKs4bd18X3K6iS0xZ9F6w8hp9hnB7t2n1cpVKxg+3kfOX
- oSLbTwxNm2q9sWEWg2TA4Ms79dYNfnOYXtb9UO7BCT0H3Fk678HrNC4oH/CVlesAaJRf
- FILA==
+ bh=KyRJZiWrQiGWx3CFD7wgOdd2jyZ0NCxb1AABBCZa0vs=;
+ b=MlqUYMJsRW3e5jAGnvyAAk2ElqnqFdd/7HI9zWE3MzScZLew2Qxw+XYhOxdsn6Qrvp
+ qa73AkvPT9J04konvL537ReuObFu6g71NGwIsO7hjMgrAevY1ESuT1sIZIQURJ0eDjNU
+ O+ucI4cz/HQMUQVz/u7Gp0ljQ2GAVpWGJm0Ccy5LSp73JZBVMXaEH5kE0o/OJk4g8K35
+ A/jHFe9onbo0NEwMCko0pwqPHROWIijn40cu725EajuCNTmikSrX60/36n4LT/qgKMe7
+ 6QRTHiINpeNuZKAxvbrhmkpbuHtjSFY2fllh+yHBQpAlnp+eADg/OamM/Y/7q7msIXpQ
+ YGew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761169191; x=1761773991;
+ d=1e100.net; s=20230601; t=1762630220; x=1763235020;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=XY/fVzl28BJXNG49hJlcZcehSDNURMQ7FS8BdFDQScQ=;
- b=c6psZlY4fTViTl1yZXRj9tc7VxZ6ItChJ/E9MovugCUpM3UWQmZwLyESZVqhicE8Ms
- HQWQrxYm7wUjYL5XX05BJw0D4J260wzWiBcfUNydFE3bfaxSI+vTsiUkKCB8U22iWQqq
- empyQa06Sg6rSQLNflf8IaEAUzIuRdD4+z35wcHbslR4QXzX7NLdZaP8Agm+fDYMAgkB
- 9EBpACqGMDhKLrOb9o936F+O4w2lj/vFnFuOeXh1ew8nKNGeV1cprShRkol+D2eyqBot
- IYAyTPykcSeHDZaLzEhrCi008wbKS5sxwkn+Rv4GyGEUax/g9mIi5Nfv2+ij/pFy8tu3
- QgZw==
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=KyRJZiWrQiGWx3CFD7wgOdd2jyZ0NCxb1AABBCZa0vs=;
+ b=viJ9MhXOvWk1q/BlTI+iRrGR/Ch/35tKopJT0Uu9pHHB7iqdpIAqNgTQ41JJYnN1ji
+ Lvm4uQBVf2rza+hUNS3PjgtsDcdOLB5wt6K4VRn4poxzKY0ogty8s+GFKg9zz4DEvsTG
+ vQ400f5G+vEFmsutoqGWA9W7efSBjcn5TVmcDlnepsxFGvOqoc0p8FkhOPwgePu1LXXQ
+ IfTYhgXlv+u0pS/3r335WgcYfGFX4/T2327NMYXSAgoTtxJ82pjLyPzqxUPOlj7NLnXw
+ Ag64AQOd0f7KCucx2RMrGviGJi9mKm472sC+MnyiKOEaKYjYoeVjuaYu2+C6NfTZ0WhY
+ iZcg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUYZc3Weu3MKHWM8nz16HUIlnVWUOV1791b6qoqtxblquriBnJr4M8q0LcdAVe+d0GECD3/7D4t@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yylhb58XkstMaL4b6ADZs7cFCJ1CSWl1srMb03W7kKqZetUJTwe
- s9MU/FTREMjZrmN0oi2NGs3NUv7wp96NhLcDm/y8v44D0qtF6WVleFqiVH0KzmZav7ib5Keqlj7
- 4CGI4hVTCMKLESrFNrv7KGezcUnDUJONXHLmcyutcrA==
-X-Gm-Gg: ASbGnctx9bIpsTOm5TMdUZaQ03Fm1NePwP2XE+RSWPFlYhrkhVcuw5kseCXprl6Ft5y
- 4yaW6NVofwZOejxObh4zxVP8TXcenntZU2+q9QG0OGYu9Jm2zbgwvSeSaN4Fh4xA6OeDiwASYCS
- LqWRo0BSYUsXIOQqTNOecaxdtByu+XVW+5TgQlCf2QiMwgEAABn7I62czQyKCeDIosHTAWjoGm2
- ehzzmBXYPQV8P7kbA9yAfaMi04NFQXdd8q+MaK1Usm9JQSOtOsZxhyXTCBwWDXnRlZkIghkkG0Y
- ixNqVvkqgFRH6brIIuqfpdLvIONG
-X-Google-Smtp-Source: AGHT+IHLticEoUHzz+5YlBnUoC99gaUTyPszn1BD+u/JBN5hlfiJhQmAcF37pUbO0+8+V7Ij2JZoZtpIzB/MD40J78o=
-X-Received: by 2002:a05:690c:25c6:b0:780:fdbb:5265 with SMTP id
- 00721157ae682-7836d1c62b1mr345947707b3.19.1761169191371; Wed, 22 Oct 2025
- 14:39:51 -0700 (PDT)
+ AJvYcCXJO9JLnC1R7v6AD/NK2m3B2BjW5AA3tn1LIZ02bdOgN4sScOKGdRH55BroTuQ+jGrpSJFURA+a@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxyjKz9nPSIJ24l8ig7LoACDcETUCneAicVN15mpM/m72fYyUow
+ qWc+BOVpnx6MwMSiFz72Z7TPkdzdNBitxX8AMmeAegtrhYbuE7kGHa5tRgvq8ox6rrgy4bXHOo1
+ OX5YsVapanOiAljxv01bJiGvnPoAMKjgjObRUdFho0g==
+X-Gm-Gg: ASbGncvhgLvza/Kg4Dvgu4EJKZibSNnDgVMNSBeGfqlVQfzvbPkwGCoFioVE8i5jaVK
+ l4VLrqHfLonyNsPOjJiMspe1qveJ3D+/urwpw4p6aei+7icAwVv7wcj5WDW8uNR7Bzlv5DV7z02
+ ZZwhhxm3D0KneCOiMNuEHGulMjKwS88oHv/ZobuGW1KAoqbJS3ZR20sSXQ5bJzsJWV+roqquRU8
+ qB/An9S8AA/Pqu9DqfRtaCFZe5eNjzU0VpS3mZ5vyvmVFfQ0Wq9xCemy33cl+ZOKdU2XJG/ZC5R
+ p9oeK+fipkH45czcWNErXaUVDvI=
+X-Google-Smtp-Source: AGHT+IGIYT+SUHEWS8jwXTJD4hh40k1duU3pvKoIO6/tM9I7kWkKHb17WkBAF0kaIdPn4lajaFC8l3EQAoBHjvEIEk4=
+X-Received: by 2002:a05:690c:a4c1:10b0:785:fd34:a355 with SMTP id
+ 00721157ae682-787d53fccf1mr27702217b3.40.1762630219745; Sat, 08 Nov 2025
+ 11:30:19 -0800 (PST)
 MIME-Version: 1.0
-References: <20251009233837.10283-1-mohamedahmedegypt2001@gmail.com>
- <20251009233837.10283-3-mohamedahmedegypt2001@gmail.com>
- <CAA+WOBvVasy2wRP_wmP-R6Q8y5B4sN08jNYfHuDVjiWXV+m23Q@mail.gmail.com>
- <904ba70f-b1bf-4745-8e92-d27a6c903673@kernel.org>
-In-Reply-To: <904ba70f-b1bf-4745-8e92-d27a6c903673@kernel.org>
+References: <20251031104924.10631-1-mohamedahmedegypt2001@gmail.com>
+ <20251031104924.10631-3-mohamedahmedegypt2001@gmail.com>
+ <0bffd718-3659-4add-90fc-fb0e098f2897@nvidia.com>
+ <CAA+WOBtmbPHigscFQCFgDo=9WSM6V-JMXGCO7orP=01XOqTPHQ@mail.gmail.com>
+ <4d07932e-8b53-4ee3-8d08-6f49d433f005@kernel.org>
+In-Reply-To: <4d07932e-8b53-4ee3-8d08-6f49d433f005@kernel.org>
 From: Mary Guillemard <mary@mary.zone>
-Date: Wed, 22 Oct 2025 23:39:40 +0200
-X-Gm-Features: AS18NWBm422X6XetKOPBkLZPJQB9QiYJm8O_YbBTYHKPk9yZbZPBR3qyH8LezJU
-Message-ID: <CAPv6GL2DQ_wY=r4eV_V=nBGaj20HtYzRfJg==rQJtuO8Fo+HAg@mail.gmail.com>
-Subject: Re: [PATCH 2/5] drm/nouveau/uvmm: Allow larger pages
+Date: Sat, 8 Nov 2025 20:30:09 +0100
+X-Gm-Features: AWmQ_bmUShDzVgDbCjXaRk8KzGqVzibLvo1soC_Ryl9pqm71yycsphufLLwaE8g
+Message-ID: <CAPv6GL3+Fs-7DCHGgk-rBpJjNHBLYvubbcBK-0U_Ew93_ka3Og@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] drm/nouveau/uvmm: Allow larger pages
 To: Danilo Krummrich <dakr@kernel.org>
 Cc: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ James Jones <jajones@nvidia.com>, 
  linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
  Faith Ekstrand <faith.ekstrand@collabora.com>, Lyude Paul <lyude@redhat.com>, 
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -93,35 +95,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Wed, Oct 22, 2025 at 10:56=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
- wrote:
->
-> On 10/22/25 12:16 PM, Mohamed Ahmed wrote:
-> > Pinging again re: review and also was asking if we can revert the
-> > select_page_shift() handling back to v1 behavior with a fall-back
-> > path, as it looks like there are some cases where
-> > nouveau_bo_fixup_align() isn't enough;
-> > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/36450#note_31=
-59199.
->
-> I don't think we should add a fallback for something that is expected to =
-be
-> sufficient.
->
-> Instead we should figure out in which exact case the WARN_ON() was hit an=
-d why.
+Hi,
 
-The reason I wrote this code initially was to handle addresses
-provided by userspace that aren't aligned to the page size selected
-during BO creation.
-This is something I did trigger when typing this patch initially with
-my distro provided version of mesa (likely 25.0.x but it has been a
-while)
-Thomas Andersen also confirmed on nouveau irc channel that he did hit
-this case with an old version of NVK and this patchset.
+On Wed, Nov 5, 2025 at 11:50=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> On 11/4/25 12:53 AM, Mohamed Ahmed wrote:
+> > Thanks a lot for the shout out! Looking more at things, the logic here
+> > is actually redundant. It was originally copied over directly from the
+> > bo allocation code to stay on the safer side (basically the idea back
+> > then was to make both the bo and vmm sides match exactly). We aren't
+> > at risk of having an aligned address that is in the wrong memory type
+> > because the bo allocation code (nouveau_bo.c:321) forces anything that
+> > has the GART flag to have a page size of 4K. Anything getting a page
+> > size higher than that is exclusively VRAM only. Additionally,
+> > currently things marked VRAM only don't get evicted to host memory
+> > except under high memory pressure and in that case, the context is
+> > paused until the objects in question are paged back in, so we also
+> > don't have to worry about memory placement there.
+> >
+> > The memory placement check in the vmm code could be removed but I am
+> > leaning more towards leaving it as is just to stay on the safer side.
+>
+> If it is not necessary, please remove it. We should not carry dead code.
+>
 
-I think we could just remove the WARN_ON and properly document that
-this was previously allowed and is there for backward compatibility.
+For correctness, this code path needs to refuse incompatible domains
+to decide the appropriate page size.
+As such those checks should remain.
 
 Regards,
-Mary Guillemard
+Mary
