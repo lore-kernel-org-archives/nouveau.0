@@ -4,85 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62139CCFA13
-	for <nouveau@archiver.kernel.org>; Mon, 10 Nov 2025 17:05:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84F99CCF9E3
+	for <nouveau@archiver.kernel.org>; Mon, 10 Nov 2025 17:08:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B409310E482;
-	Mon, 10 Nov 2025 17:05:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=mary.zone header.i=@mary.zone header.b="A+Erj3Kl";
-	dkim-atps=neutral
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 508D610EBCD
- for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 14:18:12 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-b4736e043f9so397129266b.0
- for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 07:18:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mary.zone; s=google; t=1761920291; x=1762525091; darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=dpOwsW4OaXt3IO+YhE8vGcbgUYzLvgd4DmQgy491Rb8=;
- b=A+Erj3Kl6+O8Qmf58MKPu+cb5A762bKJoTAeVfIHLTd4AqWJbepdUGpqwM9ic+TJfI
- cWYrXRxyc9IoRkcsN1CmzSapWWeWcUXZ5tp5+CKiJHno9xLehU/DEeRv68dzyAZbgUsI
- uKgMJO1YYEfyFzL/UpOO/UAAUSBiLiuAzW7JgeKwvVA5eiujbwYX3e5MOOcSa3QkTkKL
- 5VV556PtjQ/NV+d+KbloTpdcVvR+S2qfl2n4+55Z6LaD8L3paUteK44DYa0B9NfObePE
- uGz3+4WfJqA4m3BEvnh9rDOSoPKXTmY2bNGPNrLLa6+wJhyhd3pw8LSVVFXBq69OhAao
- PLLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761920291; x=1762525091;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=dpOwsW4OaXt3IO+YhE8vGcbgUYzLvgd4DmQgy491Rb8=;
- b=VN7qmGVlipR3nZLbTf6Fbnu4RXFlugHdEw+TzgL3YMZZPNev6bIWtHWtDVzlkkG6DG
- +vx06xqeJ++/KY1Ry6IjzsIk5+lrkBAD8V393q8s5TmePkg87y6EBvnisjyflxocjz5o
- XPIwVVX59++A8wbv5Krif+1ffhixVKwYI9UVY9uiJZnbmrP0JRNzSUK83t6TrbuPWbuM
- Eu6W26YWcD1owedFUTWb4uEaEmJmI8TFH65UJ5ueTzqfVNVnIMNIx/6AajaIghhh43yj
- rDrQHbVdkftPMqnZbaze2ilxXub6mwWGKufmDyAAGGmR7NG8KGS8hxTePnnlbEDBaili
- 84Rg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW2Fm+ks6nl4M43J0WindorkaAQqW6k483pJUjWAutEjimhpynUmE6ozlNpDEFlKIRfzuuG0TRK@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwuyfuIqyTOIMcMcBZ4e0xlFCFqoKkmxXuFqxsZwDPzT5c8ow6a
- GP0Z+f0VOxjH5gTulH7xuakhmVkz5N8W9w2W6hVkXF5bhe/3hR38VOjKrT/mj3glhEs=
-X-Gm-Gg: ASbGncv0726bGyG7Ho6MYrbdtKIde4nyZJkO+toXlc299Be6mxuNb3m/6LLYP63p/o/
- VQH4zoA5RiinivrPfwmxQYUXgHRwvAqvU8aKC4ungtJ1rKgcWRs39e7eB7ZtJ/cmVSU0j27Q63I
- v6u1cE4UaF7qgchbk5c449K46hBLslCDfk1Dkr8EF9BoqVdKWaESlm17K3xCkBnb/12vmV/EKxm
- iJTF7j7cN0wwxfjAzj/nmsIiW7KeKFtZ4ssB/RFxlLis9R33jSMZyShj5EoP5Jx1HgUX1V4alpt
- SgiyaYeN0DTvhrgkEj/tVShk5gWzdus4EIWUDAwO6X0mowDD2YkM2JHkG9XNaI9cnk5tNP1yfdy
- WEQqSE/yAddHAksaNhjEyAhYwT01V3i7yKdOPSBYlO5rz1vch5zAYTOAvLZHy/BZWNpmMAdvMoI
- 6ogPQm3nnRa/+fbyp0b3P2js506RPJTwFrVJ2nfpqkOfNduSxzg0/v
-X-Google-Smtp-Source: AGHT+IG/on2h4t3AE4tA/aWcwth5JN9h8ZraeYNLOQDKECZbI1ZJ38z/033kuQ3rG2khwd8SssYwHQ==
-X-Received: by 2002:a17:907:1c93:b0:b04:9ad9:5b29 with SMTP id
- a640c23a62f3a-b707082f754mr437109266b.54.1761920290566; 
- Fri, 31 Oct 2025 07:18:10 -0700 (PDT)
-Received: from caroline (2a01cb0405e83a000cb38cfe29807c1e.ipv6.abo.wanadoo.fr.
- [2a01:cb04:5e8:3a00:cb3:8cfe:2980:7c1e])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b70779a92c9sm185644766b.22.2025.10.31.07.18.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 07:18:10 -0700 (PDT)
-Date: Fri, 31 Oct 2025 15:18:08 +0100
-From: Mary Guillemard <mary@mary.zone>
-To: Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- Faith Ekstrand <faith.ekstrand@collabora.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v4 0/5] drm/nouveau: Enable variable page sizes and
- compression
-Message-ID: <aQTFIN1dPHVtL4NR@caroline>
-References: <20251031104924.10631-1-mohamedahmedegypt2001@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A92F10E43E;
+	Mon, 10 Nov 2025 17:08:48 +0000 (UTC)
+X-Greylist: delayed 582 seconds by postgrey-1.36 at gabe;
+ Mon, 10 Nov 2025 17:08:47 UTC
+Received: from relay.hostedemail.com (smtprelay0014.hostedemail.com
+ [216.40.44.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1ECB410E43C;
+ Mon, 10 Nov 2025 17:08:47 +0000 (UTC)
+Received: from omf14.hostedemail.com (a10.router.float.18 [10.200.18.1])
+ by unirelay01.hostedemail.com (Postfix) with ESMTP id 220901DE3A8;
+ Mon, 10 Nov 2025 16:59:02 +0000 (UTC)
+Received: from [HIDDEN] (Authenticated sender: rostedt@goodmis.org) by
+ omf14.hostedemail.com (Postfix) with ESMTPA id 150E433; 
+ Mon, 10 Nov 2025 16:58:56 +0000 (UTC)
+Date: Mon, 10 Nov 2025 11:59:05 -0500
+From: Steven Rostedt <rostedt@goodmis.org>
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: Timur Tabi <ttabi@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
+ "dakr@kernel.org" <dakr@kernel.org>, "lossin@kernel.org"
+ <lossin@kernel.org>, "ojeda@kernel.org" <ojeda@kernel.org>,
+ "boqun.feng@gmail.com" <boqun.feng@gmail.com>, "a.hindborg@kernel.org"
+ <a.hindborg@kernel.org>, "simona@ffwll.ch" <simona@ffwll.ch>,
+ "tmgross@umich.edu" <tmgross@umich.edu>, "alex.gaynor@gmail.com"
+ <alex.gaynor@gmail.com>, "mripard@kernel.org" <mripard@kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>,
+ "gary@garyguo.net" <gary@garyguo.net>, "bjorn3_gh@protonmail.com"
+ <bjorn3_gh@protonmail.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "airlied@gmail.com" <airlied@gmail.com>, "aliceryhl@google.com"
+ <aliceryhl@google.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ "joel@joelfernandes.org" <joel@joelfernandes.org>, Alistair Popple
+ <apopple@nvidia.com>
+Subject: Re: [PATCH v2 08/12] nova-core: sequencer: Add register opcodes
+Message-ID: <20251110115905.68bd2826@gandalf.local.home>
+In-Reply-To: <b07b21e8-5dd4-4d40-bcad-dd8dc4fbaef4@nvidia.com>
+References: <20251102235920.3784592-1-joelagnelf@nvidia.com>
+ <20251102235920.3784592-9-joelagnelf@nvidia.com>
+ <d6c9c7f2-098e-4b55-b754-4287b698fc1c@nvidia.com>
+ <0FF9536C-8740-42C3-8EF1-5C8CD5520E49@nvidia.com>
+ <93c758298250d2be9262256a698c243343b64ebc.camel@nvidia.com>
+ <3c625930-348a-4c96-a63a-6a3e98e59734@nvidia.com>
+ <acc56fbb56c3f40119e5a6abf9f13093d7f4c7e7.camel@nvidia.com>
+ <ac85d8be-3cbd-4a51-a627-3a1a9926d801@nvidia.com>
+ <b07b21e8-5dd4-4d40-bcad-dd8dc4fbaef4@nvidia.com>
+X-Mailer: Claws Mail 3.20.0git84 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251031104924.10631-1-mohamedahmedegypt2001@gmail.com>
-X-Mailman-Approved-At: Mon, 10 Nov 2025 17:05:26 +0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Stat-Signature: bo8n554brdybxe8tzkoe4zkojd6htetn
+X-Rspamd-Server: rspamout01
+X-Rspamd-Queue-Id: 150E433
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Session-ID: U2FsdGVkX1+H1piAeME0Nak4QTI1kjlWaClalfQMSFM=
+X-HE-Tag: 1762793936-15452
+X-HE-Meta: U2FsdGVkX18TeH8c44PwmQl/1Qx235QkyrGTE7kzUCFZNeIues/vHHR9gVsLOKSe70MgRYhlbKVtXukGhUco+yVUjRsy9xPF+C8Y6/xUVN5JPLrB93Fwkk+2uuXkJjtAhswbXwYHgrCXgdQD1BfUR5/5QQyUoDoJHnFAhiQDpwM4PX63cOWwTdQKoO+XwzmFExHfqne3daMVosLc3oQ91W7DlejwGHdcbYTjjLoD/wmQl5oDz8Sq3jfGi7KsTCxslWalMmXuHYU/O0p3AaaTW/IHAEv2no9GbmaY7vN9KIk+Ae3tCkrmiWoPoe1qBt0iabYI3JpUK9WBEmdsWBaqrBOTGQFbwqXz
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,11 +79,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Mon, 10 Nov 2025 10:16:45 -0500
+Joel Fernandes <joelagnelf@nvidia.com> wrote:
 
-Series is working fine on older versions of NVK and with compression
-patches on mesa side (tested on Ada and Ampere):
+> > IMO, the best way to do this is the tracing subsystem. It is the lowest overhead
+> > runtime kernel logging system that I know off, lockless, independent of the
+> > serial console etc, next to no runtime overhead when off, etc.
+> > 
+> > I recommend we use the tracing subsystem for "trace" and even "spam" level
+> > logging levels for Nova. The brave souls can always ask the tracing subsystem to
+> > also spam to kernel logs if they so wish.
+> > 
+> > ++ Tracing Czar Steven Rostedt as well. Steve, Nova is a new modern Nvidia GPU
+> > driver.
 
-Tested-by: Mary Guillemard <mary@mary.zone>
+Not sure if there was a question here, but you can enable tracing via the
+kernel command line and it will record into the ring buffer, and read it
+out via /sys/kernel/tracing/trace. You could also create instances by the
+kernel command line that will place events in different ring buffer
+instances (/sys/kernel/tracing/instances/<instance>/trace). You could even
+filter the events based on the trace event fields, process ID, CPU, etc.
 
-Regards,
-Mary
+There's also a tp_printk kernel command line option that will turn every
+trace event into a printk() statement. You need to be careful of what
+events you enable when doing this, as some events (like locking events) can
+live lock the system if they are piped to printk().
+
+After boot up, you can turn off the tp_printk with:
+
+  echo 0 > /proc/sys/kernel/tracepoint_printk
+
+-- Steve
+
+> > 
+> > I guess we have to decide how to do this - what kind of tracepoints do we need
+> > for Nova. One use case that just came up is RPC message buffer dumps for
+> > debugging communication with the firmware.
