@@ -4,86 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF6F3D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82BB1D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9099210EC26;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A171910EC2A;
 	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nbm57BH/";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="E1uMxzuf";
 	dkim-atps=neutral
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com
- [209.85.214.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 778E710E0F3;
- Sun,  7 Sep 2025 18:15:03 +0000 (UTC)
-Received: by mail-pl1-f177.google.com with SMTP id
- d9443c01a7336-24b157ba91bso8778435ad.3; 
- Sun, 07 Sep 2025 11:15:03 -0700 (PDT)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 420D310E64D
+ for <nouveau@lists.freedesktop.org>; Tue, 11 Nov 2025 20:32:19 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-297cf964774so116735ad.2
+ for <nouveau@lists.freedesktop.org>; Tue, 11 Nov 2025 12:32:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1757268903; x=1757873703; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1762893139; x=1763497939; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=so7tAPulNJoJZMuWiKPDBzUnu5rjpYZ5RN5Pr7FZmqc=;
- b=Nbm57BH/ncVgovAQ8XW8SXr9T3MA+V2JfcQlJQCsnzG/3RyQ/7vS8Lan5HyCY2E4Jq
- OQai6apoHDfhr+S2zbIDJz7inYNaQC6maBlVQzu07O176T3wm+gtfSSvo7PiT8Ckx4pE
- 9FmRcLB7OHzpaqFt0veLxCcQ3J4fy14EKviug+5DEOX4hY2qcT0AMJM/YDvusB63bkxw
- 0CmXY0JKJ1wdUR3z4pxU/UJRI9px8++w1H9gDh0so1XOIwkKWV/sWXmIhE5oo3k4L2xP
- mKVmUdoSlxY92tTyLMJdd3vKSHgP4FMDlUOE7B9fasBJHIRaERPIxOdk4F9KXTYlNo3C
- Q6TQ==
+ bh=K0ITm4kaj7zgUCCm0JCFhPjRTKRmOjBpzfNcGnDqMnE=;
+ b=E1uMxzuf8E8Op2jwqhHkI2GvgCKr3Fa9xsaBYJOCspThGEZGO9ULHu3CZ7F5vFN8I7
+ vmJidW6mf2gtWoWMvKvL7tbelMPDRdfCmkJMpzXa7WxtqpCwLknzqWT/GXL8+IgyWUc3
+ urR8DmYTT91b4lrB/wgGt0uNE+5jvrFH3oCrlECWJX2nklHPVeV+llTazKJWOTqAiB6D
+ vbIL3ETpF0UsFHp7Q18b1O7v49PaQPgejI4GM498KkcPjkAKo+3Mz/Mnsq41V6a6vA92
+ 8AnQJXWDtBLsFe3JFgkNs+FP6zZFf7tPNpsPkvskVGNcjKReRf5Ai0L3RrqiFZy8ha6O
+ dqSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1757268903; x=1757873703;
+ d=1e100.net; s=20230601; t=1762893139; x=1763497939;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=so7tAPulNJoJZMuWiKPDBzUnu5rjpYZ5RN5Pr7FZmqc=;
- b=F8lS6Qg/WWeb0IoGD8WdiSIEX2eyeP5ufWwyxBk4MdrIr9eiP44ASNbK8zkPwXbJ6e
- A56EBpctQg8HH7OmjU3hagBagHpmR+3qZLXrgdLKd3dLqTGJx5vmzlh3WOnPFZrLvDCU
- q3naV4VWXycLKY189dd+pCu1rf6BbcXbq2cKwRUAUHh6kTK7MyoQyXoTMSXIazai2cnc
- EcO3+8UVFD0bt+4PGhZDmSxyMFSIK39nRcONL6NLg/PY1jUrQNEL8Z9VpNyxxDGx0dmx
- DTarbNsC+r0dcvnLE8KmNvVpMUvTIbqXROcSUwhvijuYlcq2Y6PRM8SJgL7Y0ytsVsLr
- zL7A==
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=K0ITm4kaj7zgUCCm0JCFhPjRTKRmOjBpzfNcGnDqMnE=;
+ b=bF0uABPx+zzPG9DimSZN5l/g1Mias9Hff87NC8cTB1RaPJXGI1UCMl156MlQtkz/GR
+ YkyN+GAzyBOwbyOoDQP70bifTO39bC9p1TeUlrdo8t3KGG8N/Esa/xrrotb/v9JjIIBe
+ yOzDX8EPnWl/evS2Jvdwh3nb+UF817eLYq+ax7bwrsOOtlUQmQpqJ9Kgzf602pCMhzDi
+ 2xEZCSOLH9MVx0lqnCNsCfBcMb1MBoHxUba66ojCPzDvip5RQTg/1UJr0zI/qUyxJnfx
+ fNAWTpVJq4tVkXWzcUbPm6/nw11fWJ7RldjLIT5B4apHrdsrUm6vYGBajCT0dmKMy5u5
+ n34w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVn1yNnYFfanO29+9h/fi9qGevYQgSy/ZvryOajQJ1o6XGVL6AQUAbQJ7N0hmorpnPMh4OGwrTL2w==@lists.freedesktop.org,
- AJvYcCWfLXX5EET5R2d6l4izY467lQgYxhFHnoHYiXL23cxvViPbWpENhXpJSva8wnev4NsHzNueF/avnXA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwUUzUQzWOnky7rwYU+YTBTbawRIHX8nGYRj1HsgFD8t0OvMVjz
- 4tPsyBDTv4aZseJcyEAJtsuo9UcyQTmbIJXW6m9krlYrIk+ULsAunvzN77RSemOUSbwdliDTknv
- 9BizQvUoIyeRU2+z+bu0yRosO5nzu1+s=
-X-Gm-Gg: ASbGnctbUdJ6CXQXRJ3gVENYM50CtX41zj2ehWL++DJlexeFku7zT2BO/lfI5k0t3yL
- oItesg+o6q/67nabYZENfPj/9Ku+ROjIV1okzKRk6qpheo2IwAG3gBShgQ0wK42gjLEIjMBQ71E
- 3+DbISr2F4aGyYOKze8frxEYS4HUNSVtnvSvYbh4yoNYJKVTItalv/oLLQeYjqN7iP5v+AujPCG
- bZRlgOCKGw3uxHZkGS/FJjgMXlplATHO3So+nWA6cKj5IgzDpEEqG6YrT3wRL9ziInrCwafYHcG
- Mp07c0ULuQ43ep59g3G0k+727mzdds0z07h7
-X-Google-Smtp-Source: AGHT+IEFi+yiD6pVt8xzykvdhNR8iAoTqSIP3/VvCtQxgaxGbdva/bQu0Po7Zl81J3iNwIzpTh79xZ2zh37yiiaAZ/4=
-X-Received: by 2002:a17:902:f644:b0:24b:1421:bbf8 with SMTP id
- d9443c01a7336-2516697f1d8mr44536825ad.0.1757268902784; Sun, 07 Sep 2025
- 11:15:02 -0700 (PDT)
+ AJvYcCVSrN0Pr/w+Ojr6nKClGhrRMIzJRZ3GOQQM6aWFQaW9UONNCoqej42IuBl8MUFt0qqM2tBROt1T@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxhft3Kc/A73ZYQfOiK3ZSivL+3EV1SRl6BBnmeFwv/qs2e6zXL
+ DOBoBrXUvyCZaQyROQ8i4nS2QcGhFLTiFZSPh+mXG+olPtvXGpzF3JY3TrBVJsPOdP2QDlRVnZL
+ Hx1CtNfRo5s22SawoswAeU0Pxnp+TzJ0=
+X-Gm-Gg: ASbGnctShx8gMcDDA3bQxoQZVo2S7hMCPqUpyTFh6ah4hIqZRfauJgK/ew6PqqwAw6H
+ hnswJGa/QLOeNrCYASEUe0bqLLvYt9ZcWAIz30REPMqbn8KQuw0hBbdV4/x8wnmGTRaHa3Z2DsX
+ ooCqRSXEk6ejEK4uqu0vio4r49GylOwnF5CjAkJckQlaJKRMKcGi3KFrn8y85P3oiCgAg1fdCS7
+ AUDkJzJPODca4tejkahDDOLrKtZp2LNnoEC2mRRp9uBau2znY3Qdu6oV1qVnu3I8B51zqwbvr9J
+ f72CSCth1e4jCTl1HGx2yJtn0+lERKdBcM8PI/pXI6yzs1YK+7rHeOwkVoUQ/RB41czCiRnxOPx
+ rzFMjnj2JQ3FhhQ==
+X-Google-Smtp-Source: AGHT+IHkhivjJqX5b/37P8r79971KGp5/CtKc/qZSlE2EIFXEGP5n3HbQm7JyHmom9185URkqKimQum3m1tK5n6XgK8=
+X-Received: by 2002:a17:902:d2cb:b0:298:f0c:6d36 with SMTP id
+ d9443c01a7336-2984ed87089mr4321895ad.5.1762893138722; Tue, 11 Nov 2025
+ 12:32:18 -0800 (PST)
 MIME-Version: 1.0
-References: <20250903215428.1296517-1-joelagnelf@nvidia.com>
- <20250903215428.1296517-5-joelagnelf@nvidia.com>
-In-Reply-To: <20250903215428.1296517-5-joelagnelf@nvidia.com>
+References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
+ <20251030190613.1224287-2-joelagnelf@nvidia.com>
+ <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
+ <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
+ <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
+ <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
+ <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
+ <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
+ <CAAOQCfSRVqFZAJN_m-kGLe6fnqKYyhLUf_WOKdHHMW-C6NShkA@mail.gmail.com>
+In-Reply-To: <CAAOQCfSRVqFZAJN_m-kGLe6fnqKYyhLUf_WOKdHHMW-C6NShkA@mail.gmail.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 7 Sep 2025 20:14:49 +0200
-X-Gm-Features: AS18NWDG9a3NtPqmPD6xE-rs6EheOTI3-aJP7xdVXVOvHjupVzwUtV7enM1PPPs
-Message-ID: <CANiq72mx7NA1KD5fw98kba+3oENHW44QXVGO1VmvPPUKin2LPg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] rust: Move register and bitstruct macros out of
- Nova
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- dakr@kernel.org, acourbot@nvidia.com, Alistair Popple <apopple@nvidia.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- bjorn3_gh@protonmail.com, 
+Date: Tue, 11 Nov 2025 21:32:05 +0100
+X-Gm-Features: AWmQ_bkuC058fj8a17da0j-IGoO37yszAwGTtwPbytKgwIYY0ZLqmecqu3judng
+Message-ID: <CANiq72nU7LOSEv=RsewAwiEbeO4=pTqg_pm+WJGfum90BC43kQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
+ linked lists
+To: Guillaume Gomez <guillaume1.gomez@gmail.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
@@ -101,34 +112,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Joel,
-
-I didn't check the macros, but a couple nits I noticed in this patch
-in particular given it moved it to `kernel`...
-
-On Wed, Sep 3, 2025 at 11:54=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.c=
-om> wrote:
+On Wed, Nov 5, 2025 at 11:54=E2=80=AFAM Guillaume Gomez
+<guillaume1.gomez@gmail.com> wrote:
 >
-> +//! A library that provides support for defining bit fields in Rust
+> You can add your own tags in the doctests, and with our patch waiting
+> to use the new rustdoc doctests extraction, it should be pretty easy
+> to plug such a feature into it. We can check it together if you want
+> when the patch is merged to see if we already have everything needed
+> or if I need to add more things on rustdoc side.
 
-What about just "Support for defining bit fields in ..." or similar?
+If you mean the `unknown` field (in the JSON) that I mentioned in my
+message, then yeah, I think that is good enough (though we should
+probably still prevent collisions with future `rustdoc` ones).
 
-> +//! structures. Also used from things that need bitfields like register =
-macro.
+If you mean something else that I may be missing, please let me know, of co=
+urse!
 
-The "register macro" part sounds like it should be formatted with
-Markdown plus an intra-doc link.
-
-> -            ::kernel::build_assert!(
-> +            build_assert!(
-
-Is this path unqualified for some reason? Does it mean the user needs
-to have imported the prelude?
-
-> +pub use super::{bitstruct, register};
-
-Please justify in the commit message why we want them in the prelude,
-e.g. are they expected to be common? Does it simplify some code? etc.
+And yeah, we can take a look together (likely after LPC).
 
 Thanks!
 
