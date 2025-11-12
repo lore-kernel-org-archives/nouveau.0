@@ -4,103 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C10F8D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F7B2D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D12E810ECA9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6EA910EC98;
 	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=jannau.net header.i=@jannau.net header.b="SmEphrvg";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="LXW5bzIX";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="i6H/ZNUN";
 	dkim-atps=neutral
-X-Greylist: delayed 573 seconds by postgrey-1.36 at gabe;
- Sat, 06 Dec 2025 13:56:08 UTC
-Received: from fhigh-b3-smtp.messagingengine.com
- (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25F410E2EC;
- Sat,  6 Dec 2025 13:56:08 +0000 (UTC)
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
- by mailfhigh.stl.internal (Postfix) with ESMTP id EC9187A0083;
- Sat,  6 Dec 2025 08:46:34 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-01.internal (MEProxy); Sat, 06 Dec 2025 08:46:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
- :cc:content-type:content-type:date:date:from:from:in-reply-to
- :in-reply-to:message-id:mime-version:references:reply-to:subject
- :subject:to:to; s=fm3; t=1765028794; x=1765115194; bh=4oCR8QuC/k
- bl5GjCWF6w7wf5pC9iRc8I5CDDR7QSefA=; b=SmEphrvgOGCaKt5HCtMUrP00nR
- PaM0g7VDfIDZfmkFFdgi+F0whXrhjpOVqC8LB4mGWjs9/dlZBrPY6ku1Gu25itdV
- fn/VFcp+tlO28xU2PxBg0Fj82KOH4/uCvPNg6Umjt8zqcoP+8MoxEUCkN/ii87U/
- pJJXYcQNUavoscMaP/VeIPMhRj4rdBIFD8xe8NfsP/pBEko51IDBwKHBzZ7abk4m
- /cgyEJW7sOfhh7eXU0953mcBHqs83MZIPPsAylWYNUSFxGF23mcVJ0GII7jBBouh
- gq6H6logf4hlzhv9jQHLBPgxumsOCRjvr62F211rfd6oy8jLOsvdngIxgJeg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
- 1765028794; x=1765115194; bh=4oCR8QuC/kbl5GjCWF6w7wf5pC9iRc8I5CD
- DR7QSefA=; b=LXW5bzIXkF/rzQJYiG9LSqlH3VCzd5+fD7P3P5u8B9+UzfoiO0V
- ZbzvLMGwhqQ715eO06t9AAg4+WlycGyJ5ccFGg4Jt+rYDhJi59chysTNdreEL/oF
- Re7cpTUn0mwjy1+KculXtaUgeMaHh+vbme4tMnjQids458ju7qwfyvLMN+txsXop
- Hf+/+9OCrE87rStDuIlkpa9D8uf2NZM7oKGQU9fQIdBEsM0LanAMgwkXuG2EQcxd
- CvM1eSx3Bq23R0V6OPyXWoWDpwYbr+Yt99v6oJfnmK3TM+efRPprYzFCA06t6etT
- IYHpxWaBr5hpBgDIx86Q1v15t5umLfBP0kw==
-X-ME-Sender: <xms:uTM0afF4PO54fFr2HUg_A_1p8eaCCgTejw9fURjzxyc8quJrz2Mt_g>
- <xme:uTM0aRP45EKLX5RZXtCa0u9FY4y7_I1ppWwAV1W_aHTSzj7Bl2mHWAyn5LejeBhjz
- MSDed4mHO-RQs0SciK2wJQHiQosw0WM7kZgfHB-yOBiyfOuNEUGZVs>
-X-ME-Received: <xmr:uTM0aevCDrYK_0tNOFyPijnoVxwOAN-tO-9OJ_JFOCWXvrdlbKzWXYtxO9vhZr3nD_Gu_KKBopWambbPs-NSdy7l-ryqrsyRb2M>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduuddtlecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
- ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
- hrpeffhffvvefukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpeflrghnnhgvucfi
- rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfdvff
- evleegudejfeefheehkeehleehfefgjefffeetudegtefhuedufeehfeetnecuvehluhhs
- thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
- hnvghtpdhnsggprhgtphhtthhopedvfedpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
- oheplhihuhguvgesrhgvughhrghtrdgtohhmpdhrtghpthhtohepughrihdquggvvhgvlh
- eslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehruhhsthdq
- fhhorhdqlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlh
- hitggvrhihhhhlsehgohhoghhlvgdrtghomhdprhgtphhtthhopegurghnihgvlhdrrghl
- mhgvihgurgestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopegurghkrheskhgvrh
- hnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgv
- rhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprh
- gtphhtthhopehsihhmohhnrgesfhhffihllhdrtghh
-X-ME-Proxy: <xmx:uTM0afLvrk7c6a7QlQHcVA5UKqpWW_xZaHR4frBnfiXekHFAvroK3Q>
- <xmx:uTM0aUfvb1dMAyFXl7D3Wnzap7SkuT1tLVQVK4E9U1pk8mihC1BM4w>
- <xmx:uTM0aaLyQMF4akamENeQQJfWbXYn7RA2lrfC9sJCH0AEXb6HbkE0ZQ>
- <xmx:uTM0aeAauhTn4ZNFc5qJtmAGtB3bqTDl4YhO9fynvYKWqbsdzdd2Qw>
- <xmx:ujM0aRLEcK_kjPJ7ddX1XLpVZ4ViE_nJoeI61bVSZuGnlP425PklA291>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
- 6 Dec 2025 08:46:33 -0500 (EST)
-Date: Sat, 6 Dec 2025 14:46:32 +0100
-From: Janne Grunau <j@jannau.net>
-To: Lyude Paul <lyude@redhat.com>
-Cc: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Alice Ryhl <aliceryhl@google.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Asahi Lina <lina+kernel@asahilina.net>,
- Shankari Anand <shankari.ak0208@gmail.com>,
- "open list:DRM DRIVER FOR NVIDIA GPUS [RUST]" <nouveau@lists.freedesktop.org>
-Subject: Re: [PATCH v6 4/8] rust: gem: Introduce DriverObject::Args
-Message-ID: <20251206134632.GB1097212@robin.jannau.net>
-References: <20251202220924.520644-1-lyude@redhat.com>
- <20251202220924.520644-5-lyude@redhat.com>
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+ [209.85.210.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F066B10E780
+ for <nouveau@lists.freedesktop.org>; Wed, 12 Nov 2025 16:40:33 +0000 (UTC)
+Received: by mail-ot1-f47.google.com with SMTP id
+ 46e09a7af769-7c71c875304so339095a34.1
+ for <nouveau@lists.freedesktop.org>; Wed, 12 Nov 2025 08:40:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1762965633; x=1763570433; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Ka+oo3pgj2JB2kc973RtV4omtwTlaZBtkFnKjkUoQSA=;
+ b=i6H/ZNUNsr20YgUSoyBFNd89HxqvTKPHpXFia+LBufWtqgMrCArTmD7Kzl0krByzBa
+ M79dIsBktFSWff+ymVnz9v0FXwJQ6x3lneGhE6wial709iXFXxsKJCtO9L6b3YqJ6Uss
+ FuptKPb6O6AohElvxTa+CsqDfwMViHHRdi5uoxm9d3YQjP+u0LIJSDCdsyAaHQ3zg/mg
+ +Zc+7Jetpg1I89JhGOFTNPa1WVmyMr0hZ7YuRVveVVRoO17mNPxWZQghWcRZP9tauYKF
+ V1sVPNHrgkyc/1aCrk7XenR+tVP70YvLwM2QxCq5Guc7U3AloLX4/icpe1Z8X51IMwPC
+ b07g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1762965633; x=1763570433;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Ka+oo3pgj2JB2kc973RtV4omtwTlaZBtkFnKjkUoQSA=;
+ b=Mtl38/cYDVzHSvnrSkKC8TNNKaD/pH2qP+kle2QN/enYgZeE6jqr5N5taxvdzGGzb6
+ iaeUWJ0VdcSQWx+064cJ6okbi1fKJXUOuLjHY3WdXbX5+0uJecw0lCcJlfbzWjRc+Z82
+ UOMyNseR3mLSNIuwvzaKKI488AsQ8q8GnQCpSZw5jpzbt6j5KPUs0pVh902B/Z63Gx0k
+ izsUUdQrFuxemYHnEEgCNe6EtDOknFVG3MLYrQ49C1QrjTy0SvjFJWEKrXam6lEhtSXC
+ 6ksG4Z92ecls74JGsrGIaAQbqNpl/+5hja+b9+DrSsj841VsGBZKHA2VTccUF2Q5bkiw
+ JIOQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWHN5qQtSt75CvH2gfGGenOCGhBHYUWNsD4rE+Ulp8S3D5ZuSE4Xx1u/5tERBH2+MVta2ZrNczg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxGIGm8/1sXoztY4vFpaI0b0w0QIAr8ZXM2jD6vxDgNJo0tYHyV
+ nFYMFG2VNa3KGgo7U/PHPM4U4bhoRGpIJhZxae2sY7Z6S6A8ckLC9g/srC2duskn/b7qWHjJoY5
+ 1bxhQaV7pcgmmU/mnPPB3eJgb2Oxrejo=
+X-Gm-Gg: ASbGnctP0JJefZmus7h6kXn2zfvIn0p16ogXPdp9OZF5ZLwv4yD14Y9RbGL8oPJgj4t
+ mEYfdAKpqYbQJy7v8Qxh4CM8fZkn2kvcBg9p0Q9CHolrrm9NUC4zf8pjS0o0ywxDUdKrCovL6bE
+ t+fgcUNR5Z2Yw+ZMls84F/eEFJ+7XjHPvgeJepRGUn8mX9GgQDrWYeWC3TnalKh7FjxDtCRM9n2
+ XWGkYbhKE8pwA11M9hr8ToOCrZZtxDj5IKG3WlfhdcOABrOF9zvFzWFxA==
+X-Google-Smtp-Source: AGHT+IGK44z86BN2OSnOpdaIYixeb9Hn2wTFfWJTLtnMDWPUJTmZR96qPQq4/NfFd6A9d51DPL2ZhfKVYst5wfWiYj8=
+X-Received: by 2002:a05:6808:1b0c:b0:43f:63cc:aed9 with SMTP id
+ 5614622812f47-450745ae5cbmr1472885b6e.31.1762965632892; Wed, 12 Nov 2025
+ 08:40:32 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20251202220924.520644-5-lyude@redhat.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
+ <20251030190613.1224287-2-joelagnelf@nvidia.com>
+ <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
+ <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
+ <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
+ <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
+ <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
+ <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
+ <CAAOQCfSRVqFZAJN_m-kGLe6fnqKYyhLUf_WOKdHHMW-C6NShkA@mail.gmail.com>
+ <CANiq72nU7LOSEv=RsewAwiEbeO4=pTqg_pm+WJGfum90BC43kQ@mail.gmail.com>
+In-Reply-To: <CANiq72nU7LOSEv=RsewAwiEbeO4=pTqg_pm+WJGfum90BC43kQ@mail.gmail.com>
+From: Guillaume Gomez <guillaume1.gomez@gmail.com>
+Date: Wed, 12 Nov 2025 17:40:21 +0100
+X-Gm-Features: AWmQ_bkPOh4vHeoQWSet6WU-HZHFI2Z23pN6yKqCCaQUHSdDpwmkPCSibrem5WM
+Message-ID: <CAAOQCfSu3Ej3K63iRcsBJLS0rEVBqjLqN0mE5VSGHyX7bVmU-A@mail.gmail.com>
+Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
+ linked lists
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Cc: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, 
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, dakr@kernel.org, 
+ David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
+ Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, 
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ nouveau@lists.freedesktop.org, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,109 +111,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Dec 02, 2025 at 05:03:30PM -0500, Lyude Paul wrote:
-> This is an associated type that may be used in order to specify a data-type
-> to pass to gem objects when construction them, allowing for drivers to more
-> easily initialize their private-data for gem objects.
-> 
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> 
-> ---
-> V3:
-> * s/BaseDriverObject/DriverObject/
-> V4:
-> * Fix leftover reference to BaseObjectDriver in rustdoc for
->   DriverObject::Args
-> V6:
-> * Fix build errors in Tyr
-> 
->  drivers/gpu/drm/nova/gem.rs |  5 +++--
->  drivers/gpu/drm/tyr/gem.rs  |  3 ++-
->  rust/kernel/drm/gem/mod.rs  | 13 ++++++++++---
->  3 files changed, 15 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
-> index 2760ba4f3450b..173077eeb2def 100644
-> --- a/drivers/gpu/drm/nova/gem.rs
-> +++ b/drivers/gpu/drm/nova/gem.rs
-> @@ -18,8 +18,9 @@ pub(crate) struct NovaObject {}
->  
->  impl gem::DriverObject for NovaObject {
->      type Driver = NovaDriver;
-> +    type Args = ();
->  
-> -    fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
-> +    fn new(_dev: &NovaDevice, _size: usize, _args: Self::Args) -> impl PinInit<Self, Error> {
->          try_pin_init!(NovaObject {})
->      }
->  }
-> @@ -33,7 +34,7 @@ pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self
->              return Err(EINVAL);
->          }
->  
-> -        gem::Object::new(dev, aligned_size)
-> +        gem::Object::new(dev, aligned_size, ())
->      }
->  
->      /// Look up a GEM object handle for a `File` and return an `ObjectRef` for it.
-> diff --git a/drivers/gpu/drm/tyr/gem.rs b/drivers/gpu/drm/tyr/gem.rs
-> index 1273bf89dbd5d..bb5e7871efa94 100644
-> --- a/drivers/gpu/drm/tyr/gem.rs
-> +++ b/drivers/gpu/drm/tyr/gem.rs
-> @@ -11,8 +11,9 @@ pub(crate) struct TyrObject {}
->  
->  impl gem::DriverObject for TyrObject {
->      type Driver = TyrDriver;
-> +    type Args = ();
->  
-> -    fn new(_dev: &TyrDevice, _size: usize) -> impl PinInit<Self, Error> {
-> +    fn new(_dev: &TyrDevice, _size: usize, _args: ()) -> impl PinInit<Self, Error> {
+Yeah that's what I meant. Ping me whenever you want to talk about it.
 
-nit: should the type for _args be Self::Args for consistency?
-
->          try_pin_init!(TyrObject {})
->      }
->  }
-> diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
-> index ec3c1b1775196..4bcaee2d4b308 100644
-> --- a/rust/kernel/drm/gem/mod.rs
-> +++ b/rust/kernel/drm/gem/mod.rs
-> @@ -64,8 +64,15 @@ pub trait DriverObject: Sync + Send + Sized {
->      /// Parent `Driver` for this object.
->      type Driver: drm::Driver;
->  
-> +    /// The data type to use for passing arguments to [`DriverObject::new`].
-> +    type Args;
-> +
->      /// Create a new driver data object for a GEM object of a given size.
-> -    fn new(dev: &drm::Device<Self::Driver>, size: usize) -> impl PinInit<Self, Error>;
-> +    fn new(
-> +        dev: &drm::Device<Self::Driver>,
-> +        size: usize,
-> +        args: Self::Args,
-> +    ) -> impl PinInit<Self, Error>;
->  
->      /// Open a new handle to an existing object, associated with a File.
->      fn open(_obj: &<Self::Driver as drm::Driver>::Object, _file: &DriverFile<Self>) -> Result {
-> @@ -244,11 +251,11 @@ impl<T: DriverObject> Object<T> {
->      };
->  
->      /// Create a new GEM object.
-> -    pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
-> +    pub fn new(dev: &drm::Device<T::Driver>, size: usize, args: T::Args) -> Result<ARef<Self>> {
->          let obj: Pin<KBox<Self>> = KBox::pin_init(
->              try_pin_init!(Self {
->                  obj: Opaque::new(bindings::drm_gem_object::default()),
-> -                data <- T::new(dev, size),
-> +                data <- T::new(dev, size, args),
->              }),
->              GFP_KERNEL,
->          )?;
-> -- 
-> 2.52.0
-
-Reviewed-by: Janne Grunau <j@jananu.net>
-
-Janne
+Le mar. 11 nov. 2025 =C3=A0 21:32, Miguel Ojeda
+<miguel.ojeda.sandonis@gmail.com> a =C3=A9crit :
+>
+> On Wed, Nov 5, 2025 at 11:54=E2=80=AFAM Guillaume Gomez
+> <guillaume1.gomez@gmail.com> wrote:
+> >
+> > You can add your own tags in the doctests, and with our patch waiting
+> > to use the new rustdoc doctests extraction, it should be pretty easy
+> > to plug such a feature into it. We can check it together if you want
+> > when the patch is merged to see if we already have everything needed
+> > or if I need to add more things on rustdoc side.
+>
+> If you mean the `unknown` field (in the JSON) that I mentioned in my
+> message, then yeah, I think that is good enough (though we should
+> probably still prevent collisions with future `rustdoc` ones).
+>
+> If you mean something else that I may be missing, please let me know, of =
+course!
+>
+> And yeah, we can take a look together (likely after LPC).
+>
+> Thanks!
+>
+> Cheers,
+> Miguel
