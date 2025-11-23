@@ -4,86 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF831D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8868D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7C5B10ECA6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D37A210ECAC;
 	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=quicinc.com header.i=@quicinc.com header.b="lkgdqFSI";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Md7aJjHR";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C142E10E367
- for <nouveau@lists.freedesktop.org>; Thu, 16 May 2024 00:07:07 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 44FJb9RH009174;
- Thu, 16 May 2024 00:06:46 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
- from:date:subject:mime-version:content-type
- :content-transfer-encoding:message-id:to:cc; s=qcppdkim1; bh=Nem
- 0lDg0yoRbX3iL7WUUigqbThC1zz4wHtmz2wjwpLc=; b=lkgdqFSI+04u1sEPyZl
- MjyGM55XKBGe76XKCc0DLmAQ0vF9JdwaNX0EQsf0bIr695odmhPqn8cbe2eki9FD
- xEXJAvVgi/s6MrEwM+gnud4+MZRg5SCJe/5k3kwvmwiv97D8gH5/o7Pdoz0u/+Qn
- ZdtvBe/YHKOVci/QO/c81CjHV4d23epWIHQYHQ2ZdtF+Cn7KhWS/kaAqa6/mfhgR
- BSpo2vdCwVD9oJ24ckAKh8U7GzEH8rOQoSAhevGHBCXA+IODNwdoNy3CtbW9RCG1
- iTRY93DYXvcTEATKRWOYsMQznd88L7HB14XXdNlnA0xlv6qvw5VBt1fK1O5+nWGF
- NWA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com
- [129.46.96.20])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3y3x51naq8-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 16 May 2024 00:06:46 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com
- [10.47.209.196])
- by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 44G06jeu003511
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Thu, 16 May 2024 00:06:45 GMT
-Received: from [169.254.0.1] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 May
- 2024 17:06:45 -0700
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Date: Wed, 15 May 2024 17:06:39 -0700
-Subject: [PATCH] x86/mm: add testmmiotrace MODULE_DESCRIPTION()
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
+ [209.85.214.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71DFA10E126
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:06 +0000 (UTC)
+Received: by mail-pl1-f175.google.com with SMTP id
+ d9443c01a7336-297e264528aso37046435ad.2
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763890026; x=1764494826; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SxofK3PIJmJGptGWmPl6GxImW1KehJK8Ra0bi1cA/KY=;
+ b=Md7aJjHRSntyC/Aeih3tkhnJvOH2CyI2ZiTLJP4BPZDIl+XWb1HzKGUSIK1mQIqciO
+ JZwdw9nTFDBo6hvU4oadQFecECYobI5bx28vpPTdzNq0fI/KX+tSy+/S1Uv/oSAhcyjK
+ /irYQgITECxlgWtp30zHFUMYSR1SWQ9KBQYV9LXLrHp39CXuNdMYr9SGIUlsi5YIvQr8
+ 5i8ekom5/93YCAK74wmsgBiFnWshTtXYV86x7N2mk9bVDvkvQv/WlInn1yI/iNz5n2qj
+ qbfgtqzpVuFfEJuAbDee1uNU2CMA91bRjufJdWLSqGYGH93bH7VRWvQo/C2rx7XQgnIW
+ /ONw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763890026; x=1764494826;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=SxofK3PIJmJGptGWmPl6GxImW1KehJK8Ra0bi1cA/KY=;
+ b=mdYTrfohD78nlh0pdB+9c3BjGuZqLwQxW4Tl9rBhK1Ln7yoCyb1bbME0qF0y376Ul6
+ XUhsDkUJ73xNgcNQeIUev9TzlaN50cUAuSYpcmLkxTnFtPjXxIyOkd/3618FWHqJLmEw
+ zgpaZrwZUerzSY6+c7WUyJvda4rZZk5UurKEQeJ5Ca2oWFaTE+FXHLz/DsP9F+V9FnI7
+ 0t1z8lv0Lrdioo34KuwzbpfY4vU+KD78mcpRoAZd9Mh2+wCS4Nj2APHf4FA/KdwIQejO
+ 8aaOGB4rOBnUOsggKA5zrjZqMRlEEMPwZsR1rSc36xKulU6WIttUyVjRRoKoyVtVa/Pp
+ LT6Q==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZScIHsuAF01w9JFQzQjkD5V7TtiOknVm4ooIo06YQzbkz6OzB8rFDwrpzcVkW3o/mZgpECQog@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywk8sidNbkbYHAhq9JnRGr54Rs5wjZZJslQ2WT1wFPwXVGmfvfz
+ Ed88+iyZYqJuNvpLLI70D9JVT1XMD4a09haipmoibaZS2hbWMIocoWkg
+X-Gm-Gg: ASbGnct5J1bgX6JgXtoYEWbVyCYUh/c8soav1pXswFiiXIzz03YPcouisX9C1wFsnbx
+ 4fkNYzB72INBvMHk2S0adi40AbdfwtaKnX4mC+pnclHn31mRowsEvk9BASMDWgIUhRvy0AuIxx+
+ LPOaegZ0BLZHlVpQK5a0dvMJVXWeZBmAOXw1oX5gPsUE2x68CJm288toGDf+2zYguV0K2Jkp3dQ
+ gllzGO+H45l/a8KFBwTdXgzunH7B2GT/VAxWjRIc4RKV71c5FZruagiGvtOtqBWR2TnG1okO7D7
+ XHzkEuPikrBn9OQW7P5eJPry7EuGhVn+zPCJAKHa8zHacA8H7CABWNq0S4gDI0injpGCI/fmuq1
+ uqoeLs3UJ2eKWaugNdgOeGwHMrKcdqIOUhMEPbIwsGiRmlT5Se2+6mTJjn4f9VIxP7QlElHsR8/
+ TwuZ7iWf5vufFpCS4zm84CFkSBxQ==
+X-Google-Smtp-Source: AGHT+IH1U8t8hCw2WDyvXF/0DPfy18rrujnj6Em/QND/b9i4osv8+SLy39cyAfSRsaedSvrbycJTtA==
+X-Received: by 2002:a17:903:290:b0:297:c048:fb60 with SMTP id
+ d9443c01a7336-29b6bedf343mr95210775ad.25.1763890025910; 
+ Sun, 23 Nov 2025 01:27:05 -0800 (PST)
+Received: from shankari-IdeaPad.. ([103.24.60.188])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.26.54
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 23 Nov 2025 01:27:05 -0800 (PST)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Igor Korotin <igor.korotin.linux@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH 07/10] rust: kernel: Update ARef imports to use sync::aref
+Date: Sun, 23 Nov 2025 14:54:35 +0530
+Message-Id: <20251123092438.182251-8-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240515-testmmiotrace-md-v1-1-10919a8b2842@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAA5ORWYC/x3MwQqDMAyA4VeRnBdoZe1grzJ2iDWbgbWOpA5Bf
- Hfrjt/h/zcwVmGDe7eB8k9M5tLgLx2kicqbUcZm6F1/dcEHrGw1Z5mrUmLMI6bogksxUvA3aNl
- X+SXrf/l4Ng9kjINSSdM5+khZVsxklRX2/QCl+/kJgQAAAA==
-To: Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu
- <mhiramat@kernel.org>, Karol Herbst <karolherbst@gmail.com>, Pekka Paalanen
- <ppaalanen@gmail.com>, Dave Hansen <dave.hansen@linux.intel.com>, "Andy
- Lutomirski" <luto@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- "Thomas Gleixner" <tglx@linutronix.de>,
- Ingo Molnar <mingo@redhat.com>, "Borislav Petkov" <bp@alien8.de>,
- <x86@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue
- <alexandre.torgue@foss.st.com>
-CC: <linux-kernel@vger.kernel.org>, <nouveau@lists.freedesktop.org>,
- <linux-stm32@st-md-mailman.stormreply.com>,
- <linux-arm-kernel@lists.infradead.org>, Jeff Johnson
- <quic_jjohnson@quicinc.com>
-X-Mailer: b4 0.13.0
-X-Originating-IP: [10.49.16.6]
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800
- signatures=585085
-X-Proofpoint-GUID: LNrfZ_9cuNvpXh4UHDKCwsRLpWST2gcL
-X-Proofpoint-ORIG-GUID: LNrfZ_9cuNvpXh4UHDKCwsRLpWST2gcL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.650,FMLib:17.11.176.26
- definitions=2024-05-15_14,2024-05-15_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501
- suspectscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 phishscore=0
- mlxscore=0 impostorscore=0 adultscore=0 clxscore=1011 mlxlogscore=886
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2405010000 definitions=main-2405150171
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,26 +113,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix the following 'make W=1' warning:
+Update call sites in `scatterlist.rs` to import `ARef`
+from `sync::aref` instead of `types`.
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in arch/x86/mm/testmmiotrace.o
+This aligns with the ongoing effort to move `ARef` and
+`AlwaysRefCounted` to sync.
 
-Signed-off-by: Jeff Johnson <quic_jjohnson@quicinc.com>
+Suggested-by: Benno Lossin <lossin@kernel.org>
+Link: https://github.com/Rust-for-Linux/linux/issues/1173
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
 ---
- arch/x86/mm/testmmiotrace.c | 1 +
- 1 file changed, 1 insertion(+)
+ rust/kernel/scatterlist.rs | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/arch/x86/mm/testmmiotrace.c b/arch/x86/mm/testmmiotrace.c
-index bda73cb7a044..ae295659ca14 100644
---- a/arch/x86/mm/testmmiotrace.c
-+++ b/arch/x86/mm/testmmiotrace.c
-@@ -144,3 +144,4 @@ static void __exit cleanup(void)
- module_init(init);
- module_exit(cleanup);
- MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Test module for mmiotrace");
-
----
-base-commit: 8c06da67d0bd3139a97f301b4aa9c482b9d4f29e
-change-id: 20240515-testmmiotrace-md-c6050c66a517
+diff --git a/rust/kernel/scatterlist.rs b/rust/kernel/scatterlist.rs
+index 196fdb9a75e7..b83c468b5c63 100644
+--- a/rust/kernel/scatterlist.rs
++++ b/rust/kernel/scatterlist.rs
+@@ -38,7 +38,8 @@
+     io::ResourceSize,
+     page,
+     prelude::*,
+-    types::{ARef, Opaque},
++    sync::aref::ARef,
++    types::Opaque,
+ };
+ use core::{ops::Deref, ptr::NonNull};
+ 
+-- 
+2.34.1
 
