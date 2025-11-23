@@ -4,87 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 339A0D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CD99D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63A7D10ECBF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 708B410ECC2;
 	Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="AyU4lpCm";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/bYqC/V";
 	dkim-atps=neutral
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
- [209.85.215.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD5DD10E52A
- for <nouveau@lists.freedesktop.org>; Mon, 20 Oct 2025 21:34:07 +0000 (UTC)
-Received: by mail-pg1-f173.google.com with SMTP id
- 41be03b00d2f7-b62e55af64aso154699a12.1
- for <nouveau@lists.freedesktop.org>; Mon, 20 Oct 2025 14:34:07 -0700 (PDT)
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65B9710E126
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:20 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-2953e415b27so41070955ad.2
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1760996047; x=1761600847; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1763890040; x=1764494840; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=TIA8kHBtPk6GgWmqAWWXnwTpPlJ3gJjCHeq/XdJy1Q8=;
- b=AyU4lpCmGrxKOD3IbKwZB+A2cHtg46X9gvFDDUAQeXS/UoO17xmNqzof2Tdr6hmDNe
- uO9AIDmDv4551YT4jZblphVkn4tNahlV85El7cI+7NB1u0oFJAdbwI3mIZNxB3/QJiEu
- ydsbYQRZNGOaMk/nna41tdeZ1OKWTU5M+XixQW7ty4xfQuLBHkrclWeHBKyhWa2Rs5R3
- 3Pt1DPJ52lqZf0U3Vmxk+xpu2NiNm7lI6eg/4JbuLEJt0DbZyUr97vxMvnlmZs2jQXO7
- 6ASqvDEfOAoFbHeeZWsOsRYM3QGj8GFucSZKPSvo9dEaoSOv6oWVKnAaF/VsqN5oYEfS
- E8qg==
+ bh=cuE/I+mSjy5RFqX89Pi5DjFF+u40p6VYH+8i+leWPLg=;
+ b=R/bYqC/VuMHFKRnaEf2MrgxBblNMvC99q6gv9wQyH5BcTx3S0dMKP10IegXug8KXF8
+ 7rqxxXlUTK2MEVuu3SJyrsIx39K6FbCA20N+U5E5exklZZ+AmMYGcmQ1Z4KdqQw2Q6Fk
+ JzWYO2n3NXmVGMM97N0j5RQZErKF5xMguUJdgZ3MFe5tvaaK/MZC7uACOLeiLHVJpC9l
+ njdu21k5siC/vvLR6Vl4/pTQB0KKhxGfV+zUeR1ir83WSyfokmNF12ni9mv7ONg5qwxx
+ iQeO1WI0jp2GB9vqf57IQSs87Ou3gTesuAJhi9qr5bJ16/VJgtKRFUlzp+1sg2NJmKMC
+ lAQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1760996047; x=1761600847;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=TIA8kHBtPk6GgWmqAWWXnwTpPlJ3gJjCHeq/XdJy1Q8=;
- b=v62pTihBSG6f/tu1N9brk6sW1lK/qRgTQ1mOau7RZIirVRy6ANj5xYPZdOJ4FDPTUG
- Bi4CpirIWDKkSALv/ZMTWd3btJd6+MZzWEwRJbRCTv85lzrAd6Kti1j5d1uYMKxU6eBL
- dEaArYleB7yJjYMypfgsN3Q/manGePiA4oEsnUI/PJBTJ4MrSivE5/stKEuHlc1qwCW7
- jr48/iZGel0zTI5ljkjDrc2LziSVEb5eO9Tt+g5J6t6TKizHeczJaD7hWec2+vBUF1Lh
- Vk32cN9DxtvEoMFT2JKZvcthY5ihAd5iAPs13f1mtnTjON1EqGSPGQ4V/vyHyEknRNJW
- uPSg==
+ d=1e100.net; s=20230601; t=1763890040; x=1764494840;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=cuE/I+mSjy5RFqX89Pi5DjFF+u40p6VYH+8i+leWPLg=;
+ b=tvNkD54gtwKm2OpHze6fKZuNkksRVb28qRu4lzTHd/rcd+VJzY4nx3BO9+NItPiwla
+ e8EcHZdtYYu5ExhHkSYMQnpUeaVLtZuDlJGINBG42308M7b1Ak3PdG0lXbL30U1QK8Ah
+ EDW0htJ8qy5fK7fEYQBrc8WPgJx6V8hJy7HgdAC9UMImYYYz+jsCTcC0Sv3JAn5q48+6
+ spE0kp10fGb8UscsyLmnZlr+uVUlLU/ITbv4o8kSdFa20AQyu5/NyuqiuPXmZGFltSul
+ ca75yHjzV1HDARZFpOjgGTmPu8y9lMKVJVNMhtlFCy5v1i3FlhzLraxVdb+mtu/FzsMn
+ O0tA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWROOiWbfTU96B+pcXwOs9mAeaWTDKs+OUMkevPU2jI3gYClRXIBBVBGNVEVbMH+cPMisMdjQSz@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxtBhdLwJgabVd6oW3lYAMSIyouFceOmWtsr4Zpit3pP3aizFg+
- KahuOTO8WVd/S82k6pX0pJ5lxPVf9QccGzzIIOEekuJUu85ud2lLgL38yXNar3a0euRV5J1gb+g
- gSHTtYTcYvvqpmIfb/jfkYF9v4ve6QN4=
-X-Gm-Gg: ASbGnct+zzIwUaKVVO0r+zQZZIxjFpI+Tg8Ez+MiQmM1z8TPmFdsJStJsa+mp9uYktg
- AtXrD62MsgIopedoeGCJIf7fvhgOunziUAGdCwpUMHooG4Gvfx0c4EW4N+RL/MTLumZqSTM4A9d
- eXsSacpTdhoymHoUHNuzbCygNN+Lp8gGmDcHxiDah+4veYHMtixjMxUb5h33PUV0KkntUkkHgD4
- 8d+cVzjHvGwo/m6FsFgwnsmhqsdwDzrM7P66e9vEk1lpaLxqq7XdgeaD3ZLwliiOUtqmQFzsMuC
- ZCJd+Zxh5sZmcm3zW9WQtdwHYWS+XnlEJ3ufpgJ4LKP7g6V8CWoUGx4UHyc+AGsTp4/X9b4Bke5
- Sz1ymEXrlkHTfRg==
-X-Google-Smtp-Source: AGHT+IENeHKMjyzGTYHHZV28uVbTm7W0v2W0HGYIwZ1YpX54wVhZRXd1wDtmMhBidXjOzxTnYzIEdPK9TNFHSokqIok=
-X-Received: by 2002:a17:903:94e:b0:26a:3c75:5241 with SMTP id
- d9443c01a7336-292d3fcce91mr5493965ad.9.1760996047308; Mon, 20 Oct 2025
- 14:34:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <20251020185539.49986-1-joelagnelf@nvidia.com>
- <20251020185539.49986-2-joelagnelf@nvidia.com>
-In-Reply-To: <20251020185539.49986-2-joelagnelf@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 20 Oct 2025 23:33:54 +0200
-X-Gm-Features: AS18NWAADgBeA1nYLOcKyihsh6E3dmd5BWRM3ztrLw4uDz1-mBK39vAmoeM9Wwg
-Message-ID: <CANiq72nGPeLvrjQB-62Ht8TR7oWPgF9HFO=yPX7TT3faqxnNFg@mail.gmail.com>
-Subject: Re: [PATCH 1/7] docs: rust: Fix a few grammatical errors
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, acourbot@nvidia.com, 
- Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ AJvYcCXY03c1R1aFdRH9dkDjS1xWLNM6X0Yk2AO2t9cBWa0VW82O3mau0FGrfvM6bukSVRKrLs3MSfwf@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzC0EWBwUEH96aHiWdDAseSqozJpAgXZW46HX/7pfE+/c6paeVr
+ w2lWnbRQrY/KYUxDxv6OQvjWE31XHBV3iZMSAW5XIuTjS4e1iOU/gfEZ
+X-Gm-Gg: ASbGncs7ffJdn2OaJ3qsR7iKOrPQDu07MLxKAV+/W2UWucPY/nicRQLLealWXxp9eyt
+ NXHBQFJHx2uKUXpMSooSkK6kO5ms2IO0rBsT2AZTvRKbsYM3aOJ+JufRI5IHk2DfMZYHVQbdQYM
+ ONWa8RrLXTcZdw6hPHQIOC1QNmGzsLVg/h8gEmLJxlYvIDE86QX1ERlgLyVsY+nqYrdgzBCo9gS
+ Dlzsrssy3rF16yZwz6qvQCqReR4K1+t6JTyDSl5+W1bOdZ8Afak3BjsMuDGSwa5s4vAf2+g2n5f
+ gdupOiMO4c1c/gxR2cjH6blMGnHc+nMtpkDGYlwhY0pjYuPIXtzrOCvQIFdUZq3WMeHIA6Tetk+
+ E2zabJxqcl2GoPGz/HtKDID0udMf63F6Z+vgIv8UUvf+Rg+hm3z758Yx2PaKtxOwO1h/UpLGpbs
+ r7LamLShq5B0rOWae5jmaGi/jo6A==
+X-Google-Smtp-Source: AGHT+IFMN2aUokRTTtS+sIFfNu4kcDd93MwuGAJrh+xf6L/Jjr+U1cR7WS31QoNboosVEzIBjpWEvQ==
+X-Received: by 2002:a17:903:2c06:b0:297:fc22:3a9f with SMTP id
+ d9443c01a7336-29b6bf19f1dmr93932225ad.38.1763890039910; 
+ Sun, 23 Nov 2025 01:27:19 -0800 (PST)
+Received: from shankari-IdeaPad.. ([103.24.60.188])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.27.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 23 Nov 2025 01:27:19 -0800 (PST)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, John Hubbard <jhubbard@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, 
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Igor Korotin <igor.korotin.linux@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH 08/10] rust: kernel: Update AlwaysRefCounted imports to use
+ sync::aref
+Date: Sun, 23 Nov 2025 14:54:36 +0530
+Message-Id: <20251123092438.182251-9-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,17 +114,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Mon, Oct 20, 2025 at 8:55=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.c=
-om> wrote:
->
-> Fix two grammatical errors in the Rust coding guidelines document.
->
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+Update call sites in `usb.rs` to import `AlwaysRefCounted`
+from `sync::aref` instead of `types`.
 
-In general, please submit independent patches like this one
-independently, e.g. this should go through the Rust tree.
+This aligns with the ongoing effort to move `ARef` and
+`AlwaysRefCounted` to sync.
 
-Thanks!
+Suggested-by: Benno Lossin <lossin@kernel.org>
+Link: https://github.com/Rust-for-Linux/linux/issues/1173
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+---
+ rust/kernel/usb.rs | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Cheers,
-Miguel
+diff --git a/rust/kernel/usb.rs b/rust/kernel/usb.rs
+index d10b65e9fb6a..79ff2f881572 100644
+--- a/rust/kernel/usb.rs
++++ b/rust/kernel/usb.rs
+@@ -12,7 +12,8 @@
+     error::{from_result, to_result, Result},
+     prelude::*,
+     str::CStr,
+-    types::{AlwaysRefCounted, Opaque},
++    sync::aref::AlwaysRefCounted,
++    types::Opaque,
+     ThisModule,
+ };
+ use core::{
+-- 
+2.34.1
+
