@@ -4,85 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AE02D5B15C
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 652A5D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD12410EC20;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B69AA10EC24;
 	Sat, 13 Dec 2025 12:42:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=suse.com header.i=@suse.com header.b="aLG738LN";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WLP7vvLu";
 	dkim-atps=neutral
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FC7F10EAF4
- for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 10:20:29 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-429be5d31c9so543597f8f.1
- for <nouveau@lists.freedesktop.org>; Fri, 31 Oct 2025 03:20:29 -0700 (PDT)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 332FE10E126
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:26:02 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-29586626fbeso41368095ad.0
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:26:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1761906028; x=1762510828; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=K3B/i06NPGDlGfPSmm0JeDJD/jaUMsY04sT9K+okWQQ=;
- b=aLG738LNBOEb14M4qfpL1t7uWL8k3GMrIVFjsVyNNxIHgoFQcw4J/fUK7r8xxojK/C
- fP2eE0FND9mXjxEh6e1gNskBVbOGeveOdUwoqokZvHq0uqwbIEaFjTjNwAB2LHzEUh9P
- 4j8BsAt9ycBgq0ALUduseiFh1LPI34pJXJAXRibqjdgy01yOqi8Y4a2p6lvxdu4MC9L/
- ILXlEif6b9JLcF07mmIQsnC64s4vN4youHza2iRXcPqQ3kxuQLb1jbhXipa7enC51ina
- XIRs/ukWdmKHe1IV4+SMqYE+5Dz7o3+Tc4T8RLD9hWufVzbysMUWL9bhB4jQyOsfYhH9
- cF1A==
+ d=gmail.com; s=20230601; t=1763889961; x=1764494761; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=dTc0MgLeOubcwcfQp1wa7TpaWq1ZdIbTR1ydG9HUjeU=;
+ b=WLP7vvLuiGGRRTkRH1ICmYOl8SXbEkRWQlieb4uQNnJwz9ZKUUhfMqXFSGf320D6SO
+ DWvERj+aLnIenB8ydxgfGdx0iSklthhgHM+cDA1mv8vO68jpkGZdwGap3LOXPnV2pYVK
+ 5MgaNx9jXYEdNgXNbWP4liNHd+duzCkGYXvcNVI6mHKwxn/eSRq7GSd9dJjYaL+9+4p9
+ v0wx37aGoyastiXMKEFbcliyWH2FCzVwG+fg3CrlHRuYXMFQFKvofYWgSBCj2c1y2AOv
+ w9ZICuXM5Kk5ohUQNoWTQMNBnxGs+qG8ARNxfV0OcGocLj1ej4OsUUy0LL3NSm4M234O
+ nCpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761906028; x=1762510828;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=K3B/i06NPGDlGfPSmm0JeDJD/jaUMsY04sT9K+okWQQ=;
- b=vC9kTZaWnV7uef1HOUuS537wAUY1AKhgJQWkqzQk8iPAF7Vd2n+yfYuW3H00TnRYcY
- MaCPxO1/JgHk+VxyDJredhpwacMdJGdKyibBWx6js1Ret4OAcjcBuhXEdVeCviZxqnqe
- ClxFKaKO1Iy6HHTGLdBX8AYK7j6g++rLM4C4wwfTukSVynTKtdiOfzc3eWXDEmqqmNns
- jPph5akDKehWv6K7c7Uv0N8vqXUsWx9dm5j1kMhHArLOuQt0PqMSejJA9yWkBokKx4Iq
- o3L0nffFHNaknrluQxE5p9+FNtvJxWfIovFNhKf2R/82S9hW96Ogmjsq0kHYIP+LwKTO
- AP/g==
+ d=1e100.net; s=20230601; t=1763889961; x=1764494761;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=dTc0MgLeOubcwcfQp1wa7TpaWq1ZdIbTR1ydG9HUjeU=;
+ b=eVA6tNghCjcFXZZCWrlkQML7cUGuG9ZJoRothuZakMZdUnOBc3jidUWmGTrxO6RGUv
+ Qa3gcixRqerJ/ms3BbvEXu+SSbjQleMQ/fwf/UyNl43Wj3tEhzmWCZ1fxrQmtuenlybo
+ mv2QT1SllKbAD8e93raokL2jAMig3A/TFAOUD+jMqwjJrbrsUZh2EnmMJqA2YBZqJ9ph
+ w4UjHI4i43NbQ8cbadtuD4SF+nKhtsGotpHyWXHPyYDK6qBEzI6Zv2wb9Sdrxg0RjsF1
+ QTfa2BsDE58nThbpwS+iB864siGdaibCEP6wucZby24FztPU79PwWcOWnIYL74Fmp1cq
+ L1EQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV8otv8x9mT/bq4wp/4bIFOvp+/+2VcxO3M+E2Rn+4y0RLA9EVRwVYrIeysocUfp4CxGWckwJIM@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxjvRUZqNOlEkSIM2MAI0Dnpq26wa7rqMNnr9OxZyzIfMW1CRiJ
- NkANOqCYW+mL2ceBdRGGDc5EWqNYigqK+Hznoh5DTLm173eEcNQuTGB2WLKtOvqN4FE=
-X-Gm-Gg: ASbGncucOFiqYmUA1Bmk/fxO79THlOhwPT9pPWwHEFYEKZFePep8jWGR7u55kfqt2Yc
- Sx2pfy0m65DALzExOx9/5Mq8xFoMSZNa1dKcOhKIjv8nnCLAKPveWdJ+7SayUhYJ7AJ2JhtXBbf
- YsCyqPrk9xH5WhU48umo4AHvaWRdVGL/ozfdEyaattwONTlrrXjmnsl1fF3bg9YEvO5H1OrGW2e
- iePVdDyjU1QH+PjIAol4oZgTmHX5oCs4LGkWtGIBv2G/fTU00ZCrQPISlstXrPWhf6jGV8o37UC
- r7SHRWxMI7msvlMoH4jepDjMT26Cuy735qOjjQ/qsMSHG/gTvLKdLjZWvjUeQ2PmKvUsCk+xzMD
- HIZ2aS0Ocz2IFsym7I1tieuyKBWg8uYtmHw5crZsNctQMRNfLgJGsk9H4I7EgaZoxcRDQwrPUl/
- dWiP77bb///5fqTdWZ6DRvyvCQ5GMTXmXfvXAU59cn9KMNaA==
-X-Google-Smtp-Source: AGHT+IGfCTVgpG9l9puSWTYiK3G0d8gKcngL5r4WJ3Xi2AmzTOfMv+bHNEWDuIFmlbATDHcuNOQgMg==
-X-Received: by 2002:a05:6000:2892:b0:428:55c3:cea8 with SMTP id
- ffacd0b85a97d-429bd6e16bemr2293210f8f.50.1761906027732; 
- Fri, 31 Oct 2025 03:20:27 -0700 (PDT)
-Received: from localhost.localdomain ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
+ AJvYcCWhIjTeB0mz4hAgJBdCEKD9SjQJ2snWXqXv+4Y+M7H+UHMjy8wRvm2MNWKuiE7oq1U+mP5SZ2UP@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzzQoQnb4MF1F0TC9nC2dmOFuA7sdDLrfGadrqvt7vq2Vh49KZ7
+ uskirlb7ro9pXNePY9LU4apEAnh6P2OBv1kXWhIekzSGsPmj7IKwaCRN
+X-Gm-Gg: ASbGncs3VnBIGSAs7ewt2D+Tzx6u8qcbg1X7YDVmL23n8miqTLJ2PT6DRHp/EXNcgl5
+ aYSTE+rFZzBGJDMOcK8hgMeEOOq9soL4ISIS+ehSCYnb9/HzN4AobyjVOMzfmW8nEtuywHKDWJt
+ lpwA/9h8cECTu2N3uTFgvwum9p+ATAWlBG0UAJZt8nDumU0/PHBqZ0sSVWl0ssyo+0lQ5RnKQDy
+ JuMnuX+7xDbiXUEZIPCGc9px3hMK1WnxMCCdLwPYG4hcAAs72OliGxrm5wnujWaltAO80peFxAV
+ CydXs76BYMAhSW3E0R2dn3vZw/e0NaMWafJMKpl8z3tlju44OcyKRwdgiRjR+w/iKI3fvXOY7bO
+ o+bmEnn5dqR0JE3iahV8LjJvFEFQaZgI3+O4qtf2fT/njqAdmkKbsZHXRU5Cj+dOODA/VTpNzf1
+ 2u3PUYjTSVlHlUTkV/lo2BTjnubA==
+X-Google-Smtp-Source: AGHT+IFojSe5onG6l0184Qd+32Us2flx99qw215kwkBj86ninqiLXlY2kvADM9/iJBS4TWCcsIsZyA==
+X-Received: by 2002:a17:902:f548:b0:295:4d97:84fc with SMTP id
+ d9443c01a7336-29b6bf3bcc0mr89250955ad.32.1763889961522; 
+ Sun, 23 Nov 2025 01:26:01 -0800 (PST)
+Received: from shankari-IdeaPad.. ([103.24.60.188])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429c110037asm3090410f8f.3.2025.10.31.03.20.26
+ d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.25.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 31 Oct 2025 03:20:27 -0700 (PDT)
-From: Marco Crivellari <marco.crivellari@suse.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Michal Hocko <mhocko@suse.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>,
+ Sun, 23 Nov 2025 01:26:01 -0800 (PST)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 0/2] replaced old wq name, added WQ_PERCPU to alloc_workqueue
-Date: Fri, 31 Oct 2025 11:20:18 +0100
-Message-ID: <20251031102020.95349-1-marco.crivellari@suse.com>
-X-Mailer: git-send-email 2.51.0
+ Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Igor Korotin <igor.korotin.linux@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH 02/10] drivers: gpu: Update ARef imports from sync::aref
+Date: Sun, 23 Nov 2025 14:54:30 +0530
+Message-Id: <20251123092438.182251-3-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,69 +113,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Update call sites to import `ARef` from `sync::aref`
+instead of `types`.
 
-=== Current situation: problems ===
+This aligns with the ongoing effort to move `ARef` and
+`AlwaysRefCounted` to sync.
 
-Let's consider a nohz_full system with isolated CPUs: wq_unbound_cpumask is
-set to the housekeeping CPUs, for !WQ_UNBOUND the local CPU is selected.
+Suggested-by: Benno Lossin <lossin@kernel.org>
+Link: https://github.com/Rust-for-Linux/linux/issues/1173
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+---
+ drivers/gpu/drm/tyr/driver.rs          | 2 +-
+ drivers/gpu/nova-core/gsp/sequencer.rs | 2 +-
+ drivers/gpu/nova-core/vbios.rs         | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-This leads to different scenarios if a work item is scheduled on an
-isolated CPU where "delay" value is 0 or greater then 0:
-        schedule_delayed_work(, 0);
-
-This will be handled by __queue_work() that will queue the work item on the
-current local (isolated) CPU, while:
-
-        schedule_delayed_work(, 1);
-
-Will move the timer on an housekeeping CPU, and schedule the work there.
-
-Currently if a user enqueue a work item using schedule_delayed_work() the
-used wq is "system_wq" (per-cpu wq) while queue_delayed_work() use
-WORK_CPU_UNBOUND (used when a cpu is not specified). The same applies to
-schedule_work() that is using system_wq and queue_work(), that makes use
-again of WORK_CPU_UNBOUND.
-
-This lack of consistency cannot be addressed without refactoring the API.
-
-=== Recent changes to the WQ API ===
-
-The following, address the recent changes in the Workqueue API:
-
-- commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
-- commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
-
-The old workqueues will be removed in a future release cycle.
-
-=== Introduced Changes by this series ===
-
-1) [P 1]  Replace uses of system_unbound_wq
-
-    system_unbound_wq is to be used when locality is not required.
-
-    Because of that, system_unbound_wq has been replaced with
-	system_dfl_wq, to make it clear it should be used if locality
-	is not important.
-
-2) [P 2] WQ_PERCPU added to alloc_workqueue()
-
-    This change adds a new WQ_PERCPU flag to explicitly request
-    alloc_workqueue() to be per-cpu when WQ_UNBOUND has not been specified.
-
-
-Thanks!
-
-
-Marco Crivellari (2):
-  drm/nouveau: replace use of system_unbound_wq with system_dfl_wq
-  drm/nouveau: WQ_PERCPU added to alloc_workqueue users
-
- drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 +-
- drivers/gpu/drm/nouveau/nouveau_drm.c   | 2 +-
- drivers/gpu/drm/nouveau/nouveau_sched.c | 3 ++-
- 3 files changed, 4 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/tyr/driver.rs b/drivers/gpu/drm/tyr/driver.rs
+index 0389c558c036..264c2362237a 100644
+--- a/drivers/gpu/drm/tyr/driver.rs
++++ b/drivers/gpu/drm/tyr/driver.rs
+@@ -16,10 +16,10 @@
+ use kernel::regulator;
+ use kernel::regulator::Regulator;
+ use kernel::sizes::SZ_2M;
++use kernel::sync::aref::ARef;
+ use kernel::sync::Arc;
+ use kernel::sync::Mutex;
+ use kernel::time;
+-use kernel::types::ARef;
+ 
+ use crate::file::File;
+ use crate::gem::TyrObject;
+diff --git a/drivers/gpu/nova-core/gsp/sequencer.rs b/drivers/gpu/nova-core/gsp/sequencer.rs
+index 2d0369c49092..9c689f0b21ab 100644
+--- a/drivers/gpu/nova-core/gsp/sequencer.rs
++++ b/drivers/gpu/nova-core/gsp/sequencer.rs
+@@ -14,12 +14,12 @@
+     device,
+     io::poll::read_poll_timeout,
+     prelude::*,
++    sync::aref::ARef, //
+     time::{
+         delay::fsleep,
+         Delta, //
+     },
+     transmute::FromBytes,
+-    types::ARef, //
+ };
+ 
+ use crate::{
+diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
+index abf423560ff4..7c26e4a2d61c 100644
+--- a/drivers/gpu/nova-core/vbios.rs
++++ b/drivers/gpu/nova-core/vbios.rs
+@@ -11,8 +11,8 @@
+         Alignable,
+         Alignment, //
+     },
++    sync::aref::ARef,
+     transmute::FromBytes,
+-    types::ARef,
+ };
+ 
+ use crate::{
 -- 
-2.51.0
+2.34.1
 
