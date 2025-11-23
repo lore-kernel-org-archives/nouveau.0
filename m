@@ -4,89 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F108D5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF07BD5B158
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0BA310EB16;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3EDB10EA6C;
 	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Pf+Rn5iy";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jljsarGb";
 	dkim-atps=neutral
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
- [209.85.128.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5076310E0E5
- for <nouveau@lists.freedesktop.org>; Sun,  2 Nov 2025 15:09:58 +0000 (UTC)
-Received: by mail-wm1-f49.google.com with SMTP id
- 5b1f17b1804b1-4711810948aso25395295e9.2
- for <nouveau@lists.freedesktop.org>; Sun, 02 Nov 2025 07:09:58 -0800 (PST)
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+ [209.85.214.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 657D710E126
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:46 +0000 (UTC)
+Received: by mail-pl1-f172.google.com with SMTP id
+ d9443c01a7336-2980d9b7df5so42006475ad.3
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762096197; x=1762700997; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=KeEh++c4R7x24Ob6ITABSkGpnIKxyH2JeGroaXixafA=;
- b=Pf+Rn5iy37BksctCTQD7vMX3C3PGJdF06M8l9GWpK7gRxT0JKR71yfhxm5nkLp7a+z
- IvJXOfPzkyevVH6t8ivV/QiBzSnn/S88EDshETUTJyF6PKUOdROR/fNLH9cqyk7zPhgf
- pbDWMB1kHtrtbkAweMspANCfwaoBOu/IX0aQh4ObsSRN8/NzQUMWH82zEyroF1Dccnmb
- 3v8eYDtJUxbny0HQOHizmMMBWliF+gFFyZLggiUV4K8J9QKW/AwSkaifnrk/lxqMLMSL
- cmdpb+ePeVN0NPEkD+dEY3OjmfxuIH74SgKfUQH8LEVaqDOf+2EKIKEvvjDoL4q5oE2f
- /RqQ==
+ d=gmail.com; s=20230601; t=1763890066; x=1764494866; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=YfyBoPWUbKIvicMj0KWg+NHqLc+OcZyzD61cN8gqS4k=;
+ b=jljsarGb00oTxd5Qx8XDsb4D+icmyjoepUYfbcjjgbl55/0VRo+A0pU5k5BecV8pgu
+ x4zkqFn8Xw4hDy+4/Usv0Zpk9y1wk1lzrsbIgDlaqp5T6A3vCt0PrfP58tIv8bdM6+b9
+ zo2h9kg1bQgfE9nMjg5nAjGs46Jy6mlMtw36M4cZlOGkaaZZrkQX+XZTcDTaLRhN1K04
+ zLWFnQHTfXO6ZK74mYJIPBXVD3y6damGFObwbG/KiqEoEhRcjbhLisUplFS0o2KnosJp
+ pLJJjshMHZXLj6ghfBS70oIeOPImU1nYVXuhOAf5EujplyQYzznZ+fwwDgQ9kUIc+l6B
+ k5zA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762096197; x=1762700997;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=KeEh++c4R7x24Ob6ITABSkGpnIKxyH2JeGroaXixafA=;
- b=nD3DdGxylgI4MeUefwhKW7nX7Xdn/CpMQhLwmOMzuffK97Zblkp7jvhDaojSFsfwQT
- 8GJb4W+UZoyHol+grv9K53ebWT44gqNhIaYgo99KxkPFrR2CPoPMZsf8BPRw2tABTliz
- ONaUqYor5ip+1gQ6Cj3UJZSvfWv3Np4r2gZdLDxRPWoYNEboZxTwUu+VgNRGAxltV8cO
- aoettOnD+qyLWZ5r3q9/XJFwgqFtn2YKAcddYelIiEvZ1xJ9/xPAgoAeGNBgW4QH7+/r
- qot5V/zfoa2ah6JqOxpbE9uOZrlKWYpIx6jWGDqYakr35AIpWaAO0srVH5PInUYBCgkZ
- fC5Q==
-X-Gm-Message-State: AOJu0YzbQ1NTDlWdOPNft+Xtg3YMJmURor9NbsXnMzYmpyC6qmnsk0o5
- gqAVfr5ImWVY5me2jpfWZNFgBPqq06FXOqzE9ikKGLUo0LCdWR8tuHno
-X-Gm-Gg: ASbGncsERO9hqoaDRUSplQeo7JXLh+uy0lgemVXEzEMMYbfZEdfdDCp8H03gloYz8oL
- zTbBQVKfn+1sFyXXmEcd7nNMYBuWLSMHGrgZF5q0Ma6yJ+DHZ0mDtFJW/PXONXYX6JE169U+grc
- BrrNMuLFSH8S/I3GEPMV2tuVuZx41JUwpaTfxoPfNCQN7z+mNLYonM7AWKDMHEgRPnSBXYReXLu
- kipPobdPO821QhHwq2Wm1hayM1Yxpt7u9RuL2QPxYiogbbsIPK+hoO6HyAVPwScCcxY52JzQwpn
- AM2UCQ57mCYIMvpZ1kGjuUSyNp72Al9Vlo31Oq5mLZuH2zMYxP45vR0jpNLzh1emKHcBVNOomDa
- JL4kuNC8+s7kOIuYkvnVRTlkU78F2z7T4uF+8i/j/VepyiuzNevFtD18nQ4v3V1hspyRQ4Mce7L
- U9kFuTRz+PspiLr+kyCsCCkma1jVg2cDSs0imBKNpfbLsE9f05fi1dToQNWvQX7vs/cyI=
-X-Google-Smtp-Source: AGHT+IHGrARufC9tZYIoG9QCHsV4kZ8J2Ovz4A4hPVeK83i602JTm5CAJj2RXLSVlTY6X+3zPvhvCQ==
-X-Received: by 2002:a05:600c:83ce:b0:471:989:9d85 with SMTP id
- 5b1f17b1804b1-47730871fa6mr104046745e9.19.1762096196688; 
- Sun, 02 Nov 2025 07:09:56 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:acc:bb60:756b:64e3:20ef:1d08?
- ([2a01:e0a:acc:bb60:756b:64e3:20ef:1d08])
+ d=1e100.net; s=20230601; t=1763890066; x=1764494866;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=YfyBoPWUbKIvicMj0KWg+NHqLc+OcZyzD61cN8gqS4k=;
+ b=m0Z0sqMqf0PXFWPFjIgO1SfbKN75DWnkooeVEGULn5G4a0jLc0GHsbsTRVh+Su2gI8
+ u7f2MRYA0lwW1JPcau5t+gAHIFUHSRi681hEYw/I2fnNphscDrCc8XtlGkBT9fNpgiCe
+ 3TCpoda3Tenmf6M4Tm2qywioKF16vDSdxtGT2dDCZhbt8Anatu1ho3fSoRrPgkqcgSol
+ qHfFxC4PmacTez4aHI2MJ4l2ffR/dnxXGaCbvTUKgglTyL394hy06hl8kGQiOrpPFeTP
+ UdwMwcJKpZK4KAixXHml9PFqTWZefN0rJic1J24tRXun314vbNfA3zh2CiKg1GkI1VFk
+ faDA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX55xoDwsJZfa55Vp+/gVShNG5XDbdMEGxAXHyYNhUWJy4CTbhgKZ9ohZk+wumrx86qBPy0ZFpi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzOowVtJalBYvyWREH06hvfWw8+/b4mM4EaNugcHi5f1wtiLMPJ
+ VOTr8bCCrMT0O4G4a/WHibmNKi82NPrzhLQEKL41iqJvOM3AbBfpi3yc
+X-Gm-Gg: ASbGncsNenHDF2TndskmNpg72Auz/31Fbcv/HZ+1rZYSblEpyAL2AKsTdENoROiOyNi
+ bI6+lyk4C3Opz1OG3QMjDPwm1XBDQYGOe++5Nt4h3N3yLgnkDS+t4B1189p1hgJ8Seu5VXawpiL
+ qkrYzbPHqvTdsXsvOYUpooINyWW5La6VFkSFZqmd8d/qZlMKri30nEkt6VpLQUWtOddweKXSsCp
+ s79D4sE9swscUF90PZmzyiJgrbTy3Erh1V2EKFSBzsJMzlmr7o2uZh9JvbFnKQoJZ3hNVWX39oF
+ Dpnk5DCr8N0yf3N/zmov6Ifnrobrzml0V4myZLI02+gq7dsVcsULbBKXsGkrA1lDUL3DXf+0bBO
+ +MIwc+QVcrn8b+L+li3rL/wzJUtvKOIqclrEhIGuTnAi7SDSeMqHw9jNeY+eH9znnbj+hMRxpAX
+ ocebJYc+yfIsOOjtv3kKqL+QAT1g==
+X-Google-Smtp-Source: AGHT+IExQFsNPtBs1Xj5miLvxmintvWHhiICyxn8q5+dbslUtcud5J24RqOaI8yRZ14HHbP/D4VKng==
+X-Received: by 2002:a17:902:db0b:b0:295:28a4:f0aa with SMTP id
+ d9443c01a7336-29b6bf5f036mr89773335ad.43.1763890065882; 
+ Sun, 23 Nov 2025 01:27:45 -0800 (PST)
+Received: from shankari-IdeaPad.. ([103.24.60.188])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-429d1061efasm3179609f8f.24.2025.11.02.07.09.54
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Sun, 02 Nov 2025 07:09:55 -0800 (PST)
-Message-ID: <70210168-ee28-4996-89f0-83f8590cb716@gmail.com>
-Date: Sun, 2 Nov 2025 16:09:54 +0100
+ d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.27.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 23 Nov 2025 01:27:45 -0800 (PST)
+From: Shankari Anand <shankari.ak0208@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Igor Korotin <igor.korotin.linux@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>
+Subject: [PATCH 10/10] rust: kernel: remove temporary re-exports of ARef and
+ AlwaysRefCounted
+Date: Sun, 23 Nov 2025 14:54:38 +0530
+Message-Id: <20251123092438.182251-11-shankari.ak0208@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] nova-core: Simplify `transmute` and
- `transmute_mut` in fwsec.rs
-To: Alexandre Courbot <acourbot@nvidia.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, rust-for-linux@vger.kernel.org,
- dri-devel <dri-devel-bounces@lists.freedesktop.org>
-References: <20251023205146.196042-1-delcastillodelarosadaniel@gmail.com>
- <DDXC17HXPXFZ.3TIX7FHUJHAI7@nvidia.com>
-Content-Language: en-US
-From: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
-In-Reply-To: <DDXC17HXPXFZ.3TIX7FHUJHAI7@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,102 +114,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Alexandre,
+Remove the temporary re-exports of `ARef` and `AlwaysRefCounted`
+from `types.rs` now that all in-tree users have been updated to
+import them directly from `sync::aref`.
 
-On 11/1/25 12:47, Alexandre Courbot wrote:
-> On Fri Oct 24, 2025 at 5:51 AM JST, Daniel del Castillo wrote:
->> This patch solves one of the existing mentions of COHA, a task
->> in the Nova task list about improving the `CoherentAllocation` API.
->> It uses the new `from_bytes` method from the `FromBytes` trait as
->> well as the `as_slice` and `as_slice_mut` methods from
->> `CoherentAllocation`.
->>
->> Signed-off-by: Daniel del Castillo <delcastillodelarosadaniel@gmail.com>
->>
->> ---
->>
->> I confirmed by talking to Alexandre Courbot, that the reading/writing
->> methods in `CoherentAllocation` can never be safe, so
->> this patch doesn't actually change `CoherentAllocation`, but rather
->> tries to solve one of the existing references to [COHA].
->>
->> V1 -> V2: Split previous patch into two. One per reference to COHA.
->>           Improved comments. Let me know if they are okay now.
->>           Use of `{...}` syntax for the `if let`
->>
->>  drivers/gpu/nova-core/firmware/fwsec.rs | 129 +++++++++++-------------
->>  1 file changed, 60 insertions(+), 69 deletions(-)
->>
->> diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
->> index 8edbb5c0572c..507ef3868565 100644
->> --- a/drivers/gpu/nova-core/firmware/fwsec.rs
->> +++ b/drivers/gpu/nova-core/firmware/fwsec.rs
->> @@ -11,12 +11,12 @@
->>  //! - The ucode signature, so the GSP falcon can run FWSEC in HS mode.
->>  
->>  use core::marker::PhantomData;
->> -use core::mem::{align_of, size_of};
->> +use core::mem::size_of;
->>  use core::ops::Deref;
->>  
->>  use kernel::device::{self, Device};
->>  use kernel::prelude::*;
->> -use kernel::transmute::FromBytes;
->> +use kernel::transmute::{AsBytes, FromBytes};
->>  
->>  use crate::dma::DmaObject;
->>  use crate::driver::Bar0;
->> @@ -35,7 +35,7 @@ struct FalconAppifHdrV1 {
->>      entry_size: u8,
->>      entry_count: u8,
->>  }
->> -// SAFETY: any byte sequence is valid for this struct.
->> +// SAFETY: Any byte sequence is valid for this struct.
->>  unsafe impl FromBytes for FalconAppifHdrV1 {}
->>  
->>  #[repr(C, packed)]
->> @@ -44,7 +44,7 @@ struct FalconAppifV1 {
->>      id: u32,
->>      dmem_base: u32,
->>  }
->> -// SAFETY: any byte sequence is valid for this struct.
->> +// SAFETY: Any byte sequence is valid for this struct.
->>  unsafe impl FromBytes for FalconAppifV1 {}
->>  
->>  #[derive(Debug)]
->> @@ -68,8 +68,10 @@ struct FalconAppifDmemmapperV3 {
->>      ucode_cmd_mask1: u32,
->>      multi_tgt_tbl: u32,
->>  }
->> -// SAFETY: any byte sequence is valid for this struct.
->> +// SAFETY: Any byte sequence is valid for this struct.
-> 
-> I appreciate the capitalization, but these changes are a bit
-> distracting. :) If you absolutely want to do this, let it be its own
-> patch so the current one stays focused on what it actually does.
-> 
->>  unsafe impl FromBytes for FalconAppifDmemmapperV3 {}
->> +// SAFETY: This struct doesn't contain unitialized bytes and doesn't have interior mutability.
-> 
-> Typo: s/unitialized/uninitialized (and in other comments as well).
-> 
-I will move the capitalization to another patch and fix the typo.
+These re-exports were originally added to avoid breaking the
+kernel build during the transition period while call sites were
+incrementally migrated. With all users updated, they are no
+longer needed.
 
-> Otherwise this looks ok - it doesn't apply cleanly on drm-rust-next
-> though, could you rebase for the next version?
+Suggested-by: Benno Lossin <lossin@kernel.org>
+Link: https://github.com/Rust-for-Linux/linux/issues/1173
+Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+---
+ rust/kernel/types.rs | 2 --
+ 1 file changed, 2 deletions(-)
 
-About this, I was basing myself on nova-next [1]. I will rebase on top
-of drm-rust-next for the next version.
-
-
-Link: https://gitlab.freedesktop.org/drm/nova [1]
-Link:
-https://gitlab.freedesktop.org/drm/rust/kernel/-/tree/drm-rust-next [2]
-
-> 
-> Thanks for the cleanup!
-
-Thanks to you for the reviews and the patience!
-
-
+diff --git a/rust/kernel/types.rs b/rust/kernel/types.rs
+index 9c5e7dbf1632..4329d3c2c2e5 100644
+--- a/rust/kernel/types.rs
++++ b/rust/kernel/types.rs
+@@ -11,8 +11,6 @@
+ };
+ use pin_init::{PinInit, Wrapper, Zeroable};
+ 
+-pub use crate::sync::aref::{ARef, AlwaysRefCounted};
+-
+ /// Used to transfer ownership to and from foreign (non-Rust) languages.
+ ///
+ /// Ownership is transferred from Rust to a foreign language by calling [`Self::into_foreign`] and
+-- 
+2.34.1
 
