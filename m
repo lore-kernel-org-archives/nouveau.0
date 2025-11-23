@@ -4,65 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1D8CD5B15F
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3053CD5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E396510EA7E;
-	Sat, 13 Dec 2025 12:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB0510EA91;
+	Sat, 13 Dec 2025 12:41:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Wxnihngx";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SkKDk/vY";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCEB710E6B9
- for <nouveau@lists.freedesktop.org>; Thu, 23 May 2024 13:10:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1716469822;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3p6OlKUIOC2RSeVNacuD1/ce5DU5TQqJuOE6ymSR2nA=;
- b=Wxnihngx+mo1AxKI/ZvsLRBxxqS1Hr2UaFqDoBpXpxIj5LoDN7pTtwHAH6X0rT+9qmf+LF
- LnPFUsd1nR9DYxPc7e9sBIPo2cIQJ9teB5up4wlBn8jo8+ZbwWJvStEJfmqEHOdC2Fa6sp
- mj3YHOzq6Lx57WYNU78RZ9D3G/uU5Sg=
-Received: from mimecast-mx02.redhat.com (mx-ext.redhat.com [66.187.233.73])
- by relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-508-268lM4CCMX2POemBt8vzYA-1; Thu,
- 23 May 2024 09:10:17 -0400
-X-MC-Unique: 268lM4CCMX2POemBt8vzYA-1
-Received: from smtp.corp.redhat.com (int-mx08.intmail.prod.int.rdu2.redhat.com
- [10.11.54.8])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by mimecast-mx02.redhat.com (Postfix) with ESMTPS id 8F2A11C0514E;
- Thu, 23 May 2024 13:10:16 +0000 (UTC)
-Received: from hydra.redhat.com (unknown [10.39.192.217])
- by smtp.corp.redhat.com (Postfix) with ESMTP id CF721C15BF6;
- Thu, 23 May 2024 13:10:14 +0000 (UTC)
-From: Jocelyn Falempe <jfalempe@redhat.com>
-To: dri-devel@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Karol Herbst <kherbst@redhat.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@redhat.com>,
- nouveau@lists.freedesktop.org
-Cc: Jocelyn Falempe <jfalempe@redhat.com>
-Subject: [PATCH 3/5] drm/panic: Add a set_pixel() callback to
- drm_scanout_buffer
-Date: Thu, 23 May 2024 15:00:36 +0200
-Message-ID: <20240523130955.428233-4-jfalempe@redhat.com>
-In-Reply-To: <20240523130955.428233-1-jfalempe@redhat.com>
-References: <20240523130955.428233-1-jfalempe@redhat.com>
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F2910E0F8
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 13:16:28 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-47775fb6cb4so22429125e9.0
+ for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 05:16:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1763903787; x=1764508587; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=vWsYIQ2Ggbhbzka70Nij3a4arpdwqNARnWCMeN/qSWA=;
+ b=SkKDk/vYsWozyy5C5m/77TLHZUFPH4So1wMjCa/Osok7L7rjlYLoo/cjw3xtdAsmdg
+ a6pQ+XVrMKluNPRfmB2T+DBZmuxxKH4CoPUaqkoFcBZoiAsz1hnfm+REjxbE3/qx8nY+
+ qgzC1qcCvlul4yM9/T1i204YwLENTEqGDSaQINWgGHpYrybQUHvU9lBjJ5gm39qComMJ
+ wB8FxXhknEjPq9+6E57PkJexh5hEVhSBF11DQkqpiFG7b+LOwt7CeUyJE9FtHx6IzX4i
+ H5EkyR+yoN4YRuOrNp/YrMRSNWonLRQr+CPSDAnrfWn0Kw5DAj3lc5cx+C/jvs8ldzX2
+ MlJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1763903787; x=1764508587;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=vWsYIQ2Ggbhbzka70Nij3a4arpdwqNARnWCMeN/qSWA=;
+ b=NapUqMzTy20d2QeqJ0yETlbb72F7iHUJ1VXaYQcV7V676vgVLdJS265DmHr/J5+z7h
+ ZqPsgNQFHfkTl4du+o1bqUM+4eQYi0/o1LUVL5J0N5CvLZO8QpodyCL2vOTsqf2cwY6M
+ nLSEhCjiHfS1QhiU/+uHF4OoRkYdCT05+CnnYpXDkz/S0XhGToY2Qy2IoieDs+NYpMFL
+ zKAs1gFD0O71cUArVPOFs6BSbwCMrxq3zpLHlMUYinco8luy1AS/a95kMa7+WlN4zgUE
+ yFITicsZGot/JHVoHlHUjbTefEBul1M67o8jaq8QLAeUILTC+qL3Is1Auqaxb3N5YvNi
+ VcTg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXWfaLVXCeFjZ+5/iQRTslcdVd5k/21ppW1MCKEISAHlAkPJndoJN9YF1OzladxhDfIugj+8439@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyuHvAdEfhC5dqOyFp09HHGedC81FHj6to+bEt/GuqaE4QXQ1NZ
+ hNB9ZaZ5+5z+rnNfKnS92VnkRNWcxBnq473eN3AZnC9dX7l8aEs7ejyJ
+X-Gm-Gg: ASbGncseUH6dbygBzJyQcjdWF3xrn71INuKtUOyRzJiEMkiimkL2Y6v9PInpHXy9XDQ
+ fLFjZhCJ8OeGx7AclSqhWxffd+6PZcB8Tz9dl4sBkIwsJo108RYH6zRJWSUsURbgrKp2YqjEFI2
+ F/7hO4OsrwR/iiDZD+BAjJS4/zD+N6gGwk6D/GHYfM/4Qp0uVxfe5tpfglUeX1rRygq2R3vw/Ut
+ 9iY5+gh0owVsKoaz9F20063r8hHdZZP7KXUSK/ajeCH6hws6zWfuQPtba17kVJ37uThvzqeVUep
+ 88GQbRdqBc35JAzS0bqEhExwymseiygmlC08j5TCB5eZwCnQ3GZ/OvZbSl/Rwm/ZQnXdVpJsypj
+ rc0IXhADiZ9u0vnqfsoGxbF2qFSHL+hSg1i67l1leelIK8EAGZOZlsmxMdL2sWkUQyJ46/0qjqP
+ OZ2gPxBURIC5YlXqCg/lqr/BeySWDvlt0UpG2xGFYkZWN56MhVzssdoMmnS/lUN4rCGJyYlx+wK
+ il4LQ==
+X-Google-Smtp-Source: AGHT+IGwu9HAU1GTXcVV6PqyT2WVWbNnyTLYP+26LVoRcWUnFI2rUjGr2LZvtLw3Ln81be9Wp+f1+Q==
+X-Received: by 2002:a05:600c:840f:b0:477:632a:fd67 with SMTP id
+ 5b1f17b1804b1-477c10d6d13mr93671615e9.12.1763903786586; 
+ Sun, 23 Nov 2025 05:16:26 -0800 (PST)
+Received: from ?IPV6:2a06:5906:2618:cb00:f1a3:6462:6c03:ec0e?
+ ([2a06:5906:2618:cb00:f1a3:6462:6c03:ec0e])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42cb7fb919bsm22549569f8f.34.2025.11.23.05.16.25
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sun, 23 Nov 2025 05:16:26 -0800 (PST)
+Message-ID: <7bd3232c-90cc-4e71-8aed-2ac911cb20f9@gmail.com>
+Date: Sun, 23 Nov 2025 13:16:24 +0000
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.11.54.8
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain; charset="US-ASCII"; x-default=true
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:50 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/10] rust: kernel: Update ARef and AlwaysRefCounted
+ imports to use sync::aref
+To: Shankari Anand <shankari.ak0208@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ <20251123092438.182251-6-shankari.ak0208@gmail.com>
+Content-Language: en-US
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+In-Reply-To: <20251123092438.182251-6-shankari.ak0208@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,240 +118,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-This allows drivers to draw the pixel, and handle tiling, or specific
-color formats.
+Hello Shankari
 
-Signed-off-by: Jocelyn Falempe <jfalempe@redhat.com>
----
- drivers/gpu/drm/drm_panic.c | 120 +++++++++++++++++++++++-------------
- include/drm/drm_panic.h     |   9 +++
- 2 files changed, 85 insertions(+), 44 deletions(-)
+On 11/23/2025 9:24 AM, Shankari Anand wrote:
+> Update call sites in `i2c.rs` to import `ARef` and
+> `AlwaysRefCounted` from `sync::aref` instead of `types`.
+> 
+> This aligns with the ongoing effort to move `ARef` and
+> `AlwaysRefCounted` to sync.
+> 
+> Suggested-by: Benno Lossin <lossin@kernel.org>
+> Link: https://github.com/Rust-for-Linux/linux/issues/1173
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+>   rust/kernel/i2c.rs | 10 ++++------
+>   1 file changed, 4 insertions(+), 6 deletions(-)
+> 
+> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
+> index 1aee46f59460..c50ca464d87c 100644
+> --- a/rust/kernel/i2c.rs
+> +++ b/rust/kernel/i2c.rs
+> @@ -17,10 +17,8 @@
+>       of,
+>       prelude::*,
+>       str::CStrExt as _,
+> -    types::{
+> -        AlwaysRefCounted,
+> -        Opaque, //
+> -    }, //
+> +    sync::aref::AlwaysRefCounted,
+> +    types::Opaque, //
+>   };
+>   
+>   use core::{
+> @@ -32,7 +30,7 @@
+>       }, //
+>   };
+>   
+> -use kernel::types::ARef;
+> +use kernel::sync::aref::ARef;
+>   
+>   /// An I2C device id table.
+>   #[repr(transparent)]
+> @@ -408,7 +406,7 @@ pub fn get(index: i32) -> Result<ARef<Self>> {
+>   kernel::impl_device_context_into_aref!(I2cAdapter);
+>   
+>   // SAFETY: Instances of `I2cAdapter` are always reference-counted.
+> -unsafe impl crate::types::AlwaysRefCounted for I2cAdapter {
+> +unsafe impl crate::sync::aref::AlwaysRefCounted for I2cAdapter {
 
-diff --git a/drivers/gpu/drm/drm_panic.c b/drivers/gpu/drm/drm_panic.c
-index 09d7d45f80c2..94558087bba3 100644
---- a/drivers/gpu/drm/drm_panic.c
-+++ b/drivers/gpu/drm/drm_panic.c
-@@ -251,40 +251,54 @@ static void drm_panic_blit32(struct iosys_map *dmap, unsigned int dpitch,
- 				iosys_map_wr(dmap, y * dpitch + x * sizeof(u32), u32, color);
- }
- 
-+static void drm_panic_blit_pixel(struct drm_scanout_buffer *sb, struct drm_rect *clip,
-+				 const u8 *sbuf8, unsigned int spitch, u32 color)
-+{
-+	unsigned int y, x;
-+
-+	for (y = 0; y < drm_rect_height(clip); y++)
-+		for (x = 0; x < drm_rect_width(clip); x++)
-+			if (sbuf8[(y * spitch) + x / 8] & (0x80 >> (x % 8)))
-+				sb->set_pixel(sb, clip->x1 + x, clip->y1 + y, color);
-+}
-+
- /*
-  * drm_panic_blit - convert a monochrome image to a linear framebuffer
-- * @dmap: destination iosys_map
-- * @dpitch: destination pitch in bytes
-+ * @sb: destination scanout buffer
-+ * @clip: destination rectangle
-  * @sbuf8: source buffer, in monochrome format, 8 pixels per byte.
-  * @spitch: source pitch in bytes
-- * @height: height of the image to copy, in pixels
-- * @width: width of the image to copy, in pixels
-  * @color: foreground color, in destination format
-- * @pixel_width: pixel width in bytes.
-  *
-  * This can be used to draw a font character, which is a monochrome image, to a
-  * framebuffer in other supported format.
-  */
--static void drm_panic_blit(struct iosys_map *dmap, unsigned int dpitch,
--			   const u8 *sbuf8, unsigned int spitch,
--			   unsigned int height, unsigned int width,
--			   u32 color, unsigned int pixel_width)
-+static void drm_panic_blit(struct drm_scanout_buffer *sb, struct drm_rect *clip,
-+			   const u8 *sbuf8, unsigned int spitch, u32 color)
- {
--	switch (pixel_width) {
-+	struct iosys_map map;
-+
-+	if (sb->set_pixel)
-+		return drm_panic_blit_pixel(sb, clip, sbuf8, spitch, color);
-+
-+	map = sb->map[0];
-+	iosys_map_incr(&map, clip->y1 * sb->pitch[0] + clip->x1 * sb->format->cpp[0]);
-+
-+	switch (sb->format->cpp[0]) {
- 	case 2:
--		drm_panic_blit16(dmap, dpitch, sbuf8, spitch,
--				 height, width, color);
-+		drm_panic_blit16(&map, sb->pitch[0], sbuf8, spitch,
-+				 drm_rect_height(clip), drm_rect_width(clip), color);
- 	break;
- 	case 3:
--		drm_panic_blit24(dmap, dpitch, sbuf8, spitch,
--				 height, width, color);
-+		drm_panic_blit24(&map, sb->pitch[0], sbuf8, spitch,
-+				 drm_rect_height(clip), drm_rect_width(clip), color);
- 	break;
- 	case 4:
--		drm_panic_blit32(dmap, dpitch, sbuf8, spitch,
--				 height, width, color);
-+		drm_panic_blit32(&map, sb->pitch[0], sbuf8, spitch,
-+				 drm_rect_height(clip), drm_rect_width(clip), color);
- 	break;
- 	default:
--		WARN_ONCE(1, "Can't blit with pixel width %d\n", pixel_width);
-+		WARN_ONCE(1, "Can't blit with pixel width %d\n", sb->format->cpp[0]);
- 	}
- }
- 
-@@ -328,33 +342,51 @@ static void drm_panic_fill32(struct iosys_map *dmap, unsigned int dpitch,
- 			iosys_map_wr(dmap, y * dpitch + x * sizeof(u32), u32, color);
- }
- 
-+static void drm_panic_fill_pixel(struct drm_scanout_buffer *sb,
-+				 struct drm_rect *clip,
-+				 u32 color)
-+{
-+	unsigned int y, x;
-+
-+	for (y = 0; y < drm_rect_height(clip); y++)
-+		for (x = 0; x < drm_rect_width(clip); x++)
-+			sb->set_pixel(sb, clip->x1 + x, clip->y1 + y, color);
-+}
-+
- /*
-  * drm_panic_fill - Fill a rectangle with a color
-- * @dmap: destination iosys_map, pointing to the top left corner of the rectangle
-- * @dpitch: destination pitch in bytes
-- * @height: height of the rectangle, in pixels
-- * @width: width of the rectangle, in pixels
-- * @color: color to fill the rectangle.
-- * @pixel_width: pixel width in bytes
-+ * @sb: destination scanout buffer
-+ * @clip: destination rectangle
-+ * @color: foreground color, in destination format
-  *
-  * Fill a rectangle with a color, in a linear framebuffer.
-  */
--static void drm_panic_fill(struct iosys_map *dmap, unsigned int dpitch,
--			   unsigned int height, unsigned int width,
--			   u32 color, unsigned int pixel_width)
-+static void drm_panic_fill(struct drm_scanout_buffer *sb, struct drm_rect *clip,
-+			   u32 color)
- {
--	switch (pixel_width) {
-+	struct iosys_map map;
-+
-+	if (sb->set_pixel)
-+		return drm_panic_fill_pixel(sb, clip, color);
-+
-+	map = sb->map[0];
-+	iosys_map_incr(&map, clip->y1 * sb->pitch[0] + clip->x1 * sb->format->cpp[0]);
-+
-+	switch (sb->format->cpp[0]) {
- 	case 2:
--		drm_panic_fill16(dmap, dpitch, height, width, color);
-+		drm_panic_fill16(&map, sb->pitch[0], drm_rect_height(clip),
-+				 drm_rect_width(clip), color);
- 	break;
- 	case 3:
--		drm_panic_fill24(dmap, dpitch, height, width, color);
-+		drm_panic_fill24(&map, sb->pitch[0], drm_rect_height(clip),
-+				 drm_rect_width(clip), color);
- 	break;
- 	case 4:
--		drm_panic_fill32(dmap, dpitch, height, width, color);
-+		drm_panic_fill32(&map, sb->pitch[0], drm_rect_height(clip),
-+				 drm_rect_width(clip), color);
- 	break;
- 	default:
--		WARN_ONCE(1, "Can't fill with pixel width %d\n", pixel_width);
-+		WARN_ONCE(1, "Can't fill with pixel width %d\n", sb->format->cpp[0]);
- 	}
- }
- 
-@@ -387,25 +419,24 @@ static void draw_txt_rectangle(struct drm_scanout_buffer *sb,
- 	int i, j;
- 	const u8 *src;
- 	size_t font_pitch = DIV_ROUND_UP(font->width, 8);
--	struct iosys_map dst;
--	unsigned int px_width = sb->format->cpp[0];
--	int left = 0;
-+	struct drm_rect rec;
- 
- 	msg_lines = min(msg_lines,  drm_rect_height(clip) / font->height);
- 	for (i = 0; i < msg_lines; i++) {
- 		size_t line_len = min(msg[i].len, drm_rect_width(clip) / font->width);
- 
-+		rec.y1 = clip->y1 +  i * font->height;
-+		rec.y2 = rec.y1 + font->height;
-+		rec.x1 = clip->x1;
-+
- 		if (centered)
--			left = (drm_rect_width(clip) - (line_len * font->width)) / 2;
-+			rec.x1 += (drm_rect_width(clip) - (line_len * font->width)) / 2;
- 
--		dst = sb->map[0];
--		iosys_map_incr(&dst, (clip->y1 + i * font->height) * sb->pitch[0] +
--				     (clip->x1 + left) * px_width);
- 		for (j = 0; j < line_len; j++) {
- 			src = get_char_bitmap(font, msg[i].txt[j], font_pitch);
--			drm_panic_blit(&dst, sb->pitch[0], src, font_pitch,
--				       font->height, font->width, color, px_width);
--			iosys_map_incr(&dst, font->width * px_width);
-+			rec.x2 = rec.x1 + font->width;
-+			drm_panic_blit(sb, &rec, src, font_pitch, color);
-+			rec.x1 += font->width;
- 		}
- 	}
- }
-@@ -420,7 +451,7 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
- 	u32 fg_color = CONFIG_DRM_PANIC_FOREGROUND_COLOR;
- 	u32 bg_color = CONFIG_DRM_PANIC_BACKGROUND_COLOR;
- 	const struct font_desc *font = get_default_font(sb->width, sb->height, NULL, NULL);
--	struct drm_rect r_logo, r_msg;
-+	struct drm_rect r_screen, r_logo, r_msg;
- 
- 	if (!font)
- 		return;
-@@ -428,6 +459,8 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
- 	fg_color = convert_from_xrgb8888(fg_color, sb->format->format);
- 	bg_color = convert_from_xrgb8888(bg_color, sb->format->format);
- 
-+	r_screen = DRM_RECT_INIT(0, 0, sb->width, sb->height);
-+
- 	r_logo = DRM_RECT_INIT(0, 0,
- 			       get_max_line_len(logo, logo_lines) * font->width,
- 			       logo_lines * font->height);
-@@ -439,8 +472,7 @@ static void draw_panic_static(struct drm_scanout_buffer *sb)
- 	drm_rect_translate(&r_msg, (sb->width - r_msg.x2) / 2, (sb->height - r_msg.y2) / 2);
- 
- 	/* Fill with the background color, and draw text on top */
--	drm_panic_fill(&sb->map[0], sb->pitch[0], sb->height, sb->width,
--		       bg_color, sb->format->cpp[0]);
-+	drm_panic_fill(sb, &r_screen, bg_color);
- 
- 	if ((r_msg.x1 >= drm_rect_width(&r_logo) || r_msg.y1 >= drm_rect_height(&r_logo)) &&
- 	    drm_rect_width(&r_logo) < sb->width && drm_rect_height(&r_logo) < sb->height) {
-diff --git a/include/drm/drm_panic.h b/include/drm/drm_panic.h
-index 822dbb1aa9d6..73bb3f3d9ed9 100644
---- a/include/drm/drm_panic.h
-+++ b/include/drm/drm_panic.h
-@@ -50,6 +50,15 @@ struct drm_scanout_buffer {
- 	 * @pitch: Length in bytes between the start of two consecutive lines.
- 	 */
- 	unsigned int pitch[DRM_FORMAT_MAX_PLANES];
-+
-+	/**
-+	 * @set_pixel: Optional function, to set a pixel color on the
-+	 * framebuffer. It allows to handle special tiling format inside the
-+	 * driver.
-+	 */
-+	void (*set_pixel)(struct drm_scanout_buffer *sb, unsigned int x,
-+			  unsigned int y, u32 color);
-+
- };
- 
- /**
--- 
-2.45.0
+NIT: This module already imports `AlwaysRefCounted`, so please use the
+imported name instead of the full path for consistency.
 
+>       fn inc_ref(&self) {
+>           // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
+>           unsafe { bindings::i2c_get_adapter(self.index()) };
+
+Thanks
+Igor
