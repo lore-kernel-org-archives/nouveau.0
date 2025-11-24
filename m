@@ -4,102 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF07BD5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72940D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:43:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3EDB10EA6C;
-	Sat, 13 Dec 2025 12:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57E7710EB27;
+	Sat, 13 Dec 2025 12:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="jljsarGb";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="WygyOlUg";
 	dkim-atps=neutral
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
- [209.85.214.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 657D710E126
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:46 +0000 (UTC)
-Received: by mail-pl1-f172.google.com with SMTP id
- d9443c01a7336-2980d9b7df5so42006475ad.3
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:46 -0800 (PST)
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+ [209.85.215.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6C6610E2D1
+ for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 14:51:59 +0000 (UTC)
+Received: by mail-pg1-f182.google.com with SMTP id
+ 41be03b00d2f7-b8b33cdf470so121865a12.0
+ for <nouveau@lists.freedesktop.org>; Mon, 24 Nov 2025 06:51:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763890066; x=1764494866; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1763995919; x=1764600719; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=YfyBoPWUbKIvicMj0KWg+NHqLc+OcZyzD61cN8gqS4k=;
- b=jljsarGb00oTxd5Qx8XDsb4D+icmyjoepUYfbcjjgbl55/0VRo+A0pU5k5BecV8pgu
- x4zkqFn8Xw4hDy+4/Usv0Zpk9y1wk1lzrsbIgDlaqp5T6A3vCt0PrfP58tIv8bdM6+b9
- zo2h9kg1bQgfE9nMjg5nAjGs46Jy6mlMtw36M4cZlOGkaaZZrkQX+XZTcDTaLRhN1K04
- zLWFnQHTfXO6ZK74mYJIPBXVD3y6damGFObwbG/KiqEoEhRcjbhLisUplFS0o2KnosJp
- pLJJjshMHZXLj6ghfBS70oIeOPImU1nYVXuhOAf5EujplyQYzznZ+fwwDgQ9kUIc+l6B
- k5zA==
+ bh=/cuXBv9WUJm6Kko0g9y8Xk9WBvYZvMR/dgMEJPiZVyU=;
+ b=WygyOlUgkHEjn38i3yGw/GncJJIIwoAtsIrcqRO1aXas5x85zyNeWQ0StQjm7dYg1G
+ T4hliRinEblUN9tfCHaRKQu3l1kD+QyvJR/KPXCGF1bwRo6My990UWhe6GOdkPa/e68r
+ grXjv75r04bnYZ4j7+VCjwULzSHm2AJhZM/cg5VyXvtz5SgT1lbFArqY8zOs5lT7vv1p
+ m/3IRcZDitP4WBwaWUWNgSgD8AifH+CEeAv2WGie7kyYhtaluR7P3oojro7mtiJHCB7b
+ 7FV4ri3SVr2QuZDFGSVI/4yxAnjQ/uKPx/BmkuZ1xfMgGhX7Da4+K4KRPdyQyjzW7BIn
+ XTBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763890066; x=1764494866;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20230601; t=1763995919; x=1764600719;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=YfyBoPWUbKIvicMj0KWg+NHqLc+OcZyzD61cN8gqS4k=;
- b=m0Z0sqMqf0PXFWPFjIgO1SfbKN75DWnkooeVEGULn5G4a0jLc0GHsbsTRVh+Su2gI8
- u7f2MRYA0lwW1JPcau5t+gAHIFUHSRi681hEYw/I2fnNphscDrCc8XtlGkBT9fNpgiCe
- 3TCpoda3Tenmf6M4Tm2qywioKF16vDSdxtGT2dDCZhbt8Anatu1ho3fSoRrPgkqcgSol
- qHfFxC4PmacTez4aHI2MJ4l2ffR/dnxXGaCbvTUKgglTyL394hy06hl8kGQiOrpPFeTP
- UdwMwcJKpZK4KAixXHml9PFqTWZefN0rJic1J24tRXun314vbNfA3zh2CiKg1GkI1VFk
- faDA==
+ bh=/cuXBv9WUJm6Kko0g9y8Xk9WBvYZvMR/dgMEJPiZVyU=;
+ b=FpJgJW+t8CRee6r2d5rVqHFHWaBbnxLH1nhzI0cmfl0v56fR77LtQwN7RGE68qxoP/
+ ryA873ziR7x4oIH2ynrK3Sno8d+QMpT8bNjE6rgrUryHdHZvXuXoXWJck/GCdM/qU7tD
+ 0LLp6NGN1II0ecU6HjKxsMV8nuOVNPHyI5ipdkQhc22lpNUmmRtB1tBi4RM7uagEBeWX
+ tN8r76FpwyU1azNP7k+A1lCCncdRunia5Lfus0+shWk08+gMiHXCSp5svwJY6EImPt4c
+ W/xWLeXpPebi/ryvo2WJyta9bCoCpi1khiQMMvL0uxtKFxxqbRAHCIAxAlT9/lWusNJ1
+ E6jQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX55xoDwsJZfa55Vp+/gVShNG5XDbdMEGxAXHyYNhUWJy4CTbhgKZ9ohZk+wumrx86qBPy0ZFpi@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzOowVtJalBYvyWREH06hvfWw8+/b4mM4EaNugcHi5f1wtiLMPJ
- VOTr8bCCrMT0O4G4a/WHibmNKi82NPrzhLQEKL41iqJvOM3AbBfpi3yc
-X-Gm-Gg: ASbGncsNenHDF2TndskmNpg72Auz/31Fbcv/HZ+1rZYSblEpyAL2AKsTdENoROiOyNi
- bI6+lyk4C3Opz1OG3QMjDPwm1XBDQYGOe++5Nt4h3N3yLgnkDS+t4B1189p1hgJ8Seu5VXawpiL
- qkrYzbPHqvTdsXsvOYUpooINyWW5La6VFkSFZqmd8d/qZlMKri30nEkt6VpLQUWtOddweKXSsCp
- s79D4sE9swscUF90PZmzyiJgrbTy3Erh1V2EKFSBzsJMzlmr7o2uZh9JvbFnKQoJZ3hNVWX39oF
- Dpnk5DCr8N0yf3N/zmov6Ifnrobrzml0V4myZLI02+gq7dsVcsULbBKXsGkrA1lDUL3DXf+0bBO
- +MIwc+QVcrn8b+L+li3rL/wzJUtvKOIqclrEhIGuTnAi7SDSeMqHw9jNeY+eH9znnbj+hMRxpAX
- ocebJYc+yfIsOOjtv3kKqL+QAT1g==
-X-Google-Smtp-Source: AGHT+IExQFsNPtBs1Xj5miLvxmintvWHhiICyxn8q5+dbslUtcud5J24RqOaI8yRZ14HHbP/D4VKng==
-X-Received: by 2002:a17:902:db0b:b0:295:28a4:f0aa with SMTP id
- d9443c01a7336-29b6bf5f036mr89773335ad.43.1763890065882; 
- Sun, 23 Nov 2025 01:27:45 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.27.34
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:27:45 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 10/10] rust: kernel: remove temporary re-exports of ARef and
- AlwaysRefCounted
-Date: Sun, 23 Nov 2025 14:54:38 +0530
-Message-Id: <20251123092438.182251-11-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ AJvYcCVGRAq1COoqrRbQOb+GgwlROzFYv0lyA44944+G9H7MPoTwQlnn34GI49qztbgWRbcoIS9XsJXy@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxW8T2PfHn+PFL3D8MGCKAStGXYCa4gUDUsAhyhdoH4Rp5WumI3
+ 7DuNa7bG5YW8k6sdXQk2yDLKS9Pk2EPFi+cPTz2Tg63oIcxrds0hRRHmS30s2cJN4RBvtrMuXeQ
+ vioOr+iMt6k/i8XaIs5hV/yqqBvgD49Q=
+X-Gm-Gg: ASbGncuOis53kb+lxPsdUDvKTkzuX8uvnpCZaZz2CEzVehTdnZsxYc+5LAqcvNIy+KC
+ IGfoKfiRNVR+46exKgMLZcH+a9bfIU/ZgKfXTfrVvff+CHbcHqsPQnExPtoGBrkQcu9b47W9NHZ
+ K4Xj/U+J1JcQkoYw+eGV1zfJ7MzheRTMe82xzkSGAvwEuHYxGJVaVCNc8+OwKkF4Bdaz1X/YZsx
+ dVooFl64ZA6VhyBxRODJpH5vZBgqhtKSaEyGe7geuasWJoiuU0h/bGwlSPIPC409ZeckdxtbTdC
+ EFlaAt4QwLpV8HxfbFMHDVdDdNScFsyx21iP/SBTzt95zsdfZD0qcRBWaIAdjCGOZODdxU5dFK2
+ s7F2QzRU9+mxQ/w==
+X-Google-Smtp-Source: AGHT+IHPUoZtQP0D4LXyIGxGGt4feAJlxaU/xnzf58w7DLQtCNJmBFAVlgka05hrCrIG2fNw6s735Cx7RdDtbzh+p78=
+X-Received: by 2002:a05:7300:ac82:b0:2a4:3593:2c0a with SMTP id
+ 5a478bee46e88-2a724c02369mr6966770eec.3.1763995918927; Mon, 24 Nov 2025
+ 06:51:58 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+References: <20251124231644.38d0303b@canb.auug.org.au>
+ <20251124123249.GP4067720@noisy.programming.kicks-ass.net>
+ <aSRlFB9PoOcZVmvt@tardis.local>
+ <20251124144714.GT3245006@noisy.programming.kicks-ass.net>
+In-Reply-To: <20251124144714.GT3245006@noisy.programming.kicks-ass.net>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 24 Nov 2025 15:51:46 +0100
+X-Gm-Features: AWmQ_bkcTjev6aW2ygRL9xeP9TP5FKOyn61229OF8XBDxgWHkq8wbcdDoBOjJiU
+Message-ID: <CANiq72kN_QjYSCdzs9UCx2sHdR9Q2g_7_h-ZZ2y0qLZjhUxX6g@mail.gmail.com>
+Subject: Re: linux-next: build failure after merge of the tip tree
+To: Peter Zijlstra <peterz@infradead.org>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Stephen Rothwell <sfr@canb.auug.org.au>,
+ Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@kernel.org>,
+ "H. Peter Anvin" <hpa@zytor.com>, 
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+ Linux Next Mailing List <linux-next@vger.kernel.org>, ojeda@kernel.org, 
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ nouveau@lists.freedesktop.org, Alice Ryhl <aliceryhl@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,35 +94,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Remove the temporary re-exports of `ARef` and `AlwaysRefCounted`
-from `types.rs` now that all in-tree users have been updated to
-import them directly from `sync::aref`.
+On Mon, Nov 24, 2025 at 3:47=E2=80=AFPM Peter Zijlstra <peterz@infradead.or=
+g> wrote:
+>
+> I really don't think rustavailable is doing a good job here. Strictly
+> speaking yes, its available, but figuring out why things don't work is a
+> giant pain in the arse.
 
-These re-exports were originally added to avoid breaking the
-kernel build during the transition period while call sites were
-incrementally migrated. With all users updated, they are no
-longer needed.
+I guess `rusttoolchainavailable` would have been a better name, i.e.
+it is only about the toolchain, not about the kernel config
+requirements:
 
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- rust/kernel/types.rs | 2 --
- 1 file changed, 2 deletions(-)
+  rustavailable   - Checks whether the Rust toolchain is
+                    available and, if not, explains why.
 
-diff --git a/rust/kernel/types.rs b/rust/kernel/types.rs
-index 9c5e7dbf1632..4329d3c2c2e5 100644
---- a/rust/kernel/types.rs
-+++ b/rust/kernel/types.rs
-@@ -11,8 +11,6 @@
- };
- use pin_init::{PinInit, Wrapper, Zeroable};
- 
--pub use crate::sync::aref::{ARef, AlwaysRefCounted};
--
- /// Used to transfer ownership to and from foreign (non-Rust) languages.
- ///
- /// Ownership is transferred from Rust to a foreign language by calling [`Self::into_foreign`] and
--- 
-2.34.1
+> Now, lets see if frobbing Kconfig to disqualify RANDSTRUCT will let
+> allmodconfig work better.
 
+By the way, I have had this patch around for RANDSTRUCT a long time:
+
+    https://lore.kernel.org/rust-for-linux/20241119185747.862544-1-ojeda@ke=
+rnel.org/
+
+More than glad if someone confirms it works for them...
+
+Cheers,
+Miguel
