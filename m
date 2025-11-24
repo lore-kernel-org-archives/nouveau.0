@@ -4,163 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43495CFC518
-	for <nouveau@archiver.kernel.org>; Sun, 23 Nov 2025 05:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 137CCCFA466
+	for <nouveau@archiver.kernel.org>; Mon, 24 Nov 2025 03:48:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E9510E127;
-	Sun, 23 Nov 2025 05:13:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22C8610E1C7;
+	Mon, 24 Nov 2025 03:48:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ntUmNH7V";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dODsilFe";
 	dkim-atps=neutral
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011045.outbound.protection.outlook.com [40.107.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9453610E0D8;
- Sun, 23 Nov 2025 05:13:39 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010065.outbound.protection.outlook.com [52.101.201.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AE0510E0B8;
+ Mon, 24 Nov 2025 03:48:02 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aqykhsLj0UCY4yN3wp//a60R4ZX8GGa3HDa+87dicwOqTFDMUB+YsWoYkaFoQPyyMB2JTosgXq2Kd5KNtfVDc865FbGnQ9VjamPIK0zXn/OQGQeAU+O+6yhpLGatY1jGMRlrjjwNBYiQmHmrG5Js4WQd9Agd8wQMFhbMN0WYjrlYiraUOIhR5/1AWKKzLfl8ALYB/6P3b19fkskpVx7tn5TQ6P9vLX2/87hYR1LYRFxfudcfh+HgH6tkKuLXRP7guaM5Wli4yIN1JaBkMXMDN0rnaMD0aNdhLLWA3DoPOYOTRamfnSof6PYdeox7nIpN+aN7NpNAQ/Q464kwXJ+fFQ==
+ b=hZAw7w0HtPJUhf8oY6SmidAHWCTxpfrOtAOJPriWc9+7EVAzQ02f+3onSl7nPNaVHCoAB7ZdRccXGeSmD1FYIEvgEHHeJPSGPFXedJrIezJRdJBrU0D692vIsENDFgR3SavAEtsUv8ubSp5FC2qB/nc2D3sbWsND+LZIu+X2d5AILQ7SPvP5SFJCc3tIR7jrHXTKEAPl4YAQ7PPylDAwLHql6lerSfuVGvVd9D79q/Z1k4pIXelz4OxlEZ6KIA+nD8VYOuWrDdJOGJYPwq1bhzu6uFMxNt9QK+DvesfT8E+BjUNrU2QEpojkA9EV/qQ4u5iEAtzm7Papveg4Po9e2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JvlcMqrJv6TKpicCmzT6/F7B7otdjCBphDj3cYbqY+A=;
- b=OEf5sIpTVbN7bTMeysAAZ+dcuQoW0KwL5rs4HI2Ik/MAnLoeeLsv0AI8HPEouD9hAPo2n9k2MbyF4cOM6pA1RxZsXq74nc7i7UkTOtR0jC+zSd7cR8iCs2CU5tJzwVRzMW3pdOKKYvC9ouyFFvmTNn+7EhO4Ni0P8tigdVhWex83luQ5LlkXH1XephvheiIGF1zumRTAG/XwhlDeHkSCSBHDfWTzlkJfOzOr3S0MSRjKtqf0dP7zF7VwjoyDCnpiLjg/knm6kzHBTf49OnIER5yeO8ePOXrcTqOc+/+aM/fr2aCGrgkyNWOi/Q9rkPEOc3hZmuZ3aIZXm2LlxFao7Q==
+ bh=uDlcEHngXxMxt+syJlISMtr1QNvTSzw9a+1gv7jXIdM=;
+ b=nBca3p/jfVL2YVIo00fGXH9u3Gl5SP1TOrJ2iydl9Np3SkG5H3F4vDde26cejx4YGGiVHWp+8qHQNgRTu61e2CxhBRnFj+Ld5NIKM3jqUfCEWfOvrcVQnSmg2Vzn2Mr/Q5EI6IeHu0+kLnOg0qsDb1tDMnzVciMS/OMR4ogIHwyL48SGkpZ0BwXMabKqXiuQczKzpiq7YP5b0larLDf/GKtt9GdgRuI+bs9aQ6bvruRgLyJh0ukrXude7ivWtzW4Zv/g/qBOkw/cGFFRelA75pLFKVYqph8kV+cmfrTc45gFDMQpXzFBiyf7QEHDhK8nCDrw8srZ4b/a3uMZZ9Gmzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JvlcMqrJv6TKpicCmzT6/F7B7otdjCBphDj3cYbqY+A=;
- b=ntUmNH7VSJr8uDCricyvtJz5PIQDsLCENkwKrf67Ign+uRMop3jY0k0Oc99reTN7IgVrKwRvRJi74zLwkaHttXG+dLWguCvyIeBId1Mh638YHGFaq8cCN0KsDe8zeu8Hh2OKiwO3j53upViScsZryWvkZJshYSfT3p2OZhWfZuOegRYT/qjysqrH2uSVxXvpbkdYMAPNNwNbmwe8ZOSXqZ5zMrq22DVlVoP0ag76pOoNTrkWd9xVzFlA+3xeyTEX4pStODKYyJ///mmw0rYCLBazxBhITZjAAOnopTZ57wBbf6Kr82WdgQNq/mV7YZdhgle/ElPtrS7rpfqlHiO4qw==
+ bh=uDlcEHngXxMxt+syJlISMtr1QNvTSzw9a+1gv7jXIdM=;
+ b=dODsilFeMgnd4eApeB8bV5QE7rWr/ppG0/S92x+vWkIXNMSduJmUrNvtBu7AzlnQO+UOPMn/jP0RbqkOdNedyunmne3s+ueP5iMOIo+NX7IrNOyErAYS6Dc1nt7Q286QQ4sINZByxSxJ192S3iAR8i9pgs2qmBS93CsVWNz+E5yHMd0pgxlO+5jKxOAzmrmU0tl59xIF6GIcOL8M72lG0yFgbX5SdCc+lLxl6WjRzrlRwdwao9C4pGV7XCPUojRDfg9xxm8GemeeQRolzFtpgyhJ+sqFkwfzEg5UQwb4AVntU8gccNi/emlA2CoxJOKqxHeSdpDRFyuFteaZHabw6A==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by IA1PR12MB6162.namprd12.prod.outlook.com (2603:10b6:208:3ea::19)
+ by SN7PR12MB8148.namprd12.prod.outlook.com (2603:10b6:806:351::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.15; Sun, 23 Nov
- 2025 05:12:31 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.17; Mon, 24 Nov
+ 2025 03:47:58 +0000
 Received: from CH2PR12MB3990.namprd12.prod.outlook.com
  ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9343.009; Sun, 23 Nov 2025
- 05:12:31 +0000
-From: Alexandre Courbot <acourbot@nvidia.com>
-Date: Sun, 23 Nov 2025 14:12:17 +0900
-Subject: [PATCH v2 3/4] gpu: nova-core: bindings: Derive `MaybeZeroable`
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251123-nova-fixes-v2-3-33d86092cf6a@nvidia.com>
-References: <20251123-nova-fixes-v2-0-33d86092cf6a@nvidia.com>
-In-Reply-To: <20251123-nova-fixes-v2-0-33d86092cf6a@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, 
- Edwin Peer <epeer@nvidia.com>
-Cc: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- Alexandre Courbot <acourbot@nvidia.com>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: TYCP286CA0116.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29c::8) To CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9343.016; Mon, 24 Nov 2025
+ 03:47:57 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 24 Nov 2025 12:47:53 +0900
+Message-Id: <DEGM8P88O2MV.3D4XL17AMWHJ4@nvidia.com>
+Cc: <acourbot@nvidia.com>, <apopple@nvidia.com>, <ojeda@kernel.org>,
+ <alex.gaynor@gmail.com>, <boqun.feng@gmail.com>, <gary@garyguo.net>,
+ <bjorn3_gh@protonmail.com>, <lossin@kernel.org>, <a.hindborg@kernel.org>,
+ <aliceryhl@google.com>, <tmgross@umich.edu>, <simona@ffwll.ch>,
+ <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+ <tzimmermann@suse.de>, <jhubbard@nvidia.com>, <ttabi@nvidia.com>,
+ <joel@joelfernandes.org>, <elle@weathered-steel.dev>,
+ <daniel.almeida@collabora.com>, <arighi@nvidia.com>, <phasta@kernel.org>,
+ <nouveau@lists.freedesktop.org>, "Nouveau"
+ <nouveau-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH v2 2/3] rust: clist: Add basic list infrastructure and
+ head iterator
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>,
+ <linux-kernel@vger.kernel.org>, <rust-for-linux@vger.kernel.org>,
+ <dri-devel@lists.freedesktop.org>, <dakr@kernel.org>, <airlied@gmail.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20251111171315.2196103-1-joelagnelf@nvidia.com>
+ <20251111171315.2196103-2-joelagnelf@nvidia.com>
+In-Reply-To: <20251111171315.2196103-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: TY4P301CA0053.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:36b::17) To CH2PR12MB3990.namprd12.prod.outlook.com
  (2603:10b6:610:28::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|IA1PR12MB6162:EE_
-X-MS-Office365-Filtering-Correlation-Id: b65bda3c-1e78-4d77-dea0-08de2a4ee78a
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|SN7PR12MB8148:EE_
+X-MS-Office365-Filtering-Correlation-Id: 65bba69e-9d7f-47e4-dca6-08de2b0c413a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|10070799003|376014|7416014|921020; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?dEFFL3dKNTJUbVFEWTQ2bXVjcUw4YWE1ZmNNUDIxL25WWkRxRmVJMjZXZXJC?=
- =?utf-8?B?L2c5b2s1UU1Kbk1KUnEvQkVLZE45VFJZaTQxWnh5ZzFzL091bURzVGU0dmlT?=
- =?utf-8?B?dUdzUXU4U0dZRnl2d2tMSWxndFd2cFhDeklzK2hIeDJpdGNtNWY1dEVma3VI?=
- =?utf-8?B?VDgrdUZCRjVCYlJvRGNJODErM3NVZ1d5cUxzNitSVVAwMzBKKy8yc0xJLytL?=
- =?utf-8?B?eEFtZ0xkc3lDV2JXdTdva1U5ZDk0aVNXRlF3U2pFaHpzN1hLcGxkOXRvNVd1?=
- =?utf-8?B?Y2hJWmdObzFoQ3R2cHZITlczNW9qbkdMQlhCSUd5WGw5azczK1hNMGdFaTgr?=
- =?utf-8?B?azZnRFZlNE1vNzE3TlJybjJGMlh3eVhrSk02eHE5QUl5WCt2TlVOK2FNMUFB?=
- =?utf-8?B?YVgyYlJYMHdpWHI3ZFM5eUgzbHEyMW1qU21RbVc3dTdjSGNOYTNKVVk5eHov?=
- =?utf-8?B?TmJJby82NjgybExBZ082UWJsTkdwZE5ILzN3SDFrYndmeWJJQ3hBN1dGT2ox?=
- =?utf-8?B?NVVFMnh5UzJmdjFFQ2NqMWk2ZExrRjRNZGdIWmpzV3dDd1gvZ1BPdjBTRjhM?=
- =?utf-8?B?S0ltRStSN2tzTDlKeit0OU9BUzRUZ053MG1DWnBKSVB4UENWT0tmMDB4WExP?=
- =?utf-8?B?U0wzdE9DeFNrdW5ST3RYVkVxaFFqdUdOQ3l2eEd5UTkvNmJoUTNONmdYTzM4?=
- =?utf-8?B?OWJHRE50YjFXOFo5N1ZDTDVQVERhelQ2WjY3S1gzS09iV0dtT2lvcnE5NWg1?=
- =?utf-8?B?dmREeTI3a1BlOUNBUGYreDdma3FYdVJ1dFp5TUUvc1V5RlJOL1lmd0VXQTR1?=
- =?utf-8?B?YklRQVNlb0FKRk5JMXBCZlhSUFpoK1BSRUJuMjk2SThpTjZkZXN5UGtJMURj?=
- =?utf-8?B?VnMxZW93MWFrVDFwUFNmUVVsQ2xQR09iTlFlZW1sRWFQMFhrUjhVc2N2UUdy?=
- =?utf-8?B?djhRd01sSloxTXdEVit2Yk42L0E3NVRlT0c3TWEzRnM0WkhTdyt0M0g2b2xq?=
- =?utf-8?B?ci9hWEhyUkxwNlZjM0FvMnZ1eDUxSC9UVC9ZUHhqVVcyVWlVbGprMm85OUpL?=
- =?utf-8?B?ZDNxdVJiOVFMU0ZSMmhKU3N5OGZsVVpjMm0xSTkydU9nYnZ2VGplOVRrbWk4?=
- =?utf-8?B?MlJIY3ZVKzczYTUwSmFPR0NxZG9FZmc4R0NLMXhmRUFPVUc4cUt4NTFzYTVn?=
- =?utf-8?B?UUtWMDRrd2hVR1FDWFA5VUorYkNHbjNsaXJ4TlJXK2ZwTG1ZQnB2d2tJNXB5?=
- =?utf-8?B?TzJBWkx5amsxUG8rdktLWmFUNThLaHhOb0F4cmwwKzhwcVBUTFcrYjlZelV4?=
- =?utf-8?B?RmdlTzJIVTBWVVY4M3gvL0YreGxPVk9ETDFDazJmOFVobGxYb0tCU3o0cTA1?=
- =?utf-8?B?eWVSTk8wdmYzUTJsYXBuM2JucEpSZUc3UWRSdTczdlBJclkxby9pMUFlTFJl?=
- =?utf-8?B?eWdyYUFFWVUzVjZaNjBHWEhJbEhXL044WXVaVHZ4SWk2MXNDQlB0OVdFaGtL?=
- =?utf-8?B?RVBlUTZMQ21YNHdzQVBwK0prRGx4UFg1VDM3eGpURG40c3pyZFVRZmtKcHpB?=
- =?utf-8?B?MkZZYkpFckxjL1l1VGZ0NWdOT0dabXpKSzJ4V1ZGbnA3NjNDcTVDVEpSS1Qv?=
- =?utf-8?B?SWRnQVl6U1FNK3E4d0VoekpuVEcxZkJtMzVIOGFEZmtzWkZOYjE5YmZKbGEz?=
- =?utf-8?B?eGV1MGFBVm5iSk1UZXdtY24vb1hKcUdtcEpUdWFJWGF0aUo2NC8yWmFLT0RU?=
- =?utf-8?B?T3JGZjc0MHF2cWFPNFl6SmtTRXdCVDZ2MitLRzE0NnhBdFl2WmdBTnB6VFUr?=
- =?utf-8?B?WTFpaEJaQmVHUC82K1RWcXdHZ1pUMUVSTXMzVm0wMkJib3MyR0VTVHhiTldm?=
- =?utf-8?B?YUR1Tm5NdVpPY0s2TXo2dEFtZWpnaVBUZ28rYlJMaTlJSHNEbllZQ0MxRTh0?=
- =?utf-8?B?dlhQdHFkNzlkV1IvMEtwMlFldExoN3ZXTm9nQzBzZEg3OVFnWVVxVEhNV0VB?=
- =?utf-8?Q?ntsBxSQeZwjpaaAd4p0BpJvZ/RiiH8=3D?=
+ ARA:13230040|366016|1800799024|7416014|10070799003|376014; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Y0tJcC9WMHhoUjArdUlwK3BHTTZYU2pqLzdpMVFpaEtXOHZwb0tKNHE0UVpT?=
+ =?utf-8?B?WENKU1pWWllkQ3NyaE9BcHdFZEQvSkJ4QWhWMW1Wb1RnWTVsdzl2dnIxeWpz?=
+ =?utf-8?B?QjJWQmFydFNYQS9BeGl1Rk94T1NaSDVxVEtCOWQxaTRvbElxK1lmcHBoWXhz?=
+ =?utf-8?B?YkphRFJwTHpPV0dXM3RKcHhSaWNvd2xPUXlXN2NBb0ZGS0NnN3NscWdnM3p2?=
+ =?utf-8?B?SHZyQ3VSQ3I1YmRjTkVmUlZvZ0lITWpQTm5xeTdjbW9MTGxURWQ5QmhQWkU5?=
+ =?utf-8?B?Z1psUVpNM0taZThnM0JJWXkrMU9CYXQwa2U4RThoVjU4dFp1NVNQREVMZDk3?=
+ =?utf-8?B?S3E5TFRsVHdCZjNDRzNONlhGZmdOZHc4dGk5T2R4MnJocURTSE9NSVRuMWp4?=
+ =?utf-8?B?b015UWM5OEd2dXRrRG5BWURTZG9EMGQySnZnaXJCZzl5VnQ0azNsbCsxTmVC?=
+ =?utf-8?B?Y29tcHhJS2dGSzM3TzM1Z1dDZENQVGV0Tk5HOHdqL2c1bWgweVoyc21Ba2RM?=
+ =?utf-8?B?VjNWMDFEM1N6QTZEYm9UUDYwOFNHQzB0NDhjYTFSQzVLZitTMVpQZ1hkdCto?=
+ =?utf-8?B?dTVydkNYR0tmbWdjdnVueE5Zd2hPSW8wRVY2RmtGUXV3M3lRK0dPL292NTJl?=
+ =?utf-8?B?ZkRWckdGUDU4QVoyQVRBWTdGNUxqSm5lNWVJNmViU0swZXdsYmZkTXlCaXU0?=
+ =?utf-8?B?a0JmSzFwY2grOExBdE5JblAvR05GSVNkTXZXNGgvL3hiOGtJcUN5NnF0bmpt?=
+ =?utf-8?B?WHo1N2lUT2xEenpjVEFXNTlzb0VMWVdaRENoNGNmTUhXdHlKbzRIZzNLdysx?=
+ =?utf-8?B?dzl6QUZXS2dOSVJQTWorMS9qV0UxdDRwQ0ZlRlN0V1NqZlZkM0dLdlJaZE1I?=
+ =?utf-8?B?UVpic2podEkzRUhtWGQ0akUxOUI4SDA3M054WUpMa2I3U09yOHFGbmZLcm5y?=
+ =?utf-8?B?WHc5THRpUTRvazY2UHk3UGxxeWprV0ZVclBIYk42RHNVVWUvQWJ0YVJwcGVE?=
+ =?utf-8?B?WGs2TkJPOHVvTWRiaTNlbVFUa3lwdFowL0lYdHFWLzdOam4rYk12LzdDRjZE?=
+ =?utf-8?B?aEV1alRXbE1Ub3F3N3ZVbHc5VTdXSUFBVDFxRHR0TGhWWlF1ZTY5NFhEVHB4?=
+ =?utf-8?B?SXBNZUt2QkFYbVVsUFJFOWpwdWo5M0RudXRFSG5PalpiYXNyVGcyQjBHaXkv?=
+ =?utf-8?B?ZkMrUzhGRWhCVC9Jb3JWcVl6dUdmREtsaDRwN2RNR3dNejFzekxZeXlPS2xF?=
+ =?utf-8?B?QU9rRHZHSFlNLzlBV0E0WDZSVDI5cDE3cDk3SmFBRUIvUVZIMzhMYTZnQzEv?=
+ =?utf-8?B?T1BVVG1ZWExYMGsrZVhrYzNweGVmb2lNcFlKV3NrcGZFaTNNSDlpRXpGd1JX?=
+ =?utf-8?B?aGJBSWQxbWJKZ1dXWTl3R01XblpWcVI5UmY5MjFzVG9yS2JXYjBjbXkySERB?=
+ =?utf-8?B?ZW1QOWZZV0o3NWNtMXo2alZmQlAvN2lCU0J0MjNTY1NVM1ZxWXh4dkg1NFRM?=
+ =?utf-8?B?QzZLeStPc0N5UFd2L2w2bjM2R2J4eEMvRW4wQW9XTHM2N21XdXE3YXdaQm93?=
+ =?utf-8?B?WGVBNXlrUHdjblp0bnpHZnlHMjgrQ1h6TnpzR2h2cklEaGZnTWoyMXIvWEh3?=
+ =?utf-8?B?MEl3aE1iN3o1Q28wdTFDRjBqdmFuMkh3SWlQU2ErbU9mbXF1R3JDZTZKVC90?=
+ =?utf-8?B?VnA1NE10N0VJeStGczBIWTdOdjEzcGZqZzdxekVVdnJmV2FNR21XQTNWTlho?=
+ =?utf-8?B?Vk5NeVpFRUVINmpMWmxoZ21WK2M0R1BpSkl2L1VucnJJbld4dFdNei9YVDdh?=
+ =?utf-8?B?a2ZZSmNOVEtzSm1pZ3FFbGljNk9NZ2JtZ0dxQm5iWkExbUo5TDAzWUpyYVVp?=
+ =?utf-8?B?R3c1RUlLbThKSHo4RVV6eXpQd1NzYVZsdS93aG1kaU4yTDZMVlk5Y1pJZlFM?=
+ =?utf-8?Q?T9hi7rANj29Lj10u6x8E2GNtAjReG632?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(10070799003)(376014)(7416014)(921020);
- DIR:OUT; SFP:1101; 
+ SFS:(13230040)(366016)(1800799024)(7416014)(10070799003)(376014); DIR:OUT;
+ SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NG5tZ1RYRmhuQURMNXkvWHNhVzZ0Q0Y1cXN0L1lwUjZXeC9QVjhaMWZJUkF0?=
- =?utf-8?B?Sm51THRsdDdueGJqQWZUeDd2NlBuazRXV3VFcXVwMlNlSnhuQkFiajdqRGJB?=
- =?utf-8?B?bk1zcEt6YWVPWFBpRmI3WVNpMXFDN1Nvb2t5MTlrb0dDKzhTK0JZS1lnSFI4?=
- =?utf-8?B?SjdzUVBoRG9lM1VkYUVMV1hmYmF5VWQrOFZtSkw5ZEhpbXBNWWdOQ2hlSWpt?=
- =?utf-8?B?YWJwNGpxaWs1SlNraENNdW0vMFR0Sm1ISzVETUtXd3ZDK0F5b2VBd1dqcnNq?=
- =?utf-8?B?ekh2dk1JV2JLYTI2ZmUvam1KTDFqVisxdXRYMkRVT2lFdHp3UU9lLzFGWVo5?=
- =?utf-8?B?OHFxRS9WSFByMUlQZnBKL2JIdUlqOGcrOUFYemUwT0UzTFJ4Q0d3OWMzN3dy?=
- =?utf-8?B?MlNjOE9yemV0a0ZrN2Y0YmxwcTQ4Q2hyTlhpYTQyNDZxZnptMEFJbUxoTGlK?=
- =?utf-8?B?aWJDOHpXZ3d2aEhlWVV5NXZKbFJzSzYwdVdEL1FJOUZib0doOFZTUitNaTNa?=
- =?utf-8?B?emlScENRUVViU0N2Z01FSS9rY2lYakVZQWFsWGtORHR0ZTRFUUVaSFVQMngr?=
- =?utf-8?B?TEZSYlVrRUJCUFFCKzlFcm9ya2EvSTBxQ09tWmZBZ08xbkl6S0RVMWtVMGZt?=
- =?utf-8?B?UExnNE9Ua2FJbEJjQU1IaTk4YnE5Y09sNjZsNHdycXdNcGJTV1RoVkZmZG5D?=
- =?utf-8?B?aUUwd0ZXSHBBbjV5RVlHdXA0NCtVMytidFp5a044QkpVYlFERnBOd1laM1lR?=
- =?utf-8?B?d1FKN1NsTTNOZkRPOHhmTDBkZjE0MUVVOWRPdFQ5SmRoMkx1WTlqQlZoSlZw?=
- =?utf-8?B?YUdiZjBDcDk0dHlQcVVSeWhhRHg3ZUx4Sk9PamoxdTBZR2xZVHAzK0RVY1lG?=
- =?utf-8?B?bS8yMU8rUkc2QWU2WG5jUlZiK0I0a0VvZTdvY282VjVsVTI0dlRQM1lxY3c2?=
- =?utf-8?B?TVFHWHp2dU04N0Mway9wS0V0dU5RVDhTQXhaNXVRVDdaNktRWTdyNXI3S1pH?=
- =?utf-8?B?SkdZWFY4M1BvSndqS0NwTHJaT3NCWUp3TWlMbmwwUitUTHhWeXFFS3V1NTMy?=
- =?utf-8?B?Rmp1Y2JFaHNwWVQ3b1JhaVY0M0hIbFk2MFlhZ0dFZVRab0hHeXpKNys0Q25J?=
- =?utf-8?B?RFZsYnF4MDhuVUF5VW9raGtWbmw0TWhVSTdmdUVxWlJPeWtjT1l6UmhWSTBU?=
- =?utf-8?B?SXFCenViT0lmdUk0TGFtYUpSd0xoOFVFK1RIOHRUSThvaytQY3pRM0RpT2NC?=
- =?utf-8?B?SDVYUDZIaWhOZEhJNG9wWjh4bFRGNXVnTlptVDMxSjU3QzBRajZlOTNBSnNn?=
- =?utf-8?B?QkR3U1RZRmRKc2tIQnJJNTAyMEZSVXo4RER5Y0M5Y2VYZ3dNVXlMS0NzbmNE?=
- =?utf-8?B?VURiVlA1OHBYYXNFZXltMEY5WEQzVjBQVnlFdURBY3B0eVJEZGFVcTNmakNY?=
- =?utf-8?B?OU8xSXZ1VXdOZ05NY1N5dFplTlNnRU9PSnpUa0p0VnZ3SkZxYUVqRGgzeVpO?=
- =?utf-8?B?TXMzS3V0cnRmZEVvUXp2Tk51anlEVUN1OFVGcnNCVW9ha0dRSzliZHp3RWRw?=
- =?utf-8?B?Q3F0NTJCRCtHZlRGSTNWT3BVRThGNGVKTXZGVWJtMVkrQ3NFYUIxemFmVjJq?=
- =?utf-8?B?WHF3MURsZHg1S0pkZHpPS3ZwZTR3YTM5c1Z3eFdoYitpTll6Q2RLZWxwNFhn?=
- =?utf-8?B?eG9EZEpRSzRlc3dpcnVlUmx2a2dtcFg0clVYUzFIUTFqWVh3ZVQzWHJaV3Bp?=
- =?utf-8?B?bWxZb3p2WUgyKzhCWExvUmoyK2xTZ2NoTlJmOVIzM1NvOHk2LzBHdEdtQmFn?=
- =?utf-8?B?ek1jUldwR1dpR0lWOHpURzVsY0ZCNysvbUVDUmV3YWNXSW5zOWUzWXY1c0ZD?=
- =?utf-8?B?OUUrQWhhTWdZOFNibEc3c2xUZktRclg2QkJBYllyL2crT0tRV2JoSXVvR0E3?=
- =?utf-8?B?MnhLV3ptNUJVMHJXa0xuSWtianM3Q2JWMTcyTVAya2FuZU8xd0lpVUYwa0Ex?=
- =?utf-8?B?UURxNUxJLzdiYWtPRytPYzJWd1VDVTR6RWVRYVllR043bTRxcTFtZGlQSXN4?=
- =?utf-8?B?S3R5SmIzajVyejJGYXRxRUozR1dPTUFVa2lHZ1hnb0RmQ2k4WjFOZHZGTDdj?=
- =?utf-8?B?TS9HcFNhOTZ0Y1FMLzc1VTdTSDRhVmJtVDhZSGhQWWVVNUhBSFowNm84V2F2?=
- =?utf-8?Q?WrKH5PIo5jlSAbmWzk/+93wgW2J0cOB/Dw9dqTO4EpcG?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QUdLOVFvNDd5MHJNZER0eElseUNZZ2hrOXk1RHhuQkNkdmlsS2o5MHB5dkc4?=
+ =?utf-8?B?aklEMDEwNkZDblVOSFFRTVgxTHluZ3NENFROZ1YvYTZuQXE1cmc0ZFBjUUNC?=
+ =?utf-8?B?QTU5UHFkdHo2bDc2cy9rbGg4MlhKdHJKa2NOS3hxa2Vta2N5NjcrUWNNdld4?=
+ =?utf-8?B?bVdQQStlNFJFN05Ib2YrZlFoelhScmNPbGsxaDdxYXNmR0NHc2pqcVhlL3Z6?=
+ =?utf-8?B?bFVucGx1NGdBOUhuTlF4WWRuZUkrcnM0QmYyK09MS292cEc2ZS9hRHEwYmFx?=
+ =?utf-8?B?emkvOUY3VDhzYTNQa2RyUEV4eVh6bWEwQVlwNHMxQ3c2Z21FNitrRDRkZld5?=
+ =?utf-8?B?dFpFR3VwY0tMNjk4akZhYjh0UXBvdmtiNjhuaG9uTGtzTU5uZ2I0ZDRFYUlM?=
+ =?utf-8?B?VWNPTFdGdndEQ2JUQzZZYWtoK3Fkczlzd2lRMUNPNnhNNlZGZERmT0RJeG9z?=
+ =?utf-8?B?KzE1eEpEL3lESVg0QlVLcFgwL1Q1akM2N2NTTUpvSW44YTV6NTU0Zy81M3Vz?=
+ =?utf-8?B?OU52aUVoemZiMTliSnQycGlEWVNTWlUzbEtHWlZXVjRlVHpkeEF2OHEvTGh4?=
+ =?utf-8?B?TEZuQTZGNnlSTXo0THFSNVpoQTh1SVUrejJncC8xZ3BGR21oNWlzanpuV1Uy?=
+ =?utf-8?B?YzlIWkkwMnZ0SFBPS0UwNWR6NU41WkxiOVE1Wm9VRitsb3V2ekhIaHBOZ1FC?=
+ =?utf-8?B?Y0p6c1FNQ3I3SGc1dmFLeHB1V2dZVENIV1lsK3k2RzZQd0tyY3pLeHVnZEg3?=
+ =?utf-8?B?ZmlBU2w0UjNIYVZ3bTdTc0tIYVNqMjZxdHNZekhLbFB0RlllemtpRXp1K1Fi?=
+ =?utf-8?B?b09WRUFXL2RTVnBobm43VmdCQldSV1ZoOFYzOWp3OWIyS0tnL3hzWWlFZytv?=
+ =?utf-8?B?UUFGNkhONnR0Skd1VExGbW1HUFRyUTNFSkxlc241NXFRa3FhTXVrQStYMy9K?=
+ =?utf-8?B?MTlXcU5wT01oOTlYT2NsdmtPR0lRa1d6TjNCMU1heGhYOUk3M2s3V0c4UkdQ?=
+ =?utf-8?B?N2pSZXk0VzAyL1MvNTllWmN2V3VWT0NuOXVmMXEvWmpkMFhYSG5xMjRVNzQv?=
+ =?utf-8?B?R1J5YjVrU2xTS2xtSUV1YXdGVlFjQ3ZMWXFQdnZ5c01ZVUtYUmhOdW5laU9R?=
+ =?utf-8?B?N04zTWhJR1crNTduQUQ3dVRBcFJlNWxwWjdGdkNoY0Rqa1lsQ1JCV0MzS2Ry?=
+ =?utf-8?B?MzZGdVhhYm5UcjZuOXM1bEl2cDBXMVZvY3FPdWhUL050Z01sREplY2cwRElE?=
+ =?utf-8?B?bS9QQkxEQ3NCL0Q5djZrMTFld096YzZZSXBMRG0wNjNvTjZjNDdabUptMTN6?=
+ =?utf-8?B?R0NVbndQcWxic1JGcFk1Z3pWTURZR0syUXk2ZHBPK1NObmRFK1paY0FxSUx4?=
+ =?utf-8?B?dzlPVVc2SUhZZjhOb0NiU0wvcytxMlVxWXlLcmtkR2psbk54NTFLTlcxUXJ1?=
+ =?utf-8?B?V2FVaFl4WGo5Z2Z6TnV3SGZyL2gveEQzTkliR0h6bTRIRlNFbGNrcWVUcS82?=
+ =?utf-8?B?TklNckxRMyt2Zk9BeEVpb2g3K3FvWGZrMlVDM1h0Yk5pV0FhNEtUTkZVRjNO?=
+ =?utf-8?B?Zzg3SnppTnNESVhQV0Y1em81U1R3M3lZUnovSVAxdVBPeU4rQ0VSd3N5N2lF?=
+ =?utf-8?B?aldXNFppYUZTSHpFWDhjbFA0TlJTVzdGaGhQTVNDYzJWazc4OVZpaGNpMVlB?=
+ =?utf-8?B?ZWxyZHNjVVZQRWwyTHZKczNhMFNjNGVTRzFKdnFOb3lKNEU0MjRuYXpIRGNG?=
+ =?utf-8?B?SCtwamQ2SDZKUVpFbXlQZ0RDdmlYdUdYd1E0YXhVSGNHSHZVS3ZEQ0dBSTY1?=
+ =?utf-8?B?aXZXN0NSbmUxeUJIZUFPU0hwM2ltTlg0cTk1S2dpQ0lmMWtwV1g5RXpNM1RU?=
+ =?utf-8?B?NGlPVFVsbzdXbUJPSFd1WDd2Z0xNOW9NTENJYUQ4elV4eERtM1YvTFMrenha?=
+ =?utf-8?B?R1YyK0YyRmpDK0pGYkJwVDgrZVZkYVRxQlFWNkIwcjJoQ3RKVTJhUm0vVTBp?=
+ =?utf-8?B?Z3ZsRTZsQ0dYNUdiNXVwUnhtSUVXTHN5MXYwNldNVllySHRwMVNGMjZ0TWNO?=
+ =?utf-8?B?VUxJQ05JK1ZYNmR2T3lvNmVxYVVvQ2pPcXhNeCsvbWdDaTljblhNWUVIVnVQ?=
+ =?utf-8?B?aWNuK0MxeDhHOUlkTFRVV1dFUFFQNUdITjMrUU9BQWhLVFgwek9KbHRBOXlt?=
+ =?utf-8?Q?2CWVnlY8uMpDw/+SmpMpRWnO4o0reTtHT3w27FSUoR6F?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b65bda3c-1e78-4d77-dea0-08de2a4ee78a
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65bba69e-9d7f-47e4-dca6-08de2b0c413a
 X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2025 05:12:31.5650 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2025 03:47:57.2463 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: IHIti/xXv2VffxBBNlYM4VwVAZ7OXiJHSqJAcRO6n7l/d/g2JeyJd+R/rxNk2KdJMBfdZwr3XN7agR5Cg9mX0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6162
+X-MS-Exchange-CrossTenant-UserPrincipalName: m1VCKsepVl5q6D9386lj15wSAWpcmdkycyLzTL58ECuGTJUYrYseMQYjALuhtbCbD9TQ2orml3GTky2kRbAnNA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8148
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,453 +176,278 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Commit 4846300ba8f9 ("rust: derive `Zeroable` for all structs & unions
-generated by bindgen where possible") automatically derives
-`MaybeZeroable` for all bindings. This is better than selectively
-deriving `Zeroable` as it ensures all types that can implement
-`Zeroable` do.
+Hi Joel,
 
-Regenerate the nova-core bindings so they benefit from this, and remove
-a now unneeded implementation of `Zeroable`.
+This low-level layer looks mostly ok to me, I will have more comments on
+the higher layer though.
 
-Fixes: 75f6b1de8133 ("gpu: nova-core: gsp: Add GSP command queue bindings and handling")
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/gpu/nova-core/gsp/fw.rs                   |  7 --
- drivers/gpu/nova-core/gsp/fw/r570_144.rs          | 11 ++-
- drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs | 93 ++++++++++++-----------
- 3 files changed, 54 insertions(+), 57 deletions(-)
+On Wed Nov 12, 2025 at 2:13 AM JST, Joel Fernandes wrote:
+> Add foundational types for working with C's doubly circular linked
+> lists (list_head). Provide low-level iteration over list nodes.
+>
+> Typed iteration over actual items will be added in a follow-up
+> commit using the FromListHead trait and ClistLink mechanism.
+>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  rust/kernel/clist.rs | 190 +++++++++++++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs   |   1 +
+>  2 files changed, 191 insertions(+)
+>  create mode 100644 rust/kernel/clist.rs
+>
+> diff --git a/rust/kernel/clist.rs b/rust/kernel/clist.rs
+> new file mode 100644
+> index 000000000000..5ea505d463ad
+> --- /dev/null
+> +++ b/rust/kernel/clist.rs
+> @@ -0,0 +1,190 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! A C doubly circular intrusive linked list interface for rust code.
+> +//!
+> +//! TODO: Doctest example will be added in later commit in series due to=
+ dependencies.
 
-diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
-index 7fcba5afb0a3..252755dbb73c 100644
---- a/drivers/gpu/nova-core/gsp/fw.rs
-+++ b/drivers/gpu/nova-core/gsp/fw.rs
-@@ -797,13 +797,6 @@ fn init(cmd_size: usize, function: MsgFunction) -> impl Init<Self, Error> {
-     }
- }
- 
--// SAFETY: We can't derive the Zeroable trait for this binding because the
--// procedural macro doesn't support the syntax used by bindgen to create the
--// __IncompleteArrayField types. So instead we implement it here, which is safe
--// because these are explicitly padded structures only containing types for
--// which any bit pattern, including all zeros, is valid.
--unsafe impl Zeroable for bindings::rpc_message_header_v {}
--
- /// GSP Message Element.
- ///
- /// This is essentially a message header expected to be followed by the message data.
-diff --git a/drivers/gpu/nova-core/gsp/fw/r570_144.rs b/drivers/gpu/nova-core/gsp/fw/r570_144.rs
-index 048234d1a9d1..e99d315ae74c 100644
---- a/drivers/gpu/nova-core/gsp/fw/r570_144.rs
-+++ b/drivers/gpu/nova-core/gsp/fw/r570_144.rs
-@@ -24,8 +24,11 @@
-     unreachable_pub,
-     unsafe_op_in_unsafe_fn
- )]
--use kernel::{
--    ffi,
--    prelude::Zeroable, //
--};
-+use kernel::ffi;
-+use pin_init::MaybeZeroable;
-+
- include!("r570_144/bindings.rs");
-+
-+// SAFETY: This type has a size of zero, so its inclusion into another type should not affect their
-+// ability to implement `Zeroable`.
-+unsafe impl<T> kernel::prelude::Zeroable for __IncompleteArrayField<T> {}
-diff --git a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs b/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-index 5f0569dcc4a0..6d25fe0bffa9 100644
---- a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-+++ b/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-@@ -320,7 +320,7 @@ fn fmt(&self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
- pub const NV_VGPU_MSG_EVENT_NUM_EVENTS: _bindgen_ty_3 = 4131;
- pub type _bindgen_ty_3 = ffi::c_uint;
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct NV0080_CTRL_GPU_GET_SRIOV_CAPS_PARAMS {
-     pub totalVFs: u32_,
-     pub firstVfOffset: u32_,
-@@ -344,7 +344,7 @@ pub struct NV0080_CTRL_GPU_GET_SRIOV_CAPS_PARAMS {
-     pub __bindgen_padding_1: [u8; 7usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct NV2080_CTRL_BIOS_GET_SKU_INFO_PARAMS {
-     pub BoardID: u32_,
-     pub chipSKU: [ffi::c_char; 9usize],
-@@ -360,7 +360,7 @@ pub struct NV2080_CTRL_BIOS_GET_SKU_INFO_PARAMS {
- }
- pub type NV2080_CTRL_CMD_FB_GET_FB_REGION_SURFACE_MEM_TYPE_FLAG = [u8_; 17usize];
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO {
-     pub base: u64_,
-     pub limit: u64_,
-@@ -372,14 +372,14 @@ pub struct NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO {
-     pub blackList: NV2080_CTRL_CMD_FB_GET_FB_REGION_SURFACE_MEM_TYPE_FLAG,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct NV2080_CTRL_CMD_FB_GET_FB_REGION_INFO_PARAMS {
-     pub numFBRegions: u32_,
-     pub __bindgen_padding_0: [u8; 4usize],
-     pub fbRegion: [NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO; 16usize],
- }
- #[repr(C)]
--#[derive(Debug, Copy, Clone)]
-+#[derive(Debug, Copy, Clone, MaybeZeroable)]
- pub struct NV2080_CTRL_GPU_GET_GID_INFO_PARAMS {
-     pub index: u32_,
-     pub flags: u32_,
-@@ -396,14 +396,14 @@ fn default() -> Self {
-     }
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct DOD_METHOD_DATA {
-     pub status: u32_,
-     pub acpiIdListLen: u32_,
-     pub acpiIdList: [u32_; 16usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct JT_METHOD_DATA {
-     pub status: u32_,
-     pub jtCaps: u32_,
-@@ -412,14 +412,14 @@ pub struct JT_METHOD_DATA {
-     pub __bindgen_padding_0: u8,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct MUX_METHOD_DATA_ELEMENT {
-     pub acpiId: u32_,
-     pub mode: u32_,
-     pub status: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct MUX_METHOD_DATA {
-     pub tableLen: u32_,
-     pub acpiIdMuxModeTable: [MUX_METHOD_DATA_ELEMENT; 16usize],
-@@ -427,13 +427,13 @@ pub struct MUX_METHOD_DATA {
-     pub acpiIdMuxStateTable: [MUX_METHOD_DATA_ELEMENT; 16usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct CAPS_METHOD_DATA {
-     pub status: u32_,
-     pub optimusCaps: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct ACPI_METHOD_DATA {
-     pub bValid: u8_,
-     pub __bindgen_padding_0: [u8; 3usize],
-@@ -443,20 +443,20 @@ pub struct ACPI_METHOD_DATA {
-     pub capsMethodData: CAPS_METHOD_DATA,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct VIRTUAL_DISPLAY_GET_MAX_RESOLUTION_PARAMS {
-     pub headIndex: u32_,
-     pub maxHResolution: u32_,
-     pub maxVResolution: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct VIRTUAL_DISPLAY_GET_NUM_HEADS_PARAMS {
-     pub numHeads: u32_,
-     pub maxNumHeads: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct BUSINFO {
-     pub deviceID: u16_,
-     pub vendorID: u16_,
-@@ -466,7 +466,7 @@ pub struct BUSINFO {
-     pub __bindgen_padding_0: u8,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_VF_INFO {
-     pub totalVFs: u32_,
-     pub firstVFOffset: u32_,
-@@ -479,25 +479,25 @@ pub struct GSP_VF_INFO {
-     pub __bindgen_padding_0: [u8; 5usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_PCIE_CONFIG_REG {
-     pub linkCap: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct EcidManufacturingInfo {
-     pub ecidLow: u32_,
-     pub ecidHigh: u32_,
-     pub ecidExtended: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct FW_WPR_LAYOUT_OFFSET {
-     pub nonWprHeapOffset: u64_,
-     pub frtsOffset: u64_,
- }
- #[repr(C)]
--#[derive(Debug, Copy, Clone)]
-+#[derive(Debug, Copy, Clone, MaybeZeroable)]
- pub struct GspStaticConfigInfo_t {
-     pub grCapsBits: [u8_; 23usize],
-     pub __bindgen_padding_0: u8,
-@@ -570,7 +570,7 @@ fn default() -> Self {
-     }
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GspSystemInfo {
-     pub gpuPhysAddr: u64_,
-     pub gpuPhysFbAddr: u64_,
-@@ -627,7 +627,7 @@ pub struct GspSystemInfo {
-     pub hostPageSize: u64_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct MESSAGE_QUEUE_INIT_ARGUMENTS {
-     pub sharedMemPhysAddr: u64_,
-     pub pageTableEntryCount: u32_,
-@@ -636,7 +636,7 @@ pub struct MESSAGE_QUEUE_INIT_ARGUMENTS {
-     pub statQueueOffset: u64_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SR_INIT_ARGUMENTS {
-     pub oldLevel: u32_,
-     pub flags: u32_,
-@@ -644,7 +644,7 @@ pub struct GSP_SR_INIT_ARGUMENTS {
-     pub __bindgen_padding_0: [u8; 3usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_ARGUMENTS_CACHED {
-     pub messageQueueInitArguments: MESSAGE_QUEUE_INIT_ARGUMENTS,
-     pub srInitArguments: GSP_SR_INIT_ARGUMENTS,
-@@ -654,13 +654,13 @@ pub struct GSP_ARGUMENTS_CACHED {
-     pub profilerArgs: GSP_ARGUMENTS_CACHED__bindgen_ty_1,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_ARGUMENTS_CACHED__bindgen_ty_1 {
-     pub pa: u64_,
-     pub size: u64_,
- }
- #[repr(C)]
--#[derive(Copy, Clone, Zeroable)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub union rpc_message_rpc_union_field_v03_00 {
-     pub spare: u32_,
-     pub cpuRmGfid: u32_,
-@@ -676,6 +676,7 @@ fn default() -> Self {
- }
- pub type rpc_message_rpc_union_field_v = rpc_message_rpc_union_field_v03_00;
- #[repr(C)]
-+#[derive(MaybeZeroable)]
- pub struct rpc_message_header_v03_00 {
-     pub header_version: u32_,
-     pub signature: u32_,
-@@ -698,7 +699,7 @@ fn default() -> Self {
- }
- pub type rpc_message_header_v = rpc_message_header_v03_00;
- #[repr(C)]
--#[derive(Copy, Clone, Zeroable)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub struct GspFwWprMeta {
-     pub magic: u64_,
-     pub revision: u64_,
-@@ -733,19 +734,19 @@ pub struct GspFwWprMeta {
-     pub verified: u64_,
- }
- #[repr(C)]
--#[derive(Copy, Clone, Zeroable)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub union GspFwWprMeta__bindgen_ty_1 {
-     pub __bindgen_anon_1: GspFwWprMeta__bindgen_ty_1__bindgen_ty_1,
-     pub __bindgen_anon_2: GspFwWprMeta__bindgen_ty_1__bindgen_ty_2,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GspFwWprMeta__bindgen_ty_1__bindgen_ty_1 {
-     pub sysmemAddrOfSignature: u64_,
-     pub sizeOfSignature: u64_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GspFwWprMeta__bindgen_ty_1__bindgen_ty_2 {
-     pub gspFwHeapFreeListWprOffset: u32_,
-     pub unused0: u32_,
-@@ -761,13 +762,13 @@ fn default() -> Self {
-     }
- }
- #[repr(C)]
--#[derive(Copy, Clone, Zeroable)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub union GspFwWprMeta__bindgen_ty_2 {
-     pub __bindgen_anon_1: GspFwWprMeta__bindgen_ty_2__bindgen_ty_1,
-     pub __bindgen_anon_2: GspFwWprMeta__bindgen_ty_2__bindgen_ty_2,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GspFwWprMeta__bindgen_ty_2__bindgen_ty_1 {
-     pub partitionRpcAddr: u64_,
-     pub partitionRpcRequestOffset: u16_,
-@@ -779,7 +780,7 @@ pub struct GspFwWprMeta__bindgen_ty_2__bindgen_ty_1 {
-     pub lsUcodeVersion: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GspFwWprMeta__bindgen_ty_2__bindgen_ty_2 {
-     pub partitionRpcPadding: [u32_; 4usize],
-     pub sysmemAddrOfCrashReportQueue: u64_,
-@@ -814,7 +815,7 @@ fn default() -> Self {
- pub const LibosMemoryRegionLoc_LIBOS_MEMORY_REGION_LOC_FB: LibosMemoryRegionLoc = 2;
- pub type LibosMemoryRegionLoc = ffi::c_uint;
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct LibosMemoryRegionInitArgument {
-     pub id8: LibosAddress,
-     pub pa: LibosAddress,
-@@ -824,7 +825,7 @@ pub struct LibosMemoryRegionInitArgument {
-     pub __bindgen_padding_0: [u8; 6usize],
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct PACKED_REGISTRY_ENTRY {
-     pub nameOffset: u32_,
-     pub type_: u8_,
-@@ -833,14 +834,14 @@ pub struct PACKED_REGISTRY_ENTRY {
-     pub length: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default)]
-+#[derive(Debug, Default, MaybeZeroable)]
- pub struct PACKED_REGISTRY_TABLE {
-     pub size: u32_,
-     pub numEntries: u32_,
-     pub entries: __IncompleteArrayField<PACKED_REGISTRY_ENTRY>,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct msgqTxHeader {
-     pub version: u32_,
-     pub size: u32_,
-@@ -852,13 +853,13 @@ pub struct msgqTxHeader {
-     pub entryOff: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone, Zeroable)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct msgqRxHeader {
-     pub readPtr: u32_,
- }
- #[repr(C)]
- #[repr(align(8))]
--#[derive(Zeroable)]
-+#[derive(MaybeZeroable)]
- pub struct GSP_MSG_QUEUE_ELEMENT {
-     pub authTagBuffer: [u8_; 16usize],
-     pub aadBuffer: [u8_; 16usize],
-@@ -878,7 +879,7 @@ fn default() -> Self {
-     }
- }
- #[repr(C)]
--#[derive(Debug, Default)]
-+#[derive(Debug, Default, MaybeZeroable)]
- pub struct rpc_run_cpu_sequencer_v17_00 {
-     pub bufferSizeDWord: u32_,
-     pub cmdIndex: u32_,
-@@ -896,20 +897,20 @@ pub struct rpc_run_cpu_sequencer_v17_00 {
- pub const GSP_SEQ_BUF_OPCODE_GSP_SEQ_BUF_OPCODE_CORE_RESUME: GSP_SEQ_BUF_OPCODE = 8;
- pub type GSP_SEQ_BUF_OPCODE = ffi::c_uint;
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQ_BUF_PAYLOAD_REG_WRITE {
-     pub addr: u32_,
-     pub val: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQ_BUF_PAYLOAD_REG_MODIFY {
-     pub addr: u32_,
-     pub mask: u32_,
-     pub val: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQ_BUF_PAYLOAD_REG_POLL {
-     pub addr: u32_,
-     pub mask: u32_,
-@@ -918,24 +919,24 @@ pub struct GSP_SEQ_BUF_PAYLOAD_REG_POLL {
-     pub error: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQ_BUF_PAYLOAD_DELAY_US {
-     pub val: u32_,
- }
- #[repr(C)]
--#[derive(Debug, Default, Copy, Clone)]
-+#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQ_BUF_PAYLOAD_REG_STORE {
-     pub addr: u32_,
-     pub index: u32_,
- }
- #[repr(C)]
--#[derive(Copy, Clone)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub struct GSP_SEQUENCER_BUFFER_CMD {
-     pub opCode: GSP_SEQ_BUF_OPCODE,
-     pub payload: GSP_SEQUENCER_BUFFER_CMD__bindgen_ty_1,
- }
- #[repr(C)]
--#[derive(Copy, Clone)]
-+#[derive(Copy, Clone, MaybeZeroable)]
- pub union GSP_SEQUENCER_BUFFER_CMD__bindgen_ty_1 {
-     pub regWrite: GSP_SEQ_BUF_PAYLOAD_REG_WRITE,
-     pub regModify: GSP_SEQ_BUF_PAYLOAD_REG_MODIFY,
+Since it is added in the following patch, I guess we can do without this
+very temporary TODO. :)
 
--- 
-2.51.2
+> +
+> +use crate::{
+> +    bindings,
+> +    types::Opaque, //
+> +};
+> +
+> +/// A C linked list with a sentinel head
+
+Nit: '.' at end of sentence.
+
+> +///
+> +/// A sentinel head is one which is not embedded in an item. It represen=
+ts the entire
+> +/// linked list and can be used for add, remove, empty operations etc.
+> +///
+> +/// # Invariants
+> +///
+> +/// - `Clist` wraps an allocated and valid C list_head structure that is=
+ the sentinel of a list.
+> +/// - All the `list_head` nodes in the list are allocated and have valid=
+ next/prev pointers.
+> +/// - The underlying `list_head` (and entire list) is not modified by C.
+
+These last two ones look more like safety requirements to maintain for
+the life of a Clist than invariants.
+
+> +#[repr(transparent)]
+> +pub struct Clist(ClistHead);
+
+`ClistHead`'s definition should come before `Clist` for clarity.
+
+> +
+> +// SAFETY: `Clist` can be sent to any thread.
+> +unsafe impl Send for Clist {}
+> +// SAFETY: `Clist` can be shared among threads as it is not modified by =
+C per type invariants.
+> +unsafe impl Sync for Clist {}
+
+These explicit impls should not be needed - as `ClistHead` implements
+`Send` and `Sync`, they will be automatically derived for `Clist` which
+just wraps it.
+
+> +
+> +impl Clist {
+> +    /// Create a `&Clist` from a raw sentinel `list_head` pointer.
+> +    ///
+> +    /// # Safety
+> +    ///
+> +    /// `ptr` must be a valid pointer to an allocated and initialized `l=
+ist_head` structure
+> +    /// representing a list sentinel, and it must remain valid for the l=
+ifetime `'a`.
+> +    #[inline]
+> +    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Sel=
+f {
+> +        // SAFETY:
+> +        // - `ClistHead` has same layout as `list_head`.
+> +        // - `ptr` is valid for 'a.
+> +        unsafe { &*ptr.cast() }
+
+Let's reuse `ClistHead::from_raw` here.
+
+> +    }
+> +
+> +    /// Get the raw sentinel `list_head` pointer.
+> +    #[inline]
+> +    pub fn as_raw(&self) -> *mut bindings::list_head {
+> +        self.0.as_raw()
+> +    }
+> +
+> +    /// Access the underlying `ClistHead`.
+> +    #[inline]
+> +    pub fn head(&self) -> &ClistHead {
+> +        &self.0
+> +    }
+> +
+> +    /// Check if the list is empty.
+> +    #[inline]
+> +    pub fn is_empty(&self) -> bool {
+> +        self.0.is_empty()
+> +    }
+> +
+> +    /// Create a low-level iterator over `ClistHead` nodes. Caller conve=
+rts the returned
+> +    /// heads into items.
+> +    #[inline]
+> +    pub fn iter_heads(&self) -> ClistHeadIter<'_> {
+> +        ClistHeadIter {
+> +            current: &self.0,
+> +            head: &self.0,
+> +        }
+> +    }
+> +}
+> +
+> +/// Wraps a non-sentinel C `list_head` node for use in intrusive linked =
+lists.
+
+This says "non-sentinel", but `Clist` embeds a `ClistHead` which wraps a
+sentinel node, so that statement does not seem to be true.
+
+> +///
+> +/// # Invariants
+> +///
+> +/// - `ClistHead` represents an allocated and valid non-sentinel `list_h=
+ead` structure.
+> +/// - The underlying `list_head` (and entire list) is not modified by C.
+> +#[repr(transparent)]
+> +pub struct ClistHead(Opaque<bindings::list_head>);
+> +
+> +// SAFETY: `ClistHead` can be sent to any thread.
+> +unsafe impl Send for ClistHead {}
+> +// SAFETY: `ClistHead` can be shared among threads as it is not modified=
+ by C per type invariants.
+> +unsafe impl Sync for ClistHead {}
+> +
+> +impl ClistHead {
+> +    /// Create a `&ClistHead` reference from a raw `list_head` pointer.
+> +    ///
+> +    /// # Safety
+> +    ///
+> +    /// `ptr` must be a valid pointer to an allocated and initialized `l=
+ist_head` structure,
+> +    /// and it must remain valid for the lifetime `'a`.
+> +    #[inline]
+> +    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Sel=
+f {
+> +        // SAFETY:
+> +        // - `ClistHead` has same layout as `list_head`.
+> +        // - `ptr` is valid for 'a.
+> +        unsafe { &*ptr.cast() }
+> +    }
+> +
+> +    /// Get the raw `list_head` pointer.
+> +    #[inline]
+> +    pub fn as_raw(&self) -> *mut bindings::list_head {
+> +        self.0.get()
+> +    }
+> +
+> +    /// Get the next `ClistHead` in the list.
+> +    #[inline]
+> +    pub fn next(&self) -> &Self {
+> +        // SAFETY:
+> +        // - `self.as_raw()` is valid per type invariants.
+> +        // - The `next` pointer is guaranteed to be non-NULL.
+> +        unsafe {
+> +            let raw =3D self.as_raw();
+
+This line doesn't need to be in the `unsafe` block (also applies to
+other methods).
+
+> +            Self::from_raw((*raw).next)
+> +        }
+> +    }
+> +
+> +    /// Get the previous `ClistHead` in the list.
+> +    #[inline]
+> +    pub fn prev(&self) -> &Self {
+> +        // SAFETY:
+> +        // - self.as_raw() is valid per type invariants.
+> +        // - The `prev` pointer is guaranteed to be non-NULL.
+> +        unsafe {
+> +            let raw =3D self.as_raw();
+> +            Self::from_raw((*raw).prev)
+> +        }
+> +    }
+> +
+> +    /// Check if this node is linked in a list (not isolated).
+> +    #[inline]
+> +    pub fn is_in_list(&self) -> bool {
+> +        // SAFETY: self.as_raw() is valid per type invariants.
+> +        unsafe {
+> +            let raw =3D self.as_raw();
+> +            (*raw).next !=3D raw && (*raw).prev !=3D raw
+> +        }
+> +    }
+> +
+> +    /// Check if the list is empty.
+> +    #[inline]
+> +    pub fn is_empty(&self) -> bool {
+> +        // SAFETY: self.as_raw() is valid per type invariants.
+> +        unsafe {
+> +            let raw =3D self.as_raw();
+> +            (*raw).next =3D=3D raw
+> +        }
+> +    }
+
+Does this method also apply to non-sentinel nodes? If not, should we
+move it to `Clist`?
+
+I am also wondering what the difference is with `is_in_list`. If
+`raw.next =3D=3D raw`, then on a valid list `raw.prev =3D=3D raw` as well, =
+so
+it seems to be that `is_in_list()` is equivalent to `!is_empty()`.
+
+> +}
+> +
+> +/// Low-level iterator over `list_head` nodes.
+> +///
+> +/// An iterator used to iterate over a C intrusive linked list (`list_he=
+ad`). Caller has to
+> +/// perform conversion of returned `ClistHead` to an item (typically usi=
+ng `container_of` macro).
+> +///
+> +/// # Invariants
+> +///
+> +/// `ClistHeadIter` is iterating over an allocated, initialized and vali=
+d `Clist`.
+> +pub struct ClistHeadIter<'a> {
+> +    current: &'a ClistHead,
+> +    head: &'a ClistHead,
+
+IIUC `head` should probably be a `Clist`?
+
+> +}
+> +
+> +// SAFETY: ClistHeadIter gives out immutable references to ClistHead,
+> +// which is Send.
+> +unsafe impl Send for ClistHeadIter<'_> {}
+> +
+> +// SAFETY: ClistHeadIter gives out immutable references to ClistHead,
+> +// which is Sync.
+> +unsafe impl Sync for ClistHeadIter<'_> {}
+
+`Send` and `Sync` will also be auto-implemented here.
+
+> +
+> +impl<'a> Iterator for ClistHeadIter<'a> {
+> +    type Item =3D &'a ClistHead;
+> +
+> +    #[inline]
+> +    fn next(&mut self) -> Option<Self::Item> {
+> +        // Advance to next node.
+> +        self.current =3D self.current.next();
+> +
+> +        // Check if we've circled back to HEAD.
+> +        if self.current.as_raw() =3D=3D self.head.as_raw() {
+
+Maybe derive/implement `PartialEq` so we can avoid calling `as_raw`
+when comparing nodes.
 
