@@ -4,93 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAE40D0E6EC
-	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 15:33:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE4B6CFD37C
+	for <nouveau@archiver.kernel.org>; Tue, 25 Nov 2025 16:22:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63B6610E421;
-	Tue, 25 Nov 2025 15:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 677E010E43F;
+	Tue, 25 Nov 2025 16:22:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=chromium.org header.i=@chromium.org header.b="jE/3c8sZ";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="rxcHTUOS";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="yRvSJNwe";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="jxlKsqOZ";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="pWGSpGSf";
 	dkim-atps=neutral
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A15BA10E421
- for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 15:33:24 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-b737502f77bso814580066b.2
- for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 07:33:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=chromium.org; s=google; t=1764084803; x=1764689603;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=wCZdld6CYrWFXkrUxJ5abCqUL/Pa1DX9edqJLOysax8=;
- b=jE/3c8sZDi01KZmUPQyCNFxN2nsByHjowKkCU9dQcBhksmgb1JHrX6TyjhJ2b7IgGB
- qSR/dnBCTTjKmXQ19Wubkqrg+nMiL89TLsPTZD5h2EWAjbTyERctxhfyb/8cAKphwhNN
- sg4GK4wrg/xq5xeqZEdQZEuoRoJK6Wl+3rWmA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1764084803; x=1764689603;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=wCZdld6CYrWFXkrUxJ5abCqUL/Pa1DX9edqJLOysax8=;
- b=BiEEDAsUFQ+tjiN0vAgaLs7TXDV9HTEYkSXtWuj3qfHPZ3dkphkrK54Js+K/HS3JxY
- IHSCOIaNHB4hMpTElfiKJRSw76Dvk6C+9mcG7u+b36t43TCfPrPCJ195c2d3OALLzu+X
- 6IYfwrdhRx8Hta1MO3bAmVLvya1AI05TBT+mIRjS9rabSEH5tJx5Zn2NNQrYMyXKKXKP
- 7aYNE0sT9ZCNk09X7NSHECQWu0ayvBhY7gkkpDPXx88L+ehRi0DrtPT34MRfBByy3han
- fy8ifYDCpuTzr05E2nzXUI+XACO0ot8wXca3S6aRefbowMi88wMyGA5wnEhKvP7AoqvA
- lZQQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVQPA7WXW+PIXYFaQClVJfFB/Og/llqbVjLAzfS06xs/bi5gAYepdv80ASkL/hEmaTWoxxED7de@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwfsH4SAnVjKXEikGlL1Se/bYT94AAARsmM1rnm88rHG2LYEaTV
- TjX4wlHgveqRSlX7nk+trju5+bd88gvyZ0SCp14rt89vMuI7QcS7+LEVM7n48YeWWxhuV9VTq5q
- 8aBGA8Bcz
-X-Gm-Gg: ASbGncsMKSkR2lj92pkoERLX8xhz39JqePBBZYUCcTkGteuJccSrt1fiimusjTrkjv5
- xk0NbC7x1AqFvDeuzUkBkPH7MC9XrHlXM1sXO1peD+Hx0Dqf5vNkliQZTAefUqmQ1slezuFHC85
- tz/KKdhgMtmYh0p7u8cHGDRu/oRiGCIj17YEJItFmrz81o3nAccwpP+mvS6yDvDvGotaEAzKkEm
- FRRY4guv+lHXuhLf/vwUGCQhaboQydKWUnL06OFouZGkTyVVOj+QpEJLbCBmaGL0ZcO0evZ8D0K
- qBXT2shnKo+6nUBqfQKJhgZgkMphtbOsClADxEcaNJveWQ0ZOkZoh1PnvCgJNaSBrWO7uf5x2BG
- S5XHGCMqWwgn2Hr08VEiEJOzd9I1E2fkkwc4+eD94c8PuuacjBCad1D1pdXE8X75xa5kQGeaPA/
- TQa5eF9vMDGeV5R7QysvupMHTesQ0q5KyPApghDD9+hW2wqZ81AQ==
-X-Google-Smtp-Source: AGHT+IF1DHcMDH4yphLqRfcGwJxX/gDPrZT7chUGkgTGOK4gSLmYQUtA3CVeE1dvEyA93a0FPF4Kqw==
-X-Received: by 2002:a17:906:c142:b0:b70:b700:df98 with SMTP id
- a640c23a62f3a-b76c5356501mr326394366b.5.1764084802442; 
- Tue, 25 Nov 2025 07:33:22 -0800 (PST)
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com.
- [209.85.208.52]) by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b7654d56a70sm1624457766b.22.2025.11.25.07.33.22
- for <nouveau@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 25 Nov 2025 07:33:22 -0800 (PST)
-Received: by mail-ed1-f52.google.com with SMTP id
- 4fb4d7f45d1cf-6408f9cb1dcso1836864a12.3
- for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 07:33:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCV6sX9Fw/756qOx2yiq3K0fsgJlnSyNNy43/MjuC/y+zMf0Ez6azFJRIgpg3RfjR0a6DP3ODwO1@lists.freedesktop.org
-X-Received: by 2002:a05:6000:381:b0:42b:3ad7:fdd3 with SMTP id
- ffacd0b85a97d-42e0f21e953mr3395597f8f.18.1764084405547; Tue, 25 Nov 2025
- 07:26:45 -0800 (PST)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A7FE10E43F
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 16:22:10 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id CE0FC2279F;
+ Tue, 25 Nov 2025 16:22:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764087728; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=1qVWteth2CW4grxymKBfkcAQ2Y6lgyq+8fjlcjGvCdE=;
+ b=rxcHTUOSMi91yqyshLu0nXlrTbfin/DxFYxy68+9o5Lz//U3hZZcdjlKLHiUcks2sNFb5d
+ Nw+OBrAf2kdZEY8eaQrFByd0uhfsWG/FmvucIqTas+/tk5AXRhRPH5vvcJNRiCAVeu9sDs
+ JlbSW7nQ5++eYnulUKTb2Pilge3qSMY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764087728;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=1qVWteth2CW4grxymKBfkcAQ2Y6lgyq+8fjlcjGvCdE=;
+ b=yRvSJNwewWvQZN6EMbe+ZH57h9Ype/yn78RFRv+PNLYJCaiiGwSN/MWsLEvYlaOy7wnyVS
+ T9xIEZPg7AUb66CQ==
+Authentication-Results: smtp-out1.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=jxlKsqOZ;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=pWGSpGSf
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1764087727; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=1qVWteth2CW4grxymKBfkcAQ2Y6lgyq+8fjlcjGvCdE=;
+ b=jxlKsqOZGQElJHBq1oPDmP5F6Jc54BuJNQY4M+S+XFJq6L493Mk0ifEe6vzy3vj9uOD1ch
+ wsFa7Y9EcZSUiTHev6F14FH0ph+/SrIXnp6rmwNQ7esC+lj+GftEOWXVg/kanV0b1RaN86
+ fPmOiadBoSqJP+lckHT6VBqAWLCafpE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1764087727;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=1qVWteth2CW4grxymKBfkcAQ2Y6lgyq+8fjlcjGvCdE=;
+ b=pWGSpGSfBZkjXtE6lj76qjxTTU7v28kiwiq9wRoAZ3aAPRRV+Fhr40paxglFA656gZ53M4
+ 1DSAyAx8WxL2H+AQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4CE7F3EA63;
+ Tue, 25 Nov 2025 16:22:07 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id hQZWEa/XJWm8VQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 25 Nov 2025 16:22:07 +0000
+Message-ID: <65622142-c3b0-4ef3-9a74-09420bc2220d@suse.de>
+Date: Tue, 25 Nov 2025 17:22:06 +0100
 MIME-Version: 1.0
-References: <20251125130634.1080966-1-tzimmermann@suse.de>
-In-Reply-To: <20251125130634.1080966-1-tzimmermann@suse.de>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 25 Nov 2025 07:26:33 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=X_-t2AF5osp7Hamoe7WYE_2YWJZCaPaOj=9seSbnwwVA@mail.gmail.com>
-X-Gm-Features: AWmQ_bldhiBpRCqVYkj0GufunmE0LiqT8gw4vCTv4PiT8j1h28du9Cx4NWXFEj8
-Message-ID: <CAD=FV=X_-t2AF5osp7Hamoe7WYE_2YWJZCaPaOj=9seSbnwwVA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 0/5] drm: Remove remaining support for kdb
-To: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: simona@ffwll.ch, airlied@gmail.com, alexander.deucher@amd.com, 
- christian.koenig@amd.com, lyude@redhat.com, dakr@kernel.org, deller@gmx.de, 
- mripard@kernel.org, maarten.lankhorst@linux.intel.com, 
- jason.wessel@windriver.com, danielt@kernel.org, 
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org, 
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+To: Doug Anderson <dianders@chromium.org>
+Cc: simona@ffwll.ch, airlied@gmail.com, alexander.deucher@amd.com,
+ christian.koenig@amd.com, lyude@redhat.com, dakr@kernel.org, deller@gmx.de,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com,
+ jason.wessel@windriver.com, danielt@kernel.org,
+ dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
  Nir Lichtman <nir@lichtman.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+References: <20251125130634.1080966-1-tzimmermann@suse.de>
+ <CAD=FV=X_-t2AF5osp7Hamoe7WYE_2YWJZCaPaOj=9seSbnwwVA@mail.gmail.com>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <CAD=FV=X_-t2AF5osp7Hamoe7WYE_2YWJZCaPaOj=9seSbnwwVA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: CE0FC2279F
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ RCPT_COUNT_TWELVE(0.00)[19];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ MIME_TRACE(0.00)[0:+]; FUZZY_RATELIMITED(0.00)[rspamd.com];
+ RCVD_TLS_ALL(0.00)[]; FREEMAIL_ENVRCPT(0.00)[gmail.com,gmx.de];
+ MID_RHS_MATCH_FROM(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[];
+ FREEMAIL_CC(0.00)[ffwll.ch,gmail.com,amd.com,redhat.com,kernel.org,gmx.de,linux.intel.com,windriver.com,lists.freedesktop.org,vger.kernel.org,lichtman.org];
+ TO_DN_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.com:url,suse.de:email,suse.de:mid,suse.de:dkim];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,53 +154,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+Hi
 
-On Tue, Nov 25, 2025 at 5:06=E2=80=AFAM Thomas Zimmermann <tzimmermann@suse=
-.de> wrote:
+Am 25.11.25 um 16:26 schrieb Doug Anderson:
+> Hi,
 >
-> Remove the rest of the kbd support from DRM. Driver support has been
-> broken for years without anyone complaining.
+> On Tue, Nov 25, 2025 at 5:06 AM Thomas Zimmermann <tzimmermann@suse.de> wrote:
+>> Remove the rest of the kbd support from DRM. Driver support has been
+>> broken for years without anyone complaining.
+>>
+>> Kdb cannot use regular DRM mode setting, so DRM drivers have to
+>> implement an additional hook to make it work (in theory). As outlined
+>> by Sima in commit 9c79e0b1d096 ("drm/fb-helper: Give up on kgdb for
+>> atomic drivers") from 2017, kdb is not compatible with DRM atomic mode
+>> setting. Non-atomic mode setting meanwhile has become rare.
+>>
+>> Only 3 DRM drivers implement the hooks for kdb support. Amdgpu and
+>> nouveau use non-atomic mode setting on older devices. But both drivers
+>> have switched to generic fbdev emulation, which isn't compatible with
+>> kdb. Radeon still runs kdb, but it doesn't work in practice. See the
+>> commits in this series for details
+>>
+>> Therefore remove the remaining support for kdb from the DRM drivers
+>> and from DRM fbdev emulation. Also remove the hooks from fbdev, as
+>> there are no fbdev drivers with kdb support.
+>>
+>> If we ever want to address kdb support within DRM drivers, a place to
+>> start would be the scanout buffers used by DRM's panic screen. These
+>> use the current display mode. They can be written and flushed without
+>> mode setting involved.
+>>
+>> Note: kdb over serial lines is not affected by this series and continues
+>> to work as before.
+>>
+>> Thomas Zimmermann (5):
+>>    drm/amdgpu: Do not implement mode_set_base_atomic callback
+>>    drm/nouveau: Do not implement mode_set_base_atomic callback
+>>    drm/radeon: Do not implement mode_set_base_atomic callback
+>>    drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
+>>    fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+> Personally, I've never worked with kdb over anything other than
+> serial, so this won't bother any of my normal workflows. That being
+> said, at least as of a year ago someone on the lists was talking about
+> using kdb with a keyboard and (presumably) a display. You can see a
+> thread here:
 >
-> Kdb cannot use regular DRM mode setting, so DRM drivers have to
-> implement an additional hook to make it work (in theory). As outlined
-> by Sima in commit 9c79e0b1d096 ("drm/fb-helper: Give up on kgdb for
-> atomic drivers") from 2017, kdb is not compatible with DRM atomic mode
-> setting. Non-atomic mode setting meanwhile has become rare.
->
-> Only 3 DRM drivers implement the hooks for kdb support. Amdgpu and
-> nouveau use non-atomic mode setting on older devices. But both drivers
-> have switched to generic fbdev emulation, which isn't compatible with
-> kdb. Radeon still runs kdb, but it doesn't work in practice. See the
-> commits in this series for details
->
-> Therefore remove the remaining support for kdb from the DRM drivers
-> and from DRM fbdev emulation. Also remove the hooks from fbdev, as
-> there are no fbdev drivers with kdb support.
->
-> If we ever want to address kdb support within DRM drivers, a place to
-> start would be the scanout buffers used by DRM's panic screen. These
-> use the current display mode. They can be written and flushed without
-> mode setting involved.
->
-> Note: kdb over serial lines is not affected by this series and continues
-> to work as before.
->
-> Thomas Zimmermann (5):
->   drm/amdgpu: Do not implement mode_set_base_atomic callback
->   drm/nouveau: Do not implement mode_set_base_atomic callback
->   drm/radeon: Do not implement mode_set_base_atomic callback
->   drm/fbdev-helper: Remove drm_fb_helper_debug_enter/_leave()
->   fbcon: Remove fb_debug_enter/_leave from struct fb_ops
+> http://lore.kernel.org/r/20241031192350.GA26688@lichtman.org
 
-Personally, I've never worked with kdb over anything other than
-serial, so this won't bother any of my normal workflows. That being
-said, at least as of a year ago someone on the lists was talking about
-using kdb with a keyboard and (presumably) a display. You can see a
-thread here:
+I wonder which driver or kernel that person was using. None of the 
+current drivers would be working.
 
-http://lore.kernel.org/r/20241031192350.GA26688@lichtman.org
+Best regards
+Thomas
 
-Daniel may also have comments here?
+>
+> Daniel may also have comments here?
+>
+> -Doug
+>
 
--Doug
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
+
