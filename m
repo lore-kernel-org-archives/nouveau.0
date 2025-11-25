@@ -4,97 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78AC1D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FC31D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A9F3110EBF8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F388010EBED;
 	Sat, 13 Dec 2025 12:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5FyoGFW";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="SxdtE+mo";
 	dkim-atps=neutral
 Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com
  [209.85.161.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E86CC10E6FD
- for <nouveau@lists.freedesktop.org>; Wed,  5 Nov 2025 10:54:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06C3B10E437
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 15:47:40 +0000 (UTC)
 Received: by mail-oo1-f42.google.com with SMTP id
- 006d021491bc7-656c07e3241so66655eaf.1
- for <nouveau@lists.freedesktop.org>; Wed, 05 Nov 2025 02:54:15 -0800 (PST)
+ 006d021491bc7-657230e45e8so2140866eaf.1
+ for <nouveau@lists.freedesktop.org>; Tue, 25 Nov 2025 07:47:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1762340055; x=1762944855; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=UI+zvnrKdhRN8SIehVxo9mkD9QgvEwvxC3LXtBEgkQ0=;
- b=i5FyoGFWlwiloplPVhtZ5VWpADiwqkWdedmD+en5NtwC2HmfUcz1t/K9nFRZUhlhbK
- EnCvSPkO0Ekx6C4Fub1du+ySIZgXtEXEPKwx3PNIu70IadBmzA79L+0BuUTZE3Xzsw1w
- YgQOg5W6qTI/TokfcjaxGUybXtZ118+DUTqv5684J+78I/yPgMaLEtqZfSZKGj+fD5/Q
- uE/UE2PgfolIm4BML2+iAsdthFQgqfmVCeNAqKHynopQA/YIIMaE1dSbnMdp0965Exbo
- o02K0wowVYlWX/Ae7d1ocvGvg+PMDTPYBV49lGO2wW0wsG52k3JQl7aIs81DSoWB/r+1
- KrtA==
+ d=gmail.com; s=20230601; t=1764085659; x=1764690459; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=vwd7GiN0LhHHn+1+8fCmutdytRAkrux2QdVf0iABeVI=;
+ b=SxdtE+moJwAhGbNnxnltRQoGXs+x9vyE77cpjUT0Z2lSWuBJTJdDrrCbhG2cVSUR87
+ w/hel1gvSdIQqUyx2lIhxXalwEE/LEtCXRPESocZ/Hf+1KSJQCHmrzC7VujxZnmeD9+G
+ SPz39f5TxqfsM3AS0TgGcAw+87NItrpwBrhEnRjuHIiY/F6JGnsxDzMjvHKGLXOKW39g
+ ggrTtGsJ4/EbWFxxcWzZJzAaHXXSNVGjb6gfQ1sNcfM64c06ztXqvmFwSnPLgNi4aOrc
+ B0250+lZnpg1pukfXizRXvv+B/eFBFrQDFaYdrnZ5lSRMVN8LdwWfO/8osafGPmhnSQX
+ 0J3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1762340055; x=1762944855;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=UI+zvnrKdhRN8SIehVxo9mkD9QgvEwvxC3LXtBEgkQ0=;
- b=JE5YK8lqnQAcoY20odrZ3m2LMRTcoFQd3knqVoI0imUm7lhLhdTYg4Lvn0iE+hIu86
- XjevFx5uFO2HQoH+eZp7VP1Hi3Nj6STHt/QtWgtk7u3t0Fk/OHDSSo1Mdfn2/DaegTNQ
- 4nET09tTCeTaWRr1yhuwH+PpmAMEBPB4/vDCX4Wl68jn+cy0m7NjSN2v1/DJErwSbnJ6
- s5mDXQ3Gltel6lBUzEOpzQFQ6Iiri/5UUtyJyIz7qGkn43UlarWJ2FQ5PkS5UZFssMPA
- yQwD2g0F0r4vQ+xpuMG7vGFfhxoCUN1NjV89U08N9a3RqpkFZduUloc4yTFfoQWQfbxb
- xZWA==
+ d=1e100.net; s=20230601; t=1764085659; x=1764690459;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=vwd7GiN0LhHHn+1+8fCmutdytRAkrux2QdVf0iABeVI=;
+ b=Hm1tEIg1I+S/UZQwcA+0BJobpoxJCll+XIFekrSduOL8TUpY0JV1D3HJSO+bALyiwT
+ Q29LqCB9OWsTY7rtU0/32QnmtuLehlHE1gFX4VSq0o1qQAKdhx8IYSrmlvTOWWCdKzEP
+ JkIXvN3KF70fLSVdWODDE9uXZhoVgrAEGlP5W8rnlZX732a2X/9MudEVTO2Q81IAsjLH
+ 76rEpYfO87plMag1AJapek9az2G30OVaKEiYv9MS1Ix2dzwySWHIuHtthImOy006Q8qC
+ P2/UlTK0XEHfH2fkHQHNIL0XjvKWEO0DjrEv0b4fFWblWYb+T9D7lJJltoA4IfLeNRMX
+ nUAg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUr0AoHd5WnFWfLu/ZUB8UFwb1Z+ftpK6V+H7L3yhgUMGUlub3cIPWXUsvuwRPXbCFoJGVzr9Y5@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz172bixeyUyWbCeGKVOmejWBmKQ21d+f/Yyj6mriV2s0Epwjb+
- pZz2UkEPtG4C06z20HCy2tSkrX2HtEaRZphV/e8KCX4VDpJRrHp+EIilAK6+p0KaXyuioeHJwaV
- h0I67mkppuJ3QP9l57iLs+2CB1NsEtmU=
-X-Gm-Gg: ASbGnctIXYoiQGcUZmPLIinHYWHRC+gSduxGmy6DqYwbM7Z2FmRZBdVJ0/SxndL2byz
- SRD6ZU/XN6sf2GGulfE1rpxBj6NLWJUUcEx4PXPr9EUy90jtPY4lmFalHVrouYiZHpYj82msdA4
- bi0YuW9TDkf84TmKwvh6LCawwVfsjv1vCrUnB9gOdiUgChIPSzfIdUu27jQY90wUmMK29cykJNw
- NDwkpcJcfVgQwM+DniiQEZHMaP+6h9F8T73Gq5f7TyBI7ErgFfE1/bi7ALX4Bh16cqybtQ=
-X-Google-Smtp-Source: AGHT+IGOrCYrmHNMLavSyZ02ydICrKRBss+q8PZq/0Rzc5ZPlgYctyKGHcxtmk3f5rN9LiTKlT/v4xGFjERNNmxuico=
-X-Received: by 2002:a05:6808:21a3:b0:43f:5e91:d556 with SMTP id
- 5614622812f47-44fed48970cmr1063735b6e.44.1762340054900; Wed, 05 Nov 2025
- 02:54:14 -0800 (PST)
+ AJvYcCWPQIAODtzj9dV7+rIwbevOsQ1C3w2TPOOZPgPVH00DaRwXlI26xa7ViUBYCOrzssPyQ2PawGBm@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxOK4GVJUV/LF/H7Vcv8BDMbF0BK8qBn1HwaHce59HmGqShfyL9
+ Ay0PUxqKOxxCnWt0A0BWC3DV3em9b0W92pvUehownIREbfcIWWx4r0A2
+X-Gm-Gg: ASbGncsPUOv4s8FG4xR540GR0b90gkB37/sErJEQJOZtuJpMy/NlB1pgzKjn4HQ2tlr
+ Y86mBQvp+AUdjJ20Imb+w6MtTlaGvaYrA7QA64ukn5P8m+Wi+awKltMLEuHmJaVFsUp8tvbLnID
+ JdUZq0QbXYxaBWRiKqhtbxkFWof5ftPfKBSZJRBSbfT4efrkU7vytN9s0LqDfu6N87k8q0b/qpP
+ lbzYA3e2bpTQgGeQaFwrSGTT7nTsbBKa1C0yNXhPgkStIsL9rwQQRGAa8GUHVuGuv3EeCKckZ58
+ iM5rt/rcu0mSqya0t8m0pAdkzgwGLS2aeKYDc79jIHp1SwJ24o01c4dJnR+rEL11EAAII91TRes
+ okUEijVthRw+lra4VqUdcGXQUff7umRojFCRxLsp9UFY+FUgGp+YFrhsGgwb/ztrcQwkwB++4qP
+ Oxjny0IUI9G4abaXDzzv4Kukgvyj1Tig4=
+X-Google-Smtp-Source: AGHT+IHiuoQZzYWwy314lRsUMafz3cwaDnTm31WJbXtW7FkNI3HiSFHTqV00n0ZzdvjwbdNNHFnnig==
+X-Received: by 2002:a05:6808:1926:b0:450:cd83:80d6 with SMTP id
+ 5614622812f47-45112af3534mr7396381b6e.16.1764085659162; 
+ Tue, 25 Nov 2025 07:47:39 -0800 (PST)
+Received: from SyzRHEL1.fyre.ibm.com ([170.225.223.18])
+ by smtp.gmail.com with ESMTPSA id
+ 5614622812f47-450fffed315sm4633108b6e.21.2025.11.25.07.47.37
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 25 Nov 2025 07:47:38 -0800 (PST)
+From: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
+To: lyude@redhat.com, dakr@kernel.org, mripard@kernel.org, airlied@gmail.com,
+ maarten.lankhorst@linux.intel.com
+Cc: tzimmermann@suse.de, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org,
+ Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
+Subject: [PATCH] drm/nouveau/mmu: add NULL check for args in
+ nouveau_uvmm_sm_prepare()
+Date: Tue, 25 Nov 2025 07:47:29 -0800
+Message-ID: <20251125154729.434072-1-chelsyratnawat2001@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-References: <20251030190613.1224287-1-joelagnelf@nvidia.com>
- <20251030190613.1224287-2-joelagnelf@nvidia.com>
- <DDX1WYWQNTAB.BBEICMO8NM30@nvidia.com>
- <20251104005812.GA2101511@joelbox2> <DDZYCRCPYMOL.RMTIF0R404Q4@nvidia.com>
- <CANiq72=Cj_gJ27+EAiytxYGYk1dMwu7M3xQpLGByD4QstgDsHw@mail.gmail.com>
- <CAAOQCfQ_d_C7oZ9uq2siJHn1+m+j059qYUMBvTWOnQ5Etk91ug@mail.gmail.com>
- <CANiq72nLzuCXh0r5W0HMM36f9yTSQfP9yCxXbzH+wS7VxFM2Eg@mail.gmail.com>
- <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
-In-Reply-To: <CANiq72kYYu9C94aY72HK1ELSmvktF3nq+G4+smdAW_Xaxw1kqw@mail.gmail.com>
-From: Guillaume Gomez <guillaume1.gomez@gmail.com>
-Date: Wed, 5 Nov 2025 11:54:03 +0100
-X-Gm-Features: AWmQ_bkMmilAyN1uUJZCacC-4Uedu5I4tT8-UDX7Z-O78YpFpr8K3EAt082H5zI
-Message-ID: <CAAOQCfSRVqFZAJN_m-kGLe6fnqKYyhLUf_WOKdHHMW-C6NShkA@mail.gmail.com>
-Subject: Re: [PATCH RFC 1/4] rust: clist: Add abstraction for iterating over C
- linked lists
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- dri-devel@lists.freedesktop.org, dakr@kernel.org, 
- David Airlie <airlied@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- joel@joelfernandes.org, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- nouveau@lists.freedesktop.org, 
- Nouveau <nouveau-bounces@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,51 +90,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-You can add your own tags in the doctests, and with our patch waiting
-to use the new rustdoc doctests extraction, it should be pretty easy
-to plug such a feature into it. We can check it together if you want
-when the patch is merged to see if we already have everything needed
-or if I need to add more things on rustdoc side.
+nouveau_uvmm_sm_prepare() passes the uvmm_map_args pointer (args) to
+op_map_prepare() without checking for NULL.
+Prevent NULL deref in op_map_prepare() by checking args before use.
 
-Le mar. 4 nov. 2025 =C3=A0 20:06, Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> a =C3=A9crit :
->
-> On Tue, Nov 4, 2025 at 7:35=E2=80=AFPM Miguel Ojeda
-> <miguel.ojeda.sandonis@gmail.com> wrote:
-> >
-> > Orthogonally, the script that generates the doctests could perhaps
-> > help to automate some of that. For instance, we could have a way to
-> > specify an "environment" for a given Rust file or Rust `mod` or
-> > similar, and then every doctests would have the code prefixed to them.
->
-> I guess this could probably best generalized as "tagging" doctests
-> with custom tags that `rustdoc` just forwards in the generated JSON.
->
-> Something like:
->
->     /// ```tag:foo,tag:bar
->
-> would give us a:
->
->     "tags": ["foo", "bar"]
->
-> in the JSON. Then a custom generator like the one we have could do
-> whatever it needs with it, including prepending code or other things.
->
-> Now, I see there is already an `unknown` field in the attributes which
-> already give us the unrecognized ones, which is great and we could
-> potentially use that.
->
-> However, should there be a particular way/namespace we should create
-> our custom tags so that we don't conflict in the future with `rustdoc`
-> ones?
->
-> I have added it to the usual list:
->
->     https://github.com/Rust-for-Linux/linux/issues/350
->
-> (There is also the question about supporting the old non-JSON way for
-> things like this, but I am ignoring that for now)
->
-> Cheers,
-> Miguel
+Signed-off-by: Chelsy Ratnawat <chelsyratnawat2001@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 79eefdfd08a2..7a33ce63770c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -627,6 +627,10 @@ nouveau_uvmm_sm_prepare(struct nouveau_uvmm *uvmm,
+ 		case DRM_GPUVA_OP_MAP: {
+ 			u64 vmm_get_range = vmm_get_end - vmm_get_start;
+ 
++			if (!args) {
++				ret = -EINVAL;
++				goto unwind;
++			}
+ 			ret = op_map_prepare(uvmm, &new->map, &op->map, args);
+ 			if (ret)
+ 				goto unwind;
+-- 
+2.47.3
+
