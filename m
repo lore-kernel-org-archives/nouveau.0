@@ -4,62 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91B2BD5AE45
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 612B6D5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E069010E40A;
-	Sat, 13 Dec 2025 12:17:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 121CE10E400;
+	Sat, 13 Dec 2025 12:17:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bne-home.net header.i=@bne-home.net header.b="lCGuFgni";
+	dkim=pass (2048-bit key; unprotected) header.d=bne-home.net header.i=@bne-home.net header.b="c8Enl3O5";
 	dkim-atps=neutral
-X-Greylist: delayed 600 seconds by postgrey-1.36 at gabe;
- Mon, 08 Dec 2025 07:04:19 UTC
-Received: from outbound.mr.icloud.com
- (p-west2-cluster4-host10-snip4-8.eps.apple.com [57.103.69.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4209810E0E4
- for <nouveau@lists.freedesktop.org>; Mon,  8 Dec 2025 07:04:19 +0000 (UTC)
-Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
- by p00-icloudmta-asmtp-us-west-2a-60-percent-0 (Postfix) with ESMTPS id
- D00D71800191; Mon,  8 Dec 2025 06:44:27 +0000 (UTC)
+X-Greylist: delayed 459 seconds by postgrey-1.36 at gabe;
+ Wed, 26 Nov 2025 06:05:56 UTC
+Received: from outbound.ms.icloud.com
+ (p-west3-cluster2-host1-snip4-4.eps.apple.com [57.103.74.107])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5A210E0E1
+ for <nouveau@lists.freedesktop.org>; Wed, 26 Nov 2025 06:05:56 +0000 (UTC)
+Received: from outbound.ms.icloud.com (unknown [127.0.0.2])
+ by p00-icloudmta-asmtp-us-west-3a-100-percent-10 (Postfix) with ESMTPS id
+ 196471800128; Wed, 26 Nov 2025 06:05:53 +0000 (UTC)
 Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bne-home.net; s=sig1;
- bh=zkYFu2V1ACrqhCXdzvEsiMc0nIxkYl+fHDMyoPJps5M=;
- h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
- b=lCGuFgni2nYzmevzu3Bt7bv8I+89Zj673Gs3YkeT0jgDflMZaEoqFRddTCtps89jgWPGZg8U2hY1CUUgCQjV5B0jV574ZlqknFN8ZfdyIOcYVwTCrfuaxiwCJsyDHc53VSH/8DQRYQjo9xapfPowFAgYUgqD8aKKVfmiCaZmgUC0wpBZzrZJf9DW0beO+W0ixbFzT1VhzoGzzL7aCVuZabpjO7edClpBVbnQiHhivDCcn8bY6yo+shjlKF7AxdW7vi95HjB3LhoMNqBnbNj0nOdGf3VqibNQmox268qyfgxZ+YLzNTxCoBTY7MxAnQHJ3duk5JRu9OKy2Xvn7yQWzg==
+ bh=HWCp2c5E1H7O+Q96GAi6bNWZtazqgioAnhAoRAOXLvo=;
+ h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:x-icloud-hme;
+ b=c8Enl3O57eRKcDJZkbfGcdsr7PiFY7kXWbeNrtQEqSDKsvrs3tK8fxMD6FNzzYgg4beux7oI339hh59ys01X2+JYr2dfKw1ec0mZyMw91QCRMHmiH17HgdNR1vBUTWkiqCWGYhyxTMpshOE+M80l3p1SDw4tZv5VBqMj2fcx0RonwWRMmqdM48gwJQ+SuhJJI6dIa+h99h917X+4+jiy8TzqTiShKGgsLYAYKMZDMoU0mm/C12DWHd+MA4Ru3jo7UFfF1dvSfV4R+aMzzEs0XDeF+ReaXnZ2gHBlXisPCxhSXKhFBSCsUTbICNft5p9lLtPgP4vjcHfxGWkGkuW8nw==
 mail-alias-created-date: 1746336505199
-Received: from fedora (unknown [17.57.152.38])
- by p00-icloudmta-asmtp-us-west-2a-60-percent-0 (Postfix) with ESMTPSA id
- A9BD018000B3; Mon,  8 Dec 2025 06:44:25 +0000 (UTC)
+Received: from fedora (unknown [17.57.154.37])
+ by p00-icloudmta-asmtp-us-west-3a-100-percent-10 (Postfix) with ESMTPSA id
+ 6B6F2180010B; Wed, 26 Nov 2025 06:05:51 +0000 (UTC)
+Date: Wed, 26 Nov 2025 16:05:47 +1000
 From: Brendan Shephard <bshephar@bne-home.net>
-To: aliceryhl@google.com, joelagnelf@nvidia.com, acourbot@nvidia.com,
- airlied@redhat.com
-Cc: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- Brendan Shephard <bshephar@bne-home.net>
-Subject: [PATCH v2] drm: nova: Align GEM memory allocation to system page size
-Date: Mon,  8 Dec 2025 16:44:05 +1000
-Message-ID: <20251208064405.573026-1-bshephar@bne-home.net>
-X-Mailer: git-send-email 2.52.0
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: Alice Ryhl <aliceryhl@google.com>, dakr@kernel.org,
+ joelagnelf@nvidia.com, jhubbard@nvidia.com, airlied@gmail.com,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ brendan.shephard@gmail.com, Nouveau <nouveau-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH 1/1] drm: nova: Align GEM memory allocation to system
+ page size
+Message-ID: <aSaYu8GCrU4XRRNF@fedora>
+References: <98227EBD-92F7-40FC-A5A4-3FF3780FB2CB@bne-home.net>
+ <DEHUHPU6WQ1E.J19KGDPIHN09@nvidia.com>
+ <CAH5fLgipNtk7=ad1dFYMDEdKL5b4LxnewU1w+WgAU0QLa-3C6w@mail.gmail.com>
+ <DEHV24KY55H3.16CA6ALYGJ68A@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: uKk1vmXC8Np_kz_mwKuC94ybQZH3fT03
-X-Authority-Info: v=2.4 cv=MLhtWcZl c=1 sm=1 tr=0 ts=693673cc cx=c_apl:c_pps
- a=9OgfyREA4BUYbbCgc0Y0oA==:117 a=9OgfyREA4BUYbbCgc0Y0oA==:17
- a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=JppZAXPjAAAA:8
- a=a2W8XFUYhzryu76BgXoA:9 a=mTXuAFqUwmiQvsSFmwXH:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjA4MDA1NiBTYWx0ZWRfX/WgfiVLktDgc
- Al9tJofbK2kG2HjR3x+aiS46gw9aP6AYEig/TQ8iCQk7xhlLnKuxLUaqKw2bNVYpQ9lF7YTDlWq
- uE520Uh2OWK9moDo5/x88+f/N8FCH+T94BOajtyGSINyVO/SrvNKXXveEbnViEXWsEDTIn1oagt
- g56KkKd0XG/veetcX7psZ6BFJeudJMYRfIYLqXJfAXNaJ0LQSo31naeTW6RgoNO4ZDhOr8UBIMP
- +DJKYfG+W1a3L6EtcfE8eRxSUzDeF9JnsVFzWRHqDFrVTOPUJRAgLQpRHFnU2tBK/JFxW2WVShx
- lT4cn4Y+hiHDzjeUBG/
-X-Proofpoint-GUID: uKk1vmXC8Np_kz_mwKuC94ybQZH3fT03
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DEHV24KY55H3.16CA6ALYGJ68A@nvidia.com>
+X-Proofpoint-ORIG-GUID: wFF0Gtp_ydERzspMKNjCfa6rmj6Z3igg
+X-Proofpoint-GUID: wFF0Gtp_ydERzspMKNjCfa6rmj6Z3igg
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMTI2MDA0OCBTYWx0ZWRfXymsQqCHtrXA7
+ 9JocAXq9+tY/wBKofAzoSc93KKbaHQkS5IAFr1oWHAu8ucdlfCROZZPY5NxPYsKekPiguklj+hX
+ JG/oeWh/b7aHXyP1/3KZOQ4xL1rA8Ry4S2bQY3sPg0heRapWfnWPDlLcPnOrVdu6LMVuRLzCSGS
+ EPZeaUvGLbne0uHsnUXaLnJxUW6SXIQ6wrtyWeIEPmet+cnomrMfCVfx0OYzMICRHG849XW1jqe
+ qoRjJ/6MoIThKT6UHS5ihbYpVRcktHxtOWgG75Uk3shC53spk6/Dih0DJ5WWFzlUy9RI5blgsmM
+ C+WVa8DEbh/cP2wSuGT
+X-Authority-Info: v=2.4 cv=c6qmgB9l c=1 sm=1 tr=0 ts=692698c2 cx=c_apl:c_pps
+ a=qkKslKyYc0ctBTeLUVfTFg==:117 a=kj9zAlcOel0A:10 a=6UeiqGixMTsA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=jbRqzA-MdUj_exYDcw4A:9 a=CjuIK1q_8ugA:10
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
- definitions=2025-12-06_02,2025-12-04_04,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- mlxlogscore=717 mlxscore=0 spamscore=0 malwarescore=0 suspectscore=0
- clxscore=1030 phishscore=0 adultscore=0 classifier=spam authscore=0 adjust=0
- reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512080056
-X-JNJ: AAAAAAABW7y03TPmhTExObnEYfir4eGrX6PStdqBl/8zgZY4eSZBv5kyBGnJL92XRYkHgRX3YQ06BfWeQgSbYhGcNVGD7othFDjbR00f35IC9FgNz3XxIkADCMhRLpHMr9JiznnyqBLgqOJ+0tGpQdBq96nzkLZ9OV95uloJV0PjE2QxepPnyaNn9+IEJsXRl2OsScagnRXZoKDCZRX2fYCUm07pkaJ4d5+lwWUxlFu3u45fKmOxMzPR914T361DMCzpYl+GK1NsP2SDKuzTGy3XCmw6eXE+9BXW1kPj5gpQ4RsgVro8YqkE/KlDGYDI2mr9SaFt2T4uEpJJiA9UgA3HebfpN1R6ViupFHDM0XLdm7iIqI3IsIQDwceOrCnqNvBqU+xCjANXAlbXYo8xFxMWwsaRk5adrYv+3QxpUIBRb/v6Gb9VHY23P1H4cte8AI8buGo7Id70TdcDzs/2VyacrGzNVvvfkxnFNykAraUDcS/P4yZ2NH4Vb/AeN8tgrfOHyBFvcS1QdQMZX0JtEWLIkYzKsH5hXPm9cmgv//PkTCZ8TOh50OIZlhEprrkrUCB3vtR5+1WY6p2LeYZGZ66MPgH/HSVhfZQYNcux+E0/g0RFl0v1+pEj9W2UUynQgzZeUWO3MvosD8jQWrOShodI5z3FDsof2n2o5EQbdOdEgMlFol5jU954I2J257RuCAoSQqz5NX3GNEdbvAPUxS2GEA==
+ definitions=2025-11-25_02,2025-11-25_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999
+ malwarescore=0 adultscore=0 mlxscore=0
+ suspectscore=0 spamscore=0
+ phishscore=0 bulkscore=0 clxscore=1030 classifier=spam authscore=0 adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2511260048
+X-JNJ: AAAAAAAByUjj4nuVGAWwEtta1AjBqAz2OWIzp4o5zXtJ9337k0jxRdecd4vexnKRY0FXg5E2AAYgmxqqCq/8fpSAtOeU1rfp+QMaLG8taQy/a0xkkf3hv10sVF2eAIDajARjSK1chsy2FhgX12zEktMEWFyI6Lxbjn81CXCOCMxUCRQbo5pahYzR76xsmmNQsX4Ocpw1BMI7AFqwjbLSD/bcjg72ezlqqX/ACoWvd61J7/6I9OeA5gr3KD2l0OmEMrpzE7oOIecE7th1gP2NwUmJ6gYEUTr4wuWvIKt2Y/uo7VgX6loUjICD2AafDRtVuWkNIdYL1NAR60n9zSPl+13iWMqoWoUIoP7ExL51JorTx0+ffLTOBi8rof5tK67F6DRHIpvOP8JRAuG7gZcNKRz9n1yteVWoJBMxciCwYUgoSeQqc1Ejw9Qhbpj/PfE/EKzFqurriS6TrhaQoSWQyZw91wb20hKGmo4+baoc7SuTNZEo80Rm6k24mFvawi4enFc7SHWYhCkIbwB3xWYNYJ+Vsiqz8tMEnKRSa1s3Yg7hDa0YUTDRVe9H49KAS1h7NiV3p1vDollo8gVZF9ya5S5TbgBPA6HhgzjFwV2wWZ90FnvgehY8Okzc5mlzxoWlQx1JotTIsqKD3/KgJdrhus2OIQiayeVvicqEKCAOIps5qPqG3zLqZ4qMU9w2Bz/ZIhpCkbKDpx6AQ5VRrBX6IIJw9Crjgg==
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:03 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,53 +82,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Use page::page_align for GEM object memory allocation to ensure the
-allocation is page aligned. This ensures that the allocation is page
-aligned with the system in cases where 4096 is not the default.
-For example on 16k or 64k aarch64 systems this allocation should be
-aligned accordingly.
+On Tue, Nov 25, 2025 at 11:55:08PM +0900, Alexandre Courbot wrote:
+> On Tue Nov 25, 2025 at 11:41 PM JST, Alice Ryhl wrote:
+> >> > @@ -27,12 +31,13 @@ fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
+> >> >  impl NovaObject {
+> >> >      /// Create a new DRM GEM object.
+> >> >      pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self>>> {
+> >> > -        let aligned_size = size.next_multiple_of(1 << 12);
+> >> > -
+> >> > -        if size == 0 || size > aligned_size {
+> >> > +        // Check for 0 size or potential usize overflow before calling page_align
+> >> > +        if size == 0 || size > usize::MAX - PAGE_SIZE + 1 {
+> >>
+> >> `PAGE_SIZE` here is no more correct than the hardcoded `1 << 12` - well,
+> >> I'll admit it looks better as a placeholder. :) But the actual alignment
+> >> will eventually be provided elsewhere.
+> >
+> > What about kernels with 16k pages?
+> 
+> The actual alignment should IIUC be a mix of the GPU and kernel's
+> requirements (GPU can also use a different page size). So no matter what
+> we pick right now, it won't be great but you are right that PAGE_SIZE
+> will at least accomodate the kernel.
+> 
 
-This change uses the updated page_align() function from commit:
-"rust: Return Option from page_align and ensure no usize overflow"
-Which returns an Option<usize> for overflow safety.
+So, maybe what we realistically should be doing is aligning to the
+larger page size when comparing system and GPU page sizes?
 
-Signed-off-by: Brendan Shephard <bshephar@bne-home.net>
----
-Changes in v2:
-- Updated to use the new page_align() Option<usize> return value from:
-  Commit: "rust: Return Option from page_align and ensure no usize overflow"
-  https://lore.kernel.org/rust-for-linux/20251204224006.353646-2-bshephar@bne-home.net/T/#u
+> >
+> >> >              return Err(EINVAL);
+> >> >          }
+> >> >
+> >> > +        let aligned_size = page_align(size);
+> >>
+> >> `page_align` won't panic on overflow, but it will still return an
+> >> invalid size. This is a job for `kernel::ptr::Alignment`, which let's
+> >> you return an error when an overflow occurs.
+> >
+> > The Rust implementation of page_align() is implemented as (addr +
+> > (PAGE_SIZE - 1)) & PAGE_MASK, which definitely will panic on overflow
+> > if the appropriate config options are enabled.
+> 
+> That's right, I skimmed its code too fast. ^_^; All the more reason to
+> use `Alignment`.
 
- drivers/gpu/drm/nova/gem.rs | 7 ++-----
- 1 file changed, 2 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
-index 2760ba4f3450..41439f3b9361 100644
---- a/drivers/gpu/drm/nova/gem.rs
-+++ b/drivers/gpu/drm/nova/gem.rs
-@@ -3,6 +3,7 @@
- use kernel::{
-     drm,
-     drm::{gem, gem::BaseObject},
-+    page::page_align,
-     prelude::*,
-     sync::aref::ARef,
- };
-@@ -27,11 +28,7 @@ fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
- impl NovaObject {
-     /// Create a new DRM GEM object.
-     pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self>>> {
--        let aligned_size = size.next_multiple_of(1 << 12);
--
--        if size == 0 || size > aligned_size {
--            return Err(EINVAL);
--        }
-+        let aligned_size = page_align(size).ok_or(EINVAL)?
- 
-         gem::Object::new(dev, aligned_size)
-     }
-
-base-commit: 37bb2e7217b01404e2abf9d90d8e5705a5603b52
--- 
-2.52.0
-
+We would still need to ensure the value is a multiple of PAGE_SIZE
+though right? Like if the user requests a size that is _not_ a multiple
+of 2, then we would want to align the value to a PAGE_SIZE. Which is
+what the existing logic does, it's just always rounding to the next
+multiple of 4096. Maybe I'm missing something about Alignment and I need
+to spend some more time looking at it as an alternative here.
