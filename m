@@ -4,60 +4,84 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E112D5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B47FD5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:45:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F015410EBB7;
-	Sat, 13 Dec 2025 12:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AF8110EBC1;
+	Sat, 13 Dec 2025 12:42:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=temperror (0-bit key; unprotected) header.d=asahilina.net header.i=@asahilina.net header.b="aObAO7Gf";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XU07FPJm";
 	dkim-atps=neutral
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4701610E0C2;
- Sun,  2 Feb 2025 23:56:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- (Authenticated sender: lina@asahilina.net)
- by mail.marcansoft.com (Postfix) with ESMTPSA id B7858425F5;
- Sun,  2 Feb 2025 23:56:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=asahilina.net;
- s=default; t=1738540566;
- bh=XxSMXL+/QTvPenPoEdFCaxa+GXolURGhYNxTlnUOi/w=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=aObAO7GfWqEeA7trzJ86f/XnseVBckks3Wp4/oXznHSilYgYVoqZIWDOvj71xgkib
- lgmCn4V/J95HXPuWr/BC9UezFlKNi7fChuM++IKjdHyEnniFWEdcFH3P80QjT4GKT8
- 7FXJpcyV5rxXbJB/o77o3DyY6W0ZxXjoEFTCGaMdjI9Qu614oQ9ehN29qeFz5nc71y
- n6Vb2X9YqAd8aVCrFAhZkk9YlgsEa1fvwSHKLjn9QIyM149G8f40pXF85PmeGbCrRC
- CDm8c7tFbkfvpwTOQgds27hLzVDN6ZHCf/i3csfpUeE+/V/ONQ2WElOVQKGkCcKlui
- L9Utcl2DNDEPA==
-Message-ID: <4a431b98-cccc-495e-b72e-02362828c96b@asahilina.net>
-Date: Mon, 3 Feb 2025 08:56:03 +0900
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
+ [209.85.210.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57BB510E59C
+ for <nouveau@lists.freedesktop.org>; Wed, 26 Nov 2025 09:57:53 +0000 (UTC)
+Received: by mail-pf1-f170.google.com with SMTP id
+ d2e1a72fcca58-7b8ba3c8ca1so885860b3a.2
+ for <nouveau@lists.freedesktop.org>; Wed, 26 Nov 2025 01:57:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764151073; x=1764755873; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=7mHQ1VRdjTsfmUz5G2DWe71KnbFXKlmtSzGNdzBPt3M=;
+ b=XU07FPJm0JEFrlRMraqSrzXkgdbTRbiuLjoBniTj4s2V/oyqaGVI4ETu2+TOZW5vM1
+ MGgkshy5b17640Jbxrhi8+uWEEX4HM+NdFXubeJYwpQbrGKgBdvMCbK2TzPQz28NkdEz
+ +CLS13pKXTEk4r9sm04FY31igp6CsTrvlvmma6HoLClZesUZxNargxePZaYXqwxphJ7v
+ RLT6q9Mq1Gjg/zpLKseEcVnRM0j8c5aUj4iGFl+/CspLXCeuQGUAV8GzlSBYnSEN5cHZ
+ r6yvlX6FfXPLA5HItT/RxOyQnDgtS7KBE/5hUotG97GHn/jPL+yUeIU1kEUrSGTnmrm0
+ h5ww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764151073; x=1764755873;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=7mHQ1VRdjTsfmUz5G2DWe71KnbFXKlmtSzGNdzBPt3M=;
+ b=GDcroy4EhCbUx0Nj+ZkvMS4WboYREOdcyc5gzhcz3SP08OTwSvL9w52yQxZAOS1q62
+ XMx5ZsDKIy96V4v4w+ptUr08wqPXli038uYwlwM4t9CdviZ1RlIFuP349afXTWrE5PhA
+ HsI0DQCWI0ofse442SGj8+9OyJwopz/lnFoB3R4SFXFlFr+rlbpVoHMhbDT5g6SQoIlq
+ WfZXohUE69nnvH1ZtGpC9aYFXfZl0LMWmn4imp0nOkjits2O1Gv2UN+yaebjC+ZkKKJH
+ Wg/DUfMe4dQDOFBLzcSg1qK4a8hSXpzww9cYDf+nzk+9AzI1LXMHKgBl7Q9140pwpaXL
+ JoKw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXBJ48gjBVH4HPPSI0YJu6uZt1Uuf/oEOWKC82jAfaCjDtI/EFG3gDNcnOvf+7MLpIxYWxK0KX8@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz6/pcsqp363rxhvQSeI0i+LLZ2b6f+jxMo+4AAdN509208SKLS
+ xyIXB7J63vXS1gUEuyDWOmJDp1eXmY4PfNOroVWgTwdccQbiU0r4JSaoH7cP3YAYrzhyGqETPtI
+ LFnJu1rqi4x0g7JIlQqxWnycmIr4Ak7o=
+X-Gm-Gg: ASbGncv4ppnoj+Cmva4qEaso+rod9cdPKQ9q0Nohw73p5WfxcBlPjA5KHsDW5BSF1b3
+ jrqnB+5VMZ+lN6Sx8cbPCsgOlY9Y4xzL5eXo7XjeVW7jBvBpn/PSy97uFJEwvjYLXhH9Kd/XEm1
+ d/wVYIZbXUMO8VyWi9CvLvYgfAqBpA2D1ZoYfkabJzilR0vwSykV/7/ei38xgy+i2walOWpZGYv
+ XijTqheDewEtRhgCqrT7dh2+l3+nijhxpHNg0eah5JVvaW2KTWya5YipAix1VJmnyuFna/5x/Nw
+ 0pFc0KcrD0oneIwBOOUOcLGomaGB+YF98di1fHnuYChFaktIMRWAtrpZRvQObOE2pSPmnQenWQG
+ c5Ry5CMShfIxlAg==
+X-Google-Smtp-Source: AGHT+IFWUJD/OFJsIi7ionp3U86q+wmuQeZBPMs00ZPJQzBu76WJ8YVwfw1gF+sDPGVltKQOGoQnZvvegokGD9/vJig=
+X-Received: by 2002:a05:7300:7b01:b0:2a4:3593:2c08 with SMTP id
+ 5a478bee46e88-2a7249fec39mr7449116eec.1.1764151072733; Wed, 26 Nov 2025
+ 01:57:52 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] drm/gpuvm: Add support for single-page-filled mappings
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>,
- Karol Herbst <kherbst@redhat.com>, Lyude Paul <lyude@redhat.com>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, asahi@lists.linux.dev
-References: <20250202-gpuvm-single-page-v1-0-8cbd44fdcbd4@asahilina.net>
- <Z5-_O8vkCO0LXcl7@pollux.localdomain>
-Content-Language: en-US
-From: Asahi Lina <lina@asahilina.net>
-In-Reply-To: <Z5-_O8vkCO0LXcl7@pollux.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:42 +0000
+References: <20251114233045.2512853-1-ttabi@nvidia.com>
+ <20251114233045.2512853-10-ttabi@nvidia.com>
+ <20251117231028.GA1095236@joelbox2>
+ <0808b509a969458003accdc3be7c262500b305f7.camel@nvidia.com>
+ <054d9c84-4231-4662-8847-4028228cd290@nvidia.com>
+ <DEI81MO6OJNB.180OOZADPPCV3@nvidia.com>
+In-Reply-To: <DEI81MO6OJNB.180OOZADPPCV3@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 26 Nov 2025 10:57:40 +0100
+X-Gm-Features: AWmQ_bntZ2P7XIQ-a76ZdHb1powt_8RzB70VcFKn6vPRZzYBlZID5TO9jCwn_OA
+Message-ID: <CANiq72mEE7DCPNgJ2FS_c7A9C36GgjkD8G-7nV1oLC9RvSbAjw@mail.gmail.com>
+Subject: Re: [PATCH 09/11] gpu: nova-core: add FalconUCodeDescV2 support
+To: Alexandre Courbot <acourbot@nvidia.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>, 
+ Joel Fernandes <joelagnelf@nvidia.com>, 
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dakr@kernel.org" <dakr@kernel.org>, 
+ "lyude@redhat.com" <lyude@redhat.com>, 
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>, 
+ Nouveau <nouveau-bounces@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,81 +96,17 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
+On Wed, Nov 26, 2025 at 2:06=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> IIUC Timur's proposal would not require an Option as a field, just that
+> the method returns one. I tend to agree that this is more idiomatic.
 
++1, please avoid encoding "states" within integer types and use the
+type system instead.
 
-On 2/3/25 3:53 AM, Danilo Krummrich wrote:
-> Hi Lina,
-> 
-> On Sun, Feb 02, 2025 at 10:34:49PM +0900, Asahi Lina wrote:
->> Some hardware requires dummy page mappings to efficiently implement
->> Vulkan sparse features. These mappings consist of the same physical
->> memory page, repeated for a large range of address space (e.g. 16GiB).
->>
->> Add support for this to drm_gpuvm. Currently, drm_gpuvm expects BO
->> ranges to correspond 1:1 to virtual memory ranges that are mapped, and
->> does math on the BO offset accordingly. To make single page mappings
->> work, we need a way to turn off that math, keeping the BO offset always
->> constant and pointing to the same page (typically BO offset 0).
->>
->> To make this work, we need to handle all the corner cases when these
->> mappings intersect with regular mappings. The rules are simply to never
->> mix or merge a "regular" mapping with a single page mapping.
->>
->> drm_gpuvm has support for a flags field in drm_gpuva objects. This is
->> normally managed by drivers directly. We can introduce a
->> DRM_GPUVA_SINGLE_PAGE flag to handle this. However, to make it work,
->> sm_map and friends need to know ahead of time whether the new mapping is
->> a single page mapping or not. Therefore, we need to add an argument to
->> these functions so drivers can provide the flags to be filled into
->> drm_gpuva.flags.
->>
->> These changes should not affect any existing drivers that use drm_gpuvm
->> other than the API change:
->>
->> - imagination: Does not use flags at all
->> - nouveau: Only uses drm_gpuva_invalidate(), which is only called on
->>   existing drm_gpuva objects (after the map steps)
->> - panthor: Does not use flags at all
->> - xe: Does not use drm_gpuva_init_from_op() or
->>   drm_gpuva_remap()/drm_gpuva_map() (which call it). This means that the
->> flags field of the gpuva object is managed by the driver only, so these
->> changes cannot clobber it.
->>
->> Note that the way this is implemented, drm_gpuvm does not need to know
->> the GPU page size. It only has to never do math on the BO offset to meet
->> the requirements.
->>
->> I suspect that after this change there could be some cleanup possible in
->> the xe driver (which right now passes flags around in various
->> driver-specific ways from the map step through to drm_gpuva objects),
->> but I'll leave that to the Xe folks.
->>
->> Signed-off-by: Asahi Lina <lina@asahilina.net>
->> ---
->> Asahi Lina (4):
->>       drm/gpuvm: Add a flags argument to drm_gpuvm_sm_map[_*]
->>       drm/gpuvm: Plumb through flags into drm_gpuva_op_map
->>       drm/gpuvm: Add DRM_GPUVA_SINGLE_PAGE flag and logic
->>       drm/gpuvm: Plumb through flags into drm_gpuva_init
-> 
-> Without looking into any details yet:
-> 
-> This is a bit of tricky one, since we're not even close to having a user for
-> this new feature upstream yet, are we?
+In fact, where reasonable, please consider defining newtypes around
+certain integers uses as well.
 
-I'd hope we're at least somewhere "this year" close to upstreaming
-drm/asahi!
-
-> 
-> I wonder if we could do an exception by adding some KUnit tests (which
-> admittedly I never got to) validating things with and without this new feature.
-> 
-> Speaking of tests, how did you validate this change to validate the behavior
-> without DRM_GPUVA_SINGLE_PAGE?
-
-Mostly just making sure our driver passes GL/Vulkan CTS including sparse
-after this change. I do want to put together some low-level tests in
-igt-gpu-tools, but I haven't gotten around to it yet...
-
-~~ Lina
-
+Cheers,
+Miguel
