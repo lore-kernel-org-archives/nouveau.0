@@ -4,55 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D0CD5B162
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7CFFD5B163
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:41:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA91710E9E0;
-	Sat, 13 Dec 2025 12:40:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4B2410EA15;
+	Sat, 13 Dec 2025 12:40:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=damsy.net header.i=@damsy.net header.b="slk6VF1v";
-	dkim=permerror (0-bit key) header.d=damsy.net header.i=@damsy.net header.b="09y8o62Y";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="TithUnsS";
 	dkim-atps=neutral
-X-Greylist: delayed 471 seconds by postgrey-1.36 at gabe;
- Wed, 09 Apr 2025 08:02:49 UTC
-Received: from jeth.damsy.net (jeth.damsy.net [51.159.152.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5327310E7FF;
- Wed,  9 Apr 2025 08:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; s=202408r; d=damsy.net; c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1744185144;
- bh=m0UnMasJN//idMnYkH7ZVnj
- GqZ6c589EeVyBi7IEG6E=; b=slk6VF1v2JektGaPflcGO2CTCGnjVtConEYnMwNQuHIKv5GnZN
- iKySxNzKqaqmMSGTHV2sD7e6p9JMM/bWwVV60dKGgbydrphz39R0nULHz7MEORNs5C/68+fh8hE
- mlZ9b5Z88OSQ8xg9+VjAXpw/HRZzgwVLlWHsB8EiA5jMt5rjUUhF+Q/YRDNDgE1oqjF2JbvgPva
- cS89tlOy4Apc6IPe8ZmM/vtazs3BSCEAEgUDzLIxcvGjev4kX2xaLfNCszaUERyyBxHykYumB+1
- dBO7Dwa0yztI3rfuRieQ6sKhWOyoHaC9sv/tmFXCcrxeOxKvOvdgQCq577mnEJ+VpWw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202408e; d=damsy.net;
- c=relaxed/relaxed; 
- h=From:To:Subject:Date:Message-ID; t=1744185144; bh=m0UnMasJN//idMnYkH7ZVnj
- GqZ6c589EeVyBi7IEG6E=; b=09y8o62Y7U+ZSS7gXzumhfKXC15qDUDbHWKwRc+54MEVLT3ms7
- XJzrgBE+FB+rwkzQeINVbFqIXq5dQESfANCg==;
-Message-ID: <f3416edf-46f8-4296-86bd-600ab629fe60@damsy.net>
-Date: Wed, 9 Apr 2025 09:52:23 +0200
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FA1110E033
+ for <nouveau@lists.freedesktop.org>; Sat, 29 Nov 2025 12:21:12 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-477bf34f5f5so16704925e9.0
+ for <nouveau@lists.freedesktop.org>; Sat, 29 Nov 2025 04:21:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764418871; x=1765023671; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=KcVPfmTekyLiABGhJu4xmxadfb6FIwZsqQzyLFSkQjE=;
+ b=TithUnsSi2tCCtGltPh1k3Tw3WMhWtAjlhtnC2k0NKLPdnxUBQ+JRNskqzrD4NR/LC
+ GN3xBYpwOP7ejbe1VhHknJAudRIupo3L11bJFkJkMxIikI7niCwE1x1SYsmC8XLIW+Os
+ iDL6KfIG3R15p1Si/vy1Gt++wewOms3gAgy1It2Dfx5UHOfD+OqP5CFjRHD2O0FAxVxL
+ MwJEQ1tLSG+NBpqt2a7twBS5ukhF0VtPa8r8aVDXpvBc133Spj6QeIE1GnoUB6cbB0r5
+ owWkUvGNsBNKpwAKQr5WhOv5TR1ThY6f7d+tQmTrl78iXC1SeFVR1THXKMwiweWsEaAB
+ KY1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764418871; x=1765023671;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=KcVPfmTekyLiABGhJu4xmxadfb6FIwZsqQzyLFSkQjE=;
+ b=pYSoF7m8WjYc1v13Xuu1fggyL51h91PrxDdh7wfbsiaaoRA0xNJyGmjbpETgLDzhdy
+ Drl8mZG6fNc2FkYlAGgPqgmUlYhGSopPO5a5krJK8kx7eVH9t85onFX+XRfw+QrIbkgR
+ A4haNXCqyZi6XN7gybgHlRvgNH01Yj5W5Cr1TWBbUxaehMuuit1k7aQjyx9GnhH3qR4H
+ d4toyFMUo6oBXyf+UmS04hbc699NwN2IsyJDNyQrOAVm2dqLSSWZfKXfiAIMKBJl7D0t
+ k0nh/mqO7waXAL9RW6QfSdvKkL/MalIbHHp8ioBI3e/ukJqSM2TmG+GlbYzsoI2Cjtjx
+ ofdQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW2UbMYtGl41cVmOAjN43mzmnTxUpWDBWHLKJFktFKpVKC78xJGfKFmHzgqY5+7oT6d3lM2sul1@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy6lwKmUXy6su0nxcVlFtQ5Q8plz3vdWi5ikXWCZAKc7xePfZyg
+ /efWhz8PNp0zM+w1lPzojKRdo6y4aHRDKXEqZ2WmmcuoY4PyAxdU1EzO
+X-Gm-Gg: ASbGncsxGVeFJxDFXLp6cFFdK8tYZIC1Dtfu9cR6c01ejwiCDtj5khvAkG/0ihTxWqH
+ lqyY1ZU0VmjAcbyFEIhhxqQjvazu73PF3RPxtNJABpDqNFspHBJaJHwOuY9l6xkcWFWtBvzB1mE
+ NUM3A4X7yeEdXCaGA0em9FBzbswn+NgqGvt0g+Esipe2pfVCDc1hlMljYDcR4cjHAZDT+c7ZaMB
+ 8KRTbTQm74woOq5ZSnnv99pnJcIQGZecdlf4Q7UYsGSeUlkU16gwbn3qsjRbjqcqlqUyMpqStdi
+ o24EkQ7bAA2czbJdGVC66UAs+8bG8EZbmbAvTf34Iy7uGfBm/zWKl7wyQNCuAGE18jg86bsd/Js
+ lEAjLlFB3eedq98d9EEkJ0gGzjAaJ2h4lumkMxjas5F/iV1gd57SVMegn84QljzzUUud7DIgrf/
+ 2yqPNmE+cfBouFBSn8wwRsftCY5B9DIhnaHcmNWv/9dOS+nxSpWErfX9QCfsoC8uIHPwfk3RDc4
+ g9Zvq0PYlNnPjAE
+X-Google-Smtp-Source: AGHT+IHPdRho1zaUXZGS4ozcekK0LR1lA9bfnMYzOaD4j+9k0x7QM6vylSP8/9z2op9t+DSRd2h1Jw==
+X-Received: by 2002:a05:600c:3b96:b0:477:5c58:3d42 with SMTP id
+ 5b1f17b1804b1-47904ad907amr211433865e9.10.1764418870809; 
+ Sat, 29 Nov 2025 04:21:10 -0800 (PST)
+Received: from ?IPV6:2a06:5906:2618:cb00:ddd6:3141:6a4a:f8d8?
+ ([2a06:5906:2618:cb00:ddd6:3141:6a4a:f8d8])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42e1ca1a3f1sm15343627f8f.28.2025.11.29.04.21.09
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 29 Nov 2025 04:21:09 -0800 (PST)
+Message-ID: <1b7408c5-64a8-42f1-92ab-dd90a883c1a4@gmail.com>
+Date: Sat, 29 Nov 2025 12:21:09 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 00/10] Improve gpu_scheduler trace events + UAPI
-To: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Philipp Stanner <phasta@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, lima@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-arm-msm@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, nouveau@lists.freedesktop.org
-References: <20250320095818.40622-1-pierre-eric.pelloux-prayer@amd.com>
+Subject: Re: [PATCH 05/10] rust: kernel: Update ARef and AlwaysRefCounted
+ imports to use sync::aref
+To: Shankari Anand <shankari.ak0208@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ <20251123092438.182251-6-shankari.ak0208@gmail.com>
 Content-Language: en-US
-From: Pierre-Eric Pelloux-Prayer <pierre-eric@damsy.net>
-In-Reply-To: <20250320095818.40622-1-pierre-eric.pelloux-prayer@amd.com>
+From: Igor Korotin <igor.korotin.linux@gmail.com>
+In-Reply-To: <20251123092438.182251-6-shankari.ak0208@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:46 +0000
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:43 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,95 +118,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
+On 11/23/2025 9:24 AM, Shankari Anand wrote:
+> Update call sites in `i2c.rs` to import `ARef` and
+> `AlwaysRefCounted` from `sync::aref` instead of `types`.
+> 
+> This aligns with the ongoing effort to move `ARef` and
+> `AlwaysRefCounted` to sync.
+> 
+> Suggested-by: Benno Lossin <lossin@kernel.org>
+> Link: https://github.com/Rust-for-Linux/linux/issues/1173
+> Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
+> ---
+>   rust/kernel/i2c.rs | 10 ++++------
+>   1 file changed, 4 insertions(+), 6 deletions(-)
+> 
+> diff --git a/rust/kernel/i2c.rs b/rust/kernel/i2c.rs
+> index 1aee46f59460..c50ca464d87c 100644
+> --- a/rust/kernel/i2c.rs
+> +++ b/rust/kernel/i2c.rs
+> @@ -17,10 +17,8 @@
+>       of,
+>       prelude::*,
+>       str::CStrExt as _,
+> -    types::{
+> -        AlwaysRefCounted,
+> -        Opaque, //
+> -    }, //
+> +    sync::aref::AlwaysRefCounted,
+> +    types::Opaque, //
+>   };
+>   
+>   use core::{
+> @@ -32,7 +30,7 @@
+>       }, //
+>   };
+>   
+> -use kernel::types::ARef;
+> +use kernel::sync::aref::ARef;
+>   
+>   /// An I2C device id table.
+>   #[repr(transparent)]
+> @@ -408,7 +406,7 @@ pub fn get(index: i32) -> Result<ARef<Self>> {
+>   kernel::impl_device_context_into_aref!(I2cAdapter);
+>   
+>   // SAFETY: Instances of `I2cAdapter` are always reference-counted.
+> -unsafe impl crate::types::AlwaysRefCounted for I2cAdapter {
+> +unsafe impl crate::sync::aref::AlwaysRefCounted for I2cAdapter {
+>       fn inc_ref(&self) {
+>           // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
+>           unsafe { bindings::i2c_get_adapter(self.index()) };
 
-I've rebased the series on top of drm-next, applied the minor tweaks suggested by Tvrtko on v8 and 
-the R-b tags. The result can be found on gitlab.fdo:
+I'm fine with this going through either tree.
 
-https://gitlab.freedesktop.org/pepp/linux/-/commits/improve_gpu_scheduler_trace_v9
+Acked-by: Igor Korotin <igor.korotin.linux@gmail.com>
 
-I believe it's ready to be merged, unless I've missed something?
-
-Thanks,
-Pierre-Eric
-
-Le 20/03/2025 à 10:57, Pierre-Eric Pelloux-Prayer a écrit :
-> Hi,
-> 
-> The initial goal of this series was to improve the drm and amdgpu
-> trace events to be able to expose more of the inner workings of
-> the scheduler and drivers to developers via tools.
-> 
-> Then, the series evolved to become focused only on gpu_scheduler.
-> The changes around vblank events will be part of a different
-> series, as well as the amdgpu ones.
-> 
-> Moreover Sima suggested to make some trace events stable uAPI,
-> so tools can rely on them long term.
-> 
-> The first patches extend and cleanup the gpu scheduler events,
-> then add a documentation entry in drm-uapi.rst.
-> 
-> The last 2 patches are new in v8. One is based on a suggestion
-> from Tvrtko and gets rid of drm_sched_job::id. The other is a
-> cleanup of amdgpu trace events to use the fence=%llu:%llu format.
-> 
-> The drm_sched_job patches don't affect gpuvis which has code to parse
-> the gpu_scheduler events but these events are not enabled.
-> 
-> Changes since v7:
-> * uint64_t -> u64
-> * reworked dependencies tracing (Tvrtko)
-> * use common name prefix for all events (Tvrtko)
-> * dropped drm_sched_job::id (Tvrtko)
-> 
-> Useful links:
-> - userspace tool using the updated events:
-> https://gitlab.freedesktop.org/tomstdenis/umr/-/merge_requests/37
-> - v7:
-> https://lists.freedesktop.org/archives/dri-devel/2025-January/488117.html
-> 
-> Pierre-Eric Pelloux-Prayer (10):
->    drm/debugfs: output client_id in in drm_clients_info
->    drm/sched: store the drm client_id in drm_sched_fence
->    drm/sched: add device name to the drm_sched_process_job event
->    drm/sched: cleanup gpu_scheduler trace events
->    drm/sched: trace dependencies for gpu jobs
->    drm/sched: add the drm_client_id to the drm_sched_run/exec_job events
->    drm/sched: cleanup event names
->    drm/doc: document some tracepoints as uAPI
->    drm: get rid of drm_sched_job::id
->    drm/amdgpu: update trace format to match gpu_scheduler_trace
-> 
->   Documentation/gpu/drm-uapi.rst                |  19 ++++
->   drivers/accel/amdxdna/aie2_ctx.c              |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd.c    |   2 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |   8 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   3 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |  32 ++----
->   drivers/gpu/drm/drm_debugfs.c                 |  10 +-
->   drivers/gpu/drm/etnaviv/etnaviv_gem_submit.c  |   2 +-
->   drivers/gpu/drm/imagination/pvr_job.c         |   2 +-
->   drivers/gpu/drm/imagination/pvr_queue.c       |   5 +-
->   drivers/gpu/drm/imagination/pvr_queue.h       |   2 +-
->   drivers/gpu/drm/lima/lima_gem.c               |   2 +-
->   drivers/gpu/drm/lima/lima_sched.c             |   6 +-
->   drivers/gpu/drm/lima/lima_sched.h             |   3 +-
->   drivers/gpu/drm/msm/msm_gem_submit.c          |   8 +-
->   drivers/gpu/drm/nouveau/nouveau_sched.c       |   3 +-
->   drivers/gpu/drm/panfrost/panfrost_drv.c       |   2 +-
->   drivers/gpu/drm/panthor/panthor_drv.c         |   3 +-
->   drivers/gpu/drm/panthor/panthor_mmu.c         |   2 +-
->   drivers/gpu/drm/panthor/panthor_sched.c       |   5 +-
->   drivers/gpu/drm/panthor/panthor_sched.h       |   3 +-
->   .../gpu/drm/scheduler/gpu_scheduler_trace.h   | 103 +++++++++++++-----
->   drivers/gpu/drm/scheduler/sched_entity.c      |  16 ++-
->   drivers/gpu/drm/scheduler/sched_fence.c       |   4 +-
->   drivers/gpu/drm/scheduler/sched_internal.h    |   2 +-
->   drivers/gpu/drm/scheduler/sched_main.c        |  11 +-
->   drivers/gpu/drm/v3d/v3d_submit.c              |   2 +-
->   drivers/gpu/drm/xe/xe_sched_job.c             |   3 +-
->   include/drm/gpu_scheduler.h                   |  13 ++-
->   30 files changed, 186 insertions(+), 96 deletions(-)
-> 
+Thanks
