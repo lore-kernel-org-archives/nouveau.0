@@ -4,131 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A646D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E517D5B15A
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:17:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5FA510E402;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3F4A10E40C;
 	Sat, 13 Dec 2025 12:17:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="UHMPfQ8w";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="cx7BZTRN";
 	dkim-atps=neutral
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B13D10E174;
- Thu, 12 Jun 2025 20:05:09 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-7d2107eb668so211388385a.1; 
- Thu, 12 Jun 2025 13:05:09 -0700 (PDT)
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2681810E0E0
+ for <nouveau@lists.freedesktop.org>; Sun, 30 Nov 2025 14:42:33 +0000 (UTC)
+Received: by mail-lf1-f54.google.com with SMTP id
+ 2adb3069b0e04-5943d20f352so1961577e87.0
+ for <nouveau@lists.freedesktop.org>; Sun, 30 Nov 2025 06:42:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1749758708; x=1750363508; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/v8Wi9pmLbzK2fVR/8wTPHTfFlRGupAggALw4VZWcDE=;
- b=UHMPfQ8wVMCkhzeTbo00H5Z04HRq6EMkUwedkbZg5x+2UH/Tr9tQwyfzmTwaZx4Lzh
- Hn+cnsziWhKwhT50gE/w2mSdOyW7Ez8H4pEMJOLgFFgVLliDlKURNiopT0HAD011g0x8
- tkhkcwUyK0v2P80pihM/z8338KSYeb5VJxYieX08FdMKsXB4U2zIYBvGYO7mg187us3j
- z7i53M8qoy260nUyqzUvJXVR/GztEN+gW8bgU5Dbgqp/ddeIVqj//6LtBaXKAHQ7e8tS
- j3cw8fwIRBRF9Q3sic/mIGyFzkQ8tGVOXMm0FoKxZk9i0zWxDQrdlDt2ZhpM9RL/X5Rl
- 06Og==
+ d=gmail.com; s=20230601; t=1764513751; x=1765118551; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=p73b8XMlnTSi7KqBmjtWQMkQBIAWTKM0Ot/hr/K9NMU=;
+ b=cx7BZTRNr2/QFLtRcSzL4vKpESlfrAFzXpOiCJM5amQ9wQUzN3lFyecun78cPWX2HD
+ n1Imn+dFLJWetvblMliTPBVl9hQFn+VEPltS4BfyScptTSJhllhLTXURa/w+zc6ynlOm
+ YVDs3IFAPMLYEn4VpFXxZbKm2l4VwYHa24A9UfJkC6xplXK6MYnh/4vB8F+MrvScCxQs
+ HPBqjcOUpEFHHDlcggLPBhXwoFY2h/Uca6juc63l8EGXJA1qDc8sX25RxnRSh4DznnQf
+ uYalInRwp2puQ//dkdccmddDVc+S+fTPfLuuVdrE3Vokh5e7i6eKNYi+g/swx0E9uyT7
+ KJZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1749758708; x=1750363508;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:feedback-id:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/v8Wi9pmLbzK2fVR/8wTPHTfFlRGupAggALw4VZWcDE=;
- b=fV+7EfD9IL3ot86FJmSz4VDD3y+PzySkPF/QHDdDzAa9/BoVd+0LBdrc581+hq4dwQ
- cujOdhIBruj/8dMn7GmLLx1OZm3F9pLqMKjTbaL4WYIVPg9WxNOWkfAnEc+8P2opee8Q
- aBU1wHIf0KvH9Ud++/f0GnmUy+AdAI1DGDhJGeCz1MvdJ3TLSX3P8lPPMZ8A2MsIrskr
- DrF7mHXf3Mct3/ZsINtNxpXfpprmdyyugqp5gvUQTqdsWYQaZ3ZT7hphpPjX+rQ/3tUl
- TXUZ4AsButmmfxM+kR6UTyjq+XndtDyzePG89uMpSAsai3IAcqLBc32zZWBcI3lC/3oZ
- CfcA==
+ d=1e100.net; s=20230601; t=1764513751; x=1765118551;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=p73b8XMlnTSi7KqBmjtWQMkQBIAWTKM0Ot/hr/K9NMU=;
+ b=LEklTp1tNJ4IvwkGr2Ifytjxcg68RnteXa2/LBcPsnjq14ahqxfd0givYP1rtEjm30
+ w7zRJ/xMrM5J5p5YwULlPr8KwKYhvpjMjdhHq/fxYNOHRhiOb2bDbcYCUKTZ1IuzzFdy
+ Q37QduhfPYeRZN/Qo/NYhf16qhVbJJ2017azaQ5uWzLX5lhlUunMA91zs6GeGg3ul18z
+ 7soCvoSDJnEwXp9NTk7IQ7aWirn/DqzqVwDCESnAcvYci2ePmAEs9LGHxAF83NB+Gj8I
+ yF4EGLWHXC/ewM/aVa+shZuMlqUfh54Y1oMa3XmSTG5gpaVc3quiJEWOwg9AbNnKDRz5
+ l7rg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVkyGa6/SFKYaoUJzIzjh1ED0LWBV3RV9Cx8ltXdKQOWdIFGCP2Ph+9wU/00DZ/aszNLFA3fI/J4A==@lists.freedesktop.org,
- AJvYcCXnNBCAABynYvnZLCnVTZdIau/opPmN+0Es+PNwbwhxz8wnvkoYvrsvs4i6oteBWJ7Z7zVRbEu6e0Q=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzB7JZxUoT2RbTEp653W5/FttDWzQgypVB9ZY7iIfJnlJNGw6UO
- 0RHvsnjmyNajDUiiCX4T3yQzl3qZ1MoT5Bn2/u/szr9MNU+gVVM5+MT5
-X-Gm-Gg: ASbGnctBVUNaYTGfjEffhD0hMDFOST3Cgln0mWg+kExt3Oo3xVxwU8eLJFlU+dGvT0q
- UWfFFdgk+t6BTlECx+esOvWdVm7Ry0v630xg4JFtKgR4dpBEtW1QBH5w4QmUe5mZTxmXHdf/dsT
- Hfp9gMHb40LjbXxcrm1rs4Aj2tWCpgiw0LEipjjO3iEw9Mc/4/9P4dDeV/bC6J6zzqRGlQro5Wq
- 1eunrWlqjR2U93cGrvjYn3lg7BxdOMMhQnndPShPyRj4vGyjyToQEF1Y1CVkIA3DxcEFPB4HXac
- sDRagkcbv2vXC+q/aOvktu7QpKOzY0YQI87ve/vkfZcToOUTC3prbKqRaTV3GlBwWMGT/agD344
- l/DsxTVC7gQWkzacLECoJc59AQFVBN6rUiczPiT2yIzdCQolaVUiV
-X-Google-Smtp-Source: AGHT+IGPvbhYn1lrn4qrmeoqzJFjK9J0A7QGgbiWc7FHysFCIXuha98d9b++ZX/ELwLmeM9pGf4jzg==
-X-Received: by 2002:a05:620a:28c5:b0:7cc:fddb:74d9 with SMTP id
- af79cd13be357-7d3bc3aa135mr102342385a.22.1749758707841; 
- Thu, 12 Jun 2025 13:05:07 -0700 (PDT)
-Received: from fauth-a2-smtp.messagingengine.com
- (fauth-a2-smtp.messagingengine.com. [103.168.172.201])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-7d3b8e014dcsm78864185a.34.2025.06.12.13.05.06
+ AJvYcCUD/1WyLEnb0rTNuxrHun0aL+YhyPqNEewcw5zcDwz9Tchr7tchzVJ8900y4oLB+vFZFxgb4X29@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxZL6iCCUDSbVPCOTGep3sZnf3iD1Y1dasgLfxKLgRJDQcm62e9
+ 7Xbxi8ulESqsZCVUTGptOWaDzPffZf3sAscNjXKNJFCA1yowfYgQsOok
+X-Gm-Gg: ASbGncvYMPeWQkD/xBphIhSc9D+Sm3RpfclHnXWtF+p6FtisLyniek5AQHLIu53DdfW
+ Ks2eoymJgHxIOORjny38cKeFnyJfcGpEMlw08JcBCiMoQ1XIigHEPpyC88iC5Of0CV+woCh6GKu
+ ijVtwydviV4Yfb5BG8DEgXbRX2FwlacVfRDMhIovvsdKCK5aEqbTD2+FrKe10U2WY1yM2nFkvZT
+ X6JT7dfKFZl/2WpEkyvjvSJ/85ka4H31QpAKDtYccePGCrIu9VTIKH7/LTlW8PPBY4Y79eHPbfK
+ WycPu7YuUyZNOYZnyxVpGIfAkziaRqYjda0wAuOdYDM/iwKakjztbkyTAyDj9K4pzizQqjZg7vq
+ 92mP+SOoHBjeGu3lVm7wxLkaQcaBebBZYUu9GWXJkfZVEoifC1Ykz2FpkDzhcJJFCvye0rtVhz8
+ LAqzAiK0R50TfXk9wdzQoQ/ElmpCWHhX5hA0AP+oynAwOqgtOf
+X-Google-Smtp-Source: AGHT+IH1K7vOLIGvq0uhY0khDGnZ6O5dtNHEYSExFHc8Hxw3O6yt++WQ+vurMa839//Vrr6SIF7E4w==
+X-Received: by 2002:a05:6512:2304:b0:595:8062:135 with SMTP id
+ 2adb3069b0e04-596a3eb322amr11827999e87.20.1764513750889; 
+ Sun, 30 Nov 2025 06:42:30 -0800 (PST)
+Received: from home-server.lan (89-109-48-215.dynamic.mts-nn.ru.
+ [89.109.48.215]) by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-596bfa48cc8sm2846041e87.83.2025.11.30.06.42.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Jun 2025 13:05:07 -0700 (PDT)
-Received: from phl-compute-11.internal (phl-compute-11.phl.internal
- [10.202.2.51])
- by mailfauth.phl.internal (Postfix) with ESMTP id A02B01200069;
- Thu, 12 Jun 2025 16:05:06 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
- by phl-compute-11.internal (MEProxy); Thu, 12 Jun 2025 16:05:06 -0400
-X-ME-Sender: <xms:8jJLaDKg1c-9WrSx28hWxxjLGRPk-oC9LXUQXrH7iYPsPfmRxfKG6g>
- <xme:8jJLaHI98L03KajeyCOFSEhjpbfFLEDSLmvOCQZ0RfDaBO4JoiHAt_1ovxTbHdkCD
- 8foDAuobfUGm_rjtQ>
-X-ME-Received: <xmr:8jJLaLvt9i59zBXEyTt_YbiW5XQE0leVQffWjB_jhVQ7AWkwHLZNU40kESA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtddugdduheelkecutefuodetggdotefrod
- ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
- uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
- hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtuggjsehttdertddttddv
- necuhfhrohhmpeeuohhquhhnucfhvghnghcuoegsohhquhhnrdhfvghnghesghhmrghilh
- drtghomheqnecuggftrfgrthhtvghrnhephedugfduffffteeutddvheeuveelvdfhleel
- ieevtdeguefhgeeuveeiudffiedvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
- hmpehmrghilhhfrhhomhepsghoqhhunhdomhgvshhmthhprghuthhhphgvrhhsohhnrghl
- ihhthidqieelvdeghedtieegqddujeejkeehheehvddqsghoqhhunhdrfhgvnhhgpeepgh
- hmrghilhdrtghomhesfhhigihmvgdrnhgrmhgvpdhnsggprhgtphhtthhopedvhedpmhho
- uggvpehsmhhtphhouhhtpdhrtghpthhtohepjhhhuhgssggrrhgusehnvhhiughirgdrtg
- homhdprhgtphhtthhopegrtghouhhrsghothesnhhvihguihgrrdgtohhmpdhrtghpthht
- ohepohhjvggurgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrdhgrgihnh
- horhesghhmrghilhdrtghomhdprhgtphhtthhopehgrghrhiesghgrrhihghhuohdrnhgv
- thdprhgtphhtthhopegsjhhorhhnfegpghhhsehprhhothhonhhmrghilhdrtghomhdprh
- gtphhtthhopegrrdhhihhnuggsohhrgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
- rghlihgtvghrhihhlhesghhoohhglhgvrdgtohhmpdhrtghpthhtohepthhmghhrohhssh
- esuhhmihgthhdrvgguuh
-X-ME-Proxy: <xmx:8jJLaMamAHDz7-udyNIXaRAnQ5xED8QoPEp7Vi9OM1U-oarB-YAKnQ>
- <xmx:8jJLaKaq6PRdbPepVJaW_bsaSLlxn2oAo5ggiqXbd9brNEG7wnkirA>
- <xmx:8jJLaABpUBZ_vC7o5pmrsbmXztk0Mv4neO5_MKsYE9cNAfEfp-lrzw>
- <xmx:8jJLaIZGMP1bP5oyTJkZ5v-KBjTvfqzJBLQlOLYji6S0FsvmZRB56g>
- <xmx:8jJLaOo3I22I0K7cjp0hS0Av5MFGXjhucJXIc_y_asDa0_aC3TqKWFek>
-Feedback-ID: iad51458e:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 12 Jun 2025 16:05:06 -0400 (EDT)
-Date: Thu, 12 Jun 2025 13:05:05 -0700
-From: Boqun Feng <boqun.feng@gmail.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Benno Lossin <lossin@kernel.org>, Ben Skeggs <bskeggs@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v5 04/23] rust: add new `num` module with `PowerOfTwo` type
-Message-ID: <aEsy8XDy6JW8zb6v@tardis.local>
-References: <20250612-nova-frts-v5-0-14ba7eaf166b@nvidia.com>
- <20250612-nova-frts-v5-4-14ba7eaf166b@nvidia.com>
- <aErtL6yxLu3Azbsm@tardis.local>
- <f8d9af76-fc1d-4f7a-8dfb-a0606e44c56b@nvidia.com>
+ Sun, 30 Nov 2025 06:42:30 -0800 (PST)
+From: Alexey Simakov <bigalex934@gmail.com>
+To: Lyude Paul <lyude@redhat.com>
+Cc: Alexey Simakov <bigalex934@gmail.com>, David Airlie <airlied@linux.ie>,
+ Daniel Vetter <daniel@ffwll.ch>, Francisco Jerez <currojerez@riseup.net>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org,
+ Alexandr Sapozhnikov <alsp705@gmail.com>
+Subject: [PATCH v2] drm/nouveau: fix div-by-zero in nouveau_bo_fixup_align
+Date: Sun, 30 Nov 2025 17:42:21 +0300
+Message-Id: <20251130144221.7689-1-bigalex934@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f8d9af76-fc1d-4f7a-8dfb-a0606e44c56b@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:01 +0000
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:17:04 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,54 +90,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Jun 12, 2025 at 01:00:12PM -0700, John Hubbard wrote:
-> On 6/12/25 8:07 AM, Boqun Feng wrote:
-> > On Thu, Jun 12, 2025 at 11:01:32PM +0900, Alexandre Courbot wrote:
-> ...
-> >> +                #[inline(always)]
-> >> +                pub const fn align_down(self, value: $t) -> $t {
-> > 
-> > I'm late to party, but could we instead implement:
-> > 
-> >     pub const fn round_down<i32>(value: i32, shift: i32) -> i32 {
-> >         value & !((1 << shift) - 1)
-> >     }
-> > 
-> >     pub const fn round_up<i32>(value: i32, shift: i32) -> i32 {
-> >         let mask = (1 << shift) - 1;
-> >         value.wrapping_add(mask) & !mask
-> >     }
-> 
-> Just a naming concern here.
-> 
-> The function name, and the "shift" argument is extremely odd there.
-> And that's because it is re-inventing the concept of align_down()
-> and align_up(), but with a misleading name and a hard to understand
-> "shift" argument.
-> 
-> If you are "rounding" to a power of two, that's normally called
-> alignment, at least in kernel code. And if you are rounding to the
-> nearest...integer, for example, that's rounding.
-> 
-> But "rounding" with a "shift" argument? That's a little too 
-> creative! :) 
-> 
+The expression 64 * nvbo->mode can be zero when nvbo->mode equals
+U32_MAX / 64, causing a division by zero in do_div(). Values greater
+than U32_MAX / 64 cause a u32 overflow, leading to incorrect results.
 
-Oh, sorry, I should have mentioned where I got these names, see
-round_up() and round_down() in include/linux/math.h. But no objection to
-find a better name for "shift".
+Since nvbo->mode comes from userspace via ioctl, it must be validated
+to prevent crashes or undefined behavior.
 
-Regards,
-Boqun
+Add a check to ensure nvbo->mode is less than U32_MAX / 64
+before use in multiplication.
 
-> > 
-> > ? It's much harder to pass an invalid alignment with this.
-> 
-> Hopefully we can address argument validation without blowing up
-> the usual naming conventions.
-> 
-> 
-> thanks,
-> -- 
-> John Hubbard
-> 
+Found by Linux Verification Center (linuxtesting.org) with Svace.
+
+Fixes: a0af9add499c ("drm/nouveau: Make the MM aware of pre-G80 tiling.")
+Co-developed-by: Alexandr Sapozhnikov <alsp705@gmail.com>
+Signed-off-by: Alexandr Sapozhnikov <alsp705@gmail.com>
+Signed-off-by: Alexey Simakov <bigalex934@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_bo.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 96a8b7b1215e..774888ffa4a8 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -207,6 +207,9 @@ nouveau_bo_alloc(struct nouveau_cli *cli, u64 *size, int *align, u32 domain,
+ 	struct nvif_vmm *vmm = cli->svm.cli ? &cli->svm.vmm : &cli->vmm.vmm;
+ 	int i, pi = -1;
+ 
++	if (tile_mode > U32_MAX / 64)
++		return ERR_PTR(-EINVAL);
++
+ 	if (!*size) {
+ 		NV_WARN(drm, "skipped size %016llx\n", *size);
+ 		return ERR_PTR(-EINVAL);
+-- 
+2.34.1
+
