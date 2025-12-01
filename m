@@ -4,101 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8868D5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78507D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D37A210ECAC;
-	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1311810EC9B;
+	Sat, 13 Dec 2025 12:42:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Md7aJjHR";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IxotbmSJ";
 	dkim-atps=neutral
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
- [209.85.214.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DFA10E126
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 09:27:06 +0000 (UTC)
-Received: by mail-pl1-f175.google.com with SMTP id
- d9443c01a7336-297e264528aso37046435ad.2
- for <nouveau@lists.freedesktop.org>; Sun, 23 Nov 2025 01:27:06 -0800 (PST)
+Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
+ [209.85.210.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52ED810E4BD
+ for <nouveau@lists.freedesktop.org>; Mon,  1 Dec 2025 22:58:58 +0000 (UTC)
+Received: by mail-pf1-f181.google.com with SMTP id
+ d2e1a72fcca58-7bac5b906bcso549397b3a.3
+ for <nouveau@lists.freedesktop.org>; Mon, 01 Dec 2025 14:58:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1763890026; x=1764494826; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1764629938; x=1765234738; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=SxofK3PIJmJGptGWmPl6GxImW1KehJK8Ra0bi1cA/KY=;
- b=Md7aJjHRSntyC/Aeih3tkhnJvOH2CyI2ZiTLJP4BPZDIl+XWb1HzKGUSIK1mQIqciO
- JZwdw9nTFDBo6hvU4oadQFecECYobI5bx28vpPTdzNq0fI/KX+tSy+/S1Uv/oSAhcyjK
- /irYQgITECxlgWtp30zHFUMYSR1SWQ9KBQYV9LXLrHp39CXuNdMYr9SGIUlsi5YIvQr8
- 5i8ekom5/93YCAK74wmsgBiFnWshTtXYV86x7N2mk9bVDvkvQv/WlInn1yI/iNz5n2qj
- qbfgtqzpVuFfEJuAbDee1uNU2CMA91bRjufJdWLSqGYGH93bH7VRWvQo/C2rx7XQgnIW
- /ONw==
+ bh=zyWPxm7BxHU2DwXC/shC6IQcOtTNXj2MQcP74sbsrkE=;
+ b=IxotbmSJsd/X44ee+0EfVdjUaaIZZLVVUs+Qgur7prs27YSaKoK2pUYyaeq+vu4iKI
+ zvk3NJIMPQmuckhSt95R1tylWvgYHBCMK8+uwbi6/D7Dp+lH8wCulUr0qhJpIzbAAqVA
+ UHqMVIbLWekkBDrMeMD59+SHMMFdk7MGoiANUBU7oE4Rs1wOiAKlIHeDusLnlIe3wk/z
+ U+VBfTV0sk6xB+3sjvWe1jKP7pEVkkJC9FFU6AecCRsUS45kLneHIRcRYXf7XAJ8BXL5
+ DEcDsPHoavwAGrsNpSs3Vo6NzJUEn+QsGLUoYs+LtbOjpwtH9PGkvf0eyOjA6hSQBX6W
+ SdVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1763890026; x=1764494826;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20230601; t=1764629938; x=1765234738;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=SxofK3PIJmJGptGWmPl6GxImW1KehJK8Ra0bi1cA/KY=;
- b=mdYTrfohD78nlh0pdB+9c3BjGuZqLwQxW4Tl9rBhK1Ln7yoCyb1bbME0qF0y376Ul6
- XUhsDkUJ73xNgcNQeIUev9TzlaN50cUAuSYpcmLkxTnFtPjXxIyOkd/3618FWHqJLmEw
- zgpaZrwZUerzSY6+c7WUyJvda4rZZk5UurKEQeJ5Ca2oWFaTE+FXHLz/DsP9F+V9FnI7
- 0t1z8lv0Lrdioo34KuwzbpfY4vU+KD78mcpRoAZd9Mh2+wCS4Nj2APHf4FA/KdwIQejO
- 8aaOGB4rOBnUOsggKA5zrjZqMRlEEMPwZsR1rSc36xKulU6WIttUyVjRRoKoyVtVa/Pp
- LT6Q==
+ bh=zyWPxm7BxHU2DwXC/shC6IQcOtTNXj2MQcP74sbsrkE=;
+ b=tcy+7Qhv4dBV3EvC5dgo4n5nx+lBaGqvzH71TePbONRJAZV7W5By0IGkFvnCqP2uot
+ 9z3Lw9OeU5x8/LmjFe315kpcKORKLygWd/XAsp8Z+CcnP4QnbBUt8tHFruGXrAC87fJE
+ eQoTG05lJBuIkayHWXpU63WMOLFUc+IqohWF6Ks8DAltg7d8cuvjaYnFflfV530yaRr9
+ JdSexMav//IuBA/JPpmnDimOBhr53XA3alUqZTe/M50MR3dAN68t+lSt7gVrlQwnGFp2
+ 3witDDerBCDnLzgelGpMYHqVzKdK048CO8/74DoxlDkMU8TfEjoDL8/IkmToT/HFk7fo
+ mbJA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVZScIHsuAF01w9JFQzQjkD5V7TtiOknVm4ooIo06YQzbkz6OzB8rFDwrpzcVkW3o/mZgpECQog@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywk8sidNbkbYHAhq9JnRGr54Rs5wjZZJslQ2WT1wFPwXVGmfvfz
- Ed88+iyZYqJuNvpLLI70D9JVT1XMD4a09haipmoibaZS2hbWMIocoWkg
-X-Gm-Gg: ASbGnct5J1bgX6JgXtoYEWbVyCYUh/c8soav1pXswFiiXIzz03YPcouisX9C1wFsnbx
- 4fkNYzB72INBvMHk2S0adi40AbdfwtaKnX4mC+pnclHn31mRowsEvk9BASMDWgIUhRvy0AuIxx+
- LPOaegZ0BLZHlVpQK5a0dvMJVXWeZBmAOXw1oX5gPsUE2x68CJm288toGDf+2zYguV0K2Jkp3dQ
- gllzGO+H45l/a8KFBwTdXgzunH7B2GT/VAxWjRIc4RKV71c5FZruagiGvtOtqBWR2TnG1okO7D7
- XHzkEuPikrBn9OQW7P5eJPry7EuGhVn+zPCJAKHa8zHacA8H7CABWNq0S4gDI0injpGCI/fmuq1
- uqoeLs3UJ2eKWaugNdgOeGwHMrKcdqIOUhMEPbIwsGiRmlT5Se2+6mTJjn4f9VIxP7QlElHsR8/
- TwuZ7iWf5vufFpCS4zm84CFkSBxQ==
-X-Google-Smtp-Source: AGHT+IH1U8t8hCw2WDyvXF/0DPfy18rrujnj6Em/QND/b9i4osv8+SLy39cyAfSRsaedSvrbycJTtA==
-X-Received: by 2002:a17:903:290:b0:297:c048:fb60 with SMTP id
- d9443c01a7336-29b6bedf343mr95210775ad.25.1763890025910; 
- Sun, 23 Nov 2025 01:27:05 -0800 (PST)
-Received: from shankari-IdeaPad.. ([103.24.60.188])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-29b5b138c08sm100811105ad.25.2025.11.23.01.26.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 23 Nov 2025 01:27:05 -0800 (PST)
-From: Shankari Anand <shankari.ak0208@gmail.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?q?Arve=20Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Igor Korotin <igor.korotin.linux@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 07/10] rust: kernel: Update ARef imports to use sync::aref
-Date: Sun, 23 Nov 2025 14:54:35 +0530
-Message-Id: <20251123092438.182251-8-shankari.ak0208@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
-References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+ AJvYcCX44jUhc6xpxNKM9Jqs1KsZEYJ74rAo+03hpR+l+H/qXPVhNUoyK1suDHDssUeoHPo1J3QkKxsu@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyyK+5Z8ySO0sEbtDzsJe7p6WEN/ROCIx5eiQQimGSAZgt8wGmg
+ 99GolNoKtAmwHiNNHuEev9BQvRM3I8xGIvhxX427UpDPCtOEen2J3UuAqgtXq7/zKf0W3X2zaLJ
+ Qpqus7m+HndaeZAq4je8QbeDPjfuhaKI=
+X-Gm-Gg: ASbGnctkVt9e5mX34iOZQtVZfB3Q1+CkfaoUgF5OTAr7pE8JUx5dIVKqPkyTqXiMYBJ
+ bK3WXgL3UxtwNlpfxWXp87EGELHAfnb6b+gizYMi/XHzWsm2SP3881ZEdcJx9VNIxj4pqMZc753
+ 6BTDpu6nPlFwLiYt0xhM5Am6utfRf0yaNNO5RQTynapbSnHKXlrs/UDEMU8lUwo7fcQY4mAZZBM
+ F5w3rlmRhWbs66YDtkQelx1qIdu08RVDe1a9SBcPTN2oXWHu5ZCvSWI/OkO3+8lzbmAgGKrXdB2
+ WgUzY0iwHEzZr6DCGgId1WFj4F0+8pPOg6Hhwe0mYZGKCoFH+8KjzTanBZZOV9XN3TukiYRW5mB
+ jdvIFSh9ycGMkDQ==
+X-Google-Smtp-Source: AGHT+IHY+FeAItpAcrc5Fq3fIXt5nt1KC5tdgt+lz+Ap3b7wKK+vwNPbBlkNS7wWrophFDdlzmuDF0mqMk5k9ykfKLw=
+X-Received: by 2002:a05:7301:e24:b0:2a4:3593:2c07 with SMTP id
+ 5a478bee46e88-2a7243ec7b9mr22701116eec.0.1764629937707; Mon, 01 Dec 2025
+ 14:58:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+References: <20251129213056.4021375-1-joelagnelf@nvidia.com>
+ <5B89D953-BB52-4E8F-AC40-1FA33C016780@collabora.com>
+ <87d2c2d5-12d2-4655-b070-872c909f7e0a@nvidia.com>
+ <48EFFE1F-4D20-4A2D-B3E0-13E9CB796624@collabora.com>
+In-Reply-To: <48EFFE1F-4D20-4A2D-B3E0-13E9CB796624@collabora.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 1 Dec 2025 23:58:45 +0100
+X-Gm-Features: AWmQ_bk8XBPXNwQ-7Pod4UntjM0rZKNAiZHIZMwXF3_mA-n9qMS1f4f_JysZoCo
+Message-ID: <CANiq72=V9TvPPvx=nAOciSZKVQJy+YBgLmPTt2EGo9bGrthdog@mail.gmail.com>
+Subject: Re: [PATCH v3] rust: clist: Add support to interface with C linked
+ lists
+To: Daniel Almeida <daniel.almeida@collabora.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@gmail.com>, 
+ Alexandre Courbot <acourbot@nvidia.com>, Alistair Popple <apopple@nvidia.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ Joel Fernandes <joel@joelfernandes.org>, Lyude Paul <elle@weathered-steel.dev>,
+ Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,33 +104,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Update call sites in `scatterlist.rs` to import `ARef`
-from `sync::aref` instead of `types`.
+On Mon, Dec 1, 2025 at 11:55=E2=80=AFPM Daniel Almeida
+<daniel.almeida@collabora.com> wrote:
+>
+> Yes, this is what I meant.
 
-This aligns with the ongoing effort to move `ARef` and
-`AlwaysRefCounted` to sync.
+Sounds good to me too, but if enough people like otherwise, it is not
+a big deal either way.
 
-Suggested-by: Benno Lossin <lossin@kernel.org>
-Link: https://github.com/Rust-for-Linux/linux/issues/1173
-Signed-off-by: Shankari Anand <shankari.ak0208@gmail.com>
----
- rust/kernel/scatterlist.rs | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/rust/kernel/scatterlist.rs b/rust/kernel/scatterlist.rs
-index 196fdb9a75e7..b83c468b5c63 100644
---- a/rust/kernel/scatterlist.rs
-+++ b/rust/kernel/scatterlist.rs
-@@ -38,7 +38,8 @@
-     io::ResourceSize,
-     page,
-     prelude::*,
--    types::{ARef, Opaque},
-+    sync::aref::ARef,
-+    types::Opaque,
- };
- use core::{ops::Deref, ptr::NonNull};
- 
--- 
-2.34.1
-
+Cheers,
+Miguel
