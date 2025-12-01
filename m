@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE361D116F6
-	for <nouveau@archiver.kernel.org>; Mon,  1 Dec 2025 23:41:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66E63D116F3
+	for <nouveau@archiver.kernel.org>; Mon,  1 Dec 2025 23:41:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A238A10E4DF;
-	Mon,  1 Dec 2025 23:41:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F65210E4E8;
+	Mon,  1 Dec 2025 23:41:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rAU90k3k";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Rd6+q1JU";
 	dkim-atps=neutral
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010068.outbound.protection.outlook.com [52.101.201.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC48B10E4DF
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011011.outbound.protection.outlook.com [40.107.208.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AFE110E4DF
  for <nouveau@lists.freedesktop.org>; Mon,  1 Dec 2025 23:41:37 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=s6duE2UVNBCf7Q7MNoBeF25K/0cIw3PuiFEaL9SHgARgGOhailqOp9scb0CTwTRqeOUIgA2BNJkgLuVdXrY7ofOENGHeYIw6ZsSIBW0Vl96n9aR3MkbUxRFGYAVKHwcE8OaWMarADAzhhuLKQ2GLlc1omJQH7+jb2NllvE+OTsMMXEkEZNYXjCXLsJRm6/JQUANIWjPUNPcn0WLxrXMEnzfhZfsKiI4imZyifLPPItbAOUFLs6jjDnQ2TscT1E8GuiQyWUmS3VkkpgKTveTt52MDLw3+zS3ADUrZ6EeM5RXiOBFQW9zgSDJvEb+QDdJdXBx2rHEhKI5e8SEn2lxmtQ==
+ b=fEEy32FVBW2DZYJVRy9oPNBWhWdlGye3P6khczaOrr+zH+xR6wrdHn5vk4tL31z2mYM3obRPcseYjG2Zj+Pd8XmaTQm9LYEUu2DoDRwXeFPJR1QPfWV1DAyirsoiMr16dG/iTMbdBF048WVWN3no2iD3s0YbAwKu0UdUZWsJyLlpdbOBTvMoZgFC6VnU5qc1kBQ/DnmLM0SHUhla24qfOxCETT374+eIkGKqsoGZs29i0+ktAbVR40T3gzOQJOmkq1X+X/1M/gZHRl5QNgfavNXDPNDPHCX84iUVXRLNKLgwN3FIKAto06QAr0R077VyfWCSp0W3LZ0+BeprnkyvEg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AmBvMFqJl+6M9cB2lq5RbjUhSEBRwpsr53z5H1tHfBA=;
- b=FLQyccqXl0z350K/qXecTfVETFsaE0STjIJx0gNA+DvoD8D7Y78xujxN6BuWPDSDGgbXWM2OwPuO1jI4bo8HL1Gn0Vzr+9mpDKIi953MAqFluuWXkxLnen3yndKtqrQIEmA0IIKzNS/vESBHU8WH9iE3BTsY6RdpvrQXiadGGR2pR/xx7wlOBSpe765QC2oVZokKWurfhGOAMe7jWecyET/TO4IZ3y3TNvsRComF0caksaz9RCBG8jQDG0ts7JwXUFk7SShMT/bLJAckCRKWi9ao19h6Ong7WywG7yYYOJHgoumJfW2G0MEC6MSrtQAQnXAsBsW+yCUVDPS/ERhM4g==
+ bh=+ha2J9orRUI0LTavALskIOVNQKq00h1weUHi74oIzVY=;
+ b=VTTLiX3M4T5jY9xQ43p4xKkYzKScGoN5rScYd6WXBkwr+Tj14sGPz/nmX5F8K/aW8vyBkvxhVgBD+LcrnsQMSAS69wV5nPkw6kWF96KDL3oVmximrZyBOYego007iXxIiEUZ9a8UEwEwNbRz6HoyPLNII0N4tkNTTtuxdToG/Xv1p0T6yskC9yT0LSUibNmxg6+E8chADsaX9Tm+xQtPKE9N6CbV43N+UE9X1BOTezy8Mee2DDH4Tas9TokfKB8MaPBl3laKLmMHk3B9Vhm46c0oKCJ1HAJT9lytdPYSAjNPZw/9bJYh8aayQdLMirZS3rYn7IjofnnIgi7HZLaCtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AmBvMFqJl+6M9cB2lq5RbjUhSEBRwpsr53z5H1tHfBA=;
- b=rAU90k3kHsjeurnn0w9TH/IctbClGVvEj1UtCW3cvjzJJoOzUWzmN3M1QFKehdZ816cBe+hu9UqvcpqaLX7YWOb6ytosikH4ofqLirxvN6Q0pdEVwm7v7sp7+IbHbx3lO5PERG6XxG6gBl2kduL4CN1lVZAhOsTHhltWTxoisuAoezI8dq5CGMpXFZwhqvbbL5BGsukuxKKBOxVJHdsqv2hkXqjUd/EEM1+/pr6Bzj6S2QtsbnOzAdEJ1BK9AnqYOxx7MaIZGhstVTHWhTatwEbLEZBGM9UG8jaWTA+DqplroaSwGko4EZIp0sQvHrnUSuCgkXshb3Q56xUNncDwTg==
-Received: from DS7P222CA0008.NAMP222.PROD.OUTLOOK.COM (2603:10b6:8:2e::29) by
- DS0PR12MB8813.namprd12.prod.outlook.com (2603:10b6:8:14e::11) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9366.11; Mon, 1 Dec 2025 23:41:31 +0000
-Received: from DS1PEPF0001708F.namprd03.prod.outlook.com
- (2603:10b6:8:2e:cafe::a9) by DS7P222CA0008.outlook.office365.com
- (2603:10b6:8:2e::29) with Microsoft SMTP Server (version=TLS1_3,
+ bh=+ha2J9orRUI0LTavALskIOVNQKq00h1weUHi74oIzVY=;
+ b=Rd6+q1JUyHoIp8uyrwho/tBwXXcObdvK/uNo3M9fbU+dGacDhOGrJfLpW3FSYjnGZuiAnHqLWj15OkP75wsHAiIUeU8xb2S+iidM8CMCVR3/G7GTRg3bNmjRqPREYuf3ZpVg9ajNGX8RM1EIC0AVaVs3E6nueWBqXnJurQ+FzTzk+TfjERDZZuFMCLqtxhq3CGqGL56FDpUj8YeV3eQpGV2a6sd7rKq8utYraIVdSbvgfyO+A3kBp+CeOeY6oWeh9Gm2vqcTaig50lI26Hfvm6OoJ2bGYo1LV5sRmZmiDLOm7zP6I9se8qXB3WjHa+EjWAHUS0gi2ca1rV2u8hlavw==
+Received: from SA1PR03CA0001.namprd03.prod.outlook.com (2603:10b6:806:2d3::12)
+ by SA5PPF50009C446.namprd12.prod.outlook.com
+ (2603:10b6:80f:fc04::8c8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Mon, 1 Dec
+ 2025 23:41:31 +0000
+Received: from SN1PEPF00026367.namprd02.prod.outlook.com
+ (2603:10b6:806:2d3:cafe::28) by SA1PR03CA0001.outlook.office365.com
+ (2603:10b6:806:2d3::12) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9366.17 via Frontend Transport; Mon,
- 1 Dec 2025 23:41:27 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ 1 Dec 2025 23:41:21 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- DS1PEPF0001708F.mail.protection.outlook.com (10.167.17.139) with Microsoft
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 23:41:31 +0000
+ 15.20.9388.8 via Frontend Transport; Mon, 1 Dec 2025 23:41:28 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 15:41:13 -0800
+ 2025 15:41:09 -0800
 Received: from ttabi.nvidia.com (10.126.230.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 1 Dec
- 2025 15:41:12 -0800
+ 2025 15:41:08 -0800
 From: Timur Tabi <ttabi@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
  <acourbot@nvidia.com>, Lyude Paul <lyude@redhat.com>, Joel Fernandes
  <joelagnelf@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
  <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>
-Subject: [PATCH v2 13/13] [RFC] gpu: nova: implement trait object
- FalconUCodeDescriptor
-Date: Mon, 1 Dec 2025 17:39:22 -0600
-Message-ID: <20251201233922.27218-14-ttabi@nvidia.com>
+Subject: [PATCH v2 09/13] gpu: nova-core: add Falcon HAL method supports_dma()
+Date: Mon, 1 Dec 2025 17:39:18 -0600
+Message-ID: <20251201233922.27218-10-ttabi@nvidia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251201233922.27218-1-ttabi@nvidia.com>
 References: <20251201233922.27218-1-ttabi@nvidia.com>
@@ -82,53 +81,53 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS1PEPF0001708F:EE_|DS0PR12MB8813:EE_
-X-MS-Office365-Filtering-Correlation-Id: 716f7283-ddd9-4959-19a5-08de313327bb
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|SA5PPF50009C446:EE_
+X-MS-Office365-Filtering-Correlation-Id: 986a9aa0-b673-4d58-b0cf-08de3133263a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|36860700013|1800799024|376014|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?a3mw3CWHa1iHB94oaSzUCfYkNFItNIsBimD+D0DGqlEcIbdUeEjmzhVW19ZP?=
- =?us-ascii?Q?bg+3sBsqZZPcjc96c15GRlPNMtCpunBM0WjxvRhpDL3qh8UQDFoPs9c7y9vL?=
- =?us-ascii?Q?2iFmhU0Lsn+swOKZ296QcUo9f7vkqanAg1OmXlkr091wGSPXiF8oE2bGxZS8?=
- =?us-ascii?Q?8ekByridG4sUP6QLYJQNFls0+Eq1pZtkta/iK2g4DDR7pcHvf9dnrExD3EVO?=
- =?us-ascii?Q?QkEZ8pzeOYiuc9IvfB94Dc1t1zqPXQG2AYdl9Cpj9W2zqOD5p/JAyDZ89Aqg?=
- =?us-ascii?Q?sjFSxEvgeuIBdK6eQAnCL/m6nbudPScfgJiblVEtZRbdK8NNMH0jN416/oE9?=
- =?us-ascii?Q?hpc1SeU6+hGQbi7puw5Tk6k6kZUmkw1UI9XQpHyBqCp++8Kcddx4lw1hUpmi?=
- =?us-ascii?Q?9Qp7hQ8Aq870nY84TTzRNh8toJ6lmRzzNMPClfk5feImy7HX1AFBwiEE9kZv?=
- =?us-ascii?Q?yKmY+YkSsx6RVwSN/sMGpZBiNnoakQn4ZOkYlW+emBv0Ur9wKAz0vNqi8Ksz?=
- =?us-ascii?Q?3ko71LFx2vOV5QjBAHN1xGlZDmDeI1bEUo5/plo4dkcxSwl3umy9h/laL4SE?=
- =?us-ascii?Q?4qAfJtdpRVYd6UhNQuoxa9JzNTuEsrO96Iv2sV+x0koRfLFRGlSRuJiB849I?=
- =?us-ascii?Q?d8HiBwHdD6CvdJiXdbCKvpFXsoL3EcWKw3oqBq5V/2hwHgLN9TJNHcwUUYt/?=
- =?us-ascii?Q?NG87Le4HItEbcAvWIiC8cPNR11u1mfRG4kLs7a5G1f9So2UYRbejU/BfPyqy?=
- =?us-ascii?Q?wIT7z2fouik39gUfy6SPHSZBc0yMYX2DE12uDBNziz9eIF5YZZ2g2sadLZDF?=
- =?us-ascii?Q?9kbkAa3oNKeaEYJGWiJO8+G4dLqVwxVLbuytuRHWcq/JEvEiZWFii+Fwuopk?=
- =?us-ascii?Q?8R7Pqy2SAR4rRviJdqBRPw1vdIcQ0hYTRTxUmVk7nK5dT9cjkZqJ8NpUenaq?=
- =?us-ascii?Q?CbuMh8W+5DHRjqfkPFH2UD5bnMnaWtsci78flOUZodYfvCfYKJ85h0SWUkUm?=
- =?us-ascii?Q?1z2/41EyzOtHZsGHKzn+BNOYcHq0BBRmDrFi1ULE3iR11rbMqIaufBpbShEk?=
- =?us-ascii?Q?YsdBdCd48gVr7V1THOYyaRUh5exNYiXOM74f47jXAeukETxYE2M6hTKwc0Ow?=
- =?us-ascii?Q?D/IcD6VL8MfbPOctzhgWoFCiOVSFiwCPHTkR6sDINvbB5bnm1hwk1W1/MJSU?=
- =?us-ascii?Q?KBxd4mn12yQwMxRyXfYAQYJasgqr9T6sdUeTJOItEoYNndEH2+Gw2oD+8xF0?=
- =?us-ascii?Q?EpszO0vgngOp3rdRlq5ymhaV9O0M2jFLsvASMb9tfwVMKqmQM6GhcSslTo9R?=
- =?us-ascii?Q?DoQnq8bhFyP/vq8QMSyniG7YsJM6r2lICTIdrbRb8qYyAcduHn7vk/D2LCh/?=
- =?us-ascii?Q?7GRgQwu/AkSGgmHOIkcynx5j3UdidpPi6C0OauES7iYofbWIeqRjkPyFjVqo?=
- =?us-ascii?Q?J/y8k8W5P85pM3jVWJhA5K0JZEVTidAFOHY6Y7eIIJp6SQ6X5kogKu1sZRmp?=
- =?us-ascii?Q?fJE9mHcUiu23v54XhyzThD4dtRx/d2a13JajuMJSh0YZUha9w6+TkVZWlfCw?=
- =?us-ascii?Q?Wn7EnmmnQCttmXLwydg=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(36860700013)(1800799024)(376014)(82310400026); DIR:OUT;
+ ARA:13230040|36860700013|376014|1800799024|82310400026; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?hUwY/cgxhSUN66rjd55O5F1zHoOiuj4Jj844D/fdatyOlE5MM5CEyROFv9tR?=
+ =?us-ascii?Q?kbc/AtPPatHfxWMZqKaMOXoGJJQNkGXafWFHrvlLkkjhWPvpPz5z6qr5Okr1?=
+ =?us-ascii?Q?stK993LhbRLhUjaKPt+NYJlFaXswqiWxObodSrnNXoo3nbFyhZEB7SOyiSt2?=
+ =?us-ascii?Q?o3sLWJ2ZqYCa5roCZR/SHRLCK7wAdRpOwGNxCG9qGYnM2O1jtag6qikBDigf?=
+ =?us-ascii?Q?lgoqLP7AtE5IxYrjJD7nIUU7Q3iMcYyEbFamW7x7iHqPzJ9JktXKJ+JaVkwX?=
+ =?us-ascii?Q?YH0dXdYFdz2pVwVHpM2c9I2PPhSoaxboiguOsYDYC0LBkKWeAte/I5Z/bCLs?=
+ =?us-ascii?Q?o6PuB/A1r+idgi/PnMUKSnPghkQzJsMXDAkWlKfHrsitBHBbPfNTMIca7BYb?=
+ =?us-ascii?Q?wDrjetvrXfCOTkEqsBiySrMb+lfQbZ1fK2hXgkh0ipFKn9CdxSd3SZixO/jw?=
+ =?us-ascii?Q?ahjzUGXuESMhgJrrbvPTZlDRNZVs4acpPCLebG7dKIdcViHclWOkegOUXi6a?=
+ =?us-ascii?Q?8KNbFRnBYwf/TJ/Zn81nsGU2+g30IHbdYuDNw2vtEGn1/0Ert00Ov/m6ABmT?=
+ =?us-ascii?Q?oaIM8hxkIs03Dx5v2UbxwTLiwIif29gVGL5UbJduH8SR8tJP/LssLIczXGA7?=
+ =?us-ascii?Q?458H+jNbc5o+Z3p3NglRKUJBPRaD+NVLg6EBqR7TI/2UBOfFmffPw3pzAnkH?=
+ =?us-ascii?Q?lMhyGRRfaR94u700J5zk4J5aa6gS1ksiAfptHrtg7E60049MsbdsVUCRfZVA?=
+ =?us-ascii?Q?L2+6toX1KwUu98MBos9GxnzAyt3ny47fltbULZpHcjchExbIvMq3qq9znCZf?=
+ =?us-ascii?Q?SWFv7ocUVfa6q0NfA0wqjaC7NUiGXB/xMDqfTZ5WGB9GMgfKWRNF9UOphVNU?=
+ =?us-ascii?Q?jjxk7YALn3K7rm5nVzxg5+Z/SGGErpXz522WUt+MWIqHTlGPO3vkRfC4KL57?=
+ =?us-ascii?Q?a13afYFVDn7MqsHi1ZO6SVgejQb31FH26uykAutAoedfALruPlDBlhGNX5wA?=
+ =?us-ascii?Q?OsTe3AqotLn+8WC/tNsb21dpjwpp7xbuNmVaDT8oZSxm/Jt8fTFJtkVAjavG?=
+ =?us-ascii?Q?Oi18yJG8VqcPnRbk4amP4YnEHGXJToW3MSSi+D9OQlAK5x3jXdT6rw6tIGEU?=
+ =?us-ascii?Q?cnMpmfeWWXXREpUhpoeZGkJORzSW9J1GSlESxVVarQGwbaetLkk+DWKTKjFh?=
+ =?us-ascii?Q?b6ZsejRcoFSGDyRi8E0ybHI4FuYRRzOIK7JTE3recnU6wi9hXWx2zI8dRgPh?=
+ =?us-ascii?Q?Ix8O0QUtvX3H4lK10U3KKoxOF5Q30dbYbvhJGd1MvPv7ICLOkm13g6dP0lfC?=
+ =?us-ascii?Q?8DrAx+kk27JMQQS5yujIpAdYzkN0OxK3E0ce0QLGtZrJQXgS1EwyqXkXOjiM?=
+ =?us-ascii?Q?ubFjjxWXc4NsF9ws9QJCstIEe8h3XUOBFpo3pH8RSwldgDPj/PGFNe5ke1t1?=
+ =?us-ascii?Q?z7IlBKOtO791ozOmNJZIcMYj5+hCF3baT/S1s0hKwvK8TVYVsi/9Q+Kiuc3d?=
+ =?us-ascii?Q?ZdnP4QJQ/gLd3ciwAf/UoD9CRV83QPT2ZmQld1FJv/FpM40LWx2l13sIqCjI?=
+ =?us-ascii?Q?c7EOh9X115gXJfaaRWM=3D?=
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 23:41:31.1320 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 716f7283-ddd9-4959-19a5-08de313327bb
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2025 23:41:28.6029 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 986a9aa0-b673-4d58-b0cf-08de3133263a
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DS1PEPF0001708F.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF00026367.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB8813
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF50009C446
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,157 +142,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Implement the trait object FalconUCodeDescriptor to handle the two
-versions of the Falcon microcode descriptor.
-
-Introduce the FalconUCodeDescriptor trait to provide a unified interface
-for accessing fields in both V2 and V3 Falcon microcode descriptor formats.
-This replaces repetitive match statements in each accessor method with a
-single as_descriptor() method that returns a trait object, reducing boilerplate
-and making it easier to add new accessors in the future.
-
-However, not all match states can be eliminated.  The FalconLoadParams
-implementation still needs to match on the version because different fields
-of the descriptor are used depending on the version.
+Some GPUs do not support using DMA to transfer code/data from system
+memory to Falcon memory, and instead must use programmed I/O (PIO).
+Add a function to the Falcon HAL to indicate whether a given GPU's
+Falcons support DMA for this purpose.
 
 Signed-off-by: Timur Tabi <ttabi@nvidia.com>
 ---
- drivers/gpu/nova-core/firmware.rs | 91 ++++++++++++++++++-------------
- 1 file changed, 54 insertions(+), 37 deletions(-)
+ drivers/gpu/nova-core/falcon.rs           | 7 +++++++
+ drivers/gpu/nova-core/falcon/hal.rs       | 3 +++
+ drivers/gpu/nova-core/falcon/hal/ga102.rs | 4 ++++
+ drivers/gpu/nova-core/falcon/hal/tu102.rs | 4 ++++
+ 4 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/firmware.rs
-index 3008d18f9313..2ad56a387a79 100644
---- a/drivers/gpu/nova-core/firmware.rs
-+++ b/drivers/gpu/nova-core/firmware.rs
-@@ -125,13 +125,55 @@ pub(crate) enum FalconUCodeDesc {
-     V3(FalconUCodeDescV3),
- }
+diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
+index f2da6a4a9d36..2770d608a2cf 100644
+--- a/drivers/gpu/nova-core/falcon.rs
++++ b/drivers/gpu/nova-core/falcon.rs
+@@ -631,6 +631,13 @@ pub(crate) fn is_riscv_active(&self, bar: &Bar0) -> bool {
+         self.hal.is_riscv_active(bar)
+     }
  
-+// First define trait
-+pub(crate) trait FalconUCodeDescriptor {
-+    fn hdr(&self) -> u32;
-+    fn imem_load_size(&self) -> u32;
-+    fn interface_offset(&self) -> u32;
-+    fn dmem_load_size(&self) -> u32;
-+    fn pkc_data_offset(&self) -> u32;
-+    fn engine_id_mask(&self) -> u16;
-+    fn ucode_id(&self) -> u8;
-+    fn signature_count(&self) -> u8;
-+    fn signature_versions(&self) -> u16;
-+}
-+
-+impl FalconUCodeDescriptor for FalconUCodeDescV2 {
-+    fn hdr(&self) -> u32  { self.hdr }
-+    fn imem_load_size(&self) -> u32  { self.imem_load_size }
-+    fn interface_offset(&self) -> u32  { self.interface_offset }
-+    fn dmem_load_size(&self) -> u32 { self.dmem_load_size }
-+    fn pkc_data_offset(&self) -> u32 { 0 }
-+    fn engine_id_mask(&self) -> u16 { 0 }
-+    fn ucode_id(&self) -> u8 { 0 }
-+    fn signature_count(&self) -> u8 { 0 }
-+    fn signature_versions(&self) -> u16 { 0 }
-+}
-+
-+impl FalconUCodeDescriptor for FalconUCodeDescV3 {
-+    fn hdr(&self) -> u32  { self.hdr }
-+    fn imem_load_size(&self) -> u32  { self.imem_load_size }
-+    fn interface_offset(&self) -> u32  { self.interface_offset }
-+    fn dmem_load_size(&self) -> u32 { self.dmem_load_size }
-+    fn pkc_data_offset(&self) -> u32 { self.pkc_data_offset }
-+    fn engine_id_mask(&self) -> u16 { self.engine_id_mask }
-+    fn ucode_id(&self) -> u8 { self.ucode_id }
-+    fn signature_count(&self) -> u8 { self.signature_count }
-+    fn signature_versions(&self) -> u16 { self.signature_versions }
-+}
-+
- impl FalconUCodeDesc {
-+    // Return trait object, the only match needed.
-+    pub(crate) fn as_descriptor(&self) -> &dyn FalconUCodeDescriptor {
-+        match self {
-+            FalconUCodeDesc::V2(v2) => v2,
-+            FalconUCodeDesc::V3(v3) => v3,
-+        }
++    /// Check if this Falcon supports DMA for loading firmware.
++    ///
++    /// Returns `true` if DMA is supported, `false` if PIO must be used instead.
++    pub(crate) fn supports_dma(&self) -> bool {
++        self.hal.supports_dma()
 +    }
 +
-     /// Returns the size in bytes of the header.
-     pub(crate) fn size(&self) -> usize {
--        let hdr = match self {
--            FalconUCodeDesc::V2(v2) => v2.hdr,
--            FalconUCodeDesc::V3(v3) => v3.hdr,
--        };
-+        let hdr = self.as_descriptor().hdr();
+     /// Write the application version to the OS register.
+     pub(crate) fn write_os_version(&self, bar: &Bar0, app_version: u32) {
+         regs::NV_PFALCON_FALCON_OS::default()
+diff --git a/drivers/gpu/nova-core/falcon/hal.rs b/drivers/gpu/nova-core/falcon/hal.rs
+index 7a6610e9d0a8..a760620221c3 100644
+--- a/drivers/gpu/nova-core/falcon/hal.rs
++++ b/drivers/gpu/nova-core/falcon/hal.rs
+@@ -48,6 +48,9 @@ fn signature_reg_fuse_version(
  
-         const HDR_SIZE_SHIFT: u32 = 16;
-         const HDR_SIZE_MASK: u32 = 0xffff0000;
-@@ -139,60 +181,35 @@ pub(crate) fn size(&self) -> usize {
-     }
- 
-     pub(crate) fn imem_load_size(&self) -> u32 {
--        match self {
--            FalconUCodeDesc::V2(v2) => v2.imem_load_size,
--            FalconUCodeDesc::V3(v3) => v3.imem_load_size,
--        }
-+        self.as_descriptor().imem_load_size()
-     }
- 
-     pub(crate) fn interface_offset(&self) -> u32 {
--        match self {
--            FalconUCodeDesc::V2(v2) => v2.interface_offset,
--            FalconUCodeDesc::V3(v3) => v3.interface_offset,
--        }
-+        self.as_descriptor().interface_offset()
-     }
- 
--
-     pub(crate) fn dmem_load_size(&self) -> u32 {
--        match self {
--            FalconUCodeDesc::V2(v2) => v2.dmem_load_size,
--            FalconUCodeDesc::V3(v3) => v3.dmem_load_size,
--        }
-+        self.as_descriptor().dmem_load_size()
-     }
- 
-     pub(crate) fn pkc_data_offset(&self) -> u32 {
--        match self {
--            FalconUCodeDesc::V2(_v2) => 0,
--            FalconUCodeDesc::V3(v3) => v3.pkc_data_offset,
--        }
-+        self.as_descriptor().pkc_data_offset()
-     }
- 
-     pub(crate) fn engine_id_mask(&self) -> u16 {
--        match self {
--            FalconUCodeDesc::V2(_v2) => 0,
--            FalconUCodeDesc::V3(v3) => v3.engine_id_mask,
--        }
-+        self.as_descriptor().engine_id_mask()
-     }
- 
-     pub(crate) fn ucode_id(&self) -> u8 {
--        match self {
--            FalconUCodeDesc::V2(_v2) => 0,
--            FalconUCodeDesc::V3(v3) => v3.ucode_id,
--        }
-+        self.as_descriptor().ucode_id()
-     }
- 
-     pub(crate) fn signature_count(&self) -> u8 {
--        match self {
--            FalconUCodeDesc::V2(_v2) => 0,
--            FalconUCodeDesc::V3(v3) => v3.signature_count,
--        }
-+        self.as_descriptor().signature_count()
-     }
- 
-     pub(crate) fn signature_versions(&self) -> u16 {
--        match self {
--            FalconUCodeDesc::V2(_v2) => 0,
--            FalconUCodeDesc::V3(v3) => v3.signature_versions,
--        }
-+        self.as_descriptor().signature_versions()
-     }
+     /// Reset the falcon engine.
+     fn reset_eng(&self, bar: &Bar0) -> Result;
++
++    /// Returns true of this Falcon supports DMA transfer from system memory to Falcon memory
++    fn supports_dma(&self) -> bool;
  }
  
+ /// Returns a boxed falcon HAL adequate for `chipset`.
+diff --git a/drivers/gpu/nova-core/falcon/hal/ga102.rs b/drivers/gpu/nova-core/falcon/hal/ga102.rs
+index 232d51a4921f..684ca72b7cfe 100644
+--- a/drivers/gpu/nova-core/falcon/hal/ga102.rs
++++ b/drivers/gpu/nova-core/falcon/hal/ga102.rs
+@@ -160,4 +160,8 @@ fn reset_eng(&self, bar: &Bar0) -> Result {
+ 
+         Ok(())
+     }
++
++    fn supports_dma(&self) -> bool {
++        true
++    }
+ }
+diff --git a/drivers/gpu/nova-core/falcon/hal/tu102.rs b/drivers/gpu/nova-core/falcon/hal/tu102.rs
+index 19a8b49ca2cd..d8ec914bd3f8 100644
+--- a/drivers/gpu/nova-core/falcon/hal/tu102.rs
++++ b/drivers/gpu/nova-core/falcon/hal/tu102.rs
+@@ -71,4 +71,8 @@ fn reset_eng(&self, bar: &Bar0) -> Result {
+ 
+         Ok(())
+     }
++
++    fn supports_dma(&self) -> bool {
++        false
++    }
+ }
 -- 
 2.52.0
 
