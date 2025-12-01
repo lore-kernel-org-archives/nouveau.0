@@ -4,89 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C33AED5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A30ED5B15E
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A7010EC12;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8718C10EC11;
 	Sat, 13 Dec 2025 12:42:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="YOqqeLXQ";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jw+epErl";
 	dkim-atps=neutral
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
- [209.85.214.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4299710E997;
- Thu,  6 Mar 2025 13:59:11 +0000 (UTC)
-Received: by mail-pl1-f178.google.com with SMTP id
- d9443c01a7336-224100e9a5cso11445635ad.2; 
- Thu, 06 Mar 2025 05:59:11 -0800 (PST)
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
+ [209.85.210.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1381A10E4BC
+ for <nouveau@lists.freedesktop.org>; Mon,  1 Dec 2025 22:58:40 +0000 (UTC)
+Received: by mail-pf1-f176.google.com with SMTP id
+ d2e1a72fcca58-7b8ba3c8ca1so657458b3a.2
+ for <nouveau@lists.freedesktop.org>; Mon, 01 Dec 2025 14:58:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1741269551; x=1741874351; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:from:to:cc:subject:date:message-id
- :reply-to; bh=gcMj47LDDJL0C0ekfxA2WdyVcUGhX6i6MQXT5ot4g4M=;
- b=YOqqeLXQzNsfCzaqzMHBkmVhZo0qK1VPoKgNB7yUzzdjCdrvVAO/hdqzs5vdwrrdf8
- dk0EgCTRLPfbZGki5a17/D+UmZaKDM+9h56Zkbz3YEcRQRMabh124/5CWvzOP7Moz+5h
- 3oA1L7zYAihKFwiMFQwMw+U3sswvL/kSxVOZAua3g6yMOA7sygmK0n03tihmCz/Bza2d
- yQrSj6AsAKiHK1E0cASVKm899E5WJvzrHV9GQcMG5Tr02ocb5u4f+hZzVLc2F/yyOtxI
- rv98BJbh309GVQIIm/2HhqQMb+YeuzJqfyZf1MM3C509kUuIPRvqpMiuY7/lCgMN8txm
- 9PRQ==
+ d=gmail.com; s=20230601; t=1764629919; x=1765234719; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=a1pdL8EYMo2eswZyriHACheqxubZbCfaF1iStJizjuE=;
+ b=Jw+epErlz8ry4sbCtk1ZY2qq5YBeUKrB0R9UTr4sOHm70rSXU9UbRJKCT6aP7riT/j
+ 7k5yGJoWdNcIxDZh1eGJ3XghmoAv0IPeSQ7JYNhXgek/TaUm/jp5Y0f2YVGRlOwnbp3y
+ CVyDcb+5+iMxdNK59gXoJiEBn83kZqk/OYCCYNTcyv10nuNSFfH458qj12LkVTJIInKl
+ I7v5iy0Pl4BLBRnV+OQ2K1H/IfuoRGzRHPp1GA3tF5M6qZno6rgdlcNhI/jsuKS0OOIx
+ jPcmOnsfnn/mQPhm7GHNPomNvDJ5n2IIyq72ttUyxDwQxU1z5to4OGcM9wrExuEQmLyK
+ Bfkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1741269551; x=1741874351;
- h=content-transfer-encoding:mime-version:references:in-reply-to:from
- :subject:cc:to:message-id:date:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to;
- bh=gcMj47LDDJL0C0ekfxA2WdyVcUGhX6i6MQXT5ot4g4M=;
- b=Hx4z+uxFTJUyuTy1S5r+pmPnbhOz3C16GCVLL1ywbBT2aRcZe1r7tacrZcAHpEylhN
- x3ctU1UVY6tImUu4GQiXzXmr91u9wo6g4gZmTSpbHz79s+nXRSxl7vUjsXJ+8Youz4CV
- b8bTJKmRf3/Tx4B8sXwgMmRJzrytZh/d6lEPg/8f0eNvRqufMaaBMSoNSuKgWk90+UuP
- ukAJ6GB/KeiiQs4wlX84k9+6+ZQhjZSjw2dT8bhjhT0RqJTAdiYJFe/7805yYgnmLy+y
- lVRlH2n0z586oaoXYhCEp/hxU1kJ1T29AMfJ0E62jLD5oXrBWmvBfcNEJZCKpguPHkzJ
- 1GXA==
+ d=1e100.net; s=20230601; t=1764629919; x=1765234719;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=a1pdL8EYMo2eswZyriHACheqxubZbCfaF1iStJizjuE=;
+ b=wNIhsZjzMOtrd2CIp8pN30qbyn8oexDtvEnZ7K9lyKwi4Mf075hhn0q9uDB4fvRnVK
+ kt0iV3ap6Zig0VuX3Ljlcdam7YltAIbTk3Cu4j2oGTV8vRJEY1zXREyd90JuigoUAAtG
+ 3agBYGT547jq6P2ZvkJVTdh9835viCRSyzUR0z+aQDKtCcveV1oLC1AX9GVlMdPvMle7
+ Y+dXs6cJjkuVW/rz4eVqURQfagvTxzmzIisnah47hjo1UIl9WnMGQClCBPqytaPvjedm
+ Ww2VgnrqntpYUOd9WtLMmkm+9fdxf6jXpprKB0bm+QFwGHQgpcmcrkpAUkCZIGFqsmxE
+ IOBg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVkA6qPw738L+pkkCLTa8MKk3wThqgHUW97jmN469TOuZERCzgy6RqN5kUjOxb99555LvcVgTa0CQ==@lists.freedesktop.org,
- AJvYcCWPMidHb8CMyrzwo356LNUH0nGwTXlWHOUhWaQaBL/+JQxeF6J0T/X+N8pmeNpGlnp+EHS4qeWfrDc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyzvv4v+oqJvRUcstUVFpY/h9+f7nRQLjen89x5hZRUeAePC0qo
- 0Zr9KoMEd1aBEouEXFIL2YFxzpMNS0n4tgg/qC1fLrJoK4ARxkeC
-X-Gm-Gg: ASbGncuSYSymKjbitYvjLfCR39puMZ8SGPGz1h+ovDN/yBAIA8dW4QOoi9ewG1h42lx
- Ivz/WSmmlwhwK0cNKRwqYGdZbxLrGeZxu0mM6E6Qm0wm6n8lcZwdVdr1t8GPVYJxuHfZGF4pCq7
- oIHl3k+EvaHOQxoSeFAdtsiq1MB3e7OyUplCh2+oeZvv4YfoMN9MRwzWRBleXNqEDTzFfcEvp8x
- rgUoly+j05oim6tBRSMNb0WZkMyj1h+wWLrJzfyEPOup0ESf92dTL0NZi1eU8a9gTuxf7BXieCp
- dBW0ApF5jsF9YzXcUPZjMStjk7mdDYNutdpZ/TWBtb61PrK3Scx3+XG8BNz6zmbYCKw1l6dhuuR
- M/B0xdBMLA+jecNWp3bR/WZGC+dA=
-X-Google-Smtp-Source: AGHT+IFqC7dar9vSI6YGsXxKnsXEPE0Q3GPt4+bYPBgIONPD8wz2KSMdMkJPHp0sptOtsCw8Cul/TQ==
-X-Received: by 2002:a05:6a20:4305:b0:1e0:dcc5:164d with SMTP id
- adf61e73a8af0-1f34944ed8bmr12193897637.8.1741269550654; 
- Thu, 06 Mar 2025 05:59:10 -0800 (PST)
-Received: from localhost (p4204131-ipxg22701hodogaya.kanagawa.ocn.ne.jp.
- [153.160.176.131]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-af28bbf3ab0sm76581a12.9.2025.03.06.05.59.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 06 Mar 2025 05:59:10 -0800 (PST)
-Date: Thu, 06 Mar 2025 22:59:02 +0900 (JST)
-Message-Id: <20250306.225902.541492197262171384.fujita.tomonori@gmail.com>
-To: dakr@kernel.org
-Cc: fujita.tomonori@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- corbet@lwn.net, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, ajanulgu@redhat.com, lyude@redhat.com,
- pstanner@redhat.com, zhiw@nvidia.com, cjia@nvidia.com,
- jhubbard@nvidia.com, bskeggs@nvidia.com, acurrid@nvidia.com,
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
- gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
- a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu,
- gregkh@linuxfoundation.org, mcgrof@kernel.org, russ.weight@linux.dev,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] gpu: nova-core: add initial documentation
-From: FUJITA Tomonori <fujita.tomonori@gmail.com>
-In-Reply-To: <Z8mm4fJQxXMiN5tu@cassiopeiae>
-References: <20250304173555.2496-6-dakr@kernel.org>
- <20250306.215638.838863448505767234.fujita.tomonori@gmail.com>
- <Z8mm4fJQxXMiN5tu@cassiopeiae>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
+ AJvYcCWRhqCy8YrU/aOc2QyvX9fMq5HjtAUc+7guPfYrx/Bnp57M+gHDkld9JCtEnbiIeng4MsN6+QkV@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzubJC3TT7IDEx6zTsLm14L4dSF0q4E+jd1QQgBP5hfQvKTey+6
+ nf64p0FDog6rrbHsmaKGZ+i54e1Nz2/M+PdZf6Vt69Vg7ijj60OaXpNqa66c+u1rZ58+/QgmpCA
+ Eb2vCs0N5UQJ3V/Ld6++Am3SalIOEExk=
+X-Gm-Gg: ASbGncsLdzGOwbE6e930Fc7Z8z6pzKI/i4VPMFOxEjkNCPM9b/cBiDh9P4NWxTv31UM
+ lo+gGrxFNXWgwle3nBdb+evtg5WeHXcNTQsWGwuVYzabhNzzhdh/tWKzA40doTTRT4Bizc8e5Wc
+ 9ANIk6x6mQ4UzIe0EYD7ihr8OoKj2/Sa0HnoWg8N5vlCJv1NlmSNlChcPuHixKtJB17bN13XNt0
+ c1GfWl6EHHXa3OhhUZGtyfvQ37epIlCJUi6jyJtMKdQXn8oqdRjto7nKYjI/dmiMxX+e4EGzAri
+ Cevx/7Y+p54lnucm8v/ZRsUDwEKWy75BGJZ/XnoEPgm/oeOu5fZDdnWJHJNTXJX7uEX3dq7qFsx
+ smfPzuqbIxgZ+iBJdjeFL9XPr
+X-Google-Smtp-Source: AGHT+IFfuN9zEIrSqZ4UfzyHrOAWhLG/2/sm864P3ydB1iuIelR7Cpw9LcULJ3uSXFJitdhtK2p/ltt0ZFQOQNh8uwg=
+X-Received: by 2002:a05:7300:ac82:b0:2a4:3593:2c0a with SMTP id
+ 5a478bee46e88-2a724c02369mr27204611eec.3.1764629919416; Mon, 01 Dec 2025
+ 14:58:39 -0800 (PST)
+MIME-Version: 1.0
+References: <20251129213056.4021375-1-joelagnelf@nvidia.com>
+ <2653abf6-5cd4-4385-b7c2-f377a9503160@nvidia.com>
+ <7a88da9f-c67b-4a68-b8d6-a66f9096bab4@nvidia.com>
+ <497c91a2-ca6c-4e05-bc5e-7c3818302c7e@nvidia.com>
+ <2700c827-d3af-403c-857a-30324e0d8502@nvidia.com>
+In-Reply-To: <2700c827-d3af-403c-857a-30324e0d8502@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 1 Dec 2025 23:58:26 +0100
+X-Gm-Features: AWmQ_bkl2DTKJWfF5AG_9aZv1tTBUZWM-ImMGF4ZqdhUPDiYIUQE-GRQbnKTx8c
+Message-ID: <CANiq72=wGCRrZGvsoqs5jZQ-n23H9chxpH+dwo=jomhEjCsrZA@mail.gmail.com>
+Subject: Re: [PATCH v3] rust: clist: Add support to interface with C linked
+ lists
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: John Hubbard <jhubbard@nvidia.com>, linux-kernel@vger.kernel.org, 
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>, 
+ Dave Airlie <airlied@gmail.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
+ Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ Joel Fernandes <joel@joelfernandes.org>, Lyude Paul <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, Andrea Righi <arighi@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,47 +105,15 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, 6 Mar 2025 14:45:05 +0100
-Danilo Krummrich <dakr@kernel.org> wrote:
+On Mon, Dec 1, 2025 at 11:43=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.c=
+om> wrote:
+>
+> The documentation clearly says "doctests get
+> compiled as Rust kernel objects, allowing them to run against a built ker=
+nel.".
 
-> On Thu, Mar 06, 2025 at 09:56:38PM +0900, FUJITA Tomonori wrote:
->> On Tue,  4 Mar 2025 18:34:52 +0100
->> Danilo Krummrich <dakr@kernel.org> wrote:
->> 
->> > +Delay / Sleep abstractions
->> > +--------------------------
->> > +
->> > +Rust abstractions for the kernel's delay() and sleep() functions.
->> > +
->> > +There is some ongoing work from FUJITA Tomonori [1], which has not seen any updates
->> > +since Oct. 24.
->> > +
->> > +| Complexity: Beginner
->> > +| Link: https://lore.kernel.org/netdev/20241001112512.4861-2-fujita.tomonori@gmail.com/ [1]
->> 
->> I posted v11 last month.
->> 
->> https://lore.kernel.org/netdev/20250220070611.214262-1-fujita.tomonori@gmail.com/
-> 
-> Thanks for letting me know.
-> 
-> I think I lost track of this because in v1 the series was named "add delay
-> abstraction (sleep functions)" and with v2 it was switched to "rust: Add IO
-> polling" and I was searching for subsequent patch series with the "delay"
-> keyword.
+Yeah, there is also a Python script that KUnit provides that some
+people like to use too, and quite convenient to pass certain configs etc.
 
-I see.
-
-During the review process, I changed the subject due to the consensus
-that, in most cases, device drivers should use read_poll_timeout
-instead of calling the sleep function directly.
-
-> Anyways, AFAICS you ended up with adding fsleep(). I think nova-core will need
-> control over having a busy loop or actually re-schedule.
-
-I plan to add read_poll_timeout_atomic() with delay functions:
-
-https://lore.kernel.org/netdev/20250228.080550.354359820929821928.fujita.tomonori@gmail.com/
-
-delay functions need Delta struct in the patchset so the patchset
-needs to be merged first.
+Cheers,
+Miguel
