@@ -4,46 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9598D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8941D5AE41
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80CF310EC43;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C19810EBF6;
 	Sat, 13 Dec 2025 12:42:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y2qQU8t5";
+	dkim=permerror (0-bit key) header.d=suse.com header.i=@suse.com header.b="Bf+0VuHU";
 	dkim-atps=neutral
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 209E310EA4F;
- Thu, 18 Jul 2024 17:00:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 7E50561B5F;
- Thu, 18 Jul 2024 17:00:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B171EC4AF0C;
- Thu, 18 Jul 2024 17:00:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1721322017;
- bh=o6LFR2CG1I/Zl0paV4qR4nPROnNStuPxPR6YczJjRlA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Y2qQU8t5Fz7hlCal5Tt7RsaFPxGLuc7+oUreIwavdsKKx/gd4+wkRdcxmhfW2qYhM
- Fwam+qBjLoJGwjn1ox8OR6nmEPNrNbnbixWhAYldo8veWKMr9ROqFyY20EhIONqOxo
- 9BOXoOC3aKoWB2HrkXdpzXUOihi4GSewLvUxR1NueDyWrpyf+LoEiTX+6sWpsgz7I9
- 22HGVj4U4ADk1WB0qoJLqhj1tD+vDVFXqzBof/UUd/lIODqVOiHFmRy9e4cBbeXDAq
- rJ0BUQBggo35R4HCSLP4n/rcd500T1cJ6k1+Dc2ASjhJk+Wqzlt/+6wZTh7XFWfL21
- I1wlrY/4B05hA==
-From: Danilo Krummrich <dakr@kernel.org>
-To: lyude@redhat.com,
-	airlied@redhat.com,
-	christian.koenig@amd.com
-Cc: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH 3/3] drm/nouveau: use GEM references instead of TTMs
-Date: Thu, 18 Jul 2024 18:58:48 +0200
-Message-ID: <20240718165959.3983-4-dakr@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240718165959.3983-1-dakr@kernel.org>
-References: <20240718165959.3983-1-dakr@kernel.org>
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+ [209.85.167.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54D3B10E648
+ for <nouveau@lists.freedesktop.org>; Tue,  2 Dec 2025 13:20:18 +0000 (UTC)
+Received: by mail-lf1-f54.google.com with SMTP id
+ 2adb3069b0e04-5957ac0efc2so6101661e87.1
+ for <nouveau@lists.freedesktop.org>; Tue, 02 Dec 2025 05:20:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1764681617; x=1765286417; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=TPGuSfQN7RTqxMcHEP4Qt8V7/gXbXz1mQU1AIOr21Hg=;
+ b=Bf+0VuHUm1SsgC5LaZTFJ/uuGr/IQ46qsp9oC2SRRi0JDfKP+mx0KAS77f8vm7OWyz
+ 3EPASh/JAq18vJGknL9+8G3j7oEMZNUT0OBsHNwab2+zz7MN/UVi2d+b/FELjkKu56mj
+ FLY2DrQOyhrI6fGH8qIRFnRzqvANFHbOMy+VTnyNk1H9YxyyGltP7D8bUIS5Yl/gwucb
+ qEKjfBWXd5lakdtnZBEGTVq/FBIHyh0oQI6Np4mSjm29NprtWiq64tsxKAAg2VYek0nJ
+ y3P/zWm9RzX/4E8DT5BOZ6Pgm8io4jq0Zm1Dyd0sbIURstCM7J0AUJ/Dmfj0TzL06rk3
+ ZRWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764681617; x=1765286417;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=TPGuSfQN7RTqxMcHEP4Qt8V7/gXbXz1mQU1AIOr21Hg=;
+ b=P1RsO2HxXFiTU2FT8OBbpqRQNY9VtWX8obVvfo/uXerpPGTw0hmCCrJWARFqeD1G0x
+ va69xgt28rRUXSaylPzd0myRsS6ynuM0sWaaCLTGT0BH1G1WPAObxJIFtEhQWlX2CaCJ
+ 1+rGpLBBTFB9hyMl0sDEMhvgqMkDFMV24kMSrREgJp+SqcEn+1gNOTXuZOzqUFgmh+H5
+ kqsEo6GzmYRQhBt5co8OsaZOri3gCNDj+rcwL/AEo/eRL9Nz5qU9nDiGDS7GkTX6M37u
+ sORkJlB6gitw/y6VnBAjN3BG6Pc1a5SaVbZUT0Q3s6FQ3j+nvNl1+9CAhszUnrTSZKez
+ xxRA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUSPxOjPtw9KYblZKcd+p93PsyfEJSUi9La6Au/j3sF9YlDuLeTItK/KtERciQ7wMm/tpUOBjpN@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyhG93ahJ7dvm7qN37xRlrP8Gv3BGoPfVNowoDxqvxl8lZyoajp
+ IIp2rdBsc1co9Qfki9Sl/j3OTQ3f2D5AeUC2VY3Vb6tQTuR1z5S21zvWrt82rxSHGDV3J4+TuBS
+ 9TBEHlb7FUgqG6aDcIGBcDOcr5H1bKuHYSOogil1Pmw==
+X-Gm-Gg: ASbGncvwzlnlarpP3lLFw3WiGGrmhkQqbCMyDLL6gMOsMiU94oC8REw6HZLXM7VaDRn
+ /gRcZ46REPMeiP5avVObJGs84aUspSlrrPIlL2PWpram6viXHJJFXDaq3/zVIRJDdtZaYn/Iw8e
+ FJr6TLZp5u5hijx4Pu+fZU9Gzq+9FioJhtB9+z2cLhg3e7Qmkd8IJbUYrcxiLcZsIGLJN8UlW6D
+ CO+p9CUCpXQz3zPVaD6iOVSOejceZEsyuITRhvxpxr/4HWptInPV8EnvNidshRGSv+jSlX08m9I
+ flN4QD7WJFsyP45udHJ9GyBf+KSu
+X-Google-Smtp-Source: AGHT+IEA/K/HX/OW8V69s6PQ6GCdzTTi+Af2CoTxJJkGo90jaG61+aENobjT2as2NwixFWEwChx0gWllkjQBUmhw5ZE=
+X-Received: by 2002:a05:6512:3e1a:b0:595:7f2b:4862 with SMTP id
+ 2adb3069b0e04-596a3ee5ccdmr15007743e87.44.1764681616654; Tue, 02 Dec 2025
+ 05:20:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20251031102020.95349-1-marco.crivellari@suse.com>
+In-Reply-To: <20251031102020.95349-1-marco.crivellari@suse.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Tue, 2 Dec 2025 14:20:05 +0100
+X-Gm-Features: AWmQ_bmpt1iuUsFhYhQyqfygAi5Z2DrfW220D4MyKs9tGqKURWEt-kIZ5YrRuoE
+Message-ID: <CAAofZF6M+87thr7KGyytcM1sqebH=U10nSNo-gmuDxeFSrkwCw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] replaced old wq name,
+ added WQ_PERCPU to alloc_workqueue
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Michal Hocko <mhocko@suse.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,263 +94,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-TTM wants to get rid of the duplicate refcounting of the embedded GEM
-object and its own reference count.
+Hi,
 
-Hence, use of GEM object references where possible.
+On Fri, Oct 31, 2025 at 11:20=E2=80=AFAM Marco Crivellari
+<marco.crivellari@suse.com> wrote:
+> Marco Crivellari (2):
+>   drm/nouveau: replace use of system_unbound_wq with system_dfl_wq
+>   drm/nouveau: WQ_PERCPU added to alloc_workqueue users
+>
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c   | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_sched.c | 3 ++-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 
-Also get rid of nouveau_bo_ref() and replace it with nouveau_bo_fini(),
-which drops the initial reference we get from initializing a ttm_bo.
+Gentle ping.
 
-Signed-off-by: Danilo Krummrich <dakr@kernel.org>
----
- drivers/gpu/drm/nouveau/dispnv04/crtc.c | 43 ++++++++++++++++++-------
- drivers/gpu/drm/nouveau/dispnv50/disp.c |  4 +--
- drivers/gpu/drm/nouveau/nouveau_bo.h    | 21 ++----------
- drivers/gpu/drm/nouveau/nouveau_chan.c  |  2 +-
- drivers/gpu/drm/nouveau/nouveau_dmem.c  |  4 +--
- drivers/gpu/drm/nouveau/nv10_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv17_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv50_fence.c    |  2 +-
- drivers/gpu/drm/nouveau/nv84_fence.c    |  4 +--
- 9 files changed, 44 insertions(+), 40 deletions(-)
+Thanks!
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv04/crtc.c b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-index 4310ad71870b..438e3ec6e1ca 100644
---- a/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-+++ b/drivers/gpu/drm/nouveau/dispnv04/crtc.c
-@@ -617,9 +617,15 @@ nv_crtc_swap_fbs(struct drm_crtc *crtc, struct drm_framebuffer *old_fb)
- 
- 	ret = nouveau_bo_pin(nvbo, NOUVEAU_GEM_DOMAIN_VRAM, false);
- 	if (ret == 0) {
--		if (disp->image[nv_crtc->index])
--			nouveau_bo_unpin(disp->image[nv_crtc->index]);
--		nouveau_bo_ref(nvbo, &disp->image[nv_crtc->index]);
-+		if (disp->image[nv_crtc->index]) {
-+			struct nouveau_bo *bo = disp->image[nv_crtc->index];
-+
-+			nouveau_bo_unpin(bo);
-+			drm_gem_object_put(&bo->bo.base);
-+		}
-+
-+		drm_gem_object_get(&nvbo->bo.base);
-+		disp->image[nv_crtc->index] = nvbo;
- 	}
- 
- 	return ret;
-@@ -754,13 +760,17 @@ static void nv_crtc_destroy(struct drm_crtc *crtc)
- 
- 	drm_crtc_cleanup(crtc);
- 
--	if (disp->image[nv_crtc->index])
--		nouveau_bo_unpin(disp->image[nv_crtc->index]);
--	nouveau_bo_ref(NULL, &disp->image[nv_crtc->index]);
-+	if (disp->image[nv_crtc->index]) {
-+		struct nouveau_bo *bo = disp->image[nv_crtc->index];
-+
-+		nouveau_bo_unpin(bo);
-+		drm_gem_object_put(&bo->bo.base);
-+		disp->image[nv_crtc->index] = NULL;
-+	}
- 
- 	nouveau_bo_unmap(nv_crtc->cursor.nvbo);
- 	nouveau_bo_unpin(nv_crtc->cursor.nvbo);
--	nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
-+	nouveau_bo_fini(nv_crtc->cursor.nvbo);
- 	nvif_event_dtor(&nv_crtc->vblank);
- 	nvif_head_dtor(&nv_crtc->head);
- 	kfree(nv_crtc);
-@@ -794,9 +804,14 @@ nv_crtc_disable(struct drm_crtc *crtc)
- {
- 	struct nv04_display *disp = nv04_display(crtc->dev);
- 	struct nouveau_crtc *nv_crtc = nouveau_crtc(crtc);
--	if (disp->image[nv_crtc->index])
--		nouveau_bo_unpin(disp->image[nv_crtc->index]);
--	nouveau_bo_ref(NULL, &disp->image[nv_crtc->index]);
-+
-+	if (disp->image[nv_crtc->index]) {
-+		struct nouveau_bo *bo = disp->image[nv_crtc->index];
-+
-+		nouveau_bo_unpin(bo);
-+		drm_gem_object_put(&bo->bo.base);
-+		disp->image[nv_crtc->index] = NULL;
-+	}
- }
- 
- static int
-@@ -1210,7 +1225,11 @@ nv04_crtc_page_flip(struct drm_crtc *crtc, struct drm_framebuffer *fb,
- 		PUSH_NVSQ(push, NV05F, 0x0130, 0);
- 	}
- 
--	nouveau_bo_ref(new_bo, &dispnv04->image[head]);
-+	if (dispnv04->image[head])
-+		drm_gem_object_put(&dispnv04->image[head]->bo.base);
-+
-+	drm_gem_object_get(&new_bo->bo.base);
-+	dispnv04->image[head] = new_bo;
- 
- 	ret = nv04_page_flip_emit(chan, old_bo, new_bo, s, &fence);
- 	if (ret)
-@@ -1329,7 +1348,7 @@ nv04_crtc_create(struct drm_device *dev, int crtc_num)
- 				nouveau_bo_unpin(nv_crtc->cursor.nvbo);
- 		}
- 		if (ret)
--			nouveau_bo_ref(NULL, &nv_crtc->cursor.nvbo);
-+			nouveau_bo_fini(nv_crtc->cursor.nvbo);
- 	}
- 
- 	nv04_cursor_init(nv_crtc);
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index ac9657d7e92d..6d20d3c68fa7 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -2819,7 +2819,7 @@ nv50_display_destroy(struct drm_device *dev)
- 	nouveau_bo_unmap(disp->sync);
- 	if (disp->sync)
- 		nouveau_bo_unpin(disp->sync);
--	nouveau_bo_ref(NULL, &disp->sync);
-+	nouveau_bo_fini(disp->sync);
- 
- 	nouveau_display(dev)->priv = NULL;
- 	kfree(disp);
-@@ -2862,7 +2862,7 @@ nv50_display_create(struct drm_device *dev)
- 				nouveau_bo_unpin(disp->sync);
- 		}
- 		if (ret)
--			nouveau_bo_ref(NULL, &disp->sync);
-+			nouveau_bo_fini(disp->sync);
- 	}
- 
- 	if (ret)
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-index 3b8dfbb621da..596a63a50a20 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-@@ -53,25 +53,10 @@ nouveau_bo(struct ttm_buffer_object *bo)
- 	return container_of(bo, struct nouveau_bo, bo);
- }
- 
--static inline int
--nouveau_bo_ref(struct nouveau_bo *ref, struct nouveau_bo **pnvbo)
-+static inline void
-+nouveau_bo_fini(struct nouveau_bo *bo)
- {
--	struct nouveau_bo *prev;
--
--	if (!pnvbo)
--		return -EINVAL;
--	prev = *pnvbo;
--
--	if (ref) {
--		ttm_bo_get(&ref->bo);
--		*pnvbo = nouveau_bo(&ref->bo);
--	} else {
--		*pnvbo = NULL;
--	}
--	if (prev)
--		ttm_bo_put(&prev->bo);
--
--	return 0;
-+	ttm_bo_put(&bo->bo);
- }
- 
- extern struct ttm_device_funcs nouveau_bo_driver;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
-index 66fca95c10c7..f568ea251e3b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_chan.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
-@@ -110,7 +110,7 @@ nouveau_channel_del(struct nouveau_channel **pchan)
- 		nouveau_bo_unmap(chan->push.buffer);
- 		if (chan->push.buffer && chan->push.buffer->bo.pin_count)
- 			nouveau_bo_unpin(chan->push.buffer);
--		nouveau_bo_ref(NULL, &chan->push.buffer);
-+		nouveau_bo_fini(chan->push.buffer);
- 		kfree(chan);
- 	}
- 	*pchan = NULL;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 6719353e2e13..7b3b8f4630a2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -294,7 +294,7 @@ nouveau_dmem_chunk_alloc(struct nouveau_drm *drm, struct page **ppage)
- out_bo_unpin:
- 	nouveau_bo_unpin(chunk->bo);
- out_bo_free:
--	nouveau_bo_ref(NULL, &chunk->bo);
-+	nouveau_bo_fini(chunk->bo);
- out_release:
- 	release_mem_region(chunk->pagemap.range.start, range_len(&chunk->pagemap.range));
- out_free:
-@@ -426,7 +426,7 @@ nouveau_dmem_fini(struct nouveau_drm *drm)
- 	list_for_each_entry_safe(chunk, tmp, &drm->dmem->chunks, list) {
- 		nouveau_dmem_evict_chunk(chunk);
- 		nouveau_bo_unpin(chunk->bo);
--		nouveau_bo_ref(NULL, &chunk->bo);
-+		nouveau_bo_fini(chunk->bo);
- 		WARN_ON(chunk->callocated);
- 		list_del(&chunk->list);
- 		memunmap_pages(&chunk->pagemap);
-diff --git a/drivers/gpu/drm/nouveau/nv10_fence.c b/drivers/gpu/drm/nouveau/nv10_fence.c
-index c6a0db5b9e21..1a53b8b80467 100644
---- a/drivers/gpu/drm/nouveau/nv10_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv10_fence.c
-@@ -88,7 +88,7 @@ nv10_fence_destroy(struct nouveau_drm *drm)
- 	nouveau_bo_unmap(priv->bo);
- 	if (priv->bo)
- 		nouveau_bo_unpin(priv->bo);
--	nouveau_bo_ref(NULL, &priv->bo);
-+	nouveau_bo_fini(priv->bo);
- 	drm->fence = NULL;
- 	kfree(priv);
- }
-diff --git a/drivers/gpu/drm/nouveau/nv17_fence.c b/drivers/gpu/drm/nouveau/nv17_fence.c
-index 07c2e0878c24..2c99f2c1ddcd 100644
---- a/drivers/gpu/drm/nouveau/nv17_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv17_fence.c
-@@ -141,7 +141,7 @@ nv17_fence_create(struct nouveau_drm *drm)
- 				nouveau_bo_unpin(priv->bo);
- 		}
- 		if (ret)
--			nouveau_bo_ref(NULL, &priv->bo);
-+			nouveau_bo_fini(priv->bo);
- 	}
- 
- 	if (ret) {
-diff --git a/drivers/gpu/drm/nouveau/nv50_fence.c b/drivers/gpu/drm/nouveau/nv50_fence.c
-index ea1e1f480bfe..6fa18f9d26b6 100644
---- a/drivers/gpu/drm/nouveau/nv50_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv50_fence.c
-@@ -92,7 +92,7 @@ nv50_fence_create(struct nouveau_drm *drm)
- 				nouveau_bo_unpin(priv->bo);
- 		}
- 		if (ret)
--			nouveau_bo_ref(NULL, &priv->bo);
-+			nouveau_bo_fini(priv->bo);
- 	}
- 
- 	if (ret) {
-diff --git a/drivers/gpu/drm/nouveau/nv84_fence.c b/drivers/gpu/drm/nouveau/nv84_fence.c
-index 812b8c62eeba..9ce4c2d60fe3 100644
---- a/drivers/gpu/drm/nouveau/nv84_fence.c
-+++ b/drivers/gpu/drm/nouveau/nv84_fence.c
-@@ -188,7 +188,7 @@ nv84_fence_destroy(struct nouveau_drm *drm)
- 	nouveau_bo_unmap(priv->bo);
- 	if (priv->bo)
- 		nouveau_bo_unpin(priv->bo);
--	nouveau_bo_ref(NULL, &priv->bo);
-+	nouveau_bo_fini(priv->bo);
- 	drm->fence = NULL;
- 	kfree(priv);
- }
-@@ -232,7 +232,7 @@ nv84_fence_create(struct nouveau_drm *drm)
- 				nouveau_bo_unpin(priv->bo);
- 		}
- 		if (ret)
--			nouveau_bo_ref(NULL, &priv->bo);
-+			nouveau_bo_fini(priv->bo);
- 	}
- 
- 	if (ret)
--- 
-2.45.2
+--=20
 
+Marco Crivellari
+
+L3 Support Engineer, Technology & Product
