@@ -4,88 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD587D5B15D
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90CD7D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8634310EC97;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CB7010EC9C;
 	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="FukL4cc6";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="VbqWbkts";
 	dkim-atps=neutral
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
- [209.85.215.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BAD3410E5E7
- for <nouveau@lists.freedesktop.org>; Tue, 28 Oct 2025 15:12:44 +0000 (UTC)
-Received: by mail-pg1-f171.google.com with SMTP id
- 41be03b00d2f7-b63e5da0fdeso609838a12.0
- for <nouveau@lists.freedesktop.org>; Tue, 28 Oct 2025 08:12:44 -0700 (PDT)
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com
+ [209.85.215.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4407E10E80A
+ for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 18:34:52 +0000 (UTC)
+Received: by mail-pg1-f176.google.com with SMTP id
+ 41be03b00d2f7-b9da0ae5763so1446a12.0
+ for <nouveau@lists.freedesktop.org>; Wed, 03 Dec 2025 10:34:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1761664364; x=1762269164; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1764786892; x=1765391692; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=5snQUvhRWkb9C2jeab2EsORSQy/NoakHLRvzEAR046k=;
- b=FukL4cc6FuL+wglYe9k3OxWIgW+PfCksR0a+z1H8YU1zoHee44E8ogQoasMD0sFf8t
- EVb1FIXWjJqllJ9fQNlfVw+PTw1AGaZcqyCm/Xa35bMmLCL1aLt34CJUqG1+ynIf/uK8
- IqG+dKsPO3VK0zNrfCF2KNEaukxNfLwIUjp8uLu3lJjkRGiZ4ifXWEueE3aoaCbjoQe6
- htjNU58myKGIHvpxZAEc0EI1f/G6wQRUiPqS7GgP+aEl6xhnl6PlV3jMalUvtADAoDQn
- i0HbiwSZ8TqW61DtAPW6Qcn2JNcGYTUgl7oDh1N0tt7NRMpzW75Pyvqk4xJ2kFKuiPVN
- Kzhg==
+ bh=2CMWZ3qAwUwyBhAnMKin7Wcb6R/EuH1ID91cRmby9KI=;
+ b=VbqWbktsGUvquUadyCN7mI63l0IHioUZk3iumP+8a6HF+N1pD9E71Y7yfcxF2ghVUY
+ H3utWJU5lmrGRqF0vWYS4h6BwRMrLxi2nZ1mN5ktVjKM88haoHVhPPyGzN1FBYZHvdDg
+ ROyyLxT/Bk1+fRh+3jEigOeugPFdPWe4q8V0wea8AbeGK6kwT4Lc2kfccO84XJniCtEL
+ Zl4rQH0id1gTBU2qzWJE9nBZHq/89l81bc16QXYGKqWgOOTzi1UxeN06B8xyxgkiGo2F
+ tOGos1JflpfyWi+6Guqr5LIoMesaRhRU8BZuiz41VtIaLbmvL0gX0oOnetIX5WvDUWB4
+ lojQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1761664364; x=1762269164;
+ d=1e100.net; s=20230601; t=1764786892; x=1765391692;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=5snQUvhRWkb9C2jeab2EsORSQy/NoakHLRvzEAR046k=;
- b=T6W6fSu8hvaPxnGr4RN12yVfoFDf34O3kMYhJ8hxfIVNWNp9vls2rlaPl9A83gvSpF
- XzvFF+hZvYVhwewrEwXdBATpUzocmUbb0y7PWNs5sG+RJIdOVjXlSw0mXMiVDf5SA+F+
- Tem8YIiFksiUTGn+v5HSG+AhXgoVzY6ovb2r4KmSyHwn9pYtvUFGmOnXNLoINplHE90d
- micitgIdQYF3I2NJ18CpA9/TFrlj/V96i7KEpDnLsy+NoOldmySdMKZQFCrgmACzFBgH
- HLYjRtsUNlv2RmA8HrvUf/vac0b8HJA0AMq1HReAZtzuOLMF8uvwxSkJFizjyTF+/iws
- wDQw==
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=2CMWZ3qAwUwyBhAnMKin7Wcb6R/EuH1ID91cRmby9KI=;
+ b=eZ0ENfphykbWy5WdBM05wkIfTBsPVR/6xFs8MKA/TP0AQyZUIMOGnB/+plpRgHLNnS
+ oOc5sP0xfryslAORX2EbvUOtpzdsBAN0clkeBSVL2qaO+IYwS9qBAu97j8R8jmqBSc4f
+ hikJM1JfvPHZFzE7x8jbJ8qrNRxak/9bu2rn9ypcuHoQhHTcm7BtGo48vooo/cWa3wQz
+ l6+xGZhUVUypK8XOENFWhJAGz3kfEHGN98AUDiFN+LAR969ukF4GKmC/7QeoLimKGKFu
+ iIOCMgTu5AfZkf+/8IUNqeAmXvzQYuLmIDbVa7Bay+CqzsuwptN4lQKr+pjdiN8T2+Sr
+ TjCg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUEP7BA0Y9PyLfXWcrRzukkfwyUZkYxLq6sv9a08SlsHuYpifIm+YkpfRnOGk5V1GTqU+odD/eJ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwkAghO98YmHcP/0G3D3BTU96vAKbTI+QxF8nKNaB+E/mjJzfQ/
- axrrQuu+MrqsIZgeH1UwS1GYmtsH7+h0mgNtfTNZRmvoIbBTu52oMYTAQ/jMX+k3E0nscwG3tXK
- L20RPFvgWmMM5lPuSJQ6hGOTMWTI8nJg=
-X-Gm-Gg: ASbGncsL8wdCpI2/gG6uvLb1RSCYYOjRyE+svGBLgn1PSIpx3mCYhZWw3lG9oo2QChp
- Lu0uCtYc8Ywj71rnZF7bX5TEcU2wBasznCwPqITjAxZ2+vsFdAAsZyMMoU5FmZ/FMWeuNcAQdLq
- IrlnAIKU59t1KAoY9MrdYSMewlt5gdtBob0SJX1juU3Is28rhPiCfTLkJ+3l17Hz2eqhxoFYhy8
- rL84ioJ4aWA6LJSU7bceKL0tIN/24NAhrC4C1XzJJrdSKyx8y0Pt79p+42SP4MCRgp+nXcEs2XO
- 5yYIvTyzWkbomZxKMVovIiJgeb11Ni4ifx8DeOeKayL6dlk+v3uY71sKuV32tf2oKtOE/ZDjqpB
- +O2k=
-X-Google-Smtp-Source: AGHT+IFYPGiAfq6Bkpv4VIZbnQ2eB25p+ZAfZMrF5Pziev/2opSXlTlA+Qb2DBeslIA+t2R0h3bM5akBnOcG/++7Z0U=
-X-Received: by 2002:a17:903:8cb:b0:27e:da7d:32d2 with SMTP id
- d9443c01a7336-294cb500277mr27314415ad.7.1761664364153; Tue, 28 Oct 2025
- 08:12:44 -0700 (PDT)
+ AJvYcCUou7RCYKZtelFJ36jWfBzJNsH6+IxKO9ljZFY1Z5CMoHx/eUwZFhGcT4tmB0SAEjSJUVjKmiAZ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyXxtcKPqkj0fzjKfPwIi42XxAcbyFn5VSA67BycKzViPAZ7nnx
+ lNfxbvoi24hzoExQQFlNu0m4JVTkvK5V/ytRcCa92Jf7xGE9GdeYGk+8Q9BmQDN8hYTUlJqOyQj
+ lEoErwYM/Xw95q52unk6dZWwjY0WP6Tw=
+X-Gm-Gg: ASbGnctgLostDStM0VTzgylIw07o3iaY4MZ28rG4JKt43b3SQTN7VE0Q0UKP8vrhyTr
+ PDvBwDTAmyUuvgvc7eURjpjT8ATO3FINFnpKKDv890rpqaad1vYiKQlNZruqDhMUeM1CIxVG5nA
+ ltjB6lrFtz5B8R5r/gq0QTT7WyqrD9ymgVg1K54bY7+8auw6C1P42KRUICXwnNefWumSCov2kPq
+ M/J46e8N7A4tNjjZDKySRSFIF53N8uYpnvWDgHR3/BJ3wSKe8Yr9IQRES0Cy+RCUfYNQBG4F/lG
+ hn93nUkr5qtVIV3F/+iIXpO0V7udtz6FgF3HZCU46RtG49vZ1E0bnh3TFpbG4No03IYO0Cnc2X2
+ 6IJexSq6x7cYUhg==
+X-Google-Smtp-Source: AGHT+IFa4V+Y9FyhlTVYSyy1JMkmi9f/NngzmjjE3IEzgbmLwubfh9xfKe7h/9zsaCRjThZ3LBCKnOLaWeErPRtNuyM=
+X-Received: by 2002:a05:7301:e0d:b0:2a4:3593:5fc8 with SMTP id
+ 5a478bee46e88-2ab97ca970amr1171255eec.2.1764786891475; Wed, 03 Dec 2025
+ 10:34:51 -0800 (PST)
 MIME-Version: 1.0
-References: <20251026-nova-as-v1-0-60c78726462d@nvidia.com>
- <20251026-nova-as-v1-5-60c78726462d@nvidia.com>
- <CANiq72mgoW_TyWf9Nv=5t3Qij_dsDjicNpGsa=F1t+sg23vxSA@mail.gmail.com>
- <de796658-ed1d-41f1-b153-f3d1089656ba@nvidia.com>
- <DDU1AQDW78QI.1CBHEW03926H0@nvidia.com>
-In-Reply-To: <DDU1AQDW78QI.1CBHEW03926H0@nvidia.com>
+References: <20251114233045.2512853-1-ttabi@nvidia.com>
+ <20251114233045.2512853-11-ttabi@nvidia.com>
+ <DECCV8XB5U56.1NBFD1KFJ59LU@nvidia.com>
+ <b28cff274d79de78496c7f0fcc3627b2f816d3dc.camel@nvidia.com>
+ <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
+In-Reply-To: <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 28 Oct 2025 16:12:32 +0100
-X-Gm-Features: AWmQ_bma5_85Uxd8PIaUq6SaqwUjakaAH7XUFCSDVLctaYXwoFO8A3BqGERgpOk
-Message-ID: <CANiq72nbYiwFO6Vqc+yoW1-qT_uMN-CftgOpPe8Mqn56b1Fq9g@mail.gmail.com>
-Subject: Re: [PATCH 5/7] gpu: nova-core: add extra conversion functions and
- traits
+Date: Wed, 3 Dec 2025 19:34:39 +0100
+X-Gm-Features: AWmQ_blu305YpWSaZPgtyEsvUY-AE81K5BtUh2D6y_BVZiUesA5SswVgugi5Dmg
+Message-ID: <CANiq72n-E3Yhgn=zioZvOLbKStLbrTfqDbEVY1-vbETqRYmWxA@mail.gmail.com>
+Subject: Re: [PATCH 10/11] gpu: nova-core: LibosMemoryRegionInitArgument size
+ must be page aligned
 To: Alexandre Courbot <acourbot@nvidia.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Alice Ryhl <aliceryhl@google.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>, 
- Joel Fernandes <joelagnelf@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org, 
- Danilo Krummrich <dakr@kernel.org>, Matthew Wilcox <willy@infradead.org>, 
- Nouveau <nouveau-bounces@lists.freedesktop.org>
+Cc: Timur Tabi <ttabi@nvidia.com>, 
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dakr@kernel.org" <dakr@kernel.org>, 
+ "lyude@redhat.com" <lyude@redhat.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
+ John Hubbard <jhubbard@nvidia.com>, 
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>, 
+ "nouveau-bounces@lists.freedesktop.org"
+ <nouveau-bounces@lists.freedesktop.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
@@ -103,38 +97,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Tue, Oct 28, 2025 at 3:44=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
+On Wed, Dec 3, 2025 at 12:54=E2=80=AFPM Alexandre Courbot <acourbot@nvidia.=
 com> wrote:
 >
-> intent with the latter was to say "I would normally have done an `as`,
-> but instead here is a method that attests that this operations is indeed
-> lossless and safe".
+> I know it's a very edge case, and clearly indicates a bug, but the
+> general rule is: don't panic the kernel. And in Rust, if possible, don't
+> even let me compiler insert panic-handling code. If you don't want to
+> change the return type of the method, then maybe use `unwrap_or` and
+> `inspect_err` to print an error before returning e.g. `0`.
 
-Yeah, so you want that, when we see `_as`, we are reminded that this
-is the equivalent but lossless of that, which sounds OK. Though I
-wouldn't say "I would normally have done ...", but rather turn it
-around and say "Since we want to avoid `as`, here is a method ...".
+In general, indeed, but if it is truly something that cannot ever
+happen (as in one can prove it due to how the local code looks like),
+then adding error paths for it isn't good, especially if they change a
+signature.
 
-Now, I suggested a change because typically I would expect names to
-mention what they are about/do, rather than how they are implemented.
-The implementation in this case also doesn't say much, i.e. a type
-cast expression can be used for many things, and worse, the operator
-may or may not be lossless, so it isn't a big hint.
+In any case, if it is decided to continue execution (either with an
+error or with a "default" value etc.), then please use EB, i.e. adding
+`debug_assert!` and possibly `pr_warn!` (or perhaps `pr_warn_once!`
+once available).
 
-But, yeah, I understand that you want to evoke the relationship above.
+Thanks!
 
-I also suggested it because when I wrote the message I was thinking
-about the `cfg`s message, i.e. most of these depend on the
-architecture, and thus having an `arch` or similar does evoke a
-"careful, my code may not be portable anymore".
+> But others have already thought "naah, that's never gonna happen" and
+> got burnt very publicly [1], so let's learn from that. :P
 
-On the other hand, it is true that the `u32_as_usize` case will most
-likely always be available, in practice, unlike the others. So an
-`arch` for that one isn't great (but I guess it could still matter for
-someone wanting to reuse the code in a different project/domain).
-
-In any case, personally I don't mind it too much either way --
-whatever looks best for most.
+That sounded to me like a higher-level design issue, not so much about
+`unwrap()`.
 
 Cheers,
 Miguel
