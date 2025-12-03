@@ -4,139 +4,166 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57720D15DBC
-	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 17:15:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47684D1BDC9
+	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 18:31:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2BD910E7FB;
-	Wed,  3 Dec 2025 17:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F0F10E7F6;
+	Wed,  3 Dec 2025 18:31:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="0RON9zjQ";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="6E4NoMFW";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zIZbpQdU";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="03816KMm";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="te4GCNut";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5299810E802
- for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 17:15:41 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 047F85BDC4;
- Wed,  3 Dec 2025 17:15:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1764782138; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qfaRP1TVSlb2FrbK+FspbEIhwCAz7AGdQqxTllry70g=;
- b=0RON9zjQQUcyXkzcSd6PcezDf1yKgK/Ut8/ALOylDcZudnwhE5ZMLgJZymPwMHJXs0tYby
- 7sNIznibOSxqKloedwLgr8mTAGhy19x18EPgxi3L38sAOU1dyo5Y+gonSwlAvYjhRMXTTQ
- LQev7uTJR0W/2+/UG32QtTXm4WU6JOw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1764782138;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qfaRP1TVSlb2FrbK+FspbEIhwCAz7AGdQqxTllry70g=;
- b=6E4NoMFWK/Q7NquC4XU+Dte2OMgsAnbLIfujK8CZexshhlu0GrI3oz+gqAL0KuQSOS4q/y
- TviK4z0Dr0+xrKCg==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zIZbpQdU;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=03816KMm
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1764782137; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qfaRP1TVSlb2FrbK+FspbEIhwCAz7AGdQqxTllry70g=;
- b=zIZbpQdUqtP8kTwuXgwTUatYT4Tmdiq76Nq7HtrkjnfndThzVjgmcyTyRz/XUUWTP/U6DA
- S1/EaH727Ps+2emEri2IVTszHSjPM+9+baoDbWroYI57CIMt4da3sn9Zhg/KIlN3k0pNYd
- Up4+JXt7lKphpKPsz7ILVjTw7MyhAQ0=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1764782137;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=qfaRP1TVSlb2FrbK+FspbEIhwCAz7AGdQqxTllry70g=;
- b=03816KMmF5c5LOgA6u+PX//aDEaeuQLO7R7Z7tH5LY27zJRTzrC0pQCW/GNXgAvVP+LnGC
- EjjYdDFZIZPz6iBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AAB453EA63;
- Wed,  3 Dec 2025 17:15:36 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 8AvlJzhwMGmBPgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 03 Dec 2025 17:15:36 +0000
-Message-ID: <64a09b88-5fe2-46ab-861e-9330a66a0459@suse.de>
-Date: Wed, 3 Dec 2025 18:15:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6.12 126/132] drm, fbcon, vga_switcheroo: Avoid race
- condition in fbcon setup
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, stable@vger.kernel.org
-Cc: patches@lists.linux.dev, Javier Martinez Canillas <javierm@redhat.com>,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Sasha Levin <sashal@kernel.org>
-References: <20251203152343.285859633@linuxfoundation.org>
- <20251203152347.982336576@linuxfoundation.org>
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010062.outbound.protection.outlook.com
+ [52.101.193.62])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C50DB10E7F6;
+ Wed,  3 Dec 2025 18:31:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OFCZnQ1Secz1ObdbeHE1ppXdHJaBmM+2TVJD8XyMUGHUdf3ZJrdz0w3+xJBNuAeh1vdkJcE7JIMbOxgox7lH4SP8FaxZECbz7WFHbdWGtETeIv8uyscVV1aPEZtAP20NnVoHKh52vNbZKCBJLf1uLu3K82nRgpxv3wL/DqvesjL+rJdiJkAO6RXc38K2y4sW4YlJz4ZmwpJU+2WLWf0kOkCPY1tMjqW4AejUfINOzP7AA5Z6uX/5EKgC7n9bfbHAYwPmix0tKi+kWXTDnHyLl5crynIx/2UWXIhUkCqdyjr/daFPlTkXaqDZlh+9lZ/1LVrF75NwrQ3auL3clWKhBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wd30DVUDDSTBL20ZqO155GOVe/esWcQUyuTOxE1LCOI=;
+ b=LIxmYL16XfEW39awu5lcqFsvXIXrOdjOx4YNo2+DgE30q28vuhGtdpL3NlPLZZq12+i07s5kXQ5TCKcNT3j71UoIlQEOEIxVhHvykn5IRoRjx03uLFoGw8YBMTmKH9U+C5LlVVpJjlv/x+F+4vodhZo4jEJ/llJTPC09qkGFEJLI6dTFdoeDeTdqfIr7Ri5gRyrQy5uoXGb672pnLzjPdgj536cHRTUcb8qKwMv/akUFsrzprcgI5smIFEx/rNwxVjdvyRl/r/h3JGW3gojWwhPlv21d8BCY5yOdKRItH1//VM9+uuOJbA3s9oyXXTHhQRXjqhI3Qwq59bTd/2/Lhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wd30DVUDDSTBL20ZqO155GOVe/esWcQUyuTOxE1LCOI=;
+ b=te4GCNut11xzAN3qOg1/k8M6agQZRv+JYJLmydGYiLbJFLoKINBieHlUUD+Po7gJ7oX+/otAILtgx8bLeqVjRjfWVAyAPEZhJ1brQWm9M+667hPzVmyANKZGkF4EnGcC5TRO1bRW6n+ZJs7GdFC4jAtxe6TZPcuu4/aZIc4ihO+zEdCOHr9ArQPCXfC3MVK3f3TextqUUV1Nipg9DfsDexK2bChYCk48KIcmCr8C5UmKXFdCqT45YPttSB3KIVVRxxpu7FndDyY46KCR5eY1+k0JM6aSNQ5Kv/T1VFsBOYS1Z9SOo1VyoOSEWUVkm11d5tBAKsCpE9aB5tVjVmi5sQ==
+Received: from PH7PR12MB7937.namprd12.prod.outlook.com (2603:10b6:510:270::21)
+ by PH7PR12MB7937.namprd12.prod.outlook.com (2603:10b6:510:270::21)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Wed, 3 Dec
+ 2025 18:31:29 +0000
+Received: from PH7PR12MB7937.namprd12.prod.outlook.com
+ ([fe80::805e:c531:4f9b:57f6]) by PH7PR12MB7937.namprd12.prod.outlook.com
+ ([fe80::805e:c531:4f9b:57f6%4]) with mapi id 15.20.9388.003; Wed, 3 Dec 2025
+ 18:31:29 +0000
+From: Timur Tabi <ttabi@nvidia.com>
+To: "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>, Alexandre
+ Courbot <acourbot@nvidia.com>, "dakr@kernel.org" <dakr@kernel.org>,
+ "lyude@redhat.com" <lyude@redhat.com>, Joel Fernandes
+ <joelagnelf@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>
+CC: "nouveau-bounces@lists.freedesktop.org"
+ <nouveau-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH 10/11] gpu: nova-core: LibosMemoryRegionInitArgument size
+ must be page aligned
+Thread-Topic: [PATCH 10/11] gpu: nova-core: LibosMemoryRegionInitArgument size
+ must be page aligned
+Thread-Index: AQHcVb7O8BOTeMMK20yX23bEM4/ssbT5X+OAgBQoLwCAAmObgIAAbumA
+Date: Wed, 3 Dec 2025 18:31:29 +0000
+Message-ID: <df975795b0dbe58214ad302d7182ce6fe92e5fd8.camel@nvidia.com>
+References: <20251114233045.2512853-1-ttabi@nvidia.com>
+ <20251114233045.2512853-11-ttabi@nvidia.com>
+ <DECCV8XB5U56.1NBFD1KFJ59LU@nvidia.com>
+ <b28cff274d79de78496c7f0fcc3627b2f816d3dc.camel@nvidia.com>
+ <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
+In-Reply-To: <DEOK871CSNZB.W94R3SDUDZ22@nvidia.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20251203152347.982336576@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[];
- URIBL_BLOCKED(0.00)[suse.com:url,bootlin.com:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,amd.com:email,lists.freedesktop.org:email,suse.de:email,suse.de:dkim,suse.de:mid,linuxfoundation.org:email];
- FROM_HAS_DN(0.00)[]; FUZZY_RATELIMITED(0.00)[rspamd.com];
- ARC_NA(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- RCPT_COUNT_SEVEN(0.00)[10]; MID_RHS_MATCH_FROM(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url, linuxfoundation.org:email,
- imap1.dmz-prg2.suse.org:helo, imap1.dmz-prg2.suse.org:rdns, msgid.link:url]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 047F85BDC4
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.52.3-0ubuntu1.1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR12MB7937:EE_
+x-ms-office365-filtering-correlation-id: 48658a5e-d3d4-40d9-2ce6-08de329a2d11
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|366016|376014|1800799024|38070700021;
+x-microsoft-antispam-message-info: =?utf-8?B?MGliVTFBVjYzK3NKSytQM3RZZFhHMHR5OFpLbGFJd0Y1VDhFR3g1Rks2ZUli?=
+ =?utf-8?B?Y1UyaE42SG5NNTJmNnY0KzBVT2RwU25FQ21Id2J1Zm40SHFFZEZyOVd2Y3FG?=
+ =?utf-8?B?blpYMmpJSGdYZnl6eGYxOE1KaGtFQlltU0t5OTJldFBaOFFFUk02V1Q0aFpr?=
+ =?utf-8?B?bGdPY0M5d0k3U1dUOUJwVEFwa2pYZEp3dGxzODBmNlFYa3RFaDFkOVlvdVRO?=
+ =?utf-8?B?Q09CV1FyemdyQWc2Wi9OaXBBN09nTVZJRTl3Vms4aEdTZ3huUkQ1ZG80MDIx?=
+ =?utf-8?B?UDdoQnZSVENLdWk3SzFyR3A5cGJEbklWYldQSDlNRWdYSHoxZFpWdVlVNGo2?=
+ =?utf-8?B?WlN1MlJCNlpPVW91eVdBMmxCNzUrK2tkTE1tTWdheXU2STZIOXlGYW5mTWFw?=
+ =?utf-8?B?QUZQSDVhMTVxTFlMNUVwdXFyWndaYmRKWjlCZkQwRHhtZ0l6WXZlcUlOTnNu?=
+ =?utf-8?B?TFRoRDhSL2tZU2ExeEoyN2UrdmtYM1plWjJjNlZpQU9ERmcvYXQ2TzVnRkJ0?=
+ =?utf-8?B?YjFkakZTY2t2UDQxazk2VXdtd21Dc1dkMkwxem9BaHQ3aWtGbUtGWkplU2k0?=
+ =?utf-8?B?S0dPaE11ci91bllUOXBpMithdDl6QXlWaEZ0Z3JramJiem11cVQ5TE56aFl5?=
+ =?utf-8?B?M01UMnliVmZRbHdhaDFVYlBWZlVTKzNGVlhwQmpYeVUyVmJSd3Voc1RqNnQ0?=
+ =?utf-8?B?YVZHR0FRKy9SdTMzZ3c3Z3N2bmoxYUhzNTFNeXh3SGpDSHh5b1VNOUllNmtO?=
+ =?utf-8?B?TDBjVDhaQXU2UW9XUTArYisvbUxiRU9wTjA3SFFjT0hrd09RSlRpMzVCOU9r?=
+ =?utf-8?B?UHB4SGpFNTYwQjljc0ZYTS82aGpjS0g5WlZ0eVNqWk1VazYxVGV3bFVrb1dG?=
+ =?utf-8?B?b1p6N3VJU2hjWkF2VmhEbmVWMGRDYmJqaDJIbWJ6aXJlSHVFalgxRUdqcEF2?=
+ =?utf-8?B?MXBMWlJUOVFpN0dzZ2I5OFlGYndSUXZ3d2d0ak1jWkw3ZDk3akdRcm9ZZmcw?=
+ =?utf-8?B?OHE5T1g1eDgwY2E1TXRZUWcwMTIzUk1EYUJ5WmtyOWdaZS9ta2lPd2JFanl2?=
+ =?utf-8?B?Z1F0M1dvSy8vOW9TaDJWWFBaYXBOR0xENVBUUHFPclloTHdFMEY2VXZqamEx?=
+ =?utf-8?B?dmNodmdIKzRYbk9wZ1hqWW9iSFMyL3lPV1pRcXZhOUlOOTk3R0FiTXByQjlW?=
+ =?utf-8?B?eUFQdFJ6WUcxSDZpWlFnbFNjODB1YytNeExJNHhFVnVxdjNwalpGbXlQcHpM?=
+ =?utf-8?B?MEE5U1pTM1BnWTVlQ1dUazJoQVVDaDlYNHgzNEpUN0hrNnJFMVd3Ni9nOStH?=
+ =?utf-8?B?cFM0VXNwbUVTN01mNFJkTTdsRmxVaXpFV3Ard3V2Ny9HWTFqTWh0UFhoQUk2?=
+ =?utf-8?B?TUhHdTZINnUrZUR2Wk5vOGsvVGVvRFh3UlhOSmVkaHRIL2Q5aTZOeXNmckNn?=
+ =?utf-8?B?TFkzcmlCVDNoSEtDbkV0SGRIZ1VyQ3RVWWdha3cwOGVmeHk3NEthNGJiWng0?=
+ =?utf-8?B?S0Z5UytWaXdjMmdOSmxzZCtQNDlVOTliTUJYZUJYVzFNd3UyVWNpSzBMR2px?=
+ =?utf-8?B?aDdNaGd6UVdTNGxXaW8vblVzWkM4VHpINWF6MGZpcUpkRzl5ejJlSmprODl5?=
+ =?utf-8?B?UTBvYTR3VUhscGRXaldrcm5aWVFySTdtcllhOTM0ZUhhQU90QVBYdDExYy9O?=
+ =?utf-8?B?U3JQdG5Eam5Sc0xlUVk1RXNCTWZBTmhKOGkzaStNNmZQL0VYRFY3cDQ5UHoz?=
+ =?utf-8?B?Nm44TVJGNDVwK2xkeVV1ZSt1eEU0Q1p6bklWRTdqcnZUWW5aOFVFMjU5ZTFX?=
+ =?utf-8?B?aEkzZXJWaFV2eHJ1U2NFZGtoWE9GMnJRekNib3gxU3h6WndFcVZ1Z3g1TWln?=
+ =?utf-8?B?cXRJSmk3NG1wMnk3ZDA3L0N0TlZpRC8zbVJIV3NiS3o2ejhKMHNFUUxLTWgz?=
+ =?utf-8?B?YW1mU3h0eG1KV0J5UzJKNVQ1TzBRVy94L0VQcU80Nkg0VVk0YzA5QW5VM1ZF?=
+ =?utf-8?B?SlZXYTZVNGM2WFRFU0NsTU40QVlCeG55TWNvVElZS2c4a2lzWlFvRkhYcmE5?=
+ =?utf-8?Q?usnxfd?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB7937.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VTNJZFdoTmRPbTlKWWlzQVVwOSs4cFBRSFUwOXpuSnJOcnNOT0FWd0RPeisv?=
+ =?utf-8?B?VHExcGxaRHZFNmNDaDhHQzJWZHFVeFBZVnVCd2ZvcFd6a1J3OTV5VlpZQWV3?=
+ =?utf-8?B?bVcxbG1ucHdJc2N0MUMwTlM0cVlTeSs4NzBUMy9FZjZ6MitMWVgrWjIzUGlu?=
+ =?utf-8?B?OFVuSEtzajJQUC8xWnZHRUxraHJxMnNYUDA2Q3dueFFILzIvOEhxdzhqY0x2?=
+ =?utf-8?B?eXVCeTMwWStEMFRyQmVHemRIcW1qNitaY1pCUGwvdnl3Z042RjhnR2crbGVh?=
+ =?utf-8?B?NktrUktCdTIzRkZCcXh4aFZCZUNuK2kxY3N1V0pabHpJQmt2S0M4OS8xemRx?=
+ =?utf-8?B?b1pLYktjVnFUSGVma3NYalg2eE8wWmRnRS9YV29Ia0VVOUdQZ1c1M1dwY1hZ?=
+ =?utf-8?B?YmhvNGJROWo3NEY0RkhlM1VPUVF6MnZLMEpiQnNSaVg0emdNRjMyWStmSkVy?=
+ =?utf-8?B?bC8zdkphVHFGaldSSXJib1Q4VVpXSi9oQXBERWZLbzVDR085dGdLVVgyTDVG?=
+ =?utf-8?B?QXpwdFUzeDN5RGNCeHpsRGZ2SXR1cDhVRVhQVTh5YjhFTmVRSHhaY0gxUktV?=
+ =?utf-8?B?Y3RUZXJSQkF6V2d2WGk2UCtRSnB1N2FXT05iVURxTkRqMXJ5N1dKWjJOT3lh?=
+ =?utf-8?B?SGtsZXRIV0puWWNBS0UyMTRuQ3BBamQzenNEWldZaEJVRDEwcExBRVF5NnZ1?=
+ =?utf-8?B?eTJYcC85R2NOeWtUY2cwNkFvbTZiOEkwZWhweDRVM2wzaWRPY2RYc2tpVzda?=
+ =?utf-8?B?QUN2V2x0aGtXUWh6Z2ZwNnFnK0RDbFpwVjZKMmNmTHhzZVBUR2x4RXhwM21m?=
+ =?utf-8?B?NFpSL255dUlORjJwa2JTTGo0S0dkQmNWSVVOWHZPZ01raktNcllCVXJHYWdH?=
+ =?utf-8?B?NHhRU05nZ013RVg4bmpHVzBYM2REOStQaGtRYW01YzVxWjh2ZG9RV1Y3MGdn?=
+ =?utf-8?B?WkU0bGxRcjVtSCsvMS91Q0J1WjlCZmR4dHp5KzhDZGNqcWtzbFdsclp1UGpj?=
+ =?utf-8?B?WUNOd054WnRrZHBHK2xoZFAzVU43QnlrSW93NG5JS1Q3dGFwdXNBOWdWUEtP?=
+ =?utf-8?B?dGFtOSt6TmtPQ2xteUE4emNnU1RtZ3VubGd3UG5ydUs4YlRoR3YwVW52TWhv?=
+ =?utf-8?B?d2hWWEVneTBNaHh2QUtRNG0wZ1FMbld3YVNpaWl2dGdyQlZqSGlVRU1wY3NI?=
+ =?utf-8?B?MWlldVdvcUF1Wk13TmtLbkc1MGc5djBSTmtGQzV3b2xYbmwzV05OcnFsMCtz?=
+ =?utf-8?B?WkNDT2V0K2czd2RPaXZXL0hSUlNVemt3SmxCbG1rSlhYQjMyRVNzRjdLY2lV?=
+ =?utf-8?B?MkFPT28vVlN5clRLb1Z2TnB5UzlmTHA0LzdORVZ2UWM0bHk2ZVNoWnRBcjhz?=
+ =?utf-8?B?L0VxNGhGTnFZNlhTOFA0TUdBenZDQnpNM0xKOWFZZVBPejRFV1J0QVVQS3Jy?=
+ =?utf-8?B?RncyWHVrbERMMlVWQWZYWjBRUjdKVml4ZlBwMi8wNnJQbE9kSHNKM2NISjE0?=
+ =?utf-8?B?Z3VQSmFnbnVXTGNQbVNWQXBpRzlGM3ovQWRmMGRyWEhnTFdPZ2hhZXlLNDZD?=
+ =?utf-8?B?N3hCbFZEb1BKandtQjZsZFdYdjJZT2ZWTzgrc2NCekVXVFRieWs5TS9SMGVs?=
+ =?utf-8?B?dkdHYTdXQkE3MUltYlNUL1dDQkJMMUFRNzB2Q1k4YitzbGhVdHZJQ1V2U00v?=
+ =?utf-8?B?WXdTeUdyN3d5alV5M0o5anUySGVDZHI1NUdDNGtyTDdNZFBaSWNQSVozM2hq?=
+ =?utf-8?B?WG5nMG9QUy9acVdLanVaVXF2WUNrcnA2TXQ1c1NLNFpSb3lRVHcyVkI3SCtP?=
+ =?utf-8?B?REd3MUVibFhJYkNDY1cxK1NpdFMrbTRFdUNlUFAzelRzSDlKV3BCdW52ZWtq?=
+ =?utf-8?B?cWI2WFZZV3FISy84U0JuQXlFVFB6azhVTHZVWFdDaXFsalZvaThQS29jb2hM?=
+ =?utf-8?B?bk9RU0l6RjlxeU4xaFpOemJyRjNTTCtpYytSVE5iZC9JMUE5UW9KbXdIemRn?=
+ =?utf-8?B?QzU4RkU2M3owL1JJR3dFWmxYSFJkSC9wdkpYdm1vd1F6NkRObjFuOVlEcm5B?=
+ =?utf-8?B?Ym5ja1FVaGRpSDJJM3l3ZzZHWi9jV0tVYnlTTXUrSThid296L2VYMWltbDBL?=
+ =?utf-8?Q?KmOT480fKIuc/2VTOuqbjQDPx?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <407781B15E6C3F468105B2FE586CA183@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7937.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48658a5e-d3d4-40d9-2ce6-08de329a2d11
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2025 18:31:29.5563 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rCxD2+ZfWGa2i0fjA0sKexCMmOsp/YN5GuqmV8nFFrJjCYaOBUSo99+ZUZ8MbHq/x9dmCiY23vFpod2mZQokQQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7937
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,200 +178,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi,
-
-thank you for making the updated patch.
-
-Am 03.12.25 um 16:30 schrieb Greg Kroah-Hartman:
-> 6.12-stable review patch.  If anyone has any objections, please let me know.
->
-> ------------------
->
-> From: Thomas Zimmermann <tzimmermann@suse.de>
->
-> [ Upstream commit eb76d0f5553575599561010f24c277cc5b31d003 ]
->
-> Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
-> access in fbcon_remap_all(). Without holding the console lock the call
-> races with switching outputs.
->
-> VGA switcheroo calls fbcon_remap_all() when switching clients. The fbcon
-> function uses struct fb_info.node, which is set by register_framebuffer().
-> As the fb-helper code currently sets up VGA switcheroo before registering
-> the framebuffer, the value of node is -1 and therefore not a legal value.
-> For example, fbcon uses the value within set_con2fb_map() [1] as an index
-> into an array.
->
-> Moving vga_switcheroo_client_fb_set() after register_framebuffer() can
-> result in VGA switching that does not switch fbcon correctly.
->
-> Therefore move vga_switcheroo_client_fb_set() under fbcon_fb_registered(),
-> which already holds the console lock. Fbdev calls fbcon_fb_registered()
-> from within register_framebuffer(). Serializes the helper with VGA
-> switcheroo's call to fbcon_remap_all().
->
-> Although vga_switcheroo_client_fb_set() takes an instance of struct fb_info
-> as parameter, it really only needs the contained fbcon state. Moving the
-> call to fbcon initialization is therefore cleaner than before. Only amdgpu,
-> i915, nouveau and radeon support vga_switcheroo. For all other drivers,
-> this change does nothing.
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Link: https://elixir.bootlin.com/linux/v6.17/source/drivers/video/fbdev/core/fbcon.c#L2942 # [1]
-> Fixes: 6a9ee8af344e ("vga_switcheroo: initial implementation (v15)")
-> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> Acked-by: Alex Deucher <alexander.deucher@amd.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: nouveau@lists.freedesktop.org
-> Cc: amd-gfx@lists.freedesktop.org
-> Cc: linux-fbdev@vger.kernel.org
-> Cc: <stable@vger.kernel.org> # v2.6.34+
-> Link: https://patch.msgid.link/20251105161549.98836-1-tzimmermann@suse.de
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
-> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-
-Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-
-> ---
->   drivers/gpu/drm/drm_fb_helper.c            |    6 ------
->   drivers/gpu/drm/i915/display/intel_fbdev.c |    6 ------
->   drivers/gpu/drm/radeon/radeon_fbdev.c      |    5 -----
->   drivers/video/fbdev/core/fbcon.c           |    9 +++++++++
->   4 files changed, 9 insertions(+), 17 deletions(-)
->
-> --- a/drivers/gpu/drm/drm_fb_helper.c
-> +++ b/drivers/gpu/drm/drm_fb_helper.c
-> @@ -30,9 +30,7 @@
->   #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
->   
->   #include <linux/console.h>
-> -#include <linux/pci.h>
->   #include <linux/sysrq.h>
-> -#include <linux/vga_switcheroo.h>
->   
->   #include <drm/drm_atomic.h>
->   #include <drm/drm_drv.h>
-> @@ -1637,10 +1635,6 @@ static int drm_fb_helper_single_fb_probe
->   
->   	strcpy(fb_helper->fb->comm, "[fbcon]");
->   
-> -	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
-> -	if (dev_is_pci(dev->dev))
-> -		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
-> -
->   	return 0;
->   }
->   
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -589,11 +589,8 @@ static int intel_fbdev_restore_mode(stru
->   static void intel_fbdev_client_unregister(struct drm_client_dev *client)
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
-> -	struct drm_device *dev = fb_helper->dev;
-> -	struct pci_dev *pdev = to_pci_dev(dev->dev);
->   
->   	if (fb_helper->info) {
-> -		vga_switcheroo_client_fb_set(pdev, NULL);
->   		drm_fb_helper_unregister_info(fb_helper);
->   	} else {
->   		drm_fb_helper_unprepare(fb_helper);
-> @@ -620,7 +617,6 @@ static int intel_fbdev_client_hotplug(st
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->   	struct drm_device *dev = client->dev;
-> -	struct pci_dev *pdev = to_pci_dev(dev->dev);
->   	int ret;
->   
->   	if (dev->fb_helper)
-> @@ -634,8 +630,6 @@ static int intel_fbdev_client_hotplug(st
->   	if (ret)
->   		goto err_drm_fb_helper_fini;
->   
-> -	vga_switcheroo_client_fb_set(pdev, fb_helper->info);
-> -
->   	return 0;
->   
->   err_drm_fb_helper_fini:
-> --- a/drivers/gpu/drm/radeon/radeon_fbdev.c
-> +++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
-> @@ -300,10 +300,8 @@ static void radeon_fbdev_client_unregist
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->   	struct drm_device *dev = fb_helper->dev;
-> -	struct radeon_device *rdev = dev->dev_private;
->   
->   	if (fb_helper->info) {
-> -		vga_switcheroo_client_fb_set(rdev->pdev, NULL);
->   		drm_helper_force_disable_all(dev);
->   		drm_fb_helper_unregister_info(fb_helper);
->   	} else {
-> @@ -325,7 +323,6 @@ static int radeon_fbdev_client_hotplug(s
->   {
->   	struct drm_fb_helper *fb_helper = drm_fb_helper_from_client(client);
->   	struct drm_device *dev = client->dev;
-> -	struct radeon_device *rdev = dev->dev_private;
->   	int ret;
->   
->   	if (dev->fb_helper)
-> @@ -342,8 +339,6 @@ static int radeon_fbdev_client_hotplug(s
->   	if (ret)
->   		goto err_drm_fb_helper_fini;
->   
-> -	vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
-> -
->   	return 0;
->   
->   err_drm_fb_helper_fini:
-> --- a/drivers/video/fbdev/core/fbcon.c
-> +++ b/drivers/video/fbdev/core/fbcon.c
-> @@ -65,6 +65,7 @@
->   #include <linux/string.h>
->   #include <linux/kd.h>
->   #include <linux/panic.h>
-> +#include <linux/pci.h>
->   #include <linux/printk.h>
->   #include <linux/slab.h>
->   #include <linux/fb.h>
-> @@ -77,6 +78,7 @@
->   #include <linux/interrupt.h>
->   #include <linux/crc32.h> /* For counting font checksums */
->   #include <linux/uaccess.h>
-> +#include <linux/vga_switcheroo.h>
->   #include <asm/irq.h>
->   
->   #include "fbcon.h"
-> @@ -2894,6 +2896,9 @@ void fbcon_fb_unregistered(struct fb_inf
->   
->   	console_lock();
->   
-> +	if (info->device && dev_is_pci(info->device))
-> +		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
-> +
->   	fbcon_registered_fb[info->node] = NULL;
->   	fbcon_num_registered_fb--;
->   
-> @@ -3027,6 +3032,10 @@ static int do_fb_registered(struct fb_in
->   		}
->   	}
->   
-> +	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
-> +	if (info->device && dev_is_pci(info->device))
-> +		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
-> +
->   	return ret;
->   }
->   
->
->
->
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+T24gV2VkLCAyMDI1LTEyLTAzIGF0IDIwOjU0ICswOTAwLCBBbGV4YW5kcmUgQ291cmJvdCB3cm90
+ZToNCj4gT24gVHVlIERlYyAyLCAyMDI1IGF0IDg6MjUgQU0gSlNULCBUaW11ciBUYWJpIHdyb3Rl
+Og0KPiA+IE9uIFdlZCwgMjAyNS0xMS0xOSBhdCAxMjozNiArMDkwMCwgQWxleGFuZHJlIENvdXJi
+b3Qgd3JvdGU6DQo+ID4gPiBZb3UgY2FuIHVzZSB0aGUgYEFsaWdubWVudGAgdHlwZSBoZXJlLCBh
+cyB0aGUgcmVzdCBvZiB0aGUgY29kZSBkb2VzOg0KPiA+ID4gDQo+ID4gPiDCoMKgwqAgbGV0IHNp
+emUgPSBudW06OnVzaXplX2FzX3U2NChvYmouc2l6ZSgpKQ0KPiA+ID4gwqDCoMKgwqDCoMKgwqAg
+LmFsaWduX3VwKEFsaWdubWVudDo6bmV3Ojo8R1NQX1BBR0VfU0laRT4oKSk/Ow0KPiA+ID4gDQo+
+ID4gPiBOb3cgYGFsaWduX3VwYCByZXR1cm5zIGFuIGVycm9yIGluIGNhc2Ugb2Ygb3ZlcmZsb3cs
+IHRoYXQgd2Ugd2lsbCBuZWVkDQo+ID4gPiB0byBwYXNzIGRvd24gdG8gdGhlIGNhbGxlciBieSBj
+aGFuZ2luZyB0aGUgcmV0dXJuIHR5cGUgb2YgYG5ld2AuIEl0IGlzIGENCj4gPiA+IGJpdCBhbm5v
+eWluZywgYnV0IGJldHRlciB0aGFuIHRoZSBiZWhhdmlvciBvZiBgbmV4dF9tdXRpcGxlX29mYCBp
+biBzdWNoDQo+ID4gPiBhIGNhc2UsIHdoaWNoIGlzIHRvIHBhbmljLiA6KQ0KPiA+IA0KPiA+IEkg
+c2VlIHlvdXIgcG9pbnQsIGJ1dCB0aGVzZSBhcmUgdTY0cyB0aGF0IHdlJ3JlIHRhbGtpbmcgYWJv
+dXQuwqAgVGhlIG9ubHkgd2F5IG5leHRfbXV0aXBsZV9vZigpDQo+ID4gY2FuDQo+ID4gcGFuaWMg
+aXMgaWYgb2JqLnNpemUoKSBpcyBncmVhdGVyIHRoYW4gMHhGRkZGRkZGRkZGRkZGMDAwLCB3aGlj
+aCBpcyBub3QgcG9zc2libGUuwqAgDQo+ID4gDQo+ID4gSSB3b3VsZCBzYXkgaW4gdGhpcyBjYXNl
+LCBhIHBhbmljIGlzIHByZWZlcmFibGUgdG8gYSBjb252b2x1dGVkIGVycm9yIHJldHVybiB0aGF0
+IHdpbGwgbmV2ZXIgYmUNCj4gPiBleGVyY2lzZWQsIGJlY2F1c2UgZmFpbHVyZSBoZXJlIGluZGlj
+YXRlcyBhIGNvZGluZyBlcnJvciwgbm90IGFuIGlucHV0IGVycm9yLg0KPiANCj4gVGhlIGlucHV0
+IGRhdGEgaXMgYSB1c2l6ZSwgc28gdGVjaG5pY2FsbHkgd2UgY291bGQgZ2V0IGFuIGlucHV0IHRo
+YXQNCj4gdHJpZ2dlcnMgdGhhdCBlcnJvci4NCg0KQWN0dWFsbHksIEkgc3RpbGwgc2F5IGl0J3Mg
+bm90IHBvc3NpYmxlLiAgDQoNClNheSBJIGNoYW5nZSB0aGUgY29kZSB0byB0aGlzLCBzbyB0aGF0
+IC5uZXh0X211bHRpcGxlX29mIGlzIGNhbGxlZCBvbiBhIHU2NCBpbnN0ZWFkIG9mIGEgdXNpemU6
+DQoNCglsZXQgc2l6ZSA9IG51bTo6dXNpemVfYXNfdTY0KG9iai5zaXplKCkpLm5leHRfbXVsdGlw
+bGVfb2YoR1NQX1BBR0VfU0laRSk7DQoNCkFnYWluLCB0aGUgb25seSB3YXkgdGhpcyBjYW4gZmFp
+bCBpcyBpZiB0aGUgYWxsb2NhdGVkIG9iamVjdCBiZWluZyBwYXNzZWQgaW4gaXMgYWxtb3N0IDE2
+IGV4YWJ5dGVzDQppbiBzaXplLCB3aGljaCBpcyBwaHlzaWNhbGx5IGltcG9zc2libGUuDQoNCj4g
+SSBrbm93IGl0J3MgYSB2ZXJ5IGVkZ2UgY2FzZSwgYW5kIGNsZWFybHkgaW5kaWNhdGVzIGEgYnVn
+LCBidXQgdGhlDQo+IGdlbmVyYWwgcnVsZSBpczogZG9uJ3QgcGFuaWMgdGhlIGtlcm5lbC4gQW5k
+IGluIFJ1c3QsIGlmIHBvc3NpYmxlLCBkb24ndA0KPiBldmVuIGxldCBtZSBjb21waWxlciBpbnNl
+cnQgcGFuaWMtaGFuZGxpbmcgY29kZS4gSWYgeW91IGRvbid0IHdhbnQgdG8NCj4gY2hhbmdlIHRo
+ZSByZXR1cm4gdHlwZSBvZiB0aGUgbWV0aG9kLCB0aGVuIG1heWJlIHVzZSBgdW53cmFwX29yYCBh
+bmQNCj4gYGluc3BlY3RfZXJyYCB0byBwcmludCBhbiBlcnJvciBiZWZvcmUgcmV0dXJuaW5nIGUu
+Zy4gYDBgLg0KDQpIb3cgYWJvdXQgdGhpczogaWYgLm5leHRfbXVsdGlwbGVfb2YoR1NQX1BBR0Vf
+U0laRSkgZG9lcyByZXR1cm4gYW4gZXJyb3IsIEknbGwganVzdCBhc3NpZ24gc2l6ZSB0bw0Kb2Jq
+LnNpemUoKSBhcy1pcz8gIEFmdGVyIGFsbCwgYXQgYWJvdXQgMTZHQi9zZWNvbmQgZm9yIERNQSwg
+aXQgd2lsbCB0YWtlIGFib3V0IDMxIHllYXJzIHRvIERNQSBhbGwNCnRoYXQgbWVtb3J5LCBzbyBJ
+IHdpbGwgaGF2ZSBsb25nIHNpbmNlIHJldGlyZWQgYmVmb3JlIHRoYXQgYnVnIHNob3dzIHVwLg0K
