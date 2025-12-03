@@ -4,167 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE8E0D12D76
-	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 15:08:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDACED15DA1
+	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 15:45:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A537E10E0DB;
-	Wed,  3 Dec 2025 15:08:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D0610E889;
+	Wed,  3 Dec 2025 15:45:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oGHnva2u";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BAm+60OS";
 	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011034.outbound.protection.outlook.com [52.101.52.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70C2710E8AF;
- Wed,  3 Dec 2025 15:08:44 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010035.outbound.protection.outlook.com [52.101.56.35])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6129410E878
+ for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 15:45:54 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lt7FgB4rmw15RlcWha6Nn3h9sMa+pP9o6zKQ69eouEjstJqkE0MGZ2XqeceaTkNQKsQLCmCvBN8BNwE6AIQ3fMoXxttRnBNBxX4LeF9tLQzFWzMoDFUERegLjyEHdKhhg3dH4Pb9xGoYTvOPdZJY/ifoOK/L4uY+egEWswgBlUGEUW+C3y8KS9yMNIlhJ9YgFRUKZagrZ4S3p4mm+K/uoo1FfSkId+w2lL4aNVApClJXoeGsU2/3WUCJnqEDWgWPeRHzw92njK521bb2u040brzGspG7aB9miXfqvN7d8QOOIC6coooy2VODREvFQnjyViB8Pbc0Bi6YDBekuhf1iQ==
+ b=i83p2+xlWjPf9O1GuVP0mk+8nRrJC86jEbO6ofYECWE79nU3Qbl5SCDsXbh6Pt0qdQ4ZipVihRq/4Pz4+MpPT37LOFUIS00oek+mXrfHUAV041/2z75DqmiGSTjwWK9dQbQbbQ8chEoRyZH+TXDoytxFH0nZjwlIXpr7XsMFRCNgh9fKPf60Aw3vDprd4QdqLCS51cnSunev5PAec2Jf8fp67hFN3UO8F1eiFzhaJHWhsaq0kSAreMPrfbNxJoC35vt4yZc+2xafQRtOoGj9DfrSlSZPIS6buIkWBb1GdglUntS35fu6E44co2SsM7bGNsmAHyCDJCWiktg3uewisA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eQJzFyrz1QcFPtw9hrzfEyKky3/DhzuUeasyGw+a/ww=;
- b=qL3xTsi6hutHNdL1pn2Sf3SlCYvbiviorDqp8VfauMVzQAGCAC5epn/mrOKjB5VFtk/d9dJYdpxUuGElhno7sBNjq2++TCFw8mCPOtx9efVsI19Jt/IUVJyWorteB3S99YCY34qi13veEdWrCCJ8+dvo0e54FKMkNypdQW7s7swk+s8RB8azGqdoGVau2v1NoJ7IddUfYfXuWHtrSQTYcelpM5hf39LhJXMGuCIqNxN85CptZIv/7/yJ94IedP6c73h/k8gcrTmYr3LYn7tL+CQ9O+jniS8n35aMHg5xYtq1eFGoMxTTUB2URAuy6a5VdHnNOPPyUv+clC4MwHfuoQ==
+ bh=fjbBhzxh0fcvhS2T6b7aSJstm7oQEKJk4nUy0AkxGWQ=;
+ b=XLlLZTW9agZ0DmaUezp61AVQdioRemx/YG9v5hFW1mJ6eNiH5hkV3HJ2s7zKZqYfpUmwKbRpCVi7jsh1VK41nnJko1+rSAWsdzc2TCVvnTT8m8z2/BjW+0Xj9d8W4Z/QK9ajiJQFUsg2uXB73W0X3tGT9sFvGvhCtwWcGIOMggRIlilFUFpgQGURb46At4N0wAQnZu5CCgsPH0TOlzxHXNV7WN5rVkAM7rOkTScKA6EXjcXFDH3GOcuRovn9SVhUZc1aLEL6UM5vxKR1WyXqx0+67QB1SCvyKdtWkAAUFw3+Rcp9B0aNNzTK4RQtpzHXhV19Z4azyb9Lq7KMGIxp4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eQJzFyrz1QcFPtw9hrzfEyKky3/DhzuUeasyGw+a/ww=;
- b=oGHnva2utpMJ1Med+X4nvSTbFvNIYkv9nKCEDe/wO+RCftekqFhl/tq2y6EYCz5/jXywDmSdJhIowg7KcapYdf4M27lW8xduJfRXfF4XFELSl9fN77r1k0Gy/F9du/DLDtLjTAP7L2+/EYKSuH0qaVv+NtTouebFq2NZHAzqKZt+JwhPPi4y+Aqt/7YPfAbUH8emRa2eHvf2bTO+rWpzzcfY2B+wBOa0T2OCxb7U4DzibP8v1nHnNDyXZzkxrL0kdIDbWGg//AWuJd5RMLT19olH05ZyvjktBovUCMMIUWP1Vky513iXN3I98uE3+s+Uxa1QR9koU7mkKO6Ior6LKw==
+ bh=fjbBhzxh0fcvhS2T6b7aSJstm7oQEKJk4nUy0AkxGWQ=;
+ b=BAm+60OSMtxYFL9pF+Hp04mEuODsHbAjknUDIiwWMQUwzyXKzOa/ZVoJ1Md+rOKDOOKJMo0GTRpnZrGPD84W6UYRnRcAvmlgV5FOwec2U5n/kpapAsQ3KSwcWRwUlu/VgSpnut91LqB/y2AqK3dxPx1vf+ZMjmBi8KF376pKDZUzmhi3QYIRZN+21Ak0tfQfYPvOf1N7pMaaOw9PEHxKiLKL+bocGKTuHJJQFAtq1Y4Xcilqwan56HlLbndoN/3EoSVKd4S9EOn/OHi0elP9Nkuq2Qzzxy5GYwCI9BitOMmmAzKSzZjIGlvZcMV4/zI2HoVX+QX1broUXo6ChpO0qQ==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com (2603:10b6:806:32b::7)
- by BL3PR12MB6641.namprd12.prod.outlook.com (2603:10b6:208:38d::8)
+ by CY1PR12MB9558.namprd12.prod.outlook.com (2603:10b6:930:fe::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9366.17; Wed, 3 Dec
- 2025 15:08:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9388.9; Wed, 3 Dec
+ 2025 15:45:48 +0000
 Received: from SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91]) by SN7PR12MB8059.namprd12.prod.outlook.com
  ([fe80::4ee2:654e:1fe8:4b91%2]) with mapi id 15.20.9366.012; Wed, 3 Dec 2025
- 15:08:39 +0000
-Message-ID: <44b99b6e-1ab7-404f-aeb4-62eacd40ad8d@nvidia.com>
-Date: Wed, 3 Dec 2025 10:08:36 -0500
+ 15:45:47 +0000
+Message-ID: <b9188e96-9ffa-4815-ab22-735e2506fe93@nvidia.com>
+Date: Wed, 3 Dec 2025 10:45:45 -0500
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] rust: clist: Add support to interface with C linked
- lists
-To: Alexandre Courbot <acourbot@nvidia.com>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@gmail.com>
-Cc: Alistair Popple <apopple@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, bjorn3_gh@protonmail.com,
+Subject: Re: [PATCH 21/31] gpu: nova-core: Hopper/Blackwell: add FMC signature
+ extraction
+To: John Hubbard <jhubbard@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
+Cc: Alexandre Courbot <acourbot@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- John Hubbard <jhubbard@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Joel Fernandes <joel@joelfernandes.org>,
- Lyude Paul <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Andrea Righi <arighi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Nouveau <nouveau-bounces@lists.freedesktop.org>
-References: <20251129213056.4021375-1-joelagnelf@nvidia.com>
- <DEOLRLCZQMBG.1WHBR4YL8SKYR@nvidia.com>
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>
+References: <20251203055923.1247681-1-jhubbard@nvidia.com>
+ <20251203055923.1247681-22-jhubbard@nvidia.com>
 Content-Language: en-US
 From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DEOLRLCZQMBG.1WHBR4YL8SKYR@nvidia.com>
+In-Reply-To: <20251203055923.1247681-22-jhubbard@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN0PR05CA0007.namprd05.prod.outlook.com
- (2603:10b6:208:52c::9) To SN7PR12MB8059.namprd12.prod.outlook.com
+X-ClientProxiedBy: MN0PR04CA0010.namprd04.prod.outlook.com
+ (2603:10b6:208:52d::25) To SN7PR12MB8059.namprd12.prod.outlook.com
  (2603:10b6:806:32b::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|BL3PR12MB6641:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd468ac1-ed5a-449c-61eb-08de327dd6b4
+X-MS-TrafficTypeDiagnostic: SN7PR12MB8059:EE_|CY1PR12MB9558:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a3a9499-d562-4197-0ae9-08de32830727
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?T1hUSWpwV1ZZMXZMRFMzUVJNZlI1Ty9SZnZUd3hKL3NSTmg5eU9iUHM5OUtp?=
- =?utf-8?B?YkY1cXpGeVlrTTl0bUtCSW9Wa2R3b3IwbmNuTnRtc3dGNzhjd245eUZZcWd5?=
- =?utf-8?B?UG9UeWc0a3NjVjZUdHEzak9ZTzRnYVdtTnlnUnFndys1Y2xtWVRtUWh6bUgr?=
- =?utf-8?B?YjZkOEZldjBwTTQ2Z2NraE9YVEVwQlpjVzVvZlplVnJxbTRDSVh6TFpOemlR?=
- =?utf-8?B?Q3R1Z3daTWExM3czNG1TWTljNG1wa1ZacktxT1kvcEpVTXgvaGNwbFdMSDVX?=
- =?utf-8?B?RVhHUmx3WHlCVU1LbUcvaVNnTS9zRlRwL0ZRbGlaNXNIUWhNUmxpYks5cFRG?=
- =?utf-8?B?Y2hISzZRcTFJdGR6NVJHUTBpazRSOGtHRlk4czN2S0tDNnphRnNZSVdVRytM?=
- =?utf-8?B?TjFJaTIzbEM2MGk2M3ZyVzdPZURwTHB1KzZqT2FSTW1haXVRQlJYQ2R0LzUw?=
- =?utf-8?B?UW9Fem42a1hBcThpb0VOSlRyeS9vUkpKV2lHSDgyNG1LTFlWRlpWMGlUMW9C?=
- =?utf-8?B?S1padXBVcHMwS1VJakRiRTl2bWloTUNTS005b0FoemdaVk5sM3J2aVNBa0Ny?=
- =?utf-8?B?WStWaGx2Z003bk9hMVhXeVhVUnNvR2xTRExiUnNUNVlxRjByb0xKMlE5czh4?=
- =?utf-8?B?WmxYQU50b05Va2xhblpSSUpHRmUvQmUxbm1Wb0RZRm1oWXVHcTQxV3piYUta?=
- =?utf-8?B?MThxZXAzd0xvczRjbSt6eVhiK3JibWJ1eVF4STFIQ2dVTWpZRjRlY2dMUmtM?=
- =?utf-8?B?WEJyeExHT2FoUjgrNmNnK1BUYloxcThFRGdJcldUVWllbVdvZlUvNklYSVM2?=
- =?utf-8?B?dVpOa29tUlp5VjBGenFvWUh3VEhYVCs2Mm84OWVkQmRRL0FHM3NVbnFOMDR5?=
- =?utf-8?B?V0RzRW51c0RGL1J2Z3lKTi9lUGxFQXB5UnpVSEtNMHY5VjdRWEZHZlp2ZWJF?=
- =?utf-8?B?cWs4YWs4Rjg4TjhCNFY1VVNWRnNFVmc5QStxdmV2bHNqWnV2aVhWY0g3K1Ir?=
- =?utf-8?B?Slg1TVp4UTkyVGU3TkQzYWJhNzQ3NFNodHZlMm9ZQ1AxaFlXR0w3c3NSeEJN?=
- =?utf-8?B?Yk9FOFFHWmVPWnRwMjBsUW5pU3AxMW1ObjZ2cTYyUm83bHZRT1RKMEMwbFJK?=
- =?utf-8?B?enpRMzJIcVFhb0xraDN2R01WTFZoRWF5R0JkZDlESjhINm9wSUdvN1VHQ01q?=
- =?utf-8?B?Qnh1K0I3NjhkVUxLbU1kNGh3My9Sejl2cUZpYnAwR0cxcy9JQzMwUDg4Zkhh?=
- =?utf-8?B?bVpMTHdlZ0tvUURWTHMvd2xjYzFYWmJOWEI5aVNUQSs3TkRsRE04VElRWVg1?=
- =?utf-8?B?Y1R2aEhWQkN0OXAyZ0JmQjdNc25NWE00ZmdScUxHZ0ZJOVdCQWlWaXU5bGhL?=
- =?utf-8?B?TmFPSUxxMVhaUkkwYUlaQUFweGVURXR0bEUxcGdWS0orVFRXa3c3TFg2ZVZ3?=
- =?utf-8?B?Q2lUVkRWdEtJSnBuR0VIbkVQT1NoQWE2V0ErUzdjcE12SExVNG9ERmFTZTdT?=
- =?utf-8?B?Yk4vaEgrR3VlTTl5TkRjc3BHL0V4cUFFNXZnWXdFRXZ0RmtVVUlVR0EreWlK?=
- =?utf-8?B?Q2QybzFheTNtR1JmRkh0Q0dEVHBOTWtBbkhVRUtoZkJzSHBMVTNyN3dvR0RJ?=
- =?utf-8?B?UVdkY3FGdi9OQWpVeWY4YWpUcVA2OWREU1VUVjZFeEtqMnNGc0VRYlVXYXcy?=
- =?utf-8?B?dGtKMTZLbStzVzRzQXc4QzllYWZBaWQ1bXdxSzAydWZJVys1Y3M0aGVlWlYx?=
- =?utf-8?B?OFBtUzgwRlkyVThLUUZndkhETktnR0ZoZVJxVkY1K2F4b0VubWM1Y3FoV05K?=
- =?utf-8?B?eVgzSWJ2WmkveGt5Y283WUpwQ3R3cDF3RHM4MldMbGN2N1U2M3lpMDFHMlhI?=
- =?utf-8?B?M2cvVlF0elF2YS9Kb3gwbXVONm9FbFpObU50SDUwaDdtSUl2TW5ITm03NWk5?=
- =?utf-8?Q?jUYKJemVgWqGE7ayITCX+3Xvr94EcgSV?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?RHdhLytVV1UwYU1yWU9vVTFoTXVtYVZpMUdSNXRwR1lCSmpSL3ZTZUNselNu?=
+ =?utf-8?B?QkVrYUtoaUNocXdrdGRGMVNiZ3lvQUtPcSt0OXc0UlkrRWxGUysrVldWTlk2?=
+ =?utf-8?B?a0xPdkVMenpGSEZ6WUMxbkZ4MEtEZmRYY01FbHN4NE9QcFF6eFZydzI5aElP?=
+ =?utf-8?B?NlZ3SlRlN295V1d2WlVMRFlwQjJOa2huT2VHemFLWXJtQTlNZlF2M25CZ2RO?=
+ =?utf-8?B?Q0p6S1BZd1VoaHJQQjlaUWZZSVdjdTg3ZXdXMFpwMWYzazZTS3h6dUZDNVVT?=
+ =?utf-8?B?RXVGTHozMkszK3dOUDUzVkQvNUlSWi93cW1sVWo1a1RkSVl3anZCcXpURDN0?=
+ =?utf-8?B?dWo5aElNcEEzQklLeU9uQmFXTzVBNktnbHRYakRZZ3RKV0VXVmhKRmxBdVpu?=
+ =?utf-8?B?WHJWUFlmTW1tTGIyN2VjM1BOSyt2RFB6RGx1Q05TYzVwWE93b05jcTdQL051?=
+ =?utf-8?B?VDF3WkRXYmR3WlZTTWRWSTlOa0RTQVN4Z200bElPQUxJekkzaUpqTGdrRE5C?=
+ =?utf-8?B?NGNKZjUzZ1ZodFV2WWhJWjVQK2w2VGV0by9lUEI1M3crRlpzTTZ3dWNjazhj?=
+ =?utf-8?B?azlGRXBSRVpjcXBxUkVTNXhFYmp2SkFJaHZLR1RRMUpadkJjc210VnlNeTNo?=
+ =?utf-8?B?cjFiekNCc1ZVbmJsdkpVenJ2dTNMcVZkZURBR0xlaUJjUkQxZXIzRDk0TGEx?=
+ =?utf-8?B?Ky9zbkVMbENQbUgvV29XVXgrdWkrS1QwOUd0L2taSUVLTWozeFRxbUVxZE16?=
+ =?utf-8?B?OENyTE40WW1TdWJOTytwYUV4dFBzL3NMS0ZOTW4zRnU3VkNBaWN6c3NoV0tJ?=
+ =?utf-8?B?Z1NEVkpCdjFPZzRtSHhENXJDS0dpbWFxZHJpSUtDTlBJeG50WEVySTlCNmN5?=
+ =?utf-8?B?MkhnRyszOHRydDNtNEN4RGtxTjY4dE96MDhsckpyN0dhcUNVNEY0WHFhdEtv?=
+ =?utf-8?B?cVZRZVczL2xFdEk2UmVXTzgvUlExUzJUYzFPSFJDa1M5c0dzQ1AzdzBxdDBO?=
+ =?utf-8?B?NWc2dENLMlQ1aHVVMm1sNCtKZDJGU1NtZnNxU3dLWVN2OTVQMVNIL2xtcXVJ?=
+ =?utf-8?B?a0RZejhCZ0gxYVVUSUhsMTlQUFFBL1lnNFJDV0N1OW9Jc1VlYVQzM1VuQlNr?=
+ =?utf-8?B?bEVwNk1jZW1mN2pUUFhIeW9nSnlvOVp3dGM3eW53TElXZ1I1amZ5Rjd5SzIr?=
+ =?utf-8?B?V1J1R0VDVkl2SVdxUFRlQTYvVXJKcjEyMi9PQ01KVU1QWmNRdHpxVDRTTml3?=
+ =?utf-8?B?eDhNS3FuNDFySkpOZ0RDYVk3eXZ3T0d6OWVDMU5iOGhwVk5uMTEwZjlvaFVZ?=
+ =?utf-8?B?eTVjaklCeXNEcmF4ckhQM1RoNW9PMXpDTEtsNDFPSzUyRUwwbW5qbmRrOEFH?=
+ =?utf-8?B?QnlnZ0ZTcE1oeWw3RENoMHRiSVBtREpsMlA4MmVGdEpBQkFSZVdBQU81cWNy?=
+ =?utf-8?B?SEdLc2IzYnAwaEpneHZXd0k4UEEwOFJ4RWVTQk9aS29VeVVOWjl6TU52b3Fr?=
+ =?utf-8?B?djdNMmZrVHNiMjhlVnRWN3o2WUZqNjFhbVZrMjVZamxodkFncUdxNVE1SVpP?=
+ =?utf-8?B?eTFzdmRUL2ROUjFTWEN5K0grbXpHVitlcWhmMWN1eWhkZ2NrTkI1TGxnNS95?=
+ =?utf-8?B?MTN4UkhnTTlzbmJtWGZnaXBrR2o1UFRIV3dpbTg5WnM0Zk9kTTJ4aWU4dElH?=
+ =?utf-8?B?ZEtRbWs2RS91eXEvOENKVmR2azdrOVR5eFQ5ZE1pTXFGNlFuSmdmL0xROEdu?=
+ =?utf-8?B?aFpJT0N3eTJpeVZxQXhwN3VHZDRCcEMyOUg1NzkrU3NrNk4yK0ZhNHlidDVH?=
+ =?utf-8?B?bHZBcm1pVlZLSVBwMk5DQ0JOM3NQbklRMVdzR3g1TmxjaXJmM1EyVWs3SGd3?=
+ =?utf-8?B?UDkrNHh6TFh4VVdKV253MEM4cHByVnFxODBpQVZmR21nazMzK3FOa3Y0VjJO?=
+ =?utf-8?B?U0d2T2tnaXdWYVhKeXR5TjI3ZVZBc1k1bjM1RndTWkdsaFFPL3ZwRklkR3ZB?=
+ =?utf-8?B?UVJqWExFWmh3PT0=?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR12MB8059.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7416014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnJFT2t3ek5aYjlvSERxM0gyTnJaZGl1Mjg2UnhmN2pqSUtCbmN6Q3lDUVB5?=
- =?utf-8?B?QkQ2T1BlV1ZJS3JPZ3FkczAzSVJMTUtFNiticzh1MFZRTmhCN0N5bzFIRDBq?=
- =?utf-8?B?ek15TkpLVW9IamV3WVdpSnBGRWpsYWlYeS9oK1VlZ0diU3hNNkhhM05MaTU2?=
- =?utf-8?B?T0dTNTFlcFN0REFTeDh3QkVUSHZJUXFnRlhiNG84b2pWUGQ1ZlpDNnY0K3lT?=
- =?utf-8?B?ZEw1bGM2Q0hXQ0FwQmRoU2t6N0g4T0tVRExIb1VXRGdNbkxDTlBmZmphTGxq?=
- =?utf-8?B?dytITkJHd3FzYmlhOW5IVGIzZUhWR2JQQzlUOUtyWUkwaG1LSktuNTZsb2RW?=
- =?utf-8?B?NlFWNXJLeEMzdEROeGFVUW00VHRTbVNsTGgrT1VDc3JtUTRjQy9zOUlObDNz?=
- =?utf-8?B?RVdMQjBYODE1RXJKdFZocVg0U2l4QzFSUG5FQnNGY2Y1eHQ5ZHJMTjAwMXdS?=
- =?utf-8?B?NGszWnlNejNEYzZvQXhDM2RGcmk5KzVMQmVWOTNOVmJaMkpFVmFFbjAvZ2o0?=
- =?utf-8?B?V0Zwa2ZTejY0SUNPTWxKaXN5Z1dDM2RlNDg2dGMwRWdiNHdtVGVOL3B1V213?=
- =?utf-8?B?eFJQNTlmMEsxZ2ZjN0QveC9YL2p3VWY0U0NLbllNVXczZ0w2SEdrbzI4OUNm?=
- =?utf-8?B?bm9XaWZGM3pBci9PVFRaaXMvUk5TZ25iVUdqUFJTRzNjcGZsM2FMdkZoZi8y?=
- =?utf-8?B?anY2eUxBYWprcHJIcDFoYUtPbThQSlNocTdKemhtM2JuQm1RbElYQWJuSldV?=
- =?utf-8?B?cUtpS29KbWx6aXc0SkFYVFNqeVozVGovWUxZemJkZUxaR2FOd2FBZm9IQXp6?=
- =?utf-8?B?OXl3WW5XUmpBTkx2UUtMaGR6QVEwM3dhZmk2K0UwSDJOZGVCK2pwaFRqK1hG?=
- =?utf-8?B?bHpGWDRYczk5VUdBSVZOdkNrZURUVEN0M0ltaDBiL1A4U1BsNVJFV2c1eWVj?=
- =?utf-8?B?Z0RGUis2SWM0NUVKS285WmhheXhVcUZoT2FKVjFFMkkzcHdWZVZYWFdRVDNz?=
- =?utf-8?B?TWRDMTJCYkdxL01PViszbmsvTHBSZXFTN2dqdFdHMVIwcitmK0x1TVA5b09h?=
- =?utf-8?B?OWhTRXltdlorR0F6VHpWVVBNQlVPUWpmQ2kvaS96WVRmbDJQUzQwaWIxREg3?=
- =?utf-8?B?YytzVGVTT0xvclZiNzV2ZUlPbGdiNUVFMDdoMGhTeVlRR2U3WVp1Rkl2T1gw?=
- =?utf-8?B?RWtsVFE0RUtISUkwMWJSUTFOZysyOVJ1ZlgwL09ja0ROUDIzcUlwYXJOT2hv?=
- =?utf-8?B?cjBjRnk3eUxzVkFOL004akRUZjQveTdEamliWTd3dFQya0dvNzdEVC8xbm1h?=
- =?utf-8?B?WTBZMGhRZFpNNURFMTg4dzJnbW5SWTBWeHl2MDRKRTQyV0RXMWRXd3dJM2hG?=
- =?utf-8?B?MExqSkNTQ0ExdmV4YXNMb3ZvdFpDL1lydEUrYnp1QWN0OVRhODlpTFNyYkRm?=
- =?utf-8?B?c2lIL2xyY1U5NkdaTS9paHNGNTFLV3BEZE1oYVJibkxQNjIyNXl1eXAxS1RG?=
- =?utf-8?B?dGlPUDdpa1cxZFdJSHhETERmYjk5TFRVNU5IQ0hoVWZVWnV1QmlRZ1JBdVRJ?=
- =?utf-8?B?M1FlSUppVHRFZHVZR1ZWZXBROU0rRUZHamUwV1g2Qm9hRjlBdXRnWGVXUTFX?=
- =?utf-8?B?RlA5ZlNLWEZDdm01SlozVG85TWVFUE5HaENPeWtIeDhnWkRGY3dmdEJOQXpO?=
- =?utf-8?B?S2VITFMzMDZScmRjZkdOcGdtTVJWVE5OZi80WEtJb1ArRHoyd2ltWGVCQUY1?=
- =?utf-8?B?N3pTeUVhbmplQmNld080YUtUaVdGa05zL1BwMVFmclRIVUJZNXdKNVlCUThN?=
- =?utf-8?B?N1R2V2N4T21jcFBOSFl3NURuWjdydlc2Vk9WVHl4OEk2akNsOWltVmthdWha?=
- =?utf-8?B?U204MEFHS2hIZVppL0Q3RzdIVFpBTU8vb1NJYzdGNlRTVjBKWVdGQTJ1M3c5?=
- =?utf-8?B?SFVoczZNK0JlWUJ2T2liM1gvZ1FuK1d5bzdYT3hOZUdsNU9NeEswK1Q2RUlY?=
- =?utf-8?B?V3dXeCtIamF2elBkU2tIamU0aFpjcUY2YmpncWlHQmsyV09oLzRtU1gvM2Ew?=
- =?utf-8?B?eTdwVXVpL0tVMWRhcWtBcUVLMU1TZ1VHcDRRRjlJK0hhQnFZNjFyOWdReFNt?=
- =?utf-8?Q?KaBSgax7UI0237bUPoF5e0f6W?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTJSc1JJUStkYnNONEh1OGhxSTlsWU8zdUErSGl3UG1maEVQZEZJdm9VV2FJ?=
+ =?utf-8?B?MlYxUnNwVmR5VC8rVGJ1M09adm5adDFLN1JKamZNbUhzbWRGMHdoU2NmRnRT?=
+ =?utf-8?B?U2lzcXFrVHBEYUhwM0lrYWt2elRldklDY0NENlNtVEtzeHIwRTFTUTJndjZZ?=
+ =?utf-8?B?YUZBcmhHeUhuRkcvUExhcWtHNUhpcjFHSDlSd2g1dElzMmtUUnE4aFRmWlVD?=
+ =?utf-8?B?MVZsRFFyYzU3QllyQWZKeUFFa3UySHNCcHNlZ2FhbjJSUmY0YTZkaFdiTUpl?=
+ =?utf-8?B?UHViZEg2d3YweTVpZHFMcHhSek01dFJhZE5tUzZvRk9NYW9VL25ScUJhaGd6?=
+ =?utf-8?B?S1dBSmY0aEN5c204VmFGa1h3Q3lVTStSeFZYS2NSVllPQzRqQlpkcHRmeElo?=
+ =?utf-8?B?WlZmUjIwdkVzbU5qV1JoYVlHbE1zb0FlaU1wVjllRThKTVBibGJibDlBYm9H?=
+ =?utf-8?B?M3lBckJVYzRkdFdJODc1Qk1jTm1LeTBnRGVNYm5uLzhydmcyZDNjRkpCMlE0?=
+ =?utf-8?B?M1RYaXg0aHE1RU4zY2N0dnVvQnpvZk1WWXYrcW9iaDl0VEFQRWVzb1VGakdV?=
+ =?utf-8?B?TFo2TTNHUHAxRFU5eUUxVmlGS0w0dTlBempISldVMmJYVG1mUlNFejJmWFh1?=
+ =?utf-8?B?R1gxLzlmUTJNMUR1TXNBZTJ4N1QybG1EbUFRalpSTG1Sem9xc0dtZ0hEdFdW?=
+ =?utf-8?B?QWVCM1IrSlNQWGZ4enl1eEpJSVVXSzgzT0gyRkxuNnd2K0R3YmlGb0ppQTdl?=
+ =?utf-8?B?ODlHMlZ3NExMemFFS3laWmI3ODR5TERHMGc1SGM0bjZJd21CNFhGOTVwMDlV?=
+ =?utf-8?B?d1cyMExYR3VOeDhmSG5Sc0ZIclZvd3RGajI2NHZkRkVUSGZBamZqTjJNdWU5?=
+ =?utf-8?B?d04xVFlqZnJXMjJsd1JmYjJUNUh1bGZ0bFJnZjRGcFlUb0xSVVJVRFVtSE1R?=
+ =?utf-8?B?bDBranJMcURxRStJQmgwTWFjUEtnWE5lOWcxMVBXVlpnSnUzUUdNTmduMGJs?=
+ =?utf-8?B?R1ZYMDJaSW1JeDhTdU9TUm9DMkJPd05pdzNSTnAyNWJRWnFYU2taODlFV3VZ?=
+ =?utf-8?B?bXVrUnFrNHZpUEdSSzRoU1Q4TTFQdzg5a2JHcjFqblF4SUZueGU3SjJ4ZGxj?=
+ =?utf-8?B?clBSUGdweEFnVDg1V3BBV3poVnFwU3p6K3BuWDQySmtBd2RiYVB0akZ6K1hL?=
+ =?utf-8?B?LzlqNFFZdjVHTkhvdTJKcnVaTyticGZaMEM2czJKZVBBN3daMkEzN3dEdUJw?=
+ =?utf-8?B?M3p1SktnQTF3cmZlNStXd2paampHVjFnTHFITUw2eTk4UERjaXJlV2tqVy9P?=
+ =?utf-8?B?WFNBYW1WKzlqVWZ2anQ1a3VhK2QyQzJxdVNQTnpQV0k4SHR2SlR0OVI5Q2N1?=
+ =?utf-8?B?YVZTbHNVQXNvQXF5VEROdk5rVWRjUW5pMHdQUDhKckc4eXdSd3FRQmlWdC9z?=
+ =?utf-8?B?VmxSd21MT1Y4YXA0dGcyYzRjTEM3cGlMMlhISEFCZ2I5R2pwUVgyVk9md0Vw?=
+ =?utf-8?B?VkNCZEZUVEgvZWExaW5tK3kxajBlaWR1OWk2RUtDREJYVE9ZVG5qUzlCUldP?=
+ =?utf-8?B?NktEOFBXSDFIT3o5QWlvTDNDK01nSnlIUENtbmxJa3FUZE9nZllKWE9KaDU0?=
+ =?utf-8?B?QkwrZVRuSi9VZkNnU0VXblpoVGRFb040MVZ5cjVOYnJ1UGVxNmJpTDZiem1N?=
+ =?utf-8?B?U0JGQi9KRXpNREJWOEppV1VaQlgrSnMvcFNFYmZNMXY2L1dhSG9ENk9nQ0x3?=
+ =?utf-8?B?VWl2RUdNNlpJZlg5K3V5U0E2cU5SY0R2TEFOVFczN2F1NTZTUmpReUtPbHJL?=
+ =?utf-8?B?M2JpZ3hNT2dwZWpWekdjUG9JbGhha3FzRHVsRUJzR1JEQkdLM2U0V0oyeUhw?=
+ =?utf-8?B?THB1ZVZyb0hoYWdoQUdKbEluYTBBQUhubFJLUnVsMzV4TENSZHdsbzBWbzZF?=
+ =?utf-8?B?VVpoS2cwUE1uMXl3bnFIUEhuaFQvOHFjQW1XVE4ydThGeFkyL3hBcDE4dEg4?=
+ =?utf-8?B?VC9yTThCRk51djJSOHJkNGYzYkdSVElkejhPbE9aVDRXa2JwRWdXRjZIR2pG?=
+ =?utf-8?B?VXZVejBsWFNBU01xTURpV1VmY2JjU3NaQ1Y1QWQrUkdnV3dDVml5VXJ3eEV0?=
+ =?utf-8?Q?tYsQVexuIONsAGDUuTThzqnaF?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd468ac1-ed5a-449c-61eb-08de327dd6b4
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a3a9499-d562-4197-0ae9-08de32830727
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR12MB8059.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 15:08:38.9129 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 15:45:47.7198 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cAJeo20N+ZI5EQeCXjif9EsXpODhWeyjAImGchS3Ggr+YLftNiV450VaoDIovczb03uEHHQXlHtpkEPAVeZe0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6641
+X-MS-Exchange-CrossTenant-UserPrincipalName: nAsFOy4zCIGkr227TaJSlihvpv9rncZpj+TzQ3SiFy4fDveTUXuiWwSkelp27HYf6c7XUaajvmm+GIax/VCspA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9558
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,122 +174,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Hi Alex,
+Hi John,
 
-On 12/3/2025 8:06 AM, Alexandre Courbot wrote:
-[..]
->> +}
->> +
->> +impl<'a> Iterator for ClistHeadIter<'a> {
->> +    type Item = &'a ClistHead;
->> +
->> +    #[inline]
->> +    fn next(&mut self) -> Option<Self::Item> {
->> +        if self.exhausted {
->> +            return None;
->> +        }
->> +
->> +        // Advance to next node.
->> +        self.current_head = self.current_head.next();
->> +
->> +        // Check if we've circled back to the sentinel head.
->> +        if self.current_head == self.list_head {
->> +            self.exhausted = true;
->> +            return None;
->> +        }
->> +
->> +        Some(self.current_head)
->> +    }
+On 12/3/2025 12:59 AM, John Hubbard wrote:
+> Add extract_fmc_signatures_static() to parse cryptographic signatures
+> from FMC ELF firmware sections. This extracts the SHA-384 hash, RSA
+> public key, and signature needed for Chain of Trust verification.
 > 
-> IIUC you could just rewrite this as
+> Also exposes the elf_section() helper from firmware.rs for use by FSP.
 > 
->     let next = self.current_head.next();
->     if next == self.list_head {
->         None
->     } else {
->         self.current_head = next;
->         Some(self.current_head)
->     }
+> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/firmware.rs |   4 +-
+>  drivers/gpu/nova-core/fsp.rs      | 104 ++++++++++++++++++++++++++++++
+>  2 files changed, 107 insertions(+), 1 deletion(-)
 > 
-> and drop `exhausted` altogether.
-> 
+> diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/firmware.rs
+> index 5cbb8be7434f..7f8d62f9ceba 100644
+> --- a/drivers/gpu/nova-core/firmware.rs
+> +++ b/drivers/gpu/nova-core/firmware.rs
+> @@ -23,6 +23,8 @@
+>      },
+>  };
+>  
+> +pub(crate) use elf::elf_section;
+> +
+>  pub(crate) mod booter;
+>  pub(crate) mod fsp;
+>  pub(crate) mod fwsec;
+> @@ -419,7 +421,7 @@ fn elf32_section<'a>(elf: &'a [u8], name: &str) -> Option<&'a [u8]> {
+>      }
+>  
+>      /// Automatically detects ELF32 vs ELF64 based on the ELF header.
+> -    pub(super) fn elf_section<'a>(elf: &'a [u8], name: &str) -> Option<&'a [u8]> {
+> +    pub(crate) fn elf_section<'a>(elf: &'a [u8], name: &str) -> Option<&'a [u8]> {
+>          // Check ELF magic.
+>          if elf.len() < 5 || elf.get(0..4)? != b"\x7fELF" {
+>              return None;
+> diff --git a/drivers/gpu/nova-core/fsp.rs b/drivers/gpu/nova-core/fsp.rs
+> index 389c43bfd538..311b6d4c6011 100644
+> --- a/drivers/gpu/nova-core/fsp.rs
+> +++ b/drivers/gpu/nova-core/fsp.rs
+> @@ -256,4 +256,108 @@ pub(crate) fn wait_secure_boot(
+>          })
+>          .map(|_| ())
+>      }
+> +
+> +    /// Extract FMC firmware signatures for Chain of Trust verification.
+> +    ///
+> +    /// Extracts real cryptographic signatures from FMC ELF32 firmware sections.
+> +    /// Returns signatures in a heap-allocated structure to prevent stack overflow.
+> +    pub(crate) fn extract_fmc_signatures_static(
+> +        dev: &device::Device<device::Bound>,
+> +        fmc_fw_data: &[u8],
+> +    ) -> Result<KBox<FmcSignatures>> {
+> +        dev_dbg!(dev, "FMC firmware size: {} bytes\n", fmc_fw_data.len());
 
-Yes, this is better, changed, thanks!
->> +    _phantom: PhantomData<&'a T>,
->> +}
->> +
->> +impl<'a, T> Clist<'a, T> {
->> +    /// Create a typed `Clist` from a raw sentinel `list_head` pointer.
->> +    ///
->> +    /// The const generic `OFFSET` specifies the byte offset of the `list_head` field within
->> +    /// the C struct that `T` wraps.
->> +    ///
->> +    /// # Safety
->> +    ///
->> +    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure
->> +    ///   representing a list sentinel.
->> +    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
->> +    /// - The list must contain items where the `list_head` field is at byte offset `OFFSET`.
->> +    /// - `T` must be `#[repr(transparent)]` over the C struct.
->> +    #[inline]
->> +    pub unsafe fn from_raw_and_offset<const OFFSET: usize>(ptr: *mut bindings::list_head) -> Self {
->> +        Self {
->> +            // SAFETY: Caller guarantees `ptr` is a valid, sentinel `list_head` object.
->> +            head: unsafe { ClistHead::from_raw(ptr) },
->> +            offset: OFFSET,
->> +            _phantom: PhantomData,
->> +        }
->> +    }
->> +
->> +    /// Get the raw sentinel `list_head` pointer.
->> +    #[inline]
->> +    pub fn as_raw(&self) -> *mut bindings::list_head {
->> +        self.head.as_raw()
->> +    }
->> +
->> +    /// Check if the list is empty.
->> +    #[inline]
->> +    pub fn is_empty(&self) -> bool {
->> +        let raw = self.as_raw();
->> +        // SAFETY: self.as_raw() is valid per type invariants.
->> +        unsafe { (*raw).next == raw }
->> +    }
->> +
->> +    /// Create an iterator over typed items.
->> +    #[inline]
->> +    pub fn iter(&self) -> ClistIter<'a, T> {
->> +        ClistIter {
->> +            head_iter: ClistHeadIter {
->> +                current_head: self.head,
->> +                list_head: self.head,
->> +                exhausted: false,
->> +            },
->> +            offset: self.offset,
->> +            _phantom: PhantomData,
->> +        }
->> +    }
->> +}
->> +
->> +/// High-level iterator over typed list items.
->> +pub struct ClistIter<'a, T> {
->> +    head_iter: ClistHeadIter<'a>,
->> +    offset: usize,
-> 
-> Now that Clist's offset has moved to a const generic, let's do the same
-> here as well.
+Let us remove these? I think we discussed [1] that once things are working, we'd
+not want these and can add it on-demand if needed.
 
-Yes, done.
+[1] https://lore.kernel.org/all/d6c9c7f2-098e-4b55-b754-4287b698fc1c@nvidia.com/
 
-> Overall I think this version looks pretty clean! A nice,
-> easy to understand wrapper over the C API.
+> +
+> +        // Extract hash section (SHA-384)
+> +        let hash_section = crate::firmware::elf_section(fmc_fw_data, "hash")
+> +            .ok_or(EINVAL)
+> +            .inspect_err(|_| dev_err!(dev, "FMC firmware missing 'hash' section\n"))?;
+> +
+> +        // Extract public key section (RSA public key)
+> +        let pkey_section = crate::firmware::elf_section(fmc_fw_data, "publickey")
+> +            .ok_or(EINVAL)
+> +            .inspect_err(|_| dev_err!(dev, "FMC firmware missing 'publickey' section\n"))?;
+> +
+> +        // Extract signature section (RSA signature)
+> +        let sig_section = crate::firmware::elf_section(fmc_fw_data, "signature")
+> +            .ok_or(EINVAL)
+> +            .inspect_err(|_| dev_err!(dev, "FMC firmware missing 'signature' section\n"))?;
+> +
+> +        dev_dbg!(
+> +            dev,
+> +            "FMC ELF sections: hash={} bytes, pkey={} bytes, sig={} bytes\n",
+> +            hash_section.len(),
+> +            pkey_section.len(),
+> +            sig_section.len()
+> +        );
+> +
 
-Indeed, it has come out to be very nice. Simple design and clean code. Thanks
-for all the reviews! I will shoot for posting this patch with the DRM buddy
-series together today. There is also a pin initialization patch for `Clist` that
-I will separately add to the series on top of this patch.
+Here as well.
+
+> +        // Validate section sizes - hash must be exactly 48 bytes
+> +        if hash_section.len() != FSP_HASH_SIZE {
+> +            dev_err!(
+> +                dev,
+> +                "FMC hash section size {} != expected {}\n",
+> +                hash_section.len(),
+> +                FSP_HASH_SIZE
+> +            );
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        // Public key and signature can be smaller than the fixed array sizes
+> +        if pkey_section.len() > FSP_PKEY_SIZE * 4 {
+> +            dev_err!(
+> +                dev,
+> +                "FMC publickey section size {} > maximum {}\n",
+> +                pkey_section.len(),
+> +                FSP_PKEY_SIZE * 4
+> +            );
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        if sig_section.len() > FSP_SIG_SIZE * 4 {
+> +            dev_err!(
+> +                dev,
+> +                "FMC signature section size {} > maximum {}\n",
+> +                sig_section.len(),
+> +                FSP_SIG_SIZE * 4
+> +            );
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        // Allocate signature structure on heap to avoid stack overflow
+> +        let mut signatures = KBox::new(FmcSignatures::default(), GFP_KERNEL)?;
+> +
+> +        // Copy hash section directly as bytes (48 bytes exactly)
+> +        // SAFETY: hash384 is a [u32; 12] array (48 bytes), and we create a byte slice of
+> +        // exactly FSP_HASH_SIZE (48) bytes. The pointer is valid and properly aligned.
+> +        let hash_bytes = unsafe {
+> +            core::slice::from_raw_parts_mut(
+> +                signatures.hash384.as_mut_ptr().cast::<u8>(),
+> +                FSP_HASH_SIZE,
+> +            )
+> +        };
+> +        hash_bytes.copy_from_slice(hash_section);
+> +
+> +        // Copy public key section (up to 388 bytes, zero-padded)
+> +        // SAFETY: public_key is a [u32; 96] array (384 bytes), and we create a byte slice of
+> +        // FSP_PKEY_SIZE * 4 bytes. The pointer is valid and properly aligned.
+> +        let pkey_bytes = unsafe {
+> +            core::slice::from_raw_parts_mut(
+> +                signatures.public_key.as_mut_ptr().cast::<u8>(),
+> +                FSP_PKEY_SIZE * 4,
+> +            )
+> +        };
+> +        pkey_bytes[..pkey_section.len()].copy_from_slice(pkey_section);
+
+Even if this works in practice, I believe it's UB as the `from_raw_parts_mut()`
+should have the entire slice range to be valid memory (see [2]), but
+FSP_PKEY_SIZE * 4 is 388 bytes while public_key is only 384 bytes ([u32; 96]).
+This is vulnerable as the KBox holding the signature may not have the extra
+space even if it does now.
+
+Can we create a slice with exactly the bytes we need? something like:
+let pkey_bytes = unsafe {
+    core::slice::from_raw_parts_mut(
+        signatures.public_key.as_mut_ptr().cast::<u8>(),
+        pkey_section.len(),
+    )
+};
+pkey_bytes.copy_from_slice(pkey_section);
+
+Another reason for doing this is, the code is more fragile left as is, as there
+is a risk of unrelated memory leaking into the slice and accessed by new/future
+code.
+
+[2] "Behavior is undefined if any of the following conditions are violated"
+https://doc.rust-lang.org/std/slice/fn.from_raw_parts_mut.html
 
 thanks,
 
  - Joel
 
+> +
+> +        // Copy signature section (up to 384 bytes, zero-padded)
+> +        // SAFETY: signature is a [u32; 96] array (384 bytes), and we create a byte slice of
+> +        // FSP_SIG_SIZE * 4 bytes. The pointer is valid and properly aligned.
+> +        let sig_bytes = unsafe {
+> +            core::slice::from_raw_parts_mut(
+> +                signatures.signature.as_mut_ptr().cast::<u8>(),
+> +                FSP_SIG_SIZE * 4,
+> +            )
+> +        };
+> +        sig_bytes[..sig_section.len()].copy_from_slice(sig_section);
+> +
+> +        Ok(signatures)
+> +    }
+>  }
 
