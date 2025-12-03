@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14F71D12694
-	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 06:00:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31FD9D1266D
+	for <nouveau@archiver.kernel.org>; Wed,  3 Dec 2025 06:00:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1BBD10E727;
-	Wed,  3 Dec 2025 06:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D37E610E71A;
+	Wed,  3 Dec 2025 06:00:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="iXp/RETd";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="F62m822e";
 	dkim-atps=neutral
 Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012046.outbound.protection.outlook.com [52.101.53.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59F5410E720
- for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 06:00:06 +0000 (UTC)
+ (mail-eastusazon11012030.outbound.protection.outlook.com [52.101.53.30])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 372F210E725
+ for <nouveau@lists.freedesktop.org>; Wed,  3 Dec 2025 06:00:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=OH57OEbvbP/NTsxhtwyA4ruK9el3qYKiebEAtj6C1f4IV0GJ4OpQWfdpKghN9pACT1xXR/QY9W9qpa8z4NNm8YnQDOCjh82ej5Vc02qASHh+V3H1Y6THxR3+JCyRbcbprWlGZRNVgijku0hLKPuq10gBZrUmk/FP8u+KRSnMuEomPxMXob4BHcAO9ashR/i3txRDGL23Gqfnb6Zv02uenanVdDDUsLNUeAbOkPL1FfXJVVSQjXqmcV8GYvEScIBJSOcUKHTc2MwQT2VHDGDYPA1lS2zGcUyGM/zpoLhbjykGTrySGyJKJG//HR15x1R4mdF7JTaXeslS1Y0R3xXv9w==
+ b=niWUu7eRR+ca6PJqQhYXXtvbQmpmsvk1fCYtsggIYOtdqrLK26CJe9KAp7QKDyYX7fDKn3QgNVcDd2ymTDogIpr942ymPW8DDdULiUZl/0vEDjLs4NHjewZFX4Vdrgm7Jp8u2kJrsw1NnEbHinm6zHymdbp7AWsCbIl0/hxtt+j+A3vn2aNuY0z466V2nqERVCkCuMGy9Cd5cg5cd5q5Q8BJ5F4WZkV4/JWH852XPoAUWWTlkzsX1piKM0C0+lu/+XFp7tGXHqr3xxNkDM4Klw/LNJG4dnomSYz2/9OA9e8vObmJC9ZTdBsgNjmBj6oG6oGaMtto1yTD7iGT7Ood2w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cbdu81NKj8gvhkYBTtO982xDLhtuvcyLOH5I6Wyd68Y=;
- b=HOUlMlf03tMHztfESmTzNVjF0PhAR69Hzr7+xHKzD5OnbQfGnwf2Bybxu/dnTsS9TYipPIzv4G8nM2BziwVSDRixnnh0gH/JCpBTqBMk92rz0NFIWXaZQ9u1rdSBiafQy/RlQuZyNUv8jqoIZkMBRRJAD6/WZwMcshfwiX8+NpKVNL/1d7gflAqyZ/6sr3R8eYM9z3p9r5voSpHM0/L8Zay2QOxbRFHj13lR/GbSLdJdEOBHGAGMjJQ1xm/r9WxJqhEQE9Kf6kJzODdkojnLs4LoLoZU1aWYypYbmXhzoMhPSM7ksDD8gRe5acBaSYDDaq+qpUbK0ZUGp1uy83dJ9A==
+ bh=1rqEKi3PfaVWHgWuCjLoh84YxFOgukzYWIWZIRQlym4=;
+ b=J5U/eGvBv3ycv1QcLVgIHmqUVe2xT5+qnVNyWAz5lWGlBmeSKNu1uUEPNfcasMDQVhuYpQi74ogJhuWIgUO/vVDfnB4SNhZz6s3FE2X/u7bv4SNFkO+wv1naxTuQGwoJLdfSsWPH4Tbn6pL9JkqwXOkvvuRQxeiclBVFZVf6ZTuV33R6Tz16xENSfdQVVDC26G8gs27YfGRIeg8gczmt/V5kEIENn1v8LNlRtUw9MSw7nu8AI8Nn3OrL2yYwzEH3ydjFWzt/bBjPJGxz+aaSmwLnS6t6JT86RKxcRSq6p5x3suZLoQeNsHL46LaJ0xGmyNensDuCa+7hsnNyQf1DAg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cbdu81NKj8gvhkYBTtO982xDLhtuvcyLOH5I6Wyd68Y=;
- b=iXp/RETdxxc6fjKz4Ks4CCJBxF0VM/Ltz54L/Z7e/DB4PDYBMOnQxXlb2KEYxAILWjxqchbkB+Al7KLqLXtMh2tC58VHsxgm4NghNz97cQ7JcMEAwmaXIwKcA59+sC5HTOPF45Z7Av47AUELA3zUe9MhLpFlHw+W83F+3M1K9WeHA6svb6MfqCJXAynPpJAvVllIneDlby4ygxuB4rdVllfdcxNa9BQ3B1VypJrh7zyn39iMjW+VtLUFHUDIW+FGhJMU85V0UAZlp5Hi7y4+iiPAkftjY/CYTqJLkEQcSuguEbE/om50Ts8gR5USQjgSaX4RSrcdGPXf8kaAb5wllQ==
+ bh=1rqEKi3PfaVWHgWuCjLoh84YxFOgukzYWIWZIRQlym4=;
+ b=F62m822ej+m1IWjGPLDCothLG/SJtIaSH7XFAoZRRWxW0HwtVIKcMBOzdKIPbVMkdBEAZSSF+uzcMR01Bu2PAEYR+6myE286lrm0KbNg9+0DeaEqhWFyBm7WJ0qJXI2jBSIhKV2hRYgKklEY1ujMXF/mwQm3cDqaUmsa85FCmWzigeVwXO8GlQzRJe4g0YWLsmq4E2OfwQ4Gft9edpEF/tFIzzAWq1QijR+RSFS/KjGjZAgPCgbuTGzl5DtXqYb3ks2hvP0H60E0u00xLVWJHLOQERVHotsyFJkQCGFhsbOqYOzgB2T9lYc1MEF/bxtuQtZ66kK6MwaSEhOIwF5aBA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
  PH7PR12MB8013.namprd12.prod.outlook.com (2603:10b6:510:27c::16) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9343.15; Wed, 3 Dec
- 2025 06:00:02 +0000
+ 2025 06:00:05 +0000
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9366.012; Wed, 3 Dec 2025
- 06:00:02 +0000
+ 06:00:05 +0000
 From: John Hubbard <jhubbard@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>
 Cc: Alexandre Courbot <acourbot@nvidia.com>,
@@ -56,91 +56,91 @@ Cc: Alexandre Courbot <acourbot@nvidia.com>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
  nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
  LKML <linux-kernel@vger.kernel.org>, John Hubbard <jhubbard@nvidia.com>
-Subject: [PATCH 26/31] gpu: nova-core: refactor SEC2 booter loading into
- run_booter() helper
-Date: Tue,  2 Dec 2025 21:59:18 -0800
-Message-ID: <20251203055923.1247681-27-jhubbard@nvidia.com>
+Subject: [PATCH 28/31] gpu: nova-core: Hopper/Blackwell: add GSP lockdown
+ release polling
+Date: Tue,  2 Dec 2025 21:59:20 -0800
+Message-ID: <20251203055923.1247681-29-jhubbard@nvidia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251203055923.1247681-1-jhubbard@nvidia.com>
 References: <20251203055923.1247681-1-jhubbard@nvidia.com>
 X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0168.namprd03.prod.outlook.com
- (2603:10b6:a03:338::23) To DM3PR12MB9416.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR03CA0163.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::18) To DM3PR12MB9416.namprd12.prod.outlook.com
  (2603:10b6:0:4b::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|PH7PR12MB8013:EE_
-X-MS-Office365-Filtering-Correlation-Id: 66e99376-fde8-47f2-f57a-08de323132e1
+X-MS-Office365-Filtering-Correlation-Id: 778a586a-806a-4e11-6489-08de32313469
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?OtSNQ/OEfw1hW4Mdt/0DTLcE4BlWa66Anu7nJzhDRKUKBim+ktsoOxe7/car?=
- =?us-ascii?Q?Q6YHqNxtHOVE4rHDjWd44wamhYmcbmZF4dIja7ZwZb+3KaFB4FrnPnEoFsyK?=
- =?us-ascii?Q?JGUatNv1bnNTGZwN0dD23Knku/36ueLeQFYejoqaPwRotoEbD3MzXBHMMViX?=
- =?us-ascii?Q?jHMy8g27NG8sUFUS71AZa2Gdu0Zpw2NBEHrRmQzz7NMFQF6d3wr0v2t5le5+?=
- =?us-ascii?Q?/WKoWGwaFDNrxfjYdG7Qfblo/eMBAMOgCvc3zrrl+I/GyQviUmFtOXiO9eMH?=
- =?us-ascii?Q?tIgJ42B+4kA46ibjYCjfr2zE5/9Bonu39DWvMpDFqfNW2DFf9m0HnQBM6PzR?=
- =?us-ascii?Q?nW4nmjKOtxrfHJzPBEMElW7O2nAH4wlcR7r7+hnISGxIvHjMaWV9YogW1Wxf?=
- =?us-ascii?Q?4iXDebBz/MJnbF5g/NFtpIf6vSvc+wE9IF/M7jU6K6SA+d+8PRzEkjRxWT3J?=
- =?us-ascii?Q?0MZqjMWAwXfyVpN0sUotRL4eP4eNGrw0zoe+gSBZpJs4fSc9YzK0yXb1AhA+?=
- =?us-ascii?Q?JH7hJ1Jh6n4kpJf6J6eaIcf3Q1ol2KK51j5++/TaZsn5BeCBk02VqhRSteqC?=
- =?us-ascii?Q?Ow7WmbeEurjXFI/arZQsp1IexxMy6TvRXogoCdq4WOsjXlcheb2wH7CDHL5L?=
- =?us-ascii?Q?SeR1zxpeW4f8PkOELpDQ6Nurijqug6YG2g+66W0vB5X4RJT0aD+pxSX+SZeT?=
- =?us-ascii?Q?CmjIBaGC8/c76ZzpdG03PPh7jkn2Gw0+4e7iwRSin6rG9Py4aSJKPjvL2Zle?=
- =?us-ascii?Q?KmkOR1RgGzJqgtezXrJe3fUMXbs2K9yJj6085EIxqgIFqxqvnq60ZKNy3Wjh?=
- =?us-ascii?Q?rk5Ekc659gQ7AHmorsR67yVY5QiWRK6xBcAHCfAyHBhqQohky6ihCc8lpoV9?=
- =?us-ascii?Q?co8G4fgp3UNAf2G5F2+epFe5oDsti7MRwjbFD8RT9uYFQiTjhKUHLkRUqTjr?=
- =?us-ascii?Q?cmSTNEv8aKwZzoMpbdOy7eDC+cC0TPMc48gCM+BOVeTV7weMkbVYjkjc020W?=
- =?us-ascii?Q?uq6ic+L+2DFPVgAoo1gqNlePV+AEdKYdxH4XhWJgmSVBUINKlgps5T+ZIE0k?=
- =?us-ascii?Q?nyo6J+AHrh8878ngFqrD5kgggzkxzRdnysIX1THSkBfh3eAGs9jhe3j1aKyn?=
- =?us-ascii?Q?BRXutyK9F+KKCEBsxgpvlXXOBkX0zn+ff7nSMDE43fS9Sbeb22QwWyj1vbDI?=
- =?us-ascii?Q?YU/Nfcxe3KatGOCNbupr0VCYl/LS3xXFVOPiyZ19n+sa+n9l7ujohJWbrkJw?=
- =?us-ascii?Q?ixrucxfXpmwBlOoHKPfHLk4KMgAgNqov1Zx8vN9UEdGd/C+hDSFmIK06+GCX?=
- =?us-ascii?Q?re47ZQ8GvUDUyBWFAMR7ZXqUQh5CHpXIHfvD8mPMv6sp87uzLR4ctcDuXbJU?=
- =?us-ascii?Q?EmwiWgNmm0y2xP2qFMkcAzu8zd8WMTj0E4SB2Fr/gpNnORYFu2uLG/rGmc0N?=
- =?us-ascii?Q?vDAJJZMSSgXoylOeUvJR1DA5c7hNxhUB?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?RetaBr7bLS1XOxgCNe/rSQB/e6Hj7/Nnob0UNwJw2yf60YcDRE1mrn5s1Z4x?=
+ =?us-ascii?Q?T9Vtfp1FXbqj+gdedAlN00IGcUoXGpiN7Sygws/l90itUauabR2CLRZCZ4E6?=
+ =?us-ascii?Q?jFPsKGYxwl8qMIPQm4bvQDafYT1YW8pMTWVV8HhyHbukA4Y3HJD0BT4EYXhn?=
+ =?us-ascii?Q?cmHKCO2pee8EE/ujxSPTuy3sF90tFZ2ZeTZDBHVTiiq9m5KM5LsQMDeHX3sW?=
+ =?us-ascii?Q?XFX7j5r5DNzsC5nh95AjeeLm/Z671vazBFta0zH1OjVmoDPAUgY0ICbqBsIn?=
+ =?us-ascii?Q?rLwDmjlDyWUuZEC7cGlwFb0W5hRelFwbfxi0lStOPLWTV8R+ezgVuWRGU5Mz?=
+ =?us-ascii?Q?bz/4po0gTbJVYt5LfwVUFTarW75QJZ2ytiafYa9b6p9IDhu+6oA7rUxd+1Ca?=
+ =?us-ascii?Q?8apZ/9CABqKUQN3M4NH7fDte8ulZJjcj3NSefttgbzTC6iwsGs/I/3EIQtY6?=
+ =?us-ascii?Q?ITnTcjR8g2ztlISj6h9i5FlxkRgfH1s8Zsqiy6lXKNRlEJ69wk1wvNRBJNxr?=
+ =?us-ascii?Q?oXK8UYTVj5e89A1J0AHl4cT4aDN7iYLtNnzf4IWqOzfvXU/qDNi/kzFKrWrW?=
+ =?us-ascii?Q?BdiYYVdBjdUWlhXx+vKhpLzFuCLiUvWTBFa/L136XWiOaB2ML4KdukqcSh5r?=
+ =?us-ascii?Q?jS/AIRAkuMKiM32vzaAaOG69c1BpKGsfCY/T4JWeOSacsMtYrwMu0T5PNRlJ?=
+ =?us-ascii?Q?XLvNSbI3qfwigeHmNFmiyfCjPnBtqGCr5oIRG0p/AN4TewwhHvhsJKa/DsWz?=
+ =?us-ascii?Q?xtZLLE7eRR0zF7JoTedq0uNRcxrS5qM0qSdqgyS8J++rfDlkVFxtBeI4f7HI?=
+ =?us-ascii?Q?7EsVNVMmTSauZQLfOo23RaFmOY4An9X2AdECnPatRZ+jigPpodm8XcJsKw7l?=
+ =?us-ascii?Q?rW5NODPG1HYvC60CS1VTTAoDOBGmoqMllgAVJ/71zBukq49eUCvTl68B+7SS?=
+ =?us-ascii?Q?sFwDwRScJXrDlcUGlshVseYE8DnKJGDp+LXhTrBJkiQozJ2gRO9dztUHQ1X4?=
+ =?us-ascii?Q?4Qph+8E/AydnJZ2KiqwKEfnlHtLAhl+t3ip7O4h2adXn0iQwdhG0/pS7xlq2?=
+ =?us-ascii?Q?7Mu8K3Hjh39NZRx0k5/DIGxpN5jYNpS2rJhvGMiqV/uyzbGVQ1cJ4u7HZaPL?=
+ =?us-ascii?Q?GRlVy9W8GKbjfZ8sjQk2yBXM86Doml3MxIisyHwv1mZM70XJqOnQ36PUuXYR?=
+ =?us-ascii?Q?G6MoJ5CuYoI4rWXmsBHipvuqGwgAus5KNsCH7md/ecbCCR72Y5D9pII9tkIY?=
+ =?us-ascii?Q?4Vz6r3LEpBIOEiwDTgsoXE9EpLlLXb3d/Pc+t0+/ESKvb9GA9MXGUWrBPIHo?=
+ =?us-ascii?Q?oBbrj/+6HC7NkPyROgZWMp4XlaJkUTr6kU2gNnDGUUKAKabkG6T2OI1437tb?=
+ =?us-ascii?Q?wwd1mACq961giE4FUjhhRW8DThOGR5mXTg7SSI6fKb7+rViYDinWxza74lVx?=
+ =?us-ascii?Q?iqGhK7Ox8gW1eksJ0Ms0pdCz0ErtKrMe?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?bu46S/x0FDYDQIRca/0V7/UH3LqJGSc1zsFZnywEgnktVAv1NAohkMaF2NYA?=
- =?us-ascii?Q?P6mE6JojcfJoxy9zuRUsxFmnq4BSUN6xHx3ndyquiWc9VDtKsRMUIS3tqI4G?=
- =?us-ascii?Q?6LwuGIxzCVXz1+Ycotit7A8R4rY1kdBvPaAJphXUCGUGFOwJDadzps9hb7Ku?=
- =?us-ascii?Q?dHy3Sjh7SPGMy/r225sR5TWkYgTqy0gokDylf31OKa4OY3RaVCxxdEugcllK?=
- =?us-ascii?Q?KXlQahNN/7nwVRPTMaFRdjhPaoL4g/b5pa92SChanEZuIIoylolxsF8IQCRS?=
- =?us-ascii?Q?RfvIwYzrOCunhZtOgPnaFDRoyo3g5O+DYQE3aa6KAhgXYF4TL2Wydsb4vcHl?=
- =?us-ascii?Q?lo2cTHRhO6YC7AJyd78C3CpgCz2Md2dOlyr18uELvD8MiJn1AmfMNCnwQ5oI?=
- =?us-ascii?Q?5sOAGcB2anfZcX0quCOTY8glIjPMt8VVpu2X95IszV2b0dELHjFtZdKimQ6O?=
- =?us-ascii?Q?MP6TxlhzS6Q516W67MBFBbWInCW3vDj0B2jiDdla8Whp3EU+w8A1KiBfwrAm?=
- =?us-ascii?Q?Q8uqP1/jMhz4+XPSnF5poyKlmCoGu/ZbLA8PIwPVjfD5/hhWZ7ClDZFry8e1?=
- =?us-ascii?Q?wk4vOKaujASFT3fIPApGE2FLAIs10iOaWlvhzLwtHUpQghxXYbreRFlkLR96?=
- =?us-ascii?Q?Bnt8CaigFYwm5cgSJl0iNz1Uk955dF9GEeWyPag0XrnsNXs2jRO0/eJf+9uD?=
- =?us-ascii?Q?JFZnHz4gyYu5ZDoHarWLYMn8cmY4ahWhfptS5hVaIYV5Y9NPatfv8ZHsfFFT?=
- =?us-ascii?Q?0sNdpKUI8RRh+BAn0yji45Q4iLfERuI24xvDLlL9kUduofFPrOsOyfhBL8hR?=
- =?us-ascii?Q?g1L0jT/CNMgK6UTAh7R49eC+TGcKnaZS1T/YEATOishUcIJ/QJ5KLYU8+DaS?=
- =?us-ascii?Q?RHAlhJHPwMXWre2UWHDNT9BzkwzHKTXO4g831e6Iaj3iPcC/lJZrdLsI20Qq?=
- =?us-ascii?Q?J4++Na52ro6NC1hKh7y8IBB3cAMJdMG53aiLXUR7Q51nq8dNWvsWo1gYzK9h?=
- =?us-ascii?Q?Y+OdgyaqihyUxSBnyCAjP0Sk03TGorHHUDJW/5K8+SIrHVD77amMdDxxnLEo?=
- =?us-ascii?Q?g/PoaJVHRtB6sEu7QsMl2s4APLTa6wFFNCr8bxy6x/Tm1LOiT/Au1a1423jQ?=
- =?us-ascii?Q?DizNKdpv79ZXMzYZlyd0cr4FowWQGRtv2kjm5MTBLjTpf4NE1ViGuMZhKlTa?=
- =?us-ascii?Q?MptM8w5vtsp5GyPCRgyj9Fv/ZtvFaTLpPIA+P/9B93yBS7bOw3HvnRwr5Ik6?=
- =?us-ascii?Q?BWsQAsfJZYXnYZBfwpltymzwKc6VoxAKkw84c/7X43fWa8+/k76zwI5N/vGz?=
- =?us-ascii?Q?9N31VJaxLE0PZe7ek7tvcqnOn07AJSTXLeTfYnqO31xPK5ygtfKy0aBRQJ0J?=
- =?us-ascii?Q?JKLPBvJEiNtGVDNzm8+j7jjjIyWSwlGfbPcr5uIKEZ3hzQSjDFPYLsT4B89u?=
- =?us-ascii?Q?A2aHewszGJ6uz853+61Wd8mU8bpvbTAek63iu6aOjaghx8AVnK0XBwH9jz+R?=
- =?us-ascii?Q?Pajw+I4FEWC/2Mp/HOtmXASkDSitQoyysdQ6idY0+2OiCpwARLxbbhkK0rFv?=
- =?us-ascii?Q?oY518/d2xC32LLa0dBJAX0s7D2xXd4uYQ0DNLCy2?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?O1WxUwR66VFPiELXZsUitKHrkdBprpLLc3ILVxwffVZ5zMD1nYwl/kI6CjWe?=
+ =?us-ascii?Q?RFMn1/QkcU0CgjjVZBKJ82V08uzHBVRlddEGGSMx3ogBP9nfHIEUqwBZYZJS?=
+ =?us-ascii?Q?jtP4mw9sf1/+P+kYHfrSf45LmAp82VqrkRXc84ZGQ06UElv8eCvj24VTbJCy?=
+ =?us-ascii?Q?kNhU/atwSOp9WxAiP6+eDChpk9CSI/MsgM4NS9LGEKJm97xoLNCuSJvULV/Z?=
+ =?us-ascii?Q?+ce1M/WtrEW15T2CGXyuCr25Ek5IBUxU42bxCLQ9eLBLcLEFwNrppOtZz6Jw?=
+ =?us-ascii?Q?bSC2KCcT8a1yvm6bL84p/pIzRU9TRYpgZsNnkg3He4nn0GCceNezj5RRbLL1?=
+ =?us-ascii?Q?qbkdj6/wEjW4gz+85bV9IWg6Q4L3hyNgGaeQt8cJAmoywTFVDBbyvA1zLPW/?=
+ =?us-ascii?Q?VOLRwEvAc5J37evVf3iturcgTRQtlYIcVgXOkONL2nE0CcO6j4opt6Yoagc4?=
+ =?us-ascii?Q?qUhE/PzpA5gQJ1k6uBwczZ6sQePFdVtlYApdocx8FolAcCE4ALp4AQ9GY28k?=
+ =?us-ascii?Q?KqbV6TTLs3smWBy6RxdfDatjl+SOCCvILk1xEeBUooIkVxJwxVLrwZW2ZSsS?=
+ =?us-ascii?Q?IR06Xe7pdOtac7jnAYx8YRSOmdfxN28QOmcy7t6MUedHxw9PfKnqpTVbPJkg?=
+ =?us-ascii?Q?MgrPNPgd3HzTmu5XqD++ngn10j7RD01PdjNWXOcTd5GKXe+E2hir/Tzk4YRY?=
+ =?us-ascii?Q?FEF4XPvsb8k3p0IZjNA51RAcsyOgFGQdU7ORKaJ5BTyWSe69Oz8twnl1wJAB?=
+ =?us-ascii?Q?Wvz1VZjvK+AJotBufwSKLJdJ5q2VgTUVTDweJ8bzQykl9uu2igfIV01MTrHH?=
+ =?us-ascii?Q?Tc0tsyUFRKqbu0/nkavHY41C+ZR6RWghPL1Dao9vbrQvEGwH3uuC5HeOJXmh?=
+ =?us-ascii?Q?8S9FKQQtqaW41e/833xPexbnEbgZXx1/ZRcF3aoBRfynsTFNQtF/qjcgKENu?=
+ =?us-ascii?Q?GP7ldiJnbo1QrRKkfiPnaK4Izx8RB705b+rWYEWfc5Rrlsde29dF5OLDjd0C?=
+ =?us-ascii?Q?9jF9tnYAxlZbt1sKhP0wY8MkvS0HZjdAQLYj81d+dFaUDMEWigg3Qww9zkST?=
+ =?us-ascii?Q?LeQZf55hGpbd1UFjdscGeB/qEV9hAA0XU5yYgfmvhUS61op+WOUZxJhBpK4g?=
+ =?us-ascii?Q?XuF5Wqflg92jQpuVI6C2o3RGy9rCv/mT0aNwePEkrSvM8EL02sayEGl52WDo?=
+ =?us-ascii?Q?Hl/6N2xSVp4dHiUEYrfZt6y4ry3rC48RRYvFLyvA0RDimL8LZIuEqpmq0gfH?=
+ =?us-ascii?Q?A4SZu7W8UMygjTPc6e/xq1pZLulW57g0STd4tNggfSGIqEwxcKGjNe0IYY4D?=
+ =?us-ascii?Q?AN9SqgqemZhy1vIQDior3TrmYhC5WM02M7E0uLzzfAHDqaUzPqRXd1S2gFiV?=
+ =?us-ascii?Q?kLzMRCmw1Ssku/Akuq8Rj+YhfXlsDB4WtyUCtVqhB6b25xXa4VD+1cD12FGo?=
+ =?us-ascii?Q?vnjZ2brvZGscnGso0zIcT2l2IZDKhux+MJCIQnJOHI/K+UAaPZTh8RiAi2Yc?=
+ =?us-ascii?Q?7aqe0VI8CEpyMsVP6pK3EL76oCm4IGopEPi29eyfBFiMpCkh9LX3+kdb8Gzj?=
+ =?us-ascii?Q?IbwmRHadZRo5RWk4zyBy1abtgfEB5K5vQGnsj/L/?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66e99376-fde8-47f2-f57a-08de323132e1
+X-MS-Exchange-CrossTenant-Network-Message-Id: 778a586a-806a-4e11-6489-08de32313469
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 06:00:02.3368 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Dec 2025 06:00:04.9295 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZlfRjGfdRwjhFmgg1UxtXiQjgqwH7U81+UEhxceltoRMfkFaM+yeDWx4lsqDXW8FTtfnCL3ogHYDOIw7RpGkWQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: UU8bXJKWdxPCzGJki8sWqH5H5m21hVqR9FJhLGFK6u/oyanMg3rA4JL3oYS8NtJBIJ45I0BTYifpmv8Gwu+1tw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8013
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,109 +156,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Extract the SEC2 booter loading sequence into a dedicated helper
-function. This is a pure refactoring with no behavior change, done
-in preparation for adding an alternative FSP boot path.
+On Hopper and Blackwell, FSP boots GSP with hardware lockdown enabled.
+After FSP Chain of Trust completes, the driver must poll for lockdown
+release before proceeding with GSP initialization. Add the register
+bit and helper functions needed for this polling.
 
-Co-developed-by: Alexandre Courbot <acourbot@nvidia.com>
-Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 Signed-off-by: John Hubbard <jhubbard@nvidia.com>
 ---
- drivers/gpu/nova-core/gsp/boot.rs | 67 ++++++++++++++++---------------
- 1 file changed, 35 insertions(+), 32 deletions(-)
+ drivers/gpu/nova-core/gsp/boot.rs | 86 ++++++++++++++++++++++++++++++-
+ drivers/gpu/nova-core/regs.rs     |  1 +
+ 2 files changed, 86 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index 846064221931..315f84907b11 100644
+index 315f84907b11..4d04135a700e 100644
 --- a/drivers/gpu/nova-core/gsp/boot.rs
 +++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -120,6 +120,40 @@ fn run_fwsec_frts(
-         }
+@@ -15,7 +15,8 @@
+     falcon::{
+         gsp::Gsp,
+         sec2::Sec2,
+-        Falcon, //
++        Falcon,
++        FalconEngine, //
+     },
+     fb::FbLayout,
+     firmware::{
+@@ -154,6 +155,89 @@ fn run_booter(
+         Ok(())
      }
  
-+    fn run_booter(
-+        dev: &device::Device<device::Bound>,
++    /// Check if GSP lockdown has been released after FSP Chain of Trust
++    fn gsp_lockdown_released(
++        dev: &device::Device,
++        gsp_falcon: &Falcon<Gsp>,
 +        bar: &Bar0,
-+        chipset: Chipset,
-+        sec2_falcon: &Falcon<Sec2>,
-+        wpr_meta: &CoherentAllocation<GspFwWprMeta>,
-+    ) -> Result {
-+        let booter_loader = BooterFirmware::new(
-+            dev,
-+            BooterKind::Loader,
-+            chipset,
-+            FIRMWARE_VERSION,
-+            sec2_falcon,
-+            bar,
-+        )?;
++        fmc_boot_params_addr: u64,
++        mbox0: &mut u32,
++    ) -> bool {
++        // Read GSP falcon mailbox0
++        *mbox0 = gsp_falcon.read_mailbox0(bar);
 +
-+        sec2_falcon.reset(bar)?;
-+        sec2_falcon.dma_load(bar, &booter_loader)?;
-+        let wpr_handle = wpr_meta.dma_handle();
-+        let (mbox0, mbox1) = sec2_falcon.boot(
-+            bar,
-+            Some(wpr_handle as u32),
-+            Some((wpr_handle >> 32) as u32),
-+        )?;
-+        dev_dbg!(dev, "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n", mbox0, mbox1);
-+
-+        if mbox0 != 0 {
-+            dev_err!(dev, "Booter-load failed with error {:#x}\n", mbox0);
-+            return Err(ENODEV);
++        // Check 1: If mbox0 has 0xbadf4100 pattern, GSP is still locked down
++        if *mbox0 != 0 && (*mbox0 & 0xffffff00) == 0xbadf4100 {
++            return false;
 +        }
 +
-+        Ok(())
++        // Check 2: If mbox0 has a value, check if it's an error
++        if *mbox0 != 0 {
++            let mbox1 = gsp_falcon.read_mailbox1(bar);
++
++            let combined_addr = (u64::from(mbox1) << 32) | u64::from(*mbox0);
++            if combined_addr != fmc_boot_params_addr {
++                // Address doesn't match - GSP wrote an error code
++                // Return TRUE (lockdown released) with error
++                dev_dbg!(dev,
++                    "GSP lockdown released with error: mbox0={:#x}, combined_addr={:#x}, expected={:#x}",
++                    *mbox0, combined_addr, fmc_boot_params_addr);
++                return true;
++            }
++        }
++
++        // Check 3: Verify HWCFG2 RISCV_BR_PRIV_LOCKDOWN bit is clear
++        let hwcfg2 = regs::NV_PFALCON_FALCON_HWCFG2::read(bar, &crate::falcon::gsp::Gsp::ID);
++        !hwcfg2.riscv_br_priv_lockdown()
++    }
++
++    /// Wait for GSP lockdown to be released after FSP Chain of Trust
++    #[expect(dead_code)]
++    fn wait_for_gsp_lockdown_release(
++        dev: &device::Device,
++        bar: &Bar0,
++        gsp_falcon: &Falcon<Gsp>,
++        fmc_boot_params_addr: u64,
++    ) -> Result<u32> {
++        dev_dbg!(dev, "Waiting for GSP lockdown release\n");
++
++        let mut mbox0: u32 = 0;
++
++        read_poll_timeout(
++            || {
++                let released = Self::gsp_lockdown_released(
++                    dev,
++                    gsp_falcon,
++                    bar,
++                    fmc_boot_params_addr,
++                    &mut mbox0,
++                );
++
++                Ok((released, mbox0))
++            },
++            |(released, _)| *released,
++            Delta::ZERO,
++            Delta::from_millis(4000),
++        )
++        .inspect_err(|_| {
++            dev_err!(dev, "GSP lockdown release timeout\n");
++        })
++        .map(|(_, mbox0)| mbox0)
++        .and_then(|mbox0| {
++            // Check mbox0 for error after wait completion
++            if mbox0 != 0 {
++                dev_err!(dev, "GSP-FMC boot failed (mbox: {:#x})\n", mbox0);
++                Err(EIO)
++            } else {
++                dev_dbg!(
++                    dev,
++                    "GSP hardware lockdown fully released, proceeding with initialization\n"
++                );
++                Ok(mbox0)
++            }
++        })
 +    }
 +
      /// Attempt to boot the GSP.
      ///
      /// This is a GPU-dependent and complex procedure that involves loading firmware files from
-@@ -149,15 +183,6 @@ pub(crate) fn boot(
+diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+index 0d5c13f19073..a41d31449c65 100644
+--- a/drivers/gpu/nova-core/regs.rs
++++ b/drivers/gpu/nova-core/regs.rs
+@@ -277,6 +277,7 @@ pub(crate) fn vga_workspace_addr(self) -> Option<u64> {
  
-         Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
- 
--        let booter_loader = BooterFirmware::new(
--            dev,
--            BooterKind::Loader,
--            chipset,
--            FIRMWARE_VERSION,
--            sec2_falcon,
--            bar,
--        )?;
--
-         let wpr_meta =
-             CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
-         dma_write!(wpr_meta[0] = GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
-@@ -185,29 +210,7 @@ pub(crate) fn boot(
-             "Using SEC2 to load and run the booter_load firmware...\n"
-         );
- 
--        sec2_falcon.reset(bar)?;
--        sec2_falcon.dma_load(bar, &booter_loader)?;
--        let wpr_handle = wpr_meta.dma_handle();
--        let (mbox0, mbox1) = sec2_falcon.boot(
--            bar,
--            Some(wpr_handle as u32),
--            Some((wpr_handle >> 32) as u32),
--        )?;
--        dev_dbg!(
--            pdev.as_ref(),
--            "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n",
--            mbox0,
--            mbox1
--        );
--
--        if mbox0 != 0 {
--            dev_err!(
--                pdev.as_ref(),
--                "Booter-load failed with error {:#x}\n",
--                mbox0
--            );
--            return Err(ENODEV);
--        }
-+        Self::run_booter(dev, bar, chipset, sec2_falcon, &wpr_meta)?;
- 
-         gsp_falcon.write_os_version(bar, gsp_fw.bootloader.app_version);
- 
+ register!(NV_PFALCON_FALCON_HWCFG2 @ PFalconBase[0x000000f4] {
+     10:10   riscv as bool;
++    11:11   riscv_br_priv_lockdown as bool, "RISC-V branch privilege lockdown bit";
+     12:12   mem_scrubbing as bool, "Set to 0 after memory scrubbing is completed";
+     31:31   reset_ready as bool, "Signal indicating that reset is completed (GA102+)";
+ });
 -- 
 2.52.0
 
