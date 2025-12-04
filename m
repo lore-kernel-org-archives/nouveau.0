@@ -4,56 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3632D5B158
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20F67D5B15C
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 797A910EC80;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9217F10EC82;
 	Sat, 13 Dec 2025 12:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=nppct.ru header.i=@nppct.ru header.b="emr3/nIj";
+	dkim=permerror (0-bit key) header.d=crisal.io header.i=@crisal.io header.b="QWmZQmQ8";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="d4LUKr5P";
 	dkim-atps=neutral
-Received: from mail.nppct.ru (mail.nppct.ru [195.133.245.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3783110E2E4
- for <nouveau@lists.freedesktop.org>; Thu,  5 Jun 2025 20:19:56 +0000 (UTC)
-Received: from mail.nppct.ru (localhost [127.0.0.1])
- by mail.nppct.ru (Postfix) with ESMTP id CABCE1C11F0
- for <nouveau@lists.freedesktop.org>; Thu,  5 Jun 2025 23:19:49 +0300 (MSK)
-Authentication-Results: mail.nppct.ru (amavisd-new); dkim=pass (1024-bit key)
- reason="pass (just generated,
- assumed good)" header.d=nppct.ru
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nppct.ru; h=
- content-transfer-encoding:mime-version:x-mailer:message-id:date
- :date:subject:subject:to:from:from; s=dkim; t=1749154789; x=
- 1750018790; bh=o1vWj2peYFzT+9B8W1tqxLwFgYA9lzDCmka4MeMf2gg=; b=e
- mr3/nIjvbsJKIlluD5A2AXt79HamKalwBQHC4j2cvl/O2lIQGo58K3+ROOxiXWEc
- /wT6BROuNrM1PiriGehwgjCYwpouiEboydme81nqxbdxJQfB3pRm9BQx9jUQHanB
- NO0Gl8pPh3T1RkrWBhx8GKhPCwPIk57VLI2JOvfPBI=
-X-Virus-Scanned: Debian amavisd-new at mail.nppct.ru
-Received: from mail.nppct.ru ([127.0.0.1])
- by mail.nppct.ru (mail.nppct.ru [127.0.0.1]) (amavisd-new, port 10026)
- with ESMTP id qUeVTJnPgHQa for <nouveau@lists.freedesktop.org>;
- Thu,  5 Jun 2025 23:19:49 +0300 (MSK)
-Received: from localhost.localdomain (unknown [87.249.24.51])
- by mail.nppct.ru (Postfix) with ESMTPSA id 5176C1C0D75;
- Thu,  5 Jun 2025 23:19:43 +0300 (MSK)
-From: Alexey Nepomnyashih <sdl@nppct.ru>
-To: Lyude Paul <lyude@redhat.com>
-Cc: Alexey Nepomnyashih <sdl@nppct.ru>, Danilo Krummrich <dakr@kernel.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- lvc-project@linuxtesting.org, stable@vger.kernel.org
-Subject: [PATCH v2 1/2] drm/nouveau/instmem/gk20a: fix overflow in IOVA
- calculation for iommu_map/unmap
-Date: Thu,  5 Jun 2025 20:19:20 +0000
-Message-ID: <20250605201927.339352-1-sdl@nppct.ru>
-X-Mailer: git-send-email 2.43.0
+X-Greylist: delayed 693 seconds by postgrey-1.36 at gabe;
+ Thu, 04 Dec 2025 13:01:09 UTC
+Received: from fhigh-a6-smtp.messagingengine.com
+ (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3D6A10E93D
+ for <nouveau@lists.freedesktop.org>; Thu,  4 Dec 2025 13:01:09 +0000 (UTC)
+Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id 991E11400224;
+ Thu,  4 Dec 2025 07:49:35 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-06.internal (MEProxy); Thu, 04 Dec 2025 07:49:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crisal.io; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1764852575;
+ x=1764938975; bh=bT7FHjsbQ8DOCUyp+kexyJRmQz7YtubohaLbP21dgus=; b=
+ QWmZQmQ8drjAUhtM3EKvi9IGmEYwlgKHmD6DEeMNgU1cDITtkm36or/GKRANaoSO
+ ldYx9isB/WQ4SZXIerr5uQo+UxQYmmh/PJG6AXetuvXIoH07o0SDg4YUkdn0yR4+
+ 1OnQpHI2je4URQ40n6B3dLaoWnB/o008x8JaKfDUn7TrJRCDLtewnPFyBmKSUFS2
+ ZOQl/zlrwFYab0Ve67HfSmoS29BlXzSWYaQxBMtlFC8jKw/dfjQ/wxKFGp4v4Pay
+ NWU7TQLKGT8B+wsa3s/bSqkMwwCqbKZHhIaS3Q5DNDEb3foa0oWd7G5sRREhKkMZ
+ 8dq1SFoEIz0kWvxuRfalVA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1764852575; x=
+ 1764938975; bh=bT7FHjsbQ8DOCUyp+kexyJRmQz7YtubohaLbP21dgus=; b=d
+ 4LUKr5Pp/AGMgk3O3ccRP4nFv4Io7xt6Yczuf7gA4oWo1kiWLWr7PQ9kDT/pG0Pk
+ HM2MWOGHqfjtswp8SVvu0LG4Nb4fRm21E+/iG6elpHLVYM8YIXGb4G8ntt9S24WB
+ XTgi15cJAKr+QS/7EdUStOb1gOb1emBxGgjWRb7F+rlsKOEDvn1pd8KepUyyLoro
+ 4C/XBFbXQM6IpoyFHLAaGANyvlxFW3ZduI3qT06GMX9VwaiV7Z6LXEiN87/bA9S2
+ MeCDqCiAWvyOSQ0EnG197hSFQqQwHugp/S2JBAD5DeQRwPuW/rrltrlMBoLAE6TP
+ Xly7EjxYU5YgnWddZy0bQ==
+X-ME-Sender: <xms:XoMxaftIg9lrhKoIsI9yLzV99-PYFh6m5AK3y1GkUt051fQ6pfxc0g>
+ <xme:XoMxaXZPsINg-X6_SpHYviYJ4t0xaxgJwE-o_NHkbfsQGUfZziOxUMo4omiiY9762
+ AKGPXJ6TVr58smEizAy1cVxbzZwwD5w6L-8ZcKkVfvrFEvHkf7azUU>
+X-ME-Received: <xmr:XoMxabsOsdheTnf3G4xTEk0PswJW9moz6ytx3ZYLJYQg5IdWKx_sr3rOm2qP-iF00UcAUJGcxEF1ndCSM3PnF3iYfM1mzW1o_oI>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdehiedvucetufdoteggodetrfdotf
+ fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
+ lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
+ epkfffgggfuffvvehfhfgjtgfgsehtkeertddtudejnecuhfhrohhmpefgmhhilhhiohcu
+ vehosghoshculmhlvhgrrhgviicuoegvmhhilhhiohestghrihhsrghlrdhioheqnecugg
+ ftrfgrthhtvghrnhepheeuieejvefhkeekffeklefhfeevteetueethedvudelieeuveev
+ ffejfefgfedvnecuffhomhgrihhnpehgihhthhhusgdrtghomhdpughotghsrdhrshenuc
+ evlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegvmhhilhhi
+ ohestghrihhsrghlrdhiohdpnhgspghrtghpthhtohepfedupdhmohguvgepshhmthhpoh
+ huthdprhgtphhtthhopehmihhguhgvlhdrohhjvggurgdrshgrnhguohhnihhssehgmhgr
+ ihhlrdgtohhmpdhrtghpthhtohepphgvthgvrhiisehinhhfrhgruggvrggurdhorhhgpd
+ hrtghpthhtohepsghouhgrnhhtohesiihohhhordgtohhmpdhrtghpthhtoheprghrthhh
+ uhhrrdgtohhhvghnsegvmhgsvggtohhsmhdrtghomhdprhgtphhtthhopehgrghrhiesgh
+ grrhihghhuohdrnhgvthdprhgtphhtthhopegrlhhitggvrhihhhhlsehgohhoghhlvgdr
+ tghomhdprhgtphhtthhopehjohhshhesjhhoshhhthhrihhplhgvthhtrdhorhhgpdhrtg
+ hpthhtohepohhjvggurgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepsghoqhhunhdr
+ fhgvnhhgsehgmhgrihhlrdgtohhm
+X-ME-Proxy: <xmx:XoMxaWA_0XGjWUyj_omVPnW4Dam6xBxCotJNmgzJmPJ3qtDD2osQjg>
+ <xmx:XoMxaaMeFf-Cwgb1A2pglnMdApsgjs1BngwagP-9o2gnEr-PzItVWg>
+ <xmx:XoMxaY6-KS1B4Ffc8pO7e9EuUPJVxSPDC1857Pwst1BJTdjw6ODvrg>
+ <xmx:XoMxac3U4poM50Z6o2Wd1oal5GRpfXfVWeXWEVSl9yFtxXjBu7b5kg>
+ <xmx:X4Mxae_ro2UZcjWQsPKA-TMcEQ9dSlR2xZk6FPrIbaiE5NxqtEzhotki>
+Feedback-ID: i2e3c46c1:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 4 Dec 2025 07:49:31 -0500 (EST)
+Message-ID: <dd5856a8-e120-4884-8828-9d0c9edc60f0@crisal.io>
+Date: Thu, 4 Dec 2025 13:49:28 +0100
 MIME-Version: 1.0
+User-Agent: Thunderbird Daily
+Subject: Re: [PATCH 4/4] build: rust: provide an option to inline C helpers
+ into Rust
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
+ Peter Zijlstra <peterz@infradead.org>, Antoni Boucher <bouanto@zoho.com>,
+ Arthur Cohen <arthur.cohen@embecosm.com>, Gary Guo <gary@garyguo.net>
+Cc: Alice Ryhl <aliceryhl@google.com>, Josh Triplett <josh@joshtriplett.org>, 
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, Will Deacon <will@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>, Nathan Chancellor <nathan@kernel.org>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Nicolas Schier <nicolas.schier@linux.dev>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Uladzislau Rezki <urezki@gmail.com>, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+ linux-kbuild@vger.kernel.org, linux-mm@kvack.org,
+ nouveau@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>
+References: <20251202-inline-helpers-v1-0-879dae33a66a@google.com>
+ <20251202-inline-helpers-v1-4-879dae33a66a@google.com>
+ <20251204100725.GF2528459@noisy.programming.kicks-ass.net>
+ <aTFhFXCqvy7nmDOp@google.com>
+ <20251204111124.GJ2528459@noisy.programming.kicks-ass.net>
+ <CANiq72=r+Fmu0uuNF=6x36GWWQZGZk9gApnMZxakJavviwG+ug@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Emilio_Cobos_=C3=81lvarez?= <emilio@crisal.io>
+Autocrypt: addr=emilio@crisal.io; keydata=
+ xsFNBFwi9YIBEACpopLqSGTiSxX8LEnt2Ix6DMWhjMjNELwcAS8GrEbSx3kDWErdMq8AeQeO
+ Lt0lPnY54Tyk0BtBdn80WqDWMcy3ssE7sNe7U+ed+E174g5q9Kgz5wjHEUv7oq5yhRzHrhpG
+ Y/bRiBFaPoKVzAFXTka/Mdj3DCspF+EQ58ex+yt041GlzW4AAW9W+dMv42F70vhe6QdWEu93
+ kn9P/WH3Oz18oiy44D2GFBoPIXz/yLPRyB7lqKBtmvD1lBXExr5iLbpDRe/Kj2Ey9iFu1cXu
+ l3XMX9bUmNNkezI2DkxATUp5AKhPf0OcGNjCs7xzlJGjDB3uRjsBji7+g/m+PjH1K/mOuYI+
+ /XrBHl7EHrkTuHyfFqYyZvID4sSIL6t4CJrYispt4aNoojanPEE2duvWA3oKWDMJK4nPfrYv
+ AJ+MiRcxLAFIySfWy/nSo4zecx8YKMarXVdnxfQ4590OzCxgbPVbUpuctStdr13RUdmlrWZf
+ N1hzR6sSzlNAsk6BtpxWBUVqSsVrrzHsZbW8N/TSxjQN1OLnNM6w5MBPlvHrXV9+AA7MVK5o
+ rro31RiqRZBhIQv7sArOyd1WosYy0fyhw0sswY2+OxWvBhQt8/QeUNIAOQs3/2NyS44BFOpj
+ jQWV/R1EC68eNAZJwNs7xhXruysfgzLW7Z4F1aAlXFPxroYrXQARAQABzShFbWlsaW8gQ29i
+ b3Mgw4FsdmFyZXogPGVtaWxpb0BjcmlzYWwuaW8+wsGRBBMBCAA7AhsDBQsJCAcCBhUKCQgL
+ AgQWAgMBAh4BAheAFiEE53alAzPAxlP8it4A4RUtCZTkv4oFAlwi+2cCGQEACgkQ4RUtCZTk
+ v4p7DA/+NPmBXOkTcDBGYff1CZImIDB+5BWjn5JynMnez6e3YTw4NzHlPHcoYC6JGrhDyIgg
+ Swb0GHXjCIxerESSSk4IqYLseLf3XS6g0ehNT5rjMz6adAZf5zbglfcQe1BmjqDcj3Cwr6X4
+ opt+yC7Vc6cbBEBHQiOi365vhGWKwpFunK+ulNlJVyzETaWhKdWhvfcs19fRp44BCrqRQ4Q9
+ TcwBJPSSHw57kLOOcJ3Qk1TJaRVtGynbeyemImT0LNxH344/EHsy3J8BvLhYetvdaD0N6h+A
+ VKWwbbYVIPZbLWMO8FZyc6xavH4ozc8FVjDw8DzBnZ25eFZtC7pDPNrCNUqVa7+biCfNsLED
+ aA8FCsLYjYcarmwlT0TSULd01+3J5GxrF5HOYSdensmW8AOII1IWXXmIAhMDVVU0M8VxRuIg
+ MiB4KHHdF6ybDou7njcVd2ve0TB7gXNFVzuSid2HvTR/9PyeRQXDUB7f14yabD/StTqtWmji
+ JI2m67xplaR+jDEFGevBtTr3hFM/EXrR7QeqLVCrdIkzNu+F0bi/vUGQ1Q6DUWDVZcFs2j/r
+ wM+n1aUGMY7GJNsSVudKQseGPy3H9GzY4ahB9KNqVhnLbJZSlVR+sCuVOy6f+PA/9GNDeOhJ
+ lTU3APsrprmMkZ+EQsnZ9+a3ZobQaB/2pWLt9MWTv6XOwU0EXCL1ggEQALdQ+tUKsidumpW5
+ mUbuDv170ebs97klNP9iiOdsE4B8pYSnKW90fdEIla0k0FkvMrkaHC3/ZP8vlvWYIcBAzfmO
+ mPGvix2sSxv828bu4FJeVmMu8KpTfAYg5wiXy1fH7N4Q5GcayKu0M4ohEVaggIxSXPzsybXQ
+ 78nYF7AATFj5kZ5u6ArqackRtvO812yAOtmH6dph2XI9wNE6t2mgCpNJX8WhoVSUcIQmLE68
+ vlgz+O5L16Eh2ku6t3I1ti1za+Xf7whyrzJdfmh2ssF0fUJ6C679RmPS9ZeJzlMtmHZ/zNTr
+ 1fCjQ6RoCmB1opyklLx2RbeTXpszTuwR/XiA6ipO8iwIUK4LNmxMmwmVyeGBqC7bd51QqNOT
+ IgW/JbvR+PD3f/4RCsks6ZLgwYdiVnxNfqllp3QJJW5knfTogX9jiqLOvpMUwGsK1zgupVFG
+ Q7qn2auVE4r9kxIt/5nv4MFdDBqyfz0sZ3NLINrRYR8Dmfifihq/S9JjGT9D6efwI7qe+vmw
+ 4Iv/ALAbSivDtDlG/EKq5NX2YoF+yZl22U2yt2Alm+GX1aqaKITwMRqGzUMmiPcI0DlgtNLw
+ r28WLEhokPRemgp0/s3QsJVikriKwk7X6r8KpBwl16jEo25zCMbHg2cA1/dD8IJEKJKSRh5g
+ J35aJDm4EFa3aHn9bRhBABEBAAHCwXYEGAEIACAWIQTndqUDM8DGU/yK3gDhFS0JlOS/igUC
+ XCL1ggIbDAAKCRDhFS0JlOS/ipHVD/9OKoei2DNsDzc6B9VzEdFn6hCtSPSsaaPk7Ki1ENEL
+ DK8lWZ+o6YyBwDjpvLxe75kf7oDxEl4KXODoP7CNBWowKz5Q3BNEE7faqP+Kf5Jg4H2n2vZB
+ 89ZytKL9ZhNsn4m1SazycVQbQpwhyLDQVGhsGWhlaxws+F0hagRUM4d2guW7T9JTplD1PI2g
+ 463fPJCyAJ8iFgILq0EcTqYMrwhvr4rAwwEEdCb7xsVo825zIXhuKxLUwv8TaNQOCBdVVgE+
+ ryqoVwD4UbdP0a70bQEIEyMiY7F4ZPK+3XBkv2ArS/myXgeUoKsM5GdXj8mzcpQiLf/w4Qn9
+ 4TzSbAOgpWn+0H+8AHT+p9k+GEOdv/D8A1eDYYZEpZhXVUOkvvXXyMRHh5a4TnIFCCWu2a1O
+ DxVCmWwnHjwaJiE4mAFgSrDgUY+z7rv5qU6EuGR8Jad1BJUerujMMyEG1D3kwqUCOe5ziKtW
+ UqVDQcGM4ColvMduocyqAMjZw4/risjbxC1mnrTOrrAHBh3HfgLy125N5ekv0NSSINXFBnpN
+ PYi6AEsmafzef2x2/jF4sei/ZdjN0u0hbZCfpg5EB27wFm80Kr1jPp5FN2FQBwfGXnmi/6So
+ 5ixV9pxojbmHTwrPHLDQKq5PynyKIqIOCf+T/LUTcFZziSYWMadfYtkiHP8wk6zCQQ==
+In-Reply-To: <CANiq72=r+Fmu0uuNF=6x36GWWQZGZk9gApnMZxakJavviwG+ug@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:52 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,42 +170,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Fix possible overflow in the address expression used as the second
-argument to iommu_map() and iommu_unmap(). Without an explicit cast,
-this expression may overflow when 'r->offset' or 'i' are large. Cast
-the result to unsigned long before shifting to ensure correct IOVA
-computation and prevent unintended wraparound.
+On 12/4/25 12:57 PM, Miguel Ojeda wrote:
+> On Thu, Dec 4, 2025 at 12:11 PM Peter Zijlstra <peterz@infradead.org> wrote:
+>>
+>> Right. Earlier I also proposed using libclang to parse the C header and
+>> inject that. This might be a little simpler, in that..
+> 
+> Yeah, that would be closer to the `bindgen` route in that `libclang`
+> gets already involved.
 
-Found by Linux Verification Center (linuxtesting.org) with SVACE.
+Yeah, so... there are existing tools (c2rust [0] being the actively 
+maintained one IIUC) that in theory could do something like that 
+(translate the bodies of the functions from C to Rust so that rustc 
+could consume them directly rather than via LLVM LTO).
 
-Cc: stable@vger.kernel.org # v4.4+
-Signed-off-by: Alexey Nepomnyashih <sdl@nppct.ru>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+I think the intended use case is more "translate a whole C project into 
+rust", but it could be interesting to test how well / poorly it performs 
+with the kernel helpers / with a single header translated to Rust.
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-index 201022ae9214..17a0e1a46211 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/instmem/gk20a.c
-@@ -334,7 +334,7 @@ gk20a_instobj_dtor_iommu(struct nvkm_memory *memory)
- 	/* Unmap pages from GPU address space and free them */
- 	for (i = 0; i < node->base.mn->length; i++) {
- 		iommu_unmap(imem->domain,
--			    (r->offset + i) << imem->iommu_pgshift, PAGE_SIZE);
-+			    ((unsigned long)r->offset + i) << imem->iommu_pgshift, PAGE_SIZE);
- 		dma_unmap_page(dev, node->dma_addrs[i], PAGE_SIZE,
- 			       DMA_BIDIRECTIONAL);
- 		__free_page(node->pages[i]);
-@@ -472,7 +472,7 @@ gk20a_instobj_ctor_iommu(struct gk20a_instmem *imem, u32 npages, u32 align,
- 
- 	/* Map into GPU address space */
- 	for (i = 0; i < npages; i++) {
--		u32 offset = (r->offset + i) << imem->iommu_pgshift;
-+		unsigned long offset = ((unsigned long)r->offset + i) << imem->iommu_pgshift;
- 
- 		ret = iommu_map(imem->domain, offset, node->dma_addrs[i],
- 				PAGE_SIZE, IOMMU_READ | IOMMU_WRITE,
--- 
-2.43.0
+I personally haven't tried it because for work I need to deal with C++, 
+which means that automatic translation to Rust is a lot harder / 
+probably impossible in general. So for Firefox we end up relying on 
+bindgen + cross-language LTO for this kind of thing, and it works well 
+for us.
 
+If I'm understanding correctly, it seems the kernel needs this extra bit 
+of help (__always_inline) to push LLVM to inline C functions into rust, 
+which is a bit unfortunate... But this approach seems sensible to me, 
+for now at least.
+
+FWIW Bindgen recently gained an option to generate inline functions [1], 
+which could help avoid at least the bindgen ifdef in the patch series?
+
+Anyways, it might be interesting to give c2rust a go on the kernel 
+helpers if nobody has done so, and see how well / poorly it works in 
+practice? Of course probably introducing a new dependency would be kind 
+of a pain, but could be a good data point for pushing into adding 
+something like it built into rustc...
+
+Thanks,
+  -- Emilio
+
+[0]: https://github.com/immunant/c2rust
+[1]: 
+https://docs.rs/bindgen/latest/bindgen/struct.Builder.html#method.generate_inline_functions
