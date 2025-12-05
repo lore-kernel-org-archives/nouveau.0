@@ -4,36 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33ABDD5B15D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDD0CD5B154
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9B5510EC16;
-	Sat, 13 Dec 2025 12:42:14 +0000 (UTC)
-Received: from audible.transient.net (audible.transient.net [24.143.126.66])
- by gabe.freedesktop.org (Postfix) with SMTP id 2423910E0F2
- for <nouveau@lists.freedesktop.org>; Thu, 10 Jul 2025 00:16:05 +0000 (UTC)
-Received: (qmail 4019 invoked by uid 1000); 9 Jul 2025 12:04:22 -0000
-Date: Wed, 9 Jul 2025 12:04:22 +0000
-From: Jamie Heilman <jamie@audible.transient.net>
-To: Ben Skeggs <bskeggs@nvidia.com>
-Cc: Rui Salvaterra <rsalvaterra@gmail.com>, airlied@gmail.com,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [REGRESSION] NVIDIA ION graphics broken with Linux 6.16-rc*
-Message-ID: <aG5axlstlhnUYks2@audible.transient.net>
-Mail-Followup-To: Ben Skeggs <bskeggs@nvidia.com>,
- Rui Salvaterra <rsalvaterra@gmail.com>, airlied@gmail.com,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-References: <CALjTZvZgH0N43rMTcZiDVSX93PFL680hsYPwtp8=Ja1OWPvZ1A@mail.gmail.com>
- <aG2mzB58k3tkxvK-@audible.transient.net>
- <25642e5b-25ee-49b2-b08d-4c64fa2e505a@nvidia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 016B610EC0D;
+	Sat, 13 Dec 2025 12:42:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="O+r6yDhd";
+	dkim-atps=neutral
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+ [209.85.214.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4090710EA98
+ for <nouveau@lists.freedesktop.org>; Fri,  5 Dec 2025 09:18:13 +0000 (UTC)
+Received: by mail-pl1-f176.google.com with SMTP id
+ d9443c01a7336-299d40b0845so32739855ad.3
+ for <nouveau@lists.freedesktop.org>; Fri, 05 Dec 2025 01:18:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1764926293; x=1765531093; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=0j0YJCbS6oQYnQ2L4OupANlWwp/+4TrkKlZ23ssyQ04=;
+ b=O+r6yDhdweVnicUXtlEOyblrDfoSSYgXfjVfNXr2zWT9/yGGg9lKSgYnpwiZzdAVki
+ AdRWsJs/FhF/FK1FtLV1jaHimjE2vKy8kg0cYZAB3ruF0PF9BUPX5YxYTu0eYSGHsJuP
+ zNWlL1M+CkGwUInbDeZcuLzr8tksosZjEAQH/zzvWovrJ8w0p5jBvJd5MUhHvdaHpGMu
+ pLJdQF6ub0Dg3J4iXca2+qIryDtjLmUhKZUnOmkDXh9u6CDrX0x9v35otUEeKpapqpD7
+ DZeDkfyLBLE0V2CcLUtndrbuGZBo0/Ya7OfR838JGPC7Ox7MXAOtCFi9yI9oCHuQnqYg
+ u82Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1764926293; x=1765531093;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=0j0YJCbS6oQYnQ2L4OupANlWwp/+4TrkKlZ23ssyQ04=;
+ b=gt0Z7pEfjfAJtL9ImtabcH6AGd2h+S6S49uZdUnY82xFyRhIJdTZGb6RoiE8og3hjG
+ Pl4Cq7upkbJst1cGvkA+WbiIYQv6Vci5ppsmFh66SBuFQg+bNhSWWIEavsA5a1M4gLTA
+ xun8zNluWRadS10nsfnazTFHkrhss6Tai4nZ2WSL0C4K2GjGxoBclEh4ux32JV1xqkkP
+ KsAYMjVndc/aRF6Xja+Fqt49Sshr385p2xBA2SKropW0vSb+GPBtr0hO0wJtZ4eGGXyd
+ o8cVQSKCpSwdlK1Tg/sjuEcFkmQmSiO9V+cIAazniAvX0YZODq49A4g9hy5LVGeM5wB1
+ ChLw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWMU7LIxXKPSRPAUrnyUREohDX8E9fQdcaYXamPBJnYPMEBRT1xGjfww2BzVa4Skq/ZB7bS0OMO@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyVYxrrl6ouUZUbM6HLulQRFj+ktB/1Csk10JKo3XHMAaQBK9Ie
+ WKugENeJUSEjFxeBcawDy98BM2KFvbaI5yewP6W6Y48twyFvoRI3zR25
+X-Gm-Gg: ASbGncvmoVsSC1eYzE8xgDFdZ/WlYyYueYU8gPfOZyuiNJyhxS6uoTvFBUXnhYCwkIU
+ L0YWaCecah0P0sY/tf9ujqHOXdeKyVv/rNfZzHc8ApguKFbUGcXqd5U6sZ0yKt0xKwu/PK/Ene5
+ 84o8DTFS7+gkT9SlFq9afQyrnfYNofHZzHAcBS5unUtOjlrgF+r5lgXa3Cqu8tu5j5vGv2DETSf
+ yr1yhndvwfJwacmh5/lGbNNKpzBxwDmiqhwUv9GHw8ANmzN5rzhcpq/uCpGpPU5pUzZ0zkAQXsT
+ Vi6ObV5MYJ+jCbZQM6eFN/yH4Xy7EhqTCYS6apNsWSpkoKjUmHskPV1KRDsnpU3oR/XMz7wBEr1
+ xNxYQedXL4UTJNU+3AkMs38GDDsZnJ9P/NUxf0IEz5EGIC8t8AR/tWtElDxqRfv1JWQj+cQXDeE
+ ZXw1q6KRlQHDF2
+X-Google-Smtp-Source: AGHT+IGCOUoLvA3u5zLY6BxBk1fzKosrU8MdBnpKcDdVzvznTiuHWoSBQRGAkD5ryaGh3mzYwWxshQ==
+X-Received: by 2002:a17:902:eccb:b0:297:fc22:3ab2 with SMTP id
+ d9443c01a7336-29da1ebb0bamr71800185ad.36.1764926292730; 
+ Fri, 05 Dec 2025 01:18:12 -0800 (PST)
+Received: from archlinux ([36.255.84.61]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-29dae33c2e2sm42761615ad.0.2025.12.05.01.18.08
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 05 Dec 2025 01:18:12 -0800 (PST)
+From: Madhur Kumar <madhurkumar004@gmail.com>
+To: lyude@redhat.com,
+	dakr@kernel.org
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Madhur Kumar <madhurkumar004@gmail.com>
+Subject: [PATCH] drm: nouveau: Replace sprintf() with sysfs_emit()
+Date: Fri,  5 Dec 2025 14:48:04 +0530
+Message-ID: <20251205091804.317801-1-madhurkumar004@gmail.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <25642e5b-25ee-49b2-b08d-4c64fa2e505a@nvidia.com>
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:51 +0000
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,61 +89,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Ben Skeggs wrote:
-> On 7/9/25 09:16, Jamie Heilman wrote:
-> > Rui Salvaterra wrote:
-> > > Unfortunately, bisecting is not feasible for me.
-> > That looks pretty similar to the problem I posted
-> > (https://lore.kernel.org/lkml/aElJIo9_Se6tAR1a@audible.transient.net/)
-> > that I bisected to 862450a85b85 ("drm/nouveau/gf100-: track chan
-> > progress with non-WFI semaphore release").  It still reverts cleanly
-> > as of v6.16-rc5 so you might want to give that a shot.
-> 
-> Hi,
-> 
-> Thank you for bisecting!  Are you able to try the attached patch?
+Replace sprintf() calls with sysfs_emit() to follow current kernel
+coding standards.
 
-Yeah that got graphics visible again for me, though there's something
-else horrible going on now (still? I'm not sure if its new behavior or
-not) and it blows out my dmesg ringbuffer with errors or warnings of
-some kind, that I was just about to start trying to debug that when
-some power event seems to have fried my PSU.  Combined with a bunch of
-filesystem corruption, its going to be a while a before I can get that
-system back up to that spot where I can troubleshoot it again, the
-root volume is fried and I'm going to have rebuild.  Anyway, I think
-whatever it is was probably an entirely separate issue.
+sysfs_emit() is the preferred method for formatting sysfs output as it
+provides better bounds checking and is more secure.
 
-> From 6987c1c254285305fdc20270e21709a313632e0d Mon Sep 17 00:00:00 2001
-> From: Ben Skeggs <bskeggs@nvidia.com>
-> Date: Wed, 9 Jul 2025 10:54:15 +1000
-> Subject: [PATCH] drm/nouveau/nvif: fix null ptr deref on pre-fermi boards
-> 
-> Check that gpfifo.post() exists before trying to call it.
-> 
-> Fixes: 862450a85b85 ("drm/nouveau/gf100-: track chan progress with non-WFI semaphore release")
-> Signed-off-by: Ben Skeggs <bskeggs@nvidia.com>
-> ---
->  drivers/gpu/drm/nouveau/nvif/chan.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/nouveau/nvif/chan.c b/drivers/gpu/drm/nouveau/nvif/chan.c
-> index baa10227d51a..80c01017d642 100644
-> --- a/drivers/gpu/drm/nouveau/nvif/chan.c
-> +++ b/drivers/gpu/drm/nouveau/nvif/chan.c
-> @@ -39,6 +39,9 @@ nvif_chan_gpfifo_post(struct nvif_chan *chan)
->  	const u32 pbptr = (chan->push.cur - map) + chan->func->gpfifo.post_size;
->  	const u32 gpptr = (chan->gpfifo.cur + 1) & chan->gpfifo.max;
->  
-> +	if (!chan->func->gpfifo.post)
-> +		return 0;
-> +
->  	return chan->func->gpfifo.post(chan, gpptr, pbptr);
->  }
->  
-> -- 
-> 2.49.0
-> 
+Signed-off-by: Madhur Kumar <madhurkumar004@gmail.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_hwmon.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
+diff --git a/drivers/gpu/drm/nouveau/nouveau_hwmon.c b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+index 5c07a9ee8b77..34effe6d86ad 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_hwmon.c
++++ b/drivers/gpu/drm/nouveau/nouveau_hwmon.c
+@@ -125,7 +125,7 @@ nouveau_hwmon_get_pwm1_max(struct device *d,
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	return sprintf(buf, "%i\n", ret);
++	return sysfs_emit(buf, "%i\n", ret);
+ }
+ 
+ static ssize_t
+@@ -141,7 +141,7 @@ nouveau_hwmon_get_pwm1_min(struct device *d,
+ 	if (ret < 0)
+ 		return ret;
+ 
+-	return sprintf(buf, "%i\n", ret);
++	return sysfs_emit(buf, "%i\n", ret);
+ }
+ 
+ static ssize_t
 -- 
-Jamie Heilman                     http://audible.transient.net/~jamie/
+2.52.0
+
