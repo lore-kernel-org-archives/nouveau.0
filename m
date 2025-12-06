@@ -4,107 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A3AD5B15C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C10F8D5AE41
 	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7668710ECB0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D12E810ECA9;
 	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="L3UWRkEd";
+	dkim=permerror (0-bit key) header.d=jannau.net header.i=@jannau.net header.b="SmEphrvg";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="LXW5bzIX";
 	dkim-atps=neutral
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com
- [209.85.215.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41CD810EAD3
- for <nouveau@lists.freedesktop.org>; Fri, 26 Sep 2025 18:46:15 +0000 (UTC)
-Received: by mail-pg1-f170.google.com with SMTP id
- 41be03b00d2f7-b57d676c604so240569a12.0
- for <nouveau@lists.freedesktop.org>; Fri, 26 Sep 2025 11:46:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1758912375; x=1759517175; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=99NoFsVWszwLzL0dGnY2jV/Q+uR4we2DXyveOu+4Occ=;
- b=L3UWRkEdfnNrnLnuF/EG09UbNXFNjaaf0dsqYMkGVywBGdCUs5eEmXhEPbV3wVaTmb
- p8mwj9waUqZLdHO6Cs5XdZQJy04LMWAvFWqUalpFsKaFD7bZRc+tf8nUaSaW2RguUcVg
- 2bg54UwkTWJhlPpkwSD4juyTcUtT2jh5sGiBFEXaj66s0p6dkb0wyd4TkwMAYmvStBsI
- N/F6EUu2n9EYXwa0p1KO0LzOHn3Yl9FTOUfdulOulNLn5hY5TSYatjZzUgxaI4VZpbFr
- kiCDdvSWIevVT+EtT/liKeMh0GZDsuGhF1d77MS2csp1gTDnGLkktxck15tdfCoYAvHx
- jEcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1758912375; x=1759517175;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=99NoFsVWszwLzL0dGnY2jV/Q+uR4we2DXyveOu+4Occ=;
- b=o1UkjlThfBBa6iqTcfljFb4ECDZ7ry9X37WSrvdGacUrcFMTCKh1T4yXU1CD4qh1jV
- 2SGoyQi+GvXgYA5reTT1HAS26eGjZG02VFDdi+iujoG/ti6dLkR9kKHqLrX9Rr43JAuZ
- GsjZgkLcprUdj0OgvHgTOvDeWAaZ8e8U0VCfEQTOYrseEFyEC6VtyrbO9UX7KJ8+EuN/
- eCec/Ro1iFYUprvxUjB9gn65hqG54w0aUXCHDIUigk3y+OZkk4W+Ts7xCsmvX5YadzeJ
- 6IaYFTP/opvDlh/HcUzTeO6tOOaNCnzGymcVQwgGcjAfPlV3ypL0EFiuM65hE6BqjK1v
- BF7Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWoLrRcEXy0pwKiUb+k52RUblEZo10ezngHZIK2/p+2H4z9UKJ4oe3P6cG0FNBVGaskIpVrTDLm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxP3baECSRF8k1sFrhfDz/cQasQzv7KwFUIIUFtYS0p7XKHOVA0
- u4oshgZvzUt0RpmDlm3jnRPnNWNSAebv5mhsYQ7fk1s85lNHhTpRe1DyOZ72wXJ0lJhIk7ZilGN
- Ac7UwrdGAiSBJbZTVr6v387dVlKvQk68=
-X-Gm-Gg: ASbGncsjRQYpSPXwI0ZTxcSo/uVg+zphIfPVoBCQFfzqlyVddfm0J1K12yrjj7YFsLZ
- C8LhNJpbtn82yc/NWUVeCa6gF/dgThBAf2dFXqc1ZJMgHR0pg0CxwtzjpKRtGIS8H2ksw6nGQ2N
- xmxg4B83oYIkk3fOjgLZOtnJZx7GognQ32MDZvnVYlJpDBqJZtkNd/MlCyf/JOVBoR/h1ACIuu4
- CSBox6PWgpdv4bI8pzotyNY7d2ST3dOaag0mebG/IadtFo2VF4qVCNi6H+vrd219AxWLjyIq2AE
- 1uWs3ohzlpo9zoKMY7FWlCGChQ==
-X-Google-Smtp-Source: AGHT+IGICCMscDDR09yJt5H0iPKTO2HVhFlo2/cy7JDDWeiBMU3GNUjCo5LwRgqW0USPT3MDqhixj3g/rTT4Pi3J0GM=
-X-Received: by 2002:a17:902:d508:b0:269:96d2:9c96 with SMTP id
- d9443c01a7336-27ed5b0a538mr51481475ad.0.1758912374667; Fri, 26 Sep 2025
- 11:46:14 -0700 (PDT)
+X-Greylist: delayed 573 seconds by postgrey-1.36 at gabe;
+ Sat, 06 Dec 2025 13:56:08 UTC
+Received: from fhigh-b3-smtp.messagingengine.com
+ (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A25F410E2EC;
+ Sat,  6 Dec 2025 13:56:08 +0000 (UTC)
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id EC9187A0083;
+ Sat,  6 Dec 2025 08:46:34 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+ by phl-compute-01.internal (MEProxy); Sat, 06 Dec 2025 08:46:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
+ :cc:content-type:content-type:date:date:from:from:in-reply-to
+ :in-reply-to:message-id:mime-version:references:reply-to:subject
+ :subject:to:to; s=fm3; t=1765028794; x=1765115194; bh=4oCR8QuC/k
+ bl5GjCWF6w7wf5pC9iRc8I5CDDR7QSefA=; b=SmEphrvgOGCaKt5HCtMUrP00nR
+ PaM0g7VDfIDZfmkFFdgi+F0whXrhjpOVqC8LB4mGWjs9/dlZBrPY6ku1Gu25itdV
+ fn/VFcp+tlO28xU2PxBg0Fj82KOH4/uCvPNg6Umjt8zqcoP+8MoxEUCkN/ii87U/
+ pJJXYcQNUavoscMaP/VeIPMhRj4rdBIFD8xe8NfsP/pBEko51IDBwKHBzZ7abk4m
+ /cgyEJW7sOfhh7eXU0953mcBHqs83MZIPPsAylWYNUSFxGF23mcVJ0GII7jBBouh
+ gq6H6logf4hlzhv9jQHLBPgxumsOCRjvr62F211rfd6oy8jLOsvdngIxgJeg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-type:content-type:date:date
+ :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+ :message-id:mime-version:references:reply-to:subject:subject:to
+ :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
+ 1765028794; x=1765115194; bh=4oCR8QuC/kbl5GjCWF6w7wf5pC9iRc8I5CD
+ DR7QSefA=; b=LXW5bzIXkF/rzQJYiG9LSqlH3VCzd5+fD7P3P5u8B9+UzfoiO0V
+ ZbzvLMGwhqQ715eO06t9AAg4+WlycGyJ5ccFGg4Jt+rYDhJi59chysTNdreEL/oF
+ Re7cpTUn0mwjy1+KculXtaUgeMaHh+vbme4tMnjQids458ju7qwfyvLMN+txsXop
+ Hf+/+9OCrE87rStDuIlkpa9D8uf2NZM7oKGQU9fQIdBEsM0LanAMgwkXuG2EQcxd
+ CvM1eSx3Bq23R0V6OPyXWoWDpwYbr+Yt99v6oJfnmK3TM+efRPprYzFCA06t6etT
+ IYHpxWaBr5hpBgDIx86Q1v15t5umLfBP0kw==
+X-ME-Sender: <xms:uTM0afF4PO54fFr2HUg_A_1p8eaCCgTejw9fURjzxyc8quJrz2Mt_g>
+ <xme:uTM0aRP45EKLX5RZXtCa0u9FY4y7_I1ppWwAV1W_aHTSzj7Bl2mHWAyn5LejeBhjz
+ MSDed4mHO-RQs0SciK2wJQHiQosw0WM7kZgfHB-yOBiyfOuNEUGZVs>
+X-ME-Received: <xmr:uTM0aevCDrYK_0tNOFyPijnoVxwOAN-tO-9OJ_JFOCWXvrdlbKzWXYtxO9vhZr3nD_Gu_KKBopWambbPs-NSdy7l-ryqrsyRb2M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdduuddtlecutefuodetggdotefrod
+ ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+ ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+ hrpeffhffvvefukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpeflrghnnhgvucfi
+ rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfdvff
+ evleegudejfeefheehkeehleehfefgjefffeetudegtefhuedufeehfeetnecuvehluhhs
+ thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
+ hnvghtpdhnsggprhgtphhtthhopedvfedpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
+ oheplhihuhguvgesrhgvughhrghtrdgtohhmpdhrtghpthhtohepughrihdquggvvhgvlh
+ eslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehruhhsthdq
+ fhhorhdqlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlh
+ hitggvrhihhhhlsehgohhoghhlvgdrtghomhdprhgtphhtthhopegurghnihgvlhdrrghl
+ mhgvihgurgestgholhhlrggsohhrrgdrtghomhdprhgtphhtthhopegurghkrheskhgvrh
+ hnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgv
+ rhhnvghlrdhorhhgpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdrtghomhdprh
+ gtphhtthhopehsihhmohhnrgesfhhffihllhdrtghh
+X-ME-Proxy: <xmx:uTM0afLvrk7c6a7QlQHcVA5UKqpWW_xZaHR4frBnfiXekHFAvroK3Q>
+ <xmx:uTM0aUfvb1dMAyFXl7D3Wnzap7SkuT1tLVQVK4E9U1pk8mihC1BM4w>
+ <xmx:uTM0aaLyQMF4akamENeQQJfWbXYn7RA2lrfC9sJCH0AEXb6HbkE0ZQ>
+ <xmx:uTM0aeAauhTn4ZNFc5qJtmAGtB3bqTDl4YhO9fynvYKWqbsdzdd2Qw>
+ <xmx:ujM0aRLEcK_kjPJ7ddX1XLpVZ4ViE_nJoeI61bVSZuGnlP425PklA291>
+Feedback-ID: i47b949f6:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sat,
+ 6 Dec 2025 08:46:33 -0500 (EST)
+Date: Sat, 6 Dec 2025 14:46:32 +0100
+From: Janne Grunau <j@jannau.net>
+To: Lyude Paul <lyude@redhat.com>
+Cc: dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Alice Ryhl <aliceryhl@google.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Asahi Lina <lina+kernel@asahilina.net>,
+ Shankari Anand <shankari.ak0208@gmail.com>,
+ "open list:DRM DRIVER FOR NVIDIA GPUS [RUST]" <nouveau@lists.freedesktop.org>
+Subject: Re: [PATCH v6 4/8] rust: gem: Introduce DriverObject::Args
+Message-ID: <20251206134632.GB1097212@robin.jannau.net>
+References: <20251202220924.520644-1-lyude@redhat.com>
+ <20251202220924.520644-5-lyude@redhat.com>
 MIME-Version: 1.0
-References: <20250925-core-cstr-cstrings-v2-0-78e0aaace1cd@gmail.com>
- <111409f1-33cd-4cd1-b3fd-e38402a82c9f@sirena.org.uk>
-In-Reply-To: <111409f1-33cd-4cd1-b3fd-e38402a82c9f@sirena.org.uk>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 26 Sep 2025 20:46:02 +0200
-X-Gm-Features: AS18NWDpMwmpfdQtAlAM5mfbOpZzjcwdG8Vuf5peZ5dotzDbBFdbC1UDMcnVE7M
-Message-ID: <CANiq72kNr32NKHGn=gfH52C5VLr9S0Xk0HNzroPqYhx4GngkXA@mail.gmail.com>
-Subject: Re: [PATCH v2 00/19] rust: replace `kernel::c_str!` with C-Strings
-To: Mark Brown <broonie@debian.org>
-Cc: Tamir Duberstein <tamird@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, Miguel Ojeda <ojeda@kernel.org>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, 
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- FUJITA Tomonori <fujita.tomonori@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
- Breno Leitao <leitao@debian.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>, 
- Leon Romanovsky <leon@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Arnd Bergmann <arnd@arndb.de>, Brendan Higgins <brendan.higgins@linux.dev>, 
- David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Jens Axboe <axboe@kernel.dk>, Alexandre Courbot <acourbot@nvidia.com>,
- Alexander Viro <viro@zeniv.linux.org.uk>, 
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Liam Girdwood <lgirdwood@gmail.com>, 
- linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, netdev@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-kselftest@vger.kernel.org, kunit-dev@googlegroups.com, 
- linux-block@vger.kernel.org, linux-fsdevel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20251202220924.520644-5-lyude@redhat.com>
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:44 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,13 +115,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Thu, Sep 25, 2025 at 4:01=E2=80=AFPM Mark Brown <broonie@debian.org> wro=
-te:
->
-> Given that we're almost at the merge window isn't it likely that these
-> will get applied once the current rust tree is in mainline?
+On Tue, Dec 02, 2025 at 05:03:30PM -0500, Lyude Paul wrote:
+> This is an associated type that may be used in order to specify a data-type
+> to pass to gem objects when construction them, allowing for drivers to more
+> easily initialize their private-data for gem objects.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+> 
+> ---
+> V3:
+> * s/BaseDriverObject/DriverObject/
+> V4:
+> * Fix leftover reference to BaseObjectDriver in rustdoc for
+>   DriverObject::Args
+> V6:
+> * Fix build errors in Tyr
+> 
+>  drivers/gpu/drm/nova/gem.rs |  5 +++--
+>  drivers/gpu/drm/tyr/gem.rs  |  3 ++-
+>  rust/kernel/drm/gem/mod.rs  | 13 ++++++++++---
+>  3 files changed, 15 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
+> index 2760ba4f3450b..173077eeb2def 100644
+> --- a/drivers/gpu/drm/nova/gem.rs
+> +++ b/drivers/gpu/drm/nova/gem.rs
+> @@ -18,8 +18,9 @@ pub(crate) struct NovaObject {}
+>  
+>  impl gem::DriverObject for NovaObject {
+>      type Driver = NovaDriver;
+> +    type Args = ();
+>  
+> -    fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
+> +    fn new(_dev: &NovaDevice, _size: usize, _args: Self::Args) -> impl PinInit<Self, Error> {
+>          try_pin_init!(NovaObject {})
+>      }
+>  }
+> @@ -33,7 +34,7 @@ pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self
+>              return Err(EINVAL);
+>          }
+>  
+> -        gem::Object::new(dev, aligned_size)
+> +        gem::Object::new(dev, aligned_size, ())
+>      }
+>  
+>      /// Look up a GEM object handle for a `File` and return an `ObjectRef` for it.
+> diff --git a/drivers/gpu/drm/tyr/gem.rs b/drivers/gpu/drm/tyr/gem.rs
+> index 1273bf89dbd5d..bb5e7871efa94 100644
+> --- a/drivers/gpu/drm/tyr/gem.rs
+> +++ b/drivers/gpu/drm/tyr/gem.rs
+> @@ -11,8 +11,9 @@ pub(crate) struct TyrObject {}
+>  
+>  impl gem::DriverObject for TyrObject {
+>      type Driver = TyrDriver;
+> +    type Args = ();
+>  
+> -    fn new(_dev: &TyrDevice, _size: usize) -> impl PinInit<Self, Error> {
+> +    fn new(_dev: &TyrDevice, _size: usize, _args: ()) -> impl PinInit<Self, Error> {
 
-Yeah, I am submitting the PR to Linus very soon anyway.
+nit: should the type for _args be Self::Args for consistency?
 
-Cheers,
-Miguel
+>          try_pin_init!(TyrObject {})
+>      }
+>  }
+> diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
+> index ec3c1b1775196..4bcaee2d4b308 100644
+> --- a/rust/kernel/drm/gem/mod.rs
+> +++ b/rust/kernel/drm/gem/mod.rs
+> @@ -64,8 +64,15 @@ pub trait DriverObject: Sync + Send + Sized {
+>      /// Parent `Driver` for this object.
+>      type Driver: drm::Driver;
+>  
+> +    /// The data type to use for passing arguments to [`DriverObject::new`].
+> +    type Args;
+> +
+>      /// Create a new driver data object for a GEM object of a given size.
+> -    fn new(dev: &drm::Device<Self::Driver>, size: usize) -> impl PinInit<Self, Error>;
+> +    fn new(
+> +        dev: &drm::Device<Self::Driver>,
+> +        size: usize,
+> +        args: Self::Args,
+> +    ) -> impl PinInit<Self, Error>;
+>  
+>      /// Open a new handle to an existing object, associated with a File.
+>      fn open(_obj: &<Self::Driver as drm::Driver>::Object, _file: &DriverFile<Self>) -> Result {
+> @@ -244,11 +251,11 @@ impl<T: DriverObject> Object<T> {
+>      };
+>  
+>      /// Create a new GEM object.
+> -    pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
+> +    pub fn new(dev: &drm::Device<T::Driver>, size: usize, args: T::Args) -> Result<ARef<Self>> {
+>          let obj: Pin<KBox<Self>> = KBox::pin_init(
+>              try_pin_init!(Self {
+>                  obj: Opaque::new(bindings::drm_gem_object::default()),
+> -                data <- T::new(dev, size),
+> +                data <- T::new(dev, size, args),
+>              }),
+>              GFP_KERNEL,
+>          )?;
+> -- 
+> 2.52.0
+
+Reviewed-by: Janne Grunau <j@jananu.net>
+
+Janne
