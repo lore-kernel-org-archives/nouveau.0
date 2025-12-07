@@ -4,82 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96C9ED5B154
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71B72D5B158
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D72BF10ECA1;
-	Sat, 13 Dec 2025 12:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C64410ECA5;
+	Sat, 13 Dec 2025 12:42:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="XnsCX0Si";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="R8GOA/u+";
 	dkim-atps=neutral
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
- [209.85.210.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3419C10E1AB
- for <nouveau@lists.freedesktop.org>; Fri, 15 Aug 2025 05:32:53 +0000 (UTC)
-Received: by mail-pf1-f169.google.com with SMTP id
- d2e1a72fcca58-76e2eb4a171so2337798b3a.3
- for <nouveau@lists.freedesktop.org>; Thu, 14 Aug 2025 22:32:53 -0700 (PDT)
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+ [209.85.208.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2434A10E0CF
+ for <nouveau@lists.freedesktop.org>; Sun,  7 Dec 2025 08:59:18 +0000 (UTC)
+Received: by mail-lj1-f181.google.com with SMTP id
+ 38308e7fff4ca-37b95f87d64so30539281fa.2
+ for <nouveau@lists.freedesktop.org>; Sun, 07 Dec 2025 00:59:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1755235973; x=1755840773; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=QTd2SnS44QbWRezmUmEtQLo0ES7cL0NdhN8U5PrZ/34=;
- b=XnsCX0SiQQM8QhcVDjpkFJzJmzN4xCsjY3uXO6GSilPfimfWK50/6f6o+Ys20vRyPU
- 72J/GFPmnbxoKqS8cGY9dnNt7ejXoP/O539RN/fCGr2FcBRzETMmKpnTi3KiRjbq+84Y
- nMSOo52f3P3NMWfONYWBMTLsX7WdFcw+IMHDUmI2YPkMylsRuDcmELcCT5BbuXTyfYLW
- cc7Z0BMKrzmbiW7SCLBsToyBUkzcnv9hsfxKW0xI70XSVZ6xkzWqy7faKTDD7t/DqJdN
- SInTQ+sR6dNCEA+gT248gioyjAc50u4ezGimCwc3jcEXqLrGSh0QyTPPeJNOGUkUbLsT
- snsA==
+ d=gmail.com; s=20230601; t=1765097956; x=1765702756; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=5b12hRnRWv6onGjF90Cte/QEE3Sc5Ju08UGYaWm18PI=;
+ b=R8GOA/u+C+ipEXhlsi4Mk1Kz2Y8qfTjg2ktLLqSbTmesNJtohY4SbOLUlQSDYwn1Yg
+ vPysCFISESRCPp4ikQzOXfw4cmVVWEkfLHXzq92Xxuv60ByKwBR05qk6JhyQuBY457P8
+ tvljWYsXfYlhg7uLYWswGOJMFschT9rfh6TYhobOmJWlZn2PXxW/0RHUytjTSMEHPLAs
+ zXk7pVtUxWZROdlh1DobBcA1e7jr4lH9OfiTd2Snn7L6Whssmto1tKcbvnmB6/h9YHeJ
+ PDG9b/eVI1KR7ndakLggwzSEbCC/lvrdrisWvRqm3VyTR8WeDmEihQZg+PWcYmHDniVu
+ 2l9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1755235973; x=1755840773;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=QTd2SnS44QbWRezmUmEtQLo0ES7cL0NdhN8U5PrZ/34=;
- b=PSZvfWjw2PNwlXSVU0fGXbzJD1WAgLqdXTvS9AGlnmsxmpMhwTT/Q7LSxW8rCDofhK
- y9DgUmuSUrtJx7MXBwi3Z9oU5W+tHwlVBdhFU3r1G0+Qbry8iJzOiQ96BwelKOjJfpYH
- 9OsF5jksHdO4t8hAYn4gCK0kY25YOwOTqRlBCabBE81E3RHJ6iWemTyrbLMkrY+ke8Hm
- gJZ+MRlNXk99mUTT9i2ZtXcyhbJuhrhI9uTLGee3w3gFx+BLsILsaEeUz7z85PBOlISa
- txGkP/34PUwsQzHQ95EOyCBLvkarMj6WCSYxJrYoeWNGtXYDYn1NK/qz7L5gkYcFXkg3
- Wz/Q==
+ d=1e100.net; s=20230601; t=1765097956; x=1765702756;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=5b12hRnRWv6onGjF90Cte/QEE3Sc5Ju08UGYaWm18PI=;
+ b=cIcZEXuQe/QeCx/i9/9/0qPyuPLQGH6UGMyEl08OcaSuwRLXtx4xl/sPCxNkoYM4BC
+ HXQzkYOiOk2mgO+s84JUdiHiny2jpdkf2axzTpAIpJfdlxEWY/NV8XcXyrN5OzAmHHpx
+ spMFFwxukgR1z0nbIalt4NDY7o3FtAhU5pH+2vVW6PN+MojMznUFv0CLohlf4fM30PXJ
+ Ei2u5cHdJeXwL8/QMKYOrhezE9MtMK5fXUQUOT9d3xTSqaltNLU7ameh2NFD3cc9QJ44
+ SNoOUDaNmpz98Yvfx7GATSaHsvhse9FpeeVtliIkWFDoBjYWGNqoswdB8wuJhnsIcs4K
+ lL8A==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXD7Wlg4X3yVeFMdekddRq+EMg8hdNE7MRV+sh7l15UUg8pPN3tZlqeIewf87flAJkrQMrjIiD4@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyfBp25pcHF3NRRe7BFGLHBvAN+Dg08tiIfzcNYnaTDTXN4iKC6
- FAYI+2w8C3cxoJT0H/x2zLD6yd6Kiz2rHUoHWGwc0bsajBELse0B7cmq
-X-Gm-Gg: ASbGncvZaC2WQrIxOVXvFMutIB+rPGvgi2AYyfx04MB7QReqnf79gBzMFmy5TwEz3Q+
- Viqgp+I4ssdO8dw6HiLajdyVfA244eK9oDk01yHn1HRfw7Wd/zWHWLzWkBAPd5jN0VGNIuo7rWt
- 7KcsMfcxntUIXel/cAbcle/Si/Gdis7KxQQDIRt5zFHXuzEfU9Rv+GKhBHQOC11Vx5+XoZnZf7W
- BUvLV73dbO1XiJtJCsXeEnoLuZ49avvMkErStDywQGgptZ+SBdRIDVqfNo4gsH+xaUHl2lBWMU0
- PXpmgz4SGUq0KUU49zeHtP29WitL2KoIfEB0i7mkyg9i3pnAFaYoFhrFvLZulEi4kk6qfHvO2Di
- JoFcjeJ8fALs4gDMFXXD8v9aaKYg2JMzcQUc/A5ftVJw=
-X-Google-Smtp-Source: AGHT+IHuZOMmR+ZHN6RawSbyEcHlvGHloyTnjAjRuRVJt3T79TKeciymvac/iLTdRF79wIc9l0ITyA==
-X-Received: by 2002:a05:6a00:1acd:b0:748:e585:3c42 with SMTP id
- d2e1a72fcca58-76e447ab3b2mr978211b3a.15.1755235972528; 
- Thu, 14 Aug 2025 22:32:52 -0700 (PDT)
-Received: from localhost.localdomain ([112.149.32.52])
+ AJvYcCU90Zb4jz2lKKDS8dHCwYYRrCaQH/RCwlksKWko1Lt9Ls0gh1wbFRfQ8VtPzcKwQtTPotjwPf6h@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy8tSWpN4zYzEeIDqWqIhzdCcOAenTc+Kmqs52gSMtNHdZejqLf
+ M2YRLD6Xz0kvvKA9tiXNS+vhW3D4tNS2ixhKxjHL6evUFhngv2hkvTiY
+X-Gm-Gg: ASbGncvmqekCR69I5w0bFllVZldhVsp1dtMU4s09ZoULeY3MQdPm9Zwik0z0RFex34R
+ RAdYomGnvU27Pu1D4tRc2i03BJ9m8BgQr1qrdeEI4BQp57nQn0h7Lf+ngwzGJKRDm5bxRZwTLqT
+ x4KCuxVRQXMJfpkVJDo77TpWdyMMOvSubLsS0EQN3z1SGdgLdnNGn9jXLeor/GRaXb21CwWNXNY
+ OHZ9iub2YFMihBYYEyg1OQCNxAYIRnnaGC9KNIwpTtRZGoxUduCG19y14MMStR1ZXOLJZD0kZPD
+ PH1NI4iWykFAYENon/V/EsP/tSyoPkZCW6k1GovO04fVIQ2OSuK9VxhpTqVaUnf+LjdM/ppVIwA
+ Hud+W/QnsvBjJTDlhwhXOewR7RUOl+xt0XxkavToS9vkdEML4w9dac/8GO9Jq0awprHMpbf6FIi
+ lKHTT2R7AbOIBhSpQE4BWkT+F9aBtm3BiyH2eXdZGXCcTzDwO7FWSoumSP9i353aaHd+2vH6BXX
+ LWOTnioXYMuDZd8ymrWsE5RdTnVUF5t1yr2aP8EuumJ+u7UDGACaA==
+X-Google-Smtp-Source: AGHT+IHkpbBEjUpSSNR6c1N0xrVq9kG40VYKHC/sRRQKwimb+t89Kzoar8J3mhxBoq7JhZtP7BsBvQ==
+X-Received: by 2002:a05:6000:430d:b0:42b:5448:7b08 with SMTP id
+ ffacd0b85a97d-42f89f094b2mr4983612f8f.5.1765091533868; 
+ Sat, 06 Dec 2025 23:12:13 -0800 (PST)
+Received: from ?IPV6:2003:df:bf22:3c00:1c42:64e:ef2a:93cd?
+ (p200300dfbf223c001c42064eef2a93cd.dip0.t-ipconnect.de.
+ [2003:df:bf22:3c00:1c42:64e:ef2a:93cd])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-76e4556692bsm335234b3a.61.2025.08.14.22.32.47
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 14 Aug 2025 22:32:52 -0700 (PDT)
-From: Jesung Yang <y.j3ms.n@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
-Subject: [PATCH v2 5/5] rust: macros: add derive macro for `Into`
-Date: Fri, 15 Aug 2025 05:32:15 +0000
-Message-Id: <042f8ba119337b090e8774355fc77478d86ea8ef.1755235180.git.y.j3ms.n@gmail.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <cover.1755235180.git.y.j3ms.n@gmail.com>
-References: <cover.1755235180.git.y.j3ms.n@gmail.com>
+ ffacd0b85a97d-42f7cc090bdsm18354202f8f.19.2025.12.06.23.12.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Sat, 06 Dec 2025 23:12:13 -0800 (PST)
+Message-ID: <ca549425-e10b-4d54-aebe-278d90c8cb92@gmail.com>
+Date: Sun, 7 Dec 2025 08:12:10 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:45 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 1/7] rust: pci: expose sriov_get_totalvfs() helper
+To: Zhi Wang <zhiw@nvidia.com>, rust-for-linux@vger.kernel.org,
+ linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Cc: airlied@gmail.com, dakr@kernel.org, aliceryhl@google.com,
+ bhelgaas@google.com, kwilczynski@kernel.org, ojeda@kernel.org,
+ alex.gaynor@gmail.com, boqun.feng@gmail.com, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, lossin@kernel.org, a.hindborg@kernel.org,
+ tmgross@umich.edu, markus.probst@posteo.de, helgaas@kernel.org,
+ cjia@nvidia.com, alex@shazbot.org, smitra@nvidia.com, ankita@nvidia.com,
+ aniketa@nvidia.com, kwankhede@nvidia.com, targupta@nvidia.com,
+ acourbot@nvidia.com, joelagnelf@nvidia.com, jhubbard@nvidia.com,
+ zhiwang@kernel.org
+References: <20251206124208.305963-1-zhiw@nvidia.com>
+ <20251206124208.305963-2-zhiw@nvidia.com>
+Content-Language: de-AT-frami, en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <20251206124208.305963-2-zhiw@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,225 +106,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-Introduce a procedural macro `Into` to automatically implement the
-`Into` trait for unit-only enums.
+On 06.12.25 13:42, Zhi Wang wrote:
+> Add a wrapper for the `pci_sriov_get_totalvfs()` helper, allowing drivers
+> to query the number of total SR-IOV virtual functions a PCI device
+> supports.
+> 
+> This is useful for components that need to conditionally enable features
+> based on SR-IOV capability.
+> 
+> Signed-off-by: Zhi Wang <zhiw@nvidia.com>
+> ---
+>  rust/kernel/pci.rs | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
+> index 7fcc5f6022c1..9a82e83dfd30 100644
+> --- a/rust/kernel/pci.rs
+> +++ b/rust/kernel/pci.rs
+> @@ -514,6 +514,18 @@ pub fn pci_class(&self) -> Class {
+>          // SAFETY: `self.as_raw` is a valid pointer to a `struct pci_dev`.
+>          Class::from_raw(unsafe { (*self.as_raw()).class })
+>      }
+> +
+> +    /// Returns total number of VFs, or `Err(ENODEV)` if none available.
+> +    pub fn sriov_get_totalvfs(&self) -> Result<i32> {
+> +        // SAFETY: `self.as_raw()` is a valid pointer to a `struct pci_dev`.
+> +        let vfs = unsafe { bindings::pci_sriov_get_totalvfs(self.as_raw()) };
+> +
+> +        if vfs != 0 {
+> +            Ok(vfs)
+> +        } else {
+> +            Err(ENODEV)
+> +        }
 
-This reduces boilerplate in cases where enum variants need to be
-interpreted as relevant numeric values. A concrete example can be
-found in nova-core, where the `register!()` macro requires enum types
-used within it to be convertible via `u32::from()` [1].
+In the thread [1] there was some discussion about the `if {} else {}`
+"style". From that discussion I "distilled" 6 options [2] which I
+liked for having an overview :) Of course not all of these applied
+there (const), neither will they here. And all have pros and cons. I
+think in the end option #4 was selected.
 
-Note that the macro actually generates `From<E> for T` implementations,
-where `E` is an enum identifier and `T` is an arbitrary integer type.
-This automatically provides the corresponding `Into<T> for E`
-implementations through the blanket implementation.
+What's about to do something similar here (and in the 2/7 patch as well)?
 
-Tested-by: Alexandre Courbot <acourbot@nvidia.com>
-Link: https://lore.kernel.org/rust-for-linux/20250624132337.2242-1-dakr@kernel.org/ [1]
-Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
----
- rust/macros/convert.rs |  36 ++++++++++---
- rust/macros/lib.rs     | 115 +++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 145 insertions(+), 6 deletions(-)
+if vfs == 0 {
+    return Err(ENODEV);
+}
 
-diff --git a/rust/macros/convert.rs b/rust/macros/convert.rs
-index 0084bc4308c1..a6ef67ba27c7 100644
---- a/rust/macros/convert.rs
-+++ b/rust/macros/convert.rs
-@@ -3,6 +3,12 @@
- use proc_macro::{token_stream, Delimiter, Ident, Span, TokenStream, TokenTree};
- use std::iter::Peekable;
- 
-+#[derive(Debug)]
-+enum DeriveTarget {
-+    TryFrom,
-+    Into,
-+}
-+
- #[derive(Debug)]
- struct TypeArgs {
-     helper: Vec<Ident>,
-@@ -13,13 +19,20 @@ struct TypeArgs {
-     "u8", "u16", "u32", "u64", "u128", "usize", "i8", "i16", "i32", "i64", "i128", "isize",
- ];
- 
-+pub(crate) fn derive_into(input: TokenStream) -> TokenStream {
-+    derive(input, DeriveTarget::Into)
-+}
-+
- pub(crate) fn derive_try_from(input: TokenStream) -> TokenStream {
--    derive(input)
-+    derive(input, DeriveTarget::TryFrom)
- }
- 
--fn derive(input: TokenStream) -> TokenStream {
--    let derive_target = "TryFrom";
--    let derive_helper = "try_from";
-+fn derive(input: TokenStream, target: DeriveTarget) -> TokenStream {
-+    type ImplFn = fn(&Ident, &Ident, &[Ident]) -> TokenStream;
-+    let (derive_target, derive_helper, impl_trait) = match target {
-+        DeriveTarget::TryFrom => ("TryFrom", "try_from", impl_try_from as ImplFn),
-+        DeriveTarget::Into => ("Into", "into", impl_into as ImplFn),
-+    };
- 
-     let mut tokens = input.into_iter().peekable();
- 
-@@ -85,12 +98,12 @@ fn derive(input: TokenStream) -> TokenStream {
-         let ty = type_args
-             .repr
-             .unwrap_or_else(|| Ident::new("isize", Span::mixed_site()));
--        impl_try_from(&ty, &enum_ident, &variants)
-+        impl_trait(&ty, &enum_ident, &variants)
-     } else {
-         let impls = type_args
-             .helper
-             .iter()
--            .map(|ty| impl_try_from(ty, &enum_ident, &variants));
-+            .map(|ty| impl_trait(ty, &enum_ident, &variants));
-         quote! { #(#impls)* }
-     }
- }
-@@ -335,3 +348,14 @@ fn try_from(#param: #ty) -> Result<Self, Self::Error> {
-         }
-     }
- }
-+
-+fn impl_into(ty: &Ident, enum_ident: &Ident, _: &[Ident]) -> TokenStream {
-+    quote! {
-+        #[automatically_derived]
-+        impl ::core::convert::From<#enum_ident> for #ty {
-+            fn from(value: #enum_ident) -> #ty {
-+                value as #ty
-+            }
-+        }
-+    }
-+}
-diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
-index 569198f188f7..374c1bdb696a 100644
---- a/rust/macros/lib.rs
-+++ b/rust/macros/lib.rs
-@@ -427,6 +427,121 @@ pub fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
-     kunit::kunit_tests(attr, ts)
- }
- 
-+/// A derive macro for providing an impl of the [`Into`] trait.
-+///
-+/// This macro automatically derives [`Into`] trait for a given enum by generating
-+/// the relevant [`From`] implementation. Currently, it only supports [unit-only enum]s
-+/// without generic parameters.
-+///
-+/// [unit-only enum]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.unit-only
-+///
-+/// # Notes
-+///
-+/// Unlike its name suggests, the macro actually generates [`From`] implementations
-+/// which automatically provide corresponding [`Into`] implementations.
-+///
-+/// The macro uses the `into` custom attribute or `repr` attribute to generate [`From`]
-+/// implementations. `into` always takes precedence over `repr`.
-+///
-+/// # Caveats
-+///
-+/// Ensure that every integer type specified in `#[into(...)]` is large enough to cover
-+/// all enum discriminants. Otherwise, the internal `as` casts may overflow.
-+///
-+/// # Examples
-+///
-+/// ## Without Attributes
-+///
-+/// Since [the default `Rust` representation uses `isize` for the discriminant type][repr-rs],
-+/// the macro implements `From<Foo>` for `isize`:
-+///
-+/// [repr-rs]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.discriminant.repr-rust
-+///
-+/// ```rust
-+/// use kernel::macros::Into;
-+/// use kernel::prelude::*;
-+///
-+/// #[derive(Debug, Default, Into)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B = 0x17,
-+/// }
-+///
-+/// assert_eq!(0isize, Foo::A.into());
-+/// assert_eq!(0x17isize, Foo::B.into());
-+/// ```
-+///
-+/// ## With `#[repr(T)]`
-+///
-+/// The macro implements `From<Foo>` for `T`:
-+///
-+/// ```rust
-+/// use kernel::macros::Into;
-+/// use kernel::prelude::*;
-+///
-+/// #[derive(Debug, Default, Into)]
-+/// #[repr(u8)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B = 0x17,
-+/// }
-+///
-+/// assert_eq!(0u8, Foo::A.into());
-+/// assert_eq!(0x17u8, Foo::B.into());
-+/// ```
-+///
-+/// ## With `#[into(...)]`
-+///
-+/// The macro implements `From<Foo>` for each `T` specified in `#[into(...)]`,
-+/// which always overrides `#[repr(...)]`:
-+///
-+/// ```rust
-+/// use kernel::macros::Into;
-+/// use kernel::prelude::*;
-+///
-+/// #[derive(Debug, Default, Into)]
-+/// #[into(u8, u16)]
-+/// #[repr(u8)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B = 0x17,
-+/// }
-+///
-+/// assert_eq!(0u16, Foo::A.into());
-+/// assert_eq!(0x17u16, Foo::B.into());
-+/// ```
-+///
-+/// ## Unsupported Cases
-+///
-+/// The following examples do not compile:
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::Into;
-+/// // Generic parameters are not allowed.
-+/// #[derive(Into)]
-+/// enum Foo<T> {
-+///     A,
-+/// }
-+///
-+/// // Tuple-like enums or struct-like enums are not allowed.
-+/// #[derive(Into)]
-+/// enum Bar {
-+///     A(u8),
-+///     B { inner: u8 },
-+/// }
-+///
-+/// // Structs are not allowed.
-+/// #[derive(Into)]
-+/// struct Baz(u8);
-+/// ```
-+#[proc_macro_derive(Into, attributes(into))]
-+pub fn derive_into(input: TokenStream) -> TokenStream {
-+    convert::derive_into(input)
-+}
-+
- /// A derive macro for generating an impl of the [`TryFrom`] trait.
- ///
- /// This macro automatically derives [`TryFrom`] trait for a given enum. Currently,
--- 
-2.39.5
+Ok(vfs)
 
+Dirk
+
+[1]
+https://lore.kernel.org/rust-for-linux/CANiq72kiscT5euAUjcSzvxMzM9Hdj8aQGeUN_pVF-vHf3DhBuQ@mail.gmail.com/
+
+[2] Options distilled from the thread [1]:
+
+1.
+
+if let Some(sum) = addr.checked_add(PAGE_SIZE - 1) {
+    return Some(sum & PAGE_MASK);
+}
+None
+
+
+2.
+
+addr.checked_add(PAGE_SIZE - 1).map(|sum| sum & PAGE_MASK)
+
+
+3.
+
+if let Some(sum) = addr.checked_add(PAGE_SIZE - 1) {
+   Some(sum & PAGE_MASK);
+} else {
+   None
+}
+
+
+4.
+
+let Some(sum) = addr.checked_add(PAGE_SIZE - 1) else {
+    return None;
+};
+
+Some(sum & PAGE_MASK)
+
+
+5.
+
+match addr.checked_add(PAGE_SIZE - 1) {
+  Some(v) => Some(v & PAGE_MASK),
+  None => None,
+}
+
+6.
+
+Some(addr.checked_add(PAGE_SIZE - 1)? & PAGE_MASK)
