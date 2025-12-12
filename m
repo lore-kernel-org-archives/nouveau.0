@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86ABBD59D8E
-	for <nouveau@archiver.kernel.org>; Fri, 12 Dec 2025 20:50:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C806DD59D94
+	for <nouveau@archiver.kernel.org>; Fri, 12 Dec 2025 20:50:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B53F10E95E;
-	Fri, 12 Dec 2025 20:50:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7879010E963;
+	Fri, 12 Dec 2025 20:50:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sMhIIyoD";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="s0PL+uFX";
 	dkim-atps=neutral
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010006.outbound.protection.outlook.com
- [52.101.193.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D5A210E95E
- for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 20:50:30 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012042.outbound.protection.outlook.com
+ [40.107.200.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83B4F10E963
+ for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 20:50:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E8r3zTFyUAlYE/Wa/vjNw3AyqUHPi7LxQiSMVB/6yMzY/EJbABOpymlE97uw7LLQBLVuhEbrOqLiKGR5bZ5VCVYahPhWdUrJqSW8WIvz4RHkXZDyDbhfX7dvE+pIvZFDuNpjTZKFa1qe6e1q52c8E8riAqeC7VsfIckHiC3vMGVZLFeQFCy95l36cc/ig45Jv2fdxgr/nrfo34GPNkA0OWZe3ZxtxU8Dk5Wesfl3fn2F6NzHmFeQKMyoY7npHidTBQGQxNA03U/Nx7D+L+lnzFxne7jC3U6PMuW9DkrAPwQJqfl9UABTuuKduyDQkcDlVD7whPel7dPogmZgl9pIqA==
+ b=tcVntItLo1b+Qjsg/23iVx89Y7aO7JGY0ZqW18bKdgZT58Ofa3rtDi+DM554uwPltXjw2mpUL8vtov1HjI9d5wyyRkh1znxnATSD89w580S52oUYI4c+r+Tiu202NP4IdHIyZNx7+BXKbdKswUMHcyPLBVmQhl7bbldYl9VpV3lsXKbyuac68N2ARyPgvuQ8NrdhHwso/+MlJCiVNHgE4YMVy3tya+eES9tjFC8fvhobIzvELgDRnj79MYcYD1YPmA0X+xBLc2tmU6ePzeDUGxydkcryN5YK5D9H7I2VZcg+7lY1hg86AcEXSD21IFNUyWnLwVIrfYxEL5Wkx3dPKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dY3RmGkwLVgfxWKoNyRVjvfvRW+IPgebl08br6MzSxo=;
- b=cuexCVYkC1j9kAwuNa28Y/cgaAxCSko6gh98Scrb/fGHwDuRrVSvmFiMfZsz2UA4aP7KyNgdk45/2c54uXL6rkaz/yZF0NiHD1aIw6xJYI0hrWUULWYykNWXysCtw5W+NlnBNLjhrkWQsK7HKjCYMliaGZonQoXIc5I4IbTYJV9IzwojuQbTTAUZ0oHu9CqQt7Z+tOVADK9fjNAlKFSNEDecW/mcwTA3q9LWK2npYHRfFGVEvc7aDymopivjzC9lAWhFDzOoHfo5hhFyNrhvvVU7fbGW28sApOwXzX2+5wSAfkgF2DeoeoL00nlqfcoGPe52/Q4xfzSA7YsoFZYnMw==
+ bh=HLV01b18XKFs7fcmA97WvoLrjEG5gG3pxBjJtfgS4jo=;
+ b=tkl8Z4fPRJimI9mkLnJAIYizgKpXzyRZ/VWFT2LPFGdEjOrWrdB4urZANb0c84lFYTh4Sp/MwhUUUcLGi/02IO6mrkaOZUcvkLgKVXQSAFrNKvbtgxHK4Vfl5GwZ5jOo0eEEnpFCCAAcXnynz3yN/P/R5hqJGxh+2ZF7xH+jWM5XWaN7F68sVUOjZ9DjThB+kCveNyTXxnYA0CHTvk7LSalNAWtXbnCFFs/TxMrrEQTJeLHghRdFsld5ITlt4k9xcmxvfqoPs+3jgm6wvbD/lx2w82zGijTSYYFkkKyi8t+g2QhP5L5Gxq9CJ/rpL1TiyUkBHHy+SkUoHpqVpo05sA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
  dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dY3RmGkwLVgfxWKoNyRVjvfvRW+IPgebl08br6MzSxo=;
- b=sMhIIyoD4wmFEoiV94FGT2EPJ0As6kHLt8HVodBf0g6msAaGj8MMkn+9YrJh/dhm81n34Sd3OJRZItkX74ctMiFU71RUV3IqPjHUo5VbCgblRWrVwSsmrQaW9W9ixpSuF/fd18B5/x8wAiCEsw36n1IxZu8LxDIJ4FKKncjTr+egevs9bzXGbnlEOy8cFzrGLktg7+m177Bq79jYj4qFSKWyQ10gCl4QIY+gPAeMZOCIxJxVKvJHcDb9hIlZm7urou5weVuFTtDpdC+7Te6kpYmOwn4pT1NwkBlzHTvOm04nf6tgblY217uhqqNDQmtz9sNJgbmw0ZegtTt9UXVUrw==
-Received: from SN7P220CA0009.NAMP220.PROD.OUTLOOK.COM (2603:10b6:806:123::14)
- by PH0PR12MB8822.namprd12.prod.outlook.com (2603:10b6:510:28d::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.6; Fri, 12 Dec
- 2025 20:50:26 +0000
-Received: from SA2PEPF00003AE4.namprd02.prod.outlook.com
- (2603:10b6:806:123:cafe::49) by SN7P220CA0009.outlook.office365.com
- (2603:10b6:806:123::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.10 via Frontend Transport; Fri,
- 12 Dec 2025 20:50:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ bh=HLV01b18XKFs7fcmA97WvoLrjEG5gG3pxBjJtfgS4jo=;
+ b=s0PL+uFX3QMkCDJCckC14HGP2FDh/7fDy3ToV2G5oW1bSLdfdpJ0az7RmlHn9GTmPc/Jp6tdTd+HyHKQzRZH63xYKEAxyGBUMRgJxHeC8wxtRuCxJ8qu9T+c6Ixy8UNIBxTuBs1Fhr7TLa70GCv5zCcT1NiAMC8ihgm9YL+8yC6J7DGBP68F+ShyCZOc3mTj4dO2Rx0+7e26fQ3dgoKOBPKf5iF4v2F0k1jAoKxNgSdxmsrBsEWb0a/dzHkjOl0rnb/f6ycjyia47iSgj2g8OULxl8b9yLEY0Ns8KeS10EyChtC35zzUG9JbfeVHk33Xai/fQTrVAU6659ZSnzzYRQ==
+Received: from BY5PR16CA0018.namprd16.prod.outlook.com (2603:10b6:a03:1a0::31)
+ by SJ5PPFEB07C8E34.namprd12.prod.outlook.com
+ (2603:10b6:a0f:fc02::9a8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.8; Fri, 12 Dec
+ 2025 20:50:29 +0000
+Received: from MWH0EPF000A672E.namprd04.prod.outlook.com
+ (2603:10b6:a03:1a0:cafe::d5) by BY5PR16CA0018.outlook.office365.com
+ (2603:10b6:a03:1a0::31) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9412.9 via Frontend Transport; Fri,
+ 12 Dec 2025 20:50:30 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com;
  dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
 Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- SA2PEPF00003AE4.mail.protection.outlook.com (10.167.248.4) with Microsoft
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ MWH0EPF000A672E.mail.protection.outlook.com (10.167.249.20) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9412.4 via Frontend Transport; Fri, 12 Dec 2025 20:50:25 +0000
+ 15.20.9412.4 via Frontend Transport; Fri, 12 Dec 2025 20:50:29 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 12 Dec
- 2025 12:50:09 -0800
+ 2025 12:50:06 -0800
 Received: from ttabi.nvidia.com (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 12 Dec
- 2025 12:50:07 -0800
+ 2025 12:50:05 -0800
 From: Timur Tabi <ttabi@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
  <acourbot@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
  <joelagnelf@nvidia.com>, <lyude@redhat.com>, <nouveau@lists.freedesktop.org>, 
  <rust-for-linux@vger.kernel.org>
-Subject: [PATCH 6/7] gpu: nova-core: create loginit debugfs entry
-Date: Fri, 12 Dec 2025 14:49:51 -0600
-Message-ID: <20251212204952.3690244-7-ttabi@nvidia.com>
+Subject: [PATCH 4/7] gpu: nova-core: implement BinaryWriter for LogBuffer
+Date: Fri, 12 Dec 2025 14:49:49 -0600
+Message-ID: <20251212204952.3690244-5-ttabi@nvidia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251212204952.3690244-1-ttabi@nvidia.com>
 References: <20251212204952.3690244-1-ttabi@nvidia.com>
@@ -82,53 +82,53 @@ X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA2PEPF00003AE4:EE_|PH0PR12MB8822:EE_
-X-MS-Office365-Filtering-Correlation-Id: 51d9d87c-96f9-47da-4ceb-08de39c013ad
+X-MS-TrafficTypeDiagnostic: MWH0EPF000A672E:EE_|SJ5PPFEB07C8E34:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4530a528-f70d-4aa1-fd96-08de39c015a4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|36860700013|82310400026; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GQNqgV40KIfRLlYajkKSxbB8c7BAwDZ66wl35z4eyRx5wma201kMkjdNJnDx?=
- =?us-ascii?Q?z7Q2VNgfjChS3ZUG8L+uBMg9gWkLzPczxSGpYEIqAey470QPPntSSUIUXtm2?=
- =?us-ascii?Q?HMtg6dA12frKtocMIqYkV8ODYJbB17lTeHa6Tt4/hWkpHhkEITv0CKDNMWpU?=
- =?us-ascii?Q?/znTnuvHvQW8zUyxNlkBmwRZzsL1M8OEVKheVroLoeO39msYaDSGO+ALq/+R?=
- =?us-ascii?Q?Ibr2tVBGqmIjNjZnJAFo2SA98FZXvgwszRMmKGCwPWLATk4VCL43lbEljGd/?=
- =?us-ascii?Q?2vBRHkwMqAmXkwSWSucRi4m7vsob15J3otUaCv7zDm9rIs4NzK7urBv4+F0q?=
- =?us-ascii?Q?Bs32aGYxUs5JqLW5JvkeHy2gz4FuapLIMFZAHaMwLz1CHvLDhGjT5C+pDSnc?=
- =?us-ascii?Q?0/yyoIJWlKx/GuExurORHHOfFOEOMmxsSwvnHydRoSXbx0uc+GX1kdpNFDU1?=
- =?us-ascii?Q?0g2RI8A+Qxn207xTELesbmH7twSX8SB698JPqfxvAQ4NQ4esWZqwS9z5x3wD?=
- =?us-ascii?Q?IgJZF3S5JWKKaPQBqA1bNCUf6liL98vEkZuS5wOeQQJHXePQ5G3+plKdLu2k?=
- =?us-ascii?Q?j6ye5z5PQcVcJYUZYc6mvZ1RZeY2wUSsca3qNGMJ9jXnMvp/mzSUbdWb8Nuh?=
- =?us-ascii?Q?4p+wv15ggj0o+QN1UrG0pE3Y8kxb4uGTSYFpmdXwDxjrxr1bp0Dyfc59p2Ys?=
- =?us-ascii?Q?9Fm23YuMsNoM2KzhPBZbGCfGUPuVX3clVrctInXD2zIuEln/Sh7cn1yu7lpv?=
- =?us-ascii?Q?5jxcQnNO4RK7wSmeNoRLuEcLSos5MWKoW54OMsQ7SCQmc6DgbuMKYHOThoSE?=
- =?us-ascii?Q?5qdVyfmfo6vtdRL0sCE/tjUf36Z22VuVhjBdnmpZ93P37kzc/Em2N4gJA7q0?=
- =?us-ascii?Q?guy7x/aLjtME3TfToZMZ8w0KgsZE9mlg0vS3ECYb/N+EjtpvQffDJ08LLO8B?=
- =?us-ascii?Q?ACekjuwhZYj6rF8XuWclQrjhKEA4nWLh4gfYDd0zs1KcAWHa6IMnvcU4pp8o?=
- =?us-ascii?Q?NoYRLRjVk8A+Zb2M9nJ2VGjnoUjF4S1x5B+Wu/rczlVxKGPfGbly2RDW0742?=
- =?us-ascii?Q?NOy0zjdsJB//eUajPWGm2Sb6OLad/GxdJ17g6+vD6Arqg0lg3uLWE8iXEXUS?=
- =?us-ascii?Q?L7dESw7sQeNuy8gLyDA7DaDALw7o7c7IE/l5DOBFCs53OncVCUa+sbC91eD3?=
- =?us-ascii?Q?oJucvyMfp7jWclltLEbD3VZolndvu1g6AtTo19Gaf/0lhykZEuYs8DntNhQi?=
- =?us-ascii?Q?PURpblNwmq/iEjPZ3huvTsq7NMOg5IVEpWU969XxqpjkOt1TtKXlc/T/4jOh?=
- =?us-ascii?Q?VTIttBhMSVlMK6BhnUo0m+ITiHpzIll3Luv2bB8M/tS6zHmgirO+y361JX5x?=
- =?us-ascii?Q?iUFjU96Kz3ETgGC8fLRqvllH6TfritroGRXasgsxyrIsEhHNeImxyPO2MG1Z?=
- =?us-ascii?Q?bz8U10j35D7GpbH7z68A08eaWCHjnA54zeDcTai3q19ybLHtZV4AUtGrx/ZO?=
- =?us-ascii?Q?7bBoXRJQYF9Hck0SKMkRH/AhfPql4rFpoKudssaAyNicU8xOk0yAnxORSD7d?=
- =?us-ascii?Q?uZzQ5hVqVgu0CVL5vbg=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026); DIR:OUT;
+ ARA:13230040|376014|1800799024|82310400026|36860700013; 
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?XJcw8EMfc1S3yo/242fwhl5pbCWatp047KCIOvmI4GgP9quaEekLbw80Jk6Y?=
+ =?us-ascii?Q?4Ag/qrMbUIfooHO4rTTaScJHZeWagRtBs0yPXxDS383TioeR/k9kefOy+v/F?=
+ =?us-ascii?Q?w7N3LzGX5YHhEKLkLh3OfrEreD2w3q01lSCLEJStDnSkHfrhW8XSL7TOvZQA?=
+ =?us-ascii?Q?JtxumyxLzCBdhZSWgjSvR6HM8oyBWV0y8zuYdwcyVIGUx2H3L7As8IlOgaHo?=
+ =?us-ascii?Q?jlrzlkE1inV1Qvtz8vNEmTiC4NGAlj4H4h7Q+IlFR7/NW3T7TYyadwpTvmg3?=
+ =?us-ascii?Q?rwj8sQWlegWCIqMmMKYSWILGGt5nimqUGSD5JOCpZlY796i8Dr1ZVM6cFWSF?=
+ =?us-ascii?Q?ZojVvhsOYBduFlunlAUge3qp1ocgMjV1X7vcB2aPvYcxhf1kYznSXfVeNXiZ?=
+ =?us-ascii?Q?Ls0wgryRjV32U1IN8FSeeLdl9N6pM6Kk91NrhQPelPsGQXI3Tn+1SDbdIggx?=
+ =?us-ascii?Q?XBSBeWZZTCy84xTVD6jt1sEs+vjo9QJaxkjaWbB6LSlbw17Jrf9XFFbn4G94?=
+ =?us-ascii?Q?dMM6kCToEwMslS0V1Vh75LFWzVyPU0cj30MqW+dsYtuID/hPgDOF9Ab8GpYD?=
+ =?us-ascii?Q?FNhsgeTpnJFaySwvnsNGIeOt357xDkAU5uFmrX+kF2rYtq4UVp4G9sbTgBOt?=
+ =?us-ascii?Q?J9n3RYMhbN+ZzBjK06qXcdOQZGKOTCX3PrZbHKgrrRpNGHp+1ZVc0Ke3MPxO?=
+ =?us-ascii?Q?CFcZa8K4e0ZgXVRY9jS8SCZAhiD7M/L3Il/cTRv33AbAG1Cg2zlbGalTFA+Y?=
+ =?us-ascii?Q?cjJts8Wyjcfv07S4960kHcr35ySby8gA2rDXsGVYxDcVI3/Ig1sfyWbF2Sal?=
+ =?us-ascii?Q?l3+IJnmLVVrxn+AZMb8moHIXrQn/u2uKfKEywkpiUizWnuDZeSHsz+MGXcqp?=
+ =?us-ascii?Q?vhVV6JcI58l6H/pT04KoOC9cynFzTIBnESmLxWSJO9IBE5+d5Vr5fsIRP57W?=
+ =?us-ascii?Q?NokKyHvyQSuJVBr4h3h3tOMRcaD+4KDd2LRb/dkiREerwXbfPzftinEoVf+8?=
+ =?us-ascii?Q?u5opHsztwGqaLf6d284P9vYl+JmpFL9zcZ/IrB+M54MgxGN9/MWktp+jLACA?=
+ =?us-ascii?Q?MAxrfeXPGeR+15HIozcy7Q6MdOPXTgZHsb/PaRzOHKMwQbGfQBPeWlS0dFZT?=
+ =?us-ascii?Q?FzriZLntlEcEeLdJpZguxrILNmtTd7x73broFjLhCl2IONrm0hlPqAVcwZ0k?=
+ =?us-ascii?Q?rHo9/uA008u72oHLSataXkSyq8WJ9ozGZIBKd0as/HKekgIS9VqhnwMkHqa6?=
+ =?us-ascii?Q?6FDE6p82dLrEu/JvicA/ueqfEB/EtKs68dBKaL1MaF6fdevD8KF+dasFQ8r6?=
+ =?us-ascii?Q?Gmjj2+6uiGUzASNQQrwYoR9LjlyY7LlTh2OJzfZAPeFIDCkeptG/te4UDwir?=
+ =?us-ascii?Q?G+5p6RcbkUdkddpqp5/O5dpdSstdRUpXFnal0Q4BxyeFsVSx8Ej8UBDzkgai?=
+ =?us-ascii?Q?CL5OPpPvfn3JTOlOkxUGU5fPNRH3dpoC3oPeHiLXtxVpKEYy8IZS/iYNgPVP?=
+ =?us-ascii?Q?LTDmPEl5RNP4WpOufNLfXP4oBZqHO9kPvephI3VBi1CmLFkiGz78jVW8PLYT?=
+ =?us-ascii?Q?xSVb7U0jk/dMI5TBKsA=3D?=
+X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(82310400026)(36860700013); DIR:OUT;
  SFP:1101; 
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 20:50:25.8334 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51d9d87c-96f9-47da-4ceb-08de39c013ad
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Dec 2025 20:50:29.1733 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4530a528-f70d-4aa1-fd96-08de39c015a4
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
  Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: SA2PEPF00003AE4.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthSource: MWH0EPF000A672E.namprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8822
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFEB07C8E34
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,63 +145,58 @@ Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
 From: Alexandre Courbot <acourbot@nvidia.com>
 
-Use the `pin_init_scope` feature to create the debugfs entry for
-loginit.
-
-`pin_init_scope` solves the lifetime issue over the `DEBUGFS_ROOT`
-reference by delaying its acquisition until the time the entry is
-actually initialized.
+`LogBuffer` is the entity we ultimately want to dump through debugfs.
+Provide a simple implementation of `BinaryWriter` for it, albeit it
+might not cut the safety requirements.
 
 Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
 Signed-off-by: Timur Tabi <ttabi@nvidia.com>
 ---
- drivers/gpu/nova-core/gsp.rs | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/nova-core/gsp.rs | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
 diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 860674dac31e..ba4f789d8ac1 100644
+index fb6f74797178..860674dac31e 100644
 --- a/drivers/gpu/nova-core/gsp.rs
 +++ b/drivers/gpu/nova-core/gsp.rs
-@@ -107,7 +107,8 @@ pub(crate) struct Gsp {
-     /// Libos arguments.
-     pub(crate) libos: CoherentAllocation<LibosMemoryRegionInitArgument>,
-     /// Init log buffer.
--    loginit: LogBuffer,
-+    #[pin]
-+    pub loginit: debugfs::File<LogBuffer>,
-     /// Interrupts log buffer.
-     logintr: LogBuffer,
-     /// RM log buffer.
-@@ -143,7 +144,9 @@ unsafe impl Sync for LogBuffer {}
+@@ -3,6 +3,7 @@
+ mod boot;
  
+ use kernel::{
++    debugfs,
+     device,
+     dma::{
+         CoherentAllocation,
+@@ -117,6 +118,29 @@ pub(crate) struct Gsp {
+     rmargs: CoherentAllocation<GspArgumentsCached>,
+ }
+ 
++impl debugfs::BinaryWriter for LogBuffer {
++    fn write_to_slice(
++        &self,
++        writer: &mut kernel::uaccess::UserSliceWriter,
++        offset: &mut kernel::fs::file::Offset,
++    ) -> Result<usize> {
++        // SAFETY: This is a debug log buffer. GSP may write concurrently, so the
++        // snapshot may contain partially-written entries. This is acceptable for
++        // debugging purposes - users should be aware logs may be slightly garbled
++        // if read while GSP is actively logging.
++        let slice = unsafe { self.0.as_slice(0, self.0.count()) }?;
++
++        writer.write_slice_file(slice, offset)
++    }
++}
++
++// SAFETY: `LogBuffer` only provides shared access to the underlying `CoherentAllocation`.
++// GSP may write to the buffer concurrently regardless of CPU access, so concurrent reads
++// from multiple CPU threads do not introduce any additional races beyond what already
++// exists with the device. Reads may observe partially-written log entries, which is
++// acceptable for debug logging purposes.
++unsafe impl Sync for LogBuffer {}
++
  impl Gsp {
      // Creates an in-place initializer for a `Gsp` manager for `pdev`.
--    pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> Result<impl PinInit<Self, Error>> {
-+    pub(crate) fn new<'a>(
-+        pdev: &'a pci::Device<device::Bound>,
-+    ) -> Result<impl PinInit<Self, Error> + 'a> {
-         let dev = pdev.as_ref();
-         let libos = CoherentAllocation::<LibosMemoryRegionInitArgument>::alloc_coherent(
-             dev,
-@@ -173,9 +176,17 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> Result<impl PinInit<Self
-         dma_write!(rmargs[0] = fw::GspArgumentsCached::new(&cmdq))?;
-         dma_write!(libos[3] = LibosMemoryRegionInitArgument::new("RMARGS", &rmargs))?;
- 
-+        #[allow(static_mut_refs)]
-+        let debugfs_dir =
-+            // SAFETY: `DEBUGFS_ROOT` is never modified after initialization, so it is safe to
-+            // create a shared reference to it.
-+            unsafe { crate::DEBUGFS_ROOT.as_ref() }
-+            .map(|root| root.subdir(pdev.name()))
-+            .ok_or(ENOENT)?;
-+
-         Ok(try_pin_init!(Self {
-             libos,
--            loginit,
-+            loginit <- debugfs_dir.read_binary_file(kernel::c_str!("loginit"), loginit),
-             logintr,
-             logrm,
-             rmargs,
+     pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> Result<impl PinInit<Self, Error>> {
 -- 
 2.52.0
 
