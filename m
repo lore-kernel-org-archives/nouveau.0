@@ -4,85 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F0D5D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3081AD5B15D
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:46:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA3E10EC5C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79B4210EC4B;
 	Sat, 13 Dec 2025 12:42:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="U1JCYHAL";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="JqCkd3jM";
 	dkim-atps=neutral
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8AA110E162
- for <nouveau@lists.freedesktop.org>; Tue,  9 Dec 2025 01:09:52 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-297ea936b39so12930035ad.1
- for <nouveau@lists.freedesktop.org>; Mon, 08 Dec 2025 17:09:52 -0800 (PST)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+ [209.85.221.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AA5A10E09B
+ for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 08:10:05 +0000 (UTC)
+Received: by mail-wr1-f49.google.com with SMTP id
+ ffacd0b85a97d-42fb3801f7eso216296f8f.3
+ for <nouveau@lists.freedesktop.org>; Fri, 12 Dec 2025 00:10:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1765242592; x=1765847392; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=mEsBT/pLTbTyK3CEgFpn4Sf1V+J+71IdtUhL88rzZE4=;
- b=U1JCYHALR1ueIltJ0bXr1qqys5hQi8kRX7dMcsDQYFbLwbl9E3bFuhncwukVG6yrt4
- QTS2ErY9RQ1UOxTFcRIxgakAvSP0IW3kyoYuI5dEYQhZ4W38Mx31AZKwfu3WPB7zU+Gr
- IAlLhHKW4BhfrMf6G+3mMkDCN5pCWFnS+ByRN+kSUJqQmlSqcMgs4MqcxMYDzoq5IgpW
- MgB20Jg7gyBSc/xZVNtHxZZ1kIk8BXxviqI6dgDAQ91JSb2q7qu9pwTa0yTyGhFDhPt4
- YTg0tWIWW3ELn3xBuxtUywTwyE9ky4PqdTwQpBqHkawOvDqey+dSbJZPyPqb+qYQNU7E
- 2WhQ==
+ d=gmail.com; s=20230601; t=1765527004; x=1766131804; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=fJ/CIq+S550sT8g8cfuPfmVxbEDEzZdlgJAf7FID7wY=;
+ b=JqCkd3jMku6gzepKd9mUEek3y/sYrJLQMpg8Y6JsRUVPXmdAlUD2hMMaZ9K3013S4S
+ YQrT4XmFZO7iftlxGD6jWd8ytaEm8uVbajnQnIQGtFGoyzRUNObOIaxuMkPqOrPn4W5W
+ 4K2zlG51vt9or2wp2//vpqhs8TPsHe0eAdymwTjoEG5+HzPfxZEjQDg4fBqHzqojU/sH
+ 5duPd1630CGTm0osl7cQPlMXjxDKbX7zcECA3Trd8nnJ3UlHjeqBjVFVJspHQjjZKGw5
+ da7CnXYxcx3ShvKL+gRF+ReRUDjjalSkYuOyCIQENa1YavYHA4zQsRa7DMQhexKaiAdn
+ aVlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1765242592; x=1765847392;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=mEsBT/pLTbTyK3CEgFpn4Sf1V+J+71IdtUhL88rzZE4=;
- b=GRe5VvB8HhOYiJbscyREzVhEpMUHp3Bk7OPehFAX6nhtByecJGFDgeRlkbmXBGhD89
- OOs0ztAqTEHCdKgYKr8JCsivBAy2MNeWg3Amlr5uWTi/2j10a5uc4SnamG/jaxJNeHz2
- mIre73kqBEX+v+sIQaMNM+0EaLGRgLFcUwlQ5x9yzEMcGTB+Y2XDec8Gv1KTMEB0RzLB
- z4oUdPMq836Yv8LY0wGKypOv/nZow5m83NYNK7lI0vdp6tmDW7QiuS+6alrU9KJAdrsT
- CNCs5OOBnBzZQBuULzSOIYZfXqn5oiSo8HUze4MjMtZ9kOSECYE+lqmYtU5T+c1Ztwlh
- Bu0w==
+ d=1e100.net; s=20230601; t=1765527004; x=1766131804;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=fJ/CIq+S550sT8g8cfuPfmVxbEDEzZdlgJAf7FID7wY=;
+ b=ipfql7TFu7CK1+zB/Flv9k2ExrnLprl/Lf0Cs1x7JIfHUFkFTTbOOr0h+p6m6z9VBl
+ 0GZrcRBiHLVN6ms1jlTV9+TyUmMNNr0lAtd16mRAV+5EGP7s4ZzEbCzO32CUjrQVoH3x
+ Kq/Vch9LHpLHIUA+38mR9+KnQcvo8KMhHdqR7bj6xg94WPiiB42xWweB+11tKO2s0bVP
+ H84Bs8JIXI5sNm9tDQFW43dtJOZcSits2t4N/GlD49ixZY16scB+chQlpGlj3L3bgxdf
+ ODf4zB7mJd6bAvs6donxssbus6yOQtkAaxEK6dHOPWXnFM+OWAMhhwB4qh4USTSa+v2g
+ 3R2w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUFuZB+JvYzF5KRT67loYL0tiX2TL99TARqveq+pgxjgLqJUk0FQyulBU0E1Sxl0UhIwFARvdEF@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxaCQGSy9hfIboG56aAZShi4ozODBlz2KH7DERYDAoMOeFxazSx
- aLjwRFrsx0ePWJ4SdrtkegG7m70ZRkouNUs3tY7NpRVw9fx2O8tdLzNSPSfYP7+gKzpBzr0S5Z6
- z/wHh/Y9wRlEgTV60rE4UHXDJ+K/deWU=
-X-Gm-Gg: ASbGnctKcNhxe2SRI5/iLUJx8ycXEizvAGbKNtzIEmNK2WZDo/dgwl56CS3APlaT72q
- FRPj7PjMkR8h31Rd/wVpVfI4muUwqIDMHeIwTdIU93pI+1lD2JVBULvehpnidyNr37D00MAONsp
- DhOv3YQUmo3mpjUoA6FkuZE/wLYjHBsuzoD4PbUPc4OSKiHXMbNKWYQl8+nZ3fccd7U9rTcoCv7
- lBzK8pRXuf4FPXWtkBpWwdHkbIqzZBirqV+bmRTjN7r++YTv2tIlYwaAga06LNaQk1hciF3YRwc
- Lob5yR0xd2oXC7frAMyrfndcC0A1zEvd3TsJOdGrmjCmS63afUy9Onxixtj+HBzTdd+pa1/EG7p
- EJDOfiN5NrOnT
-X-Google-Smtp-Source: AGHT+IEJL3H2CdkWL4QxEIdsfYYJgp/HlFqFDJUUsqk1LlVkWGajJj3NrPDAOyq+1dE7luFLpJ2g4+mrjjdZg1vzVG8=
-X-Received: by 2002:a05:7300:bc0e:b0:2ab:ca55:b76a with SMTP id
- 5a478bee46e88-2abca55b82amr3434532eec.5.1765242591987; Mon, 08 Dec 2025
- 17:09:51 -0800 (PST)
+ AJvYcCXHtaGJIhvdnpWRomzTMtXKuo9X/yzqjXifuGom9RUjNplR5FbFaI924jHSrj8K8QhHDAHfzPaw@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzAu5MLVcwZdV4jJArToEm/ZSpvdhG/oPmnmPDP3fXRw/kWsLPk
+ w+6hX+gNfE0AywKSlAY/prA4zGJ/Dq5J2eJFxr5EI/cVi09t9AvV9WBB
+X-Gm-Gg: AY/fxX4YAcxUdB/3giRxPwDufsklzzeOCzWNl1ml79LuTgyRZ8eGBs8pbVNUkFr5zH/
+ KLcr4VC8+IDUgBMGPl8ginM8X6HXCObgrV/3s7X9aEsXC1A7if0E7B6UnFFacC5T79NrDT+dwwp
+ myLDtBIgOiK1Qez+t/+sjCFQqplUWMJ7XbwjN9ARR6zzOOLpLb9oNRC0AjmWu8yH0H6dxWMOsem
+ b02eTQr5PVwm80+fMnt3Zs0JnTx8EJfDDuPNCK4X3hR29HSEpcPw0k64tRernMAHeWg0qT5pW9E
+ xMZX8Xja+4Jy3mrmM0sh4rjBoMMKNESzkVGHZ471gxv0qshuuAuV01krvIpqj0IJ7CP8SfvF0py
+ QJIQNqpTAP3wf5sG0JnDVuv5NalpGXFhhrUzE091kIXn+0J/K26alP14Aw8yE9uNMsHl3/Wid9l
+ fzb+K9/UeUf83XvwupylmdLKZIb6k+FFpyqHVwevqV553+YqfL2SuMww06Cy23ph1+W4pXVquzB
+ WIb/nMlf4S4uDIXJ8EaKHa2Do1v4JuzzkTsFr3H37HkwQ==
+X-Google-Smtp-Source: AGHT+IGTJIGEa6611HGPyO7WCyo7XVD/0HX+3HAeJdXdjKMR+z9KB5y2eg2ivEwm/6LLYaeomx6J1Q==
+X-Received: by 2002:a05:6000:4012:b0:42b:2f79:755e with SMTP id
+ ffacd0b85a97d-42fb44d46b4mr1032448f8f.3.1765527003664; 
+ Fri, 12 Dec 2025 00:10:03 -0800 (PST)
+Received: from ?IPV6:2003:df:bf2d:e300:84fc:a859:31e5:6980?
+ (p200300dfbf2de30084fca85931e56980.dip0.t-ipconnect.de.
+ [2003:df:bf2d:e300:84fc:a859:31e5:6980])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-42fa8b9b1f1sm10460373f8f.39.2025.12.12.00.10.02
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 12 Dec 2025 00:10:03 -0800 (PST)
+Message-ID: <25aa90a7-e9f4-471e-9d93-c61b9a7a429c@gmail.com>
+Date: Fri, 12 Dec 2025 09:10:01 +0100
 MIME-Version: 1.0
-References: <20251206124208.305963-1-zhiw@nvidia.com>
- <20251206124208.305963-2-zhiw@nvidia.com>
- <ca549425-e10b-4d54-aebe-278d90c8cb92@gmail.com>
-In-Reply-To: <ca549425-e10b-4d54-aebe-278d90c8cb92@gmail.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 9 Dec 2025 02:09:38 +0100
-X-Gm-Features: AQt7F2pwYK4ZIpAGJ2cuBoFunByDKO5gKUgFer_xOdKdqv7XdaFLaTqM1T-H2w8
-Message-ID: <CANiq72mkPMwb=3P_-fjObUC8NmY_6pzK5cn41RRwa2zJCazuPA@mail.gmail.com>
-Subject: Re: [RFC 1/7] rust: pci: expose sriov_get_totalvfs() helper
-To: Dirk Behme <dirk.behme@gmail.com>
-Cc: Zhi Wang <zhiw@nvidia.com>, rust-for-linux@vger.kernel.org, 
- linux-pci@vger.kernel.org, nouveau@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, airlied@gmail.com, dakr@kernel.org, 
- aliceryhl@google.com, bhelgaas@google.com, kwilczynski@kernel.org, 
- ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com, 
- gary@garyguo.net, bjorn3_gh@protonmail.com, lossin@kernel.org, 
- a.hindborg@kernel.org, tmgross@umich.edu, markus.probst@posteo.de, 
- helgaas@kernel.org, cjia@nvidia.com, alex@shazbot.org, smitra@nvidia.com, 
- ankita@nvidia.com, aniketa@nvidia.com, kwankhede@nvidia.com, 
- targupta@nvidia.com, acourbot@nvidia.com, joelagnelf@nvidia.com, 
- jhubbard@nvidia.com, zhiwang@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:48 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] gpu: nova-core: gsp: Fix length of received messages
+To: Joel Fernandes <joelagnelf@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>,
+ "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>
+References: <20251122-nova-fixes-v1-0-a91eafeed7b5@nvidia.com>
+ <20251122-nova-fixes-v1-2-a91eafeed7b5@nvidia.com>
+ <504C636B-FB96-4B54-B9CD-C506026CCDB1@nvidia.com>
+Content-Language: de-AT-frami, en-US
+From: Dirk Behme <dirk.behme@gmail.com>
+In-Reply-To: <504C636B-FB96-4B54-B9CD-C506026CCDB1@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:47 +0000
 X-BeenThere: nouveau@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,17 +110,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
 Errors-To: nouveau-bounces@lists.freedesktop.org
 Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
 
-On Sun, Dec 7, 2025 at 9:52=E2=80=AFAM Dirk Behme <dirk.behme@gmail.com> wr=
-ote:
->
-> What's about to do something similar here (and in the 2/7 patch as well)?
+On 12.12.25 08:59, Joel Fernandes wrote:
+> Hi Alex,
+> 
+>> On Nov 22, 2025, at 12:00 AM, Alexandre Courbot <acourbot@nvidia.com> wrote:
+>>
+>> ﻿The size of messages' payload is miscalculated, leading to extra data
+>> passed to the message handler. While this is not a problem with our
+>> current set of commands, others with a variable-length payload may
+>> misbehave. Fix this.
+>>
+>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+>> ---
+>> drivers/gpu/nova-core/gsp/cmdq.rs | 11 +++++++----
+>> drivers/gpu/nova-core/gsp/fw.rs   |  2 +-
+>> 2 files changed, 8 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
+>> index 6f946d14868a..dab73377c526 100644
+>> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
+>> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+>> @@ -588,21 +588,24 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
+>>             header.length(),
+>>         );
+>>
+>> +        // The length of the message that follows the header.
+>> +        let msg_length = header.length() - size_of::<GspMsgElement>();
+> 
+> Is this immune to under flow without one of the checked subtraction wrappers? Either way, we should not tolerate the underflow I think. Which means it can panic when the rust overflow checks are enabled. Since the header length comes from firmware, this cannot be guaranteed to not underflow in the event of a malformed message.
 
-In general, using early returns (especially for error and `None`
-cases), i.e. keeping the happy path as the unindented/main one,
-matches better the usual kernel style.
+Would this be a possible use case for the untrusted data proposal
 
-Whether that is with a simple `if` or `let ... else` etc. it depends
-on the case, of course.
+https://lwn.net/Articles/1034603/
 
-Cheers,
-Miguel
+?
+
+Cheers
+
+Dirk
