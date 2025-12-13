@@ -4,137 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D21F6D5AE41
-	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 12:47:43 +0000 (UTC)
-Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0655910ED2B;
-	Sat, 13 Dec 2025 12:43:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ADF0D5B154
+	for <nouveau@archiver.kernel.org>; Sat, 13 Dec 2025 14:45:55 +0000 (UTC)
+Received: from kara.freedesktop.org (unknown [131.252.210.166])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 26D3C10E3E7;
+	Sat, 13 Dec 2025 14:45:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9q6gLfV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MFUxfOQE";
 	dkim-atps=neutral
-Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com
- [IPv6:2607:f8b0:4864:20::632])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C332610E673;
- Fri, 13 Dec 2024 05:47:20 +0000 (UTC)
-Received: by mail-pl1-x632.google.com with SMTP id
- d9443c01a7336-2167141dfa1so12331935ad.1; 
- Thu, 12 Dec 2024 21:47:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1734068840; x=1734673640; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=XQpRmGydqcdMOxZRzmLm98GnY2wtgMQ5ZotZeI2M2YQ=;
- b=N9q6gLfVavC1GU2+eutoMhVmrqo+SE0dOsUv7F9/ws+UP6mUtV4i3ctUhi1kuuEALu
- RBKoP5eUBROiDQ39IeupNpIGKbBkCEvjVw4oXon3+7jCG+kvLuH+vKs/kf2v7dd3ecJK
- yD00N96UNWm28N+PBB7w2xwFgPOSnB1eW1Hegaemsql0wHow5Dd7ldXl9GmnglK7nd+R
- B7M5jQ/LQJ0STlXtrhVrinZhtjO4ploPFZPkO9qASztB416PiFY7nA7FW7WxFD8zfWBP
- 3GPhvc+J5xLwZ9J2Jt++mXo0IfTCIBKa9rOtCJpxu0zswXP1NhgLuXNLoUbLOgsdpYjh
- Eayg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1734068840; x=1734673640;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=XQpRmGydqcdMOxZRzmLm98GnY2wtgMQ5ZotZeI2M2YQ=;
- b=cxSTIPUnKLZVg56gKALiaed32yVcoCyXM3V3BemlhPOIblqdQ9icL5cjGdwRgsbb3p
- g9Cjk85KuPlnni+ucBfVJeDXNm8U16GDtrVsapB5VUpjn7qw6/h2/FkNjiIopshiuG7c
- Qay9qBRT7kAZO0yFe+6SgUVg3PMKEAUYgOBwjhjpvNSol964VAR3xIkroyVWLl7mJkdy
- n9DvN+I+F3CGanI+FSFoYyGk8ZLll3/pStWhZpQCD2e1tPaSfPnpTbStZF1vWprnsHIs
- qQDcCsCFJbOooZIjoR5D9br/PXy/Jr62COyZ60RS+zZiWamJ9te3fjGIgNHLtJJ2WqtW
- iSUA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUrDVCLNoT5fMKFamAMMLvdnzvfeFfaSHSkZHOIIn8MKCYt0dEcFnppElSSd8CAutC1FpkhpDGb5io=@lists.freedesktop.org,
- AJvYcCVY6w+CWG+vllLd/2Mkk/B151yekpaMezTloz4NV72wdS2t/WiCyiUSO43EufLFnUriv8XSCCZVgg==@lists.freedesktop.org,
- AJvYcCWWt79O9naidYazTZOPUK7CUL2uCdOgfruN7fCzIhQYNqp9EPjEGypVP1pa+Niegt+syv6fX1KkpCMt@lists.freedesktop.org,
- AJvYcCWyUbzVEhr0YJ00tl7X4QDsDlB3nMZWfOPXxqdsH4fre08YUWJFwM/+QlbEarHIZ57w0EfceOk+fsg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxNWx73xPXbujSiq6uWHuWLj2zmD75laaCpSQ9cP8bLQ8+KeKOu
- XzWcGX3AxSjqM4VzetjBwq890qDGOvqLU4jaz+ln4wcAsZ+93Q9y
-X-Gm-Gg: ASbGncsszJnjEmCpcigJS5PU4FbIuJcVJK9bj9mmrwp8zY2H88cNQO9bL64N035BDh2
- 3fJFh0EnwHzNaH0O+c4jaNHm9leqcd2rV1nfthoZjqbfpFRs59YE+oZA1egnyNE/4Dj9LrOjXqO
- IATMBHjBUpmJhQhQva+kEjmgl8hYdNKvDIHXjwzFq5av/paHHeUGZ6HO8Niv00+xkEy+1SwI2uA
- cnycd3lQaVoFBYmg2f5RpbQimKrHi0XZ4ps9Z/waaO8LCavDZL6QkuBTUTq902TUbEMEsUxpect
- 2ixtDRc=
-X-Google-Smtp-Source: AGHT+IGy5lWO5x7q/SCrL+dH9NQnv1Rp0u2NkmqEtY14rjHQEczQdhUClmCmrxdf9miFcIspK1e1uA==
-X-Received: by 2002:a17:902:d506:b0:215:9c06:272a with SMTP id
- d9443c01a7336-2178c872102mr82765085ad.24.1734068840305; 
- Thu, 12 Dec 2024 21:47:20 -0800 (PST)
-Received: from localhost.localdomain ([180.159.118.224])
- by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-216483dd292sm82564985ad.226.2024.12.12.21.47.14
- (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
- Thu, 12 Dec 2024 21:47:19 -0800 (PST)
-From: Yafang Shao <laoar.shao@gmail.com>
-To: torvalds@linux-foundation.org,
-	akpm@linux-foundation.org
-Cc: linux-kernel@vger.kernel.org, linux-security-module@vger.kernel.org,
- x86@kernel.org, linux-snps-arc@lists.infradead.org,
- linux-wireless@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, ocfs2-devel@lists.linux.dev,
- Yafang Shao <laoar.shao@gmail.com>, Kees Cook <kees@kernel.org>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>
-Subject: [PATCH 5/7] security: Replace get_task_comm() with %pTN
-Date: Fri, 13 Dec 2024 13:46:08 +0800
-Message-Id: <20241213054610.55843-6-laoar.shao@gmail.com>
-X-Mailer: git-send-email 2.37.1 (Apple Git-137.1)
-In-Reply-To: <20241213054610.55843-1-laoar.shao@gmail.com>
-References: <20241213054610.55843-1-laoar.shao@gmail.com>
+Received: from kara.freedesktop.org (localhost [127.0.0.1])
+	by kara.freedesktop.org (Postfix) with ESMTP id 58ED444EA6;
+	Sat, 13 Dec 2025 14:38:34 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1765636714;
+ b=VPpgy9LstkwNoWKoJA12EdXCy+gcd7utZtK2fy2KdItqHtlWf4YAtsAqjFFLOD8sJVEW1
+ tskVhsULLUVbfCstOPh7sAGSuY63YiDl3uz1aNyHMrbmup5rOPwOZVCVRx1dQ2x99Pz4gJE
+ omWwBJarsU05BPz7iVYBn3nrNk2p6oyBxbrZTw8FsizE6J9n1JCPO9BOqGSyBRVOerSx8Nj
+ sNmKNJVZvxRA3FQxqSVISUpEJ8mLtQ2Gdf1AVXRnkl6UN2Uj0+Cl8EeFOEqr82L1RMEm6Y/
+ M2KbjlhFrRb6AF6v0DIeLHG5yGL+VAsrdiEmrerRsfaQrUnQ3satMrvil/6Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1765636714; h=from : sender :
+ reply-to : subject : date : message-id : to : cc : mime-version :
+ content-type : content-transfer-encoding : content-id :
+ content-description : resent-date : resent-from : resent-sender :
+ resent-to : resent-cc : resent-message-id : in-reply-to : references :
+ list-id : list-help : list-unsubscribe : list-subscribe : list-post :
+ list-owner : list-archive;
+ bh=uJLWCuraazYVNYvdbBRPhuMviLXMQA3f4GQx3Gx5EeA=;
+ b=a3lVanbvt8iWfTWCqS8lNd3iMkRFiZDDxMRHhFwcBXn8sk+nUGKiFOr7FXIOTb6kwhrT5
+ bvi0cULU3uH1/5aL+OeI7roYI/ZrYi7/sBdSnpyNwDl1yItxoen8zh53D8uPH5Fg6TQC8pU
+ IVxBa+mkVzpxeM54AWstsuK1C+TqOMAGPxZo3bwJ2fx97IOr/JC+FVq3VaODCxEI5lHDDE4
+ AqecCAah83/BfrDLb5RPLFbML+RM770I0OeOQNNsY8cbEi+81kKD1k2ixMIh7vqsm5VPFws
+ nsOYVcvYK4eVJ9DU5bUBMI8T8W0aAsQ/5RvN2qxAGPohoXH4QbRoBnacdSCw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
+	by kara.freedesktop.org (Postfix) with ESMTPS id D6B5444E20
+	for <nouveau@lists.freedesktop.org>; Sat, 13 Dec 2025 14:38:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F64D10E15E
+	for <nouveau@lists.freedesktop.org>; Sat, 13 Dec 2025 14:45:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1765637152; x=1797173152;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=x3O7UystAmu0laPnZukWplU+jTS2X0j4gWkEiv+zu7M=;
+  b=MFUxfOQEL4v61VWsLUof/rRrVBwfqUaBpg5vAAlwoLFWm9s02rCyzLYL
+   KxvOO4n10v1ZDeGEjM7Hgv602wiSq/QHydFnqoQBMZrgnrMa26oBhlGhB
+   peKRS32ZZPSJbV+64qEnNyef5poEhFsOoCBc6tFl0fl5otIUzZZz6Dh8m
+   GHf+OnpduxjxChYqEty7OW0npoywoWFriMRxPbsk2O0pt6uYPGWKQFRCF
+   Ypg7oOg/O18jUi+xudgVt2RsOu/hp8kvdQnekLJpBulkvfXzcj1Pw9O/g
+   YfMLM5Ycf0i6Tc8ntKyb5VCOdBDbxXg1p2XTIXtDWnKxw2SFbTplsVW96
+   Q==;
+X-CSE-ConnectionGUID: XZtW6agBQsSw9vZQBl8dnQ==
+X-CSE-MsgGUID: KW9MhGFLSyq0q4mUsL5ihA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11641"; a="78727492"
+X-IronPort-AV: E=Sophos;i="6.21,146,1763452800";
+   d="scan'208";a="78727492"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Dec 2025 06:45:51 -0800
+X-CSE-ConnectionGUID: Pv9s2lbRQmSJaXuB0ktrRw==
+X-CSE-MsgGUID: r3LA0x/jQp2Xk2n+5OlajA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,146,1763452800";
+   d="scan'208";a="201502891"
+Received: from lkp-server01.sh.intel.com (HELO d335e3c6db51) ([10.239.97.150])
+  by orviesa003.jf.intel.com with ESMTP; 13 Dec 2025 06:45:48 -0800
+Received: from kbuild by d335e3c6db51 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vUQsU-000000007kV-0nSD;
+	Sat, 13 Dec 2025 14:45:46 +0000
+Date: Sat, 13 Dec 2025 22:45:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: Brendan Shephard <bshephar@bne-home.net>, aliceryhl@google.com,
+	joelagnelf@nvidia.com, acourbot@nvidia.com, airlied@redhat.com
+Subject: Re: [PATCH v3] drm/nova: Align GEM memory allocation to system page
+ size
+Message-ID: <202512132208.bhsQf8d8-lkp@intel.com>
+References: <20251208071810.653223-1-bshephar@bne-home.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Sat, 13 Dec 2025 12:40:49 +0000
-X-BeenThere: nouveau@lists.freedesktop.org
-X-Mailman-Version: 2.1.29
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251208071810.653223-1-bshephar@bne-home.net>
+Message-ID-Hash: E555BXSPRIHMVDRKEN5L2E75RBZW5GMA
+X-Message-ID-Hash: E555BXSPRIHMVDRKEN5L2E75RBZW5GMA
+X-MailFrom: lkp@intel.com
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Brendan Shephard <bshephar@bne-home.net>
+X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
-List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/nouveau>,
- <mailto:nouveau-request@lists.freedesktop.org?subject=unsubscribe>
-List-Archive: <https://lists.freedesktop.org/archives/nouveau>
-List-Post: <mailto:nouveau@lists.freedesktop.org>
+Archived-At: 
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/E555BXSPRIHMVDRKEN5L2E75RBZW5GMA/>
+Archived-At: 
+ <https://lore.freedesktop.org/202512132208.bhsQf8d8-lkp@intel.com/>
+List-Archive: 
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
+List-Archive: <https://lore.freedesktop.org/nouveau>
 List-Help: <mailto:nouveau-request@lists.freedesktop.org?subject=help>
-List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/nouveau>,
- <mailto:nouveau-request@lists.freedesktop.org?subject=subscribe>
-Errors-To: nouveau-bounces@lists.freedesktop.org
-Sender: "Nouveau" <nouveau-bounces@lists.freedesktop.org>
+List-Owner: <mailto:nouveau-owner@lists.freedesktop.org>
+List-Post: <mailto:nouveau@lists.freedesktop.org>
+List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
+List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Since task->comm is guaranteed to be NUL-terminated, we can print it
-directly without the need to copy it into a separate buffer. This
-simplifies the code and avoids unnecessary operations.
+Hi Brendan,
 
-Signed-off-by: Yafang Shao <laoar.shao@gmail.com>
-Cc: Kees Cook <kees@kernel.org>
-Cc: Paul Moore <paul@paul-moore.com>
-Cc: James Morris <jmorris@namei.org>
-Cc: "Serge E. Hallyn" <serge@hallyn.com>
----
- security/yama/yama_lsm.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/security/yama/yama_lsm.c b/security/yama/yama_lsm.c
-index e1a5e13ea269..4bdfa51ea6fd 100644
---- a/security/yama/yama_lsm.c
-+++ b/security/yama/yama_lsm.c
-@@ -76,7 +76,6 @@ static void report_access(const char *access, struct task_struct *target,
- 				struct task_struct *agent)
- {
- 	struct access_report_info *info;
--	char agent_comm[sizeof(agent->comm)];
- 
- 	assert_spin_locked(&target->alloc_lock); /* for target->comm */
- 
-@@ -85,9 +84,8 @@ static void report_access(const char *access, struct task_struct *target,
- 		 * Imagine angry ranting about procfs here.
- 		 */
- 		pr_notice_ratelimited(
--		    "ptrace %s of \"%s\"[%d] was attempted by \"%s\"[%d]\n",
--		    access, target->comm, target->pid,
--		    get_task_comm(agent_comm, agent), agent->pid);
-+		    "ptrace %s of \"%pTN\"[%d] was attempted by \"%pTN\"[%d]\n",
-+		    access, target, target->pid, agent, agent->pid);
- 		return;
- 	}
- 
+[auto build test ERROR on 37bb2e7217b01404e2abf9d90d8e5705a5603b52]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Brendan-Shephard/drm-nova-Align-GEM-memory-allocation-to-system-page-size/20251208-153603
+base:   37bb2e7217b01404e2abf9d90d8e5705a5603b52
+patch link:    https://lore.kernel.org/r/20251208071810.653223-1-bshephar%40bne-home.net
+patch subject: [PATCH v3] drm/nova: Align GEM memory allocation to system page size
+config: x86_64-buildonly-randconfig-002-20251213 (https://download.01.org/0day-ci/archive/20251213/202512132208.bhsQf8d8-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251213/202512132208.bhsQf8d8-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202512132208.bhsQf8d8-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> error[E0599]: no method named `ok_or` found for type `usize` in the current scope
+   --> drivers/gpu/drm/nova/gem.rs:31:45
+   |
+   31 |         let aligned_size = page_align(size).ok_or(EINVAL)?;
+   |                                             ^^^^^ method not found in `usize`
+
 -- 
-2.43.5
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
