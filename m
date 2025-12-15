@@ -4,188 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A0EFD5B844
-	for <nouveau@archiver.kernel.org>; Mon, 15 Dec 2025 15:27:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4379DD5B16C
+	for <nouveau@archiver.kernel.org>; Mon, 15 Dec 2025 15:28:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8331E10E5DD;
-	Mon, 15 Dec 2025 15:27:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 029E610E5AD;
+	Mon, 15 Dec 2025 15:28:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="Rg/xhJft";
+	dkim=pass (2048-bit key; unprotected) header.d=bne-home.net header.i=@bne-home.net header.b="hyl6IPV+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 428884551D;
-	Mon, 15 Dec 2025 15:19:52 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1765811992;
- b=SX12QR3fGuW/dGSNs8ANmGlIbbmBdm5Qmp3HXaHN2UvYNUgcc1K2bF3LrfNwbXqJWAojW
- wRcbkcR0nX41DYFiAXdItaVvIEqD/mOTkJFEVRH6MUTMWLUiuwPIprGiZnBlvWVUt1eMfxk
- tZuXCt/mdBr4UbMxuzpXRJ/eMI6CwQOLH8gCLkjbGlJsm5l9IKLiR9KbMj9VuuFLdCvvSeV
- JiYg2MRP+r/Nj+iH6LJiMKMsESnSzE/CodG/gNKCCoTYGoZF2vGx4g+BGU/NKBE4WrDYuFv
- 7xhXLUIXgLN+3GjCxs0zMx99L1B3Z5WMKlxy3SZHhaujtvRQJqa8pMHDqT6A==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1765811992; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id B7A644551F;
+	Mon, 15 Dec 2025 15:20:54 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1765812054;
+ b=IWxu4Ba0TeoSpFOyhbpRD/aDFZCkyCxGhaF9b0xNY4AT1WykrKFUjoX3X/gOlbJ7PmALu
+ HgYUwO6oGNLpLNpOjLMon+pYmi8knMsYEm5ZLvzczwNpUURXnCoy6bymVgNFV607o5fVfLG
+ QsRcfbAlEugwl5YcwzqK2mwMDzgna0ukNkkY5IPo9SJMdKTFQlZ6pjF49Xforhea7EDsp+Y
+ KNG7uRwOTwLuB1M68+UmFJX6t7mXnQFR0o9gdQlIW0zqPjB/ShWsflhmUAUsRZTNe5Zmz6u
+ 2h9Cefqe611KMj1sezy6QTMyFCTXSrJosxpbbb0r8xUumQY4ADIffGKp2MsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1765812054; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=TKg3diLlurzzTRZDeeMhMqzLdob/4O4p8rTYuAeARIY=;
- b=FI8Hda9jOG720wo4vB5C2WWMzCFfMxEVTdXKUY16v55Yk9fATQAvn7PR4gpfhzcAFat+j
- FRq76paI1jfUZqAlCFS6ry6EhvK+Mbq2wc6E0877X9BrZVS+3dhcie2XvxQUVdf71pSuBaS
- o+rZD5y1yI/CVYncgx+9O7lcFHv4HeEgrSa2mVNEC7mLUBGwPDLfqK5hyVi04xrItjeFkrx
- UhqX1/ptc1hmHejtUMoc7xCjxFwlVxkmmXmTa1nW1DZne0BL5iMUFngbyv4h7hw0Uv2CF4+
- 0INteg6QDH2gLUIbRUTTvqJeXT5Dw0FqB8K16txxg0ir592Yb1GXda16WWaQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=uwwg/9McXJj7Oq330haHnzUQq3y2iibMjqrcmLMasbY=;
+ b=mDD0vp8/dRFfIXdsHjHqcsqOTnUguUHRmFhss2lj+b0co+SiuSDrPw2CGggKfECQ6aIJy
+ 6IxCtX/8r1jcQxijrBcwAstrVdABnlpfJi+wdW4xRrLZTz0m6JoDHqAIWKLs9f1IcwtzR+z
+ zi0Xqaio6iXC/lqjgCb7S0idFUZD0s5Mj0zZCt8YuI5NbbOIhPrBZ7TpraVQHguq9dtQxQb
+ uk+TnYG8yojzs8dwbiPJacntG5bIyFEcPkKLj1oJvtE8XDUh6aDtJSiB+lnEiWmtPjHLAlq
+ JugeH3furdokCENj1ONUNKp9oXrlMWKgZaVzevu0zykBs/QPbevQPwxSL9PQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=bne-home.net;
+  arc=none (Message is not ARC signed);
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=bne-home.net;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9405F4550B
-	for <nouveau@lists.freedesktop.org>; Mon, 15 Dec 2025 11:33:17 +0000 (UTC)
-Received: from LO3P265CU004.outbound.protection.outlook.com
- (mail-uksouthazon11020073.outbound.protection.outlook.com [52.101.196.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 37F1E10E43C
-	for <nouveau@lists.freedesktop.org>; Mon, 15 Dec 2025 11:40:41 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j+rF4bb85HujUCu+qO4ag1m2ZcU9kbqtt8VpZEVQz8SyMm5upoDmSTzFaMYKzyc3bOr+ONVB8/xVqX1lSEGaclPDtP9CDMjj9Dlut7TGg9rHP1pVG/+PNzk7qzUhK7wIIXu/dIah/nVaIprhBIS52naCy5vvnW26r9Y3Hyh6ro14JsT9l8V98TgOWeJHe01PH+vfZAz8fv3kvNJGubGcYkzzZrvWqtADS8gUbDDyJt2V0dVdT7qbsOk6O0Ct6XI0k1zpMMF4XEflgG9s0JjHFNYDY0O8Ezq7lF1Iw2wFqun0Du6Jq+rA0Ro8vNyC6PR8mOCSzlDvx2uxR6ULxq88Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TKg3diLlurzzTRZDeeMhMqzLdob/4O4p8rTYuAeARIY=;
- b=HtEJu695+5wRY7xGN0VHjIM0tyhyHtflxoxlnhwPW8q46t9o4c0OimJaMEUkx/Gv8j/vBqwBdeIRwG12Qz5wONepPxQGKBdnrQognTKrKMqLYsE0UsGDyqADX6lQC6bQXKLH7xHKPEqSBu01IvkOnAMDAoxZchaJxnpUr077tsnhBn2paydaOvRXBLOQ18ePn2Y/MzT3UzCpYJ5RuKfS0XuIGawjTrD7C4gR30004ZCr0Qm07OzrGYNiAOAmkotLk3XTVl0s/LwNnJIZ4aGVmAAdr7/9nqooHGH8l7iSzcceqZsl5E1sbCoJsNatKg0zD0V0hzHzBfoNUo4gQGQGKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TKg3diLlurzzTRZDeeMhMqzLdob/4O4p8rTYuAeARIY=;
- b=Rg/xhJftAbqmcRz/VykH3QfhEjglI5EVbxDIar6veeH9+H69M/IOAxiBQ6EAxgW4aiKc5nnsiYjpN0E25liqrzWdlRV4MuIUGGrk/Vjk8DC+Mgr6vQg9QpSGiVtd4ED01qLh3OXfhGpGeOc+qrZGFPCcDnvnf+56sKEg8UGBKw4=
-Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:253::10)
- by LO4P265MB6445.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2e1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9412.13; Mon, 15 Dec
- 2025 11:40:38 +0000
-Received: from LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1818:a2bf:38a7:a1e7]) by LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1818:a2bf:38a7:a1e7%6]) with mapi id 15.20.9412.011; Mon, 15 Dec 2025
- 11:40:38 +0000
-Date: Mon, 15 Dec 2025 11:40:36 +0000
-From: Gary Guo <gary@garyguo.net>
-To: Timur Tabi <ttabi@nvidia.com>
-Subject: Re: [PATCH 3/7] gpu: nova-core: create debugfs root in PCI init
- closure
-Message-ID: <20251215114036.302303e0.gary@garyguo.net>
-In-Reply-To: <20251212204952.3690244-4-ttabi@nvidia.com>
-References: <20251212204952.3690244-1-ttabi@nvidia.com>
-	<20251212204952.3690244-4-ttabi@nvidia.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO4P265CA0237.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:315::20) To LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:253::10)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DD30345503
+	for <nouveau@lists.freedesktop.org>; Mon, 15 Dec 2025 08:27:15 +0000 (UTC)
+Received: from outbound.mr.icloud.com
+ (p-west2-cluster6-host9-snip4-3.eps.apple.com [57.103.70.86])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 08F1E10E39B
+	for <nouveau@lists.freedesktop.org>; Mon, 15 Dec 2025 08:34:38 +0000 (UTC)
+Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-west-2a-60-percent-1 (Postfix) with ESMTPS id
+ 2546F1800105;
+	Mon, 15 Dec 2025 08:34:36 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bne-home.net; s=sig1;
+ bh=uwwg/9McXJj7Oq330haHnzUQq3y2iibMjqrcmLMasbY=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version:x-icloud-hme;
+ b=hyl6IPV+t+rQ2huSH+ZtvMSpipnjCX6WWU28mjTZUXfmtEcqabEjb0L9v3RzQOXbRNKgUujvL0HuAyvsiLU41/e/czG6Rm7jmTZTkstKs+OxAM3Gko6AVAZ57LAs5zYsLVyxBe+Ew4jd2MyGb8ZLpJIvGgZfBlK4BJfqZ7WmU7SoRtOhiDbn9YtPmGzfYbMS2HI8pkDEYOYipXHn3PEWh7fhmzys/jkLi9rpbdt9g8aVy7ytiY9tHQzRqyNIihEmKzc2WBI/7399r33LAfbHfMcWKH7SSToHNBxVJ16n4y1Ra4+xLxiaQt5cvF7lTtxNtRw4xrcBhQYvBFDvyHDkEw==
+mail-alias-created-date: 1746336505199
+Received: from fedora (unknown [17.57.152.38])
+	by p00-icloudmta-asmtp-us-west-2a-60-percent-1 (Postfix) with ESMTPSA id
+ A807E1800110;
+	Mon, 15 Dec 2025 08:34:34 +0000 (UTC)
+From: Brendan Shephard <bshephar@bne-home.net>
+To: aliceryhl@google.com,
+	joelagnelf@nvidia.com,
+	acourbot@nvidia.com,
+	airlied@redhat.com
+Subject: [PATCH v4] drm/nova: Align GEM memory allocation to system page size
+Date: Mon, 15 Dec 2025 18:34:16 +1000
+Message-ID: <20251215083416.266469-1-bshephar@bne-home.net>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LO2P265MB5183:EE_|LO4P265MB6445:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f75175e-881d-444b-76f3-08de3bcec49b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|376014|10070799003|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?xwI4zJnB2iBDk/AXyEDoN1OE3Zz0UBsbnw5yGJ7TvYSYQx5/1MeIeFx3sHLK?=
- =?us-ascii?Q?7vcLWHITRv0Ak4ovn/+CrU6tgbrUyJX2PHAdNcNsCGNvt1CZO1N57N/MC+p4?=
- =?us-ascii?Q?DCmqb+/Wbqn0u2ibo0X0yD+SDph6Co9YVqoaVi/CTePPXRa6Itqws1ui78+A?=
- =?us-ascii?Q?VkSXJUPsDjsUAUrq5fML/dfVCXU/9BDJe7m3b6RMX9o8GNBYI1+4tuiR4pr5?=
- =?us-ascii?Q?SLB2Z92BVY+KnxM7wpifm8Hlgdw4LVkNSIwssTCIB/45bkDs5JG8gd/KZQ8l?=
- =?us-ascii?Q?1vyob6DqWED+WZXvDpup70f/IgYBxHTXfUiScmeruCEblFVJ1L0t7hWnpjzy?=
- =?us-ascii?Q?g7dsZgh1DRj1njelJxp93YUxf77C2J8dh6/ky1l40DP5XmbAZNSLj30pg9O7?=
- =?us-ascii?Q?R2GGtJYtjcwo4eAzLjS7w3f6IPLuBJciUqMmCLB+u4b1x8Xk7M6fuTM8cucm?=
- =?us-ascii?Q?aZTnRN6MTVo7ynwf/bBbEG0RlUHxTMmABWIy3gHPaIxTNUmCVP+Jvq/8Vc8c?=
- =?us-ascii?Q?R3edO2Nh/oI3dIag+2iTRkmfKEAggMmgoZWgM1GU3wMzOuRa+MOYgL4D02jE?=
- =?us-ascii?Q?eLTNuF+o6J2qofwS3sqkNcMCs9bhLhQHjnWVm5LFlndxM5XvSOmrfmWuTE+9?=
- =?us-ascii?Q?AK/1HbbesaGDNudx8eIYMsn6W6M3x4jSa5uO9mlQdQLrWT/L5OmDoHmSLy6t?=
- =?us-ascii?Q?mDtqJSiL/puyuYo4DfS1GbOFdPBXgMEKdaWNlIuvjohF0AMtZA+rkZhiUU3x?=
- =?us-ascii?Q?HCcw6U21zMcv7d/GWzWCldeeLBjmupKQAca/dffqzvVIADSqxJXmMH8AtvoV?=
- =?us-ascii?Q?4DJamYzNPqi5scw0lWxzD2H3OP68Gsvj1uc2DKO4p1WKin9AfQIQvJ9o+h21?=
- =?us-ascii?Q?VeMFVpIkCETDV72JcubSOEGBDeXzWhtBIu2BzBShVLcujwxMaNjdEv1dtCbk?=
- =?us-ascii?Q?BXj99YfaPdguD1tM/0Rjg/8X9HE/YODMSjWmMKYCzUNBcYWrp5HI8+JJJ7Yj?=
- =?us-ascii?Q?ijzgofpeXW/vRMo321BJlm/LHOyJY9g4onkf95n6OU8dLPXeg7WstKh7MnOO?=
- =?us-ascii?Q?Ecn72cYf6GOmN338SgO11k463q2b+IjgoNsIzkpHG2X3no1hqRKkWKUh5/oF?=
- =?us-ascii?Q?LVwcnJUbewN/Jm3jbenQxwt4k6cGvAp/8dRvwWvepxXNdWnkCf0i2qug2NoU?=
- =?us-ascii?Q?8zg3wsB7qziA52Rqbve3A2OJCzavnsN23rPQgyw43ixft2zq/IrcbAUmCCv8?=
- =?us-ascii?Q?2y8akCwsQrVuF6/fstvHA1p4jyrh/PdWpZ7/SwNjlKF6y4Dw6xuCTYBgty9L?=
- =?us-ascii?Q?K72Sm/FJP/bOWggf2wFIgB10GxMBljhSP+JqJnz2CX7w+TdvtUV9fneQMetK?=
- =?us-ascii?Q?m3DIhd/VL90OfihDf4A0kSwg4OSMytMPelaWUA/c4fNsqtuW4BlZP8D5WSyV?=
- =?us-ascii?Q?ZzcPBDtSwRZGCQ/dt1xPF1gr4CL4umRP?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(10070799003)(1800799024)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?jYg564LnyI49tOaYt8NDD+RMkW8NBt6qQLU+4ya6NotLWWCizNrHxouqBuSV?=
- =?us-ascii?Q?Cu/MZQeX8vD8orAhmXQykKbmcl/H7sIaN/htfxG1Cr+0Z1VlSzgybHJoOnNb?=
- =?us-ascii?Q?D/nt2sHYszQXAvtcaOGqgzTmsBLqbeeLatpntqq1CrWoMuwlJj+U7cv+wvtS?=
- =?us-ascii?Q?izUlysdTw5mW7onrr3jP7n8CXASlxeSDXJ6nQL/81qm1fT9f2qe6WvgdleTz?=
- =?us-ascii?Q?tVft28Pg+m5Eb0p7VxDSCK+drvhQ/bZRhVCKXUG5O2fOXLVK5XdJXujh7LEy?=
- =?us-ascii?Q?ca4dGROmH++uOv5pH4jmg7tmjDXlstyKJ7F3TDAirFAZQSxcbmoJzWjlRmOx?=
- =?us-ascii?Q?SUHvYHjWbOYtv0t+fb9c9+bCnEEE0SLy0ZO5E8PDyepUo9dVDlq5nmQd+e1b?=
- =?us-ascii?Q?2Djk4LW0NGUcJSk6ZYEFKPtSqHN51EkHAR7UEhSNPTpB1dk3diuq6tnaFVqh?=
- =?us-ascii?Q?bR7AYIwk/QdVgtJqWo6KgP99RVwo/gvoOFXCNZVLO1cH9mlRLTnhQhcek/cd?=
- =?us-ascii?Q?mHF7xlaTHPbQapaoFfy2bNJ4MWpmNhhQa9rICbuSAsldMu4KEzeLeVK6t4DN?=
- =?us-ascii?Q?t5cUAVExbsKis9UxexMmDu5U2WA4yg0E0dUbGbpoJOWgc9eP3Ldcz0gHs5wg?=
- =?us-ascii?Q?M5yXnqymYCV7GokX6z/B0hkjCWdMjVC9Zsoz2EBisU7L0UerrOL7eCaMYF1V?=
- =?us-ascii?Q?d3dBDNgUdDiLB08pRPROHYuHndIhK/YdcdtIU4SLvC4e1ZIm4jSnQrtKzw+5?=
- =?us-ascii?Q?ntRCOsUZJ/UCzYsZJDGcHMVVDucvPlKawhAggYJFfZNIbO4Fk7DbTi67n562?=
- =?us-ascii?Q?DLVP0CtxGNViZttr4PuiYvdKQDgCVimK3xSI6YgGzSBSfPaLlJuA8P+3/pV3?=
- =?us-ascii?Q?lr4mFZEJIeOVQ7wYzjcT36erXp5TWJJdgc95PnxsVMOQ8UuiXyGDu6WwIoJ6?=
- =?us-ascii?Q?8I8r3j9hP1a+Z3XR4xTbDnQD9ZDfKmxAqPyU87CVcD6eLs5bPzrb/LPuLANO?=
- =?us-ascii?Q?LHjg3Is5iBlU7BftRwbJPDC2LLaJ8hR5zVEaSHx+WQlSjt+1JYjCVAltKWZ4?=
- =?us-ascii?Q?oOIdTudQB05Gp1gSq2IEqxssUxEo77sigUer4v1KOUsjOczBqiNr1Tc5OZ3I?=
- =?us-ascii?Q?gFsPYWu+0xZrp7q0DuyVKE/JjbnKm7avY6NgeQqiE6aofk+Ecrzw/emt1bj6?=
- =?us-ascii?Q?uvfsPAPLiY+1knNwXvdx06dHaCie1FIKCX6voWaepimnViW3lIBqlBnJAgoy?=
- =?us-ascii?Q?uNS3S2hwU2LtG3Oaif3/y+vKndVqoJPKsscT2zhmo/BQ92brO23BmtDs6bwm?=
- =?us-ascii?Q?j0chxn2kVLihx+imCh3Mx5QbG4dVWQM1nT6KPel3NhT4JSswJo43s3qSPpSH?=
- =?us-ascii?Q?yz32lfFw1ymmp34imfe+mccsPitVS9o7jzvZ6I2avb5VklKRFiTsjp6dFgxJ?=
- =?us-ascii?Q?IJcz4t/XS9qLIImLYE5UznW8Y3mx0KgJf6grtWwPnntxeRVMYqyx1h9UMR3d?=
- =?us-ascii?Q?VRYUWQDy8q0j0uYDHT5jrQtR21jzTYqs6SwFGrLUbUxowf5JsZ9fFQchZRuL?=
- =?us-ascii?Q?mJ/72N+Us+1mnkTQastYO96aUi9LE1kXQ3VcdTAGI1g+9CNVYL/TaIPYjI6t?=
- =?us-ascii?Q?sA=3D=3D?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 5f75175e-881d-444b-76f3-08de3bcec49b
-X-MS-Exchange-CrossTenant-AuthSource: LO2P265MB5183.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Dec 2025 11:40:38.2365
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- V2j4nIahfdBnf45Gm5krADyCrhQP0g+FRP5X2JVUYWlnnSQbQr1Jfcps8X6UVVe1ZgBD5lBMhaG5PQJrF/9wNQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO4P265MB6445
-X-MailFrom: gary@garyguo.net
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: WN6wJDRvtD-yUFu_zG_72qyJaUihvnuh
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjE1MDA3MSBTYWx0ZWRfX5MiCzsRH1NNY
+ H+BoFLmlUPzz3zt/mQ87IzaJy4+VrPyi6Si2H89d2kLa1G+426HP3d9MT5bCnt1geJh5i3/Id3r
+ JIsWOvLLiPOV+5aAgvOimLwcNplgWeSiY6VPRj3OPtCSxZj9AtV33bXWuFTGXHm9yKD24YG9KYF
+ V2ja+7/G/pK6DSLw8HjjGNCwJyxWejSPtIQgBbeXmU2CKJE7kGGkAD7Fuh5meYsUqHz5JfTS4QZ
+ C4rARJcPzFSJFjQrs7WZqLB5R7mlGBvB1Dw4FcLpX1DGyO0Nc0ibRSA/R4xxWYqPHrn9C9FHQwH
+ cFL+5BsGGBHaXDpMU26
+X-Authority-Info: v=2.4 cv=UNLQ3Sfy c=1 sm=1 tr=0 ts=693fc81e cx=c_apl:c_pps
+ a=9OgfyREA4BUYbbCgc0Y0oA==:117 a=9OgfyREA4BUYbbCgc0Y0oA==:17
+ a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22 a=VwQbUJbxAAAA:8 a=JppZAXPjAAAA:8
+ a=frRGVck-aN2bEsA2AVkA:9 a=mTXuAFqUwmiQvsSFmwXH:22
+X-Proofpoint-ORIG-GUID: WN6wJDRvtD-yUFu_zG_72qyJaUihvnuh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-15_01,2025-12-15_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0
+ phishscore=0 clxscore=1030 adultscore=0 bulkscore=0 mlxscore=0 suspectscore=0
+ spamscore=0 mlxlogscore=671 classifier=spam authscore=0 adjust=0 reason=mlx
+ scancount=1 engine=8.22.0-2510240001 definitions=main-2512150071
+X-JNJ: 
+ AAAAAAABNlK4TaBqZ4GA9dhroElKp3CeyRUf3F0p7DxwjpwOox9uqnbK5vklEhwfaVv7BlckK1pBc4bCO5HDFTbO3B8c8JJ311eyu7rTK3IfZW0BUOTZcFxnBjuflFEMqd5dCtQcvrTuCY35eE4JEzkkO2Po4huyNQ5ruDH7kE50HH9jcy9X/y2eGX2JmFhmwTnU/pOEYEu9nbV8sLlS5vpdRYIiVhtruHFP3ii6VP97rZCgIwb20UF1GO/7gvxtyi2ZogRNMj7SG/I/YUngCM5wSTwmXW2x1YjCTI2l9gWSaUTlwyFREX/KefNBKachQBiAFbs81F/gkPi72fV+TABRMp5TcWRavQICEJpfn9H5Plxy1EmGI3W5X92AOdtmbUXB76+RTrAZlT8IEKrp4pBFt0qn+81DfiRmJPZVco7sxB+EI78lKPZOVjAi2tRdZoyvpNdYhFQFGCMQ5lOc69Oam47Dto1rh026vxQMpBk2aTIFPM1WR2Q4iLsul5wO71zJtaZPWmalYRv97xy2+QbflQZOdkX/YmMJ8jOqtb3DIUMciaj56Tf+dsckdf/S4xiuQTNpuBB8A3OKzMpB7QZ8eoxMYjWry6pU0kb6y2b6vcIPOsFhFOeUiSrcJJBGBcuWgDxVAhSuC8nCGOQqS0N5n7pG+clLearXS3xqiuQZXNinlf8Z+Wvi7hy/Dw==
+X-MailFrom: bshephar@bne-home.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: APLMW4RQM56STKOPSUEZKXNHOODG4ZNR
-X-Message-ID-Hash: APLMW4RQM56STKOPSUEZKXNHOODG4ZNR
-X-Mailman-Approved-At: Mon, 15 Dec 2025 15:19:48 +0000
-CC: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, joelagnelf@nvidia.com,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org
+Message-ID-Hash: IRNUX3EJAQBU566XAMADHQU5BURTNWWH
+X-Message-ID-Hash: IRNUX3EJAQBU566XAMADHQU5BURTNWWH
+X-Mailman-Approved-At: Mon, 15 Dec 2025 15:20:52 +0000
+CC: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Brendan Shephard <bshephar@bne-home.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/APLMW4RQM56STKOPSUEZKXNHOODG4ZNR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IRNUX3EJAQBU566XAMADHQU5BURTNWWH/>
 Archived-At: 
- <https://lore.freedesktop.org/20251215114036.302303e0.gary@garyguo.net/>
+ <https://lore.freedesktop.org/20251215083416.266469-1-bshephar@bne-home.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -195,77 +119,63 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, 12 Dec 2025 14:49:48 -0600
-Timur Tabi <ttabi@nvidia.com> wrote:
+Use page::page_align for GEM object memory allocation to ensure the
+allocation is page aligned. This is important on systems where the
+default page size is not 4k. Such as 16k or 64k aarch64 systems.
 
-> Create the 'nova_core' root debugfs entry when the driver loads.
-> 
-> Normally, non-const global variables need to be protected by a
-> mutex.  Instead, we use unsafe code, as we know the entry is never
-> modified after the driver is loaded.  This solves the lifetime
-> issue of the mutex guard, which would otherwise have required the
-> use of `pin_init_scope`.
-> 
-> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
-> ---
->  drivers/gpu/nova-core/nova_core.rs | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-> index 7d7b75650b04..591edede4376 100644
-> --- a/drivers/gpu/nova-core/nova_core.rs
-> +++ b/drivers/gpu/nova-core/nova_core.rs
-> @@ -2,7 +2,7 @@
->  
->  //! Nova Core GPU Driver
->  
-> -use kernel::{error::Error, pci, prelude::*, InPlaceModule};
-> +use kernel::{error::Error, pci, prelude::*, InPlaceModule, debugfs::Dir};
->  use pin_init::{PinInit, pinned_drop};
->  
->  #[macro_use]
-> @@ -24,6 +24,8 @@
->  
->  pub(crate) const MODULE_NAME: &kernel::str::CStr = <LocalModule as kernel::ModuleMetadata>::NAME;
->  
-> +static mut DEBUGFS_ROOT: Option<Dir> = None;
+This change uses the updated page_align() function which returns
+Option<usize> for overflow safety. (See "rust: Return Option from
+page_align and ensure no usize overflow").
 
-Please don't use `static mut`. If you need anything associcated with the
-lifetime of the driver, please just put it into the module.
+Signed-off-by: Brendan Shephard <bshephar@bne-home.net>
+---
+Changes in v2:
+- Updated to use the new page_align() Option<usize> return value
+- Prerequisite patch:
+  https://lore.kernel.org/rust-for-linux/20251204224006.353646-2-bshephar@bne-home.net/T/#u
+- Link to v1: https://lore.kernel.org/rust-for-linux/98227EBD-92F7-40FC-A5A4-3FF3780FB2CB@bne-home.net/
 
-> +
->  #[pin_data(PinnedDrop)]
->  struct NovaCoreModule {
->      #[pin]
-> @@ -33,6 +35,13 @@ struct NovaCoreModule {
->  impl InPlaceModule for NovaCoreModule {
->      fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
->          pr_info!("NovaCore GPU driver loaded\n");
-> +
-> +        let dir = Dir::new(kernel::c_str!("nova_core"));
-> +
-> +        // SAFETY: we are the only driver code running, so there cannot be any concurrent access to
-> +        // `DEBUGFS_ROOT`.
-> +        unsafe { DEBUGFS_ROOT = Some(dir) };
-> +
->          try_pin_init!(Self {
->              _driver <- kernel::driver::Registration::new(MODULE_NAME, module),
->          })
-> @@ -42,6 +51,9 @@ fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
->  #[pinned_drop]
->  impl PinnedDrop for NovaCoreModule {
->      fn drop(self: Pin<&mut Self>) {
-> +        // SAFETY: we are the only driver code running, so there cannot be any concurrent access to
-> +        // `DEBUGFS_ROOT`.
-> +        unsafe { DEBUGFS_ROOT = None };
+Changes in v3:
+- Add back missing semi-colon after ok_or().
+- Reword commit message to be more concise.
+- Link to v2: https://lore.kernel.org/rust-for-linux/20251208064405.573026-1-bshephar@bne-home.net/T/#u
 
-Sorry, I missed this from my previous email. But if you put this struct
-inside module itself, the dtor will automatically be run on module unload.
+Changes in v4:
+- Add back the size == 0 check;
+- Rebase on latest drm-next branch
+- Link to v3: https://lore.kernel.org/rust-for-linux/20251208071810.653223-1-bshephar@bne-home.net/T/#u
 
-Best,
-Gary
+ drivers/gpu/drm/nova/gem.rs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
->      }
->  }
->  
+diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
+index 2760ba4f3450..3a3a41e8d4bc 100644
+--- a/drivers/gpu/drm/nova/gem.rs
++++ b/drivers/gpu/drm/nova/gem.rs
+@@ -3,6 +3,7 @@
+ use kernel::{
+     drm,
+     drm::{gem, gem::BaseObject},
++    page::page_align,
+     prelude::*,
+     sync::aref::ARef,
+ };
+@@ -27,11 +28,10 @@ fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
+ impl NovaObject {
+     /// Create a new DRM GEM object.
+     pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self>>> {
+-        let aligned_size = size.next_multiple_of(1 << 12);
+-
+-        if size == 0 || size > aligned_size {
++        if size == 0 {
+             return Err(EINVAL);
+         }
++        let aligned_size = page_align(size).ok_or(EINVAL)?;
+ 
+         gem::Object::new(dev, aligned_size)
+     }
+
+base-commit: 8f0b4cce4481fb22653697cced8d0d04027cb1e8
+-- 
+2.51.1
 
