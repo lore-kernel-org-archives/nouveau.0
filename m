@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81A37D5E144
-	for <nouveau@archiver.kernel.org>; Tue, 16 Dec 2025 12:34:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8278DD5E147
+	for <nouveau@archiver.kernel.org>; Tue, 16 Dec 2025 12:34:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8AFC310E93B;
-	Tue, 16 Dec 2025 12:34:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C785910E94E;
+	Tue, 16 Dec 2025 12:34:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tGTelK3Q";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mwArkI3A";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5196A45554;
-	Tue, 16 Dec 2025 12:27:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 91314455A9;
+	Tue, 16 Dec 2025 12:27:05 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1765888024;
- b=sLl6wt5K53RUkNmi1vmXoZ0yEmGzzbXDqjWYx6eb77gGfubgsYPR/ZFQGXICmhtZZJ0VQ
- zBg1pPQTE5zIgfKQeSGe+b3f7tcZsftQUGm84OYhus+nWwxSkoXzHsP6jE9up/LU7K1StxO
- x/sfIHV73nVB6KCapjBFvj/RqBW+AXtdPchc014Zcuu7Uq6scXV1UymsWpvVXdVMAzXMSuN
- 1vuyQeCU39WqOt0LM56+hEW38R32kJKf+DtePtjAnFxz3ED6WZo3RZvpp1LVQCELNTuH61L
- NgQ0EESosTbZ8DLyBXlVTeqh18wMICZHcEA+PGqtrt0SFA1fViQConFOFCvA==
+ s=20240201; t=1765888025;
+ b=UU8jUXRZEH54xP5dlZudJyWrE4NMXznG+drqyboCB4pmxisaZ33fekJkYZoxM81dTSfqb
+ kt1nMEIYVlwRjl49ux74e4/NuoyrFU8sL81I99wkIzJecO5mWJh3wDeL9m5o5/pKhQjgsSX
+ TeggghMscV6OVYk3AoJrB4cHPQvC/a5zzuSXXDvlwqEgjZdd4hhCd4sWzPVKxtz1y4BHEQS
+ ZRQFWaIK4U1k8nYAcANcwUmXNlut+1W4Zc+PVKQAXCh+zjvpLTcdFLJGktl9JZc15X3+xZ5
+ 1MdtkA42La+n+KJ9JMF5U7f1Afi76ddL2jGNdr2QzYUepPYaTmm1XJE/3v2Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1765888024; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1765888025; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=R1Lu0o+11egkckbi3cb1PoZrxvfjF/dinNsiKmKw2WU=;
- b=Oulczo+bZ4vsmi7vY3yxUXJ2qMor2XwcKg+2voDQucXR3v0MoxU62rgKwjNhZYYIGE6PO
- MwSxqaLDEbyr2taCuDkIJwZ3nhH8KZKYaCvoNqAg5RE6Gs4gYyRWUL1kI37oZctpxDcmJH5
- 0w1qk4H19NkCGRaOsZ1d1O5Cw3qo6DylxHYQ6hy7/cIoa6WDXQlmMsURarMwz6VC1P5eV+U
- w3QpcZqHEpkkzU/klcHIetR1AA4EzEgmdb07QJPbNpD6FFHaNQzFejTUa6hemronfLp5+e8
- K4NCEywpmKTpgJ2M2fpW/3Nyb1KkV7A1Y0FPTJ+oz8s5jF59jVotgXUoWinw==
+ bh=HbGAkd6dqdlZiP/JqSbSt4Qvo26pgom6ewHDRcS2SXY=;
+ b=ZwY26cjkyXhyBs+GugGrMdpySDPNOMt6W3Q+z6c8EGe2t+joLSs/oSTjHTLRb7N3L1ZLT
+ mPqEVQ7MIBxsEQr0boBa2toyPPczKW/5cfksxNG+1nxh1u+F8mvyvR4ORzNM6h9yLWpeN7I
+ ujRsTrcSsI2EK3pkjABUvAc26FXdanTdprM5aFFtGwsyxAVhTLI3wgjN74QnhGan/wXiID7
+ KYn0aLNR0+WpOaW3B1MpGmvqWd2F/b3PwX/2dC6jcPImbEYDFKTy+xLZZjsfXv19zAyPtT6
+ +tQsMzVtNzCa2i89iAHREQgrfH2lHj7RehO3FXvXy56/SQkW6KxVyAXUviKw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,56 +46,54 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C9A4745586
-	for <nouveau@lists.freedesktop.org>; Tue, 16 Dec 2025 06:05:10 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3FDEC10E3E6;
-	Tue, 16 Dec 2025 06:12:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 554724559B
+	for <nouveau@lists.freedesktop.org>; Tue, 16 Dec 2025 12:06:41 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5C78710E5F6;
+	Tue, 16 Dec 2025 12:14:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6FA3160010;
-	Tue, 16 Dec 2025 06:12:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F23DAC4CEF1;
-	Tue, 16 Dec 2025 06:12:29 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 2100341867;
+	Tue, 16 Dec 2025 12:14:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 448E7C4CEF5;
+	Tue, 16 Dec 2025 12:14:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1765865555;
-	bh=A+I04UHKw5lCsiggJwC3a6zTxGbfv3jvV4SKBE4/dIA=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=tGTelK3QrmUWjrzbl++x6Q4x6OHDRdVlombnRPiRpgCFQ3inqoNZ6kLLmFJ//fAXP
-	 6dhGAz9vuaka5p0xyBWMLk8pxcP3XWeQxXiSMe6YDWnfeSA2j1qxg76KY3+jAvwWqk
-	 jHKdzzRnfBb+j5WBh21YZn6XUB7JANxaLDIG06rdkYwk/tISO6r8O1q5qpc86RdgZ6
-	 a3aE3Spw97ncm9LKkgCgDa4nI+aVWFkeMII2lzNTqay7NJYiHMVNYZa6NJ/XIurr9A
-	 xmcz73A6w2Q0DP3EU9JNr+UpweueFG8UlXfb0gDSelk/dM1NEp9Hq4TeSh4MeYqMhm
-	 gxq3tZTalVndg==
+	s=k20201202; t=1765887247;
+	bh=pZP2BYvtE9bxefV3Xhyf3JysEWckorGNQUlBT4sl0HE=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=mwArkI3A22We2dV9k1nt+llKSV/PdjOlNKOSh58EWc2WT3tKVntnnU6I/YiUggG3i
+	 Tqh2Avr7N+p89KUHE18Db1eNRQr79btWxbHXefSDfhZbHyPA/X5xWRI6d6bq8M/40R
+	 iV8mM+xU+ytME+2AjSpNZGzkx0IfVa7eE8uf0+3iDgrlmtU4sIq2ms8QUuDz+/wK8P
+	 m4yWOoT3dvUDqi/WRJE4SvI7m8geXpOuHNWA1S5VFcizIh/UM8imRRxIg0GS8i499V
+	 jjoKi9KwaPezhIb7cI2YtgnG3oibWCi65T41bi5MZzcwoSs2uqWgnMrLLbCZakN2of
+	 +r0DoPlVFuRgg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 16 Dec 2025 07:12:27 +0100
-Message-Id: <DEZF3DDSQXA9.2WAC2D5ZDKHDZ@kernel.org>
-Subject: Re: [PATCH RFC 4/7] rust: pin-init: allow `dead_code` on projection
- structure
-From: "Benno Lossin" <lossin@kernel.org>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng"
- <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>
-X-Mailer: aerc 0.21.0
+Date: Tue, 16 Dec 2025 13:14:00 +0100
+Message-Id: <DEZMS6Y4A7XE.XE7EUBT5SJFJ@kernel.org>
+To: "Alexandre Courbot" <acourbot@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 1/7] rust: pci: pass driver data by value to `unbind`
 References: <20251216-nova-unload-v1-0-6a5d823be19d@nvidia.com>
- <20251216-nova-unload-v1-4-6a5d823be19d@nvidia.com>
-In-Reply-To: <20251216-nova-unload-v1-4-6a5d823be19d@nvidia.com>
-X-MailFrom: lossin@kernel.org
+ <20251216-nova-unload-v1-1-6a5d823be19d@nvidia.com>
+In-Reply-To: <20251216-nova-unload-v1-1-6a5d823be19d@nvidia.com>
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: implicit-dest
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  max-recipients; max-size; news-moderation; no-subject; digests;
  suspicious-header
-Message-ID-Hash: 3FPYRT3PBNRG6BY7ISAMYKTRVSFBTU5L
-X-Message-ID-Hash: 3FPYRT3PBNRG6BY7ISAMYKTRVSFBTU5L
+Message-ID-Hash: OVW3P3TFVVKSVJFGEQQ3BMSNOD4DSFLW
+X-Message-ID-Hash: OVW3P3TFVVKSVJFGEQQ3BMSNOD4DSFLW
 X-Mailman-Approved-At: Tue, 16 Dec 2025 12:27:01 +0000
-CC: Alistair Popple <apopple@nvidia.com>,
+CC: Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
  Joel Fernandes <joelagnelf@nvidia.com>,
  Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
@@ -104,9 +102,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3FPYRT3PBNRG6BY7ISAMYKTRVSFBTU5L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OVW3P3TFVVKSVJFGEQQ3BMSNOD4DSFLW/>
 Archived-At: 
- <https://lore.freedesktop.org/DEZF3DDSQXA9.2WAC2D5ZDKHDZ@kernel.org/>
+ <https://lore.freedesktop.org/DEZMS6Y4A7XE.XE7EUBT5SJFJ@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,41 +115,89 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Tue Dec 16, 2025 at 6:13 AM CET, Alexandre Courbot wrote:
-> Projection structures are not necessarily (and often not) used in their
-> entirety. At the moment partial uses result in warnings about the unused
-> members.
+> When unbinding a PCI driver, the `T::unbind` callback is invoked by the
+> driver framework, passing the driver data as a `Pin<&T>`.
 >
-> Discard them by allowing `dead_code` on the projection structure
+> This artificially restricts what the driver can do, as it cannot mutate
+> any state on the data. This becomes a problem in e.g. Nova, which needs
+> to invoke mutable methods when unbinding.
 >
-> To: Benno Lossin <lossin@kernel.org>
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> `remove_callback` retrieves the driver data by value, and drops it right
+> after the call to `T::unbind`, meaning it is the only reference to the
+> driver data by the time `T::unbind` is called.
 >
-> ---
-> Benno, please let me know if this looks good to you and I will send you
-> a Github PR for this.
+> There is thus no reason for not granting full ownership of the data to
+> `T::unbind`, so do it.
 
-Looks good :)
+There are multiple reasons I did avoid this for:
 
-Cheers,
-Benno
+(1) Race conditions
 
-> ---
->  rust/pin-init/src/macros.rs | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/rust/pin-init/src/macros.rs b/rust/pin-init/src/macros.rs
-> index 682c61a587a0..fe60e570c729 100644
-> --- a/rust/pin-init/src/macros.rs
-> +++ b/rust/pin-init/src/macros.rs
-> @@ -1004,6 +1004,7 @@ fn drop(&mut self) {
->          @not_pinned($($(#[$($attr:tt)*])* $fvis:vis $field:ident : $type=
-:ty),* $(,)?),
->      ) =3D> {
->          $crate::macros::paste! {
-> +            #[allow(dead_code)]
->              #[doc(hidden)]
->              $vis struct [< $name Projection >] <'__pin, $($decl_generics=
-)*> {
->                  $($(#[$($p_attr)*])* $pvis $p_field : ::core::pin::Pin<&=
-'__pin mut $p_type>,)*
+A driver can call Device::drvdata() and obtain a reference to the driver's
+device private data as long as it has a &Device<Bound> and asserts the corr=
+ect
+type of the driver's device private data [1].
 
+Assume you have an IRQ registration, for instance, that lives within this d=
+evice
+private data.  Within the IRQ handler, nothing prevents us from calling
+Device::drvdata() given that the IRQ handler has a Device<Bound> reference.
+
+Consequently, with passing the device private data by value to unbind() it =
+can
+happen that we have both a mutable and immutable reference at of the device
+private data at the same time.
+
+The same is true for a lot of other cases, such as work items or workqueues=
+ that
+are scoped to the Device being bound living within the device private data.
+
+More generally, you can't take full ownership of the device private data as=
+ long
+as the device is not yet fully unbound (which is not yet the case in unbind=
+()).
+
+(2) Design
+
+It is intentional that the device private data has a defined lifetime that =
+ends
+with the device being unbound from its driver. This way we get the guarante=
+e
+that any object stored in the device private data won't survive device / dr=
+iver
+unbind. If we give back the ownership to the driver, this guarantee is lost=
+.
+
+Conclusion:
+
+Having that said, if you need mutable access to the fields of the device pr=
+ivate
+data within unbind() the corresponding field(s) should be protected by a lo=
+ck.
+
+Alternatively, you have mutable access within the destructor as well, but t=
+here
+you don't have a bound device anymore. Which is only consequent, since we c=
+an't
+call the destructor of the device private data before the device is fully
+unbound.
+
+(In fact, as by now, there is a bug with this, which I noticed a few days a=
+go
+when I still was on vacation: The bus implementations call the destructor o=
+f the
+device private data too early, i.e. when the device is not fully unbound ye=
+t.
+
+I'm working on a fix for this. Luckily, as by now, this is not a real bug i=
+n
+practice, yet it has to be fixed.)
+
+>From your end you don't have to worry about this though. nova-core should j=
+ust
+employ a lock for this, as we will need it in the future anyways, since we =
+will
+have concurrent access to the GSP.
+
+[1] https://rust.docs.kernel.org/kernel/device/struct.Device.html#method.dr=
+vdata
