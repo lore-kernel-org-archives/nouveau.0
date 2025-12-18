@@ -4,96 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B908D7877D
-	for <nouveau@archiver.kernel.org>; Fri, 19 Dec 2025 13:54:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9B1CD78770
+	for <nouveau@archiver.kernel.org>; Fri, 19 Dec 2025 15:59:47 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0BFD510EFE2;
-	Fri, 19 Dec 2025 13:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9DE10F031;
+	Fri, 19 Dec 2025 15:59:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="U2ZApoIb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kyVC97uO";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CF40B454F6;
-	Fri, 19 Dec 2025 13:46:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4F68B45627;
+	Fri, 19 Dec 2025 15:52:14 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1766152014;
- b=iWWiS5sc0DK66FeDlz1Lg/z4iIhQXpBBV2Ka02t39lAyqZb3d+pb2E9W5NirDbbhK3R10
- 3qWHlTssI8TgV8u4PIz3irys9jx8es1ox1tRbjLcZrMO2dImiqHLx18Paq8wFjHck3iX9JH
- kI8RsTAP9YeuKMRp0D6YswfgqlRA5Pw1rcD0hNn/East36a42AONU3RMye08xlCu4ddy6Ks
- Tn7Sm5p+8FnB5mlQ2KCagMQ3N3SVjVsotAw3kOa0GAYNETrjLNWxQw7Bp5Xkp26DnbQJQBr
- ruvGPIfMPFRTKVmkVXOgRvsgPSaZNkIk776wPq1sm0MPJnRfPjJOWE8Q1M/A==
+ s=20240201; t=1766159534;
+ b=V9y5oOxdxbLHt0HjIhRIFZemwfM7yC/PpyLTuH3RPZ4T8rJKDAdRN1K8T+UOOuoUi8tSL
+ sgJRmiqAfBwadmIkR5PTuFsrSv5nKGIkhSbS8B9RhVo9ewxQZemtCg/6VjJRt8rMnIYJF0A
+ X6kGz6lcXZyuYkPtezXXQF4dQfoUJOL9eQIom1s32dhoPIYEupdMmKhkuPly1AThuegeM3a
+ chIgRNoW6jiFzLqN+7bAkzzPYFvn+jEHWobOwImsKAmnZk1GyNxzmE6u8m/B+nUQSAHT0pp
+ ZR632wnh48bps6gSXMKQoNwNpNqjxYAnVeRFAcJ1qUvCrMUtqrmqaJGQpfLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1766152014; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1766159534; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6XteYEIbtoFCGOI6KyeEWPkivFlpasbQELYBfBjTTxs=;
- b=ZRAniPv/mjnH0vH5vzlVF3qOGojaIMxvoQoA3PiCYDVBemF2RTQaT4IvVI0fcUAXYmAxS
- l6ziH44U2BA5+Rjz09mnlUqaUY8d1nVrZ0s/FO7w0pYKepFYEILPHlYx+N3tDCUhaVXrL0H
- s/Py/+kXxl54dysLSgm0K40PuMPqqlKukmzTdL3bsY5vBY6w7NhYIXxjaFndrtVpsi1YVn+
- XqV2IDJNF7vcdR84mB5SR9kg1h/FXVEAeC89u4bZNpc70RZHZ1bEQ6/dYLXN0iCgzbpWlEE
- g01+26MaKNgGk7lsQcY/zp81E4CfKTw/kd6DtH6Q1EANk1Oo7RNMmWSQwStg==
+ bh=YFvkYn3/vF7G6kEZEteFe0M2PUdR9B6J9yqCwNu0Qeo=;
+ b=e6tgW3jbiWDmqZpsEuOXbyUE8rqh9+4Vx27InpMHNuUThKyp7eakj1IfRzEMeKQ9fXGeN
+ 8ZbPaYVUsJeyY+cFiWBe5zu4FKXi7cHnCC+koB3UKqU961Yx6XwUWZGM4i1nywrtbNue6mL
+ rpNrHBKQKzIFLeOpkZ2Vd4iNvtJayDIYEj/v9lW6E6lnAS314IzZpFXLA45M+HrwWayjmSF
+ eNrh3zZZ1hPxcSSMXWrqfon3/DrgKQtO5eqxuN2ECiKm3436qUXaeTdDbqJlAWTdTtRXWNz
+ JOKkzkeW7a5dcV2Z+6OQo87M5oJFfvohDFF4nQRoVpcRpnftab/nI8bSfcpg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=igalia.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=igalia.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=igalia.com;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=igalia.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C102C44B96
-	for <nouveau@lists.freedesktop.org>; Fri, 19 Dec 2025 13:46:49 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A10CF10EFD3;
-	Fri, 19 Dec 2025 13:54:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
-	s=20170329; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=6XteYEIbtoFCGOI6KyeEWPkivFlpasbQELYBfBjTTxs=; b=U2ZApoIbt1WqbzrxKE/7/aeMUV
-	bj6mStzTRjMQvuXuJA0Iv+QqeGtqVWWnZlzygfcu6o7yr8Dx1jea+37kDdbYbiwJCjV4EXvhl+Pq4
-	aVR1w0e2KfTEO0mHDMtszmZRSnwDCzK1Wz8TqpSZujnYAp+eOGHZ3QLa/5j6aKez3p4WHKVKpf8E4
-	NYWk7PdPD1AgGuCTyjhQ8rhQBaBXCDHsePqGm5mEnSXlnmmDgTMBoPklIMmO8oI8kOb3R5LpKi7H0
-	en5SDpMSsKq64utQwsd5wtbfhjuSo2I51PpCrBwR9iM3UAvESEA7hwkGeTwH66EAqdjJr4BEbkwdO
-	BYgGGU0Q==;
-Received: from [90.240.106.137] (helo=localhost)
-	by fanzine2.igalia.com with utf8esmtpsa
-	(Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
-	id 1vWaw0-00Eejz-RD; Fri, 19 Dec 2025 14:54:20 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 22/28] drm/nouveau: Remove drm_sched_init_args->num_rqs
- usage
-Date: Fri, 19 Dec 2025 13:53:44 +0000
-Message-ID: <20251219135351.25880-23-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.51.1
-In-Reply-To: <20251219135351.25880-1-tvrtko.ursulin@igalia.com>
-References: <20251219135351.25880-1-tvrtko.ursulin@igalia.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: LBZQ67BRKMRJEFTJS27THUSD3ZNRPE3T
-X-Message-ID-Hash: LBZQ67BRKMRJEFTJS27THUSD3ZNRPE3T
-X-MailFrom: tvrtko.ursulin@igalia.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id B23EA44B8C
+	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 16:27:50 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9F29C10EA85;
+	Thu, 18 Dec 2025 16:35:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6825B443D2;
+	Thu, 18 Dec 2025 16:35:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A36FC4CEFB;
+	Thu, 18 Dec 2025 16:35:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766075721;
+	bh=NwliGA6POZUo0NrUjyXl5fIIG/7Xk3vSI0rDYbtTwr4=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+	b=kyVC97uOZEKzMdf67qIWldq8zHvQOoggsAKMh3mRCsmbVOs1IOjzfhcdapISY2SLQ
+	 u2uYBgNI7yYNvMol3FW3OU52sAgU259IW5xXGk1xHMsFjLD6tRPtDyUZuBkzIF16IO
+	 woNrUzAV25gkhsdSwvj8dfZvcKUc3lB+pSHF8CFbmIgk5TAsqaCKYusu1CD7UrNk8P
+	 a/YEcnhWlvht4VtGc4JJnzQpHR1CLe4pwAUTFf0Ol97OMGHBkln2nXNex9fYkf9lkB
+	 kH5gFtkIJnS5Pj5aqqXJ2LqOoTm/I9Dqps+mbXkB7NcE9UrPip0NBYXPW7l4Y+7E4H
+	 WCLDHRZ/s8jeA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 18 Dec 2025 17:35:13 +0100
+Message-Id: <DF1HLAAHBNUF.3H9QT3WIINRR@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 00/10] rust: refactor ARef and AlwaysRefCounted imports
+To: "Shankari Anand" <shankari.ak0208@gmail.com>
+References: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+In-Reply-To: <20251123092438.182251-1-shankari.ak0208@gmail.com>
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: implicit-dest
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
+ max-recipients; max-size; news-moderation; no-subject; digests;
+ suspicious-header
+Message-ID-Hash: YDSTMN5PVJARIZ5O2JZH34LIVBC7XFY3
+X-Message-ID-Hash: YDSTMN5PVJARIZ5O2JZH34LIVBC7XFY3
+X-Mailman-Approved-At: Fri, 19 Dec 2025 15:52:12 +0000
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?utf-8?q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
+ Suren Baghdasaryan <surenb@google.com>, Alice Ryhl <aliceryhl@google.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>,
+ Igor Korotin <igor.korotin.linux@gmail.com>,
+ Michal Wilczynski <m.wilczynski@samsung.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LBZQ67BRKMRJEFTJS27THUSD3ZNRPE3T/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YDSTMN5PVJARIZ5O2JZH34LIVBC7XFY3/>
 Archived-At: 
- <https://lore.freedesktop.org/20251219135351.25880-23-tvrtko.ursulin@igalia.com/>
+ <https://lore.freedesktop.org/DF1HLAAHBNUF.3H9QT3WIINRR@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,29 +122,17 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Remove member no longer used by the scheduler core.
+On Sun Nov 23, 2025 at 10:24 AM CET, Shankari Anand wrote:
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: nouveau@lists.freedesktop.org
-Reviewed-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_sched.c | 1 -
- 1 file changed, 1 deletion(-)
+Applied to driver-core-testing, thanks!
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
-index a7bf539e5d86..dce8c5c9bec6 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sched.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
-@@ -407,7 +407,6 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
- 	struct drm_sched_entity *entity = &sched->entity;
- 	struct drm_sched_init_args args = {
- 		.ops = &nouveau_sched_ops,
--		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
- 		.credit_limit = credit_limit,
- 		.timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS),
- 		.name = "nouveau_sched",
--- 
-2.51.1
+> Shankari Anand (10):
+>   rust: device: Update ARef and AlwaysRefCounted imports from sync::aref
+>   rust: kernel: Update ARef imports to use sync::aref
 
+    [ Change subject prefix to from 'kernel' to 'scatterlist'. - Danilo ]
+
+>   samples: rust: Update ARef imports to use sync::aref
+
+    [ Add 'debugfs' to the commit subject; be consistent with the existing
+      import style for now. - Danilo ]
