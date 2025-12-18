@@ -4,107 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF88D68BED
-	for <nouveau@archiver.kernel.org>; Thu, 18 Dec 2025 08:07:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32872D68BDA
+	for <nouveau@archiver.kernel.org>; Thu, 18 Dec 2025 10:10:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6D94510E586;
-	Thu, 18 Dec 2025 08:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0EE0F10ED0C;
+	Thu, 18 Dec 2025 10:10:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="v59CNsks";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HI8zsE5+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 274C645671;
-	Thu, 18 Dec 2025 07:59:37 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1766044776;
- b=WbkHsSuhFO2Pv/wh1rxJB95BsHVXXqVEhCqyNoNnKwzynZ3GMak75GGluhy9Mv8054MPT
- nw5Lrra37S0+1iWWBT4YS8dejXNN2uhDQ3NdFeq1r1nCUm1h3LIiwxk5xbZs24ijXfVhlgo
- met4Xxljo+jxLOsWRsgSFLPT47S1XfALERTVTmpy1H4fC0VWwfRpJ809fQxn292+5I/0yPa
- NrVOtVGynbo7Hfw4u8pb41SjE9fna/qdN20aFW1tLuHrRgrVwFoRda4ya5JfeNL0OHxG6Su
- gDFx/CY8D0u9aoyAxm8xvZ49UefV5LakAbyrVhrGQECws71Y4dBtaCORjv/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1766044776; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 81D3D4568A;
+	Thu, 18 Dec 2025 10:02:42 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1766052162;
+ b=eyq9HN04HEty8m1gyjuOPRFHG7wzlAI/uXhz2NKklgojaCOJZDluKSe6ujV6nSYsHyw6r
+ MXuAKC1ot2sbbATIqDN/B4kEfCRremw5ZiE1/yQStV1hWH0yMLE0QL9Re+U3z2AG+9xd26l
+ XiyvxkxKazG8RVCZhyTCCwxfWI+X3r/QI/Omg5KAKw95VQ7O2NKqAkHNnwyFeRxgJmO1WxS
+ 2HafPgEBxWAWt+kwdByGAdJQVImuG+VJStEeFlNaINcooNv2IUR75+vihdDioG5ugiC6YoI
+ 6Njc3CbUOmHeCjNqZejl8r2/2kzOvow2CEj7gCIY12xOhPBbyF9GXZnSFsNA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1766052162; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=qg1cGDg/XcEy9MbpLdRERFNOIZJLJnBwZuR0lpXVu+U=;
- b=1CLGG2/gbc6EPFTXu1t5mk4v1QoSHMX2dXVRdW1NvSMUgfIUZlRmL+aDLp8544wOAogyv
- BwusKoE4wVy/C0/F9ZjqUIdnQ+kx4lSZhSa04V3JjDS6S1ccq9f5mO191HAI10woDOCeaiY
- Bb7ciV/kE8ifq9wUirf+cT0YVsE44EedOEsZt0tYJY2TKrl2qD1xWt5V4ZlJ03sRV2CDkRs
- v1kf955LiGXMoaDmFoCj26RZIJm26JXmkg20ns9vBIJOYmAU/P04axwTjuE2IYl2LeAuMap
- mzMw8jUq1nQ1gn5OiYxliLAID7utqLY8VsKFnSrxB+9aTSNCjJE+Pje2i+uw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=google.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
+ bh=ShMd5RsgoCCs+7pbJSDKC7+gIM3DjjQQXbLBPRzr+LI=;
+ b=ZkODQ37rM3loZyqRbL+MZt7HC0pK5Xege/WPx5Y0dQkoJIifw8VzRaA++yZIRJ8tlDPmV
+ mo5O0aA7kVanSigUWkWAS8JiXLkjG5g24q1DkbSGbTByfysPgXY4FO43hnt7E2y1dFdPe7S
+ IVZhzmxkfvjTLG3R24I/r0aW547SQTGx2Iat6mhPdvP7hM7xyaXWNY8M+j+Fy2p6iafLEdI
+ VGq9d7b0w7O7mrK+Rs/fYiAeob+sOzO5KtxsavLQy0pska6JOs7u5WDbuzD58IDfPZ2j0Op
+ zEy6ObhGAjOcjAc6aJ66+ljisx15eDc1NzQqJE33r67bOzLF43bZ9L383m9Q==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F3BFE434AB
-	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 07:59:33 +0000 (UTC)
-Received: from mail-wr1-f73.google.com (mail-wr1-f73.google.com
- [209.85.221.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 257E010E2E4
-	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 08:07:04 +0000 (UTC)
-Received: by mail-wr1-f73.google.com with SMTP id
- ffacd0b85a97d-430fc153d50so202061f8f.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2BCAE40057
+	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 10:02:40 +0000 (UTC)
+Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
+ [209.85.215.169])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7A68810EC78
+	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 10:10:10 +0000 (UTC)
+Received: by mail-pg1-f169.google.com with SMTP id
+ 41be03b00d2f7-b9da0ae5763so17818a12.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 18 Dec 2025 00:07:04 -0800 (PST)
+ Thu, 18 Dec 2025 02:10:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1766052610; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ffXc9kiEOsQEsP4HFXTw6e20nw3/oUjg22ORX3t1XSOb3txypymnw08Lk0UAjjP1+l
+         MxKx2CKBNJsUB/fHI+XM2ColkEuixWthhGVrW4IYZYmVU87MBrul6tsTBdnPc8G8gf7K
+         q0VdhVkeMv3snazjjNEpbYLv3azl4alV0aiiXbJDKVPLtmDWu4nvrDawXUzSe7MQjAB/
+         +XThBQx/LyUDnJ7DntAPOC1iw7cS/ausjySPCq+p1VPQ39H5Hzi7nwDKxhwyUBM/mSkz
+         Sym49+WZnrIXTcY6Y3+0XAJp2uqJkelQH2IUH9FaemoTxrgleOxAXwEA8Bz2N++nLrQw
+         qkow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ShMd5RsgoCCs+7pbJSDKC7+gIM3DjjQQXbLBPRzr+LI=;
+        fh=tGuc+0g7IQRR87wh944lbOavnUSQofLXtazPwupOMb0=;
+        b=BQzuvg5/tdm1d7B8reP+SSgV98IcNKMZITsN4GJE6iy7VgcsqbFNDOcS5lDUB7b828
+         ENSOKCm0KzQ5pU07T6eC+RmpZscXrQAori/lwPfsNEBgXV7xOjf5Sf4R3wJPG9GTHKAn
+         W0IC2VwrCfNEAIausadv0rY3PeuftnHHuT0SAqqWA5C8KKv/Ash1Z1YJQMJd2PiKUhvQ
+         ByDC5b5liN4fXMgWv6xfTiHI7NQcZtu7Q8LrGV/v63nMSwqOGQfcIS82KXYuop+ISn8y
+         y6SKHa+IHDawCq+6v7FcMKtciy4j9jrKdxw5rzuyM8PqhN80zFu7w4QXToQ1PFG2+gOI
+         eXjA==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1766045223; x=1766650023;
+        d=gmail.com; s=20230601; t=1766052610; x=1766657410;
  darn=lists.freedesktop.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qg1cGDg/XcEy9MbpLdRERFNOIZJLJnBwZuR0lpXVu+U=;
-        b=v59CNsksEOVnF/5z1rxEd34CN6nnPFd72EoIqCZOBeMhUevNkMW2TXCM7ENOfa8hZN
-         Zr9cqYjkPAFvwekYlUM2AVAzBHoPrXxit4zEop4bjMybOvT+zGVDTqLB+P5h5eRMLUps
-         e8yszaBk8RtxlDkqjblGK9RnbAM3Po2kCauYNCtMIqTj9PKAhLNSc8PLboxsuJPbwpwS
-         aZCDwE7DZxd4P/drnHcw78D9qfNwYwHhB7z/qHKb0uXC6qRYAvqBWsSECizx2VYrtndB
-         deRMGNppzFN/a3wHQHa4oXPwlB3YPqrwqsJq4fmnHuKskl+icVkPSbsnVWOmsx1VocI4
-         q01w==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ShMd5RsgoCCs+7pbJSDKC7+gIM3DjjQQXbLBPRzr+LI=;
+        b=HI8zsE5+/hhMIuMJFJ/u5rToss7A7VRZE9G47dTi2aI8tvm5Oyio7H83sdLrnRWdDw
+         7XFJvAe+xlU9i78L9lUFSzunVlQWZM6sXDFrG+Q2Wc/f7R7Sv/suvgRWN1BVpSAD+Wim
+         mbTVEbfvmzICGDk9yVm/nb1bnMPU9H06HORyJES14vnYIDE/3uMjtMhF4WqdF3bagyHD
+         jXDCp4YYkeack94EqzIV/gfJ1D28VM1jBdJTKGDDCBGv+iHLuKBkGQqd+IhDx1KvzYS3
+         Rm8DOMokoL2ozHXLkSTERm4rDwZIutj1YUebb0XSpwzOxjhNsJeZUvlsXrQ1fE576ie6
+         MraA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766045223; x=1766650023;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qg1cGDg/XcEy9MbpLdRERFNOIZJLJnBwZuR0lpXVu+U=;
-        b=QEjK/j4SB1cZgAHt8K9DYMGditMNoLY6R6FFGduYYxv7FhcmJq5TshKBJbWUfNcp26
-         N+WUJQLRanGlnm9WvlAM0X+K3PqJlz/Q1D8tL+FzC9pkv8AaxTdkKl4Yn4JVrSRTvXRv
-         uKSsty7Mm66NNo3AlJ95XvRY57853SFkIP2Gyk6XFFqLI0s7Ublti+bXXu35/2eCdsXr
-         zJ6XvcJZmlOAT0o+L7O2fSJdswbetnJeOB0ALovF+sBOJvesW0I6pIJ43AM6xDlEBxsx
-         Clrj3YnIYpmuu1eAy+Q+QG+L2DJzFSLYQdJ1a3aEnhgrmjWteLQVbqIFusJpJy/Imwn8
-         8ilw==
+        d=1e100.net; s=20230601; t=1766052610; x=1766657410;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ShMd5RsgoCCs+7pbJSDKC7+gIM3DjjQQXbLBPRzr+LI=;
+        b=LykS1kmyWCSvco4CbZ4kyuak0GWR7zCKo0eN0ZIPn+hLhpp1iglGrQl1pBmltHLRGr
+         1KLCZndb4WPx5iL3Vmj1LIJVFk2C5HSNB6BG0nM8YMZlh/HwzDNKoLSRqNBy9pAzD85k
+         jt4MbaPVd670br5+922pPwy7JD8+OqSNoow5D1uePipTRiABa9cnuv5upzOmt9zfsmpn
+         whkIkDrOBaoar5ZdjmG7wqqDp3fxGkRBajpoCqBFm5+ms6tkHfXJRKiURi+hZjKfRvWt
+         OF9W8vX/jfXFc1cnl//5KF6QmyxOv82XRpKmXLuqcT0RC4gTAW0WboE7CHpA/Ow2UP8v
+         QqsQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWYOYp+P6lr5ET+W8LKcG+bX3ExxSMdHH4BO1Zk5CWRvxp74993A8Ci10dooape1hK4dBpUObEB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx2sZdoPr9fTRCAhzMyF0y4GNTQSWyBeGhh2eFEhvxz5CeirVpI
-	O/vOaNbvGhvgAMeJjPplA35IkJm6QW+0TRKBzbLSxqt4te3SYWUfVh/dm1MmH9cXTxdxKnBlMMB
-	HsA2BsvjlFR3Y32/PsA==
+ AJvYcCXjCb4f+szGA5oz/OSeoB8OiyGrdUstpoKSLc6R2oiPveuDlUBksgC4H+3oSv6g74CqXeTUrZtQ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywt4/K0ZGUZRqFzWRuTZQCd0zhuqpqyuxNvtZudc0PXI3bz/ALp
+	wiiN2XgMNNuOD09XJyS0eSDwD6slvi7NB6sQryWGRIPvOyCJKdO0dmMiYYDxffurJdJQCcAlQ5e
+	6o0NmWt8DE16JhQXrmqjMvGBmdGdhLMU=
+X-Gm-Gg: AY/fxX6vGtAdZa0bJQ89rG16/l9R5WWCMpCAlpDeFgik5Mj5sTQG3Q46nxfVOPIrvpJ
+	ceNOGtKyaFG6l3hu3b/YAkQsIjPg4IFhP77pUTm621Fdu/T2HvA9Yispa2+URN2GEUCUuxJLIQ1
+	D0oz/jVw9p7zjYIZ7yZVmm1So1u4lg8Op97nwRdn/GiAQ7sD331WeIij1z9BhGm+pztFd6hRTTN
+	6J7/u12C+lhPW6UWFx3lFkfWkxlNTva/2hA4DLR1tj0xfpOEfJcIbWMki9HwHQvKQ1WnYOe1x7f
+	FdUiFP5FnhOblXJmD0XZ/AhYGQMFdtS/zYrlxjOJmLRtcKLh7294IBelsvsMrFRqSAZ5ZQaMmgK
+	2u2JwBjvirsswCw==
 X-Google-Smtp-Source: 
- AGHT+IF5w6LVSb0ax3/S2dVmFVgIUXrG0XjB1uE3WTrfcwrF/0IBI/cW/AbG+aiSiwbTIiCF7VOsHMCPE5It4r0=
-X-Received: from wrbdr16.prod.google.com ([2002:a5d:5f90:0:b0:430:f277:2ca0])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6000:40c9:b0:430:fdfc:7dd3 with SMTP id
- ffacd0b85a97d-430fdfc7f4fmr12849438f8f.50.1766045222701;
- Thu, 18 Dec 2025 00:07:02 -0800 (PST)
-Date: Thu, 18 Dec 2025 08:07:01 +0000
-In-Reply-To: <20251218013910.459045-1-ttabi@nvidia.com>
-Mime-Version: 1.0
+ AGHT+IHQbBEe6RbCdFHu1fn1QiVN/swj/9ZD0sCwj+fIRULQ2zfxp07+2Vth/JPcNxD7+ZtAGAtVuxSS0clkJ+Xv/rY=
+X-Received: by 2002:a05:7300:dd43:b0:2b0:502d:c27c with SMTP id
+ 5a478bee46e88-2b050656404mr698153eec.5.1766052609822; Thu, 18 Dec 2025
+ 02:10:09 -0800 (PST)
+MIME-Version: 1.0
 References: <20251218013910.459045-1-ttabi@nvidia.com>
-Message-ID: <aUO2JZR6soTBLtLQ@google.com>
-Subject: Re: [PATCH v3 0/9] gpu: nova-core: expose the logging buffers via
- debugfs
-From: Alice Ryhl <aliceryhl@google.com>
-To: Timur Tabi <ttabi@nvidia.com>, Matthew Maurer <mmaurer@google.com>
-Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: AO3JEDECVVYK3RB6CNABKNQIQIRIBEKI
-X-Message-ID-Hash: AO3JEDECVVYK3RB6CNABKNQIQIRIBEKI
-X-MailFrom: 
- 3JrZDaQkKB_ETebVXkraeZhhZeX.VhfghnoXTneblml.YkXXWXldmhi.hkZ@flex--aliceryhl.bounces.google.com
+ <20251218013910.459045-2-ttabi@nvidia.com>
+In-Reply-To: <20251218013910.459045-2-ttabi@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 18 Dec 2025 11:09:56 +0100
+X-Gm-Features: AQt7F2oLOGrUtKfwwSjj0SjFhxy_KX0J4BetzT_Vf8Xgjs9LtDZc-yngX1nri3c
+Message-ID: 
+ <CANiq72mEsqgyHZoP0gA-Mev0M=TrgKFruJTACfaGW1DgDG5Lyg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] rust: pci: add PCI device name method
+To: Timur Tabi <ttabi@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 6SXGIN4UN2OPI2ITDTRPPSUJXLH57G7J
+X-Message-ID-Hash: 6SXGIN4UN2OPI2ITDTRPPSUJXLH57G7J
+X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -116,8 +145,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AO3JEDECVVYK3RB6CNABKNQIQIRIBEKI/>
-Archived-At: <https://lore.freedesktop.org/aUO2JZR6soTBLtLQ@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6SXGIN4UN2OPI2ITDTRPPSUJXLH57G7J/>
+Archived-At: 
+ <https://lore.freedesktop.org/CANiq72mEsqgyHZoP0gA-Mev0M=TrgKFruJTACfaGW1DgDG5Lyg@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,58 +157,33 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Dec 17, 2025 at 07:39:01PM -0600, Timur Tabi wrote:
-> GSP-RM writes its printf message to "logging buffers", which are blocks
-> memory allocated by the driver.  The messages are encoded, so exposing
-> the buffers as debugfs entries allows the buffers to be extracted and
-> decoded by a special application.
-> 
-> When the driver loads, a /sys/kernel/debug/nova_core root entry is
-> created.  To do this, the normal module_pci_driver! macro call is
-> replaced with an explicit initialization function, as this allows
-> that debugfs entry to be created once for all GPUs.
-> 
-> Then in each GPU's initialization, a subdirectory based on the PCI
-> BDF name is created, and the logging buffer entries are created under
-> that.
-> 
-> Note: the debugfs entry has a file size of 0, because debugfs defaults
-> a 0 size and the Rust abstractions do not adjust it for the same of
-> the object.  Nouveau makes this adjustment manually in the driver.
-> 
-> Based on Linus' repository, not drm-rust-next.
-> 
-> Summary of changes:
-> 
-> 1. Replace module_pci_driver! with explicit init function.
-> 2. Creates root, per-gpu, and individual buffer debugfs entries.
-> 3. Adds a pci::name() method to generate a PCI device name string.
-> 4. Adds a lookup() method to debugfs, so that the root debugfs entry
->    doesn't need to be a global variable like it is in Nouveau.
-> 5. Makes some updates to debugfs core code.
-> 
-> Alexandre Courbot (1):
->   gpu: nova-core: implement BinaryWriter for LogBuffer
-> 
-> Timur Tabi (8):
->   rust: pci: add PCI device name method
->   rust: debugfs: add lookup contructor
->   rust: debugfs: add Dir::empty() for no-op directory handle
->   rust: debugfs: fix Dir::scope() to not borrow self for returned
->     lifetime
->   gpu: nova-core: Replace module_pci_driver! with explicit module init
->   gpu: nova-core: create debugfs root when driver loads
->   gpu: nova-core: use pin projection in method boot()
->   gpu: nova-core: create GSP-RM logging buffers debugfs entries
-> 
->  drivers/gpu/nova-core/gsp.rs       |  66 +++++++++++++++---
->  drivers/gpu/nova-core/gsp/boot.rs  |  15 ++--
->  drivers/gpu/nova-core/nova_core.rs |  29 +++++++-
->  rust/kernel/debugfs.rs             | 108 ++++++++++++++++++++++-------
->  rust/kernel/debugfs/entry.rs       |  49 ++++++++++++-
->  rust/kernel/pci.rs                 |  37 ++++++++++
->  6 files changed, 259 insertions(+), 45 deletions(-)
+On Thu, Dec 18, 2025 at 2:40=E2=80=AFAM Timur Tabi <ttabi@nvidia.com> wrote=
+:
+>
+> +    /// Returns the PCI device name.
+> +    ///
+> +    /// This returns the device name in the format "DDDD:BB:DD.F" where:
+> +    /// - DDDD is the PCI domain (4 hex digits)
+> +    /// - BB is the bus number (2 hex digits)
+> +    /// - DD is the device number (2 hex digits)
+> +    /// - F is the function number (1 hex digit)
 
-Adding Matthew as this touches debugfs.
+It probably looks better like (i.e. code spans + ending in period):
 
-Alice
+    /// This returns the device name in the format `DDDD:BB:DD.F` where:
+    /// - `DDDD` is the PCI domain (4 hex digits).
+    /// - `BB` is the bus number (2 hex digits).
+    /// - `DD` is the device number (2 hex digits).
+    /// - `F` is the function number (1 hex digit).
+
+> +            // If init_name is set, use it; otherwise use the kobject na=
+me
+
+Similarly:
+
+    // If `init_name` is set, use it; otherwise use the kobject name.
+
+Thanks!
+
+Cheers,
+Miguel
