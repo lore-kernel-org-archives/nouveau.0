@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76525D68BD8
-	for <nouveau@archiver.kernel.org>; Thu, 18 Dec 2025 03:30:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADFF4D68BD4
+	for <nouveau@archiver.kernel.org>; Thu, 18 Dec 2025 03:30:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 026F510E857;
-	Thu, 18 Dec 2025 03:30:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5AEA210E7E2;
+	Thu, 18 Dec 2025 03:30:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="i5Ct2K8r";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oPvW0HmW";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 226E144B1B;
-	Thu, 18 Dec 2025 03:23:07 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7972444B0A;
+	Thu, 18 Dec 2025 03:23:08 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1766028186;
- b=Tq7XV/EIXMvMr5Z6IVlBSw8XhyEbk2sbHtMYpd28kjqMsTpZEXGmXayb/YHkpR1vgC0vA
- dS4lZ79MD+crzft75ZGvC5aQJmDH/MXk5LQPWwmG4yhQx6a/JajFtxKV2nfHERmC1ciIIxX
- qxYIq622QBzelAymwEIF6gRz0CKdRzxkOeleshSL4zEPfBv2atFheE9Qp75GQlltxLakhM8
- i0zOd19D92wfNnvNhlNeDsB6iEpA8FFMqaDD0hUclJNRQE9fY+7xCZ9Js5ZJiKjm65OjnlE
- F9Ox3bOt8dYg24RSiOE4y7II9i42iwI0VeZP6ENQtP1wwfO+2DuY9NGWD77w==
+ s=20240201; t=1766028188;
+ b=CnqEfBjj8Rw9oiBxP41/z8Rq/zQIJeAJ5aCdo7HliS8IGC0s5e1p9jxuBs5mdSx4+g4PF
+ D4mWeh+EbQfT9fYKg6QasL+1VsNwZmXdA1IAoctDNfx9D3IucdpfDVLlaezhcxmB8JJT4l+
+ gyhCc5s1vULxpgQZLrAJqJFPr+FU62XtvmtKZClZ1oF2RBrnPQvnnadhIglsrVbkZMVqgpg
+ Jko7KYm9T784YkLrk8/nx2N2wCyX6xrIE5x012ETubeR/bJox6GroHM5mYO1xex+KDKM8sZ
+ sl0cYtnrzr3kOjBgueFQ4r5GiZnDzZGxGcPjB7PUI3Q5mOLdRwAiRUBOgY6A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1766028186; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1766028188; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=IrJwDyt1ZrocoLFIB/dSolyL2xEDFiHlp+HOLiaPsNc=;
- b=HVVRJgs/bJpNo1tbkAWMNI398fVayfD06LffcPmrPTxRW8b7tQBlvWgAStr2bWS3XO+WF
- 7hM30vF+Z73xKC4ei4GrFBpVzuOsy8eiCF8ntxQJRLVovc2WNH9breuUyYu8lBgmfB6aPYQ
- ToPOPvr5ex6Ax2prR9iveERnd3nJkxh8sltxBCwg9f9Aehw4d0dSuk7oUcME4uUpXKe5sdj
- eFm0QPupnimxfurDPQDH2XbURIUCpr9iNYUaQMM+lFtEhHRslXahRqOWj6+AcszJF+cTncG
- JF36na8jULSgwX+tWCu5ZpJm9x/DedSwiTQCHGMUo9weNOFNK87wK0SHY2vQ==
+ bh=MCoFJchHWxQwHd+2asVpdG7a9TMhLRJO5PERqhccQoU=;
+ b=zAYpqEewBugeJ5uOBZ4XvWDdz7/w7kJo2tvXctHLna6KvdYmQoDcfF/o7ow4DDyAja5IV
+ Lq8+kBZ4DH5hg70TDtQl4kG5OrRFP4ZS9CkWEyL8/0xwN6x6bluWepHxFn4FUHttPwlmCwr
+ kBPDyH0Y7UhPNs8ntnFXJ6b5ACMLrI40yLfgBW/wv5OszarjWw29xU9LM9FIjWe0J4DWtKd
+ gQY3REhp+OAVIRzHtPFQTvr83yt+n1rUUO2uQfdC4PIfCsTsYiNu7twfaW94yHsI9Xcjcls
+ M+8y7jAUcMJFqPybs/2u/x0L7PuZc9Btdhcb8L/4/kfjNEPEY/9q27MZDBGQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,19 +45,19 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 588C944B0C
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5F55344B13
 	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 03:23:04 +0000 (UTC)
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010032.outbound.protection.outlook.com [52.101.85.32])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 09CA910E6F0
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010047.outbound.protection.outlook.com [52.101.201.47])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C95210E6F3
 	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 03:30:34 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qnn0gj43U37s2Rg8+Xa2M4Z/+aFxTsbgN/Pn1fU8mcB5BurinrIpHKi6f0D38aVC13LtERdH7SzgcyqWVav8PquJ3lM0K7YaRwxBYEu0aZQH7lsG4gsB3pHpxr9SWZXiccVl/r9vVezdRcdDOcipHZrAmqK9fMH3MuvHA8jz6WF8hqr32SW6HaN82c1ALzwomqXR/u8t3zb0EaUr6FRHsJwd0CDWPeYVXs15VzgltTTL95+SxpvyhYkr1Ia/Q8yPxY5SjXCUrp7hR3RWBR6EAsM8Et3hP+TmghT23qE+/m2J/mIb6ScmRz0xPNYfST7id6DBAYCZ34f2aY1eUcSbJQ==
+ b=djUVNf5+FNj3NzGyF7Km45vpQjnFH2pzr0FNlF4wCvgCRiSuQub9tiZyerAHczMEJpeUycLUe45lZXW5bfYg74gpNHPQkCsyw8+nBk05I9uANT4l7x2cyUZpFrkVMIts5vCmSXG99e0VG7IyF0hMjerl8209VnYFCBsv6R1tdZIGTZCQCW2pr1hPWrPvAos9Eh7i2UtFreLmbZ1Yfq/m5LHFS06ruc+Jzz9jSGa8jd0h9H2Eow6bCvxZi2wYA/cLBEdVUVHyXW6khjMC2AmxwuV2aboYx+VU+yrcFAl5fNlzYD/e0XXqNBOZN07uzdNPzxX6PmoUPacHbRusXlwpwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IrJwDyt1ZrocoLFIB/dSolyL2xEDFiHlp+HOLiaPsNc=;
- b=ovcB9AtAkn16RgnZFfsYObXnOgwaR3EX3X1uyKu+DzFphW3/ETckL9kvLbbhXRMaPEijtVihB8Ms4TDzqurnWe20Afzcx0uMTffiv6dsA/rVf6CRqSqJAg6uXaUUMAEyCDwwMUuj2AY/EFx0TkNfWihbkveP0AvhaNCrT0e4JS84Todu5ZWCopE0d+ue0lpMCtZw6R54as/Mq+ohKFqE8r0Hxfj5cALkgnmV346W8St+fVX41El4i5aw/VOfSjnYwCq7F9rB7Q7PfoF3jPquEaVN+nTk1pnSX3kdta3z8Hpa+uLPwsj25cv5EivypaV5QZ9N3L/MmOUUVQgrVhHjkA==
+ bh=MCoFJchHWxQwHd+2asVpdG7a9TMhLRJO5PERqhccQoU=;
+ b=fru7rFxoE/11CFr5nLfDSmpHjr5Y0zHkO2tMCBT7CNpJgpbRSGqoAk4rRBeWQ9lUhFYUVaM3srEJoiWeAWEILTiGlM8SMIR2/FGWOns3lquWr+MG1YWL2ijeFQoG0ykk/oWiSO0wfsPRmUmD5Zp4dc9KiFWOTapEO+fWvPZ9g7afOkjfEHMWQ6QGKag3jxcwt155+J+e48GtXLLn5ucjugOfWJwz+U+swSnnIgfaBctV8B/VOwqrLHy9tNrWbv3ZKpnVCZE50IcMmlnpMVQxWZQsq8XRh6/USmadcoGL55PuG8LJJRyv2aWhowP0xS06BSYy+xTj1chJZeUwm2rtGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
@@ -65,18 +65,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IrJwDyt1ZrocoLFIB/dSolyL2xEDFiHlp+HOLiaPsNc=;
- b=i5Ct2K8rjBS254iS9Kar4lPml62X7s188cIsGyvUpF5KTJc3tIcnmAsZFCbkUtLn8bgUz1p1F5loLxt7rMIYA/lVZZdkavc7Qa3tf1eKHpFxnWoh4z2WDxcIdLwSfBJDJ1JVixywanvhv0WiDdo1HB+sS6DrN3+x2he1VYkFEQWdL0AM1ShlXkIzUWOWE1JV45NbGN2ObIa+I1VnSBkTAM+Zykrq7Nhm7u7UXHlf93OcXT0ZB3A6CnuMzL5Lhb3udd1pe4D5hsTpb2xvWkPbte4EGBsDSJQxz3TYErSYZsyimMuGyq9GGoeCJbCzLCbrw+w+nDAHn7M1+QJMcXaN0w==
-Received: from DS7PR03CA0236.namprd03.prod.outlook.com (2603:10b6:5:3ba::31)
- by DS5PPFEAC589ED8.namprd12.prod.outlook.com (2603:10b6:f:fc00::667) with
+ bh=MCoFJchHWxQwHd+2asVpdG7a9TMhLRJO5PERqhccQoU=;
+ b=oPvW0HmWucE+BYpB4E6aEQGtmqhNDABuJb+yB+vEbISn263GroQQht/1Z+ad0hTzhPuej885iJDhyQdlb+JwEDTvyo3kaJCxa8XVb/5WXYx+wULb9l08t9mkSUulNL5JwuAhyO1eAC8pLstmOLoNY65EVy/BBLacyFmD7O4ouw+XqTjCOGqaXloPOPs2f8BX0UpWK2x3BPDF3dC5BMCB40G+fN1u4l7NbSag16EvgUYpNo/dxhaL1lK8OhE9UKNmSl4mCgPcbRMdydzFiAcv1EKCgdjAkywuobHyIEyWdIJqtWh77d4P5OYwyMA+0kftC235L2eQgD9CAw+UTyD09Q==
+Received: from DS7PR03CA0232.namprd03.prod.outlook.com (2603:10b6:5:3ba::27)
+ by DS0PR12MB7769.namprd12.prod.outlook.com (2603:10b6:8:138::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.6; Thu, 18 Dec
- 2025 03:30:26 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9434.8; Thu, 18 Dec
+ 2025 03:30:30 +0000
 Received: from CH3PEPF00000011.namprd21.prod.outlook.com
- (2603:10b6:5:3ba:cafe::c3) by DS7PR03CA0236.outlook.office365.com
- (2603:10b6:5:3ba::31) with Microsoft SMTP Server (version=TLS1_3,
+ (2603:10b6:5:3ba:cafe::35) by DS7PR03CA0232.outlook.office365.com
+ (2603:10b6:5:3ba::27) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9434.6 via Frontend Transport; Thu,
- 18 Dec 2025 03:30:22 +0000
+ 18 Dec 2025 03:30:30 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
  smtp.mailfrom=nvidia.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
@@ -86,24 +86,24 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
 Received: from mail.nvidia.com (216.228.117.160) by
  CH3PEPF00000011.mail.protection.outlook.com (10.167.244.116) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9456.0 via Frontend Transport; Thu, 18 Dec 2025 03:30:25 +0000
+ 15.20.9456.0 via Frontend Transport; Thu, 18 Dec 2025 03:30:30 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
- 2025 19:30:09 -0800
+ 2025 19:30:13 -0800
 Received: from ttabi.nvidia.com (10.126.231.35) by rnnvmail201.nvidia.com
  (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 17 Dec
- 2025 19:30:07 -0800
+ 2025 19:30:12 -0800
 From: Timur Tabi <ttabi@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
 	<acourbot@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, John Hubbard
 	<jhubbard@nvidia.com>, <nouveau@lists.freedesktop.org>,
 	<rust-for-linux@vger.kernel.org>
-Subject: [PATCH v4 04/11] gpu: nova-core: add support for Turing/GA100
- fwsignature
-Date: Wed, 17 Dec 2025 21:29:48 -0600
-Message-ID: <20251218032955.979623-5-ttabi@nvidia.com>
+Subject: [PATCH v4 10/11] gpu: nova-core: align LibosMemoryRegionInitArgument
+ size to page size
+Date: Wed, 17 Dec 2025 21:29:54 -0600
+Message-ID: <20251218032955.979623-11-ttabi@nvidia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20251218032955.979623-1-ttabi@nvidia.com>
 References: <20251218032955.979623-1-ttabi@nvidia.com>
@@ -116,47 +116,47 @@ X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PEPF00000011:EE_|DS5PPFEAC589ED8:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7ad234e8-347f-4d19-f97a-08de3de5c8d5
+X-MS-TrafficTypeDiagnostic: CH3PEPF00000011:EE_|DS0PR12MB7769:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a251042-e71a-4c3b-abeb-08de3de5cb7a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|36860700013|1800799024|82310400026;
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?0J/T1s/HbywV1mFe1BdjnqVNkOh4aScVamb15Dfvaz2dLOKl7gmywShPYofE?=
- =?us-ascii?Q?5pZr/eCbPLPUb+x9SNw68oItWCaNnkPN4GdgxP+7N+e96WSOIygR1JjBTeCZ?=
- =?us-ascii?Q?ivvzDxmFEgtuiV0Tk0MouZF5qdX4EJ7poE+jm+maDsFjTqdIVK4InaX/gIPV?=
- =?us-ascii?Q?931YUbE4jxCEki1FvkhwFr2ZEooOx2BlIMtwXT3Ns6Zpoq/gvyxj0h9/e9GN?=
- =?us-ascii?Q?854W8Oj/vyfxoMBY5q43wPx5ezhQzlGMewB9kD2TVJ+RtMH/tjhpRp+yt0+e?=
- =?us-ascii?Q?VfrufiAxa8DDpMmPnZDvNhj4zhCzYLSwXxBGa5gae+i/eXZGbscl0OVHup0F?=
- =?us-ascii?Q?ZE3wqhYVVYdjUOC/EQ2lFQRoJjdR1e7213CQtmJ172NAKZpg2Lzihu2r8uWQ?=
- =?us-ascii?Q?TjFnRIfUrRMdQdZFTBUDARv3Ihx2Rv9iTSHXSEtye9Co7i9tHfsNRA4u5KXa?=
- =?us-ascii?Q?/ati2jyttj+Ojz78AgbpEBz13G2rtNHs4IJ6Fgpsjz38mteCg+L2DPi5EooV?=
- =?us-ascii?Q?MX1Y62T4Bjek0E3GMABBAe8sCKMXs0bY9WHAwPR/RfgKnObOThDVCM/ejxtB?=
- =?us-ascii?Q?fLrZWhN8PMecVLzvXY51wAbtJRrBrvxWRCuRdExUruYm2OYYwqRhsYb6mlzV?=
- =?us-ascii?Q?7LSpZ+1F8Qi4Vs3ZR0jaAOY9MEKjro7n16M+V9MIPl80Vt/EjDoRYUjh3vw6?=
- =?us-ascii?Q?3a8+Pl00aMV3zNrViY8dttC+sKW3Zmd6uF16s0/ThbfGtHjrsZmjkMK6Wq3H?=
- =?us-ascii?Q?C7zsphFEP3u6CXNHVONqETbfoj+HmXAV27FSJS9GSbXB2lnecMO2GqRROqHO?=
- =?us-ascii?Q?WnAUWYcwTrRSiUlOy0L7o056dXzL2GiFzmqMuAt6mZuRzTKltRnrl6NbtsWB?=
- =?us-ascii?Q?b9iP1am622YOtHM46eo4zFnyj2blz0imM96evGXw1VNjy49g88KSn450MnCz?=
- =?us-ascii?Q?r/uvS/3m3/PO2PvF91FPU0HZPgpLynsi5oTleiX7j2dFPRFrHfd2wGgOChi3?=
- =?us-ascii?Q?+IQMzm1Ep86wtPX7ra5HOLTEMflFQg5x2cShsHctRrcGQuFomlFk/eRRkHku?=
- =?us-ascii?Q?W6/Kc4y18QnromYBA9JU0+D7dQ+iQKh0iH2xBTo7AfxcqqUuKa3XflKBsRLd?=
- =?us-ascii?Q?1OrKpKKDq7QG/wZCQ1G6U8iZYLTJLYnQEvB37wcjgVuaT0PMts0XBBWWrdFf?=
- =?us-ascii?Q?u2zWD6x+ilwBtpWiaEBH0T3ufHqc9H+Jg387bQoyLRD9opLPVDbs5A2imYyf?=
- =?us-ascii?Q?QGhdNKA22Qv8TGmGJzZ1ey2VjoOjvN2TcldIiL6Pkr4GD9drwqSG+QqeG0x/?=
- =?us-ascii?Q?NqzCNzyHUDv9sa7QXi0aqhqwohl+oRriGfP5zsdHQYc0kYSkT/lNrn8G5TRN?=
- =?us-ascii?Q?YVRisnIKGgDGSxc4yiwJjX51zXrRTay2C5R4VwjZQjMSGFnIQX7OUv+O23l/?=
- =?us-ascii?Q?C8bmMy+OpTW9HnBSc5mgeTPUmg72wELUQXEXz3G72uivO21YyBwpMgG60xeh?=
- =?us-ascii?Q?4Ziw03H0QzF2US+sGAjGRFO7o2BB4iLTNJEytxNcRz1DkKPFnXLBxIVixyrO?=
- =?us-ascii?Q?1lqmHP7y/xCvd48xXhw=3D?=
+	=?us-ascii?Q?+HGoD/Y6I5mGcyVdOA44mbhr4bCqyUMdhLvAaCCoF2J9GUSKgeODz1fIGU0Q?=
+ =?us-ascii?Q?F0510NWIAO3rbgqwBdmyU6DGuBtR9p2n1Fa6rpsd0KtIkG/gvHwm9MwkSriZ?=
+ =?us-ascii?Q?lHxwuMquI9xMF1GY+agdOy1v2sbMyjkpL9DU1RpnryVcV/gnNYmtFL9e75At?=
+ =?us-ascii?Q?LcCQ6kS9OWK2d/x14nzgogsxDSyqkiqEDtmWknu4+6PT7N750q6LosOFW0/1?=
+ =?us-ascii?Q?0HfCSxXD7AuyRM/tiUucSfs0RUtM9qL8HUMWeZi6jKB907BfyKt0UOKCTOpV?=
+ =?us-ascii?Q?6M7rSwwAqtkPyrJD9Kb68qe79s4OoN7cXUaVgwQ+bKe61GuseKPmx9sY6hYb?=
+ =?us-ascii?Q?BKb2nIi0sg0SBPGz4Qm7T8xYObegHVr6ovxhtq15FMtJOYB2WS2qKq/vrwVf?=
+ =?us-ascii?Q?kn6UZgtF4cgS2PXowG/RZzyGXCnuIyF1/7XhufyYbBNHkNvlTFHOTQxaRLe/?=
+ =?us-ascii?Q?hjHh4s5yZTySfYxPXSA987unFzlps6tzh6tX9kwTLWSMaOFJ8lc7yS1l2VRv?=
+ =?us-ascii?Q?jt9s+VIbMxVFcoNT3QYsRtmYjP1On8yzba85aQSIJvtcA94wbUUA3zOEm4qp?=
+ =?us-ascii?Q?SMOC3zlw6vucjPK+i1A7PblPaacyBSIkdW20foYOsAb5GZtPCJYV3ex51SRX?=
+ =?us-ascii?Q?CtsTo4OgD7TcMw8Nx5YSBX/BosBi97ch/SFPycZfmeNkekM7MJXoVFBgUr/z?=
+ =?us-ascii?Q?eAlK3/pRzevDv12BOCKba5ccvVgKKtqHNQdrTH80U2qVygzmUZ6QiN1GEz0K?=
+ =?us-ascii?Q?2g+U9mVg6UYHVKAwyFRUwoQoyPLdizBkyqXvkVgdpGDHzAFOY/D+w86+frLi?=
+ =?us-ascii?Q?rDivJPmZOIvHeEnbVfR3RSKX5F6l7X2qYkxSo+26hx9FC1IQznH2K6df1UWA?=
+ =?us-ascii?Q?1Sn2L3qT23SIcbP/4Cqsb4uiYcOnF9O52BSnppgHQzp2HmW5MAhVosvJepmg?=
+ =?us-ascii?Q?mXzceURrHrm7Ae9af1yCdjKwhH4swRH6zqjfrhwZ7FNOH+1JmsozFxKC2vq9?=
+ =?us-ascii?Q?Z+1ZthmkJlsj2dzG9mEP9tYfWD0h0Vc5ERxzxq0JYC2ARDAJWLu/v5rD1yEk?=
+ =?us-ascii?Q?szQmWFKB4nqxL0eIjElzOuq/cwx/FHK/Qev/77j0fB0INRsvJs1GdzSVFLSE?=
+ =?us-ascii?Q?ohmQUq6jSICNBDGmw/0PKl3YG3UsXBcLvNzE7SRsjcPSw1oX6Q3mPoX5Sv4V?=
+ =?us-ascii?Q?VTDhVWQKK+mSG0zxJZHu4hWiBhLtWuxA/KYn4QHJ5q13Ewf7qdx60bCF5MQK?=
+ =?us-ascii?Q?PoyAq6Bc7wzrnvDCm5OQ3HnFIBd+jhUguKRIbae5sk6PoqsdarTFTWSlg4h4?=
+ =?us-ascii?Q?Tn/c9JpAOYW5ZHREzLOuC5sGUdhygYu6+UDMBVNjS66nHqEA4kZrIszgeR1e?=
+ =?us-ascii?Q?4yzF/75zO8GiKwZr3YVqYBwrDsRc5qFoWX/1UgZTYjVr9+iExMqZvLZDgIJf?=
+ =?us-ascii?Q?hBSekrWvyssB/HhqkVzKd5Rag22JIGrw9o76qks9KYUYfJyy8zpgiNB9o/ao?=
+ =?us-ascii?Q?dF7UfyctbkF6CaXdjPEeSPobGxkR9QslhTKR+TKIcBYm0ytpRxkyPqiCpHFk?=
+ =?us-ascii?Q?L5Hto+eVHkT54FU/0JI=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(376014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1101;
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 03:30:25.7791
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Dec 2025 03:30:30.2062
  (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 7ad234e8-347f-4d19-f97a-08de3de5c8d5
+ 4a251042-e71a-4c3b-abeb-08de3de5cb7a
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
  TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
@@ -164,9 +164,9 @@ X-MS-Exchange-CrossTenant-AuthSource:
 	CH3PEPF00000011.namprd21.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFEAC589ED8
-Message-ID-Hash: SEVBKFWFSBDVBR6GZPODYLTYPK5UME3U
-X-Message-ID-Hash: SEVBKFWFSBDVBR6GZPODYLTYPK5UME3U
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7769
+Message-ID-Hash: GVNXKHVX7TZLNRV26P5ADTQ2LCHUAFOO
+X-Message-ID-Hash: GVNXKHVX7TZLNRV26P5ADTQ2LCHUAFOO
 X-MailFrom: ttabi@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -176,9 +176,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SEVBKFWFSBDVBR6GZPODYLTYPK5UME3U/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GVNXKHVX7TZLNRV26P5ADTQ2LCHUAFOO/>
 Archived-At: 
- <https://lore.freedesktop.org/20251218032955.979623-5-ttabi@nvidia.com/>
+ <https://lore.freedesktop.org/20251218032955.979623-11-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -188,31 +188,56 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Turing and GA100 share the same GSP-RM firmware binary, and the
-signature ELF section is labeled ".fwsignature_tu10x".
+On Turing and GA100 (i.e. the versions that use Libos v2), GSP-RM insists
+that the 'size' parameter of the LibosMemoryRegionInitArgument struct be
+aligned to 4KB.  The logging buffers are already aligned to that size, so
+only the GSP_ARGUMENTS_CACHED struct needs to be adjusted.  Make that
+adjustment by adding padding to the end of the struct.
 
 Signed-off-by: Timur Tabi <ttabi@nvidia.com>
 ---
- drivers/gpu/nova-core/firmware/gsp.rs | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/nova-core/gsp/fw.rs | 24 +++++++++++++++++-------
+ 1 file changed, 17 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/firmware/gsp.rs b/drivers/gpu/nova-core/firmware/gsp.rs
-index 0549805282ab..112488216bff 100644
---- a/drivers/gpu/nova-core/firmware/gsp.rs
-+++ b/drivers/gpu/nova-core/firmware/gsp.rs
-@@ -163,9 +163,11 @@ pub(crate) fn new<'a, 'b>(
-         let fw_section = elf::elf64_section(fw.data(), ".fwimage").ok_or(EINVAL)?;
+diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
+index abffd6beec65..ab3ad038889c 100644
+--- a/drivers/gpu/nova-core/gsp/fw.rs
++++ b/drivers/gpu/nova-core/gsp/fw.rs
+@@ -889,17 +889,27 @@ unsafe impl AsBytes for GspMsgElement {}
+ unsafe impl FromBytes for GspMsgElement {}
  
-         let sigs_section = match chipset.arch() {
-+            Architecture::Turing => ".fwsignature_tu10x",
-+            // GA100 uses the same firmware as Turing
-+            Architecture::Ampere if chipset == Chipset::GA100 => ".fwsignature_tu10x",
-             Architecture::Ampere => ".fwsignature_ga10x",
-             Architecture::Ada => ".fwsignature_ad10x",
--            _ => return Err(ENOTSUPP),
-         };
-         let signatures = elf::elf64_section(fw.data(), sigs_section)
-             .ok_or(EINVAL)
+ /// Arguments for GSP startup.
+-#[repr(transparent)]
+-pub(crate) struct GspArgumentsCached(bindings::GSP_ARGUMENTS_CACHED);
++///
++/// On Turing and GA100, the entries in the `LibosMemoryRegionInitArgument`
++/// must all be a multiple of GSP_PAGE_SIZE in size, so add padding to force it
++/// to that size.
++#[repr(C)]
++pub(crate) struct GspArgumentsCached(
++    bindings::GSP_ARGUMENTS_CACHED,
++    [u8; GSP_PAGE_SIZE - core::mem::size_of::<bindings::GSP_ARGUMENTS_CACHED>()],
++);
+ 
+ impl GspArgumentsCached {
+     /// Creates the arguments for starting the GSP up using `cmdq` as its command queue.
+     pub(crate) fn new(cmdq: &Cmdq) -> Self {
+-        Self(bindings::GSP_ARGUMENTS_CACHED {
+-            messageQueueInitArguments: MessageQueueInitArguments::new(cmdq).0,
+-            bDmemStack: 1,
+-            ..Default::default()
+-        })
++        Self(
++            bindings::GSP_ARGUMENTS_CACHED {
++                messageQueueInitArguments: MessageQueueInitArguments::new(cmdq).0,
++                bDmemStack: 1,
++                ..Default::default()
++            },
++            Zeroable::zeroed(),
++        )
+     }
+ }
+ 
 -- 
 2.52.0
 
