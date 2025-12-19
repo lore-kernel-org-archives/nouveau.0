@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49615D78794
-	for <nouveau@archiver.kernel.org>; Fri, 19 Dec 2025 15:59:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30A6ED78796
+	for <nouveau@archiver.kernel.org>; Fri, 19 Dec 2025 15:59:50 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E7F0910F03C;
-	Fri, 19 Dec 2025 15:59:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5829F10F043;
+	Fri, 19 Dec 2025 15:59:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rmtKthG4";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GZI+KIIM";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9F28B4562F;
-	Fri, 19 Dec 2025 15:52:15 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 19A7A44BB2;
+	Fri, 19 Dec 2025 15:52:16 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1766159535;
- b=G/z8FqTSy7nPzenTeldDer2nTE0JyoYtVZ7mlVL3g8dT/exJFrV7LgA7MsdjZi95suKjM
- o28w2gX4cOKmN0DZUTfyovZ+p2iCOp64YWy6tImkrme9gV3U4T6yeIqA2HogPgrb9y7sxTq
- AfvaZhWwrZE+gJvaB3pizI78tTK1bgnrjZtJmxlMVyXwfDSvVDRtBzS7aOTaAqO2myoHHCC
- hHP4Q4XVbpUEoZJ6BjoZB8KiXLfcRHATuVFj6fDsrmWdkkP5VQ45yspwKbboPIQcWTTScUW
- LQFZCk6Df+2BOMNOtDfYGfcCDmKPriEJ8j7f9TvLSS5Ld8QC7qTAEI/Kz5Qg==
+ b=efGi1Soie1O4YfMu3JP8hUBN99jMa/kDQYKInMJG8WnNvX2NpR35DDskjSGXuO0ObyxlV
+ /0QBLbILdnzN2P1/9HIsXsivzzg6v3ayWLD96ozGCMw9sVjnj6z4BdHXGNsAWKus5/pzzwd
+ E68TEvKNM6dO7WTobC5EWGev3MADf4pwo+ObkerRrV3lSGryHaNwT0vX+IZS8UAmoyd1t6i
+ wJIfqDhi/lG0wWYk2DB6a3UVU+ljTQbB9NQre3GQMNpsKksadxIaAphMeIGRFP0ATlXlJat
+ LICPDtSRG4+f7O78ys/MnlWo5bb9l4UX3ek824c4R+xxSES/7Y7buHgY8gHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1766159535; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ixJO0hu3i8cJobG3c4G/ECbCHJ9nWmL7QeH2/4xi6PA=;
- b=uk3HSroXtjQPVo9Rn0mIT2ljYuYS3mwBvHH3Jm4p8xoDjFCs34yoNst+uFjjrjj8fEAYx
- pNrBf4mb5Ju8SgVG6rEcbV4gd1td5tSDjvkDXBG5oeUNx1aoRaBPdhysv+wTYk+b49If85/
- B4DoEpvYMjltbvACgBiIK7b/6e5/oxZMCPt7SJjkwglrwfOLFXrD2eI81PypRMFSzcCHzst
- SYA2JIKossdK581+mkkvc9T6Ye+lV9eYqemVUSlC8z+92dQMwBdm62hlMSpy2agSnbRFjAe
- E/zSCMijSoIDeZ1mIWOMVntYv51Hl2X62z9NHnJ7MKskkk7kg8mg+M06mGKg==
+ bh=aQA972iONaPUTTbgnIz+iSoWSorbh2pPa9/pzbiC86E=;
+ b=ygCieHv2SD2giBDK6IBzdEVoE7MEIzJ0MycmG/hbG1uBEm1uP3GSj8Pa5u/2SOTqaRAuL
+ XuOrK/e6cqLP87XQCOkW3gCPfkqqAobEsE+WjfQq05ehjFp/GevCN+PeZO2jpauec06z5OJ
+ eFYMLcgLnTnYYBfxIxDHOzGjusS8U+2NdxtYVqa+9OosZ5XTuuO7IcLOsYQTNpmJ/RFCbgU
+ KB9XJLju9yf3g1onek8wAAfzyKc8yTLk84iqOV8eBl/6b3qjn48GRCEUHi7UTesFTKxB3al
+ j9Vv5KQ/grNjlmIN5F0N6RiZk2XcgVTXT0LJnrxT9iRtuvp6VaFIk1pjFC2Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,75 +46,80 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DE3F644B8D
-	for <nouveau@lists.freedesktop.org>; Thu, 18 Dec 2025 16:30:25 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BE72810E80A;
-	Thu, 18 Dec 2025 16:37:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0D3AD44B96
+	for <nouveau@lists.freedesktop.org>; Fri, 19 Dec 2025 12:07:42 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C037E10E3F7;
+	Fri, 19 Dec 2025 12:15:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id F242660010;
-	Thu, 18 Dec 2025 16:37:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31901C116C6;
-	Thu, 18 Dec 2025 16:37:49 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 53C5940651;
+	Fri, 19 Dec 2025 12:15:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A36E2C4CEF1;
+	Fri, 19 Dec 2025 12:15:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766075875;
-	bh=ixJO0hu3i8cJobG3c4G/ECbCHJ9nWmL7QeH2/4xi6PA=;
-	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
-	b=rmtKthG4N75e7AtksrHk8MSlRGJ5S3zbRUQIQKN3ChxSzzwZmbTM5vghy6k/uqhT8
-	 7u/QOGX3h6jlBm7TTNis2wHRwnoQfOHhbvQ/AlfDdkuRXr8gEwuEjN4DVex09gDzCb
-	 pBYbnIP1nePsyj1v9XJOM+vHPwr5jjx6a9Ti2pEpPXDj5U8thW9sCbQKn34Pn4coQN
-	 oSBwEldbgTPWal2DuI6OII4H1P9CKnbECHAiUgRvS3YXb5iD5ygNQIaDwFF289J4sV
-	 s8/cwe1HNHvx0VydgWR2fhSMbHI8zyghZDq/xVEzQLup5rlwVAptrNbfVOI6dayFhy
-	 l8LPGvL4BcIEg==
+	s=k20201202; t=1766146514;
+	bh=zr3MOIdRIiLo5rQVA/Ls8ftqQmh9k+HKygN/fGUhHUM=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=GZI+KIIMKdrldmwo7anW9rvr4aLsQBZAC9pHRgRsTbVfoUDi8BU6ovBSAJYDNojJh
+	 4AYAUZonScKOOogC43EkXDdgB04ocA8/I5WdYaWRnXC8I6s6hlfcjVZrZOmk0glcjQ
+	 iPgk0U6tK4L20VCTNJbufSlESIsU620vyTVv/beEcIAlqx1m/rD8o2RM228EyXbNiZ
+	 SDBQgev8wOx9x0nh0FR1geOg+/5LPLtX1dOYq7Sevx09h/yPEn8K5XoCwW9UwIVKHl
+	 fuKOEaTs33EyjO4TMdIoTR0BvTGHRMJrgHgQ1rHBQT/rIyqGZzr+qbMfvwOcuHZHyT
+	 GmcaQve3a1qGg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 18 Dec 2025 17:37:47 +0100
-Message-Id: <DF1HN90AG0R2.3TQDS8IQ6ZP0R@kernel.org>
+Date: Fri, 19 Dec 2025 13:15:04 +0100
+Message-Id: <DF26ONGZ03KH.31FVI22UBGJFX@kernel.org>
+Subject: Re: [PATCH 1/4] drm/gpuvm: take GEM lock inside
+ drm_gpuvm_bo_obtain_prealloc()
+To: "Alice Ryhl" <aliceryhl@google.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH 05/10] rust: kernel: Update ARef and AlwaysRefCounted
- imports to use sync::aref
-To: "Shankari Anand" <shankari.ak0208@gmail.com>
-References: <1b7408c5-64a8-42f1-92ab-dd90a883c1a4@gmail.com>
- <20251205184023.7230-1-shankari.ak0208@gmail.com>
-In-Reply-To: <20251205184023.7230-1-shankari.ak0208@gmail.com>
+References: <20251128-gpuvm-rust-v1-0-ebf66bf234e0@google.com>
+ <20251128-gpuvm-rust-v1-1-ebf66bf234e0@google.com>
+In-Reply-To: <20251128-gpuvm-rust-v1-1-ebf66bf234e0@google.com>
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: implicit-dest
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  max-recipients; max-size; news-moderation; no-subject; digests;
  suspicious-header
-Message-ID-Hash: GMYSRDGWDSW7WFWK7J75VP6CB7GDVUU4
-X-Message-ID-Hash: GMYSRDGWDSW7WFWK7J75VP6CB7GDVUU4
+Message-ID-Hash: MRMXRKE5UJXGQ7AO4BV6SUTR4S345WXD
+X-Message-ID-Hash: MRMXRKE5UJXGQ7AO4BV6SUTR4S345WXD
 X-Mailman-Approved-At: Fri, 19 Dec 2025 15:52:12 +0000
-CC: Igor Korotin <igor.korotin.linux@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?utf-8?q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Martijn Coenen <maco@android.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
- Suren Baghdasaryan <surenb@google.com>, Alice Ryhl <aliceryhl@google.com>,
+CC: Daniel Almeida <daniel.almeida@collabora.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alexandre Courbot <acourbot@nvidia.com>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>,
- Michal Wilczynski <m.wilczynski@samsung.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-pwm@vger.kernel.org
+ Trevor Gross <tmgross@umich.edu>, Frank Binns <frank.binns@imgtec.com>,
+ Matt Coster <matt.coster@imgtec.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GMYSRDGWDSW7WFWK7J75VP6CB7GDVUU4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MRMXRKE5UJXGQ7AO4BV6SUTR4S345WXD/>
 Archived-At: 
- <https://lore.freedesktop.org/DF1HN90AG0R2.3TQDS8IQ6ZP0R@kernel.org/>
+ <https://lore.freedesktop.org/DF26ONGZ03KH.31FVI22UBGJFX@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -124,18 +129,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Dec 5, 2025 at 7:40 PM CET, Shankari Anand wrote:
-> As this patch is part of a series, am I supposed to send all the patches =
-with a v2,=20
-> some have been acked by already, hence I had the question?
+On Fri Nov 28, 2025 at 3:14 PM CET, Alice Ryhl wrote:
+> +static void
+> +drm_gpuvm_bo_destroy_not_in_lists(struct drm_gpuvm_bo *vm_bo)
+> +{
+> +	struct drm_gpuvm *gpuvm =3D vm_bo->vm;
+> +	const struct drm_gpuvm_ops *ops =3D gpuvm->ops;
+> +	struct drm_gem_object *obj =3D vm_bo->obj;
+> +
+> +	if (ops && ops->vm_bo_free)
+> +		ops->vm_bo_free(vm_bo);
+> +	else
+> +		kfree(vm_bo);
+> +
+> +	drm_gpuvm_put(gpuvm);
+> +	drm_gem_object_put(obj);
+> +}
 
-I suggest to resend the series without the patches that have been picked up=
- in
-the meantime.
-
-Also, I suggest to change the prefix in the patch subjects according to the
-subsystem they target. For instance, you patch updating the USB stuff is na=
-med
-"rust: kernel: Update AlwaysRefCounted imports to use sync::aref", which ma=
-y be
-overlooked by maintainers.
+I think to us it seems obvious, but I think for new people it might not be.=
+ Can
+you please add a comment that mentions that this is about the evict and ext=
+obj
+lists and explains how this is related to locking?
