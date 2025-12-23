@@ -4,103 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A549DE6FE23
-	for <nouveau@archiver.kernel.org>; Tue, 23 Dec 2025 16:15:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0121AE6FE23
+	for <nouveau@archiver.kernel.org>; Tue, 23 Dec 2025 16:15:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 75D7810E282;
-	Tue, 23 Dec 2025 16:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A49AD10E283;
+	Tue, 23 Dec 2025 16:15:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="adNhm9LB";
+	dkim=pass (2048-bit key; unprotected) header.d=bne-home.net header.i=@bne-home.net header.b="dkPNA7ix";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2CF8D44C57;
-	Tue, 23 Dec 2025 16:07:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 759F244C57;
+	Tue, 23 Dec 2025 16:07:57 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1766506054;
- b=ojkPyDsRVxLr9B23byIpyDHgMES/BLaKCwFVhRsNIiJQ4j1mTSzsn8l002UIw7YgRA02H
- 0S3z09Ra1Pdlas3Ob8EowXnVU/Vwwnm1n0DVz9xbNCOAWlYVCD9q4aq3TrIRtbcQ0oUbPfV
- Vji+tI3jAmdhH8ZuZ/OaX9Z1p+tjecgWHSEsBPrahX8EkslKLfsbEHwgqeZ/oMqaHLAd49B
- aQmIEavcK+WGmKUuPyVhZqBRBA0h9IGJ73LZHroVI6/pfVhgDVXhtUnUlOGDoEJwsxg1uk5
- O+IxNHpopwazlUTS9fCqx9LMvkEPddOgApHsWqljv6yf+m9Tt9hWJByn/4NA==
+ s=20240201; t=1766506077;
+ b=rShxxEE7XN3FatTuhNfwUj33SagVp1C5hWD5XwFbxzDMvFKFWxx75Z8CC3reO1Pd+J6oH
+ uikmMfDXzFM6wNXhXUDQ9zUrXplX2QBl1CxBmY45yqT19KoXND3fLcY/UYVQcnOLAk95h7m
+ pY4mdkciUboP/Qe2y0eaU+64W3fPV3I4yt1MvUIOvpJsethivmuvyL7gntQLHIEB3Voi0fh
+ jAvNdza3V7ZjLjUbgmmDWiqkjCqwJOJobNn0P4TFGlzkWvwvclLQyOjw7Xaj9R6HpWAE34F
+ QWgHIOXlFVuOpeZ+tQkXoLiZrPLAPYkYrd7D71PdPpQzGu8VgBEZtoflI1Nw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1766506054; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1766506077; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=AsyulULgWGbep5UGmr8dghyW26wvvR/zQhZLIltMtrI=;
- b=XX/wpq7WjhN0oTrSgx7SgZ6h9uL2m/wcUGdwzvZBrLyRkKVzqksFK2Sf8pAebkll89tV6
- hUcLm+xqDCa4/O3mLGXoLFi9cvDSiAcP7Rc9tqykni9j2Bfic/kf0+gr8AhqyYhwstK/8nz
- EGJuLQDmQhQRNxDW0v2j79emy3x2BmqpZdXjoiHkggz4LNcDEGlu/9Ax5x1W8VYuU1JTWZF
- hXFN4vJBmmOxZ1T3PHrPfKNYu6LCBT/Z/230JHVUUavvMxT895y/E5S2R95rM7sIE60APAF
- oU3Qyxolgx6eto0oxIPRMMpDpMXdiznN1xtioU5tTwisFjuO3/t9WuApODcw==
+ bh=PgFncF/RAuPmSd/ndbWFGHlEySnfTyAhpN6Jo23lMt0=;
+ b=GEABJKjtpinkzKnEVE7vFZECpJ3vGHWpUitsr/9h75ar76nPGwLIg0HhzBcWNW95ol1xC
+ VRfzRAb6SoxdQzK4Kv8qMNjUevQj6cTS3tXQynMM5KBMkInFb2CXC5KTV1b3pz9wRiS+JC0
+ EGFghWvPwJCAag3hDfdrTI4H8v+g7u2YEMXAlp13V2HSJ6TMEpLMCk/hjggX5psSH49QDyx
+ iNR2SPcDe+0rzpYQ1/bUv784c/zPtq5q1IkaXITkzLNTguQvE8iNlq9Ms20+Ef7+++Efdr9
+ 5nXU2ozzIvkIwB9u+7fX3j5eldS5KESKiYVtnPvpZjAoQA53FE79GGhqfDMA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=kernel.org;
+ dkim=pass header.d=bne-home.net;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=bne-home.net;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 57DDD44C47
-	for <nouveau@lists.freedesktop.org>; Mon, 22 Dec 2025 16:50:53 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 22D4910E08E;
-	Mon, 22 Dec 2025 16:58:33 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id BE33B6014C;
-	Mon, 22 Dec 2025 16:58:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2DF3C4CEF1;
-	Mon, 22 Dec 2025 16:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1766422711;
-	bh=Jt8y+TLci5YpF2GwIQAC9U6va+XnEFxp3SVTV8kkOAQ=;
-	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
-	b=adNhm9LBUsrrX+DenP00f+d1onGx9CMbQVcwRi+QychBpcZn9LpCuKw6hY+hG5FZh
-	 YDkQ0AOnOGmYRdKPr06ZAibR+unUh1UU6EL444/AY0820H1u69EnJUHuHI/loBTXO2
-	 fDLze0vpoHFyr0dzMySitB6+zAsHueo/AT2zG2jndQH6PMUHQV8JafK/EDX0VZdKQX
-	 8uZdRnQjkX4vadyNmLXoRNLEV931OylnXYIyKsO36YnzV1p8l4qVxw8utcZ/Hl0hba
-	 TQ9hEtIVzvODY3xA+WtWHHtUOfs0nC4I0vDTQnr52s9TEN6m2ypPvdqRLIMuDULupT
-	 /T8BPZBrZsBXw==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 22 Dec 2025 17:58:23 +0100
-Message-Id: <DF4WL7CPEB0G.34Q08IOBC1I5L@kernel.org>
-To: "Tamir Duberstein" <tamird@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH] gpu: nova-core: replace `kernel::c_str!` with C-Strings
-References: <20251222-cstr-nova-v1-1-0e2353d5debe@gmail.com>
-In-Reply-To: <20251222-cstr-nova-v1-1-0e2353d5debe@gmail.com>
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: implicit-dest
+	by kara.freedesktop.org (Postfix) with ESMTPS id DA3754030D
+	for <nouveau@lists.freedesktop.org>; Tue, 23 Dec 2025 06:11:46 +0000 (UTC)
+Received: from outbound.st.icloud.com
+ (p-east2-cluster2-host6-snip4-10.eps.apple.com [57.103.78.43])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BB74C10E0DC
+	for <nouveau@lists.freedesktop.org>; Tue, 23 Dec 2025 06:19:27 +0000 (UTC)
+Received: from outbound.st.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-east-1a-60-percent-15 (Postfix) with ESMTPS id
+ 7285118000A0;
+	Tue, 23 Dec 2025 06:11:01 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bne-home.net; s=sig1;
+ bh=PgFncF/RAuPmSd/ndbWFGHlEySnfTyAhpN6Jo23lMt0=;
+ h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:x-icloud-hme;
+ b=dkPNA7ixGNjp6V5Mf3oPEYh6bIgPuETaNIcRLNKqGPLfXL1/WlYAksqTjp3El6gfil25yHPM+jzlJQJaLs1HYAAAuaHDWuoYm6b5NguMsEsuYuOTEVD7n2vmziM+nzaOJ6IW3pfQIztJLgD3k0lN9RxU9aldHIzi4ZOyUOZP/lEw3q3C/rP83LXI4nX2xcdTKuAjeM5SHpJm0LI1JIpZ+PuIRLbrhVyUVP/fEuYlCIZm1uePevW1oapw3RzeqJzVsLxsf/NZpnse+3NBKd7QGG8DMvWfjkUdDy+NSmA5eO3lmPm99vC8paYX0JJRcOZs+k+KkKucRiojGs+KmEQhjw==
+mail-alias-created-date: 1746336505199
+Received: from fedora (unknown [17.42.251.67])
+	by p00-icloudmta-asmtp-us-east-1a-60-percent-15 (Postfix) with ESMTPSA id
+ 003DE180009F;
+	Tue, 23 Dec 2025 06:10:58 +0000 (UTC)
+Date: Tue, 23 Dec 2025 16:10:55 +1000
+From: Brendan Shephard <bshephar@bne-home.net>
+To: Alexandre Courbot <acourbot@nvidia.com>
+Subject: Re: [PATCH v4] drm/nova: Align GEM memory allocation to system page
+ size
+Message-ID: <aUoyb9BcnYS0xp8f@fedora>
+References: <20251215083416.266469-1-bshephar@bne-home.net>
+ <DF1DDD8BUIYQ.1YCAA8T6557NP@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DF1DDD8BUIYQ.1YCAA8T6557NP@nvidia.com>
+X-Proofpoint-GUID: qrFTykA8JDHO5cXb2BsBDRPj8ldWf9Iv
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMjIzMDA1MCBTYWx0ZWRfX9/eoxI1WLkk8
+ SRzMXAOA3mK5OdYUW0I5MYgeNffdMLh6X3Uuo6yb94o5hBn9u5wpNaAd1emZDzfpXNERZNu5yTo
+ Lvn9OHqh4tZQ0svCJS8N3QalBFj1bZJqISvLjiKdFvt57SjX72v11sVwcvqmmKcmaZ6DoTXfwf4
+ l+l6NbJfe1XlCZkbfS/Tvl6nDyWjajMYeVc2X1CEpQ3ahy10FWo/xVzkf/UEBIxTB7FRaBecCOl
+ pX/dc0cAkUzc6iBXBCNj5tqFHrWKIXF/QzC117lfQYeUf2JwpgNQrFsrA+N32zKIX/GzZfQGvuT
+ DpVFISwDg1LKicXnj4b
+X-Authority-Info: v=2.4 cv=BJG+bVQG c=1 sm=1 tr=0 ts=694a3276 cx=c_apl:c_pps
+ a=YrL12D//S6tul8v/L+6tKg==:117 a=YrL12D//S6tul8v/L+6tKg==:17
+ a=kj9zAlcOel0A:10 a=wP3pNCr1ah4A:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=Tqo27WzTpzf5rUx77aUA:9 a=CjuIK1q_8ugA:10
+X-Proofpoint-ORIG-GUID: qrFTykA8JDHO5cXb2BsBDRPj8ldWf9Iv
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.9,FMLib:17.12.100.49
+ definitions=2025-12-23_02,2025-12-22_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 phishscore=0
+ mlxscore=0 clxscore=1030 mlxlogscore=714 suspectscore=0 adultscore=0
+ spamscore=0 malwarescore=0 bulkscore=0 classifier=spam authscore=0 adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2510240001 definitions=main-2512230050
+X-JNJ: 
+ AAAAAAABrBUh0yJo2WecKsw9Hv3boXtZQNEIRW4PhSyfeYiRT8qVuab8LUmVdCsRfjA1SWwhz+kAi9d2GfcZy1oQxF0AgF5nLnwwDxGYMj9UJufxAj/2RA6V4zXbfk1yDPZcY2rEudqjhH+btUbf0Nr+d8mFa2mGR/y0NHjB0vJgO9aM8mcoPlj3SvM46gi8Q7gBq33xqQxrD+qspyQW8Na/hHiGcA0h/TCJaHlUBsctrK2TTqIlPNCPAjLuggR87MJU4KDs7dxz8UIK3Rn3BpSB56ggs3ls1CAekOi+3AgjNyl6z6ZzlCxM03UKrsPqSXk4oLYOl3B5zJDJCxMYa9L+WOhX0cvOcaLjCND+3DAOFjvh/3e5mkps6/5cAYtWP9qVsyLRF+bjQqBlqDh+Qoi6SHuLN9VdaJ8nX+1ByKn52KsDNxX907rqgJA2A1vA46LvuAf0zXLCZS4twlebskemMsa/XdcHRPiT2uea1Z4MgSy71Wl4D8/xM2VnlBo++J2kbozqV4x9RvnrS5UVZv80A/AqojIpbRL6jS4Zvjn5jEESbyNJtIAS1B+FXe/pq6Sv5+llzztd8c4bmXtPS3etG1jg+USziuU0FrnLjWXZllYKLojLBva+4naVvQgSWEGSmiSj5L2rgzW8c/SuI66H/WmEQrmo8z01w8bYeSRi
+X-MailFrom: bshephar@bne-home.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- max-recipients; max-size; news-moderation; no-subject; digests;
- suspicious-header
-Message-ID-Hash: BNKSK7UJWDLEOPHTTWUZZ6GIE2FGS5F4
-X-Message-ID-Hash: BNKSK7UJWDLEOPHTTWUZZ6GIE2FGS5F4
-X-Mailman-Approved-At: Tue, 23 Dec 2025 16:07:33 +0000
-CC: Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
- Alexandre Courbot <acourbot@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, Tamir Duberstein <tamird@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+ loop; banned-address; member-moderation
+Message-ID-Hash: SSQWHKGVQ5YBUNQYJICRZBBLMYDYPI5W
+X-Message-ID-Hash: SSQWHKGVQ5YBUNQYJICRZBBLMYDYPI5W
+X-Mailman-Approved-At: Tue, 23 Dec 2025 16:07:55 +0000
+CC: aliceryhl@google.com, joelagnelf@nvidia.com, airlied@redhat.com,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BNKSK7UJWDLEOPHTTWUZZ6GIE2FGS5F4/>
-Archived-At: 
- <https://lore.freedesktop.org/DF4WL7CPEB0G.34Q08IOBC1I5L@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SSQWHKGVQ5YBUNQYJICRZBBLMYDYPI5W/>
+Archived-At: <https://lore.freedesktop.org/aUoyb9BcnYS0xp8f@fedora/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,20 +119,34 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Dec 22, 2025 at 1:20 PM CET, Tamir Duberstein wrote:
-> From: Tamir Duberstein <tamird@gmail.com>
->
-> C-String literals were added in Rust 1.77. Replace instances of
-> `kernel::c_str!` with C-String literals where possible.
->
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-> Reviewed-by: Benno Lossin <lossin@kernel.org>
-> Acked-by: Danilo Krummrich <dakr@kernel.org>
-> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-> Signed-off-by: Tamir Duberstein <tamird@gmail.com>
+On Thu, Dec 18, 2025 at 10:16:48PM +0900, Alexandre Courbot wrote:
+> On Mon Dec 15, 2025 at 5:34 PM JST, Brendan Shephard wrote:
+> >  impl NovaObject {
+> >      /// Create a new DRM GEM object.
+> >      pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self>>> {
+> > -        let aligned_size = size.next_multiple_of(1 << 12);
+> > -
+> > -        if size == 0 || size > aligned_size {
+> > +        if size == 0 {
+> >              return Err(EINVAL);
+> >          }
+> > +        let aligned_size = page_align(size).ok_or(EINVAL)?;
+> 
+> nit, but it's a good practice to always leave an empty line before a
+> block of variable declarations.
+> 
+> >  
+> >          gem::Object::new(dev, aligned_size)
+> 
+> ... or if you prefer to avoid the variable altogether:
+> 
+>     page_align(size)
+>         .ok_or(EINVAL)
+>         .and_then(|size| gem::Object::new(dev, size))
+> 
 
-Applied to drm-rust-next, thanks!
+Sounds good, I'll use `and_then`. I like the idea of not unnecessarily
+assigning variables just to use them once. I'll make that change, re-test
+and send a new revision of this one.
 
-    [ Use 'nova' commit subject prefix; use kernel vertical import style.
-      - Danilo ]
+Thanks!
