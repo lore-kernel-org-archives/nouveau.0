@@ -4,123 +4,101 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26A97E7AD66
-	for <nouveau@archiver.kernel.org>; Thu, 25 Dec 2025 17:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B488E7AD62
+	for <nouveau@archiver.kernel.org>; Thu, 25 Dec 2025 17:41:05 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C322A12B8D8;
-	Thu, 25 Dec 2025 17:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A2A2111A6C6;
+	Thu, 25 Dec 2025 17:41:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Ayyhxi39";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Q14QOIqq";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F17AE44C6C;
-	Thu, 25 Dec 2025 17:03:43 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C21B744C6C;
+	Thu, 25 Dec 2025 17:33:16 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1766682223;
- b=bY+cD5pkejk+Vr5ojePIPzhG/K4C2nUwacqfi03JLyDXXMc5f97ePEmMb/8CoD1pa2T0l
- X/m+cuOJtK5b0ayRkSP+doEsPjXq9ufUcISdW61OuIYZiGpKabuDilClt0urEhdmRNBJEOu
- arBR7hsEvF3dVKVak/pYL73++Ac9aO+ktDILM6jy2P9dMZ/u+raGE32c7hy3WwcKPMHjOhl
- QmGQxw/Pix9jiXgYI6yhOLlL4hyHSjVJZBPk34sULcvgnYb2tB8weNBdH7iHGfCnAwqUEPv
- pjGdbpWEeaBTJhpMZIOBaLZZrhYA/pAZk3+19K5rBEbVHMconmJJHKn32T9w==
+ s=20240201; t=1766683996;
+ b=uLyCZoQe7vG3ZqWISsiO4gdiUOj3afVoJm4iWTBN8aYgoTQhi17nNUbsZuOUDcQuPMUlY
+ HWHAlecnXrGJj14qToAgjGDqkkNuyAUmMqP2JreS1PLXjhprv1Id5vPjkYMwHZ/jMOSq/7K
+ Y4BDW5U8F5N8pc9QTzvjdWs1VJnK3UMTDjtMnBhf6gr950ee24Ey5S7vKTkRtPH05kEmSbv
+ 3ZpFoZcz4nLBbpnpQWryrwb8C2xfPemHyhtx5u8tXKY5bcgO9IXIoT/QSDH+dgXP0ZaVs0w
+ IInyS3PYMks4NR1i18qcIA5PhfT7Xp91T0f1BnWBWHb3W69z+Vt2mjiKynHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1766682223; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1766683996; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=suWHoCdjES5o4GWEkjKVrlTNOfdwujoGI0MclaECRlk=;
- b=LFGlYMBRGoJlj/a3mbPHOokHDvVFh+agjLWAsjSXepIUxPwG2ZFHm0RgqvdwzrVRWsBaZ
- PmOQeen6V8kE5T+kChVkINKtJOZ00hkw2lc0zgYkjEOKlfGOS33FiKgvLYR27RPcwB9C22k
- Jpptiqbren5ZZWiBU8AAsvPCSgCcKB34J+QfxXY4+BF5aWfzRmmSnQe6Y+w3oSTm21GWO1l
- zS1q0q1KOLKc7SHStCQ/oUvymGpfzYe8DNBKh7RTjeHPtbp6g8PhhqmrUgSHAkpz5+f0Mdr
- UQr3WhhcFwajVjRUSofhEVyt0v8RTx+N40x3eobE7ZykCjNwHNURCR29/HGg==
+ bh=oSwN9qFvrvPMkPzmizQq5EktUTHyKTMtWQ/XQhggTXE=;
+ b=wvsE4ST2YKvDWg9rU7WsxKEpOA8j8Zy9rKVex1SjYRyJakqqkZnFByVSg6Y2KBAFx84md
+ 6p8KPWmQIHRum5obVgGqcevQ+5BBIuRlqr125JTsY0yJ9d/LyngV2dWuu04XEsYZUOnAw65
+ tXO9RNNFQhYWlAh99NeSKnFhEbeTa2UPWL6+VS8KXPWEFcczk+rafqRZnkP1FcAc8imOQdB
+ ue8C9PFpc3pgawFsgxHalmIy9Enlky4GvCFLLL/pfQVgLFmsbbOCsqei6WCT4zT/w0odzT+
+ YTjOe5+mPqsx2cL5hqII+jj6JnxOCCm7b9Wq6B++astvrvyMDZXrjs6g4cIw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 377FB44C4E
-	for <nouveau@lists.freedesktop.org>; Wed, 24 Dec 2025 19:51:30 +0000 (UTC)
-Received: from mail-qv1-f44.google.com (mail-qv1-f44.google.com
- [209.85.219.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BCB8910E09D
-	for <nouveau@lists.freedesktop.org>; Wed, 24 Dec 2025 19:59:14 +0000 (UTC)
-Received: by mail-qv1-f44.google.com with SMTP id
- 6a1803df08f44-88a2ad13c24so58890316d6.1
-        for <nouveau@lists.freedesktop.org>;
- Wed, 24 Dec 2025 11:59:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1766606353; x=1767211153;
- darn=lists.freedesktop.org;
-        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=suWHoCdjES5o4GWEkjKVrlTNOfdwujoGI0MclaECRlk=;
-        b=Ayyhxi39Jo3nJI4twlKdH2IjxLQO/1SDco9tvsTBR0/uFIbeL7H/jGq1jf6nau8lnh
-         Cg5C/6K+yhFUAorRJxBlXZ3x+iZMvZlIoAn0KVRsV4jmmbR2J0kHDKSwKh7cR0ULr3CA
-         uoMZ0ZzwmBpIkaPT8W5v4/UwNqRLb/HcxdHSWM1Sa/daRMI19cv+WlLOT8KTtIkvaok6
-         qEhrFfZ4esTLTmbBOTlSH6mjHBoUc3apBmIMWb5b9v6pMvtQ+TfEhgNmxGKI2XwGzJrP
-         nS/irkhAwZjSBlg7bNeJZKwCRhFG4+Z2wyD4TRp21ggUgPynig6ez/osUNKSr7ml6RkO
-         KZ2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1766606353; x=1767211153;
-        h=to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=suWHoCdjES5o4GWEkjKVrlTNOfdwujoGI0MclaECRlk=;
-        b=afcrPgeIwuEZMUplJTX1LmpGLCQ/+45+zHM85XgzBqs2e5TZRpHowTXx7zXQsGGWxf
-         fgLDSAelo4/M1ORbFaSNUt8w9B/YdZvt5qZNIXai82EvufGupgnoVvP5y5kIP3Yxz6lt
-         sXKyz6+Y3oOenoA6CZeJrPMg9iWz392NMoLqZqbxBmoO7YrSkl97r5BEc9Q3YrVS0VJd
-         MtRMoQqiBBub+ePD5xDFuS/jpbfDZ6X4x3UGvn+GD7rhSujkK5lMnFuwl9hOQngo39tZ
-         iYYOZUamq+YL4PqgU0/uZSTLFFJ4IbCmkS/1ACbzNcuInMckWarlvUQCtKbwxLe9ue6T
-         nTZg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVyn9+xemo1SVsMmyNcoeWBEdv9ZECQfzfa7xKsljriSQ39xoCwUwiRFmr6PKJEn0AnU8cdCLli@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwdNjB1N7MnL5IvNMGI5mt9m1GnPEut4ABLQtJg360GYnQ7PssT
-	eIMpn5Psxbf44x6zwattWGPaMUtXiSg8owfm49/TjIQ6oBQGKJRPqgiBYKRzs7msdjgWiMLWTLo
-	C1FxK3/ZTi/bMxClWMykYYB5AdjJEU7s=
-X-Gm-Gg: AY/fxX4hJJRDkM33dW82luNrnp+Km9vZqobXOmweTh6p7KihkNb6AXzmrRK2f5Rc2qA
-	tYfap+NKleyV4CcoJF+LDAyXv2058GLkRlCjCwKacYnc/K9XDGmvocJUC+5G9ET+i2F5NP1/aeT
-	pIyxB9JUEil7OIpSpve5dfyUSBQAGlP7EwniklCf91fr+RhkrkSilkTkkpTc1UVt4qi4rja0i4+
-	AV+impQi0or/Ndv7qbpInOGtNUlA2daCxw+YSL7nbTAmXC32xi7/idiH7pi74pTlF8BkBohfmf5
-	Pi7j2nwy1BkmfEP/DATsm13oZ3VYOvMMshO985PJ6224Q0ISESCOFKachwQiUT2/yfzGRaB7UxM
-	3lOtrKvgaqRX7fJxikoJQ0I/bpJJ8kY4gDlLTWOgwkMzuCsMr05rTS50NdXFy
-X-Google-Smtp-Source: 
- AGHT+IHfCwHjKpq8B5d2cyOzWcyvnq2tt5eboEpwn9ZY7qdyGeLdVLLo3Jho0y1o836vVE9y+uFXlsJoearAj0wRCLM=
-X-Received: by 2002:ad4:5c68:0:b0:88f:caa1:ae21 with SMTP id
- 6a1803df08f44-88fcaa1aecbmr184313216d6.32.1766606353470; Wed, 24 Dec 2025
- 11:59:13 -0800 (PST)
-MIME-Version: 1.0
-From: Steve French <smfrench@gmail.com>
-Date: Wed, 24 Dec 2025 13:59:02 -0600
-X-Gm-Features: AQt7F2oXcnv96Cgf1Gx1spIHuWR7s-nnxt45R2cfxdKNyVZzWOMUqpbGH0ZF6sg
-Message-ID: 
- <CAH2r5muA=vzdVeK=-6Du7NdbeWs5xyxZt7AYYKKLoaGNHPW6Ng@mail.gmail.com>
-Subject: Nouveau driver warn on most xfstests in current mainline (6.19-rc2)
-To: LKML <linux-kernel@vger.kernel.org>, robdclark@gmail.com,
-	Daniel Vetter <daniel.vetter@ffwll.ch>, nouveau@lists.freedesktop.org,
-	Lyude Paul <lyude@redhat.com>, "M: Danilo Krummrich" <dakr@kernel.org>,
- dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-X-MailFrom: smfrench@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id 521FA44C5E
+	for <nouveau@lists.freedesktop.org>; Thu, 25 Dec 2025 17:33:13 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C7B3510E27A
+	for <nouveau@lists.freedesktop.org>; Thu, 25 Dec 2025 17:40:59 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 6A5EB41797;
+	Thu, 25 Dec 2025 17:40:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E81AC4CEF1;
+	Thu, 25 Dec 2025 17:40:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1766684459;
+	bh=tAqR6pW4SSkFRHeclPpveu/m1Ghpvy057DFROQ1Z+5Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Q14QOIqqSq+V1xPKgE5Ku8S421beGzJ0vw93ij9ROhTf8IwfFxt2y+QEyjNk+tUjt
+	 pzro/+Ux6cIwiDS0o/tsvnVLYl84S88LAR16sN0RCwKwBT0D6IWTGNdv9liQd9p4E2
+	 NNdmMWCvCAJoGemXUROqVL0k29NVbga+z5oMg97/ziA4oBJt9MbrGf0iuvkuAIDm0k
+	 cOOkLp0FM4uFsizTQbw4jRO/wbf0mFfGHQN4m3KjwqGyvhzEGHxfSOi5Su2J9HSIzG
+	 N/vY0+b9+UeoB7Zs4nzocsk+eMP53Q3bC4I/7YOyQIQPZ94YNnf09dPfkoFlJJ1XCf
+	 hnRBOVqJ6NNUQ==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 25 Dec 2025 18:40:54 +0100
+Message-Id: <DF7HDE1T2BOS.33WUHP49WWO1M@kernel.org>
+From: "Benno Lossin" <lossin@kernel.org>
+To: <y.j3ms.n@gmail.com>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Alexandre Courbot" <acourbot@nvidia.com>
+Subject: Re: [PATCH v4 1/4] rust: macros: add derive macro for `Into`
+X-Mailer: aerc 0.21.0
+References: <20251225-try-from-into-macro-v4-0-4a563d597836@gmail.com>
+ <20251225-try-from-into-macro-v4-1-4a563d597836@gmail.com>
+In-Reply-To: <20251225-try-from-into-macro-v4-1-4a563d597836@gmail.com>
+Message-ID-Hash: VPK2Z5TC44PZYPXHCJEZLZLCMBBBUONZ
+X-Message-ID-Hash: VPK2Z5TC44PZYPXHCJEZLZLCMBBBUONZ
+X-MailFrom: lossin@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: 5HR4FZU33QWHBFZQGJPTWW655LG6XBVO
-X-Message-ID-Hash: 5HR4FZU33QWHBFZQGJPTWW655LG6XBVO
-X-Mailman-Approved-At: Thu, 25 Dec 2025 17:03:42 +0000
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5HR4FZU33QWHBFZQGJPTWW655LG6XBVO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VPK2Z5TC44PZYPXHCJEZLZLCMBBBUONZ/>
 Archived-At: 
- <https://lore.freedesktop.org/CAH2r5muA=vzdVeK=-6Du7NdbeWs5xyxZt7AYYKKLoaGNHPW6Ng@mail.gmail.com/>
+ <https://lore.freedesktop.org/DF7HDE1T2BOS.33WUHP49WWO1M@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,136 +108,428 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-WARN_ON in drivers/gpu/drm/drm_atomic.c
+On Thu Dec 25, 2025 at 9:37 AM CET, Jesung Yang via B4 Relay wrote:
+> +fn derive(target: DeriveTarget, input: DeriveInput) -> syn::Result<Token=
+Stream> {
+> +    let mut errors: Option<syn::Error> =3D None;
+> +    let mut combine_error =3D |err| match errors.as_mut() {
+> +        Some(errors) =3D> errors.combine(err),
+> +        None =3D> errors =3D Some(err),
+> +    };
+> +
+> +    let (helper_tys, repr_ty) =3D parse_attrs(target, &input.attrs)?;
+> +    for ty in &helper_tys {
+> +        if let Err(err) =3D ty.validate() {
+> +            combine_error(err);
+> +        }
+> +    }
+> +
+> +    let data_enum =3D match input.data {
+> +        Data::Enum(data) =3D> data,
+> +        Data::Struct(data) =3D> {
+> +            let msg =3D format!(
+> +                "expected `enum`, found `struct`; \
+> +                 `#[derive({})]` can only be applied to a unit-only enum=
+",
+> +                target.get_trait_name()
+> +            );
+> +            return Err(syn::Error::new(data.struct_token.span(), msg));
+> +        }
+> +        Data::Union(data) =3D> {
+> +            let msg =3D format!(
+> +                "expected `enum`, found `union`; \
+> +                 `#[derive({})]` can only be applied to a unit-only enum=
+",
+> +                target.get_trait_name()
+> +            );
+> +            return Err(syn::Error::new(data.union_token.span(), msg));
+> +        }
+> +    };
+> +
+> +    for variant in &data_enum.variants {
+> +        match &variant.fields {
+> +            Fields::Named(fields) =3D> {
+> +                let msg =3D format!(
+> +                    "expected unit-like variant, found struct-like varia=
+nt; \
+> +                    `#[derive({})]` can only be applied to a unit-only e=
+num",
+> +                    target.get_trait_name()
+> +                );
+> +                combine_error(syn::Error::new_spanned(fields, msg));
+> +            }
+> +            Fields::Unnamed(fields) =3D> {
+> +                let msg =3D format!(
+> +                    "expected unit-like variant, found tuple-like varian=
+t; \
+> +                    `#[derive({})]` can only be applied to a unit-only e=
+num",
+> +                    target.get_trait_name()
+> +                );
+> +                combine_error(syn::Error::new_spanned(fields, msg));
+> +            }
+> +            _ =3D> (),
 
-struct drm_crtc_state *drm_atomic_get_crtc_state(struct drm_atomic_state *state,
-                          struct drm_crtc *crtc)
+We should be exhaustive here to exclude any future additions (ie break
+the build if a new `Fields::...` variant is added).
+
+> +        }
+> +    }
+> +
+> +    if let Some(errors) =3D errors {
+> +        return Err(errors);
+> +    }
+> +
+> +    let variants: Vec<_> =3D data_enum
+> +        .variants
+> +        .into_iter()
+> +        .map(|variant| variant.ident)
+> +        .collect();
+> +
+> +    Ok(derive_for_enum(
+> +        target,
+> +        &input.ident,
+> +        &variants,
+> +        &helper_tys,
+> +        &repr_ty,
+> +    ))
+> +}
+> +
+> +#[derive(Clone, Copy, Debug)]
+> +enum DeriveTarget {
+> +    Into,
+> +}
+> +
+> +impl DeriveTarget {
+> +    fn get_trait_name(&self) -> &'static str {
+> +        match self {
+> +            Self::Into =3D> "Into",
+> +        }
+> +    }
+> +
+> +    fn get_helper_name(&self) -> &'static str {
+> +        match self {
+> +            Self::Into =3D> "into",
+> +        }
+> +    }
+> +}
+> +
+> +fn parse_attrs(target: DeriveTarget, attrs: &[Attribute]) -> syn::Result=
+<(Vec<ValidTy>, Ident)> {
+> +    let helper =3D target.get_helper_name();
+> +
+> +    let mut repr_ty =3D None;
+> +    let mut helper_tys =3D Vec::new();
+> +    for attr in attrs {
+> +        if attr.path().is_ident("repr") {
+> +            attr.parse_nested_meta(|meta| {
+> +                let ident =3D meta.path.get_ident();
+> +                if ident.is_some_and(is_valid_primitive) {
+> +                    repr_ty =3D ident.cloned();
+> +                }
+
+While this works for now, writing `repr(C, {integer})` might become
+meaningful in the future, see [1]. We should just accept it now as well.
+
+[1]: https://github.com/rust-lang/rust/issues/68585
+
+> +                // Delegate `repr` attribute validation to rustc.
+> +                Ok(())
+> +            })?;
+> +        } else if attr.path().is_ident(helper) && helper_tys.is_empty() =
 {
-        int ret, index = drm_crtc_index(crtc);
-        struct drm_crtc_state *crtc_state;
+> +            let args =3D attr.parse_args_with(Punctuated::<ValidTy, Toke=
+n![,]>::parse_terminated)?;
+> +            helper_tys.extend(args);
+> +        }
+> +    }
+> +
+> +    // Note on field-less `repr(C)` enums (quote from [1]):
+> +    //
+> +    //   In C, enums with discriminants that do not all fit into an `int=
+` or all fit into an
+> +    //   `unsigned int` are a portability hazard: such enums are only pe=
+rmitted since C23, and not
+> +    //   supported e.g. by MSVC.
+> +    //
+> +    //   Furthermore, Rust interprets the discriminant values of `repr(C=
+)` enums as expressions of
+> +    //   type `isize`. This makes it impossible to implement the C23 beh=
+avior of enums where the
+> +    //   enum discriminants have no predefined type and instead the enum=
+ uses a type large enough
+> +    //   to hold all discriminants.
+> +    //
+> +    //   Therefore, `repr(C)` enums in Rust require that either all disc=
+riminants to fit into a C
+> +    //   `int` or they all fit into an `unsigned int`.
+> +    //
+> +    // As such, `isize` is a reasonable representation for `repr(C)` enu=
+ms, as it covers the range
+> +    //  of both `int` and `unsigned int`.
+> +    //
+> +    // For more information, see:
+> +    // - https://github.com/rust-lang/rust/issues/124403
+> +    // - https://github.com/rust-lang/rust/pull/147017
+> +    // - https://github.com/rust-lang/rust/blob/2ca7bcd03b87b52f7055a59b=
+817443b0ac4a530d/compiler/rustc_lint_defs/src/builtin.rs#L5251-L5263 [1]
+> +
+> +    // Extract the representation passed by `#[repr(...)]` if present. I=
+f nothing is
+> +    // specified, the default is `Rust` representation, which uses `isiz=
+e` for its
+> +    // discriminant type.
+> +    // See: https://doc.rust-lang.org/reference/items/enumerations.html#=
+r-items.enum.discriminant.repr-rust
 
-        WARN_ON(!state->acquire_ctx);
-        drm_WARN_ON(state->dev, state->checked);
+I think we should error when no `#[repr({integer})]` attribute is
+specified.
 
+> +    let repr_ty =3D repr_ty.unwrap_or_else(|| Ident::new("isize", Span::=
+call_site()));
+> +    Ok((helper_tys, repr_ty))
+> +}
+> +
+> +fn derive_for_enum(
+> +    target: DeriveTarget,
+> +    enum_ident: &Ident,
+> +    variants: &[Ident],
+> +    helper_tys: &[ValidTy],
+> +    repr_ty: &Ident,
+> +) -> TokenStream {
+> +    let impl_fn =3D match target {
+> +        DeriveTarget::Into =3D> impl_into,
+> +    };
+> +
+> +    let qualified_repr_ty: syn::Path =3D parse_quote! { ::core::primitiv=
+e::#repr_ty };
+> +
+> +    return if helper_tys.is_empty() {
+> +        let ty =3D ValidTy::Primitive(repr_ty.clone());
+> +        let impls =3D
+> +            std::iter::once(ty).map(|ty| impl_fn(enum_ident, variants, &=
+qualified_repr_ty, &ty));
+> +        ::quote::quote! { #(#impls)* }
+> +    } else {
+> +        let impls =3D helper_tys
+> +            .iter()
+> +            .map(|ty| impl_fn(enum_ident, variants, &qualified_repr_ty, =
+ty));
+> +        ::quote::quote! { #(#impls)* }
+> +    };
 
-I don't see this on my other laptop (presumably because it isn't using
-the Nouveau driver) but do see it repeatedly on my older laptop when
-running most xfstests, causing most xfstests to fail.
+Let's just do this when we still have the `helper_tys` vector:
 
-[  303.098179] ------------[ cut here ]------------
-[  303.098183] nouveau 0000:01:00.0: [drm] drm_WARN_ON(state->checked)
-[  303.098188] WARNING: drivers/gpu/drm/drm_atomic.c:373 at
-drm_atomic_get_crtc_state+0x17b/0x1b0, CPU#5: KMS thread/2513
-[  303.098203] Modules linked in: rfcomm snd_seq_dummy snd_hrtimer
-snd_seq_midi snd_seq_midi_event snd_rawmidi snd_seq snd_seq_device
-xt_conntrack nft_chain_nat xt_MASQUERADE nf_nat nf_conntrack
-nf_defrag_ipv6 nf_defrag_ipv4 bridge stp llc xfrm_user xfrm_algo
-xt_addrtype nft_compat nf_tables cifs nls_ucs2_utils rdma_cm iw_cm
-ib_cm ib_core cachefiles cifs_md4 netfs vxlan ip6_udp_tunnel
-udp_tunnel overlay qrtr algif_hash algif_skcipher af_alg bnep
-sch_fq_codel binfmt_misc intel_uncore_frequency
-intel_uncore_frequency_common snd_sof_pci_intel_cnl intel_tcc_cooling
-snd_sof_intel_hda_generic x86_pkg_temp_thermal soundwire_intel
-intel_powerclamp iwlmvm snd_sof_intel_hda_sdw_bpt
-snd_sof_intel_hda_common elan_i2c btusb cmdlinepart snd_soc_hdac_hda
-btmtk snd_sof_intel_hda_mlink spi_nor btrtl snd_sof_intel_hda
-soundwire_cadence btbcm snd_sof_pci snd_sof_xtensa_dsp btintel
-coretemp nls_iso8859_1 mei_hdcp mei_pxp ee1004 mtd intel_rapl_msr
-think_lmi mac80211 snd_sof snd_sof_utils snd_soc_acpi_intel_match
-nouveau
-[  303.098414]  snd_soc_acpi_intel_sdca_quirks
-soundwire_generic_allocation snd_soc_sdw_utils snd_soc_acpi
-soundwire_bus kvm_intel snd_ctl_led snd_soc_sdca snd_hda_codec_alc269
-snd_hda_scodec_component libarc4 crc8 snd_hda_codec_realtek_lib kvm
-snd_soc_avs snd_hda_codec_nvhdmi snd_hda_codec_generic iwlwifi
-snd_hda_codec_hdmi snd_soc_hda_codec snd_hda_intel snd_hda_ext_core
-uvcvideo snd_hda_codec snd_soc_core
-processor_thermal_device_pci_legacy snd_hda_core
-processor_thermal_device videobuf2_vmalloc irqbypass
-processor_thermal_wt_hint uvc platform_temperature_control
-snd_compress ghash_clmulni_intel videobuf2_memops snd_intel_dspcfg
-processor_thermal_soc_slider aesni_intel ac97_bus videobuf2_v4l2
-processor_thermal_rfim snd_intel_sdw_acpi rapl snd_hwdep
-snd_pcm_dmaengine videobuf2_common processor_thermal_rapl cfg80211
-intel_cstate bluetooth firmware_attributes_class wmi_bmof
-intel_wmi_thunderbolt videodev snd_pcm intel_rapl_common i2c_i801
-mei_me nvidiafb i2c_smbus processor_thermal_wt_req spi_intel_pci
-i2c_mux spi_intel
-[  303.098580]  mei mc processor_thermal_power_floor
-processor_thermal_mbox vgastate snd_timer fb_ddc intel_soc_dts_iosf
-intel_pch_thermal intel_pmc_core thinkpad_acpi int3403_thermal
-pmt_telemetry nvram int340x_thermal_zone pmt_discovery pmt_class
-intel_pmc_ssram_telemetry int3400_thermal acpi_pad acpi_thermal_rel
-intel_vsec joydev input_leds mac_hid serio_raw nfsd mxm_wmi drm_gpuvm
-gpu_sched drm_ttm_helper auth_rpcgss ttm nfs_acl drm_exec lockd
-drm_display_helper grace cec rc_core i2c_algo_bit sunrpc msr
-parport_pc ppdev lp parport nvme_fabrics efi_pstore nfnetlink
-dmi_sysfs ip_tables x_tables autofs4 xfs btrfs blake2b libblake2b
-raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor
-async_tx xor raid6_pq raid1 raid0 linear ucsi_acpi wacom typec_ucsi
-hid_microsoft ff_memless typec hid_generic rtsx_pci_sdmmc nvme 8250_dw
-e1000e thunderbolt nvme_core usbhid psmouse rtsx_pci hid snd
-nvme_keyring nvme_auth intel_lpss_pci hkdf intel_lpss idma64 soundcore
-platform_profile video sparse_keymap wmi pinctrl_cannonlake
-[  303.098833] CPU: 5 UID: 1000 PID: 2513 Comm: KMS thread Tainted: G
-      W           6.19.0-rc2+ #77 PREEMPT(voluntary)
-[  303.098845] Tainted: [W]=WARN
-[  303.098849] Hardware name: LENOVO 20MAS08500/20MAS08500, BIOS
-N2CET70W (1.53 ) 03/11/2024
-[  303.098854] RIP: 0010:drm_atomic_get_crtc_state+0x185/0x1b0
-[  303.098863] Code: 04 48 8b 7f 08 4c 8b 77 50 4d 85 f6 75 03 4c 8b
-37 e8 ff 3e 07 00 48 89 c6 48 8d 3d 15 24 5d 01 48 c7 c1 a8 7b b4 94
-4c 89 f2 <67> 48 0f b9 3a 41 8b 94 24 90 00 00 00 e9 a2 fe ff ff 48 c7
-c0 f4
-[  303.098870] RSP: 0018:ffffceb241ac7920 EFLAGS: 00010246
-[  303.098878] RAX: ffffffffc227c10e RBX: ffff88aecbba3900 RCX: ffffffff94b47ba8
-[  303.098884] RDX: ffff88a742985430 RSI: ffffffffc227c10e RDI: ffffffff952b6070
-[  303.098889] RBP: ffffceb241ac7948 R08: 0000000000000000 R09: 0000000000000000
-[  303.098894] R10: 0000000000000000 R11: 0000000000000000 R12: ffff88aec75fd010
-[  303.098898] R13: 0000000000000000 R14: ffff88a742985430 R15: 0000000000000002
-[  303.098903] FS:  00007176c72066c0(0000) GS:ffff88af018e1000(0000)
-knlGS:0000000000000000
-[  303.098910] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-[  303.098916] CR2: 000009ec01590000 CR3: 000000088791e005 CR4: 00000000003726f0
-[  303.098922] Call Trace:
-[  303.098926]  <TASK>
-[  303.098933]  nv50_wndw_prepare_fb+0xd3/0x370 [nouveau]
-[  303.099332]  ? drm_atomic_helper_setup_commit+0x752/0x7c0
-[  303.099346]  drm_atomic_helper_prepare_planes+0x7c/0x230
-[  303.099357]  nv50_disp_atomic_commit+0xad/0x1d0 [nouveau]
-[  303.099748]  drm_atomic_commit+0xaf/0xf0
-[  303.099758]  ? __pfx___drm_printfn_info+0x10/0x10
-[  303.099773]  drm_atomic_helper_update_plane+0xfc/0x180
-[  303.099785]  __setplane_atomic+0xcb/0x140
-[  303.099798]  drm_mode_cursor_universal+0x13d/0x2a0
-[  303.099816]  drm_mode_cursor_common+0x10e/0x250
-[  303.099829]  ? __pfx_drm_mode_cursor_ioctl+0x10/0x10
-[  303.099839]  drm_mode_cursor_ioctl+0x47/0x70
-[  303.099850]  drm_ioctl_kernel+0xb7/0x110
-[  303.099862]  drm_ioctl+0x2ec/0x5b0
-[  303.099870]  ? __pfx_drm_mode_cursor_ioctl+0x10/0x10
-[  303.099890]  nouveau_drm_ioctl+0x5d/0xd0 [nouveau]
-[  303.100308]  __x64_sys_ioctl+0xa5/0x100
-[  303.100321]  x64_sys_call+0x1243/0x26b0
-[  303.100332]  do_syscall_64+0x81/0x500
-[  303.100340]  ? x64_sys_call+0x11b9/0x26b0
-[  303.100350]  ? do_syscall_64+0xbf/0x500
-[  303.100359]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-[  303.100366] RIP: 0033:0x7176ef924e1d
-[  303.100374] Code: 04 25 28 00 00 00 48 89 45 c8 31 c0 48 8d 45 10
-c7 45 b0 10 00 00 00 48 89 45 b8 48 8d 45 d0 48 89 45 c0 b8 10 00 00
-00 0f 05 <89> c2 3d 00 f0 ff ff 77 1a 48 8b 45 c8 64 48 2b 04 25 28 00
-00 00
-[  303.100381] RSP: 002b:00007176c7204b20 EFLAGS: 00000246 ORIG_RAX:
-0000000000000010
-[  303.100390] RAX: ffffffffffffffda RBX: 00007176c002a100 RCX: 00007176ef924e1d
-[  303.100396] RDX: 00007176c7204bb0 RSI: 00000000c01c64a3 RDI: 000000000000000c
-[  303.100401] RBP: 00007176c7204b70 R08: 0000000000000100 R09: 0000000000000014
-[  303.100407] R10: 0000000000000110 R11: 0000000000000246 R12: 00007176c7204bb0
-[  303.100412] R13: 00000000c01c64a3 R14: 000000000000000c R15: 00007176c0029c00
-[  303.100426]  </TASK>
-[  303.100430] ---[ end trace 0000000000000000 ]---
--- 
-Thanks,
+    helper_tys.push(ValidTy::Primitive(repr_ty));
 
-Steve
+> +
+> +    fn impl_into(
+> +        enum_ident: &Ident,
+> +        variants: &[Ident],
+> +        repr_ty: &syn::Path,
+> +        input_ty: &ValidTy,
+> +    ) -> TokenStream {
+> +        let param =3D Ident::new("value", Span::call_site());
+> +
+> +        let overflow_assertion =3D emit_overflow_assert(enum_ident, vari=
+ants, repr_ty, input_ty);
+> +        let cast =3D match input_ty {
+> +            ValidTy::Bounded(inner) =3D> {
+> +                let base_ty =3D inner.emit_qualified_base_ty();
+> +                let expr =3D parse_quote! { #param as #base_ty };
+> +                // Since the discriminant of `#param`, an enum variant, =
+is determined
+> +                // at compile-time, we can rely on `Bounded::from_expr()=
+`. It requires
+> +                // the provided expression to be verifiable at compile-t=
+ime to avoid
+> +                // triggering a build error.
+> +                inner.emit_from_expr(&expr)
+> +            }
+> +            ValidTy::Primitive(ident) if ident =3D=3D "bool" =3D> {
+> +                ::quote::quote! { (#param as #repr_ty) =3D=3D 1 }
+> +            }
+> +            qualified @ ValidTy::Primitive(_) =3D> ::quote::quote! { #pa=
+ram as #qualified },
+> +        };
+> +
+> +        ::quote::quote! {
+> +            #[automatically_derived]
+> +            impl ::core::convert::From<#enum_ident> for #input_ty {
+> +                fn from(#param: #enum_ident) -> #input_ty {
+> +                    #overflow_assertion
+> +
+> +                    #cast
+> +                }
+> +            }
+> +        }
+> +    }
+> +
+> +    fn emit_overflow_assert(
+> +        enum_ident: &Ident,
+> +        variants: &[Ident],
+> +        repr_ty: &syn::Path,
+> +        input_ty: &ValidTy,
+> +    ) -> TokenStream {
+
+I feel like we should track this via traits rather than using a const
+assert. That approach will require & generate much less code.
+
+> +        let qualified_i128: syn::Path =3D parse_quote! { ::core::primiti=
+ve::i128 };
+> +        let qualified_u128: syn::Path =3D parse_quote! { ::core::primiti=
+ve::u128 };
+> +
+> +        let input_min =3D input_ty.emit_min();
+> +        let input_max =3D input_ty.emit_max();
+> +
+> +        let variant_fits =3D variants.iter().map(|variant| {
+> +            let msg =3D format!(
+> +                "enum discriminant overflow: \
+> +                `{enum_ident}::{variant}` does not fit in `{input_ty}`",
+> +            );
+> +            ::quote::quote! {
+> +                ::core::assert!(fits(#enum_ident::#variant as #repr_ty),=
+ #msg);
+> +            }
+> +        });
+> +
+> +        ::quote::quote! {
+> +            const _: () =3D {
+> +                const fn fits(d: #repr_ty) -> ::core::primitive::bool {
+> +                    // For every integer type, its minimum value always =
+fits in `i128`.
+> +                    let dst_min =3D #input_min;
+> +                    // For every integer type, its maximum value always =
+fits in `u128`.
+> +                    let dst_max =3D #input_max;
+> +
+> +                    #[allow(unused_comparisons)]
+> +                    let is_src_signed =3D #repr_ty::MIN < 0;
+> +                    #[allow(unused_comparisons)]
+> +                    let is_dst_signed =3D dst_min < 0;
+> +
+> +                    if is_src_signed && is_dst_signed {
+> +                        // Casting from a signed value to `i128` does no=
+t overflow since
+> +                        // `i128` is the largest signed primitive intege=
+r type.
+> +                        (d as #qualified_i128) >=3D (dst_min as #qualifi=
+ed_i128)
+> +                            && (d as #qualified_i128) <=3D (dst_max as #=
+qualified_i128)
+> +                    } else if is_src_signed && !is_dst_signed {
+> +                        // Casting from a signed value greater than 0 to=
+ `u128` does not
+> +                        // overflow since `u128::MAX` is greater than `i=
+128::MAX`.
+> +                        d >=3D 0 && (d as #qualified_u128) <=3D (dst_max=
+ as #qualified_u128)
+> +                    } else {
+> +                        // Casting from an unsigned value to `u128` does=
+ not overflow since
+> +                        // `u128` is the largest unsigned primitive inte=
+ger type.
+> +                        (d as #qualified_u128) <=3D (dst_max as #qualifi=
+ed_u128)
+> +                    }
+> +                }
+> +
+> +                #(#variant_fits)*
+> +            };
+> +        }
+> +    }
+> +}
+
+> +
+> +impl fmt::Display for ValidTy {
+> +    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+> +        match self {
+> +            Self::Bounded(inner) =3D> inner.fmt(f),
+> +            Self::Primitive(ident) =3D> ident.fmt(f),
+> +        }
+> +    }
+> +}
+> +
+> +struct Bounded {
+> +    name: Ident,
+> +    open_angle: Token![<],
+> +    base_ty: Ident,
+
+We should allow a type here from syntax and then emit an error when it
+isn't a primitive.
+
+> +    comma: Token![,],
+> +    bits: LitInt,
+> +    close_angle: Token![>],
+> +}
+
+> diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+> index b38002151871a33f6b4efea70be2deb6ddad38e2..02528d7212b75d28788f0c334=
+79edb272fa12e27 100644
+> --- a/rust/macros/lib.rs
+> +++ b/rust/macros/lib.rs
+> @@ -14,6 +14,7 @@
+>  #[macro_use]
+>  mod quote;
+>  mod concat_idents;
+> +mod convert;
+>  mod export;
+>  mod fmt;
+>  mod helpers;
+> @@ -23,6 +24,10 @@
+>  mod vtable;
+> =20
+>  use proc_macro::TokenStream;
+> +use syn::{
+> +    parse_macro_input,
+> +    DeriveInput, //
+> +};
+> =20
+>  /// Declares a kernel module.
+>  ///
+> @@ -475,3 +480,155 @@ pub fn paste(input: TokenStream) -> TokenStream {
+>  pub fn kunit_tests(attr: TokenStream, ts: TokenStream) -> TokenStream {
+>      kunit::kunit_tests(attr, ts)
+>  }
+> +
+> +/// A derive macro for providing an implementation of the [`Into`] trait=
+.
+> +///
+> +/// This macro automatically derives the [`Into`] trait for a given enum=
+ by generating
+> +/// the relevant [`From`] implementation. Currently, it only supports [u=
+nit-only enum]s.
+> +///
+> +/// [unit-only enum]: https://doc.rust-lang.org/reference/items/enumerat=
+ions.html#r-items.enum.unit-only
+> +///
+> +/// # Notes
+> +///
+> +/// - Unlike its name suggests, the macro actually generates [`From`] im=
+plementations
+> +///   which automatically provide corresponding [`Into`] implementations=
+.
+> +///
+> +/// - The macro uses the `into` custom attribute or `repr` attribute to =
+generate [`From`]
+> +///   implementations. `into` always takes precedence over `repr`.
+
+What do you mean by "precedence" here? You always generate it for all
+helper_tys and the repr?
+
+Cheers,
+Benno
+
+> +///
+> +/// - The macro generates a compile-time assertion for every variant to =
+ensure its
+> +///   discriminant value fits within the type being converted into.
+> +///
+> +/// # Supported types in `#[into(...)]`
+> +///
+> +/// - [`bool`]
+> +/// - Primitive integer types (e.g., [`i8`], [`u8`])
+> +/// - [`Bounded`]
+> +///
+> +/// [`Bounded`]: ../kernel/num/bounded/struct.Bounded.html
