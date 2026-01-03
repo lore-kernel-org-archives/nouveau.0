@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E2DFA3725
-	for <nouveau@archiver.kernel.org>; Sat,  3 Jan 2026 05:00:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55EF4FC6171
+	for <nouveau@archiver.kernel.org>; Sat,  3 Jan 2026 05:00:06 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 626B510E324;
-	Sat,  3 Jan 2026 05:00:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D13D10E33A;
+	Sat,  3 Jan 2026 05:00:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="W6x99Dwm";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Dw24v31I";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B176644C4D;
-	Sat,  3 Jan 2026 04:51:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7D8B244C85;
+	Sat,  3 Jan 2026 04:52:00 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1767415914;
- b=j+Y+ZxD5V0dL9AT+xQE9vUHWhzBvEs+CHWDeybDdZCu/GL4+IxXKDiSnSjkeQQEpj4XHd
- R+CjQ7V8OjczfaVzXvrYKQz63p/iW3xoHBR3qEk8K63ZWNgx0e1GZ6L8+yHo3cvP9BEIRGu
- UEeXhnWXaDlZhI8tjBUAbMfcEauF/KHcuJDqNXdgdYPEkE9fG/njHGFZyXmHXbKY6YxOS0g
- cED06KYZFTRVQ9/zYb9PnfeKwFIVlN/4Bg7SodogWAiWaf87MB49c5JDpMGtIVZg9ywdrcY
- yu5HG3ANMBKt1+9DEJj+Yy1h4MrEQPsoZmPFP30zMX37ugOe9gRYaDk7fKVA==
+ s=20240201; t=1767415920;
+ b=RAJSf0MxXDT2lHCvQxD9ZdV0abMKXiwXLvS2V2Wj4vh4cLg5CslIUzFHQZTAY2GZi0HAY
+ YW4++Zwp5UHjqJpjHia8nVeQUrs5sdw7GVNKuF2ppHyl0Fldp7g4yWzFjs6/9CNSfPmZxnT
+ nNQQ39dIbCQeBhBwHLFlRyJa5yAwjnTiv0APu0OhkKoYJZm9PX+j0tnmgm+cny+eOO3Fypa
+ Pn3O+vO0dKvBoxdQJkW2fnHkJW8YzWNdB/LmaQYOPpUPY6LX+Yli30NEQt8YyvBVug9Wlzf
+ sMfAlmxem6dx4NTauza9yoCKrcAguHkjiWpPEY22VPxQ6GZZGUEbDCcdPc2A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1767415914; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1767415920; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HZHDpprMYPiWkG6P28YdIVOiwL+dPsHu3uPV5m5I7eI=;
- b=Q6t69VMPA2Ywpo9qFTKf3s50LaQDzhAWdO3KmyBXtzLj7oFTIjJ/eLAboXL+iaqFabViQ
- M/sPpD6d+jhopnFt4eWo/met2/JhT7QItTb61/VVhz18/QPwHXr435rP8WMg/sMrDeAbEWm
- ZrBW9Dr+uLe3atczsZzApxmGRthg0Ij84tGOy7RJFdj4SxGNb6VrraL4tf6dVgPM/pWGrl5
- I/PzqTgWTa0F+2BCcuH0oYHza2KG5E7yO7pPdvqpFQMuxI+SXwyIG/9bX0pQbuiO5V0tXwX
- 6+3A7VvJEW7kYM7LcDmve8yGBJajOg1wnOAR4q2CW9Pt0Aa/2qpmlGCx0y/Q==
+ bh=5jF3FWsb0wBTDatJ2Q6r7XpVY7o3Alj4ghGZG0HNzSk=;
+ b=tjp+MvFoddsneGKnyAhhg5WDVl+OjjOZcVfnP/BsRROaWHTkeMBRJglRuspU6si/8Tjlh
+ kd2n5xL7XEKFw6RP9dTxV/eCLsqX28eYGKF+n1nTDT8EspK0k2B+VcT6uFdzEkPLQVvTJAO
+ 3/hnWsh0kMeXuNnokwo9Klb9Ct0qsGfB4UFtYgntjPT8z8VDOtdycTH69iTfuthd1JqZhUc
+ gT7zgQKVCzWz/4FHpQmfJZfc6DssA6CYKUb9OdzbkIEV5PDDFk8uGZfyTIZxQu5i5ys6dME
+ 0aLJP662VZ++cyz8sQP9VN14AXrZ2Ldii/vfoOV/k9YKNsg92lqqlk5FmjaQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,19 +45,19 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C559D44C45
-	for <nouveau@lists.freedesktop.org>; Sat,  3 Jan 2026 04:51:51 +0000 (UTC)
-Received: from BN1PR04CU002.outbound.protection.outlook.com
- (mail-eastus2azon11010045.outbound.protection.outlook.com [52.101.56.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4087310E14B
-	for <nouveau@lists.freedesktop.org>; Sat,  3 Jan 2026 04:59:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id AB93444C4D
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Jan 2026 04:51:57 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011046.outbound.protection.outlook.com [52.101.62.46])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 27DC910E314
+	for <nouveau@lists.freedesktop.org>; Sat,  3 Jan 2026 05:00:03 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O7EFFZsPz1BUywZG2Zhe75F+7FFcsGsLg7Z2zoJC1Aoz4xatW4oc59o8iAUhBQKyT0cAPAp5DoLyawzkQqsCbC/B4O2Bdv9aTPGil336TTugq/r0aGK+LI0f0WcZUMJGLXpmN1CFCK4d8Bq/8XqQB8UElb1y/l45Z8fPGkE8wLRqgXqgTgUSqPPwC+XNd5ZsJUTO1GjwWdcrQL+8zJ7B7MbAYR8OKTglQf11E2nAitUcYYBicU0j12UAuikLmYkehXJMBCRcqFvK2s3Vvq89T1B7TJqdDCDfyRam9+klopkKZy/iDFSsQFUZBzSZlmrgheWqW1ubSt7VZoeFZfuJ2w==
+ b=I69i334+Sb3IK3wPikTCnPYQVva7XGr8wXzDuk6SWlPmapK4JWOyHXRbIfayATcGFBXJTc4nxpLMIjJTuhO72AypdDKrcXjLSXWSMY3kFVrgPzLMYoR9BX4sjNEfU3hyQkJq4kTIUdK7+44woCXRRU9Sa5MU+58zYHcGAYo0gXNLf1/yTl4AtWQFguV+ECiBxMWyTcpafhSpTrIdDatxXovhLjSzrgQXuhytBPscFfTcRrwv+bomwZiVXTjDcbfNoFjidntQr5hpP7hU1hOmXiJDHrql1/wZO9UIoAY7RgZIsZ/keMI3EgNAHqGbYfUm9w1hbHmGdsiTxC4srRwh5g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HZHDpprMYPiWkG6P28YdIVOiwL+dPsHu3uPV5m5I7eI=;
- b=WzlI2nOulmfFeQfIZrlIHGbYup5vH8hshJHh3Qf/EEXtjLiqmmlGrw0ZyMv1fiEkT5IeqQDQXGwSSjsEvoAWgwNR9iPM9r35j1M/uLQck34T9A87N9OF3ptQIuJjwfgGQ6XK8bChs9KYJ1bWnqi2LrwfcbYTNQYOEcusbi2FmgwVqQkgk7dl/mnytCruaAGT777X7ZwLZJH5zODFi/lK5ubfFCDV/+9u7Ci/r6DldRIzQ9ahf7VHKxvQ9EDl9cNmRpT8MwTmf+2lmvSE64F6u17cQoOjJp/i6eqK7AKKIrzKqfwZsZ56A7x4FkvMvovyh0/zWqwaLfH4mBD+X2yz/g==
+ bh=5jF3FWsb0wBTDatJ2Q6r7XpVY7o3Alj4ghGZG0HNzSk=;
+ b=RjfQekGdJUh87Tw6yZicgt52Z1q4I7cc023/rMTpqYtvG+PIEycN1ztKcEpZUl84NqXmHcpY21CDEqWnn/cmvw/v9kQQPDgFQam9sEaW46GKp6xgn9+rnms/aWLzZLNYXRH32+1HtE6WAXn23l312BjSjP8LskvVhy0A2mDgALIpiFdrgLrk3+T9DV0EZ8bke927GTHzUpDovutr5oOOGvDF7alDJZs/vRLYnjPbXOUF/Abw78fF/OndO//YhGNi9VTcZLr/Aa4UO/JBLN2w5PtBIbbHx6Oycppm/b+sqUABq8kXjiN0JgkO6J7MxjEPqcRnsvcHMxwmRf+FfTgPqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
  dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
@@ -65,18 +65,17 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HZHDpprMYPiWkG6P28YdIVOiwL+dPsHu3uPV5m5I7eI=;
- b=W6x99DwmVmRW9PHzuN0klu7U3lGSNFZyuUMCHrOerSSHBwCBGZy1vEEy+CD1S+V4yrj01C7x40RS9VVR8rZEvRWeQgKBQcInlH52YHqWzz0I1BGDPlxRPaLHY7AvcmOW+M1qWaLfjVeV0FT8LmD9UIp1wfKJV/9NDnfZK9YBe2scG8fyIEKPTpd7gldPj1ADbyVzMIitluH2CrmF6ylE2hOJ95cD3/3tawFngqQTHzf8IEz3xF1o2ah3EUdUypaTxdNmR3yqP6Bw6ePccbtFrtvl6V86QGTcQ+fLp2+ncqcIkY1SGoaBMX/Z9mA4kCP1QRS60KZbmKPy4rGWX0wGcg==
-Received: from SN7PR04CA0175.namprd04.prod.outlook.com (2603:10b6:806:125::30)
- by DS4PR12MB9660.namprd12.prod.outlook.com (2603:10b6:8:281::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9478.4; Sat, 3 Jan
- 2026 04:59:53 +0000
-Received: from SN1PEPF0002636E.namprd02.prod.outlook.com
- (2603:10b6:806:125:cafe::f6) by SN7PR04CA0175.outlook.office365.com
- (2603:10b6:806:125::30) with Microsoft SMTP Server (version=TLS1_3,
+ bh=5jF3FWsb0wBTDatJ2Q6r7XpVY7o3Alj4ghGZG0HNzSk=;
+ b=Dw24v31Iyyg+LuyHQbpafR19KNQklf1T/khfkXezd6QTjHRGlu3T8FGowsdB4+SRYXPUScsBg0nh5fKYuiiXDN5oKnDy9VOvT84iJZVnu6xoSZ/mY503KGsK1kf+qjI2LhI3g4+6ku/jP6j2O/4VvAVyzic2wrGeRMajEaw5IhhmbGX2zZ8/QnBBuhDNHFm0qLrLe1EO6yW0EqPN+jKH47FYUr1V8ZSJhrPqQjetUpj6O4Sa0sHYuGScE2qO0FkA2XnAPUAqPY+pELbAkqGS1FdLMpFvN44rJBANCQPYBbjeCpiUiuHwZrLYmpTx+TCDnlq0ov77JIgcLyDgd6hrLw==
+Received: from SA1PR04CA0023.namprd04.prod.outlook.com (2603:10b6:806:2ce::27)
+ by DS0PR12MB6439.namprd12.prod.outlook.com (2603:10b6:8:c9::7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9478.4; Sat, 3 Jan 2026 04:59:58 +0000
+Received: from SN1PEPF00026367.namprd02.prod.outlook.com
+ (2603:10b6:806:2ce:cafe::8b) by SA1PR04CA0023.outlook.office365.com
+ (2603:10b6:806:2ce::27) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9478.4 via Frontend Transport; Sat, 3
- Jan 2026 04:59:31 +0000
+ Jan 2026 04:59:54 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
  smtp.mailfrom=nvidia.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=nvidia.com;
@@ -84,25 +83,26 @@ Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
  216.228.117.161 as permitted sender) receiver=protection.outlook.com;
  client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
 Received: from mail.nvidia.com (216.228.117.161) by
- SN1PEPF0002636E.mail.protection.outlook.com (10.167.241.139) with Microsoft
+ SN1PEPF00026367.mail.protection.outlook.com (10.167.241.132) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9499.1 via Frontend Transport; Sat, 3 Jan 2026 04:59:51 +0000
+ 15.20.9499.1 via Frontend Transport; Sat, 3 Jan 2026 04:59:58 +0000
 Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
  (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 2 Jan
- 2026 20:59:45 -0800
+ 2026 20:59:50 -0800
 Received: from ubuntu (10.126.231.35) by rnnvmail201.nvidia.com (10.129.68.8)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 2 Jan
- 2026 20:59:44 -0800
+ 2026 20:59:48 -0800
 From: Timur Tabi <ttabi@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
 	<acourbot@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, John Hubbard
 	<jhubbard@nvidia.com>, <nouveau@lists.freedesktop.org>,
 	<rust-for-linux@vger.kernel.org>
-Subject: [PATCH v5 01/11] gpu: nova-core: rename Imem to ImemSecure
-Date: Fri, 2 Jan 2026 22:59:24 -0600
-Message-ID: <20260103045934.64521-2-ttabi@nvidia.com>
+Subject: [PATCH v5 05/11] gpu: nova-core: add
+ NV_PFALCON_FALCON_DMATRFCMD::with_falcon_mem()
+Date: Fri, 2 Jan 2026 22:59:28 -0600
+Message-ID: <20260103045934.64521-6-ttabi@nvidia.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260103045934.64521-1-ttabi@nvidia.com>
 References: <20260103045934.64521-1-ttabi@nvidia.com>
@@ -114,57 +114,57 @@ X-ClientProxiedBy: rnnvmail201.nvidia.com (10.129.68.8) To
  rnnvmail201.nvidia.com (10.129.68.8)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002636E:EE_|DS4PR12MB9660:EE_
-X-MS-Office365-Filtering-Correlation-Id: 180dc89f-5067-46b6-f6aa-08de4a84edd1
+X-MS-TrafficTypeDiagnostic: SN1PEPF00026367:EE_|DS0PR12MB6439:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6dc44a11-81e2-42aa-29d1-08de4a84f1b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|82310400026|376014|36860700013;
+	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?5SzT/ej0gGcmjtI0MejELG0raZwaUaJQ2FoDwoc/VgPwpqwDC9PNqR8zrGro?=
- =?us-ascii?Q?oW0ZA89mlGJmf8GZZ0+EZUdgnS2R9kNykqXO716RG5fX9PyYcmLaTFrINxLI?=
- =?us-ascii?Q?KYLbsGNPvfD63ovKZQxgRFAIXc/8Tf595nuzpjfqB0YjCRWpoO6ab6ahCACO?=
- =?us-ascii?Q?Midst9Lm82YtWekTHggEGWq4usdU+jnh8nUfTFTgUwibzTzDINbhaWsZMh0C?=
- =?us-ascii?Q?TFGtEYwMnSJ3UdwqoMmufzGo5QgHdD9s2qTTTS6eytdai8sJSPDgi/uR/yJ3?=
- =?us-ascii?Q?QAi2xd/axSfTxFzf+b+hoGxlErJv+xgsEW+Gp8qX5Hr/J1RpemOU/by5Z5yy?=
- =?us-ascii?Q?xf3ncuACdJZqM9byUNM2UFLLHjIc/hEkVAB2oBiKuwfkIPAdnYwbzURmJdCG?=
- =?us-ascii?Q?1eZ0Zu6c27u6mW4i9erDzPRnY4ppoZEjSNW6/yJZ0a19DjWZDdFEUzv9hlBg?=
- =?us-ascii?Q?mmhB+1v/AHxT70pMvRpT7xwpcCVa24uVMZdJMRit8edLMjp9HUyj6kNlDJo3?=
- =?us-ascii?Q?H8aCAfJAqiVjrrPjIs1cuwfJyiMGg/7uRWCvJ4R2MbIhVizRDq35G4/MgNJT?=
- =?us-ascii?Q?n06GHSMblhw9+57/TZcZWl0mp3AyC0CS+O6rfBGpLctRBPeLHAtlSxABlHxQ?=
- =?us-ascii?Q?epMqv9/zVk0RKA6JtSGvHDl4MvOXmfLFhhd1kURfIL+r/lNK3JYP0DRb/tej?=
- =?us-ascii?Q?6hA+Nm7dm/bl1St6qYXxxIHg8k37paL2/mivOi0gybQOrx9J/EzhtDKrek+J?=
- =?us-ascii?Q?QLlP6k8zF7tXoUzoqg3R/gnXT43GhWMQNrLdPZ6Ygp2OwI7t/0mGBsk6AaL3?=
- =?us-ascii?Q?a/9NXXWFHB1xxVZ+IiF3XLzSyn2+k3SPLqwRdSj/sOxgZM0DtXFv6SmlOlwh?=
- =?us-ascii?Q?BNB8jUirlAfp2I4YLvOCM1XJxNFDcCPaOHUhuCv0GwA0Fsnckkdi6LfAdklz?=
- =?us-ascii?Q?gFYFjHc++j8MI2A96CcMr5ls4prIUUWBpJUynh3HOyKouiRpwtv8iGqI8FUg?=
- =?us-ascii?Q?OaWgxYpHoHjUTt7Xl2WUmqRgRcPx5axm+AKTDaOANrzYRgkEaC34Xa0T5tRW?=
- =?us-ascii?Q?xGQXNpk00gPyK6dod7gjpLk3LGAJrifvaLhQrwt0gG6YAxcBKpwVZVZZ/rhb?=
- =?us-ascii?Q?CCPH7uvROv9X0EEjrM08lo9ix7ei/eZjwXrlhL7zZ8mh/EH8/7E4vTYroSlG?=
- =?us-ascii?Q?3RRRNVXE4//neRT5R+5FfnLo7NXPqjyuVEqw+/kaaq5Ajt8kIk05iS/V/8uw?=
- =?us-ascii?Q?l01voeul6VWIh4GGifP4PPcMRTeEZRJYmyLLK6/8+R0p+mXjsJL5kiNuVazE?=
- =?us-ascii?Q?9ycVI2rZJHAoviegI8J9eLxZ/msTG0id9IW8TzChRU5GHDVezwknmjIvj4cW?=
- =?us-ascii?Q?2VzM6ce0heBssCyQ8LwsmTs12BhBwXDRSh9BTfkFV+WNMM26AQwU9+Vr44YM?=
- =?us-ascii?Q?R7xaoHg9wIgkWN9cr5cGbsELgovNclF5xB00sf5ZNQsc0kJ8eNSIWoUENtDA?=
- =?us-ascii?Q?PskuDWBByA0Y7fkXLiGmzBk9Z2hZfg0gTv2aztKmadTxNq8UP5/13cb/2NAl?=
- =?us-ascii?Q?J38pArn/V9mvzBZFU3w=3D?=
+	=?us-ascii?Q?lOKdq6DNQsieKCSwFT1rvSDmkqnEVbegd9x6NDJQlsUT34c4OSR4xUcu5BrP?=
+ =?us-ascii?Q?dvKTq+4L5TouVrAirW6fPMJ0nnMhSAc24Z9NOPXVUgQ8gVPIMGcefMb1LhF0?=
+ =?us-ascii?Q?3uMqGwHN3OvTeNzGP9Y1RbFbzUy1WOdhpYxOLqjfMdKLDc5skU5jmXwBnWx4?=
+ =?us-ascii?Q?iEpBCD947vT7zXgysAQoZ39UEmPMOhNggzRRR4GDunrupLZkVh12E3aiM4Im?=
+ =?us-ascii?Q?1q2StzFSw6PDwqzEnrKw3tnwj0HRurk6ZDJxSPP40sExf3Ys3mtC+UkV5pIC?=
+ =?us-ascii?Q?38epsd2R19w1y7UxGPb2QmUED4zErTsYqAFC96T12AoHlqqgrgkDvWV160jz?=
+ =?us-ascii?Q?KhLpNt5NKT0vXclS9B3z9jyA9ADpFpWjZ7dkx5rmhB8IYto3YarKioW480jW?=
+ =?us-ascii?Q?Ev4E8TXyq6WaOl12eupxo6UkLW/PAlW2XH75m3EPXb0ZXRL2RrkAsZ+rrakk?=
+ =?us-ascii?Q?NE/A3Fcxj4qUtEy2ds2/0qhILLI9F9ouNXbMD6IU7EWZtibuSA1ZWxHDRKbA?=
+ =?us-ascii?Q?D167V3XhsT9IQWXPBRHRQDqTk605X/NtZ/v41JAl/oBLN2vFJ9J9MHIl72vV?=
+ =?us-ascii?Q?pPEtM5x+iZm2JOw6OVC3fTStqg7Pf1F5UtelvZUOIkdWOWmgKPrrKq9wthKi?=
+ =?us-ascii?Q?c4BHHo4aWzzAmqdkSRQhhXzMkBsZbrVPQv2SUVg5VnAr0OK26tTStZgrwBcz?=
+ =?us-ascii?Q?vJedOUdqO4I9PqyhptDfhDonVMVWuhgCzm1ugx/PEfTM60s/uTWSWNfhtQYU?=
+ =?us-ascii?Q?+qRCChHdBaAjC0AK6T1kERsMH7tpSWSRkm43x4hu8vdrOcFGfSxRw50kLMSg?=
+ =?us-ascii?Q?1T3mmmtCbsvdWdpI5uAuSv2I6scJQm5B3bXJi/NwdJRpoHcI+eI8P8VTpQlE?=
+ =?us-ascii?Q?SY6WTjRml+aThvLniO3T6O0gM/iUu3atXy73bfLvOTcW+6WCGXyanM9VMo0N?=
+ =?us-ascii?Q?4uS2d54o8zPvdZL8uau6pWZ0dzu9gpwBhiDsKfG+Lsc8Feh1FRskMxWBn/v5?=
+ =?us-ascii?Q?br6AkgKvI3t9MMyLE+qSpQsGHrcqCxx/uFE0Ie15prYCg9UgDDaEwKdLjURA?=
+ =?us-ascii?Q?yrKc26Clo1YVtCEn7PPXtXpb+vFv5Wkwh44hb/jER18SRicKuN1NKqV++swj?=
+ =?us-ascii?Q?S70x0OYVdFn5rgkQyM9JZsJp1Oig2wuE0ZCeXISfkjhFuVRsqGi3lAXqm4WV?=
+ =?us-ascii?Q?5eVJWALh48Yr7m2m9bMHjEwsqH0L6p1yFCK42qCJ2Fgw8mGe2aN8dfGQdCjF?=
+ =?us-ascii?Q?z+abY/mOZAQcZr41vM7eq62SmT1ohM7CzmHWzjUmTeBXjtb+w/JqAK+CjJkO?=
+ =?us-ascii?Q?U3zMqfJjM9LRiz5c91z9bo5xYXBYu08md3DQUsCvWyz4owAe9gOAxKydgdZl?=
+ =?us-ascii?Q?904c2JeDc0XyqH4/i6lJJcN16ffXittilJJJp+y97MkCuW1qSqegTPj3eKjE?=
+ =?us-ascii?Q?n0/p7uz+GRubj8c6kLQaW8GHDgGTp0CtnRlqFjgMqcVeV5u1jMT0EGV6mQC5?=
+ =?us-ascii?Q?AIOuzMpxq/sUN6QDN8OOurbAPThLWY6veF3mN0ZDyzclxanlOO9Ot55o5tev?=
+ =?us-ascii?Q?TsoF74TqEENVjZS29UQ=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(36860700013);DIR:OUT;SFP:1101;
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2026 04:59:51.7905
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jan 2026 04:59:58.3382
  (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 180dc89f-5067-46b6-f6aa-08de4a84edd1
+ 6dc44a11-81e2-42aa-29d1-08de4a84f1b8
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
  TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
 X-MS-Exchange-CrossTenant-AuthSource: 
-	SN1PEPF0002636E.namprd02.prod.outlook.com
+	SN1PEPF00026367.namprd02.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9660
-Message-ID-Hash: LXQWIZFX3O5NNLFI5PLWEOETSII2UR6W
-X-Message-ID-Hash: LXQWIZFX3O5NNLFI5PLWEOETSII2UR6W
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6439
+Message-ID-Hash: QCNWPPPCVDJNU2IVTCVKQFA56YAMAXEU
+X-Message-ID-Hash: QCNWPPPCVDJNU2IVTCVKQFA56YAMAXEU
 X-MailFrom: ttabi@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -174,9 +174,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LXQWIZFX3O5NNLFI5PLWEOETSII2UR6W/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QCNWPPPCVDJNU2IVTCVKQFA56YAMAXEU/>
 Archived-At: 
- <https://lore.freedesktop.org/20260103045934.64521-2-ttabi@nvidia.com/>
+ <https://lore.freedesktop.org/20260103045934.64521-6-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -186,148 +186,83 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Rename FalconMem::Imem to ImemSecure to indicate that it references
-Secure Instruction Memory.  This change has no functional impact.
-
-On Falcon cores, pages in instruction memory can be tagged as Secure
-or Non-Secure.  For GA102 and later, only Secure is used, which is why
-FalconMem::Imem seems appropriate.  However, Turing firmware images
-can also contain non-secure sections, and so FalconMem needs to support
-that.  By renaming Imem to ImemSec now, future patches for Turing support
-will be simpler.
-
-Nouveau uses the term "IMEM" to refer both to the Instruction Memory
-block on Falcon cores as well as to the images of secure firmware
-uploaded to part of IMEM.  OpenRM uses the terms "ImemSec" and "ImemNs"
-instead, and uses "IMEM" just to refer to the physical memory device.
-
-Renaming these terms allows us to align with OpenRM, avoid confusion
-between IMEM and ImemSec, and makes future patches simpler.
+The with_falcon_mem() method initializes the 'imem' and 'sec' fields of
+the NV_PFALCON_FALCON_DMATRFCMD register based on the value of
+the FalconMem type.
 
 Signed-off-by: Timur Tabi <ttabi@nvidia.com>
 Reviewed-by: John Hubbard <jhubbard@nvidia.com>
 ---
- drivers/gpu/nova-core/falcon.rs          | 20 +++++++++++++-------
- drivers/gpu/nova-core/firmware/booter.rs | 12 ++++++------
- drivers/gpu/nova-core/firmware/fwsec.rs  |  2 +-
- 3 files changed, 20 insertions(+), 14 deletions(-)
+ drivers/gpu/nova-core/falcon.rs | 14 +++-----------
+ drivers/gpu/nova-core/regs.rs   |  9 +++++++++
+ 2 files changed, 12 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
-index 82c661aef594..0965cb50568b 100644
+index 974abc2de649..fd972ec19a67 100644
 --- a/drivers/gpu/nova-core/falcon.rs
 +++ b/drivers/gpu/nova-core/falcon.rs
-@@ -237,8 +237,8 @@ fn from(value: PeregrineCoreSelect) -> Self {
- /// Different types of memory present in a falcon core.
- #[derive(Debug, Clone, Copy, PartialEq, Eq)]
- pub(crate) enum FalconMem {
--    /// Instruction Memory.
--    Imem,
-+    /// Secure Instruction Memory.
-+    ImemSecure,
-     /// Data Memory.
-     Dmem,
- }
-@@ -345,8 +345,8 @@ pub(crate) struct FalconBromParams {
+@@ -454,7 +454,6 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+         fw: &F,
+         target_mem: FalconMem,
+         load_offsets: FalconLoadTarget,
+-        sec: bool,
+     ) -> Result {
+         const DMA_LEN: u32 = 256;
  
- /// Trait for providing load parameters of falcon firmwares.
- pub(crate) trait FalconLoadParams {
--    /// Returns the load parameters for `IMEM`.
--    fn imem_load_params(&self) -> FalconLoadTarget;
-+    /// Returns the load parameters for Secure `IMEM`.
-+    fn imem_sec_load_params(&self) -> FalconLoadTarget;
- 
-     /// Returns the load parameters for `DMEM`.
-     fn dmem_load_params(&self) -> FalconLoadTarget;
-@@ -457,7 +457,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
-         //
-         // For DMEM we can fold the start offset into the DMA handle.
-         let (src_start, dma_start) = match target_mem {
--            FalconMem::Imem => (load_offsets.src_start, fw.dma_handle()),
-+            FalconMem::ImemSecure => (load_offsets.src_start, fw.dma_handle()),
-             FalconMem::Dmem => (
-                 0,
-                 fw.dma_handle_with_offset(load_offsets.src_start.into_safe_cast())?,
-@@ -508,7 +508,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+@@ -516,8 +515,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
  
          let cmd = regs::NV_PFALCON_FALCON_DMATRFCMD::default()
              .set_size(DmaTrfCmdSize::Size256B)
--            .set_imem(target_mem == FalconMem::Imem)
-+            .set_imem(target_mem == FalconMem::ImemSecure)
-             .set_sec(if sec { 1 } else { 0 });
+-            .set_imem(target_mem != FalconMem::Dmem)
+-            .set_sec(if sec { 1 } else { 0 });
++            .with_falcon_mem(target_mem);
  
          for pos in (0..num_transfers).map(|i| i * DMA_LEN) {
-@@ -543,7 +543,13 @@ pub(crate) fn dma_load<F: FalconFirmware<Target = E>>(&self, bar: &Bar0, fw: &F)
+             // Perform a transfer of size `DMA_LEN`.
+@@ -558,14 +556,8 @@ pub(crate) fn dma_load<F: FalconFirmware<Target = E>>(&self, bar: &Bar0, fw: &F)
                  .set_mem_type(FalconFbifMemType::Physical)
          });
  
--        self.dma_wr(bar, fw, FalconMem::Imem, fw.imem_load_params(), true)?;
-+        self.dma_wr(
-+            bar,
-+            fw,
-+            FalconMem::ImemSecure,
-+            fw.imem_sec_load_params(),
-+            true,
-+        )?;
-         self.dma_wr(bar, fw, FalconMem::Dmem, fw.dmem_load_params(), true)?;
+-        self.dma_wr(
+-            bar,
+-            fw,
+-            FalconMem::ImemSecure,
+-            fw.imem_sec_load_params(),
+-            true,
+-        )?;
+-        self.dma_wr(bar, fw, FalconMem::Dmem, fw.dmem_load_params(), true)?;
++        self.dma_wr(bar, fw, FalconMem::ImemSecure, fw.imem_sec_load_params())?;
++        self.dma_wr(bar, fw, FalconMem::Dmem, fw.dmem_load_params())?;
  
          self.hal.program_brom(self, bar, &fw.brom_params())?;
-diff --git a/drivers/gpu/nova-core/firmware/booter.rs b/drivers/gpu/nova-core/firmware/booter.rs
-index f107f753214a..096cd01dbc9d 100644
---- a/drivers/gpu/nova-core/firmware/booter.rs
-+++ b/drivers/gpu/nova-core/firmware/booter.rs
-@@ -251,8 +251,8 @@ impl<'a> FirmwareSignature<BooterFirmware> for BooterSignature<'a> {}
  
- /// The `Booter` loader firmware, responsible for loading the GSP.
- pub(crate) struct BooterFirmware {
--    // Load parameters for `IMEM` falcon memory.
--    imem_load_target: FalconLoadTarget,
-+    // Load parameters for Secure `IMEM` falcon memory.
-+    imem_sec_load_target: FalconLoadTarget,
-     // Load parameters for `DMEM` falcon memory.
-     dmem_load_target: FalconLoadTarget,
-     // BROM falcon parameters.
-@@ -354,7 +354,7 @@ pub(crate) fn new(
-         };
+diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
+index 82cc6c0790e5..b8ddfe2e5ae7 100644
+--- a/drivers/gpu/nova-core/regs.rs
++++ b/drivers/gpu/nova-core/regs.rs
+@@ -16,6 +16,7 @@
+         FalconCoreRevSubversion,
+         FalconFbifMemType,
+         FalconFbifTarget,
++        FalconMem,
+         FalconModSelAlgo,
+         FalconSecurityModel,
+         PFalcon2Base,
+@@ -325,6 +326,14 @@ pub(crate) fn mem_scrubbing_done(self) -> bool {
+     16:16   set_dmtag as u8;
+ });
  
-         Ok(Self {
--            imem_load_target: FalconLoadTarget {
-+            imem_sec_load_target: FalconLoadTarget {
-                 src_start: app0.offset,
-                 dst_start: 0,
-                 len: app0.len,
-@@ -371,8 +371,8 @@ pub(crate) fn new(
- }
- 
- impl FalconLoadParams for BooterFirmware {
--    fn imem_load_params(&self) -> FalconLoadTarget {
--        self.imem_load_target.clone()
-+    fn imem_sec_load_params(&self) -> FalconLoadTarget {
-+        self.imem_sec_load_target.clone()
-     }
- 
-     fn dmem_load_params(&self) -> FalconLoadTarget {
-@@ -384,7 +384,7 @@ fn brom_params(&self) -> FalconBromParams {
-     }
- 
-     fn boot_addr(&self) -> u32 {
--        self.imem_load_target.src_start
-+        self.imem_sec_load_target.src_start
-     }
- }
- 
-diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
-index b28e34d279f4..6a2f5a0d4b15 100644
---- a/drivers/gpu/nova-core/firmware/fwsec.rs
-+++ b/drivers/gpu/nova-core/firmware/fwsec.rs
-@@ -224,7 +224,7 @@ pub(crate) struct FwsecFirmware {
- }
- 
- impl FalconLoadParams for FwsecFirmware {
--    fn imem_load_params(&self) -> FalconLoadTarget {
-+    fn imem_sec_load_params(&self) -> FalconLoadTarget {
-         FalconLoadTarget {
-             src_start: 0,
-             dst_start: self.desc.imem_phys_base,
++impl NV_PFALCON_FALCON_DMATRFCMD {
++    /// Programs the `imem` and `sec` fields for the given FalconMem
++    pub(crate) fn with_falcon_mem(self, mem: FalconMem) -> Self {
++        self.set_imem(mem != FalconMem::Dmem)
++            .set_sec(if mem == FalconMem::ImemSecure { 1 } else { 0 })
++    }
++}
++
+ register!(NV_PFALCON_FALCON_DMATRFFBOFFS @ PFalconBase[0x0000011c] {
+     31:0    offs as u32;
+ });
 -- 
 2.51.0
 
