@@ -4,115 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE8AECFD626
-	for <nouveau@archiver.kernel.org>; Wed,  7 Jan 2026 13:18:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7677BCFD629
+	for <nouveau@archiver.kernel.org>; Wed,  7 Jan 2026 13:33:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0197310E5CA;
-	Wed,  7 Jan 2026 13:18:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 95DDB10E5D3;
+	Wed,  7 Jan 2026 13:33:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="b7ZiARls";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dT5UdRQg";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8E16144CAC;
-	Wed,  7 Jan 2026 13:10:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2117B44CAC;
+	Wed,  7 Jan 2026 13:25:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1767791418;
- b=KqedF34w1Mus1Us3jpLu1k4ASDryM/Fk1Jwlf637eep+m1LJHHnOtkmeuH+7gzivbmO5Y
- uZnpKCkCav7Ff4GGuGLfyUzL38GwqhFkvoavNO6LT6gjSvVqaStZDX6ATKosb5KzGa9xVdm
- c+l3n4MceqwDK63dyhVJb1NC98iF+V4R/eZbrX0fWMCmukhXlY40zpTUx1QnxZRCmFSw7FU
- z7CG3/syXsioqw3b+l6OU5isDuQObe+93RlgOambnedRmN/DH/o6Rl5dot5Ea2KNVWlnL+/
- 0a4/VgD3gufDzOAWAb+WdFsiHoLz13evTlm0wcXA4t0gQT4AJ0VxIiUIpTDw==
+ s=20240201; t=1767792329;
+ b=iNs6Np5kdMvqYYJWpKiFveWK8jt9X4DJm5FlrEa6NQxkXKGqXc3TSG3BGpEIEwcHsjPyy
+ wb7bFyHpJTv41YjuHebHpHAlOCBGfTAVMoZNJro2Mv3RhU+zsyhpqcs4CHT7j2WyCUj8H4a
+ g3GwJ7GWLl0dLgyPtTW7Ph8kj9KMlOyRNM/HC5j5je7fKNLuSTcIR2emJkm/pT92Oyk4E+N
+ uQ7CCPS4PUwa2z9PjwnRJeNiLrCO80DJAalCoRFnDM8md3NSCdjXqXGxDoQSP7mYy9NGXVT
+ IdXrHnlDM3JtqAccub4BtYWVyYeNOSaoKH3OKH/s0lKw1Yl9FtmyN3OeUR2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1767791418; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1767792329; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ejt4fl24yJGg/IPMEl6Jv4QbwGGu9SxvkwuaJgTIHGU=;
- b=p2YCJI9sBJkdMwu+so0eSPnoYiE8f6BbWKCciiZ7+kbdilJKNkfJl3nEh7mXZlnpgtvh3
- O//b8S+ABylYVCQwrHUaIQKEIC34y+PPR/k/6Opejc5CKdBBsVxHNwErQ7bVkZDYWTZndAz
- oOME/Ne7OiEelqVPd8uUJ4hwSJSVbo5zEghL0krqbBJVyr/Yf4idShtxe8+OwK3DTX5JvNJ
- +8xdKYxNJxGRKyNOuqtAbNMAdfloOl+ZxkcQ7nVJQ3KgA04SS4s5TVpQdC8onlad5KIhbc4
- JYqOPf0c11n4BynaiEN7nwuemM06X3dyWD2KXBJ9alWUy2uSPJfHE2TXsO/g==
+ bh=59Oo21/enRqCddzigs+wTzb1GNY5X/hahljFjen+ero=;
+ b=qa19oqHvIxjGRBDa0JLY4qdCabnTj+tzChSXF8vtVQBZV9jvqk7B7APPAdneeBsP1OcFF
+ Sint8LFag/16GXgvTp0pz88aZpp6Juac2vwT+Ci4uzcePnfuKn24m1KxhRiDVYiriEIjcFi
+ 81geuDM/lYB+tfPux2bMR009GH8WjE2cNOE8quN269xi9HkcQS6ymig2x3vIcqk6EsOmrqk
+ U9/k0fYNiUrI3A4L5XqxeqHk59WfHXrDFhqgCggsPgy4mEnvuixmRk+cNQsm6/AvZb+JkGF
+ 5ZwPP2Ny58AJREoHSTDPY5oWgwJo2d8tySSLwg/APMNnFF9HbLHhl7UsdFnQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=infradead.org;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=infradead.org
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=infradead.org; arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=infradead.org
- policy.dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 40BC344C9E
-	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 13:10:15 +0000 (UTC)
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4634410E0FA
-	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 13:18:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=ejt4fl24yJGg/IPMEl6Jv4QbwGGu9SxvkwuaJgTIHGU=; b=b7ZiARlsXX25ihUCbHGLFmeHdR
-	trT2w4kGJe2ey5Dqhi0wkt8c5JQ2I1n6/+6raFF0v/sfQAOTyxcPASnmVgkIm0rPmi3ha6gZU1KyO
-	imUU9sU1zgY6jfWzzVZxpU7k5Spiz4HrGK9jCVUYKOKOssBPBX2i35AFt2tq27VaaCJIL9n9q9a3Y
-	V7V9La4+LPVZxQxZaTolRTOJlNJ6TfahCZNm4Cw9iT3251v64mUsk8/+kVEQ8+0XGbAf42WwORi3j
-	sWGFexDVmSfPMrWJl781rZ4AvY2okDsgDJwwzn+q0MVqnFCYKYZbh4oqpBuDmKVeoucNv1YqYNkkt
-	eVzl8k/w==;
-Received: from
- 2001-1c00-8d85-5700-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
- ([2001:1c00:8d85:5700:266e:96ff:fe07:7dcc]
- helo=noisy.programming.kicks-ass.net)
-	by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1vdTQd-0000000DPqp-1SFY;
-	Wed, 07 Jan 2026 13:18:23 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
-	id 0DCA830057E; Wed, 07 Jan 2026 14:18:22 +0100 (CET)
-Date: Wed, 7 Jan 2026 14:18:22 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Andreas Hindborg <a.hindborg@kernel.org>
-Subject: Re: [PATCH 0/4] Inline helpers into Rust without full LTO
-Message-ID: <20260107131822.GD3707837@noisy.programming.kicks-ass.net>
-References: <20251202-inline-helpers-v1-0-879dae33a66a@google.com>
- <87y0m9har9.fsf@t14s.mail-host-address-is-not-set>
- <QViERQV7XT0BjTfSSyP6vzQc4AYxosyF5TEZ5kRu8AVWjmGCP_5n5V2AV2hjqVza8-jvzyquH3JLJA1zvbRD9w==@protonmail.internalid>
- <20260107123528.GF2393663@noisy.programming.kicks-ass.net>
- <87sechh8id.fsf@t14s.mail-host-address-is-not-set>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87sechh8id.fsf@t14s.mail-host-address-is-not-set>
-Message-ID-Hash: 7YI534B5RYSIWGZN7SOWVL7ZL43IAER6
-X-Message-ID-Hash: 7YI534B5RYSIWGZN7SOWVL7ZL43IAER6
-X-MailFrom: peterz@infradead.org
+	by kara.freedesktop.org (Postfix) with ESMTPS id 64C7E44BB6
+	for <nouveau@lists.freedesktop.org>; Tue,  6 Jan 2026 11:54:45 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D3B710E0AE
+	for <nouveau@lists.freedesktop.org>; Tue,  6 Jan 2026 12:02:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id E899543495;
+	Tue,  6 Jan 2026 12:02:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8139FC116C6;
+	Tue,  6 Jan 2026 12:02:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1767700977;
+	bh=RuR20ntLSihU7i4U/Z71FOOJsBvzHsUKXpYAf9QNo5k=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+	b=dT5UdRQgmJpc3yEWySg1nUr+5EtLuryqgJyy9pbNyBaLQpno0fhxEhdzeIt4pN/ML
+	 w9ZF8E7JLB0/JB9yEcXOkRobNbwpKwhw6k03fNG93N5lDTUSTY/fnHMPU/hDPaq4DI
+	 nVc+pOhH+F935WDEJgQ3gFrYl7VTMrTEPC8vqXSZ6JkE8I/7elG78/psjuEqKFikBE
+	 DRE70jAe3Kwa2HXf4OnCFnsW6x3JPbKHOMnDljTV1jWYkI/EOABWLfo94LI+so71CV
+	 +j4dPogSIz/7hU0VXC/a574quUxWu0gAiPNgX1YjKDA4mvy6xsi6gx1gknsLaHtpNQ
+	 GmsJby6TeLrXA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 06 Jan 2026 13:02:51 +0100
+Message-Id: <DFHHP3LVYW43.247TW37BCGYHE@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH] gpu: nova-core: use CStr::from_bytes_until_nul() and
+ remove util.rs
+To: "John Hubbard" <jhubbard@nvidia.com>
+References: <20260103013438.247759-1-jhubbard@nvidia.com>
+In-Reply-To: <20260103013438.247759-1-jhubbard@nvidia.com>
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: implicit-dest
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- Nicolas Schier <nicolas.schier@linux.dev>,
- Andrew Morton <akpm@linux-foundation.org>,
- Uladzislau Rezki <urezki@gmail.com>, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
- linux-kbuild@vger.kernel.org, linux-mm@kvack.org,
- nouveau@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>
+ max-recipients; max-size; news-moderation; no-subject; digests;
+ suspicious-header
+Message-ID-Hash: PU3FA7FSL7CBQ7FPUA7G6LCMXBL6V462
+X-Message-ID-Hash: PU3FA7FSL7CBQ7FPUA7G6LCMXBL6V462
+X-Mailman-Approved-At: Wed, 07 Jan 2026 13:25:27 +0000
+CC: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7YI534B5RYSIWGZN7SOWVL7ZL43IAER6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PU3FA7FSL7CBQ7FPUA7G6LCMXBL6V462/>
 Archived-At: 
- <https://lore.freedesktop.org/20260107131822.GD3707837@noisy.programming.kicks-ass.net/>
+ <https://lore.freedesktop.org/DFHHP3LVYW43.247TW37BCGYHE@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -122,61 +113,20 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Jan 07, 2026 at 02:12:10PM +0100, Andreas Hindborg wrote:
-> "Peter Zijlstra" <peterz@infradead.org> writes:
-> 
-> > On Wed, Jan 07, 2026 at 01:23:38PM +0100, Andreas Hindborg wrote:
-> >> Hi Alice,
-> >>
-> >> Alice Ryhl <aliceryhl@google.com> writes:
-> >>
-> >> > Currently the only way for Rust code to call a static inline function is
-> >> > to go through a helper in rust/helpers/. This introduces performance
-> >> > costs due to additional function calls and also clutters backtraces and
-> >> > flame graphs with helper symbols.
-> >> >
-> >> > To get rid of these helper symbols, provide functionality to inline
-> >> > helpers into Rust using llvm-link. This option complements full LTO, by
-> >> > being much cheaper and avoiding incompatibility with BTF.
-> >> >
-> >> > I ran a microbenchmark showing the benefit of this. All the benchmark
-> >> > does is call refcount_inc() in a loop. This was chosen since refcounting
-> >> > is quite hot in Binder. The results are that Rust spends 6.35 ns per
-> >> > call vs 5.73 ns per call in C. When enabling this option, the two
-> >> > languages become equally fast, and disassembly confirms the exact same
-> >> > machine code is used (in particular there is no call to
-> >> > rust_helper_refcount_inc). Benchmarking Binder also results in an
-> >> > improvement from this change.
-> >> >
-> >> > This patch is complementary to:
-> >> > https://lore.kernel.org/all/20251202-define-rust-helper-v1-0-a2e13cbc17a6@google.com/
-> >> >
-> >> > Signed-off-by: Alice Ryhl <aliceryhl@google.com>
-> >>
-> >> I get the following modpost errors when building with this applied on top
-> >> of v6.19-rc4:
-> >>
-> >> ERROR: modpost: "__SCK__WARN_trap" [drivers/gpu/drm/nova/nova.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [drivers/gpu/nova-core/nova_core.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [drivers/block/rnull/rnull_mod.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_minimal.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_misc_device.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_print.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_dma.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_driver_pci.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_driver_platform.ko] undefined!
-> >> ERROR: modpost: "__SCK__WARN_trap" [samples/rust/rust_driver_faux.ko] undefined!
-> >
-> > Looks like it used the wrong static_call_mod() version, was MODULE
-> > defined?
-> 
-> CONFIG_MODULES=y, yes
-> 
-> I built without the patch first, then applied the series, enabled the
-> option via menuconfig and ran the build. I thought maybe some dependency
-> check is messed up so I retried the build from a clean state. Same
-> result.
+On Sat Jan 3, 2026 at 2:34 AM CET, John Hubbard wrote:
+> @@ -209,7 +208,9 @@ impl GetGspStaticInfoReply {
+>      /// Returns the name of the GPU as a string, or `None` if the string=
+ given by the GSP was
+>      /// invalid.
+>      pub(crate) fn gpu_name(&self) -> Option<&str> {
+> -        util::str_from_null_terminated(&self.gpu_name)
+> +        CStr::from_bytes_until_nul(&self.gpu_name)
+> +            .ok()
+> +            .and_then(|cstr| cstr.to_str().ok())
+>      }
+>  }
 
-No, I mean -DMODULE. Note how the quiet_cmd_bindgen target has -DMODULE,
-but the new quiet_cmd_rust_helper target does not.
+Did you see my reply in [1]? The question is orthogonal to this change, but
+perhaps it can be addressed with a subsequent patch?
 
+[1] https://lore.kernel.org/lkml/DFEVITW4O9DW.P4ITE1PWIDY6@kernel.org/
