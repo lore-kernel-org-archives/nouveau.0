@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47B8FD0D145
-	for <nouveau@archiver.kernel.org>; Wed,  7 Jan 2026 17:24:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 558AFD0D14B
+	for <nouveau@archiver.kernel.org>; Wed,  7 Jan 2026 17:38:17 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F00410E61A;
-	Wed,  7 Jan 2026 17:24:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C20610E61A;
+	Wed,  7 Jan 2026 17:38:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="E+rllcvr";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OXsMxiAP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BC4B644CA4;
-	Wed,  7 Jan 2026 17:16:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4D80F44CA2;
+	Wed,  7 Jan 2026 17:30:01 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1767806179;
- b=vEwGpZm7Dc15JBWH+yiIzcXiKQdmZfll1oDsZ+LqWdSwgRIM2ktn+Qttwz2E2xiwykKST
- qZw7iTQYiGzKxy0jKPoga1VD/yd3cxE/LZXamfbJteftR022izEeyUtpx84lWkqf3+kduZa
- DgmrXWzWW++X2maQHpTP3gJdR6WGACJ9beP51W2wyP0F3dCS497Tc4eUS2yDyxnvSWn24cg
- UiQbgOUTLFPuNDD3LoJM4UfqECPU4rK8GtgFx/dR5lh1Wfv+BdGMA/R9g5NhdXbJ5wBMQ4x
- jWCQbDlUkK1+daC2XY6Oi+RRIyi9QXq6U41+tTy2vYdrhRss/wdjsj0ATm8A==
+ s=20240201; t=1767807001;
+ b=mXra8zV9EawgzZQdHwURjSicmyqr/ZtNy2RMHw8DEjX10GxOKIP4trymZVVeocBm0Pr66
+ h9t53hMzkBYsSumUyCxzuQWJXyNGe1iktPEs0H+GWN2O5CNaRfnJbhLep+mrBVhNlv2lUUR
+ pm+iNngxYq8MmdcM0aNpOfJ18VD4WZraj/iT+BrscEIM+QEgByXCctxDskRGDWK8Z6bM3Il
+ WGb3VmL5vYwp9vPVh/FtP3xOv9NhjKVREmqXIdbEwfuGZmxgiKz9gGwZVzGBHyf8nEPVZJa
+ hVO6Zg295+cgKarmk9aMnpRzTeDlr9ctuIUywBzZn4K9TzzHLgzIQNuRJUFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1767806179; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1767807001; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=XqdCPkDx31P+/88ZI9oqnb0Z6s4jrFfvs9pYpKRo6yA=;
- b=bK5Lghk1Vewq65WWt3hfLgocBUnoMUmCR5maMUuqiYKaKhYUqr1t1f/lYgaT+lqXYOqbJ
- /MbUSOlNkoBrZREDxcp4rWYOktlesYfSTDnZ8FC5nco3CPkyKRPaMyPnhA9QQZciCFjW29v
- tSqaK8FGNt58kNU5Kj91uz1apHXMjGoZ8jopkwBZ8eXzSJofHb0Eb5IibfQ+Ji4t3cYymOG
- CE+1Q3/I3eI7DWHMmvJobO0IbgWL3PCaw1ad01Jx1rKF8V8/D6pZM3N5hqxMoW0ro4V3+wL
- nfNETAHWjzn9cF1ydn6cel7k+nmSXyVZu44bpCqykhgUuuRyOGrkPjB53pjQ==
+ bh=dai0JxbhtkNUSVHfzCrnopP3eftyTSKVJDkB5Ag+2gU=;
+ b=NnZWGlQ9N+bPD+UVW/0S1ygHL4ioYG0DNJ3stH/PZmlu/LWbRqYkL5YKRWYTTabMeE0og
+ /CcIhzQ3Y1KOd4D+8X8WtXeFgkihzozKUPxlglc8b+ip48wCAUOaAyQnrWhMq8m6h4uM8zE
+ bJkXhFWxHRbF9di2qyYIsDCVCZpOcgMOh6DlHB/oo8NNSMcrhuPU2TNwJPJVgWiS0letMC/
+ 6cLEp/6ggx1mHHbEtFXtP08QFb+AuO3R8S0muSLLMCe7Qs1znKAXoXT0yeEeNwnjGblrky1
+ jijdLbjzs3ewMW8db2eYmH58wfZrV4W7cK2D0QKhV1X5Udw9r6n5/BSZJDog==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,92 +46,93 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 16F7244C9E
-	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 17:16:17 +0000 (UTC)
-Received: from mail-dy1-f175.google.com (mail-dy1-f175.google.com
- [74.125.82.175])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 98C6210E2B6
-	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 17:24:32 +0000 (UTC)
-Received: by mail-dy1-f175.google.com with SMTP id
- 5a478bee46e88-2b07583340dso125907eec.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 424E744C9E
+	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 17:29:58 +0000 (UTC)
+Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com
+ [74.125.82.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DABA610E2B1
+	for <nouveau@lists.freedesktop.org>; Wed,  7 Jan 2026 17:38:13 +0000 (UTC)
+Received: by mail-dl1-f53.google.com with SMTP id
+ a92af1059eb24-12055b489e0so181133c88.3
         for <nouveau@lists.freedesktop.org>;
- Wed, 07 Jan 2026 09:24:32 -0800 (PST)
+ Wed, 07 Jan 2026 09:38:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1767806672; x=1768411472;
+        d=gmail.com; s=20230601; t=1767807493; x=1768412293;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XqdCPkDx31P+/88ZI9oqnb0Z6s4jrFfvs9pYpKRo6yA=;
-        b=E+rllcvrrS/IxN7TNbufXAxcLqOijWTVha4qTumO70VevlpavtB0XP3grQjH8tmLGR
-         MKAV+n/T3E7aY6YPCm/pJTQWV/ReGxFsSz24Dkv4q5P6uxoqOwzBhNY+aSrcCdnhWY16
-         e/eDGSRPzlZDPruzz7uGhmJnu7HP7XRbHS7Lnn8GvOyygomVebfZp4KnmBco7zq+AubF
-         FcdDWQI/0BnYNNEYN37Y3NbZr50++fdzA7WnZBww/qSsYytL4e1mVDrCKOraq0wRXSsS
-         On5ymqjuqebTKellCmrPSJG652vSV1L6H+RNqXfzpUrHAjqTXbMzciFSGe+OzMPadh9v
-         rCYg==
+        bh=dai0JxbhtkNUSVHfzCrnopP3eftyTSKVJDkB5Ag+2gU=;
+        b=OXsMxiAPrV5jV8twYl2d4+tv7HYwNn5Aq3nUCYWataOsL4mWTHUGwbGscxjqV60ZX3
+         HtBTy3YKaVNBrld1MKsZugrj8uPbncuTUxYHgzY6+h7vKQMfP8eiJJHT6o1/wkIDGXno
+         F27KF1sg43qbhAFtmf5szGXV2/5d09FsZZGQMx4kOWQITDfHTNd4bdD5sY1BLEitRm7Z
+         Z6k+gLypxqjvFQwAUdPCkOdD0l4qUu0mp1XvnGGzK0C2CS7fPylGDaog5oeMTUhpDTKN
+         M5dq16ivFb77vLNi59AH8rl0g3yB84NfpedX73VCiIGaCt+jTj6nZvG+F7MTALGm/l3d
+         bV0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767806672; x=1768411472;
+        d=1e100.net; s=20230601; t=1767807493; x=1768412293;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=XqdCPkDx31P+/88ZI9oqnb0Z6s4jrFfvs9pYpKRo6yA=;
-        b=hh/joCjgL7p3D/cfH9VeuXfI0du97QWRg09oTTCnLu+Nzm9q6Jdrawy+QOJBUA5w1h
-         VixaYAZhnnqBJ1ArJ3GhjISdddIpH2etHPqV8JnJaR1+hWzLtVDLL9VY1cOGQpwUpCO2
-         l7VzVqT4jRM/LBVHnFxzd7OzMieEPviB24i3xPIMVCDPUn3eDMVOUQqBomw/FSIMN5MQ
-         gnD/4lij06+vbnoqxPMfJq017I3A41uA5r/tgTTis6oE5bnRClEKa2RjUNRDpRRWv58O
-         jf+nydLOf09xOMPlSbfNEN/RpNhCpdDBoxkXpRvT/xkv1HEEsKXzsMXhh3EefvWqQR5Z
-         zXnA==
+        bh=dai0JxbhtkNUSVHfzCrnopP3eftyTSKVJDkB5Ag+2gU=;
+        b=Q5gUEcQDC8K7oSL8VMUenCSEEVykS0wTKeSUvX7G+ZwI4UczvDp8YwnHdlwSH5pD56
+         JQEoqxd6c3CjsSG5nxWTxeS2WTMK2HQjTnRJFOMNVxuTBsOtBBL4KCKS9Z877iUxDjHs
+         Ux4wxWNeSs+4H3IU/i7y8S8b05ISz1ot5gSwuwvBoXWT9KwkLbEppbsJiMXmRk/VYjnQ
+         f9RDzD0J9+EZG7CKQtj7BbLrawkyVFNie8xHgQ8sG08BHRw32YVpPaV5iptdLEyA8QC3
+         77CondALlv0iCFsUsc+9cSEUc3D8VRTu17Pr5RrACduflKNz7+apQ6eIHmRzLhZn37/o
+         3jzA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCV/1SAIDaWla1XPPpYu2SCANCa1tFm8bNfSw/ZnuqUsNpSPpvHKEzSLxstY0De2MxeQvzxZ74iB@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywex77F1dc1bR2qRFvpOEpyXTfy7zy4CMiWuaZINlSTIkNz3XQp
-	+JBCZKDM0M1hVEEChpyKIcVqybbRpaAOBdpVkes7cv6AGQchkto12pEAANFlV1Tnx76Ryt90c2/
-	QKYYMrjO0ZtG/0YIrUqeaZuAtmyOjc9g=
-X-Gm-Gg: AY/fxX5oFItHH28G1dkYmJ7q6DVE8HRnr5rFc2RgDvY9FvXhcgUc6sKInnhyrKj3X35
-	7ebEkZNQktHULlTxT+kU1dlc45cK9EMA8pC/EkdKfH8Pg4DKfCRGhYuTjMhXdCM60nAv96nnT1L
-	W0xSgWbPshC2Bod9Wt/nT3hcSPA4Lpgzev3Z2xvMpcQX5uxVPlZc0jI289oUHW0V3CS+hDZ6W+6
-	rhFgs8DRbUpLauK2BSHBY5ITTycefJblAsSxGJUUZwOHAOzdM9PrqFliHTVPJVLxTmg2HLSODjx
-	+JXkyBQ1lztposadIsXT4R+7Namp9/0uRRitFpSUeXG9Le0+aS+89e5IIBWE2g/ks85hgqzN9Kj
-	NwVfqaJ+OMibt
+ AJvYcCVaxolNIvkIcXV0bqtFn78ypmyHVg7JEXX7dl4+xuL/v6Vyun3PPK5Q81EIBDT7QPybTDMMht7j@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywy8Pl78hW3Sn0gtI5DJB9Ht6ofA+2GfrDOJNd8aQu/LwRbCCL0
+	wJAIX70PNBXymQJlaZDUidKYTzFmL4H+evBXeeilDIqvqedqM+6VSvdufuIcF7VX4580iwqinCY
+	5HJJ8HFBdTecPLg5Vj7l/83a622QmOXQ=
+X-Gm-Gg: AY/fxX6IlHSJE0yq9X6ZmcunQpJv4otNrEP4opqDmEo2nyyE/W3ihVVZ5OE6ISiIHRD
+	BdDA/wtSBl6VUNNIXWmV55PaQLwfaldTzuiPK+orOYV+onKD6jsCHEtpIkg3TA+N2gHKCK4jYdo
+	96ZQCfesC/Dbok0bsiwoSTZT5CupP6wESAk1tA+TjBkkBK7Ddh5+gGVGtCdeAddrNgjhrsviBqM
+	siLtitmQK9T6HMeiMg7Xp9GWEWqmujd32kRskpXAoOlVgxH/qwRAlCWMLj+VKNTtjbugjvGsRWE
+	A5+vnc1hPns0p7By4QE2NX8xRC3xNZDIOAOJqLKoJRLLqCyyDkH44iPYQFFeYxEVfbHsofiPXOW
+	Ww/12tQGNQ1Ui
 X-Google-Smtp-Source: 
- AGHT+IEmNxe4H46v90z5Qsg81/iqvWHE2i419t6wujoy5EZQVIHlyBEXzgh5s/UfED7pXNr75mh1zoYiP0dchnOTKuI=
-X-Received: by 2002:a05:7300:e58b:b0:2ae:5bd5:c241 with SMTP id
- 5a478bee46e88-2b17d33c615mr1278675eec.7.1767806671760; Wed, 07 Jan 2026
- 09:24:31 -0800 (PST)
+ AGHT+IGM3CJ6rtoXkbS1gqw0JneRH0rWCzxshK8igUVhgyP37LCW23SucegWV0VjMr/tA1v0YCguyHEB3GP0478A79I=
+X-Received: by 2002:a05:7300:dd0c:b0:2ae:598e:abea with SMTP id
+ 5a478bee46e88-2b17d30fd2fmr968807eec.5.1767807493047; Wed, 07 Jan 2026
+ 09:38:13 -0800 (PST)
 MIME-Version: 1.0
 References: <c5c5c0a4-249f-41b0-b5f1-87a58514b120@nvidia.com>
  <8822A0A5-CD4C-403A-A001-F4E7A351D81B@joelfernandes.org>
  <CANiq72mUCGL3f=GAYSZfMV1=NXpOjz4vsV7B3Pd-=EG8tmWC_A@mail.gmail.com>
  <39e74621-aba6-47eb-9935-0d2321c56d6d@nvidia.com>
-In-Reply-To: <39e74621-aba6-47eb-9935-0d2321c56d6d@nvidia.com>
+ <20260107123159.7ac61d69@gandalf.local.home>
+In-Reply-To: <20260107123159.7ac61d69@gandalf.local.home>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 7 Jan 2026 18:24:17 +0100
-X-Gm-Features: AQt7F2rzlYOZPcNPb5Y3stczaGAhwYq9zU0rJFqAE7X1RLdvvhtO7z7v_rYamrg
+Date: Wed, 7 Jan 2026 18:38:00 +0100
+X-Gm-Features: AQt7F2rwFEKJSdRzkzLSCri3PhwRCqQPNRRr6ZPmL34vxqGv6L7SqzXqvqSjVP8
 Message-ID: 
- <CANiq72=vcYkfZtgDfSZaHY=0PMOwc+XiiJo74pciPOV7nrN6Nw@mail.gmail.com>
+ <CANiq72k6xengESGrJSELV8OtOwaO2d-DO0_to=WCu8PtfhH3mQ@mail.gmail.com>
 Subject: Re: [PATCH] MAINTAINERS: Update email address for Joel Fernandes
-To: Joel Fernandes <joelagnelf@nvidia.com>
+To: Steven Rostedt <rostedt@goodmis.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: LTKITDWDPZRLDI7CWP6AF2O3EMNJEFJT
-X-Message-ID-Hash: LTKITDWDPZRLDI7CWP6AF2O3EMNJEFJT
+Message-ID-Hash: BK7BOLDKA6ADPQ4IOGREFWVEKH7FVK7S
+X-Message-ID-Hash: BK7BOLDKA6ADPQ4IOGREFWVEKH7FVK7S
 X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Joel Fernandes <joel@joelfernandes.org>, linux-kernel@vger.kernel.org,
+CC: Joel Fernandes <joelagnelf@nvidia.com>,
+ Joel Fernandes <joel@joelfernandes.org>, linux-kernel@vger.kernel.org,
  rcu@vger.kernel.org, rust-for-linux <rust-for-linux@vger.kernel.org>,
  nouveau@lists.freedesktop.org, Boqun Feng <boqun.feng@gmail.com>,
  Paul E McKenney <paulmck@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Steven Rostedt <rostedt@goodmis.org>, rostedt@google.com,
- Yury Norov <yury.norov@gmail.com>
+ rostedt@google.com, Yury Norov <yury.norov@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LTKITDWDPZRLDI7CWP6AF2O3EMNJEFJT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BK7BOLDKA6ADPQ4IOGREFWVEKH7FVK7S/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72=vcYkfZtgDfSZaHY=0PMOwc+XiiJo74pciPOV7nrN6Nw@mail.gmail.com/>
+ <https://lore.freedesktop.org/CANiq72k6xengESGrJSELV8OtOwaO2d-DO0_to=WCu8PtfhH3mQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -141,24 +142,25 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Jan 7, 2026 at 6:20=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.co=
-m> wrote:
+On Wed, Jan 7, 2026 at 6:31=E2=80=AFPM Steven Rostedt <rostedt@goodmis.org>=
+ wrote:
 >
-> Thank you for the suggestion! Unfortunately, that would hide the company
-> attribution too. Or require it to be in brackets along with the name. The=
-re
+> This is why I prefer the "(company)" in the email name and not the addres=
+s.
+> It allows developers to maintain the same email while they move companies=
+.
+> I did this for Red Hat, VMware and now Google, and all with the same emai=
+l
+> address.
 
-Yeah, I meant it only as a solution for the email trouble -- the
-attribution in parenthesis would of course still be needed if you /
-your company want that.
+Yeah, it is simpler for everyone else, indeed.
 
-> appears to be resistance to both these. I do feel fortunate to get compan=
-y time
-> to work upstream, so, on this matter, I have to go with the company's
-> preferences.;-).
+> Although I may need to switch to my kernel.org address because my
+> goodmis.org is being blocked by gmail :-p
 
-I suspected that given the thread... :) But happy to sign your key if
-you need it in the future, and happy new year too!
+I saw your post in LinkedIn about the pain... :)
+
+But yeah, so far kernel.org is smooth (knocking on wood).
 
 Cheers,
 Miguel
