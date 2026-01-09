@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382A8D26D7C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95C4ED26D6F
 	for <nouveau@archiver.kernel.org>; Fri,  9 Jan 2026 17:30:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EBAA610E91D;
-	Fri,  9 Jan 2026 17:30:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 42CDE10E924;
+	Fri,  9 Jan 2026 17:30:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=mary.zone header.i=@mary.zone header.b="FBvJ9irX";
+	dkim=pass (2048-bit key; secure) header.d=mary.zone header.i=@mary.zone header.b="GvooJNu3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AE43E44C97;
-	Fri,  9 Jan 2026 17:22:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0BB7F44C97;
+	Fri,  9 Jan 2026 17:22:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1767979326;
- b=ZojnQhiHDGPuug2oZikrS2w1Xu9W7pY9OgK+cHnddpQe2CuK7T1YxcZQDUOKrKIM0M7+3
- r5Orh0yxMdk1BmGiuiFtP5MBnERGKmIdK0W7KaiSj99F510D9ayG9Of2mRoQTEL4sDejuGL
- YrkFrzU4TTD8fBl+N4g4l2z6qky1DusqZJpMBAh/GKjMsYQsVr1JoTlBOGCjrpjchn2ZOiQ
- 8le8+J+7ib+p+5pmf4LV/Qr2c6SWSrg46E7Vbm56VTIHVmGb4oiLpTxkjMLYBnjIeNqMm5F
- /+6u7MzSuRwhUPEHOnQlkgAfvaAoIpDQBlbD8X70OFNJeoOYXbyzOk+EJqUg==
+ b=S8Wo4bbe3vRW5yrz7fRkIOVRkJBJmJjfgYH4R8CLKSnrrWVHZcUCNEPZ9GAlNA2J1Gh/6
+ 1rHRwlUi/URaxhn/Jku/suuO+GbaAL12y/xNfLper6Ft9OpPkPhNAuFKBEgwYtzE8fIiws0
+ Mw04ht0qXcZegFSGKFpjPPEiR0heiJXXrvcbFBrW0eUE7XvHKcGkU1XbrAMRzcUyL3+pglV
+ V0Z6q2eFkWGoOCaXbKibP2g0Vi866H9uy0GLVdGfuOGV3mSBbsi2q1jRNKhFJ83vn5jKASe
+ XziEMKcabcea0rxcAdCHlNHfU1OKwnl1FEM+kK8IP0JXdT62oVpVJ06Q16dg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1767979326; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jBa3BfzXRQYdF1iMoYKyfeZdw52+KwchtSwkEBOxNPQ=;
- b=wyKGG6w6Uvi7HzrB5V1+4IN7a8jhz3jmK/qYB1Q0tCohT0o9qTFq8EG0ULTvc7Y1dJCuX
- INfMkbl7mhNHnT4QVfMoU5qdZ6bi354wF+2+7gxNweccyC7R9rFHeOMP0Pgq6FaKzSeRvxH
- pSGCi8/LqfY4Dx5grEjQq27H2dsujk3DURdAznGj2Z1gvttxeOnflnT4ktUoPPCYcgJsQ+x
- S9wYHof7n3XiFUgH+cL+JWM5kGzYJ6YKD46XvDx7gEFaMaiZVSORDJfg8Fs8d5Wp9BG6hqS
- xWcAsT1kvWCV51rj+iiC1AsEYwvuOM8SAUrvmNoIidnnMIQoTCgiTLNoBezg==
+ bh=c4pndAZp3XUCZdYMEMFqYX+gyvVUXnO23TwwbWPj1IU=;
+ b=fPl+o6wP+HjCOUOGzQ5sKh8v/6mD82pKNBaKna2s2nrHBGRZqutCPwRL4TTV9QUwSdY0R
+ jq9ur+7WrQ+a5TSNGG7rqD2fim+ZZ1q1A2wfAxp8waXMYdsHwS3tcsUr56c17W2O1yIXo5k
+ J6HbFdxRwELpi9Cew2rP4RgVtxTlBSPKWNp0wNcUqkxW2absI+vn6Sd4E/spq41ecsjq6LH
+ 16ifvTe3RYhHqaMM37QJNAkWAnLckeW34KRpfyZxuhgmokLBtTBUwRmkkvdrZfAeODg1i5P
+ Gpz0PPW1CqxCn7SMWWrwG7U153W4cfpJRypV6r8NFqH8KDaoQEfd5MLVHGhA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=mary.zone;
   arc=none (Message is not ARC signed);
@@ -43,83 +43,80 @@ ARC-Authentication-Results: i=1; mail.freedesktop.org;
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=mary.zone;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E958D44C4B
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Jan 2026 17:22:01 +0000 (UTC)
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com
- [209.85.208.54])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 55ABC10E78E
-	for <nouveau@lists.freedesktop.org>; Fri,  9 Jan 2026 17:30:21 +0000 (UTC)
-Received: by mail-ed1-f54.google.com with SMTP id
- 4fb4d7f45d1cf-6505d141d02so7108609a12.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9B97344C4B
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Jan 2026 17:22:02 +0000 (UTC)
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
+ [209.85.218.41])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B3F4A10E797
+	for <nouveau@lists.freedesktop.org>; Fri,  9 Jan 2026 17:30:22 +0000 (UTC)
+Received: by mail-ej1-f41.google.com with SMTP id
+ a640c23a62f3a-b79e7112398so734570266b.3
         for <nouveau@lists.freedesktop.org>;
- Fri, 09 Jan 2026 09:30:21 -0800 (PST)
+ Fri, 09 Jan 2026 09:30:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mary.zone; s=google; t=1767979820; x=1768584620;
+        d=mary.zone; s=google; t=1767979821; x=1768584621;
  darn=lists.freedesktop.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jBa3BfzXRQYdF1iMoYKyfeZdw52+KwchtSwkEBOxNPQ=;
-        b=FBvJ9irX4fNv/AchbglvgIkquvHxlKBAdnUBTRMKx7a4Kl/JvtbjgfDIaE6TQhqb9S
-         Og+ipjuwZnmZD0gHeJvBRdN/QHlbIkxOIEKtO5V0c6xU7kyfPblfJgL4l1ToxCBqfJlD
-         2J7u9FtXC1VLIV/V0A3f60mIVyBn1LgeukigSoloHmhVqsZmRUYpZTjsP2Z/Q0oLw+Js
-         QnVDTQQPqKZwEdvnfj6mdeVRJvXQWmMKLKdZpWMdRMNvqIVruTLFavr5Fy4JiwSZOoyl
-         zqIubgsincwkO9bxXZowmCH9Hl+toSCWlYJC334uPbfpwEgQZ2KQJUH+DBBesmGiJ1vb
-         WOQw==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c4pndAZp3XUCZdYMEMFqYX+gyvVUXnO23TwwbWPj1IU=;
+        b=GvooJNu3WFE2ZzCvkyuF7sgoDJ2E6C4LHE0b7puIvMgp95+YIxBZ5JFVb1MBxEAHg5
+         a4vb1N9V5caP1+dfpD7PsgmDvOyS+hGS63/hedCrUx1o15+pC3aQsafXp/PRuJqDC4/W
+         sLnyKHFPBUdVgXTgH6DkKTohSRm4whdG4ehrponP3JKJVLhS07ZnsK/9sB6aRqo6cYjZ
+         oXjtaDcD3UDm1ntYsfMtJQbHsEgCAXfuBCm3SIDrmEpFx5VgTbKwQgW4DuEltb6qdvGn
+         tjbkug/IWyI7o29DusBK9t7aFWDhKojLTgLhfd5IT5OH4FXvkBeb5+3RNVmgtNmfg7p3
+         fLjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1767979820; x=1768584620;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jBa3BfzXRQYdF1iMoYKyfeZdw52+KwchtSwkEBOxNPQ=;
-        b=nwkTjZ3iX9FQVXBr6wiR0UPNghDmTAnPUM2KUmR/51fcPz0HJV6l4tFbq3iVooXW1F
-         TymHzDn0LnV2d3tu6RKsFM1DHTZobTrX44JQH3xca4ge19RECHHxEZj4705GnVouAl5v
-         sbqe2pwKMm8hPQwrBeQ2J+GTKt5cX3s+AtRqVIP/oZZ2TcDygHZ6sm9yLzVyxfkY6YjJ
-         QlofZAa5+n7sFnJI2t48NXNBoEbDYY54TEfBG7Evl2eQ7rO06Eba0l3NTvumv/jZyzLD
-         6Mf3z25OQ1kTvn5vRC8qPiQpIyRiIiIBuXhfCVKOaGQNyZ/aPpCj3Sur6ZnRX5+e3sgu
-         NxmQ==
+        d=1e100.net; s=20230601; t=1767979821; x=1768584621;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=c4pndAZp3XUCZdYMEMFqYX+gyvVUXnO23TwwbWPj1IU=;
+        b=L5RCMverX8l69211X6Ze7N5VXBDSoEVmlypDB3t0ek1kDLW4mGPSbV/+pdS2UBg36r
+         CCnCFshsOMdaPUaaQIgziNLZiqwF1ygGzWB0XdkTLCt2pBTR7yIfAwc99ZcIiGMrsDL6
+         vs0HeE/25bpzTOcTbSZZFKFONAh1cB/p2GdlPQxZcPHYPj56CmLxLLsCcNAwdXKJQUJj
+         xG705rPPDaH95xArTTDA5JdVrVhsVWblgsA63ocISH914jH08p6PblVR7M0nPzMW3xEG
+         QTciAeQECZ3P07j93WUpYCRrtBQhfmK0pLXHqQtZCwSElMZmDhb33+7LOJJuzieM+jMf
+         4CnA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUr8nmqn/XB7ttAHVaJDgvI0g0h5gq9hSQ8ESxy4LyE1/VtQq0Nx3au7ZpUnLHCo5xMw4S4296S@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyg3RFXj/4Xe+hZBlTBFoXELYxfjUJopqG6FM0u8PuGTj+8OOWj
-	ebwwBcUU6pz1J26S1qtwk4cePUYtAlCnsJyG6VKh+W0BwY3ysDEJ6ksHRp6BRQ2JOZM7pjXLZ6d
-	QE56m
-X-Gm-Gg: AY/fxX49kR78h6D2VHr09Q/zY4iVkjRBKqc4Bj7poyahjEvw2RvUKwGi2BNuNbClWQw
-	DXlqGjPm8xdvKMzebE27/DMFKWQbyDDF3QwfGG+b3l9Hpqkg4+uXasNVt1zLrakFW5bY+wA6zY8
-	R+0dVgv8lHsfDb6iQ/R5JoSCjDjIq6IxHP4+T38Eu1LONAPWIDDx2g04nFLmJACy4X6P4ivjT7p
-	OX6zHmEtSraj5PeVuD9pXsPJRUkWIP5iTYPdaXj5VBNbxkxGFNYCBqjOZayLO0hOXg3turF4G7P
-	RFRx9LynxTO3iB+3gicCD5k6y7R/ejyAMj1wr0mygAYH7qwiBMi5m1bSfSnbaW8TUXckYhJo1Kg
-	yCFU89Ksok/f3FpBPDa0yaHaMnDi0FfAgz6r2LDeLvUNUNMeEi9ifaOD0SXWXWddY73Z4h38Ty5
-	jLu7VQNJFIUxWVKGWEJ3ZM+34Ls9/3/tVC3cpCJV75TN2t41J0/qTAssK3//LvTA+08MJjkDM=
+ AJvYcCUlzSPTgoicHXoiPRhKGGk1ezu+Kgl6P3QmtKkvDxAzIsom8lQWcUBCfzKWJLsnYoNdBC/wH7bg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyOUIggYdCAu7pRGRvORNaqA8wpiB03DLbrlmPE/bLpM50XfLB2
+	TaBV8LbkbYvXqdGDoOlbZR2PzDxojaWbUFC4bNOUIAxhGA6rrjwvW01BKP4FW/YIPoQ=
+X-Gm-Gg: AY/fxX5gG4Vdy0bdjcLfu1H0PRPoENdAJ1lNm/HduU5FTQ3VwZ8jDIKowD3R67MnGGH
+	kyOIyFxGyFuJ8CSnc9oQ16ArXTJTBTIYLC9K89mzCv2e3RwNQ771upQv+YCaxqNslhONL4kHJVk
+	0KnVqWgWl5VNnmJRX1ehdu3xkLHZZ+PkVTAudo/6/WoMXi4CCMhFyJv3JJas7kDjfqTgnfEY59t
+	WGZMOq4f6MombdPjjdvMNuNzWAHtLOdLvfGG087dqmlD3HfW1e8spW71ZSB1ayHlQN4gAVWKtFK
+	IKT8FBVreuTDF8oGTFwg/YAdDE5IKEYStEWVfT4A1cKriu8XJGG0dy3SmVZlTQDK2W9GqUU6lxh
+	rCBVg3GtcmfpP5il00RSrWRhocklTIwmDVEZKrt98U9YQl7lnnwTevIqsPy0y1tAWJ5afPhnXkZ
+	GnKBnlHuR102HNvibJDQD2QkMpAggxxrj3L0arqwBEffNAh3pBbrd2YPT5E4LWszCvH8YXElU=
 X-Google-Smtp-Source: 
- AGHT+IFBrCHXiIOeuOq9ikzCa/ORwREKVLnQrUPDKwsb6wIjhSdXMJ8CCX/1lBqXnevVQ51tP7rXDQ==
-X-Received: by 2002:a17:907:3fa4:b0:b71:1420:334b with SMTP id
- a640c23a62f3a-b8444c40046mr957355566b.8.1767979819429;
-        Fri, 09 Jan 2026 09:30:19 -0800 (PST)
+ AGHT+IHlRIJqTv050/JxoEGVWa701IUHS6s1jR7sh7piM48WsLHe74BonLRvxKWmwsHoeIZUx3Ag/A==
+X-Received: by 2002:a17:907:7b91:b0:b7c:f5b6:bb52 with SMTP id
+ a640c23a62f3a-b84453a0305mr1020235866b.43.1767979821138;
+        Fri, 09 Jan 2026 09:30:21 -0800 (PST)
 Received: from [192.168.1.42]
  (2a01cb0405e83a000cb38cfe29807c1e.ipv6.abo.wanadoo.fr.
  [2a01:cb04:5e8:3a00:cb3:8cfe:2980:7c1e])
         by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-b842a230db0sm1195426266b.2.2026.01.09.09.30.18
+ a640c23a62f3a-b842a230db0sm1195426266b.2.2026.01.09.09.30.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Jan 2026 09:30:19 -0800 (PST)
+        Fri, 09 Jan 2026 09:30:20 -0800 (PST)
 From: Mary Guillemard <mary@mary.zone>
-Subject: [PATCH 0/3] drm/nouveau: Support larger GPFIFO ring buffer size on
- Maxwell+
-Date: Fri, 09 Jan 2026 18:30:09 +0100
-Message-Id: <20260109-nouveau-gpfifo-increase-v1-0-ed0be9822878@mary.zone>
+Date: Fri, 09 Jan 2026 18:30:11 +0100
+Subject: [PATCH 2/3] drm/nouveau: Unify GPFIFO ring buffer max count query
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MMQqAMBAF0avI1i5ERVGvIhaL+dFtEklQBMndD
- ZavmHkpISoSzdVLEbcmDb6gqSvaDvE7WG0xtaYdTGMm9uG6IRfvp1MXWP0WIQlspcMkYw9nLZX
- 6jHD6/OdlzfkDpMND62kAAAA=
-X-Change-ID: 20260109-nouveau-gpfifo-increase-da3e9a85efdd
+Message-Id: <20260109-nouveau-gpfifo-increase-v1-2-ed0be9822878@mary.zone>
+References: <20260109-nouveau-gpfifo-increase-v1-0-ed0be9822878@mary.zone>
+In-Reply-To: <20260109-nouveau-gpfifo-increase-v1-0-ed0be9822878@mary.zone>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
 X-Mailer: b4 0.14.3
-Message-ID-Hash: I2SSRIBSYYGRZCXEGFHZOKFAR3HWSIMX
-X-Message-ID-Hash: I2SSRIBSYYGRZCXEGFHZOKFAR3HWSIMX
+Message-ID-Hash: LPQJKA5BNKUGWI7UJL3SKZUSMCSYHGZD
+X-Message-ID-Hash: LPQJKA5BNKUGWI7UJL3SKZUSMCSYHGZD
 X-MailFrom: mary@mary.zone
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -131,9 +128,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I2SSRIBSYYGRZCXEGFHZOKFAR3HWSIMX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LPQJKA5BNKUGWI7UJL3SKZUSMCSYHGZD/>
 Archived-At: 
- <https://lore.freedesktop.org/20260109-nouveau-gpfifo-increase-v1-0-ed0be9822878@mary.zone/>
+ <https://lore.freedesktop.org/20260109-nouveau-gpfifo-increase-v1-2-ed0be9822878@mary.zone/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -143,30 +140,120 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This series increases the limit of the GPFIFO ring buffer to 32768
-entries on Maxwell and later.
+Previously, the max count for the GPFIFO ring buffer was hardcoded in two
+different places.
 
-This allows up to 16382 entries to be used by userspace instead of
-the previously 510 entries and should help having more pushbuffers in
-flight.
+This patch adds a new function nouveau_channel_get_gpfifo_entries_count
+to share the logic between the two side of the codebase allowing us to
+later on increase the limit.
 
 Signed-off-by: Mary Guillemard <mary@mary.zone>
 ---
-Mary Guillemard (3):
-      drm/nouveau/chan: Store channel allocation details in nouveau_channel
-      drm/nouveau: Unify GPFIFO ring buffer max count query
-      drm/nouveau: Increase GPFIFO ring buffer size on Maxwell+
-
- drivers/gpu/drm/nouveau/nouveau_abi16.c | 37 +++++++++++++++++++++++++++------
- drivers/gpu/drm/nouveau/nouveau_chan.c  | 23 ++++++++++++--------
- drivers/gpu/drm/nouveau/nouveau_chan.h  | 19 +++++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 15 +++++++++++++--
+ drivers/gpu/drm/nouveau/nouveau_chan.c  |  3 ++-
+ drivers/gpu/drm/nouveau/nouveau_chan.h  | 12 ++++++++++++
  drivers/gpu/drm/nouveau/nouveau_dma.h   |  3 ---
- 4 files changed, 64 insertions(+), 18 deletions(-)
----
-base-commit: 0244539f9a4f3b564604dfe4d639f61cecec381a
-change-id: 20260109-nouveau-gpfifo-increase-da3e9a85efdd
+ 4 files changed, 27 insertions(+), 6 deletions(-)
 
-Best regards,
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index a3ba07fc48a0..a5445e97179f 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -232,15 +232,26 @@ nouveau_abi16_fini(struct nouveau_abi16 *abi16)
+ static inline int
+ getparam_dma_ib_max(struct nvif_device *device)
+ {
+-	const struct nvif_mclass dmas[] = {
++	const struct nvif_mclass hosts[] = {
+ 		{ NV03_CHANNEL_DMA, 0 },
+ 		{ NV10_CHANNEL_DMA, 0 },
+ 		{ NV17_CHANNEL_DMA, 0 },
+ 		{ NV40_CHANNEL_DMA, 0 },
+ 		{}
+ 	};
++	int cid;
++	u32 res;
+ 
+-	return nvif_mclass(&device->object, dmas) < 0 ? NV50_DMA_IB_MAX : 0;
++	cid = nvif_mclass(&device->object, hosts);
++	if (cid < 0)
++		res = NV50_CHANNEL_GPFIFO_ENTRIES_MAX_COUNT;
++	else
++		res = nouveau_channel_get_gpfifo_entries_count(hosts[cid].oclass);
++
++	if (res == 0)
++		return 0;
++
++	return res - 1;
+ }
+ 
+ int
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.c b/drivers/gpu/drm/nouveau/nouveau_chan.c
+index b646212a34b3..8695b5d6aefc 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.c
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.c
+@@ -274,7 +274,7 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 	struct nouveau_channel *chan;
+ 	const u64 plength = 0x10000;
+ 	const u64 ioffset = plength;
+-	const u64 ilength = 0x02000;
++	u64 ilength;
+ 	int cid, ret;
+ 	u64 size;
+ 
+@@ -282,6 +282,7 @@ nouveau_channel_ctor(struct nouveau_cli *cli, bool priv, u64 runm,
+ 	if (cid < 0)
+ 		return cid;
+ 
++	ilength = nouveau_channel_get_gpfifo_entries_count(hosts[cid].oclass) * 8;
+ 	if (hosts[cid].oclass < NV50_CHANNEL_GPFIFO)
+ 		size = plength;
+ 	else
+diff --git a/drivers/gpu/drm/nouveau/nouveau_chan.h b/drivers/gpu/drm/nouveau/nouveau_chan.h
+index 9839de8da985..294d061497c0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_chan.h
++++ b/drivers/gpu/drm/nouveau/nouveau_chan.h
+@@ -4,6 +4,7 @@
+ #include <nvif/object.h>
+ #include <nvif/event.h>
+ #include <nvif/chan.h>
++#include <nvif/class.h>
+ struct nvif_device;
+ 
+ struct nouveau_channel {
+@@ -65,6 +66,17 @@ void nouveau_channel_del(struct nouveau_channel **);
+ int  nouveau_channel_idle(struct nouveau_channel *);
+ void nouveau_channel_kill(struct nouveau_channel *);
+ 
++/* Maximum GPFIFO entries per channel. */
++#define NV50_CHANNEL_GPFIFO_ENTRIES_MAX_COUNT (0x02000 / 8)
++
++static inline u32 nouveau_channel_get_gpfifo_entries_count(u32 oclass)
++{
++	if (oclass < NV50_CHANNEL_GPFIFO)
++		return 0;
++
++	return NV50_CHANNEL_GPFIFO_ENTRIES_MAX_COUNT;
++}
++
+ extern int nouveau_vram_pushbuf;
+ 
+ #endif
+diff --git a/drivers/gpu/drm/nouveau/nouveau_dma.h b/drivers/gpu/drm/nouveau/nouveau_dma.h
+index c25ef9a54b9f..7f8445014e4d 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_dma.h
++++ b/drivers/gpu/drm/nouveau/nouveau_dma.h
+@@ -47,9 +47,6 @@ int nouveau_dma_wait(struct nouveau_channel *, int size);
+ /* Maximum push buffer size. */
+ #define NV50_DMA_PUSH_MAX_LENGTH 0x7fffff
+ 
+-/* Maximum IBs per ring. */
+-#define NV50_DMA_IB_MAX ((0x02000 / 8) - 1)
+-
+ /* Object handles - for stuff that's doesn't use handle == oclass. */
+ enum {
+ 	NvDmaFB		= 0x80000002,
+
 -- 
-Mary Guillemard <mary@mary.zone>
+2.52.0
 
