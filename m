@@ -4,130 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94FD6D39013
-	for <nouveau@archiver.kernel.org>; Wed, 14 Jan 2026 19:21:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8316D3900B
+	for <nouveau@archiver.kernel.org>; Wed, 14 Jan 2026 19:30:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0CEF810E681;
-	Wed, 14 Jan 2026 19:21:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAFA10E675;
+	Wed, 14 Jan 2026 19:30:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YBrX/0SP";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BY8dgTm4";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 79C9744CB2;
-	Wed, 14 Jan 2026 19:13:20 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768418000;
- b=X9tm/FkulxcQqbvv3CrQ3As+dD5vhZo6YaR/ZXKqECIjBfiQ2ze6Idnc1Y4mt66EdDS0/
- l7+PnH+pS7EhfXuMtkR80zuUFhpYpZnZYqwDG8auhxewy1Og+xMaYKQn2gJmw60ZBykpi+Z
- aHkcMhGh4dVp7e4W2N7IouRm6/CQcjsy0MVEc/gZfOm3mjlg0oDoCrUwzNiMhBts+3ycGSv
- hRTFF9o9IFDEc/uDe1kpscd7uiSbLXeSuXZ5frW6sQrD6s4MkORz/zIODuv7Ek08xcB6dlH
- geadlmtHICg2rvTixQ3NQT6sqaNSeoTDPK2zPubef1W84HmavTd45fKootBg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768418000; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id DF3A144CAE;
+	Wed, 14 Jan 2026 19:21:51 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1768418511;
+ b=dzPSsvqdsJZJ2TvyNn4H0nF8B6R2vEeZxVLQ1oU2ufe9/b4/Jn40vyTR2dmLGFXlQOdIY
+ nDlsh+ZFVoqDoRZMtlsi5hgIePwwLjgMe9vViPbXY97S1cVW+dkuf+rxy215TPlGqTyiNvE
+ jiyf4o7LqcnM9q9pBUQnVxcDMXen9fO5Lg+nlS6cyHTOgTMyHXCIOt8AFJc+phwhbBOAw2K
+ E2qZRuze0982T8izbC+oIpvqLVqoUOQA4O25cyYcqqHGTOehvvOsKlGvmoRSGmcusvVKe45
+ WZ9u6ritEW5/V/mExj4fZEtGITXRyHjYfMed9bdCPIeVEw0j1NrgskxSPTGQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1768418511; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=JZwiE/35ZsqgkWDcAHtCrU2hUyIiBiBdqk8v0OUngik=;
- b=cI5I02dXfLdEqVIeNkTA41w/322OV6NNJhe6ecrbXNY0XPQkEoq7L+NYQTyG8Cp6ZhDAZ
- jD28i7YMIf5GaL/PceuOtcBOgPFMAleyrvLBWEomdAR6f3Oun+WYW5VcNERuvkakFQxhwzR
- eV6bsuzEbjKO3IIw3ATcjmUy+BsF5ohLYG3YM9mMrR4vFVkUGagEKOJX7Qw0AFod0ODfPfu
- cjmEFBCiTp2s/ymFgwVe/pyvgzTLEHKY3JNozgLBT/faAeHBCmr9LvikQfWBIS+/fXnMSCE
- +su0ZdoUifaYgo56TX25fq4951Q1B3DKsgK7+2IBJ5Poj6WqUb4PgWjaYj9w==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=dk6wHkj3RL/1/nOR+BE02qTWlvOKA46XsLmYw1j+Oc74stAGZXc1PXB2vPYyKs5cp4xBg
+ Umr6OG0DJZz19WTqys5xHc25jKyDU97ShsgOW+ECJp9l+93DlXFlc0t1tGEqdUdfDFJK7C8
+ Sk/wGgANDrPWiPHct+jcApuo1iHPlBHogM2b//joPmrJCUPtl9eZr7Iac7wfPP76AA+9xF6
+ UdXX+hgS0ZhhW6a69yV/BaWzJ/nHspWbU4pCOXUSdlQQ/LWYwW/H0gjSrEQax+0YMYkjdEa
+ asLUKrSM4weibpsOOei4vowrDCa0g2cNlMrTPA4IN0gYvhUlIbfIEAXi2XNw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EE185400E0
-	for <nouveau@lists.freedesktop.org>; Wed, 14 Jan 2026 19:13:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 43CE510E672;
-	Wed, 14 Jan 2026 19:21:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1768418509; x=1799954509;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jiGWK05xuN192DYv+TPcEdDntEMizLdbArhfYH/lgMA=;
-  b=YBrX/0SP+QXYj4nR7EfYqJFq6vd3UkkW/UrZL26jZgqO+/0P00ASZxyj
-   70GBX+OQugynBvIb4OYzfcjBbjCLT96/YlxEKd37JnGuc5Tdj6GH1A/vp
-   8HTV1WhAFwBwkzioHpak3aeJtqafdQiKxNdV18SUe/nNiSMvhFKJ0feKB
-   wkWVGsx6FRq5CwZWrsjVQnkLgG6gt6w4RDvSNSz7z+9INluwaL8Li3Zk2
-   KcD4z8fdnHWeY9K90L9TlbYkaWyiunUQed5y+nesKIx+xkiBIcTMLpnPF
-   6wjZt7AtZB+VRa+SgnG17AUGMw/bHYyejvrLM7145Hv5mnCwsDT83fojW
-   A==;
-X-CSE-ConnectionGUID: Mgp2ndoJQjytGsu8ieX6Vg==
-X-CSE-MsgGUID: +nxyQhS3Sc+aTo1Z/SeMJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11671"; a="87305735"
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800";
-   d="scan'208";a="87305735"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 11:21:48 -0800
-X-CSE-ConnectionGUID: UrOFw46sSR+Opbvpw2+jpw==
-X-CSE-MsgGUID: /21BpcAaQ6GbBGCCIQN2Ow==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,226,1763452800";
-   d="scan'208";a="236006831"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO fdugast-desk.intel.com)
- ([10.245.244.85])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Jan 2026 11:21:42 -0800
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v5 1/5] mm/zone_device: Reinitialize large zone device private
- folios
-Date: Wed, 14 Jan 2026 20:19:52 +0100
-Message-ID: <20260114192111.1267147-2-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260114192111.1267147-1-francois.dugast@intel.com>
-References: <20260114192111.1267147-1-francois.dugast@intel.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id AFA6844C87
+	for <nouveau@lists.freedesktop.org>; Wed, 14 Jan 2026 19:21:48 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011052.outbound.protection.outlook.com [52.101.52.52])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EB99110E66D
+	for <nouveau@lists.freedesktop.org>; Wed, 14 Jan 2026 19:30:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lHkewvyLJM0dgJCOPUloA0Uwd9pYwpQwrZd3IDgvkKsL+MdTNCa2qcuiuuSSZSQG44FhFvj5K+KKq1dFXdtzzAv8rc5oxeqFKC8uuiojp8BbUwHpMxLlymV/HJq97oH9dzo8KJ2Fh9Xtamz4aOToQzQMAcZxGgjzLJshZWMZoSBfVRHk5Hv3ALkajFcL7kQU4XHVhoBOM3RDk+DJLNAizRKg8WL2fAWVbOL3+berpf95eKmwvq8IUEUKIef+ehqrCfIMryKyc9bQSs7eV0JOI152Lub51rHYfisPNNvj9TDr+sACw4g0UlorL+DP3a/MhtjwYWuQ/qmHSqmXH9xZZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=u/OFKoDEXeuc0uBotGS+yMMtX5IVgJ7yCwEt+oG5icyeeW1Cifek5jy61lQ/JoqpxIPMRRLByUYyOopYYUzUvWNjkIqTUWVYCYmtzMzTEicdQz4yOVosnHHF3nGeZkb3szWfY++kbNXcKtdn8gs3bPLjd1KUx12Llc+nVZcI1IFwBwBIctxVPzx61TCpZCwe5deQmRzLv9kEIYGH8X952L0GQRUDxs57l/hA4OqrvLR4jLrhQqmhVOOS+6p4N9zGGnNwaIqKy2FordoYAsqcNgD8bqkrETz56007EPKbukLF1U7uiHEDWvQ3z9MTJBzChAP2JRaJxVkjUgPgiMJ1nQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=BY8dgTm4lyxO5cl0gdkc0u3zS8d2nciJvXpVLlnFr1fc5i2OH040Qbn3w1Bg0WiZhaBa/FxDyj9hOxmzHVFzD67HqCWNl878YO8YGB07xap9psVMA1T/P8vYYcTr80lGZ3+7U6FtzO0yoktMykGN1qtXwzNQpb3gwTY7644qf1LpsjXdq2rYeLOHYyetF58hDLBNxNsKIQHe8WnWvxJKSBaYB2cq+Un7JpgzY/ATcJdLrf1wVEdSYqtFnSTY6fLohOPToJPYYy05H4zgf/azMejsZlEfB1B992p5k9ilhzfl5q2LII5g6nWzzhIwfVTax0is4Pi9Ay2dWSQy4Qhu+g==
+Received: from MN2PR22CA0008.namprd22.prod.outlook.com (2603:10b6:208:238::13)
+ by IA0PR12MB8376.namprd12.prod.outlook.com (2603:10b6:208:40b::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.5; Wed, 14 Jan
+ 2026 19:30:15 +0000
+Received: from BL6PEPF00020E62.namprd04.prod.outlook.com
+ (2603:10b6:208:238:cafe::bc) by MN2PR22CA0008.outlook.office365.com
+ (2603:10b6:208:238::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9520.4 via Frontend Transport; Wed,
+ 14 Jan 2026 19:30:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ BL6PEPF00020E62.mail.protection.outlook.com (10.167.249.23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.1 via Frontend Transport; Wed, 14 Jan 2026 19:30:14 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 11:29:59 -0800
+Received: from ttabi.nvidia.com (10.126.230.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 14 Jan
+ 2026 11:29:58 -0800
+From: Timur Tabi <ttabi@nvidia.com>
+To: Alexandre Courbot <acourbot@nvidia.com>, John Hubbard
+	<jhubbard@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, "Danilo
+ Krummrich" <dakr@kernel.org>, <nouveau@lists.freedesktop.org>,
+	<rust-for-linux@vger.kernel.org>
+Subject: [PATCH v6 01/11] gpu: nova-core: rename Imem to ImemSecure
+Date: Wed, 14 Jan 2026 13:29:40 -0600
+Message-ID: <20260114192950.1143002-2-ttabi@nvidia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260114192950.1143002-1-ttabi@nvidia.com>
+References: <20260114192950.1143002-1-ttabi@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: D7BJ2WPD3JQXXGQC4PGCPHCUSXWG6L5V
-X-Message-ID-Hash: D7BJ2WPD3JQXXGQC4PGCPHCUSXWG6L5V
-X-MailFrom: francois.dugast@intel.com
+Content-Type: text/plain
+X-Originating-IP: [10.126.230.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL6PEPF00020E62:EE_|IA0PR12MB8376:EE_
+X-MS-Office365-Filtering-Correlation-Id: c708ae79-3a34-4bef-4a44-08de53a357b6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?EW1pbTMroPVeE5BykCIgxmR1vfmjly9iBdwJqCyLSUPBOmGckNI4eRKereMa?=
+ =?us-ascii?Q?VFJaGC96ekjLsumEjZu6VGK1YdkzZCNiHYMIBnQ+mFeut5vTuKGdp/wZl5dz?=
+ =?us-ascii?Q?Y2aUBuT6smZLwcidrFBKZiyFrq8YR/cEDcGKcoOKbUm2Yzo1UEUClTvDGkOX?=
+ =?us-ascii?Q?Qu1h0mONrTYagZeRgJqMEpGC483pkZCL2/xiJkTzxd2cZ4hQ/GmXQ1as4KUy?=
+ =?us-ascii?Q?8TUUFsOXHRhdj5SN+1nJ3tixJS8m9nHetlMCFdtExSOAX07d36yKGZqQ/qDi?=
+ =?us-ascii?Q?Bo7l2rqhMW3NGC11/HP8zrRfRJziCebStXqMyajC7zCDBxktmnMDuUAV2RZG?=
+ =?us-ascii?Q?JhM9DF6/23HKfMfPFlTIVxCJQqTtVPHnH9F2MwgB+95VXmyyVtD+CdwgVWT0?=
+ =?us-ascii?Q?Ezk/N8pRDUDfzlDfgYTquAY6QJTUvjZNGM1pG8Jv5AjVUSeOzELCbv4vyGkM?=
+ =?us-ascii?Q?CFJE+S7eGfKJs0jzP9twPqDa47IEZjH/CtAv89yFiKe1M2PHgSprs1hV0Dj2?=
+ =?us-ascii?Q?AKv/kEMQSJC6XxqTwbWybV0a4N8A8fEgy80nmng/FsZe+/blaQOaAhlC3HT0?=
+ =?us-ascii?Q?BlZQh9okwBkDl3jBe3gj5Ddi9udgAAoUSJ1VHz7NrPrmsD8aSmkoevMbaEOa?=
+ =?us-ascii?Q?9rqlNC42mdUQ4S9mN0K1GI29in9OSPzkGmZgD5iTsHNVVCrSMKdLbDxPzcAd?=
+ =?us-ascii?Q?eJ6ZWmGD1r+4QjRbW3NcynDqx0y/ZjFdEAcz9QDQtpq9qG+mA/GF7dLGYobT?=
+ =?us-ascii?Q?ImzIsx4kqnUFtQtXT6zZCj6m2hbWnMSw5BL44BVTxx9Ti1KNsbdwgnrVOsNF?=
+ =?us-ascii?Q?y7uvQpNHSfpMepI/TJsLmLD0byxGrH8hYlngVCF4iRk87L2cvAVt2z9Ta6lv?=
+ =?us-ascii?Q?b2logIn+NS1YbZ/MkrkckX53PGSX8HyssBo5j5TqaLIplNwN2fVL+qKlEzwx?=
+ =?us-ascii?Q?9zU5SClm9ViK9oOO9fSJ+vnXYO4Snwy1/twtI8Th5K3tsZmweabOBw6fZC/p?=
+ =?us-ascii?Q?fCYkkYiMn2RvMRNQuqLT+aqNvOzbVC2UlrP1RtQHI79h0d7C4KDPwhMdMBgo?=
+ =?us-ascii?Q?ZwCJsuloxwaA/Xgu74zV5ANgZdqWOU7a88oXxQFhCHIZoQtYqNKxSy2dNZfi?=
+ =?us-ascii?Q?P/us09Hk4gbUmG87qmRM+KTWJIvoT0KIIzrB39pP/PWJXxImlsuAg8kEHEa8?=
+ =?us-ascii?Q?a25BFKck0SyDH/PGoKtIseFLXgVaR/VEc80kI/VKGAeShVOcvQG3tS+Z7FLa?=
+ =?us-ascii?Q?mARths9DIC0Ru+W5kl+YjqD4Mf7wqZAuVRXoHKxEM4kwAdfsDlXpgHr5D8hv?=
+ =?us-ascii?Q?b31oapwWZ+mnBSToRrZNBr+kblJ7dwY+Z7IDOKD7AvD3T+udZVNUJzCEatD4?=
+ =?us-ascii?Q?KDjxRxJsRL2amBTBduCU74gS18VSYub9ijA70QrCpHxfVbUb4AfUHtcAml9s?=
+ =?us-ascii?Q?KZmB2hxIgAATVFg3BB/wgUw4yfKubVkxly/rFBcopxQRYX5ya0JizLeS0Pe3?=
+ =?us-ascii?Q?j00/uHcISqUXVuJmkQ9YLHhVIA1L2XwqAt2/eKkAxqgNbL5je51sT9mEVuPW?=
+ =?us-ascii?Q?xrilrC16aeuPYCZ/UGGDoxM73xwXi6useJTleJNiNJZ1KbUcB8UCTDuqAAEz?=
+ =?us-ascii?Q?P+yPRFUY+/n3l2bVjXpZ3dY1TyED6vcId6Qm8EV+lFwd9QqPFny3l5CJ2p/9?=
+ =?us-ascii?Q?B3GanQ=3D=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2026 19:30:14.7620
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ c708ae79-3a34-4bef-4a44-08de53a357b6
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	BL6PEPF00020E62.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8376
+Message-ID-Hash: O6CGSMSGKIH3TXVRWFIQVTCVYNHYGATW
+X-Message-ID-Hash: O6CGSMSGKIH3TXVRWFIQVTCVYNHYGATW
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Zi Yan <ziy@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- adhavan Srinivasan <maddy@linux.ibm.com>,
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-mm@kvack.org, linux-cxl@vger.kernel.org,
- Francois Dugast <francois.dugast@intel.com>
+ loop; banned-address
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D7BJ2WPD3JQXXGQC4PGCPHCUSXWG6L5V/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O6CGSMSGKIH3TXVRWFIQVTCVYNHYGATW/>
 Archived-At: 
- <https://lore.freedesktop.org/20260114192111.1267147-2-francois.dugast@intel.com/>
+ <https://lore.freedesktop.org/20260114192950.1143002-2-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,194 +188,148 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+Rename FalconMem::Imem to ImemSecure to indicate that it references
+Secure Instruction Memory.  This change has no functional impact.
 
-Reinitialize metadata for large zone device private folios in
-zone_device_page_init prior to creating a higher-order zone device
-private folio. This step is necessary when the folio’s order changes
-dynamically between zone_device_page_init calls to avoid building a
-corrupt folio. As part of the metadata reinitialization, the dev_pagemap
-must be passed in from the caller because the pgmap stored in the folio
-page may have been overwritten with a compound head.
+On Falcon cores, pages in instruction memory can be tagged as Secure
+or Non-Secure.  For GA102 and later, only Secure is used, which is why
+FalconMem::Imem seems appropriate.  However, Turing firmware images
+can also contain non-secure sections, and so FalconMem needs to support
+that.  By renaming Imem to ImemSec now, future patches for Turing support
+will be simpler.
 
-Cc: Zi Yan <ziy@nvidia.com>
-Cc: Alistair Popple <apopple@nvidia.com>
-Cc: adhavan Srinivasan <maddy@linux.ibm.com>
-Cc: Nicholas Piggin <npiggin@gmail.com>
-Cc: Michael Ellerman <mpe@ellerman.id.au>
-Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-Cc: Alex Deucher <alexander.deucher@amd.com>
-Cc: "Christian König" <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Simona Vetter <simona@ffwll.ch>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Lyude Paul <lyude@redhat.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: David Hildenbrand <david@kernel.org>
-Cc: Oscar Salvador <osalvador@suse.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Leon Romanovsky <leon@kernel.org>
-Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-Cc: Vlastimil Babka <vbabka@suse.cz>
-Cc: Mike Rapoport <rppt@kernel.org>
-Cc: Suren Baghdasaryan <surenb@google.com>
-Cc: Michal Hocko <mhocko@suse.com>
-Cc: Balbir Singh <balbirs@nvidia.com>
-Cc: linuxppc-dev@lists.ozlabs.org
-Cc: kvm@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-Cc: linux-mm@kvack.org
-Cc: linux-cxl@vger.kernel.org
-Fixes: d245f9b4ab80 ("mm/zone_device: support large zone device private folios")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Nouveau uses the term "IMEM" to refer both to the Instruction Memory
+block on Falcon cores as well as to the images of secure firmware
+uploaded to part of IMEM.  OpenRM uses the terms "ImemSec" and "ImemNs"
+instead, and uses "IMEM" just to refer to the physical memory device.
+
+Renaming these terms allows us to align with OpenRM, avoid confusion
+between IMEM and ImemSec, and makes future patches simpler.
+
+Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+Reviewed-by: John Hubbard <jhubbard@nvidia.com>
 ---
- arch/powerpc/kvm/book3s_hv_uvmem.c       |  2 +-
- drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  2 +-
- drivers/gpu/drm/drm_pagemap.c            |  2 +-
- drivers/gpu/drm/nouveau/nouveau_dmem.c   |  2 +-
- include/linux/memremap.h                 |  9 ++++++---
- lib/test_hmm.c                           |  4 +++-
- mm/memremap.c                            | 20 +++++++++++++++++++-
- 7 files changed, 32 insertions(+), 9 deletions(-)
+ drivers/gpu/nova-core/falcon.rs          | 20 +++++++++++++-------
+ drivers/gpu/nova-core/firmware/booter.rs | 12 ++++++------
+ drivers/gpu/nova-core/firmware/fwsec.rs  |  2 +-
+ 3 files changed, 20 insertions(+), 14 deletions(-)
 
-diff --git a/arch/powerpc/kvm/book3s_hv_uvmem.c b/arch/powerpc/kvm/book3s_hv_uvmem.c
-index e5000bef90f2..7cf9310de0ec 100644
---- a/arch/powerpc/kvm/book3s_hv_uvmem.c
-+++ b/arch/powerpc/kvm/book3s_hv_uvmem.c
-@@ -723,7 +723,7 @@ static struct page *kvmppc_uvmem_get_page(unsigned long gpa, struct kvm *kvm)
+diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
+index 46b02c8a591e..310d4e75bad3 100644
+--- a/drivers/gpu/nova-core/falcon.rs
++++ b/drivers/gpu/nova-core/falcon.rs
+@@ -240,8 +240,8 @@ fn from(value: PeregrineCoreSelect) -> Self {
+ /// Different types of memory present in a falcon core.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub(crate) enum FalconMem {
+-    /// Instruction Memory.
+-    Imem,
++    /// Secure Instruction Memory.
++    ImemSecure,
+     /// Data Memory.
+     Dmem,
+ }
+@@ -348,8 +348,8 @@ pub(crate) struct FalconBromParams {
  
- 	dpage = pfn_to_page(uvmem_pfn);
- 	dpage->zone_device_data = pvt;
--	zone_device_page_init(dpage, 0);
-+	zone_device_page_init(dpage, &kvmppc_uvmem_pgmap, 0);
- 	return dpage;
- out_clear:
- 	spin_lock(&kvmppc_uvmem_bitmap_lock);
-diff --git a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-index af53e796ea1b..6ada7b4af7c6 100644
---- a/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-+++ b/drivers/gpu/drm/amd/amdkfd/kfd_migrate.c
-@@ -217,7 +217,7 @@ svm_migrate_get_vram_page(struct svm_range *prange, unsigned long pfn)
- 	page = pfn_to_page(pfn);
- 	svm_range_bo_ref(prange->svm_bo);
- 	page->zone_device_data = prange->svm_bo;
--	zone_device_page_init(page, 0);
-+	zone_device_page_init(page, page_pgmap(page), 0);
+ /// Trait for providing load parameters of falcon firmwares.
+ pub(crate) trait FalconLoadParams {
+-    /// Returns the load parameters for `IMEM`.
+-    fn imem_load_params(&self) -> FalconLoadTarget;
++    /// Returns the load parameters for Secure `IMEM`.
++    fn imem_sec_load_params(&self) -> FalconLoadTarget;
+ 
+     /// Returns the load parameters for `DMEM`.
+     fn dmem_load_params(&self) -> FalconLoadTarget;
+@@ -460,7 +460,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+         //
+         // For DMEM we can fold the start offset into the DMA handle.
+         let (src_start, dma_start) = match target_mem {
+-            FalconMem::Imem => (load_offsets.src_start, fw.dma_handle()),
++            FalconMem::ImemSecure => (load_offsets.src_start, fw.dma_handle()),
+             FalconMem::Dmem => (
+                 0,
+                 fw.dma_handle_with_offset(load_offsets.src_start.into_safe_cast())?,
+@@ -517,7 +517,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+ 
+         let cmd = regs::NV_PFALCON_FALCON_DMATRFCMD::default()
+             .set_size(DmaTrfCmdSize::Size256B)
+-            .set_imem(target_mem == FalconMem::Imem)
++            .set_imem(target_mem == FalconMem::ImemSecure)
+             .set_sec(if sec { 1 } else { 0 });
+ 
+         for pos in (0..num_transfers).map(|i| i * DMA_LEN) {
+@@ -552,7 +552,13 @@ pub(crate) fn dma_load<F: FalconFirmware<Target = E>>(&self, bar: &Bar0, fw: &F)
+                 .set_mem_type(FalconFbifMemType::Physical)
+         });
+ 
+-        self.dma_wr(bar, fw, FalconMem::Imem, fw.imem_load_params(), true)?;
++        self.dma_wr(
++            bar,
++            fw,
++            FalconMem::ImemSecure,
++            fw.imem_sec_load_params(),
++            true,
++        )?;
+         self.dma_wr(bar, fw, FalconMem::Dmem, fw.dmem_load_params(), true)?;
+ 
+         self.hal.program_brom(self, bar, &fw.brom_params())?;
+diff --git a/drivers/gpu/nova-core/firmware/booter.rs b/drivers/gpu/nova-core/firmware/booter.rs
+index f107f753214a..096cd01dbc9d 100644
+--- a/drivers/gpu/nova-core/firmware/booter.rs
++++ b/drivers/gpu/nova-core/firmware/booter.rs
+@@ -251,8 +251,8 @@ impl<'a> FirmwareSignature<BooterFirmware> for BooterSignature<'a> {}
+ 
+ /// The `Booter` loader firmware, responsible for loading the GSP.
+ pub(crate) struct BooterFirmware {
+-    // Load parameters for `IMEM` falcon memory.
+-    imem_load_target: FalconLoadTarget,
++    // Load parameters for Secure `IMEM` falcon memory.
++    imem_sec_load_target: FalconLoadTarget,
+     // Load parameters for `DMEM` falcon memory.
+     dmem_load_target: FalconLoadTarget,
+     // BROM falcon parameters.
+@@ -354,7 +354,7 @@ pub(crate) fn new(
+         };
+ 
+         Ok(Self {
+-            imem_load_target: FalconLoadTarget {
++            imem_sec_load_target: FalconLoadTarget {
+                 src_start: app0.offset,
+                 dst_start: 0,
+                 len: app0.len,
+@@ -371,8 +371,8 @@ pub(crate) fn new(
  }
  
- static void
-diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
-index 03ee39a761a4..c497726b0147 100644
---- a/drivers/gpu/drm/drm_pagemap.c
-+++ b/drivers/gpu/drm/drm_pagemap.c
-@@ -201,7 +201,7 @@ static void drm_pagemap_get_devmem_page(struct page *page,
- 					struct drm_pagemap_zdd *zdd)
- {
- 	page->zone_device_data = drm_pagemap_zdd_get(zdd);
--	zone_device_page_init(page, 0);
-+	zone_device_page_init(page, zdd->dpagemap->pagemap, 0);
+ impl FalconLoadParams for BooterFirmware {
+-    fn imem_load_params(&self) -> FalconLoadTarget {
+-        self.imem_load_target.clone()
++    fn imem_sec_load_params(&self) -> FalconLoadTarget {
++        self.imem_sec_load_target.clone()
+     }
+ 
+     fn dmem_load_params(&self) -> FalconLoadTarget {
+@@ -384,7 +384,7 @@ fn brom_params(&self) -> FalconBromParams {
+     }
+ 
+     fn boot_addr(&self) -> u32 {
+-        self.imem_load_target.src_start
++        self.imem_sec_load_target.src_start
+     }
  }
  
- /**
-diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-index 58071652679d..3d8031296eed 100644
---- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-@@ -425,7 +425,7 @@ nouveau_dmem_page_alloc_locked(struct nouveau_drm *drm, bool is_large)
- 			order = ilog2(DMEM_CHUNK_NPAGES);
- 	}
- 
--	zone_device_folio_init(folio, order);
-+	zone_device_folio_init(folio, page_pgmap(folio_page(folio, 0)), order);
- 	return page;
+diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
+index b28e34d279f4..6a2f5a0d4b15 100644
+--- a/drivers/gpu/nova-core/firmware/fwsec.rs
++++ b/drivers/gpu/nova-core/firmware/fwsec.rs
+@@ -224,7 +224,7 @@ pub(crate) struct FwsecFirmware {
  }
  
-diff --git a/include/linux/memremap.h b/include/linux/memremap.h
-index 713ec0435b48..e3c2ccf872a8 100644
---- a/include/linux/memremap.h
-+++ b/include/linux/memremap.h
-@@ -224,7 +224,8 @@ static inline bool is_fsdax_page(const struct page *page)
- }
- 
- #ifdef CONFIG_ZONE_DEVICE
--void zone_device_page_init(struct page *page, unsigned int order);
-+void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
-+			   unsigned int order);
- void *memremap_pages(struct dev_pagemap *pgmap, int nid);
- void memunmap_pages(struct dev_pagemap *pgmap);
- void *devm_memremap_pages(struct device *dev, struct dev_pagemap *pgmap);
-@@ -234,9 +235,11 @@ bool pgmap_pfn_valid(struct dev_pagemap *pgmap, unsigned long pfn);
- 
- unsigned long memremap_compat_align(void);
- 
--static inline void zone_device_folio_init(struct folio *folio, unsigned int order)
-+static inline void zone_device_folio_init(struct folio *folio,
-+					  struct dev_pagemap *pgmap,
-+					  unsigned int order)
- {
--	zone_device_page_init(&folio->page, order);
-+	zone_device_page_init(&folio->page, pgmap, order);
- 	if (order)
- 		folio_set_large_rmappable(folio);
- }
-diff --git a/lib/test_hmm.c b/lib/test_hmm.c
-index 8af169d3873a..455a6862ae50 100644
---- a/lib/test_hmm.c
-+++ b/lib/test_hmm.c
-@@ -662,7 +662,9 @@ static struct page *dmirror_devmem_alloc_page(struct dmirror *dmirror,
- 			goto error;
- 	}
- 
--	zone_device_folio_init(page_folio(dpage), order);
-+	zone_device_folio_init(page_folio(dpage),
-+			       page_pgmap(folio_page(page_folio(dpage), 0)),
-+			       order);
- 	dpage->zone_device_data = rpage;
- 	return dpage;
- 
-diff --git a/mm/memremap.c b/mm/memremap.c
-index 63c6ab4fdf08..6f46ab14662b 100644
---- a/mm/memremap.c
-+++ b/mm/memremap.c
-@@ -477,10 +477,28 @@ void free_zone_device_folio(struct folio *folio)
- 	}
- }
- 
--void zone_device_page_init(struct page *page, unsigned int order)
-+void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
-+			   unsigned int order)
- {
-+	struct page *new_page = page;
-+	unsigned int i;
-+
- 	VM_WARN_ON_ONCE(order > MAX_ORDER_NR_PAGES);
- 
-+	for (i = 0; i < (1UL << order); ++i, ++new_page) {
-+		struct folio *new_folio = (struct folio *)new_page;
-+
-+		new_page->flags.f &= ~0xffUL;	/* Clear possible order, page head */
-+#ifdef NR_PAGES_IN_LARGE_FOLIO
-+		((struct folio *)(new_page - 1))->_nr_pages = 0;
-+#endif
-+		new_folio->mapping = NULL;
-+		new_folio->pgmap = pgmap;	/* Also clear compound head */
-+		new_folio->share = 0;   /* fsdax only, unused for device private */
-+		VM_WARN_ON_FOLIO(folio_ref_count(new_folio), new_folio);
-+		VM_WARN_ON_FOLIO(!folio_is_zone_device(new_folio), new_folio);
-+	}
-+
- 	/*
- 	 * Drivers shouldn't be allocating pages after calling
- 	 * memunmap_pages().
+ impl FalconLoadParams for FwsecFirmware {
+-    fn imem_load_params(&self) -> FalconLoadTarget {
++    fn imem_sec_load_params(&self) -> FalconLoadTarget {
+         FalconLoadTarget {
+             src_start: 0,
+             dst_start: self.desc.imem_phys_base,
 -- 
-2.43.0
+2.52.0
 
