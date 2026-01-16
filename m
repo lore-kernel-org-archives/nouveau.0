@@ -4,181 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC932C98302
-	for <nouveau@archiver.kernel.org>; Fri, 16 Jan 2026 21:51:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2922C982C3
+	for <nouveau@archiver.kernel.org>; Fri, 16 Jan 2026 22:03:49 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C0D4110E10B;
-	Fri, 16 Jan 2026 21:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5D39310E264;
+	Fri, 16 Jan 2026 22:03:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="aThXzRAo";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="0mt1bQ8c";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 84FF144CBB;
-	Fri, 16 Jan 2026 21:43:19 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768599799;
- b=eWVIjyZRuCu4K5gYB//0H7f4VpjdrY0+BAn6h4bymTVhobA/EsAwtIDeLz4gbQbSGVBs7
- CGIZat7UsznFaX6i8B0Py8F6ZuE2Mdm0ZhEpxH1PWcWqvdKSJlXmJSX15JLQFgqI9IHGs/m
- tM5MKC+lxHh+/fQCqhbqnFiJPj/Yy+Z7xxPL2yZjkB3tgkmGwVS7xQ5hxFrUa+nuiqZp5M0
- MbMKGVxo9d828qLvriPuFQTkAmajM+aFoX2ysOo9upUIkJdH8byeOvMSppsi0WDQZpMyhGc
- 3NrWcqQmoVVjgZR+z0JK+pcMajQ31pS22XIuY4/w2wiy4O87dTQTopByq8vw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768599799; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 0E1D844CAA;
+	Fri, 16 Jan 2026 21:55:12 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1768600511;
+ b=yIuWpjpsq+33XvjP41LTLwj7wkGRyB0uedySQcvzqLG9AUf7T+W5HWHE0Pnripv1Y2xZD
+ RRF/QO8zdGcEh/e0iVXtxCA9VhpParAw91PSZEMuDms+JkxQE1cUUZ5T/5/UfuBohQaSj5+
+ sPCL0l+oiFyL1ks7Hov1dcrwlxvPHj4SYs8zER8BLN6/ZgaU/kxTHkRhsRS6Mp17en1M1BZ
+ +UPy1KfndtKfWay/j+XN1Enxcg8HGP+fBhv1lvudvi1DSeQBs295uzbjvrOGoQD1mitJdGb
+ ro+HI+JNBOGLg6owpM3cqAmtCXGvRhShZGktsBNlI4tThlBpvOYFcWIc1SpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1768600511; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ycSA/q3aSyYw4U+De+Eunt1ho3jZzsl52DbjZvciqtg=;
- b=bWJIXNiaFQIshYTuW0GqcfLTZbVMoSzTK0uS9RKUF+TfY7vSmWC4lccCRfR9BTsrnk4Ci
- lX4C6ehzyohiWj5wXwb1A7EXUk1JCU838yXIWxcJjc1R+o6Okf28M1kyPPhtMHuwS49PvDy
- Mnafj5rw+HOmLNrEefc/Dm2m7lgBfsaQwB/lL+TdD5zZ56UXfcf+wMdKcmFnv4pweAcJ1lt
- U8wIw9k8w3s9xfUYW9ZV03Bw3iuI1Zr+yuWEm9gHansx4AG/W2pj5A5YcziUIPnFF5SdJk0
- zZlQO8NeqdVp+WEno3fjZTgKST4/eqvF9XE7Mo4J8QSWuuALSBvMV+QeHHYw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=5M0Ng+pZptYcw9h8uct7tGui2w4pAnLMVXabDgI43YA=;
+ b=R8djP6PMrCNwo46ZlyI48KoI1VrAGbquC9ye/4iSwbWASWlquoVFE9KYdRajt80IfAc52
+ cHBF7EAGe7zRF6tMzThons2icCuCDYPFF0No1i0ofUivMBrn2nPjK8VEJggUMpUcLkNzFCO
+ 7+G2a56R9owjljz9POSePfFEVMe5nhOErH3eW/G7iZSs3uUeAGyXEnqt1eDUy3647RTu7BL
+ gCaAZlwpU2xtcWtDx8r9tzN2CPLwmHNduF0uqVMwHJJ4UUNBX/K+qEppJTEYNsC/VIhNTyy
+ E1IRfrAe5a2w3F4y0gBJh86rhxvKk8YoKer1Ru1k2vfzGnEPLacDKwV1yKOw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
+  arc=none (Message is not ARC signed);
+  dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B883740744
-	for <nouveau@lists.freedesktop.org>; Fri, 16 Jan 2026 21:43:16 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010019.outbound.protection.outlook.com [52.101.201.19])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C19FF10E00E
-	for <nouveau@lists.freedesktop.org>; Fri, 16 Jan 2026 21:51:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qnA5P1fj+KIfrECU/12bllD5ff1iPIpfU7AdOJ1QORGCfkpeiVF4l/j2mmdHbViYVFcXtci6o15qVbm4VIXS1XboN1pULJjoJ0I86lrfjyg4llL8ShkLEVfKNjDC3afIUIDyz0OD3zcs506fUfSuL0dnCwUWfGIWh3/VWt/4yhkII8FrvFX6hzlRsyFwMUDlkKKPZdn5b1VZFHhyyHm6d5NkfOD5N0uQDv7cb8wOEDRwSuTY23ZyZteqvOLBPwETlLb6+6RgKD8wOq4nOFPTJniJyF8Kuve8uI0AJ5jNq/bXBbz+D8PtacPzaD0CJu7XlkitdVBb5hNYwVZ5lC2Rkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ycSA/q3aSyYw4U+De+Eunt1ho3jZzsl52DbjZvciqtg=;
- b=CK3zxkJxjlks0Ak3tjPrE5fWVtm4GesQKxrhCS0Yf9Oe/vFviEY0p/wxjWT5VGWXCs6Zm86056tm86php8t+6A+NUnH7YmqvBVjwbbDqdJg6g71q5DRD6vRO8TETkQvVP/WnELUPuDGMPCAWCX1KpjDkm+56X9A29nv19xx8vBFygpzDDinlDB0W5zkmn3H1d6+gF+kB9jod0NFKLx99qUhwQGKIVUCRtJH+94F6Y1v1t/d2jYoS3Ltwhz/8e5b82jEc3Pvtb891oH6jUSf47WZMwZ2aahTX+jkMoW6apGq6JPe1nCjgB0vv8dAwVV9Zp7VHCSDAV22AeUShT8NWTw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=google.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ycSA/q3aSyYw4U+De+Eunt1ho3jZzsl52DbjZvciqtg=;
- b=aThXzRAo7Cw2sulwgl62iuqoEO5NW3zY/FpZuFKuhVVwmrhcOfO3/WUSoi6gCrDRCBoO954TbCwRH56cj4XEoPqruBLwRG9H15rMx4yhktXAPyJnWQOMnvRebCi6+VussXfn6mazvzfmqKKXRPI07+P80PJvOKa7aMm9+x7isFizKnGMRckXQIYypZGurQdGpny+UU8llRWdX1W7IC8ZU6Bmz6MN8GKb42pI9zcwTQVbaJOyEEBCyLN3JMyphXpCjI8RxCVVOAOA/liVl6tfp72W+L9hRDeYM7XBReP7n79e8J/0AcdHcWShJIo8V1L2/bq4iNnwwlEqUDWrng5Bbg==
-Received: from PH3PEPF000040A9.namprd05.prod.outlook.com (2603:10b6:518:1::4b)
- by DS7PR12MB5910.namprd12.prod.outlook.com (2603:10b6:8:7b::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.6; Fri, 16 Jan 2026 21:50:36 +0000
-Received: from SN1PEPF000252A1.namprd05.prod.outlook.com
- (2a01:111:f403:f90e::4) by PH3PEPF000040A9.outlook.office365.com
- (2603:1036:903:49::3) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.5 via Frontend Transport; Fri,
- 16 Jan 2026 21:50:36 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SN1PEPF000252A1.mail.protection.outlook.com (10.167.242.8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Fri, 16 Jan 2026 21:50:36 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 13:50:15 -0800
-Received: from ttabi.nvidia.com (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 16 Jan
- 2026 13:50:14 -0800
-From: Timur Tabi <ttabi@nvidia.com>
-To: Matthew Maurer <mmaurer@google.com>, Danilo Krummrich <dakr@kernel.org>,
-	Gary Guo <gary@garyguo.net>, John Hubbard <jhubbard@nvidia.com>, "Joel
- Fernandes" <joelagnelf@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
-	<nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>
-Subject: [PATCH v5 3/8] rust: uaccess: add UserSliceWriter::write_buffer() for
- raw pointer writes
-Date: Fri, 16 Jan 2026 15:49:54 -0600
-Message-ID: <20260116214959.641032-4-ttabi@nvidia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260116214959.641032-1-ttabi@nvidia.com>
-References: <20260116214959.641032-1-ttabi@nvidia.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1175840744
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Jan 2026 21:55:09 +0000 (UTC)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+ [209.85.222.173])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C9D2510E0FB
+	for <nouveau@lists.freedesktop.org>; Fri, 16 Jan 2026 22:03:44 +0000 (UTC)
+Received: by mail-qk1-f173.google.com with SMTP id
+ af79cd13be357-8c6ac42b91eso100120185a.3
+        for <nouveau@lists.freedesktop.org>;
+ Fri, 16 Jan 2026 14:03:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1768601023;
+ x=1769205823; darn=lists.freedesktop.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5M0Ng+pZptYcw9h8uct7tGui2w4pAnLMVXabDgI43YA=;
+        b=0mt1bQ8c7zpugQDUYnf+lhcS4wp9bP+gHaRIinIwG/S8FWFkiOk3YjYOmUVeDD16cp
+         UtrGJn4RTFEZBBXn7uxnNj9MuVgniBEIB+TyeZypn0L2nTxgVzc1RCFb4gAI7wRwsMIg
+         MvBjOZRuo6gzyByn1HF1EUPuoDghasseAGv4FfUxmoCCCyQhxAZKxGL2yANJYaiERqDA
+         XcuASNnlRyq26fKh2EWhLfvW3ZNkeeQsDJ8EFG44lsd3o28wvSjhBCq5M4tJ6E+9iEf0
+         kP8ElTREt5pmVPV/ir/RqPFtkxcopm/qpGj9K8yMYxA9TEKWfTCaP96PVy1W1MN5UbMe
+         fH6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768601023; x=1769205823;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5M0Ng+pZptYcw9h8uct7tGui2w4pAnLMVXabDgI43YA=;
+        b=MMmx/YPH5e25Gv5xEtFuCjeX4Mn7yJTLEeKaNC3dj0frFXFZiuLws5vHzEjfrfFM6I
+         OiXMhk4UlFKGQNE5YWDBESGiWGBc6lvrDvlyZGwl6MugABcAAuaGwy9xPGhN9swq5iCG
+         Gevx4MHOQO5LwX+IqrQkGPK9oMVDnmBqtk6tcKRsUDCIHGkMjFJQ21afWpGmwZEGXkql
+         ZsMPxZyMhemVcw8uAKKlQh++5VB8q9iVk4V2Ga3/uATCliIU3cUmi0dNFBiDyCAGpR6D
+         G17f10v5AxIDCL9j3zeg1U9s8rbQjRgcqCUj7keSAZ9T8z8lk4K9g6KuwqdO9dyBUlhZ
+         Z5rw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXGhaMwEwpdbk+PQRkwSiQc8OVElOx2wA040iDk1voNGmY4Haj6hAc7XDCvfj5D5B6nv0dcesjJ@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxReeHmlqHwnNtfmyOrB10EoDQtMIM550HOF6gwjZUY4gVEKPo6
+	m7/1t8wOLyDXcbvNhJyoD2p13K1CiTa2MXV8pZLmjWWX7cvoSxC3G5CobqfZTsZVqXs=
+X-Gm-Gg: AY/fxX5DyTy7rroBoGPoiLafo5PkAdDo+SMuaXKCJn9qz4DSnXjOzeg3KpQ+zN8Fjik
+	AcbWQ2pNMOylnpvFYKQT+nbf7+fa5ZhTowtA3053JjcoXeC/vO4zQnR/RcZszjeqprhsCI+FO0Q
+	/wboXeo3ZqEcLgOcHVu+ihOf10kXz4ORF3JP0UfY/xSw1JAalYKOoiIQkO0FhUrzaLtxybCFqCI
+	fe8ULUBp/7WR5NW46oFPqfsIaLlUNaXpAoJ9Hd+ku2bIHIw9XrCL/83zUTWaQJ6Fj3A89mY2HKs
+	NE68GsKZZG7qdtkaw/1Fetwsi9mjBKckoyJhnN7tfEw/9B1VuMeiCZRIgxflQTg31ulQJyuvnkQ
+	eSDTQaD+5h7KU+WvUk/7PXQhMqQVX2bilqk1y32NvexIUZ1xC1swVwMFP0iRIuXW07gP1BmpJf9
+	OGsDGuLy6A8FjLg1Yx95BgaUE9kZmHJyyMYtIqixbO4y0zj9LNvtI7D2S01SXlMrOGKd/5etJsq
+	WFeBg==
+X-Received: by 2002:a05:620a:4609:b0:8b2:db27:4268 with SMTP id
+ af79cd13be357-8c6a6768552mr556329085a.53.1768601023402;
+        Fri, 16 Jan 2026 14:03:43 -0800 (PST)
+Received: from [162.83.196.141] (pool-162-83-196-141.nycmny.fios.verizon.net.
+ [162.83.196.141])
+        by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-8c6a71ab20dsm320798585a.5.2026.01.16.14.03.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jan 2026 14:03:43 -0800 (PST)
+From: Mel Henning <mhenning@darkrefraction.com>
+Date: Fri, 16 Jan 2026 17:03:27 -0500
+Subject: [PATCH] nouveau: Stop advertising large page support
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF000252A1:EE_|DS7PR12MB5910:EE_
-X-MS-Office365-Filtering-Correlation-Id: 413fc351-6d7d-4e7d-fc10-08de554947fa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|1800799024|376014|36860700013;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?v55D3BOGoVD/RKW+ouUI/1TXFEOqZpJ/dTQPRBFAd8Jd3p5iMbSRsyXi7prI?=
- =?us-ascii?Q?myIUwhNSaAWP4o0RDAxhLBv6VgWa1FtqAYm9ov1QnxiDjKr88ltqtGJsKRKJ?=
- =?us-ascii?Q?5QZ9Amg9uN0wonRrSGT9UtwCxtwFdrMsdtF8dQR//1xZEKEsGgl9BX5oeLam?=
- =?us-ascii?Q?YqLESZ4T+UW7tFnz2riWMgjfleC+OdAkCqicx5SseJ6ne8HT22S/e02TszBi?=
- =?us-ascii?Q?ktYc5S7cTzv3LQyOvRlQKJ+5J8aPOiuoXBCjz4j0E6qrqoNcCCgQCXZeIASD?=
- =?us-ascii?Q?aB+HQjEBLIq29ANYO3svtheooMlQDeOjCFP23Uu1lAz7U9HM14a518NgvNf0?=
- =?us-ascii?Q?AV/DXfRZ+Ov1GClCb8lhCJUFWINZz/D27PWBFq68tnC9W++xB+4z6KKQXtgw?=
- =?us-ascii?Q?qGmtm4wouxMuASz78SOF3IEW+D/h/z1os8MXomlqBUUGN0fX+cdil5Ck8gzC?=
- =?us-ascii?Q?Jef0+iPcDKiEmBV+rp1VLvvDO67wk77e8Ix0PlgOXoRWked9pRH9jvjoli9p?=
- =?us-ascii?Q?shfUAMKqaFDCWLPKETN9gsl18apzy4qHOJ1WAAte5aUNyeFE3h+8SKq7xdwE?=
- =?us-ascii?Q?sBd5a4MvD4U3PlwKJKbMxToP9SiLlbKSE22YLtdyVpC/7CzqpPByQzAihZDi?=
- =?us-ascii?Q?aJxpLKDxu3Xm45ZuuHDNCIcdqhrBPnW6PxJZCKX1KJwoVtpyBdPMefhD5h9N?=
- =?us-ascii?Q?xhjBGOUwRUq14isAcm18jc1Mx27cl0hID03TIrMBwSvoIgtqpHMri8tRV4Hm?=
- =?us-ascii?Q?19MM8V0hZQb8j+HCXnqGYgeqfP1AbAM6tFC9dz8QvuoPFqFWh8QIUxlZAuz9?=
- =?us-ascii?Q?qdbJj0sOIeL/RbZ9CW2viuqE7Z180QdiVk7KtuzqvLyzAe0qVshJi/V+ihds?=
- =?us-ascii?Q?ZE1n50XIpqGS2lewAc18/PMBlvCwY4vC5gr7JgalgKW9n+Ynl2PjJt3ah+GU?=
- =?us-ascii?Q?gHh6UGggMHxbxYdFfGB18cUShdgT3IRInBvYMEy4eIQivGS/kvP2rJMcEEQj?=
- =?us-ascii?Q?uWVEtuZmsmldcC7ZbVSIxO/jlLfWicXqr4BT7eoVNxKF+s93g9vJzWkLTNkX?=
- =?us-ascii?Q?eK1B5BQ/SY9hyBsXTPo4+hoDyDC3uBDKa+KiYS0n1lL4uY/a7CuddVzC+INt?=
- =?us-ascii?Q?VlddU2kel8x9khik6F1LLF/IDmdCUliFoFyPBavoyBgGxlc1fzHsrEt54Ukj?=
- =?us-ascii?Q?klPZbFVYMMdWZBmQeJn5snOXFYbOiGPXBe2RYs57qLDkQorfqWqVLkE3Pwub?=
- =?us-ascii?Q?HeDX1UMicRmIDvTU440XdJnwMUvB03t6NAic8Nn4GKnPfjCg6jC9VsXv7REZ?=
- =?us-ascii?Q?Mm0s9erGkIb7Pzp5XIYXVKZB2mSihpAmeGYJay4YEtrWRk5MkH5l+jd4Iq0k?=
- =?us-ascii?Q?BGv+B7dpXWw1vtifIiefNmBve9vIDhTgkGE9H+5yKne64NrTtITdMB7eiRDL?=
- =?us-ascii?Q?QGTUwlUQL4CB3Y6rUWVSjU7qYH74SSdH0RS/apH79RIHgx2V2zPxKpILRwQI?=
- =?us-ascii?Q?8xhBKSB3YFoiyw9QQSMAOJZCZV2LSM2BZsJ5OXgG2Ngn08dJmXQsg6ZnjmlH?=
- =?us-ascii?Q?8L/m4gMSv/voDV8TxjGHkAm22BvIIifpmng8KX/vEOtkU2P27VLXMN/TvLYB?=
- =?us-ascii?Q?Ygwq8NQ20Z8ZOBir/xB6YdVagkxL8S9dYBEaRbjO/xaFO0gLqHR6oB3j5zy7?=
- =?us-ascii?Q?/4iLiA=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(376014)(36860700013);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2026 21:50:36.0239
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 413fc351-6d7d-4e7d-fc10-08de554947fa
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	SN1PEPF000252A1.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5910
-Message-ID-Hash: AYPBFBW6NE74COUGZ6LX7QFJY6NBL2JB
-X-Message-ID-Hash: AYPBFBW6NE74COUGZ6LX7QFJY6NBL2JB
-X-MailFrom: ttabi@nvidia.com
-X-Mailman-Rule-Hits: member-moderation
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260116-disable_large_page-v1-1-fdbf85603353@darkrefraction.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x2MQQqAMAzAvjJ6VrBzevArIlJdnQXRsYEIsr9bP
+ AaSvJA5CWcYzAuJb8lynQpYGVh3OgPX4pXBNrZvEPvaS6bl4PmgFHiOpIYjQtda5zryoGFMvMn
+ zT8eplA/KLGQyZAAAAA==
+X-Change-ID: 20260116-disable_large_page-4aa1432445ad
+To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Mohamed Ahmed <mohamedahmedegypt2001@gmail.com>,
+ Mary Guillemard <mary@mary.zone>, James Jones <jajones@nvidia.com>
+X-Mailer: b4 0.14.3
+Message-ID-Hash: KNXR42WUW7FVG6GBTV233EVQL55SK3A6
+X-Message-ID-Hash: KNXR42WUW7FVG6GBTV233EVQL55SK3A6
+X-MailFrom: mhenning@darkrefraction.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AYPBFBW6NE74COUGZ6LX7QFJY6NBL2JB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KNXR42WUW7FVG6GBTV233EVQL55SK3A6/>
 Archived-At: 
- <https://lore.freedesktop.org/20260116214959.641032-4-ttabi@nvidia.com/>
+ <https://lore.freedesktop.org/20260116-disable_large_page-v1-1-fdbf85603353@darkrefraction.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -188,85 +142,43 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add a new method to UserSliceWriter that copies data from a raw kernel
-pointer to userspace, without requiring a Rust slice reference.
+Since large pages landed, we've discovered a hard-to-debug issue related
+to 64 kB pages. Disable it for now.
 
-The method takes:
-  - data: raw pointer to the source buffer
-  - len: total size of the source buffer (for bounds checking)
-  - offset: byte offset into the source buffer to start copying from
-  - count: number of bytes to copy
-
-The method is marked unsafe because the caller must ensure the pointer
-is valid for the specified length and that the memory is not mutated
-during the call.
-
-Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+Fixes: 85ce566b3624 ("drm/nouveau/drm: Bump the driver version to 1.4.1 to report new features")
+Signed-off-by: Mel Henning <mhenning@darkrefraction.com>
 ---
- rust/kernel/uaccess.rs | 50 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ drivers/gpu/drm/nouveau/nouveau_drv.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
-index f989539a31b4..8bbb0084abb1 100644
---- a/rust/kernel/uaccess.rs
-+++ b/rust/kernel/uaccess.rs
-@@ -481,6 +481,56 @@ pub fn write_slice(&mut self, data: &[u8]) -> Result {
-         Ok(())
-     }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drv.h b/drivers/gpu/drm/nouveau/nouveau_drv.h
+index 0e409414f44d..5b931260ce40 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drv.h
++++ b/drivers/gpu/drm/nouveau/nouveau_drv.h
+@@ -10,7 +10,7 @@
  
-+    /// Writes raw data to this user pointer from a raw kernel pointer.
-+    ///
-+    /// This is similar to [`Self::write_slice`] but takes a raw pointer instead of a slice,
-+    /// along with a total buffer length, an offset into the that buffer, and a count of bytes
-+    /// to copy.
-+    ///
-+    /// Returns error if the offset+count exceeds the buffer size.
-+    ///
-+    /// Fails with [`EFAULT`] if the write happens on a bad address, or if the write goes out of
-+    /// bounds of this [`UserSliceWriter`]. This call may modify the associated userspace slice
-+    /// even if it returns an error.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - `data` must point to a valid memory region of at least `len` bytes that remains allocated
-+    ///   for the duration of this call.
-+    ///
-+    /// Note: Unlike [`Self::write_slice`], this method does not require exclusive access to the
-+    /// source memory. The memory may be concurrently modified by other threads or hardware (e.g.,
-+    /// DMA buffers). In such cases, the copied data may be inconsistent, but this does not cause
-+    /// undefined behavior.
-+    pub unsafe fn write_buffer(
-+        &mut self,
-+        data: *const u8,
-+        len: usize,
-+        offset: usize,
-+        count: usize,
-+    ) -> Result {
-+        if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
-+            return Err(ERANGE);
-+        }
-+
-+        // SAFETY: The caller guarantees that `data` is valid for reads of `len` bytes,
-+        // so `data.add(offset_val)` is valid for reads of `count` bytes.
-+        let src_ptr = unsafe { data.add(offset) };
-+
-+        // SAFETY: `src_ptr` is valid for reads of `to_write` bytes per the above.
-+        let res = unsafe {
-+            bindings::copy_to_user(self.ptr.as_mut_ptr(), src_ptr.cast::<c_void>(), count)
-+        };
-+        if res != 0 {
-+            return Err(EFAULT);
-+        }
-+
-+        self.ptr = self.ptr.wrapping_byte_add(count);
-+        self.length -= count;
-+
-+        Ok(())
-+    }
-+
-     /// Writes raw data to this user pointer from a kernel buffer partially.
-     ///
-     /// This is the same as [`Self::write_slice`] but considers the given `offset` into `data` and
+ #define DRIVER_MAJOR		1
+ #define DRIVER_MINOR		4
+-#define DRIVER_PATCHLEVEL	1
++#define DRIVER_PATCHLEVEL	0
+ 
+ /*
+  * 1.1.1:
+@@ -37,6 +37,8 @@
+  *      - implemented limited ABI16/NVIF interop
+  * 1.4.1:
+  *      - add variable page sizes and compression for Turing+
++ *        Note: Rolled back due to issues with large page support
++ *        see https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
+  */
+ 
+ #include <linux/notifier.h>
+
+---
+base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
+change-id: 20260116-disable_large_page-4aa1432445ad
+
+Best regards,
 -- 
-2.52.0
+Mel Henning <mhenning@darkrefraction.com>
 
