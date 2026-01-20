@@ -4,153 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2EE1D262B0
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 06:06:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA0E5C44525
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:57:09 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 836F610E6C2;
-	Wed, 21 Jan 2026 06:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9389710E765;
+	Wed, 21 Jan 2026 12:57:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ayOwYbv4";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="R4A+PMNi";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.com header.i=@suse.com header.b="R4A+PMNi";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8741D40111;
-	Wed, 21 Jan 2026 05:57:30 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768975050;
- b=ODgGcnPvAvGdzLjZBL/j+DDh16COjFVSiUS3M3pzp+D7X+zu1jxRLcSv3ZIhgrIbR0Get
- rkxegFL0de3ISbnL7tZGhHV892J2vwlx6yUzp5RSKeBpW5SBrt7DhyVNuXA9GWmAyu1ehID
- Cbh4c0ZxkBN0/QNf4n6GdHSNh70bcdupikN6lJQ5/vjhxJ7E1I5wG4OwNIYtn23vHAcqVP9
- 2hJmcD1Q3Uw1CopywcQG+Vc67CTZUTf5Yoycr/bmFPuf1FSg8761+lfun7u4l+DoGsAQ3HG
- stWfZXmIJBDAXsqUkiA8t+Yy2p0AZwXADWvTW98iKp3YTh+4B0YrxfNgnfow==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768975050; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id DEED840221;
+	Wed, 21 Jan 2026 12:48:22 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1768999702;
+ b=ETW4QbchBWDNWwPQJxmVIZ0uJPohryV0m4DHknNqzuhxGdUgTs5KfUKvq1f/RZoS7fiwx
+ itiVnXW2zIlu/FWB18xZRhsCH24GZlho6VZsUenO44M6V8Z0dI79j+rW1p3u21ZEMvyV6iI
+ MAV2SrIuPJBjhs9iq7Z3oidawKDxADB+B/NfhXJ4N6T1CI0EVNBYxsWoyK2TfIWhl9GFEIq
+ mLzizTqqy/dfzKl4Yyd9Yb+dzK1ND67c9eJT3fJsU8pX6eoViwCHbzGjhNQ3BkF/DJL0sOy
+ QbzayNp9xU+LcVFIShueNWfFpmMjIBA67Kcor01qovmIwZlhNG7hujABYcXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1768999702; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Z7UojO72eVbVg73zkaZW8PxUfBtrnWv4riC70q+KrZ0=;
- b=PAtD4PdRzKV1DbLMg+vSLd8urjdCUJ9Yw+d10+rH1LYTKZTBl/8NQr3eDI02VyB4Wp+Mt
- KP3YcUGgkXMvH/U4FLcw7K4y5Tr+D3CMR4kjJj0CdSFrRyMrIW698HprPKvIlQFDPbAI91M
- IldNL/z2aZxKaDcWQFkiQebVkAv2KOD7bJPbqz6vLIDPbjhtTUl5QvVQtGy/tM/Ixu23S2C
- smf7BDVJxDF0hOFMhK0xSbyM4t5i41WQKqBe3UCA2EzVOtJW2TrUGJak0i3lIeh1dxJmB3e
- MGUdPzldPg5SD0K4y5YwTTl4CHX2VubxLhW2HGmmYWmCbSX3vLTV170N592w==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
+ b=px8cMcEu0BJcXJayptEZcEf8agCGDfGpAc9wlnWVbr/KkUs6708Ic2VOtUIwqCkmiG7jK
+ OxAg0z6dLtdycv6xXVkV/iclPuxqJzrDnZABiEomc0AI+hx0PwsvHfbLtc3q1634COHPRQZ
+ aqNP3sY3D1aZQBUYWARqmCqGaM+hh5Lu/uPzWiJdsc0WMARf5p4WR2pFc/fP07BRnM7+jEv
+ ri3xs84yYACqy5Atg3cm8NC43HVfYlM/m2pq4D8ldulImQlsZIrFxqMP+25E6oX+t1gyuRg
+ OVGuU3Hyk3tjoNOfmGY8P/2qIQ26DEB1fxmwCCeC8bCdZhT150nOOyDjC/Rg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=suse.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=suse.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=suse.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 96F4C4003B
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 05:57:27 +0000 (UTC)
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
- [209.85.219.41])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4684810E6B4
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 06:06:13 +0000 (UTC)
-Received: by mail-qv1-f41.google.com with SMTP id
- 6a1803df08f44-88fcc71dbf4so47626296d6.2
-        for <nouveau@lists.freedesktop.org>;
- Tue, 20 Jan 2026 22:06:13 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1768975572; cv=none;
-        d=google.com; s=arc-20240605;
-        b=M/yb5kfleWSEsq3zF2D+G+jRPfUKTu/UHdSIKz++U3tMkpuZ2b8gQryFxh6PHlilYm
-         8zj0rAg8kpuY7JxH/U6Q8lpO+1noOMj/XTXVRCESWJH6ss5BqjgS5uPzFkVWUTOvN6QX
-         UBTsdXkcvEWQpOGJQCT6SA3unaRM7cYyS0Hy/aqzGo8XAhHQ0wYpvtWekEVAAO4cPT3Q
-         hEa4drEB4dIGv35DfzZOAukJEtRJEIjHvkoItl/Ves2b7vkSi7tbUOrZewC7Tp6iQSUO
-         xCDy41UvxNLOnAhqN16HNWLq8GdTbUszVJXqEW1rP1ENZQ9goK/4SwNyfEZg3ogwPNZD
-         cVXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Z7UojO72eVbVg73zkaZW8PxUfBtrnWv4riC70q+KrZ0=;
-        fh=H8wZYYC241CBNw2RXArgW6QsN3Rg5cRSrNt/oK9GIVk=;
-        b=e+HYTBfp12Qw/xtSLUmLVXlOAh0FaEpX2E6D20u/xep9M4RkIb0POHBg4SiXYgxGei
-         w6peI0ky/XBgahw+xv3+HBvlqEwgPM6hngGOCGtIboca/DvJSbnMyoOyd4D00xigjSnU
-         flJGMY2Th3sSHjXG2L3kzJMVFxASeriwxSXFi4LU+JRvivdkswJt0GIEbr/yiXrWBlqu
-         GzV7ksa0rgV6hnHX/3o5CgB/CoH4rVNfgKPRpLVorU1toerK0O+d5bgzVjMnLs8Km4ay
-         OIZr7eo55rohyGEOtTBBSuTj5SxIMAHMrNDDmiwbLQnsZ+BpX5eKaHC2iMnKP9WCPZD5
-         W0qw==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1768975572; x=1769580372;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z7UojO72eVbVg73zkaZW8PxUfBtrnWv4riC70q+KrZ0=;
-        b=ayOwYbv4wuxpKnWkpb0JQxZCkBxS6whzWUTmFnG4/rsua+B9x2Vo6IXcWIOO5rXrgB
-         FZhdjaTJHfGNzI/68f1WTu7S6WG3VmqHNcqPZMvKnKz3MG4NtBAZTj+HmLRxNlUXSnJX
-         mQisR9vexl3k10gpgw/Mre+DZyhWa7skeLQTeNi3GS3nnFtwQHKPSR0qY9dJNHGmQp9g
-         4Lpz/YgxPN23j0otQok5DRlbTmSAvD5okUfqOUKJIcIpqXegaRP80ZLiF97xqnOwJEkp
-         c2ZzZvkERuLb3td+Ql8XETYSiUEquacQApS+3fOxI00js4msqnLUyEZR24o0xBVPBibM
-         hErw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1768975572; x=1769580372;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Z7UojO72eVbVg73zkaZW8PxUfBtrnWv4riC70q+KrZ0=;
-        b=IrY6ShLM7uRKJ8a2SOxlwPiX0ZjtONt0PRpV8dpeP9T4ltfywkcezj2xVH+HCWykVh
-         IKm5ZLpNH6aAN98jC9hYX7xl9UJqDhOk4xMfNTGJE9yGuohVTPeOf0fnTVvulGUGtjy5
-         eAx9+FKA+vYVlPAD8US0N2N2KUNFcOilp28XD8+LtmUfDuai+xnkdvfb6kQIk/rgXBEE
-         rLmg7hnZQYCfnN3S73OFvNB8fDOI40FmVoBDUnvzkqMjU9Gg11iDkCEiMIJ9ZXc0DDPL
-         uJf77c1fVrE0Dz63WzvPChn5F18x3FJ6DW8QIj0k8jcC/FlpGFvECkEJwh6bIQx9PBNZ
-         AKag==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUhxyR/AY78+s+lPlhA/uzje22HD5XOx5ReZ1YuCJy0f4Zh0u82ZmCA0DOcIROCrmkikrOHdtCc@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzLUI08s75NaZm9DS1q5ctcU9wGpYbIm+zVgLCiuhwBl+q86jxz
-	jJcrwy5mJ3dK1FtLXXXrYLiCpQe1KYEGzjkcjBniE1J0IL2tVqO6P7gQMdyKvg5iS6uHtZMlp2K
-	4gEx8l5syTqrSniUY/gOTCepMEesYV/0=
-X-Gm-Gg: AZuq6aLDtkNw+EB2lthXLfn+cH47xw7Ll5chgR8clEQGe5crersgY2/r5eBMMpe5nR6
-	JMKMQt0GpnhCaI1d62kQXtCacWw5ZQYDOEZ9yuK/emj8kqHayWZG596EvSbtgSDmG902B7jnv7U
-	6lZor1Lj1FIKEZ2+/uD96QWEJigQya1tg/Od/6tHns0X5BGCMYUvyqm27A+NC3pP2euT5aBWAwe
-	aGGU0BgKMrtKXxKMpbSP3y9rHIgikXc2mb2DzB3PcSrO+E7o/tc0O9sRV1hW3idcwg6RNBRsrws
-	gRqoyksYRDmINGDeMqF++MwQ3Ed+gNC3NmBXRarR8becGddAU453LB6PHp3loDd2fg==
-X-Received: by 2002:a05:6214:3007:b0:890:2df9:c6a3 with SMTP id
- 6a1803df08f44-8946391947emr59560006d6.50.1768975572034; Tue, 20 Jan 2026
- 22:06:12 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2147F44CA1
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:20:07 +0000 (UTC)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BC38310E57D
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:28:50 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 623B2337C0;
+	Tue, 20 Jan 2026 08:28:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+	t=1768897729;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
+	b=R4A+PMNiMN3Hwix5ayoiKJUrTVlfduigtxPZ34/x26fpUxxGJEHEIcHdjjj50H2MCfs11w
+	kwZcDIZNAzAYYt9LAEgUBYEPPUioc124NZa6/lxEcjUknpZbsxzIfnNBd5YM/7/AdwvsKJ
+	R2JGq9ed7ZoPQXSllWjffD2FbNyAm0w=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
+	t=1768897729;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
+	b=R4A+PMNiMN3Hwix5ayoiKJUrTVlfduigtxPZ34/x26fpUxxGJEHEIcHdjjj50H2MCfs11w
+	kwZcDIZNAzAYYt9LAEgUBYEPPUioc124NZa6/lxEcjUknpZbsxzIfnNBd5YM/7/AdwvsKJ
+	R2JGq9ed7ZoPQXSllWjffD2FbNyAm0w=
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 23A103EA65;
+	Tue, 20 Jan 2026 08:28:49 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 6AlSB8E8b2k0dwAAD6G6ig
+	(envelope-from <tzimmermann@suse.com>); Tue, 20 Jan 2026 08:28:49 +0000
+From: Thomas Zimmermann <tzimmermann@suse.com>
+To: kernel-kabi@suse.de
+Subject: [PATCH 1/2] drm, fbcon,
+ vga_switcheroo: Avoid race condition in fbcon setup
+Date: Tue, 20 Jan 2026 09:28:04 +0100
+Message-ID: <20260120082841.11381-2-tzimmermann@suse.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260120082841.11381-1-tzimmermann@suse.com>
+References: <20260120082841.11381-1-tzimmermann@suse.com>
 MIME-Version: 1.0
-References: <20260120121455.142960-1-me@linux.beauty>
- <CAPM=9tw-Mkw95g=VDgjvqQha8KaTM7e6Qs2b3bvTaNUdz-Q7Kg@mail.gmail.com>
- <19bde085588.1b451560725069.154128025837198067@linux.beauty>
- <DFTV9NQTFFU0.NOD8PPU8HW8L@kernel.org>
- <19bde331fbd.dd44bec734977.5910036498943757747@linux.beauty>
- <19bdf152a97.5ffa0a07806790.470935296772844852@linux.beauty>
-In-Reply-To: <19bdf152a97.5ffa0a07806790.470935296772844852@linux.beauty>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 21 Jan 2026 16:06:00 +1000
-X-Gm-Features: AZwV_QigfFK2fLqZfST8Ad7KET0n2cYjnEyPoN4JddxN7P9HrS2OyyM7MmT2BXg
-Message-ID: 
- <CAPM=9txNMnPhaCO9PJb=-kptgWia=18TbfFnQ1W03Cj3dLDCsQ@mail.gmail.com>
-Subject: Re: [PATCH] nouveau: pci: quiesce GPU on shutdown
-To: Li Chen <me@linux.beauty>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: YFKFA64ZA4NRIG23GKQGO42QSJHMI4EH
-X-Message-ID-Hash: YFKFA64ZA4NRIG23GKQGO42QSJHMI4EH
-X-MailFrom: airlied@gmail.com
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,suse.com:mid,imap1.dmz-prg2.suse.org:helo,suse.de:email,lists.freedesktop.org:email];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	DKIM_SIGNED(0.00)[suse.com:s=susede1];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_ALL(0.00)[]
+X-MailFrom: tzimmermann@suse.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- dri-devel <dri-devel@lists.freedesktop.org>,
- nouveau <nouveau@lists.freedesktop.org>,
- linux-kernel <linux-kernel@vger.kernel.org>, Daniel Palmer <daniel@0x0f.com>
+ loop; banned-address; member-moderation
+Message-ID-Hash: 6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP
+X-Message-ID-Hash: 6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP
+X-Mailman-Approved-At: Wed, 21 Jan 2026 12:48:20 +0000
+CC: Javier Martinez Canillas <javierm@redhat.com>,
+ Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, stable@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YFKFA64ZA4NRIG23GKQGO42QSJHMI4EH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP/>
 Archived-At: 
- <https://lore.freedesktop.org/CAPM=9txNMnPhaCO9PJb=-kptgWia=18TbfFnQ1W03Cj3dLDCsQ@mail.gmail.com/>
+ <https://lore.freedesktop.org/20260120082841.11381-2-tzimmermann@suse.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -160,50 +148,165 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, 21 Jan 2026 at 15:44, Li Chen <me@linux.beauty> wrote:
->
-> Hi Dave,
->
->  > Hi Danilo
->  >
->  >  > On Wed Jan 21, 2026 at 1:50 AM CET, Li Chen wrote:
->  >  > >  > > +       usleep_range(200, 400);\
->  >  > >  >
->  >  > >  > Why is this needed? it at least needs a comment.
->  >  > >
->  >  > > This patch is needed for kexec/KHO/LUO reboot: firmware reset is =
-skipped, so the GPU may remain in an active/DMA
->  >  > > state and the next kernel can fail to re-init nouveau. We can=E2=
-=80=99t call the full DRM/TTM teardown from ->shutdown() because
->  >  > > userspace may still hold DRM fds during shutdown, which triggers =
-WARNs.
->  >  > >
->  >  > > So the shutdown hook reuses the suspend/quiesce path (safe with o=
-pen fds) and then powers down the PCI function (D3hot)
->  >  > > to leave the device in a consistent state for the next kernel.
->  >  >
->  >  > I think the question was about the usleep_range() specifically. :)
->  >  >
->  >
->  > Thanks for the hint.
->  >
->  > That usleep_range(200, 400) is just to give the PCI power transition t=
-ime to settle before an immediate kexec jump.
->  >
->  >  It=E2=80=99s mirroring the existing nouveau_pmops_suspend() behavior,=
- which already does udelay(200) right after pci_set_power_state(..., PCI_D3=
-hot). In ->shutdown() we=E2=80=99re allowed to
->  >  sleep, so I used usleep_range() instead of a busy-wait udelay().
->
-> Dave, if this is ok, I would add it as comment in the next version.
+From: Thomas Zimmermann <tzimmermann@suse.de>
 
-Please do,
+Protect vga_switcheroo_client_fb_set() with console lock. Avoids OOB
+access in fbcon_remap_all(). Without holding the console lock the call
+races with switching outputs.
 
-Also with that,
+VGA switcheroo calls fbcon_remap_all() when switching clients. The fbcon
+function uses struct fb_info.node, which is set by register_framebuffer().
+As the fb-helper code currently sets up VGA switcheroo before registering
+the framebuffer, the value of node is -1 and therefore not a legal value.
+For example, fbcon uses the value within set_con2fb_map() [1] as an index
+into an array.
 
-Reviewed-by: Dave Airlie <airlied@redhat.com>
+Moving vga_switcheroo_client_fb_set() after register_framebuffer() can
+result in VGA switching that does not switch fbcon correctly.
 
->
-> Regards,
-> Li
->
+Therefore move vga_switcheroo_client_fb_set() under fbcon_fb_registered(),
+which already holds the console lock. Fbdev calls fbcon_fb_registered()
+from within register_framebuffer(). Serializes the helper with VGA
+switcheroo's call to fbcon_remap_all().
+
+Although vga_switcheroo_client_fb_set() takes an instance of struct fb_info
+as parameter, it really only needs the contained fbcon state. Moving the
+call to fbcon initialization is therefore cleaner than before. Only amdgpu,
+i915, nouveau and radeon support vga_switcheroo. For all other drivers,
+this change does nothing.
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Link: https://elixir.bootlin.com/linux/v6.17/source/drivers/video/fbdev/core/fbcon.c#L2942 # [1]
+Fixes: 6a9ee8af344e ("vga_switcheroo: initial implementation (v15)")
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+Acked-by: Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: linux-fbdev@vger.kernel.org
+Cc: <stable@vger.kernel.org> # v2.6.34+
+Link: https://patch.msgid.link/20251105161549.98836-1-tzimmermann@suse.de
+(cherry picked from commit eb76d0f5553575599561010f24c277cc5b31d003)
+---
+ drivers/gpu/drm/drm_fb_helper.c            | 6 ------
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 2 --
+ drivers/gpu/drm/radeon/radeon_fbdev.c      | 3 ---
+ drivers/video/fbdev/core/fbcon.c           | 9 +++++++++
+ 4 files changed, 9 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_fb_helper.c b/drivers/gpu/drm/drm_fb_helper.c
+index b507c1c008a3e..3915a8b17bc4c 100644
+--- a/drivers/gpu/drm/drm_fb_helper.c
++++ b/drivers/gpu/drm/drm_fb_helper.c
+@@ -32,7 +32,6 @@
+ #include <linux/console.h>
+ #include <linux/pci.h>
+ #include <linux/sysrq.h>
+-#include <linux/vga_switcheroo.h>
+ 
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_drv.h>
+@@ -1668,7 +1667,6 @@ static int drm_fb_helper_find_sizes(struct drm_fb_helper *fb_helper,
+ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper)
+ {
+ 	struct drm_client_dev *client = &fb_helper->client;
+-	struct drm_device *dev = fb_helper->dev;
+ 	struct drm_fb_helper_surface_size sizes;
+ 	int ret;
+ 
+@@ -1687,10 +1685,6 @@ static int drm_fb_helper_single_fb_probe(struct drm_fb_helper *fb_helper)
+ 
+ 	strcpy(fb_helper->fb->comm, "[fbcon]");
+ 
+-	/* Set the fb info for vgaswitcheroo clients. Does nothing otherwise. */
+-	if (dev_is_pci(dev->dev))
+-		vga_switcheroo_client_fb_set(to_pci_dev(dev->dev), fb_helper->info);
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 31d0d695d5671..8bad7e7909f7b 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -36,7 +36,6 @@
+ #include <linux/string.h>
+ #include <linux/sysrq.h>
+ #include <linux/tty.h>
+-#include <linux/vga_switcheroo.h>
+ 
+ #include <drm/drm_crtc.h>
+ #include <drm/drm_fb_helper.h>
+@@ -337,7 +336,6 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	ifbdev->vma_flags = flags;
+ 
+ 	intel_runtime_pm_put(&dev_priv->runtime_pm, wakeref);
+-	vga_switcheroo_client_fb_set(pdev, info);
+ 	return 0;
+ 
+ out_unpin:
+diff --git a/drivers/gpu/drm/radeon/radeon_fbdev.c b/drivers/gpu/drm/radeon/radeon_fbdev.c
+index fb70de29545c6..730efabe05f6b 100644
+--- a/drivers/gpu/drm/radeon/radeon_fbdev.c
++++ b/drivers/gpu/drm/radeon/radeon_fbdev.c
+@@ -303,7 +303,6 @@ static void radeon_fbdev_client_unregister(struct drm_client_dev *client)
+ 	struct radeon_device *rdev = dev->dev_private;
+ 
+ 	if (fb_helper->info) {
+-		vga_switcheroo_client_fb_set(rdev->pdev, NULL);
+ 		drm_helper_force_disable_all(dev);
+ 		drm_fb_helper_unregister_info(fb_helper);
+ 	} else {
+@@ -342,8 +341,6 @@ static int radeon_fbdev_client_hotplug(struct drm_client_dev *client)
+ 	if (ret)
+ 		goto err_drm_fb_helper_fini;
+ 
+-	vga_switcheroo_client_fb_set(rdev->pdev, fb_helper->info);
+-
+ 	return 0;
+ 
+ err_drm_fb_helper_fini:
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 79525ee90e3b2..57b21b6869231 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -64,6 +64,7 @@
+ #include <linux/console.h>
+ #include <linux/string.h>
+ #include <linux/kd.h>
++#include <linux/pci.h>
+ #include <linux/slab.h>
+ #include <linux/fb.h>
+ #include <linux/fbcon.h>
+@@ -75,6 +76,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/crc32.h> /* For counting font checksums */
+ #include <linux/uaccess.h>
++#include <linux/vga_switcheroo.h>
+ #include <asm/irq.h>
+ 
+ #include "fbcon.h"
+@@ -2909,6 +2911,9 @@ void fbcon_fb_unregistered(struct fb_info *info)
+ 
+ 	console_lock();
+ 
++	if (info->device && dev_is_pci(info->device))
++		vga_switcheroo_client_fb_set(to_pci_dev(info->device), info);
++
+ 	fbcon_registered_fb[info->node] = NULL;
+ 	fbcon_num_registered_fb--;
+ 
+@@ -3042,6 +3047,10 @@ static int do_fb_registered(struct fb_info *info)
+ 		}
+ 	}
+ 
++	/* Set the fb info for vga_switcheroo clients. Does nothing otherwise. */
++	if (info->device && dev_is_pci(info->device))
++		vga_switcheroo_client_fb_set(to_pci_dev(info->device), NULL);
++
+ 	return ret;
+ }
+ 
+-- 
+2.52.0
+
