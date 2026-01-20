@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA0E5C44525
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D16A4C44525
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:57:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9389710E765;
-	Wed, 21 Jan 2026 12:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AE97710E76A;
+	Wed, 21 Jan 2026 12:57:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="R4A+PMNi";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.com header.i=@suse.com header.b="R4A+PMNi";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="EfXAQxKX";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.com header.i=@suse.com header.b="RSr4oavw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DEED840221;
-	Wed, 21 Jan 2026 12:48:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 28694401CE;
+	Wed, 21 Jan 2026 12:48:27 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768999702;
- b=ETW4QbchBWDNWwPQJxmVIZ0uJPohryV0m4DHknNqzuhxGdUgTs5KfUKvq1f/RZoS7fiwx
- itiVnXW2zIlu/FWB18xZRhsCH24GZlho6VZsUenO44M6V8Z0dI79j+rW1p3u21ZEMvyV6iI
- MAV2SrIuPJBjhs9iq7Z3oidawKDxADB+B/NfhXJ4N6T1CI0EVNBYxsWoyK2TfIWhl9GFEIq
- mLzizTqqy/dfzKl4Yyd9Yb+dzK1ND67c9eJT3fJsU8pX6eoViwCHbzGjhNQ3BkF/DJL0sOy
- QbzayNp9xU+LcVFIShueNWfFpmMjIBA67Kcor01qovmIwZlhNG7hujABYcXg==
+ s=20240201; t=1768999707;
+ b=GU+rginYebUlxfEN6Hufh4G3DjWUypWAxnYAdyrPHoi1OkMzlDCGa1Xk6+vWRk8xIIjrd
+ Mdu/tWb22i1eW8tSjJVMYGpDQVvRAX/dEGD1xYOYxATQzCgCha0/k7Q+t03JabzBWyDreiQ
+ fJ0w+g8e9sYCj/LNyTaJrv6HVJssQ6FdPMAMkw1sRxtPRfihjTgfe1yHN04+erT5qZhX285
+ VobBlLDt0UbX7Cjb7b2AxJ4+9Gm44Z6Tg1m1ieM8qGg9L8p63e7CEYJKYdAVs8YfuwiWMwz
+ xly3NPQ9pGfnXmXUdFZarkQ+vXD1rQxqpY++7GFJb6DIrG5IwZhXkm8X4jow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768999702; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1768999707; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
@@ -32,11 +32,11 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
  bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
- b=px8cMcEu0BJcXJayptEZcEf8agCGDfGpAc9wlnWVbr/KkUs6708Ic2VOtUIwqCkmiG7jK
- OxAg0z6dLtdycv6xXVkV/iclPuxqJzrDnZABiEomc0AI+hx0PwsvHfbLtc3q1634COHPRQZ
- aqNP3sY3D1aZQBUYWARqmCqGaM+hh5Lu/uPzWiJdsc0WMARf5p4WR2pFc/fP07BRnM7+jEv
- ri3xs84yYACqy5Atg3cm8NC43HVfYlM/m2pq4D8ldulImQlsZIrFxqMP+25E6oX+t1gyuRg
- OVGuU3Hyk3tjoNOfmGY8P/2qIQ26DEB1fxmwCCeC8bCdZhT150nOOyDjC/Rg==
+ b=lDf0xo3lbRJ/QXczqGkCYyWg4UiPHcqmfALXnTV10SlwsaQZbflX9QTsAPCDwSziHteYa
+ uGKTuD4ReoG7jlEYs5aaQm42PuVREp6tsS0QiTcNa8BOJS+LPezJanNlD9pmaMTcfMynTEH
+ Tg8kpU/05wHupa2Fun9a7E0VMd/sbW66+u3UCxIl614nsY79nBaac3/167L1tEGAbZTusBk
+ K/0xwc9GLyVCzJxSeiJlxiEtknO4C6wZlInCT8rppfFuOMNmv3ZmopmK3hzJqxYtD0HoZmT
+ PvBsaZXCny45Nh4jv0+2reg7wAXzxhEDCpqYQdbICF0b1UWkEiDe69J90S0Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.com;
   arc=none (Message is not ARC signed);
@@ -47,58 +47,58 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.com;
  dmarc=pass (Used From Domain Record) header.from=suse.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2147F44CA1
-	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:20:07 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1D10A404B2
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:10:16 +0000 (UTC)
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BC38310E57D
-	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:28:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 87BF810E577
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 08:18:59 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 623B2337C0;
-	Tue, 20 Jan 2026 08:28:49 +0000 (UTC)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 3A4B93371C;
+	Tue, 20 Jan 2026 08:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-	t=1768897729;
+	t=1768897138;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
 	bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
-	b=R4A+PMNiMN3Hwix5ayoiKJUrTVlfduigtxPZ34/x26fpUxxGJEHEIcHdjjj50H2MCfs11w
-	kwZcDIZNAzAYYt9LAEgUBYEPPUioc124NZa6/lxEcjUknpZbsxzIfnNBd5YM/7/AdwvsKJ
-	R2JGq9ed7ZoPQXSllWjffD2FbNyAm0w=
+	b=EfXAQxKXDqyEMf9cenYZEuR6nv8jW6dO0w0GjGyxuTl7USuncIDKZ0gUI+iX2O2SFR4W/6
+	R0H+UFc4bASV4s+jkpnFqcOXcGnNWsG+ziWnZflyiYF6vfT1n+H+1/M3yw0E15hwgFV+Qi
+	NMZDiVjyg15VuqbuYvbNsV+qhupGMZ8=
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.com; s=susede1;
-	t=1768897729;
+	t=1768897137;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
 	bh=Q6cpBlQu0Ap+fT+JaqOV2zSr1RCFwBggI0A+6THe6Gs=;
-	b=R4A+PMNiMN3Hwix5ayoiKJUrTVlfduigtxPZ34/x26fpUxxGJEHEIcHdjjj50H2MCfs11w
-	kwZcDIZNAzAYYt9LAEgUBYEPPUioc124NZa6/lxEcjUknpZbsxzIfnNBd5YM/7/AdwvsKJ
-	R2JGq9ed7ZoPQXSllWjffD2FbNyAm0w=
+	b=RSr4oavwTryGeUH4FDsxzJmcUrdi3LCHkThOoABu4/hofqM2gsjEn3p1NK2eeyIxt6Mdut
+	OICwXl1OvegMF5DQOEuP9TOyeuSCngzmFF4IZUB53dKuZAWJS6F7NTBqyXDzmt3NNMXGMD
+	lI0sYPAxIHb0+guZmy9fVnq857py52E=
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 23A103EA65;
-	Tue, 20 Jan 2026 08:28:49 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id E39413EA65;
+	Tue, 20 Jan 2026 08:18:56 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 6AlSB8E8b2k0dwAAD6G6ig
-	(envelope-from <tzimmermann@suse.com>); Tue, 20 Jan 2026 08:28:49 +0000
+	id 2DYkNnA6b2n1bQAAD6G6ig
+	(envelope-from <tzimmermann@suse.com>); Tue, 20 Jan 2026 08:18:56 +0000
 From: Thomas Zimmermann <tzimmermann@suse.com>
 To: kernel-kabi@suse.de
 Subject: [PATCH 1/2] drm, fbcon,
  vga_switcheroo: Avoid race condition in fbcon setup
-Date: Tue, 20 Jan 2026 09:28:04 +0100
-Message-ID: <20260120082841.11381-2-tzimmermann@suse.com>
+Date: Tue, 20 Jan 2026 09:13:37 +0100
+Message-ID: <20260120081841.9827-2-tzimmermann@suse.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260120082841.11381-1-tzimmermann@suse.com>
-References: <20260120082841.11381-1-tzimmermann@suse.com>
+In-Reply-To: <20260120081841.9827-1-tzimmermann@suse.com>
+References: <20260120081841.9827-1-tzimmermann@suse.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spamd-Result: default: False [-2.80 / 50.00];
@@ -113,7 +113,7 @@ X-Spamd-Result: default: False [-2.80 / 50.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:url,suse.com:mid,imap1.dmz-prg2.suse.org:helo,suse.de:email,lists.freedesktop.org:email];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,bootlin.com:url,suse.com:mid];
 	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	RCPT_COUNT_SEVEN(0.00)[9];
 	RCVD_COUNT_TWO(0.00)[2];
@@ -125,9 +125,9 @@ X-MailFrom: tzimmermann@suse.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP
-X-Message-ID-Hash: 6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP
-X-Mailman-Approved-At: Wed, 21 Jan 2026 12:48:20 +0000
+Message-ID-Hash: WFUUGRUPPCBRERANZ3BDZ7JAWQL6RCKI
+X-Message-ID-Hash: WFUUGRUPPCBRERANZ3BDZ7JAWQL6RCKI
+X-Mailman-Approved-At: Wed, 21 Jan 2026 12:48:25 +0000
 CC: Javier Martinez Canillas <javierm@redhat.com>,
  Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
@@ -136,9 +136,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6TPDSVZP2WUBGEP4QSLD25LPF5UE2NLP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WFUUGRUPPCBRERANZ3BDZ7JAWQL6RCKI/>
 Archived-At: 
- <https://lore.freedesktop.org/20260120082841.11381-2-tzimmermann@suse.com/>
+ <https://lore.freedesktop.org/20260120081841.9827-2-tzimmermann@suse.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
