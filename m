@@ -4,214 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79A68D262AD
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jan 2026 20:44:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7289ED262A5
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jan 2026 21:36:22 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B22D010E6ED;
-	Tue, 20 Jan 2026 20:44:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 766B810E259;
+	Tue, 20 Jan 2026 21:36:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="blT8Xdvh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kFPcCKFE";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A899344D00;
-	Tue, 20 Jan 2026 20:35:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4D5E744CC4;
+	Tue, 20 Jan 2026 21:27:35 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768941356;
- b=y+NcNecLg399yrM3P7f3jMpSaoPvoB0P1ybB3XpvT4HN/eb4bp0VfDfcDuV2Ceu0a5yrC
- GTh/oxxhs8J8hyL6FT0rbKR6OSySb//iO+mdnZ1z3ih679AX1VFI3B+URaSvw+Czr4RO8fP
- /rKHGZvymL8AOmOK0PhIyjBoR2eIXxb5o7SYc0/Ri23S8MH/uHqQQBobOPVkitArwn2Hnh4
- 70dxkk+OmNaXYpfBZioDztYcEi7fKyHHo6Wrg1kvfwW5AXQP+tNZ0QMGhiA37bGC3vKEJT/
- IABKI4kUOte6ZqpE/09GAbMpbbSxgL/ZmaGmHPDOJKfThwws/fAtNu+zWoEg==
+ s=20240201; t=1768944455;
+ b=QWAl4LVKYm//nbYq+D9cpbB33+V3VUSkYXAyXnT+2ypEWy2g5ccuMvnjCMDxjbncqPtp1
+ uvDaQ8+VEQNxaUEQkw1n7NsOCvZz3j7aAh2RnoNFuDFOOy2QAsRw5zxxbIsrSZfuEa+1h89
+ dVVw13GXvyZFdk/b7VvSEJznFdORHK7Fi98q0o7rf7SOiOqaBEjvvUh9JYTz0AFcobE8MGY
+ 8Gu8880f5h6neiep1wDsO07Y55bjPmXMc8EqWrV7zPC+438bruV2+sreXTKQWStvwd9zGYq
+ J/OIvCs3WnwIMjZ1mhHGjux545/74cDXgOHaKQRdhMmkdWUge9tYeKR07J3A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768941356; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1768944455; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PomTm1iOEgO20nycd1szNoCYqeZgpfISaUbKMSUnqLw=;
- b=s0P5HIZ7dy6+oIfonMN60TeOsylnN6ME0Kh162+pE1qSG2xXKFZgbryG9aXD2wJGgqiy1
- EZVSRGCRwdHnUWpLaAtwh/dRdrAYGEZLB9AShsaXnH9bOSmilNW0YioAY0cmEkiBv7bMRqW
- mAOtWOkg3rEfpV5yrsLRygcbaqxNj/V19S9XD8Ks0YVg4ey+GQiHYU93BlmVEM3lfUEaL1n
- gjHxNI2bpR0BsVT/yJVBLtHVEc0CEiuHKQUIDAPTI8mvBTpuZX9WENRA/3IflLth76qWeON
- EHnnm8aDyj3IXCkFLATEqJ09F71CYhrzOoZbBBnaSl710i15AbyhZL7qfDDQ==
+ bh=5nFujpvEPNRJznN7IV6as1miwfT5Y6L/k2KFAeS/YxM=;
+ b=ngOt8dJi9G4OF7GEXa6I0mC/Qe9C6gpRHrlvM179kIUzq8K+OfUJiqs9injZZHXeTX/0K
+ TxWCDeg+OwqFYl1UXIb4iMka5kwbdO/0oudaUU1jim5OdsL/TmlMIx426pix/TDhZYka1/+
+ y5MISgdq+Qeaa05zVSUshrBIznbobDGDs4RcGThPsAmVP11arXiNfrsjk9NaIZT8lkOr/Z5
+ KOCbPN3b0Lk5WZWxukQSSJ9S/EtDWlIIXt6mZCI5yvL7tqnbegb7X6kvZ8Tdd79F14r80bd
+ hwMnDCLVcatqxNmUsJKR6XwgI83qG2oyZv7x+7eJd4E7QAdFYbMYwShr4E8w==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=gmail.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CF45544CFA
-	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 20:35:53 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013056.outbound.protection.outlook.com
- [40.93.201.56])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7DAEF10E6ED;
-	Tue, 20 Jan 2026 20:44:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZA1DHHPQhVrRe3yiT8s7YeG8obRtVQyh3czPNmtRuZTw32V1XGsFfyp9bE76raBGNgdM7lBtKY5lGUwLB9uKq0wILFX3nXIiJ23/h88ci6spgJuNuJTDudNCxMVniTZ/djlpaFr7FBApywJSFkurX8jkQFPwxWmclBiiTcNsldzyKSlxv5ErKaBKc/M5OeD9H4NBZGzhbn3/b5N6/RNDwprf/7WWHSIuTRh6cYVrNQr3axqvNCzn/uq0KPrKOYOlJdeCGi2/xIPQZ5vL56RT8/RyLzbZ/uZQu+VHY0Ww5ubu1U0uSl9NaIWaucYFiSG2mpA0rMWXwCTtOD5XAfiMvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PomTm1iOEgO20nycd1szNoCYqeZgpfISaUbKMSUnqLw=;
- b=rqwkgcxVLZCAi59DPoMTkcaLJSUW8chau5VkiiFYwuQFSUZX0ydjCeYS9Wen3j+U9XmT28mOP2KtLR1yFYvvkGsAgW55bJUg/hKsyh/GbM6oCBOX9jOiv+2daNqC2xdAc3yOcgXbl/itrwYYQVjpJ0fWxzb09r2hJExvPTyX8oIRtRM+lVs9a1jm1m+zsreNQYtjUt+raNOu1dIsadrg5WLg//AFhCuoNBJsfs8vfjs4blRZLI9zS+CXUUaH/XOaEheYqdVY1STM28C+Fj74uINmxKPli79uNBScAWD9yS/l4uVnB42QsIkQEfO1hiic6EpmasaZCzDnb6TBJv0EMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PomTm1iOEgO20nycd1szNoCYqeZgpfISaUbKMSUnqLw=;
- b=blT8XdvhVBggSaIYaDtjqsNqnyKDXpdJncEew4qWAfaTH2wsLFrHIa1McEofwzMCua15mMSsnVdPkoXMYmnMdAxdPZuR0sfXqvpwDMOfxD1SagEUwZhuP/lioSh0jytnZtYirYgPpsrdO9jerG3jzz7HdtcwUFg+MxnJrGdehrNYR4T7Ab0WB/5PQDErWLvS94e/OO81D2SZNuT6i80mJbTos/J52jaApTTlx/BiLRfwDwSHU843FwK0451+CtvLQYnT4LxFbUxVgaxFiGKF9PzfeRn4xaGTYTXkYDiF2yrzJreMf7njHM/XQzZmW7P8/pQGGqV9qmY1jFnAvRNq0w==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CY1PR12MB9651.namprd12.prod.outlook.com (2603:10b6:930:104::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9520.13; Tue, 20 Jan 2026 20:44:34 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.008; Tue, 20 Jan 2026
- 20:44:34 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH RFC v6 25/26] nova-core: mm: Use usable VRAM region for buddy
- allocator
-Date: Tue, 20 Jan 2026 15:43:02 -0500
-Message-Id: <20260120204303.3229303-26-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260120204303.3229303-1-joelagnelf@nvidia.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: MN2PR12CA0019.namprd12.prod.outlook.com
- (2603:10b6:208:a8::32) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+	by kara.freedesktop.org (Postfix) with ESMTPS id F259E44C49
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 21:27:32 +0000 (UTC)
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com
+ [209.85.219.43])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DD5E610E09D
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 21:36:17 +0000 (UTC)
+Received: by mail-qv1-f43.google.com with SMTP id
+ 6a1803df08f44-89464760408so6357766d6.0
+        for <nouveau@lists.freedesktop.org>;
+ Tue, 20 Jan 2026 13:36:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768944977; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SYNIGvH1sMFTn9mlzKaVGfCuPwTOcZz8XAhuSNhdqe3MTA2pJVaM/sEvohUYAO1fF2
+         4OkGNiRrDEb8ufoBwX/LKWziwru3jpzmgCx/FtsMzW1z0LVyGN1SIarSVn15moJVlcbd
+         7xZai0cY0vV9nPGwjLWeh31sINzTisNYjdPra/uoNpMmTbFIaSli4iS9N1V+D899IHyM
+         uGmBE0hljyhgWP5000b9agErv90Q4OuzpoLOxyPF0TG+HBa1+lcjclwHmexffed9B7eE
+         2mt6Ll7P6FhQoHGq88w3dhfgScUb97Qn5ia1EjDNJv6HwjUV7zUk3uR5eatKVTE74YH3
+         MpjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=5nFujpvEPNRJznN7IV6as1miwfT5Y6L/k2KFAeS/YxM=;
+        fh=jh/cr0zcNdVyb7FIvS4cqSvParLusHGtnzVKpZRBJg8=;
+        b=dmWVJPX1JoKErSDM9qcLooUT/C6VOIF0i8u8CqRgi+rDkd+L97FQQoIfvAGgt+VB61
+         e6Y0QPjOdWcDKCTOS10lzhyK3ngMIA0TqustLOkc09VkJyvCzR7N3C7Eb6bjYoZvYneB
+         LMlIbCKj0gG5NK1fpTcebTyyVwCJ2iNF09Kk1sENbXg/+b9Oj0uELtcwJ/s1HWemP3/Z
+         5OaXpu1Ju3Lf6sDmu1D98UjrjwrYUeSHMuJVHfKvoqCWHCGFMF/ZlD8deeS0FtGkolds
+         c6rLuyowQQVxrqUYB6D7vMBS6tFQUk8z2R2QPZW3dkXWThQL159xGq2uIP3gGntsLJuz
+         WG/Q==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1768944977; x=1769549777;
+ darn=lists.freedesktop.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5nFujpvEPNRJznN7IV6as1miwfT5Y6L/k2KFAeS/YxM=;
+        b=kFPcCKFEObsRI90w671a70UaZhCMjdUnQnM14cm6333O7kVPbtTQF8Tp/ttkB49kxz
+         Qy9lvXIoOg1OzwPYy7gCSweEC3STRJ22Ny29PxDGpW9E246bFKRQb5aRe5O2vNpN+FKx
+         noPqipepALChtO8TCc0zfeXm0d9hDlrfjDDgVDQhojwmD9NyXMqIiGz1ba6p4lUCIXlU
+         TUQ/3tmta5nTdYduJpLlZnTY6lpcUfoplUG0vACKNAY5K4ph7CpoJ5JjfBUhYqZYsmFC
+         unGiq4cU/8Tzj9crPBC9BWjECe3KF/qyZZHzcAHxyfUjvPd+JAuIalDAtX11p0x3lgs7
+         2Bug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1768944977; x=1769549777;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5nFujpvEPNRJznN7IV6as1miwfT5Y6L/k2KFAeS/YxM=;
+        b=hOgKyxrihjUSWb8d1dFtKgV9Iw5HR+XAg6sdu7hNQIMvNFHXpPfL1d7BwsUS75EnLY
+         oNqTYiVMqN7lnli7MvCg2EGxQSzwJNu0aaGHEebbCCN59nPbCY62Y2XN2C/QHmpraMWq
+         bZLjJZqgtDcYXa8sFhllSm+rS41LV2Kzd0zjywTtgJJcZZTPw0WJyXw4xve583xLewbk
+         qMDFGEZGFEHh8wTCnybiGqI/whCQLdRf6eaICpIhLdW0DgdmDJqGvf2Qrhug9IvV7KBq
+         5j2uuX0H/ebUAuUSbrl10AcegF1CNJn7uow2cJE+3i+iHgBIpYQVbgdlsjo4OUin2GWf
+         BluA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX4WhABFiqqUIUOHxNVtpKkRQ3ThTbLbPnDxHZfpLAi+xuSEuHUl7lhA5EqZtnKD5oEOUQ3DaLB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxOAqagKP1game8W9D6NWG/Bl8n3poPT8rsJfxki+sA5JlyB1+8
+	8jcb788SXzbCP0kvMV+Abc7pI0aHxBXiGsPe5myJMxrNmg+GQZ268SZ/rhx8vb7mD8DWlI+QYFX
+	N+5li4azjdoMHV1NMBu6CVzKZPbiIJVk=
+X-Gm-Gg: AZuq6aKM5AuAIM0afWopLfaSs+X9bezpoGiPK7uvw5GwBK6JA7V/VO7GGSoVzgFhxPr
+	Bl4CSa4xdBfx0uHl4vHRcVycjzYuQyQkqzzE92n/4D3GsAN7IjZpPMg47Cu/iWsX6vNTt1lDl29
+	+B419a5UHBLsBI5SnfICE+gcuSUjpN0DNc2T8DlwWt8lxz1Gd1/atjfyA8yfFDUofJ3E22pv463
+	xBt6h+N95rjpVdR2Q86OiGzg/VeNnF02pbxOlJ5Ftcjdi8LOQMC2IWC1J+jr25K/VLFpd59RxTo
+	2kB0mfpG9nCKuso4yciaYSSvgjQcghqCRFCrANQpFTTjU8UNe1swK3g=
+X-Received: by 2002:a05:6214:1cc5:b0:893:886:3816 with SMTP id
+ 6a1803df08f44-8946384ec3bmr42134286d6.6.1768944976692; Tue, 20 Jan 2026
+ 13:36:16 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CY1PR12MB9651:EE_
-X-MS-Office365-Filtering-Correlation-Id: a9a611a1-a55b-4abf-89b2-08de5864b7cd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?6m3x5IBQPfADy9nFW4J1NJ0JuoI76F9S/OVVg/r3FKY20OvxLP6+TxEPaeTt?=
- =?us-ascii?Q?U3r0ozfF9JST+WqH+pR//XCjB4oJ6MeDRIF6U7zAZMic6o0mu2Dnjyw25UOq?=
- =?us-ascii?Q?i0lLx8YAprYhf7uRArNydDWGDRnz+dWNOyKUeYxFLj5cxyFsjzrehOO4Ni2o?=
- =?us-ascii?Q?arb5NyfL068XoMV1RKNNrgfNBJf48SYtJMZxyw+HadoM0W3fTIQGzVegNf4B?=
- =?us-ascii?Q?ZNyIlWkMeNqxTZYx+gt3yTOi+g64yIRUtZqyqto4TLosFoOCmmas3NfxNPM9?=
- =?us-ascii?Q?b8fPrC2g2BwC9jeND0rtLgo2l/G6iIwmsGMKZp5bJmTSmOcFCBMv25oW0kVM?=
- =?us-ascii?Q?p21XKId5jTGrhPlA0TomcFo5tDjd+MzjKTV2snqA5kL8SGLDsqbcJHl1J4kZ?=
- =?us-ascii?Q?XemxIOrvOayZWShkqXJP072903akw0eHaaL94mIv0EAHISY7GadJLpLb/oWO?=
- =?us-ascii?Q?EGmyaUFytRJ9vlUGIHh2Xr8mQjzooMO39u86Lx4Y31fP0lp++QxhVqHoou96?=
- =?us-ascii?Q?KubgnepnLeYjHqPT+pgUS8+ZGiIqQeoEpFBfzOlnLMVUHGKykKE16c21bz4g?=
- =?us-ascii?Q?kPELbeGSmf2Vcx0XSYIBjaBavuNLsn//F5LgNgAbK36tTAZQZ+aSphVZz+SX?=
- =?us-ascii?Q?f/MDRKQRdl5od85HZ7M2BQd3eRuwRYX1gFG8LwZWTlDvGlgw8bsLo/en72Py?=
- =?us-ascii?Q?OW8Xgdwx9XY0OkSt/e/3LdE3OFCrZKyHszx6mAcaqzX665654AymZFKYQuo4?=
- =?us-ascii?Q?UCk0h05qsm1GeiYNnj9TX6plKBbG+G8JWSuvFxLqZqqbtlF74EqdIbdZwOB2?=
- =?us-ascii?Q?byMZroUPGTSoszdi5REfkO56mcaPnJSHfUt87LFowqfEEejtYpZATm0TkSCa?=
- =?us-ascii?Q?jVzeW/UHqbyiTUIktNLMOlSN3ncFk5AU+XypKtuzRU+7IhIhAnu2ZASlkgtP?=
- =?us-ascii?Q?fLkDAqiIxo+9+s1GwUUuYpNAx+oEhGGGhYhyTemSwckMN45QEYaI8UWfRC7O?=
- =?us-ascii?Q?rd0DWgj3WoJ8Yxj1zYE91lkWOs15XXNd505DC7FvOlux9bqGFoigsxoPk0c9?=
- =?us-ascii?Q?3nIOygAITPBdMvMRebyTzI+PdbAPeo99hfzIovQLBIrt7y2wQeXaaYVQ/Xec?=
- =?us-ascii?Q?GbSsMOBQ75WtM1cFqSa7HtyR8tZSRsFDlm/AtnYqKpBr03qUg2kq7IXLDX/c?=
- =?us-ascii?Q?SGuK/BP32PT8gwEWUJJKt7L5vUde5UVVue2CXSjYbaDqMSVG2+NmINKylyav?=
- =?us-ascii?Q?OYdq4mMsVCZOjbI5RAzc0tmnCGlUJlzJnvEzuAGkXrZX2OC6sAJrsTBxnu83?=
- =?us-ascii?Q?JamPAFvt7THnIBHcVeVgYfmB+wDzUg4rDq4MimcuwkmQ3bLajJr84UyClcLW?=
- =?us-ascii?Q?E/EIHgMxZm9Zn2aszObVCkMRFdApuxtLQkraKcQ+8BUseGuXhFeAVIDew3ok?=
- =?us-ascii?Q?XQ43JITqNuona8yP3rDCQGYoRITlDrxBeZ7e4cYUNYKEXOn635uoLU/ucWHe?=
- =?us-ascii?Q?3/HG6bJxr7OO7WcMLTjtKAASBxIHudipF2VTeFa+QikvIOrM9RZcSWJr+uTT?=
- =?us-ascii?Q?ssxER53iHGVDwJRg2K0=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?9lj9cc4pFVOGfbMy6n4l4hm/ShXpl7PZONOWTfBRnvyeiSmyt2T4rWG8CQSN?=
- =?us-ascii?Q?aTveLP0bBb0COOquy+sRTC2F5026J81UUX6ZwEZDkf6o3XkPTIm3cUHnICoK?=
- =?us-ascii?Q?K+/DAU3MwEQ5oYAXMs41yZv6lgyFva6foKZlfa+8pOOrRhc5aiERD87KuGii?=
- =?us-ascii?Q?7v0L6abf5dhlkOaVcjjkOp+GlecDndhqBZmvZRZHGefZ4limnso9p1wfSox6?=
- =?us-ascii?Q?PSqNMY8Tn1ZvzhzW1kSeW6b8PmEiddMRmNm/ahkcGn7el4Gl68EwWwH2jq3M?=
- =?us-ascii?Q?VE6D7UzoGV8RSNhr1DPC+1HfREgfDn6xBK5flJWJI2fX5ARCxq7ZY8xa6CPf?=
- =?us-ascii?Q?lBb9XdYAmfrDiz36IePflC7/Y8I7nQSseMZsC3CGncnnhmRG3oBJugOaewzK?=
- =?us-ascii?Q?jhSSWt/25ICBBYGAsivYIiwfUt2RHMrY37ApvvLWVcIIoslBkBZNomF0CQ7I?=
- =?us-ascii?Q?nvhtmErtkdGgD1BidOZFIRF5qHJIQ33IFyvFH+fkso9eIQVdJbBA3PZU3Jg+?=
- =?us-ascii?Q?JMa0cnlFm31quBsKLMIZwHrL1mxtSzhNrHtGCgSzT0+4GWdahpeTqX4IS8PM?=
- =?us-ascii?Q?REAjfJ8Qu4xalocESN66Y6wExxuSkji+2P/tm2SyTlnXZ/N8c8RloNPlCQ0p?=
- =?us-ascii?Q?+X/LJhJO1a17ghE/IISnGXL37xRTJwoM4RkfMGunTDpQQHk8mx4lf47dUfsl?=
- =?us-ascii?Q?F2wqP3NiLCJYuNq+9d+39R2SMImNKXViAPuwyORUyfLdNmctjqhMJZT2ios/?=
- =?us-ascii?Q?3PqC6wV1zZHczk1dWTFoRyxFXguH1KEQ8PQoxpFI59xUFsMWCY7mzRi//9Qv?=
- =?us-ascii?Q?8keeI7WYvdTn8ifARFEAjA2BxtuxoMv6cRgQI40vmd8/aB/bkp6AQad7LXDH?=
- =?us-ascii?Q?0S/LtTvm+xnZfT8jdFbTnr5YUoFANIE07ijzKPh/DUo/pYoaI15saVxfouMq?=
- =?us-ascii?Q?4jrNSA1wbVJ/cJ59Wpr64VIl8nYwMH9oG/B6OrlqHhWk5E5GxmiJQT2p66Rx?=
- =?us-ascii?Q?zPRGWFUNo6u/jefpYXiY46n5xTUFMbcwshcLc5nDwl+fjGpe5Qp1Z1tCRXwX?=
- =?us-ascii?Q?vHEa49yHIuhMQV95N0W9MtiBgo3DSOKTWXehn5VSpEIStjKe7wH4Y4wPuN0d?=
- =?us-ascii?Q?8Dfr1YDV5c5ysHrL5Ts+QgoB6MRUvHycopl5ara1RtcQQnp2jMExsmWxRoVg?=
- =?us-ascii?Q?40R4xowmv/AjM2oOK+1IJW9AH8QvuHfDtCTJXn8qouc8A5MP9eqSIZmNWqEL?=
- =?us-ascii?Q?YBaRb4KA1gCQUZcBsfaasylGx1+Dcn1SSzvrWAR6jPM6nHcwbFQv5N100qZ5?=
- =?us-ascii?Q?ePoo1qbtRwv5b6/wKzQkSMtw7ikOzAFGjjQhYc8YlzQEOZxpWep3Le3wyiO+?=
- =?us-ascii?Q?3GTNrt4r4MMckQMQovqdl1s+yd9LXrKNvbh9q4h0JFRRLmr8t6o7Fp5yw+zl?=
- =?us-ascii?Q?vHfhY3gwi948+trpa1EkJ6vfNlVQvDywgwUoc7ETiBaVMjtg50v+fC0bNtub?=
- =?us-ascii?Q?auXXyDWPZk2dOV7CuehVe6B+AqeGGG72b4sAcuivjII0KNtGrMbi8zxCQAwm?=
- =?us-ascii?Q?L957ZgHGBDqybWP7R+lmvL9WQscybbkPb2CsXhy3bzgiID/cveXXZbZIm+7D?=
- =?us-ascii?Q?0chNUQW/Chak7hUFBnPlmSxK1EZk++FUikhozmTjdTiXUPvcdqRI0e/fF2V6?=
- =?us-ascii?Q?nNSvh1RSmRsHYsRoQecIXOoAv/PxzdlzH3JDc8dVMl6YEjyU08yWO7lRjCBy?=
- =?us-ascii?Q?ZvClK+9evA=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a9a611a1-a55b-4abf-89b2-08de5864b7cd
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 20:44:33.9787
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- BqFll4Hr7pfrljO+amAX8Ws+k8kpmnwYpM6bhvuWCTQkWrZPcSO0bEDBRWyPvQNulxZiiLcHnwYZKHSGZNndPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9651
-Message-ID-Hash: O5V3HOKWXRVUR2YBIYZTF3RBMOJRF7O7
-X-Message-ID-Hash: O5V3HOKWXRVUR2YBIYZTF3RBMOJRF7O7
-X-MailFrom: joelagnelf@nvidia.com
+References: <20260120121455.142960-1-me@linux.beauty>
+In-Reply-To: <20260120121455.142960-1-me@linux.beauty>
+From: Dave Airlie <airlied@gmail.com>
+Date: Wed, 21 Jan 2026 07:36:05 +1000
+X-Gm-Features: AZwV_QjLXpEQk5YXuxnS3fiq692HSHgxKn8FGedpRxe-Gcn5B8D9KpLEWZ-rRoM
+Message-ID: 
+ <CAPM=9tw-Mkw95g=VDgjvqQha8KaTM7e6Qs2b3bvTaNUdz-Q7Kg@mail.gmail.com>
+Subject: Re: [PATCH] nouveau: pci: quiesce GPU on shutdown
+To: Li Chen <me@linux.beauty>
+Content-Type: text/plain; charset="UTF-8"
+Message-ID-Hash: N2U5FOBA4EHJKRZ2GPKTLVW626FF3S6U
+X-Message-ID-Hash: N2U5FOBA4EHJKRZ2GPKTLVW626FF3S6U
+X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- Joel Fernandes <joelagnelf@nvidia.com>
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O5V3HOKWXRVUR2YBIYZTF3RBMOJRF7O7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/N2U5FOBA4EHJKRZ2GPKTLVW626FF3S6U/>
 Archived-At: 
- <https://lore.freedesktop.org/20260120204303.3229303-26-joelagnelf@nvidia.com/>
+ <https://lore.freedesktop.org/CAPM=9tw-Mkw95g=VDgjvqQha8KaTM7e6Qs2b3bvTaNUdz-Q7Kg@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -221,164 +153,176 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The buddy allocator manages the actual usable VRAM. On my GA102 Ampere
-with 24GB video memory, that is ~23.7GB on a 24GB GPU enabling proper
-GPU memory allocation for driver use.
+On Tue, 20 Jan 2026 at 22:15, Li Chen <me@linux.beauty> wrote:
+>
+> Kexec reboot does not reset PCI devices.
+> Invoking the full DRM/TTM teardown from ->shutdown can trigger WARNs when
+> userspace still holds DRM file descriptors.
+>
+> Quiesce the GPU through the suspend path and then power down the PCI
+> function so the next kernel can re-initialize the device from a consistent
+> state.
+>
+> WARNING: drivers/gpu/drm/drm_mode_config.c:578 at drm_mode_config_cleanup+0x2e7/0x300, CPU#2: kexec/1300
+> Call Trace:
+>  <TASK>
+>  ? srso_return_thunk+0x5/0x5f
+>  ? enable_work+0x3a/0x100
+>  nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  pci_device_shutdown+0x35/0x60
+>  device_shutdown+0x11c/0x1b0
+>  kernel_kexec+0x13a/0x160
+>  __do_sys_reboot+0x209/0x240
+>  do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __rtnl_unlock+0x37/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? netdev_run_todo+0x63/0x570
+>  ? netif_change_flags+0x54/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? devinet_ioctl+0x1e5/0x790
+>  ? srso_return_thunk+0x5/0x5f
+>  ? inet_ioctl+0x1e9/0x200
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x7d/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x23b/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? put_user_ifreq+0x7a/0x90
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x107/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? exc_page_fault+0x7e/0x1a0
+>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>
+> nouveau 0000:26:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp_head))
+> WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_framebuffer_free+0x73/0xa0, CPU#2: kexec/1300
+> Call Trace:
+>  <TASK>
+>  drm_mode_config_cleanup+0x248/0x300
+>  ? __pfx___drm_printfn_dbg+0x10/0x10
+>  ? drm_mode_config_cleanup+0x1dc/0x300
+>  nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  pci_device_shutdown+0x35/0x60
+>  device_shutdown+0x11c/0x1b0
+>  kernel_kexec+0x13a/0x160
+>  __do_sys_reboot+0x209/0x240
+>  do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __rtnl_unlock+0x37/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? netdev_run_todo+0x63/0x570
+>  ? netif_change_flags+0x54/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? devinet_ioctl+0x1e5/0x790
+>  ? srso_return_thunk+0x5/0x5f
+>  ? inet_ioctl+0x1e9/0x200
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x7d/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x23b/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? put_user_ifreq+0x7a/0x90
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x107/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? exc_page_fault+0x7e/0x1a0
+>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>
+> WARNING: include/drm/ttm/ttm_resource.h:406 at nouveau_ttm_fini+0x257/0x270 [nouveau], CPU#2: kexec/1300
+> Call Trace:
+>  <TASK>
+>  nouveau_drm_device_fini+0x93/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+>  pci_device_shutdown+0x35/0x60
+>  device_shutdown+0x11c/0x1b0
+>  kernel_kexec+0x13a/0x160
+>  __do_sys_reboot+0x209/0x240
+>  do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __rtnl_unlock+0x37/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? netdev_run_todo+0x63/0x570
+>  ? netif_change_flags+0x54/0x70
+>  ? srso_return_thunk+0x5/0x5f
+>  ? devinet_ioctl+0x1e5/0x790
+>  ? srso_return_thunk+0x5/0x5f
+>  ? inet_ioctl+0x1e9/0x200
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x7d/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x23b/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? put_user_ifreq+0x7a/0x90
+>  ? srso_return_thunk+0x5/0x5f
+>  ? sock_do_ioctl+0x107/0x130
+>  ? srso_return_thunk+0x5/0x5f
+>  ? __x64_sys_ioctl+0x97/0xe0
+>  ? srso_return_thunk+0x5/0x5f
+>  ? do_syscall_64+0x81/0x610
+>  ? srso_return_thunk+0x5/0x5f
+>  ? exc_page_fault+0x7e/0x1a0
+>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>
+> Signed-off-by: Li Chen <me@linux.beauty>
+> ---
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 1527b801f013..50384462723b 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -1079,6 +1079,29 @@ nouveau_pmops_resume(struct device *dev)
+>         return ret;
+>  }
+>
+> +static void
+> +nouveau_drm_shutdown(struct pci_dev *pdev)
+> +{
+> +       struct nouveau_drm *drm = pci_get_drvdata(pdev);
+> +       int ret;
+> +
+> +       if (!drm)
+> +               return;
+> +
+> +       if (drm->dev->switch_power_state == DRM_SWITCH_POWER_OFF ||
+> +           drm->dev->switch_power_state == DRM_SWITCH_POWER_DYNAMIC_OFF)
+> +               return;
+> +
+> +       ret = nouveau_do_suspend(drm, false);
+> +       if (ret)
+> +               NV_ERROR(drm, "shutdown suspend failed with: %d\n", ret);
+> +
+> +       pci_save_state(pdev);
+> +       pci_disable_device(pdev);
+> +       pci_set_power_state(pdev, PCI_D3hot);
+> +       usleep_range(200, 400);\
 
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- drivers/gpu/nova-core/gpu.rs          | 62 ++++++++++++++++++++++-----
- drivers/gpu/nova-core/gsp/boot.rs     |  7 ++-
- drivers/gpu/nova-core/gsp/commands.rs |  2 -
- 3 files changed, 57 insertions(+), 14 deletions(-)
+Why is this needed? it at least needs a comment.
 
-diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-index a1bcf6679e2a..dd05ad23f763 100644
---- a/drivers/gpu/nova-core/gpu.rs
-+++ b/drivers/gpu/nova-core/gpu.rs
-@@ -1,5 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- 
-+use core::cell::Cell;
-+
- use kernel::{
-     device,
-     devres::Devres,
-@@ -7,7 +9,7 @@
-     gpu::buddy::GpuBuddyParams,
-     pci,
-     prelude::*,
--    sizes::{SZ_1M, SZ_4K},
-+    sizes::SZ_4K,
-     sync::Arc, //
- };
- 
-@@ -28,6 +30,13 @@
-     regs,
- };
- 
-+/// Parameters extracted from GSP boot for initializing memory subsystems.
-+#[derive(Clone, Copy)]
-+struct BootParams {
-+    usable_vram_start: u64,
-+    usable_vram_size: u64,
-+}
-+
- macro_rules! define_chipset {
-     ({ $($variant:ident = $value:expr),* $(,)* }) =>
-     {
-@@ -270,6 +279,13 @@ pub(crate) fn new<'a>(
-         devres_bar: Arc<Devres<Bar0>>,
-         bar: &'a Bar0,
-     ) -> impl PinInit<Self, Error> + 'a {
-+        // Cell to share boot parameters between GSP boot and subsequent initializations.
-+        // Contains usable VRAM region from FbLayout and BAR1 PDE base from GSP info.
-+        let boot_params: Cell<BootParams> = Cell::new(BootParams {
-+            usable_vram_start: 0,
-+            usable_vram_size: 0,
-+        });
-+
-         try_pin_init!(Self {
-             spec: Spec::new(pdev.as_ref(), bar).inspect(|spec| {
-                 dev_info!(pdev.as_ref(),"NVIDIA ({})\n", spec);
-@@ -291,18 +307,42 @@ pub(crate) fn new<'a>(
- 
-             sec2_falcon: Falcon::new(pdev.as_ref(), spec.chipset)?,
- 
--            // Create GPU memory manager owning memory management resources.
--            // This will be initialized with the usable VRAM region from GSP in a later
--            // patch. For now, we use a placeholder of 1MB.
--            mm: GpuMm::new(devres_bar.clone(), GpuBuddyParams {
--                base_offset_bytes: 0,
--                physical_memory_size_bytes: SZ_1M as u64,
--                chunk_size_bytes: SZ_4K as u64,
--            })?,
--
-             gsp <- Gsp::new(pdev),
- 
--            gsp_static_info: { gsp.boot(pdev, bar, spec.chipset, gsp_falcon, sec2_falcon)?.0 },
-+            // Boot GSP and extract usable VRAM region for buddy allocator.
-+            gsp_static_info: {
-+                let (info, fb_layout) = gsp.boot(pdev, bar, spec.chipset, gsp_falcon, sec2_falcon)?;
-+
-+                let usable_vram = fb_layout.usable_vram.as_ref().ok_or_else(|| {
-+                    dev_err!(pdev.as_ref(), "No usable FB regions found from GSP\n");
-+                    ENODEV
-+                })?;
-+
-+                dev_info!(
-+                    pdev.as_ref(),
-+                    "Using FB region: {:#x}..{:#x}\n",
-+                    usable_vram.start,
-+                    usable_vram.end
-+                );
-+
-+                boot_params.set(BootParams {
-+                    usable_vram_start: usable_vram.start,
-+                    usable_vram_size: usable_vram.end - usable_vram.start,
-+                });
-+
-+                info
-+            },
-+
-+            // Create GPU memory manager owning memory management resources.
-+            // Uses the usable VRAM region from GSP for buddy allocator.
-+            mm: {
-+                let params = boot_params.get();
-+                GpuMm::new(devres_bar.clone(), GpuBuddyParams {
-+                    base_offset_bytes: params.usable_vram_start,
-+                    physical_memory_size_bytes: params.usable_vram_size,
-+                    chunk_size_bytes: SZ_4K as u64,
-+                })?
-+            },
- 
-             bar: devres_bar,
-         })
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index 75f949bc4864..a034e2e80a4b 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -150,7 +150,7 @@ pub(crate) fn boot(
- 
-         let gsp_fw = KBox::pin_init(GspFirmware::new(dev, chipset, FIRMWARE_VERSION), GFP_KERNEL)?;
- 
--        let fb_layout = FbLayout::new(chipset, bar, &gsp_fw)?;
-+        let mut fb_layout = FbLayout::new(chipset, bar, &gsp_fw)?;
-         dev_dbg!(dev, "{:#x?}\n", fb_layout);
- 
-         Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
-@@ -252,6 +252,11 @@ pub(crate) fn boot(
-             Err(e) => dev_warn!(pdev.as_ref(), "GPU name unavailable: {:?}\n", e),
-         }
- 
-+        // Populate usable VRAM from GSP response.
-+        if let Some((base, size)) = info.usable_fb_region() {
-+            fb_layout.set_usable_vram(base, size);
-+        }
-+
-         Ok((info, fb_layout))
-     }
- }
-diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
-index d619cf294b9c..4a7eda512789 100644
---- a/drivers/gpu/nova-core/gsp/commands.rs
-+++ b/drivers/gpu/nova-core/gsp/commands.rs
-@@ -191,7 +191,6 @@ pub(crate) struct GetGspStaticInfoReply {
-     gpu_name: [u8; 64],
-     bar1_pde_base: u64,
-     /// First usable FB region (base, size) for memory allocation.
--    #[expect(dead_code)]
-     usable_fb_region: Option<(u64, u64)>,
- }
- 
-@@ -242,7 +241,6 @@ pub(crate) fn bar1_pde_base(&self) -> u64 {
- 
-     /// Returns the usable FB region (base, size) for driver allocation which is
-     /// already retrieved from the GSP.
--    #[expect(dead_code)]
-     pub(crate) fn usable_fb_region(&self) -> Option<(u64, u64)> {
-         self.usable_fb_region
-     }
--- 
-2.34.1
-
+Dave.
