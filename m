@@ -4,98 +4,210 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8908ECA5FD7
-	for <nouveau@archiver.kernel.org>; Tue, 20 Jan 2026 18:19:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC95DD262A4
+	for <nouveau@archiver.kernel.org>; Tue, 20 Jan 2026 20:43:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 63D0510E64A;
-	Tue, 20 Jan 2026 18:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6368510E647;
+	Tue, 20 Jan 2026 20:43:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rMovZpB8";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sbUStwFZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 82AF644CC5;
-	Tue, 20 Jan 2026 18:10:28 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768932628;
- b=iS1qz477kB6yR0hyfh+fP0Fq6OXrpPnGc63HEtiaLs8IVancIrXoTEjy24jmqheLSyuYj
- ReJsGVoM/+5B86uMBf8NukFcG48eEgdNsRVOMo+8IpCkSBA0Ibt//2UfHuaPAxg+s0QUj30
- Hl/LyyzsRH38LcbLj8kM4J4w43XtScGlXh/AlsyUCarfyx8HAVdupIXyPltaMO2DmkjHQOX
- L6WVBTp8HL/ZYjL5gKfuZPD9dT+N7PzH/s2Axww0MZzvIZRa/H1gnARfPxSzQLjwlukFQ1C
- ls70F6BFHL9RuPZt2/4aTPp66BA7ZgZC74r6f7alLaD8jDEPdMUVRcWDUM1A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768932628; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4744744CBD;
+	Tue, 20 Jan 2026 20:34:59 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1768941299;
+ b=pv/D3usU71QX4Axgax/uoRQXSnrR5rFfcQ1KkAqM1qmAmwBZJiKbtv9DyE0BdOHbXtSlD
+ 5KxqlNem/57RXMAqphW5W8lpY7xbnuWbyfhmw3Lh2Taodlu7PTnNLccIY2deGC7rTvyEOpq
+ 56M5frh43A87q+1NfISmGbAZV7kHzMa05rr1Kgr6PNKyIQW/K5wxP2r2irZs2di0e2r2OvG
+ qXcmXz/NCsJ/8Hmhk0R4hUGyddvAqueZAUUxGlpd+AG4ib2LdtlxYInqVlQST8uZHrqY9VL
+ dseY6JBmOjnLbkugnWQ+CjHOtMHrc8/PCJ9c6pF90c25tr5RGX6Ne2dm3ujg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1768941299; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DZHCHrPai1BOZjzmTZ9umyt/NN5XiM6GOrFB1Vta06U=;
- b=ZNcHtW+dQ5OXScGJcaM9dk3X2oCECbdl029t9drRvAq9ADwAIg6GQAHRSKtNkD5ZxMx1b
- No/0lI3yo9ATy0Jvi3UdLeXxVwRXpke8fzoZvTEE8wi82SERniVQR5kS8PqZQLhYWYPCSO0
- zjxisnWx25f2LtTILjeTg0Axx7z9AQdR2KhpnQjsJaB0rWpEWvrbXnBJW6QbDfEGS5q2O8P
- sY4PUr2YyqvrFCTuzH3GH3xyQHLr+kQe2sGaRo4LmUZjQH+f1zrhPqCd+UrfCPtdeKCxt8A
- p8M7T9RDdWYVdonc/MrrNYbANpHwKrX4XFq0BEfYz8C9BJWa4zO1K5YutbOA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=xtKPhHlXHiR4eFexAEWzJ5B8T9yswuJuyjA8Ay54ViE=;
+ b=pFMmdY9CQ6ZLOm5gDZtd+0vB9TY0CcGsX+HChN/g+bpU4zr/VCd4HQcRv9dNAJ86LXcTs
+ iQ3Hx5kM7jZ2OiCW4TiQbFuXRFz0X6St6FbBSjbpzwrYjEoNsIH5gRJIT0NZI6Nn3Ww7J06
+ Jyn3El3uDtKX0usaPGfPBcbTaSO+78ZEzyQeGxfE3EYXYfKCJNivOFYm3b9phgW1Uo+4Gj/
+ TZnAWd2WWYv/PqbVtS+3QD7/aTwCcT7k/DSJAd54JOq6VrWlNDuE6jv38z2oL4Yb7nTNI0x
+ tbwvQFihJB3AFjA2vg884f8VN8k8jHmhdgPd4raCCNnAKyNsZkN33P30w+Sw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C746344CA9
-	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 18:10:25 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6DD7710E208
-	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 18:19:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AF29F60010;
-	Tue, 20 Jan 2026 18:19:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5EB6C16AAE;
-	Tue, 20 Jan 2026 18:19:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1768933149;
-	bh=DZHCHrPai1BOZjzmTZ9umyt/NN5XiM6GOrFB1Vta06U=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=rMovZpB8F5ReSdV8dzwdJlwVP3Bz/Wfssa0fCWrr2uhx+5Dafo19U8MrJxk4lDk9/
-	 apCvKGHAtRu0qdGfdDH1lrT9pVTIPHVp5XWC/fArUa79TXzV0dduXXF7BDsrwRcJ/f
-	 pD44ag4ozatad3RA8uWXcdMuC1n6i0LOvGlbOb59sImEDMHBCsYcazG/23OLPTH35h
-	 s9Fh4eIXg/lFP4Cu85jadqgmqmDfCFD/AJLWyWUk/YD7etdiCeScBmd+nsCmqlgonT
-	 8LoVzLnq5RNCaG5Lo3oWw6dMjD8mThmDpCL6qfVhsW+C/jn2N35L8bgZTcYGHEajeX
-	 Ea/4F8BmwU4JA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 20 Jan 2026 19:19:06 +0100
-Message-Id: <DFTMGSPH6EGO.3NVQ4DRVVCDDF@kernel.org>
-Subject: Re: [PATCH v5 2/8] rust: debugfs: add Dir::empty() for conditional
- debugfs usage
-To: "Matthew Maurer" <mmaurer@google.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260116214959.641032-1-ttabi@nvidia.com>
- <20260116214959.641032-3-ttabi@nvidia.com>
- <CAGSQo02KDAuHiec0vnZEYN45Tr-Kt8nWhUW41rHCQpnCTGpxNg@mail.gmail.com>
-In-Reply-To: 
- <CAGSQo02KDAuHiec0vnZEYN45Tr-Kt8nWhUW41rHCQpnCTGpxNg@mail.gmail.com>
-Message-ID-Hash: 2GV2BGISNCZLECABFT4VOGU7WCYNZ6RJ
-X-Message-ID-Hash: 2GV2BGISNCZLECABFT4VOGU7WCYNZ6RJ
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id B588544C49
+	for <nouveau@lists.freedesktop.org>; Tue, 20 Jan 2026 20:34:55 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010011.outbound.protection.outlook.com [52.101.46.11])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7617889A88;
+	Tue, 20 Jan 2026 20:43:40 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=c+c2ynfxhxN1wXuNK7Lo9iqWYr/RnGSWNpaASfOpgmbzANgGRLuRSq+n1aWMViCvgPckTRmkGV0F74ptZdVg9/T5ALVjVAubU80lMQWpWAIRmW0ur460SQp83syfDPyI7qOBsnh+D/tmnP7AYBi3aW0p1i7Dd4BBVm2xBpRri2r59g1vjfVTLL/Wo536MmWxcRJUGJvpp4T6/PeOSC3Wt0rOUGG0RSGeB5OQg+kRdauI8x9R2NabUcEmHGVPcQUAxX45opJvZ9re3NU3r8qh77HJC4KZrzp8DqIYJ0fMnjMnyc5W7eckIqZwO0O5iFe49D3DGIgEfyAoT/U/Zu7rZg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xtKPhHlXHiR4eFexAEWzJ5B8T9yswuJuyjA8Ay54ViE=;
+ b=Cg641JB0ybdNJnzvQ66/GtohpwFKgdNi4Pdl9dhgH+530Bi6Xm93rb/Ba8egtLyVNJxbNJfiwv6GsvsinpcQylHVjfUlOlakBYBT4X8rSufHR7JWRRmosUBBKyhc/xYO/HdpISG1Prz272WxGPDCfcjPcHopxzbpbJC8V6iXhqFh4rYgL6jLAoEv/0NB0VVyDi4iVvX2vm+UxPzA7oqxd0XtzZvUn/yROcuwxnq8tjoE9dU5V7pUDKQQWQLpjQMEalmIs0tP26Mt731ZIey6qK6XKxhMLXefoXa2bmpq++yPzSL4o6aMcLShcunA4vGWBlcF71gOq/jELPwnPK1qpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xtKPhHlXHiR4eFexAEWzJ5B8T9yswuJuyjA8Ay54ViE=;
+ b=sbUStwFZu8o3SiMDI54IelwsVaaMpknwVwSMVWi3BXPdDwctmW1qDQDb2dHd4RCjBCDP0q+m9EZdKE3jtDMRa67FaU+786aYokwUqOSLYIn9VuUJvW/t2+cP4zYa8cXKYz9eeX1NeJjQmGAVe2w0wEjl7mX+ceojDmFfYS3Z5V551uVKFwyCbV8Trw0UT+xJLQyo7gjsLHjfspLd9ZXv8CHm+vwvEt0NNOMyz+fWrUMTJ3dMRxS1OgFBEdC8WIkOVXbUclRfUTPMEmN+N2bKqjM5MExS3rEwMJigZl5sW7FocqspxMRObs4wjcGqbVE3iR3w7s5skWontSygAjd0nA==
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ CY1PR12MB9651.namprd12.prod.outlook.com (2603:10b6:930:104::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9520.13; Tue, 20 Jan 2026 20:43:34 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.008; Tue, 20 Jan 2026
+ 20:43:31 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: linux-kernel@vger.kernel.org
+Subject: [PATCH RFC v6 00/26] nova-core: Memory management infrastructure (v6)
+Date: Tue, 20 Jan 2026 15:42:37 -0500
+Message-Id: <20260120204303.3229303-1-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: MN2PR16CA0051.namprd16.prod.outlook.com
+ (2603:10b6:208:234::20) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CY1PR12MB9651:EE_
+X-MS-Office365-Filtering-Correlation-Id: bc78923e-3a70-4834-6e61-08de586492a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?ev/XrEGlEiHVKAUsq0Pv+BkfEcR5p/rCPCR6vLb+3gYv93MgOAaD5Js9i+e8?=
+ =?us-ascii?Q?7X0Ch2SeXKMULOdG/cReyZ5QdQ/yhjvm82mPsSib9+BNhZohU9H9s4hODXaY?=
+ =?us-ascii?Q?8wlp9gQuTisyxIasoH7O3tY1UPHUBPOn5oVtd/nmrb/kJHP4iWMKY4XYETos?=
+ =?us-ascii?Q?YjoHoStRKDvTEmyzTjpVDwRrhyc5Gia3UBFb/guyKFAVP6xMoFXomfoGWgE3?=
+ =?us-ascii?Q?RAHyx9pjdwJ/URoYojoSzywp3lGch6gM74XgfPpCwCvSWAiMI8g0q7j+os3O?=
+ =?us-ascii?Q?oHGhiZpaUDXbFjQsq/YMmV3xml17kxpvAzY+5fUg2LhvhFnz42mHLi3l6Uex?=
+ =?us-ascii?Q?kr4n4YdkNm+8JkIuu5QRHcnddyCMyc90hkZhammy1+JVL6CgA7um9YouWOUo?=
+ =?us-ascii?Q?EKK0Zl6iKtrrOPdgvZkzh1V3BpK40QcZMYPGQtw4tiUlFlPGtriattF27CYE?=
+ =?us-ascii?Q?UVj8YuI+CzjPxeVtlUdwCirQ7qn3S2a9UEa34XJU/cjIbx2JQJR0ov61ZOr/?=
+ =?us-ascii?Q?uKaU/oh3uf7GQTv7iOB1ZBe7XL7+GxxfexIUUoAYjwxCrLKpNq4YrJwVsHCO?=
+ =?us-ascii?Q?dKIYdE1Pin81VOx2Z2fUdlZXrfuzhXqUZ4v3BjC824Hi+4f9SmjdquZSEGUF?=
+ =?us-ascii?Q?gAQYTh26337afQw2/nM8HNMsFkuUFT32SI4u+YgkoSxU1QFfgzCNhrioiWwa?=
+ =?us-ascii?Q?ao9dKH3g8X0p2Y44c8zV1yFRzWV8wH0uXxYgfaSfc5Gzv21jEqwUa4lgRKlc?=
+ =?us-ascii?Q?JqO+1JvGrQyNU5vuomO9l3M4Xcq7SVIfG8KRbtBDH/LuFhXjjnzP4y0TWKSQ?=
+ =?us-ascii?Q?1teY2XM0EZrtfzF4K4NGm13gG4cjO9X5XJ97z8ZJrzK84rTjDiuuaS63gJO/?=
+ =?us-ascii?Q?9U7DQ92aUZSavDii1gkJ9mYn+ShBK2p0EjCFcVdLJoIM/fvligVlv6UUtgFC?=
+ =?us-ascii?Q?U0jrWS6Z8wO8WZqMx06DaRqGRaqXP2kE7i4Kl8Dtqvv/SUhY19uE6/NPnan7?=
+ =?us-ascii?Q?Ipa13192z0xWiwNJCI4SXWBAOvF7JGR5DVKxpPA0sZIWc435btkV+5t3ptaR?=
+ =?us-ascii?Q?1r6yAF3bVBMYrNDOhlNCbeEhdNniJ8y/ZSxbavyyMisJxr5l06FojGdyyKXl?=
+ =?us-ascii?Q?qWw1GJftL9oE3ooqB6AyRZKMl0ls3+SC9pxy9OpTnZk4C5w5m5yUSOgzyR7q?=
+ =?us-ascii?Q?kt7DqMyjGSfvRW7HHDogSVMe7gChFp3/Eaj2MArdIEYZI3X/I9flIUVHrZqk?=
+ =?us-ascii?Q?nqqedzhJ1s/VZuqI+2uFzWO7Llp843MY7/RgIfVIE6TD7oC8BmaJBetEicBh?=
+ =?us-ascii?Q?dUKizezOea0znrtWjoJpth4B+wzLoKnmubA9yeEFAAMvm4uSKfI8h2T5cmoJ?=
+ =?us-ascii?Q?jdGSExWpZQgHU3uVeEspgfgMMFMJ7dYGe3jdPHcql6rprrSdEfvNk84PPnUN?=
+ =?us-ascii?Q?hqPY2qWhU+SPqrlxT06e7+hPb/HtdiNJ0VB7aPIgIPmXVec5CKq1pXl3kGQW?=
+ =?us-ascii?Q?NQEH62n03ao65tUAMg2t8Xl1ABFpFtob8pqdTezbm4B8wfuyL2Pyps/RczUL?=
+ =?us-ascii?Q?puUBoFLchyGDLgO84gI=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?8Rd/oEP+Jpg6UfecLKwInF7/58ogpgOyU77WGga5d3X106WTAYjgaJnY64Gx?=
+ =?us-ascii?Q?6n/kdL271QVZI8/9lJKQi8gIbX1efK+u2UwD9gKfo4s1dqxFVyqLxVFnpO52?=
+ =?us-ascii?Q?TY8mIFAFpZdUQ0H4Pqk+Mlxu3cs/nVEwGDRxkcdi6CJfhiLfZobHqQHrQ0Mf?=
+ =?us-ascii?Q?zbABsrKRjl8h+DAMq0zj83rBy6nxz+U6nBXeuW6cC/erHNarWVot4MsiVaXh?=
+ =?us-ascii?Q?hFr8tZq9WILSJv7667GuxOaQCZ4hn1PziNqCpvRh+hE7/MoOnTgomMQV4NHw?=
+ =?us-ascii?Q?jSdkzq/63U3A2PMmf4lSbhXC7pjVftXeTzEBSy3SuKRkRCHOobe1Vg2S/d/y?=
+ =?us-ascii?Q?bGH91J7EPm4F0hU9QRXHG/XqJL/JXa2nEI8bq8ZsG9D0oSRLIgQJaDsseWtW?=
+ =?us-ascii?Q?DAa86dmgCT5UrRDNe/Ig5kppFDjLkLPDKlNJFGHVdiWc7TRTXFYwPYI91VCd?=
+ =?us-ascii?Q?3aIBwhqaOb55NRzBVlvBYE5VsSzpxH2RUlSRiQsiA4BR5deEgxgNCDZncljq?=
+ =?us-ascii?Q?vpEO5H1NmhGvRPBUR4naV16hes+0iOsdoJ01bpJ5hGZgaKlQhEJ1RliUw9sW?=
+ =?us-ascii?Q?1mBDSsSxKTx6PaphALdpNE68/dlwGX0oZ+M3Mh3YPC38RHWEStirvdrOCd4N?=
+ =?us-ascii?Q?e/7AclMzeamdJT35hxdPziZBWkokqERpt4JEykw0Fxo01hCEgw+M9ETfvQiH?=
+ =?us-ascii?Q?u6VLRAAscF8jd6XCMJVs9i73vLWGzwoi8JRED/mnRiHGtzs1wMNQHpMQhn9H?=
+ =?us-ascii?Q?C3FKlK2K8IaBinYq3Rs18yNX2R9FGexYa2oZKUVzakunmlVHEvsRcHcf6Zpm?=
+ =?us-ascii?Q?LM3RjGPq7SL1InHEkebn3UG/xt9c+VXWGUMHOizZqpRbuIXM1IQsyzsaUuMU?=
+ =?us-ascii?Q?pFfm0rDCXcxb0tSMVL54utSzGQaYToatuMtswgRE8Hp9/mUI4l+tUdSh5N3R?=
+ =?us-ascii?Q?qTkyQselSDlp5qxYz6ehZVuw/VpGIsPVWOevq42/NZw6RIcTlKcBMAJoN7h7?=
+ =?us-ascii?Q?I9qKwCFusYLi4BStBzu9MROzMylI5KhVcxdeCiFITBOZ5CCEsKFKBQogFRZn?=
+ =?us-ascii?Q?j9gyV+aRRrK3cWJjPPSVnk2LupVSuBNE5e1y4zcov20AYPncrbnvwMcZMfH/?=
+ =?us-ascii?Q?N3P6AWvW2nP8Z2mu2knEnYrUtV9v3EjwwM3Jcn/VfdjhjLGDiI2PCgtZ7mB5?=
+ =?us-ascii?Q?8ocPTU4/uWtfe6brynsRHuWKhk+oN4+AuC+8XH/T3KSM38Z7ffOqOW0wvO4A?=
+ =?us-ascii?Q?KiwF3lzLqF6YgBMUdSEjIXXtNgykJXh0qXqYkqN0MJ4hs2P5rOOSEyFlxn+Y?=
+ =?us-ascii?Q?ru3Imd/g9BTbtLZ+r53952/hrn9WRQVwfMZswOYN3kt6ZTJB8csHsXL9cPT9?=
+ =?us-ascii?Q?3KyJla/hO9Y4nlTr1KzmcIqt6Ik0bip2mECJL5GFuovBidFoG8gpVIO6Rsy7?=
+ =?us-ascii?Q?i5Zm9tWEMwXk7PTNXZyuW+mVOnGjGz9YUT6IXDavi+QSiC5JvI9WCteDruNa?=
+ =?us-ascii?Q?wrDbTVgnPPLfyDWt7KBa04Fd/79eTrjGYmct1pmCswCv+PuPw+3VU2xFNrRR?=
+ =?us-ascii?Q?zkj66tht7WQi1XqhUNSZNkWaAQ1FRh3Jhxru9TIVMDTkSeSHqVH3y9sSTGMg?=
+ =?us-ascii?Q?n1BHziwlTE+IRDY7/bPJopsSM4fDM/lGLNopJh11t3TX6QDqNk/LAHjFmB/5?=
+ =?us-ascii?Q?51oWKr20KlaVcaqswieIP7ODZnkBcUawlIgSwaPOXLe3MYRqkDq5iYKJsovt?=
+ =?us-ascii?Q?25Gb/nIaug=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ bc78923e-3a70-4834-6e61-08de586492a5
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2026 20:43:31.6288
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ /0VO2MA1vLunoUubHBgQeVqFDyn1h743J3RLxLD/RNrkebJkbKyfbTMY6L87fhchUIBFcsUbrB/TBnBoL2bULQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR12MB9651
+Message-ID-Hash: NMUSXTNIVCAAQMEBQGMUKP2KGYWN57BN
+X-Message-ID-Hash: NMUSXTNIVCAAQMEBQGMUKP2KGYWN57BN
+X-MailFrom: joelagnelf@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Gary Guo <gary@garyguo.net>, Joel Fernandes <joelagnelf@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+ Joel Fernandes <joelagnelf@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2GV2BGISNCZLECABFT4VOGU7WCYNZ6RJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NMUSXTNIVCAAQMEBQGMUKP2KGYWN57BN/>
 Archived-At: 
- <https://lore.freedesktop.org/DFTMGSPH6EGO.3NVQ4DRVVCDDF@kernel.org/>
+ <https://lore.freedesktop.org/20260120204303.3229303-1-joelagnelf@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,28 +217,161 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Jan 20, 2026 at 6:54 PM CET, Matthew Maurer wrote:
-> I thought the whole point of Greg's admonition to never report errors
-> and to automatically create no-op structures if debugfs was disable
-> was that we *don't* do things like this, and instead you just do
-> something like
->
-> ```
-> // Always do this, whether or not debugfs is available.
-> let debugfs_root =3D Dir::new("my_thing");
-> debugfs_root.scope(data, name, |d, s| { ... })
-> ```
->
-> If DebugFS is not available, it already returns an empty fake
-> directory. That variant of a fake directory is also size 0, so you
-> aren't paying anything to use it...
+This series is rebased on drm-rust-kernel/drm-rust-next and provides memory
+management infrastructure for the nova-core GPU driver. It combines several
+previous series and provides a foundation for nova GPU memory management
+including page tables, virtual memory management, and BAR mapping. All these
+are critical nova-core features.
 
-Correct, I also explained that in [1]. This method may be useful if the dri=
-ver
-conditionally wants to provide debugfs entries regardless of CONFIG_DEBUG_F=
-S
-though.
+The series includes:
+- A Rust module (CList) to interface with C circular linked lists, required
+  for iterating over buddy allocator blocks.
+- Movement of the DRM buddy allocator up to drivers/gpu/ level, renamed to GPU buddy.
+- Rust bindings for the GPU buddy allocator.
+- PRAMIN aperture support for direct VRAM access.
+- Page table types for MMU v2 and v3 formats.
+- Virtual Memory Manager (VMM) for GPU virtual address space management.
+- BAR1 user interface for mapping access GPU via virtual memory.
+- Selftests for PRAMIN and BAR1 user interface (disabled by default).
 
-Of course, we should only introduce it if we have a user for it.
+Changes from v5 to v6:
+- Rebased on drm-rust-kernel/drm-rust-next
+- Added page table types and page table walker infrastructure
+- Added Virtual Memory Manager (VMM)
+- Added BAR1 user interface
+- Added TLB flush support
+- Added GpuMm memory manager
+- Extended to 26 patches from 6 (full mm infrastructure now included)
 
-[1] https://lore.kernel.org/all/DFR7AHOX0T8G.2NB9VOS3IZRZE@kernel.org/
+The git tree with all patches can be found at:
+git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova-mm-v6-20260120)
+
+Link to v5: https://lore.kernel.org/all/20251219203805.1246586-1-joelagnelf@nvidia.com/
+
+Previous series that are combined:
+- v4 (clist + buddy): https://lore.kernel.org/all/20251204215129.2357292-1-joelagnelf@nvidia.com/
+- v3 (clist only): https://lore.kernel.org/all/20251129213056.4021375-1-joelagnelf@nvidia.com/
+- v2 (clist only): https://lore.kernel.org/all/20251111171315.2196103-4-joelagnelf@nvidia.com/
+- clist RFC (original with buddy): https://lore.kernel.org/all/20251030190613.1224287-1-joelagnelf@nvidia.com/
+- DRM buddy move: https://lore.kernel.org/all/20251124234432.1988476-1-joelagnelf@nvidia.com/
+- PRAMIN series: https://lore.kernel.org/all/20251020185539.49986-1-joelagnelf@nvidia.com/
+
+Joel Fernandes (26):
+  rust: clist: Add support to interface with C linked lists
+  gpu: Move DRM buddy allocator one level up
+  rust: gpu: Add GPU buddy allocator bindings
+  nova-core: mm: Select GPU_BUDDY for VRAM allocation
+  nova-core: mm: Add support to use PRAMIN windows to write to VRAM
+  docs: gpu: nova-core: Document the PRAMIN aperture mechanism
+  nova-core: Add BAR1 aperture type and size constant
+  nova-core: gsp: Add BAR1 PDE base accessors
+  nova-core: mm: Add common memory management types
+  nova-core: mm: Add common types for all page table formats
+  nova-core: mm: Add MMU v2 page table types
+  nova-core: mm: Add MMU v3 page table types
+  nova-core: mm: Add unified page table entry wrapper enums
+  nova-core: mm: Add TLB flush support
+  nova-core: mm: Add GpuMm centralized memory manager
+  nova-core: mm: Add page table walker for MMU v2
+  nova-core: mm: Add Virtual Memory Manager
+  nova-core: mm: Add virtual address range tracking to VMM
+  nova-core: mm: Add BAR1 user interface
+  nova-core: gsp: Return GspStaticInfo and FbLayout from boot()
+  nova-core: mm: Add memory management self-tests
+  nova-core: mm: Add PRAMIN aperture self-tests
+  nova-core: gsp: Extract usable FB region from GSP
+  nova-core: fb: Add usable_vram field to FbLayout
+  nova-core: mm: Use usable VRAM region for buddy allocator
+  nova-core: mm: Add BarUser to struct Gpu and create at boot
+
+ Documentation/gpu/drm-mm.rst                  |   10 +-
+ Documentation/gpu/nova/core/pramin.rst        |  125 ++
+ Documentation/gpu/nova/index.rst              |    1 +
+ MAINTAINERS                                   |    7 +
+ drivers/gpu/Kconfig                           |   13 +
+ drivers/gpu/Makefile                          |    2 +
+ drivers/gpu/buddy.c                           | 1310 +++++++++++++++++
+ drivers/gpu/drm/Kconfig                       |    1 +
+ drivers/gpu/drm/Kconfig.debug                 |    4 +-
+ drivers/gpu/drm/amd/amdgpu/Kconfig            |    1 +
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |    2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |   12 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |   80 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h  |   20 +-
+ drivers/gpu/drm/drm_buddy.c                   | 1284 +---------------
+ drivers/gpu/drm/i915/Kconfig                  |    1 +
+ drivers/gpu/drm/i915/i915_scatterlist.c       |   10 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c |   55 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |    6 +-
+ .../drm/i915/selftests/intel_memory_region.c  |   20 +-
+ drivers/gpu/drm/tests/Makefile                |    1 -
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |    5 +-
+ drivers/gpu/drm/ttm/tests/ttm_mock_manager.c  |   18 +-
+ drivers/gpu/drm/ttm/tests/ttm_mock_manager.h  |    4 +-
+ drivers/gpu/drm/xe/Kconfig                    |    1 +
+ drivers/gpu/drm/xe/xe_res_cursor.h            |   34 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   12 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   73 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h    |    4 +-
+ drivers/gpu/nova-core/Kconfig                 |   22 +
+ drivers/gpu/nova-core/driver.rs               |    9 +-
+ drivers/gpu/nova-core/fb.rs                   |   23 +-
+ drivers/gpu/nova-core/gpu.rs                  |  140 +-
+ drivers/gpu/nova-core/gsp/boot.rs             |   22 +-
+ drivers/gpu/nova-core/gsp/commands.rs         |   18 +-
+ drivers/gpu/nova-core/gsp/fw/commands.rs      |   38 +
+ drivers/gpu/nova-core/mm/bar_user.rs          |  336 +++++
+ drivers/gpu/nova-core/mm/mod.rs               |  209 +++
+ drivers/gpu/nova-core/mm/pagetable/mod.rs     |  377 +++++
+ drivers/gpu/nova-core/mm/pagetable/ver2.rs    |  184 +++
+ drivers/gpu/nova-core/mm/pagetable/ver3.rs    |  286 ++++
+ drivers/gpu/nova-core/mm/pagetable/walk.rs    |  285 ++++
+ drivers/gpu/nova-core/mm/pramin.rs            |  404 +++++
+ drivers/gpu/nova-core/mm/tlb.rs               |   79 +
+ drivers/gpu/nova-core/mm/vmm.rs               |  247 ++++
+ drivers/gpu/nova-core/nova_core.rs            |    1 +
+ drivers/gpu/nova-core/regs.rs                 |   38 +
+ drivers/gpu/tests/Makefile                    |    3 +
+ .../gpu_buddy_test.c}                         |  390 ++---
+ drivers/gpu/tests/gpu_random.c                |   48 +
+ drivers/gpu/tests/gpu_random.h                |   28 +
+ drivers/video/Kconfig                         |    2 +
+ include/drm/drm_buddy.h                       |  163 +-
+ include/linux/gpu_buddy.h                     |  177 +++
+ rust/bindings/bindings_helper.h               |   11 +
+ rust/helpers/gpu.c                            |   23 +
+ rust/helpers/helpers.c                        |    2 +
+ rust/helpers/list.c                           |   12 +
+ rust/kernel/clist.rs                          |  357 +++++
+ rust/kernel/gpu/buddy.rs                      |  538 +++++++
+ rust/kernel/gpu/mod.rs                        |    5 +
+ rust/kernel/lib.rs                            |    3 +
+ 62 files changed, 5788 insertions(+), 1808 deletions(-)
+ create mode 100644 Documentation/gpu/nova/core/pramin.rst
+ create mode 100644 drivers/gpu/Kconfig
+ create mode 100644 drivers/gpu/buddy.c
+ create mode 100644 drivers/gpu/nova-core/mm/bar_user.rs
+ create mode 100644 drivers/gpu/nova-core/mm/mod.rs
+ create mode 100644 drivers/gpu/nova-core/mm/pagetable/mod.rs
+ create mode 100644 drivers/gpu/nova-core/mm/pagetable/ver2.rs
+ create mode 100644 drivers/gpu/nova-core/mm/pagetable/ver3.rs
+ create mode 100644 drivers/gpu/nova-core/mm/pagetable/walk.rs
+ create mode 100644 drivers/gpu/nova-core/mm/pramin.rs
+ create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
+ create mode 100644 drivers/gpu/nova-core/mm/vmm.rs
+ create mode 100644 drivers/gpu/tests/Makefile
+ rename drivers/gpu/{drm/tests/drm_buddy_test.c => tests/gpu_buddy_test.c} (68%)
+ create mode 100644 drivers/gpu/tests/gpu_random.c
+ create mode 100644 drivers/gpu/tests/gpu_random.h
+ create mode 100644 include/linux/gpu_buddy.h
+ create mode 100644 rust/helpers/gpu.c
+ create mode 100644 rust/helpers/list.c
+ create mode 100644 rust/kernel/clist.rs
+ create mode 100644 rust/kernel/gpu/buddy.rs
+ create mode 100644 rust/kernel/gpu/mod.rs
+
+
+base-commit: 6ea52b6d8f33ae627f4dcf43b12b6e713a8b9331
+-- 
+2.34.1
+
