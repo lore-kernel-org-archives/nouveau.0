@@ -4,211 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82CFBC4452B
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EF92C44525
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:58:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B1FE210E794;
-	Wed, 21 Jan 2026 12:58:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB5210E79B;
+	Wed, 21 Jan 2026 12:58:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gTz7XHKu";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.beauty header.i=me@linux.beauty header.b="ejAWSczX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2BC0E40351;
-	Wed, 21 Jan 2026 12:49:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9E3EC40469;
+	Wed, 21 Jan 2026 12:49:42 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768999779;
- b=JIaqWj+5YiPPfgm2goh5jl4m3A8WcDjJO2OG4ROs+uVwhtabj2WJ9+/K5syaXK0RUaW2d
- C+vnLTIAZICkugpBxYryntVpJKuARftSoqIe6YxeGMhvSGqUjfGg43w5ctv0yqhV1VARig+
- uMwTQOA9aFELxQJy5YWa9TmTGkVb9Cw7/zgclnW1sCzjCvH/dLyMbTdRDgVSiyK5YJ/n7kX
- Kfd8/F8p5Pfgha32QKJfMuYldyNvHqpz3JISv74pEmo3RO75b6R2wIbJ9846242jHp6kWR4
- mrnTqCg2Gz2uZxWq2iO2CVfXjoREzruT8c+IknvzDfWw/FQOKB3JGMH4w2gQ==
+ s=20240201; t=1768999782;
+ b=DrQHVl2aksygI7I1HQIZ2gPRvqb9t2DC4rSPGgmO9fMFmqEwLBXyn6A/4VRct6UYLgosK
+ ZgpvdgxpMotnqcQ6FlBTSzdxjK+apNcxC15bJgSgc6tPGm9zvVzCYzuznuIIqkjRs2ROWaA
+ u40tftMWrv6qDIy1Cgjr7aShvRnGZ5Ee0O2UpXzCWJqluFK+K8yeB4rflEcbh7sUqhRZtMi
+ XZxn067o3jfN09LR98Bps9a3rWIB3iHdwvzhTgezKJZCVZL+xyhDK1LE7mfWgxA/aJnIGrf
+ ZAyNREtYYn4fg+waxqco9SKKt4ukGPSYFDQwdDRunW0oByGzRBc1g2lr96/g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768999779; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1768999782; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=5BhLejjHzebkpeBB918wFBlMp1KJz6gj6pkiO9mSWBA=;
- b=qdo/0qOQl3cHfOvOqOxXCf+wuSvm/WradSqRW90qRLM0AWBAegdSjyD/hBZ72ix6SknAD
- wPBeDtuqKj5jkm5mzx36y7qs/tfFjqFQwXo6Q5EBNt377Kb3MpDIFs9UQizNXP36t20hIT7
- e4CVpB5+QSi5Rx/ywjUGGkZXyGVJBjk96zWSFt/amdqawrlnXcuD4+AwlWrMYmHJusWl5ZX
- S0hebHFlGCX5c+CbBxWJgamOubH+ZvQ1PwsOdevpfeMz9fJncPu/GX8W3+8fn9ZsTIp4fTS
- 98QJyvObmHxdaGMNbRez5nwU5ER4PjjPsdPEFSS4lqsFtVKrc2DyENGYPjnQ==
+ bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
+ b=Edz9wZOvCYPxQ1Y52DMmUK3Up542z9n37oazqSAa6UIUSKf7HWpgUEn+yndpenPAfi5k6
+ +wrNnyI4LDiXz22uCpcK7Qt5TSGclDIJAsdyKoU2iVWU/pYk5+7Fu7gBl3whBqgXRoZYeDL
+ 3O9clX0ElO5rZ2et2fD93Xb3tRv3VH1xwec0sRUjhTbA9zul+2VqVJVZXwerX01RPEDb6x9
+ 0aXXJnRsiEpz5qkFwDz4hqm7FG0SVeciPwh5nQIpP5ua+TEpjkSppxykqexYNrT9M/eMOHq
+ ONavdIuWTVrYx4z8ddwiXOHEDKNtj9P4uufAL843Ps12xVn98c6CKQ3No/5Q==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=linux.beauty header.i=me@linux.beauty;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+  dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=linux.beauty header.i=me@linux.beauty; arc=pass;
+ dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 582274003B
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 09:51:01 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011063.outbound.protection.outlook.com
- [40.93.194.63])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5AF5D10E734;
-	Wed, 21 Jan 2026 09:59:47 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gHr9bOGGqolEc/TlZ9Jp9vFs6/mLwl4o9EEaKHHpalkoLLaKPCon0AuLkxsyq+6Z7HG7VPCZWwCewkf8J7qEWhJ6dCHoVR7NK7zqbaQstHpKraNmUINCvczSnbi2UW6KxY7VvoW9vt5D2NifdKxq5Lu4LD+Ht4vNXIlj/TDmm9DTVcx24AZHQ4YotuUIE/fi1FwUWaKu1R5zPCnTWBgmRyM/AouJekgl7FnqXf0roEmw2vMXU5ioGPM0Wt8xIE9vUfWSyj9UNczXLTsGvozDwpSPMC3gIR0oZwss42O1ehpgBYuPIMAyL4ZHtxM1WpRG4VZOpCpR8fahYEqGnU8JZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5BhLejjHzebkpeBB918wFBlMp1KJz6gj6pkiO9mSWBA=;
- b=ORjMFno5zFs5oCPg0yM8seOe2QFWiO02ROAAtv12FN4PP0p0QFAhwpt5tvhq7n4OdPOmzFqBUCeByTP6XTZV537zhSLb3NvL7ASG1kpSf3CQB1X+hOL/ckUB9ygER07AeE3Q38pdC+/OIltoV1XFOzWzuf1wngSNoAUQhHQHcexo03ZfR3YIvRJYT6JbFpSK7Q+yeRzVEeisMmxNtS/s+fw6iswA5VwELE7RQ+Vqctahz4eHK6AETf4pjNtbBpBVZlslmPJ6PPcjqRZfOHJIC1FDkBmuUxdxz6eJKmoHdCXghSpNuzNqc4sx6bvw8rIkI/WJ+omgc0OQgICswaUP3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=protonmail.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5BhLejjHzebkpeBB918wFBlMp1KJz6gj6pkiO9mSWBA=;
- b=gTz7XHKud6iu0rN+ZEwTP7Dpj7ViBD+Ef6V+37mX2XmEou72Ns2igUjSjGDJozX0DCOHiC/Y67cuKNqMaDXhicf/wuEOzMoHNux5yn+DwKEfcmnrHeUEPyalXsaKwjr0txZJz5ro9c3mmc42gSshZHlXNY45PeOUBf7FsbSEGYPhD1JLnCJO+A5KY9AwnVLq2Dcjp4BI+DxPziNGnO/9Rj6fMZXJfvds0CIxKmhErLtFOapyDbDQfVW5WdNvbEe7vuk3+1nM1baou17/XmpfaPoFoJQkptKF39RxuJCcaPviT0u2nmeoaA4iCsUCyTbpPyWKiZ722e1G52Rruqsxpw==
-Received: from PH7PR02CA0012.namprd02.prod.outlook.com (2603:10b6:510:33d::12)
- by DS2PR12MB9775.namprd12.prod.outlook.com (2603:10b6:8:2bb::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 09:59:43 +0000
-Received: from SN1PEPF0002BA4E.namprd03.prod.outlook.com
- (2603:10b6:510:33d:cafe::7e) by PH7PR02CA0012.outlook.office365.com
- (2603:10b6:510:33d::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Wed,
- 21 Jan 2026 09:59:41 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SN1PEPF0002BA4E.mail.protection.outlook.com (10.167.242.71) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 09:59:42 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
- 2026 01:59:28 -0800
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
- 2026 01:59:28 -0800
-Received: from inno-thin-client (10.127.8.10) by mail.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Wed, 21 Jan 2026 01:59:18 -0800
-Date: Wed, 21 Jan 2026 11:59:17 +0200
-From: Zhi Wang <zhiw@nvidia.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Subject: Re: [PATCH RFC v6 14/26] nova-core: mm: Add TLB flush support
-Message-ID: <20260121115917.73cfcc7f.zhiw@nvidia.com>
-In-Reply-To: <20260120204303.3229303-15-joelagnelf@nvidia.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
-	<20260120204303.3229303-15-joelagnelf@nvidia.com>
-Organization: NVIDIA
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.33; x86_64-pc-linux-gnu)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 91CCF400AA
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 11:43:24 +0000 (UTC)
+X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jan 2026 11:52:10 UTC
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
+ [136.143.188.15])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A41EA10E75F;
+	Wed, 21 Jan 2026 11:52:10 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1768995417; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=LfsGDFhho8f+pL7xRcCxxdlWbHCaHNEsPGIRCzYXVqcGSKINHMplgNgqMo8gbJfFf8qfUKiUrb/P3IfdCS2IlYgI1qRqrkNmBWfDEaRwNZLLZTEr12dem12pmeLrVNGydvymO8yhpATneDfJ8ZHLxQbwjqAvLKo3uqbHwWOQoAk=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1768995417;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
+	b=YhiqdlS87yV8l5X3P+q9z9BVDCs4Q/uxcNeM5GBDiUMyQlvl3ieG82mnhLw+9fQwj4ltESDDqpjdMvYf8xCSgfB3OdAHOdkw5cx6DMq27XnaMuq5ougNP6AsieKhhEv6FyxCQtj8ssmlPbSpruNCju81duX+zlZiWCtEB/QXGfw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=linux.beauty;
+	spf=pass  smtp.mailfrom=me@linux.beauty;
+	dmarc=pass header.from=<me@linux.beauty>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768995417;
+	s=zmail; d=linux.beauty; i=me@linux.beauty;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
+	b=ejAWSczXNnRN+Om/j0kIoMt3Po43+7YyvzJpqxx8RXgh0NZo590IOBunKtLuustH
+	1yVFZ9E209BJqy61SfF0EBzGC0zwfNV6zS3UJOF6EVl3zby0sjpzvdUjMfPUTiE3uv8
+	yzQGzxXgZqh2XljT8bQjzqV1X2DW1zRBsNNqrGRc=
+Received: by mx.zohomail.com with SMTPS id 1768995413291852.3338382709496;
+	Wed, 21 Jan 2026 03:36:53 -0800 (PST)
+From: Li Chen <me@linux.beauty>
+To: Dave Airlie <airlied@redhat.com>,
+	Lyude Paul <lyude@redhat.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2] nouveau: pci: quiesce GPU on shutdown
+Date: Wed, 21 Jan 2026 19:36:44 +0800
+Message-ID: <20260121113646.111561-1-me@linux.beauty>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4E:EE_|DS2PR12MB9775:EE_
-X-MS-Office365-Filtering-Correlation-Id: fee268b6-aaa7-43e4-d889-08de58d3cc6a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|36860700013|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?vxRT2M8s9l+u73JAASCw8kiQYktLr2/PLsIvrTlM0RLjsFEhMA9JktuUxY+O?=
- =?us-ascii?Q?uKdX13iCDnd06e0Lhk8Jmqe8zErgn4o8Ey6bNejovc7rTsckaOCvTdinfKri?=
- =?us-ascii?Q?KozYCPPrnGEZGR5FjoSOTKEKVsHVU2oWmZKWGJ2zmzxI2AoRfVjzsxLH+EK/?=
- =?us-ascii?Q?nKCUmYg/gq/y75nEJR6QtLjQW4WIZoEamUZD4yB8xLQWo0fSztsoVdkLaE2L?=
- =?us-ascii?Q?r2phLrkP4izO7c4ss9LuBSgzISwY/jaVnaBDGEwMFhfLb5Df6ghOVYDE3vqI?=
- =?us-ascii?Q?2yOQ4kfVu54EGhKURuWfwLEoqFUHzkFnhGEbSUqtzHWh2bWn+YaQpalMkRQr?=
- =?us-ascii?Q?yGman1io6IeBTrrkn6Rw2OPY1XclnuZningACB4zeBvWIGNYdszMitHEkkNo?=
- =?us-ascii?Q?BFu+ucIKnw8Wx53KyEi1Zqb1VSCtLOc7FNdkSzJIll0XzdwLxONHkJ2jE06N?=
- =?us-ascii?Q?v6obM/EQJHzo3BZJmkGkxTNKmGhCd6qVwnHpbDA+1Q7+as66OBuEHNYMtCJJ?=
- =?us-ascii?Q?2K1wCDjW6M6s2VfKTdAyWbADcl1X8FW8L0Crtfi0HEFh1T3lLPGaQA0q77vA?=
- =?us-ascii?Q?i7dijOJGP2M/9zvUy5kIfnRqv8zWumJQVGQVpTlClS3n32srJfEhAhwhYxh/?=
- =?us-ascii?Q?ikvwMEgph4Ne+Uo5J4pH0daPouIL5n2n0jZLExJvAUSBKobyINznD3c3HK78?=
- =?us-ascii?Q?oSShYo8grYtcVjsuz8CPiKAu7tYJvxOGKFfvRGgW/3HGn0A4BwJlN91BF6bp?=
- =?us-ascii?Q?6y1/S8eIjSDpvO+x39DF+DromnKt/zJHcLFN/EydO8axhusGRMh93zNe+cXz?=
- =?us-ascii?Q?3Vxa/wGUcu4DMz+Z4kykHwNUI9zWhs5wu1XS2sjvYhcRZ47iyhb0i/z8vltC?=
- =?us-ascii?Q?/vbhnHSWQWKThvheh2Cv9YWh/kfxLIqYl1X4/QP45OPVfpTdQ2SdwuYheIrH?=
- =?us-ascii?Q?HOitbiI9vqedoPXQOBNUmKFCyrmlODRESdz+ICfaf3zaL0D+YuA+RGiNs4YN?=
- =?us-ascii?Q?D34zROGPD7aZJyFsh4xw+Xo+fAJ69ISu/j+m+iVFuDx8JXhJC7nlqT+K8NS7?=
- =?us-ascii?Q?4rFtumBQl+zICbIkWwZFS95l4olhtM27BTNM9FAliPxheDza6r7/hiynbkjV?=
- =?us-ascii?Q?AfAPgGtKMgXNbbi6ivxZ6QMJABVsqoIBTHsZkMjm1A30EYX0RncXJEUyUCtI?=
- =?us-ascii?Q?0NPAlsobzCPZe3iGcJAHaSv2OFs9kkLd4TLxqQn4XyzOAfIDN6mC8WJXDsLA?=
- =?us-ascii?Q?9/TBpCBGbdRvg2uI57MmSPXns9JBMZk4w9pzzukxE1tAPjIx3gZs4r7rF8++?=
- =?us-ascii?Q?96GpYjsrESddClZf9ADVLU7mYYS9U+Hq0O8wLvFXfmsAQmHDLDxTOcFbcIhM?=
- =?us-ascii?Q?dSfcmIf4YKPkOFicTOWBmvVndiL27G1YA+vvTog/WNc0WlrrIpNb4YlrRVTF?=
- =?us-ascii?Q?/VD8SG+oyB55yZnjVc2Y51bau1IGUVVvKqcwDydnEAR/7506digH6UAjgLbO?=
- =?us-ascii?Q?JfjpyWfs3N0x+bBdZEPhmkmyA4wg6yrSC1gfgD2J1CoHi5eOHjcIOyUJ4iot?=
- =?us-ascii?Q?OuFzM1XOPNcRqDLZc4yf9CSer+upWQ5AD8aSvSkgdYy4kknoBO0QBDBVeSnZ?=
- =?us-ascii?Q?Y+5+duURztvbkJI6zEP03cGDB5XwRdMf9Yf2pEFv8EfO7SeBnQYpbmHyX9qB?=
- =?us-ascii?Q?k/FCmQ=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(7416014)(376014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 09:59:42.3045
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- fee268b6-aaa7-43e4-d889-08de58d3cc6a
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	SN1PEPF0002BA4E.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS2PR12MB9775
-X-MailFrom: zhiw@nvidia.com
-X-Mailman-Rule-Hits: implicit-dest
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ZohoMailClient: External
+X-MailFrom: me@linux.beauty
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- max-recipients; max-size; news-moderation; no-subject; digests;
- suspicious-header
-Message-ID-Hash: GWIDRUDWTYP3N2P35UNZ2UTIRJ5D44ZZ
-X-Message-ID-Hash: GWIDRUDWTYP3N2P35UNZ2UTIRJ5D44ZZ
-X-Mailman-Approved-At: Wed, 21 Jan 2026 12:49:35 +0000
-CC: linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Alexey Ivanov <alexeyi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+ loop; banned-address; member-moderation
+Message-ID-Hash: OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ
+X-Message-ID-Hash: OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ
+X-Mailman-Approved-At: Wed, 21 Jan 2026 12:49:41 +0000
+CC: Li Chen <me@linux.beauty>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GWIDRUDWTYP3N2P35UNZ2UTIRJ5D44ZZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260121115917.73cfcc7f.zhiw@nvidia.com/>
+ <https://lore.freedesktop.org/20260121113646.111561-1-me@linux.beauty/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -218,175 +118,195 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue, 20 Jan 2026 15:42:51 -0500
-Joel Fernandes <joelagnelf@nvidia.com> wrote:
+Kexec reboot does not reset PCI devices.
+Invoking the full DRM/TTM teardown from ->shutdown can trigger WARNs when
+userspace still holds DRM file descriptors.
 
-> Add TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> 
+Quiesce the GPU through the suspend path and then power down the PCI
+function so the next kernel can re-initialize the device from a consistent
+state.
 
-The same concern as in PATCH 5, guess we need to think of concurrency for
-TLB flush.
+WARNING: drivers/gpu/drm/drm_mode_config.c:578 at drm_mode_config_cleanup+0x2e7/0x300, CPU#2: kexec/1300
+Call Trace:
+ <TASK>
+ ? srso_return_thunk+0x5/0x5f
+ ? enable_work+0x3a/0x100
+ nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ pci_device_shutdown+0x35/0x60
+ device_shutdown+0x11c/0x1b0
+ kernel_kexec+0x13a/0x160
+ __do_sys_reboot+0x209/0x240
+ do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? __rtnl_unlock+0x37/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? netdev_run_todo+0x63/0x570
+ ? netif_change_flags+0x54/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? devinet_ioctl+0x1e5/0x790
+ ? srso_return_thunk+0x5/0x5f
+ ? inet_ioctl+0x1e9/0x200
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x7d/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x23b/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? put_user_ifreq+0x7a/0x90
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x107/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? exc_page_fault+0x7e/0x1a0
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
 
-> After modifying page table entries, the GPU's TLB must be invalidated
-> to ensure the new mappings take effect. The Tlb struct provides flush
-> functionality through BAR0 registers.
-> 
-> The flush operation writes the page directory base address and triggers
-> an invalidation, polling for completion with a 2 second timeout matching
-> the Nouveau driver.
-> 
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  drivers/gpu/nova-core/mm/mod.rs |  1 +
->  drivers/gpu/nova-core/mm/tlb.rs | 79 +++++++++++++++++++++++++++++++++
->  drivers/gpu/nova-core/regs.rs   | 33 ++++++++++++++
->  3 files changed, 113 insertions(+)
->  create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
-> 
-> diff --git a/drivers/gpu/nova-core/mm/mod.rs
-> b/drivers/gpu/nova-core/mm/mod.rs index 6015fc8753bc..39635f2d0156 100644
-> --- a/drivers/gpu/nova-core/mm/mod.rs
-> +++ b/drivers/gpu/nova-core/mm/mod.rs
-> @@ -6,6 +6,7 @@
->  
->  pub(crate) mod pagetable;
->  pub(crate) mod pramin;
-> +pub(crate) mod tlb;
->  
->  use kernel::sizes::SZ_4K;
->  
-> diff --git a/drivers/gpu/nova-core/mm/tlb.rs
-> b/drivers/gpu/nova-core/mm/tlb.rs new file mode 100644
-> index 000000000000..8b2ee620da18
-> --- /dev/null
-> +++ b/drivers/gpu/nova-core/mm/tlb.rs
-> @@ -0,0 +1,79 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> +//!
-> +//! After modifying page table entries, the GPU's TLB must be flushed to
-> +//! ensure the new mappings take effect. This module provides TLB flush
-> +//! functionality for virtual memory managers.
-> +//!
-> +//! # Example
-> +//!
-> +//! ```ignore
-> +//! use crate::mm::tlb::Tlb;
-> +//!
-> +//! fn page_table_update(tlb: &Tlb, pdb_addr: VramAddress) ->
-> Result<()> { +//!     // ... modify page tables ...
-> +//!
-> +//!     // Flush TLB to make changes visible (polls for completion).
-> +//!     tlb.flush(pdb_addr)?;
-> +//!
-> +//!     Ok(())
-> +//! }
-> +//! ```
-> +
-> +#![allow(dead_code)]
-> +
-> +use kernel::{
-> +    devres::Devres,
-> +    io::poll::read_poll_timeout,
-> +    prelude::*,
-> +    sync::Arc,
-> +    time::Delta, //
-> +};
-> +
-> +use crate::{
-> +    driver::Bar0,
-> +    mm::VramAddress,
-> +    regs, //
-> +};
-> +
-> +/// TLB manager for GPU translation buffer operations.
-> +pub(crate) struct Tlb {
-> +    bar: Arc<Devres<Bar0>>,
-> +}
-> +
-> +impl Tlb {
-> +    /// Create a new TLB manager.
-> +    pub(super) fn new(bar: Arc<Devres<Bar0>>) -> Self {
-> +        Self { bar }
-> +    }
-> +
-> +    /// Flush the GPU TLB for a specific page directory base.
-> +    ///
-> +    /// This invalidates all TLB entries associated with the given PDB
-> address.
-> +    /// Must be called after modifying page table entries to ensure the
-> GPU sees
-> +    /// the updated mappings.
-> +    pub(crate) fn flush(&self, pdb_addr: VramAddress) -> Result {
-> +        let bar = self.bar.try_access().ok_or(ENODEV)?;
-> +
-> +        // Write PDB address.
-> +
-> regs::NV_TLB_FLUSH_PDB_LO::from_pdb_addr(pdb_addr.raw_u64()).write(&*bar);
-> +
-> regs::NV_TLB_FLUSH_PDB_HI::from_pdb_addr(pdb_addr.raw_u64()).write(&*bar);
-> +
-> +        // Trigger flush: invalidate all pages and enable.
-> +        regs::NV_TLB_FLUSH_CTRL::default()
-> +            .set_page_all(true)
-> +            .set_enable(true)
-> +            .write(&*bar);
-> +
-> +        // Poll for completion - enable bit clears when flush is done.
-> +        read_poll_timeout(
-> +            || Ok(regs::NV_TLB_FLUSH_CTRL::read(&*bar)),
-> +            |ctrl| !ctrl.enable(),
-> +            Delta::ZERO,
-> +            Delta::from_secs(2),
-> +        )?;
-> +
-> +        Ok(())
-> +    }
-> +}
-> diff --git a/drivers/gpu/nova-core/regs.rs
-> b/drivers/gpu/nova-core/regs.rs index c8b8fbdcf608..e722ef837e11 100644
-> --- a/drivers/gpu/nova-core/regs.rs
-> +++ b/drivers/gpu/nova-core/regs.rs
-> @@ -414,3 +414,36 @@ pub(crate) mod ga100 {
->          0:0     display_disabled as bool;
->      });
->  }
-> +
-> +// MMU TLB
-> +
-> +register!(NV_TLB_FLUSH_PDB_LO @ 0x00b830a0, "TLB flush register: PDB
-> address bits [39:8]" {
-> +    31:0    pdb_lo as u32, "PDB address bits [39:8]";
-> +});
-> +
-> +impl NV_TLB_FLUSH_PDB_LO {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [39:8] of the address and shifts it right by 8
-> bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::default().set_pdb_lo(((addr >> 8) & 0xFFFF_FFFF) as u32)
-> +    }
-> +}
-> +
-> +register!(NV_TLB_FLUSH_PDB_HI @ 0x00b830a4, "TLB flush register: PDB
-> address bits [47:40]" {
-> +    7:0     pdb_hi as u8, "PDB address bits [47:40]";
-> +});
-> +
-> +impl NV_TLB_FLUSH_PDB_HI {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [47:40] of the address and shifts it right by 40
-> bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::default().set_pdb_hi(((addr >> 40) & 0xFF) as u8)
-> +    }
-> +}
-> +
-> +register!(NV_TLB_FLUSH_CTRL @ 0x00b830b0, "TLB flush control register" {
-> +    0:0     page_all as bool, "Invalidate all pages";
-> +    31:31   enable as bool, "Enable/trigger flush (clears when flush
-> completes)"; +});
+nouveau 0000:26:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp_head))
+WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_framebuffer_free+0x73/0xa0, CPU#2: kexec/1300
+Call Trace:
+ <TASK>
+ drm_mode_config_cleanup+0x248/0x300
+ ? __pfx___drm_printfn_dbg+0x10/0x10
+ ? drm_mode_config_cleanup+0x1dc/0x300
+ nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ pci_device_shutdown+0x35/0x60
+ device_shutdown+0x11c/0x1b0
+ kernel_kexec+0x13a/0x160
+ __do_sys_reboot+0x209/0x240
+ do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? __rtnl_unlock+0x37/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? netdev_run_todo+0x63/0x570
+ ? netif_change_flags+0x54/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? devinet_ioctl+0x1e5/0x790
+ ? srso_return_thunk+0x5/0x5f
+ ? inet_ioctl+0x1e9/0x200
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x7d/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x23b/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? put_user_ifreq+0x7a/0x90
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x107/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? exc_page_fault+0x7e/0x1a0
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+WARNING: include/drm/ttm/ttm_resource.h:406 at nouveau_ttm_fini+0x257/0x270 [nouveau], CPU#2: kexec/1300
+Call Trace:
+ <TASK>
+ nouveau_drm_device_fini+0x93/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
+ pci_device_shutdown+0x35/0x60
+ device_shutdown+0x11c/0x1b0
+ kernel_kexec+0x13a/0x160
+ __do_sys_reboot+0x209/0x240
+ do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? __rtnl_unlock+0x37/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? netdev_run_todo+0x63/0x570
+ ? netif_change_flags+0x54/0x70
+ ? srso_return_thunk+0x5/0x5f
+ ? devinet_ioctl+0x1e5/0x790
+ ? srso_return_thunk+0x5/0x5f
+ ? inet_ioctl+0x1e9/0x200
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x7d/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x23b/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? put_user_ifreq+0x7a/0x90
+ ? srso_return_thunk+0x5/0x5f
+ ? sock_do_ioctl+0x107/0x130
+ ? srso_return_thunk+0x5/0x5f
+ ? __x64_sys_ioctl+0x97/0xe0
+ ? srso_return_thunk+0x5/0x5f
+ ? do_syscall_64+0x81/0x610
+ ? srso_return_thunk+0x5/0x5f
+ ? exc_page_fault+0x7e/0x1a0
+ entry_SYSCALL_64_after_hwframe+0x76/0x7e
+
+Signed-off-by: Li Chen <me@linux.beauty>
+Reviewed-by: Dave Airlie <airlied@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 32 +++++++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
+
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 1527b801f013..f2e04a048ac2 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1079,6 +1079,37 @@ nouveau_pmops_resume(struct device *dev)
+ 	return ret;
+ }
+ 
++static void
++nouveau_drm_shutdown(struct pci_dev *pdev)
++{
++	struct nouveau_drm *drm = pci_get_drvdata(pdev);
++	int ret;
++
++	if (!drm)
++		return;
++
++	if (drm->dev->switch_power_state == DRM_SWITCH_POWER_OFF ||
++	    drm->dev->switch_power_state == DRM_SWITCH_POWER_DYNAMIC_OFF)
++		return;
++
++	ret = nouveau_do_suspend(drm, false);
++	if (ret)
++		NV_ERROR(drm, "shutdown suspend failed with: %d\n", ret);
++
++	pci_save_state(pdev);
++	pci_disable_device(pdev);
++	pci_set_power_state(pdev, PCI_D3hot);
++	/*
++	 *  This is just to give the pci power transition time to settle
++	 *  before an immediate kexec jump. it’s mirroring the existing
++	 *  nouveau_pmops_suspend() behavior, which already does
++	 *  udelay(200) right after pci_set_power_state(..., pci_d3hot). In
++	 *  ->shutdown() we’re allowed to sleep, so I used usleep_range()
++	 *  instead of a busy-wait udelay().
++	 */
++	usleep_range(200, 400);
++}
++
+ static int
+ nouveau_pmops_freeze(struct device *dev)
+ {
+@@ -1408,6 +1439,7 @@ nouveau_drm_pci_driver = {
+ 	.id_table = nouveau_drm_pci_table,
+ 	.probe = nouveau_drm_probe,
+ 	.remove = nouveau_drm_remove,
++	.shutdown = nouveau_drm_shutdown,
+ 	.driver.pm = &nouveau_pm_ops,
+ };
+ 
+-- 
+2.52.0
 
