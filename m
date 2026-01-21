@@ -4,232 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8883C44506
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 19:50:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2DAEC44508
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 20:22:05 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 44DC310E882;
-	Wed, 21 Jan 2026 19:50:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 50A5C10E25C;
+	Wed, 21 Jan 2026 20:22:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="VWJoFZni";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="c8pkWHbY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0DD3240111;
-	Wed, 21 Jan 2026 19:41:48 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769024507;
- b=pHQVSR5COQHS9X9xeQDrq7UDFje4EjFDOTpydfnr2AVIwOaU8/Wj9c7KJjhPX+74+jqRG
- 4kU0leUeiV039SZpxb0fwEaqz8mcoSfUbnvnJ92wsO2ijD1c4Os02YXIg2P6/TZQHAGgf8h
- g2PdWl54UdKrlt2tZluSLb4IOfjrNPDkFy0ZfU2lgbsyVyAX3N3VdnJtRSSeIqdfBg+Lt5w
- 3bhg+IDQZ8d60pTGTOqvHeGrPP+EltToQ8i24Jn9/WgUXm4HK0jiJ1q38+kFfRAC0ogyaVS
- IV561qdEvdIL6zzaeXfBNkgRf/sUFYRKUKOwFHHTD38C6rokLuXULxP/L0rQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769024507; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 08ED9401CE;
+	Wed, 21 Jan 2026 20:13:17 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769026396;
+ b=IQ6+OCYa4jZzU+swuL0lAWsWrqZOwox/KlKX1P8kBhHFZUyYCwktePv3E12njGZApGRs/
+ 2IEKW3eDdDOp1BoBvu6LTiSv7eQRDktI1wQ7a0de+mz6xAZGbWl22I4vWD7b4P2/n6KxnVW
+ pA3ggqBQN1ER8jC8WnreL1+DlD1lYx1mHb6O8rgmqBbY/C5l7aQKvivVehRRBT5/WI8wJbM
+ 05i5BfGQy6XL+CPC9jWhcEZv3nvpEfFtYsvavTY2d9Bst9RYBketPHbb69M6MyNemX8qezq
+ 4I3kU9afgZWl3gj6puxKLk9xvqzZZk5MtKus01PwmgEONaQGnwFzOYlJ2JxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769026396; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=J8rMqGV8ZpQnx8wUYVJgMX4bwDEpxL8eEt9v9uRbIcA=;
- b=BtRpJuQC4cYFbDgT4gHfO6DyfWOYWJDr8ejI3+YZgWilPd2bENjDrMBdsDPINVyjX+i6B
- ZKNmpuEm0jrKmkdSoI6PIXoA+u8ZeXPrnnbBjGrpGUP2ff6tbPtEC4rFl7MxysrvultKyTh
- iURFVvHgufh/MA/kQhFhzIuaosjOgNYOE9IwBTNn6TLy1m+4a75d5NOeWcBj2yueux1F53F
- gTP+dcLUE50KFnbs3CQ2X0z23RzKX56/+Lzw6tjrauDmXelyTk3YKXkXdm1AmVzjTb4UO4y
- LsaI+hD3HGjGfCQgS15KfSpkiC59H2CkGesoXahOVpDY6+oI82fUrbJO91KQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=n3XTOFlpwGo1Iv1YMspblfr7eDd74F18SQq+0rvrI4w=;
+ b=rLSARB5Cb/meUOgTIRWc6POnJP1iFbqQP1rhant38AO4RHq4XiAV6zK1xC+MM6ZT0n8Gn
+ lnl+FCbHeF8oCocuD+aUKShE2UIWkrjyigojSieHRcFnA1mBECzokQiVBnlL8+GwcKZN3IY
+ 5k3EaY+fNPELov80nT2Pqbm893gY6JPmNx9tGJoY56Gha9aW3QU9j1+tkPe6O5xGvbEEyfb
+ 1w799gBso/MBWCPAdpa7Tv9zgHHh/YjPjRG1b9NuEQgLO4/r+Ag2YXOZBjhH6vevZ7xrnhl
+ IYwwa8PK07Aa7fuZPUsqXbvdeBds8WojhzTidDHJg3gH481n7wIdo4nIA34g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 052B6400AA
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 19:41:45 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012038.outbound.protection.outlook.com [52.101.53.38])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id ABF2F10E054;
-	Wed, 21 Jan 2026 19:50:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gHj6NuQ+ofKey7KbDto2XqObARQ3/83OlhfXNy75N0VvLQYyljku/BL4YVmQEMIp+dLrY623V7xouTykCrBCXQOkdr2wH1d8yTHiLNHVkiMfrz296YAnQSK4r2lpntud/RGNgVKX+TscBTGwtjGINe13XTRf8sYIeR0Kg9K2/Od2fGcI5I6g7hkdfS51jp9iKk/xzhPXKluWjj51DRRdVUtbbKazHe7N911JQ3fSteap+jiekWVOu95oYLsp+ohngBf1JUQdSa1rYIcdYL0IfTi+pn5igpbOs9vL/uFLy9gP2IFrSIWysOQwSA9XQv6kWSDt/MVDl7YMtduns8hwxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J8rMqGV8ZpQnx8wUYVJgMX4bwDEpxL8eEt9v9uRbIcA=;
- b=D4KDvK9nUkjSOpOJuUm9LyXEzrED1aE8LQS+LRgpJWkAD0YELZ47zUDqX2xsbwP6ZfBb14G0T4y0zDNcwjrdVIlgK1txwJpw1GKdWnqLs4w3SFrByiZN1VoCvM14h472XPMgYwyZxthapHEZ2K3Vcwl4f6dOiYFzyKdVeNSwWrQWfgdq/eHX5FafYVuySgr2pxY1jOMSqpQLCGqq/dTjS5IFYpicZ0tdEOU2tlE4Kz+zJaMXxI6uK6EymZkoJPWx4ZasX0ZBZdNB2AQ6qK/me4QVka/t/wzMUQLcSb569uFzIgb7HgIMHGzn4HhILdpBhygJ9yI/v4iDxqlMVAr9KQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=J8rMqGV8ZpQnx8wUYVJgMX4bwDEpxL8eEt9v9uRbIcA=;
- b=VWJoFZnimeV0IvvJskDZqBleGnLaGaISwA1exT49OyeQ0lFbA1fVyOB4/xhlX4c27yCNkrmgsusZyw5uh32bJBj8i4tk1ia0kGxJk+oT9zOTS+RZFDwOERM915wlI70g2QvS2c53IbiJN3B9z1TZlePuxt+sPde2yRToVOuncMw86HjTtYL2L6wA4BqHhT5fScKbshPcj2CLC055PfpB8lHb+G46Ts+oj/1pemhPQOJ7YtTtzWEtrZbhBHIdJeSbXJxUa9uk9yzR7Hbw7v0NLhwYGHu0YiYNHAt5O4g8f59zxIRUnvkNgUhl2S+/alrDBrsgEQpYcswKF10tHHJ4Iw==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CY8PR12MB7490.namprd12.prod.outlook.com (2603:10b6:930:91::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.9; Wed, 21 Jan 2026 19:50:26 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 19:50:26 +0000
-Message-ID: <01a981f1-64c7-4504-b309-45a024258fe9@nvidia.com>
-Date: Wed, 21 Jan 2026 14:50:21 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v6 01/26] rust: clist: Add support to interface with C
- linked lists
-To: Gary Guo <gary@garyguo.net>, linux-kernel@vger.kernel.org
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-2-joelagnelf@nvidia.com>
- <DFTTGUYGY72V.3VLVSCB2OOXIB@garyguo.net>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DFTTGUYGY72V.3VLVSCB2OOXIB@garyguo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL1PR13CA0079.namprd13.prod.outlook.com
- (2603:10b6:208:2b8::24) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2E62F400A8
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:13:14 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 198C810E054
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:22:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1769026920;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=n3XTOFlpwGo1Iv1YMspblfr7eDd74F18SQq+0rvrI4w=;
+	b=c8pkWHbY1ubB/Eb5sOQ7GEOjf/DlJjSs7jr1CORRhSZXr/XA8+APir6JVi8qtXrfdYRe3+
+	BGLhaTc/PmOQRl2enXBHV6ozbxvSrl+Z4vRP4YkOra+HpjPPzt/RRtM4CNDhIY6lwNCsUk
+	sbeGIA7NyfWhTBwMljmrxS37mhlC1lU=
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com
+ [209.85.222.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-139-hPgK33sGMi206ka3kjzd-w-1; Wed, 21 Jan 2026 15:21:58 -0500
+X-MC-Unique: hPgK33sGMi206ka3kjzd-w-1
+X-Mimecast-MFC-AGG-ID: hPgK33sGMi206ka3kjzd-w_1769026918
+Received: by mail-qk1-f199.google.com with SMTP id
+ af79cd13be357-8c6cfd52556so62079685a.0
+        for <nouveau@lists.freedesktop.org>;
+ Wed, 21 Jan 2026 12:21:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769026918; x=1769631718;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+rntkyJ8zN04I9wyHcG7A38Hsm5eIPf8uOVFzzvGsAY=;
+        b=kNFzHzivH0ZhxD7kkT/uXPry2yZqfVW2eY9ObelOPnX/DAV9fCI5Gt08+iFQj5O3to
+         yJw02WZu6ylIKc0aVYcNm9w1+7PTnnbldWVsad6IACi7UbCUG5oFUmRG6H3yazIACEGR
+         474dyH3RB00LKj6jUQET05vxJ7OeDuo8yjgur6Aof12tnVDgC4S67Yow2KzaxE73Zkrh
+         w7fLewHXTrK1zTUknSPdB73fmeTe/Tqb+KYvt3Tk2w1iiWKZWsYUyIKBbagMvAyzfK7e
+         tXuE1uFxDbE4hZTV8hVPvhNMoC0ylVNvBs8nOHsKtjmm08agCVD41dwOe8786Wq/cFw6
+         Bpow==
+X-Gm-Message-State: AOJu0Yy6kY75TyflosIN+g6csP3gVbUo1lthWZKzMmvY5ycQiNL+5LH2
+	UnqdrK/7JYJz1tf1pcPH4G2ILG+amVfbegEgzISWCEoJCu+aBgJO+cVJACF2qhDlgMhttBn5/gy
+	iNuht+v9O601hsm5uuxJjO4uXT8irzvq0RGTUxjdHFopRX3sk6fg9Xklmgy9G06aWJQU=
+X-Gm-Gg: AZuq6aLLnt38CXuTOJOZRQlLLDHpQ+yJwDKGsiyooYZ89hbwv1xZ94GmeEu8mfR3oC9
+	n1IdIqc3xtFCw1tJ8ErY8TBybEl2WUdgK9TxWhedtBa5ZWmvVJCzmAsKifH2iDzlAwwOqhiBqGf
+	6SmypDRJKhYLdw5XRany8dqleNN25/k9J9odX4PKr/8H2036+Y8PRsAf2VuHPQSYXB3pJ4WT4aN
+	nHOiIovjFVe8wXuVuTaBu8t5YXq+Cd24EArqKaIaFeW5VMUJRud4tjrTcaLCat76X9MBbtLa6Xr
+	UhJJg3V8X8gYqCwVAN7sB3Sq2VeEbmy/q87FnTBlA8xi/ULmRZKCEykkmskCBalviH4VOmpsmVI
+	GAIFxgg==
+X-Received: by 2002:a05:620a:25d0:b0:8a9:eb31:1033 with SMTP id
+ af79cd13be357-8c6da8afc27mr107518385a.30.1769026918207;
+        Wed, 21 Jan 2026 12:21:58 -0800 (PST)
+X-Received: by 2002:a05:620a:25d0:b0:8a9:eb31:1033 with SMTP id
+ af79cd13be357-8c6da8afc27mr107514585a.30.1769026917659;
+        Wed, 21 Jan 2026 12:21:57 -0800 (PST)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-8c6a72639fesm1325960685a.44.2026.01.21.12.21.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 12:21:57 -0800 (PST)
+Message-ID: <73c3d481391bd630477d93c2d24c9931ea849f7b.camel@redhat.com>
+Subject: Re: [PATCH v3 1/2][RESEND 2] drm/nouveau: add missing DCB connector
+ types
+From: lyude@redhat.com
+To: lxrmrz732@gmail.com, dakr@kernel.org, airlied@gmail.com
+Date: Wed, 21 Jan 2026 15:21:56 -0500
+In-Reply-To: <20251213005327.9495-2-lxrmrz732@gmail.com>
+References: <20251213005327.9495-1-lxrmrz732@gmail.com>
+	 <20251213005327.9495-2-lxrmrz732@gmail.com>
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CY8PR12MB7490:EE_
-X-MS-Office365-Filtering-Correlation-Id: c1caae2c-4216-42ee-9713-08de5926522d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?WEZRbmI1d2hLRzFZbEZJRWhteHNIYStFY09teTBJMWlVYVB6dGdscCs0amlO?=
- =?utf-8?B?M2hFWHltZjZQQ25UaGlXTGhUN0VFZU44cjFGZGhybXAxbThQajRPYnM2aHR6?=
- =?utf-8?B?bWlVTlRYUDA4Q09pS2o1YXlVSFloK005cGU4NTNORjE4cUt0b2tLL0t1T1J5?=
- =?utf-8?B?Z1d2d0EyQmlZZXU2eG9ManFCWDBQMzFtR0lkOVRLSTNCQzhqQ0d1am01RDBr?=
- =?utf-8?B?cGJRRFk4Um5mU2gzaUlDMXkrSkM2czZaaG9xNmJCZVZwVTlEZEx5UHBjWW1h?=
- =?utf-8?B?bWpmNG5jMFZ2eE9kSXIzWFBKTEFzMkVGeElOK1lLVXo5RlJORjFKTzE4QWtm?=
- =?utf-8?B?aFpRTGpiMDhNWjNyWkJlaHFRQ3lhUjhySzZWMHFnSTVXTWFpLzVqek9BRkVn?=
- =?utf-8?B?b0cxbm1SUHhtKzc4YnBQb01EZVhaLzZ3WTN0VEhmU0xzZ21WZzBCL0tXaGhw?=
- =?utf-8?B?NTNobFRURFgwQzlxZlBlZXZHRXM0NEdjVUJucTlMODE2cmVzQ0o2ZGpuWi9X?=
- =?utf-8?B?blFjM0hPS1NCV2RqOWkwNmdpVWVDQU1uY3FwTEZQa2QrRFp3enRpWmVMcVM5?=
- =?utf-8?B?VFVzWmJ5YTg1Q3dpaFNrKzgya2FWZmhTOVQvRmlXNlJnM3J3aDMyTXJtY2sw?=
- =?utf-8?B?L01Gak9MZkpCOUNaSzJwckhBL29CUHpxemcvajNDMWxwcWI5YmxRNThVUmQ3?=
- =?utf-8?B?YUVNYnRTNUtOcEh5dyt2c2puOW9id1ZPTG1pNXp6K2gzdlJ4RTZqZDhHbEdM?=
- =?utf-8?B?M0NtNzNTQzJPZ3hhdXJkUEVLSDh5TVZrU3VyNTFOYTBFcjE1b3MySGFuS1h4?=
- =?utf-8?B?blhBNUlCOGJxM1BKVllvdmFGTmhleXVDWk9KL1BTL2RXSnNRTHRJMlNVV2xF?=
- =?utf-8?B?MUNsSFAwUi9LaXRVUmlKZEw3c1laMUh6bkZMWnRxYlh0OEN2Z3hkRndKdWFR?=
- =?utf-8?B?Z250ZlVFUDg1VkdnVUhFRlNrb2QrK2c0ZVJPRzI2WVlmeWxXc0RBSUo4WUYy?=
- =?utf-8?B?WngxaG16cWltdXNIUlBrRmczV3NPOHhWazc1MmR5Mlh1clptcDcrNDFzbGhZ?=
- =?utf-8?B?L3BHRFhtRDNTdjE4YVR5UExFN0c4NkhSeE9jTFRXNktVTUtNVWRxblQ3REZU?=
- =?utf-8?B?c04yQzVsUjluTFBJOVVuY0o4OUc4WnJubDVoREl3KzFyK1NOUUZZRklBdTZi?=
- =?utf-8?B?Rks5endLUHpSdUp0REljeUtRcUJ2azVab20zWjFDRU5IVUFWQWt5MU1mem92?=
- =?utf-8?B?eFQ1SGFUVk11SlBBT1BMaDNaMHBuS0h3QXBmUU5tVnhoQ3J0eW96QVBUdUF6?=
- =?utf-8?B?bVc4L1FJU3MzYTBEUXkxcllTa3VXaHk3TGQ2R0g2aVZjUTFxZllGMVRpdGFG?=
- =?utf-8?B?cG5GTUdHVDI1SnNSK2V4a2VwZy9zcDVlaGgybUtIQllhaVVaVVY2YzdyOVFD?=
- =?utf-8?B?Y3lTUTh2NFZtNHEwcDE1d0lSTDlmTmxITTlCN2xkZzUyUUw0eCtFWDQwcVJo?=
- =?utf-8?B?cVY3S2EwQjIxMVUvVldKUHRrMmY5RUJ6VlgzSjBMVVFBNlFEMkl6RnZvTGJ5?=
- =?utf-8?B?RGl0OFljbUc3cllhUFM2c0loTWJWdlhNWDhBbEVBSUpRV01DNFkrRFdXa2Vx?=
- =?utf-8?B?SDBZWGcvYWwyR3BHMzNlUkc0Qm5od2g2Uk5WK1RRM2RUemNMOHVEeVp4WUJx?=
- =?utf-8?B?dkVhdmNlZEMvY1luWWtvd3djaVMvNnI3L1AyUmdmN0xicGtPUkRiQnhLMWFS?=
- =?utf-8?B?Q1Rpc01Oc3dTVm15NGZseHQrYWhkeTVOZkp5Zk1ONzY1WFV4b3grSHF2TlhJ?=
- =?utf-8?B?UjJXRHdnSzJxK205MTRwdzlHbXBVbnNjcTVlNW0rTjBYakpzbDFJdGJ2M2c4?=
- =?utf-8?B?a0RWZGN1L3NtNkxjSmxKZ3l4WU9GZE83cldhMVRBUnZyYmhyanMrd0EzaUs5?=
- =?utf-8?B?TzVDSVMzNEU0UlZ6Wjg4RUVacyt2b050bHZJeXpaY0hJVVZneEw1aXgzY0hW?=
- =?utf-8?B?bVVYcmNqd1FLYURxdVkyUTQraUhTeVVNN1Zjb3VkUUN0MStvYnV1bFMrS1pQ?=
- =?utf-8?B?RHRDOEpWd2tHb0RtS01INGs5L21mSFNwUUhPV2RvQlNKalJlZU9BUnYwS1g5?=
- =?utf-8?Q?kL/Q=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?NjA3RnBvdlV0QkNoVVFNN3U1b3U1OG5HdU5aRGN5WmI5MlIrMm9DYjVjT3Aw?=
- =?utf-8?B?Wm5ZRnJFSHFZdFFkTGlIVlVDRHlVZXBOdzQveEx1UXJ4bE45RlhXSHNoaHM1?=
- =?utf-8?B?ejZDQTdPMkR4WVBIUm5nQm1hN3hMTUtnd0RaMmcxc3pibmFTdTliWnVJV1Vv?=
- =?utf-8?B?VnZodUUyZTBTdGRkekZ6Q1VWWGdWMFd6NXIway9Ecmgzc2VOc3FKR3lJMG16?=
- =?utf-8?B?V1Z4ZFNxT2NITkxXMkwyVWZ0dytQNm9NeVRrNEUvQmN3Z2tsYTlmNjVTUFNn?=
- =?utf-8?B?elUwd1QvU0VsVVB2U3ZCVWFOTHdWaHlCdTQ0d0h2ZXpoOUJndEQzM0oyVnJr?=
- =?utf-8?B?TW1KQ2Z3cDJtRVpVNFN3U0piQll3SS9rM3pScFpHMU9xWkxyTHZHUHovNmdH?=
- =?utf-8?B?TXhXOW9VNWF6T2pBZ0ZXeTF2NnBDdk5haUpoMTQ5MjdlYnl3OWJiVVBBRHZS?=
- =?utf-8?B?VG5iS0lyeWZINVMrcS9pR3NvYTlCenZQRkdwU08raGJ1THNxbXZNU0hHWUwy?=
- =?utf-8?B?QVRoN3VUMmhxZlhzekFxMWR4WjlSZHI0QTF3c2hvYjhUQTMyYk5LakhMdHo2?=
- =?utf-8?B?TGo0NXdndnJZdGdvWFdmclpnRWNaalNJaFRRbHBOZFlUV0RaYzNGQmZrbWpT?=
- =?utf-8?B?VmdSZnF3NjF3T1BEa05hZExBRWI1bmNMZERrMWpudCtjdkRPN3c4TXJldlRZ?=
- =?utf-8?B?M1BmVk43SzJvM3RjWWhCOS9VeTY0dXRZTUtPVkVZTXlkWWswY0xzbSs0eExX?=
- =?utf-8?B?SDZXdEt1VTBDa1lNcXNadUNyWHFEc0VKWm9oSDJBRTJVTU9vMHpZVDgzUll4?=
- =?utf-8?B?Tm5rYjlsRGRXV1BUTjZQWlJxRDFrV3VPZ3RDV3d2Zzg2clRpQnlxZkVoK2xy?=
- =?utf-8?B?RFFVQzdQazAwL25YQXhtMXAyMGl5NVZTZXlDZjk2RXVTNGgvN2p6ZFRBZVRx?=
- =?utf-8?B?KzlTSElpRTV2enViUWZVUTFHeGJqQi9ocFlYODhDVXAzZGgxQnFSbDF4aG5N?=
- =?utf-8?B?LzdoMVcvV2UwZmdIMy9LdE0rZkFnS29rUHpVaGJZQWxFS3JFd050RmFCZ3ZV?=
- =?utf-8?B?QS9TV1pYeEsxV2JuRkR1VjdBQXFIOVJLOVB3My9XSXhQb0NrWXoySjZOdkU1?=
- =?utf-8?B?RFlKL0lFeENPWnZlYTJTZmxYTTRqM0JTUWlOOWFJeENIMzBnb3pKVWd6eWZO?=
- =?utf-8?B?R2NDYzRTTGJJYjFaTU1Jc1BmR2hRUk92WEFkSCt4a0J4TXdCNGlBcElXZXBn?=
- =?utf-8?B?NVh4bDRzOFJkVVl2UU9CRHBqbFkySGYwR2JuQlVUc2hwVE4xNlhhTzJoV3pY?=
- =?utf-8?B?VDlsMktsQXNSSy9kNmxTVVdjUnRQWXgxRzZCK3crTHJzY0pFL0RXRXJKL08r?=
- =?utf-8?B?K2t5ZHNMWGFKZFZrY3M3T2NPQ2hxVlpibDhLMTJLL2VHTExuWU85Slgvdzhz?=
- =?utf-8?B?a243Nmdab2dtZ1ZDTEN0NTNaaHNzSnNEeDhIWXBQNndaYVoySWduUk5qWlpC?=
- =?utf-8?B?Umx3a2p0ejlsVUtpUjJHUFlMWlRXZjY0elk3ai9PWEx4ZDMxRXBVd0hUYmhM?=
- =?utf-8?B?S2FLTWRtL1JJL1BNL1JkYmJDNmdKQUVzdEFvVmRQZE12UEgxUkRiQnVKZTBZ?=
- =?utf-8?B?bE9sQk1SdEFERFplTFpCTVpMOXU5VHFrZ2llM1VLYXNPV01GS2dkQXhnTW82?=
- =?utf-8?B?UUFTUWZZWm04ZTJRVWZiSlJkb25DNWlrVzkvbU5GS3U4T29tekVObkNEVmZM?=
- =?utf-8?B?K0RGRm1ycHM0bk9ValV0aURMZDlCb1Y5QWp4NUZJSUtNQXV3c2xvLyswaVNH?=
- =?utf-8?B?OVlFaEFaSGxxQ3J4V0tvR1hEckV2d0gxTTlDcFdnZmt4MkVIMDdURFZLM0h3?=
- =?utf-8?B?Q2VzaGViamtlWk9EVmFZdnIxT2lsUWJXZWExOWU3cDBRajYxN0FEbVdNOVgx?=
- =?utf-8?B?aFp5TkZoN0xtejIwaWRMblpFVkJhbXVLL3VXV29OVWNsdVhJaEdhdGM2cjd2?=
- =?utf-8?B?VVBkdkIwclJNeGZEekFpdVl0VGFMcUw4Z3RLNHhpNlRlTTgyUDZRcGhZVEdE?=
- =?utf-8?B?OXliNHlIUHQrMWJXdnBFc2pwdXhJSGdWNDl0RDFxU3ZiTGZra1R1WVUyOEJK?=
- =?utf-8?B?M2FWMzlPY2dIUUdkajk4RmhCRFhuNUxHZmVOdWowVTVzUDhpbldkbWkxNDk5?=
- =?utf-8?B?ZkpGQlBlUjRZN2t2dXhWWlVqZHNuN00rNFNpczdnODZCa1lFMnhDRnZ3T2ly?=
- =?utf-8?B?d0V4c0o2OTBuZzlxeTF2SnNjb0gxb3NCak5hMk11QkR1eTUrdXJZOXNseEQ3?=
- =?utf-8?B?bDNPYkJmSDhHdUNOcllBcnRuNXV5S3BXR1g4OG1rcFdGcmlJTkNYUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- c1caae2c-4216-42ee-9713-08de5926522d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 19:50:25.8389
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- PGGQDHXegM/govv5MmPSk84x3VNEzCJ1cZNtFvIzKMVL0GDcoN8ksGJ3Zgf9e/csIN59xid+gHC+1GnmVhHazg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7490
-Message-ID-Hash: JEP3XI3S2RR6GNTB2BBYPRB2BDG4ZQQ3
-X-Message-ID-Hash: JEP3XI3S2RR6GNTB2BBYPRB2BDG4ZQQ3
-X-MailFrom: joelagnelf@nvidia.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: DxgFYceQSk-Kj4PFapCUqWLlq-MdGfiz3ZanzIoUhhk_1769026918
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: H5JPLDPL2742K5M24FKHEO7LP7Z6ZYMO
+X-Message-ID-Hash: H5JPLDPL2742K5M24FKHEO7LP7Z6ZYMO
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+CC: nouveau@lists.freedesktop.org, lxrmrz732@rocketmail.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JEP3XI3S2RR6GNTB2BBYPRB2BDG4ZQQ3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/H5JPLDPL2742K5M24FKHEO7LP7Z6ZYMO/>
 Archived-At: 
- <https://lore.freedesktop.org/01a981f1-64c7-4504-b309-45a024258fe9@nvidia.com/>
+ <https://lore.freedesktop.org/73c3d481391bd630477d93c2d24c9931ea849f7b.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -239,457 +144,180 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hello, Gary,
+Hi! Sorry, this totally flew past my radar. This looks almost perfect,
+just some small corrections below:
 
-On 1/20/2026 6:48 PM, Gary Guo wrote:
-> On Tue Jan 20, 2026 at 8:42 PM GMT, Joel Fernandes wrote:
->> Add a new module `clist` for working with C's doubly circular linked
->> lists. Provide low-level iteration over list nodes.
->>
->> Typed iteration over actual items is provided with a `clist_create`
->> macro to assist in creation of the `Clist` type.
-> 
-> This should read "CList".
+On Fri, 2025-12-12 at 19:53 -0500, lxrmrz732@gmail.com wrote:
+> From: Alex Ramirez <lxrmrz732@gmail.com>
+>=20
+> * Add missing DCB connectors in conn.h as per the NVIDIA DCB
+> specification.
+>=20
+> A lot of connector logic was rewritten for Linux v6.5; some display
+> connector types
+> went unaccounted-for which caused kernel warnings on devices with the
+> now-unsupported
+> DCB connectors. This patch adds all of the DCB connectors as defined
+> by NVIDIA to the
+> dcb_connector_type enum to bring back support for these connectors to
+> the new logic.
+>=20
+> Fixes: 8b7d92cad953 ("drm/nouveau/kms/nv50-: create connectors based
+> on nvkm info")
+> Link:
+> https://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.html=
+#_connector_table_entry
+> Signed-off-by: Alex Ram=C3=ADrez <lxrmrz732@rocketmail.com>
+> ---
+> =C2=A0.../nouveau/include/nvkm/subdev/bios/conn.h=C2=A0=C2=A0 | 84 ++++++=
+++++++++---
+> --
+> =C2=A01 file changed, 63 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
+> b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
+> index d1beaad0c82b..538306522d9a 100644
+> --- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
+> +++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/bios/conn.h
+> @@ -1,28 +1,70 @@
+> =C2=A0/* SPDX-License-Identifier: MIT */
+> =C2=A0#ifndef __NVBIOS_CONN_H__
+> =C2=A0#define __NVBIOS_CONN_H__
+> +
+> =C2=A0enum dcb_connector_type {
+> -=09DCB_CONNECTOR_VGA =3D 0x00,
+> -=09DCB_CONNECTOR_TV_0 =3D 0x10,
+> -=09DCB_CONNECTOR_TV_1 =3D 0x11,
+> -=09DCB_CONNECTOR_TV_3 =3D 0x13,
+> -=09DCB_CONNECTOR_DVI_I =3D 0x30,
+> -=09DCB_CONNECTOR_DVI_D =3D 0x31,
+> -=09DCB_CONNECTOR_DMS59_0 =3D 0x38,
+> -=09DCB_CONNECTOR_DMS59_1 =3D 0x39,
+> -=09DCB_CONNECTOR_LVDS =3D 0x40,
+> -=09DCB_CONNECTOR_LVDS_SPWG =3D 0x41,
+> -=09DCB_CONNECTOR_DP =3D 0x46,
+> -=09DCB_CONNECTOR_eDP =3D 0x47,
+> -=09DCB_CONNECTOR_mDP =3D 0x48,
+> -=09DCB_CONNECTOR_HDMI_0 =3D 0x60,
+> -=09DCB_CONNECTOR_HDMI_1 =3D 0x61,
+> -=09DCB_CONNECTOR_HDMI_C =3D 0x63,
+> -=09DCB_CONNECTOR_DMS59_DP0 =3D 0x64,
+> -=09DCB_CONNECTOR_DMS59_DP1 =3D 0x65,
+> -=09DCB_CONNECTOR_WFD=09=3D 0x70,
+> -=09DCB_CONNECTOR_USB_C =3D 0x71,
+> -=09DCB_CONNECTOR_NONE =3D 0xff
+> +=09/* Analog outputs */
+> +=09DCB_CONNECTOR_VGA =3D 0x00,=09=09// VGA 15-pin
+> connector
+> +=09DCB_CONNECTOR_DVI_A =3D 0x01,=09=09// DVI-A
+> +=09DCB_CONNECTOR_POD_VGA =3D 0x02,=09=09// Pod - VGA 15-pin
+> connector
+> +=09DCB_CONNECTOR_TV_0 =3D 0x10,=09=09// TV - Composite
+> Out
+> +=09DCB_CONNECTOR_TV_1 =3D 0x11,=09=09// TV - S-Video Out
+> +=09DCB_CONNECTOR_TV_2 =3D 0x12,=09=09// TV - S-Video
+> Breakout - Composite
+> +=09DCB_CONNECTOR_TV_3 =3D 0x13,=09=09// HDTV Component -
+> YPrPb
+> +=09DCB_CONNECTOR_TV_SCART =3D 0x14,=09=09// TV - SCART
+> Connector
+> +=09DCB_CONNECTOR_TV_SCART_D =3D 0x16,=09// TV - Composite
+> SCART over D-connector
+> +=09DCB_CONNECTOR_TV_DTERM =3D 0x17,=09=09// HDTV - D-
+> connector (EIAJ4120)
+> +=09DCB_CONNECTOR_POD_TV_3 =3D 0x18,=09=09// Pod - HDTV -
+> YPrPb
+> +=09DCB_CONNECTOR_POD_TV_1 =3D 0x19,=09=09// Pod - S-Video
+> +=09DCB_CONNECTOR_POD_TV_0 =3D 0x1a,=09=09// Pod - Composite
+> +
+> +=09/* DVI digital outputs */
+> +=09DCB_CONNECTOR_DVI_I_TV_1 =3D 0x20,=09// DVI-I-TV-S-Video
+> +=09DCB_CONNECTOR_DVI_I_TV_0 =3D 0x21,=09// DVI-I-TV-
+> Composite
+> +=09DCB_CONNECTOR_DVI_I_TV_2 =3D 0x22,=09// DVI-I-TV-S-Video
+> Breakout-Composite
+> +=09DCB_CONNECTOR_DVI_I =3D 0x30,=09=09// DVI-I
+> +=09DCB_CONNECTOR_DVI_D =3D 0x31,=09=09// DVI-D
+> +=09DCB_CONNECTOR_DVI_ADC =3D 0x32,=09=09// Apple Display
+> Connector (ADC)
+> +=09DCB_CONNECTOR_DMS59_0 =3D 0x38,=09=09// LFH-DVI-I-1
+> +=09DCB_CONNECTOR_DMS59_1 =3D 0x39,=09=09// LFH-DVI-I-2
+> +=09DCB_CONNECTOR_BNC =3D 0x3c,=09=09// BNC Connector
+> [for SDI?]
+> +
+> +=09/* LVDS / TMDS digital outputs */
+> +=09DCB_CONNECTOR_LVDS =3D 0x40,=09=09// LVDS-SPWG-
+> Attached [is this name correct?]
+> +=09DCB_CONNECTOR_LVDS_SPWG =3D 0x41,=09=09// LVDS-OEM-
+> Attached (non-removable)
+> +=09DCB_CONNECTOR_LVDS_REM =3D 0x42,=09=09// LVDS-SPWG-
+> Detached [following naming above]
+> +=09DCB_CONNECTOR_LVDS_SPWG_REM =3D 0x43,=09// LVDS-OEM-Detached
+> (removable)
+> +=09DCB_CONNECTOR_TMDS =3D 0x45,=09=09// TMDS-OEM-Attached
+> (non-removable)
+> +
+> +=09/* DP digital outputs */
+> +=09DCB_CONNECTOR_DP =3D 0x46,=09=09// DisplayPort
+> External Connector
+> +=09DCB_CONNECTOR_eDP =3D 0x47,=09=09// DisplayPort
+> Internal Connector
+> +=09DCB_CONNECTOR_mDP =3D 0x48,=09=09// DisplayPort
+> (Mini) External Connector
+> +
+> +=09/* Dock outputs (not used) */
+> +=09DCB_CONNECTOR_DOCK_VGA_0 =3D 0x50,=09// VGA 15-pin if not
+> docked
+> +=09DCB_CONNECTOR_DOCK_VGA_1 =3D 0x51,=09// VGA 15-pin if
+> docked
+> +=09DCB_CONNECTOR_DOCK_DVI_I_0 =3D 0x52,=09// DVI-I if not
+> docked
+> +=09DCB_CONNECTOR_DOCK_DVI_I_1 =3D 0x53,=09// DVI-I if docked
+> +=09DCB_CONNECTOR_DOCK_DVI_D_0 =3D 0x54,=09// DVI-D if not
+> docked
+> +=09DCB_CONNECTOR_DOCK_DVI_D_1 =3D 0x55,=09// DVI-D if docked
+> +=09DCB_CONNECTOR_DOCK_DP_0 =3D 0x56,=09=09//
+> DisplayPort if not docked
+> +=09DCB_CONNECTOR_DOCK_DP_1 =3D 0x57,=09=09//
+> DisplayPort if docked
+> +=09DCB_CONNECTOR_DOCK_mDP_0 =3D 0x58,=09// DisplayPort
+> (Mini) if not docked
+> +=09DCB_CONNECTOR_DOCK_mDP_1 =3D 0x59,=09// DisplayPort
+> (Mini) if docked
+> +
+> +=09/* HDMI? digital outputs */
+> +=09DCB_CONNECTOR_HDMI_0 =3D 0x60,=09=09// 3-Pin DIN Stereo
+> Connector [for real?]
 
-Sure, will fix.
+Yeah this one is weird and suspicious and seems very likely to be a
+documentation typo.
 
-> 
-> I was quite dubious about the patch just from the title (everybody knows how
-> easy a linked list is in Rust), but it turns out it is not as concerning as I
-> expected, mostly due to the read-only nature of the particular implementation
-> (a lot of the safety comments would be much more difficult to justify, say, if
-> it's mutable). That said, still a lot of feedbacks below.
+I wonder if maybe it used to be DIN, but at some point nvidia
+mistakenly reused the ID. Though I'm not sure how much sense that
+actually makes, considering that I would have expected a connector like
+this to then be in/near the 0x1-0x20 range like all of the other legacy
+analog connectors in that case.=20
 
-Sure, the reason for requiring this is interfacing with lists coming from C
-code. I'd see a future where we may want it mutable too (example, Rust code
-adding elements to the existing). At which point, the invariants/safety
-reasoning may change.
+Since it's just a comment, I'll fix this up myself before pushing this
+and add an explainer comment while I ask nvidia about this.
 
-> I think something like is okay in the short term. However, there's an growing
-> interest in getting our Rust list API improved, so it could be ideal if
-> eventually the Rust list can be capable of handling FFI lists, too.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-Yeah we looked into that, if you see old threads, the conclusion was it is not a
-good fit for existing rust list abstractions. TLDR; it does not fit into their
-ownership/borrowing model.
-
-[...]
->> +
->> +/// Initialize a `list_head` object to point to itself.
->> +///
->> +/// # Safety
->> +///
->> +/// `list` must be a valid pointer to a `list_head` object.
->> +#[inline]
->> +pub unsafe fn init_list_head(list: *mut bindings::list_head) {
->> +    // SAFETY: Caller guarantees `list` is a valid pointer to a `list_head`.
->> +    unsafe {
->> +        (*list).next = list;
->> +        (*list).prev = list;
-> 
-> This needs to be an atomic write or it'll depart from the C implementation.
-
-I am curious what you mean by atomic write, can you define it?  Does rust
-compiler have load/store fusing, invented stores, etc, like C does? Sorry I am
-only familiar with these concepts on C. Could you provide example of a race
-condition in Rust that can happen?
-
-Also I did this addition based on feedback from past review:
-https://lore.kernel.org/all/DEI89VUEYXAJ.1IQQPC3QRLITP@nvidia.com/
-
-There was some concerns around pointless function call overhead when the rust
-implementation is already quite intertwined with internals of the C linked list
-implementation. I do agree with that point of view too.
-
-Also see my other reply to Zhi on this helper topic, lets discuss there too, if
-that's Ok.
-
->> +    }
->> +}
-> 
-> I don't think we want to publicly expose this! I've not found a user in the
-> subsequent patch, too.
-
-There are 2 users:
-
-    pub fn try_init<E>(
-
-and the self-tests:
-
-//! # let head = head.as_mut_ptr();
-//! # // SAFETY: head and all the items are test objects allocated in [..]
-//! # unsafe { init_list_head(head) };
-//! #
-
-> 
->> +
->> +/// Wraps a `list_head` object for use in intrusive linked lists.
->> +///
->> +/// # Invariants
->> +///
->> +/// - [`CListHead`] represents an allocated and valid `list_head` structure.
->> +/// - Once a [`CListHead`] is created in Rust, it will not be modified by non-Rust code.
->> +/// - All `list_head` for individual items are not modified for the lifetime of [`CListHead`].
->> +#[repr(transparent)]
->> +pub struct CListHead(Opaque<bindings::list_head>);
->> +
->> +impl CListHead {
->> +    /// Create a `&CListHead` reference from a raw `list_head` pointer.
->> +    ///
->> +    /// # Safety
->> +    ///
->> +    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure.
->> +    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
->> +    #[inline]
->> +    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
->> +        // SAFETY:
->> +        // - [`CListHead`] has same layout as `list_head`.
->> +        // - `ptr` is valid and unmodified for 'a.
->> +        unsafe { &*ptr.cast() }
->> +    }
->> +
->> +    /// Get the raw `list_head` pointer.
->> +    #[inline]
->> +    pub fn as_raw(&self) -> *mut bindings::list_head {
->> +        self.0.get()
->> +    }
->> +
->> +    /// Get the next [`CListHead`] in the list.
->> +    #[inline]
->> +    pub fn next(&self) -> &Self {
->> +        let raw = self.as_raw();
->> +        // SAFETY:
->> +        // - `self.as_raw()` is valid per type invariants.
->> +        // - The `next` pointer is guaranteed to be non-NULL.
->> +        unsafe { Self::from_raw((*raw).next) }
->> +    }
->> +
->> +    /// Get the previous [`CListHead`] in the list.
->> +    #[inline]
->> +    pub fn prev(&self) -> &Self {
->> +        let raw = self.as_raw();
->> +        // SAFETY:
->> +        // - self.as_raw() is valid per type invariants.
->> +        // - The `prev` pointer is guaranteed to be non-NULL.
->> +        unsafe { Self::from_raw((*raw).prev) }
->> +    }
->> +
->> +    /// Check if this node is linked in a list (not isolated).
->> +    #[inline]
->> +    pub fn is_linked(&self) -> bool {
->> +        let raw = self.as_raw();
->> +        // SAFETY: self.as_raw() is valid per type invariants.
->> +        unsafe { (*raw).next != raw && (*raw).prev != raw }
-> 
-> While is this checking both prev and next? `list_empty` is just
-> `READ_ONCE(head->next) == head`.
-
-Sure, I can optimize to just check ->next, that makes sense. Will do.
-
-> 
->> +    }
->> +
->> +    /// Fallible pin-initializer that initializes and then calls user closure.
->> +    ///
->> +    /// Initializes the list head first, then passes `&CListHead` to the closure.
->> +    /// This hides the raw FFI pointer from the user.
->> +    pub fn try_init<E>(
->> +        init_func: impl FnOnce(&CListHead) -> Result<(), E>,
->> +    ) -> impl PinInit<Self, E> {
->> +        // SAFETY: init_list_head initializes the list_head to point to itself.
->> +        // After initialization, we create a reference to pass to the closure.
->> +        unsafe {
->> +            pin_init::pin_init_from_closure(move |slot: *mut Self| {
->> +                init_list_head(slot.cast());
->> +                // SAFETY: slot is now initialized, safe to create reference.
->> +                init_func(&*slot)
-> 
-> Why is this callback necessary? The user can just create the list head and
-> then reference it later? I don't see what this specifically gains over just
-> doing
-> 
->     fn new() -> impl PinInit<Self>;
-> 
-> and have user-side
-> 
->     list <- CListHead::new(),
->     _: {
->         do_want_ever(&list)
->     }
-
-The list initialization can fail, see the GPU buddy patch:
-
-        // Create pin-initializer that initializes list and allocates blocks.
-        let init = try_pin_init!(AllocatedBlocks {
-            list <- CListHead::try_init(|list| {
-                // Lock while allocating to serialize with concurrent frees.
-                let guard = buddy_arc.lock();
-
-                // SAFETY: guard provides exclusive access, list is initialized.
-                to_result(unsafe {
-                    bindings::gpu_buddy_alloc_blocks(
-                        guard.as_raw(),
-                        params.start_range_address,
-                        params.end_range_address,
-                        params.size_bytes,
-                        params.min_block_size_bytes,
-                        list.as_raw(),
-                        params.buddy_flags.as_raw(),
-                    )
-                })
-            }),
-            buddy: Arc::clone(&buddy_arc),
-            flags: params.buddy_flags,
-        });
-
-> 
-> 
->> +            })
->> +        }
->> +    }
->> +}
->> +
->> +// SAFETY: [`CListHead`] can be sent to any thread.
->> +unsafe impl Send for CListHead {}
->> +
->> +// SAFETY: [`CListHead`] can be shared among threads as it is not modified
->> +// by non-Rust code per type invariants.
->> +unsafe impl Sync for CListHead {}
->> +
->> +impl PartialEq for CListHead {
->> +    fn eq(&self, other: &Self) -> bool {
->> +        self.as_raw() == other.as_raw()
-> 
-> Or just `core::ptr::eq(self, other)`
-
-Sure, will fix.
-
-> 
->> +    }
->> +}
->> +
->> +impl Eq for CListHead {}
->> +
->> +/// Low-level iterator over `list_head` nodes.
->> +///
->> +/// An iterator used to iterate over a C intrusive linked list (`list_head`). Caller has to
->> +/// perform conversion of returned [`CListHead`] to an item (using `container_of` macro or similar).
->> +///
->> +/// # Invariants
->> +///
->> +/// [`CListHeadIter`] is iterating over an allocated, initialized and valid list.
->> +struct CListHeadIter<'a> {
->> +    current_head: &'a CListHead,
->> +    list_head: &'a CListHead,
->> +}
->> +
->> +impl<'a> Iterator for CListHeadIter<'a> {
->> +    type Item = &'a CListHead;
->> +
->> +    #[inline]
->> +    fn next(&mut self) -> Option<Self::Item> {
->> +        // Advance to next node.
->> +        let next = self.current_head.next();
->> +
->> +        // Check if we've circled back to the sentinel head.
->> +        if next == self.list_head {
->> +            None
->> +        } else {
->> +            self.current_head = next;
->> +            Some(self.current_head)
->> +        }
-> 
-> I think this could match the C iterator behaviour. When the iterator is created,
-> a `next` is done first, and then subsequently you only need to check if
-> `current_head` is `list_head`.
-> 
-> This is slightly better because the condition check does not need to dereference
-> a pointer.
-
-Sure, I can change it to that.
->> +impl<'a> FusedIterator for CListHeadIter<'a> {}
->> +
->> +/// A typed C linked list with a sentinel head.
->> +///
->> +/// A sentinel head represents the entire linked list and can be used for
->> +/// iteration over items of type `T`, it is not associated with a specific item.
->> +///
->> +/// The const generic `OFFSET` specifies the byte offset of the `list_head` field within
->> +/// the struct that `T` wraps.
->> +///
->> +/// # Invariants
->> +///
->> +/// - `head` is an allocated and valid C `list_head` structure that is the list's sentinel.
->> +/// - `OFFSET` is the byte offset of the `list_head` field within the struct that `T` wraps.
->> +/// - All the list's `list_head` nodes are allocated and have valid next/prev pointers.
->> +/// - The underlying `list_head` (and entire list) is not modified for the lifetime `'a`.
->> +pub struct CList<'a, T, const OFFSET: usize> {
->> +    head: &'a CListHead,
->> +    _phantom: PhantomData<&'a T>,
->> +}
-> 
-> Is there a reason that this is not
-> 
->     #[repr(transparent)]
->     struct CList(CListHead)
-> 
-> ? We typically want to avoid putting reference inside the struct if it can be on
-> the outside. This allows `&self` to be a single level of reference, not too.
-> 
-> It also means that you can just write `&CList<_>` in many cases, and doesn't need
-> `CList<'_, T>` (plus all the benefits of a reference).
-
-Sure! Will change to this. I am guessing you mean the following, but please let
-me know if you meant something else:
-
-  pub struct CList<T, const OFFSET: usize>(
-      CListHead,
-      PhantomData<T>,
-  );
-
-I don't see any issues with my code using that, at the moment. Will let you know
-how it goes.
->> +impl<'a, T, const OFFSET: usize> CList<'a, T, OFFSET> {
->> +    /// Create a typed [`CList`] from a raw sentinel `list_head` pointer.
->> +    ///
->> +    /// # Safety
->> +    ///
->> +    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure
->> +    ///   representing a list sentinel.
->> +    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
->> +    /// - The list must contain items where the `list_head` field is at byte offset `OFFSET`.
->> +    /// - `T` must be `#[repr(transparent)]` over the C struct.
->> +    #[inline]
->> +    pub unsafe fn from_raw(ptr: *mut bindings::list_head) -> Self {
->> +        Self {
->> +            // SAFETY: Caller guarantees `ptr` is a valid, sentinel `list_head` object.
->> +            head: unsafe { CListHead::from_raw(ptr) },
->> +            _phantom: PhantomData,
->> +        }
->> +    }
->> +
->> +    /// Get the raw sentinel `list_head` pointer.
->> +    #[inline]
->> +    pub fn as_raw(&self) -> *mut bindings::list_head {
->> +        self.head.as_raw()
->> +    }
->> +
->> +    /// Check if the list is empty.
->> +    #[inline]
->> +    pub fn is_empty(&self) -> bool {
->> +        let raw = self.as_raw();
->> +        // SAFETY: self.as_raw() is valid per type invariants.
->> +        unsafe { (*raw).next == raw }
-> 
-> `self.head.is_linked()`?
-
-I'd considered `is_linked()` to be something that makes sense to call only on
-`ClistHead` objects that belong to a particular "item" node, not a sentinel
-node, so that was deliberate.
-
-Though, I am Ok with doing it the way you are suggesting too
-(`self.head.is_linked()`), since it is functionally equivalent.
-
->> +    }
->> +
->> +    /// Create an iterator over typed items.
->> +    #[inline]
->> +    pub fn iter(&self) -> CListIter<'a, T, OFFSET> {
->> +        CListIter {
->> +            head_iter: CListHeadIter {
->> +                current_head: self.head,
->> +                list_head: self.head,
->> +            },
->> +            _phantom: PhantomData,
->> +        }
->> +    }
->> +}
->> +
->> +/// High-level iterator over typed list items.
->> +pub struct CListIter<'a, T, const OFFSET: usize> {
->> +    head_iter: CListHeadIter<'a>,
->> +    _phantom: PhantomData<&'a T>,
->> +}
->> +
->> +impl<'a, T, const OFFSET: usize> Iterator for CListIter<'a, T, OFFSET> {
->> +    type Item = &'a T;
->> +
->> +    fn next(&mut self) -> Option<Self::Item> {
->> +        let head = self.head_iter.next()?;
->> +
->> +        // Convert to item using OFFSET.
->> +        // SAFETY: `item_ptr` calculation from `OFFSET` (calculated using offset_of!)
->> +        // is valid per invariants.
->> +        Some(unsafe { &*head.as_raw().byte_sub(OFFSET).cast::<T>() })
->> +    }
->> +}
->> +
->> +impl<'a, T, const OFFSET: usize> FusedIterator for CListIter<'a, T, OFFSET> {}
->> +
->> +/// Create a C doubly-circular linked list interface [`CList`] from a raw `list_head` pointer.
->> +///
->> +/// This macro creates a [`CList<T, OFFSET>`] that can iterate over items of type `$rust_type`
->> +/// linked via the `$field` field in the underlying C struct `$c_type`.
->> +///
->> +/// # Arguments
->> +///
->> +/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut bindings::list_head`).
->> +/// - `$rust_type`: Each item's rust wrapper type.
->> +/// - `$c_type`: Each item's C struct type that contains the embedded `list_head`.
->> +/// - `$field`: The name of the `list_head` field within the C struct.
->> +///
->> +/// # Safety
->> +///
->> +/// The caller must ensure:
->> +/// - `$head` is a valid, initialized sentinel `list_head` pointing to a list that remains
->> +///   unmodified for the lifetime of the rust [`CList`].
->> +/// - The list contains items of type `$c_type` linked via an embedded `$field`.
->> +/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has compatible layout.
->> +/// - The macro is called from an unsafe block.
-> 
-> This is not a safe requirement, probably lift it up and say "This is an unsafe
-> macro.".
-
-Sure, so like this then:
-  /// This is an unsafe macro. The caller must ensure:
-  /// - `$head` is a valid, initialized sentinel `list_head`...
-
->> +///
->> +/// # Examples
->> +///
->> +/// Refer to the examples in the [`crate::clist`] module documentation.
->> +#[macro_export]
->> +macro_rules! clist_create {
->> +    ($head:expr, $rust_type:ty, $c_type:ty, $($field:tt).+) => {{
->> +        // Compile-time check that field path is a list_head.
->> +        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
->> +            |p| ::core::ptr::addr_of!((*p).$($field).+);
-> 
-> `&raw const` is preferred now.
-
-Sure, will fix.
-
-> 
->> +
->> +        // Calculate offset and create `CList`.
->> +        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
->> +        $crate::clist::CList::<$rust_type, OFFSET>::from_raw($head)
->> +    }};
->> +}
->> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
->> index f812cf120042..cd7e6a1055b0 100644
->> --- a/rust/kernel/lib.rs
->> +++ b/rust/kernel/lib.rs
->> @@ -75,6 +75,7 @@
->>  pub mod bug;
->>  #[doc(hidden)]
->>  pub mod build_assert;
->> +pub mod clist;
-> 
-> Can we keep this pub(crate)?
-
-Yes, will do.
-
--- 
-Joel Fernandes
+> +=09DCB_CONNECTOR_HDMI_1 =3D 0x61,=09=09// HDMI-A connector
+> +=09DCB_CONNECTOR_SPDIF =3D 0x62,=09=09// Audio S/PDIF
+> connector
+> +=09DCB_CONNECTOR_HDMI_C =3D 0x63,=09=09// HDMI-C (Mini)
+> connector
+> +
+> +=09/* Misc. digital outputs */
+> +=09DCB_CONNECTOR_DMS59_DP0 =3D 0x64,=09=09// LFH-DP-1
+> +=09DCB_CONNECTOR_DMS59_DP1 =3D 0x65,=09=09// LFH-DP-2
+> +=09DCB_CONNECTOR_WFD =3D 0x70,=09=09// Virtual connector
+> for Wifi Display (WFD)
+> +=09DCB_CONNECTOR_USB_C =3D 0x71,=09=09// [DP over USB-C;
+> not present in docs]
+> +=09DCB_CONNECTOR_NONE =3D 0xff=09=09// Skip Entry
+> =C2=A0};
+> =C2=A0
+> =C2=A0struct nvbios_connT {
 
