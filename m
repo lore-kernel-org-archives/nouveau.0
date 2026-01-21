@@ -4,111 +4,218 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EF92C44525
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E242BC44536
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 16:06:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB5210E79B;
-	Wed, 21 Jan 2026 12:58:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0935D10E82E;
+	Wed, 21 Jan 2026 16:06:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.beauty header.i=me@linux.beauty header.b="ejAWSczX";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="oqX2bMko";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9E3EC40469;
-	Wed, 21 Jan 2026 12:49:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 26E52401CE;
+	Wed, 21 Jan 2026 15:57:58 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1768999782;
- b=DrQHVl2aksygI7I1HQIZ2gPRvqb9t2DC4rSPGgmO9fMFmqEwLBXyn6A/4VRct6UYLgosK
- ZgpvdgxpMotnqcQ6FlBTSzdxjK+apNcxC15bJgSgc6tPGm9zvVzCYzuznuIIqkjRs2ROWaA
- u40tftMWrv6qDIy1Cgjr7aShvRnGZ5Ee0O2UpXzCWJqluFK+K8yeB4rflEcbh7sUqhRZtMi
- XZxn067o3jfN09LR98Bps9a3rWIB3iHdwvzhTgezKJZCVZL+xyhDK1LE7mfWgxA/aJnIGrf
- ZAyNREtYYn4fg+waxqco9SKKt4ukGPSYFDQwdDRunW0oByGzRBc1g2lr96/g==
+ s=20240201; t=1769011078;
+ b=dvOh1Q4FZAv7UiPOhnqCsVr9F8o03FqMfq4Xv4psWUkeXvIFf5rKg7e45Wazd5RYJI0c9
+ 5Gv8F8WUJDvFGRWS0Erkx5LgkXjLfwHPDM/moXrRaNgK/htrO4VOtWUmoCCITzFiv4A7hy1
+ IZy3WV9jvdFN/ld3wqxI/gi8Qzsjp8c0fl7wqpzH26Yc71Sa7aByGoMF81DcHvAOcYprTZo
+ TtvrM8Rhqbg+9jrjIP8TRaodKqx6Q5XOOKUtLnnWgAOjQqdXXlvbzmQNkt4Scpgvj6t8hIW
+ Lk8gGunm9m9RSGTP4hX4hI91ZuMn8iQFVye3qGgKw58WXBrHNdSwyTwOH+fg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1768999782; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769011078; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
- b=Edz9wZOvCYPxQ1Y52DMmUK3Up542z9n37oazqSAa6UIUSKf7HWpgUEn+yndpenPAfi5k6
- +wrNnyI4LDiXz22uCpcK7Qt5TSGclDIJAsdyKoU2iVWU/pYk5+7Fu7gBl3whBqgXRoZYeDL
- 3O9clX0ElO5rZ2et2fD93Xb3tRv3VH1xwec0sRUjhTbA9zul+2VqVJVZXwerX01RPEDb6x9
- 0aXXJnRsiEpz5qkFwDz4hqm7FG0SVeciPwh5nQIpP5ua+TEpjkSppxykqexYNrT9M/eMOHq
- ONavdIuWTVrYx4z8ddwiXOHEDKNtj9P4uufAL843Ps12xVn98c6CKQ3No/5Q==
+ bh=AlC2DeENgM0nC1XzkAOP9Sy+0T9Yvmve2y0eessTH5I=;
+ b=LWTGYrdGdztjsMqv8/MwbnVFyKgCOjoL8RtYr0BW/H6uGuxMbBT3FfU4Cd1WGuwYi9tX9
+ vR6jedtMq/ISKuIpbfyeQmnNWMvDTycOuden4JrsjJYkcHHO9FKM/84Og+FyZ16w4DiCb/w
+ RdysuP9S31D+RZXWoVQ1UbMyNZNae4QMZNKtqfoZ9WdRm1nBd2h8Vmk5zKicSOWJE1DXoH1
+ h2WnNqtxdaYt4GX2PwIR1XCryxTX+G5ws9lcj6iHTEFYM0Fc0WMW3uMMAXVENbMFndW8p/r
+ QCL/SIiJFCNtXi6S04kx8iO6VyPdJOzxuql8/7zCV0d/qN8d4TRXVJADSdpw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=linux.beauty header.i=me@linux.beauty;
+ dkim=pass header.d=garyguo.net;
   arc=pass;
-  dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=linux.beauty header.i=me@linux.beauty; arc=pass;
- dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 91CCF400AA
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 11:43:24 +0000 (UTC)
-X-Greylist: delayed 904 seconds by postgrey-1.36 at gabe;
- Wed, 21 Jan 2026 11:52:10 UTC
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
- [136.143.188.15])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A41EA10E75F;
-	Wed, 21 Jan 2026 11:52:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1768995417; cv=none;
-	d=zohomail.com; s=zohoarc;
-	b=LfsGDFhho8f+pL7xRcCxxdlWbHCaHNEsPGIRCzYXVqcGSKINHMplgNgqMo8gbJfFf8qfUKiUrb/P3IfdCS2IlYgI1qRqrkNmBWfDEaRwNZLLZTEr12dem12pmeLrVNGydvymO8yhpATneDfJ8ZHLxQbwjqAvLKo3uqbHwWOQoAk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc;
-	t=1768995417;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
-	bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
-	b=YhiqdlS87yV8l5X3P+q9z9BVDCs4Q/uxcNeM5GBDiUMyQlvl3ieG82mnhLw+9fQwj4ltESDDqpjdMvYf8xCSgfB3OdAHOdkw5cx6DMq27XnaMuq5ougNP6AsieKhhEv6FyxCQtj8ssmlPbSpruNCju81duX+zlZiWCtEB/QXGfw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=linux.beauty;
-	spf=pass  smtp.mailfrom=me@linux.beauty;
-	dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768995417;
-	s=zmail; d=linux.beauty; i=me@linux.beauty;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=+AdrJzDFk+iZHM5mX4cSeLtnmX3YwtJuX07LPIMl/gc=;
-	b=ejAWSczXNnRN+Om/j0kIoMt3Po43+7YyvzJpqxx8RXgh0NZo590IOBunKtLuustH
-	1yVFZ9E209BJqy61SfF0EBzGC0zwfNV6zS3UJOF6EVl3zby0sjpzvdUjMfPUTiE3uv8
-	yzQGzxXgZqh2XljT8bQjzqV1X2DW1zRBsNNqrGRc=
-Received: by mx.zohomail.com with SMTPS id 1768995413291852.3338382709496;
-	Wed, 21 Jan 2026 03:36:53 -0800 (PST)
-From: Li Chen <me@linux.beauty>
-To: Dave Airlie <airlied@redhat.com>,
-	Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2] nouveau: pci: quiesce GPU on shutdown
-Date: Wed, 21 Jan 2026 19:36:44 +0800
-Message-ID: <20260121113646.111561-1-me@linux.beauty>
-X-Mailer: git-send-email 2.52.0
-MIME-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id A3C1B4003B
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 15:57:55 +0000 (UTC)
+Received: from CWXP265CU009.outbound.protection.outlook.com
+ (mail-ukwestazon11021132.outbound.protection.outlook.com [52.101.100.132])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 12E4110E824
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 16:06:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FhCqMtLV1u4zlJn/TWM21IWGDlTJ5tX7mFF+K7M0ZlYjBiZKqjCSCy2fwTsxTFqGb2mCFftUbyYRymvAd4NHIGloTkSs8Ks5eFZNaHXVyPX8jWjyw18CSYE3l5FMT0WJQcmA5GxDVoz2bLA2bKQ1Ng6MuCitH56aJTZLnWQhuThfWSSLZ1PCWp4Y3tKZRgAnwR+hCkZ7POrnyk7M23r9ze3t3G11r3bvm030MCb9wwmQ9ysmnyQ0V39K6o7rxN6bxXo/Kfa3q0gYR8dxbitmt096NsAR5VWwy0Wb8hT3sGJA8JNr+sJJ0rEZkuFNqc7JEqxXeuyFwstNuZH8N38bYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AlC2DeENgM0nC1XzkAOP9Sy+0T9Yvmve2y0eessTH5I=;
+ b=wEAum+bv1M1Qy2/Vu8+M4j6X6ydac398heJby+27K5r8U6HSnh1ohMy3N75FkLLOjWYpqarFFuLZd0F0MFzcvHMkharY/ap1Aw2CgqVvRGcsKjIVx/y9rOCiDQfu9oQYuPTn3X3Beg5PVTLdvn8OlnSM5ca3ZikqVq2n8WFFwOKz+tfcgQ/xaeOCnkfNugmBDpFQu+wjHR7RnJk0Mt0klAUHQ+Zk0I5lHkqbZT4T9GmRVCjnpW68tH+ggegNiHvB8OuHY1MstatLulv0etYkaIKjP6MoyuSoeGf6tC+ohiLN7xrJ5gwl0B6R1+OvH+SHe7nTuyEQ1xQans+9PSkyHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AlC2DeENgM0nC1XzkAOP9Sy+0T9Yvmve2y0eessTH5I=;
+ b=oqX2bMkozJGaXvM87CuZLX9Iq5EQVTzvGs070rZXXeNt4h/KMK4HTO1GNR/9gwsZX4lG6PCTjy1czzyh9j9HSCD5+PGYG6t9hG4L9U/ArPplcraSUEEVyUP6t78JeMnX1qgwL/mmfOFN3HwUBCuJSD6TEqw88UK+8ltSZvEr2XQ=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO2P265MB3327.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:177::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Wed, 21 Jan
+ 2026 16:06:38 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
+ 16:06:38 +0000
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-MailFrom: me@linux.beauty
+Date: Wed, 21 Jan 2026 16:06:37 +0000
+Message-Id: <DFUE9X1HQG9S.2YDWQ6GDLN36G@garyguo.net>
+Subject: Re: [PATCH 15/31] gpu: nova-core: Hopper/Blackwell: add FSP falcon
+ EMEM operations
+From: "Gary Guo" <gary@garyguo.net>
+To: "John Hubbard" <jhubbard@nvidia.com>, "Danilo Krummrich"
+ <dakr@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20251203055923.1247681-1-jhubbard@nvidia.com>
+ <20251203055923.1247681-16-jhubbard@nvidia.com>
+In-Reply-To: <20251203055923.1247681-16-jhubbard@nvidia.com>
+X-ClientProxiedBy: LO4P265CA0140.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2c4::13) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO2P265MB3327:EE_
+X-MS-Office365-Filtering-Correlation-Id: bec7c3a7-515f-4e18-2aad-08de59070f17
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|7416014|376014|10070799003|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?RW43RFl4REVTOUwra3hBTm02ZmRjQVJ5Ymc5NHMrSVhKNWdFSGtEM1B2Qmk1?=
+ =?utf-8?B?bXM3OTd2aVY5ZmJibW0wcjRobkY5VHZ5bUpBKzcwUDJrcUdSbW9WVEV3TXRN?=
+ =?utf-8?B?WndkNm1INHVDV3pnM0lGaDVOYzBMTlYvOEVaK1drRzFjcFkrNkNkVzY5SUlR?=
+ =?utf-8?B?MDB3SnJaN1huUGdTcWkyZ3htTEFXTFRuc2t0SmZOSE82dE4ybjk2NkFHOEJI?=
+ =?utf-8?B?eHgrNkR6bXNRbm1IZDVXMC9Jd2lLcTZCMi9kU0JiNTJLT2tDcmtucEdrakcw?=
+ =?utf-8?B?eGxNUldFbDlVWkUxbXk3VGNEOE1HTnNsWTRuVlFQR0FRUGovWTZJMGVMcUlI?=
+ =?utf-8?B?eE1mWEpSNVVxaUpiaTNYaVowZy9raDltcy93L1NYY0pKWGFRZUdGRDZQMHZH?=
+ =?utf-8?B?MU9WdldRcXdDcm1TYzMvL1NiUnkrcDQrN0Zlai8zUjh5Q3NlWnpPNXZFUy8x?=
+ =?utf-8?B?UEtXUlZvdXZLNmhDNnBVT3lCN2NjM0hVSnpYNlRrN3p3L2hNbTJ4VTl2ZnpM?=
+ =?utf-8?B?dENYWWRkWldady9NcCs0TEI2ZFd0ZnFIMHdVc08yMFNlK2t4VlNYemRkaGY5?=
+ =?utf-8?B?dUJWS3paNHZjZkxWeGUvbFltaGtUcVFram5WVGswZ1YzcVFNZXFKY2JUR1Zo?=
+ =?utf-8?B?TjVwaW9FenM3UWd0dVFhUlpaN3hIY0NOUHlLOHovL2lZeUE0ZmREeko1dk5T?=
+ =?utf-8?B?YTlvb0dnY3BHdFAydEpseGlaUnJtbGRsZkRqdHNkOVdmdkp3ak5aYzNjRWVJ?=
+ =?utf-8?B?VlF5dHE1ZFdnN2hrNklpVXVWNGFNT2JFVFlMcjNKbzBnUjVmajBMNXN4VzV2?=
+ =?utf-8?B?bHQzaTNDdFlTOVZDbXRzbFpkRW43TGp2ajcwWGFXaGFFK0h5VW42TmQ3blc0?=
+ =?utf-8?B?RlhBUm1XeVpjTElsSUFlNXNRZFV2aDZLY0plQW9xdE91dDRCVjFVVUNOQzJn?=
+ =?utf-8?B?bERVT2xDVXRmREhrcGZlMmF1Rm5Ja2VzSFZoNUo4Mjc5VlZvWlp4WGYvelhQ?=
+ =?utf-8?B?K2hncTBHM0N2NVl5RW9scTNMbjlIaUUrdCthUUc0ajNMRHRSYkFLeXRGU0JV?=
+ =?utf-8?B?NE9zbnlldWlJNkRCRTVyR2kzd1lGWXNMOXJUVk1yL1VGWmZpZzRGaHRRSjdp?=
+ =?utf-8?B?dkduNGFZbjZRdmhFWG42RGlvZkhIakhVZXIwQ2EwVjBySUo2Zm1lVE1oeU9o?=
+ =?utf-8?B?azU1UDdSeG9RS016azhvS0JObExUUGV1NmZqTWhKYU9MKzZDMkprNVM3NmZM?=
+ =?utf-8?B?ckI0LzFYTTZWVlh6VTNVQkRhT0c2cDc5elN3Y2tNeEZXTERZdnZjczR3TkVh?=
+ =?utf-8?B?VWtDNk02emx3TDVsVUQxMGFSNTVGM0tLL1krZStUWng3MlBBd0JCSDc5ODRF?=
+ =?utf-8?B?UkFlV08zb1FJVXVFMktvQzhBUTAxcHRCVkR5S0hTOGFodjF0aXlhVTc0L20z?=
+ =?utf-8?B?K1prMjZCUFRRVFpvWWRHWTlZSHIyK3ZZaEJJUzA2WVg3aEcweVNIMEdCcFZn?=
+ =?utf-8?B?NHpOTzFpZUZwbjRVbmxNaDVkOE1TbFdXa1AycE5yUWFvUmp3emRRS2FCa2Z4?=
+ =?utf-8?B?bmlKbGdYa2dlQzJoeVJveUtIKzJIM01QT2R5a0x3eno3Mml4bzFLUE9IOGo2?=
+ =?utf-8?B?RW53ekpodkJsOWJSd29Hd1NLNThScGNmRmJBNGRTOEw3eDYrcWRzRjlCTExh?=
+ =?utf-8?B?UW5kSzdiZHlYZWV5N1BjaWZqUG1EWklHVHErMnljbGlzb3Z6ejBaaE5LcGZL?=
+ =?utf-8?B?U2I2Z1d2b0V0TERlVVkrYWJLNlVXWjdGYlFscEFjUGJjRWNiUUpDS203YnR4?=
+ =?utf-8?B?bEVuWm82QytObDFhYklUeWRwRkJERG5sV0FmUkJPb3RGZ05rKzNockpmbFVj?=
+ =?utf-8?B?RGIyUWRUZ0NsNVZZN3RrQlpvNTRCbGlaaDRUQVQ3alUxQzNjNnRWcnhITjVy?=
+ =?utf-8?B?eFUrMFFHMzQzeGozREdJNS9iR3JXNzZvRW01ZkdRQnM2QjZzeE9ydk9WdGU1?=
+ =?utf-8?B?elBnZXprZU9EVmpDS1pWbm1oOVpxTS83NXhIUE9selByVGd2MDd6TjN4ZEJG?=
+ =?utf-8?B?ZXQ0MXpPY1Y1aGVDVnJvdXROcEJOcHFiclJVbTU5eklXcUI5RnN4TXdURTVl?=
+ =?utf-8?Q?35jc=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(10070799003)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?Ym9TOTJPeWpwWVIzaVhUamhsNGxyNjRnOWlSMm93YXlmQk5odUhTRnlwbm10?=
+ =?utf-8?B?ckNzTmtHMEtTLzBseHdzOTUwVFF3enVWNXJkV1IreHhJK3Zqa1JVei9LOVJC?=
+ =?utf-8?B?bC9teSsxR1dkQWh6NDc4cStZWERFZFJRd243eGUxcVQ1UzJHSEtpWkU5Qmxq?=
+ =?utf-8?B?aUsvankxLzFwUTBKMW1DcEZ6anQxZUEyaUxIRzExeEdQZDlZdnk0VXVZTUZW?=
+ =?utf-8?B?dXNLcmttN2lXdFJLOE9scmNxREJpSU4xRys1TFlnTWx5bW9tbnpKaXlzb1pw?=
+ =?utf-8?B?Q2FYdlY5cjdBeGZoMDA0d1BGaE05eXVNaENyMjBlZGdhMVg2aHgrZEhscE5w?=
+ =?utf-8?B?YVR4Ym1UU0ZLdGxEb3R4MXRUcnVYMkRJNVhWQy95UVd2RVVwNnJYaVA1aitT?=
+ =?utf-8?B?dFhUT1FNK1Arci9pRkJIMTZNYnpGaFlNSEt0bXdpOENtemtLd3ArMi9aMFNG?=
+ =?utf-8?B?STA4ZzRyNzlqNEdEMzVJbE5tMVRwUTFORHV1a1JFZmhvaERxUlhULyt1VHhX?=
+ =?utf-8?B?ZEJBK003amptMG9KVlFuV2h4Zm03aXhnWVMwYk5MTUJ5QWQxaW9KWWVoVW5l?=
+ =?utf-8?B?L0wyNytlWWJSSmtoNFhrYUo2U2JOdm40cml5RjA1UmU4MHpDWFdtUHpNa0Ix?=
+ =?utf-8?B?MDh1Z3Z3akR5clJpdWhRNXFGa2RuWVRwTUVLVld0U3ptajZ0bThDblZibHNl?=
+ =?utf-8?B?L1pwT3F6UC9iT3ZSdDdmSk11bFNyazg1dFpPSGwzQy9pMHI2R2ZLNUI3dm11?=
+ =?utf-8?B?NlBjbEFGckpyUjF1Ynl1WUlDUzRmZnprb3VwNS9RSW81dUJpbmxERnR5T2px?=
+ =?utf-8?B?OWFDU1ZodS9DbmdxRm9NNTJRWklpc3J3Y29sVlNPZlFPM0c3aWMxa0szemtL?=
+ =?utf-8?B?c01YcFIyNUZmUldIVys2dGpieU5RWnNSRFBXTzB6cUhZSDNqM0tuSEhlSHhF?=
+ =?utf-8?B?V0tVU2IwYUsxR3ZvbDJERjYvMDViTWtSb0lyZmVVKy9kTlp1ei95UFpOZG9a?=
+ =?utf-8?B?Vmx6WHZNWVpid1BsVU9hYW9kR1NpVnJlVmdHOXRGVG9CbC9lU0ZRV2YyQkJN?=
+ =?utf-8?B?TWNuS3pGUjYvWUFwaWpPajBZWFQ0RFBKVE4wOWFVRDBkMlRwNytJbWVTTGZC?=
+ =?utf-8?B?L1IrVHZ2MWpXU21CWm9GN2V6T3R1UU1XTFpMakNxYXNwMGhVRGFOQkVYbTl4?=
+ =?utf-8?B?MFE5aWtvTkI1RDJZb2pPek50NTZQRjYyVEpiUE5FWE9sKzNQcWU2L1JmS0J0?=
+ =?utf-8?B?M3lxQy9ONDhQd09UbnMzbHhsUEhPdmMxVmFEclZkMDJPVUZ0cHZXaWFnaUFa?=
+ =?utf-8?B?UkxSVXdFTmFXRkJEMGljVHU0eGFWdlU1MWN6WlpsNXJxYy9UN0FuK1liKzFZ?=
+ =?utf-8?B?T3hJUm5VWEdyQzdQb0l1cHZINnlhQUdZUzdJb3ljSWlDbTZVT1pxK3JIVS8v?=
+ =?utf-8?B?RmRVMzRqa2xsMGlIU0NGODFRdVJwOHZDMUxNeWtFMzI0UVJvNFNaMUNBMGNv?=
+ =?utf-8?B?OE40d01CdnU2QTdLTXhYWTFBMlNBNnhVN0llN2syaTZMOXk5MHo1SXBkS0hh?=
+ =?utf-8?B?RmFhSVNoVXE2K3lteHNCdEdRYWEzM3JxWEo3elhaOWlZcks5dWZ0SUxnQjJu?=
+ =?utf-8?B?eEN5SllEUEFhRG1uVEliRWk3NFdhMVpGZTBkWHROZ3hsNXZvcnBrb1NlNjJB?=
+ =?utf-8?B?em5pak1ERy9KSC9rZXF5NXhFQXQrODBuRWExakFYWTJkZHNXQnU2WkNzVFla?=
+ =?utf-8?B?ZHlsOUpJVlJFa1N0RnF0NFUyREdhMVlwSDF3YXY0ZXNaTExOM1oyUmVzRzla?=
+ =?utf-8?B?VGhXSTFybGFVSkxRY2VHclZLNXdhYldXbTNIUUtWeitwcXVXTnVGcGl3eEJr?=
+ =?utf-8?B?ZU51TUtFOEhCQVRCbmJMeHRqWTIyNlN4N0NZSDBvckJhWGNOd2JLMDhndFNT?=
+ =?utf-8?B?dDJraVlPd2syaUxkdlJPNjlGcm9iWEI2eno3QlZoeUh4NlozQUpZaXJFNVM1?=
+ =?utf-8?B?SjBJY0dwSGVhakc4bDhEeGNDYWxUYUtCQ0hHZ2l6ZjdrUFhiTjg2VnNKZU55?=
+ =?utf-8?B?dEZRSjJLZllBTkxQd3l2TWpEVGd6bXFlME85Q0dJU3JjaXRJMDQ3QUVKc04r?=
+ =?utf-8?B?bC9ZdEFtVTAvalpSSmFBN2luU1NhMWNyS1Rzb3JiSlRVMUJYaDFZa20yMHhI?=
+ =?utf-8?B?VXFlV29qVGtDRGwzdUhaS1VsdlNnVUlKNGpqVFVob2R2c09RQ1dHTjlGRDRk?=
+ =?utf-8?B?ejN5T3pNb3lOZ3psSHZsQ29XeEcwTmhLbys3NWdPMmxoejJnWTdMQ3NxQWR6?=
+ =?utf-8?B?dmFaRXJHc0hLaEVUdjhEOVNpMW9vM2NjMFZYbEFueHF2MDBDR0E1UT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ bec7c3a7-515f-4e18-2aad-08de59070f17
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 16:06:38.6781
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ HXg5FZx98+j69MEjB07HB60991Na9RC+d0CSfxC9O4RwKoQvkxwdNgQ25GzeXJnxavIqF7DSVy5laAojb7nyEw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P265MB3327
+Message-ID-Hash: CMF4B5WYJZYCWPVIWXBGGDRDEPMRWSPO
+X-Message-ID-Hash: CMF4B5WYJZYCWPVIWXBGGDRDEPMRWSPO
+X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ
-X-Message-ID-Hash: OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ
-X-Mailman-Approved-At: Wed, 21 Jan 2026 12:49:41 +0000
-CC: Li Chen <me@linux.beauty>
+CC: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OM77KAODTZO3W7KBEKB46LK7K6DAK2HQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CMF4B5WYJZYCWPVIWXBGGDRDEPMRWSPO/>
 Archived-At: 
- <https://lore.freedesktop.org/20260121113646.111561-1-me@linux.beauty/>
+ <https://lore.freedesktop.org/DFUE9X1HQG9S.2YDWQ6GDLN36G@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -118,195 +225,143 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Kexec reboot does not reset PCI devices.
-Invoking the full DRM/TTM teardown from ->shutdown can trigger WARNs when
-userspace still holds DRM file descriptors.
+On Wed Dec 3, 2025 at 5:59 AM GMT, John Hubbard wrote:
+> Add external memory (EMEM) read/write operations to the GPU's FSP falcon
+> engine. These operations use Falcon PIO (Programmed I/O) to communicate
+> with the FSP through indirect memory access.
+>
+> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/falcon/fsp.rs | 60 ++++++++++++++++++++++++++++-
+>  drivers/gpu/nova-core/regs.rs       | 10 +++++
+>  2 files changed, 69 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/nova-core/falcon/fsp.rs b/drivers/gpu/nova-core/=
+falcon/fsp.rs
+> index 7323ae2f2302..9e796e82e556 100644
+> --- a/drivers/gpu/nova-core/falcon/fsp.rs
+> +++ b/drivers/gpu/nova-core/falcon/fsp.rs
+> @@ -5,15 +5,27 @@
+>  //! The FSP falcon handles secure boot and Chain of Trust operations
+>  //! on Hopper and Blackwell architectures, replacing SEC2's role.
+> =20
+> +use kernel::prelude::*;
+> +
+>  use crate::{
+> +    driver::Bar0,
+>      falcon::{
+> +        Falcon,
+>          FalconEngine,
+>          PFalcon2Base,
+>          PFalconBase, //
+>      },
+> -    regs::macros::RegisterBase,
+> +    regs::{
+> +        self,
+> +        macros::RegisterBase, //
+> +    },
+>  };
+> =20
+> +/// EMEM control register bit 24: write mode.
+> +const EMEM_CTL_WRITE: u32 =3D 1 << 24;
+> +/// EMEM control register bit 25: read mode.
+> +const EMEM_CTL_READ: u32 =3D 1 << 25;
+> +
+>  /// Type specifying the `Fsp` falcon engine. Cannot be instantiated.
+>  #[allow(dead_code)]
+>  pub(crate) struct Fsp(());
+> @@ -30,3 +42,49 @@ impl RegisterBase<PFalcon2Base> for Fsp {
+>  impl FalconEngine for Fsp {
+>      const ID: Self =3D Fsp(());
+>  }
+> +
+> +impl Falcon<Fsp> {
+> +    /// Writes `data` to FSP external memory at byte `offset` using Falc=
+on PIO.
+> +    ///
+> +    /// Returns `EINVAL` if offset or data length is not 4-byte aligned.
+> +    #[allow(dead_code)]
+> +    pub(crate) fn write_emem(&self, bar: &Bar0, offset: u32, data: &[u8]=
+) -> Result {
+> +        if offset % 4 !=3D 0 || data.len() % 4 !=3D 0 {
 
-Quiesce the GPU through the suspend path and then power down the PCI
-function so the next kernel can re-initialize the device from a consistent
-state.
+I was about to suggest `is_multiple_of`, but then realize that it's only
+available in Rust 1.82+...
 
-WARNING: drivers/gpu/drm/drm_mode_config.c:578 at drm_mode_config_cleanup+0x2e7/0x300, CPU#2: kexec/1300
-Call Trace:
- <TASK>
- ? srso_return_thunk+0x5/0x5f
- ? enable_work+0x3a/0x100
- nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- pci_device_shutdown+0x35/0x60
- device_shutdown+0x11c/0x1b0
- kernel_kexec+0x13a/0x160
- __do_sys_reboot+0x209/0x240
- do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? __rtnl_unlock+0x37/0x70
- ? srso_return_thunk+0x5/0x5f
- ? netdev_run_todo+0x63/0x570
- ? netif_change_flags+0x54/0x70
- ? srso_return_thunk+0x5/0x5f
- ? devinet_ioctl+0x1e5/0x790
- ? srso_return_thunk+0x5/0x5f
- ? inet_ioctl+0x1e9/0x200
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x7d/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x23b/0x610
- ? srso_return_thunk+0x5/0x5f
- ? put_user_ifreq+0x7a/0x90
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x107/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? exc_page_fault+0x7e/0x1a0
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        regs::NV_PFALCON_FALCON_EMEM_CTL::default()
+> +            .set_value(EMEM_CTL_WRITE | offset)
+> +            .write(bar, &Fsp::ID);
+> +
+> +        for chunk in data.chunks_exact(4) {
+> +            let word =3D u32::from_le_bytes([chunk[0], chunk[1], chunk[2=
+], chunk[3]]);
 
-nouveau 0000:26:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp_head))
-WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_framebuffer_free+0x73/0xa0, CPU#2: kexec/1300
-Call Trace:
- <TASK>
- drm_mode_config_cleanup+0x248/0x300
- ? __pfx___drm_printfn_dbg+0x10/0x10
- ? drm_mode_config_cleanup+0x1dc/0x300
- nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- pci_device_shutdown+0x35/0x60
- device_shutdown+0x11c/0x1b0
- kernel_kexec+0x13a/0x160
- __do_sys_reboot+0x209/0x240
- do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? __rtnl_unlock+0x37/0x70
- ? srso_return_thunk+0x5/0x5f
- ? netdev_run_todo+0x63/0x570
- ? netif_change_flags+0x54/0x70
- ? srso_return_thunk+0x5/0x5f
- ? devinet_ioctl+0x1e5/0x790
- ? srso_return_thunk+0x5/0x5f
- ? inet_ioctl+0x1e9/0x200
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x7d/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x23b/0x610
- ? srso_return_thunk+0x5/0x5f
- ? put_user_ifreq+0x7a/0x90
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x107/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? exc_page_fault+0x7e/0x1a0
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
+Use `as_chunks()` can save you from doing this.
 
-WARNING: include/drm/ttm/ttm_resource.h:406 at nouveau_ttm_fini+0x257/0x270 [nouveau], CPU#2: kexec/1300
-Call Trace:
- <TASK>
- nouveau_drm_device_fini+0x93/0x1f0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9a3903808734]
- pci_device_shutdown+0x35/0x60
- device_shutdown+0x11c/0x1b0
- kernel_kexec+0x13a/0x160
- __do_sys_reboot+0x209/0x240
- do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? __rtnl_unlock+0x37/0x70
- ? srso_return_thunk+0x5/0x5f
- ? netdev_run_todo+0x63/0x570
- ? netif_change_flags+0x54/0x70
- ? srso_return_thunk+0x5/0x5f
- ? devinet_ioctl+0x1e5/0x790
- ? srso_return_thunk+0x5/0x5f
- ? inet_ioctl+0x1e9/0x200
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x7d/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x23b/0x610
- ? srso_return_thunk+0x5/0x5f
- ? put_user_ifreq+0x7a/0x90
- ? srso_return_thunk+0x5/0x5f
- ? sock_do_ioctl+0x107/0x130
- ? srso_return_thunk+0x5/0x5f
- ? __x64_sys_ioctl+0x97/0xe0
- ? srso_return_thunk+0x5/0x5f
- ? do_syscall_64+0x81/0x610
- ? srso_return_thunk+0x5/0x5f
- ? exc_page_fault+0x7e/0x1a0
- entry_SYSCALL_64_after_hwframe+0x76/0x7e
+Also, a typical pattern is `chunk.try_into().unwrap()` -- yes it has an unw=
+rap
+as `[T]` -> `[T; N]` can fail in general, but not with `chunks_exact`.
 
-Signed-off-by: Li Chen <me@linux.beauty>
-Reviewed-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 32 +++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+Best,
+Gary
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 1527b801f013..f2e04a048ac2 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1079,6 +1079,37 @@ nouveau_pmops_resume(struct device *dev)
- 	return ret;
- }
- 
-+static void
-+nouveau_drm_shutdown(struct pci_dev *pdev)
-+{
-+	struct nouveau_drm *drm = pci_get_drvdata(pdev);
-+	int ret;
-+
-+	if (!drm)
-+		return;
-+
-+	if (drm->dev->switch_power_state == DRM_SWITCH_POWER_OFF ||
-+	    drm->dev->switch_power_state == DRM_SWITCH_POWER_DYNAMIC_OFF)
-+		return;
-+
-+	ret = nouveau_do_suspend(drm, false);
-+	if (ret)
-+		NV_ERROR(drm, "shutdown suspend failed with: %d\n", ret);
-+
-+	pci_save_state(pdev);
-+	pci_disable_device(pdev);
-+	pci_set_power_state(pdev, PCI_D3hot);
-+	/*
-+	 *  This is just to give the pci power transition time to settle
-+	 *  before an immediate kexec jump. it’s mirroring the existing
-+	 *  nouveau_pmops_suspend() behavior, which already does
-+	 *  udelay(200) right after pci_set_power_state(..., pci_d3hot). In
-+	 *  ->shutdown() we’re allowed to sleep, so I used usleep_range()
-+	 *  instead of a busy-wait udelay().
-+	 */
-+	usleep_range(200, 400);
-+}
-+
- static int
- nouveau_pmops_freeze(struct device *dev)
- {
-@@ -1408,6 +1439,7 @@ nouveau_drm_pci_driver = {
- 	.id_table = nouveau_drm_pci_table,
- 	.probe = nouveau_drm_probe,
- 	.remove = nouveau_drm_remove,
-+	.shutdown = nouveau_drm_shutdown,
- 	.driver.pm = &nouveau_pm_ops,
- };
- 
--- 
-2.52.0
+> +            regs::NV_PFALCON_FALCON_EMEM_DATA::default()
+> +                .set_data(word)
+> +                .write(bar, &Fsp::ID);
+> +        }
+> +
+> +        Ok(())
+> +    }
+> +
+> +    /// Reads FSP external memory at byte `offset` into `data` using Fal=
+con PIO.
+> +    ///
+> +    /// Returns `EINVAL` if offset or data length is not 4-byte aligned.
+> +    #[allow(dead_code)]
+> +    pub(crate) fn read_emem(&self, bar: &Bar0, offset: u32, data: &mut [=
+u8]) -> Result {
+> +        if offset % 4 !=3D 0 || data.len() % 4 !=3D 0 {
+> +            return Err(EINVAL);
+> +        }
+> +
+> +        regs::NV_PFALCON_FALCON_EMEM_CTL::default()
+> +            .set_value(EMEM_CTL_READ | offset)
+> +            .write(bar, &Fsp::ID);
+> +
+> +        for chunk in data.chunks_exact_mut(4) {
+> +            let word =3D regs::NV_PFALCON_FALCON_EMEM_DATA::read(bar, &F=
+sp::ID).data();
+> +            chunk.copy_from_slice(&word.to_le_bytes());
+> +        }
+> +
+> +        Ok(())
+> +    }
+> +}
+> diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.r=
+s
+> index 82cc6c0790e5..b642cee9611d 100644
+> --- a/drivers/gpu/nova-core/regs.rs
+> +++ b/drivers/gpu/nova-core/regs.rs
+> @@ -391,6 +391,16 @@ pub(crate) fn mem_scrubbing_done(self) -> bool {
+>      8:8     br_fetch as bool;
+>  });
+> =20
+> +// GP102 EMEM PIO registers (used by FSP for Hopper/Blackwell)
+> +// These registers provide falcon external memory communication interfac=
+e
+> +register!(NV_PFALCON_FALCON_EMEM_CTL @ PFalconBase[0x00000ac0] {
+> +    31:0    value as u32;       // EMEM control register
+> +});
+> +
+> +register!(NV_PFALCON_FALCON_EMEM_DATA @ PFalconBase[0x00000ac4] {
+> +    31:0    data as u32;        // EMEM data register
+> +});
+> +
+>  // The modules below provide registers that are not identical on all sup=
+ported chips. They should
+>  // only be used in HAL modules.
+> =20
 
