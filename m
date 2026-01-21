@@ -4,235 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07F47C44506
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 20:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCF8DC44506
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 20:51:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A40C10E888;
-	Wed, 21 Jan 2026 20:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CDA3C10E88C;
+	Wed, 21 Jan 2026 20:51:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="P/mNolWD";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Z117oDTN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 056AD40221;
-	Wed, 21 Jan 2026 20:38:17 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769027896;
- b=oretLo7a49Frv8xj8crD2W/W4VeBxzKEqhiHwCtY0TKecZaSm+i1g0Q0BLGtWjMSf1yGU
- /SO1xTxjrN2ABYb0+KdVndCKNlOi1H+wM9/YfYflOWNFhDxdqJ7akNkvyXxXZaLapiyTpUj
- ctPJroLEw7fJ/W2eG2LS2+QWXNIimVEj2QhHOLB7XA6J7w11TnULgPuGTPQ+0kkK0hIm72B
- ZpBB8pFJoLMMUlhg+9L6hd4cmdfz5k7xazgNhd0Ox9vdYc1Dj+Eb7XYNH/SXQudTMnSLVy3
- gpyipyv1JgqDWmWczHkRng6+jFT2iMnA1Lo5b+idiwtoKNxbqzXuEdHbdIsw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769027896; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 849E8401CE;
+	Wed, 21 Jan 2026 20:42:51 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769028171;
+ b=FI90fjAUOckEL79i3//hx1WwHS3mwHV0EL00GwclB3gjLgMnLMifl4HFHuvgfVrPz8lFI
+ py2FtJwpiT8C4lMZSo15GU0m5qVB5WR2B6JXPNPInLYnjDk+43rL5LNq9YHVCHDvFnxJoni
+ q8K5pWLZ5vmSX9gPDaTJ3Tr1nT4St1O+Qt4lEXRVqrFY2aM/3YGWYECCFFNvGQa1/9pAvb8
+ oY6uN7fqRp4KfgRvGt0gdlu2/U6YJhHOo/YUHE33ps4eJe7QIFVxippanJFI6numrEHhDhi
+ iuY8wKRZmxqVezEwPFuPG39qc/zMz1VoeBnpywks2aaU2723tyYPEMuXA/xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769028171; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GOAlCHev6+aij/Td3ahneCpf0qfTy2+SIBQ00iuz+YE=;
- b=bv2GsbzfVffFxidp4xHCeDbY9rE1/0LIR6p55qeLgpFR188WKUsp5A/QEYnGaC99LLJ4h
- x4t6hm8bShO5CdQCpEaZdqYeMNP5tsEbOgcbE+24e9tnsvVoXcfF8Zr1Eiu/d12eEX0A0zz
- tL/1BHCcwKF4s0g9vnCshxSAF4C4ekpkbIzmf2cTl25zvBNQXmjh8OUB9bEyPMkVNTKMo3t
- dOEM1NgU2jeVqRKeVe4EfXTxV8Wa7XydMxnJScKXcLFKcV1iKWNSF1Qy07NDdhFKfisLg4Z
- 9nzvWnu4wNJ9AXG30QHkSIv0NtybtOwJTcfZ7IM7rzkqOVpW35xjwXuRtC7g==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=VNBRhY5AEdHe1o4YiVQUpWoWvWsaZ+wkvtXcS+jEzEs=;
+ b=YiHc89p1Ag8MwsR0f3+e5Zp/BflRvG8EA4ghTmbSQXRTDUnwtbB273HkCIhSMZpxMFHnL
+ tAhCwJHE8e4ySAX6EhYwRrDF6HJdSLLpDNgWsKu3AscsgtUAmkCuiL+ncehJixBVcOOW2xS
+ SCk+JGPhYLCX+3Il4RxgjrPCaocU0b6FYz71epSOrXSWj+unWuz+0O1A54iWugeFEKll+P9
+ YVk+kq73Y51PT7QvDVupcEFemprxSwe2Mt4F1ynEXU6ePuaMXQgPquR9/bRyptitISNXzC3
+ nWhRFvRgSoWT5FOjXJSN/Cj97BiKcjOkZ3m9PGqvAmLdonilndFgzTsyPyYQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D3A9B4003B
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:38:13 +0000 (UTC)
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010046.outbound.protection.outlook.com [52.101.85.46])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EBC3E10E265;
-	Wed, 21 Jan 2026 20:47:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vqTn4mGpyGnnOl4QzRxJmpEx9EiJ6NZwL1QKGtRZYBuYl6qPLCz2VNQtRZntY0pw6gtdmIYEOKCoPWB21U069ZDZKV8lmMy4+GkchTcLaVN/1PLKXEWsbcaw2izWu9QG04cgjCfcyUcpYkq5+5+qgbrY+u4XJL9T68Q1Jrjd3EpNorUOIEU1rGk5orXuKqeSmWezlIrBVu2ANWie531hCxwX+CAFbglV5rnh3AhoZPLEH+HT6sZHDx884M0RrVK6x6LOnvsmGZV5ze8CT+46B8MRkAy5rftjyDScr5roxwVwm90Sb6+Cx326jSyiO3PbKMNvMWP4U+Yzm9RKonKGMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GOAlCHev6+aij/Td3ahneCpf0qfTy2+SIBQ00iuz+YE=;
- b=GeI4cppRjmWucHRSj6is+9KBzlxpynHhMVJ7LwaECqGeHcchZedEWq5vCmWDDDS1a1Fb47m8OEsdrDk67lLOfLMAV18P2gZieURcCs/6yCNb2i62j6nl4Zm5iKYK2nJkexAq19HI5JsvSAEM7g+nKsyX5FArSDdHHcLzApNmeEIZ0XgGsKMMbgtiXOIbQtA/1lnx1r1kuzlC+jAi+xOYkdXd0JtYxQsbm3CC1pwr72BTnz5Sh2pb2gHgN1uzohE7B2Bt1xXy7BI6QgXdq3VbMho/oiZWzND//WTNKfwJy8rPK72lKBDVGouj2o/h069RmVwD4w4QTW+oEHq1qA+2VQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GOAlCHev6+aij/Td3ahneCpf0qfTy2+SIBQ00iuz+YE=;
- b=P/mNolWDPDBQ/mabKCFxe/+bJf+k/YUfBinkcNIe+28wP+UdbMEuhTMPJlqUGzlVHFGC4KfacP6r86zncX6pt7NSVFlepV+CHiE/zAk6QzCmThldxy23egKJ8BISKKnqK3hZ0qShnAM94iYZW2pmVdRiZPINOeZizZ65WOBIrlAv7KOPuMKJrlicaBftWaGRT6SjyWFIIknpoj9fEkT7zJexhVhONcj9ohTvh3JWxB/EQ9wIAuvPt59eeoCzRuvwk/B0+9zUyNrEUY+iG+PSr8N+vsG1a6+7242R2TFyS4V+wcGmqbwgkmOvYXWXSCfiADCf7rTdyzyXg7P8s+xXTQ==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- PH7PR12MB6417.namprd12.prod.outlook.com (2603:10b6:510:1ff::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 20:46:52 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 20:46:52 +0000
-Message-ID: <9750dc9d-5aae-44a8-ba79-8277f78f7292@nvidia.com>
-Date: Wed, 21 Jan 2026 15:46:48 -0500
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v6 01/26] rust: clist: Add support to interface with C
- linked lists
-To: Gary Guo <gary@garyguo.net>, linux-kernel@vger.kernel.org
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-2-joelagnelf@nvidia.com>
- <DFTTGUYGY72V.3VLVSCB2OOXIB@garyguo.net>
- <01a981f1-64c7-4504-b309-45a024258fe9@nvidia.com>
- <DFUK089V1IEU.U83YQT72BO3@garyguo.net>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DFUK089V1IEU.U83YQT72BO3@garyguo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL0PR0102CA0013.prod.exchangelabs.com
- (2603:10b6:207:18::26) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BB0EA400A8
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:42:48 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BF33410E888
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1769028694;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VNBRhY5AEdHe1o4YiVQUpWoWvWsaZ+wkvtXcS+jEzEs=;
+	b=Z117oDTN3LWna8i469AjY/aQ5ED+g6L4nt0ZdZhsgLEnK7GVwmtJ+NVC6REMQxrd+mRjAt
+	EXOzo7RAumE5T8tU1YcO8BHuhZlxZFTYLNHDbicYlsah0N78vFvDRiZYM5kPQCRkCmBwMO
+	pcO7IuBHpg9XolPtO3mQ6QGcJ4atrpg=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-345-IoPBTWHWPcSxxAVe6GRnuQ-1; Wed, 21 Jan 2026 15:51:31 -0500
+X-MC-Unique: IoPBTWHWPcSxxAVe6GRnuQ-1
+X-Mimecast-MFC-AGG-ID: IoPBTWHWPcSxxAVe6GRnuQ_1769028691
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50148a2a5baso7560221cf.2
+        for <nouveau@lists.freedesktop.org>;
+ Wed, 21 Jan 2026 12:51:31 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769028691; x=1769633491;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0iKPsynfeV/AFagJnudOoLK5V6XHpi66PHwvXdnyCgA=;
+        b=MwX9dCD34wGgapFHli9V4gmE1h7h1p0XiOkJUZ89rrB7ti05iwvLmdSia5F1g/RTz2
+         dqMMs6g0HzKMwGVsP0GhYQDwN4x7dzLCFcTOxTIfy9k3Mb79D8QuJIVIxcs1uFmW1IeT
+         mCDVQVQVrHHlQ/SL8Ejj7jewYN5/+7nMeSGFuM0+n868W2KjxGM3CYFaJtSkM1JNAQBe
+         nJgqMpNdtWo3I7KPyc59nXXP0jaVJ32FE3Vc2HQWGwNX4TATtDJcKQA0HKss4D3xS96G
+         6hxtpQpqa4UY0CfMJBZjx9rPEXUAZ5ocjLIUadZaZOP5lP+0LLvw01YC3imjHxkzv7Q1
+         bWWQ==
+X-Gm-Message-State: AOJu0YxfLYzH8eoymLhBw8I2rbQbbjVq6IPSrl4SwiKFE97/PfAt6r3F
+	SKwCMpWAz2HF06cZjwKgkb1hKtf+LwcgqhechEs88yhFI/vDdkK2AeThHCw9d5tXXKjzEjMlwVp
+	MWOFByZhFmXKe6oihAxiRmufSpjE9J5apcBPLArYCkR9ihboMfEqxXUVH/89tVMK5bEY=
+X-Gm-Gg: AZuq6aIBvn8D2yE5B5J8D5TOHxI6bqj8yuzRRgR9v+cOEic0omAWeZ9j4dc0f9ifPx6
+	VRvmCPbpvmvmyKlX/Sylhnh2azyvDnUQ85WFLJJcCF7RYLuj5DV1uICPfwZfN0UOI9w41xhHUMT
+	WnYdgwydT+TnjZ/WeBKx2Aad1F74C0LurrMhKJPI8bOt9bM//0HI98GFXX4T2znPpcm1wnDoM+P
+	DUkPaB6/Y9TupOoM9gZ8Mgw7B53SuHVbNBHfsGEUFvs+aAddRy9eUgAUCvvrgjCVrkCqpUEW8Sk
+	+StYSn+gsKabvlNlhFDx7nChz2GGv4SoTLfIwnw9oshHnAi8AaM+owjSX2xM5LlnvHZqD/uXoHC
+	VeJx0Qw==
+X-Received: by 2002:a05:622a:1a8d:b0:501:4ca3:7420 with SMTP id
+ d75a77b69052e-502a163bfcamr297013601cf.36.1769028690727;
+        Wed, 21 Jan 2026 12:51:30 -0800 (PST)
+X-Received: by 2002:a05:622a:1a8d:b0:501:4ca3:7420 with SMTP id
+ d75a77b69052e-502a163bfcamr297013371cf.36.1769028690277;
+        Wed, 21 Jan 2026 12:51:30 -0800 (PST)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-502a1f1abb9sm115759991cf.30.2026.01.21.12.51.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jan 2026 12:51:29 -0800 (PST)
+Message-ID: <4ef0c88438476fd0e46cb4df79ddcd85d3f9df21.camel@redhat.com>
+Subject: Re: [PATCH v3 2/2][RESEND 2] drm/nouveau: implement missing DCB
+ connector types; gracefully handle unknown connectors
+From: lyude@redhat.com
+To: lxrmrz732@gmail.com, dakr@kernel.org, airlied@gmail.com
+Date: Wed, 21 Jan 2026 15:51:29 -0500
+In-Reply-To: <84d85163d167139c25da2faa60ec73ce0c3cbc09.camel@redhat.com>
+References: <20251213005327.9495-1-lxrmrz732@gmail.com>
+		 <20251213005327.9495-3-lxrmrz732@gmail.com>
+	 <84d85163d167139c25da2faa60ec73ce0c3cbc09.camel@redhat.com>
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB6417:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6c656d74-271e-4419-0a57-08de592e34a9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?YStJVHQrUFZObFhUSS8wUnNTY3N1Q3JoTTFuQTFTLy9idFpmOW9paitXVDky?=
- =?utf-8?B?VkNSNnl4Q0EwMjNoSlY0Mi9vYjR6UHlhbkFOc1BFWFowUEZMdVIxZTlXQktT?=
- =?utf-8?B?RlE1MUMrN1lCaTdZQlBjV0ZDUndZRnJCbHBDcW9MclljdktwM3d6emtqbDJa?=
- =?utf-8?B?Y3FrY1llRHk5NCtLVEtFUGhTa3ZkMlFKb25EbjJ3MGkrdmtzZ0w2SUV0WU95?=
- =?utf-8?B?Z1pKN094NzVnUC8rZWs2VEM0aXdUcXJoUTVPU0cyaWxjL2Z4WGNYNENLNG5X?=
- =?utf-8?B?bURmZTlpN0Y3eHRnczhabitvSC9VQjZRUThabGM1YVZPUXRicGVQd0RTZ0Zr?=
- =?utf-8?B?am5vdysrc2xzaENvaExUV0JHaUhaMURHREErK2YyKzN3alBGS0JucDltWFdh?=
- =?utf-8?B?YWZYMFEvaVpNbnlFMUs5N0FuUnhJR0hKWS9lWG91WFFYak5pcnVLWmZCdGxV?=
- =?utf-8?B?cW5QRm4wOFZSNU5ra20vVGdwdlM2ZklKRVVZeVVTdEpmT28xZVV1Z2hKUFVW?=
- =?utf-8?B?Smd2VGxncmhoaVJKOEdBNFpLcHhlWWxHeDdoSDZzV0FJN0lkdnhVeFhnNHZG?=
- =?utf-8?B?YjJqN0NCb01LbTI1V2Q3dStIdCsvb3NMdkNGSnB0Y1BLWVZSTmQya3IzWVJM?=
- =?utf-8?B?ZWZtcnpicWU2aDdqTmVIcThSOUdLcFZGdkM2NkV4ZW1oVkh1QXpQRzIvR0t4?=
- =?utf-8?B?OEtQY2RlalhXVHNRY3RaUTB3WEJiY0xNbGNOcFd0bCsvTVZuM3NIcUtWdUJC?=
- =?utf-8?B?NmFNMlJrb2VLRkxTSXhVVmpmeUNPYmFIbDZFNThBUjZ2UnRjTllVeTlMKzhJ?=
- =?utf-8?B?VDJVZmZ5enpVdTRlZ0FhVVhTRGxVMDEyVnNmbXFsaUtIWWlJNHJFM2Y3YnNY?=
- =?utf-8?B?OE9zVEg3MmVYcW1HWW5mUnBVNEJPMVdBSWpRcktuNmFzUWJWYXdzdWtwQzla?=
- =?utf-8?B?bHRMTFNPMUE2YktUY1ErZzRWSk1FSnRWMDFSbDNmRjJQV3JyWjM1T294NlNx?=
- =?utf-8?B?aWJjQjd3UW5RVitoTUpleStwWXBpVUZCb2t0dFNtRC9oSmFrYXNNSW1iTFB2?=
- =?utf-8?B?ZjVRcDBZaTlKMktxRFFKZFdKKy9tQng4Zlh4d1NuV3VSd0Y2SnpPTEZubzJE?=
- =?utf-8?B?OG8wSWtncTA2RDhOY2pqMFh1ejhIa0dLaE1RTU54dHRoSDMzR293VVcrOVpr?=
- =?utf-8?B?ZTdvR3RSQjIrR3NPRy9qZ3FvTHY1MlFrQVFQKysrNCtZTVJZRGhZUUsrNjhY?=
- =?utf-8?B?SGx2TlZwSjZLb2kyVTVpRnJwd1FhKzRMRnBYaFZVVFRhUEZ3N2Vtcyt5YVg5?=
- =?utf-8?B?Y1V2ejM2UDJkTWpjR2wxSWpvOFdtVlByeTZPaDNoTzh5WExnREZZbzZ4KzJo?=
- =?utf-8?B?cmJpYWw3Zm13K0dnMDE0RmNpcWVTaWllT3Q2RmkrNFZDZ0FibTB5ck84S3Ni?=
- =?utf-8?B?VkVxTEJBYzNZVmhyN2wxK1kvT3phZG5OLzZSNTRyck5od3ZibURrNkNzbnA5?=
- =?utf-8?B?NS9uR3ZsRkZZVEx5OGRRQUYya01jYloyUkZnZENQbmw4YTE2ZXVZZ3ZHbUli?=
- =?utf-8?B?L3h4NDhoZmNER1lvTUxKdHBrV0wxUWtTeTlQdVFlNTMxQURqeVJSZ2JzeDBm?=
- =?utf-8?B?UjBaMFc0NGhLcXJYRzA4N2NidW1YdlF6SERoMXVVUy9CWWhOeEJxbmthaUJB?=
- =?utf-8?B?UDYrYU1zQ0dnTWRORU5lWU4vRXIwN1J0YkloWnR6M1czbXA4WEZ2TmdZWGh6?=
- =?utf-8?B?MnJOb3NVZHRYK3kwN3dONk5kRzdmcGdZenZtZFR2MFlTQzhlMEVKU1ZWS1Jp?=
- =?utf-8?B?c2w2cUVqRkVFeE4ycG1FT0d0czVGWDBmRDRrNnVMeVIwbnRaZmpIemhMYlVm?=
- =?utf-8?B?ZkY1L1hxcjFkYnR3a1U0ZmgzRmp0czlOR1Brem9RbDJSZVVYa1JpOVZ5N0Fu?=
- =?utf-8?B?RFJmbzdsZW5sZVEwTUUreDA0NExzLy9ZejJyZkpvOWZ2ZDF0MGN5dXhkdjRS?=
- =?utf-8?B?SENVTjlLMSt5d1pZLzNrNGIwUmtPcEVQSC9IS3c2Zi9DZjkvSUNlMHF2Z3lw?=
- =?utf-8?B?WllpK3dDNzE4TFhRSytmNFphWXVFMVEvazVSRVdEM29YK2JzTmNJRmFXRVZH?=
- =?utf-8?Q?cKWM=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MTBtRDNRVFZxQXRBQ2dreXd1T2pvL3RSZk0yL0tsUUE0cHV2VUtPbTIwSi9N?=
- =?utf-8?B?MXZ5Mndoc3NDQldIWm5Ga2orbHo1di94N2dLamh0WFByakN5WUdSbmpxNlkx?=
- =?utf-8?B?RzZPR2FnVGZFS2V6Ti9FeEYvVEZpVUdXSU54enUzNHByL3MrWjFNVFJEYThB?=
- =?utf-8?B?U1duR296OFQ2VFFLRitrR0Z2SlVLNXc3cXM0c1JFNXE3elFlR3QwNTIzd1dC?=
- =?utf-8?B?aWxCYmY5U3NweVZJVnFicEpOd2hMUHcwRklFWkZrN1JObDZzS1EwVk15NkIw?=
- =?utf-8?B?cEhMMHNDa3ROejBpb3NuZCtkbTc0Vit0a09sWFB1KzJHWXpqUnpGcUlrRHJh?=
- =?utf-8?B?UzNhZWt2ZHhKcGR3SmczdWFldndmc3ZHNi9Udi9nZEpZaE5QZFd1eUF5S0lG?=
- =?utf-8?B?QzFhR2ZlQkcrRkN3ZmxsV2NHdFJtbGduVzZOZW1ZL0tSZGdLUnZBUDc2dG1r?=
- =?utf-8?B?Y01OOTdBMkJBZ2JEQWsyMTQvYUxOcW1zdVpubVlDTlpGUzVJQXllTWFwUUxZ?=
- =?utf-8?B?YXpmYnd2SlFMajk2eEhMQzZKd2lTaVFCbHE0ZUp0eEJ5UDZjWjJ6RzJiVHk2?=
- =?utf-8?B?VVVCWE9jUmp6bEcyQ256MytWdmsrYXJHaXU1cmcrNnVyK2l4WUc5NE9NT2lt?=
- =?utf-8?B?VXU4TDNEYktiSEdOaUJhRnh2cmlIeGYwMitOUTA5OVhMTHIvNDNTQk9QUE9v?=
- =?utf-8?B?eGF2N2ZacXJUZzdvOXZKTzlIVTJyeEtlTnhlMUdVdmhESE1UckpRUmY0UTYx?=
- =?utf-8?B?NVU1Z3JvYVJNdzdYRHJKYTNlYTFJVE1tV2RZQmR6cERVOHJyTUZCTGpjcWxV?=
- =?utf-8?B?Rm9MOU5Nd1hxMHd1RG5tTjlQS2VjQzdObzdmMlp3S2VRTEVLY1diUVl0eDhx?=
- =?utf-8?B?cWhBYkR4L1lGZFZoYXlHMEVhbGIwR2w2V2l6NWUwSXAxY0UzNHlHREh1bHRn?=
- =?utf-8?B?WmJqTlpiWGxKZEtFVEhzTDJ4eDVrZG90VW9XWktaY2NmdVN0d0IzU2ZQd3BV?=
- =?utf-8?B?M2FNOHUwTHMwWTdvaU1CeDhTUGo1TVFkc3NweXEwQVhRL0tMS21Bd1pVUE9n?=
- =?utf-8?B?aEIwOE5Fa0l1UE4zZlpqRjlLMWE0T1F6TlE5MU45dVBUZ0w3Sk56SkJDdllq?=
- =?utf-8?B?OGRxNU5za3FWTEFBU1JIdWdFbnE0aGVLam9Pa1VIWExKTHE3T1BVeVFuTVJG?=
- =?utf-8?B?SzlScVg5VEQwTmZrT3MzR0NZZG56aXNSS0xFdk5STFdCYXZxa3NSMEZtVjlk?=
- =?utf-8?B?cUp1cUZuY2ZUd1lSRW9OamVDa1c2Mnk3bjBobkRSUEtINWVHcmFzNGdjWkRq?=
- =?utf-8?B?K2NMUkNZelpBVDJ2YVZnVWVNaDJqMm9zb1plMHJVeHZMM2lHajVYUTJCSkhU?=
- =?utf-8?B?UTJHVEUxVlBGbGlvZTlITzFjaUc5UlczZ3hwS0tZOXJCRWxiOElleU9ZeTRi?=
- =?utf-8?B?akRHSldwMzhyay93aVRicFd5M1pnZE15RjNRZnBnSkNhNmtNUWU2Y3M3bHE0?=
- =?utf-8?B?UU9aVlpVZUowU1MwWmZQZ2oxSGxTam1sb29WNEdVV21Cc2lsczNNN3Z1S2pm?=
- =?utf-8?B?OWFqUUd5THFYK3RQMUFTTit4OFdlbmJVWUY0ZVNJaGJ4aE1mWnM4eWNmcmVG?=
- =?utf-8?B?a3ZzVHJYQ2dYOWxZY0ZMdXpxelpNMEtLQTBCMGtiSlViVXE4WG5PaW9CamE4?=
- =?utf-8?B?WS9jd3lVNnNTU09rRktDd3J3QzkyZ0oyb3ZiNTlaNk4ybnljdk53YlROTTBz?=
- =?utf-8?B?MUtheDM1emRZOFgrOWxEMWFWejNqeE84Q3VaTmRSV1hHTmJiL1ZzWDNBam1u?=
- =?utf-8?B?UVFmS2pEUm9DWS9WSU00Qk5HQ0dZa0pINWJpRGM2bGpWK0hHUGdtVE03MG5p?=
- =?utf-8?B?bG03ZDk2bGZoc1BLNEY0cFJnUUtQNG9iNXJHL3JySnVKOHQ4ak5qT2pzbVBS?=
- =?utf-8?B?bEwwdmhQWkYvNUVPdExGbm1aN1JCNnpEa2M5Q3J4MEJxYnJXcWRIcVQ2ZkxE?=
- =?utf-8?B?b3FoYnJDNkhDSmlOa1U2bWFYQzhRZ1Faa2RyUVdNN05odkpYalUxMlhhelkw?=
- =?utf-8?B?SWpnMnhUVE9OWW9BWmJKdFA2TjV3OWJUcVJpMTk3d2VyS2cwdWFKUnlyT0xu?=
- =?utf-8?B?R0hESm1laVNsSkF4eFRWL1NFazY4amNsemM2NnoyQ00zZXoyQ1I3dU9vTFZw?=
- =?utf-8?B?bnFQdHMzd0doQy8xRnI2blBmZ3JwTjRXSkYyUGlmR3pQV00yOS9OS2ZaZnM2?=
- =?utf-8?B?bkdWNjArdjhDSnRBTzdoMW1pSlBKODBrRndxdXRDYmNJVmoxNCt1VFZwNXRr?=
- =?utf-8?B?emd2UlhEeDg3bG44UC9iM0JVbEVjYXFmREFBdGRYbWFyTDNReVRuUT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 6c656d74-271e-4419-0a57-08de592e34a9
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 20:46:52.2219
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- Mp5qrb21NQVVWtsvtBADTViiiCtnVGeYpqoosNEnV8BrkqxEC2ul1yl39dkLI2Q3Yj3yb6LZaJYqHIyop9NRuQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6417
-Message-ID-Hash: XPSMHJ7N2JQKX24XVCYNBSF2FSUYYUWN
-X-Message-ID-Hash: XPSMHJ7N2JQKX24XVCYNBSF2FSUYYUWN
-X-MailFrom: joelagnelf@nvidia.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: yjeex5HPY4SnmrdHcCsZnWRr02B9nsNMP0nVaBcM0P0_1769028691
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP
+X-Message-ID-Hash: D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Alexey Ivanov <alexeyi@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+CC: nouveau@lists.freedesktop.org, lxrmrz732@rocketmail.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XPSMHJ7N2JQKX24XVCYNBSF2FSUYYUWN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP/>
 Archived-At: 
- <https://lore.freedesktop.org/9750dc9d-5aae-44a8-ba79-8277f78f7292@nvidia.com/>
+ <https://lore.freedesktop.org/4ef0c88438476fd0e46cb4df79ddcd85d3f9df21.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -242,53 +145,160 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
+Just a heads up - I pushed this to drm-misc-fixes, but dim checkpatch
+was complaining about the difference in authorship vs. S-O-B ("Alex
+Ramirez" vs. "Alex Ram=C3=ADrez") so I updated the commit authorship to
+"Alex Ram=C3=ADrez". In the future you probably want to make sure it uses
+the the same name :).
 
+Either way, thank you for the fixes!
 
-On 1/21/2026 3:36 PM, Gary Guo wrote:
->> [...]
->>>> +
->>>> +/// Initialize a `list_head` object to point to itself.
->>>> +///
->>>> +/// # Safety
->>>> +///
->>>> +/// `list` must be a valid pointer to a `list_head` object.
->>>> +#[inline]
->>>> +pub unsafe fn init_list_head(list: *mut bindings::list_head) {
->>>> +    // SAFETY: Caller guarantees `list` is a valid pointer to a `list_head`.
->>>> +    unsafe {
->>>> +        (*list).next = list;
->>>> +        (*list).prev = list;
->>>
->>> This needs to be an atomic write or it'll depart from the C implementation.
->> I am curious what you mean by atomic write, can you define it?  Does rust
->> compiler have load/store fusing, invented stores, etc, like C does? Sorry I am
->> only familiar with these concepts on C. Could you provide example of a race
->> condition in Rust that can happen?
->
-> Oh yes, this would definitely happen. It's down to LLVM to compile anyway. If
-> you create a reference, there'll be even more freedom to do these.
->
-
-Ok.
-
->> Also I did this addition based on feedback from past review:
->> https://lore.kernel.org/all/DEI89VUEYXAJ.1IQQPC3QRLITP@nvidia.com/
->>
->> There was some concerns around pointless function call overhead when the rust
->> implementation is already quite intertwined with internals of the C linked list
->> implementation. I do agree with that point of view too.
->
-> Overall our practice is to not duplicate code. Even `ERR_PTR` is calling into
-> helpers.
-> 
-> For performance, it's a valid concern. However Alice and I have series out there
-> that enable you to inline the helpers. I'd say unless there's an absolute need,
-> we should do the helpers. Especially with caveats like WRITE_ONCE in this case.
-
-Sounds good, so I will then go back to adding a INIT_LIST_HEAD C helper for the
-next spin. I agree with the suggestion and now that we are inlining helpers,
-there seems little point in adding a separate rust function to do the same.
-
--- 
-Joel Fernandes
+On Wed, 2026-01-21 at 15:26 -0500, lyude@redhat.com wrote:
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>=20
+> I will push these upstream in a moment
+>=20
+> On Fri, 2025-12-12 at 19:53 -0500, lxrmrz732@gmail.com=C2=A0wrote:
+> > From: Alex Ramirez <lxrmrz732@gmail.com>
+> >=20
+> > * Implement missing DCB connectors in uconn.c previously defined in
+> > conn.h.
+> > * Replace kernel WARN_ON macro with printk message to more
+> > gracefully
+> > signify
+> > =C2=A0 an unknown connector was encountered.
+> >=20
+> > With this patch, unknown connectors are explicitly marked with
+> > value
+> > 0
+> > (DCB_CONNECTOR_VGA) to match the tested current behavior. Although
+> > 0xff
+> > (DCB_CONNECTOR_NONE) may be more suitable, I don't want to
+> > introduce
+> > a breaking change.
+> >=20
+> > Fixes: 8b7d92cad953 ("drm/nouveau/kms/nv50-: create connectors
+> > based
+> > on nvkm info")
+> > Link:
+> > https://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.ht=
+ml#_connector_table_entry
+> > Signed-off-by: Alex Ram=C3=ADrez <lxrmrz732@rocketmail.com>
+> > ---
+> > =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/uconn.c=C2=A0 | 73 +++++++++=
++++++-
+> > --
+> > --
+> > =C2=A01 file changed, 53 insertions(+), 20 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+> > b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+> > index 2dab6612c4fc..d1fed2beee63 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+> > @@ -191,27 +191,60 @@ nvkm_uconn_new(const struct nvkm_oclass
+> > *oclass, void *argv, u32 argc, struct nv
+> > =C2=A0=09spin_lock(&disp->client.lock);
+> > =C2=A0=09if (!conn->object.func) {
+> > =C2=A0=09=09switch (conn->info.type) {
+> > -=09=09case DCB_CONNECTOR_VGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.=
+type =3D
+> > NVIF_CONN_V0_VGA; break;
+> > -=09=09case DCB_CONNECTOR_TV_0=C2=A0=C2=A0=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_TV_1=C2=A0=C2=A0=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_TV_3=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.type =
+=3D
+> > NVIF_CONN_V0_TV; break;
+> > -=09=09case DCB_CONNECTOR_DMS59_0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_DMS59_1=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_DVI_I=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
+> > NVIF_CONN_V0_DVI_I; break;
+> > -=09=09case DCB_CONNECTOR_DVI_D=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
+> > NVIF_CONN_V0_DVI_D; break;
+> > -=09=09case DCB_CONNECTOR_LVDS=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.type =
+=3D
+> > NVIF_CONN_V0_LVDS; break;
+> > -=09=09case DCB_CONNECTOR_LVDS_SPWG: args->v0.type =3D
+> > NVIF_CONN_V0_LVDS_SPWG; break;
+> > -=09=09case DCB_CONNECTOR_DMS59_DP0:
+> > -=09=09case DCB_CONNECTOR_DMS59_DP1:
+> > -=09=09case DCB_CONNECTOR_DP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_mDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_USB_C=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
+> > NVIF_CONN_V0_DP; break;
+> > -=09=09case DCB_CONNECTOR_eDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.=
+type =3D
+> > NVIF_CONN_V0_EDP; break;
+> > -=09=09case DCB_CONNECTOR_HDMI_0=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_HDMI_1=C2=A0=C2=A0 :
+> > -=09=09case DCB_CONNECTOR_HDMI_C=C2=A0=C2=A0 : args->v0.type =3D
+> > NVIF_CONN_V0_HDMI; break;
+> > +=09=09/* VGA */
+> > +=09=09case DCB_CONNECTOR_DVI_A=09:
+> > +=09=09case DCB_CONNECTOR_POD_VGA=09:
+> > +=09=09case DCB_CONNECTOR_VGA=09=09: args->v0.type =3D
+> > NVIF_CONN_V0_VGA; break;
+> > +
+> > +=09=09/* TV */
+> > +=09=09case DCB_CONNECTOR_TV_0=09=09:
+> > +=09=09case DCB_CONNECTOR_TV_1=09=09:
+> > +=09=09case DCB_CONNECTOR_TV_2=09=09:
+> > +=09=09case DCB_CONNECTOR_TV_SCART=09:
+> > +=09=09case DCB_CONNECTOR_TV_SCART_D=09:
+> > +=09=09case DCB_CONNECTOR_TV_DTERM=09:
+> > +=09=09case DCB_CONNECTOR_POD_TV_3=09:
+> > +=09=09case DCB_CONNECTOR_POD_TV_1=09:
+> > +=09=09case DCB_CONNECTOR_POD_TV_0=09:
+> > +=09=09case DCB_CONNECTOR_TV_3=09=09: args-
+> > > v0.type =3D NVIF_CONN_V0_TV; break;
+> > +
+> > +=09=09/* DVI */
+> > +=09=09case DCB_CONNECTOR_DVI_I_TV_1=09:
+> > +=09=09case DCB_CONNECTOR_DVI_I_TV_0=09:
+> > +=09=09case DCB_CONNECTOR_DVI_I_TV_2=09:
+> > +=09=09case DCB_CONNECTOR_DVI_ADC=09:
+> > +=09=09case DCB_CONNECTOR_DMS59_0=09:
+> > +=09=09case DCB_CONNECTOR_DMS59_1=09:
+> > +=09=09case DCB_CONNECTOR_DVI_I=09: args->v0.type =3D
+> > NVIF_CONN_V0_DVI_I; break;
+> > +=09=09case DCB_CONNECTOR_TMDS=09=09:
+> > +=09=09case DCB_CONNECTOR_DVI_D=09: args->v0.type =3D
+> > NVIF_CONN_V0_DVI_D; break;
+> > +
+> > +=09=09/* LVDS */
+> > +=09=09case DCB_CONNECTOR_LVDS=09=09: args-
+> > > v0.type =3D NVIF_CONN_V0_LVDS; break;
+> > +=09=09case DCB_CONNECTOR_LVDS_SPWG=09: args->v0.type =3D
+> > NVIF_CONN_V0_LVDS_SPWG; break;
+> > +
+> > +=09=09/* DP */
+> > +=09=09case DCB_CONNECTOR_DMS59_DP0=09:
+> > +=09=09case DCB_CONNECTOR_DMS59_DP1=09:
+> > +=09=09case DCB_CONNECTOR_DP=09=09:
+> > +=09=09case DCB_CONNECTOR_mDP=09=09:
+> > +=09=09case DCB_CONNECTOR_USB_C=09: args->v0.type =3D
+> > NVIF_CONN_V0_DP; break;
+> > +=09=09case DCB_CONNECTOR_eDP=09=09: args->v0.type =3D
+> > NVIF_CONN_V0_EDP; break;
+> > +
+> > +=09=09/* HDMI */
+> > +=09=09case DCB_CONNECTOR_HDMI_0=09:
+> > +=09=09case DCB_CONNECTOR_HDMI_1=09:
+> > +=09=09case DCB_CONNECTOR_HDMI_C=09: args->v0.type =3D
+> > NVIF_CONN_V0_HDMI; break;
+> > +
+> > +=09=09/*
+> > +=09=09 * Dock & unused outputs.
+> > +=09=09 * BNC, SPDIF, WFD, and detached LVDS go here.
+> > +=09=09 */
+> > =C2=A0=09=09default:
+> > -=09=09=09WARN_ON(1);
+> > +=09=09=09nvkm_warn(&(disp->engine.subdev),
+> > +=09=09=09=09=C2=A0 "unimplemented connector type
+> > 0x%02x\n",
+> > +=09=09=09=09=C2=A0 conn->info.type);
+> > +=09=09=09args->v0.type =3D NVIF_CONN_V0_VGA;
+> > =C2=A0=09=09=09ret =3D -EINVAL;
+> > =C2=A0=09=09=09break;
+> > =C2=A0=09=09}
 
