@@ -4,138 +4,182 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCF8DC44506
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 20:51:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E59F5D4697D
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 23:53:35 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CDA3C10E88C;
-	Wed, 21 Jan 2026 20:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C24810E8AC;
+	Wed, 21 Jan 2026 23:53:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Z117oDTN";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gjJmpt9g";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 849E8401CE;
-	Wed, 21 Jan 2026 20:42:51 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769028171;
- b=FI90fjAUOckEL79i3//hx1WwHS3mwHV0EL00GwclB3gjLgMnLMifl4HFHuvgfVrPz8lFI
- py2FtJwpiT8C4lMZSo15GU0m5qVB5WR2B6JXPNPInLYnjDk+43rL5LNq9YHVCHDvFnxJoni
- q8K5pWLZ5vmSX9gPDaTJ3Tr1nT4St1O+Qt4lEXRVqrFY2aM/3YGWYECCFFNvGQa1/9pAvb8
- oY6uN7fqRp4KfgRvGt0gdlu2/U6YJhHOo/YUHE33ps4eJe7QIFVxippanJFI6numrEHhDhi
- iuY8wKRZmxqVezEwPFuPG39qc/zMz1VoeBnpywks2aaU2723tyYPEMuXA/xg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769028171; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id ED87040284;
+	Wed, 21 Jan 2026 23:44:47 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769039087;
+ b=IU2or7AnISRk7oyqRATzgoreqSBUepa9yg++ZN8Omj2lQ/lKm6nYoa+KK1JcrwwyEnHj6
+ iOWqZ5oRrW2k1NHJOuvISmCoCqALi4F9Sz7TpV76aU2Nv7vihKkmESw++1pHvjr49RZDTDI
+ j0Pi3zWzVLk1phO6l1p+5NgXl9B1w3G+yWmo/kd7zmzrfJwAU7DSWaOZgzWZZxb6EXNyRkm
+ mjALpkZNCHxwPaZKeA9sLPXvDzXKHasz3yyCpKk2N97XY0vmaLODuUD+ssCDgFVslN41r6P
+ ibYjAA6m4u1y+Q5SlohPQrXOCyJBOa86bfX/QrfX/RtZiYJ+vMCv8M7ll0Pg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769039087; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=VNBRhY5AEdHe1o4YiVQUpWoWvWsaZ+wkvtXcS+jEzEs=;
- b=YiHc89p1Ag8MwsR0f3+e5Zp/BflRvG8EA4ghTmbSQXRTDUnwtbB273HkCIhSMZpxMFHnL
- tAhCwJHE8e4ySAX6EhYwRrDF6HJdSLLpDNgWsKu3AscsgtUAmkCuiL+ncehJixBVcOOW2xS
- SCk+JGPhYLCX+3Il4RxgjrPCaocU0b6FYz71epSOrXSWj+unWuz+0O1A54iWugeFEKll+P9
- YVk+kq73Y51PT7QvDVupcEFemprxSwe2Mt4F1ynEXU6ePuaMXQgPquR9/bRyptitISNXzC3
- nWhRFvRgSoWT5FOjXJSN/Cj97BiKcjOkZ3m9PGqvAmLdonilndFgzTsyPyYQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=04QU0eqvm75qMvcdxWXlsz74EE9Jg3Sk+ZT5itvNeMUE4yr1Bs53j0YAL9z0fEZ3hrqI+
+ DQ21NH5j9/0/KHZ6yuvpy7as76oJ13UqqTQ9/34Xgg7z3ssHzH90ZdytvuVrghcJSTxNJUc
+ Lbc9b7mI927mZn5omp6n8dLIrzkFf1//cqI4qIz5592O9fP7bboqMZPL1EHZD6HfxQEmHEG
+ +e0a7dfktfYo329XuOufsKVhJG2oWnNlyKi5NkKvgksBzoGYRaI4QTC1CpvvWPGcIYhH0jQ
+ 92e+DrK9hBFEf5nDPFvQXI8RypRDgS5NVAu3dGTL18rpw4dN6BSMCCqOGpPw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BB0EA400A8
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:42:48 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BF33410E888
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 20:51:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1769028694;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VNBRhY5AEdHe1o4YiVQUpWoWvWsaZ+wkvtXcS+jEzEs=;
-	b=Z117oDTN3LWna8i469AjY/aQ5ED+g6L4nt0ZdZhsgLEnK7GVwmtJ+NVC6REMQxrd+mRjAt
-	EXOzo7RAumE5T8tU1YcO8BHuhZlxZFTYLNHDbicYlsah0N78vFvDRiZYM5kPQCRkCmBwMO
-	pcO7IuBHpg9XolPtO3mQ6QGcJ4atrpg=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-345-IoPBTWHWPcSxxAVe6GRnuQ-1; Wed, 21 Jan 2026 15:51:31 -0500
-X-MC-Unique: IoPBTWHWPcSxxAVe6GRnuQ-1
-X-Mimecast-MFC-AGG-ID: IoPBTWHWPcSxxAVe6GRnuQ_1769028691
-Received: by mail-qt1-f199.google.com with SMTP id
- d75a77b69052e-50148a2a5baso7560221cf.2
-        for <nouveau@lists.freedesktop.org>;
- Wed, 21 Jan 2026 12:51:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769028691; x=1769633491;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0iKPsynfeV/AFagJnudOoLK5V6XHpi66PHwvXdnyCgA=;
-        b=MwX9dCD34wGgapFHli9V4gmE1h7h1p0XiOkJUZ89rrB7ti05iwvLmdSia5F1g/RTz2
-         dqMMs6g0HzKMwGVsP0GhYQDwN4x7dzLCFcTOxTIfy9k3Mb79D8QuJIVIxcs1uFmW1IeT
-         mCDVQVQVrHHlQ/SL8Ejj7jewYN5/+7nMeSGFuM0+n868W2KjxGM3CYFaJtSkM1JNAQBe
-         nJgqMpNdtWo3I7KPyc59nXXP0jaVJ32FE3Vc2HQWGwNX4TATtDJcKQA0HKss4D3xS96G
-         6hxtpQpqa4UY0CfMJBZjx9rPEXUAZ5ocjLIUadZaZOP5lP+0LLvw01YC3imjHxkzv7Q1
-         bWWQ==
-X-Gm-Message-State: AOJu0YxfLYzH8eoymLhBw8I2rbQbbjVq6IPSrl4SwiKFE97/PfAt6r3F
-	SKwCMpWAz2HF06cZjwKgkb1hKtf+LwcgqhechEs88yhFI/vDdkK2AeThHCw9d5tXXKjzEjMlwVp
-	MWOFByZhFmXKe6oihAxiRmufSpjE9J5apcBPLArYCkR9ihboMfEqxXUVH/89tVMK5bEY=
-X-Gm-Gg: AZuq6aIBvn8D2yE5B5J8D5TOHxI6bqj8yuzRRgR9v+cOEic0omAWeZ9j4dc0f9ifPx6
-	VRvmCPbpvmvmyKlX/Sylhnh2azyvDnUQ85WFLJJcCF7RYLuj5DV1uICPfwZfN0UOI9w41xhHUMT
-	WnYdgwydT+TnjZ/WeBKx2Aad1F74C0LurrMhKJPI8bOt9bM//0HI98GFXX4T2znPpcm1wnDoM+P
-	DUkPaB6/Y9TupOoM9gZ8Mgw7B53SuHVbNBHfsGEUFvs+aAddRy9eUgAUCvvrgjCVrkCqpUEW8Sk
-	+StYSn+gsKabvlNlhFDx7nChz2GGv4SoTLfIwnw9oshHnAi8AaM+owjSX2xM5LlnvHZqD/uXoHC
-	VeJx0Qw==
-X-Received: by 2002:a05:622a:1a8d:b0:501:4ca3:7420 with SMTP id
- d75a77b69052e-502a163bfcamr297013601cf.36.1769028690727;
-        Wed, 21 Jan 2026 12:51:30 -0800 (PST)
-X-Received: by 2002:a05:622a:1a8d:b0:501:4ca3:7420 with SMTP id
- d75a77b69052e-502a163bfcamr297013371cf.36.1769028690277;
-        Wed, 21 Jan 2026 12:51:30 -0800 (PST)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-502a1f1abb9sm115759991cf.30.2026.01.21.12.51.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jan 2026 12:51:29 -0800 (PST)
-Message-ID: <4ef0c88438476fd0e46cb4df79ddcd85d3f9df21.camel@redhat.com>
-Subject: Re: [PATCH v3 2/2][RESEND 2] drm/nouveau: implement missing DCB
- connector types; gracefully handle unknown connectors
-From: lyude@redhat.com
-To: lxrmrz732@gmail.com, dakr@kernel.org, airlied@gmail.com
-Date: Wed, 21 Jan 2026 15:51:29 -0500
-In-Reply-To: <84d85163d167139c25da2faa60ec73ce0c3cbc09.camel@redhat.com>
-References: <20251213005327.9495-1-lxrmrz732@gmail.com>
-		 <20251213005327.9495-3-lxrmrz732@gmail.com>
-	 <84d85163d167139c25da2faa60ec73ce0c3cbc09.camel@redhat.com>
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 76E564003B
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 23:44:45 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013056.outbound.protection.outlook.com
+ [40.107.201.56])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id ACCB210E03D
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 23:53:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nOjg0al0MSDjqOTUhfrzly3huk/VGNlBLnuExfeuWJiWMOlm6Cf3tOtZHjKRXVzRgrT+A6vJ0yDOwVPdjgdlU3yrK7xJ7Bc8NGSvvvMsOWjuqIVsUDZt0aHKIVc1AB/ayPL2+KsVz9jftLkJM65scw6W0WMwSC14zONgPwvkTB2l6TjKFgqx17yt9fDB+La1HWtUSOytb3DziwAg/xuCkrZ5UplRRIXOR7plCg53xLj2iR5NeGj9sl67HtptX7x97Inww5ykkCAf4ylIDIY7M18htG9/E0903u/lfe5HBdRg8fF4AqakbaHtxiBLwCYQOavE2tyBXUWK7pAokavPIQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=jLezpz6gvzeUvSvL0HhousaAIqH8o/qmxI5EP5v6IRh2WwbslX9bmkMFVn1xdVng6WF0R+ubWCAhlg2QhPKAOkc1YU47+MGeUU29PRNVXvhdBVfS52oOBl9DsrJUBUriqJhGzSDxtx/nsBaIJvgzKnKbkNSl0p+v94ZrmvbydycSWVfk9NQDHshDMk+SilifWJKR6pm0slG49kygshJ9lwUlV9yXNzurxhwmIJVILOhdG5hSfFMdGXFNo7d0h4IihgK3vm8zp/Z9lKiD9RoxbYSN8N2OJhBdUzPOwrPiIlcvdN1NRQxEKRftiU6/5V3QJuQ9sPGWPWONcp/TgKUaLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=garyguo.net smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iUOdI2Om/rtDRyn/+KqLKSotpFY+BGNeJvSdMYD97c8=;
+ b=gjJmpt9gRgwA9rQ7ree+/xJFzIjzP0QNEiMFtyRWW+TwCgmmh41nD2DROQKXVFbKzBGE2Uv11zRg+2sjrFgwLCUOd6+NJqwYFwC1xRWtFr9x6thqiurHgROSoPSDLlswIaH+MQequz5fTLUuVfsDUmIukXSAbCIJfMuZjxse7+TL21sSva9HHNL4OH32YvlU33wa1Z5FF4uSyE/8YlOPvDchr5TCnjZWvb7V++GM/IZwUN8SoRJ3cvlDjZ65WKFpsKLEDY03ffVGCG544cqDs01QI43yxOI+RA7hYLuYDYkDhYY2c6JfZXKSRLCA5fizB0YLStOhk8rdaD2ELdsOcg==
+Received: from DM5PR08CA0044.namprd08.prod.outlook.com (2603:10b6:4:60::33) by
+ CH3PR12MB9169.namprd12.prod.outlook.com (2603:10b6:610:1a0::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9520.12; Wed, 21 Jan
+ 2026 23:53:26 +0000
+Received: from DS2PEPF00003444.namprd04.prod.outlook.com
+ (2603:10b6:4:60:cafe::e6) by DM5PR08CA0044.outlook.office365.com
+ (2603:10b6:4:60::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.10 via Frontend Transport; Wed,
+ 21 Jan 2026 23:53:26 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DS2PEPF00003444.mail.protection.outlook.com (10.167.17.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9542.4 via Frontend Transport; Wed, 21 Jan 2026 23:53:26 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
+ 2026 15:53:12 -0800
+Received: from ttabi.nvidia.com (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 21 Jan
+ 2026 15:53:11 -0800
+From: Timur Tabi <ttabi@nvidia.com>
+To: Gary Guo <gary@garyguo.net>, Danilo Krummrich <dakr@kernel.org>,
+	"Alexandre Courbot" <acourbot@nvidia.com>, John Hubbard
+	<jhubbard@nvidia.com>, "Joel Fernandes" <joelagnelf@nvidia.com>,
+	<rust-for-linux@vger.kernel.org>, <nouveau@lists.freedesktop.org>
+Subject: [PATCH v7 01/12] gpu: nova-core: rename Imem to ImemSecure
+Date: Wed, 21 Jan 2026 17:52:51 -0600
+Message-ID: <20260121235302.1962185-2-ttabi@nvidia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260121235302.1962185-1-ttabi@nvidia.com>
+References: <20260121235302.1962185-1-ttabi@nvidia.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: yjeex5HPY4SnmrdHcCsZnWRr02B9nsNMP0nVaBcM0P0_1769028691
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP
-X-Message-ID-Hash: D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP
-X-MailFrom: lyude@redhat.com
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS2PEPF00003444:EE_|CH3PR12MB9169:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0b295be3-ad84-4d94-e441-08de5948451e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|82310400026|376014|1800799024|36860700013;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?SWavTr+sQBUNeGy/yD8IFvCQ3bLMXd5hzpAspmP6z4ul8B/d4+wQCBxIiWf6?=
+ =?us-ascii?Q?F3283EN27Nt9aqR14wlpUMl6UDyvp2m7bMK9PtaTRymOkQF8c31F97+olgSS?=
+ =?us-ascii?Q?F7tt2zb4Y2qPTQb6wLj582I0NL3EUi8XOx0dDrsH23MGgV/ZDJU+1gNkpCh/?=
+ =?us-ascii?Q?hNIXPnRu6E3gDwBsR0MPQNI32wHl8DPXb1aFkEQfJUAygiiB1u72u8z/i40b?=
+ =?us-ascii?Q?aPd9ZU9qCQVypOpPTrU7TnjszemSsXzahiolVifuqoN5rYUQ+wLDThpSX0Uu?=
+ =?us-ascii?Q?/TfXySGY9hjVBJevL45ygr0Q/Zql6BiDwazi1JAIpr7SGWzBVFcwr0osCQ1v?=
+ =?us-ascii?Q?exgAwx8KuSzJ0RGobqBT5gLw2kLvMsfL6IU5ncN1nQaufUPxqRdCBSoQA4g0?=
+ =?us-ascii?Q?V04iMLWnvTpABJcCo2ScTNKo0o+xXqMwmFgcVGz6tLfdKZkz960am/ua1prD?=
+ =?us-ascii?Q?hmGBH+y4aln20fl4wQjmV9IswBscx20T7HFpvqupsLBDUcIuFYfNvaiDWDZV?=
+ =?us-ascii?Q?pumCR6wswxc8LMEG/DQoseC2CZyjQzu+A6G0kg4D7IrQbGdS5vlmrdfmPKPL?=
+ =?us-ascii?Q?V0hjGxcCTgdMoYBwCuOBAq0EBAjtAuSGmLTL6qT7Kh1G2q5Z9o61I8LbBT/h?=
+ =?us-ascii?Q?mFhQJDdgH9qs+LOjoKr6OBHfZlFJo+joNl5qfg0AfXSuhj/FtqnuVE61TlZw?=
+ =?us-ascii?Q?XDrRfUAOaZPgNr3T6NcthokiP3ISs8QYLQ2N+Ac+THsvgIyA2xJvKjZd3DQ6?=
+ =?us-ascii?Q?gAB0Nb03ygkyi0ajPw7/oqGPMU19YM1ANouZLcRE7elm0CaBS5NE5lfhDUR8?=
+ =?us-ascii?Q?i81pkhLwQi+G9ei7UxKGa1R4w0kyyxzAZGzM63en8eYTKpFzRoiX2ceObmL/?=
+ =?us-ascii?Q?x+ElPVqCH/cANfUh+ANHnTpreKGGN4nP/Vo/LVbvMGCfoFdSQuL0NyBKc2Vz?=
+ =?us-ascii?Q?kVqOzyeOPPVIRePnJ4EWnqDwDwuJ+9nNDl+2NQ4c9ZUL5nEHSQdqeWMFSmYC?=
+ =?us-ascii?Q?qhP5VNrF+TwBs0xU4rAOSRTzeFdomEUhdjt/jPVUzjCC/nl6gZYSq6YR1zQG?=
+ =?us-ascii?Q?KKD7/pbHDcqeOf6rldnlxacJ4ErDGyWM5YstX81CnngxSYpsAIURKQ1hsGHr?=
+ =?us-ascii?Q?BmZmTDAw6nyxmOBoQNaa5iQGbkSMkjQh7IfBb8CGW3XIr5HvobF7WjCg1V2C?=
+ =?us-ascii?Q?SATlYyCgtOKbMvJnwr7eNwXW5GKjuybaKS8xqb36Qc+xT1ndip3saO5JoyC+?=
+ =?us-ascii?Q?m2FHwTtiqlR5YDgARwy7JEQpJts3PbP0B72yPX2yZPPflWgus2DCWUV8t6J8?=
+ =?us-ascii?Q?lBxkQePrGZSzGiXuJIsYdZBOkeAfMJVsq4oH2RTeDbZ10Tx5i3jbJeEsbYBE?=
+ =?us-ascii?Q?Z4pEkZNsec6ValYmrKMUJJQcGvyy6cEFt2tVyM2N/7QEgQv9qP2eB49jsX/r?=
+ =?us-ascii?Q?W3yVyTg74iE6D/G5/H7U8g9oGgrspoh7x5w34XtOATuBU5zeqnt5JqvhFHVw?=
+ =?us-ascii?Q?n9REadIhcrlPirEhPzKlvXrzKTmHo2mkDg6pi2HrR+0wAbAX14+yo9QmWu5T?=
+ =?us-ascii?Q?ZFZ/Cxe6ruWgA0SYHO5xsc/1MtxKKsf2/IjumQaZOp9BfRkYPO2u+7LVZh6X?=
+ =?us-ascii?Q?Mpbo3xzEuAG6V8/7v+B1O1Y915AASkaAxPbA6zdGsoUeXgELuuPxeT5pq9oX?=
+ =?us-ascii?Q?ZkkvmQ=3D=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 23:53:26.3862
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 0b295be3-ad84-4d94-e441-08de5948451e
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DS2PEPF00003444.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9169
+Message-ID-Hash: 5L24XTPBI32ZSRZCU5TYUKR2BBBNNZZA
+X-Message-ID-Hash: 5L24XTPBI32ZSRZCU5TYUKR2BBBNNZZA
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, lxrmrz732@rocketmail.com
+ loop; banned-address
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D4DQVRQ46WOBNCL5IHD2BQATH5FMEMYP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5L24XTPBI32ZSRZCU5TYUKR2BBBNNZZA/>
 Archived-At: 
- <https://lore.freedesktop.org/4ef0c88438476fd0e46cb4df79ddcd85d3f9df21.camel@redhat.com/>
+ <https://lore.freedesktop.org/20260121235302.1962185-2-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -145,160 +189,148 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Just a heads up - I pushed this to drm-misc-fixes, but dim checkpatch
-was complaining about the difference in authorship vs. S-O-B ("Alex
-Ramirez" vs. "Alex Ram=C3=ADrez") so I updated the commit authorship to
-"Alex Ram=C3=ADrez". In the future you probably want to make sure it uses
-the the same name :).
+Rename FalconMem::Imem to ImemSecure to indicate that it references
+Secure Instruction Memory.  This change has no functional impact.
 
-Either way, thank you for the fixes!
+On Falcon cores, pages in instruction memory can be tagged as Secure
+or Non-Secure.  For GA102 and later, only Secure is used, which is why
+FalconMem::Imem seems appropriate.  However, Turing firmware images
+can also contain non-secure sections, and so FalconMem needs to support
+that.  By renaming Imem to ImemSec now, future patches for Turing support
+will be simpler.
 
-On Wed, 2026-01-21 at 15:26 -0500, lyude@redhat.com wrote:
-> Reviewed-by: Lyude Paul <lyude@redhat.com>
->=20
-> I will push these upstream in a moment
->=20
-> On Fri, 2025-12-12 at 19:53 -0500, lxrmrz732@gmail.com=C2=A0wrote:
-> > From: Alex Ramirez <lxrmrz732@gmail.com>
-> >=20
-> > * Implement missing DCB connectors in uconn.c previously defined in
-> > conn.h.
-> > * Replace kernel WARN_ON macro with printk message to more
-> > gracefully
-> > signify
-> > =C2=A0 an unknown connector was encountered.
-> >=20
-> > With this patch, unknown connectors are explicitly marked with
-> > value
-> > 0
-> > (DCB_CONNECTOR_VGA) to match the tested current behavior. Although
-> > 0xff
-> > (DCB_CONNECTOR_NONE) may be more suitable, I don't want to
-> > introduce
-> > a breaking change.
-> >=20
-> > Fixes: 8b7d92cad953 ("drm/nouveau/kms/nv50-: create connectors
-> > based
-> > on nvkm info")
-> > Link:
-> > https://download.nvidia.com/open-gpu-doc/DCB/1/DCB-4.0-Specification.ht=
-ml#_connector_table_entry
-> > Signed-off-by: Alex Ram=C3=ADrez <lxrmrz732@rocketmail.com>
-> > ---
-> > =C2=A0.../gpu/drm/nouveau/nvkm/engine/disp/uconn.c=C2=A0 | 73 +++++++++=
-+++++-
-> > --
-> > --
-> > =C2=A01 file changed, 53 insertions(+), 20 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-> > b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-> > index 2dab6612c4fc..d1fed2beee63 100644
-> > --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-> > +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-> > @@ -191,27 +191,60 @@ nvkm_uconn_new(const struct nvkm_oclass
-> > *oclass, void *argv, u32 argc, struct nv
-> > =C2=A0=09spin_lock(&disp->client.lock);
-> > =C2=A0=09if (!conn->object.func) {
-> > =C2=A0=09=09switch (conn->info.type) {
-> > -=09=09case DCB_CONNECTOR_VGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.=
-type =3D
-> > NVIF_CONN_V0_VGA; break;
-> > -=09=09case DCB_CONNECTOR_TV_0=C2=A0=C2=A0=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_TV_1=C2=A0=C2=A0=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_TV_3=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.type =
-=3D
-> > NVIF_CONN_V0_TV; break;
-> > -=09=09case DCB_CONNECTOR_DMS59_0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_DMS59_1=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_DVI_I=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
-> > NVIF_CONN_V0_DVI_I; break;
-> > -=09=09case DCB_CONNECTOR_DVI_D=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
-> > NVIF_CONN_V0_DVI_D; break;
-> > -=09=09case DCB_CONNECTOR_LVDS=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.type =
-=3D
-> > NVIF_CONN_V0_LVDS; break;
-> > -=09=09case DCB_CONNECTOR_LVDS_SPWG: args->v0.type =3D
-> > NVIF_CONN_V0_LVDS_SPWG; break;
-> > -=09=09case DCB_CONNECTOR_DMS59_DP0:
-> > -=09=09case DCB_CONNECTOR_DMS59_DP1:
-> > -=09=09case DCB_CONNECTOR_DP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_mDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_USB_C=C2=A0=C2=A0=C2=A0 : args->v0.type =3D
-> > NVIF_CONN_V0_DP; break;
-> > -=09=09case DCB_CONNECTOR_eDP=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 : args->v0.=
-type =3D
-> > NVIF_CONN_V0_EDP; break;
-> > -=09=09case DCB_CONNECTOR_HDMI_0=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_HDMI_1=C2=A0=C2=A0 :
-> > -=09=09case DCB_CONNECTOR_HDMI_C=C2=A0=C2=A0 : args->v0.type =3D
-> > NVIF_CONN_V0_HDMI; break;
-> > +=09=09/* VGA */
-> > +=09=09case DCB_CONNECTOR_DVI_A=09:
-> > +=09=09case DCB_CONNECTOR_POD_VGA=09:
-> > +=09=09case DCB_CONNECTOR_VGA=09=09: args->v0.type =3D
-> > NVIF_CONN_V0_VGA; break;
-> > +
-> > +=09=09/* TV */
-> > +=09=09case DCB_CONNECTOR_TV_0=09=09:
-> > +=09=09case DCB_CONNECTOR_TV_1=09=09:
-> > +=09=09case DCB_CONNECTOR_TV_2=09=09:
-> > +=09=09case DCB_CONNECTOR_TV_SCART=09:
-> > +=09=09case DCB_CONNECTOR_TV_SCART_D=09:
-> > +=09=09case DCB_CONNECTOR_TV_DTERM=09:
-> > +=09=09case DCB_CONNECTOR_POD_TV_3=09:
-> > +=09=09case DCB_CONNECTOR_POD_TV_1=09:
-> > +=09=09case DCB_CONNECTOR_POD_TV_0=09:
-> > +=09=09case DCB_CONNECTOR_TV_3=09=09: args-
-> > > v0.type =3D NVIF_CONN_V0_TV; break;
-> > +
-> > +=09=09/* DVI */
-> > +=09=09case DCB_CONNECTOR_DVI_I_TV_1=09:
-> > +=09=09case DCB_CONNECTOR_DVI_I_TV_0=09:
-> > +=09=09case DCB_CONNECTOR_DVI_I_TV_2=09:
-> > +=09=09case DCB_CONNECTOR_DVI_ADC=09:
-> > +=09=09case DCB_CONNECTOR_DMS59_0=09:
-> > +=09=09case DCB_CONNECTOR_DMS59_1=09:
-> > +=09=09case DCB_CONNECTOR_DVI_I=09: args->v0.type =3D
-> > NVIF_CONN_V0_DVI_I; break;
-> > +=09=09case DCB_CONNECTOR_TMDS=09=09:
-> > +=09=09case DCB_CONNECTOR_DVI_D=09: args->v0.type =3D
-> > NVIF_CONN_V0_DVI_D; break;
-> > +
-> > +=09=09/* LVDS */
-> > +=09=09case DCB_CONNECTOR_LVDS=09=09: args-
-> > > v0.type =3D NVIF_CONN_V0_LVDS; break;
-> > +=09=09case DCB_CONNECTOR_LVDS_SPWG=09: args->v0.type =3D
-> > NVIF_CONN_V0_LVDS_SPWG; break;
-> > +
-> > +=09=09/* DP */
-> > +=09=09case DCB_CONNECTOR_DMS59_DP0=09:
-> > +=09=09case DCB_CONNECTOR_DMS59_DP1=09:
-> > +=09=09case DCB_CONNECTOR_DP=09=09:
-> > +=09=09case DCB_CONNECTOR_mDP=09=09:
-> > +=09=09case DCB_CONNECTOR_USB_C=09: args->v0.type =3D
-> > NVIF_CONN_V0_DP; break;
-> > +=09=09case DCB_CONNECTOR_eDP=09=09: args->v0.type =3D
-> > NVIF_CONN_V0_EDP; break;
-> > +
-> > +=09=09/* HDMI */
-> > +=09=09case DCB_CONNECTOR_HDMI_0=09:
-> > +=09=09case DCB_CONNECTOR_HDMI_1=09:
-> > +=09=09case DCB_CONNECTOR_HDMI_C=09: args->v0.type =3D
-> > NVIF_CONN_V0_HDMI; break;
-> > +
-> > +=09=09/*
-> > +=09=09 * Dock & unused outputs.
-> > +=09=09 * BNC, SPDIF, WFD, and detached LVDS go here.
-> > +=09=09 */
-> > =C2=A0=09=09default:
-> > -=09=09=09WARN_ON(1);
-> > +=09=09=09nvkm_warn(&(disp->engine.subdev),
-> > +=09=09=09=09=C2=A0 "unimplemented connector type
-> > 0x%02x\n",
-> > +=09=09=09=09=C2=A0 conn->info.type);
-> > +=09=09=09args->v0.type =3D NVIF_CONN_V0_VGA;
-> > =C2=A0=09=09=09ret =3D -EINVAL;
-> > =C2=A0=09=09=09break;
-> > =C2=A0=09=09}
+Nouveau uses the term "IMEM" to refer both to the Instruction Memory
+block on Falcon cores as well as to the images of secure firmware
+uploaded to part of IMEM.  OpenRM uses the terms "ImemSec" and "ImemNs"
+instead, and uses "IMEM" just to refer to the physical memory device.
+
+Renaming these terms allows us to align with OpenRM, avoid confusion
+between IMEM and ImemSec, and makes future patches simpler.
+
+Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+Reviewed-by: John Hubbard <jhubbard@nvidia.com>
+---
+ drivers/gpu/nova-core/falcon.rs          | 20 +++++++++++++-------
+ drivers/gpu/nova-core/firmware/booter.rs | 12 ++++++------
+ drivers/gpu/nova-core/firmware/fwsec.rs  |  2 +-
+ 3 files changed, 20 insertions(+), 14 deletions(-)
+
+diff --git a/drivers/gpu/nova-core/falcon.rs b/drivers/gpu/nova-core/falcon.rs
+index 46b02c8a591e..310d4e75bad3 100644
+--- a/drivers/gpu/nova-core/falcon.rs
++++ b/drivers/gpu/nova-core/falcon.rs
+@@ -240,8 +240,8 @@ fn from(value: PeregrineCoreSelect) -> Self {
+ /// Different types of memory present in a falcon core.
+ #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+ pub(crate) enum FalconMem {
+-    /// Instruction Memory.
+-    Imem,
++    /// Secure Instruction Memory.
++    ImemSecure,
+     /// Data Memory.
+     Dmem,
+ }
+@@ -348,8 +348,8 @@ pub(crate) struct FalconBromParams {
+ 
+ /// Trait for providing load parameters of falcon firmwares.
+ pub(crate) trait FalconLoadParams {
+-    /// Returns the load parameters for `IMEM`.
+-    fn imem_load_params(&self) -> FalconLoadTarget;
++    /// Returns the load parameters for Secure `IMEM`.
++    fn imem_sec_load_params(&self) -> FalconLoadTarget;
+ 
+     /// Returns the load parameters for `DMEM`.
+     fn dmem_load_params(&self) -> FalconLoadTarget;
+@@ -460,7 +460,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+         //
+         // For DMEM we can fold the start offset into the DMA handle.
+         let (src_start, dma_start) = match target_mem {
+-            FalconMem::Imem => (load_offsets.src_start, fw.dma_handle()),
++            FalconMem::ImemSecure => (load_offsets.src_start, fw.dma_handle()),
+             FalconMem::Dmem => (
+                 0,
+                 fw.dma_handle_with_offset(load_offsets.src_start.into_safe_cast())?,
+@@ -517,7 +517,7 @@ fn dma_wr<F: FalconFirmware<Target = E>>(
+ 
+         let cmd = regs::NV_PFALCON_FALCON_DMATRFCMD::default()
+             .set_size(DmaTrfCmdSize::Size256B)
+-            .set_imem(target_mem == FalconMem::Imem)
++            .set_imem(target_mem == FalconMem::ImemSecure)
+             .set_sec(if sec { 1 } else { 0 });
+ 
+         for pos in (0..num_transfers).map(|i| i * DMA_LEN) {
+@@ -552,7 +552,13 @@ pub(crate) fn dma_load<F: FalconFirmware<Target = E>>(&self, bar: &Bar0, fw: &F)
+                 .set_mem_type(FalconFbifMemType::Physical)
+         });
+ 
+-        self.dma_wr(bar, fw, FalconMem::Imem, fw.imem_load_params(), true)?;
++        self.dma_wr(
++            bar,
++            fw,
++            FalconMem::ImemSecure,
++            fw.imem_sec_load_params(),
++            true,
++        )?;
+         self.dma_wr(bar, fw, FalconMem::Dmem, fw.dmem_load_params(), true)?;
+ 
+         self.hal.program_brom(self, bar, &fw.brom_params())?;
+diff --git a/drivers/gpu/nova-core/firmware/booter.rs b/drivers/gpu/nova-core/firmware/booter.rs
+index f107f753214a..096cd01dbc9d 100644
+--- a/drivers/gpu/nova-core/firmware/booter.rs
++++ b/drivers/gpu/nova-core/firmware/booter.rs
+@@ -251,8 +251,8 @@ impl<'a> FirmwareSignature<BooterFirmware> for BooterSignature<'a> {}
+ 
+ /// The `Booter` loader firmware, responsible for loading the GSP.
+ pub(crate) struct BooterFirmware {
+-    // Load parameters for `IMEM` falcon memory.
+-    imem_load_target: FalconLoadTarget,
++    // Load parameters for Secure `IMEM` falcon memory.
++    imem_sec_load_target: FalconLoadTarget,
+     // Load parameters for `DMEM` falcon memory.
+     dmem_load_target: FalconLoadTarget,
+     // BROM falcon parameters.
+@@ -354,7 +354,7 @@ pub(crate) fn new(
+         };
+ 
+         Ok(Self {
+-            imem_load_target: FalconLoadTarget {
++            imem_sec_load_target: FalconLoadTarget {
+                 src_start: app0.offset,
+                 dst_start: 0,
+                 len: app0.len,
+@@ -371,8 +371,8 @@ pub(crate) fn new(
+ }
+ 
+ impl FalconLoadParams for BooterFirmware {
+-    fn imem_load_params(&self) -> FalconLoadTarget {
+-        self.imem_load_target.clone()
++    fn imem_sec_load_params(&self) -> FalconLoadTarget {
++        self.imem_sec_load_target.clone()
+     }
+ 
+     fn dmem_load_params(&self) -> FalconLoadTarget {
+@@ -384,7 +384,7 @@ fn brom_params(&self) -> FalconBromParams {
+     }
+ 
+     fn boot_addr(&self) -> u32 {
+-        self.imem_load_target.src_start
++        self.imem_sec_load_target.src_start
+     }
+ }
+ 
+diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
+index b28e34d279f4..6a2f5a0d4b15 100644
+--- a/drivers/gpu/nova-core/firmware/fwsec.rs
++++ b/drivers/gpu/nova-core/firmware/fwsec.rs
+@@ -224,7 +224,7 @@ pub(crate) struct FwsecFirmware {
+ }
+ 
+ impl FalconLoadParams for FwsecFirmware {
+-    fn imem_load_params(&self) -> FalconLoadTarget {
++    fn imem_sec_load_params(&self) -> FalconLoadTarget {
+         FalconLoadTarget {
+             src_start: 0,
+             dst_start: self.desc.imem_phys_base,
+-- 
+2.52.0
 
