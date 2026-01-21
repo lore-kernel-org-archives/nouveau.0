@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00226C44536
-	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 16:36:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 717F2C44506
+	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 17:31:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B4B6810E850;
-	Wed, 21 Jan 2026 16:36:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4A23910E86F;
+	Wed, 21 Jan 2026 17:31:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="sBYW7OpL";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="XPGR8wDy";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CC391401CE;
-	Wed, 21 Jan 2026 16:27:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 42C5140100;
+	Wed, 21 Jan 2026 17:22:47 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769012834;
- b=UFnsRWkJ3DvMJgFV4qN15s3Uly09wFSVIQV/0Kc3qeADro9t1CXXsvuZ+g4xiwG5bDh78
- fgjgRvvGPvTBKPmTHcql/nbyAS/0UloANnizDucqdyu4UEBgo2QKgRGmku3BJuAWaEtx+GN
- gUTs9TdjQ24kgPYH7Lm0gPM/PSpal5RGGpn8YZDzhQErCMnPMDL1s284aEPIAW9rvwgqmN+
- G4Tbj+e5FiolOieFb+TTNL/JrgpuwWHa9i/5TaAL2Bzi5p7+m+T/x6JoyAnxtQN1RZFL3+W
- +7/v4OuLajXqwqD8xMmh6SkyNR17pRZJP+UXwyAIfF3L/f2XA6U74RdwB0cg==
+ s=20240201; t=1769016167;
+ b=g5tvU2XzictHaANqwCyqt9cN24Ed5mGFqhxv+jtkN+X2JQlIZbZS+lAszjlRtueey0Jqe
+ aNEbarSTcU0CRlafv1Wvvsx1Nq5+hterflPqyMlE+fQm5+NCynKJQoNguO57yo2aEkDB3Eh
+ dYsoT2Jfv4Twd7qYSoVHavalA/EqjuqabTM0lY6fbLwBqAQZ8eAsSfbPY97R2xpAReGmCKP
+ yycE89dNShjvFZcCF4e/CHj6h27gCZB+nbddOyHq5nv7ixOv1Yd+WZgQtKa2BNCSw0eAr3Z
+ pvvfOwFTNJYtrJZqSh/pEirQ/AnFLyK3WwQwFjYlJY+uMLy+rOuoitFQ0F+g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769012834; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769016167; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=pUWAJL1sA6+Lgn8PCPlGkkf6Qw8E9GGfr3ge2i8dpyo=;
- b=CA0Af1k5qGC3uRNKoQtz+EkTxNcfQrimK8FI2BYa8a7gdZqw95lnSzaXgq4L1Oe0VWXKp
- 4uT0V9QzK5z6y8JnFlk6ikipT4nIwTFVQESKcEAvVcmVbcYbdLinTTmSyTDaL3CsYvyQomK
- mIobpb2mr4Qmkzlrq6kMuihoC+risFTiHbHmRRzV7FRP6dTmKsoVuGWtEUFSkOLJkJVCKUd
- +tqcKGtx037+0ytAZOl4KveXGSd9zTELjhKibBU3h6dN9QsTpYHBqR+D3Y/8yPOdyocAVhW
- U4T4BbThji8R5cxtIDlw7Gw7Ptl0Ennc2VPh4sNgvGEMjaUO9vtwgn18pECQ==
+ bh=K9P+pqLPSK/Q9brJpDt2S6JHm3SrThmYtk+/fl8qiQw=;
+ b=VjZRl8mDznZLtI6+Q3hlmA56Lv4CnqXcsz4A2OrrJfA+2vq6CKnxP9b9Tmw0NIP53UsyS
+ NCfQd7g6De9uQ0sqsSVxvixRYf4BifoXkPiz760FFNpU76vdqnSLyNUSTzJHCciXXksnN6c
+ 7WMxRqIhephY6DSQllLxgj+9uTWjlt4wMvWHoqtu8bOARLdVuHS340rdGAOTQsltzYrfAnT
+ MdwIDeilIrbqJ+1XIp9b7SwT5A4jadS0vMUGYVWEoZLPcB85iGoeRLQqElONwAnPMPhCrzF
+ ovaRxbRibEUYFV+1DHgYpBGaD9qd69PV0LytqGhGhi+EpS189bTxrDNy6urA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=garyguo.net;
   arc=pass;
@@ -45,177 +45,174 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E962B400BB
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 16:27:11 +0000 (UTC)
-Received: from CWXP265CU009.outbound.protection.outlook.com
- (mail-ukwestazon11021094.outbound.protection.outlook.com [52.101.100.94])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6610510E83C
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 16:35:58 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0A0334003B
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 17:22:43 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022114.outbound.protection.outlook.com [52.101.101.114])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7044610E0BF;
+	Wed, 21 Jan 2026 17:31:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Lj2XKAWJm2FQOM9Aamle3pd0fKKR7hY230RC4keCojtUDdz7gzn1oHCuAd5Zd1HRDE2oPwjGXcn1D6/Mb1jsL3ebAldHccZ7xNWKvAL5bhJZHXYcRvbAvKWgjsmHi18Kx/biHeeh/NoaJYESUUvmDKE6O/BrrYMTrHwN7FVEwhvFY6Iqzjmu7BewcY5+vsnGcKS8UYgmCrVb0IyBK/8ZG7h5Je4xSXHCh9WSlz6ULnGHnKgM03b7tNb6wPl8Pmyu24NBPl4DGJhSKcrZV0m1cok6s1kY1TNhUbH9flKpM13wQqYrIKNezBRcH8QARJ9gzdm/xiaVf1BbwXjLeTCqgA==
+ b=u8vyKhBevr4Qmr8ZBYpj+Sjl3+oOCdEOw3SSi+GFGJZsis5vAh01toFku/u+Qqr3zqyNSKl8mM4Ihe4MTzdXYUmhY+ICbCOcHn1UHdpkFClgle3OZQ18Mvf1aRPO6bQik+5Mi6Kugw7MzV5DNcYjeS7BXji1WZLnlKwpt/vEdP6Sle1UM700l3vyZqCuh8YuygefAqziFSRWQeGivP1QDN+nCc9ZjJIC6n+f5f/vsMjMOoQjZtHkKL/hCL+z0RtpoUT5E/o4Bt+vpgBLHCkGMqsAp842+FOPn0uAIh7EuAu5ABqMUN8yBkmVuM6s6b8jOVcLoHfxCcZSgS1E1WtEqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pUWAJL1sA6+Lgn8PCPlGkkf6Qw8E9GGfr3ge2i8dpyo=;
- b=HS23iWD29YkzS84wl4PMX9Cv2yB4hdGS/Fjw8j4kK3AL0qZ67mX94C+96harm585zglbdBjlRCbogJgS103zc4lf41nZm0F8enRQiHokAEwdKYyrnU3F8oz8YS+ILPc+3gn2kgo263Wj4ohNOJl3OAGV96ywJOjJua8+RphHcPJNJoxLW+qajrdoHrCrJEK4JkMB76hSGUpBvvfMdizjBcebFDmv28piNRBwfCsvnC53qGy8Sgl+hLwp2oIURRTYyeSYKYDpArJuVXAyAczZv3vXQ09uqL20Z6aSbd3J3aV2hHYAlv415b615Qn7wzO9LPgD+ao5bBypqR18J/VPHw==
+ bh=K9P+pqLPSK/Q9brJpDt2S6JHm3SrThmYtk+/fl8qiQw=;
+ b=Eh4bjB3WpQuryFLYf8tRLF3Aqwge4Mfi5PA9Bypdi9fZ/V6mHDjOSo62e7XFzTKaiFaygihr6WDGHW6qH8gnJs864ignS5H2vGZ92OHynnehI07Lzmfq/TRN/TM/RWcXj2xXpqRtwrWEFh5NshWCALILqWx9VjazYc3XL3EdYHlsf9xnZYUkHsOeIhF1lRU9Zl1GhzqsOObObMz9DvtCxhjfq2zXJTE6B62g2vyNDkrRfy3advYL/uye8R7rU5Kc9bpvUtsg9JyA4JZ9ujp7sfnOhCwtnTFq2etPXoFFL6ftVIZSm7FmokuRt/aBVtLSwvVDF6//WtHyIwOIOxD6Bw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
  dkim=pass header.d=garyguo.net; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pUWAJL1sA6+Lgn8PCPlGkkf6Qw8E9GGfr3ge2i8dpyo=;
- b=sBYW7OpL/xcfm0aEk/ugEZT6i+22SIHjn5B58BUJ1XZdrX2BEPXiBTAF/EFqlLfWk5REi2KNUxPlKfwo14lBptI2sGfR8b6br0VLX+8HdspigqQdN9Wr0BCbM8aJm+ZNzbmB03y/iYP2ZyZAvCo3tk9AkofOy2+3MatBDNzBiCQ=
+ bh=K9P+pqLPSK/Q9brJpDt2S6JHm3SrThmYtk+/fl8qiQw=;
+ b=XPGR8wDyRlzBRsb4VFGviQ3kxQ385ljrlD0xXLPfUbfs8sfMGCSUzdI4+vReHadkizxa+lGCTo2jbmPcyLfBb99wf+cDaFzKBl09hluuJZc7k86X3yuEryEGUqE8Fa+ugqcqG/SATKuAKeobyz8f3CvtZ1CRFURT+q+5+mr8PFA=
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO6P265MB6224.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2b1::6) with
+ by LOYP265MB2206.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:114::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Wed, 21 Jan
- 2026 16:35:54 +0000
+ 2026 17:31:26 +0000
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 16:35:54 +0000
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 21 Jan 2026 16:35:53 +0000
-Message-Id: <DFUEWBKOLFQ1.3NSTFO4L97503@garyguo.net>
-Subject: Re: [PATCH 29/31] gpu: nova-core: Hopper/Blackwell: add FSP Chain
- of Trust boot path
-From: "Gary Guo" <gary@garyguo.net>
-To: "John Hubbard" <jhubbard@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>
+ 17:31:25 +0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 21 Jan 2026 17:31:25 +0000
+Message-Id: <DFUG2U4PVVTN.1DVPXGJK735F8@garyguo.net>
+Subject: Re: [PATCH 1/2] rust: drm: add support for driver features
+From: "Gary Guo" <gary@garyguo.net>
+To: "Daniel Almeida" <daniel.almeida@collabora.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "Boris Brezillon" <boris.brezillon@collabora.com>
 X-Mailer: aerc 0.21.0
-References: <20251203055923.1247681-1-jhubbard@nvidia.com>
- <20251203055923.1247681-30-jhubbard@nvidia.com>
-In-Reply-To: <20251203055923.1247681-30-jhubbard@nvidia.com>
-X-ClientProxiedBy: LO6P265CA0001.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:339::9) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+References: <20260119-drm-render-v1-0-8326e4d5cb44@collabora.com>
+ <20260119-drm-render-v1-1-8326e4d5cb44@collabora.com>
+In-Reply-To: <20260119-drm-render-v1-1-8326e4d5cb44@collabora.com>
+X-ClientProxiedBy: LO2P265CA0229.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:b::25) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  (2603:10a6:600:488::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO6P265MB6224:EE_
-X-MS-Office365-Filtering-Correlation-Id: ea61830b-2654-4dff-47a9-08de590b259b
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LOYP265MB2206:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8d86216a-ce32-4f04-6453-08de5912e747
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|7053199007;
+	BCL:0;ARA:13230040|1800799024|366016|7416014|376014|921020;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?cVhVaWs3YzdrL3lCY25PUmk0Q3B6MGgzVEo4ckFMbmZPT1ZjZDJBMlVBd1g0?=
- =?utf-8?B?dGhPZVBnem94QVV5NzFrYlNqc2VwWDRjdXdmU3VGVHYySUVIQTZKamtJc2RB?=
- =?utf-8?B?OTJxdTNGNDlWa1MwL09hVTd6Q3NXSDhSYncxdloxeGhCcmdtVlZEVUtGT3d2?=
- =?utf-8?B?RWphT05Id0JJc1ZGbXllNDJZeXVkdDNkLzF2TVpuTWNLODNwRGRJVENGaFFo?=
- =?utf-8?B?cFZrTFdwUmhMbWloVlNBWGVsMjVkZ2FhK1Z0enA2K25rSGVSekpHU2ZxbWlp?=
- =?utf-8?B?UTBKcFBxOUpKR3BYZGxtMkVIM3g3SHdpSkVtSDNSS21QTXJyM1pZUm5zamd5?=
- =?utf-8?B?YTJGUEZtcm1Yb3JJNW9pZTB4R1o1eWtGTFNpVDdIZmVrK1RBZDZSU1FEdkow?=
- =?utf-8?B?WlZrZExNMURxL0NreVMwYU1UOEVwODIweWZ0UXR2ZllWZWhmN1ZYRnZTYThk?=
- =?utf-8?B?dVUyb3ZIcElBYzlyZlZ0R2tHVnVwRzlzTEhiRE9xTGYwRlR1T0dvdVZOS1FO?=
- =?utf-8?B?enZLY2ZxM3UrdXorSFNvcXhkMnJHd0pMeUtMRjFER0Rnd1djZmpYSmhVNERs?=
- =?utf-8?B?QkFOVkZFNlQwcFY3T2RxNEp1ZzJjdnA5Q0ZCeHg5ME5nbC82UjBvbDhJK0pP?=
- =?utf-8?B?blU1K3dlUFJMNmJ6USsrd3ZVKzZ2bHhNQjNFbGJhOU5vcUtQczlRQ25kaUZa?=
- =?utf-8?B?RDZ1YXg0c2VwdlRvMWlrTjZnbHNTOEJXWmNicmNFN01FWStzZ0lOczJSenhS?=
- =?utf-8?B?WWdxazFmMXNMRENUbkIvMktBV3R5bVBzeFRGeDRmWExjQXZzOTROYW9ocEk1?=
- =?utf-8?B?cExiNXN6RisxVVoreThwanhBQlQrNWcza2tHNXJVeVM0L3JOZkNDM0VpNGJv?=
- =?utf-8?B?eThyUldSUFRoZWM2VDhQZ3gzS3pSMEwxUExzQTg5Z2grS1NpVEwyMVBRVW5y?=
- =?utf-8?B?ckk5SldoUmNxVENWSEFJM29TMXBFR1BEVmF6ck9ZUWErZEhlRjNGOS9ZYUly?=
- =?utf-8?B?cXJMOUpxVlh0RXlpSnVNYmEwRUVsYmlvQXkwU2ZHa3UwS1p4ZTZHYVo2Nm1O?=
- =?utf-8?B?WlV5bzFPZThrc3JUN0E5dUdGek53OU1hM3BDbVFwOVVqU3hvazZ5NDVIMnpt?=
- =?utf-8?B?VHNkWllmbHYzc3AxNW95ck9saHdCSGlCdHd0TFFjMXFYRXFwdzVaQUp6YVZV?=
- =?utf-8?B?ZTREWjh4WmZpNFdoSHV4WWltbWdtdGhLUVprdm1CUkxLNm12czBFVk1YT3Q2?=
- =?utf-8?B?NnUrczlEK3hqb2dBSkozM0x4cVlNWEZoQzFacEU5MTJtcG4wQmFra2xJQnVZ?=
- =?utf-8?B?U1hCVVN6ZW1PcDRBTE1ZQmZCQ1U1eHhZbk1PZmZjRkJvZ2t3c3VKYWluTjls?=
- =?utf-8?B?M0pmczZKL05qNzdyaldwZ3JNV0ZQc2NNdDNIdXA2c0dKdnpaa0RWbFpoN0Vk?=
- =?utf-8?B?Y09RQTVCRUljSngwODBnSnlMSzhIUkhzS1NhaU4wSkFxT1pwN2lUTTVEMm8r?=
- =?utf-8?B?ZGxQTnk5c2ZYaEdIbGxHSlN5SitzNFRMcGIxcTVvS3diWjl2aU1hT3RXMEhp?=
- =?utf-8?B?dUpQVUsvbzhkdTlRMFQ0WUZIODRpaEpTTzNKcFd5bWtZYi9aWnJadzlHRHph?=
- =?utf-8?B?ZHFEdlBoS0xQTlpKcVY1bkdRQlNGaVNjMHNXdWovMDBHOW9TeVBObmdnNzVu?=
- =?utf-8?B?S0hQaXlHUGF1WG5RUDFKUEk3bVBIZmEvVW5TZ1dhNTlZN1p5Qmg0NHB6T01W?=
- =?utf-8?B?U1lmL0xGOUo2RVdvdTN0dUVvOExSSUdvQVZzbTRMU1EvK1dXbUhsR29sdUdU?=
- =?utf-8?B?dENIY2duWmlvQzBVcGp2Nm5nbUFkR1pTcG9LRUY2ZEhFZjRjTGJpTWsyZkpk?=
- =?utf-8?B?T1Z6bllRYTRyaHVZTmN4YUdOOGQ1bitCQmxlTjd6WU1FdDVRdlFvMTMzUXRP?=
- =?utf-8?B?eFpCbnRjVC8rNG03dDJSM3FxVC9CZ09nNklBMXpsdWVENDRIT3pRZUdibGR6?=
- =?utf-8?B?bnh4ckJ0bXNnOXhiSXdQU3hxZ0dtRVZ3TE40cVc5SjFPNXVHaG1xdTFqeVM0?=
- =?utf-8?B?bHE3U01hWmFWZnprMkgwc3c2M2swZ3I3L3o0UDM0WmFWZ3doUDloTW1jc2VN?=
- =?utf-8?Q?d2aw=3D?=
+	=?utf-8?B?ODk5YU80NjJPZWNxOWtRS0JBT25DM3AvSDF3VmxrNENWNEFZbThHTytOYWFs?=
+ =?utf-8?B?anhsWnBZSTAySHJQd3k1T1ViajRncTNxRzF1bWVDOXQwNnMxbFJOMzhVZnRV?=
+ =?utf-8?B?d2lPWU1vTHJxOFZqVEhaRmFOVlJ6VnJ2Zi9aVExBeFRyZGxhRGRHVUdPWEhW?=
+ =?utf-8?B?NnlhampVekZpYm9Sb1hET3BPK0VOcjFpZHBJd2RoWEVBVjBkL1BmczhiMnFM?=
+ =?utf-8?B?ZkZQTmQ3RGRMWnMybjhKMEtpeFFKQlBETXhGNGcvWUJ3bHZDZ3BUUkZKRUs0?=
+ =?utf-8?B?MGFpVzhaMlE5WTNHb1JJWTVIbUpPUVgyVlB1Sk5SR2svSGcxOXVoZnFHREhq?=
+ =?utf-8?B?SXJEYnRRRWVPQU1ibnQ2RnZVZmx3bitHa0FwWTJNTTRSdnhyMXhGNDBlbDMz?=
+ =?utf-8?B?Mmxidkg0emdXWFh2WkZXa0ltdXlvUk1GU240cnFET1V3Y29ubkw5VHNRRWMz?=
+ =?utf-8?B?MVpRd2hzajZWZnI2bitXdzdDdlFtWjExRGY3MExpOWRJUEg5dHdURTQxYzVI?=
+ =?utf-8?B?bVhsVTh6UFZzLzMzeDdibFJTQUgzSmZEUHd6aE5obGpzTm4rNHhIaEhRYzhM?=
+ =?utf-8?B?MWVHYy82VTFEQnpadzlBM20zQWwyeTJiTU5LL1pMNFptSjNwVXhLbHAvZmJv?=
+ =?utf-8?B?dnRKUlNrdEdtWDc0Q3JPMmtxVFB0dFdiTVdyeStHN3NkOG1LWGZGcisxcm1x?=
+ =?utf-8?B?WHppazhqU0tGOFhzWHVma2tMeG5wdmNRQlBGQ3NoeVVkNklTbExwYXZBS0Rx?=
+ =?utf-8?B?SEIvZGRtelhEMnJ3V3dMRklUNExBQ2pjUElGeEhsZHdNMG1SSE90a1BKbW1M?=
+ =?utf-8?B?alAwdTlRVjhxRmpxVmU3RGt0Z0ZqaEJGVmtUM3ZUOWRuNm9FUGRWaXZ6TUNu?=
+ =?utf-8?B?cDNTVmE3Rng2c0RlYzlMelM0T0sxdFhjd054Q1orNkxHcitLRmladHVPekp3?=
+ =?utf-8?B?cUNWVzNZOGRsZFV0a2JwaDVhd3FPL1lvNTFkelRPZ041QUUrcmhackNuN2Nr?=
+ =?utf-8?B?WU03L2lvVEZzSjViaHdiRDB5K2Rvc295Q1htRkhqS0VEYm5WVUo3WEhneUN2?=
+ =?utf-8?B?OWVKSCtwbTZKeTZ5ZWhtZ3Z4bytHejV0eDdJZG16OXVHV1JhRlYyRGNDbTJF?=
+ =?utf-8?B?NHdaQi82MEdCWkFMNjdCdjNDMUU2TXE3endLK3dQYnlPR3NDWVBSWkZRazQ1?=
+ =?utf-8?B?TkF0SlRaRXVJS2RzZmZseGFNRTE4bTM1dWFzaUZPWDdaQlJLNUZZV01mSlNU?=
+ =?utf-8?B?cWxPeUdtd1ljY0lqK1hBRlpNMXVLZzZQQ3dRWWJ5SWV6bFJjYVAzRld2c1l5?=
+ =?utf-8?B?WlF4OUZib2hvUXFTTlhZSVZCWDZQaGZ1TldTWjIyWU1sbUVsNjM2U3crM2k0?=
+ =?utf-8?B?dmZDVGluSFFpeXZBeFZCUStnRXU4dEp2Z1hRb1ExNkdCUFdjRkZzKzRoRTk2?=
+ =?utf-8?B?MmlYU3pPQzlNaFIrM3BqN09YMzR4TkRVck1zbXpsSEpZdGhjUXlsWXhJV2xp?=
+ =?utf-8?B?Umg3YWE1RTNFTU4xNUdIN2dRRHZYVm1tMkRHZWo0UEJPcWNkOXJtUDhZNE1W?=
+ =?utf-8?B?YjJKUEVYRTdHUGJPSmRTY2EwYjkya2dSMk1IeGFmR0pYMi9tSDNQOVF1RWhn?=
+ =?utf-8?B?TEk3Nmg5K2xaS1AxbFB0cVNJd1M3YUUwUDZpRWhJdTEzMmYrQzlnUEtBbGdF?=
+ =?utf-8?B?aytQWU9xRFdmZ3luNVhmeTd2MFVPRmFaaFhETkVyTUgxRmlLaFpnMi94bXMr?=
+ =?utf-8?B?dzlzOTJwM0hIN2M2VllSeFlSSkQ0dnBnQUpqejR0TDNtQ0xhazJKVzJsWkt4?=
+ =?utf-8?B?TUV4U2NkR3REd2xzYk0zb0JyNkdVZ09CVVFSRzVWRFFEUlZqcFFDaDhNakls?=
+ =?utf-8?B?T1hINDNiODdzcEFJNFdUbnZac1ovUWhuTHR2bmJlUUVtaHdsUVlBS1p4YnhF?=
+ =?utf-8?B?Vzd5OTV6QVprSEhWTVJlc1dGUE01WG1Ob3p2MjlVUlhBK09DSEhHSHIwTE9x?=
+ =?utf-8?B?VGsxMlBseENmbFJQM2tkZDlmMWVEbHprSTRJdm5aU1hFZjRhZHpWeUNUa2lq?=
+ =?utf-8?B?SWtEdURwN0JJdERJUThEZUtGcVZMdEpxRjM1dURlTHlmNlhtUHhLUnE1UEdk?=
+ =?utf-8?B?NUxGNmMzTFlJUGVrWDJnSmN4SUxuT2xXRkZqSGRCOW9Ha2FSL0UwSTl1MDcx?=
+ =?utf-8?B?OVE9PQ==?=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(921020);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?SFRsTlpRdGh2OXdleTB3Vi9zWGVpbUk2NkMrZmhnTFdxM2JMVXBFZDVWTHVI?=
- =?utf-8?B?dmdSQXJjTkZ2K0YrSjJmSGtxdTVLU1YwblBtMHlwVGlCUjBxUXd4b0JmbVA4?=
- =?utf-8?B?SUxIbklOK0kxWnczWUxnQ0dXYlVYWlQ1bGZTdmZiejBlNzNUOXp2cGV2Nmd5?=
- =?utf-8?B?c3F1R04rQkZzd1hiNFVFVnN4eWRXWFhaT1ZXbG5ueURPTWV0dlFxUHkvS3Bw?=
- =?utf-8?B?Z2QrZ0FyUWRtVFVoMEYwK1JkQ051QW5QN29yVWlUNkhRN2FkT0JjUHd1MU1G?=
- =?utf-8?B?VnhUQVNhT3g5K3p2UnZvallxN2d3Sm40ZmgxVkdqMWQ1anFrMmlpWEl1MktC?=
- =?utf-8?B?dlFjbHZDQ3NuTVc3Q3UzYWEveC9FaGtYUVNpUDJiY3Z5anduQVVtdFo3UjFx?=
- =?utf-8?B?YXB0T3h1WFFrN0t6UnZ1Ri9DcVNhUWlKT21kWkZ0MWNQMlFIM05OQkI5cnpB?=
- =?utf-8?B?MzFwL0hhdWFjYVNIZFY4SXIxWGNpUWlZdnd5bDRRaTBETGRrZHU3R1JIVzN4?=
- =?utf-8?B?cFo0Um82a2F5ZVpyQ21ndDhnNGJGMkNqQUZXSmphU25xK00rM1dCaXgxVnFI?=
- =?utf-8?B?cDNRS0k5dE82RGxpWk5iSTBsQjdaNTh3b1FCY1V6eXVOQUlteTYzbUFYZC80?=
- =?utf-8?B?RW51OVVwZnY2cVZEd001c3FXbHkrSFdPY0ZxblU3RjY1dTdPbDhKcmZGcXdu?=
- =?utf-8?B?VjN5WkhOVzN4cjhVei9CcnlRNVhDcnViYTQxRkVXeWNlZVlQZ0UyaDI1TVNI?=
- =?utf-8?B?eUxHamtFUUswS1c3ZUhtWnpra3hYRHp4M29GZkJsTmlFMFVQaFRqQytkUHlh?=
- =?utf-8?B?UllSWEVMa2IzWFliaUF5SzMwSU9nL1ZrcXZuS3NtVlloN3oyUFVMUHVkTW5w?=
- =?utf-8?B?QmpOYXp2cVhYRnByOFdyWGdqR1g2S29XLy9HaVNkZmdCZFA5NXlGQm9pUWNt?=
- =?utf-8?B?RVZtMnMxQkd4a3dOMjJuc2FBOUxId1RBTVFDMC9hMFJDd3IwRk83ZExLT2Fk?=
- =?utf-8?B?cDhOekRuZ3dsa2J5N244Ylk2RFBRQWtONERVeHJLWnU5YXdUdU8xaHZDdG9I?=
- =?utf-8?B?eEg5Vy9Fc2ZpaXA0c2I0OTZ1cnpNWWNUa0NLUm9tRjNXWWVsL291MWI3bGZz?=
- =?utf-8?B?Z2l3OW52WXFxbDMrYnFVVStIVi9XcU9qSVgwNzhZYUNQblpha1B6WWNudDRX?=
- =?utf-8?B?eWZUdnRYN2JEU1ZIZzRGdSt5UDZXMlo1dDJHZDBuL2x0ZVpkcHFRN2JNck1x?=
- =?utf-8?B?dzB5REJydWJYd3NTMEhZMzRNcFpwSjFqSnZyR0J1MjJRTVJ4Vk5qYkpzMm9X?=
- =?utf-8?B?aU1FMklyMFdsMTNzRkswQjFQNFNjT3dLcTJNa0ZrdGFUUGxtdU5KRDYvR0hE?=
- =?utf-8?B?d0sxOFlhQkU2NWVFaTI5VlUwTWFvN3RTSEdZaUljN09HY1daNEdlTzNJdzhU?=
- =?utf-8?B?b1hUSWdYMXptWGI3aHVuY0tpZTJQa242bXRUVFlnMmFsaitXNkRlT0JxSDNB?=
- =?utf-8?B?VURTQ01rNDN4azBGU3hkUjQzNU95NlE1SEY3aEw0b01Gc0x2b2UxTXg5bTdD?=
- =?utf-8?B?dzhlbWprWDcwYVpFUGxoSWFNanBrbWdyUjkzQUdJenExWjY2VzdqTGQ5d1Va?=
- =?utf-8?B?Qndsb0MzN0Z5bGVoUlBuQmxYd2h3d3hzMStzKzVrclk4anpLUkRabUdpOEJB?=
- =?utf-8?B?c0dZNllUdU5hVmN3UnVGMEhwYXphUitwY1N1YjdqWndrbXNaNzY2YkM5WmlD?=
- =?utf-8?B?eG94TGlESmhLK21TZlFIWG9CeW1XcXJybFFzZlBMdG1MRlJHRDFIWjdEOWpj?=
- =?utf-8?B?L0NMbGJKRnphYVByTlpIaktpMTdTbmt6UWZnN2t4UW5oSzRKL2Uwd1lpenNs?=
- =?utf-8?B?SG1tTGFvMExlTTZhdDMvZmZ3UHlJTmNxVkhtNnNLUUpmdmNLWHFmWjhzWEow?=
- =?utf-8?B?VXJpVk4wWGFLYUVpVW1nYkxPOTY1M3c1OUlxOWU3czcrV1k0UUxpRUwreDlB?=
- =?utf-8?B?RmVUM3NaeW9FcVZVS21DYk9mY21ZL2J0TVJwVnlnS1lBSWFhRGg4aHpNSHgx?=
- =?utf-8?B?RzRpaFlXYjV2VkV0bGhaQlVVeisxZHVPUlRTU1FkSklleWJYb245eld5a3Zp?=
- =?utf-8?B?cnhvelk2WkVxdzEwcnlTNGNpVFpza2ExOGdaa2VncWp1RW0zdlJTditoNjRL?=
- =?utf-8?B?ZjdKQXlsanBEbjNnaGg4Y2RBWmpKcWEvRi8wTm9DUTFNNGRnRHRXMVFLWlI3?=
- =?utf-8?B?eHNub0ptVC9SYUFFM05Xak1Oc3NnTE04TnUyMU4wU3MydjFFWjdYZS90RGtR?=
- =?utf-8?B?NHF4bk9zUGJGYWhhc3Q1Z3BFN0NDVmRGNWhnMUtsS1VMUmdPeGpCdz09?=
+	=?utf-8?B?TU9jVzB2dmlsSHk3QjhCN2FVZ1B6VVpYTmxMeG1TbnlJeWdIeUhtNm96SEZG?=
+ =?utf-8?B?TmJMdTRCQk9teEpiSmNsYUpvY0kzL1MvbUx5bEVuRi80Tkl2RHpONUo0aEVr?=
+ =?utf-8?B?SWQ1cEpyb25iQ25KQ1NJMDZQRk5yNWhtejFMbUo1R2UwamhKVmJ6TEcySXVB?=
+ =?utf-8?B?V2xISEo5dVhkeFNIaWREWFhrNGJCcXVZNjZTdVVuSm5aaTE5enFMZ1d5Wnoz?=
+ =?utf-8?B?MDkvV0pSdGJJM3JSMm5FM2xwU2pUcWEzbHNGSmN4dTdHeitOa0E4V1FjeXVH?=
+ =?utf-8?B?cnBPTUZnN1U0MmZGSnFDZHI5Vk9sUW1hdnc1TUpVbXBLcVVmL2RFUWFhckF1?=
+ =?utf-8?B?OXJpUDJXN1NJWjQ4T3FDWmdWZmIreS84cm1ZYkpPejBSWWl6Z1p1bCtCUmMw?=
+ =?utf-8?B?K211OEN3VEcxZzhoRFNxZjZWdjIyVmw4clI4QVI2WWtaL3ZKZ0pNWThEN2Vw?=
+ =?utf-8?B?a0RVRWdmNkFFL0JTQUMrckQ2V3Jla2ZTM3Y2STZueUZCOTRtd2lTczZ0Ny80?=
+ =?utf-8?B?OGR5eU13bDRESzdaVERHMkhRMEdFRml3dFNyOWxJNGFBRHE4YlVDYjRmUGYz?=
+ =?utf-8?B?TkR4TjBOdjk3ZC8wYXU4a29TY1dUUnpiUWRWeThybEkyeVFNOXUzWHU4dm15?=
+ =?utf-8?B?MGJRTWZtdW9LTXE1QTh1RTh5OTVXOTB2SkRyc0M0R1VKRTBWWTl0N3BvNjVR?=
+ =?utf-8?B?eHpOMGxneG91aVVBcGVJWU9SMGZFVDZUVXpkNlhpcWpWZmN2WXpMSWJuUWVn?=
+ =?utf-8?B?TTVYcVVrcU5LcDhybGxwQVc5ako0b2I5ZzVvZlNZUzVtRzI4RlBmbVlqV3Uy?=
+ =?utf-8?B?c3RLeGVxdUlzRzZhbkNPQ0Z5anlxU2h1T1cvNWdZaFFLVHdncUVvWlFXMlJK?=
+ =?utf-8?B?UFEwWDFkNTZBU2NwQ2VDUEJYak9Ldk5NWVZkeHZndzBEa09Leng2L05GUjkz?=
+ =?utf-8?B?K0J4eEVrRWFrK0ZXNWZ2WC9iU0tmam1tUzNyZmoxMVVLYVpZK1Z3bE9QVDBC?=
+ =?utf-8?B?TnpqcU1sUk9nYTdFZjFVVUtTUGNtZEdHTlZOWkI0SkNuaGJoLzF5NXdxeHRX?=
+ =?utf-8?B?d0hicEZoNVd2V0gwV3RKMmFBWVBzWWYyQ2dPMmNwTHZrMkdBOSt4YUt5Szdj?=
+ =?utf-8?B?Si9sa2tITXh3TllDVGxKdXM5QmlBYWJNTnJvRG9rc0RpY2FURTR1amFGd2Y5?=
+ =?utf-8?B?a05ZV0JEbW9qbnpmVGIxZ3diUXVGNUpSNzRmdWlpcmRINEFpSGYxVFR4MC9U?=
+ =?utf-8?B?MzlSZk5HZmdDdmxVeUcvdVZQV3o0ODdqcG1CNkVUU3ZUdVBHam5KenhEWmti?=
+ =?utf-8?B?eEs5bHlIdytVdGlKTG41SUJmVDdiVE9oelA3MGxrbytqM24zS3FhdnVkMGRu?=
+ =?utf-8?B?WUttZEQwL2NuNEM1WkRtS2twMk13d3dFTU16eWNCUGxNbnRlNnhtN1krMGxF?=
+ =?utf-8?B?UXFCYTRkSytnNjg5U1NJUHBkTjUzeG9kOGRrYnRBNWJvMkRmU0ZBaWlPR1py?=
+ =?utf-8?B?d0Y3NHFPNk5VeldTK1RBYjJpanNpdkZLL3AvYTd1eGZ0R21WdURuRTVLOXg3?=
+ =?utf-8?B?dWVkMGRXbjFOWUpBbVZraDl5dklmem1PRW52YTBRTTF0eDZOQlhBVU94VUMr?=
+ =?utf-8?B?RlQ2M2pOamUvK2VIRE9BejhQaUNCSFkrWHNiU0tab21Pa3ZTZHJHenYzc0Vw?=
+ =?utf-8?B?eTZwMWNKOUhtZ0JocDNIZG0ya0lFMWxxbGxJdXNPMEhqK1BPVFJibG1ScGxn?=
+ =?utf-8?B?Q0xTWTNKOEgydlNFVExXRUxlV29GRUF4K29KNmp5SWNtaUFkZWQ3VTNpd081?=
+ =?utf-8?B?Z0hhMzB1VFN4KzlNTmVIem1rS3JvYTdXeno2U0R4dU14OWF0OStNUG5OY2Nu?=
+ =?utf-8?B?cUxhOUZtYk1laHhLZzRES1B1RkI2WnJ4QkNOdUxpNUVpZ0xoVmFaMzUzeEpX?=
+ =?utf-8?B?RlBSeWJaRDZJYmNZRWZ2ZjBobThOdlNCcnpaWjd4RlRlMDVlbUUvUVVYeHdj?=
+ =?utf-8?B?bnhkcjE5dmxvS3BMa3JCUHRvcDVNK2hDTHl3NjdaUks2WUd1SHRXR3NYNWN6?=
+ =?utf-8?B?M0UxUmI1VXRWUHozRWJXdG4wMWtURVZYNEFzUTZkSGxXMzA0czYxcVRyM3pi?=
+ =?utf-8?B?M3NWQWxtTEEzUFc4SGdpSVF1MlM5bzEwVC9QWnlRRWg2MzJ0cnJxdmgxbzZw?=
+ =?utf-8?B?dXZQN0NuU2V6TERNalliMlNBOWRTMi9FRHExQ3dkNi9malYxbHM2VFkzc292?=
+ =?utf-8?B?dERJNGFja2xOdEh4ZmRTMEttalU1dlZ1ZXRUYVgyTUkzanFualQvZ1BQdmV4?=
+ =?utf-8?B?Q041NGFIMitzTVZzRENjOWtSeUxxa3c5WTkxL0ZOM2RHcmdPcG0yQT09?=
 X-OriginatorOrg: garyguo.net
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- ea61830b-2654-4dff-47a9-08de590b259b
+ 8d86216a-ce32-4f04-6453-08de5912e747
 X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 16:35:54.4865
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 17:31:25.8332
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- bFDwy6vtNsrjfJfw8pEQMbYaS8N+ZHj+ARlGJ0DhV2i44DhtziZiOmURHoXp4HD9OTtmh+xWgk0JM9vk3/e49Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB6224
-Message-ID-Hash: VGJ7IUMWEVL5EOQP7IER3KMKBHJUGJIN
-X-Message-ID-Hash: VGJ7IUMWEVL5EOQP7IER3KMKBHJUGJIN
+ Zm52v0ama9sEkpaj6Dotrr/WVOTA9K3bkJcRIxDrbucsqytMfpNXTCcIEnqf3ST0nOJOzLbod9gVcBV64s8/iQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB2206
+Message-ID-Hash: SOOV35PPNT3HNNHGQYZMNTQTK6ES6QNF
+X-Message-ID-Hash: SOOV35PPNT3HNNHGQYZMNTQTK6ES6QNF
 X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VGJ7IUMWEVL5EOQP7IER3KMKBHJUGJIN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SOOV35PPNT3HNNHGQYZMNTQTK6ES6QNF/>
 Archived-At: 
- <https://lore.freedesktop.org/DFUEWBKOLFQ1.3NSTFO4L97503@garyguo.net/>
+ <https://lore.freedesktop.org/DFUG2U4PVVTN.1DVPXGJK735F8@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -225,342 +222,202 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Dec 3, 2025 at 5:59 AM GMT, John Hubbard wrote:
-> Add the FSP-based boot path for Hopper and Blackwell GPUs. Unlike
-> Turing/Ampere/Ada which use SEC2 to load the booter firmware, Hopper
-> and Blackwell use FSP (Firmware System Processor) with FMC firmware
-> to establish a Chain of Trust and boot GSP directly.
->
-> The boot() function now dispatches to either run_booter() (SEC2 path)
-> or run_fsp() (FSP path) based on the GPU architecture. The cmdq
-> commands are moved to after GSP boot, and the GSP sequencer is only
-> run for SEC2-based architectures.
->
-> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
-> ---
->  drivers/gpu/nova-core/firmware/fsp.rs |   6 +-
->  drivers/gpu/nova-core/fsp.rs          |   6 +-
->  drivers/gpu/nova-core/gsp/boot.rs     | 159 ++++++++++++++++++++------
->  3 files changed, 126 insertions(+), 45 deletions(-)
->
-> diff --git a/drivers/gpu/nova-core/firmware/fsp.rs b/drivers/gpu/nova-cor=
-e/firmware/fsp.rs
-> index 80401b964488..d88c7a91e2bc 100644
-> --- a/drivers/gpu/nova-core/firmware/fsp.rs
-> +++ b/drivers/gpu/nova-core/firmware/fsp.rs
-> @@ -13,16 +13,14 @@
->      gpu::Chipset, //
->  };
-> =20
-> -#[expect(unused)]
->  pub(crate) struct FspFirmware {
->      /// FMC firmware image data (only the .image section)
-> -    fmc_image: DmaObject,
-> +    pub(crate) fmc_image: DmaObject,
->      /// Full FMC ELF data (for signature extraction)
-> -    fmc_full: DmaObject,
-> +    pub(crate) fmc_full: DmaObject,
->  }
-> =20
->  impl FspFirmware {
-> -    #[expect(unused)]
->      pub(crate) fn new(
->          dev: &device::Device<device::Bound>,
->          chipset: Chipset,
-> diff --git a/drivers/gpu/nova-core/fsp.rs b/drivers/gpu/nova-core/fsp.rs
-> index 7d46fbcc7abd..9c11ceb6ab4d 100644
-> --- a/drivers/gpu/nova-core/fsp.rs
-> +++ b/drivers/gpu/nova-core/fsp.rs
-> @@ -1,8 +1,5 @@
->  // SPDX-License-Identifier: GPL-2.0
-> =20
-> -// TODO: remove this once the code is fully functional
-> -#![expect(dead_code)]
-> -
->  //! FSP (Firmware System Processor) interface for Hopper/Blackwell GPUs.
->  //!
->  //! Hopper/Blackwell use a simplified firmware boot sequence: FMC --> FS=
-P --> GSP.
-> @@ -11,6 +8,7 @@
-> =20
->  use kernel::{
->      device,
-> +    dma::CoherentAllocation,
->      io::poll::read_poll_timeout,
->      prelude::*,
->      ptr::{
-> @@ -381,8 +379,6 @@ pub(crate) fn create_fmc_boot_params(
->          wpr_meta_size: u32,
->          libos_addr: u64,
->      ) -> Result<kernel::dma::CoherentAllocation<GspFmcBootParams>> {
-> -        use kernel::dma::CoherentAllocation;
-> -
->          const GSP_DMA_TARGET_COHERENT_SYSTEM: u32 =3D 1;
->          const GSP_DMA_TARGET_NONCOHERENT_SYSTEM: u32 =3D 2;
-> =20
-> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
-p/boot.rs
-> index 4d04135a700e..0fbaa73eb55c 100644
-> --- a/drivers/gpu/nova-core/gsp/boot.rs
-> +++ b/drivers/gpu/nova-core/gsp/boot.rs
-> @@ -13,6 +13,7 @@
->  use crate::{
->      driver::Bar0,
->      falcon::{
-> +        fsp::Fsp as FspEngine,
->          gsp::Gsp,
->          sec2::Sec2,
->          Falcon,
-> @@ -24,6 +25,7 @@
->              BooterFirmware,
->              BooterKind, //
->          },
-> +        fsp::FspFirmware,
->          fwsec::{
->              FwsecCommand,
->              FwsecFirmware, //
-> @@ -31,9 +33,11 @@
->          gsp::GspFirmware,
->          FIRMWARE_VERSION, //
->      },
-> -    gpu::Chipset,
-> +    fsp::Fsp,
-> +    gpu::{Architecture, Chipset},
->      gsp::{
->          commands,
-> +        fw::LibosMemoryRegionInitArgument,
->          sequencer::{
->              GspSequencer,
->              GspSequencerParams, //
-> @@ -155,6 +159,59 @@ fn run_booter(
->          Ok(())
->      }
-> =20
-> +    fn run_fsp(
-> +        dev: &device::Device<device::Bound>,
-> +        bar: &Bar0,
-> +        chipset: Chipset,
-> +        gsp_falcon: &Falcon<Gsp>,
-> +        wpr_meta: &CoherentAllocation<GspFwWprMeta>,
-> +        libos: &CoherentAllocation<LibosMemoryRegionInitArgument>,
-> +        fb_layout: &FbLayout,
-> +    ) -> Result {
-> +        let fsp_falcon =3D Falcon::<FspEngine>::new(dev, chipset)?;
-> +
-> +        Fsp::wait_secure_boot(dev, bar, chipset.arch())?;
-> +
-> +        let fsp_fw =3D FspFirmware::new(dev, chipset, FIRMWARE_VERSION)?=
-;
-> +
-> +        // SAFETY: fmc_full is a valid DmaObject with a contiguous alloc=
-ation of size() bytes
-> +        // starting at start_ptr(). The slice is only used for signature=
- extraction within this
-> +        // function scope while fsp_fw remains valid.
-> +        let fmc_full_data =3D unsafe {
-> +            core::slice::from_raw_parts(fsp_fw.fmc_full.start_ptr(), fsp=
-_fw.fmc_full.size())
-> +        };
+On Mon Jan 19, 2026 at 11:34 PM GMT, Daniel Almeida wrote:
+> Add initial support for drm driver features via the DriverFeatures trait.
+> This trait is unsafe, requiring the implementer to comply with the safety
+> requirements of each feature individually if the feature is enabled.
 
-The justification is week because it does not mention about the non-race na=
-ture
-of this, which need to be justified for a DMA allocation. If you use
-`CoherentAllocation::as_slice`, then this requirement would be obvious.
+I think such unsafe requirement is quite vague and also very non-local.
 
-For example:
+Maybe we can use a single trait (the `ModesetOps` that you described) to do
+this:
 
-    // SAFETY: the dma buffer is not yet submitted too hardware and we are =
-the
-    // unique owner at this point.
-    let fmc_full_data =3D unsafe { fsp_fw.fmc_full.as_slice(0, fsp_fw.fmc_f=
-ull.size()) };
+Something like:
+
+    pub unsafe trait ModesetOps<D> { ... }
+
+    // Maybe the never type in the future...
+    pub enum NoFeature {}
+
+    impl<D> ModesetOps<D> for NoFeature {
+        fn foo(&self, ...) { unimplemented!() }
+    }
+
+    impl Driver {
+        /// Reference the modeset implementation (typically Self),
+        /// or `NoFeature` to indicate that the feature is not implemented.
+        type Modeset: ModesetOps<Self>;
+    }
+
+When building, you can use `TypeId` to check if it's actually implemented, =
+and
+set bits in the feature flags automatically.
 
 Best,
 Gary
 
-> +        let signatures =3D Fsp::extract_fmc_signatures_static(dev, fmc_f=
-ull_data)?;
+>
+> New features can be described by adding separate ZSTs to encode them. The
+> current design assumes two types, for example: FeatureFooSupported and
+> NoFoo. As said above, this will require implementors to observe more safe=
+ty
+> requirements in their DriverFeatures trait implementation.
+>
+> A subsequent commit will build on this one to add support for FEAT_RENDER=
+.
+> This is required by Tyr and other drivers.
+>
+> Additionally, features can also require additional traits to be implement=
+ed
+> when enabled. These traits can add their own safety requirements.
+>
+> This is roughly described below, with some boilerplate omitted:
+>
+> pub struct ModesetSupported;
+> pub struct NoModeset;
+>
+> pub unsafe trait ModesetOps: Driver {
+>     fn set_mode(&self, ...);
+> }
+>
+> pub trait ModesetRequirement<F: ModesetFeature> {}
+> impl<T: ModesetOps> ModesetRequirement<ModesetSupported> for T {}
+> impl<T> ModesetRequirement<NoModeset> for T {}
+>
+> pub trait Driver:
+>     DriverFeatures
+>     + ModesetRequirement<Self::Modeset>
+> {
+>     // ...
+> }
+>
+> // `driver::compute_features` is augmented to include the feature flag.
+> const fn compute_features() -> u32 {
+>   if T::Modeset::ENABLED {
+>     features |=3D FEAT_MODESET;
+>   }
+>
+>   features
+> }
+>
+> // In driver code, `DriverFeatures` can enable the feature via
+> // `ModesetSupported`.
+> unsafe impl DriverFeatures for MyDriver {
+>   type Modeset =3D ModesetSupported;
+> }
+>
+> // Required because `Modeset =3D ModesetSupported`.
+> unsafe impl ModesetOps for MyDriver {...}
+>
+> Feature support will soon be required by upcoming DRM drivers. This
+> extensible model lets us describe them in terms of either additional safe=
+ty
+> requirements and/or traits.
+>
+> Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
+> ---
+>  drivers/gpu/drm/nova/driver.rs |  5 +++++
+>  drivers/gpu/drm/tyr/driver.rs  |  5 +++++
+>  rust/kernel/drm/device.rs      |  6 +++++-
+>  rust/kernel/drm/driver.rs      | 17 ++++++++++++++++-
+>  4 files changed, 31 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver=
+.rs
+> index 2246d8e104e0..247a05f7b3a7 100644
+> --- a/drivers/gpu/drm/nova/driver.rs
+> +++ b/drivers/gpu/drm/nova/driver.rs
+> @@ -69,3 +69,8 @@ impl drm::Driver for NovaDriver {
+>          (NOVA_GEM_INFO, drm_nova_gem_info, ioctl::AUTH | ioctl::RENDER_A=
+LLOW, File::gem_info),
+>      }
+>  }
 > +
-> +        // Create FMC boot parameters
-> +        let fmc_boot_params =3D Fsp::create_fmc_boot_params(
-> +            dev,
-> +            wpr_meta.dma_handle(),
-> +            core::mem::size_of::<GspFwWprMeta>() as u32,
-> +            libos.dma_handle(),
-> +        )?;
+> +// SAFETY: This trait requires implementers to observe the safety requir=
+ements
+> +// of each enabled feature. There are no features enabled, so this is sa=
+fe by
+> +// definition.
+> +unsafe impl drm::driver::DriverFeatures for NovaDriver {}
+> diff --git a/drivers/gpu/drm/tyr/driver.rs b/drivers/gpu/drm/tyr/driver.r=
+s
+> index 0389c558c036..ec2aa30515a1 100644
+> --- a/drivers/gpu/drm/tyr/driver.rs
+> +++ b/drivers/gpu/drm/tyr/driver.rs
+> @@ -191,6 +191,11 @@ impl drm::Driver for TyrDriver {
+>      }
+>  }
+> =20
+> +// SAFETY: This trait requires implementers to observe the safety requir=
+ements
+> +// of each enabled feature. There are no features enabled, so this is sa=
+fe by
+> +// definition.
+> +unsafe impl drm::driver::DriverFeatures for TyrDriver {}
 > +
-> +        // Execute FSP Chain of Trust
-> +        // NOTE: FSP Chain of Trust handles GSP boot internally - we do =
-NOT reset or boot GSP
-> +        Fsp::boot_gsp_fmc_with_signatures(
-> +            dev,
-> +            bar,
-> +            chipset,
-> +            &fsp_fw.fmc_image,
-> +            &fmc_boot_params,
-> +            u64::from(fb_layout.total_reserved_size),
-> +            false, // not resuming
-> +            &fsp_falcon,
-> +            &signatures,
-> +        )?;
-> +
-> +        // Wait for GSP lockdown to be released
-> +        let fmc_boot_params_addr =3D fmc_boot_params.dma_handle();
-> +        let _mbox0 =3D
-> +            Self::wait_for_gsp_lockdown_release(dev, bar, gsp_falcon, fm=
-c_boot_params_addr)?;
-> +
-> +        Ok(())
+>  #[pin_data]
+>  struct Clocks {
+>      core: Clk,
+> diff --git a/rust/kernel/drm/device.rs b/rust/kernel/drm/device.rs
+> index 3ce8f62a0056..cfc2f34e8cc2 100644
+> --- a/rust/kernel/drm/device.rs
+> +++ b/rust/kernel/drm/device.rs
+> @@ -61,6 +61,10 @@ pub struct Device<T: drm::Driver> {
+>  }
+> =20
+>  impl<T: drm::Driver> Device<T> {
+> +    const fn compute_features() -> u32 {
+> +        drm::driver::FEAT_GEM
 > +    }
 > +
->      /// Check if GSP lockdown has been released after FSP Chain of Trust
->      fn gsp_lockdown_released(
->          dev: &device::Device,
-> @@ -192,7 +249,6 @@ fn gsp_lockdown_released(
+>      const VTABLE: bindings::drm_driver =3D drm_legacy_fields! {
+>          load: None,
+>          open: Some(drm::File::<T::File>::open_callback),
+> @@ -86,7 +90,7 @@ impl<T: drm::Driver> Device<T> {
+>          name: crate::str::as_char_ptr_in_const_context(T::INFO.name).cas=
+t_mut(),
+>          desc: crate::str::as_char_ptr_in_const_context(T::INFO.desc).cas=
+t_mut(),
+> =20
+> -        driver_features: drm::driver::FEAT_GEM,
+> +        driver_features: Self::compute_features(),
+>          ioctls: T::IOCTLS.as_ptr(),
+>          num_ioctls: T::IOCTLS.len() as i32,
+>          fops: &Self::GEM_FOPS,
+> diff --git a/rust/kernel/drm/driver.rs b/rust/kernel/drm/driver.rs
+> index f30ee4c6245c..fdfd083ba2b6 100644
+> --- a/rust/kernel/drm/driver.rs
+> +++ b/rust/kernel/drm/driver.rs
+> @@ -98,7 +98,7 @@ pub trait AllocImpl: super::private::Sealed + drm::gem:=
+:IntoGEMObject {
+>  /// This trait must be implemented by drivers in order to create a `stru=
+ct drm_device` and `struct
+>  /// drm_driver` to be registered in the DRM subsystem.
+>  #[vtable]
+> -pub trait Driver {
+> +pub trait Driver: DriverFeatures {
+>      /// Context data associated with the DRM driver
+>      type Data: Sync + Send;
+> =20
+> @@ -168,3 +168,18 @@ fn drop(&mut self) {
+>          unsafe { bindings::drm_dev_unregister(self.0.as_raw()) };
 >      }
-> =20
->      /// Wait for GSP lockdown to be released after FSP Chain of Trust
-> -    #[expect(dead_code)]
->      fn wait_for_gsp_lockdown_release(
->          dev: &device::Device,
->          bar: &Bar0,
-> @@ -255,8 +311,6 @@ pub(crate) fn boot(
->      ) -> Result {
->          let dev =3D pdev.as_ref();
-> =20
-> -        let bios =3D Vbios::new(dev, bar)?;
-> -
->          let gsp_fw =3D KBox::pin_init(
->              GspFirmware::new(dev, chipset, FIRMWARE_VERSION)?,
->              GFP_KERNEL,
-> @@ -265,36 +319,58 @@ pub(crate) fn boot(
->          let fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
->          dev_dbg!(dev, "{:#x?}\n", fb_layout);
-> =20
-> -        Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
-> +        if matches!(
-> +            chipset.arch(),
-> +            Architecture::Turing | Architecture::Ampere | Architecture::=
-Ada
-> +        ) {
-> +            let bios =3D Vbios::new(dev, bar)?;
-> +            Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout=
-)?;
-> +        }
-> =20
->          let wpr_meta =3D
->              CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, G=
-FP_KERNEL | __GFP_ZERO)?;
->          dma_write!(wpr_meta[0] =3D GspFwWprMeta::new(&gsp_fw, &fb_layout=
-))?;
-> =20
-> -        self.cmdq
-> -            .send_command(bar, commands::SetSystemInfo::new(pdev))?;
-> -        self.cmdq.send_command(bar, commands::SetRegistry::new())?;
-> +        // For SEC2-based architectures, reset GSP and boot it before SE=
-C2
-> +        if matches!(
-> +            chipset.arch(),
-> +            Architecture::Turing | Architecture::Ampere | Architecture::=
-Ada
-> +        ) {
-> +            gsp_falcon.reset(bar)?;
-> +            let libos_handle =3D self.libos.dma_handle();
-> +            let (mbox0, mbox1) =3D gsp_falcon.boot(
-> +                bar,
-> +                Some(libos_handle as u32),
-> +                Some((libos_handle >> 32) as u32),
-> +            )?;
-> +            dev_dbg!(
-> +                pdev.as_ref(),
-> +                "GSP MBOX0: {:#x}, MBOX1: {:#x}\n",
-> +                mbox0,
-> +                mbox1
-> +            );
-> =20
-> -        gsp_falcon.reset(bar)?;
-> -        let libos_handle =3D self.libos.dma_handle();
-> -        let (mbox0, mbox1) =3D gsp_falcon.boot(
-> -            bar,
-> -            Some(libos_handle as u32),
-> -            Some((libos_handle >> 32) as u32),
-> -        )?;
-> -        dev_dbg!(
-> -            pdev.as_ref(),
-> -            "GSP MBOX0: {:#x}, MBOX1: {:#x}\n",
-> -            mbox0,
-> -            mbox1
-> -        );
-> +            dev_dbg!(
-> +                pdev.as_ref(),
-> +                "Using SEC2 to load and run the booter_load firmware...\=
-n"
-> +            );
-> +        }
-> =20
-> -        dev_dbg!(
-> -            pdev.as_ref(),
-> -            "Using SEC2 to load and run the booter_load firmware...\n"
-> -        );
-> +        match chipset.arch() {
-> +            Architecture::Turing | Architecture::Ampere | Architecture::=
-Ada =3D> {
-> +                Self::run_booter(dev, bar, chipset, sec2_falcon, &wpr_me=
-ta)?
-> +            }
-> =20
-> -        Self::run_booter(dev, bar, chipset, sec2_falcon, &wpr_meta)?;
-> +            Architecture::Hopper | Architecture::Blackwell =3D> Self::ru=
-n_fsp(
-> +                dev,
-> +                bar,
-> +                chipset,
-> +                gsp_falcon,
-> +                &wpr_meta,
-> +                &self.libos,
-> +                &fb_layout,
-> +            )?,
-> +        }
-> =20
->          gsp_falcon.write_os_version(bar, gsp_fw.bootloader.app_version);
-> =20
-> @@ -312,16 +388,27 @@ pub(crate) fn boot(
->              gsp_falcon.is_riscv_active(bar),
->          );
-> =20
-> -        // Create and run the GSP sequencer.
-> -        let seq_params =3D GspSequencerParams {
-> -            bootloader_app_version: gsp_fw.bootloader.app_version,
-> -            libos_dma_handle: libos_handle,
-> -            gsp_falcon,
-> -            sec2_falcon,
-> -            dev: pdev.as_ref().into(),
-> -            bar,
-> -        };
-> -        GspSequencer::run(&mut self.cmdq, seq_params)?;
-> +        // Now that GSP is active, send system info and registry
-> +        self.cmdq
-> +            .send_command(bar, commands::SetSystemInfo::new(pdev))?;
-> +        self.cmdq.send_command(bar, commands::SetRegistry::new())?;
+>  }
 > +
-> +        if matches!(
-> +            chipset.arch(),
-> +            Architecture::Turing | Architecture::Ampere | Architecture::=
-Ada
-> +        ) {
-> +            let libos_handle =3D self.libos.dma_handle();
-> +            // Create and run the GSP sequencer.
-> +            let seq_params =3D GspSequencerParams {
-> +                bootloader_app_version: gsp_fw.bootloader.app_version,
-> +                libos_dma_handle: libos_handle,
-> +                gsp_falcon,
-> +                sec2_falcon,
-> +                dev: pdev.as_ref().into(),
-> +                bar,
-> +            };
-> +            GspSequencer::run(&mut self.cmdq, seq_params)?;
-> +        }
-> =20
->          // Wait until GSP is fully initialized.
->          commands::wait_gsp_init_done(&mut self.cmdq)?;
-
+> +/// Marker trait for drivers supporting specific features.
+> +///
+> +/// This trait is unsafe, and each feature might add its own safety
+> +/// requirements. The safety requirements for this trait requires the ca=
+ller to
+> +/// comply with the safety requirements of each supported feature.
+> +///
+> +/// Features might also require additional trait implementations to be p=
+resent.
+> +/// These additional traits may also be unsafe.
+> +///
+> +/// # Safety
+> +///
+> +/// Drivers implementing this trait must ensure they comply with the saf=
+ety
+> +/// requirements of each supported feature.
+> +pub unsafe trait DriverFeatures {}
