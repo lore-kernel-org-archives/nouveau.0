@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19FB0C44525
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D49C44526
 	for <nouveau@archiver.kernel.org>; Wed, 21 Jan 2026 12:58:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E7BEF10E77D;
-	Wed, 21 Jan 2026 12:58:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2E28010E785;
+	Wed, 21 Jan 2026 12:58:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.beauty header.i=me@linux.beauty header.b="GqSrtII4";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux.beauty header.i=me@linux.beauty header.b="FTEGwngV";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 65739402CB;
+	by kara.freedesktop.org (Postfix) with ESMTP id 9CD10402CB;
 	Wed, 21 Jan 2026 12:49:25 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1768999765;
- b=jYLkVHBitn5/yGSgOuDFZzH1EiDxpFEiPT7F+KdOUo9fMYU7+wvvK1KIjPrRcwOp6bD+W
- QC6CFeTPXlXnSB0eFOksa2726KDYzfwpqemNlwZABIRJ/cYZ1Vd7YuUdt0YSlwtwrMUfuP+
- dyktzCy7J2cKbA7XJqk9FgzYs0JQJ1+Epko1o0nOo7deS6Q4iwq8p8OqMGxHTS6jP8ZeP9N
- P2C+l8mEYpVCtUULaakndi/Utly5QeUJTnbCwaRSP9BZ5BhkIQx4WlU0FewZloZmjvkXgY8
- Pchb4NtKSeu6JZs1+1TyjYri0O554WfEtvRx5gyf6TQaUthOLC/YNzlraR1A==
+ b=Fv0Jdo1NfqKC6iSFjP14HGYkFv8Dd+k+5Ubo4hHq13ZzlVjJgqfWQR3oZZJDt41vPFbHP
+ X/EwfJ6gKEPg3NKmuObEvvrmtVCnhgG5dYMiKzPuibeHTV1GgwJIjC8N3iwc+PkT15prfXW
+ kX6NhDd1HBPLv2fFVj4zLOY0UgxDxvxTWPTDbF5G1CuIAAJ/+Ni4AY1wbhx0llD21Q2ddgJ
+ r3DVQmtLf+p+m16ouX1NragfIs9yGv5wueiwYuwzETpqPxf6Z6upfYTE1bGAseHzyAZXmZp
+ dJDlGl6xoAV+ijP89rmfdrzvZ7C9IHjvRelJpWACtkv4gttq1pTmlvPrYhng==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1768999765; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=++eBhOruQFXOJWskOWmj8yG3wl5x8pOh2Zh3olKdyDA=;
- b=W+QesJ/CCeOXgnQKc8ri5mcftdtCZNe6yDhPJPkoq9v5MzkMJjvF+VncT+DDDmkKych92
- xkVKlIa2vtL19b0pRwcef97ok9G8iXmz9VD0/a/4QrjZaLmZh2zEONRUs8tzmEzyCiuaPS+
- xuRHuAN9JRRTztH9RSwV8GIp70CBdKkcIV1GsW/aUzI8thFKpbmWBDUBuYk28wt8dJy8U3e
- yTTZMLbEs3GNMJvVYPw8ZsRIdl/I15k9NpEvh67bDqqycoFV1mPquaK895J5CrX76FREPLA
- iKGapr2WqRNgvz+M4S51+H0L3K0F443p5wWbasVSJ3ViMeFd2VCXZA1SXtpA==
+ bh=289Atm7oPq1l3r6V8vm4GQYEXnTPwmsMGTT3QqYWfFE=;
+ b=mIJk31GD/T/euAGTbK6clMQ/F3E1dlwghJzqqMoXDxwHaDioFL4f+Be90v+qaiBqCPTXr
+ kcybw54n389YY2sTUZoEkIhUxTxm5LF2mjt/c6d+T6Yk794UF7tXAg/duNqdanTp/QHCuEu
+ BpKtJdZbyaq/jMIpIi6HzoV0uxOB4o+zZSdOJ7SVuNTnhdpn9ar0hoo22TyPmtngMzvm4FS
+ G5fgTCXHTzLGig1Py2fR7SfppDIlFJeMSsMF823VGAFn1pP6h2/jexQ1ogM+87ALsBP+7lp
+ Q8IbAy4hvzGDe13UonL2RSiE9F50IP4Eeor7NG/ctnrewOPN+GoR9TPS3xqQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=linux.beauty header.i=me@linux.beauty;
   arc=pass;
@@ -44,43 +44,44 @@ Authentication-Results: mail.freedesktop.org;
  dkim=pass header.d=linux.beauty header.i=me@linux.beauty; arc=pass;
  dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 89F0C44C5B
-	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 00:42:11 +0000 (UTC)
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
- [136.143.188.12])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B30C910E049;
-	Wed, 21 Jan 2026 00:50:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1768956649; cv=none;
+	by kara.freedesktop.org (Postfix) with ESMTPS id BE0B244C5B
+	for <nouveau@lists.freedesktop.org>; Wed, 21 Jan 2026 01:28:52 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1336810E192;
+	Wed, 21 Jan 2026 01:37:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1768959452; cv=none;
 	d=zohomail.com; s=zohoarc;
-	b=UhlxBe/J2Z/bcL7hclRgQZ5Uv7gnODhsa7jn2XfEYYkV7LFPWYigyVs7SzhGpC3SzPDKmV/GAsV8hTDG8Oa+IoqPdm5VgzBceCEz6kLTF/EITXvN0nhjE0IGkSwGzKPJ25Pn36vCWyDL168qS56Hz8H4hpUz7G+FrUlvd9aUZOo=
+	b=liIeJTKXCCTCr5TmSEz7NNqhik/u8Lgoyl6wqMLoKAznnAIjdnWADV2hmFD7Lcl4TfZx7cjaT36PCVYQANmxQeq0vzBLg7VNsuPrP4wrLut5ZqUGrqwF24a/t+2GALw44P+uHy5N/+oLEKnekij5fJREsa7nXRwNjXhirWzM1HE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
  s=zohoarc;
-	t=1768956649;
+	t=1768959452;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
-	bh=++eBhOruQFXOJWskOWmj8yG3wl5x8pOh2Zh3olKdyDA=;
-	b=a5Izvt7jXHHFUIy8lxxFkXguQ1IJ+BZPi1IGMMfNqNWnHsAbFMMKR9EXyQfiUtKdwx1y3OeE67Yap9B3bJxxUycUUvVKZaiTcQu7VSDW3X5owBByuJaBGMjnmUu6smmef//YKKKwcOxIV92wVt7mM/I4jKv/U6TuIkl3kdIiHjg=
+	bh=289Atm7oPq1l3r6V8vm4GQYEXnTPwmsMGTT3QqYWfFE=;
+	b=JrBf5NRjWzqzI3poX5JkkT4XxekzYgY/nmxTsMoh5TkJJZyrL/z6lAb/tJ2/oTWivoNKCUopt7P/roX/47EXU4lV8nqbLx3JO+hbYi1uOlo3YGri5ASkaclmbh1V6zmX4DrITJpovTfLhcXjZ8NyCME9vKo+KBL8OFg4f/RjAyI=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=linux.beauty;
 	spf=pass  smtp.mailfrom=me@linux.beauty;
 	dmarc=pass header.from=<me@linux.beauty>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768956649;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1768959452;
 	s=zmail; d=linux.beauty; i=me@linux.beauty;
 	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=++eBhOruQFXOJWskOWmj8yG3wl5x8pOh2Zh3olKdyDA=;
-	b=GqSrtII4nIvbqgUlbvhJQwOCvVZ9WFNPGZDmft/md1jj7qW4KPSavxBesXwrKZPX
-	VNkcyhuqfbkS15heaKkvi4lfsTQhjGuUcbr3ZB1sQY9QSNlX5ujJ8fW6sN0bpb0OarA
-	pwx+OqbIM4Yc5ssJvmJ/w4xhwY6eFbmLQpv4KxLY=
+	bh=289Atm7oPq1l3r6V8vm4GQYEXnTPwmsMGTT3QqYWfFE=;
+	b=FTEGwngVgxHZJC4CHqNeP06r2l8R0UEhOPrtbhJEB07L7h9qBkNqnN2gr5dQYnQq
+	9K52QKybxPDioAj7ibU7qNxnCuumgPDMG5S2HqpFFATWCkCGd3WfoqxwzPHiDds9tKU
+	GB+eGSRY7qH6bPFE7pw9DhfhgN4DIrq6fGC4PYRA=
 Received: from mail.zoho.com by mx.zohomail.com
-	with SMTP id 1768956646808787.7509660608574;
- Tue, 20 Jan 2026 16:50:46 -0800 (PST)
-Date: Wed, 21 Jan 2026 08:50:46 +0800
+	with SMTP id 1768959451085884.078207294641;
+ Tue, 20 Jan 2026 17:37:31 -0800 (PST)
+Date: Wed, 21 Jan 2026 09:37:31 +0800
 From: Li Chen <me@linux.beauty>
-To: "Dave Airlie" <airlied@gmail.com>
-Message-ID: <19bde085588.1b451560725069.154128025837198067@linux.beauty>
-In-Reply-To: 
- <CAPM=9tw-Mkw95g=VDgjvqQha8KaTM7e6Qs2b3bvTaNUdz-Q7Kg@mail.gmail.com>
+To: "Danilo Krummrich" <dakr@kernel.org>
+Message-ID: <19bde331fbd.dd44bec734977.5910036498943757747@linux.beauty>
+In-Reply-To: <DFTV9NQTFFU0.NOD8PPU8HW8L@kernel.org>
 References: <20260120121455.142960-1-me@linux.beauty>
  <CAPM=9tw-Mkw95g=VDgjvqQha8KaTM7e6Qs2b3bvTaNUdz-Q7Kg@mail.gmail.com>
+ <19bde085588.1b451560725069.154128025837198067@linux.beauty>
+ <DFTV9NQTFFU0.NOD8PPU8HW8L@kernel.org>
 Subject: Re: [PATCH] nouveau: pci: quiesce GPU on shutdown
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
@@ -92,11 +93,10 @@ X-MailFrom: me@linux.beauty
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: XK5YE7SB37GPQ7M6KAZ6N6C3WJRPTK5Q
-X-Message-ID-Hash: XK5YE7SB37GPQ7M6KAZ6N6C3WJRPTK5Q
+Message-ID-Hash: ITFWDCWDSVKKU2T4D5QI42M3Z5K42XF4
+X-Message-ID-Hash: ITFWDCWDSVKKU2T4D5QI42M3Z5K42XF4
 X-Mailman-Approved-At: Wed, 21 Jan 2026 12:49:23 +0000
-CC: Danilo Krummrich <dakr@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  dri-devel <dri-devel@lists.freedesktop.org>,
  nouveau <nouveau@lists.freedesktop.org>,
@@ -105,9 +105,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XK5YE7SB37GPQ7M6KAZ6N6C3WJRPTK5Q/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ITFWDCWDSVKKU2T4D5QI42M3Z5K42XF4/>
 Archived-At: 
- <https://lore.freedesktop.org/19bde085588.1b451560725069.154128025837198067@linux.beauty/>
+ <https://lore.freedesktop.org/19bde331fbd.dd44bec734977.5910036498943757747@linux.beauty/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -117,207 +117,37 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi Dave,
+Hi Danilo
 
- > On Tue, 20 Jan 2026 at 22:15, Li Chen <me@linux.beauty> wrote:
+ > On Wed Jan 21, 2026 at 1:50 AM CET, Li Chen wrote:
+ > >  > > +       usleep_range(200, 400);\
+ > >  >=20
+ > >  > Why is this needed? it at least needs a comment.
  > >
- > > Kexec reboot does not reset PCI devices.
- > > Invoking the full DRM/TTM teardown from ->shutdown can trigger WARNs w=
-hen
- > > userspace still holds DRM file descriptors.
+ > > This patch is needed for kexec/KHO/LUO reboot: firmware reset is skipp=
+ed, so the GPU may remain in an active/DMA=20
+ > > state and the next kernel can fail to re-init nouveau. We can=E2=80=99=
+t call the full DRM/TTM teardown from ->shutdown() because
+ > > userspace may still hold DRM fds during shutdown, which triggers WARNs=
+.
  > >
- > > Quiesce the GPU through the suspend path and then power down the PCI
- > > function so the next kernel can re-initialize the device from a consis=
-tent
- > > state.
- > >
- > > WARNING: drivers/gpu/drm/drm_mode_config.c:578 at drm_mode_config_clea=
-nup+0x2e7/0x300, CPU#2: kexec/1300
- > > Call Trace:
- > >  <TASK>
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? enable_work+0x3a/0x100
- > >  nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c51=
-0d9a3903808734]
- > >  nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c5=
-10d9a3903808734]
- > >  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9=
-a3903808734]
- > >  pci_device_shutdown+0x35/0x60
- > >  device_shutdown+0x11c/0x1b0
- > >  kernel_kexec+0x13a/0x160
- > >  __do_sys_reboot+0x209/0x240
- > >  do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __rtnl_unlock+0x37/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? netdev_run_todo+0x63/0x570
- > >  ? netif_change_flags+0x54/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? devinet_ioctl+0x1e5/0x790
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? inet_ioctl+0x1e9/0x200
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x7d/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x23b/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? put_user_ifreq+0x7a/0x90
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x107/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? exc_page_fault+0x7e/0x1a0
- > >  entry_SYSCALL_64_after_hwframe+0x76/0x7e
- > >
- > > nouveau 0000:26:00.0: [drm] drm_WARN_ON(!list_empty(&fb->filp_head))
- > > WARNING: drivers/gpu/drm/drm_framebuffer.c:833 at drm_framebuffer_free=
-+0x73/0xa0, CPU#2: kexec/1300
- > > Call Trace:
- > >  <TASK>
- > >  drm_mode_config_cleanup+0x248/0x300
- > >  ? __pfx___drm_printfn_dbg+0x10/0x10
- > >  ? drm_mode_config_cleanup+0x1dc/0x300
- > >  nouveau_display_destroy+0x39/0x70 [nouveau c19e0da7fd83583a023f855c51=
-0d9a3903808734]
- > >  nouveau_drm_device_fini+0x7b/0x1f0 [nouveau c19e0da7fd83583a023f855c5=
-10d9a3903808734]
- > >  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9=
-a3903808734]
- > >  pci_device_shutdown+0x35/0x60
- > >  device_shutdown+0x11c/0x1b0
- > >  kernel_kexec+0x13a/0x160
- > >  __do_sys_reboot+0x209/0x240
- > >  do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __rtnl_unlock+0x37/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? netdev_run_todo+0x63/0x570
- > >  ? netif_change_flags+0x54/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? devinet_ioctl+0x1e5/0x790
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? inet_ioctl+0x1e9/0x200
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x7d/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x23b/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? put_user_ifreq+0x7a/0x90
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x107/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? exc_page_fault+0x7e/0x1a0
- > >  entry_SYSCALL_64_after_hwframe+0x76/0x7e
- > >
- > > WARNING: include/drm/ttm/ttm_resource.h:406 at nouveau_ttm_fini+0x257/=
-0x270 [nouveau], CPU#2: kexec/1300
- > > Call Trace:
- > >  <TASK>
- > >  nouveau_drm_device_fini+0x93/0x1f0 [nouveau c19e0da7fd83583a023f855c5=
-10d9a3903808734]
- > >  nouveau_drm_shutdown+0x52/0xc0 [nouveau c19e0da7fd83583a023f855c510d9=
-a3903808734]
- > >  pci_device_shutdown+0x35/0x60
- > >  device_shutdown+0x11c/0x1b0
- > >  kernel_kexec+0x13a/0x160
- > >  __do_sys_reboot+0x209/0x240
- > >  do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __rtnl_unlock+0x37/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? netdev_run_todo+0x63/0x570
- > >  ? netif_change_flags+0x54/0x70
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? devinet_ioctl+0x1e5/0x790
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? inet_ioctl+0x1e9/0x200
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x7d/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x23b/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? put_user_ifreq+0x7a/0x90
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? sock_do_ioctl+0x107/0x130
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? __x64_sys_ioctl+0x97/0xe0
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? do_syscall_64+0x81/0x610
- > >  ? srso_return_thunk+0x5/0x5f
- > >  ? exc_page_fault+0x7e/0x1a0
- > >  entry_SYSCALL_64_after_hwframe+0x76/0x7e
- > >
- > > Signed-off-by: Li Chen <me@linux.beauty>
- > > ---
- > >  drivers/gpu/drm/nouveau/nouveau_drm.c | 24 ++++++++++++++++++++++++
- > >  1 file changed, 24 insertions(+)
- > >
- > > diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/n=
-ouveau/nouveau_drm.c
- > > index 1527b801f013..50384462723b 100644
- > > --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
- > > +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
- > > @@ -1079,6 +1079,29 @@ nouveau_pmops_resume(struct device *dev)
- > >         return ret;
- > >  }
- > >
- > > +static void
- > > +nouveau_drm_shutdown(struct pci_dev *pdev)
- > > +{
- > > +       struct nouveau_drm *drm =3D pci_get_drvdata(pdev);
- > > +       int ret;
- > > +
- > > +       if (!drm)
- > > +               return;
- > > +
- > > +       if (drm->dev->switch_power_state =3D=3D DRM_SWITCH_POWER_OFF |=
-|
- > > +           drm->dev->switch_power_state =3D=3D DRM_SWITCH_POWER_DYNAM=
-IC_OFF)
- > > +               return;
- > > +
- > > +       ret =3D nouveau_do_suspend(drm, false);
- > > +       if (ret)
- > > +               NV_ERROR(drm, "shutdown suspend failed with: %d\n", re=
-t);
- > > +
- > > +       pci_save_state(pdev);
- > > +       pci_disable_device(pdev);
- > > +       pci_set_power_state(pdev, PCI_D3hot);
- > > +       usleep_range(200, 400);\
+ > > So the shutdown hook reuses the suspend/quiesce path (safe with open f=
+ds) and then powers down the PCI function (D3hot)
+ > > to leave the device in a consistent state for the next kernel.
  >=20
- > Why is this needed? it at least needs a comment.
+ > I think the question was about the usleep_range() specifically. :)
+ >
 
-This patch is needed for kexec/KHO/LUO reboot: firmware reset is skipped, s=
-o the GPU may remain in an active/DMA=20
-state and the next kernel can fail to re-init nouveau. We can=E2=80=99t cal=
-l the full DRM/TTM teardown from ->shutdown() because
-userspace may still hold DRM fds during shutdown, which triggers WARNs.
+Thanks for the hint.=20
 
-So the shutdown hook reuses the suspend/quiesce path (safe with open fds) a=
-nd then powers down the PCI function (D3hot)
-to leave the device in a consistent state for the next kernel.
+That usleep_range(200, 400) is just to give the PCI power transition time t=
+o settle before an immediate kexec jump.
 
+ It=E2=80=99s mirroring the existing nouveau_pmops_suspend() behavior, whic=
+h already does udelay(200) right after pci_set_power_state(..., PCI_D3hot).=
+ In ->shutdown() we=E2=80=99re allowed to
+ sleep, so I used usleep_range() instead of a busy-wait udelay().
+=20
 Regards,
 Li=E2=80=8B
 
