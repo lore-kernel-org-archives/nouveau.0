@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19EEED625F7
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 08:00:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 130E5D625F7
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 08:02:17 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 16F0D10E8FF;
-	Thu, 22 Jan 2026 08:00:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7340910E906;
+	Thu, 22 Jan 2026 08:02:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="0+HG3qpa";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="x597raJU";
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="0+HG3qpa";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="x597raJU";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="WY6CuQqZ";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="dt25Voui";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="GOIk/QeC";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="xARCrcPr";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A948F4053B;
-	Thu, 22 Jan 2026 07:52:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 24661404F1;
+	Thu, 22 Jan 2026 07:53:28 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769068328;
- b=JejfJdvs404ihmwVndRBlar7wWMrqcxACdBEBuGE4yZsSmdKLhEpWW1hwp9Yc4aINLZBA
- 0CKV6OoO8kSANhbZftEDyQAQ9pBdOG9DMj58FjX0Ia4d0uC+coaI8VvTMGRwAsCPb4beXo5
- aG/EZeCmum/pgaBeLhpjippdXwZbk0s0pvdcvSOSdhGqIojkgGm7EQrtygR2xthUVUYE8ij
- k65NCgr46w5dCMTQLvAi2trN2DRPpT4IMR0TiM9xlKcTnmd3LjJTSSOPNdPmn/mTcEbVCPa
- CFAuXIVTZz6qAfutce2ypjDF9SrxKsO7ei9L6HIS9S7is1PZbsI0pcdt3Amw==
+ s=20240201; t=1769068408;
+ b=Xwnw3eRpgxKu/7eR/EYgPiQ468MNzGjXhJvncJtF7EawSoLwTWJ/MmYaugIbj+ZQe6vQm
+ MelzMq4xjfFuwNinjJdC7u1UB2vzbJxt1TurhbypPrduYLpjayEuIjbTVpBXLT6cCP0e8KA
+ EIt2OvxCF0Gz0WHku2OGOVDETziCxGfpq7L9aItVugnCGNHwJhrV/15c7/Y/KbxtGmUJlTC
+ 6OOUnyvn8mqhiPFGKLPdMhiwy1kIm6jEWAHg5APT6Dru5BS8TctFnYjl1T/U7r867Gz671E
+ TVipD52WlnhcQrcx5FZeA7PjTyH2FVOo3/e5Nvxvybsm94bGXDUxbop6/lWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769068328; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769068408; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=C4zAQ80PqnRS6Q1GrwimdsrNjkQH2WZaJ1/YF1AonT4=;
- b=zzP8MHYZblkzpUV3M3n6iNCoou0pl6snjc9kWsa/ARLsJ4KDc0Lkhe5wlx8yjE/+sKgBF
- zA6+qbOs0+xIUCI8Vz8zUTNDQvEpOjms9EeaSgoxVC3Vn3R9Z5Oi8Niwsfp2zAkvxDYqpjO
- FjHzKrYcmPQx48dAGAIlN+wDHlAv7X10W126Im5+rlAmox5p1pPveGyZZeUYW4W1q2dy2G8
- /JTZ8oGQPqME6sRuInKwn+Va91KJ3Dht2EAogcRcyrKilT59+SddVTL2dtxTxVvf+YLakHx
- vlHTP0fbxDkyP01EWJ07qNInPRBqc78Klj8j3R3tvUiJwOEhHieUQ0zAp5xA==
+ bh=BMCr0iZ9/F3mbXgNWYLpd1cRazBq6RbfB0STRSxkwwI=;
+ b=vSaP42IPMhz704Rx8fNXs5RfUi4WBpt8NMRVMT4EJsdH/MdVsdYd20NAr9BL3Ljh5fSeq
+ SsjH6oBHLKIyAPgVxi6LZNu4OoTW475wKQF1w22+BnAjyJzDQLpNFysn2Zp/tB9gWKSp122
+ zLkDodAuBpd4Cvc07LgUaukC8Eea//7fU949DnW1aX57g9ALiIr8oRO56wPTGj86cHZ7eqy
+ 5twvAWk45KdniL8tWhmrrSp5ZoK61PdVNpnwD1PtH8B+8CItNm9YsU46VBdZhV/RqZwSezh
+ biMQLee8U2WW8iN2lbI/HVsoHz9ornco/yOjmunDCFRo8PkZcK1qOlQtkBuw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=suse.cz;
   arc=none (Message is not ARC signed);
@@ -46,89 +46,83 @@ ARC-Authentication-Results: i=1; mail.freedesktop.org;
 Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.cz;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7A6A04045A
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 07:52:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4712E4031A
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 07:53:25 +0000 (UTC)
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2E60F10E8FB
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 08:00:53 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F01510E8FE
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 08:02:13 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id B1ACC5BCC3;
-	Thu, 22 Jan 2026 08:00:51 +0000 (UTC)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 99CA45BCC2;
+	Thu, 22 Jan 2026 08:02:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz;
  s=susede2_rsa;
-	t=1769068851;
+	t=1769068931;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=C4zAQ80PqnRS6Q1GrwimdsrNjkQH2WZaJ1/YF1AonT4=;
-	b=0+HG3qpa922ZmFTWiChvzCOHFaFbN+BSAoyy8kWnVwaxRZpTavBsrl7B8cou8DDDocqNDf
-	LhFdwQbss0NIn0vQxrcCY0ShhGp0uW9ePFcooKVk/lKlyuVJud++sMRSYXH3hP3a3Meg3m
-	Z9Jy/zkPvxmt0WWvbD5wFoFT1/EHVdc=
+	bh=BMCr0iZ9/F3mbXgNWYLpd1cRazBq6RbfB0STRSxkwwI=;
+	b=WY6CuQqZ5tA0cejnAXKMLHzYHPZOVQWXc98woGl9RkMWMVSQ+fjFeFt8mYrBrhdmK0q92G
+	y80uBbTuWP7D3hf+Cey/fedrvHt2WRC8+yjhONrvFG7QG7qIXMoX96r6mMM4d2NhwOrvpT
+	DDes6Ccn5XmTEA2mmn8u99BAhSz1Mq8=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1769068851;
+	s=susede2_ed25519; t=1769068931;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=C4zAQ80PqnRS6Q1GrwimdsrNjkQH2WZaJ1/YF1AonT4=;
-	b=x597raJUv0heYD/X2hwj4Q3SukHDJZ9okwTOr/PAfj/AdF1RQdOlSAH71dz298Tg9HsuaB
-	b/YNzkQVvHXxjwDA==
+	bh=BMCr0iZ9/F3mbXgNWYLpd1cRazBq6RbfB0STRSxkwwI=;
+	b=dt25VouiAL5Uo3mlTwcLwxX76wb/VevgRzYU0PCnczsVi2Ff5XEf3auw7MH5AME422rsvc
+	OfYbGLc8NwxjqiAA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz;
  s=susede2_rsa;
-	t=1769068851;
+	t=1769068930;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=C4zAQ80PqnRS6Q1GrwimdsrNjkQH2WZaJ1/YF1AonT4=;
-	b=0+HG3qpa922ZmFTWiChvzCOHFaFbN+BSAoyy8kWnVwaxRZpTavBsrl7B8cou8DDDocqNDf
-	LhFdwQbss0NIn0vQxrcCY0ShhGp0uW9ePFcooKVk/lKlyuVJud++sMRSYXH3hP3a3Meg3m
-	Z9Jy/zkPvxmt0WWvbD5wFoFT1/EHVdc=
+	bh=BMCr0iZ9/F3mbXgNWYLpd1cRazBq6RbfB0STRSxkwwI=;
+	b=GOIk/QeCW54ajuj57g/uvfIbip7/Ti5UKaZ5kznY6hpuPnYXbAO4fCTpdIWvJ7nres4yJJ
+	NEo2Zc3AVLptnzvCHOQ7QJp3xLVGjOR+BMDDrKg5kdYYM5r9N+Mu6n4OXuqTRCbTDseRYA
+	NnbPq1DCo+cePiYKBXcWRr4A3qoj8cY=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
-	s=susede2_ed25519; t=1769068851;
+	s=susede2_ed25519; t=1769068930;
 	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
 	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=C4zAQ80PqnRS6Q1GrwimdsrNjkQH2WZaJ1/YF1AonT4=;
-	b=x597raJUv0heYD/X2hwj4Q3SukHDJZ9okwTOr/PAfj/AdF1RQdOlSAH71dz298Tg9HsuaB
-	b/YNzkQVvHXxjwDA==
+	bh=BMCr0iZ9/F3mbXgNWYLpd1cRazBq6RbfB0STRSxkwwI=;
+	b=xARCrcPr72qH8NKGDMK0rr8WxgM6WxFzx+SdBIWMI1TvNxQnmqVJbYVS75PEmvT6Ljnjnn
+	Rwx3FItxbs1CvhAg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 652B03EA63;
-	Thu, 22 Jan 2026 08:00:50 +0000 (UTC)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 41FA83EA65;
+	Thu, 22 Jan 2026 08:02:10 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
 	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id NQrwFzLZcWkDTAAAD6G6ig
-	(envelope-from <vbabka@suse.cz>); Thu, 22 Jan 2026 08:00:50 +0000
-Message-ID: <9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
-Date: Thu, 22 Jan 2026 09:00:49 +0100
+	id j+18DoLZcWncTAAAD6G6ig
+	(envelope-from <vbabka@suse.cz>); Thu, 22 Jan 2026 08:02:10 +0000
+Message-ID: <a68d2e39-3041-4487-97a6-19ed7c3d332a@suse.cz>
+Date: Thu, 22 Jan 2026 09:02:09 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
  private folios
 Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, Zi Yan <ziy@nvidia.com>
-References: <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
- <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
- <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
- <20260119142019.GG1134360@nvidia.com>
- <96926697-070C-45DE-AD26-559652625859@nvidia.com>
- <20260119203551.GQ1134360@nvidia.com>
- <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
- <EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
- <20260120135340.GA1134360@nvidia.com>
- <F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
- <aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
 From: Vlastimil Babka <vbabka@suse.cz>
+To: Francois Dugast <francois.dugast@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20260116111325.1736137-1-francois.dugast@intel.com>
+ <20260116111325.1736137-2-francois.dugast@intel.com>
+ <ed6ca250-67ee-4f7a-bc3b-66169494549a@suse.cz>
 Autocrypt: addr=vbabka@suse.cz; keydata=
  xsFNBFZdmxYBEADsw/SiUSjB0dM+vSh95UkgcHjzEVBlby/Fg+g42O7LAEkCYXi/vvq31JTB
  KxRWDHX0R2tgpFDXHnzZcQywawu8eSq0LxzxFNYMvtB7sV1pxYwej2qx9B75qW2plBs+7+YB
@@ -168,41 +162,48 @@ Autocrypt: addr=vbabka@suse.cz; keydata=
  rywqgzTUhHFKKF6/9L/lYtrNcHU8Z6Y4Ju/MLUiNYkmtrGIMnkjKCiRqlRrZE/v5YFHbayRD
  dJKXobXTtCBYpLJM4ZYRpGZXne/FAtWNe4KbNJJqxMvrTOrnIatPj8NhBVI0RSJRsbilh6TE
  m6M14QORSWTLRg==
-In-Reply-To: <aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
+In-Reply-To: <ed6ca250-67ee-4f7a-bc3b-66169494549a@suse.cz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.30 / 50.00];
+Content-Transfer-Encoding: 7bit
+X-Spamd-Result: default: False [-4.51 / 50.00];
 	BAYES_HAM(-3.00)[100.00%];
 	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-0.999];
+	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
 	MIME_GOOD(-0.10)[text/plain];
-	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	MX_GOOD(-0.01)[];
 	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	DKIM_SIGNED(0.00)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
 	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
-	FREEMAIL_CC(0.00)[nvidia.com,infradead.org,intel.com,lists.freedesktop.org,linux.ibm.com,gmail.com,ellerman.id.au,kernel.org,amd.com,ffwll.ch,linux.intel.com,suse.de,redhat.com,linux-foundation.org,oracle.com,google.com,suse.com,lists.ozlabs.org,vger.kernel.org,kvack.org];
-	RCVD_TLS_ALL(0.00)[];
-	R_RATELIMIT(0.00)[to_ip_from(RLzhxcfrrwnfnqtbioy5kgo5ee)];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,intel.com,nvidia.com,linux.ibm.com,gmail.com,ellerman.id.au,kernel.org,amd.com,ffwll.ch,linux.intel.com,suse.de,redhat.com,linux-foundation.org,ziepe.ca,oracle.com,google.com,suse.com,lists.ozlabs.org,vger.kernel.org,kvack.org];
+	DKIM_TRACE(0.00)[suse.cz:+];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from,2a07:de40:b281:106:10:150:64:167:received];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.cz:mid]
-Message-ID-Hash: BN2C5GPNARJTWDABPQZDFJWL3DTEISBF
-X-Message-ID-Hash: BN2C5GPNARJTWDABPQZDFJWL3DTEISBF
+	R_RATELIMIT(0.00)[to_ip_from(RLip964yh6w1yfiifasio5raew)];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo,suse.cz:dkim,suse.cz:mid,suse.cz:email,intel.com:email]
+X-Rspamd-Action: no action
+X-Rspamd-Queue-Id: 99CA45BCC2
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+Message-ID-Hash: VHFW55HIIHSAU7KEQ337ORZBUJWUKCJ3
+X-Message-ID-Hash: VHFW55HIIHSAU7KEQ337ORZBUJWUKCJ3
 X-MailFrom: vbabka@suse.cz
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Jason Gunthorpe <jgg@nvidia.com>, Matthew Wilcox <willy@infradead.org>,
- Alistair Popple <apopple@nvidia.com>,
- Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, adhavan Srinivasan <maddy@linux.ibm.com>,
+CC: dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
+ Zi Yan <ziy@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ adhavan Srinivasan <maddy@linux.ibm.com>,
  Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
  "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
  Felix Kuehling <Felix.Kuehling@amd.com>,
@@ -212,7 +213,8 @@ CC: Jason Gunthorpe <jgg@nvidia.com>, Matthew Wilcox <willy@infradead.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
  David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
- Andrew Morton <akpm@linux-foundation.org>, Leon Romanovsky <leon@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
  "Liam R . Howlett" <Liam.Howlett@oracle.com>,
  Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
@@ -224,9 +226,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BN2C5GPNARJTWDABPQZDFJWL3DTEISBF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VHFW55HIIHSAU7KEQ337ORZBUJWUKCJ3/>
 Archived-At: 
- <https://lore.freedesktop.org/9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz/>
+ <https://lore.freedesktop.org/a68d2e39-3041-4487-97a6-19ed7c3d332a@suse.cz/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -236,109 +238,64 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 1/22/26 08:19, Matthew Brost wrote:
-> On Tue, Jan 20, 2026 at 10:01:18PM -0500, Zi Yan wrote:
->> On 20 Jan 2026, at 8:53, Jason Gunthorpe wrote:
->> 
+On 1/16/26 17:07, Vlastimil Babka wrote:
+> On 1/16/26 12:10, Francois Dugast wrote:
+>> From: Matthew Brost <matthew.brost@intel.com>
+>> diff --git a/mm/memremap.c b/mm/memremap.c
+>> index 63c6ab4fdf08..ac7be07e3361 100644
+>> --- a/mm/memremap.c
+>> +++ b/mm/memremap.c
+>> @@ -477,10 +477,43 @@ void free_zone_device_folio(struct folio *folio)
+>>  	}
+>>  }
+>>  
+>> -void zone_device_page_init(struct page *page, unsigned int order)
+>> +void zone_device_page_init(struct page *page, struct dev_pagemap *pgmap,
+>> +			   unsigned int order)
+>>  {
+>> +	struct page *new_page = page;
+>> +	unsigned int i;
+>> +
+>>  	VM_WARN_ON_ONCE(order > MAX_ORDER_NR_PAGES);
+>>  
+>> +	for (i = 0; i < (1UL << order); ++i, ++new_page) {
+>> +		struct folio *new_folio = (struct folio *)new_page;
+>> +
+>> +		/*
+>> +		 * new_page could have been part of previous higher order folio
+>> +		 * which encodes the order, in page + 1, in the flags bits. We
+>> +		 * blindly clear bits which could have set my order field here,
+>> +		 * including page head.
+>> +		 */
+>> +		new_page->flags.f &= ~0xffUL;	/* Clear possible order, page head */
+>> +
+>> +#ifdef NR_PAGES_IN_LARGE_FOLIO
+>> +		/*
+>> +		 * This pointer math looks odd, but new_page could have been
+>> +		 * part of a previous higher order folio, which sets _nr_pages
+>> +		 * in page + 1 (new_page). Therefore, we use pointer casting to
+>> +		 * correctly locate the _nr_pages bits within new_page which
+>> +		 * could have modified by previous higher order folio.
+>> +		 */
+>> +		((struct folio *)(new_page - 1))->_nr_pages = 0;
+>> +#endif
+>> +
+>> +		new_folio->mapping = NULL;
+>> +		new_folio->pgmap = pgmap;	/* Also clear compound head */
+>> +		new_folio->share = 0;   /* fsdax only, unused for device private */
+>> +		VM_WARN_ON_FOLIO(folio_ref_count(new_folio), new_folio);
+>> +		VM_WARN_ON_FOLIO(!folio_is_zone_device(new_folio), new_folio);
+>> +	}
+>> +
+>>  	/*
+>>  	 * Drivers shouldn't be allocating pages after calling
+>>  	 * memunmap_pages().
 > 
-> This whole thread makes my head hurt, as does core MM.
-> 
-> IMO the TL;DR is:
-> 
-> - Why is Intel the only one proving this stuff works? We can debate all
->   day about what should or should not work — but someone else needs to
->   actually prove it.i, rather than type hypotheticals.
-> 
-> - Intel has demonstrated that this works and is still getting blocked.
-> 
-> - This entire thread is about a fixes patch for large device pages.
->   Changing prep_compound_page is completely out of scope for a fixes
->   patch, and honestly so is most of the rest of what’s being proposed.
+> Can't say I'm a fan of this. It probably works now (so I'm not nacking) but
+> seems rather fragile. It seems likely to me somebody will try to change some
+> implementation detail in the page allocator and not notice it breaks this,
+> for example. I hope we can eventually get to something more robust.
 
-FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
-about how refactor things more properly afterwards, going forward.
+For doing this as a hotfix for 6.19, assuming we'll refactor later:
 
-> - At a minimum, you must clear every page’s flags in the loop. So why not
->   conservatively clear anything else a folio might have set before calling
->   an existing core-MM function, ensuring the pages are in a known state?
->   This is a fixes patch.
-> 
-> - Given the current state of the discussion, I don’t think large device
->   pages should be in 6.19. And if so, why didn’t the entire device pages
->   series receive this level of scrutiny earlier? It’s my mistake for not
->   saying “no” until the reallocation at different sizes issue was resolved.
-> 
-> @Andrew. - I'd revert large device pages in 6.19 as it doesn't work and
-> we seemly cannot close on this.
-> 
-> Matt
-> 
->> > On Mon, Jan 19, 2026 at 09:50:16PM -0500, Zi Yan wrote:
->> >>>> I suppose we want some prep_single_page(page) and some reorg to share
->> >>>> code with the other prep function.
->> >>
->> >> This is just an unnecessary need due to lack of knowledge of/do not want
->> >> to investigate core MM page and folio initialization code.
->> >
->> > It will be better to keep this related code together, not spread all
->> > around.
->> 
->> Or clarify what code is for preparing pages, which would go away at memdesc
->> time, and what code is for preparing folios, which would stay.
->> 
->> >
->> >>>> I don't think so. It should do the above job efficiently and iterate
->> >>>> over the page list exactly once.
->> >>
->> >> folio initialization should not iterate over any page list, since folio is
->> >> supposed to be treated as a whole instead of individual pages.
->> >
->> > The tail pages need to have the right data in them or compound_head
->> > won't work.
->> 
->> That is done by set_compound_head() in prep_compound_tail().
->> prep_compound_page() take cares of it. As long as it is called, even if
->> the pages in that compound page have random states before, the compound
->> page should function correctly afterwards.
->> 
->> >
->> >> folio->mapping = NULL;
->> >> folio->memcg_data = 0;
->> >> folio->flags.f &= ~PAGE_FLAGS_CHECK_AT_PREP;
->> >>
->> >> should be enough.
->> >
->> > This seems believable to me for setting up an order 0 page.
->> 
->> It works for any folio, regardless of its order. fields used in second
->> or third subpages are all taken care of by prep_compound_page().
->> 
->> >
->> >> if (order)
->> >> 	folio_set_large_rmappable(folio);
->> >
->> > That one is in zone_device_folio_init()
->> 
->> Yes. And the code location looks right to me.
->> 
->> >
->> > And maybe the naming has got really confused if we have both functions
->> > now :\
->> 
->> Yes. One of the issues is that device private code used to only handles
->> order-0 pages and was converted to use high order folio directly without
->> using high order page (namely compound page) as an intermediate step.
->> This two-step-in-one caused confusion. But the key thing to avoid the
->> confusion is that to form a high order folio, a list of contiguous pages
->> would become a compound page by calling prep_compound_page(), then
->> the compound page becomes a folio by calling folio_set_large_rmappable().
->> 
->> BTW, the code in prep_compound_head() after folio_set_order(folio, order)
->> should belong to folio_set_large_rmappable() and they are causing confusion,
->> since they are only applicable to rmappable large folios. I am going to
->> send a patch to fix it.
->> 
->> 
->> Best Regards,
->> Yan, Zi
-
+Acked-by: Vlastimil Babka <vbabka@suse.cz>
