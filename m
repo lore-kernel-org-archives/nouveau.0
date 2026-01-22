@@ -4,123 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A998ED6CFA7
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 21:41:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DCDFD6CFA2
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 21:48:49 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2494010EADA;
-	Thu, 22 Jan 2026 21:41:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8A9C410EAE9;
+	Thu, 22 Jan 2026 21:48:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="nbhvWI6F";
+	dkim=pass (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="Qm3bc/2V";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7D463404B5;
-	Thu, 22 Jan 2026 21:32:32 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769117552;
- b=YZvaNLShHKkRG2b6rNF8v7Hzpxmq0wTZP+UikX3JxxWIPBkskYLncQSj30vxMYUTNTPpC
- D94QBMHunI1DjwFS66tktUgbPA9ii+bArMU/24OKIEk0X01/8Tny80c84a+Jgw8iZKx6BPn
- O8B8tCDmtqAWzpMV7WqfZVN/WnmQqEKJ0VpZT2XG6ySTCyc9Tv40xa6HJh+E5Gl/GzzWs4W
- axZlGTmRdGPEu0Pp7SYQh3NI3J53TjU6liMC1trycXEoNY3Y4YZhc0+ttqaKzTIgakglVkp
- gqFDHoBUkAwO5/X08IzsWTwet7JSDLBWzNdGh1LmTfn+FAUDYP8FUaVYKiVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769117552; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id E4819404B5;
+	Thu, 22 Jan 2026 21:39:57 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769117997;
+ b=SctTikULZen27k566gGRDj74Ne/TueJMMv94LWD/zgMq5Dn1XIqrCmaJ+mW+Ig3rGT+lU
+ s9vJ8j2fyj30UbQSALKGC9DRUSGF2InZGqCocMBFML1BQPHOV4Pu/8EEOt/h/Zw5NeUocy2
+ weVzIp63157Co0SSWcfOijf8KiLOUdOrRI+n4dGYR9gkx4UFGu7S8h6WkUHi0N4oj1nZScL
+ uPaE1p2TB3DYpkD9DbcS6qVbjVaHhN2puR4rkUu3xuSdXp8Nc8qvDEifw7+25ibk0d5Ydmj
+ ltwbUS+IigSE0CdzAe+W7IUnYEo9CtPfNl7ciK0RAxoss8npz8yNTJ5QhOYA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769117997; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=OpYFVQ+VNJG8H/bYcBfO1oxUpkQ5dAYJneF97kYBjLE=;
- b=u7YaoIBuRms3jNoBM0bNYCyJTQeQjd6sPbAudt3amAcoD1L6P5RdbHOophJ2tXVcIHQkp
- JmoTQ9pFuEPTA7daeKTmWMbevmQ/gkmBAS3TGAzur+t+wnz6ehTZIpUGbAJGY47yxz8HY5s
- AX0lfQ2R18mCPgHURqHvgSsqSN6B0Iu67BJ0kOHl3lAPuj5ieCHO0334ueIWcC2G9D0TuJP
- uP/OLUzFQ7gNEc+XK25CN0Sy/p2Tm6oYmFzOuW+7ivo+uoP9EuO90VzRUbjfisU+JQIlR0e
- wsGU80tX7RxqSP0i+XMvgZOU3T9z033gmR+ixI81s6pw0mR1SeMpWc8Vy/iA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=linux-foundation.org;
-  arc=none (Message is not ARC signed);
+ bh=ne15GaPicXdJZl529f1ZvPcK/tvA3QDhIqLeZ0EIySk=;
+ b=ZieZ+eFdbtJhQWH5Co49VORtx8hhElSuSiOzXxeq5Myy4NLqS/YXkjDJBGAUwwsQEhlQw
+ kfsa1JioITQrQzbNMDSWApjRWAdACrEOImsKyjvKTAwyhVScXm/e/wi8S0ah2O49a0C9SzO
+ X9f1gGKhTHuos69HksUWgP/80LWFLV8G0afR7kqGFvZWYy1nFT4ByCt0ypHuZjgpSrJqS/l
+ 4mPReMIVdy8NdoqnbBP0Upfp6s+mc8sWj8KrT5ErtHTWND+tUTJ/5QAipm7fOdBdw0oke0+
+ tXlnpY3QkGqxdfQ15OO7WKu7pX2avhTXrhjSE5R0bnseJs8YaSh4g2X8kjww==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
+  arc=pass;
   dmarc=none
 Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=linux-foundation.org;
- arc=none (Message is not ARC signed); dmarc=none
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com; arc=pass;
+ dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CC7134003B
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 21:32:28 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BCC2E10EACE;
-	Thu, 22 Jan 2026 21:41:17 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AD66160018;
-	Thu, 22 Jan 2026 21:41:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482E1C116C6;
-	Thu, 22 Jan 2026 21:41:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
-	s=korg; t=1769118076;
-	bh=o3gdWNkDSd9Vm/DMgr4/ykIAOvt43+NsJA/Imw15e/A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nbhvWI6FsmrV2v6DkoSqN8213V2yIRhOd6eP75LypoUaN54UBoDiDxVp1akq7FG3f
-	 CVLIelPV0CkF4x7Juc3HDczRCXMl0AOZY4EUYaiK0pNhQfi7cbwzUhOkV6AnNppJ9U
-	 SqiE6hXL+nm2nlnc5o4hmp73evXdLpeOeMX2qi64=
-Date: Thu, 22 Jan 2026 13:41:14 -0800
-From: Andrew Morton <akpm@linux-foundation.org>
-To: Balbir Singh <balbirs@nvidia.com>
-Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
- private folios
-Message-Id: <20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org>
-In-Reply-To: <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
-References: <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
-	<aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
-	<4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
-	<20260119142019.GG1134360@nvidia.com>
-	<96926697-070C-45DE-AD26-559652625859@nvidia.com>
-	<20260119203551.GQ1134360@nvidia.com>
-	<ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
-	<EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
-	<20260120135340.GA1134360@nvidia.com>
-	<F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
-	<aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
-	<9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
-	<626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K
-X-Message-ID-Hash: P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K
-X-MailFrom: akpm@linux-foundation.org
+	by kara.freedesktop.org (Postfix) with ESMTPS id 649AF4031A
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 21:39:54 +0000 (UTC)
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com
+ [209.85.218.52])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8291E10EAE5
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 21:48:43 +0000 (UTC)
+Received: by mail-ej1-f52.google.com with SMTP id
+ a640c23a62f3a-b8845cb580bso177886166b.3
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 22 Jan 2026 13:48:43 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1769118522; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ZBAHQGdk8CftZwr9IqMNlv8DIobVfZH7j9utRA3+OfEJIdpwkj6mGUv6Jsp2MM8HbF
+         XwV3FAgtb+AVdQL6q1gLtYtOohnN8Ya0fZjEiS2MrszbY7euybQquMbApvdTTl8O/aOG
+         EQ+cxG7N2TEyasP/cuNueau3yCg8oyhCaEGg2mgrQprfrIvY41uE5lDeiTyfpxVuo1zJ
+         wad+VFs3XjD9KPLBGwJSkNiUS6qvFKGeqQqj4Dj9lnfAwnlBGru+X9sa62oW9t0RwDzn
+         Wr6XGn5kSDdQg/MHxr9BzFegZDtUgeItjmRbvqafUGo2vlDGRzZpwvuNUWQrBTdMmKvg
+         m3JA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ne15GaPicXdJZl529f1ZvPcK/tvA3QDhIqLeZ0EIySk=;
+        fh=4j/kC59NZYtmK4o8kubS0kr+YPwD6CsLgoLaRcsLVyw=;
+        b=gVKl47YysxEJj52kTcbOqigxgPpR0dxdDWpjlUzQRwG3SnACEBAahfYS20TEv7H6Yv
+         QuKrGouTo3ddMPkI0mgtE7BG1Lq9Nhuj+3AZg6bkoyiOSy2Pd9Z1CsfG8cZtsx1nDY39
+         i+iKLUOvGMPz2IYkjON440+SRcm/f19K26CBMvzL5tRTgZ9ps0txE2JTwiO6sm3KtGjD
+         V4QIbKierHreibv0WjmeJrpcQW9UdSsYPB8cjzduu6LKYVluQZZzqLKi7R/fC+UJPULy
+         +Ar/RNn1tEmpmlaJ2SqZpB7Y8DmLGOHC+rYBaOH5jASDVP+GNsGMHI8pKPoP+RzquJ6B
+         AVLA==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1769118522;
+ x=1769723322; darn=lists.freedesktop.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ne15GaPicXdJZl529f1ZvPcK/tvA3QDhIqLeZ0EIySk=;
+        b=Qm3bc/2V6Sy19W0ScRoA7D1jmmboYemSSSmVuztppjseoR3bvX4rMLToJLMvqJpKcr
+         jHIhF+2hJ+vB1yMqO9xYRDxPAMKf/6Wd7TnZZk6jHl5WZNuiA8c/hB+SMKQ4MilleLkR
+         dxe8vYlaGT4VtEtxiMpM/9BVE2eEY6q9X1F7D/ribBNkvDGnru9EP0qUjTF2Omp1096T
+         WVQTxWAa3g6/5FE67ptifP3CQtBnvr7esMvNhEauYpx5bXVDffdE0pxcw0aajwNbqtAc
+         6zoDJ62pYQLPwC/FH5fewoxCHge0oSYK4GaQeuyGZhKTojeDnfXI/MydLu4nbVIZa1MT
+         5iLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1769118522; x=1769723322;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ne15GaPicXdJZl529f1ZvPcK/tvA3QDhIqLeZ0EIySk=;
+        b=oicZ/ZhnOyy/mKyW8LgSyQYhxrBUH+9p4ZqLWiXiW3FFy5Y4zZPrPER1cyNUp6qLwx
+         1Tg9pR4KuEKXzU9aDqTJbvg9PUuOaHXlNpe9E23yWJYvB/dxBrz2XTmG6ljL8QQ0a6Qz
+         oVVmkNFO+480HvdQyAXzZ5Z7BA/8LetJ2TSRFNWAr6awTT3gjgVNigAtvMxBpxLx0Jbq
+         2fQo3qk0I9xedlapLEjsiCuBquJcFwlz1fUH/Ml4J4JpQNiJ6nZREtpoKSiGucf122s/
+         /eluffLlE7vyaxETv9ACTiSwosE4qDY9x2rKqKTPkl4RZ2XSEgXQiU+xP5SqiOUXoWkR
+         PuxQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWwkS6FpyEp1sL5z8ASMaa0OHqz/0Qxvap4nUJC368jkaSyJc32Y1M6rC0C5IldlCxzZO/GqZ5E@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz3HH2gBy+gcDCRhcO/LuHU6cQqjEO4n6fP0qREl9ZSJQccPJhr
+	H3roEqrAlDTDMls/m+58yNt/IsPfM9sq2JPpsALbyw2jFOShY6nNxcwS7wmnu3XTOH7p1QeAQM2
+	HV+wDJsgw+3tW7W7BifTWIx3PmjbKZ2kxHEsmRBACcA==
+X-Gm-Gg: AZuq6aKUP04oIAjqN84bhq9VgzlK5G+2t/A1t0aIEFO2ls2uCv59ldpw77/3TK/Tyv3
+	jbug9pnA29bU1lBTxk+Le9VHeyPbvw+YLyi0j0VQ1gVQO4grraoHwI3OrfriEfpMKqo2RABTFes
+	MIattvt02ug4LY0L2C3DgWA+bTJOBvzNxYUWclWOrSYtH2AIOv8lFw4lJZVb7YIv6HkYpQRkmBa
+	Fj/MqwQVYVwLnILrlAwk/A9wZEbzxrstPScbEB9UknsDjmo/FDMG5rPPA2H/lGrhPSprHp9
+X-Received: by 2002:a17:907:97c7:b0:b87:756b:cfb3 with SMTP id
+ a640c23a62f3a-b885abe432emr41485866b.19.1769118521565; Thu, 22 Jan 2026
+ 13:48:41 -0800 (PST)
+MIME-Version: 1.0
+References: <20260122202834.414058-1-airlied@gmail.com>
+In-Reply-To: <20260122202834.414058-1-airlied@gmail.com>
+From: M Henning <mhenning@darkrefraction.com>
+Date: Thu, 22 Jan 2026 16:48:15 -0500
+X-Gm-Features: AZwV_Qieo13qJt-pIVhWs1Q68RJ-Fe6d7pcBRtplXzLsbSjPwqOqca0WcxMkn_E
+Message-ID: 
+ <CAAgWFh0WMK5Kj-nUDeRXnz-U2+wPY-zh3uw1yAi8==SekQsPmw@mail.gmail.com>
+Subject: Re: [PATCH] nouveau/vmm: start tracking if the LPT PTE is valid.
+To: Dave Airlie <airlied@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000000b32290649010186"
+Message-ID-Hash: BC2P3JSHQLAUQRKOHYNDQSU3K3PCLI55
+X-Message-ID-Hash: BC2P3JSHQLAUQRKOHYNDQSU3K3PCLI55
+X-MailFrom: drawoc@darkrefraction.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Vlastimil Babka <vbabka@suse.cz>, Matthew Brost <matthew.brost@intel.com>,
- Zi Yan <ziy@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
- Matthew Wilcox <willy@infradead.org>, Alistair Popple <apopple@nvidia.com>,
- Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, adhavan Srinivasan <maddy@linux.ibm.com>,
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
- "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
- Leon Romanovsky <leon@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
- kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-mm@kvack.org, linux-cxl@vger.kernel.org
+CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BC2P3JSHQLAUQRKOHYNDQSU3K3PCLI55/>
 Archived-At: 
- <https://lore.freedesktop.org/20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org/>
+ <https://lore.freedesktop.org/CAAgWFh0WMK5Kj-nUDeRXnz-U2+wPY-zh3uw1yAi8==SekQsPmw@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,35 +147,295 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 22 Jan 2026 20:10:44 +1100 Balbir Singh <balbirs@nvidia.com> wrote:
+--0000000000000b32290649010186
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> >> - Intel has demonstrated that this works and is still getting blocked.
-> >>
-> >> - This entire thread is about a fixes patch for large device pages.
-> >>   Changing prep_compound_page is completely out of scope for a fixes
-> >>   patch, and honestly so is most of the rest of what’s being proposed.
-> > 
-> > FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
-> > about how refactor things more properly afterwards, going forward.
-> > 
-> 
-> I've said the same thing and I concur, we can use the patch as-is and
-> change this to set the relevant identified fields after 6.19
+This is meant to address the MMU faults reported in
+https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610 ?
 
-So the plan is to add this patch to 6.19-rc and take another look at
-patches [2-5] during next -rc cycle?
+With this patch I still see faults when running the test script I posted
+there.
 
-I think the plan is to take Matthew's work via the DRM tree?  But if people
-want me to patchbunny this fix then please lmk.
+On Thu, Jan 22, 2026 at 3:35=E2=80=AFPM Dave Airlie <airlied@gmail.com> wro=
+te:
 
-I presently have
+> From: Dave Airlie <airlied@redhat.com>
+>
+> When NVK enabled large pages userspace tests were seeing fault
+> reports at a valid address.
+>
+> There was a case where an address moving from 64k page to 4k pages
+> could expose a race between unmapping the 4k page, mapping the 64k
+> page and unref the 4k pages.
+>
+> Unref 4k pages would cause the dual-page table handling to always
+> set the LPTE entry to SPARSE or INVALID, but if we'd mapped a valid
+> LPTE in the meantime, it would get trashed. Keep track of when
+> a valid LPTE has been referenced, and don't reset in that case.
+>
+> The SPTES field is fine at 31 limit, so just steal a bit from it.
+>
+> Cc: stable@vger.kernel.org
+> Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
+> Signed-off-by: Dave Airlie <airlied@redhat.com>
+> ---
+>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 33 ++++++++++++++-----
+>  drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |  3 +-
+>  2 files changed, 27 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> index f95c58b67633..73141dda4728 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+> @@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it,
+> struct nvkm_vmm_pt *pgt,
+>                 if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
+>                         TRA(it, "LPTE %05x: U -> S %d PTEs", pteb, ptes);
+>                         pair->func->sparse(vmm, pgt->pt[0], pteb, ptes);
+> -               } else
+> -               if (pair->func->invalid) {
+> -                       /* If the MMU supports it, restore the LPTE to th=
+e
+> -                        * INVALID state to tell the MMU there is no poin=
+t
+> -                        * trying to fetch the corresponding SPTEs.
+> -                        */
+> -                       TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
+> -                       pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
+> +               } else if (!(pgt->pte[pteb] & NVKM_VMM_PTE_BIG_VALID)) {
+> +                       if (pair->func->invalid) {
+> +                               /* If the MMU supports it, restore the
+> LPTE to the
+> +                                * INVALID state to tell the MMU there is
+> no point
+> +                                * trying to fetch the corresponding SPTE=
+s.
+> +                                */
+> +                               TRA(it, "LPTE %05x: U -> I %d PTEs", pteb=
+,
+> ptes);
+> +                               pair->func->invalid(vmm, pgt->pt[0], pteb=
+,
+> ptes);
+> +                       }
+> +               } else {
+> +                       TRA(it, "LPTE %05x: V %d PTEs", pteb, ptes);
+>                 }
+>         }
+>  }
+> @@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool
+> pfn, u32 ptei, u32 ptes)
+>         if (desc->type =3D=3D SPT && (pgt->refs[0] || pgt->refs[1]))
+>                 nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
+>
+> +       if (desc->type =3D=3D LPT && (pgt->refs[0] || pgt->refs[1])) {
+> +               for (u32 lpti =3D ptei; ptes; lpti++) {
+> +                       pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_BIG_VALID;
+> +                       ptes--;
+> +               }
+> +       }
+> +
+>         /* PT no longer needed? Destroy it. */
+>         if (!pgt->refs[type]) {
+>                 it->lvl++;
+> @@ -374,6 +384,13 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn=
+,
+> u32 ptei, u32 ptes)
+>         if (desc->type =3D=3D SPT)
+>                 nvkm_vmm_ref_sptes(it, pgt, desc, ptei, ptes);
+>
+> +       if (desc->type =3D=3D LPT) {
+> +               for (u32 lpti =3D ptei; ptes; lpti++) {
+> +                       pgt->pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;
+> +                       ptes--;
+> +               }
+> +       }
+> +
+>         return true;
+>  }
+>
+> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> index 4586a425dbe4..1fe7915b8e87 100644
+> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+> @@ -46,7 +46,8 @@ struct nvkm_vmm_pt {
+>          */
+>  #define NVKM_VMM_PTE_SPARSE 0x80
+>  #define NVKM_VMM_PTE_VALID  0x40
+> -#define NVKM_VMM_PTE_SPTES  0x3f
+> +#define NVKM_VMM_PTE_BIG_VALID 0x20
+> +#define NVKM_VMM_PTE_SPTES  0x1f
+>         u8 pte[];
+>  };
+>
+> --
+> 2.52.0
+>
+>
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Acked-by: Felix Kuehling <felix.kuehling@amd.com>
-Reviewed-by: Balbir Singh <balbirs@nvidia.com>
+--0000000000000b32290649010186
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-If people wish to add to this then please do so.
+<div dir=3D"ltr"><div>This is meant to address the MMU faults reported in=
+=C2=A0<a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610">h=
+ttps://gitlab.freedesktop.org/mesa/mesa/-/issues/14610</a> ?</div><div><br>=
+</div><div>With this patch I still see faults when running the test script =
+I posted there.</div></div><br><div class=3D"gmail_quote gmail_quote_contai=
+ner"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 22, 2026 at 3:35=E2=
+=80=AFPM Dave Airlie &lt;<a href=3D"mailto:airlied@gmail.com">airlied@gmail=
+.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex">From: Dave Airlie &lt;<a href=3D"mailto:airlied@redhat.com" target=3D"_=
+blank">airlied@redhat.com</a>&gt;<br>
+<br>
+When NVK enabled large pages userspace tests were seeing fault<br>
+reports at a valid address.<br>
+<br>
+There was a case where an address moving from 64k page to 4k pages<br>
+could expose a race between unmapping the 4k page, mapping the 64k<br>
+page and unref the 4k pages.<br>
+<br>
+Unref 4k pages would cause the dual-page table handling to always<br>
+set the LPTE entry to SPARSE or INVALID, but if we&#39;d mapped a valid<br>
+LPTE in the meantime, it would get trashed. Keep track of when<br>
+a valid LPTE has been referenced, and don&#39;t reset in that case.<br>
+<br>
+The SPTES field is fine at 31 limit, so just steal a bit from it.<br>
+<br>
+Cc: <a href=3D"mailto:stable@vger.kernel.org" target=3D"_blank">stable@vger=
+.kernel.org</a><br>
+Link: <a href=3D"https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610" r=
+el=3D"noreferrer" target=3D"_blank">https://gitlab.freedesktop.org/mesa/mes=
+a/-/issues/14610</a><br>
+Signed-off-by: Dave Airlie &lt;<a href=3D"mailto:airlied@redhat.com" target=
+=3D"_blank">airlied@redhat.com</a>&gt;<br>
+---<br>
+=C2=A0drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 33 ++++++++++++++----=
+-<br>
+=C2=A0drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |=C2=A0 3 +-<br>
+=C2=A02 files changed, 27 insertions(+), 9 deletions(-)<br>
+<br>
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/dr=
+m/nouveau/nvkm/subdev/mmu/vmm.c<br>
+index f95c58b67633..73141dda4728 100644<br>
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c<br>
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c<br>
+@@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it, struct=
+ nvkm_vmm_pt *pgt,<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 if (pgt-&gt;pte[pte=
+b] &amp; NVKM_VMM_PTE_SPARSE) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 TRA(it, &quot;LPTE %05x: U -&gt; S %d PTEs&quot;, pteb, ptes);<b=
+r>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 pair-&gt;func-&gt;sparse(vmm, pgt-&gt;pt[0], pteb, ptes);<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (pair-&gt;func-&=
+gt;invalid) {<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0/* If the MMU supports it, restore the LPTE to the<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * INVALID state to tell the MMU there is no point<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 * trying to fetch the corresponding SPTEs.<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 */<br>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0TRA(it, &quot;LPTE %05x: U -&gt; I %d PTEs&quot;, pteb, ptes);<br=
+>
+-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0pair-&gt;func-&gt;invalid(vmm, pgt-&gt;pt[0], pteb, ptes);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else if (!(pgt-&g=
+t;pte[pteb] &amp; NVKM_VMM_PTE_BIG_VALID)) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0if (pair-&gt;func-&gt;invalid) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* If the MMU supports it, restore th=
+e LPTE to the<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * INVALID state to tell the MMU ther=
+e is no point<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * trying to fetch the corresponding =
+SPTEs.<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0TRA(it, &quot;LPTE %05x: U -&gt; I %d=
+ PTEs&quot;, pteb, ptes);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0pair-&gt;func-&gt;invalid(vmm, pgt-&g=
+t;pt[0], pteb, ptes);<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0} else {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0TRA(it, &quot;LPTE %05x: V %d PTEs&quot;, pteb, ptes);<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0}<br>
+@@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn=
+, u32 ptei, u32 ptes)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (desc-&gt;type =3D=3D SPT &amp;&amp; (pgt-&g=
+t;refs[0] || pgt-&gt;refs[1]))<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 nvkm_vmm_unref_spte=
+s(it, pgt, desc, ptei, ptes);<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (desc-&gt;type =3D=3D LPT &amp;&amp; (pgt-&g=
+t;refs[0] || pgt-&gt;refs[1])) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for (u32 lpti =3D p=
+tei; ptes; lpti++) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0pgt-&gt;pte[lpti] &amp;=3D ~NVKM_VMM_PTE_BIG_VALID;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0ptes--;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 /* PT no longer needed? Destroy it. */<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (!pgt-&gt;refs[type]) {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 it-&gt;lvl++;<br>
+@@ -374,6 +384,13 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn, =
+u32 ptei, u32 ptes)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 if (desc-&gt;type =3D=3D SPT)<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 nvkm_vmm_ref_sptes(=
+it, pgt, desc, ptei, ptes);<br>
+<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0if (desc-&gt;type =3D=3D LPT) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for (u32 lpti =3D p=
+tei; ptes; lpti++) {<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0pgt-&gt;pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0ptes--;<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++=C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
++<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 return true;<br>
+=C2=A0}<br>
+<br>
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/dr=
+m/nouveau/nvkm/subdev/mmu/vmm.h<br>
+index 4586a425dbe4..1fe7915b8e87 100644<br>
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h<br>
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h<br>
+@@ -46,7 +46,8 @@ struct nvkm_vmm_pt {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0*/<br>
+=C2=A0#define NVKM_VMM_PTE_SPARSE 0x80<br>
+=C2=A0#define NVKM_VMM_PTE_VALID=C2=A0 0x40<br>
+-#define NVKM_VMM_PTE_SPTES=C2=A0 0x3f<br>
++#define NVKM_VMM_PTE_BIG_VALID 0x20<br>
++#define NVKM_VMM_PTE_SPTES=C2=A0 0x1f<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 u8 pte[];<br>
+=C2=A0};<br>
+<br>
+-- <br>
+2.52.0<br>
+<br>
+</blockquote></div>
 
-I'll restore this patch into mm.git's hotfix branch (and hence
-linux-next) because testing.
+--0000000000000b32290649010186--
