@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C1E8D6CFAD
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 22:51:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B2FED6CFAB
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 22:51:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B156510EB70;
-	Thu, 22 Jan 2026 22:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 33E4010EB79;
+	Thu, 22 Jan 2026 22:51:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="A32jTDFo";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ZztJKWC4";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 098EA4053B;
-	Thu, 22 Jan 2026 22:42:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7D40D404B5;
+	Thu, 22 Jan 2026 22:42:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769121764;
- b=EWqioCFF6+MNk81JJmCKVH2baLomST4fwcUhS5s/leiFlzDcsYqJH2tymhL+3U53/LTQB
- E1rAttxhlwipmZWLqiZiYeKkMbL8eS2Ywg0gTqdJ1/V51PX91gv8q8DUwq9wJnN8H5jXyFl
- pGOvyRTrHCGiHKcHvKZbpqM9Hf3ghDWyY2gXRjSlMHKnOV2VPzhaZrQUGX8LgEXTjTz+ols
- x4FBe3ThncjxQSu3t9EyeTvAwoDoqn67qHplNAbPrxvrJ0lABD+LwuXwCqJaaVJRZIXfxv4
- z5U7aF7XyCW8bIoHeF9djiNmDJFRai5XZ5EcO7TyrD5qG5IhI+WtRrJ/tcog==
+ s=20240201; t=1769121768;
+ b=KgJw2hp2mBq3dXILMuvodfbahve2/2sT4UghGGnzzLMfVYH2TzHNCFydpVt++Upad7bjb
+ Q2sMGHTQekUZc/PCjiyp9eWL6ZAtCUx7C3wBmKXSgi6AVq/URDO0z0559mtZxzFJ+b/t4qi
+ 3bynw9933+E2m+91I+n/EvGE7lc5kCyrsiJg+FDYKmXN5HTjmxQFEJHkBwoHCSZhW3uMI5o
+ 19c89HIZ4xhBoRteyFPQS1o9PXdUfYLvhcnx4JpNW2QwrNsyIKOCc3s5C0xRURzhm2s3cK7
+ a0i5nrZHTxEZurD2O+0rn5D4HCVVwaioMjiJXve0qyjV3i51hRzENBO+OCoQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769121764; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769121768; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=KvMBjrDDrDNRY3T0mNeOCBWEPQnskoq3MxGmtbAM6iU=;
- b=oJObnV3ujAS2mEpPjMj+t2PpAUTt3Xe8XMugJpeBDiR0cX0fyqVmbLUGFuXJUcbnw4AFX
- vjWyBuUexzsMhiCnuRGWA6ChFmtyIReb6NXG6McrNUdpv+YuyPArY6KBgKZ4H6ozFXyfzHv
- qaMFsnzjZ+CtdiKGEGeT3H66NQgi5MaQGT2wm/vXp/LsIlEk3WjwWJRV1KRbXF/Tu8Nl2kr
- KOzz0wmTi5CmMbljFiXEmcN/cANDoMjBzEH16JkKiosF6IOs+Q+GDiK1Rq7JfmWSX7ApG++
- RtsHvYwyVHAzQFMBL4407fpCj6YQLdJOV8fessgf+dVTUM2C1IP8ZxaN4b6g==
+ bh=O5w1C5A1b7/iDoWWklIxjrD42HoB0GOu7XofvrCfsI8=;
+ b=gCQrNhLFySvIuWfeYOnLsIJP5WKnE2pX0MDXxMEm4UwBnmYUSzoL8qPSk8hRsUQdNMPtW
+ QD3Notvuird0ob5UF3YEe2Jsg3IwQp/65c/tuBIzzd1VN2SZPvosgGq2wyoM0KEPAOQRc2G
+ wXlKRNnJfDOxROw2rem9jXUdMjidhBCDAjvC0GUy9HXVyAuBncLMm0cbVZXiBWlTfW3TE5P
+ CkT12SVX9HSojrkwvfcmwec420QLQJf1s1iE7B5CnqAqpmTq8KOtajZAXIyrrTpVF+OFbIj
+ 0p2tfHbEULUPak4xrJFNMdq7O3PGPt37IcnfT1TVMY/pbmVzc30OawnARaYw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,58 +46,58 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8AE41403B4
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 22:42:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 67BFE403B4
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 22:42:46 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2614210EB6D
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 22:51:30 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D141D10EB72
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 22:51:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1769122289;
+	s=mimecast20190719; t=1769122295;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=KvMBjrDDrDNRY3T0mNeOCBWEPQnskoq3MxGmtbAM6iU=;
-	b=A32jTDFo5eFxNsOaKW/uCTuj+oJPyczPnZd1fJxu4d1TIlTdpQWoshJMq/x+g0JJjdL++H
-	F5AEc2q8ThqkxE7b8yc+kX1S5FZ4mVbEipiJ2bBvCvOnJGFV+IpxhnLsfs5KizQCHLSgvc
-	0jR51SIYk8sKPGW/gQGvGxYViNNPqS0=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+	bh=O5w1C5A1b7/iDoWWklIxjrD42HoB0GOu7XofvrCfsI8=;
+	b=ZztJKWC4Bz5yB2FkGV08hvEeNeuKvap9J7M+EI4A+GW9cZit3CDDDDj3Y3JNzKPoyrg9zK
+	G3ZaqT+XWoJqAPNeJWXPCDszSUCi10HvrVciJquMFpSQuJG/5dLTakMcMuND2elLIH0G4S
+	+RRe/FkD0Uq+X+KTIphz8C5Dx2zjokA=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-454-jKXG-blhNai5rrXtiSPR1g-1; Thu,
- 22 Jan 2026 17:51:26 -0500
-X-MC-Unique: jKXG-blhNai5rrXtiSPR1g-1
-X-Mimecast-MFC-AGG-ID: jKXG-blhNai5rrXtiSPR1g_1769122285
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-679-TTC83R5rPseRm-Vi29HBwg-1; Thu,
+ 22 Jan 2026 17:51:31 -0500
+X-MC-Unique: TTC83R5rPseRm-Vi29HBwg-1
+X-Mimecast-MFC-AGG-ID: TTC83R5rPseRm-Vi29HBwg_1769122290
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id C7ACA18005B2;
-	Thu, 22 Jan 2026 22:51:24 +0000 (UTC)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 01747180044D;
+	Thu, 22 Jan 2026 22:51:30 +0000 (UTC)
 Received: from GoldenWind.redhat.com (unknown [10.22.89.232])
 	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 813AD30002D1;
-	Thu, 22 Jan 2026 22:51:22 +0000 (UTC)
+ id 090C130002D8;
+	Thu, 22 Jan 2026 22:51:27 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: linux-kernel@vger.kernel.org,
 	dri-devel@lists.freedesktop.org,
 	rust-for-linux@vger.kernel.org,
 	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v3 1/3] rust/drm: Introduce DeviceContext
-Date: Thu, 22 Jan 2026 17:46:36 -0500
-Message-ID: <20260122225057.3589500-2-lyude@redhat.com>
+Subject: [PATCH v3 2/3] rust/drm: Don't setup private driver data until
+ registration
+Date: Thu, 22 Jan 2026 17:46:37 -0500
+Message-ID: <20260122225057.3589500-3-lyude@redhat.com>
 In-Reply-To: <20260122225057.3589500-1-lyude@redhat.com>
 References: <20260122225057.3589500-1-lyude@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-Message-ID-Hash: CPURWSSWUCN25IOMSBW4RSOL3T72GUOL
-X-Message-ID-Hash: CPURWSSWUCN25IOMSBW4RSOL3T72GUOL
+Message-ID-Hash: IG6KUYTCWSJ4GS5DZJLYN6AHO4QNNVVB
+X-Message-ID-Hash: IG6KUYTCWSJ4GS5DZJLYN6AHO4QNNVVB
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -112,9 +112,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CPURWSSWUCN25IOMSBW4RSOL3T72GUOL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IG6KUYTCWSJ4GS5DZJLYN6AHO4QNNVVB/>
 Archived-At: 
- <https://lore.freedesktop.org/20260122225057.3589500-2-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260122225057.3589500-3-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -124,508 +124,227 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-One of the tricky things about DRM bindings in Rust is the fact that
-initialization of a DRM device is a multi-step process. It's quite normal
-for a device driver to start making use of its DRM device for tasks like
-creating GEM objects before userspace registration happens. This is an
-issue in rust though, since prior to userspace registration the device is
-only partly initialized. This means there's a plethora of DRM device
-operations we can't yet expose without opening up the door to UB if the DRM
-device in question isn't yet registered.
+Now that we have a DeviceContext that we can use to represent whether a
+Device is known to have been registered, we can make it so that drivers can
+create their Devices but wait until the registration phase to assign their
+private data to the Device. This is desirable as some drivers need to make
+use of the DRM device early on before finalizing their private driver data.
 
-Additionally, this isn't something we can reliably check at runtime. And
-even if we could, performing an operation which requires the device be
-registered when the device isn't actually registered is a programmer bug,
-meaning there's no real way to gracefully handle such a mistake at runtime.
-And even if that wasn't the case, it would be horrendously annoying and
-noisy to have to check if a device is registered constantly throughout a
-driver.
-
-In order to solve this, we first take inspiration from
-`kernel::device::DeviceContext` and introduce `kernel::drm::DeviceContext`.
-This provides us with a ZST type that we can generalize over to represent
-contexts where a device is known to have been registered with userspace at
-some point in time (`Registered`), along with contexts where we can't make
-such a guarantee (`Uninit`).
-
-It's important to note we intentionally do not provide a `DeviceContext`
-which represents an unregistered device. This is because there's no
-reasonable way to guarantee that a device with long-living references to
-itself will not be registered eventually with userspace. Instead, we
-provide a new-type for this: `UnregisteredDevice` which can
-provide a guarantee that the `Device` has never been registered with
-userspace. To ensure this, we modify `Registration` so that creating a new
-`Registration` requires passing ownership of an `UnregisteredDevice`.
+As such, this change makes it so that the driver's private data can
+currently only be accessed through Device<T, Registered> types and not
+Device<T, Uninit>.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-
 ---
-V2:
-* Make sure that `UnregisteredDevice` is not thread-safe (since DRM device
-  initialization is also not thread-safe)
-* Rename from AnyCtx to Uninit, I think this name actually makes a bit more
-  sense.
-* Change assume_registered() to assume_ctx()
-  Since it looks like in some situations, we'll want to update the
-  DeviceContext of a object to the latest DeviceContext we know the Device
-  to be in.
-* Rename Init to Uninit
-  When we eventually add KMS support, we're going to have 3 different
-  DeviceContexts - Uninit, Init, Registered. Additionally, aside from not
-  being registered there are a number of portions of the rest of the Device
-  which also aren't usable before at least the Init context - so the naming
-  of Uninit makes this a little clearer.
-* s/DeviceContext/DeviceContext/
-  For consistency with the rest of the kernel
-* Drop as_ref::<Device<T, Uninit>>() for now since I don't actually think
-  we need this quite yet
-V3:
-* Get rid of drm_dev_ctx!, as we don't actually need to implement Send or
-  Sync ourselves
-* Remove mention of C function in drm::device::Registration rustdoc
-* Add more documentation to the DeviceContext trait, go into detail about
-  the various setup phases and such.
-* Add missing period to comment in `UnregisteredDevice::new()`.
-
- drivers/gpu/drm/nova/driver.rs |   8 +-
- drivers/gpu/drm/tyr/driver.rs  |  10 +-
- rust/kernel/drm/device.rs      | 179 +++++++++++++++++++++++++++------
- rust/kernel/drm/driver.rs      |  38 +++++--
- rust/kernel/drm/mod.rs         |   4 +
- 5 files changed, 193 insertions(+), 46 deletions(-)
+ drivers/gpu/drm/nova/driver.rs |  4 +--
+ drivers/gpu/drm/tyr/driver.rs  |  4 +--
+ rust/kernel/drm/device.rs      | 63 ++++++++++++++++++++--------------
+ rust/kernel/drm/driver.rs      | 19 ++++++++--
+ 4 files changed, 58 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
-index b1af0a099551d..99d6841b69cbc 100644
+index 99d6841b69cbc..8cea5f68c3b04 100644
 --- a/drivers/gpu/drm/nova/driver.rs
 +++ b/drivers/gpu/drm/nova/driver.rs
-@@ -21,7 +21,7 @@ pub(crate) struct NovaDriver {
- }
- 
- /// Convienence type alias for the DRM device type for this driver
--pub(crate) type NovaDevice = drm::Device<NovaDriver>;
-+pub(crate) type NovaDevice<Ctx = drm::Registered> = drm::Device<NovaDriver, Ctx>;
- 
- #[pin_data]
- pub(crate) struct NovaData {
-@@ -56,10 +56,10 @@ impl auxiliary::Driver for NovaDriver {
+@@ -56,8 +56,8 @@ impl auxiliary::Driver for NovaDriver {
      fn probe(adev: &auxiliary::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, Error> {
          let data = try_pin_init!(NovaData { adev: adev.into() });
  
--        let drm = drm::Device::<Self>::new(adev.as_ref(), data)?;
--        drm::Registration::new_foreign_owned(&drm, adev.as_ref(), 0)?;
-+        let drm = drm::UnregisteredDevice::<Self>::new(adev.as_ref(), data)?;
-+        let drm = drm::Registration::new_foreign_owned(drm, adev.as_ref(), 0)?;
+-        let drm = drm::UnregisteredDevice::<Self>::new(adev.as_ref(), data)?;
+-        let drm = drm::Registration::new_foreign_owned(drm, adev.as_ref(), 0)?;
++        let drm = drm::UnregisteredDevice::<Self>::new(adev.as_ref())?;
++        let drm = drm::Registration::new_foreign_owned(drm, adev.as_ref(), data, 0)?;
  
--        Ok(Self { drm })
-+        Ok(Self { drm: drm.into() })
+         Ok(Self { drm: drm.into() })
      }
- }
- 
 diff --git a/drivers/gpu/drm/tyr/driver.rs b/drivers/gpu/drm/tyr/driver.rs
-index 2a45d02888253..ac265a60f5667 100644
+index ac265a60f5667..e73c56659ea75 100644
 --- a/drivers/gpu/drm/tyr/driver.rs
 +++ b/drivers/gpu/drm/tyr/driver.rs
-@@ -30,7 +30,7 @@
- pub(crate) type IoMem = kernel::io::mem::IoMem<SZ_2M>;
- 
- /// Convenience type alias for the DRM device type for this driver.
--pub(crate) type TyrDevice = drm::Device<TyrDriver>;
-+pub(crate) type TyrDevice<Ctx = drm::Registered> = drm::Device<TyrDriver, Ctx>;
- 
- #[pin_data(PinnedDrop)]
- pub(crate) struct TyrDriver {
-@@ -133,10 +133,12 @@ fn probe(
+@@ -133,8 +133,8 @@ fn probe(
                  gpu_info,
          });
  
--        let tdev: ARef<TyrDevice> = drm::Device::new(pdev.as_ref(), data)?;
--        drm::driver::Registration::new_foreign_owned(&tdev, pdev.as_ref(), 0)?;
-+        let tdev = drm::UnregisteredDevice::<Self>::new(pdev.as_ref(), data)?;
-+        let tdev = drm::driver::Registration::new_foreign_owned(tdev, pdev.as_ref(), 0)?;
+-        let tdev = drm::UnregisteredDevice::<Self>::new(pdev.as_ref(), data)?;
+-        let tdev = drm::driver::Registration::new_foreign_owned(tdev, pdev.as_ref(), 0)?;
++        let tdev = drm::UnregisteredDevice::<Self>::new(pdev.as_ref())?;
++        let tdev = drm::driver::Registration::new_foreign_owned(tdev, pdev.as_ref(), data, 0)?;
  
--        let driver = TyrDriver { device: tdev };
-+        let driver = TyrDriver {
-+            device: tdev.into(),
-+        };
- 
-         // We need this to be dev_info!() because dev_dbg!() does not work at
-         // all in Rust for now, and we need to see whether probe succeeded.
+         let driver = TyrDriver {
+             device: tdev.into(),
 diff --git a/rust/kernel/drm/device.rs b/rust/kernel/drm/device.rs
-index 30116d78cabe0..f529bc7fc4032 100644
+index f529bc7fc4032..0e81957cf8c28 100644
 --- a/rust/kernel/drm/device.rs
 +++ b/rust/kernel/drm/device.rs
-@@ -10,7 +10,8 @@
-     device, //
-     drm::{
-         self,
--        driver::AllocImpl, //
-+        driver::AllocImpl,
-+        private::Sealed, //
-     },
-     error::from_err_ptr,
-     prelude::*,
-@@ -18,10 +19,14 @@
-         ARef,
-         AlwaysRefCounted, //
-     },
--    types::Opaque,
-+    types::{
-+        NotThreadSafe,
-+        Opaque, //
-+    },
+@@ -26,13 +26,15 @@
  };
  use core::{
      alloc::Layout,
-+    marker::PhantomData,
-     mem,
-     ops::Deref,
-     ptr::{
-@@ -61,26 +66,98 @@ macro_rules! drm_legacy_fields {
-     }
- }
++    cell::UnsafeCell,
+     marker::PhantomData,
+-    mem,
+-    ops::Deref,
+-    ptr::{
++    mem::{
+         self,
+-        NonNull, //
++        MaybeUninit, //
+     },
++    ops::Deref,
++    ptr::NonNull,
++    sync::atomic::*,
+ };
  
--/// A typed DRM device with a specific `drm::Driver` implementation.
-+/// A trait implemented by all possible contexts a [`Device`] can be used in.
-+///
-+/// Setting up a new [`Device`] is a multi-stage process. Each step of the process that a user
-+/// interacts with in Rust has a respective [`DeviceContext`] typestate. For example,
-+/// `Device<T, Registered>` would be a [`Device`] that reached the [`Registered`] [`DeviceContext`].
-+///
-+/// Each stage of this process is described below:
+ #[cfg(CONFIG_DRM_LEGACY)]
+@@ -141,7 +143,7 @@ impl DeviceContext for Uninit {}
  ///
--/// The device is always reference-counted.
-+/// ```text
-+///        1                     2                         3
-+/// +--------------+   +------------------+   +-----------------------+
-+/// |Device created| → |Device initialized| → |Registered w/ userspace|
-+/// +--------------+   +------------------+   +-----------------------+
-+///    (Uninit)                                      (Registered)
-+/// ```
-+///
-+/// 1. The [`Device`] is in the [`Uninit`] context and is not guaranteed to be initialized or
-+///    registered with userspace. Only a limited subset of DRM core functionality is available.
-+/// 2. The [`Device`] is guaranteed to be fully initialized, but is not guaranteed to be registered
-+///    with userspace. All DRM core functionality which doesn't interact with userspace is
-+///    available. We currently don't have a context for representing this.
-+/// 3. The [`Device`] is guaranteed to be fully initialized, and is guaranteed to have been
-+///    registered with userspace at some point - thus putting it in the [`Registered`] context.
-+///
-+/// An important caveat of [`DeviceContext`] which must be kept in mind: when used as a typestate
-+/// for a reference type, it can only guarantee that a [`Device`] reached a particular stage in the
-+/// initialization process _at the time the reference was taken_. No guarantee is made in regards to
-+/// what stage of the process the [`Device`] is currently in. This means for instance that a
-+/// `&Device<T, Uninit>` may actually be registered with userspace, it just wasn't known to be
-+/// registered at the time the reference was taken.
-+pub trait DeviceContext: Sealed + Send + Sync {}
-+
-+/// The [`DeviceContext`] of a [`Device`] that was registered with userspace at some point.
-+///
-+/// This represents a [`Device`] which is guaranteed to have been registered with userspace at
-+/// some point in time. Such a DRM device is guaranteed to have been fully-initialized.
-+///
-+/// Note: A device in this context is not guaranteed to remain registered with userspace for its
-+/// entire lifetime, as this is impossible to guarantee at compile-time.
- ///
- /// # Invariants
- ///
--/// `self.dev` is a valid instance of a `struct device`.
--#[repr(C)]
--pub struct Device<T: drm::Driver> {
--    dev: Opaque<bindings::drm_device>,
--    data: T::Data,
-+/// A [`Device`] in this [`DeviceContext`] is guaranteed to have been registered with userspace
-+/// at some point in time.
-+pub struct Registered;
-+
-+impl Sealed for Registered {}
-+impl DeviceContext for Registered {}
-+
-+/// The [`DeviceContext`] of a [`Device`] that may be unregistered and partly uninitialized.
-+///
-+/// A [`Device`] in this context is only guaranteed to be partly initialized, and may or may not
-+/// be registered with userspace. Thus operations which depend on the [`Device`] being fully
-+/// initialized, or which depend on the [`Device`] being registered with userspace are not
-+/// available through this [`DeviceContext`].
-+///
-+/// A [`Device`] in this context can be used to create a
-+/// [`Registration`](drm::driver::Registration).
-+pub struct Uninit;
-+
-+impl Sealed for Uninit {}
-+impl DeviceContext for Uninit {}
-+
-+/// A [`Device`] which is known at compile-time to be unregistered with userspace.
-+///
-+/// This type allows performing operations which are only safe to do before userspace registration,
-+/// and can be used to create a [`Registration`](drm::driver::Registration) once the driver is ready
-+/// to register the device with userspace.
-+///
-+/// Since DRM device initialization must be single-threaded, this object is not thread-safe.
-+///
-+/// # Invariants
-+///
-+/// The device in `self.0` is guaranteed to be a newly created [`Device`] that has not yet been
-+/// registered with userspace until this type is dropped.
-+pub struct UnregisteredDevice<T: drm::Driver>(ARef<Device<T, Uninit>>, NotThreadSafe);
-+
-+impl<T: drm::Driver> Deref for UnregisteredDevice<T> {
-+    type Target = Device<T, Uninit>;
-+
-+    fn deref(&self) -> &Self::Target {
-+        &self.0
-+    }
- }
+ /// The device in `self.0` is guaranteed to be a newly created [`Device`] that has not yet been
+ /// registered with userspace until this type is dropped.
+-pub struct UnregisteredDevice<T: drm::Driver>(ARef<Device<T, Uninit>>, NotThreadSafe);
++pub struct UnregisteredDevice<T: drm::Driver>(pub(crate) ARef<Device<T, Uninit>>, NotThreadSafe);
  
--impl<T: drm::Driver> Device<T> {
-+impl<T: drm::Driver> UnregisteredDevice<T> {
-     const VTABLE: bindings::drm_driver = drm_legacy_fields! {
-         load: None,
-         open: Some(drm::File::<T::File>::open_callback),
-         postclose: Some(drm::File::<T::File>::postclose_callback),
-         unload: None,
--        release: Some(Self::release),
-+        release: Some(Device::<T>::release),
-         master_set: None,
-         master_drop: None,
-         debugfs_init: None,
-@@ -108,8 +185,10 @@ impl<T: drm::Driver> Device<T> {
- 
-     const GEM_FOPS: bindings::file_operations = drm::gem::create_fops();
- 
--    /// Create a new `drm::Device` for a `drm::Driver`.
--    pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<ARef<Self>> {
-+    /// Create a new `UnregisteredDevice` for a `drm::Driver`.
-+    ///
-+    /// This can be used to create a [`Registration`](kernel::drm::Registration).
-+    pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<Self> {
+ impl<T: drm::Driver> Deref for UnregisteredDevice<T> {
+     type Target = Device<T, Uninit>;
+@@ -188,7 +190,7 @@ impl<T: drm::Driver> UnregisteredDevice<T> {
+     /// Create a new `UnregisteredDevice` for a `drm::Driver`.
+     ///
+     /// This can be used to create a [`Registration`](kernel::drm::Registration).
+-    pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<Self> {
++    pub fn new(dev: &device::Device) -> Result<Self> {
          // `__drm_dev_alloc` uses `kmalloc()` to allocate memory, hence ensure a `kmalloc()`
          // compatible `Layout`.
          let layout = Kmalloc::aligned_layout(Layout::new::<Self>());
-@@ -117,12 +196,12 @@ pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<A
-         // SAFETY:
-         // - `VTABLE`, as a `const` is pinned to the read-only section of the compilation,
-         // - `dev` is valid by its type invarants,
--        let raw_drm: *mut Self = unsafe {
-+        let raw_drm: *mut Device<T, Uninit> = unsafe {
-             bindings::__drm_dev_alloc(
-                 dev.as_raw(),
-                 &Self::VTABLE,
-                 layout.size(),
--                mem::offset_of!(Self, dev),
-+                mem::offset_of!(Device<T, Uninit>, dev),
-             )
-         }
+@@ -207,22 +209,6 @@ pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<S
          .cast();
-@@ -137,7 +216,7 @@ pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<A
-         unsafe { data.__pinned_init(raw_data) }.inspect_err(|_| {
-             // SAFETY: `raw_drm` is a valid pointer to `Self`, given that `__drm_dev_alloc` was
-             // successful.
--            let drm_dev = unsafe { Self::into_drm_device(raw_drm) };
-+            let drm_dev = unsafe { Device::into_drm_device(raw_drm) };
+         let raw_drm = NonNull::new(from_err_ptr(raw_drm)?).ok_or(ENOMEM)?;
  
-             // SAFETY: `__drm_dev_alloc()` was successful, hence `drm_dev` must be valid and the
-             // refcount must be non-zero.
-@@ -146,9 +225,40 @@ pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<A
- 
+-        // SAFETY: `raw_drm` is a valid pointer to `Self`.
+-        let raw_data = unsafe { ptr::addr_of_mut!((*raw_drm.as_ptr()).data) };
+-
+-        // SAFETY:
+-        // - `raw_data` is a valid pointer to uninitialized memory.
+-        // - `raw_data` will not move until it is dropped.
+-        unsafe { data.__pinned_init(raw_data) }.inspect_err(|_| {
+-            // SAFETY: `raw_drm` is a valid pointer to `Self`, given that `__drm_dev_alloc` was
+-            // successful.
+-            let drm_dev = unsafe { Device::into_drm_device(raw_drm) };
+-
+-            // SAFETY: `__drm_dev_alloc()` was successful, hence `drm_dev` must be valid and the
+-            // refcount must be non-zero.
+-            unsafe { bindings::drm_dev_put(drm_dev) };
+-        })?;
+-
          // SAFETY: The reference count is one, and now we take ownership of that reference as a
          // `drm::Device`.
--        Ok(unsafe { ARef::from_raw(raw_drm) })
-+        // INVARIANT: We just created the device above, but have yet to call `drm_dev_register`.
-+        // `Self` cannot be copied or sent to another thread - ensuring that `drm_dev_register`
-+        // won't be called during its lifetime and that the device is unregistered.
-+        Ok(Self(unsafe { ARef::from_raw(raw_drm) }, NotThreadSafe))
-     }
-+}
+         // INVARIANT: We just created the device above, but have yet to call `drm_dev_register`.
+@@ -254,7 +240,15 @@ pub fn new(dev: &device::Device, data: impl PinInit<T::Data, Error>) -> Result<S
+ #[repr(C)]
+ pub struct Device<T: drm::Driver, C: DeviceContext = Registered> {
+     dev: Opaque<bindings::drm_device>,
+-    data: T::Data,
 +
-+/// A typed DRM device with a specific [`drm::Driver`] implementation and [`DeviceContext`].
-+///
-+/// Since DRM devices can be used before being fully initialized and registered with userspace, `C`
-+/// represents the furthest [`DeviceContext`] we can guarantee that this [`Device`] has reached.
-+///
-+/// Keep in mind: this means that an unregistered device can still have the registration state
-+/// [`Registered`] as long as it was registered with userspace once in the past, and that the
-+/// behavior of such a device is still well-defined. In such a situation, the behavior of any
-+/// functions which interact with userspace will simply be no-ops. Additionally, a device with the
-+/// registration state [`Uninit`] simply does not have a guaranteed registration state at compile
-+/// time, and could be either registered or unregistered. Since there is no way to guarantee a
-+/// long-lived reference to an unregistered device would remain unregistered, we do not provide a
-+/// [`DeviceContext`] for this.
-+///
-+/// # Invariants
-+///
-+/// * `self.dev` is a valid instance of a `struct device`.
-+/// * The data layout of `Self` remains the same across all implementations of `C`.
-+/// * Any invariants for `C` also apply.
-+#[repr(C)]
-+pub struct Device<T: drm::Driver, C: DeviceContext = Registered> {
-+    dev: Opaque<bindings::drm_device>,
-+    data: T::Data,
-+    _ctx: PhantomData<C>,
-+}
- 
-+impl<T: drm::Driver, C: DeviceContext> Device<T, C> {
-     pub(crate) fn as_raw(&self) -> *mut bindings::drm_device {
-         self.dev.get()
-     }
-@@ -174,13 +284,13 @@ unsafe fn into_drm_device(ptr: NonNull<Self>) -> *mut bindings::drm_device {
-     ///
-     /// # Safety
-     ///
--    /// Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count,
--    /// i.e. it must be ensured that the reference count of the C `struct drm_device` `ptr` points
--    /// to can't drop to zero, for the duration of this function call and the entire duration when
--    /// the returned reference exists.
--    ///
--    /// Additionally, callers must ensure that the `struct device`, `ptr` is pointing to, is
--    /// embedded in `Self`.
-+    /// * Callers must ensure that `ptr` is valid, non-null, and has a non-zero reference count,
-+    ///   i.e. it must be ensured that the reference count of the C `struct drm_device` `ptr` points
-+    ///   to can't drop to zero, for the duration of this function call and the entire duration when
-+    ///   the returned reference exists.
-+    /// * Additionally, callers must ensure that the `struct device`, `ptr` is pointing to, is
-+    ///   embedded in `Self`.
-+    /// * Callers promise that any type invariants of `C` will be upheld.
-     #[doc(hidden)]
-     pub unsafe fn from_raw<'a>(ptr: *const bindings::drm_device) -> &'a Self {
-         // SAFETY: By the safety requirements of this function `ptr` is a valid pointer to a
-@@ -200,9 +310,20 @@ extern "C" fn release(ptr: *mut bindings::drm_device) {
-         // - `this` is valid for dropping.
-         unsafe { core::ptr::drop_in_place(this) };
-     }
++    /// Keeps track of whether we've initialized the device data yet.
++    pub(crate) data_is_init: AtomicBool,
 +
-+    /// Change the [`DeviceContext`] for a [`Device`].
++    /// The Driver's private data.
 +    ///
-+    /// # Safety
-+    ///
-+    /// The caller promises that `self` fulfills all of the guarantees provided by the given
-+    /// [`DeviceContext`].
-+    pub(crate) unsafe fn assume_ctx<NewCtx: DeviceContext>(&self) -> &Device<T, NewCtx> {
-+        // SAFETY: The data layout is identical via our type invariants.
-+        unsafe { mem::transmute(self) }
-+    }
++    /// This must only be written to from [`drm::Registration::new`].
++    pub(crate) data: UnsafeCell<MaybeUninit<T::Data>>,
++
+     _ctx: PhantomData<C>,
  }
  
--impl<T: drm::Driver> Deref for Device<T> {
-+impl<T: drm::Driver, C: DeviceContext> Deref for Device<T, C> {
+@@ -305,6 +299,21 @@ extern "C" fn release(ptr: *mut bindings::drm_device) {
+         // SAFETY: `ptr` is a valid pointer to a `struct drm_device` and embedded in `Self`.
+         let this = unsafe { Self::from_drm_device(ptr) };
+ 
++        {
++            // SAFETY:
++            // - Since we are in release(), we are guaranteed that no one else has access to `this`.
++            // - We confirmed above that `this` is a valid pointer to an initialized `Self`.
++            let this = unsafe { &mut *this };
++            if this.data_is_init.load(Ordering::Relaxed) {
++                // SAFETY:
++                // - Since we are in release(), we are guaranteed that no one else has access to
++                //   `this`.
++                // - We checked that the data is initialized above.
++                // - We do not use `data` any point after calling this function.
++                unsafe { (&mut *this.data.get()).assume_init_drop() };
++            }
++        }
++
+         // SAFETY:
+         // - When `release` runs it is guaranteed that there is no further access to `this`.
+         // - `this` is valid for dropping.
+@@ -323,11 +332,15 @@ pub(crate) unsafe fn assume_ctx<NewCtx: DeviceContext>(&self) -> &Device<T, NewC
+     }
+ }
+ 
+-impl<T: drm::Driver, C: DeviceContext> Deref for Device<T, C> {
++impl<T: drm::Driver> Deref for Device<T, Registered> {
      type Target = T::Data;
  
      fn deref(&self) -> &Self::Target {
-@@ -212,7 +333,7 @@ fn deref(&self) -> &Self::Target {
- 
- // SAFETY: DRM device objects are always reference counted and the get/put functions
- // satisfy the requirements.
--unsafe impl<T: drm::Driver> AlwaysRefCounted for Device<T> {
-+unsafe impl<T: drm::Driver, C: DeviceContext> AlwaysRefCounted for Device<T, C> {
-     fn inc_ref(&self) {
-         // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
-         unsafe { bindings::drm_dev_get(self.as_raw()) };
-@@ -227,7 +348,7 @@ unsafe fn dec_ref(obj: NonNull<Self>) {
+-        &self.data
++        // SAFETY:
++        // - `data` is initialized before any `Device`s with the `Registered` context are available
++        //   to the user.
++        // - `data` is only written to once in `Registration::new()`, so this read will never race.
++        unsafe { (&*self.data.get()).assume_init_ref() }
      }
  }
  
--impl<T: drm::Driver> AsRef<device::Device> for Device<T> {
-+impl<T: drm::Driver, C: DeviceContext> AsRef<device::Device> for Device<T, C> {
-     fn as_ref(&self) -> &device::Device {
-         // SAFETY: `bindings::drm_device::dev` is valid as long as the DRM device itself is valid,
-         // which is guaranteed by the type invariant.
-@@ -236,8 +357,8 @@ fn as_ref(&self) -> &device::Device {
- }
- 
- // SAFETY: A `drm::Device` can be released from any thread.
--unsafe impl<T: drm::Driver> Send for Device<T> {}
-+unsafe impl<T: drm::Driver, C: DeviceContext> Send for Device<T, C> {}
- 
- // SAFETY: A `drm::Device` can be shared among threads because all immutable methods are protected
- // by the synchronization in `struct drm_device`.
--unsafe impl<T: drm::Driver> Sync for Device<T> {}
-+unsafe impl<T: drm::Driver, C: DeviceContext> Sync for Device<T, C> {}
 diff --git a/rust/kernel/drm/driver.rs b/rust/kernel/drm/driver.rs
-index 5233bdebc9fcd..da9f1bfef1f14 100644
+index da9f1bfef1f14..a16605b407159 100644
 --- a/rust/kernel/drm/driver.rs
 +++ b/rust/kernel/drm/driver.rs
-@@ -13,6 +13,10 @@
-     prelude::*,
-     sync::aref::ARef, //
+@@ -15,7 +15,8 @@
  };
-+use core::{
-+    mem,
-+    ptr::NonNull, //
-+};
+ use core::{
+     mem,
+-    ptr::NonNull, //
++    ptr::NonNull,
++    sync::atomic::*, //
+ };
  
  /// Driver use the GEM memory manager. This should be set for all modern drivers.
- pub(crate) const FEAT_GEM: u32 = bindings::drm_driver_feature_DRIVER_GEM;
-@@ -123,31 +127,47 @@ pub trait Driver {
+@@ -127,7 +128,18 @@ pub trait Driver {
  pub struct Registration<T: Driver>(ARef<drm::Device<T>>);
  
  impl<T: Driver> Registration<T> {
--    fn new(drm: &drm::Device<T>, flags: usize) -> Result<Self> {
-+    fn new(drm: drm::UnregisteredDevice<T>, flags: usize) -> Result<Self> {
+-    fn new(drm: drm::UnregisteredDevice<T>, flags: usize) -> Result<Self> {
++    fn new(
++        drm: drm::UnregisteredDevice<T>,
++        data: impl PinInit<T::Data, Error>,
++        flags: usize,
++    ) -> Result<Self> {
++        // SAFETY:
++        // - `raw_data` is a valid pointer to uninitialized memory.
++        // - `raw_data` will not move until it is dropped.
++        unsafe { data.__pinned_init(drm.0.data.get().cast()) }?;
++
++        drm.data_is_init.store(true, Ordering::Relaxed);
++
          // SAFETY: `drm.as_raw()` is valid by the invariants of `drm::Device`.
          to_result(unsafe { bindings::drm_dev_register(drm.as_raw(), flags) })?;
  
--        Ok(Self(drm.into()))
-+        // SAFETY: We just called `drm_dev_register` above
-+        let new = NonNull::from(unsafe { drm.assume_ctx() });
-+
-+        // Leak the ARef from UnregisteredDevice in preparation for transferring its ownership.
-+        mem::forget(drm);
-+
-+        // SAFETY: `drm`'s `Drop` constructor was never called, ensuring that there remains at least
-+        // one reference to the device - which we take ownership over here.
-+        let new = unsafe { ARef::from_raw(new) };
-+
-+        Ok(Self(new))
-     }
- 
--    /// Registers a new [`Device`](drm::Device) with userspace.
-+    /// Registers a new [`UnregisteredDevice`](drm::UnregisteredDevice) with userspace.
-     ///
-     /// Ownership of the [`Registration`] object is passed to [`devres::register`].
--    pub fn new_foreign_owned(
--        drm: &drm::Device<T>,
--        dev: &device::Device<device::Bound>,
-+    pub fn new_foreign_owned<'a>(
-+        drm: drm::UnregisteredDevice<T>,
-+        dev: &'a device::Device<device::Bound>,
+@@ -150,6 +162,7 @@ fn new(drm: drm::UnregisteredDevice<T>, flags: usize) -> Result<Self> {
+     pub fn new_foreign_owned<'a>(
+         drm: drm::UnregisteredDevice<T>,
+         dev: &'a device::Device<device::Bound>,
++        data: impl PinInit<T::Data, Error>,
          flags: usize,
--    ) -> Result
-+    ) -> Result<&'a drm::Device<T>>
+     ) -> Result<&'a drm::Device<T>>
      where
-         T: 'static,
-     {
--        if drm.as_ref().as_raw() != dev.as_raw() {
-+        let this_dev: &device::Device = drm.as_ref();
-+        if this_dev.as_raw() != dev.as_raw() {
+@@ -160,7 +173,7 @@ pub fn new_foreign_owned<'a>(
              return Err(EINVAL);
          }
  
-         let reg = Registration::<T>::new(drm, flags)?;
-+        let drm = NonNull::from(reg.device());
-+
-+        devres::register(dev, reg, GFP_KERNEL)?;
+-        let reg = Registration::<T>::new(drm, flags)?;
++        let reg = Registration::<T>::new(drm, data, flags)?;
+         let drm = NonNull::from(reg.device());
  
--        devres::register(dev, reg, GFP_KERNEL)
-+        // SAFETY: Since `reg` was passed to devres::register(), the device now owns the lifetime
-+        // of the DRM registration - ensuring that this references lives for at least as long as 'a.
-+        Ok(unsafe { drm.as_ref() })
-     }
- 
-     /// Returns a reference to the `Device` instance for this registration.
-diff --git a/rust/kernel/drm/mod.rs b/rust/kernel/drm/mod.rs
-index 1b82b6945edf2..64a43cb0fe57c 100644
---- a/rust/kernel/drm/mod.rs
-+++ b/rust/kernel/drm/mod.rs
-@@ -9,6 +9,10 @@
- pub mod ioctl;
- 
- pub use self::device::Device;
-+pub use self::device::DeviceContext;
-+pub use self::device::Registered;
-+pub use self::device::Uninit;
-+pub use self::device::UnregisteredDevice;
- pub use self::driver::Driver;
- pub use self::driver::DriverInfo;
- pub use self::driver::Registration;
+         devres::register(dev, reg, GFP_KERNEL)?;
 -- 
 2.52.0
 
