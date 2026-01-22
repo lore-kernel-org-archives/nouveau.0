@@ -4,99 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50809D6CFA4
-	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 20:35:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A998ED6CFA7
+	for <nouveau@archiver.kernel.org>; Thu, 22 Jan 2026 21:41:22 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7983E10EAB5;
-	Thu, 22 Jan 2026 20:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2494010EADA;
+	Thu, 22 Jan 2026 21:41:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="nbhvWI6F";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E4E7C404F1;
-	Thu, 22 Jan 2026 20:26:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7D463404B5;
+	Thu, 22 Jan 2026 21:32:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769113571;
- b=F8tduOvVE4PdvxpeDaV9XXdaBmBQ9nmWEjOEXne64dhDetO2JSZ8Z2Z0WIS6nbxY9Xhm7
- xaT/jBmD9enYa9Vcke+ExpEllwe9VUt+GKQJiolEXQNUqdPMP8TzniKPvOGble0qY00nKVb
- qXaLXdBQ0lMz0fuHWE0XLDHfs8+0W8tYZwoxd09kecHsMAHCCBupdbINlC26BzRbmzVNLXj
- h3PBqDB0/lzD+ddR4dVRJtoHuOF5lWC5qlrLPe536oNtXbMo5IWESpDmGjkVMlnU95SC6+J
- oinVCW8Hp3mRkUyBxQXoMJb/9Swpmi7kVHoVwTZcBlojMC6i+RxpERevkqHw==
+ s=20240201; t=1769117552;
+ b=YZvaNLShHKkRG2b6rNF8v7Hzpxmq0wTZP+UikX3JxxWIPBkskYLncQSj30vxMYUTNTPpC
+ D94QBMHunI1DjwFS66tktUgbPA9ii+bArMU/24OKIEk0X01/8Tny80c84a+Jgw8iZKx6BPn
+ O8B8tCDmtqAWzpMV7WqfZVN/WnmQqEKJ0VpZT2XG6ySTCyc9Tv40xa6HJh+E5Gl/GzzWs4W
+ axZlGTmRdGPEu0Pp7SYQh3NI3J53TjU6liMC1trycXEoNY3Y4YZhc0+ttqaKzTIgakglVkp
+ gqFDHoBUkAwO5/X08IzsWTwet7JSDLBWzNdGh1LmTfn+FAUDYP8FUaVYKiVg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769113571; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769117552; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=/9kWPmWC2nwDI9iFySOoWmTgpfJL8F1ay+7RKC0TXDw=;
- b=GJi3lAt2fF5R38ptrMlgmy5AtBknJabzZKBWvXtywnPZ6gsV1pZHxK2vKSSoPJQVfLGgk
- jn3CKiTRvQhMkNnoP/EpO8atiTFqWLT5nGCoc1WzJBTDkmPASmCmOefKC60Q6mjPWXYnLQA
- IDDkLIgev1d3E+C6VkVpIrAOlMYj9BaP9F3thWR3lmVJioZRz54jUx0vJWiAm4zxL3y8nDJ
- BV5H1escFN72iQxgvz8Af1w6qdq8WUL6ru+akKQTMMPScwN0dm66SCOmOC+VaEFqot2lSQn
- B3tS0bcqPGng1BQBChpMywUUdHVzMrUm6kHwhTNS6gTb4IDOCxgr/A6omlRQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=OpYFVQ+VNJG8H/bYcBfO1oxUpkQ5dAYJneF97kYBjLE=;
+ b=u7YaoIBuRms3jNoBM0bNYCyJTQeQjd6sPbAudt3amAcoD1L6P5RdbHOophJ2tXVcIHQkp
+ JmoTQ9pFuEPTA7daeKTmWMbevmQ/gkmBAS3TGAzur+t+wnz6ehTZIpUGbAJGY47yxz8HY5s
+ AX0lfQ2R18mCPgHURqHvgSsqSN6B0Iu67BJ0kOHl3lAPuj5ieCHO0334ueIWcC2G9D0TuJP
+ uP/OLUzFQ7gNEc+XK25CN0Sy/p2Tm6oYmFzOuW+7ivo+uoP9EuO90VzRUbjfisU+JQIlR0e
+ wsGU80tX7RxqSP0i+XMvgZOU3T9z033gmR+ixI81s6pw0mR1SeMpWc8Vy/iA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=linux-foundation.org;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+  dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=linux-foundation.org;
+ arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 16AF1403B4
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 20:26:09 +0000 (UTC)
-X-Greylist: delayed 375 seconds by postgrey-1.36 at gabe;
- Thu, 22 Jan 2026 20:34:58 UTC
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2AB7410EAAE
-	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 20:34:58 +0000 (UTC)
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-515-zTki-aoAPHyFYfOOwPLKqw-1; Thu,
- 22 Jan 2026 15:28:41 -0500
-X-MC-Unique: zTki-aoAPHyFYfOOwPLKqw-1
-X-Mimecast-MFC-AGG-ID: zTki-aoAPHyFYfOOwPLKqw_1769113720
-Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 00E341800451;
-	Thu, 22 Jan 2026 20:28:40 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.125])
-	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id F22E61800240;
-	Thu, 22 Jan 2026 20:28:37 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/vmm: start tracking if the LPT PTE is valid.
-Date: Fri, 23 Jan 2026 06:28:34 +1000
-Message-ID: <20260122202834.414058-1-airlied@gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: WDkeaJaJp7XgNwMc4FRUVPID_vlLWup8r1NLJQPIRXA_1769113720
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: O6CTYYV26UCJGKOUUZEK4BEMESZJTJF3
-X-Message-ID-Hash: O6CTYYV26UCJGKOUUZEK4BEMESZJTJF3
-X-MailFrom: airlied@gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id CC7134003B
+	for <nouveau@lists.freedesktop.org>; Thu, 22 Jan 2026 21:32:28 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BCC2E10EACE;
+	Thu, 22 Jan 2026 21:41:17 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id AD66160018;
+	Thu, 22 Jan 2026 21:41:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 482E1C116C6;
+	Thu, 22 Jan 2026 21:41:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linux-foundation.org;
+	s=korg; t=1769118076;
+	bh=o3gdWNkDSd9Vm/DMgr4/ykIAOvt43+NsJA/Imw15e/A=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=nbhvWI6FsmrV2v6DkoSqN8213V2yIRhOd6eP75LypoUaN54UBoDiDxVp1akq7FG3f
+	 CVLIelPV0CkF4x7Juc3HDczRCXMl0AOZY4EUYaiK0pNhQfi7cbwzUhOkV6AnNppJ9U
+	 SqiE6hXL+nm2nlnc5o4hmp73evXdLpeOeMX2qi64=
+Date: Thu, 22 Jan 2026 13:41:14 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Balbir Singh <balbirs@nvidia.com>
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+Message-Id: <20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org>
+In-Reply-To: <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+References: <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
+	<aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
+	<4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+	<20260119142019.GG1134360@nvidia.com>
+	<96926697-070C-45DE-AD26-559652625859@nvidia.com>
+	<20260119203551.GQ1134360@nvidia.com>
+	<ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+	<EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
+	<20260120135340.GA1134360@nvidia.com>
+	<F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
+	<aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
+	<9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
+	<626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K
+X-Message-ID-Hash: P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K
+X-MailFrom: akpm@linux-foundation.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org
+CC: Vlastimil Babka <vbabka@suse.cz>, Matthew Brost <matthew.brost@intel.com>,
+ Zi Yan <ziy@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>,
+ Matthew Wilcox <willy@infradead.org>, Alistair Popple <apopple@nvidia.com>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, adhavan Srinivasan <maddy@linux.ibm.com>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Leon Romanovsky <leon@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-cxl@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O6CTYYV26UCJGKOUUZEK4BEMESZJTJF3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P3I3WJW2KK5EDWJN5Z77LJ6DK4QZJY2K/>
 Archived-At: 
- <https://lore.freedesktop.org/20260122202834.414058-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/20260122134114.a04ddf4c34a4b926d057032f@linux-foundation.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -106,107 +130,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Thu, 22 Jan 2026 20:10:44 +1100 Balbir Singh <balbirs@nvidia.com> wrote:
 
-When NVK enabled large pages userspace tests were seeing fault
-reports at a valid address.
+> >> - Intel has demonstrated that this works and is still getting blocked.
+> >>
+> >> - This entire thread is about a fixes patch for large device pages.
+> >>   Changing prep_compound_page is completely out of scope for a fixes
+> >>   patch, and honestly so is most of the rest of what’s being proposed.
+> > 
+> > FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
+> > about how refactor things more properly afterwards, going forward.
+> > 
+> 
+> I've said the same thing and I concur, we can use the patch as-is and
+> change this to set the relevant identified fields after 6.19
 
-There was a case where an address moving from 64k page to 4k pages
-could expose a race between unmapping the 4k page, mapping the 64k
-page and unref the 4k pages.
+So the plan is to add this patch to 6.19-rc and take another look at
+patches [2-5] during next -rc cycle?
 
-Unref 4k pages would cause the dual-page table handling to always
-set the LPTE entry to SPARSE or INVALID, but if we'd mapped a valid
-LPTE in the meantime, it would get trashed. Keep track of when
-a valid LPTE has been referenced, and don't reset in that case.
+I think the plan is to take Matthew's work via the DRM tree?  But if people
+want me to patchbunny this fix then please lmk.
 
-The SPTES field is fine at 31 limit, so just steal a bit from it.
+I presently have
 
-Cc: stable@vger.kernel.org
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 33 ++++++++++++++-----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |  3 +-
- 2 files changed, 27 insertions(+), 9 deletions(-)
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Acked-by: Felix Kuehling <felix.kuehling@amd.com>
+Reviewed-by: Balbir Singh <balbirs@nvidia.com>
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.c
-index f95c58b67633..73141dda4728 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it, struct=
- nvkm_vmm_pt *pgt,
- =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
- =09=09=09TRA(it, "LPTE %05x: U -> S %d PTEs", pteb, ptes);
- =09=09=09pair->func->sparse(vmm, pgt->pt[0], pteb, ptes);
--=09=09} else
--=09=09if (pair->func->invalid) {
--=09=09=09/* If the MMU supports it, restore the LPTE to the
--=09=09=09 * INVALID state to tell the MMU there is no point
--=09=09=09 * trying to fetch the corresponding SPTEs.
--=09=09=09 */
--=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
--=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09} else if (!(pgt->pte[pteb] & NVKM_VMM_PTE_BIG_VALID)) {
-+=09=09=09if (pair->func->invalid) {
-+=09=09=09=09/* If the MMU supports it, restore the LPTE to the
-+=09=09=09=09 * INVALID state to tell the MMU there is no point
-+=09=09=09=09 * trying to fetch the corresponding SPTEs.
-+=09=09=09=09 */
-+=09=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
-+=09=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09=09}
-+=09=09} else {
-+=09=09=09TRA(it, "LPTE %05x: V %d PTEs", pteb, ptes);
- =09=09}
- =09}
- }
-@@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn=
-, u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT && (pgt->refs[0] || pgt->refs[1]))
- =09=09nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT && (pgt->refs[0] || pgt->refs[1])) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09/* PT no longer needed? Destroy it. */
- =09if (!pgt->refs[type]) {
- =09=09it->lvl++;
-@@ -374,6 +384,13 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn, =
-u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT)
- =09=09nvkm_vmm_ref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09return true;
- }
-=20
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.h
-index 4586a425dbe4..1fe7915b8e87 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-@@ -46,7 +46,8 @@ struct nvkm_vmm_pt {
- =09 */
- #define NVKM_VMM_PTE_SPARSE 0x80
- #define NVKM_VMM_PTE_VALID  0x40
--#define NVKM_VMM_PTE_SPTES  0x3f
-+#define NVKM_VMM_PTE_BIG_VALID 0x20
-+#define NVKM_VMM_PTE_SPTES  0x1f
- =09u8 pte[];
- };
-=20
---=20
-2.52.0
+If people wish to add to this then please do so.
 
+I'll restore this patch into mm.git's hotfix branch (and hence
+linux-next) because testing.
