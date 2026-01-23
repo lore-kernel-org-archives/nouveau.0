@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF81AD778AB
-	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 18:15:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A6A5D778AF
+	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 18:28:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0124E10EBA7;
-	Fri, 23 Jan 2026 18:15:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C63B10EBA7;
+	Fri, 23 Jan 2026 18:28:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="mkel4MvA";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="YkFVsQ4M";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 718B040564;
-	Fri, 23 Jan 2026 18:06:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 037A140564;
+	Fri, 23 Jan 2026 18:19:18 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769191574;
- b=ifqvusPDeKHus0kMxMCYCtRSaApuMmM8nZ383lWnHg+20mwD+Rsv7aKXizS9Yt4t6WNWn
- hNijnGYJnfXmt0WDKAAX55wnZOfgTV++DjJw1cnIpx8iZORMTkUPt0n6kfqLOHGzM+bu9f6
- x9/ZlpfqbFosmRNLVJ9FXxoz15a74oyTaw9GKC+TCWYHpcGa8WPwGAnjEhPVpqkD3wikIu+
- HnK73WGiEnbTkJV0ySJF/+O0HOSq8DFlxjEhHcK7NtTJV+smK9rHYiTIrZusss+Vii9iSGy
- yblcIwTzllIYjT6W1T+XVX8zCrtFuwTYuZDZUuB3zJV9vo603O/6sFoX7o4A==
+ s=20240201; t=1769192357;
+ b=zSjFx8oJy9iPxDwbcgeuB0of877sg0lZ9kunE65CaCHOezQ42043ylHeRo3AEF/30J7Jk
+ px08aS2afQQxV2Mjw3Ng7KIZQPdv70ag6YXwsgzisWu5luraGMQSgwrtv7/VkO4lEXOcQl7
+ Z+lUkKV5nFgogFLrEdr/kD9vJj4oRNxV2BDwliKiyCoVCdtOKHCC3vTEPYZH8fGFDdHCbeF
+ LUVSBZ/4MlKMznKlvIv2yBcb+BZsiJoosMlLcbgQ2SQI3h/iINah6wV8CPzqtUe6d5+m0zC
+ 0NCKWmoQoiyf+H0rux3brz0CdnclLVz7XKQsq+DN2THl/jpi8BkxGwpIQnCg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769191574; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769192357; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=fSrEMJ45aLKI3zXmQduLvKg3VkxJ3cVFdmLLVsvR76g=;
- b=OzGdMzlZW8yaQdy7N4IaXRcMwZU7q+JBsSz3JBbBGz1o+zI6cixdoScnKzfLWjIV2Vtja
- GT8kd1TlVCvYZoZkXqWj/++KvpD8JIl6FqJ1+Fj9I8Q9TBfgp96PvIfhVgIkHdYc4F6Ij84
- uClFjMRAziN+vxRuOVokDMInfWLkWbglC9RCGKLUCgcIMylY9p6z+gQLWbNFCxoi9GoKgY7
- q7FnOW/ARhX3+vwaRq5NsmaxkrJbuxl29lB5kYddwzy4wP/YXxbJBG6PATcB3DSpbrziqlb
- 82YS+915llvI1mMAoLgNR3VjNzUxyK3uiA6YCXzRpUBeLDjjPlT5FBU+w5kg==
+ bh=tgkSphczwaYo3L4VxWcF80l2pJG/oBj/xjxZ48C/5ZA=;
+ b=DPlAISIa4anu1sgVOcZeVsFCjY3R5TKf12Kc2qAyTdvDR2ps1nfFC3Iuoc0IodOag2c9h
+ rfjfZ6k3jc3eT0Ug2AyRsDnPEmdjtWbYexrmEsAqDJ3DE06FBlXIgkWpXtToa3lsI4Kid5l
+ Gfhu9tIKdp3fIF5iX1rTf4dXcFZspb8txv6Kxmi0+yTBunM/1QEmmf/JAzcH+x+BdYXgpo3
+ AyWe+oLM+Q1C7+WGs9JkqgmlXC6+J5/mnQl4wjYOzjRH2jpZ8jFkDdkdtW+EIzxpc/0G8XV
+ bd0dhR7xjIxnidyh/ZE/UydEkCysWA9B/6JQm5QFJhywtL9lCWHF6Irre84Q==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=garyguo.net;
   arc=pass;
@@ -45,169 +45,170 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5977D400C5
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 18:06:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 165FD400C5
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 18:19:15 +0000 (UTC)
 Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022117.outbound.protection.outlook.com [52.101.101.117])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7F38010EBA2
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 18:15:02 +0000 (UTC)
+ (mail-ukwestazon11022098.outbound.protection.outlook.com [52.101.101.98])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 49A4D10E1C9;
+	Fri, 23 Jan 2026 18:28:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T0WS0H/7GQ29QsH8nuafzID5LvGPzyeUrYq+Ebq3pyWqr24iegZToaZ9NBw80F9xRAm00vmJ/cU9Dpgd4Ge05oOy6H9J5roRgudJagT85Qcb5okrj/MuOOEqTlwHIysJVyhcPkb6rj3Tkzi283SG3Aq5hR+pWzBGcXoZOTtfr4PpBdVK88Pbhe6GqDEQvcWH6yhApAXMy4flQ6I5SrfXMdmPI+aJUPQ7Kin8DostiJaYvBha+u3bV1Ax4WRhSHuqN8Gil1824JMNBjw35Wyx2LfJLRcJOFjYFkB2Dg9QdgXE4oye7OsC7E4MhiCbBx/UQZyZgCqxH/BUA1tuInJdhA==
+ b=By5FOsFPNc6zRpZjCccpJEviNkkXFRKp2rDKLUcw6bQ1es1G+e1HBmT9qdxg+8mwKwWci8JBnOgepyJgth2E+BO3b63TB76weBSXTJPhbsprmtX5qlBciT7lPtJmTN+op2ZS9rKSR8xJUWmQH+woptv1BJJAmDK7F1JCcoQul5kcAFJHNmZn4nR6QMNdHVSzq/quyqis8Wgpk0rkfW3l7lYV8jGOcT2LxPa62x8YvPaVsHJLpdr5j3HSQ7zEWiVDLjfiP8EC8xioLYsQpiB6/epDtvpWCp4BXw1IdXKdB3wjEYFR5TlatwFKSj02oLfkUyrfPjUHnYYxm8EgHsQbsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fSrEMJ45aLKI3zXmQduLvKg3VkxJ3cVFdmLLVsvR76g=;
- b=laWGWK7UWd3CpNMvVbdErGqoL0/vgtEb37ncMH4LTki1pwxDlCHQPk70zJvw2tR0NwbMCQT6sGMpDVClkluYTkpfiKYPn2eZWufhir2rfW//SkGx3EyFgn6+sAx5pieqHAtHxesp569hAK80AR4PzSRQug7GpGi0Rx40ahDRD/dYML7WiFHZCWJAXJ+IDRMDU+wsT2rq8iuUIiJPkgY4FTMY0aMnS+PkNVx81v1lP7em6vKmkMYGUVJc8vBlWgSPO1yk/FT4n7w9yaviiKfJmbWn6KGpoipvdAId2fxE5QPza1JoHKr80/kC9eFVf7QTkXs96t5KsrUiSFdyQN2hww==
+ bh=tgkSphczwaYo3L4VxWcF80l2pJG/oBj/xjxZ48C/5ZA=;
+ b=lpMMV59sDty7MxGNfoBMMbIZzT8Bx5+olN5J0AoGr+rKeaX6kYtBCax0XV26IF19VU0EBWB+axiYutJmTWdNtBbDzRieNyZc/JW/WlsSqhOKm6nMXSzlzBiaeQ4V7n1PBMq0XZ9uhRUYVSecgMHMmbFI/kEXn8LDc4R/WThGBptye5hYXJiqwtvHYVTGd6yWgu/7hoVWFZa59XsgvU/ujiJyoQAAl9u5J+FyhaL8N5wpyu8BVjyi8Hg8eoPf2amiwsyg0bu94kFRLB6KW7Yy2YqjtTDZWSB9+0Y5Ts2/4RsQQkRIKvB9nnGTT+uBZwsYYLPcQYs72dRaHNk7yfWBQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
  dkim=pass header.d=garyguo.net; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fSrEMJ45aLKI3zXmQduLvKg3VkxJ3cVFdmLLVsvR76g=;
- b=mkel4MvAfM8/Hu3VnJqx00x80iCkhh3Uu8E6SaWa9sA1WlKDmFUOzvbQUYil1E/GEmG0xAarIvvxB0FVEG7gJ/FXQiB0Sf/PMqRigz8ySM2VH61whImITAtw4AIpq0IwqWBN8JSkvREyNMih21eJmQBzrNTIAAaxfd6suU2bJCU=
+ bh=tgkSphczwaYo3L4VxWcF80l2pJG/oBj/xjxZ48C/5ZA=;
+ b=YkFVsQ4MbsUC3KIdAmTfzwZ7H0Z+owW1FBjuwfGqSTK0aCR17gk0j8hCBWbf0OgPYnXxPy4tl0LmTY+1fD5syW3qCOIG0RcgjAhToofT5p0PpReLcZhQybVoJ3bTbCXE8DfZpdi+XIfm7U6PkwLbY9TaHM4S6L2g6EGGkj+7YXU=
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CWLP265MB5114.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:15e::12) with
+ by CWLP265MB7326.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1fc::5) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.12; Fri, 23 Jan
- 2026 18:14:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
+ 2026 18:28:03 +0000
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 18:14:59 +0000
+ 18:28:03 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 23 Jan 2026 18:14:59 +0000
-Message-Id: <DFW69A2VGB81.1YJ26924JUFII@garyguo.net>
-Subject: Re: [PATCH v8 11/13] gpu: nova-core: align
- LibosMemoryRegionInitArgument size to page size
+Date: Fri, 23 Jan 2026 18:28:02 +0000
+Message-Id: <DFW6JA3YWVBT.165YBPOMPL0KI@garyguo.net>
 From: "Gary Guo" <gary@garyguo.net>
-To: "Timur Tabi" <ttabi@nvidia.com>, "Gary Guo" <gary@garyguo.net>, "Danilo
- Krummrich" <dakr@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "John Hubbard" <jhubbard@nvidia.com>, "Joel Fernandes"
- <joelagnelf@nvidia.com>, <rust-for-linux@vger.kernel.org>,
- <nouveau@lists.freedesktop.org>
+To: "Eliot Courtney" <ecourtney@nvidia.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>, "Alice Ryhl"
+ <aliceryhl@google.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, "Alistair Popple" <apopple@nvidia.com>
+Subject: Re: [PATCH 1/4] gpu: nova-core: gsp: fix incorrect advancing of
+ write pointer
 X-Mailer: aerc 0.21.0
-References: <20260122222848.2555890-1-ttabi@nvidia.com>
- <20260122222848.2555890-12-ttabi@nvidia.com>
-In-Reply-To: <20260122222848.2555890-12-ttabi@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0180.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18a::23) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+References: <20260122-nova-core-cmdq1-v1-0-7f8fe4683f11@nvidia.com>
+ <20260122-nova-core-cmdq1-v1-1-7f8fe4683f11@nvidia.com>
+In-Reply-To: <20260122-nova-core-cmdq1-v1-1-7f8fe4683f11@nvidia.com>
+X-ClientProxiedBy: LO4P265CA0086.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2bd::19) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  (2603:10a6:600:488::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB5114:EE_
-X-MS-Office365-Filtering-Correlation-Id: 803cfde5-044e-4a58-05fa-08de5aab51fa
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB7326:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a604ca0-a728-489b-20fc-08de5aad2528
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|376014|10070799003|1800799024|7053199007;
+	BCL:0;ARA:13230040|376014|7416014|10070799003|366016|1800799024|7053199007;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?RXp5RTVLUlMxUXRKWmRvckVoWnNoZG9Pbkw2em9vaHlyRllzZVVTb3VnVk00?=
- =?utf-8?B?NGM1NzliOUlqMkJ3VTRrS3dlWFk3U29pbzBEU042bUVMMjNEdmRzbG0ybU83?=
- =?utf-8?B?WjdWT3lXSVJ5RTFoMlY3YTlkdDl5RFVUM3JoalpnQlE4cEJwOEU2TzdySE0x?=
- =?utf-8?B?b3NCNDl6Z0hKZGFJZTR6UWVOa1QycEJRQmJobjhrMFVvK3p5a2Q1b2xIR20r?=
- =?utf-8?B?RlQxdEowR1U0VnY1RHF1dmF3ZUJwdjBwcWc4V1A1aTF0UHdhcW52MlJaeEho?=
- =?utf-8?B?c1VFbG45cGxxaThsTDIrelU1dS9Fc29WbHUwSE9POW90VEw0UGtBSFovK2pr?=
- =?utf-8?B?RERBekcvVWxvT1d6Z3owenpKZVRlMXErakd1UGM1bGh3bDBET2FGZnIzTzVv?=
- =?utf-8?B?N005b0pTNnp2UTVjem9PU2g0OTUvc3FJZUlib0Ixak5pQTJsdzhmcDNGNU9O?=
- =?utf-8?B?Qk85aUd6WUQvMUV1Rnd4WENqYXhhT01iajRQajJnTGVsVnVzRmJUSEFjZitC?=
- =?utf-8?B?MXFkdGRHYlNleDNBMHBQb3NUSkI2QXNUck1CUmxvYkhKeTFKaCtYY3JrZGhF?=
- =?utf-8?B?QjBndk9WYVk5SUxLVGJpNVplc0k0c2doU1l6eldHUXpNVEhISXNyOXFsOWZM?=
- =?utf-8?B?VU9RQTlSSEVIK3lwYU9jS2s3SDBDY2xoS3kyazBjZFNIMFdlc2pEU0hqTnJH?=
- =?utf-8?B?c0VGUWI2a3d1bzR1M054SXRNU0lRb1lEQ3hKT0ZjaE1DRnlaZ1I4Zlh4R2Js?=
- =?utf-8?B?MWZ2cHIrZjRxNUE0RXFIc0hUWUwvWGlZY2hzQ3FvVFFmTVJzYjFmRkRUK2dJ?=
- =?utf-8?B?SGUzZkZqbnI1SzFIYkEzeFdmL3E4NlJlQjZBZ0t1c3Q3Nmt6cUxucm9iQUho?=
- =?utf-8?B?OG5uVU5zdGpXY3dXWVdKVjdMODdreDd1YWJIaDJTZDlRVkxCVHo5M2xHazlv?=
- =?utf-8?B?enlZSU1XbXZ2UWZKT0R5Z01MdkVTcmFhVFFyVUF3d08zWWhuQytpUnQrYlB5?=
- =?utf-8?B?RHlKa2psanVNOWJzUWkzQ0VFdzY4cUpxTnV5blRQRSs2YmRoNDFKZlN5Zkxi?=
- =?utf-8?B?WjRSSEM5Yll2WHpCQ3lqRTI0WmdOTzZjNWlLSDJ3RSs1VU9Bbm1qV3dXVHln?=
- =?utf-8?B?TDFkV3hWMjN2enVoeVprNU5HQzdiVWdhUER4TVRiOElLWTV2OFZ1MHQySjYx?=
- =?utf-8?B?dWJRak4ycmE2S1FDWHdmT1JlaFRMekIzOTM2eXBIQ1NwSU02NGNmY2ZScGM5?=
- =?utf-8?B?Z25kUWZ1aGtsVDhpRFRBbnI0WndLTEkzNmJYZjdlM1ZweG9ubnRBM2ZmMnlU?=
- =?utf-8?B?VGVLaXVnZDNuRmthTDlDUUQzVWtjaHkwY1E0QnZXMTNxZ3NnYmlwSXFPelJ2?=
- =?utf-8?B?TFNkdTJGQVlkUFJ0bXMrZmxFa0pHSkdtZ3FRSlI5S3Z0NnViZURxWXVPQ2N1?=
- =?utf-8?B?N1ova1g4V2lrb3pjcU9xNzU4VWY3VFN3Zzh5dDBmMlRyeHgwL0RzU1Y3d0ps?=
- =?utf-8?B?eTRiZDU5UTQzWDVDbVRoR1J3anBwcHptQjE1L3hURWgxTnZDa2ExMXoxR1Vr?=
- =?utf-8?B?QW9vWVFQNHh3aTJkdUptMzd4K0s2MlRyOUNrY1BuYWl6S2dSa2toeWkrRHhl?=
- =?utf-8?B?UnBTbkVKbmhnaEliS092RkpVYnJaV3R6QnY0aEx0RjQ4M2ZxVzVzODMwTytV?=
- =?utf-8?B?MTloWlhnd1N4THBmaTdnMVVvR2hBRFIvUmJGZnl5ZWxmUlFkWVRWWmxBRVRE?=
- =?utf-8?B?c0ZPZWdrSG02ZTFtQWNJZ0QyeU9pWTFJRFVEZUwzZER5NVV5cUM3NG8yc3Y5?=
- =?utf-8?B?ekVnUW1Dei84QkpoQWl3MXdSaHZBU25Wa1NMUzFzY0FrTHJMRkV1MnRvbyti?=
- =?utf-8?B?bTNZYWY5SEhLdlBrbk5XbmlQb2ZVTEw3MTc0eUZsV0dCQnpWS0RvRUtEUStB?=
- =?utf-8?B?Znp5UjkvRHZBQ2xzY3RJTzFRamMwbVptT2xxZFlCdDk3c1FMVXhQUVVQWVQ1?=
- =?utf-8?B?ekI4TENINDI3Rkc3TFhvN29yQ0pyVUNVYXNWYmV2Q1psK2RUaWJjVno1Y2hv?=
- =?utf-8?B?UkNKeXUyQnlncFhmNkN1Q1RTWVkzdElSTnpiMnJnajFhcFEyZ1lzMUxNb2Nm?=
- =?utf-8?Q?6ZSE=3D?=
+	=?utf-8?B?Y2V3aTVRNDd2Q2hnYllvcGJhOXZhcjdrcjNyM0I3cG9XLy9rSTFNMEdEdFlX?=
+ =?utf-8?B?UFRwdHBMS2V3a1E1NmdWam9kb2FwZnkwS3FzdTdobzFUSjk1NXBDQ3AwMFRt?=
+ =?utf-8?B?QThIRGlXVWxZSGpuSHNSd0VYNnVjVWR6V2NqbFVybHdwUStyREVZSkIxRmZa?=
+ =?utf-8?B?SVdFd0gvN0lERmZ2N2FOUHUwWjFFVCtCZzVrcE4rdWk1d0xjNU9jeVZadjlr?=
+ =?utf-8?B?VXdjamFwRzBPUkw3UnlzanRDY0hEbDlaZlljVTNKQnRJeEs2bkpWcDIxaGoy?=
+ =?utf-8?B?cEtYZmVwYWlSZEx1MXF1d2c0dkg4NXpJOGtFSjFxZjZ0dVJlQ2xQeHp3azhH?=
+ =?utf-8?B?Z2pGc3VyZGQzc1FOUEx3ZzVwMjhCWXN1M1Q4RElibCtXcWt6RTVsOXhmNXZB?=
+ =?utf-8?B?VGs3TDg3MC9QdlVDaVphYzB4ZWc0VmpIN05nTTh5clE1NFpvajVUUHRvZkVF?=
+ =?utf-8?B?d2plN2JyK1F6UkprMzZEdzBEUnVwY1pnT3FDa09zcnVUNHFiZUNtdlcrRHpE?=
+ =?utf-8?B?WmFDbHlienRPSVE5TFFFUUI0TXgvVDk5VE1OdmpoRkQrOVRnd3FJMzN4UStn?=
+ =?utf-8?B?WmZMZ1YyQVltTTBLOENGZzROdnJvcHhXR1pXeVcxY0MrdUNCV3A1NXlpVVg1?=
+ =?utf-8?B?VURGYlZCa2dPeFIvTjRlMXkzZzlFL3pINkQ1dnRodnBwRWlNUmhDQUtYQ3lj?=
+ =?utf-8?B?eWNJRmRoQ1o5YU1WWElxWlUxY0xVR3ZqRGsyV2VYMGhCNkhFYnh3SXJlZVUv?=
+ =?utf-8?B?Ti9tVTRXZWFnNS9NdFl5WjlRL25xdHBldDdxcHk5N0xEMnN4ZHd2Rlk3OGtj?=
+ =?utf-8?B?NitWY0xIeXM2QmlFYVRYV3Z2UFp5bExha29CM1pWSFFwV0p4Z3RrZ01iSEs5?=
+ =?utf-8?B?VEE0bmpCdk5mSG00N2R1T3R6S1RDOVBsd21PWVIyV0hiWHIrMHd6QWdCU3JR?=
+ =?utf-8?B?U2Z4WDcrK1VuK01XaTVKbWd1RGpIdTVBTmMwWS9TaWgwTVEwVDYyRGZrQUFi?=
+ =?utf-8?B?MjZEeWxBWG1GM0tUMUF4TGF6akp5NitZUXhIRXJVRS9GbXIwaFNDVjRkdjNa?=
+ =?utf-8?B?WXQxeUl5V21URVlDejJRdEZjaStTQjlzN0xCMHhFMlAxcUtiMzlhaDlOQTFp?=
+ =?utf-8?B?V2Ura3pseCtaak56cTJndlowZ08xb1NBdmQ3UW1DY1dxelRFMytsUFV4VFZq?=
+ =?utf-8?B?UjhTSVR6NFgvSHpGRGlHVWRwN1FqMHJKTDZKN0VjY2dPb0tTaGROVXNaV0xy?=
+ =?utf-8?B?MWtFMms3RnM2S1ZmMlBpdE5qVnQ4NE5qSFZLRmNVVXl5M1kwZHlETmNRUDJD?=
+ =?utf-8?B?OGZoQm80Y1BNTEZBMFVySkY1eEVRamQ4MW10emVNaXpVQUtVVTVpVkt5U1gy?=
+ =?utf-8?B?ckxFdFh5aENQQlBZVGUzVTJHM3BEOGM4MEk3azRQWDJXVHFzbm0wNGI0dTFv?=
+ =?utf-8?B?Vkhwd0g3UFZkOGlRTFhZMkpkQ2JTSW1lRTlIZ3V4ZmI3Y2x4UHlpWWF4OUg0?=
+ =?utf-8?B?SmYvUUhzVWIzai9QWlhyT0U2aDFxc1ZSS1VQamFuNWZXWnRHMExEdmlFU2pL?=
+ =?utf-8?B?VksrWmo5WXdEVWxQZ2tIcmJZQW1GdWFrNGNVTnIwNG5tOGRBMXFPWHBONlhD?=
+ =?utf-8?B?dTU3OHIyUThiTVR2VTJ1dEkxSDBNZmZ6N2NJOFVLd0pkVTdOdUxEQmlvQVJy?=
+ =?utf-8?B?NmdFV2k2OUZ5cm9xR2poQzNxZG9aWmdOVkZKeWFYcWprcFM3YXRqa3FwWDNO?=
+ =?utf-8?B?OTZod21pY1FNWEx2d05tZittWEFLRjN5ZW5ZbTViNGhHZzNTY1kxTytJeWl5?=
+ =?utf-8?B?WU9lRW5iMGtBSi9XdndrVXg2NGgySHpYM1pMQUxMMzFhVDN2TWRoWGx5ZC9l?=
+ =?utf-8?B?cThKbkJKWWxPZ3FqV1R2aGxWMmRoa1FEMmhKQSt4YXpkWElJQ3Nlaml5UmRI?=
+ =?utf-8?B?VDVzSG50ME9rVVhhYlR3ZExiVS9qU1RRVXgySXNpVE9oQ2tLeDNtL21YeXZo?=
+ =?utf-8?B?bjNKVFVWdHg4UVhYb1QrNERkeGZDcnNZbEVBaSs0K0hKYkhHd0xRaGs2U21i?=
+ =?utf-8?B?VE1PV216Lzk1K3ErSXh6QjVPVmVlUHpUR3F4Sm5uSkFNeG82ekw3Q0V6ZzBN?=
+ =?utf-8?Q?0jNE=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(10070799003)(1800799024)(7053199007);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(366016)(1800799024)(7053199007);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?QU1lbGNXVmZtL3o1bmpBL0pjc3pnRmh5SlJMenN2WlRZZVF3Qk8wZmZ6czE5?=
- =?utf-8?B?Q1h2eUVCeVV6WC9yZjYyTEN2b2VsQ2g2MDQ5MWhHWCtEaGNwQW1uZHAyc1RV?=
- =?utf-8?B?U2dSQlhjbXg5dHRQa0FXTDF1SEFCekFEWHdBVXlkeFZYNC82bmxXRDVZS2Z1?=
- =?utf-8?B?bW5OeHlhNWZMRWNKRnA0d3czUm8wU1loYzMxSS9rV0gzTGN5MEVkWnZ5NGZC?=
- =?utf-8?B?S1dFU0Q4UmQvMDloMmxUTVllekZqVTVDdUdiNldGb054SDZ0YzY3MU9GQmoy?=
- =?utf-8?B?RWJMWnlGM2x3SG10ZWVkQ0tlTGZXejhSSm05U0hKK2RFWDdjYjZGdFRGdFZT?=
- =?utf-8?B?S09IM3Frd0g0QktqS1pPSFhjQ2dRVzdUbHFYR3hPODk4eXRkZmdsYTZEd1FN?=
- =?utf-8?B?OFRhZmlDY1dlM3Y2OENnb05uLzNwQ1BPSEpyUnhrSzA3WEx5Vi8xcXBTeU1U?=
- =?utf-8?B?anZ2bzZZM2RPcXNtK2NKQkpwUHVoMXJnQ0IyQ2pvV0hJSW5sRGNmSWVMNGY3?=
- =?utf-8?B?OFVNbkI1ME1jNHYyMVFXZTllMW9DcjFWUzVaYUJ5MFhURmxsQ1BYdjZFYysw?=
- =?utf-8?B?TGJSbVZmYmsrc29yUWdTcDM3dmI4S2NWMGpwcTJpWm5ERHU3UWZhR3k1RDBy?=
- =?utf-8?B?SU4wMTRvQU1QdzJBVEp2OHlCbTY3eGxYOGNLNkcyZy9SVXZpK1VMWlArc0p3?=
- =?utf-8?B?TTk3NlhvcHNUK1p5ZGYrelNPQVFjcXpDRmpUeWswbWU5QVpwVHpHYmRYcmd3?=
- =?utf-8?B?NytVamtScGJRYjZ1WC9sSVJYVkVaMHFUYThqVGFHRm56RHhSeWtxS0t5ZExs?=
- =?utf-8?B?bDBQZjl5SjlIUFdOUTA4TnhXb2JDUlRmaW1vZW5lSmJucDA1dmtYaWdncU1D?=
- =?utf-8?B?cmNPbkQ2YlRIazNMT24vQ3pQbEdQUXZaajl1QzZhTzAzOG5xa1lweXRWMURL?=
- =?utf-8?B?WTUzK2w3dFpUVlVVN1Q1a0UwVGY3QTA0WVhKNURTaGNGY1dKM0E4bkwrelNO?=
- =?utf-8?B?SWd6d0FzNS8yMU9DY29wUnAvVTFHYndYZDBRYW1PajFqSVJWWDhkNGNiZngr?=
- =?utf-8?B?dXdCRUZvY0Y4aUF4RWRRYXFYODAxdUFqVGV6UTA0TEt1ZVg5ejNITSszenRO?=
- =?utf-8?B?RTAyUExtWXVWejFxUG1HaS9hdCtzcVlWeHRBMzF5N0VuV1Y4c1RubEwvSExl?=
- =?utf-8?B?RnZsS1RrdERjWmZPNlp2MHFHcEtVdFBNRzhjVlA5Z1VuQ3hNakdvbGVEVUZl?=
- =?utf-8?B?NEt2YzV5RFdiZ0x6SXE3T1BPdGdiOEVubWJNRm9HTUJ0WUJKNU9VUkQ5Q1dO?=
- =?utf-8?B?ZWsvRUR1SWd5eFBTRmk2OGJoTjY5V0pkTDVrTllreHRVWHFQcVVQemZDaU5v?=
- =?utf-8?B?SDVTbzZjRm9xZWN0WkJJemNIdlBhRFZPQ3YrUVJzc3p0RTRkL3Y5MEtDNisv?=
- =?utf-8?B?Slo1SmphOFJZK1lFTzh2N2FMUk9LMUo4SEtXdDl0VWU1aytBZTRvdFdJbzBy?=
- =?utf-8?B?WHFkaXFKM3JMUFZHc2VIRTVUV25odm9TWTBuQVMvU1YvSVlNY1Z1YkJBeFdl?=
- =?utf-8?B?VlcxMUdkcm9uRU9EWnF1eWhPYXhZWDRJVWwxelAyWndvQ3loamVvTmU0WWtV?=
- =?utf-8?B?VXBXWklJSDJqQ2tCUitja2NscTVrcG9yUTBYS0xYRVF2bHhhYjFJNUpxM1ZZ?=
- =?utf-8?B?R3VRMmZaK3Q4dmltVFNKL1NCNUpZWEN5VmM4ekI3Y1RCY0FUZDE3Nm9pcFd5?=
- =?utf-8?B?MlBrRGkxY2hSVDM5RXN4b2ZLcVRZSlJROEl6K0MyakF4cTVMaGxEbXB4c3JV?=
- =?utf-8?B?YkZhYXVXeGt6SkxXYjZnbWFXdk9iU3dGN3BTU050VXhmbG54MG5XUXRKdStZ?=
- =?utf-8?B?c3pIZU1TbnFISE05VURibGh3WE5KbEdSeFpPc3BpUG5mSjVUMHVFM3J6c2NN?=
- =?utf-8?B?WEVzUGNWMWlzd2Q3S3gxeEdNaW50K1FpQlFMME1kdUMwdGtPMFNROEdDamJL?=
- =?utf-8?B?YlRhamxudExRUzl0ODVPNjYxSTcyNHQzQ1hRdTBUMHZPb1hDWVIySWhkVkJS?=
- =?utf-8?B?anlyaDEyQ1MrblU1YnlmV0lnd1pSVm8zelJQNmg0YWFLRUZIVFF4cC81QWhP?=
- =?utf-8?B?L3gwTkRDWGpKdVRZSzNHcUkrZ2Y5Qkx4enJWV3hiUWg4TW5ZRTdMRlZwbFBs?=
- =?utf-8?B?LzR4UlJtSEE0bEVGb05FdWlabURyOXZZaVZvMzJYYndiRjlCRzVzdnF1NU1o?=
- =?utf-8?B?dTFXQnl6bFJlSGJ5QzFuUGVpMWNZUHhBblVUM2duTEsxcUFabkwyRXFsOGdP?=
- =?utf-8?B?bGdPSXR3Z0NWWG1vdUtlZVduR0ZqdXBZU05aWVRPMk13bGR5bVZVUT09?=
+	=?utf-8?B?VVlFK3FWK2VWTHFDb2JvVnlLU3AzVzVValI3STNXc1FNNkUzQzBsZ3N1eUh2?=
+ =?utf-8?B?SjFIckpvZHpGUlcrVlVaV0lzUTJRSzJyc3JUbFZnM1NPd2VWRG94V2dkWlht?=
+ =?utf-8?B?ZVMrY0NsMVgwVmMvN1BUelM2dkdvM2I0MWQxV2U3V29WUTVVajV2WFBCZ1Ft?=
+ =?utf-8?B?VS9hUnltdHd4YnJVUnpER2pCdk5acWIrWUQ0OEdMUlZ6N0xqeUlYanlaNmlv?=
+ =?utf-8?B?bnZqUXZ3ejFtc3JyUEJUeFk2VEhzSkFYbCtUWE9JaDh6dXNFUVlLTkJ4ZE9Q?=
+ =?utf-8?B?NEMwSXVzb3p3NXNCbm9ZNEZOSTR6UnpuaitTdS9MRUw2OW9LVTVtMW1pcGJs?=
+ =?utf-8?B?MTIwb0c3cWRTV3RlREhnU2FjVDNqdFRqSVlWSFFadmZCcmV3Q1k2eHlCU3Zn?=
+ =?utf-8?B?bXdKaTlhRFBjNHp3Z0FrZlNWUTZQVG9EV0pDSEZheUpmR3M2VVowVGdVM0hw?=
+ =?utf-8?B?SXBpY2srSWhNUUYxZlVPYmg4dGtkbGYzU2hZendRcWFIUHh5ZERRblBIWFR5?=
+ =?utf-8?B?ZksrZko5Smd3aWpXTHlTWHVmeXd4ZHVYZ2orNXZMYmJmRXV5VGFzUzZzT2lE?=
+ =?utf-8?B?eEhOV2hLRDRGUXlCd3hnZDVoU2J4S0VrdVorcnk2eEszOGhySlljZXZCNzFo?=
+ =?utf-8?B?WXZ4bFc2bS92c3UyWUxVdGJHQUdkbU84cFhsZU0wUis2K3dtRUY4Tm4ycDhJ?=
+ =?utf-8?B?ekxYNVRtY3VScURmbFNweW8rNnV6NU9HRjNCdExQaFhPSTNrYkVrb2xLRGw3?=
+ =?utf-8?B?SCsyZ3FnUThHRnpNN3F1WkRJSkM3MHBmZERLaWVlK2F5a0JMYi9hTlZCNlQ4?=
+ =?utf-8?B?UXY5UnU1N0lKV0F6ZVhSbXNmNUs4SzVPYmVXTlRjaTdURHNnNkJubmd6RFZV?=
+ =?utf-8?B?Y1ppU1c0L0JWUmt6TDRoNWhOaStBNDJUSXp4OXVPWHRpSGczWXUrMjBMU2hI?=
+ =?utf-8?B?Y3NvcE9YZm45OWd3SWhmenUwM1pIeDZzUDNrM3kvUEQ0WXduSWJnUEdYZ04y?=
+ =?utf-8?B?NUVvdFhqVGFZbkRKMmRSM1VkTTJENlFhWGtadWpjU21RUzA3L05UOFpPODdG?=
+ =?utf-8?B?azJuTlpBYnptL2dNRVVGWXoyczJGcWlWbjJlZUs0UTlHOUQrMmxsM1JkWXYx?=
+ =?utf-8?B?ZW44RFBscEtpL2h3YWxmOHdIbTE3OTYyb3Y5eVhwWnNublEwRjFsQ2pHUFJq?=
+ =?utf-8?B?M0IzRmdWalVmb2pQMHBMUkVmdFR5cm1JQkcxYmlVMVFPT3lVZm1LZlBEZFJt?=
+ =?utf-8?B?bldhY093SVF0S2J3VDJvdHZJUDZhMHdzT0tGUWxlWktPamRyRkQweFNzNmg5?=
+ =?utf-8?B?Vm41RzlKbm9QUDJlbURENUtKS0VPZ2pZL2hsSlhnZ0g0Vzl5WDMrTStVRDJr?=
+ =?utf-8?B?eng1OWxWamZNZHVHQ01FMnUwU0JqSG9JRURVTjRHd3prajdWU2VtSWlJOHpk?=
+ =?utf-8?B?K2l3KzNGd3BwQVBVSmxCL2R0aUEvUkN4dklPQ0twZWlMSmE1NGRUQ3dFYjBP?=
+ =?utf-8?B?ZFFBYWs2UExYNXBTMng1Q1lORlhrZXRIb3RSZTc4OGxwdWtxby9PZEpVeTNB?=
+ =?utf-8?B?d2pzNVdnNFYxSEc2d2NWU0p4SUxRNmxYdUJZL1RSTTZSWUs5Slk1REVVeExV?=
+ =?utf-8?B?VEt0TWhKcXRBemFzcTlka0JFaWIySjZpQmUrd3JQcjJWT3dTZ2E1UDIzQXE3?=
+ =?utf-8?B?TDN2eGsxa2I1M0MwbTNKeHp3YVlMRGl4SWF6Z3A4dHZOOVA1OForUVZwMXQ5?=
+ =?utf-8?B?clFTNiszN0FHcy96NWp5YUo5Ty9ZVm8vREIxZjlya0xmTEY5c0xVVlg1aTVG?=
+ =?utf-8?B?d01CbnoxRUtWQ2VyVnJDZ1BoTGIzQklhL1RLb3A4aWZPWnZ5QTA5em9pbytT?=
+ =?utf-8?B?NDRRTk9SdElpRHVRQlN0dGxYSFIxUm5jN0EwemQ4ZitONG5HT2NnbHo0bmpm?=
+ =?utf-8?B?UGpBZ3o3SVBBQzJWU2RzTWgrdG9ZWG1UWVAyZXFMLzZ4M3Zic1l4Q285NEVH?=
+ =?utf-8?B?RnBKeStyWEsvNkVVazZ5NmFwVHIwUk9kdkRmMkhXTi9sVFNuejJCZ1BoZnNi?=
+ =?utf-8?B?eTVsS3hScUtlR3pzbWJIZ2tZZlZacGNrL2d4aUpTVjV1a3Q0Q1piSE4yUDVC?=
+ =?utf-8?B?eFN0a2pjUUhvR0RNQjFQYzdrbUNiZlhSckIzdnJVdDF2emh4Q3EwT0E0cWJ4?=
+ =?utf-8?B?TzFIbkFyYktrT1NYWFkwS0xMVmU1YUNybWYzYmhpc3JIb3NCV3d4UGhHN0tn?=
+ =?utf-8?B?NDlkdENkUTU5RlNrZEZ2SS8yRUF5NkM3UUY5eUVwOHU1Z2pOZm1Ob0VBWVZH?=
+ =?utf-8?B?WEdFRjJRVnJKRjlZVzJZYjB2WkYxMnpFY3NDMGt5UU1GQmFucTJ2UT09?=
 X-OriginatorOrg: garyguo.net
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 803cfde5-044e-4a58-05fa-08de5aab51fa
+ 7a604ca0-a728-489b-20fc-08de5aad2528
 X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 18:14:59.4926
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 18:28:03.3187
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- viCem0x4aAllO0OEG5bLeKN1b8jYeeCS0w7ujdprqTfXUs5U4/2s+2nVmTm94KgdPyzmJ1OguqUAv5wtUcdSww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5114
-Message-ID-Hash: ZZPXHGG5455PLC3QQ4D732K23FIL3JEU
-X-Message-ID-Hash: ZZPXHGG5455PLC3QQ4D732K23FIL3JEU
+ H/UBfws/9cV37GOA2fn811E5BAn9pX+KpV3Eciq8SsdvL/LkxHE2G5Fi7GVmTgdCeLskaoMQVy1cPhJTBDDl8Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB7326
+Message-ID-Hash: Q2JDRACM3ZWKKK7KU33MMA5NDBFPLQQL
+X-Message-ID-Hash: Q2JDRACM3ZWKKK7KU33MMA5NDBFPLQQL
 X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
+CC: nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZZPXHGG5455PLC3QQ4D732K23FIL3JEU/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q2JDRACM3ZWKKK7KU33MMA5NDBFPLQQL/>
 Archived-At: 
- <https://lore.freedesktop.org/DFW69A2VGB81.1YJ26924JUFII@garyguo.net/>
+ <https://lore.freedesktop.org/DFW6JA3YWVBT.165YBPOMPL0KI@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -217,112 +218,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Jan 22, 2026 at 10:28 PM GMT, Timur Tabi wrote:
-> From: Alexandre Courbot <acourbot@nvidia.com>
+On Thu Jan 22, 2026 at 2:59 AM GMT, Eliot Courtney wrote:
+> We should modulo not bitwise-and here. The current code could, for
+> example, set wptr to MSGQ_NUM_PAGES which is not valid.
 >
-> On Turing and GA100 (i.e. the versions that use Libos v2), GSP-RM insists
-> that the 'size' parameter of the LibosMemoryRegionInitArgument struct be
-> aligned to 4KB.  The logging buffers are already aligned to that size, so
-> only the GSP_ARGUMENTS_CACHED struct needs to be adjusted.  Make that
-> adjustment by adding padding to the end of the struct.
->
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+> Fixes: 75f6b1de8133 ("gpu: nova-core: gsp: Add GSP command queue bindings=
+ and handling")
+> Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
 > ---
->  drivers/gpu/nova-core/gsp.rs    |  8 ++++----
->  drivers/gpu/nova-core/gsp/fw.rs | 14 +++++++++++++-
->  2 files changed, 17 insertions(+), 5 deletions(-)
+>  drivers/gpu/nova-core/gsp/cmdq.rs | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-> index 766fd9905358..bcf6ce18a4a1 100644
-> --- a/drivers/gpu/nova-core/gsp.rs
-> +++ b/drivers/gpu/nova-core/gsp.rs
-> @@ -27,7 +27,7 @@
->  use crate::{
->      gsp::cmdq::Cmdq,
->      gsp::fw::{
-> -        GspArgumentsCached,
-> +        GspArgumentsAligned,
->          LibosMemoryRegionInitArgument, //
->      },
->      num,
-> @@ -114,7 +114,7 @@ pub(crate) struct Gsp {
->      /// Command queue.
->      pub(crate) cmdq: Cmdq,
->      /// RM arguments.
-> -    rmargs: CoherentAllocation<GspArgumentsCached>,
-> +    rmargs: CoherentAllocation<GspArgumentsAligned>,
->  }
+> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gs=
+p/cmdq.rs
+> index 46819a82a51a..f139aad7af3f 100644
+> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
+> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+> @@ -384,7 +384,7 @@ fn cpu_write_ptr(&self) -> u32 {
 > =20
->  impl Gsp {
-> @@ -133,7 +133,7 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) =
--> impl PinInit<Self, Error
->                  logintr: LogBuffer::new(dev)?,
->                  logrm: LogBuffer::new(dev)?,
->                  cmdq: Cmdq::new(dev)?,
-> -                rmargs: CoherentAllocation::<GspArgumentsCached>::alloc_=
-coherent(
-> +                rmargs: CoherentAllocation::<GspArgumentsAligned>::alloc=
-_coherent(
->                      dev,
->                      1,
->                      GFP_KERNEL | __GFP_ZERO,
-> @@ -149,7 +149,7 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) =
--> impl PinInit<Self, Error
->                          libos[1] =3D LibosMemoryRegionInitArgument::new(=
-"LOGINTR", &logintr.0)
->                      )?;
->                      dma_write!(libos[2] =3D LibosMemoryRegionInitArgumen=
-t::new("LOGRM", &logrm.0))?;
-> -                    dma_write!(rmargs[0] =3D fw::GspArgumentsCached::new=
-(cmdq))?;
-> +                    dma_write!(rmargs[0].inner =3D fw::GspArgumentsCache=
-d::new(cmdq))?;
->                      dma_write!(libos[3] =3D LibosMemoryRegionInitArgumen=
-t::new("RMARGS", rmargs))?;
->                  },
->              }))
-> diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/=
-fw.rs
-> index caeb0d251fe5..89be26b597d1 100644
-> --- a/drivers/gpu/nova-core/gsp/fw.rs
-> +++ b/drivers/gpu/nova-core/gsp/fw.rs
-> @@ -904,9 +904,21 @@ pub(crate) fn new(cmdq: &Cmdq) -> Self {
->  // SAFETY: Padding is explicit and will not contain uninitialized data.
->  unsafe impl AsBytes for GspArgumentsCached {}
-> =20
-> +/// On Turing and GA100, the entries in the `LibosMemoryRegionInitArgume=
-nt`
-> +/// must all be a multiple of GSP_PAGE_SIZE in size, so add padding to f=
-orce it
-> +/// to that size.
-> +#[repr(C)]
-> +pub(crate) struct GspArgumentsAligned {
+>      // Informs the GSP that it can process `elem_count` new pages from t=
+he command queue.
+>      fn advance_cpu_write_ptr(&mut self, elem_count: u32) {
+> -        let wptr =3D self.cpu_write_ptr().wrapping_add(elem_count) & MSG=
+Q_NUM_PAGES;
+> +        let wptr =3D self.cpu_write_ptr().wrapping_add(elem_count) % MSG=
+Q_NUM_PAGES;
 
-Hi Timir,
-
-This is not "aligned" to GSP_PAGE_SIZE, but rather just "padded" to
-GSP_PAGE_SIZE, so calling it `GspArgumentsAligned` would be a misnomer.
-
-`GspArgumentsPadded`, perhaps?
+So the actual number of pages is indeed 0x3F, not 0x40? That's interesting.=
+..
 
 Best,
 Gary
 
-> +    pub(crate) inner: GspArgumentsCached,
-> +    _padding: [u8; GSP_PAGE_SIZE - core::mem::size_of::<bindings::GSP_AR=
-GUMENTS_CACHED>()],
-> +}
-> +
-> +// SAFETY: Padding is explicit and will not contain uninitialized data.
-> +unsafe impl AsBytes for GspArgumentsAligned {}
-> +
->  // SAFETY: This struct only contains integer types for which all bit pat=
-terns
->  // are valid.
-> -unsafe impl FromBytes for GspArgumentsCached {}
-> +unsafe impl FromBytes for GspArgumentsAligned {}
+>          let gsp_mem =3D self.0.start_ptr_mut();
 > =20
->  /// Init arguments for the message queue.
->  #[repr(transparent)]
+>          // SAFETY:
 
