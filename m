@@ -4,116 +4,219 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A89AFD778B1
-	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 23:13:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA0EBD778B1
+	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 23:48:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8230D10EC1B;
-	Fri, 23 Jan 2026 23:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8E02510EC0C;
+	Fri, 23 Jan 2026 23:48:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AP92OImq";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="CpAxaW0z";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8EAAA40564;
-	Fri, 23 Jan 2026 23:04:09 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769209449;
- b=YEYl6imqodkW5jB/9tsH4Akj97NTFOiPnMzuSm2Gfx2eiOBqjuuZnql1VBnXqSfWjFxmj
- 8xCTQKhNr5WFcqFtIEmVNcVf1SsNdyOwD/sWUAWyv9f9wR4ablCzQM6MYX7ey9i5rd9klFb
- qyH1CmZrESfWxuoTJyYeM/Fi0NY0kW1V17jt84FUdoLyalcglBlrQb3RCvANDrC1LbR9rL6
- PFayrM/64UNeji27JM0+qyfcaKHrpUbLlFdctuYAjVGHYvLlWJL9MxAusYnaJ7NUb4wl0Le
- wMLGcmZbXD0pxr2JdunG2b3xIO96MwZE7aORxGZjE+qrx61UyV7S2zqR/a7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769209449; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 77DB84067F;
+	Fri, 23 Jan 2026 23:39:46 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769211586;
+ b=lyc99lOjAOYuYBxlYRpInZfSEFA4tMbCSY/2/Fxy404To6IMk3JXCLBzpRbnESOULFrTP
+ UaZHt1De+CAM3HFrtRS08nuBBkBpiYmWhq8ZfLj9pf6mUsf0EmMhVlxfV7pM9ykHpxkxyTf
+ HHni8xJ6lfv6XPc8tLnoxZVu2MPUWj+YZ+ccNKfvIsOu7a+h/RKKNy0lwyDTo2RnTAEzOYn
+ Op3Hw/AuORM5VUTSQqkSbDCJneYXScyd41RWMK8NR3xRyWdEWMwKkEJl0O0SQZMcE4+mYU0
+ 5dy4F+GrbiNMmvtpBXi3CMQpXFkXmRwY3eVhFRtCWB2z188w57QycIUPHCxg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769211586; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=f+g1RZTyXYuUyYeRZUMLatjKr1duJlfQy9Oc+Brrce8=;
- b=TdzLdLIfFXy9bYQmyRpnVUq07wsocAi9GSBSUbmSqb38bVe+exWi/ow9FE0g5KWAS34fQ
- dBS32tXWERoDLeXZKrFY8lQeI7homNFBaTPpAkeBZo9yIuPwIBg36nCeHzvIhgEALLYJEug
- ZGUKMB+atxdiVmvjyUVPI4PlexqSDNBa8mJBM1wwlTHpdIdc8xlNLR7kK42+sn82oN5SmXr
- b43p3A942jS0NFnFr1DZwQ1hE8bjWmKJ/xxZ8IhBorvz4KWKNGr8gBm2jGwp+/XUU0yKbx6
- tFVR+Mfo7mlo/4fZ7hWTfIw5zkRjEU3fE0MgBaRKVa9kWFpXf0oYrH71h9Xw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=fvhKh6rTpAn0J17r1MOuwmjAxBt/ZORJ2Cl8uW7Gk2U=;
+ b=NdXOBOsmHfF2Jl3OwGW3u6u95NzeI1QxO7StSctmQ3mXObZfMU3iYaBacRNOcReOl5gyM
+ NSkJUqrCk8mVu2JtvJe5FyzPZD4jShyIvYio78S9Ouq74MnZf0Dgzt7T0DCJ9E/IAseK7DL
+ 4XHGQFCz3mMnoaUz2uzn9k23mTWif5ri/2ojD+iiJZACqELZ/Vl0poL+F/8hl1rOv0TtMz5
+ u2Y1Fx58nMyhGDDQDzdxyWT5YuLXNccYFNfJnPumTe8Kr14wdjywy/LB1EtC/Ubz9mE1xRE
+ UsCq1krlQ2VnOsEnRxdBpZIMvC148mHx92m4FDP1fr0+ECXMoYMInypvZxeQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E0C824003B
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 23:04:06 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8532C10EC20
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 23:12:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1769209977;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f+g1RZTyXYuUyYeRZUMLatjKr1duJlfQy9Oc+Brrce8=;
-	b=AP92OImqeOopn3/bwZssJS7CVNxbuIpTHxFBBWb+wxDuF1wq7JG1ki8+PKWgOAi2huykb4
-	vth+utbs3IZwWgRa41pL0j2Ua1LeGv+qsjRWL/4wQWgLJNXYGxbBoZbsK+NT1juOCQzTrh
-	H1r7kepjsKoRD7sRqPe5grllqGeZUEY=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-459-zZK0R8oSMmmQ1oQhjEEtCA-1; Fri,
- 23 Jan 2026 18:12:54 -0500
-X-MC-Unique: zZK0R8oSMmmQ1oQhjEEtCA-1
-X-Mimecast-MFC-AGG-ID: zZK0R8oSMmmQ1oQhjEEtCA_1769209972
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 0C12F19775A5;
-	Fri, 23 Jan 2026 23:12:52 +0000 (UTC)
-Received: from GoldenWind.redhat.com (unknown [10.22.89.232])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 1724B1958DC4;
-	Fri, 23 Jan 2026 23:12:49 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	rust-for-linux@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v4 3/3] rust/drm/gem: Use DeviceContext with GEM objects
-Date: Fri, 23 Jan 2026 18:10:15 -0500
-Message-ID: <20260123231230.248500-4-lyude@redhat.com>
-In-Reply-To: <20260123231230.248500-1-lyude@redhat.com>
-References: <20260123231230.248500-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7E0714003B
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 23:39:44 +0000 (UTC)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010016.outbound.protection.outlook.com
+ [40.93.198.16])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4B5B310EC03
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 23:48:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=zRRczAWlOp3Fe5WJEGJDiUdyDHycJrF4aYNghyrINMw7Ovx+kJ5GMu3RXpUEWk1EjFKlOrnAoVFszqXqmZCLCNGxCKoSqyzCMnwPf67HBq/QZc1i1TNvYx3jmtbDajTPaTyZ6NaLVUTrGoF0nzSpIXZfcsIkAM5Loou7F8NpO7HOo1fCEDrfrs/+qqTfayGZPR6sQ8N1P9QkhEwfWV/mNDVdCBk9o30YZc6MPdx6S49ReCP4FEhFdeH745vvqvw63/TNMXrNSxw+9PHuMW0gP449cbg8wjr0JbSYmMVcVVeuBSjCbilbXqQPxHknHumeB3OnbtgUo+jLJwwwpB2iFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fvhKh6rTpAn0J17r1MOuwmjAxBt/ZORJ2Cl8uW7Gk2U=;
+ b=Ip6wxDxTa8NYcRWekzcEQmAaA4LVCS31l4m36VCijcmzQLOo3zqwhT7228A49p/DBDXkrEZgwKyn8YbTWaR9rGcYRnSqNoTzfssBqKFJJY0sOt9o4lruTKzk9NQpkEv4XUN5ID9raph9LQ00Wh95zcNQE/SsNcNFHa3ttIUqXvl75PSBLO3w8sfIA+rnA82Ac9WDF9FSiLYH7luXIFzHmXpTUKOix24BT4ItPav3am7XojldfzTCTP9hpbYcAOkiay21mAEJZZe3znUobCx8f5SMzLY0gzHxYpU/Z3fcOz+RrERNw64Y03qurmP21S430z4b26mt2bOyq9fRB+lNcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fvhKh6rTpAn0J17r1MOuwmjAxBt/ZORJ2Cl8uW7Gk2U=;
+ b=CpAxaW0zKwd0uwj8FnflgdodxNh36IfNzVseCQA+C26PDCeqN+JCcEdYnlfCZXbJQ/50prdSwXLvccphAdH+k/w8TaJRQroT9L6AK/R20zA5PdVHpxKLgnasB1oasCOBMvQghtnxi1QfR9tBwpdGbcWifh0wgSHsdZCKeVVgwSSflD4MCoF/RvOIp8yQKNVroSbdlTnnUZOAFNGeZOjRX4a53m+bHJwvKdd2icOe+ahndBr2ebABA4WpQUTUgqxBwqwf6PMm6cEwlV0Fz/+tjtAFOk9xJaIHcbrwj4sTpzOwz7qnr5z58S/M2pzccxnQ7AZoa3iNylvCvC12i7dlVg==
+Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
+ BY5PR12MB4066.namprd12.prod.outlook.com (2603:10b6:a03:207::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.12; Fri, 23 Jan
+ 2026 23:48:32 +0000
+Received: from DM3PR12MB9416.namprd12.prod.outlook.com
+ ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
+ ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
+ 23:48:32 +0000
+Message-ID: <665f3d43-7f0b-4efc-9092-2a1f7234ddaf@nvidia.com>
+Date: Fri, 23 Jan 2026 15:48:04 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 15/31] gpu: nova-core: Hopper/Blackwell: add FSP falcon
+ EMEM operations
+To: Gary Guo <gary@garyguo.net>, Danilo Krummrich <dakr@kernel.org>
+References: <20251203055923.1247681-1-jhubbard@nvidia.com>
+ <20251203055923.1247681-16-jhubbard@nvidia.com>
+ <DFUE9X1HQG9S.2YDWQ6GDLN36G@garyguo.net>
+Content-Language: en-US
+From: John Hubbard <jhubbard@nvidia.com>
+In-Reply-To: <DFUE9X1HQG9S.2YDWQ6GDLN36G@garyguo.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0356.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::31) To DM3PR12MB9416.namprd12.prod.outlook.com
+ (2603:10b6:0:4b::8)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
-Message-ID-Hash: 3F5SZH5CCURMPY6MDIQC7KFOP3H4M5NB
-X-Message-ID-Hash: 3F5SZH5CCURMPY6MDIQC7KFOP3H4M5NB
-X-MailFrom: lyude@redhat.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|BY5PR12MB4066:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a47af30-4f69-460e-86c1-08de5ad9ea82
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016|7416014;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?OWlBTXhSZHNIak95K2RQVVY1VENtd050cG1YYUQyT1ZXOXdZMW1BZit4djZZ?=
+ =?utf-8?B?UUFLc2NKazJrYllsam5oTU1TcFZKWTM2SU15cWxrTEtJV2E5bXRmMlozTk1t?=
+ =?utf-8?B?QWNZbnVPMmhvZ0M4M1JQemptZUZJZzNIUlJYK1hweGgxc3dEWGNtVCtWSHN1?=
+ =?utf-8?B?clRRcEZid2haYWV1dWRLMUdrL1pMTGw3cVJtVUM5M1drMU1rM1lJMzVyOGVG?=
+ =?utf-8?B?d1VkNVF3VWZmUDdSV2x3OWNVS3VnNzY2UTRVblEwRFNtcXRuTU5YeWRaN2Zh?=
+ =?utf-8?B?YThGZDJ5Y09nMXRLM1g0aW5oOWdDR0ZpaTgvUkYyOHl1dXQyMk9DTVFaOE1E?=
+ =?utf-8?B?ZkVhVU5PQ0dLMlRqOXc0V1d6MG40N3ZQTW8vMC9CR01qVnI1TGR6NnBsZXVW?=
+ =?utf-8?B?dGt1UVFYdjBkZDFkR3RQUlhoM0JuMlJYVDA5QkJtRXRKWHNMeDdNLzd4T0Zw?=
+ =?utf-8?B?MFVXendweTFNeDBOUHpWbHVndnFBU3hVU052L1ExOEVqbTZ2Tm9KM0hKVFpx?=
+ =?utf-8?B?OUJiR3R2TkpObmdsVy93cGZ2ZDNiakdTWlhLWGR2aW52bnNuVVpIcDVjRUxI?=
+ =?utf-8?B?UEtKZmFEc2xVWVFVakF6RW5OSG4vNUg4Z0ZaL1dFQXJTVSs1TXlUZG94OGZn?=
+ =?utf-8?B?bmNudmszdEdUaWNrUFZqcHRWeFVQUUtnb2diUU84dmNleWlrY2t1LzE0Nnhr?=
+ =?utf-8?B?REpWVEo4WU1VY2xxYXl3bitKK2JyOUhhSS8xRmdXS0t0U0U1Zmg1ZVVVeDVK?=
+ =?utf-8?B?MExCaUJVZndGVVFSbXFFZGE2dUNXK1dMUWE5elducHNNbnlGbk85cWVpMXcr?=
+ =?utf-8?B?NXNuTkF1RHRHTWMxdVgrZUpmWFNneUVOazladFRuV1FmeS9ZbUpRdkFKaCsr?=
+ =?utf-8?B?bkpqS3dIVTBTWEpnRm9PSDdXUGhTVWNrc2U1SWhKR1Q5aFI3RE5lcWM1V1VY?=
+ =?utf-8?B?WUlsMmpzZnNCZ3E1UkRvWGsyOTk4WTJnOW5pMTMyN3M2SEFOZVRDWm5yWU13?=
+ =?utf-8?B?NlphWHFSaGhHWUZqUFlNVkJoOWFMZWhRT1prSW9UVklzVjZtdmxrUGhERlAw?=
+ =?utf-8?B?TFBxNDhrSFB4eE1BUEJ2Wk9aNEt6SWltcUVIWkZTbThLTStVTGhrMzBRQTkx?=
+ =?utf-8?B?ZEMyVzBKUHVsK0ZoL3VpZWZtamlySDBHekpVSlJZbk13NjQyZU5vNlFEK1hK?=
+ =?utf-8?B?ajhRTnNkM1RnajRSUUltS0NBeVB6cFV4b1hFbGJCOE9SbXRLNnVJcllxK1Av?=
+ =?utf-8?B?OXk0dk0yRDh0aVN5WmhEWGRnTkF0dis1Qmd1ZDVuMGV2SGpkUEVMbGdlN2dK?=
+ =?utf-8?B?VXFFOUc0M1oyQ2RpeFphZUNUVm9sRXJGeWptdSs3cmhMRDhleUZPbXYybzVS?=
+ =?utf-8?B?SWVlUVFyTE54THkxZ3Q1cU05Zkd2dzRZc2p0TWpWeEdRM0Z0Q1c4ZTVGeWJp?=
+ =?utf-8?B?NUVlZmZDMFozeFNXZUlGWXJmQU1HZ0NDekJLVC8zQ29hd1JlYmJobEZoRlJu?=
+ =?utf-8?B?cGRqbmcyYk1rVms0aWNnQldmMzBjbldRcCtYOCttZ0dGVzhsSy9SWGVRb2pp?=
+ =?utf-8?B?YUpYQm9iL0IzTzBVN2VmNWVXYUNpMm9XSTdhODF2dE1qY1B0bE1VcmZpbGNH?=
+ =?utf-8?B?Y3RvRmNYK3ZieEpITERmajZ1VmhJZ0gxMjZQTFJiTW5TM2lrTWR0WEpTMXIx?=
+ =?utf-8?B?dUVPUTZBd3dQOVhaZ3lscStISC9XWTNrdldEeWVpcmNXVVJJRVVvYkV3TDdY?=
+ =?utf-8?B?MkVTVHBKNkVuMHl1WFRMMGh2cTUyZFl5THB6Y3JXb3QvWEYzM0hkRHNjOFlx?=
+ =?utf-8?B?U3VGZWdkQlMwbFpCQVNmQWwyT2NiTEZuYTJ6NWkxS3QwSWZtZi9wNlJ3cXc2?=
+ =?utf-8?B?WW9MS0FldjJwWjVQMW1GTlhhdU41RlNqcUtMUTlKdDNqR1BTRUFlcW10NHJG?=
+ =?utf-8?B?dGhqb0g5UFJqS0tnTGtYQ2JFSEVwTUsrZTdNdEZIUWUxUkhiK3JraTdkWmdq?=
+ =?utf-8?B?NGY3NGdpOTJHSlphOVlPVlYxV00waUJIdUE0dk9lRmZYY2VVb21kSHJoQ3Ja?=
+ =?utf-8?B?a0xySG54akMvUmVVZnRWNVU5V0JxOENvMDJ3YWVhbVhWbXJBZy94bVVITEt0?=
+ =?utf-8?Q?L+1k=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?a1EreE1JSzlKbXlhaFl6dmlxZ0hVVHRycTRXNUdCZE1sc2tncWp5YS9CYnlM?=
+ =?utf-8?B?Mm1vZmhTNTljL3JoRG80YWZUTWRJakRkdExmMFVGNm94bllmNkJBNEdtaHJ0?=
+ =?utf-8?B?RTlZME1wYThkeXZtNGxSR0t0OWhiWGhCWjdMeGNiMWdUSk5IdWZkaklIS1BK?=
+ =?utf-8?B?RTN4WHdqczUzbzNROTBxaFd5alpLd2s4NU41dGVEMWpHY1hnckJkdmZPeUk4?=
+ =?utf-8?B?L29nV2hHNWp5ZnBQVnVQVVluSU55RVNjRE1EUlpMQU05R0N2SDlGaGdERDBk?=
+ =?utf-8?B?WDRGVWVDK0Fyd096Vjg5NitXc1BWallTTUpGSE1GR3Zla2Naa2Fpb0QwTjV6?=
+ =?utf-8?B?a3FmKzd1a2dEUjMrNng3ZTIvNE1nRXRLbkZxK3RpU2VWN0ZFZVlxMUxqTklp?=
+ =?utf-8?B?MUM2QWlCMjl0Q3U4TTJvV3NiK2F3aEl4R24yTVdVUjFKcUNqajNqQk1UeUFE?=
+ =?utf-8?B?czhpT3JkRXNCQ1VaYmZqTThNbDcwNW9CSjRKWkhDK1FvQ0FWajhhNHNveEVB?=
+ =?utf-8?B?KzR2ZXpTTWh4bHpiSlhQaUk3NTBMM2RwVFdPYlVtWUJBSGs3WVhIcnJOaHRP?=
+ =?utf-8?B?VjV4TzFNcTJTclBTeHhTNk40Wm5WaTRXZFZtM0hyTW1YKzRPb0d1VHE2TkVt?=
+ =?utf-8?B?NUFXTjRLL05VMjhYNDNTRytjM0VjVmJ2cC9ocm11M1NjMXU1R1RWZDRJR1BS?=
+ =?utf-8?B?QkV5aS9qWWZISVExTjJqbXNpa1NyQzd2R0U3ckllY2NSTEZxM1pHZWFBZjJO?=
+ =?utf-8?B?ZWxIYW81OXFEenFDb3RzTlk4cjVpeGNuM2JXcEJ1ZURsMGpvSGQxeldlRUlQ?=
+ =?utf-8?B?YXdPTDB4LytiQnNQR1IrbXUyRnZobDBmVE5RSnFGeUtMekE0M25sSlJYRzZn?=
+ =?utf-8?B?ZVQyT2REYXN0bEVJc3lvWmcwSnRXTEg4dVhPUllUVG9qVGR1NkhDMmhZR0NF?=
+ =?utf-8?B?S2ZRdmNSOER3cDQ3RzJnYytBcWM0Q21RQ1Q1QlROcWR2RzZ2K3VpTk9UNG0x?=
+ =?utf-8?B?dDFDMjZSd0cxZ3ROTHVKWjBVdkVBMC9FcnJ4ckxoUkZxMVozK3c1ZzM5UnVY?=
+ =?utf-8?B?L0J3czhOTjhJTitOUXFSbFdZa25wN2JRN3pJNy93ako1Y0gva1BtcDV2VHJY?=
+ =?utf-8?B?cGRpWVhnZTdlNU1Hb005YU1zdHNBQVZnVk5manBMS2tGUGxtUk8yakZBQUds?=
+ =?utf-8?B?MGFNRHh6ZU1HNjVQZnlWT0pMbDVXejhCdm9WUHVxdGxQdTVtbDZFYnNnSVFj?=
+ =?utf-8?B?Rk5PSS80SCsxRjVhT0NtOEdyek52N1M0Q2NnWitnNnFRM01XVy82V3J0amox?=
+ =?utf-8?B?RHNDZDNqZEg4MU9WYlBySzFQYnd6VUZsWG9jZ0Qzc3RERmNjSS9OQmhZQ3A0?=
+ =?utf-8?B?OWtUUVB2QUVCSkQ4U2FaSk9ldDlwZGJjeFdhOFVoNUVsdnFFbjkvOHloeHUv?=
+ =?utf-8?B?cVZKTktwcFFsdE12TnJ1aGVtakdrUHZrV09kaENnbVV1NFZiaVM4ME5WZGgr?=
+ =?utf-8?B?cmhWWmQ2cFFPbTdtOTE4b3pVQ2twbVc2dThBQTlodkZ2c2toV3BUY2wyTmFW?=
+ =?utf-8?B?S0Z5OHl6NVFxZmxLOUFPRDQvZ3pDWE1IM3BOWWFEYlZtTURKQnRqY053M0pD?=
+ =?utf-8?B?NEdpOW5xWE43S0ZEQlRJZ0xuV3ZOdnFDSE5DK1RsMWVVQ0RTSGV6a3M0TXNR?=
+ =?utf-8?B?QjYwbjZBRFFyY2JYWUlDVFlLWkxVeWFzQUJLOUpyN2h6UXQxNGNVSUNqYlNW?=
+ =?utf-8?B?Nng0MlIrd3FpcVlGRHFUZkpJbFFOaDFYTDY4K0EyYUVDRExRVjJNNlViYmZU?=
+ =?utf-8?B?M3QzRDR0YkVtSVY2bGREbFUwT0RodFRieEJtYUlXTjBqWm4vKzVSN0h0STh0?=
+ =?utf-8?B?UCsyMXlzbERYcWlNcVgwTkhHa3Z1aWYxUkp6c0g1QXNPYU02bWdHUWZydyt3?=
+ =?utf-8?B?Z2NBL2dFUUR3QnVSdklFNEE2RE5SQTZld2dhOWtjcjhXUmRqWlM3eVhSRkxS?=
+ =?utf-8?B?ejl1WlB1UXA2Wll5QUw3RDhoYjNPNGloNWlGS296Tlp2UUJSZjduazI1Qmto?=
+ =?utf-8?B?WlpzOHR3ZWZlV1BHNWhLVUxHbm51UGo1YmdGK0ZhS3F2eVlqTWlMK1dVbEpN?=
+ =?utf-8?B?STI5anJjKzhDL1VQUmpaTk5rSlBtM1I1d0tMKzNCSkxXMnVuVE56V200NVRj?=
+ =?utf-8?B?aWlOaVVvZXQwYUFFei9ZRXl2RkxER0ptRkI0Q0Yxa29NYzdrWXB2UzRSMlhq?=
+ =?utf-8?B?Wm91ZnAybndTUGxTM0ZrOWdHclgvU3FSamQydTlPbnFYdEJyV3J5QmhLS2lE?=
+ =?utf-8?B?aUFzMFNmamsybVl0MGFIVEVBYTRMVmJkM3prQm9UVmFqZHo5NktZdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 1a47af30-4f69-460e-86c1-08de5ad9ea82
+X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 23:48:32.3771
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ X1NsHoP66hqWjqixHrhtYOz8C7OZ8yV9p4mSp0KLfqMwOxjxVd2aKAU1S7BO7kafGvbLoGIwWIm60rHrADIp1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4066
+Message-ID-Hash: OOB3XIVZXAOAFSK6EF44MNSR5JUXV7RQ
+X-Message-ID-Hash: OOB3XIVZXAOAFSK6EF44MNSR5JUXV7RQ
+X-MailFrom: jhubbard@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, Miguel Ojeda <ojeda@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Alice Ryhl <aliceryhl@google.com>,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Asahi Lina <lina+kernel@asahilina.net>,
- Daniel Almeida <daniel.almeida@collabora.com>
+CC: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3F5SZH5CCURMPY6MDIQC7KFOP3H4M5NB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OOB3XIVZXAOAFSK6EF44MNSR5JUXV7RQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260123231230.248500-4-lyude@redhat.com/>
+ <https://lore.freedesktop.org/665f3d43-7f0b-4efc-9092-2a1f7234ddaf@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -123,365 +226,96 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Now that we have the ability to represent the context in which a DRM device
-is in at compile-time, we can start carrying around this context with GEM
-object types in order to allow a driver to safely create GEM objects before
-a DRM device has registered with userspace.
+On 1/21/26 8:06 AM, Gary Guo wrote:
+> On Wed Dec 3, 2025 at 5:59 AM GMT, John Hubbard wrote:
+>> Add external memory (EMEM) read/write operations to the GPU's FSP falcon
+>> engine. These operations use Falcon PIO (Programmed I/O) to communicate
+>> with the FSP through indirect memory access.
+>>
+>> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+>> ---
+>>  drivers/gpu/nova-core/falcon/fsp.rs | 60 ++++++++++++++++++++++++++++-
+>>  drivers/gpu/nova-core/regs.rs       | 10 +++++
+>>  2 files changed, 69 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/nova-core/falcon/fsp.rs b/drivers/gpu/nova-core/falcon/fsp.rs
+>> index 7323ae2f2302..9e796e82e556 100644
+>> --- a/drivers/gpu/nova-core/falcon/fsp.rs
+>> +++ b/drivers/gpu/nova-core/falcon/fsp.rs
+>> @@ -5,15 +5,27 @@
+>>  //! The FSP falcon handles secure boot and Chain of Trust operations
+>>  //! on Hopper and Blackwell architectures, replacing SEC2's role.
+>>  
+>> +use kernel::prelude::*;
+>> +
+>>  use crate::{
+>> +    driver::Bar0,
+>>      falcon::{
+>> +        Falcon,
+>>          FalconEngine,
+>>          PFalcon2Base,
+>>          PFalconBase, //
+>>      },
+>> -    regs::macros::RegisterBase,
+>> +    regs::{
+>> +        self,
+>> +        macros::RegisterBase, //
+>> +    },
+>>  };
+>>  
+>> +/// EMEM control register bit 24: write mode.
+>> +const EMEM_CTL_WRITE: u32 = 1 << 24;
+>> +/// EMEM control register bit 25: read mode.
+>> +const EMEM_CTL_READ: u32 = 1 << 25;
+>> +
+>>  /// Type specifying the `Fsp` falcon engine. Cannot be instantiated.
+>>  #[allow(dead_code)]
+>>  pub(crate) struct Fsp(());
+>> @@ -30,3 +42,49 @@ impl RegisterBase<PFalcon2Base> for Fsp {
+>>  impl FalconEngine for Fsp {
+>>      const ID: Self = Fsp(());
+>>  }
+>> +
+>> +impl Falcon<Fsp> {
+>> +    /// Writes `data` to FSP external memory at byte `offset` using Falcon PIO.
+>> +    ///
+>> +    /// Returns `EINVAL` if offset or data length is not 4-byte aligned.
+>> +    #[allow(dead_code)]
+>> +    pub(crate) fn write_emem(&self, bar: &Bar0, offset: u32, data: &[u8]) -> Result {
+>> +        if offset % 4 != 0 || data.len() % 4 != 0 {
+> 
+> I was about to suggest `is_multiple_of`, but then realize that it's only
+> available in Rust 1.82+...
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
+OK, I've added TODO's for that.
 
----
-V4:
-* Add a comment to explain the Uninit DeviceContext usage in the GEM object
-  vtable (tl;dr: the DeviceContext is meaningless here)
+> 
+>> +            return Err(EINVAL);
+>> +        }
+>> +
+>> +        regs::NV_PFALCON_FALCON_EMEM_CTL::default()
+>> +            .set_value(EMEM_CTL_WRITE | offset)
+>> +            .write(bar, &Fsp::ID);
+>> +
+>> +        for chunk in data.chunks_exact(4) {
+>> +            let word = u32::from_le_bytes([chunk[0], chunk[1], chunk[2], chunk[3]]);
+> 
+> Use `as_chunks()` can save you from doing this.
+> 
+> Also, a typical pattern is `chunk.try_into().unwrap()` -- yes it has an unwrap
+> as `[T]` -> `[T; N]` can fail in general, but not with `chunks_exact`.
+> 
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- drivers/gpu/drm/nova/driver.rs |  2 +-
- drivers/gpu/drm/nova/gem.rs    | 11 +++---
- drivers/gpu/drm/tyr/driver.rs  |  2 +-
- drivers/gpu/drm/tyr/gem.rs     |  3 +-
- rust/kernel/drm/device.rs      | 18 ++++++----
- rust/kernel/drm/driver.rs      |  2 +-
- rust/kernel/drm/gem/mod.rs     | 64 +++++++++++++++++++++++-----------
- 7 files changed, 67 insertions(+), 35 deletions(-)
+Here, I recall having a discussion or two about it, and we concluded
+that we'd rather avoid having to justify an "infallible .unwrap()",
+in favor of just writing out the four chunks. I still like that in this
+particular case, it's just one less "// PANIC: " to *not* have to deal
+with. In other words, one line of code, instead of a line plus one or
+two lines of special comments that someone will later try to turn into
+a proof. haha :)
 
-diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
-index 8cea5f68c3b04..2c13261450406 100644
---- a/drivers/gpu/drm/nova/driver.rs
-+++ b/drivers/gpu/drm/nova/driver.rs
-@@ -67,7 +67,7 @@ fn probe(adev: &auxiliary::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<S
- impl drm::Driver for NovaDriver {
-     type Data = NovaData;
-     type File = File;
--    type Object = gem::Object<NovaObject>;
-+    type Object<Ctx: drm::DeviceContext> = gem::Object<NovaObject, Ctx>;
- 
-     const INFO: drm::DriverInfo = INFO;
- 
-diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
-index 6ccfa5da57617..f6e98b9db58d8 100644
---- a/drivers/gpu/drm/nova/gem.rs
-+++ b/drivers/gpu/drm/nova/gem.rs
-@@ -2,7 +2,7 @@
- 
- use kernel::{
-     drm,
--    drm::{gem, gem::BaseObject},
-+    drm::{gem, gem::BaseObject, DeviceContext},
-     page,
-     prelude::*,
-     sync::aref::ARef,
-@@ -20,20 +20,23 @@ pub(crate) struct NovaObject {}
- impl gem::DriverObject for NovaObject {
-     type Driver = NovaDriver;
- 
--    fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
-+    fn new<Ctx: DeviceContext>(_dev: &NovaDevice<Ctx>, _size: usize) -> impl PinInit<Self, Error> {
-         try_pin_init!(NovaObject {})
-     }
- }
- 
- impl NovaObject {
-     /// Create a new DRM GEM object.
--    pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self>>> {
-+    pub(crate) fn new<Ctx: DeviceContext>(
-+        dev: &NovaDevice<Ctx>,
-+        size: usize,
-+    ) -> Result<ARef<gem::Object<Self, Ctx>>> {
-         if size == 0 {
-             return Err(EINVAL);
-         }
-         let aligned_size = page::page_align(size).ok_or(EINVAL)?;
- 
--        gem::Object::new(dev, aligned_size)
-+        gem::Object::<Self, Ctx>::new(dev, aligned_size)
-     }
- 
-     /// Look up a GEM object handle for a `File` and return an `ObjectRef` for it.
-diff --git a/drivers/gpu/drm/tyr/driver.rs b/drivers/gpu/drm/tyr/driver.rs
-index b574ee1c24587..170ffdfd92a18 100644
---- a/drivers/gpu/drm/tyr/driver.rs
-+++ b/drivers/gpu/drm/tyr/driver.rs
-@@ -177,7 +177,7 @@ fn drop(self: Pin<&mut Self>) {
- impl drm::Driver for TyrDriver {
-     type Data = TyrData;
-     type File = File;
--    type Object = drm::gem::Object<TyrObject>;
-+    type Object<R: drm::DeviceContext> = drm::gem::Object<TyrObject, R>;
- 
-     const INFO: drm::DriverInfo = INFO;
- 
-diff --git a/drivers/gpu/drm/tyr/gem.rs b/drivers/gpu/drm/tyr/gem.rs
-index 1273bf89dbd5d..00804f8c14bd4 100644
---- a/drivers/gpu/drm/tyr/gem.rs
-+++ b/drivers/gpu/drm/tyr/gem.rs
-@@ -3,6 +3,7 @@
- use crate::driver::TyrDevice;
- use crate::driver::TyrDriver;
- use kernel::drm::gem;
-+use kernel::drm::DeviceContext;
- use kernel::prelude::*;
- 
- /// GEM Object inner driver data
-@@ -12,7 +13,7 @@ pub(crate) struct TyrObject {}
- impl gem::DriverObject for TyrObject {
-     type Driver = TyrDriver;
- 
--    fn new(_dev: &TyrDevice, _size: usize) -> impl PinInit<Self, Error> {
-+    fn new<Ctx: DeviceContext>(_dev: &TyrDevice<Ctx>, _size: usize) -> impl PinInit<Self, Error> {
-         try_pin_init!(TyrObject {})
-     }
- }
-diff --git a/rust/kernel/drm/device.rs b/rust/kernel/drm/device.rs
-index a1d9b0e92f3fd..8dd1508c51cec 100644
---- a/rust/kernel/drm/device.rs
-+++ b/rust/kernel/drm/device.rs
-@@ -163,13 +163,17 @@ impl<T: drm::Driver> UnregisteredDevice<T> {
-         master_set: None,
-         master_drop: None,
-         debugfs_init: None,
--        gem_create_object: T::Object::ALLOC_OPS.gem_create_object,
--        prime_handle_to_fd: T::Object::ALLOC_OPS.prime_handle_to_fd,
--        prime_fd_to_handle: T::Object::ALLOC_OPS.prime_fd_to_handle,
--        gem_prime_import: T::Object::ALLOC_OPS.gem_prime_import,
--        gem_prime_import_sg_table: T::Object::ALLOC_OPS.gem_prime_import_sg_table,
--        dumb_create: T::Object::ALLOC_OPS.dumb_create,
--        dumb_map_offset: T::Object::ALLOC_OPS.dumb_map_offset,
-+
-+        // Ignore the Uninit DeviceContext below. It is only provided because it is required by the
-+        // compiler, and it is not actually used by these functions.
-+        gem_create_object: T::Object::<Uninit>::ALLOC_OPS.gem_create_object,
-+        prime_handle_to_fd: T::Object::<Uninit>::ALLOC_OPS.prime_handle_to_fd,
-+        prime_fd_to_handle: T::Object::<Uninit>::ALLOC_OPS.prime_fd_to_handle,
-+        gem_prime_import: T::Object::<Uninit>::ALLOC_OPS.gem_prime_import,
-+        gem_prime_import_sg_table: T::Object::<Uninit>::ALLOC_OPS.gem_prime_import_sg_table,
-+        dumb_create: T::Object::<Uninit>::ALLOC_OPS.dumb_create,
-+        dumb_map_offset: T::Object::<Uninit>::ALLOC_OPS.dumb_map_offset,
-+
-         show_fdinfo: None,
-         fbdev_probe: None,
- 
-diff --git a/rust/kernel/drm/driver.rs b/rust/kernel/drm/driver.rs
-index cfb8884ece700..e6893f089733d 100644
---- a/rust/kernel/drm/driver.rs
-+++ b/rust/kernel/drm/driver.rs
-@@ -110,7 +110,7 @@ pub trait Driver {
-     type Data: Sync + Send;
- 
-     /// The type used to manage memory for this driver.
--    type Object: AllocImpl;
-+    type Object<Ctx: drm::DeviceContext>: AllocImpl;
- 
-     /// The type used to represent a DRM File (client)
-     type File: drm::file::DriverFile;
-diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
-index b4199945db378..3af9f52f8eda4 100644
---- a/rust/kernel/drm/gem/mod.rs
-+++ b/rust/kernel/drm/gem/mod.rs
-@@ -8,6 +8,10 @@
-     bindings,
-     drm::{
-         self,
-+        device::{
-+            DeviceContext,
-+            Registered, //
-+        },
-         driver::{
-             AllocImpl,
-             AllocOps, //
-@@ -22,6 +26,7 @@
-     types::Opaque,
- };
- use core::{
-+    marker::PhantomData,
-     ops::Deref,
-     ptr::NonNull, //
- };
-@@ -33,21 +38,30 @@
- /// [`DriverFile`]: drm::file::DriverFile
- pub type DriverFile<T> = drm::File<<<T as DriverObject>::Driver as drm::Driver>::File>;
- 
-+/// A type alias for retrieving the current [`AllocImpl`] for a given [`DriverObject`].
-+///
-+/// [`Driver`]: drm::Driver
-+pub type DriverAllocImpl<T, Ctx = Registered> =
-+    <<T as DriverObject>::Driver as drm::Driver>::Object<Ctx>;
-+
- /// GEM object functions, which must be implemented by drivers.
- pub trait DriverObject: Sync + Send + Sized {
-     /// Parent `Driver` for this object.
-     type Driver: drm::Driver;
- 
-     /// Create a new driver data object for a GEM object of a given size.
--    fn new(dev: &drm::Device<Self::Driver>, size: usize) -> impl PinInit<Self, Error>;
-+    fn new<Ctx: DeviceContext>(
-+        dev: &drm::Device<Self::Driver, Ctx>,
-+        size: usize,
-+    ) -> impl PinInit<Self, Error>;
- 
-     /// Open a new handle to an existing object, associated with a File.
--    fn open(_obj: &<Self::Driver as drm::Driver>::Object, _file: &DriverFile<Self>) -> Result {
-+    fn open(_obj: &DriverAllocImpl<Self>, _file: &DriverFile<Self>) -> Result {
-         Ok(())
-     }
- 
-     /// Close a handle to an existing object, associated with a File.
--    fn close(_obj: &<Self::Driver as drm::Driver>::Object, _file: &DriverFile<Self>) {}
-+    fn close(_obj: &DriverAllocImpl<Self>, _file: &DriverFile<Self>) {}
- }
- 
- /// Trait that represents a GEM object subtype
-@@ -73,9 +87,12 @@ extern "C" fn open_callback<T: DriverObject>(
-     // SAFETY: `open_callback` is only ever called with a valid pointer to a `struct drm_file`.
-     let file = unsafe { DriverFile::<T>::from_raw(raw_file) };
- 
--    // SAFETY: `open_callback` is specified in the AllocOps structure for `DriverObject<T>`,
--    // ensuring that `raw_obj` is contained within a `DriverObject<T>`
--    let obj = unsafe { <<T::Driver as drm::Driver>::Object as IntoGEMObject>::from_raw(raw_obj) };
-+    // SAFETY:
-+    // * `open_callback` is specified in the AllocOps structure for `DriverObject`, ensuring that
-+    //   `raw_obj` is contained within a `DriverAllocImpl<T>`
-+    // * It is only possible for `open_callback` to be called after device registration, ensuring
-+    //   that the object's device is in the `Registered` state.
-+    let obj: &DriverAllocImpl<T> = unsafe { IntoGEMObject::from_raw(raw_obj) };
- 
-     match T::open(obj, file) {
-         Err(e) => e.to_errno(),
-@@ -92,12 +109,12 @@ extern "C" fn close_callback<T: DriverObject>(
- 
-     // SAFETY: `close_callback` is specified in the AllocOps structure for `Object<T>`, ensuring
-     // that `raw_obj` is indeed contained within a `Object<T>`.
--    let obj = unsafe { <<T::Driver as drm::Driver>::Object as IntoGEMObject>::from_raw(raw_obj) };
-+    let obj: &DriverAllocImpl<T> = unsafe { IntoGEMObject::from_raw(raw_obj) };
- 
-     T::close(obj, file);
- }
- 
--impl<T: DriverObject> IntoGEMObject for Object<T> {
-+impl<T: DriverObject, Ctx: DeviceContext> IntoGEMObject for Object<T, Ctx> {
-     fn as_raw(&self) -> *mut bindings::drm_gem_object {
-         self.obj.get()
-     }
-@@ -105,7 +122,7 @@ fn as_raw(&self) -> *mut bindings::drm_gem_object {
-     unsafe fn from_raw<'a>(self_ptr: *mut bindings::drm_gem_object) -> &'a Self {
-         // SAFETY: `obj` is guaranteed to be in an `Object<T>` via the safety contract of this
-         // function
--        unsafe { &*crate::container_of!(Opaque::cast_from(self_ptr), Object<T>, obj) }
-+        unsafe { &*crate::container_of!(Opaque::cast_from(self_ptr), Object<T, Ctx>, obj) }
-     }
- }
- 
-@@ -122,7 +139,7 @@ fn size(&self) -> usize {
-     fn create_handle<D, F>(&self, file: &drm::File<F>) -> Result<u32>
-     where
-         Self: AllocImpl<Driver = D>,
--        D: drm::Driver<Object = Self, File = F>,
-+        D: drm::Driver<Object<Registered> = Self, File = F>,
-         F: drm::file::DriverFile<Driver = D>,
-     {
-         let mut handle: u32 = 0;
-@@ -137,7 +154,7 @@ fn create_handle<D, F>(&self, file: &drm::File<F>) -> Result<u32>
-     fn lookup_handle<D, F>(file: &drm::File<F>, handle: u32) -> Result<ARef<Self>>
-     where
-         Self: AllocImpl<Driver = D>,
--        D: drm::Driver<Object = Self, File = F>,
-+        D: drm::Driver<Object<Registered> = Self, File = F>,
-         F: drm::file::DriverFile<Driver = D>,
-     {
-         // SAFETY: The arguments are all valid per the type invariants.
-@@ -177,16 +194,18 @@ impl<T: IntoGEMObject> BaseObject for T {}
- ///
- /// # Invariants
- ///
--/// - `self.obj` is a valid instance of a `struct drm_gem_object`.
-+/// * `self.obj` is a valid instance of a `struct drm_gem_object`.
-+/// * Any type invariants of `Ctx` apply to the parent DRM device for this GEM object.
- #[repr(C)]
- #[pin_data]
--pub struct Object<T: DriverObject + Send + Sync> {
-+pub struct Object<T: DriverObject + Send + Sync, Ctx: DeviceContext = Registered> {
-     obj: Opaque<bindings::drm_gem_object>,
-     #[pin]
-     data: T,
-+    _ctx: PhantomData<Ctx>,
- }
- 
--impl<T: DriverObject> Object<T> {
-+impl<T: DriverObject, Ctx: DeviceContext> Object<T, Ctx> {
-     const OBJECT_FUNCS: bindings::drm_gem_object_funcs = bindings::drm_gem_object_funcs {
-         free: Some(Self::free_callback),
-         open: Some(open_callback::<T>),
-@@ -206,11 +225,12 @@ impl<T: DriverObject> Object<T> {
-     };
- 
-     /// Create a new GEM object.
--    pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
-+    pub fn new(dev: &drm::Device<T::Driver, Ctx>, size: usize) -> Result<ARef<Self>> {
-         let obj: Pin<KBox<Self>> = KBox::pin_init(
-             try_pin_init!(Self {
-                 obj: Opaque::new(bindings::drm_gem_object::default()),
-                 data <- T::new(dev, size),
-+                _ctx: PhantomData,
-             }),
-             GFP_KERNEL,
-         )?;
-@@ -219,6 +239,8 @@ pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
-         unsafe { (*obj.as_raw()).funcs = &Self::OBJECT_FUNCS };
- 
-         // SAFETY: The arguments are all valid per the type invariants.
-+        // INVARIANT: We use `dev` for creating the GEM object, which is known to be in state `Ctx` -
-+        // ensuring that the GEM object's pointer to the DRM device is always in the same state.
-         to_result(unsafe { bindings::drm_gem_object_init(dev.as_raw(), obj.obj.get(), size) })?;
- 
-         // SAFETY: We will never move out of `Self` as `ARef<Self>` is always treated as pinned.
-@@ -232,13 +254,15 @@ pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
-     }
- 
-     /// Returns the `Device` that owns this GEM object.
--    pub fn dev(&self) -> &drm::Device<T::Driver> {
-+    pub fn dev(&self) -> &drm::Device<T::Driver, Ctx> {
-         // SAFETY:
-         // - `struct drm_gem_object.dev` is initialized and valid for as long as the GEM
-         //   object lives.
-         // - The device we used for creating the gem object is passed as &drm::Device<T::Driver> to
-         //   Object::<T>::new(), so we know that `T::Driver` is the right generic parameter to use
-         //   here.
-+        // - Any type invariants of `Ctx` are upheld by using the same `Ctx` for the `Device` we
-+        //   return.
-         unsafe { drm::Device::from_raw((*self.as_raw()).dev) }
-     }
- 
-@@ -264,7 +288,7 @@ extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
- }
- 
- // SAFETY: Instances of `Object<T>` are always reference-counted.
--unsafe impl<T: DriverObject> crate::sync::aref::AlwaysRefCounted for Object<T> {
-+unsafe impl<T: DriverObject, Ctx: DeviceContext> AlwaysRefCounted for Object<T, Ctx> {
-     fn inc_ref(&self) {
-         // SAFETY: The existence of a shared reference guarantees that the refcount is non-zero.
-         unsafe { bindings::drm_gem_object_get(self.as_raw()) };
-@@ -279,9 +303,9 @@ unsafe fn dec_ref(obj: NonNull<Self>) {
-     }
- }
- 
--impl<T: DriverObject> super::private::Sealed for Object<T> {}
-+impl<T: DriverObject, Ctx: DeviceContext> super::private::Sealed for Object<T, Ctx> {}
- 
--impl<T: DriverObject> Deref for Object<T> {
-+impl<T: DriverObject, Ctx: DeviceContext> Deref for Object<T, Ctx> {
-     type Target = T;
- 
-     fn deref(&self) -> &Self::Target {
-@@ -289,7 +313,7 @@ fn deref(&self) -> &Self::Target {
-     }
- }
- 
--impl<T: DriverObject> AllocImpl for Object<T> {
-+impl<T: DriverObject, Ctx: DeviceContext> AllocImpl for Object<T, Ctx> {
-     type Driver = T::Driver;
- 
-     const ALLOC_OPS: AllocOps = AllocOps {
+
+thanks,
 -- 
-2.52.0
+John Hubbard
 
