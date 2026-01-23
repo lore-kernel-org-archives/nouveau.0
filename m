@@ -4,145 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A36BD77880
-	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 17:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2AC7D7788F
+	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 17:09:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 97F1A10EB69;
-	Fri, 23 Jan 2026 17:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0D39410EB6C;
+	Fri, 23 Jan 2026 17:09:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MkHIYMvZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pCkq1BVR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 34B7440564;
-	Fri, 23 Jan 2026 16:51:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 98DFB40564;
+	Fri, 23 Jan 2026 17:00:41 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769187116;
- b=UA3sNuW4lhQ96+sL5m+40qI4XbT5H87H3/iFIQqVgoTUW+cz0HNpWVHaoXQQ2ecDDbgYw
- BI3EWnRzpiWGNeZhT8zscZoEJ/J0FRrTgRVr16DIm0PngKIq0ytpKvIDPo25aw+6fn2pQTX
- 1NKogbCa0une7IXkLL/rXPx+zK5i8RtbGplTXYNsYuJgDMbCp4rK6QMUc65rqmvtvPRKbSJ
- f5tIZQwOer9E4epnh2JN+WxMm5Pu/DZcT7qO7ufXVs5aiI0vKTFzFOGGEIxDvBvsFmDKcRz
- bnicQYI5+zs7xK6hXr3Dy8+KM+9ItkJaodweAllsLOTa3lhL9RFzDKsa/EVA==
+ s=20240201; t=1769187641;
+ b=Oz9HZXgvrq+txOSHWrmkHbl+U2rSP/kAaodI4e5qxg5hHzRtnoFuTzs5MQSDysOyBm4NM
+ xL5FDNE8ZN+AYiMVCaqNRAQghV4ml4vdFBCTp2mzfAYPJ01zupsy/Mvwt4Er5YFYOb0SzC1
+ +zKNPQinGvAkWQARYXU5W8BENdoSD7vrMB2tQRDO2/2FqCh4NlhpdKgbybPs41rCX1MNAxC
+ bic4O/hguc8rdFCwZUyZZzTLXxTbjBB32snJD3MhHztR8rLvkjnTf4g51jD9jVINcHMgSNP
+ ymb57Lyd+lwIv7BqsfLN7q9DQRgTzJBinyDFVhX88U8r0gQzTNgDB1K637vQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769187116; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769187641; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=oYRZQtOI+KB8tYFyNN3GRXz5SFLWYG0fejboN/bZV20=;
- b=Z+AlvY3xt0+c6co5Xi12lodhu41WqpJUQOmOjcxBhJGEzA7ZcBn2bjeQVSGKJRdm0j/nS
- RGKymX6ockSAXqxfZpT2y0ss5R/5PSknsAqF5yNJckmsPOPFPxf7/PYTeq784pM5JBshs6f
- ygB+/yPahZ8IH6jlyD2HNA74guDvib6nGvgbilWTH1rkmWSKHoER5xL8RpjZTqZdGNjLMeQ
- T9JzvZE3/zSdU9tmnqcreBiSKnkmlAfxfp0GRZdQzvFIOA1jMWWT3IW5WqcO/5ZWYV04Xnv
- 8R75qkbGf+U/ByzNK6Cl9Ck1RxsxI0x9Eum0wH7uD+hYf8O66QRST15tbG5Q==
+ bh=ZjygBu1pqjxwbb/k+Sx9rqudmdsxx0uvNQw1cW4SwPs=;
+ b=H4I1oSgYMX04b9EwBMzfuxBH4wN7+BHJY5HOmB4kmt4u2GFTAHO5wb1XS7bIUB0lh/Duy
+ 0i0uo0Jg/r6zBeUL3v4OKHEFxqwUU8gl/v+f1hFBLo5aiDqvE2ftH36UCIJUpSFE8gGMyBZ
+ CVuj+fpkhTc/B/x0Ot2MaY71tnKyfhjE3SHgaBCZ79Y669lMTfCjIDWpIeaOLPLyQjzkgl2
+ 6qEOp6A0TdDVzlpcUO6vXuiAfrbPy1QWZZFtmhLpJCps2MkI1OqGbPqDbGHpLgoZq0wLmCV
+ wn1H+a/kYX526ElQ1t2J19EJuEElbTjxN2O2+iUtZnsTpTIhtc4L29mWx7qg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 894364031A
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 16:51:54 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8CCEB10E2B9
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 17:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1769187644;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oYRZQtOI+KB8tYFyNN3GRXz5SFLWYG0fejboN/bZV20=;
-	b=MkHIYMvZ6kKr6vE0SscKDl7QNF3hZE/RdEim2x3NiIg56XdlreXCWb+7WDiPSfu8O6N944
-	J6mHmQhklZJHutpWr4fGiHfrlhkc+MsTihL8CJz9xIoL+G+U70Se/Qtr7qklOTgCRAEqkC
-	JCPYnVS6ZBKdTW+2uugYDFITMG5HLGE=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-59-TXfWWhnDMhuGJtRBOp1MnA-1; Fri, 23 Jan 2026 12:00:43 -0500
-X-MC-Unique: TXfWWhnDMhuGJtRBOp1MnA-1
-X-Mimecast-MFC-AGG-ID: TXfWWhnDMhuGJtRBOp1MnA_1769187642
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-8c6a341ac9fso600958085a.3
-        for <nouveau@lists.freedesktop.org>;
- Fri, 23 Jan 2026 09:00:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769187642; x=1769792442;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oYRZQtOI+KB8tYFyNN3GRXz5SFLWYG0fejboN/bZV20=;
-        b=ERqneVZTQe5JbG7Lao68GO1xHuyP390Yrme4nOGjZAX39hiFID0gMANKE+qH8DY8Rq
-         L1OOZC/eyvjf+MK4WtBj6r20pO318lEREesjy3ZdmEPsLeW9CIkBIwnU9jb2UYibyY9b
-         j1cH0cxfunwI/hWPhezNDzsE37feZpVMxa8ZavcgAfCZKrVwjGbXIs3rcfKKYGWfJ8VU
-         6HM9LXrZOjH6MoYtFnezOjcxbtyucfPT5FeVIVMuWQ9wPcFHw/LxRjNEQAH0GFquQghN
-         +0u2K4fv+FsDY1FkQb6b0QsCMsBXdqZ56bYouJaiOrXrzoBeqteVW/ynaZ7C3RDv83XD
-         ZiEw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGTYgpO8VmgZVv9Gbr5fx3G8Dqx5HV76d7MStBRUwwRUorFGtk7HAHmQ1ew3QsE7ZXD/Caslwt@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywcbqikjcf5V9MwWXjthWLv/Di3ujvvN1/oqEmF1tGtmSZY2tul
-	x2ZhijX7tISn4yua8JU/xC1VtazbfTySQe/Tl+8btuC8ntNfHGlEf4PuX//NRoiBqAEJs/8r/cs
-	wB1uAsiR23t0bnBCCm4bVlV6wd5QTVmGBYZ4fnloEEAlyfjrzbjkuzrfYXnG/Mv9A5jM=
-X-Gm-Gg: AZuq6aJG2S1WvWv71SziIn4w/1qx6kaZ1lBOFGLWAQ20pqo7NBq7XqsQFTeZL+JTQOR
-	BZUD8/D70D4I1ITp5mZgs1CCNh/zn8R8x3FqzcERvSeVYerwwDlwSVo40GIl9uWJaiSpbNwjQD0
-	O3QfRyHPIivPHBuMRKxAIW67y3lD99cc7EO0zbRvZD7R3IjmORblxuYBlQ6ronG5KDkP5bC+Zrr
-	ekjhTvaK3BuhU4GD/tWPVbFoXYQMfFYgtRPG/RhV8uNKf2FtTjJJqjxtgqOxgK9PIjCzy5uL1xB
-	Sf06T++uoKgfq1WyIBFXw5hazuafqAi1Vl0qDjGObWqFAVccHFFpym097zalnw+Sv8yPGQ3LUgo
-	ulVIQFQ==
-X-Received: by 2002:a05:620a:40cd:b0:8c5:38b3:fefa with SMTP id
- af79cd13be357-8c6e2e4c7cbmr393958285a.79.1769187637841;
-        Fri, 23 Jan 2026 09:00:37 -0800 (PST)
-X-Received: by 2002:a05:620a:40cd:b0:8c5:38b3:fefa with SMTP id
- af79cd13be357-8c6e2e4c7cbmr393887885a.79.1769187633428;
-        Fri, 23 Jan 2026 09:00:33 -0800 (PST)
-Received: from [192.168.8.4] ([100.0.180.93])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8949193add8sm22302406d6.45.2026.01.23.09.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jan 2026 09:00:31 -0800 (PST)
-Message-ID: <47cbb2bb4462331e5ffa56da488d8ffab9a5fcd7.camel@redhat.com>
-Subject: Re: [PATCH v3 2/3] rust/drm: Don't setup private driver data until
- registration
-From: lyude@redhat.com
-To: Daniel Almeida <daniel.almeida@collabora.com>
-Date: Fri, 23 Jan 2026 12:00:28 -0500
-In-Reply-To: <E3CBBAB1-4EED-4052-B9DC-AAEB58D67265@collabora.com>
-References: <20260122225057.3589500-1-lyude@redhat.com>
-	 <20260122225057.3589500-3-lyude@redhat.com>
-	 <E3CBBAB1-4EED-4052-B9DC-AAEB58D67265@collabora.com>
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43)
-MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 7gFidXU8A996YCVSVxrVj1CQYYtq-pDRjN04QrGCDns_1769187642
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4A3F5400C5
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 17:00:38 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 874B310EB62;
+	Fri, 23 Jan 2026 17:09:29 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 450C6442C5;
+	Fri, 23 Jan 2026 17:09:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B204BC4CEF1;
+	Fri, 23 Jan 2026 17:09:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769188169;
+	bh=f+5R3JjKS78CLRcPp/zk8EZGYV2IyAlDbob41E0jGxM=;
+	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+	b=pCkq1BVRkt6UcdQekae22ylsavZ31j2jTyO8zTmWNTofhT5FduLMCzTiSC/wlIOQd
+	 tVo4GSmp0pl1zQWgFpAcUSRKyJzs+gYg5VWzDeXcx/2eg1o/YaAX1tzPO78SwlATzj
+	 eq5//FZKCyWVbxmRLlsofp7Le3K/wSIWkEssD6vw9ybk60joiOZDrCDeCivtf3leN/
+	 413W+uG6Siydgo67ZqfGwNECbm6XRX/qANShby5hxZIobEAZ5rHaL3n+L0zAdbPNxN
+	 2czIooc9BJcrFR44ZdSGjd+S+vBpNixHcOG1cFDQSUBv8BBm56jb3/rIOz+clV+zD5
+	 c4sgFJQ/r15Jg==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: WRLGPFIXRKGLE63L72736EQNDGFV44DM
-X-Message-ID-Hash: WRLGPFIXRKGLE63L72736EQNDGFV44DM
-X-MailFrom: lyude@redhat.com
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 23 Jan 2026 18:09:24 +0100
+Message-Id: <DFW4V2S0HUNK.1QCRUK104TQZE@kernel.org>
+To: "Lyude Paul" <lyude@redhat.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v3 1/3] rust/drm: Introduce DeviceContext
+References: <20260122225057.3589500-1-lyude@redhat.com>
+ <20260122225057.3589500-2-lyude@redhat.com>
+In-Reply-To: <20260122225057.3589500-2-lyude@redhat.com>
+Message-ID-Hash: LG4VGBER4746F4ENORQ2CX42B7GWAMST
+X-Message-ID-Hash: LG4VGBER4746F4ENORQ2CX42B7GWAMST
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
 CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- nouveau@lists.freedesktop.org, Miguel Ojeda <ojeda@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Alice Ryhl <aliceryhl@google.com>,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ Miguel Ojeda <ojeda@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Alice Ryhl <aliceryhl@google.com>,
  Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Asahi Lina <lina+kernel@asahilina.net>
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WRLGPFIXRKGLE63L72736EQNDGFV44DM/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LG4VGBER4746F4ENORQ2CX42B7GWAMST/>
 Archived-At: 
- <https://lore.freedesktop.org/47cbb2bb4462331e5ffa56da488d8ffab9a5fcd7.camel@redhat.com/>
+ <https://lore.freedesktop.org/DFW4V2S0HUNK.1QCRUK104TQZE@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -152,66 +106,105 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, 2026-01-22 at 22:52 -0300, Daniel Almeida wrote:
-> > @@ -254,7 +240,15 @@ pub fn new(dev: &device::Device, data: impl
-> > PinInit<T::Data, Error>) -> Result<S
-> > #[repr(C)]
-> > pub struct Device<T: drm::Driver, C: DeviceContext =3D Registered> {
-> > =C2=A0=C2=A0=C2=A0=C2=A0 dev: Opaque<bindings::drm_device>,
-> > -=C2=A0=C2=A0=C2=A0 data: T::Data,
-> > +
-> > +=C2=A0=C2=A0=C2=A0 /// Keeps track of whether we've initialized the de=
-vice data
-> > yet.
-> > +=C2=A0=C2=A0=C2=A0 pub(crate) data_is_init: AtomicBool,
->=20
-> Why don=E2=80=99t we make the data a member of the Registered context?
+On Thu Jan 22, 2026 at 11:46 PM CET, Lyude Paul wrote:
+> diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver=
+.rs
+> index b1af0a099551d..99d6841b69cbc 100644
+> --- a/drivers/gpu/drm/nova/driver.rs
+> +++ b/drivers/gpu/drm/nova/driver.rs
+> @@ -21,7 +21,7 @@ pub(crate) struct NovaDriver {
+>  }
+> =20
+>  /// Convienence type alias for the DRM device type for this driver
+> -pub(crate) type NovaDevice =3D drm::Device<NovaDriver>;
+> +pub(crate) type NovaDevice<Ctx =3D drm::Registered> =3D drm::Device<Nova=
+Driver, Ctx>;
 
-A couple of different reasons. For one: not having it embedded as part
-of Device would complicate trying to go from the device's private data
-using container_of! to the actual Device struct, which isn't great for
-workqueues.
+Nothing for this patch (series), but I think we should get rid of this type
+alias, I think it's confusing.
 
-The other much more important reason is that Registered isn't going to
-be the only typestate that has access to the driver's private data in
-the future.=C2=A0With KMS, nearly all of the modesetting callbacks for a
-driver can be invoked before userspace registration. E.g. consider a
-modesetting driver that needs to perform a modeset pre-registration so
-that the hardware is in a known good state before being exposed to
-userspace.
+> +/// A typed DRM device with a specific [`drm::Driver`] implementation an=
+d [`DeviceContext`].
+> +///
+> +/// Since DRM devices can be used before being fully initialized and reg=
+istered with userspace, `C`
+> +/// represents the furthest [`DeviceContext`] we can guarantee that this=
+ [`Device`] has reached.
+> +///
+> +/// Keep in mind: this means that an unregistered device can still have =
+the registration state
+> +/// [`Registered`] as long as it was registered with userspace once in t=
+he past, and that the
+> +/// behavior of such a device is still well-defined. In such a situation=
+, the behavior of any
+> +/// functions which interact with userspace will simply be no-ops. Addit=
+ionally, a device with the
 
-To clarify what this looks like: you'll recall that I made a diagram
-showing a high-level overview of the DRM initialization process for the
-documentation for DeviceContext. The second stage in that diagram,
-which I'm currently calling Init, is the context that we're going to
-need to eventually add a typestate for.
+This is still not correct, the are not guaranteed to be no-ops. We can stil=
+l
+have callbacks from userspace after the DRM device is unregistered.
 
-FWIW, this is more or less what the flow will look like with this new
-context. Indenting indicates calling down to a function from within the
-function above
+> +/// registration state [`Uninit`] simply does not have a guaranteed regi=
+stration state at compile
+> +/// time, and could be either registered or unregistered. Since there is=
+ no way to guarantee a
+> +/// long-lived reference to an unregistered device would remain unregist=
+ered, we do not provide a
+> +/// [`DeviceContext`] for this.
+> +///
+> +/// # Invariants
+> +///
+> +/// * `self.dev` is a valid instance of a `struct device`.
+> +/// * The data layout of `Self` remains the same across all implementati=
+ons of `C`.
+> +/// * Any invariants for `C` also apply.
+> +#[repr(C)]
+> +pub struct Device<T: drm::Driver, C: DeviceContext =3D Registered> {
+> +    dev: Opaque<bindings::drm_device>,
+> +    data: T::Data,
+> +    _ctx: PhantomData<C>,
+> +}
 
- * UnregisteredDevice::new(d: device::Device) -> UnregisteredDevice<T>
-    - // Creates Crtcs, Connectors, etc.
-      KmsDriver::probe(d: &UninitializedKmsDevice)
- * // The driver sets stuff up
- * Registration::new_foreign_owned(
-   =C2=A0 dev: UnregisteredDevice,
-   =C2=A0 data: impl PinInit<T::Data>
-   ):
-    - // Initialize `data`, so driver data is ready at this point
-    - KmsDriver::pre_registration_init(d: &Device<T, Init>)
-    - // Perform actual userspace registration
+<snip>
 
-If it wasn't clear too: this means tyr won't really need to do anything
-when we add the new DeviceContext typestate :)
+> -    /// Registers a new [`Device`](drm::Device) with userspace.
+> +    /// Registers a new [`UnregisteredDevice`](drm::UnregisteredDevice) =
+with userspace.
+>      ///
+>      /// Ownership of the [`Registration`] object is passed to [`devres::=
+register`].
+> -    pub fn new_foreign_owned(
+> -        drm: &drm::Device<T>,
+> -        dev: &device::Device<device::Bound>,
+> +    pub fn new_foreign_owned<'a>(
+> +        drm: drm::UnregisteredDevice<T>,
+> +        dev: &'a device::Device<device::Bound>,
+>          flags: usize,
+> -    ) -> Result
+> +    ) -> Result<&'a drm::Device<T>>
+>      where
+>          T: 'static,
+>      {
+> -        if drm.as_ref().as_raw() !=3D dev.as_raw() {
+> +        let this_dev: &device::Device =3D drm.as_ref();
+> +        if this_dev.as_raw() !=3D dev.as_raw() {
 
->=20
-> > +
-> > +=C2=A0=C2=A0=C2=A0 /// The Driver's private data.
-> > +=C2=A0=C2=A0=C2=A0 ///
-> > +=C2=A0=C2=A0=C2=A0 /// This must only be written to from
-> > [`drm::Registration::new`].
-> > +=C2=A0=C2=A0=C2=A0 pub(crate) data: UnsafeCell<MaybeUninit<T::Data>>,
-> > +
-> > =C2=A0=C2=A0=C2=A0=C2=A0 _ctx: PhantomData<C>,
+I still think this change is unnecessary and the name 'this_dev' is mislead=
+ing,
+as it actually is the parent device.
 
+>              return Err(EINVAL);
+>          }
+> =20
+>          let reg =3D Registration::<T>::new(drm, flags)?;
+> +        let drm =3D NonNull::from(reg.device());
+> +
+> +        devres::register(dev, reg, GFP_KERNEL)?;
+> =20
+> -        devres::register(dev, reg, GFP_KERNEL)
+> +        // SAFETY: Since `reg` was passed to devres::register(), the dev=
+ice now owns the lifetime
+> +        // of the DRM registration - ensuring that this references lives=
+ for at least as long as 'a.
+> +        Ok(unsafe { drm.as_ref() })
+>      }
