@@ -4,79 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4051DD77881
-	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 17:22:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD1B1D7789E
+	for <nouveau@archiver.kernel.org>; Fri, 23 Jan 2026 17:59:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8A39410EB85;
-	Fri, 23 Jan 2026 17:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AA72310EB92;
+	Fri, 23 Jan 2026 17:59:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="U4gJDbYe";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BKqLz4fo";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1E24D4062E;
-	Fri, 23 Jan 2026 17:13:43 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769188423;
- b=UJvvOPNigG2+Gu55xUb1D0b3N5LQBCpFJ/PFPNhV5+bVUfjeONLjumd5QmrRB7yVAGNd6
- 7fpgLjBbcwr2jtePfYhrJK3DCwe6pDapEdcairS+jm0WQFZ9Q+hY5zAD/XlGBN9k0939KJ4
- tMAyRXNBrJg/hDonSfKy2wKPoWdrYMkqieEGqIrHTY+xvcAo8AY0GL6hC5vOh7UDse1T29c
- hB6WiFsEO4JdOXdiHi5dlkEpOXTMAePuBUQZrrz+2w09CEYrI8tC5kPEZN3uSicaBBN7tKT
- a+B0/7Foi3c6vUYbEGlCiuuFjTN+Qd88YaHVG7VuB+XmdOWOmdPv1YyiOQTQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769188423; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 2621140564;
+	Fri, 23 Jan 2026 17:50:51 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769190651;
+ b=qeTV3VOSBiMPFmbW/pLwgMbeNtzviYN81x1U5Luce0ChZSNmzsm1C5ZIrE5n76abYo9mq
+ 1V0W+N55fuysu0tUA0TG5qFwoiHCStabPb9k3Vcod2fZGLCBv+4X9RqLH2KQSGE9HVALhZW
+ QHuEPo/iAARwBIgvqbz3YJiv3yQWMn+feXaEMWDpbvdyg5wUM6y2glVeB5wI3ieT0WCgCnL
+ 4epwoj2XKHlGh+3C3Q3O/6jwpjw/jlvLMuryFrqxTCmaLlAV+4RvaqbMyRKpZCr8uozgpNc
+ VyrVk70K2xYwZjrrCgvrJAIq6B/4DLekYzky2vHB4Rv8UNKr1RGn0r7FwBLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769190651; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=pHm+rlGzuLYaE1VzbvBNI4D0SsQTC6Qs6uu7L1fzp1U=;
- b=c1unbTvvXxygooKOmyMu09LSwAVdftXyd+EVrib5+RI88HwWbksd/lqFdDoA+63IZvHOd
- O5z2pwLdbB4klc+5OG0tVEDKhqWcPJTQ8PzTVZedqk8rU/J+eM/VpQ99t1+rrWY+SlMN9Ov
- qdWHbNxsH+KBNJc+IPGB3skhLu6rGd5x66XI29NEoq6jCYas0BrbMFuOUUVf/QKnEuRrnl3
- f2FYkY03km7lsH9IiW7V0rL0IBmslJZ/+gNXVUNgG+giktAYtMqIXNrRYkWUKG30bVza38i
- GGuN/JVwRW9NljDNvAp4p4ppesyIgjCTi0wZmxnsjEuq8WkE0ZplAb5pKydw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=Wulo3LjU0yHBx6vkvZw+QU4Hm2G89h8IrdRJ+ollruI=;
+ b=jIVXC3kgGRPgjuR3mPP19BIqjk9GAZSyYpTn/V/NLK0aEeujy6RbpvZwSm2qTCw81saOH
+ NY9Yf7OhzUpI0Xuc16QB1C/b4xUGZiP0GFqYA5sUXr1VFVx1rH+6B8qRrvmJnioezKVL4Gm
+ aq8idoN6RsZ0kvFQJ9cYYqK0bUIgzvzjzfXnJO2RBBxxyG55ygi1ivJnFSZKJmpvVFvv1kc
+ xUG4LyOuuONkTZ3eER5lOXxGe3qtxf2+QiVG70/+08ZbSGq2XHExi2wH86Te6oCnGD6Ew1p
+ xsaO/yTGiXif6aBFbMXcgZFpOoQGJ8Sz9lV3veV+Z1JH8TebaXi1EGIO4KlA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 253844031A
-	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 17:13:41 +0000 (UTC)
-Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022073.outbound.protection.outlook.com [52.101.101.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3A22210E2D5;
-	Fri, 23 Jan 2026 17:22:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CsCE2O4peFXbDREmNTK/oWcUvRswdD5+A+YUuhytRJXR6RADva1e2UB8nKmzeKkvbGd+x+kzDazqdmd91HSWMPcLz568nVwCwVgZoi8DbAxG0giwdUOv7qtnslK81ddeYqSvJ+vvOMUG51gqDM35koQiBnRE5S4uF0+LTFcqys3h9S7aUfwUvd76s4xoI/U4GRA1JZvDq0FlApfLfkgBNb7exslpxf+3eFLxiWaLoaiE0P5MwggKNv45WvseGzdSYF0lmnAmSfC9nzTuIcERnhgfOZr2AYa9u5m0SWfFWyXj1iJtKpVqHgnfsku3DKhmO8THZHA8xhyka1mM3LMzKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pHm+rlGzuLYaE1VzbvBNI4D0SsQTC6Qs6uu7L1fzp1U=;
- b=TJsiNm4ypWmuXz5VCvp5ErqthNREe3wKV8N3PuehcwGuQLsgtIvNpX9ratSS/5VUP9xWAat8db7iS8P1ZnZiOTFPsxQQ7jw5VlFATXp3XxaLHEhVV4cncVrH0D+IVQMOtmkm1If6NxeBTdeldm1bg/lwup+D4ZMQGjUvmhVVGUEC9pF/DQou2CRouXBeQDyNhLBitn2r7G/YRGhugP+2R2zfOrYslFXtwTTfTsvZt1DBGCziepQ/axnGt7g21jMrzow4VMw+RjFkFp6EWa4uj1npTswDO3t0bRuJaQ/cbbdGggmHucM1XHdrcZZyiVQautmiASJ1lHNnRWezgNPsHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pHm+rlGzuLYaE1VzbvBNI4D0SsQTC6Qs6uu7L1fzp1U=;
- b=U4gJDbYeh03qGXaIC3isKC3Cj9h8PVkVhMwwKladwUV6X8fJ7L5zq+rq9H6g1UPdmgBqzVe/7v8WRkiKVve8IpUPrlpb18Hf5dy3SLa09uR6Oy/3DeSIet/yn5J5gmiR+IKP4MIJlLcgv+PaDfedjnZx17P7Ek8UfGUKyOL96vY=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO9P265MB7833.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:39f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 17:22:29 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 17:22:27 +0000
-From: Gary Guo <gary@garyguo.net>
-To: Miguel Ojeda <ojeda@kernel.org>,
+	by kara.freedesktop.org (Postfix) with ESMTPS id AD1284031A
+	for <nouveau@lists.freedesktop.org>; Fri, 23 Jan 2026 17:50:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DDEDD10EB89;
+	Fri, 23 Jan 2026 17:59:38 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 1357660147;
+	Fri, 23 Jan 2026 17:59:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7B4AC19421;
+	Fri, 23 Jan 2026 17:59:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1769191177;
+	bh=awIr1K1KTsidvoGcDEzmoe3Uym3Wj1XHUyBNXJs4cG4=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To:From;
+	b=BKqLz4foHtsAzkgUHGlowvwRamIK82kyFk3gzw0W4g9l2+sPMyQD01ItudtFyRzaR
+	 REX3ukTUkyTa7X5BdoeA4FGeWolL6c14ApBQ2mRQ5c8z6Jlbxk3F/ubTvm4E8vqySq
+	 q4D43w+bJT28SA4y5sClPVHs11qqYSNDXh8FCfXzoWsIdnZm23CFSGCakP4KVK44x8
+	 m27XAltZIuAFE0VRYCwXHUNp9eJuNYBTB4WECHqh5BOm2INr3moKeiyEeytuZ1DEF7
+	 sjvC+AvLUabF8rSQC5RGJZjdfxb9JiNOTxFKVIbjUhtWQXfG/i0B247DRQD5CAe5yI
+	 2L/EfjLujdZlQ==
+From: Gary Guo <gary@kernel.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Miguel Ojeda <ojeda@kernel.org>,
 	Boqun Feng <boqun.feng@gmail.com>,
 	Gary Guo <gary@garyguo.net>,
 	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
@@ -84,127 +78,44 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Andreas Hindborg <a.hindborg@kernel.org>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
 	Alexandre Courbot <acourbot@nvidia.com>,
 	David Airlie <airlied@gmail.com>,
 	Simona Vetter <simona@ffwll.ch>,
-	Daniel del Castillo <delcastillodelarosadaniel@gmail.com>,
-	Joel Fernandes <joelagnelf@nvidia.com>,
-	John Hubbard <jhubbard@nvidia.com>,
+	Paul Walmsley <pjw@kernel.org>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
 	Alistair Popple <apopple@nvidia.com>,
+	Joel Fernandes <joelagnelf@nvidia.com>,
 	Lyude Paul <lyude@redhat.com>,
-	Timur Tabi <ttabi@nvidia.com>,
-	Shankari Anand <shankari.ak0208@gmail.com>
-Subject: [PATCH 1/3] gpu: nova-core: remove imports available via prelude
-Date: Fri, 23 Jan 2026 17:19:40 +0000
-Message-ID: <20260123172007.136873-2-gary@garyguo.net>
+	John Hubbard <jhubbard@nvidia.com>
+Subject: [PATCH v2 7/8] gpu: nova-core: remove redundant `.as_ref()` for
+ `dev_*` print
+Date: Fri, 23 Jan 2026 17:58:44 +0000
+Message-ID: <20260123175854.176735-7-gary@kernel.org>
 X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20260123172007.136873-1-gary@garyguo.net>
-References: <20260123172007.136873-1-gary@garyguo.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: LNXP265CA0076.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:76::16) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+In-Reply-To: <20260123175854.176735-1-gary@kernel.org>
+References: <20260123175854.176735-1-gary@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO9P265MB7833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fda25a6-992c-411a-901d-08de5aa3fb44
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|1800799024|10070799003|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?T1P72eg9Hjc/cdC+v8ju1jYsV+VaqZJKst2pG3Ql5ZXzjgrOIyiKjmFbTMLy?=
- =?us-ascii?Q?uQ4lggSDn5wRIRM3qstkrjZtQZ0tu2EqCKOCq1Ys4mk7Bt6SDE1VUtsdqQ/L?=
- =?us-ascii?Q?VCagNtrD+37yxrZSMycLPJPV1oKT87/Dd3HF0pQWQ2AVtoigVK07fyzhXUpr?=
- =?us-ascii?Q?Lueyan7zF/QXL1Ku6n3X61W+DSgmGLK0gP6T3qn5KXegsfD2yqM2IMn2MzQ1?=
- =?us-ascii?Q?i3sV0LhI4B17TjIoePnlObdw87GfrHV9V50HaiHe29kFKVQHHzksfAl3kQvf?=
- =?us-ascii?Q?14ETwHVABeaApHwB4dH4V0oAjMrvJ0ROv14ZqDN9CRaHJzL0X2JZZPYEgUgQ?=
- =?us-ascii?Q?cwOqD/t6svvb/IEhfP7e+f4jLsbq8tJMmS/j3aDxdNrBA5JHiTtJ3FY81Zpt?=
- =?us-ascii?Q?aRvgf49xTAcJNiLFP/u8qavYMAmr1eYx6AiX+46wfELsfLCL/GZEz6WPQB8H?=
- =?us-ascii?Q?/ETQ/JKhSlfOZpjIHBtkcTOZStNJoXFp2XQlN9ah9QHDEm0qp483zIL+3+h4?=
- =?us-ascii?Q?Aj78ShZxuZbj+DEC+x+otJNk7NPRNoQmUg9LlxTbyZg2dC8pOakJX2/u0vqH?=
- =?us-ascii?Q?3+vKc8IUvu0YB6Kf2iA9YjqiR3YqKn/cMsL6ul4JFxpW74S47/eHpkvN2+uL?=
- =?us-ascii?Q?vYJDvDm/cirHYMYzBR2EytbTqpUmnWtMcjAbptGZduv77rCFQpm8kJXuvEH2?=
- =?us-ascii?Q?LgHW5tWexXrENQ/IeFH9V+TtfgWIn7+n29Uyxzvf4pvAyAdsSsCTO/FU1tFN?=
- =?us-ascii?Q?QX0QJp50gJds/fKYh/HuexJN/YIkDh74VGPKckIbsDVfHC0qyuZVhSjAwpPl?=
- =?us-ascii?Q?00p6oIqMLIMavCzEJnJjqyu0PaIS9VSPl5Y9GZKYcZCcAR//VURk4nh83i9k?=
- =?us-ascii?Q?1zHNFtyg7ZBG0kdt3ONuyFns4OYGfY3wGUntrD8Qea0on9HuhW9vA+2FkZ36?=
- =?us-ascii?Q?c08WW9o+EY+I9qA3OvbFXAiB/QlLmUTELY3pVPS9BENFgAmwoqGhNr0PA5r0?=
- =?us-ascii?Q?JVldKxgklwU8YKtsSilvnrIByOZoLkEjKCbCTepadxtCC06naNH1Hh+9rZg+?=
- =?us-ascii?Q?seVc7UP3+gMUr+kXfWNtB9AJ1d1QgOLCOrJoul5IjbU6emagrxxifDO+PCme?=
- =?us-ascii?Q?xUDTd+qtXeLVvfPtm4grNN10Kuz3kxrqnQmsQjQ9FrA8t0zOlN+Z2Y89tA0R?=
- =?us-ascii?Q?PoMU74atUW/Ntm/x74hMvhAhUyueI82gEOeh4m7glpiI9lXUi/Cc8bnSyi5j?=
- =?us-ascii?Q?qt69LuQaun4chkoVgoTzLvETCyzZQ704q6wibUiseODS20m0wgbWmV8npau8?=
- =?us-ascii?Q?SVjCLwRDa+NgTe6gyA7CLwGS8gLmKjSDNc1uP5GPHRE9/FMDjoFezTJQ8QCv?=
- =?us-ascii?Q?GfL/lp3ervFI6aOg02zWPHyJasBhHRXXMlVAxibWXoES5dCa7xqvarMY3/42?=
- =?us-ascii?Q?4X8aG7fxjIWUdks3KihkWLlXyvcFB4KNLoe1NjjuVRtxhrElkqyVix0KvX7J?=
- =?us-ascii?Q?N09yg2PBnOlld4Y2vLZ32Xfpw3C60urzfIa6b3rMqFXaHn/Ra+r8LKk04GWh?=
- =?us-ascii?Q?HHtVtuskItacVwHOoJwIMumAYjkVwVpNO2XEg1qo2cNHVQHmjoGw71grNRSf?=
- =?us-ascii?Q?BA=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(10070799003)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?24/g59HRNoSOYRdAwfagb3SFoRwpJFYRelzmrTBqi4bKzqSyCm3UyXiAVUWP?=
- =?us-ascii?Q?+4JK6kkSqn9f+tphsrCI/P4hh1nO8N5Jitz+nU5IrkpRb9YtQ+/sQk2aUUYZ?=
- =?us-ascii?Q?KAxuVxqWOo3q2sOEF1pFAyjFakxCC9Kb9xuhUQHgPiubaFTH5eur4WoAol8l?=
- =?us-ascii?Q?OCuvUrPWdY3b7wyIfSiyh0iVqrotEGFLbCUwzp6O+FjxCat6wCtNujx4/xl+?=
- =?us-ascii?Q?UvHXYojRptW1m7skWetLCynT3oCLgCIZrsJnn81qMVa9CMdYqGwbqyAlImNN?=
- =?us-ascii?Q?KCTcOZIJWM2bhNWbl6utL/vR0tfiQilT3NEaElmdpFbc+4iEk4GxOl9rAbox?=
- =?us-ascii?Q?VyBKl8H/xA5R3UZy43FXNGCpHHgh2zBO1JFLX6p3om14ZXjGXkYTrj3y5w+/?=
- =?us-ascii?Q?pChmhgDgnPT44L+bR7aB/rSVP5TrYmDgQ4u0akOn0rQ2Ng2jGMn+/AY8cDw7?=
- =?us-ascii?Q?sUDXxyaIow37ajs+6Y9W2z2JQRGcLiwANXO5ea307lXdBwoFmi4/gqApwjIX?=
- =?us-ascii?Q?Z9DjkFHe1y9ebHaK6obgSvNFqixMNe70e/G+J8J+7VbgeodZHEf9eORp6YG0?=
- =?us-ascii?Q?ivmx+jsV+ZXzMmpLOXJUdIqaqtGggfPBwxXPosSrvqgkCzgzq7+7ClL3JTdQ?=
- =?us-ascii?Q?/tdMeFp6fIcyQiq/NWp9fUpBBDAOSD2yxFwBnrpBCGvusg3kZpnVRH5yDhAU?=
- =?us-ascii?Q?QbCuVcGmdZwFcckvVyLm9/OLlaJQUja7D+0IwDuNupYy3JRV4O2KJoumzZK3?=
- =?us-ascii?Q?cvwtHakhlI1hDJtJyAkyNPRocirIYCJApUjMqEM8B2D600QQIgAGlhSPfYx9?=
- =?us-ascii?Q?zmQ+n7wo2WKL368d5AvYsjAhAsgeH8awjPtcXxZvRjw/3jfiPFrK/MdC46GE?=
- =?us-ascii?Q?7VEEd9JJjue368EpiVdqlLyeOHbwdYHdXxZ+xgOYhYJQlBjR1MOflo6RCMoB?=
- =?us-ascii?Q?+xiqs4OqEwPi2TBOmkbjEjM0XTpBPBr++YTfYaxMHfRTYheqbQK/BLliyM9N?=
- =?us-ascii?Q?8GXjr+YBcza/IhIX1ZGu++qTzyQFxN5iz1VcmzBxtvMtQxu2qcqr/1u/fsdc?=
- =?us-ascii?Q?cMNwkVhuoI8ZIbd15Mwx99XAEyFjad9mZqlq1WutdLakoOv1P5FIygxFA2L9?=
- =?us-ascii?Q?MkPHiL523RvxleVCYUmwCoJwH+/TMnuZ/xYTVsS7+HqzAz5i//eU9RSG/pOb?=
- =?us-ascii?Q?9aDae0MLys7MyMp8yFa1FhuougtRWq2gQKHTZ5h+Pevjb8zrIyB+oqEIbu6W?=
- =?us-ascii?Q?mMVDliEfFdzvsGDXyNMVzapOjjjHkLYCUrWAxXaBhuLuSYhBZBe2+nbT58X5?=
- =?us-ascii?Q?ruK9fdcxSZqkIGZKCltTUUgm5uHcV3sGJUTldtKc/lLerSvGUa9PRH8R7lms?=
- =?us-ascii?Q?FLONZNEg1bVgSaOXYHWzJQlCcssKVEZL4MBU0ZZ0PR07ggo1B00xY0ikDYmZ?=
- =?us-ascii?Q?uKhSWzu3LTJfq5iD6vGdeB5ZHM74rBk3LP+/vBUTNu79tnIcvTz9AGUxVx6g?=
- =?us-ascii?Q?nvBEL3oBWaYzP7tueG8QmQ05f0W8SA4QWIt69xyQ0rRJsbBafra3VCneb82M?=
- =?us-ascii?Q?SzKAnNUtV4DPuQ5uZFGgsh0jQW6/K/k5Jw3YvftPHDbTmfwa5VYHElzIXV4b?=
- =?us-ascii?Q?fhI0iXbEqUGp1n4XwqnNZRNGIRweepnGiu8H2IdArvBc/g100/47p4OCNix6?=
- =?us-ascii?Q?dTyPcYfcuop1DJWG65kRuobfX0ghdUPC9md80cbm9JYL5Ne597VrD+mA+ycg?=
- =?us-ascii?Q?umw06Gha6g=3D=3D?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 7fda25a6-992c-411a-901d-08de5aa3fb44
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 17:22:27.5500
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- eHGYFS+tsbwj3nR4Rau6/Dl6meGRXdSULT65GyrH4XJAoEOPZTegyiLRjxp9ATE3CA9o4zFmrJaJh4e8m6+8AA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO9P265MB7833
-Message-ID-Hash: YNIHBUR7H6OHMUDVESR7QFECUTWVJRXS
-X-Message-ID-Hash: YNIHBUR7H6OHMUDVESR7QFECUTWVJRXS
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: XEHDCP5EERY7J5E47NUZLTW2VRUMTVOI
+X-Message-ID-Hash: XEHDCP5EERY7J5E47NUZLTW2VRUMTVOI
+X-MailFrom: gary@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-riscv@lists.infradead.org
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: Gary Guo <gary@garyguo.net>
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YNIHBUR7H6OHMUDVESR7QFECUTWVJRXS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XEHDCP5EERY7J5E47NUZLTW2VRUMTVOI/>
 Archived-At: 
- <https://lore.freedesktop.org/20260123172007.136873-2-gary@garyguo.net/>
+ <https://lore.freedesktop.org/20260123175854.176735-7-gary@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -214,107 +125,118 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-These imports are already in scope by importing `kernel::prelude::*` and
-does not need to be imported separately.
+From: Gary Guo <gary@garyguo.net>
+
+This is now handled by the macro itself.
 
 Signed-off-by: Gary Guo <gary@garyguo.net>
 ---
- drivers/gpu/nova-core/firmware/fwsec.rs |  1 -
- drivers/gpu/nova-core/firmware/gsp.rs   | 12 +++++-------
- drivers/gpu/nova-core/firmware/riscv.rs |  2 --
- drivers/gpu/nova-core/gsp/sequencer.rs  |  8 +-------
- drivers/gpu/nova-core/sbuffer.rs        |  5 +----
- 5 files changed, 7 insertions(+), 21 deletions(-)
+ drivers/gpu/nova-core/driver.rs   |  2 +-
+ drivers/gpu/nova-core/gpu.rs      |  4 ++--
+ drivers/gpu/nova-core/gsp/boot.rs | 32 +++++++------------------------
+ 3 files changed, 10 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-core/firmware/fwsec.rs
-index b28e34d279f4..dd2d1f0f24ed 100644
---- a/drivers/gpu/nova-core/firmware/fwsec.rs
-+++ b/drivers/gpu/nova-core/firmware/fwsec.rs
-@@ -12,7 +12,6 @@
+diff --git a/drivers/gpu/nova-core/driver.rs b/drivers/gpu/nova-core/driver.rs
+index 5a4cc047bcfc..e39885c0d5ca 100644
+--- a/drivers/gpu/nova-core/driver.rs
++++ b/drivers/gpu/nova-core/driver.rs
+@@ -70,7 +70,7 @@ impl pci::Driver for NovaCore {
  
- use core::{
-     marker::PhantomData,
--    mem::size_of,
-     ops::Deref, //
- };
+     fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, Error> {
+         pin_init::pin_init_scope(move || {
+-            dev_dbg!(pdev.as_ref(), "Probe Nova Core GPU driver.\n");
++            dev_dbg!(pdev, "Probe Nova Core GPU driver.\n");
  
-diff --git a/drivers/gpu/nova-core/firmware/gsp.rs b/drivers/gpu/nova-core/firmware/gsp.rs
-index 1025b7f746eb..f0f18166849e 100644
---- a/drivers/gpu/nova-core/firmware/gsp.rs
-+++ b/drivers/gpu/nova-core/firmware/gsp.rs
-@@ -1,7 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
+             pdev.enable_device_mem()?;
+             pdev.set_master();
+diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+index 9b042ef1a308..60c85fffaeaf 100644
+--- a/drivers/gpu/nova-core/gpu.rs
++++ b/drivers/gpu/nova-core/gpu.rs
+@@ -262,13 +262,13 @@ pub(crate) fn new<'a>(
+     ) -> impl PinInit<Self, Error> + 'a {
+         try_pin_init!(Self {
+             spec: Spec::new(pdev.as_ref(), bar).inspect(|spec| {
+-                dev_info!(pdev.as_ref(),"NVIDIA ({})\n", spec);
++                dev_info!(pdev,"NVIDIA ({})\n", spec);
+             })?,
  
--use core::mem::size_of_val;
--
- use kernel::{
-     device,
-     dma::{
-@@ -34,11 +32,11 @@
- /// that scheme before nova-core becomes stable, which means this module will eventually be
- /// removed.
- mod elf {
--    use core::mem::size_of;
--
--    use kernel::bindings;
--    use kernel::str::CStr;
--    use kernel::transmute::FromBytes;
-+    use kernel::{
-+        bindings,
-+        prelude::*,
-+        transmute::FromBytes, //
-+    };
+             // We must wait for GFW_BOOT completion before doing any significant setup on the GPU.
+             _: {
+                 gfw::wait_gfw_boot_completion(bar)
+-                    .inspect_err(|_| dev_err!(pdev.as_ref(), "GFW boot did not complete\n"))?;
++                    .inspect_err(|_| dev_err!(pdev, "GFW boot did not complete\n"))?;
+             },
  
-     /// Newtype to provide a [`FromBytes`] implementation.
-     #[repr(transparent)]
-diff --git a/drivers/gpu/nova-core/firmware/riscv.rs b/drivers/gpu/nova-core/firmware/riscv.rs
-index 28dfef63657a..4bdd89bd0757 100644
---- a/drivers/gpu/nova-core/firmware/riscv.rs
-+++ b/drivers/gpu/nova-core/firmware/riscv.rs
-@@ -3,8 +3,6 @@
- //! Support for firmware binaries designed to run on a RISC-V core. Such firmwares files have a
- //! dedicated header.
+             sysmem_flush: SysmemFlush::register(pdev.as_ref(), bar, spec.chipset)?,
+diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
+index 581b412554dc..1582e1a65274 100644
+--- a/drivers/gpu/nova-core/gsp/boot.rs
++++ b/drivers/gpu/nova-core/gsp/boot.rs
+@@ -170,15 +170,10 @@ pub(crate) fn boot(
+             Some(libos_handle as u32),
+             Some((libos_handle >> 32) as u32),
+         )?;
+-        dev_dbg!(
+-            pdev.as_ref(),
+-            "GSP MBOX0: {:#x}, MBOX1: {:#x}\n",
+-            mbox0,
+-            mbox1
+-        );
++        dev_dbg!(pdev, "GSP MBOX0: {:#x}, MBOX1: {:#x}\n", mbox0, mbox1);
  
--use core::mem::size_of;
--
- use kernel::{
-     device,
-     firmware::Firmware,
-diff --git a/drivers/gpu/nova-core/gsp/sequencer.rs b/drivers/gpu/nova-core/gsp/sequencer.rs
-index d6c489c39092..c31b245acea3 100644
---- a/drivers/gpu/nova-core/gsp/sequencer.rs
-+++ b/drivers/gpu/nova-core/gsp/sequencer.rs
-@@ -2,13 +2,7 @@
+         dev_dbg!(
+-            pdev.as_ref(),
++            pdev,
+             "Using SEC2 to load and run the booter_load firmware...\n"
+         );
  
- //! GSP Sequencer implementation for Pre-hopper GSP boot sequence.
+@@ -190,19 +185,10 @@ pub(crate) fn boot(
+             Some(wpr_handle as u32),
+             Some((wpr_handle >> 32) as u32),
+         )?;
+-        dev_dbg!(
+-            pdev.as_ref(),
+-            "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n",
+-            mbox0,
+-            mbox1
+-        );
++        dev_dbg!(pdev, "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n", mbox0, mbox1);
  
--use core::{
--    array,
--    mem::{
--        size_of,
--        size_of_val, //
--    },
--};
-+use core::array;
+         if mbox0 != 0 {
+-            dev_err!(
+-                pdev.as_ref(),
+-                "Booter-load failed with error {:#x}\n",
+-                mbox0
+-            );
++            dev_err!(pdev, "Booter-load failed with error {:#x}\n", mbox0);
+             return Err(ENODEV);
+         }
  
- use kernel::{
-     device,
-diff --git a/drivers/gpu/nova-core/sbuffer.rs b/drivers/gpu/nova-core/sbuffer.rs
-index 64758b7fae56..3a41d224c77a 100644
---- a/drivers/gpu/nova-core/sbuffer.rs
-+++ b/drivers/gpu/nova-core/sbuffer.rs
-@@ -2,10 +2,7 @@
+@@ -216,11 +202,7 @@ pub(crate) fn boot(
+             Delta::from_secs(5),
+         )?;
  
- use core::ops::Deref;
+-        dev_dbg!(
+-            pdev.as_ref(),
+-            "RISC-V active? {}\n",
+-            gsp_falcon.is_riscv_active(bar),
+-        );
++        dev_dbg!(pdev, "RISC-V active? {}\n", gsp_falcon.is_riscv_active(bar),);
  
--use kernel::{
--    alloc::KVec,
--    prelude::*, //
--};
-+use kernel::prelude::*;
+         // Create and run the GSP sequencer.
+         let seq_params = GspSequencerParams {
+@@ -239,8 +221,8 @@ pub(crate) fn boot(
+         // Obtain and display basic GPU information.
+         let info = commands::get_gsp_info(&mut self.cmdq, bar)?;
+         match info.gpu_name() {
+-            Ok(name) => dev_info!(pdev.as_ref(), "GPU name: {}\n", name),
+-            Err(e) => dev_warn!(pdev.as_ref(), "GPU name unavailable: {:?}\n", e),
++            Ok(name) => dev_info!(pdev, "GPU name: {}\n", name),
++            Err(e) => dev_warn!(pdev, "GPU name unavailable: {:?}\n", e),
+         }
  
- /// A buffer abstraction for discontiguous byte slices.
- ///
+         Ok(())
 -- 
 2.51.2
 
