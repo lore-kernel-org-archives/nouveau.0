@@ -4,97 +4,217 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF3ACD35666
-	for <nouveau@archiver.kernel.org>; Wed, 28 Jan 2026 02:48:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A61D35672
+	for <nouveau@archiver.kernel.org>; Wed, 28 Jan 2026 04:35:49 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3F23010E614;
-	Wed, 28 Jan 2026 02:48:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA9710E619;
+	Wed, 28 Jan 2026 04:35:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BEP2gxDA";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0451F40B86;
-	Wed, 28 Jan 2026 02:39:18 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769567957;
- b=jwS1TnHRjjJIu9OC5WFLLwbyYMa1LP2pGu6k3SCsUFD5nMqEODgUYQ62aqWsRLp28QTmz
- m/QFfbWsCSDXvZw0tMQqqi3KGyuhcRVUCRm2xCkHnhGalNd8/nXy+PBA7wiAu8ZGY9HlwzQ
- 4t4/FKsyTQddWX23LI49a7a591K4lTdn9oPPumwQKT25ToS/NKIblkAetDuoqgc1j2qOJg2
- mhfDA99tZUj6UvopDPohVku2cds4glQBQDA1gBxoZ/8sbXvWge801MpcH9RgCqM2tSionYH
- uTCxlBdiytgt4FU6+yyIDwqlvopDt2Z03qvAtRSNkn9H5URBSWFYA/ZEgjKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769567957; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 1944F40ADC;
+	Wed, 28 Jan 2026 04:26:46 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769574405;
+ b=ifue8yT9V+ILfDxKdbso37UO8ioaYjsOyuLuOEbRjAlTfJo0isGphjjw7ayIUys8Tb5Ck
+ JHbJyeCG6yWhTp7KnkimCeU5IBc8AfnRvpo1CrtC/+32odywdURWh+7e0WFuVOgQhtCCrzU
+ 9FhGZnTFKtd1Fqlxyl3VJNQ3QzFC5kftSq5XCLQSVYuEdJeBENJ4gufUvymRTNiOPyCSCt2
+ jVg91CA66/L8sDqhlX0nt8qjt5tr0h+gGog12hacCNUSIp7Oqi6c5Z5LcqQmG7TKO8vx8LM
+ wENe6Vt7mKc4y+2pmnVcyoJ2LF/FgRuh+T17UpWwGuUc1Ts6cXISqunV05oA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769574405; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sEJt44YYQB8YI8DIvfMNE4RiQ8+pJNqGS+SVzmkRKf0=;
- b=NgHTTevV3Xnqxx3SI5BEfIOAb9ocKMtvWC1oy8F5LRmdaUtwWpGqYHMTrJzsYjhW6lzZd
- GsrrtfQgLeIoheEhuvSVJ35eklJ+Q5o97GW828ghOClvYD5M87JZKp1dOpjblMgP/aMTms9
- CsKuOVp2bZzbZ5DL32cMEIniRux0HbafBnzlZWHohmjJDRUvoHnM6R12dz4ZqJswzAtU12B
- JEjhEqbMYgFXgxOD8KAW+qcNZbdbJA0msow6ugGvGowYnUXZLEsZydaUazVNNIKs89EosX2
- JU5ArLSDfI6CSZ4gGe89kLmTs8015g+BeMOL2gpUJksGeWIAZYoTxvzwjFwg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ bh=jFFjNnAKjo/hyhs6dMIsnUMrYYop+DSDnIj/dhYzpEo=;
+ b=HY2SCP8v0To71nE2rI+cxkH9DEtVKz6DVwtO3fm2tQHBF1TM0StDEabnqMU/ARYfTFWAm
+ o9whR7GyMZtPO6UK1LldDDtl95dlUq+sVuyi2ZjjI2oKe0BHdbETfc08tyYVS30vD6aJrnp
+ e9/ARiEu+KW2EbHBUWLczsu/NgZ+3NlHhxg6jLJrXOIYgKv8L7rfGWwTUsV6nVJjOV9cPUB
+ RzGAFA6a/aIK0S8NiBwYHSo6axHytF0rcZoGZd6JQmki6y8tf17rUJVRYSrhiXO2FyrqCXS
+ YVwLhIaWVVmAMOtaYD5Q/7zKsna5av/GaBUv7STA+5v9N/lKiTo3puBX6new==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 679D840803
-	for <nouveau@lists.freedesktop.org>; Wed, 28 Jan 2026 02:39:15 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2EA6410E612
-	for <nouveau@lists.freedesktop.org>; Wed, 28 Jan 2026 02:48:16 +0000 (UTC)
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-218-fKUhcpUtMIOmTGIFkHMx2A-1; Tue,
- 27 Jan 2026 21:48:12 -0500
-X-MC-Unique: fKUhcpUtMIOmTGIFkHMx2A-1
-X-Mimecast-MFC-AGG-ID: fKUhcpUtMIOmTGIFkHMx2A_1769568491
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 5C30D1800473;
-	Wed, 28 Jan 2026 02:48:11 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.67.32.75])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 554C930001A2;
-	Wed, 28 Jan 2026 02:48:08 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/vmm: start tracking if the LPT PTE is valid. (v2)
-Date: Wed, 28 Jan 2026 12:48:06 +1000
-Message-ID: <20260128024806.1534662-1-airlied@gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: G51vMCOdoaaVrY2naGX7k2Aq4ar1JHguMz5hBmBtTVQ_1769568491
-X-Mimecast-Originator: gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 70671404D9
+	for <nouveau@lists.freedesktop.org>; Wed, 28 Jan 2026 04:26:42 +0000 (UTC)
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012063.outbound.protection.outlook.com [52.101.53.63])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6335C10E228;
+	Wed, 28 Jan 2026 04:35:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A4dmZH7sJGiVeTVzql6/MmN0WH60PL5I1X2LykgM/4ERnd/iaLAOD/myVsh96Fyv+/+rO3S7wrqdFY1UDqyDz6LYDN944FuMpuXSGOQ6FXQj4fuGMEM3KI+TTPK2YjhSbTL0H3OKieyZpq4C4qTTq9ImjX2BPHiSQ8N3g7m+cd3U3gsfdYrqMiEAB2A9ounuzqjyeOl2i5GAw6iaZEBj4mHVcMdhF98fxCh+emXzB/VrR6OOgGVTUrWUafyGTzhewc7mzk241PrK0QREdKguO9GFrfSYeIN6DyytV4PnY5fnxO9hTXE5od/DFQArqLheOa+i7waAvX7UnFbTlSULqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jFFjNnAKjo/hyhs6dMIsnUMrYYop+DSDnIj/dhYzpEo=;
+ b=i3AVEj5hbqpCTaDVyKd86OHuXZvfs+l6WO0FXTxad/nmsy8Lmh0Ommc9x6l7gU0LVck12/jirbhKaM2F/m5teG8IGe2HPodzltKSuNpA+p9Y5moxJfQTsuYiu2VM4qpDj41gM9Rj69cxcnDdNFXcDuOEdnp/wmp+LDgs2kbGrIDvl4yqB9mZagVCN9ubacEQf0AcLiUgM8SPQDkRPDi+40mDDo2Dya3WE6lME5QxXIFkjLrDRmBlkzyaf1sc+whKu/crki1oqdff/DNw7/ksZjYSlYtDosliIXxkyzRgnnKESCjjvTrNs7QxeoAD0SRhVZXHO/BjujRJBbwQEP2NCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jFFjNnAKjo/hyhs6dMIsnUMrYYop+DSDnIj/dhYzpEo=;
+ b=BEP2gxDANv7rvLKMgeMAE9ZktUXDiwdfddglSZ/KwgRMTWIjsdzan9/Dk38w5fzaUgnsXDDBhZDSHZNUpAgDwQFZmcbD1YXQ92S3uzs4DrzaPu1EwB7A0d7m3X//F1mmBz2qnVW3FglpEJX9quVn7OUmf+8vjIGtlU/+6ylrnw2tpRrQFrriSQoRcpmL2EyxN7GKaQ5/czyb6AKyJzscWb57QjuzAUdwBMI5f/n5LK7+4JgQKvDiUEyJmJ4Oy0zzleP1aeCRtjMEGPwF7Pi5Cf4pVdbPTj9aXqZ/6tsyGwnwZ2gwhuXSLkVVHa4xQFLLUf4toNVAsiMbpWx75edlFw==
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by MW4PR12MB7286.namprd12.prod.outlook.com (2603:10b6:303:22f::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Wed, 28 Jan
+ 2026 04:35:39 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%6]) with mapi id 15.20.9542.010; Wed, 28 Jan 2026
+ 04:35:39 +0000
 Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: CD3G6AIBOUN35IF2JZURZMADRRFZBDJN
-X-Message-ID-Hash: CD3G6AIBOUN35IF2JZURZMADRRFZBDJN
-X-MailFrom: airlied@gmail.com
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Jan 2026 13:35:35 +0900
+Message-Id: <DFZXYMSS9OOI.5NUPB8GCHRKD@nvidia.com>
+Subject: Re: [PATCH v2 2/4] gpu: nova-core: gsp: clarify comments about
+ invariants and pointer roles
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Gary Guo" <gary@garyguo.net>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Alexandre Courbot"
+ <acourbot@nvidia.com>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Alistair Popple"
+ <apopple@nvidia.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260123-nova-core-cmdq1-v2-0-e797ec1b714c@nvidia.com>
+ <20260123-nova-core-cmdq1-v2-2-e797ec1b714c@nvidia.com>
+ <DFYPX3TNI3Y2.38MQUIWHHR9Z1@garyguo.net>
+In-Reply-To: <DFYPX3TNI3Y2.38MQUIWHHR9Z1@garyguo.net>
+X-ClientProxiedBy: TY4PR01CA0104.jpnprd01.prod.outlook.com
+ (2603:1096:405:378::9) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|MW4PR12MB7286:EE_
+X-MS-Office365-Filtering-Correlation-Id: a90cc780-a4d1-4345-a58a-08de5e26b03a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|10070799003|366016|7416014|376014;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?R1JQTVRjSXBpTVFEVWl1RUE5Wjhyck9zRm90c0dlcFhzUXFUYlZnVkV3bnU1?=
+ =?utf-8?B?MlJSQVVwQ2ZRTU5mQWJsSmx3ME41MUNyeXhqNUp1U1pyc1A2UHJXaWRHZmNZ?=
+ =?utf-8?B?TnpDaVp6bEhEa2ZkZnplYjZNb3NscE9mNmpqazVZZE9WdThKdDMrOTdrby9h?=
+ =?utf-8?B?YVZ6L1FBNitvU05rZEJCU3VHY2RZUUVDUUtYMUxLaFZ5MEhSem1lWUNSN0tE?=
+ =?utf-8?B?M3B2T1VGYTQzaGFCUGxmNUEvY0dpbEl5cklwam5BdUNYTUp5emtsT0xmY0pp?=
+ =?utf-8?B?ei91b2laZHlsM3FqRXBTdHFNVGxEVTM5eVlEeFVVc2JjS2xNZVQ1VEVaRGJ2?=
+ =?utf-8?B?ZktnaUg0dkJWT0E4L0hac29JNUhDRnhZdzk0N0x6bElCRkNmWStzQXhnSTgv?=
+ =?utf-8?B?NXFQWnlMd2NvckJsbExkcUpzdUd5anhQbTdTQlVhL2hLWlZMelNWYTFPTGtt?=
+ =?utf-8?B?OHYwK25wdDh4Wmgwc1AvaXlUS3JsdEx0a0cwWlVXeGIvcFY1Ui9pMDA5MjVD?=
+ =?utf-8?B?cGgrakhVSlRzbW5hR2tSQ05DUXM3WlRtWVdxbXFxdVlBTElnd2JZVk02MDR2?=
+ =?utf-8?B?QmdXODFUTkdFRjNWNXpCS20wK1FWQjVRb09lSEp6TWJKWGhhTk5qN25seTNL?=
+ =?utf-8?B?eDdHYUJaS2JlTXVFNjZTaHRRNjdVQ0EvRU5BNTZ0YWgrWE55aktBYWF2M2Jy?=
+ =?utf-8?B?a0pXSkNYSFAyUStNbVFnelNwRjRIY1NtR1YrWVJzNTBJNW9pS3g3NzdxRlJs?=
+ =?utf-8?B?ZXhkTlJFdjFka2ZRdjRXN2k0eTJXeDNMREhFcHBiTVpFa1BWbGY4UXMrV1Yz?=
+ =?utf-8?B?QVUzb3Z1S25mMHN3dkkrbzM3NEhlZGtqaWZHWFhFa21sc3VTa1czang3TEdO?=
+ =?utf-8?B?OC9QM3RxZmk5QkkxRThCeVh3RDhoMDdQRndXUnZSMkZWcHZIRHM2N3AzMjBC?=
+ =?utf-8?B?QTRscnRoS2VXVlkxcEhVVU1RQkN3YXBhUjJJb09ZNEw1VlpOdkNrbTNSNkZN?=
+ =?utf-8?B?TzNHUFh2Q2d6NGxSaG9qZWg1NDVac1dqU0xCcUw0L251QW5Ha1hGbnJ4aGt5?=
+ =?utf-8?B?MktUK1krcllIbmZDc2w1ZEZhdWcwOUhYdTZKNjR1MkRSWU9YUEEzTTJ0VXgy?=
+ =?utf-8?B?dGZ3OUR6cHo4RVFIUFcweXpmeWFiTExmSDNjQ2REbUtyOEVvMko5eXRvbFlJ?=
+ =?utf-8?B?YkhubE9uNFBDeWZ6ZzkrbUcvN3hDUWhPRmRSUXArMzgzNWZONDVTTGJ6WnhR?=
+ =?utf-8?B?Q1pQaDNBelc0OVdOUUhGdmJsNjBHOGkzdmVsTmtRWlN4WFZISGpxb3VHRU9j?=
+ =?utf-8?B?bVprSEpCTXdsY0JETEpReExXNFUxRHJPYmpZTFVPcjljRjZlazRBMFZoQ0VI?=
+ =?utf-8?B?TEpLYVFwdUJyeWxaUmlNTElKb2NRTE1XLzA3eW83TlNMaE9FSFpWOXYzdFVR?=
+ =?utf-8?B?UHcyUitncndIT216VjJQRzlSeWpnby9oWDJYdjFqdEdVdEYyb2xiZUZKRkF4?=
+ =?utf-8?B?dmZDUi9Hcno4Y3ZxKzZqT1Yvb21rZHZxckFpYkkvVE9EQ1dWMzdjSndWQlBz?=
+ =?utf-8?B?dEJnbGhvb1ZEdUs1MVRVTjlwQnI1SG45dDZYejU1SjVFS2pINVRKdmo2c2F5?=
+ =?utf-8?B?aEZlSGptdUQ2ZWpJNXkyaytYS2N3UXFBelJKQVJrTVdRV3ZCOGxRUTRXbFFo?=
+ =?utf-8?B?YWw1dTdmS09jOTZKRkE0NFhmK1o5MmpIaGt1ZUxxM1V4cFZCSzBFMDRPZnBW?=
+ =?utf-8?B?S3poaERPTUN4TmZCZFB0RDJ6bXFTRXMwc3ZrQk96dDhUZVNrVWZKaDFOMVFC?=
+ =?utf-8?B?WnQ3anRRRk55TUZ6RHZGenJ6NncrYXdYWG5yL0RQc0szZ0JKM2pJdWQxQTB6?=
+ =?utf-8?B?MVA3Sjh0WTVhek9jZ1ZMMC9hcHV4ZHRDWnViQWxyZVVSbGczZitCMmRVcEFR?=
+ =?utf-8?B?blZ3cE1VRXUrdzB3NndOZXdlU3JYRURjNmZkaTNyM0N0M21TRkYwcm5jbVpD?=
+ =?utf-8?B?ZWk5alhNTjJNY2ZFZ3pVZGN3bTFtN0dhdk9vcUlReDZhZzAyTUV0UVowakNC?=
+ =?utf-8?B?S1BxeGhCbHEyUERsYmh2UEkrU2xST1dxamg1SmdpaUtvYzdaUktaOXhBTnJm?=
+ =?utf-8?Q?pmJqvsDJe+e3vzMHojTTkPTPp?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?eWtUcUZwZEpUSVB0MXhWM2NPdFhEcXZBMVd4eno3RnltWHFPNExVTCtLMTBp?=
+ =?utf-8?B?dGpmNWtwY1FPS0M1NVVSLzN3b0N0QTNpVFpvUlVEOHppODlTTitUdkd4WW9u?=
+ =?utf-8?B?Mkt5dXNJcXBlZmN4a3FwaUd6RDcwVHNSNnJuL2xUem9LYXM2LytwM1JMdWRk?=
+ =?utf-8?B?Z2xSeG9rYUpxR085T2h1NnJsaEhHS3VnOUR1cXIxM2N0cGR5NzNBclhMYnh0?=
+ =?utf-8?B?N1FZSmIzaGFuUFNkVVFXbTlLY1h2WmlleExEUEJSODRCMk03dlNmM1VnNWFv?=
+ =?utf-8?B?M0tNSDQ5eElZK1ZnUU9DMGlqRGJRcEcwN2VMdVE0dXJ3RHo0QVE0Y0pTTk1l?=
+ =?utf-8?B?b2dacVNRMGtqWjdKUDlBUHZGZHB0NkZ2Q2trdVRqblZqZVlPSDlNVVI4c3hu?=
+ =?utf-8?B?VXVTMXhKVHdFM2p6ZFJML0xGdWVaTGtGYjV6aTV3ejRJajh3THFnWFJWSHVi?=
+ =?utf-8?B?N2VjKzJRMkptWmNqWk5VMmpJVit4V290d2gwcy80NFd2c3djdUxzVVN6cmdv?=
+ =?utf-8?B?UmhHa1ErVlMyckF2YVdZUEdKWmVqL0V1L0sreVFUTzNzT1NFTy9Bam94d2lR?=
+ =?utf-8?B?YkRPOTVOcm5va1JXSThzaGVZZHp1VDRudkduK2syQmJid2hpemd6Sk5Gb2dw?=
+ =?utf-8?B?cFJvN0pwT1Q5dGcrS1BId3V4ejYyNm80SkpBV245dXdZR2FGbUtpV0FCd0lS?=
+ =?utf-8?B?dE54a1oxM1J2TkR4KzhOL1IyOWNONE1XbmQzS1U3SjVNTW16cTd0YmFEUDc4?=
+ =?utf-8?B?eDI4TjBzNDc4RWRjYWJBaTR4OCtRYUZNVUFmUjZ2aTk2ajE1WEJGbzliaDFM?=
+ =?utf-8?B?T0w4UjNLbjJSb1NVTmVydkQ5d3c4dUlOaWNtTmo3V0s4VndFMU5YN0pRZnZJ?=
+ =?utf-8?B?Z05hZ0Y3dzRSeWR2cGZpbmxaQ2gwSXVTNjlabUs0MG1CT1I5SFF5bU9CaCtS?=
+ =?utf-8?B?clN6dklTcXQzdXZOb2M1dlFnWTR2RVFpejdCOFFmazFaTVdsZmJBdEZldmI1?=
+ =?utf-8?B?bGRUYjFmc3hLU1dtSUk1RmZaYVdFNDhFeU9PSHBIUnVCVlhKaDRQS2pqVTZW?=
+ =?utf-8?B?YVZJcEZRTzN0NlNJamx1aUtOSVEycFhKWExzNVExaWdpRkdwSVU1czI0cnRl?=
+ =?utf-8?B?cE04L1lJWURKckF1TDJEQXMzVDByS1N5Tk10ZDhyblZOMDI5RlZqOWF0L3ZY?=
+ =?utf-8?B?Y01tZ0lDSDltbnB0TXNuN1lwbUw5ck4vRjJaNUUxcEFVOHJpdnpUTmw0MHZz?=
+ =?utf-8?B?M2cwZWgxTE9WR28zTEhlaWxxcmg2WVUrRi9CaDdka1lhU2NDTUxXbnRxQ1Jm?=
+ =?utf-8?B?L3kvdEJXdHlhUUszZUhmaHY1TXRlc2NvL0tzVmQzSmNhU0xqSzVadm9aN093?=
+ =?utf-8?B?cXNkR2pBazBpUFVsZE8xN0pQZ1VKUlJkaUQxL3B1UHppOGRTdUJlUGFNYjVa?=
+ =?utf-8?B?VVZRcFZuN2g0WmNFYVV4N1oxQmlTdXRkOHF4SGs5bCtFVGJEc1lSby80OUxa?=
+ =?utf-8?B?Wm1QZ2M4Um5aMDVvWUtXZlB4eURZd203Q2tmQXJ3Z1dvYXdzNjA3ZVRWT2wx?=
+ =?utf-8?B?aWhVdXN5R3lVa2hnYmcyeU1vVkJkaGpVNzZ6UXRTOGtMVFZocEgvQXNRd3JP?=
+ =?utf-8?B?bDFTUkxZM3JWbDNMOGFvbWJvQU5YbkR1ZnorQkw0U0FqUEZ0eHkzSWhCOTJx?=
+ =?utf-8?B?dmFIYW5FY3JuNlZhSHpKQjBEbEtLd01NSzJPR04vazVFRzA1Z0kwcG4yemx5?=
+ =?utf-8?B?UjhQUDFHVDRKT3hhb3I1ajZrU2ZSbEdoZ0p1cmE1c1pDOVNkVWpyWmdPc2o0?=
+ =?utf-8?B?UXRYNXV3bWx0d0pyYi9YblpvaXpiQ3NDUW1Ec3g1WFlVcW41L0xFMnQrSHdw?=
+ =?utf-8?B?Z0xURjhNY2VxeEMyYkJ5NElQYWwzYVl0eU5LdzdIZ0pwV2w5NXR5RjZ5eU1X?=
+ =?utf-8?B?TVE5VHFSQVErb0NhSXhNeXdqaW1mRm8vMk1NZzdTc2JxWHg4WG9CYTJrQ0k2?=
+ =?utf-8?B?NUM5WWlpTnJNMXRyZndVVzY2NGZ0SFNQR0pyUkNJWkhZdXdPMk5mMmk2d1JY?=
+ =?utf-8?B?WTZUVFNzTFJWMTQwMVBKbEROUkVNK2tRdW9mRXpnYmhZbXNDeC9xT1NXUWph?=
+ =?utf-8?B?aDJsb1pQRnZOblo4d1hqSDZ0aDhXWUszR2phaGdoSkVWV2c5L0dHLzYvdnR2?=
+ =?utf-8?B?YVlwMWNIaDNoK05Vd3BEampVZVFrN0w4QnBOeGV1VzhzUSs5R28wKzB2TXQ0?=
+ =?utf-8?B?dTc2Qm1yMVRlaW1ydVA1NmlwVUhWdmdNMTdXZDNOYlh0SU51c0JoRTFzbEJs?=
+ =?utf-8?B?NUd6TnJ3d1pvUTNDRUlYUENyclhyZEpUVTg5bTdBYUd2Vk1MZ2tVcUJNYlZZ?=
+ =?utf-8?Q?8QACei4+Li4IJJN3HH6PoBSKFDRs//iTXNU+z13wGcITf?=
+X-MS-Exchange-AntiSpam-MessageData-1: 0/cLxsx6ck6lUQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ a90cc780-a4d1-4345-a58a-08de5e26b03a
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 04:35:39.2994
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ FttLfaCunqbd7mRkf4jbxS5CXZ/Jpjq8Ry77ajF74evVNTE2YrOltgJZz6PrcBcZ6avG0+r3+sd+fK+v75qsug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB7286
+Message-ID-Hash: 2DQYRJAYKK4YMV6KCBXEQBX365RSRZY2
+X-Message-ID-Hash: 2DQYRJAYKK4YMV6KCBXEQBX365RSRZY2
+X-MailFrom: ecourtney@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org
+CC: nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CD3G6AIBOUN35IF2JZURZMADRRFZBDJN/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2DQYRJAYKK4YMV6KCBXEQBX365RSRZY2/>
 Archived-At: 
- <https://lore.freedesktop.org/20260128024806.1534662-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/DFZXYMSS9OOI.5NUPB8GCHRKD@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,169 +224,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Tue Jan 27, 2026 at 3:04 AM JST, Gary Guo wrote:
+>>          // - We will only access the driver-owned part of the shared me=
+mory.
+>>          // - Per the safety statement of the function, no concurrent ac=
+cess will be performed.
+>>          let gsp_mem =3D &mut unsafe { self.0.as_slice_mut(0, 1) }.unwra=
+p()[0];
+>> -        // PANIC: per the invariant of `cpu_write_ptr`, `tx` is `<=3D M=
+SGQ_NUM_PAGES`.
+>> +        // PANIC: per the invariant of `cpu_write_ptr`, `tx` is `< MSGQ=
+_NUM_PAGES`.
+>
+> Can this just be `tx < MSGQ_NUM_PAGES`?
 
-When NVK enabled large pages userspace tests were seeing fault
-reports at a valid address.
+In previous discussion[1] it's been noted that it's important to
+explain why the preconditions are satisfied, not just what they are,
+so that's the reason I kept this in. Happy to hear arguments either
+way though.
 
-There was a case where an address moving from 64k page to 4k pages
-could expose a race between unmapping the 4k page, mapping the 64k
-page and unref the 4k pages.
+[1]: https://lore.kernel.org/all/CAH5fLgg0O=3Dt2T2MQH2hvm4eZnCOa_NffzRw=3DX=
+ZPi9+7+=3DXsmRg@mail.gmail.com/
 
-Unref 4k pages would cause the dual-page table handling to always
-set the LPTE entry to SPARSE or INVALID, but if we'd mapped a valid
-LPTE in the meantime, it would get trashed. Keep track of when
-a valid LPTE has been referenced, and don't reset in that case.
+>>      // # Invariants
+>>      //
+>> -    // - The returned value is between `0` and `MSGQ_NUM_PAGES`.
+>> +    // - The returned value is between `0` and `MSGQ_NUM_PAGES - 1`, in=
+clusive.
+>
+> I wonder if this can be `is within 0..MSGQ_NUM_PAGES`. What do others thi=
+nk?
 
-This increase the tracking to 32-bit, because it turns out if
-unref can get delayed, you can get a lot of these outstanding
-and this can cause strange behaviours.
-
-Cc: stable@vger.kernel.org
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-
---
-v2: move to 32-bit from 8-bit tracker
-fix some more flag changes.
----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 43 +++++++++++++------
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |  9 ++--
- 2 files changed, 36 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.c
-index f95c58b67633..304aaed9767d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -53,7 +53,7 @@ nvkm_vmm_pt_new(const struct nvkm_vmm_desc *desc, bool sp=
-arse,
- =09=09}
- =09}
-=20
--=09if (!(pgt =3D kzalloc(sizeof(*pgt) + lpte, GFP_KERNEL)))
-+=09if (!(pgt =3D kzalloc(sizeof(*pgt) + (sizeof(pgt->pte[0]) * lpte), GFP_=
-KERNEL)))
- =09=09return NULL;
- =09pgt->page =3D page ? page->shift : 0;
- =09pgt->sparse =3D sparse;
-@@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it, struct=
- nvkm_vmm_pt *pgt,
- =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
- =09=09=09TRA(it, "LPTE %05x: U -> S %d PTEs", pteb, ptes);
- =09=09=09pair->func->sparse(vmm, pgt->pt[0], pteb, ptes);
--=09=09} else
--=09=09if (pair->func->invalid) {
--=09=09=09/* If the MMU supports it, restore the LPTE to the
--=09=09=09 * INVALID state to tell the MMU there is no point
--=09=09=09 * trying to fetch the corresponding SPTEs.
--=09=09=09 */
--=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
--=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09} else if (!(pgt->pte[pteb] & NVKM_VMM_PTE_BIG_VALID)) {
-+=09=09=09if (pair->func->invalid) {
-+=09=09=09=09/* If the MMU supports it, restore the LPTE to the
-+=09=09=09=09 * INVALID state to tell the MMU there is no point
-+=09=09=09=09 * trying to fetch the corresponding SPTEs.
-+=09=09=09=09 */
-+=09=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
-+=09=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09=09}
-+=09=09} else {
-+=09=09=09TRA(it, "LPTE %05x: V %d PTEs", pteb, ptes);
- =09=09}
- =09}
- }
-@@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn=
-, u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT && (pgt->refs[0] || pgt->refs[1]))
- =09=09nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT && (pgt->refs[0] || pgt->refs[1])) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09/* PT no longer needed? Destroy it. */
- =09if (!pgt->refs[type]) {
- =09=09it->lvl++;
-@@ -336,6 +346,7 @@ nvkm_vmm_ref_sptes(struct nvkm_vmm_iter *it, struct nvk=
-m_vmm_pt *pgt,
- =09=09=09if (pgt->pte[ptei] & NVKM_VMM_PTE_VALID)
- =09=09=09=09break;
- =09=09=09pgt->pte[ptei] |=3D NVKM_VMM_PTE_VALID;
-+=09=09=09pgt->pte[ptei] &=3D ~NVKM_VMM_PTE_BIG_VALID;
- =09=09}
-=20
- =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
-@@ -374,6 +385,14 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn, =
-u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT)
- =09=09nvkm_vmm_ref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_VALID;
-+=09=09=09pgt->pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09return true;
- }
-=20
-@@ -386,7 +405,7 @@ nvkm_vmm_sparse_ptes(const struct nvkm_vmm_desc *desc,
- =09=09=09pgt->pde[ptei++] =3D NVKM_VMM_PDE_SPARSE;
- =09} else
- =09if (desc->type =3D=3D LPT) {
--=09=09memset(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
-+=09=09memset32(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
- =09}
- }
-=20
-@@ -398,7 +417,7 @@ nvkm_vmm_sparse_unref_ptes(struct nvkm_vmm_iter *it, bo=
-ol pfn, u32 ptei, u32 pte
- =09=09memset(&pt->pde[ptei], 0x00, sizeof(pt->pde[0]) * ptes);
- =09else
- =09if (it->desc->type =3D=3D LPT)
--=09=09memset(&pt->pte[ptei], 0x00, sizeof(pt->pte[0]) * ptes);
-+=09=09memset32(&pt->pte[ptei], 0x00, ptes);
- =09return nvkm_vmm_unref_ptes(it, pfn, ptei, ptes);
- }
-=20
-@@ -457,7 +476,7 @@ nvkm_vmm_ref_hwpt(struct nvkm_vmm_iter *it, struct nvkm=
-_vmm_pt *pgd, u32 pdei)
- =09=09=09=09=09desc->func->sparse(vmm, pt, pteb, ptes);
- =09=09=09=09else
- =09=09=09=09=09desc->func->invalid(vmm, pt, pteb, ptes);
--=09=09=09=09memset(&pgt->pte[pteb], 0x00, ptes);
-+=09=09=09=09memset32(&pgt->pte[pteb], 0x00, ptes);
- =09=09=09} else {
- =09=09=09=09desc->func->unmap(vmm, pt, pteb, ptes);
- =09=09=09=09while (ptes--)
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.h
-index 4586a425dbe4..3720579f4bf7 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-@@ -44,10 +44,11 @@ struct nvkm_vmm_pt {
- =09 *
- =09 * This information is used to manage LPTE state transitions.
- =09 */
--#define NVKM_VMM_PTE_SPARSE 0x80
--#define NVKM_VMM_PTE_VALID  0x40
--#define NVKM_VMM_PTE_SPTES  0x3f
--=09u8 pte[];
-+#define NVKM_VMM_PTE_SPARSE    0x80000000
-+#define NVKM_VMM_PTE_VALID     0x40000000
-+#define NVKM_VMM_PTE_BIG_VALID 0x20000000
-+#define NVKM_VMM_PTE_SPTES     0x1fffffff
-+=09u32 pte[];
- };
-=20
- typedef void (*nvkm_vmm_pxe_func)(struct nvkm_vmm *,
---=20
-2.52.0
-
+I think this is very reasonable, since this is part of the rust
+range syntax so it should be understandable. I also considered the
+mathematical syntax `[0, MSGQ_NUM_PAGES)`, but not sure if this would
+be conventional - it does seem that this notation is used in a bunch
+of places though. Will apply your suggestion in the next version unless
+there is a definitive convention for this.
