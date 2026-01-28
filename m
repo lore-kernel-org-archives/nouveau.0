@@ -4,106 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D9A4D2592A
-	for <nouveau@archiver.kernel.org>; Wed, 28 Jan 2026 10:54:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B5BBD25B46
+	for <nouveau@archiver.kernel.org>; Wed, 28 Jan 2026 11:08:35 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 933A110E64B;
-	Wed, 28 Jan 2026 10:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 366BC10E68B;
+	Wed, 28 Jan 2026 11:08:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MQQqeZn/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="VojS+KkN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 98AE040B86;
-	Wed, 28 Jan 2026 10:44:58 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2032440ACC;
+	Wed, 28 Jan 2026 10:59:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769597098;
- b=p+omAMj0ZKSPcutM9bL8ln+vsnbidtjMtQ1pa6q98hiL/dUchJW+DWuWflS6Z1Sq3KKW/
- 1FCRIB1LTvjHhVA+7oJnTKrGyEAT+Yv6A8ceeczJZzpsIXiV30lMpLI2u4lILngiJLnLD3n
- iSK/KC5JTgwmle2xQJUytxs5i8vfUgCzvMgP3MZRngODeUNpYCmZIjt9xAUsp7/2WJmzrub
- nmhAiWXjdWjPqVhl94bjeWLRX1aV0rx0dy2BT0EdxEz5v8xnAUgdToje1xlQYGKusBtSQSo
- 8p2cgBXkNQr7VFr/tfk55nw2zYB8akI3BsuEa7QgrsCfjxzrp7u7JXU35LLA==
+ s=20240201; t=1769597972;
+ b=rNnJLFHDqlWiq4IhN58SNVVMpvZlh3R9ctUkdnN7gKKBCbwiKYD0BufzO43EmfQAfb/b+
+ BnOLWe76JjKff/7Nai2ZDqHjyGsa3EZRmUHm1TmCu0hq/j5mmcc+DuH9Lz15K7G3xVjwUD1
+ EQZnFyyF9l7i9qAGY6GH7fA/m6FS6G+iyrtMfykK6eOLLRQuI37kMizN+RBJYDOaOG7NAEJ
+ Qt4YqNUXOTPAMNuiG9qXgE9TFwiznMStP/bR8y40iPst00DPW1/X/uN2yO59WVYCq6y7+Ks
+ DTez5mJNw1UB6HfnouX9q+OomoGVoS/FMSL7AwgiMNVC4wDjBMsotI/nnhEA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769597098; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769597972; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=w3df7WxTd1E5PicIQ5FWEHWK5xN5bE78+m3fL4xVID0=;
- b=H75HyoeoV++GPFJYISf5ZY/JRBeIKcrDHUnkbxQcgHuTV8lEzwAoFR5DreayaPhmH1OXE
- NhgoJ5OJEhdzQEMQvUoNUCUB/IfKLBds1Swr+6hHEzwisjDVBvThI9B8gGDdn+tpPy/ChZr
- 42n1XnRTxTr/slZGGSXx0lXQpc9f5SOP0UPTlAsVVIYSpPhY6/MPGuNxeXVzh7r8OFFYel0
- jNxZuqP0Vr1hCZjmmrJJzoUXFLMVAmEzdRaBwI8sQta7UjmFngDvumWzyNFu0JifExgdMY5
- jUQ42DWiwidNUgzT99nM8PjsHIdefA3mK+nnBeknw84CGPvvMQFs9Y+hN7XQ==
+ bh=4xj33rqoeOEGIlACIPZA79bATd+ipQjB9+w3hfaab+A=;
+ b=tZHMI8fciBLBEsPWAVAKIr2rQ0dRwlt72N+oexeCacpLGIjMGQCGlkFH0Dgc8maScGtXH
+ XVG1K5DWuMV7p58hIiokchZDSMq6aV4vtrpuR+2AEYWhimtTO+LlyH6Ap7fxG674FfQmlQA
+ 7ioILZfw7kaq2dbHyTDuZiUDVLCvmeF76uIKhF1HslEq7xX2vh6X26H/owNrVDPN0PBbbmW
+ 5q7JSkqi+JjUorcO8arlFNR8h1Uj7TSFTo5qbibcc0DJYRlAqGWNsbmUkQpsX/4+Vlg0sXp
+ YKWuVgDgsvLwC9GHsKkvIIVUDuco1vtfcItJ7D0hzlnsVpM4Kiuu7hRReYRg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=igalia.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=igalia.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=igalia.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=igalia.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E2A4B404D9
-	for <nouveau@lists.freedesktop.org>; Wed, 28 Jan 2026 10:44:55 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9E3D010E642;
-	Wed, 28 Jan 2026 10:53:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id F17BD600AA;
-	Wed, 28 Jan 2026 10:53:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1510AC2BCB0;
-	Wed, 28 Jan 2026 10:53:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769597636;
-	bh=VTLd7vd+WPNn7NR0v8u7rGagToa/9uYN3+K/raVxK/Q=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=MQQqeZn/PS82H2I0BiwGmgQ0Es/plFXiloDRMKmpxzUhvqPevwbL542+5QITNyZtU
-	 up/j2BkdX6VCiLztlMVnpPhqwdy/BhsErmW0jHE2rVRNULmxfLtrZ0skQN27sluyP6
-	 a95zFRg1votKHCV6STIz1NUYtanysA/u9krLZ7CX0hKyiG1PUn6ZE+vHeARq0xVehX
-	 sXXnInrrgikf+WNsUYJqhwIlbS65UdHhXdx/hEwE5PHDMEkhzwm1W0tR/NgOwkhJwr
-	 logbW9QpMlEbl5C2uoY/5E6fCXt1GBQDTD6BWIqUVTnykJkc0f/oEGVzYl63/LjXtF
-	 wlaKiS7SLYHvg==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 28 Jan 2026 11:53:48 +0100
-Message-Id: <DG0607SU943F.1FDOPYPN38FCS@kernel.org>
-Subject: Re: [PATCH v2 1/5] gpu: nova-core: use checked arithmetic in FWSEC
- firmware parsing
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260126202305.2526618-1-joelagnelf@nvidia.com>
- <20260126202305.2526618-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260126202305.2526618-2-joelagnelf@nvidia.com>
-Message-ID-Hash: TT2AVTGKZZAPU6PBMWAP3FP3ZL6JUAXH
-X-Message-ID-Hash: TT2AVTGKZZAPU6PBMWAP3FP3ZL6JUAXH
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6F45D40803
+	for <nouveau@lists.freedesktop.org>; Wed, 28 Jan 2026 10:59:27 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3BED010E66F;
+	Wed, 28 Jan 2026 11:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=4xj33rqoeOEGIlACIPZA79bATd+ipQjB9+w3hfaab+A=; b=VojS+KkNkRUBSJVZ1aRTb3r+Vh
+	WZdli0OVTEwk0kPES4OoZiyqHVawe81hkQCVE6oNKTiCNfKQKhxRZhYceIdua9iNcZbdPuJsW+hcl
+	UOsr6ajOKjut0sz3AswOvkTWFFJK4+eIXxvDWCxP0qlaDQD7TdkcCp5Xww5nj+Kpj+JJ9ok5Qfido
+	yuRWVBR3GryekbW3zBm20D7qWeane5To2+/TGrpTWfu9sMW+NfBri8TQldrS6ZOXm6cXnQ4+Mz+Zu
+	PVjc7JPnfEp4Zi3qVRNAqcLmLlEoSvJjF3E7/BseiUE3aY1YmH1i3VB6xmO3iWoxjtuhbXevxYmyH
+	5ddbE52w==;
+Received: from [90.240.106.137] (helo=localhost)
+	by fanzine2.igalia.com with esmtpsa
+	(Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1vl3PP-00AqfI-GC; Wed, 28 Jan 2026 12:08:27 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v6 25/31] drm/nouveau: Remove drm_sched_init_args->num_rqs
+ usage
+Date: Wed, 28 Jan 2026 11:08:00 +0000
+Message-ID: <20260128110806.38350-26-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
+References: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: I77BHWQTQ6KDU2PH6D35L5LI5XWR6JRC
+X-Message-ID-Hash: I77BHWQTQ6KDU2PH6D35L5LI5XWR6JRC
+X-MailFrom: tvrtko.ursulin@igalia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: linux-kernel@vger.kernel.org, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Alexandre Courbot <acourbot@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
- Alex Gaynor <alex.gaynor@gmail.com>, Dirk Behme <dirk.behme@gmail.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TT2AVTGKZZAPU6PBMWAP3FP3ZL6JUAXH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I77BHWQTQ6KDU2PH6D35L5LI5XWR6JRC/>
 Archived-At: 
- <https://lore.freedesktop.org/DG0607SU943F.1FDOPYPN38FCS@kernel.org/>
+ <https://lore.freedesktop.org/20260128110806.38350-26-tvrtko.ursulin@igalia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,35 +103,29 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Jan 26, 2026 at 9:23 PM CET, Joel Fernandes wrote:
-> @@ -267,7 +264,12 @@ fn new_fwsec(dev: &Device<device::Bound>, bios: &Vbi=
-os, cmd: FwsecCommand) -> Re
->          let ucode =3D bios.fwsec_image().ucode(&desc)?;
->          let mut dma_object =3D DmaObject::from_data(dev, ucode)?;
-> =20
-> -        let hdr_offset =3D usize::from_safe_cast(desc.imem_load_size() +=
- desc.interface_offset());
-> +        // Compute hdr_offset =3D imem_load_size + interface_offset.
+Remove member no longer used by the scheduler core.
 
-I do get the idea behind those comments, but are we sure that's really a go=
-od
-idea? How do we ensure to keep them up to date in case we have to change th=
-e
-code?
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: nouveau@lists.freedesktop.org
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+---
+ drivers/gpu/drm/nouveau/nouveau_sched.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-If we really want this, I'd at least chose a common syntax, e.g.
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+index a7bf539e5d86..dce8c5c9bec6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sched.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+@@ -407,7 +407,6 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ 	struct drm_sched_entity *entity = &sched->entity;
+ 	struct drm_sched_init_args args = {
+ 		.ops = &nouveau_sched_ops,
+-		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
+ 		.credit_limit = credit_limit,
+ 		.timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS),
+ 		.name = "nouveau_sched",
+-- 
+2.52.0
 
-	// CALC: `imem_load_size + interface_offset`
-
-without the variable name the resulting value is assigned to.
-
-But I'd rather prefer to just drop those comments.
-
-> +        let hdr_offset =3D desc
-> +            .imem_load_size()
-> +            .checked_add(desc.interface_offset())
-> +            .map(usize::from_safe_cast)
-> +            .ok_or(EINVAL)?;
->          // SAFETY: we have exclusive access to `dma_object`.
->          let hdr: &FalconAppifHdrV1 =3D unsafe { transmute(&dma_object, h=
-dr_offset) }?;
