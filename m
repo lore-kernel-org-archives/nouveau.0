@@ -4,182 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 360DAD46BF0
-	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 02:30:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B87D46C19
+	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 03:07:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C0A410E7A7;
-	Thu, 29 Jan 2026 02:30:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dJ/va5Rz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 17D3810E7B6;
+	Thu, 29 Jan 2026 03:07:24 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9982E40ACE;
-	Thu, 29 Jan 2026 02:21:25 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769653285;
- b=D+n+QShAN/Zj+6/jke16/BBGJoa/SvjVsAm/Xn9ZligUSqqipVq1Gq7KElTq55vanV8am
- muYX8YIVXupO6z1HtGOHBVSfXT+jjyVB0jKtwzmxWieuGrLlzvaDK35vmgi+yH0TehHI1lL
- NBUi6WYFljVh8EMvzDn3HMsIoWktYOf/Mht5P9xPG0+wV7dYKXJKARtKCBM5XsRAU8H3U5E
- sgyCV/O4bEfg1OE0HYIrRK2IsaMsBZjc636Bsnz5eQ3+NxcjmT547MuwbdnzzPKfw4vZ53I
- WGsVQDbZ10vWh5371aadJ/XkVqOy+NDilrpE5Nuzx7TrgIxbpY1+9l0zlysw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769653285; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 99EC440B8C;
+	Thu, 29 Jan 2026 02:58:20 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769655500;
+ b=ge4zAn/dcQi5Gz+D6Lrxer+oiNUoP09x+CqHJj72X+MDr7Ecrr3JBBiDsz7SY2oL1PP3M
+ cs56DZMIU4/1b9m1jTmwUJRvPkkC8ZnvFWy/HZU7ZHZEOTHeSSJW8RXAGNFXr86zWF0S21I
+ Fiy/eFlsY6p91J+jo583ZUrS5smX8Rv0Dn8z0AfM7/jlKTm1KMcONzgQnr0MOQNMXsr28R0
+ 6Mux4s+9pgcDaEDn2Lc/KCy9dPmNlF6drOAYT/L+sWvtEHKdBz2wlz7NhBwXM2xVDGwP1o9
+ jbQQwgP40G99GinvUx+8vUxn4QgVTNEct6ENd0r5kP6HYQmAsli9DEHsLXFw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769655500; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3OrhbcCB+GU37wUdLhUWSseieN9c9iOwjjifrYx203w=;
- b=0D7zZcIc64gjUIm0j3vc0TRx/jhviAV56kipk+NfRw1HcEOeWw9EStPlRZzl3j/ZTmifP
- puXCUXSGexOfP7sb6rB0c3/vLtO6YGaV0BEBBczVFeq6wyYC03/zHpoQEzJrunVeatBwopr
- SxptUnoWd+nO3sTEURFYA4sdSeBcVOVcrXP3863N4fexKDCLPWjQPhD5it5FfwXZJrDeOFK
- ilJ9kP7pTIwp498wZU8TI34gTHUNyf7HksVwXS1Ogm+Tg/ruDujLgJYLWVRNmBoJAombif8
- NAQqhw+xoq6m+4bekidOtXisFgijNPA+CNuwX8h/fiH6ErIIYCFPX2gu7WQg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=HCscY3C9GI0rvwKsSj0UmyAzSvT6Fdah9U1FXpOrtrw=;
+ b=qjhYyXOtERdMC40HdZXY2h3U93MFZiOT5nFmkEoFMEl/02RHfV6Z4RNAQdSbMgNZMEHDN
+ fjqh1P2iKPlX6VjJ77Ap8Ofug0LlciVxPVKm9W1fRJ0bbbhGwCMc2Q1XayZ8qNZblZHqFZn
+ U1UluzI4EAy7ZBG6dkCHh6RwNnBMjmRSuQClmZZcZ+RUArJLMwXE0fr5vjaIoFQW1OWdbxP
+ 1/G/cl7i3w5746Bz7bRehBvNs/4OWybs9x6qD0Nfn6TJlBnUWx+QDRbgffTEDfLiMHAcBdT
+ MrZ2L8hlBzwF7XevYtyxcQz08fD16Kh+uGyHG4Ea3pi5Ix1p3E5gZTxREwVg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+  arc=none (Message is not ARC signed);
+  dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0664D40106
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 02:21:23 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010055.outbound.protection.outlook.com [52.101.201.55])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE7210E311
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 02:30:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JtWywrrsa8+8kEJ4jETboE8DTh5i0kncEt/1D3jF5zo6U5waEyqLO0uiPfTVP+mH4WARyyj32PsGLACaJ2VMMwN2vUIjbNjAUZv4/pAQHoWxrhUoMbDMnpiOni0stkeBzkhlzBnmjj1s6mxEMdfnfR7Mqo+FIZYDz70Bm91CdPBR641Tp3CetTFAcV1sx0i+ONkmrjWsEz0pr9k/5GqUAuYckMw/ZN5GWdeQzCOA3vpFX251yHi21bH5FameaYXxmociTYMixIqSssi/ng1SDYxsMKUWTLglmK7RY8++s+0ZkrPRXdPdBgEBab0YG0yL3Zr3V/WVYYfLYuwypuwK7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3OrhbcCB+GU37wUdLhUWSseieN9c9iOwjjifrYx203w=;
- b=AXqXBzoSxV7SeYx2lHiuYlLTKTM53ofRwFwbr8mK2wQrsIIzSnL6UKtsM+1fStptANuYt4Gk1s6jJ00wH6bVffp7pqRkJq2wBHbRlZ3HxZnl1SAZ7y/+J5729WAG6iD1nF5M+Afd+IwPQJSeHRo+Fq2mM+4aQtjp+8g418faY34ICTPNCsLLW9OUyY1Gyq0cuMChaTgOZ9jR5R7wvhVG8qgwgpxNNNnmgsiB+e0b7AdoaoBRUueAkn0WBRABjqLCVh/PvVwxKtWKHjnlX5Sl9C3NaizzhhedQgQMOXR3IFEal6/TrYSwZsBgBcb4j0gSCyd8XQCtIy7ffhqFQysk2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=garyguo.net smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3OrhbcCB+GU37wUdLhUWSseieN9c9iOwjjifrYx203w=;
- b=dJ/va5Rz43KJgbIxHE0LF9vn4SN+C6r6oPXFX/wV3tGzOMS6emdPJD/doFApHO/giacFV0Deyo+GG2eZtPxIW16f00Qb40BV8THnqCsTMO5CGgrjdOzv/84I88Lt0//srt6LJbNdXAXcxSO/XeJT5MuhQjI84SBvC9vDjFHJnsVs5BljxXK0sJ/+23W91mweqgS2gdPxwTV2L4FhAJzxWs2GXNYLHDYs7dZz9a8IEzh+dULspc7vi1H2wrtZDZBfYYZUnKrCkTADL32MBCnVqWTc15GDzTSssOZ9fJGmIUqhJtBpdAhxKU8NCAxeZUuVw/g5nWV0gTsLC8L4L2ugBA==
-Received: from BLAPR03CA0086.namprd03.prod.outlook.com (2603:10b6:208:329::31)
- by BL3PR12MB6473.namprd12.prod.outlook.com (2603:10b6:208:3b9::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
- 2026 02:29:08 +0000
-Received: from BL6PEPF00022571.namprd02.prod.outlook.com
- (2603:10b6:208:329:cafe::23) by BLAPR03CA0086.outlook.office365.com
- (2603:10b6:208:329::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.9 via Frontend Transport; Thu,
- 29 Jan 2026 02:29:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BL6PEPF00022571.mail.protection.outlook.com (10.167.249.39) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 02:29:08 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 18:28:53 -0800
-Received: from ttabi.nvidia.com (10.126.231.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 18:28:52 -0800
-From: Timur Tabi <ttabi@nvidia.com>
-To: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>,
-	<mmaurer@google.com>, Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
-	<acourbot@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, Joel Fernandes
-	<joelagnelf@nvidia.com>, <nouveau@lists.freedesktop.org>,
-	<rust-for-linux@vger.kernel.org>
-Subject: [PATCH v6 6/7] gpu: nova-core: create debugfs root in module init
-Date: Wed, 28 Jan 2026 20:28:36 -0600
-Message-ID: <20260129022837.4133832-7-ttabi@nvidia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260129022837.4133832-1-ttabi@nvidia.com>
-References: <20260129022837.4133832-1-ttabi@nvidia.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 483BE40106
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 02:58:18 +0000 (UTC)
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5280710E7B2
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 03:07:21 +0000 (UTC)
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-70-b5Gv61l4Pee-I6h3AC03Kg-1; Wed,
+ 28 Jan 2026 22:07:16 -0500
+X-MC-Unique: b5Gv61l4Pee-I6h3AC03Kg-1
+X-Mimecast-MFC-AGG-ID: b5Gv61l4Pee-I6h3AC03Kg_1769656036
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id CC3AE1944F12;
+	Thu, 29 Jan 2026 03:07:15 +0000 (UTC)
+Received: from dreadlord.redhat.com (unknown [10.67.32.75])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id C682A1800665;
+	Thu, 29 Jan 2026 03:07:13 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH] nouveau/vmm: start tracking if the LPT PTE is valid. (v3)
+Date: Thu, 29 Jan 2026 13:07:10 +1000
+Message-ID: <20260129030710.1574879-1-airlied@gmail.com>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF00022571:EE_|BL3PR12MB6473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ed23fba-474e-4f5d-f6bb-08de5ede2e29
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?VJTtiRrlUe+u0BPH61xmKToeK/bM/jco+0uKXXGKqlXGFknI9o/hrUKekhcE?=
- =?us-ascii?Q?awjfWXCOySt6qAhHSZ1e6HjVPNVDtUhUBGHMUZCxmHEA/zJCbD506isk+G34?=
- =?us-ascii?Q?nR/u3bICiTihpofWdIz1uOQZ0l+PGluDLYsapD80P6NETg9PNlFFhhp6IfZX?=
- =?us-ascii?Q?7BSbFnBXiJHcvp8jQY6RWZPh8I8CL5V/4C06UI1Ym7tv69tqDYoESgLoBsr9?=
- =?us-ascii?Q?s070QbGBisxo2m4gUT+p217DtHH2AgcjIKyUb+WPN5JVFnxDtmoyeCGzYPFk?=
- =?us-ascii?Q?FRYmA4tPvBqrSGWnV6AzJcFuypGSvFOj+6v0bo0yhzmuEfvH/7VZzew4rM2H?=
- =?us-ascii?Q?x+pe5SrmRdbD7WentCfw7oWziDoz3vuRIBezqsFw3Mtf0STNfdsDegx7pp6A?=
- =?us-ascii?Q?kRn5hVqNq3SF8CdmBpV6DiDDMWKf/l4i3xRpNXH+OdY/5JwhrGVi3PtFeCJk?=
- =?us-ascii?Q?w5Go4GxHajAnTD55NCPaNjeDojyC8w7dvz4Tv3ZsLwcTUmB5YYMH3vl5ECSQ?=
- =?us-ascii?Q?eHT63tqUrfvaHCZsztYL6cbk/rfNCNE4m3pCSAzhE4JtkHzD+7aWIwZqGYy2?=
- =?us-ascii?Q?0BfBKwA/7dX+zbHSjfFpKbZQs6A0IYGRdebenwf+thPgIROlqiZqJgg5MVRQ?=
- =?us-ascii?Q?sOk8hUUputxeBFRr4D33U1iRCrqXprewoBRrDb76hg4ETvIoVFpP8Pizry4H?=
- =?us-ascii?Q?Xs+/w+ZMxuReTldNBUcHkcJL82oZLiBR2id9XT861Nr7aSsSOS8fqLVZ9Q1Z?=
- =?us-ascii?Q?UxGTyUlrAA7xddWT+eZS99kgyerQ1cu/6EXYowsXataYxu63pQoFZFx4Ccrz?=
- =?us-ascii?Q?tGtutrmvpKP4Zw2ydazDpG0jh6XVfGPuVXIkmbDS8FfdKGERWH7RNLBNrHo/?=
- =?us-ascii?Q?Hp+wuH02kGZmIEw8Eq/EIeWAajzRVj7HugblXN5RSY4/FWUygn9TQ8eUhxLU?=
- =?us-ascii?Q?wKXJERhZd/ZNlqFuBSbK9bDaUqDl5f2YK8tH8LfzG7UZ0mKwYKcJrOXi7Hxy?=
- =?us-ascii?Q?T1DZ+CHFRCrmfSFLyE0xJHSlJndNbdDuLl9UCrCAjDlhn6NUn9uWBHQqN+hZ?=
- =?us-ascii?Q?GogitO9UmKP0P+SPHFJYXJhYbWYz4SaqLERSqKMI51b0084zdoIsqARu0tAA?=
- =?us-ascii?Q?GzsDgyaMjYoqVbf06PF3zUlpuigQvLUvt+kzoFxQLZrsOFOO34SeEshgXfiG?=
- =?us-ascii?Q?BgPvObHc/hWhxxQTXxA3r0DOacaIQIZz3UsIHdHiVYTokWAKSgA8nRrWQ9iP?=
- =?us-ascii?Q?qKpYI5umQoedoy7pjOY23HykMM4H1VgT3Z30nxUvdjgmctOAceqb+Pss6qTj?=
- =?us-ascii?Q?PxTO0rUIC1oW1HZXT/C/QJ4eOVJbY0uwzyfRZvAemkKGjB6NAtfJ+Nd9WKxI?=
- =?us-ascii?Q?tUPGWDx9BTk3nDmhoocsvKNwDDXJZJME5lS9lE4haVEiOgjAUgpFdcjfVdq7?=
- =?us-ascii?Q?gW0FnejlAE1nCqJRLZtaxkPrjybAj6tsY0/cFMttg4JdPvELJRghGYrVfbmm?=
- =?us-ascii?Q?zlZmyT6Ud1TUEdD1/S9B94UN8SgjdFXMEEqNec0N8Gy9WuVVi/Gp2Mj+o1BX?=
- =?us-ascii?Q?xhTQFvEXMMlRm4oKb1pbziTsNU2A0/rKqmzimKMwAPLGI4Mz2P1ukIu+6YQm?=
- =?us-ascii?Q?Nonttu/rRFJYCfVNY03yDPnDDGyvdbio+l7aH9VrIKyM73O4Gu1wnqLNfGrj?=
- =?us-ascii?Q?EJpl8g=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 02:29:08.1616
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 4ed23fba-474e-4f5d-f6bb-08de5ede2e29
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BL6PEPF00022571.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6473
-Message-ID-Hash: 3EG3KZM7T4BQMK4344GXTIYKWV6MUPE7
-X-Message-ID-Hash: 3EG3KZM7T4BQMK4344GXTIYKWV6MUPE7
-X-MailFrom: ttabi@nvidia.com
-X-Mailman-Rule-Hits: member-moderation
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: tAiY1oKEm_PyYhk9jrZCChoYUQOjPXHd-zw-FIMdfHI_1769656036
+X-Mimecast-Originator: gmail.com
+Content-Transfer-Encoding: quoted-printable
+content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Message-ID-Hash: 2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54
+X-Message-ID-Hash: 2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54
+X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3EG3KZM7T4BQMK4344GXTIYKWV6MUPE7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54/>
 Archived-At: 
- <https://lore.freedesktop.org/20260129022837.4133832-7-ttabi@nvidia.com/>
+ <https://lore.freedesktop.org/20260129030710.1574879-1-airlied@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -189,97 +104,175 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Create the 'nova_core' root debugfs entry when the driver loads.
+From: Dave Airlie <airlied@redhat.com>
 
-Normally, non-const global variables need to be protected by a
-mutex.  Instead, we use unsafe code, as we know the entry is never
-modified after the driver is loaded.  This solves the lifetime
-issue of the mutex guard, which would otherwise have required the
-use of `pin_init_scope`.
+When NVK enabled large pages userspace tests were seeing fault
+reports at a valid address.
 
-Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+There was a case where an address moving from 64k page to 4k pages
+could expose a race between unmapping the 4k page, mapping the 64k
+page and unref the 4k pages.
+
+Unref 4k pages would cause the dual-page table handling to always
+set the LPTE entry to SPARSE or INVALID, but if we'd mapped a valid
+LPTE in the meantime, it would get trashed. Keep track of when
+a valid LPTE has been referenced, and don't reset in that case.
+
+This increase the tracking to 32-bit, because it turns out if
+unref can get delayed, you can get a lot of these outstanding
+and this can cause strange behaviours.
+
+Cc: stable@vger.kernel.org
+Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+
+--
+v2: move to 32-bit from 8-bit tracker
+fix some more flag changes.
+v3: missed one BIG_PTE unset
 ---
- drivers/gpu/nova-core/Kconfig      | 13 +++++++++++++
- drivers/gpu/nova-core/nova_core.rs | 28 ++++++++++++++++++++++++++++
- 2 files changed, 41 insertions(+)
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 44 ++++++++++++++-----
+ drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |  9 ++--
+ 2 files changed, 37 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfig
-index 527920f9c4d3..974c5d08f6de 100644
---- a/drivers/gpu/nova-core/Kconfig
-+++ b/drivers/gpu/nova-core/Kconfig
-@@ -14,3 +14,16 @@ config NOVA_CORE
- 	  This driver is work in progress and may not be functional.
- 
- 	  If M is selected, the module will be called nova_core.
-+
-+config NOVA_CORE_DEBUGFS
-+	bool "Nova Core debugfs support"
-+	depends on NOVA_CORE
-+	depends on DEBUG_FS
-+	default y
-+	help
-+	  Enable debugfs support for the Nova Core driver. This exposes
-+	  debugging information and log buffers via the debugfs filesystem.
-+
-+	  Each GPU will have an entry under /sys/kernel/debug/nova_core.
-+
-+	  If unsure, say Y.
-diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-index 80ecbb50ec82..582b03013ebc 100644
---- a/drivers/gpu/nova-core/nova_core.rs
-+++ b/drivers/gpu/nova-core/nova_core.rs
-@@ -3,6 +3,7 @@
- //! Nova Core GPU Driver
- 
- use kernel::{
-+    debugfs,
-     driver::Registration,
-     pci,
-     prelude::*,
-@@ -27,16 +28,43 @@
- 
- pub(crate) const MODULE_NAME: &kernel::str::CStr = <LocalModule as kernel::ModuleMetadata>::NAME;
- 
-+// FIXME: Move this into per-module data once that exists
-+static mut DEBUGFS_ROOT: Option<debugfs::Dir> = None;
-+
-+/// Guard that clears DEBUGFS_ROOT when dropped.
-+struct DebugfsRootGuard;
-+
-+impl Drop for DebugfsRootGuard {
-+    fn drop(&mut self) {
-+        // SAFETY: This guard is dropped after _driver (due to field order),
-+        // so the driver is unregistered and no probe() can be running.
-+        unsafe { DEBUGFS_ROOT = None };
-+    }
-+}
-+
- #[pin_data]
- struct NovaCoreModule {
-+    // Fields are dropped in declaration order, so _driver is dropped first,
-+    // then _debugfs_guard clears DEBUGFS_ROOT.
-     #[pin]
-     _driver: Registration<pci::Adapter<driver::NovaCore>>,
-+    _debugfs_guard: DebugfsRootGuard,
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/dr=
+m/nouveau/nvkm/subdev/mmu/vmm.c
+index f95c58b67633..970e5f94a6e3 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
+@@ -53,7 +53,7 @@ nvkm_vmm_pt_new(const struct nvkm_vmm_desc *desc, bool sp=
+arse,
+ =09=09}
+ =09}
+=20
+-=09if (!(pgt =3D kzalloc(sizeof(*pgt) + lpte, GFP_KERNEL)))
++=09if (!(pgt =3D kzalloc(sizeof(*pgt) + (sizeof(pgt->pte[0]) * lpte), GFP_=
+KERNEL)))
+ =09=09return NULL;
+ =09pgt->page =3D page ? page->shift : 0;
+ =09pgt->sparse =3D sparse;
+@@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it, struct=
+ nvkm_vmm_pt *pgt,
+ =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
+ =09=09=09TRA(it, "LPTE %05x: U -> S %d PTEs", pteb, ptes);
+ =09=09=09pair->func->sparse(vmm, pgt->pt[0], pteb, ptes);
+-=09=09} else
+-=09=09if (pair->func->invalid) {
+-=09=09=09/* If the MMU supports it, restore the LPTE to the
+-=09=09=09 * INVALID state to tell the MMU there is no point
+-=09=09=09 * trying to fetch the corresponding SPTEs.
+-=09=09=09 */
+-=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
+-=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
++=09=09} else if (!(pgt->pte[pteb] & NVKM_VMM_PTE_BIG_VALID)) {
++=09=09=09if (pair->func->invalid) {
++=09=09=09=09/* If the MMU supports it, restore the LPTE to the
++=09=09=09=09 * INVALID state to tell the MMU there is no point
++=09=09=09=09 * trying to fetch the corresponding SPTEs.
++=09=09=09=09 */
++=09=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
++=09=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
++=09=09=09}
++=09=09} else {
++=09=09=09TRA(it, "LPTE %05x: V %d PTEs", pteb, ptes);
+ =09=09}
+ =09}
  }
- 
- impl InPlaceModule for NovaCoreModule {
-     fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
-+        #[cfg(CONFIG_NOVA_CORE_DEBUGFS)]
-+        {
-+            let dir = debugfs::Dir::new(kernel::c_str!("nova_core"));
+@@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn=
+, u32 ptei, u32 ptes)
+ =09if (desc->type =3D=3D SPT && (pgt->refs[0] || pgt->refs[1]))
+ =09=09nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
+=20
++=09if (desc->type =3D=3D LPT && (pgt->refs[0] || pgt->refs[1])) {
++=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
++=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_BIG_VALID;
++=09=09=09ptes--;
++=09=09}
++=09}
 +
-+            // SAFETY: We are the only driver code running during init, so there
-+            // cannot be any concurrent access to `DEBUGFS_ROOT`.
-+            unsafe { DEBUGFS_ROOT = Some(dir) };
-+        }
+ =09/* PT no longer needed? Destroy it. */
+ =09if (!pgt->refs[type]) {
+ =09=09it->lvl++;
+@@ -332,10 +342,12 @@ nvkm_vmm_ref_sptes(struct nvkm_vmm_iter *it, struct n=
+vkm_vmm_pt *pgt,
+ =09=09 * Determine how many LPTEs need to transition state.
+ =09=09 */
+ =09=09pgt->pte[ptei] |=3D NVKM_VMM_PTE_VALID;
++=09=09pgt->pte[ptei] &=3D ~NVKM_VMM_PTE_BIG_VALID;
+ =09=09for (ptes =3D 1, ptei++; ptei < lpti; ptes++, ptei++) {
+ =09=09=09if (pgt->pte[ptei] & NVKM_VMM_PTE_VALID)
+ =09=09=09=09break;
+ =09=09=09pgt->pte[ptei] |=3D NVKM_VMM_PTE_VALID;
++=09=09=09pgt->pte[ptei] &=3D ~NVKM_VMM_PTE_BIG_VALID;
+ =09=09}
+=20
+ =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
+@@ -374,6 +386,14 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn, =
+u32 ptei, u32 ptes)
+ =09if (desc->type =3D=3D SPT)
+ =09=09nvkm_vmm_ref_sptes(it, pgt, desc, ptei, ptes);
+=20
++=09if (desc->type =3D=3D LPT) {
++=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
++=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_VALID;
++=09=09=09pgt->pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;
++=09=09=09ptes--;
++=09=09}
++=09}
 +
-         try_pin_init!(Self {
-             _driver <- Registration::new(MODULE_NAME, module),
-+            _debugfs_guard: DebugfsRootGuard,
-         })
-     }
+ =09return true;
  }
--- 
+=20
+@@ -386,7 +406,7 @@ nvkm_vmm_sparse_ptes(const struct nvkm_vmm_desc *desc,
+ =09=09=09pgt->pde[ptei++] =3D NVKM_VMM_PDE_SPARSE;
+ =09} else
+ =09if (desc->type =3D=3D LPT) {
+-=09=09memset(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
++=09=09memset32(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
+ =09}
+ }
+=20
+@@ -398,7 +418,7 @@ nvkm_vmm_sparse_unref_ptes(struct nvkm_vmm_iter *it, bo=
+ol pfn, u32 ptei, u32 pte
+ =09=09memset(&pt->pde[ptei], 0x00, sizeof(pt->pde[0]) * ptes);
+ =09else
+ =09if (it->desc->type =3D=3D LPT)
+-=09=09memset(&pt->pte[ptei], 0x00, sizeof(pt->pte[0]) * ptes);
++=09=09memset32(&pt->pte[ptei], 0x00, ptes);
+ =09return nvkm_vmm_unref_ptes(it, pfn, ptei, ptes);
+ }
+=20
+@@ -457,7 +477,7 @@ nvkm_vmm_ref_hwpt(struct nvkm_vmm_iter *it, struct nvkm=
+_vmm_pt *pgd, u32 pdei)
+ =09=09=09=09=09desc->func->sparse(vmm, pt, pteb, ptes);
+ =09=09=09=09else
+ =09=09=09=09=09desc->func->invalid(vmm, pt, pteb, ptes);
+-=09=09=09=09memset(&pgt->pte[pteb], 0x00, ptes);
++=09=09=09=09memset32(&pgt->pte[pteb], 0x00, ptes);
+ =09=09=09} else {
+ =09=09=09=09desc->func->unmap(vmm, pt, pteb, ptes);
+ =09=09=09=09while (ptes--)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/dr=
+m/nouveau/nvkm/subdev/mmu/vmm.h
+index 4586a425dbe4..3720579f4bf7 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
+@@ -44,10 +44,11 @@ struct nvkm_vmm_pt {
+ =09 *
+ =09 * This information is used to manage LPTE state transitions.
+ =09 */
+-#define NVKM_VMM_PTE_SPARSE 0x80
+-#define NVKM_VMM_PTE_VALID  0x40
+-#define NVKM_VMM_PTE_SPTES  0x3f
+-=09u8 pte[];
++#define NVKM_VMM_PTE_SPARSE    0x80000000
++#define NVKM_VMM_PTE_VALID     0x40000000
++#define NVKM_VMM_PTE_BIG_VALID 0x20000000
++#define NVKM_VMM_PTE_SPTES     0x1fffffff
++=09u32 pte[];
+ };
+=20
+ typedef void (*nvkm_vmm_pxe_func)(struct nvkm_vmm *,
+--=20
 2.52.0
 
