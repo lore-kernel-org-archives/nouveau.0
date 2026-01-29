@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF9AD6101F
-	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 14:32:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2EA4D61020
+	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 14:32:54 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 13F4510E87E;
-	Thu, 29 Jan 2026 14:32:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 535C210E882;
+	Thu, 29 Jan 2026 14:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z89Dnhc3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="oL16AibZ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 896C140F1F;
-	Thu, 29 Jan 2026 14:23:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CFBFF40F63;
+	Thu, 29 Jan 2026 14:23:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769696627;
- b=ue8KK9HaEYn7cyqxTnFdpIl8kLmgSXgZDNXXSEAaSqX2DwULuN3Uj+kRYCkQGHvo3uDts
- tSzqas2ycZnTL1IaFCcOkXMEVe1Iz8cIXPGwLY1AP4VQchFu03SAy5yxqNYtqCRzAkFlFbD
- QrNFms1j/ZpAblIkviFFzw13F4WCcQEFLl1nRnbW3Mwe0v7ItUcE94cZWIH78tWM9C6sVMk
- IHq/I+8ktwqxSpUcw1vQgzIwU9FpU49sLhZCDnR7VynxT186CQx2TMoTEoH6hhnILgDTTFS
- OtAAaErEeCt6FecQHGdf08q44EHgNQKxbXXb2xkKMykekANP4PmFiHSs1Crg==
+ s=20240201; t=1769696628;
+ b=PegieyGE0w/bYIyS+b3c2acRMuOoPx0Am6LIlY+zQIKDQjIfqzbgw1hlrPgIEAoKnbPHq
+ LDQ3xwQlz2UY66TIRih2ybmU+TvpIpuXBQ6T5rEYxRGWZlgpwW9QvZW9YSkLpDIB5T/2QvX
+ 3QmeA4cDnmfu1F7hPDoU8XtVswcMtA1yp10bEXuGqj6mQwgSdH51b2LINcI4fcMes9A1CVk
+ ZlmJhlRY/+DsZEzT1mMu7hgebo+GInM5BPL8OsfR3lGKwV3GEwLuC9hfryarqnHgUd8D93u
+ g7FO8xAXkOZ09PeUtp4H517L5yX32mZePJy4sPBtqjr0Dnaw/qdIFbEV93/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769696627; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769696628; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=L1J4BqscmXB0ZL5Bj5jvJKGJRaopB5xh/IfwVgG7DCo=;
- b=PUrToDaeycOO8NyhadyQ8CppjOefpukJTdWs7OgKXCQYryuyy9c9tLEBvGGWAdWbWzxP3
- /Ld5hAwFjOfP/T61l7c5S7wJYYnhgMUuXz6pKtmCYtZ6N2P4JeKNqGb9Y3y06qlyRTX8nT5
- KYKCcjR6BGfHaevII08/24VcmN2Mu1wcP11YtxSuYi+bb9CILWHMXURZBSaj1/GcyURc9G9
- fYtv4U325RdUMueqw7Mr8yT9busluO4iT7slKZs229lHaeI+uGTHQ/6ZTQgV9+pMwYT4q57
- k2tY2PFh1WDJncT36saDFwLOa7P00F6Xg/LdWxev9tSdV809ZOwtu4xF5zTg==
+ bh=0PtBhwNYnHebBz+1q+0weenY+/m/qAYPmDL6d2scpzU=;
+ b=y4lNfFGZTpvsd+Hv8L+QkGbQtBwibPYS9KPEeeKwjiEtxmV0w3w4BXFWHa6vFIhE5ZZO6
+ hhJ0rHZXk/6aKLYwhQB5xSyZJaZMiazCb8dMAxMv0GHpHArf39apvG13w6Cb6PKw58X2h5N
+ MYc3naOR6jJPH6d8eZMucOcHBsshgHsllgIY6irS/CSoauGCAKC6tjsaVwbAbehpLu1Ll+w
+ hHwGnuF0/FVmmw4LwWcDhdKdwpIkZh6qRTvgiawRaBGsQi7+jjCfjFBE6DkC8qJi/ukxVyg
+ Qeql35lLUdf1jokuB7CzBSqshPp5VbuM3cMfarj+3glThROA0zOkNIm2FOZg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,40 +46,42 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7B72540AC8
+	by kara.freedesktop.org (Postfix) with ESMTPS id E006440AC8
 	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 14:23:44 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9CC7210E874
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2C5D010E874
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 14:32:49 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4C1914433B;
+	by tor.source.kernel.org (Postfix) with ESMTP id 312A360125;
 	Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0CCE8C2BC87;
-	Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id D5F13C4CEF7;
+	Thu, 29 Jan 2026 14:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769697168;
-	bh=h2db5JHcfX358xoYjzNWg69N/TJi6crM+c2XE9YuwFA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=Z89Dnhc3WkiXIxaMu+lpUw+nOS3B6WcdcON5PLk4rLfptRVme7pJZp2037SibNYJW
-	 of7FmWGo71CuBhFpmaDWcuKvPMRCcNlFp/weRPw58svW1LAqfppWZzpnB5jw6x1ga3
-	 pUs2qTYEUPema9XZ3AkjJhCCwj6Z8lkRCMlkn5Q+gqtzlFk0Gcqn499WNdkAoBXgNq
-	 Ij2oHl78FVPXLROelg1ur4FZEtGoaYo3srksI+A9GcZq5seiwfW8lT/PbcFZg5IlDQ
-	 gr+Lg9vzrzR170x9RgOPYYMWRaS/7yzFIvX1D2nUfqiZRDkofkiXoLBmDeUrtJREkX
-	 3vd9B+gEGHZjw==
+	s=k20201202; t=1769697167;
+	bh=W/lQNM+k2nJyyhsWP+iX2X75QmPDfFgQGv2yUuk2t+c=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oL16AibZN0jHuPACubdWBmgmUVZazIWIHv+mzxXoDb324dpkhbgOCLEkt8AFgOpIq
+	 WWe7t5zolX6rkCMn9kER5xaPOWTnocEs8Z4xMZ0Zt5pWCDXCS2N2ED0Ek2CYrPc0FU
+	 xRVQE5+QtBZSm8ZvR6IGeTUifTJ4nPKbTjlJk3MkakBObiMEuR2qYY/ZH2oTsw+7nX
+	 6RPuCVrlsA5wrrR0bhVJzVIzAPDwVyc/mcsemH+dyp6FEr4Ed/JdfLSt4RIXCny4Yp
+	 OabE2XV/iaEYOGI9Nwn9d5RswgvptVSTV736RVcdUc0NMDFMQsQ3DPAkASLZS8q0hx
+	 TQ9C3sLDFSV9Q==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 03C6AD6101C;
-	Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTP id C5AF9D6101F;
+	Thu, 29 Jan 2026 14:32:47 +0000 (UTC)
 From: Jesung Yang via B4 Relay <devnull+y.j3ms.n.gmail.com@kernel.org>
-Date: Thu, 29 Jan 2026 23:32:47 +0900
-Subject: [PATCH v5 3/4] rust: macros: add private doctests for `Into`
- derive macro
+Subject: [PATCH v5 0/4] rust: add `TryFrom` and `Into` derive macros
+Date: Thu, 29 Jan 2026 23:32:44 +0900
+Message-Id: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260129-try-from-into-macro-v5-3-dd011008118c@gmail.com>
-References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
-In-Reply-To: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAIxve2kC/32NQQqDMBBFryKz7hSNSWq76j2KixATHWiMTEQqk
+ rs39QBdvgf//QOSY3IJHtUB7DZKFOcC6lKBncw8OqShMIhaqEYIhSvv6DkGpHmNGIzliI3Waqi
+ Nt952UJYLO0+fs/rqC0+U1sj7ebLJn/3f2yTWKI3S7aDut67VzzEYel9tDNDnnL9JtcWwtgAAA
+ A==
+X-Change-ID: 20251225-try-from-into-macro-1665d0afcfc8
 To: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
  Gary Guo <gary@garyguo.net>,
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
@@ -87,28 +89,28 @@ To: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
  Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=12271;
- i=y.j3ms.n@gmail.com; h=from:subject:message-id;
- bh=c1q9CgkXNiNNpfbtgu2COPiP5pBsQJknnBTq9ePsn4g=;
- b=owJ4nAFtApL9kA0DAAoBhnBYoOPQ2LoByyZiAGl7b45XM/k3hZ+u/lh5G4jGp1ZkwgQR5FMYK
- T7No+6EXVYP0okCMwQAAQoAHRYhBNJuBqTTLsbEgOaQ0IZwWKDj0Ni6BQJpe2+OAAoJEIZwWKDj
- 0Ni6SyIP/1JbkqVr20g1d1JYWzXHPRY2PHXALyMzrRflJmxjM4wlIo8SPKdimlBJiirQp7igodp
- 3zvrRhqeuUN7UFsfS2tktKrnPJlpUFGrg3FSUnINdkDOdHBi5n5cmHq0vZ37LFgyd8K81Vil9Rg
- VXk7nGAz6UCZ1io4x28aSsU5temMphoTD4urkNl7Vmx6sNWRQAQTY3QsJJjyRueF8VCENQ0Xn5z
- GLwuXKjq0s5Ch+eGmGwUWd8e7KZYR7lA8OzPuZDIjZCTwAFnZGFT5U65YMasK0eBIChOYrGY8bE
- OaP0a/zwRqZ/8EHocqIuoWLDVTfzJZAbY/JJgqMv7G864/cpQlB74rf4oJVXxnulUL+qen0uSa9
- 1yigjc91geN1kszcIIcNDJ9Znt5YP2uQpP6s7TnntxgkY0fZIvcPRbT1mDAxBcUuGTK8KgQC4Rp
- J0R0+DYhcEVgWzUHdfjnEWpq3vF2mBl6FXvHraRRBdC/vg3RCQgZzE/SUk2INaUatp4c+y8gK+p
- rAkz0hSTbVJqNbrw/YLQe4FX+OT3a36MyQFY7psdN97txu/lojyS8WMKkpWqXACx7lQYP/OtXem
- ZYtG7VAi+HnWKs7bEhVH/DJgY2F8exqnY5o+3ByT3mb/cNRsXYA/0BXYOzW42KkZwE7cYagxYWY
- uC1ZUw/deWjuGekgggY4i9g==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5049; i=y.j3ms.n@gmail.com;
+ h=from:subject:message-id;
+ bh=W/lQNM+k2nJyyhsWP+iX2X75QmPDfFgQGv2yUuk2t+c=;
+ b=owJ4nAFtApL9kA0DAAoBhnBYoOPQ2LoByyZiAGl7b47aya1K7Gld9Pr15f5ILWyBdh7l0GBPa
+ 6HOxnu/aM43uYkCMwQAAQoAHRYhBNJuBqTTLsbEgOaQ0IZwWKDj0Ni6BQJpe2+OAAoJEIZwWKDj
+ 0Ni6aioQALMVekoonpoiaF5wtL63jMIje/TKyxuKccuJJgghAmjDvYFM4Ij7lhMP9rjvb4NJ0rE
+ BQw56rPhtTrad1s2AeJkx8Aie2GJd0fyrjwdSFUG3OrlAdZgqrVAP3irlL5ZJ+FK3FHr6nbgE18
+ JEyiO4/UF21wCOi1YaF9nWSjj2uLisRsPUdlDaAqHzgSHGVbahFctM0006DjSIZ8d3Mzv3ualFl
+ KJubhQGMISfbbqAlc1iU/WTInrVhSpUuHDvk40aQhwdVyfBmsEK0UxybwYgsW6Z/FooynBug22r
+ QXXSpKORx8PldH4mlr7smdXgfAdqOBs5oa0hUs+yrbfqozj7gw9RsNes+KdiSYRxVbrQhmwYtcm
+ 7PFwGpYnazCtS1IwFYP3f2nuXgFlDGbNapgxI5qGObbnoe5DvWhMZA6owKOfC9KJ07+7mulQwts
+ aCXS6J2y5yTIVLb4pSfUgrD9+MEWu8rvh8oW873hdc5Lq8qGOYe7KP+zXsXhEemm6BTkLxaKE9T
+ VZI3lE85DzjmFW+sbbeo/Edf8/6yCl/iHgJS7j+P1Omf4bB6Rw9HdB+1J0ngAxBZQN8n3DiABQh
+ 1cveTR6Nm29OnkogajCL53/BC+89P9xNdlOnBuEXCZAbokQ/yF/IRRzShLHx9UdViEPSpUYRe4q
+ O1VgLCpp6xCsEOkH5dbAwfw==
 X-Developer-Key: i=y.j3ms.n@gmail.com; a=openpgp;
  fpr=D26E06A4D32EC6C480E690D0867058A0E3D0D8BA
 X-Endpoint-Received: by B4 Relay for y.j3ms.n@gmail.com/default with
  auth_id=602
 X-Original-From: Jesung Yang <y.j3ms.n@gmail.com>
-Message-ID-Hash: PQ4II4HERNACKTCWZTBGSYYUW25ZBVMO
-X-Message-ID-Hash: PQ4II4HERNACKTCWZTBGSYYUW25ZBVMO
+Message-ID-Hash: YZMKX6SVJU6RW55HCXAZOC3VRMFZXP4X
+X-Message-ID-Hash: YZMKX6SVJU6RW55HCXAZOC3VRMFZXP4X
 X-MailFrom: devnull+y.j3ms.n.gmail.com@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -121,9 +123,9 @@ Precedence: list
 Reply-To: y.j3ms.n@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PQ4II4HERNACKTCWZTBGSYYUW25ZBVMO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YZMKX6SVJU6RW55HCXAZOC3VRMFZXP4X/>
 Archived-At: 
- <https://lore.freedesktop.org/20260129-try-from-into-macro-v5-3-dd011008118c@gmail.com/>
+ <https://lore.freedesktop.org/20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,463 +135,127 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Jesung Yang <y.j3ms.n@gmail.com>
+This patch series introduces derive macros for the `TryFrom` and `Into`
+traits.
 
-Add internal doctests to verify the `Into` derive macro's logic. This
-ensures comprehensive testing while keeping the public-facing
-documentation compact and readable.
+I dropped support for `#[repr(C)]` fieldless enums (i.e., disallow
+deriving `TryFrom` and `Into` on those enums), since the actual
+representation of discriminants is defined by rustc internally, and
+documentation around it is not yet settled [1][2].
+
+I would like to highlight some feedback from the previous series where I
+have decided to retain the original behavior in this series. In part, I
+feel more community feedback is needed to reach the right design; I've
+also elaborated on my personal reasoning for each point below:
+
+1) Require explicit `#[repr(..)]` for enums using the macros.
+
+Given the drop of `#[repr(C)]` support, I believe defaulting to `isize`
+when no `#[repr(..)]` is specified is safe, as it follows the
+compiler's (documented) default behavior [3]. By "safe", I mean I see no
+potential regressions or hidden issues; we even have a compile-time
+overflow assertion which ensure all enum discriminants fit within the
+types involved in the conversion.
+
+2) Generate trait implementation for a type in `#[repr(..)]` even when
+   the helper attribute is present. For example:
+
+     #[derive(TryFrom)]
+     #[try_from(bool)]
+     #[repr(u8)]
+     enum E {
+         A = 0,
+         B = 1,
+     }
+
+   make the above snippet generate both `TryFrom<u8>` and
+   `TryFrom<bool>` implementations.
+
+However, sometimes users might want to prevent generating trait
+implementations for the type in `#[repr(..)]`, especially when the enum
+encodes types like `bool` or `Bounded<u8, 4>` that cannot be used in
+`#[repr(..)]`, like the above snippet. If we were to follow the feedback
+directly, users would end up with an unnecessary `TryFrom<u8>`
+implementation. Therefore, I think it is reasonable to treat the helper
+attribute as an override that ignores the type in `#[repr(..)]` when
+present.
+
+One last point: the current `Into` implementation relies on
+`Bounded::from_expr()`, which utilizes `build_assert!()`. So the
+expanded result looks roughly like this:
+
+  impl From<Enum> for Bounded<u8, 4> {
+      fn from(value: Enum) -> Bounded<u8, 4> {
+          // Compile-time assertions to guarantee `value` fits within
+          // `u8` (Omitted)
+
+          Bounded::<u8, 4>::from_expr(value as u8)
+      }
+  }
+
+After some experimentation, it appears that the compiler correctly
+optimizes out the assertion if (and only if) the `Bounded` type covers
+all enum discriminants, though I'm not 100% certain of this behavior in
+all cases. Can we approach this better?
+
+Appreciate any feedback or suggestions.
+
+[1] https://github.com/rust-lang/rust/issues/124403
+[2] https://github.com/rust-lang/rust/pull/147017
+[3] https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.discriminant.repr-rust
 
 Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
 ---
- rust/macros/convert.rs | 436 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 436 insertions(+)
+Changes in v5:
+- Drop support for `#[repr(C)]` enums. (Benno Lossin)
+- Allow `#[repr(C, {primitive_int_type})]` for future-proofing.
+  (Benno Lossin)
+- Parse types in helper attributes into `syn::Type` prior to validation.
+  (Benno Lossin)
+- Replace doctests for `TryFrom` with correct examples. (Benno Lossin)
+- Reorganize error reporting structure.
+- Add documentation about `#[repr(C)]` fieldless enums.
+- Rebase on commit a7c013f77953 ("Merge patch series "refactor Rust proc
+  macros with `syn`"")
+- Link to v4: https://lore.kernel.org/r/20251225-try-from-into-macro-v4-0-4a563d597836@gmail.com
 
-diff --git a/rust/macros/convert.rs b/rust/macros/convert.rs
-index a7a43b1a2caf..41ccbd849348 100644
---- a/rust/macros/convert.rs
-+++ b/rust/macros/convert.rs
-@@ -582,3 +582,439 @@ fn is_valid_primitive(ident: &Ident) -> bool {
-             | "isize"
-     )
- }
-+
-+mod derive_into_tests {
-+    /// ```
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(u8)]
-+    /// enum Foo {
-+    ///     // Works with const expressions.
-+    ///     A = add(0, 0),
-+    ///     B = 2_isize.pow(1) - 1,
-+    /// }
-+    ///
-+    /// const fn add(a: isize, b: isize) -> isize {
-+    ///     a + b
-+    /// }
-+    ///
-+    /// assert_eq!(0_u8, Foo::A.into());
-+    /// assert_eq!(1_u8, Foo::B.into());
-+    /// ```
-+    mod works_with_const_expr {}
-+
-+    /// ```
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(bool)]
-+    /// enum Foo {
-+    ///     A,
-+    ///     B,
-+    /// }
-+    ///
-+    /// assert_eq!(false, Foo::A.into());
-+    /// assert_eq!(true, Foo::B.into());
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(bool)]
-+    /// enum Foo {
-+    ///     // `-1` cannot be represented with `bool`.
-+    ///     A = -1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(bool)]
-+    /// enum Foo {
-+    ///     // `2` cannot be represented with `bool`.
-+    ///     A = 2,
-+    /// }
-+    /// ```
-+    mod overflow_assert_works_on_bool {}
-+
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 7>)]
-+    /// enum Foo {
-+    ///     A = -1 << 6,      // The minimum value of `Bounded<i8, 7>`.
-+    ///     B = (1 << 6) - 1, // The maximum value of `Bounded<i8, 7>`.
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<i8, 7> = Foo::A.into();
-+    /// let foo_b: Bounded<i8, 7> = Foo::B.into();
-+    /// assert_eq!(Bounded::<i8, 7>::new::<{ -1_i8 << 6 }>(), foo_a);
-+    /// assert_eq!(Bounded::<i8, 7>::new::<{ (1_i8 << 6) - 1 }>(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 7>)]
-+    /// enum Foo {
-+    ///     // `1 << 6` cannot be represented with `Bounded<i8, 7>`.
-+    ///     A = 1 << 6,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 7>)]
-+    /// enum Foo {
-+    ///     // `(-1 << 6) - 1` cannot be represented with `Bounded<i8, 7>`.
-+    ///     A = (-1 << 6) - 1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 1>)]
-+    /// enum Foo {
-+    ///     A = -1, // The minimum value of `Bounded<i8, 1>`.
-+    ///     B,      // The maximum value of `Bounded<i8, 1>`.
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<i8, 1> = Foo::A.into();
-+    /// let foo_b: Bounded<i8, 1> = Foo::B.into();
-+    /// assert_eq!(Bounded::<i8, 1>::new::<{ -1_i8 }>(), foo_a);
-+    /// assert_eq!(Bounded::<i8, 1>::new::<{ 0_i8 } >(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 1>)]
-+    /// enum Foo {
-+    ///     // `1` cannot be represented with `Bounded<i8, 1>`.
-+    ///     A = 1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 1>)]
-+    /// enum Foo {
-+    ///     // `-2` cannot be represented with `Bounded<i8, 1>`.
-+    ///     A = -2,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i32, 32>)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     A = i32::MIN as i64,
-+    ///     B = i32::MAX as i64,
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<i32, 32> = Foo::A.into();
-+    /// let foo_b: Bounded<i32, 32> = Foo::B.into();
-+    /// assert_eq!(Bounded::<i32, 32>::new::<{ i32::MIN }>(), foo_a);
-+    /// assert_eq!(Bounded::<i32, 32>::new::<{ i32::MAX }>(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i32, 32>)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     // `1 << 31` cannot be represented with `Bounded<i32, 32>`.
-+    ///     A = 1 << 31,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i32, 32>)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     // `(-1 << 31) - 1` cannot be represented with `Bounded<i32, 32>`.
-+    ///     A = (-1 << 31) - 1,
-+    /// }
-+    /// ```
-+    mod overflow_assert_works_on_signed_bounded {}
-+
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 7>)]
-+    /// enum Foo {
-+    ///     A,                // The minimum value of `Bounded<u8, 7>`.
-+    ///     B = (1 << 7) - 1, // The maximum value of `Bounded<u8, 7>`.
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<u8, 7> = Foo::A.into();
-+    /// let foo_b: Bounded<u8, 7> = Foo::B.into();
-+    /// assert_eq!(Bounded::<u8, 7>::new::<{ 0 }>(), foo_a);
-+    /// assert_eq!(Bounded::<u8, 7>::new::<{ (1_u8 << 7) - 1 }>(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 7>)]
-+    /// enum Foo {
-+    ///     // `1 << 7` cannot be represented with `Bounded<u8, 7>`.
-+    ///     A = 1 << 7,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 7>)]
-+    /// enum Foo {
-+    ///     // `-1` cannot be represented with `Bounded<u8, 7>`.
-+    ///     A = -1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 1>)]
-+    /// enum Foo {
-+    ///     A, // The minimum value of `Bounded<u8, 1>`.
-+    ///     B, // The maximum value of `Bounded<u8, 1>`.
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<u8, 1> = Foo::A.into();
-+    /// let foo_b: Bounded<u8, 1> = Foo::B.into();
-+    /// assert_eq!(Bounded::<u8, 1>::new::<{ 0 }>(), foo_a);
-+    /// assert_eq!(Bounded::<u8, 1>::new::<{ 1 }>(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 1>)]
-+    /// enum Foo {
-+    ///     // `2` cannot be represented with `Bounded<u8, 1>`.
-+    ///     A = 2,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u8, 1>)]
-+    /// enum Foo {
-+    ///     // `-1` cannot be represented with `Bounded<u8, 1>`.
-+    ///     A = -1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```
-+    /// use kernel::{
-+    ///     macros::Into,
-+    ///     num::Bounded, //
-+    /// };
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u32, 32>)]
-+    /// #[repr(u64)]
-+    /// enum Foo {
-+    ///     A = u32::MIN as u64,
-+    ///     B = u32::MAX as u64,
-+    /// }
-+    ///
-+    /// let foo_a: Bounded<u32, 32> = Foo::A.into();
-+    /// let foo_b: Bounded<u32, 32> = Foo::B.into();
-+    /// assert_eq!(Bounded::<u32, 32>::new::<{ u32::MIN }>(), foo_a);
-+    /// assert_eq!(Bounded::<u32, 32>::new::<{ u32::MAX }>(), foo_b);
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u32, 32>)]
-+    /// #[repr(u64)]
-+    /// enum Foo {
-+    ///     // `1 << 32` cannot be represented with `Bounded<u32, 32>`.
-+    ///     A = 1 << 32,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<u32, 32>)]
-+    /// #[repr(u64)]
-+    /// enum Foo {
-+    ///     // `-1` cannot be represented with `Bounded<u32, 32>`.
-+    ///     A = -1,
-+    /// }
-+    /// ```
-+    mod overflow_assert_works_on_unsigned_bounded {}
-+
-+    /// ```
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(isize)]
-+    /// #[repr(isize)]
-+    /// enum Foo {
-+    ///     A = isize::MIN,
-+    ///     B = isize::MAX,
-+    /// }
-+    ///
-+    /// assert_eq!(isize::MIN, Foo::A.into());
-+    /// assert_eq!(isize::MAX, Foo::B.into());
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(isize)]
-+    /// #[repr(usize)]
-+    /// enum Foo {
-+    ///     A = (isize::MAX as usize) + 1
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(i32)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     A = (i32::MIN as i64) - 1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(i32)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     A = (i32::MAX as i64) + 1,
-+    /// }
-+    /// ```
-+    mod overflow_assert_works_on_signed_int {}
-+
-+    /// ```
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(usize)]
-+    /// #[repr(usize)]
-+    /// enum Foo {
-+    ///     A = usize::MIN,
-+    ///     B = usize::MAX,
-+    /// }
-+    ///
-+    /// assert_eq!(usize::MIN, Foo::A.into());
-+    /// assert_eq!(usize::MAX, Foo::B.into());
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(usize)]
-+    /// #[repr(isize)]
-+    /// enum Foo {
-+    ///     A = -1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(u32)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     A = (u32::MIN as i64) - 1,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(u32)]
-+    /// #[repr(i64)]
-+    /// enum Foo {
-+    ///     A = (u32::MAX as i64) + 1,
-+    /// }
-+    /// ```
-+    mod overflow_assert_works_on_unsigned_int {}
-+
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(Bounded<i8, 7>, i8, i16, i32, i64)]
-+    /// #[repr(i8)]
-+    /// enum Foo {
-+    ///     // `i8::MAX` cannot be represented with `Bounded<i8, 7>`.
-+    ///     A = i8::MAX,
-+    /// }
-+    /// ```
-+    ///
-+    /// ```compile_fail
-+    /// use kernel::macros::Into;
-+    ///
-+    /// #[derive(Into)]
-+    /// #[into(i8, i16, i32, i64, Bounded<i8, 7>)]
-+    /// #[repr(i8)]
-+    /// enum Foo {
-+    ///     // `i8::MAX` cannot be represented with `Bounded<i8, 7>`.
-+    ///     A = i8::MAX,
-+    /// }
-+    /// ```
-+    mod any_into_target_overflow_is_rejected {}
-+}
+Changes in v4:
+- Fix typos.
+- Link to (broken) v3: https://lore.kernel.org/rust-for-linux/cover.1766544407.git.y.j3ms.n@gmail.com/
 
+Changes in v3:
+- Use the vendored `syn` and `quote` crates.
+- Support `kernel::num::Bounded`.
+- Add compile-time overflow assertion.
+- Add a comment about `#[repr(C)]` enums.
+- Drop Tested-by and Reviewed-by tags, as the code structure has
+  changed substantially. (Thanks for the previous reviews and testing!)
+- Link to v2: https://lore.kernel.org/rust-for-linux/cover.1755235180.git.y.j3ms.n@gmail.com/
+
+Changes in v2 (no functional changes):
+- Split the patch "rust: macros: extend custom `quote!()` macro"
+  into two separate patches.
+- Remove unnecessary spaces between tags.
+- Use a consistent commit subject prefix: "rust: macros:".
+- Add Tested-by tags.
+- Link to v1: https://lore.kernel.org/rust-for-linux/cover.1754228164.git.y.j3ms.n@gmail.com/
+
+---
+Jesung Yang (4):
+      rust: macros: add derive macro for `Into`
+      rust: macros: add derive macro for `TryFrom`
+      rust: macros: add private doctests for `Into` derive macro
+      rust: macros: add private doctests for `TryFrom` derive macro
+
+ rust/macros/convert.rs | 1599 ++++++++++++++++++++++++++++++++++++++++++++++++
+ rust/macros/lib.rs     |  349 ++++++++++-
+ 2 files changed, 1947 insertions(+), 1 deletion(-)
+---
+base-commit: a7c013f779530190d0c1e1aa5e7c8a61f0bd479e
+change-id: 20251225-try-from-into-macro-1665d0afcfc8
+
+Best regards,
 -- 
-2.52.0
+Jesung Yang <y.j3ms.n@gmail.com>
 
 
