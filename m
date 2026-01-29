@@ -4,97 +4,216 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B87D46C19
-	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 03:07:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BBC3D358D6
+	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 07:46:00 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 17D3810E7B6;
-	Thu, 29 Jan 2026 03:07:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8EB10E7FF;
+	Thu, 29 Jan 2026 07:45:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="S9kcGSdj";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 99EC440B8C;
-	Thu, 29 Jan 2026 02:58:20 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769655500;
- b=ge4zAn/dcQi5Gz+D6Lrxer+oiNUoP09x+CqHJj72X+MDr7Ecrr3JBBiDsz7SY2oL1PP3M
- cs56DZMIU4/1b9m1jTmwUJRvPkkC8ZnvFWy/HZU7ZHZEOTHeSSJW8RXAGNFXr86zWF0S21I
- Fiy/eFlsY6p91J+jo583ZUrS5smX8Rv0Dn8z0AfM7/jlKTm1KMcONzgQnr0MOQNMXsr28R0
- 6Mux4s+9pgcDaEDn2Lc/KCy9dPmNlF6drOAYT/L+sWvtEHKdBz2wlz7NhBwXM2xVDGwP1o9
- jbQQwgP40G99GinvUx+8vUxn4QgVTNEct6ENd0r5kP6HYQmAsli9DEHsLXFw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769655500; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 90F1140B86;
+	Thu, 29 Jan 2026 07:36:52 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769672212;
+ b=rpJpLN/iV+AdSIUqV14UgXLc8I0cgitCDd2lHi0+6pZOLwW3PExfZ0RGp+jeethA8CINq
+ fNpjePsf5OZ3dNJ/jCDSuaXinOisj4Lscr2KbKNxDI7alJqjtMv8Z6oERsOa9AiONNc6V+G
+ HPs0Jtjlrt5slGrnTuvJmq7eJDXpVf65fWeqqryy5iod2wVm1/RjGoFOmx5JyiY1FHWKLBp
+ 77ge/ajLETCJWR3FXcitjI6Bq1eQ2+TK3alesE8r2pvwrtPsJlUH/rYuBTNPg9sB1aeKpR1
+ fgpKkgVRG7vYkz9MEYVI1bmq0aO7qJSO8hqzzcXwbf9ED5mLUdjQhsU8dk7Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769672212; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HCscY3C9GI0rvwKsSj0UmyAzSvT6Fdah9U1FXpOrtrw=;
- b=qjhYyXOtERdMC40HdZXY2h3U93MFZiOT5nFmkEoFMEl/02RHfV6Z4RNAQdSbMgNZMEHDN
- fjqh1P2iKPlX6VjJ77Ap8Ofug0LlciVxPVKm9W1fRJ0bbbhGwCMc2Q1XayZ8qNZblZHqFZn
- U1UluzI4EAy7ZBG6dkCHh6RwNnBMjmRSuQClmZZcZ+RUArJLMwXE0fr5vjaIoFQW1OWdbxP
- 1/G/cl7i3w5746Bz7bRehBvNs/4OWybs9x6qD0Nfn6TJlBnUWx+QDRbgffTEDfLiMHAcBdT
- MrZ2L8hlBzwF7XevYtyxcQz08fD16Kh+uGyHG4Ea3pi5Ix1p3E5gZTxREwVg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ bh=iNVsXzDaJQaEzdWpUdy3qjlQjCrcrbNoABpkNLo1jIw=;
+ b=WdFcttyUYF3F+SKOKcJpsOqWcv+2Pz6lrNpTPW8dhd1Mj0b21GuqCBeqgbNIxROGJzTCn
+ 5dYSPhzxYD/hEtEIoJ7mgOUXHKahxTHWj/Na4Tm1tL7xD3hrybsxM7VsCirkozMM8wLED7+
+ FdLnLIhZaVTGv6ugZ/EXwo2xwM88YzLVUeBCFYb5JctmIgZIEgQDDWiDGCap56PeQJm7p4F
+ KL2Fmbfndcak+iTnhiPsnpQsQzvCtjHsyZuEUF5drDBaAuHMv7unT/rxyrW3IOh5HwiEj4l
+ 6XsNj+g3j5YbKgJBSR/stlnm/mXmD7T24n7AURtP24fj1van4nfE6YI7UuFg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 483BE40106
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 02:58:18 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5280710E7B2
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 03:07:21 +0000 (UTC)
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-70-b5Gv61l4Pee-I6h3AC03Kg-1; Wed,
- 28 Jan 2026 22:07:16 -0500
-X-MC-Unique: b5Gv61l4Pee-I6h3AC03Kg-1
-X-Mimecast-MFC-AGG-ID: b5Gv61l4Pee-I6h3AC03Kg_1769656036
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id CC3AE1944F12;
-	Thu, 29 Jan 2026 03:07:15 +0000 (UTC)
-Received: from dreadlord.redhat.com (unknown [10.67.32.75])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id C682A1800665;
-	Thu, 29 Jan 2026 03:07:13 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/vmm: start tracking if the LPT PTE is valid. (v3)
-Date: Thu, 29 Jan 2026 13:07:10 +1000
-Message-ID: <20260129030710.1574879-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id E03D640106
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 07:36:49 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012004.outbound.protection.outlook.com [52.101.43.4])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6B22E10E7FB;
+	Thu, 29 Jan 2026 07:45:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=WQzt7zjRgN1mNOQw651ZA8GzHDnhQfB1i/fHMbYWoEjlpLfYDn30b4psS5zdOGpYuvDOnCnmvCXLQEvRygsze6k/n/+N3q7R/23d9EuZkg52DxGIqJaikCxWc64j0QfYm/4BdaPenqvrNaLWBo3zJveksAUexajBHHzWCXV6OuKWXzSyvK/16jjtqoAbgO0AVpgqxtzHsgEEcQfSBFzvikXXZ+sWj3sGriTXrXqhQwM8eyC8BcFdx+BmilYipvhPbzMUxzJPU/hMPbMsVHJfI11BwwJ9fE7mXTHk+FgalQny9gVFWFC7IW1kydCZXJu+JNsTgVSQTOEWf+tAyuQfCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iNVsXzDaJQaEzdWpUdy3qjlQjCrcrbNoABpkNLo1jIw=;
+ b=eOk8s3ALuP4k6f/Oc6+k7Jf/WOc0HGtnbyQaH256yuikpqhjdhl4FpeXrY2Ku8FdKRGvnDkVGKMlZ0OqlVPHADafF9nCKj8+s0ma9dAlGsRugRzNvNbTbkMhiX21lRBUExgBEbmrbihmeyWrzqiJB0R1xVQka8iryk850vUwJBBSx3n8upKwTcmBiLjmoVMoVqu/3dZ839VBxbaUAuwflUTsie7U0BTng/cntpVw0PbgMoVOQKcZ6yxrhlrJdBBuYh378i8DdWaklooIz0KPSgpoDR8uOOYzeFtbE3cxZd+NLCmAJ4BmjyWH+i12CrI5UxJLg2zy5ID7a/O9GiRwFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iNVsXzDaJQaEzdWpUdy3qjlQjCrcrbNoABpkNLo1jIw=;
+ b=S9kcGSdj8ygtW7tvJCBC8pk0QoHQLnY4BAfHAXziYflhU47a89/ykpgIFxWPqDnxyeCWyV8oUbR+S4FVK5b+EeQ4ELxfwzIWqo4rtl77SMrvi5H84dmHEkWltfoHIQCzMdlJV9oU5ETMuYrWSwEHlylKh1hHJhq7FT9kCVSxq2hDqUukG+gpE96J+W+GfxDssjMaVJla9HHxi1epsycYYF5OHGNBOjZsVa9nBdedqkFAZyUgUBOxU6H7z9vYcuTod4msbz+WrU4mJWH7MP+RPu60y1fLVquL4YhEVpKoW3+DhP7OUblhpM8io13+daTVPEy0DD7mUtb0Hjd/w/lBpw==
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by CH3PR12MB9124.namprd12.prod.outlook.com (2603:10b6:610:1a7::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Thu, 29 Jan
+ 2026 07:45:48 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%6]) with mapi id 15.20.9542.010; Thu, 29 Jan 2026
+ 07:45:48 +0000
+From: Eliot Courtney <ecourtney@nvidia.com>
+Subject: [PATCH v3 0/5] gpu: nova-core: gsp: fix command queue ring buffer
+ bugs
+Date: Thu, 29 Jan 2026 16:44:58 +0900
+Message-Id: <20260129-nova-core-cmdq1-v3-0-2ede85493a27@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XOTQ6CMBAF4KuQrh3DFMKPK+9hXNQyyCxopS0Nx
+ nB3K7rQuHyTvO/NQ3hyTF4csodwFNmzNSkUu0zoQZkrAXcpC5nLKkeJYGxUoK0j0GM3IVRKqaJ
+ qG1nqUqTWzVHPyyaezu/saJoTHN5HcVE+le04cjhknRvBzT6AoSWIV2FgH6y7bx9F3Bqfcfk3H
+ hFyqPump7Jqih7xaCJ3rPaJ37Aov4HiH5AJoLqtSeOlxlL/AOu6PgFT3oyhIQEAAA==
+X-Change-ID: 20260121-nova-core-cmdq1-6aaa369824c4
+To: Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, Alice Ryhl <aliceryhl@google.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alistair Popple <apopple@nvidia.com>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: TYCPR01CA0197.jpnprd01.prod.outlook.com
+ (2603:1096:405:7a::10) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: tAiY1oKEm_PyYhk9jrZCChoYUQOjPXHd-zw-FIMdfHI_1769656036
-X-Mimecast-Originator: gmail.com
-Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: 2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54
-X-Message-ID-Hash: 2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54
-X-MailFrom: airlied@gmail.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|CH3PR12MB9124:EE_
+X-MS-Office365-Filtering-Correlation-Id: ef8038b8-c481-4c1b-6a4b-08de5f0a6af4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|10070799003|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?ODIyY0Rscld0R29TSlhhTG5CMk83NGJxYXp5Lzc2OUxzQzJFRHdJeFp0VmZt?=
+ =?utf-8?B?Wm54NnBFdXpUNlhhNVZrYmdFZ1Z6b0kySTZ1NmJEYVpHS3psT3JDK1Q3QzlI?=
+ =?utf-8?B?M2VvbjNHMGd4VmFCa29HOC9xSm5UWjZQK1UvN1NTZVU0Qk9jYXR6Sk9kNDh5?=
+ =?utf-8?B?TUJHODBSZGlwdkZWTTlGOGhvKzV3bjJhRmJXR2tQVzgzVlV0VG5tWW8zVURq?=
+ =?utf-8?B?Zk5HZXgxNnJhZzFiVW53TXBDb1ZqdThNVFFYWnM2V3U2S21zSFdmblVRdDBV?=
+ =?utf-8?B?QkQ1elJnMGFNd3FUdy81QXRoaWtwTUtsTWQ1QzJkTnA0aTU2WlpMemVUSVMz?=
+ =?utf-8?B?MGMwaTVSTmE0L2JUYWRvdjBLdk9LWlBjbit5NmRGeWQ2bmVPMVRGTXdhUUdk?=
+ =?utf-8?B?ZzhyU3BTZ2J0MlhCemthaHRQVlUwMlpPVElRYjhpelh5OHg2bG9YSHZNdjAy?=
+ =?utf-8?B?WFcrTlNGbWJlSkVuVmhHUFlOWUVFNHBxMks4WURWTlJ0eXhLTjhLb0pUbWp4?=
+ =?utf-8?B?TytYSE9aaFhPM2lrZmRsclFSVFkwTU9BUEVmQ1ZQbjdWSXZZTDZmVnA2bU1p?=
+ =?utf-8?B?OC93eDBjMHRpd0hHZDNjNUs2eXpMNktHR1lPbGVDL1hzQms0N1VtTHEzbENO?=
+ =?utf-8?B?VDRlcXhWaHRrelhUeGQwZkF6V0NqcW1rUjAwWjhMTlZMelkwLy96a1RSYno1?=
+ =?utf-8?B?N25XSU1IT1NrcURCL2FjczdJR1ZSUittaTd0SE8zTWUrUHV2QkJLRHFpdFQz?=
+ =?utf-8?B?NDlGakpRTjRIOEF4SEplcDRXZWZlM0NxcUJpOFVKeFltdDRoM3hzMitPMjgv?=
+ =?utf-8?B?U2EwdytGVkVjK3laL3Y2LzZybFRGK1hUeVhrK0ROZ3NkU1lrQ2xwUTZTdTFX?=
+ =?utf-8?B?T0RJZE9rVjNuSExicGxOSUJJd1JxK3RsUk0vZ2lYRWpaYzZWUURLNGpVZUNx?=
+ =?utf-8?B?WlVZZFpaZTRvUmJMMEZDcE9UMHNzZUkwNVhrcnk4SmppSnhYeHJHUytGa29C?=
+ =?utf-8?B?b2h5dlhoWit5OStZMHgxcDYzZWZDRUJycHBWeWVKZWVKSjFPNUZvYmx3R3lx?=
+ =?utf-8?B?ZjRlb0FrMTZETW1ueXFiV3FtN3gxWjdGc0Njb0lzZEQwd0RtcjFMeEZhL0NG?=
+ =?utf-8?B?ZlhJQ2ZHdGhkOUt4Rm5PVXU5RHhFelJLVWE4bzNWeHFCQXhxMXlDWGc4eWlq?=
+ =?utf-8?B?TFMrcEQydnl2a1dvYm9QU0M1R1Izbm1qSi9ETDBObzd3OGk5MzRvOWczT1dy?=
+ =?utf-8?B?Tm04MG15bTBCNWtoSEp4cGM1STRhSnJudmtQektMdk55OTByTWo0c2xNNWNq?=
+ =?utf-8?B?cExrZ1krbmdvQTlIL2ZhaWRLVnF1am14VnJ0aDlKZkVFa1kzOEw4U0xGRi9S?=
+ =?utf-8?B?THg1MDNUVG9nN1ZzcThOMW5KNDJicXF0ZEpSQ2NEMXFLZ2RvK01mbkhBZHU3?=
+ =?utf-8?B?WlhJdzk2NmVwS0I5c3JhOWxFL05GanVrcktKU01XbmwwMXVaVHljNlB4Z2RC?=
+ =?utf-8?B?cWNVbklXWWdlT2hTWWJoWEUrMnhlUHJuVVpycjhwSVBOKzNlU1l3ZzRUM1pR?=
+ =?utf-8?B?MUFZMnFYaklxWE9saHJ4SlE3STNWTTZCVWM5cHU3SC9xck1EQWxZTDBHRmVi?=
+ =?utf-8?B?M2ZReThHeHR0cmE5WWYrVUpHV2txbHIxM1ZIQjIzcjZrRXdOSFR5NktwVDhk?=
+ =?utf-8?B?eEhBQVIzZTRXZ2xsemFFVU90bjllNVVjQngvUy9iK05GZUpmWlc3Sk0rR1g1?=
+ =?utf-8?B?THozblptbDVmR1Vub0l0Z1RkeWpvWGxLUERGeXVRbUwreS9BRXltQlZ0aHll?=
+ =?utf-8?B?WVRTZThBV2NBeW9hRTNKbElicXdodXJOUGo3VGZCSzZhUGZDbHo0V2NwT1Rv?=
+ =?utf-8?B?d0NEdFMyZ1gyQ1FCalJFSVlxRHJJMlBGZEVBTlV0allCRmpsYUFTaC8zRG1l?=
+ =?utf-8?B?SnlhYnlJOXJsNjBZRTlSTmU3dVZvSm1sb0VmNXpFUEVUb3dxSE9BaUtjanBF?=
+ =?utf-8?B?NDZrUDJHU1piZUhBazZkNWVsTDlhVUVtWStTNEdidUlwSzdJQks3cnh4cDlx?=
+ =?utf-8?B?NU92UU5QK1lZcUZDN1JrVVFTTVhsb0t2N1FxamR3eTVRbVZWR3ZxdksxdlBR?=
+ =?utf-8?Q?ET7Dc3+TGJFd/HlGWovYV19U9?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(10070799003)(1800799024)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?am8zbXJabDF6b1NITDEyT2ttREZkOVE5OU5qaTZ0LzRmRFppb3pjNk83NHds?=
+ =?utf-8?B?TmlKMkZxLzVpT09IVEVDQ1NqdE5nc0VKejM3Yi9DNEhLUWwxOFVMVTc3SS84?=
+ =?utf-8?B?WklaQ1BsNzVZRkdueGdwNTRjdWJpN2thbzVGZGRZb2ZDdW0rZE91YzVCMDFC?=
+ =?utf-8?B?NE1tZU9ZODJGMXZBdm9HODFJS3JhTWcxbkxNcTBPR2JJeUdrek4wRFZudU9v?=
+ =?utf-8?B?cG41dXBRcVBpZDZFYzhVdWl6Yms4RCtDWk5iWDhrbXB2d2pwQW94eUVER1hv?=
+ =?utf-8?B?NjhsZVlyQWFjRE91Mmx4WUp3aXJFMG91R24rMVhzaXdIb1B1aFFDS3NLOStC?=
+ =?utf-8?B?UE1hVU9Jay9LUFB0d2hkSlhLR0VHbXh2VlFBbm1VaFJZc2xuaFduMnNmRy9R?=
+ =?utf-8?B?Ly95RXJuTWdlVWRYdDlUQUFTdGdESEkvbGdTeUtVYkhpZHBiOElpL1c5NHZC?=
+ =?utf-8?B?QTZzUS9abzhjSGtmeWtHUXZ6WWlsR1pMZDJTaFUveWZaVU5KUUZKcER3OVBr?=
+ =?utf-8?B?cThVWmRyK1ZiUU5GY1F3Uk5LUjlhYlVITHNTWkkwU3ZFcjhpb2I2MS9oMEpF?=
+ =?utf-8?B?UHAxY05vZGdHeE5hQ3orUUYzT0RKL1FJSUVwYmFwS2VMeERjZS9aTkxLM05v?=
+ =?utf-8?B?S05pNTZUaE9tZHpwQmt5K0NCZmJUTEcydUxpKzdmN3Y0a1hwWDZOVFVDNG9N?=
+ =?utf-8?B?QUNnTGZYUEVnc3IrZmpoVUF5RXVmZ0RQeUh5Z1ZRU2NQM25NNmpYditqLzdE?=
+ =?utf-8?B?TnY3bEFuMUVxZGZ2NjVyMmhJZ2piL2tSY3ZZNGp2OG9IT1VlV1N1U09BK1dK?=
+ =?utf-8?B?VVdjTFFEbGdyek4wU1VHNVJnNDU0dXBsdm5oVHhmM2NleFBoZmJPR0RUNFI1?=
+ =?utf-8?B?anVocmVobWdZWFoxaFo1VGticTRCTGc5TjhSUHlSb2UxTXhYWlgybzdyYW1S?=
+ =?utf-8?B?QmZDWGZzTWIwOGVpUGJtT216Sm5na1E1ME9KUEkxYUpYbjFQSXBsZk5jdUdm?=
+ =?utf-8?B?NnU3YnlhbTRyd3FpempibUpPMVFRMXlyaGR1NE8veGtnYzcvandxdFR6U0E2?=
+ =?utf-8?B?aXpoM2xWbG9WNzVRWXh2eVRsRXl0Wm94bTlXNkdMRUVvcitzRXppV0Zjc3cv?=
+ =?utf-8?B?dU11dGM4c0l6clAxalZhaTl4amxUYTdjTEdKN2lkb1VxUThjbUhFNGVRMFM5?=
+ =?utf-8?B?S0liemhFOFBzV2RNTXA4OG9PZ01JM3ZGa3pPaEkyMVE5Qmc3R0tlTFMyZFl3?=
+ =?utf-8?B?eVFGT3ZoeUQwaVRTL240UDJmV1lCYThJWkdBQ3BKVHRrZmkrdXlwYWdBM1gx?=
+ =?utf-8?B?b3k0aHlGQzdjN0s2NnVkUElKY2QzRDV2WVA0dCtFaW5ubExKbnhVMFFvSzJr?=
+ =?utf-8?B?T3JhWlI2c1NiV3l0Si9VeklCaUptT1dLNGZIN2dvUDl2cmxBVlBiblVOazA3?=
+ =?utf-8?B?S1h1YXlSN2RFVUpvRmVmV3hwZzFCOVpvL2x0ZnNyL0dTWTY2WXMzNldnRjAx?=
+ =?utf-8?B?VnV0M20vY1M2bEhZT1NiQXM0a3hxMHphaEM5RjdFZ1VxeFI5NmtMditWMVJ3?=
+ =?utf-8?B?T2FURDFvb2NqMzEwaUhkbWtIUG53VTVIWXFaN1BEQ0lGcWZSeFMwUVMvVGJw?=
+ =?utf-8?B?QUJnZjdXbWFkMWxyaDRrTzNPYTJEMk9QV3N0alRBOU82cTc3RHBXeTlIcnQ5?=
+ =?utf-8?B?Z3JBV2RGTGRzZm9mNytGSUIxTWpwcUZWQmdCWk5PdmFITEtMQk9EbW5JT1pX?=
+ =?utf-8?B?VWlKdUV2SmhCdm5CbGI1UjRnQzg0am9oMjdaVEExQmt5QWlHWlVGbnFib0pU?=
+ =?utf-8?B?Tk4wT2ZpbFpVMnltQ1ZaK1pCRWxhUmlJUUpnUm54VHNzYVdjYU94aUV4Ky9X?=
+ =?utf-8?B?LzYvSnc2cHJCRThyTEJBOWNHZ1F3dnV5QmRSK2JZRCttdGdYeXRoZGxTMkUx?=
+ =?utf-8?B?eUxHeTM3dTlJdWpEL0V6eW1xOE9FQ1JvVGtQRThpN3dkTS9BWUlFaU1SdVBQ?=
+ =?utf-8?B?UWViemN2NVB4cXZSSXVLNnRlai9XY2twTHNYNmpESitxV3JseUYyMjYvNFN5?=
+ =?utf-8?B?ZVJuU0tkZk5XazRHa3V4Qm03RDVlL2xPbFJITm5kT2RVSk9hOEFoNUhqV2da?=
+ =?utf-8?B?Z1oyR2F5cDBIa3JPa3V4ckhMTlFUc0FvSTFZNHJzUWExdGpiNEtGTTNEeDhq?=
+ =?utf-8?B?S1NrbGhEWmgwdlJsWWh6MzhyaUdDUEJhVzN3R2R6emtSU0VhNkdGZWREbXBU?=
+ =?utf-8?B?RUx2MDV4NFVCWXU4N09rRWcxWGE4QUJhb1JwVnZVeDVnUnBQZEh2OWw2T0to?=
+ =?utf-8?B?azRuK1NqK2JiSGFxS3ZEOXhWVzN1Z0t2ajZZSmVkaUtyOFVpay9MNVJDL1Fi?=
+ =?utf-8?Q?51wEXqgxKbqp3p+79i8jZXN/moMuoRBm2J69m63pB12FF?=
+X-MS-Exchange-AntiSpam-MessageData-1: AdpErVekdWXLgQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ ef8038b8-c481-4c1b-6a4b-08de5f0a6af4
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 07:45:48.5172
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ 7HNiQloASGw1gncLydkg2zlCLgte6qSF+AM8PYTanqiewfqf5v0p+i0uFYl8V8+GoyzHA0XBmTAL1fFGmlf9ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB9124
+Message-ID-Hash: ROWVFVJV2XZ3JKMXLR2XQ2LUIPUJ4C72
+X-Message-ID-Hash: ROWVFVJV2XZ3JKMXLR2XQ2LUIPUJ4C72
+X-MailFrom: ecourtney@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org
+CC: nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Eliot Courtney <ecourtney@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2CCYNWL7K4PAGMBQOA4GWT3M5X32FK54/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ROWVFVJV2XZ3JKMXLR2XQ2LUIPUJ4C72/>
 Archived-At: 
- <https://lore.freedesktop.org/20260129030710.1574879-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/20260129-nova-core-cmdq1-v3-0-2ede85493a27@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,175 +223,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+This series fixes a few bugs in the GSP command queue ring buffer
+implementation in nova-core and also clarifies some of the comments.
 
-When NVK enabled large pages userspace tests were seeing fault
-reports at a valid address.
+The ring buffer uses read and write pointers (rx/tx) to track which areas
+are available for the CPU vs the GSP to read/write into.
 
-There was a case where an address moving from 64k page to 4k pages
-could expose a race between unmapping the 4k page, mapping the 64k
-page and unref the 4k pages.
+In the ring buffers there were some indexing issues which could end up
+causing panics, so I fixed those and added more rigorous proofs of
+correctness in the panic comments.
 
-Unref 4k pages would cause the dual-page table handling to always
-set the LPTE entry to SPARSE or INVALID, but if we'd mapped a valid
-LPTE in the meantime, it would get trashed. Keep track of when
-a valid LPTE has been referenced, and don't reset in that case.
-
-This increase the tracking to 32-bit, because it turns out if
-unref can get delayed, you can get a lot of these outstanding
-and this can cause strange behaviours.
-
-Cc: stable@vger.kernel.org
-Link: https://gitlab.freedesktop.org/mesa/mesa/-/issues/14610
-Signed-off-by: Dave Airlie <airlied@redhat.com>
-
---
-v2: move to 32-bit from 8-bit tracker
-fix some more flag changes.
-v3: missed one BIG_PTE unset
+Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c | 44 ++++++++++++++-----
- drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h |  9 ++--
- 2 files changed, 37 insertions(+), 16 deletions(-)
+Changes in v3:
+- Use `&mut []` instead of `&mut xyz[0..0]` for empty slices.
+- Simplify driver_read_area by removing unnecessary split_at.
+- Use range notation for comments (e.g., `is within 0..MSGQ_NUM_PAGES`).
+- Fix up branch order to mirror existing code.
+- Link to v2: https://lore.kernel.org/r/20260123-nova-core-cmdq1-v2-0-e797ec1b714c@nvidia.com
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.c
-index f95c58b67633..970e5f94a6e3 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.c
-@@ -53,7 +53,7 @@ nvkm_vmm_pt_new(const struct nvkm_vmm_desc *desc, bool sp=
-arse,
- =09=09}
- =09}
-=20
--=09if (!(pgt =3D kzalloc(sizeof(*pgt) + lpte, GFP_KERNEL)))
-+=09if (!(pgt =3D kzalloc(sizeof(*pgt) + (sizeof(pgt->pte[0]) * lpte), GFP_=
-KERNEL)))
- =09=09return NULL;
- =09pgt->page =3D page ? page->shift : 0;
- =09pgt->sparse =3D sparse;
-@@ -242,14 +242,17 @@ nvkm_vmm_unref_sptes(struct nvkm_vmm_iter *it, struct=
- nvkm_vmm_pt *pgt,
- =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
- =09=09=09TRA(it, "LPTE %05x: U -> S %d PTEs", pteb, ptes);
- =09=09=09pair->func->sparse(vmm, pgt->pt[0], pteb, ptes);
--=09=09} else
--=09=09if (pair->func->invalid) {
--=09=09=09/* If the MMU supports it, restore the LPTE to the
--=09=09=09 * INVALID state to tell the MMU there is no point
--=09=09=09 * trying to fetch the corresponding SPTEs.
--=09=09=09 */
--=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
--=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09} else if (!(pgt->pte[pteb] & NVKM_VMM_PTE_BIG_VALID)) {
-+=09=09=09if (pair->func->invalid) {
-+=09=09=09=09/* If the MMU supports it, restore the LPTE to the
-+=09=09=09=09 * INVALID state to tell the MMU there is no point
-+=09=09=09=09 * trying to fetch the corresponding SPTEs.
-+=09=09=09=09 */
-+=09=09=09=09TRA(it, "LPTE %05x: U -> I %d PTEs", pteb, ptes);
-+=09=09=09=09pair->func->invalid(vmm, pgt->pt[0], pteb, ptes);
-+=09=09=09}
-+=09=09} else {
-+=09=09=09TRA(it, "LPTE %05x: V %d PTEs", pteb, ptes);
- =09=09}
- =09}
- }
-@@ -280,6 +283,13 @@ nvkm_vmm_unref_ptes(struct nvkm_vmm_iter *it, bool pfn=
-, u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT && (pgt->refs[0] || pgt->refs[1]))
- =09=09nvkm_vmm_unref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT && (pgt->refs[0] || pgt->refs[1])) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09/* PT no longer needed? Destroy it. */
- =09if (!pgt->refs[type]) {
- =09=09it->lvl++;
-@@ -332,10 +342,12 @@ nvkm_vmm_ref_sptes(struct nvkm_vmm_iter *it, struct n=
-vkm_vmm_pt *pgt,
- =09=09 * Determine how many LPTEs need to transition state.
- =09=09 */
- =09=09pgt->pte[ptei] |=3D NVKM_VMM_PTE_VALID;
-+=09=09pgt->pte[ptei] &=3D ~NVKM_VMM_PTE_BIG_VALID;
- =09=09for (ptes =3D 1, ptei++; ptei < lpti; ptes++, ptei++) {
- =09=09=09if (pgt->pte[ptei] & NVKM_VMM_PTE_VALID)
- =09=09=09=09break;
- =09=09=09pgt->pte[ptei] |=3D NVKM_VMM_PTE_VALID;
-+=09=09=09pgt->pte[ptei] &=3D ~NVKM_VMM_PTE_BIG_VALID;
- =09=09}
-=20
- =09=09if (pgt->pte[pteb] & NVKM_VMM_PTE_SPARSE) {
-@@ -374,6 +386,14 @@ nvkm_vmm_ref_ptes(struct nvkm_vmm_iter *it, bool pfn, =
-u32 ptei, u32 ptes)
- =09if (desc->type =3D=3D SPT)
- =09=09nvkm_vmm_ref_sptes(it, pgt, desc, ptei, ptes);
-=20
-+=09if (desc->type =3D=3D LPT) {
-+=09=09for (u32 lpti =3D ptei; ptes; lpti++) {
-+=09=09=09pgt->pte[lpti] &=3D ~NVKM_VMM_PTE_VALID;
-+=09=09=09pgt->pte[lpti] |=3D NVKM_VMM_PTE_BIG_VALID;
-+=09=09=09ptes--;
-+=09=09}
-+=09}
-+
- =09return true;
- }
-=20
-@@ -386,7 +406,7 @@ nvkm_vmm_sparse_ptes(const struct nvkm_vmm_desc *desc,
- =09=09=09pgt->pde[ptei++] =3D NVKM_VMM_PDE_SPARSE;
- =09} else
- =09if (desc->type =3D=3D LPT) {
--=09=09memset(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
-+=09=09memset32(&pgt->pte[ptei], NVKM_VMM_PTE_SPARSE, ptes);
- =09}
- }
-=20
-@@ -398,7 +418,7 @@ nvkm_vmm_sparse_unref_ptes(struct nvkm_vmm_iter *it, bo=
-ol pfn, u32 ptei, u32 pte
- =09=09memset(&pt->pde[ptei], 0x00, sizeof(pt->pde[0]) * ptes);
- =09else
- =09if (it->desc->type =3D=3D LPT)
--=09=09memset(&pt->pte[ptei], 0x00, sizeof(pt->pte[0]) * ptes);
-+=09=09memset32(&pt->pte[ptei], 0x00, ptes);
- =09return nvkm_vmm_unref_ptes(it, pfn, ptei, ptes);
- }
-=20
-@@ -457,7 +477,7 @@ nvkm_vmm_ref_hwpt(struct nvkm_vmm_iter *it, struct nvkm=
-_vmm_pt *pgd, u32 pdei)
- =09=09=09=09=09desc->func->sparse(vmm, pt, pteb, ptes);
- =09=09=09=09else
- =09=09=09=09=09desc->func->invalid(vmm, pt, pteb, ptes);
--=09=09=09=09memset(&pgt->pte[pteb], 0x00, ptes);
-+=09=09=09=09memset32(&pgt->pte[pteb], 0x00, ptes);
- =09=09=09} else {
- =09=09=09=09desc->func->unmap(vmm, pt, pteb, ptes);
- =09=09=09=09while (ptes--)
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h b/drivers/gpu/dr=
-m/nouveau/nvkm/subdev/mmu/vmm.h
-index 4586a425dbe4..3720579f4bf7 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/mmu/vmm.h
-@@ -44,10 +44,11 @@ struct nvkm_vmm_pt {
- =09 *
- =09 * This information is used to manage LPTE state transitions.
- =09 */
--#define NVKM_VMM_PTE_SPARSE 0x80
--#define NVKM_VMM_PTE_VALID  0x40
--#define NVKM_VMM_PTE_SPTES  0x3f
--=09u8 pte[];
-+#define NVKM_VMM_PTE_SPARSE    0x80000000
-+#define NVKM_VMM_PTE_VALID     0x40000000
-+#define NVKM_VMM_PTE_BIG_VALID 0x20000000
-+#define NVKM_VMM_PTE_SPTES     0x1fffffff
-+=09u32 pte[];
- };
-=20
- typedef void (*nvkm_vmm_pxe_func)(struct nvkm_vmm *,
---=20
-2.52.0
+Changes in v2:
+- Modified PANIC comments to match existing style.
+- Link to v1: https://lore.kernel.org/r/20260122-nova-core-cmdq1-v1-0-7f8fe4683f11@nvidia.com
+
+---
+Eliot Courtney (5):
+      gpu: nova-core: gsp: fix incorrect advancing of write pointer
+      gpu: nova-core: gsp: clarify comments about invariants and pointer roles
+      gpu: nova-core: gsp: use empty slices instead of [0..0] ranges
+      gpu: nova-core: gsp: fix improper handling of empty slot in cmdq
+      gpu: nova-core: gsp: fix improper indexing in driver_read_area
+
+ drivers/gpu/nova-core/gsp/cmdq.rs | 71 +++++++++++++++++++++++----------------
+ 1 file changed, 42 insertions(+), 29 deletions(-)
+---
+base-commit: 58d26d42818c0f8c9b334cc7cf318b43046e675f
+change-id: 20260121-nova-core-cmdq1-6aaa369824c4
+
+Best regards,
+-- 
+Eliot Courtney <ecourtney@nvidia.com>
 
