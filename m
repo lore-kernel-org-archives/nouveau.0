@@ -4,125 +4,211 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 759F2D61021
-	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 14:32:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37212D358D6
+	for <nouveau@archiver.kernel.org>; Thu, 29 Jan 2026 17:25:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0609C10E893;
-	Thu, 29 Jan 2026 14:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A3A1E10E8AF;
+	Thu, 29 Jan 2026 17:25:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ijzwrdW/";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="RFN19Kxi";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 823D740F1F;
-	Thu, 29 Jan 2026 14:23:49 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769696629;
- b=0yciUHzsclUIIkrx6E7y9GlVQj4gXDkCs1BuQxWrq24Ffg4SmYlSDFaVXGb9/s82TSu54
- yGqbOUXbUJEmQwXGrjiMHnR/rPBjEPh6ndIKnOzW85H2Z8jUIaXzUSqOM94BD+yuLCHk9gB
- q2sW36k3+S0wl2zvNVklmkcX+38vt/aEfEaw9oHRRP7dByxmEAP2S77O/F5jjdl9H8RyaSQ
- pLeXxKYPc6rNs9TOFijNJ1VaFojcXGpclIYglb9gBgPa3kKmEl1ORFCt5GXGFbx8iP25q3e
- iZIQHAW9ja69dVyyPfS9DiYcRyQeazx+JS/ejOM9rgcrCtIpM1A4pUi/3O3Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769696629; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D711F40ADC;
+	Thu, 29 Jan 2026 17:15:55 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1769706955;
+ b=rDQk2iTXYwgoU3JiylExoDSfL9dtxikiqnJt0e+s+YyT3qcKaximObEM3cZfP/F6sfPcB
+ +wFGBfQdSBgl35xvvldtxZiAeSu5XesBxVHdbpfhZmxNG2GCu0UN5lIHzNSwQ7//AJnHkD9
+ FAAx5A6RkNsB7vqxGKpDlRlrwsNbKL3/RzRH4/yOTN+lWTUwZx20jELAOHhqc5mJaWJ2v9C
+ 9417EuNzbW0nznYrPso3q/ZNdCoKlyIJwcRfcFYNGXa4/GcAkJ9I8X9pLLXmEaJgE6ohUg6
+ lMYhpPNFfPLoilZvKaN7TNLXQGmYIVZZwYxGZ8FMnoMysksu/Evx5gmjNf4A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1769706955; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=rUXvcPyN0ql8Dfy2K/5XrHWDnw2mKduXfsn6u9F7I18=;
- b=D8derdvf+PCF2P8HfQvyPpk4jxwgGmjLSVVncfWzGRICsA6FG3jPlvy4ynksaOsSeBHuM
- 3DW3rBv51arKjAWINm3Vpj3vpItbUDETJ8heGggFq69qz37xsK61gDCEEibbdJAWc76vi9d
- n9CEJnFIpsdBbfsHLwd4PTJ2lnewqBNAd5ocsbGvOLGNekt+UNn2CxTgAvmztb70+FxBYQS
- r6X1L5bOdnq+ZoK3AT2uQZuooqKdSPR8IMZZw3JJEciB6nsWk3D2UCv+oufe6fv0DEEhdJD
- sCcnsMqV1cs5/qgec/N9g4frPWQBbJ8u/RKcetMEBqeSRbwgxLOmufnepRsg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=2I/2iObXERMp/YEgjQBB74OG11Iw36zzGIhHR1kf59o=;
+ b=JzBIAN+ISFUp3UeHREZMEHVWzFsQObvhxruEA49DOCUW5ng3chePsuI+4xYYGiAFu9eaQ
+ /nF9k+K41t/zuJn68DiWMWsQBLn685lRSaboIQTf+TuVO3KA07D78C6fS5sawYzZXO30ilw
+ /e3R2PpErcxcC77F/l3Q5SoiyOh2oJP2FT5cluu8usn4eD1KZ4lYsMCfVicer6s3s8xqiqS
+ GjgUp93IgRnkzEaztDtZ00ziJ43AiTl4vNtxZowNtOKS+12skTvSl3CTlaoxPj3nBAv4/SG
+ n6ch/RfLCHGPv7gJBfFwapLbTswIj68i/Wvsy3ASiQHem3vXTD7KjwLbFuDQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E405840B86
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 14:23:44 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2CCDC10E877
-	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 14:32:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 6819760130;
-	Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 021F3C4AF0B;
-	Thu, 29 Jan 2026 14:32:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769697168;
-	bh=zsJKLouslNIMhVTvOdw5iCz2jJoutLn9tl1l10pprrw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ijzwrdW/sFAA6DIn8UJ6Y1yU5jLhaqOMk8LePZU0AtU3kAOsCZhy7Mrh4y+TlllAX
-	 4MP8fCrGNombPay1ja6SwYH8mH8f8gMc+D/ZDpec9sujK+bZOftGfQWxofXtvRumzG
-	 rh6NbhBHSF7g5LwUVqv9XKwhd+JDqubMIziqpPuohXI1YyriscPNDIvuiJnwUGvr/x
-	 JS8WgJeGM6JPhSpCeoTLKnTkdqx4M7fvMPzZ3W6xcrxOLK2bbIm3ENt3FjXBtR/kFW
-	 6XFQyV5o2wUfdtKGRj10juxheir7MBnhQA795806PLxwjeAjw7w4XHvVu71xV4agy1
-	 WPI8+EhTjGawQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id E7E0CD61020;
-	Thu, 29 Jan 2026 14:32:47 +0000 (UTC)
-From: Jesung Yang via B4 Relay <devnull+y.j3ms.n.gmail.com@kernel.org>
-Date: Thu, 29 Jan 2026 23:32:46 +0900
-Subject: [PATCH v5 2/4] rust: macros: add derive macro for `TryFrom`
+	by kara.freedesktop.org (Postfix) with ESMTPS id B743540805
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 17:15:52 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022106.outbound.protection.outlook.com [52.101.101.106])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE0710E338
+	for <nouveau@lists.freedesktop.org>; Thu, 29 Jan 2026 17:24:57 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tD+7bP3rH0yIhHZEMrXWaSQNGtdRYVPwmnKxHeh1SxsykSjM1kK5vl4omTSdxZvnGFTtLZA9ggQtd817L+2Hgxifa7jn1ktpWleUvPswtWyTglWdtNYcXDx+RwhwmG8ohiT7TG8DSZRXUGLbPBJQJP136NyL72DPrFrnUExXadb+WFfA6YzxfkejgrLQWZfNfMjSIAzJwdrAiBpWPf50gFWAMdNOjne1l5ivKkO4q4sNlmOVtwDjeWYxIMy6HjI95O8brQVEvhfUWhIp0fDwYwi3dY2tOBrPL3pI1am9fsJXAu/Lv5ALM69aYAJl7Fr6nzSWBcSyjdD61U+viQOP8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2I/2iObXERMp/YEgjQBB74OG11Iw36zzGIhHR1kf59o=;
+ b=oyh48bAvGWIc7YKpvBXYn585IwQJvSG0wCWcThDPgYbkna12Q8gp4RZ8mLutR/K+8LGvip23tXP4gGCpYktydQqYN439f5N9N4WczI/ZPaOzTJTl9vzuGJ6jolGJA7rfgwckTiwc7Z23OLw2Hg9d7yBiXDGJH8fYUu7I0UlL2PxoAsSmf0F6+qZd74SdufSm6V1gLGg6APLiPCTuYz1/MBErB1BgEqcFv3nPs6Mik77FRpOgf04wkujQGXCllgYdeCATXRc7oLpDm3YmstFqLomGAok9u8qz8Jys4Y3iII5I/P7eastR1GFQfAhCX/rCjzc/BNyoMcJEKlYptLhgcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2I/2iObXERMp/YEgjQBB74OG11Iw36zzGIhHR1kf59o=;
+ b=RFN19Kxilgo2y8SSCORhxtREMmCbydh1BshLZ+MX1FgDlBIBwNTOMTASHAXNlz4/ZimN8HPX0OdjduhdiZk2pxTtA1Jo+PtWHumI3+sBRi9TY+qDmjVwXyxZVUeKgxEQPippg9NQMYyiFYzw8iJGIF6Rv9sFofbpLqHoShNf5Do=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO6P265MB6923.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:323::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.11; Thu, 29 Jan
+ 2026 17:24:51 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9564.008; Thu, 29 Jan 2026
+ 17:24:49 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 29 Jan 2026 17:24:49 +0000
+Message-Id: <DG18Y53B5OWJ.147OR1P201GRJ@garyguo.net>
+Subject: Re: [PATCH v6 2/7] rust: uaccess: add write_dma() for copying from
+ DMA buffers to userspace
+From: "Gary Guo" <gary@garyguo.net>
+To: "Timur Tabi" <ttabi@nvidia.com>, "Gary Guo" <gary@garyguo.net>, "Alice
+ Ryhl" <aliceryhl@google.com>, <mmaurer@google.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alexandre Courbot" <acourbot@nvidia.com>, "John
+ Hubbard" <jhubbard@nvidia.com>, "Joel Fernandes" <joelagnelf@nvidia.com>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260129022837.4133832-1-ttabi@nvidia.com>
+ <20260129022837.4133832-3-ttabi@nvidia.com>
+In-Reply-To: <20260129022837.4133832-3-ttabi@nvidia.com>
+X-ClientProxiedBy: LO4P302CA0042.GBRP302.PROD.OUTLOOK.COM
+ (2603:10a6:600:317::14) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com>
-References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
-In-Reply-To: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
-To: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10808;
- i=y.j3ms.n@gmail.com; h=from:subject:message-id;
- bh=o0ZOJ2u6fulpd6euQbCwZeiZqbQpSA+Y1ClbiBC4Hqs=;
- b=owJ4nAFtApL9kA0DAAoBhnBYoOPQ2LoByyZiAGl7b47aA5WH7vO27Eax/xs4+3OV8/xJrrBLu
- hHqXotpVMg9EIkCMwQAAQoAHRYhBNJuBqTTLsbEgOaQ0IZwWKDj0Ni6BQJpe2+OAAoJEIZwWKDj
- 0Ni6a3UP/3v9YccMDx0NI+IfLLnZQdKyC6kjqKkTFuVFtmyU6+abCyBRfivWFQYEKwv/C2PIOCu
- 5GWkMvGyD+iHz4VyhYgOd9JBoNL+KjQXI7uF5zQpzWFCA9zvt97gw76K94El2Kwl1SHAtoBsF4e
- oRHmUAMvwHwoc+Bvq9GIwiAuEcyafDMX8ktwYxUb9U61fqBPKZKpH7jPf2Rc4/bd3OMO/Yw55Pa
- ivdiSFO7wmXSI3r0OJdja66PWAiga0URV97XZEVTlJZkRgNScrbCxF5nARxrI1DAIddchIZUHb0
- +UcaMrnW1s7GoBP0N4kHVPl95jVAgFZiBMTkrk/q0erR3suHOpYYmPkOcAN0wu5xidpfi5io66q
- TvKnfY/WmGvZGEwYA1zy6/X9XPQEd4U+F8GVsybDP7KebzrbbONMVyNeMw6m7fDTiVMKYrxBDXh
- Cd/k58ErBtHwAPJaVI4o8P12+diboiAPNUmlPVqEKugfktgftNS/krbpA0Yx1G6NjZD1L/EHD3J
- k/3ieugATWzJKLNajrchxDi44HIgYfS4TXc0wOUINjBE0kfYoJZSjuO7bB8QSaNxTg1+IHOQv51
- YYmCwkQiaPHH4eCGX7Mwe1bM3SIrZFDJUh11uWRHLYo1MANAzrqky2dCCAc6HWvb5hxg2pIW4hs
- DSgBGXklSMMUG6xxt8fspUw==
-X-Developer-Key: i=y.j3ms.n@gmail.com; a=openpgp;
- fpr=D26E06A4D32EC6C480E690D0867058A0E3D0D8BA
-X-Endpoint-Received: by B4 Relay for y.j3ms.n@gmail.com/default with
- auth_id=602
-X-Original-From: Jesung Yang <y.j3ms.n@gmail.com>
-Message-ID-Hash: 5IDYAZQMS5VX6NRKKFKWW632H6ZTCKWQ
-X-Message-ID-Hash: 5IDYAZQMS5VX6NRKKFKWW632H6ZTCKWQ
-X-MailFrom: devnull+y.j3ms.n.gmail.com@kernel.org
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO6P265MB6923:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85f1db73-c1ba-487e-251d-08de5f5b4e81
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|376014|366016|7053199007|921020;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?NWFYRkxnak5ldkdXdFdLMWdINnR1a0c2ZlF1Q1o2dzFvK1NiVjdiaVVzV2Rw?=
+ =?utf-8?B?czFsY2xIS1Y0bnZRRllhL3JnNkNXbjBzaXF3MUlpd20rR2pUOE9oQTFxRWsz?=
+ =?utf-8?B?YTdwa2lLZ2ZvM3JXTEE5a21OQ2JuR0grTlFKQXA0S2thbU1Za2RaUVdqQmdh?=
+ =?utf-8?B?bXFOalNhSXpBZDlBdS9FbjN5MTlEdkpJeHgrN1VCMWsvYzF6K1VDMWxNTUhU?=
+ =?utf-8?B?RVplQUFmUEpMdzlBZlJoS0lwTTJhc21xT3RzUEpEa09TUmtTZEcvKzdBZUZt?=
+ =?utf-8?B?a09vOTVJSHB4Z094WGVNblRCSkp2UFFaSGp4Y00zZ0huWXV3azY4dy9tMTMy?=
+ =?utf-8?B?Qlh3d0FNVDZOVWoyekJWbi9ENzE5S1JBajlIdDJvSEhFZ2ZPdWwrSVFqNFNI?=
+ =?utf-8?B?VEY3U21oOTZBa3pVUVg4MXdqbXR3ZkxQS05RTXJLbkNKam1qMDB4NDFlZjhn?=
+ =?utf-8?B?aFRwWXVKSEhPRkl4UjBlQUozbEZVNTF1blc2dE1oWDN0TG5hVXl3MGlMZ2J6?=
+ =?utf-8?B?djQ1MTRZVTZoKysyYzhCdnZ2UnNISWRwTjdqU0JhdTMyMW90ZmViWDQ3UGEr?=
+ =?utf-8?B?ZUVXdTNHV3dUNEdJMG9VdTJkekQzN1dudWpUekZLV0ovK1FtYXlVM0RNMWV0?=
+ =?utf-8?B?bnpMRUtKT0wvKzdIMUpFWGxVR3lrc3JLQ0EzclIzN2dObHdWVWNHdzVHVVpK?=
+ =?utf-8?B?b2o0NWlGUXhCc25ZSUpXeFdVaTRJa0w5Y0UwSXFYc0JXbG9LSVpKNjJiMlYz?=
+ =?utf-8?B?NU9WbC9uQzNORFE5SjNrUFFpMEN5RHJZcmd6NDAzdmVSanBLSVJDejlQNmdU?=
+ =?utf-8?B?a2dYc2poVWpsQi9ZUEtCRUw0QkpNNmlnU1B3SjVPbSsxeGUwSmk4UHNpWVpK?=
+ =?utf-8?B?RittaUdSN3hLY0NqTk9MMzB4eWg2RVQ1aitFSHVRTVZRTGlzQjFVeFJYN3Az?=
+ =?utf-8?B?YU5ERy9kenVEdkdtTDVaOFhKTkVhazNmTjYxT3NsQXlhSVhTekMydmZVRmlU?=
+ =?utf-8?B?eTRuV3pZUFd6eHl6S010b21DbHNRYWF4NTVjQURCZmd0L2phQ3RwM0lyKy83?=
+ =?utf-8?B?czU5U2JmK3hnbHFqNjBSLy94ZGJrZUlKWTE5V2xabHRrbERGSmZTZm1OcTVB?=
+ =?utf-8?B?aFA3U3ltSUZYQm5KYmg0SWhMaUplZjB0L3FUOGVsTVE4OTR0SE0rQkJGU2lm?=
+ =?utf-8?B?ZUNzNm5IbVQrblVoZlN4d3FocXQ5VWZkeDlzdmQrZHVJaFN5aHpRZ1REdVdZ?=
+ =?utf-8?B?R2t4NWpGemJoYkZiUzhUUUMrWGZpbHNEMERLU21BN0JhVnF3aHYrK2xVMmlI?=
+ =?utf-8?B?NkVBb3lvcXN2S24waEZFNXdVc1pZUS9hb3VLWkZ3UGVmTVBUZmJNMWdPMHM0?=
+ =?utf-8?B?c21RWmMyK2lwY1F1b2dzZXcyeGFMajI5NnVIaVo0MnViYUNxK1BJSWdIT0ZZ?=
+ =?utf-8?B?TXlPZGtUVndGMFl5UW5DdGFxWmtjQ3JhTTBnK3lyNjRkcUJicndmMkl1UGtE?=
+ =?utf-8?B?UW95OUFPU01ZZEd3UzNCOTFrZ0E1eGlLaTZRTDExYmVGd05mNVhpSCtqUjdi?=
+ =?utf-8?B?OHlvWmlZLzNiMitzU3VkMWFDYkFKUEYyd2NjeS9GMlBxOXBRMldvSzk1Q2xU?=
+ =?utf-8?B?R2M3WlZUekhwZXRxWEM5VU5rTURiUll3VFM5ZS9RMTkwSW10emEzWlk2U2d1?=
+ =?utf-8?B?ak1nM2hIQ2V0U01wa1FqcFM2TkswOXNnU0tzRWdVQjgxQzdUZmh1akZ4N2R2?=
+ =?utf-8?B?MVMzbUxoOTBTMTF5MFZ3TE5Uc3ZHS01tZmlTYk01b3VyOWR5aFZLSklKc1U2?=
+ =?utf-8?B?RU9MQUNIU012WGUvMWR6YVRnYlFLakJTMzV6ZTRwREswdjd5TXhFME5FSmVp?=
+ =?utf-8?B?YTNBM0tMTXlCZS9vYVlrSlA1eXQ3MmhIeHk4QVY2TEtneUU0RExqR25QdFB4?=
+ =?utf-8?B?Q2tzb29JWENSZlR1QmpUSVdSSE94MFNNdU0rODhzRytDN1l6OHkxbHNxMjdl?=
+ =?utf-8?B?TlJIWHJWS1pKME4xNHFkR1ZVSkk1MEN3ZUMxNWlNTmJOV0FxU3BCUmVNTWR1?=
+ =?utf-8?B?ckxuNUJDSmNtc1NsQjNZYVl4Vm9yUTI0L3pJZVhsRHoyNVNRYXI2eXExc0VG?=
+ =?utf-8?B?Z3phVGpkR1V0OW9GN3hJT3g5UWoza3hFZWdWM2hNZXlmeGduaUZjeGZoZVpW?=
+ =?utf-8?B?WUE9PQ==?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7053199007)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?OGtlcmp0R001QzRETE81ZHM2YlZpK1JObEt5NHk0ZTdOZXU1VFBoemVpcjdp?=
+ =?utf-8?B?ZTU2NS9GUE1LY3dlcEQ1SHRDT1dJWSt6RHFDUGwxZXhzaXlLbnZkeUhhYk5D?=
+ =?utf-8?B?cEJrM0V5SHRyaWlHU0lNRVRWYnNJcSttNllobW04UW4xWGM1a1ltM05ET25S?=
+ =?utf-8?B?d2hGSXZNWDdYaDlaUytkcnFkeEZZcDI4bGtKMDlFTS9jc3VEQW5wU0hVUzBS?=
+ =?utf-8?B?R3RyMEROZExVaG4zeDVQZm9FdkNMeUkvT2FqZDlxMEkyMjVuQW92Q01tQ2FI?=
+ =?utf-8?B?aWdQS2d5clYzNmJLZERmWUhrRjUrbldNTDk2OGJubStrQUJnYkZVWVprdzRa?=
+ =?utf-8?B?Q2ZzakxmazBEaW1DYXNYTWlKWkV1U2dXU1ZnSWZJOGdkb1NJTzY2R29YT1g4?=
+ =?utf-8?B?VHBkMXR6dXZuTWNmT3R2ZUVDQktQVDR3bFBwMzRoQ2dDK1lHZVp3clNnek9r?=
+ =?utf-8?B?L2JQM2VFNk82L3c2dmRlTXBud1lwcnRWQlhVRk4vd1l6dUlQbmtPbldxT2d4?=
+ =?utf-8?B?RmV6T2wzK1FMWTdnYmtOU2gvVUhHVUtNUStTYkpLZ2tKeW1BWnB6OU9RUmZx?=
+ =?utf-8?B?WWh1UFNaZE1rRExsQXhMMENEblV3QlVib0VsbkVoMVQrVXg0eUpFWlVNd2FE?=
+ =?utf-8?B?TUMybERnMUc3dmdZNzJyMTEzRVZoNmIyNEtjdWNNbkJwM2ZqZmVOV0pxQjV0?=
+ =?utf-8?B?MEgxMzh6M1VJc2dtRzdSY21vKytNdkVFRWMwSW4yQU5hL0JQSHUva0YyQnpv?=
+ =?utf-8?B?bTdMeHp2YkJYY0JQZUxOVnc5amd2dGtBT2c5aCtQcnprYnllQU8wck1yR3ZV?=
+ =?utf-8?B?Q2xYV0FnUGhNdHJsUjNsdGhZQlNvb2FYUVBkNitvNExYcDZnS2p1dGFSTDJS?=
+ =?utf-8?B?Qjk2bVY1WXh5eVJZK0lCVTduUnkxNW82aW5RS1NhMDBHUXYybkh0eXNIbk4x?=
+ =?utf-8?B?Qms5b1N0REdtUzA2dmM2YjhqYVE0RUE5dEM1WTkwVnVsSXdUN2VQSjErdHFY?=
+ =?utf-8?B?bG1yMFh1ZXFYWTdETWNYYTJhSWVzMFh6WTJEbTRGQ3hUVXpsTGt1aFluMmNG?=
+ =?utf-8?B?NUtTWnR5UW5tSnhOa0g3czBJeWtqK2Z1aE84UFJ2TTJXK2N6VXdUMEZ2TXp5?=
+ =?utf-8?B?V1VBZHQ4emRxcFpkWUNkMXE2aGdTMGc0QlJGdVdnL2VUL1phdlFDUGxiMjdR?=
+ =?utf-8?B?UkFodGpOK25JU0ptVklmQXdXUkxJUDAxUEhpQ2plRGJtNzRValNxcVVXNVIr?=
+ =?utf-8?B?WHJCbFRmNnIwTGVDeSthV1hESzB1UmN1RmgxUGt4ZCt6VlkwRVFSM2JVMFZY?=
+ =?utf-8?B?VGY3dGc2REJDaUwzMGQ1RktIcGhmZE5wUXg2bEFaOTk5RVd1SnJDcjdZK0dM?=
+ =?utf-8?B?bUpLTXNaL1hXYklVOE8xd1dHd2JIOU5DUkFXZ25IZ3F3bHlNMEUrcFBEOFpY?=
+ =?utf-8?B?Y1FraWZta3dDbmllcWxHT21ack1vREt2a3c0cG5NSlQvWllqU3NNLy9nbVI2?=
+ =?utf-8?B?c0M1RzZGcU54Mkc3aTZYUVh1YzJkSFk4S1lvTzNRYjY0amsrNU45UHR2czEw?=
+ =?utf-8?B?SG02dFd3NElUKzEzbGs2a1Axd1dOalB6a25lT1BZRlpyZDluZDVld3lwdi8x?=
+ =?utf-8?B?dG1wVGFBMllKYVdCT2N1MkRGYURWOEZWbUZaVDlocitJcjV3cFlXM3d1K1da?=
+ =?utf-8?B?Rkpmd2ordTZsMlBLbm5TeU1ZR3M3alpIQ3Vwd3Z4T3g5dGZUaHF4ZmhOeWQz?=
+ =?utf-8?B?OERZU0pCTW1sMGxDc3M2RTVBS1hpcW5HWG5rVjB5UXMwOG1MaWVyRGpzYXRT?=
+ =?utf-8?B?ZEtzUWtQT1hNb0J0OHJPbUMrT1RJL1h4ZGIrTnJFRlRRK3BmRUY4ek43RkhV?=
+ =?utf-8?B?NVRXTGFBU0NRMEgvQTBpZVhvaFpiZU9ZajVyZncyaDA0dE4yMU51SytQeER4?=
+ =?utf-8?B?bVBKWTZrU1RRUFhWMUVRdW9TZkN6ZTQzNFpDaHB3cUxaVU0yOEZMREl5K1A1?=
+ =?utf-8?B?cExCanh4Q0RFL0YwUEIwZ3pSSE8ydld0Wi9XYUp5SGsxSXMxRFZubnoydHVS?=
+ =?utf-8?B?MXgxc2s1a1JWaEhiTVZHNnVCclZ4OVNqUHpTL0hqeXg1eml5K0JKSm43RFZG?=
+ =?utf-8?B?NWtZVHNnUW5GYzFPd0YvZW5CQkt4Ulo4MEJVUlVTV3ZFQzl0TXhDRGc3aGRU?=
+ =?utf-8?B?ZUdVWldqSVRkYmtmYmVRQkxabXErRUxaZndLWk5RU21BWlJlcWZPS2lMcHNJ?=
+ =?utf-8?B?M2JuQlRGRkpoenhqTlduUkhDNHpaZ0kvSFliN2lPWGRRdzBrbXZ3QkQ4aUY3?=
+ =?utf-8?Q?5O17gNEiQ849Rs7qeQ?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 85f1db73-c1ba-487e-251d-08de5f5b4e81
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 17:24:49.8540
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ FYjeoJudTxKuN9f69S5OwNGy5xk4GDNgV+t7hcMk/uiG5TtMC09dP75O3NKNjkC7+dZuODnLUr5OpzbTkH//Ng==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO6P265MB6923
+Message-ID-Hash: RSG2X3DAKIRSG6C6XSETHMY5ATTG37ZK
+X-Message-ID-Hash: RSG2X3DAKIRSG6C6XSETHMY5ATTG37ZK
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, Jesung Yang <y.j3ms.n@gmail.com>
+ loop; banned-address; member-moderation
 X-Mailman-Version: 3.3.8
 Precedence: list
-Reply-To: y.j3ms.n@gmail.com
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5IDYAZQMS5VX6NRKKFKWW632H6ZTCKWQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RSG2X3DAKIRSG6C6XSETHMY5ATTG37ZK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com/>
+ <https://lore.freedesktop.org/DG18Y53B5OWJ.147OR1P201GRJ@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -132,330 +218,97 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Jesung Yang <y.j3ms.n@gmail.com>
+On Thu Jan 29, 2026 at 2:28 AM GMT, Timur Tabi wrote:
+> Add UserSliceWriter::write_dma() to copy data from a CoherentAllocation<u=
+8>
+> to userspace. This provides a safe interface for copying DMA buffer
+> contents to userspace without requiring callers to work with raw pointers=
+.
+>
+> The method handles bounds checking and offset calculation internally,
+> wrapping the unsafe copy_to_user() call.
+>
+> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+> ---
+>  rust/kernel/uaccess.rs | 41 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>
+> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
+> index f989539a31b4..f9bb88e47408 100644
+> --- a/rust/kernel/uaccess.rs
+> +++ b/rust/kernel/uaccess.rs
+> @@ -7,6 +7,7 @@
+>  use crate::{
+>      alloc::{Allocator, Flags},
+>      bindings,
+> +    dma::CoherentAllocation,
+>      error::Result,
+>      ffi::{c_char, c_void},
+>      fs::file,
+> @@ -481,6 +482,46 @@ pub fn write_slice(&mut self, data: &[u8]) -> Result=
+ {
+>          Ok(())
+>      }
+> =20
+> +    /// Writes raw data to this user pointer from a DMA coherent allocat=
+ion.
+> +    ///
+> +    /// Returns error if the offset+count exceeds the allocation size.
+> +    ///
+> +    /// Fails with [`EFAULT`] if the write happens on a bad address, or =
+if the write goes out of
+> +    /// bounds of this [`UserSliceWriter`]. This call may modify the ass=
+ociated userspace slice
+> +    /// even if it returns an error.
+> +    ///
+> +    /// Note: The memory may be concurrently modified by hardware (e.g.,=
+ DMA). In such cases,
+> +    /// the copied data may be inconsistent, but this does not cause und=
+efined behavior.
+> +    pub fn write_dma(
+> +        &mut self,
+> +        alloc: &CoherentAllocation<u8>,
+> +        offset: usize,
+> +        count: usize,
+> +    ) -> Result {
+> +        let len =3D alloc.count();
+> +        if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
+> +            return Err(ERANGE);
+> +        }
+> +
+> +        // SAFETY: `start_ptr()` returns a valid pointer to a memory reg=
+ion of `count()` bytes,
+> +        // as guaranteed by the `CoherentAllocation` invariants. The che=
+ck above ensures
+> +        // `offset + count <=3D len`.
+> +        let src_ptr =3D unsafe { alloc.start_ptr().add(offset) };
+> +
+> +        // SAFETY: `src_ptr` is valid for reads of `count` bytes per the=
+ above.
+> +        let res =3D unsafe {
+> +            bindings::copy_to_user(self.ptr.as_mut_ptr(), src_ptr.cast::=
+<c_void>(), count)
+> +        };
 
-Introduce a procedural macro `TryFrom` to automatically implement the
-`TryFrom` trait for unit-only enums.
+You're not checking `count` against `self.length` in this function, so you
+perform an OOB write to userspace memory.
 
-This reduces boilerplate in cases where numeric values need to be
-interpreted as relevant enum variants. This situation often arises when
-working with low-level data sources. A typical example is the `Chipset`
-enum in nova-core, where the value read from a GPU register should be
-mapped to a corresponding variant.
+Best,
+Gary
 
-The macro not only supports primitive types such as `bool` or `i8`, but
-also `Bounded`, a wrapper around integer types limiting the number of
-bits usable for value representation. This accommodates the shift toward
-more restrictive register field representations in nova-core where
-values are constrained to specific bit ranges.
-
-Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
----
- rust/macros/convert.rs |  64 ++++++++++++++++++
- rust/macros/lib.rs     | 176 +++++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 240 insertions(+)
-
-diff --git a/rust/macros/convert.rs b/rust/macros/convert.rs
-index 096e3c9fdc1b..a7a43b1a2caf 100644
---- a/rust/macros/convert.rs
-+++ b/rust/macros/convert.rs
-@@ -34,6 +34,10 @@ pub(crate) fn derive_into(input: DeriveInput) -> syn::Result<TokenStream> {
-     derive(DeriveTarget::Into, input)
- }
- 
-+pub(crate) fn derive_try_from(input: DeriveInput) -> syn::Result<TokenStream> {
-+    derive(DeriveTarget::TryFrom, input)
-+}
-+
- fn derive(target: DeriveTarget, input: DeriveInput) -> syn::Result<TokenStream> {
-     let data_enum = match input.data {
-         Data::Enum(data) => data,
-@@ -129,18 +133,21 @@ fn derive(target: DeriveTarget, input: DeriveInput) -> syn::Result<TokenStream>
- #[derive(Clone, Copy, Debug)]
- enum DeriveTarget {
-     Into,
-+    TryFrom,
- }
- 
- impl DeriveTarget {
-     fn get_trait_name(&self) -> &'static str {
-         match self {
-             Self::Into => "Into",
-+            Self::TryFrom => "TryFrom",
-         }
-     }
- 
-     fn get_helper_name(&self) -> &'static str {
-         match self {
-             Self::Into => "into",
-+            Self::TryFrom => "try_from",
-         }
-     }
- }
-@@ -186,6 +193,7 @@ fn derive_for_enum(
- ) -> TokenStream {
-     let impl_fn = match target {
-         DeriveTarget::Into => impl_into,
-+        DeriveTarget::TryFrom => impl_try_from,
-     };
- 
-     let qualified_repr_ty: syn::Path = parse_quote! { ::core::primitive::#repr_ty };
-@@ -238,6 +246,54 @@ fn from(#param: #enum_ident) -> #input_ty {
-         }
-     }
- 
-+    fn impl_try_from(
-+        enum_ident: &Ident,
-+        variants: &[Ident],
-+        repr_ty: &syn::Path,
-+        input_ty: &ValidTy,
-+    ) -> TokenStream {
-+        let param = Ident::new("value", Span::call_site());
-+
-+        let overflow_assertion = emit_overflow_assert(enum_ident, variants, repr_ty, input_ty);
-+        let emit_cast = |variant| {
-+            let variant = ::quote::quote! { #enum_ident::#variant };
-+            match input_ty {
-+                ValidTy::Bounded(inner) => {
-+                    let base_ty = inner.emit_qualified_base_ty();
-+                    let expr = parse_quote! { #variant as #base_ty };
-+                    inner.emit_new(&expr)
-+                }
-+                ValidTy::Primitive(ident) if ident == "bool" => {
-+                    ::quote::quote! { ((#variant as #repr_ty) == 1) }
-+                }
-+                qualified @ ValidTy::Primitive(_) => ::quote::quote! { #variant as #qualified },
-+            }
-+        };
-+
-+        let clauses = variants.iter().map(|variant| {
-+            let cast = emit_cast(variant);
-+            ::quote::quote! {
-+                if #param == #cast {
-+                    ::core::result::Result::Ok(#enum_ident::#variant)
-+                } else
-+            }
-+        });
-+
-+        ::quote::quote! {
-+            #[automatically_derived]
-+            impl ::core::convert::TryFrom<#input_ty> for #enum_ident {
-+                type Error = ::kernel::prelude::Error;
-+                fn try_from(#param: #input_ty) -> Result<#enum_ident, Self::Error> {
-+                    #overflow_assertion
-+
-+                    #(#clauses)* {
-+                        ::core::result::Result::Err(::kernel::prelude::EINVAL)
-+                    }
-+                }
-+            }
-+        }
-+    }
-+
-     fn emit_overflow_assert(
-         enum_ident: &Ident,
-         variants: &[Ident],
-@@ -360,6 +416,14 @@ fn emit_from_expr(&self, expr: &Expr) -> TokenStream {
-         }
-     }
- 
-+    fn emit_new(&self, expr: &Expr) -> TokenStream {
-+        let Self { base_ty, bits, .. } = self;
-+        let qualified_name: syn::Path = parse_str(Self::QUALIFIED_NAME).expect("valid path");
-+        ::quote::quote! {
-+            #qualified_name::<#base_ty, #bits>::new::<{ #expr }>()
-+        }
-+    }
-+
-     fn emit_qualified_base_ty(&self) -> TokenStream {
-         let base_ty = &self.base_ty;
-         ::quote::quote! { ::core::primitive::#base_ty }
-diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
-index 8842067d1017..893adecb9080 100644
---- a/rust/macros/lib.rs
-+++ b/rust/macros/lib.rs
-@@ -657,3 +657,179 @@ pub fn derive_into(input: TokenStream) -> TokenStream {
-         .unwrap_or_else(syn::Error::into_compile_error)
-         .into()
- }
-+
-+/// A derive macro for generating an implementation of the [`TryFrom`] trait.
-+///
-+/// This macro automatically derives the [`TryFrom`] trait for a given enum. Currently,
-+/// it only supports [unit-only enum]s.
-+///
-+/// [unit-only enum]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.unit-only
-+///
-+/// # Notes
-+///
-+/// - The macro generates [`TryFrom`] implementations that:
-+///   - Return `Ok(VARIANT)` when the input corresponds to a variant.
-+///   - Return `Err(EINVAL)` when the input does not correspond to any variant.
-+///     (where `EINVAL` is from [`kernel::error::code`]).
-+///
-+/// - The macro uses the `try_from` custom attribute or `repr` attribute to generate
-+///   [`TryFrom`] implementations. `try_from` always takes precedence over `repr`.
-+///
-+/// - Currently, the macro does not support `repr(C)` fieldless enums since the actual
-+///   representation of discriminants is defined by rustc internally, and documentation
-+///   around it is not yet settled. See [Rust issue #124403] and [Rust PR #147017]
-+///   for more information.
-+///
-+/// - The macro generates a compile-time assertion for every variant to ensure its
-+///   discriminant value fits within the type being converted from.
-+///
-+/// [`kernel::error::code`]: ../kernel/error/code/index.html
-+/// [Rust issue #124403]: https://github.com/rust-lang/rust/issues/124403
-+/// [Rust PR #147017]: https://github.com/rust-lang/rust/pull/147017
-+///
-+/// # Supported types in `#[try_from(...)]`
-+///
-+/// - [`bool`]
-+/// - Primitive integer types (e.g., [`i8`], [`u8`])
-+/// - [`Bounded`]
-+///
-+/// [`Bounded`]: ../kernel/num/bounded/struct.Bounded.html
-+///
-+/// # Examples
-+///
-+/// ## Without Attributes
-+///
-+/// Since [the default `Rust` representation uses `isize` for the discriminant type][repr-rust],
-+/// the macro implements `TryFrom<isize>`:
-+///
-+/// [repr-rust]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.discriminant.repr-rust
-+///
-+/// ```rust
-+/// # use kernel::prelude::*;
-+/// use kernel::macros::TryFrom;
-+///
-+/// #[derive(Debug, Default, PartialEq, TryFrom)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B = 0x7,
-+/// }
-+///
-+/// assert_eq!(Err(EINVAL), Foo::try_from(-1_isize));
-+/// assert_eq!(Ok(Foo::A), Foo::try_from(0_isize));
-+/// assert_eq!(Ok(Foo::B), Foo::try_from(0x7_isize));
-+/// assert_eq!(Err(EINVAL), Foo::try_from(0x8_isize));
-+/// ```
-+///
-+/// ## With `#[repr(T)]`
-+///
-+/// The macro implements `TryFrom<T>`:
-+///
-+/// ```rust
-+/// # use kernel::prelude::*;
-+/// use kernel::macros::TryFrom;
-+///
-+/// #[derive(Debug, Default, PartialEq, TryFrom)]
-+/// #[repr(u8)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B = 0x7,
-+/// }
-+///
-+/// assert_eq!(Ok(Foo::A), Foo::try_from(0_u8));
-+/// assert_eq!(Ok(Foo::B), Foo::try_from(0x7_u8));
-+/// assert_eq!(Err(EINVAL), Foo::try_from(0x8_u8));
-+/// ```
-+///
-+/// ## With `#[try_from(...)]`
-+///
-+/// The macro implements `TryFrom<T>` for each `T` specified in `#[try_from(...)]`,
-+/// which always overrides `#[repr(...)]`:
-+///
-+/// ```rust
-+/// # use kernel::prelude::*;
-+/// use kernel::{
-+///     macros::TryFrom,
-+///     num::Bounded, //
-+/// };
-+///
-+/// #[derive(Debug, Default, PartialEq, TryFrom)]
-+/// #[try_from(bool, i16, Bounded<u8, 4>)]
-+/// #[repr(u8)]
-+/// enum Foo {
-+///     #[default]
-+///     A,
-+///     B,
-+/// }
-+///
-+/// assert_eq!(Err(EINVAL), Foo::try_from(-1_i16));
-+/// assert_eq!(Ok(Foo::A), Foo::try_from(0_i16));
-+/// assert_eq!(Ok(Foo::B), Foo::try_from(1_i16));
-+/// assert_eq!(Err(EINVAL), Foo::try_from(2_i16));
-+///
-+/// assert_eq!(Ok(Foo::A), Foo::try_from(false));
-+/// assert_eq!(Ok(Foo::B), Foo::try_from(true));
-+///
-+/// assert_eq!(Ok(Foo::A), Foo::try_from(Bounded::<u8, 4>::new::<0>()));
-+/// assert_eq!(Ok(Foo::B), Foo::try_from(Bounded::<u8, 4>::new::<1>()));
-+/// ```
-+///
-+/// ## Compile-time Overflow Assertion
-+///
-+/// The following examples do not compile:
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::TryFrom;
-+/// #[derive(TryFrom)]
-+/// #[try_from(u8)]
-+/// enum Foo {
-+///     // `256` is larger than `u8::MAX`.
-+///     A = 256,
-+/// }
-+/// ```
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::TryFrom;
-+/// #[derive(TryFrom)]
-+/// #[try_from(u8)]
-+/// enum Foo {
-+///     // `-1` cannot be represented with `u8`.
-+///     A = -1,
-+/// }
-+/// ```
-+///
-+/// ## Unsupported Cases
-+///
-+/// The following examples do not compile:
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::TryFrom;
-+/// // Tuple-like enums or struct-like enums are not allowed.
-+/// #[derive(TryFrom)]
-+/// enum Foo {
-+///     A(u8),
-+///     B { inner: u8 },
-+/// }
-+/// ```
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::TryFrom;
-+/// // Structs are not allowed.
-+/// #[derive(TryFrom)]
-+/// struct Foo(u8);
-+/// ```
-+///
-+/// ```compile_fail
-+/// # use kernel::macros::TryFrom;
-+/// // `repr(C)` enums are not allowed.
-+/// #[derive(TryFrom)]
-+/// struct Foo(u8)
-+/// ```
-+#[proc_macro_derive(TryFrom, attributes(try_from))]
-+pub fn derive_try_from(input: TokenStream) -> TokenStream {
-+    let input = parse_macro_input!(input as DeriveInput);
-+    convert::derive_try_from(input)
-+        .unwrap_or_else(syn::Error::into_compile_error)
-+        .into()
-+}
-
--- 
-2.52.0
-
+> +        if res !=3D 0 {
+> +            return Err(EFAULT);
+> +        }
+> +
+> +        self.ptr =3D self.ptr.wrapping_byte_add(count);
+> +        self.length -=3D count;
+> +
+> +        Ok(())
+> +    }
+> +
+>      /// Writes raw data to this user pointer from a kernel buffer partia=
+lly.
+>      ///
+>      /// This is the same as [`Self::write_slice`] but considers the give=
+n `offset` into `data` and
 
