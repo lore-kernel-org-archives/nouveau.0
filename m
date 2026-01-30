@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9B00D49C73
-	for <nouveau@archiver.kernel.org>; Fri, 30 Jan 2026 08:31:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ACACD49C77
+	for <nouveau@archiver.kernel.org>; Fri, 30 Jan 2026 08:34:41 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 842DC10E92F;
-	Fri, 30 Jan 2026 08:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D160110E946;
+	Fri, 30 Jan 2026 08:34:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="CYCGBhbp";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="m7/9ZJIe";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4DD0240F1F;
-	Fri, 30 Jan 2026 08:22:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9B4C140F37;
+	Fri, 30 Jan 2026 08:25:34 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769761342;
- b=VnDqKMFzsdk94Xs5FGv7fzVEHCoZ4gypRdG6F0o66S2iNEoOTsoDVpS5W+Vp7xwoGTmvK
- +QC8tmm7dRX0ALaEOZXH2ypsMcwRI8JlZXekcNme+Jo8jsdhKhUTjzcMvwcwcX/MN/0I6u5
- +BRg6yP1xyu02je1UmRNtc7oKAJcvmUXYl5b4pyN6P52xSqtMvzQccHvtJzzixPqOYP3kJa
- 7yjs/xZ1u3YrLqkuMIqSTmpOXCs13CQ9MKRU1ek0GkuQC0xCtkBEkX5vTkSLLwAhjYYJpbl
- Y51F5Ggd3ra6LaRTIt+AUtuiTpv48b+U/hKxinh+rtohKZhDesZ9lHPR8SbQ==
+ s=20240201; t=1769761534;
+ b=ToCu1mdTsrCAFzfifxV9U0opBmxyQpXcvxUWP1ufp8WHY8temuvqeGLu3Ys800Z6mWekU
+ oovWMpfsUPRrCOhEyfV0jDs2N012nPxHyNgcAZ8y/VmT9lEsUbuD1SjRZDbZO0Ipp+fxNa/
+ FrxZ/2ewClQisNNDR1bw7aosii3KhYjPiIfU3CU4ArkwERfPuYm3xK8nbsykS3e0kA9OX3c
+ N4+8E0EuxXPcj3Nbj+k0LtuRFEB7dRgVj5KmceyKovqM5uv3AnJacQdLVH33bcNeDzdzObz
+ 2zdOG47oiWhFrnN7B7RIdgAfsHH5PS24KeUfIOu2jEX6tV1UZfN6Axnp/GrQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769761342; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769761534; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=n+GzpbkBojeUlEtJWlBKw8ZsdLYodfMK2fNmjvVY9hE=;
- b=r7W8Uwd0YK1N1G2r/qA+wSUFkYlA3DX4O8jwq48rv50p3FKaPkTVaJX1dlhwwgxK9bJ61
- nLCeO7ficasXRVRYk6V/SuF4LbeKBvQmrotWdNrZBX9eKUcgjFP3aq3OFvhUtseovk+hB9Y
- 69IgjsS/CbWmqcFQzX+ny01GnP+OyUbXWa9ZamdOB6HWvyT5nSoOWU6oHfdMHamLWMVryBM
- YNsuQW65jfMS0xe42pejpN+8eBe/N2tb6iA3mJ2f1lMOsd/qw7BJCOnlTsbkDDoLNDkx1CD
- Vp/NxXe8fpr+DBIBq+4K3qsFDYV84o++MAzFMRHOLZdbhO1Zwz2Qfdj6sGvQ==
+ bh=BXwrLkuO838vdnUICThk+ZOtuk7JQw/6t67kS9o7Wo0=;
+ b=0Ck2puGjujrEn4ILetbuYpxUKQ88j5LrdyJxB/qPrvDvbQvByqbV4eP4qg/BbxjCUOfPJ
+ 1367mrvkO439FohyceGu16B5bjKvJF2KfxbhTFoQ8ygUPSXtyGTMJAfTFO6fsG+L93E6t+B
+ /Nf+gQm6HfB+vCU6TzI8Ds55AO1G29xlL2wKPeeve2BMS93+7q4MutP5RY+fDaNi36vRnBe
+ iATqnzlPJ+c3QSW9OXc0HWjrJ85qt9rOtOplMlvilwjcDAW4ZNKlCTO+/Gv2Yr65lVUC4wO
+ B6KvvREq4pyrzxpraq0bXYWQh9AWC2EvdwqrSrswbGkn5icyIN3m1rsdacjA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=google.com;
   arc=none (Message is not ARC signed);
@@ -46,64 +46,64 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
  dmarc=pass (Used From Domain Record) header.from=google.com
  policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 701B840AA6
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Jan 2026 08:22:19 +0000 (UTC)
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
- [209.85.128.74])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5ED1B10E92D
-	for <nouveau@lists.freedesktop.org>; Fri, 30 Jan 2026 08:31:25 +0000 (UTC)
-Received: by mail-wm1-f74.google.com with SMTP id
- 5b1f17b1804b1-47d62cc05daso14607325e9.3
+	by kara.freedesktop.org (Postfix) with ESMTPS id 73FD940ACE
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Jan 2026 08:25:31 +0000 (UTC)
+Received: from mail-ej1-f74.google.com (mail-ej1-f74.google.com
+ [209.85.218.74])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 740AA10E92F
+	for <nouveau@lists.freedesktop.org>; Fri, 30 Jan 2026 08:34:37 +0000 (UTC)
+Received: by mail-ej1-f74.google.com with SMTP id
+ a640c23a62f3a-b8704795d25so254145166b.2
         for <nouveau@lists.freedesktop.org>;
- Fri, 30 Jan 2026 00:31:25 -0800 (PST)
+ Fri, 30 Jan 2026 00:34:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1769761884; x=1770366684;
+        d=google.com; s=20230601; t=1769762076; x=1770366876;
  darn=lists.freedesktop.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=n+GzpbkBojeUlEtJWlBKw8ZsdLYodfMK2fNmjvVY9hE=;
-        b=CYCGBhbpOlClc5wmTV1g5p0XfKDO/6UGPTD6E8zOCR4n/IApMak+3Kia5fDsz/Te48
-         B4X0frEu0T92AamBUPcXms76JGt8GA0SLsqRe3EvTfP72EP7Lv6upjuCkqOaK2grhpFs
-         5xkeYuLWEDigsd6b+I9zfENlYWcDfC5J8aIXvMfGmH/7Qtul6FrMWyKLB1bbzXTVCzjg
-         6w4frRKViUgHxfKA5Xur3+vFa95Oag7z4Ueuw/HQQD7wS4mGLK4vISQ2zQzgtyFAlsP7
-         Qm+kYQ/8FguiZl0srRakFn1TO8LjBjAwTk1HuQAGl6crA+p7fyFhOzBLCu87wcTDFxfo
-         S4rw==
+        bh=BXwrLkuO838vdnUICThk+ZOtuk7JQw/6t67kS9o7Wo0=;
+        b=m7/9ZJIeOBBAPoVQGUsO6gkY0OCEbrCpNM0/Jy6hzpU1deMQox9eBQnP8kfKf+iixW
+         QL0BdmloU20K6kAf1qo8j6z5QyUTLDeXPYUfRIX8/QrskyPNg1yjT+KXSUp2k1VICmXM
+         ma3v6VV1JwEgEV9bh6qnI1TU8GQ9G4xmohOCKVkjm0N7ZbcHUD9j3dWdPS63ZR+ffXO4
+         X4Md47hMLDidpCfY5fhfejkMUK6LNqDfag6IO+QDyX84pd5SWCVZBoOc+tXdbLO+yAx7
+         vlRyurlhepK2J1HVvlg7WMXacxNREJfdET6vi9M6EWlgy4KXU2w416rpXoRZjTyDZdbU
+         dw0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1769761884; x=1770366684;
+        d=1e100.net; s=20230601; t=1769762076; x=1770366876;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=n+GzpbkBojeUlEtJWlBKw8ZsdLYodfMK2fNmjvVY9hE=;
-        b=WzYfxyEmv92SOd4qKka8AjzOxfR+ROe0FhWdbaVb7lVq3S8ysIXFwHo1Vpg3RXylBU
-         6KOe8peeHRngbRX3h5nYgXoinDX0O1YwpPLO42KaRhQfQuATxi1aJH8PjvhMdvd43vMG
-         1DvLIFA6wFy7uh+jSZhcjpXHFHBJJHNNshfVPTrSo4wHmyfZgAq3pIHrhWyru5SbqVQW
-         F1eQdWJmNNKXGDf0CHcJ2WtUPau85/JBlGzpSUoFpQJfrf/7FUxRCy6AsY1JOx0dTcw5
-         p93X7VJQRZ+dZvw8y7UID5E7h8ub+2kAh8s/iN4JMKhvBK6kfB8SwFgH63h0vM00sqkU
-         tUTQ==
+        bh=BXwrLkuO838vdnUICThk+ZOtuk7JQw/6t67kS9o7Wo0=;
+        b=cLbzgIMcUjvEue2is3Bik83+DUPYlX+or4JV0Y1xipMPJ1mFchv+5WQWbbDTBRfUWU
+         a97mbKRanA6u3NyjglCxYI7N7cfb4vbUI22NHlE8Ld5+Qc4jgDgNuRvgrNuWP7fMhojq
+         oFfBQEgDWudzk7w6HsG6H6xFCbL0cq9xAML0EjzBd+mNBG44rsdky178CqaUBvnzrimK
+         hGGLlPU+a3j2LwQ4XFSprw72nW8Pjhlfi/L42b+DKPNmLgESe4OvyajG5yhLRfgowNHR
+         zgMQKLjnczumT1CbbLxmYvB+t0IfstbUI3F3InBaVcOBs9xX0GhVPru+JmW9/vwRpbxn
+         xH3g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVzelJenRls+URs/LncT/sUmworH7zrohfRCrgawXcwyLSG+ouXlqbGLn0Tn4KqpH/MUKw7XK9b@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yx0n/qZDkf4VHCpMgVQejzUFqED0FekAijHpX71ypFD02ik6lX5
-	fY+GCso4Gu0oni5Gt2Fp8TjP1aBmfS6TsIwV5Qj7xa3LElwXYowLbkEQcVN5r7emo2gk8QJdjvW
-	C3aRnEKqUPoxumW99eQ==
-X-Received: from wmby7.prod.google.com ([2002:a05:600c:c047:b0:477:a678:a39a])
+ AJvYcCUMQ0+lnWJNgKyLr1UDtteMUbyhw0UGpinIfuuGMZlkYDHAXgmaoi1Y4/1/MLC7xVXRtlOdTJCF@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyGq5GvfjveVt8vgP/xjWqEUBj0ar7QxYG4ciS4QQODhl6ILMuY
+	jAp4p7apTHJht0eEW8OIh4ej5EFDJBbHS2jrsoUh9H08LYKyRHc+W0c2LmzzrLdOTk3Zsv+KlUC
+	O+Hc1oFaYgVruGHjXEg==
+X-Received: from ejbot14.prod.google.com
+ ([2002:a17:906:ccce:b0:b7d:380b:a83c])
  (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:4e8a:b0:477:73e9:dc17 with SMTP id
- 5b1f17b1804b1-482db4992famr28105065e9.35.1769761883601;
- Fri, 30 Jan 2026 00:31:23 -0800 (PST)
-Date: Fri, 30 Jan 2026 08:31:22 +0000
-In-Reply-To: <20260129022837.4133832-4-ttabi@nvidia.com>
+ 2002:a17:907:9287:b0:b87:1fe6:f223 with SMTP id
+ a640c23a62f3a-b8dff5e8fecmr102609966b.6.1769762075992;
+ Fri, 30 Jan 2026 00:34:35 -0800 (PST)
+Date: Fri, 30 Jan 2026 08:34:35 +0000
+In-Reply-To: <20260129022837.4133832-7-ttabi@nvidia.com>
 Mime-Version: 1.0
 References: <20260129022837.4133832-1-ttabi@nvidia.com>
- <20260129022837.4133832-4-ttabi@nvidia.com>
-Message-ID: <aXxsWuuV9mlAEtAJ@google.com>
-Subject: Re: [PATCH v6 3/7] gpu: nova-core: implement BinaryWriter for
- CoherentAllocation<u8>
+ <20260129022837.4133832-7-ttabi@nvidia.com>
+Message-ID: <aXxtG0TTk376dRsT@google.com>
+Subject: Re: [PATCH v6 6/7] gpu: nova-core: create debugfs root in module init
 From: Alice Ryhl <aliceryhl@google.com>
 To: Timur Tabi <ttabi@nvidia.com>
 Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: 7Q7Z5PAKMCVDQISJQJKBWRCMYECJZPMV
-X-Message-ID-Hash: 7Q7Z5PAKMCVDQISJQJKBWRCMYECJZPMV
+Message-ID-Hash: 3VEM3SHKELS2XKQFHQ5FITJBYN7GTXFJ
+X-Message-ID-Hash: 3VEM3SHKELS2XKQFHQ5FITJBYN7GTXFJ
 X-MailFrom: 
- 3W2x8aQkKB3gWheYanudhckkcha.YkijkqraWqheopo.bnaaZaogpkl.knc@flex--aliceryhl.bounces.google.com
+ 3G218aQkKBzoWheYanudhckkcha.YkijkqraWqheopo.bnaaZaogpkl.knc@flex--aliceryhl.bounces.google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -116,8 +116,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7Q7Z5PAKMCVDQISJQJKBWRCMYECJZPMV/>
-Archived-At: <https://lore.freedesktop.org/aXxsWuuV9mlAEtAJ@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3VEM3SHKELS2XKQFHQ5FITJBYN7GTXFJ/>
+Archived-At: <https://lore.freedesktop.org/aXxtG0TTk376dRsT@google.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,34 +127,10 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Jan 28, 2026 at 08:28:33PM -0600, Timur Tabi wrote:
-> [PATCH v6 3/7] gpu: nova-core: implement BinaryWriter for CoherentAllocation<u8>
+On Wed, Jan 28, 2026 at 08:28:36PM -0600, Timur Tabi wrote:
+> +// FIXME: Move this into per-module data once that exists
+> +static mut DEBUGFS_ROOT: Option<debugfs::Dir> = None;
 
-The commit title says 'gpu: nova-core:' but this is primarily a change
-to rust/kernel/dma.rs, so it should say 'rust: dma:' or similar.
-
-> +// SAFETY: Sharing `&CoherentAllocation` across threads is safe if `T` is `Sync`, because all
-> +// methods that access the buffer contents (`field_read`, `field_write`, `as_slice`,
-> +// `as_slice_mut`) are `unsafe`, and callers are responsible for ensuring no data races occur.
-> +// The safe methods only return metadata or raw pointers whose use requires `unsafe`.
-> +unsafe impl<T: AsBytes + FromBytes + Sync> Sync for CoherentAllocation<T> {}
-
-This change is unrelated to implementing BinaryWriter for
-CoherentAllocation.
-
-> +impl debugfs::BinaryWriter for CoherentAllocation<u8> {
-> +    fn write_to_slice(
-> +        &self,
-> +        writer: &mut UserSliceWriter,
-> +        offset: &mut file::Offset,
-> +    ) -> Result<usize> {
-> +        if offset.is_negative() {
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        let offset_val: usize = (*offset).try_into().map_err(|_| EINVAL)?;
-
-If the user seeks to a large offset, this leads to EINVAL. But the
-correct behavior for a file is to simply return Ok(0) in such case.
+Surely debugfs has a solution to avoid this...
 
 Alice
