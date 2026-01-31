@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DD75E7C6F9
-	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 22:50:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AF13E7C6F9
+	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 22:50:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3759D10E245;
-	Sat, 31 Jan 2026 22:50:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7680410E245;
+	Sat, 31 Jan 2026 22:50:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ry.rs header.i=@ry.rs header.b="QaiGIsu/";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ry.rs header.i=@ry.rs header.b="J3QTneX6";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7390340F72;
-	Sat, 31 Jan 2026 22:40:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C07D540F63;
+	Sat, 31 Jan 2026 22:41:03 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769899256;
- b=iWRurWfaI43FWduQIe+8HYg9Cy6L5M7RODEQ4Uf4KBI+4+b2QlmKICmbjwge09sV7Fm3V
- zf+I0dPAQbI1Bwd0vRu0/NaRDEQNydCe/9Zm2ds6WEJwUgTN1lYzhMBZTR2CP1S1uHNm7RQ
- YvS2n0jZK4RfVqqLajeosVAOYeHQaCLf9eJL6LtcMdEX9bZ7y6lLHAFU6Vh9zr8uiUapqiG
- G79YDZ1hG3yzSDSlvbYOVH9bZalImWhkiSGDaVW5Yi3FVcxWmNJaPrCbkuXTFEqIHrA7DuI
- xqUmOtvFsK0lrBuHQXQp2anc/rRTlcjMLrko9qqiFq5hVvYt16mKGPSLjYsQ==
+ s=20240201; t=1769899263;
+ b=n5S0WzscZ7243WpChMzx61JdXfMgs8rScSgkhxfZ9Ql3TMYPm+canF9FLHR5u73ihr7r0
+ FggoK22IShDURNbmbyQ8+Mn4lRWc7HYfcGlVB1gbce2/O858xoHuEgYqwesIQYJHgUpfmIq
+ d2lrao/kH+0p0KJp6XHY42D7BUczSjSN6BvyFmI3W/PHfSQnuzoVVlCSHu9OpG0QFQYc0+O
+ 9WMKIHpT870Bu4RzKgRpjoHssaLpdxfyvm/Ayl7QFFPctV55nu1R0UKmk8gYEjU0Kro3eQQ
+ cbJ5mJPvWTDjRtnOTteB/Sws99+s0TMQlxqVVFsR/0668xEEsXK+D2I+vcaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769899256; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769899263; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=SWvtaEiT/41NAalPPWhdhfM93rTmPvj7juU4A2w+NMk=;
- b=QaVkTnHcwGZJcnuf1/uUKFuymPcPNRQ58Ps/vSLg/XV3MzL4lIkFD85cYl86gSv+DIpsf
- /ZldGZbIT1ZVTwruZ9ClXShgUhDnva/TZiwRa5wnhNXHKU85AElztOC1wiUSqbDtezxVh0o
- AP7MRoG0S58Ho7DPyHT9Muax2o2KY5KXugS5ygkuaEaJH4LiLc2Xs/BFoWkzMdi2838VuYA
- 6auHnLBJjRpWNk2PfCHWI9nWjCLe7zbY9/JbzI5vGt5k9GAZvSEkSMmcoCMqAZtDg9uqh5U
- XaCvHkf5KaXMGRkWUHuxxiwUJ/StzWi4427APaDCCR/oyFByCklx/w10LRbA==
+ bh=ieqzaWRiWdY02r7jkJvGUOeJVM3Ht/4jcBZxw4sl63k=;
+ b=bY4JawriuleBCvi7aFYyuFozqoQKoSPmkbV0j0+UeTikgvwXT63LE3g1k+8H4y2mbToTR
+ u18vVzChn/WBbZOkYiGdUZEgh6eyvTf2MQInS37U+goxmZMwtNr4nEBCD73dLP8e/BE9JQ3
+ JD8CKblRGFpfTeFKVoGlxQS5xMTN0YvYU6TGsTX3Ow42c3Cemj4BIUlwGmitPvm9xKT8T5X
+ NGCLsgGTBcdeDaaUnqm4xolbB9tr7P/9OQM52qXvrHjwjJaAvZCTsINHPhKxMCsEyK/dNQf
+ BbKGqb1VCCHgiD1vJJcETUal73o86Azf0DnJA5pyqRPGyE1rbRPpTK49Z6CQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=ry.rs;
   arc=none (Message is not ARC signed);
@@ -44,39 +44,39 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ry.rs;
  arc=none (Message is not ARC signed);
  dmarc=pass (Used From Domain Record) header.from=ry.rs policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 75A554062B
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 11:12:27 +0000 (UTC)
-X-Greylist: delayed 300 seconds by postgrey-1.36 at gabe;
- Sat, 31 Jan 2026 11:21:35 UTC
-Received: from mail-108-mta201.mxroute.com (mail-108-mta201.mxroute.com
- [136.175.108.201])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BE11D10E045
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 11:21:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 71E354062B
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 17:12:03 +0000 (UTC)
+Received: from mail-108-mta83.mxroute.com (mail-108-mta83.mxroute.com
+ [136.175.108.83])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2B6DD10E3A0
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 17:21:12 +0000 (UTC)
 Received: from filter006.mxroute.com ([136.175.111.3] filter006.mxroute.com)
  (Authenticated sender: mN4UYu2MZsgR)
- by mail-108-mta201.mxroute.com (ZoneMTA) with ESMTPSA id
- 19c13c4d05b0009140.006
+ by mail-108-mta83.mxroute.com (ZoneMTA) with ESMTPSA id
+ 19c1512a2380009140.007
  for <nouveau@lists.freedesktop.org>
  (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
- Sat, 31 Jan 2026 11:16:31 +0000
-X-Zone-Loop: c7a4247f3020915b393cb523951b70a4bc23ddaefa5f
+ Sat, 31 Jan 2026 17:21:08 +0000
+X-Zone-Loop: c8a7743e80a14c48b65cc5503696175eb5358cb7912e
 X-Originating-IP: [136.175.111.3]
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=ry.rs; s=x;
-	h=Content-Transfer-Encoding:MIME-Version:Date:Subject:Cc:To:From:Sender:
-	Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References;
-	bh=SWvtaEiT/41NAalPPWhdhfM93rTmPvj7juU4A2w+NMk=; b=QaiGIsu/AcVLE7nl7OY51sFaz9
-	QMLORznRNBDfaeMa2oSyQ+2C2IIT6Lo6CSllhbJOcrGPWkXUgrwNHMmHU3RMKh86WJCm9AFVzVupT
-	SMseQJW+vvvioYCDU8PKJWVh/DxTaaYHgiaZG4lxCiGbTEieH9YEgM81cyfBhCVHD2m3nTmB0yWy8
-	RS3RSQcrbPis1wP2F00XpgY3e7wKBxCEXFKa18b8PiCXlvte7xkWKmwFfK7sHzGnJMlRpdQohql6O
-	61L5YH61yA0rqL8jZXC3JO094DnI3Ys36aJ5TAzLdymBS6MCQN5+3XDbgNwSHCJ3/72NA39V+h+H+
-	vRZ8J3pA==;
+	h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Date:Subject:
+	Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=ieqzaWRiWdY02r7jkJvGUOeJVM3Ht/4jcBZxw4sl63k=; b=J3QTneX6znShPblBSOCVVL4eL2
+	XQ+fzMub+SG/nGMQBZsYaR6EBtdqfIfWMeQd6Km6uv8m2dBUVAomm1eXprFqCqwEeWbphDb5As+HS
+	4rOYw2ZpE3mB0Wu8SQWvFmmrLy5lfOpm3SSERabfiDXDO8rExlGI9zkpeRVP6LAXLfZdtUQjfwglK
+	7NIp9BNHnGwTwaj/7yzksSdd+FPfVj13a/Rn9Jl3CEJht9I/Vq1IqcWTz+0j0jY6AAsS1ky2PAI/c
+	w+AJ/A0B3Q54sbAY06y6Ocs0cgRAm5BuKetT7e4xder2elYEcuyGtDdKsSTm6vY9oLPTfBCSgH85U
+	MrlyGwbQ==;
 From: Zijing Zhang <zijing.zhang@ry.rs>
 To: dakr@kernel.org,
 	acourbot@nvidia.com
-Subject: [PATCH] gpu: nova-core: vbios: harden falcon pointer parsing
-Date: Sat, 31 Jan 2026 11:16:19 +0000
-Message-ID: <20260131111619.1360414-1-zijing.zhang@ry.rs>
+Subject: [PATCH v2] gpu: nova-core: vbios: harden falcon pointer parsing
+Date: Sat, 31 Jan 2026 17:20:56 +0000
+Message-ID: <20260131172056.1592923-1-zijing.zhang@ry.rs>
+In-Reply-To: <20260131111619.1360414-1-zijing.zhang@ry.rs>
+References: <20260131111619.1360414-1-zijing.zhang@ry.rs>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Authenticated-Id: zijing.zhang@ry.rs
@@ -84,19 +84,19 @@ X-MailFrom: zijing.zhang@ry.rs
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: E2OJFHKJFPLWYGIVZNHJLM5QWF3WBCG4
-X-Message-ID-Hash: E2OJFHKJFPLWYGIVZNHJLM5QWF3WBCG4
-X-Mailman-Approved-At: Sat, 31 Jan 2026 22:40:54 +0000
+Message-ID-Hash: IGGVIQLTDCF6PQJSBY6AWOBVOTDIYXAW
+X-Message-ID-Hash: IGGVIQLTDCF6PQJSBY6AWOBVOTDIYXAW
+X-Mailman-Approved-At: Sat, 31 Jan 2026 22:41:01 +0000
 CC: aliceryhl@google.com, simona@ffwll.ch, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Zijing Zhang <zijing.zhang@ry.rs>
+ zijing.zhang@ry.rs, kernel test robot <lkp@intel.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/E2OJFHKJFPLWYGIVZNHJLM5QWF3WBCG4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IGGVIQLTDCF6PQJSBY6AWOBVOTDIYXAW/>
 Archived-At: 
- <https://lore.freedesktop.org/20260131111619.1360414-1-zijing.zhang@ry.rs/>
+ <https://lore.freedesktop.org/20260131172056.1592923-1-zijing.zhang@ry.rs/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,16 +110,20 @@ Use checked arithmetic and slice get() to avoid overflow/underflow and out-of-bo
 
 This also clarifies the error message for pointers that still fall within the PciAt image.
 
+Reported-by: kernel test robot <lkp@intel.com>
+
+Closes: https://lore.kernel.org/oe-kbuild-all/202601311630.eoGwXUug-lkp@intel.com/
+
 Signed-off-by: Zijing Zhang <zijing.zhang@ry.rs>
 ---
- drivers/gpu/nova-core/vbios.rs | 95 ++++++++++++++++++++++++----------
- 1 file changed, 69 insertions(+), 26 deletions(-)
+ drivers/gpu/nova-core/vbios.rs | 93 ++++++++++++++++++++++++----------
+ 1 file changed, 67 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/gpu/nova-core/vbios.rs b/drivers/gpu/nova-core/vbios.rs
-index 3e3fa5b72524..45bbc8894281 100644
+index 72cba8659..2db481f45 100644
 --- a/drivers/gpu/nova-core/vbios.rs
 +++ b/drivers/gpu/nova-core/vbios.rs
-@@ -785,22 +785,31 @@ fn get_bit_token(&self, token_id: u8) -> Result<BitToken> {
+@@ -784,22 +784,31 @@ fn get_bit_token(&self, token_id: u8) -> Result<BitToken> {
      fn falcon_data_ptr(&self) -> Result<u32> {
          let token = self.get_bit_token(BIT_TOKEN_ID_FALCON_DATA)?;
  
@@ -163,7 +167,7 @@ index 3e3fa5b72524..45bbc8894281 100644
              return Err(EINVAL);
          }
  
-@@ -921,14 +930,17 @@ fn setup_falcon_data(
+@@ -920,14 +929,17 @@ fn setup_falcon_data(
          pci_at_image: &PciAtBiosImage,
          first_fwsec: &FwSecBiosBuilder,
      ) -> Result {
@@ -183,7 +187,7 @@ index 3e3fa5b72524..45bbc8894281 100644
  
          // The offset is now from the start of the first Fwsec image, however
          // the offset points to a location in the second Fwsec image. Since
-@@ -938,7 +950,9 @@ fn setup_falcon_data(
+@@ -937,7 +949,9 @@ fn setup_falcon_data(
          if offset < first_fwsec.base.data.len() {
              pmu_in_first_fwsec = true;
          } else {
@@ -194,7 +198,7 @@ index 3e3fa5b72524..45bbc8894281 100644
          }
  
          self.falcon_data_offset = Some(offset);
-@@ -946,12 +960,16 @@ fn setup_falcon_data(
+@@ -945,12 +959,16 @@ fn setup_falcon_data(
          if pmu_in_first_fwsec {
              self.pmu_lookup_table = Some(PmuLookupTable::new(
                  &self.base.dev,
@@ -213,7 +217,7 @@ index 3e3fa5b72524..45bbc8894281 100644
              )?);
          }
  
-@@ -963,12 +981,20 @@ fn setup_falcon_data(
+@@ -962,12 +980,20 @@ fn setup_falcon_data(
          {
              Ok(entry) => {
                  let mut ucode_offset = usize::from_safe_cast(entry.data);
@@ -236,7 +240,7 @@ index 3e3fa5b72524..45bbc8894281 100644
                  self.falcon_ucode_offset = Some(ucode_offset);
              }
              Err(e) => {
-@@ -1007,7 +1033,11 @@ pub(crate) fn header(&self) -> Result<FalconUCodeDesc> {
+@@ -1006,7 +1032,11 @@ pub(crate) fn header(&self) -> Result<FalconUCodeDesc> {
          let falcon_ucode_offset = self.falcon_ucode_offset;
  
          // Read the first 4 bytes to get the version.
@@ -249,15 +253,13 @@ index 3e3fa5b72524..45bbc8894281 100644
              .try_into()
              .map_err(|_| EINVAL)?;
          let hdr = u32::from_le_bytes(hdr_bytes);
-@@ -1039,13 +1069,20 @@ pub(crate) fn ucode(&self, desc: &FalconUCodeDesc) -> Result<&[u8]> {
+@@ -1038,13 +1068,18 @@ pub(crate) fn ucode(&self, desc: &FalconUCodeDesc) -> Result<&[u8]> {
          let falcon_ucode_offset = self.falcon_ucode_offset;
  
          // The ucode data follows the descriptor.
 -        let ucode_data_offset = falcon_ucode_offset + desc.size();
 -        let size = usize::from_safe_cast(desc.imem_load_size() + desc.dmem_load_size());
-+        let ucode_data_offset = falcon_ucode_offset
-+            .checked_add(desc.size())
-+            .ok_or(ERANGE)?;
++        let ucode_data_offset = falcon_ucode_offset.checked_add(desc.size()).ok_or(ERANGE)?;
 +        let size_u32 = desc
 +            .imem_load_size()
 +            .checked_add(desc.dmem_load_size())
@@ -273,7 +275,7 @@ index 3e3fa5b72524..45bbc8894281 100644
              .ok_or(ERANGE)
              .inspect_err(|_| {
                  dev_err!(
-@@ -1062,12 +1099,18 @@ pub(crate) fn sigs(&self, desc: &FalconUCodeDesc) -> Result<&[Bcrt30Rsa3kSignatu
+@@ -1061,12 +1096,18 @@ pub(crate) fn sigs(&self, desc: &FalconUCodeDesc) -> Result<&[Bcrt30Rsa3kSignatu
              FalconUCodeDesc::V3(_v3) => core::mem::size_of::<FalconUCodeDescV3>(),
          };
          // The signatures data follows the descriptor.
