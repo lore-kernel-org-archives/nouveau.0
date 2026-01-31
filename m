@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E532DD49C9E
-	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 00:10:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B78DD46C1D
+	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 00:15:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9A36B10E079;
-	Sat, 31 Jan 2026 00:10:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F15E610E186;
+	Sat, 31 Jan 2026 00:15:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W4xC6phT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AaGGZFUb";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id EAF7340F63;
-	Sat, 31 Jan 2026 00:01:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4C93940F63;
+	Sat, 31 Jan 2026 00:05:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769817701;
- b=TYc7gHo88GtGGYo34YVX65mx5ZyF3zWPdf+fe24IJPJg/NF1ul47stwg/UM+o+9ceYoDJ
- Zn0BjAd6LYx4wMTEEmi9MZoJHAr3lbzngiV5dG1rtMmVE+V9q2va8Hnu3ZYllNVtbVTI2yT
- R9KyO4F4MWOnioSfSN7/BqMM83WB0AnE/vnzIgvFk/lrcuyWIndZ1KYamrK0Kpjf06UPH2h
- lh7N+qaQVWNRUoEZ8c4M3qvS6CYnVGUxInbP4BqSEgBmcTLb5UkI7YwQReaKanscAVNxM1G
- 2ZMliKSJ3v+A7eALotCsqZOCyI44sq/oU0IJauJA4kAT7X+YrbXRVEbWdFvQ==
+ s=20240201; t=1769817953;
+ b=XkpFfEVyyEJ8ptbeBD637ouYQM8fb9aFUbZtPseziGX444mdvmcdsh4/hgxJvwJiXJ9Zm
+ lCqO7VidWRlZoejR7vcS19AEiMFNV5u6Nmrkmp4nJplJjzuJZ7/Xwq/kcyjYVQxQnw3xaUu
+ HpDfNs6GBEoV8KCo+X9lS3fvHfYBNUyCilOtQYu9A0QIR8N2iEel43i7uMckNw8GjZvgqhB
+ 0F8XkLCIof1iuBF8kNJU3vMvzHG/awuHzOQit3JItXosfQf9DKa72CZYAsGGBLxYZkTtrBk
+ gAZ+/sFTgDaSJjIbqQJaTwLTdvuLGAc7ISeRCwuzrcFtO8k5va8W+a49P/0g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769817701; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769817953; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+PJYugJXb03mJ2e4M9oSzRL+RG5M8BzHTo8gm7zB+yI=;
- b=CUyi1Pkr9XrrlZpml8jyHw3Aemaq1yDS1kKGnbCiG4Wm4RjrUVNCRwH5FuKagZUuMG4Ue
- idl9L1TTMxKyS9fkQ4O+HAy3hFp1wvRbWsq3JYaRT6NlwbLnphFfF7KPOdEVEU100L36HTA
- IT6338eYmv0HjSR4nDQgbBCtrgrF5/KTJZxqL9WimPwruvZ4CW+AR8ct2+0CHmS2TIx63pc
- JvPNa8f4C1fG4DQq7R8gAWq3XCek3Hyw6DO8nXS2gbVRK0I1XavO7R4iojb3n71DwNsx4F6
- m54Is1mwyFWdGltaGoZriQpTZTlfCBgYT8Y8asJ2QRI64Zp4OLLlblEjKsTQ==
+ bh=DvwXVFAeeafwpLEdA0FcWh3YzsTnhb9S/tExNaTneW0=;
+ b=TSNVU0ORswCGsaEkCtOMPFBIvnrn6Ux84Jhe0z/XYEoAUIjdynkeJ+k/nJdYB60VG+QrB
+ DlIw2jfqLRumH7Eo8n72S1vJhjulbC2a6icSpc5JbvvQv8KQthcRffgV/2QUtz1l35W6CmJ
+ zpgJ9JqTc7st15iZq44d8Dt6IIMlB1RLlpRynoY8iErMCndu1DSevded87ZKiV+Wm4C6det
+ H5NSxEpG+gaxG8a4eDV8pm5BQGDmX6O/KnXBHXcfir2KhygjkCJ24F/kyvVihk+ClJ5b0p7
+ IbxWfgBLJEaMMADAyjspTH+yUXF2PkWe451BdyP4xf+Ca8p2+alxUPnHaY5g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,59 +46,55 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 912FA4015A
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:01:38 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E748210E079
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:10:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BF2FC4015A
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:05:50 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCB710E079
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:14:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id A46F541A2E;
-	Sat, 31 Jan 2026 00:10:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1F65C4CEF7;
-	Sat, 31 Jan 2026 00:10:43 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 2015E60008;
+	Sat, 31 Jan 2026 00:14:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0911CC4CEF7;
+	Sat, 31 Jan 2026 00:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769818245;
-	bh=0cIaYkeyUjjiU2nhtPN1N3DQIRS3hiEuBd58WC6s2A0=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=W4xC6phTp+UHC9MMZ2soFrScfG9X0Z5P8LlEWBD3vuZHAMZnT5R0htxtSonkbZ+TL
-	 EK7lPrgm/K7WxdWUtowaqCktkAoar/kY8Htrj//g7WZi65pJJZYCxZIPxRCvvh/6B6
-	 WB3sElNSALd97+1aLxprLAcRb5bc4T54P6WYCKQ80Bqqe0CeFs2jPiSNzJ/J1rIc7+
-	 pwqmg64onemwibh5LIAnPctm1s9qP8pWxqqG3Q0X9Cz+pjYDnfnHXpkmwZW1iMFdGX
-	 JqlYMW03HZmzS3JIITA+J03YAWQuDRBLbkqwShv9l83jJ58dG0IEux7R1r0FGTI9XR
-	 FD/PkqOyim7sA==
+	s=k20201202; t=1769818496;
+	bh=ZoI+iqcGgdae+p1gydlMNbQ0hxd1od8WckPfjNXZWJw=;
+	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+	b=AaGGZFUbd4ACQjN1xiENPYTqIQwGB3DdInquu6A4JbNWpePzoCtAbQg7KAoiVZ2bI
+	 AJbnPka3j09sI5uyIIXSP5ChY4FUqqDVj+bEoActgFuqmi9m1kqIedsCPJNaDTu7ve
+	 pwGXJ+wOMERcRwUU5Vsw0R9W5/5DMMPCc8+edEPg1BEwWSMj1nB9sLL25n5Q3VlNf1
+	 gnJMFfJl2M96CXBX+6QvXAaxqrB9Gv5PB0Fjk/tUBcREJvQR3qVUYLtLh1e1x/HiRr
+	 AZOrCbsi6j6hiNWLloHlTi3e3D/lPbwyfXvYJxGwAriDwKT0ehvdM9/yJSBU0W9ENA
+	 es01X2Ya5wk4A==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Sat, 31 Jan 2026 01:10:41 +0100
-Message-Id: <DG2C7G44QD5C.BY4U4HG7XBJM@kernel.org>
-Subject: Re: [PATCH v6 7/7] gpu: nova-core: create GSP-RM logging buffers
- debugfs entries
-To: "Gary Guo" <gary@garyguo.net>
+Date: Sat, 31 Jan 2026 01:14:53 +0100
+Message-Id: <DG2CANK7QMY0.2W8S2R1ZML3UW@kernel.org>
+To: "Timur Tabi" <ttabi@nvidia.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v6 2/7] rust: uaccess: add write_dma() for copying from
+ DMA buffers to userspace
 References: <20260129022837.4133832-1-ttabi@nvidia.com>
- <20260129022837.4133832-8-ttabi@nvidia.com>
- <95b913a1d344f603d17abc7f6d78da166068bc91.camel@nvidia.com>
- <DG2BY691US2F.36NWWJ18OPTBP@garyguo.net>
-In-Reply-To: <DG2BY691US2F.36NWWJ18OPTBP@garyguo.net>
-Message-ID-Hash: P6WVOCK4ZPLVHMX3CXEVVZH4IKL4FOYY
-X-Message-ID-Hash: P6WVOCK4ZPLVHMX3CXEVVZH4IKL4FOYY
+ <20260129022837.4133832-3-ttabi@nvidia.com>
+In-Reply-To: <20260129022837.4133832-3-ttabi@nvidia.com>
+Message-ID-Hash: D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY
+X-Message-ID-Hash: D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: "mmaurer@google.com" <mmaurer@google.com>,
- "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- "aliceryhl@google.com" <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>
+CC: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>,
+ mmaurer@google.com, Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P6WVOCK4ZPLVHMX3CXEVVZH4IKL4FOYY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY/>
 Archived-At: 
- <https://lore.freedesktop.org/DG2C7G44QD5C.BY4U4HG7XBJM@kernel.org/>
+ <https://lore.freedesktop.org/DG2CANK7QMY0.2W8S2R1ZML3UW@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,64 +104,56 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat Jan 31, 2026 at 12:58 AM CET, Gary Guo wrote:
-> On Fri Jan 30, 2026 at 11:36 PM GMT, Timur Tabi wrote:
->> I think there might be a problem with this code that I don't know how to=
- resolve.
->>
->> If CONFIG_NOVA_CORE_DEBUGFS=3Dn, then DEBUGFS_ROOT is None, and so the .=
-as_ref() will also be
->> none, and the .expect will cause a panic.  We don't want that.
->>
->> If I remove the .expect(), then log_parent becomes None, but then the .s=
-cope() won't compile.
->>
->> I could wrap the whole thing in #[cfg(CONFIG_NOVA_CORE_DEBUGFS)], but my=
- understanding is that
->> the call to .scope() is necessary to ensure that LogBuffers is not dropp=
-ed at the end of this
->> function.
->>
->> It seems like I'm going to need to do something like this in struct Gsp:
->>
->> 	#[cfg(CONFIG_NOVA_CORE_DEBUGFS)]
->> 	#[pin]
->> 	logs: debugfs::Scope<LogBuffers>,
->>
->> 	#[cfg(not(CONFIG_NOVA_CORE_DEBUGFS))]
->> 	logs: LogBuffers,  // Just own them directly, no debugfs
->>
->> But the design of debugfs is to have it not care if debugfs is disabled.
->>
->> Any suggestions?
->
-> I think the rationale behind current debugfs design is that when it is di=
-sabled
-> in its entirety, then all of the code are compiled out and you're leaved =
-with
-> ZST, so code don't have to care at all and you'll still have no codegen i=
-n the
-> end.
->
-> However, when debugfs is enabled, but CONFIG_NOVA_CORE_DEBUGFS=3Dn, then =
-using
-> debugfs functionalities would *not* be compiled out (so, for the `Dir::em=
-pty()`
-> patch in the previous iteration, all of the debugging facility would stil=
-l be
-> around with CONFIG_DEBUG_FS=3Dy and CONFIG_NOVA_CORE_DEBUGFS=3Dn, which i=
-s not
-> desirable).
->
-> The straightforward solution is thus sprinkle `#[cfg(CONFIG_NOVA_CORE_DEB=
-UGFS)]`
-> everywhere where debugfs is touched, which is non-ideal.
->
-> One idea is to create types that look exactly like `Dir` but always ZST a=
-nd
-> no-op regardless whether CONFIG_DEBUG_FS is enabled... But that feel a bi=
-t..
-> weird. Matthew, what do you think?
+On Thu Jan 29, 2026 at 3:28 AM CET, Timur Tabi wrote:
+> +    /// Writes raw data to this user pointer from a DMA coherent allocat=
+ion.
+> +    ///
+> +    /// Returns error if the offset+count exceeds the allocation size.
+> +    ///
+> +    /// Fails with [`EFAULT`] if the write happens on a bad address, or =
+if the write goes out of
+> +    /// bounds of this [`UserSliceWriter`]. This call may modify the ass=
+ociated userspace slice
+> +    /// even if it returns an error.
+> +    ///
+> +    /// Note: The memory may be concurrently modified by hardware (e.g.,=
+ DMA). In such cases,
+> +    /// the copied data may be inconsistent, but this does not cause und=
+efined behavior.
+> +    pub fn write_dma(
+> +        &mut self,
+> +        alloc: &CoherentAllocation<u8>,
+> +        offset: usize,
+> +        count: usize,
+> +    ) -> Result {
+> +        let len =3D alloc.count();
+> +        if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
+> +            return Err(ERANGE);
+> +        }
+> +
+> +        // SAFETY: `start_ptr()` returns a valid pointer to a memory reg=
+ion of `count()` bytes,
+> +        // as guaranteed by the `CoherentAllocation` invariants. The che=
+ck above ensures
+> +        // `offset + count <=3D len`.
+> +        let src_ptr =3D unsafe { alloc.start_ptr().add(offset) };
+> +
+> +        // SAFETY: `src_ptr` is valid for reads of `count` bytes per the=
+ above.
+> +        let res =3D unsafe {
+> +            bindings::copy_to_user(self.ptr.as_mut_ptr(), src_ptr.cast::=
+<c_void>(), count)
+> +        };
+> +        if res !=3D 0 {
+> +            return Err(EFAULT);
+> +        }
+> +
+> +        self.ptr =3D self.ptr.wrapping_byte_add(count);
+> +        self.length -=3D count;
+> +
+> +        Ok(())
+> +    }
 
-There is no need for CONFIG_NOVA_CORE_DEBUGFS in the first place. The only
-Kconfig we need is for retaining the GSP log buffers after driver unbind.
+I think the idea was to have a common read_slice_raw() method that can be s=
+hared
+between write_dma() and write_slice(). Can you please factor this out?
