@@ -4,97 +4,113 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B78DD46C1D
-	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 00:15:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E902E6BF3C
+	for <nouveau@archiver.kernel.org>; Sat, 31 Jan 2026 00:16:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F15E610E186;
-	Sat, 31 Jan 2026 00:15:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACB110E1A7;
+	Sat, 31 Jan 2026 00:16:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AaGGZFUb";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="KrsG3FP9";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4C93940F63;
-	Sat, 31 Jan 2026 00:05:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9C8DB40F63;
+	Sat, 31 Jan 2026 00:07:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769817953;
- b=XkpFfEVyyEJ8ptbeBD637ouYQM8fb9aFUbZtPseziGX444mdvmcdsh4/hgxJvwJiXJ9Zm
- lCqO7VidWRlZoejR7vcS19AEiMFNV5u6Nmrkmp4nJplJjzuJZ7/Xwq/kcyjYVQxQnw3xaUu
- HpDfNs6GBEoV8KCo+X9lS3fvHfYBNUyCilOtQYu9A0QIR8N2iEel43i7uMckNw8GjZvgqhB
- 0F8XkLCIof1iuBF8kNJU3vMvzHG/awuHzOQit3JItXosfQf9DKa72CZYAsGGBLxYZkTtrBk
- gAZ+/sFTgDaSJjIbqQJaTwLTdvuLGAc7ISeRCwuzrcFtO8k5va8W+a49P/0g==
+ s=20240201; t=1769818035;
+ b=t2tjP3GZzkFGJBEVlTvwfrqlSAoA0hEbVdBVCXdG7Xo8rOXJHG+7uKyzx6Ln58EddOc/I
+ 5V+n3wSsqNl3I5xMzy7RDNiLO+BDG6l+1BemC4ayB0NNg9/lTNPT+I0a5pNmkW0ih5XiSp4
+ makRl8en/fHkhzkImk/9Qda8V6s869kpypXW+6Ssy19Bxd6rjxdCOhrRgtWorxafRVF1nXq
+ 0VRpDuVLvlEzQNvMIGNWmIlI97AA1DmJ1niKR6IMhGeb3hx+Al2Y3aHqrfBay1gWtyecFx+
+ ZJMOkS5OMkwIcToMS2TSFBf/CrCB2wjZ/BrN7u4TIshnYDXGryaKK0EBROZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769817953; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1769818035; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DvwXVFAeeafwpLEdA0FcWh3YzsTnhb9S/tExNaTneW0=;
- b=TSNVU0ORswCGsaEkCtOMPFBIvnrn6Ux84Jhe0z/XYEoAUIjdynkeJ+k/nJdYB60VG+QrB
- DlIw2jfqLRumH7Eo8n72S1vJhjulbC2a6icSpc5JbvvQv8KQthcRffgV/2QUtz1l35W6CmJ
- zpgJ9JqTc7st15iZq44d8Dt6IIMlB1RLlpRynoY8iErMCndu1DSevded87ZKiV+Wm4C6det
- H5NSxEpG+gaxG8a4eDV8pm5BQGDmX6O/KnXBHXcfir2KhygjkCJ24F/kyvVihk+ClJ5b0p7
- IbxWfgBLJEaMMADAyjspTH+yUXF2PkWe451BdyP4xf+Ca8p2+alxUPnHaY5g==
+ bh=DUlHZCO3uYHyEV1uv7j6n5bPLjINc4Q3Eh1O4mdV7Bg=;
+ b=XbEgXufNLYF0NUylG0eHw2jgRyCb7MLhOK2Li5gwzrvcYPEJFF6ET1lSOCPhnqRf1vgs/
+ 5uFvPtDImbzGBmGay09uoe4svOk7jI9px/i/CWdGk+6B9gMlVTxUglR+R8TaPY4hxjQWSmb
+ v1N5Mydb5HOOYzSsgLB6i0NoJUqKLykgCK2ul5clKHGZtK+V6bzWMZ91FWJw4qiyG/5BuuM
+ 5eYLGqJ6yEZZYxGJqUpLE/M5BPqZVJ16rdA6bhRc9687zxGxIOuQEzFKsaE1jEb/2UX0bM0
+ BUL+5xqq9wnFLeXW2JvYNLbKA5k8oc+Cf26or4ufHviIV8xAcd4SNqDasIUg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BF2FC4015A
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:05:50 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCB710E079
-	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:14:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 2015E60008;
-	Sat, 31 Jan 2026 00:14:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0911CC4CEF7;
-	Sat, 31 Jan 2026 00:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1769818496;
-	bh=ZoI+iqcGgdae+p1gydlMNbQ0hxd1od8WckPfjNXZWJw=;
-	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
-	b=AaGGZFUbd4ACQjN1xiENPYTqIQwGB3DdInquu6A4JbNWpePzoCtAbQg7KAoiVZ2bI
-	 AJbnPka3j09sI5uyIIXSP5ChY4FUqqDVj+bEoActgFuqmi9m1kqIedsCPJNaDTu7ve
-	 pwGXJ+wOMERcRwUU5Vsw0R9W5/5DMMPCc8+edEPg1BEwWSMj1nB9sLL25n5Q3VlNf1
-	 gnJMFfJl2M96CXBX+6QvXAaxqrB9Gv5PB0Fjk/tUBcREJvQR3qVUYLtLh1e1x/HiRr
-	 AZOrCbsi6j6hiNWLloHlTi3e3D/lPbwyfXvYJxGwAriDwKT0ehvdM9/yJSBU0W9ENA
-	 es01X2Ya5wk4A==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 31 Jan 2026 01:14:53 +0100
-Message-Id: <DG2CANK7QMY0.2W8S2R1ZML3UW@kernel.org>
-To: "Timur Tabi" <ttabi@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v6 2/7] rust: uaccess: add write_dma() for copying from
- DMA buffers to userspace
-References: <20260129022837.4133832-1-ttabi@nvidia.com>
- <20260129022837.4133832-3-ttabi@nvidia.com>
-In-Reply-To: <20260129022837.4133832-3-ttabi@nvidia.com>
-Message-ID-Hash: D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY
-X-Message-ID-Hash: D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8B01740ADB
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:07:13 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D3B2F10E079
+	for <nouveau@lists.freedesktop.org>; Sat, 31 Jan 2026 00:16:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1769818579;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=DUlHZCO3uYHyEV1uv7j6n5bPLjINc4Q3Eh1O4mdV7Bg=;
+	b=KrsG3FP9pUkXOK12A3P5BXva0HYf9CQRbcnT8WtcN+7GDolMPCwToLZ+VGFhgo04AXunBZ
+	R+I0OoN++WUFNsKM2URkK44OMABZ+ODL8/eShFYKdsYMH0J5tSEPx1goRci3GfH/7Jn95L
+	pjtEkIubhVU4RMkA2rOaTmlg8vVAbf0=
+Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-228-zlw75-UyNGmfOJGcqocEnw-1; Fri,
+ 30 Jan 2026 19:16:16 -0500
+X-MC-Unique: zlw75-UyNGmfOJGcqocEnw-1
+X-Mimecast-MFC-AGG-ID: zlw75-UyNGmfOJGcqocEnw_1769818574
+Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 351AB180044D;
+	Sat, 31 Jan 2026 00:16:14 +0000 (UTC)
+Received: from GoldenWind.lan (unknown [10.22.81.64])
+	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 1676A18002A6;
+	Sat, 31 Jan 2026 00:16:11 +0000 (UTC)
+From: Lyude Paul <lyude@redhat.com>
+To: linux-kernel@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	rust-for-linux@vger.kernel.org,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v5 0/4] Introduce DeviceContext
+Date: Fri, 30 Jan 2026 19:13:29 -0500
+Message-ID: <20260131001602.2095470-1-lyude@redhat.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
+Message-ID-Hash: IBFHGV6YH4URE77WIPRLNOINCSFONPW5
+X-Message-ID-Hash: IBFHGV6YH4URE77WIPRLNOINCSFONPW5
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>,
- mmaurer@google.com, Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org, Miguel Ojeda <ojeda@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Alice Ryhl <aliceryhl@google.com>,
+ Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D34CNAWU2EQHGUSFCOJU5GYERY5NQMBY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IBFHGV6YH4URE77WIPRLNOINCSFONPW5/>
 Archived-At: 
- <https://lore.freedesktop.org/DG2CANK7QMY0.2W8S2R1ZML3UW@kernel.org/>
+ <https://lore.freedesktop.org/20260131001602.2095470-1-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,56 +120,70 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Jan 29, 2026 at 3:28 AM CET, Timur Tabi wrote:
-> +    /// Writes raw data to this user pointer from a DMA coherent allocat=
-ion.
-> +    ///
-> +    /// Returns error if the offset+count exceeds the allocation size.
-> +    ///
-> +    /// Fails with [`EFAULT`] if the write happens on a bad address, or =
-if the write goes out of
-> +    /// bounds of this [`UserSliceWriter`]. This call may modify the ass=
-ociated userspace slice
-> +    /// even if it returns an error.
-> +    ///
-> +    /// Note: The memory may be concurrently modified by hardware (e.g.,=
- DMA). In such cases,
-> +    /// the copied data may be inconsistent, but this does not cause und=
-efined behavior.
-> +    pub fn write_dma(
-> +        &mut self,
-> +        alloc: &CoherentAllocation<u8>,
-> +        offset: usize,
-> +        count: usize,
-> +    ) -> Result {
-> +        let len =3D alloc.count();
-> +        if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
-> +            return Err(ERANGE);
-> +        }
-> +
-> +        // SAFETY: `start_ptr()` returns a valid pointer to a memory reg=
-ion of `count()` bytes,
-> +        // as guaranteed by the `CoherentAllocation` invariants. The che=
-ck above ensures
-> +        // `offset + count <=3D len`.
-> +        let src_ptr =3D unsafe { alloc.start_ptr().add(offset) };
-> +
-> +        // SAFETY: `src_ptr` is valid for reads of `count` bytes per the=
- above.
-> +        let res =3D unsafe {
-> +            bindings::copy_to_user(self.ptr.as_mut_ptr(), src_ptr.cast::=
-<c_void>(), count)
-> +        };
-> +        if res !=3D 0 {
-> +            return Err(EFAULT);
-> +        }
-> +
-> +        self.ptr =3D self.ptr.wrapping_byte_add(count);
-> +        self.length -=3D count;
-> +
-> +        Ok(())
-> +    }
+Previous version of this patch series:
+  https://patchwork.freedesktop.org/series/160217/#rev3
 
-I think the idea was to have a common read_slice_raw() method that can be s=
-hared
-between write_dma() and write_slice(). Can you please factor this out?
+One of the unsolved issues we still have with the rust DRM bindings is
+the ability to limit certain Device operations to contexts where we can
+guarantee that a Device has been fully initialized and registered with
+userspace, or vice-versa (e.g. must be unregistered).
+
+While the previous solution for this that I had was simply not exposing
+drm::Device at all until the device has been registered with userspace,
+unfortunately this isn't enough since:
+
+* As we found out with Tyr, drivers occasionally need to be able to
+  create GEM objects before device registration
+* We would still need to be able to handle KMS callbacks which could be
+  invoked after KMS init but before userspace registration (not handled
+  in this series specifically, but DeviceContext will be required for
+  handling this).
+
+This patch series provides a pretty nice solution to this, by
+implementing a very similar solution to kernel::device::DeviceContext:
+introducing our own DeviceContext type state.
+
+This patch series depends on the two pre-requisite patch series:
+
+* https://patchwork.freedesktop.org/series/160523/
+
+                          Series-wide changes
+
+V2:
+* s/DeviceCtx/DeviceContext/ for consistency
+* Move private driver-data availability to the Registration
+  DeviceContext
+* s/AnyCtx/Init/
+V4:
+* Split out DriverAllocImpl into it's own patch
+
+More changes described in each patch description.
+
+Lyude Paul (3):
+  rust/drm: Introduce DeviceContext
+  rust/drm: Don't setup private driver data until registration
+  rust/drm/gem: Use DeviceContext with GEM objects
+
+Lyude Paul (4):
+  rust/drm: Introduce DeviceContext
+  rust/drm: Don't setup private driver data until registration
+  rust/drm/gem: Add DriverAllocImpl type alias
+  rust/drm/gem: Use DeviceContext with GEM objects
+
+ drivers/gpu/drm/nova/driver.rs |  10 +-
+ drivers/gpu/drm/nova/gem.rs    |  11 +-
+ drivers/gpu/drm/tyr/driver.rs  |  12 +-
+ drivers/gpu/drm/tyr/gem.rs     |   3 +-
+ rust/kernel/drm/device.rs      | 250 +++++++++++++++++++++++++--------
+ rust/kernel/drm/driver.rs      |  52 +++++--
+ rust/kernel/drm/gem/mod.rs     |  64 ++++++---
+ rust/kernel/drm/mod.rs         |   4 +
+ 8 files changed, 305 insertions(+), 101 deletions(-)
+
+
+base-commit: cea7b66a80412e2a5b74627b89ae25f1d0110a4b
+prerequisite-patch-id: ddb20be75c8fc92ba2d48a5c4aa8e724202de1ff
+prerequisite-patch-id: 87e69cd89a806392d3275b19fbfb160d44d957c9
+-- 
+2.52.0
+
