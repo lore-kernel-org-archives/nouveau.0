@@ -4,93 +4,237 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD3C0D172A9
-	for <nouveau@archiver.kernel.org>; Sun,  1 Feb 2026 22:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1E30E7314A
+	for <nouveau@archiver.kernel.org>; Mon,  2 Feb 2026 09:12:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E902310E206;
-	Sun,  1 Feb 2026 22:14:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AC6AA10E3D3;
+	Mon,  2 Feb 2026 09:12:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=sysophe.eu header.i=@sysophe.eu header.b="TY/cc6ou";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="XKUBcy03";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 01F8941B0A;
-	Sun,  1 Feb 2026 22:05:47 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1769983546;
- b=FTlViqbgpE1K8lZt6Xe2GggoLKgTK2+8r1f7d3EQgCXg+68RVR3J9nfDWShiFTfLIfO5G
- 5URafxJNt8WEXJpwmcvtwTv9Y8uq5dJij6oipPdWvcoCd7KAHkgG6IZBrxsB3liTOZCEY0z
- n69EcvDzofSZfif4llJwH1o5z/NvezIa8DQilqQS+kRB0JJHeFZZye8/XiY2paRBGqMVHAd
- TnFNkX0a1D4Hkx4CDgAra4X5rikguq1kfNHebOhKTQlzf4tKHwM2oFYjP4JlRezxlf+SYPp
- eBK1qsAgE1qCAtyvZYPYe1qL5HvFDqJ5ATpiEDchIDmOsl05ayzll+iqUaXw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1769983546; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id B499641B0A;
+	Mon,  2 Feb 2026 09:03:24 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1770023004;
+ b=GhcN94Heg5YS2eOOx7MpBeI7GA5YMem9aqUR2UM0u+GYSfnumts6BD5m/ufbqiYDoIOMs
+ EoEaf2GcM2l5dnwzE/sNhF3rY8CQfseHsQeZSdr/nkAfTHRQi3THKjUeXOmAZTCeGG3cpKT
+ oLfqmNUuDHEaGrHj6v/LLmgRwgL3U2/klRw/SC9DxHNS3AGtv7FQPKcUXj6qVH8bbZW+AFE
+ W8PjEoLuQzRUaENjg6atb0kbppL7hrKmQt0VJSF0ZudY/nBMBTW9a4mfsUpb5d/cGOESBZj
+ b+BMvUXhKTAfKAFPi2lDb7cRjCZdKElgqtoPfSk4jHCPIjQCxSPcCBdtkUtQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1770023004; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=HSJV/mUMxlvdG27tnB+Fq117Tq6BY2g4WOXvzG2PlQU=;
- b=RpevRyOpx9yODSLyxyxCwhTjtxIe+ZOCnPYvJVBPUb7hV8FOiLJfZwBu1Nmi6jHSr1ncU
- uY5SB/7+IpzuXYXFxeHe8Zlhsfxpz92tYUNo9Gm2CMtFkC1b/85RFKBlCSwLRt7UCmSBOU6
- zigXUM4qxYmHmpmnyTLPwjq2zgeK68TKrGJI3CdpTssmiOfJ/PzvGX7L+E/3UPG/aujT7MT
- wWtNY+/tA/NWTbl/aOa/hT+TCj1IHjGk/WmEtR/WFM8OTreFBia08dvAApMVWhwv3ayTQhQ
- qzw6VuD9e9chlpOi0t0SgnMDY+WcHRvTDk/6oOb8N+T/+ExN3imsz5TF5kJw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=sysophe.eu;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=sysophe.eu
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=sysophe.eu;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=sysophe.eu policy.dmarc=none
+ bh=pPT6H8v1udgWwIjW8ZZRP5uuhOQ0phoEZCiJylMVt4g=;
+ b=BW9MePQsnMBsONfQY2VWAM8Fke/yS8o0uWc/7VBGHsBbRtKoKCeJWabE+Zxx9cjybSnpO
+ YeFndPAwxtmxrSgRibqZV7Lfxu45TgI7TtR4EMbqyk85nvqWGSnscIy1ETAVkYoPCjmvUw9
+ /+gwNR4FmKYaD0eR9BkJCvalGSucbauV2JMBUfmNOgJEzwyyVXiRAG2/qd6mUtJpr6Q6V8k
+ Kfr4ANvE0OM937ig40BeMPCcnCT0KSHZE3sMHXqEH8dFMg8oLxTeh6VQmaL/Gs+ArB45i0A
+ g4dHeuLqxHZWQYD4LFBMl8hc6KAQwGD43Dr62GCmZ0Yh37hRvllfKPh34kfw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=amd.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=amd.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A70AD4015A
-	for <nouveau@lists.freedesktop.org>; Sun,  1 Feb 2026 22:05:44 +0000 (UTC)
-Received: from hygieia.sysophe.eu (hygieia.sysophe.eu [138.201.91.14])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 082CA10E170;
-	Sun,  1 Feb 2026 22:14:55 +0000 (UTC)
-Received: from hemera.lan.sysophe.eu (unknown
- [IPv6:2001:a18:2b1:1c01:a2ce:c8ff:fe62:fc79])
-	by smtp.sysophe.eu (Postfix) with ESMTPSA id 5C937252CB62;
-	Sun, 01 Feb 2026 23:14:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=sysophe.eu; s=201205;
-	t=1769984091; x=1770070491;
-	bh=0ogN2CLPbL8nOB3SqefvBbOXqZCPRUfOJy7yrz4vqlg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=TY/cc6ous55BaS+kAbFqGbYbxzHLzz6YZ89uDOP8Z7KoGb8+LhbkJryX1yjGdyhsQ
-	 +HnACVbdHRdz5VcWOcYDxAGgRCT2jRvJFpSitzppoE1ydHaHi/q1OaqanDlDrnWNd4
-	 Xur/0VWQPYtDbsBTNjXaS8VDMsusbYleixmr+XPc=
-Date: Sun, 1 Feb 2026 23:14:51 +0100
-From: Bruno =?UTF-8?B?UHLDqW1vbnQ=?= <bonbons@sysophe.eu>
-To: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org, Lyude
- Paul <lyude@redhat.com>
-Subject: Re: NV04, 6.18.8 crashes on NULL pointer dereference
-Message-ID: <20260201231451.1ef0128c@hemera.lan.sysophe.eu>
-In-Reply-To: <20260201185705.0c5364f1@hemera.lan.sysophe.eu>
-References: <20260201185705.0c5364f1@hemera.lan.sysophe.eu>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7762E41830
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Feb 2026 09:03:21 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012062.outbound.protection.outlook.com
+ [40.107.200.62])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CBE1510E27B;
+	Mon,  2 Feb 2026 09:12:32 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LNTzlulolWR8ptvHNaXZj2xXLE+Q3Lv1w2T4DrZQLNbcw/t78ajI26LCDi5oF/3JzKYXCN0T07KjxBmcMJNmc/K6OwOAfwdksekysWTEg3ORaGjj13kDIXRPPuFzXr3jcG57CS5F3Oolpp6l1MmFgrJ6w1oXS4RBVXwW1CputsJ1iqsLdJD1mpg0CauoPHkWz27GQn3+eGQZxtuY5eQFinTtkDQgpHiJrh89w5VZmujgagIiewDUrfXTBx0vzDUTjD/ZACAHSCB4Nsy8QS2kVtnowUMLnh2V7EorVHiSrRj2JUiKUAZbDdwlOOo0QJXjpyY+oeIQai2Kl6kT1RavrA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pPT6H8v1udgWwIjW8ZZRP5uuhOQ0phoEZCiJylMVt4g=;
+ b=idLjEWJHpABqsctfXzh/LK/g1/12z8h+DySFQa5uBgjK4b2q3BaBdyy9Hiqfsakj8G9hzaI9OEcHXorqcQj+fHLHnAb2txIYzKzXKpx7dGGQVM5ts4W46sCa3pBItHETV/aZp4vAuNgJ5ZpkrAIcp+RMGzhDNw53BAAQafKWQVDFExkmUBMeATqNYIr0b9WynqG1yQH4pj3Or1zrDaaIIwM97vO/sDsvG6G7Sd3PWX+VtD1AQDmmW5K2Ql2HoG2kdm2pG4Clr1hyun05sMFnpV/R7J2SsgKUWAAHXfIw+bjRViJKcP0xwRkYYeexhyVlFewuozuufeAXNDOf6nOp3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pPT6H8v1udgWwIjW8ZZRP5uuhOQ0phoEZCiJylMVt4g=;
+ b=XKUBcy03vaGAv8oPLufmpPYvaMe3lTQ6cQI0477mmtpu+/BlktTkIRcu8u2JWO6WfQq+NQY0Fyc323t7INustR6kQ3LQGtRlRWOlCCfRV1PR1zpteIDxPz/0M0tw8NR6gQ0RpDpI/S3fgA/lzeGoegKevBDeL7JD5ysgtAM/h5M=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH8PR12MB7232.namprd12.prod.outlook.com (2603:10b6:510:224::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.10; Mon, 2 Feb
+ 2026 09:12:28 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 09:12:28 +0000
+Message-ID: <a50c9e31-a182-4ed7-837c-4a12d220c022@amd.com>
+Date: Mon, 2 Feb 2026 10:12:16 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
+ windows to write to VRAM
+To: Dave Airlie <airlied@gmail.com>, Joel Fernandes <joelagnelf@nvidia.com>
+References: <97af2d85-a905-44d4-951f-e56a40f4312e@nvidia.com>
+ <20260130015901.GA301119@joelbox2>
+ <c064fbdc-9202-437d-80ff-6134d2a33778@nvidia.com>
+ <70d88203-2fe1-4bde-b254-51e8107744eb@nvidia.com>
+ <CAPM=9twm1x9rH==uoGQLYa8b4feQMz=Ne14WPuhCPy9_H1u5Tw@mail.gmail.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: 
+ <CAPM=9twm1x9rH==uoGQLYa8b4feQMz=Ne14WPuhCPy9_H1u5Tw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: FCNVW2SHTRACKPZU2V6LLLSG7R7FSVHF
-X-Message-ID-Hash: FCNVW2SHTRACKPZU2V6LLLSG7R7FSVHF
-X-MailFrom: bonbons@sysophe.eu
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BN9PR03CA0635.namprd03.prod.outlook.com
+ (2603:10b6:408:13b::10) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH8PR12MB7232:EE_
+X-MS-Office365-Filtering-Correlation-Id: ee23023e-a8e4-47f0-2469-08de623b2fe9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?SDRUaDhzQ1QzQXh6QWpPcnZBYzJ2R3NIbm44Qi9ZbVE5WGw3aDBCUnJNUjJi?=
+ =?utf-8?B?UFJmUzAveVZIRmJiY0J0c1pJTW1NcVZZQlFuanNtaU1lZGpYei9kQUhEM3Fs?=
+ =?utf-8?B?UnV1U2xUU0FtQnJBYThwVUZEWWhORE9aN1lzdzdnU01KV21OU0pWRTJPMDV4?=
+ =?utf-8?B?NW0wR1pWVVk4VldaKzA3ekhQUHhaRlk1b2hDcld1dFE1TmU3amc5OWF4dVVQ?=
+ =?utf-8?B?dUdySmM4bVRORU9kaVBsdWpiNDdKVkhyc2t0S0hGcUIrRjJGYkVYZ1hZQ0hS?=
+ =?utf-8?B?cHhQSTVxQXN6RWIvWWFlTzg5aXhMT0VNeWc2REhOTUlzRCtCWGpRWlRzTkZq?=
+ =?utf-8?B?eHY5Mmt0WitJclk2NjFoVHQ3LzJONGNUWmtmREZLanJIYzNZM3lwTTJrVXU4?=
+ =?utf-8?B?Z2NkakJsQzBZeGl3L3ZDSWtaYklDdXVZOTFrUXFjYjJ6TXFYREttZjUrNkdD?=
+ =?utf-8?B?anNWczRXdjBuSXJ3RkVnaUJYdzZPMlBJVk5MNDh4V3ZiWTZYQzVRcERRZ1hR?=
+ =?utf-8?B?LzdRU3JtcGxQaWZtaG5TNUgzTVpoaDRqckQ2V1I5YVRWSGxGUnNmdUx6RjQz?=
+ =?utf-8?B?QngvOVducklrWTRROWRhczdYVFhMTWVHSjB1UnFGdnlRcW9tVUFDOXorR05V?=
+ =?utf-8?B?SG1wUWNYMTdHOWZpTitWdElROVh4eW1JMmV1UnBJNnFnd1dTMUthTkNtdU5x?=
+ =?utf-8?B?WDN2M2NTc3RhU1ZyZzZod0N6MHhQSUNreXdqZFpwYnZFWk5vbzNnTlVLbnlv?=
+ =?utf-8?B?Qy9JODFvVHR0Q0JDdUg1ZHA5NDZlZWZOaDFac1oxVzRqbWlPcE5kc2gybS9n?=
+ =?utf-8?B?RkNQd0NBUzArZSswb2V1cTNubTh4Y29pa2lVOWVmSjk0c2VDaFJFK01vMkU1?=
+ =?utf-8?B?VDErSTErMnp0dms3UDRMYTNkZFIxN3JZN2NXM01ZNURhYjNsaXR3aGpRU1dP?=
+ =?utf-8?B?RzdoaWF3ZlJCUWhwR05VRWJTNlhkNEl2R1hxUGxIb2tUWGtwWFZ2ZUtUMnE4?=
+ =?utf-8?B?dVZacExTY2RQdXd4QUlXVnRGeDludkpCUDJaZVhOdXdOUU8rWEtJZk1URXp1?=
+ =?utf-8?B?cExaRWNrYzYrQStyODFyVEFQSml1YWp5dXR2Y2s0dWdrcXh6NVhnM3dYSStK?=
+ =?utf-8?B?eU9ZbTJ4WVFYbjNhcmZIMmVnYWdYWmord1lwQytFQUJXemd0SzE1NXVsbFNO?=
+ =?utf-8?B?QlByZ2VoK3RsSDI3OVdtcStQNnpuV3Fkd0hmNzlhbHZyWDdhL09TU2thUXdl?=
+ =?utf-8?B?aXRpalF4aUhDZzJtZU1GbVN2NW1GVGprcmphVzJnN3l0WG11Z2RHS0lPOWNz?=
+ =?utf-8?B?VUlMVG9yVjVMcVJUY3ZQdU13NlJBd3FMSXRUY25FLzNIb1RpMEk3RFdSQ3I0?=
+ =?utf-8?B?clF6d0JjbHJQTDJidndRY2F6MnhrZ0VOem1ldlpqV3lwU1BKb3NpNXgzWFFK?=
+ =?utf-8?B?TE1vWW5EajVVNi90V29Fdlk1NWZLUVlRV1A3ejRFdzhRMHJsNU1rWlErWDcx?=
+ =?utf-8?B?UFdqbVR4Wm56NVhTOTV6RXlmSDY1dFJiNmhpbm5SUFc1ZFB4ekRQeTZIcGNU?=
+ =?utf-8?B?ODFFT2ttTW8vZFRTSUtIaGNud0kyRmRoZlNmS0NkbHh2T3NEOUtDU2RVWm5s?=
+ =?utf-8?B?YUh6NkhSZXFQYVhwMzEzcmk2c0JZeEFacERpYlA4MXVQbDJBbE5JYkxSNk5P?=
+ =?utf-8?B?SFF6OUpnRms1UGI1enVBQlFBZkRaTUUxd2ZtdEpER0Y4TXRJeXFQL2hyZ0RC?=
+ =?utf-8?B?aU84ZERkb01QL1R5R2poVDk2elNhQ0VIam5kMUtuc1dLQXA0YTVtSGFpRE1X?=
+ =?utf-8?B?L1lMM2RBS3BEQ1Nvd0lpVkVIVVhrL3Rqc3M5ZGxZOEVaSTJkbm5zVU9DVjFB?=
+ =?utf-8?B?WEFVUHk1SlplMVJKazNnMXdVUUdCSkVwT1prUmYybGZBYXlzVHRDWmdjVWZw?=
+ =?utf-8?B?R2ZBYlp4NUlGaHc3bDE0amJVKzNvMkcwcjNkMzBCczFzdWZLSTQzSFRaSm1u?=
+ =?utf-8?B?cGhxRHNUY0I3bWl4emhiWndXa056VEQ2UE0rZnRraFpab1A1M3Fncys1UlRy?=
+ =?utf-8?B?cnE3UTNnci9VMlBqdzh5Tk4ybEpFUm1GUlk0R28vWGl3dUE1NlBCdlo2YU4y?=
+ =?utf-8?Q?KQi0=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB5685.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?dERKaDRvZG5tQnBJVDVSekpkUEs4TjRoYnA2bzJYTVltVUNEM1lRa3lVS0dQ?=
+ =?utf-8?B?aVp2bXRBK0todk1ra0h0WUtsT1JDTFBlN1MvRnJPUjJrVWF3U2prNzIxYUsv?=
+ =?utf-8?B?T2MxZTN2ZndxMUtQQ3o3TjVuMFBCTHZodFVxSTNyUW1YbDZDamVpV2hwODVW?=
+ =?utf-8?B?dHhiZVVHYkYvZnJlSTlWVUVxaHdPWnFuWTZyL3RVVksxTk9YcFhLVnNCaTVw?=
+ =?utf-8?B?cGtsbk5yUFA0S3IzTmtjUzNzYzkreERSQUlTdjVXYmQxZGZyeVh4K1ZtdUZP?=
+ =?utf-8?B?U3FkeEpESC9UQnh3SHlFZFlEQ09TS0VrcWFScFBqcFU2d1U3d1I3Mkg0K0tO?=
+ =?utf-8?B?Vlp5blROSzR1ZzNyWmxKcElrZWJ3bExucGtlRWMrM1pPN2JybTNYZUNaVDdS?=
+ =?utf-8?B?OEd0UkNvUHhiL0pKc3oxUTRKMGRpejdiZXhvdU9SaXNBUGVHUTl0bVN2Y0tR?=
+ =?utf-8?B?NmtsUys0Y2RINitRMjM1YmRrdUI2QTlXQTE2cU1ITDh4Z0NabEMyb1U0QVcw?=
+ =?utf-8?B?UlFpYkZZUjUvK2NiV296aGx4ZDhpWXBoTW5LV0sySU1NdVlCKzVPWmJEZzg3?=
+ =?utf-8?B?QlBoWUZVT3Q1c0p1UXI2UEF4ellqTHJhUzVPT2Z6YWFjNGx0aTNmZmtCclpS?=
+ =?utf-8?B?VXNGMDZ1M3VJWXBZY21YVWFjTGdYdHgwRHU3TFY1T2lTYjliYUZ5Rllpd2xt?=
+ =?utf-8?B?TURLSEdYcWZVSkl0L3hqS0toWFFqUU1oT2hDdVBrNE4yTlhzMVZLSEVreVVX?=
+ =?utf-8?B?eDdYa0UzOEtvYSs2N0dnaFU1WXJFUU9BUWp4S2xGT1lnTHZQWDV4OTE3eGRr?=
+ =?utf-8?B?ZVpZQ1VTZExBSXF1RnpJZUgyMm9zQXQzMktBQ1FDTVZDYWI5NFNpUlQ4UXJq?=
+ =?utf-8?B?Q25FZXlHN0lBbjNTbUliUzdtUldsZlF4L21VRjFEU0pUalBTWnpaTzNURnEx?=
+ =?utf-8?B?WkdsTDh6eVYzeURNcnNuTUUxY0hweUFQVWJKUDN5dGJnM2VjbFJpancvMXdB?=
+ =?utf-8?B?SklxWVVQL1ZoOHhkbHBkWjdDQzhld2tFS3RHbDJ3dTk3QnpuL1VVbjhlQ0Q0?=
+ =?utf-8?B?QzhiWGFhSlVRZGNEMnF6MDVUUnNDT3JjUmdXcHRPam8zVXhORThHUVRCWGhZ?=
+ =?utf-8?B?VzNkQTIvWk9iVEFzSnB2L2l0eW1xYnRLNzM2ZzU2VWxWMGpEbHRGRmhndVMy?=
+ =?utf-8?B?UW00YjlRWUQ4ME9ESkE2ak1pSms3cVhkajlvRkttZ3ppcmMxVGJmL2xqTzBP?=
+ =?utf-8?B?c01ML0sxVFBsSDRwWVdQbHdzcm56eUpDSjNpQWRJcGQ5KzFmckcwRFZiRDZI?=
+ =?utf-8?B?cEpMRXNhOEVkOGFZNUhlc2czWVAxblZmMm15MGZEd29HaUhvTDBDK3U0N1Vj?=
+ =?utf-8?B?Skx5dnRNLzZGblc4a2V3bXlqVzJtOG0wQXg5SzN5Q2I5eWxEbzVGMTB6bDRr?=
+ =?utf-8?B?RityR2hUNHd2SGdjNld4UThMTnUvK2xjQzkwR3BEODY3V2ZaWmR1cWZZazZX?=
+ =?utf-8?B?QVgzLzN3bUk4bzBNc0dlV1BibDJPYnlQVDl1VFlYNTMrZFlHdU5WdFdKYVN0?=
+ =?utf-8?B?MFlsZllMbnZ0cnY3ZzlwSm1qOHdlLzg3M1B1eHJ6MC96SytVM1V1dTRGTnZj?=
+ =?utf-8?B?MG5ScFVqY2tLNitlVDFQd0JVeUNCWkJRSVZPK0JMWDZtNkdoUzJkWWVienpU?=
+ =?utf-8?B?UU04ajhwYjFwWGRTMnRBRmVsK2Z4RnlsdytaODEwdHVvTWJyVlV4K1JROW9E?=
+ =?utf-8?B?R3ozZXRSUW0xcXdDWEZmbk9XT0N5OFZoMllRd2twQmM5b0hsRTJJZ0JVUWlh?=
+ =?utf-8?B?aDlXeXp6OWY1MkVOVWtyL0s1RkNkeWdkM0VtYW9zS3BvN1ZLMXdhUVJyQnAx?=
+ =?utf-8?B?M09kR3F2UTRKWUIyS3hYcHExU1NqN2dMTGlyb2hhbDhjV3VVTnF6U2ZoS0tO?=
+ =?utf-8?B?c01qdFNTSDIySlc3NlhTTHBFQmJjMWhVQWNOM3krc0hDQnNJTzBReHNrQWxZ?=
+ =?utf-8?B?NFIxMis3QzMvYlRURjQ5bHZST1o3MjRNT21qQ0I1cUlDeUlMWmg1Umhta3Vk?=
+ =?utf-8?B?Rm04N0RGbStxWTVwUEdSNW5VQkwvSk0xRmhXV05BYllXak1SZy9UOHBDQUpt?=
+ =?utf-8?B?WDFXZUVaYU1HOGk1UEVLUEk5U2YzNG8xVUQ1ZE9RVlZ5RTh3QnFyNDdMZ0M1?=
+ =?utf-8?B?SnBRdGRSM1dCb29xMTcxdWViWjBIVnJKbmpWN2NnRWZMMUwrMXI5RlVJbURl?=
+ =?utf-8?B?bTNSQ2dIbHBwZ3QyTjNkY2xZY28yUkpEZGIyN1M5VmhQRHJNaXd0NDFrN0tB?=
+ =?utf-8?Q?yx6EP0V8uDVfLxskQx?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ ee23023e-a8e4-47f0-2469-08de623b2fe9
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 09:12:28.1308
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ MmFmsPuF8sjL0cQz6QncEGdX6bL0g2/cXMLfMD5MxMdk898pXnOyiR3aAYq3D9RS
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7232
+Message-ID-Hash: HHZMBFLEHF4SFAVHQUMTFQUQNCGPN27K
+X-Message-ID-Hash: HHZMBFLEHF4SFAVHQUMTFQUQNCGPN27K
+X-MailFrom: Christian.Koenig@amd.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: stable@vger.kernel.org, Dave Airlie <airlied@redhat.com>,
+CC: Danilo Krummrich <dakr@kernel.org>, Zhi Wang <zhiw@nvidia.com>,
+ linux-kernel@vger.kernel.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rui Huang <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ Alistair Popple <apopple@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Alexey Ivanov <alexeyi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FCNVW2SHTRACKPZU2V6LLLSG7R7FSVHF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HHZMBFLEHF4SFAVHQUMTFQUQNCGPN27K/>
 Archived-At: 
- <https://lore.freedesktop.org/20260201231451.1ef0128c@hemera.lan.sysophe.eu/>
+ <https://lore.freedesktop.org/a50c9e31-a182-4ed7-837c-4a12d220c022@amd.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -100,485 +244,103 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Bisect completed.
+On 1/31/26 04:00, Dave Airlie wrote:
+> On Sat, 31 Jan 2026 at 07:14, Joel Fernandes <joelagnelf@nvidia.com> wrote:
+>>
+>>
+>>
+>> On 1/29/2026 10:38 PM, John Hubbard wrote:
+>>> On 1/29/26 5:59 PM, Joel Fernandes wrote:
+>>>> On 1/29/26 8:12 PM, John Hubbard wrote:
+>>>>> On 1/29/26 4:26 PM, Joel Fernandes wrote:
+>>>>>> Based on the below discussion and research, I came up with some deadlock
+>>>>>> scenarios that we need to handle in the v6 series of these patches.
+>>>>>> [...]
+>>>>>> memory allocations under locks that we need in the dma-fence signaling
+>>>>>> critical path (when doing the virtual memory map/unmap)
+>>>>>
+>>>>> unmap? Are you seeing any allocations happening during unmap? I don't
+>>>>> immediately see any, but that sounds surprising.
+>>>>
+>>>> Not allocations but we are acquiring locks during unmap. My understanding
+>>>> is (at least some) unmaps have to also be done in the dma fence signaling
+>>>> critical path (the run stage), but Danilo/you can correct me if I am wrong
+>>>> on that. We cannot avoid all locking but those same locks cannot be held in
+>>>> any other paths which do a memory allocation (as mentioned in one of the
+>>>> deadlock scenarios), that is probably the main thing to check for unmap.
+>>>>
+>>>
+>>> Right, OK we are on the same page now: no allocations happening on unmap,
+>>> but it can still deadlock, because the driver is typically going to
+>>> use a single lock to protect calls both map and unmap-related calls
+>>> to the buddy allocator.
+>>
+>> Yes exactly!
+>>
+>>>
+>>> For the deadlock above, I think a good way to break that deadlock is
+>>> to not allow taking that lock in a fence signaling calling path.
+>>>
+>>> So during an unmap, instead of "lock, unmap/free, unlock" it should
+>>> move the item to a deferred-free list, which is processed separately.
+>>> Of course, this is a little complex, because the allocation and reclaim
+>>> has to be aware of such lists if they get large.
+>> Yes, also avoiding GFP_KERNEL allocations while holding any of these mm locks
+>> (whichever we take during map). The GPU buddy actually does GFP_KERNEL
+>> allocations internally which is problematic.
+>>
+>> Some solutions / next steps:
+>>
+>> 1. allocating (VRAM and system memory) outside mm locks just before acquiring them.
+>>
+>> 2. pre-allocating both VRAM and system memory needed, before the DMA fence
+>> critical paths (The issue is also to figure out how much memory to pre-allocate
+>> for the page table pages based on the VM_BIND request. I think we can analyze
+>> the page tables in the submit stage to make an estimate).
+>>
+>> 3. Unfortunately, I am using gpu-buddy when allocating a VA range in the Vmm
+>> (called virt_buddy), which itself does GFP_KERNEL memory allocations in the
+>> allocate path. I am not sure what do yet about this. ISTR the maple tree also
+>> has similar issues.
+>>
+>> 4. Using non-reclaimable memory allocations where pre-allocation or
+>> pre-allocated memory pools is not possible (I'd like to avoid this #4 so we
+>> don't fail allocations when memory is scarce).
+>>
+>> Will work on these issues for the v7. Thanks,
+> 
+> The way this works on nouveau at least (and I haven't yet read the
+> nova code in depth).
+> 
+> Is we have 4 stages of vmm page table mgmt.
+> 
+> ref - locked with a ref lock - can allocate/free memory - just makes
+> sure the page tables exist and are reference counted
+> map - locked with a map lock - cannot allocate memory - fill in the
+> PTEs in the page table
+> unmap - locked with a map lock - cannot allocate memory - removes
+> entries in PTEs
+> unref - locked with a ref lock - can allocate/free memory - just drops
+> references and frees (not sure if it ever merges).
 
-The offending patch is:
-commit 448a2071a843831fe5fa71545cbfa7e15ee8966d (HEAD)
-Author: Lyude Paul <lyude@redhat.com>
-Date:   Wed Jan 21 14:13:10 2026 -0500
+On amdgpu VM page tables are allocated and PTEs filled outside of the fence critical path.
 
-    drm/nouveau/disp: Set drm_mode_config_funcs.atomic_(check|commit)
-   =20
-    commit 604826acb3f53c6648a7ee99a3914ead680ab7fb upstream.
-   =20
-    Apparently we never actually filled these in, despite the fact that we =
-do
-    in fact technically support atomic modesetting.
-   =20
-    Since not having these filled in causes us to potentially forget to dis=
-able
-    fbdev and friends during suspend/resume, let's fix it.
-   =20
-    Signed-off-by: Lyude Paul <lyude@redhat.com>
-    Cc: stable@vger.kernel.org
-    Reviewed-by: Dave Airlie <airlied@redhat.com>
-    Link: https://patch.msgid.link/20260121191320.210342-1-lyude@redhat.com
-    Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Only invalidating PTEs to signal that a shader needs to be taken off the HW are inside the fence critical path and here no memory allocation is needed.
 
- drivers/gpu/drm/nouveau/nouveau_display.c | 2 ++
- 1 file changed, 2 insertions(+)
+Keep in mind that you not only need to avoid having memory allocations inside the critical path, but also not take locks under which memory is allocated.
 
+Simona added some dma_fence_begin_signalling() and dma_fence_end_signalling() helpers to add lockdep annotations to the fence signaling path. Those have proven to be extremely useful since they allow lockdep to point out mistakes immediately and not just after hours of running on a test system.
 
-It landed in 6.18.8. Seems like not all chip generations are ready for
-atomic modesetting.
+Regards,
+Christian.
 
-
-Grepping for atomic_duplicate_state I find the following:
-drivers/gpu/drm/nouveau/dispnv50/head.c:nv50_head_atomic_duplicate_state(st=
-ruct drm_crtc *crtc)
-drivers/gpu/drm/nouveau/dispnv50/head.c:	.atomic_duplicate_state =3D nv50_h=
-ead_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/dispnv50/head.c:	.atomic_duplicate_state =3D nv50_h=
-ead_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/dispnv50/disp.c:	.atomic_duplicate_state =3D nouvea=
-u_conn_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/dispnv50/wndw.c:nv50_wndw_atomic_duplicate_state(st=
-ruct drm_plane *plane)
-drivers/gpu/drm/nouveau/dispnv50/wndw.c:	.atomic_duplicate_state =3D nv50_w=
-ndw_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/nouveau_connector.c:nouveau_conn_atomic_duplicate_s=
-tate(struct drm_connector *connector)
-drivers/gpu/drm/nouveau/nouveau_connector.c:	.atomic_duplicate_state =3D no=
-uveau_conn_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/nouveau_connector.c:	.atomic_duplicate_state =3D no=
-uveau_conn_atomic_duplicate_state,
-drivers/gpu/drm/nouveau/nouveau_connector.h:nouveau_conn_atomic_duplicate_s=
-tate(struct drm_connector *);
-which seems to indicate only nv50 and up would support atomic
-modesetting, or at least have sufficient code coverage for it.
-
-drivers/gpu/drm/nouveau/dispnv04/ seems to be missing the needed code/assig=
-nments!
-
-Bruno
-
-
-On Sun, 1 Feb 2026 18:57:05 +0100 Bruno Pr=C3=A9mont wrote:
-> The oldish system boots fine with 6.17.13 but crashes with 6.18.8
-> (nouveau built-in).
->=20
-> At first glance, due to the multiple WARNING traces before the final
-> kernel NULL pointer dereference if looks like nouveau is missing some hel=
-per
-> functions [atomic_duplicate_state()] while stating it can to atomic
-> modesetting, at least for this old card.
-> From commit log between 6.17.13 and 6.18.8 though for nouveau/drm I don't=
- see
-> any change that would stand out.
-> Stating bisection in the hope of finding something more precise.
->=20
-> Bruno
->=20
->=20
->=20
-> Below the kernel log starting at nouveau initialization:
->=20
-> [    3.009786] nouveau 0000:01:00.0: NVIDIA NV04 (20044001)
-> [    3.016713] nouveau 0000:01:00.0: bios: trying PRAMIN...
-> [    3.022916] nouveau 0000:01:00.0: bios: 00000260: NPDE signature (9b03=
-0041) unknown
-> [    3.030698] nouveau 0000:01:00.0: bios: 00000000: type 00, 32768 bytes
-> [    3.042773] nouveau 0000:01:00.0: bios: scored 4
-> [    3.047513] nouveau 0000:01:00.0: bios: trying PROM...
-> [    3.054711] nouveau 0000:01:00.0: bios: 00000000: ROM signature (0000)=
- unknown
-> [    3.061958] nouveau 0000:01:00.0: bios: image 0 invalid
-> [    3.067255] nouveau 0000:01:00.0: bios: scored 0
-> [    3.071894] nouveau 0000:01:00.0: bios: trying ACPI...
-> [    3.077157] nouveau 0000:01:00.0: bios: using image from PRAMIN
-> [    3.083103] nouveau 0000:01:00.0: bios: 00000260: NPDE signature (9b03=
-0041) unknown
-> [    3.090872] nouveau 0000:01:00.0: bios: 00000260: NPDE signature (9b03=
-0041) unknown
-> [    3.098608] nouveau 0000:01:00.0: bios: BMP version 1.1
-> [    3.104467] nouveau 0000:01:00.0: bios: version 02.04.19.00.00
-> [    3.110413] nouveau 0000:01:00.0: bios: DCB table not found
-> [    3.116067] nouveau 0000:01:00.0: i2c: ccb 00: type 00 drive 3f sense =
-3e share ff auxch c1
-> [    3.124871] nouveau 0000:01:00.0: bios: DCB table not found
-> [    3.130467] nouveau 0000:01:00.0: i2c: ccb 01: type 00 drive 37 sense =
-36 share ff auxch c1
-> [    3.139237] nouveau 0000:01:00.0: bios: DCB table not found
-> [    3.144896] nouveau 0000:01:00.0: bios: DCB table not found
-> [    3.150745] nouveau 0000:01:00.0: disp: head-0: ctor
-> [    3.155809] nouveau 0000:01:00.0: disp: head-1: ctor
-> [    3.160922] nouveau 0000:01:00.0: vgaarb: deactivate vga console
-> [    3.171109] Console: switching to colour dummy device 80x25
-> [    3.177768] nouveau: drm:00000000:00000080: init running...
-> [    3.183782] nouveau 0000:01:00.0: mc: intr 0/01010000 requested by disp
-> [    3.190427] nouveau 0000:01:00.0: mc: intr 0/00001000 requested by gr
-> [    3.196972] nouveau 0000:01:00.0: mc: intr 0/10000000 requested by bus
-> [    3.203525] nouveau 0000:01:00.0: mc: intr 0/00100000 requested by tim=
-er
-> [    3.210369] agpgart-intel 0000:00:00.0: AGP 1.0 bridge
-> [    3.215696] agpgart-intel 0000:00:00.0: putting AGP V2 device into 0x =
-mode
-> [    3.222628] nouveau 0000:01:00.0: putting AGP V2 device into 0x mode
-> [    3.229098] nouveau 0000:01:00.0: timer: unknown input clock freq
-> [    3.235274] nouveau 0000:01:00.0: timer: input frequency : 0Hz
-> [    3.241125] nouveau 0000:01:00.0: timer: numerator       : 00000001
-> [    3.247459] nouveau 0000:01:00.0: timer: denominator     : 00000001
-> [    3.253792] nouveau 0000:01:00.0: timer: timer frequency : 0Hz
-> [    3.259647] nouveau 0000:01:00.0: timer: time low        : a0b3511b
-> [    3.265982] nouveau 0000:01:00.0: timer: time high       : 00000000
-> [    3.273538] nouveau 0000:01:00.0: fb: 16 MiB SDRAM
-> [    3.281503] nouveau 0000:01:00.0: clk: --:  =20
-> [    3.286033] nouveau: drm:00000000:00000080: init children...
-> [    3.291715] nouveau: drm:00000000:00000080: init completed in 108340us
-> [    3.298650] nouveau: drm:00000000:80000009: init running...
-> [    3.304303] nouveau: drm:00000000:80000009: init children...
-> [    3.309979] nouveau: drm:00000000:80000009: init completed in 5677us
-> [    3.316530] nouveau: drm:00000000:00000000: init running...
-> [    3.322123] nouveau: drm:00000000:00000000: init children...
-> [    3.327850] nouveau: drm:00000000:00000000: init completed in 5728us
-> [    3.334298] nouveau: DRM:00000000:00000080: init running...
-> [    3.339892] nouveau: DRM:00000000:00000080: init children...
-> [    3.345626] nouveau: DRM:00000000:00000080: init completed in 5736us
-> [    3.352052] nouveau: DRM:00000000:80000009: init running...
-> [    3.357702] nouveau: DRM:00000000:80000009: init children...
-> [    3.363378] nouveau: DRM:00000000:80000009: init completed in 5677us
-> [    3.369906] nouveau: DRM:00000000:8000000d: init running...
-> [    3.375555] nouveau: DRM:00000000:8000000d: init children...
-> [    3.381233] nouveau: DRM:00000000:8000000d: init completed in 5679us
-> [    3.390661] nouveau 0000:01:00.0: drm: VRAM: 15 MiB
-> [    3.395691] nouveau 0000:01:00.0: drm: GART: 64 MiB
-> [    3.400595] nouveau 0000:01:00.0: drm: BMP version 1.1
-> [    3.405810] nouveau 0000:01:00.0: drm: No DCB data found in VBIOS
-> [    3.411925] nouveau 0000:01:00.0: i2c: bus 0000: probing TV encoders
-> [    3.419496] nouveau 0000:01:00.0: i2c: bus 0000: no devices found.
-> [    3.426486] nouveau 0000:01:00.0: fifo:000000: engn 2.0[mpeg] not found
-> [    3.433130] nouveau 0000:01:00.0: fifo:000000: chan:000000
-> [    3.438690] nouveau 0000:01:00.0: fifo:000000:00[      sw]:=20
-> [    3.444423] nouveau 0000:01:00.0: fifo:000000:00[     dma]:=20
-> [    3.450105] nouveau 0000:01:00.0: fifo:000000:01[      gr]:=20
-> [    3.455851] nouveau 0000:01:00.0: mc: intr 0/00000100 requested by fifo
-> [    3.464233] nouveau: DRM:00000000:00000002: init running...
-> [    3.469855] nouveau: DRM:00000000:00000002: init children...
-> [    3.475589] nouveau: DRM:00000000:00000002: init completed in 5734us
-> [    3.482092] nouveau: DRM:00000000:0000006b: init running...
-> [    3.487749] nouveau: DRM:00000000:0000006b: init children...
-> [    3.493426] nouveau: DRM:00000000:0000006b: init completed in 5682us
-> [    3.500140] nouveau: DRM:80000002:0000003d: init running...
-> [    3.505793] nouveau: DRM:80000002:0000003d: init children...
-> [    3.511473] nouveau: DRM:80000002:0000003d: init completed in 5681us
-> [    3.518034] nouveau: DRM:80000003:0000003d: init running...
-> [    3.523679] nouveau: DRM:80000003:0000003d: init children...
-> [    3.529357] nouveau: DRM:80000003:0000003d: init completed in 5680us
-> [    3.535929] nouveau: DRM:0000006e:fffffffc: init running...
-> [    3.541527] nouveau: DRM:00000000:00000000: init running...
-> [    3.547167] nouveau: DRM:00000000:00000000: init children...
-> [    3.552843] nouveau: DRM:00000000:00000000: init completed in 5677us
-> [    3.559303] nouveau: DRM:0000006e:fffffffc: init children...
-> [    3.565046] nouveau: DRM:0000006e:fffffffc: init completed in 23522us
-> [    3.571779] nouveau: DRM:80000006:0000003d: init running...
-> [    3.577433] nouveau: DRM:80000006:0000003d: init children...
-> [    3.583110] nouveau: DRM:80000006:0000003d: init completed in 5678us
-> [    3.590331] nouveau: DRM:00000039:00000039: init running...
-> [    3.595990] nouveau: DRM:00000000:00000000: init running...
-> [    3.601579] nouveau: DRM:00000000:00000000: init children...
-> [    3.607302] nouveau: DRM:00000000:00000000: init completed in 5723us
-> [    3.613721] nouveau: DRM:00000039:00000039: init children...
-> [    3.619397] nouveau: DRM:00000039:00000039: init completed in 23410us
-> [    3.625922] nouveau 0000:01:00.0: drm: MM: using M2MF for buffer copies
-> [    3.633084] nouveau: DRM:00000000:00000046: init running...
-> [    3.638742] nouveau: DRM:00000000:00000046: init children...
-> [    3.644466] nouveau: DRM:00000000:00000046: init completed in 5724us
-> [    3.651924] nouveau: DRM:00000000:8000000e: init running...
-> [    3.657609] nouveau: DRM:00000000:8000000e: init children...
-> [    3.663287] nouveau: DRM:00000000:8000000e: init completed in 5678us
-> [    3.669733] nouveau 0000:01:00.0: drm: Saving VGA fonts
-> [    3.715871] ------------[ cut here ]------------
-> [    3.720534] WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/drm_plane.c:389 =
-__drm_universal_plane_init+0x3e8/0x7e0
-> [    3.730495] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G S         =
-         6.18.8-zeus #2 PREEMPT(voluntary)=20
-> [    3.740836] Tainted: [S]=3DCPU_OUT_OF_SPEC
-> [    3.744825] Hardware name:  /SR440BX                        , BIOS 4S4=
-R100A.86A.0017.P10.0004031558 04/03/00
-> [    3.754712] EIP: __drm_universal_plane_init+0x3e8/0x7e0
-> [    3.759973] Code: 8b 00 8b 93 b8 02 00 00 89 04 24 31 c0 89 44 24 04 8=
-b 45 e4 e8 09 a1 ff ff 8b 45 e8 83 c4 2c 5b 5e 5f 5d c3 8d b6 00 00 00 00 <=
-0f> 0b e9 6d fc ff ff 90 85 db 0f 84 18 01 00 00 85 c0 8d b6 00 00
-> [    3.778792] EAX: c2793400 EBX: c1bb57a0 ECX: 00000000 EDX: c1633570
-> [    3.785136] ESI: c2796400 EDI: 00000000 EBP: c2441c2c ESP: c2441bf4
-> [    3.791420] DS: 007b ES: 007b FS: 0000 GS: 0000 SS: 0068 EFLAGS: 00010=
-246
-> [    3.798273] CR0: 80050033 CR2: ffda8000 CR3: 02078000 CR4: 000002d0
-> [    3.804611] Call Trace:
-> [    3.807081]  ? __kmalloc_noprof+0x371/0x3e0
-> [    3.811301]  ? __drm_universal_plane_alloc+0x20/0x100
-> [    3.816433]  ? __drm_universal_plane_alloc+0x20/0x100
-> [    3.821518]  __drm_universal_plane_alloc+0x67/0x100
-> [    3.826477]  nv04_crtc_create+0xb7/0x1b0
-> [    3.830446]  nv04_display_create+0xdc/0x2e0
-> [    3.834713]  ? nv_crtc_mode_set+0xd90/0xd90
-> [    3.838929]  nouveau_display_create+0x346/0x5f0
-> [    3.843485]  nouveau_drm_device_init+0x10d/0x800
-> [    3.848189]  nouveau_drm_probe+0x107/0x1a0
-> [    3.852315]  pci_device_probe+0x85/0xf0
-> [    3.856252]  ? sysfs_create_link+0x1d/0x40
-> [    3.860397]  really_probe+0x9e/0x200
-> [    3.864052]  __driver_probe_device+0x6c/0x120
-> [    3.868439]  ? __might_sleep+0x30/0x70
-> [    3.872229]  driver_probe_device+0x22/0xe0
-> [    3.876401]  __driver_attach+0xc6/0x180
-> [    3.880268]  ? __device_attach_driver+0x120/0x120
-> [    3.885048]  bus_for_each_dev+0x4d/0x90
-> [    3.888913]  driver_attach+0x1e/0x30
-> [    3.892510]  ? __device_attach_driver+0x120/0x120
-> [    3.897295]  bus_add_driver+0xc6/0x180
-> [    3.901075]  driver_register+0x6c/0xd0
-> [    3.904906]  __pci_register_driver+0x36/0x40
-> [    3.909212]  nouveau_drm_init+0x16e/0x184
-> [    3.913263]  do_one_initcall+0x5f/0x1a8
-> [    3.917186]  ? drm_sched_fence_slab_init+0x44/0x44
-> [    3.922010]  ? kernel_init_freeable+0x147/0x1d4
-> [    3.926617]  kernel_init_freeable+0x182/0x1d4
-> [    3.931005]  ? rest_init+0xa0/0xa0
-> [    3.934495]  kernel_init+0x15/0x110
-> [    3.938016]  ? schedule_tail+0x4e/0x60
-> [    3.941804]  ? rest_init+0xa0/0xa0
-> [    3.945285]  ret_from_fork+0x135/0x150
-> [    3.949084]  ? rest_init+0xa0/0xa0
-> [    3.952510]  ret_from_fork_asm+0x12/0x18
-> [    3.956516]  entry_INT80_32+0xef/0xf4
-> [    3.960217] ---[ end trace 0000000000000000 ]---
-> [    3.965018] ------------[ cut here ]------------
-> [    3.969649] WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/drm_crtc.c:251 _=
-_drm_crtc_init_with_planes+0x240/0x2a0
-> [    3.979570] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G S      W  =
-         6.18.8-zeus #2 PREEMPT(voluntary)=20
-> [    3.989908] Tainted: [S]=3DCPU_OUT_OF_SPEC, [W]=3DWARN
-> [    3.994761] Hardware name:  /SR440BX                        , BIOS 4S4=
-R100A.86A.0017.P10.0004031558 04/03/00
-> [    4.004654] EIP: __drm_crtc_init_with_planes+0x240/0x2a0
-> [    4.009993] Code: e8 a5 5c 01 00 8b 96 14 02 00 00 31 f6 89 f8 c7 04 2=
-4 00 00 00 00 89 74 24 04 e8 8b 5c 01 00 8b 45 f0 83 c4 20 5b 5e 5f 5d c3 <=
-0f> 0b e9 2a fe ff ff 90 2e 8d b4 26 00 00 00 00 8b 86 4c 01 00 00
-> [    4.028810] EAX: c2793400 EBX: c278a000 ECX: c2796400 EDX: c1bb5840
-> [    4.035148] ESI: 00000000 EDI: 00000000 EBP: c2441c40 ESP: c2441c14
-> [    4.041433] DS: 007b ES: 007b FS: 0000 GS: 0000 SS: 0068 EFLAGS: 00010=
-246
-> [    4.048326] CR0: 80050033 CR2: ffda8000 CR3: 02078000 CR4: 000002d0
-> [    4.054668] Call Trace:
-> [    4.057135]  ? __drm_universal_plane_alloc+0x67/0x100
-> [    4.062218]  drm_crtc_init_with_planes+0x36/0x50
-> [    4.066912]  nv04_crtc_create+0xe7/0x1b0
-> [    4.070869]  nv04_display_create+0xdc/0x2e0
-> [    4.075158]  ? nv_crtc_mode_set+0xd90/0xd90
-> [    4.079375]  nouveau_display_create+0x346/0x5f0
-> [    4.083982]  nouveau_drm_device_init+0x10d/0x800
-> [    4.088632]  nouveau_drm_probe+0x107/0x1a0
-> [    4.092753]  pci_device_probe+0x85/0xf0
-> [    4.096673]  ? sysfs_create_link+0x1d/0x40
-> [    4.100806]  really_probe+0x9e/0x200
-> [    4.104454]  __driver_probe_device+0x6c/0x120
-> [    4.108842]  ? __might_sleep+0x30/0x70
-> [    4.112620]  driver_probe_device+0x22/0xe0
-> [    4.116797]  __driver_attach+0xc6/0x180
-> [    4.120662]  ? __device_attach_driver+0x120/0x120
-> [    4.125440]  bus_for_each_dev+0x4d/0x90
-> [    4.129306]  driver_attach+0x1e/0x30
-> [    4.132903]  ? __device_attach_driver+0x120/0x120
-> [    4.137679]  bus_add_driver+0xc6/0x180
-> [    4.141458]  driver_register+0x6c/0xd0
-> [    4.145284]  __pci_register_driver+0x36/0x40
-> [    4.149588]  nouveau_drm_init+0x16e/0x184
-> [    4.153675]  do_one_initcall+0x5f/0x1a8
-> [    4.157543]  ? drm_sched_fence_slab_init+0x44/0x44
-> [    4.162362]  ? kernel_init_freeable+0x147/0x1d4
-> [    4.166967]  kernel_init_freeable+0x182/0x1d4
-> [    4.171355]  ? rest_init+0xa0/0xa0
-> [    4.174837]  kernel_init+0x15/0x110
-> [    4.178360]  ? schedule_tail+0x4e/0x60
-> [    4.182141]  ? rest_init+0xa0/0xa0
-> [    4.185620]  ret_from_fork+0x135/0x150
-> [    4.189405]  ? rest_init+0xa0/0xa0
-> [    4.192833]  ret_from_fork_asm+0x12/0x18
-> [    4.196833]  entry_INT80_32+0xef/0xf4
-> [    4.200530] ---[ end trace 0000000000000000 ]---
-> [    4.205698] nouveau: DRM:00000000:80000013: init running...
-> [    4.211300] nouveau: DRM:00000000:80000013: init children...
-> [    4.217036] nouveau: DRM:00000000:80000013: init completed in 5736us
-> [    4.223450] nouveau: DRM:00000000:8000000e: init running...
-> [    4.229103] nouveau: DRM:00000000:8000000e: init children...
-> [    4.234834] nouveau: DRM:00000000:8000000e: init completed in 5731us
-> [    4.241354] nouveau 0000:01:00.0: drm: No DCB data found in VBIOS
-> [    4.248265] ------------[ cut here ]------------
-> [    4.252902] WARNING: CPU: 0 PID: 1 at drivers/gpu/drm/drm_plane.c:389 =
-__drm_universal_plane_init+0x3e8/0x7e0
-> [    4.262831] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G S      W  =
-         6.18.8-zeus #2 PREEMPT(voluntary)=20
-> [    4.273171] Tainted: [S]=3DCPU_OUT_OF_SPEC, [W]=3DWARN
-> [    4.278025] Hardware name:  /SR440BX                        , BIOS 4S4=
-R100A.86A.0017.P10.0004031558 04/03/00
-> [    4.287910] EIP: __drm_universal_plane_init+0x3e8/0x7e0
-> [    4.293169] Code: 8b 00 8b 93 b8 02 00 00 89 04 24 31 c0 89 44 24 04 8=
-b 45 e4 e8 09 a1 ff ff 8b 45 e8 83 c4 2c 5b 5e 5f 5d c3 8d b6 00 00 00 00 <=
-0f> 0b e9 6d fc ff ff 90 85 db 0f 84 18 01 00 00 85 c0 8d b6 00 00
-> [    4.311991] EAX: c2793400 EBX: c1bb59e0 ECX: 00000001 EDX: c1633570
-> [    4.318328] ESI: c2797000 EDI: 00000000 EBP: c2441c40 ESP: c2441c08
-> [    4.324664] DS: 007b ES: 007b FS: 0000 GS: 0000 SS: 0068 EFLAGS: 00010=
-246
-> [    4.331473] CR0: 80050033 CR2: ffda8000 CR3: 02078000 CR4: 000002d0
-> [    4.337814] Call Trace:
-> [    4.340282]  ? __might_sleep+0x30/0x70
-> [    4.344112]  drm_universal_plane_init+0x4b/0x60
-> [    4.348679]  nouveau_overlay_init+0x340/0x450
-> [    4.353069]  nv04_display_create+0x299/0x2e0
-> [    4.357416]  ? nv_crtc_mode_set+0xd90/0xd90
-> [    4.361630]  nouveau_display_create+0x346/0x5f0
-> [    4.366236]  nouveau_drm_device_init+0x10d/0x800
-> [    4.370893]  nouveau_drm_probe+0x107/0x1a0
-> [    4.375067]  pci_device_probe+0x85/0xf0
-> [    4.378941]  ? sysfs_create_link+0x1d/0x40
-> [    4.383065]  really_probe+0x9e/0x200
-> [    4.386720]  __driver_probe_device+0x6c/0x120
-> [    4.391108]  ? __might_sleep+0x30/0x70
-> [    4.394938]  driver_probe_device+0x22/0xe0
-> [    4.399063]  __driver_attach+0xc6/0x180
-> [    4.402921]  ? __device_attach_driver+0x120/0x120
-> [    4.407698]  bus_for_each_dev+0x4d/0x90
-> [    4.411564]  driver_attach+0x1e/0x30
-> [    4.415214]  ? __device_attach_driver+0x120/0x120
-> [    4.419949]  bus_add_driver+0xc6/0x180
-> [    4.423767]  driver_register+0x6c/0xd0
-> [    4.427546]  __pci_register_driver+0x36/0x40
-> [    4.431843]  nouveau_drm_init+0x16e/0x184
-> [    4.435936]  do_one_initcall+0x5f/0x1a8
-> [    4.439807]  ? drm_sched_fence_slab_init+0x44/0x44
-> [    4.444685]  ? kernel_init_freeable+0x147/0x1d4
-> [    4.449247]  kernel_init_freeable+0x182/0x1d4
-> [    4.453677]  ? rest_init+0xa0/0xa0
-> [    4.457114]  kernel_init+0x15/0x110
-> [    4.460627]  ? schedule_tail+0x4e/0x60
-> [    4.464465]  ? rest_init+0xa0/0xa0
-> [    4.467898]  ret_from_fork+0x135/0x150
-> [    4.471680]  ? rest_init+0xa0/0xa0
-> [    4.475160]  ret_from_fork_asm+0x12/0x18
-> [    4.479116]  entry_INT80_32+0xef/0xf4
-> [    4.482807] ---[ end trace 0000000000000000 ]---
-> [    4.489006] nouveau: DRM:00000000:ffffffff: init running...
-> [    4.494674] nouveau: DRM:00000000:ffffffff: init children...
-> [    4.500352] nouveau: DRM:00000000:ffffffff: init completed in 5679us
-> [    4.510030] [drm] Initialized nouveau 1.4.0 for 0000:01:00.0 on minor 0
-> [    4.517043] nouveau: drm:00000000:00000000: init running...
-> [    4.522639] nouveau: drm:00000000:00000000: init children...
-> [    4.528397] nouveau: drm:00000000:00000000: init completed in 5759us
-> [    4.534909] nouveau: swapper/0[1]:00000000:00000080: init running...
-> [    4.541288] nouveau: swapper/0[1]:00000000:00000080: init children...
-> [    4.547815] nouveau: swapper/0[1]:00000000:00000080: init completed in=
- 6529us
-> [    4.555092] nouveau: swapper/0[1]:00000000:80000009: init running...
-> [    4.561467] nouveau: swapper/0[1]:00000000:80000009: init children...
-> [    4.567971] nouveau: swapper/0[1]:00000000:80000009: init completed in=
- 6505us
-> [    4.575291] nouveau: swapper/0[1]:00000000:8000000d: init running...
-> [    4.581667] nouveau: swapper/0[1]:00000000:8000000d: init children...
-> [    4.588175] nouveau: swapper/0[1]:00000000:8000000d: init completed in=
- 6507us
-> [    4.631683] nouveau 0000:01:00.0: [drm] format C8   little-endian (0x2=
-0203843) not supported
-> [    4.640252] nouveau 0000:01:00.0: [drm] No compatible format found
-> [    4.693486] fbcon: nouveaudrmfb (fb0) is primary device
-> [    4.695560] BUG: kernel NULL pointer dereference, address: 00000000
-> [    4.695583] #PF: supervisor read access in kernel mode
-> [    4.695595] #PF: error_code(0x0000) - not-present page
-> [    4.695607] *pde =3D 00000000=20
-> [    4.695631] Oops: Oops: 0000 [#1]
-> [    4.695662] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Tainted: G S      W  =
-         6.18.8-zeus #2 PREEMPT(voluntary)=20
-> [    4.695694] Tainted: [S]=3DCPU_OUT_OF_SPEC, [W]=3DWARN
-> [    4.695702] Hardware name:  /SR440BX                        , BIOS 4S4=
-R100A.86A.0017.P10.0004031558 04/03/00
-> [    4.695714] EIP: 0x0
-> [    4.695742] Code: Unable to access opcode bytes at 0xffffffd6.
-> [    4.695753] EAX: c2796400 EBX: 00000000 ECX: c2796400 EDX: c1bb57a0
-> [    4.695771] ESI: 00000000 EDI: c2c731c0 EBP: c2441a6c ESP: c2441a38
-> [    4.695787] DS: 007b ES: 007b FS: 0000 GS: 0000 SS: 0068 EFLAGS: 00010=
-246
-> [    4.695805] CR0: 80050033 CR2: ffffffd6 CR3: 02078000 CR4: 000002d0
-> [    4.695823] Call Trace:
-> [    4.695839]  drm_atomic_get_plane_state+0x81/0x170
-> [    4.695881]  ? commit_work+0x10/0x10
-> [    4.695922]  drm_client_modeset_commit_atomic+0xa0/0x1e0
-> [    4.695966]  ? commit_work+0x10/0x10
-> [    4.695988]  drm_client_modeset_commit_locked+0x46/0x150
-> [    4.696013]  ? mutex_lock+0x1a/0x40
-> [    4.696061]  drm_client_modeset_commit+0x22/0x50
-> [    4.696085]  __drm_fb_helper_restore_fbdev_mode_unlocked+0x9d/0xd0
-> [    4.696129]  drm_fb_helper_set_par+0x25/0x40
-> [    4.696151]  fbcon_init+0x2a6/0x630
-> [    4.696189]  ? klist_class_dev_get+0xb/0x10
-> [    4.696222]  ? klist_add_tail+0x2f/0x70
-> [    4.696258]  visual_init+0x8f/0x100
-> [    4.696285]  do_bind_con_driver.isra.0+0x156/0x240
-> [    4.696310]  ? device_create_groups_vargs+0xaf/0xf0
-> [    4.696364]  do_take_over_console+0x102/0x150
-> [    4.696387]  do_fbcon_takeover+0x89/0x130
-> [    4.696410]  fbcon_fb_registered+0x147/0x150
-> [    4.696434]  ? pm_vt_switch_required+0x93/0xa0
-> [    4.696472]  do_register_framebuffer+0x174/0x270
-> [    4.696493]  ? __might_sleep+0x30/0x70
-> [    4.696531]  register_framebuffer+0x17/0x30
-> [    4.696551]  __drm_fb_helper_initial_config_and_unlock+0x315/0x460
-> [    4.696582]  drm_fb_helper_initial_config+0x30/0x40
-> [    4.696605]  drm_fbdev_client_hotplug+0x6a/0xa0
-> [    4.696629]  drm_client_register+0x4d/0xa0
-> [    4.696655]  ? drm_client_init+0xb1/0xe0
-> [    4.696677]  drm_fbdev_client_setup+0x97/0x180
-> [    4.696702]  drm_client_setup+0x99/0xb0
-> [    4.696724]  nouveau_drm_probe+0x135/0x1a0
-> [    4.696756]  pci_device_probe+0x85/0xf0
-> [    4.696800]  ? sysfs_create_link+0x1d/0x40
-> [    4.696842]  really_probe+0x9e/0x200
-> [    4.696865]  __driver_probe_device+0x6c/0x120
-> [    4.696886]  ? __might_sleep+0x30/0x70
-> [    4.696910]  driver_probe_device+0x22/0xe0
-> [    4.696931]  __driver_attach+0xc6/0x180
-> [    4.696951]  ? __device_attach_driver+0x120/0x120
-> [    4.696971]  bus_for_each_dev+0x4d/0x90
-> [    4.696991]  driver_attach+0x1e/0x30
-> [    4.697010]  ? __device_attach_driver+0x120/0x120
-> [    4.697030]  bus_add_driver+0xc6/0x180
-> [    4.697050]  driver_register+0x6c/0xd0
-> [    4.697071]  __pci_register_driver+0x36/0x40
-> [    4.697096]  nouveau_drm_init+0x16e/0x184
-> [    4.697136]  do_one_initcall+0x5f/0x1a8
-> [    4.697169]  ? drm_sched_fence_slab_init+0x44/0x44
-> [    4.697194]  ? kernel_init_freeable+0x147/0x1d4
-> [    4.697216]  kernel_init_freeable+0x182/0x1d4
-> [    4.697238]  ? rest_init+0xa0/0xa0
-> [    4.697263]  kernel_init+0x15/0x110
-> [    4.697285]  ? schedule_tail+0x4e/0x60
-> [    4.697322]  ? rest_init+0xa0/0xa0
-> [    4.697344]  ret_from_fork+0x135/0x150
-> [    4.697387]  ? rest_init+0xa0/0xa0
-> [    4.697408]  ret_from_fork_asm+0x12/0x18
-> [    4.697438]  entry_INT80_32+0xef/0xf4
-> [    4.697468] CR2: 0000000000000000
-> [    4.697482] ---[ end trace 0000000000000000 ]---
-> [    4.697493] EIP: 0x0
-> [    4.697510] Code: Unable to access opcode bytes at 0xffffffd6.
-> [    4.697521] EAX: c2796400 EBX: 00000000 ECX: c2796400 EDX: c1bb57a0
-> [    4.697537] ESI: 00000000 EDI: c2c731c0 EBP: c2441a6c ESP: c2441a38
-> [    4.697553] DS: 007b ES: 007b FS: 0000 GS: 0000 SS: 0068 EFLAGS: 00010=
-246
-> [    4.697571] CR0: 80050033 CR2: ffffffd6 CR3: 02078000 CR4: 000002d0
-> [    4.697590] note: swapper/0[1] exited with irqs disabled
-> [    4.697611] Kernel panic - not syncing: Attempted to kill init! exitco=
-de=3D0x00000009
-> [    4.697627] Kernel Offset: disabled
-> [    4.703609] ---[ end Kernel panic - not syncing: Attempted to kill ini=
-t! exitcode=3D0x00000009 ]---
+> 
+> So maps and unmaps can be in fence signalling paths, but unrefs are
+> done in free job from a workqueue.
+> 
+> Dave.
+>>
+>> --
+>> Joel Fernandes
+>>
 
