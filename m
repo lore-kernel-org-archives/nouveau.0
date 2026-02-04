@@ -4,185 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97B89E8B370
-	for <nouveau@archiver.kernel.org>; Tue,  3 Feb 2026 22:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A10AE8B386
+	for <nouveau@archiver.kernel.org>; Wed,  4 Feb 2026 01:42:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD1210E6EB;
-	Tue,  3 Feb 2026 22:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 111A610E2D4;
+	Wed,  4 Feb 2026 01:42:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="hSDNM//m";
+	dkim=pass (2048-bit key; secure) header.d=posteo.net header.i=@posteo.net header.b="BThm3kd1";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0E9E641B4D;
-	Tue,  3 Feb 2026 22:39:37 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770158376;
- b=RmK0eOBatVBXXB/mx7IObrVAcHpOm/Nfs7ko2nKLeaGw+A1NDZTWWJnGp8VQPijIcaR0g
- KteKsHSfN2jb++/ZZ8iP9POc8/QqLKRHqQ+tgdUszI4aQDR+VtlFifBpEAWeFp1mKYIg4E4
- iKiEbsyzbp/aBFwoB21XTybdAevcabtknMfKe5BnWRP7sCgSEdCiKXxzCQUAn1ppXy8daGK
- 2Th7gGffTnsG5KK3hgGbFppwYuJ1lNdYkyAcmclPUAm8auKiIHLlH0fAaVQ04R8Lhquou8t
- HXR1SEy/vD5R4OrpW1wXncaKJWCCraHy8T5o9RIVdz/N9M+p4oFk+vuOXMOQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770158376; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 5994441B48;
+	Wed,  4 Feb 2026 01:32:46 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1770168766;
+ b=QPzZsHLLZhxja7VGfCu/xuV5PgDax1IYt9LWPyIUoxomBPbGbzswwr3qJQAmjE8J0eyKW
+ +I5JEtCr/kSKMCHZNi4E234rZhGkxRFw+Wdk7hdbetOipwNXy3rBlQ/VfvYcxJGuL9cbGtS
+ YAnUHJubR99qm5Urp3fV3IR/zV4Q0u60+hbTKUj+EHKrhyM//NxwQ+CV1hEjiJyja3BB+W3
+ ceh5mEVgojihyMxSUXzcjaYoOMti14dJ73Pd9xVr4FI6m9F1FWZZslaSISdEQ750lNPc9rd
+ vodyCxY+84nkiB2oR7jqbVj6O9mFh+/Ncp8AzVlks30fAgLtBmPLfXvo7oOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1770168766; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=p50pjUC6rikvdXW+PJ6DnJzTC9Z5+24IkyFXfJc/hEk=;
- b=cQW/uKkL/ylj2w2C0aWxiAK+XwdR69HyV8ikWFQBwbWXqGmbbMJngrmj8T/o+5HM37Bk6
- /qjgMvdw/m4d4ab8Aeap8Kcgx3BHMUgVhLmpF4t1lD227Uww8xBhlx8smx+lqMt5CMfNmjL
- HQDWQ6fJ2fz1y4DYgV4E6fE89T+PFzkVVeRYwE+Aw7g7eOif0kEOfBNB7CbtO0NnHqns18z
- CHgInt6BmB2nQKXTTGTCIsQ/ua55nj2wa3h5F0OQTJtj7lSFWAQAhwVYXcrBr6STOPIKLTR
- 5dWg5Ng79qmCmVQnoQBHlZai3uvZlKy44SCA33N4Qq/D5al9OH6Dg5ExC+aw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ bh=oBgqI+VBW8wZUzN9yU8OLzr9ztRwa1vmMdnAFjnoY18=;
+ b=Xpo7Yo2t/eEwLznNg0+h0CjeTOGuuhY2zep88TvZyNwuCfT32BRfzxc2oGF3ZywW+SCtB
+ GBjKdXEs5F5dS6AkyW0DF4upVXPe2CIKkqXMVUI0Qr9BnaEF/Pmj2EuePqlmiQ6+1/u1Rqx
+ Z8pajeKcqy5/3RW9PYWDSD4SXXgDvM/Ky2WKJzDBuoKQxJRPPN0xaTDaOtgRfUjpGmtZROe
+ 7chONRymguG+INBULPHz+NnNBqlU4dh455cqwnvzOvamYssUO+ZY4fhlXWdRRfAOT6glKXh
+ /4qz15CcYIFjDuTKdZ1OTH8/v7/ysUrLcsubu14gHFNSkgS2mqhQQ5UnFvBg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=posteo.net;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=posteo.net
  policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=posteo.net;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=posteo.net
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 62AAE40B86
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Feb 2026 22:39:34 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012003.outbound.protection.outlook.com [52.101.53.3])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8DFA110E29A
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Feb 2026 22:48:50 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LxhT8X3gvDmDb+7LzkHWrLwcmhjZ3RYccWSJ28mSHoWfRM5ouCgxkpl1vW2NKNOM+W+WQm3QEq97jFAN3UZLHzIDQd77ANijlpblyTgfQo6PWpR3pA1J8UrlxcpI4sc6fZVmr76qe+ikV+/rtm3rvlmZCl7f5fadlwr9C7Aa1PlO08hSfz+Stw5tc+jkjLcmEjQs72KtC+yJhXCn3LzskSq9lqEbse6UwsXKZTlMyAPRS8bxpgdGDJ4a0SUE/XwxU0xM8HP1fdTiKoZGNaFiTsalet/+/1I0ya0j3wt6vUxV2bQy+yvoaro5BMqcM31hdb2uoM/28TBo4SGzzTFMlw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p50pjUC6rikvdXW+PJ6DnJzTC9Z5+24IkyFXfJc/hEk=;
- b=H5fWgtmPXGZEvV6J9lEhpGpNSy8zJo7M6xqB+UzPpHmA/tecV3BuzH5rK2RTpPPfTdk/+OsYvsOszWG50ebz8KrMR7TwI4yU1arJSVYtCUxuTx2ZaFPMsqqgfJ/Q8kJeBGATEaI15smJj9tXiJTx23ZWDTbWMOjEVlhMChIuwC4RZVB+hM/IqkKjFdncz95eYpu8U9mY/w9vHYItBvw65/r/Af7BNxcA6wGqxOf+TnIuTJEhUQuUt5bMqaJs27gYzSxs3mSjxCMZB6jPEknfR/d1oLvAwBIU3ToWnkeJxAry3Mk0epKwJrN3yHgAIt0K1yxx492+UYwyQiYuREvHgw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=garyguo.net smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p50pjUC6rikvdXW+PJ6DnJzTC9Z5+24IkyFXfJc/hEk=;
- b=hSDNM//mNRVHWVxIoq1vxOz+5S2lnJQiNh6+s6DtAxWfSmZip/N/wPrb+IvItI37subpHUJE41fsnO3n8bUXB0OiGw/FZW2HnUa//xfKnngJie4xA0tjXn5MFF5736MhcyqhKwbxeURo8sGVROnh44eDHmA64botOdNJ5te4vgsxKvbtDDovQpAUaRDhLYcqAMhaLIUjsV8o8SbncSmmd3A9URQjwQigyDNRKUVQ8/RkO/tnNdyC//Q7V6MPZdbm2XGAhLIIFrczVCQ+W1jMpyoahtJx5HF2J+mx7H4X6iZPdR9r69XD7KHYWhFq+pqMKr6trMHjDapQYUoyIOCQtg==
-Received: from BN9PR03CA0365.namprd03.prod.outlook.com (2603:10b6:408:f7::10)
- by CH3PR12MB8511.namprd12.prod.outlook.com (2603:10b6:610:15c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Tue, 3 Feb
- 2026 22:48:40 +0000
-Received: from BN1PEPF00004683.namprd03.prod.outlook.com
- (2603:10b6:408:f7:cafe::f5) by BN9PR03CA0365.outlook.office365.com
- (2603:10b6:408:f7::10) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.16 via Frontend Transport; Tue,
- 3 Feb 2026 22:48:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN1PEPF00004683.mail.protection.outlook.com (10.167.243.89) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Tue, 3 Feb 2026 22:48:39 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Feb
- 2026 14:48:15 -0800
-Received: from ttabi.nvidia.com (10.126.230.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Tue, 3 Feb
- 2026 14:48:13 -0800
-From: Timur Tabi <ttabi@nvidia.com>
-To: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>,
-	<mmaurer@google.com>, Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
-	<acourbot@nvidia.com>, John Hubbard <jhubbard@nvidia.com>, Joel Fernandes
-	<joelagnelf@nvidia.com>, <nouveau@lists.freedesktop.org>,
-	<rust-for-linux@vger.kernel.org>
-Subject: [PATCH v7 6/7] gpu: nova-core: create debugfs root in module init
-Date: Tue, 3 Feb 2026 16:47:56 -0600
-Message-ID: <20260203224757.871729-7-ttabi@nvidia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260203224757.871729-1-ttabi@nvidia.com>
-References: <20260203224757.871729-1-ttabi@nvidia.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9634A415C6
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Feb 2026 01:32:44 +0000 (UTC)
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 24D5010E1C8
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Feb 2026 01:39:22 +0000 (UTC)
+Received: from submission (posteo.de [185.67.36.169])
+	by mout01.posteo.de (Postfix) with ESMTPS id 5944C240027
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Feb 2026 02:39:20 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.net; s=2017;
+	t=1770169160; bh=oBgqI+VBW8wZUzN9yU8OLzr9ztRwa1vmMdnAFjnoY18=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 From;
+	b=BThm3kd1OcPDdd2q0dq9JOKXewVe2eO8ffGABmX1D+7lPIGDrTTYHEmjDjSCUOtMP
+	 J/zqSHlRcxB6UfxEHQ4MY5X0ycH+1oPTrPleW2du11m5m9FRdLBVDtMj82Y6Ue2Nd8
+	 ljlZcOyBJ38dabldthvqYobHhDS7EhaiJs0VjaePUIw6BriioxAZMA4yr5Xbm35vbP
+	 /8CJk57Cua0s2+dkKm/lJjGJJqemmfArTGN+XUiaOG15EevaNvFMU7jr+uYOnmW7ws
+	 kAnhBT1qvsUYauJXbTkMPPBeGru3n2c3XQU0PztojhoIqm3x8bX5NxquPwgWYg1Lnl
+	 c0bGA6zyECm3A==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4f5NLY5y2Mz9rxF;
+	Wed,  4 Feb 2026 02:39:17 +0100 (CET)
+From: Charalampos Mitrodimas <charmitro@posteo.net>
+To: y.j3ms.n@gmail.com
+Subject: Re: [PATCH v5 2/4] rust: macros: add derive macro for `TryFrom`
+In-Reply-To: <20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com>
+References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
+	<20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com>
+Date: Wed, 04 Feb 2026 01:39:19 +0000
+Message-ID: <87h5rxuw1n.fsf@posteo.net>
 MIME-Version: 1.0
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.126.230.35]
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF00004683:EE_|CH3PR12MB8511:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c770118-3b8d-4351-4182-08de63765fc4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|36860700013|82310400026|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?J1RIwHxKL7/SWOBWdzm9Qu9PRVhpA0bB7MwPlXyWygKHzIgv/KHZDH6gqnp5?=
- =?us-ascii?Q?S5isx0rGPnjsHkgO0L83QI4EbaTj3Fnzd4MmYGJRXFzeMwoJZsmRZtVvgkqA?=
- =?us-ascii?Q?wtRV1+BR+zVqsPPU8J4Oib9ajkZ1CxudSHdDIIRzKeTPHmL5h4B2qgayFUVM?=
- =?us-ascii?Q?zmGpiIoinW1W0ujY/QKGeuU8na+rSOivFdfhBXLpp9ge0LLBEHjS5xiia24b?=
- =?us-ascii?Q?gthDdoNhLgngDuxYFtW1q2kB02XOI6Nt+xdFTUoHwWmDOZNHXF7vTy3jXCNT?=
- =?us-ascii?Q?WnKIcjElh3WZ/6vguEeQwwL4gC4fmOP24Xuv0wwzeL7fgR/Eq5yKaL2MOlR+?=
- =?us-ascii?Q?u4qvnf3uoCVmhxtot2OZOdsd+ITKWwJ1VrIn9+JS3TpNR/qQrWQZG5qcWPrS?=
- =?us-ascii?Q?qKEjgDbClpu67FnDBCb1X7+n0WYNGckM8UkgwBo16HseXv8UEO4JJUjjFhkJ?=
- =?us-ascii?Q?emEd18UdZ8yEx0YrX7ktSfMSfFaozh362ILpLqOuBnkMYs6lajcAwXPreD9I?=
- =?us-ascii?Q?OI+IPPSRcgx857oriC1pObUiPLXzwFIJN2DB+TpAFTCovheD9XlssHg8wVgV?=
- =?us-ascii?Q?iVNpcZi63hsphpJZ6wNJT/3EDWC15aq5KMZqD0AR51qKUNvp9Ub1/ePxArq7?=
- =?us-ascii?Q?ESdrR4IJijYNguW1Z4NqBa4Q0g8qP/c2nxq2cksM+OCcFjW4x6VtPgZl/Jzx?=
- =?us-ascii?Q?dYBYSpo+C5rlIkk+rG+e8iZNvxU8pzC4dVkED/UyIHCebcRIf+QiIwAUgxiz?=
- =?us-ascii?Q?v9kWaWgT6juA6p7NadPusolpxbh1R4GzNqbgR54eZNZZiWcdeiLn2aK+EGlu?=
- =?us-ascii?Q?KqLFAnwlVRQyAKRyYKtTwKA9YEOsuL5uQqXJ5gUVgKWbg8xOukcUXDX0VEos?=
- =?us-ascii?Q?SNk6Zl9LgMFt9177yXX91Q0xVRBxV2kJ+vIe9xx9rXuzeeZsRBs/+oQE4iEn?=
- =?us-ascii?Q?SdcYmgWBe2Q5cPIjienEeiSBA7ImrHzE7GcwQ4m9ZZyBm3WOOAR87tQn5uZp?=
- =?us-ascii?Q?3xtTtkEHMEqahM7XrvKwEYBb+y1iuZQQZ8vTQLcBpfchDK6gx7Fd3UL0L0l8?=
- =?us-ascii?Q?Nj+DF+7j8BjwoieV4vwuKq8H8UPVRg084EhDShnYa8KDZs+LFjEfuN/wC/Sx?=
- =?us-ascii?Q?sJGJ5o1oiJWEtvNDX/rN8IBBvWVC6TzJm7x8NXE7/AkEsucAT2ZAQvTjZH+N?=
- =?us-ascii?Q?hnwpTeGjv9CeEyQj0/p7MWV0WPSnl4hqipGOlc/uOtEUwL9L0LJIx1tU10JT?=
- =?us-ascii?Q?FwfrHbs5SygMiJxHZ3kynOQeKfg9Z6uCGFbJ68ErBJZIUrz3Ao9B+19zlTqS?=
- =?us-ascii?Q?P9iZEpHAl0N8VPHlmV0WLKSWiE7v2o2O0Zk3k1J62KoXyY1QX7PJANnFC+Xx?=
- =?us-ascii?Q?LyfBV9T62zCaP96qEuJY/U90xfYpFJmS4NUUmpnNi/UJjzMw45aaNpEN3EjI?=
- =?us-ascii?Q?SGNMnWqV+OnJqvhtwwuCsFZZ4u8CpZykfpoDCWiY/l/uGTbPjR9Gj3FOaoEA?=
- =?us-ascii?Q?9g/WCb8tqZDYxYINVmE77H+hoVuk8rn9WTZ4unLLZKRFe2K8s2LphmVf/bfu?=
- =?us-ascii?Q?JybbfcToxHJfqJxyv6CZ/aHqDC9WPuI5BWr2vCMog12HZNj01vcVekjiVOE5?=
- =?us-ascii?Q?298u4Urs9kpb1xEt6ERFh6+JE2Xahef5tbOoQEzZ7X5a97ctTILmFIKHWK1W?=
- =?us-ascii?Q?Plwsgg=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	I3d9eueZXbD00C8Ez1MbZRsAxPBvKQErmHKRAidZg37ROCmzwsgjEPrlB+GzywBICFARVfSxGuvpGoYhzGBgPcJmC/cLzUilfpCO9UkW2iUZERPe7P49WY6OakK9rOeA2yFujJ2+65tg/J1jaqalCCHASoZaJA/W5RiEVOaASG2zsUpkf7z1m+yKC0jy5DGq7++r0Bpo7ocdHEfWeJuePygaCkL/Oxa91OV2XLlM8HBMzGyz0wg6nzj3L8mYrNeH12Sw0gYjIEF9fcDdecA/ohdb2VzfkgfUsd3nZ6TKFmaphkABVUmVngxSSLpcIaid5bt7RaPd9evKzQ1wT8L90MIga9ja6dawaw7iIRevv7i4qIk0t5CM5MvVDAXFHFHVjIMM8tUg0nXxdrTKOW7I/4bigK8EBFOPw/u39hIHEblS1JCksnn4gF50dY8gQhui
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Feb 2026 22:48:39.5217
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8c770118-3b8d-4351-4182-08de63765fc4
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	BN1PEPF00004683.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8511
-Message-ID-Hash: FWW47JP2Y33WF5XB2D6BYJ4WO2WHBVGA
-X-Message-ID-Hash: FWW47JP2Y33WF5XB2D6BYJ4WO2WHBVGA
-X-MailFrom: ttabi@nvidia.com
-X-Mailman-Rule-Hits: member-moderation
+Message-ID-Hash: JYXB5MOZ36WM7UW4CP7FI36RASIYVVV3
+X-Message-ID-Hash: JYXB5MOZ36WM7UW4CP7FI36RASIYVVV3
+X-MailFrom: charmitro@posteo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address
+ loop; banned-address; member-moderation
+CC: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?Q?Bj=C3=B6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FWW47JP2Y33WF5XB2D6BYJ4WO2WHBVGA/>
-Archived-At: 
- <https://lore.freedesktop.org/20260203224757.871729-7-ttabi@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JYXB5MOZ36WM7UW4CP7FI36RASIYVVV3/>
+Archived-At: <https://lore.freedesktop.org/87h5rxuw1n.fsf@posteo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,72 +106,351 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Create the 'nova_core' root debugfs entry when the driver loads.
+Jesung Yang via B4 Relay <devnull+y.j3ms.n.gmail.com@kernel.org> writes:
 
-Normally, non-const global variables need to be protected by a
-mutex.  Instead, we use unsafe code, as we know the entry is never
-modified after the driver is loaded.  This solves the lifetime
-issue of the mutex guard, which would otherwise have required the
-use of `pin_init_scope`.
+> From: Jesung Yang <y.j3ms.n@gmail.com>
+>
+> Introduce a procedural macro `TryFrom` to automatically implement the
+> `TryFrom` trait for unit-only enums.
+>
+> This reduces boilerplate in cases where numeric values need to be
+> interpreted as relevant enum variants. This situation often arises when
+> working with low-level data sources. A typical example is the `Chipset`
+> enum in nova-core, where the value read from a GPU register should be
+> mapped to a corresponding variant.
+>
+> The macro not only supports primitive types such as `bool` or `i8`, but
+> also `Bounded`, a wrapper around integer types limiting the number of
+> bits usable for value representation. This accommodates the shift toward
+> more restrictive register field representations in nova-core where
+> values are constrained to specific bit ranges.
+>
+> Signed-off-by: Jesung Yang <y.j3ms.n@gmail.com>
+> ---
+>  rust/macros/convert.rs |  64 ++++++++++++++++++
+>  rust/macros/lib.rs     | 176 +++++++++++++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 240 insertions(+)
+>
+> diff --git a/rust/macros/convert.rs b/rust/macros/convert.rs
+> index 096e3c9fdc1b..a7a43b1a2caf 100644
+> --- a/rust/macros/convert.rs
+> +++ b/rust/macros/convert.rs
+> @@ -34,6 +34,10 @@ pub(crate) fn derive_into(input: DeriveInput) -> syn::Result<TokenStream> {
+>      derive(DeriveTarget::Into, input)
+>  }
+>  
+> +pub(crate) fn derive_try_from(input: DeriveInput) -> syn::Result<TokenStream> {
+> +    derive(DeriveTarget::TryFrom, input)
+> +}
+> +
+>  fn derive(target: DeriveTarget, input: DeriveInput) -> syn::Result<TokenStream> {
+>      let data_enum = match input.data {
+>          Data::Enum(data) => data,
+> @@ -129,18 +133,21 @@ fn derive(target: DeriveTarget, input: DeriveInput) -> syn::Result<TokenStream>
+>  #[derive(Clone, Copy, Debug)]
+>  enum DeriveTarget {
+>      Into,
+> +    TryFrom,
+>  }
+>  
+>  impl DeriveTarget {
+>      fn get_trait_name(&self) -> &'static str {
+>          match self {
+>              Self::Into => "Into",
+> +            Self::TryFrom => "TryFrom",
+>          }
+>      }
+>  
+>      fn get_helper_name(&self) -> &'static str {
+>          match self {
+>              Self::Into => "into",
+> +            Self::TryFrom => "try_from",
+>          }
+>      }
+>  }
+> @@ -186,6 +193,7 @@ fn derive_for_enum(
+>  ) -> TokenStream {
+>      let impl_fn = match target {
+>          DeriveTarget::Into => impl_into,
+> +        DeriveTarget::TryFrom => impl_try_from,
+>      };
+>  
+>      let qualified_repr_ty: syn::Path = parse_quote! { ::core::primitive::#repr_ty };
+> @@ -238,6 +246,54 @@ fn from(#param: #enum_ident) -> #input_ty {
+>          }
+>      }
+>  
+> +    fn impl_try_from(
+> +        enum_ident: &Ident,
+> +        variants: &[Ident],
+> +        repr_ty: &syn::Path,
+> +        input_ty: &ValidTy,
+> +    ) -> TokenStream {
+> +        let param = Ident::new("value", Span::call_site());
+> +
+> +        let overflow_assertion = emit_overflow_assert(enum_ident, variants, repr_ty, input_ty);
+> +        let emit_cast = |variant| {
+> +            let variant = ::quote::quote! { #enum_ident::#variant };
+> +            match input_ty {
+> +                ValidTy::Bounded(inner) => {
+> +                    let base_ty = inner.emit_qualified_base_ty();
+> +                    let expr = parse_quote! { #variant as #base_ty };
+> +                    inner.emit_new(&expr)
+> +                }
+> +                ValidTy::Primitive(ident) if ident == "bool" => {
+> +                    ::quote::quote! { ((#variant as #repr_ty) == 1) }
+> +                }
+> +                qualified @ ValidTy::Primitive(_) => ::quote::quote! { #variant as #qualified },
+> +            }
+> +        };
+> +
+> +        let clauses = variants.iter().map(|variant| {
+> +            let cast = emit_cast(variant);
+> +            ::quote::quote! {
+> +                if #param == #cast {
+> +                    ::core::result::Result::Ok(#enum_ident::#variant)
+> +                } else
+> +            }
+> +        });
+> +
+> +        ::quote::quote! {
+> +            #[automatically_derived]
+> +            impl ::core::convert::TryFrom<#input_ty> for #enum_ident {
+> +                type Error = ::kernel::prelude::Error;
+> +                fn try_from(#param: #input_ty) -> Result<#enum_ident, Self::Error> {
+> +                    #overflow_assertion
+> +
+> +                    #(#clauses)* {
+> +                        ::core::result::Result::Err(::kernel::prelude::EINVAL)
 
-Signed-off-by: Timur Tabi <ttabi@nvidia.com>
----
- drivers/gpu/nova-core/nova_core.rs | 25 +++++++++++++++++++++++++
- 1 file changed, 25 insertions(+)
+What happens if we need a different error type here? For example, a
+quick look around in nova-core's "Chipset" enum, an unrecognized chipset
+ID warrants ENODEV rather than EINVAL, since it's about device
+identification.
 
-diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-index 80ecbb50ec82..c0864be2c156 100644
---- a/drivers/gpu/nova-core/nova_core.rs
-+++ b/drivers/gpu/nova-core/nova_core.rs
-@@ -3,6 +3,7 @@
- //! Nova Core GPU Driver
- 
- use kernel::{
-+    debugfs,
-     driver::Registration,
-     pci,
-     prelude::*,
-@@ -27,16 +28,40 @@
- 
- pub(crate) const MODULE_NAME: &kernel::str::CStr = <LocalModule as kernel::ModuleMetadata>::NAME;
- 
-+// FIXME: Move this into per-module data once that exists
-+static mut DEBUGFS_ROOT: Option<debugfs::Dir> = None;
-+
-+/// Guard that clears DEBUGFS_ROOT when dropped.
-+struct DebugfsRootGuard;
-+
-+impl Drop for DebugfsRootGuard {
-+    fn drop(&mut self) {
-+        // SAFETY: This guard is dropped after _driver (due to field order),
-+        // so the driver is unregistered and no probe() can be running.
-+        unsafe { DEBUGFS_ROOT = None };
-+    }
-+}
-+
- #[pin_data]
- struct NovaCoreModule {
-+    // Fields are dropped in declaration order, so _driver is dropped first,
-+    // then _debugfs_guard clears DEBUGFS_ROOT.
-     #[pin]
-     _driver: Registration<pci::Adapter<driver::NovaCore>>,
-+    _debugfs_guard: DebugfsRootGuard,
- }
- 
- impl InPlaceModule for NovaCoreModule {
-     fn init(module: &'static kernel::ThisModule) -> impl PinInit<Self, Error> {
-+        let dir = debugfs::Dir::new(kernel::c_str!("nova_core"));
-+
-+        // SAFETY: We are the only driver code running during init, so there
-+        // cannot be any concurrent access to `DEBUGFS_ROOT`.
-+        unsafe { DEBUGFS_ROOT = Some(dir) };
-+
-         try_pin_init!(Self {
-             _driver <- Registration::new(MODULE_NAME, module),
-+            _debugfs_guard: DebugfsRootGuard,
-         })
-     }
- }
--- 
-2.52.0
+Not sure if it fits the design, just wondering if this flexibility would
+be useful, but would something like an optional
 
+    error = <ERROR>
+
+in the
+
+   #[try_from(...)]
+
+attribute make sense? e.g.
+
+   #[try_from(u32, error = ENODEV)]
+
+defaulting ofcourse to EINVAL if unspecified.
+
+--
+C. Mitrodimas
+
+> +                    }
+> +                }
+> +            }
+> +        }
+> +    }
+> +
+>      fn emit_overflow_assert(
+>          enum_ident: &Ident,
+>          variants: &[Ident],
+> @@ -360,6 +416,14 @@ fn emit_from_expr(&self, expr: &Expr) -> TokenStream {
+>          }
+>      }
+>  
+> +    fn emit_new(&self, expr: &Expr) -> TokenStream {
+> +        let Self { base_ty, bits, .. } = self;
+> +        let qualified_name: syn::Path = parse_str(Self::QUALIFIED_NAME).expect("valid path");
+> +        ::quote::quote! {
+> +            #qualified_name::<#base_ty, #bits>::new::<{ #expr }>()
+> +        }
+> +    }
+> +
+>      fn emit_qualified_base_ty(&self) -> TokenStream {
+>          let base_ty = &self.base_ty;
+>          ::quote::quote! { ::core::primitive::#base_ty }
+> diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+> index 8842067d1017..893adecb9080 100644
+> --- a/rust/macros/lib.rs
+> +++ b/rust/macros/lib.rs
+> @@ -657,3 +657,179 @@ pub fn derive_into(input: TokenStream) -> TokenStream {
+>          .unwrap_or_else(syn::Error::into_compile_error)
+>          .into()
+>  }
+> +
+> +/// A derive macro for generating an implementation of the [`TryFrom`] trait.
+> +///
+> +/// This macro automatically derives the [`TryFrom`] trait for a given enum. Currently,
+> +/// it only supports [unit-only enum]s.
+> +///
+> +/// [unit-only enum]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.unit-only
+> +///
+> +/// # Notes
+> +///
+> +/// - The macro generates [`TryFrom`] implementations that:
+> +///   - Return `Ok(VARIANT)` when the input corresponds to a variant.
+> +///   - Return `Err(EINVAL)` when the input does not correspond to any variant.
+> +///     (where `EINVAL` is from [`kernel::error::code`]).
+> +///
+> +/// - The macro uses the `try_from` custom attribute or `repr` attribute to generate
+> +///   [`TryFrom`] implementations. `try_from` always takes precedence over `repr`.
+> +///
+> +/// - Currently, the macro does not support `repr(C)` fieldless enums since the actual
+> +///   representation of discriminants is defined by rustc internally, and documentation
+> +///   around it is not yet settled. See [Rust issue #124403] and [Rust PR #147017]
+> +///   for more information.
+> +///
+> +/// - The macro generates a compile-time assertion for every variant to ensure its
+> +///   discriminant value fits within the type being converted from.
+> +///
+> +/// [`kernel::error::code`]: ../kernel/error/code/index.html
+> +/// [Rust issue #124403]: https://github.com/rust-lang/rust/issues/124403
+> +/// [Rust PR #147017]: https://github.com/rust-lang/rust/pull/147017
+> +///
+> +/// # Supported types in `#[try_from(...)]`
+> +///
+> +/// - [`bool`]
+> +/// - Primitive integer types (e.g., [`i8`], [`u8`])
+> +/// - [`Bounded`]
+> +///
+> +/// [`Bounded`]: ../kernel/num/bounded/struct.Bounded.html
+> +///
+> +/// # Examples
+> +///
+> +/// ## Without Attributes
+> +///
+> +/// Since [the default `Rust` representation uses `isize` for the discriminant type][repr-rust],
+> +/// the macro implements `TryFrom<isize>`:
+> +///
+> +/// [repr-rust]: https://doc.rust-lang.org/reference/items/enumerations.html#r-items.enum.discriminant.repr-rust
+> +///
+> +/// ```rust
+> +/// # use kernel::prelude::*;
+> +/// use kernel::macros::TryFrom;
+> +///
+> +/// #[derive(Debug, Default, PartialEq, TryFrom)]
+> +/// enum Foo {
+> +///     #[default]
+> +///     A,
+> +///     B = 0x7,
+> +/// }
+> +///
+> +/// assert_eq!(Err(EINVAL), Foo::try_from(-1_isize));
+> +/// assert_eq!(Ok(Foo::A), Foo::try_from(0_isize));
+> +/// assert_eq!(Ok(Foo::B), Foo::try_from(0x7_isize));
+> +/// assert_eq!(Err(EINVAL), Foo::try_from(0x8_isize));
+> +/// ```
+> +///
+> +/// ## With `#[repr(T)]`
+> +///
+> +/// The macro implements `TryFrom<T>`:
+> +///
+> +/// ```rust
+> +/// # use kernel::prelude::*;
+> +/// use kernel::macros::TryFrom;
+> +///
+> +/// #[derive(Debug, Default, PartialEq, TryFrom)]
+> +/// #[repr(u8)]
+> +/// enum Foo {
+> +///     #[default]
+> +///     A,
+> +///     B = 0x7,
+> +/// }
+> +///
+> +/// assert_eq!(Ok(Foo::A), Foo::try_from(0_u8));
+> +/// assert_eq!(Ok(Foo::B), Foo::try_from(0x7_u8));
+> +/// assert_eq!(Err(EINVAL), Foo::try_from(0x8_u8));
+> +/// ```
+> +///
+> +/// ## With `#[try_from(...)]`
+> +///
+> +/// The macro implements `TryFrom<T>` for each `T` specified in `#[try_from(...)]`,
+> +/// which always overrides `#[repr(...)]`:
+> +///
+> +/// ```rust
+> +/// # use kernel::prelude::*;
+> +/// use kernel::{
+> +///     macros::TryFrom,
+> +///     num::Bounded, //
+> +/// };
+> +///
+> +/// #[derive(Debug, Default, PartialEq, TryFrom)]
+> +/// #[try_from(bool, i16, Bounded<u8, 4>)]
+> +/// #[repr(u8)]
+> +/// enum Foo {
+> +///     #[default]
+> +///     A,
+> +///     B,
+> +/// }
+> +///
+> +/// assert_eq!(Err(EINVAL), Foo::try_from(-1_i16));
+> +/// assert_eq!(Ok(Foo::A), Foo::try_from(0_i16));
+> +/// assert_eq!(Ok(Foo::B), Foo::try_from(1_i16));
+> +/// assert_eq!(Err(EINVAL), Foo::try_from(2_i16));
+> +///
+> +/// assert_eq!(Ok(Foo::A), Foo::try_from(false));
+> +/// assert_eq!(Ok(Foo::B), Foo::try_from(true));
+> +///
+> +/// assert_eq!(Ok(Foo::A), Foo::try_from(Bounded::<u8, 4>::new::<0>()));
+> +/// assert_eq!(Ok(Foo::B), Foo::try_from(Bounded::<u8, 4>::new::<1>()));
+> +/// ```
+> +///
+> +/// ## Compile-time Overflow Assertion
+> +///
+> +/// The following examples do not compile:
+> +///
+> +/// ```compile_fail
+> +/// # use kernel::macros::TryFrom;
+> +/// #[derive(TryFrom)]
+> +/// #[try_from(u8)]
+> +/// enum Foo {
+> +///     // `256` is larger than `u8::MAX`.
+> +///     A = 256,
+> +/// }
+> +/// ```
+> +///
+> +/// ```compile_fail
+> +/// # use kernel::macros::TryFrom;
+> +/// #[derive(TryFrom)]
+> +/// #[try_from(u8)]
+> +/// enum Foo {
+> +///     // `-1` cannot be represented with `u8`.
+> +///     A = -1,
+> +/// }
+> +/// ```
+> +///
+> +/// ## Unsupported Cases
+> +///
+> +/// The following examples do not compile:
+> +///
+> +/// ```compile_fail
+> +/// # use kernel::macros::TryFrom;
+> +/// // Tuple-like enums or struct-like enums are not allowed.
+> +/// #[derive(TryFrom)]
+> +/// enum Foo {
+> +///     A(u8),
+> +///     B { inner: u8 },
+> +/// }
+> +/// ```
+> +///
+> +/// ```compile_fail
+> +/// # use kernel::macros::TryFrom;
+> +/// // Structs are not allowed.
+> +/// #[derive(TryFrom)]
+> +/// struct Foo(u8);
+> +/// ```
+> +///
+> +/// ```compile_fail
+> +/// # use kernel::macros::TryFrom;
+> +/// // `repr(C)` enums are not allowed.
+> +/// #[derive(TryFrom)]
+> +/// struct Foo(u8)
+> +/// ```
+> +#[proc_macro_derive(TryFrom, attributes(try_from))]
+> +pub fn derive_try_from(input: TokenStream) -> TokenStream {
+> +    let input = parse_macro_input!(input as DeriveInput);
+> +    convert::derive_try_from(input)
+> +        .unwrap_or_else(syn::Error::into_compile_error)
+> +        .into()
+> +}
