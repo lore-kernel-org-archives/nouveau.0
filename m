@@ -4,158 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE04BECD9A6
-	for <nouveau@archiver.kernel.org>; Thu,  5 Feb 2026 21:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D57DECD9A6
+	for <nouveau@archiver.kernel.org>; Thu,  5 Feb 2026 21:06:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A4B5410E14F;
-	Thu,  5 Feb 2026 21:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3051D10E0D9;
+	Thu,  5 Feb 2026 21:06:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="S0IbEztV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YesdNVkY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F2FAF41B47;
-	Thu,  5 Feb 2026 20:51:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 72BE941A0C;
+	Thu,  5 Feb 2026 20:57:12 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770324687;
- b=PvC4gcJU9/r2XGXhHO6CXvO4XTy6bcAnj8JkkyEtaga+AFXa40OAAgniT+Q4q8v14cOI7
- KoB3WScwrY9kA+FbVx1u/wKee3pXCWdK9wRDQKGOX2lKl3kc2w1d9eCBEsiSC1kpvq5RU7+
- r7oi8Kr3ZNEIZkPvSwZSK1P0ARZxoO58jhF6fuJLvFtWZ8wIQpZXXd7kflrZH0jvmgXKsZk
- 8yMUsu3xijOY29Fbr13E8HHAc+4ItASyg60WKu0z+em7Vy1CrPYLOMA8NmIS55Zwoj996Qe
- 0KqfGDm85orROfL6cmqHQjr0WZoABqd7uhwQpidkcG6MdzfpxnfJPTQCpwyA==
+ s=20240201; t=1770325032;
+ b=E2z/7qIQHs91exd3cO2lOL/ZAVgjZkR6thmfVPXWwnXn1tTBxOCViflBAkThAkUMY+5/1
+ 6+l2POe2Hh+4nlLBsAgHo9i6WHDkLiAdUGfvZuFvHj+FuaHp0HI2V74868YKf2es019P8Hu
+ pUlA8Nl7I7KYq8duyQOAd8si8vSANMxetNzzhEd/luiM1TcAEpM+aHIHvpghq8Q+lmjvs5R
+ MjgiJgKQH/sDVgn40BsRIkAnvrdQv2JAzFhy5lz+UcJ2Gng+3kLnFxWirMalv11hN10igHX
+ 1kTDWJP3zX5pK9QhCwWaxUpPCnrj4wcdAHyKEtGfiHqFJ0+6fK0C4tDAorJg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770324687; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770325032; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=BMqbQ59ZEPX4CdhRYiH6E8cBHnvUegI817wkrdE94SY=;
- b=fOed/7zKqjDxRFVsnddZNN5dNVouMHxHs80ZfcZLxI6/9b2jSlneEqUeIsTYHCxqHHtRi
- beEZrZekdz/Wv60c0SsyCOlHVlJPdFDnsqDDEJr+NUaHViYjRaPGuGtCmi4phGJGbPAUz14
- JQ4ErX98haELk9zVY09EAx7GvILY3aogISxQ8FeSCRASLr11VYH4E4pmTiQImx5CJrhWaLQ
- 1q3BeHWML9U7k1GAdZ9M2gqrjDUOp9KyLDUGPG0iMXCOyQ/0moOo36MFO+a4CINRMw2z1yS
- 3O1aS8vGcJlTOSToxVo5Y7GQp9I1fm8FKqA8WUU8QRlY9DIm9Q1+CsNECwnQ==
+ bh=JGeCzKcs6APgfKInQ8fPWEO6crHr4dVIgkyVJyOIJ+U=;
+ b=i3ZUpTV+N/XY74Ewgz2Kxx8xaWuFwozJTOekMKbWkY8LjM6QZAz8/JqdAn2uCKab88Goq
+ 9UrJIzhs0vMPeuT2aDkIhq2j9EF7lbKd9DOfvjaFhXVMkzuO0p02vMtM09Q8P+RfhTSZhaf
+ sQDqvpphpDOpZ1YzDtd6ZGRxFEAzXxsRwzkPtsQ3w8VuvPJ4ep2LOAeoSg10VW2dA2Smwqy
+ KvL0gJYq60myQKzrK+ah6tDrj1RoHlQt3LyP8yQnEUmOPgBFUDmVrAa/yqqBEAFp6dB4jWZ
+ SdRPCcnS7PIO/jzX98A5/k3grurIZbhSv3LszL3xEFs0bG2NNH2MfbrVLzjA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id ED0CC402B7
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 20:51:24 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6229B10E10E
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 21:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1770325244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=BMqbQ59ZEPX4CdhRYiH6E8cBHnvUegI817wkrdE94SY=;
-	b=S0IbEztVcVhNN8/1dEt+sy8KjssmQc7358uF9fWhA/tdEGayTK+MzWk1W9pm1zc1VBwq9X
-	XfW9U1cnbBIwGUQAdhR6S4Jh9pTotCo8hoydjOJBytZc4g8WScPtEJvUutMuD3X6m/zKfX
-	JSCVPRny5YTVv2ghzsh2hA0jEh7esy0=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-33-4U33D5WGMyWAWtM-qyoxJQ-1; Thu, 05 Feb 2026 16:00:42 -0500
-X-MC-Unique: 4U33D5WGMyWAWtM-qyoxJQ-1
-X-Mimecast-MFC-AGG-ID: 4U33D5WGMyWAWtM-qyoxJQ_1770325242
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-8c881d0c617so382395085a.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3E308402CB
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 20:57:09 +0000 (UTC)
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
+ [209.85.214.174])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C50F710E0B4
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 21:06:29 +0000 (UTC)
+Received: by mail-pl1-f174.google.com with SMTP id
+ d9443c01a7336-2a9004e4239so6776305ad.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 05 Feb 2026 13:00:42 -0800 (PST)
+ Thu, 05 Feb 2026 13:06:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1770325589; x=1770930389;
+ darn=lists.freedesktop.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JGeCzKcs6APgfKInQ8fPWEO6crHr4dVIgkyVJyOIJ+U=;
+        b=YesdNVkYZqc27G4W7fg1VRvj33EDkFTOd7rbMpn9x3hgbdS3xeFTZX/97PMoebj6XI
+         xv7FTUcvhPnLOrHCShpBqyXOGbqbIkWYUaTRZZBKDzzUoQFAdmMnFhItyI7zcb7dHEdp
+         2X0ngGrwBtovf2mMj2u32RsuZ+ZZXkyHxhEfH4ukZONjdriXT3F/ryxxrU1I4Nx4ErU4
+         fTpp2egwoY18NBZEhBkY01DRa6b7hfYQrf50ObCKAcRDRWDakcNQA+kayoU6MqH4rrJG
+         g0VSB/6bjJVAM70zp+VTsCoAP88VcJ+SE7wZhyTVFOzPKXfud4DH/LiUXxArZD+88O3p
+         iRGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770325241; x=1770930041;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=BMqbQ59ZEPX4CdhRYiH6E8cBHnvUegI817wkrdE94SY=;
-        b=p05xyCPk/oGGI+aLYZ8zscqXTDFuk99OD14XSpmJivM70JYpUKqa61bEIlTZ0D6H5B
-         BWI019JgXGsZhKP2DZG2iLSQVDPf55WmOYYUjTSzXCmUGpF50OV4cIJYJ7CWYZlrdaIK
-         hAz/hIVOsVwbLYmmjM8XmC/Vk8Ehri/eqAcKV7h7B7DbKVX1m11rljAtYzREpR3vrhhW
-         J0WR/d6/RtqiJyID9uPJ3PYOeTa/mVLCW9DV5RqesbjJ8KI9e69ocUlvKV31/Jj/O0by
-         WBiCiDU+JDSt6hhTS9R7NZEHEJhYn1btKtF+L/fkEOGIapvspSa0KPd15Jl62TchAgJJ
-         yFkw==
+        d=1e100.net; s=20230601; t=1770325589; x=1770930389;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JGeCzKcs6APgfKInQ8fPWEO6crHr4dVIgkyVJyOIJ+U=;
+        b=tehYYzMFDytOpU3W1zhH3KFfrMgHG24T7ixJZWWUCFqQLAZn77felbqLKO5S3PrVnI
+         TkbwRncyDk8mJZqkgcCDLIZ8WrvHBdmI0Mlw2tjFDFhB1ProTjULWUYkZNV0mvDz+S7R
+         0xnidEcAwQ5oMcLOnxQwGCSiapL3x6ZYvMu0jCQr8xIXsfrS0bZwt3K6z2QnYmyD72+k
+         9mnSCRQ1JH1SA2d/bLtcljtSkT1onjaFyQrA9Gmg9v2xCHWFrnGMoGoDKvAqiq6Io03M
+         LKqne1IwMOh6p98tZwktWNcyduowxwDSTINl6CUFMEpjxostDHehJ3DHJLesgByW6iv7
+         2nfQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVoz1X3Rpm62NbFfaR6G0DiMedUaw8MBFRoe3AakOv0Bfg/3JveSmSD5ZzSfVQ1R03KwLSOj5W3@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxxTa6ixUA6kqC8uy/8L/cfC5MUCxYOAc2xq+3w5zplBa2heagJ
-	OJl4P3hWAivgc0nGo32zYofvbc5fjYfTKvZvMOJbb0xcRiUlfEKIzRJ6YAG8N8qMxM676zuVygR
-	nkWOIfV6p0+ngcwqRz+0cJ5qkPuxVi+Bb5BOL/6G+evf7Ga1I4k9GC+uhNc4h+G/YoWw=
-X-Gm-Gg: AZuq6aLsJ5T0Bd8yUZqt0VRB5/0kBxeSKrZLvA9aanGXYQc3dbU4qiA1yMz4tF7IUTi
-	iHcIiq6zImxIokuoo+IHhnejOiBQPNxjl4lDTXpk1RxSipYQ/w3p0OuGiUni1TpZTbPgYd6tfLD
-	+o0nn1kObbV8X+Y8qw05xjOhTuKQVUcbBytGUCZQ8nI2Gnz922KmkdKBS3PfqebPz/hLyZXJ19c
-	F3QfeSZzdn/Czjv5td1tCW0Ui4HA/D0Sy3n2IcVIOisooeXvkcMT929phbhz8MeEditlrxXwYMi
-	lqI3v02TxCMZlfRHtQSOmKPcvQqwK/LaQCEaamKlE6g9VCgoqmGt4DcAOBZS94XC2UsaoOd4AIt
-	Kc6qALz9ur9n/Mgc=
-X-Received: by 2002:a05:620a:28c5:b0:8ca:3854:8110 with SMTP id
- af79cd13be357-8caf130789cmr57431885a.72.1770325241392;
-        Thu, 05 Feb 2026 13:00:41 -0800 (PST)
-X-Received: by 2002:a05:620a:28c5:b0:8ca:3854:8110 with SMTP id
- af79cd13be357-8caf130789cmr57425985a.72.1770325240837;
-        Thu, 05 Feb 2026 13:00:40 -0800 (PST)
-Received: from [172.16.1.8] ([2607:f2c0:b010:9000:4c85:f148:4c91:943a])
+ AJvYcCW258ClzE7FKkOlae8OlFQKkvDFPVQZzsB5EjE3ukBO52TsSlQiAyhMQIxW388drehG9l4ZpeU9@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyCnYsrXHOnsFQA6L/M3+Uu7KDsQgN36QbUvrS/HhSbR2hUoc6M
+	KrqTDamOlcY1OCabz/0fxWhBz0JbN0aDcYIPmNK1rIlD7fzs5MBLHeEK
+X-Gm-Gg: AZuq6aLr4vcTQa7eyo7rU7M3uMn3VtMy+Yr14lzp9oBx4Gnb8OX82UX7g5iuL/d6N0J
+	g9O8rUtrdFBHlumN5yW7MAOy8YtiOz9NCVgZSF+PjEEDCMpzAsCSyK4aUaMpazOHHxyobRuZAdZ
+	heWy4Ekjw+CjbiVro9ZoOlwlHnrGa+z7Yy07MOAjjT45FuZQF9bPfC4fTlX2cm7zMqepTQan/EK
+	hup/7XFtqoBNjMGXTBwxjuPmbigEWJWJHhMiZjhNWbFhh117vMLXcghzz/hHUPy8QxgpWh7NaZu
+	yMUt+txz13yiT7dArJusiuBMgonz8wulYyIR+WVfBGwGrjHoiVnzKSPaZs1BfHef7lVJ8TVJmsp
+	Hha3LIfEErw57dAX3z2WCS2gFvMXPP5tSJQ7t0l+HLf0qnEnwPf05l1nMPI13NGvb0CCM3OTgTD
+	xynq1cjA==
+X-Received: by 2002:a17:902:e948:b0:2a7:b412:6cbf with SMTP id
+ d9443c01a7336-2a951951558mr4424525ad.55.1770325589187;
+        Thu, 05 Feb 2026 13:06:29 -0800 (PST)
+Received: from localhost ([112.149.32.52])
         by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8caf9fdf692sm17571285a.44.2026.02.05.13.00.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 13:00:40 -0800 (PST)
-From: Peter Colberg <pcolberg@redhat.com>
-Date: Thu, 05 Feb 2026 15:59:57 -0500
-Subject: [PATCH v2 10/10] samples: rust: add SR-IOV driver sample
-MIME-Version: 1.0
-Message-Id: <20260205-rust-pci-sriov-v2-10-ef9400c7767b@redhat.com>
-References: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
-In-Reply-To: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
-To: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ d9443c01a7336-2a951a644a6sm4076285ad.8.2026.02.05.13.06.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Feb 2026 13:06:28 -0800 (PST)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Feb 2026 06:06:24 +0900
+Message-Id: <DG7C1LYQ4SOQ.1HBJ8WH923JHW@gmail.com>
+Subject: Re: [PATCH v5 2/4] rust: macros: add derive macro for `TryFrom`
+From: "Jesung Yang" <y.j3ms.n@gmail.com>
+To: "Charalampos Mitrodimas" <charmitro@posteo.net>, <y.j3ms.n@gmail.com>
+X-Mailer: aerc 0.21.0
+References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
+ <20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com>
+ <87h5rxuw1n.fsf@posteo.net>
+In-Reply-To: <87h5rxuw1n.fsf@posteo.net>
+Message-ID-Hash: 7OKVC5XSN2U73CK23BR7Z2ZQMA5FUKWK
+X-Message-ID-Hash: 7OKVC5XSN2U73CK23BR7Z2ZQMA5FUKWK
+X-MailFrom: y.j3ms.n@gmail.com
+X-Mailman-Rule-Hits: nonmember-moderation
+X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
+ loop; banned-address; member-moderation
+CC: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
  =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
- Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
- Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
- Moritz Fischer <mdf@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>
-X-Mailer: b4 0.14.2
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: MJWTfSZ8_yKxt3qNAhKau8wm6Fq7uv5s7Et_8lzuJlI_1770325242
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: H4TAA4S2XPGEA66JE5CDQ4UPOXXAIM6O
-X-Message-ID-Hash: H4TAA4S2XPGEA66JE5CDQ4UPOXXAIM6O
-X-MailFrom: pcolberg@redhat.com
-X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-fpga@vger.kernel.org, driver-core@lists.linux.dev,
- Jason Gunthorpe <jgg@ziepe.ca>
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/H4TAA4S2XPGEA66JE5CDQ4UPOXXAIM6O/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7OKVC5XSN2U73CK23BR7Z2ZQMA5FUKWK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260205-rust-pci-sriov-v2-10-ef9400c7767b@redhat.com/>
+ <https://lore.freedesktop.org/DG7C1LYQ4SOQ.1HBJ8WH923JHW@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -165,204 +143,91 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add a new SR-IOV driver sample that demonstrates how to enable and
-disable the Single Root I/O Virtualization capability for a PCI device.
+On Wed Feb 4, 2026 at 10:39 AM KST, Charalampos Mitrodimas wrote:
+> Jesung Yang via B4 Relay <devnull+y.j3ms.n.gmail.com@kernel.org> writes:
+[...]
+>> +    fn impl_try_from(
+>> +        enum_ident: &Ident,
+>> +        variants: &[Ident],
+>> +        repr_ty: &syn::Path,
+>> +        input_ty: &ValidTy,
+>> +    ) -> TokenStream {
+>> +        let param =3D Ident::new("value", Span::call_site());
+>> +
+>> +        let overflow_assertion =3D emit_overflow_assert(enum_ident, var=
+iants, repr_ty, input_ty);
+>> +        let emit_cast =3D |variant| {
+>> +            let variant =3D ::quote::quote! { #enum_ident::#variant };
+>> +            match input_ty {
+>> +                ValidTy::Bounded(inner) =3D> {
+>> +                    let base_ty =3D inner.emit_qualified_base_ty();
+>> +                    let expr =3D parse_quote! { #variant as #base_ty };
+>> +                    inner.emit_new(&expr)
+>> +                }
+>> +                ValidTy::Primitive(ident) if ident =3D=3D "bool" =3D> {
+>> +                    ::quote::quote! { ((#variant as #repr_ty) =3D=3D 1)=
+ }
+>> +                }
+>> +                qualified @ ValidTy::Primitive(_) =3D> ::quote::quote! =
+{ #variant as #qualified },
+>> +            }
+>> +        };
+>> +
+>> +        let clauses =3D variants.iter().map(|variant| {
+>> +            let cast =3D emit_cast(variant);
+>> +            ::quote::quote! {
+>> +                if #param =3D=3D #cast {
+>> +                    ::core::result::Result::Ok(#enum_ident::#variant)
+>> +                } else
+>> +            }
+>> +        });
+>> +
+>> +        ::quote::quote! {
+>> +            #[automatically_derived]
+>> +            impl ::core::convert::TryFrom<#input_ty> for #enum_ident {
+>> +                type Error =3D ::kernel::prelude::Error;
+>> +                fn try_from(#param: #input_ty) -> Result<#enum_ident, S=
+elf::Error> {
+>> +                    #overflow_assertion
+>> +
+>> +                    #(#clauses)* {
+>> +                        ::core::result::Result::Err(::kernel::prelude::=
+EINVAL)
+>
+> What happens if we need a different error type here? For example, a
+> quick look around in nova-core's "Chipset" enum, an unrecognized chipset
+> ID warrants ENODEV rather than EINVAL, since it's about device
+> identification.
+>
+> Not sure if it fits the design, just wondering if this flexibility would
+> be useful, but would something like an optional
+>
+>     error =3D <ERROR>
+>
+> in the
+>
+>    #[try_from(...)]
+>
+> attribute make sense? e.g.
+>
+>    #[try_from(u32, error =3D ENODEV)]
+>
+> defaulting ofcourse to EINVAL if unspecified.
 
-The sample may be exercised using QEMU's 82576 (igb) emulation.
+I believe this is indeed a desired change.
 
-Link: https://www.qemu.org/docs/master/system/devices/igb.html
-Signed-off-by: Peter Colberg <pcolberg@redhat.com>
----
-Changes in v2:
-- Use "kernel vertical" style on imports.
-- Demonstrate how to reach driver data of PF device from VF device.
----
- MAINTAINERS                       |   1 +
- samples/rust/Kconfig              |  11 ++++
- samples/rust/Makefile             |   1 +
- samples/rust/rust_driver_sriov.rs | 127 ++++++++++++++++++++++++++++++++++++++
- 4 files changed, 140 insertions(+)
+Back in September, an RFC [1] using the same API (i.e., without error
+customization) was sent; I took a quick look at the time and felt
+everything was OK, but in hindsight, the need for this flexibility is
+clear.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b277baee5eb6725b3a5126cefb6eef6190b02413..96dffd777c24473063baaeda017f64b15e8c0ab9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20242,6 +20242,7 @@ F:	rust/helpers/pci.c
- F:	rust/kernel/pci.rs
- F:	rust/kernel/pci/
- F:	samples/rust/rust_driver_pci.rs
-+F:	samples/rust/rust_driver_sriov.rs
- 
- PCIE BANDWIDTH CONTROLLER
- M:	Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
-diff --git a/samples/rust/Kconfig b/samples/rust/Kconfig
-index c49ab910634596aea4a1a73dac87585e084f420a..f244df89c4fc9d741915f581de76107e8eb0121b 100644
---- a/samples/rust/Kconfig
-+++ b/samples/rust/Kconfig
-@@ -128,6 +128,17 @@ config SAMPLE_RUST_DRIVER_PLATFORM
- 
- 	  If unsure, say N.
- 
-+config SAMPLE_RUST_DRIVER_SRIOV
-+	tristate "SR-IOV Driver"
-+	depends on PCI_IOV
-+	help
-+	  This option builds the Rust SR-IOV driver sample.
-+
-+	  To compile this as a module, choose M here:
-+	  the module will be called rust_driver_sriov.
-+
-+	  If unsure, say N.
-+
- config SAMPLE_RUST_DRIVER_USB
- 	tristate "USB Driver"
- 	depends on USB = y
-diff --git a/samples/rust/Makefile b/samples/rust/Makefile
-index 6c0aaa58ccccfd12ef019f68ca784f6d977bc668..19d700f8210151e298cc049dacc249a121d0f2c4 100644
---- a/samples/rust/Makefile
-+++ b/samples/rust/Makefile
-@@ -11,6 +11,7 @@ obj-$(CONFIG_SAMPLE_RUST_DRIVER_I2C)		+= rust_driver_i2c.o
- obj-$(CONFIG_SAMPLE_RUST_I2C_CLIENT)		+= rust_i2c_client.o
- obj-$(CONFIG_SAMPLE_RUST_DRIVER_PCI)		+= rust_driver_pci.o
- obj-$(CONFIG_SAMPLE_RUST_DRIVER_PLATFORM)	+= rust_driver_platform.o
-+obj-$(CONFIG_SAMPLE_RUST_DRIVER_SRIOV)		+= rust_driver_sriov.o
- obj-$(CONFIG_SAMPLE_RUST_DRIVER_USB)		+= rust_driver_usb.o
- obj-$(CONFIG_SAMPLE_RUST_DRIVER_FAUX)		+= rust_driver_faux.o
- obj-$(CONFIG_SAMPLE_RUST_DRIVER_AUXILIARY)	+= rust_driver_auxiliary.o
-diff --git a/samples/rust/rust_driver_sriov.rs b/samples/rust/rust_driver_sriov.rs
-new file mode 100644
-index 0000000000000000000000000000000000000000..84d057629c7b03d743179a4e05ccc092f814bf6b
---- /dev/null
-+++ b/samples/rust/rust_driver_sriov.rs
-@@ -0,0 +1,127 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! Rust SR-IOV driver sample based on QEMU's 82576 ([igb]) emulation.
-+//!
-+//! To make this driver probe, QEMU must be run with `-device igb`.
-+//!
-+//! Further, enable [vIOMMU] with interrupt remapping using, e.g.,
-+//!
-+//! `-M q35,accel=kvm,kernel-irqchip=split -device intel-iommu,intremap=on,caching-mode=on`
-+//!
-+//! and append `intel_iommu=on` to the guest kernel arguments.
-+//!
-+//! [igb]: https://www.qemu.org/docs/master/system/devices/igb.html
-+//! [vIOMMU]: https://wiki.qemu.org/Features/VT-d
-+
-+use kernel::{
-+    device::Core,
-+    pci,
-+    prelude::*,
-+    sync::aref::ARef, //
-+};
-+
-+use core::any::TypeId;
-+
-+#[pin_data(PinnedDrop)]
-+struct SampleDriver {
-+    pdev: ARef<pci::Device>,
-+    private: TypeId,
-+}
-+
-+kernel::pci_device_table!(
-+    PCI_TABLE,
-+    MODULE_PCI_TABLE,
-+    <SampleDriver as pci::Driver>::IdInfo,
-+    [
-+        // E1000_DEV_ID_82576
-+        (pci::DeviceId::from_id(pci::Vendor::INTEL, 0x10c9), ()),
-+        // E1000_DEV_ID_82576_VF
-+        (pci::DeviceId::from_id(pci::Vendor::INTEL, 0x10ca), ())
-+    ]
-+);
-+
-+#[vtable]
-+impl pci::Driver for SampleDriver {
-+    type IdInfo = ();
-+
-+    const ID_TABLE: pci::IdTable<Self::IdInfo> = &PCI_TABLE;
-+
-+    fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, Error> {
-+        pin_init::pin_init_scope(move || {
-+            dev_info!(
-+                pdev.as_ref(),
-+                "Probe Rust SR-IOV driver sample (PCI ID: {}, 0x{:x}).\n",
-+                pdev.vendor_id(),
-+                pdev.device_id()
-+            );
-+
-+            if pdev.is_virtfn() {
-+                let physfn = pdev.physfn()?;
-+                let drvdata = physfn.as_ref().drvdata::<Self>()?;
-+
-+                assert!(physfn.is_physfn());
-+
-+                dev_info!(
-+                    pdev.as_ref(),
-+                    "Parent device is PF (PCI ID: {}, 0x{:x}).\n",
-+                    physfn.vendor_id(),
-+                    physfn.device_id()
-+                );
-+
-+                dev_info!(
-+                    pdev.as_ref(),
-+                    "We have access to the private data of {:?}.\n",
-+                    drvdata.private
-+                );
-+            }
-+
-+            pdev.enable_device_mem()?;
-+            pdev.set_master();
-+
-+            Ok(try_pin_init!(Self {
-+                pdev: pdev.into(),
-+                private: TypeId::of::<Self>()
-+            }))
-+        })
-+    }
-+
-+    fn sriov_configure(pdev: &pci::Device<Core>, nr_virtfn: i32) -> Result<i32> {
-+        assert!(pdev.is_physfn());
-+
-+        if nr_virtfn == 0 {
-+            dev_info!(
-+                pdev.as_ref(),
-+                "Disable SR-IOV (PCI ID: {}, 0x{:x}).\n",
-+                pdev.vendor_id(),
-+                pdev.device_id()
-+            );
-+            pdev.disable_sriov();
-+        } else {
-+            dev_info!(
-+                pdev.as_ref(),
-+                "Enable SR-IOV (PCI ID: {}, 0x{:x}).\n",
-+                pdev.vendor_id(),
-+                pdev.device_id()
-+            );
-+            pdev.enable_sriov(nr_virtfn)?;
-+        }
-+
-+        assert_eq!(pdev.num_vf(), nr_virtfn);
-+        Ok(nr_virtfn)
-+    }
-+}
-+
-+#[pinned_drop]
-+impl PinnedDrop for SampleDriver {
-+    fn drop(self: Pin<&mut Self>) {
-+        dev_info!(self.pdev.as_ref(), "Remove Rust SR-IOV driver sample.\n");
-+    }
-+}
-+
-+kernel::module_pci_driver! {
-+    type: SampleDriver,
-+    name: "rust_driver_sriov",
-+    authors: ["Peter Colberg"],
-+    description: "Rust SR-IOV driver",
-+    license: "GPL v2",
-+}
+Your proposed API looks good to me. Unless there are objections, I'll
+move forward with this approach.
 
--- 
-2.52.0
+Thanks!
 
+[1] https://lore.kernel.org/rust-for-linux/20250930-nova-tryfrom-v1-1-0cc1b=
+b507047@nvidia.com/
+
+Best regards,
+Jesung
