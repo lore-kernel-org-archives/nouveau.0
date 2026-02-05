@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4BCBECD9A7
-	for <nouveau@archiver.kernel.org>; Thu,  5 Feb 2026 21:00:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BEFFECD9AA
+	for <nouveau@archiver.kernel.org>; Thu,  5 Feb 2026 21:00:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3C15B10E164;
-	Thu,  5 Feb 2026 21:00:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8CDA110E15E;
+	Thu,  5 Feb 2026 21:00:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="GFpt83LN";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="S5Bnq9Zw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7FC4C41B47;
-	Thu,  5 Feb 2026 20:51:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D216741B4D;
+	Thu,  5 Feb 2026 20:51:20 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770324679;
- b=C0tolYIFQSE7nH13sUXyx2QZI3ScfXq9M4eHeMuKPyTsJKn267WgbdHYXmuj490khF1oT
- 2ZaKkoJUTsrK/mmDumjZ6KGSSisgnpRH3cY6Ki/2myxJ6vRXRXxxx7X1vMCpG8vKR7zanOh
- ylM+LyeHK6mhLYvF9LzFSquM3Q/eSevP/HMQoPERw34pBdlR67hBvsUeMwbp/lo5/y/FT3t
- F4udbD6LMx0XDo2CldGGz/ZG5NqSxdtz8Lx9BtKhHU1GrCWXsedlkxvYdqoxerkyfMiTKmx
- B+Ml6SWVUp9+5FbtMp1OCn404nfwVRvA27pTV64PhxIEYwJEAHdRePps8EyA==
+ s=20240201; t=1770324680;
+ b=bb2egcpneqSiiz5SZBTUDwjbda+SVgbiOSaJj2XRbTp1cSZ1zEnUSfGvOWlJcGQXi1p1S
+ rr/LL1CcrDz1B2JwuEYGxL2jBswmb/byenPXMeLg1T5L8t3xQjn8W5KISoNHDkpsqbcgFnR
+ fl16kVZAFooF5t/1bgij71Y/YN2hox1zrpfXx5cVoyZ1K1aJwWAZ9z0VG+iNnzhD+uEAXW8
+ bLwanb3ezkGRTc+sMwKOl86O4jzKkRUzRbKAOAPBmR/MSEA4IDqugXNXxFeyQULKW/rqRHK
+ 8u2c7O9K3sFxtBMVbJ+r6HbFAJpj4IR9Kt0oaIPw4cYIqpVCd0xv0kstTz3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770324679; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770324680; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uO9Iu/KQjA0pe5Uf917htRnrSxjGLQG0IESxKRcUlqo=;
- b=zaiz9DI/u93s2EkR7GcA88sIcPyJ8JeiQezzqYv/QI3SkfhMoEGik/w7Q1Iox35NJ6L7A
- WQz68EyHSjbWUmBtC/msscYwaMd+VDQZNF8tAqfW4d9np76R4wbiF7tESRYPcC2uQ8AtZd5
- uOs9nPn/CCE0RMS4iYTiCCZSvWYGb1z2WmNtJE0od/UR2tGMPNTtN5x6nm8u80Aot6wrqUk
- JwbY9iG7K1Bge+8GBhcnDst+lPwiMU3NyHyEzZ8WUgygE+uuTuaPYBpk/8/BBbVJaGDvYZU
- btsbXyfPTYZ/TdgxUUVrDczplu77XnYVIiTgKhxFeLAHKDTpmExw7WxWL3Mw==
+ bh=2gGPFCPOPX/fBbf5qQfZiwEzewT+3Ulk7LVkRWF8dEo=;
+ b=SKuoD5LuzomUQ9la3ocr+qXT+U92HxNQ3Bx2hIY9Su5gkE2WAypmYmmuSTE6Q4mkx5Ge1
+ i8jzerWKSKcpovwi3RWc7xPUvqc6WP/ZNtpWIsVUIxtpUCzRbzN+7ou9UVW6pkLFxW8nXyR
+ cHtKWBaPGd2dz/jAERDtBqoRMPdL4HIPvMbqyaKyqPoLIWet2gN5Nn9F8WrrmXSTIUVP9cR
+ cWMWxn0gM4fPEU91ntgrZ+gI6/v/aeGZ9IlrW2q0pp6vAeutZ814CcC8bl2TZ2MEuaBJEbb
+ KYQPyPok0rICiYpCsLZE9Wvy40AO7xIR5JniwL/jHFMNSpgF82ahjSABvsWw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,72 +46,71 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3AB3341AF5
+	by kara.freedesktop.org (Postfix) with ESMTPS id C61EE41B47
 	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 20:51:17 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A27AC10E0F5
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 21:00:37 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7A510E11E
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Feb 2026 21:00:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1770325236;
+	s=mimecast20190719; t=1770325237;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=uO9Iu/KQjA0pe5Uf917htRnrSxjGLQG0IESxKRcUlqo=;
-	b=GFpt83LNKNlnjAsuVB4/dbbHVnIBkHq+Ab7D86FL2RTudfnBj8DQ4Dzd7wpfkbpimHsw7r
-	IwXCcKDp+0PRlTpEJc6LPMh7kgOKggyDpKMZMV6u/c5RfD8YTKEFK/SJkx8DY1PIvp0nPm
-	Tl+tsnuIkVzJg1V6NzkKUSX4TYe46D8=
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+	bh=2gGPFCPOPX/fBbf5qQfZiwEzewT+3Ulk7LVkRWF8dEo=;
+	b=S5Bnq9ZwrCaHAWjhsveZG8+FeBF8WPKG05djIc2YY5sjWU6PJ0DHkEWWaVjkacvJCpynza
+	colUDhZgNV1Sk5epkD4tZQYrlGbgMatF1pFQHGAiwfNxm3ZFpsGLxkHFkuj/Bnsg5vyW12
+	s01Crg7fOXDOmkXzS14aVhhxR3PUFtM=
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-434-p_pWqad2MPuvWs-viAS7nA-1; Thu, 05 Feb 2026 16:00:34 -0500
-X-MC-Unique: p_pWqad2MPuvWs-viAS7nA-1
-X-Mimecast-MFC-AGG-ID: p_pWqad2MPuvWs-viAS7nA_1770325234
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-8c71655aa11so469328185a.3
+ us-mta-619-iuu7P6xtOYiI9ReoIgehFQ-1; Thu, 05 Feb 2026 16:00:36 -0500
+X-MC-Unique: iuu7P6xtOYiI9ReoIgehFQ-1
+X-Mimecast-MFC-AGG-ID: iuu7P6xtOYiI9ReoIgehFQ_1770325236
+Received: by mail-qk1-f198.google.com with SMTP id
+ af79cd13be357-8bb9f029f31so505693585a.2
         for <nouveau@lists.freedesktop.org>;
- Thu, 05 Feb 2026 13:00:34 -0800 (PST)
+ Thu, 05 Feb 2026 13:00:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1770325234; x=1770930034;
+        d=1e100.net; s=20230601; t=1770325236; x=1770930036;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=uO9Iu/KQjA0pe5Uf917htRnrSxjGLQG0IESxKRcUlqo=;
-        b=B1RKc+83PCr2VNh2UMawKoc5CGJ+A2qYk8AHTef0JOQRX5x2rnU7TO/P1Hec6KbD8d
-         OY0fT1IY9ZMorXR1+D6as1OgLnZqneozksTrSgoh9+GReNmtk5VdN2aINx19DI9mkjsl
-         prkLiQFkzGNhPDWYjlDm4J5xadmQr/UnjI5GK+xRM34qweq6Xdmnvcp914WF5kvimOpy
-         Ed39PO0+S0VP16HIomK5rzsu1odWiwyF7/ROpNy264v+FNV5BjBwT7TaQRuRVuuYcgzO
-         XOrfx4yla1KhycWTV0z8Dzv2dRqMYftS+yiP39JWRitRLkOmTsuuYAviNZrXAOqvPQ+Z
-         +KGQ==
+        bh=2gGPFCPOPX/fBbf5qQfZiwEzewT+3Ulk7LVkRWF8dEo=;
+        b=t3IeQOlJEADRhFwx1jEDOwfFMPQHct/aIsSi0OAf6e64DftfY2kkAviRaN9D+wHwn0
+         PktxRiolQ2cFQuJ3HV7DsSBkJOF6Pf342QxLyY9rbb+ivOtQDUOetMAK9I3gKNBmyKXA
+         zCD/PmGyHJhwLpZqtZKUOkVjZjIZTeKwpxYXbnf4Wm+w3DAA3zFX1w9mc4SoFoqw9v5K
+         d/XRe1WclQoO4l2N/8VeiP2AhONEH89ARCd42lVlqlLWlkQ+qcrp0uYJAHnt/vhBZBOw
+         s8XBcqdahrLWHSgm+yPsncKj7Pdxem/Yv0MNmsqVsrUH5IOqAf1p/mVHongLx+Etv2kd
+         u/xw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCW3R9mDDHwV0Xb730qvQ/4nuiDDX8eOHb58/U4u1qczErrdwA/IiX64q9o1/sm5niI1J3eh/RSh@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzGJMFwZwtJWYNKziwF1T676MW636ZHOgTqgdDK+2cntAsIcx59
-	xaA/ZnHgzlZ5+eOanbP2e7DONhxtw45F3SFgdRftN6w5lt1pNQiBCmP2WyfeF58jbtcxclF6+3c
-	eYoaTuxBw69cK7cfAuzWyuw1mb/y9UdBoERASeJgby58S/qb0dZktXoTKZZBJMlF23jU=
-X-Gm-Gg: AZuq6aK71vQPMiA19G9K54C/S6VH1Tn44wKCOAHS2STXzL2LvflBlBnGEwzL2d2fER4
-	QXxlYOixcf4jKmaN0DPfvaXhjZc6xTHtara3aL8mmkXQU00xdSf/xeZkxq40+bm8uCeqh58ILXd
-	BgVfKcqMarkJTGV/KKPwKRTPQtrL796tWYNK1dSURSI5yXjRY5YEUW8h7Nq5SU3TidnYyfY+3Uo
-	+Bx8XO8ST+l5VRXvHIw9TBCZ+FJiS8Jmzq96TF6S2kIciQOccfr01RSjmsMqG/Hnqwl4oc0j4y6
-	vhyB0RSe6UhzyDnzKqafx8czHIGKeg1Q9V1B95XofXIXxReAzmjqAT+o+UQx3o5yDE1qmghIvcV
-	BPU6pXPmaZ4GR2SM=
-X-Received: by 2002:a05:620a:bc9:b0:8b2:f35c:16df with SMTP id
- af79cd13be357-8caf1bc2af6mr57818085a.79.1770325232329;
-        Thu, 05 Feb 2026 13:00:32 -0800 (PST)
-X-Received: by 2002:a05:620a:bc9:b0:8b2:f35c:16df with SMTP id
- af79cd13be357-8caf1bc2af6mr57795985a.79.1770325230865;
-        Thu, 05 Feb 2026 13:00:30 -0800 (PST)
+ AJvYcCWYE5e8C9g0aHDNnne9yIVH1ZV03ealpxHdn5KHull+1sXKP+nwUeRedt5Vimb1dZVYbETDzhd3@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzYewJfEqBbjqBeKrIIRsPtWlkHIMCZOB67aq5hFkpmqVTbWP7m
+	LP9rRavbtNSe0R18N97WgRL2rzahN0i/e2Qo8BB2TyAzcoCYyr879/SXdd3vjU1WnaQa9xk2QJf
+	E5FreLY337IzGrZmyVHsR8P8JwMyoBkmjDju+3HFOTTRCUsm9mLXG9EsczjQUTj35G4U=
+X-Gm-Gg: AZuq6aLTNtCAxKA0gWC/YsXW+OqvAOXKorEEl0U2+7v2lUMSN4NE6OWuGcGtHRx/dnE
+	bVTMjohynY0bkAL6XgxLHN5ThGQP4pdMjH6IuoY0xQOn8bmi8XAgIwnzoBSo+BeaSbRYo5//2Yq
+	jMXRnsTAedaq8Bb7n2zD/zSA0duSlm3uKAkKgDK4JNPvH2QU3LnqiwHbouG+KtmSpaVYSMI9hHa
+	C9WjVPusmIGRGsR92C2WxkxjWIgDKwBWlYJtHjemIXAmneRKW5nwBHKh9Er7dzCEP0FF15bsPUS
+	APrtxLY7sqptCKFx4MipPYAHj4b3O8YfJ2VOf4xkiJ5y+SQnhJ4/qQFHZI7do7IPc+vzsyt2bUC
+	ZkzGuuO2+xI18qHg=
+X-Received: by 2002:a05:620a:1a04:b0:8ca:4438:b8f4 with SMTP id
+ af79cd13be357-8caf13fedb3mr61793485a.67.1770325235708;
+        Thu, 05 Feb 2026 13:00:35 -0800 (PST)
+X-Received: by 2002:a05:620a:1a04:b0:8ca:4438:b8f4 with SMTP id
+ af79cd13be357-8caf13fedb3mr61780085a.67.1770325234922;
+        Thu, 05 Feb 2026 13:00:34 -0800 (PST)
 Received: from [172.16.1.8] ([2607:f2c0:b010:9000:4c85:f148:4c91:943a])
         by smtp.gmail.com with ESMTPSA id
- af79cd13be357-8caf9fdf692sm17571285a.44.2026.02.05.13.00.29
+ af79cd13be357-8caf9fdf692sm17571285a.44.2026.02.05.13.00.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Feb 2026 13:00:30 -0800 (PST)
+        Thu, 05 Feb 2026 13:00:34 -0800 (PST)
 From: Peter Colberg <pcolberg@redhat.com>
-Date: Thu, 05 Feb 2026 15:59:52 -0500
-Subject: [PATCH v2 05/10] rust: pci: add bus callback sriov_configure(), to
- control SR-IOV from sysfs
+Date: Thu, 05 Feb 2026 15:59:54 -0500
+Subject: [PATCH v2 07/10] rust: pci: add is_physfn(), to check for PFs
 MIME-Version: 1.0
-Message-Id: <20260205-rust-pci-sriov-v2-5-ef9400c7767b@redhat.com>
+Message-Id: <20260205-rust-pci-sriov-v2-7-ef9400c7767b@redhat.com>
 References: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
 In-Reply-To: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
 To: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
@@ -132,12 +131,12 @@ To: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
  Moritz Fischer <mdf@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>
 X-Mailer: b4 0.14.2
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: OHZLa2OeeWs7xJ4cSSwCvmF53TQge7jR4LcxfSEkcLk_1770325234
+X-Mimecast-MFC-PROC-ID: dYefomHsfs-C14K5gLrM4MWdGugA5kmR7AqzVoRlc30_1770325236
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID-Hash: 7EW5NCZYDWBVPRFT2I2WJT5NCWQAW27L
-X-Message-ID-Hash: 7EW5NCZYDWBVPRFT2I2WJT5NCWQAW27L
+Message-ID-Hash: 2N2OGBMYXXCGPCJUMCZVSO62EFACBSAH
+X-Message-ID-Hash: 2N2OGBMYXXCGPCJUMCZVSO62EFACBSAH
 X-MailFrom: pcolberg@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -154,9 +153,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7EW5NCZYDWBVPRFT2I2WJT5NCWQAW27L/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2N2OGBMYXXCGPCJUMCZVSO62EFACBSAH/>
 Archived-At: 
- <https://lore.freedesktop.org/20260205-rust-pci-sriov-v2-5-ef9400c7767b@redhat.com/>
+ <https://lore.freedesktop.org/20260205-rust-pci-sriov-v2-7-ef9400c7767b@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -166,99 +165,36 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add an optional bus callback sriov_configure() to pci::Driver trait,
-using the vtable attribute to query if the driver implements the
-callback. The callback is invoked when a user-space application
-writes the number of VFs to the sysfs file `sriov_numvfs` to
-enable SR-IOV, or zero to disable SR-IOV for a PCI device.
+Add a method to check if a PCI device is a Physical Function (PF).
 
-Suggested-by: Danilo Krummrich <dakr@kernel.org>
+Reviewed-by: Joel Fernandes <joelagnelf@nvidia.com>
 Signed-off-by: Peter Colberg <pcolberg@redhat.com>
 ---
- rust/kernel/pci.rs | 56 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+Changes in v2:
+- Replace VF -> PF in doc comment of is_physfn().
+- Add #[inline] to is_physfn().
+---
+ rust/kernel/pci.rs | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
 diff --git a/rust/kernel/pci.rs b/rust/kernel/pci.rs
-index a4c27c674bd8bdf5e3316789d38d566e90b93fe2..88bd114970431bf8c3edef94c1d48567d895eaf6 100644
+index db05641186c3a42922e2b6a463de9c1b099a4673..df39ad3f0d5fd898b034609efb03368f83c2a2e9 100644
 --- a/rust/kernel/pci.rs
 +++ b/rust/kernel/pci.rs
-@@ -83,6 +83,10 @@ unsafe fn register(
-             (*pdrv.get()).remove = Some(Self::remove_callback);
-             (*pdrv.get()).id_table = T::ID_TABLE.as_ptr();
-             (*pdrv.get()).managed_sriov = true;
-+            #[cfg(CONFIG_PCI_IOV)]
-+            if T::HAS_SRIOV_CONFIGURE {
-+                (*pdrv.get()).sriov_configure = Some(Self::sriov_configure_callback);
-+            }
-         }
- 
-         // SAFETY: `pdrv` is guaranteed to be a valid `DriverType`.
-@@ -135,6 +139,20 @@ extern "C" fn remove_callback(pdev: *mut bindings::pci_dev) {
- 
-         T::unbind(pdev, data);
+@@ -484,6 +484,13 @@ pub fn resource_start(&self, bar: u32) -> Result<bindings::resource_size_t> {
+         Ok(unsafe { bindings::pci_resource_start(self.as_raw(), bar.try_into()?) })
      }
-+
-+    #[cfg(CONFIG_PCI_IOV)]
-+    extern "C" fn sriov_configure_callback(
-+        pdev: *mut bindings::pci_dev,
-+        nr_virtfn: c_int,
-+    ) -> c_int {
-+        // SAFETY: The PCI bus only ever calls the sriov_configure callback with a valid pointer to
-+        // a `struct pci_dev`.
-+        //
-+        // INVARIANT: `pdev` is valid for the duration of `sriov_configure_callback()`.
-+        let pdev = unsafe { &*pdev.cast::<Device<device::CoreInternal>>() };
-+
-+        from_result(|| T::sriov_configure(pdev, nr_virtfn))
-+    }
- }
  
- /// Declares a kernel module that exposes a single PCI driver.
-@@ -325,6 +343,44 @@ pub trait Driver: Send {
-     fn unbind(dev: &Device<device::Core>, this: Pin<&Self>) {
-         let _ = (dev, this);
-     }
-+
-+    /// Single Root I/O Virtualization (SR-IOV) configure.
-+    ///
-+    /// Called when a user-space application enables or disables the SR-IOV capability for a
-+    /// [`Device`] by writing the number of Virtual Functions (VF), `nr_virtfn` or zero to the
-+    /// sysfs file `sriov_numvfs` for this device. Implementing this callback is optional.
-+    ///
-+    /// Further, and unlike for a PCI driver written in C, when a PF device with enabled VFs is
-+    /// unbound from its bound [`Driver`], the `sriov_configure()` callback is invoked to disable
-+    /// SR-IOV before the `unbind()` callback. This guarantees that when a VF device is bound to a
-+    /// driver, the underlying PF device is bound to a driver, too.
-+    ///
-+    /// Upon success, this callback must return the number of VFs that were enabled, or zero if
-+    /// SR-IOV was disabled.
-+    ///
-+    /// See [PCI Express I/O Virtualization].
-+    ///
-+    /// [PCI Express I/O Virtualization]: https://docs.kernel.org/PCI/pci-iov-howto.html
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// # use kernel::{device::Core, pci, prelude::*};
-+    /// #[cfg(CONFIG_PCI_IOV)]
-+    /// fn sriov_configure(dev: &pci::Device<Core>, nr_virtfn: i32) -> Result<i32> {
-+    ///     if nr_virtfn == 0 {
-+    ///         dev.disable_sriov();
-+    ///     } else {
-+    ///         dev.enable_sriov(nr_virtfn)?;
-+    ///     }
-+    ///     Ok(nr_virtfn)
-+    /// }
-+    /// ```
-+    #[cfg(CONFIG_PCI_IOV)]
-+    fn sriov_configure(dev: &Device<device::Core>, nr_virtfn: i32) -> Result<i32> {
-+        let _ = (dev, nr_virtfn);
-+        build_error!(crate::error::VTABLE_DEFAULT_ERROR)
++    /// Returns `true` if this device is a Physical Function (PF).
++    #[inline]
++    pub fn is_physfn(&self) -> bool {
++        // SAFETY: `self.as_raw` is a valid pointer to a `struct pci_dev`.
++        unsafe { (*self.as_raw()).is_physfn() != 0 }
 +    }
- }
- 
- /// The PCI device representation.
++
+     /// Returns `true` if this device is a Virtual Function (VF).
+     #[inline]
+     pub fn is_virtfn(&self) -> bool {
 
 -- 
 2.52.0
