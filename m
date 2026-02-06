@@ -4,220 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22A60EE6B65
-	for <nouveau@archiver.kernel.org>; Fri,  6 Feb 2026 21:26:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F120AEE6B64
+	for <nouveau@archiver.kernel.org>; Fri,  6 Feb 2026 21:30:41 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E9A6B10E938;
-	Fri,  6 Feb 2026 21:26:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5D43F10E943;
+	Fri,  6 Feb 2026 21:30:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MIVt3OuO";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="PgOuGqgD";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E8D4C41B4C;
-	Fri,  6 Feb 2026 21:17:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4FC1641B4D;
+	Fri,  6 Feb 2026 21:21:16 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770412651;
- b=bsqqQITaadCc8d567VQacbIemY+7ftken6CKCG9l9b5SIKt5KWud47+1QsrYwU93SWaJQ
- Qjg9cCZmICZPhiU8JcI8PyYY+Snt4d3Zxf6HKnmhPuNMpvxbmhQ9e4nwcnOt2CRiW7kgaqo
- N9rmegzdNXb+1iW7mAvWUktKu3q+s3DNcZZ6wbM/9+yMaXydKtWuJnJZv5MxGI6aOz+PTlo
- tjz7xaOWnjNI1EmvTazqVvLFrLZYlGoJDnXJS40RiQ9UR7FBEPZVnByicVPg8jWRl9ln+gf
- N2B3lO61hXWNT0bHGK4nIXVy6keRB904c2kBSXFlMT0UOyy6Bd/YT8vdgBYA==
+ s=20240201; t=1770412876;
+ b=zE0muVyX4jRcl7iQdQbRHySgISSutmJfNFyfRajEt1d++fojAs06hcjiI6WZPv8fwFGMT
+ sWoW3oorvOXjXECfJnIrjanMWWGLR1fQLfPst7X+/6vPo5J3Pw3KSHOXD4TQp5BR/IKslwv
+ xn2S7tzVtKkA5qaZqoThUOTiJ7mpdJrLZ+SpV5JaLkxlZq1tM4Rg/vrjwjYPjTwb7AZH1XX
+ ysO20ElOan6kvFQm9u7SMIdBJgDjg0CVm7GMC3OuxsQrCHDAWs22/WPa3i6wTFFN1qDgGJY
+ t4H88rLpiwDBVl1EHfO+3qcOLyR2/pnwYXc2dF6t3vuPDLYN/iW/IRFV9Qvw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770412651; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770412876; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=nQlOFZ1lOnjsWio7lFuxaXpDB9hUyNZyxVjMTXEVl30=;
- b=jmLn12iX9dhzl6UF/iMsXdOE4TVOXz+0bs/kshE0hPg/iiaWaB+YkbRVaO0R39kCh8iqP
- 4U4AgFx37CzcpyDYOqtkGnfA9OfdRoLj9+P1klRJNtbQ862LZTVF0dmi9xMbFN0/4/+C2et
- 71Z0PGIkrCxlwzL8r/nEpjpL8xgPf+fwxzXANxocoOEm6VVopNwiMVtyMaYbziBl3xiwPXu
- mmD2hDIbdhL/Ef3N973z7t5xDg3zwZUd8qhhmou6S47RSEVAWy9QbgxDit2e8iZqMjXaBtO
- /bWGszppXqZMz7/KpJfkU4/FZD714Lc2kEd0nCWFI5mBwOemlwy+28fmlwXw==
+ bh=dHk/uf5/R0o1Pb5W9VHPvuhr+RUwzmWTYbA59LNhJ9M=;
+ b=YBpg1oizJKJ3BFB5rU8iFGvUyalPBQVzqWtrDRnVYiLSqj9ng/z7JQGak+rW9EtHE+ne6
+ fL5imguTL0SuI20eMHFWuri60JTIoljqHss8fdRV21VHQEbCcz5TseFDaYVtrksX1MCBN38
+ x6VHiU38cmWnDuhsIXE0xBxH0jv1dGGQDpkJpd5grioiRvPBZle366oFC/XMOahJtsK8ZbW
+ h2qSbhF8BcLpIo3/tcaePbP91UEohE2z1yEcOK7gEI2cRkcJe0TPGKWBHq8UBM/I7x+azHD
+ dISm6RUf8BmqC2xz9iTSpPjzBYtonpoLCI3Rf4bQG5CknnSvxZH8dpcAY4vg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C34A0402B7
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 21:17:29 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012053.outbound.protection.outlook.com
- [40.107.200.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7E28C10E918;
-	Fri,  6 Feb 2026 21:26:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Yp8dVxtCHh2qW8vh6kj0fckOxDxoEgN3Rq34vIjwbJ4a7qCLFkk/2e1b6LIl2OuIvEnlj0lZ12/v7tVSwPJBTgghB0Yw743xweOZxxGqEhsluTF3/V3qQUDAwh1ddVlFRG+Xu4mblG/pfK1VFoOEoJ/1ruRcThzjnVbgOX2Osp2EdkvQ2CHAZR6N6VNFSfZZtCVQW/X+suOZpXqLuPiLMvGLgX5O9raPfWI3X9a77hk7LQsx2PpbUld+KVVGxzxIGkLj2yg4UcbFnh6kbBkmAgq+yXjyh/fv/eYHGRzgTZrlthWrGsyLyIZfxJxBXnwRlLdvFHVb9Wki+0+z/wCAOw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nQlOFZ1lOnjsWio7lFuxaXpDB9hUyNZyxVjMTXEVl30=;
- b=KnsreE+05QT3gry0rW/Uh4RdQlFyRjLaRFNepOd+I71lWpnYHu9LuutXDHM6MNL/ku4ZYAotVOtzAuboxbVA88C7FLOC2MjG2q/dYW4tJNv+gkTpjOtR6/ieUTjg09J7Czzdbnryf4T53wsegrobg86gt1lY8GUxmMHRQ8GQT/ZqyvW0Bg5DsTCPZbdGeWMlG1w75W+ke6PwL7FN1pmCUdWlz/lg+70SvZfo1xKC9/VFuOBYjJuTYuRvZsGILX8BlRViiAImBqunSRcMgoDx3I92E4HZqsIscoEQC7ZR+JNeVX9NMDRkrjcBBVL+UMb6LoPgL5qGzDDkKm+CEz/qMg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nQlOFZ1lOnjsWio7lFuxaXpDB9hUyNZyxVjMTXEVl30=;
- b=MIVt3OuOomnt4gDPWLubHSKUuu0+Mr/XVA/1dXcMMTK7OAEChMAXRrqgcYPvqF3HLyJfMVh+4O61qxXwpSlNjWPw3KtWfvMZQEwpNKXSVtn1RbUKrHQEY+RNsfeXuCO28T0dv/e9Vy6+19aFiLKlbDD0FRzbSWB1vri4ZDDVSEwC2Ss3oMfGG4jpe6+IN82+KfvQTpzaocMvD3HmVmWjL0sdxDlSB6v1QiUY8CoXTQEzKz0bn7dpHozU61V7mVReXvjpYJPy70IfupqqOU4aDJ1Wd4Z7HALc3cYBAhg2v7ky0+/Ng9KWnw/C0h4i/1Wc3kVBe8s+JwvFu2XfV2/tRQ==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- DS0PR12MB7826.namprd12.prod.outlook.com (2603:10b6:8:148::6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.15; Fri, 6 Feb 2026 21:26:44 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9587.013; Fri, 6 Feb 2026
- 21:26:43 +0000
-Message-ID: <983b7db3-b0e6-45d6-866e-f001b64abde1@nvidia.com>
-Date: Fri, 6 Feb 2026 16:26:40 -0500
-User-Agent: Mozilla Thunderbird
+	by kara.freedesktop.org (Postfix) with ESMTPS id 57521402CB
+	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 21:21:13 +0000 (UTC)
+X-Greylist: delayed 491 seconds by postgrey-1.36 at gabe;
+ Fri, 06 Feb 2026 21:30:35 UTC
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com
+ [136.143.188.15])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F04E810E13A;
+	Fri,  6 Feb 2026 21:30:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1770413432; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=TkGT/rcpJE5Vm/RPC/OLo0/DqSafIQP4dRJ9DS5V9ztK6Ke3kRltQ9h4WbEj57/jfaJLtvCMwnIh6yWLQnTLqDq48jerNv6XpjWF8X5j97XVpzK18xlVRoDnSTTu4fuy2JeuB3KoZ9Jr22UoO/dl//sTGhvEt0MSiVFamYw0wkY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1770413432;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=dHk/uf5/R0o1Pb5W9VHPvuhr+RUwzmWTYbA59LNhJ9M=;
+	b=L6YzZ4DJDJPYpSP3wIFwYXu65xdUaNah/57hxFQLAxsKteOXGvzUi2ZgeyUSNPkqsRX5PCNEeD0pA1KNmjXk/uIjTznAWfAcsE6x4AC4GK7YyMpd37JDrNLheEQ9Kb5ODTN63I2H+AkFaDlr/VMeIiBVHKX+ERmLTM+fLtJjDA8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+	dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770413432;
+	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+	bh=dHk/uf5/R0o1Pb5W9VHPvuhr+RUwzmWTYbA59LNhJ9M=;
+	b=PgOuGqgDm2r+bre0v+IcQ1LH7g7YFthyDqz3hqjJrYgXp9ck0UIVNlgNR+4ogr8B
+	zu3HbqxQq8nl4tD3M6w2uHxQnQ/DbcuSufmz8XsD8pxovUabdXl98yfhOsYX48rwuYk
+	LwfLOpDCV3saDkZIIa+RtC+Uut/J+35pmJ8yGMJg=
+Received: by mx.zohomail.com with SMTPS id 1770413430954879.3535008602513;
+	Fri, 6 Feb 2026 13:30:30 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
 Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with C
  linked lists
-To: Daniel Almeida <daniel.almeida@collabora.com>
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <DG820GM5YHJS.11E92OR824CWM@kernel.org>
+Date: Fri, 6 Feb 2026 18:30:07 -0300
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <31AAAF36-093A-46CF-AEEA-709CB1DE1E81@collabora.com>
 References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
  <20260206004110.1914814-2-joelagnelf@nvidia.com>
- <73B64D35-6574-4776-962D-865465C40226@collabora.com>
- <7ed85eca-2a5e-4e8f-8356-e7fbbf7d3a8f@nvidia.com>
- <E846F3BB-DE64-4E6B-ACA3-00F965038478@collabora.com>
-Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <E846F3BB-DE64-4E6B-ACA3-00F965038478@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MN2PR03CA0019.namprd03.prod.outlook.com
- (2603:10b6:208:23a::24) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|DS0PR12MB7826:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87363117-eeaa-46e1-1e95-08de65c66cba
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|366016|376014;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?eklQckJ0Z0RzNndBZUh0anZ6OWV1TGdJa1hKZEdsVytYRHBIc0pPTWpHaFpK?=
- =?utf-8?B?blRxQWtVQzFwKzJQNjlrK3RUNlpXakIrVkhET3o2b0N4WmZ0OFk1T1l2ZWhY?=
- =?utf-8?B?elRRL0JSUkN6Mkc3M3Vqc3Z1SHBtb1Z2a1NRL1JIeCtTZiszcXRvZWhHQ2Jn?=
- =?utf-8?B?T01DeUtWT1pUOFpUTDFtNjZMVDB5dFNhWG1rWEdkNmZJYjJoby9YQ21pNUNB?=
- =?utf-8?B?UGNOZ0F3K2FpbktFUzRLejhiTE96MTVIZGFCei9HRXA4Q2k1TlNhbEF3UHc3?=
- =?utf-8?B?YW9Oci9CbVhYS2d3M2NJMEhJOXFYNlhoZDFwbTBZVjhCYVUzdDN3djAxalZy?=
- =?utf-8?B?ME1VODBJUXoxRTA0cDFaT0NlUmdkOEw4clovT0FqZ0dKdklBMlpNZVU1VkZW?=
- =?utf-8?B?azVtTmtMTE5xVnNJMHdFQ09mcnVURE5OV1o3T29YRndRV2xCclpDbHdkbWN5?=
- =?utf-8?B?eWJtODk1MFlObllCdGUvdE1rMThaQ0pTREx2RWNzbkZGd0VnUE5mNUZUbHh6?=
- =?utf-8?B?YmJGNFFmOXFzLzFTMTZVazZlREJVY25HVkZvQnJ6dzBwRTVOL2lTSXhOVldN?=
- =?utf-8?B?TllQTGx6UlJYdkEreGNMY2ovR1dDZTF5UUJWVHhwbkgyV081V2taZDBqeFNS?=
- =?utf-8?B?U2hLYzdvZVROVjNiUnhVMytqR0dkd2k0KzRJSEpSVnduMyt6QkhxeFBWZmxJ?=
- =?utf-8?B?NVVJT1Y4TDBUVjZ6b2ZZdHBpdHg2QU9JbWxpdURmcnZEQk5TTm9PRWVxcHlJ?=
- =?utf-8?B?eVVWbDQxNE13U3YyYzNUOGtyd3Q0SDNJU2RVNjlYckJhUTA5ZW5SODE1SXEx?=
- =?utf-8?B?UUhpbjNXaXpnWkQ2RHJxR0tBMGNHWlEyQnJjdC9vNGFnNlJMbTFxbmxtWUR2?=
- =?utf-8?B?TVQ1SnphblNKMW9EWUhFVXkyRHVUb0s4MDVaWTRqeEZpSUpDM0lYamV6Q09p?=
- =?utf-8?B?T3U3bVpyY2NUbzJCZ3oxZW5OSlltZ2QyaVJxdHMzRTN1ZkpWVWxNT2xVSExt?=
- =?utf-8?B?NFRWemxabVVwY0NPSC9GN1lrUzlDN0NNZVZRK0R3cWp2OTRtQXlyanpjZXBp?=
- =?utf-8?B?ZDJyVjhSOGR0TUpYSUJRdCtLbzhGQnkxaEdGTkRya01nWEYzbXFLUlZmWmZx?=
- =?utf-8?B?RThzYngvNjc1ZUI2aXJQTFpab0xNTEZTSEY1aThaMkc5ekNoeGxZYm5RQm9M?=
- =?utf-8?B?ZWJLeHphZjcvNDFaZVpBV01aLzdDTi9ldzFaK0l3dTlhbnl6RUY0emtjNjFI?=
- =?utf-8?B?K2NNd3lETnozaGI2VTNDYWREcy8yaTl3NlByY1kxaktKSUN0VjNUK1BMQ1Vw?=
- =?utf-8?B?eFdpeE5hdkEraFRMYnB2VDVlbXZ6SU1vTDlhMzJKL0ZYUWZsQitXOG4vbGQ2?=
- =?utf-8?B?VXNoM1A4QlZNN1JIZUpnR1RyVEc0cTdzNG95TUZ3bXQ4Q0RjTzVuRS9FMnI4?=
- =?utf-8?B?TGJaeEhLcGFBWFBoakdKWFRJRnZDY2JNc2ZTTDRHT2ZsRFFDQWtkM3RZQ3Fh?=
- =?utf-8?B?TjBxaG5DckM0VmI4bVpvdGx0M1FQSTNsa21rT0JwK3JzSVBaTzNsQ3FzN0Nl?=
- =?utf-8?B?dkdmOEVJcHBEQnBreWNoZDNFajVvTDNobjNEOGNPZlpQU0J2NFg0NDNBWWNP?=
- =?utf-8?B?cnBoMVlGMGVDcDZUMkFGTmJVNGVGWlJkVEJBY0JGbDdFMFFKMGJrTnZmYkg3?=
- =?utf-8?B?QlJCcWdSeHd5dGRrTlF5YmJYU1h0eFNBN21GTnljWDdXejY1YjJhZUovZUxC?=
- =?utf-8?B?dll4Z0ZMS0oxREo4bE91Snd6RHBXRTUzRjFoWGVhdk9hMXNjQ3Qrb1J4bHJV?=
- =?utf-8?B?WGZUcVdBRnRyNDdkeGJmUm8zM2VRVjUzUGNKUEswcHZPeURyMWpYekpUYVRV?=
- =?utf-8?B?NlBTcnBmZ1hmZHhzVzJNQTRVUFcrNSttWURNNDNnQ0ZSa1JQRXJrU2wwS3Za?=
- =?utf-8?B?d0w0RUhzSHN4c1o1bVpMQmtjbTN3U3FwSStSaC80UTZ4bzErS0FuQjUzZGV0?=
- =?utf-8?B?Rzd3eXVLeFg3MnJaWnk5UnVkSFhZcGtocFRqakRjTG1oWTgwazhMOEJSdjhT?=
- =?utf-8?B?cEFnSFhUM0s1ZGR6T3J5c1Bmd0pWb1JVTUkvL2FrNFA5dks5aEpNM0ZiemZZ?=
- =?utf-8?Q?gVgg=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?RVhwb1hseXVHVThjMUN2TWlpYjVTem5lL0s2YkZkcUhJWHBLWnMwYzZxZzA2?=
- =?utf-8?B?MTRucm5YNyt1RWZFYzc3Q29PYncxYnErMTRwMytMb0l0dURxZ1ppQ2JBc0Ey?=
- =?utf-8?B?UjRlZGtQdklxOFJaMkNSR2wvSE9heDJDWUtwdEF4RmE3M3pobEFqMW0xQWE5?=
- =?utf-8?B?dWpCQURtbGFabU0zTVV6cnZpUEgvNlBmU3dDZ0M0TjllcnkyS2VndU50WWlu?=
- =?utf-8?B?WGdyYTQzclpBbXQ5MWNIT0xMQ0o4U2FIYVE5azZBbXdjYkdSc0ltWmhkTUdH?=
- =?utf-8?B?ZnAwbmQzbHNnSzA3OUtSMHlicUxpY0NXdUVTV3FsV25JYUdKeVUxa2tJWm85?=
- =?utf-8?B?d3FXNE5LUWoxQXN4ZzAwaC9TZ0pzdldKcGh3SldHcURFYjNIKytWTloycWRk?=
- =?utf-8?B?VW1UejdFdnc5TzhTSmUxdTN6RkpTTEsyakI4dHdteEF3a3VBem1RWm5sTE9r?=
- =?utf-8?B?VEhFSkl3cXYxZ0pkblhjc1puS2E4VXZHL1lGOFp2NXdPYjMzUHpCUlpPb2s2?=
- =?utf-8?B?TEhOUnNiRzlHRjlTRWFVR21VY1dORHdBdmdLbkxOQkVIR3dFUEFrSXZPak5I?=
- =?utf-8?B?akNCUk44eWhvNTlJL3ViT0hPWmZreGJQeHoydXNadEJGL05XVWdpQ01heWk1?=
- =?utf-8?B?MmU5a3g3RndSd3F4RTFBbWJpcGZlU3ZwOXM4NGZnbW1DTmZwWkpQYSs4bXlC?=
- =?utf-8?B?VXAza2szMC9LTkY3RzRqWWhNQU80b0FHMDNyRGhKYWdiSWM4THRnTFMvSDdY?=
- =?utf-8?B?dlRLZHAzM2VlY05Na2RLR1c5QWdWWGQ3N01aVGRYVk5wTHB0VjE4Ty9oTEJw?=
- =?utf-8?B?YkZ0Z2FuZVlPMGtpVzdIc0RoM25ZTkhVR0JqeHZPejdabGQyMW9EVU1ubS9a?=
- =?utf-8?B?SVdOSXBjU1NVWmYvMjBsbXZURm1JNk9OQTFBVVNLVjBUZkdYUlNsQVpOUTZU?=
- =?utf-8?B?VloyRHdYTm1KdXA4ci9ZUVU1U1c0YnBxSlZ2RDdiM09oKzNZd2F1VzVONU9Y?=
- =?utf-8?B?S2p6ZXBjckExOWp2T01yQXZ5VmxkYXRGcVlDcHFaRlJRRW52K1JId21OOFE0?=
- =?utf-8?B?U2tXSFVPTUlaZWxRSCtlRFdhVFY5SmxoUDRNQTFRQ0lNbTlkdUtiZlVEa3Nq?=
- =?utf-8?B?dVBSaXJUSm9Gdmt4alg2ODJIV0NHSTBaTWZmZndOemNhckVWSlFVblEvYmNs?=
- =?utf-8?B?MEduYUNUYm03L1lDVXg4U0xSZUxOREVCSUlCa0JRZEE2TThzQjIydHZIdkI5?=
- =?utf-8?B?NlNUTVNydVprY29rYjZoVlFmdU9laklURnpMczF2TjJCT0pUUzE3YlpQT1VW?=
- =?utf-8?B?aEU0Ulk1MDZHTFI3RERYaWt1aGVha2dOdVpSbFVNTndZNGZjTE5MNytteTlG?=
- =?utf-8?B?WWJVdUJvMjdESkRaT0xSeFQrUFl2Sm9LYVRIRm95YUpCTFJRK0RBWVlSL0g1?=
- =?utf-8?B?STVwL1psYVRvYVkyNEpwTnZKV0lOVHRmd1NheG1mSVNpKzUxV24xVGJQUmUy?=
- =?utf-8?B?Q2tkOWxXbnJGN1pDb0FyVURNcWFPdC9VS3lGcXI4ZG9SK09sVTY1bWpVTHRs?=
- =?utf-8?B?NjQxNHhKK3RrdnV2RnF4dW9iK1pTQ3FuUXhQdVNTN2FGUjVvNzEzcU5CYi9X?=
- =?utf-8?B?SjV5SFdPTk40RG9NYi81UmlrLzNlOXlSNTlkM2RYZFpYYlZXaEFqU1hid0tp?=
- =?utf-8?B?WERKdTNtZStVOFVVRmxmKzBIRmRZVzFoR2lPcmg3NXBaN2tvV3ZaQWJFS0FX?=
- =?utf-8?B?NFl4blkvT1lXWkJxQmdDTnE4eWNFOTAyZkpjSTZjaHZtMW5SN2VtbjlZaWNY?=
- =?utf-8?B?YXZjMWgrM3lrM1BzVGdaREViN1RZY1FUVTBFNnFyckZ1SGk5TVV5Sk1iaGx6?=
- =?utf-8?B?Wk11N2JpWFl0ZnNJK2ZxODk1WjdnVEtza0U2Q3pmdzR5UmZCck5GNys0cFdT?=
- =?utf-8?B?OExaZ2xDWTVIWnRodncvV0owb2pDVCtpNk05Y2grWEUxSGplalkrYnRWdXZ3?=
- =?utf-8?B?RzMvUDl1ZndWUFBxYkcvbjJLb05HTVAwN0tzdzdscHF1OEtxbjdBS3ZVdld6?=
- =?utf-8?B?WWgxa3RiY3V0Q2FFdUFXWUFkejJyOTBybEZRb1Y4SlRoU01Kb0g4bGhpbjBh?=
- =?utf-8?B?UTJvckdueW1CRUw3ek9TOE5rUnl0OXdsTW5RQzZWWlRyL3k5WHNVWndidUc2?=
- =?utf-8?B?VW5hMnE5K21QdFdlU3NLTUp5bUZJYWVWbmlWWmhyNlhPZWRqNjBKMDJCS0d6?=
- =?utf-8?B?MmxtUWdvVVk3MXBvMDRZMFh3VHU1MDhrYjAzTXZiLzZHSXRMQk1mVGxiZ2Zl?=
- =?utf-8?B?ZXU2QlA2OGp0dkEwM0U3V3JJU2hxT1dkL3lJdGpHZGtENEgrMWoxQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 87363117-eeaa-46e1-1e95-08de65c66cba
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 21:26:43.7053
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- RXdr/0nSATeWuoOob73pFvJfGqmzo6ld8aSBB4okPPhwYWWpCPPt/bOK8Y/i3vcCV1wsg5ztXLEQw7K7DSQYog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7826
-Message-ID-Hash: VIRVWFCRZXDBYFTTED56UW2MDOLDHEDR
-X-Message-ID-Hash: VIRVWFCRZXDBYFTTED56UW2MDOLDHEDR
-X-MailFrom: joelagnelf@nvidia.com
+ <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
+ <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
+ <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
+ <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
+ <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
+ <DG81V8NG5RC7.38EYLHQZXKTTO@garyguo.net>
+ <DG820GM5YHJS.11E92OR824CWM@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+X-Mailer: Apple Mail (2.3826.700.81)
+X-ZohoMailClient: External
+Message-ID-Hash: BELJAYIWIZOYPIZSLAWDYFXYKS7Y54NF
+X-Message-ID-Hash: BELJAYIWIZOYPIZSLAWDYFXYKS7Y54NF
+X-MailFrom: daniel.almeida@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: linux-kernel@vger.kernel.org,
+CC: Gary Guo <gary@garyguo.net>, Joel Fernandes <joelagnelf@nvidia.com>,
+ linux-kernel@vger.kernel.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
  Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
  Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ =?utf-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
  Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
@@ -231,9 +135,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VIRVWFCRZXDBYFTTED56UW2MDOLDHEDR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BELJAYIWIZOYPIZSLAWDYFXYKS7Y54NF/>
 Archived-At: 
- <https://lore.freedesktop.org/983b7db3-b0e6-45d6-866e-f001b64abde1@nvidia.com/>
+ <https://lore.freedesktop.org/31AAAF36-093A-46CF-AEEA-709CB1DE1E81@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -245,58 +149,36 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 
 
-On 2/6/2026 4:21 PM, Daniel Almeida wrote:
-> 
-> 
->> On 6 Feb 2026, at 17:51, Joel Fernandes <joelagnelf@nvidia.com> wrote:
->>
->> Hi Daniel,
->> Hope you do not mind me replying piecemeal as I can reply more quickly. Thank
->> you for all the comments.
->>
->> On 2/6/2026 12:49 PM, Daniel Almeida wrote:
->>>> +use crate::{
->>>> +    bindings,
->>>> +    types::Opaque, //
->>>> +};
->>>> +
->>>> +use pin_init::PinInit;
->>>> +
->>>> +/// Wraps a `list_head` object for use in intrusive linked lists.
->>>> +///
->>>> +/// # Invariants
->>>> +///
->>>> +/// - [`CListHead`] represents an allocated and valid `list_head` structure.
->>>> +/// - Once a [`CListHead`] is created in Rust, it will not be modified by non-Rust code.
->>>> +/// - All `list_head` for individual items are not modified for the lifetime of [`CListHead`].
->>>
->>> Can you expand on the two points above?
->>
->> This is basically saying that a C `list_head` that is wrapped by a `CListHead`
->> is read-only for the lifetime of `ClistHead`. modifying the pointers anymore.
->> That is the invariant.
->>
->> Or did I miss something?
->>
->> -- 
->> Joel Fernandes
->>
->>
-> 
-> 
-> Yeah, but my point being: is there a reason why the underlying list has to
-> remain read-only? Is this a safety requirement or an invariant that is established
-> by the code above?
-I'm not fully sure if it's an invariant or a safety requirement, but anyone
-creating a C list head on the rust side must guarantee that it is not modified.
-Since rust has no visibility on the C side, I believe it is a Rust invariant
-here that the existence of CListHead assumes that the list cannot be modified
-once Rust has access over it.  That is up to the creator (user) of the CListHead
-to guarantee. In the DRM buddy case, once the list is allocated and accessible
-from Rust, C code will not modify it while the Rust object exists.
+> On 6 Feb 2026, at 14:27, Danilo Krummrich <dakr@kernel.org> wrote:
+>=20
+> On Fri Feb 6, 2026 at 6:20 PM CET, Gary Guo wrote:
+>> I asked for this to be changed to `pub(crate)` because I think this =
+isn't
+>> something that should be used by drivers.
+>>=20
+>> As you said, tt might be tricky to enforce that with new build system =
+when
+>> subsystems are inside different crates. But until then I think it's =
+better to
+>> limit visibility.
+>=20
+> It should *usually* not be used by drivers, but there are exceptions. =
+For
+> instance, it is perfectly valid to be used by Rust drivers that =
+interact with C
+> drivers.
 
-Does that make sense, or is there a better way to document this?
+I agree with what Danilo said here.
 
---
-Joel Fernandes
+I don=E2=80=99t see a reason to forbid drivers from using this. If the =
+reason is
+the unsafe bits, then isn=E2=80=99t it the same pattern used by =
+impl_has_work!()
+anyways? i.e.: a macro that implements an unsafe trait so long as the =
+driver
+gives it the right Work field. Seems equivalent in spirit to the =
+clist_create macro
+introduced by this patch.
+
+=E2=80=94 Daniel
 
