@@ -4,212 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B816EE20B6
-	for <nouveau@archiver.kernel.org>; Fri,  6 Feb 2026 16:33:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA247EE20B6
+	for <nouveau@archiver.kernel.org>; Fri,  6 Feb 2026 17:13:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9A1FC10E841;
-	Fri,  6 Feb 2026 16:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C71E010E85C;
+	Fri,  6 Feb 2026 17:13:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=de.bosch.com header.i=@de.bosch.com header.b="przKZ9rw";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RyhQrtAN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 14B4A41B4D;
-	Fri,  6 Feb 2026 16:23:44 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770395023;
- b=uRBsPXwBpMGO5uxvzltvowE0xxD/MnIOncbtyuTcYXwDpVKpMLQKU0eDsG95V17xY5Tj9
- MyfEe8thKMsSCFpFCz9AbqWJWiweWMZ5JBPWSm9U+L2JMG7DLz1EAr0Y8aI2hmh4cw39Oco
- ok8Y6gVXp+KlXqX2pYQhca9G5/mWzfiykH9wNXW8ZVCb6FHsn0ZnLQQprkyHX5XPBUskecA
- x3Zp3801WH2oOnJOaNYPboPG8G6jnt5WDt0UUd6AeuwE5w/5r9XWOzXTucpu776nWe1WpDO
- 9xbmHiIUJZAtThuDj5ktXxpPHqgwltggZdgBEvjRjBTa5r3QjBOeGCK8o1lg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770395023; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 29A3941B4C;
+	Fri,  6 Feb 2026 17:04:01 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1770397441;
+ b=VFZFAAU0b/8HRrxsylI3KMqu3+5X/Rvh08+iSqDsft+FkNZkDD3eNCX6TI6XqCx4cgZrg
+ AZOkPyDxcXFMO98QZvBdAdhjQcCWooTCpYoCQ/u54a1JpmUHh7CXF0lBb5LtaoCfCUy3agO
+ MVaasmPSYoIK/vvPZQBNv/k6w2YoKNdlI9YWZ5C71LojYQ1i6j53gz1NdkSQ6ZooGDymx9p
+ CqRbuiRzNiJSIL7yynlZOJexyW54r2p12tGwe3l2pZ8Xven1okyGQNEJxwHRTvVZAI8NTJA
+ IlTv4JZ0i8wXnYBA6TTLi1URS61w6c3Rv/2YzStEmEPhfUdApRkRywtQzLvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1770397441; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EHdeAVJRoOfxkmNwRYce/sl6BjQR/+zrQQc2PcJ7vjE=;
- b=Sz1YH2F4bd1IT0BtPb9xZOXiWcGLj4ATYkQNvissWkZH2+1gSVhrrx2xehDcorQOAKtoz
- W5KT2Lh/nd5gna+lga10YXhF53EYY6EzGyrBpl+NkwcCnbg9zJdekrJLRQlsly9UySkKpbM
- FIVruNnRm3ApJ4C0nv3V5EooeFxm39asZLRqNogfVr0f/aQ6ZMcNXqSOf4MFiyyxFuXVb0L
- nJIaIpq0ETT6n7hF8kZ2JCKcN9WBfR8IjR8vChX3FpvyV6b4GjlZUAd5mT9sFCfFo6ttKHh
- Y8Me0fL3fkah2Z4kp26XP0ITjGXhV7bS4R6oabCm3J3pNk46HFIRBFIYGwBQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=de.bosch.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=de.bosch.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=de.bosch.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=de.bosch.com policy.dmarc=none
+ bh=bX/8aFVVZkRUvbiBSbOuCq/+3If+n1RBddxZqay+GXs=;
+ b=sVKhM+O/ESA52SeTiXW/DoQ+4O05Oz1ImjqstcSLOZhvgukVtHBvAR1TwSBCiC8pJqMMz
+ 6OVJm5X7tLLqcxbY3BQiWbSr02MuDs2S4/erPqUDvEZEBkPrsuEkNZOlKCHq9NYuQkr2bNz
+ qYhtnBNlyF0fSOXAbKadYCi0Ih5oHlNzFZzVLZp8Gn+socFOe7/wo80I4YaonPoCeZirjvv
+ d0lR36N/xTS1XaoMbbMzHkXPIW3IcOzjAEcEG4r3l+5tZOhp+VrL1TJJnTV2BpUjWAmPnZ+
+ SWpGps2/Ki98/hqZOoTFPph/LqQNHWKtYmYpgR8rUttbk8Qu0VCJD5C8ph3w==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 63970402B7
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 07:36:49 +0000 (UTC)
-Received: from AM0PR83CU005.outbound.protection.outlook.com
- (mail-westeuropeazon11010027.outbound.protection.outlook.com [52.101.69.27])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D513010E3A4;
-	Fri,  6 Feb 2026 07:46:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aj6K4ABBoDzwFVsQkOhSd/I8qT0PZD5G+kzbZ2Q9Nn4dj5ZINVY/Hu5TZFevlBF2pHPRoXPd+RypcBM4BhxKxmHDhafA28QHcUsC0fAVRaSOUP/kY29NYIpMvrLjRqmUHhBlBaPMQnSZKlwCIh7Z/OQQamuHV4Wx5K6JhjXkmT2EUjZyurZOQr+CFpDd4JAnpUHJu9uRws2Y7hVr7RpupDkkhsXmQqccfSrAuQU0afSeai8IuOr6gdCI55qP8Pi8tMJuHqruHsf3vFb4isC/vHjnLYoZoMFqn9BViHDjoFiAa94WfSbxR3FDOpTfyFPLOW+rSLEsKdJQC61xSZU2nA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EHdeAVJRoOfxkmNwRYce/sl6BjQR/+zrQQc2PcJ7vjE=;
- b=xb6zuo6jOTOttUkAn7SVAc41UB8iBxt38ap8dNkTW+VAGszYBdKdljjcqbZwE3wAAAIjy+X8GP5N9KRysF33oThptK9zXKXpvV2KcJq/E1LTGT6lDbfvWts4hIXpN7xev2+TY9uwrcrgbp1C7s9Wke//1MdojjJCXTb3D2RMt2wqBrjuVHDYlXlXc3CqJWlNYPe0qVCAc5EJcINiJ0fnbPnhTpvJIE3XFjtH0e9QIWIKczswOf0EuIgJ5kOK/iuI84GVxf4C6MakwLWcNGeMBdsaWKE4958/CoYQJUqW+qmsWg9c7P07xrkXqbJgWJDhZbwDjK6CoDDA8TQeIPHEwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 139.15.153.206) smtp.rcpttodomain=redhat.com smtp.mailfrom=de.bosch.com;
- dmarc=pass (p=reject sp=none pct=100) action=none header.from=de.bosch.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=de.bosch.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EHdeAVJRoOfxkmNwRYce/sl6BjQR/+zrQQc2PcJ7vjE=;
- b=przKZ9rwzU/iC/371AbgAJvYOe54MzGiJ6Ypa2LiVfEjJob1dsiG4WMNevoNTSX5gekk705oX4DsGgilXksw2JFs8HkrWp7jZ7FzBpqKySCJgDMl0kpCn4WPoJ9LtfuK8z6PUV+Zk4A2HGov5tvROig0Osc0KFdr96RctGybj7z8g7REa3aiz/a1fZQ0rtBcmsnsepFPYmShqg9COFuGjT22X3DWYfteAY/SWKwcm8lWexUqZnUXUDHeXM0Z0ZuR0iGIA23//d0y9WwHcO6oasaD3SZmoryBvxpnVaI9TZzboRQXflpAEpLLbhJQrjp0hkwpJZXNv1epl2ENKZha5Q==
-Received: from DU2PR04CA0358.eurprd04.prod.outlook.com (2603:10a6:10:2b4::31)
- by DB9PR10MB7956.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:305::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15; Fri, 6 Feb
- 2026 07:46:05 +0000
-Received: from DB3PEPF0000885E.eurprd02.prod.outlook.com
- (2603:10a6:10:2b4:cafe::91) by DU2PR04CA0358.outlook.office365.com
- (2603:10a6:10:2b4::31) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9587.15 via Frontend Transport; Fri,
- 6 Feb 2026 07:45:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 139.15.153.206)
- smtp.mailfrom=de.bosch.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=de.bosch.com;
-Received-SPF: Pass (protection.outlook.com: domain of de.bosch.com designates
- 139.15.153.206 as permitted sender) receiver=protection.outlook.com;
- client-ip=139.15.153.206; helo=eop.bosch-org.com; pr=C
-Received: from eop.bosch-org.com (139.15.153.206) by
- DB3PEPF0000885E.mail.protection.outlook.com (10.167.242.9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.10 via Frontend Transport; Fri, 6 Feb 2026 07:46:05 +0000
-Received: from RNGMBX3002.de.bosch.com (10.124.11.207) by eop.bosch-org.com
- (139.15.153.206) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 6 Feb
- 2026 08:45:49 +0100
-Received: from [10.34.184.244] (10.34.184.244) by smtp.app.bosch.com
- (10.124.11.207) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.35; Fri, 6 Feb
- 2026 08:45:48 +0100
-Message-ID: <4669209d-c53b-4cc5-ab2f-0f09aa5dfc50@de.bosch.com>
-Date: Fri, 6 Feb 2026 08:45:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/10] rust: pci: add abstractions for SR-IOV
- capability
-To: Peter Colberg <pcolberg@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
-	<kwilczynski@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor
-	<alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, Gary Guo
-	<gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
-	<bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
- Gross" <tmgross@umich.edu>, Abdiel Janulgue <abdiel.janulgue@gmail.com>,
-	Daniel Almeida <daniel.almeida@collabora.com>, Robin Murphy
-	<robin.murphy@arm.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Dave Ertman" <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
-	"Leon Romanovsky" <leon@kernel.org>, David Airlie <airlied@gmail.com>, Simona
- Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, Xu Yilun
-	<yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, Moritz Fischer
-	<mdf@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Zhi Wang
-	<zhiw@nvidia.com>, Zijing Zhang <zijing.zhang@ry.rs>
-References: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
-Content-Language: en-GB
-From: Dirk Behme <dirk.behme@de.bosch.com>
-In-Reply-To: <20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.34.184.244]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PEPF0000885E:EE_|DB9PR10MB7956:EE_
-X-MS-Office365-Filtering-Correlation-Id: 49a07b5c-2065-48da-48ff-08de6553c864
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|82310400026|36860700013|376014|7416014|13003099007|921020;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?WGZ3VnFyUU5zalF2ODVvYUZjWHczS3pDZWZyNWZSeVB1dTFsVFpndG4wd3hJ?=
- =?utf-8?B?STRZL0V5N3NlUU9zbXBqWXlkZnVmMi9nN3M4VW90eDlEZStqVmdkY3VSVWZN?=
- =?utf-8?B?S1JFaVhQejM0eWxEdy9Sa3dPaWt5WTQ0TnRRZTlDaXdVWTFYejRZYkdxWm9R?=
- =?utf-8?B?OEFadWhPd3VJVVFacHdJd0lDYkh3UUdrTEEzUDFLdGlOMUgycWczRm9kSXFJ?=
- =?utf-8?B?N1BFcTNxcVZCQzNYbXJpODBqNE5aZU5pb2VQQVAyZVAyQ1lOUXVhenRWTnNW?=
- =?utf-8?B?M3FYQUhjd2FoWldkZkZrY3owdzNkc1pSeFhzN3RVaHRmWE02dTdGOVJhcUZp?=
- =?utf-8?B?aDBHY2tUMzZEN1R4Z01ySTRQWVYzaE1RcGJwbS9ZQVdIaVBuRWoraTlBaE9u?=
- =?utf-8?B?SmtOQUVMNTNBOTF6UTZ0VzdYd242UVd3TWJYNDBmZStZL2FjM3VqN0JLNXRu?=
- =?utf-8?B?M05JbVRwd2QzZzJ5K0xaVGJvak1LSzE5d1pLb0JDSkhiMWl4NFNGYkZSRzJy?=
- =?utf-8?B?QUJmTzVGRnV5Zmx2WGVVNUsvV3VPOUVSa1lvbnVxdTNQTStNTW5QWVVkd0V6?=
- =?utf-8?B?a3ZDRm9ETlhncVVjYTVDRVAreUlCK3JIajRRWEp4YWxLcXJTejVpeFozWHh1?=
- =?utf-8?B?L28zTE5oQTFRM1JYQ1BWQnY0UzZycTNEVHo5WjJNOHFxUkNBb2g1Nit5YS9t?=
- =?utf-8?B?UmtCT20zVGVoMUpuZGNqdFdOdXdqWHNrd2wvVnNFRC9IditLMnF2VUdIa2c0?=
- =?utf-8?B?Tkx5NkpWTGFnUjZpS0dUYklGZXFQeTExSU8rVkt2eStVejM4MGpWcVowbHVJ?=
- =?utf-8?B?V1A3dHZXR3U3d2JNZ0FwYW92Sk5pNS9LWENiM3RqVnlDVUdUUmkwSUpYUzBx?=
- =?utf-8?B?QnBvYmNiZWZ4eTZkc1Z5YkhYOHF4L29VdXYyR3hhUWpQeGJqK3JXdmwxNTBH?=
- =?utf-8?B?RDExMzE2cTlRMHlCdlJPT3BSL0hLWWJIOStic0RNenEvampsQUZzRVFYaTlZ?=
- =?utf-8?B?WjJ4MU1KMjZMc0VXVERYUVk2UGpwR0F4WXFZRDkvRTA1WkJMa3lNT0ZyMDlQ?=
- =?utf-8?B?aEZEQVhGTlQ1Y3VnOTgxcFhGTEgzckJxSUc1R1pTVEVCNEtBZHYvd212L01L?=
- =?utf-8?B?TmFOMU5PWjJpakhhTTRqN0Z1T3pDMnBSNEg4OHdVUmxoWnMvM0I1UWF6WlE1?=
- =?utf-8?B?VmpyaWNxMVhjSUc5R21sdDhEblgzcEdSQXpaMDBneWNxMnhaM0RWRWV4dTQr?=
- =?utf-8?B?SGpoa2VXT1h6dWZxb2t5L0pKU2tDQlF4NkgxZ01aWlhoR3ZIQkphUVo1Y1Zz?=
- =?utf-8?B?YS9GUUdmYjVPM01CSkJ6MmloY1Nha1FmWU9URHdHV21JV3QwblE3TWp1dEt1?=
- =?utf-8?B?VEVqYjA1aXRKbDNuY1pFeUVpK291NzU2aGZDWkhXYW9OcEJuVS84TmI2YmFi?=
- =?utf-8?B?K0dQZ05KekRXUEFWWnYvcGd1UytpaDFSYWJSR2hBS1Z3cjRpM3NSc2dtYUxF?=
- =?utf-8?B?UG50eWxDQkhhTCtOdE0zaEQ2M2c2Ti9BeFlvNHFHQjdxUmhZN2FHU3dZY0hG?=
- =?utf-8?B?NmNxYUZ6eTU4UWFWOHZqNDQ0eTd1ZzhlazI0YzVBMXFKQkpIQ0hCS3lyTXhN?=
- =?utf-8?B?TG52RFdsSm5KK292TTVHK09XNzlXbWdlVlUwN1NkY1hSOHErdXNMTFY4U2JP?=
- =?utf-8?B?WnNVck9XcUtaVVptUUI1ODFWYTJSWUNoWlRtNHhvUUUwZXB6VFMvZlFqZGEz?=
- =?utf-8?B?SXloY3FEbFdpL241OWdPN2kydHNKQmhBRk05RDBacGdWQUtpUGI3a21qZktr?=
- =?utf-8?B?SCs3YS9scnlTc1RYUk9sS2ZlRmNtdENXbWVHYzJyeDlPZEJXZTNDRjRtM0pZ?=
- =?utf-8?B?OTJMNGx0dmk4eTFZTDFlc1VkcUxoZDBWWG1qY3dUaHk1bXZCVjVFNVJ2VFFn?=
- =?utf-8?B?UDRRN29IVjRYdmhXVW81L1FwcHNVc0RXd2VQUHl0dmV0azFWUzQ2RVovcy9N?=
- =?utf-8?B?cmRIVFRKWVhacWZ2d0pOVS9lODZUUzFkWm56a3hTYnVCd1hHbnF0UG5pVjhl?=
- =?utf-8?B?N1dWR0pHalEwTFhvS05UUm5SY0ZKQWVrTzVwSDNpZEcxamZBNmRLemRRZlFB?=
- =?utf-8?B?U3Vad2JIM1R6ODhTaURZSnE3QnIvSmZjc1FzRkdKM3VRZ29NbFZ2bTZVU05V?=
- =?utf-8?B?c2sxWjl2MXlBUndPd1JKZGNaVTNLUFlkQzNPMTlFUWQ0THYzK2tKZ3h2RU5n?=
- =?utf-8?Q?dRUi7C/N98N1al1kRsNBQTdBO5vXwkazGOISncfE7Y=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:139.15.153.206;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:eop.bosch-org.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(36860700013)(376014)(7416014)(13003099007)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	5K23AzGlOtrrbwUXZqateGtM2vxrXNT4pKfLIWxuz+2HQoNjeuiZDQh8TdOOJ7HREoYRvEOGKi2n9xL880f4hvKus59dPFojAsg49EG037mooANWgAJRMPAo0paGWb8xVPIiART17r8BVA8qmdSGRxh4oU9rmLDPXf56kPNyxWu2PoRqPQvzKggWe6uNYUKowaYXreKUK73ON/nx7AzQprkGJFPdlrJL37f0RGisS7QeqbxatewAaY7NTSHjotg8F/h+sO6j9g3drMcROy+ygSi7Kb17qiGbdQ0TNyu6TU6hgDqOI/jBcAD2chJ+EZ0WM/8YgwWNzl9l91BE/dbgbMbmAU3zEkX3X8UrTMmrB2DqR5g5muSH+OFlrpjLyfpWqK6QPmtN294nWgj3Tqna20KpZTBXibZ2xT1AVE+Xg00l3mepPDWPdUb9mTKsoxq0
-X-OriginatorOrg: de.bosch.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Feb 2026 07:46:05.1115
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 49a07b5c-2065-48da-48ff-08de6553c864
-X-MS-Exchange-CrossTenant-Id: 0ae51e19-07c8-4e4b-bb6d-648ee58410f4
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4;Ip=[139.15.153.206];Helo=[eop.bosch-org.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	DB3PEPF0000885E.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR10MB7956
-X-MailFrom: Dirk.Behme@de.bosch.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1E60640492
+	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 17:03:57 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4433E10E843;
+	Fri,  6 Feb 2026 17:13:19 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 05B1A60051;
+	Fri,  6 Feb 2026 17:13:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1083C116C6;
+	Fri,  6 Feb 2026 17:13:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770397997;
+	bh=VusUcOG57uVq4aP95tB6o/KYonI51RwqmHWJ63rGzUM=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=RyhQrtANOB+D11Wve/m8L2lLmA2sIYZtIVT7zQ/BhQ3fOrDR8nn1qXOzitA6AFauP
+	 jFNpNdriH7tCxOuPCjR6KH6bfyDLu9qNr6V/ZVDeOvQZCpNjaXaqiTIeg9yqQYyg1D
+	 vIb+sgs0lvBbA4M2G+fEJkFNMYGE+AwnsQ7mkKVOnZZs2wSBSsyGEZNh6hARQvRyec
+	 lK9cgEs8C2fBf3C66y/paf8fUmjjfGbkrltqpuhW2AThwChDilq+cxnZiXKDFJ430p
+	 XOSSALCb08kTJLJSXY57IJFBjb3YEOL3zhrE2iMxYwFdZBkzlqceQ/rswM4JhPal97
+	 ivpvFOs16n0mA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Feb 2026 18:13:06 +0100
+Message-Id: <DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org>
+Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with
+ C linked lists
+To: "Gary Guo" <gary@garyguo.net>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
+ <20260206004110.1914814-2-joelagnelf@nvidia.com>
+ <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
+ <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
+ <77ac3274-a962-469d-a2f6-6ccc0670988a@nvidia.com>
+ <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
+In-Reply-To: <DG80FV3VTT6P.2ZP18EM8605GT@garyguo.net>
+Message-ID-Hash: 4F5N2BVOJIX76XZZOXYSOIX3KPR3OPE2
+X-Message-ID-Hash: 4F5N2BVOJIX76XZZOXYSOIX3KPR3OPE2
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 5DTDF4CJAHD4OPCKEUF3VLJKMLHESQLC
-X-Message-ID-Hash: 5DTDF4CJAHD4OPCKEUF3VLJKMLHESQLC
-X-Mailman-Approved-At: Fri, 06 Feb 2026 16:23:40 +0000
-CC: linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-fpga@vger.kernel.org, driver-core@lists.linux.dev,
- Jason Gunthorpe <jgg@ziepe.ca>
+CC: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5DTDF4CJAHD4OPCKEUF3VLJKMLHESQLC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4F5N2BVOJIX76XZZOXYSOIX3KPR3OPE2/>
 Archived-At: 
- <https://lore.freedesktop.org/4669209d-c53b-4cc5-ab2f-0f09aa5dfc50@de.bosch.com/>
+ <https://lore.freedesktop.org/DG81PJ9QD8FC.2NF6VEKDD3F2Q@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -219,87 +130,54 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 05.02.2026 21:59, Peter Colberg wrote:
-> Add Rust abstractions for the Single Root I/O Virtualization (SR-IOV)
-> capability of a PCI device. Provide a minimal set of wrappers for the
-> SR-IOV C API to enable and disable SR-IOV for a device, and query if
-> a PCI device is a Physical Function (PF) or Virtual Function (VF).
-> 
-> Using the #[vtable] attribute, extend the pci::Driver trait with an
-> optional bus callback sriov_configure() that is invoked when a
-> user-space application writes the number of VFs to the sysfs file
-> `sriov_numvfs` to enable SR-IOV, or zero to disable SR-IOV [1].
-> 
-> Add a method physfn() to return the Physical Function (PF) device for a
-> Virtual Function (VF) device in the bound device context. Unlike for a
-> PCI driver written in C, guarantee that when a VF device is bound to a
-> driver, the underlying PF device is bound to a driver, too.
-> 
-> When a device with enabled VFs is unbound from a driver, invoke the
-> sriov_configure() callback to disable SR-IOV before the remove()
-> callback. To ensure the guarantee is upheld, call disable_sriov()
-> to remove all VF devices if the driver has not done so already.
-> 
-> For PF drivers written in C, disabling SR-IOV on remove() may be opted
-> into by setting the flag managed_sriov in the pci_driver structure. For
-> PF drivers written in Rust, disabling SR-IOV on unbind() is mandatory.
-> 
-> This series is based on Danilo Krummrich's series "Device::drvdata() and
-> driver/driver interaction (auxiliary)" applied to driver-core-next,
-> which similarly guarantees that when an auxiliary bus device is bound to
-> a driver, the underlying parent device is bound to a driver, too [2, 3].
-> 
-> Add an SR-IOV driver sample that exercises the SR-IOV capability using
-> QEMU's 82576 (igb) emulation and was used to test the abstractions [4].
-> 
-> [1] https://docs.kernel.org/PCI/pci-iov-howto.html
-> [2] https://lore.kernel.org/rust-for-linux/20251020223516.241050-1-dakr@kernel.org/
-> [3] https://lore.kernel.org/rust-for-linux/20260107103511.570525-7-dakr@kernel.org/
-> [4] https://www.qemu.org/docs/master/system/devices/igb.html
-> 
-> Signed-off-by: Peter Colberg <pcolberg@redhat.com>
-> ---
-> Changes in v2:
-> - Move logic to disable SR-IOV on remove() from Rust to C.
-> - Add driver flag managed_sriov to opt into disabling SR-IOV on remove().
-> - Demonstrate flag managed_sriov for dfl-pci driver.
-> - Uphold safety guarantee for physfn() when PF driver is written in C.
-> - Let physfn() return error if driver flag managed_sriov is unset.
-> - Use "kernel vertical" style on imports.
-> - Use to_result() to handle error in enable_sriov().
-> - Note Bound device context in SAFETY comments for {enable,disable}_sriov().
-> - Demonstrate how to reach driver data of PF device from VF device.
-> - Add missing #[vtable] attribute in PCI driver trait example.
-> - Add missing #[vtable] attribute in nova-core driver.
-> - Define struct MyDriver such that physfn() example compiles.
-> - Replace VF -> PF in doc comment of is_physfn().
-> - Add #[inline] to is_physfn() and is_virtfn().
-> - Link to v1: https://lore.kernel.org/r/20251119-rust-pci-sriov-v1-0-883a94599a97@redhat.com
-> 
-> ---
-> John Hubbard (1):
->        rust: pci: add is_virtfn(), to check for VFs
-> 
-> Peter Colberg (9):
->        PCI: add driver flag to opt into disabling SR-IOV on remove()
->        fpga: dfl-pci: set driver flag to disable SR-IOV on remove()
->        rust: pci: add {enable,disable}_sriov(), to control SR-IOV capability
->        rust: pci: add vtable attribute to pci::Driver trait
->        rust: pci: add bus callback sriov_configure(), to control SR-IOV from sysfs
->        rust: pci: add is_physfn(), to check for PFs
->        rust: pci: add num_vf(), to return number of VFs
->        rust: pci: add physfn(), to return PF device for VF device
->        samples: rust: add SR-IOV driver sample
+On Fri Feb 6, 2026 at 5:13 PM CET, Gary Guo wrote:
+> On Fri Feb 6, 2026 at 4:05 PM GMT, Joel Fernandes wrote:
+>>
+>>
+>> On 2/6/2026 10:53 AM, Danilo Krummrich wrote:
+>>> On Fri Feb 6, 2026 at 4:25 PM CET, Gary Guo wrote:
+>>>> On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
+>>>>> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
+>>>>> index 22dd29cd50b5..2c3dec070645 100644
+>>>>> --- a/drivers/gpu/Kconfig
+>>>>> +++ b/drivers/gpu/Kconfig
+>>>>> @@ -1,7 +1,14 @@
+>>>>>  # SPDX-License-Identifier: GPL-2.0
+>>>>> =20
+>>>>> +config RUST_CLIST
+>>>>> +	bool
+>>>>> +	depends on RUST
+>>>>> +	help
+>>>>> +	  Rust abstraction for interfacing with C linked lists.
+>>>>
+>>>> I am not sure if we need extra config entry. This is fully generic so =
+shouldn't
+>>>> generate any code unless there is an user.
+>>>=20
+>>> I also don't think we need a Kconfig for this.
+>>>=20
+>>> In any case, it shouln't be in drivers/gpu/Kconfig.
+>>
+>> Fair point, I believe I was having trouble compiling this into the kerne=
+l crate
+>> without warnings (I believe if !GPU_BUDDY). I'll try to drop it and see =
+if we
+>> can get rid of it.
+>
+> If you run into dead code warnings, I think it is fine to just
+>
+>     #[allow(dead_code, reason =3D "all users might be cfg-ed out")]
+>
+> the overhead of just let rustc type-checking this module isn't worth the =
+extra
+> Kconfig plumbing, I think.
 
-Would it make sense to somehow align / coordinate / stack this with the 
-work from Zhi Wang (and Zijing Zhang)
+You mean because there are pub(crate) in clist.rs? I don't think the Kconfi=
+g
+would help with that, nothing prevents people from enabling RUST_CLIST, but=
+ none
+of the users.
 
-https://lore.kernel.org/rust-for-linux/20260126215957.541180-3-zhiw@nvidia.com/
-
-? Or is this completely orthogonal?
-
-Best regards
-
-Dirk
-
-
+Besides that, once we have the new build system, the users of CList are lik=
+ely
+in other crates anyways, so I think we should just change things to pub.
