@@ -4,118 +4,115 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF429EE6B69
-	for <nouveau@archiver.kernel.org>; Fri,  6 Feb 2026 22:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42FE3EF06E2
+	for <nouveau@archiver.kernel.org>; Sun,  8 Feb 2026 14:03:38 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C3E7D10E968;
-	Fri,  6 Feb 2026 22:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C5B0110E2F9;
+	Sun,  8 Feb 2026 14:03:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Lh3wdsbG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MTbVnctT";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AF80E41B47;
-	Fri,  6 Feb 2026 22:26:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F18BE41C6A;
+	Sun,  8 Feb 2026 13:54:09 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770416786;
- b=e6QS8QUl8OHFo8yE3mzuTVOZlIJdjs+kthLZ4cNO5ZyypTxvuVGh4h1Y2SBdXWs9kP02V
- YUixhTE3XuLapJpY+u2eGPG1jYFVFzsvLCyJEBRLgc03lFpxyInHIlLTU1VbFlOthp3WGHG
- E3ynXVXV1Tqv6dUAWuZ1x5I+5xEE4lzwuQhdkN6qyXHYcar4XwbEAoIb71KhleDY0IuDBJJ
- uYtmmTmq+9A/MD44B2AR9vC2mGpNLgS277YBsaHhbVPAO4bvcJDxg/Vwf7m+oo4lMHbylhk
- /L5mJLcun1BLOmOkJgdKGNSr2G6frM9xTGsoVlTac151cSbhbYbp2YbYAVUA==
+ s=20240201; t=1770558849;
+ b=W7Xv86nlO/hpYblIvS4/ytZYqd/dWCjwaudRir8EcoBguIMeufb81rCuIfD4dEduJ9Ks7
+ BGz5nsgK0TKYFaN91a8bN5UFKpghLNEd4eTvLkr+3E8wsTC/rVupGIINnEgHI/3G+7nFl/1
+ 7eDqEAR9nFQABJFVfhwb71MhfEJ8WmVqJVNMCUfxrBTbJue1roQbZEODxyXL0T9D2tXiy8q
+ TuI/PjX+7wmDi6tOvr+TF065FQdBH1MffpEbID6+khZcJb0u47wPanbmlKhwu2tLBi/3IgL
+ 2xyVam0ybByvhlrBuO9GXy8rzaInkh1S1kGz6+nxyKGdkwYeuO77Bs0t9eLw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770416786; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770558849; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zTebqQ2eipm8YqiSwO1TAoGzLEbFz+blNfHKTyJxzv0=;
- b=mF+mPyDnizYsQTPuDj8t1h/SEt84vh+wJuUzphpmVUsWzdykvnFxgYbcjLwp3SfGNN9r8
- NEx5LeXknfxefuw2P1bkTnY0dpZ8F963eKS7Pb9bVEq6NO2pCREMAHR/VOvhLqHXwGO27sp
- zCAytlm0d5y2CO9RjtL74saG08DbYvWaYs5WI88l0eInWXwyKp27FayoevN2sFeUiIg3uVB
- NmqdO8VjKgC7HF2dhYG9ji4Ocj2bsjVFLDS+0GMPgNYOKYD7X58u4nEOTPJEat2WPlsrAyL
- gY91G5VeZMZ/EG+jYFsVllasZafXINwD1FGqznFPlQmuizx+Vf+FOLFzAYrQ==
+ bh=okKQNiRQQ0uRuZI05QV0b7nrgKnGp2+YPs2zappNZRA=;
+ b=MipimItq0+j/E2O8wpea66LEs0HuVPPn5YZ6cKVVqN2UobeMUAbE0besn1lYPmzc/yKRj
+ cRgLOxd/8HAzei4NgxsVxuW4+0X8F9rLLXoxILrh35sSzRRldUK/98hHF5jP7Q7gcIk96+E
+ qXBGTksm+v0ejtUFe1ncYf0jQVhzKEvj5BxoM5DcXIXhoaFUJ7yYKWbHjFx/YyK3w4Xz/9R
+ Neyg/VI+S+gu/JtAjA7jf2fWzOqViHwPGDFl6iSns8Ee/yTj1w9opQ3hWtd18pXp4A6l1cJ
+ O5goFz8/iiy3Xbdhyisa62n9zefJcH8a+I0oAoYZLwjjPDboBitfeN9dAYdg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
+ dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3848641B4D
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 22:26:23 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0475310E969
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Feb 2026 22:35:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1770417344;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zTebqQ2eipm8YqiSwO1TAoGzLEbFz+blNfHKTyJxzv0=;
-	b=Lh3wdsbGwch50R2rLPuJZguuKUCMNzLVzamcwKShFCnlkEwfslD2ubbAR5qCcektiSF65o
-	i3Qxh+ef4b9HQj32uLpBrg0D/Ln4ouVfUwiAmjI2Rp3zWDYP1V69o4MkVSbKGTaVdXC/BL
-	t0PXInwj3QI4wmRIOCoAtitOzx9Svjg=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-584-3KZVlp8tORq_6hbtHCtJMA-1; Fri,
- 06 Feb 2026 17:35:41 -0500
-X-MC-Unique: 3KZVlp8tORq_6hbtHCtJMA-1
-X-Mimecast-MFC-AGG-ID: 3KZVlp8tORq_6hbtHCtJMA_1770417339
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id B73581956094;
-	Fri,  6 Feb 2026 22:35:39 +0000 (UTC)
-Received: from GoldenWind.redhat.com (unknown [10.22.64.226])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id E264519373D8;
-	Fri,  6 Feb 2026 22:35:37 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: linux-kernel@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	rust-for-linux@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: [PATCH v7 7/7] rust: drm/gem: Add vmap functions to shmem bindings
-Date: Fri,  6 Feb 2026 17:34:31 -0500
-Message-ID: <20260206223431.693765-8-lyude@redhat.com>
-In-Reply-To: <20260206223431.693765-1-lyude@redhat.com>
-References: <20260206223431.693765-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 84C5440492
+	for <nouveau@lists.freedesktop.org>; Sun,  8 Feb 2026 13:54:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A7F5D10E08F;
+	Sun,  8 Feb 2026 14:03:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770559412; x=1802095412;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=cV940Lik96QcjKIDy0bcMBd1EZPtXN52moCKpfFr3Mg=;
+  b=MTbVnctTOJmFc1W9GK6YqE1ruBnfrlpt3Sf4Fx50MDApAHKk52ivXDhl
+   TEZQr/UeOYc/CICYcU3rDi+io68QnZJHxN8tTxhpIZADAldfWFlnb66oa
+   xfymOlXxhsyg7ZEMzqM7RbTP4RrJexpLLeZ6r7YpExWwB7n+UQ0hWGcDy
+   ci5QoBP7nZLrjAgqR50xnVok0OF84DEHcrqgwYB85cBZ4Ae2TgVKd0Evy
+   jyTGu7J4LKto0KA5J0NA+GNRFZ6Qg8BNczwJ/AneWIT8PElFtiB4fnLyF
+   awrjJtcAFkz11dw3fg0yofzJ7Yp0f24U84rtLOacblaU3UtxJ13PnwMqZ
+   Q==;
+X-CSE-ConnectionGUID: P1zkiIydRvC95mO5EY2Z6A==
+X-CSE-MsgGUID: KFtc7grdTGK9G3izS+Hneg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11695"; a="75538400"
+X-IronPort-AV: E=Sophos;i="6.21,280,1763452800";
+   d="scan'208";a="75538400"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2026 06:03:32 -0800
+X-CSE-ConnectionGUID: iB4UQchvTG6wMT0qRLv3Iw==
+X-CSE-MsgGUID: hV6ev9T3RyuR+52n17C61A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,280,1763452800";
+   d="scan'208";a="234279671"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.100])
+  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Feb 2026 06:03:29 -0800
+Date: Sun, 8 Feb 2026 16:03:27 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Dave Airlie <airlied@redhat.com>, dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/1] drm/nouveau/gsp: simplify code with
+ acpi_get_local_u64_address()
+Message-ID: <aYiXr8f2hO6cU3uj@smile.fi.intel.com>
+References: <20260120152049.1763055-1-andriy.shevchenko@linux.intel.com>
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-MFC-PROC-ID: d5v5TITKTwHxxmbJ_GfO8HffqEAAI5_EgfhW-hSTglI_1770417339
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: VPQTXLFBZFWKOBUPNY6GPHLTQ5U4JLKA
-X-Message-ID-Hash: VPQTXLFBZFWKOBUPNY6GPHLTQ5U4JLKA
-X-MailFrom: lyude@redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260120152049.1763055-1-andriy.shevchenko@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+Message-ID-Hash: PKGNXQMUTOVRLCAGYVAE4ZKEB4JL3D24
+X-Message-ID-Hash: PKGNXQMUTOVRLCAGYVAE4ZKEB4JL3D24
+X-MailFrom: andriy.shevchenko@linux.intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org,
- Daniel Almeida <daniel.almeida@collabora.com>, Gary Guo <gary@garyguo.net>,
- Benno Lossin <lossin@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- Janne Grunau <j@jannau.net>
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VPQTXLFBZFWKOBUPNY6GPHLTQ5U4JLKA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PKGNXQMUTOVRLCAGYVAE4ZKEB4JL3D24/>
 Archived-At: 
- <https://lore.freedesktop.org/20260206223431.693765-8-lyude@redhat.com/>
+ <https://lore.freedesktop.org/aYiXr8f2hO6cU3uj@smile.fi.intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -125,259 +122,13 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-One of the more obvious use cases for gem shmem objects is the ability to
-create mappings into their contents, specifically iosys mappings. Now that
-we've added iosys_map rust bindings to the kernel, let's hook these up in
-gem shmem.
+On Tue, Jan 20, 2026 at 04:20:49PM +0100, Andy Shevchenko wrote:
+> Now we have a helper so there's no need to open-code.
 
-Similar to how we handle SGTables, we make sure there's two different types
-of mappings: owned mappings (kernel::drm::gem::shmem::VMap) and borrowed
-mappings (kernel::drm::gem::shmem::VMapRef).
+Anybody to comment on this?
 
-One last note: we change the #[expect(unused)] for RawIoSysMap::from_raw()
-to an #[allow(unused)]. Normally we would simply remove the lint assertion,
-however - since shmem is conditionally built, we need allow to avoid
-hitting warnings in certain kernel configurations.
-
-Signed-off-by: Lyude Paul <lyude@redhat.com>
-
----
-V7:
-* Switch over to the new iosys map bindings that use the Io trait
-
- rust/kernel/drm/gem/shmem.rs | 170 ++++++++++++++++++++++++++++++++++-
- rust/kernel/iosys_map.rs     |   3 +-
- 2 files changed, 170 insertions(+), 3 deletions(-)
-
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index e511a9b6710e0..604fb10325d1e 100644
---- a/rust/kernel/drm/gem/shmem.rs
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -21,6 +21,7 @@
-         from_err_ptr,
-         to_result, //
-     },
-+    iosys_map::*,
-     prelude::*,
-     scatterlist,
-     types::{
-@@ -29,13 +30,18 @@
-     }, //
- };
- use core::{
-+    mem::{
-+        self,
-+        MaybeUninit, //
-+    },
-     ops::{
-         Deref,
-         DerefMut, //
-     },
--    ptr::NonNull,
-+    ptr::NonNull, //
- };
- use gem::{
-+    BaseObject,
-     BaseObjectPrivate,
-     DriverObject,
-     IntoGEMObject, //
-@@ -216,6 +222,72 @@ pub fn owned_sg_table(&self) -> Result<SGTable<T>> {
-             _owner: self.into(),
-         })
-     }
-+
-+    /// Attempt to create a [`RawIoSysMap`] from the gem object.
-+    fn raw_vmap<const SIZE: usize>(&self) -> Result<RawIoSysMap<SIZE>> {
-+        let mut map: MaybeUninit<bindings::iosys_map> = MaybeUninit::uninit();
-+
-+        // SAFETY: drm_gem_shmem_vmap can be called with the DMA reservation lock held
-+        to_result(unsafe {
-+            // TODO: see top of file
-+            bindings::dma_resv_lock(self.raw_dma_resv(), core::ptr::null_mut());
-+            let ret = bindings::drm_gem_shmem_vmap_locked(self.as_shmem(), map.as_mut_ptr());
-+            bindings::dma_resv_unlock(self.raw_dma_resv());
-+            ret
-+        })?;
-+
-+        // SAFETY: if drm_gem_shmem_vmap did not fail, map is initialized now
-+        Ok(unsafe { RawIoSysMap::<SIZE>::from_raw(map.assume_init()) })
-+    }
-+
-+    /// Unmap a [`RawIoSysMap`] from the gem object.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - The caller promises that `map` came from a prior call to [`Self::raw_vmap`] on this gem
-+    ///   object.
-+    /// - The caller promises that the memory pointed to by `map` will no longer be accesed through
-+    ///   this instance.
-+    unsafe fn raw_vunmap<const SIZE: usize>(&self, map: &mut RawIoSysMap<SIZE>) {
-+        let resv = self.raw_dma_resv();
-+
-+        // SAFETY:
-+        // - This function is safe to call with the DMA reservation lock held
-+        // - Our `ARef` is proof that the underlying gem object here is initialized and thus safe to
-+        //   dereference.
-+        unsafe {
-+            // TODO: see top of file
-+            bindings::dma_resv_lock(resv, core::ptr::null_mut());
-+            bindings::drm_gem_shmem_vunmap_locked(self.as_shmem(), map.as_raw_mut());
-+            bindings::dma_resv_unlock(resv);
-+        }
-+    }
-+
-+    /// Creates and returns a virtual kernel memory mapping for this object.
-+    pub fn vmap<const SIZE: usize>(&self) -> Result<VMapRef<'_, T, SIZE>> {
-+        let map = self.raw_vmap()?;
-+
-+        Ok(VMapRef {
-+            // SAFETY:
-+            // - The size of the vmap is the same as the size of the gem
-+            // - The vmap will remain alive until this object is dropped.
-+            map: unsafe { IoSysMapRef::<SIZE>::new(map, self.size()) }?,
-+            owner: self,
-+        })
-+    }
-+
-+    /// Creates and returns an owned reference to a virtual kernel memory mapping for this object.
-+    pub fn owned_vmap<const SIZE: usize>(&self) -> Result<VMap<T, SIZE>> {
-+        // INVARIANT: We verify here that the mapping is at least of SIZE bytes.
-+        if self.size() < SIZE {
-+            return Err(EINVAL);
-+        }
-+
-+        Ok(VMap {
-+            map: self.raw_vmap()?,
-+            owner: self.into(),
-+        })
-+    }
- }
- 
- impl<T: DriverObject> Deref for Object<T> {
-@@ -267,6 +339,102 @@ impl<T: DriverObject> driver::AllocImpl for Object<T> {
-     };
- }
- 
-+/// A borrowed reference to a virtual mapping for a shmem-based GEM object in kernel address space.
-+pub struct VMapRef<'a, D: DriverObject, const SIZE: usize = 0> {
-+    map: IoSysMapRef<'a, SIZE>,
-+    owner: &'a Object<D>,
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> Clone for VMapRef<'a, D, SIZE> {
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail
-+        unsafe { self.owner.vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> Deref for VMapRef<'a, D, SIZE> {
-+    type Target = IoSysMapRef<'a, SIZE>;
-+
-+    fn deref(&self) -> &Self::Target {
-+        &self.map
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> DerefMut for VMapRef<'a, D, SIZE> {
-+    fn deref_mut(&mut self) -> &mut Self::Target {
-+        &mut self.map
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> Drop for VMapRef<'a, D, SIZE> {
-+    fn drop(&mut self) {
-+        // SAFETY: Our existence is proof that this map was previously created using self.owner.
-+        unsafe { self.owner.raw_vunmap(&mut self.map.raw_map) };
-+    }
-+}
-+
-+/// An owned reference to a virtual mapping for a shmem-based GEM object in kernel address space.
-+///
-+/// # Invariants
-+///
-+/// - The size of `owner` is >= SIZE.
-+/// - The memory pointed to by `map` is at least as large as `T`.
-+/// - The memory pointed to by `map` remains valid at least until this object is dropped.
-+pub struct VMap<D: DriverObject, const SIZE: usize = 0> {
-+    map: RawIoSysMap<SIZE>,
-+    owner: ARef<Object<D>>,
-+}
-+
-+impl<D: DriverObject, const SIZE: usize> Clone for VMap<D, SIZE> {
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail
-+        unsafe { self.owner.owned_vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> From<VMapRef<'a, D, SIZE>> for VMap<D, SIZE> {
-+    fn from(value: VMapRef<'a, D, SIZE>) -> Self {
-+        let this = Self {
-+            map: value.map.raw_map.clone(),
-+            owner: value.owner.into(),
-+        };
-+
-+        mem::forget(value);
-+        this
-+    }
-+}
-+
-+impl<D: DriverObject, const SIZE: usize> VMap<D, SIZE> {
-+    /// Return a reference to the iosys map for this `VMap`.
-+    #[inline]
-+    pub fn get(&self) -> IoSysMapRef<'_, SIZE> {
-+        // SAFETY:
-+        // - The size of the iosys_map is equivalent to the size of the gem object.
-+        // - `size` is >= SIZE according to our type invariants, ensuring that we can never pass an
-+        //   invalid `size` to `IoSysMapRef::new().
-+        unsafe {
-+            IoSysMapRef::new(self.map.clone(), self.owner.size()).unwrap_unchecked()
-+        }
-+    }
-+
-+    /// Borrows a reference to the object that owns this virtual mapping.
-+    pub fn owner(&self) -> &Object<D> {
-+        &self.owner
-+    }
-+}
-+
-+impl<D: DriverObject, const SIZE: usize> Drop for VMap<D, SIZE> {
-+    fn drop(&mut self) {
-+        // SAFETY: Our existence is proof that this map was previously created using self.owner
-+        unsafe { self.owner.raw_vunmap(&mut self.map) };
-+    }
-+}
-+
-+/// SAFETY: `iosys_map` objects are safe to send across threads.
-+unsafe impl<D: DriverObject, const SIZE: usize> Send for VMap<D, SIZE> {}
-+/// SAFETY: `iosys_map` objects are safe to send across threads.
-+unsafe impl<D: DriverObject, const SIZE: usize> Sync for VMap<D, SIZE> {}
-+
- /// An owned reference to a scatter-gather table of DMA address spans for a GEM shmem object.
- ///
- /// This object holds an owned reference to the underlying GEM shmem object, ensuring that the
-diff --git a/rust/kernel/iosys_map.rs b/rust/kernel/iosys_map.rs
-index 2070f0fb42cb8..b649d2de83093 100644
---- a/rust/kernel/iosys_map.rs
-+++ b/rust/kernel/iosys_map.rs
-@@ -33,7 +33,7 @@
- 
- impl<const SIZE: usize> RawIoSysMap<SIZE> {
-     /// Convert from a raw `bindings::iosys_map`.
--    #[expect(unused)]
-+    #[allow(unused)]
-     #[inline]
-     pub(crate) fn from_raw(val: bindings::iosys_map) -> Self {
-         Self(val)
-@@ -139,7 +139,6 @@ impl<'a, const SIZE: usize> IoSysMapRef<'a, SIZE> {
-     ///
-     /// - The caller guarantees that the mapping is of at least `size` bytes.
-     /// - The caller guarantees that the mapping remains valid for the lifetime of `'a`.
--    #[expect(unused)]
-     pub(crate) unsafe fn new(map: RawIoSysMap<SIZE>, size: usize) -> Result<Self> {
-         if size < SIZE {
-             return Err(EINVAL);
 -- 
-2.53.0
+With Best Regards,
+Andy Shevchenko
+
 
