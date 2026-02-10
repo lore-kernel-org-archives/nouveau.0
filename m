@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FFB1E9462C
-	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 02:46:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB98E94604
+	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 02:46:15 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5835310E4BF;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 20CCD10E4BB;
 	Tue, 10 Feb 2026 02:46:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PuyH5nC1";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gKHjtEhw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 399B641F99;
-	Tue, 10 Feb 2026 02:36:43 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F199142030;
+	Tue, 10 Feb 2026 02:36:42 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770691003;
- b=yq4Axf7yZvx1v2nsaK+G1f/gNSf/xw/qFdnsGBelbH0hPHGSGZ8Y5L4Aqn0r0hbV5BPGz
- AULYlqWSc2K9W6n8LVU3//pxKACAhO5W3FxjW7wA2uwS7aN3MYWoh64VxyxLBARkFMLr+vH
- yXntTlJmSHIiCAgjuP+XiTg1/lZ39L3ZrbjBePLmFnxe9vg0fcD55fInVoHJzPAbMaX8vlc
- 41SY0VS9mq0Z66i7/1+wm4XA7cWkAh+3Njjvg8twvjDcwfi/lgJppVeUZkDgW24ZhwRsC9L
- eJwrP6eIf2F2ZiuKQC7+rWrka6rAq1xs9fZQZdggqvtKR1nWUjQzs/ADGlcA==
+ s=20240201; t=1770691002;
+ b=M89RDhEPEqq+pfXgsLk2XUTlGr0psgaCO9qMtKUVE5yhfOKnzJw38lvc0dIu4M74VxQ9Z
+ Q27L1srTbW9yxqmNf9w6FZ64dwMxyrCaGXIxhs7qp7Of9au1D08JFsm1T+pfIWV9KtT5Jpj
+ Er3lDtAdWDPfs64CzdhFeZWUGC02MfhnoRDnMq+2qF7e4J70QEL9z5Fe7wzLuO9vMfgOVs0
+ v0d2R5lzKX31WBtvUbykgjd99suXato4ofkNVDE9w46aFG7M/J6Uo1qGUlqaMGsG72yeAAU
+ 38U7leZf96WYxgqlNtpnG4gzRhVyD2fRXGU3/WWaV7Bl98H2G+Y7z5j4sJXg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770691003; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770691002; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=pxo6FiNWZfafjmwp/KYtQKjfi0VnmxCwVCUijW51aKY=;
- b=Aq3HcC/3H6QmhZhZG8BeXafd+SCbW8yFBPxd6WvLdixMmY6SMp/x9wG+U5cbGJqJP1g/f
- lUrFoSTcNdDIeRPqyNe4ieRXUXtQbcvFH8hkE6fwx8KMv4fRdbS67T9fkwUHTw7nk6ELd94
- bPu/+/RRxQD2P+r10i854Yq3NKyMn3saEMiFXh/qgrd9dPNKswL1hn3Ev2oYXTtknIy7+vz
- PMdiSvOrLpfVJWRZ9b+wQMyc/JHL45CuTuZBNNgRF0GBZaKBLmudzq6TK3cYMSaGSJdvELA
- Rm/zWllfVeRsDBGTExHR7qLpKP9Qqp/y6LVDeQ7+uhKAhGrqbE4GHYJ8Q9Ig==
+ bh=6l5qgenhdQ2TGcieM8RWT7sBgqv4/4JR9LuGO3gpBTg=;
+ b=JuzU35kDxiqETSPLfQgSFUQD7G1bGW/NnToj7XCA6JBFcN3v7sRpBzTyyqGWa+GB8duK9
+ GPQAKHgPhjdFMnAT0l/GcrlliiG0E2urDjmK7o9t1OWoZj09WGyGal1KVrhUcEynyQVevhS
+ SueCiomTbJ8LcvmrueKPosLspQtkwkjYQ2HpB7yp5hu38LdFs+OHNJf//0ECmsUiUu8D0/x
+ u4eajMa3FBm6H8CS3blKvYLivYoNW97AbNQhTGUNRZStutwMEd+2+BpWVjlnEdQcN3FiZ62
+ AB64KOrZ/Pv+QspbX3CEUWIP6yMK8iQThsihO4OGyl3U3eCixETSVw7Tv6Cw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,136 +45,135 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DF9A841C6C
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 02:36:40 +0000 (UTC)
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010055.outbound.protection.outlook.com [52.101.85.55])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DA04F10E4A9
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 02:46:10 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 01A4D402B7
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 02:36:39 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012031.outbound.protection.outlook.com [52.101.48.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DE00410E4A9
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 02:46:08 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iWhNtJPtzjmHXBfRmSmvz93MahE0i2NB+LtaJR44kR/f86rz/uIgfqbG+8l/bM18pk1jupgCj/2RkE3RiqnEG0BL10icNTT7+DdV9bUjldl65nxQNxaNCU0i1IE9S5fs2XR/e+knS8wcvRXGc++zQJabzrV5X6KFCfY3fa/LNC18jiyH5n+leOPPdTlHzYGzwNGyDrR7J0MT1lqsQGg80xWvowJCOGJ/Lsy+1OAbPWsBBM9WjF+Vq0zjvlHnutT1PxrL9+hPEHYqTbeTu8mfhGx0OqLWZyC7AhdNoQlhmrGeIc9C1bd8M3x8ong80uDXZFP/Fr3ZfCzNrnT1WKtR5Q==
+ b=wCD7lyrGGdrepYbry3vHdLiIzb/9LtjVK3n4J+uHiIvimyUqO2+bZS0aZjKJb0yfwgYXAdclJDtaxjNTA4kqVtNO8RaFrDki1KUDd6ffHzxm63UD2Mm99BUlJYjetlTIi41xjurk0oE5qPRAtT6P9Wc24o48R+qLO9a6vhEcuVkDGWcHnJXmC7iDDIrcblVyH7mo6r5d7bVEdsY2HCHwTLe+ClCgKyM3ohCRL2TIeZgsFgie4SxErV00mL1g2zXb3J0ce5ZQqdAIIFDETWlduhWhm06RU+36z1KPN2K0DM3E7Mat6EwOy1hdYK9Xqdb6s+15sx0AmvgBaHORnCpdTQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pxo6FiNWZfafjmwp/KYtQKjfi0VnmxCwVCUijW51aKY=;
- b=aKFvJMlzSwL6Ur1h1pVmDx6v/dEePLASIOaEe9pNhema2YEmAPG3YvjJ4Bk41IKYIawvM84dNDvBZuxVhODKErcLW+wQ0iKg9NWPi+GNyEY5njXysz+gsv/sO/KNWJqhzZMX5RUYoUu5HKb1HSbZMyY9GXpHyQGQuDifwyprzLgJ/RjRNOIZCjFbJqilrkWuccmN4J0/zP1Q7U7ooApUnMHugZySMzyy/tUxswx61wyzZvUSYi6bZA12TUnUcasx4SHXPTzkirCea5yBmqAaUrI4ACGjMH/qDGiTDwH1ZtBtmPR+iY7d5C3AxGQMvF5P1DB5jGUuJWziypCMM7TGLA==
+ bh=6l5qgenhdQ2TGcieM8RWT7sBgqv4/4JR9LuGO3gpBTg=;
+ b=xJHCrP8o8JwwWI3qvgihpxTDqtKtsJRwhk5E84Rbn0t/mdspWmZi0g+SIfeISI7S4K4LncojmyWrWzUdCIld/4cC2h8WCOi58/j+t5Tpi4PjWL2+mWw7qr9GP/29PhlSaDDztaiOM4obXAn6hF8BmUj2uBKc7Na3Y/5VB1GMhc1vsIhfraXYiHvPf2WBcL0XS9uzYBGeHBISO8ICea2bVfrBUyxvmLo+ZSPKGXllFt3ZW8dXzQWAxK0EIO/iuGobm9XBWC0suzVMStpxXrTWDiDbenTOpeTbGEvhjn14I0GVjtat9zR1tyCemUlo8w+Rj/ivCY8ShUdvaSD/tr6dDA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pxo6FiNWZfafjmwp/KYtQKjfi0VnmxCwVCUijW51aKY=;
- b=PuyH5nC1c4ehOa1qUbKEmc+ldyO19A9Tfc2C7qcYgEaGh/cGcKRT7VfDQm5T9Y/TTw6dA6Uj22tNPhwRvG0kaXqRqtOu5KsGO6NW+XjPZV/PK0+CMHuCTf96rJjKGw6ghtdqWltZCAQuh+9WGl9oZ8AQS/QzDzfMXaKiVDhVcdrC9Eky4pMrjwbT2sY9DiKVV16P8PPuFcjD1LiLBx3xWcVOd22rsf1AriDsdcX++YdjsQBFoW/mRWJF4h/7q7IEtFd8+kVCyuMisIOeqTIaPcdUuidZVVaPD9kvZ72aT3mXSrGWK5GgjOGQnW7M7PuCoqgRaZw048AkRV/T3BKGrw==
+ bh=6l5qgenhdQ2TGcieM8RWT7sBgqv4/4JR9LuGO3gpBTg=;
+ b=gKHjtEhw3faPiRa7/Y0Cy7uzHO2UJ733skAWVveEk/EZUC23ShnRWmfp9WeXimBRQuNices4GwBwOzYTcJxA4zNS2omLqX+A21sqRBiwU962OirMDLoAohEz9x61UG+cGwhyFiBBfXv5lyD5TBhUioSC5URD8sorV4SibDoOsy0qB6qmc34TCQ5Hl+rvYvFmfg/SCAPZI65O2n1Dp2jWu36t2hLNqDazYRCU2wKXCnbKsWPI8slMlKhmggZjB4Z/U/izih8uNkdV3k7b8AlpkyNn1mhF2hq6xm4Dlq88oSCKZGrXEmTxzElTmTmLnASCDq675R3hEzmWt2ozfPbCew==
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
  PH0PR12MB8797.namprd12.prod.outlook.com (2603:10b6:510:28d::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 10 Feb
- 2026 02:46:07 +0000
+ 2026 02:46:05 +0000
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
- 02:46:06 +0000
+ 02:46:05 +0000
 From: John Hubbard <jhubbard@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>,
 	Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH v4 03/33] gpu: nova-core: add FbRange.len() and use it in
- boot.rs
-Date: Mon,  9 Feb 2026 18:45:30 -0800
-Message-ID: <20260210024601.593248-4-jhubbard@nvidia.com>
+Subject: [PATCH v4 02/33] gpu: nova-core: print FB sizes, along with ranges
+Date: Mon,  9 Feb 2026 18:45:29 -0800
+Message-ID: <20260210024601.593248-3-jhubbard@nvidia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260210024601.593248-1-jhubbard@nvidia.com>
 References: <20260210024601.593248-1-jhubbard@nvidia.com>
 X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: BYAPR03CA0027.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::40) To DM3PR12MB9416.namprd12.prod.outlook.com
+X-ClientProxiedBy: BY3PR05CA0032.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::7) To DM3PR12MB9416.namprd12.prod.outlook.com
  (2603:10b6:0:4b::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|PH0PR12MB8797:EE_
-X-MS-Office365-Filtering-Correlation-Id: 346ae0c1-3af2-45b7-defe-08de684e8a1a
+X-MS-Office365-Filtering-Correlation-Id: 4195a88e-4119-46cf-3f27-08de684e896e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?fgau95Jbyj6Wh5Ck/3Ys8UUfMWHibDmlcbHvzSnKFfNpslRb1iiK5FOMXwHD?=
- =?us-ascii?Q?77+vmOA+5vxOX1CKWAD7SVMvCa/hx0haaJjEpKxIrQmFtDZ2Xl5rc3lqh+/p?=
- =?us-ascii?Q?4cULhIAltL6an3dQfmY7vzGcjdCQqM8og/bM8pdLoCR8iZAE4lHjByiGuuRx?=
- =?us-ascii?Q?9T/BW6B7p4J9gabWXlBQIkCFsQR033zLIBe5n28/QgZWRQZrKj4BXRn6Lic/?=
- =?us-ascii?Q?jWeLWo9OZu/JdZd98XFxb8wjO2bE4iLzXLzNGIIYHYUKse1+/YfqN9KbQfak?=
- =?us-ascii?Q?ebxtHdr+1XWYhYqtVzNl9Xjwnpng34jwEfbKsdLbSIPXRVoQXo7iBb+DycE+?=
- =?us-ascii?Q?Nil+9thR/NyJCnSIffYh0dtBIndB9cr16x+JTiA8BpD+0dlfb+ffKKpdYVXt?=
- =?us-ascii?Q?TXuLpMOYg4yZWZsmYF7lDmM6hyyKDOfX4MXUyGC0k58KN3ii9ye3YrTmRJAU?=
- =?us-ascii?Q?bpinjiX+XaimaUm8rT7dFUayZfyMW5B3AZz8ogqm7a12PWmalSyskR0kiHHv?=
- =?us-ascii?Q?D3LugABo4+7oD5VJ4eDyMiKHoAUshvQkd32atRjvfLVQcI7H77BJ6MfeMtN6?=
- =?us-ascii?Q?e0Oz7q1yu5jd4cRPJWLfREWUiQsLC4dqQDXB28+ldCiswxYIra0fDffw+mpX?=
- =?us-ascii?Q?dBosgG2gTPbAEPR2eDTtRO+YlxrtXquSboZeUONmCZNRtsfqzwsZYaAmlwxQ?=
- =?us-ascii?Q?XuNZ18UOK9aFfuUZ7obZC5+mXBDMfn2K6c19Ssxzl+sMXA29D88TX+8U/0s0?=
- =?us-ascii?Q?2Uehib/+cH9/bgITO04V3wLehNhC8W2Tz/xNQoGX+yAVtvskcVu4ycWGGIGB?=
- =?us-ascii?Q?JsMgG9Y0yReewDJT9PzP+EK2VK0AmcqqdmcAy5T/uAKBwqPUMv2Fn6jX+qzw?=
- =?us-ascii?Q?iqi1ZHqpE+os2kSRXBlKXsGh7WvCFApXtysZ8mWQyTr81KTE2vHjqKwEfsMG?=
- =?us-ascii?Q?mC1kmH25r+GiM5Avy/6qmoA3KVvj1OPWk7Nt/Lx3tgAMzda1MhFFZ01cRBl9?=
- =?us-ascii?Q?Ag7zYCkbheUWuKQzoW22SfNcdBBSsyNq72DjxD2JbAwSBN0PS9rgpjm63EPy?=
- =?us-ascii?Q?Xw0Q6uwGWisSnAso9CqYjeHB+Rn+XQpvkuxsygRM2pduxcuud23tFpX89Ktu?=
- =?us-ascii?Q?sKKNIXWomXwKd7ExyDfVqQ/K/6S1s6/Abw0W7RdhGJKrmrElgYBFzf5HVe5X?=
- =?us-ascii?Q?6aBxgZoA+Trh59SXkdBAcvwLvHrtdqBHc/UUsC8tcCpS+p1+K1FMU7iVzkoL?=
- =?us-ascii?Q?N7BtKkb7PSJgdNwiREA7IxHD6qkagwma/BAauXUbCgyjk9H4fTP1Vvvqndbz?=
- =?us-ascii?Q?ppsAnFS+ftDe/UK5Gj3QckuQyWNmETKHJBYdqiNT/MXiLigrgKbUlTEi3//U?=
- =?us-ascii?Q?qcZsTBa36rc2EnTji0DDqgIaWKesuX1j7a4XAE2odJ7yGNuf7gyTxTIYSIAm?=
- =?us-ascii?Q?bc5Yn1/Kz43yyWY/3+xLQvnXzbVXaTD43kQTrmC5EBCyhFrqkXDZAlbhiNoN?=
- =?us-ascii?Q?1SvH/iTTZb2mpXxb0TkFS6wEH2EHSEFJmK873tGlU40xdjnICrPqbeOmQDao?=
- =?us-ascii?Q?dWEE1s81DCC3CuZ2XSs=3D?=
+	=?us-ascii?Q?Huy/jVY30YhTfKGoc451dk0XvEbdS2HfDe/QC0VBH80PEHmbBfm25swmq7GZ?=
+ =?us-ascii?Q?TdiW3fHRLT/AjjvFdcfSOUqREVHtaLxMJTfKySD4Lp8BjiOXej0YmFghmfVY?=
+ =?us-ascii?Q?ZqZ3DdtobsYlh4jZ1fe49ooTsChF8oanjo9p41+9yVxcAJZonSiZ7/vO8MYy?=
+ =?us-ascii?Q?Ufaf5qRzy+xs2cNF2RrT+2EySF7lxIqMhTcRvQEezdkyp+uB1kDIC6AoARFz?=
+ =?us-ascii?Q?qnU/RomBCAci5P5leK+PJmApKKKCmKG1htnJw5CEDcexYmV7nBzpKa9tNOgR?=
+ =?us-ascii?Q?2YkHYlgM4JYGWKbQALagOQttYP0gCB/zvSqC4W4iX16JSvUnUwTY2eKdc5IC?=
+ =?us-ascii?Q?psNsUHcXm//MKV+ay9/nyW2uVdWPwklfz1//yKc8r7veyJPdEmG/w7V10bqK?=
+ =?us-ascii?Q?uo7xM/gNhfctM4WsY6zhhdDACNLqjE9BhYMTHW5YYo32c9v8FrTAzL0xa+hr?=
+ =?us-ascii?Q?0XW5TESE+ZtTg9A7FkyzA64IPCAR6x1lBUcvBOa51hQg6gJmiE4+S+DBDUs+?=
+ =?us-ascii?Q?9ko97aUk0/Iec9VJ7TatAwKgEy7s0F7MMOQ7xJstwJ9FwU7efWOh30f7vq8l?=
+ =?us-ascii?Q?mchIE5r1hAx/oOUHFc/9K22JsxPLwWzaKv7n5kSvi63Buey92Pw1eSH9Ml2i?=
+ =?us-ascii?Q?ELxXm5o4Ku0W4VY6Y7zee0toCNActBTlUPD4or1O754fP8xHZSYbG0U8MgdG?=
+ =?us-ascii?Q?RPSnINnT/sTD+HRVKAqI9dDM/mb803B9H5m42Ok1gijUVvttixMy38i9cd5A?=
+ =?us-ascii?Q?Se52GYn+oL+lTJlDsuzf9OaYw0HuLnd4hQ6i51Ai8vQpJO7ogU+fbmrlXZf+?=
+ =?us-ascii?Q?8SbUs2Bi8zBp3rQE1Z0yEPepOXveICIiQ4IHGG8Gyl9ncSCvr1U9wR7MqYP6?=
+ =?us-ascii?Q?4qj0JwHaCmdgmcUuH4+nmdiw8sLRWNWfZleXAOQC8JlyAatutuCPcBiBLwAt?=
+ =?us-ascii?Q?0Kdf99xxCAnb6laGP+HA9I3JHA2HFInYJ+ZhDxjuo1Xh+k9ZAS5NIHHK/js+?=
+ =?us-ascii?Q?Z3KO234h1sSzjNvflIHvE6QmrpDZz6Y3/O9d1K0jv6i+demKrxXEyW8cs8Uj?=
+ =?us-ascii?Q?4ZOxrjYHCExti58ogzjareH93qMQTcTo3DHTDqAhM+mLHVazmNENiWc/i5Pr?=
+ =?us-ascii?Q?rqQ+cKCiaNpjxPUAknJckTfYZme57+3m2cTVtowdrVq3EWD8xuvCDNPGDBd/?=
+ =?us-ascii?Q?hquazCjqG2ca3LYiqPbMJqn4aXnY0uFBSmrNc8ObpmYibp/tBlE/0LgRmkAk?=
+ =?us-ascii?Q?f6rSvBuX0L++jY7bIY9qabdLWY7+gWJGuywHb6v8gK97XMpP4HQe/yX3eKsQ?=
+ =?us-ascii?Q?JUkez1/7dBNPI0rwxG9bBLXv4YkhqzkM9/4K8VZmiIqPYQEd+CW/HUbMkoQr?=
+ =?us-ascii?Q?+ycSdnAi0aNro3lnLLS/ke8hUWQw4fL+qE/j0GHJpZNwK8AG+vj5mkYCj18Y?=
+ =?us-ascii?Q?/J09jU0DBVcZyhG08MAApjdgLPA1KSWccxdkgHn57N0RamVOCIUf8/hhHzLR?=
+ =?us-ascii?Q?Ntox8MzS+WI0WVqUvVRcr4SejDIZnNJYwX3QqRYzl2rHkj1I7q4YmEY1YpCK?=
+ =?us-ascii?Q?NoUSFotRL82A4RaDhQg=3D?=
 X-Forefront-Antispam-Report: 
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?NsaL14URDw3xwrO/WfXr2LRLyJ4+lG7QTkIrrdWXVr3NSJpB0RvIFin4ymzb?=
- =?us-ascii?Q?Mb2qfu8D246QQtabFnyyfGu/VDrzl8ha3XaMXciQGDSNIroLaGmwHmwJ8Ofy?=
- =?us-ascii?Q?kitnCpII7/dcAioJKd2s3zAN++AfTvGZ11W8PaNHvMRioXtVrR6lNK8qA6Ww?=
- =?us-ascii?Q?S0QwVDXbl1Ue74X37Ygeu1xWvx1dHrxyDHX5A1XeOc1xyRzlRvxnjZIsXRiJ?=
- =?us-ascii?Q?APdtU4Hr67w4UjaCLE9p7Lmj8cmbElB0OJxecMeXuQTfQ+Tcb0LP24MxrQCU?=
- =?us-ascii?Q?UCDdKfYiaz77gvBtgELFs1L4zmUsuEpu5ZjN/CeWTbINbM6kWOm7aZZRb5jZ?=
- =?us-ascii?Q?aIYb3lL1CHPjluyuLcuVqvEeg1A4SXitiYCRixdJjJBDpOs1FX1+tPY6ds5m?=
- =?us-ascii?Q?QveVGg4Nl01gyON+Imp/joTP5yEA+T9PA3KY+YfuOj4RgFrHnQywISN1Z29Z?=
- =?us-ascii?Q?RtFLJNQVZX1LNdZGXmNi4431DjratgiCMfSDZAnmjs2/ibZ+zmZyUEFziCOm?=
- =?us-ascii?Q?+9OI+ih9i1h3HwCXiqDyD2VQD7SfMNZ4xiqDNzFnTM85D9mzzBsq6DYxa55G?=
- =?us-ascii?Q?W7w1XFLwIU0teODUJl9DRyvnPas0o3UGBGYal3WKcM6zgLMZR+ssATs49VZJ?=
- =?us-ascii?Q?Mxqwg4402wytVePcCWm5YW9apHz8oALRB3faP4nhqLa1aPZMbCu1XbQ8djOL?=
- =?us-ascii?Q?8qTXCzuZhqSMvmezPwM11dr4UD/tsZeEQNc6kam0ujDjEwCHJQWT1V/BUeKs?=
- =?us-ascii?Q?gWUITtGms2BAj4X++h0Ysk9VBISgmFoH8DElsCKAw4uJbGIFfumjOvS3nu3v?=
- =?us-ascii?Q?wkyrQK0gl0C79R5uyn5OHWkZBRQyA3Q29EKu2eTYNtqKPOwoX7ZP4iIs8h/q?=
- =?us-ascii?Q?4KkyFoTHyI27/542zLic9iFpHVvkMPvPFeIv/V0zbm1g2F3Ljf9gQb0AZeIc?=
- =?us-ascii?Q?QHsYbh32C5YkM9FGuYBhdkvdEwUciJi0lFNPChMs5Kt2BFUjbc/l8WJ9hgOz?=
- =?us-ascii?Q?EcARzJcboZMLeCHLbHxdLUf603l6OTg5N/3wNcMRxpmPal++fbp3Ma0c0caM?=
- =?us-ascii?Q?O23KyQC6YAuvzmHNa5tYWS4RamZC4WoyL0y4/U1reyIwH7G6+Fc2iYooXzl7?=
- =?us-ascii?Q?DZtLTaBIqv+tj29DNioQFDAgtkSsbI3cz5A2wUfwRdjTmxpxL7KGbk5Amw1d?=
- =?us-ascii?Q?c3vCY+U6Rv6kcaEW0/XUxgGbhpjE098ijZvBI1BywNO3mqaSCGjoNUAuQkUm?=
- =?us-ascii?Q?+76GP/IEz/BQv+wZ6GfNRltnYoNIj4Pb2oaTz2GRWV/0AlZdCOo6q8aJsQLc?=
- =?us-ascii?Q?mRGoh3RDxwedQ9E3A1LZNxmtyRSaGeHTuhaluRHEnoRryd5vvvEWApgWk0DM?=
- =?us-ascii?Q?05e9yK7YsbyscExlb43shYsBPcd2fE+a/E+bpFMeGwMcvo+rDGkd5bpm5KPE?=
- =?us-ascii?Q?IJ+xQIKEC+G+4XV1iiGeBA8I9JKVFkZcAi8JWnovthOAc8BubCdgAJpa8R5S?=
- =?us-ascii?Q?9E3yAC9pa4KlEZxiwHS3Hl7Krm5OyzVRSQyRDIEqTFobytrPsfrVZi5ykoVn?=
- =?us-ascii?Q?XKiaLWHnoLbo6Um2LFxeL3AGaFUGqbxCPdr2JVvc5i3Q2P3JiEyVMu+mqbJ0?=
- =?us-ascii?Q?gPYrG3l9KI2nGkTQFbb1aIY5gFcedQMqAmLhSnm0p3WDih2D5z5/abkiqC+s?=
- =?us-ascii?Q?J34nNizyy6qGaSO66PAl/ht2GSp7r3jJrVfk9NT8j7s/0r8B69T9zlSkPYhs?=
- =?us-ascii?Q?wvXdREWiuw=3D=3D?=
+	=?us-ascii?Q?e3YgOBWLQFgL8hVXSh+Dkix8B3PWetOgnGjnW2rL8OrkClUcwmzcRZ/267n+?=
+ =?us-ascii?Q?RYvRS7005+JzySzTPNt0L1oiNgNCm3QFG1BJ/3WAiggUYLbvty8vaBuyGizF?=
+ =?us-ascii?Q?N5iMRHtphAlycXUkr4j2mZs46WFc+E+ihQ32odQ8JXx+tf32ZLMSroy/+Cfj?=
+ =?us-ascii?Q?iH5IhHydrjDy9TIk2s/NQmNCRc4Evo0bQicOp/FNXgmt9BbRclByW9AKE+aM?=
+ =?us-ascii?Q?e122C+iUXOrWL7fScvyCFF0cLxRdYhbiNSLm25YhYH8RKe0uy2gL5mAqr4b8?=
+ =?us-ascii?Q?qUbSksNvHpXTR3aa1Wl9gPsbEfGRv429vrcf6F7SUvWUgmm703TGZ4Lk9+3V?=
+ =?us-ascii?Q?+OFQX25Dr1lSZy8HmZisk8OWy0qb8sNxnBsBn0vTBnAEO4kTUMsk+b65XojI?=
+ =?us-ascii?Q?sY/9gkjRdDCd2H0GYkuXai+BIznuCey14/vHUYxcRIptsKUR+voJrvAiNnsD?=
+ =?us-ascii?Q?GIiznun4rO9PljD7eQlCHzkz4bhsxyCOKIXmf/eatgTnMD858ksVyqSJYsj5?=
+ =?us-ascii?Q?CjGQbPFf7N+jHD8xeCyjTKNNe9ZGtl8U+LP03qEdK+C58yUU15WzFCBTepkd?=
+ =?us-ascii?Q?v/vrl7zXy9aZjP/OmYBNLjy2WHXqRyXY8z8as3QLnUiwLiON6g8/WKl2ZkAq?=
+ =?us-ascii?Q?FoGL2mfc/XJKGuIDBPoIxzs7RMVt6ma+t03ObZS25np1RJd1lWD+UIkGJaG5?=
+ =?us-ascii?Q?qITnGnkgl6HbfTrF+LG56OVM+BjAb9BO+mVXV8yNFemJzdDfJ7b+PrVVFxvc?=
+ =?us-ascii?Q?iLA5SYVCvudSYgOFa5/kbnnDWZhVvQMC9ir99sDlrAq2nu62a46Dl7TgZpmb?=
+ =?us-ascii?Q?SKd2MUnBAjMG6n39RpeY/IHlek0e/piUMjO5JC661gGVEkU921wjLXHmIz0Q?=
+ =?us-ascii?Q?0jfGuuFQ4BGu4F0qWW8Abmo6P4G6z3a5k797owllKerkvWK8ACs4DIj0ckqs?=
+ =?us-ascii?Q?PnCmHKLTHkRcpVq9/kaz0MBjdJNAsL4QXYoWAovxeKDyzwqKCInZNd+ocpPY?=
+ =?us-ascii?Q?e6XqGTbydxFWjREyoM0ti24sUXWE+c5NbMnZgqDexhWrZlPpZufRsSZpJNGI?=
+ =?us-ascii?Q?By5+aWRB65yfk++7dpEIkgLB5qnBOIM2xywZlR2abbGV6ZfKB7PJdstseyUE?=
+ =?us-ascii?Q?aiPPkLWF27841aw8FYa2sw2AKtLY+EhsK8lorQPB3s0LVGufCkPpTe/zqCJo?=
+ =?us-ascii?Q?5cBX0tkL1LKZ81ADoDYD0BJ7NnNe55TGDJtsypx92l+HvRE8Uev9yNjtOrz0?=
+ =?us-ascii?Q?Ao86M9PFIPKepRdlCaxWwY3szbxI19ba7gxJjcQK569IPUUHXPLGrHqLA4dI?=
+ =?us-ascii?Q?YDkI6XAsI7VvRU/H/jCIMqgkK2HnQ0qzoZSeGDGtQn6cCyzAJiDVecpITlAC?=
+ =?us-ascii?Q?3IhJxXaaScQ1vt3Jq3EHHyByxI1CLsKX4ZYJu49lyzBAVhe+SMTYog5NgbP3?=
+ =?us-ascii?Q?o1oN0Gx3QvZT8Tj81tpGR2Jih1ifI9lHd0qFJ73M/pX4TR2CO768tuEVlsYi?=
+ =?us-ascii?Q?SesCVktBADEBxYNlDC7/ReS2fYOb5X9DeB/Z+/TbdgldUArCreWevvpdVAEF?=
+ =?us-ascii?Q?4OrCH7vXTqqLPiWrO0h9VLZxlvRHOuCezknpCMarN1pTuzrgJcODsClbcWx4?=
+ =?us-ascii?Q?iov2+EHJgkO4L8JwCFPuiaPHMldeC5q/OxHQjLv3GJ5cq1NkWcQf4QQSZ4tm?=
+ =?us-ascii?Q?VvCOIHfQqkx0FdM4CHyHKba08lNoxBS+SBqujy31MKA2ixDnN35bKDJlhjPO?=
+ =?us-ascii?Q?jiKT6NJw2g=3D=3D?=
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 346ae0c1-3af2-45b7-defe-08de684e8a1a
+ 4195a88e-4119-46cf-3f27-08de684e896e
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 02:46:06.8285
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 02:46:05.6930
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- tqtXHARLG3TeS+j9jE4gHMy4GTPz8EuAb24DwV9BagKP4mPSPqd9aj7twCdIf3DYEPPHzJ9jCxmoinEqE/KXcw==
+ xHsut7trrdOMZA28andB1lMZrpzNR4c7yy4kTnTrzTNuNLRVLeHSBJwwzRsT5VavtnRoYNZHtaVZ2SrY/MbtRA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8797
-Message-ID-Hash: BWSJJAOKJ6KJWBYPXVGVW3LRB6N2UAYC
-X-Message-ID-Hash: BWSJJAOKJ6KJWBYPXVGVW3LRB6N2UAYC
+Message-ID-Hash: YH2XLQJV657DCBCMR3NI7HQ2Z2ASYAUL
+X-Message-ID-Hash: YH2XLQJV657DCBCMR3NI7HQ2Z2ASYAUL
 X-MailFrom: jhubbard@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -195,9 +194,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BWSJJAOKJ6KJWBYPXVGVW3LRB6N2UAYC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YH2XLQJV657DCBCMR3NI7HQ2Z2ASYAUL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260210024601.593248-4-jhubbard@nvidia.com/>
+ <https://lore.freedesktop.org/20260210024601.593248-3-jhubbard@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -207,48 +206,200 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-A tiny simplification: now that FbLayout uses its own specific FbRange
-type, add an FbRange.len() method, and use that to (very slightly)
-simplify the calculation of Frts::frts_size initialization.
+For convenience of the reader: now you can directly see the sizes of
+each range. It is surprising just how much this helps.
 
-Suggested-by: Alexandre Courbot <acourbot@nvidia.com>
+Sample output (using an Ampere GA104):
+
+NovaCore 0000:e1:00.0: FbLayout {
+    fb: 0x0..0x3ff800000 (16376 MiB),
+    vga_workspace: 0x3ff700000..0x3ff800000 (1 MiB),
+    frts: 0x3ff600000..0x3ff700000 (1 MiB),
+    boot: 0x3ff5fa000..0x3ff600000 (24 KiB),
+    elf: 0x3fb960000..0x3ff5f9000 (60 MiB),
+    wpr2_heap: 0x3f3900000..0x3fb900000 (128 MiB),
+    wpr2: 0x3f3800000..0x3ff700000 (191 MiB),
+    heap: 0x3f3700000..0x3f3800000 (1 MiB),
+    vf_partition_count: 0x0,
+    total_reserved_size: 0x1a00000,
+}
+
+Cc: Timur Tabi <ttabi@nvidia.com>
 Reviewed-by: Gary Guo <gary@garyguo.net>
 Signed-off-by: John Hubbard <jhubbard@nvidia.com>
 ---
- drivers/gpu/nova-core/fb.rs       | 6 ++++++
- drivers/gpu/nova-core/gsp/boot.rs | 2 +-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/nova-core/fb.rs | 83 +++++++++++++++++++++++++++++--------
+ 1 file changed, 66 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/nova-core/fb.rs b/drivers/gpu/nova-core/fb.rs
-index 6fb804c118c6..e803e6e0cdb9 100644
+index c62abcaed547..6fb804c118c6 100644
 --- a/drivers/gpu/nova-core/fb.rs
 +++ b/drivers/gpu/nova-core/fb.rs
-@@ -100,6 +100,12 @@ pub(crate) fn unregister(&self, bar: &Bar0) {
+@@ -1,9 +1,13 @@
+ // SPDX-License-Identifier: GPL-2.0
  
- pub(crate) struct FbRange(Range<u64>);
+-use core::ops::Range;
++use core::ops::{
++    Deref,
++    Range, //
++};
  
-+impl FbRange {
-+    pub(crate) fn len(&self) -> u64 {
-+        self.0.end - self.0.start
+ use kernel::{
+     device,
++    fmt,
+     prelude::*,
+     ptr::{
+         Alignable,
+@@ -94,26 +98,71 @@ pub(crate) fn unregister(&self, bar: &Bar0) {
+     }
+ }
+ 
++pub(crate) struct FbRange(Range<u64>);
++
++impl From<Range<u64>> for FbRange {
++    fn from(range: Range<u64>) -> Self {
++        Self(range)
 +    }
 +}
 +
- impl From<Range<u64>> for FbRange {
-     fn from(range: Range<u64>) -> Self {
-         Self(range)
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index bd6e6dc57e85..465c18e4c888 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -70,7 +70,7 @@ fn run_fwsec_frts(
-             bios,
-             FwsecCommand::Frts {
-                 frts_addr: fb_layout.frts.start,
--                frts_size: fb_layout.frts.end - fb_layout.frts.start,
-+                frts_size: fb_layout.frts.len(),
-             },
-         )?;
++impl Deref for FbRange {
++    type Target = Range<u64>;
++
++    fn deref(&self) -> &Self::Target {
++        &self.0
++    }
++}
++
++impl fmt::Debug for FbRange {
++    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
++        // Use alternate format ({:#?}) to include size, compact format ({:?}) for just the range.
++        if f.alternate() {
++            let size = self.0.end - self.0.start;
++
++            if size < usize_as_u64(SZ_1M) {
++                let size_kib = size / usize_as_u64(SZ_1K);
++                f.write_fmt(fmt!(
++                    "{:#x}..{:#x} ({} KiB)",
++                    self.0.start,
++                    self.0.end,
++                    size_kib
++                ))
++            } else {
++                let size_mib = size / usize_as_u64(SZ_1M);
++                f.write_fmt(fmt!(
++                    "{:#x}..{:#x} ({} MiB)",
++                    self.0.start,
++                    self.0.end,
++                    size_mib
++                ))
++            }
++        } else {
++            f.write_fmt(fmt!("{:#x}..{:#x}", self.0.start, self.0.end))
++        }
++    }
++}
++
+ /// Layout of the GPU framebuffer memory.
+ ///
+ /// Contains ranges of GPU memory reserved for a given purpose during the GSP boot process.
+ #[derive(Debug)]
+ pub(crate) struct FbLayout {
+     /// Range of the framebuffer. Starts at `0`.
+-    pub(crate) fb: Range<u64>,
++    pub(crate) fb: FbRange,
+     /// VGA workspace, small area of reserved memory at the end of the framebuffer.
+-    pub(crate) vga_workspace: Range<u64>,
++    pub(crate) vga_workspace: FbRange,
+     /// FRTS range.
+-    pub(crate) frts: Range<u64>,
++    pub(crate) frts: FbRange,
+     /// Memory area containing the GSP bootloader image.
+-    pub(crate) boot: Range<u64>,
++    pub(crate) boot: FbRange,
+     /// Memory area containing the GSP firmware image.
+-    pub(crate) elf: Range<u64>,
++    pub(crate) elf: FbRange,
+     /// WPR2 heap.
+-    pub(crate) wpr2_heap: Range<u64>,
++    pub(crate) wpr2_heap: FbRange,
+     /// WPR2 region range, starting with an instance of `GspFwWprMeta`.
+-    pub(crate) wpr2: Range<u64>,
+-    pub(crate) heap: Range<u64>,
++    pub(crate) wpr2: FbRange,
++    pub(crate) heap: FbRange,
+     pub(crate) vf_partition_count: u8,
+ }
  
+@@ -125,7 +174,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+         let fb = {
+             let fb_size = hal.vidmem_size(bar);
+ 
+-            0..fb_size
++            FbRange(0..fb_size)
+         };
+ 
+         let vga_workspace = {
+@@ -152,7 +201,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+                 }
+             };
+ 
+-            vga_base..fb.end
++            FbRange(vga_base..fb.end)
+         };
+ 
+         let frts = {
+@@ -160,7 +209,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+             const FRTS_SIZE: u64 = usize_as_u64(SZ_1M);
+             let frts_base = vga_workspace.start.align_down(FRTS_DOWN_ALIGN) - FRTS_SIZE;
+ 
+-            frts_base..frts_base + FRTS_SIZE
++            FbRange(frts_base..frts_base + FRTS_SIZE)
+         };
+ 
+         let boot = {
+@@ -168,7 +217,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+             let bootloader_size = u64::from_safe_cast(gsp_fw.bootloader.ucode.size());
+             let bootloader_base = (frts.start - bootloader_size).align_down(BOOTLOADER_DOWN_ALIGN);
+ 
+-            bootloader_base..bootloader_base + bootloader_size
++            FbRange(bootloader_base..bootloader_base + bootloader_size)
+         };
+ 
+         let elf = {
+@@ -176,7 +225,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+             let elf_size = u64::from_safe_cast(gsp_fw.size);
+             let elf_addr = (boot.start - elf_size).align_down(ELF_DOWN_ALIGN);
+ 
+-            elf_addr..elf_addr + elf_size
++            FbRange(elf_addr..elf_addr + elf_size)
+         };
+ 
+         let wpr2_heap = {
+@@ -185,7 +234,7 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+                 gsp::LibosParams::from_chipset(chipset).wpr_heap_size(chipset, fb.end);
+             let wpr2_heap_addr = (elf.start - wpr2_heap_size).align_down(WPR2_HEAP_DOWN_ALIGN);
+ 
+-            wpr2_heap_addr..(elf.start).align_down(WPR2_HEAP_DOWN_ALIGN)
++            FbRange(wpr2_heap_addr..(elf.start).align_down(WPR2_HEAP_DOWN_ALIGN))
+         };
+ 
+         let wpr2 = {
+@@ -193,13 +242,13 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+             let wpr2_addr = (wpr2_heap.start - u64::from_safe_cast(size_of::<gsp::GspFwWprMeta>()))
+                 .align_down(WPR2_DOWN_ALIGN);
+ 
+-            wpr2_addr..frts.end
++            FbRange(wpr2_addr..frts.end)
+         };
+ 
+         let heap = {
+             const HEAP_SIZE: u64 = usize_as_u64(SZ_1M);
+ 
+-            wpr2.start - HEAP_SIZE..wpr2.start
++            FbRange(wpr2.start - HEAP_SIZE..wpr2.start)
+         };
+ 
+         Ok(Self {
 -- 
 2.53.0
 
