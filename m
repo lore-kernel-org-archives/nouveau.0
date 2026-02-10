@@ -4,82 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81C3DEA3F30
-	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 10:07:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA1CBEA3F3A
+	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 10:10:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BF33910E544;
-	Tue, 10 Feb 2026 10:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6E410E545;
+	Tue, 10 Feb 2026 10:10:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AmE+/FBO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KjaZ5ktO";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D6C9041E87;
-	Tue, 10 Feb 2026 09:58:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4CC6041E87;
+	Tue, 10 Feb 2026 10:00:50 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770717501;
- b=w8X1bRIjIk7ZnNlD8ywF1Gidr/A1hj0RXKTsqlt8VvqxoAi8M6N8YjHx0jPdZv+6uJpR6
- 8amZ2rUnTJjOmaU1MY6MgUH5ap6/iONPN79DdVjROJRDox8gE4y7RyXlKCS4jqrD0cEjtxW
- vpHmRytBh47scLM2FA78n59fo4mCZr+5LIWtCR8uPkz7h4lP19Ea74KOCSc1XuYSKyS3E//
- gha2WEDgJzdGjOmByIR0EGlv2Z7suvMEd7dbTgFwNb4CD+pD9cdFhINpG41WQp/8br9rP4X
- PEO6QJjXVuwcFV0X7O2e9KmBaM+k+Lg2pRCrbZDejovFviAJ18Z/FQ+280lQ==
+ s=20240201; t=1770717650;
+ b=infDRh1nOy2OCfqvRpS3qFl1mSWvhL7s5vQSAWXHC9KOTDjoenB9f3c5sPZsOqkL8n9Qr
+ fCxnN4YneLx8SMJWcWHGvsvFAUjmL280JUYAmLExamlreldZhkWFQZXD1E7sVqZTyIqAhdb
+ 6BjDrjQuyh9MX0e0fvkgBhnVR9frdUY/0gxxffuBaJKmxMvHRvkOc80jlMQGRGXCcmlFb5r
+ Clyg6Zlyz7xlWt2PEw6XvugFpaR/DZIQgdf+Z8hXhfMViQboicqL3d02s9zJ5tHQqCE6oMy
+ DHjmqr0nee+cUJNJFWzxgNAPDHXhaH9PAGdNFNDYoNBLmfqWlkW8s7cbtjtQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770717501; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770717650; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ECXH4OnMX09YjnTpZAGqjShzFoHs57XYcXZjq8Fx28w=;
- b=hZPZeOYWdqzZH5wcuIWysdLL8J5/egWnEl2sVWH7HmW1BnB9wsnGZ/CNPrb6d+ZCSNNOM
- vPPqJRoK8KkuFbZyo8vIsLg8ruEi4S+pikZVXNoeTTbPlYq9TzQlhhjMio9lRwrjO5tu7Pi
- 1WRefUf9L0+uPTir6pHtRsVyXwkL6kwNKOuF0Hn+luxfPNTIEgRJtRxRKrz2r1ihrH/YW01
- p0+vxr/CdjxFseahXi5eFKMhTlIdCUIqmvQ3pgjrwytS5CEGmAUDMAuIrRuZxLYphZuEoMS
- 61BRqMCozfnFlBE0aHsu7wYEjT/MHHPrc7+jBGqLcnAaaC6oOunl3rTmgo5w==
+ bh=3tIAdkWTkVpnMp6zRgpAyEGhOex8mV3BoxfJk6Xg8CY=;
+ b=YUmEzd1uaydArpKvMjL4o6EEOzHR5nUirwWJIqf0fZk+Yp7xbCT70mrWzL3EHz3PcoJ94
+ 3gUlxotoXAHhHRfVPkClOC8aJ51LWax0M6i4hs73zfcvRWONo1SiDyorg3DxgZbwyVVh+zj
+ bPXj4DXrsiBcP+8UlsGl8gnNTHB8LpKvnJn6RtKQyb/2jJspt130xEPwdddSjqZpbfBA3CY
+ PFT1GNq2UX7BZhgp9fgQQom8Vlt6FL/kWwyadu6NthzX6AnxFSDJXNq12shgtTpe5LwCIcc
+ HJVQvOqAmU3yybm3klKJSSAZtBCggMzSRArB7t/+86oy5YkVZiMVjDkUM/pw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=kernel.org;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=kernel.org
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=kernel.org
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3B67F41C69
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 09:58:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 78D2F402B7
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 10:00:47 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BB78A10E53B;
-	Tue, 10 Feb 2026 10:07:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 15CFB10E53C;
+	Tue, 10 Feb 2026 10:10:18 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id A21F66013C;
-	Tue, 10 Feb 2026 10:07:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E11BC19423;
-	Tue, 10 Feb 2026 10:07:39 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 79A5160137;
+	Tue, 10 Feb 2026 10:10:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 304D5C116C6;
+	Tue, 10 Feb 2026 10:10:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770718068;
-	bh=u8PznRMNHUq4nAGBxZMhRsI1nFCYrCQ3fE2qie4jbrc=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=AmE+/FBOXpx4l68K7mRYkO1VaqodkSC6EYBRpsvdmsAAuCtBUC0Ski789nLR1zq1E
-	 TFTDJAvO/WZbEVJGb8S5jNstC+zYelojWUA/Vz701gpxjENKDqf79Whnceiw8FNbBY
-	 ut8jot+h95U+T6RJ5kCKlxvUFRclDycYQjjaBjTHT6bLOEcE9HUbcuS+BZFG44DJnu
-	 CVAHmq30G99r6V870J6tOn4+Jg52OrlgRgVX3eznZ31pPxPm5cEPxdXhux6nTT538r
-	 +/0qFbG/tLyPxoR1S45Ir7yxIN7ouU4u22nUuj5eODPtQ6D7izQW76OuKa/9AuTQs9
-	 71HQcI6dvN+Lw==
+	s=k20201202; t=1770718217;
+	bh=Y1eJ+A7bQ+DjJKh+pu4y7cwRQw19sr4V6ovNvsHmjOE=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+	b=KjaZ5ktO2RwcnVfgIKvTFccsUCApAJjPUj4D8e0ZO3b/KLUWqSj0RGU0HG8GMGMBY
+	 /ca+RG3h60JHjlJnxuB/WE1vdfh2hG+sip0oKbsljKs7Y1kANUE/VXUNJ/j44c53gz
+	 EQYNofR+tf0/melgx6bEoZ2lBVdRZbX0Tewo9DNVHrwitaRRpZO4yRMIbsHqPT0/Do
+	 +Zh0a0G7FJfcZeN9ZeFCiYAzzuFKjPeSW2KDjstvQ06C13LjKiZomFwgWOb1lLjoTP
+	 WF0IBAEwIqOKfYua4Pmmk3M+MBi2AmUfFW9dsSgYecM4uLFTuUxaDnyfmp6iru3MSI
+	 +pQkxwj3FuECg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Feb 2026 11:07:37 +0100
-Message-Id: <DGB75XMWML8M.DFZY5L52EBQF@kernel.org>
-Subject: Re: [PATCH -next v8 1/3] rust: clist: Add support to interface with
- C linked lists
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
+Date: Tue, 10 Feb 2026 11:10:06 +0100
+Message-Id: <DGB77U0C946C.3F9PUVN5XX912@kernel.org>
 From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH -next v8 3/3] nova-core: mm: Select GPU_BUDDY for VRAM
+ allocation
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
 References: <20260209214246.2783990-1-joelagnelf@nvidia.com>
- <20260209214246.2783990-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260209214246.2783990-2-joelagnelf@nvidia.com>
-Message-ID-Hash: XCE74XWPRXIV4KX65BSFA2DV5NS4JDGV
-X-Message-ID-Hash: XCE74XWPRXIV4KX65BSFA2DV5NS4JDGV
+ <20260209214246.2783990-4-joelagnelf@nvidia.com>
+In-Reply-To: <20260209214246.2783990-4-joelagnelf@nvidia.com>
+Message-ID-Hash: JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY
+X-Message-ID-Hash: JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -114,9 +114,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XCE74XWPRXIV4KX65BSFA2DV5NS4JDGV/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY/>
 Archived-At: 
- <https://lore.freedesktop.org/DGB75XMWML8M.DFZY5L52EBQF@kernel.org/>
+ <https://lore.freedesktop.org/DGB77U0C946C.3F9PUVN5XX912@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,23 +127,18 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Mon Feb 9, 2026 at 10:42 PM CET, Joel Fernandes wrote:
->  rust/kernel/clist.rs   | 320 +++++++++++++++++++++++++++++++++++++++++
+> diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfi=
+g
+> index 527920f9c4d3..c129764daa23 100644
+> --- a/drivers/gpu/nova-core/Kconfig
+> +++ b/drivers/gpu/nova-core/Kconfig
+> @@ -3,6 +3,7 @@ config NOVA_CORE
+>  	depends on 64BIT
+>  	depends on PCI
+>  	depends on RUST
+> +	select GPU_BUDDY
+>  	select RUST_FW_LOADER_ABSTRACTIONS
+>  	select AUXILIARY_BUS
+>  	default n
 
-I think we should move this under rust/kernel/ffi/ to make it obvious that =
-this
-is FFI infrastructure.
-
-> diff --git a/rust/kernel/clist.rs b/rust/kernel/clist.rs
-> new file mode 100644
-> index 000000000000..8aa72b5d54be
-> --- /dev/null
-> +++ b/rust/kernel/clist.rs
-> @@ -0,0 +1,320 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! A C doubly circular intrusive linked list interface for rust code.
-
-Here and in the struct documentation, I'd suggest to clearly point out the
-use-cases, i.e. that this infrastructure is for FFI use-cases only and shou=
-ld
-not be used otherwise in drivers, etc.
+NIT: Let's get the 'select' list ordered. :)
