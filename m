@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA1CBEA3F3A
-	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 10:10:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11E3FEA8104
+	for <nouveau@archiver.kernel.org>; Tue, 10 Feb 2026 11:55:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F6E410E545;
-	Tue, 10 Feb 2026 10:10:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2001F10E570;
+	Tue, 10 Feb 2026 11:55:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KjaZ5ktO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Sxy6aCvE";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4CC6041E87;
-	Tue, 10 Feb 2026 10:00:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 199FC41E87;
+	Tue, 10 Feb 2026 11:45:45 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770717650;
- b=infDRh1nOy2OCfqvRpS3qFl1mSWvhL7s5vQSAWXHC9KOTDjoenB9f3c5sPZsOqkL8n9Qr
- fCxnN4YneLx8SMJWcWHGvsvFAUjmL280JUYAmLExamlreldZhkWFQZXD1E7sVqZTyIqAhdb
- 6BjDrjQuyh9MX0e0fvkgBhnVR9frdUY/0gxxffuBaJKmxMvHRvkOc80jlMQGRGXCcmlFb5r
- Clyg6Zlyz7xlWt2PEw6XvugFpaR/DZIQgdf+Z8hXhfMViQboicqL3d02s9zJ5tHQqCE6oMy
- DHjmqr0nee+cUJNJFWzxgNAPDHXhaH9PAGdNFNDYoNBLmfqWlkW8s7cbtjtQ==
+ s=20240201; t=1770723944;
+ b=C9lAWR3zHft3UDBqjO/eQ/Co2NxQ1cmwcFJJ5B1ZtlMzL10Qyo761IKf6LGiJRYDJJuj3
+ Adqs4HlnOG2ldEK3DYM+Y08F8AXW3y0Kf63Qxppp188/7fzDm0rRWCazeB7YZxLDmh/QQEp
+ VTTEnx7wSfsoJSPFLkpxCaECP/mwv+AOliFSpgkzbzlJAMuye5RkOLzhyL+zPjNrXiOM8ex
+ 65LcNX9OFrIp+J6ZcEL0QAZQlqTfangWvfiCiXXqvDNJ/UbK1opnOxPkxItJ+PdC0hWFlJQ
+ lkdwheWUOycIumnNXSNQvmjoHsKgDoomv439r6WAILWf5tzeTxJqsQemBucA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770717650; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770723944; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3tIAdkWTkVpnMp6zRgpAyEGhOex8mV3BoxfJk6Xg8CY=;
- b=YUmEzd1uaydArpKvMjL4o6EEOzHR5nUirwWJIqf0fZk+Yp7xbCT70mrWzL3EHz3PcoJ94
- 3gUlxotoXAHhHRfVPkClOC8aJ51LWax0M6i4hs73zfcvRWONo1SiDyorg3DxgZbwyVVh+zj
- bPXj4DXrsiBcP+8UlsGl8gnNTHB8LpKvnJn6RtKQyb/2jJspt130xEPwdddSjqZpbfBA3CY
- PFT1GNq2UX7BZhgp9fgQQom8Vlt6FL/kWwyadu6NthzX6AnxFSDJXNq12shgtTpe5LwCIcc
- HJVQvOqAmU3yybm3klKJSSAZtBCggMzSRArB7t/+86oy5YkVZiMVjDkUM/pw==
+ bh=Ssdfav2i4hZMcPmM6+CWn++nv2VwNNz8cii9/N08/xM=;
+ b=OAESi8w5UqxKy4ViBlkouL3BNMZvZBKZdlLReamrWycx3HnzAwQGfKqu1E8+oaRcgvU9I
+ 97tJSmjRLB3Ttf5InI0VLSFElNMWcmt99YD8KyhrQJNTwd44ZNnb+gmJ0Z8RN/YSneDfAIY
+ QOw2uXoBofnxuOgVAke1phHuBfsmJYOuFYXfO/MEABLxEAXWwcLCiLb1X4J1ulpUmKWnZFa
+ HHReNPeHyxBXMb3TeKoUI8esL8zWPfzyD/ovCL1WOhS32Z5YAoVE1MXltXfXfTUi1LrbxaF
+ wQ9kf0iwVIjm5+Y2Oa224V4cUV4JNhMlVqmSY/8T+6qF/doBit+Nq16Pk1nQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,40 +46,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 78D2F402B7
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 10:00:47 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 15CFB10E53C;
-	Tue, 10 Feb 2026 10:10:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 67F99402B7
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 11:45:42 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB6510E562;
+	Tue, 10 Feb 2026 11:55:13 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 79A5160137;
-	Tue, 10 Feb 2026 10:10:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 304D5C116C6;
-	Tue, 10 Feb 2026 10:10:08 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id E131144390;
+	Tue, 10 Feb 2026 11:55:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED62EC116C6;
+	Tue, 10 Feb 2026 11:55:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770718217;
-	bh=Y1eJ+A7bQ+DjJKh+pu4y7cwRQw19sr4V6ovNvsHmjOE=;
-	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
-	b=KjaZ5ktO2RwcnVfgIKvTFccsUCApAJjPUj4D8e0ZO3b/KLUWqSj0RGU0HG8GMGMBY
-	 /ca+RG3h60JHjlJnxuB/WE1vdfh2hG+sip0oKbsljKs7Y1kANUE/VXUNJ/j44c53gz
-	 EQYNofR+tf0/melgx6bEoZ2lBVdRZbX0Tewo9DNVHrwitaRRpZO4yRMIbsHqPT0/Do
-	 +Zh0a0G7FJfcZeN9ZeFCiYAzzuFKjPeSW2KDjstvQ06C13LjKiZomFwgWOb1lLjoTP
-	 WF0IBAEwIqOKfYua4Pmmk3M+MBi2AmUfFW9dsSgYecM4uLFTuUxaDnyfmp6iru3MSI
-	 +pQkxwj3FuECg==
+	s=k20201202; t=1770724512;
+	bh=YHEMObMfKBsNNt+IT3C08BQUnMajYKrlxt36jnYTOM0=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=Sxy6aCvEEWcX6KtHkVp86DsMNpHLyi8vxUEzWWv5iEbbJQMUCCLpdLhZIydCwildX
+	 7qnplmrrcs0wFBVPQu9lGnb2/Ignd1wgEPIn4qAhM5g1oLSrOwhNxBf6aT6TTU7x+z
+	 Tp/js3mNnpH1gxO0pS9Gm3YneMYNJXqA8KJzwMGuI4RHhxxB114BVx/RhSy5L84rZl
+	 BK3A7CP6H9z6jzPCn1MZQg50WLDBKQVinrDnkSXXc+gv93wJgo5zb82EnPNv/5q47m
+	 rILSI5X2da1963xNdLQeBl2Y4ZW6PANjF0ScCGGfAO9krr86Xnw7BBK6kyiT3pHJFs
+	 fKSLbeiscHScg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Feb 2026 11:10:06 +0100
-Message-Id: <DGB77U0C946C.3F9PUVN5XX912@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH -next v8 3/3] nova-core: mm: Select GPU_BUDDY for VRAM
- allocation
+Date: Tue, 10 Feb 2026 12:55:01 +0100
+Message-Id: <DGB9G697GSWO.3VBFGU5MKFPMR@kernel.org>
+Subject: Re: [PATCH -next v8 2/3] rust: gpu: Add GPU buddy allocator
+ bindings
 To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
 References: <20260209214246.2783990-1-joelagnelf@nvidia.com>
- <20260209214246.2783990-4-joelagnelf@nvidia.com>
-In-Reply-To: <20260209214246.2783990-4-joelagnelf@nvidia.com>
-Message-ID-Hash: JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY
-X-Message-ID-Hash: JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY
+ <20260209214246.2783990-3-joelagnelf@nvidia.com>
+In-Reply-To: <20260209214246.2783990-3-joelagnelf@nvidia.com>
+Message-ID-Hash: 3I7ZFHUGPMKC6F2DKFPPNU23TTE7BQMC
+X-Message-ID-Hash: 3I7ZFHUGPMKC6F2DKFPPNU23TTE7BQMC
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -114,9 +114,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JXGGGF5QQHFRH6QJMNAHKXWVLVQSAVWY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3I7ZFHUGPMKC6F2DKFPPNU23TTE7BQMC/>
 Archived-At: 
- <https://lore.freedesktop.org/DGB77U0C946C.3F9PUVN5XX912@kernel.org/>
+ <https://lore.freedesktop.org/DGB9G697GSWO.3VBFGU5MKFPMR@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -127,18 +127,173 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Mon Feb 9, 2026 at 10:42 PM CET, Joel Fernandes wrote:
-> diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfi=
-g
-> index 527920f9c4d3..c129764daa23 100644
-> --- a/drivers/gpu/nova-core/Kconfig
-> +++ b/drivers/gpu/nova-core/Kconfig
-> @@ -3,6 +3,7 @@ config NOVA_CORE
->  	depends on 64BIT
->  	depends on PCI
->  	depends on RUST
-> +	select GPU_BUDDY
->  	select RUST_FW_LOADER_ABSTRACTIONS
->  	select AUXILIARY_BUS
->  	default n
 
-NIT: Let's get the 'select' list ordered. :)
+[...]
+
+> +//! params.size_bytes =3D SZ_8M as u64;
+
+It looks there are ~30 occurences of `as u64` in this example code, which s=
+eems
+quite inconvinient for drivers.
+
+In nova-core I proposed to have FromSafeCast / IntoSafeCast for usize, u32 =
+and
+u64, which would help here as well, once factored out.
+
+But even this seems pretty annoying. I wonder if we should just have separa=
+te
+64-bit size constants, as they'd be pretty useful in other places as well, =
+e.g.
+GPUVM.
+
+> +/// Inner structure holding the actual buddy allocator.
+> +///
+> +/// # Synchronization
+> +///
+> +/// The C `gpu_buddy` API requires synchronization (see `include/linux/g=
+pu_buddy.h`).
+> +/// The internal [`GpuBuddyGuard`] ensures that the lock is held for all
+> +/// allocator and free operations, preventing races between concurrent a=
+llocations
+> +/// and the freeing that occurs when [`AllocatedBlocks`] is dropped.
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Opaque`] contains a valid, initialized buddy allocator.
+> +#[pin_data(PinnedDrop)]
+> +struct GpuBuddyInner {
+> +    #[pin]
+> +    inner: Opaque<bindings::gpu_buddy>,
+> +    #[pin]
+> +    lock: Mutex<()>,
+
+Why don't we have the mutex around the Opaque<bindings::gpu_buddy>? It's th=
+e
+only field the mutex does protect.
+
+Is it because mutex does not take an impl PinInit? If so, we should add a
+comment with a proper TODO.
+
+> +    /// Base offset for all allocations (does not change after init).
+> +    base_offset: u64,
+> +    /// Cached chunk size (does not change after init).
+> +    chunk_size: u64,
+> +    /// Cached total size (does not change after init).
+> +    size: u64,
+> +}
+> +
+> +impl GpuBuddyInner {
+> +    /// Create a pin-initializer for the buddy allocator.
+> +    fn new(params: &GpuBuddyParams) -> impl PinInit<Self, Error> {
+
+I think we can just pass them by value, they shouldn't be needed anymore af=
+ter
+the GpuBuddy instance has been constructed.
+
+> +        let base_offset =3D params.base_offset_bytes;
+> +        let size =3D params.physical_memory_size_bytes;
+> +        let chunk_size =3D params.chunk_size_bytes;
+> +
+> +        try_pin_init!(Self {
+> +            inner <- Opaque::try_ffi_init(|ptr| {
+> +                // SAFETY: ptr points to valid uninitialized memory from=
+ the pin-init
+> +                // infrastructure. gpu_buddy_init will initialize the st=
+ructure.
+> +                to_result(unsafe { bindings::gpu_buddy_init(ptr, size, c=
+hunk_size) })
+> +            }),
+> +            lock <- new_mutex!(()),
+> +            base_offset: base_offset,
+> +            chunk_size: chunk_size,
+> +            size: size,
+> +        })
+> +    }
+
+<snip>
+
+> +/// GPU buddy allocator instance.
+> +///
+> +/// This structure wraps the C `gpu_buddy` allocator using reference cou=
+nting.
+> +/// The allocator is automatically cleaned up when all references are dr=
+opped.
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Arc`] points to a valid, initialized GPU buddy allocator=
+.
+> +pub struct GpuBuddy(Arc<GpuBuddyInner>);
+> +
+> +impl GpuBuddy {
+> +    /// Create a new buddy allocator.
+> +    ///
+> +    /// Creates a buddy allocator that manages a contiguous address spac=
+e of the given
+> +    /// size, with the specified minimum allocation unit (chunk_size mus=
+t be at least 4KB).
+> +    pub fn new(params: &GpuBuddyParams) -> Result<Self> {
+
+Same here, we should be able to take this by value.
+
+> +        Ok(Self(Arc::pin_init(
+> +            GpuBuddyInner::new(params),
+> +            GFP_KERNEL,
+> +        )?))
+> +    }
+
+<snip>
+
+> +    /// Allocate blocks from the buddy allocator.
+> +    ///
+> +    /// Returns an [`Arc<AllocatedBlocks>`] structure that owns the allo=
+cated blocks
+> +    /// and automatically frees them when all references are dropped.
+> +    ///
+> +    /// Takes `&self` instead of `&mut self` because the internal [`Mute=
+x`] provides
+> +    /// synchronization - no external `&mut` exclusivity needed.
+> +    pub fn alloc_blocks(&self, params: &GpuBuddyAllocParams) -> Result<A=
+rc<AllocatedBlocks>> {
+
+Why do we force a reference count here? I think we should just return
+impl PinInit<AllocatedBlocks, Error> and let the driver decide where to
+initialize the object, no?
+
+I.e. what if the driver wants to store additional data in a driver private
+structure? Then we'd need two allocations otherwise and another reference c=
+ount
+in the worst case.
+
+> +        let buddy_arc =3D Arc::clone(&self.0);
+> +
+> +        // Create pin-initializer that initializes list and allocates bl=
+ocks.
+> +        let init =3D try_pin_init!(AllocatedBlocks {
+> +            buddy: Arc::clone(&buddy_arc),
+> +            list <- CListHead::new(),
+> +            flags: params.buddy_flags,
+> +            _: {
+> +                // Lock while allocating to serialize with concurrent fr=
+ees.
+> +                let guard =3D buddy.lock();
+> +
+> +                // SAFETY: `guard` provides exclusive access to the budd=
+y allocator.
+> +                to_result(unsafe {
+> +                    bindings::gpu_buddy_alloc_blocks(
+> +                        guard.as_raw(),
+> +                        params.start_range_address,
+> +                        params.end_range_address,
+> +                        params.size_bytes,
+> +                        params.min_block_size_bytes,
+> +                        list.as_raw(),
+> +                        params.buddy_flags.as_raw(),
+> +                    )
+> +                })?
+> +            }
+> +        });
+> +
+> +        Arc::pin_init(init, GFP_KERNEL)
+> +    }
+> +}
