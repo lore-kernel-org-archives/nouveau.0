@@ -4,201 +4,118 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A518FEB5946
-	for <nouveau@archiver.kernel.org>; Wed, 11 Feb 2026 00:05:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B9BBEA813E
+	for <nouveau@archiver.kernel.org>; Wed, 11 Feb 2026 09:19:26 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 01F0110E1BE;
-	Wed, 11 Feb 2026 00:05:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EFAEC10E346;
+	Wed, 11 Feb 2026 09:19:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="jsliFdnb";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aVn6Hz7e";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D3E1141F99;
-	Tue, 10 Feb 2026 23:55:32 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770767732;
- b=GjjDS5ac+ZoEKHJ5O68M5kdDmqqtr7tKAdmYb2nkFKy0nV14mqT5bdudOgw1FwoUyhpMt
- Df6sorngvZLCMSFOkWQrLmLgHFN5qtfUhPPgyldpjigEnEm6N2cxi4+zEFz8GYz8ob5IaIN
- lSoyfxYE7eeRdy2hKwQv251cf5pxUVMczZFSKE74VoztyoO2KYvZH49Md1FhGRvCnXBo+hz
- DBjgKHpaArla9NyI+6ge4RFsst16zWV4kLYbZsrD7bF4SDvsY6DiBiU172Fq5kj7QVupnGI
- 06FViSp2mTf3TpwinSetX353YPFKAgSzgkOXanz0Euorm+o0VsEkHuhPgpKQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770767732; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id ECE9E41CAA;
+	Wed, 11 Feb 2026 09:09:50 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1770800990;
+ b=BBNJb/7CRGa+4aoFtmF+8SKOgsK+RV6m6mmQ+bR50wuVityloQ87vko8QKNrcCnBh5Zvs
+ F7Kl0HZwMmV6g7Bbr/9fiKHMKGc7QCoFHYbOxBoSkXkRuH7ilQveTFVEHtR3BeLmkhV20Bp
+ jiv/+RM4Hwkzpf7ex1eztU1+lkMLZH5KNWJ+obM+efcc6BE0ZsB4GSfyWus9GgK7reXe2Zm
+ TEoLYHDG/c2/UixJfwfc+pMPdwKgBFBxkSzZfG/8SASrb2webO6v9CglLSAZNbKq/oUjDFD
+ yR0atCJ9TB0dNaaMtxzys0dQ/KuFjfpVKXn7O5uP1B9J/VxjOcozdS2RKUsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1770800990; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=spOI+/aVmIaeY475L939pCDzO9Gr73O6Ar7Cu/R28Dk=;
- b=yf/H9Tys9dXKgepT8BT6ZYEhkKDGDNBjRKUXoELV5iKGOYaZdU7ow4av8Tj32e91flr4R
- 0+UNwc0m1xI0p07A/IuWbUbC7ISrbHhcf0X5hCNFiaY1TBt96whhsB93a6PIl3DrVCMSFl5
- xKt0jMwlbgVCtrCXG5VZY8Dv/ZbWdMQJQAfVo+uI+WwtmpLLqbexoj5xaarNNW3t8oojvnF
- A6ZA3EmSPaoimNgD9PTX8OzUssFFegp/ptgM4nHdhfUP0Z7lcrQxX1YsrXCE2r9BlhaGLTj
- wc4HHeg8jYwz3CHyF2uisHhO3QlcRcOZL28qIJ3Y3hyhkrPFK5qXsVI5/YaA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=78vTmn6thDBzfMtB97lbGjUwbhyWjHfpO01rDAwelEE=;
+ b=tIiEPV0I6ecsYPm9rrnNf7ApUUUbs15sTjgccfbqxyrZpeY75gmzdxO2CbtjL9hL9jkXm
+ tT3tvbCCp56s4JU2OtYyhW97Jth2pSACO4V72XNCI+Ae/aH78CiFieqVprPeWKHgXkRNx40
+ fvLqk/ZhWa4q6KLtyez9kHgtOxGc5/0WnOipiCDYJsH9ZBecajxYjza4nGRPnCmMaqpNpUS
+ f+uM0+wuZ8V5CbgNbgdmEpHWzztnTILEFMq+Q3DyjZheOLNCUHuTozIv45BK6dES2mQouvL
+ Phrx7OXps21uBCVId8YbhArtPemX0L4Bst2UgtOfhcvZXn+mcdpvj0KgX35g==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8C0EE41C69
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Feb 2026 23:55:28 +0000 (UTC)
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012017.outbound.protection.outlook.com
- [40.93.195.17])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 73D9610E062
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Feb 2026 00:05:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fRyq9GizrndPqiZPn9M6krk8Ujht/lxHOCU++58kU6CxmASTkrIhZQucnO3qEGiJRfhCRhpcd/FaAYnLFpuD/AP3V80WtVpdg1V77+77fj4LMUAaMYWIGr2VEpNcMneco692C497eq256r1g3Jls4SEcQKz/sqfqw2NoTVgSK+Hls1THLAnPzeUCF70Rv3R4zyKUBXMzzCMVWQ0xZvQKS2StVZaCb3X2C41agw5+kI31j8Go+zERpHnzXtaz4Xy42BTf1sf0X8s9rCESw8aE+DlQpj9upXAE/meugVXuMnN4Xyj5b+r7dYTCQaMDMaVhrhRHs6C+QPdEOzDj5rKJ/Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=spOI+/aVmIaeY475L939pCDzO9Gr73O6Ar7Cu/R28Dk=;
- b=n5viOq5JuvFvvZNQHJXw0cwF2SW7lSP3uL4YyYLK0ZtdMMTd5meGVs5LH5xdLVGuKyjk9OfzA4Qe1KksF/wK5WitIlkOKIws0jQ1KKaImcUhZ6TKGicO+oh7ZvQ0FEyr+7mg+DA6a8mtnnO4g5PfPvU07Af65TKn0hDvItJWAS4HujrYCl5wWYV92+a6aoZePLTvEAZuJ3r2o+FGMv4NUGKbaFN701Wdcce1tqf9dlf3URB0cDhtqVqcaBJasotQA6WpNlfGqiY2e1jdEbqBWsgWGXFuBclInjxK/edS25Wjm38FtE2WG264cMONAHieQnJvwywzGlbuWnQ162ESFQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=spOI+/aVmIaeY475L939pCDzO9Gr73O6Ar7Cu/R28Dk=;
- b=jsliFdnbD3KLOHscpWLJ3F5xdAE5eX1IQhaZIX5ISrACFiX3dn9tYl9rVSYa0KCEuidg8PFgieFd1OQsrZ9vdCqVaAPGFkt82H1+jaC7TOBiHbRT/GxVSUKCFV6TfZ6zkTuJwThIYXJX3HYM3C1pSx/u1qcVCiFFxRYHFcTpwqitoMVrv/fiQ19B/ohPicuU5Pxz5qClZ/biMjk4GNSCRpQRORHGiUhNH+lQq9hXNCWK2wN0lTvUp3Xg+E40ie1yjqUQflT28w5cQXYkinQ/k8b3FOU9341g0jbU8VmkfWsYJnpERCH+0RgmpBoTziFjx2LZWKdu43ZTOr3TR8OzuA==
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- IA1PR12MB8588.namprd12.prod.outlook.com (2603:10b6:208:44f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 11 Feb
- 2026 00:04:56 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9611.006; Wed, 11 Feb 2026
- 00:04:56 +0000
-From: John Hubbard <jhubbard@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH 2/2] gpu: nova-core: improve GSP RPC debug logging with
- message classification
-Date: Tue, 10 Feb 2026 16:04:51 -0800
-Message-ID: <20260211000451.192109-3-jhubbard@nvidia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260211000451.192109-1-jhubbard@nvidia.com>
-References: <20260211000451.192109-1-jhubbard@nvidia.com>
-X-NVConfidentiality: public
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0014.namprd13.prod.outlook.com
- (2603:10b6:a03:2c0::19) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|IA1PR12MB8588:EE_
-X-MS-Office365-Filtering-Correlation-Id: fa7a0181-4c04-4dbd-7810-08de69013013
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?KYsX0Q/gqdstLsNCzspQRdd/x01SviRInu3QAi1edfTGmFj9aVWf09x6nI5v?=
- =?us-ascii?Q?ggo34obrEX/aWveXF7lEKXK8pFOBWtVGK/w28zi/FlgZKzGsFm7iqj2BsnAD?=
- =?us-ascii?Q?5mCfNWQziHckVLmO2hg73wxOCoII9zaC62S1Pi75/rIM/HpiDNf9iH5Pgnsm?=
- =?us-ascii?Q?aVm3VDJWV0Sf90zA77nZqb3wEJ0Rc4Dct5NSHoeddTmgpmLIq5roh6dQfYz6?=
- =?us-ascii?Q?CPI10kC3v2tf1jV2+n+1XO+MD9Dwp2ro2zQnvkUvbVRCA/qOXFHnMfhaRh9M?=
- =?us-ascii?Q?DgNltMACdCHCluklLBVRN9lWTlb6xlVsdxICZllbaHHy24S4rXWaIngdpWob?=
- =?us-ascii?Q?DnqybSv54HPhrZ4skq82wk+mSjN1KFm5PhFiK5zT2qra12fv4sVWaWk22n6u?=
- =?us-ascii?Q?kVniU5tYvdcCZF2IcHCL9LUuq3EqXIj9hF2Tm3eA9QREDbZ5hkAgauYFRrwe?=
- =?us-ascii?Q?v+bs+iT6VOd8FvBXWLtriBEXeMgPAiDi8ddMewqxbWBQSvcw3g0H6gPC/9I6?=
- =?us-ascii?Q?ECnZkku29hwmT/KPJnAhLGf+jzFzhqitha+gnvZ6AHI0UySZjKhAq8uynH5v?=
- =?us-ascii?Q?frRzncNmeTZJJ/x9pQhj9GndGDRdvL8RpsEawvfohbfY2O74a0rAoAXOE7EC?=
- =?us-ascii?Q?FvxpWQEq0pupo0SqFUNqBujcmmPvUzGX/DuyM/F4TxREEE8DFxEJ7ZhPVRVY?=
- =?us-ascii?Q?klG09HbqsiEIR3ZkrCRFm9YWHv2+rqifX3NVLtK55DJtbjd5OUPa5dm0E0fG?=
- =?us-ascii?Q?Or+l3psIqosXtS2utyb+bH1Qp9ygJ8h0yvK2y4zPFqLe7FQiDLkOaavuQwWm?=
- =?us-ascii?Q?+gEqNIrmvFE2y/pfWi5bZDyvU3piG26NWCaxm8hUy56rsxu0qpnpbTzYgRip?=
- =?us-ascii?Q?5owuJiIVUaGmDLc+wqtPZkrQ31W5RSCT684k2/xPdaD01x/RKDeShRq2CFtb?=
- =?us-ascii?Q?BCkGKzcNODaA3lTxPWCMwNn7wl2teIVQm5mMWddDMCLYa1EeUTRYJVO039XY?=
- =?us-ascii?Q?qvoQOVOzArz9f16KpjM/hPZXI4IEEso8eBV2ER7Y4VS/a5kzxVfz/+pDAxwy?=
- =?us-ascii?Q?vBusjRipYITw5nD065VOvmsku0DGFTg+6ev+bgrWnitN+vFA6voyW91CeeD2?=
- =?us-ascii?Q?k6fvnd/uCPKZbVFMTjfUgKRdIevcZG20Zs5N49S+e3X8VeXEvzKzU97JwuWP?=
- =?us-ascii?Q?SvIG2F7Z+Z9/Cbjsb2k3g30qclWH9ur1bj7UmcYLlKATEJs+L6ntxOMOz8ko?=
- =?us-ascii?Q?gFzOu8VjaKwoTZtIG64h5gtLcpxTr8y0GLfIyJgBRzR4fbhT+KujySinfErc?=
- =?us-ascii?Q?FXsEQFBf3X25mst5UAHDs5wvXdWjDUoBIM9h/jlz1Leb/kW5mOSdvnVKqJjm?=
- =?us-ascii?Q?YY5zv2JRFgK7cEtT27Ow8wlBwaDcLsw3xhqCub+m3QZu760l1TpMKpVxanOY?=
- =?us-ascii?Q?wes5mtZ7X09FX25fwJ9JeQQX0NwZ6sAzBsA5028oD0lFvtUKS0Z4lzp3E8bg?=
- =?us-ascii?Q?0qi02Kzb0N1dJQkl2upaOBlSdKH5vhU6NS2FI9V/19Ttt/m4Acx89pcmxsXd?=
- =?us-ascii?Q?W3f+dzk8kW8SSDYXJuw=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?au2aT+YxgMAbVUveNFGAwZqaj/8OBlWL/15EfoPOpQKPyaztwNQC2pRe1Q6P?=
- =?us-ascii?Q?G4xXZkymcDKKN8vIC8R5XOYDOx3nuKmEWqwZ+tM1SKyJ7PvEozA6rHw937hR?=
- =?us-ascii?Q?sxgmadOCHPliscS8JseTsoMIAt0F6RzHsNAirzS1lLWKcxoo7pppFm+WClzE?=
- =?us-ascii?Q?rdAGTJn/HsIf9kDxvMY7EdCD48LmmZ6KsHVbG4OIHVPufwJJk/jxgYaCvrVE?=
- =?us-ascii?Q?DRm+Pq7eSkmGnYZBVLl4vX9KB6S3+p2SRBvkmwOWgiZX4EIPwea6jo/s0fCv?=
- =?us-ascii?Q?4S0Y3u4G+DTV7rHtEXBqwOvqZse2wpxVt/QZun81el1SfoIvnMnO8OAMwlSb?=
- =?us-ascii?Q?L+r3LW/p2FtH6xKc/jews+Jj3cPy5ASWBgUAvxyUr2yObnbGkSJMNNlp1GPu?=
- =?us-ascii?Q?QXE2+GylSLmqmBy1qx7aBXuPGtaxZCfBEwhnYN3qY4OeFX9Hf3PIatdrKebI?=
- =?us-ascii?Q?EevVe+Lt1ZvfN8spFYtN5y1Nmdc9I+kiVMkNwpTjVEckX0c+2frvBB7Kx5Xt?=
- =?us-ascii?Q?nzI1twBpBFmo3gBTzCaq1qBV4YdXomktieojVpePPBNdtSvAU6mAL9+/KjUj?=
- =?us-ascii?Q?GQxzpIVJEPHYnomb9FIHtmRmmtFQUMmfgUHw866xHl5Zd+zYJNEd3urt6Rz3?=
- =?us-ascii?Q?ZCnNwTDsK7dSK+7Ctp63+z8ksihb36cnKbcg2Ro4ei1921ZC1OgOWnIlHXfd?=
- =?us-ascii?Q?wx7+37dQ/2xbzZJZ6lQz/3/cbWr7K/hoSj/aTi7BTsxqGFzOfVlnOZ5zw1j0?=
- =?us-ascii?Q?x2zhU7hu//ueKJfxdSYzEg481ay2PDLwUpc5x9D+K6HApByV+PV0xKaHCEDx?=
- =?us-ascii?Q?f7jVxFHNN5d+JWeQclTCC6xQqx20tpBjTMSMvr4nVTaoSanOrGucQURhRKfC?=
- =?us-ascii?Q?jxnzpyEBkjT2VWQJ5Jx6IqqH6MX7Q+4Q3Q2WSORhzdNDZsVnPfHqtcd7KAUD?=
- =?us-ascii?Q?1moO/IsngxFNylIywAtzEq6+XSiD+ecT1LmzeystE4bZe7LKAvm9Osd8wo3P?=
- =?us-ascii?Q?RFAQJGe/Xd57gjQ5etlbxJcBJdKXG91jk8xwcI2qbkFEq8NMj2iQ7SBNy09I?=
- =?us-ascii?Q?e24tMOKNkOSTiKmJqpCPxUJlhwWi0z/DdETVvGHYKMfyXRbRcfosUnTuEe2y?=
- =?us-ascii?Q?DzDix7mHaa5kYAK0xDwiyrfVhTkfT22SnrWSJ8/JnTbqB80PHBjbdyZGrpH9?=
- =?us-ascii?Q?dAqORdrpJ7l5Tiz6W1vBTRl3YFnXaLh6sLav7g9MPu48bsY090Wb/jV6zeYY?=
- =?us-ascii?Q?2CsdkR6Xg3n7Yyb5rjI6J6ykkQK3eR9vQkptkWBVqDq91qtFWfcYHWmbCLr6?=
- =?us-ascii?Q?/XBGNEGUAUnFv28NVQVKGGbcqyiWrH15VlugCWhs6rcpmeZ+T/UwQsVVjizl?=
- =?us-ascii?Q?CdTkS5SV2ulxtYrUc5QAItCHD4bQ9Yy5osADSmTcFxh0SmFy5FCGVqCPGxgC?=
- =?us-ascii?Q?fjXIwizJogxyy8/nlvWZb88d5Khv2UcBoAPywPF29Ydgt0/BBBTLXEdi8oLC?=
- =?us-ascii?Q?m0t0RgeFuorkh9a0AYR1v98ehLVo8axvgAdC+Uei4//xdMnxmjqJ9Y1JCM+c?=
- =?us-ascii?Q?XOyZIDc2pPgA4gTQRlDBhY+2yWpWGFKwuOkEm4Z5RLicsvSWF+9AFHBW9VR/?=
- =?us-ascii?Q?QqvoDL+BUw3o2LCzVncat9InPJNVKpDu3OPuqyIeoLcCeZObxV3cz0x7BI4Z?=
- =?us-ascii?Q?wKq/+W29mVWVJ/oPINFpKX/180gE46pVgLPbgI9hM2ot3ghmwSFrmjGwBGFF?=
- =?us-ascii?Q?Gcna9egs1g=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- fa7a0181-4c04-4dbd-7810-08de69013013
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 00:04:55.7336
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- YCwG6nCqRxqaS7FaD1wfFqACz7C+zLX44sC2VfHaBzNkj3QnZlZsIRqhi3g3xg2jfTfNN0+arzcnPXUZzUobZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8588
-Message-ID-Hash: 54F3R5DNVD3BT6UVXL5VARQZQN2P67FV
-X-Message-ID-Hash: 54F3R5DNVD3BT6UVXL5VARQZQN2P67FV
-X-MailFrom: jhubbard@nvidia.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5BBA34053B
+	for <nouveau@lists.freedesktop.org>; Wed, 11 Feb 2026 09:09:48 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A59110E29E;
+	Wed, 11 Feb 2026 09:19:21 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id BB1214367A;
+	Wed, 11 Feb 2026 09:19:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC37CC4CEF7;
+	Wed, 11 Feb 2026 09:19:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770801560;
+	bh=78vTmn6thDBzfMtB97lbGjUwbhyWjHfpO01rDAwelEE=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=aVn6Hz7exp0YJcrbUnRdD+gd17f1RCAA1sl62249pmqhZS29AgnCdsbpjMH8vQ6gs
+	 cSQv5HLMWxo2QDS1hKjJFEG/YQ3uBYw43zlB4S1skWSy39hiqhsDcP+QPulot0nfxO
+	 N8j7Uh02sfUFF5Jhx0zgR69nlFtP2B/SzwZCUn2oP0aJmSZAl8Ua0YFXABPQFIKkDM
+	 A5yL2AFL3lts4OTxoYgANVJoQuhUr1/6YkJ2GPgK/rEbSvM6fi6j8ESdROE7LSLGad
+	 OUlqfK9D+aK85lrsm9/ouuaH1cbTAOZNYb2LkVWX8e2xjyzD6r3ZBk4ldQggiNdhql
+	 8+jd/QPt2oy9w==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 11 Feb 2026 10:19:09 +0100
+Message-Id: <DGC0RDIBDEYB.195QJ6S6GF9WL@kernel.org>
+Subject: Re: [PATCH -next v9 0/3] rust: Add CList and GPU buddy allocator
+ bindings
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260210233204.790524-1-joelagnelf@nvidia.com>
+In-Reply-To: <20260210233204.790524-1-joelagnelf@nvidia.com>
+Message-ID-Hash: RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB
+X-Message-ID-Hash: RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Joel Fernandes <joelagnelf@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Eliot Courtney <ecourtney@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ loop; banned-address; member-moderation
+CC: linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>, Maneet Singh <mmaneetsingh@nvidia.com>
+ Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>,
+ Daniel Almeida <daniel.almeida@collabora.com>, joel@joelfernandes.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/54F3R5DNVD3BT6UVXL5VARQZQN2P67FV/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB/>
 Archived-At: 
- <https://lore.freedesktop.org/20260211000451.192109-3-jhubbard@nvidia.com/>
+ <https://lore.freedesktop.org/DGC0RDIBDEYB.195QJ6S6GF9WL@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -208,159 +125,13 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The debug logging printed a flat "send: seq#" and "receive: seq#" for
-all GSP RPC messages, with no distinction between async events from GSP
-(like GspLockdownNotice or GspInitDone) and command responses (like
-GetGspStaticInfo).
+On Wed Feb 11, 2026 at 12:32 AM CET, Joel Fernandes wrote:
+> Link to v8: https://lore.kernel.org/all/20260209214246.2783990-1-joelagne=
+lf@nvidia.com/
+> Link to v7: https://lore.kernel.org/all/20260206004110.1914814-1-joelagne=
+lf@nvidia.com/
 
-Add driver-side tx_async_seq and rx_event_seq counters to independently
-track async sends and async events. Move the receive debug log from
-wait_for_msg() into receive_msg() where the message function is known.
-Label all four message directions:
+I already asked about this in [1], can you please add a changlog to your se=
+ries?
 
-  GSP RPC: async send: seq# 0, function=GSP_SET_SYSTEM_INFO, length=0x3f0
-  GSP RPC: async send: seq# 1, function=SET_REGISTRY, length=0xc5
-  GSP RPC: async received: seq# 0, function=LOCKDOWN_NOTICE, length=0x51
-  GSP RPC: async received: seq# 17, function=INIT_DONE, length=0x50
-  GSP RPC: send: seq# 2, function=GET_GSP_STATIC_INFO, length=0x6c8
-  GSP RPC: response received: seq# 2, function=GET_GSP_STATIC_INFO, length=0x6c8
-
-The async received seq# values are driver-counted for now. For command
-responses, GSP echoes back the inner rpc.sequence that the CPU sent, so
-the response seq# matches the send seq#.
-
-Cc: Maneet Singh <mmaneetsingh@nvidia.com>
-Signed-off-by: John Hubbard <jhubbard@nvidia.com>
----
- drivers/gpu/nova-core/gsp/cmdq.rs | 67 ++++++++++++++++++++++++-------
- drivers/gpu/nova-core/gsp/fw.rs   |  1 -
- 2 files changed, 52 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 7d6d7d81287c..295e1a80d64d 100644
---- a/drivers/gpu/nova-core/gsp/cmdq.rs
-+++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -449,6 +449,11 @@ pub(crate) struct Cmdq {
-     /// Transport-level sequence number, incremented for every send. Used for the outer
-     /// GSP_MSG_QUEUE_ELEMENT.seqNum. Also used as the inner rpc.sequence for sync commands.
-     seq: u32,
-+    /// Async (fire-and-forget) send sequence number, for debug logging.
-+    tx_async_seq: u32,
-+    /// Async event receive sequence number, for debug logging. GSP does not populate
-+    /// rpc.sequence for async events today, so the driver counts them itself.
-+    rx_event_seq: u32,
-     /// Memory area shared with the GSP for communicating commands and messages.
-     gsp_mem: DmaGspMem,
- }
-@@ -477,6 +482,8 @@ pub(crate) fn new(dev: &device::Device<device::Bound>) -> Result<Cmdq> {
-         Ok(Cmdq {
-             dev: dev.into(),
-             seq: 0,
-+            tx_async_seq: 0,
-+            rx_event_seq: 0,
-             gsp_mem,
-         })
-     }
-@@ -555,13 +562,24 @@ pub(crate) fn send_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-                 dst.contents.1,
-             ])));
- 
--        dev_dbg!(
--            &self.dev,
--            "GSP RPC: send: seq# {}, function={}, length=0x{:x}\n",
--            self.seq,
--            M::FUNCTION,
--            dst.header.length(),
--        );
-+        if M::IS_ASYNC {
-+            dev_dbg!(
-+                &self.dev,
-+                "GSP RPC: async send: seq# {}, function={}, length=0x{:x}\n",
-+                self.tx_async_seq,
-+                M::FUNCTION,
-+                dst.header.length(),
-+            );
-+            self.tx_async_seq += 1;
-+        } else {
-+            dev_dbg!(
-+                &self.dev,
-+                "GSP RPC: send: seq# {}, function={}, length=0x{:x}\n",
-+                self.seq,
-+                M::FUNCTION,
-+                dst.header.length(),
-+            );
-+        }
- 
-         // All set - update the write pointer and inform the GSP of the new command.
-         let elem_count = dst.header.element_count();
-@@ -606,14 +624,6 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
-         // Extract the `GspMsgElement`.
-         let (header, slice_1) = GspMsgElement::from_bytes_prefix(slice_1).ok_or(EIO)?;
- 
--        dev_dbg!(
--            self.dev,
--            "GSP RPC: receive: seq# {}, function={:?}, length=0x{:x}\n",
--            header.sequence(),
--            header.function(),
--            header.length(),
--        );
--
-         let payload_length = header.payload_length();
- 
-         // Check that the driver read area is large enough for the message.
-@@ -680,6 +690,27 @@ pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Resul
-     {
-         let message = self.wait_for_msg(timeout)?;
-         let function = message.header.function().map_err(|_| EINVAL)?;
-+        let is_event = function.is_event();
-+
-+        if is_event {
-+            dev_dbg!(
-+                &self.dev,
-+                "GSP RPC: async received: seq# {}, function={}, length=0x{:x}\n",
-+                self.rx_event_seq,
-+                function,
-+                message.header.length(),
-+            );
-+        } else {
-+            // GSP echoes back the inner rpc.sequence that the CPU sent with the
-+            // corresponding command, so this should match the send seq#.
-+            dev_dbg!(
-+                &self.dev,
-+                "GSP RPC: response received: seq# {}, function={}, length=0x{:x}\n",
-+                message.header.sequence(),
-+                function,
-+                message.header.length(),
-+            );
-+        }
- 
-         // Extract the message. Store the result as we want to advance the read pointer even in
-         // case of failure.
-@@ -697,6 +728,12 @@ pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Resul
-             message.header.length().div_ceil(GSP_PAGE_SIZE),
-         )?);
- 
-+        // Deferred past message consumption to satisfy the borrow checker: message
-+        // holds a reference into self.gsp_mem, so we can't mutate self until it's dropped.
-+        if is_event {
-+            self.rx_event_seq += 1;
-+        }
-+
-         result
-     }
- 
-diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
-index e417ed58419f..1535969c3ba9 100644
---- a/drivers/gpu/nova-core/gsp/fw.rs
-+++ b/drivers/gpu/nova-core/gsp/fw.rs
-@@ -263,7 +263,6 @@ pub(crate) enum MsgFunction {
- impl MsgFunction {
-     /// Returns true if this is a GSP-initiated async event (NV_VGPU_MSG_EVENT_*), as opposed to
-     /// a command response (NV_VGPU_MSG_FUNCTION_*).
--    #[expect(dead_code)]
-     pub(crate) fn is_event(&self) -> bool {
-         matches!(
-             self,
--- 
-2.53.0
-
+[1] https://lore.kernel.org/all/DG0MRL6T7ACW.25G3GLJMP7PN1@kernel.org/
