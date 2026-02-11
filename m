@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B9BBEA813E
-	for <nouveau@archiver.kernel.org>; Wed, 11 Feb 2026 09:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85A28EA813E
+	for <nouveau@archiver.kernel.org>; Wed, 11 Feb 2026 09:21:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EFAEC10E346;
-	Wed, 11 Feb 2026 09:19:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 554B810E35C;
+	Wed, 11 Feb 2026 09:21:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aVn6Hz7e";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WvQ3ewTX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id ECE9E41CAA;
-	Wed, 11 Feb 2026 09:09:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 526A841E84;
+	Wed, 11 Feb 2026 09:12:06 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770800990;
- b=BBNJb/7CRGa+4aoFtmF+8SKOgsK+RV6m6mmQ+bR50wuVityloQ87vko8QKNrcCnBh5Zvs
- F7Kl0HZwMmV6g7Bbr/9fiKHMKGc7QCoFHYbOxBoSkXkRuH7ilQveTFVEHtR3BeLmkhV20Bp
- jiv/+RM4Hwkzpf7ex1eztU1+lkMLZH5KNWJ+obM+efcc6BE0ZsB4GSfyWus9GgK7reXe2Zm
- TEoLYHDG/c2/UixJfwfc+pMPdwKgBFBxkSzZfG/8SASrb2webO6v9CglLSAZNbKq/oUjDFD
- yR0atCJ9TB0dNaaMtxzys0dQ/KuFjfpVKXn7O5uP1B9J/VxjOcozdS2RKUsA==
+ s=20240201; t=1770801126;
+ b=Q/pLpiKwBo8gqUWuV76Mx1H4JB7y8U2zDdNLTjkb6dx9uVIfu1JIfRc8CFA05WoCfeTX8
+ /SuAeRvNwV8sYKRN4JgRBPzpPowON/M60qc0DFFn3xLfxZa6YFsnFy0nCHAl17fO3NqB6Tc
+ aeLbuO5ywAMP3qcQ5SKVwq6xEIo7SqUKMlmX27c/ngbL7/ZLhly8+RuKoHo0UpTpKCMdKn+
+ +6/MCOXMAd1hr6ng1XdvIPVrYQhULsI61JUXYoyUbuefsIzMq9DwqPwXif1tonb04EjgyEn
+ 0gFz8gZjPucOXE0cPL47hWIE7OxUF7GTSAuPfzMhtUZDsL1dv/z20Vb/ZQcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770800990; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770801126; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=78vTmn6thDBzfMtB97lbGjUwbhyWjHfpO01rDAwelEE=;
- b=tIiEPV0I6ecsYPm9rrnNf7ApUUUbs15sTjgccfbqxyrZpeY75gmzdxO2CbtjL9hL9jkXm
- tT3tvbCCp56s4JU2OtYyhW97Jth2pSACO4V72XNCI+Ae/aH78CiFieqVprPeWKHgXkRNx40
- fvLqk/ZhWa4q6KLtyez9kHgtOxGc5/0WnOipiCDYJsH9ZBecajxYjza4nGRPnCmMaqpNpUS
- f+uM0+wuZ8V5CbgNbgdmEpHWzztnTILEFMq+Q3DyjZheOLNCUHuTozIv45BK6dES2mQouvL
- Phrx7OXps21uBCVId8YbhArtPemX0L4Bst2UgtOfhcvZXn+mcdpvj0KgX35g==
+ bh=crwR2eDxkz2YAnZv5/hDCKYY/YHdcyT6VTZ9JVUYOL0=;
+ b=B160zapPhSguDc3ILJjvRKAXh/26QRb99pLkI5MAemk9hJZJ3Grw8tM5a7ldiFZ1C5Dbh
+ jPEQCloK/MOodcO2JVDku6ZY03hbUs83PBYnsDMKwybdGLfYRyDS1XBC0ts7KmFXDV6p0N0
+ /eGMilawjzjGkLMv6YLUMTwD3wrffsfoorLMqKwuG/lkkXtVQhYl3PLsdjXUXFKhpTmV03C
+ G5/bYlgP6IEb+GxL68jJHkvQTiY1VrLz4f/Tp9q8U21yERXaQMV052UVgWWwpn3FyW1ex20
+ QuFCQrQzzTkcplg2sjyHitEQB3P/kfAvFiWZv37d8fP2/PZ/+FTEGaAqjVRA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,39 +46,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5BBA34053B
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Feb 2026 09:09:48 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A59110E29E;
-	Wed, 11 Feb 2026 09:19:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E0548403C3
+	for <nouveau@lists.freedesktop.org>; Wed, 11 Feb 2026 09:12:02 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 96E5310E2C4;
+	Wed, 11 Feb 2026 09:21:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id BB1214367A;
-	Wed, 11 Feb 2026 09:19:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC37CC4CEF7;
-	Wed, 11 Feb 2026 09:19:11 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id F00EB600CB;
+	Wed, 11 Feb 2026 09:21:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2F38C4CEF7;
+	Wed, 11 Feb 2026 09:21:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770801560;
-	bh=78vTmn6thDBzfMtB97lbGjUwbhyWjHfpO01rDAwelEE=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=aVn6Hz7exp0YJcrbUnRdD+gd17f1RCAA1sl62249pmqhZS29AgnCdsbpjMH8vQ6gs
-	 cSQv5HLMWxo2QDS1hKjJFEG/YQ3uBYw43zlB4S1skWSy39hiqhsDcP+QPulot0nfxO
-	 N8j7Uh02sfUFF5Jhx0zgR69nlFtP2B/SzwZCUn2oP0aJmSZAl8Ua0YFXABPQFIKkDM
-	 A5yL2AFL3lts4OTxoYgANVJoQuhUr1/6YkJ2GPgK/rEbSvM6fi6j8ESdROE7LSLGad
-	 OUlqfK9D+aK85lrsm9/ouuaH1cbTAOZNYb2LkVWX8e2xjyzD6r3ZBk4ldQggiNdhql
-	 8+jd/QPt2oy9w==
+	s=k20201202; t=1770801694;
+	bh=bbT8L9yuhCkcKZIt2AwaX5L7rkxzlrBrldrxjRCY6Qc=;
+	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+	b=WvQ3ewTXZ2lQSqYQAAxvDxZIXx23sQMjCI9kZmySTxXf08I7vSWq2wMpO6JUEUGPl
+	 84R832HYeYTEN0Sk2sDTMYgyZkGhgpKuuL7Gt2uee/ViV4W3er/rKoAd6jcx/tqQ19
+	 OiCiuHd9MlBlEh9GPY3AlGmbqCZfyIWufwYIkkLGn7LojPEaoyHXlkqjdE3pLOOABq
+	 cEOz7Oqh37c+3cpcftV6Nhv8NFmzgTs1tkvuXcpbqOFtPCbG7YslH9I9XRCg0Rs5Bs
+	 AN7w3KKk1aPoNzeTaCrUukzHvsI39VzMEwYkAqejXLvG4xov+ipmcO0xKsgvmnwAFG
+	 aTpMU/ppeRiXA==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Feb 2026 10:19:09 +0100
-Message-Id: <DGC0RDIBDEYB.195QJ6S6GF9WL@kernel.org>
-Subject: Re: [PATCH -next v9 0/3] rust: Add CList and GPU buddy allocator
- bindings
+Date: Wed, 11 Feb 2026 10:21:23 +0100
+Message-Id: <DGC0T35RJU05.2TLS17F5B30B3@kernel.org>
 To: "Joel Fernandes" <joelagnelf@nvidia.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH -next v9 3/3] nova-core: mm: Select GPU_BUDDY for VRAM
+ allocation
 References: <20260210233204.790524-1-joelagnelf@nvidia.com>
-In-Reply-To: <20260210233204.790524-1-joelagnelf@nvidia.com>
-Message-ID-Hash: RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB
-X-Message-ID-Hash: RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB
+ <20260210233204.790524-4-joelagnelf@nvidia.com>
+In-Reply-To: <20260210233204.790524-4-joelagnelf@nvidia.com>
+Message-ID-Hash: AUZAF7GCWXBE6JHRGPMMFVLK7EQ57RBH
+X-Message-ID-Hash: AUZAF7GCWXBE6JHRGPMMFVLK7EQ57RBH
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -113,9 +114,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RSFEUNCEGUU24O4TVJOOYGAJPPCQ7PFB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AUZAF7GCWXBE6JHRGPMMFVLK7EQ57RBH/>
 Archived-At: 
- <https://lore.freedesktop.org/DGC0RDIBDEYB.195QJ6S6GF9WL@kernel.org/>
+ <https://lore.freedesktop.org/DGC0T35RJU05.2TLS17F5B30B3@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -126,12 +127,33 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Wed Feb 11, 2026 at 12:32 AM CET, Joel Fernandes wrote:
-> Link to v8: https://lore.kernel.org/all/20260209214246.2783990-1-joelagne=
-lf@nvidia.com/
-> Link to v7: https://lore.kernel.org/all/20260206004110.1914814-1-joelagne=
-lf@nvidia.com/
+> nova-core will use the GPU buddy allocator for physical VRAM management.
+> Enable it in Kconfig.
+>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/Kconfig | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfi=
+g
+> index 527920f9c4d3..6513007bf66f 100644
+> --- a/drivers/gpu/nova-core/Kconfig
+> +++ b/drivers/gpu/nova-core/Kconfig
+> @@ -3,8 +3,9 @@ config NOVA_CORE
+>  	depends on 64BIT
+>  	depends on PCI
+>  	depends on RUST
+> -	select RUST_FW_LOADER_ABSTRACTIONS
 
-I already asked about this in [1], can you please add a changlog to your se=
-ries?
+I think moving this should be a separate patch.
 
-[1] https://lore.kernel.org/all/DG0MRL6T7ACW.25G3GLJMP7PN1@kernel.org/
+>  	select AUXILIARY_BUS
+> +	select GPU_BUDDY
+> +	select RUST_FW_LOADER_ABSTRACTIONS
+>  	default n
+>  	help
+>  	  Choose this if you want to build the Nova Core driver for Nvidia
+> --=20
+> 2.34.1
+
