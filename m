@@ -4,121 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43C31EF48CB
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 03:49:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA0DAEF48D9
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 06:56:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D39B510E795;
-	Fri, 13 Feb 2026 03:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A580910E793;
+	Fri, 13 Feb 2026 06:56:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="opThOBul";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktD0cFay";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DA48042030;
-	Fri, 13 Feb 2026 03:39:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6C61B42FB2;
+	Fri, 13 Feb 2026 06:47:12 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770953992;
- b=zaYpVU9mRFeSDfG1kyh1+K1HgqQS1Q1oPHvoaL1+9Fj/bKBFhUkmT+A7ixvwt0rhJvoT0
- Rz84DkbIK663kGMo3fAVs2Qk5cznX1dllv0nEm+A3FdrEAMRow0fHWEYpwSL4ekn/xRym1J
- HWmKbHPkaS9fVWO/IXYKqMqkkO6MSPqHLlqBvR+MtQrrdKnZoScmcRrC4wO7/Lm1whGaDuO
- R5Rxv9ATkrg1Wni0+ujGWVqWzEnD0OEx0+fBRbx7WA9JEE/CQw2ZKiyGyYwgsWqjqYmjXrt
- n0ducsnVR09L0U9IlC6DRkVidcjxQYL1LfMhV98XCDDT3GsHrEkStwHtFzaA==
+ s=20240201; t=1770965232;
+ b=g7rBVEANpgDhymri2zS0248duBTMIi3pxAabLcngHu6F9j+cYiCUd6e49TPkDzErARmYw
+ WfBcLV0MR32kw7pCLmN88kRHaMX2oeaJgicjSfdfi9h4cO+f6EZZwHY/ixzCQAbjtJ7TUwW
+ 6gEVoa1YzWhEwn8Ba9XVXdbrAMDmA3AEf1MZ49+ugEwtbQiiYH0RK2fSN9YdmIjSTOQFKol
+ MxcxWbzkohy/dkAKzP14Ga42KJ5frfbiKWfW2BuL9QrEDogNB7Hb3FT5H0DcM0d/BtiXCzJ
+ jg0LJ6a4Gnts29W/Lj3+ewOSUOEDXpOr5JsqYrvnNURqRc2uy9wLmrzZVegA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770953992; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770965232; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=b4lRLRD9EakgT+QQuEmu1nQ5ODw11dXMVLRJOBUA9pw=;
- b=JytD4e1pErGAw2txg5cAY06OZmliXHlaOzYudGm6RAApJjUALPTs2IsvupaRX6Sej0eAP
- EZYyg+ZEZ/mvotGQawhh7hgRzoxxKiKijQe/SqXX1XRoz7pMgR41hjbPgWTUW7QRLKJUKkc
- WS4Fc8io3XsjiUDlE4384mCtSo1kc9q0cHETR7w5RufZtUeF89eUXep5Ig0iO1kNECfNxPJ
- scf+p3v714iFyur4aDTe8bD4bjdjIZYDG3qyYQzPsFRTsJL13pl7vgTbEMpLyPfq/w42spw
- cHe9nT333wlveeAes5I9qAJCIp3KAdqNZM3/TK+/cJ+qX6U6+cOE+9yL8aXg==
+ bh=zJtBgW2Z3bgS3bEUNse/KXf+/r4XiYjdgr2peBDbwN8=;
+ b=V0GT76L+I+PqHr14DnXY/xR3tgwvWJzcPlttcISKgL/vWpo4ImcEy2+cG560Xb7LY1k0b
+ z6VRT9Tc9LHdpWXTnrE41PZ/oP0uCnDpN5yOeQujXfZ4x59QoAn+HMv1pOrAd42L2PV9aF6
+ TUiFV8AL2clMVowtMY1shkgwAS66JD5AGW8vdGHTl81ClulofBy+GukAsKZSKjkS7F9MwLq
+ XhNJBOaI73hNwC4KJdg+XrFv+vGXP0zYEAcVkRfuGkkAdD7i19Y3+yJ6zCK895LG7NZRsOy
+ 1Q0WW+FDdjVZfkVfrkeWqNCk18qS7g1x7FKiZZhFonD6/MqLHReRc8jlfEXw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5D3234053B
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 03:39:49 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F3E0810E2D0;
-	Fri, 13 Feb 2026 03:49:25 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1796E6132E;
-	Fri, 13 Feb 2026 03:49:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B30DDC19423;
-	Fri, 13 Feb 2026 03:49:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1770954564;
-	bh=rWRY9GLcAO1/PKUie7TkGtRgrR+iF1pBIKixJxvFUvo=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=opThOBulSAAgQpybO9HHv7ULoYHERRQWs9xRXB4nT5a9eG+91TNYO76NfWwSkq4tA
-	 GTCEa2uYeMGogRXzoUjo8lbOyADyQHeUd7/v1k1QAI9l5dQZ2jEco6LxbsimLCBpjx
-	 lGPSakaUYlM2qbogQx8umYKdu933ZKhbLsRswrezPGUXVEUqQCpKLnNS7X2TAMbCiR
-	 TA/T3xe/Le8Fqdwdlx01eLQSJvr26/ackxKHT1JNeUMKNHg9oC52FAa//dpMF4sx8z
-	 yUImzSJ6/m0u2g7kpL9lcN0RUMdCU4MT32W1sWVpAxvoQvGJNiCT11Do+tHMmKhc7C
-	 vZbNTihW6nIDQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 99922EF48CB;
-	Fri, 13 Feb 2026 03:49:24 +0000 (UTC)
-From: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>
-Date: Thu, 12 Feb 2026 22:49:13 -0500
-Subject: [PATCH] gpu: nova-core: fix stack overflow in GSP memory
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7CBC440686
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 06:47:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6193410E113;
+	Fri, 13 Feb 2026 06:56:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1770965806; x=1802501806;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vegqm/oeFsIY53GNgrWQP8lsZxc41ZJwRfMmlMzHjY4=;
+  b=ktD0cFayvlsZesnekdN1IUnga+U1wFYOeUw9A6eQJeCae6OYXx2b+RRI
+   u3DYlscsmnmO74zF9bm24gNTTksO8YUqYVLJdrHqeMLI9VBXI0LcTDhVj
+   d16rweMKvc+NDZlvy8MVIRUIXXkB9wMb7MPVA1PVqj8TT0K1ofgjWj5h0
+   L3jrvYdb+xG1nMnvyoQQwA2hRs/YkeuqgfSqW2UDetCHSadVhIZO2cBtm
+   +SOtdJ4EX4+QuJvFSCqhxsSENfrw5Nzi72dG/yvmLnnyzNUG3vKg6JHlm
+   J+5dpj74pDAncSw9i3ToLqClJhxsaUaP15lbu12qh/2gjINvt/t/guPJD
+   w==;
+X-CSE-ConnectionGUID: VCU2dWgJRXu4WS9ev2zoSw==
+X-CSE-MsgGUID: J3yio4wNS/m6ZiLTa4HnLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="75994809"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800";
+   d="scan'208";a="75994809"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 22:56:45 -0800
+X-CSE-ConnectionGUID: xlzU7Pj4RWSMblhjM9D6JA==
+X-CSE-MsgGUID: fMZ0mudwSIiMspMfL4HUCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800";
+   d="scan'208";a="217312572"
+Received: from igk-lkp-server01.igk.intel.com (HELO e5404a91d123)
+ ([10.211.93.152])
+  by fmviesa005.fm.intel.com with ESMTP; 12 Feb 2026 22:56:41 -0800
+Received: from kbuild by e5404a91d123 with local (Exim 4.98.2)
+	(envelope-from <lkp@intel.com>)
+	id 1vqn6V-000000001Rl-398c;
+	Fri, 13 Feb 2026 06:56:39 +0000
+Date: Fri, 13 Feb 2026 07:56:03 +0100
+From: kernel test robot <lkp@intel.com>
+To: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Trevor Gross <tmgross@umich.edu>
+Subject: Re: [PATCH] gpu: nova-core: fix stack overflow in GSP memory
  allocation
+Message-ID: <202602130722.99jbGBM1-lkp@intel.com>
+References: <20260212-drm-rust-next-v1-1-409398b12e61@proton.me>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260212-drm-rust-next-v1-1-409398b12e61@proton.me>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/x3MwQpAUBBG4VfRrE0xhXgVWeD+mIVLc5GSd3ez/
- BbnPBRgikBN8pDh0qCbj8jThMal9zNYXTRJJmUmubCzle0MB3vcBw8YaumB2lUFxWY3THr/v7Z
- 73w9rhI7IXwAAAA==
-X-Change-ID: 20260212-drm-rust-next-beb92aee9d75
-To: Alexandre Courbot <acourbot@nvidia.com>,
- Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1770954563; l=6047;
- i=tim.kovalenko@proton.me; s=20260212; h=from:subject:message-id;
- bh=zAyFM1Gds/9GkecAEWLm2RUuiSkvinRA/rr0HZejhKw=;
- b=W+viKVGiSV2fpc2PJZQBP4AL/bo8ESOw7mFgK3OvX6xoEvuVJ/GSYvGDmMzY2TXs99oKTp0Cj
- NVxFchszV9qATlli8IFa+bPzn6HliAUQwfaFwAvGygjUBGtMNwCVPCP
-X-Developer-Key: i=tim.kovalenko@proton.me; a=ed25519;
- pk=/+OiulEpgeZifgP4mDE4e5YlV6nMeY+frze/lY/xiHI=
-X-Endpoint-Received: by B4 Relay for tim.kovalenko@proton.me/20260212 with
- auth_id=635
-X-Original-From: Tim Kovalenko <tim.kovalenko@proton.me>
-Message-ID-Hash: U7JEN6AB55G5YKXNCN64PSMLNHJZBSCO
-X-Message-ID-Hash: U7JEN6AB55G5YKXNCN64PSMLNHJZBSCO
-X-MailFrom: devnull+tim.kovalenko.proton.me@kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260212-drm-rust-next-v1-1-409398b12e61@proton.me>
+Message-ID-Hash: B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6
+X-Message-ID-Hash: B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6
+X-MailFrom: lkp@intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- Tim Kovalenko <tim.kovalenko@proton.me>
+CC: oe-kbuild-all@lists.linux.dev, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, Tim Kovalenko <tim.kovalenko@proton.me>
 X-Mailman-Version: 3.3.8
 Precedence: list
-Reply-To: tim.kovalenko@proton.me
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/U7JEN6AB55G5YKXNCN64PSMLNHJZBSCO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6/>
 Archived-At: 
- <https://lore.freedesktop.org/20260212-drm-rust-next-v1-1-409398b12e61@proton.me/>
+ <https://lore.freedesktop.org/202602130722.99jbGBM1-lkp@intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -128,164 +129,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Tim Kovalenko <tim.kovalenko@proton.me>
+Hi Tim,
 
-The `Cmdq::new` function was allocating a `PteArray` struct on the stack
-and was causing a stack overflow with 8216 bytes.
+kernel test robot noticed the following build errors:
 
-Remove the `PteArray` and instead calculate and write the Page Table
-Entries directly into the coherent DMA buffer one-by-one. This reduces
-the stack usage quite a lot.
+[auto build test ERROR on cea7b66a80412e2a5b74627b89ae25f1d0110a4b]
 
-Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
----
- drivers/gpu/nova-core/gsp.rs      | 50 ++++++++++++++-------------------------
- drivers/gpu/nova-core/gsp/cmdq.rs | 27 ++++++++++++++++++---
- 2 files changed, 42 insertions(+), 35 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Tim-Kovalenko-via-B4-Relay/gpu-nova-core-fix-stack-overflow-in-GSP-memory-allocation/20260213-115022
+base:   cea7b66a80412e2a5b74627b89ae25f1d0110a4b
+patch link:    https://lore.kernel.org/r/20260212-drm-rust-next-v1-1-409398b12e61%40proton.me
+patch subject: [PATCH] gpu: nova-core: fix stack overflow in GSP memory allocation
+config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20260213/202602130722.99jbGBM1-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260213/202602130722.99jbGBM1-lkp@intel.com/reproduce)
 
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 174feaca0a6b9269cf35286dec3acc4d60918904..316eeaf87ec5ae67422a34426eefa747c9b6502b 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -2,16 +2,14 @@
- 
- mod boot;
- 
-+use core::iter::Iterator;
-+
- use kernel::{
-     device,
--    dma::{
--        CoherentAllocation,
--        DmaAddress, //
--    },
-+    dma::CoherentAllocation,
-     dma_write,
-     pci,
--    prelude::*,
--    transmute::AsBytes, //
-+    prelude::*, //
- };
- 
- pub(crate) mod cmdq;
-@@ -39,27 +37,6 @@
- /// Number of GSP pages to use in a RM log buffer.
- const RM_LOG_BUFFER_NUM_PAGES: usize = 0x10;
- 
--/// Array of page table entries, as understood by the GSP bootloader.
--#[repr(C)]
--struct PteArray<const NUM_ENTRIES: usize>([u64; NUM_ENTRIES]);
--
--/// SAFETY: arrays of `u64` implement `AsBytes` and we are but a wrapper around one.
--unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArray<NUM_ENTRIES> {}
--
--impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
--    /// Creates a new page table array mapping `NUM_PAGES` GSP pages starting at address `start`.
--    fn new(start: DmaAddress) -> Result<Self> {
--        let mut ptes = [0u64; NUM_PAGES];
--        for (i, pte) in ptes.iter_mut().enumerate() {
--            *pte = start
--                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
--                .ok_or(EOVERFLOW)?;
--        }
--
--        Ok(Self(ptes))
--    }
--}
--
- /// The logging buffers are byte queues that contain encoded printf-like
- /// messages from GSP-RM.  They need to be decoded by a special application
- /// that can parse the buffers.
-@@ -86,16 +63,25 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
-             NUM_PAGES * GSP_PAGE_SIZE,
-             GFP_KERNEL | __GFP_ZERO,
-         )?);
--        let ptes = PteArray::<NUM_PAGES>::new(obj.0.dma_handle())?;
-+
-+        let start_addr = obj.0.dma_handle();
- 
-         // SAFETY: `obj` has just been created and we are its sole user.
--        unsafe {
--            // Copy the self-mapping PTE at the expected location.
-+        let pte_region = unsafe {
-             obj.0
--                .as_slice_mut(size_of::<u64>(), size_of_val(&ptes))?
--                .copy_from_slice(ptes.as_bytes())
-+                .as_slice_mut(size_of::<u64>(), NUM_PAGES * size_of::<u64>())?
-         };
- 
-+        // As in [`DmaGspMem`], this is a  one by one GSP Page write to the memory
-+        // to avoid stack overflow when allocating the whole array at once.
-+        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
-+            let pte_value = start_addr
-+                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-+                .ok_or(EOVERFLOW)?;
-+
-+            chunk.copy_from_slice(&pte_value.to_ne_bytes());
-+        }
-+
-         Ok(obj)
-     }
- }
-diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 46819a82a51adc58423502d9d45730923b843656..13a82d505c123e733850a00f627ddfe0c218940c 100644
---- a/drivers/gpu/nova-core/gsp/cmdq.rs
-+++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -35,7 +35,6 @@
-             MsgqRxHeader,
-             MsgqTxHeader, //
-         },
--        PteArray,
-         GSP_PAGE_SHIFT,
-         GSP_PAGE_SIZE, //
-     },
-@@ -159,7 +158,7 @@ struct Msgq {
- #[repr(C)]
- struct GspMem {
-     /// Self-mapping page table entries.
--    ptes: PteArray<{ GSP_PAGE_SIZE / size_of::<u64>() }>,
-+    ptes: [u64; GSP_PAGE_SIZE / size_of::<u64>()],
-     /// CPU queue: the driver writes commands here, and the GSP reads them. It also contains the
-     /// write and read pointers that the CPU updates.
-     ///
-@@ -201,7 +200,29 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
- 
-         let gsp_mem =
-             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
--        dma_write!(gsp_mem[0].ptes = PteArray::new(gsp_mem.dma_handle())?)?;
-+        const NUM_PAGES: usize = GSP_PAGE_SIZE / size_of::<u64>();
-+
-+        // One by one GSP Page write to the memory to avoid stack overflow when allocating
-+        // the whole array at once.
-+        let item = gsp_mem.item_from_index(0)?;
-+        for i in 0..NUM_PAGES {
-+            let pte_value = gsp_mem
-+                    .dma_handle()
-+                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-+                    .ok_or(EOVERFLOW)?;
-+
-+            // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
-+            // dereferenced. The compiler also further validates the expression on whether `field`
-+            // is a member of `item` when expanded by the macro.
-+            //
-+            // Further, this is dma_write! macro expanded and modified to allow for individual
-+            // page write.
-+            unsafe {
-+                let ptr_field = core::ptr::addr_of_mut!((*item).ptes[i]);
-+                gsp_mem.field_write(ptr_field, pte_value);
-+            }
-+        }
-+
-         dma_write!(gsp_mem[0].cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES))?;
-         dma_write!(gsp_mem[0].cpuq.rx = MsgqRxHeader::new())?;
- 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602130722.99jbGBM1-lkp@intel.com/
 
----
-base-commit: cea7b66a80412e2a5b74627b89ae25f1d0110a4b
-change-id: 20260212-drm-rust-next-beb92aee9d75
+All errors (new ones prefixed by >>):
 
-Best regards,
+   PATH=/opt/cross/clang-20/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   INFO PATH=/opt/cross/rustc-1.88.0-bindgen-0.72.1/cargo/bin:/opt/cross/clang-20/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+   /usr/bin/timeout -k 100 12h /usr/bin/make KCFLAGS=\ -fno-crash-diagnostics\ -Wno-error=return-type\ -Wreturn-type\ -funsigned-char\ -Wundef\ -falign-functions=64 W=1 --keep-going LLVM=1 -j32 -C source O=/kbuild/obj/consumer/x86_64-rhel-9.4-rust ARCH=x86_64 SHELL=/bin/bash rustfmtcheck 
+   make: Entering directory '/kbuild/src/consumer'
+   make[1]: Entering directory '/kbuild/obj/consumer/x86_64-rhel-9.4-rust'
+>> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
+            let item = gsp_mem.item_from_index(0)?;
+            for i in 0..NUM_PAGES {
+                let pte_value = gsp_mem
+   -                    .dma_handle()
+   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   -                    .ok_or(EOVERFLOW)?;
+   +                .dma_handle()
+   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   +                .ok_or(EOVERFLOW)?;
+    
+                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
+                // dereferenced. The compiler also further validates the expression on whether `field`
+>> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
+            let item = gsp_mem.item_from_index(0)?;
+            for i in 0..NUM_PAGES {
+                let pte_value = gsp_mem
+   -                    .dma_handle()
+   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   -                    .ok_or(EOVERFLOW)?;
+   +                .dma_handle()
+   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   +                .ok_or(EOVERFLOW)?;
+    
+                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
+                // dereferenced. The compiler also further validates the expression on whether `field`
+>> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
+            let item = gsp_mem.item_from_index(0)?;
+            for i in 0..NUM_PAGES {
+                let pte_value = gsp_mem
+   -                    .dma_handle()
+   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   -                    .ok_or(EOVERFLOW)?;
+   +                .dma_handle()
+   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+   +                .ok_or(EOVERFLOW)?;
+    
+                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
+                // dereferenced. The compiler also further validates the expression on whether `field`
+   make[2]: *** [Makefile:1871: rustfmt] Error 123
+   make[1]: Leaving directory '/kbuild/obj/consumer/x86_64-rhel-9.4-rust'
+   make[2]: Target 'rustfmtcheck' not remade because of errors.
+   make[1]: *** [Makefile:248: __sub-make] Error 2
+   make[1]: Target 'rustfmtcheck' not remade because of errors.
+   make: *** [Makefile:248: __sub-make] Error 2
+   make: Target 'rustfmtcheck' not remade because of errors.
+   make: Leaving directory '/kbuild/src/consumer'
+
 -- 
-Tim Kovalenko <tim.kovalenko@proton.me>
-
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
