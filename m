@@ -4,122 +4,98 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA0DAEF48D9
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 06:56:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 783F5EDF16D
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 14:47:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A580910E793;
-	Fri, 13 Feb 2026 06:56:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E6FD610E816;
+	Fri, 13 Feb 2026 14:47:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktD0cFay";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qLGa0ZqO";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6C61B42FB2;
-	Fri, 13 Feb 2026 06:47:12 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id ED5EA42BBF;
+	Fri, 13 Feb 2026 14:37:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770965232;
- b=g7rBVEANpgDhymri2zS0248duBTMIi3pxAabLcngHu6F9j+cYiCUd6e49TPkDzErARmYw
- WfBcLV0MR32kw7pCLmN88kRHaMX2oeaJgicjSfdfi9h4cO+f6EZZwHY/ixzCQAbjtJ7TUwW
- 6gEVoa1YzWhEwn8Ba9XVXdbrAMDmA3AEf1MZ49+ugEwtbQiiYH0RK2fSN9YdmIjSTOQFKol
- MxcxWbzkohy/dkAKzP14Ga42KJ5frfbiKWfW2BuL9QrEDogNB7Hb3FT5H0DcM0d/BtiXCzJ
- jg0LJ6a4Gnts29W/Lj3+ewOSUOEDXpOr5JsqYrvnNURqRc2uy9wLmrzZVegA==
+ s=20240201; t=1770993451;
+ b=Ai1QfLemDPQToF+KXrrm/R3sHlCls3dy1fWmgzkPFawZpluj6Bhds8h8IGPtOEJG4zT59
+ 9jXvhgak5Ut5cT/rC2eP1NeubIoZ5vK7BXXhQczYgz1TT5aHG7v+wspDPF1wSDS+2ph42DS
+ kbGRmQgkKu34iUN6ZyG1T2viBRKvD9zuvdrvYVZPXD0TN5NFra0jzqMAO4kUk5uFbM66ocY
+ jJ90ZD0kpZo071U+GvuMOUR86aFoFhjZo3ihptW2VlkufD6zehzAHRnQG5sJonAJOC9N4lq
+ 16BjINFKOdgN3Ihqy2uImyDM2k8S0Srr8Yh8T3RDIPamTbrmwaD8pjcRUaTg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770965232; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770993451; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zJtBgW2Z3bgS3bEUNse/KXf+/r4XiYjdgr2peBDbwN8=;
- b=V0GT76L+I+PqHr14DnXY/xR3tgwvWJzcPlttcISKgL/vWpo4ImcEy2+cG560Xb7LY1k0b
- z6VRT9Tc9LHdpWXTnrE41PZ/oP0uCnDpN5yOeQujXfZ4x59QoAn+HMv1pOrAd42L2PV9aF6
- TUiFV8AL2clMVowtMY1shkgwAS66JD5AGW8vdGHTl81ClulofBy+GukAsKZSKjkS7F9MwLq
- XhNJBOaI73hNwC4KJdg+XrFv+vGXP0zYEAcVkRfuGkkAdD7i19Y3+yJ6zCK895LG7NZRsOy
- 1Q0WW+FDdjVZfkVfrkeWqNCk18qS7g1x7FKiZZhFonD6/MqLHReRc8jlfEXw==
+ bh=tbwpLiifq5bBWP8vquQfvXjFugEkQiVgtwZTmVqcWD4=;
+ b=KNhlSVbcbA21aNaMbXiwVvtaYKo34FMicmn1mf9D7960R0RWMj2PDbb+xqxiMRkJi88Bv
+ 6uxvR88L8S5zrB58zJmRtysPs79/M7J9wVerPj39XrGTC6BoFCT9vjg02E+Uk2lTzVDem7b
+ b+Pb5Hw/ZMb7kkyrLm1MjAvIpDvvQs4Epmdhw+UegHsCR8zd+ao8LhyQKm/dmdxCwvve6Qw
+ RhwtsAIbT+KbKJy5u74tKfJFz/UtUXvymTF5JGdwe04IVJEG2+9O9YT1e2hNXOwvbvv2kUG
+ 0h67gK2/LOgYE0QnUm4yxvQxYZybIgmbJwAtKJpzQct6A7oUV5QbMt63bahw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=intel.com header.i=@intel.com;
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=intel.com policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7CBC440686
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 06:47:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6193410E113;
-	Fri, 13 Feb 2026 06:56:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1770965806; x=1802501806;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vegqm/oeFsIY53GNgrWQP8lsZxc41ZJwRfMmlMzHjY4=;
-  b=ktD0cFayvlsZesnekdN1IUnga+U1wFYOeUw9A6eQJeCae6OYXx2b+RRI
-   u3DYlscsmnmO74zF9bm24gNTTksO8YUqYVLJdrHqeMLI9VBXI0LcTDhVj
-   d16rweMKvc+NDZlvy8MVIRUIXXkB9wMb7MPVA1PVqj8TT0K1ofgjWj5h0
-   L3jrvYdb+xG1nMnvyoQQwA2hRs/YkeuqgfSqW2UDetCHSadVhIZO2cBtm
-   +SOtdJ4EX4+QuJvFSCqhxsSENfrw5Nzi72dG/yvmLnnyzNUG3vKg6JHlm
-   J+5dpj74pDAncSw9i3ToLqClJhxsaUaP15lbu12qh/2gjINvt/t/guPJD
-   w==;
-X-CSE-ConnectionGUID: VCU2dWgJRXu4WS9ev2zoSw==
-X-CSE-MsgGUID: J3yio4wNS/m6ZiLTa4HnLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="75994809"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800";
-   d="scan'208";a="75994809"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 22:56:45 -0800
-X-CSE-ConnectionGUID: xlzU7Pj4RWSMblhjM9D6JA==
-X-CSE-MsgGUID: fMZ0mudwSIiMspMfL4HUCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800";
-   d="scan'208";a="217312572"
-Received: from igk-lkp-server01.igk.intel.com (HELO e5404a91d123)
- ([10.211.93.152])
-  by fmviesa005.fm.intel.com with ESMTP; 12 Feb 2026 22:56:41 -0800
-Received: from kbuild by e5404a91d123 with local (Exim 4.98.2)
-	(envelope-from <lkp@intel.com>)
-	id 1vqn6V-000000001Rl-398c;
-	Fri, 13 Feb 2026 06:56:39 +0000
-Date: Fri, 13 Feb 2026 07:56:03 +0100
-From: kernel test robot <lkp@intel.com>
-To: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Trevor Gross <tmgross@umich.edu>
-Subject: Re: [PATCH] gpu: nova-core: fix stack overflow in GSP memory
- allocation
-Message-ID: <202602130722.99jbGBM1-lkp@intel.com>
-References: <20260212-drm-rust-next-v1-1-409398b12e61@proton.me>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260212-drm-rust-next-v1-1-409398b12e61@proton.me>
-Message-ID-Hash: B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6
-X-Message-ID-Hash: B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6
-X-MailFrom: lkp@intel.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id F37AB4016C
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 14:37:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B2C9F10E102;
+	Fri, 13 Feb 2026 14:47:06 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 664FD42B35;
+	Fri, 13 Feb 2026 14:47:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA6E9C116C6;
+	Fri, 13 Feb 2026 14:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1770994026;
+	bh=PfUuTo2C22B502KfiidVcMpl6fd1ZJEdslkaqG2JgXo=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=qLGa0ZqOVOApBCBl9bS3iFM0WK0TiLYX01j2qDqzV+QxNd8Upska8blJ6snj7Kh1/
+	 MyJIOCBf5Ucy1ct7yxtw9TsQK/927cYKtZghWawrDKmvR5oUct2EiruQKrLUOWeRiC
+	 GMk4q9+mVQiYoClAVfo/RfRwD9popMZL5ORrDYb4xus850SjWtcTOXdArG9hAn57FA
+	 LDRSSQSh6Eg9zlxsmFytnFptZAOT4bK972lTEIXUbUCkiYadROP8AphflKTdvg9CdK
+	 u9aNAv7ya/aP8cNrN8yStE17ZbQyCw9fp2KAFPKPx/33yVa4vDg0cumdpbNcISc78g
+	 0lX4Em1fA84Bw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Feb 2026 15:47:01 +0100
+Message-Id: <DGDWZHY8XCLX.19DI18CI9QSPQ@kernel.org>
+To: "Alexandre Courbot" <acourbot@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v9 6/9] gpu: nova-core: add PIO support for loading
+ firmware images
+References: <20260212-turing_prep-v9-0-238520ad8799@nvidia.com>
+ <20260212-turing_prep-v9-6-238520ad8799@nvidia.com>
+In-Reply-To: <20260212-turing_prep-v9-6-238520ad8799@nvidia.com>
+Message-ID-Hash: E7WBUEILVWDZZM6BS3XRRKRCF4PMHK5R
+X-Message-ID-Hash: E7WBUEILVWDZZM6BS3XRRKRCF4PMHK5R
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: oe-kbuild-all@lists.linux.dev, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, Tim Kovalenko <tim.kovalenko@proton.me>
+ loop; banned-address; member-moderation
+CC: Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B2QWMHZ5KPAUZUIFIL33WKG5SUK7N3W6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/E7WBUEILVWDZZM6BS3XRRKRCF4PMHK5R/>
 Archived-At: 
- <https://lore.freedesktop.org/202602130722.99jbGBM1-lkp@intel.com/>
+ <https://lore.freedesktop.org/DGDWZHY8XCLX.19DI18CI9QSPQ@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -129,81 +105,78 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi Tim,
+On Thu Feb 12, 2026 at 9:26 AM CET, Alexandre Courbot wrote:
+> +    fn try_as_pio_loadable(&self) -> Result<FalconDmaFirmwarePioAdapter<=
+'_, Self>> {
 
-kernel test robot noticed the following build errors:
+[...]
 
-[auto build test ERROR on cea7b66a80412e2a5b74627b89ae25f1d0110a4b]
+> +        let dmem =3D {
+> +            let params =3D self.dmem_load_params();
+> +
+> +            // SAFETY: we keep a reference to `self` for as long as this=
+ slice is alive, and the
+> +            // device will not access this DMA object since we are using=
+ PIO.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Tim-Kovalenko-via-B4-Relay/gpu-nova-core-fix-stack-overflow-in-GSP-memory-allocation/20260213-115022
-base:   cea7b66a80412e2a5b74627b89ae25f1d0110a4b
-patch link:    https://lore.kernel.org/r/20260212-drm-rust-next-v1-1-409398b12e61%40proton.me
-patch subject: [PATCH] gpu: nova-core: fix stack overflow in GSP memory allocation
-config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20260213/202602130722.99jbGBM1-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260213/202602130722.99jbGBM1-lkp@intel.com/reproduce)
+How is this guaranteed by this function? I.e. how is it prevented that this
+function is never called when the device acesses the DMA memory?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602130722.99jbGBM1-lkp@intel.com/
+> +            let data =3D unsafe {
+> +                self.as_slice(
+> +                    usize::from_safe_cast(params.src_start),
+> +                    usize::from_safe_cast(params.len),
+> +                )?
+> +            };
+> +
+> +            let dst_start =3D u16::try_from(params.dst_start).map_err(|_=
+| EINVAL)?;
+> +
+> +            FalconPioDmemLoadTarget { data, dst_start }
+> +        };
+> +
+> +        Ok(FalconDmaFirmwarePioAdapter {
+> +            fw: self,
+> +            imem_sec,
+> +            imem_ns,
+> +            dmem,
+> +        })
+> +    }
+> +}
 
-All errors (new ones prefixed by >>):
+<snip>
 
-   PATH=/opt/cross/clang-20/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   INFO PATH=/opt/cross/rustc-1.88.0-bindgen-0.72.1/cargo/bin:/opt/cross/clang-20/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-   /usr/bin/timeout -k 100 12h /usr/bin/make KCFLAGS=\ -fno-crash-diagnostics\ -Wno-error=return-type\ -Wreturn-type\ -funsigned-char\ -Wundef\ -falign-functions=64 W=1 --keep-going LLVM=1 -j32 -C source O=/kbuild/obj/consumer/x86_64-rhel-9.4-rust ARCH=x86_64 SHELL=/bin/bash rustfmtcheck 
-   make: Entering directory '/kbuild/src/consumer'
-   make[1]: Entering directory '/kbuild/obj/consumer/x86_64-rhel-9.4-rust'
->> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
-            let item = gsp_mem.item_from_index(0)?;
-            for i in 0..NUM_PAGES {
-                let pte_value = gsp_mem
-   -                    .dma_handle()
-   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   -                    .ok_or(EOVERFLOW)?;
-   +                .dma_handle()
-   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   +                .ok_or(EOVERFLOW)?;
-    
-                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
-                // dereferenced. The compiler also further validates the expression on whether `field`
->> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
-            let item = gsp_mem.item_from_index(0)?;
-            for i in 0..NUM_PAGES {
-                let pte_value = gsp_mem
-   -                    .dma_handle()
-   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   -                    .ok_or(EOVERFLOW)?;
-   +                .dma_handle()
-   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   +                .ok_or(EOVERFLOW)?;
-    
-                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
-                // dereferenced. The compiler also further validates the expression on whether `field`
->> Diff in drivers/gpu/nova-core/gsp/cmdq.rs:207:
-            let item = gsp_mem.item_from_index(0)?;
-            for i in 0..NUM_PAGES {
-                let pte_value = gsp_mem
-   -                    .dma_handle()
-   -                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   -                    .ok_or(EOVERFLOW)?;
-   +                .dma_handle()
-   +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-   +                .ok_or(EOVERFLOW)?;
-    
-                // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
-                // dereferenced. The compiler also further validates the expression on whether `field`
-   make[2]: *** [Makefile:1871: rustfmt] Error 123
-   make[1]: Leaving directory '/kbuild/obj/consumer/x86_64-rhel-9.4-rust'
-   make[2]: Target 'rustfmtcheck' not remade because of errors.
-   make[1]: *** [Makefile:248: __sub-make] Error 2
-   make[1]: Target 'rustfmtcheck' not remade because of errors.
-   make: *** [Makefile:248: __sub-make] Error 2
-   make: Target 'rustfmtcheck' not remade because of errors.
-   make: Leaving directory '/kbuild/src/consumer'
+> +/// Adapter type that makes any DMA-loadable firmware also loadable via =
+PIO.
+> +///
+> +/// Created using [`FalconDmaLoadable::try_as_pio_loadable`].
+> +pub(crate) struct FalconDmaFirmwarePioAdapter<'a, T: FalconDmaLoadable +=
+ ?Sized> {
+> +    /// Reference to the DMA firmware.
+> +    fw: &'a T,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+In v6 [1] I wrote:
+
+	> @@ -221,6 +286,8 @@ pub(crate) struct FwsecFirmware {
+	>      desc: FalconUCodeDesc,
+	>      /// GPU-accessible DMA object containing the firmware.
+	>      ucode: FirmwareDmaObject<Self, Signed>,
+	> +    /// Generic bootloader
+	> +    gen_bootloader: Option<GenericBootloader>,
+
+	I'm not convinced this is a good idea. We probably want a HAL here and
+	have different FwsecFirmware types:
+
+	One with a DMA object and one with a system memory object when the
+	architecture uses PIO. In the latter case the object can have a
+	GenericBootloader field, i.e.  this also gets us rid of the Option and
+	all the subsequent 'if chipset < Chipset::GA102' checks and 'match
+	gbl_fw' matches below.
+
+So, I still wonder, why use an Adapter impl on top of DMA memory for PIO ra=
+ther
+than different base types with a common trait to avoid DMA allocations in t=
+he
+PIO case altogether?
+
+[1] https://lore.kernel.org/all/DFQBHVTTHZY8.13ASLCJ3FJP81@kernel.org/
