@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94FDDEEA860
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 17:22:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2FB1EF99D0
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 19:41:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 41A2F10E305;
-	Fri, 13 Feb 2026 17:21:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D87210E843;
+	Fri, 13 Feb 2026 19:41:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QkwHIigN";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OfC5wtKz";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0BEEB42DA9;
-	Fri, 13 Feb 2026 17:12:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CE5DB41E84;
+	Fri, 13 Feb 2026 19:31:56 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771002740;
- b=SVNKSdGGA82j9ba6pAS2Ra2LHgIqT+2mpW5HV/gsp5ICNCJize9e0eZYZKtuGGSFTiEzU
- 1fiZBcWl5u6brDmDQsPN/Xb1rfZ93u8YL/gRYGlxr4OhJTtkJwMnff7I7iggogvGrj69Rya
- B99U6rdqFYIdtIf/ArmwsmWyaUZW4XyVFxo4YGgGEUXsfUmht84MgddXlAvG97Ok4aSoAsj
- N09asklASxpjwdx+bERCLq7sP32/pvtIdbHRBBQKkfTSftrb61QvAemc53fBU5YIpBRxZA+
- Z/+hzcTjwVTrFB/E1NvuHe6+nTEScZSxt+r09qsZnnKqEkCdHK+PwLbgraGQ==
+ s=20240201; t=1771011116;
+ b=o4s7gAKzYrZ/z+fqh56nrqofXmSn+V77N/KXJzHHs8EXlf3aXHcdLXU/DoIDwb9c00OUH
+ c0C8MVR21C3wNXu8NsD5eeJNl5XDtbfgZ7kAg7zq79xA5Ifl9c3KwBI17RDiGsNQGM3XiWy
+ H41JzVPduvZ4LyNVYZstq6368bHjNoP9m2B5EK4IhI1l1aSKmnPrZkSQKQMInr3/RcsKSCD
+ eX5ygXIFUdQ2XShW2UoFJgTmZk5wrUrce2140AyouBi5eRBqhzjTMXK6LHCJ2wE2r4T188k
+ muQ6HBO2Emhjtc0CoJR1vfm5oXJFH/uPmcQ93/ye2WXKFTRjZa94/VbcIbiA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771002740; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771011116; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DRDGNI+GSlmI25aNF985G3xdkrvr8VAPOO/58CMbgJQ=;
- b=OtW59w3QgHykafNMODGoisgzlmuYSuhofKkif0P69txX0jEwacWqeKUMaj+WnDHtVhU0G
- MftoYuVFF2PQBSfkGWSy2BI5EWHC/DlBj1RODViOX/tEs+dk4PCISc+MsnldgpVBYSCOsLW
- G7Cgz82u1WMVUVtnjRZTkp7liCu0lCuxqmQs/fbW6wcfEwiOEFblPelelTl42su3Nx358RZ
- zv2l1jiqG6j9L0mWqE3zMhiKI7yVze7TyThwhJMxPLSg34s7NR5KFIAKRhMuxiHY8GEe+aI
- fIlFdxGQBJKUAgDRevn2dY+tZxAL40/sf3/QoIGjedd4OvMp9WBTXJYJTyzA==
+ bh=JTuZVdyTXLpk6gMwzk15mWnbWjpsaEZl+pvStoMa2Yw=;
+ b=JB9qdsdTui/v5XfLcdY1/VOJ7Fj7YxeYaG+biCk4vXF8powCd4KehOrw9eNX5M8uZPxzA
+ M1H6oZ3Hu62DXUAoSq+99lyEUJ/OHlmsw4JOtrYdeDPAXqPqCc4Uz7OGvoSO08ypGZ91O3Q
+ N5jP8blPb+RmPakJHydXryOphjcL/2v/PhCwq+dT5nKiEe6ElWMaLref9M+k9VoF6nBH3/b
+ A/ycGlkSdSUMsaG4oEX1r5rm6KRZcEweAOz9JXLHcks/p7lmekLU3aeMvJK92krDeFMh5iX
+ XIAjqpiHqTPpJbtszTydH2fHShd8D2YDFzG0Y9qUAG9b+oyvGvlc6HM1mCJQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,54 +46,79 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EFA9A4016C
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 17:12:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7BE2140686
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 19:31:53 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D81B810E2C6;
-	Fri, 13 Feb 2026 17:21:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 941B510E10D;
+	Fri, 13 Feb 2026 19:41:31 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 7AAA36001A;
-	Fri, 13 Feb 2026 17:12:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E526DC116C6;
-	Fri, 13 Feb 2026 17:12:55 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 7F98961337;
+	Fri, 13 Feb 2026 19:41:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 284E1C19424;
+	Fri, 13 Feb 2026 19:41:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771002778;
-	bh=GYGlNH6ZtsYX+o3QMvwEg6+pg9JnYhrAAMOAOmTrVFE=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=QkwHIigNW/q1zQQTcR6ZM1LW4H6/cAgQd+wi9Y/fodGx9uCK0t5675f2Vby90NuZL
-	 SBq0Kf+bcQgQPmzwCWCOBt1+PR0dX1n0JX+W5vZFXwl1PTC7k/VIklE8cJFvMaLllx
-	 47ENJD+dl9692Kqp7JSOT1r3MKFrrDLVkEU7aLaBSuz+X/LNK1fOuaUrRXTV3iH6t/
-	 8hfMK5CIvfuWWB/ktOH/3EdFvnvhTgQCTq8SrzLHNSCe8es6geNGi9ShzCAbi2gA2F
-	 HrtgEDJok+B6ZX/e9dfK2th1VYqb3mGXU7XqRp1QNNOA9Em9Ftcnwico0rbqYCYHL0
-	 FGtWAQDCKkL/g==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Feb 2026 18:12:54 +0100
-Message-Id: <DGE036OEW8ZK.1PX0DRV8R9EVB@kernel.org>
-Subject: Re: [PATCH v2 1/2] drm/nouveau: Fetch zcull info from device
-To: "Mel Henning" <mhenning@darkrefraction.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260205-zcull3-v2-0-ac572f38cc7b@darkrefraction.com>
- <20260205-zcull3-v2-1-ac572f38cc7b@darkrefraction.com>
-In-Reply-To: <20260205-zcull3-v2-1-ac572f38cc7b@darkrefraction.com>
-Message-ID-Hash: MPAE2SGFLRSKASV2LNZH4FMJCS2ZN6GA
-X-Message-ID-Hash: MPAE2SGFLRSKASV2LNZH4FMJCS2ZN6GA
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+	s=k20201202; t=1771011690;
+	bh=npawl3Sh8CB9l+1ZY62uo+ipDHKFXtD/V7TZlj5J+kE=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=OfC5wtKzDjjRTMyYDLfYtHcRXqV6U0vmPI2AWkLm7EB7Z/T1v0l2abeRgzhIjaq58
+	 Z6mXUTghHGpMEJjGZqbxnUxJF/dISX+OblcR09PaWXsct7GP+lZ/WGhM61zFVZyZvJ
+	 ezgUSifRI4TocQxH7uuzPA29NB6qSsXL9rjlOscWyTxleT5wdzhWwW3O5otlF5rb9J
+	 2YKoA3hcYhfFQdQo+4Bm0KBsyTKSD2wNZYHFxA9+XYiVpAe156iAJxrwUb8AvWdFWx
+	 c4/XK2w6SNRQtN0F3WrKjQ3Wh9Vj3BkIafCdUHHajvPr+aXIG8LGqNTYuBj87TzIiK
+	 BIkMyutGBksBA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 0A4CEEF99D7;
+	Fri, 13 Feb 2026 19:41:30 +0000 (UTC)
+From: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>
+Date: Fri, 13 Feb 2026 14:40:13 -0500
+Subject: [PATCH v2] gpu: nova-core: fix stack overflow in GSP memory
+ allocation
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260213-drm-rust-next-v2-1-aa094f78721a@proton.me>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3XMQQ7CIBCF4as0s3YMjFrFlfcwXRQZLYtCM2BT0
+ 3B3sXuX/0vet0Ji8Zzg2qwgPPvkY6hBuwYeQx9ejN7VBlLUKtKETkaUd8oYeMlo2RrqmY07n6B
+ +JuGnXzbv3tUefMpRPhs/69/6T5o1ajwqczAXq4lbfZsk5hj2I0NXSvkCJpNJDqoAAAA=
+X-Change-ID: 20260212-drm-rust-next-beb92aee9d75
+To: Alexandre Courbot <acourbot@nvidia.com>,
+ Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1771011689; l=6183;
+ i=tim.kovalenko@proton.me; s=20260212; h=from:subject:message-id;
+ bh=TbEzlnu4V85B1wrxC0sGqgddAbgVIVV2UDPzTnjjCng=;
+ b=1765X0vwFeNKmn7aEyMFKc6c5HTP2IxuQE8XcwSTcwhN9KrHAJ9dpgfoy/Ysb4YaVm3UM3IJh
+ JbUXKzKcDEtDsz7mFSr+uHD5WK5p5zrFsDtx/d7Af6EsHRCj0EHcXNO
+X-Developer-Key: i=tim.kovalenko@proton.me; a=ed25519;
+ pk=/+OiulEpgeZifgP4mDE4e5YlV6nMeY+frze/lY/xiHI=
+X-Endpoint-Received: by B4 Relay for tim.kovalenko@proton.me/20260212 with
+ auth_id=635
+X-Original-From: Tim Kovalenko <tim.kovalenko@proton.me>
+Message-ID-Hash: YF5ZYAYJVQIDI2Z5NRV5QRQURDT4OMLB
+X-Message-ID-Hash: YF5ZYAYJVQIDI2Z5NRV5QRQURDT4OMLB
+X-MailFrom: devnull+tim.kovalenko.proton.me@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mary Guillemard <mary@mary.zone>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ Tim Kovalenko <tim.kovalenko@proton.me>
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: tim.kovalenko@proton.me
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MPAE2SGFLRSKASV2LNZH4FMJCS2ZN6GA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YF5ZYAYJVQIDI2Z5NRV5QRQURDT4OMLB/>
 Archived-At: 
- <https://lore.freedesktop.org/DGE036OEW8ZK.1PX0DRV8R9EVB@kernel.org/>
+ <https://lore.freedesktop.org/20260213-drm-rust-next-v2-1-aa094f78721a@proton.me/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -103,177 +128,168 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Feb 5, 2026 at 7:56 PM CET, Mel Henning wrote:
-> This information will be exposed to userspace in the following commit.
->
-> Signed-off-by: Mel Henning <mhenning@darkrefraction.com>
+From: Tim Kovalenko <tim.kovalenko@proton.me>
 
-For someone looking at this commit, this commit message is not very useful.
+The `Cmdq::new` function was allocating a `PteArray` struct on the stack
+and was causing a stack overflow with 8216 bytes.
 
-Please add at least a brief explanation of what the patch does and - even m=
-ore
-important - why it does it. See also [1].
+Remove the `PteArray` and instead calculate and write the Page Table
+Entries directly into the coherent DMA buffer one-by-one. This reduces
+the stack usage quite a lot.
 
-[1] https://docs.kernel.org/process/submitting-patches.html#describe-your-c=
-hanges
+Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
+---
+Changes in v2:
+- Missed a code formatting issue.
+- Link to v1: https://lore.kernel.org/r/20260212-drm-rust-next-v1-1-409398b12e61@proton.me
+---
+ drivers/gpu/nova-core/gsp.rs      | 50 ++++++++++++++-------------------------
+ drivers/gpu/nova-core/gsp/cmdq.rs | 27 ++++++++++++++++++---
+ 2 files changed, 42 insertions(+), 35 deletions(-)
 
-> ---
->  drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h   | 19 +++++++++++++
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c   |  9 ++++--
->  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c   | 32 ++++++++++++++++=
-++++--
->  .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h  | 19 +++++++++++++
->  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  2 +-
->  5 files changed, 75 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h b/drivers/g=
-pu/drm/nouveau/include/nvkm/engine/gr.h
-> index a2333cfe6955..490ce410f6cb 100644
-> --- a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
-> +++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
-> @@ -3,9 +3,28 @@
->  #define __NVKM_GR_H__
->  #include <core/engine.h>
-> =20
-> +struct nvkm_gr_zcull_info {
-> +	__u32 width_align_pixels;
-> +	__u32 height_align_pixels;
-> +	__u32 pixel_squares_by_aliquots;
-> +	__u32 aliquot_total;
-> +	__u32 zcull_region_byte_multiplier;
-> +	__u32 zcull_region_header_size;
-> +	__u32 zcull_subregion_header_size;
-> +	__u32 subregion_count;
-> +	__u32 subregion_width_align_pixels;
-> +	__u32 subregion_height_align_pixels;
-> +
-> +	__u32 ctxsw_size;
-> +	__u32 ctxsw_align;
-> +};
-> +
->  struct nvkm_gr {
->  	const struct nvkm_gr_func *func;
->  	struct nvkm_engine engine;
-> +
-> +	struct nvkm_gr_zcull_info zcull_info;
-> +	bool has_zcull_info;
->  };
-> =20
->  u64 nvkm_gr_units(struct nvkm_gr *);
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c b/drive=
-rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-> index ddb57d5e73d6..73844e1e7294 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-> @@ -249,7 +249,7 @@ r535_gr_get_ctxbuf_info(struct r535_gr *gr, int i,
->  }
-> =20
->  static int
-> -r535_gr_get_ctxbufs_info(struct r535_gr *gr)
-> +r535_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index 174feaca0a6b9269cf35286dec3acc4d60918904..316eeaf87ec5ae67422a34426eefa747c9b6502b 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -2,16 +2,14 @@
+ 
+ mod boot;
+ 
++use core::iter::Iterator;
++
+ use kernel::{
+     device,
+-    dma::{
+-        CoherentAllocation,
+-        DmaAddress, //
+-    },
++    dma::CoherentAllocation,
+     dma_write,
+     pci,
+-    prelude::*,
+-    transmute::AsBytes, //
++    prelude::*, //
+ };
+ 
+ pub(crate) mod cmdq;
+@@ -39,27 +37,6 @@
+ /// Number of GSP pages to use in a RM log buffer.
+ const RM_LOG_BUFFER_NUM_PAGES: usize = 0x10;
+ 
+-/// Array of page table entries, as understood by the GSP bootloader.
+-#[repr(C)]
+-struct PteArray<const NUM_ENTRIES: usize>([u64; NUM_ENTRIES]);
+-
+-/// SAFETY: arrays of `u64` implement `AsBytes` and we are but a wrapper around one.
+-unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArray<NUM_ENTRIES> {}
+-
+-impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
+-    /// Creates a new page table array mapping `NUM_PAGES` GSP pages starting at address `start`.
+-    fn new(start: DmaAddress) -> Result<Self> {
+-        let mut ptes = [0u64; NUM_PAGES];
+-        for (i, pte) in ptes.iter_mut().enumerate() {
+-            *pte = start
+-                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+-                .ok_or(EOVERFLOW)?;
+-        }
+-
+-        Ok(Self(ptes))
+-    }
+-}
+-
+ /// The logging buffers are byte queues that contain encoded printf-like
+ /// messages from GSP-RM.  They need to be decoded by a special application
+ /// that can parse the buffers.
+@@ -86,16 +63,25 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+             NUM_PAGES * GSP_PAGE_SIZE,
+             GFP_KERNEL | __GFP_ZERO,
+         )?);
+-        let ptes = PteArray::<NUM_PAGES>::new(obj.0.dma_handle())?;
++
++        let start_addr = obj.0.dma_handle();
+ 
+         // SAFETY: `obj` has just been created and we are its sole user.
+-        unsafe {
+-            // Copy the self-mapping PTE at the expected location.
++        let pte_region = unsafe {
+             obj.0
+-                .as_slice_mut(size_of::<u64>(), size_of_val(&ptes))?
+-                .copy_from_slice(ptes.as_bytes())
++                .as_slice_mut(size_of::<u64>(), NUM_PAGES * size_of::<u64>())?
+         };
+ 
++        // As in [`DmaGspMem`], this is a  one by one GSP Page write to the memory
++        // to avoid stack overflow when allocating the whole array at once.
++        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
++            let pte_value = start_addr
++                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
++                .ok_or(EOVERFLOW)?;
++
++            chunk.copy_from_slice(&pte_value.to_ne_bytes());
++        }
++
+         Ok(obj)
+     }
+ }
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
+index 46819a82a51adc58423502d9d45730923b843656..7a6cb261f4e62ac6210a80f9ecb61213cdb91b15 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -35,7 +35,6 @@
+             MsgqRxHeader,
+             MsgqTxHeader, //
+         },
+-        PteArray,
+         GSP_PAGE_SHIFT,
+         GSP_PAGE_SIZE, //
+     },
+@@ -159,7 +158,7 @@ struct Msgq {
+ #[repr(C)]
+ struct GspMem {
+     /// Self-mapping page table entries.
+-    ptes: PteArray<{ GSP_PAGE_SIZE / size_of::<u64>() }>,
++    ptes: [u64; GSP_PAGE_SIZE / size_of::<u64>()],
+     /// CPU queue: the driver writes commands here, and the GSP reads them. It also contains the
+     /// write and read pointers that the CPU updates.
+     ///
+@@ -201,7 +200,29 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+ 
+         let gsp_mem =
+             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
+-        dma_write!(gsp_mem[0].ptes = PteArray::new(gsp_mem.dma_handle())?)?;
++        const NUM_PAGES: usize = GSP_PAGE_SIZE / size_of::<u64>();
++
++        // One by one GSP Page write to the memory to avoid stack overflow when allocating
++        // the whole array at once.
++        let item = gsp_mem.item_from_index(0)?;
++        for i in 0..NUM_PAGES {
++            let pte_value = gsp_mem
++                .dma_handle()
++                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
++                .ok_or(EOVERFLOW)?;
++
++            // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
++            // dereferenced. The compiler also further validates the expression on whether `field`
++            // is a member of `item` when expanded by the macro.
++            //
++            // Further, this is dma_write! macro expanded and modified to allow for individual
++            // page write.
++            unsafe {
++                let ptr_field = core::ptr::addr_of_mut!((*item).ptes[i]);
++                gsp_mem.field_write(ptr_field, pte_value);
++            }
++        }
++
+         dma_write!(gsp_mem[0].cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES))?;
+         dma_write!(gsp_mem[0].cpuq.rx = MsgqRxHeader::new())?;
+ 
 
-Why did you combine those two callbacks? Why not extend struct nvkm_rm_api_=
-gr
-with another callback?
+---
+base-commit: cea7b66a80412e2a5b74627b89ae25f1d0110a4b
+change-id: 20260212-drm-rust-next-beb92aee9d75
 
->  {
->  	NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *info;
->  	struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
-> @@ -265,6 +265,9 @@ r535_gr_get_ctxbufs_info(struct r535_gr *gr)
->  		r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffersInfo[0].engi=
-ne[i]);
-> =20
->  	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
-> +
-> +	gr->base.has_zcull_info =3D false;
-> +
->  	return 0;
->  }
-> =20
-> @@ -312,7 +315,7 @@ r535_gr_oneinit(struct nvkm_gr *base)
->  	 *
->  	 * Also build the information that'll be used to create channel context=
-s.
->  	 */
-> -	ret =3D rm->api->gr->get_ctxbufs_info(gr);
-> +	ret =3D rm->api->gr->get_ctxbufs_and_zcull_info(gr);
->  	if (ret)
->  		goto done;
-> =20
-> @@ -352,5 +355,5 @@ r535_gr_dtor(struct nvkm_gr *base)
-> =20
->  const struct nvkm_rm_api_gr
->  r535_gr =3D {
-> -	.get_ctxbufs_info =3D r535_gr_get_ctxbufs_info,
-> +	.get_ctxbufs_and_zcull_info =3D r535_gr_get_ctxbufs_and_zcull_info,
->  };
-> diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c b/drive=
-rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-> index b6cced9b8aa1..3e7af2ffece9 100644
-> --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-> +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-> @@ -164,9 +164,10 @@ r570_gr_scrubber_init(struct r535_gr *gr)
->  }
-> =20
->  static int
-> -r570_gr_get_ctxbufs_info(struct r535_gr *gr)
-> +r570_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
->  {
->  	NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *info;
-> +	NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS *zcull_info;
->  	struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
->  	struct nvkm_gsp *gsp =3D subdev->device->gsp;
-> =20
-> @@ -179,13 +180,40 @@ r570_gr_get_ctxbufs_info(struct r535_gr *gr)
->  	for (int i =3D 0; i < ARRAY_SIZE(info->engineContextBuffersInfo[0].engi=
-ne); i++)
->  		r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffersInfo[0].engi=
-ne[i]);
-> =20
-> +	NV2080_CTRL_INTERNAL_ENGINE_CONTEXT_BUFFER_INFO zcull =3D info->engineC=
-ontextBuffersInfo[0]
-> +		.engine[NV0080_CTRL_FIFO_GET_ENGINE_CONTEXT_PROPERTIES_ENGINE_ID_GRAPH=
-ICS_ZCULL];
-> +	gr->base.zcull_info.ctxsw_size =3D zcull.size;
-> +	gr->base.zcull_info.ctxsw_align =3D zcull.alignment;
-> +
->  	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
-> +
-> +	zcull_info =3D nvkm_gsp_rm_ctrl_rd(&gsp->internal.device.subdevice,
-> +					 NV2080_CTRL_CMD_GR_GET_ZCULL_INFO,
-> +					 sizeof(*zcull_info));
-> +	if (WARN_ON(IS_ERR(zcull_info)))
+Best regards,
+-- 
+Tim Kovalenko <tim.kovalenko@proton.me>
 
-What justifies this WARN_ON()? To me this seems like normal error handling,=
- i.e.
-it is not a violation of some API invariant, etc. Also, this is in the driv=
-er's
-probe() path.
 
-> +		return PTR_ERR(zcull_info);
-> +
-> +	gr->base.zcull_info.width_align_pixels =3D zcull_info->widthAlignPixels=
-;
-> +	gr->base.zcull_info.height_align_pixels =3D zcull_info->heightAlignPixe=
-ls;
-> +	gr->base.zcull_info.pixel_squares_by_aliquots =3D zcull_info->pixelSqua=
-resByAliquots;
-> +	gr->base.zcull_info.aliquot_total =3D zcull_info->aliquotTotal;
-> +	gr->base.zcull_info.zcull_region_byte_multiplier =3D zcull_info->zcullR=
-egionByteMultiplier;
-> +	gr->base.zcull_info.zcull_region_header_size =3D zcull_info->zcullRegio=
-nHeaderSize;
-> +	gr->base.zcull_info.zcull_subregion_header_size =3D zcull_info->zcullSu=
-bregionHeaderSize;
-> +	gr->base.zcull_info.subregion_count =3D zcull_info->subregionCount;
-> +	gr->base.zcull_info.subregion_width_align_pixels =3D zcull_info->subreg=
-ionWidthAlignPixels;
-> +	gr->base.zcull_info.subregion_height_align_pixels =3D zcull_info->subre=
-gionHeightAlignPixels;
-> +
-> +	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, zcull_info);
-> +
-> +	gr->base.has_zcull_info =3D true;
-> +
->  	return 0;
->  }
