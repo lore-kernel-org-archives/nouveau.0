@@ -4,150 +4,198 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19330EF99E5
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 23:11:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D985EF99E2
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 23:50:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C69EA10E853;
-	Fri, 13 Feb 2026 23:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DB2C210E856;
+	Fri, 13 Feb 2026 23:50:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="yosogk5C";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="HBtPDhwR";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0A62242DA9;
-	Fri, 13 Feb 2026 23:02:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0C27442DA9;
+	Fri, 13 Feb 2026 23:41:02 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771023720;
- b=TD5lC4Vm2dJ1DRq1Sr/s4utV4+FVzhUMJrrSnStGgB0NqWYm4U0cIY4gTSVadmLhwQJ4M
- ohJlqUQgbGpIDnv/n/eufM7KZHRx1L1IWTgQUjhOg7BCsuE2/eX1ENq9pi+eTaWxKH63aS5
- Iqj0niLgAt20XAWM+NRUO+vIcmouKb9BVuCtdlcg+PQNj54jh92i2EzY7NI7FhP8k40v/+W
- ZDApr30B8UNFKgCQs0iPTmXKw9BWcFcsGl57rypiLw57V76SrQypVB9lgsBaibIdxExcF+Y
- oxeMu0bCyETOsn4JABIM+CvrrIsl2UnnPH8TAAd5iMNz8dkohRIbW5pZNvmQ==
+ s=20240201; t=1771026061;
+ b=d54CT83Secf9Q0KnOrq/7KL/w1FfVd5HsFK4saFtZjLFA0mLnSGyeatdimz6sUtDjkpX4
+ 6GY3kEH+GTs1ehxWg/q/O2gbUNj4bAOSk4nsXJKWLtd/V1P0oQyl03A61+FSxd2svQ2pPEE
+ JqfvVzcycfLfigs+8vwX+zxAz7NTZuUPAR8wrqVKzm4ClfJm7wlk3LstK2Nm7ajHm4IK71A
+ MUnOMcMITeWWupwrmD+xuu9fAEdTWtP6euOH4TqZ+97u1zu2Ojcsv2vLLptBs4D6T5OEIh8
+ Un5A7LXuEv9soysBjMDPB8UvK+LhuKcjnY3JzgFr9/hmxh1hDll2QWu2Qk5A==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771023720; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771026061; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=i/aiR4F2aBKPhSsHf4Kof8ApCmMrntWY9Rw5HJoo2C4=;
- b=d7He3iS22qab2eUYRSN7oCS/NzYIz2er1QeGcoelaHL/q4hgPWX/kSAopBJzloT3hnQxl
- EViy5PWkfDzarBOhAqgItRMu6ZgvNKpyXdXImcB8u7IVbKHZvhXDcOEaIiQyLz4hrYR2ZAg
- SS2cgzQuMlzu94R/Rj1BiJRxPCNxumBLYq9NgGo64avpZEkvRpqtl658fmqekq8lqVSb2Ui
- 7JLzK0tp1GFn+RuBtYG6GkW5unuvMK66c9QITBV6+xgh83AJHdcAVXSxgag5Pro3XvdvUu1
- zxYiCJOTr2zFPz8gXBKkSSkryKFoiAbOqt18BZT+hXZX4b2JnvlpggeN5VKw==
+ bh=fO6WXtMujxIt0UQt9JWa/L0uvI4Fx9S2/kK7jEGQYGE=;
+ b=j0rPStHA8BzSYyNqJEG/Xan4DxHSvIk7+fon5dEeKTu/ip4Sc4fEPZRaiNyXWX2KvBcIB
+ YQ2AdDkxvdrT98yPaY4CQGaq01u12r+aYukL3EO9EsaF0mZ2v8ioewE6Q+YR98Bq6mIoRxh
+ o1wigW8Ldz+fOzLEwbi9cKBQ1qeI/QQ8qiz2UdOYbqC7wCbGhtthlYkfEQWkLmvH349hcB5
+ WK9f1/ixA00+OegLqgj5NNRC1qEq+4TjoGNqhxRU7hvQ4afwhhij6IpJEtQm/0hZdBbC8zT
+ bXniDufDMWKKpNE8HH0Ii73gRZOLodanutvMFuP8RtKDtrd6+J1FilChSYnQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
+ dkim=pass header.d=garyguo.net;
   arc=pass;
-  dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com; arc=pass;
- dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D498A4016C
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 23:01:57 +0000 (UTC)
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com
- [209.85.218.43])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 03D2510E156
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 23:11:35 +0000 (UTC)
-Received: by mail-ej1-f43.google.com with SMTP id
- a640c23a62f3a-b8876d1a39bso158816166b.1
-        for <nouveau@lists.freedesktop.org>;
- Fri, 13 Feb 2026 15:11:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771024294; cv=none;
-        d=google.com; s=arc-20240605;
-        b=TLHSLm2t0QBtJ8d52ZONfTSewzooZ2xeY2F2EfHzwI8vbpuYK4Fi/HnPETYHxCJQac
-         i+hj/fwqUuF0KhbU4bZK3V3DRLcKq5TziWBXU/IUHRkRnQOQ6GksjeE0ym0uYcz8SwHp
-         hsrtYwQ15DyS16bInkrfQL7ykg4ZNla7G6D39FcWqlxMjjzTKo4rkq0ZROvlOyxATOK5
-         e3y6ULBy0po4/oGoWA2LK/2qZ/E0cGHtnjRnfEF6om9ge43xS9Bkcd8fyYEyNrxChDWC
-         gzy50W4Tzw5vQ9gL2bpex7H89F8ZFJJq/aD4ozT8CgLGoyVdw2O6Wy92BJo/3EGOaR5c
-         7boA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=i/aiR4F2aBKPhSsHf4Kof8ApCmMrntWY9Rw5HJoo2C4=;
-        fh=11p/SA85FT+stOa9OW3IFeem8PspXTiytdHdDR8AzL0=;
-        b=aZNrjIeFB0GDGot0I/awXmRvck0isQenghc15Qtx98uk6qmdOgeZLt9V9Oxc4X8tE4
-         4RjzeEXXvII2vKeDBDWvJM6xMV87x4pmIddJ0sSA7cF/HgFAvNJtAAxI/yXYBEA8/Uwa
-         pGzz7mM3D9jRv4RTxMonQF9k/2m2UF7dGViUhyISJiZ7PtkMjd4y5gfXfG7MyBbInhnR
-         WDKC4JAcC60w5nUvvw+tVKygJJhuOGTqEH2M8ta8tk47xJjti/AZEOee+c/oJh1vqH6J
-         IQrVmgGixClqfkXAy2Qu9SIjjVq3wpz6WQ5WIgq3wmaQz8nyV3bOEZAz5nmRpzIW/YdE
-         2TyA==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1771024294;
- x=1771629094; darn=lists.freedesktop.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i/aiR4F2aBKPhSsHf4Kof8ApCmMrntWY9Rw5HJoo2C4=;
-        b=yosogk5CdmBGYuySDO82xyz7lMYwfODr5HiPhlaTwS+zoU0J3Xuz8jPohWw1zPEZ/v
-         3kpvlQPc9HV5d3afW+cLEpSbOSfCZcu+Z2xF7Po68UpH6man2gBo0gqWIyF5Qo6l8+ph
-         3t/uYnNL4K0yhrlTh1PDulGfGwElGjIXvJXww74LfFS/iXDhjSmf9XD3Ypqhi7sLaNj5
-         cz9LypFtPQF6ZR8rHiCC62k2FhPTgQBHO8QRLcgehfK66lPWKk6tn4MooE5VH7GAZebB
-         qWUWpiZa+lN68BUJxGeSqctzs8X1784mAeMcSm0q04D9BUevYCVtXeb/XqSi/TvO4w5V
-         y8Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771024294; x=1771629094;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=i/aiR4F2aBKPhSsHf4Kof8ApCmMrntWY9Rw5HJoo2C4=;
-        b=EeI3fhun8UT4RWjBPEPbcozE95hSWGEz7YkGmLGjO4s6oB6m+1/aR6adRVHik4NZvR
-         eQQE5GIHaFI4HU/27ZHXASMGaJzfNt05ujg3mZZ2uiYIImqA4ArG+Vu6YJrL1moZf/TO
-         aPEmYoJ8iohbuQKgXQ1u1f16PbUE71C1S7gRFHwiPGfi84zTZBpEKyR8VPvcO3JKNonO
-         Fb59ooDCLrm1u2O+pJhz8mLtYY+NmNQXzsC95oeYEVpIggDHJexNerQl9u1YGb7cKwn1
-         lSTQCZU84dvhuzpc8utAdgspjhW2j8PaBSGirnESE177T85YFfiDF2/c/poMznL/KXsO
-         j0dA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVG//T4wX3hk9OW1sbYwhA6f6+GJVG0oCmaJ81D59FZpUowplsXALQmxDMRj402uWHarRVeJo+k@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzsgPECtoLSz2eDL+MbfshG6gilGwkh772/HhTpQWnd98dfkf2w
-	51vVtmXgugJYD0rKrMWmdrt5Loekz3/WthBEpj7OhM16WGbLG3eIcyX/gcNOgMvF71NpgO9k5G4
-	6K74HWHAHBG+vT9mpakB0q06zLJhy1lBmWv6bQsWKyQ==
-X-Gm-Gg: AZuq6aIySWa2pC9aakP1BBZg9D6IKakUm0bUwAPupvuIFOHQNjMfkYzmv1IM2HFbJ4v
-	FQlMKz2zmoODWsY6qFhqND9YVmcBiVEkfg6eYReDOfQKFmgyzSrv86PM9CabjX9WFAWznbIQXi/
-	E3b1z2fqt0fo6I3VCpaEDwkav/jz9Ns9x+XNWp9x7zHXQqg71NGZJzKyaa94gECSiCsNZOVgDsp
-	gibd+jKWwasXhmhTHcRIuPjDQba62yDKLtf2UQeLAROOTgv1cdByGbOORGrAtarHmqoKgazfDsw
-	BE4l
-X-Received: by 2002:a17:906:794d:b0:b8f:7aa8:d9a4 with SMTP id
- a640c23a62f3a-b8fc3a34ecdmr59186666b.20.1771024294200; Fri, 13 Feb 2026
- 15:11:34 -0800 (PST)
-MIME-Version: 1.0
-References: <20260205-zcull3-v2-0-ac572f38cc7b@darkrefraction.com>
- <20260205-zcull3-v2-1-ac572f38cc7b@darkrefraction.com>
- <DGE036OEW8ZK.1PX0DRV8R9EVB@kernel.org>
- <CAAgWFh0zX=u7OZYq3QBrs0ySve897LXb1PN9QFzhYg0gtHy5wQ@mail.gmail.com>
- <DGE6O1OYR4F3.2PSFQLJ8XXJ78@kernel.org>
-In-Reply-To: <DGE6O1OYR4F3.2PSFQLJ8XXJ78@kernel.org>
-From: M Henning <mhenning@darkrefraction.com>
-Date: Fri, 13 Feb 2026 18:11:08 -0500
-X-Gm-Features: AZwV_QjvEdNIqn6JcsnMJ6QigGTIGx6XW3_NM1uKPaKIqIv3KZRLaa33eXNGZCM
-Message-ID: 
- <CAAgWFh0GyrSYeEJuh3xTLGk8c9ZmQoamRnvAvk-t-pydsKTZMg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] drm/nouveau: Fetch zcull info from device
+	by kara.freedesktop.org (Postfix) with ESMTPS id 04FF341CAA
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 23:40:59 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022135.outbound.protection.outlook.com [52.101.101.135])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5917310E05F;
+	Fri, 13 Feb 2026 23:50:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=eSjBCq1fdDBxHcSchwxUhPB7lF3ela3+BMMvJIdUnBpkPxmv8/J0fec+n8Vl7HToSH+M386Dh3l7JxAj647NuMd4kJCg5gByElS0NR/W4T884mV9qATpIuzoXtViYfLk0DuP/b8Vq66rekkBa/vlPi/drWx7zTuqWMi5Iv+nBM5bcHG/GLr/zQsbV1E/SRRyhumeJTbevG9JQ26nHLg88xj2Ynl9x2LSr7a7Dg9GZSCqAn4Phyba5yjKthQH8V1isRrbBhKrtf6h96D/60EsoH8T/tty0peSIfSf7aWGTWPmKkNu476hqzWu59K1zh8gWD/NOz6bOLttDtSYJ9h9Zw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fO6WXtMujxIt0UQt9JWa/L0uvI4Fx9S2/kK7jEGQYGE=;
+ b=IDEZiD7SQvi67I4ghmpCsIdYFI7bpSyXLsq10pYb6L8iOItP9NT75J70g1W9Uwku9xlW2VSky5FQDD0q50Un6iNSDY3dihWuvdbHdmCY1J4wJna2CmtaUPX7R7Kc18ZZliDQPRTts/mZkxEAKwhm9Dq1zDH8XhPAekMBm+upT5QbHnyYCxwSyWqmSOanMll+QGB1GEfgZ/LPmpE9nygGDboJT+wDCspUhfCKfM5b5WMJzug9ZQpr8Q+qHcbMaFW4lXTUhAbpfdFrJPrZNwWc6KaN943TqyT5ue5+/E3tiP1yNcChZqfs1IJEOPhCV0Tf78Ms9kafY1T2MgMxHy5DqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fO6WXtMujxIt0UQt9JWa/L0uvI4Fx9S2/kK7jEGQYGE=;
+ b=HBtPDhwRpdTHB903zg6zaxp/NHZPnW1N8/tlINq502UHEDRi/ofJ1MPhOmzfIZdK5KEmFdilNyhH8IGWQgDH9RBDLhTrtsGYl/L43cjk94/ePGZqzLB1K45zTlIau5GyDE9X5sD2nwRVYnBGmC2o804zIcoHWWE0qF7wRF9l3xY=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by CWLP265MB2132.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:71::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Fri, 13 Feb
+ 2026 23:50:34 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9611.013; Fri, 13 Feb 2026
+ 23:50:34 +0000
+Date: Fri, 13 Feb 2026 23:50:34 +0000
+From: gary@garyguo.net
 To: Danilo Krummrich <dakr@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: WLTP66FTAPUREBUDH4JTFDPPDEVDM2N3
-X-Message-ID-Hash: WLTP66FTAPUREBUDH4JTFDPPDEVDM2N3
-X-MailFrom: drawoc@darkrefraction.com
+Subject: Re: [PATCH v2] gpu: nova-core: fix stack overflow in GSP memory
+ allocation
+In-Reply-To: <DGE5NO2W48YJ.34YKFNI6VS63A@kernel.org>
+References: <20260213-drm-rust-next-v2-1-aa094f78721a@proton.me>
+ <DGE5NO2W48YJ.34YKFNI6VS63A@kernel.org>
+Message-ID: <e6df0b7ebd86d0c84ffd4b15cee15716@garyguo.net>
+X-Sender: gary@garyguo.net
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P265CA0265.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:37c::17) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB2132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3386d5b2-0eea-48e3-29f9-08de6b5aae17
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|376014|7416014|10070799003|1800799024;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?GNoKCMfvzIDi+9RFQAbrDuSGfBiI2Lk1cx5UzUwDOvlNWRSqcIuY5UB9J9J6?=
+ =?us-ascii?Q?hdKxRr/6EZxaAwW1S2+xm3c0VEnJVmbGab2qDSkPw62LzjO/EMQhPZ1wTFcl?=
+ =?us-ascii?Q?A4f+d1WKqCEOQ2Ijr6GeBDL+32e13tGz4MmyJ8Is3hibEDpqAwk7EYOAjlxL?=
+ =?us-ascii?Q?ozAMP09U5yemGPtbxdv9+xBsPFcvEmk5x7IITUaqcxG8A50UEEeHNjIHdsJL?=
+ =?us-ascii?Q?ZQVMjLCz9NAk0pazsbxTt8ArxCpZ1VBSz+W6eSLjTYUCB9Q07yF8YepHHs55?=
+ =?us-ascii?Q?A2t3Hw5qOWc1JTo6ZRAIrvfUGZjRNqHBF2Pqr6dSmjTcNMMM1tBeRSKgrJJe?=
+ =?us-ascii?Q?Xz+eLkmN4bDCJGJoXu18BBhfywlWMmCMJ0jxAtKZWWDAJN0we0DtO2mhPi6r?=
+ =?us-ascii?Q?oYtLps85KJAtdC2hqa7utA3zoiQ1dY0+F06yLsj0Gst8DlTWYPExN+PGUsVM?=
+ =?us-ascii?Q?HJpm44tUtoyqCpqsUiP376yk1+J4bE2MFYcxMG8nvWlLlEL+rUftLqXMVBbu?=
+ =?us-ascii?Q?hwsG2tcAJSg+l0NsxwfpqGUUNKOELBMAUeDJh9rIdmCIucSnFL86cFIJQFrd?=
+ =?us-ascii?Q?BGbuD9kP70uCI7EuDEP8rjz7XAlkw06cIV3PVYHJzfUbRoOY0oFC8bpFW/09?=
+ =?us-ascii?Q?W+F8r8o5/5kWTD2MHIWOu/AufVf3K9KbBBF3vBLRz7WjjX7UKQKTZhIZj9gf?=
+ =?us-ascii?Q?Fm+nqEqrZnVk85bmyOLC6DbLNbmMSKOTsglGdihcNB3kKu4c8cjtl7I5T5o6?=
+ =?us-ascii?Q?nbMnCSEPQopf1KBVS1ctceWm5r2MIBrdbOCZTse96PznjozYPYOpV20v8wj5?=
+ =?us-ascii?Q?CtCTbzrvO2yzX564gTNtFYwBtCdExyJ53dUHXO+fFWFfEckjlbyD2w3XrWZP?=
+ =?us-ascii?Q?HjwL2K+Ma8o40TAR61ST2ZRP/Gy9H+aLxxIcLDSU36Fjaw6U2oLPJ6CvEeZ1?=
+ =?us-ascii?Q?s4uKkefdACgXp2KqumcP1o0YOv7ytyW4m9hBi7EiZA3weoncsjLh98b2zGDc?=
+ =?us-ascii?Q?U6akVUDHGvHvCHgptfP8cl1asDyoXUvkbuRJskAxwCvqGL2fMEYzX7R8DiA4?=
+ =?us-ascii?Q?CTcI0sGXViZv7CCPbeTeFuc+dhUOuerP0UdPR/uiP+s2+UIqNcLUOi+zmSwY?=
+ =?us-ascii?Q?LFZrKeiAiYk1hNUlLxohJvMPbE4xkE4nZcJDVH1DKSRUPltwBDvELFT8DjeI?=
+ =?us-ascii?Q?kV4ON+yd4qMMTwqUVVQQbTP2tkeTXzZan14kwA81wYkncFXG9IPy1ifJGbJk?=
+ =?us-ascii?Q?8IOp/1PRtNY4Kh0+kzwWALxu+IMkJO/KpM3n5+8meTK7ukW5AQYqg2hNYSA8?=
+ =?us-ascii?Q?DNOa4qXEc6u5zHfK2uLvtq1OsHOrbBFQRRerjPAaAjO07fsyk12hJ1FDtsyW?=
+ =?us-ascii?Q?PZxSbWWd9mTqgEeaAXgkSXPpIOi8RQOnDN77Gi2eDocGa8fNc3yODsRD9pYh?=
+ =?us-ascii?Q?BkRW2MXrfuGGacmYxo51+JLzUbCOPnTasyFne5sUqTqACPlFnk8JqN4BkLVK?=
+ =?us-ascii?Q?QuObHG5Ew/ZJIpQCeF9R1Ji9RKd+ks0Rp8od+VHynuRcYWzsVFPh11YZRtYK?=
+ =?us-ascii?Q?Yh8QdWWVYx0eCQFuBTA=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(10070799003)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?IAg7Z0RgGTM5IVLzB7UbRLSpPJg55WSQ+xaM1G1k0brGX0eB3mP1WQdixvnl?=
+ =?us-ascii?Q?nODg5SgerLb+2asFnM+JYOnlaNDUGQDvFbwGuC7DZrBvooyvkJeOjSJ8z2sd?=
+ =?us-ascii?Q?mXgtmyblhuGTH87aMNzDSwEIluv5klYieo975MWnRBTYVfygdFnn5IRjGCuL?=
+ =?us-ascii?Q?lH5cH2fmxsUpxb/Eg0put1/yRph4WILi3AMWcJsEKV2hgPOGGtuWsEvIXryS?=
+ =?us-ascii?Q?FPIMQyMCwIuh+KFNK9//c23p8d5jqZbEo+WsJRiCs4JrBMw+hWZbRBTboYtu?=
+ =?us-ascii?Q?t1/esEnFD+vo1c1wygF3dAfg+/9qgwQbzNJfwIpFgBuKqcEbFVouDL7R4ERo?=
+ =?us-ascii?Q?KBtPcjdTNGxMVnE5rNAOQR7CjVjqu0IIh7k6/jT11LP9i2MrRlRVUD83NXCQ?=
+ =?us-ascii?Q?QR+/7CXHDx3lV8Z+Oc5k6zUoQ0U/FMS358hWQj1wBsjy9urPYb00s23TBRJ5?=
+ =?us-ascii?Q?896N9vP9VQRDAyusAKWmXvaPIr5nuR4Q+yihTnlwqkkxSnHvb3WEdRFy4dOn?=
+ =?us-ascii?Q?jLnxCPLshOh+fdrxTu3yQab7mTx6E8wSpKksHJcWK+2dK2KzJWedR9E1Gy+k?=
+ =?us-ascii?Q?vtBtX9Mv3CSWZqHlQ9O/065Xpgm41QJH9fD/IVHIdhPvvueGeZBnIm+7S+PP?=
+ =?us-ascii?Q?+lLNILNxK6e1ljLqFEMBVEktrAg7lN0COhTTheMasPoXZq5czYZMr0Yx0Dcl?=
+ =?us-ascii?Q?aEhDmzruvAb/y+2Rvgg+mZr6a6TjAl1U8cRq+cgL/r3pvcFJ0sP4TDSL85v4?=
+ =?us-ascii?Q?IuyVpdlQdKAYqBn0XdoMGlfLLqorjbpsEi7BRn/iuoWOm7PKX/9WGDOv3p9+?=
+ =?us-ascii?Q?9stpfhPPanlwjyNhgXhqvhf2W/6AIEVmZoU1MZDTW0IErnhjaQP7GAWhfjmS?=
+ =?us-ascii?Q?901i8pJ7l8EFDREACkq2Xo9n4lseQmJr1Y/wNxQWcLmyFIV8qmRp6MwCvmA0?=
+ =?us-ascii?Q?D8IA5sC8fgB2Fsm6PnfgrbTV3u/TBHYPVlCUlymIrm2MyDzTX2Wey4579FU6?=
+ =?us-ascii?Q?mlt4eQTUpH0v/pqwWAkGHrf2GSpggUX3dsqhFh+gB1m9xGImLL+gn/MCbxZG?=
+ =?us-ascii?Q?Hc861MFMM9aWuupPOH7FxTGPzc2ZS3MO7vqsGBC0PhZolCw02PBYezduojdC?=
+ =?us-ascii?Q?501tzKt2cXwjMnXQyUm65XUeQYCxdoYGGVWp2SYqnQ0zHae2yCHuJMrzjtnw?=
+ =?us-ascii?Q?z/Pvnoce58OZIH/Wyg1GRLwmcSUI4DkQEvbxJGbgul9wSSLhqDtno9CiQOxu?=
+ =?us-ascii?Q?ranRBnhmlOXfTPMnsU6MnDDgYqPZuKvxh3NewcQha2sQuZdDENPEZMu82+uE?=
+ =?us-ascii?Q?XgYv8eVINN/WEU+3jhbgtuIn4AatgbftWboIgtB0aNvBvlK6m4yGJKY0m0vA?=
+ =?us-ascii?Q?Yhe6F3tlpdOIOpmpQJgW27P7i+rwvNpVparEy1ThYodVVHei+MoqttBISH0W?=
+ =?us-ascii?Q?RSTn9iJYAGUo56xqh/Jfd7GRbQgAonRRj1RokV1iVTWAVj8OYb5+cjoxRfWC?=
+ =?us-ascii?Q?QBx9G7Sc70s6BczAEaBrlgy6+iUp2Z4Y8RrO5izQGxEb0WsKrg4/GNDBoZ5l?=
+ =?us-ascii?Q?jxI1UeHC4DD5JhNEXwgMUrQiN5TK6X5tkmpEWFJ2Klt5S+83PtKpynmQvOKr?=
+ =?us-ascii?Q?TvVGfqdO83gCdBg6znAoE9sx9u0h+PMZX5ZQs6g3yhe3IWUOEGvlE3MMVKvT?=
+ =?us-ascii?Q?N5SNQZ5VSOVGUL4ab0oqHsFul/uMl0U1be+VuhWwn5tgzcuBGJnet/Az2X7P?=
+ =?us-ascii?Q?wOuKu5XG2w=3D=3D?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 3386d5b2-0eea-48e3-29f9-08de6b5aae17
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 23:50:34.5873
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ y6AenuThuI/15QWJ5v2j4shunoySs6OaMfNSYSWNQvV1NhCxR3Jq/chDIM5kiw56bmtWzM8v0e2qqSrHV2mlTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB2132
+Message-ID-Hash: K5J5EC4FS6PTEPIUVD34PJBUKCVALSNB
+X-Message-ID-Hash: K5J5EC4FS6PTEPIUVD34PJBUKCVALSNB
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mary Guillemard <mary@mary.zone>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>,
+ tim.kovalenko@proton.me, Alexandre Courbot <acourbot@nvidia.com>,
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WLTP66FTAPUREBUDH4JTFDPPDEVDM2N3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/K5J5EC4FS6PTEPIUVD34PJBUKCVALSNB/>
 Archived-At: 
- <https://lore.freedesktop.org/CAAgWFh0GyrSYeEJuh3xTLGk8c9ZmQoamRnvAvk-t-pydsKTZMg@mail.gmail.com/>
+ <https://lore.freedesktop.org/e6df0b7ebd86d0c84ffd4b15cee15716@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -157,94 +205,134 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri, Feb 13, 2026 at 5:22=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> On Fri Feb 13, 2026 at 10:48 PM CET, M Henning wrote:
-> > On Fri, Feb 13, 2026 at 12:12=E2=80=AFPM Danilo Krummrich <dakr@kernel.=
-org> wrote:
-> >>
-> >> On Thu Feb 5, 2026 at 7:56 PM CET, Mel Henning wrote:
-> >> > This information will be exposed to userspace in the following commi=
-t.
-> >> >
-> >> > Signed-off-by: Mel Henning <mhenning@darkrefraction.com>
-> >>
-> >> For someone looking at this commit, this commit message is not very us=
-eful.
-> >>
-> >> Please add at least a brief explanation of what the patch does and - e=
-ven more
-> >> important - why it does it. See also [1].
-> >>
-> >> [1] https://docs.kernel.org/process/submitting-patches.html#describe-y=
-our-changes
-> >
-> > What I'm struggling with is that I don't know how to do this without
-> > repeating myself. If you want, I can copy-paste my explanation of
-> > zcull here too and then it will appear three times, once in each
-> > commit and once in the cover letter. But that kind of repetition
-> > doesn't seem very helpful to me.
->
-> Again, the commit message should explain what the commit does and why. Fo=
-r
-> instance, I asked you why you did combine those two callbacks below.
->
-> The commit message could mention this, e.g. it could be something along t=
-he lines
-> of:
->
-> "Add struct nvkm_gr_zcull_info, which serves as abstraction layer between=
- the
-> corresponding uAPI (added in a subsequent patch) and the firmware (versio=
-n
-> specific) structure.
->
-> This is needed in order to not leak the uAPI layer into nvkm. Also note t=
-hat we
-> are bypassing the nvif layer, since ...
->
-> Also note that we reuse the get_ctxbufs_info() callback, since ..."
->
-> I.e. make it obvious to maintainers what's going on and what's the motiva=
-tion
-> for the patch and it's implementation details.
+(Sorry Danilo, resending as I didn't hit "Reply All". I was travelling 
+and not on my usual email setup).
 
-Okay, I'll give it another go.
+On 2026-02-13 21:34, Danilo Krummrich wrote:
+> On Fri Feb 13, 2026 at 8:40 PM CET, Tim Kovalenko via B4 Relay wrote:
+>> @@ -159,7 +158,7 @@ struct Msgq {
+>>  #[repr(C)]
+>>  struct GspMem {
+>>      /// Self-mapping page table entries.
+>> -    ptes: PteArray<{ GSP_PAGE_SIZE / size_of::<u64>() }>,
+>> +    ptes: [u64; GSP_PAGE_SIZE / size_of::<u64>()],
+>>      /// CPU queue: the driver writes commands here, and the GSP reads 
+>> them. It also contains the
+>>      /// write and read pointers that the CPU updates.
+>>      ///
+>> @@ -201,7 +200,29 @@ fn new(dev: &device::Device<device::Bound>) -> 
+>> Result<Self> {
+>> 
+>>          let gsp_mem =
+>>              CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, 
+>> GFP_KERNEL | __GFP_ZERO)?;
+>> -        dma_write!(gsp_mem[0].ptes = 
+>> PteArray::new(gsp_mem.dma_handle())?)?;
+>> +        const NUM_PAGES: usize = GSP_PAGE_SIZE / size_of::<u64>();
+>> +
+>> +        // One by one GSP Page write to the memory to avoid stack 
+>> overflow when allocating
+>> +        // the whole array at once.
+>> +        let item = gsp_mem.item_from_index(0)?;
+>> +        for i in 0..NUM_PAGES {
+>> +            let pte_value = gsp_mem
+>> +                .dma_handle()
+>> +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+>> +                .ok_or(EOVERFLOW)?;
+>> +
+>> +            // SAFETY: `item_from_index` ensures that `item` is 
+>> always a valid pointer and can be
+>> +            // dereferenced. The compiler also further validates the 
+>> expression on whether `field`
+>> +            // is a member of `item` when expanded by the macro.
+>> +            //
+>> +            // Further, this is dma_write! macro expanded and 
+>> modified to allow for individual
+>> +            // page write.
+>> +            unsafe {
+> 
+> Both of the statements below are unsafe and should be within an 
+> individual
+> unsafe block with their corresponding justification.
+> 
+>> +                let ptr_field = 
+>> core::ptr::addr_of_mut!((*item).ptes[i]);
+> 
+> This should use &raw mut instead.
+> 
+>> +                gsp_mem.field_write(ptr_field, pte_value);
+> 
+> Formally, we won't be able to justify the safety requirement of this 
+> method. :)
+> 
+> The good thing is, we don't have to:
+> 
+> I understand it seems like the problem here is that dma_read!() does 
+> not support
+> index projections. Well, it actually is a problem, which I think will 
+> be
+> resolved by Gary's work. However, I think the real problem here is a 
+> different
+> one:
 
-> > Because of this, I decided that it was simplest to combine them in a
-> > single call, which avoids repeated rpc calls to the gpu without the
-> > complexity of handling partially complete states.
->
-> Ok, that seems reasonable.
->
-> >> > +     if (WARN_ON(IS_ERR(zcull_info)))
-> >>
-> >> What justifies this WARN_ON()? To me this seems like normal error hand=
-ling, i.e.
-> >> it is not a violation of some API invariant, etc. Also, this is in the=
- driver's
-> >> probe() path.
-> >
-> > I was just copying the error handling that already exists in this funct=
-ion.
-> >
-> > I do think these are weird error cases though - they mean that the gpu
-> > was partially but not fully initialized which shouldn't happen during
-> > normal usage. The only cases I can think of that would trigger this
-> > warning are a kernel bug or an intermittent PCI link, which I think
-> > are both reasonable to warn on.
->
-> It could also be that the firmware is buggy, etc. In any case, I don't se=
-e that
-> a WARN_ON() is justified. Please use dev_err() instead.
+Yes, this will be fixed. In fact, I've already got a working version. If 
+you prefer,
+I can send out a version with just improved projections without all the 
+generic I/O
+improvement stuff.
 
-Okay. I've now written this as:
+> 
+> This code does not need volatile writes in the first place. We just 
+> allocated
+> the DMA memory and haven't published the corresponding address to the 
+> device
+> yet.
+> 
+> So, for such initialization code we shouldn't have to use dma_write!() 
+> /
+> dma_read!() in the first place.
+> 
+> I think the proper solution for this is to provide an API that allows 
+> for
+> initialization with a "normal" reference / slice.
+> 
+> For instance, we could provide a `alloc_coherent_init()` function that 
+> takes a
+> closure which has `&mut [T]` argument, such that the closure can do the
+> initialization before dma::CoherentAllocation::alloc_coherent() even 
+> returns.
 
-if (IS_ERR(zcull_info)) {
-    nvdev_error(gr->base.engine.subdev.device, "could not fetch zcull info\=
-n");
-    return PTR_ERR(zcull_info);
-}
+I've already suggested that in
+ttps://rust-for-linux.zulipchat.com/#narrow/channel/509436-Nova/topic/.60Cmdq.3A.3Anew.60.20uses.20excessive.20stack.20size/near/570456463.
+The issue is that however the PTE array needs the actual DMA address to 
+initialize,
+which Alex and I feel that we shouldn't provide to the initializer when
+`dma::CoherentAllocation` is not yet constructed.
 
-since nouveau seems to use its own nvdev_error() macro over dev_err()
+Best,
+Gary
+
+> 
+> Another option would be a new type, e.g. dma::InitCoherentAllocation 
+> which has
+> safe as_slice() and as_slice_mut() methods, but does *not* provide a 
+> method to
+> get the DMA address. Subsequently, it can be converted to a "real"
+> dma::CoherentAllocation.
+> 
+> With this, I would also keep the PteArray type and change 
+> PteArray::new() to
+> PteArray::init() taking a &mut self.
+> 
+> This way the PteArray init logic remains nicely structured and 
+> isolated.
+> 
+> Thanks,
+> Danilo
+> 
+>> +            }
+>> +        }
+>> +
+>>          dma_write!(gsp_mem[0].cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, 
+>> RX_HDR_OFF, MSGQ_NUM_PAGES))?;
+>>          dma_write!(gsp_mem[0].cpuq.rx = MsgqRxHeader::new())?;
