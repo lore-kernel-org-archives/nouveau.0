@@ -4,223 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B68EEA870
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 00:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AAD6EEA849
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 01:59:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 19E2510E778;
-	Fri, 13 Feb 2026 00:11:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7622010E778;
+	Fri, 13 Feb 2026 01:59:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="UD7qQqsD";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="aBpLo5RY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 77C0942030;
-	Fri, 13 Feb 2026 00:02:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A835B4211F;
+	Fri, 13 Feb 2026 01:49:42 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1770940938;
- b=khfNm54Sp1v3mHCOqdJnefIFQjzmxuksCqNY7nAmAizavt1bNYMkzvXLwqRxitVNwy0l0
- Dh/cAH2LPyjMsh6xr2CFPQY6LMIwk1MoIinPxVx96MpSDkHRA+byj8T86tXQ3bnV3cl858u
- 0yjh0DflxtvfuxfwTBZcjSGl3+s7N2M9WXvvcYP0fnFV44ehsehQfVHmE7v0k/uyfbPPxCO
- vJBjud4wQ7LVqEp+s/i3xdxefBmDpLjofNirYIk5hpa0SaQvyZ1uoBZPN08sFg0fDzfrrae
- +Cq0PMIj952oKe4dCjL108oADoAC5B4iJ7vb6WMnvi+nLOK89Zlx8+iCP9FA==
+ s=20240201; t=1770947382;
+ b=jruHGaM+2FTdW0ZBzQ2vIHOcDZaGL39bKsctX0cRTJZGLcgRbQ8V9H9osf58+gxRXb2aS
+ xv8oLcO210zHHqCa6Y695R2y3Hzzm3P6pLdwZf6FwZD03V0maqxNt48j2T0QxYvkO4+zcSH
+ OWwksmFec/k2Nm9Nm2tKIJ6qxXQUkD/7VzFLHXpmdW4q4WDL1/X65ecSFjl2155On9+nHYI
+ xj5kNOklGDNkzYIVewFNdkGk61d7iil18xYb4EeWdZVHWCj+XyI5b7sQLSqMVIK0VYzN8yf
+ vbFnWi0rTZFKx0nMLYrNCgDhdWTqrxePqShRjBzkT9fnxEoUZz41sYfYc0oQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1770940938; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1770947382; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=y3YxjFvZBPNgD4iWXFQb1mvAUwVtVnerhiP0vOVM26Q=;
- b=px9HvVPTJpzoQpx8G2pm2kUps151UAft2VlNYtxjNAEzIfbpwRNz+imMHT9NLH/A97MSj
- 0pHq+pSJ7Ku5y4AVB1GtEu7LUzo5rniSBUpLVKiN8QgSpkKkhBmHrg5zp7Oov/4G6WDcFQ4
- zGfQZRiQ43Vo+Pry0VmiGnnf9n4pej6wahvSz+C+q+l1HVvf0+Yo+sUUOUAO4fVxRqYcg+Q
- KJU5nBgNGMbv6Cp1oDJazSoN2qPbEvQTQyA2xnbWvhCq+2G5a3xAzB1rLSnbWEPHu1Rz5Rm
- FstmOf0FPCZFNya2MOtIyWZjilxBf79iV7JexGAIfyxqHxaGqeGo3v2AkMeQ==
+ bh=C8g2vpgn9loO8Qzjl4rLA0gGBK3eJ5QEP0ztitLu7uc=;
+ b=o3h57pedSJl9dyUBTTcQzIETamcFK9Ob12tb0AVu7ij4yPAs6UcYpTsh1YVhyOpuoYO9v
+ /QDt2YouEYOUtFi3f3voJn2uKKqY5gthkOeIP7TunrUavU9JWGcolIXFEyAoK8Fff0QzR9P
+ fzgA54VwBHBRP7/ABTD6KLMp2lUnsBS4N8b7Cf7kkmJsL5FNLSvdwRVlXL9kSLbGwaBGjxU
+ SngqI+/Bj2kmBjajOpZ9JMY/0liDTIom6teQ9TmSBOgnmI0nq5O8c9oS9TPZo2XVzl4lBFg
+ dXaQwfloemlQDoNZMHnPDq5BaUiIXSgJCrTKHArqow/cfdbvB8l39vY1vcrg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 18C474053B
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 00:02:16 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011003.outbound.protection.outlook.com
- [40.93.194.3])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7405010E161;
-	Fri, 13 Feb 2026 00:11:52 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xCZsARRB19TVmsOOg3tptqe1irJpkdWfzKxVnNwSeH6OHvrS/kwoY6JrYy0tNTwY2jcBJSyLiqe3OKrL+Pp4ZAOx4g7yeadETrhtjTFpmRxBdL+LycjUntkk9XjBis00oRY+4a2yG5tIdZUDEzsGrPG4iBVaFMfxpHVqDBtBVEKkS9LgSoQE8P3T3vjSkMRfud2b3kWZJ/HMwayT4ZSHM8eGbT26U5/nsyBdgOq7Ao2r6tEYHyeSADfyAMwxC91uQ/fkdNXfdAWtx/TUOpQKGwCyARb3mmR0RoUP1rOdUS6+l5CRd5mXLwt4EIhFV99PmU9G6tu+6cLiTPJW4757qg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y3YxjFvZBPNgD4iWXFQb1mvAUwVtVnerhiP0vOVM26Q=;
- b=mU7rvEml3W7c1SKnovlT60cvOp+jjiowbbtN2m8ojUvqHHzXKa8PZEtYGB3NInuhstSvnQlcu0LM7As2Nddozajzf8kMy8gwUjt3JGcxpeQBZbJVpRU4LwuGwbKeD4TAPCFYubLgaZp5TKLhnAbETIRPNsqEY7rxNr1QMcQ0HaqWfpZwZs7cxUdg1LmvJ47B6I0UDYqYYgbBAXadUNyma1cHwHIfqUZBFYFQKGDvLKQjn5a/ZcNT0HBzoNdBOd9z7YEJvQshaSOOsdtuWsq0FDq+1cyLHKzDLXtmu/C7pxgEd0jWIulbMu6VvBRLw+jN4dbdsG2aIlYL7qJyu1Cdag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=y3YxjFvZBPNgD4iWXFQb1mvAUwVtVnerhiP0vOVM26Q=;
- b=UD7qQqsDu5BrekOXclKqxg4QMYMW+5TNCJAny0Q556+whr65Yz9Mj5fqESvUSPyRkQcFn8D9zi7AhOQSLYLWA9HQgt+105TfASqD0gvUrhyfJjWoeMAc+hSpFJyMsz9cB5UhWry3sgvObEs+26WhLxKyGdTBPpd+R+JFNKUgSdmbHqBtPmig5hdZQzS3XEeUw7rJPOvejFAyOa7aSiciA8gH0yyt8CSYMtvPc1guAzkpw+FXqkjP/WMxOcti0SVRl0+ZEykNIxW1iDJVaAoNqP6m4KVeCIksbrEJqtjJCrKPCguTmTukgUfdY2NMyxU5U0Gy5XsorQGWJPQJ+D9Ctg==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by SA3PR12MB7950.namprd12.prod.outlook.com (2603:10b6:806:31c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Fri, 13 Feb
- 2026 00:11:45 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9611.008; Fri, 13 Feb 2026
- 00:11:44 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Feb 2026 09:11:41 +0900
-Message-Id: <DGDEDADP80DF.2ANDW4MYXMOED@nvidia.com>
-Subject: Re: [PATCH v2 7/8] gpu: nova-core: remove redundant `.as_ref()` for
- `dev_*` print
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260123175854.176735-1-gary@kernel.org>
- <20260123175854.176735-7-gary@kernel.org>
- <DFWUC9ZS6CCU.3HPTNAO7CU41S@nvidia.com>
- <DFWUTANX4HBS.QIN5BJPI5MAO@kernel.org>
-In-Reply-To: <DFWUTANX4HBS.QIN5BJPI5MAO@kernel.org>
-X-ClientProxiedBy: TYCP286CA0290.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c8::7) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0B10740686
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 01:49:40 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8515C10E0ED;
+	Fri, 13 Feb 2026 01:59:16 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1770947951; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=LDN+WNAUdz0SWY52JwzhhhDQRNguvsp/kUWE223sjb0r4BaXIrkMWeZ8SIsVqvgOOzfuCf6pH5npUkDBjZD6ZyaG01hHTRajKZI7Kl5LLyAfJYn15kA1IMCpbLwB+zO1Ds7yvJj9UwEhfpp7Ro3E26RkdO1AoC4qVpEz0G2TnQ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1770947951;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=C8g2vpgn9loO8Qzjl4rLA0gGBK3eJ5QEP0ztitLu7uc=;
+	b=OVtuGyrRC+YNC4o6x4DMekKoBbweRISRzTAUVR0LuF0p9BLVCJ18HuYB/Bgu+svpruAwe9XNswF30LfDFfCTid4ppHs3RC3dROWUz3gkCbjXP902VN5Mz4kqLe1dLp5aL0FnzNKXsRgCJjdLekEHbr4oyr6BdKzcVxBDXE4aEg8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
+	dmarc=pass header.from=<deborah.brouwer@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770947951;
+	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:Message-Id:Reply-To;
+	bh=C8g2vpgn9loO8Qzjl4rLA0gGBK3eJ5QEP0ztitLu7uc=;
+	b=aBpLo5RYGAkKFZRMDKOHrGB+wC/x7OwFWnUd3JhZ1pAUH/Hv5LIxHkgxL6rS87HG
+	WnhextBe14iyKxZbV901wKW6j4GUDgW11NaMHh2rLo6WjMmU47QTHaKvDou/LXRONKn
+	P1pVT0ezVb90bKRi/vdhN2mD7iPYBTE+m3d+6qzU=
+Received: by mx.zohomail.com with SMTPS id 1770947950819885.6940747393908;
+	Thu, 12 Feb 2026 17:59:10 -0800 (PST)
+Date: Thu, 12 Feb 2026 17:59:09 -0800
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: Lyude Paul <lyude@redhat.com>
+Subject: Re: [PATCH v7 6/7] rust: Introduce iosys_map bindings
+Message-ID: <aY6FbSjQpGFk8oWK@um790>
+References: <20260206223431.693765-1-lyude@redhat.com>
+ <20260206223431.693765-7-lyude@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|SA3PR12MB7950:EE_
-X-MS-Office365-Filtering-Correlation-Id: a39e1512-62f6-44fe-8fa4-08de6a947898
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?bEJqcnB3VENaUnZON2VnNjJqRE1NOFF4WnpkbGp1QjI2NU5BTFNlWmpRMnBn?=
- =?utf-8?B?M2I2eENkOE1ybUVmdTZ3eW15ZjdiMkZwbS9IZThaUEFocDh6Q3VmNjVhQWZ2?=
- =?utf-8?B?VE5QTFpxdFNVay9Sa1JMaEFTenhYdU5TK00rakhhNjAxYUtJcVk5bjA5Ullz?=
- =?utf-8?B?K0pyaS8yZU9VSEVNbFBmSXJmUmx5WGpPTnJIYjhtdmV4eFU5RnBqVzdsdGU5?=
- =?utf-8?B?akg3U2NzS2V4RUJFT0hhR2o3VUdoblNQTlBQVGVtdFo5T3AzWm5QSXZ2NTFW?=
- =?utf-8?B?aFEwQ1piTG1IYlV5dkdzMFFrZWluN1VvbnhONTlhODE0cWVDYSs3MXl6RGlF?=
- =?utf-8?B?bllxQ1kvN2U5bzVESTczZWlia2QydVpERVdnUlRBS2lDZ2VKeUYyMS9oMWxr?=
- =?utf-8?B?aG1aRjQ0bGVsQmVBQW84dEdPNXRXaDJpSVdCcm0vektLbHA3ZmFkaDVROXht?=
- =?utf-8?B?RHEvVmZ6ekdKaC9ENHhjaEtZaHp6Y0xnd0M5T1l0YzZvb1M5Tmpidmtkayto?=
- =?utf-8?B?Uy9hakMyeFl1RXZRalp0cCtzaWRaaDJyTUloZHBFeDE1OHI4elRSUVdoZGVL?=
- =?utf-8?B?TndiY0ZFQzM3QWRPMm9ZSUlScWMzYU1PQjBMSU5MVkU1eC8rZFZ6R2ZFUUdV?=
- =?utf-8?B?bFFGOFplcXNYMmV0T1FkNmpMWVMzUjEyVFJ0dm5DbkF5a1NpRXFCVU9Va1RV?=
- =?utf-8?B?ekp1QU5rU3ZQN21CT3AwekU0emYzM3hqZUk1NnV6c0dPOWc4ak13dlIrSGVi?=
- =?utf-8?B?cmFDa1Y1WDZrRFg1UnRhRWxmTEc0bEZEZmdlZ25yWmtPUmRRcTBrRVo3Smxi?=
- =?utf-8?B?Z1dmVEcwVENRTSs5N05Ea2RCK1d3czc3bjdvU2hWUUlKRnhnNFEvMU1DTjU1?=
- =?utf-8?B?NCtHUm8zU0NZY1VYTEpCV2tvRXZDWVhtT1l3NHNWdzRLNzVQcjA2Nk9Weklk?=
- =?utf-8?B?RG5ST2JrbGV5WFNMcEc5Mlk0WnRmeHE3QlU2QWlJSWI4TjJ4NWVCazVOcHlH?=
- =?utf-8?B?RTNJZHZIWTVrWVVlYjlybWNQMnVNZGNKd3NzRnB1VEJlSmFEeXA2bExkTzA0?=
- =?utf-8?B?WlNoS0xjR0Z6VjkycnROMUU0dWdXR0FsemR1NGN5VXYxazBWQVJweWVLQXFu?=
- =?utf-8?B?RWE3SHpCaUV3bk5aY0tzSHUrV2RVRHJnbjgzaDdZZnNTdWl4c01VSUNGMzFZ?=
- =?utf-8?B?ZE1nVS9lbC9TSnUxTTEreVBFMHhQUU02SjVFcWYrTXhDNmpMRGxsSDVxcHRG?=
- =?utf-8?B?aERXOGdzelRrdzhWU1Y4VnVPUENtYTFUTmpXNVUwV1AyRzgwcUIzc2VOL0RI?=
- =?utf-8?B?OENYQ3ZvOU9TYS9iNFNxTGFXcWUxOU5tZmRnaDRING9jSVpFNHRTMWI1MlBO?=
- =?utf-8?B?a2lJcXNJTklCR1ZFakFrUUZuMmQraDRnQlNsVUtPYTZSOEtPNzF2NTlPeE9j?=
- =?utf-8?B?TENCVG5KYks1cjJoTFRMT2JDdXY3QjFESFRBMzdLODd6UzdxRTRvdTZ4aTFh?=
- =?utf-8?B?bjRZSy9MSFd2UG9CcTdxSEd2ODBLb2xSTjlZWEZNUk4wS0VBcDhZZlloNHRm?=
- =?utf-8?B?M21JWGxyR3g0ckJlVlZhV2xLUkJ1MHRvVkd5cUJqT0RKbHV2TDh6VlpTNlFo?=
- =?utf-8?B?WUc1SlRNYSs5Tmx5OEI4aC9XQVQrQUFxQlNESlU3MFc1Q1dVWEducmpIcmM5?=
- =?utf-8?B?cmkyTzNrSDdEUXFoY3g0R2pldk8zZmx3Z1ptM3dUQ3U0NEJxTmRHanY5N0JS?=
- =?utf-8?B?WFptdEZTamd3NHljd2E0Q0FpSk5VbmdIU3hVZklNQ0RzUW1rWW9UbzAwZG5V?=
- =?utf-8?B?Z2xsMlBHZ3ZmMDdsQlJveGRNNld0VmVYWDVJWkxaZDRJbXlVUFcweW9jRC81?=
- =?utf-8?B?K056OFI4ektUYlNDZ2RIWmUzQzRQWXNEZTFuNW9XSjFVaW50Y0dxek9sNnAy?=
- =?utf-8?B?cEwvV0xRTG1aSlMzeXhDeGpkenpDZ3RaZVBtcmVVWEUvcTZOYUhYVEhqT3Nh?=
- =?utf-8?B?MUVUei9tekU1b3FLNkd0YjJjMWVSamhZUGxOSWFFdTAxSi94ZUJVQ1lCTSsy?=
- =?utf-8?B?SWppN1VoV0FLNTNaNWp4THBFQzd6V2J2eUZraG83MGtsM3ozOFpFenZKb3lz?=
- =?utf-8?Q?jsRU=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Z0RyTWZ1UG82bzNYRGFsNi9JcXV5U2IxMUNDdWdMRnUxTWpVS0RGcW04M2gr?=
- =?utf-8?B?RVNWbWV6WHU4eFI1Mjk2aW55dGxZRWQrWEtnOGdjalNzSTN4VEkzR0VMNEhr?=
- =?utf-8?B?ZXBJaS9yOVg2T1ExTDRabWdqcjM0OUxZYm5DKzk1aVA5KzhBZW9wMHM3Tmh1?=
- =?utf-8?B?Z0N4d3VCSEhjREJuM05hZ1dqTW82TW1FOXVkeVlQUmNFN254SnV1anhwVXJF?=
- =?utf-8?B?c0thMWQzbHFTVHh5YkNSemxBdEN3ZHVlZkpBNFFmS1FHTHJGMVhTb0hVWmxK?=
- =?utf-8?B?TVNuWkNISXAyNTRaU1RJK3kxR2xaUkdYN1NlNkNNeEZZT09zVkR0MVo5YlAw?=
- =?utf-8?B?L0xGb1NCK1FSRWpQbWRkM1dhcFFqbC8wd2ZoMXNKaC8wM0pSWmNsTmxib0VV?=
- =?utf-8?B?b3JhRU5BN2R0aUxaTmFPMUtiUEVsdFJhemViRUxQeVkvMHhVclNMMzEzY0Rz?=
- =?utf-8?B?YU5CME5YRC9IK2hBTEZ1NVRhSlF1VDhHUGdmS1UwRkthbzJlbFBJdlZMZ2Jk?=
- =?utf-8?B?MTJIUU4rQnB0dWdKckFuUVVpRHRkRmZ4cmFwcUJSZ3ZIUDk3di9ZVWxFT1Qv?=
- =?utf-8?B?NXFqb1JoYVk0MHRqb1hFUDgxTU5BWGNZbEZmZmt0bnI5aTJpd2xBVkhWcktp?=
- =?utf-8?B?ZUNob0sraTB5U0FuMFNLaHY2MWJVSzBja3NINENpZE5QWGpQUHdzWTFYUGhS?=
- =?utf-8?B?d1p0bWtwTGZ5Uk5uMVhDNlV4NVdpMHBHVmF1bm8xUE5qa0RmajExbFltbnNF?=
- =?utf-8?B?QjhWZSs1TTF6WW9VWjBQOGR6N2xReVBHZzFiUVBJdWlLY0VhdUNwZWthQlNN?=
- =?utf-8?B?ZmpWTmo3aCtvMVo3U2tOY084NWFXRGV5bTlKalZLbmZUSnNmNEFiaDNXQ0NO?=
- =?utf-8?B?MGNEWkc1TlRkZFlPQ3puSndCeVNZZGVWQVRMWCtEUUo0SzgxcmNJUWRnRVhP?=
- =?utf-8?B?dkZWeU9EV0FUUURQanlPMnV2K2Nxa2JDZFkwYnAzWXV3TWkrZUtYYXBTMUFW?=
- =?utf-8?B?OU56WUMyc3RwVWlnRDhoVThPQnB6S0Z4UzhkT3N5ZUpNUGhvdmU2d0crRnhk?=
- =?utf-8?B?eWlHeWQvclpsaTdiM1QraXBPb25HczJkZzV3MGRNak1wbzdjdGNuaS9Ubmw0?=
- =?utf-8?B?eEtrbldwMHdTOUMvSDJRZ1RaT1pQUm10UmFZYytKOUFMTkZOTE9QbFArbzN0?=
- =?utf-8?B?K1pTMTd3VXFiVE93OWV1TUFHdU9QWTNWM2JkeEsyZllXZVArWFU4S3Npa3p1?=
- =?utf-8?B?MjFudmVTS2ozVUtrWE1TeS80VVFtQ2xjREZsZGxaTFdyeEdpYVJuYzk4Rno3?=
- =?utf-8?B?eE85WStRbGF6R0NFRFBhSE1teW5PMWVtQkJmZ2k4R2liaHRNcG9zaU1XS3hB?=
- =?utf-8?B?eFFXV2Y0RkZ3Q09nWmVub1ZsUWFDbkxHY3ppLzRNYzlZd2I2dC9LbmZTNjRO?=
- =?utf-8?B?cUNhZEg1NjJQQS9TUDR5SEVmbjJ5UHJmWGg1U0N5T2NSZ2FzVjJJY1hQdmEv?=
- =?utf-8?B?dGNXMHM3aHRxUURlUTNIbUJlU1BUMWJjZUJ4ZUxoT2dyWGYwa1dSY1NzTFFT?=
- =?utf-8?B?N2NtclNkSk4ya1crZHZONTcyMU1iZno0MkpybDZuQWVWR0VITGlWazFKRXUz?=
- =?utf-8?B?RjRxRXJ6aFJ0ZlMrMmVFeUJKb0JtdTV1NVd3Qk0wL3p3RjRsd3RRVW5Cc2dM?=
- =?utf-8?B?NEd6UDR4dDQwZExpUTlxdGtLZ3B0NzNraW5IYU5vRTF2NDJRbVd5ZThubzBD?=
- =?utf-8?B?TERmR21zVXZ4azNMOENCR004bzRmUnVnZjBhbEMxT3FwWWxBWHMwbXNJYmVz?=
- =?utf-8?B?STB1Sm1WYk5OS1FEbnluRlNJams3QnBQNVNEVFBBM2tYaWszbHNQZWh2cUVj?=
- =?utf-8?B?MFhxdlZ2Vk1ZNGR0MThnZmxNZEZmdVZZbFZJQmxVTVArTE8vQWxqd0tJYzJu?=
- =?utf-8?B?YkZQWUFUOS9Xd29XdHgzNEtRei9LRWUvZnFRZ0d5Q1VZQmR2cHo3bnJtZHhS?=
- =?utf-8?B?aFhHQ1N1SUUrdUtOSTVEQWpBcm9yZm1rZzFKNjJVenk3a3FFN3FrREZOQU93?=
- =?utf-8?B?VUdWN2gzRml6NFc4enk0a2FKNEpSVHZiNVFiZk1HZVhVa0hWd3JsZW5hNXl6?=
- =?utf-8?B?Z2tnM0tNQmlrcHI2RkFpVGkzK1NRdFlOTSt5VkhKSmdCM3NnN3c2VGYvRVBh?=
- =?utf-8?B?emRGMzM2M2FnMG9IU0JTd1JBNy9HeFo2MWJmM3h2NzBJQzgyWFZtUXdJb0w3?=
- =?utf-8?B?TVNVbWp3V2JXNEdBZVFOQnJSRmhIc1hUM2RwU3daTWFqTllJRG1ZejRObXhK?=
- =?utf-8?B?UkQwRHVQYmRYMmpTbzc0c0pBUXdORTlRd1dscVlWQWI1a0QrV3drNkROYStC?=
- =?utf-8?Q?eJFWvul0EDj2LzHf65SvA/TdPBmiOz6zRGp9v/MDAnG2B?=
-X-MS-Exchange-AntiSpam-MessageData-1: WKnAUl06NhiPqQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a39e1512-62f6-44fe-8fa4-08de6a947898
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 00:11:44.5897
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- mgGOinqchIYr5QU3hCgtVTG0G9fD7ez39GUX0sfGi6uanK8c1q+pleQCnl/FM3WrD0BkBpvMm7Dx3vHJG2ytRg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7950
-Message-ID-Hash: E5OWJHK7SARAOCLSX2GD7PYQE5EOPWIV
-X-Message-ID-Hash: E5OWJHK7SARAOCLSX2GD7PYQE5EOPWIV
-X-MailFrom: acourbot@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260206223431.693765-7-lyude@redhat.com>
+Message-ID-Hash: 26UVJ2DQFEQDYHJ2W22KWOTTXU7DXTXP
+X-Message-ID-Hash: 26UVJ2DQFEQDYHJ2W22KWOTTXU7DXTXP
+X-MailFrom: deborah.brouwer@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Gary Guo <gary@kernel.org>, Gary Guo <gary@garyguo.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Simona Vetter <simona@ffwll.ch>, Paul Walmsley <pjw@kernel.org>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-riscv@lists.infradead.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org, Daniel Almeida <daniel.almeida@collabora.com>,
+ Gary Guo <gary@garyguo.net>, Benno Lossin <lossin@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, Janne Grunau <j@jannau.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/E5OWJHK7SARAOCLSX2GD7PYQE5EOPWIV/>
-Archived-At: 
- <https://lore.freedesktop.org/DGDEDADP80DF.2ANDW4MYXMOED@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/26UVJ2DQFEQDYHJ2W22KWOTTXU7DXTXP/>
+Archived-At: <https://lore.freedesktop.org/aY6FbSjQpGFk8oWK@um790/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -230,19 +113,340 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat Jan 24, 2026 at 10:29 PM JST, Danilo Krummrich wrote:
-> On Sat Jan 24, 2026 at 2:07 PM CET, Alexandre Courbot wrote:
->> On Sat Jan 24, 2026 at 2:58 AM JST, Gary Guo wrote:
->>> From: Gary Guo <gary@garyguo.net>
->>>
->>> This is now handled by the macro itself.
->>>
->>> Signed-off-by: Gary Guo <gary@garyguo.net>
->>
->> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
->
-> We should take this through drm-rust in the next cycle to avoid conflicts=
-.
+Hi Lyude,
 
-Took into my queue for merging into `drm-rust-next` as soon as it
-repoens.
+On Fri, Feb 06, 2026 at 05:34:30PM -0500, Lyude Paul wrote:
+> This introduces a set of bindings for working with iosys_map in rust code
+> using the new Io traits.
+> 
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> 
+> ---
+> V5:
+> - Fix incorrect field size being passed to iosys_map_memcpy_to()
+> - Add an additional unit test, basic_macro(), which can successfully catch
+>   the above issue so it doesn't happen again in the future.
+> V6:
+> - Drop as_slice/as_mut_slice (Alice Rhyl)
+> V7:
+> - Start using Alexandre Courbot's wonderful Io, IoCapable and IoKnownSize
+>   traits instead of trying to roll our own IO accessors. This also changes
+>   the following:
+>   - We don't have a custom AsBytes/FromBytes type that we carry around any
+>     longer with maps
+>   - We now have optional compile-time size checking
+>   - We don't need our own unit tests anymore
+>   - RawIoSysMap can be used for unsafe IO operations, because why not.
+>   - IoSysMapRef::new() can fail now since it needs to ensure SIZE is valid.
+>   - We don't implement Deref<RawIoSysMap> for IoSysMapRef any longer. The
+>     main reason for this is that we want to avoid users having to manually
+>     specify if they want the RawIoSysMap or IoSysMapRef variant functions
+>     like io_read()/io_write().
+>     This is fine IMHO, but to make sure things remain easy for APIs that
+>     wrap around iosys map we make IoSysMapRef.raw_map pub(crate).
+> 
+>  rust/helpers/helpers.c   |   1 +
+>  rust/helpers/iosys_map.c |  34 +++++++
+>  rust/kernel/iosys_map.rs | 211 +++++++++++++++++++++++++++++++++++++++
+>  rust/kernel/lib.rs       |   1 +
+>  4 files changed, 247 insertions(+)
+>  create mode 100644 rust/helpers/iosys_map.c
+>  create mode 100644 rust/kernel/iosys_map.rs
+> 
+> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> index 1d3333cc0d2a8..bd8ad237aa02e 100644
+> --- a/rust/helpers/helpers.c
+> +++ b/rust/helpers/helpers.c
+> @@ -31,6 +31,7 @@
+>  #include "irq.c"
+>  #include "fs.c"
+>  #include "io.c"
+> +#include "iosys_map.c"
+>  #include "jump_label.c"
+>  #include "kunit.c"
+>  #include "maple_tree.c"
+> diff --git a/rust/helpers/iosys_map.c b/rust/helpers/iosys_map.c
+> new file mode 100644
+> index 0000000000000..6861d4ec48a4b
+> --- /dev/null
+> +++ b/rust/helpers/iosys_map.c
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/iosys-map.h>
+> +#include <linux/types.h>
+> +
+> +#define rust_iosys_map_rd(type__)                                                       \
+> +	__rust_helper type__                                                            \
+> +	rust_helper_iosys_map_rd_ ## type__(const struct iosys_map *map, size_t offset) \
+> +	{                                                                               \
+> +		return iosys_map_rd(map, offset, type__);                               \
+> +	}
+> +#define rust_iosys_map_wr(type__)                                                       \
+> +	__rust_helper void                                                              \
+> +	rust_helper_iosys_map_wr_ ## type__(const struct iosys_map *map, size_t offset, \
+> +					    type__ value)                               \
+> +	{                                                                               \
+> +		iosys_map_wr(map, offset, type__, value);                               \
+> +	}
+> +
+> +rust_iosys_map_rd(u8);
+> +rust_iosys_map_rd(u16);
+> +rust_iosys_map_rd(u32);
+> +
+> +rust_iosys_map_wr(u8);
+> +rust_iosys_map_wr(u16);
+> +rust_iosys_map_wr(u32);
+> +
+> +#ifdef CONFIG_64BIT
+> +rust_iosys_map_rd(u64);
+> +rust_iosys_map_wr(u64);
+> +#endif
+> +
+> +#undef rust_iosys_map_rd
+> +#undef rust_iosys_map_wr
+> diff --git a/rust/kernel/iosys_map.rs b/rust/kernel/iosys_map.rs
+> new file mode 100644
+> index 0000000000000..2070f0fb42cb8
+> --- /dev/null
+> +++ b/rust/kernel/iosys_map.rs
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! IO-agnostic memory mapping interfaces.
+> +//!
+> +//! This crate provides bindings for the `struct iosys_map` type, which provides a common interface
+> +//! for memory mappings which can reside within coherent memory, or within IO memory.
+> +//!
+> +//! C header: [`include/linux/iosys-map.h`](srctree/include/linux/pci.h)
+> +
+> +use crate::{
+> +    error::code::*,
+> +    io::{
+> +        Io,
+> +        IoCapable,
+> +        IoKnownSize, //
+> +    },
+> +    prelude::*, //
+> +};
+> +use bindings;
+> +use core::marker::PhantomData;
+> +
+> +/// Raw unsized representation of a `struct iosys_map`.
+> +///
+> +/// This struct is a transparent wrapper around `struct iosys_map`. The C API does not provide the
+> +/// size of the mapping by default, and thus this type also does not include the size of the
+> +/// mapping. As such, it cannot be used for actually accessing the underlying data pointed to by the
+> +/// mapping.
+> +///
+> +/// With the exception of kernel crates which may provide their own wrappers around `RawIoSysMap`,
+> +/// users will typically not interact with this type directly.
+> +#[repr(transparent)]
+> +pub struct RawIoSysMap<const SIZE: usize = 0>(bindings::iosys_map);
+> +
+> +impl<const SIZE: usize> RawIoSysMap<SIZE> {
+> +    /// Convert from a raw `bindings::iosys_map`.
+> +    #[expect(unused)]
+> +    #[inline]
+> +    pub(crate) fn from_raw(val: bindings::iosys_map) -> Self {
+> +        Self(val)
+> +    }
+> +
+> +    /// Returns whether the mapping is within IO memory space or not.
+> +    #[inline]
+> +    pub fn is_iomem(&self) -> bool {
+> +        self.0.is_iomem
+> +    }
+> +
+> +    /// Convert from a `RawIoSysMap<SIZE>` to a raw `bindings::iosys_map` ref.
+> +    #[expect(unused)]
+> +    #[inline]
+> +    pub(crate) fn as_raw(&self) -> &bindings::iosys_map {
+> +        &self.0
+> +    }
+> +
+> +    /// Convert from a `RawIoSysMap<SIZE>` to a raw mutable `bindings::iosys_map` ref.
+> +    #[allow(unused)]
+> +    #[inline]
+> +    pub(crate) fn as_raw_mut(&mut self) -> &mut bindings::iosys_map {
+> +        &mut self.0
+> +    }
+> +
+> +    /// Returns the address pointed to by this iosys map.
+> +    ///
+> +    /// Note that this address is not guaranteed to be valid, and may or may not reside in I/O
+> +    /// memory.
+> +    #[inline]
+> +    pub fn addr(&self) -> usize {
+> +        (if self.is_iomem() {
+> +            // SAFETY: We confirmed above that this iosys map is contained within iomem, so it's
+> +            // safe to read vaddr_iomem
+> +            unsafe { self.0.__bindgen_anon_1.vaddr_iomem }
+> +        } else {
+> +            // SAFETY: We confirmed above that this iosys map is not contaned within iomem, so it's
+> +            // safe to read vaddr.
+> +            unsafe { self.0.__bindgen_anon_1.vaddr }
+> +        }) as usize
+> +    }
+> +}
+> +
+> +// SAFETY: As we make no guarantees about the validity of the mapping, there's no issue with sending
+> +// this type between threads.
+> +unsafe impl<const SIZE: usize> Send for RawIoSysMap<SIZE> {}
+> +
+> +impl<const SIZE: usize> Clone for RawIoSysMap<SIZE> {
+> +    fn clone(&self) -> Self {
+> +        Self(self.0)
+> +    }
+> +}
+> +
+> +macro_rules! impl_raw_iosys_map_io_capable {
+> +    ($ty:ty, $read_fn:ident, $write_fn:ident) => {
+> +        impl<const SIZE: usize> IoCapable<$ty> for RawIoSysMap<SIZE> {
+> +            #[inline(always)]
+> +            unsafe fn io_read(&self, address: usize) -> $ty {
+> +                // SAFETY: By the trait invariant `address` is a valid address for iosys map
+> +                // operations.
+> +                unsafe { bindings::$read_fn(&self.0, address) }
+> +            }
+> +
+> +            #[inline(always)]
+> +            unsafe fn io_write(&self, value: $ty, address: usize) {
+> +                // SAFETY: By the trait invariant `address` is a valid address for iosys map
+> +                // operations.
+> +                unsafe { bindings::$write_fn(&self.0, address, value) };
+> +            }
+> +        }
+> +    };
+> +}
+> +
+
+I think there might be a mismatch between the absolute address being
+passed to these read and write functions and the bindings helpers
+that expect an offset argument.
+
+This crashed Tyr when I tried to write the firmware in u8 chunks at
+incremental offsets. But if i just calculated the offset and passed that
+instead of the absolute address, this worked fine:
+
+  let offset = address - self.addr();
+  unsafe { bindings::$write_fn(&self.0, offset, value) };
+
+Here's some of the call trace:
+
+[   31.553727] tyr fb000000.gpu: supply sram not found, using dummy regulator
+[   31.555096] tyr fb000000.gpu: mali-unknown id 0xa867 major 0x67 minor 0x0 status 0x5
+[   31.555778] tyr fb000000.gpu: Features: L2:0x7120306 Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
+[   31.556521] tyr fb000000.gpu: shader_present=0x0000000000050005 l2_present=0x0000000000000001 tiler_present=0x0000000000000001
+[   31.557868] stackdepot: allocating hash table of 524288 entries via kvcalloc
+[  OK  ] Started systemd-tmpfiles-clean.tim…y Cleanup of Temporary Directories.
+[   31.562424] stackdepot: allocating space for 8192 stack pools via kvcalloc
+[  OK  ] Reached target timers.target - Timer Units.
+[   31.563676] tyr: Firmware protected mode entry not supported, ignoring
+[   31.571391] Unable to handle kernel paging request at virtual address 0000000000800069
+[   31.572762] Mem abort info:
+[   31.573027]   ESR = 0x0000000096000021
+[   31.573402]   EC = 0x25: DABT (current EL), IL = 32 bits
+[   31.573878]   SET = 0, FnV = 0
+[   31.574157]   EA = 0, S1PTW = 0
+[   31.574442]   FSC = 0x21: alignment fault
+[  OK  ] Listening on dbus.socket - D-Bus System Message Bus Socket.
+[   31.593348] Data abort info:
+[   31.593628]   ISV = 0, ISS = 0x00000021, ISS2 = 0x00000000
+[   31.594117]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+[   31.594567]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+[   31.595042] user pgtable: 4k pages, 48-bit VAs, pgdp=0000000105e50000
+[   31.595613] [0000000000800069] pgd=0000000000000000, p4d=0000000000000000
+[   31.596434] Internal error: Oops: 0000000096000021 [#1]  SMP
+[   31.596936] Modules linked in: snd tyr(+) soundcore sha256 cfg80211 rfkill pci_endpoint_test fuse dm_mod ipv6
+[   31.597830] CPU: 3 UID: 0 PID: 241 Comm: (udev-worker) Not tainted 6.19.0-rc5 #282 PREEMPT
+[   31.598561] Hardware name: Radxa ROCK 5B (DT)
+[   31.598944] pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   31.599554] pc : __d_lookup_rcu+0xbc/0x168
+[   31.599921] lr : __d_lookup_rcu+0x60/0x168
+[   31.600283] sp : ffff800081ebba00
+[   31.600574] x29: ffff800081ebba00 x28: 0000000000000049 x27: ffff00010d07002b
+[   31.601205] x26: 0000000000000081 x25: 000000000006915e x24: ffff0002f6600000
+[   31.601848] x23: ffff00010396a040 x22: ffff000102098460 x21: 000000036915e207
+[   31.601859] x20: ffff000101e10af8 x19: ffff800081ebbcac x18: 2f64662f666c6573
+[   31.601867] x17: ffffff00666c6573 x16: 00000000fffffffc x15: 0000000000003431
+[   31.601875] x14: 000000000000000f x13: 0080205100800107 x12: 0000000000800069
+[   31.601882] x11: ffffffffffffffff x10: 0000000000000018 x9 : 0000000000000003
+[   31.601890] x8 : 00000000008000a1 x7 : ffffb9d13df173c8 x6 : 0000000000000000
+[   31.601897] x5 : 0000000000000000 x4 : 0000000000000010 x3 : ffffffffffff0a00
+[   31.601905] x2 : ffff800081ebbcac x1 : ffffb9d1406be718 x0 : 0000000000000001
+[   31.601913] Call trace:
+[   31.601915]  __d_lookup_rcu+0xbc/0x168 (P)
+[   31.601922]  lookup_fast+0x98/0x174
+[   31.601929]  link_path_walk+0x280/0x528
+[   31.601935]  path_lookupat+0x60/0x1f0
+[   31.601941]  do_o_path+0x34/0xb4
+[   31.601947]  path_openat+0xccc/0xe34
+[   31.601953]  do_filp_open+0xc0/0x170
+[   31.601958]  do_sys_openat2+0x88/0x10c
+[   31.601963]  __arm64_sys_openat+0x70/0x9c
+[   31.601968]  invoke_syscall+0x40/0xcc
+[   31.601974]  el0_svc_common+0x80/0xd8
+[   31.601979]  do_el0_svc+0x1c/0x28
+[   31.601984]  el0_svc+0x54/0x1d4
+[   31.601991]  el0t_64_sync_handler+0x84/0x12c
+[   31.601997]  el0t_64_sync+0x198/0x19c
+[   31.602005] Code: 14000003 f9400108 b4000428 d100e10c (88dffd8c)
+[   31.602009] ---[ end trace 0000000000000000 ]---
+[  OK  ] Listening on sshd-unix-local.socke…temd-ssh-generator, AF_UNIX Local).
+[   31.620067] mc: Linux media interface: v0.10
+[   31.623483] [drm] Initialized panthor 1.5.0 for fb000000.gpu on minor 0
+[   31.623765] Unable to handle kernel paging request at virtual address 00802a4d0080284d
+[   31.624285] tyr fb000000.gpu: Tyr initialized correctly.
+[   31.624752] Mem abort info:
+[   31.624754]   ESR = 0x0000000096000004
+[   31.625847]   EC = 0x25: DABT (current EL), IL = 32 bits
+[   31.626310]   SET = 0, FnV = 0
+[   31.626578]   EA = 0, S1PTW = 0
+[   31.626853]   FSC = 0x04: level 0 translation fault
+[   31.627277] Data abort info:
+[   31.627529]   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+[   31.628006]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+[   31.628447]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+[   31.628910] [00802a4d0080284d] address between user and kernel address ranges
+[   31.629535] Internal error: Oops: 0000000096000004 [#2]  SMP
+[   31.630030] Modules linked in: mc drm_client_lib snd tyr soundcore sha256 cfg80211 rfkill pci_endpoint_test fuse dm_mod ipv6
+[   31.631017] CPU: 4 UID: 0 PID: 225 Comm: systemd-udevd Tainted: G      D             6.19.0-rc5 #282 PREEMPT
+[   31.631877] Tainted: [D]=DIE
+[   31.632129] Hardware name: Radxa ROCK 5B (DT)
+[   31.632506] pstate: a0400009 (NzCv daif +PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[   31.633111] pc : ___d_drop+0xd8/0x144
+[   31.633433] lr : d_invalidate+0x3c/0x110
+[   31.633776] sp : ffff800081d3ba70
+[   31.634064] x29: ffff800081d3ba90 x28: 0000000000000001 x27: ffffb9d140bfa000
+[   31.634685] x26: ffff0001039b5108 x25: ffff00010396a000 x24: ffffb9d140166275
+[   31.635305] x23: ffffb9d140bfa000 x22: ffffb9d140152f3a x21: ffff000104076000
+[   31.635925] x20: ffff00010e520098 x19: ffff00010396a000 x18: 0000000000000000
+[   31.636545] x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+[   31.637165] x14: 0000000000000000 x13: ffff00010792b8f0 x12: 000000000000017a
+[   31.637785] x11: 00000000008000a1 x10: 00802a4d0080284d x9 : ffff0002f6604010
+[   31.638405] x8 : ffff000105bfcd40 x7 : 0000000000000000 x6 : ffffb9d13e272c60
+[   31.639026] x5 : 0000000000000000 x4 : 0000000000000001 x3 : 0000000000000000
+[   31.639646] x2 : 0000000000000000 x1 : 0000000000000000 x0 : ffff00010396a000
+[   31.640266] Call trace:
+[   31.640479]  ___d_drop+0xd8/0x144 (P)
+[   31.640800]  d_invalidate+0x3c/0x110
+[   31.641113]  proc_invalidate_siblings_dcache+0x244/0x2b8
+[   31.641577]  proc_flush_pid+0x1c/0x28
+[   31.641897]  release_task+0x560/0x668
+[   31.642218]  wait_consider_task+0x5a0/0xb44
+[   31.642582]  __do_wait+0x154/0x1f0
+[   31.642879]  do_wait+0x84/0x16c
+[   31.643154]  __arm64_sys_waitid+0xac/0x218
+[   31.643512]  invoke_syscall+0x40/0xcc
+[   31.643833]  el0_svc_common+0x80/0xd8
+[   31.644152]  do_el0_svc+0x1c/0x28
+[   31.644441]  el0_svc+0x54/0x1d4
+[   31.644718]  el0t_64_sync_handler+0x84/0x12c
+[   31.645090]  el0t_64_sync+0x198/0x19c
+[   31.645412] Code: 5280002a f85f83a0 17fffff1 a944280b (f940014c)
+[   31.645941] ---[ end trace 0000000000000000 ]---
+
+thanks,
+Deborah
+
