@@ -4,102 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70009EF99DF
-	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 21:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A51EEF99DD
+	for <nouveau@archiver.kernel.org>; Fri, 13 Feb 2026 21:49:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C9DF010E325;
-	Fri, 13 Feb 2026 21:34:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 55AF810E83D;
+	Fri, 13 Feb 2026 21:49:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L4yGwHYk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="bd/vYS/0";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2EE5142DA9;
-	Fri, 13 Feb 2026 21:25:15 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771017915;
- b=SgcvM5rC9qkF11g70KzckWwk3ahH52nIyXY7i3joW8EXxPtJb9yWtJOzG7RrMzA4iRN7f
- hZw3N9MCX7N+1LpUdQI3Gbc0c2wMMKq0F3Q1Zxsvk0Ur7/x1lNUdTQbwPe4ygEuLj1lWjMK
- JZBSuzz/pNFLLJzPwkb83Urj6IZrKT4f7h4LYEJIwo9UrMys48pw+gUpxcKFaTAKQQdE71w
- M2wnj4pti2e4nDsIeBQgyd/foPNXu6dO8ASoKZYUBGXk2ezTAdWxrKg219SnZIx1XC7+kJ+
- ZD/ao5oSrRoYucGsCzq2Gx7tTS95CpuX0ZZBGCtq+jGW2mycCS0SWCurwTPA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771017915; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id B0FA242DA9;
+	Fri, 13 Feb 2026 21:39:44 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771018784;
+ b=LBrg5hfEqDDXEwI9hJSr+ZtABDlylS1HFTjaDQcjekU+tCiCjZWaMbEZCy95osgbfYq+D
+ y2HA6nU5g+Q66/qqQusJbfeLF+RISXDc6OnI7fWEZLSnvYj8qHU+7F1nzg+/vs1S7BLzuLA
+ yWba7i8y7q/KyiHkw8IXmLLF15Bg3GsET1HSdCy/HcKtHj46UozPMVvD/QfcRJCHoZp5jNF
+ J/l07ZljZcw7rHmivg8bat8b5TEuMy2nLbT8OrxrMAWn7NWvxUMm10K+iDpLEK7z8Go8kgR
+ Xg7YI/ht2GsftdRNhisrYo7MTjjvlJqKJYsWrx6+0p8uwxS3m8H6+cIJPLQQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771018784; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=hH6IxoXT+kBHNk0F4uPl1+I+fopuhryEaX20FnoMxCc=;
- b=fdAx9E8lGHPF9/7VzL62ihC6Mvj6vcmKYWHeBY3851qMR464BX+IHzh7AdNMLd5sJj5nc
- 29F+Ep6/YM0mNYxWxeF55EOIWGYV5kdi96C8D86+BXqtQoX61Osg9MyyKjQ2TMiALygfAyD
- SmYX0iN6KxXC3VzA1Ymd7//qh9nQQYc4NEQrGVBbjNxS8CFXM3gsBA85xA+sHfrHPaIlcnf
- LjuJ/32Cx9J3RW2YcdbGP584/jTTpwNXR4/JKv9maLvbDcifAacujgUybR+eMDjDnFgwAL3
- NdN7nYu11XNKPIeWgTJlgDGj55GKcTv5eR9kwvQ6rkBJIbYOn/Jp5hSR6E0g==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=GyC9E7ts1e/n857OQHO3aAn+NxSA5AMAMHg/+1FV/ts=;
+ b=IIa7utkGusY0EcUx6R2nevv/ybXoNjzNz4G/CiMtowwWjZsB0GttP5Tdt4shzadKvv5he
+ 80Xr328+6EEsSO0XrtkCBF/sUkLR/3FbQM6ZUUHStHgoEgkFdwR1MDSmbPiEo+FTPlmFpYV
+ Zzd6TAY1Tw43Erg2gJylTwI7DCkDECQ62XHj6hkhPdUUw7tCEObM5MJtaCJVV8gep9bRdKw
+ 3bT9Lit3+Ha3d+TLghBZ2D59xpj+vIkHdHbOd4lKQvCME6s6YJusAps4BFkS0bI+MvWrUxq
+ 6C/O312jtx1FbbRF9ZEK6ZfUJMU74epUjASn3rIpeq1lSIO/uVUjoNAMZNDA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
+  arc=pass;
+  dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com; arc=pass;
+ dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EB08740686
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 21:25:11 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D94510E31E;
-	Fri, 13 Feb 2026 21:34:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id F1A4C4038B;
-	Fri, 13 Feb 2026 21:34:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96446C116C6;
-	Fri, 13 Feb 2026 21:34:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771018489;
-	bh=+w7gihi+oD0zmFHYOyTJRuntNFlfBgEmHjCvNNAPJxE=;
-	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
-	b=L4yGwHYkWRPYjDHOMOEZr61L73WkVQc1tmydOq9QgHq0QOG85x3OSyewZzPSWadJy
-	 4A9tjGV6nT6P9HiQpUb8eDUbjoMu+yZVnVUG0YtCN84R5TUC5wojkvPp/lOFUwZutv
-	 CL36QMfOUWfzuNLTE/rq1MmJShEcTh/2Xu2RMdCB8RsD0tnqJVvbf/au/JrEnaLBSM
-	 9SJwx3mvnlDrGPB4vgqowDJbPsFwJ3vO+MnF+I+0oKB4FS0/zgVxt7pCynr4HvwHLM
-	 5e20FpeVSse8EMrPCr4AqIYVXq5l6OjVz0ADDzcRU5PHW7dOPDLLtcB0gb2rykj1TI
-	 pofDs4SygH7tA==
-Mime-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4B4D740686
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 21:39:41 +0000 (UTC)
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com
+ [209.85.218.47])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 74E8910E325
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Feb 2026 21:49:19 +0000 (UTC)
+Received: by mail-ej1-f47.google.com with SMTP id
+ a640c23a62f3a-b88593aa4dcso155539766b.3
+        for <nouveau@lists.freedesktop.org>;
+ Fri, 13 Feb 2026 13:49:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771019358; cv=none;
+        d=google.com; s=arc-20240605;
+        b=c7ETxcmz3guoGksp/kfa6QTM1zaE4siwG7AST4JCpdRCKpEqYA3kq8nhTEkrXelNH/
+         hUtoXepRBRai/rjL05EAK4qLx6j4qprLWYUR9jjgDPtIeJDjyuED9Dgj/BSFtSsmUIPD
+         abQTr1harVpWBDPYgx05wK6923DB7UmbW8KKt8Wvk8OfbyCJ6WXw4D6oLXxQo7wNW6Jv
+         2MszY+BETsl6fZY1Vuz+ioB9JAM3nAKzxkI9X+7tP2prIQQHtXSWhOOC4yjkgN4o1jbL
+         I/mil8u6NKZqFSqyg+V1WsTf4ihdnCyssrBbS5ggqisQcffyQ8TgRI3JEdWTK+HG0KOG
+         o2Cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=GyC9E7ts1e/n857OQHO3aAn+NxSA5AMAMHg/+1FV/ts=;
+        fh=W1zz1GP86t8D1O/0rigDS1d6ly+5TpcWAfGCXS7z4JI=;
+        b=jUlojYLMRcFR1Gt8ZMgIQ09tDha2vcyzZFN2FKIv/D1bFELtjFJZuzucTe/dafWNDk
+         QU7ykxWcQH+2+dHsULBrmMgJOHgN6PiCES4yw6xMLRHIlhqAwAcUD5g53pqlPrI9pkZy
+         2tqR7ZnSQhw18ZmtN6oezpOgbfURx9HPS5SR8BbGgB70JEpS4audQWsttZVJxHC4wUiM
+         dPqyYlr9KTmKXsbGzTABbvhJwFNE0+PSMIxsQLJF5ANgGfhzD2hA1b1jMJ+vJCic7K9i
+         ubs7DT1FqSUvOx6qRIiUNf4AWfsGbTvd+wDxQMCrpHKOlFjMfRzqn8Q3EGGTF4hs2ZQ1
+         qDPw==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1771019358;
+ x=1771624158; darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GyC9E7ts1e/n857OQHO3aAn+NxSA5AMAMHg/+1FV/ts=;
+        b=bd/vYS/0AyVOIo2CcaF62Bq1jnDSQfKSTty5AHzQtN8ztNXCMs9bKKox8Uacq549lo
+         xRqp9zoCcAQGshP/KIQ/WD4aJqzVdO0MqokgxCCqrpQtevTkIKIUHwpMD/Gz5izXHn88
+         vqfSLMfBZtXyO2y5ri4TeeMaWPGCMq6/nRUAi3RLreBnIaxpYxRHgoq5qsfQZS0W4DSa
+         0EijMsbZhZF3VxmbQEnU/8oxRvIGvWzBHG0/1yZoRFmAQnKTUZi52YEGPIzmCCHtHgi1
+         yVRm3ADiw98df4vBzEEGF/jrUPkBzuDTIsSuNEiKBS6nieLhepLf3bf8xehk8LnPt4Cu
+         s3pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771019358; x=1771624158;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=GyC9E7ts1e/n857OQHO3aAn+NxSA5AMAMHg/+1FV/ts=;
+        b=iE3fLtXfhoiuBwAZHLHFYATmXFqpnVs8x5C4Z/BOHWGAAuV5CNCBkGXmpq+5jd3DAA
+         QgCHKT8PjLqdSDaGwG2Zv2iC8zTBQFefPlZ4SRFYkcHoVwNzPatJID+U3QsJuyi4IfIX
+         x1fH+mnqWqMkaVCXsBONBZMBcYkzVkqwHWvvfslytDNlVK7FylmZXIcmPIBAeua3IFYo
+         uLccAgiFuMgvx4UvsewR9FFdO7sd0AYiN0X1jwvd10qJlHp092J7FB0jwweGef+mz0ri
+         gHU1vBGPjRZhcK5X7mT6kALptlE6UXOYq6CKvZT916pETF4+JmE4H+IHXXEPFgHyRdfb
+         mwYg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX3DUCgRpqcWDY+vQ5DssUsWFZ142WbELwFBHiXyv4WlBOAh03/T/ADyUtXE6XWqJzj25eSwEAL@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw4kRxePfmdesbA3SAeqFvhtz2TmMbivt6jG2hVMybme0DwO3Kf
+	y9R3pDO0gCviyXs5vX39/hNHmTrxL99W7WSwDyyUFtmDBGSweoHBVs4c6cwaxyxQL+ii6OuKWE6
+	5hdh+dvpcYSHu1IKwW3/iP6EBtvlMd7OApAisBv7oLA==
+X-Gm-Gg: AZuq6aJKUM55jToEgmPLaKG5IrYj9KX49jrxT4axal/21M25/Z4o30Byl+CYXSf3wYY
+	kjW7knHQFH3cggho/FCmzVnaoNN8k8fAB13anHPghbj/g0poCH4hY+ZYe/m/cy/hMEF3REvDwSA
+	gzxHKLdAekVy3lGKelLWMeD7PGUWAGl4MAhfydJ1RxrE3EuVt5DNBGYKknUfGCog+PS0pVznzq1
+	seRNqA223pdX0xeeeukUYLefruZf9CLGqCqzy+iRDzopvvsB1KR2NIpYLIzbguIh4lVoeRg98Nz
+	DxKAefyRVNHWwfo=
+X-Received: by 2002:a17:906:6a16:b0:b83:b7c5:de2c with SMTP id
+ a640c23a62f3a-b8fb41937e5mr203073966b.10.1771019357548; Fri, 13 Feb 2026
+ 13:49:17 -0800 (PST)
+MIME-Version: 1.0
+References: <20260205-zcull3-v2-0-ac572f38cc7b@darkrefraction.com>
+ <20260205-zcull3-v2-1-ac572f38cc7b@darkrefraction.com>
+ <DGE036OEW8ZK.1PX0DRV8R9EVB@kernel.org>
+In-Reply-To: <DGE036OEW8ZK.1PX0DRV8R9EVB@kernel.org>
+From: M Henning <mhenning@darkrefraction.com>
+Date: Fri, 13 Feb 2026 16:48:51 -0500
+X-Gm-Features: AZwV_Qg-n6EvKH2NT0I2bWESDP3lTEHQVgOx9h5-JlkkGBzb6bhJS8FquRFVMEw
+Message-ID: 
+ <CAAgWFh0zX=u7OZYq3QBrs0ySve897LXb1PN9QFzhYg0gtHy5wQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] drm/nouveau: Fetch zcull info from device
+To: Danilo Krummrich <dakr@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 13 Feb 2026 22:34:44 +0100
-Message-Id: <DGE5NO2W48YJ.34YKFNI6VS63A@kernel.org>
-To: "Tim Kovalenko via B4 Relay"
- <devnull+tim.kovalenko.proton.me@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v2] gpu: nova-core: fix stack overflow in GSP memory
- allocation
-References: <20260213-drm-rust-next-v2-1-aa094f78721a@proton.me>
-In-Reply-To: <20260213-drm-rust-next-v2-1-aa094f78721a@proton.me>
-Message-ID-Hash: F4YFA2BQN5WPG623I3PS4XHKA5RZYNZ3
-X-Message-ID-Hash: F4YFA2BQN5WPG623I3PS4XHKA5RZYNZ3
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: CX6VLF3RUAEBVHDXRTRMJ4HDZ43ZRECC
+X-Message-ID-Hash: CX6VLF3RUAEBVHDXRTRMJ4HDZ43ZRECC
+X-MailFrom: drawoc@darkrefraction.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: tim.kovalenko@proton.me, Alexandre Courbot <acourbot@nvidia.com>,
- Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Mary Guillemard <mary@mary.zone>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/F4YFA2BQN5WPG623I3PS4XHKA5RZYNZ3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CX6VLF3RUAEBVHDXRTRMJ4HDZ43ZRECC/>
 Archived-At: 
- <https://lore.freedesktop.org/DGE5NO2W48YJ.34YKFNI6VS63A@kernel.org/>
+ <https://lore.freedesktop.org/CAAgWFh0zX=u7OZYq3QBrs0ySve897LXb1PN9QFzhYg0gtHy5wQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -109,107 +155,221 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Feb 13, 2026 at 8:40 PM CET, Tim Kovalenko via B4 Relay wrote:
-> @@ -159,7 +158,7 @@ struct Msgq {
->  #[repr(C)]
->  struct GspMem {
->      /// Self-mapping page table entries.
-> -    ptes: PteArray<{ GSP_PAGE_SIZE / size_of::<u64>() }>,
-> +    ptes: [u64; GSP_PAGE_SIZE / size_of::<u64>()],
->      /// CPU queue: the driver writes commands here, and the GSP reads th=
-em. It also contains the
->      /// write and read pointers that the CPU updates.
->      ///
-> @@ -201,7 +200,29 @@ fn new(dev: &device::Device<device::Bound>) -> Resul=
-t<Self> {
-> =20
->          let gsp_mem =3D
->              CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KER=
-NEL | __GFP_ZERO)?;
-> -        dma_write!(gsp_mem[0].ptes =3D PteArray::new(gsp_mem.dma_handle(=
-))?)?;
-> +        const NUM_PAGES: usize =3D GSP_PAGE_SIZE / size_of::<u64>();
-> +
-> +        // One by one GSP Page write to the memory to avoid stack overfl=
-ow when allocating
-> +        // the whole array at once.
-> +        let item =3D gsp_mem.item_from_index(0)?;
-> +        for i in 0..NUM_PAGES {
-> +            let pte_value =3D gsp_mem
-> +                .dma_handle()
-> +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-> +                .ok_or(EOVERFLOW)?;
-> +
-> +            // SAFETY: `item_from_index` ensures that `item` is always a=
- valid pointer and can be
-> +            // dereferenced. The compiler also further validates the exp=
-ression on whether `field`
-> +            // is a member of `item` when expanded by the macro.
-> +            //
-> +            // Further, this is dma_write! macro expanded and modified t=
-o allow for individual
-> +            // page write.
-> +            unsafe {
+On Fri, Feb 13, 2026 at 12:12=E2=80=AFPM Danilo Krummrich <dakr@kernel.org>=
+ wrote:
+>
+> On Thu Feb 5, 2026 at 7:56 PM CET, Mel Henning wrote:
+> > This information will be exposed to userspace in the following commit.
+> >
+> > Signed-off-by: Mel Henning <mhenning@darkrefraction.com>
+>
+> For someone looking at this commit, this commit message is not very usefu=
+l.
+>
+> Please add at least a brief explanation of what the patch does and - even=
+ more
+> important - why it does it. See also [1].
+>
+> [1] https://docs.kernel.org/process/submitting-patches.html#describe-your=
+-changes
 
-Both of the statements below are unsafe and should be within an individual
-unsafe block with their corresponding justification.
+What I'm struggling with is that I don't know how to do this without
+repeating myself. If you want, I can copy-paste my explanation of
+zcull here too and then it will appear three times, once in each
+commit and once in the cover letter. But that kind of repetition
+doesn't seem very helpful to me.
 
-> +                let ptr_field =3D core::ptr::addr_of_mut!((*item).ptes[i=
-]);
+> > ---
+> >  drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h   | 19 +++++++++++++
+> >  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c   |  9 ++++--
+> >  .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c   | 32 ++++++++++++++=
+++++++--
+> >  .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h  | 19 +++++++++++++
+> >  drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  2 +-
+> >  5 files changed, 75 insertions(+), 6 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h b/drivers=
+/gpu/drm/nouveau/include/nvkm/engine/gr.h
+> > index a2333cfe6955..490ce410f6cb 100644
+> > --- a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
+> > +++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
+> > @@ -3,9 +3,28 @@
+> >  #define __NVKM_GR_H__
+> >  #include <core/engine.h>
+> >
+> > +struct nvkm_gr_zcull_info {
+> > +     __u32 width_align_pixels;
+> > +     __u32 height_align_pixels;
+> > +     __u32 pixel_squares_by_aliquots;
+> > +     __u32 aliquot_total;
+> > +     __u32 zcull_region_byte_multiplier;
+> > +     __u32 zcull_region_header_size;
+> > +     __u32 zcull_subregion_header_size;
+> > +     __u32 subregion_count;
+> > +     __u32 subregion_width_align_pixels;
+> > +     __u32 subregion_height_align_pixels;
+> > +
+> > +     __u32 ctxsw_size;
+> > +     __u32 ctxsw_align;
+> > +};
+> > +
+> >  struct nvkm_gr {
+> >       const struct nvkm_gr_func *func;
+> >       struct nvkm_engine engine;
+> > +
+> > +     struct nvkm_gr_zcull_info zcull_info;
+> > +     bool has_zcull_info;
+> >  };
+> >
+> >  u64 nvkm_gr_units(struct nvkm_gr *);
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
+> > index ddb57d5e73d6..73844e1e7294 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
+> > @@ -249,7 +249,7 @@ r535_gr_get_ctxbuf_info(struct r535_gr *gr, int i,
+> >  }
+> >
+> >  static int
+> > -r535_gr_get_ctxbufs_info(struct r535_gr *gr)
+> > +r535_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
+>
+> Why did you combine those two callbacks? Why not extend struct nvkm_rm_ap=
+i_gr
+> with another callback?
 
-This should use &raw mut instead.
+ctxsw_size and ctxsw_align come from
+NV2080_CTRL_CMD_INTERNAL_STATIC_KGR_GET_CONTEXT_BUFFERS_INFO, which is
+already called by r570_gr_get_ctxbufs., while the rest of the zcull
+info comes from
+NV0080_CTRL_FIFO_GET_ENGINE_CONTEXT_PROPERTIES_ENGINE_ID_GRAPHICS_ZCULL.
+If we add another callback then we either need to:
 
-> +                gsp_mem.field_write(ptr_field, pte_value);
+1) Call GET_CONTEXT_BUFFERS_INFO twice, once for each callback. This
+is a little slower and more verbose than calling it once.
+or
+2) fill out zcull_info partially in r570_gr_get_ctxbufs and partially
+in the new callback. Since we fill out only some of the info in each
+we now need to handle edge cases where one function is called but not
+the other as well as them being called in an arbitrary order.
 
-Formally, we won't be able to justify the safety requirement of this method=
-. :)
+Because of this, I decided that it was simplest to combine them in a
+single call, which avoids repeated rpc calls to the gpu without the
+complexity of handling partially complete states.
 
-The good thing is, we don't have to:
+> >  {
+> >       NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *i=
+nfo;
+> >       struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
+> > @@ -265,6 +265,9 @@ r535_gr_get_ctxbufs_info(struct r535_gr *gr)
+> >               r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffer=
+sInfo[0].engine[i]);
+> >
+> >       nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
+> > +
+> > +     gr->base.has_zcull_info =3D false;
+> > +
+> >       return 0;
+> >  }
+> >
+> > @@ -312,7 +315,7 @@ r535_gr_oneinit(struct nvkm_gr *base)
+> >        *
+> >        * Also build the information that'll be used to create channel c=
+ontexts.
+> >        */
+> > -     ret =3D rm->api->gr->get_ctxbufs_info(gr);
+> > +     ret =3D rm->api->gr->get_ctxbufs_and_zcull_info(gr);
+> >       if (ret)
+> >               goto done;
+> >
+> > @@ -352,5 +355,5 @@ r535_gr_dtor(struct nvkm_gr *base)
+> >
+> >  const struct nvkm_rm_api_gr
+> >  r535_gr =3D {
+> > -     .get_ctxbufs_info =3D r535_gr_get_ctxbufs_info,
+> > +     .get_ctxbufs_and_zcull_info =3D r535_gr_get_ctxbufs_and_zcull_inf=
+o,
+> >  };
+> > diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c b/dri=
+vers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
+> > index b6cced9b8aa1..3e7af2ffece9 100644
+> > --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
+> > +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
+> > @@ -164,9 +164,10 @@ r570_gr_scrubber_init(struct r535_gr *gr)
+> >  }
+> >
+> >  static int
+> > -r570_gr_get_ctxbufs_info(struct r535_gr *gr)
+> > +r570_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
+> >  {
+> >       NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *i=
+nfo;
+> > +     NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS *zcull_info;
+> >       struct nvkm_subdev *subdev =3D &gr->base.engine.subdev;
+> >       struct nvkm_gsp *gsp =3D subdev->device->gsp;
+> >
+> > @@ -179,13 +180,40 @@ r570_gr_get_ctxbufs_info(struct r535_gr *gr)
+> >       for (int i =3D 0; i < ARRAY_SIZE(info->engineContextBuffersInfo[0=
+].engine); i++)
+> >               r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffer=
+sInfo[0].engine[i]);
+> >
+> > +     NV2080_CTRL_INTERNAL_ENGINE_CONTEXT_BUFFER_INFO zcull =3D info->e=
+ngineContextBuffersInfo[0]
+> > +             .engine[NV0080_CTRL_FIFO_GET_ENGINE_CONTEXT_PROPERTIES_EN=
+GINE_ID_GRAPHICS_ZCULL];
+> > +     gr->base.zcull_info.ctxsw_size =3D zcull.size;
+> > +     gr->base.zcull_info.ctxsw_align =3D zcull.alignment;
+> > +
+> >       nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
+> > +
+> > +     zcull_info =3D nvkm_gsp_rm_ctrl_rd(&gsp->internal.device.subdevic=
+e,
+> > +                                      NV2080_CTRL_CMD_GR_GET_ZCULL_INF=
+O,
+> > +                                      sizeof(*zcull_info));
+> > +     if (WARN_ON(IS_ERR(zcull_info)))
+>
+> What justifies this WARN_ON()? To me this seems like normal error handlin=
+g, i.e.
+> it is not a violation of some API invariant, etc. Also, this is in the dr=
+iver's
+> probe() path.
 
-I understand it seems like the problem here is that dma_read!() does not su=
-pport
-index projections. Well, it actually is a problem, which I think will be
-resolved by Gary's work. However, I think the real problem here is a differ=
-ent
-one:
+I was just copying the error handling that already exists in this function.
 
-This code does not need volatile writes in the first place. We just allocat=
-ed
-the DMA memory and haven't published the corresponding address to the devic=
-e
-yet.
+I do think these are weird error cases though - they mean that the gpu
+was partially but not fully initialized which shouldn't happen during
+normal usage. The only cases I can think of that would trigger this
+warning are a kernel bug or an intermittent PCI link, which I think
+are both reasonable to warn on.
 
-So, for such initialization code we shouldn't have to use dma_write!() /
-dma_read!() in the first place.
-
-I think the proper solution for this is to provide an API that allows for
-initialization with a "normal" reference / slice.
-
-For instance, we could provide a `alloc_coherent_init()` function that take=
-s a
-closure which has `&mut [T]` argument, such that the closure can do the
-initialization before dma::CoherentAllocation::alloc_coherent() even return=
-s.
-
-Another option would be a new type, e.g. dma::InitCoherentAllocation which =
-has
-safe as_slice() and as_slice_mut() methods, but does *not* provide a method=
- to
-get the DMA address. Subsequently, it can be converted to a "real"
-dma::CoherentAllocation.
-
-With this, I would also keep the PteArray type and change PteArray::new() t=
-o
-PteArray::init() taking a &mut self.
-
-This way the PteArray init logic remains nicely structured and isolated.
-
-Thanks,
-Danilo
-
-> +            }
-> +        }
-> +
->          dma_write!(gsp_mem[0].cpuq.tx =3D MsgqTxHeader::new(MSGQ_SIZE, R=
-X_HDR_OFF, MSGQ_NUM_PAGES))?;
->          dma_write!(gsp_mem[0].cpuq.rx =3D MsgqRxHeader::new())?;
+> > +             return PTR_ERR(zcull_info);
+> > +
+> > +     gr->base.zcull_info.width_align_pixels =3D zcull_info->widthAlign=
+Pixels;
+> > +     gr->base.zcull_info.height_align_pixels =3D zcull_info->heightAli=
+gnPixels;
+> > +     gr->base.zcull_info.pixel_squares_by_aliquots =3D zcull_info->pix=
+elSquaresByAliquots;
+> > +     gr->base.zcull_info.aliquot_total =3D zcull_info->aliquotTotal;
+> > +     gr->base.zcull_info.zcull_region_byte_multiplier =3D zcull_info->=
+zcullRegionByteMultiplier;
+> > +     gr->base.zcull_info.zcull_region_header_size =3D zcull_info->zcul=
+lRegionHeaderSize;
+> > +     gr->base.zcull_info.zcull_subregion_header_size =3D zcull_info->z=
+cullSubregionHeaderSize;
+> > +     gr->base.zcull_info.subregion_count =3D zcull_info->subregionCoun=
+t;
+> > +     gr->base.zcull_info.subregion_width_align_pixels =3D zcull_info->=
+subregionWidthAlignPixels;
+> > +     gr->base.zcull_info.subregion_height_align_pixels =3D zcull_info-=
+>subregionHeightAlignPixels;
+> > +
+> > +     nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, zcull_info=
+);
+> > +
+> > +     gr->base.has_zcull_info =3D true;
+> > +
+> >       return 0;
+> >  }
