@@ -4,201 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739F2EDF142
-	for <nouveau@archiver.kernel.org>; Sat, 14 Feb 2026 05:35:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFD43EF48C5
+	for <nouveau@archiver.kernel.org>; Sat, 14 Feb 2026 10:06:36 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AB03710E292;
-	Sat, 14 Feb 2026 05:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1285210E291;
+	Sat, 14 Feb 2026 10:06:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="ekUl1Jgt";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AmCz2P+Z";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 54BFA42DA9;
-	Sat, 14 Feb 2026 05:25:31 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771046731;
- b=iOqWhW/aliEjLT1VIgs2J6vurZoFglDViImShp0LXXHasZkVasBuh8+a0R41lCo2CCDHU
- 6cs8MLE7N2MHlz40OUi9+IQ+X8c/1jiezSpci6I2yH1zzAQqrhQnmaXZ2zU3K69eyHK0r25
- VFhnz3zz+ZZT9o0dG+4EXCUlgEOfb3yrp50nSpFYaEi4/TquXfJiyPGqBet2QIDcWTcnvFi
- AE8fpnuBz8fZysAjUXcP9E7hC3ZOUYhrooDBRrsbvbZQT+IcZ/AwCYxP7nR/1GroxfLoFiM
- ZPzbMOAJdtdwR1lNiguOO4CmVuFyPNBFll0lONBiKOFsPTJwNpQo/h8TGi3w==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771046731; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 490AD42DA9;
+	Sat, 14 Feb 2026 09:56:54 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771063014;
+ b=el3Q4y3Drixsc6Y59sUZFpsUrhEiF7OZ3stVX5e+uGxKp3EqaDRnikc4751QdlDHTQ6OF
+ 7GfnDNwZfuGlxyzb+xwZu1gCWF1LCyl5NKzNeVFZbkYTeul20LZAzgmzVvRYcoinaaHTpN4
+ n1yFdDx7SoMcvkTyBHfV1Nxu2/HnfWr5HI6iAD3UaI2UqffPdgTgSDeDSm7/3aCF7q3C+Wx
+ zYjH83l+g1Yhlt6FjfThcvq/AiOJ+T910Cm1MsOtMB7Tm5jzoWhb1HHYyzD2apYueVRLTdd
+ I5NClwShMJQMjBgU+3p6YmSUSBEmCgOe99b92sP4lPm4TXs5HooAHci9fcuA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771063014; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2RhLSj+WgniiwLn6FewymLFGbWYG/HRQtO48ldzyoUs=;
- b=BxatNjaHmWl3ZRCTqkSbaTYk588zPBdVXBArs09hpxWFHyCLJz2pODmlclOO3Jiwo2aQc
- tw2wkiSt9cVmCoOVrT1mVdceoerNQZPeEh9v+YWZcEZgNoB0/fW1wAZHgkspVeT+cfx+L0V
- a9JfHcrM2qkyQtpeyJRtV5wV9m4pkFOqbUyK3szSEvkZut1X0DWEVqJUohbbz49tEuD8dQo
- h3o4x0pQw9kfmb+Q+CIb1dLsrsLzKblgtOYj6jl+AINno0iLsM3GVYqlYDRySEOXjfh4McV
- d2fI+mz17JE+gfFQkdT4gvkMFS10diaK5owSGfaTugaal7mWsi1bOkHX4ISA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=u1yN2y1qgnP8fWuTao0EKZ8unX5LfbdoNjd1rudCt7g=;
+ b=dmlLvq8OSaK5FPHQL3Lihu1aSbI3mOP6aPnkHiVG+zfaqElA8jnc9Qo/C0rmqBd1rzhPy
+ TqA4D27KFlW3uQS90z7bruPRGbtrrHac/RZX3uMtEmWfKD4BI+JDLO46cQkIUKpQD1+Pm9U
+ R7VmOFBJu0bRsjktF4K70VEgUqArBTo5TIXyLTtlXF8i1OdzYkign33F2zPt/+HlveJ88CD
+ +q9v1efnOh36GETaHJzEyRHXQTAfDqoDUt2nS2U8S5Bfr96URZEZsQ685p1304fEKAdLSK+
+ e7Q1X+RH25yZ05kfeDV/wlEolI2IlORrSHYJ2qMCplSQGvQ9JdbucimLg9yg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1BEC140AA0
-	for <nouveau@lists.freedesktop.org>; Sat, 14 Feb 2026 05:25:28 +0000 (UTC)
-Received: from LO0P265CU003.outbound.protection.outlook.com
- (mail-uksouthazon11022099.outbound.protection.outlook.com [52.101.96.99])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0270D10E1BD;
-	Sat, 14 Feb 2026 05:35:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cUmMHlP+6tBdBbeBR9U1Z7/nEXR2pGA2gTpaknQMKK99EK8vXv0xJWlVPRvQ6tDb0DNaNpBZ6yZjuJYsMusxg/oWJ+9MT+qzI8ZOa48pSGplZqH6mLJxD71g/9sdGbsj9fy70GYl4mPKHlCckYmjLtn2Q/qcBtMqTDPKQ+4jM9opmfQjt/M0Y/mTLbWbYeW4Al3xqplpUpEo5SdO19zVzKX4naKZSHeIXST+h5kpodzFNCbZOuFdzsVaFR063XSAq3Ptfr8MHfQlprWESqx7KY2KhCuV9aCKNx2e0uAB79afV0/oaVvAW6JPsAmLjfvaaDupok2ApZf4/eU+Uy9eBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2RhLSj+WgniiwLn6FewymLFGbWYG/HRQtO48ldzyoUs=;
- b=aHIcA0gEVjGc/6ej05+CKkaXOhN2IP1nwOyBBR8C97ye0Tiu3hlGGUT5nbf4vt/EwX4jZqbXIDOh9V3dkEe0Vf3hWkeOhIIqHy8YbMC2LNVam0OHEER0oNHkDvDbLnnOThDw7vj5SxHQuopK/VKiyN11/7AkLncKygolBB/9IbK8Jm0JGQsAZNcnRGzIMnqOFB4soLe1DOKhCMJBbmtNpfB1SFlzjsu/YB2kip9bvQQGIuRzfsCDdfrWt9GHeublM+SZgIIXwy5Du0CeEInayaziAh7EP3H3zStr55fO5sBuBO0tfvDmo8VmkSaVVCB6lb3JkNAb2TtZG0+5oz0dhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2RhLSj+WgniiwLn6FewymLFGbWYG/HRQtO48ldzyoUs=;
- b=ekUl1JgtOdh3QHpJWa4/WIWfWUvyBsI1k1zJaCxfAf4J83uNuXPWXuAAEOmMbjYB7a2gn7nkWDppgCbiAqYleeTBkoow38PVxKVc5H7DdifYc0ppuIGu35dmNJNco4fTVqWtrMdXdTEP6a8tRZK8LeaDkjKWyKNgT8itnLaFC5Y=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CWXP265MB1781.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:34::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Sat, 14 Feb
- 2026 05:35:04 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9611.013; Sat, 14 Feb 2026
- 05:35:04 +0000
-From: Gary Guo <gary@garyguo.net>
-To: Miguel Ojeda <ojeda@kernel.org>,
-	Boqun Feng <boqun@kernel.org>,
-	Gary Guo <gary@garyguo.net>,
-	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Trevor Gross <tmgross@umich.edu>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH 3/4] gpu: nova-core: convert to use new `dma_write!` syntax
-Date: Sat, 14 Feb 2026 13:33:40 +0800
-Message-ID: <20260214053344.1994776-4-gary@garyguo.net>
-X-Mailer: git-send-email 2.51.2
-In-Reply-To: <20260214053344.1994776-1-gary@garyguo.net>
+	by kara.freedesktop.org (Postfix) with ESMTPS id C3A1B4053B
+	for <nouveau@lists.freedesktop.org>; Sat, 14 Feb 2026 09:56:51 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 55FAD10E134;
+	Sat, 14 Feb 2026 10:06:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 128134169F;
+	Sat, 14 Feb 2026 10:06:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6C8C16AAE;
+	Sat, 14 Feb 2026 10:06:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771063590;
+	bh=PdLyjOtiHcS9KxnLEo8RQrCl/hd/HfoyR+aSR/QqB8o=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=AmCz2P+Z4G7QWiVlM6uRg/bEsFP1udIPacrq+VGr5PCF/7J1dafKyhMzB8HrtnM48
+	 vV6r8GMCnRGgMIcemyBM8MR4hxfDgyd7g0vlLq9UDagy4hlPYmKL09TNC9L5EW5vsE
+	 KaS+xKbsl3i9LozGqcYECFl0OgAc1O26Dr9B0OMtKnvCidXPwb+lEXsyz0DMq09FBk
+	 pKq9sVfh61Urla68uQXge2gMNnYoA4ZNZXUTQDJXeAx5uzDgC69/YwduRDPHPZUR+I
+	 HpCevVLl85xn07tEuJkuBP8W6J4HKAOVe30gDF7MiA8m3069PHOsIGltZu9Y4A0noR
+	 T8uzxzOuOXk+g==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sat, 14 Feb 2026 11:06:26 +0100
+Message-Id: <DGELN7K4KEY5.2SIZMKT9SFZ8F@kernel.org>
+Subject: Re: [PATCH 3/4] gpu: nova-core: convert to use new `dma_write!`
+ syntax
+From: "Benno Lossin" <lossin@kernel.org>
+To: "Gary Guo" <gary@garyguo.net>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun
+ Feng" <boqun@kernel.org>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Andreas Hindborg" <a.hindborg@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>,
+ "Danilo Krummrich" <dakr@kernel.org>, "Alexandre Courbot"
+ <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>
+X-Mailer: aerc 0.21.0
 References: <20260214053344.1994776-1-gary@garyguo.net>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: TY4PR01CA0017.jpnprd01.prod.outlook.com
- (2603:1096:405:2bf::14) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWXP265MB1781:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc316201-70c1-4257-8df5-08de6b8ace31
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|10070799003|366016|7416014|376014|921020;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?UqpYmGS5kgKm2SLWm1xAektuYa65YLjH+zcVRGc6Dlr+RJe/XmZfrbshjPOq?=
- =?us-ascii?Q?7/HZkxmvDnUXvfMkywHDUoI58e2QXAcTPAcmZJVWHvrZk22xpcNt7dtRFrIN?=
- =?us-ascii?Q?CZPjk0OX5IbCKb+G/W1x69u5EX0hoWFTa54nTwTNxh4FcpH1gcIE7zPtxStQ?=
- =?us-ascii?Q?bUKsdqNIezfI07yATD1MYCQei+rPakwwLQh8H44xAYsh/iZOGGZNulxava1d?=
- =?us-ascii?Q?3QxKWbN/peJuduPcnYzLbLqYMxps0cfHcP1RHJW+Ug94v1w2+VsBqoOUdysY?=
- =?us-ascii?Q?wXRDK0BZPfNwfOi/ZUnf9lmoogr+VO5Fg0ovV8hNOq4GxTimEJs+TMP6tolk?=
- =?us-ascii?Q?CarzClzvj1Oh+6Vz99BljdTkr4fgPjBO44ifZUB7biOPhfe9Ia3AVyK7jgKy?=
- =?us-ascii?Q?waDqf2MNdj8LVzX5EhBBofGJdtGUjAo0IYOSHSX6yhi2Vas8k2/ZCJLMtcsV?=
- =?us-ascii?Q?V8wUXmMZjj6rEraeSivkhJTVrSbxHWLtnhrxd1xuDcoGnPn58X7nLJYEiy9d?=
- =?us-ascii?Q?xgI7CJOUcLZTc+UbEl0iLLooUqbuc++FUfne5jOhzzoBP2ViCNJj6kBvRAX2?=
- =?us-ascii?Q?PTMC/37dY7qCj89UIkLuhyScBAMl1FxedNrf+iFR595Atxn/XaLE+haTAiLo?=
- =?us-ascii?Q?OBU62HFjpwJ0oeO8xjJTN6HxubbwlXYPuqhkWlLIsDK3YPZFIjc6skygCx2v?=
- =?us-ascii?Q?3SB9DeqJmaKfCtLYJy3YKxTKrWlSlEvBjuN96kGGaotRwK0+TGxhpQRzyTmr?=
- =?us-ascii?Q?FQdwoRFvT2KQaVUORRU0qiaRu3V6hFQfxuSKts8IYuVxcpn8u8JDHUFAxEty?=
- =?us-ascii?Q?ovAgea6n2T+0z0jq2gXG1l6icEZHU5iX7wVHowy+TfFPnVTg69ouFFPYpK7Q?=
- =?us-ascii?Q?vAVMFj4qsyqQQxe2T7vR70OYNL+7dcEo+FpPyXJocGWTahmoT32K6Fy8aD0S?=
- =?us-ascii?Q?lKR013AAc/E1CmpYA9St3i5UbsAEHOQCIdG+t/ClvtpKFgSmr/Q2++QdqRBW?=
- =?us-ascii?Q?q4y6mnh2fpxu2D9mF4wa/C+yOBObNukGvGJizMuiFbb/bKCQAeVffvLrbrh8?=
- =?us-ascii?Q?tfVowVGjjn4lxzowJXe+E7JWz5jeNl/loVECAmotpVYu6ZEX7Ejx+je4quDM?=
- =?us-ascii?Q?sOR0bPriUXwU58Lwd4PYQjlm3qiYdklrJS6b5XtStKlE8LbAIY3GRlECAx0z?=
- =?us-ascii?Q?APiRnn4syJ9UCdefYDpuCztNGtaWbpRkN+bX3mPMgycdc5CzxA8QWFMeZ7Wy?=
- =?us-ascii?Q?+8NgmcbAZXuKQ7irYOSiB2nWnbfJmwYv4ir+ylwokAlPUFbJtTXRY6vxAGrW?=
- =?us-ascii?Q?1W45Lxgxp70uhYxy2p/he+O8MBWFyOtaVbnLOXRJUdAHhYl/Pyj0EiKn6V64?=
- =?us-ascii?Q?ZeDamqjf6wlAfIT34+6fNUTTP14b+anX5rxbcywYdAfWfrhVzMJAxE5X+b8t?=
- =?us-ascii?Q?dE0POy/j/l5oEM6QCtavVluLRSwSqiw2CahD44cSd//qdIK32r9vj8vJxm6i?=
- =?us-ascii?Q?i29b/2MXNou/bjbcCs3znbC+h2azSiKph2QsMbpP2ppb8Pm7twp95hB8wBSJ?=
- =?us-ascii?Q?t83u+dckDnkLJmwMvKZSxOcm5A9d26EMlg2Bl/tsvuIMNJseUrcUMYdGm8Si?=
- =?us-ascii?Q?Pw=3D=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(376014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?YIf0m1QUhQrfycZ46M4QeAxRHnKyIlMGwEdlTQZUQ0ozcQyDn+pomWhhl/4q?=
- =?us-ascii?Q?imua0C8iph3/cTfb7am3GlPxSj0b36qcN0T4CnjFE8irQiotZQA6h4i7WGKh?=
- =?us-ascii?Q?NTXqYZpv0KvyLjdAbKv+Oq0ozHBx7b0UYkgJFxt4jXGRm+XUNVCKI3kOiIYS?=
- =?us-ascii?Q?+Ci3SVyUIBdYf4hogqx2usMaNsXAk3uJS3T2S/Cmc6RPbMN8YdGdOHxw8HPP?=
- =?us-ascii?Q?G30drPbTxn5+LMk77o2BIe54AmQxauvZ3s6bbm8t53dFysMjvsGbd1l/WiEh?=
- =?us-ascii?Q?dnV2BNVaglCjNZ8U2WOeVtfLPhzL5m5fLiB3e0v081PcdunTOE7zA0Il1WI4?=
- =?us-ascii?Q?A9IRsoHL9MUqvHaC0KPldnISaqIhn35b2DCZASgu4gbx913f2BssennAihW9?=
- =?us-ascii?Q?xgaokC7SI5DKoSXkG/tZN2dwC9JKd6bKhLRg6PP15OdBuK/C9yS5To5yYM02?=
- =?us-ascii?Q?FmrPKyrbcZjtT5hnuC37z/C5SwMto0XSXXGchbM1xCYbFkwUFQmHMzsgglxB?=
- =?us-ascii?Q?24VJIMT18xYkvXfQ7reHAAE6H5CIqcggogRYMV7NjptU/brJ+rp49uYlqQOD?=
- =?us-ascii?Q?Vhda3GYPtlPzzrGjHo5LaaSgD4mMiB9AHV0sIlwFXX2Glhs4GsCkn8xZAoVT?=
- =?us-ascii?Q?kaxw5D6EfvO0Up+R/krgsyNVGjWL0uEnc3qSmrXFc4kuLHHBjCU1feEj1ko6?=
- =?us-ascii?Q?3VX1ksnWtBqj64qIffgiJ/TmISHj/OZADy62RRRv4+BfCPKBp95+9UgV+O0T?=
- =?us-ascii?Q?TSu+PSrNRKdKhz81OEm78+kfqqqoWE7GCPjaW8pmNRAImDPrq2ddQlnMpjUA?=
- =?us-ascii?Q?iLMKf2jiR/5ZexEJYHUpm/1Tjh6GnAvR7mo9KEFK23lrKkDrKRX5YNedd565?=
- =?us-ascii?Q?T+X17g9CxT/zxgbZUWLvH8q6QbM4K7ZHONWcqGms67fx0PF1T57yciXBqETe?=
- =?us-ascii?Q?b2f/qhgWhyxBpmsa0Hc8gJOmtQ4ssjl57rqdo42RlUvbdBdqXeT1ANGKk8ii?=
- =?us-ascii?Q?I1Na0SKyzTsIqHwLLgfvUGi/MGd6GjIdaIKhUCxIklzqIG8XWxN6XuIKE8cW?=
- =?us-ascii?Q?hmR7aJDbrpQ+laXRVCQyDGMMqoT2BCW2nZMoxHbM7oqYC2zm1Z77rZOjWIF0?=
- =?us-ascii?Q?WBD0FQAHpYrGeC9KwWxfi9RzsFUB1+CFCEXeTsTOXdn04kz4mnLyAt8/IPgQ?=
- =?us-ascii?Q?wOZlew92mmfRUQKIMin3Yr/2rmervf3ZfvLlkG+WRqVL3GUr9TrbG4LQjuZr?=
- =?us-ascii?Q?CIPTqf0SlHuLgGK7xBChbIdk3ehNTma9k5Jzzm2Nu213JfnOxN7bHeboKWrO?=
- =?us-ascii?Q?gzVR4fXmzS9k7eQJT/0dt8/lCrPwJPo7CKGVgMVuvo/KFg40yy56oBpJcx8J?=
- =?us-ascii?Q?/PocmTtFAsx0nIjXhJxjt3FvVtDrJqz9O+HFBmJznQfjrRc6klRI1ClbXWYs?=
- =?us-ascii?Q?kTQADihHdaXvr+TpJeia2Qy+bwLOikttziFFmMMUah9Wtes2qFdyH8pwHCau?=
- =?us-ascii?Q?EKj51m9HxY9VeCZBAoJkpnMu2hjr8iskeFGq32ZaGbBfklFWZrjOLyIhhnoM?=
- =?us-ascii?Q?eZp1k5yIoC1jszrT41BVPV0vSVPzt9ibaueB38aXamF1cDTo9MRkLnn9ygp4?=
- =?us-ascii?Q?9RMDGTCSA+ThDlrn+ybghv7yLGNHVHYAMWBoo6w9+hEsEiXvTMcLJut1AM6J?=
- =?us-ascii?Q?F1VrUMtZoyeJfZZJebGkzcl/4ISHprQNckvkK0ZA2DeGWvzDbR1f+gQQDqw4?=
- =?us-ascii?Q?d6JcyTwDXUCnAYJO2Lh34kN6tRPpDWSpJlwicIfdKODTvuESc4XA+TEhKnlM?=
-X-MS-Exchange-AntiSpam-MessageData-1: Wi/f7sU5DTYRuw==
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- cc316201-70c1-4257-8df5-08de6b8ace31
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Feb 2026 05:35:04.4461
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- fKCq5gI8KRyRz5XWNFdyFYSvTugZrzzzbO0MOGmWQP9K8K4yZjk4HC5iOFnNZuXykfQVHuFvaOR/q2vbfT5nUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB1781
-Message-ID-Hash: TSTDQDGLXWHDTMNMDKCJLNWEYM7LZI3N
-X-Message-ID-Hash: TSTDQDGLXWHDTMNMDKCJLNWEYM7LZI3N
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+ <20260214053344.1994776-4-gary@garyguo.net>
+In-Reply-To: <20260214053344.1994776-4-gary@garyguo.net>
+Message-ID-Hash: Y4GPHDQ4NLEUGDPI7IVWR5ZHEFNS6JMH
+X-Message-ID-Hash: Y4GPHDQ4NLEUGDPI7IVWR5ZHEFNS6JMH
+X-MailFrom: lossin@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 CC: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/TSTDQDGLXWHDTMNMDKCJLNWEYM7LZI3N/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Y4GPHDQ4NLEUGDPI7IVWR5ZHEFNS6JMH/>
 Archived-At: 
- <https://lore.freedesktop.org/20260214053344.1994776-4-gary@garyguo.net/>
+ <https://lore.freedesktop.org/DGELN7K4KEY5.2SIZMKT9SFZ8F@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -208,75 +110,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-`dma_write!(dma, projection, value)` is the new syntax to be used.
+On Sat Feb 14, 2026 at 6:33 AM CET, Gary Guo wrote:
+> `dma_write!(dma, projection, value)` is the new syntax to be used.
+>
+> Signed-off-by: Gary Guo <gary@garyguo.net>
 
-Signed-off-by: Gary Guo <gary@garyguo.net>
----
- drivers/gpu/nova-core/gsp.rs      | 14 +++++++-------
- drivers/gpu/nova-core/gsp/boot.rs |  2 +-
- drivers/gpu/nova-core/gsp/cmdq.rs | 10 +++++++---
- 3 files changed, 15 insertions(+), 11 deletions(-)
+Reviewed-by: Benno Lossin <lossin@kernel.org>
 
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 174feaca0a6b..25cd48514c77 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -143,14 +143,14 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> impl PinInit<Self, Error
-                     // _kgspInitLibosLoggingStructures (allocates memory for buffers)
-                     // kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] array)
-                     dma_write!(
--                        libos[0] = LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0)
--                    )?;
-+                        libos, [0]?, LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0)
-+                    );
-                     dma_write!(
--                        libos[1] = LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0)
--                    )?;
--                    dma_write!(libos[2] = LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0))?;
--                    dma_write!(rmargs[0].inner = fw::GspArgumentsCached::new(cmdq))?;
--                    dma_write!(libos[3] = LibosMemoryRegionInitArgument::new("RMARGS", rmargs))?;
-+                        libos, [1]?, LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0)
-+                    );
-+                    dma_write!(libos, [2]?, LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0));
-+                    dma_write!(rmargs, [0]?.inner, fw::GspArgumentsCached::new(cmdq));
-+                    dma_write!(libos, [3]?, LibosMemoryRegionInitArgument::new("RMARGS", rmargs));
-                 },
-             }))
-         })
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index be427fe26a58..94833f7996e8 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -157,7 +157,7 @@ pub(crate) fn boot(
- 
-         let wpr_meta =
-             CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
--        dma_write!(wpr_meta[0] = GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
-+        dma_write!(wpr_meta, [0]?, GspFwWprMeta::new(&gsp_fw, &fb_layout));
- 
-         self.cmdq
-             .send_command(bar, commands::SetSystemInfo::new(pdev))?;
-diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 46819a82a51a..ae54708c38eb 100644
---- a/drivers/gpu/nova-core/gsp/cmdq.rs
-+++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -201,9 +201,13 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
- 
-         let gsp_mem =
-             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
--        dma_write!(gsp_mem[0].ptes = PteArray::new(gsp_mem.dma_handle())?)?;
--        dma_write!(gsp_mem[0].cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES))?;
--        dma_write!(gsp_mem[0].cpuq.rx = MsgqRxHeader::new())?;
-+        dma_write!(gsp_mem, [0]?.ptes, PteArray::new(gsp_mem.dma_handle())?);
-+        dma_write!(
-+            gsp_mem,
-+            [0]?.cpuq.tx,
-+            MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES)
-+        );
-+        dma_write!(gsp_mem, [0]?.cpuq.rx, MsgqRxHeader::new());
- 
-         Ok(Self(gsp_mem))
-     }
--- 
-2.51.2
+Cheers,
+Benno
 
+> ---
+>  drivers/gpu/nova-core/gsp.rs      | 14 +++++++-------
+>  drivers/gpu/nova-core/gsp/boot.rs |  2 +-
+>  drivers/gpu/nova-core/gsp/cmdq.rs | 10 +++++++---
+>  3 files changed, 15 insertions(+), 11 deletions(-)
