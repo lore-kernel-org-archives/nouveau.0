@@ -4,211 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15D45E9A02D
-	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 18:19:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D2ECE9A03A
+	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 19:54:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B62EB10E530;
-	Tue, 17 Feb 2026 18:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3726810E51A;
+	Tue, 17 Feb 2026 19:54:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EDjB51qk";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="BIuD1Xks";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7FE15433A3;
-	Tue, 17 Feb 2026 18:09:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CD72B433A9;
+	Tue, 17 Feb 2026 19:44:21 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771351753;
- b=sJpHLpDdToEejMOYcAWF4AkFjZuZr6Lxj7VnVdBy/lOpujsnc9Poo6m/KsXm0L0M++6fD
- CXT3jY7TQO/pe1sJt+SZ+oSUTvimknRVsEUt6rrb6lxc68NWnwRXaYikUQ8oqKDTneVzbkv
- mcwqANcVJzp2inn6rAyO+Ms5YHxcQOm8d8zfZJv9t/9mjpY2osn2iuSb5r/BjRCDjUeY9El
- O2ZTXCvqF5kbr8CeAtmM4b0uPbbJ3BFkLqiD8MtTD5NZwjinjwiruI8crxS3U1jVx3m6IsT
- YIL8M3jc1A3tvAPtC/0TkLd/XA71esHuxo1MXvSxgiq67EDdfHSE2jwX2Xkw==
+ s=20240201; t=1771357461;
+ b=zr6EvpJAHU/5QDNVAxS9BMDUbpoKYLzvu301oTCplfxrnGleGvND7HOgJZQgtxqJYaG6Y
+ uHXdA/OaArpLKuLOE9UEDcKrLKqlxXC9yX0/NnXPBwYEjbqpeSC8rZO4L7jBeNYLDAfm5da
+ xFnRs2yfpBFut3Ok0SgSDkV3JrRfgRXkng5WSrssdvWsxGk9U3Ra8GDSmzA/23pEab2pKcp
+ bemC4zhZg5rAcqD4Fa5pjIoAy5Vz78GBm+C4Hn8bckoIMcPv6BGshCUuC9D3hxOvK0b0sRK
+ QmRAx3nwgxk/phvMApSdnrCQM/tsq/hc7ObZte2bH9jslZoUcYET5PfS2zow==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771351753; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771357461; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gBEP8Xx8sV22WxoGJ36c4T2tiv/EhhSmT5q7hi7Iz+Y=;
- b=PhdskZ7ID2wO6v9RsuCYq0Eyc1HBTEpLAeXwiI4Xn1zMuRNeSlw7qmN6yAmKlfLyWLtnV
- 1ErTXgTYYfk2gbp5JScu8d2MD2FXL+lGJYW+mzekd0B8lzMiJsLMDSyquHBhV5r/p1XjmZc
- aT6hoE8HrU8xmL9Xp8lYve4114Ec+jYgQeTWZS1EgKNDqzluJsFSdG9GEA/oNwHLa7mYalz
- H1SDLnn29tJwFQRFb+mk4eq/hR8hzrfu2wU9N3npd9ESp/olpImrliwFFGZKQ2HtKWk1m7D
- 6Igv0HTx6UyCQc7Ho9CwmizqOf13VeyOaXC9wLpkvtj5MnOy+WLHLNZNrKDg==
+ bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
+ b=PHAjCI5FVgek3cxhzVOTCpX3NOm+SfPxG/OoGEUZYJsLiQ3ud0RhqxR9EBVnq3zdvmePL
+ j5vTKIdDDhnCN/61oBs/dFZ2K6D2VCHHKLWHmlrxSwy7xwEj+pUm1PgKCvpWo6LRVhuFXEs
+ QRCDSsWVese1znBbFbszPBfcsasI4ov5jjz0lKbpijwBj/FIltMEw/TBKDxZOSne4UNpIjb
+ eFg0VwQRqSL6tVW3Gn6en8d0IjEdBjigoPlBeFnJzWfuu6HGtOctsF8L3s7gPG1WWnHsvBo
+ Xl8Zaqq0KWlckrefHx/4nMOrxEwugb1b8MzUvo4CFMGzjFbVQK5EoE033wGA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A9C97403B4
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 18:09:11 +0000 (UTC)
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013037.outbound.protection.outlook.com
- [40.93.201.37])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F70210E0FC;
-	Tue, 17 Feb 2026 18:18:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Bh6KM9C8idu2xYuklyi4YJpnuQ2JyrQcozUKwh+LlOiEMHpCoGoy6xlRvEghzHGaiQ+eBwfinFV+iD0fRVTiGbPN0YwLaNoxKXqH23U+7SiWW87F5L7Ed0uMuKEh3WS4be431ES7e1DGr+xigUKIBSOzkPvrmS36Fu249lp81vZRae3JPT7ofsdMIw4elyrnhU7MJkqQRfWTDsqwb4aeV44Ba1Lm+Qy9VYx4HJR8PEFxh/SNxA0qXsllLBfRYnqZ3XmF1uC1PF9rmu0WJhoRg6E2HBjTh2wx8sIXZvpGpJ79cN1dk6wKnnKzeo8wVH+56bEX8tXPhFnsqIvYBDwHVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gBEP8Xx8sV22WxoGJ36c4T2tiv/EhhSmT5q7hi7Iz+Y=;
- b=k2jmI1no3Vw+rub89SawocK4LKhz0Y+KT5vJRdPViaGRNKFv3cSwKBlKbDT+nkSbUe1yVrX4kpxJaW+2nP1nk/V3KCfH3smrbxpqFXC9Q2N5Gmd8lUdjlW0qxzmTXj6bNC6fNdPTbr6l12nEydTO07NAjP4IVhV0h5v3nSDslbVDkDlJnlE8mSvTRQkVBVD/NuIgI67y/dD6MYo0X6CkSdM2ine9bZq8tOLR++DnG3O1KqKCHm8Q3/SRZI2gq/FkXRQIgTeU7tHhWs+5LaFRbd6V8GJD0d9+Dw28DSs6+cJi2GXnf9zzYwXIyhJ2IYZnuFQsVTVamlVq9l1ZUzB5Sg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gBEP8Xx8sV22WxoGJ36c4T2tiv/EhhSmT5q7hi7Iz+Y=;
- b=EDjB51qkSniF4EwKnV9pwdKA/2VyKmPOQSt6vMzgpmCNgebG1S1qPib+9lJmZX7sSeNNaI/6Yxf4UPXA0k5VSnp6dhwZvewLMt3hn5HVwPFSTAtERNEnooOjuQQ01EmLWp0CnCd2Q4MVu9RKG//UGHbT31TqcdgW55Ai4PLmyQXUeyaKAFKO7GYXb0pLKe6ryg64m6plrZltddeNlAxDcuTsDsTCnEoaJ+HrTgBk52do6xQ1abPtoIps+WsMAw5YwtOrjGm2e+/BiWQxDii/DxShGa7gGVllLSieMiA/veifk0hcl8yrF0AG3uztzAijCMCbcln1MUikwrDVVkyG/Q==
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- SA5PPF8BD1FB094.namprd12.prod.outlook.com (2603:10b6:80f:fc04::8d3) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Tue, 17 Feb
- 2026 18:18:43 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9632.010; Tue, 17 Feb 2026
- 18:18:41 +0000
-Message-ID: <b03da418-4e62-4256-9c2a-8a1a271fbeca@nvidia.com>
-Date: Tue, 17 Feb 2026 10:18:31 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/7] gpu: nova-core: gsp: add continuation record support
-To: Eliot Courtney <ecourtney@nvidia.com>, Danilo Krummrich
- <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-References: <20260212-cmdq-continuation-v1-0-73079ded55e6@nvidia.com>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <20260212-cmdq-continuation-v1-0-73079ded55e6@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0036.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::11) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|SA5PPF8BD1FB094:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9b5ea236-196f-4cda-f07e-08de6e50fa8d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?SWRjS3VBODQ5U0o3VU5ZUEt6QWZZdXMzajFqNkFoeE1tZGlRL3ZJMEdMTEhx?=
- =?utf-8?B?Tmx0SHcvTCtPcmR6bXM2WXJJbmdxRTlXbXdBMDRQWDF4Y2hHMVJUOW1QaVh0?=
- =?utf-8?B?Q1haeThTSjc2VzdSS1EzR3FncjJIUFc2Y2tSNjRNSGpHdG4xcmpKUnhWK1pm?=
- =?utf-8?B?aHMramhraXZaaklGUDM2ckI3S2Nad0w0YUFiSTU3ZFhVNUFiN0xWWTlyZldr?=
- =?utf-8?B?Z2MvdXZ2aTNoTkQ5c2NWSXZFLzB0YnRCSjdZeHl1U1pzTkgza3hvV0F5SitW?=
- =?utf-8?B?T3JnZ01Rejc4NVBRNGw4MkRtWksyOHI4SkIxVGgxVURXME4zMmtEeWgxbkxY?=
- =?utf-8?B?clpmWFF5MTZxTDVySkUxS3ZmKzUwZGpLb1FzcTRqNG9iWFRldjBreVRTYXdx?=
- =?utf-8?B?bE1BUzRUMHdDRmVoelgyeVpwY1pVdUg3WDlIS2hZWTZFR2M4N0tPYWpDZlkr?=
- =?utf-8?B?WFgwM2FKMnJXdE1mUVhYYk53bG1DQWlvTEZpY21ILzdWblk5L0R6Z1hYOTV1?=
- =?utf-8?B?NzhvWkQrdUtWQ3kyWFl6RFFXRHFvQnFIbk9NcG9nVkZacGxjNEpYSVJEN2t5?=
- =?utf-8?B?aCtXeVRGQ0F1NEd6UGY2SjRvSkVkREh5c2VFcTJIdHJkTytCZ2c1ZVUwSGNq?=
- =?utf-8?B?SkhLMC9wOFdta3NlRFc5OERORDJXV29Gb1ZNMzl1TmUwa3pQR0pPdGN6dnRD?=
- =?utf-8?B?NUhRQWRCQnEwVCs0bmYvNmhzZEZjdFE2dU95VS9QQWFsaTMyREJlQzQ2TXZU?=
- =?utf-8?B?blZGWHNDbG5jNW10QUhOUDlMQU5NL3FXNWVWWGJFeVE0cWxKemV6Wm0yVGdL?=
- =?utf-8?B?YkFGMndGMVJvL1VnVFNXTzhxU3BZalRCMW1xN1JNb3l2RWdIOUliRStDbE94?=
- =?utf-8?B?akxZS0swcTVtRUpGTHFHZ2FuY1Z2U3JnYXRwR3crYi9mVHdLY21ZaEFHMVpx?=
- =?utf-8?B?MUNsUy9iUTFoZ3RvMk5QV1IyMm5PZFVEOHdQRVhHTmRJejV4djNONElsS2JN?=
- =?utf-8?B?TkwxT0V4ZEVtTjExbFJ4TGduK2tJL0lQTWtDcWhFQ2hVZURIWUZpWnY5MTNY?=
- =?utf-8?B?dk1Od3Njb1pzS2FFdkRXOTdSUWNPeDhjNVJWaTZteFhKN3FpUGhMNVExcTE3?=
- =?utf-8?B?SGJ1eUpoeiswRUFoOXFtUkhWSTZuRUlra1d3bHE3clFGUXhFbVk4OVFXTEFH?=
- =?utf-8?B?SGtmY2pFa3JLb3ZsR2NWY2ZTbG8yemF4Sk9SVWl2emZWbWtoaFg0dHF0T1Rp?=
- =?utf-8?B?VjMwUEpPRG9YWVNnUEt4UTZhS3ZoeVBlSk1xeEJ4QkFML2FwRkdQdVdBN2hK?=
- =?utf-8?B?Y29GcVlCVXhtcGdudGJxam1sQjljOUk3aFk0R1hHTENkUmtZV01qaTAxNkpn?=
- =?utf-8?B?bzhFN0drbmRIMFlWZ0k3TW1FejdST0lSUTFlc2pNbnN2K0todWZGVll6S0ty?=
- =?utf-8?B?Zytnd0k1SW1reExXaUlQUi9PQ1RRMng2UG90a2F1RzVxYzNlWmZ6RU10bHJQ?=
- =?utf-8?B?OU1ZMHB5MnhBTXVidnVGblh1TkFIZlRoR3VBYU1GOVNkZTA4Y1JWa09tZkhw?=
- =?utf-8?B?MEV3WHozQ1JsM1UzY2JoQU13YTJaMEhEUGhzUWY3WkFuZFBxNHpMSEpZWllq?=
- =?utf-8?B?SlJtSDVPTHZJVVBrajBFbGFpNCticDYyVkJ0ZTVlS2h2QjZKdnNlN2pndVhj?=
- =?utf-8?B?THpvUmM1R2h2clJyQlhkd2RXU0dYRE95a2lkL1ZHdzRDTWZNOStwMndkQUdT?=
- =?utf-8?B?OU5FM21VUGpZN2UzempPV29qUlRWYlZOcHZ2WWRDT09KY0g5MDQ5UHNTQWZT?=
- =?utf-8?B?NHdOalBFOStsZ0k1UmlISFhKd29HQXJTTDZTZ290YmRKS2szRTNXQ2NkMWpS?=
- =?utf-8?B?Nm5zWEhzTkJkakM2MmgxaTMzRmtIdjJlN2pveEdvYTh6MXhwRnVwRXVGL1JM?=
- =?utf-8?B?RUNQb0NyNERuMTFFTmJQMWhKZTVyVTQ4Sys4UmRUVVBoWG1zeGtadVVkcThu?=
- =?utf-8?B?Umt3UUE0QTZKTXNabFpJZzNLMjRvODZmQzhMU2lMeXVDTTlEaHV5K3BTSWY5?=
- =?utf-8?B?Wis4TUw4U0l3VUsvcU5rVVdXZ0sxWEE4NEFmc0lFaXA0dXB6SENlOS9QZkVu?=
- =?utf-8?Q?2cp0=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ZWdSN2VXemJ5RFJHRTRhcDdBRCtybG5GQnl2RnFLbUw4RStuTVhZb1JBYm83?=
- =?utf-8?B?anlXSkRiK1ZPWTRIbThyelpGWlFkZ2JCN1hrZjBsQUVxbXY3WlMvTjJBcmk1?=
- =?utf-8?B?a1Evdk5laU1pTGJwd1o2dncrZi9ZSFZZUkZLejBjQm9XWXFYSUJuQjZwREZq?=
- =?utf-8?B?OWEwbnV4Ny9sZnpMZnhZRXZKbXFTU0g1M1BkV1ZUWWNHaVczZGs2cEZ4YmFs?=
- =?utf-8?B?NTkxQml5bFVlOTROU1JqS2VhSFB0RXZ6SENKOHJmMGMwcHNNUExabjVUODhy?=
- =?utf-8?B?VnIxdGZYd2xSQVlrSUM4TTZxU1dvZU93ZnZoYWRWWnQ4cjZNQU5IRGZGdWRP?=
- =?utf-8?B?SE9sRzlpNkxhTDRMekl0d1grMnMrWGFOTzJHa2lNajRmdFUyZXBWeG1GWnVJ?=
- =?utf-8?B?aDhvRUg4a0tYRGNzbG9GMmkwODQxM2Y0N2JaRnFYQkxERk81QU5RN1BacDVy?=
- =?utf-8?B?RVlrd2VYekxmSGcvcVNHYm1kbFZMUGpQN3ZoTXpJMVFnbkVXbENaRmJmS2JB?=
- =?utf-8?B?UjZFaGpaT3pDUWJNSW1WVWlBQ3B5V0JJZzBQRlgwY1R6M0RybVJBeXFKaUZu?=
- =?utf-8?B?WFFDU1VickR4YmMwaStRVjNMTzN4OTFqWHQwbnovanBqR3NnZm1jUmk4MHpL?=
- =?utf-8?B?dGMrc3pFdy9pNm8yNnNWamxyeUpmd2lGOFg0NjRYRDNyMUNYejdhMERQanpu?=
- =?utf-8?B?NHJwL1FXcjJwQjcrMXdsMW5aeVFoeHZONE5FbTFEbG9MZDBzN3BTWVhjWThz?=
- =?utf-8?B?NEpMQnltTE42d2FMcFdWR3VjSU5wdXFyYWpwQm5JL1N6c1pRM21mZzc3aGli?=
- =?utf-8?B?TEFLZkJ2T25VazRSa2tDMHVzMlFZQVlQMnV2Z1dzZC9lcWUyemc5OWlrVDky?=
- =?utf-8?B?dWVJc1RNcitTTnhKbzFLRVVqYmNGS1RkKzd1YUZsVVJaVGxOWEdJdUpEUTBn?=
- =?utf-8?B?eUF0RHB0VnJHTmRxeVZNSWNUVFdpZUFQM1BnTVB5cm1EeDBwcVBGTHJkZCt6?=
- =?utf-8?B?NnorMzhSa3o0RU9saHpJN0MvcEdSc3lnUHlKQldmbG41RjQ1MlpsQWpxbE04?=
- =?utf-8?B?engxMEt1YzZoWE0wVlUvTnlEclJEaUpnaCt6cWVHTzdlQmZZd1BpSnd4ZUNn?=
- =?utf-8?B?Y1BXY00wUThXSk96dThaRXkydXRFR3ZTYjN6YUNSd3hrd3NCTXVXRXFtUElw?=
- =?utf-8?B?RG1UQ1NzOWgzY2lEN3cxLzV4QWpKRmt5YWYxalFGc0tJd1dmYnIyL0hIcGhs?=
- =?utf-8?B?dDh2a0o4TmloOWc0Q3JKYlUwNW5RUDBvRzFwc1R1QmtzOHpmUy92Q1NHa1Rk?=
- =?utf-8?B?ZWtEMkJuQ0YxVytoRGordVRVYS9PaThwVnFLTUpxQU5aR0dGV2VFQ0tSbnRH?=
- =?utf-8?B?MXA0eUgrQnA5SDRnWUdHd2lJNncrMTZMczB4RWVtZktXSVJFRFJ6OHJLNzI3?=
- =?utf-8?B?dk1IR1VCWmdIM3Eyc2I1MEtzR3YxaEw4Qi9rVmp0UEFmQTk5QzdGOWdZNkRG?=
- =?utf-8?B?WUEwdXpqTXRMMXBDQUpMQVI1Q0tzcU1DM1YxbzEzTlRvaXZHVTFGMWZmYTJC?=
- =?utf-8?B?ek16dVdsYXRkMitDdE9nNmZpamtoSXp2OHNwSWJWMHFqeUtNd1JEZ0xMQlor?=
- =?utf-8?B?Q1RZUXlFcmhYd2lqZytLR2dNdGJjKys1T08yYUE4b3cwSUhnTFpZZk1HOEFM?=
- =?utf-8?B?SS9yL2hKeUNJakswZ1c5WW5meGFPSzU1WEp0d1NwOGI1ZXlKWS9iblcxdnVE?=
- =?utf-8?B?QUEwV3Bma29MVERZZzBCYk4vUU5TaXNwYU9LdjFTVThCOUh1dmlTbnhtSXd2?=
- =?utf-8?B?TW8vVytWYVhlb2xoT0N2MGRvaks3a1ZMR1VjYjlnVlNnWUJaME01VDNEajlx?=
- =?utf-8?B?Y3BUdE1Sa2FIR21DaE52QkJvYW5kTEdSNG5IUm5IdEdTV05NWFFNOU1mZU9i?=
- =?utf-8?B?MHJ3eHk4djMyTVI3MmlEZVZrWmV4cFBSakR0RllTbFBNTlU5R3lSTjBsZUwy?=
- =?utf-8?B?b0JQdUlObjR4OExGZ2s4ckRabVlsbCtqSnMzUnlUV0pCaDBOMGFtcWtZcXg3?=
- =?utf-8?B?SWc3R2o2RkoxUWJNaUcvdDZrWEpBOHNDWkZTcW9YMXlOV0VkNUdJQW1nWDN5?=
- =?utf-8?B?TWJSZzlsS0JtVXlqR3cyUG53c1JtYjFZdDlNSHlTY0tiUUQxY3gxR2JMV2Uw?=
- =?utf-8?B?OHFQdjJMQzhlakpJaExHcURkUzFMVHd3aXdZa2NsY1d5RENIMW5vSWRyY1Zj?=
- =?utf-8?B?Z2tkN3BubEtXQzlLS3ZQRGxqa1NjUmNzSkRkWDFVVVRacE01N21DeW9SZjJ4?=
- =?utf-8?B?ajFVbGhFRUttTkhaMkhtN015dTJYRXUrL0hHaGlYTDVIakhhT3h6dz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 9b5ea236-196f-4cda-f07e-08de6e50fa8d
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 18:18:41.6105
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- wrwf4QxY3ek2nH8OgZfn2d0BuihMxGNWK70HogjOuzL6JfLUew2MUat1sEjS66Er+DSh1Yev6HoMd6Tc4sqFfQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF8BD1FB094
-Message-ID-Hash: 4FSOKNDW6EQUOSOTPMVLOH5WYM6YDF54
-X-Message-ID-Hash: 4FSOKNDW6EQUOSOTPMVLOH5WYM6YDF54
-X-MailFrom: jhubbard@nvidia.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id B3A76403B4
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 19:44:19 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CF54210E2A3;
+	Tue, 17 Feb 2026 19:54:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1771358042; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=IZkPQy0Wik5rusuc4aV5B+jj0MB29fyUbs7pP71qFNHoO0oyqwqttjDtQsNv3c93JLN+JtwIZOTlU0D/rurWQKAsjeFcaKYB4F1Uml9m5Tyxbhahe6cHFXvwjfi0FM/BY2eSJ53hrIYEmBCG6mDIsCj4tuJOrQhRZPNo8GsjNY8=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1771358042;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
+	b=hM0+aQV0V1j77EEsy4U9UmNgGLxSQQYdTYEWKwaxiYjqCLbAyrMwjVe4+sXTlQRAd72kRslWM7wTw/7s7jXLJKhVWaqUUtVJlVH+NW2kflkWK5FgyPVp1GPRIRSc1+ZNWZwboyDXgg/4lyzwsHIIrtsA3ajZdyx//8E63Jv5X3A=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+	dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771358042;
+	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+	bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
+	b=BIuD1XksshXGnfiD1sllUBw1cr1wQM6CmsE6FN5FeiPnZDqiy99OrdIh/7zMrAwY
+	tb463WGExPPYsBoB4QlX8M3heTsHFYEDEzlZTYukbUu9s+/e1eALNbYyyMCzbkbH/e7
+	jRx53bSfL7LuZC63Q7Bjz2GwqP3zabX5h8AoVFWY=
+Received: by mx.zohomail.com with SMTPS id 1771358037932727.3027003579033;
+	Tue, 17 Feb 2026 11:53:57 -0800 (PST)
+Content-Type: text/plain;
+	charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
+Subject: Re: [PATCH v7 5/7] rust: drm: gem: Introduce shmem::SGTable
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <20260206223431.693765-6-lyude@redhat.com>
+Date: Tue, 17 Feb 2026 16:53:41 -0300
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <9442F3C0-AC21-4AC2-9D8A-352424144999@collabora.com>
+References: <20260206223431.693765-1-lyude@redhat.com>
+ <20260206223431.693765-6-lyude@redhat.com>
+To: Lyude Paul <lyude@redhat.com>
+X-Mailer: Apple Mail (2.3826.700.81)
+X-ZohoMailClient: External
+Message-ID-Hash: LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM
+X-Message-ID-Hash: LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM
+X-MailFrom: daniel.almeida@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
+ Benno Lossin <lossin@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ Janne Grunau <j@jannau.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4FSOKNDW6EQUOSOTPMVLOH5WYM6YDF54/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM/>
 Archived-At: 
- <https://lore.freedesktop.org/b03da418-4e62-4256-9c2a-8a1a271fbeca@nvidia.com/>
+ <https://lore.freedesktop.org/9442F3C0-AC21-4AC2-9D8A-352424144999@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -218,51 +116,131 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 2/11/26 10:28 PM, Eliot Courtney wrote:
-> GSP commands over 16 pages need to be sent using "continuation records"
-> which essentially means splitting the payload over multiple commands.
 
-Let's please include rust-for-linux on Cc for Nova patches, for a while
-longer at least.
 
-thanks,
-John Hubbard
-
-> 
-> This series adds a command type `ContinuationRecord` which just writes
-> its header and whatever payload it is given. It also adds a type
-> `WrappingCommand` which supports splitting a large RPC into smaller
-> ones.
-> 
-> The send pathway uses `WrappingCommand` to send all commands, but if
-> the command fits into 16 pages, it still writes directly into the
-> command queue. If it is larger than 16 pages and needs continuation
-> records, it writes into a staging buffer, so there is one copy.
-> 
-> This patch series uses EIO for mis-sized commands to be consistent with
-> the rest of the code.
-> 
-> Patch 6 introduces a single helper send_continuation_record. This is
-> because the compiler can't properly infer the types without this.
-> 
-> Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
+> On 6 Feb 2026, at 19:34, Lyude Paul <lyude@redhat.com> wrote:
+>=20
+> Currently we expose the ability to retrieve an SGTable for an shmem =
+gem
+> object using gem::shmem::Object::<T>::sg_table(). However, this only =
+gives
+> us a borrowed reference. This being said - retrieving an SGTable is a
+> fallible operation, and as such it's reasonable that a driver may want =
+to
+> hold onto an SGTable for longer then a reference would allow in order =
+to
+> avoid having to deal with fallibility every time they want to access =
+the
+> SGTable. One such driver with this usecase is the Asahi driver.
+>=20
+> So to support this, let's introduce shmem::SGTable - which both holds =
+a
+> pointer to the SGTable and a reference to its respective GEM object in
+> order to keep the GEM object alive for as long as the shmem::SGTable. =
+The
+> type can be used identically to a normal SGTable.
+>=20
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+> Reviewed-by: Janne Grunau <j@jananu.net>
+>=20
 > ---
-> Eliot Courtney (7):
->        gpu: nova-core: gsp: sort MsgFunction variants alphabetically
->        gpu: nova-core: gsp: add mechanism to wait for space on command queue
->        gpu: nova-core: gsp: add checking oversized commands
->        gpu: nova-core: gsp: clarify invariant on command queue
->        gpu: nova-core: gsp: unconditionally call variable payload handling
->        gpu: nova-core: gsp: support large RPCs via continuation record
->        gpu: nova-core: gsp: add tests for WrappingCommand
-> 
->   drivers/gpu/nova-core/gsp/cmdq.rs     | 113 ++++++++++++++--
->   drivers/gpu/nova-core/gsp/commands.rs | 247 ++++++++++++++++++++++++++++++++++
->   drivers/gpu/nova-core/gsp/fw.rs       | 102 +++++++-------
->   3 files changed, 401 insertions(+), 61 deletions(-)
-> ---
-> base-commit: cea7b66a80412e2a5b74627b89ae25f1d0110a4b
-> change-id: 20260203-cmdq-continuation-b99f3d5966c3
-> 
-> Best regards,
+> V3:
+> * Rename OwnedSGTable to shmem::SGTable. Since the current version of =
+the
+>  SGTable abstractions now has a `Owned` and `Borrowed` variant, I =
+think
+>  renaming this to shmem::SGTable makes things less confusing.
+>  We do however, keep the name of owned_sg_table() as-is.
+> V4:
+> * Clarify safety comments for SGTable to explain why the object is
+>  thread-safe.
+> * Rename from SGTableRef to SGTable
+>=20
+> rust/kernel/drm/gem/shmem.rs | 50 ++++++++++++++++++++++++++++++++++++
+> 1 file changed, 50 insertions(+)
+>=20
+> diff --git a/rust/kernel/drm/gem/shmem.rs =
+b/rust/kernel/drm/gem/shmem.rs
+> index d9f1a4e95cedc..e511a9b6710e0 100644
+> --- a/rust/kernel/drm/gem/shmem.rs
+> +++ b/rust/kernel/drm/gem/shmem.rs
+> @@ -197,6 +197,25 @@ pub fn sg_table(&self) -> =
+Result<&scatterlist::SGTable> {
+>         // pointer to a scatterlist
+>         Ok(unsafe { scatterlist::SGTable::from_raw(sgt) })
+>     }
+> +
+> +    /// Creates (if necessary) and returns an owned reference to a =
+scatter-gather table of DMA pages
+> +    /// for this object.
+> +    ///
+> +    /// This is the same as [`sg_table`](Self::sg_table), except that =
+it instead returns an
+> +    /// [`shmem::SGTable`] which holds a reference to the associated =
+gem object, instead of a
+> +    /// reference to an [`scatterlist::SGTable`].
+> +    ///
+> +    /// This will pin the object in memory.
+> +    ///
+> +    /// [`shmem::SGTable`]: SGTable
+> +    pub fn owned_sg_table(&self) -> Result<SGTable<T>> {
+> +        Ok(SGTable {
+> +            sgt: self.sg_table()?.into(),
+> +            // INVARIANT: We take an owned refcount to `self` here, =
+ensuring that `sgt` remains
+> +            // valid for as long as this `SGTable`.
+> +            _owner: self.into(),
+> +        })
+> +    }
+> }
+>=20
+> impl<T: DriverObject> Deref for Object<T> {
+> @@ -247,3 +266,34 @@ impl<T: DriverObject> driver::AllocImpl for =
+Object<T> {
+>         dumb_map_offset: None,
+>     };
+> }
+> +
+> +/// An owned reference to a scatter-gather table of DMA address spans =
+for a GEM shmem object.
+> +///
+> +/// This object holds an owned reference to the underlying GEM shmem =
+object, ensuring that the
+> +/// [`scatterlist::SGTable`] referenced by this type remains valid =
+for the lifetime of this object.
+> +///
+> +/// # Invariants
+> +///
+> +/// - `sgt` is kept alive by `_owner`, ensuring it remains valid for =
+as long as `Self`.
+> +/// - `sgt` corresponds to the owned object in `_owner`.
+> +/// - This object is only exposed in situations where we know the =
+underlying `SGTable` will not be
+> +///   modified for the lifetime of this object. Thus, it is safe to =
+send/access this type across
+> +///   threads.
+> +pub struct SGTable<T: DriverObject> {
+> +    sgt: NonNull<scatterlist::SGTable>,
+> +    _owner: ARef<Object<T>>,
+> +}
+> +
+> +// SAFETY: This object is thread-safe via our type invariants.
+> +unsafe impl<T: DriverObject> Send for SGTable<T> {}
+> +// SAFETY: This object is thread-safe via our type invariants.
+> +unsafe impl<T: DriverObject> Sync for SGTable<T> {}
+> +
+> +impl<T: DriverObject> Deref for SGTable<T> {
+> +    type Target =3D scatterlist::SGTable;
+> +
+> +    fn deref(&self) -> &Self::Target {
+> +        // SAFETY: Creating an immutable reference to this is safe =
+via our type invariants.
+> +        unsafe { self.sgt.as_ref() }
+> +    }
+> +}
+> --=20
+> 2.53.0
+>=20
+
+Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
 
