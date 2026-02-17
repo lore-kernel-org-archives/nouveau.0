@@ -4,109 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D2ECE9A03A
-	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 19:54:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC6EE9A038
+	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 20:04:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3726810E51A;
-	Tue, 17 Feb 2026 19:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A3CAC10E4E5;
+	Tue, 17 Feb 2026 20:04:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="BIuD1Xks";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="elz53fhM";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id CD72B433A9;
-	Tue, 17 Feb 2026 19:44:21 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771357461;
- b=zr6EvpJAHU/5QDNVAxS9BMDUbpoKYLzvu301oTCplfxrnGleGvND7HOgJZQgtxqJYaG6Y
- uHXdA/OaArpLKuLOE9UEDcKrLKqlxXC9yX0/NnXPBwYEjbqpeSC8rZO4L7jBeNYLDAfm5da
- xFnRs2yfpBFut3Ok0SgSDkV3JrRfgRXkng5WSrssdvWsxGk9U3Ra8GDSmzA/23pEab2pKcp
- bemC4zhZg5rAcqD4Fa5pjIoAy5Vz78GBm+C4Hn8bckoIMcPv6BGshCUuC9D3hxOvK0b0sRK
- QmRAx3nwgxk/phvMApSdnrCQM/tsq/hc7ObZte2bH9jslZoUcYET5PfS2zow==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771357461; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4A3B9433AD;
+	Tue, 17 Feb 2026 19:55:05 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771358105;
+ b=GGwqAK2wX24pAbiPa0mifHi/E5EGlyQtRTQP6efwQWEZPy42TtrBX1x3wd6dpw5QIXMuB
+ O/0wiVRLni/o6hheSNKGC6R02Ompti5P2FA4q2pDutvSq9zTBc1UqhjkJdsz9RXQTt9nRVS
+ Y9wOfkM4MshuXGxSYJ9/Ma5E8QO/RyaeBhAzAuRkFCrNz7Ldx1+7X6tF+MaUKSG48uS3bix
+ BxarbZzUlBIB5CMtGu31zRdZBXAtLRCvUFM1cRd9xs2+9kMVrlaxiNBqv8i9Lu2cxGGWBjH
+ TGkJK+3zGwOgfj+xd0YuCpTvLeahbnUG3OjvW5QggkdenO9jFmHtN8kVEN2g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771358105; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
- b=PHAjCI5FVgek3cxhzVOTCpX3NOm+SfPxG/OoGEUZYJsLiQ3ud0RhqxR9EBVnq3zdvmePL
- j5vTKIdDDhnCN/61oBs/dFZ2K6D2VCHHKLWHmlrxSwy7xwEj+pUm1PgKCvpWo6LRVhuFXEs
- QRCDSsWVese1znBbFbszPBfcsasI4ov5jjz0lKbpijwBj/FIltMEw/TBKDxZOSne4UNpIjb
- eFg0VwQRqSL6tVW3Gn6en8d0IjEdBjigoPlBeFnJzWfuu6HGtOctsF8L3s7gPG1WWnHsvBo
- Xl8Zaqq0KWlckrefHx/4nMOrxEwugb1b8MzUvo4CFMGzjFbVQK5EoE033wGA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=collabora.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=daniel.almeida@collabora.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=collabora.com policy.dmarc=none
+ bh=HCurQZuFCP5scehi7kspuvqdzoGskfJH4KluSW/C1uA=;
+ b=sLnTFNdWXEPHR+b8LpV2JfVZAckDIiWdSuG09AhKcDPf69jAbpPJ0a6vAyB5H/2joDtDZ
+ idP1laQpBJbwOe0LjiBEEXx7JqKaDNOHtl92RKXXVPW/RWdg6e8g95OqS5VbvDvvwhMF5fc
+ 9vGiWAL87lKCoK+X4RPnrNbRblDJtwTSvzffgpI7vZmbfddSAlrypYgiAPlxdqobSFD32WX
+ S+3XBGSCMh9lAA1svBW23Bw3pERl0XP07TPli1h2vE51bbFVPaaAYKXjwLozkStm55N/jtk
+ dZLQXa7PM65d+lmg2LP3W5RQlucu0nqOsLfLL7d108cqULkRAC46QDxQLyEQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B3A76403B4
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 19:44:19 +0000 (UTC)
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CF54210E2A3;
-	Tue, 17 Feb 2026 19:54:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1771358042; cv=none;
-	d=zohomail.com; s=zohoarc;
-	b=IZkPQy0Wik5rusuc4aV5B+jj0MB29fyUbs7pP71qFNHoO0oyqwqttjDtQsNv3c93JLN+JtwIZOTlU0D/rurWQKAsjeFcaKYB4F1Uml9m5Tyxbhahe6cHFXvwjfi0FM/BY2eSJ53hrIYEmBCG6mDIsCj4tuJOrQhRZPNo8GsjNY8=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc;
-	t=1771358042;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
-	bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
-	b=hM0+aQV0V1j77EEsy4U9UmNgGLxSQQYdTYEWKwaxiYjqCLbAyrMwjVe4+sXTlQRAd72kRslWM7wTw/7s7jXLJKhVWaqUUtVJlVH+NW2kflkWK5FgyPVp1GPRIRSc1+ZNWZwboyDXgg/4lyzwsHIIrtsA3ajZdyx//8E63Jv5X3A=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
-	dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771358042;
-	s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
-	h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
-	bh=yNZugCRDEKYVk22Dh/+iA3R9vz8Imiqc3mNY11FG0x8=;
-	b=BIuD1XksshXGnfiD1sllUBw1cr1wQM6CmsE6FN5FeiPnZDqiy99OrdIh/7zMrAwY
-	tb463WGExPPYsBoB4QlX8M3heTsHFYEDEzlZTYukbUu9s+/e1eALNbYyyMCzbkbH/e7
-	jRx53bSfL7LuZC63Q7Bjz2GwqP3zabX5h8AoVFWY=
-Received: by mx.zohomail.com with SMTPS id 1771358037932727.3027003579033;
-	Tue, 17 Feb 2026 11:53:57 -0800 (PST)
-Content-Type: text/plain;
-	charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [PATCH v7 5/7] rust: drm: gem: Introduce shmem::SGTable
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <20260206223431.693765-6-lyude@redhat.com>
-Date: Tue, 17 Feb 2026 16:53:41 -0300
+	by kara.freedesktop.org (Postfix) with ESMTPS id A691840042
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 19:55:01 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D4A2D10E1B4
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 20:04:48 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 5FFF843466;
+	Tue, 17 Feb 2026 20:04:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E247C4CEF7;
+	Tue, 17 Feb 2026 20:04:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771358688;
+	bh=FWGqfACWR6qxzYLdlPeV/jH89j6hrb85/7pyBBauRuk=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=elz53fhMadoUxaf0yucK7cWE8T0yYDyexu+ECKKT5miva2MTZ6o0PJllwOv3HLMJx
+	 53NKM3gZOiRIs4/9SzgoD9CoLPPVdI9IDkexqk51bRHTNDHpnlSPerMHFtuKMgeH0n
+	 kNc219PUvBf4BVDlqT6lSIedY7ZpEMpjxhguFlIyUhiNpVeQB3VkxafVDIN+vNDvTt
+	 NBsfoCn/oyCZmMHXVaIqXPbyeoXigz1Amyhd2BvLoQojjMzF3cehe3HRbid5RZCFsI
+	 yZttD0J5Z/NJ7Ppa/JLRNHS4+i/y6SCYzeYcwb1WaHJWbhAxfP33ltH3ZbV3gqhywF
+	 TX63THKEM3GsQ==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <9442F3C0-AC21-4AC2-9D8A-352424144999@collabora.com>
-References: <20260206223431.693765-1-lyude@redhat.com>
- <20260206223431.693765-6-lyude@redhat.com>
-To: Lyude Paul <lyude@redhat.com>
-X-Mailer: Apple Mail (2.3826.700.81)
-X-ZohoMailClient: External
-Message-ID-Hash: LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM
-X-Message-ID-Hash: LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM
-X-MailFrom: daniel.almeida@collabora.com
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Feb 2026 21:04:42 +0100
+Message-Id: <DGHI8WRKBQS9.38910L6FIIZTE@kernel.org>
+Subject: Re: [PATCH v4 25/33] gpu: nova-core: Hopper/Blackwell: larger
+ non-WPR heap
+To: "John Hubbard" <jhubbard@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260210024601.593248-1-jhubbard@nvidia.com>
+ <20260210024601.593248-26-jhubbard@nvidia.com>
+In-Reply-To: <20260210024601.593248-26-jhubbard@nvidia.com>
+Message-ID-Hash: 73SHEXVJMQILAJGR62ERPKZWCP55G7KL
+X-Message-ID-Hash: 73SHEXVJMQILAJGR62ERPKZWCP55G7KL
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
- nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Benno Lossin <lossin@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
- Janne Grunau <j@jannau.net>
+ loop; banned-address; member-moderation
+CC: Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ LKML <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LG3KREZMCJJDKMSQG3TM4ZAJJBLJBHIM/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/73SHEXVJMQILAJGR62ERPKZWCP55G7KL/>
 Archived-At: 
- <https://lore.freedesktop.org/9442F3C0-AC21-4AC2-9D8A-352424144999@collabora.com/>
+ <https://lore.freedesktop.org/DGHI8WRKBQS9.38910L6FIIZTE@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -116,131 +111,47 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-
-
-> On 6 Feb 2026, at 19:34, Lyude Paul <lyude@redhat.com> wrote:
->=20
-> Currently we expose the ability to retrieve an SGTable for an shmem =
-gem
-> object using gem::shmem::Object::<T>::sg_table(). However, this only =
-gives
-> us a borrowed reference. This being said - retrieving an SGTable is a
-> fallible operation, and as such it's reasonable that a driver may want =
-to
-> hold onto an SGTable for longer then a reference would allow in order =
-to
-> avoid having to deal with fallibility every time they want to access =
-the
-> SGTable. One such driver with this usecase is the Asahi driver.
->=20
-> So to support this, let's introduce shmem::SGTable - which both holds =
-a
-> pointer to the SGTable and a reference to its respective GEM object in
-> order to keep the GEM object alive for as long as the shmem::SGTable. =
-The
-> type can be used identically to a normal SGTable.
->=20
-> Signed-off-by: Lyude Paul <lyude@redhat.com>
-> Reviewed-by: Janne Grunau <j@jananu.net>
->=20
+On Tue Feb 10, 2026 at 3:45 AM CET, John Hubbard wrote:
+> Hopper, Blackwell and later require more space for the non-WPR heap.
+>
+> Add a new FbHal method to return the non-WPR heap size, and create a new
+> GH100 HAL for Hopper and GB100 HAL for Blackwell that return the
+> appropriate value for each GPU architecture.
+>
+> Cc: Timur Tabi <ttabi@nvidia.com>
+> Signed-off-by: John Hubbard <jhubbard@nvidia.com>
 > ---
-> V3:
-> * Rename OwnedSGTable to shmem::SGTable. Since the current version of =
-the
->  SGTable abstractions now has a `Owned` and `Borrowed` variant, I =
-think
->  renaming this to shmem::SGTable makes things less confusing.
->  We do however, keep the name of owned_sg_table() as-is.
-> V4:
-> * Clarify safety comments for SGTable to explain why the object is
->  thread-safe.
-> * Rename from SGTableRef to SGTable
->=20
-> rust/kernel/drm/gem/shmem.rs | 50 ++++++++++++++++++++++++++++++++++++
-> 1 file changed, 50 insertions(+)
->=20
-> diff --git a/rust/kernel/drm/gem/shmem.rs =
-b/rust/kernel/drm/gem/shmem.rs
-> index d9f1a4e95cedc..e511a9b6710e0 100644
-> --- a/rust/kernel/drm/gem/shmem.rs
-> +++ b/rust/kernel/drm/gem/shmem.rs
-> @@ -197,6 +197,25 @@ pub fn sg_table(&self) -> =
-Result<&scatterlist::SGTable> {
->         // pointer to a scatterlist
->         Ok(unsafe { scatterlist::SGTable::from_raw(sgt) })
->     }
-> +
-> +    /// Creates (if necessary) and returns an owned reference to a =
-scatter-gather table of DMA pages
-> +    /// for this object.
-> +    ///
-> +    /// This is the same as [`sg_table`](Self::sg_table), except that =
-it instead returns an
-> +    /// [`shmem::SGTable`] which holds a reference to the associated =
-gem object, instead of a
-> +    /// reference to an [`scatterlist::SGTable`].
-> +    ///
-> +    /// This will pin the object in memory.
-> +    ///
-> +    /// [`shmem::SGTable`]: SGTable
-> +    pub fn owned_sg_table(&self) -> Result<SGTable<T>> {
-> +        Ok(SGTable {
-> +            sgt: self.sg_table()?.into(),
-> +            // INVARIANT: We take an owned refcount to `self` here, =
-ensuring that `sgt` remains
-> +            // valid for as long as this `SGTable`.
-> +            _owner: self.into(),
-> +        })
-> +    }
-> }
->=20
-> impl<T: DriverObject> Deref for Object<T> {
-> @@ -247,3 +266,34 @@ impl<T: DriverObject> driver::AllocImpl for =
-Object<T> {
->         dumb_map_offset: None,
->     };
-> }
-> +
-> +/// An owned reference to a scatter-gather table of DMA address spans =
-for a GEM shmem object.
-> +///
-> +/// This object holds an owned reference to the underlying GEM shmem =
-object, ensuring that the
-> +/// [`scatterlist::SGTable`] referenced by this type remains valid =
-for the lifetime of this object.
-> +///
-> +/// # Invariants
-> +///
-> +/// - `sgt` is kept alive by `_owner`, ensuring it remains valid for =
-as long as `Self`.
-> +/// - `sgt` corresponds to the owned object in `_owner`.
-> +/// - This object is only exposed in situations where we know the =
-underlying `SGTable` will not be
-> +///   modified for the lifetime of this object. Thus, it is safe to =
-send/access this type across
-> +///   threads.
-> +pub struct SGTable<T: DriverObject> {
-> +    sgt: NonNull<scatterlist::SGTable>,
-> +    _owner: ARef<Object<T>>,
-> +}
-> +
-> +// SAFETY: This object is thread-safe via our type invariants.
-> +unsafe impl<T: DriverObject> Send for SGTable<T> {}
-> +// SAFETY: This object is thread-safe via our type invariants.
-> +unsafe impl<T: DriverObject> Sync for SGTable<T> {}
-> +
-> +impl<T: DriverObject> Deref for SGTable<T> {
-> +    type Target =3D scatterlist::SGTable;
-> +
-> +    fn deref(&self) -> &Self::Target {
-> +        // SAFETY: Creating an immutable reference to this is safe =
-via our type invariants.
-> +        unsafe { self.sgt.as_ref() }
-> +    }
-> +}
-> --=20
-> 2.53.0
->=20
+>  drivers/gpu/nova-core/fb.rs           | 14 +++++++---
+>  drivers/gpu/nova-core/fb/hal.rs       |  7 +++--
+>  drivers/gpu/nova-core/fb/hal/ga102.rs |  2 +-
+>  drivers/gpu/nova-core/fb/hal/gb100.rs | 37 +++++++++++++++++++++++++++
+>  drivers/gpu/nova-core/fb/hal/gh100.rs | 37 +++++++++++++++++++++++++++
+>  5 files changed, 91 insertions(+), 6 deletions(-)
+>  create mode 100644 drivers/gpu/nova-core/fb/hal/gb100.rs
+>  create mode 100644 drivers/gpu/nova-core/fb/hal/gh100.rs
+>
+> diff --git a/drivers/gpu/nova-core/fb.rs b/drivers/gpu/nova-core/fb.rs
+> index 3a2b79a5c107..7c502f15622c 100644
+> --- a/drivers/gpu/nova-core/fb.rs
+> +++ b/drivers/gpu/nova-core/fb.rs
+> @@ -98,6 +98,15 @@ pub(crate) fn unregister(&self, bar: &Bar0) {
+>      }
+>  }
+> =20
+> +/// Calculate non-WPR heap size based on chipset architecture.
+> +/// This matches the logic used in FSP for consistency.
+> +pub(crate) fn calc_non_wpr_heap_size(chipset: Chipset) -> u64 {
+> +    hal::fb_hal(chipset)
+> +        .non_wpr_heap_size()
+> +        .map(u64::from)
+> +        .unwrap_or(SZ_1M as u64)
 
-Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+This should use u64::from_safe_cast().
 
+Also, I already brought this up in the context of GPU buddy, I wonder if we
+should just add SZ_* constants for 64-bit devices. Shouldn't be too hard to
+generate the corresponding code.
+
+I think it is a repeating pattern, and having to use u64::from_safe_cast() =
+all
+the time seems cumbersome.
