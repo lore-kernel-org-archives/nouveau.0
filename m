@@ -4,100 +4,212 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 585FCE83848
-	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 02:45:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E892EE8384D
+	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 02:46:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1E8B210E420;
-	Tue, 17 Feb 2026 02:45:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3472610E424;
+	Tue, 17 Feb 2026 02:46:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=posteo.net header.i=@posteo.net header.b="dKcKZI6q";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="hqQ+IDAY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 12E9340675;
-	Tue, 17 Feb 2026 02:35:38 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771295737;
- b=hlDBmZET/i6QrmYNedPhm8Xaov8lQtpQz3O2TyFWiwDOOUqilOwbZ6FqVLQeZ5yNtOvEb
- Zzc/adI0vp76Mz0cNCo9IEDt7TegEmcxAc8EoRAdZFgLLSrIiKnUed5jwOco63vdWw7ecIL
- dO/5esJ23I2TfrheJmqwSwcSUS013aesBFiHPTPv/ZHqy/SLqumRswxosHsnrTOJJFzwoxG
- v/GNibjntW0wlzcYjCO+zMIiiCfyQ/soZW0C6hdh1/oN3C9I0AxW+aA9mKX6UdvjzlHFFjA
- 20vD46AWJnRYuzXRUGdn9Ly6l46cuZkh6aw7EAfhy/24Hb/Jl7fzCJOPX9Fg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771295737; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 76C4840695;
+	Tue, 17 Feb 2026 02:36:22 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771295782;
+ b=oWhGOj2DBuXJGrw3PVN8jHGO11iNEjIGcm3VRzGPi41V+dJ5LaxaGQwVRXw1TH8seQ4eR
+ i97N4a0e/9+IMoPmg/xxAO7zPWfRvHgY80FirpRK095FWZ9ViB/O9oQIA4oGYm+cz6eDofL
+ 8nC+Twgw2a7EIq5jQ2au5HDXws/uc0zwMrXs4+dMgtlNFDMaYsunAqx/b+qWemP8XcOPb6q
+ PcS/lAbxqCJLoUJty7aUxC6tEtk4/Xmh8RpxvZkdNE1sROm6K/P0zHrS58mxzcutcaLxevh
+ LeWsxXdemmJKE3SFTT4Edil0wUzQeRCLPCGUrAenEFmdInygS1jY0RH1CC0w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771295782; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=9XZWY4s+zmuqMw0CXOePmBfT3kmofDaonHN6AonxRPk=;
- b=WkGhzpldoT0ssBQ84qzVD07GUBc0VUnqFY/9Tq9reUXgQRYryFynK295pW8nYnudur+oj
- MSFnPB1xk4RyXJcBpcrIHpQjxFlA+3uNQWpNWahGq+MpZOz67ePPrtqlK/ZuOgqIdff+u2K
- d123Xn2PEtu8fBXBEZhEfZ4trsthdlSOggUBrqJWfcDkslFwh8hD+v7PEAjaIHAUG16bvTL
- DHuY5t7ppUMIJXKdd79MVfe/w2aPB06ccvOrh++NCoXnOaS2sE2uGTTQ+EkcH34dnzUzG6n
- wTrVU48+arhCZoxtUU9gYpz0k5S67O2J3kSCbNHQEt+W7xphlqKYNpLdK04g==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=posteo.net;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=posteo.net
+ bh=s9tCrgbO58tcDEmQ0e2WvmQuBupnSxtdBk/lRC9eII4=;
+ b=Yp94ToW9+krBfmfLJKidw7ZM60kj7HlsI3yHy4k8jqsz/cYBGnFj6QP5TVIX91DUfX2Y7
+ 1w0kcuuE038mKhoIfUwZEmF7UoQLhQmVpUngLWTT0i9zNnL+91c4dpYMFGRmDfjGun7ieGS
+ Tunh+69pD56cO2txKRqx03r7Gh8tyrW8c8eskTwqZ2L3bFwGbO0fkJHyDt6vOnxgojr0e/l
+ qTujuUW/cuc1o9qdpjE8Z8oWiy32iReA7iZHv+XJGV6qORemTshTLtrWhVLijmSsxiudHRw
+ 6LkrsEc/GcuT37lgSL9tKPBEeoMycZdLoPzLHB3OBGcOYlDdongRF5SzRnoQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
  policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=posteo.net;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=posteo.net
- policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EBA0540399
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 02:35:34 +0000 (UTC)
-Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F2E0310E15A
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 02:45:19 +0000 (UTC)
-Received: from submission (posteo.de [185.67.36.169])
-	by mout02.posteo.de (Postfix) with ESMTPS id 870E5240101
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 03:45:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=posteo.net; s=2017;
-	t=1771296317; bh=9XZWY4s+zmuqMw0CXOePmBfT3kmofDaonHN6AonxRPk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 From;
-	b=dKcKZI6qH1E5SQsDISLoZ1laJUH3agWYJK5CuQEamuAIRUV7sRu9SqrHha/sw1OEy
-	 diK7S8ngKSCLwFiV7gtMiHFRlSnkr1H3pMSpaYurVnxzFuTVK+d2AH2rmNy4xPuj/i
-	 pfCky5Wvuc95nEzmriD4DrcA1ZV9b/bVQrNQxP9afrqlwNq+oy9vqGOTdBGSjggr3g
-	 fixIESi28Us79mXLYPSZas5oq/wKQA0q6TW8KUFTy0X6QYnM/BhFRufvPJxW5N5lkc
-	 UrEAm8Bk0D3BXxODtei//lPm5EWSJGITiLRZ9OKfkFiWPbvM2E3ZjXQMLSvntSyenH
-	 lRQVP0H8aS+XQ==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 4fFPBg0Lwcz6trs;
-	Tue, 17 Feb 2026 03:45:14 +0100 (CET)
-From: Charalampos Mitrodimas <charmitro@posteo.net>
-To: "Alexandre Courbot" <acourbot@nvidia.com>
-Subject: Re: [PATCH v5 2/4] rust: macros: add derive macro for `TryFrom`
-In-Reply-To: <DGGV2METTDXF.1BCNNP5T0TPV3@nvidia.com>
-References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
-	<20260129-try-from-into-macro-v5-2-dd011008118c@gmail.com>
-	<87h5rxuw1n.fsf@posteo.net> <DG7C1LYQ4SOQ.1HBJ8WH923JHW@gmail.com>
-	<DGGV2METTDXF.1BCNNP5T0TPV3@nvidia.com>
-Date: Tue, 17 Feb 2026 02:45:16 +0000
-Message-ID: <874ingf5qe.fsf@posteo.net>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4252F40399
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 02:36:19 +0000 (UTC)
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011012.outbound.protection.outlook.com [52.101.52.12])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B4DF010E15A;
+	Tue, 17 Feb 2026 02:46:04 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=J9pFZE5i4VtJtY7oIcxkmyBbiGJ3m18Np6CZniqn6Xw8rfpjKAZYob0O0llxAcIa82Zs3EOnAozFw+3NCgQOBKZzO98yjkcE+DIVnjKKxjZHNFRTsJcWszaHAfYNjWXAFCZlboA2JwNLrdy9gzVPSZzZVuqmYdpGL2PwlUOCP0lgGJH1IFJb5bQSAjoI/I6cibnrWCuB1Yus2TIfikJXRRW7DgPmCe/fTs/9SFnXf+2wfjrqwrgM1Rn9AkaLuWBeOr6vp32ky7MfzGubDRSbiv/hp+Y+TFlSipCoXmc41kivyVb8llCIlycGzxCAyO+ZsJwV0F5E/dT4LpwE8aqD5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s9tCrgbO58tcDEmQ0e2WvmQuBupnSxtdBk/lRC9eII4=;
+ b=EW3je60M//uIvpghOrGac5fbcRiHfbAetldXGK7dLekNDd2EpRFvboiV062+tXhM4QLXQvz/kqt2eqIQHgi5dyRoHaz7U95u7BUZ6dh4OdaJvsale4i5s1u7Xog9S9At6VqRzqplDoVaYkVygi2tfdgQwMgPwVdWP5OyIQfSoSjvSqhvLY3AIh7sqjuJzyp8p3lKGuSGgMvJt6MMdCNkOBgtf6XHW/N2OtZjgXFb58gBUUrQH4oTRcbcv2cSt28msh2+oj4hfOluK6fg4GARffxBr7ANIx22SZEcGkv3ADtSepTmZy2wDTC8q9bUwXeoHrCa9uXi6cmKq4ycFThePw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s9tCrgbO58tcDEmQ0e2WvmQuBupnSxtdBk/lRC9eII4=;
+ b=hqQ+IDAYJ206VEnZS7ium+8BsF+LfCO08D4FDCXAL1W59OoTw2ERg1jCRAoVVwcQuWTOa5hcUvPqwvaxDt2j+EwD4o9laWx2JPZPEZRG0TmvFWSXw0dbjhlN/nQJwaL3C58oaJ8GuKo8h3wp39jvqQHYT1tjOLtPiIh3vUuWhklxvNCOllN1XAwG3j1XLsnXCwG+UHvLjK0ZW8M+4qGdQjoNqDTaOkkXxf8/rpT5jo4zk9Xlm28QYvHaHkV3V6YxIvijvQE7M6GCEDi50soYoWGp7FJDI6Rip2nBNQnXZFhX/YVKcAdOe1vEvfogPyY1ogPNzbYA+yUPxwKyREZNIg==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by DS7PR12MB9476.namprd12.prod.outlook.com (2603:10b6:8:250::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
+ 2026 02:45:59 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9611.013; Tue, 17 Feb 2026
+ 02:45:59 +0000
+From: Alexandre Courbot <acourbot@nvidia.com>
+Date: Tue, 17 Feb 2026 11:45:49 +0900
+Subject: [PATCH v3 1/8] gpu: nova-core: gsp: warn if data remains after
+ processing a message
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260217-nova-misc-v3-1-b4e2d45eafbc@nvidia.com>
+References: <20260217-nova-misc-v3-0-b4e2d45eafbc@nvidia.com>
+In-Reply-To: <20260217-nova-misc-v3-0-b4e2d45eafbc@nvidia.com>
+To: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+X-Mailer: b4 0.14.3
+X-ClientProxiedBy: TYCP286CA0146.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:31b::11) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
-Content-Type: text/plain
-Message-ID-Hash: XD5BBJEKZ3JDHZSJFHLCQOLVB4LXEHJE
-X-Message-ID-Hash: XD5BBJEKZ3JDHZSJFHLCQOLVB4LXEHJE
-X-MailFrom: charmitro@posteo.net
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|DS7PR12MB9476:EE_
+X-MS-Office365-Filtering-Correlation-Id: ba9409a4-8ea6-4ee2-cae0-08de6dceae95
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|10070799003;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?Z0d4TlBmbWtJZVVtTEVzZVhldkhPeFFUdEFwS3llUk0yVXhHU3MwS290dG9q?=
+ =?utf-8?B?ZVN4Y3NKMDhKZ2g3YmpEU0lTd21ZQjJKN2NBbEo0bXd2SDNMTTdCOFdRNStw?=
+ =?utf-8?B?bEc2SWV0dEZHU0RXa2pRSEZRbHJ5WDRVb2pneVYwaEgxbXNQWDVWeTUrTlMx?=
+ =?utf-8?B?NHRHVW8yNk9kaG9tYnJJZkpCRzJBbEh2QS9sQ09Sd285WU1VMVlxVHBXL0ZJ?=
+ =?utf-8?B?UDFQTzJTNWtEMjY0bjdpQTVVRzB2RkZjNjVQSzAya1F1em5vczFOTEx1OSt4?=
+ =?utf-8?B?aWx5NEdPK2ZhOWJrUjAzbTAySVNlbkt1QXZmdEI0ZFFuR05ERHZKeURQelRK?=
+ =?utf-8?B?aWhMQi9PbU1NSnVOa2JJR0FIbnJLa0EvWkl0bGhvZW9tUGlIUHZ1UllNOGwr?=
+ =?utf-8?B?WUhKTkcxY2VLVSs2WDlJQzc0dVZ6ZkxRdzFKWHd6SmcwUXFFSHV5Zk5KZG91?=
+ =?utf-8?B?eDlGVWxBamxKKzJnRmZjMjYxaEs1UXFFTWticTdtT2pQT1l6WFFGQnlVTmlq?=
+ =?utf-8?B?WmhuVXdiUjdKbjRJUFlDZ1JHZGVjTytLb0lMbVJUaUwxQkk4U096RVhRMWZi?=
+ =?utf-8?B?RTJFZDlFcjN5c3pmeS9PQjRhQkhIcHVYSElzYWwyZEtFYndUUXdqVFNSY1RC?=
+ =?utf-8?B?R0s5eXBEbmRPakU0dkdaTE9qVXN1TURiVkhack94TE55bjc3QkJhekpwM3U1?=
+ =?utf-8?B?NlAxcUpHdFFEcDZOSkxISGpJUDdZOG9JRWcyQjZMRGZHcmFXdjYwbFowYW05?=
+ =?utf-8?B?TFV1dWlpT1B5UWR6eGRja1JQa0dCZ2pWcTZQZGQwVytLcUJzYzdjL1M5cFVk?=
+ =?utf-8?B?ek9kL3lvSkVWYm9IZ25neFFXMzFiOE0rYi8vRjlzcDNjdTlPeWpyY0JaQ0ow?=
+ =?utf-8?B?QTFVZWdaNWtkamFWYVNGZzcvTC9xOVZPaWFDdHBXay9vOGtmWGd4TU5rejFt?=
+ =?utf-8?B?MTgxNE1aVkc2cDhmUGlCeHc0TTdJNE1GQzdyQnkyeTB0blllWjl6Z3Z1TXFV?=
+ =?utf-8?B?c25kN0xqUlV4TVM3OVZUVGVxSmQ3N1JsN0ZJa0VRdFdydmxsbXEzYmxTaVhP?=
+ =?utf-8?B?SlBsMk1abWtsOEFMckxjQnFBcHNya1lBMzZPelpxN211Wjk4UFNqREhuWDBa?=
+ =?utf-8?B?Rkx0WDZ4endkVnpQcXNLbXJTT2U2eDA1Y0xpbjZJYVkwYVlFekd5MEdsNDRG?=
+ =?utf-8?B?alpaUE1iamo3eS9XSGRpQlFlOWhBWElGU1ZoKytlQmx1VGQxUkpDeFRXRVlR?=
+ =?utf-8?B?K1NUK0lmazRteEtOMWk5eTRJV0JlVU9FWWJqd3B6a2VLRnRiNWxvbEFwWUVj?=
+ =?utf-8?B?dGZTblVpcEdCQzlmTzRBOXMyZ1pwTmJlTGE2azVXRnAwQ3QxZFh0TlErODFn?=
+ =?utf-8?B?aGFFblFrZWdld0NNeW03V1VlYWJISTY2YlB3MXZkeEhDNDBqbGlCVERRZFFi?=
+ =?utf-8?B?OUhkT0wrQkl3bkZ6aUsxMlduN3dldW5mNUNZcThteG40Tm1WWVAyQWVzUW5Z?=
+ =?utf-8?B?VC9aekJHbW56dTVsMGFaYzFhcHRxSzQ2SldYMTBPZmxrdm9mY04rb0U4YlhT?=
+ =?utf-8?B?MWk4N0N0a1orSWJUUnlBNUQ2UHRJZkRPekxXemE0bmRTTjUvcGU1d1diNGFC?=
+ =?utf-8?B?TjNjaXBpcXRPRE9RS1FVZG9EY3R4RW9JWnNvRDlOSUg2bjlCV0FZSVRvOStw?=
+ =?utf-8?B?bitYTHJQTmIwd2NYM2djaWYxMVRobmJIaGU2cmR4bldxWklLQ3BNRTNJNy9m?=
+ =?utf-8?B?VW9LN2RmOFdZKyt3VUVoMkowb3VVVFZBbnl1eENJR0NqVXZseGVUajR3NHVa?=
+ =?utf-8?B?eWRUM2NhM3pNZ1dQUUgzRXZZQXdSSVFNOFZqTThMdEkvRGphY2RiZzhGK0M2?=
+ =?utf-8?B?RzZ3WEtIWGMxeVlSNTRXallZakpOckNVZTAxWXlQWE9wMGZmMHUwWWJWTytB?=
+ =?utf-8?B?aGlqTGIyVXV5c3Y5S0h4SGFaV0hjWEtqeEVYcnZSaFl1Wi9jMXJmd2QzWVFZ?=
+ =?utf-8?B?ejNob29OS1p3Z1g3L0dlTlVYTWg4Y2xNZWdXMUpqMkdBQ1pJOUlubVowZHVC?=
+ =?utf-8?B?QjN4bStmaHhGRkZnZDdHSmJWS205S1NuUzNaY1BjM2NEZEVZakpSUUdGRGRN?=
+ =?utf-8?Q?g+mE=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(10070799003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?L2Ezb3lWYzdxNHJaa3N2eXY2cmZ3Ykl3NVhhai9vc1MySUxucERxWVJsY3JL?=
+ =?utf-8?B?VE5BSTlGNmlXQkcvdGdIdmI3R0JNdVpLYmJlM08zenlsZHpCYnlGWFJsY1gz?=
+ =?utf-8?B?Wkg3MExuRG1mUTFGczdSSE81THRmMnFVbHhSVGlPaHBpemIzV0NaMFBIV3Bn?=
+ =?utf-8?B?bHhEbFFScWtCbk1zYWp4bytwREQ2MXJscXNlU1pQNnc4aXk5OUhrMGNuTVcz?=
+ =?utf-8?B?NXBBUWhGOS9iVnd4eVZ2eWV3Vm1KMGZHMldRS25CSVFIdkRyc1Y2WXJXZE1V?=
+ =?utf-8?B?WG9zQVVMNDZxSTc5Z3JBZ2FYNEhYdW0wZTljazlhbUpUcXNDd1FkTW5rb3JY?=
+ =?utf-8?B?MUVwZzRTVHgwL3FHNEJDK0lrOTVqZTdLWXREWklzR3pRSUhqVkkvcmxKTXA2?=
+ =?utf-8?B?Z1hVOWZuN1JIalU5clhmMmxVNkJWYy9mNFZnNWN1VmFoaEt4QzBWOHFkdW5W?=
+ =?utf-8?B?ZWlpaGRpWStsMml6Z21INmxFZG9CUzBFaTRzcElPQzcvS3RuUzdES04rSDNx?=
+ =?utf-8?B?Wi9ueFhnVXU2TkhGVnBGRzg0SlhJN3N6a05pOC9RM1Mxai9YQ2pFRFljeC96?=
+ =?utf-8?B?TEZuTDJySVBSb0pWSkNmWGZaczJ1YkdNNzRQMndZdjM5cUVXeExmRjAxNzlM?=
+ =?utf-8?B?K2h3MGEvSlhTY1JzNkJrZmZXTzlIWVlNS0xaejR3eTJ1QXZKbndzMDlTb2Vj?=
+ =?utf-8?B?TnEwbGQxZjZWV2NCeXJySE9aQmtzZzJiWDVXQnNhckxiTXRuQlhYSkdYN1l5?=
+ =?utf-8?B?MUVDdEpKbmFWblpHcS9RcmhydDErYk15eEMzOThtVUpqTllNWEw5L1Jib1p1?=
+ =?utf-8?B?aTVBNzA1M3haZzBkOVhUZFJQOGxPWXp6eFh4TEhyYWovYUtuUytpaTZ6V0t5?=
+ =?utf-8?B?WlNxaUFwZWRLLzVtQ0RpQkcwSmgxWWQrdkpFd3ZBVm9FR0dTV21DaUZ2azNU?=
+ =?utf-8?B?bDRSMk9JK0tjYVp3OXRyeFhEaFRIVkUyZWxQWFdkNVE3d29HcEhaVkUxaURt?=
+ =?utf-8?B?aVpFMzFmVGZFR0NpdFdBbjBFb0FZejQ5ZkNXekYzRkJpU0duL1ZCdmpEZEx6?=
+ =?utf-8?B?dVFnSEtkWXdPRFlISXZLQmVRb3dMVzZNbE00OWwvTXdWWHRSSUJZdXp0K3Y1?=
+ =?utf-8?B?ZDJHbUtRcHZBcTk1dEdhR1kwRDU5ZkRHWElScVpOb3RTVm94T1FhNmFsemtj?=
+ =?utf-8?B?WEJVZXNjM29PNWU5MFdva2czd05aWjN4RmlYbTVoakFabUtPSFg0MmR4aTRi?=
+ =?utf-8?B?aVVZMy9QbFAxQ1FOczhUQWFHVnJxMFk2YkhHVCtXM2FxQWdQd3JDVlBTK3Bw?=
+ =?utf-8?B?UVFhdGgwSkZtbU5mOTYwZWFaVnlyK1RENERla09OQk9Qci9yVnBRZERyeDZK?=
+ =?utf-8?B?bEJPYlpNc3I5TnAwK3lVQTQ3M1VJKzNCOGZsZHZib054N20yUEtRdlZNeWtY?=
+ =?utf-8?B?bEVSemRVR2xYOGl5KzZZTmNDeXVRaVo5TzVHVjVPN2YxYzc0aTQwT0xqd1Yy?=
+ =?utf-8?B?M1NNMmRRWGR5TVo3NTlKa1FGbjhTSVZkRzBHSUNxVGc0RVFyaHBUUUFyRGpH?=
+ =?utf-8?B?WWt5cDEyWGxXV1ZjTU01MkNJbzA2T1hLNXhWM3FURmN3RUdHaFFxMTV4TmpZ?=
+ =?utf-8?B?MmtqbVNIaCtkcmtRdHIwTVRER3pWMlFZaHNRa1FUUUc4VWtLWGVUdDFrRUdX?=
+ =?utf-8?B?WTQvMnV4V1NzN1F2RjRpNm1kaXRRWnB1U1Z3aFpCMEpZd3g5eS8wYldGbFZi?=
+ =?utf-8?B?cy9vUzBIZkVFZDd2NWdvUkdHSC9WZVZOdlV4M0g2Y3UvT0dPckJhS3RDK3Vm?=
+ =?utf-8?B?U1NCKzBFNXRJVzFmV2Fwa2VwUG1CSnpIdFg0ZGtNNUZWbmhROVUyaDhtOWxQ?=
+ =?utf-8?B?QmNqdi9QRmg4cndVVERwZEZwclRKN1ErZTcxRWxhOGFFTjlieXRrRE01S2J3?=
+ =?utf-8?B?RHZQMkFNRmdXSFBEQ1JyN1JjYVVkZ1U4SkpEOURHWVZMSENzTHlMUnRONDNF?=
+ =?utf-8?B?NitWN09WVytZZm9kaURjb3FELzUvcUR2bTlYdUkyQ3hjZGR2cHNDVEJDMmhN?=
+ =?utf-8?B?UnhPeURnV1pXSkxvSEk5SWszMXBkZGhRWVMvaEw5cHJZZFdYdEhLVDJWcldH?=
+ =?utf-8?B?U0F6L0xJcytmK1FhYlc1UU4va3F2ZzR6Tkc5TG9PanJMY2ZtS0JtaDJmRmZw?=
+ =?utf-8?B?SHJJYUpuMW9wZE56dEVyMVErYzVjQUc3OHY1Z2U4T1pzbDViQ3Q0ejByZ2dF?=
+ =?utf-8?B?Zm5icmVSODZJSTk4N3Y0OUk3d2MvQmZoT0VJbWZZdzdUWGVIblVYRVlldVpy?=
+ =?utf-8?B?K2EwbklsbHF0cDM0MnlOT0N5NXhLNWNuUlluQVhNbEg0Zy95UnRUakZvV09j?=
+ =?utf-8?Q?lTsLYEhRu8P/l+KhrlVDzTg8ovCPo3iWm/gFFgKnboYCc?=
+X-MS-Exchange-AntiSpam-MessageData-1: kSgar5uwQJ8qYw==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ ba9409a4-8ea6-4ee2-cae0-08de6dceae95
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 02:45:59.4484
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ MsQN3cdNNtT12soPbbwMXBoRHRprepKBhmB7NYJYkiOVcwJRMBo79VGCHNdKvpJ6NsE0br/9VaYthQgOSjycag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB9476
+Message-ID-Hash: 6MYQO6DMODPJGPOXEOLHGE7NZVBS7L3P
+X-Message-ID-Hash: 6MYQO6DMODPJGPOXEOLHGE7NZVBS7L3P
+X-MailFrom: acourbot@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Jesung Yang <y.j3ms.n@gmail.com>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?Q?Bj=C3=B6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+CC: Alistair Popple <apopple@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XD5BBJEKZ3JDHZSJFHLCQOLVB4LXEHJE/>
-Archived-At: <https://lore.freedesktop.org/874ingf5qe.fsf@posteo.net/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6MYQO6DMODPJGPOXEOLHGE7NZVBS7L3P/>
+Archived-At: 
+ <https://lore.freedesktop.org/20260217-nova-misc-v3-1-b4e2d45eafbc@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -107,110 +219,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-"Alexandre Courbot" <acourbot@nvidia.com> writes:
+Not processing the whole data from a received message is a strong
+indicator of a bug - emit a warning when such cases are detected.
 
-> On Fri Feb 6, 2026 at 6:06 AM JST, Jesung Yang wrote:
->> On Wed Feb 4, 2026 at 10:39 AM KST, Charalampos Mitrodimas wrote:
->>> Jesung Yang via B4 Relay <devnull+y.j3ms.n.gmail.com@kernel.org> writes:
->> [...]
->>>> +    fn impl_try_from(
->>>> +        enum_ident: &Ident,
->>>> +        variants: &[Ident],
->>>> +        repr_ty: &syn::Path,
->>>> +        input_ty: &ValidTy,
->>>> +    ) -> TokenStream {
->>>> +        let param = Ident::new("value", Span::call_site());
->>>> +
->>>> +        let overflow_assertion = emit_overflow_assert(enum_ident, variants, repr_ty, input_ty);
->>>> +        let emit_cast = |variant| {
->>>> +            let variant = ::quote::quote! { #enum_ident::#variant };
->>>> +            match input_ty {
->>>> +                ValidTy::Bounded(inner) => {
->>>> +                    let base_ty = inner.emit_qualified_base_ty();
->>>> +                    let expr = parse_quote! { #variant as #base_ty };
->>>> +                    inner.emit_new(&expr)
->>>> +                }
->>>> +                ValidTy::Primitive(ident) if ident == "bool" => {
->>>> +                    ::quote::quote! { ((#variant as #repr_ty) == 1) }
->>>> +                }
->>>> +                qualified @ ValidTy::Primitive(_) => ::quote::quote! { #variant as #qualified },
->>>> +            }
->>>> +        };
->>>> +
->>>> +        let clauses = variants.iter().map(|variant| {
->>>> +            let cast = emit_cast(variant);
->>>> +            ::quote::quote! {
->>>> +                if #param == #cast {
->>>> +                    ::core::result::Result::Ok(#enum_ident::#variant)
->>>> +                } else
->>>> +            }
->>>> +        });
->>>> +
->>>> +        ::quote::quote! {
->>>> +            #[automatically_derived]
->>>> +            impl ::core::convert::TryFrom<#input_ty> for #enum_ident {
->>>> +                type Error = ::kernel::prelude::Error;
->>>> +                fn try_from(#param: #input_ty) -> Result<#enum_ident, Self::Error> {
->>>> +                    #overflow_assertion
->>>> +
->>>> +                    #(#clauses)* {
->>>> +                        ::core::result::Result::Err(::kernel::prelude::EINVAL)
->>>
->>> What happens if we need a different error type here? For example, a
->>> quick look around in nova-core's "Chipset" enum, an unrecognized chipset
->>> ID warrants ENODEV rather than EINVAL, since it's about device
->>> identification.
->>>
->>> Not sure if it fits the design, just wondering if this flexibility would
->>> be useful, but would something like an optional
->>>
->>>     error = <ERROR>
->>>
->>> in the
->>>
->>>    #[try_from(...)]
->>>
->>> attribute make sense? e.g.
->>>
->>>    #[try_from(u32, error = ENODEV)]
->>>
->>> defaulting ofcourse to EINVAL if unspecified.
->>
->> I believe this is indeed a desired change.
->>
->> Back in September, an RFC [1] using the same API (i.e., without error
->> customization) was sent; I took a quick look at the time and felt
->> everything was OK, but in hindsight, the need for this flexibility is
->> clear.
->>
->> Your proposed API looks good to me. Unless there are objections, I'll
->> move forward with this approach.
->
-> One problem I can see is that ultimately the error depends on the
-> context of the call, not the type itself.
->
-> Nova-core's `Chipset` returning `ENODEV` is a bit too opportunistic to
-> me - the only place where we are doing the conversion is within probe,
-> and that's the error that probe is expected to return. But in another
-> context (say, validating some user input), `EINVAL` could be the right
-> error to return.
->
-> There is technically only one reason for the derived `TryFrom`
-> implementations to fail, and that's because the passed value doesn't
-> exist in the enum. So really what we would ideally want here is a
-> conversion method returning an `Option`, like enumn's `n` [1], that we
-> `ok_or` into the correct error for the context.
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+---
+ drivers/gpu/nova-core/gsp/cmdq.rs | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
-Good one yes. This is a cleaner approach. Decoupling the error from the
-type and letting the caller decode via ok_or looks better to me.
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
+index 46819a82a51a..607fb9ad69b0 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -661,7 +661,17 @@ pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Resul
+             let (cmd, contents_1) = M::Message::from_bytes_prefix(message.contents.0).ok_or(EIO)?;
+             let mut sbuffer = SBufferIter::new_reader([contents_1, message.contents.1]);
+ 
+-            M::read(cmd, &mut sbuffer).map_err(|e| e.into())
++            M::read(cmd, &mut sbuffer)
++                .map_err(|e| e.into())
++                .inspect(|_| {
++                    if !sbuffer.is_empty() {
++                        dev_warn!(
++                            &self.dev,
++                            "GSP message {:?} has unprocessed data\n",
++                            function
++                        );
++                    }
++                })
+         } else {
+             Err(ERANGE)
+         };
 
->
-> But short of that, I guess we could also have a dedicated, single-value
-> error type for derived `TryFrom` implementations that we `map_err`. That
-> type could even have an `Into<Error>` implementation that converts it to
-> `EINVAL` by default, as that's going to be the most common case.
->
-> ... but if we do that, that's not very different from returning `EINVAL`
-> and having callers `map_err` on that when they need it.
->
-> [1] https://docs.rs/enumn/latest/enumn/
+-- 
+2.53.0
+
