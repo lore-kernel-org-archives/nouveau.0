@@ -4,105 +4,212 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA7FE68174
-	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 11:52:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 574A3E909A9
+	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 14:10:16 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A1B6610E24F;
-	Tue, 17 Feb 2026 11:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A866E10E4DE;
+	Tue, 17 Feb 2026 14:10:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Hz8n2Ubr";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fumjDTs8";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 09B9142B98;
-	Tue, 17 Feb 2026 11:42:55 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771328574;
- b=knjuDKaxkVtGjtc/hD80HYTC3H7tvH1kVK/O8bgKlEg2hSnYPN5M0p5kqMJMpNI7mtZSm
- 0aikthOak46ra6mHIGadJ3ERxPB7urn+yXBifKwEism9/Jmbm1BNlKltZlO7LIghBONgXGJ
- QPldVoF948w6+Zy6elaIO6do3hrkNMIxPU797Wtz1dOC1dhnkjsb70urEJlZbkOOH0ub6L+
- +YRtpS8jFZrRb1QWzUFlp+YVu0xA27Y6o/0JiUpCypeth5yY5MGx2GN4uK2pdJ8L4pv7sxf
- L6vM6NF8uAYVOObfYfdYt227z5wzsl2qTLnqBBR/3C2wug+23edOnSm0cIxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771328574; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D18904314E;
+	Tue, 17 Feb 2026 14:00:28 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771336828;
+ b=VzYkS7IM8Y/2ibnkL0EJ770spBZTlj+tI6Z53gJPypmJ0uhMZzolbaL9oCrxrOS2y+Lhm
+ 5sJiudqNpsVDcIJltmNEXIeJy9eHIG9SNGE9dd+XQZumutwRPcUxLNzjtqQA7q/+F7sGNKP
+ 0xoR3oKmt+VFmHNLeXbgEHSv1y4q1+OwYviIupZMquuihy8PYUq0FDkcDUNYs0uv/2vJZwO
+ DF6jABormXIesaNpjCI1i8c8KrYQSf2IUIawPb9Ip+HcCnlKx7iGTeQd2sqovvDRwGSxKAZ
+ 0OgDWqEs4SYCOYBX+PuCCxc5epF7952QxWBXwvLWbLMLu0QT7xzwyVHv6r2A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771336828; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+Z+289/kqyLr5cZRRILUns1ZPnbzP0+AABOhUxnHWJc=;
- b=0zf6PKwm+oAzQzN2M+16nCO4I5l2EAPMiHw5L2/frI3crzyzGGybmgJaViqkVoq5jspIO
- H5ObQiLlZVq0IK0sYm435it2Qpmbwj6Rv7tXkrho5xZBxxkQKV4wLcUMnNj8xb7IeS8Uk2O
- f0hQR9b6pQxo45FZNr28YBn1+UCj/7cUTI3bsrU6imAsNYA6CvgBzsT2VY5PgVNBkR9kJ7N
- hJ2VHstJuJg7SPQCYJdWOw147fx07Fz2oxh66fvIo4PAjDow4Jk5p9/uHf5WERnLs+/324R
- YF28R1h6/xPe6ZdH0Isj4uG6wpQD7mU5DBfzAvcZb0aRsZSIXAxaIUAur8KA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=95UGzk/bbezALZ/C0wepaF53IbL1/Vb2N3FGIJY46w4=;
+ b=NcTNHvc7tK2OJggVMCDAjpJgWjntBVuMDGlWOU0Mdz/byRxhC1vzPMyp+tWb8ERSxs2zB
+ fMlB9tyWk3uNQhz7xzEktQ8if/HsVwBtbRk1X6gQrBpZHckPZA7N6tKtHrGNgq3nM0YcLGM
+ ZpiZXI8/quC8fi8KTmDJ+ruj0qI+04AkbxrM7wykxWMdbyXDU8WyOv58YVjB2jeqFG/Jtal
+ aVSMlcJgA2AlqBbMfcN77rhEy5c61LVwxU1ot0ahs88TsGxorg7CifC1d+wCInIJHv9ZdY2
+ R4LAEm1boQuISWW16I0GS2sSHMQyxzxz2zYGoQ/HRVwIpBzQ/e512XChYAlA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 66007403B4
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 11:42:51 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B63F110E20F
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 11:52:37 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id DE6276133B;
-	Tue, 17 Feb 2026 11:52:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C98F8C4CEF7;
-	Tue, 17 Feb 2026 11:52:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771329156;
-	bh=bhH7iF+cnDq2Pt5ZBwkse6iD2fwFe7a/HG2PI/y2lW8=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=Hz8n2UbrE9/dT4JPp8aOvp2KibU9qI5WSR51+5rh7xFatvJl7kdB8HgScZf+6JR8x
-	 9uvg7uYQRFRZomawJC9HaDxi56gvQcIWy6KvDg28j+XJpEwQAf4Tp0nto1F3MwGYJ+
-	 pPVOzWZSNjoFhS4Gw4zQ25MiWr0gf8U83qcWLKuLOn+w0cYC6AvM0/BcXhvUouKEPc
-	 b3uSkNLcyoRuWm5r9cmRSdHPh2IydvhURqjKy/uOlhhuy1Uz6R9qAIEWprqTnxBybf
-	 AIVum6lAmJh0qR9zmYWiF8YKqnlTG6O6AKPA8lsKI7dRj/TvwVG8FVfCpx2m/USMMy
-	 Z+mYLqSlZDTkg==
-Mime-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id D31FA413CF
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 14:00:25 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011067.outbound.protection.outlook.com [40.107.208.67])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 56B9B10E4DA;
+	Tue, 17 Feb 2026 14:10:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CeQaXm2hhk2pOmdmyCEQdyg/9QNTkSq3+ZmJRwSnRbPnX2tVxmN4NsrYQrHgMlcmh1zlVk1aKrmoGuDvP73h/TOpvqpMCbYPEnW82midEVqG84rYizdidOXoDuK9+PZ43NEDr1tHlmtgz0ooYy1o82G3IQIS7cU3+KJXdWAYLpTrEDmjNOHPK9fDoBVPjR1T/IVGboNp1ooNL7L5Scgrn1KFS9oXvuOMKB5xRw0YH8YN1TBfHpDaaf3+QbGGyATcXlfYb4IvXn/7rM7YTlLIS86kC+S2RH25qZc+VbTPKFa52h/PVQpLZSGfMxh7r7vUMV40YVmgFkIhPlLk+rPrmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=95UGzk/bbezALZ/C0wepaF53IbL1/Vb2N3FGIJY46w4=;
+ b=uJnxSZerm2Lvaw0fXkGWwRS13q9jpG1iJAfKxg8W4EDcs0RDtj/+J1JR3SEXDSGV6gm1DV8xjSDzsbufCBS0OgAAGV5WL/IxfQedWekSigMTNvcFgbTmvDiDuCaOt9tkG53x3m6553p1BpqPhHo2bmzOy75lyCHWOJwhGyxV9If9qQtt2iZ0GsToMnz0u763U6Jw4xFLiVn4eBq/cYQvS2WQawwEyWj2RHFw54ad3LAhv4FKhp8tq5RUxct278xYVprsHpkyzDHV4/w8iZEDXJYQUpxJK5QfsQMflV82di3X5JN2lYhEyf/yMAy+18urYlLDk+58qnz4upCWZ0b0Lw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=95UGzk/bbezALZ/C0wepaF53IbL1/Vb2N3FGIJY46w4=;
+ b=fumjDTs8T0NGelk3SrJJPXKDuh0ctURcG+dUHeykJiYVrM0wQPwCZtaMGgRFS99dGuAsH+BGKESOFDaOBB2nOBxP/NBTy8WzS1sY6VZBzuPc1zFAEhi1R/2yLu9/b6TwN1tf0CcOZco7I06aK2V0/G7rJs5qzB6PXbE8lKNbrJo7V0SCpU2aFtP1t5Qo4WXANcdbd+390rqvlsemoxlIeOzhDs6qNppiHquZdVnMTJPsa2tn0pBAAxUNqdR4zCPd1JzBRGPNcgzEwvtaD6Jf8uDKzAfC0MQm6vMYJvNznzmVy3dDZb21Iwbg8eXbc+z+xaUQ1m5LYt9k1DZ77D0nbg==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by CY8PR12MB8315.namprd12.prod.outlook.com (2603:10b6:930:7e::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 17 Feb
+ 2026 14:10:07 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9611.013; Tue, 17 Feb 2026
+ 14:10:07 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Feb 2026 12:52:31 +0100
-Message-Id: <DGH7S2HJRDJJ.210D7DLTNFRNR@kernel.org>
-Subject: Re: [PATCH 1/2] gpu: nova-core: fix GSP RPC send sequence numbers
- to match Open RM
-To: "Alexandre Courbot" <acourbot@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260211000451.192109-1-jhubbard@nvidia.com>
- <20260211000451.192109-2-jhubbard@nvidia.com>
- <DGH35X9GCFYO.EBY01G1C6XQM@nvidia.com>
-In-Reply-To: <DGH35X9GCFYO.EBY01G1C6XQM@nvidia.com>
-Message-ID-Hash: 6BJEAY365UN3HQYTVVHQIEKKZS7ZDW5D
-X-Message-ID-Hash: 6BJEAY365UN3HQYTVVHQIEKKZS7ZDW5D
-X-MailFrom: dakr@kernel.org
+Date: Tue, 17 Feb 2026 23:10:02 +0900
+Message-Id: <DGHAPCX1JAWX.3B8VMCMPCZ7UG@nvidia.com>
+To: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v3 7/8] gpu: nova-core: use core library's CStr instead
+ of kernel one
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+References: <20260217-nova-misc-v3-0-b4e2d45eafbc@nvidia.com>
+ <20260217-nova-misc-v3-7-b4e2d45eafbc@nvidia.com>
+ <DGH77OGW8BFR.2NV0GJ1890DPF@kernel.org>
+In-Reply-To: <DGH77OGW8BFR.2NV0GJ1890DPF@kernel.org>
+X-ClientProxiedBy: TYCPR01CA0134.jpnprd01.prod.outlook.com
+ (2603:1096:400:26d::13) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|CY8PR12MB8315:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95d1b21c-c972-48ca-81e5-08de6e2e40cf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|10070799003|376014|366016;
+X-Microsoft-Antispam-Message-Info: 
+	=?utf-8?B?ZHBIeEV5SHgvMHZBbEltOXBUcFF5dDM1TjJqOHpkVE1zdy95Ly9RTTF5ck1j?=
+ =?utf-8?B?aWZRL2FzenBnMTVsRWcwSHRNLzZrNVNmY1BVaDgrVC9WSkhyVWhyUE14V1NL?=
+ =?utf-8?B?OVpRK3JVcFdXU2tqZ05oS29ySlFkdGZxMHAxVExSVXJSeGFxNXQ4bzk3UE1s?=
+ =?utf-8?B?N1h1eGtDN09SZHl4OFVGNG85VjJVVFZDSHJ2Mi9JZlJOVzl3OVZ4TTRkQmVv?=
+ =?utf-8?B?TTFWaW55cmdkUk5wak9ab1EySkxseng1WHRkRStZbW1oSmxLSnR0YlB2U2lj?=
+ =?utf-8?B?ZjVVeCtuTmFkM0pMUTNHUWpHaE16RUZBTU9JWXJ5a0l3aklwQVAyWmJHQm9X?=
+ =?utf-8?B?UXRNUkFWVS9ad3pPRDZVVjByZ2pBTDEwRElPblovMFh3YnVvR3E2VWtzdWZa?=
+ =?utf-8?B?bkZySmgwanNnRU1mQ1g4TjlNamRhc2FOU20zTkR0QWJlWnZERVkwYmV6RERk?=
+ =?utf-8?B?UHV3NWYwU0YyaEJOWVVwekVMS0FQSlRHYVBSSzAvSkxXTGE1TzdFd2gyMmFH?=
+ =?utf-8?B?ZHQyNzJRdmlJbytUSHQxYi9KZTZieDRLc0tLT1ptU0NXQXJkRmNZL3FpYzRt?=
+ =?utf-8?B?WEtqcWQ0VGh4V21UTklQRVQ1VHpyaCtPTFhxenZrRVlTdUtnUDJBUGxMVWp2?=
+ =?utf-8?B?ekpvdE0rbUgrYzdDMWVEL3EvQnBkeGlCNUFFOFhLaGVUdlQyRENzc1BPbWpN?=
+ =?utf-8?B?em5rVjJUR2pXTnNNaHhjTGhoaUFPWDNkOW5GeWp3UzExWkVNOGRaVytWZnl2?=
+ =?utf-8?B?eDVWMXl0S25pU20zV2ZZa3JsbjVWRWhvQlE2TkxRVGdvbkhRTWg5SkQwWFlM?=
+ =?utf-8?B?bmsydHZFdGZBUlVtaXJGcDVFVlJPRlR4cEFmZ1dVWjY0bC9nbFM0NjlFM1ZW?=
+ =?utf-8?B?RHUvNlhtZjN3dk1ObUw0ZE0ycnJHK0R0SUlINkFnTWQ0aWdJd1FkUGxmTyt1?=
+ =?utf-8?B?Uk9qc1pFNndpWmpBVW5EdCt1c2dpRElWejIwZ081ZUl6TzlzQnFrdGxJUjdx?=
+ =?utf-8?B?ei8wcVUrSHFSaXhZMm8zdXI2dTBWeUQyNmcwU3EwWnptTE1yY3hCaEpCTHBK?=
+ =?utf-8?B?NVM4Vzh4QjRYYUM5cmJPeCtLak5PZmFpUFJuVXpXaTROQm0yQlZtc2ovMlRn?=
+ =?utf-8?B?bldZc1g2WTNaeVU4VUJNeEdaK3NjVkJFclFFYWhCSC9vaVJFeW5wVmdvTVVv?=
+ =?utf-8?B?K1J6elZvQm5idGZHWDFmWStIZ3JTQjlCTzhTejNwUUR2WjI1cU45TnpQME9U?=
+ =?utf-8?B?T0RBM3hCZXpLWUZpUFZqcEN3TzNtQ1RxT0JTRFV2QXdBOW9RZGw1T2VTNFkx?=
+ =?utf-8?B?dUZCcll0Q1BHbG9JdnF2TmV2d1d5Y3pBblFNRUQxMGtNNUcwbkxwUDFyRDdX?=
+ =?utf-8?B?b1N5ODVNbUFZWFFmRFZHQ0dsNFdOTVpnTkVjVndmYVRLK1BFTUl4T0FERExy?=
+ =?utf-8?B?ZWF6dldsQjBIOHN3Mmx0UkczbENQVnZvR2Z2RmE2V0wyOWgraFBHVTZCVEp5?=
+ =?utf-8?B?RHE3czNDekhucE5hMEQvbXNTMytoclB3aU5WMjVieU4xNEpHUC9qdEIrME00?=
+ =?utf-8?B?T21vWWx1czV2MUl6c2d3Rnk4Vldsb2EvZWxvbVdSdHUwUzQ4UkQ1ZklEOFFp?=
+ =?utf-8?B?a1dEalFjcXJvdUdwMXN4MHF5ZnBlV2RjRmdrZmxIeVNFa1BIdHlYSzRUdzhM?=
+ =?utf-8?B?bnRaZUgrSXNObHJjdEpFYTY1TUFTRktRbEptTzU3ME01bS9mOTlFQXBVY2pG?=
+ =?utf-8?B?ZGlVbzg5YitlWDRqb1dlNDhWTmY4Q3FnMFVuNXc2ZElHeE1pRm82TTh2VnRz?=
+ =?utf-8?B?bEk5Sk85YlQvL2ZZdkRIRkJKV2llY1VSZGFsWVdjdm9hN3hnMjdYdzhGdTFV?=
+ =?utf-8?B?VTU5OWs5S1hNdHRGSTRySUNwd0dSNDd0MjhtNDlhK1lSdDdETjA3dXJpSUFW?=
+ =?utf-8?B?VzB1NjNHbEFXWmV6aDFCeVdiVG9HTEhvR3ZWbzhjK1BqVncyelZLZFJMRmN1?=
+ =?utf-8?B?TzJFWk80YVhDMmFRYkJMMVkzaGZBOHhPY0d5WDdyTVl1eUF4ZHFvc1BtM1Nr?=
+ =?utf-8?B?UUdyUEcxZDBYbDJudmFyMSs2UEI2V3FVWXNYK21mMEI4dEZKVTlmY0RnOTdj?=
+ =?utf-8?Q?iWYs=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?MFBGQlIzMWRhNEZRTWxHcjJRTm41cmZyNHpvMmpPQ3VOVHZMVEJkN1g1aWtz?=
+ =?utf-8?B?VXFWbisxYlhVZDZCN1doYk9zVVVIZkJHaHVtdVE1V0RmcGo5R2drbUJFTENS?=
+ =?utf-8?B?Zm82dFlMZnVXeGc5NU5BalpMOWlnRlVWVm91T2FKMHNFUDJzNEdvSUtrdnhU?=
+ =?utf-8?B?eENHN09VTHFJTnovREE3RGN4K3l4UzE5bXU3K3hxZGpjdUFuQWcwamNqbFg2?=
+ =?utf-8?B?d3ZNUnhQd1l2bWc1SWRSclNkNnF0bVFWMDcvcWczeHpobFJFVUFsOUtaWGtq?=
+ =?utf-8?B?WVZGZFJpSXJ2cW5CMldXMlJvTktLS0hoem5XckhybTN4bkJqa3cySTRuSVRU?=
+ =?utf-8?B?cW1BVzZ6ZnJuNlpkYzJ5YXhKWU9OTFUxcmRNcjMzc2c2dElIcWxYY0RQeVI5?=
+ =?utf-8?B?a21EMkVPODNuRzVLMENjSHExQjFZenc4M2I4NkJkSjlQMDdHRzcwUkllbm4x?=
+ =?utf-8?B?aEVwZCs1YXFLUktuTzNNNmVaWXdiUkZYRG1uWmFyMXBlS3FDbk9kazBxNjZI?=
+ =?utf-8?B?RTJ3RXE4dENuMjBqNVVBM2hHK2FDZS9QWE5EWGljSGpidCtSVkdhQWpTN01l?=
+ =?utf-8?B?dHpWSkQ4Y0szQkg4QUk2UnpQRXl2bTd3dVBaelVhV3Eyd3l0NnJDeEJESnF6?=
+ =?utf-8?B?dnZJbGlNelZzaEU0YlQxdEYrOFNZVU9PRzNPSFV3TG9FdUJ5OXBZRGZGcjNk?=
+ =?utf-8?B?VUdGOHlNczV3dlcvWXdwRUlNRWIzWWVPODYzSXREaVVjOEtnR1dBSEVYNExH?=
+ =?utf-8?B?anJXcW1Mc1psTGpnbFpySDV3SGNZbm5nMUE5WkpNOEpuVWNpVU03TkZBMVNE?=
+ =?utf-8?B?am5zS09UYXhvS05JWkJEUlNhWkRra3J4TjlBUXA3TWY4ZUdWUGsvVm5UTkwv?=
+ =?utf-8?B?ZHFaUzA1ZE1Ta2ZySEtYVlVtc0xuV0FyTUZ6QlBDRTlNcjlNbVgrZU8yZGp2?=
+ =?utf-8?B?eXZlNmR5eU1COEhCcHBrcklDNjR5VHY4U3Q3UEJwMjhSZXhWRy9HV0pDbTBB?=
+ =?utf-8?B?Uk9IMHU5ZFJxT2dCZm0rRjcyT0lEWUozd3FScUt0Q1JNZ2JxYVY0dEtLVGRj?=
+ =?utf-8?B?VUtvNUlMU293WlNtMWpwdkVSOW8xNFlCaWlkMVM4dks1L1JDRUJ5dVl3bkxk?=
+ =?utf-8?B?MkYya09ZWlphT1Vqa2NnOVpVdWpTTjlWbFdxQkVOVjB0TW5lUEVkamFEdGli?=
+ =?utf-8?B?V0NXbm9POXlCZVQ4aVdhZ2diV2VtQzBibm02K05HVnpOU1Npb1lQRHA5amsv?=
+ =?utf-8?B?Q1RhZGQrSUUyWVFNVHJhazhYNW9DMFFTdmgvTHJUSnY5eERUU3FZV2dDT1Nm?=
+ =?utf-8?B?VThpSldjR0lIcllZay9Tb0hiRXluMVRnUnpEVDlKdlIzZVpFa01KRDk5VFk0?=
+ =?utf-8?B?dlBzODlHbmpHTnYzWjArQkdkY3RseDhyQmF4NXUzSGVmekc2M2FkUlBEOElI?=
+ =?utf-8?B?WUpOTWFnMm9DVzhYZlJIcTI2TWlUMUJaQlFXWlFYZnp6UG5PMzlQaEh2ZU9V?=
+ =?utf-8?B?eXNKYjF3d3pTQ2VQYWZrekF4ci9KcXhjVEZtUTQzRWVvSEhtaUYxd2pOcjZw?=
+ =?utf-8?B?eHhJWkdybVptM2IwQUVwQStaZVBvdEdzOWtseEgvYm1IbW4rSG1vQUVRVmIr?=
+ =?utf-8?B?ZlNEbHJsNG9PcWhpN0U2MzRWS2ljYmpQbGRRSEMxMkxzV1l2ZU5TeE9MUEpF?=
+ =?utf-8?B?YkYyTmdKbGVXVEUvcTRMVWpTT1ZHUzN0L1o0NVJsMlJPWmxZWHBtU1U2bVFQ?=
+ =?utf-8?B?YVRXbTF3bUxJM3h5Z2k1V1hwSEtsOVNiSWNxVHROYXN6ZVlmRzFNQTNaVHY0?=
+ =?utf-8?B?TnJyRGgwL3dNU3VmNGljNXRzRS8wVnVHdUJwSmtIdHhxMEhHd1dwMlRpV1h5?=
+ =?utf-8?B?WUltRDlTZWg0THpTUm9WWjEwTEpxRGxhZmVKazBUNzIzQlpZUlBORnZuc2p1?=
+ =?utf-8?B?WXFJUFBTOFo2ZXZpNWxXWUNWZzFKdlJDdG9nQjJlcnZaQk1pZmVGb1JxL0U3?=
+ =?utf-8?B?OElIWElpTnF4bTlSRzBvUTZUWE9kcktjVXNzWm9rdW5lVzdTQlpxVGxRVjlp?=
+ =?utf-8?B?amtYV3lJcE93MzNEbUNCeFFpSWZyeXBDUllLeC8xRDJJWm8wSjlUOGtybVJq?=
+ =?utf-8?B?d0hPcVlpYW01aEwvMjU5M2ZFRHNzRTYyNWMreHFIMGVIa0Y3R0N5TzJnSG84?=
+ =?utf-8?B?SFBES29tZktBQ1hSUXZRY0xpRllDQ1VQaWMyY0ZVMngzbjVjd2hVNHB5OE5H?=
+ =?utf-8?B?SWFRa0RHWTlCeTlHdVJtOXo1OTJZNWp0WHMrS1AvUkJyQnROQzNYY2ltcUVi?=
+ =?utf-8?B?NXYvNmtuSDF5dlpyZlR0ajlCYU9ESnNDeThyaU1jUTVRMmNiNXY0bGlFNWl3?=
+ =?utf-8?Q?SHbyIBaNf0efKxe+uKiJ7GwpoS0HNjhxEwLusgbc9/rh/?=
+X-MS-Exchange-AntiSpam-MessageData-1: 8ICLgTS76GJhvA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 95d1b21c-c972-48ca-81e5-08de6e2e40cf
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 14:10:07.3991
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ KntdiV2ELvRkVgl7RgKKPNohm1DAqBltACb2APCXmhz7Y1lshXLJNltJhMlBBOryABmteAvEcloggE0vzKNTNw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB8315
+Message-ID-Hash: 3W54NTNRKNJAWSHTASCGDH4YZENUJ3KK
+X-Message-ID-Hash: 3W54NTNRKNJAWSHTASCGDH4YZENUJ3KK
+X-MailFrom: acourbot@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Joel Fernandes <joelagnelf@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Eliot Courtney <ecourtney@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- Bjorn Helgaas <bhelgaas@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>, Maneet Singh <mmaneetsingh@nvidia.com>
+CC: Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, Gary Guo <gary@garyguo.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6BJEAY365UN3HQYTVVHQIEKKZS7ZDW5D/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3W54NTNRKNJAWSHTASCGDH4YZENUJ3KK/>
 Archived-At: 
- <https://lore.freedesktop.org/DGH7S2HJRDJJ.210D7DLTNFRNR@kernel.org/>
+ <https://lore.freedesktop.org/DGHAPCX1JAWX.3B8VMCMPCZ7UG@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,247 +219,61 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Feb 17, 2026 at 9:15 AM CET, Alexandre Courbot wrote:
->> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/g=
-sp/boot.rs
->> index 02eec2961b5f..f769e234dae6 100644
->> --- a/drivers/gpu/nova-core/gsp/boot.rs
->> +++ b/drivers/gpu/nova-core/gsp/boot.rs
->> @@ -403,7 +403,11 @@ pub(crate) fn boot(
->> =20
->>          dev_dbg!(dev, "RISC-V active? {}\n", gsp_falcon.is_riscv_active=
-(bar));
->> =20
->> -        // Now that GSP is active, send system info and registry
->> +        // Now that GSP is active, send system info and registry.
->> +        //
->> +        // These are async (fire-and-forget) RPCs: no response comes ba=
-ck from GSP.
->> +        // GSP does not include them in its sequence number counting to=
-day, but a
->> +        // future GSP firmware update will fold them into the normal se=
-quence space.
->
-> From the point of view of the caller this is a superfluous
-> implementation detail. This comment is actually confusing as it mentions
-> a sequence number that the caller does not need to provide, so I'd just
-> remove it altogether.
-
-The comment is not a doc-comment, hence it can more be seen as a comment fo=
-r the
-audience of nova-core developers in general, rather than a description of a
-specific API. So, I think it is OK to talk about an implementation detail h=
-ere.
-
-To me personally it seems useful and I'd like to keep it.
-
->
->>          self.cmdq
->>              .send_command(bar, commands::SetSystemInfo::new(pdev, chips=
-et))?;
->>          self.cmdq.send_command(bar, commands::SetRegistry::new())?;
->> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/g=
-sp/cmdq.rs
->> index 16895f5281b7..7d6d7d81287c 100644
->> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
->> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
->> @@ -58,6 +58,13 @@ pub(crate) trait CommandToGsp {
->>      /// Function identifying this command to the GSP.
->>      const FUNCTION: MsgFunction;
->> =20
->> +    /// Whether this command is async (fire-and-forget), meaning no res=
-ponse is expected from GSP.
->> +    ///
->> +    /// Async commands get inner `rpc.sequence` set to 0. Sync commands=
- get inner `rpc.sequence`
->> +    /// set to the transport counter, matching Open RM. The outer `seqN=
-um` always increments
->> +    /// regardless.
->
-> This here is too much detail as well IMHO, even more if you follow the
-> last suggestion in this review. :)
-
-As this one is a doc-comment, agreed.
-
->
->> +    const IS_ASYNC: bool =3D false;
->> +
->>      /// Type generated by [`CommandToGsp::init`], to be written into th=
-e command queue buffer.
->>      type Command: FromBytes + AsBytes;
->> =20
->> @@ -439,7 +446,8 @@ struct GspMessage<'a> {
->>  pub(crate) struct Cmdq {
->>      /// Device this command queue belongs to.
->>      dev: ARef<device::Device>,
->> -    /// Current command sequence number.
->> +    /// Transport-level sequence number, incremented for every send. Us=
-ed for the outer
->> +    /// GSP_MSG_QUEUE_ELEMENT.seqNum. Also used as the inner rpc.sequen=
-ce for sync commands.
->
-> Note that these types (especially `GSP_MSG_QUEUE_ELEMENT`) are never
-> visible in this module, so mentioning them here is assuming context that
-> the reader can't easily get.
->
-> Instead, how about just "Used for [`GspMsgElement`]'s sequence counter"?
-
-Same here.
-
->>      seq: u32,
->>      /// Memory area shared with the GSP for communicating commands and =
-messages.
->>      gsp_mem: DmaGspMem,
->> @@ -514,8 +522,13 @@ pub(crate) fn send_command<M>(&mut self, bar: &Bar0=
-, command: M) -> Result
->>          // Extract area for the command itself.
->>          let (cmd, payload_1) =3D M::Command::from_bytes_mut_prefix(dst.=
-contents.0).ok_or(EIO)?;
->> =20
->> +        // The outer seqNum always increments (transport-level, unique =
-per message).
->> +        // The inner rpc.sequence is 0 for async (fire-and-forget) comm=
-ands, or the
->> +        // sync counter for command/response pairs, matching Open RM be=
-havior.
->> +        let rpc_seq =3D if M::IS_ASYNC { 0 } else { self.seq };
->> +
->>          // Fill the header and command in-place.
->> -        let msg_element =3D GspMsgElement::init(self.seq, command_size,=
- M::FUNCTION);
->> +        let msg_element =3D GspMsgElement::init(self.seq, rpc_seq, comm=
-and_size, M::FUNCTION);
->>          // SAFETY: `msg_header` and `cmd` are valid references, and not=
- touched if the initializer
->>          // fails.
->>          unsafe {
->> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-co=
-re/gsp/commands.rs
->> index e6a9a1fc6296..c8a73bd30051 100644
->> --- a/drivers/gpu/nova-core/gsp/commands.rs
->> +++ b/drivers/gpu/nova-core/gsp/commands.rs
->> @@ -50,6 +50,7 @@ pub(crate) fn new(pdev: &'a pci::Device<device::Bound>=
-, chipset: Chipset) -> Sel
->> =20
->>  impl<'a> CommandToGsp for SetSystemInfo<'a> {
->>      const FUNCTION: MsgFunction =3D MsgFunction::GspSetSystemInfo;
->> +    const IS_ASYNC: bool =3D true;
->>      type Command =3D GspSetSystemInfo;
->>      type InitError =3D Error;
->> =20
->> @@ -101,6 +102,7 @@ pub(crate) fn new() -> Self {
->> =20
->>  impl CommandToGsp for SetRegistry {
->>      const FUNCTION: MsgFunction =3D MsgFunction::SetRegistry;
->> +    const IS_ASYNC: bool =3D true;
->>      type Command =3D PackedRegistryTable;
->>      type InitError =3D Infallible;
->> =20
->> diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp=
-/fw.rs
->> index 927bcee6a5a5..e417ed58419f 100644
->> --- a/drivers/gpu/nova-core/gsp/fw.rs
->> +++ b/drivers/gpu/nova-core/gsp/fw.rs
->> @@ -260,6 +260,26 @@ pub(crate) enum MsgFunction {
->>      UcodeLibOsPrint =3D bindings::NV_VGPU_MSG_EVENT_UCODE_LIBOS_PRINT,
->>  }
->> =20
->> +impl MsgFunction {
->> +    /// Returns true if this is a GSP-initiated async event (NV_VGPU_MS=
-G_EVENT_*), as opposed to
->> +    /// a command response (NV_VGPU_MSG_FUNCTION_*).
->> +    #[expect(dead_code)]
->> +    pub(crate) fn is_event(&self) -> bool {
->> +        matches!(
->> +            self,
->> +            Self::GspInitDone
->> +                | Self::GspRunCpuSequencer
->> +                | Self::PostEvent
->> +                | Self::RcTriggered
->> +                | Self::MmuFaultQueued
->> +                | Self::OsErrorLog
->> +                | Self::GspPostNoCat
->> +                | Self::GspLockdownNotice
->> +                | Self::UcodeLibOsPrint //
->> +        )
->> +    }
->
-> Mmm using a method for this is quite fragile, as we are always at risk
-> of forgetting to handle a newly-added function. I wanted to eventually
-> split `MsgFunction` between its command and events constituants, maybe
-> that would be a good opportunity to do so.
-
-I also think we should leverage the type system for such things.
-
-> Also, this is marked with `dead_code`? Looks like it belongs to the next
-> patch in this case.
->
->> +}
->> +
->>  impl fmt::Display for MsgFunction {
->>      fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
->>          match self {
->> @@ -816,7 +836,7 @@ fn new() -> Self {
->>  }
->> =20
->>  impl bindings::rpc_message_header_v {
->> -    fn init(cmd_size: usize, function: MsgFunction) -> impl Init<Self, =
-Error> {
->> +    fn init(cmd_size: usize, function: MsgFunction, sequence: u32) -> i=
-mpl Init<Self, Error> {
->>          type RpcMessageHeader =3D bindings::rpc_message_header_v;
->> =20
->>          try_init!(RpcMessageHeader {
->> @@ -829,6 +849,7 @@ fn init(cmd_size: usize, function: MsgFunction) -> i=
-mpl Init<Self, Error> {
->>                  .and_then(|v| v.try_into().map_err(|_| EINVAL))?,
->>              rpc_result: 0xffffffff,
->>              rpc_result_private: 0xffffffff,
->> +            sequence,
->>              ..Zeroable::init_zeroed()
->>          })
+On Tue Feb 17, 2026 at 8:25 PM JST, Danilo Krummrich wrote:
+> On Tue Feb 17, 2026 at 3:45 AM CET, Alexandre Courbot wrote:
+>> The kernel's own CStr type has been replaced by the one in the core
+>> library, and is now an alias to the latter. Change our imports to
+>> directly reference the actual type.
+>>
+>> Reviewed-by: Lyude Paul <lyude@redhat.com>
+>> Reviewed-by: Gary Guo <gary@garyguo.net>
+>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+>> ---
+>>  drivers/gpu/nova-core/firmware.rs     | 2 +-
+>>  drivers/gpu/nova-core/firmware/gsp.rs | 6 +++++-
+>>  drivers/gpu/nova-core/nova_core.rs    | 2 +-
+>>  3 files changed, 7 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/nova-core/firmware.rs b/drivers/gpu/nova-core/f=
+irmware.rs
+>> index 68779540aa28..2f7249383e51 100644
+>> --- a/drivers/gpu/nova-core/firmware.rs
+>> +++ b/drivers/gpu/nova-core/firmware.rs
+>> @@ -424,7 +424,7 @@ const fn make_entry_chipset(self, chipset: &str) -> =
+Self {
 >>      }
->> @@ -847,26 +868,31 @@ impl GspMsgElement {
->>      ///
->>      /// # Arguments
->>      ///
->> -    /// * `sequence` - Sequence number of the message.
->> +    /// * `transport_seq` - Transport-level sequence number for the out=
-er message header
->> +    ///   (`GSP_MSG_QUEUE_ELEMENT.seqNum`). Must be unique per message.
->> +    /// * `rpc_seq` - RPC-level sequence number for the inner RPC heade=
-r
->> +    ///   (`rpc_message_header_v.sequence`). Set to 0 for async (fire-a=
-nd-forget) commands,
->> +    ///   or to the sync counter for command/response pairs.
->>      /// * `cmd_size` - Size of the command (not including the message e=
-lement), in bytes.
->>      /// * `function` - Function of the message.
->>      #[allow(non_snake_case)]
->>      pub(crate) fn init(
->> -        sequence: u32,
->> +        transport_seq: u32,
->> +        rpc_seq: u32,
+>> =20
+>>      pub(crate) const fn create(
+>> -        module_name: &'static kernel::str::CStr,
+>> +        module_name: &'static core::ffi::CStr,
+>>      ) -> firmware::ModInfoBuilder<N> {
+>>          let mut this =3D Self(firmware::ModInfoBuilder::new(module_name=
+));
+>>          let mut i =3D 0;
+>> diff --git a/drivers/gpu/nova-core/firmware/gsp.rs b/drivers/gpu/nova-co=
+re/firmware/gsp.rs
+>> index 9488a626352f..ae3f6581c5b6 100644
+>> --- a/drivers/gpu/nova-core/firmware/gsp.rs
+>> +++ b/drivers/gpu/nova-core/firmware/gsp.rs
+>> @@ -32,9 +32,13 @@
+>>  /// that scheme before nova-core becomes stable, which means this modul=
+e will eventually be
+>>  /// removed.
+>>  mod elf {
+>> +    use core::{
+>> +        ffi::CStr,
+>> +        mem::size_of, //
+>> +    };
+>> +
+>>      use kernel::{
+>>          bindings,
+>> -        prelude::*,
+>>          transmute::FromBytes, //
+>>      };
 >
-> The caller site of `init` mentions that `rpc_seq` will always either be
-> equal to `transport_seq`, or be 0, depending on whether this is an async
-> command or not, yet this constructor allows any value to be used. I'd
-> like to enforce this invariant by making it impossible to build invalid
-> combinations of sequences.
->
-> As a matter of fact we already have this information in
-> `CommandToGsp::IS_ASYNC`, so the simpler way would be to pass *that* as
-> an extra argument to `init`, and let it handle the sequencing
-> internally. It also has the benefit of not making this message-layer
-> detail leak into the command queue code, making the discussion about
-> this detail even more irrelevant outside of the `fw` module.
->
-> An even better solution would be to to pass the `CommandToGsp` as a
-> generic argument - that way `init` could extract both the `FUNCTION` and
-> `IS_ASYNC`. Maybe use a public generic proxy method that calls into a
-> non-generic private one to limit monomorphization.
+> What's the improvement in this change? Both of the ones factored out are =
+already
+> correctly imported through prelude. Let's keep it as is.
 
-I think we should go with the generic argument; but I don't think we need a
-proxy method to fight monomorphization, i.e. I don't think we need to do wo=
-rk
-for the optimizer in this case.
+Mmm, either they weren't at the time I initially wrote this patch, or
+I've been careless (the latter being more likely). I'll remove this.
