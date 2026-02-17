@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76BAFE9A03E
-	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 20:12:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B393E9A03E
+	for <nouveau@archiver.kernel.org>; Tue, 17 Feb 2026 20:20:40 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5264010E51A;
-	Tue, 17 Feb 2026 20:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C0C5610E517;
+	Tue, 17 Feb 2026 20:20:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CVUbjyk+";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Lffsmcpu";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F1E87433AD;
-	Tue, 17 Feb 2026 20:02:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 617FC433AD;
+	Tue, 17 Feb 2026 20:10:52 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771358556;
- b=kGZ+9o/GJPz2YmU4QCm+Rva6FoqIH4NqqcQYuBaORkCMLFGM8Ssr+pi8wic11RkhTcGwp
- AMRHljIauFiyaVo/cVU4omm+oL7q6UKKgZ27axySLhI04eWBTryeiWxZcqMyMEu8b6i0y0m
- w6PO9geqvfQ6LJ3QnWkPRJ31MI+j7NodqXiNUWPV5NU4AfV5sD18aW9mWxma13XF23a55wo
- PafRksNcQTF8cCfoUh8y3Tx3+ZJcZTKHL4NjwnBLg3u0aOMdrcAbDwiqCIf4R6l+oWXBHoP
- 6pqrT+kxwkV/kkZp4RpYBKRkSXvIp5vkaobyW+JI1kcmumqPsp9qkWoImxbw==
+ s=20240201; t=1771359052;
+ b=zsYIJikGcMfFnW8gutnsY0SksVihEgKSXfwcHdlHnwlpByN3xtAaDZiB89HMrBbu5d3U+
+ Y/zW2qgz3ECwS5Ob4E/FWwLA1lmASeq3SJbLQ/qdukuomdORPP+XFztAmh/utUUilHmL7/X
+ /FUqmLUNg5aXF7lVGk6sxkD8ilJuoEuJVowCG+hRbJOszrKtTh4UJ2BuPbrwsn78JMH3Jxu
+ 53n7VZQk823Qt6mdgc4GvmdJZMQCg5v7e/1Nk8DyWoi2cLvUPgwa9gwnEZlZiJ3C6ualnB+
+ jj7oCchYcdFC4tELwDA9u6/zXKky7s1paTi9PgFnzRZoUciawcZlky9X0+BQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771358556; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771359052; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=edSMDKh3CHrezRf/E1A+94rE4cNllV4twn+rdDvIo50=;
- b=LsJUXvG/Bi9RIFef056AEre29oGAQMohP5jxBqU8Ttg3Wd9+DEcKEffXEHZ2G1LRrM9Sf
- x7sxOBmeult6IuqIlLgTIYUVLpSIvFQXkSmT1LYdKGK56apeHtNpmaewZpfXkrdPsIPtCFa
- dFehulHMPc9sphuWteu/Uw4O4kAnvaGCf/PUZ/u8d4dXGjbJMcBP7Atf5BwEmg+z7I9xmZ4
- yvCS2/9db96Ps6yUVSa+ofDwPmVRUtT3YxW04Lzl7DQRWT8pRecQkMUxPyWQenr43JWZzis
- mo3ykTTw6gUN7CKsaxIGX69eMAEhHjmFIfdPjxvE7GX+0e4eTawSIJ8lJhzA==
+ bh=OWaB3pJ2IS/dQkl0gjGL3y314g1UtxLl1a75cVHBCzM=;
+ b=EVuqCbuWS+7bqDQoJkRHkOzqeFJG7NGo2Z+b4lVBFeaJqDK0QcTHpqnvqZ5YYcR2q5tVY
+ 84HVtEJ0FfIkMk5cuVoGEG5is4ytr+TyZ31lOQapfbPTzJpYgpg83pL+3Wx+rOOxyFxBIB4
+ HGRuHAR/zXQ3AqJUWvcBMtw39VrkOBGcpgAPG2/jMyW4lK8H48WGySt7DhyK5Zl85xUcQpX
+ CB/r726KfLMdIyHH/KHp2eOHtJT3yzt5cX/9a3Zib32T4Vqdtt2QqD8W34kVbkWVBsHJQye
+ Rq+CBTUmbsKecY9FMiplMWqwgjs6BQKhW+lj/gNBSmOxm53OdsJRCY2BGR4w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,40 +46,40 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0145C403B4
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 20:02:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A95DA40042
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 20:10:48 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 33A0110E4E5
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 20:12:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DDE9310E28E
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Feb 2026 20:20:35 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 130EE43837;
-	Tue, 17 Feb 2026 20:12:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D71C4CEF7;
-	Tue, 17 Feb 2026 20:12:17 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 71CDF40412;
+	Tue, 17 Feb 2026 20:20:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32114C4CEF7;
+	Tue, 17 Feb 2026 20:20:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771359141;
-	bh=ZcC5YWdcb8ht0sD/VHqGWITAQtnYdshDayFlHAhQmI4=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=CVUbjyk+orcZKfrNR2YbC3C98sTInR04S9r19EANwNUCrxKpIyxlpfu+Q4ycJ6BVh
-	 LtzrTqlfzlUFCKnPvcqTjf6UtM2pQETR+1J5P40HxTfLwnWfARFU674G51ZtM9mP1E
-	 iwRluzb+HhYzZl8GfQvq3AemPYuic9Q3y7GhuKRD/OxSd6b/eW/lY3DtAFrWOfTpTd
-	 fveAtdSnGBzX7vbSiEIogJ45Z6KowHaYR2vDG4tJSyd/IhwT7P5ZsLBWamIgOEkSih
-	 zRfQDbCk4xM0PBg4dxIr/b9Fg64uZdrke2ZAvb0H8fIkNErSwtBL15MBOLKUQBKWax
-	 nkPLfiSVq7kFw==
+	s=k20201202; t=1771359635;
+	bh=xi6JdHVOolR7yqRp5EcdMOWPCbF2v9DXAAcKW/ooPq8=;
+	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+	b=LffsmcpucD1bZXeKVhl+366VkOpJYuqcULdrFOxNV3m2UwjcZtRIkcMYKRD2tqPNm
+	 h6oYvAAh2+MPt7iVnbLZGvTDwd663M685FaprjWHD0Nuq+YdI5AafV4w/ZejSSjKul
+	 dAahMOjYbIqWgsQ5mgiTVhGICYc3LZN/0UfFj0fa0KNCiXZB+RbnmgU/gnP7xQcuyL
+	 bpcwfJhLNYqzzHWiy2I+Y5NpIQ+USba79w2bdH2HP7KwAZLqA2NBr5bDz5vTblfi+i
+	 bV/WiXa9CLRgPEqiOh22AvcNKg+WIDcSvwK185ot2tmWpxbhUEjaIyW7/8TPxSD9sD
+	 OBdA8d7fBejCg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Feb 2026 21:12:16 +0100
-Message-Id: <DGHIEPBEHSC1.1G155LGII83R1@kernel.org>
-Subject: Re: [PATCH v4 28/33] gpu: nova-core: refactor SEC2 booter loading
- into run_booter() helper
+Date: Tue, 17 Feb 2026 21:20:29 +0100
+Message-Id: <DGHIKZW0M7DB.2JVQUP5C27J3Z@kernel.org>
 To: "John Hubbard" <jhubbard@nvidia.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH v4 29/33] gpu: nova-core: Hopper/Blackwell: add GSP
+ lockdown release polling
 References: <20260210024601.593248-1-jhubbard@nvidia.com>
- <20260210024601.593248-29-jhubbard@nvidia.com>
-In-Reply-To: <20260210024601.593248-29-jhubbard@nvidia.com>
-Message-ID-Hash: BMJL6PLGHJASRFIIUCOCXB5FY2NCPPR7
-X-Message-ID-Hash: BMJL6PLGHJASRFIIUCOCXB5FY2NCPPR7
+ <20260210024601.593248-30-jhubbard@nvidia.com>
+In-Reply-To: <20260210024601.593248-30-jhubbard@nvidia.com>
+Message-ID-Hash: GMOQQYS2UR6L4BW7GDU2HCIGH2VKULVM
+X-Message-ID-Hash: GMOQQYS2UR6L4BW7GDU2HCIGH2VKULVM
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -99,9 +99,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BMJL6PLGHJASRFIIUCOCXB5FY2NCPPR7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GMOQQYS2UR6L4BW7GDU2HCIGH2VKULVM/>
 Archived-At: 
- <https://lore.freedesktop.org/DGHIEPBEHSC1.1G155LGII83R1@kernel.org/>
+ <https://lore.freedesktop.org/DGHIKZW0M7DB.2JVQUP5C27J3Z@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,50 +112,53 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Tue Feb 10, 2026 at 3:45 AM CET, John Hubbard wrote:
-> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
-p/boot.rs
-> index 465c18e4c888..6191986fc6b5 100644
-> --- a/drivers/gpu/nova-core/gsp/boot.rs
-> +++ b/drivers/gpu/nova-core/gsp/boot.rs
-> @@ -120,6 +120,40 @@ fn run_fwsec_frts(
->          }
->      }
-> =20
-> +    fn run_booter(
-> +        dev: &device::Device<device::Bound>,
+> +    /// Check if GSP lockdown has been released after FSP Chain of Trust
+> +    fn gsp_lockdown_released(
+> +        dev: &device::Device,
+> +        gsp_falcon: &Falcon<Gsp>,
 > +        bar: &Bar0,
-> +        chipset: Chipset,
-> +        sec2_falcon: &Falcon<Sec2>,
-> +        wpr_meta: &CoherentAllocation<GspFwWprMeta>,
-> +    ) -> Result {
-> +        let booter_loader =3D BooterFirmware::new(
-> +            dev,
-> +            BooterKind::Loader,
-> +            chipset,
-> +            FIRMWARE_VERSION,
-> +            sec2_falcon,
-> +            bar,
-> +        )?;
-
-Maybe we should just make the part below a method of BooterFirmware, i.e.
-BooterFirmware::run()?
-
-> +        sec2_falcon.reset(bar)?;
-> +        sec2_falcon.load(bar, &booter_loader)?;
-> +        let wpr_handle =3D wpr_meta.dma_handle();
-> +        let (mbox0, mbox1) =3D sec2_falcon.boot(
-> +            bar,
-> +            Some(wpr_handle as u32),
-> +            Some((wpr_handle >> 32) as u32),
-> +        )?;
-> +        dev_dbg!(dev, "SEC2 MBOX0: {:#x}, MBOX1: {:#x}\n", mbox0, mbox1)=
-;
+> +        fmc_boot_params_addr: u64,
+> +        mbox0: &mut u32,
+> +    ) -> bool {
+> +        // Read GSP falcon mailbox0
+> +        *mbox0 =3D gsp_falcon.read_mailbox0(bar);
 > +
-> +        if mbox0 !=3D 0 {
-> +            dev_err!(dev, "Booter-load failed with error {:#x}\n", mbox0=
-);
-> +            return Err(ENODEV);
+> +        // Check 1: If mbox0 has 0xbadf4100 pattern, GSP is still locked=
+ down
+> +        if *mbox0 !=3D 0 && (*mbox0 & 0xffffff00) =3D=3D 0xbadf4100 {
+> +            return false;
+> +        }
+
+Hm...we could create a tiny type wrapper around this value, and do the chec=
+k
+with a method, such as Mbox::is_locked_down(&self).
+
+> +        // Check 2: If mbox0 has a value, check if it's an error
+> +        if *mbox0 !=3D 0 {
+> +            let mbox1 =3D gsp_falcon.read_mailbox1(bar);
+> +
+> +            let combined_addr =3D (u64::from(mbox1) << 32) | u64::from(*=
+mbox0);
+
+This could also be part of the type.
+
+> +            if combined_addr !=3D fmc_boot_params_addr {
+> +                // Address doesn't match - GSP wrote an error code
+> +                // Return TRUE (lockdown released) with error
+> +                dev_dbg!(
+> +                    dev,
+> +                    "GSP lockdown error: mbox0=3D{:#x}, combined_addr=3D=
+{:#x}, expected=3D{:#x}\n",
+> +                    *mbox0,
+> +                    combined_addr,
+> +                    fmc_boot_params_addr
+> +                );
+> +                return true;
+> +            }
 > +        }
 > +
-> +        Ok(())
+> +        // Check 3: Verify HWCFG2 RISCV_BR_PRIV_LOCKDOWN bit is clear
+> +        let hwcfg2 =3D regs::NV_PFALCON_FALCON_HWCFG2::read(bar, &crate:=
+:falcon::gsp::Gsp::ID);
+> +        !hwcfg2.riscv_br_priv_lockdown()
 > +    }
