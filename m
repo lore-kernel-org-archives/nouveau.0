@@ -4,214 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54624E9A054
-	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 21:21:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AEBFE9A04E
+	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 22:24:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7A7AA10E6B8;
-	Wed, 18 Feb 2026 21:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 241C210E640;
+	Wed, 18 Feb 2026 22:24:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="c3jQdkLz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TwgT2mGC";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 96EC7433F4;
-	Wed, 18 Feb 2026 21:12:00 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771449120;
- b=Izok0AuPXe9TY34f0nWnBHXxLFxAfrs0UF+HIKMMTP+QSTBSsAlgJQGTMmVRp7tzjBu5z
- VXrD7EMWjv6aUDeET3/PPKoUP9otFJ0GtHf9SPZllOoh9ZNKnagHw++drgxApg+36QWIO+g
- NteOUjxlFArvtNQZyk/+0D26+nam1r7QkXq0KzPMIsgHk1nVcXyDM1ZzKbD7c3/J1t0Tl74
- ImDdAUtL54qQsHdIhhpJxI8XNdwfQjU/VZoXdZVmx7ypi6+NbvQio18TGmbiP8OTwWb0bxK
- ZKmBT94ZSShGVNzT5gsvS7Z+gvcB7BQ2WeELROEFqBJ4zaDqbjD8EGaZcFYQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771449120; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 51000433F3;
+	Wed, 18 Feb 2026 22:14:21 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771452861;
+ b=cQvQE9ntOPqbnCC8KLjHySkoleAydAV9neMrdqkoxnDY/HMmL9x9e4HVdcX60lsOhr1UM
+ +PKo2188EFOb/UH6x6cfJ2r+2eyUj+L5VixQ/rscHX+t5YE6FFcEQO9v4bfgIjvQHxpreX8
+ HpyrzSV6iMzAlt1SWlA9ZYy44fDAgDtame8wAyccF051obwjVPBfZDnT69uGlmEBFnPNzLE
+ gWw9V6yAqeZYoQIfM+4/sJjJRQA+G1m4NDkze6px9KSCtgUofG9CqwN83AvmAycYtRTeUB7
+ fNp7S80LNFpi7UiucxXzJTNjjecrCi/jq/AfIfPAiB31ko5Gqe7GpZayTXzQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771452861; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uC5xqeRpKePwkM8gzGQTJz9rgA0jif1S/46rGUE3Z9Y=;
- b=YQLJKoTdTA2gEXdVnarqZq8lKKXeMLomSOTsMLFEq0mpqoA7Mm52l6LhcB1dtvAvhH5su
- /1fQSRMyxG+vzn/uOd4D6sVyIYkeAgCuY46EfnjGALgYTX2NsiIWJOCDTp3h5X0Lf3HDFdY
- 6++ER6Lf/6S6lAZqat+VlzztXxX4Gfr5RjE8Ms8FGGSOvcYntK+JBIoZyFQGWhCZMcg7OOL
- sP0Ad/oTilYnNOCXxvyr1nuPIbw8VFAFEjNWxeLJzGmllYQ36n3Bf7aWjwmZ0nHj0RLqEw5
- g7ACxi1ydSjCxrylWEtH0YqIu+lQcN0GGtv4qb2GUVauzIGbIC+rSS6ew5Ug==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=/gqAjgslqI7rZOrhoGjfveMcmy2RALeEdm3756GqFEk=;
+ b=krnSUvOnuGWeHpgPddBpBSwqK/Ec7SpKZd3QFwtg5/ZlKb5bLCMm9KNuX7vdvnMxRvSKL
+ c/EsP3IBoc6t085/HTivwhD2RJ5+jjaapVRzAfd0rEwMf8oYZ+0laKnLstrBrFTdE6T5uIE
+ IJeEazmfFZHJ+Bsfp59dIrZZ5hOr3rI2Ji8Nmm565Z80T7nIigcB77ma0nUVE1x0KZVMHyS
+ cGyO9ClXp7mK4Fse9BhpV1l6QdmFS3PNZdf86dh1ZlOQc6xi5KWqz3b6tXOTWNWnPEHJxrO
+ xTvIUKS8s6fc0pB0/xRdE03/gAqw8LvW4eKefckfGy57107HWhoWDJEljHRw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B6523433E8
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 21:11:55 +0000 (UTC)
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010005.outbound.protection.outlook.com
- [52.101.193.5])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 22D8810E682;
-	Wed, 18 Feb 2026 21:21:45 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YQb/5rXXUwlP+led4Nxcnm478Zvu4qj+38OeYRsRWy55PBYX2csoXGD2UK0kRVNNv9lfOM6jZ1IfoM5qWv9OQIUGRIvRS+Kxedz+m1yJ7GCJVSHbkJkzfKXGzaamFlU0rIK9waXQRxnMQC0sY5Wax4rt39UW/k56lkWR60ew7FZ5OPhnQprE02l4p4Sqb8oqfe+E9faMc2jNOanzJG20WwipGGpd/mxXNFVRSAVYmMmWcrJiYAryni6bClTukBd7W2gl8XNgcVWACdGqHtQoBMF4RiJpYyQBg//rprUJ/5Mc2L4+zXvilBsKVzUlBldqE6kVNgro8ymSZBLwyYSLyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uC5xqeRpKePwkM8gzGQTJz9rgA0jif1S/46rGUE3Z9Y=;
- b=JW0NuPcwQEN/xKnwIaINmrP0hqzzj5dIYFg5iQOrXJWrojIV+K8HHEkfx3pbczDQwoVsVOB8BOGISf12QdCoL43fFwxcpd9uelxJ8HoNbBCJDQ3sADUJptDRXVvg9StvH3uPoASuohYpq/kYizNTMgAZmyO+NiFlCefIquivG7Oze5Plt621mLWFKdUTw39FRvB5U2Mjem6b44EKyZFeOIXSKamQntoPLPhLExwc7TB03ljZscn+3fZLi51RIlqBQ56qNc4UEV9Do+KvBBbWDRTx7nd0odWLJ9ic0n631sIDrIvh71DSQ8Yv159G5sEJIfb2iuVsybNPpY87sCFlvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uC5xqeRpKePwkM8gzGQTJz9rgA0jif1S/46rGUE3Z9Y=;
- b=c3jQdkLzxetiBuHDjjVaOvJAIIskL3baet+Yxm93lLTLjL/WIBjF4JzXfOmQntF3LoG/l1epIM1WwKW1vgImD2ikiWlL63TBikB4FMr8k82bY6HpzZKp85zsc+rxvkKMjMGz0wxR43GHq0gORdJ8KGeh5gjHIIKc2/5RIwz1i29wR/7v1EIzjg3sIYi9ABqxOKQ8AKT5zrLFewEZ4zOKGmwH1BDttHQ0/U8Sz0q709Hcj8FoxPhTTz09krQn2YNOclWlR0gTbWOILQf7cwpTEbLdzdfWLWyVF7uPKeCUyxD8JyS8ODXpGtzWa5LVrZwz38ZKn9WGPVvEGuKSkEpk2g==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SJ0PR12MB6805.namprd12.prod.outlook.com (2603:10b6:a03:44f::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.16; Wed, 18 Feb 2026 21:21:38 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 21:21:38 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH v7 21/23] nova-core: fb: Add usable_vram field to FbLayout
-Date: Wed, 18 Feb 2026 16:20:18 -0500
-Message-Id: <20260218212020.800836-22-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260218212020.800836-1-joelagnelf@nvidia.com>
-References: <20260218212020.800836-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BL1P221CA0043.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:208:5b5::13) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SJ0PR12MB6805:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5b825681-d8f1-4f0b-c1c9-08de6f33b3ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?LWjguJrYKFADJXqSVDTST7cRj0JaYQNDTUDgMv9jSwAgHXuHfnK1ipwJsg/Y?=
- =?us-ascii?Q?BIK8eYJ7kBfBSMvQmtxpTaaN35/YzfrL2qW+WDGm4BYijFQ1jprU+Gm7tRCb?=
- =?us-ascii?Q?VDhw3tASLwCSTvGOgFpOIhctllK89Nmowwzsg9xEFe/TXuTi7YTzgNZs3B3L?=
- =?us-ascii?Q?+ZIKalaPdLLNI46J10Rr3RyCWQp3GE8FnNqQd89jb+C3GT3gwig/MfuJq2sB?=
- =?us-ascii?Q?skJmV4JOpPXmp9PUd+Z0LmZ+MO1ExcsMorxbu/9+KzjxlANIquOyDEaHOPFA?=
- =?us-ascii?Q?Hb5bfTVEpz+J0fKk/RwlVxcJc85FWfszyV9D8IppDvnpUeyDE/a3VXR5cZ79?=
- =?us-ascii?Q?P93LYDDcfczR1yLT4UPqpzySmdCLI/hB6f3wlWhDzqqAxiUHhtafRpcT0NzC?=
- =?us-ascii?Q?EPw8EAMgRE92/mkGRSd+YGPG1tkUWuV3Kbrdy82srCa5C02DhCx+ic37eFVE?=
- =?us-ascii?Q?DUbXhMaj6Tusc4AX7eri91cp0e+5E0PirSseiUzYLI/ApENLdEwCaTQNJzc/?=
- =?us-ascii?Q?AXjmwZmcXSOpGp3Syo+Apnr+W18PJCOlwc3BNW0vPQS74pwp/s9z6AWreRg8?=
- =?us-ascii?Q?/U42ubZsIsx4H18YZkRqw8oj7pfqWgyNeZpijE2X/AsE4efFkDfGldUzwOEP?=
- =?us-ascii?Q?Pal4fRM3UtfaeJadq/PHJwKzZBTFWSJqVTOzjZP8rpaTB6ZN1tkf6CMjK+TR?=
- =?us-ascii?Q?qFPmJOC32lU7bFpxTzVKNAPBAYscHlvgdP68SO9WrTDp9OnpKUavKOvwim3R?=
- =?us-ascii?Q?qzR3pH3GBtJ4Rf4snO5hKcrJnl5vb4SIOsND/EF1I0fQUaMDctbZe9GNMyfm?=
- =?us-ascii?Q?zm6jtxRDvHkSFIpXTWIdmDwZE9HLMYeoxk7wvvrC92DY53kiROD/rzjtbCOx?=
- =?us-ascii?Q?gk+D4kHJGKGNDNs3qfloPpBvHyixYBNmPXXGdBTortsnJfVOsOT3Uh7uX5g4?=
- =?us-ascii?Q?TM7ukakMaX16bXkZVYJYnET6I0t2CAlgFeTQPyyUMi93OhFNfySXD6vkMKK+?=
- =?us-ascii?Q?niockTKjijtJbi0IO176q6RbrerJNT5knzH8XA9Q52pk590qUm1T+tp9hcqR?=
- =?us-ascii?Q?AeaUGR/AwK/sEbH1d8tUCj9Ng/aJixFIsZAQ56vcaelaYzvFOrkOt46yCaqu?=
- =?us-ascii?Q?9WjuMQL3EXqvf7A4AHaSEWC9s86DTAHZeDaGgMFSMdDtG37vzXMc+lnzklDh?=
- =?us-ascii?Q?FLjcixbJpyWY27PuCpScRkZNKLbf+rU/6hHZceF/l1n2oyWxwb3WluyBleme?=
- =?us-ascii?Q?3IzwtN4sIRUeauOi/KopbSLOV+nLbcPT/Cbj9wKmMzvFnbFC9oTaJznhoj6h?=
- =?us-ascii?Q?tjtZwAf7wqHXUWeQ8lyNKXyaghDwQP9Lw8NOVvHME7WZqYu7XhiMtMnZnCDL?=
- =?us-ascii?Q?MlM+rZsHaVx3Mdk54qCOaw4rxYqLw4nrjmJ6C6FC9Uy1Ab32yGlWCrEUWCyh?=
- =?us-ascii?Q?/vfBmprzhjks1UCzqC9gL1E/l7Oe6OzMaVvAyh/klH0apWt9D5+bNxUyofb4?=
- =?us-ascii?Q?KxEebepQIGHf8r3i33/IX06Bho0HUAOh8gTWQW+erH66goKgAz9s7AKeaCDV?=
- =?us-ascii?Q?yGsTyM9Z+/eTPavBshE=3D?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?Y0KsSnfpifeBJlPneN6ReXG1MX3NFhFVihs/TnIm88V3BIZsDm2IDg/fQWbB?=
- =?us-ascii?Q?1ZZn5dvOHxcTPJYyEezF8geXQ/yQR5LXjimGiJlVU/TcfD18lL8FPxOYbuMv?=
- =?us-ascii?Q?Jdl2zMwsPq3XJw3HVzACjDIEIxsOI48Oo4wB89ocusO4Ool8C0CCV22RMB1r?=
- =?us-ascii?Q?AmE4LaEJKkGKizapigqoshi0GmSjXMHwzh6GllsAlqfX3MMnFv56kRQFEEdL?=
- =?us-ascii?Q?CIBnJKzYBuqGwVJRyH09Yj9c5MFzSMZXbhJC2qTyiIZ7gQnKA4hDvEilxFrb?=
- =?us-ascii?Q?UUr4PxFMY2piEo2vzH5voZYH7YkKcZ9HakY6oiiX+vzc53kJTXRujNUab3TG?=
- =?us-ascii?Q?fI7r8r5YbJSZTS0Ihl+WYRFiNComr1JaTU+9i6G6PBgWHQx4czrrSotkO4w5?=
- =?us-ascii?Q?KNgvjWOY0rHA0siX59FNwNQ8jY9XshGfwDlzRW3JJ8R3is/DM7B0QJN5WsO4?=
- =?us-ascii?Q?TgMNCy2P/vWNYECm7gvRwFfp9WW2UJmSNl3url3kr4MH33nGRuiqoHlLWlQD?=
- =?us-ascii?Q?CIM3dxUTjO0M6DkgdyMr/vzLbIi/V+GSwY0gSd4MCgJzcEcNvmD9yzT5RqkG?=
- =?us-ascii?Q?X+dlSqBgcE5bGqLoEBQ+pw/N2tIXpGpyu601NnfI+BCchZqkYX9q3UH5SVj4?=
- =?us-ascii?Q?2c0vBn462FyTN14jixPWywXEHvSnwLEf008l9tsIi4ZeJevTeTGjoxIGw4T4?=
- =?us-ascii?Q?PLUuXO6ddzeqQAZn0uxtCWC193gqPrCpaRhV4k6MR9EdYplpsQapHantuaZR?=
- =?us-ascii?Q?YhIY2g8WF90oqhpQjB0lX1parvujIECgyliZnzWVKIjJLW1tgCgdzx7v1FDs?=
- =?us-ascii?Q?gDINNGNI/p202P5+MZ+snonCsRAbbgGqFaCpN47gQ2rW2Lfw13jm1oEwzmZ5?=
- =?us-ascii?Q?cNsYQG08Gw9+OPV/Vs3IC+Qd6XictCOzUrgPw79L3Mwl6n9QZwg1Pwwr66wW?=
- =?us-ascii?Q?Vqz0H3CUE0YocBZAjKcQp4ze2bAfLbY6sZMIZ2XMmHAluaqd5VpGTROnCp3X?=
- =?us-ascii?Q?1uH4VVNimjnPmztk5jb2t4TLh81PrUdYfGJ35QiVGA6BQgXLksDKw5QOUGir?=
- =?us-ascii?Q?++o+EDtYxViyhEe3VbIdqbTxYAHhW64jPeZgahCX9CP8APWMIS0fs8zSOY9t?=
- =?us-ascii?Q?VBeSXGf0xsTd7wh7GGs3K6uVf7YN6hWzv79A1P0FxpbdtptrvvZMapOlhf2D?=
- =?us-ascii?Q?dHZWFDW65VFL0cnlJHYtgH8jDCURYOQyVPYe7+utvobiNAPwo0soHXJku6op?=
- =?us-ascii?Q?0WvwvNkDGjnmWsZZcIpIDSJ0FqEnnkBfchsltKLvpZHKi1lyNDWfrHlihIpy?=
- =?us-ascii?Q?hFEXpp+5yXZB8B7gei5pW1tvmBl/yywbctBXPvojzxEzppH2Sx6aLUFka5Az?=
- =?us-ascii?Q?d5It2+CcjcGFgVLOTr0YeLxImNKQ647sDNC6wd5AN23br3+hrCxAgq/y03IK?=
- =?us-ascii?Q?4KFgDnBwUfPtYlu9NHOid33Q/6927GQrHI99qhGXebTWH9UIVDO1M9kzXFjr?=
- =?us-ascii?Q?Kbx4HK5FPYW4ckmRbI2rnIG8abnUodbfkk8iZ/h7OD6SFbanNjcTi1OGw4lI?=
- =?us-ascii?Q?vLYQ0+/RK7IxoF+OoCZbYqsFiDNo6TfMvvGh+wLl2kSNW9tqG17j2gtCXOx9?=
- =?us-ascii?Q?Yl/R/Ny68bfPonYbdzPz0H0yiq0N0hH8DlWfIfgCBj69ZAswUvs7wmcbOZww?=
- =?us-ascii?Q?BChGPVGbYdpellXPVAHByjzV8rj2drgp6Dh7ynd5BFmcmqPnqi6W+O9nORSW?=
- =?us-ascii?Q?XfBtJik3iQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 5b825681-d8f1-4f0b-c1c9-08de6f33b3ed
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 21:21:38.7510
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- MlljmiwNWpPyrbZ5m7M21rdPQBiXPtVbFMFR76P5E8roY8ASvIY903iF9lVTtJaG/qJBoXOI/UvY0M5/rMYpog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6805
-Message-ID-Hash: 6KYZQCJHBWUPHEZ6TO5J2ODNHBXZBTZP
-X-Message-ID-Hash: 6KYZQCJHBWUPHEZ6TO5J2ODNHBXZBTZP
-X-MailFrom: joelagnelf@nvidia.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id C6D2341E98
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 22:14:18 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A14210E639;
+	Wed, 18 Feb 2026 22:24:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 9BE8C6132F;
+	Wed, 18 Feb 2026 22:24:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FAF6C116D0;
+	Wed, 18 Feb 2026 22:24:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1771453447;
+	bh=zQn0Q5wZfpk7S2Q8aholhB3Xtns3J/Vj36VDYCIlYi8=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=TwgT2mGCxSaU1yc8PMjqS55Ur7/a+wcxjcuI7d3a/94mTa3Y0AFqYd/8nfUv6vyfD
+	 /+3lemhhupa/JVo+a3IYXvGC3201kjnFg5Onw6DBAhhr+vCuKQn7l0gPnfsR94W995
+	 UHPgkpQZZVzmhIYLPrJKPweANgPFyY3bDzoh3h3YDbhbiaQTCQJp5tkdlRVQcSuDKB
+	 KjxlfU9jFUzFS+N1jySX9rYXvlqjc7b1gKJxkbw4FGrB5wAFqi5HnX/QobLQsLPIPO
+	 gavC4Nd3rxv/iSA/ViW2EZlvZmUtgIbD7CtX7eXRN5vl6azqgaCEQMmVPgKEDS5NSP
+	 H8QFIWWJvfLkw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 18 Feb 2026 23:24:01 +0100
+Message-Id: <DGIFU4JV4U47.QNCVFND4EA40@kernel.org>
+Subject: Re: [PATCH v10 0/8] Preparatory patches for nova-core memory
+ management
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260218205507.689429-1-joelagnelf@nvidia.com>
+In-Reply-To: <20260218205507.689429-1-joelagnelf@nvidia.com>
+Message-ID-Hash: C4CTIAL3NAP6SJSJO73ZFTZ6NIJFHWRE
+X-Message-ID-Hash: C4CTIAL3NAP6SJSJO73ZFTZ6NIJFHWRE
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ loop; banned-address; member-moderation
+CC: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Dave Airlie <airlied@redhat.com>,
  Daniel Almeida <daniel.almeida@collabora.com>,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- Joel Fernandes <joelagnelf@nvidia.com>, Nikola Djukic <ndjukic@nvidia.com>
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6KYZQCJHBWUPHEZ6TO5J2ODNHBXZBTZP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C4CTIAL3NAP6SJSJO73ZFTZ6NIJFHWRE/>
 Archived-At: 
- <https://lore.freedesktop.org/20260218212020.800836-22-joelagnelf@nvidia.com/>
+ <https://lore.freedesktop.org/DGIFU4JV4U47.QNCVFND4EA40@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -221,74 +109,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add usable_vram field to FbLayout to store the usable VRAM region for
-driver allocations. This is populated after GSP boot with the region
-extracted from GSP's fbRegionInfoParams.
+On Wed Feb 18, 2026 at 9:54 PM CET, Joel Fernandes wrote:
+> The clist/ffi patches are ready, reviewed by Gary and Danilo. Miguel, can=
+ you
+> pull those via the rust tree?
 
-FbLayout is now a two-phase structure:
-1. new() computes firmware layout from hardware
-2. set_usable_vram() populates usable region from GSP
+I requested changes in the last version and have yet to go through this one=
+. I
+also think that Alex still has some comments (Cc'd him).
 
-The new usable_vram field represents the actual usable VRAM region
-(~23.7GB on a 24GB GPU GA102 Ampere GPU).
+Please note that if this goes through the Rust tree, we have to wait for th=
+e
+full upcoming cycle before we can land the GPU buddy abstractions.
 
-Cc: Nikola Djukic <ndjukic@nvidia.com>
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- drivers/gpu/nova-core/fb.rs | 23 ++++++++++++++++++++++-
- 1 file changed, 22 insertions(+), 1 deletion(-)
+Alternatively, if it goes through the Rust tree, Miguel can provide a signe=
+d tag
+for me to merge or we can simply take it through the drm-rust tree in the f=
+irst
+place, if Miguel agrees with that.
 
-diff --git a/drivers/gpu/nova-core/fb.rs b/drivers/gpu/nova-core/fb.rs
-index c62abcaed547..779447952b19 100644
---- a/drivers/gpu/nova-core/fb.rs
-+++ b/drivers/gpu/nova-core/fb.rs
-@@ -97,6 +97,10 @@ pub(crate) fn unregister(&self, bar: &Bar0) {
- /// Layout of the GPU framebuffer memory.
- ///
- /// Contains ranges of GPU memory reserved for a given purpose during the GSP boot process.
-+///
-+/// This structure is populated in 2 steps:
-+/// 1. [`FbLayout::new()`] computes firmware layout from hardware.
-+/// 2. [`FbLayout::set_usable_vram()`] populates usable region from GSP response.
- #[derive(Debug)]
- pub(crate) struct FbLayout {
-     /// Range of the framebuffer. Starts at `0`.
-@@ -111,10 +115,14 @@ pub(crate) struct FbLayout {
-     pub(crate) elf: Range<u64>,
-     /// WPR2 heap.
-     pub(crate) wpr2_heap: Range<u64>,
--    /// WPR2 region range, starting with an instance of `GspFwWprMeta`.
-+    /// WPR2 region range, starting with an instance of [`GspFwWprMeta`].
-     pub(crate) wpr2: Range<u64>,
-+    /// Non-WPR heap carved before WPR2, used by GSP firmware.
-     pub(crate) heap: Range<u64>,
-     pub(crate) vf_partition_count: u8,
-+    /// Usable VRAM region for driver allocations (from GSP `fbRegionInfoParams`).
-+    /// Initially [`None`], populated after GSP boot with usable region info.
-+    pub(crate) usable_vram: Option<Range<u64>>,
- }
- 
- impl FbLayout {
-@@ -212,6 +220,19 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
-             wpr2,
-             heap,
-             vf_partition_count: 0,
-+            usable_vram: None,
-         })
-     }
-+
-+    /// Set the usable VRAM region from GSP response.
-+    ///
-+    /// Called after GSP boot with the first usable region extracted from
-+    /// GSP's `fbRegionInfoParams`. Usable regions are those that:
-+    /// - Are not reserved for firmware internal use.
-+    /// - Are not protected (hardware-enforced access restrictions).
-+    /// - Support compression (can use GPU memory compression for bandwidth).
-+    /// - Support ISO (isochronous memory for display requiring guaranteed bandwidth).
-+    pub(crate) fn set_usable_vram(&mut self, base: u64, size: u64) {
-+        self.usable_vram = Some(base..base.saturating_add(size));
-+    }
- }
--- 
-2.34.1
+> The non-Rust DRM buddy related patches are already being pulled into upst=
+ream
 
+They are in drm-misc-next, I will merge into drm-rust-next once they hit
+drm-next and -rc1 is out.
+
+> I will post the nova-core memory management patches as a separate follow-=
+up
+> series just after this one.
+>
+> The git tree with all these patches can be found at:
+> git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova/=
+mm)
+
+This is now (at least) the third time I have to ask for a patch changelog.
+
+	"When sending a next version, add a patch changelog to the cover letter
+	or to individual patches explaining difference against previous
+	submission (see The canonical patch format)." [1, 2]
+
+Please, add a patch changelog.
+
+(This also goes for the nova-core MM series, which is flagged as v7 despite
+actually being v2).
+
+[1] https://docs.kernel.org/process/submitting-patches.html#respond-to-revi=
+ew-comments
+[2] https://docs.kernel.org/process/submitting-patches.html#the-canonical-p=
+atch-format
