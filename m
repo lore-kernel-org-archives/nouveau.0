@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6115E9A02C
-	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 16:56:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6766E9A04B
+	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 20:55:36 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C3D8D10E60C;
-	Wed, 18 Feb 2026 16:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7C86A10E61B;
+	Wed, 18 Feb 2026 20:55:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="LbxIUjBZ";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Sr3htqzz";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7BE8741E98;
-	Wed, 18 Feb 2026 16:46:51 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C99E2433CE;
+	Wed, 18 Feb 2026 20:45:44 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771433211;
- b=TNe8pN4RvLe5Tv2khUNhZbK9OGO9uwqP6+fwyO7aLRsUSCrv7FSFQU7vfIiml/cDOtLX9
- q5PlkZeHEmKsyuVBRQ9vM8ToENSITXbl99bzuUI9N0Z/O3MNGrArH9jf0bwtHR0mEC16fql
- 1Ue4NHbI1RU1WPYxojjTh5Ekb1mLfX3H0Bzp61VBssDDFFsCYMF9JjJxQcMmAksFpG9qxp1
- 0PkOpHk9Dpehta4NrgRnMGBqpxs9BHt+8zP1KTD+LPncO32MD1BzKcE7OmvQLVQAR8LMBjk
- ZAw0LsX+y4U9m2Xzg3gMqnDMO8cFglH5qLLvo1EVvEH0ojxYmL2stpmNwQZw==
+ s=20240201; t=1771447544;
+ b=lqrZDi2NwA85xjrvg4QJ8QfvMOvz2KTk0bMZszMvt8XTpNDsAJxy49KO2lJZU1V5ZursV
+ OsVqnrfU5QVViz9/LN2UljKiERFs8HJX9VCyBLbi9TzkgqdbM3BIwkXVsdCjaXsLcqNVOLr
+ HrljmofPnfaexMJf0VOZSflF5LZ8iILkPBQSS+cQJTGiSlxzFmYA9Xk2CISHA8LFZmMPdwP
+ oTG5/8c6EHRAwdgir4s321BVLxcbSdy7zDj1WvMl/AY2JIR1SQyV0U52qXBiXQO6VJv5mfu
+ piYWyXu4Xcj8t6zB5cEbI7LJrm4axeqv0YmaLI534YOVGj36AO5PJS1pqRUw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771433211; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771447544; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=0Xvn67H9Z28g1+JFqIhxcxNE6x0RSPMPg9ZQwggewT4=;
- b=uHvRXJXkMr2BXJJhY0Al/8KhvzdcKA5LukH+UKdjeNDw0ttSZlBwwBod1Iti/DVHfVwfC
- do9DTrz9kEHV4st/PhjIovlz364rx/DNlbBRY2TqvqUHdrcS8+yBC6woiqoYWzVc6pYv71s
- z2Wkuwr6OH//RIGmRQUUCgdRr+IBCG1kHbbUm6sepDnZGbcWJjzjJsgIZgbY6HyeGFEX17s
- ZcSkLAIgFr8dq0UTZhdcsiq1GyqrM763jykvSS4d3ee7G9sUUZow1M0ZcmfDVv/bn19CbSL
- OT5+s6ERBDbG4IrWbN9jqBYrMbso/GU8/3rkuFga7Xcwvowwvyu70AfLppjg==
+ bh=w2TAqTG7olg71rrxfsek/73j8+daHV/6SEM9tKho2Q4=;
+ b=Ld80rWJRiBg72ks5yKjKkxX+kFAYaeVBO14Kl0yV0dgEJvak/Zq3VHmRWsPHGXgGe/r9k
+ S6xxF2Fs4QvTQ5cBw46D2WldOpjKajd1UJZZownBtLxNjVO5sFqMbf9Du4jPHEqTcjNMyPT
+ FxpeSveoEpNqgC9GwWWyuwWQq0kftVCWdESMrjkjc0EPVZ6w0vFg2pxgKX9pZegPFk7G4qN
+ aLAJzotiayDp7TnOlNRVAV6ucJ8CBGU3hjFH7H7zC8UcyBsQaqXekbOoSTGVs3AaT5BnIIM
+ NGNyOj81sET1q09r7AKzk26PuJUU6YQYeZ8Pi5mQftgapoAPq8NbKN21VVTg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,147 +45,158 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BCDD441E98
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 16:46:48 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011027.outbound.protection.outlook.com [52.101.52.27])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 978B210E608
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 16:56:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E66CE40042
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 20:45:41 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010063.outbound.protection.outlook.com [52.101.56.63])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 31A0610E316;
+	Wed, 18 Feb 2026 20:55:31 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XJbS/7CUAmz0idUypTi7P6GuYo0pdKyDzBLytQ4hS+O4N6BLyFDIVphzm5bAuxV9do+xfDiTwXro/ClHYvQke/czK/l68xOfo5lYSwPD2PFobSuNiYm3pUMnNWKg6lWHIy0HMVG8gOBrh7F5GFNMRRtr1uBSKEsxrYTbvfTHj3CKUL7kzui/5CiVVPn2tp4U6XAJYxNFD0pXBfp4acNwNVjxH1H3SnjLk0NC+nw2hglYYxqa8Gg7ozRATT973/YaNddT0hSbUrixqYznJHLgCkRLSgOU2SgiP0kx8AB+PfJzpHKgJQLfkZeQ8mJRS4K9RLynB+KbbSQmyAdmWQDevg==
+ b=xibyAHIrqLmZhLICEoTiqEHcvALr4x5jUWS0bfAUZFPBV50c9J1I2Z6AVQKxo2oHi5K97EyymZEmJSmqJNzgGYPgY8uNsi0GBwHv7jI3jkC7S6SXufnssrL+9SqdKDF/F/lzPTfXhrmtsYSguHko+rFJz0cpcp3DW3ZxiMCXAn0JBW/AWE4ZjIDn4XLnQHRlQnGPPOqtmg2Fcu6tKdONTcs072bS7xtNxtIfHkpOErTxDQvQ28vREGFRbKTitnWbRdh5yPLBKc+x/wZc/m7UpInYtmimQ1DSz8I+oDfYaXVnvYCwbfTE51u+TIo8MclbNZ7PyRPOZ+BuALznhC3Ylw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0Xvn67H9Z28g1+JFqIhxcxNE6x0RSPMPg9ZQwggewT4=;
- b=vMsH2tMgM4kI8RmJmRW1lZBPj/RJxaBk0swzoHMrF87H45Ai7pxi18RM8fMFcHOdKuyj53iJ5PjWaw/y+1HD9oSv2qaAcf/1739vM8fTyrWqzJHo7U3N4fLIugp09CCZesR5Hxx3FWARZfKI7R7zQFvkmGlomjKJnrOQEU/OVlpbG6ansNEwsCa3Ms4Dmv+Bt4zIZYTXMRSrDlOBo7kw8ayi1J18NmZd3YCbTMJ95vLK+xcRHb7OCJlO+TsHpwQMnTcOEu995w3ETg8n1oXlmS0Ec05DYi+kengMgDtBuc0AwcdFXr7tvXkeDCdlIUGP25n5u2bqmQiFDQvb/eFd5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.232) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
+ bh=w2TAqTG7olg71rrxfsek/73j8+daHV/6SEM9tKho2Q4=;
+ b=MeaEpA6DDlFiqMKyiPrjcWTSYUQH1wIuXeJoyOuY6XwcC/xcN9X2Hcg/SYPKV1WVjWu5IBwXcQoZvfqfsc6ldPNCMvpbOLbAT1HUK8IfctHaxiTVQddgA/Z7RLqXs6MVQEz0mn+uhSYI9T72fAOtTVi4NAhlZtgmft9g5pOAlS9TBnH8pxke2gP7hSoNRuT7jJwq+r6l3N7er8C1S1Vkjd8T4E6gses1K9Fs7MnWU8oGGuOspu+z7pFYkT5+cRp+GtAxpj7sJlvfXA4oR8AZoGL+UQzDPJei98NWLURViBSjU4qiNi5kTkS7AuIeJHJSQXpc6e+PXgOzMkk4f8WdRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Xvn67H9Z28g1+JFqIhxcxNE6x0RSPMPg9ZQwggewT4=;
- b=LbxIUjBZttvi/llYZCriiuqbbeA+xJpwezlZ1BPzBAclUfCqlyOJ/7OUMxkhshwjTwOqlkX6d4KPx44MvJs8caURDvBlgt3w6noW+Q66eE7W+rpYgRSEuDCPhSktx81FZVlAWwLJvNxvjG/Y6ZiM0bLV+jMoXUa8q4YuRPb9VtZOBBz+JYfC6CtdRD5nJktts/nmO8P+F16q8hmXW3uTV0Id6sxBcSVOhABciSwlvZ0Th8QERDKSqWYPPRGMXt3Iizrl4h4ie8DEYtHcKicXYCiQxn+VDLPZFL3YSfa96KlkVz28JaN7suzYb73YKa9YSsxdX8vXEuYDvDs4JdvtOA==
-Received: from BYAPR02CA0052.namprd02.prod.outlook.com (2603:10b6:a03:54::29)
- by CH3PR12MB7499.namprd12.prod.outlook.com (2603:10b6:610:142::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.15; Wed, 18 Feb
- 2026 16:56:21 +0000
-Received: from MW1PEPF0001615A.namprd21.prod.outlook.com
- (2603:10b6:a03:54:cafe::82) by BYAPR02CA0052.outlook.office365.com
- (2603:10b6:a03:54::29) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9632.14 via Frontend Transport; Wed,
- 18 Feb 2026 16:56:21 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.232)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.232 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.232; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.232) by
- MW1PEPF0001615A.mail.protection.outlook.com (10.167.249.85) with Microsoft
+ bh=w2TAqTG7olg71rrxfsek/73j8+daHV/6SEM9tKho2Q4=;
+ b=Sr3htqzzG0ypsk4M6AdXVPJs1tehVvttUPLkysPxzUHDlFnfwVM1u1egTvU/Y3VWxpMEcj+KQQZHumH7sCYiQ4tEuLCL7QifN+bEt/Pewu97doEJORbVMHwT8rJq5MD1gIGirw42m/q4qP6kOc+9Nlwndl8YOsj9nnY1WFsT8WaDawFffvvSbhd/Nx/dDf8diPlwu1/eb9DYGrO2Uw657Cm3gMxRJDUiL5YGE/wkvAXoe3LD7405MSbKe3hRN3SD4iWTh5i9jFFatraIVndRSZEAb+7uU9HZAlFSXU+5VyNtfiOodVgmuQOXyDwekK8sGqGGbM6VkJ7NLGJRpxUFVw==
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ PH0PR12MB8031.namprd12.prod.outlook.com (2603:10b6:510:28e::7) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.0 via Frontend Transport; Wed, 18 Feb 2026 16:56:21 +0000
-Received: from drhqmail203.nvidia.com (10.126.190.182) by mail.nvidia.com
- (10.127.129.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 18 Feb
- 2026 08:55:50 -0800
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail203.nvidia.com (10.126.190.182) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Wed, 18 Feb 2026 08:55:49 -0800
-Received: from ipp2-2316.nvidia.com (10.127.8.9) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Wed, 18 Feb 2026 08:55:49 -0800
-From: Zhi Wang <zhiw@nvidia.com>
-To: <acourbot@nvidia.com>, <joelagnelf@nvidia.com>, <ttabi@nvidia.com>,
-	<apopple@nvidia.com>, <ecourtney@nvidia.com>, <zhiw@nvidia.com>,
-	<airlied@gmail.com>, <simona@ffwll.ch>, <bhelgaas@google.com>,
-	<ojeda@kernel.org>, <alex.gaynor@gmail.com>, <boqun.feng@gmail.com>,
-	<gary@garyguo.net>, <bjorn3_gh@protonmail.com>, <lossin@kernel.org>,
-	<a.hindborg@kernel.org>, <aliceryhl@google.com>, <tmgross@umich.edu>,
-	<nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [PATCH] gpu: nova-core: consolidate GSP boot parameters into
- GspBootContext
-Date: Wed, 18 Feb 2026 16:55:48 +0000
-Message-ID: <20260218165548.485462-1-zhiw@nvidia.com>
-X-Mailer: git-send-email 2.51.0
-MIME-Version: 1.0
+ 15.20.9632.14; Wed, 18 Feb 2026 20:55:26 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
+ 20:55:25 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: linux-kernel@vger.kernel.org,
+	Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: [PATCH v10 0/8] Preparatory patches for nova-core memory management
+Date: Wed, 18 Feb 2026 15:54:58 -0500
+Message-Id: <20260218205507.689429-1-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: IA4P221CA0003.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:208:559::7) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
+MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW1PEPF0001615A:EE_|CH3PR12MB7499:EE_
-X-MS-Office365-Filtering-Correlation-Id: bc036e7a-d38c-4b1d-5cd9-08de6f0ea478
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH0PR12MB8031:EE_
+X-MS-Office365-Filtering-Correlation-Id: 76f9a318-54df-4424-7521-08de6f300a1c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|82310400026|36860700013|376014|7416014|1800799024|921020;
+	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|921020;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?pafbqf4ipg84tdh+4yqliRXPCdnX9Jw4usLFxetK88WYIecY8IgnB1r8LQsN?=
- =?us-ascii?Q?sbO0TcJPeHuhBBQwoncrqX6RSS0tcdqq6TLHLATgNM2tP7Nx6Td7laI7bYNG?=
- =?us-ascii?Q?FwGdwtWfJbAMtI4MBAqgaPV9JfvEgO5xLOqRrPKTV34BwM7LsN/7hVnzJSxN?=
- =?us-ascii?Q?RkPA8kZMMpI/VdNUygfg+wTzsmZCWfyX8JA97+6v8eqev4MKqfx7OPfOClrw?=
- =?us-ascii?Q?K61G1YLMJGvmPVKxZbXyhb0pNJMS7is83ONRZbFlRQVfzeaNp9zi5hj7lQTy?=
- =?us-ascii?Q?C6sz2vpjcz3XBTrGHAVmEO4Cn+KO2EqE+oGpYcgRl7ZXB66giS1Q5Kgd5ZQ/?=
- =?us-ascii?Q?8h9evqbsUHje06BCD5ibtmqyNzQg2qJhzlsDd6v7heuNuWlZxqYz8V603HYn?=
- =?us-ascii?Q?7eIQVhlil+InMpwAol7i+JNLXtgH/vNNZrXJBB43ALQfHTiu3RKLXlTOCjLi?=
- =?us-ascii?Q?PyzWIerXv2c9QjfYhyrIkxud0yiXjB2vjskTKYYE2W56YcypBt5nOg3yF2YK?=
- =?us-ascii?Q?4qxsL6HrT3tFdgmaFvszIL7v0ZOCTezwyddrO0YAZJh5w6980casPycVNOAP?=
- =?us-ascii?Q?Q9ML0XeDiSVashpiSrt6V3EH8hhRQGCUQltXAIC3VPIsGjZG8kiwAp84sNZp?=
- =?us-ascii?Q?Smrl4+4My7j6SeB51SSJy0wwX36doTqqul0XuKJHnAySejmjTLKT5MP4iPzU?=
- =?us-ascii?Q?AVI7p6Mz0zg7d2Ghhg0YLWLF2PHd2PD/BGWgh333xMMLD3gQXPdmUQ0gsFe0?=
- =?us-ascii?Q?hnUlkJpp9Fzwao+oc1A0JJqL79PPJl8bZnUSVV+53MxpiR/S3eSuGUJpzDFX?=
- =?us-ascii?Q?YLSfd+gWwbKsRxilXqwbYFABsQ7K06knO6JIYVc/v9X78yViIwRTJ+7f5rpw?=
- =?us-ascii?Q?Ki28V/ah04wH4uCN7iS/lxcjwrrix4bWIyNR9AmSe3G+Tao/imiMQez0X06x?=
- =?us-ascii?Q?YQzOzGh38EyI4ar4SrYiTB3PW+hxzoKUc6ME2V0Ac8eh1voF65Y3q5yMgB+5?=
- =?us-ascii?Q?PwQ1R6y8M93yN02Y4e9rsZdStWd/fiRTy9GTrHyPGCoXTN8wq2tnKb30hK2v?=
- =?us-ascii?Q?2/YeLEhpmwcp0xAwJljwpCijKgKmD6TiLNTfTq6i1RH3xbP3noc1GGOjEf9E?=
- =?us-ascii?Q?l9xkUJdrwU8G42M8YLPREB+3Frf95txEo0ZcTmSeXQaQXPbN3H1e9Js19vCy?=
- =?us-ascii?Q?aa9kOWAEV+w7hAj8cx24qhrgNo/ju+vTLxR8mcIwOHAmzVlwg3xVOVher7Mh?=
- =?us-ascii?Q?5++xK/FnLq6pmHl7vS82Q8YnxnFz9nCEsc+dEymf/rJEUYGEboUBFz0dC5q7?=
- =?us-ascii?Q?ZwGNyIhL/qcDnUGMkMtmbUj4F0NY8NzEmLw8tn/VVI/QH0Pb3dUjNUo82m+g?=
- =?us-ascii?Q?obhS1JxwNOpd1h8opetWOsc5h30RU4+xRuttHwh7eq6TXq9WemNt3Z7M4m+y?=
- =?us-ascii?Q?b4MwkAcWmvqvuBJNJ80M+lr4UyF8/tJREkitXzbF86ntbCSZD7/69NcJkgnX?=
- =?us-ascii?Q?zkpJCxOLbtBPsoXCZ7GSabuUStNLb9UXNfgkpQuqPoBHbJpP/rs6kZnlFwff?=
- =?us-ascii?Q?fcg55pnmvSVyT+Dga2+EJGLjxB/M4ZbJXa/sxK8TZXsWSfe9bbz4UoFhqYQn?=
- =?us-ascii?Q?xmtetJmWndCKoSGMH2jJvRFdV6uLy1QM6/y4ESODOY7r?=
+	=?us-ascii?Q?lQyJsPjBEeksxpnqrvzkoXbwFtKsgQIXYAo7iGbIhnumOZis+rHroK/kpXZO?=
+ =?us-ascii?Q?Tki3cHDKZE8L9+xQm/slPcz9c2tbiHUnjvgI8zABLXTWYyWcuhH/Dz4LTfRu?=
+ =?us-ascii?Q?/K062T8I5ATvK1bpXo9D6V8n10eGTz8LjMIOgH7eSCBAVX+Fp9d+zUo4sTWV?=
+ =?us-ascii?Q?+PSA/9LGhHlf3PujjRBpMBiAMI6w1orXp4/XlyODUk5uJaFRCnEdYWdyHWI5?=
+ =?us-ascii?Q?2yCzLTiBbAJz/XjQ4mVHc1GPakkQGyxN8IViqePD6GBimv5YIAZZfDC/UHkB?=
+ =?us-ascii?Q?tuomMXR25Ym4IfIUOO5l/bw2OkXnJze5tvbPTKqsk2kHCF/Ul/ew7XzHz0Ko?=
+ =?us-ascii?Q?OVtyq1bI54afLtgvFUHGkwV96djRQqtA+VcCFKMFCxbl/vgn/ZB3F2WUjm0f?=
+ =?us-ascii?Q?mAt+OG1t3aTLUljy1vM133sQugPEBFHqusquh0btXnkfmLttbKNE5Jt9Oala?=
+ =?us-ascii?Q?6lOMAbGu662gw7FRjcCNAxps7AS5KDLzK+g2bSQMXsQMVXZQTZUtTLFY3TC2?=
+ =?us-ascii?Q?P+VSghqiP7WxR5dj47FrTpvBRsEf4rhK03/H/yHDgYMtvoYx+iH+XDFhTwoG?=
+ =?us-ascii?Q?R5gVbn9bi7hic0Dn/RkSOOg65VbnP+UaL8BPTAuRnNAFBOEZDC4E3lG/G3/f?=
+ =?us-ascii?Q?5SMlg40pBzVbE/C0sIkV5Xpp29nS+YzfUyuwlqnw9Hy86IJubpPXHH6TsMu5?=
+ =?us-ascii?Q?8SpkQ8C7ImVCC3yheBtG0m3AbhcZWRaTgDq5WSfW0pHhfdH1/Jo3FPqF3YDQ?=
+ =?us-ascii?Q?PgLqin9ZVrqzOvMB90VYFhOc88W45RWMijxIX23HZpmMJpUOi5WiOFlrfCFS?=
+ =?us-ascii?Q?XkAicNdeUVqjSO47odQKxu0oKk0mMIPLlJKy8DkvM1AgC50YAEsG07LfDZQu?=
+ =?us-ascii?Q?PPST1nOWF4TRUxNzKJ5gb6LkfFAVOQeDaQDRs2HQ+zwcTOteBbZ5RlpBP0vR?=
+ =?us-ascii?Q?V8hTWpm7qqstkDuWkveqNIVa8vXewIJJy+asm2TQFzdWRUONzFlkvebtENUs?=
+ =?us-ascii?Q?/01ggabZxv/4htwXBvSVsS0k4lkt0FeekbxboCJnxhn+Kufz1H0Bgq79No2r?=
+ =?us-ascii?Q?T9bjV01Tt30hL9ADEoIrKYjrSG+KW5JhqzpJz+0v5S/MtrqJNdvgIlOfzgDf?=
+ =?us-ascii?Q?RQEenpbURO3wQvybc6ILTTqtV9zkUedm+RybyBuG8Ym/Fjlz6qnxoeAlECpK?=
+ =?us-ascii?Q?MnND9h/LMm8wzoYs3mp5xd1aWNfqs4aOO2wQikCLZnrkhATxw8yOcXSP5vwQ?=
+ =?us-ascii?Q?+IN7DeSNda8ucuWk+/GPOImMFhXD6JbZCiqIrWQUjR1BrB1dnUqCFTI7uqjT?=
+ =?us-ascii?Q?saoUnAwTB7qeWaeh1B3FNfQuWWKZyswgjzuHDLS3kiG68lzeNKHdw6zBHkCF?=
+ =?us-ascii?Q?KGXMEr2iRM49lZwIc9IrFgZGqSynjwU+UTK/J6IwSe03VwOjqka67y0AfTYn?=
+ =?us-ascii?Q?R/EBu3N/b1/qsURqjmAhZc7jztmQ5rD3QYZ52SkGYlSmGFZJfUMYqW3soV9h?=
+ =?us-ascii?Q?+TLlLDQIZdAshcgeD/G8L25QI03slwGAO3W5h9H3QlXYgQkXpuR/JKHf1rjU?=
+ =?us-ascii?Q?vGA1o5JPPiXmJ9j56PtV+2rXwu0OliX6qeE9apQrGOnrcg8vz5CrnYHvFSbH?=
+ =?us-ascii?Q?qw=3D=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:216.228.118.232;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(376014)(7416014)(1800799024)(921020);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(921020);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	b4GWbG8Vl1fmfnqHibrWCVWw0JYlC85Pw0KJavdRWkYVPMmNY4jTM4NLXpG1mE6el8N34BP/cG7RyBIx6q0jLGV7ftgabogj/nnRY/4EJGMYyTavx7Pm00sCKnDtKv3h0JCCGaA5EDsu33zK5TwLLgGOSQBbrdsVnRy3+SMmX4IF3mPK9NeBMBjSyD3lv7enEiZnz1KPc5ILV1meGN/7mT61wwKK6F2/fBdBtUQHFWQGMlAEjOy7kfnJZv91KnpuyERWLS65iiXv8x+j78Ho+TgRAmjR+XMyXO8U/Eh1y3w/D4gPy/6nlD09mXnSMb/Br9wurQdsWAgNzOY0ya94jAAJgTxmtsDTA6rzqK81e7FxjDlwEMANUlLtie1sIkhRWebEPPDPYl2C4s14oH+dqapa4oPOZsY6DOIegFg9lg+MI6MbrpTp4JtRi3nP0i0r
+	=?us-ascii?Q?RFQg34Gk988DStmoBKlXXL6l4M5eDjT6XDVy25Jdu7adW0LKpyPqP29pKp7B?=
+ =?us-ascii?Q?VS9u79l2wjkWXpLfN5I1kYuJxs327pyb2vPm3fqvCKUtUiwy+a1GdOvqQqzd?=
+ =?us-ascii?Q?dQSxPAyS1PF6xQK6sJDJveEB5iz5U/2P1k0mMJpFOY0zGiw77vSbMjb433bB?=
+ =?us-ascii?Q?CfowVLrWwnYvUx24EWb9FcMvw7uFqjgZlJn+Cu0mhkdzrzSdEv9rvFx4eUPh?=
+ =?us-ascii?Q?awEEQyv2epH2zAEtc0UJorur5okf4DmdeiEB+MSscZSv+N02CI4ZK8xbC4RE?=
+ =?us-ascii?Q?zCtowzCUfe4AZpFAQI/CGdNCwKsxl9Oz2idky2F/RyZW9aOm0jhG2klocG5n?=
+ =?us-ascii?Q?bdJRvvTGxrJksybsM+RW2fclaFSqgoT8Fuu9Dhfpn7p9yBxNz6uLjQERs6xF?=
+ =?us-ascii?Q?6EhgI8Wec+/hDi2u/opo+pixz2Hms/CJgbF6qfhvgal2fK90vOZC21BRD+rA?=
+ =?us-ascii?Q?7fxIg0d1/wDs3AO2z9+4LeRr0WA1CSSgCyVTvoTIH0gptrMMAtqOYCYW2Ig1?=
+ =?us-ascii?Q?OQiDYHe2Y+6H7jJrLelFcir0zQZ8wdIbU9NBlDwRAasKXFxSr5F9VauV0K4k?=
+ =?us-ascii?Q?QavVZ2ROluy3mOFyCb3FfUlQksjsMFThIQIp7zblXITUrXhIU3Y4DnR118hC?=
+ =?us-ascii?Q?5RkE7mNzBxqOfU+IyTM2e2eaWExvI2Xhmp05xq9FtDH+J8mxC3D87aeXoupc?=
+ =?us-ascii?Q?ULhdr/GANNMpqmZfulManSRZO4fSrMD+Z4MHNv1iQNKRv9bPwk9WkbqXdesZ?=
+ =?us-ascii?Q?GxTxZem+Rro4XV7b+WNxjzrpsSbv0hzIG6NLOhYjzDOQtZkVc3hoOGCxkxGA?=
+ =?us-ascii?Q?NZmDWrsO+N1OF5kiFzneZ+bCsxaSrwifCbINogAbu0VoWCXiYEXg4uLXmgu6?=
+ =?us-ascii?Q?qyUAHNmd7WKcVGa/qKziX/jdKP8/neGXNUA2BdXuwKgETS8N3XEUPa8fttHM?=
+ =?us-ascii?Q?5qtf88YmGRVoA0VQs/1Bk2uTK3yyhXIiMCHIOr2mi1Kpr3WSdJ2u8xi3ufTs?=
+ =?us-ascii?Q?hNIxtNDR63Ow5oxi5zjeh/vix/eNvE7PtN4opvemZMnEDGAhW0nNEVB9Va3I?=
+ =?us-ascii?Q?YyOuL8nFO11JLSraVK5aye6T+04td+w5xU8ChNjprPpdtkoI0+xbHYvshp8M?=
+ =?us-ascii?Q?CDxbpiklNxpWsAJBbbwKjCsz0BDm4B6a5qdTKzs5+ubryWTpm4MZ/ObM8Po6?=
+ =?us-ascii?Q?8MBJrwC7tf3IgB0IgTWVjT1iRsB2AKxtDL6KBcLvYpbdZa2fv21tp6AgCYum?=
+ =?us-ascii?Q?9Ggaz8oYdZMGU6dETkQZb+qT9fjZAPnznprw27sd89U1aDh5KgSZBMhB+BkE?=
+ =?us-ascii?Q?ynMHSCu592UkRtqUG1rVpZihlT8n+DKH28ljs1pXYhEIcCLBZU75I1dCx7u6?=
+ =?us-ascii?Q?gE4536E+xeAWaeG2gK4a7i0asLoUkckEMH95OtUMbZX4Sd4OdnSqqCmVtkeV?=
+ =?us-ascii?Q?VQ2dHT8+QQ8gp5NCGblWRcpyVHMBm+mWOkVA3C3qf7dgI+P6NzQyrCNhx9dc?=
+ =?us-ascii?Q?pU/pNhdM1pV7NQXkAwmahGYgykpkRsWyCHCOUK7mrw0RPWhEDRpp7JvLgHTu?=
+ =?us-ascii?Q?bvwIep0NRogHtgKbwrlb0///awv68kcQqf1yvaRmxfTKwpc2zYPJWY4WQ9Q0?=
+ =?us-ascii?Q?gq1mQ9sPE647AJ/hjtgRjtaxwLWprD9OgflSqul5sPyqE7mnm8HIyTvFMTjY?=
+ =?us-ascii?Q?DMPS4+AHxDZaWheFEkglA+71LRoQkXJWq52jLDImS7UKSHOHQku39ZvKwOlp?=
+ =?us-ascii?Q?Yki57EarMw=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 16:56:21.1803
- (UTC)
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- bc036e7a-d38c-4b1d-5cd9-08de6f0ea478
+ 76f9a318-54df-4424-7521-08de6f300a1c
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 20:55:25.4832
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
- TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.232];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: 
-	MW1PEPF0001615A.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7499
-Message-ID-Hash: I2SYLQ5HBMYZBNXCIYUHLGAYSOLR3DRY
-X-Message-ID-Hash: I2SYLQ5HBMYZBNXCIYUHLGAYSOLR3DRY
-X-MailFrom: zhiw@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ hdBQYGtNEVPtUFxhokNYCeo35m86ndpylPWUyAg7sBv6fanLeuq7t9JIebIJS7GlabK8P3NRRgyNrZt6ktV1ww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8031
+Message-ID-Hash: JF2F7YG3YKQ6UBLTHZ7SQHI3XRARUBKZ
+X-Message-ID-Hash: JF2F7YG3YKQ6UBLTHZ7SQHI3XRARUBKZ
+X-MailFrom: joelagnelf@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: cjia@nvidia.com, smitra@nvidia.com, ankita@nvidia.com, aniketa@nvidia.com,
- kwankhede@nvidia.com, targupta@nvidia.com
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Joel Fernandes <joelagnelf@nvidia.com>, Nikola Djukic <ndjukic@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I2SYLQ5HBMYZBNXCIYUHLGAYSOLR3DRY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JF2F7YG3YKQ6UBLTHZ7SQHI3XRARUBKZ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260218165548.485462-1-zhiw@nvidia.com/>
+ <https://lore.freedesktop.org/20260218205507.689429-1-joelagnelf@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -195,494 +206,98 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The GSP boot path threads pdev, bar, chipset, gsp_falcon and sec2_falcon
-individually through boot() -> run_fwsec_frts() -> sequencer.
+These are initial preparatory patches needed for nova-core memory management
+support. The series moves the DRM buddy allocator one level up so it can be
+shared across GPU subsystems, adds Rust FFI and clist bindings, and creates
+Rust GPU buddy allocator bindings.
 
-Bundle them into a GspBootContext struct to cut down on parameter
-passing and the associated import boilerplate. It is for easily
-introducing other boot params like vGPU enable, WRP size in future.
+The clist/ffi patches are ready, reviewed by Gary and Danilo. Miguel, can you
+pull those via the rust tree?
 
-No functional change is intended.
+The non-Rust DRM buddy related patches are already being pulled into upstream
+by Dave Airlie but I have included them here as they are needed for the rest of
+the patches (thanks to Dave for reworking them so they applied).
 
-Signed-off-by: Zhi Wang <zhiw@nvidia.com>
----
- drivers/gpu/nova-core/gpu.rs           | 16 ++++-
- drivers/gpu/nova-core/gsp.rs           | 22 ++++++
- drivers/gpu/nova-core/gsp/boot.rs      | 97 ++++++++++----------------
- drivers/gpu/nova-core/gsp/sequencer.rs | 71 ++++++++-----------
- 4 files changed, 99 insertions(+), 107 deletions(-)
+I will post the nova-core memory management patches as a separate follow-up
+series just after this one.
 
-diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-index 9b042ef1a308..61a90ebad7f8 100644
---- a/drivers/gpu/nova-core/gpu.rs
-+++ b/drivers/gpu/nova-core/gpu.rs
-@@ -18,7 +18,10 @@
-     },
-     fb::SysmemFlush,
-     gfw,
--    gsp::Gsp,
-+    gsp::{
-+        Gsp,
-+        GspBootContext, //
-+    },
-     regs,
- };
- 
-@@ -283,7 +286,16 @@ pub(crate) fn new<'a>(
- 
-             gsp <- Gsp::new(pdev),
- 
--            _: { gsp.boot(pdev, bar, spec.chipset, gsp_falcon, sec2_falcon)? },
-+            _: {
-+                let ctx = GspBootContext {
-+                    pdev,
-+                    bar,
-+                    chipset: spec.chipset,
-+                    gsp_falcon,
-+                    sec2_falcon,
-+                };
-+                gsp.boot(&ctx)?
-+            },
- 
-             bar: devres_bar,
-         })
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 174feaca0a6b..afb8304286d3 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -25,6 +25,13 @@
- };
- 
- use crate::{
-+    driver::Bar0,
-+    falcon::{
-+        gsp::Gsp as GspFalcon,
-+        sec2::Sec2 as Sec2Falcon,
-+        Falcon, //
-+    },
-+    gpu::Chipset,
-     gsp::cmdq::Cmdq,
-     gsp::fw::{
-         GspArgumentsPadded,
-@@ -39,6 +46,21 @@
- /// Number of GSP pages to use in a RM log buffer.
- const RM_LOG_BUFFER_NUM_PAGES: usize = 0x10;
- 
-+/// Common context for the GSP boot process.
-+pub(crate) struct GspBootContext<'a> {
-+    pub(crate) pdev: &'a pci::Device<device::Bound>,
-+    pub(crate) bar: &'a Bar0,
-+    pub(crate) chipset: Chipset,
-+    pub(crate) gsp_falcon: &'a Falcon<GspFalcon>,
-+    pub(crate) sec2_falcon: &'a Falcon<Sec2Falcon>,
-+}
-+
-+impl GspBootContext<'_> {
-+    pub(crate) fn dev(&self) -> &device::Device<device::Bound> {
-+        self.pdev.as_ref()
-+    }
-+}
-+
- /// Array of page table entries, as understood by the GSP bootloader.
- #[repr(C)]
- struct PteArray<const NUM_ENTRIES: usize>([u64; NUM_ENTRIES]);
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index be427fe26a58..a294d89fab0e 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -1,22 +1,14 @@
- // SPDX-License-Identifier: GPL-2.0
- 
- use kernel::{
--    device,
-     dma::CoherentAllocation,
-     dma_write,
-     io::poll::read_poll_timeout,
--    pci,
-     prelude::*,
-     time::Delta, //
- };
- 
- use crate::{
--    driver::Bar0,
--    falcon::{
--        gsp::Gsp,
--        sec2::Sec2,
--        Falcon, //
--    },
-     fb::FbLayout,
-     firmware::{
-         booter::{
-@@ -30,7 +22,6 @@
-         gsp::GspFirmware,
-         FIRMWARE_VERSION, //
-     },
--    gpu::Chipset,
-     gsp::{
-         commands,
-         sequencer::{
-@@ -47,12 +38,13 @@ impl super::Gsp {
-     /// Helper function to load and run the FWSEC-FRTS firmware and confirm that it has properly
-     /// created the WPR2 region.
-     fn run_fwsec_frts(
--        dev: &device::Device<device::Bound>,
--        falcon: &Falcon<Gsp>,
--        bar: &Bar0,
-+        ctx: &super::GspBootContext<'_>,
-         bios: &Vbios,
-         fb_layout: &FbLayout,
-     ) -> Result<()> {
-+        let dev = ctx.dev();
-+        let bar = ctx.bar;
-+
-         // Check that the WPR2 region does not already exists - if it does, we cannot run
-         // FWSEC-FRTS until the GPU is reset.
-         if regs::NV_PFB_PRI_MMU_WPR2_ADDR_HI::read(bar).higher_bound() != 0 {
-@@ -65,7 +57,7 @@ fn run_fwsec_frts(
- 
-         let fwsec_frts = FwsecFirmware::new(
-             dev,
--            falcon,
-+            ctx.gsp_falcon,
-             bar,
-             bios,
-             FwsecCommand::Frts {
-@@ -75,7 +67,7 @@ fn run_fwsec_frts(
-         )?;
- 
-         // Run FWSEC-FRTS to create the WPR2 region.
--        fwsec_frts.run(dev, falcon, bar)?;
-+        fwsec_frts.run(dev, ctx.gsp_falcon, bar)?;
- 
-         // SCRATCH_E contains the error code for FWSEC-FRTS.
-         let frts_status = regs::NV_PBUS_SW_SCRATCH_0E_FRTS_ERR::read(bar).frts_err_code();
-@@ -127,31 +119,28 @@ fn run_fwsec_frts(
-     /// structures that the GSP will use at runtime.
-     ///
-     /// Upon return, the GSP is up and running, and its runtime object given as return value.
--    pub(crate) fn boot(
--        mut self: Pin<&mut Self>,
--        pdev: &pci::Device<device::Bound>,
--        bar: &Bar0,
--        chipset: Chipset,
--        gsp_falcon: &Falcon<Gsp>,
--        sec2_falcon: &Falcon<Sec2>,
--    ) -> Result {
--        let dev = pdev.as_ref();
-+    pub(crate) fn boot(mut self: Pin<&mut Self>, ctx: &super::GspBootContext<'_>) -> Result {
-+        let dev = ctx.dev();
-+        let bar = ctx.bar;
- 
-         let bios = Vbios::new(dev, bar)?;
- 
--        let gsp_fw = KBox::pin_init(GspFirmware::new(dev, chipset, FIRMWARE_VERSION), GFP_KERNEL)?;
-+        let gsp_fw = KBox::pin_init(
-+            GspFirmware::new(dev, ctx.chipset, FIRMWARE_VERSION),
-+            GFP_KERNEL,
-+        )?;
- 
--        let fb_layout = FbLayout::new(chipset, bar, &gsp_fw)?;
-+        let fb_layout = FbLayout::new(ctx.chipset, bar, &gsp_fw)?;
-         dev_dbg!(dev, "{:#x?}\n", fb_layout);
- 
--        Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
-+        Self::run_fwsec_frts(ctx, &bios, &fb_layout)?;
- 
-         let booter_loader = BooterFirmware::new(
-             dev,
-             BooterKind::Loader,
--            chipset,
-+            ctx.chipset,
-             FIRMWARE_VERSION,
--            sec2_falcon,
-+            ctx.sec2_falcon,
-             bar,
-         )?;
- 
-@@ -160,76 +149,60 @@ pub(crate) fn boot(
-         dma_write!(wpr_meta[0] = GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
- 
-         self.cmdq
--            .send_command(bar, commands::SetSystemInfo::new(pdev))?;
-+            .send_command(bar, commands::SetSystemInfo::new(ctx.pdev))?;
-         self.cmdq.send_command(bar, commands::SetRegistry::new())?;
- 
--        gsp_falcon.reset(bar)?;
-+        ctx.gsp_falcon.reset(bar)?;
-         let libos_handle = self.libos.dma_handle();
--        let (mbox0, mbox1) = gsp_falcon.boot(
-+        let (mbox0, mbox1) = ctx.gsp_falcon.boot(
-             bar,
-             Some(libos_handle as u32),
-             Some((libos_handle >> 32) as u32),
-         )?;
--        dev_dbg!(
--            pdev.as_ref(),
--            "GSP MBOX0: {:#x}, MBOX1: {:#x}\n",
--            mbox0,
--            mbox1
--        );
-+        dev_dbg!(dev, "GSP MBOX0: {:#x}, MBOX1: {:#x}\n", mbox0, mbox1);
- 
-         dev_dbg!(
--            pdev.as_ref(),
-+            dev,
-             "Using SEC2 to load and run the booter_load firmware...\n"
-         );
- 
--        sec2_falcon.reset(bar)?;
--        sec2_falcon.load(bar, &booter_loader)?;
-+        ctx.sec2_falcon.reset(bar)?;
-+        ctx.sec2_falcon.load(bar, &booter_loader)?;
-         let wpr_handle = wpr_meta.dma_handle();
--        let (mbox0, mbox1) = sec2_falcon.boot(
-+        let (mbox0, mbox1) = ctx.sec2_falcon.boot(
-             bar,
-             Some(wpr_handle as u32),
-             Some((wpr_handle >> 32) as u32),
-         )?;
--        dev_dbg!(
--            pdev.as_ref(),
--            "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n",
--            mbox0,
--            mbox1
--        );
-+        dev_dbg!(dev, "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n", mbox0, mbox1);
- 
-         if mbox0 != 0 {
--            dev_err!(
--                pdev.as_ref(),
--                "Booter-load failed with error {:#x}\n",
--                mbox0
--            );
-+            dev_err!(dev, "Booter-load failed with error {:#x}\n", mbox0);
-             return Err(ENODEV);
-         }
- 
--        gsp_falcon.write_os_version(bar, gsp_fw.bootloader.app_version);
-+        ctx.gsp_falcon
-+            .write_os_version(bar, gsp_fw.bootloader.app_version);
- 
-         // Poll for RISC-V to become active before running sequencer
-         read_poll_timeout(
--            || Ok(gsp_falcon.is_riscv_active(bar)),
-+            || Ok(ctx.gsp_falcon.is_riscv_active(bar)),
-             |val: &bool| *val,
-             Delta::from_millis(10),
-             Delta::from_secs(5),
-         )?;
- 
-         dev_dbg!(
--            pdev.as_ref(),
-+            dev,
-             "RISC-V active? {}\n",
--            gsp_falcon.is_riscv_active(bar),
-+            ctx.gsp_falcon.is_riscv_active(bar),
-         );
- 
-         // Create and run the GSP sequencer.
-         let seq_params = GspSequencerParams {
-+            ctx,
-             bootloader_app_version: gsp_fw.bootloader.app_version,
-             libos_dma_handle: libos_handle,
--            gsp_falcon,
--            sec2_falcon,
--            dev: pdev.as_ref().into(),
--            bar,
-         };
-         GspSequencer::run(&mut self.cmdq, seq_params)?;
- 
-@@ -239,8 +212,8 @@ pub(crate) fn boot(
-         // Obtain and display basic GPU information.
-         let info = commands::get_gsp_info(&mut self.cmdq, bar)?;
-         match info.gpu_name() {
--            Ok(name) => dev_info!(pdev.as_ref(), "GPU name: {}\n", name),
--            Err(e) => dev_warn!(pdev.as_ref(), "GPU name unavailable: {:?}\n", e),
-+            Ok(name) => dev_info!(dev, "GPU name: {}\n", name),
-+            Err(e) => dev_warn!(dev, "GPU name unavailable: {:?}\n", e),
-         }
- 
-         Ok(())
-diff --git a/drivers/gpu/nova-core/gsp/sequencer.rs b/drivers/gpu/nova-core/gsp/sequencer.rs
-index d6c489c39092..b274ac7b2e05 100644
---- a/drivers/gpu/nova-core/gsp/sequencer.rs
-+++ b/drivers/gpu/nova-core/gsp/sequencer.rs
-@@ -23,12 +23,6 @@
- };
- 
- use crate::{
--    driver::Bar0,
--    falcon::{
--        gsp::Gsp,
--        sec2::Sec2,
--        Falcon, //
--    },
-     gsp::{
-         cmdq::{
-             Cmdq,
-@@ -133,12 +127,8 @@ pub(crate) fn new(data: &[u8], dev: &device::Device) -> Result<(Self, usize)> {
- pub(crate) struct GspSequencer<'a> {
-     /// Sequencer information with command data.
-     seq_info: GspSequence,
--    /// `Bar0` for register access.
--    bar: &'a Bar0,
--    /// SEC2 falcon for core operations.
--    sec2_falcon: &'a Falcon<Sec2>,
--    /// GSP falcon for core operations.
--    gsp_falcon: &'a Falcon<Gsp>,
-+    /// GSP boot context.
-+    ctx: &'a super::GspBootContext<'a>,
-     /// LibOS DMA handle address.
-     libos_dma_handle: u64,
-     /// Bootloader application version.
-@@ -156,7 +146,7 @@ impl GspSeqCmdRunner for fw::RegWritePayload {
-     fn run(&self, sequencer: &GspSequencer<'_>) -> Result {
-         let addr = usize::from_safe_cast(self.addr());
- 
--        sequencer.bar.try_write32(self.val(), addr)
-+        sequencer.ctx.bar.try_write32(self.val(), addr)
-     }
- }
- 
-@@ -164,8 +154,9 @@ impl GspSeqCmdRunner for fw::RegModifyPayload {
-     fn run(&self, sequencer: &GspSequencer<'_>) -> Result {
-         let addr = usize::from_safe_cast(self.addr());
- 
--        sequencer.bar.try_read32(addr).and_then(|val| {
-+        sequencer.ctx.bar.try_read32(addr).and_then(|val| {
-             sequencer
-+                .ctx
-                 .bar
-                 .try_write32((val & !self.mask()) | self.val(), addr)
-         })
-@@ -184,11 +175,11 @@ fn run(&self, sequencer: &GspSequencer<'_>) -> Result {
-         };
- 
-         // First read.
--        sequencer.bar.try_read32(addr)?;
-+        sequencer.ctx.bar.try_read32(addr)?;
- 
-         // Poll the requested register with requested timeout.
-         read_poll_timeout(
--            || sequencer.bar.try_read32(addr),
-+            || sequencer.ctx.bar.try_read32(addr),
-             |current| (current & self.mask()) == self.val(),
-             Delta::ZERO,
-             Delta::from_micros(timeout_us),
-@@ -208,7 +199,7 @@ impl GspSeqCmdRunner for fw::RegStorePayload {
-     fn run(&self, sequencer: &GspSequencer<'_>) -> Result {
-         let addr = usize::from_safe_cast(self.addr());
- 
--        sequencer.bar.try_read32(addr).map(|_| ())
-+        sequencer.ctx.bar.try_read32(addr).map(|_| ())
-     }
- }
- 
-@@ -221,16 +212,16 @@ fn run(&self, seq: &GspSequencer<'_>) -> Result {
-             GspSeqCmd::DelayUs(cmd) => cmd.run(seq),
-             GspSeqCmd::RegStore(cmd) => cmd.run(seq),
-             GspSeqCmd::CoreReset => {
--                seq.gsp_falcon.reset(seq.bar)?;
--                seq.gsp_falcon.dma_reset(seq.bar);
-+                seq.ctx.gsp_falcon.reset(seq.ctx.bar)?;
-+                seq.ctx.gsp_falcon.dma_reset(seq.ctx.bar);
-                 Ok(())
-             }
-             GspSeqCmd::CoreStart => {
--                seq.gsp_falcon.start(seq.bar)?;
-+                seq.ctx.gsp_falcon.start(seq.ctx.bar)?;
-                 Ok(())
-             }
-             GspSeqCmd::CoreWaitForHalt => {
--                seq.gsp_falcon.wait_till_halted(seq.bar)?;
-+                seq.ctx.gsp_falcon.wait_till_halted(seq.ctx.bar)?;
-                 Ok(())
-             }
-             GspSeqCmd::CoreResume => {
-@@ -239,35 +230,37 @@ fn run(&self, seq: &GspSequencer<'_>) -> Result {
-                 // sequencer will start both.
- 
-                 // Reset the GSP to prepare it for resuming.
--                seq.gsp_falcon.reset(seq.bar)?;
-+                seq.ctx.gsp_falcon.reset(seq.ctx.bar)?;
- 
-                 // Write the libOS DMA handle to GSP mailboxes.
--                seq.gsp_falcon.write_mailboxes(
--                    seq.bar,
-+                seq.ctx.gsp_falcon.write_mailboxes(
-+                    seq.ctx.bar,
-                     Some(seq.libos_dma_handle as u32),
-                     Some((seq.libos_dma_handle >> 32) as u32),
-                 );
- 
-                 // Start the SEC2 falcon which will trigger GSP-RM to resume on the GSP.
--                seq.sec2_falcon.start(seq.bar)?;
-+                seq.ctx.sec2_falcon.start(seq.ctx.bar)?;
- 
-                 // Poll until GSP-RM reload/resume has completed (up to 2 seconds).
--                seq.gsp_falcon
--                    .check_reload_completed(seq.bar, Delta::from_secs(2))?;
-+                seq.ctx
-+                    .gsp_falcon
-+                    .check_reload_completed(seq.ctx.bar, Delta::from_secs(2))?;
- 
-                 // Verify SEC2 completed successfully by checking its mailbox for errors.
--                let mbox0 = seq.sec2_falcon.read_mailbox0(seq.bar);
-+                let mbox0 = seq.ctx.sec2_falcon.read_mailbox0(seq.ctx.bar);
-                 if mbox0 != 0 {
-                     dev_err!(seq.dev, "Sequencer: sec2 errors: {:?}\n", mbox0);
-                     return Err(EIO);
-                 }
- 
-                 // Configure GSP with the bootloader version.
--                seq.gsp_falcon
--                    .write_os_version(seq.bar, seq.bootloader_app_version);
-+                seq.ctx
-+                    .gsp_falcon
-+                    .write_os_version(seq.ctx.bar, seq.bootloader_app_version);
- 
-                 // Verify the GSP's RISC-V core is active indicating successful GSP boot.
--                if !seq.gsp_falcon.is_riscv_active(seq.bar) {
-+                if !seq.ctx.gsp_falcon.is_riscv_active(seq.ctx.bar) {
-                     dev_err!(seq.dev, "Sequencer: RISC-V core is not active\n");
-                     return Err(EIO);
-                 }
-@@ -348,18 +341,12 @@ fn iter(&self) -> GspSeqIter<'_> {
- 
- /// Parameters for running the GSP sequencer.
- pub(crate) struct GspSequencerParams<'a> {
-+    /// Shared boot context.
-+    pub(crate) ctx: &'a super::GspBootContext<'a>,
-     /// Bootloader application version.
-     pub(crate) bootloader_app_version: u32,
-     /// LibOS DMA handle address.
-     pub(crate) libos_dma_handle: u64,
--    /// GSP falcon for core operations.
--    pub(crate) gsp_falcon: &'a Falcon<Gsp>,
--    /// SEC2 falcon for core operations.
--    pub(crate) sec2_falcon: &'a Falcon<Sec2>,
--    /// Device for logging.
--    pub(crate) dev: ARef<device::Device>,
--    /// BAR0 for register access.
--    pub(crate) bar: &'a Bar0,
- }
- 
- impl<'a> GspSequencer<'a> {
-@@ -374,12 +361,10 @@ pub(crate) fn run(cmdq: &mut Cmdq, params: GspSequencerParams<'a>) -> Result {
- 
-         let sequencer = GspSequencer {
-             seq_info,
--            bar: params.bar,
--            sec2_falcon: params.sec2_falcon,
--            gsp_falcon: params.gsp_falcon,
-+            ctx: params.ctx,
-             libos_dma_handle: params.libos_dma_handle,
-             bootloader_app_version: params.bootloader_app_version,
--            dev: params.dev,
-+            dev: params.ctx.pdev.as_ref().into(),
-         };
- 
-         dev_dbg!(sequencer.dev, "Running CPU Sequencer commands\n");
+The git tree with all these patches can be found at:
+git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova/mm)
+
+Joel Fernandes (7):
+  gpu: Move DRM buddy allocator one level up (part one)
+  gpu: Move DRM buddy allocator one level up (part two)
+  rust: ffi: Convert pub use to pub mod and create ffi module
+  rust: clist: Add support to interface with C linked lists
+  rust: gpu: Add GPU buddy allocator bindings
+  nova-core: mm: Select GPU_BUDDY for VRAM allocation
+  nova-core: Kconfig: Sort select statements alphabetically
+
+Koen Koning (1):
+  gpu: Fix uninitialized buddy for built-in drivers
+
+ Documentation/gpu/drm-mm.rst                  |   10 +-
+ MAINTAINERS                                   |   15 +-
+ drivers/gpu/Kconfig                           |   13 +
+ drivers/gpu/Makefile                          |    3 +-
+ drivers/gpu/buddy.c                           | 1322 +++++++++++++++++
+ drivers/gpu/drm/Kconfig                       |    5 +-
+ drivers/gpu/drm/Kconfig.debug                 |    1 -
+ drivers/gpu/drm/Makefile                      |    1 -
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ras.c       |    2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_res_cursor.h    |   12 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |   79 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.h  |   20 +-
+ drivers/gpu/drm/drm_buddy.c                   | 1277 +---------------
+ drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |    2 +-
+ drivers/gpu/drm/i915/i915_scatterlist.c       |   10 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c |   55 +-
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.h |    4 +-
+ .../drm/i915/selftests/intel_memory_region.c  |   20 +-
+ drivers/gpu/drm/tests/Makefile                |    1 -
+ drivers/gpu/drm/tests/drm_exec_test.c         |    2 -
+ drivers/gpu/drm/tests/drm_mm_test.c           |    2 -
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |    4 +-
+ drivers/gpu/drm/ttm/tests/ttm_mock_manager.c  |   18 +-
+ drivers/gpu/drm/ttm/tests/ttm_mock_manager.h  |    4 +-
+ drivers/gpu/drm/xe/xe_res_cursor.h            |   34 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   12 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |   71 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h    |    4 +-
+ drivers/gpu/nova-core/Kconfig                 |    3 +-
+ drivers/gpu/tests/Makefile                    |    4 +
+ .../gpu_buddy_test.c}                         |  416 +++---
+ .../lib/drm_random.c => tests/gpu_random.c}   |   18 +-
+ .../lib/drm_random.h => tests/gpu_random.h}   |   18 +-
+ drivers/video/Kconfig                         |    1 +
+ include/drm/drm_buddy.h                       |  163 +-
+ include/linux/gpu_buddy.h                     |  177 +++
+ rust/bindings/bindings_helper.h               |   11 +
+ rust/helpers/gpu.c                            |   23 +
+ rust/helpers/helpers.c                        |    2 +
+ rust/helpers/list.c                           |   17 +
+ rust/kernel/ffi/clist.rs                      |  327 ++++
+ rust/kernel/ffi/mod.rs                        |    9 +
+ rust/kernel/gpu/buddy.rs                      |  537 +++++++
+ rust/kernel/gpu/mod.rs                        |    5 +
+ rust/kernel/lib.rs                            |    5 +-
+ 45 files changed, 2893 insertions(+), 1846 deletions(-)
+ create mode 100644 drivers/gpu/Kconfig
+ create mode 100644 drivers/gpu/buddy.c
+ create mode 100644 drivers/gpu/tests/Makefile
+ rename drivers/gpu/{drm/tests/drm_buddy_test.c => tests/gpu_buddy_test.c} (67%)
+ rename drivers/gpu/{drm/lib/drm_random.c => tests/gpu_random.c} (59%)
+ rename drivers/gpu/{drm/lib/drm_random.h => tests/gpu_random.h} (53%)
+ create mode 100644 include/linux/gpu_buddy.h
+ create mode 100644 rust/helpers/gpu.c
+ create mode 100644 rust/helpers/list.c
+ create mode 100644 rust/kernel/ffi/clist.rs
+ create mode 100644 rust/kernel/ffi/mod.rs
+ create mode 100644 rust/kernel/gpu/buddy.rs
+ create mode 100644 rust/kernel/gpu/mod.rs
+
+Cc: Nikola Djukic <ndjukic@nvidia.com>
+base-commit: 2961f841b025fb234860bac26dfb7fa7cb0fb122
 -- 
-2.51.0
+2.34.1
 
