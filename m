@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 110C2E9A03B
-	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 07:25:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5081DE9A03E
+	for <nouveau@archiver.kernel.org>; Wed, 18 Feb 2026 09:00:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E22AB10E575;
-	Wed, 18 Feb 2026 07:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0859D10E598;
+	Wed, 18 Feb 2026 09:00:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="i7wJfvJQ";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="FaHf+QC5";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7A6FB433B4;
-	Wed, 18 Feb 2026 07:15:33 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 72DBC433BE;
+	Wed, 18 Feb 2026 08:50:31 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771398933;
- b=sQLenY3mWT7Q8iuYCv8T2RdtmzXQILsLTZQch9/FFCPWVGW3s/8g+B8nFpG39k7KmGtbg
- o0t5EfK587mSntjevW0bcXTtPiUUUx3R+dO2rTWZQSJnTNTLdEhV/E87yW/brT5Lk/kH+6G
- lcUrcfdfeZ91QykJCSqVVmYEKfZ0v2q3Fqo3kQrgNTvBm7dsu7eaIKwLJMUvpeSHzZXuMkX
- KHHT/n/K/Jnz89rTSpGVz5vhELZUGjAVzukw9uOKIB5z38j6g6aKOx7Edpw7WoPTDUmIQEz
- B44UfiHSOPyWWA4uE0r3Xu9FBOquhKt9A6mpX7dB0wGodRVMtNeM3Nyt3dhQ==
+ s=20240201; t=1771404631;
+ b=gdaTjBmDs67OWOSsuKHvQO4C8ghGspCdI4tgqcV+jOZTi1e9V0rpUrn4bgVeg5f0ezakj
+ yEcRJ65Rg3ODP3Snkv0UIc4EHv5XeUqMh1RyDA02cXoABbrjWsAqzAabMKY88QlU8MlGEk3
+ kIBx52e91NhMSaSx0bmD+GBysO38epAxeHZpZrJTPgoSTHnaHDM0yUjU+dvTQUtkTgpwWKZ
+ uTnbr+ZitIPrAQ72FUIdPwyrlDb0w7Vu0FnnyyGlFBcIDzoZXhHuyk5DoO6LXqqO4CgOHl/
+ QB7QIZ/4M0QselD4U1IPU+tmgOgDW6Kp+djAXA73k7o9x2Yn4i7GefEI/TNw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771398933; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771404631; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=k1LVGznbFaxzZitUzv1Ms1cDnirl1MxBpeQMnKw0DS4=;
- b=rwzX1kWGE5rxZx+LG9xsZDvSQDxcyk8TMBxaM2k5CYI34UMD2LqKwwZhSsxSTyEO9mDqc
- Myze6ya71UN3FM0BmCNa1PTOX52S0vB7PzIvO30MjUGI41XR3ha5rNp4CodKzdyckxtSOa7
- iK6R895+MZjTVFc6gcjcmrXrw8vlF7fyyXFbyh2Ae3nWYLHq9USzbWPjLcp+cnQfK9QAz+i
- sknTpnvmmU8l0fsF48VtLl2A6mTCPXLJnyyVhrv4qIcKreRrYEF6Uk20S+AqMD/QPkByyz0
- GYNnn/743kQcwcK07rera5osIy1rS/Q9F0Qo4fymqRT84LW1eSthDuNLW7/Q==
+ bh=Y6dbupFW5A1Qe3xsGNsTzkOsxJDVhkWvESJXaocEZ6w=;
+ b=GVr3zr2m+yU4ZOXE4ILOWowYYgKRDBf94zHOGRYlzHgyUTfTXpy/iK6q8ce67G8MSNDvx
+ 8paNKDeVgkW6fE90c3+ihWnhe8WHryHMu/66hl7uTcZbxL+ygsFtrf5Kf+ZE8OMaDvvLgWm
+ qcS10eadi58vIaCPgmC6tpXHD2J/EnoGwgJsgaBvyL4143OwollaP6qZM8GAtY7KYXKGVA9
+ BbG4IypUxmEZR6fbbDR2SMlNepBL1c8dXu7gN0ai4Zx4OaEzr8mtH/dmI/kAWW6gQasSH50
+ a54UQK9axNL1T43aAqUSeVgdbbLHo6X9QeZcdngWW9Jbv0owKc0Ppgn6x99g==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,172 +45,172 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1AD4B40042
-	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 07:15:31 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012042.outbound.protection.outlook.com
- [40.107.200.42])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 386D810E569;
-	Wed, 18 Feb 2026 07:25:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EBFBE40042
+	for <nouveau@lists.freedesktop.org>; Wed, 18 Feb 2026 08:50:27 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010007.outbound.protection.outlook.com [52.101.56.7])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD2510E2E7;
+	Wed, 18 Feb 2026 09:00:16 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BH6Xcqt8/nEZllbrXQsc5J+KTMcMuuThCo8mMouPIHKCo37jorOmMzeHjPhlvgqRGcrgbhOUO7dc2bHWp4Ij6wq9PYb4nMyQwH1Sm3wIEbQQOq8x9hmy39+qhpiJUMWj1GmxTTQM7F1OkSI9Jmq23cHL0EY0zerDiHxEVZvEsXpPXiGecCzxwxlmBrNlTJDvQy9vEPDJXKuNDMNCsiGdogOFsBQ5muxq0+DRGs3drBnZS1e62N9S5JZwssY/ipdb1HpGoezRXa7+7T8Xc//RGeuhhUHI9B1k90f0J4zdrfWTGNjPrUInuQ1GaeTvJ5jmN9e3r/LfoVL+CY7S23Pkcw==
+ b=ZlAae+mo85A5Y6djeHGC7kMdQ1hvA+LX7q2faGmso6iVAyGpTnsqZGPpdEZ/lyYBHv1CySSoFPYJjiFLEZl/mO+iBuDwDQnuC0OSD9tBwokFsEahaZXVf9BV6skUwK35ZiBi8kaox9mzPefRcXPuSu0r7OZGaylBune2BjnxtaHlqFwGSKRe+HiqiF+obYxwwAEgjQRBD3E3k95MF132zbXwEv/e6ocZTE8XXGAGSOV6lRlI710N2WKC12jXYmVB2h1JpGgmn8adaZooCHZ8iiDiDLpFZYiNocbXMqnskvy8Il59ifivxcx0IicmITzoZF7r+5uH04Qa7rOeSowtjw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k1LVGznbFaxzZitUzv1Ms1cDnirl1MxBpeQMnKw0DS4=;
- b=zRDAOnK2Dhn8fRd0xH5Gg9UGRjzoeuoY9z+vh8nL3LjJpPIXqpRksCbmkg5ler6b+0W26mNBNhIqYwNiuF5NnQWSJY09G2i9Ql917OBW5hdBAp+5BnHGrJqEuORzA0DB+i1tudReCY40NlYiHZiohp5lmkBD3NCPk+df4srEOEFtv7HdAYv4VsZslHg0m+qchjYpROUrvG4atxxG39FxFHP9ILvmoiFEjZYW7h4/Hen1lxTLDkM99Bzzkcwk44bxyB4MrfwbggTINa+QWWBX5lC1P0QgRnioOwaPEnsSTVfQ4PoOHjpjSk+F6JRv/1rP62/JyCkHDvDeY14MAeq+3w==
+ bh=Y6dbupFW5A1Qe3xsGNsTzkOsxJDVhkWvESJXaocEZ6w=;
+ b=udK/nfCdLq+4Umbljtwns6ceVmrTEIJYlawmxs1ZGsh/10chbrOuekUcMqjQao0dnKbbX7pufqRv9lF+Arm8i5WkWxcGakDFCLWlZIgsJcjt0kHVvr9qZWlwtVThT2MoMkK8bRVYOp/KAEumJRsndV9lDa6+QD9JLInC5joNLutSUh4n3C8D3o+8UnNZdXvU+WNZtSYi3Qu7r/h5YgLlMTlWGeG4X5+0SUAaDNWjPeJcf+btxFCjw+gZXQ90+QMTKsWlGGM7rt/s7gD2xaoCoU66CBsvLtAwyQ0LkUpzeljVwCkY1GzoEdtceDCi9Be+9lgwhua0th0dLRwZAgJEag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k1LVGznbFaxzZitUzv1Ms1cDnirl1MxBpeQMnKw0DS4=;
- b=i7wJfvJQmshxU6eUEF5gYMZLQNPxTDJKvUjUO1bv9zJdJds/wKKe6CBbeEI827OV46l+pLCeaB5UzUgxkqx+BmS+pSFyJguqBCiphPh/7dtoLJZNA9gB4CR5y/f1H+8KMQKZqtWapM3kneUtW9D/1DbTAYNCjeyic3l/yyTXi7UKzLjfSiMvnbvv+9EDkKummyQdb/YB5NqhRaSd0ZL6SbmnzLwnb8Mat7pyli5F6pv3qax24TZGjGUrqzE7l8lWPvCKaTB+LwLUCTDElftxTCh+dL04oN8QLxMLLaCBfD5EeWu6ys10X0ih7eoQ5Ob89/8V5hzvsWdq/pnz6wnq2w==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by SJ2PR12MB9086.namprd12.prod.outlook.com (2603:10b6:a03:55f::5) with
+ bh=Y6dbupFW5A1Qe3xsGNsTzkOsxJDVhkWvESJXaocEZ6w=;
+ b=FaHf+QC5Hr6dbZRSXH+18ozae4EWfis0+EiuneT+Fz9PB5xQX1RaK1WtIUt+CZFo07QmvfJUNkzgA4e9DSfySGmO2us5AkkKKbNfCiLEvsE0y++VsHGFn55fGTsHYUOUKtUeda5/Dn2LY314CDS+YYUXn2c//Sk1cHnk7hn7KxUCtDYwfhGKx/9YIwv9v62Zd/VzrEHb72gzpaxMPXyBw3ySpPWljk6xWtUZO1MUblC5q1gYZ5Zj5QM4FDdYgEVpiuzWl2Laa8s/Daq/u1BJ1c9IiU1BtfqeIm0m+wMal5fPPaOcKWA2wgUyhpMvGusYQbWNaitxPJV+useeylPikA==
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by DS4PR12MB9659.namprd12.prod.outlook.com (2603:10b6:8:27f::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Wed, 18 Feb
- 2026 07:25:14 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 07:25:14 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 18 Feb
+ 2026 09:00:09 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
+ 09:00:09 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 18 Feb 2026 16:25:11 +0900
-Message-Id: <DGHWPX5CVY7I.13DMDV642PCC@nvidia.com>
-To: "Eliot Courtney" <ecourtney@nvidia.com>
-Subject: Re: [PATCH 3/7] gpu: nova-core: gsp: add checking oversized
- commands
-From: "Alexandre Courbot" <acourbot@nvidia.com>
+Date: Wed, 18 Feb 2026 18:00:04 +0900
+Message-Id: <DGHYQKWAKAWT.VK1MGFIOE6UI@nvidia.com>
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Alexandre Courbot" <acourbot@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>
+Subject: Re: [PATCH 6/7] gpu: nova-core: gsp: support large RPCs via
+ continuation record
+X-Mailer: aerc 0.21.0-0-g5549850facc2
 References: <20260212-cmdq-continuation-v1-0-73079ded55e6@nvidia.com>
- <20260212-cmdq-continuation-v1-3-73079ded55e6@nvidia.com>
- <DGHRKO26RWX3.12AQHBX801G0T@nvidia.com>
- <DGHVZCZ3D5DY.35YV1XN6UK2QQ@nvidia.com>
-In-Reply-To: <DGHVZCZ3D5DY.35YV1XN6UK2QQ@nvidia.com>
-X-ClientProxiedBy: TY4PR01CA0027.jpnprd01.prod.outlook.com
- (2603:1096:405:2bf::11) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+ <20260212-cmdq-continuation-v1-6-73079ded55e6@nvidia.com>
+ <DGHWJ721IK47.2OJRIZJFIVVB5@nvidia.com>
+In-Reply-To: <DGHWJ721IK47.2OJRIZJFIVVB5@nvidia.com>
+X-ClientProxiedBy: TYCP301CA0012.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:400:386::10) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|SJ2PR12MB9086:EE_
-X-MS-Office365-Filtering-Correlation-Id: cc589224-35cc-4d78-0916-08de6ebedba5
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|DS4PR12MB9659:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c631135-866b-4fb8-8ec2-08de6ecc1de7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|10070799003|1800799024|366016|376014;
 X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?WEVJZEdNZ1U3UWJWcDVSbVR0SGtIYVgxTytCZ2dzaldwZTZFQmNyOWQ4VThs?=
- =?utf-8?B?V1pVSlQvVmYzU2RNNTdSa3o2Nnp5aVRraU9vVDRLU3MyVUNpbThIekt0dk5X?=
- =?utf-8?B?WVdMbXd5bzdUbzA3RG85TEJBVU00cU5xcXQwYStOQS9pNDgzNUYwYno0eWNI?=
- =?utf-8?B?ZW9qc3I1RitTRTFueDhQVWdaZlREaUV2UWk5NzZGSjQza2N3cThxZnJWVFMr?=
- =?utf-8?B?UW8zTDZIbFZzVjY4OEVSVGdKSExnM1ZNazBneVpFNDZLU0pidlhhN3JyM0l2?=
- =?utf-8?B?YVh2WVBLdjVWeFN2bnJEYUkzbFRCVEdOalJ5UTdrSmJrRzVVOS9NaW02S1RT?=
- =?utf-8?B?WlRINjNnQ1VVYTN2bUlMdzE5Q2ZkODhjeDQwckt0RzNRZElxc3gwQnZMWU5u?=
- =?utf-8?B?NlFjS3lURG1YM1ZXZUoyY29kU0dkQ0QrYXZIYXczVHh6aWdRTXpYT0VNVVlr?=
- =?utf-8?B?eXJ5aW1JNVdpUTVVMVorZzdiMGlHUzdZc3VGTUw5bW05V3dVSEJpMWVUNWxJ?=
- =?utf-8?B?OTBoL0RYZm84bmhuUWw2aUdiL0l6d3dQYXFVU0M4czQyODF2S2poTzZjeGYz?=
- =?utf-8?B?dEZrNGdYVmRibXIwbkNScThvSHI5bEtueEZCWE14dHlMT3JBQjFQQ1o1eVcw?=
- =?utf-8?B?Q1pHUVlXNDJhL0hGZzBRZld3elVVWXBNSlFqK1c2bTJuQ0VGbEpCZG5nQys5?=
- =?utf-8?B?azJuTEE4UHJUb1oxZkhlb0w4UkZ3UFkrTTA5UUpac3lmRVhCMXdrdml6ZCs4?=
- =?utf-8?B?Q3FoUVd2WkFFelZlMUtINmNmVmtzNkxuUUN3YzB5ZjRDaW13M0grU1hGSi8x?=
- =?utf-8?B?RHFHVnpGcENEUTN3RkIzZTc4dStkTUhXN1UxcXc3QmpvVWdMOUJtck9Vcno3?=
- =?utf-8?B?VFVqMTNvaXJUNW5NQ2d6TFprbXF2RjFVRkQ4N0FSSno3YlhuZk9PLzl0RXd0?=
- =?utf-8?B?UnlDRnpvMG9BRDIyVXhxK3pLaWt1NGFCY25OTHJ0dEhQbVF1Z0pudE1ZaFRw?=
- =?utf-8?B?OThKNWFKdFJyY2Z3a05IYVdQWktDK0k4aER0Tlk3OHU0ZzVUMmNlVmZ1RXRa?=
- =?utf-8?B?Nmgyc2ppT0w5NWdRTmozSnRlRVNHWU80VExWdi9yVkFuVnR6V2NEVkF1dTVs?=
- =?utf-8?B?RWhzUWJ1cXloTmVrS3pxeG9UeHo2TnZ2bDVKNlJrSEtpdEJwU0M1VkQ4eTlP?=
- =?utf-8?B?Nk1vd0FVc1R2SWVNZlE4emUySmFyQWhIREVKdnhUZ2svSERaVWdkVmM3ZCt5?=
- =?utf-8?B?aldiSHdEbUdzRDA2WmtaVk5Hd0xzNWlMVU1PY3grS0dxSTBFK3M2RVcxUDl3?=
- =?utf-8?B?MTdYampRQnRCK21WRmxLN0tCY2VrT2xXZGFvRDlWSjV0a01zalhwN3RpVXBy?=
- =?utf-8?B?MlZvV29HcGJsUmRhSzUzWm1QeldXQnViUDhqditDd0s3SURFNlI4M1JsbXdJ?=
- =?utf-8?B?RnUxNitjbGpJUFcxWWFOS0JMb0trbEd1Ym5CV0pOWXhuaWpxaDBqVDVsU2Zv?=
- =?utf-8?B?SEY3VnNLeEN5R1kxaEdXN3c2S2EycmhqMWorOG9Bc2xmSkl4Tm1aMzc0OE92?=
- =?utf-8?B?NnNOd3ErQVVvcG1ONG41djdjbHoxeHdWOGt0Y2FGS1JVMTlSTGg1QzUyejdR?=
- =?utf-8?B?SlMwSWs2bzN1WklPeVk2U01QUjk3WjJaM05MTWZhb0ZYdnEzY0pPTkdMc2My?=
- =?utf-8?B?VDdUSXFpajlySjgvNDVaRzBwVGR0SERsZnY1b0o2SmNqOTJVNTVBL2NrTVJ3?=
- =?utf-8?B?aERQZHdiUk4xSHFrdk9kQ0lOakx2YUk0QmRyQUJyUXQ2aFVEMjNhTGRacmly?=
- =?utf-8?B?RTl3ZGIyVzB2MjExdmRCdDduV2FXZUxtRlgxOURmMkpwdG1vWllsT3ZpRkNC?=
- =?utf-8?B?cVRVNjRyUGJ3ZDMrRyswM3ZRRDJNMU11eVMySk1xWDg5Q2pvMklKc2hVeW1O?=
- =?utf-8?B?bzN6d3JuV2grU1hBOUVySGhQa1dxK1M2S1JBSGRvWGxkMnUxV1JmRkZwZ0Vs?=
- =?utf-8?B?OGFvcWlWZkNWTnBIWlRZaXlGNUE3VkVuK1c5c2VSZXVSSVF2SnN1UFI3S3BG?=
- =?utf-8?B?cDdnOVpKeUxHZEdXVGtnRllnaXZkRnhPcWtOU3dJQk9qb3lNYXRFUFEwbzFh?=
- =?utf-8?Q?USm4=3D?=
+	=?utf-8?B?K1RNZ1NTNVcxZU02NzBWV01Md1RlaW4rd0pOUVE2aEFvL2NvNFYvZWhJeTFY?=
+ =?utf-8?B?Q0pJNHBhOHNRbTltck1UZ2FrRStqZzV0VFNobXE4ZDJBNERxbk52Vlhramc4?=
+ =?utf-8?B?dkdCMmdGMlMrRlJKbFk3T1E0U3BFQUNaa2I1RGdSU3lHNk9UTDNlUWd4VVpJ?=
+ =?utf-8?B?K3NoUFdKdDVtNTlyc05WYkFJY2tlNk5YMnIxbFZnRTlmM1l6Y3ZMMXdONTJY?=
+ =?utf-8?B?MW9TTC9rSlBXbm1HVE40NS9xcW5KUXNsaGRvU1lQL2pyNnBob29KaElORC9R?=
+ =?utf-8?B?ODU1WDBwK2ljQm5GR1ljWktJR2ZHN2ZtTUJIT09ic1VraEZveU9pZUlqSDQ4?=
+ =?utf-8?B?THZhOXI2TVJwdDhWUWxxQXdyT043TnpiWHNCUkx2eHJ4UVlIckkramJWL0dC?=
+ =?utf-8?B?WHgvY3ZTK3FQQ1MwVnhMRDI2UDFKVFZpUDBEVDZPenZBQkprWWhrcjErbDV4?=
+ =?utf-8?B?SnQ5SlNmS0ZGVGl5RDE5L25UM2s4VldjTGlIYWRCNGV3Snk5K1hIdnl4ZTV6?=
+ =?utf-8?B?c2NvOWJxQkFWdFIrcTVoUmRRRHJBRUFZejllYXIvbTlGOEhNL2h1V0NCMmxz?=
+ =?utf-8?B?L3lKQll2T3U0ZGY1Tk5WZkJaVkRpU3NVQXdld2Jha2R0QlNzSE9YN1pHOVFj?=
+ =?utf-8?B?Y1JsL094R05LeFZnUUpXeFZsSzBkb1FJSE1xdERMSG1hWW85MFhseXZUUWVG?=
+ =?utf-8?B?T1Z6TXpaYXZjc0sxN0tPU1Z6TktUTjNZVmNmYjZ1ZHA0SWpZWS92RWhHb2g2?=
+ =?utf-8?B?UXBLdEJnMmN6T2Q4aGNUUzRkWGpnR0laOTNWZ0hDN2dUV000dDd5N2FqTUFH?=
+ =?utf-8?B?MlBMUDRabmVjc0xqcENzU1VrcE5WWEVhU1hXeEhQUDRGOUZ0Mk9aT0pQL25V?=
+ =?utf-8?B?M3kwVkQ4a0hwOEh0bHI5ajdoWHZOYkZoRzYwM2dTRU1nY21VeDVIL1M2YXZt?=
+ =?utf-8?B?Z2tJdkpScitVWGpvMnlhemwwMGJ1emNjOGJGZnIyL3QrZEpjVUJ0bmJkRkFo?=
+ =?utf-8?B?OVhZK3ZJWHNXV2F2bGEzaERZNG9YUFEzWW1Wai8vQ0taWE04MUNxdTdadzI0?=
+ =?utf-8?B?RVd2WUxvQzRRR050S21yYUNkL1RLSWZ0VjdOdDdEWGhtTDBRUVV0R2x1SC93?=
+ =?utf-8?B?QXc4VnNXdlhqVVkyT1hEaW42aXdocTNvSjNwN2p5c2taZDBRdGtRSHRJWXN2?=
+ =?utf-8?B?VHIzN20xMVljSUMxcG1QSVhTSkhjOFJnTkJQKytLdCt0WFduaGF0SlRHSmJL?=
+ =?utf-8?B?cFZJVEFOaDM2ZlRkWlFpRDRCbEFTZjMxWnVXN2xjV0JvUWdsWnREMkFzY3pv?=
+ =?utf-8?B?bEtFUUYrZ3FoTXdsQ0pEY3pMTGF6VmNXVDh0OVZLRFZmQzRSc3p2R3dicGpY?=
+ =?utf-8?B?bUMycS9vM2RzZFBFaG9PajJrQllCUzY2cThiZUJFZWYzTGFlSWdXUFJLQlEr?=
+ =?utf-8?B?NEhSYTY2RE9WYU5GYzdIQlczWXk5eUFkZkpuWWNoV05zcmNNWmhRWlpjbmFl?=
+ =?utf-8?B?QjFaRmpDN0VsS3Z0ZEdBalEzNW81K3dyTFBBYVpxU2ZkMHM2M2loa3VuRjBl?=
+ =?utf-8?B?Z3R4dWRxOHp6d3dxTUMzT244MmYyVFVwT0k1cDVWdXN1M2VlcC9WVVY1eEJD?=
+ =?utf-8?B?UWxnTUdWaEtVaGZJUzgxVk5XSktQZmxVSU1Ub0VDSldadjN1dFVZUVpuMlIv?=
+ =?utf-8?B?anBBemhKTCtSMW1wT2hFMXhlMlZoN20veVN2WHVLc3ZmVUlsSkFQWVJVYVpG?=
+ =?utf-8?B?SGIxckZPV2JnR01OM2ZuaUc4aW9UN1h4Wkd1MXNkdmNTWTcvRWppZkdQLzhI?=
+ =?utf-8?B?RFBVSzF2bVJhbTR6MDFWeEVCZGs0T2orT053akZGQk1qb2t3NEZ2QXJacnRa?=
+ =?utf-8?B?TFBjaEFHdngwaG51bTRudzZtTnZWenc4QmVxL2ZBUmY1bkFGbzUvVjhndEV1?=
+ =?utf-8?B?eWNTV3A0NWRjVzl6UTNxT1VONXY3K1M0bDFDSTRaRUl5SXI0b3RkMmFFZDY3?=
+ =?utf-8?B?dEhJRm5RcmpKUUpUcGhKNThlQXVqdnpDRmF2SzAvV2piRndsbkl1MTBLU3RZ?=
+ =?utf-8?B?dU4vbFRCSEVlOERzMzROWmxua2pEMm9yWVdiN0ZORjQ2SG5va3JCYWpTY2JV?=
+ =?utf-8?Q?tawM=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?aXBhYXl5NlhZeVVuTE5vTmtoUWR5TFM0QlNOU1N6SG16LzJOY1g1RXFnMlIx?=
- =?utf-8?B?bWRxNXR4dTRtSDZhSldUZGdVNlhRb3owMy9OamRSNzh4NEdwMU9naVVCaHNn?=
- =?utf-8?B?cS83a2ZVbHJQYmREdEl1SkErQlhQazRyQkkvWjNIZ09ma1NYZGdKUEtOcVpv?=
- =?utf-8?B?dXROczVHRTVjTnNlcjZiVFBrUzhXS3ducDR2UG9WbUdkeDRHUXJPNXBQVGta?=
- =?utf-8?B?OEpCd3MvMjRMSmVkUkkrcjBlekE5M2poenhVN1F5M2NSSWpvRFFQczV5UUtH?=
- =?utf-8?B?eTVGdFozQTRNaW5uQU0xVm5LanVnWG9NZ2YwLytqL1J5SlN2M09qc0hkSGp6?=
- =?utf-8?B?OW5DcjN2UkRIZzl6MUZOWERxZUtCY25nNzV5SHhWbG92dUxZZWVpeW40bi9u?=
- =?utf-8?B?UHpSdkw5MlU3dHRBMjFESys5TGVPRkNFMEVjV0p3eEhDVG9DaUxOaGNZdWFn?=
- =?utf-8?B?cFR3TWZhZGx3S2duU0hFOGk0ZjFVSy9LdXlpMFlTUW15RzdKMk9mT29mME8x?=
- =?utf-8?B?L0wzUiszZDQ4UGh6dlUvUEc4T25kQWlKcmlQNWZINVlYSFREYWtlQVlPWVlv?=
- =?utf-8?B?ME9kOFdNcXYza0xGa1A3d01obW56MXdXT2NXZWFpYXo3SUNrUHRzYytIdXMr?=
- =?utf-8?B?WS9yN0NDYSsvaW1DV05mdDJKWGZXanlBQi9EZU1rTEI3dUs5T3VYUkZzRVZz?=
- =?utf-8?B?NkZ2eSt5ZjA3bkw5Vm0zd0J1b0xBTTZGSjhoNzB5TW41OWFXSnFFZ0F2bzJw?=
- =?utf-8?B?S1U3MmdkRFVKbUFma1JMNUVCZUppUUhGZTArdWJPVUJGUUliZDdrUHNvY3BW?=
- =?utf-8?B?dGdNc0dtNk95aWJZOHdKUEpPek5qdjA3VGY5bHF5b2MzMmRZSzVCUkp4ZTlu?=
- =?utf-8?B?WUdpbkRQQmdLSGRzbkFyQWdPakFUZE9QYW0rbmU1ZmJHLzR3YitDTUJJcDdw?=
- =?utf-8?B?aUxMY2g4WUNmRTcwVUxpSDg4dC80c3luNjExS1ZLNnBaem01MHI1ZlNiejZo?=
- =?utf-8?B?cEtnazBRUCtidTlPdnpzcjYybjhtWmJ4U3hTdlc1b3RHNFNpZGpUZGc3S0JT?=
- =?utf-8?B?a1VxR1NDUU1oYm5JeC9NeHUrVHZEL2YxdjN1WWpqaXdtQkZFZ2tYdzdlSUNo?=
- =?utf-8?B?cldacUxRWmpEeTBBYzNTbTcvK3dINURzK3BKRis2OWoreHJmWWpMeTB6Ty91?=
- =?utf-8?B?ZXJvS09CdmNZQjA3eThDTXVzMXlCeWdSRDZiRkE3Wkg5UjQ4OE80SEdpQ2dR?=
- =?utf-8?B?VmdnbkRKMXhHbUhlVDFaaDN3NzQ5d0xya3NENjQrb3VhRkhMWkV3QWd3Z1BF?=
- =?utf-8?B?cTZuYlZHN1E0UGw4VHJvZUQ3SmdXM2c4WDRWRjM2b0VJRlhITXdBMDZVazBX?=
- =?utf-8?B?SzdEdE1KMzdIS1ZOdXZlc2RmeGRKMGtROE0zYjFFWXI4VTM0TVMvRmFLSlZM?=
- =?utf-8?B?M1dSK0hXS2k1ZkVWUHNNQ0hiQk1hS05sRUxITXFOclU0clBVc2wzNlFnUmd5?=
- =?utf-8?B?K25mYVhSU0E2cnBaT2VHdlJ0dEQwSWVoQ3ZxYXZSVXVPTldZU3o3QmJidFlB?=
- =?utf-8?B?Z240NllFWkJNSUMwcndiNk5aQmhZMkNJaXdZWHBnWVNIUEVHYWQ4MmNsUzYv?=
- =?utf-8?B?WGJ6TkZCR3lvN1lGdEZVY3JSQklTSjBlZ0lDOXh6NVVnOHNMdUFlT0YxZ2J4?=
- =?utf-8?B?eHFQOEl4WkVCNC94QlArMU1yMTcvb2E5M09Sa3hSbHhNM0l2WnRBcTk0RS9W?=
- =?utf-8?B?Vm1qZklWRTRnUms2Y2V1Z05mei95aTF1UHZuekVHdmhtUGJJVW1vOThFMng4?=
- =?utf-8?B?aUtOZ3pJQ0xEVTVDOWNiNzM5dnBxdEVBWDdYWklISjE0WFczT3BMRmpEdkpq?=
- =?utf-8?B?b1BRNUdUUDNMb1lpdHJIaDZ3RG00S1ZuYjdEUFNIV2pZcUs0akF1L2dsZWRa?=
- =?utf-8?B?RkkyZHpQenk1RnloOTRpbmxoNTRHMHdBR2pKTk50aTlYUFF2QnRGZmtmN28z?=
- =?utf-8?B?eHZBMHAzYy9KSXlnUDI4UHI5VjdDZEN6WTZXSUdGaUJ6SnRXbnJPN1Y1MTVK?=
- =?utf-8?B?ZG9QZ0UyQlhma3RCaXNlN1A2cEJDdTFDek9wNGlCMHdNTSs0QVkybE9kODQ3?=
- =?utf-8?B?TklTcjBPbjJ0M201bHJDaDFNTWlNRXRjQ1VEVnlDVER6a1FmUFRUTHpnYVlS?=
- =?utf-8?B?VmFkOUtFQUMzZ2lDQkhkcjkvWUdDNUpPM1NMRUtNVHk2bDBsODJhMklvd2dX?=
- =?utf-8?B?OGZtMk1aLzc3RUEvaTl3NXg2ZnhlTXFNVlJhMEZVZ1FqMWYzS1RYS2g4WTZJ?=
- =?utf-8?B?bmNFS1lJOUhqT2c3MnVLcUZDejBZNzhXb3dZMGpoMFd3MVh3S0FkTnN4WjE3?=
- =?utf-8?Q?ZmKtinmXRHM70JJmv5Ab9q54GbEH5w764Ts7gNyhg6fau?=
-X-MS-Exchange-AntiSpam-MessageData-1: DM5+rf/CtdVnrw==
+	=?utf-8?B?cmxzRkpNUGZreXJOYnRacUYxRGpDNVhDOFM4YjYzMkhLUVlHMUZITUp2TjAz?=
+ =?utf-8?B?NkdPR3J2VlJvVEQwa1JGY1BWZmFLalhiR1lNWjhhV0NSTkIwWjhDTXBRYnY1?=
+ =?utf-8?B?SUZPZ3NCaGFPdFFZd3RKbTNSTjdJUkpwYjhmZUtJaFNtWldxcWhydzRiWFVG?=
+ =?utf-8?B?RVRkcWlxNTZEaEVZZUtGM3JKQ0xPNE9vNHZHMzZXemNqeGMxYms0ZzNLdHBQ?=
+ =?utf-8?B?di9QRnBLZzZEVHIxa3M3RHJPK0xWQWNNakNRZjd2YlJLdXppdlNnWmppYXIx?=
+ =?utf-8?B?QlJUcjFKbU5wOFBKZXVHcmNRN2prSFY1NzFFRjU0VE1kMG02T0xQWTI3QVY3?=
+ =?utf-8?B?a0kvOVU3VlVXZ3F4ZXExNFlIY2dxU2hkWHMvRzZxV1BVazA3OHZZOXVGNG1z?=
+ =?utf-8?B?SEJ0SVJ4dy9FWUJCUnVSN2hDdFFNNzlwSUZxY1VvT25xNWZabk96TVg3ZUZF?=
+ =?utf-8?B?VGswM0o5dVBKZ0s5Nmt1NWRHUUtyb2ZkMzh2Y2RRTkg3Tk5WVDNJWnBDSG1N?=
+ =?utf-8?B?SGVzancvV0NHY1h6K3ZEeEFhU0UycXRiREZSc3RxUFl2TjVBOTQrNWhwVlZ1?=
+ =?utf-8?B?ZS9NdnJrQ1IxUXhwSEg5Ymh5M0R1MGRUMXVPQS9XK1RISlcxbG5rVmh5VXp0?=
+ =?utf-8?B?cG5TdXJOb1lHNGdoazhsV1BnV2ZSZ2w0aFQ0QzcyQUkxeDZuVnZ0WnYvZGJG?=
+ =?utf-8?B?WlYzcjloUUEvRDlCa3cxM014OE91TGo2bjU1cVN2SzJOcHZCeXFBcVAvdFBh?=
+ =?utf-8?B?M2JNVm1JVHp2YkRROG13VklsN2lSeng4dGhOS2RYZC95T1RYY0tqLzJya3ly?=
+ =?utf-8?B?OGs1UnRKclhuWXpNdFZiVFA0dG4wMGd0M1JBaWJxNVNBVFh5cXRHQVkxb3Vh?=
+ =?utf-8?B?VW8vR0t4dkJLd1hpRitNRjVkcjczc2F4QWtzRnMvYUJHMG1jMGlNVlRQSTdH?=
+ =?utf-8?B?U1g0NTZxd2p6eEN3UWRHNGtzbUJCRGs0NjZTbUZvaDUrWmxhdTJKWjZsdlMv?=
+ =?utf-8?B?Vy9nV3U5MTFTdUY3UExBN3lkQ2VDcytHOEhKdDhvOEtVRnVLVnMySEx1TVhq?=
+ =?utf-8?B?b2daN3RiM2ZiMGRCdzhOc1RhRE50djROalFYVGNiVlJUQjNGRkNvQ0ZTSTFx?=
+ =?utf-8?B?SHkvNzhYWHZiZFozNDJDazZqUnkwUGNXYU5VaEdMblB5d0FzR0pLb0d1dkpz?=
+ =?utf-8?B?bDczWGd2VmdIS1N2a3Y1SjlPbXRrQjBqZXJ6eFQ3K1grSkUxTENvTTVQNW5U?=
+ =?utf-8?B?SmJZVnU3TW1UYnd3cnplRTB1b2c1NzdqYllsd21oZ2hLc0pCZHBHdzBUTnZW?=
+ =?utf-8?B?L09iVXFPU0RmWXVHSm9Ed2N6R3kybjdYSGhaMFltRWN0MUtITi9hTWJvc3pC?=
+ =?utf-8?B?RE45Mlh2TDZveCt1WjhhdGdWMEY3b0lpNmV4ZWd4QTNSWW5JK1Bqak5ya29E?=
+ =?utf-8?B?OVR5YTdZSVlLOUQrSFZqeVpoNVViUThNRkJ5US9OTjMwNGJVUlFyWjlBdFgr?=
+ =?utf-8?B?UnRjUHdvVTZ3OUFoUzZMWThCcTdxQmJaNEJDVzJHRHE3dGFmSkZZWlBIRVlM?=
+ =?utf-8?B?bFFrY2NJYmw4UGFqNk5RRnVjZXQxRDNOaDRBMk1tM0ZiZ1ZObGp4M21aWHJJ?=
+ =?utf-8?B?NHJDL0V2Z25EdkRINkpZTHpBM05NNGpLZVQ3ZWtzZzRsVkIrQlliY09JaE9R?=
+ =?utf-8?B?bVphM0haQlZ6UWxZUzVLWHVwQUZETHA2aG1yTmg3ekc1U3BOWnFIODgyTVFz?=
+ =?utf-8?B?UHZVNVk2QlhDMk1UZmlucWFwSTRaUlJZZkxSRGVBQjFFSm5QWC9NYy9Jd3pu?=
+ =?utf-8?B?TEs5TUJYWlhZVEFTcU5zQS9qTm1ZamxZZzlJaHk5N3hUMHVWVUZ0WVhraWw4?=
+ =?utf-8?B?ZXhHYU85WDBrUksyY3d5aThOUjM1OHB2dzB6bm4xUmJEc2J3NEZFS3lNT3kx?=
+ =?utf-8?B?eXZiZThGL04wL1dXVjBGUm50azdsZVdhckVkTVJaenpQdnJSeHdNa2duUktZ?=
+ =?utf-8?B?SiszTVJ1VVI5Wis0bmp6UUxnWEJCM1ZCemhlWkVFM0g5UU9UYy9IQXBveU9k?=
+ =?utf-8?B?K2h0TVNXZlZrVHFNcFJDeVRsdUV3ZE9VRmFUaWNhZEc2dEE0VGl2VXVwQ1Zo?=
+ =?utf-8?B?MUgwQkNSb01VOUJOYVBUWS96ZjZkTHJvaG9KdHYvaTVIa24rMklPcGJwZDc4?=
+ =?utf-8?B?SXd5NFZ2V2xxUFpCUXpTb2YzRWJybWNEQlRtWjZ1c3NIQmpFZVkvRlVpT1do?=
+ =?utf-8?B?QUNyTnhiMzhUOGUvR2Z3dVZUUERjZi9xR2l2M0YrUzNTWUpDWTZyZWJHeXVk?=
+ =?utf-8?B?SGFlTlplZWp0c0NPMk1UTElSNjFpZ0UvSzVOSHFOOHJ6aHBDdnBvWkFmS0pk?=
+ =?utf-8?Q?Ia2LVEXpnp07gOWXv7TiGaZhn6cQA0DWjyMXi+D5MQKNd?=
+X-MS-Exchange-AntiSpam-MessageData-1: rfUdNVUAIxPhKA==
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- cc589224-35cc-4d78-0916-08de6ebedba5
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+ 0c631135-866b-4fb8-8ec2-08de6ecc1de7
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 07:25:14.2408
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 09:00:08.9973
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 9cXA0F1k6hLthOpXmj+QaT3jaYeJdAuu/+1z6WXvwZgtIUi8Q/R2zxP57AXlNvhGlICChH5Y4RX9nY4t64w9RQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9086
-Message-ID-Hash: 57HR7ITQP36OVBGV4INWQY3CI34A7GR3
-X-Message-ID-Hash: 57HR7ITQP36OVBGV4INWQY3CI34A7GR3
-X-MailFrom: acourbot@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+ wvrpClQwM0wRYRu5g9xc4cHxl5QHByUS9cJshvQ/ZttYI6hq/W9/jrV0XhqMBNTCr1tXEu5apcss/XPXb6VMYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR12MB9659
+Message-ID-Hash: XJ5JDHVYWRABORSW53DTAP46QCMCXRIV
+X-Message-ID-Hash: XJ5JDHVYWRABORSW53DTAP46QCMCXRIV
+X-MailFrom: ecourtney@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
  Simona Vetter <simona@ffwll.ch>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel <dri-devel-bounces@lists.freedesktop.org>
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/57HR7ITQP36OVBGV4INWQY3CI34A7GR3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XJ5JDHVYWRABORSW53DTAP46QCMCXRIV/>
 Archived-At: 
- <https://lore.freedesktop.org/DGHWPX5CVY7I.13DMDV642PCC@nvidia.com/>
+ <https://lore.freedesktop.org/DGHYQKWAKAWT.VK1MGFIOE6UI@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -220,50 +220,214 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Feb 18, 2026 at 3:50 PM JST, Eliot Courtney wrote:
-> On Wed Feb 18, 2026 at 12:23 PM JST, Alexandre Courbot wrote:
->>> +/// Maximum size of a single GSP command in bytes.
->>> +///
->>> +/// A single command can span up to 16 GSP pages.
->>> +pub(crate) const MSGQ_MSG_SIZE_MAX: usize =3D GSP_PAGE_SIZE * 16;
->>
->> Where does this limitation come from? Is there a value in OpenRM that we
->> can add to the bindings as the source of truth?
+On Wed Feb 18, 2026 at 4:16 PM JST, Alexandre Courbot wrote:
+>> +    /// Sends `command` to the GSP.
+>> +    ///
+>> +    /// The command may be split into multiple messages if it is large.
+>> +    ///
+>> +    /// # Errors
+>> +    ///
+>> +    /// - `ETIMEDOUT` if space does not become available within the tim=
+eout.
+>> +    /// - `EIO` if the variable payload requested by the command has no=
+t been entirely
+>> +    ///   written to by its [`CommandToGsp::init_variable_payload`] met=
+hod.
+>> +    ///
+>> +    /// Error codes returned by the command initializers are propagated=
+ as-is.
+>> +    pub(crate) fn send_command<M>(&mut self, bar: &Bar0, command: M) ->=
+ Result
+>> +    where
+>> +        M: CommandToGsp,
+>> +        Error: From<M::InitError>,
+>> +    {
+>> +        let msg_max_size =3D MSGQ_MSG_SIZE_MAX - size_of::<GspMsgElemen=
+t>();
 >
-> This is a GSP protocol level limitation. And yes, there's a constant
-> so I'll add that to the bindings. Thanks!
+> This could be a const.
 >
->>
->>> +
->>>  /// Circular buffer of a [`Msgq`].
->>>  ///
->>>  /// This area of memory is to be shared between the driver and the GSP=
- to exchange commands or
->>> @@ -329,8 +334,11 @@ fn allocate_command(&mut self, size: usize) -> Res=
-ult<GspCommand<'_>> {
->>>      /// # Errors
->>>      ///
->>>      /// - `ETIMEDOUT` if space does not become available within the ti=
-meout.
->>> -    /// - `EIO` if the command header is not properly aligned.
->>> +    /// - `EIO` if the command header is not properly aligned or sizin=
-g is impossible.
->>
->> `sizing is impossible` should be its own error - probably `EMSGSIZE`
->> (which would need to be added to `kernel/error.rs` in its own patch).
->> Also the wording sounds a bit confusing to me, why not say "if the
->> command is larger than `MSGQ_MSG_SIZE_MAX`"?
+>> +        let mut wrapped =3D WrappingCommand::new(command, msg_max_size)=
+?;
 >
-> Do you mean in its own patch in this series, or sent as a separate patch
-> to a different tree (e.g. rfl)?
+> The `max_size` argument is a bit unfortunate as it is a constant for
+> non-testing purposes. Is there a way we can make testing work with the
+> same limit as real-world use? That would also make our testing closer to
+> reality, on top of making this argument unneeded.
 
-Please send it with this series, it is small enough that we can probably
-get an Acked-by and merge it through the DRM tree.
+Yeah good point, will do.
 
 >
-> Tangential but I feel like some of the errors in this file are a bit
-> odd, like the existing EIO if the command doesn't fit (which it always
-> should). WDYT?
+>> +
+>> +        self.send_single_command(bar, &wrapped)?;
+>> +
+>> +        while let Some(continuation) =3D wrapped.next_continuation_reco=
+rd() {
+>> +            dev_dbg!(
+>> +                &self.dev,
+>> +                "GSP RPC: send continuation: size=3D0x{:x}\n",
+>> +                Self::command_size(&continuation),
+>> +            );
+>> +            self.send_continuation_record(bar, &continuation)?;
+>> +        }
+>
+> Btw, can we recover if a split message fails between two continuation
+> records? I suspect the GSP will notice that the next message is not the
+> expected continuation record and recover from there?
 
-There is certainly room for improvement - if you see room for improving
-(or better, removing!) errors, please don't hesitate!
+IIUC neither openrm or nouveau can recover from a failure during sending
+continuation records. What failure mode do you see happening that we
+could recover from?
+
+>> +#[derive(Zeroable)]
+>> +pub(crate) struct Empty {}
+>> +
+>> +// SAFETY: `Empty` is a zero-sized type with no bytes, therefore it tri=
+vially has no uninitialized
+>> +// bytes.
+>> +unsafe impl AsBytes for Empty {}
+>> +
+>> +// SAFETY: `Empty` is a zero-sized type with no bytes, therefore it tri=
+vially has no uninitialized
+>> +// bytes.
+>> +unsafe impl FromBytes for Empty {}
+>
+> Since commit 209c70953aa (on master, but not drm-rust-next yet) you can
+> just use `()` as the `Command` type - that will let you remove `Empty`
+> entirely. You'll then need to invoke `pin_init::init_zeroed()` in
+> `init`.
+
+Great!
+
+>> +
+>> +/// The `ContinuationRecord` command.
+>> +pub(crate) struct ContinuationRecord<'a> {
+>> +    data: &'a [u8],
+>> +}
+>> +
+>> +impl<'a> ContinuationRecord<'a> {
+>> +    /// Creates a new `ContinuationRecord` command with the given data.
+>> +    pub(crate) fn new(data: &'a [u8]) -> Self {
+>> +        Self { data }
+>> +    }
+>> +}
+>> +
+>> +impl<'a> CommandToGsp for ContinuationRecord<'a> {
+>> +    const FUNCTION: MsgFunction =3D MsgFunction::ContinuationRecord;
+>> +    type Command =3D Empty;
+>> +    type InitError =3D Infallible;
+>> +
+>> +    fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+>> +        Empty::init_zeroed()
+>> +    }
+>> +
+>> +    fn variable_payload_len(&self) -> usize {
+>> +        self.data.len()
+>> +    }
+>> +
+>> +    fn init_variable_payload(
+>> +        &self,
+>> +        dst: &mut SBufferIter<core::array::IntoIter<&mut [u8], 2>>,
+>> +    ) -> Result {
+>> +        dst.write_all(self.data)
+>> +    }
+>> +}
+>> +
+>> +/// Wrapper that splits a command across continuation records if needed=
+.
+>> +pub(crate) struct WrappingCommand<C: CommandToGsp> {
+>> +    inner: C,
+>> +    offset: usize,
+>> +    max_size: usize,
+>> +    staging: KVVec<u8>,
+>
+> Since it is conditionally-used, `staging` should be an `Option` instead
+> of assuming an empty state means it is unused. But hold on, I think we
+> can do without any sort of conditional here.
+
+Yeah you are right. I had used empty here since it makes
+`next_continuation_record` here more consistent in that it doesn't need
+to check for None then for length anyway, but it's special casing in
+`init_variable_payload` in a very optiony way regardless.
+
+I reckon using Option we could put `offset` in there as well in a tuple,
+since if we want to use Option to avoid the special case of empty
+`staging`, we might as well use it to avoid having a conceptually
+useless `offset` field too.
+
+>
+>> +}
+>
+> This deserves more doccomments, including on its members. But I would
+> also like to entertain a slightly different design.
+>
+> In this patch, `WrappingCommand` is always used, including for messages
+> that don't need to be truncated. While the overhead is arguably
+> negligible, this makes split messages pass as the norm, while they are a
+> very rare exception.
+>
+> Also `WrappingCommand` now becomes both a command and a provider of
+> other commands, which I find hard to wrap (haha) my head around, and
+> forces you to pass the command by reference in `send_single_command`
+> because you need to use it again afterwards. The name is also not very
+> descriptive (why does it wrap?). How about this instead:
+>
+> `send_command` is the central path that all commands take, so it is the
+> right place to check whether we need to use continuation records. If we
+> don't, then we just send the command as-is, as we do today.
+>
+> If we need to split, we do it through a private method of `Cmdq` that
+> consumes the command and returns a tuple `(SplitCommand<M>,
+> ContinuationRecords)`
+>
+> `SplitCommand<M>` can be a wrapper around the original command, but that
+> initializes the truncated part of its variable payload.
+>
+> `ContinuationRecords` implements `Iterator<Item =3D ContinuationRecord>`.
+> `ContinuationRecord` works mostly like your current version, except it
+> owns its data (yes, more allocations, but they're smaller so the
+> allocator might actually appreciate).
+
+Is it really the case that more, smaller allocations is better if we are
+using KVVec rather than KVec? It feels like it would have
+overhead/fragmentation to me. Eager to learn if this is wrong though
+
+>
+> Since `SplitCommand` is only used when there is actually a split needed,
+> `staging` does not need an empty state anymore, and the code of each
+> type becomes simpler.
+>
+> By doing so, you also don't need to pass the command by reference in
+> `send_single_command` anymore.
+
+I considered putting the continuation record logic inside cmdq, but I
+feel it's nicer to keep it out of the core command queue logic as much
+as possible, because it feels a bit noisy to have in the cmdq which
+hopefully can just concentrate on sending messages, not how those
+messages get made or how/when they get split.
+
+I agree that it is a bit odd to have a command that also provides extra
+commands. By the way I considered doing an Iterator thing for
+WrappingCommand, but felt like it would introduce more complexity
+than it was worth and make it more confusing on the command that also
+produces commands front.
+
+Another benefit to pulling the logic out of command queue is that it
+makes it a lot easier to test AFAICT. If we want to test the splitting,
+if the logic is a private method in the command queue that feels like it
+might end up more as an integration test.
+
+But if we just want to avoid having a command which also produces
+commands, what if we created a separate type to hold the split state /
+decision and it would return a SplitCommand plus either an iterator or
+the iterator-like `next_continuation_record`, while being testable
+separately. WDYT?
+
+>
+>> +
+>> +impl<C: CommandToGsp> WrappingCommand<C>
+>> +where
+>> +    Error: From<C::InitError>,
+>
+> This `where` is unneeded.
+
