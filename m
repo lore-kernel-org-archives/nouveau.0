@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBF53C531CD
-	for <nouveau@archiver.kernel.org>; Thu, 19 Feb 2026 20:06:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F78C531CB
+	for <nouveau@archiver.kernel.org>; Thu, 19 Feb 2026 20:06:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AC1C910E74F;
-	Thu, 19 Feb 2026 20:06:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0387310E756;
+	Thu, 19 Feb 2026 20:06:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="WIg426Cl";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=darkrefraction-com.20230601.gappssmtp.com header.i=@darkrefraction-com.20230601.gappssmtp.com header.b="vzls+yU4";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E07ED43438;
-	Thu, 19 Feb 2026 19:56:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3469443437;
+	Thu, 19 Feb 2026 19:56:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771530989;
- b=QTD/gBx/acVzv6A4hPsQRai57VOzwrfXEo13SWfXAJJTyKYqNspkOliMTK74XrInR9fI/
- Yl1mq4XK1EAWiUjmr0bz2Cgyuo7nB6kHykWR4bnV0pEDSijZ98IUs/FPSCnp+eOvIVVTEwy
- B7MQ0/HTjLFf+MmoKxunJ6ozrFxKJeW5p+U4r6FMfxdHRMPpzR7BRFy6HT6+Kn9UWRm/kUK
- WBcAnPbpOTanbYLttHuf7ErBQb+Og9WdmVs5PSBLxqvkAk5OySZK/IjUo1GP6s7vB1nSySs
- dyNzAx9VCsu/P38d/5KXXRuqqbAF+h6/PrB+lhDt3YUFAZ+MmINVfbHJ+lgw==
+ s=20240201; t=1771530990;
+ b=XR30VRUeqpYt2wP7pRVqlpuKJrrgXW8cBoa40Kh/MUF5IMjc/z2InvujvpzIuo43JF165
+ bvxIkcuaAzooVkd3Vfy6RZK4BNXGRC6uj+kG8pIQZPeupqk5AVjYYS3/jvzXQ37BCgoHb4F
+ IWfYKNsFdtp4+vm82ivPVYAIYFY9u1UFh65Re4UdK9+D4UWWwFja4ts2dSa0G2WIqxjBhUH
+ JeCoIvS58SRP/U5GqeeGncrvfYUGNEC7yfXMbk8HmYCAClBUMQODrha4U4LZR6UH5RVmzOI
+ aOxnJqmUV2xl5o0l5KDP3GenHUkX5MUbsSVPRrijoUfRF/OAQfmarDoAQgZA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771530989; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771530990; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=7Uncv38UxGm72QGhelQ6NKI/QxXN75cHDpbsTnqtowY=;
- b=pQ6n1ZOuwsXNUIkkaCcVzGu6VeW4h15oj71ZFHtw8DpQ1nadk9eJiNzo6Anq35FYjBxYm
- /ri9bkikhnErMugrxqaILC8ZQ5iY/OAngXB0yyNQZ9TGIXtng/PBvIHtBYOblMUfd8X7MQp
- J4MhHm1uXW5hbWDrUje4hn0OcqCZD7rHjiuVpSDTbo7p8kn59hoRc+2Oj0XY8pT0SD0PK3T
- VtFOk2vquyTY6zogq0D7EuVNoUUCBZVl3ajcSxcLZAsqVXN3Kads0ykB9MbQyU0mmbH1Pt1
- OoSHYe6KKc8yoACxBue9ZjrZK3rzrCBhjlxk2Cb5zDmceGuYbX49kN6oiRtg==
+ bh=LXWvhKY40NwAh0sJpltiG5AWknO8aVooYAaWfER0QVg=;
+ b=QCmHpOGS22cu+mAhIYrjDEw8+pyuKqfXp5tMAtzYtWmMeBGgOhz2pK0ZJYf+KUyDoGpQc
+ 66Z8oLw3A0cbxfqDyQbuZS1CcJwZZl6MEKNGywyf3L8E2yYx+ulD+/iJCXEMQdmXds8ZsY1
+ r2LKNmztwnnFpUTvKzezTgmVsUPI6e37YczE+b7sp05HvfiX8PyDbKdlg5pudbIcmmUIgWE
+ hwe62+I34wZWdPLYMqpovbWSETSHb7BtKT2PAEH2VoGbDb33VF998M+Lbpl4k1iFF7Zjmhy
+ NYTBUCNBLZIhkKGMBHCPnKTNGuQECdpIplToMwtMTw9jWCoPbViVmYNCKmRQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
   arc=none (Message is not ARC signed);
@@ -44,69 +44,69 @@ Authentication-Results: mail.freedesktop.org;
  dkim=pass header.d=darkrefraction-com.20230601.gappssmtp.com;
  arc=none (Message is not ARC signed); dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 0BC98433BE
+	by kara.freedesktop.org (Postfix) with ESMTPS id C965B43430
 	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 19:56:26 +0000 (UTC)
-Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com
- [209.85.219.47])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id ACD9210E744
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 20:06:17 +0000 (UTC)
-Received: by mail-qv1-f47.google.com with SMTP id
- 6a1803df08f44-89473dca8aaso16264346d6.0
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com
+ [209.85.219.54])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 757BE10E195
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 20:06:18 +0000 (UTC)
+Received: by mail-qv1-f54.google.com with SMTP id
+ 6a1803df08f44-896fb37d1f0so22096176d6.2
         for <nouveau@lists.freedesktop.org>;
- Thu, 19 Feb 2026 12:06:17 -0800 (PST)
+ Thu, 19 Feb 2026 12:06:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1771531576;
- x=1772136376; darn=lists.freedesktop.org;
+        d=darkrefraction-com.20230601.gappssmtp.com; s=20230601; t=1771531577;
+ x=1772136377; darn=lists.freedesktop.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=7Uncv38UxGm72QGhelQ6NKI/QxXN75cHDpbsTnqtowY=;
-        b=WIg426ClXs4sbJALu3+/jlIQTQw1meW4JXfgfyxO4cTbdwhrkkvlEVzE2JswTTXfMh
-         njepPOgVmLDk5PV2Y6MezSpbIlpO0+UCHbXVHVrpXszniw5nc8DMgqXy0V9LfOfTE0xj
-         oSqS6UPLZ7oPTt9Lmgjas2+LbfH+n2OsrJOFAO8WOG4z1kYfhmYbFlerkcDFRBeAqZGk
-         403t2q31WmlOinrkjHx0lVxKKWrVKbYqrhMKI5zxEysWqJ0Zae7PyCFwVnjwfeZcyxRJ
-         fJw2JFz1tYnSlTHiiYyZQ6a07+kTKDn6GLwRooK+CWnpbX+tgBM3NIns6nRkJxI0qMBS
-         ZUKw==
+        bh=LXWvhKY40NwAh0sJpltiG5AWknO8aVooYAaWfER0QVg=;
+        b=vzls+yU4Q2gVX9+r1teBY4Xj0xBVGOumLh1V04M+Cgizk1vtoXezLsHe8VWO8GnpGO
+         XlI3da/wfoKVrv7mBXdc+zTjqzyH1AdEcxFWGd1bfZY7MPArXqLbfnEwbfWqqy8a33Z/
+         sxm8W7ESEp9B4FHKwG8cbkdZgdouxB+BQ5kZEy/SFnXCPcccjTiaLaLZGdB7ch/+CfMe
+         J+magnT5Qy1WwhFHHGKq3kfU2vo+Q/SH6UHw6dtaLkr7qk1H+erONalXguhoYD3HTu+s
+         qC8JP7w4f8jGEaaNENg6FMVM3DYtxFOkt5NKidRDPWnrmnj/0VxAZqFkUIV+ICKWPGNp
+         CcgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771531576; x=1772136376;
+        d=1e100.net; s=20230601; t=1771531577; x=1772136377;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=7Uncv38UxGm72QGhelQ6NKI/QxXN75cHDpbsTnqtowY=;
-        b=dwteUvqcjKL0an6xLYdJZYodwbXLQD8H0LCInO92Q3ZbnzO9cRGvIj6K/pEmvv8+eV
-         Dlx3YB457ArWXbvskShxUoyu3OGUHiQlFVbXLO672ihX+F73XV/Bf/Mj8o3cHKz3Gho0
-         MifdeDow10V1+pa8ASylvcOOWPvUnfcXe6js6m8Pm9OaJUhnI96Aqk/s7vUjdHyGTJfu
-         kHOrAeWKbaGGcPsWdEJ26OK/eeYIHVKywsrOuNUdIi1zubr3GQAMHb41g5HX+fZVaYbh
-         kJl+pnoLPsYnCqmZ6lRooCPATcNkcCC5MexrMWPz4FG7WXb9EW4NgF8Fnw9dBa8YJYTd
-         2fhw==
+        bh=LXWvhKY40NwAh0sJpltiG5AWknO8aVooYAaWfER0QVg=;
+        b=UsxBhJrBVjtl5Zt4cwv3XkSJcqnQYoIWLEEgkj8Fu8S04zKRgm8p++e+ifPGtfILMU
+         O+BcRt/7T6i/yyCeJa4X2GiuoZhUODGRsAEteFFc8hMJHmsi7veD38UYn8Bl2nbcoRq5
+         peElgeXVX0JhSH1qEymJnLZst4CHMR78fMeq/GMS7b+8IQI2tntVvI2NNsFogV4w+GTD
+         6uFWfPEdDRaQoLSS/DibwoBzPpLMzsgM03F7t2w7bx+ptsME2ovJRDs/e0kSE334SzgO
+         P8Kw+FsDuipa7rHW60YTcor1BIw5CdpVsAejgVtZuF9sFB+Dq/74oQ9hTkjvTuxlFJ2g
+         rYfw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWsGZeNFVeMrwzvtmS4Pnxoc2Q8wHeZn+R+oJ2uuQtqrxELyFyXsO2CQhCqfXuprd39dgqn14kh@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy8QBqW8cBRj4NJRdPGw8htFrFSc6rXCO18ynwEOYPd9SA0R5vk
-	15g7w5EhAmfeQ0BUZm13sQ9/z43tLpNn/fXCXY5DvQPUfBSCv0zN8mf/vAnDF24Bc58=
-X-Gm-Gg: AZuq6aKyUKfLLQwvF4DDIiAwKcIYrkcnMBqwNDS0VeFHzUa5WolHtqAJEYj7wbu2Z1E
-	/nXB+85QFPxFwzQE5Asygi1SPuY7kCHF9gpz5LIV8leFpkzpPdDf7TSenuyVKyWwA0RBoFIejgX
-	iG472WrUbcqyxPQjYMlmOY/zDMKnehv45sFY+gSx9etE6VYmX172WgaS+OcNjSxpwkGFX4jA9AZ
-	NWFhLImsrSrNcuyCEqAkVVDS3zmmNX+JL7egqUwd/RhEO6j/TeWJFsyHPbgD0aWqdexG2QWjMJr
-	UkGGZ/qrmLgTr41CJNGVbX6MyIZ/PVwQtxiL84JVVzt0Q/kngryruw5mL3fD92/SoWu9UKVPscA
-	0gItIeovQHbkYkX8rULOcXO9NKGWIvqpEo5Mw642wodfnTbd0QeXlH+d20zKnFqK8u/x5KKp/UL
-	Tdk07Mud+64dPfDwi4+XQ8Xw0EsqPkYy36SdYwGqYpHutnBorvFtVfcvIRiIGdZKG8253wuk/0E
-	OOxp3cqnA==
-X-Received: by 2002:a05:6214:4109:b0:896:f3de:cc29 with SMTP id
- 6a1803df08f44-89740302432mr273211576d6.16.1771531576414;
-        Thu, 19 Feb 2026 12:06:16 -0800 (PST)
+ AJvYcCWxCmLUhKu/VJBLk9JhJifPe9okVaQ7L2eTKe+8Pbc0HKIo6erobPGW//c37Asc3HxkIkJoNk6A@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YydtpJ5FsOrHW5SllZv0zLvmWQz2fN+dusW4ThGtYioB2H60oLO
+	DEhdaiy0HFLzObmKA0vsePBphP1T9KmVrsSTahW2Jl6HBeZghoshfSDw6tMkgtLNZ1Y=
+X-Gm-Gg: AZuq6aI83FAiCEJtHDWaGFTKjndpHxayrhsQSRcw69Bq2lYzNO3Se7oiB50usCrQpKE
+	sXpiWDwhg9O8UEShS3dQYerwvS40d40a7zzkObJjj2tD+3kyG2SzeiqgtiuWDKsDY94fNxMx9AX
+	9elhEy1yS1bKl13X82Hxi18rmVWI1rZxIJ4Zi4djcoxrKKBYYK3+/jfBJqpLDTyYAoo52rm+LyQ
+	wMpjksKEtUc0xJKp+VwF1mRCSKTubfbvJ2d9i2ByL/2nygPYLDqFFISDIkNDqx1mKqb0tD++21h
+	xUyQT8rlnNJH33TyecjS6NtZK6hDNIUffJPguADYkiMqVCxzqMQ0NlxbQTz39MKeakmjO4Kku0T
+	58oxeXswxK7iNtS/tSwGr4hLTXP26FDwe+CDiTNvxkHeR0NGJ7qmGYMgZhe92z/3D4M/nc7wozf
+	Eyq4bH0gKldEhWx/yQ9ck9Nw8yQvg12xc3Zp8rC0Zvv4E2/3dwm/z94Yy+8mQbtk/TZBYo7/Em4
+	djsdeckRA==
+X-Received: by 2002:ad4:5d66:0:b0:894:68fa:37e6 with SMTP id
+ 6a1803df08f44-897404c9f34mr300821276d6.58.1771531577432;
+        Thu, 19 Feb 2026 12:06:17 -0800 (PST)
 Received: from [96.232.40.90] (pool-96-232-40-90.nycmny.fios.verizon.net.
  [96.232.40.90])
         by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8971c8e60a0sm216675066d6.0.2026.02.19.12.06.15
+ 6a1803df08f44-8971c8e60a0sm216675066d6.0.2026.02.19.12.06.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Feb 2026 12:06:15 -0800 (PST)
+        Thu, 19 Feb 2026 12:06:16 -0800 (PST)
 From: Mel Henning <mhenning@darkrefraction.com>
-Date: Thu, 19 Feb 2026 15:05:53 -0500
-Subject: [PATCH v3 1/2] drm/nouveau: Fetch zcull info from device
+Date: Thu, 19 Feb 2026 15:05:54 -0500
+Subject: [PATCH v3 2/2] drm/nouveau: Add DRM_IOCTL_NOUVEAU_GET_ZCULL_INFO
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260219-zcull3-v3-1-dbe6a716f104@darkrefraction.com>
+Message-Id: <20260219-zcull3-v3-2-dbe6a716f104@darkrefraction.com>
 References: <20260219-zcull3-v3-0-dbe6a716f104@darkrefraction.com>
 In-Reply-To: <20260219-zcull3-v3-0-dbe6a716f104@darkrefraction.com>
 To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
@@ -115,8 +115,8 @@ To: Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Mary Guillemard <mary@mary.zone>
 X-Mailer: b4 0.14.3
-Message-ID-Hash: 75TUFQ6RLJHF3J2GJCLFPCBOAJUOVAWO
-X-Message-ID-Hash: 75TUFQ6RLJHF3J2GJCLFPCBOAJUOVAWO
+Message-ID-Hash: BFCOICFOXBKDE7CGTSKRAINPIDHYLEY7
+X-Message-ID-Hash: BFCOICFOXBKDE7CGTSKRAINPIDHYLEY7
 X-MailFrom: mhenning@darkrefraction.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -128,9 +128,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/75TUFQ6RLJHF3J2GJCLFPCBOAJUOVAWO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BFCOICFOXBKDE7CGTSKRAINPIDHYLEY7/>
 Archived-At: 
- <https://lore.freedesktop.org/20260219-zcull3-v3-1-dbe6a716f104@darkrefraction.com/>
+ <https://lore.freedesktop.org/20260219-zcull3-v3-2-dbe6a716f104@darkrefraction.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -140,214 +140,187 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This information will be exposed to userspace in the following commit.
+Add kernel-side support for using the zcull hardware in nvidia gpus.
+zcull aims to improve memory bandwidth by using an early approximate
+depth test, similar to hierarchical Z on an AMD card.
 
-Add struct nvkm_gr_zcull_info, which serves as abstraction layer between
-the corresponding uAPI (added in a subsequent patch) and the firmware
-structure.
+Add a new ioctl that exposes zcull information that has been read
+from the hardware. Userspace uses each of these parameters either
+in a heuristic for determining zcull region parameters or in the
+calculation of a buffer size.
 
-Extend the existing get_ctxbufs callback to also fill in zcull info.
-ctxsw_size and ctxsw_align come from
-NV2080_CTRL_CMD_INTERNAL_STATIC_KGR_GET_CONTEXT_BUFFERS_INFO, which is
-already called by r570_gr_get_ctxbufs, while the rest of the zcull
-info comes from
-NV0080_CTRL_FIFO_GET_ENGINE_CONTEXT_PROPERTIES_ENGINE_ID_GRAPHICS_ZCULL.
-Adding a separate callback for zcull info would require us to either:
+It appears the hardware hasn't changed its structure for these
+values since FERMI_C (circa 2011), so the assumption is that it
+won't change on us too quickly, and is therefore reasonable to
+include in UAPI.
 
-1) Call GET_CONTEXT_BUFFERS_INFO twice, once for each callback. This
-is a little slower and more verbose than calling it once.
-or
-2) Fill out zcull_info partially in r570_gr_get_ctxbufs and partially
-in the new callback. Since we fill out only some of the info in each
-we now need to handle edge cases where one function is called but not
-the other as well as them being called in an arbitrary order.
-
-Because of this, it's simplest to combine them in a single call
-(get_ctxbufs_and_zcull_info), which avoids repeated rpc calls
-to the gpu without the complexity of handling partially complete states.
+This bypasses the nvif layer and instead accesses nvkm_gr directly,
+which mirrors existing usage of nvkm_gr_units(). There is no nvif
+object for nvkm_gr yet, and adding one is not trivial.
 
 Signed-off-by: Mel Henning <mhenning@darkrefraction.com>
 ---
- drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h   | 19 ++++++++++++
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c   |  9 ++++--
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c   | 34 ++++++++++++++++++++--
- .../drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h  | 19 ++++++++++++
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h    |  2 +-
- 5 files changed, 77 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 29 +++++++++++++++
+ drivers/gpu/drm/nouveau/nouveau_abi16.h |  1 +
+ drivers/gpu/drm/nouveau/nouveau_drm.c   |  1 +
+ include/uapi/drm/nouveau_drm.h          | 66 +++++++++++++++++++++++++++++++++
+ 4 files changed, 97 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h b/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
-index a2333cfe6955..490ce410f6cb 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/gr.h
-@@ -3,9 +3,28 @@
- #define __NVKM_GR_H__
- #include <core/engine.h>
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index a3ba07fc48a0..5f3e7560a84e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -333,6 +333,35 @@ nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS)
+ 	return 0;
+ }
  
-+struct nvkm_gr_zcull_info {
++int
++nouveau_abi16_ioctl_get_zcull_info(ABI16_IOCTL_ARGS)
++{
++	struct nouveau_drm *drm = nouveau_drm(dev);
++	struct nvkm_gr *gr = nvxx_gr(drm);
++	struct drm_nouveau_get_zcull_info *out = data;
++
++	if (gr->has_zcull_info) {
++		const struct nvkm_gr_zcull_info *i = &gr->zcull_info;
++
++		out->width_align_pixels = i->width_align_pixels;
++		out->height_align_pixels = i->height_align_pixels;
++		out->pixel_squares_by_aliquots = i->pixel_squares_by_aliquots;
++		out->aliquot_total = i->aliquot_total;
++		out->zcull_region_byte_multiplier = i->zcull_region_byte_multiplier;
++		out->zcull_region_header_size = i->zcull_region_header_size;
++		out->zcull_subregion_header_size = i->zcull_subregion_header_size;
++		out->subregion_count = i->subregion_count;
++		out->subregion_width_align_pixels = i->subregion_width_align_pixels;
++		out->subregion_height_align_pixels = i->subregion_height_align_pixels;
++		out->ctxsw_size = i->ctxsw_size;
++		out->ctxsw_align = i->ctxsw_align;
++
++		return 0;
++	} else {
++		return -ENOTTY;
++	}
++}
++
+ int
+ nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.h b/drivers/gpu/drm/nouveau/nouveau_abi16.h
+index af6b4e1cefd2..134b3ab58719 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.h
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.h
+@@ -6,6 +6,7 @@
+ 	struct drm_device *dev, void *data, struct drm_file *file_priv
+ 
+ int nouveau_abi16_ioctl_getparam(ABI16_IOCTL_ARGS);
++int nouveau_abi16_ioctl_get_zcull_info(ABI16_IOCTL_ARGS);
+ int nouveau_abi16_ioctl_channel_alloc(ABI16_IOCTL_ARGS);
+ int nouveau_abi16_ioctl_channel_free(ABI16_IOCTL_ARGS);
+ int nouveau_abi16_ioctl_grobj_alloc(ABI16_IOCTL_ARGS);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 1527b801f013..b698ac38e947 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1272,6 +1272,7 @@ nouveau_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_GROBJ_ALLOC, nouveau_abi16_ioctl_grobj_alloc, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_NOTIFIEROBJ_ALLOC, nouveau_abi16_ioctl_notifierobj_alloc, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_GPUOBJ_FREE, nouveau_abi16_ioctl_gpuobj_free, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(NOUVEAU_GET_ZCULL_INFO, nouveau_abi16_ioctl_get_zcull_info, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_SVM_INIT, nouveau_svmm_init, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_SVM_BIND, nouveau_svmm_bind, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(NOUVEAU_GEM_NEW, nouveau_gem_ioctl_new, DRM_RENDER_ALLOW),
+diff --git a/include/uapi/drm/nouveau_drm.h b/include/uapi/drm/nouveau_drm.h
+index dd87f8f30793..1fa82fa6af38 100644
+--- a/include/uapi/drm/nouveau_drm.h
++++ b/include/uapi/drm/nouveau_drm.h
+@@ -432,6 +432,69 @@ struct drm_nouveau_exec {
+ 	__u64 push_ptr;
+ };
+ 
++struct drm_nouveau_get_zcull_info {
++	/**
++	 * @width_align_pixels: required alignment for region widths, in pixels
++	 * (typically #TPC's * 16).
++	 */
 +	__u32 width_align_pixels;
++	/**
++	 * @height_align_pixels: required alignment for region heights, in
++	 * pixels (typically 32).
++	 */
 +	__u32 height_align_pixels;
++	/**
++	 * @pixel_squares_by_aliquots: the pixel area covered by an aliquot
++	 * (typically #Zcull_banks * 16 * 16).
++	 */
 +	__u32 pixel_squares_by_aliquots;
++	/**
++	 * @aliquot_total: the total aliquot pool available in hardware
++	 */
 +	__u32 aliquot_total;
++	/**
++	 * @zcull_region_byte_multiplier: the size of an aliquot in bytes, which
++	 * is used for save/restore operations on a region
++	 */
 +	__u32 zcull_region_byte_multiplier;
++	/**
++	 * @zcull_region_header_size: the region header size in bytes, which is
++	 * used for save/restore operations on a region
++	 */
 +	__u32 zcull_region_header_size;
++	/**
++	 * @zcull_subregion_header_size: the subregion header size in bytes,
++	 * which is used for save/restore operations on a region
++	 */
 +	__u32 zcull_subregion_header_size;
++	/**
++	 * @subregion_count: the total number of subregions the hardware
++	 * supports
++	 */
 +	__u32 subregion_count;
++	/**
++	 * @subregion_width_align_pixels: required alignment for subregion
++	 * widths, in pixels (typically #TPC's * 16).
++	 */
 +	__u32 subregion_width_align_pixels;
++	/**
++	 * @subregion_height_align_pixels: required alignment for subregion
++	 * heights, in pixels
++	 */
 +	__u32 subregion_height_align_pixels;
 +
++	/**
++	 * @ctxsw_size: the size, in bytes, of a zcull context switching region.
++	 * Will be zero if the kernel does not support zcull context switching.
++	 */
 +	__u32 ctxsw_size;
++	/**
++	 * @ctxsw_align: the alignment, in bytes, of a zcull context switching
++	 * region
++	 */
 +	__u32 ctxsw_align;
 +};
 +
- struct nvkm_gr {
- 	const struct nvkm_gr_func *func;
- 	struct nvkm_engine engine;
+ #define DRM_NOUVEAU_GETPARAM           0x00
+ #define DRM_NOUVEAU_SETPARAM           0x01 /* deprecated */
+ #define DRM_NOUVEAU_CHANNEL_ALLOC      0x02
+@@ -445,6 +508,7 @@ struct drm_nouveau_exec {
+ #define DRM_NOUVEAU_VM_INIT            0x10
+ #define DRM_NOUVEAU_VM_BIND            0x11
+ #define DRM_NOUVEAU_EXEC               0x12
++#define DRM_NOUVEAU_GET_ZCULL_INFO     0x13
+ #define DRM_NOUVEAU_GEM_NEW            0x40
+ #define DRM_NOUVEAU_GEM_PUSHBUF        0x41
+ #define DRM_NOUVEAU_GEM_CPU_PREP       0x42
+@@ -513,6 +577,8 @@ struct drm_nouveau_svm_bind {
+ #define DRM_IOCTL_NOUVEAU_VM_INIT            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_INIT, struct drm_nouveau_vm_init)
+ #define DRM_IOCTL_NOUVEAU_VM_BIND            DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_VM_BIND, struct drm_nouveau_vm_bind)
+ #define DRM_IOCTL_NOUVEAU_EXEC               DRM_IOWR(DRM_COMMAND_BASE + DRM_NOUVEAU_EXEC, struct drm_nouveau_exec)
 +
-+	struct nvkm_gr_zcull_info zcull_info;
-+	bool has_zcull_info;
- };
- 
- u64 nvkm_gr_units(struct nvkm_gr *);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-index ddb57d5e73d6..73844e1e7294 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gr.c
-@@ -249,7 +249,7 @@ r535_gr_get_ctxbuf_info(struct r535_gr *gr, int i,
++#define DRM_IOCTL_NOUVEAU_GET_ZCULL_INFO     DRM_IOR (DRM_COMMAND_BASE + DRM_NOUVEAU_GET_ZCULL_INFO, struct drm_nouveau_get_zcull_info)
+ #if defined(__cplusplus)
  }
- 
- static int
--r535_gr_get_ctxbufs_info(struct r535_gr *gr)
-+r535_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
- {
- 	NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *info;
- 	struct nvkm_subdev *subdev = &gr->base.engine.subdev;
-@@ -265,6 +265,9 @@ r535_gr_get_ctxbufs_info(struct r535_gr *gr)
- 		r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffersInfo[0].engine[i]);
- 
- 	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
-+
-+	gr->base.has_zcull_info = false;
-+
- 	return 0;
- }
- 
-@@ -312,7 +315,7 @@ r535_gr_oneinit(struct nvkm_gr *base)
- 	 *
- 	 * Also build the information that'll be used to create channel contexts.
- 	 */
--	ret = rm->api->gr->get_ctxbufs_info(gr);
-+	ret = rm->api->gr->get_ctxbufs_and_zcull_info(gr);
- 	if (ret)
- 		goto done;
- 
-@@ -352,5 +355,5 @@ r535_gr_dtor(struct nvkm_gr *base)
- 
- const struct nvkm_rm_api_gr
- r535_gr = {
--	.get_ctxbufs_info = r535_gr_get_ctxbufs_info,
-+	.get_ctxbufs_and_zcull_info = r535_gr_get_ctxbufs_and_zcull_info,
- };
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-index b6cced9b8aa1..8dd4552aeaa5 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/gr.c
-@@ -164,9 +164,10 @@ r570_gr_scrubber_init(struct r535_gr *gr)
- }
- 
- static int
--r570_gr_get_ctxbufs_info(struct r535_gr *gr)
-+r570_gr_get_ctxbufs_and_zcull_info(struct r535_gr *gr)
- {
- 	NV2080_CTRL_INTERNAL_STATIC_GR_GET_CONTEXT_BUFFERS_INFO_PARAMS *info;
-+	NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS *zcull_info;
- 	struct nvkm_subdev *subdev = &gr->base.engine.subdev;
- 	struct nvkm_gsp *gsp = subdev->device->gsp;
- 
-@@ -179,13 +180,42 @@ r570_gr_get_ctxbufs_info(struct r535_gr *gr)
- 	for (int i = 0; i < ARRAY_SIZE(info->engineContextBuffersInfo[0].engine); i++)
- 		r535_gr_get_ctxbuf_info(gr, i, &info->engineContextBuffersInfo[0].engine[i]);
- 
-+	NV2080_CTRL_INTERNAL_ENGINE_CONTEXT_BUFFER_INFO zcull = info->engineContextBuffersInfo[0]
-+		.engine[NV0080_CTRL_FIFO_GET_ENGINE_CONTEXT_PROPERTIES_ENGINE_ID_GRAPHICS_ZCULL];
-+	gr->base.zcull_info.ctxsw_size = zcull.size;
-+	gr->base.zcull_info.ctxsw_align = zcull.alignment;
-+
- 	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, info);
-+
-+	zcull_info = nvkm_gsp_rm_ctrl_rd(&gsp->internal.device.subdevice,
-+					 NV2080_CTRL_CMD_GR_GET_ZCULL_INFO,
-+					 sizeof(*zcull_info));
-+	if (IS_ERR(zcull_info)) {
-+		nvdev_error(gr->base.engine.subdev.device, "could not fetch zcull info\n");
-+		return PTR_ERR(zcull_info);
-+	}
-+
-+	gr->base.zcull_info.width_align_pixels = zcull_info->widthAlignPixels;
-+	gr->base.zcull_info.height_align_pixels = zcull_info->heightAlignPixels;
-+	gr->base.zcull_info.pixel_squares_by_aliquots = zcull_info->pixelSquaresByAliquots;
-+	gr->base.zcull_info.aliquot_total = zcull_info->aliquotTotal;
-+	gr->base.zcull_info.zcull_region_byte_multiplier = zcull_info->zcullRegionByteMultiplier;
-+	gr->base.zcull_info.zcull_region_header_size = zcull_info->zcullRegionHeaderSize;
-+	gr->base.zcull_info.zcull_subregion_header_size = zcull_info->zcullSubregionHeaderSize;
-+	gr->base.zcull_info.subregion_count = zcull_info->subregionCount;
-+	gr->base.zcull_info.subregion_width_align_pixels = zcull_info->subregionWidthAlignPixels;
-+	gr->base.zcull_info.subregion_height_align_pixels = zcull_info->subregionHeightAlignPixels;
-+
-+	nvkm_gsp_rm_ctrl_done(&gsp->internal.device.subdevice, zcull_info);
-+
-+	gr->base.has_zcull_info = true;
-+
- 	return 0;
- }
- 
- const struct nvkm_rm_api_gr
- r570_gr = {
--	.get_ctxbufs_info = r570_gr_get_ctxbufs_info,
-+	.get_ctxbufs_and_zcull_info = r570_gr_get_ctxbufs_and_zcull_info,
- 	.scrubber.init = r570_gr_scrubber_init,
- 	.scrubber.fini = r570_gr_scrubber_fini,
- };
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h
-index feed1dabd9d2..a7a15a4de9d5 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r570/nvrm/gr.h
-@@ -76,4 +76,23 @@ typedef struct NV2080_CTRL_INTERNAL_GR_INIT_BUG4208224_WAR_PARAMS {
- } NV2080_CTRL_INTERNAL_GR_INIT_BUG4208224_WAR_PARAMS;
- 
- #define NV2080_CTRL_CMD_INTERNAL_KGR_INIT_BUG4208224_WAR (0x20800a46) /* finn: Evaluated from "(FINN_NV20_SUBDEVICE_0_INTERNAL_INTERFACE_ID << 8) | NV2080_CTRL_INTERNAL_KGR_INIT_BUG4208224_WAR_PARAMS_MESSAGE_ID" */
-+
-+#define NV2080_CTRL_CMD_GR_GET_ZCULL_INFO            (0x20801206U) /* finn: Evaluated from "(FINN_NV20_SUBDEVICE_0_GR_INTERFACE_ID << 8) | NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS_MESSAGE_ID" */
-+
-+#define NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS_SUBREGION_SUPPORTED
-+#define NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS_MESSAGE_ID (0x6U)
-+
-+typedef struct NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS {
-+    NvU32 widthAlignPixels;
-+    NvU32 heightAlignPixels;
-+    NvU32 pixelSquaresByAliquots;
-+    NvU32 aliquotTotal;
-+    NvU32 zcullRegionByteMultiplier;
-+    NvU32 zcullRegionHeaderSize;
-+    NvU32 zcullSubregionHeaderSize;
-+    NvU32 subregionCount;
-+    NvU32 subregionWidthAlignPixels;
-+    NvU32 subregionHeightAlignPixels;
-+} NV2080_CTRL_GR_GET_ZCULL_INFO_PARAMS;
-+
  #endif
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-index 393ea775941f..0fb0e67406c6 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/rm.h
-@@ -124,7 +124,7 @@ struct nvkm_rm_api {
- 	} *ce, *nvdec, *nvenc, *nvjpg, *ofa;
- 
- 	const struct nvkm_rm_api_gr {
--		int (*get_ctxbufs_info)(struct r535_gr *);
-+		int (*get_ctxbufs_and_zcull_info)(struct r535_gr *);
- 		struct {
- 			int (*init)(struct r535_gr *);
- 			void (*fini)(struct r535_gr *);
 
 -- 
 2.53.0
