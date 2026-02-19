@@ -4,217 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECBC4E9A04C
-	for <nouveau@archiver.kernel.org>; Thu, 19 Feb 2026 07:32:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCF73E9A04E
+	for <nouveau@archiver.kernel.org>; Thu, 19 Feb 2026 08:54:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C88E910E6A1;
-	Thu, 19 Feb 2026 07:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E10F410E687;
+	Thu, 19 Feb 2026 08:54:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gMJn43el";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="haRxJfuf";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3535043412;
-	Thu, 19 Feb 2026 07:23:04 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 226D14341A;
+	Thu, 19 Feb 2026 08:44:40 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771485784;
- b=QgEGfZMtVBhTVnT0a4DD+ypfcH3O5ZOKHE4+daV8+X175rOb6wp6RVIRHJNE6BYastZ3k
- cIWclCrUjD603/5+jtxUm4lcWoJOwImnkZNVaHKkVrj5N5T6jcpPXrbYM5M2UrZ5yVUkRJd
- dR0JkPElOY6pJbewcpMV/xzq5ygwl5aN/XrnQG2TxG+XuzvL3+1PMdC9ZZ3fbXTwjzfEsnr
- 9z6LwmnEOz/bFaYvy+NzfOcqOVNECcoTy3xE53k9Etv+J85sBRZlGdDTmpfZeXeEToE0DwM
- x3DWEeGvvGuHkl50rPwkl73IDCQb7jBgj3xURiBMM8nq/MzNIegigsZgA63A==
+ s=20240201; t=1771490680;
+ b=JACNO7+RrV1Gzg7zoYMuIYA5P6GTL3aw7wAyvfIoRJ2PsllstHm7H6AebT9lZvdFeY6BP
+ 5/U7mlBSJUTFfpIvdSUTujmVilT9kKZZKo9OfnuAP08hlOiEvSR/Ph4djgmYdSxmGXRtmpN
+ qPsK7U8YkBtQzKRFHVG/C+JMRz4Vr51qVpXT52zyoBttWh1g5ZmgDBtnorENnq7P3iUEeVe
+ i+75ghuKUGJ8keJNb9xyRMY0Laz5Y76SmxJnqtfz7h8a+Yo/kdpmx8j9T6lZFSujcbRtbVf
+ 9vqoYvjRWa+70CveA+9D377xsylFhoeSXES6EI5lZT7IR/OytzaMK5BKJYmQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771485784; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771490680; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tL9mZBn0Ur5tTFMiFzXHbFIaoHcCDjAM2rs1hl5xCXI=;
- b=TnMh3vcMyro7Nlw/m7YeSz9/FOYqWE4L4YQ+JARdsljDvVV9Tb9RqKAcRKX8JdVNx8yub
- ZSVKEVTi0ifi1o5F9B9rrpgQruYMS7ErlvpjsJN2cDhN/SY3d7xoKlFTM3a4u40ILDy3GtL
- 2C/O0wwxn0VVj0K7CFz1wGfyzuRGM6HgqwIp/UteqBcpGbd/9Z/Qx2OSTDLFIMxKkEg5lQg
- Lzsoue1kmbg2AaQZnpUZV5Eya4mm5U/1/i0DYc62/Fj4kGUp692USSK6BBgRB86aZOa1rAJ
- GNpAv4goQ6DLYsrz0B7appyfX7Zn+9/6uQggEP3KNStzCa0pE4umUr48oOeg==
+ bh=g8xC20PjlQRA9OqDEMwSqMg/DaSzTbKRCj2DbPKEt6Y=;
+ b=LT1Qj0lWG3FBEDqEe9OmeRrN8evDu/80/XsZaXZ3dQ4gOL04JQyTZqwTB5JeaOmy2tLMY
+ SQO5Lua5P9ULyQkT+pFq/HDF6EiYcUJ4qsxKif6CpiVdK/MVHTtPr7/uahxOCp+gSa28R1S
+ yR9oPhzWy/kcIar2hlJR0+CFBxqh+oUOGDBQWBKkqsToMa7Is1i4Dc3lhOaQoGfvaq/9PJh
+ bDlIxRXlWyxXz78moWLdI/cnCffLkXCjxV0h5TbOypjt6pYeDaOtWwCAV4/n92uhQVqe7g8
+ LqkaFvnZ4WzoWxWGzjscDz7tbu2tqDsjE5EFacWwXEK3PFFgW21LaVbkX+tA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
+ dkim=pass header.d=gmail.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E93DD43405
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 07:23:00 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010036.outbound.protection.outlook.com [52.101.201.36])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 550C710E680;
-	Thu, 19 Feb 2026 07:32:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qPjRUoAuFA/6/yslvHjT8rFGgvhDIOarPEw4zmSJ0aPyF+Qjc7KKYwLZVwBpzDkgJpDJq+tq80onlrc19CchCocVgHs7SrRk0AMjx866DZXhaKirRXTkIetySMTNbOdUhu5MkxqqGMuU6qQIVxxSALr3nybItGQLnxTbwG3LmIMxmX80Zhk+bTlcePMn1SAQ1UBq4Iyw808Y9PYMjIcyM8h17IVjL+8wqGM2iYgdO21Tom051p/deykUwHujG0RNcEeQRVLWsPSs+lfrHsTql4e7scxolUpADCcvIoYy9MJT9hf3JrgW+RdbzEnA5tdBrKfOpZ808HocnMWGpyQwjA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tL9mZBn0Ur5tTFMiFzXHbFIaoHcCDjAM2rs1hl5xCXI=;
- b=tQGjNnVraxr6Gf7SF683I2HXC/lJ5p2Auf7qqIw4DPKsOQ3AlxkZMt0hs4ZI0sX+zuFjBII2XNQmTdx8f5tb5rKtgXF+nbDfUpPf1vd6HgyC8jds9h8jc8geYE/ge7bLsipGN7PCIPddYP2zI3vbnuw7GodRzga7TR2SRNPEQgHK5CLzRp1gyZdMOIeNNlsPOAJixnNp++0Uxt5wBJ1qEqW/yCwrkzFA0flhT03NrHYXlPWnaIGVOTrjP749vdU9iOo/sRZjNJVaIAFHvmQYH5Nz2Tf07NSQn2pOGbZ8GPwyxldDbLs4ip1X4zhVs6x1HoF189I25ANCID1aeVA2EA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tL9mZBn0Ur5tTFMiFzXHbFIaoHcCDjAM2rs1hl5xCXI=;
- b=gMJn43elidwTMBYM4DSRAVNjyn8Wjzq1wozKddgr4+Se6OXSKpgL+tji8kW8Pec3Sn5TIQX2G4j6QpUt1VQCOwhpUaODa5nCP7XZhyff47t9sXiXlHSllFEeipYMyuMF53FwaDMPQmUkjvvMFK225zQOdy0UIZbP8ShjXFOtiUdJ89gqFaoU9pv8a/sNIDgDu+jPrbFPRkMKCFCZD3vkWZJTi4bwij83u3qTO8IGQNn1wHDRyrs6CdbayMOZwnVR3uBhwwakoEEHXLOvunPJ0pqRE7hNe6SW76pRAV5DTwb63vnvX89fIARHqBThS6VkeeyApljMO3T7N/F6b16kiQ==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by SJ2PR12MB7990.namprd12.prod.outlook.com (2603:10b6:a03:4c3::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Thu, 19 Feb
- 2026 07:32:48 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9632.010; Thu, 19 Feb 2026
- 07:32:48 +0000
-From: Eliot Courtney <ecourtney@nvidia.com>
-Date: Thu, 19 Feb 2026 16:30:58 +0900
-Subject: [PATCH v2 9/9] gpu: nova-core: gsp: add tests for SplitState
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260219-cmdq-continuation-v2-9-2e8b7615536f@nvidia.com>
-References: <20260219-cmdq-continuation-v2-0-2e8b7615536f@nvidia.com>
-In-Reply-To: <20260219-cmdq-continuation-v2-0-2e8b7615536f@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: TYCP301CA0024.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:400:381::14) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 2A9D7430BD
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 08:44:37 +0000 (UTC)
+Received: from mail-dl1-f50.google.com (mail-dl1-f50.google.com
+ [74.125.82.50])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BA27010E1C8
+	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 08:54:27 +0000 (UTC)
+Received: by mail-dl1-f50.google.com with SMTP id
+ a92af1059eb24-12736a0147cso52704c88.1
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 19 Feb 2026 00:54:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771491267; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Vf3GWhZTal8W+oqgcXtuaVoj4+TIOjQp/5k5iyLnP5uB4R0v1QW5qKDdh0rqd5F/Gb
+         svMP8/mzA/tz63a5n30qlUs/hQOXrt3AGCn2aybvrgzviTzXazipLzrjw9RnrTMvKX1N
+         feji4uEHs/8TNIRgsCtYV+XhxNMSEkpQ+e3uums1Z4QN2+s94ypVzqJIoxCDFjf4mG76
+         40nLGsXvSvSc2IP98oJAdBpgod888MXHVE/2fyUniaxzCKgapSIYbLNZa6niFgFxlTn2
+         jsvbVD5AOm5VCKjJoJoFXOEPEroOXxTAc+6RMBTh+0ND2XFrGjO5nw64GcM6R+2l1LmT
+         bEAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=g8xC20PjlQRA9OqDEMwSqMg/DaSzTbKRCj2DbPKEt6Y=;
+        fh=JFeeQ/Jcm1ADtVHcpdShZKiUJryA5ouCVn8hyem/x0k=;
+        b=FWG4I7wdgwcfnjgpQesTQ/oextyYS2y7/lc+gk7oejuscs1cDkYKfBejLwdQUa0LKl
+         MxiS82g2toJK0V/I7nOSscziAmNroQpcH7qOPTw4QH05G1bvRSKken9qtGoNRdjMjFfp
+         jIT0tmFVf6wRZ4J+3GXs+bKTdw1s8SgTqpMJEZodU5r8TAHR25zFCham3k4+vU0xjwdg
+         8czY/6q6YBkJMAt0E4zeepigCWQUFgi5P67Hy1SuoN14n+d4/yIQlu6FeTdIHxR9eS5J
+         FFTrqBQDvCFRe4FwaXRlbKsyKGK1iXQTZHWJEA8rjXmwgIA0BumEHWDBzMSKqKQ/F2r6
+         HtKw==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1771491267; x=1772096067;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g8xC20PjlQRA9OqDEMwSqMg/DaSzTbKRCj2DbPKEt6Y=;
+        b=haRxJfufUKpgOvV5aqze50H0KAWrI8iQ4O2fc/qzy6AHLJ2kjAdH2SeR71FuRlmZYq
+         dmgysQI5WO1wYA2rSYNWmqkb7Hfgh+gy2mdi+KF+miYfv4Al6BV0wTzobyrb5cTxlymq
+         SMn/USHwkGi8/XGBe+lQH/Ww2TVCQ9k0MN5b9tZLLLTHRcXpi6JTdvvvt1pbpLIXHdpR
+         qNeicDoJv6hdjS4XhdwHiYtA3hLMQeSzKsTlZs4kGr6x7+/qFLIiscPiU4TpANWQnh5g
+         vrlQZaaZBpZ+Fc63TM+/nkkz5RfiKcHiQA9tQaiESNIOAD3lI0pa+6e+csku63yg9hRJ
+         ZBYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771491267; x=1772096067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=g8xC20PjlQRA9OqDEMwSqMg/DaSzTbKRCj2DbPKEt6Y=;
+        b=TkygcF+seb31Lc57IyTiE6IbZH7SF42sXYXeWEwnf1NpKHkFFYhbyYrbkXkmUSeAyw
+         j6SAnGehrSL62BKdQwpLBOHuOsgGtsPQUkGHQZaXjTDaPivVSvQ/Qg2cN/nJkYxy2fk5
+         nYtFgyLHAkGoiLvohel9sH5fxoqJRzGC7K7b59is6Kuz0teGa3KKtuNfK80xoyI9D2kE
+         fPBRz41hx3eH2KQsXErHv/RwkLJN0apthivseZ4T8xGOu95xxv4YAkwirL6GxFJBwMHb
+         srOST9+jMdT3kGtXm+HOcNZ5jHDWTzAmwXsZiU0V07NP7snX8PWmyaMLqnixoM5zQi+9
+         I0sA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU5PSCETg3gkXX+GsH9zG1SvD6l52KY6ODd14fC3w8Ny7EWK/hxq3BfA7nnzpvA/3KNH3s/yelM@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyJTHCvbNIT9eUmpfku6Sn0Krds6P6bKRU1ziJtPc3GKOWylZ9M
+	qemiIgPsaM/U+UOfeQSHhPSx+lZ6G3cnSwaf4UDzsb8sIKG1dxMLVxaouHQY3j6D9Hfkeu4ZeHD
+	sIHSl3c1HFrd+wXqSdgSqAPntkHqXr18=
+X-Gm-Gg: AZuq6aJDzD48PH5Nl6VhDDvi6IDtXkbhCkzSNYoklRZEL387IZGoWjsukJ3el0FzWIf
+	FAQZ1vFKNqoF3fEsp9uRLW1QsDPJCha19/64XmrUOeMx51rjQln0cEl6FUdBn+mWaBsExT29KrQ
+	Bx1aR76ehqpA6SdalWrliizDUo1BQFxvGVWs/hXb3weUBXC/1ZGGmNTBLAnp8P7bpb0ldt7Rzk1
+	q8rrXsdLAUG+goNIX7QF6a1z2nUJF/cHu5mPlNkG5H/WY1uNWvvQhc6wVB4kp1iZLQDfQY6u13C
+	yP2Yr+VragZWR58RtQfeZjpXRD8qDpw6xTtqp67ndcSOLoG+ftCX1LrcWcZyEeFYm3sA1WUq643
+	HNP05mZw9oPkU7CdHv6+3jgEn
+X-Received: by 2002:a05:7022:419d:b0:11b:65e:f33 with SMTP id
+ a92af1059eb24-127397d8800mr4979968c88.1.1771491266834; Thu, 19 Feb 2026
+ 00:54:26 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|SJ2PR12MB7990:EE_
-X-MS-Office365-Filtering-Correlation-Id: d482698b-19a1-4619-a834-08de6f8914c6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|10070799003|1800799024|376014|366016|921020;
-X-Microsoft-Antispam-Message-Info: 
-	=?utf-8?B?eWJ3ckpYMXQ2SEIrUFcrMVRPSWh3emRVVUFGNFJLZ01VKytlL2RxcUVMNXl0?=
- =?utf-8?B?blhGemdIQlJoczBQZTlwRkZBaFJEYzNZV1BiNXBPME93cGVndElHd01pZWxG?=
- =?utf-8?B?ZEF5alVIdTVjWTZOZ1REdDdBVHRGbDk4UnlGY253bk5MRFpDV2xzZlEyek92?=
- =?utf-8?B?K1hQd0E2SjZlVVFGcUZzWm9QYzZIUENhN3hxQmc0RU9KSHJzMXJxUFN4QkpR?=
- =?utf-8?B?S2RBWlhNYlEycktOc1lhK2RRY2h1N05VR0EyV1pPSDZrZjZpZUVGR3FqTHFi?=
- =?utf-8?B?MUpheENTQm5jN3BXQmVSdGZVN3BRSmFKRHRNOVlndWtVK2RxUG1tVlphVllr?=
- =?utf-8?B?RnFxbzJqQWdSUGo1OENCeTlNV0ZWalY4MGNZeVVLemFuZGZ5YkJnRENhWjM1?=
- =?utf-8?B?MGtnVWNPek1mUFZxcmlRRmxOZWIzZGI0WDRwU0JmY3dFVlJ6TExuS0oyMUho?=
- =?utf-8?B?bzBYUEVidTBrSHd0c09rNHdhaVVUaXFVTmprbjNPMG5jWkJPSmpZOEIybGZr?=
- =?utf-8?B?SnZIOXE1S09YWUFOSWpQZUIwUFpVbUtQaTE1VUtYRTZqazNYQ2tpenJpTWcx?=
- =?utf-8?B?dG1tRXJkREd6cS9kZXRQd1cwZ0ZqQUcxWUVjd3Fyb1RXY0NTeUhtV2pOOUJ4?=
- =?utf-8?B?eUNWSGxtd1dMbWxiM1ZhS05DQlZiSndTRUpEek1DencvMStZWUhiaGswdFFR?=
- =?utf-8?B?aUtPQk5IMkhoWHVkMnJqUU1wV3hjejY0UXdYeHkvMWN3b3I2WGw3WUZDT1Mr?=
- =?utf-8?B?OW1xWkU1UWRSL2VldStTMVRGTkVBUkR5NGxXR1p1ZlpRRnBwaXRqU3V4OHJr?=
- =?utf-8?B?ZmdSaFFWR2RkU3JQUHpvTWNBMDNJUFBSamZwUmVJb2hqTXBxQ1lRaUNoR05v?=
- =?utf-8?B?ZWFUcThQUVRBd3VwenU2djJnMHlJOFhaKzUvM2ZiVFpxSGdCNTZ0SXRPWXpU?=
- =?utf-8?B?MjJXRHFVci91dytyR3hMTXpuRXVRcjJYaGYxcHdPQ1phRDdURG9FNkVmcVI2?=
- =?utf-8?B?bVJFMkNvV2J1U2FUaVQ2aWdkbjF5T0REMlVEUXhYQ0lUOTZWNzdCVHNDcndj?=
- =?utf-8?B?NFJ5NFMySnVaYXdqNG9CYkxTZGZENFpEZmhnV241TDYxT1lhUVZlbkM5UDRj?=
- =?utf-8?B?UzNmak9RS2dxS1c4Qm9nc3hVUmZLTDRhMUd4a01pVHJ5Z2JQMFNZNDMwMzYx?=
- =?utf-8?B?NWEyWDZreFMzdTU0SnJTdVJzMmlOREovZENsa2MvSEQ5QUtyakhXMjlxVGVq?=
- =?utf-8?B?bXdUVkJvNVdnK3doTlJUeThZQVAvNUY1TmJORHd5RmpmYUwrUXJGUHBIMGpJ?=
- =?utf-8?B?emZjU3JFVHZrbnVBTzhaMXJSWDRPcURieHMxcUppR0NPN05SQkNYdlI5TExF?=
- =?utf-8?B?dUtTbVo1eTdyRGZQN1Q3WWFrYTFHajhNVzlqb2ZWcEV2ZUdWTzBFNXFrY2tP?=
- =?utf-8?B?VDNJSkNWeENGTkVQY3BMWTdWajJBL3drRG1hUVp0VDFvWHVwZnJ4VDBndHRM?=
- =?utf-8?B?WkNWRjZ5S3crNytTUjcrQ0dwMDZqQk5GV3lSc213SjRVK2VyeDFYWm84M0hM?=
- =?utf-8?B?eEwvbU9kbmY2bmYyWWdyWGxMTWVyOFVUSzZzTjRISEdwWXd3Zm5LS3ArRnM5?=
- =?utf-8?B?d3YzYkYveDFQVmM1VkN0TkFJcWVkQkd3N1prcDdMWWdWWWZROTdvREsxak44?=
- =?utf-8?B?NWZrNHJFY3dyZ24zVytrRVRJcmdMRU91Umk1SXRHTDk4eHR6OEtPQ2ZxLytk?=
- =?utf-8?B?eFowclJJYzRrbTBlbXRlNDZ2UXZtWXNwcDdJMUl4M3FwY1JCRWpWcm9BbVVS?=
- =?utf-8?B?VFU0SlRSSmZUeS9oRnA4SE5QUHdVTW1PeElLOG5TeFYrYzJWcERCaHo4eGlm?=
- =?utf-8?B?Sm82ajBvTlpWQkRtcmJ1VHhaMkNIS1RrcWMrL3dhNFdybzh6SlR3aDV0VVNW?=
- =?utf-8?B?NytEZkdIVTRDRFZSd001VC80U0pTUGlBL2FPNHN3RC9DWHg2anNYMFRmeGhl?=
- =?utf-8?B?VXVob2Rwblc4RjdVUVRZNHpzTHlUeTFuL1QxWmFvNklzNTRXdUdyYzVteEpH?=
- =?utf-8?B?M2w0cEh0aDVRTUVTdlFKaS9iSzd0UEV0cm9RalBFQWpOWmdNMnUwUkhyZXNu?=
- =?utf-8?B?R2R1MXJGQXZTM0pyQ0htM2dON0VrNHB0QWRKeGJFVExPWDZhMnA2NFdwRGhs?=
- =?utf-8?B?NXc9PQ==?=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(10070799003)(1800799024)(376014)(366016)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Nm1CZFVkci9FZFRRMHZLY2Q2SGlESk5ST0pCeDBnMlpFYlJ2RFZ0eXAvWVFE?=
- =?utf-8?B?L1hudko5dWxFdG9Ud1lSdExITW9KR2VYOHJTcWJYb2ZENEtXNnVnQ2F5MzBJ?=
- =?utf-8?B?MGdncWRMQm8wWVB6WGdhdEhMVmlldGhRd01MMGNDNHo4VncyMS8zZDBhYlJu?=
- =?utf-8?B?M1hUMTJOVHc1eTRYQm1pMEh4R0tmMWpGUjFiZW91V2hWOWRtMTdpMTBUcmJw?=
- =?utf-8?B?cmVNZzFidXdOSDZjNDMxOG0vbnFjYzJZMkgzUisyU0Vieklxb0JWT0Z1dlRS?=
- =?utf-8?B?Y0hEY0V3eUI5WlU2R210aXV6Y04xV0JBYUhXWnlIbUlBRUpHYmM3alg0U2p1?=
- =?utf-8?B?NGpUai9zdXdUb0dQUmUxeXlSbGh2WFVDZHJwMkJ2VStDSlBYenJPNUthZkdx?=
- =?utf-8?B?aHk2ZmpBV1RmVUN2bC8zR0dSRnAzZ3FWZkxiQnFRS1hLd092T211cll2SVZ1?=
- =?utf-8?B?M0FjYzRKcGk5NVJsc3JZSU5TYVEzcUQrcGVaN1ZmUHZaUFV6OFBCMmVDRGVF?=
- =?utf-8?B?cVEyRWhhN1JjbE5zMFJBcDAxa3ZqUWg5MHVTSFVad0N6TGdRRThuamRsK0NH?=
- =?utf-8?B?NWlGWWZjTXkyUnhIWEVNV0pyMmh0UjlpWEc0SEpiVEZHQmIyMy9BOG5HcnFt?=
- =?utf-8?B?aEpZYTNXa2M0bGVsWDNlQ3BSeUxQVUVlSjRmVi9ScjV4eEppeWJ5VlJVLy8r?=
- =?utf-8?B?OXdVYzhvRGVHa3piT2VYVG5pbmhtVjlKVlVuZUNUOUdTcHNNNU14M3dwQXNw?=
- =?utf-8?B?NE0xSThPY0NROXlnaGFzYnpvTHMyVENtNlp4Z00xakZEV0VaYTFrZXdWU0lB?=
- =?utf-8?B?THdza3pEM3o3bERWMXZ1bGRFempmVTJxQ0JZQVlQbzYrUHZDNTdtOGFVMkU1?=
- =?utf-8?B?NmZwWVVBN0kxN282QzdaNW55QkNGeDBCanpCV3Z3bExEdnJFRitJTWxjZHV4?=
- =?utf-8?B?QXlqbXJsaTV5MEdWQ1hrWUpSOXd6SGJIQjVaVk1LOStpTkF2eDdFU2FLckJp?=
- =?utf-8?B?ekozN0NIY0ZXM1NqeGwwYThWb01QbDlFNVJJclZYd1JWeCtBSk43NDlQYmFD?=
- =?utf-8?B?ekN5VFlBcFBqQ0VpS3BnN2REYXl5Q2p5SDJLbUJwdnFaVml2RFRHQWtNM1kv?=
- =?utf-8?B?UGpOTW9XclEwVzFtN01wbEkvSEdSUi9SU2ptcDRsK3JvV1dta0E4RnBEQXYz?=
- =?utf-8?B?MnliM1ZjY2F4Rk56OWNzVm0zVTZCWm9PR0pjWnM1bURDMDBKVWU1M1JISjJV?=
- =?utf-8?B?YXhGM0RVMUVoUmpIYzE1UDJMTk0za2lqQkJGNkNiOURESHZZS3ZMdEJZOG95?=
- =?utf-8?B?Q3V0THVTdXdLRHNQekJNaUlWSVdPbWwxVXBYWHp3Vm9YMXF1MXhJMXBQbmNW?=
- =?utf-8?B?VHJtOWVJQUhTcW1tcGozTS8yVFAzeFRFSENEa0FXLyt3R1NRaitnOUFERFJq?=
- =?utf-8?B?U0JoczNnamlIbmJzcFR2Vm1WWURwWU9DVHpza2FNM2tkTlBrTENJQk1oTitw?=
- =?utf-8?B?Tys0ekNWWHB0R0JYeXpGaUd6NitEQnMrdFhpNW9sYmlWcFJCbjNScEJkaWZV?=
- =?utf-8?B?UDFmSEJiTlZMMm1HM1dBdk5zZFBFZWFEdU9YQTY4OVBFTHBmb2VmUXhreGo2?=
- =?utf-8?B?RXNsaUd4V2NwTzlBeTMxMGRlUEhwQmxJcUREdC83cUwxK2gxUFlhZVRjaXo0?=
- =?utf-8?B?cjJ4b016ZHB4TGNiRmsyYXVIQWxSVW8rUXlDL3JHNm0rbTZwWnZVVzFZQTJL?=
- =?utf-8?B?ayt2S3pZUlBDTnc4YkU0end5bUVOMWU5TnUrR1QyTkpEM09aRCtwWEIrSVZY?=
- =?utf-8?B?VWlwazFTVVg5OUhSU2g1WmVSYmtWN1dkb0hTMU43elZUWWRZZUpCbVdxQVdV?=
- =?utf-8?B?UUJYME9hWURvVms2eVBHcFN4U0xtWCtVZGlYYStKS2FZK0REeXZnb1J6UU1x?=
- =?utf-8?B?bk1QVytYMXZwd3ozeEdDWHg5WUZHbGdCeWNsYldFMUQ4R29UNXhmL3JEbU55?=
- =?utf-8?B?ZFVHelZ5SEpBSTRhclBlSHRLRldhdk9raWpNS1R4K2pLUzVXWkFvZ0ZGOGd4?=
- =?utf-8?B?V0VmL2ZVekh5WFQxaFR2TXgyRUJKbEEwODlnZjJaRHVnVzI5UmRaRW16WlMw?=
- =?utf-8?B?bGg1TCtWOHJXTHJ1MEtVR0RGWGdSSUdUa0ZSMWRYYVpFOGRRVEloU05teWov?=
- =?utf-8?B?ZC8vQUdKeEl0dHoxN0ppVTFNd2s0NW9KZ1JiaU0vZGNyVU9pYkVYa0hoQSsx?=
- =?utf-8?B?TEVTMzVxU3FWejFFaXA2ZGxyMFdWUEw2dXp4SGs1ZitTU0svSloxYTlFRlJq?=
- =?utf-8?B?czNBbit6R08rbGwyRHBsNEMwUkNDOGQyRjVPek9FSXZyQzRqM0s0OHVhL2NJ?=
- =?utf-8?Q?KuJV28Dr7hANVe24VX2az8qgTMIhg6N3b+iBjc4FcQG/B?=
-X-MS-Exchange-AntiSpam-MessageData-1: U/3+BYm4XupAWQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- d482698b-19a1-4619-a834-08de6f8914c6
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Feb 2026 07:32:48.5519
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- gPChy8QDmVNA7vH6Cs+f0CSJrmkZYnvCTvo3OeuPUUwAX9saw3z2cUzPpOMiUcOEf9i9hObays9T96Kz3u8/Ew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB7990
-Message-ID-Hash: AGWC6W7MTLP6GPSRRSZJT3JXBZEDQJXR
-X-Message-ID-Hash: AGWC6W7MTLP6GPSRRSZJT3JXBZEDQJXR
-X-MailFrom: ecourtney@nvidia.com
+References: <20260218205507.689429-1-joelagnelf@nvidia.com>
+ <20260218205507.689429-7-joelagnelf@nvidia.com>
+ <DGIOJQC5HEAT.262OM2KS7C2HE@nvidia.com>
+In-Reply-To: <DGIOJQC5HEAT.262OM2KS7C2HE@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 19 Feb 2026 09:54:14 +0100
+X-Gm-Features: AaiRm517O8N5cgdFr-9hA2xKEEuwUHYT4nDXwLjBAL8577hK96CpY5pCEg8UfyE
+Message-ID: 
+ <CANiq72mH=sCfO8+HnVp=m219b3drWZbqUWE=NJn=M3y4ng3qXA@mail.gmail.com>
+Subject: Re: [PATCH v10 6/8] rust: gpu: Add GPU buddy allocator bindings
+To: Alexandre Courbot <acourbot@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: H4GWBNX6T4HEZXIERVPXNZFQDTQT4IAJ
+X-Message-ID-Hash: H4GWBNX6T4HEZXIERVPXNZFQDTQT4IAJ
+X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- Eliot Courtney <ecourtney@nvidia.com>
+CC: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Nikola Djukic <ndjukic@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AGWC6W7MTLP6GPSRRSZJT3JXBZEDQJXR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/H4GWBNX6T4HEZXIERVPXNZFQDTQT4IAJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260219-cmdq-continuation-v2-9-2e8b7615536f@nvidia.com/>
+ <https://lore.freedesktop.org/CANiq72mH=sCfO8+HnVp=m219b3drWZbqUWE=NJn=M3y4ng3qXA@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -224,137 +164,20 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add tests for SplitState. They cover boundary conditions at the split
-points to make sure the right number of continuation records are made.
-They also check that the data concatenated is correct.
+On Thu, Feb 19, 2026 at 6:13=E2=80=AFAM Alexandre Courbot <acourbot@nvidia.=
+com> wrote:
+>
+> rustdoc complains that this links to a private item in a public doc - we
+> should not mention `GpuBuddyInner` here.
 
-Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
----
- drivers/gpu/nova-core/gsp/commands.rs | 113 ++++++++++++++++++++++++++++++++++
- 1 file changed, 113 insertions(+)
+If you all think something should be mentioned for practical reasons,
+then please don't let `rustdoc` force you to not mention it, i.e.
+please feel free to remove the square brackets if needed.
 
-diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
-index e722c6091ec8..1683ebb4c685 100644
---- a/drivers/gpu/nova-core/gsp/commands.rs
-+++ b/drivers/gpu/nova-core/gsp/commands.rs
-@@ -383,3 +383,116 @@ fn init_variable_payload(
-     }
- }
- 
-+#[kunit_tests(nova_core_gsp_commands)]
-+mod tests {
-+    use super::*;
-+
-+    struct TestPayload {
-+        data: KVVec<u8>,
-+    }
-+
-+    impl TestPayload {
-+        fn generate_pattern(len: usize) -> Result<KVVec<u8>> {
-+            let mut data = KVVec::with_capacity(len, GFP_KERNEL)?;
-+            for i in 0..len {
-+                data.push(i as u8, GFP_KERNEL)?;
-+            }
-+            Ok(data)
-+        }
-+
-+        fn new(len: usize) -> Result<Self> {
-+            Ok(Self {
-+                data: Self::generate_pattern(len)?,
-+            })
-+        }
-+    }
-+
-+    impl CommandToGsp for TestPayload {
-+        const FUNCTION: MsgFunction = MsgFunction::Nop;
-+        type Command = ();
-+        type InitError = Infallible;
-+
-+        fn init(&self) -> impl Init<Self::Command, Self::InitError> {
-+            <()>::init_zeroed()
-+        }
-+
-+        fn variable_payload_len(&self) -> usize {
-+            self.data.len()
-+        }
-+
-+        fn init_variable_payload(
-+            &self,
-+            dst: &mut SBufferIter<core::array::IntoIter<&mut [u8], 2>>,
-+        ) -> Result {
-+            dst.write_all(self.data.as_slice())
-+        }
-+    }
-+
-+    const MAX_CMD_SIZE: usize = SplitState::<TestPayload>::MAX_CMD_SIZE;
-+
-+    fn read_payload(cmd: &impl CommandToGsp) -> Result<KVVec<u8>> {
-+        let len = cmd.variable_payload_len();
-+        let mut buf = KVVec::from_elem(0u8, len, GFP_KERNEL)?;
-+        let mut sbuf = SBufferIter::new_writer([buf.as_mut_slice(), &mut []]);
-+        cmd.init_variable_payload(&mut sbuf)?;
-+        drop(sbuf);
-+        Ok(buf)
-+    }
-+
-+    struct SplitTest {
-+        payload_size: usize,
-+        num_continuations: usize,
-+    }
-+
-+    fn check_split(t: SplitTest) -> Result {
-+        let payload = TestPayload::new(t.payload_size)?;
-+        let mut state = SplitState::new(&payload)?;
-+
-+        let mut buf = read_payload(&state.command(payload))?;
-+        assert!(buf.len() <= MAX_CMD_SIZE);
-+
-+        let mut num_continuations = 0;
-+        while let Some(cont) = state.next_continuation_record() {
-+            let payload = read_payload(&cont)?;
-+            assert!(payload.len() <= MAX_CMD_SIZE);
-+            buf.extend_from_slice(&payload, GFP_KERNEL)?;
-+            num_continuations += 1;
-+        }
-+
-+        assert_eq!(num_continuations, t.num_continuations);
-+        assert_eq!(
-+            buf.as_slice(),
-+            TestPayload::generate_pattern(t.payload_size)?.as_slice()
-+        );
-+        Ok(())
-+    }
-+
-+    #[test]
-+    fn split_command() -> Result {
-+        check_split(SplitTest {
-+            payload_size: 0,
-+            num_continuations: 0,
-+        })?;
-+        check_split(SplitTest {
-+            payload_size: MAX_CMD_SIZE,
-+            num_continuations: 0,
-+        })?;
-+        check_split(SplitTest {
-+            payload_size: MAX_CMD_SIZE + 1,
-+            num_continuations: 1,
-+        })?;
-+        check_split(SplitTest {
-+            payload_size: MAX_CMD_SIZE * 2,
-+            num_continuations: 1,
-+        })?;
-+        check_split(SplitTest {
-+            payload_size: MAX_CMD_SIZE * 2 + 1,
-+            num_continuations: 2,
-+        })?;
-+        check_split(SplitTest {
-+            payload_size: MAX_CMD_SIZE * 3 + MAX_CMD_SIZE / 2,
-+            num_continuations: 3,
-+        })?;
-+        Ok(())
-+    }
-+}
+In other words, I don't want the intra-doc links convention we have to
+make it harder for you to write certain things exceptionally.
 
--- 
-2.53.0
+I hope that helps.
 
+Cheers,
+Miguel
