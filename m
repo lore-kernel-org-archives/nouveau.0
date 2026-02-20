@@ -4,148 +4,191 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C09EC531E7
-	for <nouveau@archiver.kernel.org>; Thu, 19 Feb 2026 22:55:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 851AAC531EA
+	for <nouveau@archiver.kernel.org>; Fri, 20 Feb 2026 01:09:30 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 91F8410E766;
-	Thu, 19 Feb 2026 22:55:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 44CE610E762;
+	Fri, 20 Feb 2026 01:09:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Kh8Yk73K";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="klgVFUyK";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7AC0543437;
-	Thu, 19 Feb 2026 22:46:02 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F3BE04022C;
+	Fri, 20 Feb 2026 00:59:36 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771541162;
- b=0VQLAYqcczt3pPZ5MUXaqGOHQ20AU+STPe+7qRZHdfpDNwHGorix6gw1RLBBi9IZtsPaq
- FcmEhBHRUC+SMlPp7QM/Ddnz2WbdzrJexO4GIoy/qz+3u57ADYJUdQtEXW7pORWHcTTQkRl
- ZjR3zTAqMmZyAWeKPDPp7gGaEBTs9AjT8YkzRHHPsrXQMb1pvqbL4GUxED5cNryHUFZim9v
- jG0hpgyu3ns5I3ZxhWFXAjddmu+lRtyKqm0hKmz8D2a4VpnZeGrlZup+LdOnqTXE+XVNXeq
- o8zfdUNpIaUCHlNpazlv8Th25LggYB8dqMtGEcRGH4OKzauiAiictwsi1s6w==
+ s=20240201; t=1771549176;
+ b=sNXU7goJMkNEPBHdyZt9sasx1ea1mvDGbQLhNi+zN8A2WEVmNR0SDd0Qyb4Q58OL3d26i
+ kuXGF9u8DDEtipnuAsOFGwsCXmf/rcOMkRCnPwJ1uL0ggcHC+btsfLqxUYC4Y5DbkLbLw3k
+ i8Z8iKVtkjWhc+nP12sUhM9m73LJIC2EOGypc4VO5KMxybvMH48qlTKLTzcjUar4Veil7oE
+ kcvYFa+esHxNgCoD+kBRZW4Tkq9MPHFY4qbFvbEhHCoC3+h+xnRoZYaJ0U6Bn/KMCAUrfPY
+ sswoplxIgde+iqOGrzXpXdRlzo5ctoW9PF6OTU2ejbPEARuyrUaUZyZlT9IA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771541162; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771549176; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=tzmFdsfq8MNx6L2xpTWEWoiPLvNts9kq7DaS1ogvM6k=;
- b=0HWzk0L0M5qyVcodb2NP4jhU/F8y0J4kAnsAFAFiONqAphdSYZDCjNWKC7TUh7qbvY05A
- yqRzArUkxTcLzHEVGbbzAcbuJcyYjaEPhQNg/v5aJJgmammK/Dkxxqjxpua6edc3uY32yy0
- bciRRUZAD0m6OuY2XRrHIL5Yp9r6rUFOqAgMxE+ixfWqMRvtysc96pyhq0yLwNLmgpGQ80E
- Besj0smIHZIICPlN928/qSZm2fyCFsiDUUfvUxXBsLxfIm+ZTL3O7xCwLuTJVI6+2QVT+Zu
- MmUByddJWGPsZQ+sU2jbwKTMmQLHm/DtlQWppGZ5RM15hsA1S11xH55six1Q==
+ bh=04mFZPYhzWttCU9mQt0SqLEzT1VqhB8KYEyuxRflweo=;
+ b=zVNgtG7tuufyUjrF4lTUYV2Zv5wfkJR4w4Ph7IZSQNcqvzFAOBDIgJzYPO66COQk9SToj
+ CiBzvKgY60qZewtglDcvSJIZLO33eAUdJ3Ej/AmWSSMrLcJcvX5BhkUPKPnaP3QFEdzu3np
+ TqmUjGgR6JFWjgcdaLuTgCgtP1FMsrO4hGsnNsfuifuQLc1o0hwIgv2RK5NIkKfCUZt0SH8
+ HzSmhGC8JgXDZ/Rufr6OXaY6K4hzTBTMaAaayQbPfUl1sF/LDiX03nmRr8PUCOcipYUFqtu
+ k4t7w2XKYgjIxbqRwY73PYgo7PZvPPKCdRQ2C09GF5NuobDIOBwLoWuCwspQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=garyguo.net;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DEC4243401
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 22:45:59 +0000 (UTC)
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com
- [74.125.82.53])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C452A10E356
-	for <nouveau@lists.freedesktop.org>; Thu, 19 Feb 2026 22:55:51 +0000 (UTC)
-Received: by mail-dl1-f53.google.com with SMTP id
- a92af1059eb24-12711867ca1so97756c88.3
-        for <nouveau@lists.freedesktop.org>;
- Thu, 19 Feb 2026 14:55:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771541751; cv=none;
-        d=google.com; s=arc-20240605;
-        b=dZNNc1vhgSFLwSgXAI+bJj8RPL6PSAS7m43YWLBTmTX92XSlvqbkopNKOQPB3VLfUV
-         jqV9MXk8dnTQ6BwJX1docG5WzEHsGZzRR0lNzH55hQAfALsi+b4vxL7NuBMSVncHa8Jv
-         XvbNzp9x7h3XzsFSKP/IWo0gEK20YHPsF1vbF6GckgC1KXrtDa62JExkkkjqKo9vuuud
-         c5Z2AbuazlVad2wcYX/zHrRTmUrhgyL3qrV+Kvx2kgA6tz4QnDpmAHbEgeAtKdzzd9AH
-         LRdF6SFKYxYqrI/5kOR1DWcztaUXC9EdrXx3ANewCpJr9vRMcdrXamVOonW72/Dtgv84
-         zBkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=tzmFdsfq8MNx6L2xpTWEWoiPLvNts9kq7DaS1ogvM6k=;
-        fh=ldBqL9FJ/3ubIv/4kWudQXO28WnHt8O7eos24uoqPe0=;
-        b=jEtmTiAfYGwZGBUnlqztHV+H14YhMPbtQidnzy8mnA2m0SVG7X27ebXqCCKHORVmXY
-         E6QxqE7PQo1gdltq4rXdeh5sCN9yw+njuiyWcAL+ERVk4/yb9olXQBCzeQ1N0qaK3KJ2
-         YD+Wyj4ApGaaivhfhCEvI7nvIDCipZT64OuXY19WfGlHMogXg57gSPRMgGRaEHZ7KHoN
-         NVdBNZoeUcXsxAAbiNinMCKxktCDsRvhh2cLzc3pxiYNocvkCEpJN6cgpMsD2Diw+AV3
-         pRUoqGojbWSdH0X2M9TOErjE4dFIwnGtah+SqaClGtQ7rMshkFnDxthogEm1U8gUE0wu
-         0LJQ==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1771541751; x=1772146551;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tzmFdsfq8MNx6L2xpTWEWoiPLvNts9kq7DaS1ogvM6k=;
-        b=Kh8Yk73Kb0cdU+cXOT5YCH7dpTCOtVIkLLdkg/cpAs7RJ6ZGuJY7Sv0uOXsnWsvGdm
-         Jawx+IQ/WMXKREfjNcsASBQVDRbnV9DCE0Bo9Vxzn52dJg8okdS9QiVErhvwdkZEZz/B
-         ZR2qLTHzIFV6lPCj0GTD7LAE8FIyKdp2uPTdsrWoFS7mT+BcWo2S2FZhPFMZ28BUFXvV
-         1H4Sl9AAgZpp33wAir38+O9h7QJ30v6tgmHfL0RjOazckU0ZpQZKFX+ES2PMfN7XLO3Z
-         tDipnH3uQk0aO/A6vyNu3pF5f7T5N18HCiM9AlcAio5KFVNecf9sDLdQ+lHb7VYg6m3f
-         dEdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771541751; x=1772146551;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=tzmFdsfq8MNx6L2xpTWEWoiPLvNts9kq7DaS1ogvM6k=;
-        b=nhISVqhCN5uMGeVja1EFp8e9NuVBX7E3jeb+ZpVrRM3hAwr/CFSMLhRoWX/9l2Sx6x
-         WgaER6l/nwz0JTqjsIwzkOvCY/tOWbmKYgKp8qIqMwtaG79Xi9e+a4J5tm88lfhnRfdH
-         s2bLQgqry3T+IwhblyTKkgzNck70mb7LnNNKo7mVuimAbnYC/laOJ5YoGxLOhK75JNnj
-         /U7UlEZSc3vo4BzWmkltH8PAastrtoiTi1gCPAJl7KvtwvmQfTYfVnznHcVin1Klbm5A
-         WCqUz2+hU/tdv1gDh7IWd5L5pWVQFYPSY0G+QMqy8wGV5mxckP/59qexAcWWpvkXANUE
-         vqWQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVrbjQgTTOtLFuQblPL8Ov/DoN+iqMRN8+XamNo1+9gLwoFoQH9U2s6/1AMqh68UhjnNj2jC175@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxlQiEPMvZAL8i4xe/5HiSYg+dEUafHUN+Ga55FIufUG08rMps2
-	iAb+aF0fOj7t/xInHrCDcCXBkafLouuFU3dTpx7ws7aRSUWdf/3z68ACAe5+6ejbY6+LPF0ow/J
-	4W/b3YGm2NN00YiEmmanxm2fOZk/PVKk=
-X-Gm-Gg: AZuq6aKEUWP2RfCFM/QjqQMqnycveWKMi7B7UQxwSpE7dfu/qqoRndd0u43qIeQDTFf
-	11VnyG8bdsj9F8592v2Oq3U53A+ADh1BG50DhFkyPONer8Irc4kSkR7MFj5eDncZ8l9tEDRZaAR
-	LyGRzIG7tVglJm+ADY9mPJ/PRwo1DPdSki+9HP2HTfEbi6fkSJgFWIT9Or/kPforlSP14EES9qb
-	9bYme5XAO43GniJurR2S6UPqo8wvtJ+dfVj2phJFVJ1iCJD0yr+OZ3nQ5oSRRdisVm/now+iu36
-	uunZgInULpJz0kvbSYWytPcBF2KkRC2j4Tm9Vl5OEf5H8J4epnnQEtNLimkH65WKvLCBVCN5Zxr
-	HtXh20wcqmyvTE2O4PIQvLhiy
-X-Received: by 2002:a05:7301:4591:b0:2ba:75f5:72cd with SMTP id
- 5a478bee46e88-2baba129259mr5952861eec.9.1771541750839; Thu, 19 Feb 2026
- 14:55:50 -0800 (PST)
-MIME-Version: 1.0
-References: 
- <CANiq72=2Hx9QYbdFee7FZzF2tt9dzAOs7A+xe=tAXZi3_o2DCg@mail.gmail.com>
- <FCF46102-0B7A-4972-90AF-985A9F45CE9E@nvidia.com>
-In-Reply-To: <FCF46102-0B7A-4972-90AF-985A9F45CE9E@nvidia.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 19 Feb 2026 23:55:38 +0100
-X-Gm-Features: AaiRm50FqOS1dTWgKs-rY8pjqDvqyuBoJm6Fgf3-4VuQIwJo2BUnXmDIAOZ9-c8
-Message-ID: 
- <CANiq72=A22Xn+Ocd9-GU_CVU88LD6i1hTHAeQPqLEf-j17131g@mail.gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 02E7C4022C
+	for <nouveau@lists.freedesktop.org>; Fri, 20 Feb 2026 00:59:34 +0000 (UTC)
+Received: from LO0P265CU003.outbound.protection.outlook.com
+ (mail-uksouthazon11022120.outbound.protection.outlook.com [52.101.96.120])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CFB0010E343;
+	Fri, 20 Feb 2026 01:09:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PYGGVO8LvP/oRuHNOAbRnCR56fOw141oTA0bnvAbkSZ8UYPbJfsm5MDEwngMh2dsDE/grep8bzM7QlHgtHLRxmWuDHPVRw0n9V6RRokoB3ojdwcCilvn6OMiyXM3F10EQjU6pBbHTNrbtworj4RgGfEcxA5vrOYzScGdESSChbbOgDBynpnYMeCAzROo9fyBEqD/7X8CSKuvZJRsvtcmRBTDQqeCkBCXvacCYSUsS/sa3ls67MXlaYJdbcvSWbwJjP6CWEdq4L5OZv3WxxlZRVpY41Rrj9kupgU44ghGS95e9L8InOtZHD1gCr1l53W4KCi0Fk3n+Vhopcs74ZraOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=04mFZPYhzWttCU9mQt0SqLEzT1VqhB8KYEyuxRflweo=;
+ b=R1a5D5yYoPW/yULwvYuK22Gw3vnlH/gtoqeitZITXl9lvYhlNJkhf6JkxI+6H9HmJ+TJk5KRwtfwqc8pMH3CxO2SXNxycRnGMzdc+E+5xu6WGYrf+BGXYVMPe8ttawMurgRSR1lwLq/eJJmSSC0XjV+7EQDgcMQeN+rKA5VxZ92WwQQ2+n7jxlffL5yBiyTE5IzJjwfKrpFMV401ilAD6aHDrXNapbMKDBeXm5wuLIm6Iiq+zpHEFIqA6DmgA2b3v46mNNHYIO4+BShUYs5oeMx4v6U9j9Meqj6VJQidxborwAHioTVdXMdsVuZZ91/c4768Wz8ugrigOSuoXPwp/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=04mFZPYhzWttCU9mQt0SqLEzT1VqhB8KYEyuxRflweo=;
+ b=klgVFUyKeu87fveiuFtQr4j+2BpgMAzLw/ilmNabWuFPvBu5fKKato/IP8Y7J21Ntpo+FMXOplVZ1iLJz4kCVMVwujPIpC5bqeFTPTnnSoDeMt96ycU0zoBgHT0e1OoxupWq+b0XdQHiUuNQTnYYPUZQIXQRDAJaxDt94hjquC0=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO7P265MB7780.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:413::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Fri, 20 Feb
+ 2026 01:09:22 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9632.015; Fri, 20 Feb 2026
+ 01:09:22 +0000
+Date: Fri, 20 Feb 2026 01:09:22 +0000
+From: Gary Guo <gary@garyguo.net>
+To: Danilo Krummrich <dakr@kernel.org>
 Subject: Re: [PATCH v10 5/8] rust: clist: Add support to interface with C
  linked lists
-To: Joel Fernandes <joelagnelf@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: WNLFIADAYMFJVNZUPG5LHAM77Y63MYR6
-X-Message-ID-Hash: WNLFIADAYMFJVNZUPG5LHAM77Y63MYR6
-X-MailFrom: miguel.ojeda.sandonis@gmail.com
+In-Reply-To: <DGJ2TNVD8AS7.2P0HYYKKE8CBQ@kernel.org>
+References: <20260218205507.689429-1-joelagnelf@nvidia.com>
+ <20260218205507.689429-6-joelagnelf@nvidia.com>
+ <DGIWDQTR76Y5.34L9IHKU2SEKI@kernel.org>
+ <eadfa4662f403fa01f19c1c17a435c1a@nvidia.com>
+ <15a193fc-b2b9-476e-a9f6-57e3a210b74f@nvidia.com>
+ <DGJ2TNVD8AS7.2P0HYYKKE8CBQ@kernel.org>
+Message-ID: <4ad9fd6598e2688c88f6ef22c088c683@garyguo.net>
+X-Sender: gary@garyguo.net
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: LO4P123CA0227.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:1a6::16) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO7P265MB7780:EE_
+X-MS-Office365-Filtering-Correlation-Id: e182c470-3223-48be-1dc9-08de701caeb5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|10070799003|376014|1800799024|7416014|366016;
+X-Microsoft-Antispam-Message-Info: 
+	=?us-ascii?Q?h39gMk87xajuqVnDrr2FqDlUHc+tcH9cvU6IYxpsjrxx3eOUnKp2LlUE9rax?=
+ =?us-ascii?Q?1OIFdjnYMITrhl4hkQKKigiXt8Eb6pnoACxx4i8LZ+xpAcf2lD85pyd0Xqae?=
+ =?us-ascii?Q?rtTdC8nZB7friaIHBl80VDN9AC+UWONKsPzoUdTTgcETOm5sL0tMFZ8ooDEN?=
+ =?us-ascii?Q?04rvkBh+jdyeEO2JSFqVi9Z2/9VzR/GB6mk5mxH6ZAq3yGBY24k/kfJxtm5Q?=
+ =?us-ascii?Q?ALYiZpNLgZMOMKEVU1v086QiQ9LZLmSJ2An+LyjdMdkuUzcM1XCxTByz23Ps?=
+ =?us-ascii?Q?44gTuWZay9W0sqHnDQXeMOeAtuifYgnRq1o6HxaJnoLy7PI25IrCvy1iZXKJ?=
+ =?us-ascii?Q?H9PYYy6iAFNpG8xkB//facyAbgqWLGMp7MWplucpc3ubtMtw6hPP18O1Pl0t?=
+ =?us-ascii?Q?JPV68X/HRH8ldwnW/ZS1ya0Zh4d9i8+rAepXirpARUtKxDyvYwKTozoNOiTw?=
+ =?us-ascii?Q?6kM0WP5QHD2013RGxP7OjYYpFjLeP1qEpZHyzRgmrICJevdWSkVKmnUmjWn1?=
+ =?us-ascii?Q?6IxQEkp1IUwoDpRVHIK9sOsRRFEOZ/+ryEz2iOMrh66IpVt5OXb93dapyTq9?=
+ =?us-ascii?Q?/iqa28hCNVga8JOKZjI8OFXPVpJzowN2lEikxcYEzzr2Bq7A3yhJi1F5NmQL?=
+ =?us-ascii?Q?8q5QT2fXLRe2uijipHjsUeUCTJTj8+YwBzR8ekrIul8NjQ8+axivSZbz3+YA?=
+ =?us-ascii?Q?ZKCdl11huOZ6QKSPN0FscJGFz9muuJ/brX2AKtFFSJEZ6CG+eHDvzco/zqDL?=
+ =?us-ascii?Q?eCUrS1LvR0Ki2NYOWWXrJIou0QiTVR1TRDbMFKvkX7/ATPTtZP/GgIoOvG9g?=
+ =?us-ascii?Q?A/KgT0IKHLmrLGDRY7fJ4e4ezsH7zAcDAbrKECOhrxON+fgJEEaayH3t6+Xn?=
+ =?us-ascii?Q?dA1T7+ght5Sq1+sQRbxv3yJ9vFi9HMiYypH82TkgOgg6GMxeJXrnqS30UR6G?=
+ =?us-ascii?Q?e9CIZiaefmxIzSC/+EDixzsYuUh4mTVgOH9K5qVOeo5vokJIt/ql8bhD4d2M?=
+ =?us-ascii?Q?ySF0oMqN47mHInGk23o3waWO97rfcuw/OZatT4Z9u5Bb8v5Ah5OKNC+tt3El?=
+ =?us-ascii?Q?eCWFssG5uHqZrzqmWAnXy2wxAneztNbJjpqwfFkoThH7bPlHT4AHQkjbyDks?=
+ =?us-ascii?Q?WaYfEYB1tk5Ri2SZHVl7SWscOzvqBX5J8ObBu6N/m7zDGhA0uR0bhGk4Epym?=
+ =?us-ascii?Q?i6+M0pTldxGe52UiEklOqcVqm2AXADuraepWesJ5a8JMi0XfRIK6gOl2yFsE?=
+ =?us-ascii?Q?IJIM7qBkk5WmZZTeukpjuJiNA1RuNbPt2WZncR8MxCEIUl6t0+TxAsYEQ04i?=
+ =?us-ascii?Q?MO3jr0waUVWRICWsXPeFlDRxQJW7lAdvIPdKgrSX4/64ytkgoQ5gZ/YlNbKM?=
+ =?us-ascii?Q?xqrx6J7LKIdQzyWyFoorn+F8he7iCN3iDToS12C+PZ2hDR1afOTmuesG4IcB?=
+ =?us-ascii?Q?RYUqSp2yqcOy8Gsjl7+2BancPRJ8Bd6HXt5SgDvfSalfxEllNLfKxfDxroec?=
+ =?us-ascii?Q?Vfbqsi7tqaWKQ8Vz5xSpFRATwHGmv6xQynQ/MdCQHDNtTbDJicGid4sKKjHy?=
+ =?us-ascii?Q?YbRnsP3jEg9gicIlrpQ=3D?=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(1800799024)(7416014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?0vyDjoe6jmJnY/4pgvOS4Ueje2u0aBBdOB28bUaScPV7ralxOJIXl6ji9/oZ?=
+ =?us-ascii?Q?OUtWxPXlAscG0ykmZ8Lc4DXXEzZpNFtYNTHcWvO5xjqLGX5IIvjOcVKZaYla?=
+ =?us-ascii?Q?gfMGkAeobRX/OCP1EaZhyTATZVqILwFDWsQYe7TtdDfHtMl4+cltYM3JK8Mh?=
+ =?us-ascii?Q?szY2t1WALEM3ZoR4MRjOvirFYwL//NeTEdN0Usoq7DHM/7dxRU7IQhcyRV4P?=
+ =?us-ascii?Q?c5PbQ6Jel+Ev0Bzx8cuwmbmONWXufP9GwLgJIEjSXRoCMz1Eb0YWOsNp338W?=
+ =?us-ascii?Q?8hmHNyam3gD3M7p6OAP648LWyAh7uWQremOLGLhmf70rSrwl3fCoZe5EZSTg?=
+ =?us-ascii?Q?0Auo8TGxQW9Dqa1e8qxCGIF9i50fF0/Z+y03ZO+T7k3TeouY695tbpOUMWqV?=
+ =?us-ascii?Q?ZpMcdbzeb2zaPMe9bzfzzf3YdzUtnZyS8kPanaEdw7hnwiywMxImlv35i9BF?=
+ =?us-ascii?Q?5Vppl1T/1ZZO+8QSwMsEecDA8UQJpFUHJEc/DK1gObRTHUe6+2DzQHJE6tQf?=
+ =?us-ascii?Q?GQ+6qysUnM0nFAZc79WQ0zSq9fCAfbB9LWEpOaT6jy7mH5DBcRAVe4flCV1T?=
+ =?us-ascii?Q?9EtRGXYI5xh33FjQrcRBjoDOEUeuVWls0g25FhIoxuTnpRQ0zkimVBwgP0oI?=
+ =?us-ascii?Q?Am5lME2hxnC6JmpDjnZ4imq7FVoCtEcgAsCXEqLMH3d1pDEfKVet6A2VHAgm?=
+ =?us-ascii?Q?dd4OLBrzhDvFMh+TSEXKqIPEJy4Vx93hfifCAnMNV14JcYoyR9arYaA/Fjhe?=
+ =?us-ascii?Q?cs0BhFd7xDKxcuV4nO/mJMy+EOxaO/cWKHT91apGjSgBv3/9/cMi1r9zOY8c?=
+ =?us-ascii?Q?TFPEF7cmBokxtDQrLBrAJIr2rQiJFeFlT+r8ktLj4ilqLvTWZKGfUwlKw1T5?=
+ =?us-ascii?Q?f2NuO/sdVNMgKKaAxdZ0SjS9IcO8l7xzgWEa8OVAN+wDm07crIP3gTyzG9r7?=
+ =?us-ascii?Q?1dnJFKXUv2jcvb3OdxGxBNIxe5IrgPg0fUXH9kYiF9cjIvWbatndOMkbthNl?=
+ =?us-ascii?Q?B0C4s5nb2ZAApyXD3kKni92Sc+n8cPYyKJkUTGdTnMcWVxUXxtLlrBrOgSV8?=
+ =?us-ascii?Q?ou0lukvg9mmwnY+iwo5sKb24sKDboxQJjiCahF5GdS6s7EiiFMhsa0YCp8F+?=
+ =?us-ascii?Q?k3ECVDn5PP6Fc5/OlMlqqjQy664lJXzfr/yQkKM2YA7lkZ+vpNXEBMwjawK4?=
+ =?us-ascii?Q?JCRyrKlmfjacDNw2t+ulosSLEhYAmOtnvFtW1uCCiXFdIcrSlm7/NtkC4aXY?=
+ =?us-ascii?Q?Xl5iJuaeq6nrw9wa1BdzwTgjv8qMtglT/Ttp9f4tLXoSJit76prM4GntAglH?=
+ =?us-ascii?Q?ue1e0Yfhhg2BSkssIurX0NASs+1BptEQxwbAK9RzX+AW3Q4dcIQSuHcRaA77?=
+ =?us-ascii?Q?Yz76vq4UgVuEDt6MX+I1DnCgE9h0f0CDYNgyYgC9kcSEeuemH3UJQPk+W4c5?=
+ =?us-ascii?Q?00pxIn9ttbpFJubusSYrPNfDlBUHM0l/8bUFWPnlcd62983/FvmgUMRdZiVG?=
+ =?us-ascii?Q?0v3fz5d9SBrBTXmfiD5irvqQ4L0Ccpg6XDal93pMaQAb3D9fFHTSgu+TKSGX?=
+ =?us-ascii?Q?kRnvjD5TvMJJT/3dvFGW8ZoB9bxRxx0e1So+x4QYln+F0AoEmwERK7VLpbnn?=
+ =?us-ascii?Q?SwP9TXkxdYvp2GU0je7rpEGif7x5Wab0qJMQZWmZfJ/waEP/mR41T8KthFIs?=
+ =?us-ascii?Q?vtZwmiXj1poMLzLTaPX4th7y5PDLax6VV4+wPAy57LhGjIhxFW8SRQKq8QXm?=
+ =?us-ascii?Q?LFZFSKwwnQ=3D=3D?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ e182c470-3223-48be-1dc9-08de701caeb5
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 01:09:22.6664
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ AsO98+O/7GHPEpLyQ9nlgOcH5b58lwyVp9/XJkhlMI7Vmm7qytY2mZww/z6v9QrLBMz1K7+AiH8tjqLns4r+SA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO7P265MB7780
+Message-ID-Hash: QUBD2CZ5NMODA3FIJF2XR32LFOTHUDQW
+X-Message-ID-Hash: QUBD2CZ5NMODA3FIJF2XR32LFOTHUDQW
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
+ loop; banned-address; member-moderation
+CC: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org,
  Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Dave Airlie <airlied@redhat.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Dave Airlie <airlied@redhat.com>,
  Daniel Almeida <daniel.almeida@collabora.com>,
  Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
  nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
@@ -154,9 +197,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WNLFIADAYMFJVNZUPG5LHAM77Y63MYR6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QUBD2CZ5NMODA3FIJF2XR32LFOTHUDQW/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72=A22Xn+Ocd9-GU_CVU88LD6i1hTHAeQPqLEf-j17131g@mail.gmail.com/>
+ <https://lore.freedesktop.org/4ad9fd6598e2688c88f6ef22c088c683@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -166,27 +209,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Feb 19, 2026 at 8:29=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.c=
-om> wrote:
->
-> I think let us see how it goes and how much is the volume? If it is
-> light then I/we could send you a pull request from personal kernel.org
-> repository, if not then we can set up a branch at that time. What do
-> you think?
+On 2026-02-19 16:24, Danilo Krummrich wrote:
+> On Thu Feb 19, 2026 at 4:44 PM CET, Joel Fernandes wrote:
+>>
+>>
+>> On 2/19/2026 10:27 AM, Joel Fernandes wrote:
+>>> On Thu, Feb 19, 2026 at 12:21:56PM +0100, Danilo Krummrich wrote:
+>>>> On Wed Feb 18, 2026 at 9:55 PM CET, Joel Fernandes wrote:
+>>>>> +RUST TO C LIST INTERFACES
+>>>> Maybe this should just be "RUST [FFI]" instead (in case Alex and you want to
+>>>> sign up for looking after FFI helper infrastructure in general)?
+>>>
+>>> Good idea, done.
+>>
+>> Actually, I am not sure we want to commit to entire RUST FFI infra though its
+>> pretty tiny right now. Most of this infra right now is clist, let us start with
+>> keeping it as is "RUST TO C LIST INTERFACES" ? Or we could make it "C LIST
+>> INTERFACES [RUST]" sections.
+> 
+> I feel like it makes a bit more sense to have an entry for the entire class of
+> "RUST [FFI]" infrastructure.
 
-If it is very light, then we could just do Acked-bys, but setting up a
-branch is easy:
+I don't think so. Most of the kernel crate is doing FFI. We have a `ffi` crate
+defining FFI types, we have `CStr`/`CString` which in Rust std is inside `std::ffi`,
+etc.
 
-  https://github.com/Rust-for-Linux/linux/tree/ffi-next
+I feel that the FFI infra is the core responsibility of the top-level Rust entry,
+while specific stuff can be splitted out.
 
-Please feel free to use it (if so, please let me know your GitHub
-handle -- I already have Alexandre's); otherwise, we can delete it.
+Best,
+Gary
 
-Having all branches in the same place is good for others to have a
-single place to look into, and has the advantage of being able to add
-it there as a `T:` field already.
-
-Thanks!
-
-Cheers,
-Miguel
+> 
+> I could imagine that we will find quite some more cases where an FFI abstraction
+> layer makes sense; at some point it might even go the other way around.
+> 
+> Once that happens, I think it would be good to have people looking after
+> intermediate FFI layers in general. But it does not have to be you of course.
+> 
+> Maybe we can create the "RUST [FFI]" entry already with the following
+> constraint:
+> 
+> 	RUST [FFI]
+> 	M:	Joel Fernandes <joelagnelf@nvidia.com> (CLIST)
+> 	M:	Alexandre Courbot <acourbot@nvidia.com> (CLIST)
+> 	L:	rust-for-linux@vger.kernel.org
+> 	S:	Maintained
+> 	F:	rust/kernel/ffi/
