@@ -4,126 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBF06C61DD9
-	for <nouveau@archiver.kernel.org>; Sat, 21 Feb 2026 08:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43A17C61DFB
+	for <nouveau@archiver.kernel.org>; Sat, 21 Feb 2026 20:50:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A397710E17A;
-	Sat, 21 Feb 2026 08:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 238A510E094;
+	Sat, 21 Feb 2026 20:50:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="02r6ueLt";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jRPjbW7d";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6BD954347A;
-	Sat, 21 Feb 2026 08:49:26 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771663766;
- b=c3/V6Wxyb2gvkbwfZjNNLYCD3jzyzXm5ujvEGCBY2slX/O3P6yZhPjbbuHxcHQ0OsZVhL
- WkIwhRHg9qeC8rwo1ptwCNgCP3N8fwt56C3bDE+OF4Q8f05qg9nm6z6rCnR7BH0gCr/CoLd
- mDfdSKtlxuSUTxfeCqAHnWRCwuEwRTGnjrFjXSGp4q0VTVWusqDPTcOYFo0/t2KSRHuNdJB
- Oy+ZXtaBiKq1MUnNAPdLRUlhtIFBKgklIi7FuVK9oM9JbsxZKa7wHkcAaXlDfzMj4n4dRpf
- M5CiQUEIXDpr0cXPIYny1VMDfoNbaViXhm8nVmtXntoaPy1lpzvUecmtgGLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771663766; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id C762443474;
+	Sat, 21 Feb 2026 20:40:58 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771706458;
+ b=dOPy/nnbSi/ipj7jB6hq1orycS+ryj2qpfG4RCtB1X54fgWJ4o8K3htQM8rvQLpt6g3Vg
+ Vs51pCNNrtChEQFEnrKfUfsc42rfdXCqJjUD+GnGwdQAAH3qQq/Ekaldko13eXxZ5JEOTSY
+ NQDAfEJmjBNgLdqz/iGt1FAwLw/ztuG8Kzzp3C4l0GRD6kSlE2lZ8PrAHr1z3aIDCX7X4mQ
+ 3+SNur4W7mlKBY2mPiM8jwTOGc0I40NBLL7/oo7kiXs0zc1vSzH7BcovHnevF094ZR7GTEm
+ +3u3hBvwgJdSp0E1a4yQ5mJPEvj2vVNVsosGj945gp+kUoAQ1/Z17Zzy6sUQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771706458; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6zMqqgKoh/9hUmXKLa8W/Ktm8MqMG46VT0cs/LJ1MPQ=;
- b=P7pGGWzHA9d0/Tf+I+zQUpDiZQ2P54FfVgUzmwjLwZ7KwiARKFbVDO4PEbQIqcNMoFykL
- yv6Jd8nA9lKG7+QlX1rYMqM0+U/XWrZNGkXmHcSAE8UTye3SZZ1NTbx3qFIwrCheZzXKJJ6
- yJrp/mlWrnUc0hf2iI3sZbvOugzLBSR1MsQXhtpuyJbBs3VSgGCOLYhetrMoeYtckN60XFH
- 0Ey3fqf9v4nyQqOFjvgt8jqkoZxnW4MTSI3Z51ZTG7l9kXRk3Er61f5b5ZoBZbM0ts4YJFf
- D7Mi3Ria3/8A8XJUAUyRtL83fbHp6HE+wwigTcRjAjYaGlOlZIjSi5r2tVFg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=google.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=google.com
- policy.dmarc=reject
+ bh=+lpy+To4hAQnLOjsEbQcqc+n0mUzjIXhpOqd/ok5q8U=;
+ b=ScaiMgbgWIBY+6Hf6gUQuYmaWuJ++kxxobvmN7E+REpN5R+gWttSu3QYy0K6evA+rHc1Q
+ El26PO2jQNapE/gzdYwlFjLsgJyBvANKgxDpkxN2sXoXqL2Uld4TmKasIt+A/xgLrFnhcPj
+ usQK2rGzXa50PQKAyQJFNcYQFUHnsCCzs+pqmr2vXB914P2Y7Ko/4FJ5tOY0++PnvYnPMlR
+ srm/Dx94iNoBZFHu3gI79gAn2EXDKJDGHiBnfyydw6EAaKUPiQSP+ZPO1Xrvbteogg0h7Cf
+ r6iZXJZCrUZ1xml4V3PYlXc7Cmrn7rvarcTmd1608EH+BDzdT7A0Yd9QjDdg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 732EE40B8C
-	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 08:49:23 +0000 (UTC)
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
- [209.85.128.74])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7649310E175
-	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 08:59:18 +0000 (UTC)
-Received: by mail-wm1-f74.google.com with SMTP id
- 5b1f17b1804b1-4836b7c302fso23220855e9.1
+	by kara.freedesktop.org (Postfix) with ESMTPS id B7A4243400
+	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 20:40:55 +0000 (UTC)
+Received: from mail-dy1-f171.google.com (mail-dy1-f171.google.com
+ [74.125.82.171])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DA5B910E008
+	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 20:50:51 +0000 (UTC)
+Received: by mail-dy1-f171.google.com with SMTP id
+ 5a478bee46e88-2bd801b40dbso31583eec.0
         for <nouveau@lists.freedesktop.org>;
- Sat, 21 Feb 2026 00:59:18 -0800 (PST)
+ Sat, 21 Feb 2026 12:50:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771707051; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KKE+uAa/Scu98BfDt/ZmdNZRyjDXa+jIUBINdeY3aEMkRh8myaz84HOImM09mELwsm
+         YhvMh/2voZFz2r9+9egPqE73pR+EFg/yXddsVGSD7WyyRiz0n47BXQ3N89Vo7kEno3od
+         KU6poaTHDucIezs8IOqiYcUGCi1w2imrSv11DFIy3aVQugSAJf8/sl3mO8268kE7g3Ur
+         IUqXwllUvoCiAlPt0DuOXLuzTa1Yt6sf64PM0ge1OIpmnRfsCVuu6ImfsSomv2EnQ1xr
+         A1JhvrH7OAgOA0armqS9CHeGiUHcOO8e9m5as3iHUeRnMqGsNQxUfGH23d4sr2cRNHeN
+         IRww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=+lpy+To4hAQnLOjsEbQcqc+n0mUzjIXhpOqd/ok5q8U=;
+        fh=mArvKWe84XMnzMl9Hpw5kSzsJ4FokCmiSKhWHjowiko=;
+        b=kvp/v8wA3bA7y6QS0ovQcMPyaFXfVlXT8I/XPBNXQeNwcjs92Wz1WmT0391auoworJ
+         8shxY2xdT0TwfHNbO0rHgCDHcgHbcKSJP6D56ZN9AeSTIFeaG16WF2rBRFBsd8A0JJ7U
+         wVWxc9f9HxbyVvHWefOuFdGRjbQyWH4SlcSKzTAJuZhJnZcTux693xd6QO+qOy/pdIGY
+         U9yXQid2Y9LH4jW1M3LY4SMY2r/04WBVlEMgnROSQokO5Uipyr0N+JhwwT/VZiIAOhAv
+         66iFAt/mKGp2HIj9p5omKnch9rEo62+2PWpvPMO3i/e35uT5zaeN+jK4Hkg4rueq04xi
+         +0YA==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1771664357; x=1772269157;
+        d=gmail.com; s=20230601; t=1771707051; x=1772311851;
  darn=lists.freedesktop.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6zMqqgKoh/9hUmXKLa8W/Ktm8MqMG46VT0cs/LJ1MPQ=;
-        b=02r6ueLttmrsH85pAtUonNBPDWaS/+FEnhHe8IhfSIBLoO3yTvJdR/k3zFEVt2p1Oi
-         4NudQ1srvM/NYWG1JpsVLPouKTTF/MTDtVWCyjcBCjBZybgiEohMEIVXushj/Pj6PkMx
-         WakiU/4ydpqWbvojk0JptPrnWUeCckrvDh2zzYKG18rceY+iQHcivqT09d6IC9e5A3y7
-         I+Lk5YzifYrN7W/8l6OU23Cp1aFwxjWDaz6SF+hCqbmoBksaHQRw08O1ouLyWGeqX9ht
-         B3PrBdueLga3EgKRVbmU/JExR+y/z/3keMsnqTrFXEg1hiMIZWJdifVPE5cy1L+bM+6V
-         GsXA==
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+lpy+To4hAQnLOjsEbQcqc+n0mUzjIXhpOqd/ok5q8U=;
+        b=jRPjbW7dRuvqIc8FOQAAo8quP017C340p3ImeHvj/atzY2q/CPHrQ5yeUWTwAnKATN
+         89k8HECjicd8hnskKR5o8U7YzzElze18fsgIJU3pqYnOSwPS45w1vcPHGEznIKiolXYQ
+         vUh+/uVzPKuM/AQ5KVxO1jnuySzrnVOeuA1hDgCLf0STthxxOTXg/C//jRWeGTm5cHmq
+         sXS4YemY5vOA13YyQQcPcyr3/fmtNin5FEjI+uU8XwhPQ6yfVWag/NTsmVucqPx87/3m
+         2nfrdLfuiBqit//WWYld1VFLrj5vq8qUuWJfMzJca6u3dfHROhutqhl8fIVlgngoeXIU
+         qmvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1771664357; x=1772269157;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6zMqqgKoh/9hUmXKLa8W/Ktm8MqMG46VT0cs/LJ1MPQ=;
-        b=fcmF3TotDomkcuYI7PUhYKyRY9PBuwnsq/JUbMA7sc/tmHPxf97ZdJdTxBgI7/759p
-         YtYdEA13BqxFf3ODDJ14ZSUJvH4mz5kdBWNMVjDXSeuGOwS7rvGZ6x6xV0i8fbPFtPIE
-         D+CUg1rCUiyo/cfmRl8v2WOcczOgwQZ4lt8AFawP5Pc8TWaZaOvgSF3UF66QsLbCEVkc
-         mY9+a14wzNSfgqvpRO5CBx3hbkSVTdPWoqNfNNFAdg/6jkFrfK/MMH1eK53K7JoRFtUh
-         I/J66oGpECFAsxFa2sOpWdnrvfm0ieywOc2uRZrcGEzTCizGgAkRjeeW5K4bYe5mD+1D
-         8P5Q==
+        d=1e100.net; s=20230601; t=1771707051; x=1772311851;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=+lpy+To4hAQnLOjsEbQcqc+n0mUzjIXhpOqd/ok5q8U=;
+        b=iK163km6FtoEL5Z4KTCaU41xgLGPQ/Ce9xRhPMFb96mIJmfR7Exvc4DznepRH1HjbJ
+         Y8MkGF9IGRVdN//CZFJugtUBRbPNtK4UA4ZUu43II1APq+SUv6YdtmPpDW6GZDY746kw
+         IjyMbLlJX64iVMvoXEqo9GF25mcIVsBzi2+F5e1loo6qGj2Dgvd+RBx1SyYK9nPo52q2
+         o/cQQ1M7MDzRPMQ0O4r9jDqhIppr5VH1bNTBh+bF25zwPu+fzPtGuCNh0VQCq69YKOho
+         kXbjo7SGbqx2Y1nhHO/nbZvhpj5B+aKB70AhZCuF41oMskU8+1MwJc6T1BJka8ETwKoF
+         dHGw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX/OazUthkRSpNDSbKtjYC3O5C/qATO5CSGIU50h7yjh7INrAaDCYzloig5gr028YjLu2SJ1aco@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyqs9nCFX/ucs+1mve1livb1cI+ki/N2PCBu0p1guZda1fVVNW+
-	eenCLoFnoFH2iN5cK4ZIW82HS56oxt3Sqs5ZJ3TZi1VJUvHQyLgeEW/seMXIFPXft12KZtc8P62
-	rL1+WPg90xvs9pQqnUQ==
-X-Received: from wmbz1.prod.google.com ([2002:a05:600c:c081:b0:483:6f89:e2c8])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:1e09:b0:480:25ae:9993 with SMTP id
- 5b1f17b1804b1-483a962e3c9mr39685415e9.20.1771664356547;
- Sat, 21 Feb 2026 00:59:16 -0800 (PST)
-Date: Sat, 21 Feb 2026 08:59:15 +0000
-In-Reply-To: <20260218205507.689429-6-joelagnelf@nvidia.com>
-Mime-Version: 1.0
-References: <20260218205507.689429-1-joelagnelf@nvidia.com>
- <20260218205507.689429-6-joelagnelf@nvidia.com>
-Message-ID: <aZlz49VtPA0JbEGx@google.com>
-Subject: Re: [PATCH v10 5/8] rust: clist: Add support to interface with C
- linked lists
-From: Alice Ryhl <aliceryhl@google.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: DTIT55Z3AP7M367CD5BNSHPGSSP7SIQX
-X-Message-ID-Hash: DTIT55Z3AP7M367CD5BNSHPGSSP7SIQX
-X-MailFrom: 
- 35HOZaQkKB4Ujurln07qupxxpun.lxvwx34nj3ur121.o0nnmn1t2xy.x0p@flex--aliceryhl.bounces.google.com
+ AJvYcCXsAbbOS2fC2yoqcP7HFaVp0kLeGPgPFk6DWYaq9n6AEadgDDLiHxIAqXhkTlRp4q9+NwSesLUB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzKwqk427ufrK2QC5rKAfUC3xiUnyTqIiEYXco0ybSUUfKsF17M
+	L5/Mmkw00ZSTVhWOfy1PqF+FBJETVa4WqDwD4HqH548NV/Qpl8CW+rN5qISF29uLO8CYo1tavOD
+	xtd4JjMYEISz7QAG7OJ9/Q7MME8DPp1Y=
+X-Gm-Gg: AZuq6aKPGUeedSB8BE30FMG4LWyUwIy085YTbOXhpOh89km9JaFF5Z4Ovo8LNDOWYfB
+	trcSVpYZTqyBCuLQasdjTyKumPovuaLNZfj40T2iTos6+837jfiPnWybn0vQVmqL2GubCVFlUTx
+	qsAKZUhmM8A9G85FbcZQoj95OMQwcpwnYcQzXlNimd9pbXoTC3LCB4/zqTvV4X3DxUCa64alGkJ
+	u2+IAMu/PEacLjfp0E0QxgAuJAOxxVVgbonvfL8Syndwr8rSL5pRWNEsf0oWyRWA9JS3braWhZ3
+	45ez7Syy+tFbzc0M1ibHBP3LMLkNQmuK5utXF5iJJaLRby59Y0kYbkZNoPIRSpn/A0Agd5QE+Nx
+	phBo/9Vbs6imqrCLvCnMjvluO
+X-Received: by 2002:a05:693c:25c7:b0:2b7:f145:a70 with SMTP id
+ 5a478bee46e88-2bd7b9ed182mr1020616eec.1.1771707050982; Sat, 21 Feb 2026
+ 12:50:50 -0800 (PST)
+MIME-Version: 1.0
+References: <20260221020952.412352-1-jhubbard@nvidia.com>
+ <20260221020952.412352-22-jhubbard@nvidia.com>
+In-Reply-To: <20260221020952.412352-22-jhubbard@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Sat, 21 Feb 2026 21:50:38 +0100
+X-Gm-Features: AaiRm5172XvDnU3UePKgPHx_CxnJsXnvjVHL2rwEQ4swbyAbhJulY3nsCIuvnT4
+Message-ID: 
+ <CANiq72n46KhQv453+9nMWxaXqo77PT20Ya6iw=fiR+oyrPDquQ@mail.gmail.com>
+Subject: Re: [PATCH v5 21/38] rust: ptr: add const_align_up() and enable
+ inline_const feature
+To: John Hubbard <jhubbard@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 5DBVIJO4ZQLJTNST7RYK6CZYDCNWOSYM
+X-Message-ID-Hash: 5DBVIJO4ZQLJTNST7RYK6CZYDCNWOSYM
+X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+CC: Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
  nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>
+ LKML <linux-kernel@vger.kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DTIT55Z3AP7M367CD5BNSHPGSSP7SIQX/>
-Archived-At: <https://lore.freedesktop.org/aZlz49VtPA0JbEGx@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5DBVIJO4ZQLJTNST7RYK6CZYDCNWOSYM/>
+Archived-At: 
+ <https://lore.freedesktop.org/CANiq72n46KhQv453+9nMWxaXqo77PT20Ya6iw=fiR+oyrPDquQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,56 +165,33 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Feb 18, 2026 at 03:55:03PM -0500, Joel Fernandes wrote:
-> Add a new module `clist` for working with C's doubly circular linked
-> lists. Provide low-level iteration over list nodes.
-> 
-> Typed iteration over actual items is provided with a `clist_create`
-> macro to assist in creation of the `CList` type.
-> 
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> Acked-by: Gary Guo <gary@garyguo.net>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+On Sat, Feb 21, 2026 at 3:11=E2=80=AFAM John Hubbard <jhubbard@nvidia.com> =
+wrote:
+>
+> [1] https://lore.kernel.org/rust-for-linux/20260206171253.2704684-2-gary@=
+kernel.org/
 
-In general this looks like a useful tool to write other abstractions, so
-that's good. A few nits below.
+Link: https://lore.kernel.org/rust-for-linux/20260206171253.2704684-2-gary@=
+kernel.org/
+[1]
 
-Also, I think it would make more sense to split this series into two
-with titles like this:
+> +pub const fn const_align_up<const ALIGN: usize>(value: usize) -> usize {
 
-* Add clist helper for writing abstractions using C lists
-* Move buddy alloctor one level up
+Ah, I thought you wanted to put this in `drivers/gpu/nova-core/num.rs`
+like in the previous version.
 
-That way, you can tell what the series actually does from its title.
-Yes, the 'why' of a series is very important, and must be included in
-the cover letter or commit messages, but I think the title of a series
-should explain the 'what', not the 'why'.
+If it is here instead, then you shouldn't need the
+`rust_allowed_features` change anymore, because we already enable
+`inline_const` in the `kernel` crate.
 
-> +impl CListHead {
-> +    /// Create a `&CListHead` reference from a raw `list_head` pointer.
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// - `ptr` must be a valid pointer to an allocated and initialized `list_head` structure.
-> +    /// - `ptr` must remain valid and unmodified for the lifetime `'a`.
-> +    /// - The list and all linked `list_head` nodes must not be modified by non-Rust code
-> +    ///   for the lifetime `'a`.
+> diff --git a/scripts/Makefile.build b/scripts/Makefile.build
 
-I don't think C vs Rust is useful here. What you want is that the list
-is not modified by random other code in ways you didn't expect. It
-doesn't matter if it's C or Rust code that carries out the illegal
-modification.
+Having said that, if you do end up needing it elsewhere, then please
+add the other line added by Gary's patch, i.e.:
 
-> +// SAFETY: [`CListHead`] can be sent to any thread.
-> +unsafe impl Send for CListHead {}
-> +
-> +// SAFETY: [`CListHead`] can be shared among threads as it is not modified
-> +// by non-Rust code per safety requirements of [`CListHead::from_raw`].
-> +unsafe impl Sync for CListHead {}
+  +#   - Stable since Rust 1.79.0: `feature(inline_const)`.
 
-Same here. If another piece of Rust code modifies the list in parallel
-from another thread, you'll have a bad time too. C vs Rust does not
-matter.
+Thanks!
 
-Alice
+Cheers,
+Miguel
