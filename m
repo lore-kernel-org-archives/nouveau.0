@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2BFCC5DF6C
-	for <nouveau@archiver.kernel.org>; Sat, 21 Feb 2026 02:11:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 762D3C5DF6E
+	for <nouveau@archiver.kernel.org>; Sat, 21 Feb 2026 02:11:25 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CBB9710E8AE;
-	Sat, 21 Feb 2026 02:11:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5407D10E8BD;
+	Sat, 21 Feb 2026 02:11:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oxS79qX/";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="YkDweHyi";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3F0BA43474;
+	by kara.freedesktop.org (Postfix) with ESMTP id BDB5F43465;
 	Sat, 21 Feb 2026 02:01:30 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1771639290;
- b=lOqLo75aLz6uO64kwYh/EIAkppdrEa573n6ZzIwah/Cn9hDAeh7/SuNKDH5aibxwxzg7e
- c2pcK7XLQXQRU1ZCJVTkMcGabyqjlTSak0DTULsMoJzmlTyPhKxWJT09n0SASwhuao/dSov
- OH4c9oWpzQL9ekl1E/Wj4ACV69KoKjqq+b+FH1Wn3NRJrZSxNczeePOB3jTZUiGPFOAxyHH
- R566s46UHkYxAmgVRAU7eftcN+6Hh1SGNm45xKMqeDYDK5UwzNpXc6vtBVeMENj70FUW7h0
- zXDcE/H5Di1GSoLkd8EYdEwlYePLET/NRBhcuhZKEowihskXtszztlG0Yt/A==
+ b=TTo4MnXao9KL2tFXFdmioxsU6BtENPr9+DZ4OLOaXmL9lma3h0imMYBtjW5zTraGcH95u
+ 6+QPYHO11Dvc9L8MLsYsVSAMsTVW06OMCh1fjoEBpgv7HRRup68k1fboF+Ke87+4SV9KpXV
+ mcp+RZHFtQcjbMyaUwv9dpqftU1g6BmqQ4127ISBhv7jdsTECcoUiEg0LRetXDZCJ2Tr6LI
+ HP9HjtXEhmu3FjuKLtRuhkXvr8CP0OSfNTbdl0AaE4dd3J8oONS+5hz++RrA6duNNLMxA5v
+ o4Eq+0Mv2zhS6+cH0hxk94NC+7agfJPIIzcxBomm2/uZT7qmW6UvZYNOtxXw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1771639290; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=2ZXs611y+D5vvFvY6PCjyvtnr8lSx3H1/9stYdMndig=;
- b=qPK3VIeX1YLbaONcTARmxLfJ0zJB27z9u3HE74yreQ/VxIdbKjQBKTK5BwDPizf5DuWKS
- J0fnrwDXiUX8pa8zsN3Aa6SazjaQw2QuoX9kTEjSzR8RE9S14sdPh9f00n2SVltLhhxktQe
- GrOylRm6QXpQms/N2kDsDs50bg0zPJh5EfRxrADZE6ciW/a8ETNjWh2xiOlEjZApxa7x7/7
- kwzuQv+zk1416n2F+nJHdItWPeIVp04qWPT9MQ0BfMdW+L5kcGMY61IfKgkvQDfBdzw5Kdv
- NvUdWwz8l+qbDs7X+7GpdNBCd85IT7q4/sbhQnHQt0lawY1Db/b7DbMf8PYA==
+ bh=sGrbTVD4hWmXFMy0ksrTgIQyTrjH2c3pELJht/hKJg4=;
+ b=BdG5E9fIbvvAqdbmBTCRAMKj6CgXcYggEftNjsOxbWT3MyUo7fU60kR6eJ4Vd34xJZ5+6
+ 1bN2TdVTZml5aq1JG6Qku07Va9fwXfhO9htJFmoqhjHgwbzwLF/1ByH4qsyE/snmrwklHys
+ RmSNOoGBjdW6F0ml1IPbpw9ZU7+8bBj6LYOt//GJvJJrwPdrsCiRMeZuXq3a5sb46Ky0jNl
+ lIFwgtPDKV/T3/cGcGeCBdNYuVAN8RMzQtgiGEjQxb7dw4/qFcAz0+076iUrhgLltQrWGH4
+ ALVchwjQS010q0gqJZGQrHUa6pDGV+oj/4MohvKYDXXhI2+oNVcGRM8VRpig==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,136 +45,136 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A8BF443460
-	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 02:01:13 +0000 (UTC)
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010030.outbound.protection.outlook.com [52.101.46.30])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0FB4110E868
-	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 02:11:08 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3A4B243460
+	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 02:01:15 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013042.outbound.protection.outlook.com
+ [40.107.201.42])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8AD4910E87C
+	for <nouveau@lists.freedesktop.org>; Sat, 21 Feb 2026 02:11:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sO28iqFJDn0QKFtT9guXVQjhOjp+mpOFNFxSCNCi+fWOuy9PFNjNEraiOLDYes6GBzBZZqaqws5AybVUi/oueH2r1ghPB3pWBPjAHcwNfxoJx3SI9PT7/VBSOjiZZ+cJRgi+WhnodQdVb//FjBt2xK/XMPoMEC2ULKjclz9Dg3tWCXVEgj9y1sWunYM5EU8oxrFRh41ujoOxayYlP5ir/xBW5G3ssdQj9Sr2IU//WjU0mXxu8S6921vfiWYEDK6aeheXWs2H29YeCrDXxmn3AiU5ZFmTLUyRHrMIzpIVj8PdePEl90r0GaT7m8b9Ivm36A91KxGZEx49ZDgorWaRPg==
+ b=WcWBgq5tnBjrWbjwo7LRec5kftHhE0qHQY1LcWUXSuN2xG0UDVb1ogy3EsCi8sHHPisxeSMtCvqIgZOCYaT1Ro7cAlZvEWBeKo9MEV3QIo37xtHYliIk69TIv8icp9DcRHe0z+7kPVuS8fwhtwbVI4Jj5f9BQ+aHe1At5Ss1gWihJSMmw/zcDbmeX5lJvjKOtBKDv8YwRr0xwMianb2jI8LsuoBOU8o7n6vO/hJ0Bc85VtDOcEdIdewKhWo50XJFwtjm3bi/ZgISv/TeHQjfHL8SNxRqfJzYRCWGZyqhfyE/tP5WyvG55r99xP/P1/WDXyNlOX3MWax4lDfcW9PTaA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2ZXs611y+D5vvFvY6PCjyvtnr8lSx3H1/9stYdMndig=;
- b=vzAfnx3ifWG7v01XrunTBcDzJE66dJwq7VVLcb1TzoFgTuG0Si+IX7BoRVZY5vZeBwPRqm/KseW0jCGb0IPlFQGGJtiYQLFPytTRopfIW3x4cJt2bPxZgrDuLyBS1syLbCqcueUXZS6ipPF5S69aRPsaWi4pShokluQ/s9BLy9uA5h/l8V7VcWKBxg+gSI0Pz78NFN4nzw/1QKDWDD+B0b05c0WeRmy56cCA1hu0NV+LcsrI0t/TLFOjHQuRmGd/sIvkcmPYQEOew2QW26sAsjmWD9Ty+qxEPniBac/reZYoSQLAQDk2x0B9DwFHJ7W79w9FvM3TnlSA1PuP0jKWWQ==
+ bh=sGrbTVD4hWmXFMy0ksrTgIQyTrjH2c3pELJht/hKJg4=;
+ b=psq9/ydIa4WgMd0O/k8HCAYUioWwH8LUzerjHMPopuw/C6RtM3VYXKkmZrF3JA9dFptFM24B+ihDx+DkrB+Pe5Rj9ikExfL8fM0lnEdJTde2Fy6pj1QOgcIN6Ak5H9uSyeIenONbGdXThpR6QC44dc3QDZByuvmFCMJcNw8mJnUPs+c6UxU3+MNaoqoNyCiJ0lrpz1/+ratzelmlx6AIaqOA9Sdm3+Mf7zdnxuZpY+K6ifsPXnQTpXQXI5Gfk4uVxoHzLXYyJVmdwkjLEUOmoSpYXQupaKXFo8vUsk9ugYGEK+utScwx3peGsFE//yXFRp5a30Hv+KK6hBkWJc52CQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2ZXs611y+D5vvFvY6PCjyvtnr8lSx3H1/9stYdMndig=;
- b=oxS79qX/iSbsLgKo8JRY+b1+KWBdbbKOphPCqvWll9v5Es+KAlWpB/hKbbO9rknt5zhMACbK40sVgtYpHmTHpydtmKnKCnJxh/T97z63DVEs66bxCFOHajrc3FjJW/3F1CN9WZmnHWXzlEnVAVpUXG+eyT28ng/HO6NEgxnuT4Xi8khKUYcADO2FXvLdfBVRu3Tu48nc8I+kYrR0BAIpsz3uaSTTAoOmkegdLHPsYcVuGXjpOI4xFQLhbrIrPJlbyUnUKNjxf2Pbl0XqrumiOAF6cILt9DkLHEk7Yp79f1OmaSNWMXLe0C+FFZmYnItGkGO54wOUMpAE+34M37Sw+w==
+ bh=sGrbTVD4hWmXFMy0ksrTgIQyTrjH2c3pELJht/hKJg4=;
+ b=YkDweHyieTtm38e9kgC1yavL94Ia+jISKGO+V+tsoyaFhp5W/F6TBHdCIzYk1vvybF/WklNbNnyv+sAZcOj4p328cWXvGbpCYcsJhcwdi6teHXBw+KHz6PGP8SvhUFYahxCcCw64v0BXf7VxsJMuVqYY1jm+gJ8a28Sl1BpvWBiXQ55ll1kwXiI4E+mYsSeCy6HqbyTA+Zj6E2fTBWnEjQElsAXiyr70vxT97bdpl31kKHivFfl4bTZuGMW+t+NxEJs/cid2QFfJXkRCImv7atIscTewjWmFjaR88J55WD10sCyF6X9Iybmzzgis7gBwhrO9XSeZZNt3J9PoJTF2JQ==
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- SA1PR12MB6996.namprd12.prod.outlook.com (2603:10b6:806:24f::18) with
+ PH7PR12MB7378.namprd12.prod.outlook.com (2603:10b6:510:20d::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Sat, 21 Feb
- 2026 02:11:03 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Sat, 21 Feb
+ 2026 02:11:05 +0000
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9632.017; Sat, 21 Feb 2026
- 02:11:03 +0000
+ 02:11:05 +0000
 From: John Hubbard <jhubbard@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>,
 	Alexandre Courbot <acourbot@nvidia.com>
-Subject: [PATCH v5 34/38] gpu: nova-core: Hopper/Blackwell: add GSP lockdown
- release polling
-Date: Fri, 20 Feb 2026 18:09:48 -0800
-Message-ID: <20260221020952.412352-35-jhubbard@nvidia.com>
+Subject: [PATCH v5 37/38] rust: sizes: add u64 variants of SZ_* constants
+Date: Fri, 20 Feb 2026 18:09:51 -0800
+Message-ID: <20260221020952.412352-38-jhubbard@nvidia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260221020952.412352-1-jhubbard@nvidia.com>
 References: <20260221020952.412352-1-jhubbard@nvidia.com>
 X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ2PR07CA0018.namprd07.prod.outlook.com
- (2603:10b6:a03:505::22) To DM3PR12MB9416.namprd12.prod.outlook.com
+X-ClientProxiedBy: BY5PR04CA0014.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::24) To DM3PR12MB9416.namprd12.prod.outlook.com
  (2603:10b6:0:4b::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|SA1PR12MB6996:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45d8787c-2e16-41cb-2aa8-08de70ee669c
+X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|PH7PR12MB7378:EE_
+X-MS-Office365-Filtering-Correlation-Id: 36fa5eaf-c38b-4e66-5f31-08de70ee68dc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?VPCXZNGWXd4dlVyBtZ/f/AkuEg+g1LwCotQ6NfqUs7j2qF80EVwwXuaj0yW/?=
- =?us-ascii?Q?PQ8Uvm4j6oVOl+bo+Cnvh4ZXlso0wYvoTX2nFo1PkK/N0qWq0orkPeQ6JHVI?=
- =?us-ascii?Q?m6hSfxiJoj5E2qZaKLbzLSrDGjkehDdreknvmwlEKd64Y6ti/RF80RVbKUJW?=
- =?us-ascii?Q?3377g7IKs53jEf+SOT/rmvrGsnrylCd+A3lvn9R/LUue8qEJJihN82+LY6dx?=
- =?us-ascii?Q?AXFGRTkUVLhOKZncxPviCtKL0tH22/o3ozvvkIL7Tu/QG6DYC2yI0GXDn0Cr?=
- =?us-ascii?Q?r36YEqGSou16OYB2heHsCC11xn8v5tGOR7oCTc0Rqh+JMnTmWjmElMRWuYZB?=
- =?us-ascii?Q?8w4GiVLmBYIp5DoxrYIXMzYFxOJRmY5VnAmir0RnMXFSBB8fae3mVJoHeIQt?=
- =?us-ascii?Q?0RVaHeZVRArjlt7SjYFiJEb0uSgpcGRMUDkV9ZmTTxeS3ZO3Ibiu5aOnFuvO?=
- =?us-ascii?Q?Rxw7WKvIWjM7oQLP/Ct8YCCFT0Iq5HUtF4vh+1CFD+bSEc52ac0MP/qM7tXz?=
- =?us-ascii?Q?MmE+E7djmFJz3bECFcP+PzYTo9+V8Lz0vFSTZxisIPWS104K5g2dR2rkcx6J?=
- =?us-ascii?Q?RrQGobwscntsk/pACIo6dHj53lAUGAb2WqKeuWfOoCP7ez+/XUzMMsLtIdc0?=
- =?us-ascii?Q?SVWxyDzNeBAxpc3Q5A5TFWdiLXhKY3OWiiK0ysxJIl929GWM/EIkFYUjMnRK?=
- =?us-ascii?Q?O9Ow1lQmEXlSvFXRKUNGAlrmMo/OF4MpdKMzdjCXKj9eAw/iuK2Gamz3e/E5?=
- =?us-ascii?Q?xO3ZRMEeSJseYdZUKB5GCfYWEgnmB+Vp6NQEOtYojSC6AhcWkxG0bNiInVRY?=
- =?us-ascii?Q?AI7Aa+IOlLTVJY9wRAZ5vttml4XsatZGgIn+vg9ETorOVCvcpoR5maS3It5w?=
- =?us-ascii?Q?W8SU/00rHvTe5mub3pzqGpAiNra/dTuLpW02ZuLZJgQ+in06EuKkqVs1yqaB?=
- =?us-ascii?Q?ccBopooXaHJKtF+GOeN9ejCWjcRW9kekts550x7DMr08Eifr8BHYE5g6hRJJ?=
- =?us-ascii?Q?6kV4X+nrq5MFYE27AWsAPjTahnswdtSG2L4VAcUpVlNmhTyrJ95DwdB5VhVO?=
- =?us-ascii?Q?hfoYjPdbrQskb4aJ3LJkTU00/xIPFaVrBxpm+Ij3F0vYwsbpvSONbwdLbYIb?=
- =?us-ascii?Q?aWpCoxOsbrwxfhH5rLcfSZQ0e2E9vxABjTTg2SBblABf5xGKbKM4CYm6RI1p?=
- =?us-ascii?Q?67fYVbZEMsSohsYDgk9lQ8xOzpZFexMBPPCUYNKPdnd6LdMmLwmnrRcTTfdl?=
- =?us-ascii?Q?KosKQiTxw37HaOi84VFvQ2hEBy4YlCx0wPR8kfEHF/WUT6EnBxRHI0wiBGt7?=
- =?us-ascii?Q?/5r9rozF/c1jEJ3C335YclaWt1fX6nQtHLbI0aYmDPonIS3It9iR6LJ3Tyw7?=
- =?us-ascii?Q?65YbzT0wHkHuGb0GnJKdIgqixObVMOZZRtgPzTGt5zppz++6ZRddHyWKRztn?=
- =?us-ascii?Q?tueh/TFAwvI0erY1zxU+AzU5kPOGafh2m1aP/EYxNfSz48YB/lkJVhOn+n6G?=
- =?us-ascii?Q?60B8lg6Oqz0OmFQPA+MK8nNUvp5CgbTo8s8JLfPb0aCaWbHU3f2WbO0mE+mx?=
- =?us-ascii?Q?BbYofwa7qKV8KWfuhwE=3D?=
+	=?us-ascii?Q?xN8Nku8posi+WMElD6R+WvAr9/GtoFvqR3pXu/pmrOMRBCKUnJJMuf0NjoCO?=
+ =?us-ascii?Q?2wxW3lDntjL8h+ksACV1S49sVn8Qky/gYJIcrcPCIP7gJNwhf4wq0ZCsNOh7?=
+ =?us-ascii?Q?61dKiJ6odurpWJ2ISBEKTEp7B0ovJ9mHajnKtUeGsbk818yIbEqJhy2TH0Z1?=
+ =?us-ascii?Q?pUwXjQerlR/LB7iR8Gtv79rBTNfTVEgdXJ3OHEJdP2aT2ODLaGmIokkVd35k?=
+ =?us-ascii?Q?jXitPjrosCjjPO+Vn/OxsQMryzdsrhJLWxhGfMZUkWYOZbO/at3gdw2FBO7j?=
+ =?us-ascii?Q?AYner8b36T3j9HAoe0ncf0JaNAAvCzvAMzmpch/RONgW1KvK5uy9K/5W4VtC?=
+ =?us-ascii?Q?NZoaGxazz/Q5WwHn87oiZJsimJf2DctTmsizHFno7lAFteuEXlBo6wRpED5E?=
+ =?us-ascii?Q?hhNQ3l4iAKlxyUdKvqt+Fd8nHVNwC89iziAhlTnxHbGGj55Tdo+LCvC9MWHR?=
+ =?us-ascii?Q?nm3lTk89+Xas5G+li0yVErTGf1mXqZIoxf4p+U2OlUeLoENxYsz0E0KXIJok?=
+ =?us-ascii?Q?V57PFcpEIXDaHnyNKl6dTOUSXe4hrnZ6GuU7FxSZ67kDmFn7OlaeqjpKtIai?=
+ =?us-ascii?Q?e7VWbHEDMueKvPXU1HbOUMp77G3ABdlHmoUkudFSgFhDBjB0nw740Ec9aHLB?=
+ =?us-ascii?Q?cKdHYcqnPN4HvMWfT/3D5TnaxC3dbqxRtvFkqcanqyZWpN2bVJepblC4Mc3E?=
+ =?us-ascii?Q?pk7mOB8378LBcGIC2Ia+62yKviePZK/xn8aE5oWkcn4Hvy8//Msi2+mQx/MB?=
+ =?us-ascii?Q?9yzhGRyCJtrlq1jZvq3DIibep1jz8WeViRf7OCtk6ZemLCftHmHz5nP0wbbo?=
+ =?us-ascii?Q?DAUnnFiba1AK0myoUSS2XhJYN4rTlkKD/Qw9bY4+4d5TKh8RiAV9KMrKlcr6?=
+ =?us-ascii?Q?FHbnJk1dkM6NnpvnjJl2elLzT/EFc+RxBPRaYyrd1cbk6657vyTdj1tymIjy?=
+ =?us-ascii?Q?YYsAhfg768DzH0pj3LdqN04Zl6NWjwl1KCAvBzYMJ3T1Gw5A/IMWJpG3ycHk?=
+ =?us-ascii?Q?XGZOGH5Zi0VjN3sQPWgS3+XeINI8ibM6HiyzIltZp3C8dZHScB9GW3AA19Ol?=
+ =?us-ascii?Q?lKHM78TPHJbOdULkNZMAvZJTor7e4estFyZLyrm8iVe+e92vXjcdDutXUuYD?=
+ =?us-ascii?Q?vUW1s8+0txRSenaeyAbQafQNTYvnfxuaNR99+OOMnlGGf3qqNm3WqZDnP4rd?=
+ =?us-ascii?Q?AxPra0Sv5RinXRg3OVzuAxdqacXIJMhDdSAdKlEuNAc4sQtytOrJAhsYFF6f?=
+ =?us-ascii?Q?FysXseKyxkyas74EIsCk2GpntvMJKGeXyzfVnXHDOwlcRaSrT3ORndYxf8rM?=
+ =?us-ascii?Q?mDIlJ7hjEY2gynJ7iXLMDgiOi8GaY0KYeyVsZ4ynm1KSfpiyIM27lPbhijQ2?=
+ =?us-ascii?Q?2lGLEFFjtjT3gi9L2+l6mG1AQmjWvVXt0e5a9qzp0bqeLOFWLSoJdRsBWAAs?=
+ =?us-ascii?Q?0NoU3EK6BfrSF2wHXsoKUxPkUsRaHQrwagjG1k4ETgy/Yt3XTO+qi0OaKCQ+?=
+ =?us-ascii?Q?CVzGsb7v4E8x2Ka1mbLwrxH8mqONWDLd0CUqL8cXSfdqy9/yT+qSOwcsQhDP?=
+ =?us-ascii?Q?6wOmUfdCO45reUqUJvw=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?YercFifs9v2zuxP3AYph21E7Hpojbmu+T8baOTScJwCcQvWoeqq6pCONLnFo?=
- =?us-ascii?Q?exHBvrFo6CYDbiON4kDcMwc2sycVuTTNzz0oC8QS7/Fw18uiy1iSTUWXIf5I?=
- =?us-ascii?Q?QlNPccqewOM9hEa5wocWrpeuGBGC7vBJTrwnzPDH02A2g0hGDzp6XKbclkUi?=
- =?us-ascii?Q?4vyoYLmUrADZEhyGypQ4tAX7ch0VUhdtEmsOLpBOlcRaXZMPxyfivbWye4WA?=
- =?us-ascii?Q?/9oqJ9UdfqxqIqq/E7dRTpDLMqr6R16ThiWQymtLDQu5od9IEqI1hYX6l2E+?=
- =?us-ascii?Q?RHQajSyPEiJ0yvi3h0P/EGEyDTDU83sswmCnpGeJy14XTtfySgUzaqGRe2cB?=
- =?us-ascii?Q?UoD+TjPlylgRvzRFWrQg370st2piiFUPU4x3/LbZzbbPFHiWiMAZ2A+Qv3dU?=
- =?us-ascii?Q?G5M55uSLV/FdntVQme8DyaBNw2umc+dvdfgant4dd2Cl+JO0vqaQQDSsZRjf?=
- =?us-ascii?Q?d6bnE2MAyA36bsdHlTSo83Nd/SoS3yGYvuhrlVKmNsjmTC/CUG8ku10qe7tc?=
- =?us-ascii?Q?bFVYbXh3ZviVuQ97duAgpLqFdAcrHxSZrgMqyAD7aK/ZG1w2xq3hqWvDOTZw?=
- =?us-ascii?Q?kkWLq7kUCB1CRNsMWNW4Mn7XEA616+g5TlqghyocnAI5geD1DttfpVwSUbP/?=
- =?us-ascii?Q?RE1alq9dvDSHl5RhwfNEkPgrflFglA1WkYq2+T/pkEwqBVJs9ZUbHK00kcg4?=
- =?us-ascii?Q?09WV2J3WbFiAqrr9g+gFTtEDhCHUQ3F9Ipdbx0mYuLK/DcAix5ykBk5r4BMh?=
- =?us-ascii?Q?MJ20Yu+NTYhZ2wv83vm9PwCNeZXdVZWyYs6nrM2sXofuhTlekCTrxfWWDHYJ?=
- =?us-ascii?Q?E1XAxkqMzGrCRExPCHaVfwQ2y3uN+6L2OaO8tUUuQ5WmhqGuHQfBqYGVsAwC?=
- =?us-ascii?Q?LrCaSWy7Ob0jk97t5ZnUyB+heQZO/3HsuLuXRGr27gIYJTVi0+QTnn+S5MAN?=
- =?us-ascii?Q?XbjKVYD1eqKeBynuDBdiiky6AMKVhou3OrmdNSe94aSbzzeNzvADxwa1oY9j?=
- =?us-ascii?Q?Sd9USgGgDMRkQUru3JlkB4EUieQRrc4AuPZVxrH5A08TH0F7e1+U71miYD6y?=
- =?us-ascii?Q?kq8kO4Ohj87ZUGEYxwoLt2LHYs3daza2GSEUEBEECRxJY+eROQ99ly+t3KfA?=
- =?us-ascii?Q?XW/JYG1SA9BljaE2UOSHogipN87xXtcArM9vqRVLT34aBj2QzpbKbFYgQX0T?=
- =?us-ascii?Q?wiiFAWbj4v706hcx5dhOc+12x+FdEK7WbZ9T0HGe0NNQUZJph0LE2mdK67aj?=
- =?us-ascii?Q?A7zzuja45yN1nU3kYaAyNcIjARdKyWR+yAU6YHwvm5hKrDOD/vjhvvtQvQNK?=
- =?us-ascii?Q?gozP98H4ZrPOJxLlXCJpVcNEEmvLK/T4/8iKzd9Z9PhVZKZ4VOrxWn5KQjeK?=
- =?us-ascii?Q?wlZscFog5Akh/wecKhcJKkgPDOzRD4v4jLLZ2n/mjnKz6p+bFJKJKs6+E1Sh?=
- =?us-ascii?Q?+otuDbvx7OK2E2K/crzoIoSt86Ue8d4L7B3AifNoPVM19d3MGfnPe3itoRel?=
- =?us-ascii?Q?iuON9pFAI5Yd/FVsGuQebPbwh2tKOJmgABnLBoNlfQiFx8TmLNbTXYj0MMBR?=
- =?us-ascii?Q?XFdAtkxjN+jzWiApUExeM16xcAusZdlx7qai091P1AYt24n8Bl+u9kpNAs6q?=
- =?us-ascii?Q?mdwR00mRQfk2fJ0QXzC7+ByoSjlF74KCrd+sgDpzRIbRhuMcrifffDrmSCgB?=
- =?us-ascii?Q?H8BUSZDpStKONXgOtK+nyYGN/VzzNe7JK3ZgeUEzLwHcoobgec5FI7ZmKYAA?=
- =?us-ascii?Q?J/EnyILLFQ=3D=3D?=
+	=?us-ascii?Q?a74Qf0/uye1XhGxSWGwAwfRxVKKzR7eZrCJzXIinwIvtrIzssgj9kdUEcxBG?=
+ =?us-ascii?Q?b7gq+3uanputzk1goAJnPMm/63YAlNfWU8R149dgzp2RWFDyOnuNcKl9ZVMd?=
+ =?us-ascii?Q?MXFkViZbSTR+ZGrw4DjhklcemNwHQKHfkRTCLj5V8spHCLgvwvxTr8a0xt+V?=
+ =?us-ascii?Q?m1VltLyYDBtxb+px59xwChaBGFlm75jHmEhUDa3t4T5xz5U5AJorbfnVqjCU?=
+ =?us-ascii?Q?GXBz0lq9egTpQMa7bWkd3dJPPysv6w4O/NJTPMx9oSz2eoFMg0etwM8dCiZj?=
+ =?us-ascii?Q?uIUtp4MafKaHyI8BTflWZkkZ239w0YxC5fk8HE6QAoBzWpBIwrW7kjsCrSfY?=
+ =?us-ascii?Q?yQpy4GaP6UjtTE9BAcMlZ3nsnqNX4t0InLGC44qNQ9v9uw3FF7LzCb6N84Tp?=
+ =?us-ascii?Q?bCKpulb6No+MU1tEkPln9KY/7wqjLdHcuJM7naISJW/Dou3es04R8TVw//n6?=
+ =?us-ascii?Q?3a+QJm/s7/IN3AYtjlDffHdQUdoSCnf7mMUPZ28FuFLDKmo8rf/0m79td1rr?=
+ =?us-ascii?Q?mHxGzBqsGDk2bb9qX+qSxrg+T86dhzWH688A0ckEQ8/9qzYPPW3Y8DVzDvgV?=
+ =?us-ascii?Q?UWCqmfO0+wx6/xJWjWikLW4gb04who4jYqUcQ01tSIs7ijwpOed6BrHdgXV/?=
+ =?us-ascii?Q?1WeT8ZalKTon7infyM/LfHUTo+7WlPLZjyXbSZvR+jPdCAkA5+DRDWG37z77?=
+ =?us-ascii?Q?WvP6fdCu5SFsD16oxph7FZnfk+H/PsqBhtDeZMrNa7AoI/XZjgtY/GCj9+WK?=
+ =?us-ascii?Q?PmxJXMA7ZYvn7eK2mhLcgQ/mSpHUMW2bumW4Qax07I7tC3/9iLddzMPuFsei?=
+ =?us-ascii?Q?f3FSii8IoyLxok11JZbE3bHMrmQ/bfj/MMyxdqoy8xNJi6ModLf/BJt4Tyh+?=
+ =?us-ascii?Q?hDP6aPM0XzqGLmc1Of1MgYuClz5rS6wc0K8fnCLdHJ97sQweRtg4d3n4NyuM?=
+ =?us-ascii?Q?p2uycmW36kex8aqC6wMx3z7zyQQlA+xjtlurOy+t3pDrXr/QfJKAcSlotIBL?=
+ =?us-ascii?Q?dZx5vpj4Gvk4Xdgnre3RsXbDcQRtPTU2xgcccmlazVTAbQyDs3689LRwBGgh?=
+ =?us-ascii?Q?16M3jswwKIIT8+mstOjftloj8GSA9sXdLhTbT1QshZjlZcWyj2QbYZ2oD9mQ?=
+ =?us-ascii?Q?X+cp0FZhfQw8HLRghnM1wIv+PO04zvVr/aD54YwqH3/2PbsZHk77E7++J5z8?=
+ =?us-ascii?Q?m4liq00D/yeDXLqG5CA/7jJu1mrkaL2VY+AOb1k1MzMl9gdSiW/5M0JyD39Z?=
+ =?us-ascii?Q?AM27Iv8DLOyV3Dmgyrzv8F8knrRodOlI8dMcAFU7VaMjpm+gzTkn6ozuW7In?=
+ =?us-ascii?Q?pRKgnV3lCjD8pv7TbFVZoqHz831OMdY+e21BfqnkNjS+4kWToR5u6DO3J2+j?=
+ =?us-ascii?Q?pkxvTzsDvop4dstdDb4JvVKRgWxGj8j3x2CVsJCjJ9r8+YPSUj/OyQ2p3k+6?=
+ =?us-ascii?Q?uVdc/XIcwU6zhpAcEUh9yOXnaYSVnMqKlOuyqoZylAdILK5qwRAVTHrsDQET?=
+ =?us-ascii?Q?4KOZnAFb8RgIOpfpMQmLpiCQly0mYz10jS0oKwK7sIeiVg1POH69nL0kC13v?=
+ =?us-ascii?Q?MeLFN4E0Ab7g/uBrlwMGzJMYTdP9215kx1jUhNlwoxHDc/iiyyBBooiZwtQX?=
+ =?us-ascii?Q?4CkU1SuC4FhvcTDR2uAXFJxTC3cj7ErG5cBktrGFTIdKiHNkHmCU+IplPOQK?=
+ =?us-ascii?Q?HzxiCVaZWqVwos4p/ZymbLjDZL1EwvwZ0T7JNV7rqx5/Rkz8ChSzWl5qL7oJ?=
+ =?us-ascii?Q?Y8uXrL+Cbw=3D=3D?=
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 45d8787c-2e16-41cb-2aa8-08de70ee669c
+ 36fa5eaf-c38b-4e66-5f31-08de70ee68dc
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2026 02:10:36.0495
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Feb 2026 02:10:39.8458
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- oAWW8jQtTNeeTP8YQuY4HohXlWtym6Dd8rwYCK+vuN1YrHjkC55k5ewYBuI8BIS8B3j8rQhPs1pD5QjjgfjtTA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB6996
-Message-ID-Hash: T2ZOF5EXSUCJPLWY5U2IYKQQOMZSZKN5
-X-Message-ID-Hash: T2ZOF5EXSUCJPLWY5U2IYKQQOMZSZKN5
+ eMSw2EqiH9JFDsiiQEPbfqWqF9JHHID+6/GorZB4cr5ygzcE4f05ZKlbWlP05iPPmQ5NSjRqNF9AODAaQXRLEw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7378
+Message-ID-Hash: UB7PC76INILZYBUREQ3K4LSJENH3JKZX
+X-Message-ID-Hash: UB7PC76INILZYBUREQ3K4LSJENH3JKZX
 X-MailFrom: jhubbard@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -195,9 +195,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T2ZOF5EXSUCJPLWY5U2IYKQQOMZSZKN5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UB7PC76INILZYBUREQ3K4LSJENH3JKZX/>
 Archived-At: 
- <https://lore.freedesktop.org/20260221020952.412352-35-jhubbard@nvidia.com/>
+ <https://lore.freedesktop.org/20260221020952.412352-38-jhubbard@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -207,136 +207,80 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Hopper and Blackwell, FSP boots GSP with hardware lockdown enabled.
-After FSP Chain of Trust completes, the driver must poll for lockdown
-release before proceeding with GSP initialization. Add the register
-bit and helper functions needed for this polling.
+Drivers that operate on 64-bit address spaces (GPU framebuffer layouts,
+DMA regions, etc.) frequently need these size constants as a u64 type.
+Today this requires repeated usize-to-u64 conversion calls like
+usize_as_u64(SZ_1M) or u64::from_safe_cast(SZ_1M), which adds
+boilerplate without any safety benefit.
 
-Cc: Gary Guo <gary@garyguo.net>
-Cc: Timur Tabi <ttabi@nvidia.com>
+Add u64-typed constants (SZ_1K_U64 through SZ_2G_U64) alongside the
+existing usize constants. Every value fits in u64 (actually, within a
+u32 for that matter), so the as-cast is always lossless.
+
 Signed-off-by: John Hubbard <jhubbard@nvidia.com>
 ---
- drivers/gpu/nova-core/gsp/boot.rs | 80 ++++++++++++++++++++++++++++++-
- drivers/gpu/nova-core/regs.rs     |  1 +
- 2 files changed, 80 insertions(+), 1 deletion(-)
+ rust/kernel/sizes.rs | 51 ++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 51 insertions(+)
 
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index 7b177756d16d..5f3207bf7797 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -15,7 +15,8 @@
-     falcon::{
-         gsp::Gsp,
-         sec2::Sec2,
--        Falcon, //
-+        Falcon,
-+        FalconEngine, //
-     },
-     fb::FbLayout,
-     firmware::{
-@@ -43,6 +44,54 @@
-     vbios::Vbios,
- };
- 
-+/// GSP lockdown pattern written by firmware to mbox0 while RISC-V branch privilege
-+/// lockdown is active. The low byte varies, the upper 24 bits are fixed.
-+const GSP_LOCKDOWN_PATTERN: u32 = 0xbadf4100;
-+const GSP_LOCKDOWN_MASK: u32 = 0xffffff00;
+diff --git a/rust/kernel/sizes.rs b/rust/kernel/sizes.rs
+index 661e680d9330..a11c134be64e 100644
+--- a/rust/kernel/sizes.rs
++++ b/rust/kernel/sizes.rs
+@@ -48,3 +48,54 @@
+ pub const SZ_1G: usize = bindings::SZ_1G as usize;
+ /// 0x80000000
+ pub const SZ_2G: usize = bindings::SZ_2G as usize;
 +
-+/// GSP falcon mailbox state, used to track lockdown release status.
-+struct GspMbox {
-+    mbox0: u32,
-+    mbox1: u32,
-+}
++// `u64` variants of the size constants. These are the same values as the
++// `usize` constants above, but typed as `u64` to avoid repeated conversion
++// boilerplate in code that operates on 64-bit address spaces.
++//
++// CAST: every SZ_* value below fits in u64, so `as u64` is always lossless.
 +
-+impl GspMbox {
-+    /// Read both mailboxes from the GSP falcon.
-+    fn read(gsp_falcon: &Falcon<Gsp>, bar: &Bar0) -> Self {
-+        Self {
-+            mbox0: gsp_falcon.read_mailbox0(bar),
-+            mbox1: gsp_falcon.read_mailbox1(bar),
-+        }
-+    }
-+
-+    /// Returns true if the lockdown pattern is present in mbox0.
-+    fn is_locked_down(&self) -> bool {
-+        self.mbox0 != 0 && (self.mbox0 & GSP_LOCKDOWN_MASK) == GSP_LOCKDOWN_PATTERN
-+    }
-+
-+    /// Combines mailbox0 and mailbox1 into a 64-bit address.
-+    fn combined_addr(&self) -> u64 {
-+        (u64::from(self.mbox1) << 32) | u64::from(self.mbox0)
-+    }
-+
-+    /// Returns true if GSP lockdown has been released.
-+    ///
-+    /// Checks the lockdown pattern, validates the boot params address,
-+    /// and verifies the HWCFG2 lockdown bit is clear.
-+    fn lockdown_released(&self, bar: &Bar0, fmc_boot_params_addr: u64) -> bool {
-+        if self.is_locked_down() {
-+            return false;
-+        }
-+
-+        if self.mbox0 != 0 && self.combined_addr() != fmc_boot_params_addr {
-+            return true;
-+        }
-+
-+        let hwcfg2 = regs::NV_PFALCON_FALCON_HWCFG2::read(bar, &crate::falcon::gsp::Gsp::ID);
-+        !hwcfg2.riscv_br_priv_lockdown()
-+    }
-+}
-+
- impl super::Gsp {
-     /// Helper function to load and run the FWSEC-FRTS firmware and confirm that it has properly
-     /// created the WPR2 region.
-@@ -139,6 +188,35 @@ fn run_booter(
-         booter.run(dev, bar, sec2_falcon, wpr_meta)
-     }
- 
-+    /// Wait for GSP lockdown to be released after FSP Chain of Trust.
-+    #[expect(dead_code)]
-+    fn wait_for_gsp_lockdown_release(
-+        dev: &device::Device<device::Bound>,
-+        bar: &Bar0,
-+        gsp_falcon: &Falcon<Gsp>,
-+        fmc_boot_params_addr: u64,
-+    ) -> Result {
-+        dev_dbg!(dev, "Waiting for GSP lockdown release\n");
-+
-+        let mbox = read_poll_timeout(
-+            || Ok(GspMbox::read(gsp_falcon, bar)),
-+            |mbox| mbox.lockdown_released(bar, fmc_boot_params_addr),
-+            Delta::from_millis(10),
-+            Delta::from_millis(4000),
-+        )
-+        .inspect_err(|_| {
-+            dev_err!(dev, "GSP lockdown release timeout\n");
-+        })?;
-+
-+        if mbox.mbox0 != 0 {
-+            dev_err!(dev, "GSP-FMC boot failed (mbox: {:#x})\n", mbox.mbox0);
-+            return Err(EIO);
-+        }
-+
-+        dev_dbg!(dev, "GSP lockdown released\n");
-+        Ok(())
-+    }
-+
-     /// Attempt to boot the GSP.
-     ///
-     /// This is a GPU-dependent and complex procedure that involves loading firmware files from
-diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
-index 91911f9b32ca..8e4922399569 100644
---- a/drivers/gpu/nova-core/regs.rs
-+++ b/drivers/gpu/nova-core/regs.rs
-@@ -321,6 +321,7 @@ pub(crate) fn vga_workspace_addr(self) -> Option<u64> {
- register!(NV_PFALCON_FALCON_HWCFG2 @ PFalconBase[0x000000f4] {
-     10:10   riscv as bool;
-     12:12   mem_scrubbing as bool, "Set to 0 after memory scrubbing is completed";
-+    13:13   riscv_br_priv_lockdown as bool, "RISC-V branch privilege lockdown bit";
-     31:31   reset_ready as bool, "Signal indicating that reset is completed (GA102+)";
- });
- 
++/// [`SZ_1K`] as a [`u64`].
++pub const SZ_1K_U64: u64 = SZ_1K as u64;
++/// [`SZ_2K`] as a [`u64`].
++pub const SZ_2K_U64: u64 = SZ_2K as u64;
++/// [`SZ_4K`] as a [`u64`].
++pub const SZ_4K_U64: u64 = SZ_4K as u64;
++/// [`SZ_8K`] as a [`u64`].
++pub const SZ_8K_U64: u64 = SZ_8K as u64;
++/// [`SZ_16K`] as a [`u64`].
++pub const SZ_16K_U64: u64 = SZ_16K as u64;
++/// [`SZ_32K`] as a [`u64`].
++pub const SZ_32K_U64: u64 = SZ_32K as u64;
++/// [`SZ_64K`] as a [`u64`].
++pub const SZ_64K_U64: u64 = SZ_64K as u64;
++/// [`SZ_128K`] as a [`u64`].
++pub const SZ_128K_U64: u64 = SZ_128K as u64;
++/// [`SZ_256K`] as a [`u64`].
++pub const SZ_256K_U64: u64 = SZ_256K as u64;
++/// [`SZ_512K`] as a [`u64`].
++pub const SZ_512K_U64: u64 = SZ_512K as u64;
++/// [`SZ_1M`] as a [`u64`].
++pub const SZ_1M_U64: u64 = SZ_1M as u64;
++/// [`SZ_2M`] as a [`u64`].
++pub const SZ_2M_U64: u64 = SZ_2M as u64;
++/// [`SZ_4M`] as a [`u64`].
++pub const SZ_4M_U64: u64 = SZ_4M as u64;
++/// [`SZ_8M`] as a [`u64`].
++pub const SZ_8M_U64: u64 = SZ_8M as u64;
++/// [`SZ_16M`] as a [`u64`].
++pub const SZ_16M_U64: u64 = SZ_16M as u64;
++/// [`SZ_32M`] as a [`u64`].
++pub const SZ_32M_U64: u64 = SZ_32M as u64;
++/// [`SZ_64M`] as a [`u64`].
++pub const SZ_64M_U64: u64 = SZ_64M as u64;
++/// [`SZ_128M`] as a [`u64`].
++pub const SZ_128M_U64: u64 = SZ_128M as u64;
++/// [`SZ_256M`] as a [`u64`].
++pub const SZ_256M_U64: u64 = SZ_256M as u64;
++/// [`SZ_512M`] as a [`u64`].
++pub const SZ_512M_U64: u64 = SZ_512M as u64;
++/// [`SZ_1G`] as a [`u64`].
++pub const SZ_1G_U64: u64 = SZ_1G as u64;
++/// [`SZ_2G`] as a [`u64`].
++pub const SZ_2G_U64: u64 = SZ_2G as u64;
 -- 
 2.53.0
 
