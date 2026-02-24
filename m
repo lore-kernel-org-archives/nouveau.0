@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1775EE9B26C
-	for <nouveau@archiver.kernel.org>; Tue, 24 Feb 2026 14:14:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6422BE9B269
+	for <nouveau@archiver.kernel.org>; Tue, 24 Feb 2026 14:17:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E9CEB10E590;
-	Tue, 24 Feb 2026 14:14:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 33E2310E596;
+	Tue, 24 Feb 2026 14:17:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P2fknBqO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NPIVlNzV";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8330343714;
-	Tue, 24 Feb 2026 14:04:50 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C73A943714;
+	Tue, 24 Feb 2026 14:07:39 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771941890;
- b=ihFiZsbtr0NVuuN4j7EUKu1XeDLQWwdD+u7TBr1clALSPXJC9tG9eQzoe1oNJziM16YbL
- v9Kod3buKk9kmWhpO/KRMHWAY6rUM7ArvbMlEJqToyfRqalQSa0SHGuw9fu1p9T/RBiu6mO
- 3kOs9gr3HJJel23j87+v/kfrBrec+pMj3eMUUHVL0FFm9drEbACOLmMROK91tb1uld1YBQw
- jd2+zrd1eVb5SzNhQwJ2qEzNx8nE6tm7YSJM1DG+ya8j/OhL6n9xOi42adUo0zIe5HwODMS
- 2ZtYf/HBoU/FBkFfqCKQupi1uG1/l4yzihQA6Za3EQ4lRrvXobwG91Y6N7jA==
+ s=20240201; t=1771942059;
+ b=ixYo77ZDzCoUKr4GLTZYFDAPn5x2L41iCZwPLUJgrBX2Jrn9QSBfHkcfJOnFMWLfOLj/+
+ /tmwQGAEUrtUwEUbvMWyFitRob+DGhsaH8vHkQOcD9++vA5tnFZsXv7ma6qhFle5zyrZtOH
+ Kvz5ycrG4cZEddomUf10Qk5ssf3ZN+pdYqUDW5F7WYL9THO3n+1SfjnoujGXpptpxnGsk+6
+ /f8Sx+092DMjxk78zpCHvtWHHRp33LK3iNF1Mt/dpk6fBt3bbG+CDl6g68vYc9yCkass83g
+ EqiVzU/HSfv+zE9WyNV3vZBOaV+h8TFeQdw5/k494l0cY0HMBqq3HJNrvBiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771941890; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771942059; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yovrk/7XjXzhLlLQqGcX2vs2pZTkvm3Q4cB71tyuOFg=;
- b=KLmo/o+VxqRRTmtKnXlrHk0VDr+Jw/0pyw7Iz3nhOmdi8CKea2oQPLCWWnOBY/56CdAeg
- l+//Hi3rcUdrzH6h++BUSY2kKD9416NfKsnRXqDRnkWKWgH1xUlZSibkEp6J783QkJuepiW
- 9uXeqPUg4StpcgFDJnp4sTFA3Tr4zzHQpf3LHAd3GsJu3bCuc3dP54+9hfqbQfKmCV2PV9Q
- Up4+JUa4tgotZTXJ94lX5FtQUosNf0hFh0avfX6NA7N3XLQeYwqWH9Z1Njo/aPNfESMuhI4
- QDGEHsdX7W29VHHhmn/1pKPfFP/N0GTcJGtIAGFKWbYh7+NpSQRiTPKbt4jQ==
+ bh=2JFIWlz0TWF2wkS4m5jro2pMErdFQbBut6BbyleZfnQ=;
+ b=xvnXN5jNot8YOsV9mA/CgH+eUvH3j6LtDO0UqAlsLqTxO8KNrwGy/jMgYnT9uuY2+VHzL
+ TBT3D44k01SM6REPG3YGhnLTICAq4+1JWk+f4c79KzZomo6KbKPHD6LtmB53acmzN2SQhkO
+ pqmEQ3Lkh38W4DafOPcc0yDFUg9AMimDvFxPAGo0bzYdZAqi6e9DmYHeJxb0Yn25qjOgT1w
+ Wzud+23HgrXbb6Zyn7Dwzu2ApDjgOkAdjxc4RXK4JuQ5gKhI4YFgUpuz+3jRUqw9cHEOS3y
+ RZWFT0r1++8dlR7iZGc8+lQ8WC8jV3j7293tBN9mrtCzsbZmKMv8w8bjEPDg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,53 +46,66 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A057D40371
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 14:04:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8099240ACE
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 14:07:38 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C48BE10E2FC;
-	Tue, 24 Feb 2026 14:14:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AA5FA10E58C;
+	Tue, 24 Feb 2026 14:17:40 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id D765B6111B;
-	Tue, 24 Feb 2026 14:14:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E058C116D0;
-	Tue, 24 Feb 2026 14:14:46 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 037E36132D;
+	Tue, 24 Feb 2026 14:17:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B305DC116D0;
+	Tue, 24 Feb 2026 14:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1771942488;
-	bh=OGl6xJYdX0fbyEQDOlHxh9XvRFW+wl9rPzQLm5yZBU8=;
-	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
-	b=P2fknBqOPlYIESr77sdWPB7rEUzmtFhZcv5wHsesvHKfBq+1lxCA3vIkvPBMrYhWU
-	 KVpJUJ2dtggPgplVRItVJtzb/EgiIxNsS5s77gvAYpUk5Bgzk78q8IFSMR9s2joSdz
-	 NpSfajyCEl4GuHV+vbOeD7HT/UzmveacodvbVB3a5QvsRaVyGR+CpguZf+tWo0l7gO
-	 7tDi6GcK7ew0ssWvLckCKUs7duU9oDqseonazsrLx8mNNwagEoC/lVPBgNejjh17lC
-	 3vJcZfFtSdHfzoA8jGEcEbmHbit/VkLN+c/vCVuUaqF+wCRQQvbE/z8neuiSfPiceh
-	 Fez+Ju1RenciA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+	s=k20201202; t=1771942659;
+	bh=Ziv04o8VS9rUdSlEFBgCvXLaRDO3rJ1KOplJuFr+R3o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NPIVlNzVNNLKePtVD8OMqcBXS4ijT8gmOwyQMlsShZ60i4guSCKn00B9XsUgur9EU
+	 bKFD6I1oxgNJynT2CefMnhAVv7YGyow6GJCk4YhDzaEaQ2q9NCP29iJeNXrCHjj1xc
+	 y5g/NSRRwvL2Zpe+VVz/Yfjz3fM7BDxg9fwJ1YZMfETQIz2/bCCBNJ3vcpZPiuMAlM
+	 CEN+n/qtJxRqNWHanNZ/3Z77xDfSOr9ipGTlnpUiITN5aWWlBYR4fP89IG7knk8Vbh
+	 EmZMfyZkkOLeZRiitJF4fdjOJ1kW8IyPmJthvNcEhcFnCS/6GBlmlTWP+SNrM5QOoA
+	 iF8v9kwT5ajLA==
+Message-ID: <a354777f-6275-4b81-90b8-45268db22ffa@kernel.org>
+Date: Tue, 24 Feb 2026 15:17:32 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 7/8] gpu: nova-core: remove redundant `.as_ref()` for
+ `dev_*` print
+To: Gary Guo <gary@garyguo.net>
+References: <20260123175854.176735-1-gary@kernel.org>
+ <20260123175854.176735-7-gary@kernel.org>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20260123175854.176735-7-gary@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Feb 2026 15:14:44 +0100
-Message-Id: <DGN96RQWQO5L.1K2LBU331S2KZ@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v3 0/2] drm/nouveau: zcull support
-To: "Mel Henning" <mhenning@darkrefraction.com>
-References: <20260219-zcull3-v3-0-dbe6a716f104@darkrefraction.com>
-In-Reply-To: <20260219-zcull3-v3-0-dbe6a716f104@darkrefraction.com>
-Message-ID-Hash: RCAEDPDHXKBTADP73YIRVFERF3V4MJVR
-X-Message-ID-Hash: RCAEDPDHXKBTADP73YIRVFERF3V4MJVR
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: 7RFQW6Y2S67BPNIRQLSDVZZ7KETKO5TQ
+X-Message-ID-Hash: 7RFQW6Y2S67BPNIRQLSDVZZ7KETKO5TQ
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Mary Guillemard <mary@mary.zone>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-riscv@lists.infradead.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RCAEDPDHXKBTADP73YIRVFERF3V4MJVR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7RFQW6Y2S67BPNIRQLSDVZZ7KETKO5TQ/>
 Archived-At: 
- <https://lore.freedesktop.org/DGN96RQWQO5L.1K2LBU331S2KZ@kernel.org/>
+ <https://lore.freedesktop.org/a354777f-6275-4b81-90b8-45268db22ffa@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -102,9 +115,11 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Feb 19, 2026 at 9:05 PM CET, Mel Henning wrote:
-> Mel Henning (2):
->       drm/nouveau: Fetch zcull info from device
->       drm/nouveau: Add DRM_IOCTL_NOUVEAU_GET_ZCULL_INFO
+On 1/23/26 6:58 PM, Gary Guo wrote:
+> From: Gary Guo <gary@garyguo.net>
+> 
+> This is now handled by the macro itself.
+> 
+> Signed-off-by: Gary Guo <gary@garyguo.net>
 
-Applied to drm-misc-next, thanks!
+Applied to drm-rust-next, thanks!
