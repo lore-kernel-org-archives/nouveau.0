@@ -4,98 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2861FEFB7EB
-	for <nouveau@archiver.kernel.org>; Tue, 24 Feb 2026 03:18:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22DD4EFB810
+	for <nouveau@archiver.kernel.org>; Tue, 24 Feb 2026 07:28:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E30C310E496;
-	Tue, 24 Feb 2026 03:18:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C5B2410E4CB;
+	Tue, 24 Feb 2026 07:28:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="BiP9EZDD";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7DD634349B;
-	Tue, 24 Feb 2026 03:08:03 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771902483;
- b=0n7ZA2vpenjS3wMkm5KeNBcIRZc4bKmrj4HglaSsR0V2zYtZ3iFwSOuAjPuKun1TZzqp1
- Kpw5lL8Y4cEAEyyLM3hvLmqiCyqkqpI63oN/+BwqaIOjyvlnIz4lGmf+EF/TsoTN0EeE6ru
- 866mvnkBGfn9dsdxIwrwvmdo3vHxPwqTPtWaFR8ZzdRCt736GqvrmygUwtXbUl21ALdx+ai
- Df+DnwtWaL15/rkXe2Sk9YE1wSDnotEUgTc2xN77RdiaYvvg8YEYi3yBDeyH8IjlLz6KSO1
- Ofj5IvbdkLT7nqBMP1Y0pe/hb55H6Hik7uNNngZynRuDp8+u7ZOi1OYI/SOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771902483; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 0C49543717;
+	Tue, 24 Feb 2026 07:18:43 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1771917522;
+ b=RowxuTOWayOwT3fLAI/QTyocU+3V85Lsjz8VS3szSs93zCA090fUQ7tO5hZwifGaBzeDu
+ 0OQdE3tXe5jcXrjf6kcKQeTwb58MAr9zmQAermN1LLA6Z89HKUEhLZ7YSUna3JFq54insik
+ +tcB5gzkYycWytS6uEpzMvPWPrnnhDBBzuW915Ddu/GW34H2/wLsD43bXqrqoW4CMxSzcDD
+ abY13Jvmo5bqCTVsfWY6iYFVa5NrQxqxi/+LsWz4umOVgMraiEnkQCxHVcfMj3aMbGUFP5Q
+ Dnh3vpm9obGyCYbExogAHpfJrMgSQk54qrsKUG4d0iT4BfoVUx62DJmlRyoQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1771917522; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=4s7+/yQhIxdpg/l5tIZ2OjoCsy5NuDi1c0KeIG7fBKI=;
- b=pvYoLdMNADcprGUxh5uLElXGttHeb+gKC7nqrSq4rxEn8HCLZarF/wJ6lHezPYQw+hzKD
- 6ieL281ugJeqKaNWsjB/Mo0dFLEXNofqnlZ7SSvYYaL7E1EOaAqhOLWqlGrKcuwjAy5GDRw
- KeTL0O1p+5WcmI2W/jGxqwLW2rrJ+MQ7VFy/X70pNlxxVFYMV7DoklxvLkUYvUDhiFW4YV5
- elE2sVZjLDsy7BJDZVbWj79xrfBNvQO+oN2J+psW4XmDZdMdA2JpNSQpuhYqevGH69WCG0F
- nTGHKZ2bwRkz5JYQcm7U5yoEG0uP2G86REaioEUJkrR3UoHcsSq3iaGAMt1A==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ bh=ADQ2LS0GC1QDa36+EuaOS8kzbv7z7Bp7Bm4Gt5ISiek=;
+ b=eFaQAaT2YkrwCl1nFQeV7ZSVayDT6cpgLp8HDyZM26w/3u45eCLI8Kp8vrsMUC3US1rIP
+ exbzac6N4xgNN+T8ebdzu+yIUdaNrrRGf30lXOdm/+1GoJkrLBRnwit+tLONiuMuHXuGskq
+ U/sZONEVZ7BsW9unbUs0Dw/K5jhtgeszAlhlSDyDw2EmfhJAjNcw2/l+5M7C6FYN2F3UkVk
+ gBfVWfvG1gTo0Spx61mWNEVGdTyHDN2U6Ufv4PzEuOxEXd48WvTuB/r8h46EavEuVtZsi5m
+ JPoxwwj2SlSg+IIrKSMwyzvw7Ke0gyBdGd94LCybbGALt9BcTnwgac4I486g==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=google.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=google.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=google.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4F45C40805
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 03:08:00 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4317810E494
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 03:18:01 +0000 (UTC)
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-526-V0-39w9VNhmGEN-YvCqi2g-1; Mon,
- 23 Feb 2026 22:17:57 -0500
-X-MC-Unique: V0-39w9VNhmGEN-YvCqi2g-1
-X-Mimecast-MFC-AGG-ID: V0-39w9VNhmGEN-YvCqi2g_1771903076
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id C5D491800464;
-	Tue, 24 Feb 2026 03:17:55 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.38])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 7CCFD30001BB;
-	Tue, 24 Feb 2026 03:17:52 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH] nouveau/dpcd: return EBUSY for aux xfer if the device is
- asleep
-Date: Tue, 24 Feb 2026 13:17:50 +1000
-Message-ID: <20260224031750.791621-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9087D40ACE
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 07:18:39 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 128A810E4C9
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 07:28:41 +0000 (UTC)
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-483a233819aso49892725e9.3
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 23 Feb 2026 23:28:41 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771918119; cv=none;
+        d=google.com; s=arc-20240605;
+        b=F55pctpVxmDTi8xC02BzUdewW6TZ5mFxe6k88kCkn8GizbiG/gWyN/kag1VKos8coO
+         Bv3U0a9NGFvehQmy3XZP7C5IolKaRNolcOLYQU7ER5bHY6gjKXoqoJbhdkJHi+Ps0tj6
+         PVOioq8ZQqt8hwR2tpn2X11C5UKjrt2VWylCDCpXSP8RQS0Yb9CqR3vEDcVy18aJKV+n
+         6cSEVK1Brrw22pxuNrGBPpEiAMemnUrpnujMI6ViFmAy0K+qHHrtOTHBBE3MffAkTitH
+         YVoVhUxpFR5f8tzFQLJGI3226m36lr6SmSlUXxfaHDvUm7Atokwx491XhcQhicXSqF/d
+         cFbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=ADQ2LS0GC1QDa36+EuaOS8kzbv7z7Bp7Bm4Gt5ISiek=;
+        fh=kvX8nXUKsxN1lcXZr9GiT3SVwPLCNqL1T8db3q80oYE=;
+        b=guErh1SQHdqIcxG4pzEzY/+Q0JyZfQWARJ054SNlIShMxi6gZ9xYfeblijQB70Y6uQ
+         KjNMtuqM1NekgRts6h3vBVbw/4+LN5aac9sSV4kRfNL3iVqjBdsYO17R8sDqKzezWgY4
+         nEjGeIraaCjvpK7BFuRCvj3npltTrL4ZJnkTGZ9khwfKYCWtCrwAEBkjQed64MARODD5
+         ZVxRWjHgJhbfT7tnRGf1mEdRTERGaTvOBXhE3ueIx2ajjQojZrHO3A2eDmjzyR4UjBOf
+         JviqqG3lbRt4/yuPxmI90AzKC67za9PkW0MCkBA53m8E9UqI5W96GCX2cgXBUpKN+8kf
+         PhfQ==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1771918119; x=1772522919;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ADQ2LS0GC1QDa36+EuaOS8kzbv7z7Bp7Bm4Gt5ISiek=;
+        b=BiP9EZDDtcLpdRooNygHPLepMmIBRIcsNwnQhP6p2Y1TzWhehGC1K0ri47ycFCdKLo
+         5bIyTNo4j8agl+YqC5Byg2ZtrdeqtOPozAjaEzpXRbMHvp6jjR51LRvfxJQLJDzbv5nD
+         bslQgHOS2Yr+XyK+ZsXgSi7OzYpR62SeNOqzaqpdDWvtf7LaTLSZxT6JHoEYXZxx4OH5
+         fV5414FkTmHr1Ba7mKYi1OgxWGGoK2lZTYfuoKHhLHYcTRdddLliIQc1lOjH3Waxxd4G
+         DG5XmFJ1eIzC1Bct3Gr8sqcxNYFRBSGf/NTeGK+tc6pvnFqx1DDXPbTFPQ/pCm/vNKh7
+         uf2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1771918119; x=1772522919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=ADQ2LS0GC1QDa36+EuaOS8kzbv7z7Bp7Bm4Gt5ISiek=;
+        b=d9FxkCQ7UK61AXzKyqsyfyPyd4tVKhRHdUvJlLQBCpvQKeG9hrP2FQXC28nfsoiIJy
+         2AT3jcOefkS8nvglWCxcLlqrcdLTY3LdjUu1HOff5+1UCXKlBcVpJ2EavqnQuzObPIH3
+         32SlA0MQ9p4R7GXCLypr8C3oEosM9ZBlT4XVAyhqCOLsRaBvTU4imFErWWN+DftFyIzI
+         +MXz9VQXHg/zAk4LCnDPQ73xmfavv1F6chKM2WDE4eb8Kb9SitU2+ibN73FQdRvviYmz
+         cd3JMFADCsmZ2uyxIhXsYGLpTb4ag0b8UQz+wF6btbASeEnA0MQLuo5lo6BIo/PK9LCP
+         K5uw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUcuqmMlUR+T4B+o3qc26PauP2Is9G/brqo3/JEL/X8CVi6pSXLpTj4mm7N7Ww5XHgsDpcX6QYB@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzTVkCYru1YLNOP/4EB+SepDgi8sGU3d0kwRJPOqxZK5XuRq8lh
+	VoHpj1v/c4T2OhJbtbAAjnHm0TTUfR286whCmNcdm2Ch3r7WwZHN0UFHESOLaUWHzOSHd7wIAlh
+	tcAztv+0glm6ZLIuJosdupwdCu2n++IOlbAHBr8I7
+X-Gm-Gg: AZuq6aIQx+uCwc+OMpPr89jAlKjb8OesR9ASVvi+fYPFN59azuTWze8WffEUePMkn9D
+	Qso9rUJIch03uFlJ64N8sWPC9wbC0r3OW9sutjhsPew5/HZuQFz4to0RGJtzjot07wuWSQEuQJ7
+	qEF4D+42GV+H7S4mujLv8K8INst06qT0e3lifG31P+nqnq8EjhTTzFtXasGqHk0A+REyq0vej/K
+	mM/7LQBiWI0c/tuOp8DN3lqRwYgwc34KYGUPm1FApOY4wpXXbkEvhhIkVy8wqiryPNQD/lAgbjw
+	7DoWdilS/pBmHoSK1HWmx+unSW2MYZGW5920cA==
+X-Received: by 2002:a05:600c:8109:b0:483:8e43:6dce with SMTP id
+ 5b1f17b1804b1-483a963a003mr172969955e9.29.1771918119178; Mon, 23 Feb 2026
+ 23:28:39 -0800 (PST)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: kTB7hqtjISjTIjX-bMIdIcE6lsj_u1_b8RM07PfsQ7k_1771903076
-X-Mimecast-Originator: gmail.com
+References: <20260218205507.689429-1-joelagnelf@nvidia.com>
+ <20260218205507.689429-6-joelagnelf@nvidia.com>
+ <DGJN2M93S4ED.3272CCZWMRYOA@nvidia.com>
+ <a7be758a-65ee-4572-b8ba-6d4a8d65af73@nvidia.com>
+In-Reply-To: <a7be758a-65ee-4572-b8ba-6d4a8d65af73@nvidia.com>
+From: Alice Ryhl <aliceryhl@google.com>
+Date: Tue, 24 Feb 2026 08:28:27 +0100
+X-Gm-Features: AaiRm50cmDpg-9YGkfyHUtxGyx8jesE30IQsaptAynPPK_BJKBTapWH8sOvIRP8
+Message-ID: 
+ <CAH5fLgicH9u18pWYYkQqxZBT8WEig3bDP8JFT9VfDtG6McijQw@mail.gmail.com>
+Subject: Re: [PATCH v10 5/8] rust: clist: Add support to interface with C
+ linked lists
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: T4MCQWFUDHWKOK5KDBCFV7JPCJ5BLGBL
-X-Message-ID-Hash: T4MCQWFUDHWKOK5KDBCFV7JPCJ5BLGBL
-X-MailFrom: airlied@gmail.com
+Message-ID-Hash: 3YDO7W5NLCZPGB2RWNIAAHEKIL3NYQLK
+X-Message-ID-Hash: 3YDO7W5NLCZPGB2RWNIAAHEKIL3NYQLK
+X-MailFrom: aliceryhl@google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org, dakr@kernel.org
+CC: Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Nikola Djukic <ndjukic@nvidia.com>,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/T4MCQWFUDHWKOK5KDBCFV7JPCJ5BLGBL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3YDO7W5NLCZPGB2RWNIAAHEKIL3NYQLK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260224031750.791621-1-airlied@gmail.com/>
+ <https://lore.freedesktop.org/CAH5fLgicH9u18pWYYkQqxZBT8WEig3bDP8JFT9VfDtG6McijQw@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,61 +166,74 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Mon, Feb 23, 2026 at 2:13=E2=80=AFAM Joel Fernandes <joelagnelf@nvidia.c=
+om> wrote:
+>
+> Hi Eliot,
+>
+> On 2/20/2026 3:16 AM, Eliot Courtney wrote:
+> > On Thu Feb 19, 2026 at 5:55 AM JST, Joel Fernandes wrote:
+> >> +/// Create a C doubly-circular linked list interface `CList` from a r=
+aw `list_head` pointer.
+> >> +///
+> >> +/// This macro creates a `CList<T, OFFSET>` that can iterate over ite=
+ms of type `$rust_type`
+> >> +/// linked via the `$field` field in the underlying C struct `$c_type=
+`.
+> >> +///
+> >> +/// # Arguments
+> >> +///
+> >> +/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut =
+bindings::list_head`).
+> >> +/// - `$rust_type`: Each item's rust wrapper type.
+> >> +/// - `$c_type`: Each item's C struct type that contains the embedded=
+ `list_head`.
+> >> +/// - `$field`: The name of the `list_head` field within the C struct=
+.
+> >> +///
+> >> +/// # Safety
+> >> +///
+> >> +/// This is an unsafe macro. The caller must ensure:
+> >> +///
+> >> +/// - `$head` is a valid, initialized sentinel `list_head` pointing t=
+o a list that remains
+> >> +///   unmodified for the lifetime of the rust `CList`.
+> >> +/// - The list contains items of type `$c_type` linked via an embedde=
+d `$field`.
+> >> +/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has co=
+mpatible layout.
+> >> +///
+> >> +/// # Examples
+> >> +///
+> >> +/// Refer to the examples in this module's documentation.
+> >> +#[macro_export]
+> >> +macro_rules! clist_create {
+> >> +    ($head:expr, $rust_type:ty, $c_type:ty, $($field:tt).+) =3D> {{
+> >> +        // Compile-time check that field path is a list_head.
+> >> +        let _: fn(*const $c_type) -> *const $crate::bindings::list_he=
+ad =3D
+> >> +            |p| &raw const (*p).$($field).+;
+> >> +
+> >> +        // Calculate offset and create `CList`.
+> >> +        const OFFSET: usize =3D ::core::mem::offset_of!($c_type, $($f=
+ield).+);
+> >> +        $crate::ffi::clist::CList::<$rust_type, OFFSET>::from_raw($he=
+ad)
+> >> +    }};
+> >> +}
+> >
+> > This uses offset_of! in a way that requires the offset_of_nested
+> > feature, so it doesn't build in rust 1.78.0. The feature is already
+> > added to rust_allowed_features, so I think it's ok to add
+> > #![feature(offset_of_nested)].
+>
+> Maybe I am missing something, but why should the feature be gated behind
+> that if all compiler versions (>=3D 1.78) support it either in a stable w=
+ay
+> or via an unstable feature flag?
 
-If we have runtime suspended, and userspace wants to use /dev/drm_dp_*
-then just tell it the device is busy instead of crashing in the GSP
-code.
+The rust_allowed_features list only applies to drivers and such. It
+doesn't apply to the Rust crates in the rust/ directory, which need to
+use #![feature] annotations manually.
 
-WARNING: CPU: 2 PID: 565741 at drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r=
-535/rpc.c:164 r535_gsp_msgq_wait+0x9a/0xb0 [nouveau]
-Modules linked in: overlay uinput rfcomm snd_seq_dummy snd_hrtimer nf_connt=
-rack_netbios_ns nf_conntrack_broadcast nft_fib_inet nft_fib_ipv4 nft_fib_ip=
-v6 nft_fib nft_reject_inet nf_reject_ipv4 nf_reject_ipv6 nft_reject nft_ct =
-nft_chain_nat nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 nf_tables q=
-rtr bnep s>
-snd_soc_acpi intel_rapl_msr libarc4 kvm crc8 soundwire_bus irqbypass snd_so=
-c_sdca rapl iwlwifi snd_soc_avs uvcvideo intel_cstate think_lmi uvc firmwar=
-e_attributes_class intel_uncore intel_wmi_thunderbolt wmi_bmof snd_hda_code=
-c_conexant snd_hda_codec_nvhdmi videobuf2_vmalloc snd_soc_hda_codec cfg8021=
-1 videobu>
-processor_thermal_mbox sparse_keymap intel_soc_dts_iosf intel_pch_thermal p=
-latform_profile rfkill snd soundcore int3403_thermal int340x_thermal_zone i=
-nt3400_thermal acpi_thermal_rel acpi_pad joydev loop nfnetlink zram lz4hc_c=
-ompress lz4_compress xfs wacom hid_microsoft ff_memless nouveau ucsi_acpi t=
-ypec_ucsi>
-CPU: 2 UID: 0 PID: 565741 Comm: fwupd Not tainted 6.18.10-200.fc43.x86_64 #=
-1 PREEMPT(lazy)
-Hardware name: LENOVO 20QTS0PQ00/20QTS0PQ00, BIOS N2OET65W (1.52 ) 08/05/20=
-24
-RIP: 0010:r535_gsp_msgq_wait+0x9a/0xb0 [nouveau]
-
-This is a simple fix to get backported. We should probably engineer a prope=
-r power domain solution to wake up devices and keep them away while fw upda=
-tes are happening.
-
-Cc: stable@vger.kernel.org
-Signed-off-by: Dave Airlie <airlied@redhat.com<
----
- drivers/gpu/drm/nouveau/nouveau_connector.c | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/=
-nouveau/nouveau_connector.c
-index 00d4530aea717..cc239492c7f0b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -1230,6 +1230,9 @@ nouveau_connector_aux_xfer(struct drm_dp_aux *obj, st=
-ruct drm_dp_aux_msg *msg)
- =09u8 size =3D msg->size;
- =09int ret;
-=20
-+=09if (pm_runtime_suspended(nv_connector->base.dev->dev))
-+=09=09return -EBUSY;
-+
- =09nv_encoder =3D find_encoder(&nv_connector->base, DCB_OUTPUT_DP);
- =09if (!nv_encoder)
- =09=09return -ENODEV;
---=20
-2.53.0
-
+Alice
