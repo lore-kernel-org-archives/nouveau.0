@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B5FAF55425
-	for <nouveau@archiver.kernel.org>; Tue, 24 Feb 2026 22:54:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F6AEF55434
+	for <nouveau@archiver.kernel.org>; Wed, 25 Feb 2026 00:59:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCFA10E6F9;
-	Tue, 24 Feb 2026 22:54:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E61C110E64C;
+	Wed, 25 Feb 2026 00:59:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="IIkjH8Xt";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="b/KTuonr";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0AAFF446D1;
-	Tue, 24 Feb 2026 22:44:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7EA6B4485A;
+	Wed, 25 Feb 2026 00:49:26 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1771973064;
- b=nTozD39JlLgjlbZjRoO1ew36ShIHxaD1c6EcT8ehES2re5u3tQ4ehA6e/tKYVtejmi/PD
- O/U9hvxC8IaKRA1ijzCSiKvA5LErvoxUWcp6n7uiA0NoU7zrvWq0xuV7MetudOKpb2iYFzi
- A4EsMFIb3moIfn72lDfvfr7HzhYc38/EZzgxU0CgHtN02Sp5f4t1Se2Vx2uNS0qDzdmpd8t
- 7ZqAOUqDq7ojx4Z+29taICVoO0DLwlB3n+otue0Eeej6TIQR7K/+NlRTr4AXh7F+/jCdbRE
- fKEy+jO45NHTqD3winuvKfSl0XAWgauoB/UNsB+NvBWDBIHgCiAQgIrnMuGQ==
+ s=20240201; t=1771980566;
+ b=0C8Mhxc7IEXRPc+XdljXe2oSqjIKEjIwotf/2VP0j+pzLyaBUWlOWvJb14xriof93Zsul
+ DGD23OV1imm98weN4Ln6BvW+LRUG5KUAsnEJkGTBP4fBEGp6GGbsnbNIKBdVOI8+NKlaL8h
+ tr4Nsy0LS2Pvf8o1iONK2axReKzlSgf8mJFHcIiaqRnIXV7HyJHH2baUMvLxfeiKiNuwUPb
+ X6HKGvcpk3og2n0QTOjbTClsZwqWpagbRZMG3rHq5jAJ8bPomeg/foSDMkG86sq06fuItPT
+ NaA3a47U1CDNmYmOVkU7DNnLLCki//YBEdLT9K8z3yAInHn+JWmRkaersKpg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1771973064; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1771980566; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=M9APCXBK2CiR2XMzfWD5aY5NmYIj7orB++57uXHt5TQ=;
- b=UVKZOvAq9eA8qEs9Zzpkw97D2RzZGASwm4dhOy+ueL16z16V3SR78M/lZIe7029WwMB1t
- 5LZYUh9tEIUlPc0BifaQjx6JuEGooHJ2urX8J5CXgHRL1zo4R8exNkfqufEsx0f0cahqnUF
- KfmsIw1UaFSzxjn7vTbOwY+O+1Ftu58eWQbCpxLWLL4cCc8fp/cUDqyvBANSxVAdi4Fn6It
- BetnQnMKS0LBE+ftMKRWrMaouSd3n7Kzeixqy6CSwv3r8Njsb4scO7Bq+fHRMx/UH7oRrX+
- H5UWdFQRfdHEowuY3jNG+u4UJrYnPIgC+++d01P4EVigYUrTpFmBl+JJfBYg==
+ bh=LIZ1ToEx94aFqPOIcv1XCBaJT7OCYbS+Mc0+I19D+dY=;
+ b=R/tvaC1sbcWUmiEcBy3HmwjvnEf2Lr9lUHyhelHe1p+bb7ndHi22pUdwOqankUujCmLpp
+ Vjf5AJ/zhnQQiqDQSQyt/tgHOkjxz0aPJdPXV+umsEwLyyZSuvOco7yK8njiLMpRiY7JMme
+ R9Ztuk1t5S2Ri1O5DvORjoMhsQq1QFTQkX8DhdtrppFY4qb/8aMbbAJWGuELhS4w4cMX7+m
+ jsYXhxUHG7lEPE7QwXUlkXub0XCgp9ocYe/KyL7cZTAWwqxxovVwsfookbp7CyQ0sG+7c2Z
+ ZCkfI/eNZvYVouL3AbOYe2yENoLPlx5cP2ZUHbZGK5N+ODzmW6wj233E2pwQ==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,175 +45,179 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1174643A1B
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Feb 2026 22:44:22 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011021.outbound.protection.outlook.com
- [40.93.194.21])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 95B6710E6E3;
-	Tue, 24 Feb 2026 22:54:24 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id BCA2E43493
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Feb 2026 00:49:23 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012024.outbound.protection.outlook.com [52.101.43.24])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CCBC410E012;
+	Wed, 25 Feb 2026 00:59:26 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e8PcMRPKpQhQik5lQe0+6f1Qhr8oPnlu5QK/txN5UcQD+0UPNzol7PrcYgBO6ThQUyxWebmV8TFKDc1BB/FIfmWuXNG326FDzp2+ldpuw5XZefDFrKnCFSOV5iqLmfTYPV7Tcla+tb7vSy2nfI7NGQCv8zOLlMr0GQ4Dm+52DGuRf0JiByHqagmUikvswt5QpVCej5faZ+4TNmd0cahYwGVFGB17ItqVZYrN/r8avYVEPBknB/YYD13jUsoOa/az+K/r2CctmN6AwjZEBQFm7zSl1melhFw7ENylxDOKZKX189VJ4TIvmO8o34vQcKEDedsC0EpjKjWRhKzvvXBqXQ==
+ b=G5PMCvZ8bnC7JO97LR9HO06BpHG5cFP6QD55L458kepjG/F2zMw1Ajh4HDhj8z8DyPqBuzQJjf5SiOyd4JIUdnJqpn1V1Dx1ppELWV1xqiZfM1/3d5h2x76g1Bl9LngrNAPJFt/77Ezw+PJyvgXmKPNKtUWbIirecwJbMb3Zt9Y23ozqg/FKXaWdUleysOU52Ge3PtiT2a2/2QH7bO5fAtrsOBY6IqY1qbAAYEHdH2YIvpRYzTUVOEVNWVe0xME2rJXHXFrH7WxCn1wDTcd0rGAjvvc2JzayrW3zzSpkeolqtDRW8L8umfSNGRWlaC26fQBsV2PRxCaZryon8RFhwQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M9APCXBK2CiR2XMzfWD5aY5NmYIj7orB++57uXHt5TQ=;
- b=ODjL9ddAXk8gdmTKeo+hLygB8BQNOCJtjX0hZGo/HdQPWUVtwogBjKdFy00fd3k/g5zuTNAZTy3MFCb8VKNl5ctUkjKcgvcORpvA38Jwd2y02TF2gUVHtJH20nnX3XnfzNjzsYOlWWV3KxLLQ8kBSQeGDTwDemA+q5mZO2lOpul29yngPZ4zEpRn8vTIqYbVK0rRYjr6g31Ooz4/Ax9pDEnDLivlpbPiweb+vTNgpo3t202/ZxhH2OnOqQFZ8qhY0Sx+4xwxRmwpmawpCAroI7j0BsEfBeWt/zMrNyyn/XALQT1ziTYy1IXUh0T+GlPwr9LSUqVpBhIhdu7VeLK52g==
+ bh=LIZ1ToEx94aFqPOIcv1XCBaJT7OCYbS+Mc0+I19D+dY=;
+ b=sWZajhuGpEFe+DDVo7iriR47YMLLFcNlht3sgaSqAWmGWlBkJbrC+Y2Yk0YOEuyb6WyqDDBRhvb3l5tQyx9frKrCBYqPex0+iWyEZVMXQv3oAFaIULf6UurSNq3sY8brzmOLhQ43fhTb3qg2Yk9fu6nT/TRS/q6NKDQjak7b7lxs4kLhQPCNXQ14j6cikHqHFA7sgv873CavGNvdwb28pVIJyabyAeKsuCgy1oXqx1frF/0A1/RcDNzG9fT94O7nlM2Hd7rzYt27vjkfdk3YZrYxvC2r6qL8Mb8ogswEWuJGTtPCf5SSD+FUn/5aUey2dh42tIfuv9ZehsC/rJBt5g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=M9APCXBK2CiR2XMzfWD5aY5NmYIj7orB++57uXHt5TQ=;
- b=IIkjH8XtiZKkrhq1Fmn0FRLMUvPclYu66JpQuikV2CSJk3zEYukv8NfkS1XuWFCg9J7snyIqNU+AN4ypZwdDCml1NxV04C+E3jonu+8RekKaKmA8eR8ijMjWdY8NP68n8hLU37pT696larGrw4YJAmIozO6eQAMbG5pcTVB+PuhS++G6SEAvDO6lOS+7IxYdNEi/7fpM6pnF6KO82gDJsrcpQQsRch4wEVkf2UCB4hdCQLmc8FdOJA+p8E1mscJXCQr4tg4jAtTOY+vUK7Af3rU9pmsEkiwWx9ChoJ6Ic5Mzt5hDwv2L0PjgnsEt4ICmvUckbhvx1B9bPHKNNpt+BA==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SN7PR12MB6885.namprd12.prod.outlook.com (2603:10b6:806:263::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.21; Tue, 24 Feb 2026 22:54:19 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 22:54:19 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH v8 25/25] gpu: nova-core: mm: Add PRAMIN aperture self-tests
-Date: Tue, 24 Feb 2026 17:53:23 -0500
-Message-Id: <20260224225323.3312204-26-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260224225323.3312204-1-joelagnelf@nvidia.com>
-References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BL0PR02CA0008.namprd02.prod.outlook.com
- (2603:10b6:207:3c::21) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ bh=LIZ1ToEx94aFqPOIcv1XCBaJT7OCYbS+Mc0+I19D+dY=;
+ b=b/KTuonrP2ZA8tFzwmgbqkmweq/nMlwsnhS8oVRFwEIdtWo8aaWdkhU9F5Y/cxBdbqA/B0KpeZyOvceazuPgmUDL4HmjV+4eETDa4/hTeLM1La1AS/iIMesT+gMUlxNLgNPwGq4EU9x6HyIMdAqwq/XGaDMM9JpkiGq2K22Lj1d+OS5kWHiAG18Se5RhDHnsS7eafdWJPNy0dOnJN38V7hBf6xeJULGZiQEmAhbkKJk19yBRoJcwvh13AJylM+Z89wpgdAW7FPN8Mg2wqJk/nwT6SxC427MF23BNABVIK3auZf6+Wnp1w6WaobEjakvVYAy5UOgWC/wAn1UT5yg5tA==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by PH0PR12MB5631.namprd12.prod.outlook.com (2603:10b6:510:144::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.13; Wed, 25 Feb
+ 2026 00:59:22 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
+ 00:59:22 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 25 Feb 2026 09:59:17 +0900
+Message-Id: <DGNMWA08KSTQ.32N5GJNLIWK55@nvidia.com>
+Subject: Re: [PATCH v2 0/5] gpu: nova-core: use checked arithmetic for
+ firmware parsing robustness
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+References: <20260126202305.2526618-1-joelagnelf@nvidia.com>
+ <DG02AXMZMOLJ.8HNHT4KH8O69@nvidia.com>
+In-Reply-To: <DG02AXMZMOLJ.8HNHT4KH8O69@nvidia.com>
+X-ClientProxiedBy: TYWP286CA0021.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:262::12) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SN7PR12MB6885:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b0def32-68bc-4b98-af40-08de73f7a4cf
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|PH0PR12MB5631:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd705ec6-259a-4172-837f-08de74091caa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|10070799003|366016|376014|7416014|1800799024;
 X-Microsoft-Antispam-Message-Info: 
-	=?us-ascii?Q?F/ygQZ33q5lBIT1kDoWl1xMWIGE2znAyt5Y1f9eL9ppFFQy5BP1xJEW5QCFr?=
- =?us-ascii?Q?NtDfCd3JcWK1o5TlP2v1R4Q0f1R/lS0bhK/nzQe6NYw43djdog2J5hGAHYgo?=
- =?us-ascii?Q?zclJU3WBlVppbWBBGoz5caqwVSsD91TjLjtQKDNYNq0ApBsnRTfesg7/7YQ3?=
- =?us-ascii?Q?8Ie++JtaSJ1hffbbfXyJZmV6xdZ2TOzp2vZp9PkoQxoeThYnGJptiZsiqUfR?=
- =?us-ascii?Q?Jns3gNULPCL/WCohxkf0uhqL1cl3MfTFOUiFy0Dt4ik0nyheqEBmKzmD0eY3?=
- =?us-ascii?Q?sKVmC/CatU+yKRLFB3gLhoZb+s4bgsli+jgC9XvhkHG0X/ypOWf82HXAS+Db?=
- =?us-ascii?Q?tWMF4so89LoFVwhU0aPNoRAHi6LTelT4wv/PIqv2ye6pSeJn3IHTvmIyH2HA?=
- =?us-ascii?Q?c7fwELqxq1kwWj6YHvtVRRMgxH8UDv9KYi+vlN4+c8tJVeFSOuLjALapJhM4?=
- =?us-ascii?Q?jsI3j5wBoEWyVEep1vTaHWhS1erEilz+d9HuVJyBydMwtQxLtKTqJ5sagcX+?=
- =?us-ascii?Q?Nqy4yaykzBcIJL3Ihe7rM85UU0LIuXTiNDZUc8Digk2wdj5z7ieQV/PC5uQL?=
- =?us-ascii?Q?4aK/axeC0q3uVNZied0bxRqAhA2o/fWkf/bpMOcl47XfPu1GVEU4gVbBqPFd?=
- =?us-ascii?Q?wLh9s5493tHhFjJ/k5fN3A4RNrYGbmndfRUBlsLFdcnHxISgbdIl7c3yhxte?=
- =?us-ascii?Q?rw9IQtub8mTtXZccv3CbWUSX3w8fLd6JxcxJOolaq/n3q4ncsKwcaRWT9BY7?=
- =?us-ascii?Q?CyZnnjsda9eE2JrB9VdtxerKhADdChXrrmeRivt8MAZlqUbZs2Wharbm2x8k?=
- =?us-ascii?Q?OPoZxdFnBOy2Qom1K+9yFpX8mZGI3EvcgJ2kdN6ArjMvvQPP1zFUwd33NfEV?=
- =?us-ascii?Q?qsnycFbrzqHGGQMDn8dodlTdWheqxD4PcVmzgdc/V30VQgQp7RrgvCIOPKqv?=
- =?us-ascii?Q?MV4br75+9rdqr2m2srDbY4tOgo63XpxlfzSRbYAP2LCbF5BwF+Hx1dMo4yck?=
- =?us-ascii?Q?8+9bGD7gZ+SyOvSF80FyHCoerA6eSRdqCFYyXn2gxbaMx0K+F/F0MchLezYT?=
- =?us-ascii?Q?a/kCJXZjTVrTj4jUt6NYouNhJrezfs4uEAWNM6dMHI1anzLDN24Tm7iEDeQE?=
- =?us-ascii?Q?/pzYYctPNvPlCQcs+zTjYuQdkyL5x6ln7nyZ4NjrMUuoGwRUglZVNX71ewsx?=
- =?us-ascii?Q?khSKGoVXUfNJGxqyMxiQzsGFyfgHa4Po4FpOBIH7yjd1i/CexAJ8Ei3XV+g6?=
- =?us-ascii?Q?GntyX67bexG80V6z1P4VjP5g5j+cKu/+wgXs7RPTdRkw63w0BidIL1yE403d?=
- =?us-ascii?Q?Etzi9DbwMuarS56qLP2FVEp3mVu9fSJMaOnCaTyhHily511S9/xhLPy64VXA?=
- =?us-ascii?Q?BMyieGlWGpF+ysLMBv/5p50u+q4/bXGb7trGXqXOyQnOiW0f/fnxm127vEPq?=
- =?us-ascii?Q?v1wecDKIU3ZEoAgv44sv21aFrhWvJjbDqPn7gxi+e0ZCn2ZBELmMlNAByv6U?=
- =?us-ascii?Q?rcXqsXgI0TwYuTpvNxLY2TjBdaoDAl0STWMgFgQfVORpA8oSrfI5msvN8wc7?=
- =?us-ascii?Q?HfhUlNxiiIgSpy697hQ=3D?=
+	=?utf-8?B?elVmdTlxWGM1Tm96YnFUblA0ODN4V1o1QzBKQU5CaXpkTzR2OVNjQnRMN2k3?=
+ =?utf-8?B?c0ZncmdXOEdRcm1HU1lvZ2duQ2RFUXkvbjB4Z3c3WVhuMHMxaXpLSXdWN0Va?=
+ =?utf-8?B?NUZuZisrbXA4UlFNUGx3aFB6Skc1QmtvaldTZEExdXZFbCtoNHdJU1pWMFhE?=
+ =?utf-8?B?TzloWGNMS0xwMjBkT0hueUYvMjRyUytwOUd5bFZSSFFPNTFYSHU2WVlYUlQ4?=
+ =?utf-8?B?aWV4d2hsdE8rbWRyTWFNUTFuSEs5SEVwVERHbkJQcEhMWE9yWE9qcENJTm8x?=
+ =?utf-8?B?T3RPZUV5K1RGQ0hDbGlKaE5rN3U5Z2lha3YwYm5WT2wyWS9RNWlZMkJkRnd1?=
+ =?utf-8?B?Yi8vR3hpM0RNRXh2ajFvc2w1c1lPVFVRVGFMVFNWWm02dEFtQjJBQWp2Wjha?=
+ =?utf-8?B?WFpHWTFWK2thTm1kaTNqaFI2UVF3aXdnYjFlYWR4L1A5aWthZU05RXRxejlm?=
+ =?utf-8?B?WWZLY0o4QXJ2QTFKSjh3MmRIcDZLc1RaNExyNGRtSGN6dXJtaFRGSzBDc0J0?=
+ =?utf-8?B?UnpVQ3AxQmxldDRXclphZEh4MXFUWXRWOU4xZ0VCRGpKd3pmeWY4RWNicVEz?=
+ =?utf-8?B?SjZIbFY4clFwWGF2ZC9Jc2ZLcXZlRGdnWkdoS1NhYVdOTk5GQ1dYU3VNRHpF?=
+ =?utf-8?B?OW1mWkd0bHJTTGJZc3YxYXI2S3FpZ3pDR3FqV2ROVzVMWUlHOVdPOVJHeEp6?=
+ =?utf-8?B?eVBkMThOcWRFWk1UTjEzUlAydE9aSFN0TVpQTlBXUG5hSjlCaGs1WGN4bVRE?=
+ =?utf-8?B?aFQ1QUFFbWxveGJVaEh5Rm5PV0kydW94aHpESXBRcVUzakt1VE5nZnREbnNU?=
+ =?utf-8?B?bzI5a2ZpNEJEQ0J1YllGTkxheTRIVTUrTmluYThXRjNnZjlFRHBrdEtHelBW?=
+ =?utf-8?B?Ti9oRUFFeXBwOTJMK3JyT0ZZcHRSbEx2bHBiSDQxc3FJL1RUbi9uYmQyWUtX?=
+ =?utf-8?B?ckltYi9oMkY4ZnpqVWVkcysyZnU3SnB4M200VUFpeXdVbGdtallodVlTdEQy?=
+ =?utf-8?B?OVlHOTBRUnlNRTJmWVlFbWtYS0gwKyttU0MwdHh2dVlBZGo4NWFPU3p6Q05a?=
+ =?utf-8?B?YnhqWWcvNmRZYlRKNHVQK0twTTFsVkNCNnhuUTVqL3hzZ1RlcDd0QndHWmMr?=
+ =?utf-8?B?NG5ZS2p2QXRWSlZWWEtsNHErL3MrQzl5WlNOM1lLbUF0SlNEMGt4a2VBSnBz?=
+ =?utf-8?B?MHMyVTFFRFN2bW02bEh4b041UGRiTkI3VitqUVdjd2hWdjd3UHc3bVBqeDFB?=
+ =?utf-8?B?WisxN1MzTUtrODZOdEprQkdhdWMvcWMvSnZIL1hzRWNkenB6NjJsSXV5aWll?=
+ =?utf-8?B?bUkwTWx6bDRCMVU1WXZHeDhKTWRXaVhXSys1VWlkSWN1cVZ1OTJ5VzFmbG9v?=
+ =?utf-8?B?SFhWNVAxa1JBLzlKZlVsakFvSlQyWHhiM1FzendjU3hwUzlseWIyN28zam1I?=
+ =?utf-8?B?OXR4Ky9mNzNYSjB5VzNMY0JtTS84akRJT1ptQ3N3bWNvT2p4WVdValJRaHpD?=
+ =?utf-8?B?NXovSW5uWWIyYnRkbXpYYmFOTnRzOHIwMS9XcGZQeld6QXl1T1M1eU13b3Fp?=
+ =?utf-8?B?VTByeURwOGxPc0p0azAvYi9jRWY2dTVPNzV0bWJaTmRkKzZqR2lVeHEzalZ6?=
+ =?utf-8?B?TUlVRm5JYVRRckVFMWliUGQrZ29nSXdzQjBOU1RRdmJQd2t5bmx5TGo5WTV0?=
+ =?utf-8?B?WnlEVkVEbTV3eGhEcTF6SzFOSlNuVUw0K1VJU3l0MUZjbkNtVWwwNWMxL2w3?=
+ =?utf-8?B?K2dEQk9WVWsvbWIxRnZiTVhReHMvVmZQS2FibUJaZ0RndVNRNURWVVU5N0Qz?=
+ =?utf-8?B?Zk1WRW9YanJpR0hxUVJQOW5Qbk9weW5BdGpzd2Znc3FXSnhsMzNEbnlCSVRH?=
+ =?utf-8?B?NitDeCtDeWtpb0xzMlorTEZRUmVSaDZHUGNlbExYSjNQcTRob2VGc01tdkRM?=
+ =?utf-8?B?RDdRZVVOMUZWWEUzVjJyVTYvVkVLNXNyRG0rQUNzSGNpVklBOVdWTTMwNm5F?=
+ =?utf-8?B?QW90Wi9BQWdrRjZBeFpVZVE0MTdKbW9jdWMwTlR1RldFVDhCT2R1dUJoWEZj?=
+ =?utf-8?B?VjIwcnE5ZGg1S1dSc29HTVVKTUEwUzNWUTRENldiNDRTdFpCUkhVZXFuU0tQ?=
+ =?utf-8?Q?67ek=3D?=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?gD0PDlssN+kR8LOKa3Y4v3Su3J6UtRsAbUFbCLaQVZQOaYcNi20jTOohUl4u?=
- =?us-ascii?Q?Jo2hpXtkSmMy34CmRHLr9JgycXsXBsToXCXaVIvA3eWDWQ+20BSYf+DN5FVY?=
- =?us-ascii?Q?fjZ72td+RVCYbZiOWuX9pbnzpB5WeQSjESsyOddmTZdv9yuAb+lqmAioPQ6R?=
- =?us-ascii?Q?hf+ctWkxGxD4JDu3vwJJMz+y7/sGb4z3+UASKZz8DUZjsLAfh8N8G5OlMPcM?=
- =?us-ascii?Q?e9AOeRjZodyVVeM1BhiSw67BMeUo6JvvY8m/bkaGwPPj53Ye1rd8aCjM0jTK?=
- =?us-ascii?Q?sOpgHnKK9CtJyPNbtd+1PS7CpZs9wJzfGnWWnuaHiIb+gyDUh+hZHlRS3F7k?=
- =?us-ascii?Q?Qhn5NzDAL0xzYqr6Lsgmpago4HqtfSoVM1AflAauMmLrvdnVIEUuGx93xCmT?=
- =?us-ascii?Q?KPbOUmlAff371DpH4JFXuhi4bWjiMjag4V0Xhp9JHLVIknE/HJe3oBJaEJV+?=
- =?us-ascii?Q?t45iXEcooJB3w8hdwL0JEHJzu1kEoIIiskzzfwEwCnyD4ZBA7b8BNkz7LC7T?=
- =?us-ascii?Q?UVmj1e9BFTw7ATvCCj2A5y2L4oB0ToC0jjWrLDE/2dg6DQchqz3PAOTszlN5?=
- =?us-ascii?Q?4vcez1EvRuA2nlc6le/R0UOp/uxB3yB8a5yADMqCgDxhaTEWzsERfi1/xTW/?=
- =?us-ascii?Q?v1x/nkX05fLhh3xJ2q2xKKc9uofB44sdeZ/08ZO0F2hSA5/zu/mA09MdO5x4?=
- =?us-ascii?Q?SMq54oa1gaRVgX68V5DOS3JfoMpMpyQD6/LFyd93mems+ewREkvzm/IDP6GP?=
- =?us-ascii?Q?y0fqFotiCaj6noIQJxJ91MPPO3U2l29XlVdNURd3t9dxElIv/QZNTFecb6qQ?=
- =?us-ascii?Q?GI7hesGvxD3EI3OS1blz7uzE9S6889Lrb1TE+dxnreI90/9C/rFHPag265v/?=
- =?us-ascii?Q?lGli+KYnXoLRzCcpxlowVL2kl0C9ZvZvgIP37tioeImUp/89CsQA7YFDC+VA?=
- =?us-ascii?Q?t89DrLzOtEWy78/NbcDeCAEfCFxC4pQwKqHT2EfIM/AGPCbLmeYGwZuLo2MX?=
- =?us-ascii?Q?//pz0OWHtWG6zMfltg5gibdrCLB7sgsv1kHkXWW3TUlJ4/4aOU3yrnIgwc5y?=
- =?us-ascii?Q?s1iEzabinIdjZku5xc5DOirn1H0Y8Ueq4E3yyRKHPNnAtf4hKpSIwDHhq9/u?=
- =?us-ascii?Q?gq7oTJJW2A/GMuzxyrJcT+1k+CPuB50iCIoBW3ba9leRe5jV/SCq49tnwemq?=
- =?us-ascii?Q?n6oUYky3NVuld410Q0xe4jDazmhuO+QPjbMI6cO/uVwUPIqoREP8CO07kjs+?=
- =?us-ascii?Q?Wwqgh8KgE0ynmKEzlRzGueugOvHZZlTIwZ2X+Ibxeup8Wcpsz/3seotitbTi?=
- =?us-ascii?Q?Is1p2RsGhcC59P/a0vWdW5nxYBT099ar1c0lkF236QkA14zMrsz4KB83zH+2?=
- =?us-ascii?Q?cVF34z+Eny0WKBNVDqVsSIkCuWqwmYPL1k10qmYbVIDvVwL7q/YvMxvbmCBi?=
- =?us-ascii?Q?JxZCgx/MWKXL7nxrPtiVgF+vopTrTMeQLT6fVH3Gy7GgB+U1mg6i1JVkOS4p?=
- =?us-ascii?Q?BzeEsvwT2wfANDWGdhCbzH6Z9NxaE7jnnHy5kOCCpHefD1zswvk+/5ruKDzV?=
- =?us-ascii?Q?YfZR9mdTPNiouEXcQ5IwpBmNCISW6kQiKQUNKOvb6XHrH3NwsZX4dlv3EOBs?=
- =?us-ascii?Q?PfC/nLKsWDAhZMGqcZQ40OEY01JU0wcu9NtJxHhIn6kKD4EcpoS1GwUa9k17?=
- =?us-ascii?Q?gq/JnkdxnNVhmgTAOV3EoAsvK9KwJgHm160RFn28sBEMYDJH1T5IZyxBrdB+?=
- =?us-ascii?Q?dz78nFuO6Q=3D=3D?=
+	=?utf-8?B?WVNlTURnYy9tZWpTRFFaUXo5L2lId3lJaUNKNU5KWUVZeUo5Q1l1TllDSk1G?=
+ =?utf-8?B?aC9DVis0UUw4NjZnMUFIaUMwZktYREpFeWdYM2o2RUt5TjZkaHZvd1I3YkVX?=
+ =?utf-8?B?TDlydHFHS240d3pVU29BcjRTa1hPQ1RDVUZqekE2eURSSHRKdUtJbFFqNzNv?=
+ =?utf-8?B?Wm9mT0dvdkI5ME1HK29YOUQwNGpLU0V0ZHU3ZFUxN2dScnhUdVI2QVdVQ3Mx?=
+ =?utf-8?B?Qkx5eGlpU3RyRi94ZmtzZEhJalFDbDJQSmNua3NXUHVwQkEwVWZEZEs5c2I2?=
+ =?utf-8?B?emZGemlRK1UwQUFjSDdPL0svQzVvQ1I1V1RSNnNBZ1JVeU9raDZPY2VRakcv?=
+ =?utf-8?B?L0hkaXZtd3hWem9qQ3hLVkJ0YUN0aUhGVkVOci8weWY0N0QrNTcwQU1wUVha?=
+ =?utf-8?B?M2xnQ1luZmdRZWhuT294VUFPK0srY2ZGakYvOGJHUFJnZmlwYUtSMDZ4eVRJ?=
+ =?utf-8?B?U3gvTTlBSjg4dkRBaURlS1VkakUzRXlEbEpsM2lyQ1hCc3MyWHdSM0t2cmND?=
+ =?utf-8?B?SFp1YXAySzFGZGJtM3RWL1NRaU51WDVla0cybi9ONWVCZFJPMFUwV24wdFp3?=
+ =?utf-8?B?Q1BTWFdsK1orK21PVGhCdi8rekpzTC9jMjAzZmlwRnVSUzQ5Y0llRlhERk1W?=
+ =?utf-8?B?ZkF1bVNXQ3NZQVlJRTZaVW5kQ1NMOGM2TFAvWnVlYUU3UWczcUhQK3NtNVlq?=
+ =?utf-8?B?d2tDek1jS3hCL09leUd2ZDZKb0t0bVdGQ0pCWW81OHd6RjByMWxVL3lZbG9L?=
+ =?utf-8?B?alltZEFUSnF3N2NJY2YzTS9zMzNqNEZqODUzbklsQXhUTEwydFYxeUdYM3M4?=
+ =?utf-8?B?Z3Y4Ykw1OGpxMkVzVGFudFpzWjZuSCswVnB0R2hBaFVKNVhJOVlSWDVkTVQ2?=
+ =?utf-8?B?YmhMM1V0aVppajVGT2hCc3JFZWVHU1pBZE15d3V1clVkTENXbkF5T0VTTi9s?=
+ =?utf-8?B?YkpPR1ducTlwSUY5b1psVmxhWExHT2pjNWZ6bjNlWWFqb28yN1ZxM2JTRXUy?=
+ =?utf-8?B?NzJQYm9zd0l4d3llelhLR29RZ1BwMmpySFQ1Nmw2em4xMkxaZ2FYMDg1Mi9M?=
+ =?utf-8?B?cnJ5UGl1OTRpN1JkazlscHlXTW5mTWhDZzdZeGprQ0JRSUp3NDlKRytIanJJ?=
+ =?utf-8?B?QjZpUHdYWnRrUGZmcTZ0VVhaaDU3V0NEVWlGdnY5T2UwNHRENDdGR1k5ekFW?=
+ =?utf-8?B?SFF5R05JakpUM0ZiaEhRWHRZbXNuZ2pSY3hCNlVjR21JWmMzN0Z6bFhsVWJM?=
+ =?utf-8?B?ZG9XNmMvYjlvZldHMm1MVk5WUnFhUVhoaUk0dFQ5ZmZSTlZsaWRJczRpa1pX?=
+ =?utf-8?B?cHNPcWRGQ3V1WEhPYjVZVCsyV0FRWnNRQUJiZlk2WjUvdHEybC8xRDE0SDZi?=
+ =?utf-8?B?NWpKUzZQdlZYTWN2T1pTZHhPdXZ0TFRqL1M0QkNQSEQ2S01yRlYraFFTUis0?=
+ =?utf-8?B?bWhzcllDck14WUhMcHY1U1RVRDRZeDc2U0l0U1RoUXJpaWptbGM2YmhhTGEx?=
+ =?utf-8?B?YXFDNDJZNjBXT1Q0UkdBRmRRNXNrcHNlTVY3Q0xuelhXRW5zbmJJeUQ4MGRl?=
+ =?utf-8?B?NFBNQzNOOE52Wk1QOGdjUFNaVDlZWE41V2psbGFWdS9lSzhhNHNRcXZmQjVU?=
+ =?utf-8?B?T05IRWJZaVluYm44M1hHeTA1UHlIZHJMVHU4bnNzNzFYKzVlVkF1Sm51dkpp?=
+ =?utf-8?B?UDlCQXI0SDNZY2lOMVlrbDJFMFVYTDIweHRpV0RNVlMxYlRiSTVNRWVFZExL?=
+ =?utf-8?B?UkR3VGp0cHVBSDQyTzNvTHI0UlhFTFptVXBmUUJsYVhqOHFodkVDYzA0Q2xO?=
+ =?utf-8?B?MVhXN3R2cW96M2RzMTRCc29kNTF6K0xYczA0ZDlUWDdwUGFEOFJSaEdwNnQw?=
+ =?utf-8?B?MlllZVZOWWZvSHBnOVVxazFiWitnTWhITnR2WU9qMjE0TjBaOGFLc3pKZW1x?=
+ =?utf-8?B?eXJPcDZlRGFMcjd6b3laUjhGamNxSUVGeUZtakkzdnN4ck5zQ2p1WVNrSTZY?=
+ =?utf-8?B?THdkb3lVdTBMSVgzWnJoM2M3K2grV2NzL1BEY0tYZERsUnNOZnUxUjFDSThM?=
+ =?utf-8?B?eW9VNVpIaGxxa3VmWVpBYmhmMndUSFlQMnNRdWVUVEROU3F1amhsM0IxYjVK?=
+ =?utf-8?B?NXVKSkpseU9OMzMzQnR0a3BNYkFMb0YycjhXaGRuQ0Jab2VtQ3FDU0NhdDBk?=
+ =?utf-8?B?RnVVK2NoV1FvZGErRVhsNys1TWN0MXF5a01jeC9WUEJ2RGVkRm0vRkFqc3Rw?=
+ =?utf-8?B?Z2MyOGJaQ0JhcE9ZSFlKL2FFcjR1dk9hSGVORmIyNFhqNE9WSGN3N0Vtd0Jj?=
+ =?utf-8?B?VlJyUWpXcmUzcUhnbW96NWFtZ2dZUURGeGhIM3hxNXlxckdKeGNnemdkNktp?=
+ =?utf-8?Q?WoYB/eoigDwMvxrniZn0lcOpDxh5WYT1PSYZqrcsDVWVh?=
+X-MS-Exchange-AntiSpam-MessageData-1: 2e8dxAHiPDHLYA==
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8b0def32-68bc-4b98-af40-08de73f7a4cf
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+ dd705ec6-259a-4172-837f-08de74091caa
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:54:19.3800
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 00:59:21.9689
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- hkOcuYRL2owFvJDaQGIoO7d+RHBrjq0xp1GfEjAXzKZ1tLk+QNUvk6HkJDtgJEbx/dIyeQJN84UILUklnmy/YQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6885
-Message-ID-Hash: GMZDNSVEZA2A2NBYXXQ3Y32F6CEWXMJP
-X-Message-ID-Hash: GMZDNSVEZA2A2NBYXXQ3Y32F6CEWXMJP
-X-MailFrom: joelagnelf@nvidia.com
+ 2Dtg3Zv3GoNHgrHD/jyq9E77q8A4eZBIfGWf8bef8/X6i6BbMh4+nwPVA9R635NbLHwK+UY1pTok62iZ/P+4Rw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB5631
+Message-ID-Hash: B2ZEIXD7Z5FPENHXITVWJAOOZBVM4N4A
+X-Message-ID-Hash: B2ZEIXD7Z5FPENHXITVWJAOOZBVM4N4A
+X-MailFrom: acourbot@nvidia.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ loop; banned-address; member-moderation
+CC: linux-kernel@vger.kernel.org, Paul Walmsley <pjw@kernel.org>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
+ Danilo Krummrich <dakr@kernel.org>, Alistair Popple <apopple@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Bjorn Helgaas <bhelgaas@google.com>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Dirk Behme <dirk.behme@gmail.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-riscv@lists.infradead.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/GMZDNSVEZA2A2NBYXXQ3Y32F6CEWXMJP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B2ZEIXD7Z5FPENHXITVWJAOOZBVM4N4A/>
 Archived-At: 
- <https://lore.freedesktop.org/20260224225323.3312204-26-joelagnelf@nvidia.com/>
+ <https://lore.freedesktop.org/DGNMWA08KSTQ.32N5GJNLIWK55@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -223,203 +227,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add self-tests for the PRAMIN aperture mechanism to verify correct
-operation during GPU probe. The tests validate various alignment
-requirements and corner cases.
+On Wed Jan 28, 2026 at 4:59 PM JST, Alexandre Courbot wrote:
+> On Tue Jan 27, 2026 at 5:23 AM JST, Joel Fernandes wrote:
+>> Changes from v1 to v2:
+>> - Added Reviewed-by tags from Zhi
+>> - Fixed comment formatting nits raised by Dirk/Zhi
+>>
+>> This series adds checked arithmetic throughout nova-core's firmware pars=
+ing
+>> code to guard rust code against integer overflow from corrupt firmware.
+>>
+>> Without checked arithmetic, firmware could cause integer overflow when
+>> computing offsets. The danger is not just wrapping to a huge value (whic=
+h may
+>> fail validation in other paths), but potentially wrapping to a small pla=
+usible
+>> offset that accesses entirely wrong data, causing silent corruption or s=
+ecurity
+>> issues.
+>>
+>> This series has been rebased on drm-rust-next. If possible, I would like=
+ us to
+>> consider merging for the upcoming merge window to avoid future conflicts=
+.
+>> Tested probing with GPU name printed in dmesg on my GA102 (Ampere).
+>>
+>> The git tree with all patches can be found at:
+>> git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova=
+-checked-arith-v2-20260126)
+>>
+>> Link to v1: https://lore.kernel.org/all/20260124231830.3088323-1-joelagn=
+elf@nvidia.com/
+>>
+>> Joel Fernandes (5):
+>>   gpu: nova-core: use checked arithmetic in FWSEC firmware parsing
+>>   gpu: nova-core: use checked arithmetic in Booter signature parsing
+>>   gpu: nova-core: use checked arithmetic in frombytes_at helper
+>>   gpu: nova-core: use checked arithmetic in BinFirmware::data
+>>   gpu: nova-core: use checked arithmetic in RISC-V firmware parsing
+>
+> Looking good, thanks! I'm staging these into a local branch and will
+> push as soon as `drm-rust-next` reopens.
 
-The tests are default disabled and behind CONFIG_NOVA_MM_SELFTESTS.
-When enabled, tests run after GSP boot during probe.
-
-Cc: Nikola Djukic <ndjukic@nvidia.com>
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- drivers/gpu/nova-core/gpu.rs       |   3 +
- drivers/gpu/nova-core/mm/pramin.rs | 161 +++++++++++++++++++++++++++++
- 2 files changed, 164 insertions(+)
-
-diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-index fba6ddba6a3f..34827dc2afff 100644
---- a/drivers/gpu/nova-core/gpu.rs
-+++ b/drivers/gpu/nova-core/gpu.rs
-@@ -396,6 +396,9 @@ fn run_mm_selftests(mut self: Pin<&mut Self>, pdev: &pci::Device<device::Bound>)
- 
-         let mmu_version = MmuVersion::from(self.spec.chipset.arch());
- 
-+        // PRAMIN aperture self-tests.
-+        crate::mm::pramin::run_self_test(pdev.as_ref(), self.bar.clone(), mmu_version)?;
-+
-         // BAR1 self-tests.
-         let bar1 = Arc::pin_init(
-             pdev.iomap_region_sized::<BAR1_SIZE>(1, c"nova-core/bar1"),
-diff --git a/drivers/gpu/nova-core/mm/pramin.rs b/drivers/gpu/nova-core/mm/pramin.rs
-index 04b652d3ee4f..30b1dba0c305 100644
---- a/drivers/gpu/nova-core/mm/pramin.rs
-+++ b/drivers/gpu/nova-core/mm/pramin.rs
-@@ -290,3 +290,164 @@ fn drop(&mut self) {
-         // MutexGuard drops automatically, releasing the lock.
-     }
- }
-+
-+/// Run PRAMIN self-tests during boot if self-tests are enabled.
-+#[cfg(CONFIG_NOVA_MM_SELFTESTS)]
-+pub(crate) fn run_self_test(
-+    dev: &kernel::device::Device,
-+    bar: Arc<Devres<Bar0>>,
-+    mmu_version: super::pagetable::MmuVersion,
-+) -> Result {
-+    use super::pagetable::MmuVersion;
-+
-+    // PRAMIN support is only for MMU v2 for now (Turing/Ampere/Ada).
-+    if mmu_version != MmuVersion::V2 {
-+        dev_info!(
-+            dev,
-+            "PRAMIN: Skipping self-tests for MMU {:?} (only V2 supported)\n",
-+            mmu_version
-+        );
-+        return Ok(());
-+    }
-+
-+    dev_info!(dev, "PRAMIN: Starting self-test...\n");
-+
-+    let pramin = Arc::pin_init(Pramin::new(bar)?, GFP_KERNEL)?;
-+    let mut win = pramin.window()?;
-+
-+    // Use offset 0x1000 as test area.
-+    let base: usize = 0x1000;
-+
-+    // Test 1: Read/write at byte-aligned locations.
-+    for i in 0u8..4 {
-+        let offset = base + 1 + usize::from(i); // Offsets 0x1001, 0x1002, 0x1003, 0x1004
-+        let val = 0xA0 + i;
-+        win.try_write8(offset, val)?;
-+        let read_val = win.try_read8(offset)?;
-+        if read_val != val {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - offset {:#x}: wrote {:#x}, read {:#x}\n",
-+                offset,
-+                val,
-+                read_val
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 2: Write `u32` and read back as `u8`s.
-+    let test2_offset = base + 0x10;
-+    let test2_val: u32 = 0xDEADBEEF;
-+    win.try_write32(test2_offset, test2_val)?;
-+
-+    // Read back as individual bytes (little-endian: EF BE AD DE).
-+    let expected_bytes: [u8; 4] = [0xEF, 0xBE, 0xAD, 0xDE];
-+    for (i, &expected) in expected_bytes.iter().enumerate() {
-+        let read_val = win.try_read8(test2_offset + i)?;
-+        if read_val != expected {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+                test2_offset + i,
-+                expected,
-+                read_val
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 3: Window repositioning across 1MB boundaries.
-+    // Write to offset > 1MB to trigger window slide, then verify.
-+    let test3_offset_a: usize = base; // First 1MB region.
-+    let test3_offset_b: usize = 0x200000 + base; // 2MB + base (different 1MB region).
-+    let val_a: u32 = 0x11111111;
-+    let val_b: u32 = 0x22222222;
-+
-+    // Write to first region.
-+    win.try_write32(test3_offset_a, val_a)?;
-+
-+    // Write to second region (triggers window reposition).
-+    win.try_write32(test3_offset_b, val_b)?;
-+
-+    // Read back from second region.
-+    let read_b = win.try_read32(test3_offset_b)?;
-+    if read_b != val_b {
-+        dev_err!(
-+            dev,
-+            "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+            test3_offset_b,
-+            val_b,
-+            read_b
-+        );
-+        return Err(EIO);
-+    }
-+
-+    // Read back from first region (triggers window reposition again).
-+    let read_a = win.try_read32(test3_offset_a)?;
-+    if read_a != val_a {
-+        dev_err!(
-+            dev,
-+            "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+            test3_offset_a,
-+            val_a,
-+            read_a
-+        );
-+        return Err(EIO);
-+    }
-+
-+    // Test 4: Invalid offset rejection (beyond 40-bit address space).
-+    {
-+        // 40-bit address space limit check.
-+        let invalid_offset: usize = MAX_VRAM_OFFSET + 1;
-+        let result = win.try_read32(invalid_offset);
-+        if result.is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - read at invalid offset {:#x} should have failed\n",
-+                invalid_offset
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 5: Misaligned multi-byte access rejection.
-+    // Verify that misaligned `u16`/`u32`/`u64` accesses are properly rejected.
-+    {
-+        // `u16` at odd offset (not 2-byte aligned).
-+        let offset_u16 = base + 0x21;
-+        if win.try_write16(offset_u16, 0xABCD).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u16 write at {:#x} should have failed\n",
-+                offset_u16
-+            );
-+            return Err(EIO);
-+        }
-+
-+        // `u32` at 2-byte-aligned (not 4-byte-aligned) offset.
-+        let offset_u32 = base + 0x32;
-+        if win.try_write32(offset_u32, 0x12345678).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u32 write at {:#x} should have failed\n",
-+                offset_u32
-+            );
-+            return Err(EIO);
-+        }
-+
-+        // `u64` read at 4-byte-aligned (not 8-byte-aligned) offset.
-+        let offset_u64 = base + 0x44;
-+        if win.try_read64(offset_u64).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u64 read at {:#x} should have failed\n",
-+                offset_u64
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    dev_info!(dev, "PRAMIN: All self-tests PASSED\n");
-+    Ok(())
-+}
--- 
-2.34.1
-
+Pushed into `drm-rust-next`.
