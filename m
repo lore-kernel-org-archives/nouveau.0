@@ -4,178 +4,111 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66C46FD8FC1
-	for <nouveau@archiver.kernel.org>; Thu, 26 Feb 2026 14:54:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8592FFD8FCE
+	for <nouveau@archiver.kernel.org>; Thu, 26 Feb 2026 15:48:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 40FCC10E981;
-	Thu, 26 Feb 2026 14:54:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 91EEE10E995;
+	Thu, 26 Feb 2026 15:48:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="jeS5Q1xE";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KO2XXkEf";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 64E7744C86;
-	Thu, 26 Feb 2026 14:44:31 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772117071;
- b=awtmkRq198wwRDltTCO61B0A/XZecb3EbstuuZysBxIzNmMVxaHCALSGHhuyxngFQe+6+
- 1xW/Q59nKC/D7raA9iHJaNRjQFsmZFM8EoZA7JOd6WcuKOMVvHZkXj6bvA37ow80oCHElFz
- Vm61zO7d91RwKTNj/LPj+6XyRtO4/FQwpAASoXaXFUXGo8K2tGIhO6l0ECTjzSo3T3EIbjy
- uPUh63hFsGmYT31D8fgtnMjl6NxPNRNyq+MRUxV6YctZG+4CVt9JMYbI8bHGPOWo9lWv+dN
- PcksdNt+ghboRXiIjRexBcbkWa0k5UVhQcxEuLXslldQKgKDlqRpZKYFW64g==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772117071; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 9081D44C8A;
+	Thu, 26 Feb 2026 15:37:53 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772120273;
+ b=TS84ma6irSKvV+wAAL+CzpJU7iOzTlIohDsjT0Su6pnuV7aOPp7lKt/jeI2+KPydiwGGr
+ Q1xcvhRk+aq49UszmDhUHttabecqMPOTmssoz+K9fTyHQMHxDouMSrYg4V1qyclSZ5q4qw4
+ TYUXWu+QMT6QROg3MwVEQ9dkNB3GEiZv3An9hqPbF9vmwtojQVLa2s3N6+QzPUPSHGyHFhb
+ szFu8JrHNq5db97KfAp0uiV7rjrCaprC5+Xfu3sI6LyoP3z5TOXcRGfFfHdgJanhm5wPwSC
+ 8MykEW7E5/015YoRrEahtHDgYkTlnGagfOm/OSDZ2bU+EOt+6lANpbhB0f/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772120273; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=cpxaSbRKlOV1SmbEkgnpBAe8uAzratSOMH+dAZvsRAM=;
- b=Ezqif+PxmDirVmdOMg/4WoyAq2/t9B3MbM9/fOGNnHbMDRKCAX3Wz+rPGnpljioMuLcvg
- TuoVZakiDzCP+M6TbPq+1XczZL0bkduwnldfBwZtLLXUISg2bIibdVeQTj0CCn1a1M6EtDk
- JBqZ4rZ6UNQPpbWLlZCu54DGSQng6cVrpQyyYc3cmWBT8tLdJnNlDJFo3Zxf60nbV0l7R1S
- ROzwA9j1YZWjqjWhgzrHjuYBre2jaiQ/PXvs7hFmhjUCgTTjzd5OgtxCwbf4+R20xsO6/Yi
- DLZuP1FiASwb6qzI1AoWetcqUpReCdcaA31U7TOKh2KQfxY16fJ6fE61Vbkg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=mdgDHQWZuy/mYEzDbVuE6TL/tamLyNwfdM8VbAJu4w0=;
+ b=hmvYjc5/DcWUCv3MHMo7f5f5vZimpl3ir/2O0CUFJmQAek06qR9qmMc7Q/PM254FkucA+
+ FBuDKTu47ip4cY0GoJDRodsN4SE83OvFrraw4VektrWY1OBAygM0zhhzEox62wpaoMx1y+x
+ qz1PdMOjM2NXS2t8CA8goA7YqArPAYY4OXE+7mSW/Id/fCyTBmoQMtqhYGWbZKdeepmriYS
+ sP9vM92oWa9N4B6Qzbls6J1PpIZ/UU6PQyMoxP8aK5OCyZwhC3OM3wU3gDgqF6ecCFZ/D+M
+ G27dxiwliOKxCG0fwjQd8eRuTJvKgBJjS3dHd6qUNEXHl9n+DwqQyOxiy/LQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D3D464429E
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Feb 2026 14:44:28 +0000 (UTC)
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012061.outbound.protection.outlook.com
- [40.107.200.61])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 791D110E97D;
-	Thu, 26 Feb 2026 14:54:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LWGKaTXF8G1bdC9xV39363cZ1Ost0uHuymf0hWLXx0K3G5uS7Xa5LV97h2hCjf2hC3BPbP6bWUDq0aC0YmAzwYc33bYleK2zDbOKauEFKcedyNq/IUMd6ah5QqV40Yvo3wRKz+IeVaX6y4cr3+gjr67efZIgdtqWzNf8HQiwz4Qr3hYUGSW/w8pfaK0DrUX6kTEfRc4c0+Do5D91OGVCLl2bDqUqBJOASo2Tg2t094Yvzil28JMSzmEURyLZumZFND+T5Mj0flMjsiY2jab1OvWUelV/RlzHeDMzAVdHUtUB0xRzm969UVgYqNVwTsX7nlop0j4DWX1UJI9VxVINqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cpxaSbRKlOV1SmbEkgnpBAe8uAzratSOMH+dAZvsRAM=;
- b=Caa5heu+jYEOXJPmm03UDeYRjjWQLZ0voPyeKOFPwWZ4gtTjJyA+mCT7nrUuaBipu2EqDBlVKJKnvpoWWMfn5cPKloeynbvbQgulsKvy4b7QdOa/rPQoiLcoQr1tY9X5acQapx8PqTww4D6oOkMYWywK4ZamOJf1kMM+Y18yXqx0I7LYMgTGOLuZ5WSJhmMBh2bCA3G1+O3IkVYUGuDydNUQr+DCauLYqWr04ijXefx7QNwVRs7pCSx0oSBoI9JjYvYqR0dZ5bbFvM1Joy6vGeNA6qO7GkW6yY8rJKO4MDD/ap4KOwzYVEZ59cWKin7QTx/tHOmWwXEm26vTumn3nQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cpxaSbRKlOV1SmbEkgnpBAe8uAzratSOMH+dAZvsRAM=;
- b=jeS5Q1xEzhcEv3VsoIKbIL6XElPqfp5uRPlQ+I5drt5lGntSfmIFyjKZUnhK5IR+VO24c6xGVF/MyKHs8so1TOQiVPH5t2PDbg2vyDyTz3PNdzNyTjhR9EoyBzM7Do81JyPFAl7EFoxD2EIMtCH1CMP/sZZuGmgVv1FOCs13nMsOrz2GVY72cGtoESEGYULzdOd/mcmOYnwLSxPJiLNWhk1/ZDJRijOmw0uK4QZzGYmBkAz8XW65aNE81/+cCwCrPL3Aqw4u+AXj64p/BdcjF7aVxtxLhLAF+7PHNx+6xo09XXUsh5K9xK9HJ4H/Tj+z/Z7cxk+uz2YGhojylrQQuw==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by CH1PR12MB9598.namprd12.prod.outlook.com (2603:10b6:610:2ae::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
- 2026 14:54:28 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9654.007; Thu, 26 Feb 2026
- 14:54:28 +0000
-From: Eliot Courtney <ecourtney@nvidia.com>
-Date: Thu, 26 Feb 2026 23:50:26 +0900
-Subject: [PATCH v2 4/4] gpu: nova-core: gsp: add mutex locking to Cmdq
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260226-cmdq-locking-v2-4-c7e16a6d5885@nvidia.com>
-References: <20260226-cmdq-locking-v2-0-c7e16a6d5885@nvidia.com>
-In-Reply-To: <20260226-cmdq-locking-v2-0-c7e16a6d5885@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Benno Lossin <lossin@kernel.org>,
- Gary Guo <gary@garyguo.net>
-X-Mailer: b4 0.14.3
-X-ClientProxiedBy: TYCPR01CA0110.jpnprd01.prod.outlook.com
- (2603:1096:405:4::26) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 533F244C64
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Feb 2026 15:37:51 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCE910E98E;
+	Thu, 26 Feb 2026 15:47:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 77A48440E3;
+	Thu, 26 Feb 2026 15:47:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5780C19423;
+	Thu, 26 Feb 2026 15:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772120877;
+	bh=S0Hfuvgw1f1fWJyBUEnC4qY6gqep6JwxreV/pS9o6tY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To:From;
+	b=KO2XXkEflQCwF+XCyu2lMFLIJHGYlx4KbAz85QTBHV76J9vlvpjsLkEjTF9JUp8uH
+	 4QXRhLiPlHx89O2TC1JrPhBQlWbWgBcmW00NlSlMkwVgOc+uq4qUJJI8jnAOB0J7vR
+	 LSrpsJZACk+uOsKmDusWZEQU83v9ZbXmW+1mCniCCZJ7VKL6CE9HBsyBK/TrVEEQqA
+	 wQ9k7Lzrt6nImCinMSmknFsnkMNjqk/86W1jIJRFbAvYn+jnrHqx3OGBX6CAq8gUb8
+	 P455rK2q9WtjSIYDzCQ/k8Eyp5i4v7l4/+eFFOMY1u20fD99Gb+ezq6M3/W0STfcz2
+	 i4K6xq0WUjDeg==
+From: Gary Guo <gary@kernel.org>
+To: Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+	Daniel Almeida <daniel.almeida@collabora.com>,
+	Robin Murphy <robin.murphy@arm.com>
+Subject: [PATCH v2 2/2] rust: dma: use pointer projection infra for
+ `dma_{read,write}` macro
+Date: Thu, 26 Feb 2026 15:46:54 +0000
+Message-ID: <20260226154656.3241736-3-gary@kernel.org>
+X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20260226154656.3241736-1-gary@kernel.org>
+References: <20260226154656.3241736-1-gary@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|CH1PR12MB9598:EE_
-X-MS-Office365-Filtering-Correlation-Id: 73fc561f-a514-4424-e91d-08de7546f0b1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|1800799024|10070799003|366016;
-X-Microsoft-Antispam-Message-Info: 
-	+urbPeR66aOlDPw12oB8Nlkq+/KQ2F7fDwissFj04EkoCQ1qmsASzfl9BIHraT1liIXG4xwX9UGdCwGZsV0lLyUwhhAeM8rU6pNYV9drRWq1XwYaZBCkb/OFITUu7RW41Xtuc9JJmxThtHnO8ovCQK6b+0grtjEy+abJ3pMcVaDMsYKon9uKikkW8EHYN8CiYb7ADd2pqozXjsiSP+lJHFOPCBGv4R/Qh+ZWCSsaelWzIb0QRiAhjupgxzeCxKY5UIgtCSEAnCyyUXfE5SaMqzNpSAT6LhQG9CIjZ7xFUaGFQlFPvdhzSigwPhqb6+JznmNli9kl5SXx19cc3Fy9Jr2P+0m0PPm2THDdXpLqrajj9y7Bf88rYbfawsNHw+sprWzU1Xw2/BN8noIOznPmoq3xc6u/wIKtbFVjRiBEBUMRhiSYP+jp3vhIL0By68+6OKR9bOvlNbwFI6vFpQdakcvMNJCvP1TrnPwdZeuZliBYysKt7nWoPKXGFBLkkFvoxS/6Y3rF1OW9c8IZtB2xGctsMm6DwiVh+NNumhue3qnUIoGy9jrEKPGk+XgfF5ds35BxO7k+TjV5NZSy4LSIo40VzJ2HnsSghKqpyKH8icym04E1LwKFtD2p1gKDN7zCAbJyGxYyagBYRWHhd5sk4U3wlFyyc3RZIZ1cJVkn6DDExKa7Mz+Xm4pFyB1jlyi9Tqbyh+zNb4JsgQ1IiZNXo34IqGod0lIZlkKrQM8Ijug=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(10070799003)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MTFUVnlmRTQzVkpvS0xoUXlseTVMWkhmc0V6azcvYmZ0SUp6L2pKY0NzY2dr?=
- =?utf-8?B?b01hNkpBSUhoTXNVaGJvMldwNnlrVDFKbzRaYmpiL0hWU3N3RGQ3MTVHVGZL?=
- =?utf-8?B?NHZVZ29hc1NocGJJTHJlcmppdXlPNVp3SE9OQ2dFby8ybm5xUkUvaFp3MnlX?=
- =?utf-8?B?WnZxWFMrT0tIbFJmejNKZUFjakplSmF3K1FiclpiZElkV0JkZU9OVzdDa3hJ?=
- =?utf-8?B?NjIvS1lYTEhFTllUem5MWUhDM1g0YW1rR2gzUXlORDU2Q2ZQUm8vT0FRcjBl?=
- =?utf-8?B?SWpOeVBZTEtvT1BIdU9RL0ZOdzMyQlFVMmZ3dlBhVmlHRXFOZG1ma05WVXZZ?=
- =?utf-8?B?T1lPaC9nRDN0c0VxOVFXTm1tVzNIbWVnVlVody9wUDJOTXRBSWs1TFB1T3Nq?=
- =?utf-8?B?SE1GUlFrNmVFdjhNMVorem1lSG1udTBpOFJKbGliS3ZFcXVFS0dXaEtsU3Z5?=
- =?utf-8?B?R1VqMFZ6VGJtYU9VQzREd0tObCtaOU11QWV3WkJkZGZzRFR3emhvU1h0N2I5?=
- =?utf-8?B?NnE4VFpVVjVxWVVjdG5vVjNmSDNqRGQ3TVpUYzB3a1RmNmQ1ODNSaVBqN0tX?=
- =?utf-8?B?akxCWlFtWTc0YTduYlpYdWcvK3Vsb0Y3WUhlcE9jczcyeFIvZFVXUEJ2c0pT?=
- =?utf-8?B?MmJLUjdKRFhJY1ZocHNoSHUrL1hBNXlQV1FXNUdQOFZPWnFzVk0rZ2R5bHVJ?=
- =?utf-8?B?RGsxMUREbTFvTzJocmc1T1dYTGZjckM4djBkSTJxY1p6cWZpWjhWMDFBRGJ6?=
- =?utf-8?B?dHlxNjEyVGZwa3B4c2xWMHRTMmY3VzdkMGZVVGd5UjBzcDl3VEhvYlh2U0Fo?=
- =?utf-8?B?SXh2N2dORGduTTZwZmxLVVpCN2RKcnlGQlZzeHl6cnlaeHR4Z2ZSY1pvcGNJ?=
- =?utf-8?B?WWdoc1RnTlE1WTN6amJFZW96WUZMMC9MWElNRENRWlVxd0NpMTVwMWZsclo1?=
- =?utf-8?B?U1BNOCtJNFloc1lPRmFJMnpyUWZod1ppUGtKNHNmUENHcHhmTUwrdno5WHdB?=
- =?utf-8?B?T2lqK09uTkV6bDY5VjUzRmk1ZXBvNUFWVHAwZmRwU00wdFUrL2oyRmVTWXVu?=
- =?utf-8?B?VU53MldpOWF0UHZJTE9rWlZ2cENGZ1BHdkRhOHRYZVJ3aGE1ODRQcklKS1pn?=
- =?utf-8?B?ZnBlUDJYT1Z6Y3dsVm1KSVVlV3EzVE5YLzZLb1A3Q0NXSUMrOXZiR2FwNzNr?=
- =?utf-8?B?eEdYS0laQmtMck9hcFE5akViQzZZUWo1Z0lZLzRCd3pDQVdNemRGRkNLUEFT?=
- =?utf-8?B?M1FTMElJWWtveE11UURMU3Jjak52ZVdWQm9wUWtaWTJ1SDNNYkpiQldROXJO?=
- =?utf-8?B?M1RHOFA4MzVSWENZS1RXYzNEdnR3c05uVXdRMmUxTlBPWEdadE55dU0rYlU3?=
- =?utf-8?B?ZVpVdDNLdTBCa01CNmMxT2xISGdxRmQreElsRXVVSFE0eTRubHBKVFhueVZ3?=
- =?utf-8?B?OE5iMUdrdDJONzRvMHlvb3MzS1VpMWpOVk1jN3ZmMkoyRE0rOEZQSzZnU3U4?=
- =?utf-8?B?MnAxS1pBYjFpQmxKMHlWeG5FY0JtdzM1WVJsY3N2dkdBbDVzTDJNQmxkVHI4?=
- =?utf-8?B?YVE2cU5yOG9kRFFkb0tYWVp1ZzNMYmZuRmwwcWJTMDJ4cnVNNGhUOTNMcTVI?=
- =?utf-8?B?K1RZd2MwamRaYXcvaVJtNVdlNmpxVGhJR0hKby90RTVPcTJUZTRZTFM1TWpL?=
- =?utf-8?B?SUtuNkJvU3YvZnJOZnpyMEdlUUxQRDEydkl2TW1SSmJLMURKNXpYTkliM0gv?=
- =?utf-8?B?SUl0c3Y0UEMyeTZKckovQmtPQ1Q5VUcxWFhIMkp1bDV6aGZGbVRaWVNxamNu?=
- =?utf-8?B?V3l3eDZHeGtuM2lBaXI5dmZzR1VZR3o3VWIvTW1OQ2VSMnBXR0ZaSEQ1YlVF?=
- =?utf-8?B?UE8zL3FwaTlIanlIT3FCY3U5ZXZrdG9YZHhFemFPdmljS2NnNm1OaitnbXZG?=
- =?utf-8?B?cU44VTJlZjRQZU9mY2FCeGp4bVUwN0pHNUJQaUI4Ri9TdDB5T0xNVzBJY2hW?=
- =?utf-8?B?ODlnVHlRWklJSVNwWWpmYW5pUWwzWUNUSDdibXh5R2V4azMzbEZKSmROczRS?=
- =?utf-8?B?bFkybUNuWjk1MnV1bWthRzk3VU55akxqUXRla05IM1RBYXlSOWU1bVdaWm5X?=
- =?utf-8?B?RjdyQXZ2Vitna2ZZQjB4NXEyS1FLSFAyaVlPUUd1cStsR2FqallJY3lncEJN?=
- =?utf-8?B?c3M4MlBPU0Y2MGppSEhJZ2IyUi82dVdZa1ZnVkpkaVVGTnVsZmtJOS9wOFEr?=
- =?utf-8?B?cm44NnhCcXQ5WlROUVhEdW13aDU1aGhZdWZkZlJ6RFF4WVhPMUlGeGozblht?=
- =?utf-8?B?cCs4dzViOGZjMDlmUHRqVGg0NUdFbEtSRHRadmlXajIvM2o0UlVaWmRuZytG?=
- =?utf-8?Q?bomaM4SBqZo8zekLmtOOhfGQ03exQNxl090Jz2t7OxsxY?=
-X-MS-Exchange-AntiSpam-MessageData-1: qAQXDb0ADvurtw==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 73fc561f-a514-4424-e91d-08de7546f0b1
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 14:54:28.2395
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- Bv7Zy1jbzUOSBIaqH+/gc97+6W6rGxccrAKcYUemEeD/9zmPKdrPc91ovyt6IYW2zyTdP+cN1WObiPr91YxLDg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9598
-Message-ID-Hash: BH3SQTRAREQFEJAZSCJFGKVD34BDQKOP
-X-Message-ID-Hash: BH3SQTRAREQFEJAZSCJFGKVD34BDQKOP
-X-MailFrom: ecourtney@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: OWFYHWPB2YXWZ6KC75A6YDKZY5XBGEU3
+X-Message-ID-Hash: OWFYHWPB2YXWZ6KC75A6YDKZY5XBGEU3
+X-MailFrom: gary@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- Eliot Courtney <ecourtney@nvidia.com>, Zhi Wang <zhiw@nvidia.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ driver-core@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: Gary Guo <gary@garyguo.net>
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BH3SQTRAREQFEJAZSCJFGKVD34BDQKOP/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/OWFYHWPB2YXWZ6KC75A6YDKZY5XBGEU3/>
 Archived-At: 
- <https://lore.freedesktop.org/20260226-cmdq-locking-v2-4-c7e16a6d5885@nvidia.com/>
+ <https://lore.freedesktop.org/20260226154656.3241736-3-gary@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -185,473 +118,338 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Wrap `Cmdq`'s mutable state in a new struct `CmdqInner` and wrap that in
-a Mutex. This lets `Cmdq` methods take &self instead of &mut self, which
-lets required commands be sent e.g. while unloading the driver.
+From: Gary Guo <gary@garyguo.net>
 
-The mutex is held over both send and receive in `send_sync_command` to
-make sure that it doesn't get the reply of some other command that could
-have been sent just beforehand.
+Current `dma_read!`, `dma_write!` macros also use a custom
+`addr_of!()`-based implementation for projecting pointers, which has
+soundness issue as it relies on absence of `Deref` implementation on types.
+It also has a soundness issue where it does not protect against unaligned
+fields (when `#[repr(packed)]` is used) so it can generate misaligned
+accesses.
 
-Reviewed-by: Zhi Wang <zhiw@nvidia.com>
-Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
+This commit migrates them to use the general pointer projection
+infrastructure, which handles these cases correctly.
+
+As part of migration, the macro is updated to have an improved surface
+syntax. The current macro have
+
+    dma_read!(a.b.c[d].e.f)
+
+to mean `a.b.c` is a DMA coherent allocation and it should project into it
+with `[d].e.f` and do a read, which is confusing as it makes the indexing
+operator integral to the macro (so it will break if you have an array of
+`CoherentAllocation`, for example).
+
+This also is problematic as we would like to generalize
+`CoherentAllocation` from just slices to arbitrary types.
+
+Make the macro expects `dma_read!(path.to.dma, .path.inside.dma)` as the
+canonical syntax. The index operator is no longer special and is just one
+type of projection (in additional to field projection). Similarly, make
+`dma_write!(path.to.dma, .path.inside.dma, value)` become the canonical
+syntax for writing.
+
+Another issue of the current macro is that it is always fallible. This
+makes sense with existing design of `CoherentAllocation`, but once we
+support fixed size arrays with `CoherentAllocation`, it is desirable to
+have the ability to perform infallible indexing as well, e.g. doing a `[0]`
+index of `[Foo; 2]` is okay and can be checked at build-time, so forcing
+falliblity is non-ideal. To capture this, the macro is changed to use
+`[idx]` as infallible projection and `[idx]?` as fallible index projection
+(those syntax are part of the general projection infra). A benefit of this
+is that while individual indexing operation may fail, the overall
+read/write operation is not fallible.
+
+Fixes: ad2907b4e308 ("rust: add dma coherent allocator abstraction")
+Signed-off-by: Gary Guo <gary@garyguo.net>
 ---
- drivers/gpu/nova-core/gsp/boot.rs      |   8 +-
- drivers/gpu/nova-core/gsp/cmdq.rs      | 266 ++++++++++++++++++---------------
- drivers/gpu/nova-core/gsp/commands.rs  |   4 +-
- drivers/gpu/nova-core/gsp/sequencer.rs |   2 +-
- 4 files changed, 153 insertions(+), 127 deletions(-)
+ drivers/gpu/nova-core/gsp.rs      |  14 ++--
+ drivers/gpu/nova-core/gsp/boot.rs |   2 +-
+ drivers/gpu/nova-core/gsp/cmdq.rs |  10 ++-
+ rust/kernel/dma.rs                | 114 +++++++++++++-----------------
+ samples/rust/rust_dma.rs          |  30 ++++----
+ 5 files changed, 81 insertions(+), 89 deletions(-)
 
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index 174feaca0a6b..25cd48514c77 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -143,14 +143,14 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> impl PinInit<Self, Error
+                     // _kgspInitLibosLoggingStructures (allocates memory for buffers)
+                     // kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] array)
+                     dma_write!(
+-                        libos[0] = LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0)
+-                    )?;
++                        libos, [0]?, LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0)
++                    );
+                     dma_write!(
+-                        libos[1] = LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0)
+-                    )?;
+-                    dma_write!(libos[2] = LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0))?;
+-                    dma_write!(rmargs[0].inner = fw::GspArgumentsCached::new(cmdq))?;
+-                    dma_write!(libos[3] = LibosMemoryRegionInitArgument::new("RMARGS", rmargs))?;
++                        libos, [1]?, LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0)
++                    );
++                    dma_write!(libos, [2]?, LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0));
++                    dma_write!(rmargs, [0]?.inner, fw::GspArgumentsCached::new(cmdq));
++                    dma_write!(libos, [3]?, LibosMemoryRegionInitArgument::new("RMARGS", rmargs));
+                 },
+             }))
+         })
 diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index 55899eba75db..d12ad1bd2cd8 100644
+index c56029f444cb..7f46fa5e9b50 100644
 --- a/drivers/gpu/nova-core/gsp/boot.rs
 +++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -128,7 +128,7 @@ fn run_fwsec_frts(
-     ///
-     /// Upon return, the GSP is up and running, and its runtime object given as return value.
-     pub(crate) fn boot(
--        mut self: Pin<&mut Self>,
-+        self: Pin<&mut Self>,
-         pdev: &pci::Device<device::Bound>,
-         bar: &Bar0,
-         chipset: Chipset,
-@@ -214,13 +214,13 @@ pub(crate) fn boot(
-             dev: pdev.as_ref().into(),
-             bar,
-         };
--        GspSequencer::run(&mut self.cmdq, seq_params)?;
-+        GspSequencer::run(&self.cmdq, seq_params)?;
+@@ -157,7 +157,7 @@ pub(crate) fn boot(
  
-         // Wait until GSP is fully initialized.
--        commands::wait_gsp_init_done(&mut self.cmdq)?;
-+        commands::wait_gsp_init_done(&self.cmdq)?;
+         let wpr_meta =
+             CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
+-        dma_write!(wpr_meta[0] = GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
++        dma_write!(wpr_meta, [0]?, GspFwWprMeta::new(&gsp_fw, &fb_layout));
  
-         // Obtain and display basic GPU information.
--        let info = commands::get_gsp_info(&mut self.cmdq, bar)?;
-+        let info = commands::get_gsp_info(&self.cmdq, bar)?;
-         match info.gpu_name() {
-             Ok(name) => dev_info!(pdev, "GPU name: {}\n", name),
-             Err(e) => dev_warn!(pdev, "GPU name unavailable: {:?}\n", e),
+         self.cmdq
+             .send_command(bar, commands::SetSystemInfo::new(pdev))?;
 diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 6bb1decd2af5..5010587c96f9 100644
+index 87dbbd6d1be9..0056bfbf0a44 100644
 --- a/drivers/gpu/nova-core/gsp/cmdq.rs
 +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -16,8 +16,12 @@
-     },
-     dma_write,
-     io::poll::read_poll_timeout,
-+    new_mutex,
-     prelude::*,
--    sync::aref::ARef,
-+    sync::{
-+        aref::ARef,
-+        Mutex, //
-+    },
-     time::Delta,
-     transmute::{
-         AsBytes,
-@@ -54,8 +58,8 @@
+@@ -202,9 +202,13 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
  
- /// Trait implemented by types representing a command to send to the GSP.
- ///
--/// The main purpose of this trait is to provide [`Cmdq::send_command`] with the information it
--/// needs to send a given command.
-+/// The main purpose of this trait is to provide [`Cmdq`] with the information it needs to send
-+/// a given command.
- ///
- /// [`CommandToGsp::init`] in particular is responsible for initializing the command directly
- /// into the space reserved for it in the command queue buffer.
-@@ -470,66 +474,15 @@ pub(crate) fn command_size<M>(command: &M) -> usize
-     size_of::<M::Command>() + command.variable_payload_len()
- }
+         let gsp_mem =
+             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
+-        dma_write!(gsp_mem[0].ptes = PteArray::new(gsp_mem.dma_handle())?)?;
+-        dma_write!(gsp_mem[0].cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES))?;
+-        dma_write!(gsp_mem[0].cpuq.rx = MsgqRxHeader::new())?;
++        dma_write!(gsp_mem, [0]?.ptes, PteArray::new(gsp_mem.dma_handle())?);
++        dma_write!(
++            gsp_mem,
++            [0]?.cpuq.tx,
++            MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES)
++        );
++        dma_write!(gsp_mem, [0]?.cpuq.rx, MsgqRxHeader::new());
  
--/// GSP command queue.
--///
--/// Provides the ability to send commands and receive messages from the GSP using a shared memory
--/// area.
--#[pin_data]
--pub(crate) struct Cmdq {
--    /// Device this command queue belongs to.
--    dev: ARef<device::Device>,
-+/// Inner mutex protected state of [`Cmdq`].
-+struct CmdqInner {
-     /// Current command sequence number.
-     seq: u32,
-     /// Memory area shared with the GSP for communicating commands and messages.
-     gsp_mem: DmaGspMem,
- }
+         Ok(Self(gsp_mem))
+     }
+diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
+index 909d56fd5118..07fa4912ea78 100644
+--- a/rust/kernel/dma.rs
++++ b/rust/kernel/dma.rs
+@@ -461,6 +461,19 @@ pub fn size(&self) -> usize {
+         self.count * core::mem::size_of::<T>()
+     }
  
--impl Cmdq {
--    /// Offset of the data after the PTEs.
--    const POST_PTE_OFFSET: usize = core::mem::offset_of!(GspMem, cpuq);
--
--    /// Offset of command queue ring buffer.
--    pub(crate) const CMDQ_OFFSET: usize = core::mem::offset_of!(GspMem, cpuq)
--        + core::mem::offset_of!(Msgq, msgq)
--        - Self::POST_PTE_OFFSET;
--
--    /// Offset of message queue ring buffer.
--    pub(crate) const STATQ_OFFSET: usize = core::mem::offset_of!(GspMem, gspq)
--        + core::mem::offset_of!(Msgq, msgq)
--        - Self::POST_PTE_OFFSET;
--
--    /// Number of page table entries for the GSP shared region.
--    pub(crate) const NUM_PTES: usize = size_of::<GspMem>() >> GSP_PAGE_SHIFT;
--
--    /// Creates a new command queue for `dev`.
--    pub(crate) fn new(dev: &device::Device<device::Bound>) -> impl PinInit<Self, Error> + '_ {
--        try_pin_init!(Self {
--            gsp_mem: DmaGspMem::new(dev)?,
--            dev: dev.into(),
--            seq: 0,
--        })
--    }
--
--    /// Computes the checksum for the message pointed to by `it`.
--    ///
--    /// A message is made of several parts, so `it` is an iterator over byte slices representing
--    /// these parts.
--    fn calculate_checksum<T: Iterator<Item = u8>>(it: T) -> u32 {
--        let sum64 = it
--            .enumerate()
--            .map(|(idx, byte)| (((idx % 8) * 8) as u32, byte))
--            .fold(0, |acc, (rol, byte)| acc ^ u64::from(byte).rotate_left(rol));
--
--        ((sum64 >> 32) as u32) ^ (sum64 as u32)
--    }
--
--    /// Notifies the GSP that we have updated the command queue pointers.
--    fn notify_gsp(bar: &Bar0) {
--        regs::NV_PGSP_QUEUE_HEAD::default()
--            .set_address(0)
--            .write(bar);
--    }
--
-+impl CmdqInner {
-     /// Sends `command` to the GSP, without splitting it.
-     ///
-     /// # Errors
-@@ -540,7 +493,7 @@ fn notify_gsp(bar: &Bar0) {
-     ///   written to by its [`CommandToGsp::init_variable_payload`] method.
-     ///
-     /// Error codes returned by the command initializers are propagated as-is.
--    fn send_single_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-+    fn send_single_command<M>(&mut self, dev: &device::Device, bar: &Bar0, command: M) -> Result
-     where
-         M: CommandToGsp,
-         // This allows all error types, including `Infallible`, to be used for `M::InitError`.
-@@ -583,7 +536,7 @@ fn send_single_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-             ])));
- 
-         dev_dbg!(
--            &self.dev,
-+            dev,
-             "GSP RPC: send: seq# {}, function={:?}, length=0x{:x}\n",
-             self.seq,
-             M::FUNCTION,
-@@ -610,73 +563,27 @@ fn send_single_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-     ///   written to by its [`CommandToGsp::init_variable_payload`] method.
-     ///
-     /// Error codes returned by the command initializers are propagated as-is.
--    fn send_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-+    fn send_command<M>(&mut self, dev: &device::Device, bar: &Bar0, command: M) -> Result
-     where
-         M: CommandToGsp,
-         Error: From<M::InitError>,
-     {
-         let mut state = SplitState::new(&command)?;
--
--        self.send_single_command(bar, state.command(command))?;
-+        self.send_single_command(dev, bar, state.command(command))?;
- 
-         while let Some(continuation) = state.next_continuation_record() {
-             dev_dbg!(
--                &self.dev,
-+                dev,
-                 "GSP RPC: send continuation: size=0x{:x}\n",
-                 command_size(&continuation),
-             );
-             // Turbofish needed because the compiler cannot infer M here.
--            self.send_single_command::<ContinuationRecord<'_>>(bar, continuation)?;
-+            self.send_single_command::<ContinuationRecord<'_>>(dev, bar, continuation)?;
-         }
- 
++    /// Returns the raw pointer to the allocated region in the CPU's virtual address space.
++    #[inline]
++    pub fn as_ptr(&self) -> *const [T] {
++        core::ptr::slice_from_raw_parts(self.cpu_addr.as_ptr(), self.count)
++    }
++
++    /// Returns the raw pointer to the allocated region in the CPU's virtual address space as
++    /// a mutable pointer.
++    #[inline]
++    pub fn as_mut_ptr(&self) -> *mut [T] {
++        core::ptr::slice_from_raw_parts_mut(self.cpu_addr.as_ptr(), self.count)
++    }
++
+     /// Returns the base address to the allocated region in the CPU's virtual address space.
+     pub fn start_ptr(&self) -> *const T {
+         self.cpu_addr.as_ptr()
+@@ -581,23 +594,6 @@ pub unsafe fn write(&mut self, src: &[T], offset: usize) -> Result {
          Ok(())
      }
  
--    /// Sends `command` to the GSP and waits for the reply.
+-    /// Returns a pointer to an element from the region with bounds checking. `offset` is in
+-    /// units of `T`, not the number of bytes.
 -    ///
--    /// # Errors
--    ///
--    /// - `ETIMEDOUT` if space does not become available to send the command, or if the reply is
--    ///   not received within the timeout.
--    /// - `EIO` if the variable payload requested by the command has not been entirely
--    ///   written to by its [`CommandToGsp::init_variable_payload`] method.
--    ///
--    /// Error codes returned by the command and reply initializers are propagated as-is.
--    pub(crate) fn send_sync_command<M>(&mut self, bar: &Bar0, command: M) -> Result<M::Reply>
--    where
--        M: CommandToGsp,
--        M::Reply: MessageFromGsp,
--        Error: From<M::InitError>,
--        Error: From<<M::Reply as MessageFromGsp>::InitError>,
--    {
--        self.send_command(bar, command)?;
+-    /// Public but hidden since it should only be used from [`dma_read`] and [`dma_write`] macros.
+-    #[doc(hidden)]
+-    pub fn item_from_index(&self, offset: usize) -> Result<*mut T> {
+-        if offset >= self.count {
+-            return Err(EINVAL);
+-        }
+-        // SAFETY:
+-        // - The pointer is valid due to type invariant on `CoherentAllocation`
+-        // and we've just checked that the range and index is within bounds.
+-        // - `offset` can't overflow since it is smaller than `self.count` and we've checked
+-        // that `self.count` won't overflow early in the constructor.
+-        Ok(unsafe { self.cpu_addr.as_ptr().add(offset) })
+-    }
 -
--        loop {
--            match self.receive_msg::<M::Reply>(Delta::from_secs(10)) {
--                Ok(reply) => break Ok(reply),
--                Err(ERANGE) => continue,
--                Err(e) => break Err(e),
+     /// Reads the value of `field` and ensures that its type is [`FromBytes`].
+     ///
+     /// # Safety
+@@ -670,6 +666,9 @@ unsafe impl<T: AsBytes + FromBytes + Send> Send for CoherentAllocation<T> {}
+ 
+ /// Reads a field of an item from an allocated region of structs.
+ ///
++/// The syntax is of form `kernel::dma_read!(dma, proj)` where `dma` is an expression to an
++/// [`CoherentAllocation`] and `proj` is a [projection specification](kernel::project_pointer!).
++///
+ /// # Examples
+ ///
+ /// ```
+@@ -684,36 +683,29 @@ unsafe impl<T: AsBytes + FromBytes + Send> Send for CoherentAllocation<T> {}
+ /// unsafe impl kernel::transmute::AsBytes for MyStruct{};
+ ///
+ /// # fn test(alloc: &kernel::dma::CoherentAllocation<MyStruct>) -> Result {
+-/// let whole = kernel::dma_read!(alloc[2]);
+-/// let field = kernel::dma_read!(alloc[1].field);
++/// let whole = kernel::dma_read!(alloc, [2]?);
++/// let field = kernel::dma_read!(alloc, [1]?.field);
+ /// # Ok::<(), Error>(()) }
+ /// ```
+ #[macro_export]
+ macro_rules! dma_read {
+-    ($dma:expr, $idx: expr, $($field:tt)*) => {{
+-        (|| -> ::core::result::Result<_, $crate::error::Error> {
+-            let item = $crate::dma::CoherentAllocation::item_from_index(&$dma, $idx)?;
+-            // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
+-            // dereferenced. The compiler also further validates the expression on whether `field`
+-            // is a member of `item` when expanded by the macro.
+-            unsafe {
+-                let ptr_field = ::core::ptr::addr_of!((*item) $($field)*);
+-                ::core::result::Result::Ok(
+-                    $crate::dma::CoherentAllocation::field_read(&$dma, ptr_field)
+-                )
+-            }
+-        })()
++    ($dma:expr, $($proj:tt)*) => {{
++        let dma = &$dma;
++        let ptr = $crate::project_pointer!(
++            $crate::dma::CoherentAllocation::as_ptr(dma), $($proj)*
++        );
++        // SAFETY: pointer created by projection is within DMA region.
++        unsafe { $crate::dma::CoherentAllocation::field_read(dma, ptr) }
+     }};
+-    ($dma:ident [ $idx:expr ] $($field:tt)* ) => {
+-        $crate::dma_read!($dma, $idx, $($field)*)
+-    };
+-    ($($dma:ident).* [ $idx:expr ] $($field:tt)* ) => {
+-        $crate::dma_read!($($dma).*, $idx, $($field)*)
+-    };
+ }
+ 
+ /// Writes to a field of an item from an allocated region of structs.
+ ///
++/// The syntax is of form `kernel::dma_write!(dma, proj, val)` where `dma` is an expression to an
++/// [`CoherentAllocation`] and `proj` is a [projection specification](kernel::project_pointer!),
++/// and `val` is the value to be written to the projected location.
++///
++///
+ /// # Examples
+ ///
+ /// ```
+@@ -728,37 +720,31 @@ macro_rules! dma_read {
+ /// unsafe impl kernel::transmute::AsBytes for MyStruct{};
+ ///
+ /// # fn test(alloc: &kernel::dma::CoherentAllocation<MyStruct>) -> Result {
+-/// kernel::dma_write!(alloc[2].member = 0xf);
+-/// kernel::dma_write!(alloc[1] = MyStruct { member: 0xf });
++/// kernel::dma_write!(alloc, [2]?.member, 0xf);
++/// kernel::dma_write!(alloc, [1]?, MyStruct { member: 0xf });
+ /// # Ok::<(), Error>(()) }
+ /// ```
+ #[macro_export]
+ macro_rules! dma_write {
+-    ($dma:ident [ $idx:expr ] $($field:tt)*) => {{
+-        $crate::dma_write!($dma, $idx, $($field)*)
+-    }};
+-    ($($dma:ident).* [ $idx:expr ] $($field:tt)* ) => {{
+-        $crate::dma_write!($($dma).*, $idx, $($field)*)
++    (@parse [$dma:expr] [$($proj:tt)*] [, $val:expr]) => {{
++        let dma = &$dma;
++        let ptr = $crate::project_pointer!(
++            mut $crate::dma::CoherentAllocation::as_mut_ptr(dma), $($proj)*
++        );
++        let val = $val;
++        // SAFETY: pointer created by projection is within DMA region.
++        unsafe { $crate::dma::CoherentAllocation::field_write(dma, ptr, val) }
+     }};
+-    ($dma:expr, $idx: expr, = $val:expr) => {
+-        (|| -> ::core::result::Result<_, $crate::error::Error> {
+-            let item = $crate::dma::CoherentAllocation::item_from_index(&$dma, $idx)?;
+-            // SAFETY: `item_from_index` ensures that `item` is always a valid item.
+-            unsafe { $crate::dma::CoherentAllocation::field_write(&$dma, item, $val) }
+-            ::core::result::Result::Ok(())
+-        })()
++    (@parse [$dma:expr] [$($proj:tt)*] [.$field:tt $($rest:tt)*]) => {
++        $crate::dma_write!(@parse [$dma] [$($proj)* .$field] [$($rest)*])
++    };
++    (@parse [$dma:expr] [$($proj:tt)*] [[$index:expr]? $($rest:tt)*]) => {
++        $crate::dma_write!(@parse [$dma] [$($proj)* [$index]?] [$($rest)*])
++    };
++    (@parse [$dma:expr] [$($proj:tt)*] [[$index:expr] $($rest:tt)*]) => {
++        $crate::dma_write!(@parse [$dma] [$($proj)* [$index]] [$($rest)*])
+     };
+-    ($dma:expr, $idx: expr, $(.$field:ident)* = $val:expr) => {
+-        (|| -> ::core::result::Result<_, $crate::error::Error> {
+-            let item = $crate::dma::CoherentAllocation::item_from_index(&$dma, $idx)?;
+-            // SAFETY: `item_from_index` ensures that `item` is always a valid pointer and can be
+-            // dereferenced. The compiler also further validates the expression on whether `field`
+-            // is a member of `item` when expanded by the macro.
+-            unsafe {
+-                let ptr_field = ::core::ptr::addr_of_mut!((*item) $(.$field)*);
+-                $crate::dma::CoherentAllocation::field_write(&$dma, ptr_field, $val)
+-            }
+-            ::core::result::Result::Ok(())
+-        })()
++    ($dma:expr, $($rest:tt)*) => {
++        $crate::dma_write!(@parse [$dma] [] [$($rest)*])
+     };
+ }
+diff --git a/samples/rust/rust_dma.rs b/samples/rust/rust_dma.rs
+index 9c45851c876e..ce39b5545097 100644
+--- a/samples/rust/rust_dma.rs
++++ b/samples/rust/rust_dma.rs
+@@ -68,7 +68,7 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, E
+                 CoherentAllocation::alloc_coherent(pdev.as_ref(), TEST_VALUES.len(), GFP_KERNEL)?;
+ 
+             for (i, value) in TEST_VALUES.into_iter().enumerate() {
+-                kernel::dma_write!(ca[i] = MyStruct::new(value.0, value.1))?;
++                kernel::dma_write!(ca, [i]?, MyStruct::new(value.0, value.1));
+             }
+ 
+             let size = 4 * page::PAGE_SIZE;
+@@ -85,24 +85,26 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, E
+     }
+ }
+ 
++impl DmaSampleDriver {
++    fn check_dma(&self) -> Result {
++        for (i, value) in TEST_VALUES.into_iter().enumerate() {
++            let val0 = kernel::dma_read!(self.ca, [i]?.h);
++            let val1 = kernel::dma_read!(self.ca, [i]?.b);
++
++            assert_eq!(val0, value.0);
++            assert_eq!(val1, value.1);
++        }
++
++        Ok(())
++    }
++}
++
+ #[pinned_drop]
+ impl PinnedDrop for DmaSampleDriver {
+     fn drop(self: Pin<&mut Self>) {
+         dev_info!(self.pdev, "Unload DMA test driver.\n");
+ 
+-        for (i, value) in TEST_VALUES.into_iter().enumerate() {
+-            let val0 = kernel::dma_read!(self.ca[i].h);
+-            let val1 = kernel::dma_read!(self.ca[i].b);
+-            assert!(val0.is_ok());
+-            assert!(val1.is_ok());
+-
+-            if let Ok(val0) = val0 {
+-                assert_eq!(val0, value.0);
+-            }
+-            if let Ok(val1) = val1 {
+-                assert_eq!(val1, value.1);
 -            }
 -        }
--    }
--
--    /// Sends `command` to the GSP without waiting for a reply.
--    ///
--    /// # Errors
--    ///
--    /// - `ETIMEDOUT` if space does not become available within the timeout.
--    /// - `EIO` if the variable payload requested by the command has not been entirely
--    ///   written to by its [`CommandToGsp::init_variable_payload`] method.
--    ///
--    /// Error codes returned by the command initializers are propagated as-is.
--    pub(crate) fn send_async_command<M>(&mut self, bar: &Bar0, command: M) -> Result
--    where
--        M: CommandToGsp<Reply = NoReply>,
--        Error: From<M::InitError>,
--    {
--        self.send_command(bar, command)
--    }
--
-     /// Wait for a message to become available on the message queue.
-     ///
-     /// This works purely at the transport layer and does not interpret or validate the message
-@@ -695,7 +602,7 @@ pub(crate) fn send_async_command<M>(&mut self, bar: &Bar0, command: M) -> Result
-     ///   message queue.
-     ///
-     /// Error codes returned by the message constructor are propagated as-is.
--    fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
-+    fn wait_for_msg(&self, dev: &device::Device, timeout: Delta) -> Result<GspMessage<'_>> {
-         // Wait for a message to arrive from the GSP.
-         let (slice_1, slice_2) = read_poll_timeout(
-             || Ok(self.gsp_mem.driver_read_area()),
-@@ -712,7 +619,7 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
-         let (header, slice_1) = GspMsgElement::from_bytes_prefix(slice_1).ok_or(EIO)?;
++        assert!(self.check_dma().is_ok());
  
-         dev_dbg!(
--            self.dev,
-+            dev,
-             "GSP RPC: receive: seq# {}, function={:?}, length=0x{:x}\n",
-             header.sequence(),
-             header.function(),
-@@ -747,7 +654,7 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
-         ])) != 0
-         {
-             dev_err!(
--                self.dev,
-+                dev,
-                 "GSP RPC: receive: Call {} - bad checksum\n",
-                 header.sequence()
-             );
-@@ -776,12 +683,12 @@ fn wait_for_msg(&self, timeout: Delta) -> Result<GspMessage<'_>> {
-     /// - `ERANGE` if the message had a recognized but non-matching function code.
-     ///
-     /// Error codes returned by [`MessageFromGsp::read`] are propagated as-is.
--    pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Result<M>
-+    fn receive_msg<M: MessageFromGsp>(&mut self, dev: &device::Device, timeout: Delta) -> Result<M>
-     where
-         // This allows all error types, including `Infallible`, to be used for `M::InitError`.
-         Error: From<M::InitError>,
-     {
--        let message = self.wait_for_msg(timeout)?;
-+        let message = self.wait_for_msg(dev, timeout)?;
-         let function = message.header.function().map_err(|_| EINVAL)?;
- 
-         // Extract the message. Store the result as we want to advance the read pointer even in
-@@ -794,11 +701,7 @@ pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Resul
-                 .map_err(|e| e.into())
-                 .inspect(|_| {
-                     if !sbuffer.is_empty() {
--                        dev_warn!(
--                            &self.dev,
--                            "GSP message {:?} has unprocessed data\n",
--                            function
--                        );
-+                        dev_warn!(dev, "GSP message {:?} has unprocessed data\n", function);
-                     }
-                 })
-         } else {
-@@ -812,9 +715,132 @@ pub(crate) fn receive_msg<M: MessageFromGsp>(&mut self, timeout: Delta) -> Resul
- 
-         result
-     }
-+}
-+
-+/// GSP command queue.
-+///
-+/// Provides the ability to send commands and receive messages from the GSP using a shared memory
-+/// area.
-+#[pin_data]
-+pub(crate) struct Cmdq {
-+    /// Device this command queue belongs to.
-+    dev: ARef<device::Device>,
-+    /// Inner mutex-protected state.
-+    #[pin]
-+    inner: Mutex<CmdqInner>,
-+}
-+
-+impl Cmdq {
-+    /// Offset of the data after the PTEs.
-+    const POST_PTE_OFFSET: usize = core::mem::offset_of!(GspMem, cpuq);
-+
-+    /// Offset of command queue ring buffer.
-+    pub(crate) const CMDQ_OFFSET: usize = core::mem::offset_of!(GspMem, cpuq)
-+        + core::mem::offset_of!(Msgq, msgq)
-+        - Self::POST_PTE_OFFSET;
-+
-+    /// Offset of message queue ring buffer.
-+    pub(crate) const STATQ_OFFSET: usize = core::mem::offset_of!(GspMem, gspq)
-+        + core::mem::offset_of!(Msgq, msgq)
-+        - Self::POST_PTE_OFFSET;
-+
-+    /// Number of page table entries for the GSP shared region.
-+    pub(crate) const NUM_PTES: usize = size_of::<GspMem>() >> GSP_PAGE_SHIFT;
-+
-+    /// Creates a new command queue for `dev`.
-+    pub(crate) fn new(dev: &device::Device<device::Bound>) -> impl PinInit<Self, Error> + '_ {
-+        try_pin_init!(Self {
-+            inner <- new_mutex!(CmdqInner {
-+                gsp_mem: DmaGspMem::new(dev)?,
-+                seq: 0,
-+                }),
-+            dev: dev.into(),
-+        })
-+    }
-+
-+    /// Computes the checksum for the message pointed to by `it`.
-+    ///
-+    /// A message is made of several parts, so `it` is an iterator over byte slices representing
-+    /// these parts.
-+    fn calculate_checksum<T: Iterator<Item = u8>>(it: T) -> u32 {
-+        let sum64 = it
-+            .enumerate()
-+            .map(|(idx, byte)| (((idx % 8) * 8) as u32, byte))
-+            .fold(0, |acc, (rol, byte)| acc ^ u64::from(byte).rotate_left(rol));
-+
-+        ((sum64 >> 32) as u32) ^ (sum64 as u32)
-+    }
-+
-+    /// Notifies the GSP that we have updated the command queue pointers.
-+    fn notify_gsp(bar: &Bar0) {
-+        regs::NV_PGSP_QUEUE_HEAD::default()
-+            .set_address(0)
-+            .write(bar);
-+    }
-+
-+    /// Sends `command` to the GSP and waits for the reply.
-+    ///
-+    /// The mutex is held for the entire send+receive cycle to ensure that no other command can
-+    /// be interleaved. Messages with non-matching function codes are silently consumed until the
-+    /// expected reply arrives.
-+    ///
-+    /// # Errors
-+    ///
-+    /// - `ETIMEDOUT` if space does not become available to send the command, or if the reply is
-+    ///   not received within the timeout.
-+    /// - `EIO` if the variable payload requested by the command has not been entirely
-+    ///   written to by its [`CommandToGsp::init_variable_payload`] method.
-+    ///
-+    /// Error codes returned by the command and reply initializers are propagated as-is.
-+    pub(crate) fn send_sync_command<M>(&self, bar: &Bar0, command: M) -> Result<M::Reply>
-+    where
-+        M: CommandToGsp,
-+        M::Reply: MessageFromGsp,
-+        Error: From<M::InitError>,
-+        Error: From<<M::Reply as MessageFromGsp>::InitError>,
-+    {
-+        let mut inner = self.inner.lock();
-+        inner.send_command(&self.dev, bar, command)?;
-+
-+        loop {
-+            match inner.receive_msg::<M::Reply>(&self.dev, Delta::from_secs(10)) {
-+                Ok(reply) => break Ok(reply),
-+                Err(ERANGE) => continue,
-+                Err(e) => break Err(e),
-+            }
-+        }
-+    }
-+
-+    /// Sends `command` to the GSP without waiting for a reply.
-+    ///
-+    /// # Errors
-+    ///
-+    /// - `ETIMEDOUT` if space does not become available within the timeout.
-+    /// - `EIO` if the variable payload requested by the command has not been entirely
-+    ///   written to by its [`CommandToGsp::init_variable_payload`] method.
-+    ///
-+    /// Error codes returned by the command initializers are propagated as-is.
-+    pub(crate) fn send_async_command<M>(&self, bar: &Bar0, command: M) -> Result
-+    where
-+        M: CommandToGsp<Reply = NoReply>,
-+        Error: From<M::InitError>,
-+    {
-+        self.inner.lock().send_command(&self.dev, bar, command)
-+    }
-+
-+    /// Receive a message from the GSP.
-+    ///
-+    /// See [`CmdqInner::receive_msg`] for details.
-+    pub(crate) fn receive_msg<M: MessageFromGsp>(&self, timeout: Delta) -> Result<M>
-+    where
-+        // This allows all error types, including `Infallible`, to be used for `M::InitError`.
-+        Error: From<M::InitError>,
-+    {
-+        self.inner.lock().receive_msg(&self.dev, timeout)
-+    }
- 
-     /// Returns the DMA handle of the command queue's shared memory region.
-     pub(crate) fn dma_handle(&self) -> DmaAddress {
--        self.gsp_mem.0.dma_handle()
-+        self.inner.lock().gsp_mem.0.dma_handle()
-     }
- }
-diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
-index 47ca31611927..4740cda0b51c 100644
---- a/drivers/gpu/nova-core/gsp/commands.rs
-+++ b/drivers/gpu/nova-core/gsp/commands.rs
-@@ -170,7 +170,7 @@ fn read(
- }
- 
- /// Waits for GSP initialization to complete.
--pub(crate) fn wait_gsp_init_done(cmdq: &mut Cmdq) -> Result {
-+pub(crate) fn wait_gsp_init_done(cmdq: &Cmdq) -> Result {
-     loop {
-         match cmdq.receive_msg::<GspInitDone>(Delta::from_secs(10)) {
-             Ok(_) => break Ok(()),
-@@ -239,7 +239,7 @@ pub(crate) fn gpu_name(&self) -> core::result::Result<&str, GpuNameError> {
- }
- 
- /// Send the [`GetGspInfo`] command and awaits for its reply.
--pub(crate) fn get_gsp_info(cmdq: &mut Cmdq, bar: &Bar0) -> Result<GetGspStaticInfoReply> {
-+pub(crate) fn get_gsp_info(cmdq: &Cmdq, bar: &Bar0) -> Result<GetGspStaticInfoReply> {
-     cmdq.send_sync_command(bar, GetGspStaticInfo)
- }
- 
-diff --git a/drivers/gpu/nova-core/gsp/sequencer.rs b/drivers/gpu/nova-core/gsp/sequencer.rs
-index 0cfbedc47fcf..f99f4fe652ba 100644
---- a/drivers/gpu/nova-core/gsp/sequencer.rs
-+++ b/drivers/gpu/nova-core/gsp/sequencer.rs
-@@ -356,7 +356,7 @@ pub(crate) struct GspSequencerParams<'a> {
- }
- 
- impl<'a> GspSequencer<'a> {
--    pub(crate) fn run(cmdq: &mut Cmdq, params: GspSequencerParams<'a>) -> Result {
-+    pub(crate) fn run(cmdq: &Cmdq, params: GspSequencerParams<'a>) -> Result {
-         let seq_info = loop {
-             match cmdq.receive_msg::<GspSequence>(Delta::from_secs(10)) {
-                 Ok(seq_info) => break seq_info,
-
+         for (i, entry) in self.sgt.iter().enumerate() {
+             dev_info!(
 -- 
-2.53.0
+2.51.2
 
