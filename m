@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C24CFEFB49
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9874CFEFB43
 	for <nouveau@archiver.kernel.org>; Fri, 27 Feb 2026 12:34:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B164410EB2B;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E405210EB31;
 	Fri, 27 Feb 2026 12:34:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="N/+2+Gc0";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ej7FoZ6p";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B797644CB2;
-	Fri, 27 Feb 2026 12:23:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0B28D44CA2;
+	Fri, 27 Feb 2026 12:23:55 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1772195034;
- b=N0P1BUZHsjSbYOBWUypy8UXHai+jwssSPYUEHbHgtV7sHX7KC/BoTFpXImrtGKTfRZ+jD
- b3K9LwXGbcJQZ4PTtxPoBsrSpN/b9x4MubRqunoCR8MIia5N6NJXhiZn3CHLtFdfGXqhs7h
- YqwZ44fGiXQeKjbVO8OqmPwm/MVPUyIOThfKKjy1Pzv1pH9sqrixP6SRoEJ575dH4DijLpB
- WChPyXNej6u/kz6XScN1QZOM78uT4dRAHWXO8Wihx01CwyMT69eMf+eANlgTO+t9uEebxZD
- pxRs2tjc7M1gou++rIo2SWmP1u+lh4J9rm36WaakZsW2bSMnpgwPrde0SY5A==
+ b=jY/XH1ORe5ZNfqiiI2pIiiJBpscVFxomN9SZQA/soK3lznbDUhH8SOTeFOvq1ZBw6NC6b
+ LeYUW5stDyfNCffQ25PfgWapB2Xj9IdLIqXQC0wiUCIQY4pb48OVjmJxCwHvLgnc0nVEvQb
+ BbjZRNsJrVs5UgMpKPBeisJ/VVnxlGwgrGv1ERjVYsDrh2FxTwbZm1FZyHzIVuOQB7UHefH
+ Pt4rh20GZepYX42RcuWdZpLx0Oegd6D7wXc9girjBE/QdEqWpGM7Uul792Ur+4+yh0JmD/x
+ eMfjvpwwAl/KlG/HRMJcFoMU690JzfF7YpLIsXSAO/0KAKykPz5VNVWIqyig==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1772195034; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=5wHaLeiWym0mnWXOKFYtk17jkvO4aDmTzYsMQvU1U1I=;
- b=ntEV+vHoC7q1DsqIoo02ac4fJiSDQs1HSTY7NNU3hiHpOjNEPH1NYM7ZfWXQbzQiAxwD4
- LDosVPdnBAAh+9a4AoaHLeDn41od4c+W7J6NNf6oSCKym3g9UfgFtRrygZdvZbYMJlNrpcF
- ciyYcOB4g6NmTPAg91bZud+yzKfC8B0uhU7mOUlheQ64kOXrOUrBcLR2woePr5GOQqpcaDJ
- mBliKUyYgLYj+cWcQKveTOy83YI1SICpS/qBT0+MVwo9WO4WdXomWovKB3o2lG8fNPUHEO/
- 6DiWyDnuZpZ4D+InaA2vtdaF8g4BUgDFxtSeh5CXPkC/G4pJfz8ROU86uq6g==
+ bh=CwS7GEVEGDH/gsnjPS8r22Ta2ROIR8YDVVe5yXYrYcE=;
+ b=cI+SRhIeds//P7UIxS6cjCocUYqNiDm/FMi7f8w4FMeqM6qmW5qKI17v5eFsosUo1pb95
+ d9qSjyTJkbV5AswKQSrmzk56cvZXwm08Nmerzn+L/EB5XJGKv43s+5PD+iUpyPeZTihPdlx
+ oCk0GhPw9omki0QCIXT1pGgFlIEBlLp8YRi/4qCsyOhFv4pSKhWdH8PbUF85fJiLSuFtGKz
+ KN7N6QvTOufjQCsq1WcpJ5XkEY678+OxJ6cTXpj0P1S4vLP6JpNalpsZIWha64sVOu6ueuU
+ Aka3B0X0Jngakp5LPabBwGRQPd3xiWFJ7ZwYQBplAYZ0Zc0QUfm22LLoaUYg==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,121 +45,122 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1C25E44C5E
+	by kara.freedesktop.org (Postfix) with ESMTPS id 41A5E44C5E
 	for <nouveau@lists.freedesktop.org>; Fri, 27 Feb 2026 12:23:52 +0000 (UTC)
 Received: from CH1PR05CU001.outbound.protection.outlook.com
  (mail-northcentralusazon11010033.outbound.protection.outlook.com
  [52.101.193.33])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 907CC10E5F1;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E583C10EB2C;
 	Fri, 27 Feb 2026 12:34:00 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=p4di6MUecVPQRFey1InMpykh/Q+D0qR/a1PEcLSbjH2/7VOuyOuo0ufGs0teK1ED6GUyNGFPT9XbfsRPnjWC2erPFKlNYA+qAZKVircHoLTaY0QVH2tpHW91cTP2+uIYp6nckNh5g5ZyD0StKdkmVJs9E0jfthID9gjhzxnRViVZSmzUc+FEPHLiJ3htCt1ddO8aB7lJw38HNGw61SOBh8WaqLdcE/FVIZxotzqpNLWtSSeQA9kQtaIqbNCaTdTxvqIy10xx9t/BsXpaG/fusHvxOEH6ym/rIuC1G4y+PuOalk1D2XcuFuKNQj7tYuHXyZfj8sKMKFAXUsDnDxOVEg==
+ b=J62zsUUGiTWcAnIM6ZMpQwfNF6zL/fqSf4W65LY4FwIFbyqHTPNTEXi3w6qsfCT9kLaTUT7uJdFijRm6FUtE96ftr0AcEq+Wl8g1spENBXgrf1E6kIZCdffplnMU99NUY0MrtUScTyufvugG9IDI2g/58VC/N0PRlei4dSYVgNKUXB0PlONopE3rS5qZVtXCtm9cJ2CbG2ghtssLNAnaKmUKhqLeDTQmWLKjVuBt4GAXAOLTFsqw1twSdjiZryOQus4/XhffwCdOQ9i7cMHeMWlE+8elML+PgqwxuJ5EZeKhQUDttlbHt7Gf/EBntTerrSOOulWaugHY5PocA1Golg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5wHaLeiWym0mnWXOKFYtk17jkvO4aDmTzYsMQvU1U1I=;
- b=DJ8l4HEVwEmfkPQjrRfh5Vj9UGq6ZSzv37DrhJVwL6AIjzJyoSzrwHVSNR4rQqxBsKg7PsUYxAGQjvPfzb3o1p9oKTZ6RbGkbAt4Htnrn+NnTe8sQqXRqKVz/Dv4t8YtSmHhHPhjPc1L3/49IpsJKdI+M0lepf4KnQBeD20SBfIs6MRpwsCw/21aXZFfV/om9XMLTTnMa6H8ceEnpUoX+DKPpaVxtACfqcXkTTag4CBuK2C33wuutju9GkYT5v8lsgofjqsjvXWXYayXUR+w8voud8pUiqteuKODucD28yPECEY/XXiDiQIu7NK0SlT0JNRJ130w4sePBf2oJyhx4A==
+ bh=CwS7GEVEGDH/gsnjPS8r22Ta2ROIR8YDVVe5yXYrYcE=;
+ b=TfJVwutyxO5sL84fuhPneilMp6FYvZMuifgFMkLGRVUsT74fzksnc/U3ytPfP4xx1FeTEwLGwvQdm4p/DcTFHHAAC+N1GAOFLPsgJS1u+eG2vUVWX1LzDCBJ6Zf+lFqakXYK42sPxoXKiuNb3RLJmJvnyhuFvxTLdS0YJryi4SU3BAF4+vzjm3VlGT9DJugwJicHcI7Klwyqv6VLrOb/wMQa/oiVkaq7v/gfe64vBkON55drbeaY51GYo8ab9FcRATS5LzpOsgZJYgJh5pJKcUiGmh3wrJOy3VeyXHAN+YzkkxGX2mLlU0WuNZiBXGc71uc3fGK/8kT2qzVbFAddYg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5wHaLeiWym0mnWXOKFYtk17jkvO4aDmTzYsMQvU1U1I=;
- b=N/+2+Gc0TUBePjra8Z6cC67X6/Xqm/Dl8Y97kP5zm20r/NmtKZgdc2gKrbXkUHa4DiPbuzuIJgqNayZ/s6ed75OiF1NUunPoQ6G7BtiEFxl7I9OvU+P5wXeoU1ssb9wi5veaMrhk/gyB9FjVsDv0Q0foiLnea0rwUfxRLkPPob2C+ITReikq95aJ7Xo+8pFeKE8ncjdNrbYVUvTpUcv7wMA0p7r9zsDv1MWMgyj4GDoOTvb3wtVt9cLUZc6GCgMyOhl8bHGowHdluhmhYTca3TvS5Efe+LW3MQCMOZ7i7hap8Sfgqip7irRMyTUAezlCpQAqserIMIGnpWwT81Recg==
+ bh=CwS7GEVEGDH/gsnjPS8r22Ta2ROIR8YDVVe5yXYrYcE=;
+ b=ej7FoZ6p3zyYRpj04RskQaNKT16HHOUg/a/W/l5K+L9AAuSi6mEA9zrw+umy5G6GPd9cSXj/ytjeWawmfcdlR6oIcJGz5j3bV7vdCeKjWjgORTtEqHLAgbq+Cj5dYNeNa6Mrq6JXbv8hgjycwuEvIw8R72OPOMURRkBciVL+GtEJGSW9WIMV/h6pCQHT53OBQxfPhBmqRIH9KoUKyEgna1qvuApWtHqDbj1Hvf6Fo0LbaCCLPZdEbX1z48njgL4zzYplGfLxyHvnTS+59T0hpRm96s8mcAlSBwHZulo/CCRyj0kj3CXjQhPFzSR7HcaUAHi/a2YxcgiS1kwk+2AAfg==
 Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
  by MN2PR12MB4287.namprd12.prod.outlook.com (2603:10b6:208:1dd::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Fri, 27 Feb
- 2026 12:32:47 +0000
+ 2026 12:32:55 +0000
 Received: from BL0PR12MB2353.namprd12.prod.outlook.com
  ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
  ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9654.007; Fri, 27 Feb 2026
- 12:32:47 +0000
+ 12:32:55 +0000
 From: Eliot Courtney <ecourtney@nvidia.com>
-Date: Fri, 27 Feb 2026 21:32:06 +0900
-Subject: [PATCH 1/9] gpu: nova-core: gsp: add NV_STATUS error code bindings
+Date: Fri, 27 Feb 2026 21:32:08 +0900
+Subject: [PATCH 3/9] gpu: nova-core: gsp: expose GSP-RM internal client and
+ subdevice handles
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260227-rmcontrol-v1-1-86648e4869f9@nvidia.com>
+Message-Id: <20260227-rmcontrol-v1-3-86648e4869f9@nvidia.com>
 References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
 In-Reply-To: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
 To: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
  Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
 X-Mailer: b4 0.14.3
-X-ClientProxiedBy: TY4P286CA0047.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:405:36e::16) To BL0PR12MB2353.namprd12.prod.outlook.com
+X-ClientProxiedBy: TY4P286CA0127.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:37f::15) To BL0PR12MB2353.namprd12.prod.outlook.com
  (2603:10b6:207:4c::31)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|MN2PR12MB4287:EE_
-X-MS-Office365-Filtering-Correlation-Id: 063f9af7-6f50-4d80-e7f6-08de75fc5048
+X-MS-Office365-Filtering-Correlation-Id: a3df107d-8ba6-4c86-d28f-08de75fc5521
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|10070799003;
 X-Microsoft-Antispam-Message-Info: 
-	T4sYECvPdA1SmszcdPIJSeVV3h8OCRsOt+fB2uJeO3VEYK739D2WDAateULjiw8yVGBWvMUzngzjgpZJBOSumvIrKX8GF88fxuhwl/TjitLDwyFtu5g1W7op4FFRLUKqXNENGZxJFYT7XRmbPjZI+tkflPF0l+CEaZkQCeOW23RgIxltYSreJ87nHyzqftkOQglGCMa2aGzXgtmolKTeXMO4Uv0Ki5q23OVXnZmCdFacRCPdseDmcCGXnDvkIqBDoNfvPjVZEsA6QjgxYjNnvUOADCaZmU7clIogYSWB34VlzT+zjPUqRLuTbUN3ePTfNB3wwklnKLOGdo8xF1qlIaFIjkOHEmzCHRR5p1Vlsj3a4smoyzIID0PLj4SRxrPMWWpYTs+b1tg0LLWEweJEAp9Maf0SLMwQ1OrPsrEewBenhsX9Qwx7wtwWVZiibRx6h+UjAYfbW2cok4FGBAq809BpCWEGjMfk2QL0S95rM3jgsWDOxmDyiPO1iSlEgXDGkluCMJR98n1fXnFrRItJIqmXyD71HXzqk0+jo3W6LWNAo3TAWhWYu8Nm2ZfR9lkJ+d14hURrq3mVfT+3cvwUTrWzd6XT177VZifFdyS6QL0x8x0B354vA1j5SGwiiceSrKEtlafvjGMFZ7USyWQIXVk04ALqHEAg5tnVh54vtPkH4rzy/QoEPbh/zblHq3MJX9MHQrAiJhb5k5AYr7WtSdiiUJq5yQC44/4tGurO+jg=
+	ne80Lp+/1ODiz9/xzQFpW+2DdDM54Yh/nYHfUHcPeRdPV9AChOem6yPu9mCgNcH8TRLo1khd/N9WHggEmvBCVLOp/yIhLfq7wvH1DRnVALTPbmWk0k3K33KfQzGoVJMpal1IxsZHycAyiS6CoOkhnVgTQ1+XDdE62nX051CTshN4TBXBeQQCpTxra99gNjbFUI5AAOQ7Nam/SgiNVq7N47+iUkrvznpspXEYBR/4ea5ID2VT3Qxfq96GUhVkrLl6sqgRw/cFwlUNtpfUpapu4V1BVEoWk+w3xWZD72jncDJ4WjJM5MZHRY73GvNn8+Whx3AEahfSDzvQRsplAkcEcxza7Fx9zIO4oxicWXVQPdc3l3rq4jWyLu1XIuhmNqaLmQPjfMSJtBIRqh2j4VkjJ62nfj8Kjjudz8TZUlN3scxXH3AT2FOVK+92uZ2nFvh0mvmg2qad512bmudl9mR26Bz4IWzQOX2BOduIDgpWe+LAt03CzfWnVMamB+M34kkUA+rs5MiWV8EnMz3xQZlyU88HlnPmnEzbSJ0tJQgiVSw4XW489su8ssW9Oafo35GoXP9pEBj2p2uWEhl0htcI24Z9SOrLFQssdXgtX8SK6oRerNZiv9fEqQRaaUcRjvztFO2MBL/IjB5bqHIXK6SJ+TGZhji7YllVafnHhZJCOaWP57Hvp29iJJ6VMLyvlIf+H6MHPhebRNdQLGN4nUOE8jDFo0jKOH8LeaWeiwnkkho=
 X-Forefront-Antispam-Report: 
 	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(10070799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?blFBQWRhbTVlVGlpbXZsVmJmNFBGWEkwSUpXRit5MXVzVGhiSk83cU9mcnl1?=
- =?utf-8?B?dFkrZGRyU0VhOVVWRmlla3F6Y3hyemVSUU9wZDZqblpxYTZJaUpXWWU1MWt3?=
- =?utf-8?B?V0w1YWgrY2J5OEVyWldQWnpCU3BVaFBVcVRmTzVCSEVnVUFIZTc2UWtFMStp?=
- =?utf-8?B?MHozVGFoQUlPTkh5UVpFcGdibzhxZjhwa2NidS9vbUcvRStaRzRLUXN6dUt0?=
- =?utf-8?B?V0Iyc2ZuM1dIVXhQZmpGQ0E1UFo5b1FSc0dMVE5NL2NFRUxSdkFsYUppQXor?=
- =?utf-8?B?dUJtc2YxNC9rQzRaa0E5QUU3dE1XMThnTGNuTm5LRFlhVGRkRlN1R24veVpX?=
- =?utf-8?B?ejVhSVg3cVZRR3VyZGpwTGp0dFVzSnl0eFlYSUx3M2E3bVVvRlpwV29kNmk5?=
- =?utf-8?B?c0JUbUg1Z0o4bVp3R3ZYN2ZjdW1rckc3UW9IL25uM0dYbXFWNnlaVXVSaFk4?=
- =?utf-8?B?K2FpS3hOL2kvZWgzUXlGUTlGWGJsTFkySytjMk9TK2JPSGJtSitmakNvV3Q0?=
- =?utf-8?B?cGFZR0VwU241d3JBUUdoUTZhbXNqT1E4WWNIcWV1d0xyTVk4UEtDWmRQZEVJ?=
- =?utf-8?B?TWMzd3I2Y0JmNlVldWFZM25JTm9oTGNEaDhlVzlScGwvZTZQS0VVbVpXZDht?=
- =?utf-8?B?NHJMVEdiRFVERjJEazNPaVhyV2N5RmNlUWQ0MlVhS2FkWFJqcHU5V2JiYnhr?=
- =?utf-8?B?eWhoOHFtbU5NdTRlZitKRzJkRXZxMlFRdm9BaDl2ZjRoUXg2bzNzVE5FMDFQ?=
- =?utf-8?B?WW5SSWlZOVYyc2dRR1JLR1dSWHRERjdPTzZFQ0IxVGpmVHAzVWdnR0tuTGZv?=
- =?utf-8?B?MkFTNFNhbTgwcXZsSWRBU1NBMFdMRUFWZXg2Y2hxMjBHR3dqV0I2Zm4zNnMv?=
- =?utf-8?B?L2FJMGl1YnpudWkwaWJJSGY2MUVJUFptWCtONXFHbTdpRGxnY0FWK01YUHFP?=
- =?utf-8?B?bDlhTXRnUFMxVTBYRTlSRzJMbW5GS2NoMmtIZTEyZ256MUtoNi9jQmd2NjZJ?=
- =?utf-8?B?MW15YXd2dW94MG5FaTcxd3VhbzNjV1BDS3h4WGtYQ1IyQ1YrUEF2VlFLcDZP?=
- =?utf-8?B?RHNUVU9zZElIS3A3aXpOL2dOVis5aDh6dUxmYUdrcmJDczVpUWpEckMvZWVs?=
- =?utf-8?B?bzhaVHRDbitPT2NWWGZFRkcrSWs5OUFMTUlxVllkalRrY0NDUkRsNXpFQzE0?=
- =?utf-8?B?Ujh2Q0V6WHhpUUJiRDhCUWdFSkN4Ulg3ajBmMVJEcmZhTGhlRFlEM3VadzJa?=
- =?utf-8?B?UkJsQm9wcHRWbjMvSHYzLyt3d1cvOGsxMEI3NHZwYjJrZ2R5TnA3S0I5QXF3?=
- =?utf-8?B?YmUwYWRkK2JrcjRNTWREeW9vUTU2YTRWVVVzMWtRQlBFL1lINmZSSHVQaWps?=
- =?utf-8?B?UlJhbXV0Qll6R3orck1ZNHY0SEZqdmcyTTNOUnloeDFwd1c3d3NFZHRwbERZ?=
- =?utf-8?B?M0RmNlZHRGNYMVhwNFE2RFlWb3pIeFd2SjNCbEJxOW5sbk14R245SXNud3J0?=
- =?utf-8?B?bUQ2ZWs3N0o1OFZLSkdBWFBxSlpOdnlRb0U4VnRCQ1BJRUVnbmRMTXFwOVdX?=
- =?utf-8?B?N0puWFZTY3RoUnZieHBuMmdCOXVrRTRxL0JPdEhldVQzTGpXR01sK2FRMEY0?=
- =?utf-8?B?ckpIaU5xNGRHc3lIdDhaa05RYUEySkJpU3N5QzBiWG92dTJYZW02Yzh3eEhK?=
- =?utf-8?B?QzFuUGJzaXp1clppaVZZblFCQ2dLNTROZW43b01tZjV6TTRmbVh6U01OVHNr?=
- =?utf-8?B?ZzNZMFZEa245ZE9PcnRuT3BLd1BZdTUzZnN0SmpweXUrTktZeHRicVBZbWQv?=
- =?utf-8?B?RktHTEJ3a0hkOFpKWTF3bmlRbk1GdUkvV08veU9rNG9lZHlCTDJ1QWdpbjRu?=
- =?utf-8?B?T1pHV0JNUGZSQ1FrTkFkTzdVMVRKcER2U2p0UmlxMEpIZUI1emtvWVg2b0tk?=
- =?utf-8?B?cnRxdFlSZS8vM3VwVlpPODBFcDRpMWF4WUEzSXBaVzU2SEpIdlFNa00yZThY?=
- =?utf-8?B?QkhhT0I2SmpySWJZS2I4bVFHRjlNMTErTzd2bkNRUE5UY3lVKzZ1WU9CY1p3?=
- =?utf-8?B?N3FXYnpYemdaaUY2cFFmamRXZVU3Zk94NERmeEplbmJjVHI5bzI4a1duMk9C?=
- =?utf-8?B?aVdhSTFaalFvZEJMSk9pckI2N2QwZGQ0OUZKWnBJb2lKR3MwL2ExWFp5UFgy?=
- =?utf-8?B?UmJSOTFpUm9CL3dwMlhPaFU2MDRRMjc1M3lOYjhtRURUTSt5NW9yZ0xEZUdO?=
- =?utf-8?B?NFM0WkVvQW4rcGx2MnRQSjNZSGRCWXhEZFFsbUR6Q3BmVEV3MGJaVlcvcllM?=
- =?utf-8?B?VVRQNU1VTXoxdGx2UVMrRlRZQkNDSFplNnZHVWlnRlRBVFhhc3UvTnhJY2hS?=
- =?utf-8?Q?ejcAPVs+S2uJYnmGbBbi6JW5W87KYKvQrjgPc4Vk5Y1g2?=
-X-MS-Exchange-AntiSpam-MessageData-1: +ZyywTj7qmtuRA==
+	=?utf-8?B?ek9TbnRTN0V5SzZudUhNeTR1bnZDejRUcGpxSVoyRExsbDVsT28xU1NyUFgr?=
+ =?utf-8?B?dWxlTTMrNTJKU2xvRjZ6TEZlY0ZsQVYycmpNcTJwK0x0b1NoMVpIeFJPd0FV?=
+ =?utf-8?B?bTJlN0t0L0xNRUkrdUdGN2U0d2dwRnhHcUVXTVV2djAzWkg0SHFGb0ZnY09K?=
+ =?utf-8?B?cVlRZEN6dkh4Znh4TUJBNjNNOFRaZmt6Wk5yVytEa1NYa3dDQ1J6eTJaVTRw?=
+ =?utf-8?B?YmhPYnNpQ2FSRGZFdDFzR0M2NnlaVkU1bndHeCtCSTYyenpTRGJXNTlNU25R?=
+ =?utf-8?B?c05zeGdwcWpJc2U5Q3RjRUxWc2FVUkdJRU5vYnluS3lRRFZYVGVVTXpub0ls?=
+ =?utf-8?B?alVnNjhQQlNQSVJoelVuanFFZXhnL1QwemlKbEM2Vksvc3FSclUrN2t1dzNS?=
+ =?utf-8?B?bHFoSSthZmtWUS9FK3RCM3pwekdCZFVZTEV5U1BFRDBVczZxT0VpUmNPbWF2?=
+ =?utf-8?B?cnE3ampwYlc3U1M2OUl6OUpBRTNEV3g1MzdKUmI2aXJENkdYelRrVGRkd3ZR?=
+ =?utf-8?B?eDJqNm5Qck5IeVFYc045eXkzRDAwNXZ3TnZJYks3YzRGM3hWOHZFR3pzYURZ?=
+ =?utf-8?B?KzRrSU5ucjc5UHlVdnRHU0FiMnJJemM2ZXIwdTFrc0lhZkxCUzdHcEVXbHpp?=
+ =?utf-8?B?Zm90cHhtbWdOVHZmTkUxWDE0S1A1dHo1Wmx1RHAzWXJENnhuKzF6OGtodWZ6?=
+ =?utf-8?B?MVhkWTZlTXRuOUtGMmlVTnRLdEExRmRvUHJBaXZNSTdQbUdkbEt6Ulc0OW9I?=
+ =?utf-8?B?b3laZXFic2VaS0ZkMGN0QmRpUjU3NVR0ZmdrVjN4TENkbTB0M1FGaDk4c2Ju?=
+ =?utf-8?B?eHZRNERWdkJ4OEZJU2dnaWZLQ3pyOGFLSGZ6ZEJnSUhlLzk4dDFJTmhXZGx5?=
+ =?utf-8?B?TFdHN3hWMDBRTnF3UUJIcjVWcGJneWxKQXgvV2RtUGtBM2pxSjlKSmxRM1hE?=
+ =?utf-8?B?SWZhYWl5cVF2L0EvRGh6SVN0dFNxNjNKWkNVUHE1OVZoREJqYUFMZTB4TUU4?=
+ =?utf-8?B?MTI0MlIySFNLWUkyZlN0U0dRQjEvR2hVN2QwY2RvajhHL3AxR29seFk0NGov?=
+ =?utf-8?B?SEdhbk8xZHBPODV0Vmx2SDZ5OTdvKzVxU1R0YzVjTUw1YUlXdktQV3g4SnR1?=
+ =?utf-8?B?OGMzNUJDaUYzUGRZUlVNWWY0dVkzQTFxSUZPbnpIamhRTXlIWG9yREVGczdL?=
+ =?utf-8?B?c1JPd0s3SzUvb3NlampaVjNRYUU3Y01oVjRyMkRsQVA5bkUrZ2xmc0hWd3Y1?=
+ =?utf-8?B?LzNGOVhXZ0F3cmp1MHhCN3lkd29LekF2QjlNOGVlQk5uMUpwQ3FGWEQ2NURn?=
+ =?utf-8?B?WDNMeUttUW5pME1KRlUrM3NoVlBab1VxOWZ1QjNLVzB3VFVUbkxSdTdhR2pW?=
+ =?utf-8?B?R25rc3p6bmJoTnV2ekFUV0kwSkZ6VXhxMENBVk9RSm1BQ3ovNFRYY0FPY3ZD?=
+ =?utf-8?B?M0J6WkV1aXVXWDJDWVlXVnh3a1gyRkxRKzBzV25Qc3pwdXpsZnI1eFNIcnV0?=
+ =?utf-8?B?Vk9YUWdCZEl3U29hdGE5bE4zcWd5U1pOZ1NnKzZPWm1LTmxKLzlDd1JQWmpT?=
+ =?utf-8?B?ZXVkK1B5bnBpMVhRSllpV1ZXRC9UaFdvN2Q1MkZ1UmFIckRWamJXR292blVD?=
+ =?utf-8?B?VjFMZjlwZnUyVDR5amZnaHVrOTBnck0xeWdod3B3cDFWOUJPZmZrWXZHOWV6?=
+ =?utf-8?B?TlNxTS8zRW5kRXJoa2QxSVFYUlVrWk5UUm8wVGZwa3MyYU9FZkI2K1Fmdm1P?=
+ =?utf-8?B?SGFNdEhUb291SE5HRGozOGZ0UWxUenpTcVZ1Zlp4cUhVQnFESnFGWE5PTnF5?=
+ =?utf-8?B?RDAvd3J5a01uM1J1blZZZU9xS2FENlZiaFl0ZFFsSzZTSnk5YS9ETTdFTi9O?=
+ =?utf-8?B?WG9NUUNpUEx5bW15a0xFKzhSU2Mwa0o0NEl5RGkyTUZPUEV4RUNhNFN1ZDJ2?=
+ =?utf-8?B?NzJSYTN5ZDk2em5oSWt2VE9XcE5ldG85MWpibzhLdFB3Znc5SUtFSGxLYWpK?=
+ =?utf-8?B?K2VLNm1vSDdMUCtIaE5LM3ZrbzJmaGZncHhpR2RDaTJ0bS9uSWM3MllDbndJ?=
+ =?utf-8?B?NEZNZUYwR1paem1xUUdneWxPL2xJZ25sMzlpU2owTFhxdlVMYjQ5R2hxQzhj?=
+ =?utf-8?B?RmNwSjlUaTBsaFBZVW5jVUlZclBvRU1sMlpocXRFdkRjNjNDOFE5TXN4azJG?=
+ =?utf-8?B?ODVaV0ZQcTRobmZFb08zSnRuTjIrSjdXMFh5OTRSeEgzS3VqMXZiTlFTT3lB?=
+ =?utf-8?B?SjYzUC95OGgvWHVrNDFzZTJ5K2FNcTAxTUtkS3EvQ21BNmZnNXR5UGhvb2Zk?=
+ =?utf-8?B?VHMwRE9tVWRwV0N0ZmtJSktBRlRobXJMbmxrZWN0M010RlhxQkhGc1h2R0dD?=
+ =?utf-8?Q?X6ffqCdGsGi5a3JyAelbSVEbyj9MzXvtoy3T9pLBsjzpM?=
+X-MS-Exchange-AntiSpam-MessageData-1: EAkeIGifkwYsUg==
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 063f9af7-6f50-4d80-e7f6-08de75fc5048
+ a3df107d-8ba6-4c86-d28f-08de75fc5521
 X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 12:32:47.3218
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 12:32:55.4543
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- FUSE5SEqT4p7whcI2Hvw65OM+HKQ7XMWHHZU9E4ZVXygG8dDGEvAlBO8rdEwnRYJ8dXtMeCK/O+RvxYT0g8A5g==
+ uuaGY9kc/3P6R58ZKfw8AboG3Ka84kvw11Hq6MhhbJ9pWTZf/ypy+gxPVPCPl/GePCEXNzLEForv2R27eBz4SQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4287
-Message-ID-Hash: EYSNECVC7YTLW2HLKVPP2YZ4JMK263K4
-X-Message-ID-Hash: EYSNECVC7YTLW2HLKVPP2YZ4JMK263K4
+Message-ID-Hash: 5VGBQDB72S4CKX3LKLJNXYM7DP5NFLJQ
+X-Message-ID-Hash: 5VGBQDB72S4CKX3LKLJNXYM7DP5NFLJQ
 X-MailFrom: ecourtney@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -171,9 +172,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EYSNECVC7YTLW2HLKVPP2YZ4JMK263K4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5VGBQDB72S4CKX3LKLJNXYM7DP5NFLJQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260227-rmcontrol-v1-1-86648e4869f9@nvidia.com/>
+ <https://lore.freedesktop.org/20260227-rmcontrol-v1-3-86648e4869f9@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -183,169 +184,77 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add bindgen generated constants for NV_STATUS. This is used for RM
-control messages.
+Expose the `hInternalClient` and `hInternalSubdevice` handles. These are
+needed for RM control calls.
 
 Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
 ---
- drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs | 144 ++++++++++++++++++++++
- 1 file changed, 144 insertions(+)
+ drivers/gpu/nova-core/gsp/commands.rs    | 16 ++++++++++++++++
+ drivers/gpu/nova-core/gsp/fw/commands.rs | 10 ++++++++++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs b/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-index 334e8be5fde8..dd37a7fd58c6 100644
---- a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-+++ b/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-@@ -379,6 +379,150 @@ pub struct NV2080_CTRL_CMD_FB_GET_FB_REGION_INFO_PARAMS {
-     pub __bindgen_padding_0: [u8; 4usize],
-     pub fbRegion: [NV2080_CTRL_CMD_FB_GET_FB_REGION_FB_REGION_INFO; 16usize],
+diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
+index 4740cda0b51c..2cadfcaf9a8a 100644
+--- a/drivers/gpu/nova-core/gsp/commands.rs
++++ b/drivers/gpu/nova-core/gsp/commands.rs
+@@ -197,6 +197,8 @@ fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+ /// The reply from the GSP to the [`GetGspInfo`] command.
+ pub(crate) struct GetGspStaticInfoReply {
+     gpu_name: [u8; 64],
++    h_client: u32,
++    h_subdevice: u32,
  }
-+pub const NV_OK: _bindgen_ty_4 = 0;
-+pub const NV_ERR_GENERIC: _bindgen_ty_4 = 65535;
-+pub const NV_ERR_BROKEN_FB: _bindgen_ty_4 = 1;
-+pub const NV_ERR_BUFFER_TOO_SMALL: _bindgen_ty_4 = 2;
-+pub const NV_ERR_BUSY_RETRY: _bindgen_ty_4 = 3;
-+pub const NV_ERR_CALLBACK_NOT_SCHEDULED: _bindgen_ty_4 = 4;
-+pub const NV_ERR_CARD_NOT_PRESENT: _bindgen_ty_4 = 5;
-+pub const NV_ERR_CYCLE_DETECTED: _bindgen_ty_4 = 6;
-+pub const NV_ERR_DMA_IN_USE: _bindgen_ty_4 = 7;
-+pub const NV_ERR_DMA_MEM_NOT_LOCKED: _bindgen_ty_4 = 8;
-+pub const NV_ERR_DMA_MEM_NOT_UNLOCKED: _bindgen_ty_4 = 9;
-+pub const NV_ERR_DUAL_LINK_INUSE: _bindgen_ty_4 = 10;
-+pub const NV_ERR_ECC_ERROR: _bindgen_ty_4 = 11;
-+pub const NV_ERR_FIFO_BAD_ACCESS: _bindgen_ty_4 = 12;
-+pub const NV_ERR_FREQ_NOT_SUPPORTED: _bindgen_ty_4 = 13;
-+pub const NV_ERR_GPU_DMA_NOT_INITIALIZED: _bindgen_ty_4 = 14;
-+pub const NV_ERR_GPU_IS_LOST: _bindgen_ty_4 = 15;
-+pub const NV_ERR_GPU_IN_FULLCHIP_RESET: _bindgen_ty_4 = 16;
-+pub const NV_ERR_GPU_NOT_FULL_POWER: _bindgen_ty_4 = 17;
-+pub const NV_ERR_GPU_UUID_NOT_FOUND: _bindgen_ty_4 = 18;
-+pub const NV_ERR_HOT_SWITCH: _bindgen_ty_4 = 19;
-+pub const NV_ERR_I2C_ERROR: _bindgen_ty_4 = 20;
-+pub const NV_ERR_I2C_SPEED_TOO_HIGH: _bindgen_ty_4 = 21;
-+pub const NV_ERR_ILLEGAL_ACTION: _bindgen_ty_4 = 22;
-+pub const NV_ERR_IN_USE: _bindgen_ty_4 = 23;
-+pub const NV_ERR_INFLATE_COMPRESSED_DATA_FAILED: _bindgen_ty_4 = 24;
-+pub const NV_ERR_INSERT_DUPLICATE_NAME: _bindgen_ty_4 = 25;
-+pub const NV_ERR_INSUFFICIENT_RESOURCES: _bindgen_ty_4 = 26;
-+pub const NV_ERR_INSUFFICIENT_PERMISSIONS: _bindgen_ty_4 = 27;
-+pub const NV_ERR_INSUFFICIENT_POWER: _bindgen_ty_4 = 28;
-+pub const NV_ERR_INVALID_ACCESS_TYPE: _bindgen_ty_4 = 29;
-+pub const NV_ERR_INVALID_ADDRESS: _bindgen_ty_4 = 30;
-+pub const NV_ERR_INVALID_ARGUMENT: _bindgen_ty_4 = 31;
-+pub const NV_ERR_INVALID_BASE: _bindgen_ty_4 = 32;
-+pub const NV_ERR_INVALID_CHANNEL: _bindgen_ty_4 = 33;
-+pub const NV_ERR_INVALID_CLASS: _bindgen_ty_4 = 34;
-+pub const NV_ERR_INVALID_CLIENT: _bindgen_ty_4 = 35;
-+pub const NV_ERR_INVALID_COMMAND: _bindgen_ty_4 = 36;
-+pub const NV_ERR_INVALID_DATA: _bindgen_ty_4 = 37;
-+pub const NV_ERR_INVALID_DEVICE: _bindgen_ty_4 = 38;
-+pub const NV_ERR_INVALID_DMA_SPECIFIER: _bindgen_ty_4 = 39;
-+pub const NV_ERR_INVALID_EVENT: _bindgen_ty_4 = 40;
-+pub const NV_ERR_INVALID_FLAGS: _bindgen_ty_4 = 41;
-+pub const NV_ERR_INVALID_FUNCTION: _bindgen_ty_4 = 42;
-+pub const NV_ERR_INVALID_HEAP: _bindgen_ty_4 = 43;
-+pub const NV_ERR_INVALID_INDEX: _bindgen_ty_4 = 44;
-+pub const NV_ERR_INVALID_IRQ_LEVEL: _bindgen_ty_4 = 45;
-+pub const NV_ERR_INVALID_LIMIT: _bindgen_ty_4 = 46;
-+pub const NV_ERR_INVALID_LOCK_STATE: _bindgen_ty_4 = 47;
-+pub const NV_ERR_INVALID_METHOD: _bindgen_ty_4 = 48;
-+pub const NV_ERR_INVALID_OBJECT: _bindgen_ty_4 = 49;
-+pub const NV_ERR_INVALID_OBJECT_BUFFER: _bindgen_ty_4 = 50;
-+pub const NV_ERR_INVALID_OBJECT_HANDLE: _bindgen_ty_4 = 51;
-+pub const NV_ERR_INVALID_OBJECT_NEW: _bindgen_ty_4 = 52;
-+pub const NV_ERR_INVALID_OBJECT_OLD: _bindgen_ty_4 = 53;
-+pub const NV_ERR_INVALID_OBJECT_PARENT: _bindgen_ty_4 = 54;
-+pub const NV_ERR_INVALID_OFFSET: _bindgen_ty_4 = 55;
-+pub const NV_ERR_INVALID_OPERATION: _bindgen_ty_4 = 56;
-+pub const NV_ERR_INVALID_OWNER: _bindgen_ty_4 = 57;
-+pub const NV_ERR_INVALID_PARAM_STRUCT: _bindgen_ty_4 = 58;
-+pub const NV_ERR_INVALID_PARAMETER: _bindgen_ty_4 = 59;
-+pub const NV_ERR_INVALID_PATH: _bindgen_ty_4 = 60;
-+pub const NV_ERR_INVALID_POINTER: _bindgen_ty_4 = 61;
-+pub const NV_ERR_INVALID_REGISTRY_KEY: _bindgen_ty_4 = 62;
-+pub const NV_ERR_INVALID_REQUEST: _bindgen_ty_4 = 63;
-+pub const NV_ERR_INVALID_STATE: _bindgen_ty_4 = 64;
-+pub const NV_ERR_INVALID_STRING_LENGTH: _bindgen_ty_4 = 65;
-+pub const NV_ERR_INVALID_READ: _bindgen_ty_4 = 66;
-+pub const NV_ERR_INVALID_WRITE: _bindgen_ty_4 = 67;
-+pub const NV_ERR_INVALID_XLATE: _bindgen_ty_4 = 68;
-+pub const NV_ERR_IRQ_NOT_FIRING: _bindgen_ty_4 = 69;
-+pub const NV_ERR_IRQ_EDGE_TRIGGERED: _bindgen_ty_4 = 70;
-+pub const NV_ERR_MEMORY_TRAINING_FAILED: _bindgen_ty_4 = 71;
-+pub const NV_ERR_MISMATCHED_SLAVE: _bindgen_ty_4 = 72;
-+pub const NV_ERR_MISMATCHED_TARGET: _bindgen_ty_4 = 73;
-+pub const NV_ERR_MISSING_TABLE_ENTRY: _bindgen_ty_4 = 74;
-+pub const NV_ERR_MODULE_LOAD_FAILED: _bindgen_ty_4 = 75;
-+pub const NV_ERR_MORE_DATA_AVAILABLE: _bindgen_ty_4 = 76;
-+pub const NV_ERR_MORE_PROCESSING_REQUIRED: _bindgen_ty_4 = 77;
-+pub const NV_ERR_MULTIPLE_MEMORY_TYPES: _bindgen_ty_4 = 78;
-+pub const NV_ERR_NO_FREE_FIFOS: _bindgen_ty_4 = 79;
-+pub const NV_ERR_NO_INTR_PENDING: _bindgen_ty_4 = 80;
-+pub const NV_ERR_NO_MEMORY: _bindgen_ty_4 = 81;
-+pub const NV_ERR_NO_SUCH_DOMAIN: _bindgen_ty_4 = 82;
-+pub const NV_ERR_NO_VALID_PATH: _bindgen_ty_4 = 83;
-+pub const NV_ERR_NOT_COMPATIBLE: _bindgen_ty_4 = 84;
-+pub const NV_ERR_NOT_READY: _bindgen_ty_4 = 85;
-+pub const NV_ERR_NOT_SUPPORTED: _bindgen_ty_4 = 86;
-+pub const NV_ERR_OBJECT_NOT_FOUND: _bindgen_ty_4 = 87;
-+pub const NV_ERR_OBJECT_TYPE_MISMATCH: _bindgen_ty_4 = 88;
-+pub const NV_ERR_OPERATING_SYSTEM: _bindgen_ty_4 = 89;
-+pub const NV_ERR_OTHER_DEVICE_FOUND: _bindgen_ty_4 = 90;
-+pub const NV_ERR_OUT_OF_RANGE: _bindgen_ty_4 = 91;
-+pub const NV_ERR_OVERLAPPING_UVM_COMMIT: _bindgen_ty_4 = 92;
-+pub const NV_ERR_PAGE_TABLE_NOT_AVAIL: _bindgen_ty_4 = 93;
-+pub const NV_ERR_PID_NOT_FOUND: _bindgen_ty_4 = 94;
-+pub const NV_ERR_PROTECTION_FAULT: _bindgen_ty_4 = 95;
-+pub const NV_ERR_RC_ERROR: _bindgen_ty_4 = 96;
-+pub const NV_ERR_REJECTED_VBIOS: _bindgen_ty_4 = 97;
-+pub const NV_ERR_RESET_REQUIRED: _bindgen_ty_4 = 98;
-+pub const NV_ERR_STATE_IN_USE: _bindgen_ty_4 = 99;
-+pub const NV_ERR_SIGNAL_PENDING: _bindgen_ty_4 = 100;
-+pub const NV_ERR_TIMEOUT: _bindgen_ty_4 = 101;
-+pub const NV_ERR_TIMEOUT_RETRY: _bindgen_ty_4 = 102;
-+pub const NV_ERR_TOO_MANY_PRIMARIES: _bindgen_ty_4 = 103;
-+pub const NV_ERR_UVM_ADDRESS_IN_USE: _bindgen_ty_4 = 104;
-+pub const NV_ERR_MAX_SESSION_LIMIT_REACHED: _bindgen_ty_4 = 105;
-+pub const NV_ERR_LIB_RM_VERSION_MISMATCH: _bindgen_ty_4 = 106;
-+pub const NV_ERR_PRIV_SEC_VIOLATION: _bindgen_ty_4 = 107;
-+pub const NV_ERR_GPU_IN_DEBUG_MODE: _bindgen_ty_4 = 108;
-+pub const NV_ERR_FEATURE_NOT_ENABLED: _bindgen_ty_4 = 109;
-+pub const NV_ERR_RESOURCE_LOST: _bindgen_ty_4 = 110;
-+pub const NV_ERR_PMU_NOT_READY: _bindgen_ty_4 = 111;
-+pub const NV_ERR_FLCN_ERROR: _bindgen_ty_4 = 112;
-+pub const NV_ERR_FATAL_ERROR: _bindgen_ty_4 = 113;
-+pub const NV_ERR_MEMORY_ERROR: _bindgen_ty_4 = 114;
-+pub const NV_ERR_INVALID_LICENSE: _bindgen_ty_4 = 115;
-+pub const NV_ERR_NVLINK_INIT_ERROR: _bindgen_ty_4 = 116;
-+pub const NV_ERR_NVLINK_MINION_ERROR: _bindgen_ty_4 = 117;
-+pub const NV_ERR_NVLINK_CLOCK_ERROR: _bindgen_ty_4 = 118;
-+pub const NV_ERR_NVLINK_TRAINING_ERROR: _bindgen_ty_4 = 119;
-+pub const NV_ERR_NVLINK_CONFIGURATION_ERROR: _bindgen_ty_4 = 120;
-+pub const NV_ERR_RISCV_ERROR: _bindgen_ty_4 = 121;
-+pub const NV_ERR_FABRIC_MANAGER_NOT_PRESENT: _bindgen_ty_4 = 122;
-+pub const NV_ERR_ALREADY_SIGNALLED: _bindgen_ty_4 = 123;
-+pub const NV_ERR_QUEUE_TASK_SLOT_NOT_AVAILABLE: _bindgen_ty_4 = 124;
-+pub const NV_ERR_KEY_ROTATION_IN_PROGRESS: _bindgen_ty_4 = 125;
-+pub const NV_ERR_TEST_ONLY_CODE_NOT_ENABLED: _bindgen_ty_4 = 126;
-+pub const NV_ERR_SECURE_BOOT_FAILED: _bindgen_ty_4 = 127;
-+pub const NV_ERR_INSUFFICIENT_ZBC_ENTRY: _bindgen_ty_4 = 128;
-+pub const NV_ERR_NVLINK_FABRIC_NOT_READY: _bindgen_ty_4 = 129;
-+pub const NV_ERR_NVLINK_FABRIC_FAILURE: _bindgen_ty_4 = 130;
-+pub const NV_ERR_GPU_MEMORY_ONLINING_FAILURE: _bindgen_ty_4 = 131;
-+pub const NV_ERR_REDUCTION_MANAGER_NOT_AVAILABLE: _bindgen_ty_4 = 132;
-+pub const NV_ERR_RESOURCE_RETIREMENT_ERROR: _bindgen_ty_4 = 134;
-+pub const NV_WARN_HOT_SWITCH: _bindgen_ty_4 = 65537;
-+pub const NV_WARN_INCORRECT_PERFMON_DATA: _bindgen_ty_4 = 65538;
-+pub const NV_WARN_MISMATCHED_SLAVE: _bindgen_ty_4 = 65539;
-+pub const NV_WARN_MISMATCHED_TARGET: _bindgen_ty_4 = 65540;
-+pub const NV_WARN_MORE_PROCESSING_REQUIRED: _bindgen_ty_4 = 65541;
-+pub const NV_WARN_NOTHING_TO_DO: _bindgen_ty_4 = 65542;
-+pub const NV_WARN_NULL_OBJECT: _bindgen_ty_4 = 65543;
-+pub const NV_WARN_OUT_OF_RANGE: _bindgen_ty_4 = 65544;
-+pub type _bindgen_ty_4 = ffi::c_uint;
- #[repr(C)]
- #[derive(Debug, Copy, Clone, MaybeZeroable)]
- pub struct NV2080_CTRL_GPU_GET_GID_INFO_PARAMS {
+ 
+ impl MessageFromGsp for GetGspStaticInfoReply {
+@@ -210,6 +212,8 @@ fn read(
+     ) -> Result<Self, Self::InitError> {
+         Ok(GetGspStaticInfoReply {
+             gpu_name: msg.gpu_name_str(),
++            h_client: msg.h_internal_client(),
++            h_subdevice: msg.h_internal_subdevice(),
+         })
+     }
+ }
+@@ -236,6 +240,18 @@ pub(crate) fn gpu_name(&self) -> core::result::Result<&str, GpuNameError> {
+             .to_str()
+             .map_err(GpuNameError::InvalidUtf8)
+     }
++
++    /// Returns the internal client handle allocated by GSP-RM.
++    #[expect(dead_code)]
++    pub(crate) fn h_client(&self) -> u32 {
++        self.h_client
++    }
++
++    /// Returns the internal subdevice handle allocated by GSP-RM.
++    #[expect(dead_code)]
++    pub(crate) fn h_subdevice(&self) -> u32 {
++        self.h_subdevice
++    }
+ }
+ 
+ /// Send the [`GetGspInfo`] command and awaits for its reply.
+diff --git a/drivers/gpu/nova-core/gsp/fw/commands.rs b/drivers/gpu/nova-core/gsp/fw/commands.rs
+index 67f44421fcc3..aaf3509a0207 100644
+--- a/drivers/gpu/nova-core/gsp/fw/commands.rs
++++ b/drivers/gpu/nova-core/gsp/fw/commands.rs
+@@ -115,6 +115,16 @@ impl GspStaticConfigInfo {
+     pub(crate) fn gpu_name_str(&self) -> [u8; 64] {
+         self.0.gpuNameString
+     }
++
++    /// Returns the internal client handle allocated by GSP-RM.
++    pub(crate) fn h_internal_client(&self) -> u32 {
++        self.0.hInternalClient
++    }
++
++    /// Returns the internal subdevice handle allocated by GSP-RM.
++    pub(crate) fn h_internal_subdevice(&self) -> u32 {
++        self.0.hInternalSubdevice
++    }
+ }
+ 
+ // SAFETY: Padding is explicit and will not contain uninitialized data.
 
 -- 
 2.53.0
