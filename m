@@ -4,144 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C823FEE4EF
-	for <nouveau@archiver.kernel.org>; Sat, 28 Feb 2026 15:30:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C623AFD004B
+	for <nouveau@archiver.kernel.org>; Sun,  1 Mar 2026 03:03:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6786110E2C9;
-	Sat, 28 Feb 2026 15:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 68DA110E3B9;
+	Sun,  1 Mar 2026 03:03:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="f64d3RJF";
+	dkim=pass (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="EVspzjq7";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F0BDE44CF5;
-	Sat, 28 Feb 2026 15:20:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 973FA44CFB;
+	Sun,  1 Mar 2026 02:53:21 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772292038;
- b=Fkt7DXfVq21m63tqbMbQVGBPdU62lFrLuPEVHVJRCwdJ2aNUO9pH00JFrDWvS8WmMR8Wl
- kHDc6nHOTgpicaz6+1+vOA7brpKnOT07r4U96Lu3OuyR9aW77RJrnhF6bKGak3aCPPG3Heg
- EzYpc9qusKNp4E1kGBGGKsRAwMzSFGgJKZvtgBA19prW5438jFfG4pbeu3ajI6+1AWp9xw1
- Js6hyYqg5Q4gwnf0UaWWbdqLlg51pJDKpMEOWVtJ+JAfcWCHpGO5LXoHeOQ1Ym054VftvoV
- EbOfzK6CF9X2i7Ugxm1svfkPDugmYwx9wTVRYDighWpxnEviiFcIumv1VuVw==
+ s=20240201; t=1772333601;
+ b=qejcUREs8r6Opk6OuSxavOepu0iBwirFpF/l/HwU1glDUN9mvFaX3MncaGsrHPZIVn4my
+ +swq70HJQrPRctlWwdFP52JHcuLGzq/mNt0nBOZ7vKijfMtxR+z1SDrXfjbgNne3n7sYL36
+ iy3BRTuhiR46INqFwOaUU1uf3ALv6dmuPX8Lo7nd3N9ghYw0AMdxlU5/NXHsEmvXUaQ8WIt
+ 12RXLWe+1FBYht4lclGg0m0G9SMDf2QBJmsHSQTt8VMNOyBfzKrwqdvf/7g9GDNGx0o46Pp
+ BllDvrIDflTpq7osmfRSF1PqG2P8HLCIHf5jVjVAgx2InxagUzrPotTvqwLg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772292038; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772333601; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=sMgCgfThj0uiQ/ajRpndQGU5RmdKGE2cIcjmdTi6q0U=;
- b=Iye1XNA07jmhzobKKOuktTxDJNkXe5fJbJN/QNOvNju5dDY0O2eozggsgPfBBmcVIvM7/
- fA4GQCDTyB0hE6SEdD2NpR9eHoWDoz6nneo+aO3huhvIsMaMLTI4kBYOuqQAX7NAF26mt/c
- 4DXfHEEhvqSbGcg0N6CxzB4HU2iXH4WUXEHZ/nt5TKNF0qcJjZjptK70nruRD93fDoGqNHv
- nA56YuOC97NIuTSKGHUqZE6sEBo4w++tldcaSb8JI1KZXkEG8WqvIWqS+TjWixnNyJ7LNVC
- dvBKNUzJrRiF44yhOtfpc3llli+DG14cKttbjIVfqimaTKDtfOMpGeMFgk+g==
+ bh=O8AQRwkuen2J2VbPw4OAhdRbe8PeJJKYGBh2E6Vfdaw=;
+ b=NhkbfZdYA+Z28v0+T+dx7be6mF3NB8JG+fbRIFhBqhuO7DzThhari8KinNlKdKxE5LAxL
+ C4wq+4uXaANmJcfhn+1xv4+jrGlpIbvkjzxFCFk3t63/R3AfAxg/A4r37CG3Vw48LLyhxGM
+ ARuF9sHB3Sx5WttMACamj1/8KvuouCtXO0rnTS2+ARmQAea2Av37VGPp1vKFzt5OFUiIUdm
+ 2nGe/JhrVYBTEh4efuCJERo4gy03diX/jEhVQnXGyLEXP3lfscCZztEyXIe5MID6U6VZTP9
+ oQ5Q7Q92vlmqem5csCN7/BPZp2njas4hlAYQiP3+2wJBPQ0o4cM+3K0fqneg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=infradead.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+  dmarc=pass (Used From Domain Record) header.from=infradead.org
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=infradead.org; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=infradead.org
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B91B344CB3
-	for <nouveau@lists.freedesktop.org>; Fri, 27 Feb 2026 19:20:47 +0000 (UTC)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1046C10EBFD
-	for <nouveau@lists.freedesktop.org>; Fri, 27 Feb 2026 19:30:57 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id
- d75a77b69052e-506a3400f30so21106111cf.1
-        for <nouveau@lists.freedesktop.org>;
- Fri, 27 Feb 2026 11:30:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772220656; x=1772825456;
- darn=lists.freedesktop.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sMgCgfThj0uiQ/ajRpndQGU5RmdKGE2cIcjmdTi6q0U=;
-        b=f64d3RJFYMv7P1X/VLlSdJOSXB1/XbZ+J8fVTx2K88R7xNS0t274eDkAC8MHlvVnBA
-         3SzD6/AxvheX36NkMwUxiEamHLfblcvkRE7nxds/Vs5NAjGJiyhV/Nf8CtVaNk3B9wA2
-         pK2PBQR+Qp5pPoJHTkkuPaUE5+dmcV3HdSZL4Y2sdiHE1fEsk/NH/WNcKDlHoZapiwgT
-         ytlcgVd+DBPuDqPez8rY/M0crZEZBVsioeYcbSGk6O3s3QfujphIjBe0XKRu3L72iF1b
-         F08LxvpLxPjA0pdpMRi+yn//DOtPdkIhcLs3UvUeZIqBmi6UsKq0RDjdKmTMg2C8ocXg
-         1KaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772220656; x=1772825456;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sMgCgfThj0uiQ/ajRpndQGU5RmdKGE2cIcjmdTi6q0U=;
-        b=HHsTIrJRacxelN80w6kIfLmGcj3Us3S4s6IameXgoNjDdi6SAYyINZDr9MNS+GJaAk
-         +iHVkCYf5RaIM6k2B0LM20CanWhqygB3Rfx3MdZeTtIz/4PaGi/0m5JwCXLTt6ZtJ5Dg
-         XCDMLqM6SBxOCcM3bqGCYcPwBpXieb/lR3BE3I4tI6pO7XLqoy+jZ/ZwdWS/XOZoEKYB
-         IW+W48w7reaKpwC5swtXzmICFbzWqhfD5AIPMrWgm5ZJi/D6/G52FtYCkY3Y9mY3r7+l
-         bh4G5ATyfC6KUIWoykw1gOMQHKlC3Lkvk6Z8pLqjcyFMO0Ett0umXKCGnED6nGQ3i1r3
-         WcUw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVqY09+tQGCufLIqWXYJb2MhMrwC0ld3eTOgkk3lTc3Wjxgk26ZFwSfMwEXUJHeNC27ui7JtAVZ@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxDx/ibGh1vVD/sCBjHmngNAQ/PAXgtpzzWoVDr3MSvEWCLetxa
-	hcXize39/S4FXlcusq8L3dVvcDIK2nARAV0Rv3zEVGIYhv4GMhaoHjeQ
-X-Gm-Gg: ATEYQzw3zQ/LZFwy0qeb30/DwAi/krMLvwWRBAbE5ROot/fUkUx0kDmCbgGJzOPBUJg
-	J8P8Sc4bgHo8cdgr21u37gaxzMAg/0yUKRrVBqrbZbIFWX9cLi1FTvH4elPcG08OEwPAt8hVOM/
-	rHq//a4Ok+xwvE43uJ+MWWSpuu7mDKaG0KtTTGEKBpUOsFxlsm3/Llnq6lLNMjaP+Jd1Gh6FwPr
-	b/PPlEH14DBwTi9+UDIsAmXCmgF89vtdqNvUKUnX7bLytRe6gJPQ8Zv7tEc+R4t50y1A7vvHGkT
-	OrfC1J7tonQrcKRhL2mt/NAXN9DnTGBiAV+ia8GxwsHe6e2EgKUtyAP8Mp2PoWctDlJoq+XXif7
-	UoT7EteCTEYonPYG/cJwKN/2ELZoFXhSF3NdXMVsIlG51XIrv+EFsNIfvJjgTdpV2i2Mzu3J/uD
-	gQJK8VcG+78ThPZrLzaHS0ZKQy9U9Ggckc2w3lF2QsElNb
-X-Received: by 2002:a05:622a:48:b0:4ff:a6b7:6c9d with SMTP id
- d75a77b69052e-5075248b828mr56391801cf.38.1772220655720;
-        Fri, 27 Feb 2026 11:30:55 -0800 (PST)
-Received: from localhost ([2603:8000:bb00:9b3f::18f6])
-        by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-50744af0731sm60355271cf.31.2026.02.27.11.30.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Feb 2026 11:30:54 -0800 (PST)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+	by kara.freedesktop.org (Postfix) with ESMTPS id 696BE4055F
+	for <nouveau@lists.freedesktop.org>; Sun,  1 Mar 2026 02:53:17 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BE56810E0A9;
+	Sun,  1 Mar 2026 03:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=O8AQRwkuen2J2VbPw4OAhdRbe8PeJJKYGBh2E6Vfdaw=; b=EVspzjq79oLNNa56WDjYtDF+JC
+	Bx3WkOv204TCjyORd7t9CZ1ARwuH/0CbDO4cvHqrgZgLUguInBGr3Tvcqhg1wwGyeNCOYoy2j+anu
+	sfLXNl2LfXr2/mfPKfQMxNdpKw+c6bRKcBm3jadrxHdRZWtkwrfQ11/L3THgbCeQPsGD2pvPZWEgJ
+	Kz/m8G0g58CTreOxRBLno5q8+U9p5R3WjMxNkHAMstRpQWzkZ+V5hfmF/PakQUlYA8oLfZ4++Bpn7
+	0a4ycPB2091dyXEsAtPSeDPUOU0ejKVVEaQE9qm0h496EmzyfMtnVbrbI6aa73zfYYs2dTtrZHnBX
+	3GxXwK0w==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1vwX5M-0000000AmD7-3feh;
+	Sun, 01 Mar 2026 03:03:12 +0000
+Message-ID: <2512c6a2-df8d-41d8-8d94-4c004cc60f86@infradead.org>
+Date: Sat, 28 Feb 2026 19:03:11 -0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 4/5] gpu: nova-core: add initial driver stub
+To: Danilo Krummrich <dakr@kernel.org>, airlied@gmail.com, simona@ffwll.ch,
+ corbet@lwn.net, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, ajanulgu@redhat.com, lyude@redhat.com,
+ pstanner@redhat.com, zhiw@nvidia.com, cjia@nvidia.com, jhubbard@nvidia.com,
+ bskeggs@nvidia.com, acurrid@nvidia.com
+References: <20250306222336.23482-1-dakr@kernel.org>
+ <20250306222336.23482-5-dakr@kernel.org>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250306222336.23482-5-dakr@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 27 Feb 2026 11:30:49 -0800
-Message-Id: <DGPZSF0HMGPJ.2ZDZ6J28MFTQK@gmail.com>
-Subject: Re: [PATCH v2 7/8] gpu: nova-core: remove redundant `.as_ref()` for
- `dev_*` print
-From: "Aditya Rajan" <adi.dev.github@gmail.com>
-To: "Gary Guo" <gary@garyguo.net>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- "Danilo Krummrich" <dakr@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun.feng@gmail.com>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Alexandre Courbot"
- <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Paul Walmsley" <pjw@kernel.org>, "Palmer Dabbelt"
- <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
- Ghiti" <alex@ghiti.fr>, "Alistair Popple" <apopple@nvidia.com>, "Joel
- Fernandes" <joelagnelf@nvidia.com>, "Lyude Paul" <lyude@redhat.com>, "John
- Hubbard" <jhubbard@nvidia.com>
-X-Mailer: aerc 0.21.0
-References: <20260123175854.176735-1-gary@kernel.org>
- <20260123175854.176735-7-gary@kernel.org>
-In-Reply-To: <20260123175854.176735-7-gary@kernel.org>
-X-MailFrom: adi.dev.github@gmail.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: 4CVO4AGOGORCDTQH7WTONRU4PPXZQVZL
+X-Message-ID-Hash: 4CVO4AGOGORCDTQH7WTONRU4PPXZQVZL
+X-MailFrom: rdunlap@infradead.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: HZYSSLJV5X7S77DRJ3FCWTPPNM5TD5JW
-X-Message-ID-Hash: HZYSSLJV5X7S77DRJ3FCWTPPNM5TD5JW
-X-Mailman-Approved-At: Sat, 28 Feb 2026 15:20:37 +0000
-CC: rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-riscv@lists.infradead.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ a.hindborg@kernel.org, aliceryhl@google.com, tmgross@umich.edu,
+ gregkh@linuxfoundation.org, mcgrof@kernel.org, russ.weight@linux.dev,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HZYSSLJV5X7S77DRJ3FCWTPPNM5TD5JW/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4CVO4AGOGORCDTQH7WTONRU4PPXZQVZL/>
 Archived-At: 
- <https://lore.freedesktop.org/DGPZSF0HMGPJ.2ZDZ6J28MFTQK@gmail.com/>
+ <https://lore.freedesktop.org/2512c6a2-df8d-41d8-8d94-4c004cc60f86@infradead.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,11 +113,35 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Fri Jan 23, 2026 at 9:58 AM PST, Gary Guo wrote:
-> +        dev_dbg!(pdev, "SEC2 MBOX0: {:#x}, MBOX1{:#x}\n", mbox0, mbox1);
-Nit: Missing colon after MBOX1, should it be `MBOX1: {:#x}`.
+Hi,
+Sorry for the delay. I just noticed this.
 
-Thanks!
+On 3/6/25 2:23 PM, Danilo Krummrich wrote:
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ca11a553d412..ede8abee210a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7450,6 +7450,16 @@ T:	git https://gitlab.freedesktop.org/drm/nouveau.git
+>  F:	drivers/gpu/drm/nouveau/
+>  F:	include/uapi/drm/nouveau_drm.h
+>  
+> +CORE DRIVER FOR NVIDIA GPUS [RUST]
+> +M:	Danilo Krummrich <dakr@kernel.org>
+> +L:	nouveau@lists.freedesktop.org
+> +S:	Supported
+> +Q:	https://patchwork.freedesktop.org/project/nouveau/
+> +B:	https://gitlab.freedesktop.org/drm/nova/-/issues
+> +C:	irc://irc.oftc.net/nouveau
+> +T:	git https://gitlab.freedesktop.org/drm/nova.git nova-next
+> +F:	drivers/gpu/nova-core/
 
+This is merged as commit 54e6baf123fd.
 
+Entries in the MAINTAINERS file are meant to be kept in alphabetical order.
+"CORE DRIVER" is mislocated. Please correct it.
+
+thanks.
+
+-- 
+~Randy
 
