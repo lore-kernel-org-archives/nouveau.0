@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBE07D58E6E
-	for <nouveau@archiver.kernel.org>; Mon,  2 Mar 2026 07:22:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B999D58E7B
+	for <nouveau@archiver.kernel.org>; Mon,  2 Mar 2026 08:01:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB6B10E44E;
-	Mon,  2 Mar 2026 07:22:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C23510E44F;
+	Mon,  2 Mar 2026 08:01:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="g8yLRRah";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="AL6GKTKo";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6F04144D46;
-	Mon,  2 Mar 2026 07:12:09 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 62E3244D48;
+	Mon,  2 Mar 2026 07:50:57 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772435529;
- b=d1mENpEAM0W5LjYxu1KsoVmF9t86Lmiih6eOMZcqV4AfHMvb4QuKOCP7GwMi4CAw5lHZ6
- gDHGRsKp0k4xCBvn91uF4EqDqUTs/3zCS4J0+CmmG48P5tb1wduF4hWWeryPziQMD2bVwoa
- Is395ZgG6cIcvkifBsrM6uXGjeSh7BT6BdMarRZdzn+SbTbwa32hlar7yc3/O73dT/4oCh2
- iQSGvPcYoIJBYKCtbp7IQjitKVJJP3p3uxU2/R22Au1PhrOLS8/aW+uszx/0rL/j7GfeeRU
- qzj//jcd2pOGbmkvgcLbk9+yRtbfBgVUjZJ/00bA8Zs4TJKk57xnJ8zAYkbA==
+ s=20240201; t=1772437857;
+ b=d5pUJU1iPdcLu/Y8oVpvDgwF6cCyKniAmS+xvl6HGoSaU7fenfIexwvYS5OGGzfRHdNV7
+ RZXSSy01XdetQ3fyNtrN3EE96MZ0zEigA/R2etJPvAiwRKdHEhFpjXkKKbkrOyAcxoGaefp
+ DtK75Y2HtBlIg5eOs1tT3tpsxDu0zcHAFni9Jgb2TlBi+E12w6VIphG63d8A6LbBw/4A7Do
+ D0IYRyRcHGjCjc4K0S2f0kUmHa6OKQh2cQ/4Zvci1EHArv8XK/unpbb6aUH7qpqMla50FHW
+ N/shKTqAGfMvFRb4iRp8adWpNtHTICA4hANRXx9orgFYmyo328auTe2mJZTg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772435529; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772437857; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Gi3R2un5SRNIYwkOaYhE+AuEGTU1fwhJz9aRJfKC4gI=;
- b=DvziC+41AvxDA5X0414QJ7G9KGiFbHH+NEVYGUNn1TDXILebuHjhPuH1OhQN/NanZ4rIJ
- lXqfy9jDaQ22jkOkboql2Fxo/iPLFSb8g65WrqCzdJtHWSB1MJk+z09fWyZ6p/s/F621gFq
- E2Lc6xN2KCAcsFpHfCQ5oHf8gt9Pt93SvBUwndZaEZBQfBVv3Tk3ZgdkEhl0wNme9YFaqrl
- ozIUUNGcB0z40aE7yp7fqEgB4rR0Ho+ShVNSWi0nuGSbw2PrTSn89feRatK/33U1+O9N69s
- 3sGrO8a4ZcabUxNdcnxn4dXEAjnIZJ77tvd0Sgpre68C/HMyCa6zC3+Xteag==
+ bh=xdCA1/ceY72bOPC0AAspQufF5bY+Yw9feN27Qk8WyaE=;
+ b=x+dTLqbLLGp/fa7yfhqTQ3Vadn7unDiKLYPmYSmj7Ox73v2fsHYftVO6ACcPhp9tepfa0
+ lMwasvwwopjrBmXX/50etCmeT85j3TW3Kvps8vZPvvbhp5My3HOW7pMTxX+PjOVh/Zmm5is
+ UxSCJ9k5RxarMcv6lQlljsCpECSisUvc5XyXLia7F4jyl1W9xN6F0g7m3JR/b4TXWQP+jCc
+ YAeTNMXPtHP/gVzex5iv4/Vkth/SMFvgxW5TjTiyoYRxIP2jD2eaJgYgL+d2ibNOKD3Iu4f
+ OmiLbIMbiQMKDbGo/vG427sDMP4mUgsebE2XactffebIdTLFN7ZeLBeKvZkA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,139 +45,119 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4A40440368
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 07:12:06 +0000 (UTC)
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010007.outbound.protection.outlook.com
- [40.93.198.7])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 21FEE10E448;
-	Mon,  2 Mar 2026 07:22:21 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0FEA54032A
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 07:50:55 +0000 (UTC)
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013014.outbound.protection.outlook.com
+ [40.107.201.14])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D614110E139;
+	Mon,  2 Mar 2026 08:01:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P9qgV0DYULHCUJArymdbD1BsOExQ+Qg+r/b8Ov/YpjaxAPMg9YLloIu1eEBKelaJF8MsUDpSiAAarndyKrF5K8ddZguPFJ6ZtfDaRu9RxZXwI7xWZdpmBrP68M90rnCuXmb2y/PAJ3y5cP5bzTGMe/U2Nc/dvGmamsh9uryU+lK7jQMjVSMQkV3JqCyfE1GaWiFI//9asaeF1o7v2MqYMeghqfAukv73yAg8qbS1bDFCRsArFqDzrNx2EcCSGUa0yTzE8zn6dP1t/JESQgNYVghAshujSNXXnF2J6IBV09XQV0ak1eH2xpVRtnTflVHjcoMCVuvSdvsMTq5pJzhbLQ==
+ b=LzWFQWaxPB0dy+F0uHDr2fo3eA4Uy7av2UOgIFb4Vv5SQmjJFhX+eQKsJRWM0b4FqDId9+HMdt40gXvQX7OsARIc8GSD8xIr33i5qYG1jaCq/x5xeFdhfXaqB8UOBGVAacXC94EKHmm/mw91DtNL8zBD6SjQZYd6VTssXtS8QEiHnqxRH4DGrCb/UIi0cf7hg3ihmCIR29ecHJ1b0pX55zo2l8P4f5s0CzS/sabetQ0XDSFX4kh9nzpamMECpFE2T8zvikkWCURB0ECdk8UDtmh8JWhzKGJpasNg6AgYN4MGV8qi7zK+9tni2EzTvs9cnBXFRtOOhYsn0JQ2YTYm6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gi3R2un5SRNIYwkOaYhE+AuEGTU1fwhJz9aRJfKC4gI=;
- b=f0F87FECk1DwO3a2RPOCduuug+LUPVpcl31ua4Z7uHLBGLNoVNe/Z/GSsaQ+mK2Vuy9OuBQw0dsV7duYqFjXNOjoNYCaxA0mF+JVa/Bl/TNrhQQXedZXfDmlyZdLdxUvmIcXfEBi6VubrffKdUcyLkgC2Hy4GJd8HEYhqLyvBKf7dp3UyD35M07RTcMfoRwnf/G+tjiSrdOf5LlqGGeZcmIT7DxTAwXJ80G7Od2AA+gdaAC+zt1NQgWtpDnBE6JnIu2h5lcX45gIDDm2KZxvGj+jDYTsUjtBLq3sX9J9dBMV56+MKvaWDWWV7mjMYXbqgxusoTJj4y+wT36Iad3pbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
+ bh=xdCA1/ceY72bOPC0AAspQufF5bY+Yw9feN27Qk8WyaE=;
+ b=FcRGPf2w5X4EALP9yDbaT9u2CqSZrPYUh9D7gSVCt4F0+i8O0jkX9ovOIbOVo32Ipi2xICm/EGQGwbm9gTZTtJhRml9GumlGkX2zzLnyM0Gl7fp1L2+n+5GU3jv+ZPxtlnN0WaEieWwi/R6ECNjwhb2kwRl13hQ5FcWtNFHDZw4mjEcmArvJIKPcFSlRg6tuHXERAiax3nhsuZ24q9RmwoCvIYbHWvgXHYNggLwkRXg6gcAqR8tb31cVXc+Pt9sE1q6Vt9cgcnFaMkr+qgO0MfVZe3mRKF+1N/xpiXBx382KtkCfGZTwubbX3VlFedDa8SmB4IPSfuM6dc1sa/Kscg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gi3R2un5SRNIYwkOaYhE+AuEGTU1fwhJz9aRJfKC4gI=;
- b=g8yLRRahsKQb8mFcKTuF2med/GkhU1fPjjK7H9j/tW8FFTSoNZqeyg+Ngkc2RFGXoJTqNJ0t514U0k4UUQ0cSnaKjPqFI4y9pN/2N6NLgT+0C5IqYT+IRnHMe6hEKuKR+9QeR3kBX6RpQXSrVHQEfZkuAqbjF1wviRgur7p1u6FyBwWRWu5/xJ84IlX5Q/4bnlQVf/kPCocRbZ0peG7IN1orMS5V87vsdo0FsjddhrFnEoFa6x5ygm7HefjX//ZqpGkQbsaTdECDM6USgRDoFbIboSEABY/ev909RYqCe0dJwZRMGnbPMJqWyhXySo/BinmTqz9wEcY7WuitgI+WmQ==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by DS7PR12MB5720.namprd12.prod.outlook.com (2603:10b6:8:73::21) with
+ bh=xdCA1/ceY72bOPC0AAspQufF5bY+Yw9feN27Qk8WyaE=;
+ b=AL6GKTKonLPUfkWiGANamkteX+Envir/v11qzSM/Mhq8Oz+mTDQd/h7ki5f6ZV0fNZC6iyc6IlSYQYipeODqx/XngsJNoajzhO9njmf97BR8WglS+dCUXWC3nwBTWeOWPPpRypyOAlFpWSGNf1weXiMzx3mvY5Z+d4CyNXMd0prdb8tmho2F168K4JjvjIkb4SIPmBraV+ZH6N32SA/26cUobd6tFPz+pICmTBeIA5c290/C3WVFC8q0bJFq+KslZCEre3CyO2k08FxonqggHzUW3Xix/i5PwuWx0+XuqtPYIIKUgfQDifLbUrOIEbBq5KxI7GY9kMyfYGO5hDo/3A==
+Received: from PH8P220CA0047.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:2d9::19)
+ by SA1PR12MB7410.namprd12.prod.outlook.com (2603:10b6:806:2b4::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Mon, 2 Mar
- 2026 07:22:15 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9654.015; Mon, 2 Mar 2026
- 07:22:14 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 02 Mar 2026 16:22:10 +0900
-Message-Id: <DGS465GNPO0G.1WKMAHMPTXLNN@nvidia.com>
-Subject: Re: [PATCH v10 08/10] gpu: nova-core: use the Generic Bootloader to
- boot FWSEC on Turing
-From: "Eliot Courtney" <ecourtney@nvidia.com>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260301-turing_prep-v10-0-dde5ee437c60@nvidia.com>
- <20260301-turing_prep-v10-8-dde5ee437c60@nvidia.com>
-In-Reply-To: <20260301-turing_prep-v10-8-dde5ee437c60@nvidia.com>
-X-ClientProxiedBy: TY4PR01CA0117.jpnprd01.prod.outlook.com
- (2603:1096:405:379::18) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.15; Mon, 2 Mar
+ 2026 08:01:03 +0000
+Received: from CY4PEPF0000FCBE.namprd03.prod.outlook.com
+ (2603:10b6:510:2d9:cafe::64) by PH8P220CA0047.outlook.office365.com
+ (2603:10b6:510:2d9::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9654.18 via Frontend Transport; Mon,
+ 2 Mar 2026 08:01:04 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ CY4PEPF0000FCBE.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9654.16 via Frontend Transport; Mon, 2 Mar 2026 08:01:03 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
+ 2026 00:00:32 -0800
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Mon, 2 Mar
+ 2026 00:00:30 -0800
+Received: from inno-dell (10.127.8.10) by mail.nvidia.com (10.129.68.8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Mon, 2 Mar 2026 00:00:27 -0800
+Date: Mon, 2 Mar 2026 10:00:24 +0200
+From: Zhi Wang <zhiw@nvidia.com>
+To: Eliot Courtney <ecourtney@nvidia.com>
+Subject: Re: [PATCH 7/9] gpu: nova-core: gsp: add RM control command
+ infrastructure
+Message-ID: <20260302100024.71ebe173@inno-dell>
+In-Reply-To: <20260227-rmcontrol-v1-7-86648e4869f9@nvidia.com>
+References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
+	<20260227-rmcontrol-v1-7-86648e4869f9@nvidia.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|DS7PR12MB5720:EE_
-X-MS-Office365-Filtering-Correlation-Id: e7f73f8e-59d6-40be-cfae-08de782c6dae
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCBE:EE_|SA1PR12MB7410:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7a28834a-f83f-4756-6466-08de7831d994
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|10070799003|366016|1800799024|376014;
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014;
 X-Microsoft-Antispam-Message-Info: 
-	rzX6gRw/xR3vqRuvejNp0bLlO5vmnu+6d/9do4mwmGNq6RgiWShh2RdpHKM3ZVithtqVpDG1zesQ6jS3iMAktMSos1ET3Si1B2ZjMCTD1QVC/NeYO8V9UxSb8S6ztv1S0uqM7B4WP0NUxKhsZFFUlZaZXp80UZeR0bLHx4tD1lJsqP5MrI1apq9lENZK9u+OmwnxhTSrZnRRS/JtTUROVVkQV5+Snq5UGtn4ovXddQw7j8PRRmMtGv/BKMploz0tmFP257Cog4Aa0S5tklBGKddtticGR4HUdxn404lNdMVYZ6qnsWmAWwDQfOcrWY1jF0WN/Mou4lOGzfh5BLqz69QUmranUsq6znWPI8Q5YsZC/5uBH83fqQf/PC6fcZnJETQw3hBF7b/vlC7NZt0jYV0t8Oq9tyPC7mLEROi5JjC2lg3Dg+rmttH9Yl8NzYyFt9ug+VHYIleKYIPbSskub18XyLfDbiWVyRBfWo6/8w/KLeZDZ7MiaYuXiK7i4OJNSFIj7u3CqktEEIDk5uEoZOSRmr/vtYPzDXw4UEDGcZeO2iVMpcmac/MebdkJFXHkP18XxhCxKqhLCo5EQWu2dMyBsAzTElhcy1eurMnsUDFCC2ksU8blsfXhBJ7RkI/B2VWUo9Myg6dpNBo96X/+F209hAWd4vX47upkLy5EMBOJ4cjZZQkEdKnN91PnEd7btNuNQ2KRTha12EIEaHEywK/j40fwJhZROSxrAiot724=
+	zg0Cxb2ZRg51IHXndAjZIjaWJyPdi+hdsixB+wtQQCgcU4iY7i9ySYzgeiKMGiIHsbshpwh9DQx2fLk6TFIbBiN1D8br1wQpDUniKdUpXRXa5U/jNLalrqkea/3/3SzW3quESA27Q/S5uDG0PWcFjrPrKTd0xQVaeRrXj6vDGr2o3+TzyTDeYWXWwhAXupkFW2TOJT36qRHoIJZmMKATccLCOTeIVYGtd+CI01fOLBM6s2SJQVD0TrRBiumY5bZbhMNTbp3PelzmhXd9uhISPNesLc6olfwBJBSHAaQD7w5h7DLtZ947lmesDZ3g2ERbyQOvS9f3NFmQqiEBodBRC6TwoTbub5LQ0eXvzR4CmZh08my1jAbFckmnfQbbaiQwib+yDIVYv2+3WDXFC8iUv8Soj5axpDWnHpa8jfuzz5p2YTypxC9tmRElF4hVpI/Lyy4VFnpGTznHoxIr0ho1J15lZnG4VHjNjqaZaqncGhoHWMHbsmNezyLS4Vg15hNxQS1iQDOeVsAevemWUHVkpA46jpYlV6I+lVjQYSW6pPBotVgzo3KSB8JS4m9+/H+dv0lmG6mcv7NQeAfln9SCpgPn7GK9FH1jKvVR6yVm5RPYRF4mDPwM3RBtdo9VvZ4PRvCeJ3TPzxSu15qGZrDUIL6uIX4eNZ1e7S5ITwQVfmtP12V5oIor7SGafvOWjE42kRuE528Qt78wYypcl/r2D98mfzxLJ9dMm0a4x4Ht/uq9hYQUlwjow+4LeulZh3ib5bAHe+yO+1qTMl+Z9yrXkz71VJ3+lbT7Q4uGjorWRYBb6Y7GrX6QYMFwEtEXrk8qn/J94YG+0Bp4WJlaslvLNw==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Umg4Qk14blpISm10K2Y0eC9xNEVkNlNJdmVqTmtVMDlkL0NkUmxLcGxreGto?=
- =?utf-8?B?VURiZlN2eWNjRzE0MWxRSE5BaVlvcnZNR3hPejZXRUZNWjBMRlIvcEV5aFNM?=
- =?utf-8?B?WXhtVzFxVURyNWhUU1pOTHhRVWhockRLeUlXa0JyLy9lOFFHd0MxYnplUDdr?=
- =?utf-8?B?a0RTYzZ2aGU3a0ZxSE80TURlM1V2eXRCcHBhck5SanNKQVJaYldSclNOZzhD?=
- =?utf-8?B?UDY5ZFU0NEl6Y0pmWUtQazNUemVneXlIRm0wZzNLdmd2a1RkbE0zanVRNWhu?=
- =?utf-8?B?UXNBSDRCcjhVOHBockJqekZWZXZ3NGYwVnpaMUZ4YmhHZDZrMXltSnlCR0lj?=
- =?utf-8?B?dkxVS1JYVkxEMVFpd0hkcmI5RTB0RG9XYTE0cnVJcExiczNEM2Y2SG9qOGhy?=
- =?utf-8?B?ZjV5UVZGQ09rK29STUNySmxyME5CQVAzRUIwUnZGbzVCY0xjRlFET3Z5dGYy?=
- =?utf-8?B?NmpSK0QyVHdtSTZLazlNNFJ0QnpEa2YvNi8yaDFEU2lGSEtSa2RLbHRVMXg1?=
- =?utf-8?B?SzdvMVprWmg0dC9kYlpEanN1SWloVm40NVJMOFkwUW1UUEx2Ykh4cFNFSGdW?=
- =?utf-8?B?KzQ2THZ0TFVOajRoYXZ2OHBabmkxdUdiVTJVZ1VQVmRlaUZjVmN2V0pxMGJU?=
- =?utf-8?B?ZGpRR29Wc1RoK2twR25ZNmtOLzFxUmM4SnBISlRBTGtBajZqQTVkWXYzUCsr?=
- =?utf-8?B?SjRENFNCS1g3ZDlZTmxXWUcveDNKT2JnYXZVa0FzR2RaT2lpSFFjMXE3OU5u?=
- =?utf-8?B?T09EcERaVGNLaTZObEZwUGwvWTBLMHlJanUzK0ZKTmRGSFJSMkJWcHZFRjhp?=
- =?utf-8?B?aFdRbEE4YytjcUU0OTVibUdWSE9mY292UEJpNlRVRVpnTnpScUlKVTZZbkl5?=
- =?utf-8?B?M2Q5TlFxK2tSL0ZUT3VUM09ISTh5NStmenhFbnFBNzczeUIwVkViRVNMMlAy?=
- =?utf-8?B?ckVHRXJRQlAwMmxrVGpHQXJVZngvYTFhT2pOU2RzOTR6bHZjbUxldXM3Wm9M?=
- =?utf-8?B?MEUwWElpdDFMUE56NzNPN3FsQktMWDJ4eHlLdTltck9ueHV6aFh5TmczblhV?=
- =?utf-8?B?a24vcFVUUHlmaWtDZGx0eC9uSWY0Yk5XYjZQcHQxOVVsVDc5NFhiL21xNE10?=
- =?utf-8?B?eE44dzBQd2UzZHZJejFvdXp2emE0RjlPUGtOOXFDN0JUd0h5cGN6NGxDYWZR?=
- =?utf-8?B?eFFZSUI0cFFTV0ttNzZlVTB2aDRESkpJYmVaeElWTFpGNCtEY21DVW56SGlD?=
- =?utf-8?B?dTVRbWp2cElpSEgyMEgza1RXSzhNVm5KaW1qYWxiMDFTOEYyaVM5Vlp5RXV1?=
- =?utf-8?B?R2RxNzRlSVhQekRLQXJoSzZqcWVZTmU1MUVXRU11LzF3RUtZYVpTNENvVko2?=
- =?utf-8?B?MWNHT1RNNGlzaU03QVVPemN1QTRjOGo4d2tZcEdseTMvS0JXZ3UydVBlOWJo?=
- =?utf-8?B?UlFiQi9JWU1GWFIxdUZGaUhVZ2swUVhRMWYxNlJ2UFhkNlNlRFFURnprZEI0?=
- =?utf-8?B?RStUY2M3eXIwTGNRaDVTbUgzcitMU3V6UlFOSUF3NytZWExlTVdUUU5GZzJL?=
- =?utf-8?B?TDhDVU50Q0pzQlZNSE9MTVM0YXFLMVNSUzdBeG15bTBrTG5vQ2FmaE1SMW5R?=
- =?utf-8?B?anluc1dPc0VHUGRtcGpjL3orclBwdzZ6TythVk5lR05oYjZDVzl6RGFBenZV?=
- =?utf-8?B?ckFXdTVXaldWTlhtZk1Gc0ZGVEhMVzlxRVQrMEpvQUpMQlYwVFJHcUJYZGJO?=
- =?utf-8?B?N2FCVldDTVcrNFhFQW92K2dQOFhIMTVzeGpUQmVGYzh4TVBaVys1QUJUdFQ4?=
- =?utf-8?B?TVozWE4ySmxIYXNhOW5WK3BOUFJoai9zSHp4T3hZQVNMMGY2c0pjUDIyOVpk?=
- =?utf-8?B?THM5a0Z0d0ttZGhPTm5sVGk0elZ2Z0gvT1dQZ1NMWDF4RDZJUkYyeGtGR2xZ?=
- =?utf-8?B?UEphN2ZJM2YzNk1UQ0cwVk5HN3g4cFZBMkJzUm4vMHhobWducCsrRTJWZTJH?=
- =?utf-8?B?NWVqNTlCVFRXN3J5NVd3TzZUSE9GYTZUbjNDTFdVZTRFWG9oV0hFeWJLUWxr?=
- =?utf-8?B?Mm05eGYzcnZiNU54ODhyMEdrUENjZ2Y4MWtTRVdNYldybzVINWw4YUFmTnN0?=
- =?utf-8?B?MU4xRGdEbWNHL2xaTDk0QTdlYUszeWR4ZFhPeTY0ejhpT1lNcHNVbVJsQkJi?=
- =?utf-8?B?VnlrUEVvMTdLdEdENjRTTmt5QUljblU3Skt1Y0l6Zmo2TUlPNHprREdyMjlI?=
- =?utf-8?B?NVNYSDM3eEtwNlZJMkhCTjB3ejh6cDlZNmdzRDlTTTU4SFRTME8xZjJvQ2ZZ?=
- =?utf-8?B?WlBNajlsNHVQU3B0Y0pWTi9MZVlwNVVtUlZWZ0s2em4zcjhZdG1VWSt0VUpE?=
- =?utf-8?Q?8BPJHeuYU56HsU2+INvXLbvsPL8v/l8nS1LotQ4Z69nLN?=
-X-MS-Exchange-AntiSpam-MessageData-1: tyO9KkHGz8ONFA==
+	vX4/OjjE5xnojNJ+UjwqY+xgKzMMa5xiUblwPvp011iC2istRxSfGUClhGNFPEBg3AQJkr0Clrs/ztwQMudaO3rygj09xymFCuiXE03pvZufgzERfDDxE1qPAc10YRpz1SStfO0U5FM2IUBe+DLolnm9cVcm9L+Cp4H3T833re0YJs+WjPZ+WWGmNXSP4jipCWwCRkkKO6haOVshg4h2xlv+L+9oaUy4gYNdSZ1Le1PvJ2Fr1Pxc/unV+SZIpQHI0Urp6olv36N9O7tKlB26KSZAsVapvKXpDIlvYZktgaV88v+aMF2suVwJAOsRXxLU9VkoAevJg1Gs/CLrGUwykPYKGK2+aFCPy+mSg1rMeY4DwtB7acYm+oMzClb7EQ0W6eOzF7iggH/Yiw5depH/Vs8hiYlJQT5zMcZegRrxKFnfZlh6lBFjBM5H4JHG6IM2
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- e7f73f8e-59d6-40be-cfae-08de782c6dae
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 07:22:14.8950
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 08:01:03.1019
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 7a28834a-f83f-4756-6466-08de7831d994
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- VsPTe+yHoI2VuatTuuhK/e2/WnbQXgC0egjuG103sla7fwql+N7GF47cJJ44wJUUmu7BmzBNYVV8h3GYyAfdNQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5720
-Message-ID-Hash: UHZTWUCFC6EEHZQP5Y2CH24MR22KZWEO
-X-Message-ID-Hash: UHZTWUCFC6EEHZQP5Y2CH24MR22KZWEO
-X-MailFrom: ecourtney@nvidia.com
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	CY4PEPF0000FCBE.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7410
+Message-ID-Hash: WWZ64BUEVQQHIRD2J7WLNAMVMGUYHAQ2
+X-Message-ID-Hash: WWZ64BUEVQQHIRD2J7WLNAMVMGUYHAQ2
+X-MailFrom: zhiw@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UHZTWUCFC6EEHZQP5Y2CH24MR22KZWEO/>
-Archived-At: 
- <https://lore.freedesktop.org/DGS465GNPO0G.1WKMAHMPTXLNN@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WWZ64BUEVQQHIRD2J7WLNAMVMGUYHAQ2/>
+Archived-At: <https://lore.freedesktop.org/20260302100024.71ebe173@inno-dell/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -187,257 +167,170 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sun Mar 1, 2026 at 11:03 PM JST, Alexandre Courbot wrote:
-> From: Timur Tabi <ttabi@nvidia.com>
-> +impl FwsecFirmwareWithBl {
-> +    /// Loads the bootloader firmware for `dev` and `chipset`, and wrap =
-`firmware` so it can be
-> +    /// loaded using it.
-> +    pub(crate) fn new(
-> +        firmware: FwsecFirmware,
-> +        dev: &Device<device::Bound>,
-> +        chipset: Chipset,
-> +    ) -> Result<Self> {
-> +        let fw =3D request_firmware(dev, chipset, "gen_bootloader", FIRM=
-WARE_VERSION)?;
-> +        let hdr =3D fw
-> +            .data()
-> +            .get(0..size_of::<BinHdr>())
-> +            .and_then(BinHdr::from_bytes_copy)
-> +            .ok_or(EINVAL)?;
-> +
-> +        let desc =3D {
-> +            let desc_offset =3D usize::from_safe_cast(hdr.header_offset)=
-;
-> +
-> +            fw.data()
-> +                .get(desc_offset..)
-> +                .and_then(BootloaderDesc::from_bytes_copy_prefix)
-> +                .ok_or(EINVAL)?
-> +                .0
-> +        };
-> +
-> +        let ucode =3D {
-> +            let ucode_start =3D usize::from_safe_cast(hdr.data_offset);
-> +            let code_size =3D usize::from_safe_cast(desc.code_size);
-> +            // Align to falcon block size (256 bytes).
-> +            let aligned_code_size =3D code_size
-> +                .align_up(Alignment::new::<{ falcon::MEM_BLOCK_ALIGNMENT=
- }>())
-> +                .ok_or(EINVAL)?;
-> +
-> +            let mut ucode =3D KVec::with_capacity(aligned_code_size, GFP=
-_KERNEL)?;
-> +            ucode.extend_from_slice(
-> +                fw.data()
-> +                    .get(ucode_start..ucode_start + code_size)
-> +                    .ok_or(EINVAL)?,
-> +                GFP_KERNEL,
-> +            )?;
-> +            ucode.resize(aligned_code_size, 0, GFP_KERNEL)?;
-> +
-> +            ucode
-> +        };
-> +
-> +        let firmware_dma =3D DmaObject::from_data(dev, &firmware.ucode.0=
-)?;
-> +
-> +        let dmem_desc =3D {
-> +            let imem_sec =3D FalconDmaLoadable::imem_sec_load_params(&fi=
-rmware);
-> +            let imem_ns =3D FalconDmaLoadable::imem_ns_load_params(&firm=
-ware).ok_or(EINVAL)?;
-> +            let dmem =3D FalconDmaLoadable::dmem_load_params(&firmware);
-> +
-> +            BootloaderDmemDescV2 {
-> +                reserved: [0; 4],
-> +                signature: [0; 4],
-> +                ctx_dma: 4, // FALCON_DMAIDX_PHYS_SYS_NCOH
-> +                code_dma_base: firmware_dma.dma_handle(),
-> +                non_sec_code_off: imem_ns.dst_start,
-> +                non_sec_code_size: imem_ns.len,
-> +                sec_code_off: imem_sec.dst_start,
+On Fri, 27 Feb 2026 21:32:12 +0900
+Eliot Courtney <ecourtney@nvidia.com> wrote:
 
-Is it correct here to use `dst_start` for `non_sec_code_off` and `sec_code_=
-off`?
-AFAICT, these are meant to be offsets from the base of the DMA memory and
-it's meant to copy into the falcon. But the documentation on `dst_start`
-says `Offset from the start of the destination memory to copy into.`
+Tested-by: Zhi Wang <zhiw@nvidia.com>
 
-Also `ucode_start` is defined as `hdr.data_offset`
-but doesn't add `code_off` from `BootloaderDesc` and `code_off` appears
-unused. So does `data_off` and `dmem_load_off` for that matter.
-I find it hard to follow what's actually required but it seems odd that
-none of these are used.
-
-At least for `code_off` should it not be part of the computation of `ucode_=
-start`?
-`let ucode_start =3D usize::from_safe_cast(hdr.data_offset);`
-
-Overall I find the dst/srcs here confusing cos it feels hard to keep
-track of which set of memory things are in. So, sorry if these comments
-are nonsense.
-
+> Add `RmControl` which implements CommandToGsp for sending RM control
+> RPCs.
+> 
+> Add `RmControlReply` which implements MessageFromGsp for getting the
+> reply back.
+> 
+> Add `send_rm_control` which sends an RM control RPC via the command
+> queue using the above structures.
+> 
+> This gives a generic way to send each RM control RPC. Each new RM
+> control RPC can be added by extending RmControlMsgFunction and adding
+> its bindings wrappers and writing a helper function to send it via
+> `send_rm_control`.
+> 
+> Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/gsp.rs             |   1 +
+>  drivers/gpu/nova-core/gsp/rm.rs          |   3 +
+>  drivers/gpu/nova-core/gsp/rm/commands.rs | 111
+> +++++++++++++++++++++++++++++++ 3 files changed, 115 insertions(+)
+> 
+> diff --git a/drivers/gpu/nova-core/gsp.rs
+> b/drivers/gpu/nova-core/gsp.rs index a6f3918c20b1..1a1c4e9808ac 100644
+> --- a/drivers/gpu/nova-core/gsp.rs
+> +++ b/drivers/gpu/nova-core/gsp.rs
+> @@ -17,6 +17,7 @@
+>  pub(crate) mod cmdq;
+>  pub(crate) mod commands;
+>  mod fw;
+> +pub(crate) mod rm;
+>  mod sequencer;
+>  
+>  pub(crate) use fw::{
+> diff --git a/drivers/gpu/nova-core/gsp/rm.rs
+> b/drivers/gpu/nova-core/gsp/rm.rs new file mode 100644
+> index 000000000000..10e879a3e842
+> --- /dev/null
+> +++ b/drivers/gpu/nova-core/gsp/rm.rs
+> @@ -0,0 +1,3 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +
-> +        Ok(Self {
-> +            _firmware_dma: firmware_dma,
-> +            ucode,
-> +            dmem_desc,
-> +            brom_params: firmware.brom_params(),
-> +            imem_dst_start: u16::try_from(imem_dst_start)?,
-> +            start_tag: u16::try_from(desc.start_tag)?,
-> +        })
+> +pub(crate) mod commands;
+> diff --git a/drivers/gpu/nova-core/gsp/rm/commands.rs
+> b/drivers/gpu/nova-core/gsp/rm/commands.rs new file mode 100644
+> index 000000000000..16bcf88644db
+> --- /dev/null
+> +++ b/drivers/gpu/nova-core/gsp/rm/commands.rs
+> @@ -0,0 +1,111 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +use core::{
+> +    array,
+> +    convert::Infallible, //
+> +};
+> +
+> +use kernel::prelude::*;
+> +
+> +use crate::{
+> +    driver::Bar0,
+> +    gsp::{
+> +        cmdq::{
+> +            Cmdq,
+> +            CommandToGsp,
+> +            MessageFromGsp, //
+> +        },
+> +        fw::{
+> +            rm::*,
+> +            MsgFunction,
+> +            NvStatus, //
+> +        },
+> +    },
+> +    sbuffer::SBufferIter,
+> +};
+> +
+> +/// Command for sending an RM control message to the GSP.
+> +struct RmControl<'a> {
+> +    h_client: u32,
+> +    h_object: u32,
+> +    cmd: RmControlMsgFunction,
+> +    params: &'a [u8],
+> +}
+> +
+> +impl<'a> RmControl<'a> {
+> +    /// Creates a new RM control command.
+> +    fn new(h_client: u32, h_object: u32, cmd: RmControlMsgFunction,
+> params: &'a [u8]) -> Self {
+> +        Self {
+> +            h_client,
+> +            h_object,
+> +            cmd,
+> +            params,
+> +        }
+> +    }
+> +}
+> +
+> +impl CommandToGsp for RmControl<'_> {
+> +    const FUNCTION: MsgFunction = MsgFunction::GspRmControl;
+> +    type Command = GspRmControl;
+> +    type Reply = RmControlReply;
+> +    type InitError = Infallible;
+> +
+> +    fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+> +        GspRmControl::new(
+> +            self.h_client,
+> +            self.h_object,
+> +            self.cmd,
+> +            self.params.len() as u32,
+> +        )
 > +    }
 > +
-> +    /// Loads the bootloader into `falcon` and execute it.
-> +    ///
-> +    /// The bootloader will load the FWSEC firmware and then execute it.=
- This function returns
-> +    /// after FWSEC has reached completion.
-> +    pub(crate) fn run(
+> +    fn variable_payload_len(&self) -> usize {
+> +        self.params.len()
+> +    }
+> +
+> +    fn init_variable_payload(
 > +        &self,
-> +        dev: &Device<device::Bound>,
-> +        falcon: &Falcon<Gsp>,
-> +        bar: &Bar0,
-> +    ) -> Result<()> {
-> +        // Reset falcon, load the firmware, and run it.
-> +        falcon
-> +            .reset(bar)
-> +            .inspect_err(|e| dev_err!(dev, "Failed to reset GSP falcon: =
-{:?}\n", e))?;
-> +        falcon
-> +            .pio_load(bar, self)
-> +            .inspect_err(|e| dev_err!(dev, "Failed to load FWSEC firmwar=
-e: {:?}\n", e))?;
-> +
-> +        // Configure DMA index for the bootloader to fetch the FWSEC fir=
-mware from system memory.
-> +        regs::NV_PFALCON_FBIF_TRANSCFG::try_update(
-> +            bar,
-> +            &Gsp::ID,
-> +            usize::from_safe_cast(self.dmem_desc.ctx_dma),
-> +            |v| {
-> +                v.set_target(FalconFbifTarget::CoherentSysmem)
-> +                    .set_mem_type(FalconFbifMemType::Physical)
-> +            },
-> +        )?;
-> +
-> +        let (mbox0, _) =3D falcon
-> +            .boot(bar, Some(0), None)
-> +            .inspect_err(|e| dev_err!(dev, "Failed to boot FWSEC firmwar=
-e: {:?}\n", e))?;
-> +        if mbox0 !=3D 0 {
-> +            dev_err!(dev, "FWSEC firmware returned error {}\n", mbox0);
-> +            Err(EIO)
-> +        } else {
-> +            Ok(())
-> +        }
+> +        dst: &mut SBufferIter<array::IntoIter<&mut [u8], 2>>,
+> +    ) -> Result {
+> +        dst.write_all(self.params)
 > +    }
 > +}
 > +
-> +impl FalconFirmware for FwsecFirmwareWithBl {
-> +    type Target =3D Gsp;
-> +
-> +    fn brom_params(&self) -> FalconBromParams {
-> +        self.brom_params.clone()
-> +    }
-> +
-> +    fn boot_addr(&self) -> u32 {
-> +        // On V2 platforms, the boot address is extracted from the gener=
-ic bootloader, because the
-> +        // gbl is what actually copies FWSEC into memory, so that is wha=
-t needs to be booted.
-> +        u32::from(self.start_tag) << 8
-> +    }
+> +/// Response from an RM control message.
+> +pub(crate) struct RmControlReply {
+> +    status: NvStatus,
+> +    params: KVVec<u8>,
 > +}
 > +
-> +impl FalconPioLoadable for FwsecFirmwareWithBl {
-> +    fn imem_sec_load_params(&self) -> Option<FalconPioImemLoadTarget<'_>=
-> {
-> +        None
-> +    }
+> +impl MessageFromGsp for RmControlReply {
+> +    const FUNCTION: MsgFunction = MsgFunction::GspRmControl;
+> +    type Message = GspRmControl;
+> +    type InitError = Error;
 > +
-> +    fn imem_ns_load_params(&self) -> Option<FalconPioImemLoadTarget<'_>>=
- {
-> +        Some(FalconPioImemLoadTarget {
-> +            data: self.ucode.as_ref(),
-> +            dst_start: self.imem_dst_start,
-> +            secure: false,
-> +            start_tag: self.start_tag,
+> +    fn read(
+> +        msg: &Self::Message,
+> +        sbuffer: &mut SBufferIter<array::IntoIter<&[u8], 2>>,
+> +    ) -> Result<Self, Self::InitError> {
+> +        Ok(RmControlReply {
+> +            status: msg.status(),
+> +            params: sbuffer.flush_into_kvvec(GFP_KERNEL)?,
 > +        })
 > +    }
-> +
-> +    fn dmem_load_params(&self) -> FalconPioDmemLoadTarget<'_> {
-> +        FalconPioDmemLoadTarget {
-> +            data: self.dmem_desc.as_bytes(),
-> +            dst_start: 0,
-> +        }
-> +    }
 > +}
-
-Here in `FwsecFirmwareWithBl::dmem_load_params` it returns dst_start as 0,
-except the docs say 'This has to be filled by the GPU driver and copied int=
-o DMEM at offset
-/// [`BootloaderDesc.dmem_load_off`].'
-
-
-> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
-p/boot.rs
-> index 78957ed8814f..9a00ddb922ac 100644
-> --- a/drivers/gpu/nova-core/gsp/boot.rs
-> +++ b/drivers/gpu/nova-core/gsp/boot.rs
-> @@ -24,6 +24,7 @@
->              BooterKind, //
->          },
->          fwsec::{
-> +            bootloader::FwsecFirmwareWithBl,
->              FwsecCommand,
->              FwsecFirmware, //
->          },
-> @@ -48,6 +49,7 @@ impl super::Gsp {
->      /// created the WPR2 region.
->      fn run_fwsec_frts(
->          dev: &device::Device<device::Bound>,
-> +        chipset: Chipset,
->          falcon: &Falcon<Gsp>,
->          bar: &Bar0,
->          bios: &Vbios,
-> @@ -63,6 +65,7 @@ fn run_fwsec_frts(
->              return Err(EBUSY);
->          }
-> =20
-> +        // FWSEC-FRTS will create the WPR2 region.
->          let fwsec_frts =3D FwsecFirmware::new(
->              dev,
->              falcon,
-> @@ -74,8 +77,14 @@ fn run_fwsec_frts(
->              },
->          )?;
-> =20
-> -        // Run FWSEC-FRTS to create the WPR2 region.
-> -        fwsec_frts.run(dev, falcon, bar)?;
-> +        if chipset.needs_fwsec_bootloader() {
-> +            let fwsec_frts_bl =3D FwsecFirmwareWithBl::new(fwsec_frts, d=
-ev, chipset)?;
-> +            // Load and run the bootloader, which will load FWSEC-FRTS a=
-nd run it.
-> +            fwsec_frts_bl.run(dev, falcon, bar)?;
-> +        } else {
-> +            // Load and run FWSEC-FRTS directly.
-> +            fwsec_frts.run(dev, falcon, bar)?;
-> +        }
-> =20
->          // SCRATCH_E contains the error code for FWSEC-FRTS.
->          let frts_status =3D regs::NV_PBUS_SW_SCRATCH_0E_FRTS_ERR::read(b=
-ar).frts_err_code();
-> @@ -144,7 +153,7 @@ pub(crate) fn boot(
->          let fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
->          dev_dbg!(dev, "{:#x?}\n", fb_layout);
-> =20
-> -        Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
-> +        Self::run_fwsec_frts(dev, chipset, gsp_falcon, bar, &bios, &fb_l=
-ayout)?;
-> =20
->          let booter_loader =3D BooterFirmware::new(
->              dev,
+> +
+> +/// Sends an RM control command, checks the reply status, and
+> returns the raw parameter bytes. +#[expect(dead_code)]
+> +fn send_rm_control(
+> +    cmdq: &Cmdq,
+> +    bar: &Bar0,
+> +    h_client: u32,
+> +    h_object: u32,
+> +    cmd: RmControlMsgFunction,
+> +    params: &[u8],
+> +) -> Result<KVVec<u8>> {
+> +    let reply = cmdq.send_sync_command(bar, RmControl::new(h_client,
+> h_object, cmd, params))?; +
+> +    Result::from(reply.status)?;
+> +
+> +    Ok(reply.params)
+> +}
+> 
 
