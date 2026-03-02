@@ -4,104 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B98CD58E48
-	for <nouveau@archiver.kernel.org>; Mon,  2 Mar 2026 17:04:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C353FEB3624
+	for <nouveau@archiver.kernel.org>; Mon,  2 Mar 2026 17:26:56 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6040510E580;
-	Mon,  2 Mar 2026 17:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADB610E570;
+	Mon,  2 Mar 2026 17:26:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=xry111.site header.i=@xry111.site header.b="lm7N2ZIm";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="v3xYXlCX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5F98344D7F;
-	Mon,  2 Mar 2026 16:54:08 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772470448;
- b=LOx03OT3M8uTIWpFJxuQz75eQCBIqTxGxafmIVZextnPSjEXAizG1XzJPblCWV6WcVOw9
- ebX9yvSLM6kX3M+YIt/+q8vYtOqlWVdjtHNoRs7A9URd+Sws5BupNEyQSHS1z/gtBUvWRmx
- apOK4jdKMRTgOMbWbhv6WxmcCb6nHGO6C+6U+nTPmbz0HfeSLZDIOymXe1xtak+EAIuVmUs
- mkXvmcG24Ic4k4d0OMoFI0/fhLD1s1iGG7h31mBSvDGUH+cKP1dIQCI9/OwuAQtsjMlV8/1
- PI0QoHCV14tOcUQo69ghcGutA5D4LrpVhYBCzX79RpYwoEz4X6ZDBz6xiZqw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772470448; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 07F9844D81;
+	Mon,  2 Mar 2026 17:16:40 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772471799;
+ b=kej7Y1vKLUSMod/WFbCK3NxIz7J9RRD9vc2fjGA9Lm0XoFOaHhXrnf5RhBriOzvKmT65W
+ tBUyz/EFnGXH4gEGwuEeAhd1D70vc6RIay3CCsv/Rx4hLInqIFac7gRIxcnim1QaWk9BVVb
+ VztqWzBYpTatasIue0B5zcz8zHwh8QgFUMMkMpUVcjcPPOjXsy0/A2fNWda9RctPJnhYoAa
+ ysXoF18W3POSauEHQxItzXiyqaqWuMl3NYJzZI2PXVCDAqvnl8eU8DQ3nU73OKuQiwE8whe
+ /R6AxFRYrC32S0xA+wkFijtk3Yn0yJIbvLsJYtUW8R4Y1XnHb/TpfgLC40CQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772471799; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6zAy6gReJcleCqNHP1MmxDQ9Xz+aQderSR0GGhLr1pI=;
- b=VexgLtrmw8b1lWzv2qf/yqO19+mOAIc76LWehPgugSTzkmAzVyKAcGf+HBu+MYKrw/o+Z
- tEVnFpc76xdVLZvOTg/o5S17Q/Z4C/l1IoCSwKkJvmgFWb14+1HbBf8waprhf8DyII9PHO3
- 6PpwiWFhRD3Uk5PZMd6ZB+qg2m27ZUVGGMmzYWmLUXmrNtkDCrKYxgGI3MGMluoRraUArup
- eat57MRe5f0njo5srAzQGSHryzEhuBqMcOY7AhZTpmiyUckauTIFzINOQdBJsajWiavOSnL
- 91bE4WmnU1CkF1EODIZTPSL2ikc0aJDONRoaQhmh7elpoi1COK82zwJYT38g==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=xry111.site;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=xry111.site
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=xry111.site;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=xry111.site
- policy.dmarc=reject
+ bh=SpPVpUTurjMEo0TDyiIE+esnVU8X4QqwcE2GSnLgDkw=;
+ b=MA9tED9PMYLyvUKuI5uMbmuQt65hSJv4B7Xg+tEz6W/nLr+hWUpL1BhcC4rT8SWx+fpeW
+ PWvd5Pbrz5/CcNuaEY0Snw8Eawt9Zdk21nfIEIMHH1Cvq0JA7iavWaDlvTnd8zZuFsMaHHI
+ zHDm4gtQKD7w1zs9/2Ln4UomMYmoeak3fST518hE8eNFL2QKtHJfUGQfB0DfADnC9t+MH0M
+ 7urmFYHMDUhXPm18BYIwrgFM6jcPIUwLYldP0QSbMjhJVoLzhYOPfWyWxsMrLAArOpd2ySS
+ HqYdRHkjamt9q2A1OblXZSfL0W9ahbFjYKfNC7fr/+9ZWv+C9Zi+UWHjzDvw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B002A44CFB
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 02:20:27 +0000 (UTC)
-X-Greylist: delayed 491 seconds by postgrey-1.36 at gabe;
- Mon, 02 Mar 2026 02:30:42 UTC
-Received: from xry111.site (xry111.site [89.208.246.23])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1484710E348
-	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 02:30:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xry111.site;
-	s=default; t=1772418148;
-	bh=6zAy6gReJcleCqNHP1MmxDQ9Xz+aQderSR0GGhLr1pI=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=lm7N2ZImQhodvGc2BqpdKduMN036R8BbCgpOTPJDmWK/nKCMuzHMa0C6dKfWZXUzm
-	 9CWJVusSrx5JxW6d4BY32NmVQxOIoUAszHDJFUx6iZAb2IXdPfy367PzVLrwjYnqVR
-	 qKsf7Gm5OBLno2fMOQze9cpj+0blCrMDRRGsJKsQ=
-Received: from [IPv6:2409:8a4c:e11:4510:818c:b334:624:49f8] (unknown
- [IPv6:2409:8a4c:e11:4510:818c:b334:624:49f8])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (secp384r1)
- server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id 512C16760A;
-	Sun,  1 Mar 2026 21:22:25 -0500 (EST)
-Message-ID: <9bb8b1ae61ccebec6460e2b271cbcc709aba9765.camel@xry111.site>
-Subject: Re: loongarch64 objtool warning with LLVM 18 in Rust object file
-From: Xi Ruoyao <xry111@xry111.site>
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>, Josh Poimboeuf
-	 <jpoimboe@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Huacai Chen
-	 <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>
-Date: Mon, 02 Mar 2026 10:22:20 +0800
-In-Reply-To: 
- <CANiq72mAQxbRJZDnik3Qmd4phvFwPA01O2jwaaXRh_T+2=L-qA@mail.gmail.com>
-References: 
-	<CANiq72mAQxbRJZDnik3Qmd4phvFwPA01O2jwaaXRh_T+2=L-qA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+	by kara.freedesktop.org (Postfix) with ESMTPS id 48BA54032A
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 17:16:38 +0000 (UTC)
+Received: from CWXP265CU008.outbound.protection.outlook.com
+ (mail-ukwestazon11020139.outbound.protection.outlook.com [52.101.195.139])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D8FE710E56A;
+	Mon,  2 Mar 2026 17:26:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YKDvhUkfj7JUUco8Xq9G/ekfKq05a17309A19MLinFBgG62Yrerze7VCdYIKUhc0WdBYZAmWnNonmRwv9o4v4GgNiGaLIjtUXtYok4S8+dH3l8zsqmkBRRkOqm8XVWD77rBcVi5M/qdXlf05SF7qdHL738YU0dtRADbQ7Zb2cRu9k14pv6CNxmygEGVTjykZFzn5iqh+stHnxlTWhEy8zeKlJZWOxA4WMg2Nso+7wXiug4sbEo1bYE3fgjE1IkO8b6yLoKRsS7ILuiqTGe0N/hYQ6u0oAWTtI6Hnp8gIMt5SNSLiNTO21dnMvO4QVZ4L9jXTj5fPa+O/9HCaF/yUdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SpPVpUTurjMEo0TDyiIE+esnVU8X4QqwcE2GSnLgDkw=;
+ b=UJxdmO1QjNK6jNXRoG7vG7t1DLoyyCxlDPWmZTJcG4qmMEr6E/kFraHi9M9ZkvgeHtS/6hfv1HTJJzye2Mw5gr2NDfR1aFGeBZdMdYxw78MLaVc70CS5ZGkJE9MD4E/u4y1bPaQZa2x5sxyMICEIGgYP7aLbiRjlM51lV0e5phcaqd/Jd1Q3Ks4i6mNEABiEhC6+OIEUYv6h/cXlKx0jDVySOkZH/p+7ZHSuVuejAo6W9RphI3YXmgj7N2sMfPdzpSAdfS0TMM0KzBCEavq8HqAyUj/ym3VUUJSsmoUwNeR55xO7weuSKxNyjbE2YgIzd8yloULsS8/oskKj8k0A4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SpPVpUTurjMEo0TDyiIE+esnVU8X4QqwcE2GSnLgDkw=;
+ b=v3xYXlCXRbRnC8xLwTM6cqHpzBYxkFcrBlNQAOL2m0hLAK55ab08xZl2rP1W4sufIZ7/NbeFx4H6lvc4ivqthnGCSJNlzOUJxbGKeIGCZsZ9fEIhNL9j30a05p6UTFZ1JpMQGj4mF5VQG8KhQn+x/mbaebc9ITrvslMZd8skdnk=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LOYP265MB1838.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:f0::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 17:26:50 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 17:26:50 +0000
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 02 Mar 2026 17:26:49 +0000
+Message-Id: <DGSH13Q82SJI.1PSPF1POKDO1J@garyguo.net>
+Subject: Re: [PATCH v2 2/4] gpu: nova-core: gsp: add sync and async command
+ queue API to `Cmdq`
+From: "Gary Guo" <gary@garyguo.net>
+To: "Alexandre Courbot" <acourbot@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>
+X-Mailer: aerc 0.21.0
+References: <20260226-cmdq-locking-v2-0-c7e16a6d5885@nvidia.com>
+ <20260226-cmdq-locking-v2-2-c7e16a6d5885@nvidia.com>
+ <a3b7a5c3-9689-4700-981e-d94bd2b5091d@nvidia.com>
+ <DGRXSDSDMUOI.31863U05DR3VA@nvidia.com>
+ <DGRYNXISKYQR.2V6CH8PKCLUDY@nvidia.com>
+In-Reply-To: <DGRYNXISKYQR.2V6CH8PKCLUDY@nvidia.com>
+X-ClientProxiedBy: LO4P302CA0032.GBRP302.PROD.OUTLOOK.COM
+ (2603:10a6:600:317::13) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
 MIME-Version: 1.0
-X-MailFrom: xry111@xry111.site
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LOYP265MB1838:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3f3d8c62-f29f-476a-41ca-08de7880e36b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|376014|7416014|10070799003|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: 
+	w6R+kEpyyyh1tRTwli5/KSzU/LYjyxoIAaaA0Km1hnPdLbcNtv7yUpbv/wToLIv9KgXDrCJRrKLfrQFslvSH1N1ivRj4py36Qe9AWdDKPgDlFUKQLySdEO9tyzi4+nFfy403p9/jZLIxv11P1zsK50jWslcbz7efhSer217zYKOEeG4qerlsJGelLPpdmJ14h533uQr109870G98R2Y+XA6VedxbsFcPcairLXa+QS9MnE4cqxxIKWGdqqLP3OOHnjkYBTwWl1R+s1rJLaz6uarsGRDFxpjzYHVCfZliK9972FCJFAMzKcSOfqcKRnVkGjDDGYXh8WHLhfc9PeKMNcewpyQ2TPhaHRhTfbN/YgyLDlfBw7z6DI93K5AMVAo4Sixqjn6/sN3kxrYRu5KqrHvwrwk3/df4P/P9euAOFb68ozh0HUKYYe254cBI4p9/MTyNBSFRohQpowK1aFxG/NHlkqKbCW0grvmyv/C9ng3gzd2o98arcHrHiCTLfgRPS038Rk6Pn2EH/QWgXbuCyCRN2/MdbrL9hVGXZWCHHSTgzuiSKzn8qaoyKev03oD7y8+8SkMOOdJrKqkWHY/GgeUHxMWoytagTV1aUrURVkaSm5g71R2IWUWgpOCOwxaAO8KAbBDRFri82ji0mx/N1acI4DhZh+l3SlaW/Peu50kwxWSoaX2jhUhoCIualD79woRc9UscxDnbs57lD5zIwvPuW6Xb40Tss8M1c5DirDU=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(366016)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?ZFl3V0dWN3YyT2plOUpWbjRBUzY1czh0WEdxdnVYR2Fpem9zY01JQ2hxNklU?=
+ =?utf-8?B?aFplb2pFVlV3ZFAxSVcyRlhYSXp6ZmhNYk1VT084cEVwOTRFV1lvcVNaNjZZ?=
+ =?utf-8?B?UGNKY2hSdG9jcTB6dmJONzFLU2J1dDR5dzY3dEFrcURiMTcyZ2o1V1lyV0Vl?=
+ =?utf-8?B?K3libllBU05kZ1NRM2orQ3NpSml5SDZqSnlTQVlaankweFl6RG5GUldBbTJ5?=
+ =?utf-8?B?WUc4OXNtem9ROEJ4amdiY0w5TEZtanVqbDVyN1RReHlvS3JpbElCR3dmd3Fv?=
+ =?utf-8?B?NmROc0c4VlFZdnhUUHB0eXFLTGJiUS9CUitiV29MRlpyKzYvSnZ2c1czRTIy?=
+ =?utf-8?B?K3Z0YXNpREh5enNlemxFQW05T2xGdUU1aTlzSE5rUHViMVBFT3FPY2tJREo3?=
+ =?utf-8?B?Z3NzL1FvWmJXTXVHTzh0Vm1ORWxIcFhrK082aXFKUjFMK3luUXpEZThja1Ev?=
+ =?utf-8?B?WjQ5Yk96MldlMEh1cmNXb2JNRDI5K1RiYzJjb01jNWlLYnhlcm9jak8rNHlQ?=
+ =?utf-8?B?UXcrWFNQUnh6UGswa2N0R3R4RTZtWW9WL0l6OVFjNzRGdmtlZUdNQWtSSzNJ?=
+ =?utf-8?B?dWU3dDliNU5MTTdxd0ZCWkNWTUNzQ3RDd0Ftd0ZyaEs2VmJNVHFoTmtya2FJ?=
+ =?utf-8?B?YmRsWXRVVDZyNjBpNDI0UEtzVUVReGxOY1BXZkF5dEl5OElTREhDejFTSVdD?=
+ =?utf-8?B?U2ZpelpqTmd6YXdZaW9ydnF6ZXRFL3pva2c1SnRZNHJTQ2ZISU1kQzZMaDg4?=
+ =?utf-8?B?VUN2WnU2MnAydHRhM0pGeGI2MnpMVm1McVNFL09xaGNlczNCa3F1dFNiNXBM?=
+ =?utf-8?B?elRBZnNTUHRMSy9lQ2pSZUFEQ1RCb0lIdzFMcWMvNURMTEd1bmZBUFBackxF?=
+ =?utf-8?B?Y3doTFZ1UzRUV0ZabU1PeFN0eUNxWk9LR29pV0s1RlE5Q2oxNUM2d280NGJy?=
+ =?utf-8?B?TmFYMWlITWdqUGs2cFNlOE0zQzhVVHVhaDI4eUJKS3NRdXFrT3hYNHd4SXp0?=
+ =?utf-8?B?dW5rZFFJRDU4c0VUVkRybGRtN2ZnREZ0UStIZGlrd1ZHUlZxNTZzbXRsUHRX?=
+ =?utf-8?B?V09nMVQvMWFSQkkrdHk3MENQMVh4aEdmRzJGL1lJZXJCdVg3d28vZnNtQmFK?=
+ =?utf-8?B?bGNuaEF6QzFEb1JZbFVYUjB0QjJKZE5FQXArRitXeVdhbFdGb2ZyanpzbTkr?=
+ =?utf-8?B?bjRwVklaeG50U0JRN3JEdFFPNWQ5UVg3OXVBekZEOURqeFRUc2RSaWlMTDN1?=
+ =?utf-8?B?dExYK2JiWW9EWGdQU0VkaWVOVWY0QVRHOTlCUStWTEpodUxzdnFyTlV4dDc5?=
+ =?utf-8?B?dXd3S09XYjIvNVF1cXY3OVRnanBuWmhNSy9zT2FqV3NaNHBMcGJya0REejlR?=
+ =?utf-8?B?ek9DUU9CQmQvSFlZQ3k5WCtyUXBZVW1qMEt6RUU4ZnRHVkh5N2IvckpjZ1dw?=
+ =?utf-8?B?UWF3L3BuckRtckdDQjk4cWM4aEsyRUljVTB0ZjhaMFUrWTBqVWUvODhNWDNl?=
+ =?utf-8?B?Ky9DSnB2UU1tcWMwNTh4NWxJTCtzTFNJZkJ2N1Y5cE1hWjVUSGxDc3pOTS95?=
+ =?utf-8?B?czBmRWVBZE03Rjh1SDJEU3hJVDhtczdwZ3pSZjJvU2xLNDZWVzZ5dEpTZTlU?=
+ =?utf-8?B?UUpiTjhJQzRXRGUwR21JVVREczF0Q0VwR0RuU1FudE95QlVJVkZRZHgwYXFt?=
+ =?utf-8?B?UG5SempFTy84SUNxZ0R0YWMyck13ZFA3Q3oxdmExeXBhTjVCVi8rY1lHYllK?=
+ =?utf-8?B?R001T2dMLzU2b0w1UkxzVEFEUHNIemZveS9hRWFWV0RGQUNDd2NJQ1hvMzdK?=
+ =?utf-8?B?TmRqVUhQT2hhTDNaNVBoNXBWN1lZMC9zSDdyR09vQUF4SEo1VzFrMUFwcHZ2?=
+ =?utf-8?B?VUpJN1d5T1RaZVgrd2ZkV2JhSVp3aWVDcWdiemJndHVydlM1MUZLTTQwMTJ3?=
+ =?utf-8?B?VklOMDZMdmNOcm1GWDNpQTRQU1ZGM3NSdVFhYW5GR2JlSndpaE9lU2NzT09C?=
+ =?utf-8?B?TEhPUDV5U0puM2gzSWNxTnh3QWU3bUNoMXgyempYVm4wWm9PWlhxbExSbXl6?=
+ =?utf-8?B?bG51RlRKMUJUVTgxUmhpd0hnSDJsQ1ZKVWJsOXQwa2dvdnlwZ0dkMXlWV3JW?=
+ =?utf-8?B?MmZhQzQ2QTMxMzFBY0RqU3R0L3NhTy9uYmVna2h3N0x5QXVPdmFUU0oxb3Iw?=
+ =?utf-8?B?blNDR0cvcllCSEpPdU5yTWtQS01XT05kUUxMVGlaek1TSnljelpMcWhTUHA0?=
+ =?utf-8?B?WXQ1OWJ5OHVHZXVBd2FzQy9ldGxvYzB5VUVlV2M5YkJMaWJlYzZvREh4bkk4?=
+ =?utf-8?B?NFhEWG0zcytmUmZ0NG1zNGdYa2ErL2VmTEZ0V0JqREVpczZQT1FvUT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 3f3d8c62-f29f-476a-41ca-08de7880e36b
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 17:26:50.1221
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ HPrwMC0b5ixqiY/y7BdiEs/1MF0Wa85A/vKMAota+8dn8DCzkzi5Fys6q6CqBayTmTEyI6Sg4WglZ2D+y92hYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB1838
+Message-ID-Hash: M3BBLS3V4VJKQ4VXJQKCCOG2ENGQYXDQ
+X-Message-ID-Hash: M3BBLS3V4VJKQ4VXJQKCCOG2ENGQYXDQ
+X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: RYUOPVBSEN2TFIXY4YVMZEEU5BP4PLPT
-X-Message-ID-Hash: RYUOPVBSEN2TFIXY4YVMZEEU5BP4PLPT
-X-Mailman-Approved-At: Mon, 02 Mar 2026 16:54:06 +0000
-CC: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, loongarch@lists.linux.dev,
- rust-for-linux <rust-for-linux@vger.kernel.org>,
- Nouveau Dev <nouveau@lists.freedesktop.org>
+CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Simona Vetter <simona@ffwll.ch>, Benno Lossin <lossin@kernel.org>,
+ Gary Guo <gary@garyguo.net>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RYUOPVBSEN2TFIXY4YVMZEEU5BP4PLPT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M3BBLS3V4VJKQ4VXJQKCCOG2ENGQYXDQ/>
 Archived-At: 
- <https://lore.freedesktop.org/9bb8b1ae61ccebec6460e2b271cbcc709aba9765.camel@xry111.site/>
+ <https://lore.freedesktop.org/DGSH13Q82SJI.1PSPF1POKDO1J@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,48 +188,115 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, 2026-03-02 at 00:42 +0100, Miguel Ojeda wrote:
-> Hi objtool & loongarch,
->=20
-> I noticed an objtool warning in a Rust object file for loongarch64 in
-> mainline:
->=20
-> drivers/gpu/nova-core/nova_core.o: warning: objtool:
-> _RNvMs1_NtNtCs3LxSlPxFOnk_9nova_core3gsp4cmdqNtB5_4Cmdq3new+0x238:
-> return with modified stack frame
->=20
-> From a quick test, I saw it happened only with older upstream Rust
-> binaries (1.78.0 to 1.81.0), so I suspected a switch of major LLVM
-> version, and indeed with 1.82.0 LLVM 19 is used instead of LLVM 18.
+On Mon Mar 2, 2026 at 3:03 AM GMT, Alexandre Courbot wrote:
+> On Mon Mar 2, 2026 at 11:22 AM JST, Eliot Courtney wrote:
+>> On Sat Feb 28, 2026 at 3:11 PM JST, John Hubbard wrote:
+>>> On 2/26/26 7:50 AM, Eliot Courtney wrote:
+>>>> Add sync and async command queue API and the type infrastructure to kn=
+ow
+>>>> what reply is expected from each `CommandToGsp`.
+>>>>=20
+>>>> Use a marker type `NoReply` which does not implement `MessageFromGsp` =
+to
+>>>> mark async commands which don't expect a response.
+>>>>=20
+>>> ...
+>>>> +    /// Type of the reply expected from the GSP, or [`NoReply`] for a=
+sync commands.
+>>>
+>>> Hi Eliot,
+>>>
+>>> The following does not need to hold up your patchset, but I want
+>>> to bring it up somewhere just to work through it.
+>>>
+>>> The sync/async naming that GSP RM uses is a little bit "off". I
+>>> spent some time discussing it with them, and the problem is that
+>>> sync/async is a concept that is somewhat independent of whether
+>>> a reply is expected. Usually, sync means a blocking wait for a
+>>> response, which is not necessarily required in all case with
+>>> GSP RM calls.
+>>>
+>>> The naming would be better here if it reflected simply that
+>>> a response is expected, or not. I don't have great names for
+>>> that, but "fire and forget" works well for what we have so
+>>> far called "async". So we could do create a convention in which
+>>> no annotation means that the API has a response that will come
+>>> back, and some abbreviated for of "fire and forget" or "one way"
+>>> added to the function name would mean that no response is
+>>> expected.
+>>>
+>>> Again, I don't think this has to happen here, because we can
+>>> go through and rename later, no problem there. But when I saw
+>>> the sync/asynch and remembered the very recent discussion, I
+>>> figured I'd better post something about it.
+>>>
+>>> And yes, I started us off in the wrong direction with the
+>>> IS_ASYNCH thing! haha
+>>>
+>>> thanks,
+>>
+>> Hi John,
+>>
+>> I totally agree and was hoping that someone would have a good suggestion
+>> for this. I discussed this exact thing with Alex before posting this
+>> too. So if you have any naming suggestions would love to hear them.
+>>
+>> As you say, sync and async are orthogonal to reply vs no reply. I think
+>> we have several ideas here actually:
+>> - blocking vs non-blocking
+>> - reply vs no-reply
+>> - wait for reply vs don't wait for reply (practically equivalent to
+>>   blocking vs non-blocking here, but conceptually the send could also be
+>>   blocking vs non-blocking)
+>>
+>> We should also be careful with conflating waiting for the reply vs not
+>> having a reply. So `send_without_waiting_for_reply` is definitely
+>> confusing to me, because there may be a reply that we just don't wait
+>> for.
+>>
+>> Some ideas:
+>> - send_command_with_reply + send_command_without_reply
+>>   - Maybe non-obvious that this blocks for send_command_with_reply.
+>> - send_and_wait_for_reply + send_no_reply
+>>   - More obvious that it blocks and gets the reply.
+>>   - Should be obvious from context that you are sending a command
+>>     anyway.
+>>
+>> Personally I think it's nice to keep a convention of keeping it
+>> mostly obvious which functions block/wait. (e.g. we already have
+>> wait_for_msg in cmdq.rs).
+>>
+>> For lack of a better idea  i suggest send_and_wait_for_reply +
+>> send_no_reply for now.
+>
+> One important detail IMHO is that the API cannot be misused, i.e. you
+> cannot call the fire-and-forget send method on a command that expects a
+> reply. So the risk is mostly when adding support for a new command - but
+> if that step is done properly, users will be directed to the right
+> method by the compiler.
+>
+> This, I think, allows us to tolerate more ambiguity in the method names,
+> as long as their documentation makes up for it. We all agree that
+> `async` and `sync` are not a good fit, but `send`/`send_noreply` should
+> be tolerable (I'd like to keep the names short if possible)
+>
+> Or maybe we can use a variant of the trick mentioned by Gary in [1] and
+> have a single `send_command` method?
 
-/* snip */
+I think for this particular use case there isn't even a need to use any tri=
+cks?
+You can simply just skip the receiving part when there's no reply expected.
 
-> While with LLVM 19 I get:
+Something like
 
-/* snip */
+    if TypeId::of::<M::Reply>() =3D=3D TypeId::of::<NoReply>() {
+        // SAFETY: `M::Reply` is `NoReply` and it's `Copy`.
+        return Ok(unsafe { core::mem::transmute_copy(&NoReply) });
+    }
 
-> =C2=A0=C2=A0=C2=A0 lu12i.w=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 $a2, 1
-> =C2=A0=C2=A0=C2=A0 ori=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 $a2, $a2, 0x870
-> =C2=A0=C2=A0=C2=A0 sub.d=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 $sp, $sp, $a2
-> =C2=A0=C2=A0=C2=A0 ...
-> =C2=A0=C2=A0=C2=A0 lu12i.w=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 $a0, 1
-> =C2=A0=C2=A0=C2=A0 ori=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 $a0, $a0, 0x870
-> =C2=A0=C2=A0=C2=A0 add.d=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 $sp, $sp, $a0
+Best,
+Gary
 
-/* snip */
->=20
-> So I suspect the stack pointer is not getting tracked properly and
-> thus the mismatch. Is it a known limitation for `objtool` on
-> loongarch64?
+>
+> [1] https://lore.kernel.org/all/DGRJJA3068FV.3CE7J7SKLTN8O@garyguo.net/
 
-It indeed looks like objtool cannot handle the sp update using a scratch
-register above.
-
---=20
-Xi Ruoyao <xry111@xry111.site>
