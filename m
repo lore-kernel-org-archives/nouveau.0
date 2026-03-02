@@ -4,144 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEE74FD007D
-	for <nouveau@archiver.kernel.org>; Sun,  1 Mar 2026 23:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF71AD58E4A
+	for <nouveau@archiver.kernel.org>; Mon,  2 Mar 2026 02:22:17 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5871310E339;
-	Sun,  1 Mar 2026 23:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 903F310E419;
+	Mon,  2 Mar 2026 02:22:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fBADYtrh";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="A0QVXOLJ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E61FB44D27;
-	Sun,  1 Mar 2026 23:32:51 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E6C2944D17;
+	Mon,  2 Mar 2026 02:11:59 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772407971;
- b=aoo0RA0ujfjkd2NbgtbGCZ3ktyPh5zghc/uYfOl3X5uh52ngnS3j24ZXmQpy2TyQtm6iD
- PDJN1XCOTkqIPsoS142cz//uzGv+U1f/U93I/V3QUvSj8vt9GK9/ZqVyP1HfAdE/Hf8pgKK
- krCpJ41Xz5cgsJP7/w1yINyDkThmrxRoEHm2cQvgoLG175BvOfYEvHJxNKqQZfR48p9BUWE
- dEnMsQDwFJt8xWNGWAgP4p7XJbsowZFHpws90ljiWWe1QyzaBa36P3+hxpq9i8Epv5B1YN0
- 6SQz9T6K1Yucp9bYuKEksq7dchZPcpI/lmmlxA6XI84QVAqr9QdEHAHWbsfw==
+ s=20240201; t=1772417519;
+ b=EE7Qnr28Yw/O3DDcm5YYmqcczIW6o1iFlJ3d/JH0fN/aALN5/TBviBuTNIoaNaLleuQGm
+ cH0xLl2fWq8AkqDcl0RVDZuVsFLuh+4aAhRkqigNTw0x5B9K3hybzxSmqmO28RKGxHM37/c
+ 2LtovO2QtLSdM5OL6vpFtSYZ798+Cag3noDS0b8WnJ3S6UuID13bLvWrc56xnZC+m2jFCjH
+ XKVr2+6LVMz2uVh9Jvf3igBKhvJH9zNKFiY05rvP4Ov2MXaIzcCUfcp1lmXGxUQD8qYVM4Z
+ tn2Vc7bT59+JKC4H1VWa4Icj+rz3ovTrSEy/oR4lK3PvWTaoKui8z4ZSKNbA==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772407971; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772417519; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=U1gYsY7zWUiNKxFF1e5Vu7YTdyDgHqmsZtnGIts9t9Y=;
- b=EfZeVbx5nOyHGXg9drH6PMah7p6UF+AFfNKdmmKs2Jps5hB39GarXuEaHdR0+kufF9F7j
- K7zTgHfpM8/uj85Ji6dF8BLq7hYN3HrOAhfcVixA3schdK36Pr35S4mCVIvaTQ2pG1AkAQe
- 5sVMEhoqtIf7kxGxCBP8zeqSZ+5nmVoe0sJy0iATSBO/O9xIi5jAlKB77QDqx3xaxkeNQiR
- BS0ajnimMB0gA5Lwemk8JVFtJz0oo2FFgnBi9bGxjLOXxr+E4pWmg4QiJ4I9cy4AbhajUe8
- d9rNrDpKBQ/HEhLgLtYoPnX2vHjAWgEEGI/0dr0uZ1lT9+JECJUeae13KBhw==
+ bh=oOOevatXhK/ImlyJz9NemYZCNrZFhV10lk3ZBMYDauM=;
+ b=rUSKBS71fb8lxbSFK9NHCf1oFj1YuGH5Wff2v9G5w4joM4Dr/u8WMs8j9tGIBmfrrleLj
+ a9J+wm4fTvADX0uOq8k+TXCWKakHc/in00KiIx1FB+CCBkkoEWbFJRyJEXqmgomiSWYPR+M
+ 5c3tnIav+JFLCDzIETDVSSOpyijw3pv4W+Vq/oiaTo+WZIGPoySL9PA80q/T4uEYnvd8/SY
+ fM02GI5bSqoeDG/VyfWxkiU7t4rppV1ySBGMuUW2/I2ZZjzmvKelDqPZqMP2sFHzP28Z8Q7
+ za8/yIkzu8Z2nWb5unEkTJidAAJzf+qDlypvY0dyxF9E/I2gfrAO18LQBKtA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=Nvidia.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3C6D24055F
-	for <nouveau@lists.freedesktop.org>; Sun,  1 Mar 2026 23:32:48 +0000 (UTC)
-Received: from mail-dy1-f177.google.com (mail-dy1-f177.google.com
- [74.125.82.177])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 63AD510E335
-	for <nouveau@lists.freedesktop.org>; Sun,  1 Mar 2026 23:43:02 +0000 (UTC)
-Received: by mail-dy1-f177.google.com with SMTP id
- 5a478bee46e88-2bd801b40dbso275621eec.0
-        for <nouveau@lists.freedesktop.org>;
- Sun, 01 Mar 2026 15:43:02 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772408582; cv=none;
-        d=google.com; s=arc-20240605;
-        b=EqKU55N6l5eZ5LeHnVXr27DRT44p02VIILAaepLVkyCQiptwRfI/EDu2JjThFem9/n
-         rsFI1jck6ccTcu3tMRka3//disyqmHKH8mUBVbknxojdgasahYc9cnXoMXz+OtVmvrsd
-         AgfrGEISpKj2Or4lGsbUS7GomgcuNeSJMTLzBjm9hYCZNinSipP7Ri8SD6Lbw+1eCcAi
-         5DXdYbn+9eEPXWba9rGGREFQvlXOAG6Rx1Ko9XIpXlPxNJfI1nLALZSq+V54m13OBsc6
-         KfwXgY/IQ9BjTlq0+LSje2VVCBPzQczXS4hcivEP1nnyHJhJAntIm/V3a+0Q2Diz+cqt
-         p49Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
-        bh=U1gYsY7zWUiNKxFF1e5Vu7YTdyDgHqmsZtnGIts9t9Y=;
-        fh=KYojMjf/F9/0szltJlCPjrYVPGTZ45ZLBSiU/W0u5R8=;
-        b=Q4Ikl2wINJChpB/z2RajLGT5BBuVC/GQEv4FobxbkLmRfhb+YV50H6aQmvi73c8BIq
-         9Skqu7WPhJIA7uV6ipQbZH4BSb9Qw3nAnPfeoObCR+pJ8tB3T3ktb7P7GJN/IcwLJtL8
-         QVPuAs1CnjBfwJ0XL5K3ZWnMoCQnUBgoX8yS+vGEVzY71XCDNh+Vgxix1Fo3e+heU9RB
-         wvqgmkVQ/3a0CQAUZ+F4KuN283hTqO7ut6mXdZ/vxxC3c6QxDhuaz/KLl6LvqC5MO0NV
-         MMMHbazH6bOHK5v2yXZh014BsurwdtDG1It25XcH/AdGBR18+zmMwfykXaDS0Sfoxcni
-         AYuA==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1772408582; x=1773013382;
- darn=lists.freedesktop.org;
-        h=cc:to:subject:message-id:date:from:mime-version:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=U1gYsY7zWUiNKxFF1e5Vu7YTdyDgHqmsZtnGIts9t9Y=;
-        b=fBADYtrhSL5sWU9PoKgJ/e0XFkadnydpGbZkoieciexm6qenQ1n2VBUNs0kWAcI+Tj
-         NhpAVbviO7eQNSLHoja69l/fLnV1+5gPu1cz7LfBYIS7gO+A5h9fheM9gwUkDoTGTAmN
-         ZL/k7BnPQ/OFC5AVFO9ux2W4GqWCm3obCF8NqOJ81+rEZ0xPuBRcpxfE1+8VENykAno3
-         gJUH57SfH1nOI1xOdUgbJyHLBjSRmeqZd8GmwZxyF5kuKUAqET04I5xS4opZAJNHrGpy
-         gJIjUILuDHSHX9BPv0R6po3dswCmn/Lqcnm1Hf6CIgyhfiu8FpkLKjsSxdrAgOr9iNot
-         2RGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772408582; x=1773013382;
-        h=cc:to:subject:message-id:date:from:mime-version:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U1gYsY7zWUiNKxFF1e5Vu7YTdyDgHqmsZtnGIts9t9Y=;
-        b=bKt3+n1B47ukTd6Yqa8mWq31IxAzrK2rAuIVrMxzqTUtoQE07Fc6ZEQaFynPjzskp4
-         9lmn9mcUjkjQVBAL6TxSEfMiqk8Skp1t7ztpROv13ly7frqtKjQIbGcCATXUFsDT1zQU
-         QKO6VjNKttFS8JxVh/qS0ORmkNMZWevhjEz/lICw3QqUPtyu1cWvEBl9pJhe6ve9HPaD
-         yinqCP7oe5TKvcwDyG3CW4MtfafM+zJ8EYTcYagWz0Pom1TkS/M0FQ1wKjC78kIP0ogA
-         sT8ZGI4166KejcrsO/mf6FK/QD80/sJrZcFftzjW8zsTC1HRhTwJV8QO+FzLXPZScX01
-         Y44w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWQIj8krVbdChX/aoEjD1gxfiDQJRrY0OYmyhvyDMBTMrX4mVJlCIAat8NzceDttSFduRjRP3yT@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywm/CBVT0C1cC9Gb6rmFsi4F+AmyEiA5ahOw5iQa9qCFzeGyDrp
-	hZ+RtMYFahz25e527GUt/74hfbFY2wR2SxwK0B34cBe9rTyj+xWnYPbmOqpjNEQ6JNLMYjxDyW1
-	VoXKwe0KkRQOkpKr2ntp25yenZ+JKyNI=
-X-Gm-Gg: ATEYQzz2vrQj/gIR8+g+AySL8Rmpv4G3K/8fBdmO7s7yrKXKxCH1um/qBdYk6m6BQSB
-	d9RkYLAiFr/eG5YKwdroG9i2RQMM2BpnwtXJ4F/n6cbjJxLOGQ8EchpUi215THU6J9Wi4HuHWDF
-	IzNeERDe07lieqPRelLgTcJhSVJbIAM2IXh7ezm74EsW/KVfc7StecqCgR3UVXX59xuALTTaMSo
-	XeytsbYKsSMTddWRK82XRU6nlu3VZwWnqfedKPS+rK4GFZgeLJgaq90m6JhEm0ponOFOGbjeEiY
-	4HZ1ajKuQEECKp+lCoz1jqXh7ezvkcfZC4QCY5MioGDxumhDbYlsmK4qT9qPPD2g9u1QwtBDsla
-	iM+suvi+RagGj/EtYtSUZaZv/1CrU
-X-Received: by 2002:a05:693c:2c8f:b0:2be:171c:2177 with SMTP id
- 5a478bee46e88-2be171c2ccdmr15106eec.7.1772408581518; Sun, 01 Mar 2026
- 15:43:01 -0800 (PST)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 890FB4049C
+	for <nouveau@lists.freedesktop.org>; Mon,  2 Mar 2026 02:11:57 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010024.outbound.protection.outlook.com [52.101.61.24])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D2FFA10E1A2;
+	Mon,  2 Mar 2026 02:22:11 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=nrA/izxsGihY+5CKeLUh2IJidjhSt0U996/S868La8qhXGRPGnZnb6dABa31ELDAU0gi5t1XHeyQaLSN/OqUEZotm4JrrJpdFrhPzZERYNysdb3XydJjElBhCoGTbhczJEcz1Jce0iyrmUSaEOqU97f9U0iZ7R9B5pX0FdaUOGWJyoo9UQuSfTrMxySLufciB1QVmMdDdm6hv7KfE7U0aI4hY+iGuE7N/e3fMkEl54elnCBk2PIRGozagiBnjNMQEkIuI+MJd6PRjarEB312Tpk1yXUSAOaTIZ3Z9uU2i1TAl6meyILgzSQ/5YCvPKsaEIcNblL77ic1zbLIpvUO2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oOOevatXhK/ImlyJz9NemYZCNrZFhV10lk3ZBMYDauM=;
+ b=wKMknUpCIPNutF62ph46jeGmSxzIhrWxlus6Enk+0xVHtOd8Ksq5PUiGgA7z1EDtyANr2e05C0+k6fyNRrrQyGlb/FJJPOmRCPbGgPyz+Dg33RhqegVRy7mKSdwpyiqnR0CF9b48/q4yj6SK6nhiLHiBXJjGHwOg7QTF34wfVtG8/zmo/R7TAPy2S/1AuHBz89wWVoK8yNPjqbUfHl0hbgWLkeUjQxGe+FREEBemZ+lWzzi7eFUzrxQfX2Ar3naLgF2AXhWxaBbZ+XScBSEB6LaNE7xHc9pTupiXVp3cKHXlX8a2InfetzPs9LN2tmdb92I4ji8ycHx6e+2nENsX7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oOOevatXhK/ImlyJz9NemYZCNrZFhV10lk3ZBMYDauM=;
+ b=A0QVXOLJPW1c6d3srf7WoXpXflaW3bF2d3cjZRSKY72nxgkgY78lokixM3EtRwAIMMvK4t+eS5LFkKoyruIA7JE/OfMI+rXAkmO1AkvXBw643P+o/CVlns7Re9Sq6Rl49OhfHdrOhkpGxc6V3hUoMvO6ZpdVZbSSgPSZw+uRNWr81HbkfLsNnWFhqNrAmfjMJhfvmXgJnjqiq0vESpN5kDNwClTjBQ+l4GkPjFIadvzJycR/poC5lQ/ENFBRZRif8+x33K5C45+Kbw9OSW5xCCI0Wokddf5TDN4qUKCR3WIpeFdoqvbu+pH7fDw813wEdadIgcqORjPTGHaep61/0w==
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by SA1PR12MB9469.namprd12.prod.outlook.com (2603:10b6:806:45a::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
+ 2026 02:22:08 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9654.015; Mon, 2 Mar 2026
+ 02:22:08 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 02 Mar 2026 11:22:04 +0900
+Message-Id: <DGRXSDSDMUOI.31863U05DR3VA@nvidia.com>
+To: "John Hubbard" <jhubbard@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, "Danilo Krummrich" <dakr@kernel.org>, "Alice Ryhl"
+ <aliceryhl@google.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Benno
+ Lossin" <lossin@kernel.org>, "Gary Guo" <gary@garyguo.net>
+Subject: Re: [PATCH v2 2/4] gpu: nova-core: gsp: add sync and async command
+ queue API to `Cmdq`
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260226-cmdq-locking-v2-0-c7e16a6d5885@nvidia.com>
+ <20260226-cmdq-locking-v2-2-c7e16a6d5885@nvidia.com>
+ <a3b7a5c3-9689-4700-981e-d94bd2b5091d@nvidia.com>
+In-Reply-To: <a3b7a5c3-9689-4700-981e-d94bd2b5091d@nvidia.com>
+X-ClientProxiedBy: TY4PR01CA0046.jpnprd01.prod.outlook.com
+ (2603:1096:405:372::18) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Mon, 2 Mar 2026 00:42:49 +0100
-X-Gm-Features: AaiRm52fTXrGz5PlTORiyphpsPMjHdsF2ymu7kB9CFR5ioFaHp3gh72XIk80BjI
-Message-ID: 
- <CANiq72mAQxbRJZDnik3Qmd4phvFwPA01O2jwaaXRh_T+2=L-qA@mail.gmail.com>
-Subject: loongarch64 objtool warning with LLVM 18 in Rust object file
-To: Josh Poimboeuf <jpoimboe@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>,
-	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>
-Content-Type: text/plain; charset="UTF-8"
-Message-ID-Hash: INGGCRBV6OKGAXDWE6UHMOGD6NTXDADE
-X-Message-ID-Hash: INGGCRBV6OKGAXDWE6UHMOGD6NTXDADE
-X-MailFrom: miguel.ojeda.sandonis@gmail.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|SA1PR12MB9469:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0ad2ae64-adde-4a5c-5e4a-08de78028124
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|10070799003|1800799024|7416014|376014|366016;
+X-Microsoft-Antispam-Message-Info: 
+	CgAR9yk59Tyi1j2MG0HNQ/SjRNT5VIvjQIEll3FWMAwQJMF0+gs0kvBzrjPC7X3JR/c+xkHBOZxIjJsgk5MmKELu1PZ+8k2tf1v0vVjTPPUwd3aULREK/Fjkfs53VBIBMs7kCxzlR0+/DYQJZaw6gm/eAnpcv5QFMzHTG874RxQ7aLnts8abPVIEF3+orln63g8qmoh3ZTzrKvptqlNzYIYKsqg/0AQa3V9Oz3ykfFDX0gVtlS+4s6Kn3RXeuvOgJ4cPNshPxZ/0rjvklxKjtO49TqQURKYZ8M3QLVWGLwhTNnaj36M0DqN/CGBivHaSng6HX8ElHLVdkw/ZJ2iZkcSBiB9HAZI0UAQunMgneiglTkstWVKOjvkZgZ9nCRq8VdclfjGrqBc7F9YOGcZNo9DsSOo/PGZamMIzipndlMiqlPJQ0viiJb4j6KHL9mkm1dhLzsVqlMR8Lss25JitDibGNT0b1AqlBCyhOh06u+adFXVqcVWbmU7kVMFG2HgzHCmpDuH94fCmUdPbikAwTGNbhYCQDFUA66lCGjhjwbrhk2v5NIZR8VZH1WnikgiTMxJ4qTM7hX2xLxcDZTcd+zrBj0Oj3Uth17VaV1MjQ6+j20lcPu5hgb4FAZZt6dOR8dmj7PJiLLLnkD3Q3unMPNlviPx9bhEKhmuSrvo1JbmGM00tD8ZIWbtTTw6ihIW9G8d51Wxhi16DAn+axmRpC3vnBn+lj4iYUMou9Z79EXA=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(7416014)(376014)(366016);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?OVlFblYyTkcyUGhqaEdLMnB0bjlHa0ZDNHhlY1JoMHRNVThqcDdUZnVueGxs?=
+ =?utf-8?B?RlA4M0Y5QmZDRVdPVGxDSHJjYzloMWdUbkdGZmh1dEZVcHQxOXdoQ0srbHpZ?=
+ =?utf-8?B?cC9tQnd6cmRjTTRhWUNZYmRWQm9IL3dMZTVIejMraWt1UlpCYW4rQXQvYmFJ?=
+ =?utf-8?B?SkN5Z0ZJQzVtM2VjeDhXOVlzeDFhWWhvLytpZ3ZvbUc3NlhMUEp2cmpNQlRL?=
+ =?utf-8?B?cmRFa1hKZ2dVcURGc2pNTC9rc21YWnUvSkw5clgyVUtaSzcwbHFha1ZmNGI5?=
+ =?utf-8?B?WUp1L2JtajN2QVByM01LTmFFNTNOT2ExbGx3QUxMWmJPYjZFOHVRTFdvZWZ0?=
+ =?utf-8?B?bFBnbVppbTFtcitzMlJoMDhFbk5YbVU3L2ZLdFF0MUZCQUozYzNsdGc3eHp0?=
+ =?utf-8?B?SlZhaURzR0tTTndIQlJ6VTBITGpQeDk4OUp1bFlBWU5nZnUwR2dYMGhCa01h?=
+ =?utf-8?B?UTFnTlJyd0lhaFl3SHZiZUIrUm5ZRkN5QmpEV3F6eWZ4Q25yL1p0R0JkWW5o?=
+ =?utf-8?B?RkhncHlUSVJRSDVraGxZSGIzRjloTzRIc0JLWVdYVVk3d2FRdGlFZzJVbjdF?=
+ =?utf-8?B?cGkwSzA4K0paekpTRGQ2V0YwWXhSZEQ2M3dneHRvbElYZXI3S0ZLaXU2K1FX?=
+ =?utf-8?B?Q1RIQ0N5c2taK3F2L1RXb2V6THlGUFA3MUtKL0FiYzJkb0R4cC9Vb2svKytR?=
+ =?utf-8?B?SFMvdEJjUG1RUHUzVUYxT09kbnQ4Syt1cTRHaDE5WE02QjNaVFJwejJNTXlC?=
+ =?utf-8?B?cjBFYXhyOXErcHQzOTJ1NjVYRzkxd0wzaTlZWDFVUWpTMUZCOEdKUnI4anJq?=
+ =?utf-8?B?aFRwVFF5RzF1SGRYY3ZQM1hZR0JaUTA4VHRBT0xaRCtDNDJkQWM4OUpHdGN3?=
+ =?utf-8?B?MmFUZmtGalJSZDNWelhRcU9YNEdjSDNZTXRJcGdTM0N0MEp5SFlBQ0dPYzBu?=
+ =?utf-8?B?bHpXRUVtZ1o5OGYwSUZrZ3RhclpoMGtTNnN1SUVpaGFnNlkrOWdkcGg4Q3Z2?=
+ =?utf-8?B?eGQ2dmNOUUhTd2RUazc3a0NoS0tOaGFLWXNZVFArcE4zc0RrZ2RnSVBuSUFs?=
+ =?utf-8?B?ei9qcUIvZnZyTEtuNnprQk9DbkxHK3pRWHhoamsvODFuRHdEMk1ZQ1kvL0VH?=
+ =?utf-8?B?MmF5WXAyK09keHA3RHd2WWFxWm9TZFcyb215em5nc3hmekdmWUhKaEZxdENP?=
+ =?utf-8?B?ZjNzbkVIb1d4NzBiR3VhMW5wZE4vRUxEMkhYd0duTHlJY25kNm9wTHAvejND?=
+ =?utf-8?B?UkNhUkt2QVZpdmNsbG9mTTJ2MG1BTE5tVjRxc3hxemZjbUUxQXhnR2E0dFVT?=
+ =?utf-8?B?Q0x5RU5SU1hCRG84VjQ4WUU5cnBJQ053WnV2b0w5TEVVOEh1SEhWSHlwdCt0?=
+ =?utf-8?B?TEwrUHNSRi8vbXIzUVBseG8wbS9sdURuVyt1WnF0N3l1cnNmTENJMkUwR1Yy?=
+ =?utf-8?B?YXV5eW9ENHdoeHBQR3JUNTFZWG00c09KVlo5Nm84UmZDbkpuNld1MzFQTngx?=
+ =?utf-8?B?Ri9yTWNqUTAwVFp2aHc3UmdLc0JjT01ucThmL3NsSm12QVhxTWJoeDg2SWhk?=
+ =?utf-8?B?QTFkckRpV0tQZmUrVFBFeEkvUU9JZ3BWUUxXR1B1S2dVMnFpaG9oRURTcjBN?=
+ =?utf-8?B?dmtUMkRIWWJwNytwaFJCNzVVZ29aQjlFSXU4NFlPWDk2bkorRlNrcCt0Um1Q?=
+ =?utf-8?B?M2RFZ1J0Nng2aGR2T21XN0RyVHJJek5ROGhVMzFZVkVBMVgwSHd0UjRGY2NP?=
+ =?utf-8?B?Zk11Ym9vOWl2bVNEbUV4NlBoV01POVdYcWxkb1I3cWNwamdBU3o2SXNhNjhY?=
+ =?utf-8?B?M0VCbXNaeVY1MHllbVlTMzlxK1d6SUlnZ0RrSlM1a0NyYVZldFFDMlpUdW9i?=
+ =?utf-8?B?ajVRMzMxbUMvZ0hTSXlLS2YyREtIM0w3M1ZjWXdyZXROWFpFTU8yZXQrV0Z0?=
+ =?utf-8?B?MEpmeHVlUjNsdmhTbHR1Yk1zeG9TUDBLa1NIQ1JCaXVxaGwwdWp0aVhVNFpv?=
+ =?utf-8?B?UUdNcmhUYzlvcmsvU1RHQlVGcVFWbERNU2hOV2x1UG9DKzhOUHBTM0tTRXR1?=
+ =?utf-8?B?V2swZWRyVlRBSHZZajA0dm1BbE8yRGFDVkpDa1J6bU5WMUxucHdpd2tUM1c4?=
+ =?utf-8?B?c2pVb0Q4d3VWM3BDUmc5bzQ4NXlEK20vY3U2RnJrSzBEaDJOWUVJZFBPMmkw?=
+ =?utf-8?B?dzZwMFU1dUhVMGY2VHVOS3JBMnJyOE1IMmlocmZ2eDJuOTdkWGhFYVJ3SUYv?=
+ =?utf-8?B?MHcwQ2YxRjNudFg1UldjMkVkbG1ZYVIvQS85TXYrcEhpVHp2VGZSbjdUUXNL?=
+ =?utf-8?B?VVhJWCs4MDIxcXZJdjJycWJkNk92OWZ6SGJ2ZitsWFpZTVFDekhwRHFSN3Bq?=
+ =?utf-8?Q?gFMz7K76hCSB6ld8Gp4WDvxqZs/UMlpPfcP9rEqynFAqZ?=
+X-MS-Exchange-AntiSpam-MessageData-1: OBCZe1YBXcmiWg==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 0ad2ae64-adde-4a5c-5e4a-08de78028124
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 02:22:08.6186
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ IjymIPOM0keVTPP40K85b3exzbKNozMV6SUC5Yr8JEWytt7gqaC/mXfQJRp3J9FIoGwYoyY/G79KyZJbr0v/fQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9469
+Message-ID-Hash: QGFVKTHYALVLUQOQKDROD7BKZRGTFNJ3
+X-Message-ID-Hash: QGFVKTHYALVLUQOQKDROD7BKZRGTFNJ3
+X-MailFrom: ecourtney@nvidia.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Danilo Krummrich <dakr@kernel.org>,
- Alexandre Courbot <acourbot@nvidia.com>, loongarch@lists.linux.dev,
- rust-for-linux <rust-for-linux@vger.kernel.org>,
- Nouveau Dev <nouveau@lists.freedesktop.org>
+ loop; banned-address; member-moderation
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/INGGCRBV6OKGAXDWE6UHMOGD6NTXDADE/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QGFVKTHYALVLUQOQKDROD7BKZRGTFNJ3/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72mAQxbRJZDnik3Qmd4phvFwPA01O2jwaaXRh_T+2=L-qA@mail.gmail.com/>
+ <https://lore.freedesktop.org/DGRXSDSDMUOI.31863U05DR3VA@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -151,252 +188,79 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi objtool & loongarch,
+On Sat Feb 28, 2026 at 3:11 PM JST, John Hubbard wrote:
+> On 2/26/26 7:50 AM, Eliot Courtney wrote:
+>> Add sync and async command queue API and the type infrastructure to know
+>> what reply is expected from each `CommandToGsp`.
+>>=20
+>> Use a marker type `NoReply` which does not implement `MessageFromGsp` to
+>> mark async commands which don't expect a response.
+>>=20
+> ...
+>> +    /// Type of the reply expected from the GSP, or [`NoReply`] for asy=
+nc commands.
+>
+> Hi Eliot,
+>
+> The following does not need to hold up your patchset, but I want
+> to bring it up somewhere just to work through it.
+>
+> The sync/async naming that GSP RM uses is a little bit "off". I
+> spent some time discussing it with them, and the problem is that
+> sync/async is a concept that is somewhat independent of whether
+> a reply is expected. Usually, sync means a blocking wait for a
+> response, which is not necessarily required in all case with
+> GSP RM calls.
+>
+> The naming would be better here if it reflected simply that
+> a response is expected, or not. I don't have great names for
+> that, but "fire and forget" works well for what we have so
+> far called "async". So we could do create a convention in which
+> no annotation means that the API has a response that will come
+> back, and some abbreviated for of "fire and forget" or "one way"
+> added to the function name would mean that no response is
+> expected.
+>
+> Again, I don't think this has to happen here, because we can
+> go through and rename later, no problem there. But when I saw
+> the sync/asynch and remembered the very recent discussion, I
+> figured I'd better post something about it.
+>
+> And yes, I started us off in the wrong direction with the
+> IS_ASYNCH thing! haha
+>
+> thanks,
 
-I noticed an objtool warning in a Rust object file for loongarch64 in mainline:
+Hi John,
 
-drivers/gpu/nova-core/nova_core.o: warning: objtool:
-_RNvMs1_NtNtCs3LxSlPxFOnk_9nova_core3gsp4cmdqNtB5_4Cmdq3new+0x238:
-return with modified stack frame
+I totally agree and was hoping that someone would have a good suggestion
+for this. I discussed this exact thing with Alex before posting this
+too. So if you have any naming suggestions would love to hear them.
 
->From a quick test, I saw it happened only with older upstream Rust
-binaries (1.78.0 to 1.81.0), so I suspected a switch of major LLVM
-version, and indeed with 1.82.0 LLVM 19 is used instead of LLVM 18.
+As you say, sync and async are orthogonal to reply vs no reply. I think
+we have several ideas here actually:
+- blocking vs non-blocking
+- reply vs no-reply
+- wait for reply vs don't wait for reply (practically equivalent to
+  blocking vs non-blocking here, but conceptually the send could also be
+  blocking vs non-blocking)
 
-With LLVM 18 I get:
+We should also be careful with conflating waiting for the reply vs not
+having a reply. So `send_without_waiting_for_reply` is definitely
+confusing to me, because there may be a reply that we just don't wait
+for.
 
-    addi.d          $sp, $sp, -2032
-    st.d            $ra, $sp, 2024
-    st.d            $fp, $sp, 2016
-    st.d            $s0, $sp, 2008
-    st.d            $s1, $sp, 2000
-    st.d            $s2, $sp, 1992
-    st.d            $s3, $sp, 1984
-    st.d            $s4, $sp, 1976
-    st.d            $s5, $sp, 1968
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -112
-    ...
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x870
-    add.d           $sp, $sp, $a0
-    ld.d            $s5, $sp, 1968
-    ld.d            $s4, $sp, 1976
-    ld.d            $s3, $sp, 1984
-    ld.d            $s2, $sp, 1992
-    ld.d            $s1, $sp, 2000
-    ld.d            $s0, $sp, 2008
-    ld.d            $fp, $sp, 2016
-    ld.d            $ra, $sp, 2024
-    addi.d          $sp, $sp, 2032
-    ret
+Some ideas:
+- send_command_with_reply + send_command_without_reply
+  - Maybe non-obvious that this blocks for send_command_with_reply.
+- send_and_wait_for_reply + send_no_reply
+  - More obvious that it blocks and gets the reply.
+  - Should be obvious from context that you are sending a command
+    anyway.
 
-While with LLVM 19 I get:
+Personally I think it's nice to keep a convention of keeping it
+mostly obvious which functions block/wait. (e.g. we already have
+wait_for_msg in cmdq.rs).
 
-    addi.d          $sp, $sp, -2032
-    st.d            $ra, $sp, 2024
-    st.d            $fp, $sp, 2016
-    st.d            $s0, $sp, 2008
-    st.d            $s1, $sp, 2000
-    st.d            $s2, $sp, 1992
-    st.d            $s3, $sp, 1984
-    st.d            $s4, $sp, 1976
-    st.d            $s5, $sp, 1968
-    lu12i.w         $a2, 1
-    ori             $a2, $a2, 0x870
-    sub.d           $sp, $sp, $a2
-    ...
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x870
-    add.d           $sp, $sp, $a0
-    ld.d            $s5, $sp, 1968
-    ld.d            $s4, $sp, 1976
-    ld.d            $s3, $sp, 1984
-    ld.d            $s2, $sp, 1992
-    ld.d            $s1, $sp, 2000
-    ld.d            $s0, $sp, 2008
-    ld.d            $fp, $sp, 2016
-    ld.d            $ra, $sp, 2024
-    addi.d          $sp, $sp, 2032
-    ret
-
-So I suspect the stack pointer is not getting tracked properly and
-thus the mismatch. Is it a known limitation for `objtool` on
-loongarch64?
-
-It is a very big frame, so I guess maybe it is not even expected to
-have to deal with such a case to begin with.
-
-I think we likely want to avoid that big stack size to begin with
-anyway (Cc Danilo and Alexandre).
-
-I am copying the full disassembly of the symbol in the case it
-triggers the warning below.
-
-Thanks!
-
-Cheers,
-Miguel
-
-[1]
-
-<<nova_core::gsp::cmdq::Cmdq>::new>:
-    addi.d          $sp, $sp, -2032
-    st.d            $ra, $sp, 2024
-    st.d            $fp, $sp, 2016
-    st.d            $s0, $sp, 2008
-    st.d            $s1, $sp, 2000
-    st.d            $s2, $sp, 1992
-    st.d            $s3, $sp, 1984
-    st.d            $s4, $sp, 1976
-    st.d            $s5, $sp, 1968
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -2048
-    addi.d          $sp, $sp, -112
-    move            $s1, $a1
-    move            $fp, $a0
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    st.d            $zero, $a0, 0
-    lu12i.w         $a1, 129
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $s5, $sp, $a0
-    li.w            $a3, 0xdc0
-    move            $a0, $s1
-    move            $a2, $s5
-    move            $a4, $zero
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0x6c>
-            R_LARCH_B26    dma_alloc_attrs
-    beqz            $a0, 352    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1d0>
-    move            $s0, $a0
-    move            $a0, $s1
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0x7c>
-            R_LARCH_B26
-<kernel::sync::aref::ARef<kernel::device::Device> as
-core::convert::From<&kernel::device::Device<kernel::device::Bound>>>::from
-    move            $s2, $a0
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    ld.d            $s3, $a0, 0
-    lu12i.w         $s4, 1
-    move            $a0, $s5
-    move            $a1, $zero
-    move            $a2, $s4
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0xa4>
-            R_LARCH_B26    memset
-    lu12i.w         $a0, 512
-    move            $a1, $zero
-    add.d           $a2, $s3, $a1
-    bltu            $a2, $s3, 292    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1d8>
-    st.d            $a2, $s5, 0
-    add.d           $a1, $a1, $s4
-    addi.d          $s5, $s5, 8
-    bne             $a1, $a0, -20    # <<nova_core::gsp::cmdq::Cmdq>::new+0xb0>
-    addi.d          $s5, $sp, 32
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a1, $sp, $a0
-    move            $a0, $s5
-    move            $a2, $s4
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0xe0>
-            R_LARCH_B26    memcpy
-    move            $a0, $s0
-    move            $a1, $s5
-    move            $a2, $s4
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0xf0>
-            R_LARCH_B26    memcpy
-    lu12i.w         $a0, 64
-    st.w            $a0, $sp, 32
-    li.w            $a0, 0x3f
-    st.w            $a0, $sp, 24
-    li.w            $a0, 0x20
-    st.w            $a0, $sp, 12
-    st.w            $s4, $sp, 28
-    st.w            $s4, $sp, 8
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    st.w            $zero, $a0, 0
-    st.w            $zero, $sp, 20
-    li.w            $s4, 0x1
-    st.w            $s4, $sp, 16
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    ld.w            $a0, $a0, 0
-    stptr.w         $a0, $s0, 4096
-    ld.w            $a0, $sp, 32
-    stptr.w         $a0, $s0, 4100
-    ld.w            $a0, $sp, 28
-    stptr.w         $a0, $s0, 4104
-    ld.w            $a0, $sp, 24
-    stptr.w         $a0, $s0, 4108
-    ld.w            $a0, $sp, 20
-    stptr.w         $a0, $s0, 4112
-    ld.w            $a0, $sp, 16
-    stptr.w         $a0, $s0, 4116
-    ld.w            $a0, $sp, 12
-    stptr.w         $a0, $s0, 4120
-    ld.w            $a0, $sp, 8
-    stptr.w         $a0, $s0, 4124
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    st.w            $zero, $a0, 0
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x20
-    add.d           $a0, $sp, $a0
-    ld.w            $a0, $a0, 0
-    stptr.w         $a0, $s0, 4128
-    move            $a0, $s1
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1a4>
-            R_LARCH_B26
-<kernel::sync::aref::ARef<kernel::device::Device> as
-core::convert::From<&kernel::device::Device<kernel::device::Bound>>>::from
-    st.w            $zero, $fp, 48
-    st.w            $zero, $fp, 40
-    st.d            $s4, $fp, 32
-    st.d            $s3, $fp, 24
-    srli.d          $a1, $s0, 0x20
-    st.w            $a1, $fp, 20
-    st.w            $s0, $fp, 16
-    st.d            $s2, $fp, 8
-    st.d            $a0, $fp, 0
-    b               60    # <<nova_core::gsp::cmdq::Cmdq>::new+0x208>
-    li.w            $a0, -12
-    b               40    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1fc>
-    lu12i.w         $a1, 129
-    move            $a0, $s2
-    move            $a2, $s0
-    move            $a3, $s3
-    move            $a4, $zero
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1ec>
-            R_LARCH_B26    dma_free_attrs
-    move            $a0, $s2
-    bl              0    # <<nova_core::gsp::cmdq::Cmdq>::new+0x1f4>
-            R_LARCH_B26    <kernel::device::Device as
-kernel::sync::aref::AlwaysRefCounted>::dec_ref
-    li.w            $a0, -75
-    lu32i.d         $a0, 0
-    st.d            $zero, $fp, 0
-    st.w            $a0, $fp, 8
-    lu12i.w         $a0, 1
-    ori             $a0, $a0, 0x870
-    add.d           $sp, $sp, $a0
-    ld.d            $s5, $sp, 1968
-    ld.d            $s4, $sp, 1976
-    ld.d            $s3, $sp, 1984
-    ld.d            $s2, $sp, 1992
-    ld.d            $s1, $sp, 2000
-    ld.d            $s0, $sp, 2008
-    ld.d            $fp, $sp, 2016
-    ld.d            $ra, $sp, 2024
-    addi.d          $sp, $sp, 2032
-    ret
-    nop
+For lack of a better idea  i suggest send_and_wait_for_reply +
+send_no_reply for now.
