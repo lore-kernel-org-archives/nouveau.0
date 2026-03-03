@@ -4,178 +4,180 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3CF2EDA6BE
-	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 17:33:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1753DEDEBEC
+	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 19:44:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C987210E89E;
-	Tue,  3 Mar 2026 17:33:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B5FA110E8B0;
+	Tue,  3 Mar 2026 19:44:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="iaG78nhP";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="eb3ZZOTb";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7E1CD44DB4;
-	Tue,  3 Mar 2026 17:23:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4212040469;
+	Tue,  3 Mar 2026 19:34:00 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772558594;
- b=XR3cdbgA4kAghbpSR7moQn+5FggAHwahVX61fIrCEPoIN+uHYrOZQPdkAmk+beaIytJCA
- 7ZWAvS0fGlTp/b9i4h6krexEqqT76iVOjcPdqWqFcGa2g2PY6/LYC39PUQAqc6P8bsF56y7
- OXa7miCj73uITGT9FB2O41sEJc3PSdcCjbfMY4baRhcdnrtWQcyhmNrmB2mw750a3J4VF5o
- zH77FOdkKIZTL4YzEi11kG1ByogspVype3sN0DhWUk6hde6J1s7sqTkargVypenyM3LoOC9
- HkS2jjnlS+etzyi8S4mIA4UsSB6d6ppkRDEfK/JphFJDdzvNQsktqaqQvyUQ==
+ s=20240201; t=1772566440;
+ b=mEJrY2qlrHIcmaGXE4RK41hAH6WkV6TWwrRrUAOdJ/e7Rk+DwkBnsKDeirzURWFyEBuUD
+ /9OFuvlFCIKQoKSJWxNri+uFPgKmqPpYEaTUul/WP9GyYegGBFiRIN++VkRXJ6g4MOVidx1
+ CUrUKSeSDgn85QnCPFSEqLl/HQDazAFSa8rXBQ9v7QXYsQPs9QhG2mgRyLezhvcH0nMQYlH
+ yulSTfBE8eWlLRAgVgRtUk7RScC5dQqvyCiKmmEGqkmYQmnSdapArCf/AsHti1WY1r7v15Q
+ PRxR0Y5oCkBOYsGXibwA8gE+ugq5E/hqInSbSLssh6ArRcJdTmyYbRkiqkCw==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772558594; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772566440; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=hlTiPhS794fhWxyIG+rGyfIeP6pUrLWtu+Ujm/QiDcI=;
- b=JvMjbNNbfb+U3aOvP77y+Ic7z2za8gMF9G0D+Z5554pwCS0hhGNUmLmK66iNMtH5xzkI4
- 5f7kGXgRZnSsPpXmKJIDXNRGwvKaqXxLidKD41oFTLwQilKKGKt13o8nhnQ82deMGk8M4CO
- 8AK/lpa8sr2u2o4GxBkp3mw1Qin+lief6l3OEToR5Vjw5wltj5mpoawsYFqR6/R1m5N0Sti
- C8BEq4hbxBOwzw1VYLZff6meWfb++0wHXSov12iO5rMmO7B6Y/Ba4rw5NnJT1sUIbz/nS9u
- VwAnVv92+oqRapMrmr8X3KiveEc/mkk+4jfeQxrAj6BoMU/8jAXpz1+PxVLg==
+ bh=9uks4LlUVJ6lWKm12K7dD6TPGuILbjjYzHJ1St0vw64=;
+ b=EoyciIp/QXGJtYs6bgzBjXB2muDxzFw6xCtzPHlukk6RWdiFvHolkD6Mnk7BGqfns1Q/D
+ dBNj1zomidkPCVTxKImos+ZgRbfmNway6Q4GhdfXgfl48CDoeGX6cm5ya0k/gszHQOVzlR3
+ DM9YW7BPaApTT34Nr1oiP44XR18Rd6MeSd13G+lc8l0leDh0i6k4yKXZLv6XQPCzGTZbRBj
+ 6m33f/m0CTH1s95+FzMZnIm+gRr0P5xpW/bcgheRmVwIUS41JRO9QOO29yxQAPn0MdbCheP
+ WaW00ytZ2F5KEVlTm6dyejb31KCJq7D5KxMX4bXQe21woiDF/nbDVSn38QGA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
+ dkim=pass header.d=Nvidia.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3FB5B44CD7
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 17:23:12 +0000 (UTC)
-Received: from CWXP265CU009.outbound.protection.outlook.com
- (mail-ukwestazon11021107.outbound.protection.outlook.com [52.101.100.107])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0773410E89A;
-	Tue,  3 Mar 2026 17:33:30 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 86CE040469
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 19:33:56 +0000 (UTC)
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013047.outbound.protection.outlook.com
+ [40.93.201.47])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AAFC510E8AC;
+	Tue,  3 Mar 2026 19:44:14 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h41p/HdVLooi1k7PI1+aqFyRHD+FxBInrclXBmpKsrUzaTgn3D9jiGHtb3ahsGRhUiujUQ0YO4IB4/Vu6mdcXZ9jYuPImhQJGuHLcwb2+UBYPpqcot4LFWWTaZC4a3k0GNd7Qf34buM2x7U5n2LgJBe42kiO9A77Z46CmYGQg+/XMTReGy5dntxZevFlrQ16gNkSS9mv5bWp6SbamkKT5w5KSjiAZuh+ThcCSc0oz5ZS9ldo+YrRFZAg/vdmAx8pL5GXE/CNXQbyMUg5JspdBXdzb6w9ZWxIT87qLdfJmEP9rAmXA3ZpRyu2dJbdSM13W9mNLRT58wlNpps54faLsg==
+ b=tL+7gjb54ka7wvvuSA+F0loVKqy2o60yUEQ0kO+2kbnoHXcQgikiStvWNpbotblUX6qJhGiN33KsN/Z5QE6uhaod31Dy/k1/xbWJSN5eupWBJZDtkNkbeNFkrqacm485VdoJ9mmtYt8hD3flRCdJUIKUREmY/kj0+bqf4VBWwtk6FTPZHnrc5g3L2tN2/VTOuh014wqBgAwQqZtY2kgxUQctcgpzNiKMopFd++H908n9GTj5aetxBWJDdUKAMNIBGT0ZL+aU973hFaH2O9rA6hcIrtGyhBjYT9U3vDL4h9kYa50yn/I8jBSqJ/VfeleZI5ZafQ4uGe2/8UcxCbrmJQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hlTiPhS794fhWxyIG+rGyfIeP6pUrLWtu+Ujm/QiDcI=;
- b=dbDVXZvvLhyIYZD5ayGQYij2gIEq/NKdjjOQhSbSMv1gSSiLMR2JViNQGqP5xjpsgiApKO5pQwpzYNv6oSQRKuNiD7GIzq4yKtcnM1aWFUM+I6Kx2oYPbiyPFL0a+mL2o/Ik3YImu8+At+g7ABzVWwTth8LhOQibkxZ6oJqXMN0RO74b3N1EvmiXK/fVZHKXNGxndU9Bznq9d/OSNECgEAlhoI0VrMS1RaZskCC/8JIDmNIMdngHzgPn5IASlcyx5LksIwFWr34qGnzOHlSWxNVDYn2rZzfEmU82BD6L3BMw+5AOwOmr+NrDqUpsAP3G0Zlc2YqJ7RzFJiAP44xmCA==
+ bh=9uks4LlUVJ6lWKm12K7dD6TPGuILbjjYzHJ1St0vw64=;
+ b=ivlxPckmFBClkqPER3XtpiwblK0qFmdikPRgmIjlOd3UCpYim1UrPIgMfC8IDd2+CRoUkwqzw8TkZkg41WIqOayWSiqdha1LGxldQW2ZKuIUDA/P06LmgSsL82VmYuzJfwFxVHGWfAs+hdnhYP/gd2f2sR2E4Fqt177u4Jciw5wHJdV/hmimhKT3NeLaucKiVoTb/RKz70AqU0wftz1n2yOe4mpYMZx3PvRZlPzkZGdTskUJWlzrJ37EX7LSyMJRcRqfIJE3z3yopRUF1GS0p81ksagmD/LdW7WbB6TN6LJq3W1P3eE/8mMNIsRPUtN4eg96Xpo00ZR8AsNGH8NSnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hlTiPhS794fhWxyIG+rGyfIeP6pUrLWtu+Ujm/QiDcI=;
- b=iaG78nhPpWt60Q0QmwnKJ/aQ9x+8Hr836H79nHqP74HZRzsEpR+aiAHbe/nUJtbu0PHsH3B4q7VOpQV2GWRlzv702NzjEsHUmcBvbpo4E8zu36ldp2WuSYRnNHun/zmTm6uKG6KfXOne7lSE9mXbgaHAK5I8x/H0myol7ms3kYo=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO2P265MB2431.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:12b::7) with
+ bh=9uks4LlUVJ6lWKm12K7dD6TPGuILbjjYzHJ1St0vw64=;
+ b=eb3ZZOTbGX9TocjvW3zCP9PQO3kV+ONkLTyIcJePZc4NsradJ5MlID/+j5cx5kcrnWu6CzD3zQDgMb9WarjkH6B206UoNhURr06LYUAibSiCS6IrYzQ1Eg8ObTWc8EYnh9VZInlFp17SLDv1PJ87nfTLEIb3x6tlxWbIniXKwDryTRPHSbzxglYqMV/mN2TDhgdg8nBeKjP57YBi0XtGIaquUpt90oXBdhhKDidFtyFTZalsf1psHPjQLZntEaRFXb9ueIqkNl7qtNFFx4KwNwRPDig6MC0Hox88hn0+IXdYtY0T6FAod4x69pUsnHmEZEdx8Fijz7D3gZDhjcsd+A==
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ MW4PR12MB6828.namprd12.prod.outlook.com (2603:10b6:303:209::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 17:33:26 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 17:33:26 +0000
-Content-Transfer-Encoding: quoted-printable
+ 2026 19:44:07 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
+ 19:44:07 +0000
+Message-ID: <e9ac37f5-f23f-4ea3-81dc-32d96e5b2041@nvidia.com>
+Date: Tue, 3 Mar 2026 14:44:03 -0500
+User-Agent: Mozilla Thunderbird
+From: Joel Fernandes <joelagnelf@nvidia.com>
+Subject: Re: [PATCH v8 06/25] gpu: nova-core: mm: Add support to use PRAMIN
+ windows to write to VRAM
+To: Alexandre Courbot <acourbot@nvidia.com>
+References: <DGSA1N4M1PUM.29JML8EK3SKWA@nvidia.com>
+Content-Language: en-US
+In-Reply-To: <DGSA1N4M1PUM.29JML8EK3SKWA@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 03 Mar 2026 17:33:25 +0000
-Message-Id: <DGTBSPDSQKA0.LG8DPD4GT4CM@garyguo.net>
-Subject: Re: [PATCH 7/8] gpu: nova-core: convert Gsp::new() to use
- CoherentInit
-From: "Gary Guo" <gary@garyguo.net>
-To: "Danilo Krummrich" <dakr@kernel.org>, <aliceryhl@google.com>,
- <acourbot@nvidia.com>, <ojeda@kernel.org>, <boqun@kernel.org>,
- <gary@garyguo.net>, <bjorn3_gh@protonmail.com>, <lossin@kernel.org>,
- <a.hindborg@kernel.org>, <tmgross@umich.edu>, <abdiel.janulgue@gmail.com>,
- <daniel.almeida@collabora.com>, <robin.murphy@arm.com>
-X-Mailer: aerc 0.21.0
-References: <20260303162314.94363-1-dakr@kernel.org>
- <20260303162314.94363-8-dakr@kernel.org>
-In-Reply-To: <20260303162314.94363-8-dakr@kernel.org>
-X-ClientProxiedBy: PAZP264CA0044.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:102:1fc::17) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CYXP220CA0002.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:930:ee::12) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO2P265MB2431:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb1dbf51-7813-48cb-861a-08de794afa18
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|MW4PR12MB6828:EE_
+X-MS-Office365-Filtering-Correlation-Id: 37e7a617-fa2e-47d3-335f-08de795d3b0f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|10070799003|1800799024|366016|7416014|376014|921020|7053199007;
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|7416014|366016;
 X-Microsoft-Antispam-Message-Info: 
-	7mrfKyQjqYFrsaDkFnFHQ+n4VORZ+Q8jloQnxxldGGv13qWIGkKsP+Whh+W+Kk21+PKq7RMOP2xuaWm78R7eh39okumNnIQZQdM5Npc/owE9/70KuWckr7RA2bmrTU7orwiaPkfgb6SU0eae8rJsZ6aJUF2ysCMomg+Xhnn9EyB+N/MT89Dk4YKWqOv7xad0jUAzym0F4kmrmHROKwMETKa1Ff6yq+SVP5Z2Fw+vyQ4oSs68e98YozelLDfgagiCl1KhclTMIJ0DWU0ChQ+T9kItILGE2jh4NMS1YDoUzhoOGSXQ90L22H1zKXihnrtife6NNkN7WqwaOEdpl8qYMu4VQDApKYOMW9jbKt3YZzzFGvHMvX4vxKUK1Camdozfr0J81E6bLloh5aG8Ens4ZgZvHP+g3W7vcTxCeuxc9GQHqye7+8kTKN31MzxooDRlXptycgppoAO4RjJozvr8jgxIa+o9kqvYCkDcKM7ACz8LdHPV+xOVYYmTv2qXw4W8EApVouGq/+amqMA1NwiVNVGUz2mAsbEOT3o92YZn3qiHuSJL2vR8zLPHDhyfu09iLYD0kGRkmMkVULMK6J2Haf78NyB39RV3V7ElZWKlE7+W3DXz2CetyibMrMwT3060x+J0ykN6oaNHSyI178RdA63IeYd+LR95Z7/U7nvwEkEyB9r7tx7LcoM1vAeaXEDtJNvAd4m/SLQf2JZI5aGQ/ZLNZ82Ijd3ExWeu+N5TFpIY3fD8zr0IQwKKlD0clJ033IWWvVJOF2vJ7Xp5p2TqZYc2uxWcM/dGBhexs2C6Yq4=
+	yxLlAMNmqM/O/GERom5dAOs1T96MeFupGg4TUGsKGr178L8WX3yVo+UjFyQhJ4x5povWWgrFep6w6BkuiBhaxb+JBtYmr0xvKtfWlmBtjyr0wwF7tt1Xwp5m3b6FVyHG/mMgAPHpam4ZevmceipKrok1Zr1ufxbJVb42+Xs3c3ogYNqJ3YbW6NteAnkioigxONMWZCHE1DCs/T/2ymsqyit579OBQ/gH5inojl9vzYkM0D2dYXvp1miJoRDYd6BNrwWYKSXYKwlgk2Le2UTiedYRPXeXfJLNnzKyD1VWNrKfprAj6U3qUqC/sTrXnz7Wc9Bs66Dpv33mkeCQFpgxrub9le8KqLLErz5IOHGtW1zsPM3MBzk9NeEaG8/+06PCf0rgF2is3mNAtXEc1ywwejI61R1KRQy5dCdedCW39gyfWmvq0Ky09aaaJ9eIrf+qgBNZsWzzereXclaEUMWI+A9A7BO5NyP+zhyHNA0co/TDLreureH8DO5FGsI3C7oONFNbkgFUXiym2UTxhNPehWBOpOwafMqY2HZYKHsGy/vS9XFvu/azsG1b1xyZVGcl6n1dChkB5fCZu0ar1E3A6ihmS7fF7C46YBG0LEZ4X/0OZcnQGWGpsiX3gQ9zHPfZt+hxot5IMDAeuauc+ov+teBSJUGNLE+E95pGjIyy9Bqk5xfPPtNTMea5hwKecBs6volDsceI8eTVslN0uCpg0zQvu/20HcF4AVtH8J1P03g=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(1800799024)(366016)(7416014)(376014)(921020)(7053199007);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?a1VSZzFsbGJ6ZjFpZ2RSRjl2dThJN3BPUkR3SmhaWWZjdnZhbGRhUCtiOHVp?=
- =?utf-8?B?K245ejRXdk1lSThKSGhNbGJUb2t2dk02VW9JbUNUd1NVY0o2dy9hSTJvUjl2?=
- =?utf-8?B?MituU3F6V3A4V3FnUGNydG12c1c1SEMya2pwVnlncWlwaSthb3R4M3RJRkVq?=
- =?utf-8?B?WW9rMU1pWnV3QVFQYndvTkdObEpRK1I4SGt6dnY1aFNHd29xOVBMWUMxSkU3?=
- =?utf-8?B?dWdYbDVYaTlqallmRkh5d0hVMW9zcW1pS3NEZmd3WFlGV1lMVXpKTUFWSkJI?=
- =?utf-8?B?UXhCNDZmRUtMSldWdDlJSk9tTGRpS1NYT1VHMXo3UGZXRks2Tkh3MGJ1cWtI?=
- =?utf-8?B?WmVVakFVaEJsNDBrT1N6MWFaOW0wMGRPd3NaMWxKNEg5WjlpZksvMEFLaTdN?=
- =?utf-8?B?YVJXRnl2djhlbWNmSUtZV3F1elRBcnlyQ3B5V3A1NExTZmw3SU03ZFkvZG9q?=
- =?utf-8?B?T0hBUDBkLzVsRC9LdmhPRGdSSjY0bjZGWjJveitjUFBUS2htZ3RUOUJLM1I3?=
- =?utf-8?B?dHFlTG1zMXduajZlMFBHNHdCTVI1RHJ2SVE0ei9PQmJKVlMwN2c5VG1haytw?=
- =?utf-8?B?YXlhQU9ldTI3Z21mcTI2bFNNQ25FMEl1WFVLckY0YjRET3NWVmNhL1R3M0pS?=
- =?utf-8?B?RHJnNXRQbVoreFdCY21TNy9LUDBJYUZrQ0owMjc4NHNXQThYQ1B0a2t0Z1hK?=
- =?utf-8?B?bTQzR1R6QU1WMmg1U2ZPSndRRTMrTmNTQVdBUVlweWxaY3UyZDNGR3dDQ3J3?=
- =?utf-8?B?UzQ2RkhRVzZQTFZQUS9OSUp6b1R1blFpNytUamY1cHYrSE1LektEc24xQWUx?=
- =?utf-8?B?WGpQNjF6TkZjNHA0azN3QVlPb3JDN3pxUEo4V1VkT0hjNUJmZzE2UEdkaDE3?=
- =?utf-8?B?K1ZmNTJBU09VS1grcXo1WGdYU0NtclpjWk4reUdwTG81WndqSS9CWGRiZWxJ?=
- =?utf-8?B?VVBuNitVbkdCS0ExblRUOEZrWFQxSmJ3ODgxcjNOa2t3N3BWbWIvNUt3cnFC?=
- =?utf-8?B?OGFBZnBucWVESGRqU2pSYXNMVXFkdE1QemhHSVpqUHdtQjNERU8wSE53Nm9Q?=
- =?utf-8?B?MG1FR0E1dks0NFVyMCtIWjlSQXlYRVRWcng2TytmQjNTZ0dJMXI5bzVRZHdk?=
- =?utf-8?B?K3pVbHRscmViUHROeDRVeDR3S1FwcmVFMFhYcUVjcEU2N2FTYTY4NHZHS3cx?=
- =?utf-8?B?bzdrUy8zYzBZYWFyUS9wMmRyQnl1ckRJS2gxYXI3ck9yMnZRV204V2p5b1FU?=
- =?utf-8?B?MmF6VGxjKzl1dEJ6OXB6N2t1OC9qU3g0U0FwTjl5TUNjTnpzRGJ4Z0ExdG1Z?=
- =?utf-8?B?R1BkVG1GRXIwOGF1VUJKNHBiU0orcWJuNXRyaUVCSzNHS2ZqcGQzdGxYN0Nl?=
- =?utf-8?B?VkhZd0xUN3pWajBlUFZrTktQeFRZWUM4TGhlalJ3MWpMTkpaV1cyZTFjMHpn?=
- =?utf-8?B?ODBTLy9hQ1gvcUpOMzhHaEN5NGJxTFdPb1ArbEwwN2xyNkpZSEtUR1JZSVNF?=
- =?utf-8?B?MEE5UTM1RVlkQnhnMytsUU9iZDZ0aThtZEJYQjFaTTZCVTkxTktjeWNXNkdU?=
- =?utf-8?B?WDM2aWFwelhhcmFkWnc4U05KN2dtRjhvQlcwNDBWa1pTYzE4ZXBHMWsweTRB?=
- =?utf-8?B?bU5rSExFd0szRXJBeDBpNXJwWmpPWXA3ODRkOFVNMm5lOCs3K3VuaUlzbUFO?=
- =?utf-8?B?NHpLcWhERDMybFU2VGROUkxOUVExMWNEZWlXbXBoUGIvbFl6RmlseUt6S1RX?=
- =?utf-8?B?cS9nRHhyZ3lQbnZWaVVETThNK25hSTNOOWNKMVpMd2gwdllQRHEzS3k3cis4?=
- =?utf-8?B?L2sxTTRsMmpsTlNrM3I3RW9ZWks0Q2ZnUWMyWDJmQ2dGcmkvMndURWJlSE5Y?=
- =?utf-8?B?QmJOUmdIV1BNNUFGNkNKVE8xZkhsR2poMk9DVkRsS2w0SUVGNm5sK2x6NXpk?=
- =?utf-8?B?ZE5qZ0I0ODh2NDh2VndraWJpTW4vRzJXVHZ4cHdzR25xdUNyL3ZQWFdOZzRy?=
- =?utf-8?B?cDRrTFlkM3J4eXJhSXpmNGpLcTQzT3pyUGlBVmZyL0w5empGcHVsbHZmRG14?=
- =?utf-8?B?bkE4akVkNUtxU2VFTmdaSGRuWm1GdzBqMzZwd2RuN2IvMGZ5KzN6dW5zcVg0?=
- =?utf-8?B?eWFxbFJkRnVQKy9TK2FUa2grSUVSNWovcGE2N0daRmZiSHRpSFR4VnNMQVJo?=
- =?utf-8?B?V1hhMjNlTWh4cHVMcE51eUgySm1ac2NNeWVnNStlNithQXRXSlFHWFAyMEth?=
- =?utf-8?B?WFcvR2FyTGtKTEpoOU14cjBONytidlZ0cVg3MDVzMEd6dDRIQjkxWWV3dnBx?=
- =?utf-8?B?b1YveDJTclpUUXVib3MwaEcxVjYrNUhrYnNuZ3dDaU1LSjRGbHlBdz09?=
-X-OriginatorOrg: garyguo.net
+	=?utf-8?B?MnlidCtIN24vQzlDN1Y2RDdIVTJTaWlUcVRJbW5DYVBOTk5ZNjJ4YkhEN0lX?=
+ =?utf-8?B?Y2kwZlBidmM0OG1vL0FDS25aVjhVampibTRvZDJFL0hTZEIrK0ZXdGxSR0V2?=
+ =?utf-8?B?enRhaGVVcWI3MkhQQnBIZW5uNWJTaXVKeWtHaDBMdmYrVS9qcU90eUZDTC9u?=
+ =?utf-8?B?WWJLOWZsZ3pESXV2NDRHUEc1ZzUrMWM4UlBIRjU2czJyampOK1FPZWtERmd3?=
+ =?utf-8?B?eTl2T29JUWc4ajUwVllpa0VVOHpjT0ZtQlVQa3BCWDE3TllJZ1FOdWFlNjdC?=
+ =?utf-8?B?QVFmUVZCQnFzZWNTT1VuVlJteXM1Z2hGYnp2SkpOVG5USXRXenN0dWRTWEFl?=
+ =?utf-8?B?WElQUStSVms0eDZIOGJkd21XZHJ2cDd5V2FXQ1hoVlhkSGhHelo4VytZLzZ0?=
+ =?utf-8?B?dW1QdmVadUhuU0dxL0t2N3FYeUtKN0xESXVXVGtWajJYUlB6TEZ6a0FmOUFp?=
+ =?utf-8?B?VURGamVpM1B2SU5FbkJTU3R0VCtISVR3LzdFcjJRTjJBbTJyNkV6WXBrUGEr?=
+ =?utf-8?B?LzVzcmROWlZpZVR3a004eGpYbjlxdG5ITzdUaEcyZzBFMFUwU1g0VCt5cVlN?=
+ =?utf-8?B?RXRFNjJ1MlR1TTVhSXVGQThpazRiTTVqTU9wSFNJc3U3VjlKeWFnL0hpb3pa?=
+ =?utf-8?B?S1dUdTBGVUFsZ2dreXJqZXpLRkdUQ0NOSUhFQzZHTk42UnZLV3VlUGRPdVpl?=
+ =?utf-8?B?ZzRjc2ErUmN4c1QyS3NYVnNTUWNsK1hBSWV6cldmWThkc3ZSSFpHdFVrdjZu?=
+ =?utf-8?B?ZVBLd29VckF3NCs0c3BITzk1WUVkTTNDNHhNeGNrUmxiMHdpRXhOY2RQTFJk?=
+ =?utf-8?B?RkFzSXY1MzJlSWpsdlJ3OHhNRkd4eFZJd2NRT3crOFc1ZExac1JYSE45NU5E?=
+ =?utf-8?B?LzB1THF6SjdnK1ZCSldXOGdFS0xNNTVrY0w0MXdDcDRlQ3NlRVo3bmZpb1h2?=
+ =?utf-8?B?aksvTVJsdnZkNjRabHVrZ3BVK0c0NytoSVlCeklETlhUOXVPOGFsUVUzMU5R?=
+ =?utf-8?B?RUIxYzZwUlhGYzE5MUpyQ0liSGZMQ2ppdGExQy9Gd1RRbFNFYk9ZVkNodEU5?=
+ =?utf-8?B?L1Q3bUhVWlc5UHdhMUVLNjFiT1Y2Ly9POWRrbmlSR3NvTHNMcXVvendKZDd0?=
+ =?utf-8?B?OTVhU0RYMlQvV3c0WmoxU0tQSENZMDlqRjlJWmswdWdNa3lEK3dnSzNjYjF5?=
+ =?utf-8?B?T2lMcDNZMDRDMXhRaXhwMFg5bmN1ZEJHbVhXT204STlOOVI4dFpSS1hOODVv?=
+ =?utf-8?B?TTBGNndiYUh1bzdTWk9tOU5YWHRObk54MXFVRXJyNVB0Tnloa2pqcHZ3a0tH?=
+ =?utf-8?B?Y05HMysxaENDOWJJUzJqTW9RQ2NRdWN6b3prSEFoSWxNVlU2TjJnQXgwbXpo?=
+ =?utf-8?B?Ui92MCtQSWpLQzhFNmRMaXhwYWRad1BuMzlON3NsbTZWbHJQK3pnQUhWV0pi?=
+ =?utf-8?B?WFc3UUFXN3VDQUJiKzltQkFEb0p4YTZYVUdxSnlHV2orT3ZNUkJxdXhmL1VF?=
+ =?utf-8?B?QmVnRWQyeTFDenJ4SWRsVTc5Mm9wZ2Z5K2lKaW41dVhscnUwNmlpcURCc2Qv?=
+ =?utf-8?B?dm1NMm9PN2doVFpJRnd5WmlZbEU4b09DK0NVRzlUNTFPaG9zWTlOUVRPRW1Q?=
+ =?utf-8?B?VlhBTjZjWjZxYm1ybzR6VUN5dndJcmRSc28rYTVFamtiSy8vek1pZkozbjhR?=
+ =?utf-8?B?dlZJempaZnlCS1gyeEMwTnljaDQ2c2U1QWMrUlhDc0F1YjFwU2Jja20yQTRN?=
+ =?utf-8?B?SzVza3lPd3VrTGZmQVRCMnFwWGJncVNNaG1RUHhsc1hzalZ4alBBQzkya1JG?=
+ =?utf-8?B?cG9CeG1LTjhNdGg0aUowMi9HTzV0VWlwWUF1RWpOM3dxVzVEUGNhNGZ4MGJX?=
+ =?utf-8?B?NEVwTWJkZDE0cHY5MDVvc1MzS1hLQmZnTmVaY3k2dzVWWjZqNFR5V1Bld043?=
+ =?utf-8?B?eW41MlhmZVBOejhVZ0VDV2xKZFNXU2RkOXdVQkRuSFo2NVdobS9DTEdqcTJW?=
+ =?utf-8?B?WTFWblFQbWJpTEVSQjNyYlVUYlMxbEhGb2RDcjFPZTJobEZPVWdHQU5xZnpN?=
+ =?utf-8?B?aXlrZ0lZTEJmeGZFZStGVVJvOTg2R1NaZHRXQ09jL3NZL0NpdUx3c0ExUXJR?=
+ =?utf-8?B?RnlMcVJ0UTVSRzZ6Mytza05FbU5WWWcraEhjWVE3Q2luRnpVVUNPRlpYM0Jp?=
+ =?utf-8?B?VTJoeEVESDNhTTFaZDUxVUVDRU1BRXd4dEJZanVCWjhVZ0VqcnMzaWdwL3h6?=
+ =?utf-8?B?NEp5WlZKUTdnM0hMcjFHVVJ1L1hubVRjOGZ2dmJ2azVaKzdxc0tDbHpWWFNu?=
+ =?utf-8?B?YlQ1aDYxdVNhWjhtRlZSVEt1UHdRQndrMXRWUHBRSGo1a0J1QW40Zz09?=
+X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- cb1dbf51-7813-48cb-861a-08de794afa18
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ 37e7a617-fa2e-47d3-335f-08de795d3b0f
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 17:33:26.4503
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 19:44:06.9627
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- JvGkia3CeczyuIC+vCxWJv+Cg9KETMpUguSJBxJhXD3IFZkpg50vwIqRWINxpB2wwwaaRSQQWsz2Lu3aXA7RMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P265MB2431
-Message-ID-Hash: BJXWMVGV3Z4PSCP5R5FSOZ443CEW5MLA
-X-Message-ID-Hash: BJXWMVGV3Z4PSCP5R5FSOZ443CEW5MLA
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+ C5HPptWu1Bzgsx41aM6w/Y30HvMKCGNTGvMYDOfkrNw86VQLOOyOgl6sj9aN2Tb6I+NvIS+YjN8ETWq29OmSWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR12MB6828
+Message-ID-Hash: NFF6IKIX42MUWJHFSEHKHW7RGARI3LJT
+X-Message-ID-Hash: NFF6IKIX42MUWJHFSEHKHW7RGARI3LJT
+X-MailFrom: joelagnelf@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: driver-core@lists.linux.dev, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
+ joel@joelfernandes.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BJXWMVGV3Z4PSCP5R5FSOZ443CEW5MLA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NFF6IKIX42MUWJHFSEHKHW7RGARI3LJT/>
 Archived-At: 
- <https://lore.freedesktop.org/DGTBSPDSQKA0.LG8DPD4GT4CM@garyguo.net/>
+ <https://lore.freedesktop.org/e9ac37f5-f23f-4ea3-81dc-32d96e5b2041@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -185,293 +187,147 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Mar 3, 2026 at 4:22 PM GMT, Danilo Krummrich wrote:
-> Convert libos (LibosMemoryRegionInitArgument) and rmargs
-> (GspArgumentsPadded) to use CoherentInit / Coherent::init() and simplify
-> the initialization. This also avoids separate initialization on the
-> stack.
+On Mon, Mar 02, 2026 at 08:58:23PM +0900, Alexandre Courbot wrote:
+> > +//! controlled by the `NV_PBUS_BAR0_WINDOW` register and must be 64KB aligned.
 >
-> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> ---
->  drivers/gpu/nova-core/gsp.rs    | 47 +++++++++++--------------
->  drivers/gpu/nova-core/gsp/fw.rs | 62 +++++++++++++++++++++++----------
->  2 files changed, 65 insertions(+), 44 deletions(-)
+> s/must be/is - it's not like that hardware is giving us a choice anyway
+> since we cannot even express a non-aligned value in the window register.
+
+Done.
+
+> > +            let bar = self.bar.try_access().ok_or(ENODEV)?;
 >
-> diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-> index 25cd48514c77..cb7f6b4dc0f8 100644
-> --- a/drivers/gpu/nova-core/gsp.rs
-> +++ b/drivers/gpu/nova-core/gsp.rs
-> @@ -5,10 +5,11 @@
->  use kernel::{
->      device,
->      dma::{
-> +        Coherent,
->          CoherentAllocation,
-> +        CoherentInit,
->          DmaAddress, //
->      },
-> -    dma_write,
->      pci,
->      prelude::*,
->      transmute::AsBytes, //
-> @@ -104,7 +105,7 @@ fn new(dev: &device::Device<device::Bound>) -> Result=
-<Self> {
->  #[pin_data]
->  pub(crate) struct Gsp {
->      /// Libos arguments.
-> -    pub(crate) libos: CoherentAllocation<LibosMemoryRegionInitArgument>,
-> +    pub(crate) libos: Coherent<[LibosMemoryRegionInitArgument]>,
->      /// Init log buffer.
->      loginit: LogBuffer,
->      /// Interrupts log buffer.
-> @@ -114,7 +115,7 @@ pub(crate) struct Gsp {
->      /// Command queue.
->      pub(crate) cmdq: Cmdq,
->      /// RM arguments.
-> -    rmargs: CoherentAllocation<GspArgumentsPadded>,
-> +    rmargs: Coherent<GspArgumentsPadded>,
->  }
-> =20
->  impl Gsp {
-> @@ -123,34 +124,28 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>=
-) -> impl PinInit<Self, Error
->          pin_init::pin_init_scope(move || {
->              let dev =3D pdev.as_ref();
-> =20
-> +            // Initialise the logging structures. The OpenRM equivalents=
- are in:
-> +            // _kgspInitLibosLoggingStructures (allocates memory for buf=
-fers)
-> +            // kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] arr=
-ay)
->              Ok(try_pin_init!(Self {
-> -                libos: CoherentAllocation::<LibosMemoryRegionInitArgumen=
-t>::alloc_coherent(
-> -                    dev,
-> -                    GSP_PAGE_SIZE / size_of::<LibosMemoryRegionInitArgum=
-ent>(),
-> -                    GFP_KERNEL | __GFP_ZERO,
-> -                )?,
->                  loginit: LogBuffer::new(dev)?,
->                  logintr: LogBuffer::new(dev)?,
->                  logrm: LogBuffer::new(dev)?,
->                  cmdq: Cmdq::new(dev)?,
-> -                rmargs: CoherentAllocation::<GspArgumentsPadded>::alloc_=
-coherent(
-> -                    dev,
-> -                    1,
-> -                    GFP_KERNEL | __GFP_ZERO,
-> -                )?,
-> -                _: {
-> -                    // Initialise the logging structures. The OpenRM equ=
-ivalents are in:
-> -                    // _kgspInitLibosLoggingStructures (allocates memory=
- for buffers)
-> -                    // kgspSetupLibosInitArgs_IMPL (creates pLibosInitAr=
-gs[] array)
-> -                    dma_write!(
-> -                        libos, [0]?, LibosMemoryRegionInitArgument::new(=
-"LOGINIT", &loginit.0)
-> -                    );
-> -                    dma_write!(
-> -                        libos, [1]?, LibosMemoryRegionInitArgument::new(=
-"LOGINTR", &logintr.0)
-> -                    );
-> -                    dma_write!(libos, [2]?, LibosMemoryRegionInitArgumen=
-t::new("LOGRM", &logrm.0));
-> -                    dma_write!(rmargs, [0]?.inner, fw::GspArgumentsCache=
-d::new(cmdq));
-> -                    dma_write!(libos, [3]?, LibosMemoryRegionInitArgumen=
-t::new("RMARGS", rmargs));
-> +                rmargs: Coherent::init(dev, GFP_KERNEL, GspArgumentsPadd=
-ed::new(cmdq))?,
-> +                libos: {
-> +                    let mut libos =3D CoherentInit::zeroed_slice(
-> +                        dev,
-> +                        GSP_PAGE_SIZE / size_of::<LibosMemoryRegionInitA=
-rgument>(),
-> +                        GFP_KERNEL,
-> +                    )?;
-> +
-> +                    libos.init_at(0, LibosMemoryRegionInitArgument::new(=
-"LOGINIT", &loginit.0))?;
-> +                    libos.init_at(1, LibosMemoryRegionInitArgument::new(=
-"LOGINTR", &logintr.0))?;
-> +                    libos.init_at(2, LibosMemoryRegionInitArgument::new(=
-"LOGRM", &logrm.0))?;
-> +                    libos.init_at(3, LibosMemoryRegionInitArgument::new(=
-"RMARGS", rmargs))?;
-> +
-> +                    libos.into()
->                  },
->              }))
->          })
-> diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/=
-fw.rs
-> index 751d5447214d..59cb03a9b238 100644
-> --- a/drivers/gpu/nova-core/gsp/fw.rs
-> +++ b/drivers/gpu/nova-core/gsp/fw.rs
-> @@ -9,11 +9,12 @@
->  use core::ops::Range;
-> =20
->  use kernel::{
-> -    dma::CoherentAllocation,
-> +    dma::Coherent,
->      prelude::*,
->      ptr::{
->          Alignable,
-> -        Alignment, //
-> +        Alignment,
-> +        KnownSize, //
->      },
->      sizes::{
->          SZ_128K,
-> @@ -568,7 +569,9 @@ unsafe impl AsBytes for RunCpuSequencer {}
->  /// The memory allocated for the arguments must remain until the GSP sen=
-ds the
->  /// init_done RPC.
->  #[repr(transparent)]
-> -pub(crate) struct LibosMemoryRegionInitArgument(bindings::LibosMemoryReg=
-ionInitArgument);
-> +pub(crate) struct LibosMemoryRegionInitArgument {
-> +    inner: bindings::LibosMemoryRegionInitArgument,
-> +}
+> Ouch, we are calling `try_access` for every single read or write
+> operation.
 
-FYI tuple struct construction is being worked at now:
-https://github.com/Rust-for-Linux/pin-init/pull/113
+> > +    bar: Arc<Devres<Bar0>>,
+>
+> Cloning the `Arc` is what forces us to do a `try_access` on every
+> read/write operation. [...] you can just call `try_access` in `window`
+> and store that. This turns `bar` into:
+>
+>     bar: RevocableGuard<'a, Bar0>,
 
-> =20
->  // SAFETY: Padding is explicit and does not contain uninitialized data.
->  unsafe impl AsBytes for LibosMemoryRegionInitArgument {}
-> @@ -578,10 +581,10 @@ unsafe impl AsBytes for LibosMemoryRegionInitArgume=
-nt {}
->  unsafe impl FromBytes for LibosMemoryRegionInitArgument {}
-> =20
->  impl LibosMemoryRegionInitArgument {
-> -    pub(crate) fn new<A: AsBytes + FromBytes>(
-> +    pub(crate) fn new<'a, A: AsBytes + FromBytes + KnownSize + ?Sized>(
->          name: &'static str,
-> -        obj: &CoherentAllocation<A>,
-> -    ) -> Self {
-> +        obj: &'a Coherent<A>,
-> +    ) -> impl Init<Self> + 'a {
->          /// Generates the `ID8` identifier required for some GSP objects=
-.
->          fn id8(name: &str) -> u64 {
->              let mut bytes =3D [0u8; core::mem::size_of::<u64>()];
-> @@ -593,7 +596,8 @@ fn id8(name: &str) -> u64 {
->              u64::from_ne_bytes(bytes)
->          }
-> =20
-> -        Self(bindings::LibosMemoryRegionInitArgument {
-> +        #[allow(non_snake_case)]
-> +        let init_inner =3D init!(bindings::LibosMemoryRegionInitArgument=
- {
->              id8: id8(name),
->              pa: obj.dma_handle(),
->              size: num::usize_as_u64(obj.size()),
-> @@ -603,7 +607,11 @@ fn id8(name: &str) -> u64 {
->              loc: num::u32_into_u8::<
->                  { bindings::LibosMemoryRegionLoc_LIBOS_MEMORY_REGION_LOC=
-_SYSMEM },
->              >(),
-> -            ..Default::default()
-> +            ..Zeroable::init_zeroed()
-> +        });
-> +
-> +        init!(LibosMemoryRegionInitArgument {
-> +            inner <- init_inner,
->          })
->      }
->  }
-> @@ -814,15 +822,23 @@ unsafe impl FromBytes for GspMsgElement {}
-> =20
->  /// Arguments for GSP startup.
->  #[repr(transparent)]
-> -pub(crate) struct GspArgumentsCached(bindings::GSP_ARGUMENTS_CACHED);
-> +#[derive(Zeroable)]
-> +pub(crate) struct GspArgumentsCached {
-> +    inner: bindings::GSP_ARGUMENTS_CACHED,
-> +}
-> =20
->  impl GspArgumentsCached {
->      /// Creates the arguments for starting the GSP up using `cmdq` as it=
-s command queue.
-> -    pub(crate) fn new(cmdq: &Cmdq) -> Self {
-> -        Self(bindings::GSP_ARGUMENTS_CACHED {
-> -            messageQueueInitArguments: MessageQueueInitArguments::new(cm=
-dq).0,
-> +    pub(crate) fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
+Agreed, this is a lot better and has fewer lines of code too. I have
+made the change.
 
-This struct is not that big, so I think we can just keep the by-value
-constructor.
+> > +struct PraminState {
+> > +    current_base: usize,
+> > +}
+>
+> This has only one member and no impl block of its own - shall we inline
+> it?
 
-Best,
-Gary
+Agreed. Inlined to Mutex<usize>.
 
-> +        #[allow(non_snake_case)]
-> +        let init_inner =3D init!(bindings::GSP_ARGUMENTS_CACHED {
-> +            messageQueueInitArguments <- MessageQueueInitArguments::new(=
-cmdq),
->              bDmemStack: 1,
-> -            ..Default::default()
-> +            ..Zeroable::init_zeroed()
-> +        });
-> +
-> +        init!(GspArgumentsCached {
-> +            inner <- init_inner,
->          })
->      }
->  }
-> @@ -834,11 +850,21 @@ unsafe impl AsBytes for GspArgumentsCached {}
->  /// must all be a multiple of GSP_PAGE_SIZE in size, so add padding to f=
-orce it
->  /// to that size.
->  #[repr(C)]
-> +#[derive(Zeroable)]
->  pub(crate) struct GspArgumentsPadded {
->      pub(crate) inner: GspArgumentsCached,
->      _padding: [u8; GSP_PAGE_SIZE - core::mem::size_of::<bindings::GSP_AR=
-GUMENTS_CACHED>()],
->  }
-> =20
-> +impl GspArgumentsPadded {
-> +    pub(crate) fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
-> +        init!(GspArgumentsPadded {
-> +            inner <- GspArgumentsCached::new(cmdq),
-> +            ..Zeroable::init_zeroed()
-> +        })
-> +    }
-> +}
-> +
->  // SAFETY: Padding is explicit and will not contain uninitialized data.
->  unsafe impl AsBytes for GspArgumentsPadded {}
-> =20
-> @@ -847,18 +873,18 @@ unsafe impl AsBytes for GspArgumentsPadded {}
->  unsafe impl FromBytes for GspArgumentsPadded {}
-> =20
->  /// Init arguments for the message queue.
-> -#[repr(transparent)]
-> -struct MessageQueueInitArguments(bindings::MESSAGE_QUEUE_INIT_ARGUMENTS)=
-;
-> +type MessageQueueInitArguments =3D bindings::MESSAGE_QUEUE_INIT_ARGUMENT=
-S;
-> =20
->  impl MessageQueueInitArguments {
->      /// Creates a new init arguments structure for `cmdq`.
-> -    fn new(cmdq: &Cmdq) -> Self {
-> -        Self(bindings::MESSAGE_QUEUE_INIT_ARGUMENTS {
-> +    #[allow(non_snake_case)]
-> +    fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
-> +        init!(MessageQueueInitArguments {
->              sharedMemPhysAddr: cmdq.dma_handle(),
->              pageTableEntryCount: num::usize_into_u32::<{ Cmdq::NUM_PTES =
-}>(),
->              cmdQueueOffset: num::usize_as_u64(Cmdq::CMDQ_OFFSET),
->              statQueueOffset: num::usize_as_u64(Cmdq::STATQ_OFFSET),
-> -            ..Default::default()
-> +            ..Zeroable::init_zeroed()
->          })
->      }
->  }
+> > +    /// This lock is acquired during the DMA fence signalling critical path.
+>
+> nit: s/signalling/signaling
+
+Done.
+
+> > +    pub(crate) fn window(&self) -> Result<PraminWindow<'_>> {
+>
+> The name of this method is strange - we don't pass the base of any
+> window area. It looks more like it is actually acquiring the `Pramin`
+> for exclusive access.
+
+How about `get_window()`? Open to other suggestions too.
+
+> Also fun question: what happens if we try to access an area above (or
+> below) the available VRAM?
+
+Good catch, I added further hardening to check for that in next spin.  And
+as a result, I can also drop this check now "Validate within hardware
+addressable range (40-bit address space)" since it will be covered by the
+VRAM region check.
+
+Also I was doing unnecessary window repositioning: we were computing a new
+base for every 64KB boundary crossing, fixed now.
+
+
+> > +    fn try_read_window_base(bar: &Bar0) -> Result<usize> {
+> > +        let shifted = base.checked_shl(16).ok_or(EOVERFLOW)?;
+> > +        shifted.try_into().map_err(|_| EOVERFLOW)
+>
+> This function is actually infallible. [...] For now can you use a regular
+> shift operation with a TODO to convert to `Bounded`?
+
+Done. Renamed to read_window_base(), uses plain shift and u64_as_usize.
+Added TODO for Bounded.
+
+> > +    saved_base: usize,
+>
+> What is the point of saving and restoring the original position?
+
+> > impl Drop for PraminWindow<'_> { ...
+>
+> Let's drop this alongside the original window base restoration, which
+> doesn't serve any purpose.
+
+I was trying to avoid side effects for other users of PRAMIN, but you
+are right, that is too defensive with handling this. Will simplify.
+
+> > +    state: MutexGuard<'a, PraminState>,
+>
+> I'm wondering whether we should remove the `Mutex` from `Pramin` and
+> make its methods take `&mut self`.
+
+Actually I would like not to do that because it complicates the design -
+`&mut self` on Pramin then requires `&mut GpuMm` everywhere, cascading
+through all callers. I had tried that path initially but ended up with
+the internal Mutex approach and concluded it is cleaner. I think we can
+start with this and refine as needed - let me know if you're okay with
+that. Similar reasoning for the buddy allocator, where I implemented
+internal locking there after trying the mutable reference path.
+
+> > +    fn write_window_base(bar: &Bar0, base: usize) {
+>
+> `base` should be the native type of the GPU, i.e. `u64`.
+
+Makes sense. I changed it throughout the file to be that way. Btw, I left
+the BAR0 offsets (bar_offset, offset_in_window) remain usize since those
+are host MMIO offsets. We could argue that is 'an offset into VRAM though
+which is GPU addresses' but I guess we have to draw the line somewhere :)
+
+> > +        // CAST:
+> > +        // - We have guaranteed that the base is within the addressable range (40-bits).
+>
+> This function does not guarantee anything of the sort - even the caller
+> doesn't, this actually relies on the behavior of `compute_window`.
+
+Fixed. Reworded to: "The caller (compute_window) validates that base is
+within the VRAM region which is always <= 40 bits. After >> 16, a 40-bit
+base becomes 24 bits, which fits in u32."
+
+> > +        if end_offset > MAX_VRAM_OFFSET + 1 {
+>
+> If we are going to use `MAX_VRAM_OFFSET` like this, let's define it as
+> `1 << 40` and turn this into `if end_offset > MAX_VRAM_OFFSET`.
+
+Removed entirely - the 40-bit hardware check is now redundant since
+compute_window validates against the actual vram_region (which is
+always <= 40 bits) as per above.
+
+> > +        if offset_in_window + access_size > PRAMIN_SIZE {
+>
+> Here `offset_in_window` cannot be larger than 64K because of the line
+> before - this check is effectively dead code.
+
+This was true with the old code that aligned to 64KB on every access.
+With the repositioning fix (we now check if the access fits in the
+current 1MB window first), offset_in_window can be up to ~1MB, so this
+check is now live and needed.
+
+> > +    25:24   target as u8, "Target memory (0=VRAM, 1=SYS_MEM_COH, 2=SYS_MEM_NONCOH)";
+>
+> This should be converted to an enum. [...] a single-variant enum will
+> document that fact and force us to set the correct value.
+
+Done. Added Bar0WindowTarget enum with a single variant.
+
+thanks,
+
+--
+Joel Fernandes
 
