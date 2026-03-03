@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3026CEDA693
-	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 16:23:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60727EDA69A
+	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 16:23:42 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E3C4D10E86D;
-	Tue,  3 Mar 2026 16:23:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 30B3710E867;
+	Tue,  3 Mar 2026 16:23:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CINpFcQG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pJgBC+lu";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C6DF244D9F;
-	Tue,  3 Mar 2026 16:13:18 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 12A3944DA0;
+	Tue,  3 Mar 2026 16:13:24 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772554398;
- b=g+SyDaLsqkLDFYMUxRm57MR8zgFwGyoHZa8xRbVKq8PGcHDCa37RN/JMBjeayY2PCA8jb
- dQEznfq+7hAemtLlLgN9R6O6mleN59fIApwe4YatEHqWGxvepZDFUVaCNLTcO3NNGcHDIbs
- J14aQkE4FFPHre6jlwH2qf6u2B2jMLEMne9gmBJFrPNf8tEoY6ZjcbkDqWo0LHD7rkrpCbR
- PiajoELgEAayS6EhNhUi/f0er5Y4FGHzZ91CMuwchwf9G4aGn0uyVnVI4sgrzDlTUjbjsBo
- 9H2zCbBaXuMk1E0Vghd4IW7vS7TWXJhKAUOggvwGSbINeRUpYRgJHbYfq/cg==
+ s=20240201; t=1772554403;
+ b=WggU8sDlia4OpRSehMwoQuD9P/s81n32PLThta0g3zPOl25s2ewvj12b5O84DmtMCHjOZ
+ /QO5KnPDxRoTW+RoFh+zPbazzXn64CNPUPn4SMnVnpDFM73CI58ilaVUC9WszyMu2T72CMd
+ HlynZ237Vlw5nEV8PGbG+FD3M5hluVcxeNAbv49pvlzqrl9EHrEC4mMLo8n6soOpovYamXY
+ n6brLA8znvAjCzj/c/b+HPxeelDS6y6mkS36PzwXMDc2GZRxR12cxy3XL4PKK5UZiTM/2o8
+ JRNe/zWZ205Zszh2gJmGkgDMHvu15Rjdz7cYb81+XcVHzCl3PBY6OW9gnbrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772554398; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772554403; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DKJW9EcwUk4h+Xp9lw5JIzqourgMS7dvDNrB8XlM0ok=;
- b=r+RbEHccUWQv6EdY43Ff/0yrPX+cnd1Ohrl9Rv5IQlaYMXfurPD5iPsnq0tH1y+wixXqC
- D75LRzxHb6jSR/R7PtdojFb6Crr7EL9YUGckifPiY9B2MxDgHmPm87sAzxkX1iiU5kbO4sr
- 4kDTqor8JW0S1uPQfAyd//IjyfsqnoU83vAzv9DzuGTvES+FjI79eTBeYyJ+AT593wuYJ55
- TDSe4kgUhQVQ5P6m006c4jH8pLwl/2LlzbeqVxxmkkobfm7101DzDizy+vOHTkrfru11pCv
- lrx+52g9xMibgbg3vvnA3HJtIzRC3ab8ZI2Li6jRa3Qir9BuDDIOeeQw6wRQ==
+ bh=apPWDpK2wPBE4DS4Px0iSeeqAsA+RDKGWK4F4URCgq0=;
+ b=yLMNV1y1SrWm0N9dYmslN+u4QXapCUDJoozUfcUP7c3ZAfRStdA2V9luZrechx8Usjb8g
+ xfBwH0ujqBebt1MJm1qwqkPtomUkkbTFAgXUCMHmb93IDLbWPDUblcp5GN9dNeNv+FkKUAN
+ j0ev0CHlU1q0PhLnBI/jH5hRyHaiNo2lVEKmUu9lU+91U32srKj6O+lODyG2jDLw/xlZy+W
+ /cILtqgBNNCZGc6/l+xFlqUHY2QB3Vzjx1RcmDyuPWr2bD/BzsoHxXzmvlH3mXciEL37NA5
+ sPe92cBRZKEXuTK1ecilZKk202WtiLVQaaJ1GrLosVWtyPZ/nG7/zZdtxMGA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 13A3B44CD7
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 16:13:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 238F344CD7
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 16:13:21 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EE36C10E865;
-	Tue,  3 Mar 2026 16:23:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0986210E859;
+	Tue,  3 Mar 2026 16:23:39 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 54BC060008;
+	by tor.source.kernel.org (Postfix) with ESMTP id 762B060008;
+	Tue,  3 Mar 2026 16:23:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7715CC2BCB0;
 	Tue,  3 Mar 2026 16:23:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51E9FC19425;
-	Tue,  3 Mar 2026 16:23:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772555014;
-	bh=2KpsdZwDEoGsFZo4mcehIAvYG9ASAGAxsst8MTspzNM=;
+	s=k20201202; t=1772555018;
+	bh=lvS+2efafKwewwHd7ONO5y6+Y49CgHw8VIi3bRKXV+s=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=CINpFcQGYvbR4YvZESh+564qUW9h1Drprf79ZT8AiYiKKCLinSv3zb9hMtDAicQ2v
-	 sFwHmTkwr7S6S+1v729+qDlKvJsaobdCNbFbVjqHF5dLK4kEuWIQiZNpT9myRHpwbu
-	 sulikvPjA7VlcMZwjqIDOdcbaammLmbO+RG0OTJjlGRzJsfA8bjLBKqugjzL26M363
-	 nZCryzqnQQBG5YhZ/94KNoJ5Md3SGF3vr6GLPnuIG1SkOGWEtaDA3infQH9PAMjW1k
-	 Zoukdz/1mCYfEiUIiU+HJZ1zz7F7uTVOr+V7NfXkOR7VFcZK/cnTA7Cj/n58Q5gL3D
-	 USgcqQskKmQtA==
+	b=pJgBC+luK2vnGf5VECQogdIin5ejUVwJ/MBgNwPKigPRYTo/X/75Uvpvtl1UqQyl7
+	 RbTf4I7YXeQzkGZSuMMi78LymclByTCU/nZCfaFzxJ3PjPARKunoJjZUIpRLe2KBhD
+	 0kFdsmbFWb2lB/vgFeBoJPn9gAJLrdmfZTnYToaYTzHAynJXDe4dKlQVT46ytElXSm
+	 CSnqQ/AHK1LQzsN4CM3fCW3iI+0Dl4grK40RbexUN5CeBKI3ypdKx8jdxNY+x03fEm
+	 JE8W+fRcAnDYouuuGTOWAOeQleLw2OGwaK/NVpTLWuyjU2jN/+g7NBnlqHtpldZ09j
+	 2f8W8c8jXw6YA==
 From: Danilo Krummrich <dakr@kernel.org>
 To: aliceryhl@google.com,
 	acourbot@nvidia.com,
@@ -79,16 +79,17 @@ To: aliceryhl@google.com,
 	abdiel.janulgue@gmail.com,
 	daniel.almeida@collabora.com,
 	robin.murphy@arm.com
-Subject: [PATCH 3/8] rust: dma: add zeroed constructor to `Coherent`
-Date: Tue,  3 Mar 2026 17:22:54 +0100
-Message-ID: <20260303162314.94363-4-dakr@kernel.org>
+Subject: [PATCH 4/8] rust: dma: introduce dma::CoherentInit for memory
+ initialization
+Date: Tue,  3 Mar 2026 17:22:55 +0100
+Message-ID: <20260303162314.94363-5-dakr@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260303162314.94363-1-dakr@kernel.org>
 References: <20260303162314.94363-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 4IAFPGRZ63QTM66COSWGOIIVC6XE4WWZ
-X-Message-ID-Hash: 4IAFPGRZ63QTM66COSWGOIIVC6XE4WWZ
+Message-ID-Hash: BXJSDWFXYH2QNJAT22IHAOIRY7S2SXTQ
+X-Message-ID-Hash: BXJSDWFXYH2QNJAT22IHAOIRY7S2SXTQ
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -100,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4IAFPGRZ63QTM66COSWGOIIVC6XE4WWZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BXJSDWFXYH2QNJAT22IHAOIRY7S2SXTQ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260303162314.94363-4-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260303162314.94363-5-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,193 +113,195 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Gary Guo <gary@garyguo.net>
+Currently, dma::Coherent cannot safely provide (mutable) access to its
+underlying memory because the memory might be concurrently accessed by a
+DMA device. This makes it difficult to safely initialize the memory
+before handing it over to the hardware.
 
-These constructors create a coherent container of a single object
-instead of slice. They are named `zeroed` and `zeroed_with_attrs` to
-emphasis that they are created initialized zeroed. It is intended that
-there'll be new constructors that take `PinInit` instead of zeroing.
+Introduce dma::CoherentInit, a type that encapsulates a dma::Coherent
+before its DMA address is exposed to the device. dma::CoherentInit can
+guarantee exclusive access to the inner dma::Coherent and implement
+Deref and DerefMut.
 
-Signed-off-by: Gary Guo <gary@garyguo.net>
+Once the memory is properly initialized, dma::CoherentInit can be
+converted into a regular dma::Coherent.
+
 Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 ---
- rust/kernel/dma.rs       | 77 +++++++++++++++++++++++++++++++++++-----
- samples/rust/rust_dma.rs |  8 ++---
- 2 files changed, 73 insertions(+), 12 deletions(-)
+ rust/kernel/dma.rs | 153 ++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 152 insertions(+), 1 deletion(-)
 
 diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
-index 3a692ac76ba2..291fdea3b52b 100644
+index 291fdea3b52b..79dd8717ac47 100644
 --- a/rust/kernel/dma.rs
 +++ b/rust/kernel/dma.rs
-@@ -47,7 +47,7 @@ pub trait Device: AsRef<device::Device<Core>> {
-     /// # Safety
-     ///
-     /// This method must not be called concurrently with any DMA allocation or mapping primitives,
--    /// such as [`CoherentAllocation::alloc_attrs`].
-+    /// such as [`Coherent::zeroed`].
-     unsafe fn dma_set_mask(&self, mask: DmaMask) -> Result {
-         // SAFETY:
-         // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-@@ -64,7 +64,7 @@ unsafe fn dma_set_mask(&self, mask: DmaMask) -> Result {
-     /// # Safety
-     ///
-     /// This method must not be called concurrently with any DMA allocation or mapping primitives,
--    /// such as [`CoherentAllocation::alloc_attrs`].
-+    /// such as [`Coherent::zeroed`].
-     unsafe fn dma_set_coherent_mask(&self, mask: DmaMask) -> Result {
-         // SAFETY:
-         // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-@@ -83,7 +83,7 @@ unsafe fn dma_set_coherent_mask(&self, mask: DmaMask) -> Result {
-     /// # Safety
-     ///
-     /// This method must not be called concurrently with any DMA allocation or mapping primitives,
--    /// such as [`CoherentAllocation::alloc_attrs`].
-+    /// such as [`Coherent::zeroed`].
-     unsafe fn dma_set_mask_and_coherent(&self, mask: DmaMask) -> Result {
-         // SAFETY:
-         // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-@@ -102,7 +102,7 @@ unsafe fn dma_set_mask_and_coherent(&self, mask: DmaMask) -> Result {
-     /// # Safety
-     ///
-     /// This method must not be called concurrently with any DMA allocation or mapping primitives,
--    /// such as [`CoherentAllocation::alloc_attrs`].
-+    /// such as [`Coherent::zeroed`].
-     unsafe fn dma_set_max_seg_size(&self, size: u32) {
-         // SAFETY:
-         // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-@@ -202,12 +202,12 @@ pub const fn value(&self) -> u64 {
- ///
- /// ```
- /// # use kernel::device::{Bound, Device};
--/// use kernel::dma::{attrs::*, CoherentAllocation};
-+/// use kernel::dma::{attrs::*, Coherent};
- ///
- /// # fn test(dev: &Device<Bound>) -> Result {
- /// let attribs = DMA_ATTR_FORCE_CONTIGUOUS | DMA_ATTR_NO_WARN;
--/// let c: CoherentAllocation<u64> =
--///     CoherentAllocation::alloc_attrs(dev, 4, GFP_KERNEL, attribs)?;
-+/// let c: Coherent<[u64]> =
-+///     Coherent::zeroed_slice_with_attrs(dev, 4, GFP_KERNEL, attribs)?;
- /// # Ok::<(), Error>(()) }
- /// ```
- #[derive(Clone, Copy, PartialEq)]
-@@ -492,7 +492,6 @@ pub unsafe fn field_write<F: AsBytes>(&self, field: *mut F, val: F) {
+@@ -20,7 +20,13 @@
+         FromBytes, //
+     }, //
+ };
+-use core::ptr::NonNull;
++use core::{
++    ops::{
++        Deref,
++        DerefMut, //
++    },
++    ptr::NonNull, //
++};
  
- impl<T: AsBytes + FromBytes> Coherent<T> {
-     /// Allocates a region of `T` of coherent memory.
--    #[expect(unused)]
-     fn alloc_with_attrs(
-         dev: &device::Device<Bound>,
-         gfp_flags: kernel::alloc::Flags,
-@@ -529,6 +528,33 @@ fn alloc_with_attrs(
-         })
+ /// DMA address type.
+ ///
+@@ -352,6 +358,151 @@ fn from(direction: DataDirection) -> Self {
      }
+ }
  
-+    /// Allocates a region of type `T` of coherent memory.
++/// Initializer type for [`Coherent`].
++///
++/// A [`Coherent`] object can't provide access to its memory as (mutable) slice safely, since it
++/// can't fulfill the requirements for creating a slice. For instance, it is not valid to have a
++/// (mutable) slice to of the memory of a [`Coherent`] while the memory might be accessed by a
++/// device.
++///
++/// In contrast, this initializer type is able to fulfill the requirements to safely obtain a
++/// (mutable) slice, as it neither provides access to the DMA address of the embedded [`Coherent`],
++/// nor can it be used with the DMA projection accessors.
++///
++/// Once initialized, this type can be converted to a regular [`Coherent`] object.
++///
++/// # Examples
++///
++/// `CoherentInit<T>`:
++///
++/// ```
++/// # use kernel::device::{
++/// #     Bound,
++/// #     Device,
++/// # };
++/// use kernel::dma::{attrs::*,
++///     Coherent,
++///     CoherentInit,
++/// };
++///
++/// # fn test(dev: &Device<Bound>) -> Result {
++/// let mut dmem: CoherentInit<u64> =
++///     CoherentInit::zeroed_with_attrs(dev, GFP_KERNEL, DMA_ATTR_NO_WARN)?;
++/// *dmem = 42;
++/// let dmem: Coherent<u64> = dmem.into();
++/// # Ok::<(), Error>(()) }
++/// ```
++///
++/// `CoherentInit<[T]>`:
++///
++///
++/// ```
++/// # use kernel::device::{
++/// #     Bound,
++/// #     Device,
++/// # };
++/// use kernel::dma::{attrs::*,
++///     Coherent,
++///     CoherentInit,
++/// };
++///
++/// # fn test(dev: &Device<Bound>) -> Result {
++/// let mut dmem: CoherentInit<[u64]> =
++///     CoherentInit::zeroed_slice_with_attrs(dev, 4, GFP_KERNEL, DMA_ATTR_NO_WARN)?;
++/// dmem.fill(42);
++/// let dmem: Coherent<[u64]> = dmem.into();
++/// # Ok::<(), Error>(()) }
++/// ```
++pub struct CoherentInit<T: AsBytes + FromBytes + KnownSize + ?Sized>(Coherent<T>);
++
++impl<T: AsBytes + FromBytes> CoherentInit<[T]> {
++    /// Initializer variant of [`Coherent::zeroed_slice_with_attrs`].
++    pub fn zeroed_slice_with_attrs(
++        dev: &device::Device<Bound>,
++        count: usize,
++        gfp_flags: kernel::alloc::Flags,
++        dma_attrs: Attrs,
++    ) -> Result<Self> {
++        Coherent::zeroed_slice_with_attrs(dev, count, gfp_flags, dma_attrs).map(Self)
++    }
++
++    /// Same as [CoherentInit::zeroed_slice_with_attrs], but with `dma::Attrs(0)`.
++    pub fn zeroed_slice(
++        dev: &device::Device<Bound>,
++        count: usize,
++        gfp_flags: kernel::alloc::Flags,
++    ) -> Result<Self> {
++        Self::zeroed_slice_with_attrs(dev, count, gfp_flags, Attrs(0))
++    }
++
++    /// Initializes the element at `i` using the given initializer.
 +    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// # use kernel::device::{Bound, Device};
-+    /// use kernel::dma::{attrs::*, Coherent};
-+    ///
-+    /// # fn test(dev: &Device<Bound>) -> Result {
-+    /// let c: Coherent<[u64; 4]> =
-+    ///     Coherent::zeroed_with_attrs(dev, GFP_KERNEL, DMA_ATTR_NO_WARN)?;
-+    /// # Ok::<(), Error>(()) }
-+    /// ```
++    /// Returns `EINVAL` if `i` is out of bounds.
++    pub fn init_at<E>(&mut self, i: usize, init: impl Init<T, E>) -> Result
++    where
++        Error: From<E>,
++    {
++        if i >= self.0.len() {
++            return Err(EINVAL);
++        }
++
++        let ptr = core::ptr::from_mut(&mut self[i]);
++
++        // SAFETY:
++        // - `ptr` is valid, properly aligned, and within this allocation.
++        // - `T: AsBytes + FromBytes` guarantees all bit patterns are valid, so partial writes on
++        //   error cannot leave the element in an invalid state.
++        // - The DMA address has not been exposed yet, so there is no concurrent device access.
++        unsafe { init.__init(ptr)? };
++
++        Ok(())
++    }
++}
++
++impl<T: AsBytes + FromBytes> CoherentInit<T> {
++    /// Same as [`CoherentInit::zeroed_slice_with_attrs`], but for a single element.
 +    pub fn zeroed_with_attrs(
 +        dev: &device::Device<Bound>,
 +        gfp_flags: kernel::alloc::Flags,
 +        dma_attrs: Attrs,
 +    ) -> Result<Self> {
-+        Self::alloc_with_attrs(dev, gfp_flags | __GFP_ZERO, dma_attrs)
++        Coherent::zeroed_with_attrs(dev, gfp_flags, dma_attrs).map(Self)
 +    }
 +
-+    /// Performs the same functionality as [`Coherent::zeroed_with_attrs`], except the
-+    /// `dma_attrs` is 0 by default.
++    /// Same as [`CoherentInit::zeroed_slice`], but for a single element.
 +    pub fn zeroed(dev: &device::Device<Bound>, gfp_flags: kernel::alloc::Flags) -> Result<Self> {
 +        Self::zeroed_with_attrs(dev, gfp_flags, Attrs(0))
 +    }
++}
 +
-     /// Allocates a region of `[T; len]` of coherent memory.
-     fn alloc_slice_with_attrs(
-         dev: &device::Device<Bound>,
-@@ -572,6 +598,41 @@ fn alloc_slice_with_attrs(
-             dma_attrs,
-         })
-     }
++impl<T: AsBytes + FromBytes + KnownSize + ?Sized> Deref for CoherentInit<T> {
++    type Target = T;
 +
-+    /// Allocates a zeroed region of type `T` of coherent memory.
-+    ///
-+    /// Unlike `Coherent::<[T; N]>::zeroed_with_attrs`, `Coherent::<T>::zeored_slices` support
-+    /// a runtime length.
-+    ///
-+    /// # Examples
-+    ///
-+    /// ```
-+    /// # use kernel::device::{Bound, Device};
-+    /// use kernel::dma::{attrs::*, Coherent};
-+    ///
-+    /// # fn test(dev: &Device<Bound>) -> Result {
-+    /// let c: Coherent<[u64]> =
-+    ///     Coherent::zeroed_slice_with_attrs(dev, 4, GFP_KERNEL, DMA_ATTR_NO_WARN)?;
-+    /// # Ok::<(), Error>(()) }
-+    /// ```
-+    pub fn zeroed_slice_with_attrs(
-+        dev: &device::Device<Bound>,
-+        len: usize,
-+        gfp_flags: kernel::alloc::Flags,
-+        dma_attrs: Attrs,
-+    ) -> Result<Coherent<[T]>> {
-+        Coherent::alloc_slice_with_attrs(dev, len, gfp_flags | __GFP_ZERO, dma_attrs)
++    fn deref(&self) -> &Self::Target {
++        // SAFETY:
++        // - We have not exposed the DMA address yet, so there can't be any concurrent access by a
++        //   device.
++        // - We have exclusive access to `self.0`.
++        unsafe { self.0.as_ref() }
 +    }
++}
 +
-+    /// Performs the same functionality as [`Coherent::zeroed_slice_with_attrs`], except the
-+    /// `dma_attrs` is 0 by default.
-+    pub fn zeroed_slice(
-+        dev: &device::Device<Bound>,
-+        len: usize,
-+        gfp_flags: kernel::alloc::Flags,
-+    ) -> Result<Coherent<[T]>> {
-+        Self::zeroed_slice_with_attrs(dev, len, gfp_flags, Attrs(0))
++impl<T: AsBytes + FromBytes + KnownSize + ?Sized> DerefMut for CoherentInit<T> {
++    fn deref_mut(&mut self) -> &mut Self::Target {
++        // SAFETY:
++        // - We have not exposed the DMA address yet, so there can't be any concurrent access by a
++        //   device.
++        // - We have exclusive access to `self.0`.
++        unsafe { self.0.as_mut() }
 +    }
- }
- 
- impl<T: AsBytes + FromBytes> Coherent<[T]> {
-diff --git a/samples/rust/rust_dma.rs b/samples/rust/rust_dma.rs
-index ce39b5545097..314ef51cd86c 100644
---- a/samples/rust/rust_dma.rs
-+++ b/samples/rust/rust_dma.rs
-@@ -6,7 +6,7 @@
- 
- use kernel::{
-     device::Core,
--    dma::{CoherentAllocation, DataDirection, Device, DmaMask},
-+    dma::{Coherent, DataDirection, Device, DmaMask},
-     page, pci,
-     prelude::*,
-     scatterlist::{Owned, SGTable},
-@@ -16,7 +16,7 @@
- #[pin_data(PinnedDrop)]
- struct DmaSampleDriver {
-     pdev: ARef<pci::Device>,
--    ca: CoherentAllocation<MyStruct>,
-+    ca: Coherent<[MyStruct]>,
-     #[pin]
-     sgt: SGTable<Owned<VVec<u8>>>,
- }
-@@ -64,8 +64,8 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) -> impl PinInit<Self, E
-             // SAFETY: There are no concurrent calls to DMA allocation and mapping primitives.
-             unsafe { pdev.dma_set_mask_and_coherent(mask)? };
- 
--            let ca: CoherentAllocation<MyStruct> =
--                CoherentAllocation::alloc_coherent(pdev.as_ref(), TEST_VALUES.len(), GFP_KERNEL)?;
-+            let ca: Coherent<[MyStruct]> =
-+                Coherent::zeroed_slice(pdev.as_ref(), TEST_VALUES.len(), GFP_KERNEL)?;
- 
-             for (i, value) in TEST_VALUES.into_iter().enumerate() {
-                 kernel::dma_write!(ca, [i]?, MyStruct::new(value.0, value.1));
++}
++
++impl<T: AsBytes + FromBytes + KnownSize + ?Sized> From<CoherentInit<T>> for Coherent<T> {
++    fn from(value: CoherentInit<T>) -> Self {
++        value.0
++    }
++}
++
+ /// An abstraction of the `dma_alloc_coherent` API.
+ ///
+ /// This is an abstraction around the `dma_alloc_coherent` API which is used to allocate and map
 -- 
 2.53.0
 
