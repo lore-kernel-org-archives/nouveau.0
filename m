@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AD62EDA693
-	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 16:23:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA10CEDA693
+	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 16:23:50 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 70A0310E873;
-	Tue,  3 Mar 2026 16:23:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B63A310E86C;
+	Tue,  3 Mar 2026 16:23:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Bmk0Z2oM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AXJ+vRwp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4F26F44DA0;
-	Tue,  3 Mar 2026 16:13:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 91FF444DA3;
+	Tue,  3 Mar 2026 16:13:32 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772554407;
- b=yKK88/Bx2sVDpUANnCvNqFiYLvM6sRjAXoXT6OYwBsBCZmL9i1iurtLwmT0sJfkxITWrM
- vvmYHE/fEWMsKoQDV5xhah2GntRP5akJpotOndz/qbm07MKIRhIuALKEuO0CVyLlH4PurGX
- uIXcYSOcjjDwuI+43dtwmlgOy0JFumJ0MUAjVC5DSe/8EllwdP6uWdXem7t4/4XbdPrnVPn
- O7k69xKU7F6SWBI1rmasEloSv0sTCRvybCENh1d+BAqH0wRNQgXN3ju71aClvq6qsSG9SgH
- 1RapcYBeQYgZm/+EfuUgvCUGxn2YSkzG4p6Nl/lk47BpDe10DoCaKJ1A2BiQ==
+ s=20240201; t=1772554412;
+ b=vlDuSKhkmv+uto0tDqqSyyL9TxLbXN5eHBYEKR/Bvkd35OPYfliYl00vb0ZDShGc9G78x
+ L+uQGLDDb4GvVZbIi4Irh50ceTjQVvtY4wUVxddW7ppEqMbd8bR2wiDkKGIzl3AwSBrmA4q
+ dzby5tGNHAPor9K7hsFpTiCuFmw76agqBByMlfuNwa36cHTSUNOCtT9ZsCoIdOf9QJJRc36
+ L6wp1Jc1AgYoAN2fFB/7Q7R6dSKO8eGoc8cJJoNfwhDcKfNjm8mrgFVrt9r67Fterr/iLog
+ ZfRbZdNjde8+2wPKHkcp0xx5YHx9FLBlXJgryxTHYVMURK0sChZj7WFrybGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772554407; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772554412; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Th3PCPN7rkOhDZ93NSZd0ssI68JhgjnvX6eKD+DVm80=;
- b=WF1FfSDHTEJzk9OpQsSh4VXf45eMj4Sak4w9CglfnYQA2mTxnZvV+cZ5wQoD5LS3xAUwL
- mw9OA9DZ2E5ygmNQaqyPYrtDFjzzGTNnkxSSL8OVDOd6mPXNDOV2Ez4mM8Gi0MF8+4vgKrt
- Fvq9+gpA/Qlqub14Gql4HhQh3VTEctXcmvuZjwPYQjW4Vochm+sO1TBziBG/48oxjHFac4J
- NhUSV5CciYSTeI0TY1WREo+bbqPAGq7eR/+ZjfKho7y/os5gbo1W17NtSjTI0u15Eq7Tuyu
- HYe0lpRJqcwDY7R4icqZ75O2k5XnSVJZFwpb0UL4mJkUSIYg+VYEzbamk/JQ==
+ bh=W1ITmfSNRdL/pzURtiHajVQ2loUvOtX7ELSrQt70raU=;
+ b=fhaTRGcDG2Dwuc4Q3PeS4a/qTl5gPErJ7/DL+bwKtZ9sMUx+4BBP8dpy6Vp6uZ0YWk5li
+ a+KKvQVxmhwNrM7XvXd3zeG+FHOUKA4XnODugpksldbITzNE9H2/YfjA1EvQNwjukZVPWDp
+ q5a9q2xs7hZu/w+onHSPHyet2ZN9CYu/v6cg6Af+uIamXVbadBvDJ2UEkcVRM/5Smgq6yUx
+ O6xLE74udJo3qTXhvmbfAvfc4KEQrHo7FveqxbHxE0Wj5qo3W2lC9tajjkce72vHHd+M/s6
+ aJF+Z4IJKH/G4oaUypdsucpDQqSOmTQfn0qPvkr0KDBXNMIcQLtbQ1ugqpOw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9E5A144CD7
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 16:13:24 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9D61110E86B;
-	Tue,  3 Mar 2026 16:23:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 75ACF44CD7
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 16:13:29 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0E610E859;
+	Tue,  3 Mar 2026 16:23:47 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8467541B5E;
+	by tor.source.kernel.org (Postfix) with ESMTP id CF8F160008;
+	Tue,  3 Mar 2026 16:23:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D77E6C19425;
 	Tue,  3 Mar 2026 16:23:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AADDDC116C6;
-	Tue,  3 Mar 2026 16:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772555022;
-	bh=+liU4pQNiYF4RC3Z3F4oQnCGR+HREs2Sq3MMzyTGAOA=;
+	s=k20201202; t=1772555026;
+	bh=RRwlxYxwMBwbZCAUZL3IuCb0Hwkrc8JPcDDRIvn48Qw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Bmk0Z2oMWzuq509fyO1v/aQOfoxTxOlzclkhD5GNbCyhMh2yu7FChr7EvI1YQFM37
-	 Fx5Mp4iZ2DPDaE+dXPD5pHJ4jClMOez0HOTmtreERsarMbW/eVna6KcaUiexSp+Hjv
-	 Jze0+p30dGCWoZXalXq1WaWwbtypMGwe5IPDaZSyirikkHoc6dx9Ee5JXE/8vTK4i0
-	 DxBMAxlOHejyxts5d7/HXVI62feIhiQC6h//7SBUWvWUiNsr8Nb0sCvAVxXew1tuLK
-	 4/c/3cEZ20EAZCdl4DInvPgBRsrOAjU0ohTE3xerRQKGN5oVMVR4FxemYsjIxAhnwn
-	 AcNgedmkzliPg==
+	b=AXJ+vRwpD+EC7R58rTnSZ/QZYMKFuXqSXO3N90797MlZ9vYi3KprMBIs8w+G2RZD+
+	 2kN6PvgKj34HKMHJhIzKXtVaeylMgeF56kentZ9Z9C09Yg1O53lPcZYOVNxXr7gbi3
+	 jINaPy0/1NcOm7jOt3Vh9vaMj3FWtgqTBZAhcgwyeOhi4Gbp5fRzxoJxG9C5pvGwSo
+	 YXJSBpUDyzqSVWqFcWC8DvlGuWgBZTMkHljj0xCicQYs1BuGQTdLtBWf5gJCRyn+im
+	 et4kuO34LXSpgiC2zi5PxvGiBDFsNw0H8/iNP6nKFYClKVa7pE27bJ9H2LB68qKy1s
+	 ELA3SlfZZ+GNg==
 From: Danilo Krummrich <dakr@kernel.org>
 To: aliceryhl@google.com,
 	acourbot@nvidia.com,
@@ -79,17 +79,17 @@ To: aliceryhl@google.com,
 	abdiel.janulgue@gmail.com,
 	daniel.almeida@collabora.com,
 	robin.murphy@arm.com
-Subject: [PATCH 5/8] rust: dma: add Coherent:init() and
- Coherent::init_with_attrs()
-Date: Tue,  3 Mar 2026 17:22:56 +0100
-Message-ID: <20260303162314.94363-6-dakr@kernel.org>
+Subject: [PATCH 6/8] gpu: nova-core: use Coherent::init to initialize
+ GspFwWprMeta
+Date: Tue,  3 Mar 2026 17:22:57 +0100
+Message-ID: <20260303162314.94363-7-dakr@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260303162314.94363-1-dakr@kernel.org>
 References: <20260303162314.94363-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: EONZZ4KCHZRYA4SQYAQPTZJTFAYNO3DR
-X-Message-ID-Hash: EONZZ4KCHZRYA4SQYAQPTZJTFAYNO3DR
+Message-ID-Hash: 5OJFP4ZMUJAXWA6FNWSSSOTP2IIXSDNJ
+X-Message-ID-Hash: 5OJFP4ZMUJAXWA6FNWSSSOTP2IIXSDNJ
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -101,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EONZZ4KCHZRYA4SQYAQPTZJTFAYNO3DR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5OJFP4ZMUJAXWA6FNWSSSOTP2IIXSDNJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260303162314.94363-6-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260303162314.94363-7-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,69 +113,87 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Analogous to Coherent::zeroed() and Coherent::zeroed_with_attrs(), add
-Coherent:init() and Coherent::init_with_attrs() which both take an impl
-Init<T, E> argument initializing the DMA coherent memory.
-
-Compared to CoherentInit, Coherent::init() is a one-shot constructor
-that runs an Init closure and immediately exposes the DMA handle,
-whereas CoherentInit is a multi-stage initializer that provides safe
-&mut T access by withholding the DMA address until converted to
-Coherent.
+Convert wpr_meta to use Coherent::init() and simplify the
+initialization.  It also avoids a separate initialization of
+GspFwWprMeta on the stack.
 
 Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 ---
- rust/kernel/dma.rs | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+ drivers/gpu/nova-core/gsp/boot.rs |  7 ++-----
+ drivers/gpu/nova-core/gsp/fw.rs   | 20 +++++++++++++++-----
+ 2 files changed, 17 insertions(+), 10 deletions(-)
 
-diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
-index 79dd8717ac47..d77c1b6cb0c4 100644
---- a/rust/kernel/dma.rs
-+++ b/rust/kernel/dma.rs
-@@ -706,6 +706,43 @@ pub fn zeroed(dev: &device::Device<Bound>, gfp_flags: kernel::alloc::Flags) -> R
-         Self::zeroed_with_attrs(dev, gfp_flags, Attrs(0))
-     }
+diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
+index 7f46fa5e9b50..1a4d9ee4f256 100644
+--- a/drivers/gpu/nova-core/gsp/boot.rs
++++ b/drivers/gpu/nova-core/gsp/boot.rs
+@@ -2,8 +2,7 @@
  
-+    /// Same as [`Coherent::zeroed_with_attrs`], but instead of a zero-initialization the memory is
-+    /// initialized with `init`.
-+    pub fn init_with_attrs<E>(
-+        dev: &device::Device<Bound>,
-+        gfp_flags: kernel::alloc::Flags,
-+        dma_attrs: Attrs,
-+        init: impl Init<T, E>,
-+    ) -> Result<Self>
-+    where
-+        Error: From<E>,
-+    {
-+        let dmem = Self::alloc_with_attrs(dev, gfp_flags, dma_attrs)?;
-+        let ptr = dmem.as_mut_ptr();
+ use kernel::{
+     device,
+-    dma::CoherentAllocation,
+-    dma_write,
++    dma::Coherent,
+     io::poll::read_poll_timeout,
+     pci,
+     prelude::*,
+@@ -155,9 +154,7 @@ pub(crate) fn boot(
+             bar,
+         )?;
+ 
+-        let wpr_meta =
+-            CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
+-        dma_write!(wpr_meta, [0]?, GspFwWprMeta::new(&gsp_fw, &fb_layout));
++        let wpr_meta = Coherent::init(dev, GFP_KERNEL, GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
+ 
+         self.cmdq
+             .send_command(bar, commands::SetSystemInfo::new(pdev))?;
+diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
+index f1797e1f0d9d..751d5447214d 100644
+--- a/drivers/gpu/nova-core/gsp/fw.rs
++++ b/drivers/gpu/nova-core/gsp/fw.rs
+@@ -131,7 +131,9 @@ pub(crate) fn wpr_heap_size(&self, chipset: Chipset, fb_size: u64) -> u64 {
+ /// Structure passed to the GSP bootloader, containing the framebuffer layout as well as the DMA
+ /// addresses of the GSP bootloader and firmware.
+ #[repr(transparent)]
+-pub(crate) struct GspFwWprMeta(bindings::GspFwWprMeta);
++pub(crate) struct GspFwWprMeta {
++    inner: bindings::GspFwWprMeta,
++}
+ 
+ // SAFETY: Padding is explicit and does not contain uninitialized data.
+ unsafe impl AsBytes for GspFwWprMeta {}
+@@ -144,10 +146,14 @@ unsafe impl FromBytes for GspFwWprMeta {}
+ type GspFwWprMetaBootInfo = bindings::GspFwWprMeta__bindgen_ty_1__bindgen_ty_1;
+ 
+ impl GspFwWprMeta {
+-    /// Fill in and return a `GspFwWprMeta` suitable for booting `gsp_firmware` using the
++    /// Returns an initializer for a `GspFwWprMeta` suitable for booting `gsp_firmware` using the
+     /// `fb_layout` layout.
+-    pub(crate) fn new(gsp_firmware: &GspFirmware, fb_layout: &FbLayout) -> Self {
+-        Self(bindings::GspFwWprMeta {
++    pub(crate) fn new<'a>(
++        gsp_firmware: &'a GspFirmware,
++        fb_layout: &'a FbLayout,
++    ) -> impl Init<Self> + 'a {
++        #[allow(non_snake_case)]
++        let init_inner = init!(bindings::GspFwWprMeta {
+             // CAST: we want to store the bits of `GSP_FW_WPR_META_MAGIC` unmodified.
+             magic: bindings::GSP_FW_WPR_META_MAGIC as u64,
+             revision: u64::from(bindings::GSP_FW_WPR_META_REVISION),
+@@ -182,7 +188,11 @@ pub(crate) fn new(gsp_firmware: &GspFirmware, fb_layout: &FbLayout) -> Self {
+             fbSize: fb_layout.fb.end - fb_layout.fb.start,
+             vgaWorkspaceOffset: fb_layout.vga_workspace.start,
+             vgaWorkspaceSize: fb_layout.vga_workspace.end - fb_layout.vga_workspace.start,
+-            ..Default::default()
++            ..Zeroable::init_zeroed()
++        });
 +
-+        // SAFETY:
-+        // - `ptr` is valid, properly aligned, and points to exclusively owned memory.
-+        // - If `__init` fails, `self` is dropped, which safely frees the underlying `Coherent`'s
-+        //   DMA memory. `T: AsBytes + FromBytes` ensures there are no complex `Drop` requirements
-+        //   we are bypassing.
-+        unsafe { init.__init(ptr)? };
-+
-+        Ok(dmem)
-+    }
-+
-+    /// Same as [`Coherent::zeroed`], but instead of a zero-initialization the memory is initialized
-+    /// with `init`.
-+    pub fn init<E>(
-+        dev: &device::Device<Bound>,
-+        gfp_flags: kernel::alloc::Flags,
-+        init: impl Init<T, E>,
-+    ) -> Result<Self>
-+    where
-+        Error: From<E>,
-+    {
-+        Self::init_with_attrs(dev, gfp_flags, Attrs(0), init)
-+    }
-+
-     /// Allocates a region of `[T; len]` of coherent memory.
-     fn alloc_slice_with_attrs(
-         dev: &device::Device<Bound>,
++        init!(GspFwWprMeta {
++            inner <- init_inner,
+         })
+     }
+ }
 -- 
 2.53.0
 
