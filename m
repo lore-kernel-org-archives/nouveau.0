@@ -4,176 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE9A9EDEBF0
-	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 21:01:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD31AEDEBF0
+	for <nouveau@archiver.kernel.org>; Tue,  3 Mar 2026 21:15:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 728C410E8CA;
-	Tue,  3 Mar 2026 21:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 17D2410E8D4;
+	Tue,  3 Mar 2026 21:15:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="mwn9M/sF";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="iGkVIflW";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D56B044DAC;
-	Tue,  3 Mar 2026 20:50:52 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772571052;
- b=FqiZB1azC9CGvEHVALS2cucfIn3Hw1PB6+UHKIabPgVskbAn5ydxHpGfE5O7ja9SNhNlj
- BvSYNgKQwc+TuGKGiTTdQAqJ3ePZAXpf/xeAMfuMt0a5dbSzRDIVQDzKzcJraqOc67OFpXH
- yzf6Dn8xBruNhahWdwPgfedgXlHJFIbWvrCx+fOkrJ90RPQTl07UNe5faMPtIE41Q1sK44u
- Mz80RUXzMW4hjoCHwvdAh/WkssasT0AW254touD7nvWB+q+aCq2VaHCzvtcptZphV6vKRAR
- yzjBW43vRzM/J7FaBNlQdG3NO83CM3OpEK6hd2/dhSjCiY1uuW6uEC76YplQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772571052; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 6EF3244DBA;
+	Tue,  3 Mar 2026 21:05:20 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772571920;
+ b=t738mo1CUs5VP34REI4sOmcSY+33HHGzKbnUQhHl1bLZdQcdoWyZZ1aY0/qvRvlkGAKoM
+ AnSxR4PwzzfE3+c79kBeb8eJe87SQEG87RXL5GpgkKehiePPhvOXUvmtgmi2ERQzBCWnLD0
+ sObA3HLQw93x+WRB9GHNMOOd68XJgSMC76ZmzbjQbx6Z5EFNrfewR8D7kKtki3+xwoewOJa
+ ay9iSlqyldimJRlRcTRreJKLzgpFlFrgVeuVIh5j4qhQKe8dxCcTm47AOqy4OQRLbiZA5E1
+ Zy0YwwQ5Obw/j2tcJNx+2bmZz3EI7hBSu+UbvgL/RT2MABP2Scj89NN2Hyrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772571920; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=rjKKuRLAEf0WSCRufxUzrDqVqUkQQMCS2xwa01+LroM=;
- b=OV+GhNdYBNkt3EU+/o6vKqHp4c3s9h00IjlY9dlam9fXkC2UefJy8+VTagdFEKB0T7hAP
- FEpvNv7pXHUXx363iSYy3z71EJhlrr6xl4I70zs96NJpgA51uk1RuKRK62QA65wc1gjTrgf
- krYaZ2iEVQFZ051pX5/KfmdREjUsv2BSOst8FnWj7fS1zafzz0JpUAwaIvCqhb7fZZuzflW
- eyxTxAdq/Kns/NAYKeOI3Gus7bg6yd/O6S9xUUJaY0BFCtJIhbcnlxX116KERaWsKhSxvnp
- 5orm/mOgXmFmyK3tu2fD5Bwm4Njl82JImSyQBO8OIuphJrdG0Wu2IltgGWEA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=wrmpWbz/D0LbSjhwAo9Mxe/RiGjDGWcxtMIqyIp8KYQ=;
+ b=nfPSbuMmq233uigk15MK5TDO4v62T3KC6z9Ef/nPNaxI6Z0LtnlgA7gDWc6UUlB7+RYRq
+ Mga+SSnIFqV9LNpT7JxSO4r7cCI+VObEvo+pg3faCm6xEGWs31aZnztRZuY2yUHn3cWPHjX
+ CS8RXo3O8qfqNxE8FMHIJ+glK5dRsbtFyOkKfOpSaZY7480flbCoWSk45LvDRt1/ah4gIDD
+ u6wU0rMH3IGB4w70b2xMr04ABkmO6BXx6sq2hKab9GH4stIbhYMagd3XKRl5J4eK2OXOqom
+ levomFy9TQ5JwONdj5aAYuEh86+nrXOptUhA8jhRgfeunzE/4B+9yhCZ3HdQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D617244CD7
-	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 20:50:49 +0000 (UTC)
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010048.outbound.protection.outlook.com
- [40.93.198.48])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB9010E046;
-	Tue,  3 Mar 2026 21:01:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=D1TS3W2C7UAJJ0QuJGXE1ghDASUFX849rI9pnzUE5NTehLQMKNkH4O0vi+vaNvGnfsxYByjtiI0GYQ4TUlcKE/SAV4rSClSKskrMlHdFJjZWNt/GRanC+uY00mFNTgDoY4FdVyMU6sOM/GFZC/OWEEAX4+/V1EQkHwCrADB0O5IBsDXAvwVl7X2J2zUqMIwOO83afT9dHMAebi5AJ7aYnJ3RCcjJb/HGP5elpTVnm31DYoTNipDAw7e8rZVv6phW5whup/CiIU7N2rg3UPrsmSzrrGNJH/FOTT9fDfgct37EuUWKDLYksatTKiTwK99h/UHUn1pV0dZps1sQNN6hqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rjKKuRLAEf0WSCRufxUzrDqVqUkQQMCS2xwa01+LroM=;
- b=OQy0aTA6xWbcJTiSEgSpmhBlhUbcyUnui1Cxrsvwtw4hIYd4D6YB1qn2QM9+7hsjh01S1a/z/WLZ9/uwNlZUrMjQ1c6DTMxXklFbwYZuxkaFE1iTk90VWTKgTSr2ELJ4IWejAE7054VxhL3qmqdQq0fS/yGLBWhRPJnEtfLq+90yQNdmoaDjfQQG0xAj+utoVqycc++VE0ek/kd85+7Je8Sxx3pFovII6lnsSYhYwIszuvWugAEN+eNKSD5Ee1HNS5zdUdRKik7UmMv9zSxmSWkRNW/WCgukGIjPz6/Q9KIvrnZAvjtT5+yc5CjFnOavJcgMGz1N0dOJdRduIabUJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rjKKuRLAEf0WSCRufxUzrDqVqUkQQMCS2xwa01+LroM=;
- b=mwn9M/sF0sIdJqk4S6ahvCJ8lso5bQNx0XsxcHs5acBe+Ibxov9TBwp3XOOMkynl5pHoHi0qxNyQKj1EUZIx+wryJ6GPEw9C1DcKOvX2Xx0KVP5iwjmDMZs4Vn4lh2W8F1NEuTwSAFOksj1ieM5HyUxW1E+cOOqmw8TgcmvSzM5sgJNa0ZmXF/EZ3XSh0olCUHyXnNeeNjlvctADK/evWH16OcTP2E29yIoz3FkiSwz/LAXFfNoA27gWG7kWknNH6QRImAyvcFY8ZL7Z8raWIWlukiidxTJRBiN6KfnnzgD3E2wdDuQBp+oNB55vUOzV+Izmbk9dnfLtZtjc28xRPQ==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SA0PR12MB4367.namprd12.prod.outlook.com (2603:10b6:806:94::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9654.14; Tue, 3 Mar 2026 21:01:04 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 21:01:04 +0000
-Message-ID: <333e10b6-4560-4439-9a91-043a0d713d4c@nvidia.com>
-Date: Tue, 3 Mar 2026 16:01:02 -0500
-User-Agent: Mozilla Thunderbird
-From: Joel Fernandes <joelagnelf@nvidia.com>
-Subject: Re: [PATCH v8 06/25] gpu: nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-To: Alexandre Courbot <acourbot@nvidia.com>
-References: <DGSAL1J55O3B.2LYEQ5VAIEM62@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <DGSAL1J55O3B.2LYEQ5VAIEM62@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CY5P221CA0142.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:930:6a::17) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 218B040469
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 21:05:17 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4A410E8D0
+	for <nouveau@lists.freedesktop.org>; Tue,  3 Mar 2026 21:15:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1772572534;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=wrmpWbz/D0LbSjhwAo9Mxe/RiGjDGWcxtMIqyIp8KYQ=;
+	b=iGkVIflW/q203O//UxT3xpDOHkD/nUl7boXfrz/w+3PDbWQIAILlJU1Qa6DGysR6mfLOMW
+	Gp3i6LZpxgi8RBwTazB95oC1Vw7FG+qTlRoDq1Iilron7wSZTQ96BBa8ZVbEm3yddp+9b2
+	7mAMiBlqhxcDxBHHWbN26vMJAWZgRJE=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-644--rwRAGMXMFOyZVYc7CT9Zg-1; Tue, 03 Mar 2026 16:15:33 -0500
+X-MC-Unique: -rwRAGMXMFOyZVYc7CT9Zg-1
+X-Mimecast-MFC-AGG-ID: -rwRAGMXMFOyZVYc7CT9Zg_1772572532
+Received: by mail-qt1-f198.google.com with SMTP id
+ d75a77b69052e-5069ba5af5bso391680831cf.2
+        for <nouveau@lists.freedesktop.org>;
+ Tue, 03 Mar 2026 13:15:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1772572532; x=1773177332;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wrmpWbz/D0LbSjhwAo9Mxe/RiGjDGWcxtMIqyIp8KYQ=;
+        b=F4zjUhgPrHSwCZOyDhgUgyKDiUQzBkBq2jk1AN02XJWe+QyCeihIGUp2joA+i6pT8Z
+         PQo4lz9TBC0ec3Iot8W3TyzAcCUfIxvNTdUVfE8BXGXcDj2ddGGz/9Rkx6DRgwISDBlx
+         aJWfmfSbE/e5Gne6lU1/sb3Sqfgj/3j2buhPrSPtDgBVjSY1g795vDDv/jwhBKuFxnTJ
+         +HyXWTGzH/Z7BN6JSwfujheX8aMPxGof8g3D7Z5gpA3vHG1Se1R6MJZijfsSecDFg+yZ
+         qsztA3lxA9jPWithOPI1MbwKT6HEW0kMZgXuWPNMc2AVZszbr834qKjPiHlhZSDuVKF6
+         ORIQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW8orwClU09lkTxfQuf19ri6XOIZmQaH/vS2DMoi8SvYEbK2ioe2hKhwK4M/osrww/AEQLWxEZi@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx3wsgjrhGJIrYuoxkZydABegzOC61IPhpv15S1WZbSZxn/6R4O
+	HC6hM4AXvgLNbiT3OahND8RKpL5g8sAgD/NQqNXhxnvd3t0oRrMkNKocjrrS6f+U/dkODC2PNMZ
+	hLBQrTNVx9SiJ5tjUno9epYg1SdXyyBd1MwoUaerYd39GgOAvR3tZ1GjlptuHTuII6AE=
+X-Gm-Gg: ATEYQzwL929xR0lDxIVjytNAdeTYRT4cVZ4SAzPCvCH0fynkzlFusPtUgiNW684N/1F
+	Tqley3du2u9y60SXQ2qmlP9xetX1/kR0H0O+bR7kANbiHu/o0LYkgnmC+Kyu8xRTuGJ4elVumux
+	ondJsbFGqSWsyqFFH7rO7rGO0Sr/MWp+ku4f1ne842NYaevWIintAV/0IQVZ+GD+KPuLStOeHOo
+	CHjS2+Z/TywSHltkKir3Ov8xMx9VS7BN5+LrzybFWTX4K6smZkTWSbya0q+dOREw/k4tG0MW5ca
+	b0glSuWLuA6nmCLuwEjWu7sPZUGhy/erBZGpy7u5Di7WJSCJcCnq+3xFtmvoFqMkrxoj9ngkR4C
+	vqJBy1aL9q8cYKir/brJc5sF8ow==
+X-Received: by 2002:a05:622a:214:b0:4f1:83e4:6f55 with SMTP id
+ d75a77b69052e-5075273cf0dmr220407751cf.16.1772572532265;
+        Tue, 03 Mar 2026 13:15:32 -0800 (PST)
+X-Received: by 2002:a05:622a:214:b0:4f1:83e4:6f55 with SMTP id
+ d75a77b69052e-5075273cf0dmr220406951cf.16.1772572531594;
+        Tue, 03 Mar 2026 13:15:31 -0800 (PST)
+Received: from [172.16.1.8] ([2607:f2c0:b1e3:9a00:3c7:56c2:f819:96d2])
+        by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-5074481c0e5sm156286991cf.0.2026.03.03.13.15.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Mar 2026 13:15:31 -0800 (PST)
+From: Peter Colberg <pcolberg@redhat.com>
+Subject: [PATCH v3 00/10] rust: pci: add abstractions for SR-IOV capability
+Date: Tue, 03 Mar 2026 16:15:20 -0500
+Message-Id: <20260303-rust-pci-sriov-v3-0-4443c35f0c88@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA0PR12MB4367:EE_
-X-MS-Office365-Filtering-Correlation-Id: cacfa7fd-25ad-4fad-ef7c-08de7967fb7e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: 
-	uy4iHf/yqws8yglkyFJHjcTaXIcJx1KkXNbc5E8AoQrOips9J8TNA5IGk7+7NyeocPW09X4BsiMc7Em41If/je33XK1gmFVyIJWZfkBjhx0lmq3gkRmkfWM/FEaLeO0ruHE4kSvvmq2wcH5rszTOKpBpv0ap/4KV5e+r1M5p9RL4qR3a29fyWTyYDqp2U1XOimpTzSVz9B/XBk81YD1Dx1eN2pIPwPo/u5GlSKvBzr+AG0Czn1p+n1uDZeL6L+ghs6tkUoZGjwbypaNA5e+MnD8oY1gqR2uOJqcmbW0zFlL6FmfmNHfzycvjpR+Zsi1EF2o74LLf5EN3sD8l5iAojRto7hHBlrxc8jGUG6NidX1S/ieVPGMjflnY7V2MKaQgRNtq5K/T0pv4gEd2eSADH6ZSuuQetxJA7rmCCCUkBo3NaXnLyb8R+vOdULCI2kAnEmFJTqgyO1koAoM7Lu/9Te5QYzsS8Gdfua1Eh28rbDScH1NKouy+HtgCtLNXDyhFhIloQ0k+jY9VoLrqDkWUhzMwjKoqxhMR0kiXnLAAqvGSpw6bCZeVkQf8lxsjWFHeIh4mZJw99fRWckV5l/jgO1RNUabKuUY7pWL+mo1KlVbA6s1gL5oViAEDCtca6OL0y/zrzq9dawRme+6pvS3PqXpshM0ePQcrAPSFDZXiiMm/dANZTm1FNbltj9AOMD9ehQVrAhz5shc9deJ8VooPjSu+kx50XTC7yBhjVd7Lj4Q=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?YUxtcHR6YVlpRW1VTi9qTVI3dlNUR25lTkk4cjQ5Nkp3M2hudEVBNmhRZGNS?=
- =?utf-8?B?cVFnNFJaVWR0UjdpWUVsckhtS0dRcWQ3TUs2TWtiYzBzY3JmQkp1TzltT0Yw?=
- =?utf-8?B?R3JlbmRwLzBZUm5YMHd5SFBFbHhGaFVEUGZ3ekoxczgrc1hXbThqQ3YxN0JZ?=
- =?utf-8?B?NjNNa1FJa0ZnR0lmalJueFA2VU53UHFNVGZjK1lSL1ZaUWNvRTVNei9oMmth?=
- =?utf-8?B?d2FKd2hjTldGV210ZG43RytvSWpmMnhsVFg3dlpNOXhHU2RrQ21JTDYrRk1a?=
- =?utf-8?B?ODE4YW84K3pPSkNJdU13VWMyRmd4Mi9ONDFVSDhLM3M1SEtWRm1pNmk1ZFgy?=
- =?utf-8?B?cGpyZXc2WWtPcWhYYkNzbkZwbnJOZzJQempiMzdpNjVSNStRa1NOVVJBcFlC?=
- =?utf-8?B?VFgvaDZvME9GUHV6UHM4aEdlR2FxR2lJMHVjN3J3QVdVZHpxNmtQRFhMZld6?=
- =?utf-8?B?dWRqRnF0NVFpZ3JQNFg3MUVPNldqd0tvSkQ5MnliYkFKaHV0MkJ3R0o5aFF2?=
- =?utf-8?B?R0N1bWJhbnBWVmxJU1lpa2RiRzRxbUFrbmRSY0dLWlFaeE5Lc3RKQU14YVht?=
- =?utf-8?B?Q2ExRWtvcUtmMGp3MXFld1lKY2lSVzEvTjJSQnlUL0h6eFBHbXJ2RXo5OGRF?=
- =?utf-8?B?UlV4bDFNV2s0bkhyUi9kYmJ1N3NvZHhTT1QxTVdnQzI1azd4N1BaNDB2UTM2?=
- =?utf-8?B?SUJnelFtQlBhcjArZUc0YUEyZDFla2ZHSDRFdXdTc1ovd3BpaklQQ084Sy9x?=
- =?utf-8?B?dHZmSkgzUTF4WEVvTXBTVnpHVmQyOVl1a0VHaHFoSWR3RFNaK0RxZnV4NzJS?=
- =?utf-8?B?cEVrdWMycEkvRFB4bDkySDVranJzV3BtV2VhaHFMcjU2NWtIU3dpcUVYZ1Vi?=
- =?utf-8?B?ZlRrRkVodFdtVVBheG9HNHI2S25rOUE1cmNJQzljYnJINGNLNmtpNzc3dDZ5?=
- =?utf-8?B?ejBjVkVPZnU5WjQ2a0psdk9VTWFBUEZ5V1M2Y2tyeTBLV3J5VSszVDh5c1VL?=
- =?utf-8?B?OUhmZGdOSXlWQmFpRWQxK29KMlAraHorQXFEVm42RTRncHdKOTFrd1h1a0JU?=
- =?utf-8?B?OGh2RVFjZ0drb1ZHb2kxd2wvV21STXhwMytscG82cS9UL2E0bjlJZFg2VStW?=
- =?utf-8?B?dkRtSGRDci91SW1nZ0w1cHpxOHBUOVBKOU1qL2tteTlGS2phMVVPd25ITkxp?=
- =?utf-8?B?aThTdHV4QVJ0VVJMbk1jdmlqcXRHVmJqT29KZVpnaVZuRjZEem15L1M2aFhF?=
- =?utf-8?B?VlFYTnI2VzNUVnpLSFBkQXhadTNDSllFYkVMMjM5L21pWkp0UjBEa25EbEds?=
- =?utf-8?B?c2ZULy9FVUhLM25mSk9NblRXK3Y1MEFoUXNoZjZTc3phbnMyNkNqZ1JLdnli?=
- =?utf-8?B?NlNVM2FZTzZibGZuWDJzS0tleE9yNWUvTXNOcWRremFZc2ZhejZ0SG44ekV4?=
- =?utf-8?B?MVB5U2xUNUxheXNvL3pURGlORUJMRlRVQmdMRkhFdHIxK0NaQ3N1ZTJ1Y0la?=
- =?utf-8?B?Y3ZmWVhnUWFmZEpiQ09rWFFkeHo1L2k2WlIwMU4xQkp2Z01lR3J4RzJDcFpB?=
- =?utf-8?B?dmIwelNCZE1aYVNJWlJ5SWloSU5ZaDUwS0xNaDZnSnVlZkM3bWF1WHpkTDZs?=
- =?utf-8?B?aUVOOFpwTmI5UzhKWmhKZWZUMlJvQ2RFK1FOMnZ4dXBYbGFTc2NiMiszRERV?=
- =?utf-8?B?Tzh4eTluNDhpT1NzNGxhT3pyYjUwSjNPM3VLUUlvMU5hK085T3hmTGU3NWZS?=
- =?utf-8?B?WGRMYlBNQWhEZkN5UklJdCtoSjhXSEZFcU03b0c0R1V0UjNuWHc3Wm1wbDBx?=
- =?utf-8?B?YzJ1VXBIOG1ZcC9MbmdCeUZMcFNmajVnc2F4TUh5K0w5RHRNVEtWU294dkhn?=
- =?utf-8?B?cFpjN004SVEzM1o5elo2NndRaFJWTXBXRFpPTWJ0TEhnajQ4ZXJBc1pwNjlM?=
- =?utf-8?B?N1F3UUNKY3hoZ0JsZWNtWlRLS3dIblpFMEloTjRWMDVmNmdHUWswdXV5eFJ2?=
- =?utf-8?B?YXBFYTI2QXU0aVkvMTc2aWpWbStqdTF2R1Nvc2VVbTlYem54TnFDZlR5ZXdX?=
- =?utf-8?B?dUN3d3doOWh0RDFIcDFUc0gwQ2o4M051OVNudFlwck1rbVJLaXhSRnRpOER0?=
- =?utf-8?B?ZDl0ZXdYVlpuME9ZbkZzOUNERWM1cmozcHc1UVU4UE12Z0ZDdnZLQnJGWnNl?=
- =?utf-8?B?M0xOSHlyNEFDajRXUm5MQnNJY1ZQY0xJZXdYVUV6TlJyemJjdk1YNlZiWXVr?=
- =?utf-8?B?cENTS3lyNlJJOG1OUXQ0cUowT2taTlZrNTlsWFg2SUJlWUh1aG5KTFQycTRK?=
- =?utf-8?B?WDJPWFRadnAvekZLd1hHbzBPRnA0cnM1cXlmOU1zK0dCSllacEVlQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- cacfa7fd-25ad-4fad-ef7c-08de7967fb7e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 21:01:04.4760
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- WNo6PFuZiug6Yk/s+bLo/0+YGivubf8naGiRaawo7DPOeqhesEP5HvU4r0f/wcHPV1iItd+LmsXQlX4tjDc4Uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4367
-Message-ID-Hash: 4D5B3XQ2XEJLFZ4ZH4I62MY37KBVPO2Y
-X-Message-ID-Hash: 4D5B3XQ2XEJLFZ4ZH4I62MY37KBVPO2Y
-X-MailFrom: joelagnelf@nvidia.com
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/2XMQQ6CMBCF4auQrh0zLZRSV97DuChlkFlITYtND
+ OHuNhoX6urlX3xvFYkiUxKHahWRMicOc4l6Vwk/uflCwENpoVBpiaqFeE8L3DxDihwyeNeNGmW
+ vHNWioInTEuLj9ZdlmdObSml/aZaA0HW1s4221llzjDRMbtn7cBXn8pXVx7eoUP95VTyNtkH0x
+ rSm//Lbtj0BNUVq1N0AAAA=
+X-Change-ID: 20251026-rust-pci-sriov-ca8f501b2ae3
+To: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
+ Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+ Moritz Fischer <mdf@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Boqun Feng <boqun@kernel.org>
+X-Mailer: b4 0.14.2
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: MM_Bc6dMHRSAsMNOMybqGT9GwMz4C8uEQvuuSghtHtU_1772572532
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: A6JUUUGT6YTVQSXSXKUJFGAM33VJJ3SE
+X-Message-ID-Hash: A6JUUUGT6YTVQSXSXKUJFGAM33VJJ3SE
+X-MailFrom: pcolberg@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Zhi Wang <zhiw@nvidia.com>, Danilo Krummrich <dakr@kernel.org>,
- Gary Guo <gary@kernel.org>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- joel@joelfernandes.org
+CC: linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Alexandre Courbot <acourbot@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-fpga@vger.kernel.org, driver-core@lists.linux.dev,
+ Jason Gunthorpe <jgg@ziepe.ca>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4D5B3XQ2XEJLFZ4ZH4I62MY37KBVPO2Y/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/A6JUUUGT6YTVQSXSXKUJFGAM33VJJ3SE/>
 Archived-At: 
- <https://lore.freedesktop.org/333e10b6-4560-4439-9a91-043a0d713d4c@nvidia.com/>
+ <https://lore.freedesktop.org/20260303-rust-pci-sriov-v3-0-4443c35f0c88@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -183,72 +168,102 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Hi Alex,
+Add Rust abstractions for the Single Root I/O Virtualization (SR-IOV)
+capability of a PCI device. Provide a minimal set of wrappers for the
+SR-IOV C API to enable and disable SR-IOV for a device, and query if
+a PCI device is a Physical Function (PF) or Virtual Function (VF).
 
-On Mon, Mar 02, 2026 at 09:23:43PM +0900, Alexandre Courbot wrote:
-> Basically this feature is a prime candidate for an `Io` implementation.
-> It maps onto the BAR, has a fixed 1MB size, and needs to be accessed
-> using various sizes. It is also used to fill structured values, which
-> the I/O projection work will also allow us to do.
+Using the #[vtable] attribute, extend the pci::Driver trait with an
+optional bus callback sriov_configure() that is invoked when a
+user-space application writes the number of VFs to the sysfs file
+`sriov_numvfs` to enable SR-IOV, or zero to disable SR-IOV [1].
 
-Agreed, PRAMIN maps naturally onto the Io abstraction and I had thought
-about this.
+Add a method physfn() to return the Physical Function (PF) device for a
+Virtual Function (VF) device in the bound device context. Unlike for a
+PCI driver written in C, guarantee that when a VF device is bound to a
+driver, the underlying PF device is bound to a driver, too.
 
-> The current design doesn't allow the user to explicitly set the start of
-> the sliding window - this results in a sub-optimal usage of the hardware
-> and more complex code in this module. At this level, we just want
-> something that exposes the hardware as it is, i.e. "give me a view of
-> the 1MB of VRAM starting from this 64K-aligned address".
+When a device with enabled VFs is unbound from a driver, invoke the
+sriov_configure() callback to disable SR-IOV before the remove()
+callback. To ensure the guarantee is upheld, call disable_sriov()
+to remove all VF devices if the driver has not done so already.
 
-I reduced the complexity quite a bit. I think we can further simplify,
-but for now I think it makes sense to keep it this way - I am happy with
-all the usage sites as well. It properly abstracts the internals without
-having the user worry about alignment or window size, so I think it
-simplifies things for the user quite a bit. I have tried the alternative
-before and the caller side became complicated. Not saying we should not
-simplify it further but we can do it piecemeal. The current code works
-and is easy to understand. Hope that's okay with you.
+For PF drivers written in C, disabling SR-IOV on remove() may be opted
+into by setting the flag managed_sriov in the pci_driver structure. For
+PF drivers written in Rust, disabling SR-IOV on unbind() is mandatory.
 
-> Then on top of that we can implement another type that handles the
-> window automatically if we want, but I don't think we will actually need
-> it. The page table code will most likely want to set the window to the
-> start of its structure, project it, and access it using compile-time
-> checked offsets.
->
-> If that turns out to be insufficient, we can always compose something
-> more complex from this basic piece - but the base `Pramin` should stay
-> simple and truthful to the underlying hardware IMHO.
+This series is based on Danilo Krummrich's series "Device::drvdata() and
+driver/driver interaction (auxiliary)" applied to driver-core-next,
+which similarly guarantees that when an auxiliary bus device is bound to
+a driver, the underlying parent device is bound to a driver, too [2, 3].
 
-This is a great future improvement if it makes sense. One issue I can see
-is for large page tables where the burden of moving the window would fall
-on the user. I don't want to box us into those constraints right now
-(especially since we also already know that MMU v3's PRAM mechanism is
-different and likely needs a HAL). If we want more APIs for fixed window
-sizes that can never be moved, we can always add that in the future, but
-for now I prefer to keep this as is (let us see if you like the v9, I think
-you will :)). Adding to this, auto repositioning does not really
-trigger if there is no need, and the current API removes the burden of
-managing the window from the user. I already took two passes to simplify
-the code since the posting last year so right now in my opinion it is quite
-simple and even further less lines of code. It should be acceptable as a
-first pass IMO.
+Add an SR-IOV driver sample that exercises the SR-IOV capability using
+QEMU's 82576 (igb) emulation and was used to test the abstractions [4].
 
-One more point on this is, we don't yet have BAR2 support so PRAMIN is the
-main way to directly write to VRAM, and instance memory is much larger than
-the window size. So PRAMIN is our primary mechanism for bootstrap (our
-spoke to HW experts, and they said this is acceptables).
+[1] https://docs.kernel.org/PCI/pci-iov-howto.html
+[2] https://lore.kernel.org/rust-for-linux/20251020223516.241050-1-dakr@kernel.org/
+[3] https://lore.kernel.org/rust-for-linux/20260107103511.570525-7-dakr@kernel.org/
+[4] https://www.qemu.org/docs/master/system/devices/igb.html
 
-One other thing to note: the Io trait uses `usize` for offsets, while I
-just changed VRAM addresses to `u64` per your feedback on the other PRAMIN
-thread. So implementing Io for PRAMIN would require u64-to-usize
-conversions at the interface boundary. Not a blocker since offsets within
-the 1MB window are always small, but worth considering. Also it is still
-not clear to me about how to deal with Io trait's "offsets" if they are
-VRAM addresses". Even if we convert it to usize to satisfy Io trait, does
-it make sense in the Io trait itself to have them as usize?
+Signed-off-by: Peter Colberg <pcolberg@redhat.com>
+---
+Changes in v3:
+- Replace SR_IOV -> SR-IOV in description.
+- Drop redundant `.as_ref()` for `dev_*` prints.
+- Link to v2: https://lore.kernel.org/r/20260205-rust-pci-sriov-v2-0-ef9400c7767b@redhat.com
 
-thanks,
+Changes in v2:
+- Move logic to disable SR-IOV on remove() from Rust to C.
+- Add driver flag managed_sriov to opt into disabling SR-IOV on remove().
+- Demonstrate flag managed_sriov for dfl-pci driver.
+- Uphold safety guarantee for physfn() when PF driver is written in C.
+- Let physfn() return error if driver flag managed_sriov is unset.
+- Use "kernel vertical" style on imports.
+- Use to_result() to handle error in enable_sriov().
+- Note Bound device context in SAFETY comments for {enable,disable}_sriov().
+- Demonstrate how to reach driver data of PF device from VF device.
+- Add missing #[vtable] attribute in PCI driver trait example.
+- Add missing #[vtable] attribute in nova-core driver.
+- Define struct MyDriver such that physfn() example compiles.
+- Replace VF -> PF in doc comment of is_physfn().
+- Add #[inline] to is_physfn() and is_virtfn().
+- Link to v1: https://lore.kernel.org/r/20251119-rust-pci-sriov-v1-0-883a94599a97@redhat.com
 
---
-Joel Fernandes
+---
+John Hubbard (1):
+      rust: pci: add is_virtfn(), to check for VFs
+
+Peter Colberg (9):
+      PCI: add driver flag to opt into disabling SR-IOV on remove()
+      fpga: dfl-pci: set driver flag to disable SR-IOV on remove()
+      rust: pci: add {enable,disable}_sriov(), to control SR-IOV capability
+      rust: pci: add vtable attribute to pci::Driver trait
+      rust: pci: add bus callback sriov_configure(), to control SR-IOV from sysfs
+      rust: pci: add is_physfn(), to check for PFs
+      rust: pci: add num_vf(), to return number of VFs
+      rust: pci: add physfn(), to return PF device for VF device
+      samples: rust: add SR-IOV driver sample
+
+ MAINTAINERS                           |   1 +
+ drivers/fpga/dfl-pci.c                |  17 ++--
+ drivers/gpu/nova-core/driver.rs       |   1 +
+ drivers/pci/iov.c                     |  41 ++++++++-
+ drivers/pci/pci-driver.c              |   3 +-
+ drivers/pci/pci.h                     |   2 +
+ include/linux/pci.h                   |   8 ++
+ rust/kernel/pci.rs                    | 165 ++++++++++++++++++++++++++++++++++
+ samples/rust/Kconfig                  |  11 +++
+ samples/rust/Makefile                 |   1 +
+ samples/rust/rust_dma.rs              |   1 +
+ samples/rust/rust_driver_auxiliary.rs |   1 +
+ samples/rust/rust_driver_pci.rs       |   1 +
+ samples/rust/rust_driver_sriov.rs     | 127 ++++++++++++++++++++++++++
+ 14 files changed, 366 insertions(+), 14 deletions(-)
+---
+base-commit: 1b9a5bc8513d081c1bfe2c096b6dc502a4660f47
+change-id: 20251026-rust-pci-sriov-ca8f501b2ae3
+
+Best regards,
+-- 
+Peter Colberg <pcolberg@redhat.com>
 
