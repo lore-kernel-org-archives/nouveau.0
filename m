@@ -4,189 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDE54EDEC03
-	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 03:48:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55D8AEB7EB2
+	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 08:47:58 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id EBB1610E948;
-	Wed,  4 Mar 2026 03:48:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 038C210E982;
+	Wed,  4 Mar 2026 08:47:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="nWuUHTcZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CGJ1QxVS";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id B418A44E13;
-	Wed,  4 Mar 2026 03:37:52 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772595472;
- b=OrmuaPNzLc/8hmHBjYNz2bsuumf+BXAI3D8IG3M4KzJGweUwankhbJcw9n/qyoSZYzhJA
- ICuxTimow/7cF0S9vwP9LQCwEnynHCxgfAphukX/evsicPd70r6QYapyOetRm+aAVtJ9ZxX
- N0jggUYfWL0wodPSfTB6AoScM8rkGHd3MX2YdoIuyMkMhvf1vDqRnbjH2seml8zVvmRy7xR
- SYqZsUiUNogp9tRtruQd0Tu3EM3STibWfgtPxGKyumD1n4LhDn7JXYrSjg5EunSkV/6jggb
- 0oWeeccDmnnfVFF76iGTEIf2cD/Q45kH9011Bqv0BmssZ6r0jGbJsc9ksUBw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772595472; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4E8C444E11;
+	Wed,  4 Mar 2026 08:37:38 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772613458;
+ b=Ed9P7PZA/SQxh5lPsOocLsecv/+N5LfO0tzPDVIDAiAAXHuXIAQD05pwwy06F0hMAhRoA
+ b21LTBBRpeTnFqqQpOAlb+fxVVBLh1bbN5nMX3D7+CeLTPeA3H3OI9C4vlEhe+eVRUK6XRA
+ gmPyBIJwSnrZo0/+Y8zccV9k/aYdisZZO9gQBEkaoOEHj6IBl6YgyIT4Kp9jv95miteG7va
+ Qb4dZFBX9+JAdv8ApXjml/BtdMGFnRlAISLrUEEO68RJwfx+L5/YxM+kgySYjoKUISciyN3
+ Mq6LkMg/LpaKKndWGOvk0xd5IjCjG17b3t4oaLqohY4Cgze0os7WJRcdyTQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772613458; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=3JVYY5rBWrJdmvFjoA0kKo1AP+VgtV3AcZaPa2AKU+U=;
- b=0tyAiYcXbysBSCG4nPAyHjNaGcm/BG/AjMUbXBVoeXVXilTY9GHSxHWO4w/94Kd4G/Wl5
- YnW2n+aMCbvCF4+ik/IpAcy0MOeUFulnUwLkuysSvaGC/aKWyysMiCCKfhTgdo8qtayxoFa
- t/BWKbS1wvCHJPuuUizR1U/Bzpo26NkJssGkdDCrkl/DWWAZXVBFW3QZlXPxFhp8m18sQQV
- Gua8OCSW+YSIcl6MOj1f1tKCMf7kX4ZfVbkeTAgAzukNBkxL2s6+Sd+NieH4v39W0h2BRgX
- O6m5oyJF84Lytto/M/pwCgM75k3w6CIDCDqcX6MBMT0SrQa9zV9N8IVj5Vlw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=q+uTTk+Tl69Kd6bd84m1ZhgW1BhIv3PD7PYeGemtd4Y=;
+ b=tbVBUS1YJ1bzMa5Kv17QKCyGB/9lfQm9ZQ6/tdE5Fs8fsmttV15iS2pmVp219kP0yWaaD
+ p72E0xzhpXQaWkqWrqeyVCExJ56HQX5+VJInbDn4s+fthrHH05KxzC3gDNxrv5tVXhhnY3W
+ fbf2YkR3Es7Jr22p06aCjuCYv52FY+cQEp2jnF9Mk7ejg10+r7Za/5XytGm9ipa8KLzsObQ
+ e3ALre83WakOGA1DMACeFDONEdQUgqMPJPusy1GGoDOUNPCaN/YdENTorFjItFNQATbyau+
+ QZphM7MzTgE0QVuDIEi0HI8ihhT+/y762uM8H4dOeSvIAujaTptO5ZYc47OA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DF21F44DDD
-	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 03:37:48 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013026.outbound.protection.outlook.com
- [40.93.196.26])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 74C0610E0DF
-	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 03:48:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vBjM3MWb6A+/0wx7zfAz9oyC1jJCOUuX5qqp9nEcZArwNX0jE4ihsmzNpV4gj5BDpSQ2YwGP6E33LDiQENDFWe+JmtyPqWfvKGG8GXOjsxl7hYUoDdFX07aficoOZiTe2QyoDc7xd6AbAVgfWLezvUnFSG9CKlXJ6x7U9hb5UIxbi/lr2A+Trk7PLvTK3wh8AJM/nLtm9Zre198w2YC8AAK9wWXyaIQSjQ4qPObrrvnuyjR5tT+YhJk2MkRhH4g684bPrtraNBF/rRrvE70Aa71Igfy7uweHBe6u23qb/kRoW2dAprKU/21LUHuIFTITHDx5wTQEVwsCBVWRQu4E9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3JVYY5rBWrJdmvFjoA0kKo1AP+VgtV3AcZaPa2AKU+U=;
- b=Me7Y3QvGkNuMlLjB90h/jMSAjL2V2DEu5wOYgmqZTtU/Ui0bppP8oFRjQV4FtT+oZaMBy1dKbcqvV3Fk26pdNknGjyKvsINlZ2huYz55kq/aouDzwS1wboikTL3YfFXEbnmWhD4HiblROOpkO84CH5VPuOycmgISgp+L8CqZwE1sMSVFfM3K78UHkqNyyxWcnynLEYjcngYnUXMDMYEECiBerY/afMKg8p+WXJp8sZ0M5nrNk5O8TkYsLW6sThMlkeeAyX2EKMOtGtnmfz2M9o5Q8CVxjqZnuaQQQKlqvIH9RwGcCPrOLX91YCgw19pz/wtRZjwFFxk57r7XUd1zig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3JVYY5rBWrJdmvFjoA0kKo1AP+VgtV3AcZaPa2AKU+U=;
- b=nWuUHTcZwihJl4XYJ7qmojq+U+v65iA/Rhgqew7emD84Ij1AXzwnTF4vKXgNRBmgOpRjIK9Biq2QuZMLzNUTN5vyAyKYKFeQekZFCbAJmX6Twd+zsKUiWOVKvSi7/TSOfn5WSGFxsrRDbY9cD0v7doyojVQIuk7EaTInQOfhFk1vv/ZxmUFW5GKJecLJIHjRsw1gzKp6eQS7gJtXWbqmAKWtQbCUMEgCO8xzZnJoOi9/pZb/OMY382Fjc/bQ0hjDnaVOOox6E9VcI9zunJJiFPzCNYyjBQeFnNCpferNOdKLzf0ywFhO5x1JbxtxeZha1NpCuEJA+78UyFtPfxgvMg==
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- MW6PR12MB8833.namprd12.prod.outlook.com (2603:10b6:303:23f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Wed, 4 Mar
- 2026 03:48:00 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9678.016; Wed, 4 Mar 2026
- 03:48:00 +0000
-Message-ID: <282c94d3-f32c-4851-969f-61fc968de6a7@nvidia.com>
-Date: Tue, 3 Mar 2026 19:47:58 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 21/38] rust: ptr: add const_align_up() and enable
- inline_const feature
-To: Danilo Krummrich <dakr@kernel.org>, Gary Guo <gary@garyguo.net>
-References: <20260221020952.412352-1-jhubbard@nvidia.com>
- <20260221020952.412352-22-jhubbard@nvidia.com>
- <ee76d46cc0cab88ce6dbdeda6a8850dc@garyguo.net>
- <89b240a4-33ec-44dc-8f7c-1a3f8d379e0d@nvidia.com>
- <DGMAKO04ZM3J.1NJDI9SYE354S@kernel.org>
- <ba7aec533e083622be9055e77c30fee0@garyguo.net>
- <DGMEORS8PL1T.242O5BRE6ZSM6@kernel.org>
-Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <DGMEORS8PL1T.242O5BRE6ZSM6@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR02CA0067.namprd02.prod.outlook.com
- (2603:10b6:a03:54::44) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 147A541E96
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 08:37:35 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8A11A10E97D;
+	Wed,  4 Mar 2026 08:47:54 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 7034943FAE;
+	Wed,  4 Mar 2026 08:47:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A627BC19423;
+	Wed,  4 Mar 2026 08:47:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772614074;
+	bh=q+uTTk+Tl69Kd6bd84m1ZhgW1BhIv3PD7PYeGemtd4Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CGJ1QxVSx+yDBHFSGoiEA2QyfySvBh3UP/gWJq3VOBTvYMvejMq8Rzpzqmukquutx
+	 t2OTkdGkFfjSoNlRUuQHsgRR2xPyC48SdWHcHPMUqRWp8gTeKSSWi5DJpATFoDNtZ9
+	 6eXTKs6/AXKf3TjhGc64AYu971aZ4AAO/zQACZtsTZBjYnwb7TRHrdWWzPAuac4+uI
+	 uwf+ggXetFVdGtF6buvhLTW9e2UF/v1T5XqeceHaXg+bYpa0CX6BxkGll5sZcYS8Wk
+	 QY08VrLwU/YutzRmF/PxK5OygjVR6y6ITvSo4XVbV1CW+cGGQcFSGVrXVfj/KOs/S7
+	 pmv5gl2WFBVIQ==
+Date: Wed, 4 Mar 2026 10:47:50 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Peter Colberg <pcolberg@redhat.com>
+Subject: Re: [PATCH v3 00/10] rust: pci: add abstractions for SR-IOV
+ capability
+Message-ID: <20260304084750.GW12611@unreal>
+References: <20260303-rust-pci-sriov-v3-0-4443c35f0c88@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|MW6PR12MB8833:EE_
-X-MS-Office365-Filtering-Correlation-Id: a60f9423-380a-4ca0-497d-08de79a0d4c2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: 
-	NHKPA5myIpxlH6KxInyMXcJG7qCh27hrtLglZWXXgWNmuQ7g5QynNh+JaKqMehlZH4LnDiVjc08QtydtKDXuZMA5bvde7IKKQkkhkTagcE1ct/V7PfSuFpkUkUY1Xbivnw77zofZsQEbqBzLE0d0J0ix97mFZJDmepFt/Q8sg63satLYnx9XMtkbEPs45raZbjYOdtlJOEpEGHh48uBwgl4dYUyQosLCTPZl5qrUJWnn5/6Ra0bKQWo2ti80OC4CyG4g/EJozY/MlyAfjvPLMLIvmUlvZS+CX8HsCrlOXdEsm0RAF6rQAOvTCPfmlmnEPBBHbS+m+DAuRJPehkJYqWTQ94MMUgiN/xf2A/jNqAgcYrHjsSg3pcGOh4hd9GjWAWmNp/D+XcUMypc00wz6ff0WqYe6VfF4owDI+JywiyAoPYoFBn1IKR5q2/ioFvsdqPjW0Q9qgodjpwGVJIcqdsQ7Zz45z8Gvs2d8naaGvYn3/YC+B1Vy1bQZ/rAhkc1ADi15O96i3Zheb7uM8K1cSmPg9FSlCGu9TzYUBi0xDWqVV2wKmNenyUcmBuUn24hJEzP4duWuaw4G16kbY+PzK7XL0zibbu87BInVgC2Rr/frqRv0Yc2f9NqXKXSjlewYiBoTh5KTTZd4MC32mORXVEzodTdZvkdWhTR8gDSrzhVvk6u3loXta9fUiD9d2CgDAg58aYvXnnxMqtxv2DLG2zYRg/eSDONtVgb+4tMHkAQ=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?UkhPMDhPektjS3A3SXNiZk12VTV2V0lhSkNMcGJCeE11MC95T0lJUzBpcUJx?=
- =?utf-8?B?WGxMK1VOOU14L080Q1JmNlFLMjZGKzJTZUVwL1dFSnNqNVJSZHduOEhiOGx0?=
- =?utf-8?B?cFp1WTJHU2hiMUpIS2NHM3JmMUt0YzlGYVFWSkJnYTNOWkdkMzl1bVJuQWI5?=
- =?utf-8?B?Ny95UzcxR2NIU3dzTWRQRkY0NVViUFdFM3dIOWxHWFY4Wjl5NU15aTE2SkFS?=
- =?utf-8?B?ZktraFJZYWJlY2ltQUNha1RaUWVKeXNPOVlKTjgxUnhwWWdPVVlzSDYrWVRh?=
- =?utf-8?B?SjBvRkFUaUhhelZDcVRLNzdXNVBQYlcyeEkvMzdMVFVVTm1JSGRnUlR1TVF2?=
- =?utf-8?B?RzhGbEQ4bENCNTBMaXg2TG1CYWRBeUVvZm5tSXQ4NlBqbFp0R1J0RGxJTTBv?=
- =?utf-8?B?VjdrOGZBVXA1SUNDREFJNWFRODVXZXFrT2RmYXJxVk16Vzl5LzEvSjlRUmxP?=
- =?utf-8?B?anBsR0pEcGFWQlZpU2huV1JBZU1Jek9NalFzcDNJWXc0dDJ1LzdEQ2pvU2R1?=
- =?utf-8?B?RC9qdFhjUFpZRjJLbHlTREV6ajcyd1hvTmRPSDNqUGkrVVFlUGpBTmQybVZU?=
- =?utf-8?B?K29nMWdsK3NPNWd6a2IrNUx4VFJpZmdNdEkvMWZuWUdCQ1UvRkFjYzh2ZVFX?=
- =?utf-8?B?RlBYZWZjSEtTVlJuMVNQS3pDVDJaSVI3alBBNUR1K0RnS0F0UW44ODFhNEZt?=
- =?utf-8?B?TzVJa250ZnR1Yi8xd0QrcW9aYWZYeXJscCt2TXl6c3JYNWlRUGZ5RlFjRHdw?=
- =?utf-8?B?QkxraUIrZkIvcENzeWE1bnExU3h3QnNpVzdmSFpjTXpyekpXcWRzUy9xcjZN?=
- =?utf-8?B?ZlE2OEZsMTJUbEN5N25BZTFXQThxV3M4bUd3Y0dYSkMvNXhVRlh4VHJTSjdm?=
- =?utf-8?B?UmV2bGJoR2ZINzY4dzhlMWxhNDQ2SGJKRCtEbHU0eEttQmNiallBN3pKbVdR?=
- =?utf-8?B?Zkd4azJBSkQ3eXVaS0NvS2ZhZWJES3dKT2tVbzNaRm5LQVljbGgxSGVaSTZi?=
- =?utf-8?B?SE5DczIzRXprbWVQeFExZWhlakoxTGtaTWdqSjFkQkVieUdhMWJ0MmFkZXFp?=
- =?utf-8?B?SlNjelZTWTI5cXkzTC9NUmlYcllkNDdsOXVRbE50YlZSNDdOQVNwdzkrNEdV?=
- =?utf-8?B?NWpmQXBJQm9qTllnWC9UeXp2UzZ0TXdMSzZjVWdPV05oKzRkRVQvWTRYK0Zx?=
- =?utf-8?B?dzdXVDE0VTUzc1ljUEFlbVhyWWdqWWIzeTJCWjBXZVJJRlVwbXMrQ055djR1?=
- =?utf-8?B?Qnc2RnovMURYd2RXZ2xCbUVid2F1WlRkN3pSd05qTDBzcDltNTBCZmxLL2lC?=
- =?utf-8?B?VUs0eStYaVFkMktLMmExbmMwaWwzcGlESTFVTzAzYkVGSUJFM2luSVMweUlu?=
- =?utf-8?B?d2hLQlVKYWo1SldkMWtPYXA3Y0Q0ak9LV3lXamJSbWRuWXpsdWtEYzJuUlBO?=
- =?utf-8?B?MlhFUmUreHZYUFFnWEFUTDBGVWxkTmRHUmp2bDdza01HTU1FVVh1OTZSaGp4?=
- =?utf-8?B?Z3dicmxWWlgyei82UjZYWmJ6enBaTWRVR1ZNek5KWUlzQjFaUFdZOVMvWEp2?=
- =?utf-8?B?ZzZ0TkNUdWlJSmVhVEp2S1MrM1hRZHR5WU56ZTdMQUZyYzZmVkVwL0lFdUdu?=
- =?utf-8?B?eTlva0tubFByK0p6Y0VSdFp3aEFpd0RUUi9Scm1YZisyTGw5dVp3ajNwcUxB?=
- =?utf-8?B?TkVqUnJkZm9LTEZWRStKSGlQaCsyVVQvS2QwL2trcjEzWkNpOTRaa21mZUUr?=
- =?utf-8?B?MHFLZjBYRmIrSjJMQ2txdDBuNEI4RFlWa0NUZjA5N2RGQU9BUWxlZThMbjRF?=
- =?utf-8?B?K3BqVDZEVWRqaVFCUnZNVllSZEx1dXIrRW8wTklrekFiZWVIenN3V3MwdmUz?=
- =?utf-8?B?MGtCaWdiRjlQK1VMRVl6aTVZQ0JxVE5xOUc0dVR5OUJNT3lHcmphbjdCNWl5?=
- =?utf-8?B?VkFKVE5Mcy9TbjZ1elloVjl2anh2WVUzM1RXcjl6SmFSYk1SYkh1WGJzNlEy?=
- =?utf-8?B?bW1QR1NPN1lJdzNZR3pCNHAycTYrb1p3RDRMRm1TTG83M1JXV3ZBNWFneEQ5?=
- =?utf-8?B?QkllKzJsNmJVNTV3Ymw2MlF4d1FjVmdnRnJTY0ptcVo5YndWYWtIajVyYnhv?=
- =?utf-8?B?SDlsN0RiRWVKSDduaGN6NW9Sa2Nla3Qwd05CMTZDcG10VEtCVU93QWtLc1lG?=
- =?utf-8?B?SjFIY2hsd1hCT2dvWDl1Zm0vaEtHcDJ4NkJSMm5HRXdRbFpnbEl3SW82K3Bl?=
- =?utf-8?B?cFpKUW82dmR0ZHpFN2FuQTNnSkhKbXAwRXl3RjRXMk9Fa2h3NkJGQzY2ZVZM?=
- =?utf-8?B?aCtFKzNIN05Hb1FjR0twRnpVa1QwN0thVm8zZFZtRUJoaXQwbmVoZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a60f9423-380a-4ca0-497d-08de79a0d4c2
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 03:48:00.6258
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- OMg5Rk3+woWCYg198/o3WyK6ZITnfaUrj6C0HgsBbqtNjXUKdmABRTx3Srf7Z8PCTaQzxMT3XT1VVYURTSHSVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8833
-Message-ID-Hash: CKOHPQBFXHBKA37CVSNVK7PJIXBGJ7XE
-X-Message-ID-Hash: CKOHPQBFXHBKA37CVSNVK7PJIXBGJ7XE
-X-MailFrom: jhubbard@nvidia.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260303-rust-pci-sriov-v3-0-4443c35f0c88@redhat.com>
+Message-ID-Hash: MUGAS3N7Y65FGNF43SAL6CYM6NPUQXBK
+X-Message-ID-Hash: MUGAS3N7Y65FGNF43SAL6CYM6NPUQXBK
+X-MailFrom: leon@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
+CC: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+ Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Gary Guo <gary@garyguo.net>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- LKML <linux-kernel@vger.kernel.org>
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dave Ertman <david.m.ertman@intel.com>, Ira Weiny <ira.weiny@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
+ Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+ Moritz Fischer <mdf@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, linux-pci@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ linux-fpga@vger.kernel.org, driver-core@lists.linux.dev,
+ Jason Gunthorpe <jgg@ziepe.ca>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CKOHPQBFXHBKA37CVSNVK7PJIXBGJ7XE/>
-Archived-At: 
- <https://lore.freedesktop.org/282c94d3-f32c-4851-969f-61fc968de6a7@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MUGAS3N7Y65FGNF43SAL6CYM6NPUQXBK/>
+Archived-At: <https://lore.freedesktop.org/20260304084750.GW12611@unreal/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -196,110 +123,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 2/23/26 6:20 AM, Danilo Krummrich wrote:
-> On Mon Feb 23, 2026 at 3:16 PM CET, Gary Guo wrote:
->> On 2026-02-23 11:07, Danilo Krummrich wrote:
->>> On Sun Feb 22, 2026 at 8:04 PM CET, John Hubbard wrote:
->>>> On 2/21/26 11:46 PM, Gary Guo wrote:
->>>>> On 2026-02-21 02:09, John Hubbard wrote:
->>>>>> Add const_align_up<ALIGN>() to kernel::ptr as the const-compatible
->>>>>> equivalent of Alignable::align_up(). This uses inline_const to validate
->>>>>> the alignment at compile time with a clear error message.
->>>>>>
->>>> ...
->>>>
->>>>>> +#[inline(always)]
->>>>>> +pub const fn const_align_up<const ALIGN: usize>(value: usize) -> usize {
->>>>>> +    const { assert!(ALIGN.is_power_of_two(), "ALIGN must be a power of two") };
->>>>>> +    match value.checked_add(ALIGN - 1) {
->>>>>> +        Some(v) => v & !(ALIGN - 1),
->>>>>> +        None => panic!("const_align_up: overflow"),
->>>>>
->>>>> This is wrong. Either this function is always used in const context, in which case
->>>>> you take `ALIGN` as normal function parameter and use `build_assert` and `build_error`,
->>>>> or this function can be called from runtime and you shouldn't have a panic call here.
->>>
->>> I think the most common case is that ALIGN is const, but value is not.
->>>
->>> What about keeping the function as is (with the panic() replaced with a Result)
->>> and also add
->>>
->>> 	#[inline(always)]
->>> 	pub const fn const_expect<T: Copy>(opt: Result<T>, &'static str) -> T {
->>> 	    match opt {
->>> 	        Ok(v) => v,
->>> 	        Err(_) => panic!(""),
->>> 	    }
->>> 	}
->>>
->>
->> We already have `Alignable::align_up` for non-const cases, so this would only be used
->> in const context and I don't see the need of having explicit const_expect?
-> 
-> Fair enough -- unfortunate we can't call this from const context.
+On Tue, Mar 03, 2026 at 04:15:20PM -0500, Peter Colberg wrote:
+> Add Rust abstractions for the Single Root I/O Virtualization (SR-IOV)
+> capability of a PCI device. Provide a minimal set of wrappers for the
+> SR-IOV C API to enable and disable SR-IOV for a device, and query if
+> a PCI device is a Physical Function (PF) or Virtual Function (VF).
 
-OK, so after the dust settled on this discussion, I *think* we ended up
-at this, which I have staged for an upcoming v6. Did I understand you both
-correctly?
+<...>
 
-commit 1360a440272976df697140361537c5b697d602e0
-Author: John Hubbard <jhubbard@nvidia.com>
-Date:   Thu Feb 19 14:44:02 2026 -0800
+> For PF drivers written in C, disabling SR-IOV on remove() may be opted
+> into by setting the flag managed_sriov in the pci_driver structure. For
+> PF drivers written in Rust, disabling SR-IOV on unbind() is mandatory.
 
-    rust: ptr: add const_align_up()
-    
-    Add const_align_up<ALIGN>() to kernel::ptr as the const-compatible
-    equivalent of Alignable::align_up(). This uses inline_const to validate
-    the alignment at compile time with a clear error message.
-    
-    Overflow causes a panic, which becomes a compile-time error in const
-    context. For runtime alignment with fallible overflow handling, callers
-    should use Alignable::align_up() instead.
-    
-    Suggested-by: Danilo Krummrich <dakr@kernel.org>
-    Suggested-by: Miguel Ojeda <ojeda@kernel.org>
-    Signed-off-by: John Hubbard <jhubbard@nvidia.com>
+Why? Could you explain the rationale behind this difference between C and
+Rust? Let me remind you that SR‑IOV devices which do not disable VFs do so
+for a practical and well‑established reason: maximizing hardware
+utilization.
 
-diff --git a/rust/kernel/ptr.rs b/rust/kernel/ptr.rs
-index 5b6a382637fe..b8b0cb1e0b6b 100644
---- a/rust/kernel/ptr.rs
-+++ b/rust/kernel/ptr.rs
-@@ -225,3 +225,31 @@ fn align_up(self, alignment: Alignment) -> Option<Self> {
- }
- 
- impl_alignable_uint!(u8, u16, u32, u64, usize);
-+
-+/// Aligns `value` up to `ALIGN` at compile time.
-+///
-+/// This is the const-compatible equivalent of [`Alignable::align_up`].
-+/// `ALIGN` must be a power of two (enforced at compile time).
-+///
-+/// Panics on overflow, which becomes a compile-time error in const context.
-+/// For runtime alignment with fallible overflow handling, use
-+/// [`Alignable::align_up`] instead.
-+///
-+/// # Examples
-+///
-+/// ```
-+/// use kernel::ptr::const_align_up;
-+/// use kernel::sizes::SZ_4K;
-+///
-+/// assert_eq!(const_align_up::<16>(0x4f), 0x50);
-+/// assert_eq!(const_align_up::<16>(0x40), 0x40);
-+/// assert_eq!(const_align_up::<SZ_4K>(1), SZ_4K);
-+/// ```
-+#[inline(always)]
-+pub const fn const_align_up<const ALIGN: usize>(value: usize) -> usize {
-+    const { assert!(ALIGN.is_power_of_two(), "ALIGN must be a power of two") };
-+    match value.checked_add(ALIGN - 1) {
-+        Some(v) => v & !(ALIGN - 1),
-+        None => panic!("const_align_up: overflow"),
-+    }
-+}
-<blueforge> linux-github (nova-core-blackwell-v6)$ 
-
-
-thanks,
--- 
-John Hubbard
-
+Thanks
