@@ -4,126 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95DE1EF9002
-	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 16:45:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E77B0EF9008
+	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 17:02:59 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B81E910EA74;
-	Wed,  4 Mar 2026 16:45:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5385D10EA7D;
+	Wed,  4 Mar 2026 17:02:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=ziepe.ca header.i=@ziepe.ca header.b="ToFO2c8B";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="hT9WUdDN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4F8B444E19;
-	Wed,  4 Mar 2026 16:35:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D6A8C44E21;
+	Wed,  4 Mar 2026 16:52:37 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772642136;
- b=JjdZw1h1znE6vpu97mxhUHz145rUBUGlxRBPB7nD4FENnuuddAR5bVwkB3B9Q4RJen/FX
- BxrbzAKif9LxfKC8lJWIiSEFrbAJvOFn/dHa3DnvII0kPErnrI2fk8+GmR+aveKKNVwWMYm
- UlZQwj8oJaLeUnTCgSlctSswxDTNptaav6hjDOf8nAYksvG0FyImpxcF7Cv1USGuWYUxmm+
- gq+bhbIp9LC8BTqKjEsFg6ib7VFttH8NPpJNn8uea8XgELpXjBguRqTf+ywnOHDJcVbqMTp
- P12PtSKvmgFZkNWnb3LpR23JTP8k1Vx1u2zOntcOA//MCS7cUjzAeSYiMYig==
+ s=20240201; t=1772643157;
+ b=b4kHlGOiqeZs5LcbmlH0Xr8/b4M9K3oAIhyJhSUSx8Lj0rO/+oVVkAB4+mmdidTjcD1/Q
+ 2SVYQj0mi0TAbiFPIxRS4vE1TlxMkyv6G7KRk/tsFEHlvI4z3PaxVVozAx71c9mZMBSf6KO
+ kv07Jgq17YYFe5whND5+wDvu1ndBtoZXBixsUSzPyQT/vV/+0VjedJheg7JhOfNJTpXhovh
+ FbaNWlZLsHJSq1HUH3MLKj3aphvSak5id3edbH48UvuNTV+WpGy8F7M7jKifPBf2r9tFoe3
+ xGno+Nko6gTR/XwjFvD7uxl1Q0QQa93FZjRiJhYj4vk7JlRY8melsTZDx2DQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772642136; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772643157; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Q6mBd5S5w+Qyk+kaNVLUq/NDaIG3PNFY6vyWjAmF/Cg=;
- b=GtdtLD8rIg9o3+CGLpl7Sy75D1pvjvwo4lBzsJLwO1D9KjpLY+OFdeCc6XrBUGIc2K28q
- aNdwkj9f61GyjQRSYEQLTtzcgSrLlYxZBEzZSR2o5wlpXStQJ7M+LUBaJFNvKBdc0jVylUd
- iu1fr8CNOu9ZaOY80vjzr372dW1yeRop1S2GopN1cP/DDFLezrDWWXYUNV3+71vkkiIFX3t
- bF6fsU5qyGhETUuXfGZv37hUAGawcFELfAKdDEhlRfniRCvlxpVVZz2pLpN4BFq2BYCKQYS
- PBfKi/DGT4VkTJEQH+MqSgS3FFj9bfqFTbJV/3vD63TKWODqCgGjXdoU/gRQ==
+ bh=fqv1wvD7A6PqcjC2b0bX2OhBsYvrRlu0OY4eknZwVh8=;
+ b=JG9gCl53k1F6nIYws6YQJEfMqA8KSqsV1UXaTf2yMnefa8vPXHby62/i6SZrFmi168vmu
+ UW/4CWHuGc92JgG8GoUva0X/MGIOn+Z+id1hQOG3IC7ag0iU25VFijd92LYX7pXShdmKcOr
+ 08fnfgBSUguxX7+uYllfilOMbmCwAVeFtAAlTJu0aL1MAtVPBCozc2bS11kKqiZrTj5tzpF
+ pmj6YZtGIeOrGCGKJVPQmYsDbvU/bnfqHx4UApLFxbIgmARFtwhqkIXnU83JUQLOSGUHt5M
+ wqPsase+9mcBdtwLSJeHKEs789YMz54omoN7yFolVN0+21F9ZdbQjJ/bsNdQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=ziepe.ca;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ziepe.ca;
- arc=none (Message is not ARC signed); dmarc=none
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8B73743112
-	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 16:35:33 +0000 (UTC)
-Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com
- [209.85.219.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C4C9910EA6E
-	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 16:45:53 +0000 (UTC)
-Received: by mail-qv1-f45.google.com with SMTP id
- 6a1803df08f44-89a05955720so39768076d6.2
-        for <nouveau@lists.freedesktop.org>;
- Wed, 04 Mar 2026 08:45:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1772642753; x=1773247553;
- darn=lists.freedesktop.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Q6mBd5S5w+Qyk+kaNVLUq/NDaIG3PNFY6vyWjAmF/Cg=;
-        b=ToFO2c8Bh1Iphrd50T1lcFzmzvedwhTfRWJYY1uZk9KD8dJWsaFPLdjbkxlqZ6CEpg
-         Lj5hWyhJ2JqNElUeyYK5QRzttenh6J+quG+rz7zbzfsgjJCDS2cPRaDpsRle7BwOEJES
-         niIL84LGj5TE+O2Y5ywcVZxbsMRfMuYnLc9+64JeXFndTM8y61Sv8EcaqvxZqwJUtfxL
-         +BfbrFpWNR9rGq6UiUtxN+o3fueMTKnH10HFTPS4unFMkcaged39GjNGz3EfiIWWCCvq
-         KKJxTZCjC+KxNhFiSMguq3DjyzPrWghwoA/05wh+3bEVYUMlOGxEHrn3rPkXqs8Dt+6B
-         6Ydg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1772642753; x=1773247553;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q6mBd5S5w+Qyk+kaNVLUq/NDaIG3PNFY6vyWjAmF/Cg=;
-        b=nFKDJZkHERS2p48FTkLkhQfICkc9A+BoLsCpXlcfvpSg8xJgpzaRf4YbRhzZuZzfov
-         woWGmB2d3A4M/yt6YbpnfUnCGfod4GLe7GNs5FtJqZvcwP6LOSHPEH/NksG/Dr5t8u28
-         8gKOsTovXiC5ERnOGm9h7tny3MoqAQlBK8+qmF6or11CXbqBgNS6j3cSKgELoT6t/0Ev
-         vCKfgSkDKj6X836GkfYhpMPQTN+ZkfkAw2Cijn4pgFgNLI6QCP4XKSLqM+L5grsbFLgf
-         9sidmqGIeMLwkqc/y7/yR6Q5eNypkDaREt9OqmgVV8FgITEUilQ0fo2HpkUiQF8jZ4YI
-         2MzQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXksRFAqsnU5fage7kJYZOn0XycDDoX54MI7CN5idXxkfhzAQExhwmfbHle9yc7MX4+wZQ6yyr0@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyBjxv4nORYiYE5j0ko2THK8PLRUVWLR4L4mGltcDHWTqom979J
-	SbkJQEKgNfdzVLZ8RxKWDnji/PPlcS9QGnv8RQDf1cggBfAGQylMCg1JBKJkk+THP6c=
-X-Gm-Gg: ATEYQzx87Lu8i2lVlvaH7cGBIJiNopBEtjqWwvIsINu5trTaE37xU7mwJH7fmVzjhEf
-	3PmxqVhq9K7OD+Uz+uS2uNMkhgS/gLt6sM5azGq0o2qaqPnSLQxnFuU5ubSOBBV9uOq2qg42oRF
-	vQZSam6yLhiSE1T18KfeG3hFAZj3jSiZ9bVtdddVZbGlvOc6qFF/sOmYT0aBSvR2dzOeUhQh8jq
-	yHsI0gv/zJgC5+VvBR3I0kVJOCIVnBCjRiIuNijQrOz0qcMXy7XiyLMkYIw3tLOnvI20K6urGta
-	EbGoPf4PxuQWuPAvgkx6Y3YLsSm+1y8E9X90kg8EZBdHjT8dmI1w5aIwQ0I0AD+zf70j3lf6IkZ
-	QBrqfIpO95kLMW61J0D4wyXyM/vgTiVGk/2Tmss1aO2ma3sCUgOsVBHiLiRCYX7hdpKdOtDS3IZ
-	tTN0dHp8eZq3FiY4H6/Qq6GtBP2YXAleiUkF+SOsitAOJ+BDe+VjESuei+QUTt0nTAeL4367zWf
-	UzoWKhh3Xm1/bNC9pk=
-X-Received: by 2002:a05:6214:cc6:b0:899:f2af:bd85 with SMTP id
- 6a1803df08f44-89a19ce9729mr37872326d6.45.1772642752542;
-        Wed, 04 Mar 2026 08:45:52 -0800 (PST)
-Received: from ziepe.ca
- (hlfxns017vw-142-162-112-119.dhcp-dynamic.fibreop.ns.bellaliant.net.
- [142.162.112.119])
-        by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-899fdf30e99sm69421516d6.3.2026.03.04.08.45.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Mar 2026 08:45:52 -0800 (PST)
-Received: from jgg by wakko with local (Exim 4.97)
-	(envelope-from <jgg@ziepe.ca>)
-	id 1vxpM7-00000005CBf-1l90;
-	Wed, 04 Mar 2026 12:45:51 -0400
-Date: Wed, 4 Mar 2026 12:45:51 -0400
-From: Jason Gunthorpe <jgg@ziepe.ca>
-To: Leon Romanovsky <leon@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id EC8D243112
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 16:52:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 372E510EA78;
+	Wed,  4 Mar 2026 17:02:55 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id DEF684079B;
+	Wed,  4 Mar 2026 17:02:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E299FC4CEF7;
+	Wed,  4 Mar 2026 17:02:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772643774;
+	bh=aQJiY+2LCpzOcjrCyzcepEU8dJcqg8IvU44AMFz8v8M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hT9WUdDNSy78CtuA5kRf8mQTtoKTD2m4CXqf1thar1iHcKkmiNrxKPCHdoElX4ohB
+	 GJDqQsLP/WI73C6u7MnKL/Gb7KlEuu21xLrOKbYRwd9hh4ETIowZMcVQnwJMF+AW59
+	 EB+Tx62lWZlXgwqc23A2gC7Qy/YSjqMWXY5pw1ZrYR+nwYmCaXxLlqBaT4sWnEo64J
+	 kFp6WTGP1rKSUpvrvYKc8sFz6to48D29AXlhF3+Sth6C5ewzSWg61wqJBIfw2mHGO6
+	 CxQy0KUPVlSHwQUBw0X9FEkUIXbr6zoXZeMdEpLEiGVhiWv6rtRd9oAVIhrXmPhEaz
+	 pYUq2rUyfTtOA==
+Date: Wed, 4 Mar 2026 19:02:49 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
 Subject: Re: [PATCH v3 00/10] rust: pci: add abstractions for SR-IOV
  capability
-Message-ID: <20260304164551.GG964116@ziepe.ca>
+Message-ID: <20260304170249.GJ12611@unreal>
 References: <20260303-rust-pci-sriov-v3-0-4443c35f0c88@redhat.com>
  <20260304084750.GW12611@unreal>
  <20260304141852.GF964116@ziepe.ca>
  <20260304142600.GB12611@unreal>
  <DGU347RJX5BV.1CZYELSZ9GS9D@kernel.org>
  <20260304162711.GI12611@unreal>
+ <20260304164551.GG964116@ziepe.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260304162711.GI12611@unreal>
-Message-ID-Hash: 2AZ4CIWVJI3QDL77SQSZEGCEUHJ6XRTS
-X-Message-ID-Hash: 2AZ4CIWVJI3QDL77SQSZEGCEUHJ6XRTS
-X-MailFrom: jgg@ziepe.ca
+In-Reply-To: <20260304164551.GG964116@ziepe.ca>
+Message-ID-Hash: G7HGADO3KMZWRYBM44WMG6IMWUIVGNVN
+X-Message-ID-Hash: G7HGADO3KMZWRYBM44WMG6IMWUIVGNVN
+X-MailFrom: leon@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -132,7 +95,7 @@ CC: Danilo Krummrich <dakr@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
  Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
  Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
  Gary Guo <gary@garyguo.net>,
- =?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
  Abdiel Janulgue <abdiel.janulgue@gmail.com>,
@@ -154,8 +117,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/2AZ4CIWVJI3QDL77SQSZEGCEUHJ6XRTS/>
-Archived-At: <https://lore.freedesktop.org/20260304164551.GG964116@ziepe.ca/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/G7HGADO3KMZWRYBM44WMG6IMWUIVGNVN/>
+Archived-At: <https://lore.freedesktop.org/20260304170249.GJ12611@unreal/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -165,45 +128,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Mar 04, 2026 at 06:27:11PM +0200, Leon Romanovsky wrote:
-> On Wed, Mar 04, 2026 at 03:57:57PM +0100, Danilo Krummrich wrote:
-> > On Wed Mar 4, 2026 at 3:26 PM CET, Leon Romanovsky wrote:
-> > > On Wed, Mar 04, 2026 at 10:18:52AM -0400, Jason Gunthorpe wrote:
-> > >> On Wed, Mar 04, 2026 at 10:47:50AM +0200, Leon Romanovsky wrote:
-> > >> > On Tue, Mar 03, 2026 at 04:15:20PM -0500, Peter Colberg wrote:
-> > >> > > Add Rust abstractions for the Single Root I/O Virtualization (SR-IOV)
-> > >> > > capability of a PCI device. Provide a minimal set of wrappers for the
-> > >> > > SR-IOV C API to enable and disable SR-IOV for a device, and query if
-> > >> > > a PCI device is a Physical Function (PF) or Virtual Function (VF).
-> > >> > 
-> > >> > <...>
-> > >> > 
-> > >> > > For PF drivers written in C, disabling SR-IOV on remove() may be opted
-> > >> > > into by setting the flag managed_sriov in the pci_driver structure. For
-> > >> > > PF drivers written in Rust, disabling SR-IOV on unbind() is mandatory.
-> > >> > 
-> > >> > Why? Could you explain the rationale behind this difference between C and
-> > >> > Rust? Let me remind you that SR‑IOV devices which do not disable VFs do so
-> > >> > for a practical and well‑established reason: maximizing hardware
-> > >> > utilization.
-> > >> 
-> > >> Personally I think drivers doing this are wrong. That such a driver
-> > >> bug was allowed to become UAPI is pretty bad. The rust approach is
-> > >> better.
-> > >
-> > > We already had this discussion. I see this as a perfectly valid
-> > > use-case.
+On Wed, Mar 04, 2026 at 12:45:51PM -0400, Jason Gunthorpe wrote:
+> On Wed, Mar 04, 2026 at 06:27:11PM +0200, Leon Romanovsky wrote:
+> > On Wed, Mar 04, 2026 at 03:57:57PM +0100, Danilo Krummrich wrote:
+> > > On Wed Mar 4, 2026 at 3:26 PM CET, Leon Romanovsky wrote:
+> > > > On Wed, Mar 04, 2026 at 10:18:52AM -0400, Jason Gunthorpe wrote:
+> > > >> On Wed, Mar 04, 2026 at 10:47:50AM +0200, Leon Romanovsky wrote:
+> > > >> > On Tue, Mar 03, 2026 at 04:15:20PM -0500, Peter Colberg wrote:
+> > > >> > > Add Rust abstractions for the Single Root I/O Virtualization (SR-IOV)
+> > > >> > > capability of a PCI device. Provide a minimal set of wrappers for the
+> > > >> > > SR-IOV C API to enable and disable SR-IOV for a device, and query if
+> > > >> > > a PCI device is a Physical Function (PF) or Virtual Function (VF).
+> > > >> > 
+> > > >> > <...>
+> > > >> > 
+> > > >> > > For PF drivers written in C, disabling SR-IOV on remove() may be opted
+> > > >> > > into by setting the flag managed_sriov in the pci_driver structure. For
+> > > >> > > PF drivers written in Rust, disabling SR-IOV on unbind() is mandatory.
+> > > >> > 
+> > > >> > Why? Could you explain the rationale behind this difference between C and
+> > > >> > Rust? Let me remind you that SR‑IOV devices which do not disable VFs do so
+> > > >> > for a practical and well‑established reason: maximizing hardware
+> > > >> > utilization.
+> > > >> 
+> > > >> Personally I think drivers doing this are wrong. That such a driver
+> > > >> bug was allowed to become UAPI is pretty bad. The rust approach is
+> > > >> better.
+> > > >
+> > > > We already had this discussion. I see this as a perfectly valid
+> > > > use-case.
+> > > 
+> > > Can you remind about a specific use-case for this please? (Ideally, one that
+> > > can't be solved otherwise.)
 > > 
-> > Can you remind about a specific use-case for this please? (Ideally, one that
-> > can't be solved otherwise.)
+> > You create X VFs through sriov_configure, unbind PF, bind it to vfio
+> > instead and forward (X + 1) functions to different VMs.
 > 
-> You create X VFs through sriov_configure, unbind PF, bind it to vfio
-> instead and forward (X + 1) functions to different VMs.
+> No, illegal, and it doesn't even work right. When VFIO FLRs the PF it
+> will blow up the half baked SRIOV and break everything.
 
-No, illegal, and it doesn't even work right. When VFIO FLRs the PF it
-will blow up the half baked SRIOV and break everything.
+The FLR can be disabled. For example, PCI_DEV_FLAGS_NO_FLR_RESET flag
+will do it.
 
-VFIO already has its own sriov_config support, the right flow is to
-bind the PF to VFIO and then enable sriov and do your assignments.
+> 
+> VFIO already has its own sriov_config support, the right flow is to
+> bind the PF to VFIO and then enable sriov and do your assignments.
 
-Jason
+VFIO started to support SR-IOV in 137e5531351d ("vfio/pci: Add
+sriov_configure support"), which was added 8 years after VFIO core was
+added cba3345cc494 ("vfio: VFIO core").
+
+Thanks
+
+> 
+> Jason
+> 
