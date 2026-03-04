@@ -4,179 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7F81EB7EB8
-	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 11:28:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1A14EB7ED4
+	for <nouveau@archiver.kernel.org>; Wed,  4 Mar 2026 11:39:18 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 12CB710E9B9;
-	Wed,  4 Mar 2026 11:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 854D810E9CD;
+	Wed,  4 Mar 2026 11:39:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="gNQ7hNK9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Hy2HOrsP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 213E844E16;
-	Wed,  4 Mar 2026 11:17:39 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772623059;
- b=v7GQ6ggM9VvTpIkyRd+WiNG+dsPQMgZ3T1K4HjKleN2BHsWxiomOf5poO5AXkho10MaTK
- ovQkUPJTA1pZ4N9pQZ0o8qXFx7Q3QmUggrFoJl0JqZmC/ZX4Kbl+qW5htH9rsyMZE/leMKL
- Wor+cIKn1xIBqx5PPnb7Rt7bJOpeLeYxpCZ0hxwl73lqax2sWiQNsnirIgC/k4ILpqeVYSG
- rPzS2BK77ML23P9luz00pf5/C9qNoWr8cOjA8sVfKznK4sVj+kCx9xOVoRkOFueAw+xlTZK
- Te12pCwRosbfOOhPYzPNSOv5+3gWFh0lKkTDfCLsjQcKhWzJQZHKBMTrjlvA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772623059; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 9069344E16;
+	Wed,  4 Mar 2026 11:28:57 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772623737;
+ b=Nucqevaa19rYBsh9gm0MDHzaemnOfiAzGnBMGPVWGMsTv7OCzkuIItUu8TFZ7KDzG5Zy5
+ UXh+52hHsKP2a9vgq4Rg/e4h5lIiF1qYYHxtZeM9EFTaMPl/7VMH/yH23QDqcUV2OetxTXs
+ KRjxzhfZcTBT61pLgqsGzUL5p/D7mxI0qNxrHABLaqt1efh2n5ct78i45Vi04STDpHGjs0I
+ cgpMuMFFyl2PHCRa/hS3VJhks02yB4Y0SG6TnV8Qt52SRJxu0Y2GxE9mNpRNarRJK1HDuYj
+ skRFMIxRoXguc4FXSCqcPXhBONn6dt5rS1gi3oqKmgINQU9NQ5nRLFWED4Iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772623737; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v2+Yl5hQb5zO4lBeZkN5rrmgatfdnZZ3ypUepg6r/fo=;
- b=sABGruAi0jdS2yze5KHzHPwmL2SxLzjCrdI6NO+Duz9qiljDwPUPY9JRY5jeRA6PqnOQ5
- FgZXt/kZ49fptBDHM7QsFD2VH6tbVUaPxsCqxx6A4NMg+pEWDtKEZlVObQNA+WFEUkIXobd
- iKTq0lkOBzl3XtCgEK8hnLu5fwYFGnExHdPI4KSnmqU6QmKZNv2iDPvJlWvNe5Qe3wSBY0u
- UuWzHSqOvdOb5PJEa6GXmoA0hxcXriiFD+i8R4rqxXG0AOI4Af/AnbvGKamkfFthp/hkfOi
- yiaOGVgxn38zT/AM88KwJ77kPK9bLXcaNBNPHr/ahLBQMfSl7cZe1EwF/NWA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=AzFnMZVPG37ubr1XyLwDi0xr2IYWNx2vPyLVknIwSSA=;
+ b=PcfritbiACBgnxdpZYhouS3irL7J/TsHwLIj7cVOddYB5l1QSvts3zmFALYpN0Kyw8MYM
+ PLIAYnlPS0MEEYSg/bmttw1IVIJ4AD7gQJ3NQ3ZkvUXMo7VHzS3QjFmMEX0k5NHxQc27reA
+ 49lVmISGjXmvXgx4dPTfttny2oUFuoX3cRsSDo0skUJ8Y1dCdGxTTwGHvI6rmXtseZPBeB6
+ X6hMGJSUWYioNILVgVAKMfE5C4DVrzJ4QqjH5SCV3NF5cWz0DSQ+Q0iu3k2EppbAPwyAEOE
+ dQPPhn7TvN/BWlFQTfMiWOiXFhsOWNwM1stNxIAvlLo/mZLbRTB3UDkCJnyA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9E23644DAA
-	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 11:17:36 +0000 (UTC)
-Received: from CWXP265CU009.outbound.protection.outlook.com
- (mail-ukwestazon11021110.outbound.protection.outlook.com [52.101.100.110])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 305DD10E9B5;
-	Wed,  4 Mar 2026 11:27:56 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vc6i8UHMWbGNVxS4taWF6gOd/nbj8lYLrNRbtGOBG/y4vfZO/SNMGqTDgAY5mh5IYLLgQYO7d6uc2SaKxR9VZENGzUH4bGtnvtFwLTiFT5HWMSAgn/olu+9ITd6y8IXTkpKJeuqh7XvJFwcm0qSw/4yuUwTRfsSl6JkCV2W65i98Yk8JBy1t4WOXIh2Y/qAkslUPC2AomDvCpWZGKSo7siodjvnSrvvsjhE3iI1PgsF8bkfxX9S55wbl/i/2LbeJPAccu3KxjeD0lYR/aRu/xQzZ5HY87hWb5eLSCqZ100IFIgd5JqNIilgxxGKNECNxsScmAEEspdqqSA3o9uPqIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v2+Yl5hQb5zO4lBeZkN5rrmgatfdnZZ3ypUepg6r/fo=;
- b=AV8sFUuyRaph7LWkYeHJUu5HONfn7C4f2o/JRcMp6anqn0bqFde40KB3EmHnUry71LMbLdmkKez4zO33ikYen8oC9H7aG+JxRUN6X9HuKZhW0U3uJMpZEHXcnH7bTGq6+fRBxXMS4mpESs8qnRvnnHEjNyzDatUHSPXTqRmJdd/j+uDhEHndLRypFq7vuDmMGQAhvKY7W/WTPJxmi41/eEI9IorE26slkRI3vtwG8CfClUM5pG4d7T5/+SnoXv5HyyP4w9H9whE/jy5xA1xEmu9246ecwjPkWbALieJUrBZwWcis+VGQBRGD9Ze19MQet0nnAU7J0v5/5AkBslMccg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v2+Yl5hQb5zO4lBeZkN5rrmgatfdnZZ3ypUepg6r/fo=;
- b=gNQ7hNK9H8S8HB6ifO1UeXCwrs5Mh4tHDUGmzs+3LeiA9ifp0uKo7MsVpAG1Nk1DBJcDO1hnN4vrG6RGUACfU9iFlA/JuPRJz0XlC6rJqhY9aairSU2QQzEx2D5WEEPg6bznR7FJ3JsZP8bRc3mcxuj1M2k3p1pFizI6DgVT2Dc=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LOYP265MB2032.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:122::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
- 2026 11:27:53 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9678.016; Wed, 4 Mar 2026
- 11:27:53 +0000
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1113C41E96
+	for <nouveau@lists.freedesktop.org>; Wed,  4 Mar 2026 11:28:55 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BDEB110E9C4;
+	Wed,  4 Mar 2026 11:39:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id C196060097;
+	Wed,  4 Mar 2026 11:39:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FF2DC19423;
+	Wed,  4 Mar 2026 11:39:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772624353;
+	bh=UuegjYjNYdFZYA27dchsMoBmg0FJygSXcjoy8zrEaVM=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=Hy2HOrsPB2b4JElrQXZZO2/AwB1zsGmrhScOPZtBCa7DX8h2EXtAO7CrARdqoG8YT
+	 gkSqDunPagYps1kxEXIgVQFw7m2Qbt/sSh62rRVZMi63VwQ1sCfc90uYk1UIDJiWrg
+	 /aX1Gt1HLFzk05DW7yhl38EwR7IfUrkqujxbWMAtAJ52X7qKILjLqjVPMQtLLVsK6d
+	 h7601dTjKVpm5KTzJT1t5wrf2vvf6/3tFIDuMBhs125oZhEuFm6dpN/LAIp4pCwgRV
+	 H8bCOF0aWTK9E+FOROz1kQX6yvoGXDz6nCTg9I2T/8pMd/zI0ZqHl9ncEg9DA84I1F
+	 SdR9qICqcPcJA==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Wed, 04 Mar 2026 11:27:52 +0000
-Message-Id: <DGTYND7P67DL.3NIMJBU5R91LZ@garyguo.net>
-From: "Gary Guo" <gary@garyguo.net>
-To: "Eliot Courtney" <ecourtney@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "Alexandre Courbot"
- <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>, "Benno Lossin" <lossin@kernel.org>, "Gary Guo"
- <gary@garyguo.net>
-Subject: Re: [PATCH v3 3/5] gpu: nova-core: gsp: add reply/no-reply info to
- `CommandToGsp`
-X-Mailer: aerc 0.21.0
-References: <20260304-cmdq-locking-v3-0-a6314b708850@nvidia.com>
- <20260304-cmdq-locking-v3-3-a6314b708850@nvidia.com>
-In-Reply-To: <20260304-cmdq-locking-v3-3-a6314b708850@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0325.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:18c::6) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LOYP265MB2032:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1308535b-a2ec-4f79-5f83-08de79e1133c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|7416014|10070799003|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: 
-	Ul/ytjm8dKvYE2LFexqRh6wa5kn50B2z7Vg/bpNyL7Fnkf4MGeKxdNSfKl+I5wnwsc+ovueGPxsBncrewFpMgyWjHtStlBQbzvsc+bwc6knW4P4MiqZmeZkbU1Y4eN/GnWALlAjVsDyGkx/wiw99NDjAatZ/WINKmddGNBCmeQa+rGlbcyMF6kHNoUiZDVg++3JTwQfaSY+SexYu+bYlUamnM2UynkFgfTmQ3M34mMoqPqJ1epncqQ3A7rBff2MscIW60BSqn9DjjK0FJLj1HAJxEpP+wMjlKwV/9C7Y7wdPoz2lnad98LAfMwFJbpFMrKShwmRc9nU2Xx1rqh/zibS6lV4DAvyMwoS27H/+NGrFmEu9OQT0R9Wu0Ho/B3jPSfRaqLBWCqbScnoydzCjDRCdHfvRMiOgLQM9Wu295Sd3QAmXRd72C8pHGfnUV+eopsFHPgjdm/xopaNbesDzEXU9Ykep9gysMD6Fkv1h1NgLzBbdbGufAfK5hj9vZwEp3o0u8g5HahfXxrbRTGihyRpNvq9g3tnXpOHtNhTFgqkrWfTniICk30nxcApajh0pE75Cn/xRTeHJh6NDTRpkA676SMix1WPtZziaNWpwAHviCcp1zfox37C6sOKBnrRxmmRRUmiCzCCHywaYNTL8LYIWH11YUuK907n7megjgIjG++IGaqFkTxNhK0djKjrkn4M3woHNbAjy/Ub8Yl0stcoAPUQK64pznbCpvF3becg=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(10070799003)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MElid0ZvaXRyUEVyWDJvaE9JSTR5bnZnanI3aG9vcWNONWw3VHBJNGVLRHNm?=
- =?utf-8?B?QUNkeHIzZndZVVBXRVFKdWx4RXhlcXRUZGZIOTY2RkNCMW9tbXlOeWpEUk00?=
- =?utf-8?B?aTBmRGhBQit1QkV2WW1EdC9LaGJLblMvMlNuQlA3bnR0SEtHNGx3SUZvdU9Q?=
- =?utf-8?B?c21CS1VJNzRIcllxTWpYUldBT2xBUlVGRU4zdkYrQ0ZJUjZnSkhsSkRoVWd4?=
- =?utf-8?B?cDdjSTBZaXZtSDU3d1NrZzNqZzNTNnQ0d1NYcGxpMC9ueHhZKzJRcHlhZE15?=
- =?utf-8?B?dVkyVXJseVhDY0xDVDRoYlY2TzlLZ0ZwY3FLT3pSamNPT0N3dmx4a0VRYk56?=
- =?utf-8?B?TlN4UlVkTGx4Z3ovMENXeVZtWjJzVGZ2a2pSUWRna2UwenZEZ3gremFMUnVm?=
- =?utf-8?B?MW1PYUZialB5eHgxa2lJWVJTcXNvcWdSeGEyYmh6NWFhWjVHZlI3bUtOL05R?=
- =?utf-8?B?ZjB6d3B0OXBoMkJHaGVuMkNlblVZNFZYZENpdTVUazBDQU9TMGM0S0RuMER1?=
- =?utf-8?B?KzNxVmxyNFFqQUZFVGtqZFNxcmVkZDVoMFVoR0ROdTN4eFJla3FURkZFTEQ3?=
- =?utf-8?B?NDY0UzZ6aDhPSitFcHJibzh0SmdwTGlydGFVQ0J5cmUzZkJWaFdLcTIrdllP?=
- =?utf-8?B?RTJyalRYc3NBZDdoRnVpS0pDSGpIVlA0R3pQOEptYkQ0NW1abTBWTytOU0Fu?=
- =?utf-8?B?UFZYRExGQi9zNm4rMXp4a2Y5Sm45cEhGa0dEYS9laTBydjFBVmswWXVxLzJs?=
- =?utf-8?B?a2RRaUFpd0lrbVpjKzNVeVVRMmtIMEFhYzFjVVNEMlF0eEIrbTNPNDhLd2pz?=
- =?utf-8?B?TVJieEdiNUlLOEVHYnVjTmo3MHNQT0VwSURhWkNDeDdrdkNSd09TUkdjNGJo?=
- =?utf-8?B?bUR6MmV6RHprY28wMytCMlRGMm1QQSttSE9vM3cxa1RrcGFqeXZ4MUJ4ek1k?=
- =?utf-8?B?SFJzNU1ocTZqanhEYUFLMVJDYkN1aFlCM24vWFYydjJkTUNId2pSdmRrNVpQ?=
- =?utf-8?B?Ri85dE1NMkJXczEvekRCVHk5TmNSSmIzTXhvVDNhZ25Ua0xVL1dzREZKWjhG?=
- =?utf-8?B?OVQvM3J2dU5keXZWaWx6b0V0dGtCTlQzR0JJN3d4SFpPLzRwN1dxS2dqS0h2?=
- =?utf-8?B?RXQ4QjlYbmFSRk9YV1dhK2taTjQralE0L2pxMnZXVHpyNGRqUjVkQ0cxZE5l?=
- =?utf-8?B?SCtrZjhRbTFNUmlLZzlOSW93SWx1aCtXVkFrb2JlMExESFA0M1NXT21IZ0xr?=
- =?utf-8?B?MjVSelNvSmxjaTNUNHIxQ0poZSs2eU41RVlITS95c1JLdHVsOVFFQkdja0dy?=
- =?utf-8?B?ZS8wNVJ5bmFJa1JzbERKQisyTGVZSWRaNGZ3YmNsWjdQSzNmdEpkdG1oWlBV?=
- =?utf-8?B?V1g4Ykk2SXBBY1IrUVc3Z3NMM3luV2liblk1TmlITzJ6V3NIMWFzZVVQOGVK?=
- =?utf-8?B?UE0rbUh5RUx5OFo1N056SnlPVGdJajRUZUNER1ZqL042MXZkclBLYXlqb05l?=
- =?utf-8?B?WS9oVHkzMFQ4R2F6c240UkdCc2lMT2JQR0l6dDNCcVl3dWwybXRPUGxCRDUw?=
- =?utf-8?B?cDRCdnM5UFJIaTg3MFR0R25yQTQ5aktlNTJBaytibGlIa29QdzMrSmhmeVo3?=
- =?utf-8?B?UEpYUjJGWTNsOHVNM1NZTHFDWWV4eEgzS1RqdVFzWWhsYmdMQS9GaU5kRXlG?=
- =?utf-8?B?TERQVnBwRFRvS0FVUFU1Y24zeVhLeENSTzRIOEVkSkN4WDI0Y1NMdTBnSnlG?=
- =?utf-8?B?T2hwK1JqRVEzUFQ1bERvNEJXdDMxRHJEY05TTWd2TnJZUzQ3RThTMVFFQ0Uv?=
- =?utf-8?B?c3hJbFpFeWVXVlVoN3VNdnUrdjdNNlh6c1NDT0xDZU95UXI3VlAyUCsvRXhs?=
- =?utf-8?B?ODZ3anNtR3JIQlJFclRLeVhEb3BIRU0wVVIyQUVlYWltbEt0ZG1lSXhUTk9j?=
- =?utf-8?B?WXU2eWpKUGs4QklJSVZ6VHU1aFUvT3c3OWV6SVpKZDI4WWxjUEU0c1p1bFk5?=
- =?utf-8?B?OUJ2YkdRRDRXczZYa1Y5ZnR2Q1JZQ21rd05vUTJ5aEZxSUxIODhRMWQ0clZL?=
- =?utf-8?B?MjBlSHZINnMxdzJkMW54TTJZTjlVWXdiaDN4aE1OdysyeGxzdnNVZHFIWkVp?=
- =?utf-8?B?bk1KaEF6NmZueng1UEpkNEtNYkJtV01oVWd4SlJrNUV5b09URzNvM2ozcWJs?=
- =?utf-8?B?R0NzZWNxM2Z4M01kSTJqS1RiZnYwK1E3eENjNUFtMWlPMlVLRGlGT0E2ZGJ3?=
- =?utf-8?B?MWwrdC9POWhpK01lOHV5dzc0YmJZd3ozNGluNFJodTZydWZjL1ZPSGRIY2pz?=
- =?utf-8?B?V3d1VG1uMzRrbEFENFQvY0d5bnR5QmZweEtLaFZjTWx5V3FRSTRhdz09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 1308535b-a2ec-4f79-5f83-08de79e1133c
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 11:27:53.1297
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- nFQnprNtul6if+dkkelJDjXEW3nhfBaBBiU4Ea58/KYMfJMj7HaVEH9xE3F1m7ubD621b2an7CTEfhTEVGl6BA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP265MB2032
-Message-ID-Hash: QRAW5TCEHRTABYTDSQGYJF5EP2R2W2SE
-X-Message-ID-Hash: QRAW5TCEHRTABYTDSQGYJF5EP2R2W2SE
-X-MailFrom: gary@garyguo.net
+Date: Wed, 04 Mar 2026 12:39:08 +0100
+Message-Id: <DGTYVZMRVLLE.3HQVL7ZT6MU7H@kernel.org>
+Subject: Re: [PATCH v5 2/9] gpu: nova-core: gsp: add mechanism to wait for
+ space on command queue
+To: "Eliot Courtney" <ecourtney@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260304-cmdq-continuation-v5-0-3f19d759ed93@nvidia.com>
+ <20260304-cmdq-continuation-v5-2-3f19d759ed93@nvidia.com>
+In-Reply-To: <20260304-cmdq-continuation-v5-2-3f19d759ed93@nvidia.com>
+Message-ID-Hash: PL44OPIMZ72UZUDFLUK6RY7DCHJIHZEE
+X-Message-ID-Hash: PL44OPIMZ72UZUDFLUK6RY7DCHJIHZEE
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, Zhi Wang <zhiw@nvidia.com>
+CC: Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Zhi Wang <zhiw@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QRAW5TCEHRTABYTDSQGYJF5EP2R2W2SE/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PL44OPIMZ72UZUDFLUK6RY7DCHJIHZEE/>
 Archived-At: 
- <https://lore.freedesktop.org/DGTYND7P67DL.3NIMJBU5R91LZ@garyguo.net/>
+ <https://lore.freedesktop.org/DGTYVZMRVLLE.3HQVL7ZT6MU7H@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -186,26 +110,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Mar 4, 2026 at 2:46 AM GMT, Eliot Courtney wrote:
-> Add type infrastructure to know what reply is expected from each
-> `CommandToGsp`. Uses a marker type `NoReply` which does not implement
-> `MessageFromGsp` to mark commands which don't expect a response.
->=20
-> Update `send_command` to wait for a reply and add `send_command_no_wait`
-> which sends a command that has no reply, without blocking.
->=20
-> This prepares for adding locking to the queue.
->=20
-> Tested-by: Zhi Wang <zhiw@nvidia.com>
-> Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
+On Wed Mar 4, 2026 at 2:42 AM CET, Eliot Courtney wrote:
+> +    fn allocate_command(&mut self, size: usize, timeout: Delta) -> Resul=
+t<GspCommand<'_>> {
+> +        read_poll_timeout(
+> +            || Ok(self.driver_write_area_size()),
+> +            |available_bytes| *available_bytes >=3D size_of::<GspMsgElem=
+ent>() + size,
+> +            Delta::ZERO,
 
-Reviewed-by: Gary Guo <gary@garyguo.net>
+Isn't this either creating unneccessary thrashing of the memory controller =
+or
+unnecessary contention at the cache-coherency level?
 
-> ---
->  drivers/gpu/nova-core/gsp/boot.rs              |  5 ++-
->  drivers/gpu/nova-core/gsp/cmdq.rs              | 55 ++++++++++++++++++++=
-+++++-
->  drivers/gpu/nova-core/gsp/cmdq/continuation.rs |  5 ++-
->  drivers/gpu/nova-core/gsp/commands.rs          | 16 +++-----
->  4 files changed, 67 insertions(+), 14 deletions(-)
+I think we should probably add at least a small delay of something around 1=
+us.
 
+> +            timeout,
+> +        )?;
