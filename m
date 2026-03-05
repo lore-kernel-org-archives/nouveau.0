@@ -4,87 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DAB8F30955
-	for <nouveau@archiver.kernel.org>; Thu,  5 Mar 2026 12:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2732F30946
+	for <nouveau@archiver.kernel.org>; Thu,  5 Mar 2026 12:37:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D01B10E297;
-	Thu,  5 Mar 2026 12:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A40DD10EAED;
+	Thu,  5 Mar 2026 12:37:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="xQEFfnrB";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DrJxUYGJ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id F0CAD44E82;
-	Thu,  5 Mar 2026 12:18:23 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772713103;
- b=lDGu8RV2+svNl2FpJh3h7Q/23R345jtqV2xR/zgrLcaRis6nDI33NMTAJF87KVX6Txg6X
- DDoJL6aIYmVoOh7HrF318VeVihcfs9pFKhKZNLUYZkskxIqpoO+ei4cRout5ppja6DBaG3K
- i+jKh2DWtLpWl7MayyRayHhVJSFRWv4wklc/qTo7prsVNJ4q88SdYbwRQNdKB9HFkKpP3P7
- 8PwktOEuPSKEkWO9xvqJZxOJGMkH6+tSBbuOM2dA2OAVgc1SL1FfQwWythoA110M2FNMpOV
- v8OTPgl6PjgHSh3Juzj1JMa/3KHjqnafB26mPMc51ogScqv1gvSRpt++4NKg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772713103; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 6150144E83;
+	Thu,  5 Mar 2026 12:26:40 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772713600;
+ b=K7NhEydJEqyC0E5I53cDbWqRMV4PxB3MtepyNQak3767bmxrw4/ZAjs2rDIckCYxUYjNg
+ 4pGVzSKSZEUT5VKBiCcwdkee1JNXegrIrAu1YbbyoasvJ4FaY77wbA3Ihi190fzT88F4zpr
+ RcOv3NB0qvHsPMkg9KGyebHJwofVBp6eUyNCxVhqsHZY5hsQaNNEo4DhGc4IUyYy+Oq3CkV
+ ujJR3I/Au1+Yf2tQ6DmR24l1aYOQKbOll2+rIElV4RXcd31M41JPqDlAp+SpKCu+c9sV/eW
+ nPJwZmr2hc8HvtGge6bmMxzApmd2A+ljXrfUszlm/PCaXl2jbI/63pGU+PSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772713600; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uaT2Q5qOOtkTi4nLEVAfgpVdpCwQVkNht4mUzsnI/tc=;
- b=zrcLRDCz5G3ZFv5Q+Z1+cdZ17FPYiCps1DYYWXPOuicAyCrlx71qTbvGQwaL61os+p/2B
- Yd+xM5MmcF1pfFfLR/2F4pPnqfe0sfbA6oixwN/dJvGSBI/O1a8vgzgCA+pBD0vZm6504sE
- rGM1ZFN8OlhKBG8bu9mLovrvr+qFc/nP3UamP9D9RIqfh4RI7OqI1SzjTmuh6rOROmxQvVR
- FhWBQATuCcO7CYvlAwRg4Nevh5/lKgLYnBpge3LHqrZrQngOYE0H3b2u+m6Fhf+qZRlKoii
- Sg5ArtMvkBhVjLlV8ZuWkJsiagMTebNIwzV1/X9Z60QFW9fVKxCK0A9XOA0g==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=IwDeOBSinEDPZcc6YZoBtnaprgrbyGBbIU/1YYB2on0=;
+ b=uihAK61qS4R/wtnOEV8Ei/OFhy/01MqaK7MTYGdLKahhIaV3lALwnOyB5Q17/8b0p1hB4
+ 1e9wk29MYLcg6+bsWHeYk1frMe5/PUAnS99DmHNZ8NUkValtZ3J2DRsRfgIeb+lyx/D1XWh
+ tK5MxYK867JXTeXJb/2tSF+lLZWq67/nETlH8s9QYd4WvXlfL7FS7BBbkcLqOJGJ5aG/1hN
+ 4n4sZ29B8KAGqHpESCF1tgqj38pvK3lAGTE1ozW38F9UgP0lvze9pxhmopMwgIePyK2ai2Q
+ oPJCoiw61JqUOiNSeK3ybL1G8SGw9Y/Bi46Abh/UA7d9sJ5obUWhOfFQwXUg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 11727402B7
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 12:18:21 +0000 (UTC)
-Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022082.outbound.protection.outlook.com [52.101.101.82])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AE2C910E285
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 12:28:42 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FOOI+QCIKfjwLcu3LMFMu53E+JVBoKiUkWYtgSKaBLQHcgyrdFrXycyaNkxOvG/RvIPPhHbeXawpLM5hRE6IsEwOAuWzkVKsI2yoZ24csR72jFL7pvn/Tuh0P5I3g9k5udLsarcq4w0wblEh0KmGIlGAb/03e2hoj/n8qzVMqWgCxRfYvENG1O9e29r3Pu67NDsBs+zn2MA7rIJ90kghNtS1zFrsEPrhNdR3keKnW5RSMOiduFgg59owAdhxAEFTM4V8BnKqyC/sQwvCsdcspa8EA0lJOU62TtGfqU8Tm2QBRPPYxTmmjOhRPoh12tLOY0w3dcR8Xm+0l3nUQRYdfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uaT2Q5qOOtkTi4nLEVAfgpVdpCwQVkNht4mUzsnI/tc=;
- b=DEjm+ZmG3hyzVZG03t/8cRpfZXsAT+sSjHn3i/c1GwFf1zs+0oq6VuTS8RFSDovZEGLuasA0zpJ//XcpF0FPaGwzp8d+4rL156PcJSKg6eD1aJHoEIo6sJ2MVY5Pbm82zZSs4NvqLFcpsH9kxdubUNmgbGb8LW3K+mKbN5eWPxrWX0UsqZSATkD7NNtW1l7QCnSieP5fVyH/SrgtbCXvnArUX50OiOW2vlvp9S29ZjLAg9aZQ6SbpgTEFq5xvihleHK6pDLf/qgN0u8c2gTigTJeTjNTnjEQFbzHxrd4/nDHQ5BofdZZWQohbq/Vb0wuodVVzvY30Q0nkfNnNNvWUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uaT2Q5qOOtkTi4nLEVAfgpVdpCwQVkNht4mUzsnI/tc=;
- b=xQEFfnrBlhZgR//65ExNMHfRyjvS0EDPuTYLzL4FcPpwAO96qso40ZzUL9MD2l2lNOmb+X+WvSrNCQuKiwlG2qZDeMDdUyCtTR2BSTyaeIL5ijCGKkLqVV9Y8A2T9cyW/lkSyvFuxwJsIP0tOgrMV2nwGeJ1kCLWAQUlLaLVz4c=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO9P265MB7920.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:3b6::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Thu, 5 Mar
- 2026 12:28:39 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
- 12:28:39 +0000
+	by kara.freedesktop.org (Postfix) with ESMTPS id AE3ED41CAA
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 12:26:37 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BFDD810EAE2
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 12:36:59 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 69BEB42A16;
+	Thu,  5 Mar 2026 12:36:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80950C116C6;
+	Thu,  5 Mar 2026 12:36:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772714219;
+	bh=IwDeOBSinEDPZcc6YZoBtnaprgrbyGBbIU/1YYB2on0=;
+	h=Date:From:Subject:Cc:To:References:In-Reply-To:From;
+	b=DrJxUYGJ1sLj2vgjyCHiHKafWP3wG6vaoXugGnGtnEjxDUh0IR0rQV6RDnKsGOL/4
+	 +LGbzPwtePb/Zq/DBzZSKlUsvFkrJbZjiYpFYS0d2jskBYS7yJVeMUKNO90mELEPpi
+	 nFBRkBKvxQ6XsLZadHS1FUKvBhm/CymnrhNn2RWbmJVWgyDnKLaySs8Y61vScmHbXV
+	 +k2dzbbSJOUyOy5iroHQRdH66v7m/bW/d390z9hUxVT/+XaByssSjnmMrmIw6hMtTu
+	 Lar0BGINulgRBTMq3HDmu9dPUv2J/oE2M1a1/+4qbNSj7pX2i4BTrV8Xb6e+ouBWjU
+	 eKOFjXIpKh0qA==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 05 Mar 2026 12:28:37 +0000
-Message-Id: <DGUUKFDDA1O7.29K9XVJRZV6BN@garyguo.net>
+Date: Thu, 05 Mar 2026 13:36:54 +0100
+Message-Id: <DGUUQRCUTQJF.15MR7PAFJQHNF@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
 Subject: Re: [PATCH v5 21/38] rust: ptr: add const_align_up() and enable
  inline_const feature
-From: "Gary Guo" <gary@garyguo.net>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "John Hubbard"
- <jhubbard@nvidia.com>
-X-Mailer: aerc 0.21.0
+To: "Gary Guo" <gary@garyguo.net>
 References: <20260221020952.412352-1-jhubbard@nvidia.com>
  <20260221020952.412352-22-jhubbard@nvidia.com>
  <ee76d46cc0cab88ce6dbdeda6a8850dc@garyguo.net>
@@ -100,82 +90,15 @@ References: <20260221020952.412352-1-jhubbard@nvidia.com>
  <DGUGFGFA7FVJ.297YIFEBLO3SH@nvidia.com>
  <22041c9e-1eda-4273-b5be-6f277dec4a4c@nvidia.com>
  <DGUNQN0P5850.3E1UV2JK8WJEW@nvidia.com>
-In-Reply-To: <DGUNQN0P5850.3E1UV2JK8WJEW@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0264.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:194::17) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO9P265MB7920:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc993dfe-4e5b-4c2d-4d1f-08de7ab2bab7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: 
-	8MOv8rhZBlJqkV50+DQSSkOonYZzDR3xMDqfV4Q4Zb2455WuG5hyHQYCKxkuZdEbk2BB4sNG0bYg3ZI/ektjvZFomZ1HNZvJCYODNiXGWKAFYRBRub7OQIXvmqzh4CJsP88mdvQo+A8IaUs9hXqpSAfvfUdHDhpBe7wOQmobX6oLHaZXAbQ9InpQ0Qcj/StFBKkJ/6rlhLh2BSdDyzUzUNFbveDvxf0pHnXc5ezbJT8eL5U91Ch+eSAXSJBImPGp2arjHPG7zvCj+Tek0CvsxpqLj/oV+bHZ4DaQ7pjrocqidQY5aghKSaI7grqbeRS4PsGbIqCoc1UQqEDaV5kTJu7PeLyz7krOhij/GKBsIIPq51MVM6nPcGZVZzEf4mxQehuyUVdUaIgGI/7D/+KslEvlRSpxpVOUjK0VDe3hJfdTy25ubGddrTdQWBsS3SrO/RHoAHPG+rDa31BKIHfUmho3LVIZkV+m+Z9v2d7pZ/J6bnl6obhDtzWFKvN2NudECpORA+eRyRkY8mPPr/m0N5GB7EPl+F8xklddJho4K0ky58RtBqJZZzIgqkkQZ6Vs37fkW3w8a4JM5yzFkpHNoxSFwgnP+/VfQylSXZ1ZIxcq/HScoefoOIzC5ybQrqH9qq5EYmSzVA0h+L3k6GcoH439NbGFPV0pcPsPJibrxbrwicDujRiKTBukXHlkegNZm5jYAvY45I0GT1dNcclGORxkE0WfXlsAI9Kg2TkbTsA=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Z253bmZnS2tXTFNRQXJ4L3MwZjZmaFhnTzdpY1JtRHBoakd3ZnJsc21RT1hk?=
- =?utf-8?B?aUJlZnVPMlo4SFpHa0xKOWlMRndhU1VVR25WSDhWckRkT3BnUHo4M3FCVUFw?=
- =?utf-8?B?S0NNdFE2eTA1Q0hBYTBFTHA4eWdYUU15TCtCWGZacHNNZXFQUFZyZ0ErODJ3?=
- =?utf-8?B?WmpTOUVrS3BaWGRJRFdCL0lJYVlqVFplK0g3eHZCY3NJQldqSk02WnZORXpQ?=
- =?utf-8?B?VjVJTGxKYmNNUUhsNkxqbUxqbGQzSkhpT3AyYndTekZqaU56TkFCczRpTG45?=
- =?utf-8?B?djRtUlZvNnRrWmpmcmtTd2IzMXpMMlNCY0JqZDluazFHWE96TDBLMHM5NUFo?=
- =?utf-8?B?TGo2czJyd0V1WUlRQzZzTUYzVVcyMmJkYUpDYXVIYmdhSmhGUUlwZmp0Skk1?=
- =?utf-8?B?OXkyb0tZZHNtNE03clYyWnJxYkRPNWhGZ09CYnNmcWljVERzWWo5R3BRYUZl?=
- =?utf-8?B?eHFzK3ZvUSt3RnFiYlVhNk5UcHBwYVNKUHFDZFlrS0JCSDJWMnp4eXJlbWJn?=
- =?utf-8?B?amtlOFlGQnZSS2pHWWdvKzU4YVVQazBqcU82dTlnbzQzTlpzOTQvMDR6YlUx?=
- =?utf-8?B?c0lsZFp4UTIvbGxkWkFTNDBZcFZUTFBja3laelhBengwbFBrSUoyeXJqN3F4?=
- =?utf-8?B?SUhRdmh4cUNqNEJCOFFuOHY5UlBMWTIwaWZ3Yi8xZktaNU1iaG1vVjhkSC9F?=
- =?utf-8?B?aEY2UlVVMHlOZDB2ZkhYVVhHbXpHV3VtbWFnOG5jTzNGRVJ5NWpzSHRrTWw4?=
- =?utf-8?B?VktqSFhzOU9GKytTN01DU0VQRit5d1BOanlUV1RNbDdEY1VORG9aRndZVEZF?=
- =?utf-8?B?TFBYTHRxV1VOREtIS2NNTnVRNTg3SlNlUGJjbUJyZDByWXVjeVFXRXczZEtT?=
- =?utf-8?B?eU1aMFF5NkExYVVKbTVGSi9sV0twMUR5YWlmaHdqRnFWUklvMkZYK3NHTU05?=
- =?utf-8?B?YkNUL3R2WEdJZnBKMjBCZEgzd2c4bzk0c21DWkJVdCtoNVdaZVRvYTlPcEVK?=
- =?utf-8?B?QXdSUG5tejJtSjZaV1h6aVFrdW01N0ptUk4zay8yUXg2VEpaQnZiUHN1ai9O?=
- =?utf-8?B?ZktvUXRKbElhMit5ZTd0L3hlN0RQTXBEWlQ5dSsxVnI5RktFeVQ5VTVZZDBj?=
- =?utf-8?B?SkZDUnNLY2VRNVpacHNmd2FhcEhHaXlEc0d5RGtDdW5hcnhCWnpqWXFrMWE4?=
- =?utf-8?B?ZjE0LzNiYmw3TDBWRm5UWmtGSi91WUJXUFBRbC8zRVJnWkgwc2RMblZzbDRi?=
- =?utf-8?B?dGFreE0rZ3FWQ1dIeHJUVVdzdjF5VHlDeGZCVmJXdmxVK0hTTlBrSXpKbHVH?=
- =?utf-8?B?TFBmRFlzc3lBeEFrSlY4UXpaYzhTMEkvZzNEd2dTalpBMFFidlN1VkFMd1Ur?=
- =?utf-8?B?ajNFM2tjUnludFd1ckZPa2FDN0h1UStRRUxMY29ReXBjNzVTMWtMTWRod1hM?=
- =?utf-8?B?Rm5BL3FQUWxZSzErR0tpVFJ0M1NzREVrWFpaNGZEdEJLbll4ZkxQc1FyRFlx?=
- =?utf-8?B?eDJ1ZzViMXBOWm5mRlI5WU9vSGJOKzdldXZLcU5GUXhsMk4vbkpSL3V2ZjBw?=
- =?utf-8?B?SURQc1pMbkIzZWhxaGZYY01FS0xjZlRCeFNwa29iUWdNakRQbnV6RUhsRkdP?=
- =?utf-8?B?YWpOckdHSjViNlBCVlhwcnpiNkxwVUFQc2hNTTFHcFo0bVBpN1VNeEZuVExL?=
- =?utf-8?B?SSs3bmdpcDR0NnkxSWRtZS9tTU8yYy95aEpTV2VOMEh1Q1NTQStPNVpRb0Nl?=
- =?utf-8?B?M0xkZzZOQlBGLzNmS0Y1d2VXYklRNGxiVW9icTF1V0UxaHFUNXZwc1l3bFBi?=
- =?utf-8?B?czZadzdlaFBkT0RBTzBoN3ZWUWp5QlFoSHNGaGNzeEV6ZXpjUjlKR3dkcXRq?=
- =?utf-8?B?d2VNYlRnVURVZktEUmZrRWJWVmtuS09UWXdYOTk3bjRnZURoUGhQVElKMVhm?=
- =?utf-8?B?N3ZPeTF3WWxXcytpRFZQSllHUVg5S0pNTDNsSUpmNXVJRStHNEN2amJNLytS?=
- =?utf-8?B?QnVWM1dxOGI4aUFUVTUvM2IyNVBjOE5zRUJORWtkOFU3WE1ZUjlGSDBqVFh4?=
- =?utf-8?B?YzR3UGVMU0M2WXdackEzdzF5OFJGMHFuZWJmYmFHaE5HWXNucEtESVFwZkdS?=
- =?utf-8?B?aWVzRWt1VUFzRklWbDFmMzVzeTlORkpPbkVBblEvOXVtS3hmd2thN2VvMnhF?=
- =?utf-8?B?R3Z3OVZibjA2VG81UTdPWjRRK0pRZjVNMk41bFBuNVRSd2pQa2hxOGUweE1S?=
- =?utf-8?B?NUpITGw0T2N5eDJxa21QS1VHZDMxS1YyY3AzekFwVkxROVhFRWhueU13dDd4?=
- =?utf-8?B?ZHFRUnJvMXdkbEdreGl4NEFoY0Q3UHBXWGxSTjRtVy9KSTF1bVhzZz09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- fc993dfe-4e5b-4c2d-4d1f-08de7ab2bab7
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 12:28:38.9332
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 3XQC+ViswfQxESsMV/jnERq8NmUpXNODDeXQmk08d+zuCl/jEYg02xYqW0dd2rYk6ywBChnCeDrHgoOhKwMlnQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO9P265MB7920
-Message-ID-Hash: ZJS6FH54OM7HKTQ6WAUKU3YBVZWL4J7I
-X-Message-ID-Hash: ZJS6FH54OM7HKTQ6WAUKU3YBVZWL4J7I
-X-MailFrom: gary@garyguo.net
+ <DGUUKFDDA1O7.29K9XVJRZV6BN@garyguo.net>
+In-Reply-To: <DGUUKFDDA1O7.29K9XVJRZV6BN@garyguo.net>
+Message-ID-Hash: RKCJC76MMHZRIHSP4JXSA5CCHA7F3A4G
+X-Message-ID-Hash: RKCJC76MMHZRIHSP4JXSA5CCHA7F3A4G
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Gary Guo <gary@garyguo.net>, Danilo Krummrich <dakr@kernel.org>,
+CC: Alexandre Courbot <acourbot@nvidia.com>,
  Joel Fernandes <joelagnelf@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
  Eliot Courtney <ecourtney@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
  Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
@@ -190,9 +113,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZJS6FH54OM7HKTQ6WAUKU3YBVZWL4J7I/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/RKCJC76MMHZRIHSP4JXSA5CCHA7F3A4G/>
 Archived-At: 
- <https://lore.freedesktop.org/DGUUKFDDA1O7.29K9XVJRZV6BN@garyguo.net/>
+ <https://lore.freedesktop.org/DGUUQRCUTQJF.15MR7PAFJQHNF@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -202,160 +125,12 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Mar 5, 2026 at 7:07 AM GMT, Alexandre Courbot wrote:
-> On Thu Mar 5, 2026 at 10:31 AM JST, John Hubbard wrote:
->> On 3/4/26 5:23 PM, Alexandre Courbot wrote:
->>> On Thu Mar 5, 2026 at 4:14 AM JST, John Hubbard wrote:
->>>> On 3/4/26 11:04 AM, Gary Guo wrote:
->>>>> On Wed Mar 4, 2026 at 6:53 PM GMT, John Hubbard wrote:
->>>>>> On 3/4/26 3:18 AM, Gary Guo wrote:
->>>>>>> On Wed Mar 4, 2026 at 3:47 AM GMT, John Hubbard wrote:
->>>>>> ...
->>>>>> +#[inline(always)]
->>>>>> +pub const fn const_align_up<const ALIGN: usize>(value: usize) -> Op=
-tion<usize> {
->>>>>> +    const { assert!(ALIGN.is_power_of_two(), "ALIGN must be a power=
- of two") };
->>>>>> +    match value.checked_add(ALIGN - 1) {
->>>>>> +        Some(v) =3D> Some(v & !(ALIGN - 1)),
->>>>>> +        None =3D> None,
->>>>>> +    }
->>>>>> +}
->>>>>
->>>>> I think your signature should probably just be
->>>>>
->>>>> pub const fn const_align_up(value: usize, align: Alignment) -> Option=
-<usize> {
->>>>>     ...
->>>>> }
->>>>>
->>>>
->>>> OK yes that's a bit nicer. I've done that for v6, thanks!
->>>=20
->>> Hold on a bit - if we are purposing this new method for use in const
->>> contexts, what use do we have for a `None` return value? By definition
->>> we would know both `value` and `align` and thus the result is
->>> deterministic.
->>>=20
->>> We do have an alignment method for non-const contexts already. Gary's
->>> initial comment was:
->>>=20
->>>> Either this function is always used in const context, in which case
->>>> you take `ALIGN` as normal function parameter and use `build_assert` a=
-nd
->>>> `build_error`
->>>=20
->>> So why not make both arguments generic in this new method, and fail at
->>> build in case of overflow?=20
->>
->> At this point, it is completely impossible to write a patch that complie=
-s
->> with Gary, Danilo, and Alex. It's all over the map.
->
-> IIUC it is possible. Let's summarize the constraints:
->
-> - Gary wants to avoid a panic in case this gets called at runtime,
-> - Danilo suggested returning a Result that can be discarded in const
->   context (but took that suggestion back as we already have methods for
->   non-const contexts and thus wouldn't bring any benefit),
-> - I also pointed out that there is not reason to have a failure path for
->   const context and suggested two generic arguments.
->
-> So here is what I had in mind, if using a standalone function:
->
->   pub const fn const_align_up<const ALIGN: usize, const VALUE: usize>() -=
-> usize {
->       const { assert!(ALIGN.is_power_of_two(), "ALIGN must be a power of =
-two") };
->       const {
->           assert!(
->               VALUE <=3D usize::MAX - (ALIGN - 1),
->               "requested alignment would overflow"
->           )
->       };
->
->       (VALUE + (ALIGN - 1)) & !(ALIGN - 1)
->   }
+On Thu Mar 5, 2026 at 1:28 PM CET, Gary Guo wrote:
+> This is fine, too, although I think just returning an `Option` and ask us=
+er to
+> unwrap it in const eval is better.
 
-Eh, no, please don't start put everything into const generics params. These=
- are
-severely limited in usability, you can only refer to actual constant values=
-, and
-won't be able to use them in, say, const functions.
+Well, that was my initial proposal (except that it was Result and
+const_expect()).
 
-If we're going down this route I'd just want
-
-    pub const fn const_align_up(align: usize, value: usize) -> usize
-
-and use build asserts inside. If this is only used in const, then using
-`build_assert!` is perfectly fine.
-
-I think John just want to express `usize.align_up(Alignment)` in const cont=
-ext,
-which we can't do with stable features only right now, hence I sugggested a
-specific const function that has the same signature as the extension trait
-method.
-
-Returning a `Option` isn't an issue in const contexts, you can just use
-`Option::unwrap` which is const (might need to enable a feature in 1.78, bu=
-t it
-is stable for a while now).
-
-So you just have
-
-    const TEST_ALIGN: usize =3D const_align_up(10, Alignment::new::<256>())=
-.unwrap();
-
-which would become
-
-    const TEST_ALIGN: usize =3D 10.align_up(Alignmnet::new::<256>()).unwrap=
-();
-
-when we have const trait impl.
-
->
->   const TEST_ALIGN: usize =3D const_align_up::<256, 10>();
->
-> This uses purely const asserts, but you have to work with two `usize`
-> arguments. The version below looks a bit nicer as it leverages the
-> power-of-two invariant of `Alignment`:
->
->   impl Alignment {
->       const fn const_align_up(self, value: usize) -> usize {
->           build_assert!(value <=3D usize::MAX - !self.mask());
->
->           (value + !self.mask()) & self.mask()
->       }
-
-This is fine, too, although I think just returning an `Option` and ask user=
- to
-unwrap it in const eval is better.
-
-Best,
-Gary
-
->   }
->
->   const TEST_ALIGN2: usize =3D Alignment::new::<256>().const_align_up(10)=
-;
->
-> It has to trade the const asserts for `build_assert`, which could cause
-> these cryptic error messages if called in a non-const context, so we
-> should document that this is only to be called in const contexts. But
-> otherwise it fits the bill and looks reasonable imho.
->
-> Unfortunate that we cannot make it generic against all integer types
-> without `const_trait_impl`, but generating `const_align_usize_up`,
-> `const_align_u32_up`... etc using a macro should be doable if needed.
->
-> Oh and if this cannot reach consensus I am ok with just dropping this
-> patch for now and doing something like this in the next one:
->
->   const SZ_128K_ALIGN_MASK: usize =3D Alignment::new::<SZ_128K>().mask();
->
->   const PMU_RESERVED_SIZE: usize =3D SZ_8M + SZ_16M + SZ_4K;
->   // Align to 128K.
->   const PMU_RESERVED_SIZE_ALIGNED: u32 =3D num::usize_into_u32::<
->       { (PMU_RESERVED_SIZE + !SZ_128K_ALIGN_MASK) & SZ_128K_ALIGN_MASK },
->   >();
-
+IIRC, you were against this in favor of build_assert!()?
