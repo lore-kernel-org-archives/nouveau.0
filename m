@@ -4,184 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE88F30934
-	for <nouveau@archiver.kernel.org>; Thu,  5 Mar 2026 10:40:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DA23F3093A
+	for <nouveau@archiver.kernel.org>; Thu,  5 Mar 2026 11:16:35 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8F35E10E252;
-	Thu,  5 Mar 2026 10:40:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 72FAB10E277;
+	Thu,  5 Mar 2026 11:16:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="kaJVNIbX";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KJpOjRjs";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7B05C44E81;
-	Thu,  5 Mar 2026 10:29:55 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772706595;
- b=vljPiNxyM7vS2aTrsvPaAWiCYIbkgJduSge9jNfjTN9HiRJAH6a939suyU0MDjETy+ZzI
- VBqHbjwKzsR7ly59pZlTa7HZovZhCyiYbterCBBvDxnxtIgO4/l1Gj6A7tOHWdSfb+QhDIp
- rEg6WaoL1eqxsnyFeH7l2uMHjCm66DwoiAFjOEQwhsgUg3P5JwidSyFMKnm7VkVME6N4qyR
- qs2+MZQpiPoRegF7vVM+KHNLa7Nmx+WdIR34Qv3yD6QnDZMgAnHrjZO6kBhwnR6dVdb62FW
- SOFTDoymU6MfxhAkzyyFVfAbWNklwrXsty0ylLP9PBh7LIiROTOo3cr/nrOw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772706595; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4E4F844E82;
+	Thu,  5 Mar 2026 11:06:12 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772708772;
+ b=zB21F54Q/chctieHgvX71Y7tzl8t+ssJpPj1DxaWhYkxZbA4M+7cWsoyJLmgjJr3RmcSV
+ P06fzoXvE/HU95xKKURee+LQtlFTm25VxqoBRRbQAYUBBT4gWdWljOqwtQcJu0/9F7GdMgk
+ HALi4LX6b5qtinylu7DuBwkpZL6vEuxHdNbQOD73a1Na7cg9SAxlb+mylC46XgoxiAwEpbW
+ Vjd7qsUk11vxxPLLzeYl6nt0OlVATwNJAIOY2OJTbFrxUaPgpzXpOzN5LgBl2A+aqqpNRo+
+ 5Xv7NwPCFthWX0X6mvMmDvPScl6K//mlPEnjRUXF4Jg24XqxMzu6GFtaN0dg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1772708772; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=E+Qtgaj6Hmp2BXVE/QSMbMe/5HJ2WemQ3+FN1yhTstE=;
- b=hacxkHCPXrfNTxjR2sE9eRs89rEUby2XysVQg0mY8UW51iAR2RxAIP5cokf+22auO2s9C
- 9uo0smO0DJER/bCWNKVVW59UQfj3bw3eY++Ohl5XIdFwmC+zHG3YaTdX60i2go1txAfqOS8
- 3wRdkHlkhKaFJqZHIp0/+r48WUK4OYFXKuK/Ug55/F0rZGiRhugJDGCochgJqa2QkajKBbA
- xW9/YQJ84xRpmG/9S8srObaQoKEgYT7lj4/POhlvflpHwHYIH8Tx61HZvfE3MzAPd2+r6eI
- nxXpZKoQQ+qHu3GviXETjGOBBJCtrwQZUtCX9wK0BZqrEQWoIcSKom0DHeyA==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=QCDTnqp29TRXhDe1wAdSV0e3j9wzmT0n4Qk0HlXHugs=;
+ b=ftfQ/2BfGB1N3usQ3WW8aBkPgj58K3wst9uJ/6E/HQI7EBGc+IqM/ogJGZYalHAGh1lup
+ af+eGc8ik4eTBl1gpFM58QVSO3qPu46yn7Lx5GZrvww6rqd//u3rrgf6tBsk/PP2eBeOjA/
+ aVuYOJIK73apxr5EikLCTy5zUUejoSuvpEvaD0GFmZyBgGkv1jnrPhqTbLu4VZNr1L1q7ZU
+ bUeapvBf/uHvJYEc+E2p9A4Kl16+8g8PGGvDjj+wU17KuhlALDVomJfX+sIULwCOWyJzcKO
+ rVAb0FtNTgJ6colIQA5E4NtC3p5h9pxWjRqtNcHdqbe44TQGipAAOUe8xsLQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 1239F41CAA
-	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 10:29:53 +0000 (UTC)
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012063.outbound.protection.outlook.com
- [40.93.195.63])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D4A3710E033;
-	Thu,  5 Mar 2026 10:40:14 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=t6JPklFevxlQidfdcKm/JCBFJNDW4mKV9kEhjGLnnMs6Rig1BxQxWMjsHE61yQN0phwLjdLs/da5PTVZk9nLwFKyuz+9g72mQ6FG9OORc/WHS8bEZt6xfjWkpi7wLugNTn/6xz7pH5nX19/VHvs0KT+xFakNY9OeImxB0g3e/L1CLAn7Iz/PQ8gbqoYMC8aBVfPpGruuAh0MwFWKidhSnjvHLz1IDtZHfhwkWCl2MtBrbS4QUqfBSRW8KoZZMYjA7UmY/Nw3dFG4jv4dx45Ap3R5Oxx1sP+B7B1CADnieboOppDXBhht+ofphX8UpFGdRCtHLeXr0WAqvYqaY7lFOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E+Qtgaj6Hmp2BXVE/QSMbMe/5HJ2WemQ3+FN1yhTstE=;
- b=wZkSY4UDwhM7s49H8vAEMucJ3t5wG+nxqGKgzFIpSacQGBt6FpkGku97eaYgJJkzRvFLTj1DVR7wnTsorzmsBFqbHejskSnelsx9DBphLfvZbNqQjouTx+v5rLfoLX47gU0I2gPgAzw/1LuAmrMgiqNGF6X3FLW2BY9xGHQlUgkcrRQuIxWTy/M60Hfw3WgkQD+VOAnIu95LmdqJ5VHIE9uaga6RQ9SxOOHSmlEUEtr/uRP+0vznAneH03eEwcV/MVy//vOzLYA6h31MigiUHY0E+03OkQZN3kRICwjZd7i0+jyrRluIYd0VkFTkHBq5HeK7SC7TW1WEB0cyPmRU/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=E+Qtgaj6Hmp2BXVE/QSMbMe/5HJ2WemQ3+FN1yhTstE=;
- b=kaJVNIbXU9qmY8IofCqwTcmR6mpFD2emndC/e+5BfmcBDBYkdcL6KS7wmQuyWhig+bBsoJG27x0k0eYl1zEdbzp8nwpWsmPcMyWA5Rr+eaop7HTNwM1EPIL5KEWkrP3DvP87LuCSxct/Y0MGOiOo2azuZd2rQU07ob/Pn2aE9jEdbLuBCSohFazoWakKYSkbQgWNTO70ZML2mmlMdoUvfAZcPsBSMeRjjnsL2pRuQ82Wkz2NJSJ2aQDxGYhU8ao5Xevy9QiMEmaukKUWt+yGBN72qLmyfU1VNQh/6H7ig0RIgZ1RyAOsz7x9bO8mzCFLwIwWE9ApJMMIsNX46UfJnw==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by BL1PR12MB5849.namprd12.prod.outlook.com (2603:10b6:208:384::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
- 2026 10:40:11 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9678.016; Thu, 5 Mar 2026
- 10:40:11 +0000
+	by kara.freedesktop.org (Postfix) with ESMTPS id 54452402B7
+	for <nouveau@lists.freedesktop.org>; Thu,  5 Mar 2026 11:06:09 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 10AED10E251;
+	Thu,  5 Mar 2026 11:16:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 29DA061344;
+	Thu,  5 Mar 2026 11:16:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C242BC2BC87;
+	Thu,  5 Mar 2026 11:16:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1772709389;
+	bh=lrn12u6sL6iGiv7dTsc1sF0gtNSSPZgx/BMyrzPZGnw=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=KJpOjRjsdjQDEtf+Bo+H9g/cw839Els4EBc5934Vs3bnb7Vyqt2if5+0a6Br7ayBn
+	 2KJsfbGKeP0sUDTeiGM5QBSOEOy13j7Q1i4vq3fojuuz4JIjemBNTBbaRWw+bd2D+R
+	 6AShFbSzTxvgE0WPKoqyOOk4Aky2wwFxgS34tFJkKEuCHwnJpTsCK3zMsvYvA4aY/Q
+	 KM/czFBJIhMFVaa4Ai4u18/LCNpIYOo8sYGArXAGAMwVt3PjE3VvDFBtDdtCMt9guF
+	 nWpyWn/qo1zxNHN3HN1vdJYNitDF6IjUSY3uLZU85WZA65s1NJZS9onKA5zA6fSsrN
+	 eh4ygkb6vP8CQ==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 05 Mar 2026 19:40:07 +0900
-Message-Id: <DGUS9CQH9WJ3.GVZJ7XOEMHL0@nvidia.com>
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Eliot Courtney" <ecourtney@nvidia.com>
-Subject: Re: [PATCH v3 3/5] gpu: nova-core: gsp: add reply/no-reply info to
- `CommandToGsp`
-References: <20260304-cmdq-locking-v3-0-a6314b708850@nvidia.com>
- <20260304-cmdq-locking-v3-3-a6314b708850@nvidia.com>
- <DGTZ9NLS9TPM.2NRF5C9VN2B7C@nvidia.com>
- <DGUGNCEXKDD2.ETWE4H89AL00@nvidia.com>
- <DGUHEUO4O47L.GD24M2B30IKY@nvidia.com>
- <DGUOJ681GZND.2JV7DA2YA5Z8E@nvidia.com>
-In-Reply-To: <DGUOJ681GZND.2JV7DA2YA5Z8E@nvidia.com>
-X-ClientProxiedBy: TY4P301CA0058.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:36a::18) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|BL1PR12MB5849:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d320410-2fbe-4166-5efc-08de7aa393b2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|10070799003|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: 
-	015imOL27uIsXVBgI8OPoKd2b/TvizpmRD1C6t566yp6v0hLdiMIv2XFUYBjvDPSYfFy4g6QUex0ss29pxAZeKv6dkMoFa61VDP2Mn68CHCsN38mZnjyKyf3cVmTR1j6IaDLp/xeGBohdXYXrwMyC78HyB8GfTxRtLhXtqjOGfadrtTFSRyGH7YqH9jgYfQWWKnAjYf1IgtQkkGITE1bbOV7cBWqSAQJqtDN8fPXNTEP3lti297k+8/MRFENnLAkX6yB0NrGkYNmFH8cqvmng9v//3eyTC9sZcxO4FtFJGfPij8anOEtCeV/2kEkFQSRsbEPENAGhqaeLUUuT39ajUrrGTGiy5qPE/RsjV8HaH2Bzt9m7b/6Ve3fFRhctn8HdrAHNDrxnbmD1G6pJYinWTiAMyrqNtrY4/fTNzm7dnGa5/Cx65bTSC24bcHlHHbYqZyUPgeoxRUBz+BfHJkmhcpvhFh1GqE+4g0Ibyrsojc9SinYMs013pBVc4C6MIrDj7EPqPPqvh27rJUELm0fhCsfTJBXf3Z42OVo/wyRojW59Jylno4lgA0LcIsBuPCZKat8F9vG+SabqlYmkpmh1XJA0qSYc343UpmlKKNmVnQ12AYFdTr+cainiXBml8TN+9SL6zzHtpqtwZf+cWQyNOSl481TcgTnAcTnrKLi6UOaoXaRCucVXiZ62H0w0AgZkOiZZYSep9SkLXOMb9NWUxe6XVzMxwdLPszbnZVHgn0=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?YXRZcW9oNzlDYVl2NTV1Q0VZSkpFRkFGRnRhNVgwN3VqMjVBaE1zbGlHbjhm?=
- =?utf-8?B?TXBaYWZXUHVCTEMxWHBIY2hNRTkxelI1bVhCSXk3VGt0T3JGQjhUSXZOOStK?=
- =?utf-8?B?M0xDQm1jNzBaVUtTQTZTRmljdUpjT01IYzMyc2lBS0gvcTcyMXl5Q3lOWFM1?=
- =?utf-8?B?RlVpc3pab3FFSFU2cXQ0dm1pZWZrRlJjS2JQdnNhai9oUHByVXorSkVBSnBp?=
- =?utf-8?B?anhRUHlMREk4RTMrNVMrVHo1bVN0M1k5SzdvbUJkbzAzZ0FkOGkyeDVCM0lN?=
- =?utf-8?B?RERwQUg5THpZNjNjT1NkQk9BblNBUWt6UXd6ekJIUjFOTlEwekUrdGdyV01y?=
- =?utf-8?B?OW9Fb2ExSzg0cm9tQUx3WmVrd0k1b29PTVZRM05kVzB3R01Makw2di9qdENQ?=
- =?utf-8?B?WDUvUXcvVzNLWnJ2YTQwTzZpMlcxRldNZ2l3MCtQaGo0RS8wZ0h2VkY4RW4w?=
- =?utf-8?B?WEpoK1BOYll0amxndStRR2hWWHlkcUZTb3VGTHlhTUgvY2xCdk82aTA4K1l3?=
- =?utf-8?B?RERpZXl6SW01bU5iMENIWEs5bVlGcVRKN2NicjJsWWpIaytYeGRBdVZFQWxh?=
- =?utf-8?B?a3QveGhveXZ5dnFZUUhVRHpJaHdqZ3BFbTl6YUM1VDFnU2hjUVFPRXZ5TE1F?=
- =?utf-8?B?NGZtS2RZZURqaExGVjBiZWoxOGhxYjlJOEhuUmNORm5LVTNMVVhTR1puWjJa?=
- =?utf-8?B?ei8vQ0ordTQxdElZU3pkZ210dnVaQnYxa3hQelhrQlUwZEJTaTduWGRqVGdm?=
- =?utf-8?B?QXJ1R3BnK0RsMWVsNDRNU08ycGRyWGdQckdJSlpDR0UyeWpoZURRNU4rYklQ?=
- =?utf-8?B?QkNqNHphWktEVGR0NFF6UWp6SVFhWlhTWHd3NDhrQVRRRkJwSXlubzFuWG84?=
- =?utf-8?B?RDRNQ3dSMDcyMFJkMnNJTFR4cE9nU1NpbHp4MFE4bDZTUjE4T043cEZzYjFU?=
- =?utf-8?B?ekNFaW9SQUpOOGQ5WWpCdTVITVJ4MUs4TDVrUm85YUQrNU5nemZ6d2hYS0Ev?=
- =?utf-8?B?Y0VmVmczc2pMRmFQNW16cy9OUmZaRDljRjlZVmIrQm1lcDg3WUh0M0Q5ZGJk?=
- =?utf-8?B?YkVTdk9rd3dxdzR1NjU1eExaUXEyUWdsR0VrRTFIZDFvTDA3VnFDV29NN1RK?=
- =?utf-8?B?NWtnemtobndJMkJpcmQyT1NyZitFQllkM3R4ODcxQUFEQkxNa0hHaGlMbzlY?=
- =?utf-8?B?V2hLVXY3ZFhscThpMUIzeFQ4OE5aMnZvTE5LN1QxYXYxNDErbVVkNkhuTFIr?=
- =?utf-8?B?MGh6MTF0K0hzdHV0NnJxSDJQdzZMUGRmMVpoUncxOWJIc1NTam5wa0xHMEl4?=
- =?utf-8?B?dDdpQ1NPd0dRRm50bkNsbGJtVG9XMU54NkRadmloNFRNckFRYmNvSVJhSjRJ?=
- =?utf-8?B?L1dsV0hOU0VmYXNTTkt4UWxETHdhVjJzK256cUcyMHVUVEJ5dmZKc0dZWG5k?=
- =?utf-8?B?UUdIQktobnlveHRlVmNrUzlueVhsSVh2cC8rOE1EVjRENk9ySUNJZ0xGWU0y?=
- =?utf-8?B?c2VheDVaZlIxeUgzTEtrYWc3U3JjckVhd1IzNVZFVy90NG5XN25hMk1GeSt5?=
- =?utf-8?B?aHN0cWpPa1BNRUlRVWxOM0xZZC9odUk3d1RobCtuSm9RWElvU3hselNwNGVH?=
- =?utf-8?B?cEM3VkcxWU8vOTNqOWlaVHdiOXB0dVpsOGZ0NDdjbXpRaU14NVYwVVN2ZGxq?=
- =?utf-8?B?U1RNRm9PYUxMd3c2L0ZTdFhqY0JmZ21aNERRM3c4eTQrS2x1VStOdG1rMWNF?=
- =?utf-8?B?UktQT0pod053M05IREdYeWhDZHZidFFEbEVFQ1lKVWhVWjUrY1hHUXoxZ0No?=
- =?utf-8?B?MXg5a2gxODdkcEF3d0ZjWEQvaThSemdyK2pQMGpEVzExd1hmL3g0WjduWUFC?=
- =?utf-8?B?Y2pmelg4WnB5VFJXT3NFTHRiQVdsaUVRS2NkalErTlFEQkV3alZkT3EvVDZ4?=
- =?utf-8?B?emV0VkVsRXJMMnVxbWx4aWFmejM2ZDRPM25oc2VHS25UMGFrakdDd2d3UWFM?=
- =?utf-8?B?WUdrWlRQeVlwWjI2eGZsZDdZN2tpZ1RLZjJrMVQ4MU8rRzk1YWQ3MklWTnV5?=
- =?utf-8?B?cWVPTkxCelM1UXZwU1Nqa24rUXM2emI1VUkyNlNRN05uQW50R1hId1NSZm5o?=
- =?utf-8?B?cjZqWnFOQXFOb2RjVDgrU2ZTcjh1V2gyM0dJMVZ4TGpVQ2JMTHIwdDhzUXl2?=
- =?utf-8?B?MmV2SE9sYzR2cm14dWZsTEFZblNpMFJ3TklXYjRhQmI0aGtFTU4vb0l0WG9v?=
- =?utf-8?B?U2JmcXE3TldmU3Z6ZVNXU3VmOXV5VlY2M1JuZkxKZXg2YTArQlM4a2oyOHk1?=
- =?utf-8?B?THN6RnFXblhQaGdmTzJ1S2NDR2pmNDNwcDJLN0cyODl1SHc2cjBUc0tXUThU?=
- =?utf-8?Q?2Dwihnw+TRcFOfKhAk+01GnopQVbHzM+n9ioYSgDnQNYd?=
-X-MS-Exchange-AntiSpam-MessageData-1: aSgwDyun2ucfzw==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 4d320410-2fbe-4166-5efc-08de7aa393b2
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 10:40:11.0892
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 4+P/z8UXej+9kMB9oefDFvwLHorNT5/L3YkcjqcViXab0hyl24L4kdcgiS6xP6Ss94ZG/1NxFjdPBMgiTTgd0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5849
-Message-ID-Hash: WJ5EGZXN3YS2332S4IOUKB4BZTW3NKMT
-X-Message-ID-Hash: WJ5EGZXN3YS2332S4IOUKB4BZTW3NKMT
-X-MailFrom: acourbot@nvidia.com
+Date: Thu, 05 Mar 2026 12:16:24 +0100
+Message-Id: <DGUT14ILG35P.1UMNRKU93JUM1@kernel.org>
+Subject: Re: [PATCH v5 2/9] gpu: nova-core: gsp: add mechanism to wait for
+ space on command queue
+To: "Eliot Courtney" <ecourtney@nvidia.com>, "Alexandre Courbot"
+ <acourbot@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260304-cmdq-continuation-v5-0-3f19d759ed93@nvidia.com>
+ <20260304-cmdq-continuation-v5-2-3f19d759ed93@nvidia.com>
+ <DGTYVZMRVLLE.3HQVL7ZT6MU7H@kernel.org>
+ <DGUODB0SCS88.2LMCK991QHVG4@nvidia.com>
+In-Reply-To: <DGUODB0SCS88.2LMCK991QHVG4@nvidia.com>
+Message-ID-Hash: LGS2AEM2PCEU3Y3WLXZRRCXZJHFSHMSI
+X-Message-ID-Hash: LGS2AEM2PCEU3Y3WLXZRRCXZJHFSHMSI
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Simona Vetter <simona@ffwll.ch>, Benno Lossin <lossin@kernel.org>,
- Gary Guo <gary@garyguo.net>, Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, Zhi Wang <zhiw@nvidia.com>,
+CC: Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Zhi Wang <zhiw@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
  dri-devel <dri-devel-bounces@lists.freedesktop.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WJ5EGZXN3YS2332S4IOUKB4BZTW3NKMT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LGS2AEM2PCEU3Y3WLXZRRCXZJHFSHMSI/>
 Archived-At: 
- <https://lore.freedesktop.org/DGUS9CQH9WJ3.GVZJ7XOEMHL0@nvidia.com/>
+ <https://lore.freedesktop.org/DGUT14ILG35P.1UMNRKU93JUM1@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -191,85 +114,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu Mar 5, 2026 at 4:44 PM JST, Eliot Courtney wrote:
-> On Thu Mar 5, 2026 at 11:10 AM JST, Alexandre Courbot wrote:
->> On Thu Mar 5, 2026 at 10:34 AM JST, Eliot Courtney wrote:
->>> On Wed Mar 4, 2026 at 8:56 PM JST, Alexandre Courbot wrote:
->>>>> +    /// Sends `command` to the GSP and waits for the reply.
->>>>> +    ///
->>>>> +    /// # Errors
->>>>> +    ///
->>>>> +    /// - `ETIMEDOUT` if space does not become available to send the=
- command, or if the reply is
->>>>> +    ///   not received within the timeout.
->>>>> +    /// - `EIO` if the variable payload requested by the command has=
- not been entirely
->>>>> +    ///   written to by its [`CommandToGsp::init_variable_payload`] =
-method.
->>>>> +    ///
->>>>> +    /// Error codes returned by the command and reply initializers a=
-re propagated as-is.
->>>>> +    pub(crate) fn send_command<M>(&mut self, bar: &Bar0, command: M)=
- -> Result<M::Reply>
->>>>> +    where
->>>>> +        M: CommandToGsp,
->>>>> +        M::Reply: MessageFromGsp,
->>>>> +        Error: From<M::InitError>,
->>>>> +        Error: From<<M::Reply as MessageFromGsp>::InitError>,
->>>>> +    {
->>>>> +        self.send_command_internal(bar, command)?;
->>>>> +
->>>>> +        loop {
->>>>> +            match self.receive_msg::<M::Reply>(Self::RECEIVE_TIMEOUT=
-) {
->>>>> +                Ok(reply) =3D> break Ok(reply),
->>>>> +                Err(ERANGE) =3D> continue,
->>>>> +                Err(e) =3D> break Err(e),
->>>>> +            }
->>>>> +        }
->>>>
->>>> There is an opportunity for factorize some more code here.
->>>>
->>>> Notice how the other callers of `receive_msg` (`wait_gsp_init_done` an=
-d
->>>> `GspSequencer::run`) both use the same kind of loop, down to the same
->>>> error handling. We could move that loop logic here and do it in a sing=
-le
->>>> place.
->>>>
->>>> In the future, we will probably want to add handlers for
->>>> unexpected messages from the GSP and it will be easier if we receive a=
-ll
->>>> messages from a single place.
->>>>
->>>> This can be a separate patch from this one, but I think it makes sense
->>>> to have that in this series.
->>>>
->>>> I expect the last patch to change a bit as a consequence of that - may=
-be
->>>> we will need a `receive_msg_loop` or something in `CmdqInner`.
->>>
->>> I agree we should migrate all callers and make Cmdq responsible for
->>> draining / handling spontaneous messages from the GSP, but I was
->>> planning on doing it in a separate patch series until now. I can put it
->>> into this one though if you want though no worries.
+On Thu Mar 5, 2026 at 8:37 AM CET, Eliot Courtney wrote:
+> On Wed Mar 4, 2026 at 8:39 PM JST, Danilo Krummrich wrote:
+>> On Wed Mar 4, 2026 at 2:42 AM CET, Eliot Courtney wrote:
+>>> +    fn allocate_command(&mut self, size: usize, timeout: Delta) -> Res=
+ult<GspCommand<'_>> {
+>>> +        read_poll_timeout(
+>>> +            || Ok(self.driver_write_area_size()),
+>>> +            |available_bytes| *available_bytes >=3D size_of::<GspMsgEl=
+ement>() + size,
+>>> +            Delta::ZERO,
 >>
->> If it ends up being convulated, let's do that afterwards but since it
->> looks like a quick and easy win I thought it would make sense to have it
->> here. Your call though.
+>> Isn't this either creating unneccessary thrashing of the memory controll=
+er or
+>> unnecessary contention at the cache-coherency level?
+>>
+>> I think we should probably add at least a small delay of something aroun=
+d 1us.
 >
-> Another consideration is that if the GSP has some issue, it could cause
-> this receive loop to run forever. I'm not sure if that practically can
-> happen or if we want to guard against it, but personally I think we
-> should and taking care of:
->
-> 1. Some loop level timeout
-> 2. Future considerations for how to handle spontaneous messages /
->    draining
-> 3. Migrating the callers
->
-> Seems large enough to do as a follow up series to me. But LMK if you
-> feel otherwise. Thanks!
+> This is what nouveau does (specifically `usleep_range(1, 2)`). OTOH,
+> openrm just does a busy wait, which is what I replicated here for now.
+> GSP command queue not having space IIUC is meant to be very exceptional.
+> I am not sure which is best, maybe Alex has an opinion, but also happy
+> to change it because that reasoning makes sense to me and I don't know
+> enough about the distribution of how often it would actually need
+> to wait to know if 0 delay is justified.
 
-Follow-up is fine, especially if the fix ends up being a bit more
-involved than I first expected.
+Well, what this code says is "let's hammer the cache / memory controller as=
+ fast
+as we can for up to one second".
+
+This really should come with some justification why it is actually needed f=
+or
+proper operation of the driver.
+
+@Alex: It also seems that this is based on broken code, i.e. I noticed how =
+the
+DMA read is done in this case in e.g. gsp_read_ptr().
+
+	fn cpu_read_ptr(&self) -> u32 {
+	    let gsp_mem =3D self.0.start_ptr();
+=09
+	    // SAFETY:
+	    //  - The ['CoherentAllocation'] contains at least one object.
+	    //  - By the invariants of CoherentAllocation the pointer is valid.
+	    (unsafe { (*gsp_mem).cpuq.rx.read_ptr() } % MSGQ_NUM_PAGES)
+	}
+
+Why isn't this using dma_read!()? I think creating this reference is UB.
