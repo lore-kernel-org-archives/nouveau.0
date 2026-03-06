@@ -4,101 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E354FCB611
-	for <nouveau@archiver.kernel.org>; Fri,  6 Mar 2026 15:07:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A423FCB630
+	for <nouveau@archiver.kernel.org>; Fri,  6 Mar 2026 16:35:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 633DE10E3FE;
-	Fri,  6 Mar 2026 15:07:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7B6D210EDD5;
+	Fri,  6 Mar 2026 16:35:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gMT4GAbG";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kOkD5I3v";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id A646744F57;
-	Fri,  6 Mar 2026 14:56:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 804BD44F58;
+	Fri,  6 Mar 2026 16:24:49 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772808995;
- b=mfOCknBWvaJmihcoYctqD4dm0f0essZRq1yPuVf0IQFEBNGLTin9s0brK4wG+foQ/V7SO
- CBMrm/wnYoCbmV/GVeF3acWo56+RFcK/1bseI5P8YaptoZ5TM6yG3JoI08m0mKOb/j0dUXj
- vOAO5QseOCynI3w7ZxVcn10FNcdPF7/0dbRMnuoUNLLy8XDWYPoqZKORHQCozj2/khIrop1
- 7SvcHos4ych33HEAoA62kjmY4ZQK/xusoAHyclaO23ngIUrpHlUfz4x1BZtrBDd2PqLo77A
- VU/qXi/DleRbsho42eSV5aLSC48JBcXeBr94gjWsWRaBbiPxPJl7RZ2YdiRA==
+ s=20240201; t=1772814289;
+ b=n/rdt7BlEDuWC/F3YwQJ6jL/nSFSnrE9h9SESgpLpViRJVasN4gM3eCopfmBjdK+3GXIE
+ ry4I1TI3itBxesKrnODFViyTALd/bkV22Hi6Q7CLzAuF04fLmZnU/BCtbcz0/NeBFrw1MfQ
+ ldKvOKTT0mBfMS5rqGuHc+WbqK6xRdyP+L2Z3ON7Q1VjDtYDjz8plh4iQbxTDBl08colsom
+ NE4sFoyHixroJddarcD+oZg1ZjW42/RpnFlVC4gkOmMBIlhHWWN/epxEfB2WUD8zcLUPyOa
+ FTO35nhpHqVfbPqOySSuv2cXEb4TuuQo2NMWW3FOiydLMVVp67qVLKxiJvvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772808995; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772814289; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=YuHnCAoNXTT3lU/xn0j632G8a285dKOJSKC87nmrnnA=;
- b=hcJssINTpZi0xbEUKiVfUqdUq6B3eLFw7IDKCDIXNZJCvTzF/GuFPMdCrEswv4BDHsiH2
- 6ahZEvgtDuNaeUV8LWhR/TMoz5eVf46jkLgQzA4IChOOPw0MwsgWa/UAMReLE1I3cIGweE7
- kMMA3RWT1H6aeRBenuCgAiwMDKowqA9lkSn91frAPR6+I/t/erQRAaniTr/3jmm9jEM5YXQ
- HYXDHtJPWKUNMkd2nRSglj1mh/JK0/uoJBacT2EUZxoHoXl0OuGlU+Snun94wXE8U4IfCtM
- C3D5CAUg8BHobXX2eK/kxHA1pr6N22atdEkBjKPIfpe0Y8Zk7nA07EiusYoQ==
+ bh=RQTUcL1I/8jadncAL2XKGoKxgkmVYQD7qHlBDYb7ynk=;
+ b=f2msqCHh7Pce0vnUp3zGnpJzgZdn+LjHF7+h5/Roebppi1tvfJi3WojGLe++5lXIjggf4
+ SWlNNALHjxea0fMn073PuXbsN/IITFG9Qsq5xLzRbZHiEVMRZBhlrSkMiVOin7S0ym2La38
+ 4paoAoxGpgj6O0dow23xl0RSnTPekGItlBVzntzOSMbyib3UivXbslfGovZ4sO0j0TfIDzi
+ Mn0E9EN0WnUzVcoVd66jxRQAJvSYnlwEy/XT3qoFhjHfoCOw6GP4AIAWINz/aFsVRe4ixPZ
+ P3xTjZX+zAO78g0vW4DqvVFT2zeG/uY12v8v6c0mHuCo0enZA6APxve+xP3w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
+ dkim=pass header.d=igalia.com;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+  dmarc=pass (Used From Domain Record) header.from=igalia.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=igalia.com;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=igalia.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4CB6A404AB
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Mar 2026 14:56:33 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A264F10E3BE;
-	Fri,  6 Mar 2026 15:06:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id A09F460127;
-	Fri,  6 Mar 2026 15:06:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37261C2BC87;
-	Fri,  6 Mar 2026 15:06:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1772809616;
-	bh=iPL1KTeGN4AZsj8P3Tdxd7pG3wQBIceCKNb1YSqkPQs=;
-	h=From:To:Cc:Subject:Date:From;
-	b=gMT4GAbGOkUvu7pEf3WSi3riN6UMGc5YzMkkvLDOlXF+526ctQGhiD7ZvUv7QRw1y
-	 tkpngcTHQl6PVkTm6iDdT7ksvB487fQzQ9G2+28JjpKpmOG/AQhd/5gVMTijwGHGo6
-	 j0Dc2oHYklqBmie9o/HMFV+H3H96yXyZ/C7qokdgEeIcBFWA/DJb3NkM3TKnFLy7ap
-	 BGowVtLGopwB1UpOEBQk8A+sBDQkJyoh2Z5593Fq/vLqtC+Xr6EJBvQLH4SX5E1mPn
-	 39EcZqvYSeB7RCuev2v77NDvRLkPCfES0nYPqcQMUl5VQS4rOAgd77T9H1efqY2z9A
-	 79eDEe1Je/u7Q==
-From: Arnd Bergmann <arnd@kernel.org>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Timur Tabi <ttabi@nvidia.com>
-Subject: [PATCH] drm/nouveau: avoid
- -Wtautological-constant-out-of-range-compare warning
-Date: Fri,  6 Mar 2026 16:06:44 +0100
-Message-Id: <20260306150650.465132-1-arnd@kernel.org>
-X-Mailer: git-send-email 2.39.5
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9ABA340760
+	for <nouveau@lists.freedesktop.org>; Fri,  6 Mar 2026 16:24:45 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3D4FA10ED88;
+	Fri,  6 Mar 2026 16:35:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
+	s=20170329; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+	Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=RQTUcL1I/8jadncAL2XKGoKxgkmVYQD7qHlBDYb7ynk=; b=kOkD5I3v8/gLt56xc59Ur6cRZN
+	AnIZVlgDKA62rY23960Qw8u1LCQS27Ij3NW7cIVnQuhyxrilqVcvCqlZNJvUy3nA7KZEHkNA2Id8L
+	6OxdQMDcSuK8ocNti/jTHSjm5zNDJGaegRA+KftbX9FmLJSsAFvLARIOmBDv0FM+GyjRL7FUfqfOt
+	SyzOk6s/FOhgrFclUbK5jkzEEL0bEtXp3XYIrl4bzRpPcynTOZA79VTSJEOEoUlsY5l7kiA/sv2AG
+	HA7L4NC3MsSEluSFWjwuT1wNzlkzN9KCi80v++0DzhTy4bZPlR/j2d9OBBlKxNYZwxpdbmS87wZ/H
+	5ziCyZWQ==;
+Received: from [90.240.106.137] (helo=localhost)
+	by fanzine2.igalia.com with esmtpsa
+	(Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+	id 1vyY8q-00APWU-7L; Fri, 06 Mar 2026 17:35:08 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: amd-gfx@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v7 23/29] drm/nouveau: Remove drm_sched_init_args->num_rqs
+ usage
+Date: Fri,  6 Mar 2026 16:34:39 +0000
+Message-ID: <20260306163445.97243-24-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
+References: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ZCHCLK6IZZLKZKORP25TXHIOL4U375XS
-X-Message-ID-Hash: ZCHCLK6IZZLKZKORP25TXHIOL4U375XS
-X-MailFrom: arnd@kernel.org
+Message-ID-Hash: JWIL3LFSOH4BH6MGGDMWOSB6U2J7CFP5
+X-Message-ID-Hash: JWIL3LFSOH4BH6MGGDMWOSB6U2J7CFP5
+X-MailFrom: tvrtko.ursulin@igalia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Arnd Bergmann <arnd@arndb.de>, Dave Airlie <airlied@redhat.com>,
- Ben Skeggs <bskeggs@nvidia.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-kernel@vger.kernel.org
+CC: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZCHCLK6IZZLKZKORP25TXHIOL4U375XS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JWIL3LFSOH4BH6MGGDMWOSB6U2J7CFP5/>
 Archived-At: 
- <https://lore.freedesktop.org/20260306150650.465132-1-arnd@kernel.org/>
+ <https://lore.freedesktop.org/20260306163445.97243-24-tvrtko.ursulin@igalia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,38 +104,30 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Arnd Bergmann <arnd@arndb.de>
+Remove member no longer used by the scheduler core.
 
-Checking a large 64-bit constant against a 32-bit dma_addr_t produces a harmless
-compiler output when extra warnings are enabled, but leads to a build failure
-with -Werror:
-
-drivers/gpu/drm/nouveau/nvkm/subdev/fb/gb202.c:17:37: error: result of comparison of constant 4503599627370495 with expression of type 'dma_addr_t' (aka 'unsigned int') is always false [-Werror,-Wtautological-constant-out-of-range-compare]
-   17 |         WARN_ON(fb->sysmem.flush_page_addr > DMA_BIT_MASK(52));
-
-As the calculations of sysmem.flush_page_addr are mostly done on u64 types anyway,
-change the struct member to the same type. This feels less invasive than changing
-each WARN_ON() to add an extra cast or extended condition to shut up the warning.
-
-Fixes: 31d3354f42c0 ("drm/nouveau: verify that hardware supports the flush page address")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: nouveau@lists.freedesktop.org
+Reviewed-by: Lyude Paul <lyude@redhat.com>
+Acked-by: Danilo Krummrich <dakr@kernel.org>
 ---
- drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_sched.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h b/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-index e0d777a933e1..7b932449606b 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/subdev/fb.h
-@@ -38,7 +38,7 @@ struct nvkm_fb {
- 
- 	struct {
- 		struct page *flush_page;
--		dma_addr_t flush_page_addr;
-+		u64 flush_page_addr;
- 	} sysmem;
- 
- 	struct nvkm_ram *ram;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+index 5546be488795..179edf90a531 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_sched.c
++++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+@@ -405,7 +405,6 @@ nouveau_sched_init(struct nouveau_sched *sched, struct nouveau_drm *drm,
+ 	struct drm_sched_entity *entity = &sched->entity;
+ 	struct drm_sched_init_args args = {
+ 		.ops = &nouveau_sched_ops,
+-		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
+ 		.credit_limit = credit_limit,
+ 		.timeout = msecs_to_jiffies(NOUVEAU_SCHED_JOB_TIMEOUT_MS),
+ 		.name = "nouveau_sched",
 -- 
-2.39.5
+2.52.0
 
