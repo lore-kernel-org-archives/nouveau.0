@@ -4,192 +4,109 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20F8DFCC077
-	for <nouveau@archiver.kernel.org>; Fri,  6 Mar 2026 20:37:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F5AFFCC076
+	for <nouveau@archiver.kernel.org>; Fri,  6 Mar 2026 20:59:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 842E010EDA6;
-	Fri,  6 Mar 2026 20:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 588E910E3FD;
+	Fri,  6 Mar 2026 20:59:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="eXSfqUdd";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="OQ+i1F2P";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 506F144F5A;
-	Fri,  6 Mar 2026 20:26:43 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1772828803;
- b=c+63w1T/zVG8up6eCJyI1rE8x9XFvluhvKk47aRHuTioB41vma1UMIugRV1MHjC4/pTpk
- dn99gVOMEvM8V133CAxQCS+San1i2XfORRZxi0TNcEoDZFdlaDS7/YK2kISpOPrWbL02AH6
- WOOP6iV4nRyXJOCXTL0kFrcFUX/A0tPfYxiRrDMCWpI+nnOR5/AxvPi5os1xOXXlE3hojlV
- PY4cmHQTLWpksH9TpkysA0zQApZ98gB3HpXYvTzZkHS7npw5vKx0ZX/fSfxWdPamILC+JBd
- vzke5KRCpWTlcMkvbLtrGzaKWhUIwrGOr0Nlzwvd9eHzNbK3Xf+QI2VVOuGg==
+	by kara.freedesktop.org (Postfix) with ESMTP id 1862644F5C;
+	Fri,  6 Mar 2026 20:49:15 +0000 (UTC)
+ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1772830154;
+ b=camIKEQnJCgfB0UjFSThx0sastEtOpC7cQt7IXd8iyYXIrU5TeYLlqbY25SYUxVsmoVD3
+ senuqH7Acgd1WXhiw15xULBjVbeDmgFsv7IKiCCvuK6lQGatkRMzDYZrXj7si0KVGoe8S5G
+ UqzxJfsJM+EbWbTpJUxvgBRt3EiPUSAJBdfr62197hZV/ZLq3Jtqayl33JULKi78S8c7la3
+ o2UG9eYhUKF4MvlY8yt0K/QvPeQifgGuf7sTc7izjM1DxP+y30GRu35SUE2+abdUOwtwawa
+ BeyhSXuwa18sw/7KEUvG2iQy7uo+lR038K2mF94ycleky+Kwy15e6tbFlcjg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1772828803; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1772830154; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=PqwAtGr6lBx4Gr2Q5yfeZq1NZMiCotSNePc1frykR0Y=;
- b=DH4xEP3tcgeP1ttwMygLfWkOolFGWNorBj2qKr067i9/mP8S2cxzN2sAAKLRlKOdzsewt
- H8cFh3XEP1pYmXSS2IWhJ8G7uejpWSC3pIWVERNm8VGChAZ6LKL01Pz+jkQvVqpngPtJFOd
- TDj14kpxzgU1hd1yux+1xdjSYuD/gyRgjwf6k6CiEJ6Y8t86+j5ytr6PmFhMUsN1Rg2nZ3w
- 6hVZD1e7KqcWSu2k9W2cg1eIETHdmUHB5ZSxTjTfkYL/KEyyZShvlaR+86ZFmHmM97SkpD+
- MPNWJgC1YUVWQD28NbwKOZ1kRbaNLzNBDw0y7V9BIqeOGHsRkqNk7PFRIZtQ==
+ bh=Y8RPpGzik8u4/Bf/PTrrp9RtNJLZy4MvzTGWSyUn5cI=;
+ b=TZUN6el6N2OG4X9Q1VCV/VqHgHrOQtT0ekqQ4EXEZaPwspd26GULdRwvVjHxczcwI0YcF
+ cX3gyrOInRnOxp+yQNoV4648O2axJ+0FEkJwqiKHyYO49FVsX108r8xt94UQzNRcUsQrt33
+ r6x4qSyxcSuePjMFwTx/tCPntkfW3le+NOjVWwE4t2gNdGMvsLZDcV7x2v+2MTYRxt+egMn
+ U2YKyZejR+hdZ6Y3LlAi7ocXi/Qy4wmeBz2M4X0/gLWEVWy6FHYuNT+r8IMabpSN0+Bsvrt
+ VdV2pX8GFPcRrCdmFOl3kal3KC5MUlxVcFC0yukJeCdqr8Dj48etgtgu5DYA==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
+  arc=fail (Most recent ARC-Message-Signature did not validate);
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
+ arc=fail (Most recent ARC-Message-Signature did not validate);
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 13B6E44F53
-	for <nouveau@lists.freedesktop.org>; Fri,  6 Mar 2026 20:26:40 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012010.outbound.protection.outlook.com [52.101.48.10])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1065E10E401;
-	Fri,  6 Mar 2026 20:37:05 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AHUXT+ER7C0VgvZu41Og3PucBHSEtYx3Fp5UfaJqVGnFDADl46xW9RIR5No8h/zxNZvtp6A4V6hCv0hHKAMUs0JanPUNJtII8lxoqv7IgnpajUilrMbnJKL+S9jYx2fsl2R/j6JTWZFO3lsOtOwhY1RuFs6uVKJJLqxqe/HTX2JbSENlazCIsMsTN4ShuYebKPq10B/25IlMBKY2JxeLZiKi1FWpuDy2AoruGRtDeo3PD4zdsvH9mEC+dnyLQvS1u0oI0Amv4AMLwo38V278t1LHOssX1hoZdpywWAeSVU1yv2Uro0IuDHLQBFfjM/ldkeoKYOOnZJHt1PN/bXqRnA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PqwAtGr6lBx4Gr2Q5yfeZq1NZMiCotSNePc1frykR0Y=;
- b=HhYAlFrBrZ31qRR1Eo6vou/87VWxAP5Aje7JZ/UNshZeyDs3F3i1mdBJfNzFlzm8IJazk13xMH0FByHuVn2omUWLMq5Vx6ZmAllMMV0E0P6B/aLux6ddTCqoReEXU8/1RO7w1ziWIrNmLS+i0MMYMeUtma8jDwGTp6/HIYCuX5XHe+O03RAL+S4RyilcBLARIUvUMUSWw2og0VhOpPQwT3cfohheFoFs+0v8y6Uf+m5KwstIB6ZoDegtXs1gvbCz8CBKuA0c3eklq1GrRBlVBUhCnh7DZxbYeEEhG26gHUWY3WSk/UqSwkjS7P++hBFinPEHhcJj8HF8DI67xbwUwg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PqwAtGr6lBx4Gr2Q5yfeZq1NZMiCotSNePc1frykR0Y=;
- b=eXSfqUddpIrIz5f/ZqfAyQjRq0LuFy8DkHM0htXKc5Oa5ki7KCvHeuH8ya5ajqETmUEc9DkG+nLuc70YQPNMTXHN1v5puLheu0NlE8HEZ3efMa/NtbhdeVn5ErChvdzhjhvUjQq57O+rUkgozmbY1UkmhCkchZu0X877z5nBoebHd/lV+MT8QEefSxwFRc0c3cWmBvbIrhPzFAJLkY5PBS8PNlI2TPYLkagqpa3GhFj4g3HcxfLo1Vr4tZrRhNJrxIDc12z5R3psuJ5X/6NuG6MSsc7AzXoj1FXnp3tZskbtXRcEH0jYsH806P/FChemFB5YqtpeD0i6EcWqR8Ngxw==
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- CY5PR12MB6528.namprd12.prod.outlook.com (2603:10b6:930:43::9) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.5; Fri, 6 Mar 2026 20:36:59 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
- 20:36:59 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Subject: [PATCH v12 1/1] rust: interop: Add list module for C linked list
- interface
-Date: Fri,  6 Mar 2026 15:36:48 -0500
-Message-Id: <20260306203648.1136554-2-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306203648.1136554-1-joelagnelf@nvidia.com>
-References: <20260306203648.1136554-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CY8P220CA0019.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:930:46::10) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 68C4640760
+	for <nouveau@lists.freedesktop.org>; Fri,  6 Mar 2026 20:49:13 +0000 (UTC)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5C7E110E3F9;
+	Fri,  6 Mar 2026 20:59:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772830773; cv=none;
+	d=zohomail.com; s=zohoarc;
+	b=Yk2sQoixZgh+yUVaWeWwM42SavtnNmTnrIxW4r+SYSoUc1RtL8nf6ZKZppAZhD/hN5P5gftmUb1A1rgd34kVg3HOG+3nVWX8jjbfHKfqVB8fBGjyVT1Ssl6PceL5cSjuoKSIeq4tz+ehnPPesqZ3VO8M6cHv7hAndtBLttjgni0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc;
+	t=1772830773;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+	bh=Y8RPpGzik8u4/Bf/PTrrp9RtNJLZy4MvzTGWSyUn5cI=;
+	b=W5GZTHu9L0rEZM8UunkjzkWtB0zS4x1xwBWCZE0oso8TaflcjXBkcurK0ChsLoRLO+HHKnQ/uU4bePrf0UYgdxsT7Xsm3ElEw8ZV4NjQUXwl3Q1QPMZQTS0r2vOIRTFGGtDFkPIsfiqePpuD9vSMe/ZcWg26S0ox+vh3GVcBsLI=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
+	dmarc=pass header.from=<deborah.brouwer@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772830773;
+	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:Content-Transfer-Encoding:In-Reply-To:Message-Id:Reply-To;
+	bh=Y8RPpGzik8u4/Bf/PTrrp9RtNJLZy4MvzTGWSyUn5cI=;
+	b=OQ+i1F2PdFhet7/RIq+RV8/9D8b6mtS9Fp7O/UHGO2TVR5CVuZnwhZlWeNK+M1s7
+	tj3PWOmI2QzYOZTRSR/t0N8JIBYSIPpVtw4AXWEr2BG1JXEeoyqMeqfNGgwe1+4zFBG
+	8sMkWEYahZ2eqE9w8p9kXM2woINFByuXBWMIh0M4=
+Received: by mx.zohomail.com with SMTPS id 1772830771386346.9064551215829;
+	Fri, 6 Mar 2026 12:59:31 -0800 (PST)
+Date: Fri, 6 Mar 2026 12:59:30 -0800
+From: Deborah Brouwer <deborah.brouwer@collabora.com>
+To: lyude@redhat.com
+Subject: Re: [PATCH v7 6/7] rust: Introduce iosys_map bindings
+Message-ID: <aatAMj4rg8fNPRDX@um790>
+References: <20260206223431.693765-1-lyude@redhat.com>
+ <20260206223431.693765-7-lyude@redhat.com>
+ <aY6FbSjQpGFk8oWK@um790>
+ <e1c53700bdf4db6c2246a9b9e7098cb6db905797.camel@redhat.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|CY5PR12MB6528:EE_
-X-MS-Office365-Filtering-Correlation-Id: 91786a50-36b2-4347-fba4-08de7bc01d8f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|1800799024|7416014|366016|13003099007;
-X-Microsoft-Antispam-Message-Info: 
-	V0hPppVDtt/CojlPl5X1ldVCPLMgXzWlBd4bpYD/u3eJx1hgGtD/nXjPVljQZkwg8fq4b5uinTxjKyvU8OI1s6yh16envCBxMXSefTVmql6BW7qrTnUTtYlTiO6JfAJ+3fNBJUMoECmwjhMtSQdGRoQgZFH2q+5W0xstZD3BrWFkMBuf4RgdPTPRG8DWTo4SxCBWJpvGczD8mY2oyFyJoIIvvWBUQShkjfxXp0QcrACn0E68AlewKqGeumoOWKKJoXkj3YYGz/vsIsLHcm+ctTj5gllNYuf17Wr+Wn+ZT1XrZGnnXze/b63Q78MOaosI4w2DsYp6/hRXtbkQtMsiY576Fc19IQVNqQXdN4GiyRmYVAmM81P6oe//oRowQsiRebF8UOFNsMdfGcx5bD9Oqu6hmPMv5ZmZREInlcuUGWHrqjd5FLll526I7SNo1w/I0rGl4M1FTatDdMMnFuIG9DfnCxRxQ4OKnfeZlVctLmcptDvt3FurCdntm/wIMtNhY7wF8lmGiqN5eWpagmXJMYWLFPM0TlEiK0vuA+HkXWiDKpxPkSLWNrH97VxTZs13m+RkHsKkDzriMhznBwaSdveF5m0OA24PBR136eZEh74+b2X+tfbu6abps4tQ+Pl45Z8LS24rZpcyxXDaWgGSQPhgx5BUnSZjflUnDlOTq/GiK36U66+gWivDbRuNBOpsvBLEsxBzeEhKEMykXD6TSOljWHU8OXNo+VaOmv4NvNA=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(7416014)(366016)(13003099007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?us-ascii?Q?QcTHCMLc7YqtQ1V3puUG8lQqRyC6hGaE7sQaqn5bK1u6bLCpHpa2lyWRHBTG?=
- =?us-ascii?Q?u4CawUd0H8OW8d0OboveuDNkocq9pOXGE+Tdzqqaaz3gjjDn1Jw4PxqpY2eA?=
- =?us-ascii?Q?5LpsRNscycqo0H8esnXZPCo2F5ozByO18JJN2t1JKgOKMOFuENC8cIO6wIAJ?=
- =?us-ascii?Q?0W+ORa0astFxtlA5yTwPy2FM4CMe64C9FWKfUq3K9BmiDHv+M8KXgdLlr638?=
- =?us-ascii?Q?8r+5pNJfk+OEHVC0+SMPWO/KlbXxC8yyZsCq+DynpIFcsCGow4ev5x6jend1?=
- =?us-ascii?Q?mjwKRsBCPMylph6351zUIsN7kJUzGyVqcYOHlKskBrZl2lgAiR02gPl9tf6Z?=
- =?us-ascii?Q?SE4lKKu+JnGhx6b3haHC/OP2IFIKQ67H25ZVMZtV/Ar/DGnBmT8CjFnLKU+N?=
- =?us-ascii?Q?2ITAZ4vfzIvPMPB1JRq711GBhlVTkipcgo52PkM/U/d5wm/NFdI178Ovf59j?=
- =?us-ascii?Q?eWbc2nUcmC1diogI1kj9JwxVYrnWRFDO/bndmoTuFODE2Q846VMqP2sjIlhx?=
- =?us-ascii?Q?B9ASF5mUKCN0vpdlJ6ff248S9mVvYq7DD3MOEy20f7DJnkFZuQFVwWLx7IK5?=
- =?us-ascii?Q?TLdiec/n8zUir3M8D0LCooWtxxXMW9tmTp6jhcpiRrl0oU13ow9uFAn/Pk73?=
- =?us-ascii?Q?UdMyzdyYGwFFGiGNhXdN5fqzZoFgDcz+Mn00/bseouI3DBf+zWOb3ZYA8JRO?=
- =?us-ascii?Q?QGkT5JYZYZRoUnfltdzvIJzR7N+3iHKGfLmcVjGn0K/DByEo8viswVEDjstg?=
- =?us-ascii?Q?UPbrIXcqB29nEdhf8S/ev+Z6++rsNQbN79qwPzNvznuhCUrFptU1cq8YAE1C?=
- =?us-ascii?Q?Ww8JB9iTwDLo8i+8+XMv+ECXJxC8K+GInt85tE6rYXgwczYbvOMwPhVq9bEj?=
- =?us-ascii?Q?+zp/iKSk4MQu81viTPaNbpyw548qfk7f3N9f5WQI2FAo7Lpi04oOyEBa5Lp2?=
- =?us-ascii?Q?2xuxqKROJ4LbN0mzNJokRHne6cV+QgQiCSbuVMYAOTXx2hZMAWqFhp/Q0iL2?=
- =?us-ascii?Q?6h6eLjVkIHFNS3ls/sxtMvTH30bkAMKxkt/IjdpSdvkfW5tcCE7Zr/6GoQLb?=
- =?us-ascii?Q?C9BYT2GaFMFgiYjvP8Y7lHoR/u0Z1bzY9bbQkZAOjqbiUcTXlehzW/sl2/X9?=
- =?us-ascii?Q?DUnEcWwjFz9UvKnHsteRZIezAu2veaeJ68F4thonVjsybH92apnS+r6BPkcx?=
- =?us-ascii?Q?1jgLdR5Q5y9PVIp1XtzCIzEIKu2R26i4TCx1xXmnorFA5df6h8BaQpjY9EIS?=
- =?us-ascii?Q?UJY+FZGD6F4vPLPGMf4GNR9FZF+ONRplwHXjdopPkUWch6l37agPi+96/DWd?=
- =?us-ascii?Q?tTU/EKztO1h7rzOZiUDQGOfdhqvVLzRMuDOpJZzWHsWfqDhPHF1QxM8YIcgX?=
- =?us-ascii?Q?Lu378WAEyQ7UhaKVZ4sX+dg6ax9/UyCXD5skWxPbu+dhhXUCtmNqjGPegEFS?=
- =?us-ascii?Q?qwX0VeCMLOiklcJq/nhbSsRg4AoIHB9HoKh6PlaU66kB7Zw5fPIOEOsbLh6g?=
- =?us-ascii?Q?2kvr9YBOeGesRiKkqo4jkuhljcRGkuISdJRgxH0qYTS1aenFsyjpaFuKkENa?=
- =?us-ascii?Q?vFf+j5UpfMevpY1VBo4afz/QUKYyRyOrg8JyWOxS7FQ9fTQZUNMF7FCKMlqQ?=
- =?us-ascii?Q?n0Otav+YRtSGSTN0H+JIQ33hBxjFEjwsZAQQHzUCAPA4iqYV8p4NkqyNFwGk?=
- =?us-ascii?Q?a/vHke03xJobjeALyBGDHJtlCHf6sBvrUWSjrOqnIojwgKUHzy7eCx4Lix0d?=
- =?us-ascii?Q?5I/2FW0Fng=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 91786a50-36b2-4347-fba4-08de7bc01d8f
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 20:36:59.6562
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- TDFT/f3mA/wFFYrTNJSARUHk6NRh4GuX3o7oLsgVYZ7FqT/J+G+BX5BZZfhjTPhu8SXHUILpkzBtiG8mvglK1Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6528
-Message-ID-Hash: 7D55AFBZL3CJIUHOFKHKT366MERONT7E
-X-Message-ID-Hash: 7D55AFBZL3CJIUHOFKHKT366MERONT7E
-X-MailFrom: joelagnelf@nvidia.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e1c53700bdf4db6c2246a9b9e7098cb6db905797.camel@redhat.com>
+Message-ID-Hash: NU35E2JLSCBQUL7G2EEI3FQKRONJQUSK
+X-Message-ID-Hash: NU35E2JLSCBQUL7G2EEI3FQKRONJQUSK
+X-MailFrom: deborah.brouwer@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alistair Popple <apopple@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- alexeyi@nvidia.com, Eliot Courtney <ecourtney@nvidia.com>,
- dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ nouveau@lists.freedesktop.org, Daniel Almeida <daniel.almeida@collabora.com>,
+ Gary Guo <gary@garyguo.net>, Benno Lossin <lossin@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>, Janne Grunau <j@jannau.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7D55AFBZL3CJIUHOFKHKT366MERONT7E/>
-Archived-At: 
- <https://lore.freedesktop.org/20260306203648.1136554-2-joelagnelf@nvidia.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NU35E2JLSCBQUL7G2EEI3FQKRONJQUSK/>
+Archived-At: <https://lore.freedesktop.org/aatAMj4rg8fNPRDX@um790/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -199,464 +116,562 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Add a new module `kernel::interop::list` for working with C's doubly
-circular linked lists. Provide low-level iteration over list nodes.
+On Wed, Mar 04, 2026 at 05:59:18PM -0500, lyude@redhat.com wrote:
+> Hey! Sorry for the long delay in response
+> 
+> Would you mind sending me the size/offset numbers you used here? My
+> unit tests should have caught issues like this, so if they're happening
+> I definitely should add it to the testcases I've got to make sure
+> there's no problems
 
-Typed iteration over actual items is provided with a `clist_create`
-macro to assist in creation of the `CList` type.
+Sure, here's some more details of the firmware sections I am loading:
 
-Cc: Nikola Djukic <ndjukic@nvidia.com>
-Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-Acked-by: Alexandre Courbot <acourbot@nvidia.com>
-Acked-by: Gary Guo <gary@garyguo.net>
-Acked-by: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
----
- MAINTAINERS                 |   8 +
- rust/helpers/helpers.c      |   1 +
- rust/helpers/list.c         |  17 ++
- rust/kernel/interop/list.rs | 338 ++++++++++++++++++++++++++++++++++++
- rust/kernel/interop/mod.rs  |   9 +
- rust/kernel/lib.rs          |   2 +
- 6 files changed, 375 insertions(+)
- create mode 100644 rust/helpers/list.c
- create mode 100644 rust/kernel/interop/list.rs
- create mode 100644 rust/kernel/interop/mod.rs
+user@trixie:~$ dmesg | grep -i tyr
+[   34.380056] tyr fb000000.gpu: supply sram not found, using dummy regulator
+[   34.392969] tyr fb000000.gpu: mali-g610 id 0xa867 major 0x0 minor 0x0 status 0x5
+[   34.393625] tyr fb000000.gpu: Features: L2:0x7120306 Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
+[   34.394408] tyr fb000000.gpu: shader_present=0x0000000000050005 l2_present=0x0000000000000001 tiler_present=0x0000000000000001
+[   34.400801] tyr: Firmware protected mode entry not supported, ignoring
+[   34.401265] tyr: fw: Section 0
+[   34.403324] tyr: fw: init_section_mem()
+[   34.403331] tyr: Base address of vmap: 0xffff800081c7f000
+[   34.403936] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x1000
+[   34.405314] tyr: Firmware data length: 0x7c
+[   34.406627] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.407262] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.407901] tyr: fw: try_write8 - offset: 0x2, byte: 0x3
+[   34.408996] tyr: fw: try_write8 - offset: 0x3, byte: 0x2
+[   34.410050] tyr: fw: try_write8 - offset: 0x4, byte: 0x8d
+[   34.410858] tyr: fw: try_write8 - offset: 0x5, byte: 0x1f
+[   34.411940] tyr: fw: try_write8 - offset: 0x6, byte: 0x80
+[   34.412857] tyr: fw: try_write8 - offset: 0x7, byte: 0x0
+[   34.413747] tyr: fw: try_write8 - offset: 0x8, byte: 0x51
+[   34.413752] tyr: fw: try_write8 - offset: 0x9, byte: 0x20
+[   34.413924] tyr: fw: Section 1
+[   34.413940] tyr: fw: init_section_mem()
+[   34.413943] tyr: Base address of vmap: 0xffff800081d1f000
+[   34.413947] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x2000
+[   34.413950] tyr: Firmware data length: 0x12dc
+[   34.413952] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.413955] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.413958] tyr: fw: try_write8 - offset: 0x2, byte: 0x0
+[   34.413961] tyr: fw: try_write8 - offset: 0x3, byte: 0x0
+[   34.413964] tyr: fw: try_write8 - offset: 0x4, byte: 0x0
+[   34.413967] tyr: fw: try_write8 - offset: 0x5, byte: 0x0
+[   34.413969] tyr: fw: try_write8 - offset: 0x6, byte: 0x0
+[   34.413972] tyr: fw: try_write8 - offset: 0x7, byte: 0x0
+[   34.413975] tyr: fw: try_write8 - offset: 0x8, byte: 0x0
+[   34.413977] tyr: fw: try_write8 - offset: 0x9, byte: 0x0
+[   34.414043] tyr: fw: Section 2
+[   34.414050] tyr: fw: init_section_mem()
+[   34.414052] tyr: Base address of vmap: 0xffff800081d13000
+[   34.414055] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x1000
+[   34.414058] tyr: Firmware data length: 0x7c
+[   34.414061] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.414064] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.414066] tyr: fw: try_write8 - offset: 0x2, byte: 0x3
+[   34.414069] tyr: fw: try_write8 - offset: 0x3, byte: 0x2
+[   34.414072] tyr: fw: try_write8 - offset: 0x4, byte: 0x8d
+[   34.414074] tyr: fw: try_write8 - offset: 0x5, byte: 0x1f
+[   34.414077] tyr: fw: try_write8 - offset: 0x6, byte: 0x80
+[   34.414080] tyr: fw: try_write8 - offset: 0x7, byte: 0x0
+[   34.414082] tyr: fw: try_write8 - offset: 0x8, byte: 0x51
+[   34.414085] tyr: fw: try_write8 - offset: 0x9, byte: 0x20
+[   34.414346] tyr: fw: Section 3
+[   34.414358] tyr: fw: init_section_mem()
+[   34.414361] tyr: Base address of vmap: 0xffff800083330000
+[   34.414364] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x20000
+[   34.414367] tyr: Firmware data length: 0x12ff0
+[   34.414370] tyr: fw: try_write8 - offset: 0x0, byte: 0xdf
+[   34.414372] tyr: fw: try_write8 - offset: 0x1, byte: 0xf8
+[   34.414375] tyr: fw: try_write8 - offset: 0x2, byte: 0xc
+[   34.414378] tyr: fw: try_write8 - offset: 0x3, byte: 0xd0
+[   34.414381] tyr: fw: try_write8 - offset: 0x4, byte: 0x2
+[   34.414384] tyr: fw: try_write8 - offset: 0x5, byte: 0xf0
+[   34.414386] tyr: fw: try_write8 - offset: 0x6, byte: 0x82
+[   34.414389] tyr: fw: try_write8 - offset: 0x7, byte: 0xfb
+[   34.414392] tyr: fw: try_write8 - offset: 0x8, byte: 0x0
+[   34.414395] tyr: fw: try_write8 - offset: 0x9, byte: 0x48
+[   34.415676] tyr: fw: Section 4
+[   34.446336] tyr: fw: init_section_mem()
+[   34.446345] tyr: Base address of vmap: 0xffff8000833a0000
+[   34.447001] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x40000
+[   34.447907] tyr: Firmware data length: 0x2b118
+[   34.449505] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.450342] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.451308] tyr: fw: try_write8 - offset: 0x2, byte: 0x0
+[   34.452244] tyr: fw: try_write8 - offset: 0x3, byte: 0x0
+[   34.453177] tyr: fw: try_write8 - offset: 0x4, byte: 0x0
+[   34.454122] tyr: fw: try_write8 - offset: 0x5, byte: 0x30
+[   34.455382] tyr: fw: try_write8 - offset: 0x6, byte: 0x0
+[   34.457468] tyr: fw: try_write8 - offset: 0x7, byte: 0x4
+[   34.458417] tyr: fw: try_write8 - offset: 0x8, byte: 0x0
+[   34.459111] tyr: fw: try_write8 - offset: 0x9, byte: 0x70
+[   34.461295] tyr: fw: Section 5
+[   34.462043] tyr: fw: init_section_mem()
+[   34.462046] tyr: Base address of vmap: 0xffff8000833e1000
+[   34.462873] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0x40000
+[   34.463793] tyr: Firmware data length: 0x2b118
+[   34.465285] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.466230] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.467201] tyr: fw: try_write8 - offset: 0x2, byte: 0x0
+[   34.468119] tyr: fw: try_write8 - offset: 0x3, byte: 0x0
+[   34.469064] tyr: fw: try_write8 - offset: 0x4, byte: 0x0
+[   34.470006] tyr: fw: try_write8 - offset: 0x5, byte: 0x30
+[   34.471145] tyr: fw: try_write8 - offset: 0x6, byte: 0x0
+[   34.471901] tyr: fw: try_write8 - offset: 0x7, byte: 0x4
+[   34.472846] tyr: fw: try_write8 - offset: 0x8, byte: 0x0
+[   34.473597] tyr: fw: try_write8 - offset: 0x9, byte: 0x70
+[   34.475292] tyr: fw: Section 6
+[   34.475752] tyr: fw: init_section_mem()
+[   34.475756] tyr: Base address of vmap: 0xffff800083422000
+[   34.476570] tyr: Size of allocated GEM buffer object (mem.bo.size()): 0xc000
+[   34.477042] tyr: Firmware data length: 0x2000
+[   34.478676] tyr: fw: try_write8 - offset: 0x0, byte: 0x0
+[   34.479459] tyr: fw: try_write8 - offset: 0x1, byte: 0x0
+[   34.479462] tyr: fw: try_write8 - offset: 0x2, byte: 0x0
+[   34.479465] tyr: fw: try_write8 - offset: 0x3, byte: 0x0
+[   34.479468] tyr: fw: try_write8 - offset: 0x4, byte: 0x0
+[   34.479471] tyr: fw: try_write8 - offset: 0x5, byte: 0x0
+[   34.482247] tyr: fw: try_write8 - offset: 0x6, byte: 0x0
+[   34.482820] tyr: fw: try_write8 - offset: 0x7, byte: 0x0
+[   34.483289] tyr: fw: try_write8 - offset: 0x8, byte: 0x0
+[   34.483291] tyr: fw: try_write8 - offset: 0x9, byte: 0x20
+[   34.507842] tyr fb000000.gpu: Tyr initialized correctly.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2842d7529a65..4c66f8261ff2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -23219,6 +23219,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
- F:	rust/kernel/alloc.rs
- F:	rust/kernel/alloc/
- 
-+RUST [INTEROP]
-+M:	Joel Fernandes <joelagnelf@nvidia.com>
-+M:	Alexandre Courbot <acourbot@nvidia.com>
-+L:	rust-for-linux@vger.kernel.org
-+S:	Maintained
-+T:	git https://github.com/Rust-for-Linux/linux.git interop-next
-+F:	rust/kernel/interop/
-+
- RUST [NUM]
- M:	Alexandre Courbot <acourbot@nvidia.com>
- R:	Yury Norov <yury.norov@gmail.com>
-diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-index a3c42e51f00a..724fcb8240ac 100644
---- a/rust/helpers/helpers.c
-+++ b/rust/helpers/helpers.c
-@@ -35,6 +35,7 @@
- #include "io.c"
- #include "jump_label.c"
- #include "kunit.c"
-+#include "list.c"
- #include "maple_tree.c"
- #include "mm.c"
- #include "mutex.c"
-diff --git a/rust/helpers/list.c b/rust/helpers/list.c
-new file mode 100644
-index 000000000000..18095a5593c5
---- /dev/null
-+++ b/rust/helpers/list.c
-@@ -0,0 +1,17 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/*
-+ * Helpers for C circular doubly linked list implementation.
-+ */
-+
-+#include <linux/list.h>
-+
-+__rust_helper void rust_helper_INIT_LIST_HEAD(struct list_head *list)
-+{
-+	INIT_LIST_HEAD(list);
-+}
-+
-+__rust_helper void rust_helper_list_add_tail(struct list_head *new, struct list_head *head)
-+{
-+	list_add_tail(new, head);
-+}
-diff --git a/rust/kernel/interop/list.rs b/rust/kernel/interop/list.rs
-new file mode 100644
-index 000000000000..bd6409f8bca2
---- /dev/null
-+++ b/rust/kernel/interop/list.rs
-@@ -0,0 +1,338 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! Rust interface for C doubly circular intrusive linked lists.
-+//!
-+//! This module provides Rust abstractions for iterating over C `list_head`-based
-+//! linked lists. It should only be used for cases where C and Rust code share
-+//! direct access to the same linked list through a C interop interface.
-+//!
-+//! Note: This *must not* be used by Rust components that just need a linked list
-+//! primitive. Use [`kernel::list::List`] instead.
-+//!
-+//! # Examples
-+//!
-+//! ```
-+//! use kernel::{
-+//!     bindings,
-+//!     clist_create,
-+//!     types::Opaque,
-+//! };
-+//! # // Create test list with values (0, 10, 20) - normally done by C code but it is
-+//! # // emulated here for doctests using the C bindings.
-+//! # use core::mem::MaybeUninit;
-+//! #
-+//! # /// C struct with embedded `list_head` (typically will be allocated by C code).
-+//! # #[repr(C)]
-+//! # pub struct SampleItemC {
-+//! #     pub value: i32,
-+//! #     pub link: bindings::list_head,
-+//! # }
-+//! #
-+//! # let mut head = MaybeUninit::<bindings::list_head>::uninit();
-+//! #
-+//! # let head = head.as_mut_ptr();
-+//! # // SAFETY: head and all the items are test objects allocated in this scope.
-+//! # unsafe { bindings::INIT_LIST_HEAD(head) };
-+//! #
-+//! # let mut items = [
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! #     MaybeUninit::<SampleItemC>::uninit(),
-+//! # ];
-+//! #
-+//! # for (i, item) in items.iter_mut().enumerate() {
-+//! #     let ptr = item.as_mut_ptr();
-+//! #     // SAFETY: `ptr` points to a valid `MaybeUninit<SampleItemC>`.
-+//! #     unsafe { (*ptr).value = i as i32 * 10 };
-+//! #     // SAFETY: `&raw mut` creates a pointer valid for `INIT_LIST_HEAD`.
-+//! #     unsafe { bindings::INIT_LIST_HEAD(&raw mut (*ptr).link) };
-+//! #     // SAFETY: `link` was just initialized and `head` is a valid list head.
-+//! #     unsafe { bindings::list_add_tail(&mut (*ptr).link, head) };
-+//! # }
-+//!
-+//! // Rust wrapper for the C struct.
-+//! // The list item struct in this example is defined in C code as:
-+//! //   struct SampleItemC {
-+//! //       int value;
-+//! //       struct list_head link;
-+//! //   };
-+//! //
-+//! #[repr(transparent)]
-+//! pub struct Item(Opaque<SampleItemC>);
-+//!
-+//! impl Item {
-+//!     pub fn value(&self) -> i32 {
-+//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
-+//!         unsafe { (*self.0.get()).value }
-+//!     }
-+//! }
-+//!
-+//! // Create typed [`CList`] from sentinel head.
-+//! // SAFETY: head is valid and initialized, items are `SampleItemC` with
-+//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
-+//! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
-+//!
-+//! // Iterate directly over typed items.
-+//! let mut found_0 = false;
-+//! let mut found_10 = false;
-+//! let mut found_20 = false;
-+//!
-+//! for item in list.iter() {
-+//!     let val = item.value();
-+//!     if val == 0 { found_0 = true; }
-+//!     if val == 10 { found_10 = true; }
-+//!     if val == 20 { found_20 = true; }
-+//! }
-+//!
-+//! assert!(found_0 && found_10 && found_20);
-+//! ```
-+
-+use core::{
-+    iter::FusedIterator,
-+    marker::PhantomData, //
-+};
-+
-+use crate::{
-+    bindings,
-+    types::Opaque, //
-+};
-+
-+use pin_init::{
-+    pin_data,
-+    pin_init,
-+    PinInit, //
-+};
-+
-+/// FFI wrapper for a C `list_head` object used in intrusive linked lists.
-+///
-+/// # Invariants
-+///
-+/// - The underlying `list_head` has been initialized (e.g. via `INIT_LIST_HEAD()`) and its
-+///   `next`/`prev` pointers are valid and non-NULL.
-+#[pin_data]
-+#[repr(transparent)]
-+pub struct CListHead {
-+    #[pin]
-+    inner: Opaque<bindings::list_head>,
-+}
-+
-+impl CListHead {
-+    /// Create a `&CListHead` reference from a raw `list_head` pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - `ptr` must be a valid pointer to an initialized `list_head` (e.g. via
-+    ///   `INIT_LIST_HEAD()`), with valid non-NULL `next`/`prev` pointers.
-+    /// - `ptr` must remain valid for the lifetime `'a`.
-+    /// - The list and all linked `list_head` nodes must not be modified from
-+    ///   anywhere for the lifetime `'a`, unless done so via any [`CListHead`] APIs.
-+    #[inline]
-+    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
-+        // SAFETY:
-+        // - [`CListHead`] has same layout as `list_head`.
-+        // - `ptr` is valid and unmodified for 'a per caller guarantees.
-+        unsafe { &*ptr.cast() }
-+    }
-+
-+    /// Get the raw `list_head` pointer.
-+    #[inline]
-+    pub fn as_raw(&self) -> *mut bindings::list_head {
-+        self.inner.get()
-+    }
-+
-+    /// Get the next [`CListHead`] in the list.
-+    #[inline]
-+    pub fn next(&self) -> &Self {
-+        let raw = self.as_raw();
-+        // SAFETY:
-+        // - `self.as_raw()` is valid and initialized per type invariants.
-+        // - The `next` pointer is valid and non-NULL per type invariants
-+        //   (initialized via `INIT_LIST_HEAD()` or equivalent).
-+        unsafe { Self::from_raw((*raw).next) }
-+    }
-+
-+    /// Check if this node is linked in a list (not isolated).
-+    #[inline]
-+    pub fn is_linked(&self) -> bool {
-+        let raw = self.as_raw();
-+        // SAFETY: self.as_raw() is valid per type invariants.
-+        unsafe { (*raw).next != raw && (*raw).prev != raw }
-+    }
-+
-+    /// Pin-initializer that initializes the list head.
-+    pub fn new() -> impl PinInit<Self> {
-+        pin_init!(Self {
-+            // SAFETY: `INIT_LIST_HEAD` initializes `slot` to a valid empty list.
-+            inner <- Opaque::ffi_init(|slot| unsafe { bindings::INIT_LIST_HEAD(slot) }),
-+        })
-+    }
-+}
-+
-+// SAFETY: `list_head` contains no thread-bound state; it only holds
-+// `next`/`prev` pointers.
-+unsafe impl Send for CListHead {}
-+
-+// SAFETY: `CListHead` can be shared among threads as modifications are
-+// not allowed at the moment.
-+unsafe impl Sync for CListHead {}
-+
-+impl PartialEq for CListHead {
-+    #[inline]
-+    fn eq(&self, other: &Self) -> bool {
-+        core::ptr::eq(self, other)
-+    }
-+}
-+
-+impl Eq for CListHead {}
-+
-+/// Low-level iterator over `list_head` nodes.
-+///
-+/// An iterator used to iterate over a C intrusive linked list (`list_head`). Caller has to
-+/// perform conversion of returned [`CListHead`] to an item (using `container_of` macro or similar).
-+///
-+/// # Invariants
-+///
-+/// [`CListHeadIter`] is iterating over an initialized and valid list.
-+struct CListHeadIter<'a> {
-+    /// Current position in the list.
-+    current: &'a CListHead,
-+    /// The sentinel head (used to detect end of iteration).
-+    sentinel: &'a CListHead,
-+}
-+
-+impl<'a> Iterator for CListHeadIter<'a> {
-+    type Item = &'a CListHead;
-+
-+    #[inline]
-+    fn next(&mut self) -> Option<Self::Item> {
-+        // Check if we've reached the sentinel (end of list).
-+        if self.current == self.sentinel {
-+            return None;
-+        }
-+
-+        let item = self.current;
-+        self.current = item.next();
-+        Some(item)
-+    }
-+}
-+
-+impl<'a> FusedIterator for CListHeadIter<'a> {}
-+
-+/// A typed C linked list with a sentinel head intended for FFI use-cases where
-+/// C subsystem manages a linked list that Rust code needs to read. Generally
-+/// required only for special cases.
-+///
-+/// A sentinel head [`CListHead`] represents the entire linked list and can be used
-+/// for iteration over items of type `T`, it is not associated with a specific item.
-+///
-+/// The const generic `OFFSET` specifies the byte offset of the `list_head` field within
-+/// the struct that `T` wraps.
-+///
-+/// # Invariants
-+///
-+/// - The sentinel [`CListHead`] has been initialized (e.g. via `INIT_LIST_HEAD()`) with valid
-+///   non-NULL `next`/`prev` pointers.
-+/// - `OFFSET` is the byte offset of the `list_head` field within the struct that `T` wraps.
-+/// - All the list's `list_head` nodes have been initialized with valid non-NULL `next`/`prev`
-+///   pointers.
-+#[repr(transparent)]
-+pub struct CList<T, const OFFSET: usize>(CListHead, PhantomData<T>);
-+
-+impl<T, const OFFSET: usize> CList<T, OFFSET> {
-+    /// Create a typed [`CList`] reference from a raw sentinel `list_head` pointer.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - `ptr` must be a valid pointer to an initialized sentinel `list_head` (e.g. via
-+    ///   `INIT_LIST_HEAD()`), with valid non-NULL `next`/`prev` pointers.
-+    /// - `ptr` must remain valid for the lifetime `'a`.
-+    /// - The list and all linked nodes must not be concurrently modified for the lifetime `'a`.
-+    /// - The list must contain items where the `list_head` field is at byte offset `OFFSET`.
-+    /// - `T` must be `#[repr(transparent)]` over the C struct.
-+    #[inline]
-+    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
-+        // SAFETY:
-+        // - [`CList`] has same layout as [`CListHead`] due to repr(transparent).
-+        // - Caller guarantees `ptr` is a valid, sentinel `list_head` object.
-+        unsafe { &*ptr.cast() }
-+    }
-+
-+    /// Check if the list is empty.
-+    #[inline]
-+    pub fn is_empty(&self) -> bool {
-+        !self.0.is_linked()
-+    }
-+
-+    /// Create an iterator over typed items.
-+    #[inline]
-+    pub fn iter(&self) -> CListIter<'_, T, OFFSET> {
-+        let head = &self.0;
-+        CListIter {
-+            head_iter: CListHeadIter {
-+                current: head.next(),
-+                sentinel: head,
-+            },
-+            _phantom: PhantomData,
-+        }
-+    }
-+}
-+
-+/// High-level iterator over typed list items.
-+pub struct CListIter<'a, T, const OFFSET: usize> {
-+    head_iter: CListHeadIter<'a>,
-+    _phantom: PhantomData<&'a T>,
-+}
-+
-+impl<'a, T, const OFFSET: usize> Iterator for CListIter<'a, T, OFFSET> {
-+    type Item = &'a T;
-+
-+    #[inline]
-+    fn next(&mut self) -> Option<Self::Item> {
-+        let head = self.head_iter.next()?;
-+
-+        // Convert to item using OFFSET.
-+        // SAFETY: The pointer calculation is valid because `OFFSET` is derived
-+        // from `offset_of!` per type invariants.
-+        Some(unsafe { &*head.as_raw().byte_sub(OFFSET).cast::<T>() })
-+    }
-+}
-+
-+impl<'a, T, const OFFSET: usize> FusedIterator for CListIter<'a, T, OFFSET> {}
-+
-+/// Create a C doubly-circular linked list interface `CList` from a raw `list_head` pointer.
-+///
-+/// This macro creates a `CList<T, OFFSET>` that can iterate over items of type `$rust_type`
-+/// linked via the `$field` field in the underlying C struct `$c_type`.
-+///
-+/// # Arguments
-+///
-+/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut bindings::list_head`).
-+/// - `$rust_type`: Each item's rust wrapper type.
-+/// - `$c_type`: Each item's C struct type that contains the embedded `list_head`.
-+/// - `$field`: The name of the `list_head` field within the C struct.
-+///
-+/// # Safety
-+///
-+/// The caller must ensure:
-+///
-+/// - `$head` is a valid, initialized sentinel `list_head` (e.g. via `INIT_LIST_HEAD()`)
-+///   pointing to a list that is not concurrently modified for the lifetime of the `CList`.
-+/// - The list contains items of type `$c_type` linked via an embedded `$field`.
-+/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has compatible layout.
-+///
-+/// # Examples
-+///
-+/// Refer to the examples in this module's documentation.
-+#[macro_export]
-+macro_rules! clist_create {
-+    (unsafe { $head:expr, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => {{
-+        // Compile-time check that field path is a list_head.
-+        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
-+            |p| unsafe { &raw const (*p).$($field).+ };
-+
-+        // Calculate offset and create `CList`.
-+        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
-+        // SAFETY: The caller of this macro is responsible for ensuring safety.
-+        unsafe { $crate::interop::list::CList::<$rust_type, OFFSET>::from_raw($head) }
-+    }};
-+}
-diff --git a/rust/kernel/interop/mod.rs b/rust/kernel/interop/mod.rs
-new file mode 100644
-index 000000000000..b88140cf76dc
---- /dev/null
-+++ b/rust/kernel/interop/mod.rs
-@@ -0,0 +1,9 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! Infrastructure for interfacing Rust code with C kernel subsystems.
-+//!
-+//! This module is intended for low-level, unsafe Rust infrastructure code
-+//! that interoperates between Rust and C. It is NOT for use directly in
-+//! Rust drivers.
-+
-+pub mod list;
-diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index 3da92f18f4ee..bb741f1e0dfd 100644
---- a/rust/kernel/lib.rs
-+++ b/rust/kernel/lib.rs
-@@ -28,6 +28,7 @@
- #![feature(lint_reasons)]
- //
- // Stable since Rust 1.82.0.
-+#![feature(offset_of_nested)]
- #![feature(raw_ref_op)]
- //
- // Stable since Rust 1.83.0.
-@@ -103,6 +104,7 @@
- #[doc(hidden)]
- pub mod impl_flags;
- pub mod init;
-+pub mod interop;
- pub mod io;
- pub mod ioctl;
- pub mod iommu;
--- 
-2.34.1
+Here's a link to the commit where I added these print statements
+if you would like to see more context:
+https://gitlab.freedesktop.org/dbrouwer/linux/-/commit/2232b848a9ceef681382159c9b1471e6df0c00d6
 
+Let me know if I can help more or test anything.
+
+Thanks,
+Deborah
+
+> 
+> On Thu, 2026-02-12 at 17:59 -0800, Deborah Brouwer wrote:
+> > Hi Lyude,
+> > 
+> > On Fri, Feb 06, 2026 at 05:34:30PM -0500, Lyude Paul wrote:
+> > > This introduces a set of bindings for working with iosys_map in
+> > > rust code
+> > > using the new Io traits.
+> > > 
+> > > Signed-off-by: Lyude Paul <lyude@redhat.com>
+> > > 
+> > > ---
+> > > V5:
+> > > - Fix incorrect field size being passed to iosys_map_memcpy_to()
+> > > - Add an additional unit test, basic_macro(), which can
+> > > successfully catch
+> > >   the above issue so it doesn't happen again in the future.
+> > > V6:
+> > > - Drop as_slice/as_mut_slice (Alice Rhyl)
+> > > V7:
+> > > - Start using Alexandre Courbot's wonderful Io, IoCapable and
+> > > IoKnownSize
+> > >   traits instead of trying to roll our own IO accessors. This also
+> > > changes
+> > >   the following:
+> > >   - We don't have a custom AsBytes/FromBytes type that we carry
+> > > around any
+> > >     longer with maps
+> > >   - We now have optional compile-time size checking
+> > >   - We don't need our own unit tests anymore
+> > >   - RawIoSysMap can be used for unsafe IO operations, because why
+> > > not.
+> > >   - IoSysMapRef::new() can fail now since it needs to ensure SIZE
+> > > is valid.
+> > >   - We don't implement Deref<RawIoSysMap> for IoSysMapRef any
+> > > longer. The
+> > >     main reason for this is that we want to avoid users having to
+> > > manually
+> > >     specify if they want the RawIoSysMap or IoSysMapRef variant
+> > > functions
+> > >     like io_read()/io_write().
+> > >     This is fine IMHO, but to make sure things remain easy for APIs
+> > > that
+> > >     wrap around iosys map we make IoSysMapRef.raw_map pub(crate).
+> > > 
+> > >  rust/helpers/helpers.c   |   1 +
+> > >  rust/helpers/iosys_map.c |  34 +++++++
+> > >  rust/kernel/iosys_map.rs | 211
+> > > +++++++++++++++++++++++++++++++++++++++
+> > >  rust/kernel/lib.rs       |   1 +
+> > >  4 files changed, 247 insertions(+)
+> > >  create mode 100644 rust/helpers/iosys_map.c
+> > >  create mode 100644 rust/kernel/iosys_map.rs
+> > > 
+> > > diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
+> > > index 1d3333cc0d2a8..bd8ad237aa02e 100644
+> > > --- a/rust/helpers/helpers.c
+> > > +++ b/rust/helpers/helpers.c
+> > > @@ -31,6 +31,7 @@
+> > >  #include "irq.c"
+> > >  #include "fs.c"
+> > >  #include "io.c"
+> > > +#include "iosys_map.c"
+> > >  #include "jump_label.c"
+> > >  #include "kunit.c"
+> > >  #include "maple_tree.c"
+> > > diff --git a/rust/helpers/iosys_map.c b/rust/helpers/iosys_map.c
+> > > new file mode 100644
+> > > index 0000000000000..6861d4ec48a4b
+> > > --- /dev/null
+> > > +++ b/rust/helpers/iosys_map.c
+> > > @@ -0,0 +1,34 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +#include <linux/iosys-map.h>
+> > > +#include <linux/types.h>
+> > > +
+> > > +#define
+> > > rust_iosys_map_rd(type__)                                          
+> > >              \
+> > > +	__rust_helper
+> > > type__                                                            \
+> > > +	rust_helper_iosys_map_rd_ ## type__(const struct iosys_map
+> > > *map, size_t offset) \
+> > > +	{                                                         
+> > >                       \
+> > > +		return iosys_map_rd(map, offset,
+> > > type__);                               \
+> > > +	}
+> > > +#define
+> > > rust_iosys_map_wr(type__)                                          
+> > >              \
+> > > +	__rust_helper
+> > > void                                                              \
+> > > +	rust_helper_iosys_map_wr_ ## type__(const struct iosys_map
+> > > *map, size_t offset, \
+> > > +					    type__
+> > > value)                               \
+> > > +	{                                                         
+> > >                       \
+> > > +		iosys_map_wr(map, offset, type__,
+> > > value);                               \
+> > > +	}
+> > > +
+> > > +rust_iosys_map_rd(u8);
+> > > +rust_iosys_map_rd(u16);
+> > > +rust_iosys_map_rd(u32);
+> > > +
+> > > +rust_iosys_map_wr(u8);
+> > > +rust_iosys_map_wr(u16);
+> > > +rust_iosys_map_wr(u32);
+> > > +
+> > > +#ifdef CONFIG_64BIT
+> > > +rust_iosys_map_rd(u64);
+> > > +rust_iosys_map_wr(u64);
+> > > +#endif
+> > > +
+> > > +#undef rust_iosys_map_rd
+> > > +#undef rust_iosys_map_wr
+> > > diff --git a/rust/kernel/iosys_map.rs b/rust/kernel/iosys_map.rs
+> > > new file mode 100644
+> > > index 0000000000000..2070f0fb42cb8
+> > > --- /dev/null
+> > > +++ b/rust/kernel/iosys_map.rs
+> > > @@ -0,0 +1,211 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +//! IO-agnostic memory mapping interfaces.
+> > > +//!
+> > > +//! This crate provides bindings for the `struct iosys_map` type,
+> > > which provides a common interface
+> > > +//! for memory mappings which can reside within coherent memory,
+> > > or within IO memory.
+> > > +//!
+> > > +//! C header: [`include/linux/iosys-
+> > > map.h`](srctree/include/linux/pci.h)
+> > > +
+> > > +use crate::{
+> > > +    error::code::*,
+> > > +    io::{
+> > > +        Io,
+> > > +        IoCapable,
+> > > +        IoKnownSize, //
+> > > +    },
+> > > +    prelude::*, //
+> > > +};
+> > > +use bindings;
+> > > +use core::marker::PhantomData;
+> > > +
+> > > +/// Raw unsized representation of a `struct iosys_map`.
+> > > +///
+> > > +/// This struct is a transparent wrapper around `struct
+> > > iosys_map`. The C API does not provide the
+> > > +/// size of the mapping by default, and thus this type also does
+> > > not include the size of the
+> > > +/// mapping. As such, it cannot be used for actually accessing the
+> > > underlying data pointed to by the
+> > > +/// mapping.
+> > > +///
+> > > +/// With the exception of kernel crates which may provide their
+> > > own wrappers around `RawIoSysMap`,
+> > > +/// users will typically not interact with this type directly.
+> > > +#[repr(transparent)]
+> > > +pub struct RawIoSysMap<const SIZE: usize =
+> > > 0>(bindings::iosys_map);
+> > > +
+> > > +impl<const SIZE: usize> RawIoSysMap<SIZE> {
+> > > +    /// Convert from a raw `bindings::iosys_map`.
+> > > +    #[expect(unused)]
+> > > +    #[inline]
+> > > +    pub(crate) fn from_raw(val: bindings::iosys_map) -> Self {
+> > > +        Self(val)
+> > > +    }
+> > > +
+> > > +    /// Returns whether the mapping is within IO memory space or
+> > > not.
+> > > +    #[inline]
+> > > +    pub fn is_iomem(&self) -> bool {
+> > > +        self.0.is_iomem
+> > > +    }
+> > > +
+> > > +    /// Convert from a `RawIoSysMap<SIZE>` to a raw
+> > > `bindings::iosys_map` ref.
+> > > +    #[expect(unused)]
+> > > +    #[inline]
+> > > +    pub(crate) fn as_raw(&self) -> &bindings::iosys_map {
+> > > +        &self.0
+> > > +    }
+> > > +
+> > > +    /// Convert from a `RawIoSysMap<SIZE>` to a raw mutable
+> > > `bindings::iosys_map` ref.
+> > > +    #[allow(unused)]
+> > > +    #[inline]
+> > > +    pub(crate) fn as_raw_mut(&mut self) -> &mut
+> > > bindings::iosys_map {
+> > > +        &mut self.0
+> > > +    }
+> > > +
+> > > +    /// Returns the address pointed to by this iosys map.
+> > > +    ///
+> > > +    /// Note that this address is not guaranteed to be valid, and
+> > > may or may not reside in I/O
+> > > +    /// memory.
+> > > +    #[inline]
+> > > +    pub fn addr(&self) -> usize {
+> > > +        (if self.is_iomem() {
+> > > +            // SAFETY: We confirmed above that this iosys map is
+> > > contained within iomem, so it's
+> > > +            // safe to read vaddr_iomem
+> > > +            unsafe { self.0.__bindgen_anon_1.vaddr_iomem }
+> > > +        } else {
+> > > +            // SAFETY: We confirmed above that this iosys map is
+> > > not contaned within iomem, so it's
+> > > +            // safe to read vaddr.
+> > > +            unsafe { self.0.__bindgen_anon_1.vaddr }
+> > > +        }) as usize
+> > > +    }
+> > > +}
+> > > +
+> > > +// SAFETY: As we make no guarantees about the validity of the
+> > > mapping, there's no issue with sending
+> > > +// this type between threads.
+> > > +unsafe impl<const SIZE: usize> Send for RawIoSysMap<SIZE> {}
+> > > +
+> > > +impl<const SIZE: usize> Clone for RawIoSysMap<SIZE> {
+> > > +    fn clone(&self) -> Self {
+> > > +        Self(self.0)
+> > > +    }
+> > > +}
+> > > +
+> > > +macro_rules! impl_raw_iosys_map_io_capable {
+> > > +    ($ty:ty, $read_fn:ident, $write_fn:ident) => {
+> > > +        impl<const SIZE: usize> IoCapable<$ty> for
+> > > RawIoSysMap<SIZE> {
+> > > +            #[inline(always)]
+> > > +            unsafe fn io_read(&self, address: usize) -> $ty {
+> > > +                // SAFETY: By the trait invariant `address` is a
+> > > valid address for iosys map
+> > > +                // operations.
+> > > +                unsafe { bindings::$read_fn(&self.0, address) }
+> > > +            }
+> > > +
+> > > +            #[inline(always)]
+> > > +            unsafe fn io_write(&self, value: $ty, address: usize)
+> > > {
+> > > +                // SAFETY: By the trait invariant `address` is a
+> > > valid address for iosys map
+> > > +                // operations.
+> > > +                unsafe { bindings::$write_fn(&self.0, address,
+> > > value) };
+> > > +            }
+> > > +        }
+> > > +    };
+> > > +}
+> > > +
+> > 
+> > I think there might be a mismatch between the absolute address being
+> > passed to these read and write functions and the bindings helpers
+> > that expect an offset argument.
+> > 
+> > This crashed Tyr when I tried to write the firmware in u8 chunks at
+> > incremental offsets. But if i just calculated the offset and passed
+> > that
+> > instead of the absolute address, this worked fine:
+> > 
+> >   let offset = address - self.addr();
+> >   unsafe { bindings::$write_fn(&self.0, offset, value) };
+> > 
+> > Here's some of the call trace:
+> > 
+> > [   31.553727] tyr fb000000.gpu: supply sram not found, using dummy
+> > regulator
+> > [   31.555096] tyr fb000000.gpu: mali-unknown id 0xa867 major 0x67
+> > minor 0x0 status 0x5
+> > [   31.555778] tyr fb000000.gpu: Features: L2:0x7120306 Tiler:0x809
+> > Mem:0x301 MMU:0x2830 AS:0xff
+> > [   31.556521] tyr fb000000.gpu: shader_present=0x0000000000050005
+> > l2_present=0x0000000000000001 tiler_present=0x0000000000000001
+> > [   31.557868] stackdepot: allocating hash table of 524288 entries
+> > via kvcalloc
+> > [  OK  ] Started systemd-tmpfiles-clean.tim…y Cleanup of Temporary
+> > Directories.
+> > [   31.562424] stackdepot: allocating space for 8192 stack pools via
+> > kvcalloc
+> > [  OK  ] Reached target timers.target - Timer Units.
+> > [   31.563676] tyr: Firmware protected mode entry not supported,
+> > ignoring
+> > [   31.571391] Unable to handle kernel paging request at virtual
+> > address 0000000000800069
+> > [   31.572762] Mem abort info:
+> > [   31.573027]   ESR = 0x0000000096000021
+> > [   31.573402]   EC = 0x25: DABT (current EL), IL = 32 bits
+> > [   31.573878]   SET = 0, FnV = 0
+> > [   31.574157]   EA = 0, S1PTW = 0
+> > [   31.574442]   FSC = 0x21: alignment fault
+> > [  OK  ] Listening on dbus.socket - D-Bus System Message Bus Socket.
+> > [   31.593348] Data abort info:
+> > [   31.593628]   ISV = 0, ISS = 0x00000021, ISS2 = 0x00000000
+> > [   31.594117]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+> > [   31.594567]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+> > [   31.595042] user pgtable: 4k pages, 48-bit VAs,
+> > pgdp=0000000105e50000
+> > [   31.595613] [0000000000800069] pgd=0000000000000000,
+> > p4d=0000000000000000
+> > [   31.596434] Internal error: Oops: 0000000096000021 [#1]  SMP
+> > [   31.596936] Modules linked in: snd tyr(+) soundcore sha256
+> > cfg80211 rfkill pci_endpoint_test fuse dm_mod ipv6
+> > [   31.597830] CPU: 3 UID: 0 PID: 241 Comm: (udev-worker) Not tainted
+> > 6.19.0-rc5 #282 PREEMPT
+> > [   31.598561] Hardware name: Radxa ROCK 5B (DT)
+> > [   31.598944] pstate: 00400009 (nzcv daif +PAN -UAO -TCO -DIT -SSBS
+> > BTYPE=--)
+> > [   31.599554] pc : __d_lookup_rcu+0xbc/0x168
+> > [   31.599921] lr : __d_lookup_rcu+0x60/0x168
+> > [   31.600283] sp : ffff800081ebba00
+> > [   31.600574] x29: ffff800081ebba00 x28: 0000000000000049 x27:
+> > ffff00010d07002b
+> > [   31.601205] x26: 0000000000000081 x25: 000000000006915e x24:
+> > ffff0002f6600000
+> > [   31.601848] x23: ffff00010396a040 x22: ffff000102098460 x21:
+> > 000000036915e207
+> > [   31.601859] x20: ffff000101e10af8 x19: ffff800081ebbcac x18:
+> > 2f64662f666c6573
+> > [   31.601867] x17: ffffff00666c6573 x16: 00000000fffffffc x15:
+> > 0000000000003431
+> > [   31.601875] x14: 000000000000000f x13: 0080205100800107 x12:
+> > 0000000000800069
+> > [   31.601882] x11: ffffffffffffffff x10: 0000000000000018 x9 :
+> > 0000000000000003
+> > [   31.601890] x8 : 00000000008000a1 x7 : ffffb9d13df173c8 x6 :
+> > 0000000000000000
+> > [   31.601897] x5 : 0000000000000000 x4 : 0000000000000010 x3 :
+> > ffffffffffff0a00
+> > [   31.601905] x2 : ffff800081ebbcac x1 : ffffb9d1406be718 x0 :
+> > 0000000000000001
+> > [   31.601913] Call trace:
+> > [   31.601915]  __d_lookup_rcu+0xbc/0x168 (P)
+> > [   31.601922]  lookup_fast+0x98/0x174
+> > [   31.601929]  link_path_walk+0x280/0x528
+> > [   31.601935]  path_lookupat+0x60/0x1f0
+> > [   31.601941]  do_o_path+0x34/0xb4
+> > [   31.601947]  path_openat+0xccc/0xe34
+> > [   31.601953]  do_filp_open+0xc0/0x170
+> > [   31.601958]  do_sys_openat2+0x88/0x10c
+> > [   31.601963]  __arm64_sys_openat+0x70/0x9c
+> > [   31.601968]  invoke_syscall+0x40/0xcc
+> > [   31.601974]  el0_svc_common+0x80/0xd8
+> > [   31.601979]  do_el0_svc+0x1c/0x28
+> > [   31.601984]  el0_svc+0x54/0x1d4
+> > [   31.601991]  el0t_64_sync_handler+0x84/0x12c
+> > [   31.601997]  el0t_64_sync+0x198/0x19c
+> > [   31.602005] Code: 14000003 f9400108 b4000428 d100e10c (88dffd8c)
+> > [   31.602009] ---[ end trace 0000000000000000 ]---
+> > [  OK  ] Listening on sshd-unix-local.socke…temd-ssh-generator,
+> > AF_UNIX Local).
+> > [   31.620067] mc: Linux media interface: v0.10
+> > [   31.623483] [drm] Initialized panthor 1.5.0 for fb000000.gpu on
+> > minor 0
+> > [   31.623765] Unable to handle kernel paging request at virtual
+> > address 00802a4d0080284d
+> > [   31.624285] tyr fb000000.gpu: Tyr initialized correctly.
+> > [   31.624752] Mem abort info:
+> > [   31.624754]   ESR = 0x0000000096000004
+> > [   31.625847]   EC = 0x25: DABT (current EL), IL = 32 bits
+> > [   31.626310]   SET = 0, FnV = 0
+> > [   31.626578]   EA = 0, S1PTW = 0
+> > [   31.626853]   FSC = 0x04: level 0 translation fault
+> > [   31.627277] Data abort info:
+> > [   31.627529]   ISV = 0, ISS = 0x00000004, ISS2 = 0x00000000
+> > [   31.628006]   CM = 0, WnR = 0, TnD = 0, TagAccess = 0
+> > [   31.628447]   GCS = 0, Overlay = 0, DirtyBit = 0, Xs = 0
+> > [   31.628910] [00802a4d0080284d] address between user and kernel
+> > address ranges
+> > [   31.629535] Internal error: Oops: 0000000096000004 [#2]  SMP
+> > [   31.630030] Modules linked in: mc drm_client_lib snd tyr soundcore
+> > sha256 cfg80211 rfkill pci_endpoint_test fuse dm_mod ipv6
+> > [   31.631017] CPU: 4 UID: 0 PID: 225 Comm: systemd-udevd Tainted:
+> > G      D             6.19.0-rc5 #282 PREEMPT
+> > [   31.631877] Tainted: [D]=DIE
+> > [   31.632129] Hardware name: Radxa ROCK 5B (DT)
+> > [   31.632506] pstate: a0400009 (NzCv daif +PAN -UAO -TCO -DIT -SSBS
+> > BTYPE=--)
+> > [   31.633111] pc : ___d_drop+0xd8/0x144
+> > [   31.633433] lr : d_invalidate+0x3c/0x110
+> > [   31.633776] sp : ffff800081d3ba70
+> > [   31.634064] x29: ffff800081d3ba90 x28: 0000000000000001 x27:
+> > ffffb9d140bfa000
+> > [   31.634685] x26: ffff0001039b5108 x25: ffff00010396a000 x24:
+> > ffffb9d140166275
+> > [   31.635305] x23: ffffb9d140bfa000 x22: ffffb9d140152f3a x21:
+> > ffff000104076000
+> > [   31.635925] x20: ffff00010e520098 x19: ffff00010396a000 x18:
+> > 0000000000000000
+> > [   31.636545] x17: 0000000000000000 x16: 0000000000000000 x15:
+> > 0000000000000000
+> > [   31.637165] x14: 0000000000000000 x13: ffff00010792b8f0 x12:
+> > 000000000000017a
+> > [   31.637785] x11: 00000000008000a1 x10: 00802a4d0080284d x9 :
+> > ffff0002f6604010
+> > [   31.638405] x8 : ffff000105bfcd40 x7 : 0000000000000000 x6 :
+> > ffffb9d13e272c60
+> > [   31.639026] x5 : 0000000000000000 x4 : 0000000000000001 x3 :
+> > 0000000000000000
+> > [   31.639646] x2 : 0000000000000000 x1 : 0000000000000000 x0 :
+> > ffff00010396a000
+> > [   31.640266] Call trace:
+> > [   31.640479]  ___d_drop+0xd8/0x144 (P)
+> > [   31.640800]  d_invalidate+0x3c/0x110
+> > [   31.641113]  proc_invalidate_siblings_dcache+0x244/0x2b8
+> > [   31.641577]  proc_flush_pid+0x1c/0x28
+> > [   31.641897]  release_task+0x560/0x668
+> > [   31.642218]  wait_consider_task+0x5a0/0xb44
+> > [   31.642582]  __do_wait+0x154/0x1f0
+> > [   31.642879]  do_wait+0x84/0x16c
+> > [   31.643154]  __arm64_sys_waitid+0xac/0x218
+> > [   31.643512]  invoke_syscall+0x40/0xcc
+> > [   31.643833]  el0_svc_common+0x80/0xd8
+> > [   31.644152]  do_el0_svc+0x1c/0x28
+> > [   31.644441]  el0_svc+0x54/0x1d4
+> > [   31.644718]  el0t_64_sync_handler+0x84/0x12c
+> > [   31.645090]  el0t_64_sync+0x198/0x19c
+> > [   31.645412] Code: 5280002a f85f83a0 17fffff1 a944280b (f940014c)
+> > [   31.645941] ---[ end trace 0000000000000000 ]---
+> > 
+> > thanks,
+> > Deborah
+> 
