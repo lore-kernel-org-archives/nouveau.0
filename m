@@ -4,109 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1913EFCA188
-	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 21:16:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E27FBFCA191
+	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 21:23:02 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0771010E5C5;
-	Mon,  9 Mar 2026 21:16:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7A9BC10E5CA;
+	Mon,  9 Mar 2026 21:22:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; secure) header.d=ik.me header.i=@ik.me header.b="ZPyjEyv4";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="sqZseNZ+";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0AE0F44FCD;
-	Mon,  9 Mar 2026 21:06:18 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773090377;
- b=c/erS6dAUwk0vMlATpeyvAHhQkKcMihzTTKT3w5bMAt/qIORK8Ho9k/gvH82ZC695PKzT
- fhXMqmgUoa+4ON9BgMwWEhCD1AM9NJL4ON6hmC4/euPFBYJ+z6wD89V2m2iUgQF0gYK4ktA
- zwYPn/cdNpksmyFtvUvgnnmWgIPDguPPOyZbSWZ6/PBBis0mEyc2BAxcy3Vxp1RW8TRP04X
- osdlhNLDXMWYHlVWTqeffU/oxy9/+ka9vexOLsOHe99aSVaXwHhgE4h/4ui+5JrguF/GU5x
- EYkrunRzsm85NtUbaMXaTEuw034Iy8gkrUCmJQ9NF0WVTZQPybZaMF2fswqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773090377; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 7C6CC44FD5;
+	Mon,  9 Mar 2026 21:12:26 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1773090746;
+ b=ahfnh2Q9YkTzWz4ji0kt2j52qi/8h0sxjWUppv7wvb92cFNJdZ/ghj75GW5cs2ml0AP2Y
+ xwXVzWSvEeYIIXVDJIJtKCWKTlVFWwmexp8gzewKvScXU4NrPXMJqme28S/Epia8qn6tNB5
+ Jc59mSxDuFehxTbilxK2DsFWT+RCQwhxtUFfgK3MHMP5+2q2I+MwalxgR3f+cyHpcXaqpkT
+ MfaC0tN+w0selb/m1HZbA/kzblVdCjwidVNimMwumB//+VweY7otljD69EVBn/nASdWxrwK
+ 6zlY19TWqx9VYoZliP9AWxeC5pAVwwU2WP2aN7G0T7qz0jbXQjJhp3pSUoDQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1773090746; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=53430ld6TuOhPe06CqOr6FSTQYKWdBF9o2ZOnQ454dI=;
- b=rAWeHSoZcHncX1f5dl5QooJ4V2YdGo99s50hV5kTsa/hEKULsJ1iFUGDBTXXX8cnJMOZo
- 8gkZkCXij0uSof92t6e3OFk4oxrrISVpaksnnGlni9AdodsbFpA9fQbnf6qKKmQVh8kIKe+
- j+Q/2Ki4CT+Cd4g7k1MlHmCCvUjdvkSfxzHYJv5N9jpmIorDSAtl9/aRyb3y37r6i+igEXd
- H3EEc1SJ9sTpK0Tu2GNjXzTRwhqI1OMJn38TzPzTIxaSdiwwWRlC8Qi5+T3ae9bOiyWTBIu
- I8xBREhRvlBOciFU+JymUKhdW6Yu3RXNT1ZRqKSI79yVXFsuC+21/0KrhzlQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=ik.me;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=ik.me policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=ik.me;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=ik.me policy.dmarc=reject
+ bh=cE4bKCSZ6trp5wIgmUV3K6swmheaI1s9VmQuwL1Bk5o=;
+ b=p4uxDpfOsHwuThIv526TcpzDvKgEd3awhtU1Mwb1KKzIfLk6kVB5wdPfYFKixiLT2o5Ls
+ +Y31GHaA3qNoXM1J8uBDC8YLZIHNq6n0GCTxmFRB9b/Of6GMtYNIuT4MhgpoSr6+GZh9P4C
+ 4bNMFB5URdxKkQu3afEiG4GhCoBByhym28QN/2dAMDXJdhvZKrQsoQADcwVsR439RoHVLmx
+ xCJytcWUwrXVJIc3BGZQ+NFYggqtNxONI57FiRD8itXGKzZj+wnE3oEMScqt/UvjLX6yYRE
+ E63QYMA4q9lecrLPm8GqrTA6kcyb7FEFGGABRF6H9ebkjdLOlPW2wRk9fl9w==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 06658404AB
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 21:06:15 +0000 (UTC)
-X-Greylist: delayed 5285 seconds by postgrey-1.36 at gabe;
- Mon, 09 Mar 2026 21:16:46 UTC
-Received: from smtp-bc08.mail.infomaniak.ch (smtp-bc08.mail.infomaniak.ch
- [45.157.188.8])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 81E2510E5BF
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 21:16:46 +0000 (UTC)
-Received: from smtp-3-0001.mail.infomaniak.ch (unknown
- [IPv6:2001:1600:4:17::246c])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4fV8vx0X8lzPMG;
-	Mon,  9 Mar 2026 22:16:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ik.me; s=20200325;
-	t=1773091004; bh=53430ld6TuOhPe06CqOr6FSTQYKWdBF9o2ZOnQ454dI=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=ZPyjEyv4HE7KJmDTEVH+QqE3n8wAIA0Ro1jil9TZoNSQZxyMbyrYW/e7LzScv7RQr
-	 o5Uz6DDlBd02ieGQHeMdQBvTwkp238+0ASvpUwt/NT6nmRXeel/9YcIXmpYr746jRm
-	 gP1ZUv8Cqa9MVPxtVLG2KWxA9oRRDZsOS8PwcCD4=
-Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA
- id 4fV8vv4BwqzBGL;
-	Mon,  9 Mar 2026 22:16:43 +0100 (CET)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 09 Mar 2026 22:16:43 +0100
-Message-Id: <DGYKAXUZE263.3VQZGY7KJ5FEY@ik.me>
-Subject: Re: [PATCH v11 00/12] gpu: nova-core: add Turing support
-From: "Ewan Chorynski" <ewan.chorynski@ik.me>
-To: "Timur Tabi" <ttabi@nvidia.com>, "ewan.chorynski@ik.me"
- <ewan.chorynski@ik.me>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "dakr@kernel.org" <dakr@kernel.org>, "aliceryhl@google.com"
- <aliceryhl@google.com>, "airlied@gmail.com" <airlied@gmail.com>, "John
- Hubbard" <jhubbard@nvidia.com>, "simona@ffwll.ch" <simona@ffwll.ch>
-X-Mailer: aerc 0.21.0
-References: <20260306-turing_prep-v11-0-8f0042c5d026@nvidia.com>
- <DGYIFHP99CQ3.2XWVRPO9O1E1D@ik.me>
- <282984b6-a0e1-4e3a-bb57-db817b7e9249@nvidia.com>
- <864ab8a502db872468d7b01e0adfff386d2187cc.camel@nvidia.com>
- <fa3c5390-aea2-45c2-89ef-05a64070a44b@nvidia.com>
- <DGYJY8VKR9EK.1XPGZ34UPJ0B2@ik.me>
- <5390ee90b722b29e686d948bc855da1eb62a4f6b.camel@nvidia.com>
-In-Reply-To: <5390ee90b722b29e686d948bc855da1eb62a4f6b.camel@nvidia.com>
-Feedback-ID: :52330b22a40e583:ham:e74197f626dda86
-X-Infomaniak-Routing: alpha
-Message-ID-Hash: VYYLGBUK3ZDEWIICPC6G27ETDM4VKIYE
-X-Message-ID-Hash: VYYLGBUK3ZDEWIICPC6G27ETDM4VKIYE
-X-MailFrom: ewan.chorynski@ik.me
-X-Mailman-Rule-Hits: nonmember-moderation
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8CDF943437
+	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 21:12:23 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010026.outbound.protection.outlook.com [52.101.61.26])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4989810E5C4;
+	Mon,  9 Mar 2026 21:22:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=E50uNzLfO4jDjJ4htV+haedxJapK6MqtXNd9hoE4O0dneqdTVIehU+Lo30kAt7Eotk65L1oN0xb4Q6k9v0bmx1vpOKXh0EC8i8HM+oJbKvwQ/CH3SuEH9+FfymG/DBIn8UhKHMYFWMejGDfkTuPENAJ3eZ8+QAIXy8qeZesek57LnFmwX/PcbptXPny1p4B95Ot8h0O6hYl7eZT9XpMvlGXweiYRQJ/3uQGhVAm2jKhv5I/uC6k0RofgaLbsaX+P8PA63+bVvENIklVEF/IMnUDpq0fELVpHhWEV2c+JwDYylnHSFDin93sdkZ4UtqUhs+98vpXZYCLGVBQoxYpzxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cE4bKCSZ6trp5wIgmUV3K6swmheaI1s9VmQuwL1Bk5o=;
+ b=P/acNTmAqDX8kYkPNCRu4i1AZkU0oSjz2sNRG8tO2ENjmui/m3DAL7eMRxiO5a3tluWvjPlsTro9oWLxmTDAvWGgy3ItgS99aDZHuolyT8cq7kE+uzifXLW4iKL2xh/UH4s6m5NNnad+NbnpAi1PUU9dWkB3fVJXKKNzOkVRz1NBBFuwj9pIwkUT6upHgyIElLoqO46IwFStsIiyp2phcBclVyZZIlahPrmOn+2sG3fbxpePpMC+U1oG7+kgvt2bAw3izqRfL71984EcdjupkrmeKfvsZHxvti0R2Pe/aPCcl3PNT5PPC/tpqPg5I/UeXiqMNiaWYNqlNMj/Of2yWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cE4bKCSZ6trp5wIgmUV3K6swmheaI1s9VmQuwL1Bk5o=;
+ b=sqZseNZ+iq2RgRcjQfM39ZzwGgriOSKs/HpovrOegEfRLIBUKPZC9PGmPWG5Gyl2swlZQNrZ9f7NTc66UIpcLWU3t1owHDKpwBEZYYtJZqhAR6NQpQknlkQrAMHd/0CUVgC1cIUhz2vJQduDKNSQJX++8H60THvXyGTovDol6MmGXCPQsmReSed6sH4nwKSnpEsNXFxCIlT360EkFLITE5KrEFfrn2i3NG+CVpG1xQ8xCAunJGtmQz1lX2bSbvWridTOlMqueDXB1U5l7BEIISUI4VJ6yMtUddTl+8kS8HhJmSyMvnB94rJIhAk2jMaqICn2/ceOVVpffBkpgl32lA==
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ BL3PR12MB6570.namprd12.prod.outlook.com (2603:10b6:208:38d::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 21:22:52 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9700.009; Mon, 9 Mar 2026
+ 21:22:51 +0000
+Date: Mon, 9 Mar 2026 17:22:49 -0400
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: Eliot Courtney <ecourtney@nvidia.com>
+Subject: Re: [PATCH 3/9] gpu: nova-core: gsp: expose GSP-RM internal client
+ and subdevice handles
+Message-ID: <20260309212249.GA2889394@joelbox2>
+References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
+ <20260227-rmcontrol-v1-3-86648e4869f9@nvidia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260227-rmcontrol-v1-3-86648e4869f9@nvidia.com>
+X-ClientProxiedBy: CY5PR15CA0248.namprd15.prod.outlook.com
+ (2603:10b6:930:66::15) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BL3PR12MB6570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26000a92-4b52-410c-82e1-08de7e22052a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: 
+	cI9MXUedhJ+H6p8B2X/39jSvEU2Xxa1uYt73hh0pofbrQ0GGAfjCeBaU1rh9RAavgBJBo5EgfEaB8pGVS6f3OTfu4jc2Rbn7BTt11mwkjWomYLC39znhCaw8kfDQmOVICeIB2SgmUnrFTbor2FS0AnmPVBe1HPk3tqDm26BmBj3Cf9f1g7OHxKAR5vTZj1xX3UHKAb9t6MZZPxCihtTrMBowbO1/jAGNnwYCtmbfWIrSJzivtnVsDNDiKd+PEWFiUq1X4X6zFmvvW9OeEwSe/xN7cIanJb7MF3bqF+IY++clrV2EOKsBKwQaGouOe2z3XriJ8wUkSF54XwXc5TMV6va4vCh9uhs7vxyJ1+zvNWXcgI7YTMvctvpwK55aV0g99SfrtirRTFdbfsITKwmuZXKKl7AF4CHI1aG7FKcjIQ7Yw/TWGPpPaAmoxTgFgs04X2U9NEYcFpfy0mYP0knYs2nrOLVkx7BAcjIluq8LDNBxp2zSUDX6uuiN/C3Dh+M2mepwZwR92nGqtjSrNvdvyV6nOxg1KMSShnG0UJsjaap7SxtBOjGuLzcXwutK9HNI+uTNkV5TuAOIlIe0V7l08fsYZJHDIOafpAuV4nI06ma/4FN7vuDTJWT7roBcEUk6B/2DtVyvvPNd8qsjlS1Yrd6gM/Vyn+vWVrkdoAEpRjprjXLAa6p4BBFN3KSsCbFKRHYnZ6X3LKa4hgwVb/Mzu2dXRRNIEDgFEULIBhRuuXc=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR12MB6486.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?us-ascii?Q?NwdnIDy/egFJXKjEkDC1YbtVaHRs3xlfh43Eknl4A45QfTdoK9kh+SOQ2aQF?=
+ =?us-ascii?Q?4I5UAGOsOkWyZCibRrNaXpAOO1HV35PH70Vlvru2V26hnvK2BLPTCGkePGHK?=
+ =?us-ascii?Q?f3Yp50jlyi9B5TvK7EqYTQZhVFnFVeViHIJcevf09kuijt1y26BWEkWAIhMZ?=
+ =?us-ascii?Q?AfodxVpKqF4RrPgMCMjKk6eRYst1hX+ISuIKqPZdD6NZv1stZzD+OX9NkzlW?=
+ =?us-ascii?Q?Z8v1uc5hs3zb++36kVdTHnwfy4GCy0ZxDxv6ZYSrYxm81FD5J25+Aq0HDn4o?=
+ =?us-ascii?Q?Y8qFAcSdmy89pp1HSwqyT83nmKLquBdKBt/elq5269KIeA9IRNFcMacCQtFb?=
+ =?us-ascii?Q?xLxKvMiZrmJ47lsHUpd9hmFC19s+CHFZup6J3LH/ACINJxv5g6uu+LNJybOP?=
+ =?us-ascii?Q?X+7uNmxntnI7fOY9yO4IjYWjOrX5EnSE/Z96fPSGQ2DAYQQefRT868YzBY61?=
+ =?us-ascii?Q?06/iYuXZVZr54xGO3kRfvAr4M+Vfd9hgfI+ecX7T1YgLROEwGsxZfbY6qvZQ?=
+ =?us-ascii?Q?kOHV+C5IvcMxmM/AWngCiqclrYS7RX1t6QHyO+A0xU7Fg7AxGqciyFKjxMRV?=
+ =?us-ascii?Q?e0EdF6nUdA60JK+6ziJOGogwG20BpbkQUIcASSzSDDiQ46GS8RAmqR5vn8bw?=
+ =?us-ascii?Q?U1vnb8a/pQWK/Sib0Zs8A585OjOnvkL6xYotb5FjP5W/+QxZKxELAxra88Nl?=
+ =?us-ascii?Q?3c92K5mLlTL7GYWOg2bUjWpFWg5A1cE9T9+oFOlL7LeyX+afxZ6re5KYQe1K?=
+ =?us-ascii?Q?vI451RofmtRFj1kH5TjF7pcDdJ5Uc4+AxYYSzYDXRE7viayraBHzHZy9mitv?=
+ =?us-ascii?Q?BW6c83N8kqASIybTojDzWZS2QGRrhq7RiNDqxaOnDpqDntDwVRvgkx+OanHP?=
+ =?us-ascii?Q?n4M1axITEuV0+RqwUsBc4heOLsaUwZYzDCymVE54xIfuny5LEKgwEMxkvCxU?=
+ =?us-ascii?Q?00BMR/7OtrjQIp8hAmI+VgIUuLHUQArL+bwjSPwSAaFcf7QnCRzZBY7CTyPN?=
+ =?us-ascii?Q?Wkw7VjYvelXnxYKFcXzg9K1Nz6EUyiVAPW8VI/Oj+VhsmU0uQnfBeYluUD4g?=
+ =?us-ascii?Q?AIhdkoHPiEdPU7dWd0uwxHAcDyPWURzE0KsuXSxaqj2xcIo/IjVFK4nXRwN9?=
+ =?us-ascii?Q?WgaOWKKJfSzyFd1kdb2VUSbDZjrcZkJw1E7a6BDCa7G3RJkmmVAXJIgFYGi4?=
+ =?us-ascii?Q?jUTpZzmotG0PASxxi0SKLyBUWo/yEJb8u60AuBiGPm81Mma9w4JvI4Aipxco?=
+ =?us-ascii?Q?4fP4EfQgLcwNDrNuu8UDq8j01LboyC2KZbsizXvqtuqTcVNHirc9beRFcddP?=
+ =?us-ascii?Q?O8YY4bsizQ5HeE+9j5DXwPpmeWDORcU2cqllbRb4qCbkx00MgUfgjDXmXXGp?=
+ =?us-ascii?Q?ZtyFsa0gweBNLCqcqzdyPQpLXHkCVzyJQOXjRJCRoK638l6oG6uATwHwNStc?=
+ =?us-ascii?Q?PGE4IUYx747cnenDq/EoANmRzTXej/vdgw08ynKgsq7/vL7V8eQ5n4qmf5Q5?=
+ =?us-ascii?Q?F6X1Oj4GnL1iBdzV4LyItKNBy/4utzyvbK0hnBvGr7B9wFN4cmnsetyRIBAV?=
+ =?us-ascii?Q?XSGO+Khb3smTwk8yQJxJXmjbKs7FknjKcnUUHJOWH2ZLJ087XVSl42Toux4V?=
+ =?us-ascii?Q?2Wvtq6ymp0tvNSJXUJTEEaJHYkU16JHjm5j9zIQE76qkatycgETOF1OCODBy?=
+ =?us-ascii?Q?bv1BXaTMWQ/c6DLMYr9Hfdp2qk2/Co8Jo8QqDzpgRvjqCfW85d7QT/fZ1PRS?=
+ =?us-ascii?Q?HKP+Ac6i7A=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 26000a92-4b52-410c-82e1-08de7e22052a
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 21:22:51.5332
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ +F6hnLBuQW45F0iGQp+QwHL3tjqUHXgJUDBQf4e6BlyMjOmLNhF/kn7snHqYs0bUoz7Xftatb7R8ffDyWhXhFw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6570
+Message-ID-Hash: ZEIP47T7AQNRUSQGZLVUIGMKD2BCAHGB
+X-Message-ID-Hash: ZEIP47T7AQNRUSQGZLVUIGMKD2BCAHGB
+X-MailFrom: joelagnelf@nvidia.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "rust-for-linux@vger.kernel.org" <rust-for-linux@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "nouveau@lists.freedesktop.org" <nouveau@lists.freedesktop.org>,
- Joel Fernandes <joelagnelf@nvidia.com>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VYYLGBUK3ZDEWIICPC6G27ETDM4VKIYE/>
-Archived-At: <https://lore.freedesktop.org/DGYKAXUZE263.3VQZGY7KJ5FEY@ik.me/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZEIP47T7AQNRUSQGZLVUIGMKD2BCAHGB/>
+Archived-At: <https://lore.freedesktop.org/20260309212249.GA2889394@joelbox2/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -116,52 +171,91 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Mar 9, 2026 at 10:05 PM CET, Timur Tabi wrote:
-> On Mon, 2026-03-09 at 22:00 +0100, Ewan Chorynski wrote:
->> On Mon Mar 9, 2026 at 9:29 PM CET, John Hubbard wrote:
->> > On 3/9/26 1:18 PM, Timur Tabi wrote:
->> > > On Mon, 2026-03-09 at 13:04 -0700, John Hubbard wrote:
->> > > >=20
->> > > > I have that exact card available, so I'll give this a quick test a=
-nd see
->> > > > what's missing or wrong, now that Alex has pushed the entire Turin=
-g support
->> > > > set up to drm-rust-next.
->> > >=20
->> > > The TU117 is technically a mobile chip, and its VBIOS is different.=
-=C2=A0 My initial version of the
->> > > Turing patches would "ignore" the problematic VBIOS sections, so per=
-haps this changed.
->> > >=20
->> >=20
->> > No repro on the latest drm-rust-next branch:
->>=20
->> I guess I may have an issue with my linux-firmware. I have no stable
->> right now so I can't download the latest one but I'll try
->> soon. On which commit on linux-firmware are you ?
->
-> There's only one version of linux-firmware that works with Nova, and you =
-didn't have it, it wouldn't
-> boot at all.
->
-> Although, now that I think about it, I'm assuming that on Turing, if gen_=
-bootloader is absent,
-> NovaCore will not even try to boot.  That file was added recently and is =
-missing in most distros
-> today.
->
-> /lib/firmware/nvidia/tu102/gsp/gen_bootloader-570.144.bin  (or its zstd c=
-ompressed version)
->
-> If you have this file, then you have everything you need to boot NovaCore=
- on Turing.
+On Fri, Feb 27, 2026 at 09:32:08PM +0900, Eliot Courtney wrote:
+> Expose the `hInternalClient` and `hInternalSubdevice` handles. These are
+> needed for RM control calls.
+> 
+> Signed-off-by: Eliot Courtney <ecourtney@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/gsp/commands.rs    | 16 ++++++++++++++++
+>  drivers/gpu/nova-core/gsp/fw/commands.rs | 10 ++++++++++
+>  2 files changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
+> index 4740cda0b51c..2cadfcaf9a8a 100644
+> --- a/drivers/gpu/nova-core/gsp/commands.rs
+> +++ b/drivers/gpu/nova-core/gsp/commands.rs
+> @@ -197,6 +197,8 @@ fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+>  /// The reply from the GSP to the [`GetGspInfo`] command.
+>  pub(crate) struct GetGspStaticInfoReply {
+>      gpu_name: [u8; 64],
+> +    h_client: u32,
+> +    h_subdevice: u32,
 
-I had this file installed but I think I broke something when I updated.
-I tried to redo my installation from the tarball I had and now it is
-probing, so the issue was indeed on my side with my firmware.
+I would rather have more descriptive names please. 'client_handle',
+'subdevice_handle'. Also some explanation of what a client and a sub-device
+mean somewhere in the comments or documentation would be nice.
 
-Thanks for trying the repro and sorry for the false alarm.
+>  }
+>  
+>  impl MessageFromGsp for GetGspStaticInfoReply {
+> @@ -210,6 +212,8 @@ fn read(
+>      ) -> Result<Self, Self::InitError> {
+>          Ok(GetGspStaticInfoReply {
+>              gpu_name: msg.gpu_name_str(),
+> +            h_client: msg.h_internal_client(),
+> +            h_subdevice: msg.h_internal_subdevice(),
+>          })
+>      }
+>  }
+> @@ -236,6 +240,18 @@ pub(crate) fn gpu_name(&self) -> core::result::Result<&str, GpuNameError> {
+>              .to_str()
+>              .map_err(GpuNameError::InvalidUtf8)
+>      }
+> +
+> +    /// Returns the internal client handle allocated by GSP-RM.
+> +    #[expect(dead_code)]
+> +    pub(crate) fn h_client(&self) -> u32 {
+> +        self.h_client
+> +    }
+> +
+> +    /// Returns the internal subdevice handle allocated by GSP-RM.
+> +    #[expect(dead_code)]
+> +    pub(crate) fn h_subdevice(&self) -> u32 {
+> +        self.h_subdevice
+> +    }
 
-Have a good day
-Ewan
+Same here.
+
+>  }
+>  
+>  /// Send the [`GetGspInfo`] command and awaits for its reply.
+> diff --git a/drivers/gpu/nova-core/gsp/fw/commands.rs b/drivers/gpu/nova-core/gsp/fw/commands.rs
+> index 67f44421fcc3..aaf3509a0207 100644
+> --- a/drivers/gpu/nova-core/gsp/fw/commands.rs
+> +++ b/drivers/gpu/nova-core/gsp/fw/commands.rs
+> @@ -115,6 +115,16 @@ impl GspStaticConfigInfo {
+>      pub(crate) fn gpu_name_str(&self) -> [u8; 64] {
+>          self.0.gpuNameString
+>      }
+> +
+> +    /// Returns the internal client handle allocated by GSP-RM.
+> +    pub(crate) fn h_internal_client(&self) -> u32 {
+> +        self.0.hInternalClient
+
+What is the difference between and internal handle and a non-internal one?
+
+And again, descriptive function names.
+
+> +    }
+> +
+> +    /// Returns the internal subdevice handle allocated by GSP-RM.
+> +    pub(crate) fn h_internal_subdevice(&self) -> u32 {
+
+Same here.
+
+thanks,
+
+--
+Joel Fernandes
 
