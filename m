@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64457F4180E
-	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 16:35:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87730F41810
+	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 16:35:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CA96C10E56F;
-	Mon,  9 Mar 2026 16:35:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 594FA10E57A;
+	Mon,  9 Mar 2026 16:35:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nE9CPFES";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UyLYSwNI";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4AA5244F71;
-	Mon,  9 Mar 2026 16:24:51 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D51C044F6F;
+	Mon,  9 Mar 2026 16:24:52 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773073491;
- b=KSnkE3gFVopjZqwFTbt1VXoKy7diJF+099XV/CEJqpjZHfV6ALo0s6vUtThCjpRUk3QFv
- xLoPkSY2bwurek962glhdv0s4uf/Y6x9n35Kb2ZYZjru5wZCf0X70uI7ABlKh9RA0DiYVmG
- WQuqVWfntlevr67+mHhppAzk6iW+uCy3KTf2aYGlMlnvOHICps1P9MHDMTw4HekOguQt75O
- dmQioHRnQwTSAvtkrFxBXoeZYQvQdSkoDIXaa/UwVzPvXmphhXlnS1DyAAmfwX6wUUFzexu
- xtoM/qCeEhMzOXwZgWfh91Ly1nq6gJ51JtCl8T4YdenmtkpNOGvPyBR9kHuQ==
+ s=20240201; t=1773073492;
+ b=ejKxdARgpGtPDwC0UzSib7jCjSwZlZ7aQem8E5e6TOiw1pd+2KVuq2rM8v8C4oTd6FoAG
+ BMWEvIXAb0TEYwEpjXbOfKRkWPv8Zj6vxAdcpTtsqZZ6pgTD2BHcoD6Icxg78+3puIsRmZ0
+ dQViuPoW60+1YZvaUSeGDt2rVGezrWvWVqBFLCuDlyiAIciLVT2PSGHcBSUbIy29uqkjYmw
+ kGZzy3gtbsdgzwTsZeiPRkxxH01k/9s4JyQPvOnnoX3qovwCAJR+/4SPmnu0Yz0PWHBGf4a
+ BTbGvxARDBsEV9I5GBxUrCS7l4pwe5LIQIYQ0Z95jtEi0f9n3MZfImjSFxcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773073491; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773073492; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DrXMrL06zw+bWhwggFu//0L2trzL3RlgcDBTntO8i2g=;
- b=xUFOjXFJPkKOE94E8fVD+g1yHIZpB4iGSQFqs1bXi2X60rbLbTeRFvsNYw1g4PwO+iRZF
- c0aFxe0+YJCnnSVEDMWDwqbO6WlbsTwR7SNPbTV6EwCr4bnlBUbHB4xl0kgXdFAFwH/14uZ
- z+R6/uF7urMyk+AV/Rm5ypkueLNTi0CRWaQKHc0j2CkyWwqftcUUJCUV7mlCgRSO60lAuFP
- 1w/T7p21Q/5wnLa40tESh9DbvyZ03qv5Qyy2KwGvmJ6t3vISxOKies8PbUxdwXatbO7TRjf
- HWoEQKgKpLf5jr8PP6dOMknsbgyfkgKb5rTLo5PaGdeYJAdghmpYatKcXLDA==
+ bh=/19T1klJdsUosb1aukvwgKVCLSGo1Ich0gssDYLmWq0=;
+ b=TwkU1bsMDVK8DmjxXZEmG0bKOn4HFHW6Ei+6X44Tm3amrwl1PCC384Y98NDOD/v/F1xho
+ VHzVBigUBJrHA4h19Sz54L9dl+iPzc6sawD8752MPqedplxnu+vEWu1ODNPSHK/Pq5iMEjv
+ F7YLHV7mpoR+Pl42kstxwcuVxB/D3T7xfwPmZFsINRv+ofIo13GMvSP/bGW13Tljx7EzGcL
+ ld0kEz9oPH73Addt754FOxNK97PRdpjRdAOROItiDOgN1WzQDxRLUyt/XY8srC8G730Mzdf
+ 097cysjp3fzzWexkVSa9SyXsRzS1JwuMBW9GXNaxhkmmsNwj3D1szAOjYmjg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,38 +46,38 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EA9AE4034D
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 16:24:47 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5102010E558;
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8415B4034D
+	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 16:24:48 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C542410E558;
 	Mon,  9 Mar 2026 16:35:19 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 3180644510;
+	by tor.source.kernel.org (Postfix) with ESMTP id 144166011F;
 	Mon,  9 Mar 2026 16:35:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C224BC2BCB7;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9D450C2BCAF;
 	Mon,  9 Mar 2026 16:35:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
 	s=k20201202; t=1773074118;
-	bh=fssZhaE39h8/ifGb5lyKDHlx9SyrHqGfVID8VjmY0ME=;
+	bh=gvPoHfp4kILjun0x+PiFZTGPIwNfY5nP6rl8dO323WQ=;
 	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=nE9CPFESeIElYpdFRVFYi/eDY9RoazP12jcTKXLiS3P7dRa9zphKtGh1pPAm0qMUf
-	 Si1w3fT84m6mtNoKkiABeBnJPXnSSW1pcCw5+SieCJkAQsC0XZRTZbvXQhkysdgEm9
-	 B56/DvoqOv6oxIeGkLvbO/i/fL6vA8SyOZbjKIf6Ub6oMWmKpiG3trmrmtJGoc+9ut
-	 oISHSJI+QPG7Oi1wFCM0b/vDyzjppoceO75Z3Y3wZExWRhgsBxLQdEUmL3sEVDuhK9
-	 Xmb/yGfDEC15+YoOym7ExlwwmTmLi825LE4F0VxIHZet28u3jXNL+ZEPYjOhdEi7rC
-	 oLdNDkjd3nh2g==
+	b=UyLYSwNI19v9fIU/UbWQcc5LMvSlHh2m1+TmiGF9bUNaACjOvtlccovTSWh9MZjOu
+	 FRjSnf/V5MzFcFzJlOXhxossZXZYcvi2ULR2U0DcU7BvOSd5AQpdYQPftTVApp3LeC
+	 DdaoRbnIqtjX4kzODRi7OISkxtYKvCjqe9aamimi8IykwcmXBq2K5mA2e11fF6XfOn
+	 EEeJuwI3Ay0TEzU5vsUR9rWGgBJg7hT6fDYWpRsSC+GxxkGgxEvGNnAp+yZhvtLemF
+	 NYfDCOQgK3qCxuv5q0owT3xbZkd9kfsFebgC6HOpEZN3r68PQgLWV5vsPmBJr3pMkD
+	 rNvIeysjpvkKw==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B1174F41812;
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7F83BF41810;
 	Mon,  9 Mar 2026 16:35:18 +0000 (UTC)
 From: Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>
-Date: Mon, 09 Mar 2026 12:34:21 -0400
-Subject: [PATCH v4 4/4] gpu: nova-core: fix stack overflow in GSP memory
- allocation
+Date: Mon, 09 Mar 2026 12:34:18 -0400
+Subject: [PATCH v4 1/4] rust: ptr: add `KnownSize` trait to support DST
+ size info extraction
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+Message-Id: <20260309-drm-rust-next-v4-1-4ef485b19a4c@proton.me>
 References: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
 In-Reply-To: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
 To: Alexandre Courbot <acourbot@nvidia.com>,
@@ -92,18 +92,18 @@ To: Alexandre Courbot <acourbot@nvidia.com>,
  Daniel Almeida <daniel.almeida@collabora.com>,
  Robin Murphy <robin.murphy@arm.com>, Boqun Feng <boqun@kernel.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1773074117; l=3986;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1773074117; l=2158;
  i=tim.kovalenko@proton.me; s=20260212; h=from:subject:message-id;
- bh=02lIiBKVUWPZgiHflont6ppBx+2QAZbO4PzXiivsIkE=;
- b=pE0ZKAo+0q+3X2PamEznSFPbbQiSdIw7Xy/EgQG+Zfy/iiwn0Rb6Om2UKZsCeEXyeudQjTtkF
- +jL/j8+uX6ICxdDQJsEfm++qZt+CwLBc7cGDTtVkdNtnXo/EFKH2KKd
+ bh=FheLpAl87yI4UaHfqa3k20aJCUg9ixwJ8DWS/cDgRg4=;
+ b=45N81LFvbnZxj7EBp15VjpGQhHombjwrqodP4FxEVsCd0JDjLKei5FWNCjy3jFam1BlfUrrI7
+ tx8XLpQNe94AjeTcEcFGAGgbnHF9RBdYUogAKI4RUMXskNkIfccBCVr
 X-Developer-Key: i=tim.kovalenko@proton.me; a=ed25519;
  pk=/+OiulEpgeZifgP4mDE4e5YlV6nMeY+frze/lY/xiHI=
 X-Endpoint-Received: by B4 Relay for tim.kovalenko@proton.me/20260212 with
  auth_id=635
 X-Original-From: Tim Kovalenko <tim.kovalenko@proton.me>
-Message-ID-Hash: JEHWSJJ5NOFGVPSFI5YPKPYPNQ3T5BZY
-X-Message-ID-Hash: JEHWSJJ5NOFGVPSFI5YPKPYPNQ3T5BZY
+Message-ID-Hash: WFWE27KT7ZRJWQDG5DDTE2YZ3Y3NJJ75
+X-Message-ID-Hash: WFWE27KT7ZRJWQDG5DDTE2YZ3Y3NJJ75
 X-MailFrom: devnull+tim.kovalenko.proton.me@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -111,16 +111,15 @@ X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  digests; suspicious-header
 CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, rust-for-linux@vger.kernel.org,
- linux-kbuild@vger.kernel.org, driver-core@lists.linux.dev,
- Tim Kovalenko <tim.kovalenko@proton.me>
+ linux-kbuild@vger.kernel.org, driver-core@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 Reply-To: tim.kovalenko@proton.me
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JEHWSJJ5NOFGVPSFI5YPKPYPNQ3T5BZY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WFWE27KT7ZRJWQDG5DDTE2YZ3Y3NJJ75/>
 Archived-At: 
- <https://lore.freedesktop.org/20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me/>
+ <https://lore.freedesktop.org/20260309-drm-rust-next-v4-1-4ef485b19a4c@proton.me/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -130,104 +129,75 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Tim Kovalenko <tim.kovalenko@proton.me>
+From: Gary Guo <gary@garyguo.net>
 
-The `Cmdq::new` function was allocating a `PteArray` struct on the stack
-and was causing a stack overflow with 8216 bytes.
+Add a `KnownSize` trait which is used obtain a size from a raw pointer's
+metadata. This makes it possible to obtain size information on a raw slice
+pointer. This is similar to Rust `core::mem::size_of_val_raw` which is not
+yet stable.
 
-Modify the `PteArray` to calculate and write the Page Table Entries
-directly into the coherent DMA buffer one-by-one. This reduces the stack
-usage quite a lot.
-
-Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
+Signed-off-by: Gary Guo <gary@garyguo.net>
+Reviewed-by: Benno Lossin <lossin@kernel.org>
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- drivers/gpu/nova-core/gsp.rs      | 34 +++++++++++++++++++---------------
- drivers/gpu/nova-core/gsp/cmdq.rs | 15 ++++++++++++++-
- 2 files changed, 33 insertions(+), 16 deletions(-)
+ rust/kernel/lib.rs |  1 +
+ rust/kernel/ptr.rs | 27 ++++++++++++++++++++++++++-
+ 2 files changed, 27 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 25cd48514c777cb405a2af0acf57196b2e2e7837..20170e483e04c476efce8997b3916b0ad829ed38 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -47,16 +47,11 @@
- unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArray<NUM_ENTRIES> {}
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index 3da92f18f4eed16335c3c251e6bff68dcf7e781e..510cc7fe496113f85c34f420b1c4be95596297ad 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -20,6 +20,7 @@
+ #![feature(generic_nonzero)]
+ #![feature(inline_const)]
+ #![feature(pointer_is_aligned)]
++#![feature(slice_ptr_len)]
+ //
+ // Stable since Rust 1.80.0.
+ #![feature(slice_flatten)]
+diff --git a/rust/kernel/ptr.rs b/rust/kernel/ptr.rs
+index 5b6a382637fef11e9c0ae9122906422a970d7fcd..cf980a103acf19ee3bd17bb1dfdbcadfe30467ae 100644
+--- a/rust/kernel/ptr.rs
++++ b/rust/kernel/ptr.rs
+@@ -2,7 +2,10 @@
  
- impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
--    /// Creates a new page table array mapping `NUM_PAGES` GSP pages starting at address `start`.
--    fn new(start: DmaAddress) -> Result<Self> {
--        let mut ptes = [0u64; NUM_PAGES];
--        for (i, pte) in ptes.iter_mut().enumerate() {
--            *pte = start
--                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
--                .ok_or(EOVERFLOW)?;
--        }
--
--        Ok(Self(ptes))
-+    /// Returns the page table entry for `index`, for a mapping starting at `start` DmaAddress.
-+    fn entry(start: DmaAddress, index: usize) -> Result<u64> {
-+        start
-+            .checked_add(num::usize_as_u64(index) << GSP_PAGE_SHIFT)
-+            .ok_or(EOVERFLOW)
-     }
+ //! Types and functions to work with pointers and addresses.
+ 
+-use core::mem::align_of;
++use core::mem::{
++    align_of,
++    size_of, //
++};
+ use core::num::NonZero;
+ 
+ /// Type representing an alignment, which is always a power of two.
+@@ -225,3 +228,25 @@ fn align_up(self, alignment: Alignment) -> Option<Self> {
  }
  
-@@ -86,16 +81,25 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
-             NUM_PAGES * GSP_PAGE_SIZE,
-             GFP_KERNEL | __GFP_ZERO,
-         )?);
--        let ptes = PteArray::<NUM_PAGES>::new(obj.0.dma_handle())?;
+ impl_alignable_uint!(u8, u16, u32, u64, usize);
 +
-+        let start_addr = obj.0.dma_handle();
- 
-         // SAFETY: `obj` has just been created and we are its sole user.
--        unsafe {
--            // Copy the self-mapping PTE at the expected location.
-+        let pte_region = unsafe {
-             obj.0
--                .as_slice_mut(size_of::<u64>(), size_of_val(&ptes))?
--                .copy_from_slice(ptes.as_bytes())
-+                .as_slice_mut(size_of::<u64>(), NUM_PAGES * size_of::<u64>())?
-         };
- 
-+        // This is a  one by one GSP Page write to the memory
-+        // to avoid stack overflow when allocating the whole array at once.
-+        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
-+            let pte_value = start_addr
-+                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-+                .ok_or(EOVERFLOW)?;
++/// Trait to represent compile-time known size information.
++///
++/// This is a generalization of what [`size_of`] which works for dynamically sized types.
++pub trait KnownSize {
++    /// Get the size of an object of this type in bytes, with the metadata of the given pointer.
++    fn size(p: *const Self) -> usize;
++}
 +
-+            chunk.copy_from_slice(&pte_value.to_ne_bytes());
-+        }
++impl<T> KnownSize for T {
++    #[inline(always)]
++    fn size(_: *const Self) -> usize {
++        size_of::<T>()
++    }
++}
 +
-         Ok(obj)
-     }
- }
-diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 0056bfbf0a44cfbc5a0ca08d069f881b877e1edc..c8327d3098f73f9b880eee99038ad10a16e1e32d 100644
---- a/drivers/gpu/nova-core/gsp/cmdq.rs
-+++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -202,7 +202,20 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
- 
-         let gsp_mem =
-             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
--        dma_write!(gsp_mem, [0]?.ptes, PteArray::new(gsp_mem.dma_handle())?);
-+
-+        const NUM_PTES: usize = GSP_PAGE_SIZE / size_of::<u64>();
-+
-+        let start = gsp_mem.dma_handle();
-+        // One by one GSP Page write to the memory to avoid stack overflow when allocating
-+        // the whole array at once.
-+        for i in 0..NUM_PTES {
-+            dma_write!(
-+                gsp_mem,
-+                [0]?.ptes.0[i],
-+                PteArray::<NUM_PTES>::entry(start, i)?
-+            );
-+        }
-+
-         dma_write!(
-             gsp_mem,
-             [0]?.cpuq.tx,
++impl<T> KnownSize for [T] {
++    #[inline(always)]
++    fn size(p: *const Self) -> usize {
++        p.len() * size_of::<T>()
++    }
++}
 
 -- 
 2.53.0
