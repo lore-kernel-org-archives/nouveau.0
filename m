@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA72CF41812
-	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 17:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5781FCA17F
+	for <nouveau@archiver.kernel.org>; Mon,  9 Mar 2026 19:40:48 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 875FB10E573;
-	Mon,  9 Mar 2026 17:00:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DB00D10E5C5;
+	Mon,  9 Mar 2026 19:40:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="l2RNgURe";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rd3ms1Qk";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E3FCE44F7B;
-	Mon,  9 Mar 2026 16:49:44 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0B97844F7F;
+	Mon,  9 Mar 2026 19:30:15 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773074984;
- b=czsUKt/dF3AXf2YeruaBM5liW7w33w9fJUqKT1Yuasjebn2hNWs7p9CjYn8tdk7l3dh6R
- Y5gl5u9WB+kJDIuJWcP506nct3yptU/Es+aB81MJRZ4bcvu8lMK4FPmZ5v1JvTNEFLxYvHq
- 5mSOhPr89qyKStlPiB52B+eT4NO7/OLMjJQ2Q9+i3rxxfQ+fDoQ756MUkJahYUKxBGinCo/
- lw+FotbD09HD8kDIZ4R8RenbKICs5tszLnOaWb9o1Q9p2zPIQ51EdlZJv4vLfUVVUOXOy6b
- 2iS6wieCMFJufOo8sOt51joezB5p5wDYy0aP0/pe4l1rnr8jyOXbyKCis66g==
+ s=20240201; t=1773084614;
+ b=M21CYX0H/VDvM41DXvbtlQ1F9pH4eGRWyliBPhOAdY1hKVAWR9EGLPWu5/6w8Lfx0DsDe
+ exvkm1RdhfYafkrMTBfoB1sLisH1sIc/siA+q3Wt1P9IL1ppBHlq47PGLmjw+qrYvHf2YSu
+ trqdREGqghLNfHC1I1vNAA4GZ8ihv7Lk1tMBd+nViz1xESgROwROoySQ9j1izXBJJ7tcrVe
+ tJTWFAvRg4InfdmqoPgwbQdkkKUV5hmFfmImSPAgamXA4hUpTrrSZq3HpGi7XyuQEPqCb35
+ hnOlxYhtv2qNirWl+rehFxMXohTHREJISpPYmJrtSNnnhso75H0B3abwZysQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773074984; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773084614; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=CtqSZRrtQ086u71AP2P/+EeQ4W/0e0n5IIi6cp4D3LY=;
- b=b6vhT9ok/kmLqS3GbJQI4s8K8flJDdFwwT8aTBTCW+eFAjKj8F3pjTAgp6KZ4RdPDqfeG
- UXaYq3Vqvoqf6PLyIOSTm635eTRGZMlowKPoqbEkCvEe9f+vdYlcv/iPxevCaIowHXQN/vz
- bE7xbcYsFrveVCnXbGq1hM5kPYDLtZz7TzyJeTWrGy6ndUafFDspF6qIWSOxNbfLuH9HUws
- 6thvfux4XtJkDCIzBahGfKZ8RMTXLzqZE0zowjevkvypZn4AtoFbVwEhOcMbzFEPwgdRVlu
- 1/ZUX9qNsiWTfVyviDa/dVj1M3zRbVtd2gbmNhPtU18KjLfqUefc1bCFCm3Q==
+ bh=k6SpxggCoJNJmj3FCG9LFGlfDgc9vWsA6uqiW/1k1xc=;
+ b=Q1fGTZ7esab2eR6RR5vZpzag90RDEwEV7hRlm8TPp1I9ay7nN5q39N8ca7h7IGUO1b92k
+ p2KD4tslSjjGWE80wvWbwQY1bZCTBLy+sAfhJ4lDIpRq+/dLNlOfYIv112Rn/wzq+XS8FOP
+ 4b2/4ErjfBAdc1eB8KujOTWZDre6IqtMxO/kxb9bBzsA0Q+Ih+eV5tJsMol19Gjt8DbjHMY
+ 1sGWWsgxwj0DIPmLM8MMu1KvpVK60uV21wgMwZtrDhUjZYWZTo7Fc125Cvejr9ZG509yE/E
+ jgcFJvmcsIAEAlpIkVr2D7pRbrAk9VSiDpLdlARU4+kPc+bLaL+xE5i+FzzQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,39 +46,41 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 16309404AB
-	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 16:49:42 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7565F10E569;
-	Mon,  9 Mar 2026 17:00:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 746C8404AB
+	for <nouveau@lists.freedesktop.org>; Mon,  9 Mar 2026 19:30:12 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0252110E5BE;
+	Mon,  9 Mar 2026 19:40:43 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 4C89344307;
-	Mon,  9 Mar 2026 17:00:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 874CFC4CEF7;
-	Mon,  9 Mar 2026 17:00:08 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 40523600AE;
+	Mon,  9 Mar 2026 19:40:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9822BC4CEF7;
+	Mon,  9 Mar 2026 19:40:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773075613;
-	bh=CtqSZRrtQ086u71AP2P/+EeQ4W/0e0n5IIi6cp4D3LY=;
-	h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
-	b=l2RNgUReeisohSOqQEi1BMesOrHU+atDi+li0Bc300RhI+QPC2Hopn5Wj/HRuh4Pg
-	 ItbtBP6b1VQfrr7w9JldiQ1teAdj9+afnY21kw23oSVfQs8DyshNBv9HH+w+8VsNu3
-	 WwQUYY2APS0OPRF5rEwOPS3PwvkpijnT5ZbEdnMRuQ6a7JqKeDTZHX0Ww4VDljs/7K
-	 hg3JqnKbcCQf/Cz5Qzo9PxxVtc2WuScrKdSjCWh7kQRwg87/N8D1P+gSVyNddQ6Nbm
-	 /UpnDyfZpdPRagImRsaaoWg4tYIdkMNMrAhbB8hqoQZ7asbYB7li9ARgGRmC3Lh1qn
-	 pFyBh1bwqOJRA==
+	s=k20201202; t=1773085242;
+	bh=ykEDyFWqy0dWXj89fHrjAyafwdENidwWPunnvZCcBsE=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=rd3ms1QkWISKBK/kda8ZvCMUc8dUM6BDjqWnDSwTxnHEVTaJxsnj62YNmUcrNsZUq
+	 rHhBNMVYVbSmOttFJlipiFCze2aX20rShfa5uF+O9peJ1GHMIKJsLMHuKfTPXRk4Eo
+	 3l4lrQ0ld6HuU8dspVmvmzIGmm14LjkHh5gdY8srnZzNwA+MUXLAlBgTv+IjKJLRo0
+	 8efqtIGgwtJCi2MmWvchNg7hYj1Xao8rHPKiawOJw4WOtKMMptErwMy2V5xq9nfzk6
+	 Taf1FbV6N2ZnYNldwgYDZaIcdg6GduReD+VDwF+cF16DdBWOT/+q8FHnmM5VfpZvMQ
+	 qvNg5IvGuvBdg==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 09 Mar 2026 18:00:06 +0100
-Message-Id: <DGYEUGRWCLZK.2325N9QPODXTP@kernel.org>
+Date: Mon, 09 Mar 2026 20:40:36 +0100
+Message-Id: <DGYI9CQRWXU3.XNDVWJE0DP6H@kernel.org>
 To: "Tim Kovalenko via B4 Relay"
  <devnull+tim.kovalenko.proton.me@kernel.org>
 From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v4 0/4] Fixes the stack overflow
+Subject: Re: [PATCH v4 4/4] gpu: nova-core: fix stack overflow in GSP memory
+ allocation
 References: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
-In-Reply-To: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
-Message-ID-Hash: ZNJV4LJAF5WXQUQ6VL6BZ4ONLKN6EGUH
-X-Message-ID-Hash: ZNJV4LJAF5WXQUQ6VL6BZ4ONLKN6EGUH
+ <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+In-Reply-To: <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+Message-ID-Hash: QXXX3D65VABHJAG2O3BP2HU2N3JNW5XH
+X-Message-ID-Hash: QXXX3D65VABHJAG2O3BP2HU2N3JNW5XH
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -100,9 +102,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZNJV4LJAF5WXQUQ6VL6BZ4ONLKN6EGUH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QXXX3D65VABHJAG2O3BP2HU2N3JNW5XH/>
 Archived-At: 
- <https://lore.freedesktop.org/DGYEUGRWCLZK.2325N9QPODXTP@kernel.org/>
+ <https://lore.freedesktop.org/DGYI9CQRWXU3.XNDVWJE0DP6H@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,29 +115,159 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On Mon Mar 9, 2026 at 5:34 PM CET, Tim Kovalenko via B4 Relay wrote:
+> From: Tim Kovalenko <tim.kovalenko@proton.me>
 >
-> ---
-> Changes in v4:
-> - Rebase on top of projection changes
+> The `Cmdq::new` function was allocating a `PteArray` struct on the stack
+> and was causing a stack overflow with 8216 bytes.
+>
+> Modify the `PteArray` to calculate and write the Page Table Entries
+> directly into the coherent DMA buffer one-by-one. This reduces the stack
+> usage quite a lot.
+>
 
-Thanks for the quick follow-up!
+Reported-by: Gary Guo <gary@garyguo.net>
+Closes: https://rust-for-linux.zulipchat.com/#narrow/channel/509436-Nova/to=
+pic/.60Cmdq.3A.3Anew.60.20uses.20excessive.20stack.20size/near/570375549
+Fixes: f38b4f105cfc ("gpu: nova-core: Create initial Gsp")
 
-There was no need to include the series you rebased onto, i.e. it is usuall=
-y
-enough to just mention that your patch is based on another series and provi=
-de a
-link.
+> Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
 
-But don't worry, I just mention this for the next time, there is nothing th=
-at
-needs to be done on your end.
+A few nits below, but I can fix them up [1] on apply.
 
-(One additional thing to note, in case you will actually have to (re-)send
-patches of other people in the future, is that such patches still need to h=
-ave
-your Signed-off-by: in addition, since by sending them you are involved in =
-the
-handling of those patches.)
+> +        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).=
+enumerate() {
+> +            let pte_value =3D start_addr
+> +                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+> +                .ok_or(EOVERFLOW)?;
 
-Thanks,
-Danilo
+This should use PteArray::entry().
+
+It would also be nice to get rid of the unsafe {} and use dma_write!() inst=
+ead,
+but this can be a follow-up patch.
+
+> +
+> +            chunk.copy_from_slice(&pte_value.to_ne_bytes());
+> +        }
+> +
+>          Ok(obj)
+>      }
+>  }
+> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gs=
+p/cmdq.rs
+> index 0056bfbf0a44cfbc5a0ca08d069f881b877e1edc..c8327d3098f73f9b880eee990=
+38ad10a16e1e32d 100644
+> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
+> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+> @@ -202,7 +202,20 @@ fn new(dev: &device::Device<device::Bound>) -> Resul=
+t<Self> {
+> =20
+>          let gsp_mem =3D
+>              CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KER=
+NEL | __GFP_ZERO)?;
+> -        dma_write!(gsp_mem, [0]?.ptes, PteArray::new(gsp_mem.dma_handle(=
+))?);
+> +
+> +        const NUM_PTES: usize =3D GSP_PAGE_SIZE / size_of::<u64>();
+
+We can avoid duplicating this by making it a constant of GspMem.
+
+> +        let start =3D gsp_mem.dma_handle();
+> +        // One by one GSP Page write to the memory to avoid stack overfl=
+ow when allocating
+> +        // the whole array at once.
+> +        for i in 0..NUM_PTES {
+> +            dma_write!(
+> +                gsp_mem,
+> +                [0]?.ptes.0[i],
+> +                PteArray::<NUM_PTES>::entry(start, i)?
+> +            );
+> +        }
+
+-- [1] --
+
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index 20170e483e04..b5ea14b7dad7 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -48,6 +48,7 @@ unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArra=
+y<NUM_ENTRIES> {}
+=20
+ impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
+     /// Returns the page table entry for `index`, for a mapping starting a=
+t `start` DmaAddress.
++    // TODO: Replace with `IoView` projection once available.
+     fn entry(start: DmaAddress, index: usize) -> Result<u64> {
+         start
+             .checked_add(num::usize_as_u64(index) << GSP_PAGE_SHIFT)
+@@ -90,12 +91,9 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Se=
+lf> {
+                 .as_slice_mut(size_of::<u64>(), NUM_PAGES * size_of::<u64>=
+())?
+         };
+=20
+-        // This is a  one by one GSP Page write to the memory
+-        // to avoid stack overflow when allocating the whole array at once=
+.
++        // Write values one by one to avoid an on-stack instance of `PteAr=
+ray`.
+         for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).en=
+umerate() {
+-            let pte_value =3D start_addr
+-                .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
+-                .ok_or(EOVERFLOW)?;
++            let pte_value =3D PteArray::<NUM_PAGES>::entry(start_addr, i)?=
+;
+=20
+             chunk.copy_from_slice(&pte_value.to_ne_bytes());
+         }
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/=
+cmdq.rs
+index 9107a1473797..aa42d180f0d5 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -159,7 +159,7 @@ struct Msgq {
+ #[repr(C)]
+ struct GspMem {
+     /// Self-mapping page table entries.
+-    ptes: PteArray<{ GSP_PAGE_SIZE / size_of::<u64>() }>,
++    ptes: PteArray<{ Self::PTE_ARRAY_SIZE }>,
+     /// CPU queue: the driver writes commands here, and the GSP reads them=
+. It also contains the
+     /// write and read pointers that the CPU updates.
+     ///
+@@ -172,6 +172,10 @@ struct GspMem {
+     gspq: Msgq,
+ }
+=20
++impl GspMem {
++    const PTE_ARRAY_SIZE: usize =3D GSP_PAGE_SIZE / size_of::<u64>();
++}
++
+ // SAFETY: These structs don't meet the no-padding requirements of AsBytes=
+ but
+ // that is not a problem because they are not used outside the kernel.
+ unsafe impl AsBytes for GspMem {}
+@@ -202,16 +206,14 @@ fn new(dev: &device::Device<device::Bound>) -> Result=
+<Self> {
+         let gsp_mem =3D
+             CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_KERNE=
+L | __GFP_ZERO)?;
+=20
+-        const NUM_PTES: usize =3D GSP_PAGE_SIZE / size_of::<u64>();
+-
+         let start =3D gsp_mem.dma_handle();
+         // One by one GSP Page write to the memory to avoid stack overflow=
+ when allocating
+         // the whole array at once.
+-        for i in 0..NUM_PTES {
++        for i in 0..GspMem::PTE_ARRAY_SIZE {
+             dma_write!(
+                 gsp_mem,
+                 [0]?.ptes.0[i],
+-                PteArray::<NUM_PTES>::entry(start, i)?
++                PteArray::<{ GspMem::PTE_ARRAY_SIZE }>::entry(start, i)?
+             );
+         }
+=20
+
