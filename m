@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E47E6EB104A
-	for <nouveau@archiver.kernel.org>; Tue, 10 Mar 2026 11:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 114A9EB104B
+	for <nouveau@archiver.kernel.org>; Tue, 10 Mar 2026 11:20:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B247D10E23D;
-	Tue, 10 Mar 2026 11:02:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4CBCC10E6B0;
+	Tue, 10 Mar 2026 11:20:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nkLecvUF";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fkJHucYB";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 7204845015;
-	Tue, 10 Mar 2026 10:51:44 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 0825545016;
+	Tue, 10 Mar 2026 11:10:11 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773139904;
- b=fl0pzagZM7W92SxCKKV6BwQ9XdBCWPS2H7B08PssCAKgW8mHXNJQdbSn3V43krI0/0nEC
- zkq/qzw3CGvDk6616fwhOBfExITX1Hx3XeVMAYplvHfBtSrC6H/v2xWP9U7qyHGsj/8cb6B
- zJkBHGyO06cqnQMMRKyVlrVMZ13J3D1K1KMUE5MbyKmJ7Tq6LcryEw22EQ0qa6/SJ4IbtpW
- BYHk1NenzCk6yHxo2LELrOojgmlqN0Sw4SsQF49rBpW35vHYJP3f3GfIGcBUsHPr8uf8bem
- E9r5geCk7H5i/efalhQnCfBjtjRfwjVVURJdO/eRS2rZx+/7Y+SA2zakgyNg==
+ s=20240201; t=1773141010;
+ b=ZVK6mzETeJDbav2R8vBO23NfJ3IfCueQvx7Yu83gPzkKZfV5cbMPfrnzrVAgl1t9rUgLX
+ rCra3cnOM0NHHFeYWFjY8VVrK6p3++QfC/osYzn/H5BLe8UjIQfwxqit2huuaOBRK5c+vqM
+ X5jY46BsONM9f6pSAEfHPnBHmiAIBR9AZJgtBV/mBVcOQU1HPqLDGNwZBxuqYOKwZ+HoFGU
+ v0eIIuNPjjszBWMkj8jtu2z49Ksh5DlpVgs9jCOsfHDz5s69tTOQ5ATNPF15Jmaaz3cB2aJ
+ 7HlaoHYQmFFFX8X2hUQtaD4iQe1qRLWznQ0d6r873nIiPC1P5GF5hj6cxcrQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773139904; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773141010; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Kt7wtEaRe7yCo91NdAvuNdlI+LWljcfJIg25LvQqTOc=;
- b=jBUZRLRBFjRkK8T7Dko7i9f60TwMCv0dcq65+G9VU+wgfJoofk+MfFj3PLtBOFISHg5WS
- JIMb0bmPI0z0ob+W26lbvL6Oz0HY9/HZTwNHb4Mim5AUF7yf4LUF16+dbWsQpLdWXhU1FEx
- dNNz+lb+BT4gnLTwCp0aLMpArgcjB3OIVdk2scv1nBheAczDy/p7r2f/VuEt9XIF9uzl6zB
- 5Dumue0Utb+5KNRBZ6ZZSMTT7/fVhQ0QxmO421+3emY3UHvYlSrlrqknEaqf57Nk9w1zO7W
- UBQEXsCdkkCwARjf3UdRFDjISvJA31/9qU0e8+gv6MElvhqkjjWF4sugDfNg==
+ bh=EJ1O8k3Yq8RYdcbEWETbephaZE2EV/+leCIQCwE4SoM=;
+ b=0I2/quoS6IiApSmgfE5MBl8sPavPc1Eg5VXuZ8HhpucSyPZ2nNtWdAnD4QMiuD//NLsC+
+ r4JIIRaUc7l1tsT7LMg1qVJaPuGJmzpQKkls6rX1yLthuhP7RrVQwqfjOaw+0bgMTbhHdGn
+ T1GxwTIUDIPJ6LYvcJ6D8lADQRqjvoSV/wSHsKecxzCTceYlVpiHHCZTHFqnkOfDYiQ88wR
+ w01uz0z6yA4yKGgRnFw+/pWV3U0BobYc+1jJaBEAcD+daUvp1os0shfd3qx3vWGClatIKyh
+ igd2IQTpDo0s7+sjO0hqTfq7ZnhhoBmYjm9dY6hxWWbZIYDTPJzhe5hy9cJA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,56 +46,68 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4883E44F11
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Mar 2026 10:51:41 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 56C2B10E033;
-	Tue, 10 Mar 2026 11:02:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id E379244E0F
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Mar 2026 11:10:07 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E4E7010E240;
+	Tue, 10 Mar 2026 11:20:40 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 1D89F4406F;
-	Tue, 10 Mar 2026 11:02:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FD46C19423;
-	Tue, 10 Mar 2026 11:02:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 3806E600C4;
+	Tue, 10 Mar 2026 11:20:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB06C2BC86;
+	Tue, 10 Mar 2026 11:20:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773140534;
-	bh=dHWlZJmR6/6WkpRMJABXI0hAch+SQenJXJrexpHItY4=;
+	s=k20201202; t=1773141639;
+	bh=xGjVBeTYpyjTZwX3gFYF54w9+q8HTHPh6xi2cya8jck=;
 	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=nkLecvUF3FTw2CNEygB1r+ArDl5q2EFV/f7A2Tnyxy5F97Swgz7BjLHdBZ4xgs4Pd
-	 +MR162o+7KW65dCcF3+It4au4K956ZSYO+dqHOozHa3OpaD9NUNQeVSt2w0QY/JWLR
-	 dR9CYt4jEnUnhAJutGIMrZ/5LX2ziIajZzUcWqFPZ/nuY4M/hjNquMiCzoHJrBRr1A
-	 qL1q0zvhPNfp2VxifwU4QXf3d3sfvCeJAwigQiStD2fLE8JxwTslrA0bAaHvhUrMHB
-	 fJzjfmHQg7g7bE6bwOkAisjslPKn7lBlydMYTlslAgGAFMuLdUv/u3V1FgOA30tINw
-	 ATn9HOIlBkB7g==
+	b=fkJHucYBWZLi6X7ajADYfz3hex8bL9zwxxf+Qg3QdznH8ruuShORbyaf9dUBWKX/k
+	 6IMV9Es4zvdNSfxvDlqIMwT7zIdwOLAuxhMhzKIsfgLA6HLecsylVuJDKzGC8cuNkf
+	 LgqHol1mk5uZmDxj7FqcxlgCxi3W5AVSAWd7ykXP9sHcykWOuPx5SbDsfELXrF9BHS
+	 HmU4OEXbmHGyc37rBbdTcH9za6VVEoNQCk/3piTjjK02V307rPoqT7DWwRSDv7JVAP
+	 0V0VL5KLuTW/tKbUB6bq3SmsOuOZ8oIUH2Ct9ebL0+m/iaoiZam6FXuUeTSZYs0enq
+	 4owbJQt4gDS8Q==
 Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 10 Mar 2026 12:02:10 +0100
-Message-Id: <DGZ1UYLTMFQW.1ZBAMJN70OOQI@kernel.org>
-Subject: Re: [PATCH] gpu: nova-core: gsp: fix UB in DmaGspMem pointer
- accessors
-To: "Eliot Courtney" <ecourtney@nvidia.com>
+Date: Tue, 10 Mar 2026 12:20:33 +0100
+Message-Id: <DGZ291D7Z9ED.FMSHMARM51HP@kernel.org>
+Subject: Re: [PATCH v4 4/4] gpu: nova-core: fix stack overflow in GSP memory
+ allocation
+To: "Alexandre Courbot" <acourbot@nvidia.com>
 From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260309225408.27714-1-dakr@kernel.org>
- <DGYQCXD2VH23.3D54NHJH6I0VA@garyguo.net>
- <DGYSTBMF931L.3OV1I4IWUW4ON@nvidia.com>
-In-Reply-To: <DGYSTBMF931L.3OV1I4IWUW4ON@nvidia.com>
-Message-ID-Hash: ZGTZHQUDN4WPCRLE6VPDMK6ZYLQXU6KX
-X-Message-ID-Hash: ZGTZHQUDN4WPCRLE6VPDMK6ZYLQXU6KX
+References: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
+ <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+ <DGYPX7TT8A4E.3KTO5Z5RS17B4@nvidia.com>
+ <DGYQ5EYS1LB0.TP93SPR5Q3BX@garyguo.net>
+ <DGYQXEUSVZ0Q.23B895V08LWQ5@nvidia.com>
+In-Reply-To: <DGYQXEUSVZ0Q.23B895V08LWQ5@nvidia.com>
+Message-ID-Hash: DHB22E7QLB2M4FBDCAUO6QJSNVJ3TDBO
+X-Message-ID-Hash: DHB22E7QLB2M4FBDCAUO6QJSNVJ3TDBO
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Gary Guo <gary@garyguo.net>, acourbot@nvidia.com, aliceryhl@google.com,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel <dri-devel-bounces@lists.freedesktop.org>
+CC: Gary Guo <gary@garyguo.net>,
+ Tim Kovalenko via B4 Relay <devnull+tim.kovalenko.proton.me@kernel.org>,
+ tim.kovalenko@proton.me, Alice Ryhl <aliceryhl@google.com>,
+ Simona Vetter <simona@ffwll.ch>, Miguel Ojeda <ojeda@kernel.org>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Boqun Feng <boqun@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ driver-core@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZGTZHQUDN4WPCRLE6VPDMK6ZYLQXU6KX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DHB22E7QLB2M4FBDCAUO6QJSNVJ3TDBO/>
 Archived-At: 
- <https://lore.freedesktop.org/DGZ1UYLTMFQW.1ZBAMJN70OOQI@kernel.org/>
+ <https://lore.freedesktop.org/DGZ291D7Z9ED.FMSHMARM51HP@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -105,26 +117,58 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Mar 10, 2026 at 4:56 AM CET, Eliot Courtney wrote:
-> On Tue Mar 10, 2026 at 11:01 AM JST, Gary Guo wrote:
->>> +    pub(in crate::gsp) fn advance_cpu_write_ptr(qs: &CoherentAllocatio=
-n<GspMem>, count: u32) {
->>> +        let wptr =3D cpu_write_ptr(qs).wrapping_add(count) & MSGQ_NUM_=
-PAGES;
+On Tue Mar 10, 2026 at 3:28 AM CET, Alexandre Courbot wrote:
+> On Tue Mar 10, 2026 at 10:51 AM JST, Gary Guo wrote:
+>> On Tue Mar 10, 2026 at 1:40 AM GMT, Alexandre Courbot wrote:
+>>> On Tue Mar 10, 2026 at 1:34 AM JST, Tim Kovalenko via B4 Relay wrote:
+>>>> diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core=
+/gsp/cmdq.rs
+>>>> index 0056bfbf0a44cfbc5a0ca08d069f881b877e1edc..c8327d3098f73f9b880eee=
+99038ad10a16e1e32d 100644
+>>>> --- a/drivers/gpu/nova-core/gsp/cmdq.rs
+>>>> +++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+>>>> @@ -202,7 +202,20 @@ fn new(dev: &device::Device<device::Bound>) -> Re=
+sult<Self> {
+>>>> =20
+>>>>          let gsp_mem =3D
+>>>>              CoherentAllocation::<GspMem>::alloc_coherent(dev, 1, GFP_=
+KERNEL | __GFP_ZERO)?;
+>>>> -        dma_write!(gsp_mem, [0]?.ptes, PteArray::new(gsp_mem.dma_hand=
+le())?);
+>>>> +
+>>>> +        const NUM_PTES: usize =3D GSP_PAGE_SIZE / size_of::<u64>();
+>>>> +
+>>>> +        let start =3D gsp_mem.dma_handle();
+>>>> +        // One by one GSP Page write to the memory to avoid stack ove=
+rflow when allocating
+>>>> +        // the whole array at once.
+>>>> +        for i in 0..NUM_PTES {
+>>>> +            dma_write!(
+>>>> +                gsp_mem,
+>>>> +                [0]?.ptes.0[i],
+>>>> +                PteArray::<NUM_PTES>::entry(start, i)?
+>>>
+>>> Does `::<NUM_PTES>` need to be mentioned here, or is the compiler able
+>>> to infer it?
 >>
->> Not really related to your change, but this `&` probably require a comme=
-nt, as
->> it has different behaviour compared to `%` given the `MSGQ_NUM_PAGES` is=
- not
->> power of two. I suppose this is actually intended so there's a way to
->> distinguish between empty and full ring buffer?
->
-> This is actually incorrect and I have fixed it here[1]. I think it
-> should be merged in drm-rust-next now.
+>> The function signature doesn't mention NUM_PTES at all, so no. In fact, =
+perhaps
+>> the `entry` shouldn't be an associated method at all (even if is, it pro=
+bably
+>> should be of `PteArray::<0>` or something.
 
-Probably should have been going through -fixes. Anyways, I will fix it up i=
-n
-this patch too.
+I think <0> is probably the best choice for this fix for now.
 
-> [1]: https://lore.kernel.org/all/20260129-nova-core-cmdq1-v3-0-2ede85493a=
-27@nvidia.com/
+> I had that thought as well - this calls for a redesign of the `PteArray`
+> business - but also didn't want to interfere too much as this fix is
+> very much (and quickly) needed. We will probably re-write this once we
+> have access to the new I/O code anyway.
+
+Not sure it actually needs a redesign, as I think this just goes away with =
+I/O
+projections. That's also why I would add the following TODO comment on entr=
+y().
+
+	// TODO: Replace with `IoView` projections once available.
+
+I.e. it is just a workaround for now.
