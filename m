@@ -4,130 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 809BBFD2D69
-	for <nouveau@archiver.kernel.org>; Tue, 10 Mar 2026 12:20:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D43CFD4F0D
+	for <nouveau@archiver.kernel.org>; Tue, 10 Mar 2026 17:40:40 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A37910E6E0;
-	Tue, 10 Mar 2026 12:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BAE6D10E775;
+	Tue, 10 Mar 2026 17:40:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Myth0tS6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="IU6ukDu/";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 062C745016;
-	Tue, 10 Mar 2026 12:10:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id D8FD545019;
+	Tue, 10 Mar 2026 17:30:04 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773144604;
- b=SuyXRZm4amjFRzRHci8MdH0jp+XHrXrVarABNq48761YfnYaNp1QlxHi6WcsKd8zNxLZj
- B0hMSvswlJKFnMyOWvH51/zNlkcKNkUbMpAccRabyf/zLXxvo4Zlx+KXv7+D3dBcSguRRim
- eatIxHnIGtoKZvSpXH+ZVQXMWDWSWyj2u7B8wn5BDqJ6/rG1Rgb0ntnOp5RK3YEHIUUCvT3
- 9bfK2tnXrBGw02JiULwnwjQmNiqH/ZYlKXdhh7MX9iPg9Mfx2ot2wTJHypbRNMyix+4mLp7
- 5JhshMDomarFxCHO2G/zu/q7sKyTtYyguxz68d77ed/Xz6Rd/a8GDjej5RCg==
+ s=20240201; t=1773163804;
+ b=Jh8rCySUBIh3yFNWAEzV9N/l7rZrT8wKw51QmxhB/bMpDGFanisNS3+oJe7yzi2TH8ciO
+ 7SsdV2TbafAenG9NlYi1aZI4QTVJsN/83HxGs96egAvq2pnqcJ/m0IAFkphRuI7XKdOUDPF
+ fJ7E2THg4SCAzt1hO9+h5RC46HPfC8gZjiS54lgpa8LwY3xt2O2bDnQjrFN/EZdwY40FEUH
+ FXZG5Ohg+4TA/xNN0WY9y8dRsLq2jo5yl8GVQIQfzi7hq8q9YMVlxJNJ//o6gAXGbTh0cTC
+ +AHiifL6msk/yGm7PS/XkH0QPK3GSmHQa6FTvEUCGzVw3x+phvsQdyEXHXNw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773144604; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773163804; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jzGKi0IE+e0O0TkW5bmmYzbro6hAyekiqeV76oVBwN8=;
- b=h1lXLKwOqAgVdJRME3d2pQN6KllIv6TVHmIUHlDFI+ylEox81G7nO8Suo1lF0zNNx4xKp
- kuhwD6YbNVRXda4LBFZHMLi5mktFZuHVl2Bh7VMEu7gras497WQ3KgGQfXHCj+Dc0ZEyRBn
- N/I+X9MKRqMaImE64hTDa7MIEzdWlyptkiS7Uc2/t93irDPNg47bbMfSkHCj777VbySqeCj
- KnBlmhs/z4IOL6n8yC5Ebm82vQDGHqqQFd2fxX1i7FDcYvjDvnswV3FTissFNwvwd4kAA5t
- Xaiws/Yqv5yFWr/K7BV165DA8bJpfsYZ4BGBYkaUIgVu3gbPB6JJAAHLt9dg==
+ bh=d1DDQsl56wFMQYOdlxjbg7ksoOik7Zl9BgBnTcawGfg=;
+ b=svahIXM1uwM7RPqxibM2RB7JHfOJVG6uRCfpLbUJaisdJjNcI38V3SY9Z3n8jK8t3Shv7
+ xfJBJ3vCdeGPxLt1dylxnOEQKGTaqZW5pzjg6Ul0qpzamUjuiZFzrW31aoDT5TRnm4m/B8C
+ WnFw9LC9Fv5uBftpLCJZ1V0UhuYsrw3oR2Ymbqs+2AaS+12kaGzo0/iXPne9y+Vxlfaeww2
+ VPEQ/+I5DvDVS60NLsHlWg26tLv2POAtat7KH4ov52pvNyUzLNmpPNiBcEoCLcXn5R/fs1m
+ 6ahklA/yfpyPHx3EfPdLETzDGLFK6kU+5+pisLJrR+K5eXRBXp7cX6DDvQwg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=fail header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=fail (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=fail header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=fail (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D7C0F4088B
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Mar 2026 06:14:23 +0000 (UTC)
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
- [209.85.215.180])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8013710E655
-	for <nouveau@lists.freedesktop.org>; Tue, 10 Mar 2026 06:24:56 +0000 (UTC)
-Received: by mail-pg1-f180.google.com with SMTP id
- 41be03b00d2f7-c70ea5e9e9dso4699535a12.1
-        for <nouveau@lists.freedesktop.org>;
- Mon, 09 Mar 2026 23:24:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773123896; x=1773728696;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=jzGKi0IE+e0O0TkW5bmmYzbro6hAyekiqeV76oVBwN8=;
-        b=Myth0tS62vXZDsjK+jPhP9Yyw9n8TuNFFcIx+1zWR573ZkOKknMuk+vSjV6qpBYPuq
-         RH0y4Ks1HAuMoQO3QxEoX79pcrimXTpeX5nZXuQGsinl5VI1GjnJQtl30JGfY4mPuIGF
-         VgXDfR9zLRUN+Bb+dQLXQR744dpS03cbQT/w7IZp+kmyr+kBNN8P9j3LYrmUdqmUrNkj
-         rPn7t3P5jDX7ovcqFhLKxM45EgDij9IR8pbvbha+X4Ks8wFlGV7s/5/WVeJ7/CIcoMPk
-         hLLo5HDxPIcnykvrX3BAm6TylOMo4o3QS5Ku1ent6mBpRzUVxYTwG028RM9XbirLocAC
-         Aaiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1773123896; x=1773728696;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jzGKi0IE+e0O0TkW5bmmYzbro6hAyekiqeV76oVBwN8=;
-        b=mNE8fRB0wwYaY4NYVUK5QN749IxvVhh/gwIuSkW5yF74HiC5J12l/2PAfOZryFSF3l
-         YdGScj21K9C3UQcq5L3tNv/PlwgLkv8rt0vvcEVHVovqueztFFnCy2HhKTxVk0myOqaI
-         oFqm6WvC4EzgGy4fOeuRe5ioyrbp8HIklmkXJiY2CDdOrvcd/tRh9GiT4mzinU27JpGF
-         L7kJtZxwvCrb235pWdER0iKpiwIyVrL6pPsUOQ2dZBhHB9MUGt2AEYN7ZOwwOFAzpL0V
-         wVj5FDjLKc2YXgl7RgoEVSf2/X9t8KpR/uIpA+4gGTrDMCnvxN3m6Y86yfmUp0PqeMLZ
-         GK0g==
-X-Gm-Message-State: AOJu0YzU6lW0Wz0GNVN6zttym7mmjB1ErV3yeeV5jXgI31zHmSRCSVtS
-	jcOJWY+0ZLRvI9SiWC/uLPw5Iscpq1rzJS/7DxBmEwsgymghKeXr5Dfj
-X-Gm-Gg: ATEYQzwhLZJiQHLEf6SRjTItlpj38GynOMYr5P9ihfueSv1zxpMY1u/YXxIy4GDoe5M
-	iw3ucN+tal8CZL3o6AV2YxpvtriD26239QVXbsp3iZrEib3/OQAhu21XosEyMCXdhOb5K6yVghu
-	zWYhUi4o5E9JMmrkWVfi8GmndidkWAnyk5jY1S3ghMdQ+E2zllohm/xXtAiaHIZzkLZTgEjKlDU
-	b29j03hi22FG9LfzueoCRZ47JM2lwhgjIL2yBz4VILYBTDMaKVk+rr5IJU8QF+57E/6TGwlORha
-	HYyeiqx2/k+Z78CLs6tW6RX7AQkuaBIgOPtf9sRMnNUxOkuo8ao/TUuDAivxofWVtY+WUscUdGl
-	BXxVILx1AkBAOOcV1pYKTIg4TCrjBw0qz5a2yQdeb10Xgf9jOtCpkDF5Bazt3wsymcoj8UjoZIa
-	TYunv0zXJxRW7fXWd9GDBb1OFwkaCfmnBJRoXqgP6KtCv4mIMG5LfH
-X-Received: by 2002:a17:903:1ace:b0:2ae:4ebc:71d5 with SMTP id
- d9443c01a7336-2ae8249ce30mr148810525ad.52.1773123895891;
-        Mon, 09 Mar 2026 23:24:55 -0700 (PDT)
-Received: from eric-wcnlab.tail151456.ts.net
- ([2001:288:7001:1099:3cea:adff:13a5:9a2c])
-        by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2ae83f8cfb0sm187668565ad.67.2026.03.09.23.24.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Mar 2026 23:24:55 -0700 (PDT)
-From: Cheng-Yang Chou <yphbchou0911@gmail.com>
-To: Danilo Krummrich <dakr@kernel.org>,
-	Alice Ryhl <aliceryhl@google.com>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Gary Guo <gary@garyguo.net>
-Subject: [PATCH] gpu: nova: rename drivers to use kebab-case convention
-Date: Tue, 10 Mar 2026 14:24:43 +0800
-Message-ID: <20260310062443.2763230-1-yphbchou0911@gmail.com>
-X-Mailer: git-send-email 2.48.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MailFrom: yphbchou0911@gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1B1FA44F11
+	for <nouveau@lists.freedesktop.org>; Tue, 10 Mar 2026 17:30:02 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C3A010E690;
+	Tue, 10 Mar 2026 17:40:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 2729041AB1;
+	Tue, 10 Mar 2026 17:40:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93826C19423;
+	Tue, 10 Mar 2026 17:40:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773164435;
+	bh=dZcsL0fWmyyyT+dQAR3Tw27jgu+4nBjdpMoWNfXiRGE=;
+	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+	b=IU6ukDu/7o3EsXY4ZbhK5KDzIDLwThH1lDsx5GEybwp0pY4JtE+FqnjeTXLapyu70
+	 f6b/+h80mFDLbb9oEuxyxCqCGPzxmPQS4uBmAF9nbFcT4+APDum+cBkozCm6OW72eL
+	 vWiaomYoj/Mn4OtvuNbv4Z0FS19z652Dqq4SpYm2MCYsvdOiUdIeA544+6sbHYMXRG
+	 akqOK+rUEWkHw4KjvBvGGOuMs1j9tjWoUeXEsM3bTqwaicly4Ul2eldP71Plh1vDCS
+	 18xiQLe0ebXJYGo6uRbM2az2OZuHgvOjFsF5rNVVVsEQlLIu3cXa9K1xn9sQiS7jYo
+	 Ffx0ONT0DD1gg==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 10 Mar 2026 18:40:28 +0100
+Message-Id: <DGZABX6ABLN8.SBT6J72KH8YH@kernel.org>
+Subject: Re: [PATCH v4 4/4] gpu: nova-core: fix stack overflow in GSP memory
+ allocation
+To: "Tim Kovalenko via B4 Relay"
+ <devnull+tim.kovalenko.proton.me@kernel.org>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260309-drm-rust-next-v4-0-4ef485b19a4c@proton.me>
+ <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+In-Reply-To: <20260309-drm-rust-next-v4-4-4ef485b19a4c@proton.me>
+Message-ID-Hash: FMUP5SBZCYUOOATUCCYB2UJRMCSKFRWI
+X-Message-ID-Hash: FMUP5SBZCYUOOATUCCYB2UJRMCSKFRWI
+X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: FLEFPOHAJMR6J3CS6BWLSKAEGPRKBUFL
-X-Message-ID-Hash: FLEFPOHAJMR6J3CS6BWLSKAEGPRKBUFL
-X-Mailman-Approved-At: Tue, 10 Mar 2026 12:10:02 +0000
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, jserv@ccns.ncku.edu.tw,
- Cheng-Yang Chou <yphbchou0911@gmail.com>
+CC: tim.kovalenko@proton.me, Alexandre Courbot <acourbot@nvidia.com>,
+ Alice Ryhl <aliceryhl@google.com>, Simona Vetter <simona@ffwll.ch>,
+ Miguel Ojeda <ojeda@kernel.org>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>, Boqun Feng <boqun@kernel.org>,
+ Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ driver-core@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FLEFPOHAJMR6J3CS6BWLSKAEGPRKBUFL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FMUP5SBZCYUOOATUCCYB2UJRMCSKFRWI/>
 Archived-At: 
- <https://lore.freedesktop.org/20260310062443.2763230-1-yphbchou0911@gmail.com/>
+ <https://lore.freedesktop.org/DGZABX6ABLN8.SBT6J72KH8YH@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,62 +114,51 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Rename nova-core driver from "NovaCore" to "nova-core" and nova-drm
-driver from "Nova" to "nova-drm" to follow kernel naming conventions
-before these names become UAPI (e.g. exposed via driver_override).
+On Mon Mar 9, 2026 at 5:34 PM CET, Tim Kovalenko via B4 Relay wrote:
+> From: Tim Kovalenko <tim.kovalenko@proton.me>
+>
+> The `Cmdq::new` function was allocating a `PteArray` struct on the stack
+> and was causing a stack overflow with 8216 bytes.
+>
+> Modify the `PteArray` to calculate and write the Page Table Entries
+> directly into the coherent DMA buffer one-by-one. This reduces the stack
+> usage quite a lot.
+>
+> Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
 
-Link: https://github.com/Rust-for-Linux/linux/issues/1228
-Signed-off-by: Cheng-Yang Chou <yphbchou0911@gmail.com>
----
- drivers/gpu/drm/nova/driver.rs     | 4 ++--
- drivers/gpu/drm/nova/nova.rs       | 2 +-
- drivers/gpu/nova-core/nova_core.rs | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+Applied to drm-rust-fixes, thanks!
 
-diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
-index b1af0a099551..addf70c33cb2 100644
---- a/drivers/gpu/drm/nova/driver.rs
-+++ b/drivers/gpu/drm/nova/driver.rs
-@@ -32,11 +32,11 @@ pub(crate) struct NovaData {
-     major: 0,
-     minor: 0,
-     patchlevel: 0,
--    name: c"nova",
-+    name: c"nova-drm",
-     desc: c"Nvidia Graphics",
- };
- 
--const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
-+const NOVA_CORE_MODULE_NAME: &CStr = c"nova-core";
- const AUXILIARY_NAME: &CStr = c"nova-drm";
- 
- kernel::auxiliary_device_table!(
-diff --git a/drivers/gpu/drm/nova/nova.rs b/drivers/gpu/drm/nova/nova.rs
-index 8893e58ee0db..1fd454c7e0df 100644
---- a/drivers/gpu/drm/nova/nova.rs
-+++ b/drivers/gpu/drm/nova/nova.rs
-@@ -10,7 +10,7 @@
- 
- kernel::module_auxiliary_driver! {
-     type: NovaDriver,
--    name: "Nova",
-+    name: "nova-drm",
-     authors: ["Danilo Krummrich"],
-     description: "Nova GPU driver",
-     license: "GPL v2",
-diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-index c1121e7c64c5..90e98380687b 100644
---- a/drivers/gpu/nova-core/nova_core.rs
-+++ b/drivers/gpu/nova-core/nova_core.rs
-@@ -22,7 +22,7 @@
- 
- kernel::module_pci_driver! {
-     type: driver::NovaCore,
--    name: "NovaCore",
-+    name: "nova-core",
-     authors: ["Danilo Krummrich"],
-     description: "Nova Core GPU driver",
-     license: "GPL v2",
--- 
-2.48.1
+--- commit ---
 
+commit c7940c8bf215b9dc6211781c77ce80e76982a723
+Author: Tim Kovalenko <tim.kovalenko@proton.me>
+Date:   Mon Mar 9 12:34:21 2026 -0400
+
+    gpu: nova-core: fix stack overflow in GSP memory allocation
+
+    The `Cmdq::new` function was allocating a `PteArray` struct on the stac=
+k
+    and was causing a stack overflow with 8216 bytes.
+
+    Modify the `PteArray` to calculate and write the Page Table Entries
+    directly into the coherent DMA buffer one-by-one. This reduces the stac=
+k
+    usage quite a lot.
+
+    Reported-by: Gary Guo <gary@garyguo.net>
+    Closes: https://rust-for-linux.zulipchat.com/#narrow/channel/509436-Nov=
+a/topic/.60Cmdq.3A.3Anew.60.20uses.20excessive.20stack.20size/near/57037554=
+9
+    Link: https://lore.kernel.org/rust-for-linux/CANiq72mAQxbRJZDnik3Qmd4ph=
+vFwPA01O2jwaaXRh_T+2=3DL-qA@mail.gmail.com/
+    Fixes: f38b4f105cfc ("gpu: nova-core: Create initial Gsp")
+    Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+    Signed-off-by: Tim Kovalenko <tim.kovalenko@proton.me>
+    Link: https://patch.msgid.link/20260309-drm-rust-next-v4-4-4ef485b19a4c=
+@proton.me
+    [ * Use PteArray::entry() in LogBuffer::new(),
+      * Add TODO comment to use IoView projections once available,
+      * Add PTE_ARRAY_SIZE constant to avoid duplication.
+
+        - Danilo ]
+    Signed-off-by: Danilo Krummrich <dakr@kernel.org>
