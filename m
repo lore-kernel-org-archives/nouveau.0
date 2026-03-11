@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 708471125875
-	for <nouveau@archiver.kernel.org>; Wed, 11 Mar 2026 19:53:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC5301125875
+	for <nouveau@archiver.kernel.org>; Wed, 11 Mar 2026 19:53:34 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 516D910E928;
-	Wed, 11 Mar 2026 19:53:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2A410E922;
+	Wed, 11 Mar 2026 19:53:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="LBv4RjRy";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="cqiy7tpz";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1624745098;
-	Wed, 11 Mar 2026 19:42:54 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4DB6545098;
+	Wed, 11 Mar 2026 19:42:58 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773258173;
- b=DKNXObxSrDwRS0pbpIp6jTwK2qBAmiQIyZPG35bfSrTQ7ztvcal3Si0uhgJkuaLE38T2D
- zEqLp1HrOSGiu3ZVu/ImUszHCtKGiEzX6HdMPXYgrF2bLqFiJHgXpk1APZBr0GU8kTEIBI6
- dnKckI/VpfUZ2j99qkg0d43wD+YzwSMhlVkFzJbrDr4s85mSQA8J01Rbue0QuJ1jsBUmAl3
- JzQDK7BlH+bzNGuaScQ5r6UHTfxPVa1Pa+dpc2zSc5vEaudwZqdUfkw+IJlMLG7GJwRyVyc
- JQiYkOI6o0ytyf9JbVPumGIC6PMau7Z4hpJhDXcDEJmP6N7+xlRAhOqHlpmg==
+ s=20240201; t=1773258178;
+ b=UtWIRekqjFxwsRvImiK/8X1CteXpvX2d1LoVwnuJin6SVDsWjCA/Ew/SkNJ42ih9KLh//
+ gmVR7B/99gYFUa0gQQm0vOUxTaUVhEwe1Ch6D427mVVwN7y8kLH9zvQuoKhIvkpsiQWRkOP
+ mVhzotqx94iPUN9BYxaxCV6ObpfmRg8BJUBjcmfFRq2v3YAdYSg9XCaM0wFTu/CYp6NwmND
+ 7rja8EsokJLJBpUWwMshgojPr3rUQ2qc+igB2qyYz3WlRjPckd7MjEhQJsNwFVkOX8UXEPu
+ fIu4h+SEA9nYrgSKnHW0vTRCcBnjvPW2pcfN9noTBmBBC9FtOFGKpDISqgcw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773258173; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773258178; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=e+WXbsnpykkPWNgfP9lm2btwaJkvLFLmTBeYQq+/GUw=;
- b=oY2pQldTIDHs5jVP3tukfpnnrBqUl60r+F71fph8ySDLeRUn5iHFozkXK0HZifRcnZl5w
- OyPkEgw9PwoiDjCRThwhMoRWR/XwqZ8DrilZc7gDqaQrkcUFt674Mdqfkul6OiMH9/+HKsb
- F94oR+b9ZXt55mJF9JzqEd1sGuP8Dse94ZedBQgJDtGqsedoV93f12ix3WqrOk1pimVdvEA
- W0ThoCVtt2+dDw/4+TDJ6UMQ9TX8qlBtCeBWKPZBWIEkoM57GK9Bma6XihYcBUrWDMt3Cg7
- BSB82lo8vNbeuAKCyWZKFf4C6EBisWR6Dk52Zlfuz1f2I/UaR3ezSQSVLB2g==
+ bh=wJQEqMx5FMzQS5rDm7nSl5gPB+mgnCyP9gdsnFOaQl8=;
+ b=vvMy/5EP/ZfuKLnRd8bouyDQpCtZT++W/tAJ1DGfRoe98WgKiq0MeTP5kAUsqLH8TSGkY
+ jCDFK6YXsI9Ny7f1FDH7eIIXUqHPRfwBgTpLhagH5e8ZSL6l0TgC1wnYK2EhY7iw/Cym/Ye
+ IJUvGJiPENXZOLyqaC71UNsFycuw478Cx7qWQAiPiEW4SGUJDa8CIuXE0F2Bj5OAfuoaP0L
+ Ylk6BQJiUNkWyqWiSnekz3YsppV5QKi9XDarZQoSmNmlj23fRBS7ZPZlqebEWlp0esquTp2
+ ny2GS/QcF/Kkk/bspzZdlv7rwkIC+4XH42HBWFdnGQth8dr1ZTHZ48Yk01GQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,60 +46,60 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4D7D240696
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Mar 2026 19:42:51 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 126C340696
+	for <nouveau@lists.freedesktop.org>; Wed, 11 Mar 2026 19:42:57 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4BC1310E911
-	for <nouveau@lists.freedesktop.org>; Wed, 11 Mar 2026 19:53:27 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1253B10E91C
+	for <nouveau@lists.freedesktop.org>; Wed, 11 Mar 2026 19:53:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1773258806;
+	s=mimecast20190719; t=1773258812;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=e+WXbsnpykkPWNgfP9lm2btwaJkvLFLmTBeYQq+/GUw=;
-	b=LBv4RjRy1/k17mEtwg9K1qbxfBMrryoE60ceCGJXPX7ufEzLFn/gW2re0kycXJDivOBong
-	ZE56ZvIM8JsrwAJF8YC+b+j5GI8ESJnS4BydEVMrgAfGuFoM92fwIi/UvFdjkx9hV4UWJe
-	Qdgp6mdYuin168BzEFOzjReRgYkJ/GI=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+	bh=wJQEqMx5FMzQS5rDm7nSl5gPB+mgnCyP9gdsnFOaQl8=;
+	b=cqiy7tpzN0C4ZCiiJpHt3uOUm3V/Ve4W+HICUbz9PdKgl/s2WK0ARckq8CBkm6xtDvuwCQ
+	TjBXwjDnqnENJYv6AH4gN6CwOdRaI9fcWJRvNu0Etas4I9MAOLSLoITvxdZdc8OBkGbP2d
+	Jfyo4ZLwxtLpU6kR6+6UwfMcZpXKbP8=
+Received: from mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-562-xCY5C2K8PtKNeXsUtuTymA-1; Wed,
- 11 Mar 2026 15:53:22 -0400
-X-MC-Unique: xCY5C2K8PtKNeXsUtuTymA-1
-X-Mimecast-MFC-AGG-ID: xCY5C2K8PtKNeXsUtuTymA_1773258799
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-463-lW5waOAmPA2UfH8F_AIMaw-1; Wed,
+ 11 Mar 2026 15:53:26 -0400
+X-MC-Unique: lW5waOAmPA2UfH8F_AIMaw-1
+X-Mimecast-MFC-AGG-ID: lW5waOAmPA2UfH8F_AIMaw_1773258803
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 9317318005B8;
-	Wed, 11 Mar 2026 19:53:18 +0000 (UTC)
+	by mx-prod-mc-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 7D1C51956048;
+	Wed, 11 Mar 2026 19:53:23 +0000 (UTC)
 Received: from GoldenWind.redhat.com (unknown [10.22.81.64])
 	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 868083002D0E;
-	Wed, 11 Mar 2026 19:53:14 +0000 (UTC)
+ id BA49930002D2;
+	Wed, 11 Mar 2026 19:53:18 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: nouveau@lists.freedesktop.org,
 	Gary Guo <gary@garyguo.net>,
 	Daniel Almeida <daniel.almeida@collabora.com>,
 	rust-for-linux@vger.kernel.org
-Subject: [PATCH v8 3/7] rust: helpers: Add bindings/wrappers for dma_resv_lock
-Date: Wed, 11 Mar 2026 15:52:42 -0400
-Message-ID: <20260311195246.2439593-4-lyude@redhat.com>
+Subject: [PATCH v8 4/7] rust: gem: Introduce DriverObject::Args
+Date: Wed, 11 Mar 2026 15:52:43 -0400
+Message-ID: <20260311195246.2439593-5-lyude@redhat.com>
 In-Reply-To: <20260311195246.2439593-1-lyude@redhat.com>
 References: <20260311195246.2439593-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: xLqirfV7bqjI63U6TwUmtjP4v-nPmyt1qktd0mIZcPU_1773258799
+X-Mimecast-MFC-PROC-ID: qCChiunk31FqYJ2Y6xzuI9l3nATMhRWbRZkk5UFLYwk_1773258803
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: ZWPSY7BQRCG5UP5ENMPFAA7WBE6V462S
-X-Message-ID-Hash: ZWPSY7BQRCG5UP5ENMPFAA7WBE6V462S
+Message-ID-Hash: MXYRKWVWN7CF7Y4XBRHQZTHYSJVDZIHS
+X-Message-ID-Hash: MXYRKWVWN7CF7Y4XBRHQZTHYSJVDZIHS
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -121,9 +121,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZWPSY7BQRCG5UP5ENMPFAA7WBE6V462S/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MXYRKWVWN7CF7Y4XBRHQZTHYSJVDZIHS/>
 Archived-At: 
- <https://lore.freedesktop.org/20260311195246.2439593-4-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260311195246.2439593-5-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -133,66 +133,103 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Asahi Lina <lina@asahilina.net>
+This is an associated type that may be used in order to specify a data-type
+to pass to gem objects when construction them, allowing for drivers to more
+easily initialize their private-data for gem objects.
 
-This is just for basic usage in the DRM shmem abstractions for implied
-locking, not intended as a full DMA Reservation abstraction yet.
-
-Signed-off-by: Asahi Lina <lina@asahilina.net>
-Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
-Reviewed-by: Alice Ryhl <aliceryhl@google.com>
-Reviewed-by: Janne Grunau <j@jananu.net>
 Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- rust/bindings/bindings_helper.h |  1 +
- rust/helpers/dma-resv.c         | 13 +++++++++++++
- rust/helpers/helpers.c          |  1 +
- 3 files changed, 15 insertions(+)
- create mode 100644 rust/helpers/dma-resv.c
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+Reviewed-by: Janne Grunau <j@jananu.net>
 
-diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-index 083cc44aa952c..39a8f15603692 100644
---- a/rust/bindings/bindings_helper.h
-+++ b/rust/bindings/bindings_helper.h
-@@ -48,6 +48,7 @@
- #include <linux/cpumask.h>
- #include <linux/cred.h>
- #include <linux/debugfs.h>
-+#include <linux/dma-resv.h>
- #include <linux/device/faux.h>
- #include <linux/dma-direction.h>
- #include <linux/dma-mapping.h>
-diff --git a/rust/helpers/dma-resv.c b/rust/helpers/dma-resv.c
-new file mode 100644
-index 0000000000000..05501cb814513
---- /dev/null
-+++ b/rust/helpers/dma-resv.c
-@@ -0,0 +1,13 @@
-+// SPDX-License-Identifier: GPL-2.0
+---
+V3:
+* s/BaseDriverObject/DriverObject/
+V4:
+* Fix leftover reference to BaseObjectDriver in rustdoc for
+  DriverObject::Args
+V6:
+* Fix build errors in Tyr
+
+ drivers/gpu/drm/nova/gem.rs |  5 +++--
+ drivers/gpu/drm/tyr/gem.rs  |  3 ++-
+ rust/kernel/drm/gem/mod.rs  | 13 ++++++++++---
+ 3 files changed, 15 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova/gem.rs
+index 6ccfa5da57617..e073e174e2578 100644
+--- a/drivers/gpu/drm/nova/gem.rs
++++ b/drivers/gpu/drm/nova/gem.rs
+@@ -19,8 +19,9 @@ pub(crate) struct NovaObject {}
+ 
+ impl gem::DriverObject for NovaObject {
+     type Driver = NovaDriver;
++    type Args = ();
+ 
+-    fn new(_dev: &NovaDevice, _size: usize) -> impl PinInit<Self, Error> {
++    fn new(_dev: &NovaDevice, _size: usize, _args: Self::Args) -> impl PinInit<Self, Error> {
+         try_pin_init!(NovaObject {})
+     }
+ }
+@@ -33,7 +34,7 @@ pub(crate) fn new(dev: &NovaDevice, size: usize) -> Result<ARef<gem::Object<Self
+         }
+         let aligned_size = page::page_align(size).ok_or(EINVAL)?;
+ 
+-        gem::Object::new(dev, aligned_size)
++        gem::Object::new(dev, aligned_size, ())
+     }
+ 
+     /// Look up a GEM object handle for a `File` and return an `ObjectRef` for it.
+diff --git a/drivers/gpu/drm/tyr/gem.rs b/drivers/gpu/drm/tyr/gem.rs
+index 1273bf89dbd5d..bb5e7871efa94 100644
+--- a/drivers/gpu/drm/tyr/gem.rs
++++ b/drivers/gpu/drm/tyr/gem.rs
+@@ -11,8 +11,9 @@ pub(crate) struct TyrObject {}
+ 
+ impl gem::DriverObject for TyrObject {
+     type Driver = TyrDriver;
++    type Args = ();
+ 
+-    fn new(_dev: &TyrDevice, _size: usize) -> impl PinInit<Self, Error> {
++    fn new(_dev: &TyrDevice, _size: usize, _args: ()) -> impl PinInit<Self, Error> {
+         try_pin_init!(TyrObject {})
+     }
+ }
+diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
+index bcec62155c02d..68bf33969a7d4 100644
+--- a/rust/kernel/drm/gem/mod.rs
++++ b/rust/kernel/drm/gem/mod.rs
+@@ -62,8 +62,15 @@ pub trait DriverObject: Sync + Send + Sized {
+     /// Parent `Driver` for this object.
+     type Driver: drm::Driver;
+ 
++    /// The data type to use for passing arguments to [`DriverObject::new`].
++    type Args;
 +
-+#include <linux/dma-resv.h>
-+
-+int rust_helper_dma_resv_lock(struct dma_resv *obj, struct ww_acquire_ctx *ctx)
-+{
-+	return dma_resv_lock(obj, ctx);
-+}
-+
-+void rust_helper_dma_resv_unlock(struct dma_resv *obj)
-+{
-+	dma_resv_unlock(obj);
-+}
-diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-index a3c42e51f00a0..d090e2c7c7ea8 100644
---- a/rust/helpers/helpers.c
-+++ b/rust/helpers/helpers.c
-@@ -28,6 +28,7 @@
- #include "cred.c"
- #include "device.c"
- #include "dma.c"
-+#include "dma-resv.c"
- #include "drm.c"
- #include "err.c"
- #include "irq.c"
+     /// Create a new driver data object for a GEM object of a given size.
+-    fn new(dev: &drm::Device<Self::Driver>, size: usize) -> impl PinInit<Self, Error>;
++    fn new(
++        dev: &drm::Device<Self::Driver>,
++        size: usize,
++        args: Self::Args,
++    ) -> impl PinInit<Self, Error>;
+ 
+     /// Open a new handle to an existing object, associated with a File.
+     fn open(_obj: &<Self::Driver as drm::Driver>::Object, _file: &DriverFile<Self>) -> Result {
+@@ -242,11 +249,11 @@ impl<T: DriverObject> Object<T> {
+     };
+ 
+     /// Create a new GEM object.
+-    pub fn new(dev: &drm::Device<T::Driver>, size: usize) -> Result<ARef<Self>> {
++    pub fn new(dev: &drm::Device<T::Driver>, size: usize, args: T::Args) -> Result<ARef<Self>> {
+         let obj: Pin<KBox<Self>> = KBox::pin_init(
+             try_pin_init!(Self {
+                 obj: Opaque::new(bindings::drm_gem_object::default()),
+-                data <- T::new(dev, size),
++                data <- T::new(dev, size, args),
+             }),
+             GFP_KERNEL,
+         )?;
 -- 
 2.53.0
 
