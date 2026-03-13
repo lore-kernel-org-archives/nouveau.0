@@ -4,143 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F64105F7A6
-	for <nouveau@archiver.kernel.org>; Fri, 13 Mar 2026 13:24:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F13371067058
+	for <nouveau@archiver.kernel.org>; Fri, 13 Mar 2026 15:40:26 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2AAC410EC23;
-	Fri, 13 Mar 2026 13:24:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1320F10E45D;
+	Fri, 13 Mar 2026 15:40:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OI0Ulaf9";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HmynuLuA";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 07C39450EA;
-	Fri, 13 Mar 2026 13:13:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id AA008450EB;
+	Fri, 13 Mar 2026 15:29:45 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773407632;
- b=TOTSbXEUYsw9s78wNlC5oRd4JYBFaLuLANBVN19hMvG9/BtB3+B2Sm2o0fwzixdlABf3v
- E36BSF5zXS6AbrG4RSK5HDmg77D31N8OOb//d97Ogv64WTD28ESE6bkjLf46XwbM+sM0s4T
- hZuzTeVmi4o3vpX+Po2WXOEaoqcqeWiVKmXDc4xbMByp/dcmt4DY9INXIEZhpif7nAb95OE
- z9tMeoIcanYJkpEPLvGiLbRBrmBk0UDCg2azhz7IILAWnAklSbsXVsvd4O8oLvC7shkNWO0
- dRtnNGo0iMtRosw5JuUtcMkFSOtWSZS912LidFwfBzPpTWa/OgjAXdN45zgA==
+ s=20240201; t=1773415785;
+ b=Q4WlLtx8gnnBcr/0rh6g2dfCgyuL/lC+g1iPbhFjbtsf06fRd7K5j8nMGLNDzNOGI3exj
+ 54/danRgGn2CwKUDPJ74pMacmsWYflgxySYXJqWD4zSoISdXO6wlhpqOoDy3lOrGRpVBbsi
+ WDOfTX9xROEvO5UAAcdJg7qHsfVbkwJjdT2Z3e2iBu9gpC1Lg/r0iF8DbgSq6HH9ty6jpw/
+ gjVDJ9VuUoVhJmqrQAqB5ALDE+MTrwHwS+oaB35BSW+xpWRJlY7yfwA97baGuDQO0CrWa9J
+ Te7E/aNcQEHrQg0B5R+rCXFjoF/wjOCm/8KtskujxgJo/Upu5jeXXmq+iKGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773407632; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773415785; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=omqdlqhqg9w8rP5QQ/+0ZYQHRwMpTry/COrsHclV4zI=;
- b=xmbfIdYZz9zV1Ng0rsStyM5yfCkPj5T36s3y9gLqH9RdFFDxOpLAirAQJGbgjQl/B2z9J
- TfFuZmo+jGExSOdT9XJW1RCDXrf0WQaRIgzZ5FFn8G7jZ+6q9iI8Nf0/W7lhNI+bmkBCa/r
- YZoMlZvbXlLKedIZgfO3Foy0jzmKngBSWw4V1g6nLaBzyOyfay/Sd9Lor7CKbFSYplOtZFA
- Nalh024XfmJVNtWs2/lIEKlGz4HEc8+BFYjP1e0ggxND3bESuN0oBnWXiIuQgpPhd84szXJ
- nIqiFMsrzpDmnrA9LW8y9dFHV19aKYg9hXXuNbcOswy0e/MG0h7AriCVmWMg==
+ bh=12KdNfEJ2J4lJQT0H+3E66AHrWPv5HSwbx9OcSbtWM8=;
+ b=Tkg166+aUJWus6goPMNiA/788damfVA6ShLAlyIZqPSTvKRiwluosIL8bVWjUptlnBy4v
+ 3YMhtRmWIog2HES0wuYJ6umyvzon0YXp+BaNtQRUWc/BAqbSKRh/UUsoK2K9Yjgs5U829fb
+ EVSgkMlpu/Aaa6YFb9rKN+qBHf7OfHOUX4yzzBo0CD9I515PcBxAvtMkGM34XDSF0ZJ2tG0
+ dDN9roSIw+iFNtA8xshpSqUaCeKtLn2Ox2orxVKSIftwEsM7QKBel3eO0CBTIT3hl2879r/
+ L8dlvo/nn2DnTTuwIjBI18tSlu8CcEv6oxh9j2wYlcps7k/HSYXjwhBCxk8Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E0C0E44DDC
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Mar 2026 13:13:49 +0000 (UTC)
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com
- [209.85.167.174])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C5F8F10EC2C
-	for <nouveau@lists.freedesktop.org>; Fri, 13 Mar 2026 13:24:29 +0000 (UTC)
-Received: by mail-oi1-f174.google.com with SMTP id
- 5614622812f47-46704177543so1451356b6e.2
-        for <nouveau@lists.freedesktop.org>;
- Fri, 13 Mar 2026 06:24:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1773408269; x=1774013069;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=omqdlqhqg9w8rP5QQ/+0ZYQHRwMpTry/COrsHclV4zI=;
-        b=OI0Ulaf9MBkuL8UHNfULduu+KrXKjJsEIpkkpzwthZOaB/jUt/HI5VxNXqC3g5stHo
-         BVzKDTh3tHvsNdfLFLW3rJwKuE3u76XK+HN1Xx7ITnv7+8vxGxIDNkOu/ROULNSljE5Z
-         2TvmxnBVrCjwbdlMJUGqBwB1dg8fq4Lkz7Usd22Mqaw8k1ufRrbbtouXRFkxCtyIM2E2
-         y4Y8ItWCXeHlE2qDR5c0DUcLmlZHxV/cMcBNdS3KjSgZePxZ4IhpYDJOX/Xce/JJ1y8X
-         4OgJsFhhP82cg+dwVudc26cunjG6PupJDZ8RJQWR8yZFWDA8Mr3P8aYbW8MOFWseB52e
-         SYsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1773408269; x=1774013069;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=omqdlqhqg9w8rP5QQ/+0ZYQHRwMpTry/COrsHclV4zI=;
-        b=T5OyTezdRS0pAEgngcaYXvnMVMNEOBedxtBhPvESHWz0xTs0U6gnGj6PxlSE0PMSrL
-         cYxY1V60RglA0ykHvXaUxKW/Iw2S6h8qXi40KLoA7X7E6g3v/FiiQ+Spjo3nyr9rDuqO
-         rbYV5Zysf9Nk0R6DqTvtH1bOHLXb1Ddfb8Mp4Cq2EfSh0Zjwq6NQrj23HyDg3TDzT3K4
-         vMR5xrXW+A3NNppfmx626TU3DzMHBbxDmkA08v00i5LvQt1V29sDqrGaewZI440ho3VC
-         uW/NO7CA7xv6wtscFJIoubVlmTAW8BQdJ/v60esYtxILAldpGtTdjK6Fxay6RuSui2M3
-         rZVA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX8IkRaUX9BRtON+95Yt0C4vmltoNtSZ4I+bfAIKJOpNaHa/cKWkAS3cEwy+UfcJDQifUM9+a/Z@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxrbGy8XMVEcVD6teLXgsUmAB4YvMflfKj/EnAN77jcpuzeynwM
-	Z05t+14pp167y2ySUtpLUhGnfghdPJ7m3KcylE1A/PbBlvPr2wQFNXQu
-X-Gm-Gg: ATEYQzzBTka9Dw0SsH9SH4v+8uMwirxgfMGCr4hSJ3S4m1jz5dHWb58z8IdaCtSCblC
-	HZwMU0sWoXU9kdPSGDKdsdnIGAysB+E9oNNa8kstmobYEOIkcEz8IlWa2gYCizokhsdcBfKLdR5
-	Vjbd0iXSerol7c+oaWF3INyXUglC50/XKCM3iIl+wXjBhp/2DO33ve7aym9V0JFhOpxsr5hRxyN
-	0UsbuCbtTTc6hpvhH+hkwOwmCqqcFhQQdhoNp3gzVGjNsKVrybGP4A/Im5LRZRwDGl1pnPFZzPe
-	fXGprEJ7ZvBvrGOZvoim2/M7OrbLlvcyZSh2fnnNBOIGNzJypNs3rA4k5M9Zq8TX3ir5urA/R+q
-	Ebqvrzxpv0SMfhJfdp0vFsW4kUZo1rm13tR0g6xx3ru6XTEUyhbc3YUoH62mCF+2lw61+lL2R7R
-	mMwqkuJQd3wEqduWuM9Jfv80JQ83NnkLFg44o9mQsjcWArw5RU
-X-Received: by 2002:a05:6808:2218:b0:467:cda:f189 with SMTP id
- 5614622812f47-467572ede3dmr1790509b6e.32.1773408268910;
-        Fri, 13 Mar 2026 06:24:28 -0700 (PDT)
-Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
-        by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.24.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Mar 2026 06:24:28 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: airlied@gmail.com,
-	simona@ffwll.ch,
-	jbaron@akamai.com,
-	gregkh@linuxfoundation.org,
-	Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Jim Cromie <jim.cromie@gmail.com>,
-	dri-devel@lists.freedesktop.org,
-	nouveau@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v11 43/65] drm-dyndbg: DRM_CLASSMAP_USE in nouveau
-Date: Fri, 13 Mar 2026 07:20:08 -0600
-Message-ID: <20260313132103.2529746-44-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
-References: <20260313132103.2529746-1-jim.cromie@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Message-ID-Hash: VN6I2A2G7U3HHEMISSYC6OMB2WMYKPEH
-X-Message-ID-Hash: VN6I2A2G7U3HHEMISSYC6OMB2WMYKPEH
-X-MailFrom: jim.cromie@gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id A91AD43D74
+	for <nouveau@lists.freedesktop.org>; Fri, 13 Mar 2026 15:29:42 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A450A10E458;
+	Fri, 13 Mar 2026 15:40:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id 64FCD4423F;
+	Fri, 13 Mar 2026 15:40:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79A29C2BCB1;
+	Fri, 13 Mar 2026 15:40:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1773416422;
+	bh=bqxV/ERiJOHIQHsrkksCf/hS2sdEqcyyCJ33sU1fNUE=;
+	h=Date:To:From:Subject:Cc:References:In-Reply-To:From;
+	b=HmynuLuAU0p/faBUpY/pHuDDchwCJ4MxJQxxNWBPl7Hsqi5cFIGZSOB647VQ06h0+
+	 IAbwadcPv4DP9HbHMbDYWLpJuFSMtMHxHmGpR5TPTnOtPpt+3klsKyqgEWsTCaLInB
+	 P8lY1CVIr2Oh8OPMGEb+qP1LN7catbNpH3p4e4OcQKYlhEC3iB7zFsGgG8aKGcNm+b
+	 yqMm06oc07pvzUSG93I5nna6mNaEdJnKN6O8zAh7uLBsvnhbTTctVU6S4K6iSoxO6S
+	 P/Wo059iTU6IOapnrfl9kQqVbZBIUxsaSsdcCsnM4NnW7WIzCp63fRNgI+CxUCTHkh
+	 erkx7hRx5kyrA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 13 Mar 2026 16:40:18 +0100
+Message-Id: <DH1RNJQP1IK7.1H96Z7TENYPC@kernel.org>
+To: "Eliot Courtney" <ecourtney@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 7/9] gpu: nova-core: gsp: add RM control command
+ infrastructure
+References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
+ <20260227-rmcontrol-v1-7-86648e4869f9@nvidia.com>
+In-Reply-To: <20260227-rmcontrol-v1-7-86648e4869f9@nvidia.com>
+Message-ID-Hash: Z27UZYZJGFA4L2Z66HWLDY6V5BUR3JEX
+X-Message-ID-Hash: Z27UZYZJGFA4L2Z66HWLDY6V5BUR3JEX
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- christian.koenig@amd.com, matthew.auld@intel.com,
- arunpravin.paneerselvam@amd.com, louis.chauvet@bootlin.com,
- skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org,
- intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+ loop; banned-address; member-moderation
+CC: Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VN6I2A2G7U3HHEMISSYC6OMB2WMYKPEH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Z27UZYZJGFA4L2Z66HWLDY6V5BUR3JEX/>
 Archived-At: 
- <https://lore.freedesktop.org/20260313132103.2529746-44-jim.cromie@gmail.com/>
+ <https://lore.freedesktop.org/DH1RNJQP1IK7.1H96Z7TENYPC@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -150,43 +104,104 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Following the dyndbg-api-fix, replace DECLARE_DYNDBG_CLASSMAP with
-DRM_CLASSMAP_USE.  This refs the defined & exported classmap, rather
-than re-declaring it redundantly, and error-prone-ly.
+On Fri Feb 27, 2026 at 1:32 PM CET, Eliot Courtney wrote:
+> +/// Command for sending an RM control message to the GSP.
+> +struct RmControl<'a> {
+> +    h_client: u32,
+> +    h_object: u32,
+> +    cmd: RmControlMsgFunction,
+> +    params: &'a [u8],
+> +}
 
-This resolves the appearance of "class:_UNKNOWN_" in the control file
-for the driver's drm_dbg()s.
+Please expand the documentation, especially the fields.
 
-Fixes: f158936b60a7 ("drm: POC drm on dyndbg - use in core, 2 helpers, 3 drivers.")
+> +impl<'a> RmControl<'a> {
+> +    /// Creates a new RM control command.
+> +    fn new(h_client: u32, h_object: u32, cmd: RmControlMsgFunction, para=
+ms: &'a [u8]) -> Self {
+> +        Self {
+> +            h_client,
+> +            h_object,
+> +            cmd,
+> +            params,
+> +        }
+> +    }
+> +}
+> +
+> +impl CommandToGsp for RmControl<'_> {
+> +    const FUNCTION: MsgFunction =3D MsgFunction::GspRmControl;
+> +    type Command =3D GspRmControl;
+> +    type Reply =3D RmControlReply;
+> +    type InitError =3D Infallible;
+> +
+> +    fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+> +        GspRmControl::new(
+> +            self.h_client,
+> +            self.h_object,
+> +            self.cmd,
+> +            self.params.len() as u32,
+> +        )
+> +    }
+> +
+> +    fn variable_payload_len(&self) -> usize {
+> +        self.params.len()
+> +    }
+> +
+> +    fn init_variable_payload(
+> +        &self,
+> +        dst: &mut SBufferIter<array::IntoIter<&mut [u8], 2>>,
+> +    ) -> Result {
+> +        dst.write_all(self.params)
+> +    }
+> +}
+> +
+> +/// Response from an RM control message.
+> +pub(crate) struct RmControlReply {
+> +    status: NvStatus,
+> +    params: KVVec<u8>,
+> +}
+> +
+> +impl MessageFromGsp for RmControlReply {
+> +    const FUNCTION: MsgFunction =3D MsgFunction::GspRmControl;
+> +    type Message =3D GspRmControl;
+> +    type InitError =3D Error;
+> +
+> +    fn read(
+> +        msg: &Self::Message,
+> +        sbuffer: &mut SBufferIter<array::IntoIter<&[u8], 2>>,
+> +    ) -> Result<Self, Self::InitError> {
+> +        Ok(RmControlReply {
+> +            status: msg.status(),
+> +            params: sbuffer.flush_into_kvvec(GFP_KERNEL)?,
+> +        })
+> +    }
+> +}
+> +
+> +/// Sends an RM control command, checks the reply status, and returns th=
+e raw parameter bytes.
+> +#[expect(dead_code)]
+> +fn send_rm_control(
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/nouveau/nouveau_drm.c | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
+Why isn't this a method of Cmdq?
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5d8475e4895e..d205b58aff70 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -74,17 +74,7 @@
- #include "nouveau_uvmm.h"
- #include "nouveau_sched.h"
- 
--DECLARE_DYNDBG_CLASSMAP(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS, 0,
--			"DRM_UT_CORE",
--			"DRM_UT_DRIVER",
--			"DRM_UT_KMS",
--			"DRM_UT_PRIME",
--			"DRM_UT_ATOMIC",
--			"DRM_UT_VBL",
--			"DRM_UT_STATE",
--			"DRM_UT_LEASE",
--			"DRM_UT_DP",
--			"DRM_UT_DRMRES");
-+DRM_CLASSMAP_USE(drm_debug_classes);
- 
- MODULE_PARM_DESC(config, "option string to pass to driver core");
- static char *nouveau_config;
--- 
-2.53.0
+> +    cmdq: &Cmdq,
+> +    bar: &Bar0,
+> +    h_client: u32,
+> +    h_object: u32,
+> +    cmd: RmControlMsgFunction,
+> +    params: &[u8],
+> +) -> Result<KVVec<u8>> {
+> +    let reply =3D cmdq.send_sync_command(bar, RmControl::new(h_client, h=
+_object, cmd, params))?;
+
+Why not let the caller construct RmControl?
+
+> +
+> +    Result::from(reply.status)?;
+> +
+> +    Ok(reply.params)
+> +}
+>
+> --=20
+> 2.53.0
 
