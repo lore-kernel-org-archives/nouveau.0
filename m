@@ -4,102 +4,178 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F08EFF506CF
-	for <nouveau@archiver.kernel.org>; Mon, 16 Mar 2026 13:21:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68339F506D6
+	for <nouveau@archiver.kernel.org>; Mon, 16 Mar 2026 14:03:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CD79510E526;
-	Mon, 16 Mar 2026 13:21:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id DE4E010E52D;
+	Mon, 16 Mar 2026 14:03:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BgHkyyN1";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="mZcnJdEP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 04DFE45142;
-	Mon, 16 Mar 2026 13:10:45 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773666644;
- b=OeHDPwByyO1p3JmyRY82i1nl8gm58X9D6uOMTr9cHV/mgf/gnzNzYzLFb5B6xTANbBtcm
- UBMPVMRLQm4K9KHxaPDMpKIMStKwGplyc2n/3UFbctT8wy8J4ohGym6DLSKVbZXVtHe/gGR
- /YxLPf1RWcqHjXnrK+mBEN8U/c5L9wyfcZDvXY/7FW5eiUMC0NZnm8mcUwlo8lGwQjhQKBR
- nKf2nJdjemRZF7X6k5ZLaXGdiYEpGbKFyODDEWD5NkKuHgoZsE0A5jJQewod7vcMm5ACPvo
- pG9vMlSSVBrhUN94V0JDyImHti71FWGGN7PQF5jQ0ugpvUVOMRq3vgFoDrQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773666644; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 0940A45144;
+	Mon, 16 Mar 2026 13:52:16 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1773669135;
+ b=GqE6ApJv8EEvUq4klmG3ZPh809gW+GWaGZTh/31Xdi6vuCJePtc2CfHUpVwt4+EVtNbYo
+ aAPvpJqeDnye5eWdg/NySbF8jGgnynMoiNh7CcA64VNqu5WrmsLaMaV8taWg50ZuByc8CN7
+ E3OcT1obwS/0Vh/TkmrfkkM93eHG8jd/b2Dmp982YrQMlioiepda43//cL5ugdviwA0GMuu
+ ZR0GX5/XLqk7st+Nc9pq27eECWgLdI/p+bTx5TNdyTnwI/YASx34+VTgGsb+iIYKQc7RlLH
+ EYZiWNHNMAN7rkhuShvPspJ7Q+lGlxBl+G68KxUbELxI/J0/pjf6yUy3DNow==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1773669135; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=r8Pt+Pp2Ftl++kbOelkEcmT75Oa144vnnykFTqZCrzY=;
- b=i041wI6CK54n42vcPuoKU8Xc7cJ4XJKGi4iysqYjuX/FrdQ6tXwnROMNa7ZakfVu7Izj+
- fDh348niVZh0IA54JrtKO/4qL2GuoLaRtiniXsVt55Q4daeMKjwzOPn3fioqkX9bCPIpZUy
- mfnZNIgGPdU/MvQVFb2v+vC0m8F7PaDlXQYqu5k6xLnjZjV8xQYqMr0jYItFidzWDMx5MkW
- hSt9qz8XG5s8UpKNn42olE/70xXZSkfgfu/LjqkD8AdIJ5CQB3C6QstWAj+BZ1Vqm7GCUFT
- 6gA3wdDNK0oXiIcWSzDIPwnBwyFZWuj1BagYtZ6HnXMFiQX4nuPJauWeTvtA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=qwY2wRj4MwU5ZXhJeyHzV7siFWCD4ysu8Ry7xXLJ0b8=;
+ b=F9XdwSq0xMq5fnmvdTRO/7jDPiy3+uYcI5D6YrS+BdmeICubIzBpp+XQwWt/KgO6uJhaL
+ fxRVJIPWaZoV7/1aEZQq7LzGH0jWFttgyL0Pa1raRBp2pDzEebprS/ilRLcVX+B6VM4f6sR
+ hS3k9YlA3TXPDL49d1RIwrb8lnrCfEWVmfoRAtJVFUu1WZNGoltXECL/W3elb2vxSOgqKPu
+ AYGkfE/d4T8Ur3jPiCcjt4yLhNZ5QNyx/4i8dlwsBoAO9XbJ0Qua5qp86to0cw3vHnsQqD4
+ 3lOK2QB81XrpYNzEDplGsdfBHYDYONRSyDnD7dpsOxHlsygR/q+uMe4eIOxw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D172440696
-	for <nouveau@lists.freedesktop.org>; Mon, 16 Mar 2026 13:10:41 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5639E10E522;
-	Mon, 16 Mar 2026 13:21:28 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 846EE60018;
-	Mon, 16 Mar 2026 13:21:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A192C19421;
-	Mon, 16 Mar 2026 13:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1773667287;
-	bh=r8Pt+Pp2Ftl++kbOelkEcmT75Oa144vnnykFTqZCrzY=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=BgHkyyN1QaslyLHvC+Ve2AC/4PCTdfxBB0nQW5SmFmq4vmvgATMSTFGi2guHWHrom
-	 NCwtnaRCBdxk596/kON8pWMkFEh73gt9eEsoTdPk+VjrxBlRG+6eqImRifqvZvWmrw
-	 gBnaWnJSQTnjdPds6RYkcnNB/+lkWxP5GlAoWLJI0cFTEbVaX8wtdk6FV2i0EDEInk
-	 B6tMCVeIEFUIyi2DnclChIItrMrXSeYxzKIKDxLdNz5Nu+Qfuh8kCS8dJ/bJbP5WHh
-	 BwB7QLxdCuf1PiTV47DUnC4iG/Qy8DyOBUXzsNxS7oJrQ2lLUn9qnBdkM1SZ30Bbyy
-	 GS2H+pUiOkAQA==
-Mime-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6D80243436
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Mar 2026 13:52:13 +0000 (UTC)
+Received: from CWXP265CU008.outbound.protection.outlook.com
+ (mail-ukwestazon11020129.outbound.protection.outlook.com [52.101.195.129])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D774410E3CE;
+	Mon, 16 Mar 2026 14:02:59 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=epeyZpezJM9aIOybkzTJnyfn3cJFxTIN2TUc+206gNX9tWn2qSobwjn2CvpY3NGiToRCgslTf3JOA+/r8zDsfAdohJVur0aCSEehHZ2rM9wpTQcqA1UU71GC93MVuqkT+62WRyhpTsW/VVVar7hngYce10mcHNvw3RMbwRqIknyMe7LmYPJtIr6jUmo/TkA+nv7VRDhrCS9GsW1uRlAufp3SIvgh7/S+DGdikyQR0qiaI4QsPHLhLf0+wb2lmZx4nH5/mqnYktoYeSIXcfZ/lYD5e2af51yBr1gQ/gLovDd9BSvrw8oz2KMu0Aq2wsWjybB9hS8lElcuwHUn4/bYJw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qwY2wRj4MwU5ZXhJeyHzV7siFWCD4ysu8Ry7xXLJ0b8=;
+ b=YeRMVo/iEqZuZ4ZbJ8JMEWwfz3k3MWDHGRjvGgbdDN0LYbikV9T7fsNbcz8iahzPVF4e4xiB/ZVyypXfhznp5T1NBD9vg1wKXTjZxNV76jQX2ksuANOaHdBzJoGp3xk6STso+7L5DbTiG4aFlQj3Jxo3ttLOFlfFN2R/PFBT3fDUIX1Ejnk6wfRThFuCPCvnG+j371nN1SyRcJCTz3yG6VaHzLnvZiw41QdwHOvKT96GNOn3l/yoSyTvheF/ZRGBBSbNhfzYTPMk6v03iAQKiskihC/jt/Ur5BaAVhh065uHbLelFOE6C2a8OzkoKb9cjVY/WCre4cOCMckPSZJrEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qwY2wRj4MwU5ZXhJeyHzV7siFWCD4ysu8Ry7xXLJ0b8=;
+ b=mZcnJdEPt+lGM4FmvPbZClmmnvhKdXZMPdGgsL9CvTRE501RUT4EW99Qi0QfD3l8kBuSYtG3p5PR7IkxDxAUAcgGjxGOVt7knF+C2P991R5bFrj49//Wp6tAFV3PUPNhNg3l89Py0Xv7uiutm2USlNeNbR2bP9VGNtiSaPPndYY=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO2P265MB3467.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:1b6::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.24; Mon, 16 Mar
+ 2026 14:02:54 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9700.022; Mon, 16 Mar 2026
+ 14:02:54 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Mon, 16 Mar 2026 13:21:23 +0100
-Message-Id: <DH47AVPEKN06.3BERUSJIB4M1R@kernel.org>
-Subject: Re: [PATCH 6/9] gpu: nova-core: generalize `flush_into_kvec` to
- `flush_into_vec`
-To: "Eliot Courtney" <ecourtney@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
- <20260227-rmcontrol-v1-6-86648e4869f9@nvidia.com>
- <093ca23e-7081-42db-a202-0a42c51741a3@kernel.org>
- <DGYL9FS1Z00X.2HEJ96J8R3OK4@kernel.org>
- <DH46IKESDQ3B.2GEUC479WDK3N@nvidia.com>
-In-Reply-To: <DH46IKESDQ3B.2GEUC479WDK3N@nvidia.com>
-Message-ID-Hash: U4Z56QXWLDGX6FXAYINLSD2WEIRNBT5U
-X-Message-ID-Hash: U4Z56QXWLDGX6FXAYINLSD2WEIRNBT5U
-X-MailFrom: dakr@kernel.org
+Date: Mon, 16 Mar 2026 14:02:53 +0000
+Message-Id: <DH49GL8J7NAF.37ZFNZDOEZZQG@garyguo.net>
+Subject: Re: [PATCH v2 1/2] gpu: nova: rename drivers to use kebab-case
+ convention
+From: "Gary Guo" <gary@garyguo.net>
+To: "Cheng-Yang Chou" <yphbchou0911@gmail.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "Alexandre Courbot"
+ <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona@ffwll.ch>, "Gary Guo" <gary@garyguo.net>, "John Hubbard"
+ <jhubbard@nvidia.com>
+X-Mailer: aerc 0.21.0
+References: <20260316120820.2117081-1-yphbchou0911@gmail.com>
+ <20260316120820.2117081-2-yphbchou0911@gmail.com>
+In-Reply-To: <20260316120820.2117081-2-yphbchou0911@gmail.com>
+X-ClientProxiedBy: LO4P265CA0094.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:2bc::9) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO2P265MB3467:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85d8f36a-a49d-4b29-8913-08de8364b7da
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|10070799003|1800799024|376014|7416014|56012099003|18002099003|22082099003|7053199007;
+X-Microsoft-Antispam-Message-Info: 
+	RltVC/uCQhT6cE1ka6vk1ZO8wMFkcolKdYxzrAk26vOrod1RfFCmZIM2ZPxtzuYUWsOfCNUrAGw5fSS3PHTmXL0FsXTmxf3TLNbiXbhRj1AnkqYLHFOwvaxYkDyiU8/ynZcS4AoUhLtV3go+141jBmPiK3YYttyc7M6hTTn1nIOtVSdO1gQuZTpeOaHbNsV+yXixRfriKfJCX8rZB84ko5zM0WntMWHb4CFyGzxpnPEtVTesnKsiBmxrHwLctsU0zf6W/GfRbMW4DPYF/DLNWwijs2BhiIHeR0+7f371yvZ+bXiveDAhMDmI4CwsCs+EvOA4ZtOoTdxDfPX/vwWoDxxtcVclgVys9E/ONLd5wzJ04q2rWhBNDgukzocEET0zYQxG8BYu/VKHYjLR3mmKEyX9Kz75ifHk6dLKY0otzSaSa0RPtWK+6G/hSIK59NGsu7ivIXdGXq2QfbYQVhVdQeUNobqslR339lTLhDQwU2kmyko3/lfxWkXoCARLQGy6z+tYFs0gLtqMVy7O/aTlsJENYYAzo/9M1vO7wDJCPbTIX64bOddoCDksNT1RWghToRkgdDAAVtuY0gVyQzoO2LEe7W/rZHAwQwrYpxRl0iSctR5nHsIRf5BzRJzonhHVTFcSCZwF9Rr4jSnGSVeKk8FrqCX+FHxPvX8rVAa/rLFSAf0rPDNRUubvpnhuDgj6tV2pADgboZRTZo0r7NK+gr8hyNdmwu+7rqRSiV2pqUI=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(1800799024)(376014)(7416014)(56012099003)(18002099003)(22082099003)(7053199007);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?cDl1R2NUYWdYUU5CekdhN1g5RGZjbXI3blIwTTl3aVZta1Jud0NZTVI0MUhn?=
+ =?utf-8?B?akV4Qmlqd0NJSE9ObkJNNzdzNzBUMHZnS2t5Ri9UdHVPN05tZmF2UWhiYkR2?=
+ =?utf-8?B?ZXpKZC9YQXV4ekMrY29Md1owQTcxUWdRR3Vtdm8xQU0zdmMremRjcmN4elYw?=
+ =?utf-8?B?V3E4Y05FSitCa0dmMDUyQkJ0V1FnZ3NLMEZYdVNkU1dSNEx5NjZKc2hOYU8r?=
+ =?utf-8?B?ejJ3RU5mUEpVYVpVOW9IQVAzb09rNEF5bDlhN2VMS1BIQiswNEZ4cFBSakdH?=
+ =?utf-8?B?UFdEMlRBQ1d5eDVmZWRvVS9CT0ZQaGJjYmIwRUQ0Nm1ka0FxVlN2Z1NKbmZt?=
+ =?utf-8?B?eUpEQ3Ntd3JXRWI0cU5VMDdKRTB5a1N0WXZvc0huRWIxd01IM3JMWnRFcWZh?=
+ =?utf-8?B?cGNRMlVHblNFSjljYnI0NTVKZ0NOMTJCY1hhZEwzRDlPR1B1dXAzWkZDQ3ox?=
+ =?utf-8?B?OXl6TFQrb0VXdDlXSnZSVXFSQnBkQ2RSbWltUmZNMzV5R21KeE5ROFlFcFlV?=
+ =?utf-8?B?RlVVTFlSVmZCR2ZnNVIwZmtFRHRCQkw3V25PTEtYcHh6RlBiUmZuSzRvNWRv?=
+ =?utf-8?B?Y1F2bjhkNTFNTEtOakxKMkNpTGtFQWRkeUdWWmVxNUM0Y0VpU2RnMUdpNXBF?=
+ =?utf-8?B?N0lmN2J0MDZJNWQ5eVVPRnJDTmpuRnFGd1VHUUx0WkRXd0o3RS9sdm5ta0Qw?=
+ =?utf-8?B?VVNGeUlNclNNTm4wdUN2VlhCbHpCV3UvOEoxMitrenl2bzNoaElNU3BzbWFh?=
+ =?utf-8?B?cDVRVDdjNXpUTGhhN0QyMmNYMmtscWhTNHBGenNBSFVtZ1dLdnZUL1Rsd0h1?=
+ =?utf-8?B?dGl4WnJJTHhuWStHSk1Xa1R6R1RPaFJtdjh6TzdmcEJRcUVxeFZ5QStrdkdS?=
+ =?utf-8?B?SGhGMXJURkRqbURETUZvMUlkVUpremduVXIzak9rdG9yTlovRldpVDNWMisr?=
+ =?utf-8?B?SjBQR3gzZzJkVmp5ZkZwR21HbGFETGIvZGlXYkFNNDh6SkVpbkZxY01XczNo?=
+ =?utf-8?B?dU5aUTJXVXZmd2J0dEF0VUM3NXVLMlB4SUxTbm5ieGNXZ3ZQWGNSTFV3M1dt?=
+ =?utf-8?B?VjdzbysyV2huVGcwUGhYRnY2ZFkvTVptdjVqcDBPbzJQWjgweU5qNHEwZ3l5?=
+ =?utf-8?B?Mk1EL2F4THUzd3ZrNFVoWW4veFV0N3FJZ1FnamxwVXlmbDFoVG9Ga2FwbW8x?=
+ =?utf-8?B?Tlk4M0gva2dPU2tFVUJFSTl0L2pYQk5tVjdWVnhURWwrWjdhaS8rNWozNTFz?=
+ =?utf-8?B?SlpEWWl3THY5dDNpbDYvUE1RcTFwODNTK3NRaGIrNFM3K2cwTHM1YVNpWjVz?=
+ =?utf-8?B?THI2NXQrN3FpVnU1emN3M2tUNkVRL2Q1Y0toUnE2NDR0QUxadjlXRDVTOTRn?=
+ =?utf-8?B?bDB2WUYyUzkxYWdRNlpQYlUyWmpOY3NSME80Z3gyWWV0VWQrVUwxcXNKVEhl?=
+ =?utf-8?B?QVdKL1NHaC9PVXdzeGxEZXgzNnBHcXZJWEZRcFROMUJtNUNMZ2x0R1kzTk9y?=
+ =?utf-8?B?ZW9uQy9Ibkh1NFplMXVOTGFvWFhOd3BKblRsOVBKcWtNaUpJVUFRR0JEbnk3?=
+ =?utf-8?B?ZXUxMCsrUUhtMlEzZDQvSWcraWVIaDdTcjVHVzZSaTN6SkxLQktuYXdNdm9H?=
+ =?utf-8?B?VnhrMFlvR3pqbGhLeWtPVmhqaHkrRmh1WUJremlHTUZPYXJYVjJNSGtxUUJu?=
+ =?utf-8?B?T3Y2TlFLd0psd01rZE5DcG1CQnJkNTZGdjZldVJ3K3BCaG5PUi9TRVZQcGpC?=
+ =?utf-8?B?aVE5L2duci9vVnU1REJ6N3FkWWIrbGlPS1pyZk9tN3RmTGFJUFA4M2JyY3Rw?=
+ =?utf-8?B?ZzRoOWhnZnFwWTN2dmZkZmNpcitwM3E0NjVBSFRHeE1GQ0JrL2FuTnBGdzhE?=
+ =?utf-8?B?Rk9QUnlncC9sWDhKNGdjWFVRNHBoKzlWUXVHUmxwWTV5UmZsamZyKzUvMGxK?=
+ =?utf-8?B?ek5kSFgxbE40aTYyTzI2VEdEemRMLzlVRXhsdE5pVml6eHZKTnYreWVXSmtp?=
+ =?utf-8?B?aldBRnR3cEZnSkZwejByNWhyVllWb2pvNWRneFA5RXVJcUhvTlUrTmROWFNM?=
+ =?utf-8?B?N1VKYjFoek0zNVZIZWhZRXIzaGE1NlppZXdSeEJRNStqdmptMVB6TGtSUUlm?=
+ =?utf-8?B?dmhuOUtlNjFKYTYwbTBIc0Z0NUFDckRyMW1kaWFSZFZ1WHBQUHF6ZnpVeVJh?=
+ =?utf-8?B?UWc5ME15dHArV3NZTWxoTlNzRzdrZm9aeWFXeFV1UmJPNU1oQmVIQzRHZjJG?=
+ =?utf-8?B?TVczQU1DWUdaNGZiMGk5OHZVc1g0dmk5THlCTXVpU2Z3d1B1Y2lSQ0RLVHB2?=
+ =?utf-8?B?Z25WWkdoQXV3WDdqSWFMb1B4Y1kzNWNGaGtmQXpYQWFieGx5YWZGdz09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 85d8f36a-a49d-4b29-8913-08de8364b7da
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 14:02:53.8875
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ X/W+xYOM2Bp9y2JL75FedhxEXu+xiyGdl1/OPOGXI3Rnj9x+qFOoo1YDJ4589AcHw3LUSgibUB3woa71mMKL6g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO2P265MB3467
+Message-ID-Hash: NO5P6UM5XBNAJNZYMFPNWAH65ASULZTU
+X-Message-ID-Hash: NO5P6UM5XBNAJNZYMFPNWAH65ASULZTU
+X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Alice Ryhl <aliceryhl@google.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Simona Vetter <simona@ffwll.ch>,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- dri-devel <dri-devel-bounces@lists.freedesktop.org>,
- Gary Guo <gary@garyguo.net>
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Ching-Chun Huang <jserv@ccns.ncku.edu.tw>,
+ Chia-Ping Tsai <chia7712@gmail.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/U4Z56QXWLDGX6FXAYINLSD2WEIRNBT5U/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NO5P6UM5XBNAJNZYMFPNWAH65ASULZTU/>
 Archived-At: 
- <https://lore.freedesktop.org/DH47AVPEKN06.3BERUSJIB4M1R@kernel.org/>
+ <https://lore.freedesktop.org/DH49GL8J7NAF.37ZFNZDOEZZQG@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -109,64 +185,24 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-(Cc: Gary)
+On Mon Mar 16, 2026 at 12:08 PM GMT, Cheng-Yang Chou wrote:
+> Rename nova-core driver from "NovaCore" to "nova-core" and nova-drm
+> driver from "Nova" to "nova-drm" to follow kernel naming conventions
+> before these names become UAPI (e.g. exposed via driver_override).
+>=20
+> Also fix the nova-drm driver description from "Nvidia Graphics" to
+> "NVIDIA Graphics and Compute".
+>=20
+> Link: https://github.com/Rust-for-Linux/linux/issues/1228
+> Signed-off-by: Cheng-Yang Chou <yphbchou0911@gmail.com>
+> Acked-by: Timur Tabi <ttabi@nvidia.com>
 
-On Mon Mar 16, 2026 at 12:44 PM CET, Eliot Courtney wrote:
-> On Tue Mar 10, 2026 at 7:01 AM JST, Danilo Krummrich wrote:
->> On Mon Mar 9, 2026 at 10:57 PM CET, Danilo Krummrich wrote:
->>> On 2/27/2026 1:32 PM, Eliot Courtney wrote:
->>>> Add general `flush_into_vec` function. Add `flush_into_kvvec`
->>>> convenience wrapper alongside the existing `flush_into_kvec` function.
->>>> This is generally useful but immediately used for e.g. holding RM
->>>> control payloads, which can be large (~>=3D20 KiB).
->>>
->>> Why not just always use KVVec? It also seems that the KVec variant is n=
-ot used?
->>
->> (Besides its single usage in GspSequence, which wouldn't hurt to be a KV=
-Vec.)
->>
->>> If there's no reason for having both, I'd also just call this into_vec(=
-).
->
-> I think always using KVVec should be fine, thanks!
->
-> For the naming, I think `read_to_vec` may be more conventional for this
-> -- `into_vec` implies consuming the object, but if we want to keep the
-> warning in `Cmdq::receive_msg` if not all the data is consumed we need
-> to take &mut self.
+Suggested-by: Gary Guo <gary@garyguo.net>
+Reviewed-by: Gary Guo <gary@garyguo.net>
 
-I had another look at this and especially how the SBuffer you refer to is u=
-sed.
-Unfortunately, the underlying code is broken.
+> ---
+>  drivers/gpu/drm/nova/driver.rs     | 6 +++---
+>  drivers/gpu/drm/nova/nova.rs       | 2 +-
+>  drivers/gpu/nova-core/nova_core.rs | 2 +-
+>  3 files changed, 5 insertions(+), 5 deletions(-)
 
-driver_read_area() creates a reference to the whole DMA object, including t=
-he
-area the GSP might concurrently write to. This is undefined behavior. See a=
-lso
-commit commit 0073a17b4666 ("gpu: nova-core: gsp: fix UB in DmaGspMem point=
-er
-accessors"), where I fixed something similar.
-
-Additionally, even if it would only create a reference to the part of the b=
-uffer
-that can be considerd untouched by the GSP and hence suits for creating a
-reference, driver_read_area() and all subsequent callers would still need t=
-o be
-unsafe as they would need to promise to not keep the reference alive beyond=
- GSP
-accessing that memory region again.
-
-(The situation is similar for driver_write_area().)
-
-So, unfortunately, commit 75f6b1de8133 ("gpu: nova-core: gsp: Add GSP comma=
-nd
-queue bindings and handling") seems broken in this aspect.
-
-This needs to be fixed first, and I think we should probably create a copy =
-in
-driver_read_area() right away.
-
-I don't want to merge any code that builds on top of this before we have so=
-rted
-this out.
