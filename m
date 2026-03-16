@@ -4,173 +4,121 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23D63F53D95
-	for <nouveau@archiver.kernel.org>; Mon, 16 Mar 2026 20:27:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AC2AF53D9A
+	for <nouveau@archiver.kernel.org>; Mon, 16 Mar 2026 20:42:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4495A10E4DC;
-	Mon, 16 Mar 2026 20:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CD9BE10E3F4;
+	Mon, 16 Mar 2026 20:42:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Alrf+2ZC";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="p0csYt9K";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C1A2945166;
-	Mon, 16 Mar 2026 20:16:44 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773692204;
- b=Ht9qX4RY/tRtvbztZwFTi/i6UQds8s7fmgO1wsF3Ck5dkIo4pu9mgWiLc2P4UJ8d3hEwc
- Pwz4R0jwibocjPGcZFgnAgWr6bdgLBYHSnIPn42Ec8dS60O0t2yLe9tephMLiLCB9LIVtrj
- q3+Qp1OZS6RQtWCjieMF/T+gnkMuBTusFXIa8+rGZDWXui3j6PBbwpdssjxm1mkt0sV1s5V
- /cfroJ7J+HppmMmPRbrOIJtvWcZ5x/1dd4D9SrAI2+5XDaCAroD6Aut48n6JIP+bVLb8jWn
- s122es4EmP2f6wk4+yWCIw5Voq2j5n4sKRK1EEMrVEdnOeUUoJ96p14dXubQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773692204; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 559C44516E;
+	Mon, 16 Mar 2026 20:31:33 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1773693093;
+ b=zxQGLTgjCyrrv1vkren/CMxaO8QbJtHeL0W7/hjMoVixVAu6hAyyWAgIoHjLB30Qqv0Wa
+ tpfQiXnjyosjqrn74X0AmqCv9V8MmSQKjEWn1IjVS+JloziNZQA2DtLGk7Vqde5o3vZmo/7
+ NOvyvV1tT86d4q48Omgi12ImWsrtuTce/ZQqgRuXWZHBVqsplcNExNCmkAOV4XxxwL13rY2
+ YxJ6z9dnqlQ86RHymnfxU6PAcHjh+C2PC6CItvwikxHG0P1bfR3IXkPPFMzLZg01R5eITN4
+ YdAhxleIp6XnhFBrrCl91g4u7OwtZqajtszUPrZqMo3KoUVjKxqkd6O/4vDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1773693093; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=p2Q9U4nOt5xSn5bsEzaMhE24wWKf079WQKeXu0l8qyY=;
- b=EkdHbjdKlC3spfKBC42PSP16GiQrYNftQ7D9RiBCoUp5tQxryGZ2m2usCtWPyy9TMX0nk
- /hcnTQaAuXX2mzwphIHHgtpXf6xY7dNvQIXbjS4wDpRP/kHlvG1HA5TXNOUqmRIE6p50UsA
- smeaZtnwFITUQtcM2YCpLEmhWaVvWrlWgzwy7CxXvIUetZUD9c7H0VoCXgfHvcYHG1hrBy6
- AydSfiKapjnTMA/uqWX5Zfut8rOZ1uGGc1tCTIegPBBidalJKOJtJsJjO2jLP4v+JMiSvIH
- FW54sotk8ycODdyODpmQgGc6KNFGuwVnnnIJjqIHqpbncvRCdL1iVtt0ypBw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=amd.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=amd.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=amd.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=amd.com policy.dmarc=quarantine
+ bh=rnehdcYWB9w3tVl2LzZNjtYNnm+PGYt8SHrexd0l+qg=;
+ b=LiAIixYI8o/MTkd0pcS1srWoVgBfActO9VKQyIAlmA/+3DZT4WiAQyqHK6dVAgNprz78E
+ +nuf0KAT1u1eEl3AOSAwr2LAWFk6V74yklPF8pjv3KxttCzNDo1cYZIzam9pNW8AAeSo/1p
+ am/xMm4gj549/liE/oMP8rF9pgNT9Q9qwNPtScLmF3a5nixNqs99rL6U+AmAanVFMElERxi
+ R6Wqc0jqG1jlslKtlP2pdO9Fox5XAHERWZWPgYKFP1CGZ9ZGhb/+a3qouFd60F0/jz8tsTa
+ 8Pvlf0Ug7AjHNAjEABs0Of+Ol3h+Qbd2NvP21U5SfEWGl0w8uAxoWCv+s5iA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=google.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=google.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=google.com
+ policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B504243790;
-	Mon, 16 Mar 2026 20:16:41 +0000 (UTC)
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011056.outbound.protection.outlook.com [40.107.208.56])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BB31210E3E4;
-	Mon, 16 Mar 2026 20:27:28 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=e49udXZ9a/xaX0RXlncKfgc0MX7P3XF5b7o7SoKL7h3R+6h0j7CzQvYgjgjDZbeS+SZWeBYQozOlGdHavnGRODIlGIIgodQUWo522K5JY7qFPt82pkg1psTdcp1REPNu9g/gczzOh+RyuKIH2LRdlKCyRKEA+hl7fjzDhBGEget9J9ifionaOKXPbviYfRbUKzM4dE7cKSfknuaXkphyifpmJ39pgOGrSF6zzbKSUOdQ4NdrhL0R0Mv50nrXxt87b4HBlcR7Mi+0bTQ1GL+7RSEndeDbvFrk6hihilPbgZZq+Jkdv6NgRsEYketXFBgIVEdGm9aTFkDGvp30aY5WSQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p2Q9U4nOt5xSn5bsEzaMhE24wWKf079WQKeXu0l8qyY=;
- b=F3bbGs1m79qJgz6qgd/61+bcP6HuT3DS+L23okEbtURJ8SHTc/Fp6MvSKGGEnthv6pKXkKhcpOdHXamMmouNVMlva5yw22FBgTSnoBvcMqtMPnDHHdJCsONTyLrInAzwf0ItJEHaHO6OynslbGyYtJrHk1TkEdWYevRAmFFkYmIRLm5Lr9kgTVIJsXud3X2p3oNq8XlGCPhF20yphTiCkrXr4uAPX5m3T5lrlAn89+27fThXEJ0nqRSqiqsxCCJ+fOwuovJGaUp8DN8m09ZA/6ZbuvyO6z6mOaQgtrDrKwnE3r//K3o3GsN284cMABYeqW/7GFMLn3789AawNHlLZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p2Q9U4nOt5xSn5bsEzaMhE24wWKf079WQKeXu0l8qyY=;
- b=Alrf+2ZCLszV7h8rH0LYfg4IMQBXcJzZ8pLbiaTe4HbJygDsxyUh/EkzP4mGgAQvCGmDlyUl/G4gYzdFYY67c/hQWPgHfO2Ikokmqo57FyUBeHZ62jy9FSs2375+DGsXuLKXdgNcPFfEq4LfFogEfR6dSvY4421xI8yCKV8eA8w=
-Received: from BL1PR12MB5126.namprd12.prod.outlook.com (2603:10b6:208:312::8)
- by PH0PR12MB8032.namprd12.prod.outlook.com (2603:10b6:510:26f::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
- 2026 20:27:21 +0000
-Received: from BL1PR12MB5126.namprd12.prod.outlook.com
- ([fe80::c3e7:1bc5:2b91:1cfe]) by BL1PR12MB5126.namprd12.prod.outlook.com
- ([fe80::c3e7:1bc5:2b91:1cfe%4]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
- 20:27:21 +0000
-Message-ID: <fb406515-8184-4e22-81a5-27d92a2114c8@amd.com>
-Date: Mon, 16 Mar 2026 16:27:16 -0400
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: events@lists.x.org, xorg-devel@lists.x.org,
- wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- elections@x.org, members@x.org, xorg@lists.freedesktop.org
-From: Harry Wentland <harry.wentland@amd.com>
-Subject: Announcement: 2026 X.Org Foundation Election Candidates
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: YT4PR01CA0026.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:fe::11) To BL1PR12MB5126.namprd12.prod.outlook.com
- (2603:10b6:208:312::8)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5126:EE_|PH0PR12MB8032:EE_
-X-MS-Office365-Filtering-Correlation-Id: 11c41b60-e8ba-4553-f29d-08de839a6d1d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|1800799024|376014|366016|56012099003|18002099003|921020;
-X-Microsoft-Antispam-Message-Info: 
-	HrG30cK29w6BuhZ3BrBA1rtIuUFQ7US+MKd+6bPkB3ATUftjoQYZt5dh92usstUZMeTRVmg932WYbix5cTvgO2xU6R9uJ4zGXyVFL6qHAaxlE4GJEtJ7HrRYrptp7a0qDUrFhVag1Tm768CBY2Vx8OBVfIqSvza7Lvmz9UQ4oVbaM4H1IRPTYvxosC5TWuW3FXTZt46rJKIjSGz93xe+deid/if0WjS5mbGGbPeBOwZL2glqZiJAdDiyz9O0BhA0dSKlrgXZYj5saHmDJn2BNmGaEDM12LjTtCyqTZns8+teOQdLYK6IE5SWs98uJLG4rnwG5NsaR9r8WJ5Nnrm6TOKKLrNbQLTdvtj8STGlKlJsA+anHSAZINv76AdR9xFSIAMt6DlT8c28e9lQfq1w8kp7j2kZnQ+5EVQmr55s3OXjI8A69JR8GPpOsuKLxoko0uoZBulYdlYLrYB0H++bxHh24BCQ1VBn184Qc8Y1gpIZ+Flit/fB9OtPjztM3bZ5Lb67FRdXpbJx7uySC+AlumERinWxZ35DipBwnPkqrxnVOO71LP5tRZYocqISnZRqEnoJduuQp8VyqmTQ76FHPxzq9lZY2Oo4jFLQpywTMyPAOks7mmfdp8dhcHQlB13iOI7kcxCuMd8j9DltF2dU24xRxW4soZS9sjRsJZEdN75HMDXp455iDvx/cnZmVCOzQ6rCNv3c/8NNKQ8FHaHE2Gk0y1cQnEZqzjw/L5QMsYM=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5126.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(56012099003)(18002099003)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?bEhLczhZRFF2YmxPT25UdzlPa0Y0SmVoSmhQdTcwaDd5NUNRczRXTWkyK3JT?=
- =?utf-8?B?bXlYK1VXeitkYWd0bTdGL2p1Q0lrVHRybWV0LzFmdnJlMWtaeUMvUWI4QnQx?=
- =?utf-8?B?VGEvRlhITDliRTVzeGgwSHJYckNOWGw5WDE3cVlwcC81TTNCNXBPOWtCS1VJ?=
- =?utf-8?B?cEY0QTVvU3A0ZHBCcERoa1JSQWlialFQdnU3TDRoOHRRYnJRcWpFcUxWc3Rh?=
- =?utf-8?B?dTRZQ0YvMXNXVFFBalNsbFFzTUVZV2lwSGE1Z1ZNT1FXQ1NhU1BOYStaaXpt?=
- =?utf-8?B?TndhK3dtOS9aQnd4WSsrZUFZZWYvMHBWVFNpRXYrbDA2T3pqeGVXTDR6K1Yx?=
- =?utf-8?B?QTdLNW1taXBkZHlUR3NLeng5bDl4ZzRYOVJzM3l6amhmZzBXWGJKWkIrZDU0?=
- =?utf-8?B?VEM3OXlidWsrNTFmTGYxK0pjTkFrYkpxelczdit3L2ZBVGxzQmlmaVFnTlNL?=
- =?utf-8?B?ckt6SG5TaG5yM2FPR2o3ZFg1UTNnaXZBLzMyWXVOZzFOSldjNk1aL21rNmxC?=
- =?utf-8?B?WUU5SkRLWjI4WEFSVmkrMXFUMzVQSjREYlVrMEFUVjBoTFh1S2s5VndBN3Zs?=
- =?utf-8?B?NlpMYTJBRXJXQ2xsSTFIQUNOQ2x1THFUenpYVlZ1NkdmelpFREFueFZhaGwr?=
- =?utf-8?B?ZnVwb2MzODZzQkZZV2REaXM4VUkyWDRMdHdCV09VYlVTZ1owM1VwTUQ5bEh5?=
- =?utf-8?B?cGMycXlmWE9GSG9qODZSVHkrM3gxMmp0ckZkTisyc3ZSWG91SndhRjBrYkNO?=
- =?utf-8?B?Sy92NWM0OTJIRjJYenBmYTNYK21UQlcyUVVtdXNPYkg2Q0hWNVdBU092L2Fj?=
- =?utf-8?B?UUlCR0FmTUxXbmNLVXJ5NUI2dkNKeU5XZGw1c01hVWJRWk5pRTJveml6UjlE?=
- =?utf-8?B?TjcyQUlobSs5QnFrSVlVL0FDRTFudk5qOTVjNk11OGJLdmtySXFCTWJVRlpQ?=
- =?utf-8?B?eVp3NHZsZVZjbTVYR1J5Y2kxaVlsbEMzN2VYaTk5eFZFT3o3bzE5cnRVcDEz?=
- =?utf-8?B?NFVwYUpEcFdrenpNWXMyWGpOb2hIUlpUQnlTWXBLK1ZSY0RZclNNWmg5NDhR?=
- =?utf-8?B?Y1JqMHRTTWJuUnQxSGxKZXQ3VWN2SFZvK2RWbFo1MkQ2L0t2MW9KdnZHMkxW?=
- =?utf-8?B?Sjg4a0hHcFhXNTQxL2RZWnpuS3FxSzBtaVlkNjU0YkNHWjI1dEFaTFlzVzF5?=
- =?utf-8?B?Ri8yaGxsRWVoaGsxUWtuaVQyVXhzd05RUExmSmgxNEhlcFNaVCtOKzNKRy91?=
- =?utf-8?B?MXVJWWhwTWR2a0tYcTdGRXduK09rckxwUjMxY3pUSmUzN29hR2FDaGJmajVy?=
- =?utf-8?B?N05HTDJhYm1JUFZVL1U3V3E1UWpXSWgzNGc5YUdWZ1VaVUF2dFVzbXdIaFRV?=
- =?utf-8?B?b2VkL3VSMFFWSUVBY1dWRldkS0tHYTVGSzdJZ1lmejQ1L2dZNmpqa2ZQdG0w?=
- =?utf-8?B?UU8rSXUwUEpqMmpMUWFib3FUMnk4a1MzYkd4TWdGcnpQbHh5a2hmWGw1SFo3?=
- =?utf-8?B?Ui9oU3JtNWlFbmpDYkZ5L2VMR25DVUk0bnJMRHM0KzBEWVhMcE5lTVQ1VzV1?=
- =?utf-8?B?TnN6YlI1Sy8zTmwvY2ZVN3NDWThZeDhZdTJtK05Qd0YreHducDMvMXgzSXQr?=
- =?utf-8?B?L3V4cXBMSTlkL21SUGpUNUFUUE5kMlRwbUErRHdNOTBGOWoyOFVZdnhSQkxx?=
- =?utf-8?B?OXJFd0ZLZndVMGR5RSsySS96Y0h4dGg2ZVVidm1oQ1RWbTAxWi9MSVZPWnJk?=
- =?utf-8?B?akR3dWNTR1k3aUVsSk40cXBpTXlNWUhTZFpCaHQ2Rkc1M095elFZOUJGYXdw?=
- =?utf-8?B?RU5YdUorUEw4SDBLb1hacng2QnBRRVRCd3hhb2h0Z0hSSTVMYVd3QXY1KzZw?=
- =?utf-8?B?aTFkOURIM3Z6WTZvVHEwWjJPMmFOSXRuNGExQnd4Qk9MeXU5VStENTBqd3hw?=
- =?utf-8?B?WERteHVBMVlIYU1scHg2QTNoeFNXS1phaW1JazFneTVLUWhNUld4b2FFMGtE?=
- =?utf-8?B?SDJydlZTQ0QzdGcyZlU3UG9jV3dBYzE0VmJ1WEJmT2VQZzk3Nm96R1QwckdW?=
- =?utf-8?B?ZE9qQzVWcmQ3WENCYTN0TU9TNHE0QzV2ejJNcVFaamR0UmFGTU9qQ3A0ZUJj?=
- =?utf-8?B?NGdBZ2QwNkc1bFJKWGxmNVMzRElveWdFTmVuMnMybnZFVW90MkFBZUJUa3Vp?=
- =?utf-8?B?dmtYOXZJZEpLRXNrOTFjWTlhMll6SnZvUHVnWXlmRXVCSGIzcmYvTlhoMld0?=
- =?utf-8?B?NFJmbTAvOXYxNTRtY3NpZnRUTEFjUUVxN3Z3ZEdsMnZIU3pzUzBqWE1CMEt0?=
- =?utf-8?B?Q1YvdGVkTXZQai84YmpIWm5kT2dzbW82Qy8zN1djTXZqb2Q3azBBZz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 11c41b60-e8ba-4553-f29d-08de839a6d1d
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5126.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 20:27:21.3082
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- qTGGPSZocrpqQ0pAxkr80O5HjKO8TTtwv1nzIGI3qOCw0uGXOPl1UgQsX1Ao2O2fUijLhZn8dybEAUXAwCQ9LA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8032
-Message-ID-Hash: NLWKOTURUHGNONFIQ273GC475ODL3NQY
-X-Message-ID-Hash: NLWKOTURUHGNONFIQ273GC475ODL3NQY
-X-MailFrom: Harry.Wentland@amd.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1035B45160
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Mar 2026 20:31:30 +0000 (UTC)
+Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
+ [209.85.128.74])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 42B2210E39E
+	for <nouveau@lists.freedesktop.org>; Mon, 16 Mar 2026 20:42:17 +0000 (UTC)
+Received: by mail-wm1-f74.google.com with SMTP id
+ 5b1f17b1804b1-4852fbfc379so71245445e9.0
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 16 Mar 2026 13:42:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20251104; t=1773693736; x=1774298536;
+ darn=lists.freedesktop.org;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rnehdcYWB9w3tVl2LzZNjtYNnm+PGYt8SHrexd0l+qg=;
+        b=p0csYt9KJ6tAY73BH1SE9FC3sRhX+0NYHdbz7PDtkLLt07o4EBtMHsufCe55Udk7MP
+         064wWACd2WQNfh8psF0a2lB+w0rRgIeOprtvTAa+rlpgbfhZEfZW+1h5RWURdfnBpPsE
+         /CN/zXs95brkdCgt9U8AD4oKQiGwuvRFMv23VhzKZrwEI+WtrG41KBxf1+Jsiy0b4hLX
+         f4Omd7bmUIqNdazcHEn9qonZpLjGaGEiCr1M2kyIjb2BKP0UOIu0aHIR8MPLzum5fHsw
+         E4De2XTpcBur5lSDjruEl/Gn++aMLzlK40Dozy0oYmABJj7yhvXqzjMqdIYt5kiGfJKG
+         yvNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1773693736; x=1774298536;
+        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rnehdcYWB9w3tVl2LzZNjtYNnm+PGYt8SHrexd0l+qg=;
+        b=MePyds/PLNbPzbli5NhoR1nARa8l39qeCphM4PT2FQhxt2GSY7W25fzu+jyO5IkXds
+         rOdSS1GYpwCLfeHpMdSt7s1AeFpCQLECrMysdmfXiHIfg1FmDdEpiVBgxAHm6TkWhatT
+         Cvjec4s0z9BYgLPBOtk2//dhoLr/dOXsS8Y0se9ESW3oCpehWLJCMJalW6lWY0RpnDb7
+         fjgIfQFjDJso3oWkHc3h6dLiyuougcyhofAJK0HOG4TyBnCSe3tOvjX7fgWGMR5V5+mB
+         iLzHcTkoGnQKdCH5mivjhlem7Ae35E+x5WyrXTljcL11snvgQE3TVggBUrrgS5oQ4ZZg
+         kDGw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWTkGzj26VFoDSolWlsLJ+THysm4WJJt+ojx9wqTOUsmiOs0MHHs5CnBAz//cTAeHUnNDx6fpis@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxJFOQKmlJ0d15vy7Ne+1A+YbSOZS5MF/38vmWE133W31X6rD5w
+	aiUNa6AJQbyi5EADEgGUeiLDGS60gUE2OOUFjlvjLIC0sNF/NFEKxJIELtpdUFbLtVTuWgu/Rc+
+	Xx1T4Mn7tVhwtidfThg==
+X-Received: from wmjy24.prod.google.com ([2002:a7b:cd98:0:b0:485:316c:34b4])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:1d1a:b0:485:2ce2:4c8a with SMTP id
+ 5b1f17b1804b1-485566cfb00mr242140765e9.1.1773693735483;
+ Mon, 16 Mar 2026 13:42:15 -0700 (PDT)
+Date: Mon, 16 Mar 2026 20:42:14 +0000
+In-Reply-To: <20260316055736.1690546-3-ttabi@nvidia.com>
+Mime-Version: 1.0
+References: <20260316055736.1690546-1-ttabi@nvidia.com>
+ <20260316055736.1690546-3-ttabi@nvidia.com>
+Message-ID: <abhrJgPEiIRCvmwe@google.com>
+Subject: Re: [PATCH v9 2/6] rust: uaccess: add write_dma() for copying from
+ DMA buffers to userspace
+From: Alice Ryhl <aliceryhl@google.com>
+To: Timur Tabi <ttabi@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Message-ID-Hash: 5PMIIKJRWV57JLKGPXUPRDERVT3IQ6Y7
+X-Message-ID-Hash: 5PMIIKJRWV57JLKGPXUPRDERVT3IQ6Y7
+X-MailFrom: 
+ 3J2u4aQkKBzQQbYSUhoXbWeeWbU.SecdeklUQkbYiji.VhUUTUiajef.ehW@flex--aliceryhl.bounces.google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
+CC: Miguel Ojeda <ojeda@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Gary Guo <gary@garyguo.net>, mmaurer@google.com,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, ecourtney@nvidia.com,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NLWKOTURUHGNONFIQ273GC475ODL3NQY/>
-Archived-At: 
- <https://lore.freedesktop.org/fb406515-8184-4e22-81a5-27d92a2114c8@amd.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5PMIIKJRWV57JLKGPXUPRDERVT3IQ6Y7/>
+Archived-At: <https://lore.freedesktop.org/abhrJgPEiIRCvmwe@google.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -180,153 +128,90 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-To all X.Org Foundation Members:
+On Mon, Mar 16, 2026 at 12:57:32AM -0500, Timur Tabi wrote:
+> Add UserSliceWriter::write_dma() to copy data from a CoherentAllocation<u8>
+> to userspace. This provides a safe interface for copying DMA buffer
+> contents to userspace without requiring callers to work with raw pointers.
+> 
+> Because write_dma() and write_slice() have common code, factor that code
+> out into a helper function, write_raw().
+> 
+> The method handles bounds checking and offset calculation internally,
+> wrapping the unsafe copy_to_user() call.
+> 
+> Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
 
-The election for the X.Org Foundation Board of Directors will begin on March 23rd and end on April 13th.
+> +    /// # Safety
+> +    ///
+> +    /// The caller must ensure that `ptr` points to a valid slice of `len` bytes (i.e., it is
+> +    /// valid for reads of `len` bytes).
 
-The election will include a vote for a change in our bylaws to align our fiscal year with SFC's fiscal year and make the life of our treasurer a bit easier:
-https://gitlab.freedesktop.org/xorgfoundation/bylaws/-/merge_requests/3/diffs
+I don't know how I feel about this 'valid slice' thing. The memory might
+be dma memory after all ... just say it's valid for reads of `len`
+bytes.
 
-We have seven candidates who are running for four seats. They are (in alphabetical order):
+After all, in below SAFETY: comments, you also argue that it's valid for
+reads, not that it points at a valid slice.
 
-- Erik Faye-Lund
-- Mark Filion
-- Neal Gompa
-- Timur Kristóf
-- Manasi D Navare
-- Alyssa Rosenzweig
-- Simon Ser
+> +    unsafe fn write_raw(&mut self, ptr: *const u8, len: usize) -> Result {
+>          if len > self.length {
+>              return Err(EFAULT);
+>          }
+> -        // SAFETY: `data_ptr` points into an immutable slice of length `len`, so we may read
+> -        // that many bytes from it.
+> -        let res = unsafe { bindings::copy_to_user(self.ptr.as_mut_ptr(), data_ptr, len) };
+> +        // SAFETY:
+> +        // - `self.ptr` is a userspace pointer, and `len <= self.length` is checked above to
+> +        //   ensure we don't exceed the caller-specified bounds.
+> +        // - `ptr` is valid for reading `len` bytes as required by this function's safety contract.
+> +        // - `copy_to_user` validates the userspace address at runtime and returns non-zero on
+> +        //   failure (e.g., bad address or unmapped memory).
+> +        let res =
+> +            unsafe { bindings::copy_to_user(self.ptr.as_mut_ptr(), ptr.cast::<c_void>(), len) };
 
-Attached below are the Personal Statements each candidate submitted for your consideration along with their Statements of Contribution that they submitted with the membership application. Please review each of the candidates' statements to help you decide whom to vote for during the upcoming election.
+Points 1 and 3 in this bulleted list do not seem to address any actual
+safety requirements of `copy_to_user`. Yes, the function validates
+userspace addresses at runtime, and this is part of why its
+implementation is safe, but it's not a precondition on the caller.
+There's no way to call `copy_to_user` where it would not validate the
+userspace address at runtime.
 
-If you have questions of the candidates, you should feel free to ask them here on the mailing list.
+> +    /// Writes raw data to this user pointer from a DMA coherent allocation.
+> +    ///
+> +    /// # Arguments
+> +    ///
+> +    /// * `data` - The DMA coherent allocation to copy from.
+> +    /// * `offset` - The byte offset into `data` to start copying from.
+> +    /// * `count` - The number of bytes to copy.
 
-The election committee will provide detailed instructions on how the voting system will work when the voting period begins.
+This is not the usual Rust style for documentation. We would generally
+just write it in words:
 
-Please note: With the announcement of candidates the membership sign-up period also closes. It will re-open after the election.
+	Copies `count` bytes from `alloc` starting from `offset` into
+	this userspace slice.
 
-Cheers,
-Harry
+Yes, argument lists are *occassionally* used, but it's rare.
 
-# Nominees (in alphabetical order)
+> +    /// # Errors
+> +    ///
+> +    /// Returns [`EOVERFLOW`] if `offset + count` overflows.
+> +    /// Returns [`ERANGE`] if `offset + count` exceeds the size of `data`, or `count` exceeds
+> +    ///     the size of the user-space buffer.
+> +    /// Returns [`EFAULT`] if the write happens on a bad address, or if the write goes out of
+> +    ///     bounds of this [`UserSliceWriter`].
 
-## Erik Faye-Lund
+Using a list to format the possible errors seems sensible to me. But I
+don't think you intended for this to be rendered like this in the final
+docs:
 
-__Current Affiliation:__ Collabora
+	Returns `EOVERFLOW` if `offset + count` overflows. Returns
+	`ERANGE` if `offset + count` exceeds the size of `data`, or
+	`count` exceeds the size of the user-space buffer. Returns
+	`EFAULT` if the write happens on a bad address, or if the
+	write goes out of bounds of this `UserSliceWriter`.
 
-__Personal Statement:__
+Please use a markdown list to format this, and check the generated html
+docs.
 
-Hey, I'm Erik and I work at Collabora as a principal engineer. My work there mostly evolves around Mesa, Panfrost, and open-source graphics in general. I also currently serve on the X.Org board.
-
-I've been in the graphics industry for over two decades now, and I have some experience with organizational work as well. I've been arranging demoscene parties since the late 90s, and are on the board of a Norwegian demoscene interest organization as well.
-
-If elected, I plan on trying to help out wherever I can. I have no big ambitions for radical change, but I'm also not opposed to modernizing things a bit where it makes sense.
-
-__Statement of Contribution:__
-
-I've been actively contributing to Mesa and the related projects since early 2013, touching almost every part of the stack on the way, from drivers to documentation.
-
-I've also regularly attended XDC since 2018, and I usually come with some sort of presentation. It's one of my favorite conferences, and I would love to contribute to ensuring its future.
-
-## Mark Filion
-
-__Current Affiliation:__ Collabora
-
-__Personal Statement:__
-
-I have served on the X.Org board since 2020, elected as the first non-technical member (I am not a developer but a marketing guy). I organized the 2019 and 2024 editions of XDC in Montreal. In recent years, I have also taken on a recurring role in sponsorship renewals and have acted as an advisor to the organizers of both XDC 2025 and XDC 2026, helping ensure continuity and shared knowledge across events.
-
-I have assisted with a number of tasks on the board including elections and the recurring sponsor drive. It has been really great to see open source graphics drivers flourish in recent years, and if re-elected, I hope to continue putting my marketing knowledge to use to make more noise for X.Org and support its ongoing growth. I am also proud to have played a role in the successful completion of X.Org's transition to a new fiscal sponsor, a key milestone for the Foundation.
-
-__Statement of Contribution:__
-
-Senior Marketing Manager @ Collabora. Organizer of XDC 2019 & 2024 in Montreal.
-
-## Neal Gompa
-
-__Current Affiliation:__ Velocity Limitless
-
-__Personal Statement:__
-
-I'm a big believer in trying to contribute to the success of what I use as a way to pay things forward. Admittedly, I'm no amazingly super-wise desktop developer (though I do get around and contribute code to a variety of projects...), but I've been a Linux desktop user for most of my life now, and I appreciate all the amazing work everyone does. If my being part of the X.Org Board of Directors can help with the growth and success of the FOSS desktop community, then I'm happy to step up and help out.
-
-__Statement of Contribution:__
-
-In the context of the Xorg/FreeDesktop space, I participate in the
-Wayland protocol discussions and help with reviews in various
-components in the graphics stack. I also attempt to contribute to a
-variety of projects in order to support the growth and adoption of the
-next generation of FOSS desktops. I am also one of the lead
-maintainers for Wayback.
-
-## Timur Kristóf
-
-__Current Affiliation:__ Valve (contractor)
-
-__Personal Statement:__
-
-My goal is to improve the Linux open source driver stack to make gaming on
-Linux more viable for a wider audience and make the drivers more stable and
-fully featured. We've experienced an unprecedented growth in this space in the
-past few years. I've been at it since 2019. When I started, it was rare for a
-game to perform well (or even work well) on Linux. Thanks to the efforts of our
-community, it is now the norm.
-
-I am looking forward to contributing more than just code and learning about
-the organizational aspects of X.org too. I'd be happy to help organize events
-such as XDC and more.
-
-__Statement of Contribution:__
-
-I've been working on Mesa professionally since 2019 as a contractor for Valve.
-I've participated in the development of the ACO backend compiler, the RADV
-Vulkan driver, as well as the NIR compiler infrastructure. I led the
-development of mesh shading in Mesa. Starting from 2025 I also contribute to
-the amdgpu kernel driver. My latest pet project is making the driver stack
-work better on older AMD GPUs so that Linux gaming becomes feasible for an
-even wider user base.
-
-## Manasi D Navare
-
-__Current Affiliation:__ Graphics Software Engineer @Google
-
-__Personal Statement:__
-
-I have passionately contributed to open source for the last 12 years, working on the Intel Linux Graphics kernel driver to upstream DRM support for VESA display features like Display Stream Compression, Adaptive Sync, enabling DP 2.1 UHBR rates for Intel platforms and worked on enabling these on Chromium OS for Google Chromebooks.
-
-I previously served on the X.org Board of Directors where I helped review XDC submissions. I was also on the Freedesktop Code of Conduct committee and served as Treasurer. I have also worked to mentor upstream contributors at Intel and Google.
-
-If I get elected again, I aim to continue foster a collaborative and inclusive environment in open source graphics community by helping with Code of Conduct and help with XDC planning/reviewing/organizing.
-
-__Statement of Contribution:__
-
-I am a Graphics Software Engineer at Google and an open source contributor to enable and upstream display features in DRM and enable them in Chromium OS. Recently I have also been contributing to the upstream DRM Hardware Composer HAL to interface with DRM/KMS.
-My most favorite contribution has been to fix the Linux black screen issues by adding DRM KMS property to signal link training failures which is now used by all Open source drivers.
-
-## Alyssa Rosenzweig
-
-__Personal Statement:__
-
-I've been in the Mesa community since 2018, when I brought up the free
-OpenGL drivers for contemporary Mali GPUs (Panfrost). After a five year
-detour reverse-engineering Apple's GPU and bringing conformant
-OpenGL/Vulkan/OpenCL to Apple Silicon via Asahi Linux, I'm now hacking
-on Mesa's Intel drivers.
-
-I see software freedom as one prong of a collective fight for a better
-world in the digital era. While small, our community has a role to play.
-Our work matters. Doing our jobs well while staying true to our values
-matters. Above all, our values matter.
-
-I previously served on the X.Org Foundation board from 2022-2024. Due to
-personal reasons I did not run again in 2024.
-
-## Simon Ser
-
-__Personal statement:__
-
-I've been involved in FreeDesktop.Org for a few years now, starting with
-Wayland then DRM + Mesa. I'm part of the sysadmin and CoC teams. I've
-been serving in the BoD for the last two years, with a focus on securing
-sponsors for XDC. I'd like to continue helping out for the next two
-years!
+Alice
