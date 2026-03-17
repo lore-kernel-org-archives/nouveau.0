@@ -4,97 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 017E1FD8763
-	for <nouveau@archiver.kernel.org>; Tue, 17 Mar 2026 13:31:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87E4AFD876D
+	for <nouveau@archiver.kernel.org>; Tue, 17 Mar 2026 13:41:58 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9CE2110E400;
-	Tue, 17 Mar 2026 13:31:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E5F8610E64F;
+	Tue, 17 Mar 2026 13:41:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=free.fr header.i=@free.fr header.b="oKrYnzvP";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="VlfdAPxu";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5CCF4451E9;
-	Tue, 17 Mar 2026 13:20:43 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773753643;
- b=AAegGHEbVkGT4uOIcQT4bEq2e1oOmVODsSPyd8/l+7r5VPPiiFECRm5S7/A9z1BvzYay0
- QMw2IyI4nVbcVCXK12VmtqCnAkpQF44vHvevL2QsVsuU3uhhTWfMiCkpBMkQuscaQjF67sF
- 87EBEB8loTRnZoq9X2xL92Orfe8whbXdsztVMoI9C27yHvUJj7GkojFmhCSZwFXK0HAvlN6
- LxBrOfTuI97p5cW0fvNDd6IAoxEo92Kqt9NLVNHln/M6wiryOThDX2HAi3siT5ntzgPKp30
- fU2iLlhO5p/hxAeqOj3L2kGhajjhaKCOZtddxw9lz4BjAnSfNrInypqA7B2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773753643; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D7111451EB;
+	Tue, 17 Mar 2026 13:31:07 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1773754267;
+ b=HGPblISqqm3aUu9acZS06ZAiu9T/kOhgRGrJJtjw4+/KSg5ivOtkCqbVV3KeIv+vXGL8Q
+ rXNRNSP+yBIbN7saJLVvgwaFRQVgCdmKp4i/YpbznMhhHxE2oBgueq95bg+dMWkspM290/3
+ 1hiQ6yCWnCLyI2/t+Ggzf1kEMLSfrMGuIBveOqYPpudPbCfUHvAC9SsFjNBR3VdEZO1MQNh
+ wVMy2E/uLnW0+xjKS6vJfLU9AW5qbnErLFgbzvi6quQONIlf2iV/d5T+3bLMvA2VwR5YA6N
+ soLU8MMKchssF4Bq6J9RmeTbJkN/5Uj3DUU5JyD0l931JQC9wLY89orlCuvA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1773754267; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=u7IdwnJ3XiFoiOXl999DFyH8w2jD/NzCNP0tJJ7SrWA=;
- b=sGXpHsscr/AxiV61rYQRpt7k8Nv3Cz1uQ4njXlXRfUvtlVeutFUhI+MTXMig5nip9ss1l
- 0uC9JgBc2SJbP8qodoK8wEI5Ckp9rJOJHkmJL5cUM7Ty/hwhDWIbp009+ItHdXrEYIh3VlP
- GXNrePLLt1YYE5It7zW7FCXMVHUQCbCnr1/6V3NCv2TORNvqfQTnFKyqbRqxM0J/hqG87MV
- 4XrC7x0h9W0e+oQKyeOvhztlKBbMdlQ60fcClD5mMg2jSER9rKBGEoW1emXFlOzF/IRYvfx
- 2dBe77Ms4I3btFzYo8109uYb1t1zVFLkluIt1XiGMhmdbIKsT3+10ccvAQCA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=free.fr;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=free.fr policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=free.fr;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=free.fr policy.dmarc=none
+ bh=Wp/y7tBfQmT5wBUuX3TzevFjxhMwBPiOg76aryv31+4=;
+ b=rpufnQ3VitDjbARMYDcqfhKR1VsS0IldB0nWUS/soz/dTtJjfaFwJn4tuavHOPYijUsJD
+ 24n9KHv9jHCsmNRRNsESwliVF8fBDFnUYpZ30uY4TLmsY4SNJmyCJJHFGTa7S+5DwR06Wts
+ XDX1/hDCdx0V8dHkJpJ14Ea2CIxPQeJs5hfaf1tu6mUSLmmUQetHhoBc1LdoH+hAvLPPBud
+ QpAcAVrg37C1buz7N4BknPdIfNu4yQoaQhkEZAz8JNv8TIhdBDysVHqraWgMXwHZ9yXK/qf
+ 7HywUiHLJP2ryw6z+xUbCzvnKoHF6qRKLumuZ8iqdIEP+BdhUXk8OwvJE4Ow==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2A0F2451E3
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Mar 2026 13:20:40 +0000 (UTC)
-Received: from smtp3-g21.free.fr (smtp3-g21.free.fr [212.27.42.3])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 755FE10E056;
-	Tue, 17 Mar 2026 13:31:28 +0000 (UTC)
-Received: from [192.168.0.32] (unknown [85.156.96.35])
-	(Authenticated sender: martin.peres@free.fr)
-	by smtp3-g21.free.fr (Postfix) with ESMTPSA id F19A913F88F;
-	Tue, 17 Mar 2026 14:31:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=free.fr;
-	s=smtp-20201208; t=1773754286;
-	bh=0pLkDuEPyGkbW23Epy9YpMe2BQ53axealeBhtQc1huA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oKrYnzvPEcaY8OmrqJOuaMMzh4EY+K2LMdV3p5egUigKeqArsuc8l6gxUHUZI8r5E
-	 3H8p1/Xpg1WhX4ljaI+Y3rexbgfcXkKLr+hTfW8mRU/+g+HXTnrkcBv6aoC8Zji4mp
-	 V8lHd1e7JlnVy2oClEuu+c23fpiPd6SfqtEXR1BxGpc54TGsTf/E4ubhfoO9ZxSyL8
-	 0gyH8D6ia0HzWAB/wZX3x55Q7gFPSEghvwUC4qgcVzxT4P+RjbnZFmVUIbezH60+eW
-	 RrzyJvjZ7RunpU8JpA+xXzm28tUkZp0HtV6skt7TpoZLT9h9QlIK09PRSNEKp1oVQz
-	 tbbUh5PP0cSpw==
-Message-ID: <778d1150-e990-44d3-8797-0b38bc5c7c7a@free.fr>
-Date: Tue, 17 Mar 2026 15:31:13 +0200
+	by kara.freedesktop.org (Postfix) with ESMTPS id E17F743446
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Mar 2026 13:31:04 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010032.outbound.protection.outlook.com [52.101.56.32])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 91FF310E3C0;
+	Tue, 17 Mar 2026 13:41:53 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OIWxlD6cLfKyGnSZRD9yeHZgC0+Y7BkrwkG+kW8MHCDtNRSgD+nxZmsZzqpGdAMphQQCmLj5/+TIBTN5dPEFZ7gKBjPCPYYRVaI0Ilbu9OkxWsQsG5tPr1PWToWDLe6Hh/eIDELajsGeHT0ANDJ/owYFKs38Hb7lFr74Oo4ogQijyxKce6FTsVaZpNuvdYVvGUbmclwa13FXRJD8bdLqiuT4D/CrzDMVtvDn6VlI3sF694/1tsDnY0P4zDQtFQj20s+g3lKkT7H/dfaNpSq3P3HgPGQzmiBHjr9C3+lI4s0AEAxW+2meQlVyd1P7SENyZbUKSpBt6Z2HZckvuVF56A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wp/y7tBfQmT5wBUuX3TzevFjxhMwBPiOg76aryv31+4=;
+ b=kucz6vcK3qv0REKgToDgn6xEN4CdX94vQlXbSodKpaAGba1VlRIq7taD8iXvo1m+bYa9z320Z5OOWk74NMmFntSU8m6shgAWAgjj6rSIfZgelXXuE8dmg6p3FOOVmO83od/p2HF52QW27IPzJJWXTz6AubMQPimacJW7gQAX3POmJWbPVEi0+AlMyKNNwTCSwj6tnHgJSsks6+4ZdlV+p71VTbW447wLtyHe09gAbMcM2OjFk+a6dnhxklDsDsGw1bXOy5rKoLonODu+hGMBGwzfck1Z/IC4DfsCaE7cUMO1e4qMtfjjxYVoqioMA2KH66Q81IwSHVB/gS0e9CcHKg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wp/y7tBfQmT5wBUuX3TzevFjxhMwBPiOg76aryv31+4=;
+ b=VlfdAPxuI2ojHRRKoaAOZsxdm0KlihFAnXFYSMJTyLwhXiXVrzbKmXGDfRZjcyNmRvul1VXNYkq/GCp2xBVisBgVC2M6iwG+vYqTC4/tW0/CGcMBDzYGJajROO7vshK6eq14x4AxW8wGTo9oyoD+6WFskD034j+RkjJPAALwfJ6lMTkdPTvn1nglkyLM1bCt/b3MsKQ3uTBr0C6Y4iD0VD0vTDHMuMMiH8KjuFZ4ZSutVYt3NxETaAGc2xuiWMcnvOg+pbYd7jd/kmPm9Fgtk4kv68jIIjxL9a7GIHlCXc2lVpdfEaxLxTdzeMJaS5IaEKPRMEEtNeJY7wfWmWybag==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by DS0PR12MB6630.namprd12.prod.outlook.com (2603:10b6:8:d2::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Tue, 17 Mar
+ 2026 13:41:47 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9723.016; Tue, 17 Mar 2026
+ 13:41:47 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Mar 2026 22:41:43 +0900
+Message-Id: <DH53MXEAVB0Q.2SXHCQTW8WG2Y@nvidia.com>
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [PATCH 6/9] gpu: nova-core: generalize `flush_into_kvec` to
+ `flush_into_vec`
+References: <20260227-rmcontrol-v1-0-86648e4869f9@nvidia.com>
+ <20260227-rmcontrol-v1-6-86648e4869f9@nvidia.com>
+ <093ca23e-7081-42db-a202-0a42c51741a3@kernel.org>
+ <DGYL9FS1Z00X.2HEJ96J8R3OK4@kernel.org>
+ <DH46IKESDQ3B.2GEUC479WDK3N@nvidia.com>
+ <DH47AVPEKN06.3BERUSJIB4M1R@kernel.org>
+ <DH4OM17DJ47V.3NJG7G02O7P1L@nvidia.com>
+ <DH4ZZD12V0R6.2G7IIL87QTK0S@kernel.org>
+In-Reply-To: <DH4ZZD12V0R6.2G7IIL87QTK0S@kernel.org>
+X-ClientProxiedBy: TY4PR01CA0121.jpnprd01.prod.outlook.com
+ (2603:1096:405:379::19) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] gpu: nova-drm: rename nova to nova-drm
-To: Alexandre Courbot <acourbot@nvidia.com>,
- Cheng-Yang Chou <yphbchou0911@gmail.com>
-References: <e7539fd5-9a0d-4a06-aa02-ec3dcd235926@nvidia.com>
- <20260317092304.424377-1-yphbchou0911@gmail.com>
- <DH536IWQDX23.22R0P6FT091LH@nvidia.com>
-Content-Language: en-US
-From: Martin Roukala <martin.peres@free.fr>
-In-Reply-To: <DH536IWQDX23.22R0P6FT091LH@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: UBBUBFXEZ6ZN22NPOLJDNDZEDKE76R5I
-X-Message-ID-Hash: UBBUBFXEZ6ZN22NPOLJDNDZEDKE76R5I
-X-MailFrom: martin.peres@free.fr
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|DS0PR12MB6630:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd102abd-0150-4021-c25d-08de842aef2d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|376014|7416014|10070799003|1800799024|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 
+	zBDtWaP+anD8aGy9h6eNV941mpmR+l68v7YIOFqprXMS7bKO0gcgwqbLQ/PGg4g69U8N8SP39aneXdr2MNBItun8ExtnIRv2Lf/iAeFbLBG9HQZnnEXvIF0V+zoN/xU60MKGU/fFgvYXmaO5yC9iixRKTEXTRNwU0bX0Gt7v2qEf9ePIE5bQtZiXwlE0QYqQoj2SyQ18CxIAqEQo5LtDbPENIL3+RUrbXeHnrzY44zPUr+PeH53RkLU3qnqM7+ZQrOT/cB9DfYgdo5l0ISXQ/IkBA8whp+AqHuZr+MUOGchSec/mF7QBNjL/Lwl3vWsOenng/2Sc/9NqzyXUsjjiM/faRLmU5Lz7Tge2JlDgcA2Sapu30wYg9BeMG9D/TSZcglVJLDAQvi/KyaGE5OstBQMv9N15wZMycvBYfAmyqL0X46/Zgs3oJI8EOHQuQftWKWIzx0br8zWM2ZdiuvG20optOKuxgkQGZ2pAowQObNxzHF988PHktMUZi6qKLDDhPfNH39kNIm+MCIULgNxeTsGYOQLrZsRPuvJMst8h/yVXSvlh+33vP2KT7VaxxlCHUQMSGgLGdp5hMtEkyxZ2n0hEByA6+Znhiot8i/GHJ68fg00gS+8NK5yuh1iLJNm44EUutlvvya7jE8GLgvm0nSrVJhGSNJwx/qxBrzUaJ+8fdSWKgB0beHMdbGFLtFsM/xLaLPVDZQpK7VrkJ9THGIRNqBxhC9NxMK9i4nGOwec=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(10070799003)(1800799024)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?QWR6Q1pyMm1OMUxvSXlZcUdsSlJBM0RxSHpnRnZNbDFOOXBUa2FhRGgrSEpx?=
+ =?utf-8?B?ZVh1ajRRalV4Y0tlb2ZiRWdyUXJwNnNyYVlyblZpVGN5WUtwNXhHSUwycjZP?=
+ =?utf-8?B?UmVjdnRkUC9yV2M4ajdmUnBOdUh1anZyMzVEVURHOUlQWkgyMWVUNm8wVXRV?=
+ =?utf-8?B?bWQ1djVDeHlWUjJUclp6Q2dUOUlnejVRRmZWd3o3TXkrNTZnbW9pdmQzNGRz?=
+ =?utf-8?B?NEN5ZlAzU0FqUUZQaHRFVGpMVTJsc3MyUXlBb0w2ZWVrMmdhTWxHbzJCVGg5?=
+ =?utf-8?B?MCtYTTI0cW0reWhQVVV4Mzhvbi96aVVQbmhjZGhTYk9HSWpwaTBwMldQaTNy?=
+ =?utf-8?B?MXA5bGh3cTV5eXhoZlF3M3hROXNWZWJmNmg3MzhlTEJjWGVhSUQrOVVCazR5?=
+ =?utf-8?B?MGNpTi9XUmtvUVA3SEZ3MktDdm1pNEJVc1FGbGVFSFdTTFlRcjhhc3I2Y2VF?=
+ =?utf-8?B?aWovSnJpdHZ3OE1lcDJQckNoVWdXKytJNllLVGNlSy9Ja0NzM1FkTGtNQUhm?=
+ =?utf-8?B?TExEbThrRDJ3aEJjbXlsNG1rNDNtYWNKUngzVlgrVW1JZE9ER0VzeWtoay81?=
+ =?utf-8?B?T3BHS1AvY2I5K0xkUjMwMWg1U214THBZbHl3T0tJWVRzaHU4NUxJZkc2Wkdy?=
+ =?utf-8?B?M0JVSmVJVTFBSHBqNW04cTlOYWFRYkNIK0FRSG8zL3dDekJ6ZXhqUmdmOWZv?=
+ =?utf-8?B?dnFCYXlRRHZXZTJSdzY1UzBJQkNxVjdXeTd5L01STWQyWTB2b1NXTlRVVlFn?=
+ =?utf-8?B?dExsOU96MldGcUNEYytFSkJMZFFoZ04xZ1UrQVp3ejk1WnA2bHErQ0U5elh5?=
+ =?utf-8?B?WlpOeGVwR2dEY3U0bVRZdWVpR2Z6RUZzL0NOa28zNHJDdHpSMjhGY0JUbHI4?=
+ =?utf-8?B?RC9Cb3lSSnVJcUdYUWNjNmd3NjcySTFBdEZCdXBjNjRtTU5ZUm4vZTBPN2hn?=
+ =?utf-8?B?VzdIMFg5WUhUOE5KUldHVllpRU1XZVJYbnhYZkZrZFN5eTlJQm4xSmp3eEcw?=
+ =?utf-8?B?aDIraTJxcjI4bEc0VHFPWENkNjEyd3BhUTlyQjRUbGJxMHJtVnVscVpPTC96?=
+ =?utf-8?B?cENiRjVKbnkzdURINkUzdjhmL1BNK3pUSnZOYWc4ZnloYVE4QVdlUitDWFhw?=
+ =?utf-8?B?b29zSC9LeVlPTUF0bnByeGpRVE5ISGx6aGhWNWJ4RDdaQnduZ0dFRzhKenBE?=
+ =?utf-8?B?UVZCcmpjNmsremlKSk5kMUcxNUNSTS9hUlkwWFZFdmc5RjV3aHhhQ2xaYXph?=
+ =?utf-8?B?Rmt3UFFvdUZUQmx6N0lXQ09SOC9YZUNXUjc0YTZRYWZJK09pck5xQWhMLzhw?=
+ =?utf-8?B?Mkc5OUw1b2Ixd3ZjZ0pkUUVNZFZvMGtUWlBKOVZ0c01GdkhLN3NteGZ2cCt5?=
+ =?utf-8?B?YUdCcFdKVmRCSjhlLzhwQUl2SXpsRDFRbkdnVm1ab0NSRFFsZE9PSkpkSmFT?=
+ =?utf-8?B?bmlBZEhua2FzcjAvbmt5VzN1ajl1MTBsRTZzak9yUlZGUXFLK1Z0b1dNMVpR?=
+ =?utf-8?B?L0NMZWxGUFJKYUFYRTlHL1FZejlOc0xMbWo3TytzVVVYVzJPSUFTMTNXN2NG?=
+ =?utf-8?B?ZDErcU12UkJFRkRrdzlnb21MYjZZUFV6VnN6RGlvSTA5M1UrWlFCQ0p3dGdj?=
+ =?utf-8?B?L0tucUxjelZYTmdkU2RGZTlBV1RFS0RiYTZvdkFFeEdqK21TMmwrbFJDSG84?=
+ =?utf-8?B?bCsrMUVpaHhQcldOQjJXcDkxQUx4b0ZVa0VGSVRBYk5nSEpLVmpNQW52dHpT?=
+ =?utf-8?B?WVB1enVWenZwUHpVeHIwTUsrdEoyRVUwQjdOTlZ4WWhOWUFySTFrdnZzRUFZ?=
+ =?utf-8?B?aS9sUFBybEdKcTRNZVM3Rm1haWlVQzU0RlZhVFhVaXM0OVBvWk5kaSt0cGF3?=
+ =?utf-8?B?SDhVOS9ocWVhbHZJV2lZbThJTnJ5Ukhic3RVOFlHMTVUVWdadXA1TEhJZ3Ey?=
+ =?utf-8?B?SDZGa3VjSHF5Kzdldyt5bHJVU1lQV25LdkQyRkgwWXdxQk1MVXg3cjJVMStX?=
+ =?utf-8?B?dnVjVjRGUnBQTDgrMnJzZ1JGWEtXMStrUjI2RSsvK0NRR2V1VldOUU9qZlAz?=
+ =?utf-8?B?eHpjQ2I2bWYwQy9adVhmODdobi9KNlNiZHFJSHEzN2pucjBSVDJqenVpT1pS?=
+ =?utf-8?B?Z2MyeDZYNEMzRU5GckZyVTl3QnNpWnRXcUw5TWJGVkVpOE53amU2WjQweW8x?=
+ =?utf-8?B?UjMraTNTeE1OYkZwd01EMkxYaU1wNHRoS29CdmNOcTl5MFU4Q0w3cXkxa1Q4?=
+ =?utf-8?B?MU5xZERVRGJXNXZHQnpyMk8xbXV1YnhDMXAyTDQvOURzcjIwTGhsV2Q0eldT?=
+ =?utf-8?B?cjBnQ0VBSm5rSk1PV3Bwa05Nd3NvbTBtcElzamh5cy9LN1NyWTFrQ3IxZkNM?=
+ =?utf-8?Q?4PBcdvWkMgc9+e2O70EJqG61ABVEzHhRJnKOqY0C8oJMU?=
+X-MS-Exchange-AntiSpam-MessageData-1: IKBPf0pQHV4YXA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ fd102abd-0150-4021-c25d-08de842aef2d
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 13:41:47.6200
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ v13ZMCOmBeYdvNjNd7HW3Rd0hWoN2OhCCU/pjZKk5X3AvSyJNEH5oqMF4lmwEa+pVCPeoz52YRCdrBQEqi7AhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6630
+Message-ID-Hash: 3JFKMA25TSP5XVF6FNOQ53ZZ2PRIHPVI
+X-Message-ID-Hash: 3JFKMA25TSP5XVF6FNOQ53ZZ2PRIHPVI
+X-MailFrom: acourbot@nvidia.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: aliceryhl@google.com, chia7712@gmail.com, dakr@kernel.org,
- dri-devel@lists.freedesktop.org, gary@garyguo.net, jserv@ccns.ncku.edu.tw,
- linux-kernel@vger.kernel.org, nouveau@lists.freedesktop.org, simona@ffwll.ch
+ loop; banned-address; member-moderation
+CC: Eliot Courtney <ecourtney@nvidia.com>, Alice Ryhl <aliceryhl@google.com>,
+ Simona Vetter <simona@ffwll.ch>, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org,
+ dri-devel <dri-devel-bounces@lists.freedesktop.org>,
+ Gary Guo <gary@garyguo.net>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UBBUBFXEZ6ZN22NPOLJDNDZEDKE76R5I/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3JFKMA25TSP5XVF6FNOQ53ZZ2PRIHPVI/>
 Archived-At: 
- <https://lore.freedesktop.org/778d1150-e990-44d3-8797-0b38bc5c7c7a@free.fr/>
+ <https://lore.freedesktop.org/DH53MXEAVB0Q.2SXHCQTW8WG2Y@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -104,36 +191,156 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 3/17/26 15:20, Alexandre Courbot wrote:
-> On Tue Mar 17, 2026 at 6:23 PM JST, Cheng-Yang Chou wrote:
->> Rename the nova-drm driver directory from drivers/gpu/drm/nova/ to
->> drivers/gpu/drm/nova-drm/ and the top-level source file from nova.rs
->> to nova_drm.rs (matching the object name nova_drm.o) to follow the
->> kebab-case naming convention already used by the auxiliary device name.
->>
->> Update MAINTAINERS, Kconfig, and Makefile references accordingly.
->> Update the Kconfig help text to reflect the new module name nova-drm.
->>
->> Link: https://github.com/Rust-for-Linux/linux/issues/1228
->> Signed-off-by: Cheng-Yang Chou <yphbchou0911@gmail.com>
->> Reviewed-by: John Hubbard <jhubbard@nvidia.com>
->> ---
->> Changes in v3:
->> - Rename subject line (John Hubbard)
->>
->>   MAINTAINERS                                            | 6 +++---
->>   drivers/gpu/drm/Kconfig                                | 2 +-
->>   drivers/gpu/drm/Makefile                               | 2 +-
->>   drivers/gpu/drm/{nova => nova-drm}/Kconfig             | 2 +-
->>   drivers/gpu/drm/nova-drm/Makefile                      | 3 +++
->>   drivers/gpu/drm/{nova => nova-drm}/driver.rs           | 0
->>   drivers/gpu/drm/{nova => nova-drm}/file.rs             | 0
->>   drivers/gpu/drm/{nova => nova-drm}/gem.rs              | 0
-> 
-> That `drm/nova-drm` reads a bit awkwardly to me and feels unnecessary.
-> Even `tegra-drm` is in `drm/tegra`.
+On Tue Mar 17, 2026 at 7:49 PM JST, Danilo Krummrich wrote:
+> On Tue Mar 17, 2026 at 2:55 AM CET, Alexandre Courbot wrote:
+>> We shouldn't be doing that - I think we are limited by the current
+>> CoherentAllocation API though. But IIUC this is something that I/O
+>> projections will allow us to handle properly?
+>
+> Why do we need projections to avoid UB here? driver_read_area() already e=
+ven
+> peeks into the firmware abstraction layer, which is where MsgqData techni=
+cally
+> belongs into (despite being trivial).
+>
+> 	let gsp_mem =3D &unsafe { self.0.as_slice(0, 1) }.unwrap()[0];
+> 	let data =3D &gsp_mem.gspq.msgq.data;
+>
+> Why do we need I/O projections to do raw pointer arithmetic where creatin=
+g a
+> reference is UB?
+>
+> (Eventually, we want to use IoView of course, as this is a textbook examp=
+le of
+> what I proposed IoSlice for.)
 
-Same opinion here.
+Limiting the amount of `unsafe`s, but I guess we can live with that as
+this is going to be short-term anyway.
 
-Cheers,
-Martin (an old nouveau dev)
+>
+> Another option in the meantime would be / have been to use dma_read!() an=
+d
+> extract (copy) the data right away in driver_read_area(), which I'd proba=
+bly
+> prefer over raw pointer arithmetic.
+
+I'd personally like to keep the current "no-copy" approach as it
+implements the right reference discipline (i.e. you need a mutable
+reference to update the read pointer, which cannot be done if the buffer
+is read by the driver) and moving to copy semantics would open a window
+of opportunity to mess with that balance further (on top of requiring
+bigger code changes that will be temporary).
+
+>
+> But in any case, this can (and should) be fixed even without IoView.
+>
+> Besides that, nothing prevents us doing the same thing I did for gsp_writ=
+e_ptr()
+> in the meantime to not break out of the firmware abstraction layer.
+>
+>> This is guaranteed by the inability to update the CPU read pointer for
+>> as long as the slices exists.
+>
+> Fair enough.
+>
+>> Unless we decide to not trust the GSP, but that would be opening a whole
+>> new can of worms.
+>
+> I thought about this as well, and I think it's fine. The safety comment w=
+ithin
+> the function has to justify why the device won't access the memory. If th=
+e
+> device does so regardless, it's simply a bug.
+>
+>>> I don't want to merge any code that builds on top of this before we hav=
+e sorted
+>>> this out.
+>>
+>> If what I have written above is correct, then the fix should simply be
+>> to use I/O projections to create properly-bounded references.
+>
+> I still don't think we need I/O projections for a reasonable fix and I al=
+so
+> don't agree that we should keep UB until new features land.
+
+I have the following (modulo missing safety comments) to fix
+`driver_read_area` - does it look acceptable to you? If so I'll go
+ahead and fix `driver_write_area` as well.
+
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/=
+cmdq.rs
+index efa1aab1568f..3bddb5a2923f 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -296,24 +296,53 @@ fn driver_write_area_size(&self) -> usize {
+         let tx =3D self.gsp_write_ptr() as usize;
+         let rx =3D self.cpu_read_ptr() as usize;
+
++        // Pointer to the start of the GSP message queue.
++        //
+         // SAFETY:
+-        // - The `CoherentAllocation` contains exactly one object.
+-        // - We will only access the driver-owned part of the shared memor=
+y.
+-        // - Per the safety statement of the function, no concurrent acces=
+s will be performed.
+-        let gsp_mem =3D &unsafe { self.0.as_slice(0, 1) }.unwrap()[0];
+-        let data =3D &gsp_mem.gspq.msgq.data;
++        // - `self.0` contains exactly one element.
++        // - `gspq.msgq.data[0]` is within the bounds of that element.
++        let data =3D unsafe { &raw const (*self.0.start_ptr()).gspq.msgq.d=
+ata[0] };
++
++        // Safety/Panic comments to be referenced by the code below.
++        //
++        // SAFETY[1]:
++        // - `data` contains `MSGQ_NUM_PAGES` elements.
++        // - The area starting at `rx` and ending at `tx - 1` modulo `MSGQ=
+_NUM_PAGES`,
++        //   inclusive, belongs to the driver for reading and is not acces=
+sed concurrently by
++        //   the GSP.
++        //
++        // PANIC[1]:
++        // - Per the invariant of `cpu_read_ptr`, `rx < MSGQ_NUM_PAGES`.
++        // - Per the invariant of `gsp_write_ptr`, `tx < MSGQ_NUM_PAGES`.
+
+-        // The area starting at `rx` and ending at `tx - 1` modulo MSGQ_NU=
+M_PAGES, inclusive,
+-        // belongs to the driver for reading.
+-        // PANIC:
+-        // - per the invariant of `cpu_read_ptr`, `rx < MSGQ_NUM_PAGES`
+-        // - per the invariant of `gsp_write_ptr`, `tx < MSGQ_NUM_PAGES`
+         if rx <=3D tx {
+             // The area is contiguous.
+-            (&data[rx..tx], &[])
++            (
++                // SAFETY: See SAFETY[1].
++                //
++                // PANIC:
++                // - See PANIC[1].
++                // - Per the branch test, `rx <=3D tx`.
++                unsafe { core::slice::from_raw_parts(data.add(rx), tx - rx=
+) },
++                &[],
++            )
+         } else {
+             // The area is discontiguous.
+-            (&data[rx..], &data[..tx])
++            (
++                // SAFETY: See SAFETY[1].
++                //
++                // PANIC: See PANIC[1].
++                unsafe {
++                    core::slice::from_raw_parts(
++                        data.add(rx),
++                        num::u32_as_usize(MSGQ_NUM_PAGES) - rx,
++                    )
++                },
++                // SAFETY: See SAFETY[1].
++                //
++                // PANIC: See PANIC[1].
++                unsafe { core::slice::from_raw_parts(data, tx) },
++            )
+         }
+     }
