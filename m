@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54D4FFB5EBD
-	for <nouveau@archiver.kernel.org>; Tue, 17 Mar 2026 05:21:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6C54FB5EB8
+	for <nouveau@archiver.kernel.org>; Tue, 17 Mar 2026 05:23:44 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 22B5D10E3CC;
-	Tue, 17 Mar 2026 05:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 76EB810E3D7;
+	Tue, 17 Mar 2026 05:23:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="OJckABlb";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="F/MhA5JY";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C668B451E0;
-	Tue, 17 Mar 2026 05:10:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 24D0A451E1;
+	Tue, 17 Mar 2026 05:12:56 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1773724238;
- b=CvQSjLGGWfJsFZlFxFIgBxw279iLMYG4+jvWTL1m66MU9OER7UGS/44lSdzjlEUzCFasj
- exKA/n4NAuQJPpsTFXe4jf2/T3gu2J0N5MWimhYLh0GwMnsxzrwUhtrDX2St6KxLm2oip4p
- k4mAsZLGJhgRBrWY+46tHABFDruGZCS8JPKtAQLrRFdAs7U+iHh/TIKi/qbbNZrF8Qztdrh
- a4bpeeFLYAQiUczruJWEtCtPp7qPrcSSwROjAQpYFx0TR2NDzqsTOVJ26K/fX5C2Mv23VNo
- HtP/H4Pk0WeWIsMcIfVvkfjIBUhoKhig0c86sVvm7zZ335B2HL90d5ygh0RQ==
+ s=20240201; t=1773724375;
+ b=OCBKZ3wh+z15BHXUs+9FGYIGY8ZFH+XAEYPr8z1132mgn9sSiQJmdcSvw2x/Q1Z9YNK8Y
+ DJA8n2d78ncYOfifusRIKS4LGqA9AIGiKJBli9YLuwKl3bQBrILCWRA6N45Qy1ras3YkGIU
+ JDux+SYew+niHxHsvauxPLYFEvkGr+Uo/QLQx+s17I3i3VGWi49ncP3gSDY0hMgJRb+F4pl
+ LPLaCZP72sndKOO7JaOejoKWWz3iOeIolzVw7c7bSu9M6iVQMKEoA9y/MhBFKZEvKTL4L85
+ SE7K1CTgIkXLRF1nXgdGG3VbW/ujRCkZT+wOvzja2kAZNOhu9nd7uI4jzPzQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1773724238; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1773724375; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ARc+IYwNfMVsMhauVrhAvF8TTmXJMBGBwF/OaQH2c68=;
- b=YnfB/OgOQ7aPUoWF75ilZvMUTpn+HRF4zqQJK/e8ciNUFuVg/eLEYa/Q+rRIeo0EDPmkJ
- mMuizslZzjiQrmr0g7/c9Lj9aPKGcd7VtiCcSzW/5RA5CTHrdx7oIfx7WpToK3x/YyCS1Tn
- k1l1PK1zVzqSp9rkd9mwPpxfv/9qOcpuH3MNCu3jTtwet2MbOXsGDsNyyNdGYlC/AJlvvSv
- U63VNrF08O3LaUx9p2uC1zUj+dlzQI5alm4vf5St00YyzI8aWRr0fylNFt2qXhPDUeioVYV
- lUDdNffwLitwsnxvVC9ePOhOLeci3W++A80secHkkSWz8An8sVROEiMkWLQg==
+ bh=PwqTFFIUkARcSqYMY8CE1WI9m6m5dg8/g1vboI3/GLA=;
+ b=agnTMBzulWntuJ1GPCtTOJ12j3c0ZNXyzvDXrL60shiEpU9FlNJvfI5Nawt1HAiveez3g
+ B+OVOBOyfsFyvK9XdCyxMONaFMgxdVgY0XLdGDSCpgOnSI+6e/1MoBxNQ5+T+aHb+bTYqnQ
+ n5Jf97kqwDaZKCMakAwsW/X4+AXy/fQdJTATL/lVhAOsdfFzJZ57f4DdWpoFzbUVa9KNJI9
+ 0EcYij6IOCgxrlLsXqgmhQij082xlqH5KNJkXRARl9uIDmw6ZRc4d/osPIuedh0/Yj0bKn9
+ Z2sdbvjSMsH+PHBOWIobAvvXBTn8g18wktxiAMLoX7bgYvVbyR7GK0MH7d/w==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=Nvidia.com;
   arc=pass;
@@ -45,124 +45,123 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8A9A2451BF
-	for <nouveau@lists.freedesktop.org>; Tue, 17 Mar 2026 05:10:35 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013041.outbound.protection.outlook.com
- [40.93.196.41])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6CCBF10E1E2;
-	Tue, 17 Mar 2026 05:21:23 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8B7AD451BF
+	for <nouveau@lists.freedesktop.org>; Tue, 17 Mar 2026 05:12:53 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012029.outbound.protection.outlook.com
+ [40.93.195.29])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7FD5E10E21B;
+	Tue, 17 Mar 2026 05:23:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fGmhIshGKgUry5bvEdpIIt7Wh8u7NJYWHEs2Dx/5LmVuN5RONzzuPSHzEV070bUO4J7kdY3zI0esKpAHXa8BeOJvJYNZF67MaLGTolMXDGtFoGqf4yZGBPDENvejHbwz6V12AAh1t6LaXaml/0v3PB5LuKJyMx1YLtTtZe7Yj7DRWme9yoCPzM3UqfWDf7/PsYoiR/LSoLwPzsnvR0zTh6yMOD8O++gHOemDrMiM2OF2MuofUk6knuHSZek4rlubQmIHTERbQARxxlM8fNVFTKsZ6IrJaK1ELmRk9SqZRUImAoZKIcHzdQdRMNtYMkInDn+Zv6N7TvPMrFKwgE4UWw==
+ b=k2h2k/VQAFlOAG1YCW9h11i4pEfZeB5SVgkSs87clDJ5+8h/KLhlj+jTRFkNi6+B/kF6NhNzfYr24YoOEUu63A/hnojJQuCJpySiVSfR0Uqd/aP9sJQAZD+M5nLq79xe7A1Lx3uIi6KzmlU/QI+VKIEmujdTzwRtIICqZXOpf41w8rfYlTdE5qCcYLTQEjn1zWZNIVFn1AR1zKks9COe+TNQHCLFin82fqNjEgkIyA3AI1DepfsqdEz59HKiw8JGRgS5jDIHNh6eg3M2kEiePjyFo3DsHCIUAThkn7wAYsOxRyrjA9tQRkYZ0ASZocBKTBcwVvuqqYiixsE9gJ2FqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ARc+IYwNfMVsMhauVrhAvF8TTmXJMBGBwF/OaQH2c68=;
- b=TaA5Zjq68RIg3Fq6lUGP8yKVfQRPjmCvz/VfdoBcS2zCUIK+g/LroAn6y3da4cMDHc8+ruVmKJVsJHJpleQUpUe2X5bsIUVih3wgbk4fcLy7gVZBY+wPJc/xKt3T4a6bW3Ltt+ycfPOzotJW5Z9ob2su9s+AF/E/1aG0V5B1wKi+upofwwtPFYSv6RELvu0RbyUSU6SwovNSQ1wrmhGWL4MbFB4dR+GpYw9/QYXfD8AS+OO2tnfZ6/FtT4S6bHFGk0fX6abIykhJq1HCUFad0hF5HKAaNWctg2Nzjf0FwwJH2uX5tClMzhSRVXXJF12QMcVmBQYNcQq1xBD1VQl4ZA==
+ bh=PwqTFFIUkARcSqYMY8CE1WI9m6m5dg8/g1vboI3/GLA=;
+ b=E/it6hqjlrHDG9rL9nmGYAIZCoqdZrvQul9wMx/JWWPAdpLpKCRwa/Wy7SvPXfKX+jNeQ34Ao6OUL5FxErDWbZ6BudjZkHPbjikRvEz7Uq0jTtah+/5OBtGeeKXTRNkQZya2Eb3xNeurp3uKd4i5WCsF42k7MI3sIgDnCflILFlbfkV5alW0avcsBg06PMAvAROFeQWr0WJbuyjxLH3zDETBMkjHIxFAoLYZh1IXgVpSe6f/yJ6E7UY5/R7ANzqPA354UZU/+xbb6pT19OSbejylDVZwv8LGIB4+66UFi75ee+wyZHwwQRaglk19pV6jtwG86Q2OZzemv3N8h9UcPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ARc+IYwNfMVsMhauVrhAvF8TTmXJMBGBwF/OaQH2c68=;
- b=OJckABlbKXwq7UHz2tzMxbo7xqhwBY+wv3yPlv3UwTieBGLGoxkHojxEiYTL8vQ66ibSzC3jDu06tPvmria21ofu0ERSAmXfRYzoO99XW06IFuINzxwYCiN55kIWQJ573+pAH90wRCkx5M56NA/X6ZiYTsCLCCuj0/9FJ/B1Q3x2Qt2eRjf7v/gFgAQWsN68cB5glhc1x0ngqGv3ncRa1C4TnfjQXkNEsQtfJY2q5MF4RguLgkW1B/UjwoA9pzKNt7PnPvqHQuQ+MDnq5k305bMYphTz4H5Ea78AMc80AafH12jIkc3pCRr4x0/nf19VsMYr43PuIm7RaNaQZ7GfAw==
+ bh=PwqTFFIUkARcSqYMY8CE1WI9m6m5dg8/g1vboI3/GLA=;
+ b=F/MhA5JYaC8eRo2tZtCIAHSq1cqlYKfwgUu82jX0oMm1vgSdWZy5BDEVWDUTl1vCD9O7yWwfOJavp7DowiRc6jCoSFoQ4wVnvWVCJTAzEV1WPKrXkkW2GfTKs87FKrBjFEESp0OErWpTpsB2k9pFqMRXclAvrT5FKSt2tjkJpkduuOQzkIowrgkBAwCDWq8L+TgbZo00DcGqmAR4GnataVsYxlLpYthdp4ayjNKVFt3DGWGSrdjIpMVvjuNwy2qMfPi6iJKYJoJPlnVrkju9Hyby9WBWIxPAYntXMJFpQYaWXwPo4rPsGD1GN4VT42lOeinR09tXUMzUJfq3UEI16w==
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
  SJ0PR12MB7473.namprd12.prod.outlook.com (2603:10b6:a03:48d::8) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.17; Tue, 17 Mar 2026 05:21:19 +0000
+ 15.20.9723.17; Tue, 17 Mar 2026 05:23:37 +0000
 Received: from DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
  ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9723.016; Tue, 17 Mar 2026
- 05:21:18 +0000
-Message-ID: <f5744c22-4b15-42a7-a4dc-a9554e5bb3ea@nvidia.com>
-Date: Mon, 16 Mar 2026 22:21:16 -0700
+ 05:23:37 +0000
+Message-ID: <e7539fd5-9a0d-4a06-aa02-ec3dcd235926@nvidia.com>
+Date: Mon, 16 Mar 2026 22:23:35 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] gpu: nova: rename drivers to use kebab-case
- convention
+Subject: Re: [PATCH v2 2/2] gpu: nova-drm: rename nova/ directory to nova-drm/
 To: Cheng-Yang Chou <yphbchou0911@gmail.com>,
  Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
  Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, Gary Guo <gary@garyguo.net>
 References: <20260316120820.2117081-1-yphbchou0911@gmail.com>
- <20260316120820.2117081-2-yphbchou0911@gmail.com>
+ <20260316120820.2117081-3-yphbchou0911@gmail.com>
 Content-Language: en-US
 From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <20260316120820.2117081-2-yphbchou0911@gmail.com>
+In-Reply-To: <20260316120820.2117081-3-yphbchou0911@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR13CA0079.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::24) To DM3PR12MB9416.namprd12.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0061.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::6) To DM3PR12MB9416.namprd12.prod.outlook.com
  (2603:10b6:0:4b::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|SJ0PR12MB7473:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ca1b634-674e-4bfc-983d-08de83e504d6
+X-MS-Office365-Filtering-Correlation-Id: 026703e9-16e0-4691-2e3e-08de83e55749
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|7416014|1800799024|376014|10070799003|22082099003|18002099003|56012099003|7053199007;
+	BCL:0;ARA:13230040|366016|7416014|1800799024|376014|10070799003|22082099003|18002099003|56012099003|7053199007|13003099007;
 X-Microsoft-Antispam-Message-Info: 
-	dYQVdDpwHVXAHV2kdotf5YX+/DfbYdyJt8yWN9dQ0QsUWGJPf+TYBFrhzA4etZ1LV1re3msRyTAoAPTPKctWZXX5yZGIN/1oV+yEO8NjvUKbGsK7/mmvTzdNkYdJN38AeAHDvp2O3LUiJQAwA4DKkJaO2mjcfjyHSXRxctjC4H0aya8jp3O1m7oBnpgi2AJA76LEdO7jP2Af824rrvA/olABKU6ZqGgBWBnfUi0BRjHpB6pufaTqYuWDZtv6HTzOU1KfNmOrVxkR1Ty3wWC+yH+Ux+O1QdB+ReXPRRC8nWDS5SvM2dhvFK1TGfdqWaSzIoTn5hmlDX/V/N9RodwokHl78lO7vWIJuFEjboehM+6hJKV/tuBmFF3TjRc9BFlqt2ep/nwL/pLFqBQE3Wihf9346rtu3FbS76uLLcd9Y10Ocw+pWQF+LIdvIYgpSMt6XjJ6fwUojSi4hjhq7ecdzKfruX/+2wd6NaqkKYU+JCD+gKN2FOJTeNmJikqeCbWeiWZorKEA40Eu/qAyTD0zZzVHrumKDmtnvPosVjzU4zMqjItGIY/CK+K48rKt/isDjO9rGU01sfW9ZAliJHDUsWPZq6uUUN8y7/wtK86OQhkfPF8BiH/wYA55myi/9242KzIFRH0KTEJFMEc+ubXzCBDEhD4Gef1z66hxtcqbP2lvW0jI/sKGC2aJr1lanQhqKQsJz98pSt2cTesdfbzvYm8SxYb9D23c+3entwUjfKntkRp3NrMOTnUahMmw7q7n
+	N5iSm/QrH8Bwo30P7RCxv2Z7t2ueqt4w2eDjSyIOeGQRoYuputEqYenAL0hEYJ6ZxOZvarje35XgHFP+/zvztHgCuioYnP9Bwu4MgS6VAnXEiFGv5aster6N6ZdvU6sqxXcTskeVUXLCDtq2FEc/TAnTLlwFVWKppfdhNPIWyKlzGaiYJ/dGOWCZ37akqWZJLXpLOc3mO83l+iziRbaf6GE/896jFHBYcnpj1Coq18xAhjublaMuPTvpBdg4sFgPcFpN4cSy6oPyW24FMEFD2Pb09vpqBEqMLW557AhDW13+eJw7qABWWxv6yGVgj+FZSkNGJABmeVfRI4JjQUPNm4PuTdN8qQFeCqqz+3oOKxyTE0TSFUs5jjcnCkECpPiBc+OeMS8mg+d7SZ+zSNwewPdBC5AIyt36tvTvhuIAapflL2Gd6zBuHsjoT2h+GJvX3NTHduqm+rYp9axHsWdrAUrV/Ws/qGHpFLQ3JF0SiEFXr6mTMm1/DA/Tzl5zHDA6iZv3g4qqWYUnHoOZTEHwF5Ul2ysbekbeZZq20g9zA8rUE8xPnsozqGNpUh3IQbyqBNh2rD2g6U/PZj226EhfdIdjgX6V3jIm5n2I6ndhJBtmhb/+R+mn4jBnA6TRdU5/e6tyx5x+M0t+0k4bCpGiB5z3lyUK0gwrz3eL1xIfbr2GCyFCPFCenPByPsMykiYPjqxHYQ3Dg1nT+Ij568wpvNj/h399h1CxX2m4fD37CC4=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(10070799003)(22082099003)(18002099003)(56012099003)(7053199007);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM3PR12MB9416.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(376014)(10070799003)(22082099003)(18002099003)(56012099003)(7053199007)(13003099007);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?d1hIY2FxcWVoK0tkc0pZV1FlSUtrVzVVaGdqVnQyR0xQMU9LdXJ3clNsVXJh?=
- =?utf-8?B?dStPWHdYM2xIajJVc0FEMGJCV21McnB5ZmhYaHU3N3QyWkpmajJoWDBoeHVl?=
- =?utf-8?B?dktjNXdVRkVhWkozb0Q1UUp2TlZLaXJMaGN4c3pzdXd0Y2M0WS8wWlViQS9k?=
- =?utf-8?B?R0pRV3BRVHhoeFg1SUdQS0wxdlcxUDBPd1ZnU0FTbXplNlkrNXdSZXl3eGY3?=
- =?utf-8?B?cDNqMDdOVGRNRGJMa2owL1pReENGdURjeCtiN283RThMQ044a1lGYW1wRlAz?=
- =?utf-8?B?MVk4SWwrWDBIMHZRUjI2T2tuanNnaythcitQWkttRGV3Sm4vdFliVlBVRjg1?=
- =?utf-8?B?dW1oVjZIV0RNQWFNVjNVbzNFL3E5KzZyTG9sQVdBRm40Sjc2b1NjSG5hSi9P?=
- =?utf-8?B?MFM1RlNUVDJSdndpWjlUL0hBM0dTOFQrU2E0WENRZDlCRWVkVjQyM21zQ3NB?=
- =?utf-8?B?TUFVVFI5VkNtMVZnd3ZuLzR0cjZRaTAyM0Q3STk4dkkvSVRrRjZoUVJYSHBC?=
- =?utf-8?B?U2I4N0p2d1IzeVNaNS82MVBNcUJGbWtnRkhBU2lTbVRCeVNWWEY4VWJFVVFi?=
- =?utf-8?B?UHk1eHgwWlZpNTUwNU9jNkVBbkZvU3BpOEJLSHArR2xWWHFNYUlhS1NPL3Bp?=
- =?utf-8?B?MTZwbXVsK0c4UjFQeC9ZMEdwc2JCZGhLVWlvMllzeTBHWG1MSnVXZU9hS3lQ?=
- =?utf-8?B?QWtMSkN4Y1FUTXdBVnFhSUVHRjU3ZHJlWE4xUk41cUk4cS9mSWJpR0tMWmcz?=
- =?utf-8?B?d3dFc3lKWXVIRzlCUlJBSXh0U2llbGdLS25QTWR6a1E4bG9IT2JncmF2Tkxr?=
- =?utf-8?B?WjJ5TWRJeWh3V3VMOGhTR0ZxNDdyemd1Zk9DMVVSa2c3clB0VVMvbGtZN3ox?=
- =?utf-8?B?Tzd3akhVTkpkcjRnTlZlOEEzanZrQk92ckltdWQzL1dmbG1KZ3BTRWVNZS9l?=
- =?utf-8?B?KzhuUm02emNNalpKbG9sa0xta1ZKWHRhdmZHMnlacVpCaEQ4MzBZUUd1K2hz?=
- =?utf-8?B?TnpvS1BqRGorMk1QOGJvb0F1dEtVdlJVdkRubmIrazlGK0RrNGk4OEpLRDlj?=
- =?utf-8?B?SGpyUkxxbTY2dWtyQ1BOQTVhcXNGSmN5MzBSaXFja0V5bFlCdGFQRUwwemp4?=
- =?utf-8?B?ZnRwTG1OS3hwM3VGN1dQZUhVWVlPT0dHd0Z0cHNmQ2dsT1ltNzdhVEw3Q2Vx?=
- =?utf-8?B?WnJvbG1BUWo0S0NOREQzWS83ejJMbEpWSFd1ZGNHS1lEeDVCQWdtZ291QU16?=
- =?utf-8?B?YlczY0FFczJja0N5NFRDeEk2STg5dXFSOXhTZGp3MGpja3RmNEJvd0FHMlBD?=
- =?utf-8?B?RCtkSk1SZUphUlZUVm5RcVBUKyt0Q3FoM1ArbmZmQkZhcjdaazZmTnBXQjNQ?=
- =?utf-8?B?bk1wd3dIUVBuVnV4L3UrQkttenh3NzJYdkRhckRKZFZhSzZGRFN3Y0dWd1Yr?=
- =?utf-8?B?eWVER3NVT1JVVS92SXBLa3lyTkFqUFZvMCtuQThYOGJhQUZSbWhRTXZCcDdB?=
- =?utf-8?B?SE5BK0Vtb1lrNUl0aklOV3V4MUtoM3h6R0NHVkJ1YUN6aVJIQ09jNm5Ld1NZ?=
- =?utf-8?B?SmZ3Yytxa0lNNkREYUhMR05CMVdZVVBuYTlaUS9MYzFMQ2VBcW4yeFBSSXov?=
- =?utf-8?B?ekJKZWk1ZTU0eGNCdUlXMnN5bFQzVHlReEh1czdlcXpyVExPYksvZi83c0tX?=
- =?utf-8?B?WHJMMGROaTZ4VHdzcWE0SUZnak1BK3lSMkFZY2NWQXoxb2xQaGNZdXFwL053?=
- =?utf-8?B?N3FJMmloRzBCT0dhaWExZHhNeHZaVm80SkZYOGVhMkwvWDZJSW9uQ0tBalpW?=
- =?utf-8?B?TDhyVEN3OG1reEd2Zkw1Ulg2WmlmSFU0ZW1VMWxXeU14SHRGRFNEZlBDbi9s?=
- =?utf-8?B?WDFyZ2FuOXdLVzE4Um5RUDZpaEFlTFVEbjU5Nms0MXUvVGhmSE9XczQ4dEJI?=
- =?utf-8?B?OFAxd0Q3ZEFTSlNGQTdCdW43cTlydXJJMWY3SEIrOXdIdnl4MDd0YnpOOTVK?=
- =?utf-8?B?SjlWWTBkVkkxL1NUaWUrZnhFV0FRcFkrV1JYQmlnQStnTlVwYi9HVXpOUUxQ?=
- =?utf-8?B?UFRpdk4zaHhwY1hLMUM5RjNYVWVlQTEyVHZha3paOG5acDMwblFrdU54S3BB?=
- =?utf-8?B?WkdCM1R2ZmxVYmZVT1k5SDBUSjdLaVd1ZlFKZVZzUmFVYkZqdHViTTRHWThT?=
- =?utf-8?B?bzE2L1AwdFVHTVViczhJNEFTakZwaWt3ZDJUUWhwYWZhN1lKUUloVWF1WXB6?=
- =?utf-8?B?REZiQ2FXZUlJMEZvTGdwSDF2RldKb1NjVzE1MW1RbG9yY1FhbHdwRE14eFVE?=
- =?utf-8?B?b1JJMEREOCtUNEhSNDZnWjdpTDVxejBCTmxFWlpkUHhqdVYyRVRJQ0pwdGRz?=
- =?utf-8?Q?7BKAQmOlWqhrOZpc=3D?=
+	=?utf-8?B?QnVaaUpaZGt0Z3pmR3ovbFYvU3piSG1kVGlRNndyZm44S3VWeWdtQW9WZ0pX?=
+ =?utf-8?B?NWZ3QXkzclQxNGx2YVhGcW1ZSW1aYk9kaFNhRDRBdkxqRmx3Q0ZuMHR2RVcz?=
+ =?utf-8?B?V2gwUFRRQjczMStrQ2R1aXB6djJVZTAybEVhZTNuWllmZ3ltUlR4QnQxOG5i?=
+ =?utf-8?B?WE1GZnR3QjlWSkRZbWRuQjNRKzZqenoxRzNyRVVJUFJzMGxQcVY5YWVkT0Ir?=
+ =?utf-8?B?a1MxYzRQTC9HM1VNajdXellRT0tHRHNCaUZRaDc2dFA2Z2dTSXdwbGpzU0k1?=
+ =?utf-8?B?OUNrVWc5WS9JODBkZ3FlMGdtZ1g3MDJQbHlVYWZxQ2R0YURTTGwyRlh3bkFS?=
+ =?utf-8?B?end2UXV6Y1IyL3dZNHBhc3o1eFlrYkNLYzZGUi9ZM0RZQWZqZXFLRnVYeUJR?=
+ =?utf-8?B?ditXU3VwOW5BanpmeUwwZ1BicERDMjE0V25jK3dEcVdvSllmc0ZSUUJ1UnBQ?=
+ =?utf-8?B?clJGVmNTdFhnelUwZ1owUHRaT2F5Vlo0eVo0VkxjbjBCMjRHMFZaVHV1OElq?=
+ =?utf-8?B?VWJqTGc5VDFwaUhLZ2ZGbllEUlgweEk3L2lBVkFncCtmNG1Edmh3NWxpYTlD?=
+ =?utf-8?B?bDZESWIwclJYMjltbEFFM0UwTGFpTGJUVDJ5UWk3SzBCb2pBcjJtV2N1bHNP?=
+ =?utf-8?B?dGJUVlBJa3VSOWJKODJiRm5UWkx2UFhlQ29YZ3VQNERwaEFJL2Z0RFdlMWxZ?=
+ =?utf-8?B?N1lORTVxaFQ4NnRKSittMEN1MDZoNXk1WUZVdCtMWW13MnNvR3B3c3BYdndK?=
+ =?utf-8?B?aXRmcGwxWVhjNVYyOUVxWUJsUG1xM3JueUNWVm9mbFVDWkZlTFYvMkZQYTI3?=
+ =?utf-8?B?aUdtbUYyVDlaQzRpdnJQaEhMUlg5eEVvM1ZacXYrdHJna0pDL0V3RnlrdWI2?=
+ =?utf-8?B?ZGdFaUxIQmQwT0dLZ24xc212cmpTTFBjcGNrMkxURFpKU3VzT1B6L2tJOGFR?=
+ =?utf-8?B?Y3hqeU9ZbU5rNmFpd3BaYkV4QkpjakJCbWg0THI2WVRlbkoycEt3S0ovZDhR?=
+ =?utf-8?B?NGZNQWkzSUNJR1hFOWNHV0FlL2N2dUw0OTdUV0RkN3JwZDFwUkQzWlVLRjZv?=
+ =?utf-8?B?a1NCVXFUMFc0Uit3bWNvWEg3T1MrTno1RnB0NXJkNzlMRnp4RXNLTzhhM3ZV?=
+ =?utf-8?B?NitjVmR6dmlkV08va2UxNTNKYkR6Q1RkL1lsZzJDVHpHdUVISGpNRVFmbjA0?=
+ =?utf-8?B?UnJ3bVlxbklHdlM4cG95QUp5MWlYdnY1TXZ1WEh4TkxaTHdzMS8rclpRU201?=
+ =?utf-8?B?NnBJdE1xMm92YUxXd2ZuSFRUTkFHQmk2Q3dLcC8rSGIrMjIzWnNZK1pnL0ZS?=
+ =?utf-8?B?REs0elRkaDZjS0xTNWhaVS96QWNBV1NobVV0M2dEUm5BbnljSmNkV2pSTmZH?=
+ =?utf-8?B?eUVXU2ovYzExNWZZdEVlS3RXVFRMdGVWaGlINjVkMmJnWWw5K1Yxc3BwSGZa?=
+ =?utf-8?B?TkRUN25ncy93VXROUmdhYkhuL0JKdm15dGxNTzkyVjNrNmlFM2hFNXI1eVBn?=
+ =?utf-8?B?Sm1ZQnRoNUFxRjRGRDNyUHh1QkZ3RjdKN0ZBS1g0OFp6WHNIRFNPd0NwYytr?=
+ =?utf-8?B?eWo5aEN1UTRFUE1lZnIvdUtJVnIyOHYyMFJ6Y2dzSlQxdkVMaWZSOWRFaDd0?=
+ =?utf-8?B?SDBZck1XTFRiWXQzQUdqVUw2RzFRbnNld1k4RTlLb1FMd0JEcjNBNnJ2MFg4?=
+ =?utf-8?B?ZGF5ZTFENmVwdWRuTjg4cWlKQVlzZHN6TzBWWU1oL1krYlAwTWxhRVp4NjFi?=
+ =?utf-8?B?TlczL3padDROVTNiN0dXSytNZlJjUVVmRHN4b0hxNnBjdSt4QWtxQ1RPNDBP?=
+ =?utf-8?B?QmxLMHoxeHIvSWJNUCt4VmQ5dHFRcTRlMmhDa1FpRExIcXVuRnRCOFE4NGlL?=
+ =?utf-8?B?SDVHQ0JrUVlQT0ovMGtnaStKVmczTlRNSmZqS0RLTWdxVXpyR25yS1c3MEx5?=
+ =?utf-8?B?d09GT2lERitENzllNk5uM21qcWFyQUdRaHdFWVBlWUhadCs5V28rOE1tSGJR?=
+ =?utf-8?B?WWZWVkZBK1BlUXRVTGZWV3dEQjB1bVZSTGhGYlV1VlZZY21aZUI2VmhpUmx0?=
+ =?utf-8?B?L3hXK0dHVUtuZ3J3SVlRQW1sQjltN251Zi9SQk9oY1pJRkg1VXkwbGhhd2E0?=
+ =?utf-8?B?UGY2NlNhODNxMEk4RkRZMEF2cG5WREhOOGxhdXo1c1lWTzJTelhhTzFJSXhI?=
+ =?utf-8?B?V3dIYWtVa1FaSENWWTZQc0ZxYnBlUmlZOTVZaUVsVDlUdEpDNkhmODBFYmxl?=
+ =?utf-8?B?VytBY1NYQm0vMDdvMENHTjhXMmZyaW5abmVuRitEYUVaOUdKckcwVUZnek9O?=
+ =?utf-8?B?TWF4cnRtWHdhWVBGN2x6bSttU3FXVForOTVRQzlDcEcrSkY5RVAwL2k3L0Fw?=
+ =?utf-8?Q?HhPHTL7D+JZ3bV4s=3D?=
 X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 6ca1b634-674e-4bfc-983d-08de83e504d6
+ 026703e9-16e0-4691-2e3e-08de83e55749
 X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 05:21:18.7252
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 05:23:36.9911
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- mII+6wQH3UJFsIBbarckroN38WgyH0AYZdHvA7hJ7S9dO692YLFSsgRSEaVsZCS4JpKMPNVySV0IKK39Raj2cw==
+ 31Kd0bKeeZgJLulA8fFOoWTeY4K08spgPtPInOckGbtlejbKEuQxZp+VbM/ikKukeTUFg403B60NtBTTM51UjQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB7473
-Message-ID-Hash: B6YK3RZMSRML6RK6OXWJUWJDL25MBI42
-X-Message-ID-Hash: B6YK3RZMSRML6RK6OXWJUWJDL25MBI42
+Message-ID-Hash: IDLSF7LSFQ6DBTTRLCHC45CONC5GLURK
+X-Message-ID-Hash: IDLSF7LSFQ6DBTTRLCHC45CONC5GLURK
 X-MailFrom: jhubbard@nvidia.com
 X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -174,9 +173,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B6YK3RZMSRML6RK6OXWJUWJDL25MBI42/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IDLSF7LSFQ6DBTTRLCHC45CONC5GLURK/>
 Archived-At: 
- <https://lore.freedesktop.org/f5744c22-4b15-42a7-a4dc-a9554e5bb3ea@nvidia.com/>
+ <https://lore.freedesktop.org/e7539fd5-9a0d-4a06-aa02-ec3dcd235926@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -187,74 +186,154 @@ List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 On 3/16/26 5:08 AM, Cheng-Yang Chou wrote:
-> Rename nova-core driver from "NovaCore" to "nova-core" and nova-drm
-> driver from "Nova" to "nova-drm" to follow kernel naming conventions
-> before these names become UAPI (e.g. exposed via driver_override).
+> Rename the nova-drm driver directory from drivers/gpu/drm/nova/ to
+> drivers/gpu/drm/nova-drm/ and the top-level source file from nova.rs
+> to nova_drm.rs (matching the object name nova_drm.o) to follow the
+> kebab-case naming convention already used by the auxiliary device name.
 > 
-> Also fix the nova-drm driver description from "Nvidia Graphics" to
-> "NVIDIA Graphics and Compute".
+> Update MAINTAINERS, Kconfig, and Makefile references accordingly.
+> Update the Kconfig help text to reflect the new module name nova-drm.
 > 
 > Link: https://github.com/Rust-for-Linux/linux/issues/1228
 > Signed-off-by: Cheng-Yang Chou <yphbchou0911@gmail.com>
-> Acked-by: Timur Tabi <ttabi@nvidia.com>
-> ---
->   drivers/gpu/drm/nova/driver.rs     | 6 +++---
->   drivers/gpu/drm/nova/nova.rs       | 2 +-
->   drivers/gpu/nova-core/nova_core.rs | 2 +-
->   3 files changed, 5 insertions(+), 5 deletions(-)
+
+The subject line should be changed to:
+
+   gpu: nova-drm: rename nova to nova-drm
+
 
 Reviewed-by: John Hubbard <jhubbard@nvidia.com>
-
 
 thanks,
 -- 
 John Hubbard
 
+> ---
+>   MAINTAINERS                                            | 6 +++---
+>   drivers/gpu/drm/Kconfig                                | 2 +-
+>   drivers/gpu/drm/Makefile                               | 2 +-
+>   drivers/gpu/drm/{nova => nova-drm}/Kconfig             | 2 +-
+>   drivers/gpu/drm/nova-drm/Makefile                      | 3 +++
+>   drivers/gpu/drm/{nova => nova-drm}/driver.rs           | 0
+>   drivers/gpu/drm/{nova => nova-drm}/file.rs             | 0
+>   drivers/gpu/drm/{nova => nova-drm}/gem.rs              | 0
+>   drivers/gpu/drm/{nova/nova.rs => nova-drm/nova_drm.rs} | 0
+>   drivers/gpu/drm/nova/Makefile                          | 3 ---
+>   10 files changed, 9 insertions(+), 9 deletions(-)
+>   rename drivers/gpu/drm/{nova => nova-drm}/Kconfig (84%)
+>   create mode 100644 drivers/gpu/drm/nova-drm/Makefile
+>   rename drivers/gpu/drm/{nova => nova-drm}/driver.rs (100%)
+>   rename drivers/gpu/drm/{nova => nova-drm}/file.rs (100%)
+>   rename drivers/gpu/drm/{nova => nova-drm}/gem.rs (100%)
+>   rename drivers/gpu/drm/{nova/nova.rs => nova-drm/nova_drm.rs} (100%)
+>   delete mode 100644 drivers/gpu/drm/nova/Makefile
 > 
-> diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova/driver.rs
-> index b1af0a099551..e3de04f358f0 100644
-> --- a/drivers/gpu/drm/nova/driver.rs
-> +++ b/drivers/gpu/drm/nova/driver.rs
-> @@ -32,11 +32,11 @@ pub(crate) struct NovaData {
->       major: 0,
->       minor: 0,
->       patchlevel: 0,
-> -    name: c"nova",
-> -    desc: c"Nvidia Graphics",
-> +    name: c"nova-drm",
-> +    desc: c"NVIDIA Graphics and Compute",
->   };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 7b277d5bf3d1..7ee486627420 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8201,7 +8201,7 @@ B:	https://gitlab.freedesktop.org/drm/nova/-/issues
+>   C:	irc://irc.oftc.net/nouveau
+>   T:	git https://gitlab.freedesktop.org/drm/rust/kernel.git drm-rust-next
+>   F:	Documentation/gpu/nova/
+> -F:	drivers/gpu/drm/nova/
+> +F:	drivers/gpu/drm/nova-drm/
+>   F:	include/uapi/drm/nova_drm.h
 >   
-> -const NOVA_CORE_MODULE_NAME: &CStr = c"NovaCore";
-> +const NOVA_CORE_MODULE_NAME: &CStr = c"nova-core";
->   const AUXILIARY_NAME: &CStr = c"nova-drm";
+>   DRM DRIVER FOR OLIMEX LCD-OLINUXINO PANELS
+> @@ -8484,7 +8484,7 @@ X:	drivers/gpu/drm/i915/
+>   X:	drivers/gpu/drm/kmb/
+>   X:	drivers/gpu/drm/mediatek/
+>   X:	drivers/gpu/drm/msm/
+> -X:	drivers/gpu/drm/nova/
+> +X:	drivers/gpu/drm/nova-drm/
+>   X:	drivers/gpu/drm/radeon/
+>   X:	drivers/gpu/drm/tegra/
+>   X:	drivers/gpu/drm/tyr/
+> @@ -8496,7 +8496,7 @@ M:	Alice Ryhl <aliceryhl@google.com>
+>   S:	Supported
+>   W:	https://drm.pages.freedesktop.org/maintainer-tools/drm-rust.html
+>   T:	git https://gitlab.freedesktop.org/drm/rust/kernel.git
+> -F:	drivers/gpu/drm/nova/
+> +F:	drivers/gpu/drm/nova-drm/
+>   F:	drivers/gpu/drm/tyr/
+>   F:	drivers/gpu/nova-core/
+>   F:	rust/kernel/drm/
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index d3d52310c9cc..958fa142b6cd 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -308,7 +308,7 @@ source "drivers/gpu/drm/mgag200/Kconfig"
+>   source "drivers/gpu/drm/msm/Kconfig"
+>   source "drivers/gpu/drm/mxsfb/Kconfig"
+>   source "drivers/gpu/drm/nouveau/Kconfig"
+> -source "drivers/gpu/drm/nova/Kconfig"
+> +source "drivers/gpu/drm/nova-drm/Kconfig"
+>   source "drivers/gpu/drm/omapdrm/Kconfig"
+>   source "drivers/gpu/drm/panel/Kconfig"
+>   source "drivers/gpu/drm/panfrost/Kconfig"
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index ec2c5ff82382..acdec9e30a27 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -186,7 +186,7 @@ obj-$(CONFIG_DRM_VMWGFX)+= vmwgfx/
+>   obj-$(CONFIG_DRM_VGEM)	+= vgem/
+>   obj-$(CONFIG_DRM_VKMS)	+= vkms/
+>   obj-$(CONFIG_DRM_NOUVEAU) +=nouveau/
+> -obj-$(CONFIG_DRM_NOVA) += nova/
+> +obj-$(CONFIG_DRM_NOVA) += nova-drm/
+>   obj-$(CONFIG_DRM_EXYNOS) +=exynos/
+>   obj-$(CONFIG_DRM_ROCKCHIP) +=rockchip/
+>   obj-$(CONFIG_DRM_GMA500) += gma500/
+> diff --git a/drivers/gpu/drm/nova/Kconfig b/drivers/gpu/drm/nova-drm/Kconfig
+> similarity index 84%
+> rename from drivers/gpu/drm/nova/Kconfig
+> rename to drivers/gpu/drm/nova-drm/Kconfig
+> index 3e637ad7b5ba..48a731bff9b1 100644
+> --- a/drivers/gpu/drm/nova/Kconfig
+> +++ b/drivers/gpu/drm/nova-drm/Kconfig
+> @@ -13,4 +13,4 @@ config DRM_NOVA
 >   
->   kernel::auxiliary_device_table!(
-> diff --git a/drivers/gpu/drm/nova/nova.rs b/drivers/gpu/drm/nova/nova.rs
-> index 8893e58ee0db..1fd454c7e0df 100644
-> --- a/drivers/gpu/drm/nova/nova.rs
-> +++ b/drivers/gpu/drm/nova/nova.rs
-> @@ -10,7 +10,7 @@
+>   	  This driver is work in progress and may not be functional.
 >   
->   kernel::module_auxiliary_driver! {
->       type: NovaDriver,
-> -    name: "Nova",
-> +    name: "nova-drm",
->       authors: ["Danilo Krummrich"],
->       description: "Nova GPU driver",
->       license: "GPL v2",
-> diff --git a/drivers/gpu/nova-core/nova_core.rs b/drivers/gpu/nova-core/nova_core.rs
-> index c1121e7c64c5..90e98380687b 100644
-> --- a/drivers/gpu/nova-core/nova_core.rs
-> +++ b/drivers/gpu/nova-core/nova_core.rs
-> @@ -22,7 +22,7 @@
->   
->   kernel::module_pci_driver! {
->       type: driver::NovaCore,
-> -    name: "NovaCore",
-> +    name: "nova-core",
->       authors: ["Danilo Krummrich"],
->       description: "Nova Core GPU driver",
->       license: "GPL v2",
+> -	  If M is selected, the module will be called nova.
+> +	  If M is selected, the module will be called nova-drm.
+> diff --git a/drivers/gpu/drm/nova-drm/Makefile b/drivers/gpu/drm/nova-drm/Makefile
+> new file mode 100644
+> index 000000000000..bd3a5e703742
+> --- /dev/null
+> +++ b/drivers/gpu/drm/nova-drm/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +
+> +obj-$(CONFIG_DRM_NOVA) += nova_drm.o
+> diff --git a/drivers/gpu/drm/nova/driver.rs b/drivers/gpu/drm/nova-drm/driver.rs
+> similarity index 100%
+> rename from drivers/gpu/drm/nova/driver.rs
+> rename to drivers/gpu/drm/nova-drm/driver.rs
+> diff --git a/drivers/gpu/drm/nova/file.rs b/drivers/gpu/drm/nova-drm/file.rs
+> similarity index 100%
+> rename from drivers/gpu/drm/nova/file.rs
+> rename to drivers/gpu/drm/nova-drm/file.rs
+> diff --git a/drivers/gpu/drm/nova/gem.rs b/drivers/gpu/drm/nova-drm/gem.rs
+> similarity index 100%
+> rename from drivers/gpu/drm/nova/gem.rs
+> rename to drivers/gpu/drm/nova-drm/gem.rs
+> diff --git a/drivers/gpu/drm/nova/nova.rs b/drivers/gpu/drm/nova-drm/nova_drm.rs
+> similarity index 100%
+> rename from drivers/gpu/drm/nova/nova.rs
+> rename to drivers/gpu/drm/nova-drm/nova_drm.rs
+> diff --git a/drivers/gpu/drm/nova/Makefile b/drivers/gpu/drm/nova/Makefile
+> deleted file mode 100644
+> index 42019bff3173..000000000000
+> --- a/drivers/gpu/drm/nova/Makefile
+> +++ /dev/null
+> @@ -1,3 +0,0 @@
+> -# SPDX-License-Identifier: GPL-2.0
+> -
+> -obj-$(CONFIG_DRM_NOVA) += nova.o
 
+thanks,
+-- 
+John Hubbard
 
