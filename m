@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 010111099B39
-	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 19:46:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A10551099B37
+	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 19:46:50 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B90FA10EBD6;
-	Fri, 20 Mar 2026 19:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F17DD10EBFC;
+	Fri, 20 Mar 2026 19:46:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="qeog/oha";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="q6EXzaEG";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 775944523B;
-	Fri, 20 Mar 2026 19:35:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B7D204523B;
+	Fri, 20 Mar 2026 19:35:53 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774035348;
- b=sWh4AtMBE/B0NtplErZ5dOTH85X9EDwVCUBEs7a25FTO1+KG463j7FfjXIgXAr6UPvoJp
- ifgt1Xeqvs4OWp7v585QF1CHQm1dnuCs078NRSV9Vx7GHelvuyaT013kLzZeYyw7zGbWta8
- TOVaeHvUpsLjfBCxt/vzqmmpE2hmBiPMgrJ/Kmo3pdMKcv25EYbQvk8dv15X5aDHFQjcenq
- Tikc/cdsS8ItdfNH4/LA/eMHqIPpJBbeBa/rkKTJIMRPZFXOryTaegqVdfNromzuJaD8pQt
- 3tPqU1q3JQGA6EvK3Dd637LKPgselbIeT8ibaTJZqNhR2PeqDAJsnKO6VCLg==
+ s=20240201; t=1774035353;
+ b=RDJZI0uUmaZzxDr4YfODgcoR3TjVR7CDe1OZFqOrtGBO2wPscCjcYrlGxle8CPL8IxWCD
+ URq3+teOv5ChGpVSw0FTwtcI5lIq4NXnbWKyaHRul+VNJD2ORtssC/J1l37aJE8wDPfr93F
+ p/baoLkyKCZOzr5w4e/t8hI1rJ7it4jPYlwkNvQx9UfaqXShrx1Vlk9hhezU+a4MvNWQc6U
+ d/p3eMpO9qNAgjbzo+3UTbrNskxLLH3mjVGBe4o1SnbOHNtFBZuwr2R3chIG9oiSarS5cp4
+ a6LnhAMPJxXNh2+plOk2dqRou1K9QV/eDxN0ebtlkWTREGvuKp/mNXPoxhyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774035348; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774035353; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=FeEBa4akCWNGuZc6n70U3ClVlhw8D5YwrbYP4GtPHOA=;
- b=ooOic8Q6kfN56JUnKGfBHKiILsvQYmaxgRpRtz5FZMFoSoBbeiqqalskNT1QiPlNna8J2
- UrUlExuLV337dti596oUsR/DwRGVsFeubYSLTG0eFvmOyLHoqCyPlIwRpnghU6RWRqdUjai
- oe0n2HQO99hOTqOIf8rwxuP87ViXK3kr9PQlyTWCJ38rwdk924ImY6gqFeMD4QWjqFL9NsK
- uhoXeFaOlQdFZ9Q/+bP9ZjSNpHsF1EjS6GsdDtOO2uEXeNBL2ZMJlFyLuctRmZCKzv56dGi
- rIl1+3ZFwIo5LG4Yc6Zg6rELGAP9lIn6SuahvaoBvQ0zE3AYLDHJwaHFZHMA==
+ bh=03WHCGGKh0chQjvSvy05U9GzVSN+CvEdxaCqpDnUK0U=;
+ b=PfSAyV/c2gFIzm98TTok8OWVS9N8gpPLCaavNB2BpYNipw4GmvWtz72EQzk3XGX/lwOY6
+ ONV8ZyVLKDhLr9QwYY4r1w6bhch8frXHxsmNj8V3gyUKTgNNmiHIBTFsBpP9eeupVHhESzB
+ cFqw2lcfwiSdnudOMQYMBRqt+dBnDK2blhYRU5OcLqC1Csbde7Z30ISL/+V8brksxHLLN/0
+ u/t5BR7+/CNWFU3bCnyARqYstvARSqh6Mx4dB0mP8KUG6w18nVK+H06rBopwmpSwm27WrRH
+ dsRflEN/famWldLfzhiGBEsNLvwrKKMwvV0RF92Sc+68L8GyijUt0SL26wwA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E42D344C8D
-	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 19:35:45 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9C27A10EB8C;
-	Fri, 20 Mar 2026 19:46:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DFB9E44C8D
+	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 19:35:49 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EA7E110EBE8;
+	Fri, 20 Mar 2026 19:46:45 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C400643B86;
+	by tor.source.kernel.org (Postfix) with ESMTP id 3247F60128;
+	Fri, 20 Mar 2026 19:46:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FE0FC19425;
 	Fri, 20 Mar 2026 19:46:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4E52C4CEF7;
-	Fri, 20 Mar 2026 19:46:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774036000;
-	bh=hKFaHx/rV9ES8Nrcg8VcMJye1TEo/NvG2boQBSRvjm0=;
-	h=From:To:Cc:Subject:Date:From;
-	b=qeog/ohazEx+Dd6S4RUapklBDv/7RBg/CObkZCOa7DvX2HK5o4YxymKWDjY473e2r
-	 PgG0zChFLXqQsAyYOFV9LDS1cqguwr4x0CiD2o3BTh1ilYQN33tqxJ5GXLzxGqdcYb
-	 thEMuRkbT/uInb6qAghWBOtS6rUyES4PEvnj2qUJy/KqciaeMBSkkUj7Ob/o4iH/yj
-	 xthqoU/mynEsgZSBkgEcicR0mMabdtA8PIsXzJF/2I65io08vsiQeEB+HlYhro+bih
-	 PgHNHUtt7eVhPuzPMCi14/y2P9H7I95byXeh2PSc7MUyt2w8rMgnjXiYhrYve1xYtD
-	 ppME0dSPRHmZg==
+	s=k20201202; t=1774036004;
+	bh=7IrYb1jT8W1MG5tVtcLS6oRPxPvMpufx+jp6IJ+X/uo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=q6EXzaEGhZjv5DtTK1D3QHVldQRYQNWz9Rq628sTPVJt8UpsaCgTgBKhADgkBzW1n
+	 OcZu8qW0YYDRUvK0i02i+JkAOL8r+MoCtvTAq0FZLlRQfU8Q2X+sZZCgIBikO6PbH8
+	 mvLQ1Gmki+l0q2kgqLYU0izL9e0vM9GYVGoTESsSEGC/6mn2hQcKHXG4E5I/p+cMAO
+	 BhM4OWvMrJKkjT7i6U/nbAKzfHbBMnlTqPILazfhB0rFM5BCQtEGqBUmBxmXv1FEle
+	 Ibfg1gM7ENyU56D79wpCYY28Csho/rhpbVVyZEe5Je8WDSU3mQPpO9GQkTW5ncaQub
+	 J3/HM0rFVwLxQ==
 From: Danilo Krummrich <dakr@kernel.org>
 To: aliceryhl@google.com,
 	acourbot@nvidia.com,
@@ -79,14 +79,16 @@ To: aliceryhl@google.com,
 	abdiel.janulgue@gmail.com,
 	daniel.almeida@collabora.com,
 	robin.murphy@arm.com
-Subject: [PATCH v2 0/8] dma::Coherent & dma::CoherentBox API
-Date: Fri, 20 Mar 2026 20:45:35 +0100
-Message-ID: <20260320194626.36263-1-dakr@kernel.org>
+Subject: [PATCH v2 1/8] rust: dma: use "kernel vertical" style for imports
+Date: Fri, 20 Mar 2026 20:45:36 +0100
+Message-ID: <20260320194626.36263-2-dakr@kernel.org>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260320194626.36263-1-dakr@kernel.org>
+References: <20260320194626.36263-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: HWIE5HK7KVK5JU4EC6G2YM3CXXG6Y57T
-X-Message-ID-Hash: HWIE5HK7KVK5JU4EC6G2YM3CXXG6Y57T
+Message-ID-Hash: 7EWW763UGCYAT2ICCGHJ7XXKNECY6TFT
+X-Message-ID-Hash: 7EWW763UGCYAT2ICCGHJ7XXKNECY6TFT
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -98,9 +100,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HWIE5HK7KVK5JU4EC6G2YM3CXXG6Y57T/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7EWW763UGCYAT2ICCGHJ7XXKNECY6TFT/>
 Archived-At: 
- <https://lore.freedesktop.org/20260320194626.36263-1-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260320194626.36263-2-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,51 +112,49 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-This patch series introduces the dma::Coherent API Gary worked out in the
-context of his I/O projection work.
+Convert all imports to use "kernel vertical" style.
 
-Additionally, introduce dma::CoherentBox, a type that encapsulates a
-dma::Coherent object before its DMA address is exposed to the device.
-dma::CoherentBox can guarantee exclusive access to the inner dma::Coherent
-object and implement Deref and DerefMut.
+With this, subsequent patches neither introduce unrelated changes nor
+leave an inconsistent import pattern.
 
-Also add Coherent::init() and Coherent::init_with_attrs() so we can directly
-initialize a new dma::Coherent object through an impl Init<T, E>.
+While at it, drop unnecessary imports covered by prelude::*.
 
-Changes in v2:
-  - Rebase onto the DMA and nova-core fixes that went into -rc4.
-  - Rename CoherentInit to CoherentBox.
-  - Add a bunch of #[inline] attributes.
-  - Remove a few unnecessary trait bounds in "rust: dma: add generalized
-    container for types other than slices".
-  - Fix a typo and convert core::ptr::from_mut(&mut self[i]) into
-    &raw mut self[i].
+Link: https://docs.kernel.org/rust/coding-guidelines.html#imports
+Reviewed-by: Gary Guo <gary@garyguo.net>
+Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+---
+ rust/kernel/dma.rs | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-Danilo Krummrich (5):
-  rust: dma: use "kernel vertical" style for imports
-  rust: dma: introduce dma::CoherentBox for memory initialization
-  rust: dma: add Coherent:init() and Coherent::init_with_attrs()
-  gpu: nova-core: use Coherent::init to initialize GspFwWprMeta
-  gpu: nova-core: convert Gsp::new() to use CoherentBox
-
-Gary Guo (3):
-  rust: dma: add generalized container for types other than slices
-  rust: dma: add zeroed constructor to `Coherent`
-  gpu: nova-core: convert to new dma::Coherent API
-
- drivers/gpu/nova-core/dma.rs      |  19 +-
- drivers/gpu/nova-core/falcon.rs   |   5 +-
- drivers/gpu/nova-core/gsp.rs      |  68 ++--
- drivers/gpu/nova-core/gsp/boot.rs |   7 +-
- drivers/gpu/nova-core/gsp/cmdq.rs |  21 +-
- drivers/gpu/nova-core/gsp/fw.rs   | 128 +++---
- rust/kernel/device.rs             |   4 +-
- rust/kernel/dma.rs                | 632 +++++++++++++++++++++++-------
- samples/rust/rust_dma.rs          |   8 +-
- 9 files changed, 626 insertions(+), 266 deletions(-)
-
-
-base-commit: a19457958c3018783881c4416f272cd594f13049
+diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
+index a396f8435739..2eea7e2f8f04 100644
+--- a/rust/kernel/dma.rs
++++ b/rust/kernel/dma.rs
+@@ -5,12 +5,20 @@
+ //! C header: [`include/linux/dma-mapping.h`](srctree/include/linux/dma-mapping.h)
+ 
+ use crate::{
+-    bindings, build_assert, device,
+-    device::{Bound, Core},
+-    error::{to_result, Result},
++    bindings,
++    build_assert,
++    device::{
++        self,
++        Bound,
++        Core, //
++    },
++    error::to_result,
+     prelude::*,
+     sync::aref::ARef,
+-    transmute::{AsBytes, FromBytes},
++    transmute::{
++        AsBytes,
++        FromBytes, //
++    }, //
+ };
+ use core::ptr::NonNull;
+ 
 -- 
 2.53.0
 
