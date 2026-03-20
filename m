@@ -4,135 +4,181 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 671CC108B8E4
-	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 10:04:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51BD41098787
+	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 13:58:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 46D7B10EAC8;
-	Fri, 20 Mar 2026 10:04:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0E2C710EA0F;
+	Fri, 20 Mar 2026 13:58:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mVdxMc5k";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BLrutBRr";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DFAA54522C;
-	Fri, 20 Mar 2026 09:53:15 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774000395;
- b=z9p2ivHLprLmHTB8yIzn7f00O+sWAC3ernopd4WrwSQyqSiLq63M5YAESJH3LMAM5JY2v
- 67aAHaraEfZCBjXSjxux4w7JmkLA9to1esW9+SQ93gJkp9q+jVhPHd4+15ev31ofVGub3Mo
- n2GkiMm7DvdEQDC7yKXvngyiRuBt7OBi5SSo3WdwE4K0GUUk9OnPz+KH17zTmXbpR9fsbEw
- 6ZsTuwcfa5E5hfdvK9PcifgtILN5GI2sbsCnK5J0DDJSsTzOAE5BoV3IDURiSGMZqSH1M6w
- X1aQAWMuApacS0PC5w7p/id8G4Sn0DK9yXR1pRnuIqJ6CsNwJhOi+iELzzxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774000395; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4BAD045237;
+	Fri, 20 Mar 2026 13:47:25 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774014445;
+ b=WMPBkKdJBzh3JadDvmanWrZRJKJSXi+z5ehZCI/5kUNe6Op7z9Fl6EymSnI6IxqOaGwbK
+ DxzlE6qbrlD+dMdMnlJ/cbX1jVOLmZ8R+L9hI/uCfRm272VSFFM56gLC9aBeoHPKp2TF1kd
+ cwMKBb4YLDhOGihwOjYTdO0We4jPPZdYwnNwmFx34Ec4fyoyGZwKeWFL+rRCyPQyCtmGtKX
+ iepSdaQ8LiRT5NbYIS2kPwP4dlVQYsQb3idUvsE1HH8qEH/ZwjjIGwZ2i62sr3OQPLBkM9a
+ c+Ap8Ugvk+mtm4Kz7tEyft9wlC1af4wpbEuc0ULJl7l4qFS09T84b8RO2LNA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774014445; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Izdm/7D68g40rNesT50ueXh6Akh0cFui4OgMPqSoSys=;
- b=UnLYTEYc8zTNhLoNhbJQG/n9kjYBCYRyzYj0hTrJxRNFJ9TH9KWYyyauG4kb7DwNYNjbo
- njWI911dLDmoMsKz1duAWUDD9BAb3js7Yw3zUfKSwTRbsSNQWtKwlg6MMXqF8wA7pRzK1UM
- p5DPgboO32pd3BCWWCzhTnc+HAlgutMnCg1VYOmbnHxTTzqehTvRxtXalOXIFRUD1fR6jAQ
- LO/dFBkbIs/kkwCfTzvKNO0Uz5HZwr1hl90s2vULT71BZKfgxmC7eSGuXu2jtRhPKRu+Na9
- 2vb0VvPdOhB+v9S+/6Y2kLeHYaVE7s1r1FuHd1lve+EgK34nKzOCOtH8/opw==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ bh=A3rO3t+XCQ8/LgTOiMvJ0OFzPAVSyrRZKCHT5r2yU5w=;
+ b=yjCZ50ky5VkqcdhDrD94G/SWX/0uibyEiIed/O6JCKFtADsCDOIBmRX5AbIEHQr4/aW38
+ BSXL7XoWsAUH00/9zU6c5nOy+YKxn92groTJBu3CNFhqX+sAGU4xxs2VxscVTbAQOPx3Xyw
+ lc8LLoMDUwgz+w+Apx3Bf1g1/j2iKEuL31hkEHltjO95Exn7nvXrqoI2DoQBOc78A1neiT2
+ t7WGCPOhuuYf6SchxdJCmWXw1026faEc1PFNw0LgOB4iUVLoOz/Fry0N6GjPRs2vhDGuzXI
+ 0GIlEV9vEf2SatlJTJOcfIBxScE2yjpS8AUqryjWwh1TSvfogpubRjqduj6Q==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A0346450D6
-	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 09:53:12 +0000 (UTC)
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CE5DC10EAB8
-	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 10:04:07 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-2a7a9b8ed69so23407515ad.2
-        for <nouveau@lists.freedesktop.org>;
- Fri, 20 Mar 2026 03:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1774001047; x=1774605847;
- darn=lists.freedesktop.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Izdm/7D68g40rNesT50ueXh6Akh0cFui4OgMPqSoSys=;
-        b=mVdxMc5kkhG/YKcmGrmuvD3Agb+GgfDBN+E8yHkQCku8d7Nl05kcGPkZqKWBs9jhLk
-         j2+A0K5DIAXwLyDlECFnTHhYk9RfWeYyBiTRmU8uRCao6Jti6uT4ScZlM91FzZ5/PaN3
-         OF9MfmWEbANS24Fnofe1MIaIgbArv9jNkGLF6/zLE4N0IwLYwTaib4saJQimWXnPhoyZ
-         ti4ItzLEnzrqkQG3Aks0dbR6P26k+hCigmg5NE5ySE6Ws6mULEPwitDFCqsErTFysM6c
-         qthjwE4/rVHqZ9p5JRX1zB7Gx8ILv6Wfv3rsvds5bEgiw0hhkKA69fZbbK0Mmjb7NVsS
-         Rcwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774001047; x=1774605847;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-gg:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Izdm/7D68g40rNesT50ueXh6Akh0cFui4OgMPqSoSys=;
-        b=VxuI7In6zOczzfVZpvJ5JTbvpCMBVnTiZi0QL9394WQAmpjSSwW1otAHdOFfKHTviC
-         +dI0FwDFIO54Zop/0hXuGupAOkVKYcSxSm0rDsw8mE+8XSTiHqOrS8bdXigd8wHJBGzB
-         RcA0HFqnGNOZK0vBq6j3zHMY2fmOeaFegRwl6q3fgWm+mZxzTjfVgAomIp3fd1usmtY3
-         AgZh9CTCqEDGvfC8u/4Co3wqJ4tSDm7b9gCHoLrzuAReS88IvUhAyMftmU9wbFnHiqwS
-         wTLdqvB5OgYQhDmUrWm89enbuRB1ddoulxbxVzVjXmQTq6Isbd87CZvQYRhLZ7aIPBis
-         KJ9g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXpQ3bbZ62Md0gmyCIeEcjbplesxHfDgYl3eDeUUB5eBa0pywIHk47p7LpZ7b+oNg9dC2rb1R3h@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw5E9JlFCyF8DpvTPw9d+8r4O56EndIZW+o2BJXaSF2M2I+IBaz
-	jXuQxoRQ4W4eSpIvqam/hYwA51xolaHmtup0+OMg0Ap703qJp9vIG9FA
-X-Gm-Gg: ATEYQzywORk0GuzP/oO8hC/EhBrfptV6pybb077vojhMz3fair8YBQBFezTEQqaaOCQ
-	Bgzdb7q4GtEGwUOjoNJODkuyvldwVTj6KJEJOG0hI5DiFoBnsFlTV3lwWGL0Rebql688Et2ya5v
-	M840ZOraG9VsWPuDS3kBTOl6yUDp9+v2is13MSH4mXUvLWVLXxhyzzORRRLXfRqtt245Rn+hojK
-	zk/gyYeLZReDiGw6gQ4zhSAUNKSIk9VdH4mEAUnLwew6vwJE2eZvky8FDY8uF5XHqPCEdR4LBvV
-	h4R5uUg7OR1aEXvCcMiT0wnhIjWdAitiYbMADd0oEvHL3bkSmwG+lXRAYzKk1HXg8uUM7m/aCJV
-	209Ix9Vu0rXF872INcU8ih5aXUkYsFnLMgFCqwj+GlbWtu1g/ek+8xZfpJMQkTlyNP3qYDig8xp
-	2FHcezV8/gXifQvDfevQ==
-X-Received: by 2002:a17:903:244b:b0:2b0:676d:973e with SMTP id
- d9443c01a7336-2b0827e3593mr22392635ad.46.1774001047271;
-        Fri, 20 Mar 2026 03:04:07 -0700 (PDT)
-Received: from localhost ([112.149.32.52])
-        by smtp.gmail.com with ESMTPSA id
- d9443c01a7336-2b083516400sm16756525ad.11.2026.03.20.03.04.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Mar 2026 03:04:06 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+	by kara.freedesktop.org (Postfix) with ESMTPS id 52B7D44D6D
+	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 13:47:22 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012011.outbound.protection.outlook.com
+ [40.93.195.11])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B1B0D10E208;
+	Fri, 20 Mar 2026 13:58:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DSgFikQXg9rBjDRrhsmHMHP+MZykSTeBLIcF+wuFAtI6Yj1VI6cWssEbJsO1cgHySIz7bJ42VbOJQ7rUxjOIbrBURMvrY6sDrA5f3If7xEV08LGycdzqItNjQVu5Re970lx75SxgLIQ/aXiUeCO84VZcpo8he6qKk7h3yFH4wkcG8ff1pxCA0JAePcOkkmkfevOC8xnPXHIJ5tV1tfHE4sQNXT34GCMm54d3st3Y5MWt6KPuPwSmCjTJ8Ga6F5+sII4+JLrtixFQgxZOc9MMzfv4wOC8KQN1QUeZ+GUVKns2cf4fgmrUKGEMHgFve/3z7VG6PIXm1DauoHKaxMP+9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A3rO3t+XCQ8/LgTOiMvJ0OFzPAVSyrRZKCHT5r2yU5w=;
+ b=g30BoaHyuMkF1QgfSzQ9hNPWYbn+7WAhMuAq4a7izUTaDCA0SpKe5+mtZaXcqLQ0IhEoSfHij2jUaPT44Mh5OG3T3SCFCIjK2dUNLRbgm1X1xvQml4aEY4rk2bS8ajHXO7ziq5fp1hR/npEHpBujGyVSgf/niZgi5nXiLDdZjqKDDMC6KmoHBlsHIyiv5N0Q/mF7aa7+FTswRFMJ2DiwX82ZNUrYsm7Gb9DHWbgIBWy9PH7s0p4QiohRFVM2TGfb+n4TPyQdUDvH3otPYGYQYopZb8vweaSyDyzgpmCY1Yk5ZxylQdMWm3dVXbvQ0jzE9KGwjIuse15SUIx/DB1jnQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A3rO3t+XCQ8/LgTOiMvJ0OFzPAVSyrRZKCHT5r2yU5w=;
+ b=BLrutBRr465lhrFT2XTwtSgiW2qbBluCk5X+ceHNLPMD8Lsm7+EqXuvtT/8SmpGesvpas7v7rgJAuntRBY1ZWcIIP5RiNJbigRngdmx0FvWKX27tSG+lYnA+z9ALjX3mIC8KdQjTgxvoAqUKrC9H+0GEomlahP9FJFi+ar5gk0MmzdyTJXRFEZHfvOSssU0dSY7GGMRzczXLflC3/d+8VdZvJ8SKAO1AEeC1DlbVwRmJFd5HK2mgUyQAP8e2WPKyPljPV9sg7B1pP/4WU6Pk4TP/V7Q9p6BhF0yYNMfrp75Mmk2pSkCLguXXscbeZ+N6YsKJlYWZJqwvvlRTb/fLEA==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by PH7PR12MB7890.namprd12.prod.outlook.com (2603:10b6:510:268::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Fri, 20 Mar
+ 2026 13:58:11 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9745.007; Fri, 20 Mar 2026
+ 13:58:11 +0000
 Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Mar 2026 19:04:01 +0900
-Message-Id: <DH7IVVURBJ8G.QP1WRFTGS556@gmail.com>
-Subject: Re: [PATCH v5 0/4] rust: add `TryFrom` and `Into` derive macros
-From: "Jesung Yang" <y.j3ms.n@gmail.com>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Jesung Yang via B4 Relay"
- <devnull+y.j3ms.n.gmail.com@kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20260129-try-from-into-macro-v5-0-dd011008118c@gmail.com>
- <DGQCKLKCHRD1.25W93SR8LJ87H@nvidia.com>
-In-Reply-To: <DGQCKLKCHRD1.25W93SR8LJ87H@nvidia.com>
-Message-ID-Hash: KVGCAUVVGAD26H6UMUHPU76RZH4UU7JT
-X-Message-ID-Hash: KVGCAUVVGAD26H6UMUHPU76RZH4UU7JT
-X-MailFrom: y.j3ms.n@gmail.com
+Date: Fri, 20 Mar 2026 22:58:07 +0900
+Message-Id: <DH7NV48P5SVF.2YKX6XR2RBONA@nvidia.com>
+Subject: Re: [PATCH 2/8] rust: dma: add generalized container for types
+ other than slices
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Gary Guo" <gary@garyguo.net>
+Content-Transfer-Encoding: quoted-printable
+References: <20260303162314.94363-1-dakr@kernel.org>
+ <20260303162314.94363-3-dakr@kernel.org> <abj5mOYQAY290nqY@google.com>
+ <DH52NZ8L28QN.JTWZP7UBYL8Q@garyguo.net>
+In-Reply-To: <DH52NZ8L28QN.JTWZP7UBYL8Q@garyguo.net>
+X-ClientProxiedBy: OS7PR01CA0291.jpnprd01.prod.outlook.com
+ (2603:1096:604:25a::11) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|PH7PR12MB7890:EE_
+X-MS-Office365-Filtering-Correlation-Id: f000b4ed-7420-469b-3df4-08de8688b8cc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|7416014|376014|10070799003|366016|1800799024|7053199007|22082099003|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 
+	l3CaULEL6QO12AXxHXtLAFxcQhzErH/3osii+0t+yhuoKv/carWSBtVZDcm+sjrIyu4oBY09oMf9kH0a29A49zPzAn9G2JSHVfX1aZY23gDjVB7XPhS3Oj9PKG8GJ279Svgr21G5eGqzDmtkfYyyb8KvrRdwpVA9xV+5GSJq/WtpszlJsJMXyzE1EfZhew8RrtHw7Y1p1nxYplQp5tx3hQBIM23mekGTK7IFI0zZw4W9XC4djaSNo3ylWXOjBfq1UpQ11aDzOchfe6/6du/1icVQ9NcOcIiHW+Jvnn+dKHdBpOg88EecJVYAruCmfoBvyMnFWvsgI9HluzrzygZY0rshs0hV4M5bRG7KRYhftoUKZm1r06xGVM4RMaC8NFQFxgphHqaBUdecG6tWn4zBJhGV7ZmcTzDNHH53LL4zH7X1tiC0rVyp+h0OlZzPNTzbqyUja4DBcJSv6ZDae5khxhpmuICprdydNOiT09mV1XoLb1ETti606O8XUNEpL4qo5WIo1hqJaRBhUrbX8iELS4ZstY0+x/yBynhgv0NosLE5my5GgLZcG+f9z3HrU1sH0f0/xg09NfBDz3eeB7vqqNst9iHiSTnmugp4sls9rQb3eQ6FgwENjfib2Ai+FzGeGCtmDiUavxKCz88iHhWwUN0+uFfvEZwnlA1i33lEYwhEoPxINfcjl4+LmfBBNn53Eq81ZUJ2GQ2NY2To5PSLivb+EyT3oHhBzcOqejY1gts=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(10070799003)(366016)(1800799024)(7053199007)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?Q2RmdGh2T1RGOU91cnJCa0Q4cEdkNGtLelVZcG9kd0FjRlEwYTJnQndHNTNS?=
+ =?utf-8?B?eWJ6R1BFMW9UTFFJNjlPT1hucDlVbWxFdVpmSW9qcHk0RThWRjVORUs1Z3Zn?=
+ =?utf-8?B?THo4OExjUEVETXdocjl1dCtoZC9BK2xzM0xZem9EQVZPUUlBNU9oVHJLbW5i?=
+ =?utf-8?B?MlQzenhpU2hMaTVvbTIxTlZsMEpiTllHSlJJb2paV2NVTk45YTBOZ1p3aFJm?=
+ =?utf-8?B?WjI3OVJadU9Ld1pqaDJjMjlheVJEeWFwYkdqcWt0K1NOVWNnWVM3eGJCWjlo?=
+ =?utf-8?B?ZjBLMUhIWUp2WWR0MGhJemhlQTR6S1EvZFh4LzFubk1BaEJkM2tObHljaTNh?=
+ =?utf-8?B?ZENQM2RWN05uSkxRTitmY00rdTdLcUxGWlRCcEpaNHNmc1dCZk9aV0tKalVn?=
+ =?utf-8?B?aGo3SzFYaHJ2dmZyZWtrYjJsNWpjSVRCMTJUWWN3bGJSTWR3dXFwcEhuMVZR?=
+ =?utf-8?B?My9na1FGZGJSZGs2RkNXc0drcFgxdWU1NjBDTkFPS29zeWdpUTFKbXA3cW1y?=
+ =?utf-8?B?VUdkZTZsQjVneExKSVB0RGM3T1BqdU9zN3FzbExUSmVZek42K1E1WjZRajZh?=
+ =?utf-8?B?YktRclpvdjJYOVcyTlNGdG12YzN3R09NZ2tyY1Zva094Vng4bkR5MFFTc2M0?=
+ =?utf-8?B?UGE5emFGUWh0ekNXVnV4QmpEWjJnelVMc2drZmpqWHNKbEhSVVdxN2xKUFlN?=
+ =?utf-8?B?b2RsSzg0VmRCNy9JdWRGRCtxZUhzS1loVVBuM1MxNW9FcXgyM1ptaTVyUW9j?=
+ =?utf-8?B?NHJHeW9LaDlxVDhMZTFLYUR0NkdNYzdOaUdoODZOWEdVZzZDSXY3bFRtT0ZE?=
+ =?utf-8?B?WUNUQjNIYUNjS0NHRUxFK2hIQW5wR1pMeTBuUE5mODNFNFFhcFJ3VDMzVHNq?=
+ =?utf-8?B?UzNnWkVoL2ZaaU0ycUszRVlYYVJ3Q3NDOHB6UlR2WFVvOGVOd1drZFJ4OCtL?=
+ =?utf-8?B?UWcxallnMlVKdEhFU3RJRGtGNUhJSlhTT2NBTEZna2lucXZoekYySzZtN2ZE?=
+ =?utf-8?B?NERwYng0ZGpPQUN3dXlCL2RHSmdlME1SdTVMWGFZbUdIUHI3OHhweW5qRnYv?=
+ =?utf-8?B?bnJaM2ZScjlrOVpWNEE3MkwwTitKNmNTYWc0a3RKbUloaTExRUNMRWtGemQ5?=
+ =?utf-8?B?ajhaZUp1YldJMm44VUtPck0xU2pqVWFiUmNlNGtKRXlheGVSMDNzd3NNaDU2?=
+ =?utf-8?B?SjBQaVV5Y3hvTi9keEcwMzZGL2diaUd4TmZTaFJYL3EvQmtPREF3WEJFQlll?=
+ =?utf-8?B?amIwMmFuL01FSUlIeFNBRldCTm1iZE9KTVJYd2hqTkZNemxKbjlLVHBWTWZH?=
+ =?utf-8?B?R3ZUMStjYm10R3p0Rm5qMkxpQms0RW43Ymx2NS9OM09nOG1FL0xORmpxUEN3?=
+ =?utf-8?B?UTdFUGNWNnRnSlRRVytOUDlUN2hmdVFmelU2Wm5zTXZmcnh3K3ZvMmVGcVBI?=
+ =?utf-8?B?T1FaZGZqbnAzTkJySENnRzc4a2NTNzVOcmZHcFZuZE13SmhGMGxDYlkwUnAr?=
+ =?utf-8?B?Q2ltTThiZUQ2cHY2K3RxcVBhWGFNdlVzRnN5V1NER2lTaVZEKzQyeDRwS2JM?=
+ =?utf-8?B?U2VhRmhaUzN2UzBiM0ZmcEx1b2NxZ0ZKZEZmSGdRbHdmZkxRY3lmZ283eG5D?=
+ =?utf-8?B?U3VTOE9yd2svekwwd3lraE4wellPWjhvajg2empBZkZPUTROUi9FdTE1Y1R0?=
+ =?utf-8?B?aHhQM3dienYxb2tFaFU0dkFkcWZxQ3R3RmJMbDRDWVc5NXpOMUhmbkorY1JF?=
+ =?utf-8?B?WUdoZHN4Q1BMVmRLVWxWaXhnSjlaRFBDV1VYWnhwKzVlSTNiNVFQZisxY0JY?=
+ =?utf-8?B?RDBrMXV3NUJxYWRldVJPcUk2VithdU5VVjRsUUxJZUVDTXg3Qlc3TEF1bzJl?=
+ =?utf-8?B?VFBiNGhJZFNHQi9MZXdMN0ovc0hIdUNRd3NYWmNyL1dOQVRRcklOQlg4aENL?=
+ =?utf-8?B?YUtwS25sRzFKWXEzbm01bXU0cUVXZlJkSm5KbG1iOURCKzhWYUt5VlZtSjZX?=
+ =?utf-8?B?VTduMUVMditwQzZpN1AydFZPN1VHdnluclo4MFcvVnJ4OGRDMldXUlpkT3FD?=
+ =?utf-8?B?UXc1ekNTN3RacnQrSkVwSEx2ZDI3YTQzQXlqaEY4ZUZkM2hOaWFLTDJjbHFv?=
+ =?utf-8?B?OXJpRHo5YldKajVnODcyYjhtWUNQcXM4dG92clFOOUpXN2xmQkpGZUpUN0lM?=
+ =?utf-8?B?L2wzTzhacmZ1Mmc5MHNMb3NmcUtMRFZVV2NReVE1NktpZ3gwR0tZM0xUVllP?=
+ =?utf-8?B?bjFxemt3OWxyK3pIVjdicUdBdjc0SkhpeEU1ejNKdHd5dDBWZXk5M2drTkUr?=
+ =?utf-8?B?L2l5ejFvdndPUjB0aFhVN0FWdWt6dEI3b0tHVTIwOHl2QlpaOFlvNUJJblE1?=
+ =?utf-8?Q?rS6YidMXoLtwZBh29frL8T5v8pz7z8Bs8g5rJ4fZPocDe?=
+X-MS-Exchange-AntiSpam-MessageData-1: NqriBi45XweAtw==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ f000b4ed-7420-469b-3df4-08de8688b8cc
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 13:58:10.9202
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ ubdw6xWIlEQdYmMyovJ4mb8nwp7VYytPWWp81m5PDa5eWjEM+xUk5iP9btHB6grw2dVBvxRNJWLp/Ksw19rOVg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7890
+Message-ID-Hash: AJLUHQDQNINH72VOD2O5ATGCFWKOYLHP
+X-Message-ID-Hash: AJLUHQDQNINH72VOD2O5ATGCFWKOYLHP
+X-MailFrom: acourbot@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: y.j3ms.n@gmail.com, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, linux-kernel@vger.kernel.org,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org
+CC: Alice Ryhl <aliceryhl@google.com>, Danilo Krummrich <dakr@kernel.org>,
+ ojeda@kernel.org, boqun@kernel.org, bjorn3_gh@protonmail.com,
+ lossin@kernel.org, a.hindborg@kernel.org, tmgross@umich.edu,
+ abdiel.janulgue@gmail.com, daniel.almeida@collabora.com,
+ robin.murphy@arm.com, driver-core@lists.linux.dev,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KVGCAUVVGAD26H6UMUHPU76RZH4UU7JT/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AJLUHQDQNINH72VOD2O5ATGCFWKOYLHP/>
 Archived-At: 
- <https://lore.freedesktop.org/DH7IVVURBJ8G.QP1WRFTGS556@gmail.com/>
+ <https://lore.freedesktop.org/DH7NV48P5SVF.2YKX6XR2RBONA@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -142,86 +188,46 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Apologies for the delay.
-
-On Sat Feb 28, 2026 at 2:31 PM KST, Alexandre Courbot wrote:
-[...]
-> FWIW I have converted nova-core to use this, and this results in -200LoC
-> delta. Obviously I like this very much. :)
->
-> A few pieces of feedback for things I noticed while doing the
-> conversion:
->
-> - Very often we need to convert a type from and into the same primitive.
->   Not having to repeat the same thing in `#[try_from(foo)]` and
->   `#[into(foo)]` for these cases would be nice.
-
-I think I can add a common attribute that works for both `TryFrom` and
-`Into`, e.g. `#[convert(foo)]`.
-
-> - In some rare cases, we want to convert an enum with 4 variants into
->   e.g. a `Bounded<u8, 2>`. This can be done using a `From`
->   implementation, and that's what the register macro expects. These
->   cases are not covered by the current macro (they are few however).
-
-I think you can just do the following?:
-
-    #[derive(Into)]
-    #[into(Bounded<u8, 2>)]
-    enum Enum {
-        A,
-        B,
-        C,
-        D,
-    }
-
-    let a =3D Bounded::<u8, 2>::from(Enum::A);
-    // or let a: Bounded<u8, 2> =3D Enum::A.into();
-
-This works because `Into` actually generates the `From<Enum>`
-implementation for `Bounded<u8, 2>`.
-
-> - When converting from/into boundeds, the number of used bits is the
->   only thing that counts - the backing type (u8, u32, ...) is
->   irrelevant. I thought it would be cool to be able to have a generic
->   TryFrom/Into implementation that works irrespective of the backing
->   type, but as far as I can tell this would be difficult to achieve.
->   Just throwing the idea in case others are more inspired than I am. :)
-
-Yeah, it seems difficult to me as well since those macros need the
-full type information to generate the trait implementations.
-
->> One last point: the current `Into` implementation relies on
->> `Bounded::from_expr()`, which utilizes `build_assert!()`. So the
->> expanded result looks roughly like this:
+On Tue Mar 17, 2026 at 9:56 PM JST, Gary Guo wrote:
+> On Tue Mar 17, 2026 at 6:50 AM GMT, Alice Ryhl wrote:
+>> On Tue, Mar 03, 2026 at 05:22:53PM +0100, Danilo Krummrich wrote:
+>>> From: Gary Guo <gary@garyguo.net>
+>>>=20
+>>> Currently, `CoherentAllocation` is concecptually a DMA coherent contain=
+er
+>>> of a slice of `[T]` of runtime-checked length. Generalize it by creatin=
+g
+>>> `dma::Coherent<T>` which can hold any value of `T`.
+>>> `Coherent::alloc_with_attrs` is implemented but not yet exposed, as I
+>>> believe we should not expose the way to obtain an uninitialized coheren=
+t
+>>> region.
+>>>=20
+>>> `Coherent<[T]>` provides a `len` method instead of the previous `count(=
+)`
+>>> method to be consistent with methods on slices.
+>>>=20
+>>> The existing type is re-defined as a type alias of `Coherent<[T]>` to e=
+ase
+>>> transition. Methods in use are not yet removed.
+>>>=20
+>>> Signed-off-by: Gary Guo <gary@garyguo.net>
+>>> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 >>
->>   impl From<Enum> for Bounded<u8, 4> {
->>       fn from(value: Enum) -> Bounded<u8, 4> {
->>           // Compile-time assertions to guarantee `value` fits within
->>           // `u8` (Omitted)
->>
->>           Bounded::<u8, 4>::from_expr(value as u8)
->>       }
->>   }
->>
->> After some experimentation, it appears that the compiler correctly
->> optimizes out the assertion if (and only if) the `Bounded` type covers
->> all enum discriminants, though I'm not 100% certain of this behavior in
->> all cases. Can we approach this better?
+>> I see you have both `size()` and `len()`. I think it would be clearer to
+>> rename `size()` to `len_bytes()`.
 >
-> I think you should also be able to have a match arm for all variants and
-> call the `Bounded::new` const method - hopefully the compiler will
-> optimize that as well. That or rely on unsafe code and a (hypothetical)
-> `new_unchecked` constructor for Bounded, since the macro can infer that
-> its invariants are respected.
+> This is an API that already exists and I simply moved it around so it is
+> implemented for all types, not just `[T]`.
+>
+> I also think that `size()` quite unambiguously means the size in bytes (l=
+ike, in
+> all allocation and I/O APIs, `size` means size of object in bytes); I don=
+'t see
+> much benefit in renaming it `len_bytes`.
 
-This looks much better. Thanks for the idea!
+Agreed, furthermore `len` is used in the standard library so the pattern
+of it returning a number of elements is pretty established.
 
-I'll update the implementation based on your feedback within this week,
-but I'd like to ping Benno first to check whether he's satisfied with
-this v5 before I send those new changes.
-
-Thanks for your patience.
-
-Best regards,
-Jesung
+Generally speaking I tend to prefer having the units mentioned in the
+doccomment rather than the method name.
