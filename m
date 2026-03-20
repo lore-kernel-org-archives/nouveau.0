@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 813861099B39
-	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 19:47:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA5AB1099B39
+	for <nouveau@archiver.kernel.org>; Fri, 20 Mar 2026 19:47:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 66BFF10EC18;
-	Fri, 20 Mar 2026 19:47:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CD49D10EC1D;
+	Fri, 20 Mar 2026 19:47:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RS/plEgH";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XfiuRB0r";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2CF4F45246;
-	Fri, 20 Mar 2026 19:36:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 9046745247;
+	Fri, 20 Mar 2026 19:36:18 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774035373;
- b=CXILPyrxDQhzrk97tl14+FJxMsXZvcabKftq0+U2EsThcsXvJJbGp8ZBZ9PHObFoRC6Xn
- dJsIywkUCGEOAZIkM/7U80wLHGYchqIrwGf1sgbMtYM8Tkhf5q60HSp5Da5e0WTwOsZFbKy
- avQak2c9ujmAGyw21+p3OyuprhJ6/5P0CZIlDgVQawUYAe87ofeqNtNQtfZ4cVQVOM2d8Rz
- 3gmZ7Q3557NrCjw/dIk+CwTuft8mDTYcZwpPx/eQNVNr64p8w0rRpB9q/TARrKLcm8g9bBy
- YVX8zJoJmmbxYB78uhGMlnMfZnS8QC9mQ1fEThhd+GI8dj0USvW/4UP4faUQ==
+ s=20240201; t=1774035378;
+ b=bVmAbf7hlCRzJXuUVvi1nK1/6DA9K6Riyzlx6MnIqdyP3M0WrG8DiH4+H3yeUkKhUjPvx
+ m2zjqNZ2komP2TxizOlN1HD6V1OK4Eg9g5xVqGTpXj+Xu4cPWxrYP070lRc/I394u5qGAgb
+ QMbU5taiZWOaKiDDom4AxAr3KeI4iycUR9hhpNc27VJukQ1ux7SE6OpVkqzuHvOzirzZII3
+ wZlmmFUYLr1wfv7XLXvFOgPRDmWirNxIEdw5MNG0Hw58efeXuldYrMSJv2JZRwdKlnuM3l/
+ 6+7ZFXTwBCbDLPDp+rSAERoqIyutano5bRjbEXV0DIlCI1+IA2HvfFLwhk7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774035373; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774035378; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=n7ybhiq0b61oRGsMq8kXk4IKfpmEirl6YdaQLjbzBsE=;
- b=vDxZEue6KK9vake3fdZQBYBHz4MNNqGg0xcQZmcfQxNIa2/FPeZ0dKfy2KXS5zOjzDiHC
- nX6AywOsUD9HtcUkKM16A7u6TNH5KNngZw5BLkiegpEkQ0JHoy4iDlUxz3w3s0hx7+S77bR
- eHjEVsNZPnCm4HZSO/MT9kvQN388jkheYjtqkqb+On5l3hrHAof8jSNDV0rv5lJMwBKmOb2
- EXUG6e2plOE9RHK8GAZImGmmptt58Sgk42RQfL2YkZ6u4YtVBo54um+DLW/Rho3BsDWN/tE
- E2H3yPpEIBhOYrJryh0zhLDXvAlJlQGqHwpbuChCkR4s1JulYiKvJs6gCmGw==
+ bh=q0BGFIhExnBGNgERg67NEsHH3Or0ZmOe9oryXHLZ0uo=;
+ b=zhYiNGlsB2bhGbSoGQUfjTDtcd0UtCm7DFFvpd97TpD5w0Sdeg+ABvrqRdYpMAbRmqceG
+ /VERrNSGDDLqr5F9CuudzL7VFeHc9jhJO3xiJGuYnj79NkQOKISWgO3NnGs7FzLJ9m4WOsH
+ BvbacSCLunEfzsgDcK3Wpdx/ZyB5z1u+oOaHJBKOTVRT+nxKxTdPwGcpYtzKMBPjuoiIylg
+ BNK//qm1OUgHggcoJGPELpV4E0lmaaE6wsU+CkXB+3Ggi5pFvrh7zt3thg1xrdiuxlf7YqO
+ JkBq24vE8vIbZSBpjr9WnQxYMqH8CzKaUT0TR2yfj5+aUxoP37hAd5DPQxsg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 8A37B44C8D
-	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 19:36:10 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A345010EC16;
-	Fri, 20 Mar 2026 19:47:06 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EEEE644C8D
+	for <nouveau@lists.freedesktop.org>; Fri, 20 Mar 2026 19:36:15 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EDB3310EBD6;
+	Fri, 20 Mar 2026 19:47:11 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8B0F2412F2;
+	by tor.source.kernel.org (Postfix) with ESMTP id DE67E6091C;
+	Fri, 20 Mar 2026 19:47:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB4BBC2BCAF;
 	Fri, 20 Mar 2026 19:47:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2FD2C4CEF7;
-	Fri, 20 Mar 2026 19:47:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774036026;
-	bh=yc78EFSFizHHU1W4DvyE+4pE9pQQdt0bGIk0ILUuLHM=;
+	s=k20201202; t=1774036030;
+	bh=H19eCxDOxVLkokvJ6mibpjYwYFYpFnwlymEHSUKk2CM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RS/plEgHZ2b/fcU7+m23NjZIXr1vn73AdcNkXaEE+f+jhAlYT1IL4zp/nHw2MjBBp
-	 HnkaMiqTht7Xkq6AQdlIPp9RHS7Uj4L6C/Sdu4TWkk7bZS9ITwgsqr9xGc/Wi9vjap
-	 vxtzvGt78R1lkvLLbDTn3pXiHjaLG8hb372GoSC4QD3ZO8JexrKvDp7OwJrhEvkZGd
-	 /Lavmr27PrELMEQK4K93VkH1JBMVURccwkoJLTVAWAb9X4yA65UWMRFyI+WX8O0EUK
-	 DbxOEeMVQ2kYlJCwKsSbwITKGHKVkVxL9iOPB6MvH1mwAzBiZefAXxXlQH9B5VX3AU
-	 uy11tKDMk49qA==
+	b=XfiuRB0rmDmC7dl8VW4ICAzjET0MPrSZ9M/Kxxz/Vbq4Y7R1xbCYg7GFgHNtvkEz9
+	 KCR4fLPOCokYjrVerEKuP/3JWyKGiSWhgZlb7tXTTsFBHpo6+VtyG5kxN8AFU+OHud
+	 uYuNpxG/JaG1tLiySY0M89cpXZEIy4OV6vL+LSKp+4T094FwVjeele90B15LxxVd5F
+	 aM5ZzulIxzSG4Onk03Mg7iZ6sbj//7bW5HR6S/uUx+nsq8m946rTRcR7M9i3+OcQq5
+	 JBU5qLiGZURTfRxksi7i/V/Ey0q+jKSBqB9hXtjJMNrArV1l8JV6lyQiKcNIgnEjSW
+	 cuXY1ut48OF/A==
 From: Danilo Krummrich <dakr@kernel.org>
 To: aliceryhl@google.com,
 	acourbot@nvidia.com,
@@ -79,17 +79,16 @@ To: aliceryhl@google.com,
 	abdiel.janulgue@gmail.com,
 	daniel.almeida@collabora.com,
 	robin.murphy@arm.com
-Subject: [PATCH v2 6/8] gpu: nova-core: use Coherent::init to initialize
- GspFwWprMeta
-Date: Fri, 20 Mar 2026 20:45:41 +0100
-Message-ID: <20260320194626.36263-7-dakr@kernel.org>
+Subject: [PATCH v2 7/8] gpu: nova-core: convert Gsp::new() to use CoherentBox
+Date: Fri, 20 Mar 2026 20:45:42 +0100
+Message-ID: <20260320194626.36263-8-dakr@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260320194626.36263-1-dakr@kernel.org>
 References: <20260320194626.36263-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: LZLZVAGTBHVO5HVBHTMBQBMFPUTSPPGF
-X-Message-ID-Hash: LZLZVAGTBHVO5HVBHTMBQBMFPUTSPPGF
+Message-ID-Hash: CJHVS6E3BF36DW7LQNQRY3H7SBBVHWJ4
+X-Message-ID-Hash: CJHVS6E3BF36DW7LQNQRY3H7SBBVHWJ4
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -101,9 +100,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LZLZVAGTBHVO5HVBHTMBQBMFPUTSPPGF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CJHVS6E3BF36DW7LQNQRY3H7SBBVHWJ4/>
 Archived-At: 
- <https://lore.freedesktop.org/20260320194626.36263-7-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260320194626.36263-8-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,84 +112,243 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Convert wpr_meta to use Coherent::init() and simplify the
-initialization.  It also avoids a separate initialization of
-GspFwWprMeta on the stack.
+Convert libos (LibosMemoryRegionInitArgument) and rmargs
+(GspArgumentsPadded) to use CoherentBox / Coherent::init() and simplify
+the initialization. This also avoids separate initialization on the
+stack.
 
 Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 ---
- drivers/gpu/nova-core/gsp/boot.rs |  7 ++-----
- drivers/gpu/nova-core/gsp/fw.rs   | 20 +++++++++++++++-----
- 2 files changed, 17 insertions(+), 10 deletions(-)
+ drivers/gpu/nova-core/gsp.rs    | 47 +++++++++++--------------
+ drivers/gpu/nova-core/gsp/fw.rs | 62 +++++++++++++++++++++++----------
+ 2 files changed, 65 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gsp/boot.rs
-index 5e73bd769dcc..e55210ebb6d1 100644
---- a/drivers/gpu/nova-core/gsp/boot.rs
-+++ b/drivers/gpu/nova-core/gsp/boot.rs
-@@ -2,8 +2,7 @@
- 
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index 72f173726f87..f0a50bdc4c00 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -5,10 +5,11 @@
  use kernel::{
      device,
--    dma::CoherentAllocation,
+     dma::{
++        Coherent,
+         CoherentAllocation,
++        CoherentBox,
+         DmaAddress, //
+     },
 -    dma_write,
-+    dma::Coherent,
-     io::poll::read_poll_timeout,
      pci,
      prelude::*,
-@@ -164,9 +163,7 @@ pub(crate) fn boot(
-             bar,
-         )?;
+     transmute::AsBytes, //
+@@ -106,7 +107,7 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+ #[pin_data]
+ pub(crate) struct Gsp {
+     /// Libos arguments.
+-    pub(crate) libos: CoherentAllocation<LibosMemoryRegionInitArgument>,
++    pub(crate) libos: Coherent<[LibosMemoryRegionInitArgument]>,
+     /// Init log buffer.
+     loginit: LogBuffer,
+     /// Interrupts log buffer.
+@@ -117,7 +118,7 @@ pub(crate) struct Gsp {
+     #[pin]
+     pub(crate) cmdq: Cmdq,
+     /// RM arguments.
+-    rmargs: CoherentAllocation<GspArgumentsPadded>,
++    rmargs: Coherent<GspArgumentsPadded>,
+ }
  
--        let wpr_meta =
--            CoherentAllocation::<GspFwWprMeta>::alloc_coherent(dev, 1, GFP_KERNEL | __GFP_ZERO)?;
--        dma_write!(wpr_meta, [0]?, GspFwWprMeta::new(&gsp_fw, &fb_layout));
-+        let wpr_meta = Coherent::init(dev, GFP_KERNEL, GspFwWprMeta::new(&gsp_fw, &fb_layout))?;
+ impl Gsp {
+@@ -126,34 +127,28 @@ pub(crate) fn new(pdev: &pci::Device<device::Bound>) -> impl PinInit<Self, Error
+         pin_init::pin_init_scope(move || {
+             let dev = pdev.as_ref();
  
-         self.cmdq
-             .send_command_no_wait(bar, commands::SetSystemInfo::new(pdev))?;
++            // Initialise the logging structures. The OpenRM equivalents are in:
++            // _kgspInitLibosLoggingStructures (allocates memory for buffers)
++            // kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] array)
+             Ok(try_pin_init!(Self {
+-                libos: CoherentAllocation::<LibosMemoryRegionInitArgument>::alloc_coherent(
+-                    dev,
+-                    GSP_PAGE_SIZE / size_of::<LibosMemoryRegionInitArgument>(),
+-                    GFP_KERNEL | __GFP_ZERO,
+-                )?,
+                 loginit: LogBuffer::new(dev)?,
+                 logintr: LogBuffer::new(dev)?,
+                 logrm: LogBuffer::new(dev)?,
+                 cmdq <- Cmdq::new(dev),
+-                rmargs: CoherentAllocation::<GspArgumentsPadded>::alloc_coherent(
+-                    dev,
+-                    1,
+-                    GFP_KERNEL | __GFP_ZERO,
+-                )?,
+-                _: {
+-                    // Initialise the logging structures. The OpenRM equivalents are in:
+-                    // _kgspInitLibosLoggingStructures (allocates memory for buffers)
+-                    // kgspSetupLibosInitArgs_IMPL (creates pLibosInitArgs[] array)
+-                    dma_write!(
+-                        libos, [0]?, LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0)
+-                    );
+-                    dma_write!(
+-                        libos, [1]?, LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0)
+-                    );
+-                    dma_write!(libos, [2]?, LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0));
+-                    dma_write!(rmargs, [0]?.inner, fw::GspArgumentsCached::new(&cmdq));
+-                    dma_write!(libos, [3]?, LibosMemoryRegionInitArgument::new("RMARGS", rmargs));
++                rmargs: Coherent::init(dev, GFP_KERNEL, GspArgumentsPadded::new(&cmdq))?,
++                libos: {
++                    let mut libos = CoherentBox::zeroed_slice(
++                        dev,
++                        GSP_PAGE_SIZE / size_of::<LibosMemoryRegionInitArgument>(),
++                        GFP_KERNEL,
++                    )?;
++
++                    libos.init_at(0, LibosMemoryRegionInitArgument::new("LOGINIT", &loginit.0))?;
++                    libos.init_at(1, LibosMemoryRegionInitArgument::new("LOGINTR", &logintr.0))?;
++                    libos.init_at(2, LibosMemoryRegionInitArgument::new("LOGRM", &logrm.0))?;
++                    libos.init_at(3, LibosMemoryRegionInitArgument::new("RMARGS", rmargs))?;
++
++                    libos.into()
+                 },
+             }))
+         })
 diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
-index a061131b5412..4e3bfc6c4c47 100644
+index 4e3bfc6c4c47..0d8daf6a80b7 100644
 --- a/drivers/gpu/nova-core/gsp/fw.rs
 +++ b/drivers/gpu/nova-core/gsp/fw.rs
-@@ -204,7 +204,9 @@ pub(crate) fn wpr_heap_size(&self, chipset: Chipset, fb_size: u64) -> u64 {
- /// Structure passed to the GSP bootloader, containing the framebuffer layout as well as the DMA
- /// addresses of the GSP bootloader and firmware.
+@@ -9,11 +9,12 @@
+ use core::ops::Range;
+ 
+ use kernel::{
+-    dma::CoherentAllocation,
++    dma::Coherent,
+     prelude::*,
+     ptr::{
+         Alignable,
+-        Alignment, //
++        Alignment,
++        KnownSize, //
+     },
+     sizes::{
+         SZ_128K,
+@@ -648,7 +649,9 @@ unsafe impl AsBytes for RunCpuSequencer {}
+ /// The memory allocated for the arguments must remain until the GSP sends the
+ /// init_done RPC.
  #[repr(transparent)]
--pub(crate) struct GspFwWprMeta(bindings::GspFwWprMeta);
-+pub(crate) struct GspFwWprMeta {
-+    inner: bindings::GspFwWprMeta,
+-pub(crate) struct LibosMemoryRegionInitArgument(bindings::LibosMemoryRegionInitArgument);
++pub(crate) struct LibosMemoryRegionInitArgument {
++    inner: bindings::LibosMemoryRegionInitArgument,
 +}
  
  // SAFETY: Padding is explicit and does not contain uninitialized data.
- unsafe impl AsBytes for GspFwWprMeta {}
-@@ -217,10 +219,14 @@ unsafe impl FromBytes for GspFwWprMeta {}
- type GspFwWprMetaBootInfo = bindings::GspFwWprMeta__bindgen_ty_1__bindgen_ty_1;
+ unsafe impl AsBytes for LibosMemoryRegionInitArgument {}
+@@ -658,10 +661,10 @@ unsafe impl AsBytes for LibosMemoryRegionInitArgument {}
+ unsafe impl FromBytes for LibosMemoryRegionInitArgument {}
  
- impl GspFwWprMeta {
--    /// Fill in and return a `GspFwWprMeta` suitable for booting `gsp_firmware` using the
-+    /// Returns an initializer for a `GspFwWprMeta` suitable for booting `gsp_firmware` using the
-     /// `fb_layout` layout.
--    pub(crate) fn new(gsp_firmware: &GspFirmware, fb_layout: &FbLayout) -> Self {
--        Self(bindings::GspFwWprMeta {
-+    pub(crate) fn new<'a>(
-+        gsp_firmware: &'a GspFirmware,
-+        fb_layout: &'a FbLayout,
+ impl LibosMemoryRegionInitArgument {
+-    pub(crate) fn new<A: AsBytes + FromBytes>(
++    pub(crate) fn new<'a, A: AsBytes + FromBytes + KnownSize + ?Sized>(
+         name: &'static str,
+-        obj: &CoherentAllocation<A>,
+-    ) -> Self {
++        obj: &'a Coherent<A>,
 +    ) -> impl Init<Self> + 'a {
+         /// Generates the `ID8` identifier required for some GSP objects.
+         fn id8(name: &str) -> u64 {
+             let mut bytes = [0u8; core::mem::size_of::<u64>()];
+@@ -673,7 +676,8 @@ fn id8(name: &str) -> u64 {
+             u64::from_ne_bytes(bytes)
+         }
+ 
+-        Self(bindings::LibosMemoryRegionInitArgument {
 +        #[allow(non_snake_case)]
-+        let init_inner = init!(bindings::GspFwWprMeta {
-             // CAST: we want to store the bits of `GSP_FW_WPR_META_MAGIC` unmodified.
-             magic: bindings::GSP_FW_WPR_META_MAGIC as u64,
-             revision: u64::from(bindings::GSP_FW_WPR_META_REVISION),
-@@ -255,7 +261,11 @@ pub(crate) fn new(gsp_firmware: &GspFirmware, fb_layout: &FbLayout) -> Self {
-             fbSize: fb_layout.fb.end - fb_layout.fb.start,
-             vgaWorkspaceOffset: fb_layout.vga_workspace.start,
-             vgaWorkspaceSize: fb_layout.vga_workspace.end - fb_layout.vga_workspace.start,
++        let init_inner = init!(bindings::LibosMemoryRegionInitArgument {
+             id8: id8(name),
+             pa: obj.dma_handle(),
+             size: num::usize_as_u64(obj.size()),
+@@ -683,7 +687,11 @@ fn id8(name: &str) -> u64 {
+             loc: num::u32_into_u8::<
+                 { bindings::LibosMemoryRegionLoc_LIBOS_MEMORY_REGION_LOC_SYSMEM },
+             >(),
 -            ..Default::default()
 +            ..Zeroable::init_zeroed()
 +        });
 +
-+        init!(GspFwWprMeta {
++        init!(LibosMemoryRegionInitArgument {
 +            inner <- init_inner,
+         })
+     }
+ }
+@@ -862,15 +870,23 @@ unsafe impl FromBytes for GspMsgElement {}
+ 
+ /// Arguments for GSP startup.
+ #[repr(transparent)]
+-pub(crate) struct GspArgumentsCached(bindings::GSP_ARGUMENTS_CACHED);
++#[derive(Zeroable)]
++pub(crate) struct GspArgumentsCached {
++    inner: bindings::GSP_ARGUMENTS_CACHED,
++}
+ 
+ impl GspArgumentsCached {
+     /// Creates the arguments for starting the GSP up using `cmdq` as its command queue.
+-    pub(crate) fn new(cmdq: &Cmdq) -> Self {
+-        Self(bindings::GSP_ARGUMENTS_CACHED {
+-            messageQueueInitArguments: MessageQueueInitArguments::new(cmdq).0,
++    pub(crate) fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
++        #[allow(non_snake_case)]
++        let init_inner = init!(bindings::GSP_ARGUMENTS_CACHED {
++            messageQueueInitArguments <- MessageQueueInitArguments::new(cmdq),
+             bDmemStack: 1,
+-            ..Default::default()
++            ..Zeroable::init_zeroed()
++        });
++
++        init!(GspArgumentsCached {
++            inner <- init_inner,
+         })
+     }
+ }
+@@ -882,11 +898,21 @@ unsafe impl AsBytes for GspArgumentsCached {}
+ /// must all be a multiple of GSP_PAGE_SIZE in size, so add padding to force it
+ /// to that size.
+ #[repr(C)]
++#[derive(Zeroable)]
+ pub(crate) struct GspArgumentsPadded {
+     pub(crate) inner: GspArgumentsCached,
+     _padding: [u8; GSP_PAGE_SIZE - core::mem::size_of::<bindings::GSP_ARGUMENTS_CACHED>()],
+ }
+ 
++impl GspArgumentsPadded {
++    pub(crate) fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
++        init!(GspArgumentsPadded {
++            inner <- GspArgumentsCached::new(cmdq),
++            ..Zeroable::init_zeroed()
++        })
++    }
++}
++
+ // SAFETY: Padding is explicit and will not contain uninitialized data.
+ unsafe impl AsBytes for GspArgumentsPadded {}
+ 
+@@ -895,18 +921,18 @@ unsafe impl AsBytes for GspArgumentsPadded {}
+ unsafe impl FromBytes for GspArgumentsPadded {}
+ 
+ /// Init arguments for the message queue.
+-#[repr(transparent)]
+-struct MessageQueueInitArguments(bindings::MESSAGE_QUEUE_INIT_ARGUMENTS);
++type MessageQueueInitArguments = bindings::MESSAGE_QUEUE_INIT_ARGUMENTS;
+ 
+ impl MessageQueueInitArguments {
+     /// Creates a new init arguments structure for `cmdq`.
+-    fn new(cmdq: &Cmdq) -> Self {
+-        Self(bindings::MESSAGE_QUEUE_INIT_ARGUMENTS {
++    #[allow(non_snake_case)]
++    fn new(cmdq: &Cmdq) -> impl Init<Self> + '_ {
++        init!(MessageQueueInitArguments {
+             sharedMemPhysAddr: cmdq.dma_handle(),
+             pageTableEntryCount: num::usize_into_u32::<{ Cmdq::NUM_PTES }>(),
+             cmdQueueOffset: num::usize_as_u64(Cmdq::CMDQ_OFFSET),
+             statQueueOffset: num::usize_as_u64(Cmdq::STATQ_OFFSET),
+-            ..Default::default()
++            ..Zeroable::init_zeroed()
          })
      }
  }
