@@ -4,192 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21B07D58CBB
-	for <nouveau@archiver.kernel.org>; Mon, 23 Mar 2026 01:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04AC8F46139
+	for <nouveau@archiver.kernel.org>; Mon, 23 Mar 2026 15:39:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B511610E2A9;
-	Mon, 23 Mar 2026 01:50:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF6410E4A6;
+	Mon, 23 Mar 2026 15:39:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="CQDEl3qQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="eoKtV26P";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 72CB945289;
-	Mon, 23 Mar 2026 01:39:37 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774229977;
- b=Y5MRsYXsI8YQbX8iY2jZtFDJ1AxLEXmoq7PiNbeWlHSEjI65Ewn+MPq+hzOGCDmlPtE1c
- yuEtBbdA5+DIUlo0Yk8NGH0iaRHCeBUzR1N4H6GM0/x9bEQnV+I6/BRF/nf0EHkbtrkXg4l
- gbzwlSdq/yi+kC+4g5AERqDnyRW1rCRmIqqZRpGLKhb6C9cpaZFkv/hp8P4H+cvwZEg6yAm
- ssTA7FpTyHqtVS06YvCUTcf4TKDuEJnUtyruwDsT7/RcxG8lZ4k7RKJ2SahXVrqnUlxFyMk
- XJ3Zowp/ybU0NH7QeVaNvwUlZentM+LjNgHMBYfMut77dUekxVBvxhhHtTBw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774229977; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 07B88433D6;
+	Mon, 23 Mar 2026 15:27:58 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774279677;
+ b=FjbY/dNtHkjk+4rpuTWi1jW2M5nPna+Yw5HdwM6NlLJY3ooTVCHbSYkm9IVT9TJsvhTeS
+ bwFtVDzxrkxDBB9CO5LbUNXE6XyyYZYr6YshD3eT3SA732Xgu2em7mUt8jR23DYH2VjcBsO
+ hBh5O3J8tYHXhp+g+xgo2Zm0Op/3SYAnM9PBH7llVbSKhNa5fAFZzIOuSetV9Ny8ZykYdno
+ 10fdzfASFptP6f2VdklLbgQqliZTedNDoIjzkCbjROejZgkLsfgoDNxxRzJh+aFjMIXAgTm
+ mufRR8N3oc5yh3jtbagG29dDlQqZVjU6Vv47AVcP2XeDCft6j0ArtbIr3J1A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774279677; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=6GG75t52+MLecrltviAx+t2kpk8XwsaV7VqHdaZuI2A=;
- b=fec+DbSWCH/RwK7mMGJxAcJYI678rejt2k3f2zxoZhfJEP47RUQhcGIFYu37Bk3WuyILH
- if6nBoKeCknlJfKqrv0rxHZFAlUTtKRT/pGpnRfO8eVA5gM30DnX+Cvv613nMaZ/QQ5AYyC
- MQoltsxhMQiLArvEf5s+BXBDyog9Hi2bQFZINZ9+XQeJxcJJbUps6jQ8Whi/liDwukYgNNk
- /KsEx4slfxkSRnr4webIK+AeM8ebCPeEddmMtOBzxc8m7zIKThoOS8BGz/0UBTlgcKRPAA5
- xTXn2EIcE53yFSdRS+dUMRCSQmTs2Sjuu5uuWRA6RSY4pkB3ZvkwytXDnS6Q==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=bO1AqGsi2F0jm/TItjVkM6KWJIGR0s/nFbujO6ld7CI=;
+ b=L5OECSOWvIgysn78IFJPCSaJd5ddSasHE0tfOMduQeCwsbg+bdPVfLJcSgC2KnbDdwXhp
+ 638oWmOkhTaBZEvy74NXigr321M2cuRsq5F0PQZSZEPvw976o7dJexkhO4yn058+8/RJtte
+ hHMDlAucB+xrfxfd9wFZVtkFKX9U1WdJlL953+O4hCut/3fyw8kRlJFutS5HZhRXVpzzNjJ
+ B63MLDQHapxlAyL0k22fpUYaDQYQBX8gQjViQfx7lHzHFM8FO5j3TLy3Ij1rPEyZPTUqfZI
+ PqK3e2ZjRSJsI9mFCAHW1+cJ6f7OEVe/VvGPsNadDwow8jbzxqZt/4QyExxQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9D88D4023E
-	for <nouveau@lists.freedesktop.org>; Mon, 23 Mar 2026 01:39:34 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011058.outbound.protection.outlook.com [52.101.62.58])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A7A8010E255;
-	Mon, 23 Mar 2026 01:50:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WRvA7Uw9fR4EVRYRsMi73MnB95U+0PnQIxxw6pLSX4Q5HceqYdIWlXEa4kwVrwtSnio/FPuTAnxQkIHnAU0WcEJ9tkjHezDA0Bgzi1dUEf6acK+rflobr8Lv9VL6K+USGn6fOvQUccVMtlejS+HTo2uXtGZb/1cXnxTxKJrUDa6/cW9jWmciZh8vMjft4JhQjBPmD3Uq5lWFvVjoJjYTHCT+07YbZtaESef3Nl27/LnPsnhzdb3g00ZpKz7CH/RZDvun6afYKFQNpAJw5k6NniJk4VMurVqZRQMwQDJJDaJu/ymuUJgkQmlGloGpG5Q2Gj0he4zM2akTgORa2mDrXA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6GG75t52+MLecrltviAx+t2kpk8XwsaV7VqHdaZuI2A=;
- b=PFo1tS/YezxL77ailvr/l6vesQ2IhQq783ATFFtlaLlT9vS0Wvfi0GaVMUUBGhxfAKjDYl6eurDQVmoa0xB9qsfY4Np9L72ucBmTKRP7cHOzS3mIutX2eiimt1u2tDR8i94V7SvgV86eW6NcmfdOLLVMQZRPfZMt12q0aON2bedIWIrJo5LGkAgDL3xGFHiWoh0LaxBSlO3CsramiRn0v8A8IgNvZANO4w+y2n6I670tRTiSx26THFz/g5c2zocpSDwGQwP1ojUTAz4oKlrA4TpsgZR8N8ZnPg17/oYx35A6YFWYjaxYsicoE1RCEnI9aQCHWX9oI4pNDJ1DZhn1qQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6GG75t52+MLecrltviAx+t2kpk8XwsaV7VqHdaZuI2A=;
- b=CQDEl3qQ7dcCL8tRNDjMMv1gi+zbxpQi1FFVTHn5NY6HFqXwd/oQ9IHMxVUgvVJG4/WN3lRG3mXePygF8k4nwphVjb+tlVmHFXlXmkVv3yI8jUZFEr/kch5paGMuoTXE3MG14ideB4/Q6jW33rq5XLpnw46FT1ZTj1t33XlLj1+Z60qOOkT++39myCGFzEk0Kc7YpWHyi0fXyTU9+iIhnZNJ6M5mFmDGkWqEdiKTQh0f6okLJTasa97qoMgqB+nbNChpP/+CeOUkNjYd0fXvMuM5mLyzxNp1vy4V/jLtEgooQ0J1EUcCagdEE8VEyVHlXmC2IilpGqpWaxPIRfAKjQ==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by DM4PR12MB5747.namprd12.prod.outlook.com (2603:10b6:8:5e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
- 2026 01:50:28 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9745.007; Mon, 23 Mar 2026
- 01:50:28 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Mar 2026 10:50:24 +0900
-Message-Id: <DH9S9KS2O6DD.3PGGQ05VV2VYQ@nvidia.com>
-Subject: Re: [PATCH v3 4/4] rust: make `build_assert` module the home of
- related macros
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Miguel Ojeda" <miguel.ojeda.sandonis@gmail.com>
-References: <20260319121653.2975748-1-gary@kernel.org>
- <20260319121653.2975748-5-gary@kernel.org>
- <CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
- <DH9RDC77E3NE.3F8BURMZ8INBX@nvidia.com>
- <CANiq72knM0_w_eHbu1qV2Ps8KbST6KcAZRtTH9FEd_5sRMqWdQ@mail.gmail.com>
-In-Reply-To: 
- <CANiq72knM0_w_eHbu1qV2Ps8KbST6KcAZRtTH9FEd_5sRMqWdQ@mail.gmail.com>
-X-ClientProxiedBy: OS7P301CA0021.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:604:26b::16) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B9983400CD
+	for <nouveau@lists.freedesktop.org>; Mon, 23 Mar 2026 15:27:55 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2247F10E120;
+	Mon, 23 Mar 2026 15:38:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by sea.source.kernel.org (Postfix) with ESMTP id CFF00439DD;
+	Mon, 23 Mar 2026 15:38:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3B13C2BCB0;
+	Mon, 23 Mar 2026 15:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774280337;
+	bh=desyfNLHzA6AKyqGMozECHI2OOE4898yTWW5+XlQjCg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To:From;
+	b=eoKtV26P5iM7EBwGI2picY27TfgJL44MFE7+bRDpS08pHpFy2dHp2XSMyUwDbL4HR
+	 H8cck8RRVohmPoTo9NuRVL90H3ouRxOb8I/UUHz/3DLSobTGGBo1uazEGw3R586dVg
+	 HqXKn4DALNZIlDUna5k5dGWbq0j1cuB0MmCBtawr6WypdPzF7dlMR/UMF6m0nXhDF0
+	 QdAtF2RFpGFjRuozR01Ga63YdxkBfvJsb0UfK/lSrqwEjCqeruQdiJGCBk6lFC9WJa
+	 p77GZ7oa53N2Omb9p4PPKX3TFjt7h2xO7HPYfciqRD1fRDWQD/QHjTx/d/vuB6lX73
+	 WW3EttSopxiwA==
+From: Gary Guo <gary@kernel.org>
+To: Miguel Ojeda <ojeda@kernel.org>,
+	Boqun Feng <boqun@kernel.org>,
+	Gary Guo <gary@garyguo.net>,
+	=?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+	Benno Lossin <lossin@kernel.org>,
+	Andreas Hindborg <a.hindborg@kernel.org>,
+	Alice Ryhl <aliceryhl@google.com>,
+	Trevor Gross <tmgross@umich.edu>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Alexandre Courbot <acourbot@nvidia.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 7/8] gpu: nova-core: use I/O projection for cleaner
+ encapsulation
+Date: Mon, 23 Mar 2026 15:37:59 +0000
+Message-ID: <20260323153807.1360705-8-gary@kernel.org>
+X-Mailer: git-send-email 2.51.2
+In-Reply-To: <20260323153807.1360705-1-gary@kernel.org>
+References: <20260323153807.1360705-1-gary@kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|DM4PR12MB5747:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1012046c-3ebc-42b7-13d6-08de887e8f08
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|1800799024|366016|10070799003|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	sLjZs5mm/GM0Lul3TuuMqjp0J30dzAgp9n3LdZwJzmVEpFPG1iXLGVtONGQSUnfJRUQUMnswJRSLtswiraWQw/0MyN3B7Doz8bfN5vGNvCZgr1Q4FE74XRSEEtMbUvHKzeS7BPKJGyA1enGzytI4YbxWcc/VofZ+p9I6igV1UFzKoj2H7uONdRPTCnZJBwjDziJYqn1PSP0HbybFYqBhUkBN0CQvhrIgyiziMLaU19QNSDp+xgvzNmQj/CixQPww2JnaWYf1pfAUPCsGJdqHTz3DUtJ6FkFP9QazgyFx0O2BFM+FsNcGp5vKJyuqdxYOyDNFH/AnQu4OTCX6hBSs57h0a3fgzXjYuBwJkZAlVakcT2ysf1eO80MCNNd9B4qEBsw4Jr4EF7AjLdFADRQj6+S1ltgkLRNKqmWAFjSF1cpdQ/wAtGyZtlJFSVQy2vWl+mBU2Z7dV8bisMvMSgYQXTG9e0jHncOmoMTmmgP5wKwxg4WWjnYjZ7S5KB7kcdWxerMDYgI7ohKK09QrElkldCvYtx62UClQpv9zRafRLam3okiWIiNLEJ80TpdArNZrDbXyp+6lAiSY8ZzgS0yjJ6oD8vq+MIIIYlwLWNGbpLlbTuIvUEHSbZOsiBUbUedJLF2LxMCgCKC48U1pFmiNaf6/xabBNWZPfRjJ7tEgqtmFJ3t0h87Xm3MVj8A1gBmd1yjFXJLv76rfiLb1tXwV2NWZclYc/yoigTNb9o39sQo=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(10070799003)(22082099003)(56012099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?c01CK0cvdS8yTWh0VjlGZTFyZWR5MWdYSi85WXg1dGFmeHRjZ0sxbnd3SFdj?=
- =?utf-8?B?YnphVzlrWDgwZjBUU25EbGozUVNGR3J6OUZSNUV1Zm5kSnptZi9VaHFGY1Bp?=
- =?utf-8?B?NW9FL0F0MXpDb3JHc3N5SURXNVpiSW5MMVlYQ0dCNzJHTjZ2NnNFVktOLzJQ?=
- =?utf-8?B?QnBKNU5MQnE5UGZVbWJCaWxOTFVtRDNXVkx3bk43Q2tIZ0FLbkt5eVFGbEE2?=
- =?utf-8?B?eWFONHFBZ05vR2d5QXRKbW1zMFdGSmVKdDU3T1h1UTk0Y2hueldGRVdSZ1ZB?=
- =?utf-8?B?U0FoWTBwcVhoZzh2UHRjdTRLSHlueTRiNzJ1SUo4ODV1Z0RmN0JxTVplbE5u?=
- =?utf-8?B?VW9pd3RrL2VVdGFlQXdwcVF6NFREc2JVU2R0YXJ1S3ZQcHJJVnJaaUNqMTBD?=
- =?utf-8?B?Ty8zU1FJc0JRdWhaMldxZTBPQkJTYUorSE9Bc1FsbDRoRHk3Tmh1WlRhazZp?=
- =?utf-8?B?RHVGVFBLU0FOL05RR2plR3VjclJIbUpnVzJyKytjUE8vMXZubm1zVDJBL25G?=
- =?utf-8?B?d2NJcXNBc09kSEErOGVXQ1NZaDdMTXlUcVlPdVRoa211dHpCN1RYYTh1VTFq?=
- =?utf-8?B?V3g3SVNEOFZNYVh0Yk1QOTE5cHZ2TGcyRDJmS0svWjJrVUh6RCt5bDJ4S2d3?=
- =?utf-8?B?bWY4eDhDczJqMjRMdDhBNEVCalU4NytvVXhxS1h0bVZaT0lzQjZmbWlGZ0NL?=
- =?utf-8?B?Y0JtTEZkTGxFTlVpTisrMmdJRjIvM3pkeGg1MC9uTlpUMzBXSTlWaUhGaWMy?=
- =?utf-8?B?QnlkTysyWGhZbFNVa0Y0VU42REZxVDRVNURhUHBtRWUzMWk3ekdvSkxmSXAy?=
- =?utf-8?B?UCtsTUdsRHNTY3ZsNUg3WHhkTXE2Y2U0SDYwODY0U280eHB2ZW5oaCtPcVZv?=
- =?utf-8?B?VVd3M25nMmZWU3ltTG9CaXFjaEdLc0ZtQlcvV0x2bVQ0Snd1Rmo5dW4wRHVH?=
- =?utf-8?B?cjFRNTg0MHBDZlo5aWMwK2xTcEYzYkFSbWQybm9yRCtiTk1QMFRkYWpTNWlo?=
- =?utf-8?B?d2kzc0RhMnNnVEJSS29DKzRRbDBxMjlOUzNMOGphdEJ2SFIyRFhMV25KWnYv?=
- =?utf-8?B?VC93Z1pFODVsbmJDMVA1UWE4eXhPeHREMFhBNXZtM3RkSThPL2s0bnhuN24x?=
- =?utf-8?B?bEtOUWlsR3Q5NFNGMyttbHBYRUdNYVVLcW4vRkJEN2FXa2QwTXE5a29xa2Fh?=
- =?utf-8?B?YXJBY1ZLYkJzTkZ4V3RnUXptMVRYWEF1Q2FkRHFQakRlU2V3WDV6Y0pjT0py?=
- =?utf-8?B?TllmTm5SdG8yRWsrRURYWFRVQUZSUEgxVkd6OWw3ZlQ5QVZpaTgrclFUN3hV?=
- =?utf-8?B?QUZNczk2ZmhTWk5KSzhKRXBrZXpRdDdoV1J0allqc2NvRHpFOEpuc3NGMW5x?=
- =?utf-8?B?Z2x4V0NCNkpuMldhQmdsc2FMRUpyU1NxSDlnSzRuYkFWNWFnSndKeDBwQ0dw?=
- =?utf-8?B?UXd2TVpqQm9GMm1qK0xwQnNRbWdDb05LZGFzcVk4Rmk4UzNQR3JmY25mYWJD?=
- =?utf-8?B?R1d2bS91Rk1RWWdELytCdEZFN3lwdThSY3ZESGpCMnNYTDljaGdSWGhEcThu?=
- =?utf-8?B?MTZZTmdPWEYya1FyWXNlcldWQkZtdjFKejVraDRiT2hESWU4Y2hCaXVUclZ4?=
- =?utf-8?B?MUdhb1Z0U2JCYXoxMDR3dWgxZW1CR2dzM1JJNlJtUys5NnJXbWhXejJ2QmtF?=
- =?utf-8?B?bEdCdWZsbnNZNHdLYXUxS09BNWVTUnRlOC9nN1pkL09sOTVFZ1EvWmluV0xQ?=
- =?utf-8?B?NVdsZmg5UkoxdmVGZjZTektTZGFJY3pxN3F4VTFmMEtSS0ViNFF6cDkvQ09B?=
- =?utf-8?B?czJNaFFwd25NTFNwa1JwLzhzeTFYWUNzL0g4d3UxUDVseG9Mdlp4SEJHOVg5?=
- =?utf-8?B?emtBYU04UHIyT1BCV2VQeFJMWDF4cG9naTBlNktsaGVENU5LOE1rYlpaVG1j?=
- =?utf-8?B?UVBuWEJ1TzFMSTBBa1pleGhkQWRHd0lOSkRtRXZMemJobUJNYTFPS0o0aXc0?=
- =?utf-8?B?V1d1ZWp6V2FTT1M4Tzg2aGkyL21DdDNLV3lDZENXUkNORzM0ckJ4RFpLbk9E?=
- =?utf-8?B?SVdBeTZ6bnp6YmJldVhvaVdYSnVPUVBVWHNUeGh3bkJ1dmlxVHJYWGlIcGJh?=
- =?utf-8?B?eEJ2dHBzaEpWaStHOVhOT3JqN3JVNWllZVZ5YlR6VU5wNnJYNUhsekgwa2px?=
- =?utf-8?B?UkpoTmxNTEV2ZmI5dzNnZ1hpRXB6OHhKMEI5VU9YSzE1aVRmYjJ3VVRQcDJC?=
- =?utf-8?B?VkJTTEY3U2l0R1daY1V3RFdjc0VJWEpDRzVuSytCU25yME1rWG9SZ3BhR3Rn?=
- =?utf-8?B?UGdmWlo0Snc4QktLRnhRbVhKaWRoVDFpYXpkUFl3QjlsQmIyeGpXVDA1SzZC?=
- =?utf-8?Q?obZb5YtrzuFgpKSjdxCxgGbtBjaF2B1K4iJi5CejuM6Q8?=
-X-MS-Exchange-AntiSpam-MessageData-1: TYOyUomDeS9Wuw==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 1012046c-3ebc-42b7-13d6-08de887e8f08
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 01:50:28.2763
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- FTQqhODN35gsgvuLXlqj+NUj4LMXvYdXN6K0MwZ1Bmra+iH7SqaV5AeWT0QGyaqZfb2PaKGhrWfmMGrdKFgRmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5747
-Message-ID-Hash: HDYWZ56L25XDZILKNMDDB3NLKKDQ47FL
-X-Message-ID-Hash: HDYWZ56L25XDZILKNMDDB3NLKKDQ47FL
-X-MailFrom: acourbot@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: WEQE262I4OIPS7Q4DXPIH6JZH7TIK72Y
+X-Message-ID-Hash: WEQE262I4OIPS7Q4DXPIH6JZH7TIK72Y
+X-MailFrom: gary@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Gary Guo <gary@garyguo.net>, FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Tamir Duberstein <tamird@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Robin Murphy <robin.murphy@arm.com>, Yury Norov <yury.norov@gmail.com>,
- Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Mark Rutland <mark.rutland@arm.com>, Ingo Molnar <mingo@redhat.com>,
- Waiman Long <longman@redhat.com>, Yury Norov <ynorov@nvidia.com>,
- rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- driver-core@lists.linux.dev, netdev@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
+Reply-To: Gary Guo <gary@garyguo.net>
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HDYWZ56L25XDZILKNMDDB3NLKKDQ47FL/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WEQE262I4OIPS7Q4DXPIH6JZH7TIK72Y/>
 Archived-At: 
- <https://lore.freedesktop.org/DH9S9KS2O6DD.3PGGQ05VV2VYQ@nvidia.com/>
+ <https://lore.freedesktop.org/20260323153807.1360705-8-gary@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -199,18 +114,365 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Mar 23, 2026 at 10:38 AM JST, Miguel Ojeda wrote:
-> On Mon, Mar 23, 2026 at 2:08=E2=80=AFAM Alexandre Courbot <acourbot@nvidi=
-a.com> wrote:
->>
->> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
->>
->> (sorry, assumed my Reviewed-by carried an implicit ack as well)
->
-> Ah, I saw your tag for #2 and #3, but not #4 (nor #1).
->
-> Did I miss it/them?
+From: Gary Guo <gary@garyguo.net>
 
-You are correct and I will have some more morning caffeine. :) I had one
-question but the patch looks good regardless, should have acked it
-preemptively.
+Use `io_project!` for PTE array and message queues to remove the
+break off encapsulation.
+
+The remaining `dma_read!` and `dma_write!` is now only acting on
+primitives; thus replace by `io_read!` and `io_write!`.
+
+Signed-off-by: Gary Guo <gary@garyguo.net>
+---
+ drivers/gpu/nova-core/gsp.rs      | 42 +++++++++-------
+ drivers/gpu/nova-core/gsp/cmdq.rs | 69 ++++++++++++++-----------
+ drivers/gpu/nova-core/gsp/fw.rs   | 84 ++++++++++++-------------------
+ 3 files changed, 96 insertions(+), 99 deletions(-)
+
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index a045c4189989..e675b0227872 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -9,8 +9,13 @@
+         CoherentBox,
+         DmaAddress, //
+     },
++    io::{
++        self,
++        io_project, //
++    },
+     pci,
+     prelude::*,
++    ptr::KnownSize,
+     transmute::{
+         AsBytes,
+         FromBytes, //
+@@ -53,12 +58,20 @@ unsafe impl<const NUM_ENTRIES: usize> FromBytes for PteArray<NUM_ENTRIES> {}
+ unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArray<NUM_ENTRIES> {}
+ 
+ impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
+-    /// Returns the page table entry for `index`, for a mapping starting at `start`.
+-    // TODO: Replace with `IoView` projection once available.
+-    fn entry(start: DmaAddress, index: usize) -> Result<u64> {
+-        start
+-            .checked_add(num::usize_as_u64(index) << GSP_PAGE_SHIFT)
+-            .ok_or(EOVERFLOW)
++    /// Initialize a new page table array mapping `NUM_PAGES` GSP pages starting at address `start`.
++    fn init<T: FromBytes + AsBytes + KnownSize + ?Sized>(
++        view: io::View<'_, Coherent<T>, Self>,
++        start: DmaAddress,
++    ) -> Result<()> {
++        for i in 0..NUM_PAGES {
++            io_project!(view, .0[i]).write_val(
++                start
++                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
++                    .ok_or(EOVERFLOW)?,
++            );
++        }
++
++        Ok(())
+     }
+ }
+ 
+@@ -90,17 +103,12 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+         )?);
+ 
+         let start_addr = obj.0.dma_handle();
+-
+-        // SAFETY: `obj` has just been created and we are its sole user.
+-        let pte_region =
+-            unsafe { &mut obj.0.as_mut()[size_of::<u64>()..][..NUM_PAGES * size_of::<u64>()] };
+-
+-        // Write values one by one to avoid an on-stack instance of `PteArray`.
+-        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
+-            let pte_value = PteArray::<0>::entry(start_addr, i)?;
+-
+-            chunk.copy_from_slice(&pte_value.to_ne_bytes());
+-        }
++        let pte_view = io_project!(
++            obj.0,
++            [size_of::<u64>()..]?[..NUM_PAGES * size_of::<u64>()]?
++        )
++        .try_cast::<PteArray<NUM_PAGES>>()?;
++        PteArray::init(pte_view, start_addr)?;
+ 
+         Ok(obj)
+     }
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
+index f38790601a0f..191b648e2ede 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -2,16 +2,25 @@
+ 
+ mod continuation;
+ 
+-use core::mem;
++use core::{
++    mem,
++    sync::atomic::{
++        fence,
++        Ordering, //
++    },
++};
+ 
+ use kernel::{
+     device,
+     dma::{
+         Coherent,
++        CoherentBox,
+         DmaAddress, //
+     },
+-    dma_write,
+-    io::poll::read_poll_timeout,
++    io::{
++        io_project,
++        poll::read_poll_timeout, //
++    },
+     new_mutex,
+     prelude::*,
+     sync::{
+@@ -165,20 +174,18 @@ struct MsgqData {
+ #[repr(C)]
+ // There is no struct defined for this in the open-gpu-kernel-source headers.
+ // Instead it is defined by code in `GspMsgQueuesInit()`.
+-// TODO: Revert to private once `IoView` projections replace the `gsp_mem` module.
+-pub(super) struct Msgq {
++struct Msgq {
+     /// Header for sending messages, including the write pointer.
+-    pub(super) tx: MsgqTxHeader,
++    tx: MsgqTxHeader,
+     /// Header for receiving messages, including the read pointer.
+-    pub(super) rx: MsgqRxHeader,
++    rx: MsgqRxHeader,
+     /// The message queue proper.
+     msgq: MsgqData,
+ }
+ 
+ /// Structure shared between the driver and the GSP and containing the command and message queues.
+ #[repr(C)]
+-// TODO: Revert to private once `IoView` projections replace the `gsp_mem` module.
+-pub(super) struct GspMem {
++struct GspMem {
+     /// Self-mapping page table entries.
+     ptes: PteArray<{ Self::PTE_ARRAY_SIZE }>,
+     /// CPU queue: the driver writes commands here, and the GSP reads them. It also contains the
+@@ -186,13 +193,13 @@ pub(super) struct GspMem {
+     /// index into the GSP queue.
+     ///
+     /// This member is read-only for the GSP.
+-    pub(super) cpuq: Msgq,
++    cpuq: Msgq,
+     /// GSP queue: the GSP writes messages here, and the driver reads them. It also contains the
+     /// write and read pointers that the GSP updates. This means that the read pointer here is an
+     /// index into the CPU queue.
+     ///
+     /// This member is read-only for the driver.
+-    pub(super) gspq: Msgq,
++    gspq: Msgq,
+ }
+ 
+ impl GspMem {
+@@ -226,20 +233,13 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+         const MSGQ_SIZE: u32 = num::usize_into_u32::<{ size_of::<Msgq>() }>();
+         const RX_HDR_OFF: u32 = num::usize_into_u32::<{ mem::offset_of!(Msgq, rx) }>();
+ 
+-        let gsp_mem = Coherent::<GspMem>::zeroed(dev, GFP_KERNEL)?;
++        let mut gsp_mem = CoherentBox::<GspMem>::zeroed(dev, GFP_KERNEL)?;
++        gsp_mem.cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES);
++        gsp_mem.cpuq.rx = MsgqRxHeader::new();
+ 
++        let gsp_mem: Coherent<_> = gsp_mem.into();
+         let start = gsp_mem.dma_handle();
+-        // Write values one by one to avoid an on-stack instance of `PteArray`.
+-        for i in 0..GspMem::PTE_ARRAY_SIZE {
+-            dma_write!(gsp_mem, .ptes.0[i], PteArray::<0>::entry(start, i)?);
+-        }
+-
+-        dma_write!(
+-            gsp_mem,
+-            .cpuq.tx,
+-            MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES)
+-        );
+-        dma_write!(gsp_mem, .cpuq.rx, MsgqRxHeader::new());
++        PteArray::init(io_project!(gsp_mem, .ptes), start)?;
+ 
+         Ok(Self(gsp_mem))
+     }
+@@ -380,7 +380,7 @@ fn allocate_command(&mut self, size: usize, timeout: Delta) -> Result<GspCommand
+     //
+     // - The returned value is within `0..MSGQ_NUM_PAGES`.
+     fn gsp_write_ptr(&self) -> u32 {
+-        super::fw::gsp_mem::gsp_write_ptr(&self.0)
++        MsgqTxHeader::write_ptr(io_project!(self.0, .gspq.tx)) % MSGQ_NUM_PAGES
+     }
+ 
+     // Returns the index of the memory page the GSP will read the next command from.
+@@ -389,7 +389,7 @@ fn gsp_write_ptr(&self) -> u32 {
+     //
+     // - The returned value is within `0..MSGQ_NUM_PAGES`.
+     fn gsp_read_ptr(&self) -> u32 {
+-        super::fw::gsp_mem::gsp_read_ptr(&self.0)
++        MsgqRxHeader::read_ptr(io_project!(self.0, .gspq.rx)) % MSGQ_NUM_PAGES
+     }
+ 
+     // Returns the index of the memory page the CPU can read the next message from.
+@@ -398,12 +398,18 @@ fn gsp_read_ptr(&self) -> u32 {
+     //
+     // - The returned value is within `0..MSGQ_NUM_PAGES`.
+     fn cpu_read_ptr(&self) -> u32 {
+-        super::fw::gsp_mem::cpu_read_ptr(&self.0)
++        MsgqRxHeader::read_ptr(io_project!(self.0, .cpuq.rx)) % MSGQ_NUM_PAGES
+     }
+ 
+     // Informs the GSP that it can send `elem_count` new pages into the message queue.
+     fn advance_cpu_read_ptr(&mut self, elem_count: u32) {
+-        super::fw::gsp_mem::advance_cpu_read_ptr(&self.0, elem_count)
++        let rx = io_project!(self.0, .cpuq.rx);
++        let rptr = MsgqRxHeader::read_ptr(rx).wrapping_add(elem_count) % MSGQ_NUM_PAGES;
++
++        // Ensure read pointer is properly ordered.
++        fence(Ordering::SeqCst);
++
++        MsgqRxHeader::set_read_ptr(rx, rptr)
+     }
+ 
+     // Returns the index of the memory page the CPU can write the next command to.
+@@ -412,12 +418,17 @@ fn advance_cpu_read_ptr(&mut self, elem_count: u32) {
+     //
+     // - The returned value is within `0..MSGQ_NUM_PAGES`.
+     fn cpu_write_ptr(&self) -> u32 {
+-        super::fw::gsp_mem::cpu_write_ptr(&self.0)
++        MsgqTxHeader::write_ptr(io_project!(self.0, .cpuq.tx)) % MSGQ_NUM_PAGES
+     }
+ 
+     // Informs the GSP that it can process `elem_count` new pages from the command queue.
+     fn advance_cpu_write_ptr(&mut self, elem_count: u32) {
+-        super::fw::gsp_mem::advance_cpu_write_ptr(&self.0, elem_count)
++        let tx = io_project!(self.0, .cpuq.tx);
++        let wptr = MsgqTxHeader::write_ptr(tx).wrapping_add(elem_count) % MSGQ_NUM_PAGES;
++        MsgqTxHeader::set_write_ptr(tx, wptr);
++
++        // Ensure all command data is visible before triggering the GSP read.
++        fence(Ordering::SeqCst);
+     }
+ }
+ 
+diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
+index 847b5eb215d4..fbac382e1969 100644
+--- a/drivers/gpu/nova-core/gsp/fw.rs
++++ b/drivers/gpu/nova-core/gsp/fw.rs
+@@ -10,6 +10,11 @@
+ 
+ use kernel::{
+     dma::Coherent,
++    io::{
++        self,
++        io_read,
++        io_write, //
++    },
+     prelude::*,
+     ptr::{
+         Alignable,
+@@ -40,59 +45,6 @@
+     },
+ };
+ 
+-// TODO: Replace with `IoView` projections once available.
+-pub(super) mod gsp_mem {
+-    use core::sync::atomic::{
+-        fence,
+-        Ordering, //
+-    };
+-
+-    use kernel::{
+-        dma::Coherent,
+-        dma_read,
+-        dma_write, //
+-    };
+-
+-    use crate::gsp::cmdq::{
+-        GspMem,
+-        MSGQ_NUM_PAGES, //
+-    };
+-
+-    pub(in crate::gsp) fn gsp_write_ptr(qs: &Coherent<GspMem>) -> u32 {
+-        dma_read!(qs, .gspq.tx.0.writePtr) % MSGQ_NUM_PAGES
+-    }
+-
+-    pub(in crate::gsp) fn gsp_read_ptr(qs: &Coherent<GspMem>) -> u32 {
+-        dma_read!(qs, .gspq.rx.0.readPtr) % MSGQ_NUM_PAGES
+-    }
+-
+-    pub(in crate::gsp) fn cpu_read_ptr(qs: &Coherent<GspMem>) -> u32 {
+-        dma_read!(qs, .cpuq.rx.0.readPtr) % MSGQ_NUM_PAGES
+-    }
+-
+-    pub(in crate::gsp) fn advance_cpu_read_ptr(qs: &Coherent<GspMem>, count: u32) {
+-        let rptr = cpu_read_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
+-
+-        // Ensure read pointer is properly ordered.
+-        fence(Ordering::SeqCst);
+-
+-        dma_write!(qs, .cpuq.rx.0.readPtr, rptr);
+-    }
+-
+-    pub(in crate::gsp) fn cpu_write_ptr(qs: &Coherent<GspMem>) -> u32 {
+-        dma_read!(qs, .cpuq.tx.0.writePtr) % MSGQ_NUM_PAGES
+-    }
+-
+-    pub(in crate::gsp) fn advance_cpu_write_ptr(qs: &Coherent<GspMem>, count: u32) {
+-        let wptr = cpu_write_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
+-
+-        dma_write!(qs, .cpuq.tx.0.writePtr, wptr);
+-
+-        // Ensure all command data is visible before triggering the GSP read.
+-        fence(Ordering::SeqCst);
+-    }
+-}
+-
+ /// Maximum size of a single GSP message queue element in bytes.
+ pub(crate) const GSP_MSG_QUEUE_ELEMENT_SIZE_MAX: usize =
+     num::u32_as_usize(bindings::GSP_MSG_QUEUE_ELEMENT_SIZE_MAX);
+@@ -706,6 +658,19 @@ pub(crate) fn new(msgq_size: u32, rx_hdr_offset: u32, msg_count: u32) -> Self {
+             entryOff: num::usize_into_u32::<GSP_PAGE_SIZE>(),
+         })
+     }
++
++    /// Returns the value of the write pointer for this queue.
++    pub(crate) fn write_ptr<T: KnownSize + ?Sized>(this: io::View<'_, Coherent<T>, Self>) -> u32 {
++        io_read!(this, .0.writePtr)
++    }
++
++    /// Sets the value of the write pointer for this queue.
++    pub(crate) fn set_write_ptr<T: KnownSize + ?Sized>(
++        this: io::View<'_, Coherent<T>, Self>,
++        val: u32,
++    ) {
++        io_write!(this, .0.writePtr, val)
++    }
+ }
+ 
+ // SAFETY: Padding is explicit and does not contain uninitialized data.
+@@ -721,6 +686,19 @@ impl MsgqRxHeader {
+     pub(crate) fn new() -> Self {
+         Self(Default::default())
+     }
++
++    /// Returns the value of the read pointer for this queue.
++    pub(crate) fn read_ptr<T: KnownSize + ?Sized>(this: io::View<'_, Coherent<T>, Self>) -> u32 {
++        io_read!(this, .0.readPtr)
++    }
++
++    /// Sets the value of the read pointer for this queue.
++    pub(crate) fn set_read_ptr<T: KnownSize + ?Sized>(
++        this: io::View<'_, Coherent<T>, Self>,
++        val: u32,
++    ) {
++        io_write!(this, .0.readPtr, val)
++    }
+ }
+ 
+ // SAFETY: Padding is explicit and does not contain uninitialized data.
+-- 
+2.51.2
+
