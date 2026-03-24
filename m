@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC4A9F54AC5
-	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 15:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A4C5F54ACE
+	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 15:40:32 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0555310E6ED;
-	Tue, 24 Mar 2026 15:03:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E4E3B10E71C;
+	Tue, 24 Mar 2026 15:40:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Dz2mfMF+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MzoGbJg8";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 48024452CB;
-	Tue, 24 Mar 2026 14:52:36 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2624B452CE;
+	Tue, 24 Mar 2026 15:29:26 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774363956;
- b=QS2scfjT44tSvdCujV9hVUMRhp5I81PKFMyJnPGmNlJPhyg7SR19CEhk4HVMJyqEepliM
- Btq38Za3T7G5bI9Mltswr2XkVPOViQYu0HZBMRFGCu/RPE+E3fQiX9ZM/D3SBG8SDn5Hu3x
- v0Gyc7e1CrPFR/3sie714KQk3YIqgU6mynR4TPTYTHeqlqhCbMnahB8l69E/9uuw5XssJCO
- vq83x10GUuyfnbcskPYtUTggxP8YgEl/snOU8gX2oaO8LhuVkhZwsFwF8DtFWJiqApZN/8p
- 1X9xxXS4nwv4TPgg4nIxvoX9y+v7wI6JB+zEO0oY2Xz5CSG43IriMv1anAVQ==
+ s=20240201; t=1774366166;
+ b=cE/ntAnD8ISn+zfRIJuLSl74uerKNJ4CbeeMU2IpShMUKUXuZXac1IZGZcuUmMqtlUbgU
+ 9wkEjYYaivlbwjdagiYxpvlmjFHsw3E1KY3V7wTaZ6mR5rl5/pVYcHn291ila0UurkJ1TxY
+ xMHzMv71xsHvCGCKLMunR6Vp1N/S5aCvwLUFN4o4RsU6qA78F+/hTYt5KNTNKqrSnOalcmM
+ yKFrT0BA77rB7iw9q3Ow0jLAaCCRoMTIOQc0F7p8Ry9+dhv+xR7GJi2x6sjuLc+3SpToIUD
+ afPQsYCRljueEBOTz3b+U4Y/ZSvJy30pfJfemw2yu8fL+h2DrGohZ1uPDzQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774363956; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774366166; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=IGhlW5yNbhM3AvDZ5UpJuSR/GteoUCrZOJO5/a6VKac=;
- b=JBe/j+ddXTrP+ydhca7ll+lm6AgJ0Qj0LGeY0LPbIKt0dNTkLcKLTn3OalTBmO+lpUzud
- 4WsPV4fT+sHm8HagAB0UypWeq3v7x+uMOiSqD+Xvxt0taLOYn2HAjSNR6jbdEfdypX3VE/K
- j6LVu8iSOrbvhXDI7n+tTceXw6f91Kg7FN6IY3OVA6ycodSgmEFPae7Wsh4ezZutthocn4U
- 1ZmfVo74wf+43Lrfgw2Hmm/3hIBCVFFmkp5KGPQlcQOGduhCpOVIpJ1FW/YygUytHsfPuB1
- 7zGBYS1ysGwOP8MKNDqUzFyQ8IE6dkhtK2n+McvudfileZ1rI58y5YfmXYQA==
+ bh=DJbHRaS8pRP79lkZNVy3W9DNq3nAXh6fhZLGY0cyNk0=;
+ b=uUbQb2VPDNjsks//IRECWwptZEfLljpA5K4/CY9z2CoQMrygTjL2jkB56ZdKFrsfV4lp3
+ TgOXlTcaenncTd5X6CuNepGF83sMBh3r+AsVeH01fKc+MdkxgrMz5WaT0wrU8Hjn3Cjaxl7
+ k8Q8Qk3BrJF8EeZedxDWYPRH624+g2OVfppqHMly55OVmEq0zEFWU1AS5A+MuY2SJ4fOY9c
+ eOeXoEGg6HsOHBeHJdrW19MY+Cr9FFFMQWqCXc+eNznd9Sx33iheCXyHEd51Vb2bVymzNo3
+ nPeeWRPJO/gCueZ8uPfkGFnpnEU7vu0Zj5sPb7nNUZvb+s31rhdv07tGpxQw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,45 +46,47 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B241B4527C
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 14:52:32 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3EAC510E086;
-	Tue, 24 Mar 2026 15:03:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id C8A6E433BB
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 15:29:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 126AB10E70E;
+	Tue, 24 Mar 2026 15:40:28 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EA95B40617;
-	Tue, 24 Mar 2026 15:03:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 916A4C19424;
-	Tue, 24 Mar 2026 15:03:33 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 48E5C600AC;
+	Tue, 24 Mar 2026 15:40:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC6DC19424;
+	Tue, 24 Mar 2026 15:40:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774364616;
-	bh=xiTNI9ESXiY/gIDionTm8i92obzoKVc4cZW7D08FQrI=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=Dz2mfMF+MZN7ixyg7Akx23BQ1U6iqlTQhAc5HVNp+Dhxrz1sK/DDm/yUJgLij6kvE
-	 Qdln+9UIL2JwthJyfq234PrdCE5gKKEItlQT7CdHVXQD+evdVAD7N9I5H7zPnL5xgA
-	 qCprtiTRfxyNZ7wUThBQ0a8HiAsOjas8HWBX2KiLeAdi0wu+BvTu9nX6fW1PK/JW3d
-	 RH77D3Tg9EPVsOFE9YoKPqinCgRKNLteGNk5dj0yzRFE/SmGN5BsOUPbsJ5rkKmTnh
-	 ifIO1XmXcBbxUGKLVn8CJbLGg8s7dpAsJnctccV8UZUWnrfuAv6lq71J8gDLWaiDb+
-	 xpBBmMQlh/LXQ==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 24 Mar 2026 16:03:31 +0100
-Message-Id: <DHB3RDNDS08U.A75EZUOMO311@kernel.org>
+	s=k20201202; t=1774366827;
+	bh=8SAT0NvMEzHHIA4fOre9p3OATPKWmFRFNQE2+grgJZg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=MzoGbJg8KgNkLqGgI+++0nf6vChXqSbwuF+mwriQl/VGMEfE1yC3TxQ4JZAAuwdtt
+	 5Okt+PZKAkuuU0gjHZRzDI0ehEzNdJI2XTQ6azuvLnTkJprKKK+baC/dTqPLcniaPV
+	 5bU9A4l/O7VhV2iwYiWQCxX0szABBlxE/7iefSYSKUaO+hr2UxYw4JbrlbTKpV5izi
+	 umR4+Fgery2D9palYiL1UCDMCfJqQW48m4nvdG+zT2UkjN3rYbVddqvIpLC1okTjYq
+	 LFnNH+ATJDU9OAS6oH9mXi1F33tZ5rs+RJ3zCDN965+Nk/oY785hXP6rj22WioQoG5
+	 o/vRbMR7xLXSg==
+From: Andreas Hindborg <a.hindborg@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
 Subject: Re: [PATCH v2 5/8] rust: dma: add Coherent:init() and
  Coherent::init_with_attrs()
-To: "Andreas Hindborg" <a.hindborg@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
+In-Reply-To: <DHB3RDNDS08U.A75EZUOMO311@kernel.org>
 References: <20260320194626.36263-1-dakr@kernel.org>
  <4yknLBbwY93Ty2ltbpxjHgto-m99xkoTgDlKv8cJTK2tbFL0_V6eQDjwbbXI70M6uMKT6RLRxBoYR_XeymmnHA==@protonmail.internalid>
  <20260320194626.36263-6-dakr@kernel.org> <87y0jhpbsp.fsf@kernel.org>
-In-Reply-To: <87y0jhpbsp.fsf@kernel.org>
-Message-ID-Hash: C6MSQOYH2M3BCM67OSWC7ZOHA2OKBGH3
-X-Message-ID-Hash: C6MSQOYH2M3BCM67OSWC7ZOHA2OKBGH3
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+ <7YsbXJIBKj4Er4WkL5X4lsu18tY1b05zm-TzJP7Xt6YGuOsxmCQ7Ew_TFafHcFnLhCy4ptG2mC0vDesRyI7cAw==@protonmail.internalid>
+ <DHB3RDNDS08U.A75EZUOMO311@kernel.org>
+Date: Tue, 24 Mar 2026 16:40:16 +0100
+Message-ID: <87zf3xxmlb.fsf@t14s.mail-host-address-is-not-set>
+MIME-Version: 1.0
+Content-Type: text/plain
+Message-ID-Hash: JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB
+X-Message-ID-Hash: JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB
+X-MailFrom: a.hindborg@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
 CC: aliceryhl@google.com, acourbot@nvidia.com, ojeda@kernel.org,
  boqun@kernel.org, gary@garyguo.net, bjorn3_gh@protonmail.com,
  lossin@kernel.org, tmgross@umich.edu, abdiel.janulgue@gmail.com,
@@ -96,9 +98,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/C6MSQOYH2M3BCM67OSWC7ZOHA2OKBGH3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB/>
 Archived-At: 
- <https://lore.freedesktop.org/DHB3RDNDS08U.A75EZUOMO311@kernel.org/>
+ <https://lore.freedesktop.org/87zf3xxmlb.fsf@t14s.mail-host-address-is-not-set/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,97 +110,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Mar 24, 2026 at 3:00 PM CET, Andreas Hindborg wrote:
->> +    /// Same as [`Coherent::zeroed`], but instead of a zero-initializat=
-ion the memory is initialized
->> +    /// with `init`.
->> +    #[inline]
->> +    pub fn init<E>(
->> +        dev: &device::Device<Bound>,
->> +        gfp_flags: kernel::alloc::Flags,
->> +        init: impl Init<T, E>,
->> +    ) -> Result<Self>
->> +    where
->> +        Error: From<E>,
->> +    {
->> +        Self::init_with_attrs(dev, gfp_flags, Attrs(0), init)
->> +    }
->> +
+"Danilo Krummrich" <dakr@kernel.org> writes:
+
+> On Tue Mar 24, 2026 at 3:00 PM CET, Andreas Hindborg wrote:
+>>> +    /// Same as [`Coherent::zeroed`], but instead of a zero-initialization the memory is initialized
+>>> +    /// with `init`.
+>>> +    #[inline]
+>>> +    pub fn init<E>(
+>>> +        dev: &device::Device<Bound>,
+>>> +        gfp_flags: kernel::alloc::Flags,
+>>> +        init: impl Init<T, E>,
+>>> +    ) -> Result<Self>
+>>> +    where
+>>> +        Error: From<E>,
+>>> +    {
+>>> +        Self::init_with_attrs(dev, gfp_flags, Attrs(0), init)
+>>> +    }
+>>> +
+>>
+>> I think we are missing an array initializer for `Coherent<[T]>`.
 >
-> I think we are missing an array initializer for `Coherent<[T]>`.
+> This method is already compatible with arrays, T can be an array type itself,
+> e.g. T = [MyStruct; 5].
+>
+> For instance, the diff in [1] should work.
 
-This method is already compatible with arrays, T can be an array type itsel=
-f,
-e.g. T =3D [MyStruct; 5].
+Cool!
 
-For instance, the diff in [1] should work.
+>> Reviewed-by: Andreas Hindborg <a.hindborg@kernel.org>
+>
+> Thanks! The patch series has been applied yesterday, and the branch it has been
+> applied to is immutable, so I can't add additional tags.
 
-> Reviewed-by: Andreas Hindborg <a.hindborg@kernel.org>
+You guys move fast!
 
-Thanks! The patch series has been applied yesterday, and the branch it has =
-been
-applied to is immutable, so I can't add additional tags.
+> However, the Link: included in the patch still points to this conversation.
+>
+> Also note that subsequent review is still valued; we can always send follow-up
+> patches if required.
 
-However, the Link: included in the patch still points to this conversation.
+At any rate I can send the changes I suggested if they are deemed valid.
 
-Also note that subsequent review is still valued; we can always send follow=
--up
-patches if required.
 
-Thanks,
-Danilo
+Best regards,
+Andreas Hindborg
 
-[1]
 
-diff --git a/samples/rust/rust_dma.rs b/samples/rust/rust_dma.rs
-index 129bb4b39c04..3d3ffc21ea77 100644
---- a/samples/rust/rust_dma.rs
-+++ b/samples/rust/rust_dma.rs
-@@ -22,6 +22,7 @@
- struct DmaSampleDriver {
-     pdev: ARef<pci::Device>,
-     ca: Coherent<[MyStruct]>,
-+    ca_init: Coherent<[MyStruct; 5]>,
-     #[pin]
-     sgt: SGTable<Owned<VVec<u8>>>,
- }
-@@ -76,6 +77,15 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo)=
- -> impl PinInit<Self, E
-                 kernel::dma_write!(ca, [i]?, MyStruct::new(value.0, value.=
-1));
-             }
 
-+            let ca_init: Coherent<[MyStruct; 5]> =3D Coherent::init(
-+                pdev.as_ref(),
-+                GFP_KERNEL,
-+                pin_init::init_array_from_fn(|i| {
-+                    let (h, b) =3D TEST_VALUES[i];
-+                    MyStruct::new(h, b)
-+                }),
-+            )?;
-+
-             let size =3D 4 * page::PAGE_SIZE;
-             let pages =3D VVec::with_capacity(size, GFP_KERNEL)?;
-
-@@ -84,6 +94,7 @@ fn probe(pdev: &pci::Device<Core>, _info: &Self::IdInfo) =
--> impl PinInit<Self, E
-             Ok(try_pin_init!(Self {
-                 pdev: pdev.into(),
-                 ca,
-+                ca_init,
-                 sgt <- sgt,
-             }))
-         })
-@@ -98,6 +109,12 @@ fn check_dma(&self) -> Result {
-
-             assert_eq!(val0, value.0);
-             assert_eq!(val1, value.1);
-+
-+            let val0 =3D kernel::dma_read!(self.ca_init, [i]?.h);
-+            let val1 =3D kernel::dma_read!(self.ca_init, [i]?.b);
-+
-+            assert_eq!(val0, value.0);
-+            assert_eq!(val1, value.1);
-         }
-
-         Ok(())
