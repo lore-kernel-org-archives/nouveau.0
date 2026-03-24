@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99A33F54ABA
-	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 13:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6676FF54ABA
+	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 14:00:54 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CEEA910E6DA;
-	Tue, 24 Mar 2026 13:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5D58C10E6E6;
+	Tue, 24 Mar 2026 14:00:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ATF2wMf5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="OlxVR12o";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2B6DC4529B;
-	Tue, 24 Mar 2026 13:35:49 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id B18294527C;
+	Tue, 24 Mar 2026 13:49:48 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774359348;
- b=RgBcUbfiYbFGabvmh5ytui9Az0L3/2kH5HqRpG1WGhTL4d3HFDJNbvg3TaJPQGmzSSGFd
- rnsUuOR2GKSghnB3joEXROCNemn/6Sn3SWhgHjJUWdnf9v2eDJEhodhZ34+rlTCtsBszX4y
- s1VION3r8Pwsgnfe3XDtjJzjOS2TpRL3vd4Ju6JDEuU+z6JhNanANoLKviTkNeVxBW68lU1
- CJcj+VList01mMWWtXVdkS9PHbnGQnPzOY8zkCN/DH84EN2n3nBn0EDzAB/CUAN1YhAEchJ
- kltaX8ETuvCOu9b0U3fevycZxMUmSRP0VTiJ/S/ZqT/xC0wy40YUPJlwvYtw==
+ s=20240201; t=1774360188;
+ b=uf2Am5ykuWIY8qvyay/0zDNEY0YctD8vlbV8ZOrdtCy0kaWa3DQJ1nOlYukDXo73mKW9Z
+ UV3FQq55jH4+p6PYBLCAlIKXWt+tw/lAmYaHZ6GcuYm99ftCy7lqC7ng45pSZz4U+zC7NZd
+ 1H1wBifak5ilNMZOa/UfTWq8ojXTb9OSzxnxAwabmxsgmWQ+HzUL6lBPWFKBQ/53PU2nqTL
+ B3bNyHlZnziThPryKOwVe4ySoVjtRbF83n3N9ruqIZ96PKigLtVf20Y1YVHNzcjm1pH+zyQ
+ rs0xzCTkeWmlHcoSc9p7g+TAV4pv7qA4OWcOWbS2S4CkmYMPt5hFaBnjxccQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774359348; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774360188; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Uu5gG7jZHOTZmHrrwhkuGyjGIuGfN+6/fjJP+l1w6YI=;
- b=k8A+6lLM6puzkXDLETGXYFkFpRfFw03hN/FFc0iNmj1QgDqgPeVIO0FTi8cV8dYO8AsAa
- mFrSENoqHSBNlKmn4T4FUVsqdpSQ3ePoVK8z5PJtPiPgdJt+cyUuBigEEs9zvFx3So0uZE8
- dNg2t9lWD/1MFV3eA0qb9ptkXn3GC4eAELcNOfW4JqQDgjsANhbCvg4P6559gJtDDKo1vfQ
- yexKnN6QBHUb8qr3QunA2XjJK5Y3hbnta6CpnACOYsd88i/rE5v/62FW+mTGYyDaGMCZA+h
- TrotcyN4gVflObMIfgQ6xx/qfLrGD9gEzTN+NqZOc3PcmZPXs3oRkonjWUwQ==
+ bh=cgfDpG2Rje6Z7iMsCSSkYudvgS6fAd/Eb2WPgPhusU4=;
+ b=abs863vGM7zCFsHx9nLYhhMCEsmQxae2cub5debIZOz75uwxG5vNDq9vo+sgi9i6gCLkw
+ HhjfbjUSQ0XGn2XvTjZplVmV6XpzJ2QWZ3sOYCi6+/IcLUJzRiDIcqphjblo3zVxyaM2ckh
+ b/GpV1uracg/cUQU1ZeuDZBwN8ijvQeM7WB9uZ8tdsQV2RNaOFZXwmNGxlKLE+tsBVjiiW1
+ 3/9xHxZHqLizuOndk3FDe9RGoC2X/7Czpra+r2rsed6phF5X0oiUXzzcjqL8pnK9SpOPIt9
+ 2uyy2iMmE4AA3Ws+0N1qqn506QSFL0s5PSF5LU2fL4KslD4zqYTKdqnPb+6Q==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,43 +46,44 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7E627433BB
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 13:35:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3DFD140218
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 13:49:45 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C6A6010E6D6;
-	Tue, 24 Mar 2026 13:46:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C02C89343;
+	Tue, 24 Mar 2026 14:00:49 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 34CEA600AC;
-	Tue, 24 Mar 2026 13:46:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AB1CC19424;
-	Tue, 24 Mar 2026 13:46:45 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id B2F51600C4;
+	Tue, 24 Mar 2026 14:00:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBD2CC19424;
+	Tue, 24 Mar 2026 14:00:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774360008;
-	bh=h3w10dHofOpSr7tRLNN0/09dk5eHpyyKeNzs2he0Gmw=;
+	s=k20201202; t=1774360848;
+	bh=c9NFAllBfGAlx/FFc3N9mnr4Kiv07CkCPahF9j8WHzw=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=ATF2wMf50dDbIWHCverU2iPOzffb3JJrxs/lgJGCecZImGQb34PhZiA31p9lIeJVC
-	 i9hXg04xBtlAx4AAYW1VohpXfzxfH5XawxxbsPzYqK8r2qngB9ZQanTsvWwxHloR2h
-	 iiz835YB8lQg2RZEgaYBQpvYXqe48BbDSkHg2jTk7G/VqVvbMuHq9qelnL9O6zopxf
-	 RhmNJr161RGgonvdVJ+0uepC8HmiuLzrNYidHaB13RjIQgTNCD20LYk2I9XkjhC19J
-	 H8hqr9ZJzYlYURY/hLwIPIf40DKF3FqPB+YJ3RU86MsCBSedMNyUVPykZBbnG+mPbc
-	 gn2vI+oUDaECA==
+	b=OlxVR12oL/BTtAOUzCP9vu1WlUnqcDXriXSDyGTfV4n87zTnVvAExFtGIIvowDd/m
+	 zOEW5egUKzOahJ7/5wCpP6j88bE6760LMadtlzD/d8hnjU25KldG9nlYM+xO+a3Ykf
+	 ywyzVhtyJWNTlEE/uLCnC2XFN9umt5d356KuUfXl5jrXjRg9uB9w9s8njzpcC7l3zg
+	 z5Cy9vb4FutpeMYS65wWUriqKLaEYgh36dPFB+NYlvLXcwwoVhTiuhSF6sDCrVK1Vh
+	 9MwnAOMySimEIbS6CayPYAljjpevcCZVq6lVuoF3+JW2D3N1jARYzm50iJQ+qyTZrD
+	 1P3mmQylNIUUA==
 From: Andreas Hindborg <a.hindborg@kernel.org>
 To: Danilo Krummrich <dakr@kernel.org>, aliceryhl@google.com,
  acourbot@nvidia.com, ojeda@kernel.org, boqun@kernel.org, gary@garyguo.net,
  bjorn3_gh@protonmail.com, lossin@kernel.org, tmgross@umich.edu,
  abdiel.janulgue@gmail.com, daniel.almeida@collabora.com,
  robin.murphy@arm.com
-Subject: Re: [PATCH v2 3/8] rust: dma: add zeroed constructor to `Coherent`
-In-Reply-To: <20260320194626.36263-4-dakr@kernel.org>
+Subject: Re: [PATCH v2 4/8] rust: dma: introduce dma::CoherentBox for memory
+ initialization
+In-Reply-To: <20260320194626.36263-5-dakr@kernel.org>
 References: <20260320194626.36263-1-dakr@kernel.org>
- <RoXOmlVAeY7nQoQ-P4KIO9I-vuJBV9oDG-LUg4B5naE3EzdNAtBZhVLoyX3yUAATLPx3OCT6r6_P_TVNEf4dvQ==@protonmail.internalid>
- <20260320194626.36263-4-dakr@kernel.org>
-Date: Tue, 24 Mar 2026 14:46:39 +0100
-Message-ID: <874im5qr0g.fsf@kernel.org>
+ <gL6L6Fep9fLly-cba79GEM8HZOGIkSWwerKYzGDnU_XryvpxJul4kyB2Hq8UaEi8PflcO7i_p7UMi7NCY26DGA==@protonmail.internalid>
+ <20260320194626.36263-5-dakr@kernel.org>
+Date: Tue, 24 Mar 2026 14:57:56 +0100
+Message-ID: <871ph9qqhn.fsf@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-Message-ID-Hash: O3CEDZ54HNUVDIWGT3PVADPKJJEBRDYI
-X-Message-ID-Hash: O3CEDZ54HNUVDIWGT3PVADPKJJEBRDYI
+Message-ID-Hash: YJYQXMORQA6XPORPRHF4IT6ZODKQ5NMQ
+X-Message-ID-Hash: YJYQXMORQA6XPORPRHF4IT6ZODKQ5NMQ
 X-MailFrom: a.hindborg@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -95,8 +96,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O3CEDZ54HNUVDIWGT3PVADPKJJEBRDYI/>
-Archived-At: <https://lore.freedesktop.org/874im5qr0g.fsf@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YJYQXMORQA6XPORPRHF4IT6ZODKQ5NMQ/>
+Archived-At: <https://lore.freedesktop.org/871ph9qqhn.fsf@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,134 +109,133 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 "Danilo Krummrich" <dakr@kernel.org> writes:
 
-> From: Gary Guo <gary@garyguo.net>
+> Currently, dma::Coherent cannot safely provide (mutable) access to its
+> underlying memory because the memory might be concurrently accessed by a
+> DMA device. This makes it difficult to safely initialize the memory
+> before handing it over to the hardware.
 >
-> These constructors create a coherent container of a single object
-> instead of slice. They are named `zeroed` and `zeroed_with_attrs` to
-> emphasis that they are created initialized zeroed. It is intended that
-> there'll be new constructors that take `PinInit` instead of zeroing.
+> Introduce dma::CoherentBox, a type that encapsulates a dma::Coherent
+> before its DMA address is exposed to the device. dma::CoherentBox can
+> guarantee exclusive access to the inner dma::Coherent and implement
+> Deref and DerefMut.
 >
-> Signed-off-by: Gary Guo <gary@garyguo.net>
+> Once the memory is properly initialized, dma::CoherentBox can be
+> converted into a regular dma::Coherent.
+>
 > Reviewed-by: Alice Ryhl <aliceryhl@google.com>
 > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 > ---
->  rust/kernel/dma.rs       | 81 ++++++++++++++++++++++++++++++++++++----
->  samples/rust/rust_dma.rs |  8 ++--
->  2 files changed, 77 insertions(+), 12 deletions(-)
+>  rust/kernel/dma.rs | 154 ++++++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 153 insertions(+), 1 deletion(-)
 >
 > diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
-> index ff3e147f1a23..db645b01bdd0 100644
+> index db645b01bdd0..cefb54f0424a 100644
 > --- a/rust/kernel/dma.rs
 > +++ b/rust/kernel/dma.rs
-> @@ -47,7 +47,7 @@ pub trait Device: AsRef<device::Device<Core>> {
->      /// # Safety
->      ///
->      /// This method must not be called concurrently with any DMA allocation or mapping primitives,
-> -    /// such as [`CoherentAllocation::alloc_attrs`].
-> +    /// such as [`Coherent::zeroed`].
->      unsafe fn dma_set_mask(&self, mask: DmaMask) -> Result {
->          // SAFETY:
->          // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-> @@ -64,7 +64,7 @@ unsafe fn dma_set_mask(&self, mask: DmaMask) -> Result {
->      /// # Safety
->      ///
->      /// This method must not be called concurrently with any DMA allocation or mapping primitives,
-> -    /// such as [`CoherentAllocation::alloc_attrs`].
-> +    /// such as [`Coherent::zeroed`].
->      unsafe fn dma_set_coherent_mask(&self, mask: DmaMask) -> Result {
->          // SAFETY:
->          // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-> @@ -83,7 +83,7 @@ unsafe fn dma_set_coherent_mask(&self, mask: DmaMask) -> Result {
->      /// # Safety
->      ///
->      /// This method must not be called concurrently with any DMA allocation or mapping primitives,
-> -    /// such as [`CoherentAllocation::alloc_attrs`].
-> +    /// such as [`Coherent::zeroed`].
->      unsafe fn dma_set_mask_and_coherent(&self, mask: DmaMask) -> Result {
->          // SAFETY:
->          // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-> @@ -102,7 +102,7 @@ unsafe fn dma_set_mask_and_coherent(&self, mask: DmaMask) -> Result {
->      /// # Safety
->      ///
->      /// This method must not be called concurrently with any DMA allocation or mapping primitives,
-> -    /// such as [`CoherentAllocation::alloc_attrs`].
-> +    /// such as [`Coherent::zeroed`].
->      unsafe fn dma_set_max_seg_size(&self, size: u32) {
->          // SAFETY:
->          // - By the type invariant of `device::Device`, `self.as_ref().as_raw()` is valid.
-> @@ -202,12 +202,12 @@ pub const fn value(&self) -> u64 {
->  ///
->  /// ```
->  /// # use kernel::device::{Bound, Device};
-> -/// use kernel::dma::{attrs::*, CoherentAllocation};
-> +/// use kernel::dma::{attrs::*, Coherent};
->  ///
->  /// # fn test(dev: &Device<Bound>) -> Result {
->  /// let attribs = DMA_ATTR_FORCE_CONTIGUOUS | DMA_ATTR_NO_WARN;
-> -/// let c: CoherentAllocation<u64> =
-> -///     CoherentAllocation::alloc_attrs(dev, 4, GFP_KERNEL, attribs)?;
-> +/// let c: Coherent<[u64]> =
-> +///     Coherent::zeroed_slice_with_attrs(dev, 4, GFP_KERNEL, attribs)?;
->  /// # Ok::<(), Error>(()) }
->  /// ```
->  #[derive(Clone, Copy, PartialEq)]
-> @@ -492,7 +492,6 @@ pub unsafe fn field_write<F: AsBytes>(&self, field: *mut F, val: F) {
+> @@ -20,7 +20,13 @@
+>          FromBytes, //
+>      }, //
+>  };
+> -use core::ptr::NonNull;
+> +use core::{
+> +    ops::{
+> +        Deref,
+> +        DerefMut, //
+> +    },
+> +    ptr::NonNull, //
+> +};
 >
->  impl<T: AsBytes + FromBytes> Coherent<T> {
->      /// Allocates a region of `T` of coherent memory.
-> -    #[expect(unused)]
->      fn alloc_with_attrs(
->          dev: &device::Device<Bound>,
->          gfp_flags: kernel::alloc::Flags,
-> @@ -529,6 +528,35 @@ fn alloc_with_attrs(
->          })
+>  /// DMA address type.
+>  ///
+> @@ -352,6 +358,152 @@ fn from(direction: DataDirection) -> Self {
 >      }
+>  }
 >
-> +    /// Allocates a region of type `T` of coherent memory.
-
-For consistency "Allocates a ZEROED region...".
-
-> +    ///
-> +    /// # Examples
-> +    ///
-> +    /// ```
-> +    /// # use kernel::device::{Bound, Device};
-> +    /// use kernel::dma::{attrs::*, Coherent};
-> +    ///
-> +    /// # fn test(dev: &Device<Bound>) -> Result {
-> +    /// let c: Coherent<[u64; 4]> =
-> +    ///     Coherent::zeroed_with_attrs(dev, GFP_KERNEL, DMA_ATTR_NO_WARN)?;
-> +    /// # Ok::<(), Error>(()) }
-> +    /// ```
+> +/// CPU-owned DMA allocation that can be converted into a device-shared [`Coherent`] object.
+> +///
+> +/// Unlike [`Coherent`], a [`CoherentBox`] is guaranteed to be fully owned by the CPU -- its DMA
+> +/// address is not exposed and it cannot be accessed by a device. This means it can safely be used
+> +/// like a normal boxed allocation (e.g. direct reads, writes, and mutable slices are all safe).
+> +///
+> +/// A typical use is to allocate a [`CoherentBox`], populate it with normal CPU access, and then
+> +/// convert it into a [`Coherent`] object to share it with the device.
+> +///
+> +/// # Examples
+> +///
+> +/// `CoherentBox<T>`:
+> +///
+> +/// ```
+> +/// # use kernel::device::{
+> +/// #     Bound,
+> +/// #     Device,
+> +/// # };
+> +/// use kernel::dma::{attrs::*,
+> +///     Coherent,
+> +///     CoherentBox,
+> +/// };
+> +///
+> +/// # fn test(dev: &Device<Bound>) -> Result {
+> +/// let mut dmem: CoherentBox<u64> = CoherentBox::zeroed(dev, GFP_KERNEL)?;
+> +/// *dmem = 42;
+> +/// let dmem: Coherent<u64> = dmem.into();
+> +/// # Ok::<(), Error>(()) }
+> +/// ```
+> +///
+> +/// `CoherentBox<[T]>`:
+> +///
+> +///
+> +/// ```
+> +/// # use kernel::device::{
+> +/// #     Bound,
+> +/// #     Device,
+> +/// # };
+> +/// use kernel::dma::{attrs::*,
+> +///     Coherent,
+> +///     CoherentBox,
+> +/// };
+> +///
+> +/// # fn test(dev: &Device<Bound>) -> Result {
+> +/// let mut dmem: CoherentBox<[u64]> = CoherentBox::zeroed_slice(dev, 4, GFP_KERNEL)?;
+> +/// dmem.fill(42);
+> +/// let dmem: Coherent<[u64]> = dmem.into();
+> +/// # Ok::<(), Error>(()) }
+> +/// ```
+> +pub struct CoherentBox<T: AsBytes + FromBytes + KnownSize + ?Sized>(Coherent<T>);
+> +
+> +impl<T: AsBytes + FromBytes> CoherentBox<[T]> {
+> +    /// [`CoherentBox`] variant of [`Coherent::zeroed_slice_with_attrs`].
 > +    #[inline]
-> +    pub fn zeroed_with_attrs(
+> +    pub fn zeroed_slice_with_attrs(
 > +        dev: &device::Device<Bound>,
+> +        count: usize,
 > +        gfp_flags: kernel::alloc::Flags,
 > +        dma_attrs: Attrs,
 > +    ) -> Result<Self> {
-> +        Self::alloc_with_attrs(dev, gfp_flags | __GFP_ZERO, dma_attrs)
+> +        Coherent::zeroed_slice_with_attrs(dev, count, gfp_flags, dma_attrs).map(Self)
 > +    }
 > +
-> +    /// Performs the same functionality as [`Coherent::zeroed_with_attrs`], except the
-> +    /// `dma_attrs` is 0 by default.
+> +    /// Same as [CoherentBox::zeroed_slice_with_attrs], but with `dma::Attrs(0)`.
 > +    #[inline]
-> +    pub fn zeroed(dev: &device::Device<Bound>, gfp_flags: kernel::alloc::Flags) -> Result<Self> {
-> +        Self::zeroed_with_attrs(dev, gfp_flags, Attrs(0))
+> +    pub fn zeroed_slice(
+> +        dev: &device::Device<Bound>,
+> +        count: usize,
+> +        gfp_flags: kernel::alloc::Flags,
+> +    ) -> Result<Self> {
+> +        Self::zeroed_slice_with_attrs(dev, count, gfp_flags, Attrs(0))
 > +    }
 > +
->      /// Allocates a region of `[T; len]` of coherent memory.
->      fn alloc_slice_with_attrs(
->          dev: &device::Device<Bound>,
-> @@ -572,6 +600,43 @@ fn alloc_slice_with_attrs(
->              dma_attrs,
->          })
->      }
-> +
-> +    /// Allocates a zeroed region of type `T` of coherent memory.
+> +    /// Initializes the element at `i` using the given initializer.
+> +    ///
+> +    /// Returns `EINVAL` if `i` is out of bounds.
 
-Should it be "of type `[T]`"?
+Could you add an example for this function?
+
+
+Reviewed-by: Andreas Hindborg <a.hindborg@kernel.org>
 
 
 Best regards,
 Andreas Hindborg
+
+
 
