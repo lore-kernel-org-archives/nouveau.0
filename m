@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D18DE9A77F
-	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 12:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 391E4D58CCA
+	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 12:52:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8831510E69E;
-	Tue, 24 Mar 2026 12:46:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E3F1C10E6A2;
+	Tue, 24 Mar 2026 12:52:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="d1cJkGkO";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J0m0ok8m";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0B82C43F3B;
-	Tue, 24 Mar 2026 12:35:47 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5FA064527C;
+	Tue, 24 Mar 2026 12:40:57 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774355746;
- b=DUJI+i64s2nX8GM8DKZNIbIVtzpJ68xaExisHAE3zRFKlDh5F9TrUQWtMM8Uc+Y3IHPBX
- W0YsCVO5rE0uA5kyIEWiECrrvBafDQpKw11WFGbuRLQekbGnaW4ShZ+OmffEHcEUKSvl7P7
- XENgRm6DK6PpUsrqhp3Y6njqKaTUE6I1kN1AjWKzCCVntS0LXktzUzViuXassIRlrHX04r5
- IzY98CxMfn092XxlzJCDw4oJpISpQ3jOaWAQAp8KSI7TX9/pYAaIQa6KGEfvW4DOhvHJHAX
- MgGZkLjBYQTjDkk6wKgY6Okuf9+yeudqYqF2tPLPTnjXbsO65n7xeY2hhO/w==
+ s=20240201; t=1774356057;
+ b=Mo3kvtGPU0S8bPpaoKX9OLvGoBqBRQ4KrMgd6c2HeCxvJNpIQPdYnFBSzuh+SshZuQXIQ
+ O8SqXmWVD6gmOvgU6tlZwJ+PeIpW0wQ6AIkmdWBkxXjSy3OTxG6q5KfcbtHyBz0MJNTZAZr
+ J0eqe02JEL87S1mpVsnId+37raPV7SuDulhqoV16lPG7udpWnQ3w7R18dSp9Qi+97Tb+L2u
+ n7A0AfrpxOL1bVHWQ0CLoPzTRj7XuHxdNhZhiKa15VoQsoVYUWOpPPFw9u6UwI8rBfAIW78
+ dY/xwB93lMIjEqjXHoPch4h6pFmOvujRRcwBkCunU1aolnZ7hnC7nGdN7mlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774355746; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774356057; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=dsxveakDjRYMQkye9OWRI3sTONphVUVna8ujrl9GArE=;
- b=UUDENCnvRUje4fsa47MQgi6Hm7ceqs5xVJtGp3bncIFmCan6zxig0sRLc395V1T1ne3MM
- LEVxl3S1qxx3fqMJM6pc9SswAIHe/9FWy9sJcXYtcl7EKWMyHF2jiVH2SJa/W7u/I0ZHkas
- 1xwYa4yIz35/V8xahsy9PabtRhByQpKsR3zLK7K3qypbhjjPZVfGA6sR8NpvgodaSUEuuUg
- C9oYPai6lijatgc6MbT71QwjxtMzSQFlWzGRqVKKBt8nQBGn/0l/9gYR1OTWP5xV0RhYcgY
- hJru8TiCp9PGVJVm0ql8JuriCk00EjGjfbOkz6rWEiBa5DnoTPHlRe+r9C8w==
+ bh=36hQ1B0QighPB/KAqGfc17vUqkM+nQfmESwRKVrZeCU=;
+ b=km/oCeqsNI4z/ku2wApOLcbj0wr/YNfnOdjjzD+ZNGmlMZLUJqwv0Pw2wiB8SbJCpVZ9O
+ hyzVspu6YeN6jnXW3nwXOVMI3FoPA2RMto4oyxY7X3itG5cVfnyM7/36HK0z9n2bQZnjwli
+ TF/XY2wodM41zl4i/qgqWU85mwoAb51QXSjnHhWRWlZxObZKiegUVa4pOXPHeF1NTwCCRz1
+ 9GwIpsaw1b6UvCdbTZrlP1Ki9vDBJjpttRhJZcl/UCCDndvxXk+5PJSNi9ln9PiDYyKFmcT
+ BfkB73BUYmO/hDb5W3IyhkJ/sxDGcHKy3etkXQdzZF8xdotCLEm6VHzLxc/w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,46 +46,48 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A33E040218
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 12:35:44 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E313F10E5BF;
-	Tue, 24 Mar 2026 12:46:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6035A433BB
+	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 12:40:54 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A562B10E48E;
+	Tue, 24 Mar 2026 12:51:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 34DD86013E;
-	Tue, 24 Mar 2026 12:46:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EC4CC19424;
-	Tue, 24 Mar 2026 12:46:44 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 6F14843C47;
+	Tue, 24 Mar 2026 12:51:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C77AC19424;
+	Tue, 24 Mar 2026 12:51:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774356407;
-	bh=dsxveakDjRYMQkye9OWRI3sTONphVUVna8ujrl9GArE=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=d1cJkGkOpD3P10vow6H193rMwXx4pCGknvlcsUyKntyc3hs/Dl6cAmaqUqazKT8mS
-	 IcjVlKuVgutbV2SYEHS3ON5BlhJLbFK1ejAQ1WosoxDL26QL0j0mz7DNktyKw00AXD
-	 61lvhBj5bDAirroIg7FMAWGDBzyEZOWrw41fyi9C3H3Stkrby6J64GFLJjknK55jp5
-	 UOSXNVCz2JIKyK7LKDFkhTfVyAVc6YtnTGB4shSfmSdJYUokpq1XBmiAWzMxT5b0nV
-	 fKTA03FfPN3sEqu3iB8pjBKWtMCm/Yc+wRHfPpVrhe6R4E1jHNoRx3JWglVIx6TBQ3
-	 1CcacJaKLrAnw==
-From: Andreas Hindborg <a.hindborg@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
+	s=k20201202; t=1774356718;
+	bh=xvicNmew9YGVE06h8feoW2WxPglCVqW6Ob1aqjokys0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=J0m0ok8mYABf6NtwFb0fQ+bgKBJ3sRCDZwG55FzC8VdLXM7hmtw4ep11W9+APxQrx
+	 K+TjLbau9TJtVul6lXk2YJtFlWB8WozTRPB09jQiJOYMg8Yk9BR7DK7m1lbZPc+LJN
+	 OXWDEeCwzXSwwRacJFBHEB4HDSJqtPx6uP7V6C0HKMThlLM8rqprL/OHjWdTPXQbNJ
+	 x8TF56E26tOSH5SHyGdqXT0XDu76YDL/8lDyEqkQao0JGydrksoMGet8iepwO759EG
+	 iI/MISunGCc/IAinK3cZvEYEkPTOLJpi9lJQkRS4A7xUxqgBVNX615iyz0JfZvuqMj
+	 Rz0cM/PaXdU1w==
+Message-ID: <5ea753b2-a702-4d13-973a-9eaffa9562fe@kernel.org>
+Date: Tue, 24 Mar 2026 13:51:53 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 0/8] dma::Coherent & dma::CoherentInit API
-In-Reply-To: <314ab89f-3aee-49f5-804b-f33dc8ef5ba4@kernel.org>
+To: Andreas Hindborg <a.hindborg@kernel.org>
 References: 
  <9A1gWen63AbJmi06Y_vu_qF1S86nj3fcQEil9RzLAn8QkIYpCOrLMNO7JcgIP0BccPHhzaYaQ_te1S_gKuHRgg==@protonmail.internalid>
  <20260303162314.94363-1-dakr@kernel.org> <87cy0tqueu.fsf@kernel.org>
  <NNO45MYwzudmCWH1mWf1k0Icy8Q0eKR4ANI6fg9-zxq3_dHLfhyRsHaq2l77l-RBwmek7tHzQIv2vNhOFg1Ysw==@protonmail.internalid>
- <314ab89f-3aee-49f5-804b-f33dc8ef5ba4@kernel.org>
-Date: Tue, 24 Mar 2026 13:46:36 +0100
-Message-ID: <87a4vxqtsj.fsf@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
-Message-ID-Hash: P6EUC2O5KEKOTXYDXDFH3VLX4C3QU4RT
-X-Message-ID-Hash: P6EUC2O5KEKOTXYDXDFH3VLX4C3QU4RT
-X-MailFrom: a.hindborg@kernel.org
+ <314ab89f-3aee-49f5-804b-f33dc8ef5ba4@kernel.org> <87a4vxqtsj.fsf@kernel.org>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <87a4vxqtsj.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Message-ID-Hash: JIFI63AARJNAJOJELVSER4QJUKT5BNOG
+X-Message-ID-Hash: JIFI63AARJNAJOJELVSER4QJUKT5BNOG
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
+ loop; banned-address; member-moderation
 CC: aliceryhl@google.com, acourbot@nvidia.com, ojeda@kernel.org,
  boqun@kernel.org, gary@garyguo.net, bjorn3_gh@protonmail.com,
  lossin@kernel.org, tmgross@umich.edu, abdiel.janulgue@gmail.com,
@@ -97,8 +99,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/P6EUC2O5KEKOTXYDXDFH3VLX4C3QU4RT/>
-Archived-At: <https://lore.freedesktop.org/87a4vxqtsj.fsf@kernel.org/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JIFI63AARJNAJOJELVSER4QJUKT5BNOG/>
+Archived-At: 
+ <https://lore.freedesktop.org/5ea753b2-a702-4d13-973a-9eaffa9562fe@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -108,19 +111,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-"Danilo Krummrich" <dakr@kernel.org> writes:
+On 3/24/26 1:46 PM, Andreas Hindborg wrote:
+> "Danilo Krummrich" <dakr@kernel.org> writes:
+> 
+>> On 3/24/26 1:33 PM, Andreas Hindborg wrote:
+>>> What did you base this on?
+>>
+>> drm-rust-next
+> 
+> I don't think 1195fcbda62f12108dc9be56fa4173897905b90c is in
+> drm-rust-next - or any of the other branches in of
+> https://gitlab.freedesktop.org/drm/rust/kernel.git .
 
-> On 3/24/26 1:33 PM, Andreas Hindborg wrote:
->> What did you base this on?
->
-> drm-rust-next
+Oh, I did not notice that you replied to v1, there's already a v2.
 
-I don't think 1195fcbda62f12108dc9be56fa4173897905b90c is in
-drm-rust-next - or any of the other branches in of
-https://gitlab.freedesktop.org/drm/rust/kernel.git .
-
-
-Best regards,
-Andreas Hindborg
-
-
+[1] https://lore.kernel.org/driver-core/20260320194626.36263-1-dakr@kernel.org/
