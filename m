@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AC31FC72DF
-	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 00:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82FA3108B91E
+	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 01:35:14 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7578610E68B;
-	Wed, 25 Mar 2026 00:39:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E2C0510E677;
+	Wed, 25 Mar 2026 01:35:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="r/7JI/Zx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NfSNLXJj";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E229A452D2;
-	Wed, 25 Mar 2026 00:28:39 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 36D40452E9;
+	Wed, 25 Mar 2026 01:24:08 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774398519;
- b=nYZTtbQMzwe/MMNQ9I8+Gx6n9ObZY+SLECG/Ts7aJVBK+hEQoV6Dmr3Mlu4qtnOi34HJk
- C5n/erOKs787ITee7BTYFQl+pj0+sMBsS1VMJHfNPfz1fexSTy42YQjSuI1FUPAPzU+Aul2
- L1NoF3jBGE9pey3FlX2zBQYYgHVhUScNaIYpai9WzN9sh/X2V0HF1fWiacvFN2ewUFy+KeZ
- jCS9jdKKwLiZKBXPIe+nUYeOwUMVwVsOea9ObW1KZsXYCyK9/E++Vv2d6kz+W8Lagxu3Qnz
- Rx9D+cPsjo8NV7Ru2NbZXhmL7tnd0ufg8ndmmgLxbp515g7k0bI3WA1Ys8OA==
+ s=20240201; t=1774401848;
+ b=vXzfBdYf2Vmr9fPa57XQbUN5md+kOxSAWGWM4t/FL3Vc3V4cSRU5zkqf7aDt+UeUkwxFm
+ NuKH5ZCyXXIfOtEottKCANeQnNEM9/YwaoqfwpKcXXImDYp4ET2TnNDCVhf6JzDJzUsOM6q
+ 9vswY2OhGSwFUx4MTqWaonXV0FZuiOrK/03yMnLDehG9qZbGAhb0LH3SRCLQPejOk2WQalx
+ sSd7JJNHVBd5PPEaSBcK41tPBuIse7grELvbGWh8XPWTWdkUVyP8QETSTnf44ki+yRgsZKe
+ UD0RWINBtC+LlJL0m2dlQdhCvtXlMr7yGmNbQY1ALEAU26NiIhllP2j+8Epw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774398519; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774401848; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=XYdr6O+RHs4Msz4yuJTcU9iiEOrxY5hphug1NE6REq8=;
- b=qtxs79hI5KrmPoEIivzq07X7QYIqmpyuESINBS6J4YIGSmpym5y3bHgqE31FTrt5u6SkN
- rbeGdPe929UQSgAjrq64fyGVEI+fJ4eVbfjRhis3x1uE19d/xoFyKNfMLc9+FJ4kGp01xjx
- LkQ4rQVTTVMcQ7UwxlewGHZO+u32HRyHQ9Qm5u87yoJjofDcY4NapW0xI1y+bNR6vTOGSRQ
- dRcfLZYGyFmmmRK186v2UB1ShlH0FFocBm7AW9W++RwdPH66cpUohFrbaAXvU2m3GIDIWmv
- 96fdNoX6NF/Ue0zOq5AxYhBmKfmjTP8UkjRzCXiInAo9v+ie3oxd3C00edfA==
+ bh=xwP8eZGTtz7Rk3rVDwXvQy/OeNlG2E4kW67PcErHUY0=;
+ b=BQTirKMHYfE4PhdmAEKhmpdKAiOsANZfrY5oMHET4vr0RysnOrjhE4VJE/pW1lLIE5cHO
+ CUgXROBbyZ5oRgsQyMI4GGmkoMnCzlfj4g0PLBS2Ou5kbQbJtHJexfrbMTLy8aMdRpEUHfZ
+ 8W5qmOw+U+PuuKjLisy2kvA1Q1g8Rnd6zKA6X7aJjv9QcZ/GtPyyevZY38G6rl9qaN5nCee
+ LC5cD5psGDaZqU6JrZ7kLd87W0V4FdFbz+j5fLu3UXgQHWW01QG/w6/XgHOeFg+2kta5laF
+ 6qa5gr7xYdf6SKIIwprsJWU5NdUG8p1uoBk3myj88pSW51cKjTeCRvCrA79g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,64 +46,60 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A316C433BB
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 00:28:36 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0D710E621;
-	Wed, 25 Mar 2026 00:39:42 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5DFBE44D5E
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 01:24:06 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D985710E18B
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 01:35:11 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 1F024600AC;
-	Wed, 25 Mar 2026 00:39:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A5CCC2BCB2;
-	Wed, 25 Mar 2026 00:39:37 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id 8FA8043E5F;
+	Wed, 25 Mar 2026 01:35:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03C30C2BCB2;
+	Wed, 25 Mar 2026 01:35:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774399180;
-	bh=FL1JEdq1tctPBGMzomr8d8x2jF4EF+GuISsfrwolWBg=;
+	s=k20201202; t=1774402511;
+	bh=u+or+4ewo6DzW5OS99JNcJt3P+PYstR0dsJPR1tuZdY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=r/7JI/Zxyj00ZvSGCx9RrpoMT1uddYpxcG5XCLiLS3LVVACMib7IPfa9NSoM1qk0V
-	 78/fC13BslBNA8E/UDwsmNBSD5M92jicRml8a84ElBKm+BIw34+IiojbBhTTf431TJ
-	 zYbp+C7jzfK1z6gKa3EHhuKKgRktqRUev5akLumhgahvRJDfyshQK9aFTxpcx3EKzU
-	 TmwkkoAa0Qi6pEwnHaNV350cpn1Y/bQ+BZiu8Q5bC82lLylqebXf7er4AQmfJSwDVi
-	 mY2Z9myG/K9fCX0s8McQuckk1GkFUCd8uj7phVl0n2ldu8Jm5vSSv9HsInybd5qALl
-	 uGlVJVKGBtJ1A==
-From: Danilo Krummrich <dakr@kernel.org>
-To: acourbot@nvidia.com,
-	aliceryhl@google.com,
-	abdiel.janulgue@gmail.com,
-	daniel.almeida@collabora.com,
-	robin.murphy@arm.com,
-	a.hindborg@kernel.org,
-	ojeda@kernel.org,
-	boqun@kernel.org,
-	gary@garyguo.net,
-	bjorn3_gh@protonmail.com,
-	lossin@kernel.org,
-	tmgross@umich.edu,
-	ttabi@nvidia.com
-Subject: [PATCH 3/3] gpu: nova-core: use sized array for GSP log buffers
-Date: Wed, 25 Mar 2026 01:39:17 +0100
-Message-ID: <20260325003921.3420-3-dakr@kernel.org>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260325003921.3420-1-dakr@kernel.org>
-References: <20260325003921.3420-1-dakr@kernel.org>
+	b=NfSNLXJjobHuFIyJwgQnaBha24RbrbvUDO7tgCICQaBxVu+Iy056ZzbsnHDKs74gR
+	 jHgY2J++3sLB7d/nrI6XlokOLgnfwrwTTEucOZXkL3yxyOO2n/P/5jCvCecb2uhV9n
+	 s3jyETmhuBCp81hJAXhmBirEWPDKgktu5zhy+ppProV3LaI47st429hj2g2LNmJ2uC
+	 P1/T1NiXjNT1+bRoXFm1E1Gz2nuEerITSMeOKwPC7gbXHj9xcJAIOx4OMYLAp1pVcI
+	 LPGdWVOXy4zce7aEeOjhHdO1OdZkDCPfhEpOMivLedLQxd2rEnp23AcJMu00FeTupE
+	 p5htC9RVHmbXg==
+From: Miguel Ojeda <ojeda@kernel.org>
+To: gregkh@linuxfoundation.org
+Subject: Re: [PATCH 6.19 000/220] 6.19.10-rc1 review
+Date: Wed, 25 Mar 2026 02:34:47 +0100
+Message-ID: <20260325013447.66771-1-ojeda@kernel.org>
+In-Reply-To: <20260323134504.575022936@linuxfoundation.org>
+References: <20260323134504.575022936@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ
-X-Message-ID-Hash: Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: SWU4QLRUB22PVIPTOWJRHZ5S657L54Q7
+X-Message-ID-Hash: SWU4QLRUB22PVIPTOWJRHZ5S657L54Q7
+X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
- rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: achill@achill.org, akpm@linux-foundation.org, broonie@kernel.org,
+ conor@kernel.org, f.fainelli@gmail.com, hargar@microsoft.com,
+ linux-kernel@vger.kernel.org, linux@roeck-us.net,
+ lkft-triage@lists.linaro.org, patches@kernelci.org, patches@lists.linux.dev,
+ pavel@nabladev.com, rwarsow@gmx.de, shuah@kernel.org, sr@sladewatkins.com,
+ stable@vger.kernel.org, sudipm.mukherjee@gmail.com,
+ torvalds@linux-foundation.org, Miguel Ojeda <ojeda@kernel.org>,
+ Gary Guo <gary@garyguo.net>, Tim Kovalenko <tim.kovalenko@proton.me>,
+ Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot <acourbot@nvidia.com>,
+ nouveau@lists.freedesktop.org, Huacai Chen <chenhuacai@kernel.org>,
+ WANG Xuerui <kernel@xen0n.name>, loongarch@lists.linux.dev
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SWU4QLRUB22PVIPTOWJRHZ5S657L54Q7/>
 Archived-At: 
- <https://lore.freedesktop.org/20260325003921.3420-3-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260325013447.66771-1-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,59 +109,45 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Switch LogBuffer from Coherent<[u8]> (unsized) to
-Coherent<[u8; LOG_BUFFER_SIZE]> (sized). The buffer size is a
-compile-time constant (RM_LOG_BUFFER_NUM_PAGES * GSP_PAGE_SIZE), so a
-fixed-size array is more precise and avoids the need for the runtime
-length parameter of zeroed_slice().
+On Mon, 23 Mar 2026 14:42:57 +0100 Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
+>
+> This is the start of the stable review cycle for the 6.19.10 release.
+> There are 220 patches in this series, all will be posted as a response
+> to this one.  If anyone has any issues with these being applied, please
+> let me know.
+>
+> Responses should be made by Wed, 25 Mar 2026 13:44:33 +0000.
+> Anything received after that time might be too late.
 
-Signed-off-by: Danilo Krummrich <dakr@kernel.org>
----
- drivers/gpu/nova-core/gsp.rs | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+Boot-tested under QEMU for Rust x86_64, arm64 and riscv64; built-tested
+for loongarch64:
 
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index 04e3976127cc..ba5b7f990031 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -42,6 +42,7 @@
- 
- /// Number of GSP pages to use in a RM log buffer.
- const RM_LOG_BUFFER_NUM_PAGES: usize = 0x10;
-+const LOG_BUFFER_SIZE: usize = RM_LOG_BUFFER_NUM_PAGES * GSP_PAGE_SIZE;
- 
- /// Array of page table entries, as understood by the GSP bootloader.
- #[repr(C)]
-@@ -77,24 +78,19 @@ fn entry(start: DmaAddress, index: usize) -> Result<u64> {
- /// then pp points to index into the buffer where the next logging entry will
- /// be written. Therefore, the logging data is valid if:
- ///   1 <= pp < sizeof(buffer)/sizeof(u64)
--struct LogBuffer(Coherent<[u8]>);
-+struct LogBuffer(Coherent<[u8; LOG_BUFFER_SIZE]>);
- 
- impl LogBuffer {
-     /// Creates a new `LogBuffer` mapped on `dev`.
-     fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
--        const NUM_PAGES: usize = RM_LOG_BUFFER_NUM_PAGES;
--
--        let obj = Self(Coherent::<u8>::zeroed_slice(
--            dev,
--            NUM_PAGES * GSP_PAGE_SIZE,
--            GFP_KERNEL,
--        )?);
-+        let obj = Self(Coherent::zeroed(dev, GFP_KERNEL)?);
- 
-         let start_addr = obj.0.dma_handle();
- 
-         // SAFETY: `obj` has just been created and we are its sole user.
--        let pte_region =
--            unsafe { &mut obj.0.as_mut()[size_of::<u64>()..][..NUM_PAGES * size_of::<u64>()] };
-+        let pte_region = unsafe {
-+            &mut obj.0.as_mut()[size_of::<u64>()..][..RM_LOG_BUFFER_NUM_PAGES * size_of::<u64>()]
-+        };
- 
-         // Write values one by one to avoid an on-stack instance of `PteArray`.
-         for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
--- 
-2.53.0
+Tested-by: Miguel Ojeda <ojeda@kernel.org>
 
+For loongarch64, I am seeing:
+
+    drivers/gpu/nova-core/nova_core.o: warning: objtool: _RNvMs1_NtNtCskfHXyXj90Gn_9nova_core3gsp4cmdqNtB5_4Cmdq3new+0x2c8: return with modified stack frame
+
+Which got fixed in mainline by:
+
+  c7940c8bf215 ("gpu: nova-core: fix stack overflow in GSP memory allocation")
+
+But 1) this is just for loongarch64, 2) Nova is still being developed
+and 3) it is just for 6.19.y, so that is probably there was no Cc:
+stable@. Anyway, Cc'ing here.
+
+Cc: Gary Guo <gary@garyguo.net>
+Cc: Tim Kovalenko <tim.kovalenko@proton.me>
+
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Alexandre Courbot <acourbot@nvidia.com>
+Cc: nouveau@lists.freedesktop.org
+
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: WANG Xuerui <kernel@xen0n.name>
+Cc: loongarch@lists.linux.dev
+
+Thanks!
+
+Cheers,
+Miguel
