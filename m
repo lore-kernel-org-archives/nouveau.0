@@ -4,189 +4,178 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB0D81093168
-	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 14:19:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B274F109C02D
+	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 14:55:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A39BB10E7C3;
-	Wed, 25 Mar 2026 14:19:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 99C6B10E51B;
+	Wed, 25 Mar 2026 14:55:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="K8x7jdMC";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="gPPx5UtP";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C0EDB4530B;
-	Wed, 25 Mar 2026 14:08:47 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774447727;
- b=l/F5a99nUN9d3q0Wmuf9XAxjbewxS+Dh+9K1BfNgGAS9PQpZu+K1sEyWuvUmXNR2AFkUc
- DChZk7dNYLKgazcx/5O6ByXv8YijPUyAtToyiWxOYvtcYd9ZhrJ7yUauqzCsV2oDQQEk+3f
- sUQgP+zOhJ461r5VTUP3VDjrjrL/q+gor2NJ1Zk5I8Ok/yUNuSviEez6iSghb/F/nK9ZAFc
- DVjdVvnOs8T7wDrUUSs7JKoUEFyJQfR+sCZRXt5YaeiqZKB5MtkVGi54PdNR7bVMNdScUVY
- t/Vsb252i0az5/0MsjbV0GuX5h1fT6DP1XpQ0bd+odU3tr8KYwJu9JRcOC6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774447727; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id AB6904530D;
+	Wed, 25 Mar 2026 14:44:19 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774449859;
+ b=nQ3mITlwMCarXrr4OAenDxGZpDI+Gpu8ftZ+D7+j8Mgu0TsDk26Kdl1w6CYbdXq01pdyc
+ FEtaKjKw9WeUfELbSSyAzV9IpMxkVOTlwXOvHcH4oLLy6eddKyjHEpy9RAQArzIR/nJVG8y
+ WaUs/Fw2ZTVp14lfsZFW4VHMptwFyTbNwSAQixClSrTgP75aBmTDoEbvoaiS3HbhnaeRsvU
+ 81v+cyhklmz+VrtBOD2tRixUZekKKZWxhOUQYQ+l8OnwlGUdG8zNsZ7B7ZLmIFaPg4t2c7a
+ ovQUe53zc6CQqM3GbgMSVUpSR5nWTMWAfrimBu9CIeYgjBx3nn0f/XvVqtPw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774449859; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=u23klA8/tUFH4NA33VZFcitcYgHXv0lrbMT5xAzySEc=;
- b=E8srXWgOnQm8h5MdhGJCFXON7uC+S4IpVhK69Nr31IzR9Qm12TLtsW6oD8f90ZjIrblQF
- mVgYxtC55HO4znYLR7AihfAKDVbfhNIEQahkeMEIDrCD/sKNGIVRniwLl3DnieZaN8IgXgF
- M0Yz7bGTqn/DqclU3gutGka5jHOFqf+ZnyObQzKmDzDJjrJ6WICtVVxdnfnJdBoqFRgWK70
- G6QS11nF2sTVe9cfssQnEnZH1o+2v/yLmXY2X7zUEji0bNwn8vdiJZSedAmXEHmvRkx9uc0
- /gROv4hQ8qQs+yZt9Mka7CxjdmKHTUK+C5oqwH6kgzW3r21bN7306rlnI0qQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=web.de header.i=markus.elfring@web.de;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=web.de
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org;
- dkim=fail header.d=web.de header.i=markus.elfring@web.de;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=web.de
- policy.dmarc=quarantine
+ bh=zZj6M/YvMlO3sPD0GZKMWU1sa0bNM13zwzP1YjNC+8Y=;
+ b=Vn3muvttD7Ant7ikS06ddwTaItrzHO/Xo1I3GLjPL6XKGGgo0DyvhGec5bPkC4bPs13Ic
+ +/w938MNCvyQmdhpkjijPCfmFk1sZlszYDa9gC4Xi1oiL/rrIOf6wG1XTYfzNs2fL8FidmM
+ r6yvfW3A7W29R7aCdYaAufl+shP3MPnMK1GX85Lh6Q9Tyrv54qtYopLWlQVEYkGqojN0OfG
+ w1S4KdFGQKH2tx1BLRGXCweLmNGKD8/8BpDiQgRTxtaDaQpnlqrTMt6qRLaUHev89fpR0FA
+ sFkveN/W4KoSvNqf/Ndr0W/PgxrfboS908rvxvyOLXeyBy508ZBrgF9AT+Kw==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 7480944F5D
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 14:08:45 +0000 (UTC)
-X-Greylist: delayed 837 seconds by postgrey-1.36 at gabe;
- Wed, 25 Mar 2026 14:19:51 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.11])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AAEB110E208
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 14:19:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1774448388; x=1775053188; i=markus.elfring@web.de;
-	bh=u23klA8/tUFH4NA33VZFcitcYgHXv0lrbMT5xAzySEc=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:From:
-	 Subject:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=K8x7jdMC8HTH57xglObyyt9L+4KY6iI+f0MAEJvMsOczUIzgGIKewxPIOZLr06Dy
-	 pXvDNwGJMALWkQbnSY37Rw40wi4auk25zGeftdsv0vKgPpfXMxRsrldr4oD2DjIEF
-	 7OiXNHfWmjN84894MlcPXbqRpOmTkitqYjeKHZ44JAhK14xf/vdrVpB+OnL+6LmC8
-	 zfPyGkab18QiBoYUARkbhDvxyq8erpsDTJLV6xL60dsIIzcikSVm1roweNtqittoy
-	 9KjcI1B02SvU2adZ3eJNT2usSIi97OLvqIzpr+C374GC2KqCX7v7a1QrI4YJPEULn
-	 U5ML1rbyzojaHjB9Ig==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from client.hidden.invalid by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1M2xrq-1w8hBs3Qui-007TS5; Wed, 25
- Mar 2026 15:05:52 +0100
-Message-ID: <e3631a8e-b4a4-4e14-822d-2199f1576cc9@web.de>
-Date: Wed, 25 Mar 2026 15:05:49 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Lyude Paul <lyude@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Content-Language: en-GB, de-DE
-From: Markus Elfring <Markus.Elfring@web.de>
-Subject: [PATCH] drm/nouveau: Omit a redundant pm_runtime_mark_last_busy()
- call in nouveau_pmops_runtime_idle()
-Content-Type: text/plain; charset=UTF-8
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7B1C8452CF
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 14:44:16 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022072.outbound.protection.outlook.com [52.101.101.72])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E51E310E16D;
+	Wed, 25 Mar 2026 14:55:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gRaHB7CW5u+tS2pgnbrABSH7O0DYW6lHzNPe95Chd4G3qLY2dyT8ZoCbL1CYE13eC65T7ynpO90YPtLb8nlMgd8PbGRoAv9v7MhoMiw5JOPyohSfAKRQHauNIj8vpTK1SRdt6VZwcgH9KuECGlK9ZfCgt65kOtn1WRAHVuvmbbixOIRCiqyyaBYshotBpVccVC4G+sIims7K+g/O3PhAMxHt8H9MV/pt1eFXWkzR+G4uriSz7+EiqH5szuVzqrw5H8zW5OqZVUExpZfsBR24ATjk4cguezxCam7Y6uChKFp/5dHMagnluEscZdC8EZ+fV77klbKYrlXvgsMBcajZ9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zZj6M/YvMlO3sPD0GZKMWU1sa0bNM13zwzP1YjNC+8Y=;
+ b=MmpTwBCt3UXqeK2Q1nyOavmfqq6T6TESeGIpGXM4Aq9sNCNnN9DgoUEWW2Ok5zCQTJiyDfP7RJtqC9hT5i9JlGQ2zGtI610NSRPv1M06rzZ5gUfurEkwVHKkwPZZDlzlVRrlIxMngK4AC/d3bq0sqodXV6wc/dt0o39TXBtdvSWOTIB7MBAzajsWoniHvGOvGRfcpkeEvLPfAicRLR1ObjYpRINqIvHSSkeALQnqfcRfEK26bVNerrx57dK4TAfnigp0LUWQjWustxmddMomk2mADRv7z+i8SIykojQvcWTWQoNJ0L3g8V/7GODDKweII0ru5OtD/LBoLDF+2/t84w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zZj6M/YvMlO3sPD0GZKMWU1sa0bNM13zwzP1YjNC+8Y=;
+ b=gPPx5UtP5zz7SSpluQA1sEaKD+LRruOPeAUVSrgv56hWunOJxxFkMt9DNuK/tJ309JmRv6dIAtFKS5V7g8tlDciaXzb87emgd9tnOp9bcowwmqRyhhgq4LMhOtjaM95T1+ZDo6maHFH76DCrjjGsTEyRP7h9P7NexQ3OtbX2D6s=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO7P265MB7762.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:414::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.31; Wed, 25 Mar
+ 2026 14:55:19 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9745.019; Wed, 25 Mar 2026
+ 14:55:18 +0000
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:d5UJvMslD2Hr4TKib2ej8EpiK17V/AqdMAvX/HeRHdEV4eQZ+0h
- qT5l+WbwB7AvX67crgHdTNM3gRM17iMrmiAjFtlZ/krFcXVfCABMQn4mMUqSDdOZtMxuwjt
- q23TeT6t8zYceYPnj7SQthCMhQswWUFa9NHiBd/BvUmWGlwkEf35IH2d4hXkNYul867tW4L
- fdRhPHXFR/EvzVDftpzaA==
-UI-OutboundReport: notjunk:1;M01:P0:KBYN5ZTY/0Y=;w5jrOeAXF0zo/wf+R4k6fyxm6IQ
- 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
- 0I
-Message-ID-Hash: WDYH5UCMCEJK4GHK6QNCZ3PUOBUFIXDI
-X-Message-ID-Hash: WDYH5UCMCEJK4GHK6QNCZ3PUOBUFIXDI
-X-MailFrom: Markus.Elfring@web.de
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 25 Mar 2026 14:55:18 +0000
+Message-Id: <DHBY7MICRY6U.1YAZLYRZJTICG@garyguo.net>
+Subject: Re: [PATCH 1/3] rust: uaccess: generalize write_dma() to accept any
+ Coherent<T>
+From: "Gary Guo" <gary@garyguo.net>
+To: "Danilo Krummrich" <dakr@kernel.org>, "Gary Guo" <gary@garyguo.net>
+X-Mailer: aerc 0.21.0
+References: <20260325003921.3420-1-dakr@kernel.org>
+ <DHBVS7DX89G2.34ELW7TJAH7M8@garyguo.net>
+ <DHBWR17G0AIE.30MDYBUT7PNZL@kernel.org>
+In-Reply-To: <DHBWR17G0AIE.30MDYBUT7PNZL@kernel.org>
+X-ClientProxiedBy: LO4P123CA0657.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:316::6) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO7P265MB7762:EE_
+X-MS-Office365-Filtering-Correlation-Id: c16ed98a-005f-4a0d-64d9-08de8a7e8824
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|1800799024|10070799003|366016|376014|7416014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: 
+	w7CF+Bsr5PRyst5hZoi1v1Int+MXZfsrpi9HxNDniXb4OPBXUa+gCg8KhUshSKLZX1UGCkmF5BNY/ikF5qvB5Brbe5F4Pq/OfJoAosGySwy86SgvNUm2IDdBicSYzxj7YGOso8G4orsmCUA+2NRq3kiqtozMrUkxquh8rAaQgE76VhK4nNDK4aE5qfXVjOKqhIU3hRV3xf/cNse25zKahLx0XqpRmtKKrr9SPheUDWYl3kXEeCeFizSqlEYJic9trrA+jFJgLtvUDzhqnk3iL2okB/P2AgJFW+ViOJ5bYAucuDNgdBC4qAK0DpCpqoyxVudqI5SpAd4UoSl19VbhEcoFv8jLSz5pOB0REwon+1Yl30kGWR3Kl+TaAmmrXmEKWEFf+irYwhn7n1noMv87WgE34fJCTxQIM1KVcwlXNSW22gLALECXdjdvb8ZNSnc0OTW+2Q2XQYhIRS6kzX2zK6UQvLAbsfm+V3tfE1Yq/lXhA+e7Vjh9wJ/qORpZNjwkWKqUyUHMPRMiGeLN5OaHXbiNB0qT1HYk8B5O1paarT0lK1A68cXCg/7gPl/LAuxnvfAr3drfK3+cKQGmIU4wAEdKY+FfWx2idNruVYrKQBpVxPepblg7bE/x5DzgIoX3i6AOVAU3Pt8MvP5WYvKlwmPMo8kRIvnN7q5Jaj8hJgHVRva/U1Dx0Q6QKAxPQya+eY7Nd9+WLdTBw/J7TZQoGMBH7anIPmieJOtKSQ03NVY=
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(10070799003)(366016)(376014)(7416014)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?UGtaM3VqRzdrNjkxNnlZNGJhZURJM2U3RkZBVlM0Y05nTjgrVk1ramlxOGd2?=
+ =?utf-8?B?ZnlxV3UzVlhaZnNYd2RDTU1jUE1aVlJKZ1NzV3BxUTAwTmgwczBPbm01NGxB?=
+ =?utf-8?B?ODV4TGh6R1Z6N25wbWppZzAyWEM2RnJGVnB6L0I3NFQ4UThoUlgyNUpjN3NK?=
+ =?utf-8?B?WFhvZHh0M01obHNRTjA0Y2FGa1F0UVNVTlhVVmVQeHZBYUFXZVRwQUcwQ2M3?=
+ =?utf-8?B?RGU0VWp0RWlXeU40QkxIREpHWVlpUjZxUnliY0VHRzUrZGRaeHU4M0lxb1dh?=
+ =?utf-8?B?dzdNSmhTMTZ5dU1DZ3dXMTZObVE1WWhkbS95NHhud1loWUtOcmVrSGpnYkhF?=
+ =?utf-8?B?WU5MNlVKTkt5WSt5YTdQVEZsSmYyUXFTL2htS2lqbE9rWE5UN1RSZWZhMUkz?=
+ =?utf-8?B?anp2NGdKQkVZNGt0cUxZeXhWcTFDM1NTcFdyYjRzNVBVY3g2dG80elpaZHlT?=
+ =?utf-8?B?R3JiNGxpVjJjN0RJeXhkZGtJeXhTQkVNeGFuNExtc3ZsMkxXczNkS01DUGow?=
+ =?utf-8?B?QjdQZGlNRUtxQ0xyQ1JXNm94WUEySE8rY3d2Rm81c1pUTVNnblZaWENubFNn?=
+ =?utf-8?B?SjVIcWZaQnRlQzR0L2tpRFRCUXpZSTJmdWlRcmkvS1JRVUFYWlQvYjZrUWxr?=
+ =?utf-8?B?Nk5BL2xodjVObWNXZDZtWlgyblJZeVBQV2twTTFEV1N3QzVNWDRWUm1kSnE3?=
+ =?utf-8?B?L3VzZVBleXJUSVJmSklIM1lVTHptelRabituQTBNWFZHYkFMWFVkcXhqMXdk?=
+ =?utf-8?B?MkV0UUhTMUVWTEpDYlQzYWdJcGFGclJqNzZiejJKU1B5VTYwOFd2T3k0bjB1?=
+ =?utf-8?B?cithQlpVWEQxdzdmQzJHNDkrQXZzdU9Nd2toRmpnaklOWFMrWVNmclBoNytk?=
+ =?utf-8?B?QmRBMTFacURwTGZHckk0U21nTE1PdHcvSG9OVTJ2MmNHck5VekpyVXI1QzlD?=
+ =?utf-8?B?a210Vnk3UHBoRlBXY0ZzSjVCaThoZEdNVUw3NklxK3RYZ0ZkbnQ1T2d3eVlN?=
+ =?utf-8?B?U29FclJXbS9WdVREN1FsL2VYTzF2cDZlbUlGTmtRZExjWUV0STZmYlNuYVJJ?=
+ =?utf-8?B?UmY3V3FpdlZ1UUNwcWJiTWNNWWZRRmYzSUhYQ2d6SmxoUFJJRVp1MVNBeU44?=
+ =?utf-8?B?KzFqUWlqTlhKRUxtWTdOelJnZ1Bla0EweHRrY3ZKNEJmNkdkam56WVE3WU1k?=
+ =?utf-8?B?dHVXdlZIODR5VHBEV3ZsS1RJK0xJU1ViUkwzU2lBTFZTWGRmZDAycXN3c2FO?=
+ =?utf-8?B?Ujl2TXJacm1kMXJiZG04QU5tQzgyS1RsSFdWUVF5b0RsYU15RUxvNXdxSXU2?=
+ =?utf-8?B?V3N2bnRWYlBJSFVSd3ljRjN4V3RQamh5bDBwNmxOZWxNcEthRWRZVXRNekdv?=
+ =?utf-8?B?bkpudm1ZQmpGUFROTFl6OGJEbmdRS3F3SUp6eXJ4WTYvcE5xU1dBb01WQ0p6?=
+ =?utf-8?B?UksyaUZiV3FUMU5VS0hpTEpaR2JLcGhVdDZFVGNqVHZjNzkvQXVNTTh4VSsw?=
+ =?utf-8?B?alVVT2xKc3UyUGVxNE05Z2s3VHZHR3BxZ2w0alJiQ2VPak5TUjlhME10NUxL?=
+ =?utf-8?B?NlpXeGF6SzYvVzM2SmVWM2tyK20vZWlDbTRXY1cyTGZkd0hqWmd2Mmpaenhz?=
+ =?utf-8?B?bU1OMW9aSm5TT1BqMENpUkFUenBiUW5UUDNmQU53WVBvMC9SVmtYeXY2ZVND?=
+ =?utf-8?B?TlpMamtZSmIvUXljOExhMUkwMFd3dUR6c3JQaG1OWHZwMGhTbEE4SE1oZ3hx?=
+ =?utf-8?B?a3A1MlJkZStLcW5IcFdWRytscVpHUEZBdWE2WXVUWFZTUTFRc1RzQnJDWjc4?=
+ =?utf-8?B?MWNoUGI3Vk9ZYzdzWFVNK2QwNEpNMnVRb2h0ajVla3VjL0M2YTB6VFJ3T0kx?=
+ =?utf-8?B?VThmbWEydzNtZ1Y3ajhXZkpMVERJeDljR2Y0SVBkNFgwc2pVU0NKUUJlRSsx?=
+ =?utf-8?B?UU9yeGh0SnJXcFhPVTROb1NhMHNZZ1pjMk1WeWhRYmVQVVdyTTVJWTBGWUZ4?=
+ =?utf-8?B?ckd0andwMFBNYkl6MHhVRjIvZzVnTHgwM3JHWUhNWHlTNmhQalJjMlgwVkZC?=
+ =?utf-8?B?V2s2V0VIeE9VdCtLUGp5MlNRSS9EVFdaWXRxb0ZaRFVCZlJZNFA2ZmhOZ1JK?=
+ =?utf-8?B?T0ozMUZxcVlEdXc3UWo2UlI2aXZ4RFIrK0s0M0ZkSHZpa0FYVXRyRVJJdUc0?=
+ =?utf-8?B?WjRxcHV3aGxFU2ZjcXFyVXIreHJWTXM1M01WTzlpT2JoaXcvbWE1N25UZkk0?=
+ =?utf-8?B?TjZ1VXE2QW5nWldXY3kvS09KWnJ2cmxjdkdBeHpOWkg3WFVvNnlHMCtXTDVJ?=
+ =?utf-8?B?bkh2YzRDMitkY0YvY1NZV01JM0o3eEcrQmdHK0I3eWNtYkMyUitPZz09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ c16ed98a-005f-4a0d-64d9-08de8a7e8824
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 14:55:18.9054
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ Zx1nXChAN7WXnZnm+yjiSfhYjXKVYK8RG43Oq0fRAJLNQ88Ys3IysQV+DHF63PpGdJzhwLLb9R2AF2Oi9FdgGQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO7P265MB7762
+Message-ID-Hash: B36GDGNIVUQ7EIY6464KILB2ZAROTHXO
+X-Message-ID-Hash: B36GDGNIVUQ7EIY6464KILB2ZAROTHXO
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org,
- Felix Gu <ustc.gu@gmail.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>
+ loop; banned-address; member-moderation
+CC: acourbot@nvidia.com, aliceryhl@google.com, abdiel.janulgue@gmail.com,
+ daniel.almeida@collabora.com, robin.murphy@arm.com, a.hindborg@kernel.org,
+ ojeda@kernel.org, boqun@kernel.org, bjorn3_gh@protonmail.com,
+ lossin@kernel.org, tmgross@umich.edu, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WDYH5UCMCEJK4GHK6QNCZ3PUOBUFIXDI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/B36GDGNIVUQ7EIY6464KILB2ZAROTHXO/>
 Archived-At: 
- <https://lore.freedesktop.org/e3631a8e-b4a4-4e14-822d-2199f1576cc9@web.de/>
+ <https://lore.freedesktop.org/DHBY7MICRY6U.1YAZLYRZJTICG@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -196,36 +185,66 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Markus Elfring <elfring@users.sourceforge.net>
-Date: Wed, 25 Mar 2026 14:55:01 +0100
+On Wed Mar 25, 2026 at 1:46 PM GMT, Danilo Krummrich wrote:
+> On Wed Mar 25, 2026 at 2:01 PM CET, Gary Guo wrote:
+>> I think there is a reason, which is that it weakens the strong typing th=
+at we
+>> have. I think it'll be better to have this be
+>>
+>>     fn write_dma<T>(&mut self, view: View<'_, Coherent<T>, [u8]>, offset=
+: usize) -> Result
 
-The device's last busy timestamp was set in a wrapper function since
-the commit 08071e64cb642ae19ebd6ffeb13b4f3d130b5860 ("PM: runtime:
-Mark last busy stamp in pm_runtime_autosuspend()").
-Thus delete a pm_runtime_mark_last_busy() call before
-a pm_runtime_autosuspend() call.
+Correcting myself, this will be
 
-The source code was transformed by using the Coccinelle software.
+    fn write_dma<T>(&mut self, view: View<'_, Coherent<T>, [u8]>) -> Result
 
-Signed-off-by: Markus Elfring <elfring@users.sourceforge.net>
-=2D--
- drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
- 1 file changed, 1 deletion(-)
+(without offset, similar to the write_slice).
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouve=
-au/nouveau_drm.c
-index 5d8475e4895e..62ac9593230f 100644
-=2D-- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -1209,7 +1209,6 @@ nouveau_pmops_runtime_idle(struct device *dev)
- 		return -EBUSY;
- 	}
-=20
--	pm_runtime_mark_last_busy(dev);
- 	pm_runtime_autosuspend(dev);
- 	/* we don't want the main rpm_idle to call suspend - we want to autosusp=
-end */
- 	return 1;
-=2D-=20
-2.53.0
+>>
+>> once we have I/O view and expect people to create cast views into bytes
+>> explicitly.
+>>
+>
+> There is technically no difference between the above and the below, excep=
+t that
+> for the above the user has to create the View first, i.e. it needs additi=
+onal
+> code. What's the advantage?
+
+It prevents misuses. If you have a `[u8]` or `[u8; SIZE]` already, the chan=
+ge is
+going to be small:
+
+    u.write_dma(c, offset, count)
+
+vs.
+
+    u.write_dma(io_project!(c, [offset..][..count]))
+
+[
+    PS. it looks like with current proposals w/ virtual places, we might be=
+ able
+    to get this written as
+
+        u.write_dma(c[offset..][..count])
+
+    a few years down the road if we're successful.
+]
+
+However, using a view will prevent you from feeding an arbitary
+`Coherent<FooBar>` and just write it to user space. `offset` and `count` in=
+ the
+API really doesn't make too much sense at all if `T` is not array/slice of =
+u8.
+
+Best,
+Gary
+
+>
+>>> +    pub fn write_dma<T: KnownSize + AsBytes + ?Sized>(
+>>> +        &mut self,
+>>> +        alloc: &Coherent<T>,
+>>> +        offset: usize,
+>>> +        count: usize,
+>>> +    ) -> Result {
 
