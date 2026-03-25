@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EA2A1075269
-	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 00:39:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AC31FC72DF
+	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 00:39:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 415BA10E688;
-	Wed, 25 Mar 2026 00:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7578610E68B;
+	Wed, 25 Mar 2026 00:39:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lmTCDmKJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="r/7JI/Zx";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id AA695452D0;
-	Wed, 25 Mar 2026 00:28:34 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id E229A452D2;
+	Wed, 25 Mar 2026 00:28:39 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774398514;
- b=rb+6svZZ3Y3uBgBubuwpQq3SWOZF0MAYMUqkcg9zwjh6Bha4W1ygqKIWRcRm6uVDBiSQv
- IlFZjIl6kmKJHdUqrjlXpm9ANVwCXmy0Lld+RvK0us/O5schNsswLAy56c+AiK8roVxmWjj
- YSuSVeihvt7FIOxDgxUcUqxpdii+uB13m/uxUawprhZ7ZsHEBAj9yoTpdrtJsYwKNPm26Iy
- QT8qaUkZko8LInG9tTt8X0tJRKriSpFmJZeyreY5eoAYcbq8VNW8h7V5V77KJ+rtcz1Ukqy
- ZERVfmnPc0yGiCvEC1Fac6u5RIN0ObwliVi/fCpV8T9rl6vLJRQveO331rKg==
+ s=20240201; t=1774398519;
+ b=nYZTtbQMzwe/MMNQ9I8+Gx6n9ObZY+SLECG/Ts7aJVBK+hEQoV6Dmr3Mlu4qtnOi34HJk
+ C5n/erOKs787ITee7BTYFQl+pj0+sMBsS1VMJHfNPfz1fexSTy42YQjSuI1FUPAPzU+Aul2
+ L1NoF3jBGE9pey3FlX2zBQYYgHVhUScNaIYpai9WzN9sh/X2V0HF1fWiacvFN2ewUFy+KeZ
+ jCS9jdKKwLiZKBXPIe+nUYeOwUMVwVsOea9ObW1KZsXYCyK9/E++Vv2d6kz+W8Lagxu3Qnz
+ Rx9D+cPsjo8NV7Ru2NbZXhmL7tnd0ufg8ndmmgLxbp515g7k0bI3WA1Ys8OA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774398514; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774398519; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=xvTacd7u4Jfsjni1NT7W29L89LwL6/05iUNYAXZIuKk=;
- b=qepLHcmpIM5XwY35fIlEh8MOw4s8e2b+rQxVlyyC3UxcsO3oXazJLf/f0jOZUQdXGinIt
- XfVY+lf3oHn+6i7hivOS/KKVEcP7wmNUJPPs2HZ1n9hPHs6qr8MRgUtmXAyiITBFdBr0t/K
- QSzO2OczQn7VGD8ldIhVk1oWaqRMcRrn85336/zBRX/NEvi3cx0oJvqWTUYVat78hnYRDK7
- uamVh+1zb70oDxMlfy9UZyLQQuGReLZ4LIdoZ7AEtlu1yEjBzbLEvVyq5QISjgukdIMYoks
- wEqQPxL/L/+03mn3PnyQDC5jMRjWDcsDdrIZzGY3tn/FBWtSowQ1td/rcZSQ==
+ bh=XYdr6O+RHs4Msz4yuJTcU9iiEOrxY5hphug1NE6REq8=;
+ b=qtxs79hI5KrmPoEIivzq07X7QYIqmpyuESINBS6J4YIGSmpym5y3bHgqE31FTrt5u6SkN
+ rbeGdPe929UQSgAjrq64fyGVEI+fJ4eVbfjRhis3x1uE19d/xoFyKNfMLc9+FJ4kGp01xjx
+ LkQ4rQVTTVMcQ7UwxlewGHZO+u32HRyHQ9Qm5u87yoJjofDcY4NapW0xI1y+bNR6vTOGSRQ
+ dRcfLZYGyFmmmRK186v2UB1ShlH0FFocBm7AW9W++RwdPH66cpUohFrbaAXvU2m3GIDIWmv
+ 96fdNoX6NF/Ue0zOq5AxYhBmKfmjTP8UkjRzCXiInAo9v+ie3oxd3C00edfA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id ECF6A433BB
-	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 00:28:31 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0CA5E10E679;
-	Wed, 25 Mar 2026 00:39:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A316C433BB
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 00:28:36 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0D710E621;
+	Wed, 25 Mar 2026 00:39:42 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id E4AAB43AB2;
-	Wed, 25 Mar 2026 00:39:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3374AC2BCB1;
-	Wed, 25 Mar 2026 00:39:33 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id 1F024600AC;
+	Wed, 25 Mar 2026 00:39:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A5CCC2BCB2;
+	Wed, 25 Mar 2026 00:39:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774399176;
-	bh=gbwC0bUs3ACbCLJCFMmEYT75zj/GDqXq5ckIamVbOTI=;
+	s=k20201202; t=1774399180;
+	bh=FL1JEdq1tctPBGMzomr8d8x2jF4EF+GuISsfrwolWBg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=lmTCDmKJjwrYNTrIvkdfRz+Vi8m1T5GX7Fm9FQVG120/OAH2UsT58emkqcoGxATvc
-	 SoezpcnwzOYkuh5E4AZrxQTQs5fQKOihBdrMtP/G+V/bTKonC7f3GY9CWyuH56y8+5
-	 EIT9rhfmdfj7minUXffoTQLmLHUu5jHpz/ddQplsItuHOIWk9OH9KVSg5/yIqsKi80
-	 IniZLJhDq/PxqkpsIsMV1hGc59Blgt//WHyAGRBW2FJ/vwQMBrcr5vLNBh8xzJxIXh
-	 IlbYCoGsP78VMw2pqcfgJAWTHAqH2P0ofl0kofpN2rGKqX/bhouqzDDqFvIl/gDMVX
-	 Gi30lYVOQq4BQ==
+	b=r/7JI/Zxyj00ZvSGCx9RrpoMT1uddYpxcG5XCLiLS3LVVACMib7IPfa9NSoM1qk0V
+	 78/fC13BslBNA8E/UDwsmNBSD5M92jicRml8a84ElBKm+BIw34+IiojbBhTTf431TJ
+	 zYbp+C7jzfK1z6gKa3EHhuKKgRktqRUev5akLumhgahvRJDfyshQK9aFTxpcx3EKzU
+	 TmwkkoAa0Qi6pEwnHaNV350cpn1Y/bQ+BZiu8Q5bC82lLylqebXf7er4AQmfJSwDVi
+	 mY2Z9myG/K9fCX0s8McQuckk1GkFUCd8uj7phVl0n2ldu8Jm5vSSv9HsInybd5qALl
+	 uGlVJVKGBtJ1A==
 From: Danilo Krummrich <dakr@kernel.org>
 To: acourbot@nvidia.com,
 	aliceryhl@google.com,
@@ -80,16 +80,16 @@ To: acourbot@nvidia.com,
 	lossin@kernel.org,
 	tmgross@umich.edu,
 	ttabi@nvidia.com
-Subject: [PATCH 2/3] rust: dma: generalize BinaryWriter impl for Coherent<T>
-Date: Wed, 25 Mar 2026 01:39:16 +0100
-Message-ID: <20260325003921.3420-2-dakr@kernel.org>
+Subject: [PATCH 3/3] gpu: nova-core: use sized array for GSP log buffers
+Date: Wed, 25 Mar 2026 01:39:17 +0100
+Message-ID: <20260325003921.3420-3-dakr@kernel.org>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260325003921.3420-1-dakr@kernel.org>
 References: <20260325003921.3420-1-dakr@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: MZRN4KY66YZZOSRVZGWYYH2PDUTWNQE2
-X-Message-ID-Hash: MZRN4KY66YZZOSRVZGWYYH2PDUTWNQE2
+Message-ID-Hash: Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ
+X-Message-ID-Hash: Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ
 X-MailFrom: dakr@kernel.org
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -101,9 +101,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/MZRN4KY66YZZOSRVZGWYYH2PDUTWNQE2/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q6OQMYOHMF5MPGRW64QHGR5A5GVURTCJ/>
 Archived-At: 
- <https://lore.freedesktop.org/20260325003921.3420-2-dakr@kernel.org/>
+ <https://lore.freedesktop.org/20260325003921.3420-3-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -113,32 +113,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Generalize the BinaryWriter implementation from Coherent<[u8]> to
-Coherent<T> where T: KnownSize + AsBytes + ?Sized. The implementation
-only uses size() and write_dma(), neither of which depends on the
-inner type being a byte slice.
-
-This allows any Coherent allocation with an AsBytes inner type to be
-exposed as a debugfs binary file.
+Switch LogBuffer from Coherent<[u8]> (unsized) to
+Coherent<[u8; LOG_BUFFER_SIZE]> (sized). The buffer size is a
+compile-time constant (RM_LOG_BUFFER_NUM_PAGES * GSP_PAGE_SIZE), so a
+fixed-size array is more precise and avoids the need for the runtime
+length parameter of zeroed_slice().
 
 Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 ---
- rust/kernel/dma.rs | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/nova-core/gsp.rs | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
-diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
-index 3eef7c2396bb..7bc97f9f83fd 100644
---- a/rust/kernel/dma.rs
-+++ b/rust/kernel/dma.rs
-@@ -885,7 +885,7 @@ unsafe impl<T: KnownSize + Send + ?Sized> Send for Coherent<T> {}
- // The safe methods only return metadata or raw pointers whose use requires `unsafe`.
- unsafe impl<T: KnownSize + ?Sized + AsBytes + FromBytes + Sync> Sync for Coherent<T> {}
+diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
+index 04e3976127cc..ba5b7f990031 100644
+--- a/drivers/gpu/nova-core/gsp.rs
++++ b/drivers/gpu/nova-core/gsp.rs
+@@ -42,6 +42,7 @@
  
--impl debugfs::BinaryWriter for Coherent<[u8]> {
-+impl<T: KnownSize + AsBytes + ?Sized> debugfs::BinaryWriter for Coherent<T> {
-     fn write_to_slice(
-         &self,
-         writer: &mut UserSliceWriter,
+ /// Number of GSP pages to use in a RM log buffer.
+ const RM_LOG_BUFFER_NUM_PAGES: usize = 0x10;
++const LOG_BUFFER_SIZE: usize = RM_LOG_BUFFER_NUM_PAGES * GSP_PAGE_SIZE;
+ 
+ /// Array of page table entries, as understood by the GSP bootloader.
+ #[repr(C)]
+@@ -77,24 +78,19 @@ fn entry(start: DmaAddress, index: usize) -> Result<u64> {
+ /// then pp points to index into the buffer where the next logging entry will
+ /// be written. Therefore, the logging data is valid if:
+ ///   1 <= pp < sizeof(buffer)/sizeof(u64)
+-struct LogBuffer(Coherent<[u8]>);
++struct LogBuffer(Coherent<[u8; LOG_BUFFER_SIZE]>);
+ 
+ impl LogBuffer {
+     /// Creates a new `LogBuffer` mapped on `dev`.
+     fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+-        const NUM_PAGES: usize = RM_LOG_BUFFER_NUM_PAGES;
+-
+-        let obj = Self(Coherent::<u8>::zeroed_slice(
+-            dev,
+-            NUM_PAGES * GSP_PAGE_SIZE,
+-            GFP_KERNEL,
+-        )?);
++        let obj = Self(Coherent::zeroed(dev, GFP_KERNEL)?);
+ 
+         let start_addr = obj.0.dma_handle();
+ 
+         // SAFETY: `obj` has just been created and we are its sole user.
+-        let pte_region =
+-            unsafe { &mut obj.0.as_mut()[size_of::<u64>()..][..NUM_PAGES * size_of::<u64>()] };
++        let pte_region = unsafe {
++            &mut obj.0.as_mut()[size_of::<u64>()..][..RM_LOG_BUFFER_NUM_PAGES * size_of::<u64>()]
++        };
+ 
+         // Write values one by one to avoid an on-stack instance of `PteArray`.
+         for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
 -- 
 2.53.0
 
