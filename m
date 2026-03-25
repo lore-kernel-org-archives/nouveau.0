@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A4C5F54ACE
-	for <nouveau@archiver.kernel.org>; Tue, 24 Mar 2026 15:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBEE81075269
+	for <nouveau@archiver.kernel.org>; Wed, 25 Mar 2026 00:39:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E4E3B10E71C;
-	Tue, 24 Mar 2026 15:40:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0D37410E628;
+	Wed, 25 Mar 2026 00:39:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MzoGbJg8";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="I36ewqRd";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2624B452CE;
-	Tue, 24 Mar 2026 15:29:26 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 6CE62452D0;
+	Wed, 25 Mar 2026 00:28:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774366166;
- b=cE/ntAnD8ISn+zfRIJuLSl74uerKNJ4CbeeMU2IpShMUKUXuZXac1IZGZcuUmMqtlUbgU
- 9wkEjYYaivlbwjdagiYxpvlmjFHsw3E1KY3V7wTaZ6mR5rl5/pVYcHn291ila0UurkJ1TxY
- xMHzMv71xsHvCGCKLMunR6Vp1N/S5aCvwLUFN4o4RsU6qA78F+/hTYt5KNTNKqrSnOalcmM
- yKFrT0BA77rB7iw9q3Ow0jLAaCCRoMTIOQc0F7p8Ry9+dhv+xR7GJi2x6sjuLc+3SpToIUD
- afPQsYCRljueEBOTz3b+U4Y/ZSvJy30pfJfemw2yu8fL+h2DrGohZ1uPDzQw==
+ s=20240201; t=1774398510;
+ b=wWCTCaCBp6mvTZ/8l1HKJGqGR0kkP3NkO1uNLgLt9k3olCJeGgO9uXi329daLH4yPLsrm
+ MS7Kkl+fhLR4J3GT+Nfjk6eI3cntfmymfVNBLjC5EfyGiT3hfB4sp5Q2LHtDjjciWKaW3iT
+ HLPVHd7APQUwbzilLifEwAByqs/coQRoq8GQMEyJxEu9fpA2e6gnP0VEmB8qJ/9q0CI9RiI
+ wp0TKwfidcmONBUwlGxUrcUwijycb4xITO9ZfW6EKHf7WI+LL1r94579N+LpYUgSh2cpA7x
+ 1WfNsM2lFyxkBLs9BlQPnkfaUhyIwRbM6mxSQTAvcLYd9uT8EAHBqpqGxaow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774366166; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774398510; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=DJbHRaS8pRP79lkZNVy3W9DNq3nAXh6fhZLGY0cyNk0=;
- b=uUbQb2VPDNjsks//IRECWwptZEfLljpA5K4/CY9z2CoQMrygTjL2jkB56ZdKFrsfV4lp3
- TgOXlTcaenncTd5X6CuNepGF83sMBh3r+AsVeH01fKc+MdkxgrMz5WaT0wrU8Hjn3Cjaxl7
- k8Q8Qk3BrJF8EeZedxDWYPRH624+g2OVfppqHMly55OVmEq0zEFWU1AS5A+MuY2SJ4fOY9c
- eOeXoEGg6HsOHBeHJdrW19MY+Cr9FFFMQWqCXc+eNznd9Sx33iheCXyHEd51Vb2bVymzNo3
- nPeeWRPJO/gCueZ8uPfkGFnpnEU7vu0Zj5sPb7nNUZvb+s31rhdv07tGpxQw==
+ bh=7fo59Xph6Ns+tdvtvjZ/JWYloOlmJfVCL6A9LUhAu6Q=;
+ b=yY3/L0RD86DnhnSURbU+K6wucntGHsyzYuvuWMMAQ98ukn+zObEYWhlbmEIPRos0QXMff
+ spP3R0kHt+wzfBz7fK0bl7NuPW2cns670JJqJXiwz9DyVYJ6VkxMaZ4ArY7WTfNUB5WTzA5
+ RVSOxIBkUDqCxhkRALJB+A/UWh9AXC1iTs8FBQ00Gdvul8ptqUAW2RQZ/kZvOlOODS28FrG
+ v+bDF/wotR12H3IIta8FVULTwZ5qfon2Hz7eULQwPL3tYUYab8lRTaI1J9FecV3rHy23w6J
+ yqutqJDD/8WiN1db4uxzfkY5/9CGJoS3mmzfHpZsG2Y12bRoiomzHTAWrESA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,61 +46,63 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C8A6E433BB
-	for <nouveau@lists.freedesktop.org>; Tue, 24 Mar 2026 15:29:23 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 126AB10E70E;
-	Tue, 24 Mar 2026 15:40:28 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 08318433BB
+	for <nouveau@lists.freedesktop.org>; Wed, 25 Mar 2026 00:28:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E48810E61F;
+	Wed, 25 Mar 2026 00:39:33 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 48E5C600AC;
-	Tue, 24 Mar 2026 15:40:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADC6DC19424;
-	Tue, 24 Mar 2026 15:40:23 +0000 (UTC)
+	by sea.source.kernel.org (Postfix) with ESMTP id DD6AC423D5;
+	Wed, 25 Mar 2026 00:39:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20FB8C19424;
+	Wed, 25 Mar 2026 00:39:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774366827;
-	bh=8SAT0NvMEzHHIA4fOre9p3OATPKWmFRFNQE2+grgJZg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=MzoGbJg8KgNkLqGgI+++0nf6vChXqSbwuF+mwriQl/VGMEfE1yC3TxQ4JZAAuwdtt
-	 5Okt+PZKAkuuU0gjHZRzDI0ehEzNdJI2XTQ6azuvLnTkJprKKK+baC/dTqPLcniaPV
-	 5bU9A4l/O7VhV2iwYiWQCxX0szABBlxE/7iefSYSKUaO+hr2UxYw4JbrlbTKpV5izi
-	 umR4+Fgery2D9palYiL1UCDMCfJqQW48m4nvdG+zT2UkjN3rYbVddqvIpLC1okTjYq
-	 LFnNH+ATJDU9OAS6oH9mXi1F33tZ5rs+RJ3zCDN965+Nk/oY785hXP6rj22WioQoG5
-	 o/vRbMR7xLXSg==
-From: Andreas Hindborg <a.hindborg@kernel.org>
-To: Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH v2 5/8] rust: dma: add Coherent:init() and
- Coherent::init_with_attrs()
-In-Reply-To: <DHB3RDNDS08U.A75EZUOMO311@kernel.org>
-References: <20260320194626.36263-1-dakr@kernel.org>
- <4yknLBbwY93Ty2ltbpxjHgto-m99xkoTgDlKv8cJTK2tbFL0_V6eQDjwbbXI70M6uMKT6RLRxBoYR_XeymmnHA==@protonmail.internalid>
- <20260320194626.36263-6-dakr@kernel.org> <87y0jhpbsp.fsf@kernel.org>
- <7YsbXJIBKj4Er4WkL5X4lsu18tY1b05zm-TzJP7Xt6YGuOsxmCQ7Ew_TFafHcFnLhCy4ptG2mC0vDesRyI7cAw==@protonmail.internalid>
- <DHB3RDNDS08U.A75EZUOMO311@kernel.org>
-Date: Tue, 24 Mar 2026 16:40:16 +0100
-Message-ID: <87zf3xxmlb.fsf@t14s.mail-host-address-is-not-set>
+	s=k20201202; t=1774399172;
+	bh=+mTb7igADfQv5dHN/X3TmqsYTOT3vg9UdFFcQL8Vmco=;
+	h=From:To:Cc:Subject:Date:From;
+	b=I36ewqRdAS4Qczc8+Xl1aqOZOcf+kdLzZrIocpHb4SHux8H+QeqLgwbQbLYHFpdtN
+	 o5WobSL9tQO9tAbob0GBp3UHo7Wa53spMTxbA1NMZMLqjamQuTTovBuGIqzZNkJDCj
+	 zfW7CIhX+EkmIWzneiYSlzuFyaUXeBsS0KJZEUvLVjea+YpE4w61CwIRqde84GNUkk
+	 tAZYa9M2t3pZxqgC0wzDpNljxD8eyul8hStBkSjtP5ZVUSkZZGCSywuvERPIWqawl8
+	 OUjuuc8XdlmTh+tFru/pISEj9pMOpUhN9leDTnag5i/umemdIrggXhN8vy1MjMbkP4
+	 cOzHDkV7EWtoQ==
+From: Danilo Krummrich <dakr@kernel.org>
+To: acourbot@nvidia.com,
+	aliceryhl@google.com,
+	abdiel.janulgue@gmail.com,
+	daniel.almeida@collabora.com,
+	robin.murphy@arm.com,
+	a.hindborg@kernel.org,
+	ojeda@kernel.org,
+	boqun@kernel.org,
+	gary@garyguo.net,
+	bjorn3_gh@protonmail.com,
+	lossin@kernel.org,
+	tmgross@umich.edu,
+	ttabi@nvidia.com
+Subject: [PATCH 1/3] rust: uaccess: generalize write_dma() to accept any
+ Coherent<T>
+Date: Wed, 25 Mar 2026 01:39:15 +0100
+Message-ID: <20260325003921.3420-1-dakr@kernel.org>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Message-ID-Hash: JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB
-X-Message-ID-Hash: JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB
-X-MailFrom: a.hindborg@kernel.org
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: ZJV5LM3KTR65CKXPCERSRXUO425IZV4S
+X-Message-ID-Hash: ZJV5LM3KTR65CKXPCERSRXUO425IZV4S
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: aliceryhl@google.com, acourbot@nvidia.com, ojeda@kernel.org,
- boqun@kernel.org, gary@garyguo.net, bjorn3_gh@protonmail.com,
- lossin@kernel.org, tmgross@umich.edu, abdiel.janulgue@gmail.com,
- daniel.almeida@collabora.com, robin.murphy@arm.com,
- driver-core@lists.linux.dev, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/JAQNAWERVMRURZCZQ6AGF4TLM7G4MSEB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZJV5LM3KTR65CKXPCERSRXUO425IZV4S/>
 Archived-At: 
- <https://lore.freedesktop.org/87zf3xxmlb.fsf@t14s.mail-host-address-is-not-set/>
+ <https://lore.freedesktop.org/20260325003921.3420-1-dakr@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,50 +112,44 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-"Danilo Krummrich" <dakr@kernel.org> writes:
+Generalize write_dma() from &Coherent<[u8]> to &Coherent<T> where
+T: KnownSize + AsBytes + ?Sized. The function body only uses as_ptr()
+and size(), which work for any such T, so there is no reason to
+restrict it to byte slices.
 
-> On Tue Mar 24, 2026 at 3:00 PM CET, Andreas Hindborg wrote:
->>> +    /// Same as [`Coherent::zeroed`], but instead of a zero-initialization the memory is initialized
->>> +    /// with `init`.
->>> +    #[inline]
->>> +    pub fn init<E>(
->>> +        dev: &device::Device<Bound>,
->>> +        gfp_flags: kernel::alloc::Flags,
->>> +        init: impl Init<T, E>,
->>> +    ) -> Result<Self>
->>> +    where
->>> +        Error: From<E>,
->>> +    {
->>> +        Self::init_with_attrs(dev, gfp_flags, Attrs(0), init)
->>> +    }
->>> +
->>
->> I think we are missing an array initializer for `Coherent<[T]>`.
->
-> This method is already compatible with arrays, T can be an array type itself,
-> e.g. T = [MyStruct; 5].
->
-> For instance, the diff in [1] should work.
+Signed-off-by: Danilo Krummrich <dakr@kernel.org>
+---
+ rust/kernel/uaccess.rs | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-Cool!
+diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
+index e26ef90ba8ad..6c9c1cce3c63 100644
+--- a/rust/kernel/uaccess.rs
++++ b/rust/kernel/uaccess.rs
+@@ -12,6 +12,7 @@
+     ffi::{c_char, c_void},
+     fs::file,
+     prelude::*,
++    ptr::KnownSize,
+     transmute::{AsBytes, FromBytes},
+ };
+ use core::mem::{size_of, MaybeUninit};
+@@ -524,7 +525,12 @@ pub fn write_slice(&mut self, data: &[u8]) -> Result {
+     ///     writer.write_dma(alloc, 0, 256)
+     /// }
+     /// ```
+-    pub fn write_dma(&mut self, alloc: &Coherent<[u8]>, offset: usize, count: usize) -> Result {
++    pub fn write_dma<T: KnownSize + AsBytes + ?Sized>(
++        &mut self,
++        alloc: &Coherent<T>,
++        offset: usize,
++        count: usize,
++    ) -> Result {
+         let len = alloc.size();
+         if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
+             return Err(ERANGE);
 
->> Reviewed-by: Andreas Hindborg <a.hindborg@kernel.org>
->
-> Thanks! The patch series has been applied yesterday, and the branch it has been
-> applied to is immutable, so I can't add additional tags.
-
-You guys move fast!
-
-> However, the Link: included in the patch still points to this conversation.
->
-> Also note that subsequent review is still valued; we can always send follow-up
-> patches if required.
-
-At any rate I can send the changes I suggested if they are deemed valid.
-
-
-Best regards,
-Andreas Hindborg
-
-
+base-commit: dff8302ca1d0e773c90dbeeb05e759f995c95482
+-- 
+2.53.0
 
