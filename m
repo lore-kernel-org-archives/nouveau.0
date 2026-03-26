@@ -4,160 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE4710ED643
-	for <nouveau@archiver.kernel.org>; Fri, 27 Mar 2026 09:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39BE10BA434
+	for <nouveau@archiver.kernel.org>; Fri, 27 Mar 2026 14:59:33 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 76AA910ED4E;
-	Fri, 27 Mar 2026 09:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A989F10EB16;
+	Fri, 27 Mar 2026 14:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="N38/N38P";
+	dkim=pass (2048-bit key; unprotected) header.d=aliasing.net header.i=@aliasing.net header.b="Y9h6/nxy";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8F7174532A;
-	Fri, 27 Mar 2026 09:42:08 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774604528;
- b=WGSFlr0caq8S5qBRsDJMXXD5FSisGrCIEF3kV9gOVVmkwbrW8fZBnH0dCRC7sku8HO5M9
- +Bzk22GzruTNf1DHj0CFqGn8RDjzD9fDO+4faWCkp6VCiC3nvxTsWFpA2Xy80wdMVCBZWP4
- AthUU551O2wbsjVWm7yAjgJ491H0ew1S6xcDnJWLkJdq3Q8tUZKUdxVmKONHYVhYuY06jE+
- o7IywqfuirO189EMIdAzBnu5XJKGukn4FmLYiupxzMY8HOIh+fsEfdu8MjiDeOxMRaQTnOC
- zMfuU3p9yOs1pCxG2DVLEnf0yZNUtkYVOrWIPO95We5I905tTqF1n/vGW6CA==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774604528; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4BFA645323;
+	Fri, 27 Mar 2026 14:48:22 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774622902;
+ b=mwXtU887wsBcVS9MA4nHyzK+I1kMY0CN5Jsv19+GKZboK3nKj2MKCiGZt7CP9E5R0hIOC
+ dWVmzaO5MQ053Kas4Qt1YRtD77l3sUi0WpIzpDveBp4FJM3QZ0Kd3skrhZ2LbOnRKFTk8qQ
+ APB9tz9duw8+yxk0weYvsIZ/X4cx653svUSQAX9NwiSYh92pVuekMLFG3Yfl2fUf8p+XciZ
+ qWLLizRcWTfCIISiqxjSRZgLOMyuW24CqTBIu8kqWkbYBffDg9c8x6CWyJ08WvV0/w3trrz
+ ZTU59w/WCONmoXM4DEl6YnbLI+VfyPfkBc6aN0YStJz9Lz+YUc5MIS5qSyMg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774622902; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v5btyYX9lHdsVC1fopO/cY1LA4YDt+YdOziS7/7GqeI=;
- b=UOEh10UHQkU4mkauQt3gcf617L9NOcn4cztKdfFJEMMUnhq40EMmunCwO0Rbm7RatyTzA
- Cm+srwU36jiWZqkxzrjxb9f7tK8ICz+/iVi/LBSzGPd91M5kG6WgD514k2h7U5E9CEsz5sS
- l5wW7WiPrggFK2j49IrIyciDis5nht+Cy+SgMXEB+XNQYtW7UbT/HF2q+m+sV9VorPUNxXi
- Wv82Do/m0+qFgeHzIKvvAET9Xy6AjToNNuecpJxx2ucs2ZPIZGHWVa94OPZGr59rF/+/FdG
- +YLhOLuAS4VV+RUWaMqOSfX2aoFo0o5ZXxshFGeips/TvpOU64qqO9vYsyWw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ bh=+yGrlzp5BwsGqLDcldOQtXxixKAsL5lSNYWLykh/Mq4=;
+ b=TJhm62fBgeLzyTwNnYe0HcU6AXLexmeR1GYa2S+N6DYIzj7eYx23O9FSUs9khTis6Uby0
+ K6hqxnA8nFsaKLiGvndycU/XKUed2Kc9GIpAQuVf6AQpggROwqpgE9ASD/qVcu53IrWBu+w
+ YT/Jz5DaP75LHYQlYASktxCprbc0opuCEwrwEvDuaXFZ1NXF2k1aFAcZrRHRbEmO80iKh54
+ ZkXxvxWzLjsqjmlZLzgdtuAu9CVOBdKIHd5Y6Rjtl5ybKHEc7vUrpGiOTX40zZzC4HppcUU
+ Z6LF3lJ7YGyvCckpXvcYUvjWOevS0cYBM2UFw8KxFFE9LSFo2mJDmqAew7SQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=aliasing.net;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=aliasing.net
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=aliasing.net;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=aliasing.net
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D8D9344E6E
-	for <nouveau@lists.freedesktop.org>; Fri, 27 Mar 2026 09:42:05 +0000 (UTC)
-Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com
- [74.125.82.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9290510E2C4
-	for <nouveau@lists.freedesktop.org>; Fri, 27 Mar 2026 09:53:16 +0000 (UTC)
-Received: by mail-dl1-f45.google.com with SMTP id
- a92af1059eb24-12a6b260693so247811c88.2
-        for <nouveau@lists.freedesktop.org>;
- Fri, 27 Mar 2026 02:53:16 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774605196; cv=none;
-        d=google.com; s=arc-20240605;
-        b=WymEAyVG2RJLuyZhBP1g1e1vMrWTXSCphjxv5VK1Ui2TcKCygnq1UfrTdgUioz8rmM
-         aYtIz0eesT2FdP2ujxW14NUzCOJd5ogOQJvDNO8/xhRB2jvBt7dFhZ/THDTBAJnse9YG
-         YChAnorw5pYpJYL6rdTaLb0tSD9ehNkG3jQRIEGdB3Wp2NZGSVr883MEgvv3LQlxMf9r
-         /lLjtNU7bS05/YdHyZECXnKBG+jn7B7EI4a9+jjrtyDwRHHZonWuvNHbRRylovSqsx99
-         WD75YlolFYziUBsfRZ4ghfTkrdmRvdd7OK/JI2VxZHliFnoJD6hf/B6XQJlP+GnmOZeU
-         6ncQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=v5btyYX9lHdsVC1fopO/cY1LA4YDt+YdOziS7/7GqeI=;
-        fh=NeXXB2NHnlTuomexJHNBgZyM8eqR1U3ggVXFZx0rxvY=;
-        b=GjvZmqRJMrfrqUED1KjIIQEkNbrwh8FVNWGjYx7oo4IB/x69aKxv4QFZ0AUOSBg9yZ
-         921hrWjBL8QjhewbTR2q6774CmpxjMMbffqFK/+q7P6QoxzMohuul2w3ezfGv5vQvuve
-         f50/BLkopEBb39Of8oPrigwq1raDBk86Lwp9CcO17me2P+RRKHVjtTo+0sYQxDcZb/bJ
-         JP7qmRjIA0l4A8oyeNEQZp7OS/g1b+muJJJeiaLF4Bg+KvuY4g4+7mQ2owyCmWHidLr8
-         /QM+zQXwHKkV62N94VAE9CAy0uJZumJpB2pNBtJfdyPR6bZDUVNBW4lOq1gZiqUAmwJf
-         90Kg==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1774605196; x=1775209996;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=v5btyYX9lHdsVC1fopO/cY1LA4YDt+YdOziS7/7GqeI=;
-        b=N38/N38PlpCXALpyKHlmoRGnEpT08QaFgWOK7Jzk+aZvmiZNSD/KUkctjizLfwNiUl
-         qIonNr5J8RwzMNxTJOTG8OgwxZob/oJ4fwCgstkOKMkvcIqdFTF1Z9Jn7TMfNprsH8mE
-         rE5CCMqIJDrtsFn1IlE9raZXURDIP27JqTvWj/MXjAN30ZjGBgMobSyeA/DLPHa1LnMr
-         Xqfqe4v9wZhcGt2qw5X/mkN/EfXs5SToBhrTcvEQCxXVPpSZ2tKOEI38o26Bqx8wzznk
-         bqWwdCaz3bGC7nbbjehErzlUncCSW/Tx0F3S4mS8Wv/tCYMeBm1SY8gMv17+aup69rhf
-         5z5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1774605196; x=1775209996;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=v5btyYX9lHdsVC1fopO/cY1LA4YDt+YdOziS7/7GqeI=;
-        b=iAgA50UolYRyK1eZJTV1U1xhXzk6Opp1iRrvu0mascCvBzDBXEVtfwPMDMljK+1SfE
-         6Ur3FeOA1W3i7Yv1s8fIQKSxZCjnkToXuRjKY81KPaOtOc1qZq/8s5e+RjbUIyx7xBcg
-         QpojhHmp02/l9Pi8J2nmmfMDQQvXRgPTX9ysZaSzIeVTVR3mw6kWs7aXPPWpdUEoieuf
-         LslcSlWzY+GXPtTGTcSmkFjAKc0JE/R+FjZDfuDLQkoRslJstnMV4aMsNXBoIplRxKB/
-         dtw//FGCX4EAlKOAqQEuGVPSl0nililpMtAjZ2uCA1cbDX4U44o8HK1c90zel0jZgfBV
-         Ej7w==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXZ/BgpjyqmfMZ04VCYifETyv6OnMBqPVNBPI3CnerskZRuTpUfPdt9jHPy1citpqDBSXg2s6H7@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwHsfewdJnwMV/mcxe3eH62ilwkzbyY7IXaUxOYLRpkMFO3qEV5
-	XmrCFXF3WtpiHL7KueSd5+UXdqjBe1Jv0rInfD7L1ensc8RE+IREWKigRDhdY1a5XG18sEPHemb
-	p/y+GcCdPAS0QwW/fDD14HR1yeDaBX+w=
-X-Gm-Gg: ATEYQzyKNxJV1Kf5Hc76dCuiXGLcafBqQJ7TeH9WW0f/4kvMRxjKVSRutBrFlLBvcDf
-	3INEgvIizOinXAtYTd4Y8vwTvPqKVzsKx5g5Ojem6o3c5FdYLaTR2sgptLeJHHJMOr/uFihF3WI
-	c5PIse3gWTH1OhWeY1Q7M1hOGxrn/TmyDYCPYlU/nn8lSE3WuF4xC1aNKjYWuNCA+HM1vKWL7qk
-	Qgr2lcVcBez7ojegIVdxRifviCYreVp/HS8dCgiizoJq+GIaNGAYBzs6zNoE1sNoHOiOf1es3ZN
-	RY93D0fCISeJvcI9tre6s//x1wDn4GRSgZjDuQVJQVhgwidFdds3pwE+T6p/m6/PfO9dEEpt7aZ
-	eIDswbCc7a3to71TKJjris11QJYy6GgxkHA==
-X-Received: by 2002:a05:7301:578e:b0:2c1:82a:8711 with SMTP id
- 5a478bee46e88-2c185cbaba4mr489012eec.2.1774605195712; Fri, 27 Mar 2026
- 02:53:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260316211646.650074-1-lyude@redhat.com>
- <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-In-Reply-To: <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Fri, 27 Mar 2026 10:53:03 +0100
-X-Gm-Features: AQROBzCDQRLEXYtIjvWCBTRZrsm2z1WTrrxZiqYf_IZKuXYInSunVO95k1Dfv0Y
-Message-ID: 
- <CANiq72muiQzRkvcEZNUceqxvDmUf0zPLaBvQRH+EfDSS0edo+A@mail.gmail.com>
-Subject: Re: (subset) [PATCH v9 0/7] Rust bindings for gem shmem
-To: Danilo Krummrich <dakr@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: 55T6NLJBST2ST3PKQWBWXMV3M6K66FRC
-X-Message-ID-Hash: 55T6NLJBST2ST3PKQWBWXMV3M6K66FRC
-X-MailFrom: miguel.ojeda.sandonis@gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id D098A44F5D
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 12:14:52 +0000 (UTC)
+X-Greylist: delayed 602 seconds by postgrey-1.36 at gabe;
+ Thu, 26 Mar 2026 12:26:00 UTC
+Received: from outbound.mr.icloud.com
+ (p-west2-cluster4-host6-snip4-9.eps.apple.com [57.103.69.170])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AF7EC10E9C9
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 12:26:00 +0000 (UTC)
+Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
+	by p00-icloudmta-asmtp-us-west-2a-100-percent-3 (Postfix) with ESMTPS id
+ 9C25A1800126;
+	Thu, 26 Mar 2026 12:09:15 +0000 (UTC)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aliasing.net; s=sig1;
+ t=1774526959; x=1777118959; bh=+yGrlzp5BwsGqLDcldOQtXxixKAsL5lSNYWLykh/Mq4=;
+ h=Date:Message-Id:To:Subject:From:Mime-Version:Content-Type:x-icloud-hme;
+ b=Y9h6/nxyK0YtF7+cdvXxFFPAcsCuxaPhUfW9mgltCjkCq89otxAR1mQZv+qGt+C3AJVmsiM/Dj7D+NRSYnXMAUj6NlVb5zHr6k6QecB37L+OuSd0dXT2tu1I0S55kXP9T64qPPRv7/NJvNvc94t16DLCuKy29laglOazXD7J2cMDZREspjQNTsoRrdQpgdURsQqLG4Kj/URnbgEyJ9beflG4dmIqjsJP0DmpJ5bpwyQHok8keZxzj/i+bQQ4tCjILe+lXq5YrWR30ErbnyiznL53n/mYUzaTSmQ9J3T83qfYcBDPI67jp0vYzBIAVTACe3hAiYvZWPkGy+7NvJ13BA==
+mail-alias-created-date: 1769500909675
+Received: from localhost (unknown [17.57.152.38])
+	by p00-icloudmta-asmtp-us-west-2a-100-percent-3 (Postfix) with ESMTPSA id
+ AC5D71800A58;
+	Thu, 26 Mar 2026 12:09:10 +0000 (UTC)
+Date: Thu, 26 Mar 2026 21:09:09 +0900 (JST)
+Message-Id: <20260326.210909.43276613898103820.fujita@bee>
+To: miguel.ojeda.sandonis@gmail.com
+Subject: Re: [PATCH v3 4/4] rust: make `build_assert` module the home of
+ related macros
+From: FUJITA Tomonori <tomo@aliasing.net>
+In-Reply-To: 
+ <CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
+References: <20260319121653.2975748-1-gary@kernel.org>
+	<20260319121653.2975748-5-gary@kernel.org>
+	<CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=utf-8
+Content-Transfer-Encoding: base64
+X-Proofpoint-GUID: eqMS7S_G52C0wF8NsZjyMQ8O9Pmu7Vu-
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI2MDA4NSBTYWx0ZWRfX9LUqgBCH9GTY
+ a5ATnf9PHeMqlEKLJvYFpH5HsDQL93p0TZMRxyJqBQZcD6/VU5UxZPrOJmTYnxL8KUFgrTneMtg
+ be9QwNJRNSpauaqD/ojapwE6uoagfyGOSq761WY+ZzXO8BxNot9ZgoDrIFUFQdzL+xl2aw0L5kW
+ dvnhoQc1dUlzSnECg/dFiWujV2iKujHA10BoFLiu3Is1kDUlt0m70qbmUXmRP76iL5+Axj1va+p
+ gXd+0HrrhIDavaaS2fJtG68cbR9bIBqnmMEFEuQjxYiVVPS2BrUL+SbgQ48qC8oWkyBXoPTlDy4
+ PUBRQqi/JjLE5QfjWA0VMoyOy+V/KYL1z5dPjiatWVQBeK66s6SmVOogtGFGb0=
+X-Authority-Info-Out: v=2.4 cv=TY6bdBQh c=1 sm=1 tr=0 ts=69c521ee
+ cx=c_apl:c_pps:t_out a=9OgfyREA4BUYbbCgc0Y0oA==:117
+ a=9OgfyREA4BUYbbCgc0Y0oA==:17 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=VwQbUJbxAAAA:8
+ a=7e8LTidUJLtXHkX_rzUA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-ORIG-GUID: eqMS7S_G52C0wF8NsZjyMQ8O9Pmu7Vu-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-26_02,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
+ mlxlogscore=395 clxscore=1030 spamscore=0 mlxscore=0 suspectscore=0
+ malwarescore=0 lowpriorityscore=0 phishscore=0 adultscore=0 classifier=spam
+ authscore=0 adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
+ definitions=main-2603260085
+X-MailFrom: tomo@aliasing.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- rust-for-linux@vger.kernel.org, Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Andreas Hindborg <a.hindborg@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org,
- Deborah Brouwer <deborah.brouwer@collabora.com>
+ loop; banned-address; member-moderation
+Message-ID-Hash: WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J
+X-Message-ID-Hash: WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J
+X-Mailman-Approved-At: Fri, 27 Mar 2026 14:48:20 +0000
+CC: gary@garyguo.net, fujita.tomonori@gmail.com, acourbot@nvidia.com,
+ boqun.feng@gmail.com, tamird@kernel.org, a.hindborg@kernel.org,
+ ojeda@kernel.org, boqun@kernel.org, bjorn3_gh@protonmail.com,
+ lossin@kernel.org, aliceryhl@google.com, tmgross@umich.edu, dakr@kernel.org,
+ simona@ffwll.ch, abdiel.janulgue@gmail.com, daniel.almeida@collabora.com,
+ robin.murphy@arm.com, yury.norov@gmail.com, will@kernel.org,
+ peterz@infradead.org, mark.rutland@arm.com, mingo@redhat.com,
+ longman@redhat.com, ynorov@nvidia.com, rust-for-linux@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+ netdev@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/55T6NLJBST2ST3PKQWBWXMV3M6K66FRC/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72muiQzRkvcEZNUceqxvDmUf0zPLaBvQRH+EfDSS0edo+A@mail.gmail.com/>
+ <https://lore.freedesktop.org/20260326.210909.43276613898103820.fujita@bee/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -167,29 +136,9 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Mar 26, 2026 at 2:15=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> @Lyude, Alice, Miguel: Please have a look at what I came up with below.
-
-Sounds fine to me, thanks!
-
-  - Regarding the enabled unstable feature: looks good -- it will go
-away this cycle anyway, so we may get a conflict, but that is fine.
-
-  - Regarding the `&raw`, that sounds also good. I see you did it
-similarly to how I did it for `bitmap.rs` -- thanks!
-
-    (And for future reference, the `bitmap.rs` one was 1.92 instead of
-1.82 because that one was for unions, while this one is
-https://blog.rust-lang.org/2024/10/17/Rust-1.82.0/#safely-addressing-unsafe=
--statics).
-
-  - Regarding the `expect(unused)` -- using `cfg_attr` is fine since
-it is a simple case, but if it becomes a big issue, then of course
-please feel free to use `allow` (you already know this, but in case it
-helps others: I wrote some considerations about this at
-https://docs.kernel.org/rust/coding-guidelines.html#lints).
-
-Cheers,
-Miguel
+T24gTW9uLCAyMyBNYXIgMjAyNiAwMDozNjo1MiArMDEwMA0KTWlndWVsIE9qZWRhIDxtaWd1ZWwu
+b2plZGEuc2FuZG9uaXNAZ21haWwuY29tPiB3cm90ZToNCg0KPiBPbiBUaHUsIE1hciAxOSwgMjAy
+NiBhdCAxOjE34oCvUE0gR2FyeSBHdW8gPGdhcnlAa2VybmVsLm9yZz4gd3JvdGU6DQo+Pg0KPj4g
+IHJ1c3Qva2VybmVsL25ldC9waHkvcmVnLnJzICAgICAgICAgICB8ICA4ICsrKysrLS0tDQo+IA0K
+PiBUb21vbm9yaTogYXJlIHlvdSBPSyB3aXRoIHRoZXNlIGNoYW5nZXM/DQoNCkFja2VkLWJ5OiBG
+VUpJVEEgVG9tb25vcmkgPGZ1aml0YS50b21vbm9yaUBnbWFpbC5jb20+DQoNCg==
