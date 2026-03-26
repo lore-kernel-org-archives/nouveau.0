@@ -4,107 +4,178 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C2E109E530
-	for <nouveau@archiver.kernel.org>; Thu, 26 Mar 2026 01:15:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 220AE10A62D0
+	for <nouveau@archiver.kernel.org>; Thu, 26 Mar 2026 13:33:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 432FD10E1CC;
-	Thu, 26 Mar 2026 01:15:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8378D10EA4F;
+	Thu, 26 Mar 2026 13:33:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CAOnZ1a0";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="fiYnFbsz";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 62FEB45309;
-	Thu, 26 Mar 2026 01:04:32 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774487072;
- b=en/9pS+/f667LQhgFFsvLf2nX3Al1bH4TzwOIPTEy84EEYJ9vm8SPROyMd3aNCDya8hI1
- LAajsGMn9FA6BIFaBYIz41NDyxFZCa5TbCYykpEarbJKHoDSBfOUG1TEpFgddrFUHmj2nSe
- pl3rcM+fwxzJ0CJgEMS0WoLaOGdCvxafahXOLah/qVk+7T3JV68Xj8qwxoPhzjC/qcPkr52
- DTZRwUrvrY7EdS5BqoBsb7sygYt0WGUucB2Vi/gDijE0PAsYNsknW2ZRvB8xZH/7Wvhn7Lt
- xflKgpMUeRNPDYLoIltrZOBslh05PN7ns9DlVK+jlp+krxFXR1gI0PL9ZZWw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774487072; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 7C61645311;
+	Thu, 26 Mar 2026 13:22:31 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774531351;
+ b=OA8krn5hXBvyyt5tNd+cepYx6wgEdgCfeeQ7aokRtExXwd5Oz9xbHTamrEUMQUubejMxo
+ fYa77pnOk4NjXreZnVic/OsDkkoGLEGbsRNW3M9WhSSG8geY/iB5O1FgcUawzTgfRFiTKXo
+ jxl4SBFPWOFeta3Zfw6NsSPgG6sRZDRB92ks0gBCThFyBgcgbvKXAlBY8uhhX4gzUTg8EEu
+ j72rbpyyXWUot6XkdtHytBQF01EOiXwvo1CUAPXCZb0P5tKdNGaXE0vS6Fyj5OSkEZLxe8b
+ iL9MQIARZuovnWjfLMTLEjNgF54HrUWSUyzdaFB5jB+CDSnFJHUUChPiXS1Q==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774531351; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=eGnZ+39o7yZSmcw2GUt8m8wccm5cFUrhBzb6UMF62nA=;
- b=s6N/iCQ+ql2/7AZIdOJH1qz1C5hB5jxoe0J/kqrBmzPDDA0PWgCXhYvzbvEYSJZcfoVIz
- 6xr7FZvKtXWvjQn9orddSF0hB5CDs87eFkZNicAqChKcCODrRSmZxjQVjn4pIaOW0Ab2Q6e
- lPR+RyXNoXfEK1XGkGULluZb/6e0JeYCx7Tf4xvXEoN3PtwbAT3uBCSi43icgXw8YPGHevv
- dOPtgNvgziS2NZcTTqPjoGhkibaEzPQBSiH5gXIwCeT2WTygsOGEfa+b801tjsQe94ygbJW
- xOCKq/DWyZAdnioeQOt/O/iAw9YLr+rmdrCCF1JlDaoRoRgEwcBa/qnltNUg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=5EygOYy60IOb/rai5mtFqMJKO19VeitLtpCaP4jBI6c=;
+ b=y2sJBuvLSzE/f4DIEcANWYJP/tn/w/3BNrcUoBR4+WISQ1+MY3omsqj4JhlykqMtuuIHf
+ /4XoPlJG4zfoiXodCexxsCyWUqpOLs3B/a1URfJLFa4hG09gV9OhUt99gZYxN1pdxIPk5Jp
+ qJh3IXlv7gAId8k+XfJ7gqj+AuUM+ETJzrZsBboAFuSN5N08ABgyDNcW5SLYaRNwcveUzVQ
+ hb7Cf+JrDUCLUhQ1XrDpQyHTGgSuAB8vAuv2M0y53tuOb0LhB9CcbSztT8gSowr7l4LVZ16
+ hGe8PyapczvrIK3qsISZFOtD1Hwm7r/oWIAQ9ugks1KT70UOMz87pn7VZUfg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4ABFF44DDF
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 01:04:29 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E14B010E1A5
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 01:15:36 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id D179D60123;
-	Thu, 26 Mar 2026 01:15:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D58FBC4CEF7;
-	Thu, 26 Mar 2026 01:15:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1774487735;
-	bh=ONoM3r8dhzn9gp/Rh8CpPc8mBuiVYIjyCbjkV7LKnK8=;
-	h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
-	b=CAOnZ1a0q6D0c535RBzlK0A467wrlyMMTUCLhHaIahv4vb5pnwfhakQ8ugzQ/pcxH
-	 1DedKNDxH7naDK5ncYMt0icIlFuGnqwzIh3VW4jg/hLePzADzliEE6gsgMxs/2Sl+N
-	 y0icYrEDe+aAYRlAuNd0geFdyDjJiCalG4V8nDKa2AZo3G7bS3BMEdcT10yUyp/sLE
-	 jq7tUi4BYuRMJNyy8DlU0CrzbYO8x3VD7AjqfRYF+5nQWgjdpn2+eZF9TDSZ1DW61A
-	 mO+hGffUVu56CdfQPmk6KeM0wFXV4YhcijwfmNGB0pJvti4ZD4Xrum1/9lXsFUglxS
-	 zEFg+2GKd5AxA==
-Mime-Version: 1.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 8402545309
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 13:22:28 +0000 (UTC)
+Received: from LO3P265CU004.outbound.protection.outlook.com
+ (mail-uksouthazon11020095.outbound.protection.outlook.com [52.101.196.95])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3553110EA3E;
+	Thu, 26 Mar 2026 13:33:28 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Snr7iw+EhoJorsOdU05G2DqpwS//R2VI0C0OF3C/29pBT6vsh0x4LGLCTTyM3U9yN98F1sCMOPne26AH/x8O1ofqa0xLBbXlfXp0a2tyJXlXrhnlkGIduxXAlswTBWltjYwHl85NT7VrGTk6k2M9C7rzi59YUx7J8lhBs9jNLRc/M3F+d+vVaikzZV86di24KHLM6inVjy7lW73n6j50AaPSt97sOeQSEwUHsfe/mvy5Ivf7K8UHMCZGRTKHoPSVOGa9J4XZBDBitk8CXYoSXEtILzfyKNRHmGtSp6/jXhqL6FpcbgDN3FG3jSJZxMjbL/QbPl7EQIWYOPMQJkaiVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5EygOYy60IOb/rai5mtFqMJKO19VeitLtpCaP4jBI6c=;
+ b=xftPvOrUzjVVlqHiZ+43VTITTuDt+l8u+oTrBWDfVtkcog34o109ySJ9pbLYhp75HZAjnoNuKQmqHrc+CtWkFB+Knsoht7LNSbKS6j3Qyf4o+LOb9YId0P+YCFg0m1l3kZ77x754mQoCkRtWEks4B9GuBsBhSlJy48fjCEC/kBsdgbdHabt8zQ+O3zFqlCjNGRBRZ1hrkI9kjzS7e2j5+dM2CFr2ItvIF0SwIw929/kkfMtCHxqZfv8hcYnNf1mOwOpurulMwBkEIfQUJ1MAMkkWeI4p5qLrtI/Bf1DDxJIZSmTzjRWHVZ3EJ+jyq4rjrIzrDWkHYw9S8uqxbpTIaA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5EygOYy60IOb/rai5mtFqMJKO19VeitLtpCaP4jBI6c=;
+ b=fiYnFbszOaCexWwOrN/NXablkonK8f0Tw+FMTXUnOFZbvkCJOiNlax/s3JyIr1d6Z5e9o9GCzrdNmFuL72tqgU/hmyNDMp1qXlY8BTYyZZ6ni5ZXn5k8vyJaL77O/9mWVPdtf0u8qXgUZ/3lTYPaW/KcHy5n+hRB6mg4imoOewM=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO0P265MB3114.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:15f::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.22; Thu, 26 Mar
+ 2026 13:33:25 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9745.022; Thu, 26 Mar 2026
+ 13:33:25 +0000
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 26 Mar 2026 02:15:28 +0100
-Message-Id: <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-Subject: Re: (subset) [PATCH v9 0/7] Rust bindings for gem shmem
-To: "Lyude Paul" <lyude@redhat.com>, "Alice Ryhl" <aliceryhl@google.com>,
- "Miguel Ojeda" <ojeda@kernel.org>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260316211646.650074-1-lyude@redhat.com>
-In-Reply-To: <20260316211646.650074-1-lyude@redhat.com>
-Message-ID-Hash: PBN6M3QFVT3CAA24DMY4SRXIJJE3SK4H
-X-Message-ID-Hash: PBN6M3QFVT3CAA24DMY4SRXIJJE3SK4H
-X-MailFrom: dakr@kernel.org
+Date: Thu, 26 Mar 2026 13:33:25 +0000
+Message-Id: <DHCR3H0O6R4N.CACOHQE39XEW@garyguo.net>
+Subject: Re: [PATCH 1/3] rust: uaccess: generalize write_dma() to accept any
+ Coherent<T>
+From: "Gary Guo" <gary@garyguo.net>
+To: "Danilo Krummrich" <dakr@kernel.org>, <acourbot@nvidia.com>,
+ <aliceryhl@google.com>, <abdiel.janulgue@gmail.com>,
+ <daniel.almeida@collabora.com>, <robin.murphy@arm.com>,
+ <a.hindborg@kernel.org>, <ojeda@kernel.org>, <boqun@kernel.org>,
+ <gary@garyguo.net>, <bjorn3_gh@protonmail.com>, <lossin@kernel.org>,
+ <tmgross@umich.edu>, <ttabi@nvidia.com>
+X-Mailer: aerc 0.21.0
+References: <20260325003921.3420-1-dakr@kernel.org>
+In-Reply-To: <20260325003921.3420-1-dakr@kernel.org>
+X-ClientProxiedBy: LO6P123CA0027.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:313::19) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO0P265MB3114:EE_
+X-MS-Office365-Filtering-Correlation-Id: 528fe0ab-6b4c-4291-11a4-08de8b3c4205
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|10070799003|366016|1800799024|7416014|376014|921020|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: 
+	eWzLwIwlb2+VrpRXgb3ZL1Lmd1M6bVD6xQcPbCWN53jZiUGWSJvwzY13rHGqhG6hv2DEbm85BHyw5hvE184HpX/koyi3iCw/UrOljHhcQvh3MpaCTzsAbOlnX2oonwBGDza+opnll/6EhAXnS/Si35KFDeWh8GoB5+zZgOku/iUJ8ML0ak/WU8DnDJCcDp9nZswE/0tNh2euP6VnbeHiLRrflo14hAUF1fKHKeapACAI7BXUJyB4fqP+QXDbGuy71YqebLycJgPtoXvg9N2f+4Lhav843CHw0dNnVGJYkU5+mA5+UCh97ppEis4AZybpE1vSB+Mu/e7mGTjz3e3gYo/YEjtpQIXf6/98lG3hOYS9GGP4xbIHaDQZxk5c3rHEBkyOLD+5iVjLfdiC0wJ/VypFvC/Ax6GqysHk1AEs5411t2ANJdaMNUe5lioeDp1h9dZywerW/OEFRHyWs36mG38g5vA5UXIuiZcw5E61mTWATCR2fAat5HHsvUzehBs71ijenTRxVxZTMOs4CWf+7TK0rFiIsOfg18HvwzWMRzfPsQGHuQlFLxBto1OqP/NLhUiJXbQHnJEiuhojUVG8pymRCrv9ZsYeiu/v8Jk5aq3LQDrAIy1LKCezqzlqA5m0BVFDob4SjX2K2M0Y0TiA7/U77KpHNdj7noJpSnvNrYhee78PsbabuGXTxlt9/EqLpC4Q9MYLuWG6FgPesd7QPllbIa1wzgbR/hfqInvlmg3MKzlxA1Nj1ZgG75yEeug/03t9d41XeQ3fDGQx7Nj5mw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(1800799024)(7416014)(376014)(921020)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?MXRqb2JOeWdDODZRK1NJRzR6c3Z6NzVWTEYwR2tzanJOZzFwNG1KOW9YQ2VI?=
+ =?utf-8?B?L0QvQlRLV2kzYk9ZZHZnN0RZak9iUXA1N2luNFNqMG5lRlBKOExnVHU5MTBa?=
+ =?utf-8?B?QWxYT013eWhKKzI0UUJTNmFTYVdFVUpNUmk0Tmptb1EzQlJ5SEVHWndOOVdC?=
+ =?utf-8?B?Z1k4WWg0a2U1dVFnTjMxeWZIUW1zdnJqbUV4OTZ4b2V6RC84dHdJM3YwTzJO?=
+ =?utf-8?B?QmdWL2ltQUdGbkxnOHlhMW9XK0VoeWVleFRCWkZJcmpaK0FqSWRONmRmTXhM?=
+ =?utf-8?B?WFhGVjREcFhIYWpDQ3RhZE9Eejd5em53dTRBNWNZbkVpUkNud3hCTkJMam56?=
+ =?utf-8?B?U2FkSkZQdDBwekd3TVJqRmZKUlplcnhxSW1kOUNnTnVrbFhXamdGTjY5MXR1?=
+ =?utf-8?B?VFM2a2VtWkR0WEwzRENxMDNEMnVZaDIwUU5VS08rWndkUEJuUXhwRm5KMGJv?=
+ =?utf-8?B?cU93Uzh6L3B3R25uNmZJZUNsQko0TnpPckdVUVFkRjFoZ09PTHUyV0pHTmp0?=
+ =?utf-8?B?Z3kyanQzY3o1cDhRdWJNOGkzaGZwc2NhQXdDaFB5aHNpTG0vTk1vQ3BWWjFk?=
+ =?utf-8?B?c1BPVldZRTI4MVdmT3pKWnBEVndrcjcySUhsWkxSVjh1UVRIVjFJSWxEVDI0?=
+ =?utf-8?B?emNnWVIyRXlmTEVWUG56VFVvWEIyM1g5Q0ZUUUt4Wk92dkxoN3gwYXNKeERY?=
+ =?utf-8?B?NENUMU5HUlVaVEtZdVZ0b1lHdEU0bEVoV2xjSzV1dElLeEZid0hZZEV0Vllq?=
+ =?utf-8?B?WHU0a3ZhTkx6d1NZaWpiRGpUenQwT2hqeE9qWmNrckhMdkxmeDFTVnMyTzJP?=
+ =?utf-8?B?bjJHb3NCUTczRkZtZGo3VzZVak81UkdIS3c2OXJZMU1BUVZhTUEycE4rY3FV?=
+ =?utf-8?B?UEVKOWd6Uk0wSnIybmN2UGFBMEE3TFJoamxyZTB6ek91MmJTci9mYlVtL2ph?=
+ =?utf-8?B?MVR2dExmb3Jibk13K3Vxc25LdDJqVTdBTWNaM3ZXKy8vSkVyN3BJT2JoMzFo?=
+ =?utf-8?B?VFl4WHJvRzB6WUNINnhsR3hMbThqK3FRQ0liUm5ad09KTTNuMythV0NvUG5Z?=
+ =?utf-8?B?V09EcHJzMEFZcUlKTWhHS0tabEpnajV5YU1VMUE3ZU81U1R0RjRpa2V2aE9M?=
+ =?utf-8?B?RS9YQitYTkJVWnNmOXBSWHQ5SGtLYzJLeU9vSjJINWQzOXp0ZW54VDBUdjFL?=
+ =?utf-8?B?Q1BQQVI0T0RmS1RHUVBvRXlNQmFlYjlVd3RNbUFkc2Z6YUFCckxLNUJRMzla?=
+ =?utf-8?B?U1BFeWhzcU1NeSs0bGd2azlLTkJoTzRsNjUrNWQxajdlRGhrS3dObmFwQ1Fj?=
+ =?utf-8?B?UjJlZHBvZzZOZHhENFVzSkpKbFdNVkV6SXNFdlJLU2JLOVhkbFh4UjcwYzFm?=
+ =?utf-8?B?TmV3RFBxN3luMzlPOG4wdzY2K1k3U0VBb1kzdFh6WWJlckMwa3orZmZrM2sr?=
+ =?utf-8?B?VmVmbndYdDJDQVdVRVNjT2U4VjlhelpFb2ptMjc0Zkx0V01ZL2JISndHTEdF?=
+ =?utf-8?B?N0lMSTM1Mjdxclc4Q3dUcmh3YnV6Y1hLTGpGWjM0YjFveWNSU1hLQjJsY045?=
+ =?utf-8?B?L05JMVl2clF4aTM5Slo4TDNDb0ZFUHRjWlp5dk9VZ1F2OGZzMlYrTkw2eDVE?=
+ =?utf-8?B?YTVDK1gzc2k1THlnMFErdGdqbkI1b1NySlNjL3NyWGtzQklYODQ2U3ZJS0h3?=
+ =?utf-8?B?YjBIOEJiU3RZbmJWVjJDa0IvSkQ1TXQyWGdKZ0kxRFluL0FFSzlMWmdndThM?=
+ =?utf-8?B?ZVFiSFhlTlNlZTY5UGYxaUlCNVovQ0ZZZldGVHJSTk9jOTVLdGFubzVjWkFC?=
+ =?utf-8?B?alNRSnU5Vk9RSnJER3dOMzhnb0FvLzhubEJScndqdzZaSUMzajRNLzhHZjFl?=
+ =?utf-8?B?ckttaE82TWV5Nng1U1RkVXc0TjBRWFNIR2R1bnA1RGpXNWcvTi93UjVVM2ha?=
+ =?utf-8?B?QVZkVi9RTVVKbGlab3VhRHBCNExiSU54WmNZdHF3VTgrYlUyOWs4SDdXV0tr?=
+ =?utf-8?B?d01wdXB3aWdvaW5mS0FCa1VpMVpoMUpQSW9sZlBZWXVPTVVUZG5GR091aTha?=
+ =?utf-8?B?aEl1MWdpTDVRbEJON3dzZFpoOXE2VkdTcFhnSUZ5NEpiRG1yMWxBdDYwQ3h1?=
+ =?utf-8?B?eWhtMjJEek1wbUFvall6eUdXR05JOG1LaGFXaHhWSHAvZ3pxbnZVMUxXYktu?=
+ =?utf-8?B?VEVDaFFxZEg0eXArcnBPYkRqb1VlY05YOGJWQ1E4a2pYaE5BbytSSGhnZmRM?=
+ =?utf-8?B?WWJQb2RCYStFS2FsYXJ5MXZvR0JQYnptSW5BelF1Rkk0M3JTZlltMFVRVU1t?=
+ =?utf-8?B?N0ZLWEtNODQ5eGc1Qll6NVZSdlNaM1Jwc1FLWnh1MEpCemcxMjJpUT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 528fe0ab-6b4c-4291-11a4-08de8b3c4205
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 13:33:25.6136
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ Oe5nWLSjnTvlLzo5evOV2rq/7DIvhMHsRi0GSuKl+Hr66fCUTrOOPxaH87qYq4CrBlY0pswcnmF+dWxOzqQXPw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO0P265MB3114
+Message-ID-Hash: BJNTCCEA3BOELVNW7V2LO6NTGXTJOQNA
+X-Message-ID-Hash: BJNTCCEA3BOELVNW7V2LO6NTGXTJOQNA
+X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- rust-for-linux@vger.kernel.org, Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org,
- Deborah Brouwer <deborah.brouwer@collabora.com>
+CC: nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+ rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PBN6M3QFVT3CAA24DMY4SRXIJJE3SK4H/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BJNTCCEA3BOELVNW7V2LO6NTGXTJOQNA/>
 Archived-At: 
- <https://lore.freedesktop.org/DHCBEGGPWSVK.30MV8652PV4PY@kernel.org/>
+ <https://lore.freedesktop.org/DHCR3H0O6R4N.CACOHQE39XEW@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -114,529 +185,50 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Mar 16, 2026 at 10:16 PM CET, Lyude Paul wrote:
-> Lyude Paul (5):
->   rust: drm: Add gem::impl_aref_for_gem_obj!
->   rust: gem: Introduce DriverObject::Args
+On Wed Mar 25, 2026 at 12:39 AM GMT, Danilo Krummrich wrote:
+> Generalize write_dma() from &Coherent<[u8]> to &Coherent<T> where
+> T: KnownSize + AsBytes + ?Sized. The function body only uses as_ptr()
+> and size(), which work for any such T, so there is no reason to
+> restrict it to byte slices.
+>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-Applied to drm-rust-next, thanks!
+For the series:
 
-> Asahi Lina (2):
->   rust: drm: gem: shmem: Add DRM shmem helper abstraction
+Acked-by: Gary Guo <gary@garyguo.net>
 
-I was about to pick this one up as well, but did run into quite some build
-errors and warnings. I fixed them all up, but I consider this too excessive=
- to
-actually apply the patch. This is the changelog I came up with:
+> ---
+>  rust/kernel/uaccess.rs | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+>
+> diff --git a/rust/kernel/uaccess.rs b/rust/kernel/uaccess.rs
+> index e26ef90ba8ad..6c9c1cce3c63 100644
+> --- a/rust/kernel/uaccess.rs
+> +++ b/rust/kernel/uaccess.rs
+> @@ -12,6 +12,7 @@
+>      ffi::{c_char, c_void},
+>      fs::file,
+>      prelude::*,
+> +    ptr::KnownSize,
+>      transmute::{AsBytes, FromBytes},
+>  };
+>  use core::mem::{size_of, MaybeUninit};
+> @@ -524,7 +525,12 @@ pub fn write_slice(&mut self, data: &[u8]) -> Result=
+ {
+>      ///     writer.write_dma(alloc, 0, 256)
+>      /// }
+>      /// ```
+> -    pub fn write_dma(&mut self, alloc: &Coherent<[u8]>, offset: usize, c=
+ount: usize) -> Result {
+> +    pub fn write_dma<T: KnownSize + AsBytes + ?Sized>(
+> +        &mut self,
+> +        alloc: &Coherent<T>,
+> +        offset: usize,
+> +        count: usize,
+> +    ) -> Result {
+>          let len =3D alloc.size();
+>          if offset.checked_add(count).ok_or(EOVERFLOW)? > len {
+>              return Err(ERANGE);
+>
+> base-commit: dff8302ca1d0e773c90dbeeb05e759f995c95482
 
-    [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it=
-,
-        it becomes =3Dm. The Rust kernel crate and its C helpers are always
-        built into vmlinux and can't reference symbols from a module,
-        causing link errors.
-
-        Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
-        DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it=
-;
-        use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-
-      * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
-        on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
-        that unused warnings are suppressed when shmem is not enabled.
-
-      * Enable const_refs_to_static (stabilized in 1.83) to prevent build
-        errors with older compilers.
-
-      * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
-        #[allow(unused_unsafe, reason =3D "Safe since Rust 1.82.0")].
-
-      * Fix incorrect C Header path and minor spelling and formatting
-        issues.
-
-      * Drop shmem::Object::sg_table() as the current implementation is
-        unsound.
-
-        - Danilo ]
-
-Please always consider [1] and [2].
-
-[1] https://drm.pages.freedesktop.org/maintainer-tools/committer/committer-=
-drm-rust.html#submit-checklist
-[2] https://rust-for-linux.com/contributing#submit-checklist-addendum
-
-(@Deborah: I assume you were testing this with Tyr built-in?)
-
-@Lyude, Alice, Miguel: Please have a look at what I came up with below.
-
-commit 2dc69d77944dbd1494d2b10a4b134b7fead1c8e7
-Author: Asahi Lina <lina+kernel@asahilina.net>
-Date:   Mon Mar 16 17:16:13 2026 -0400
-
-    rust: drm: gem: shmem: Add DRM shmem helper abstraction
-
-    The DRM shmem helper includes common code useful for drivers which
-    allocate GEM objects as anonymous shmem. Add a Rust abstraction for
-    this. Drivers can choose the raw GEM implementation or the shmem layer,
-    depending on their needs.
-
-    Signed-off-by: Asahi Lina <lina@asahilina.net>
-    Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
-    Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-    Signed-off-by: Lyude Paul <lyude@redhat.com>
-    Tested-by: Deborah Brouwer <deborah.brouwer@collabora.com>
-    Link: https://patch.msgid.link/20260316211646.650074-6-lyude@redhat.com
-    [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it=
-,
-        it becomes =3Dm. The Rust kernel crate and its C helpers are always
-        built into vmlinux and can't reference symbols from a module,
-        causing link errors.
-
-        Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
-        DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it=
-;
-        use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-
-      * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
-        on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
-        that unused warnings are suppressed when shmem is not enabled.
-
-      * Enable const_refs_to_static (stabilized in 1.83) to prevent build
-        errors with older compilers.
-
-      * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
-        #[allow(unused_unsafe, reason =3D "Safe since Rust 1.82.0")].
-
-      * Fix incorrect C Header path and minor spelling and formatting
-        issues.
-
-      * Drop shmem::Object::sg_table() as the current implementation is
-        unsound.
-
-        - Danilo ]
-    Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 0d0657dd1b41..0f68446c9122 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -258,6 +258,13 @@ config DRM_GEM_SHMEM_HELPER
- 	help
- 	  Choose this if you need the GEM shmem helper functions
-
-+config RUST_DRM_GEM_SHMEM_HELPER
-+	bool
-+	depends on DRM && MMU
-+	select DRM_GEM_SHMEM_HELPER
-+	help
-+	  Choose this if you need the GEM shmem helper functions In Rust
-+
- config DRM_SUBALLOC_HELPER
- 	tristate
- 	depends on DRM
-diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helpe=
-r.h
-index 563863d96d38..eda8f50d3a3c 100644
---- a/rust/bindings/bindings_helper.h
-+++ b/rust/bindings/bindings_helper.h
-@@ -34,6 +34,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_file.h>
- #include <drm/drm_gem.h>
-+#include <drm/drm_gem_shmem_helper.h>
- #include <drm/drm_ioctl.h>
- #include <kunit/test.h>
- #include <linux/auxiliary_bus.h>
-@@ -63,6 +64,7 @@
- #include <linux/interrupt.h>
- #include <linux/io-pgtable.h>
- #include <linux/ioport.h>
-+#include <linux/iosys-map.h>
- #include <linux/jiffies.h>
- #include <linux/jump_label.h>
- #include <linux/mdio.h>
-diff --git a/rust/helpers/drm.c b/rust/helpers/drm.c
-index fe226f7b53ef..65f3f22b0e1d 100644
---- a/rust/helpers/drm.c
-+++ b/rust/helpers/drm.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
-
- #include <drm/drm_gem.h>
-+#include <drm/drm_gem_shmem_helper.h>
- #include <drm/drm_vma_manager.h>
-
- #ifdef CONFIG_DRM
-@@ -21,4 +22,57 @@ rust_helper_drm_vma_node_offset_addr(struct drm_vma_offs=
-et_node *node)
- 	return drm_vma_node_offset_addr(node);
- }
-
--#endif
-+#ifdef CONFIG_DRM_GEM_SHMEM_HELPER
-+__rust_helper void
-+rust_helper_drm_gem_shmem_object_free(struct drm_gem_object *obj)
-+{
-+	return drm_gem_shmem_object_free(obj);
-+}
-+
-+__rust_helper void
-+rust_helper_drm_gem_shmem_object_print_info(struct drm_printer *p, unsigne=
-d int indent,
-+					    const struct drm_gem_object *obj)
-+{
-+	drm_gem_shmem_object_print_info(p, indent, obj);
-+}
-+
-+__rust_helper int
-+rust_helper_drm_gem_shmem_object_pin(struct drm_gem_object *obj)
-+{
-+	return drm_gem_shmem_object_pin(obj);
-+}
-+
-+__rust_helper void
-+rust_helper_drm_gem_shmem_object_unpin(struct drm_gem_object *obj)
-+{
-+	drm_gem_shmem_object_unpin(obj);
-+}
-+
-+__rust_helper struct sg_table *
-+rust_helper_drm_gem_shmem_object_get_sg_table(struct drm_gem_object *obj)
-+{
-+	return drm_gem_shmem_object_get_sg_table(obj);
-+}
-+
-+__rust_helper int
-+rust_helper_drm_gem_shmem_object_vmap(struct drm_gem_object *obj,
-+				      struct iosys_map *map)
-+{
-+	return drm_gem_shmem_object_vmap(obj, map);
-+}
-+
-+__rust_helper void
-+rust_helper_drm_gem_shmem_object_vunmap(struct drm_gem_object *obj,
-+					struct iosys_map *map)
-+{
-+	drm_gem_shmem_object_vunmap(obj, map);
-+}
-+
-+__rust_helper int
-+rust_helper_drm_gem_shmem_object_mmap(struct drm_gem_object *obj, struct v=
-m_area_struct *vma)
-+{
-+	return drm_gem_shmem_object_mmap(obj, vma);
-+}
-+
-+#endif /* CONFIG_DRM_GEM_SHMEM_HELPER */
-+#endif /* CONFIG_DRM */
-diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
-index 527d86f4ce92..58eb0a3d5686 100644
---- a/rust/kernel/drm/gem/mod.rs
-+++ b/rust/kernel/drm/gem/mod.rs
-@@ -26,6 +26,9 @@
-     ptr::NonNull, //
- };
-
-+#[cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER)]
-+pub mod shmem;
-+
- /// A macro for implementing [`AlwaysRefCounted`] for any GEM object type.
- ///
- /// Since all GEM objects use the same refcounting scheme.
-@@ -60,6 +63,8 @@ unsafe fn dec_ref(obj: core::ptr::NonNull<Self>) {
-         }
-     };
- }
-+#[cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), allow(unused))]
-+pub(crate) use impl_aref_for_gem_obj;
-
- /// A type alias for retrieving a [`Driver`]s [`DriverFile`] implementatio=
-n from its
- /// [`DriverObject`] implementation.
-@@ -216,7 +221,7 @@ fn create_mmap_offset(&self) -> Result<u64> {
- impl<T: IntoGEMObject> BaseObject for T {}
-
- /// Crate-private base operations shared by all GEM object classes.
--#[expect(unused)]
-+#[cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))]
- pub(crate) trait BaseObjectPrivate: IntoGEMObject {
-     /// Return a pointer to this object's dma_resv.
-     fn raw_dma_resv(&self) -> *mut bindings::dma_resv {
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-new file mode 100644
-index 000000000000..d025fb035195
---- /dev/null
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -0,0 +1,228 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+//! DRM GEM shmem helper objects
-+//!
-+//! C header: [`include/linux/drm/drm_gem_shmem_helper.h`](srctree/include=
-/drm/drm_gem_shmem_helper.h)
-+
-+// TODO:
-+// - There are a number of spots here that manually acquire/release the DM=
-A reservation lock using
-+//   dma_resv_(un)lock(). In the future we should add support for ww mutex=
-, expose a method to
-+//   acquire a reference to the WwMutex, and then use that directly instea=
-d of the C functions here.
-+
-+use crate::{
-+    container_of,
-+    drm::{
-+        device,
-+        driver,
-+        gem,
-+        private::Sealed, //
-+    },
-+    error::to_result,
-+    prelude::*,
-+    types::{
-+        ARef,
-+        Opaque, //
-+    }, //
-+};
-+use core::{
-+    ops::{
-+        Deref,
-+        DerefMut, //
-+    },
-+    ptr::NonNull,
-+};
-+use gem::{
-+    BaseObjectPrivate,
-+    DriverObject,
-+    IntoGEMObject, //
-+};
-+
-+/// A struct for controlling the creation of shmem-backed GEM objects.
-+///
-+/// This is used with [`Object::new()`] to control various properties that=
- can only be set when
-+/// initially creating a shmem-backed GEM object.
-+#[derive(Default)]
-+pub struct ObjectConfig<'a, T: DriverObject> {
-+    /// Whether to set the write-combine map flag.
-+    pub map_wc: bool,
-+
-+    /// Reuse the DMA reservation from another GEM object.
-+    ///
-+    /// The newly created [`Object`] will hold an owned refcount to `paren=
-t_resv_obj` if specified.
-+    pub parent_resv_obj: Option<&'a Object<T>>,
-+}
-+
-+/// A shmem-backed GEM object.
-+///
-+/// # Invariants
-+///
-+/// `obj` contains a valid initialized `struct drm_gem_shmem_object` for t=
-he lifetime of this
-+/// object.
-+#[repr(C)]
-+#[pin_data]
-+pub struct Object<T: DriverObject> {
-+    #[pin]
-+    obj: Opaque<bindings::drm_gem_shmem_object>,
-+    /// Parent object that owns this object's DMA reservation object.
-+    parent_resv_obj: Option<ARef<Object<T>>>,
-+    #[pin]
-+    inner: T,
-+}
-+
-+super::impl_aref_for_gem_obj!(impl<T> for Object<T> where T: DriverObject)=
-;
-+
-+// SAFETY: All GEM objects are thread-safe.
-+unsafe impl<T: DriverObject> Send for Object<T> {}
-+
-+// SAFETY: All GEM objects are thread-safe.
-+unsafe impl<T: DriverObject> Sync for Object<T> {}
-+
-+impl<T: DriverObject> Object<T> {
-+    /// `drm_gem_object_funcs` vtable suitable for GEM shmem objects.
-+    const VTABLE: bindings::drm_gem_object_funcs =3D bindings::drm_gem_obj=
-ect_funcs {
-+        free: Some(Self::free_callback),
-+        open: Some(super::open_callback::<T>),
-+        close: Some(super::close_callback::<T>),
-+        print_info: Some(bindings::drm_gem_shmem_object_print_info),
-+        export: None,
-+        pin: Some(bindings::drm_gem_shmem_object_pin),
-+        unpin: Some(bindings::drm_gem_shmem_object_unpin),
-+        get_sg_table: Some(bindings::drm_gem_shmem_object_get_sg_table),
-+        vmap: Some(bindings::drm_gem_shmem_object_vmap),
-+        vunmap: Some(bindings::drm_gem_shmem_object_vunmap),
-+        mmap: Some(bindings::drm_gem_shmem_object_mmap),
-+        status: None,
-+        rss: None,
-+        #[allow(unused_unsafe, reason =3D "Safe since Rust 1.82.0")]
-+        // SAFETY: `drm_gem_shmem_vm_ops` is a valid, static const on the =
-C side.
-+        vm_ops: unsafe { &raw const bindings::drm_gem_shmem_vm_ops },
-+        evict: None,
-+    };
-+
-+    /// Return a raw pointer to the embedded drm_gem_shmem_object.
-+    fn as_raw_shmem(&self) -> *mut bindings::drm_gem_shmem_object {
-+        self.obj.get()
-+    }
-+
-+    /// Create a new shmem-backed DRM object of the given size.
-+    ///
-+    /// Additional config options can be specified using `config`.
-+    pub fn new(
-+        dev: &device::Device<T::Driver>,
-+        size: usize,
-+        config: ObjectConfig<'_, T>,
-+        args: T::Args,
-+    ) -> Result<ARef<Self>> {
-+        let new: Pin<KBox<Self>> =3D KBox::try_pin_init(
-+            try_pin_init!(Self {
-+                obj <- Opaque::init_zeroed(),
-+                parent_resv_obj: config.parent_resv_obj.map(|p| p.into()),
-+                inner <- T::new(dev, size, args),
-+            }),
-+            GFP_KERNEL,
-+        )?;
-+
-+        // SAFETY: `obj.as_raw()` is guaranteed to be valid by the initial=
-ization above.
-+        unsafe { (*new.as_raw()).funcs =3D &Self::VTABLE };
-+
-+        // SAFETY: The arguments are all valid via the type invariants.
-+        to_result(unsafe { bindings::drm_gem_shmem_init(dev.as_raw(), new.=
-as_raw_shmem(), size) })?;
-+
-+        // SAFETY: We never move out of `self`.
-+        let new =3D KBox::into_raw(unsafe { Pin::into_inner_unchecked(new)=
- });
-+
-+        // SAFETY: We're taking over the owned refcount from `drm_gem_shme=
-m_init`.
-+        let obj =3D unsafe { ARef::from_raw(NonNull::new_unchecked(new)) }=
-;
-+
-+        // Start filling out values from `config`
-+        if let Some(parent_resv) =3D config.parent_resv_obj {
-+            // SAFETY: We have yet to expose the new gem object outside of=
- this function, so it is
-+            // safe to modify this field.
-+            unsafe { (*obj.obj.get()).base.resv =3D parent_resv.raw_dma_re=
-sv() };
-+        }
-+
-+        // SAFETY: We have yet to expose this object outside of this funct=
-ion, so we're guaranteed
-+        // to have exclusive access - thus making this safe to hold a muta=
-ble reference to.
-+        let shmem =3D unsafe { &mut *obj.as_raw_shmem() };
-+        shmem.set_map_wc(config.map_wc);
-+
-+        Ok(obj)
-+    }
-+
-+    /// Returns the `Device` that owns this GEM object.
-+    pub fn dev(&self) -> &device::Device<T::Driver> {
-+        // SAFETY: `dev` will have been initialized in `Self::new()` by `d=
-rm_gem_shmem_init()`.
-+        unsafe { device::Device::from_raw((*self.as_raw()).dev) }
-+    }
-+
-+    extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
-+        // SAFETY:
-+        // - DRM always passes a valid gem object here
-+        // - We used drm_gem_shmem_create() in our create_gem_object callb=
-ack, so we know that
-+        //   `obj` is contained within a drm_gem_shmem_object
-+        let this =3D unsafe { container_of!(obj, bindings::drm_gem_shmem_o=
-bject, base) };
-+
-+        // SAFETY:
-+        // - We're in free_callback - so this function is safe to call.
-+        // - We won't be using the gem resources on `this` after this call=
-.
-+        unsafe { bindings::drm_gem_shmem_release(this) };
-+
-+        // SAFETY:
-+        // - We verified above that `obj` is valid, which makes `this` val=
-id
-+        // - This function is set in AllocOps, so we know that `this` is c=
-ontained within a
-+        //   `Object<T>`
-+        let this =3D unsafe { container_of!(Opaque::cast_from(this), Self,=
- obj) }.cast_mut();
-+
-+        // SAFETY: We're recovering the Kbox<> we created in gem_create_ob=
-ject()
-+        let _ =3D unsafe { KBox::from_raw(this) };
-+    }
-+}
-+
-+impl<T: DriverObject> Deref for Object<T> {
-+    type Target =3D T;
-+
-+    fn deref(&self) -> &Self::Target {
-+        &self.inner
-+    }
-+}
-+
-+impl<T: DriverObject> DerefMut for Object<T> {
-+    fn deref_mut(&mut self) -> &mut Self::Target {
-+        &mut self.inner
-+    }
-+}
-+
-+impl<T: DriverObject> Sealed for Object<T> {}
-+
-+impl<T: DriverObject> gem::IntoGEMObject for Object<T> {
-+    fn as_raw(&self) -> *mut bindings::drm_gem_object {
-+        // SAFETY:
-+        // - Our immutable reference is proof that this is safe to derefer=
-ence.
-+        // - `obj` is always a valid drm_gem_shmem_object via our type inv=
-ariants.
-+        unsafe { &raw mut (*self.obj.get()).base }
-+    }
-+
-+    unsafe fn from_raw<'a>(obj: *mut bindings::drm_gem_object) -> &'a Obje=
-ct<T> {
-+        // SAFETY: The safety contract of from_gem_obj() guarantees that `=
-obj` is contained within
-+        // `Self`
-+        unsafe {
-+            let obj =3D Opaque::cast_from(container_of!(obj, bindings::drm=
-_gem_shmem_object, base));
-+
-+            &*container_of!(obj, Object<T>, obj)
-+        }
-+    }
-+}
-+
-+impl<T: DriverObject> driver::AllocImpl for Object<T> {
-+    type Driver =3D T::Driver;
-+
-+    const ALLOC_OPS: driver::AllocOps =3D driver::AllocOps {
-+        gem_create_object: None,
-+        prime_handle_to_fd: None,
-+        prime_fd_to_handle: None,
-+        gem_prime_import: None,
-+        gem_prime_import_sg_table: Some(bindings::drm_gem_shmem_prime_impo=
-rt_sg_table),
-+        dumb_create: Some(bindings::drm_gem_shmem_dumb_create),
-+        dumb_map_offset: None,
-+    };
-+}
-diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index e0837ffc91bf..40de00ce4f97 100644
---- a/rust/kernel/lib.rs
-+++ b/rust/kernel/lib.rs
-@@ -38,6 +38,7 @@
- #![feature(const_option)]
- #![feature(const_ptr_write)]
- #![feature(const_refs_to_cell)]
-+#![feature(const_refs_to_static)]
- //
- // Stable since Rust 1.84.0.
- #![feature(strict_provenance)]
