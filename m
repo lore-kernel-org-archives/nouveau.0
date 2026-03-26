@@ -4,152 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5530C10A88D4
-	for <nouveau@archiver.kernel.org>; Thu, 26 Mar 2026 16:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8760810A88FD
+	for <nouveau@archiver.kernel.org>; Thu, 26 Mar 2026 18:18:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D67810EB4F;
-	Thu, 26 Mar 2026 16:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 65EF110E287;
+	Thu, 26 Mar 2026 18:18:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=jannau.net header.i=@jannau.net header.b="KqQaRUgP";
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="Vr6S/+y2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Og5bnVNN";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id DF7924530F;
-	Thu, 26 Mar 2026 16:05:35 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774541135;
- b=Z7WAlC2SjHnPb0T2988B4uhLiGxZG8pUxHaaWsBW9d7zUZ4OE5kiDLe3eT3CNMJ0hPA4/
- +rcvw5ItgsXVE9RQML/7WTTvuasgB36sGuDZFPXdLH16XKhte81dDVF/QBM+zcpOeHWQ1Kc
- u7Vwydr8esJu8zgjnhVkpd84ZXJ28dv6iK3OUE/dwptfcEhJOm4xwyDx283Wl8AexFkYG6b
- 6UCThW8LyeK4Y+ixtsDDEDwYhL8P1VKD79dteeX7UYucvHZGECyoSjSsQVXXi3tA+Vz0jea
- LuSBEaNu/UaFo3r65AQe/AJ9C0A93aEllI+SrVqrTbqYmOlzHBKPwCF8TgQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774541135; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 74FD945327;
+	Thu, 26 Mar 2026 18:06:57 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774548417;
+ b=k5bIxzAma8PgJW4re3WlB816A+58S/EloI32kaNECpuBPqKIMAizDRgK0Rp8yyyd/g49L
+ JcSHyYHkSb4q2YmcFWush7wxyCNT6D/EVGQCuo1igLKkMmzu0mhpqIxOdbuzNMQnGjJ1hch
+ ZxgD66X4rFsmd5P84PgtLabJLMp95ZqEKFfJAGErLLaXtz/XPHyld9BttdBupPoyVL1O+o7
+ 6uWHTuE208n+4Q5MKgB1sSxfiLERBIYdvD8Q3yy+ZxcqwG6+zsWwAy4Oh5YUXUD/OXPSzGn
+ 3zURCNn3gaIOpj7qdLl/hCiJ6RCBJea223gGHzhej/b44VJoUHiJmJHJhSAQ==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774548417; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=mqFX0ystC8G5bMrUA5MPL3IZ+yUM/PuDxgn6w4DVzlw=;
- b=MZ33gjXAA5/fsPmlpWJz+erWFzirsdJzcutZ+l1wGAJeVZqqX6qyOQX2XLE2rczTQj7h8
- 3judPN0NmjQHBh+LiMlHOjszTwfSa3fLsgoFhHVY7ICqFDiTIZVEQINHjj2ShbD+Kdux8h/
- pS1jUxYkMKpE4zfuGwMlli/o4hSiFotJoyO1zrvHohV66604D65jktLbpMRFhEmLdbWekyV
- nv5y//KGdBcS2EXzrMYODBL4Q16OwlVOHiKxOfYE0AruJM3Zv9ohNNYbKpGSWVo6bTVMwIV
- 58rx0XHzCdissv9iGHzXbb9k+/uqSC5QeorCIfoIaVd5c1Do0t/FbSWJqk4Q==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=jannau.net;
-  arc=none (Message is not ARC signed);
-  dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=jannau.net;
- arc=none (Message is not ARC signed); dmarc=none
+ bh=B7sccmkGDehtyJvcq1YZcs4by1igPiabHUGseQHtgqo=;
+ b=oXVuxeaPMBf0hAakil9SQCIaLCAUDT3QQHNqqZyeGnxxf7cMwstoY6nsql6GGOePpSZ/D
+ RxEZPP5odr0ixg3LMFo0CNGwPRaRWcMayYqzeoJw4FI4G7ym8fGupRicHmni3liyRHAZF36
+ PT/DUBYBS9EtaOrOU9Lh835ysHvNzXNHpUReG7re+SgSzhCiaPZ/hrffbNlWI+DWZSa+sfa
+ YcbzooWI7HmHspI5or42LVEOks+lbNpqZDTxuyoLFFENogxE3HSzxV7W4fHykbW5Gp77JNH
+ cPbnvJbbx8wZd6Zb4T7MTGhUYQnoFiBh79enS6RS2piIPB55f3xPRlq5RJfA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 5F62841DBC
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 16:05:32 +0000 (UTC)
-X-Greylist: delayed 346 seconds by postgrey-1.36 at gabe;
- Thu, 26 Mar 2026 16:16:40 UTC
-Received: from fout-b7-smtp.messagingengine.com
- (fout-b7-smtp.messagingengine.com [202.12.124.150])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7566510EB4B
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 16:16:40 +0000 (UTC)
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfout.stl.internal (Postfix) with ESMTP id 229A51D00244;
-	Thu, 26 Mar 2026 12:10:53 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
-  by phl-compute-01.internal (MEProxy); Thu, 26 Mar 2026 12:10:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1774541452; x=1774627852; bh=mqFX0ystC8
-	G5bMrUA5MPL3IZ+yUM/PuDxgn6w4DVzlw=; b=KqQaRUgPfTBr9XD3tkJsncTvcp
-	HGOvGevyNLULt4Qw/8YnO4TB9KMxyIo1vDlsDkM9HNHdtj9XZwp2Mjm7mSBcKuKX
-	h9bTtphz/2JhQROIWX8838iqNy0mswSx4rWMnRlXYbCKiSDf6Hz2kETu1KVLEfN/
-	SvAiRy+gZPr0JQ0APGQaW0bzP/HgY17rsgdie/NEILDM6nGKsKtAll+woHSGKvQ9
-	ZwPBus3gy2wLvRQgbucjk/0Rj9mtCDzVbv39CzL2bYny3bRT+csox54JNlEPz3h+
-	jW4/GNoVjngIIoQsLfvXq1TH+Sh2UhHufARSCY5IHX0EFWyR/cdu6DAd8gVA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1774541452; x=1774627852; bh=mqFX0ystC8G5bMrUA5MPL3IZ+yUM/PuDxgn
-	6w4DVzlw=; b=Vr6S/+y2nAS3lWxO4UPHlHLbjZMDaQDpyO84eIN0c5mha55M+MN
-	hzbQeC7Knf17gm4diCyYS6d7VJdwuHud0YQE0W4TjoHh40S7YPfblk60pcocNp2o
-	YL02ZRqKJsUC+x6J6my0pHjhH7cB2Pj/wFizK08X4rlvJM1JxzU/vGXHSXsszWrA
-	XguZgEV6UZSC5MjelC79sgWnrWGUBs5Ww1eaHlQBvR0aopv1m7pgPNT9zB6kUnoU
-	oKk95WGCOZPeni9aX/14Xx2765TwFIvxGTxo+p3k42Hx7k7xnL0LIsxENOtJ4xAt
-	4kfANd0Lr+gOHL3/c/OF0edF/c6jyB9HSpA==
-X-ME-Sender: <xms:jFrFaaeDwUi0xsJTlNox3RFX12oa04zZ7EkHP6rg7YYIloFrhaOt9w>
-    <xme:jFrFadYhUlbE2Sv4y6w9HFl5pFQ9oMB0H6DK6cuSS4brF2t8fMANJ6J5RsxMqhJa1
-    x58imbJ6a8rmB2qahJmyJQHDHrOqCtAMbU-hCZpND3FrO1ty6maUcb8>
-X-ME-Received: 
- <xmr:jFrFaVqNVE6HLWpu8PL_B_Wa5tLoDn8VubBJoli9LPNLCZRFG1iBwXc7lgn2v0y1YLz6Ww8KGNrcqUPjSpt64xsK3oqJHjdZckQ>
-X-ME-Proxy-Cause: 
- gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdefvdejkeefucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepfffhvfevuffkfhggtggujgesthdtredttddtjeenucfhrhhomheplfgrnhhnvgcu
-    ifhruhhnrghuuceojhesjhgrnhhnrghurdhnvghtqeenucggtffrrghtthgvrhhnpeegje
-    duudfhleekveeghfevjeegtefgtdegfeekheduiedtleehgeeludejgfegieenucffohhm
-    rghinhepfhhrvggvuggvshhkthhophdrohhrghdprhhushhtqdhfohhrqdhlihhnuhigrd
-    gtohhmpdhmshhgihgurdhlihhnkhenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgr
-    mhepmhgrihhlfhhrohhmpehjsehjrghnnhgruhdrnhgvthdpnhgspghrtghpthhtohepvd
-    ekpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegurghkrheskhgvrhhnvghlrdho
-    rhhgpdhrtghpthhtoheplhihuhguvgesrhgvughhrghtrdgtohhmpdhrtghpthhtoheprg
-    hlihgtvghrhihhlhesghhoohhglhgvrdgtohhmpdhrtghpthhtohepohhjvggurgeskhgv
-    rhhnvghlrdhorhhgpdhrtghpthhtohepnhhouhhvvggruheslhhishhtshdrfhhrvggvug
-    gvshhkthhophdrohhrghdprhgtphhtthhopehgrghrhiesghgrrhihghhuohdrnhgvthdp
-    rhgtphhtthhopegurghnihgvlhdrrghlmhgvihgurgestgholhhlrggsohhrrgdrtghomh
-    dprhgtphhtthhopehruhhsthdqfhhorhdqlhhinhhugiesvhhgvghrrdhkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehmmhgruhhrvghrsehgohhoghhlvgdrtghomh
-X-ME-Proxy: <xmx:jFrFaY1eGumb2lP-gwk4rMljcd1HrGMa5zu-LPOdbLOZTBQlCMG-rg>
-    <xmx:jFrFaSra40WvK9wNoCUgNJSUuqdo_0b35aGx_LU_fljalYncxEVanw>
-    <xmx:jFrFaaQjCX9DsR0XbhHIyFQcjeoUMao6md7MaNFcB9dDm_AGhVNURQ>
-    <xmx:jFrFaarsfozIh98oVWs1QdcONAaGdvyDQce1808gf8WuNVG97FOoxA>
-    <xmx:jFrFaRX0jlBXDO9RbIEeXvX9PjNX0YBrLIN1johPts8zF8Ewg4_85f56>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 26 Mar 2026 12:10:51 -0400 (EDT)
-Date: Thu, 26 Mar 2026 17:10:49 +0100
-From: Janne Grunau <j@jannau.net>
-To: Danilo Krummrich <dakr@kernel.org>
-Subject: Re: (subset) [PATCH v9 0/7] Rust bindings for gem shmem
-Message-ID: <20260326161049.GA10417@robin.jannau.net>
-References: <20260316211646.650074-1-lyude@redhat.com>
- <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id BF977452EF
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 18:06:54 +0000 (UTC)
+Received: from mail-dl1-f45.google.com (mail-dl1-f45.google.com
+ [74.125.82.45])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4C210E277
+	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 18:18:04 +0000 (UTC)
+Received: by mail-dl1-f45.google.com with SMTP id
+ a92af1059eb24-12711867ca1so87983c88.3
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 26 Mar 2026 11:18:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774549083; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dvt9b4OblI9uitiLvUnESny//eyt+MsQXxFmjMsRlN4Y52X2lg6iJXm3V++ReHRb5J
+         0AqSTuBzoD/WD3asQfqrOTmmViKEvsBJhilUb0NOlIS6p0L7mkCNmWsZVJhMPlSnpbFd
+         krWZlIKgvS7e9MspVr+X3Xmlt/9XylOAZ2EwKS6PJ3WrVuZSHY02WtdOFex1bg7Y2AgR
+         zG1//h7GMtoIt6dr06vivTXiouZSmjWyM2FPLJ/TYVw57P8AlsGA2VeXmZJyVXS69fUn
+         EagBfCedjpxA4mIDBhTew2rbfkaXY9o2T5NXCaL+dn5JLDcYjFf+nasQpp3x/8vKVH/E
+         b1zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=B7sccmkGDehtyJvcq1YZcs4by1igPiabHUGseQHtgqo=;
+        fh=ygLwcJYQ5Bio7PbCQT8FutwgXr9htG+U1F8T49jMuF0=;
+        b=F/gXOk/fIersZCrfTqkg/qK+Bc6GUP4ac09wjae+QS1f5Tnfr5BVXjvbC3kfncS3wf
+         sIqLUxd1bPLnGR9bbMJDpDofzG9GIUVSwY9sFx5TVM+UFKP42DqnQaGW33/XEfO9iVCp
+         hvS5393ZraoJAnHeKhL+qHBr2S6vUN2cy5yzQgRdh40aXdWN/wKoGrMmXp2XPq7xCfgJ
+         iigfKHGMxPoj3TAzqz80C2ImbwiuZ2aXlvSJZ+lN9l/XDQXT6pfj9DvYbrU/ce1i5927
+         u9W55kbgVaUWivfaSPABf/5e1fV0k+nzYghiPVNYnqUDX3aPJTJ2J0s+WD8Tb5JOovm4
+         GnTg==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1774549083; x=1775153883;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=B7sccmkGDehtyJvcq1YZcs4by1igPiabHUGseQHtgqo=;
+        b=Og5bnVNNTDjTcHKQhWp2dTcfLlo4FrFCjBfUQeb/tCwmnQlu/d5bfNZuzeHMqirluT
+         4k776ip9+VBVmNowkaeXUxdh46X9GLeSHscsb85ngWMz2HzHlVhoLto1pJ426yHfxQXa
+         HP8KTXNdx6KLNmcyjAMEWVKS7q1kQ84QYzUSVdmYwm4uFEUY7XqHfb0iMr+Q+OUA/0Rg
+         a+bA4bZkXS7dSfcfsIdcUcFdXDA//pYZSW1a+EfEBpf5WdCU+QnM5UnMke1bOYTLSFhb
+         Mr2nW6Dq6/jBJvk8imLtyZlJ36ctp/PfHXaq+RzVX9+z0X1ajnKwe/FWcOt2fxEp5VWI
+         ASuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1774549083; x=1775153883;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=B7sccmkGDehtyJvcq1YZcs4by1igPiabHUGseQHtgqo=;
+        b=DyHpd1TW+ALG/pTUHjUlqO+ipAoxIl+KowltQEabJqA3nYYckZqFSbDPOivtfIpLvs
+         p10fAOkTzgBoAAVPmbNgcj0+75umyypXXF1sT5UQZ7OTGzyurBuJg742YuGEsHmRGTgD
+         SGXLPVC4Q+YqjIEt3FNONKdnWQ1Ur5a+5HK1E6ujyhNo5WUqfZzfCCiF2oV3BnHgiS7n
+         pJEse1JrTdj3qXlqFrb521IBMIR4yWf9igKtRfZhJupErRmfGbDs4QdsujopKFK0KxLR
+         AoQ9LGa9QsrGZvmN9ZTYhEWG4NJ5iZ10i74/ehVsq0SWRtrLbRX3zfCzvNhXPyJhO0ey
+         KUDQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX+vl1AWaSol0CNLWD7TTB+g23R3yHEPqtTTrquEuw6gfNViaZz7tkx5rZ7luzAzZR1OVn5Bdrr@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyC6Ti/ykFMZ29DMu2GDGq9gIYAsY9sZLC1id7dgmuEe9jAWZRz
+	o77TKwa+2luYawFSvFarAEnCQG2LomcG7ob7uZI0QLbEC7tj7jedGmMz9qGN1DY9vfS2rjoJaxW
+	01bO57T8jHy+mIZA3UnsXxQ7jEnmFGcY=
+X-Gm-Gg: ATEYQzw574I3e3HU+sZPibJWlC6554tv6TlkBTvVP5WHo6gG21oo4JrVRmYjhH1PncD
+	yIw3zo6fXingM3GdCdDuTMDfrWTxUXj3U90ALxrv66P3AsPjlTG5bXJVfHWkzMiKeepFfZHlfDE
+	4heSSyPl8HhNl/LTi0GhU5lyfOuPRrGy08cfCoJT6UxumQkZ3kyC50aNUrqRxUFds7pLERcJrb5
+	in5vDtNwdPrUGCRlQMiMcOyuzhEWHbAlZ2Ixr4IXLrC4eJiPMyg82mvqao6z0mqizDKCSKKrzjG
+	X4fKXo3aIcX/8lZwTF7I1kgriNsi6uhhpTRBAaBmIgz48eTxko/98O/h2HbBZtfYymaJNOnQU9j
+	WBZJQYHUA2/JhFKm+w+y5d6c=
+X-Received: by 2002:a05:7301:7214:b0:2be:1f56:ed0d with SMTP id
+ 5a478bee46e88-2c15d3e42cbmr2323302eec.6.1774549083220; Thu, 26 Mar 2026
+ 11:18:03 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-Message-ID-Hash: HXHJOADKVSVNSRJ26YGLJIJTR6IWRFZI
-X-Message-ID-Hash: HXHJOADKVSVNSRJ26YGLJIJTR6IWRFZI
-X-MailFrom: j@jannau.net
+References: <20260325003921.3420-1-dakr@kernel.org>
+In-Reply-To: <20260325003921.3420-1-dakr@kernel.org>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 26 Mar 2026 19:17:51 +0100
+X-Gm-Features: AQROBzDHC8l4cxhgXpM9E7qHhcmsh6Eh0VloN_3mY91VrE0Eq-6JGd81wVQv04g
+Message-ID: 
+ <CANiq72kqKGA7sqB6WnJxMiTLcRx5t=0xDJhzyq0LmSQVT+9WLw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] rust: uaccess: generalize write_dma() to accept any
+ Coherent<T>
+To: Danilo Krummrich <dakr@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: J4DJTHOCH5KRZS43OIKEJKMUJYZZGF7U
+X-Message-ID-Hash: J4DJTHOCH5KRZS43OIKEJKMUJYZZGF7U
+X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- rust-for-linux@vger.kernel.org, Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Andreas Hindborg <a.hindborg@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org,
- Deborah Brouwer <deborah.brouwer@collabora.com>
+CC: acourbot@nvidia.com, aliceryhl@google.com, abdiel.janulgue@gmail.com,
+ daniel.almeida@collabora.com, robin.murphy@arm.com, a.hindborg@kernel.org,
+ ojeda@kernel.org, boqun@kernel.org, gary@garyguo.net,
+ bjorn3_gh@protonmail.com, lossin@kernel.org, tmgross@umich.edu,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+ rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HXHJOADKVSVNSRJ26YGLJIJTR6IWRFZI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/J4DJTHOCH5KRZS43OIKEJKMUJYZZGF7U/>
 Archived-At: 
- <https://lore.freedesktop.org/20260326161049.GA10417@robin.jannau.net/>
+ <https://lore.freedesktop.org/CANiq72kqKGA7sqB6WnJxMiTLcRx5t=0xDJhzyq0LmSQVT+9WLw@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -159,106 +159,17 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Mar 26, 2026 at 02:15:28AM +0100, Danilo Krummrich wrote:
-> On Mon Mar 16, 2026 at 10:16 PM CET, Lyude Paul wrote:
-> > Lyude Paul (5):
-> >   rust: drm: Add gem::impl_aref_for_gem_obj!
-> >   rust: gem: Introduce DriverObject::Args
-> 
-> Applied to drm-rust-next, thanks!
-> 
-> > Asahi Lina (2):
-> >   rust: drm: gem: shmem: Add DRM shmem helper abstraction
-> 
-> I was about to pick this one up as well, but did run into quite some build
-> errors and warnings. I fixed them all up, but I consider this too excessive to
-> actually apply the patch. This is the changelog I came up with:
-> 
->     [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it,
->         it becomes =m. The Rust kernel crate and its C helpers are always
->         built into vmlinux and can't reference symbols from a module,
->         causing link errors.
-> 
->         Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
->         DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it;
->         use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-> 
->       * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
->         on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
->         that unused warnings are suppressed when shmem is not enabled.
-> 
->       * Enable const_refs_to_static (stabilized in 1.83) to prevent build
->         errors with older compilers.
-> 
->       * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
->         #[allow(unused_unsafe, reason = "Safe since Rust 1.82.0")].
-> 
->       * Fix incorrect C Header path and minor spelling and formatting
->         issues.
-> 
->       * Drop shmem::Object::sg_table() as the current implementation is
->         unsound.
-> 
->         - Danilo ]
-> 
-> Please always consider [1] and [2].
-> 
-> [1] https://drm.pages.freedesktop.org/maintainer-tools/committer/committer-drm-rust.html#submit-checklist
-> [2] https://rust-for-linux.com/contributing#submit-checklist-addendum
-> 
-> (@Deborah: I assume you were testing this with Tyr built-in?)
-> 
-> @Lyude, Alice, Miguel: Please have a look at what I came up with below.
+On Wed, Mar 25, 2026 at 1:39=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
+wrote:
+>
+> Generalize write_dma() from &Coherent<[u8]> to &Coherent<T> where
+> T: KnownSize + AsBytes + ?Sized. The function body only uses as_ptr()
+> and size(), which work for any such T, so there is no reason to
+> restrict it to byte slices.
+>
+> Signed-off-by: Danilo Krummrich <dakr@kernel.org>
 
-Looks fine, asahi had the bool CONFIG_RUST_DRM_GEM_SHMEM_HELPER already
-in the asahi Kconfig so I never noticed that's missing. Same for configs
-which do not excercise gem shmem.
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
-> commit 2dc69d77944dbd1494d2b10a4b134b7fead1c8e7
-> Author: Asahi Lina <lina+kernel@asahilina.net>
-> Date:   Mon Mar 16 17:16:13 2026 -0400
-> 
->     rust: drm: gem: shmem: Add DRM shmem helper abstraction
-> 
->     The DRM shmem helper includes common code useful for drivers which
->     allocate GEM objects as anonymous shmem. Add a Rust abstraction for
->     this. Drivers can choose the raw GEM implementation or the shmem layer,
->     depending on their needs.
-> 
->     Signed-off-by: Asahi Lina <lina@asahilina.net>
->     Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
->     Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
->     Signed-off-by: Lyude Paul <lyude@redhat.com>
->     Tested-by: Deborah Brouwer <deborah.brouwer@collabora.com>
->     Link: https://patch.msgid.link/20260316211646.650074-6-lyude@redhat.com
->     [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it,
->         it becomes =m. The Rust kernel crate and its C helpers are always
->         built into vmlinux and can't reference symbols from a module,
->         causing link errors.
-> 
->         Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
->         DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it;
->         use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-> 
->       * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
->         on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
->         that unused warnings are suppressed when shmem is not enabled.
-> 
->       * Enable const_refs_to_static (stabilized in 1.83) to prevent build
->         errors with older compilers.
-> 
->       * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
->         #[allow(unused_unsafe, reason = "Safe since Rust 1.82.0")].
-> 
->       * Fix incorrect C Header path and minor spelling and formatting
->         issues.
-> 
->       * Drop shmem::Object::sg_table() as the current implementation is
->         unsound.
-> 
->         - Danilo ]
->     Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-
-Reviewed-by: Janne Grunau <j@jananu.net>
-
-Janne
+Cheers,
+Miguel
