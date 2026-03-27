@@ -4,129 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39BE10BA434
-	for <nouveau@archiver.kernel.org>; Fri, 27 Mar 2026 14:59:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D891F10F2867
+	for <nouveau@archiver.kernel.org>; Fri, 27 Mar 2026 18:42:59 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A989F10EB16;
-	Fri, 27 Mar 2026 14:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6099510EEA7;
+	Fri, 27 Mar 2026 18:42:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=aliasing.net header.i=@aliasing.net header.b="Y9h6/nxy";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JqLTMAvv";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4BFA645323;
-	Fri, 27 Mar 2026 14:48:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id A4F534532D;
+	Fri, 27 Mar 2026 18:31:47 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774622902;
- b=mwXtU887wsBcVS9MA4nHyzK+I1kMY0CN5Jsv19+GKZboK3nKj2MKCiGZt7CP9E5R0hIOC
- dWVmzaO5MQ053Kas4Qt1YRtD77l3sUi0WpIzpDveBp4FJM3QZ0Kd3skrhZ2LbOnRKFTk8qQ
- APB9tz9duw8+yxk0weYvsIZ/X4cx653svUSQAX9NwiSYh92pVuekMLFG3Yfl2fUf8p+XciZ
- qWLLizRcWTfCIISiqxjSRZgLOMyuW24CqTBIu8kqWkbYBffDg9c8x6CWyJ08WvV0/w3trrz
- ZTU59w/WCONmoXM4DEl6YnbLI+VfyPfkBc6aN0YStJz9Lz+YUc5MIS5qSyMg==
+ s=20240201; t=1774636307;
+ b=cyuRDD9HC5WcGOcokGG3ptUBBUjqdQup+BnulB8LnAlbSN28jB4QzhzjZEd1nDTkZO9g0
+ CytO4PjfUjVFSpnoiT5OEPJYckKZEFO+4FKZTEOcdbLzYn3LScgGL9R69Xo7jsbBwEswKC+
+ CbvBdSuxuEedtUyh+m29epAlpBKcMD2iK/2/QA0glfxju3pe6lJvIhqdmpc6kKfHjYGJkdQ
+ HURRYkqaLONDOSURTYiuj644bdfkCx9Np1ximRnrCVC2rrQvQHt9jvLgOI5sbej4aH/kYN/
+ 9Y9qAZCn+sX+/CbZx9uM718g/M2ylr83IeYmVN+vd4HmX4cGwmQNlRCuuabw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774622902; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1774636307; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=+yGrlzp5BwsGqLDcldOQtXxixKAsL5lSNYWLykh/Mq4=;
- b=TJhm62fBgeLzyTwNnYe0HcU6AXLexmeR1GYa2S+N6DYIzj7eYx23O9FSUs9khTis6Uby0
- K6hqxnA8nFsaKLiGvndycU/XKUed2Kc9GIpAQuVf6AQpggROwqpgE9ASD/qVcu53IrWBu+w
- YT/Jz5DaP75LHYQlYASktxCprbc0opuCEwrwEvDuaXFZ1NXF2k1aFAcZrRHRbEmO80iKh54
- ZkXxvxWzLjsqjmlZLzgdtuAu9CVOBdKIHd5Y6Rjtl5ybKHEc7vUrpGiOTX40zZzC4HppcUU
- Z6LF3lJ7YGyvCckpXvcYUvjWOevS0cYBM2UFw8KxFFE9LSFo2mJDmqAew7SQ==
+ bh=2y7w8ILJRrW4PHKILONOcMtyD5lLkfYAXp0+U6jH+wM=;
+ b=lI0aEWeYay32ITMier4bZsGqxT6Yx7B4hHlel3PWvxJZeK/7+6laNwpdD4X8UJQDHjBB9
+ LTAfRZJ1LQ/F3IeOZCp87onKLTtDEmOmylTtcl6EWCTOONRspTcFyAlUxi00FCkC/sAODis
+ yHKW8bowbwKupMtHkHbu0Ld+6eNsDIW4penXkJEJzpsXKKeKyvwiq5Gxlc2AXQIgjgyTcsa
+ trz9CNvCR3VeSlOXRQfdlcyZi78tY9RfmysfBKpSFjhv3uvd5oj3JE4lpM7B/JU1tyvd4Iv
+ v8hxZBfQ1V9IxdVQGRDowBfotk4kJWhAVgGslczUbtz7fhPvxBAMtauYydhA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=aliasing.net;
+ dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=aliasing.net
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=aliasing.net;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=aliasing.net
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D098A44F5D
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 12:14:52 +0000 (UTC)
-X-Greylist: delayed 602 seconds by postgrey-1.36 at gabe;
- Thu, 26 Mar 2026 12:26:00 UTC
-Received: from outbound.mr.icloud.com
- (p-west2-cluster4-host6-snip4-9.eps.apple.com [57.103.69.170])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AF7EC10E9C9
-	for <nouveau@lists.freedesktop.org>; Thu, 26 Mar 2026 12:26:00 +0000 (UTC)
-Received: from outbound.mr.icloud.com (unknown [127.0.0.2])
-	by p00-icloudmta-asmtp-us-west-2a-100-percent-3 (Postfix) with ESMTPS id
- 9C25A1800126;
-	Thu, 26 Mar 2026 12:09:15 +0000 (UTC)
-Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aliasing.net; s=sig1;
- t=1774526959; x=1777118959; bh=+yGrlzp5BwsGqLDcldOQtXxixKAsL5lSNYWLykh/Mq4=;
- h=Date:Message-Id:To:Subject:From:Mime-Version:Content-Type:x-icloud-hme;
- b=Y9h6/nxyK0YtF7+cdvXxFFPAcsCuxaPhUfW9mgltCjkCq89otxAR1mQZv+qGt+C3AJVmsiM/Dj7D+NRSYnXMAUj6NlVb5zHr6k6QecB37L+OuSd0dXT2tu1I0S55kXP9T64qPPRv7/NJvNvc94t16DLCuKy29laglOazXD7J2cMDZREspjQNTsoRrdQpgdURsQqLG4Kj/URnbgEyJ9beflG4dmIqjsJP0DmpJ5bpwyQHok8keZxzj/i+bQQ4tCjILe+lXq5YrWR30ErbnyiznL53n/mYUzaTSmQ9J3T83qfYcBDPI67jp0vYzBIAVTACe3hAiYvZWPkGy+7NvJ13BA==
-mail-alias-created-date: 1769500909675
-Received: from localhost (unknown [17.57.152.38])
-	by p00-icloudmta-asmtp-us-west-2a-100-percent-3 (Postfix) with ESMTPSA id
- AC5D71800A58;
-	Thu, 26 Mar 2026 12:09:10 +0000 (UTC)
-Date: Thu, 26 Mar 2026 21:09:09 +0900 (JST)
-Message-Id: <20260326.210909.43276613898103820.fujita@bee>
-To: miguel.ojeda.sandonis@gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9AC85445E1
+	for <nouveau@lists.freedesktop.org>; Fri, 27 Mar 2026 18:31:44 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0C69D10EE81
+	for <nouveau@lists.freedesktop.org>; Fri, 27 Mar 2026 18:42:56 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id DF7D36013E;
+	Fri, 27 Mar 2026 18:42:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CC21C4AF09;
+	Fri, 27 Mar 2026 18:42:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774636974;
+	bh=R9AHAajVl54S43rOD25tNtqd/iHB1Qz12wrBG7w2KjE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JqLTMAvv7+jnfJ63kHoj5u/xRq7KjteyBcy3HIl1cnYvAHjHZ1OWSG0NmwwBvb/fd
+	 dup5UeymFe5k1FgaPMpKPS1CWFV2QefCBH69aiBilkovEgPOC7G+mJHdKietEf93mn
+	 z+D5DefKb0R+UjekRh0OhALTi/xJwUwgIy8DpuYwcGTN9n+tm/uHO9LVguwZYokkoK
+	 tnQuwnG/Tf+S+rzR3bpRe5cvXOYdNDZqK+J4SPMytGZ+3SUK2+mrVQra/5ismGlbII
+	 czayvkG45XiAzqxbhUAC5z+eA4cRh6ytBdF/EcuGtNZxJHtyqSJi2FR5/EBnlhtMp1
+	 Wd10Tu3oCjHYw==
+Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
+	by mailfauth.phl.internal (Postfix) with ESMTP id 5096CF40074;
+	Fri, 27 Mar 2026 14:42:52 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+  by phl-compute-02.internal (MEProxy); Fri, 27 Mar 2026 14:42:52 -0400
+X-ME-Sender: <xms:rM_Gaf53wU_w_vFmN1XR_9VmQF1e9TTRE1rM87oww0jbqKn3zQiTvA>
+    <xme:rM_GaXPvT0Z2HQrHgUaQNVTRIVrWLOwO-BgCrV5k8GRfnE72m0QIvotqSXTp_orHj
+    2gOytGhfi8Tw5WrIjza2Ip1_8Tik1hvjAcSmd5zwH2MmvzdFnQ12Q>
+X-ME-Received: 
+ <xmr:rM_GaVKjAVbZbK7E0hlnUpPhDxno_FwWS3alvOVgDWol-eNebJPQxgRTTLinzpUhbU8XuI9F0parELUQLiuRtIH53yHFxQQe>
+X-ME-Proxy-Cause: 
+ gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeffedutdefucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdejnecuhfhrohhmpeeuohhquhhn
+    ucfhvghnghcuoegsohhquhhnsehkvghrnhgvlhdrohhrgheqnecuggftrfgrthhtvghrnh
+    epgfdvtdefieetieefueetudehffevieffkeejvdetleffledvveetgfeufeethfeinecu
+    vehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepsghoqhhunh
+    domhgvshhmthhprghuthhhphgvrhhsohhnrghlihhthidqudeijedtleekgeejuddqudej
+    jeekheehhedvqdgsohhquhhnpeepkhgvrhhnvghlrdhorhhgsehfihigmhgvrdhnrghmvg
+    dpnhgspghrtghpthhtohepfedvpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehm
+    ihhguhgvlhdrohhjvggurgdrshgrnhguohhnihhssehgmhgrihhlrdgtohhmpdhrtghpth
+    htohepghgrrhihsehgrghrhihguhhordhnvghtpdhrtghpthhtohepfhhujhhithgrrdht
+    ohhmohhnohhrihesghhmrghilhdrtghomhdprhgtphhtthhopegrtghouhhrsghothesnh
+    hvihguihgrrdgtohhmpdhrtghpthhtohepsghoqhhunhdrfhgvnhhgsehgmhgrihhlrdgt
+    ohhmpdhrtghpthhtohepthgrmhhirhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhope
+    grrdhhihhnuggsohhrgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepohhjvggurges
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepsghjohhrnhefpghghhesphhrohhtohhnmh
+    grihhlrdgtohhm
+X-ME-Proxy: <xmx:rM_GadFLMzx4SKFk_EBd2q_cYZurxddg5M3RCp3W13r-KO2-pIw_3w>
+    <xmx:rM_GaQwrMngO9IeycAuAvKlG4TKJtWiPzWRRnEJy5iLXeqAcanIiVQ>
+    <xmx:rM_GaRzM6IaacdY8NVZgpSijNYfeYjtBiBd74AMcjNC3_VfJbdwB2A>
+    <xmx:rM_GaeYlxRTqqcf4hORjoZECWHFuqZSzQ6j1M4n3MsRaTFYdYieCxA>
+    <xmx:rM_GabyudvqMVVB43xhTcrM2BV1ORfwR7f7w1i5eNFfiIaXHwurbBMl7>
+Feedback-ID: i8dbe485b:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 27 Mar 2026 14:42:51 -0400 (EDT)
+Date: Fri, 27 Mar 2026 11:42:50 -0700
+From: Boqun Feng <boqun@kernel.org>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
 Subject: Re: [PATCH v3 4/4] rust: make `build_assert` module the home of
  related macros
-From: FUJITA Tomonori <tomo@aliasing.net>
+Message-ID: <acbPqjBE8mqbiVkv@tardis.local>
+References: <20260319121653.2975748-1-gary@kernel.org>
+ <20260319121653.2975748-5-gary@kernel.org>
+ <CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 In-Reply-To: 
  <CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
-References: <20260319121653.2975748-1-gary@kernel.org>
-	<20260319121653.2975748-5-gary@kernel.org>
-	<CANiq72kZH-AX=QQz2V+qCfVzMsUEAPan=o1E=OZOAnivj3L3HQ@mail.gmail.com>
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=utf-8
-Content-Transfer-Encoding: base64
-X-Proofpoint-GUID: eqMS7S_G52C0wF8NsZjyMQ8O9Pmu7Vu-
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI2MDA4NSBTYWx0ZWRfX9LUqgBCH9GTY
- a5ATnf9PHeMqlEKLJvYFpH5HsDQL93p0TZMRxyJqBQZcD6/VU5UxZPrOJmTYnxL8KUFgrTneMtg
- be9QwNJRNSpauaqD/ojapwE6uoagfyGOSq761WY+ZzXO8BxNot9ZgoDrIFUFQdzL+xl2aw0L5kW
- dvnhoQc1dUlzSnECg/dFiWujV2iKujHA10BoFLiu3Is1kDUlt0m70qbmUXmRP76iL5+Axj1va+p
- gXd+0HrrhIDavaaS2fJtG68cbR9bIBqnmMEFEuQjxYiVVPS2BrUL+SbgQ48qC8oWkyBXoPTlDy4
- PUBRQqi/JjLE5QfjWA0VMoyOy+V/KYL1z5dPjiatWVQBeK66s6SmVOogtGFGb0=
-X-Authority-Info-Out: v=2.4 cv=TY6bdBQh c=1 sm=1 tr=0 ts=69c521ee
- cx=c_apl:c_pps:t_out a=9OgfyREA4BUYbbCgc0Y0oA==:117
- a=9OgfyREA4BUYbbCgc0Y0oA==:17 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=pGLkceISAAAA:8 a=VwQbUJbxAAAA:8
- a=7e8LTidUJLtXHkX_rzUA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-ORIG-GUID: eqMS7S_G52C0wF8NsZjyMQ8O9Pmu7Vu-
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-26_02,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0
- mlxlogscore=395 clxscore=1030 spamscore=0 mlxscore=0 suspectscore=0
- malwarescore=0 lowpriorityscore=0 phishscore=0 adultscore=0 classifier=spam
- authscore=0 adjust=0 reason=mlx scancount=1 engine=8.22.0-2601150000
- definitions=main-2603260085
-X-MailFrom: tomo@aliasing.net
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: ST4BFB7PXYZ764WS47FED3NVV6NBGMJ3
+X-Message-ID-Hash: ST4BFB7PXYZ764WS47FED3NVV6NBGMJ3
+X-MailFrom: boqun@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-Message-ID-Hash: WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J
-X-Message-ID-Hash: WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J
-X-Mailman-Approved-At: Fri, 27 Mar 2026 14:48:20 +0000
-CC: gary@garyguo.net, fujita.tomonori@gmail.com, acourbot@nvidia.com,
- boqun.feng@gmail.com, tamird@kernel.org, a.hindborg@kernel.org,
- ojeda@kernel.org, boqun@kernel.org, bjorn3_gh@protonmail.com,
- lossin@kernel.org, aliceryhl@google.com, tmgross@umich.edu, dakr@kernel.org,
- simona@ffwll.ch, abdiel.janulgue@gmail.com, daniel.almeida@collabora.com,
- robin.murphy@arm.com, yury.norov@gmail.com, will@kernel.org,
- peterz@infradead.org, mark.rutland@arm.com, mingo@redhat.com,
- longman@redhat.com, ynorov@nvidia.com, rust-for-linux@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
- netdev@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: Gary Guo <gary@garyguo.net>, FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Alexandre Courbot <acourbot@nvidia.com>, Boqun Feng <boqun.feng@gmail.com>,
+ Tamir Duberstein <tamird@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Miguel Ojeda <ojeda@kernel.org>,
+ =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
+ Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Abdiel Janulgue <abdiel.janulgue@gmail.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Robin Murphy <robin.murphy@arm.com>, Yury Norov <yury.norov@gmail.com>,
+ Will Deacon <will@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Mark Rutland <mark.rutland@arm.com>, Ingo Molnar <mingo@redhat.com>,
+ Waiman Long <longman@redhat.com>, Yury Norov <ynorov@nvidia.com>,
+ rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ driver-core@lists.linux.dev, netdev@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WFTDBUUNVO3CNHBOEHKFXC3LXTLOAT7J/>
-Archived-At: 
- <https://lore.freedesktop.org/20260326.210909.43276613898103820.fujita@bee/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ST4BFB7PXYZ764WS47FED3NVV6NBGMJ3/>
+Archived-At: <https://lore.freedesktop.org/acbPqjBE8mqbiVkv@tardis.local/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,9 +156,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-T24gTW9uLCAyMyBNYXIgMjAyNiAwMDozNjo1MiArMDEwMA0KTWlndWVsIE9qZWRhIDxtaWd1ZWwu
-b2plZGEuc2FuZG9uaXNAZ21haWwuY29tPiB3cm90ZToNCg0KPiBPbiBUaHUsIE1hciAxOSwgMjAy
-NiBhdCAxOjE34oCvUE0gR2FyeSBHdW8gPGdhcnlAa2VybmVsLm9yZz4gd3JvdGU6DQo+Pg0KPj4g
-IHJ1c3Qva2VybmVsL25ldC9waHkvcmVnLnJzICAgICAgICAgICB8ICA4ICsrKysrLS0tDQo+IA0K
-PiBUb21vbm9yaTogYXJlIHlvdSBPSyB3aXRoIHRoZXNlIGNoYW5nZXM/DQoNCkFja2VkLWJ5OiBG
-VUpJVEEgVG9tb25vcmkgPGZ1aml0YS50b21vbm9yaUBnbWFpbC5jb20+DQoNCg==
+On Mon, Mar 23, 2026 at 12:36:52AM +0100, Miguel Ojeda wrote:
+> On Thu, Mar 19, 2026 at 1:17 PM Gary Guo <gary@kernel.org> wrote:
+> >
+> >  rust/kernel/net/phy/reg.rs           |  8 +++++---
+> 
+> Tomonori: are you OK with these changes?
+> 
+> >  rust/kernel/num/bounded.rs           |  2 +-
+> 
+> Alexandre: are you OK with these changes?
+> 
+> >  rust/kernel/sync/atomic/internal.rs  |  9 ++++++---
+> >  rust/kernel/sync/atomic/predefine.rs |  2 +-
+> >  rust/kernel/sync/locked_by.rs        |  2 +-
+> >  rust/kernel/sync/refcount.rs         |  8 +++++---
+> 
+> Boqun: are you OK with these changes?
+> 
+
+Acked-by: Boqun Feng <boqun@kernel.org>
+
+Regards,
+Boqun
+
+> >  rust/kernel/xarray.rs                | 10 ++++++++--
+> 
+> Tamir, Andreas: are you OK with these changes?
+> 
+> > -    transmute::{AsBytes, FromBytes},
+> > +    transmute::{AsBytes, FromBytes}, //
+> 
+> Nit: We should take the chance to expand this.
+> 
+> Thanks all!
+> 
+> Cheers,
+> Miguel
