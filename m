@@ -4,115 +4,96 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9C6A1061B1B
-	for <nouveau@archiver.kernel.org>; Mon, 30 Mar 2026 18:42:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D85C1061B24
+	for <nouveau@archiver.kernel.org>; Mon, 30 Mar 2026 22:35:11 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C4D0610E629;
-	Mon, 30 Mar 2026 18:42:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5872410E7C4;
+	Mon, 30 Mar 2026 22:35:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=collabora.com header.i=deborah.brouwer@collabora.com header.b="dG95/Z0w";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="R0ODBp58";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 67CCE41B4D;
-	Mon, 30 Mar 2026 18:31:20 +0000 (UTC)
-ARC-Seal: i=2; cv=fail; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1774895480;
- b=0TlpAihUgrUOPBIGnXiMuef7N7VMgV9UzcUIvB2MLKVFJVChZ3ZYYgKx2kcQmD2N8Gjdt
- 8XdtCd9qLpi61MU/voPAYRopF6Ib979OVXuhkcAxmDalfGck3d9VFdS/K52w8kG9w2yQu+H
- FRNuX/qpmM/EeQEE+iRIafbBp0yiPAFegASS9fQbT8ZqQs/Z7tFH8M/4oDYpdm30PNughXk
- 0XL2YzDhtod4gqEDjuY9+i+LQfwx6yOPiHdDE0ORv0zqKHVXO0gK2KIBwIQaon0Y0FL7E7f
- Ar2qeYbUBlNioD3r8DrR70U9csrmV2zcipUIsWPT2GSIWFdLcrpVwPf/IGEw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1774895480; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 8ED3E452EE;
+	Mon, 30 Mar 2026 22:23:50 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1774909430;
+ b=nCBHyJZv+vrxUj2iUTe0c6XVD1Etsa+bCTfRqCUhstbt4ukIhjTh7vabo33i2nEb5et41
+ F5Dv4CGZlyFr4OFf21uaEF95N1uh0OBBp+qrEzXD6yeQMf1blj9dULw50LnqnedvMy8HZQW
+ QLqE+DnW4uGguBqG8F8qzFlZYVaPtfAXciYYBjzJGk8UzqlE4Gq6gUc/lPYCAENsHmPE/Ma
+ OZxYBzbhHgK7MUP0NLfDpJRD2x7N/jBPm391hchnidZMshbsJH56arZIq0VJRhzgUAzyKQm
+ t6tsZ+5uyOqunoDM5ikMFbvR4vsGTVReX84h//PF/cP6aXrPylYseAKEFNhA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1774909430; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GuOC4iypw7g37FcYekzF34EdjbAOvG3Vaqiy2mH/Dq8=;
- b=AoOJfarbc0dcFq4CQ7OaIHszj4Ir6xboICq33QIN3pmnF1qQgveKe1k69d27OAvBI6buR
- +cl6SSheTlXDDIj2rQDw2KXz6+0ZWASNuGT/dGfOzrFHjdjGDi0SdsrOvIH0pJXuVY9EujB
- SckdZZcJd+Ip0RLWEWAWywpeTaTijae9pDCA6esCFUJd2SIsAoAne1FtscTzAQIpdWcp2/E
- 7wfbg9Tw+qE6WbZY4XNlp+OBr1Urkdl1w9dXb/G2Zj3vfu/37G4vI27794ug/IifCiijuQr
- BaEslNIFR3eYPXu6hXotD8jva4Kn1u/9C3B4ZqcJd545FlXXfBty1dZdU5pQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
-  arc=fail (Most recent ARC-Message-Signature did not validate);
-  dmarc=pass (Used From Domain Record) header.from=collabora.com
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org;
- dkim=pass header.d=collabora.com header.i=deborah.brouwer@collabora.com;
- arc=fail (Most recent ARC-Message-Signature did not validate);
- dmarc=pass (Used From Domain Record) header.from=collabora.com
- policy.dmarc=none
+ bh=OJnida/awRdxY74Wg5SFmsqrp5Ez+XpbAIFGSKyT+9w=;
+ b=jcs638KEaRyr6s0Ut7Z4mA2DqFjfXGH02t6ueBl9u6OE+s6awKaojbyxa/SYhuF/WTMHA
+ lg0K6hdONgvDBvouGbC6wzkdmGnZyOhL4BHXs/aSFb9xHTIgHulqwRpnain5H18cjWUIcb2
+ 0ubfvHf1oaqIae1nu/rtcWkUPgjUn2O+mp+DZSCUjL1p2gBZCLenxXfezD5WH5yzte12EG5
+ FLMWBR4wzpBmygmPRJ75yOeKtc6j3IpIs+MKg4z6EveW9+bwbuQBq+OnpfHUvmdwEIbqYa7
+ 9uPBuPv28apTqhNHRc1j3HHJRZz+ZqbC+L6I7xbggcsaZI+ZzqujPFYwbRLg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=kernel.org;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=kernel.org
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9DA6941B4D
-	for <nouveau@lists.freedesktop.org>; Mon, 30 Mar 2026 18:31:17 +0000 (UTC)
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B0C3810E60F
-	for <nouveau@lists.freedesktop.org>; Mon, 30 Mar 2026 18:42:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1774896151; cv=none;
-	d=zohomail.com; s=zohoarc;
-	b=KoslFo+gJBZZ7WtbYxAjpqh6be4vHe+mM5cnVobkqZHuiHLok0RVvQJOsG4YYgZzIYX6I0J7C5Q/TEtH2x2dGZ4xvdD9UovDvkVhAx+kYJfZvmyXXPl99zSUkws7gamhfD0qMXfPwnRDs9dfkII6CNCsWp5GbnfRAvzMv2uzLX4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc;
-	t=1774896151;
- h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
-	bh=GuOC4iypw7g37FcYekzF34EdjbAOvG3Vaqiy2mH/Dq8=;
-	b=OmNZgQ8GQ95uKv+ffEdJWbJngRzETHYXIFkqE5yvjpBeD9XZC5hy3YR8NEESklGnY/yD0gMnUJ+COUHdfDL2jwMJKWtrfOUPgi+w/utPxluW5ScMXxLRC4rcjA65dyVxtpeTFnShn24wNEgEyLToyoR/i/d8kCgjlrrenONENuM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=deborah.brouwer@collabora.com;
-	dmarc=pass header.from=<deborah.brouwer@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774896151;
-	s=zohomail; d=collabora.com; i=deborah.brouwer@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=GuOC4iypw7g37FcYekzF34EdjbAOvG3Vaqiy2mH/Dq8=;
-	b=dG95/Z0wg5y/PD7+8fk/tJAZHqcghyD+pNHFz0I3NitocFtZrKar2IWmzeBYEzRo
-	HsOHTxt8/cHrxrVXT5xBQk4iLDrGQzXiZcRXS6ufToxeYFfYnardkmonjhAapZxa9KT
-	cErvKido0bQdXdEsIfmCvULmLoA9u7YrpWk8v5vM=
-Received: by mx.zohomail.com with SMTPS id 1774896149284317.51788213609734;
-	Mon, 30 Mar 2026 11:42:29 -0700 (PDT)
-Date: Mon, 30 Mar 2026 11:42:28 -0700
-From: Deborah Brouwer <deborah.brouwer@collabora.com>
-To: Danilo Krummrich <dakr@kernel.org>
-Subject: Re: (subset) [PATCH v9 0/7] Rust bindings for gem shmem
-Message-ID: <acrEFEIUziQucoJI@um790>
-References: <20260316211646.650074-1-lyude@redhat.com>
- <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DHCBEGGPWSVK.30MV8652PV4PY@kernel.org>
-Message-ID-Hash: FTHVJQSWDCMX5NUOR25RTGHGXLKWQN6L
-X-Message-ID-Hash: FTHVJQSWDCMX5NUOR25RTGHGXLKWQN6L
-X-MailFrom: deborah.brouwer@collabora.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5976D404D9
+	for <nouveau@lists.freedesktop.org>; Mon, 30 Mar 2026 22:23:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7E43710E128;
+	Mon, 30 Mar 2026 22:35:05 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+	by tor.source.kernel.org (Postfix) with ESMTP id 73AAD6014B;
+	Mon, 30 Mar 2026 22:35:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36E95C4CEF7;
+	Mon, 30 Mar 2026 22:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1774910104;
+	bh=QetO6StuPawQghDagsc/uXrE3Hau9tBgDb54X8TE3S8=;
+	h=Date:Subject:Cc:To:From:From;
+	b=R0ODBp589K+/AJK42gVYKX57Ffqi8KqbYErHsePtzbAT283GJLdQ9BsOjUrCon8A3
+	 UJv3xn/Kib+D5su9v8+Y+5s/kQHwdGf1Yygv+/fwUp+A2riUoo8S1Pcdn1nWQm8/pE
+	 FwyR1RIwE1ANB8JPXqFrGVkzr1gIwd9g8yFLYa67KVptVVWwzNNalLA1XULlH13/fy
+	 yJEiAUb0WQcRvC4Yu1pgaiFdSRz0jmXCWPfWdpujJAdTfCpIYt01sC2PHdzpEu5gFp
+	 /pjhhDRHtOLaRu5EZMY7tpFmhimGkwBnBiJhvrx316y/60GWY6cKz+/uVjeC+inf7p
+	 G+S5veQpeWzQA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 31 Mar 2026 00:35:00 +0200
+Message-Id: <DHGH4BLT03BU.ZJH5U52WE8BY@kernel.org>
+Subject: [GIT PULL] DRM Rust changes for v7.1-rc1
+To: "Dave Airlie" <airlied@gmail.com>, "Simona Vetter"
+ <simona.vetter@ffwll.ch>
+From: "Danilo Krummrich" <dakr@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+Message-ID-Hash: IP3DSBV4NFVSTSZKJIGFTQMP2ZNLBTCU
+X-Message-ID-Hash: IP3DSBV4NFVSTSZKJIGFTQMP2ZNLBTCU
+X-MailFrom: dakr@kernel.org
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- rust-for-linux@vger.kernel.org, Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Andreas Hindborg <a.hindborg@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Alice Ryhl <aliceryhl@google.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FTHVJQSWDCMX5NUOR25RTGHGXLKWQN6L/>
-Archived-At: <https://lore.freedesktop.org/acrEFEIUziQucoJI@um790/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/IP3DSBV4NFVSTSZKJIGFTQMP2ZNLBTCU/>
+Archived-At: 
+ <https://lore.freedesktop.org/DHGH4BLT03BU.ZJH5U52WE8BY@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -122,498 +103,410 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Thu, Mar 26, 2026 at 02:15:28AM +0100, Danilo Krummrich wrote:
-> On Mon Mar 16, 2026 at 10:16 PM CET, Lyude Paul wrote:
-> > Lyude Paul (5):
-> >   rust: drm: Add gem::impl_aref_for_gem_obj!
-> >   rust: gem: Introduce DriverObject::Args
-> 
-> Applied to drm-rust-next, thanks!
-> 
-> > Asahi Lina (2):
-> >   rust: drm: gem: shmem: Add DRM shmem helper abstraction
-> 
-> I was about to pick this one up as well, but did run into quite some build
-> errors and warnings. I fixed them all up, but I consider this too excessive to
-> actually apply the patch. This is the changelog I came up with:
-> 
->     [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it,
->         it becomes =m. The Rust kernel crate and its C helpers are always
->         built into vmlinux and can't reference symbols from a module,
->         causing link errors.
-> 
->         Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
->         DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it;
->         use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-> 
->       * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
->         on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
->         that unused warnings are suppressed when shmem is not enabled.
-> 
->       * Enable const_refs_to_static (stabilized in 1.83) to prevent build
->         errors with older compilers.
-> 
->       * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
->         #[allow(unused_unsafe, reason = "Safe since Rust 1.82.0")].
-> 
->       * Fix incorrect C Header path and minor spelling and formatting
->         issues.
-> 
->       * Drop shmem::Object::sg_table() as the current implementation is
->         unsound.
-> 
->         - Danilo ]
-> 
-> Please always consider [1] and [2].
-> 
-> [1] https://drm.pages.freedesktop.org/maintainer-tools/committer/committer-drm-rust.html#submit-checklist
-> [2] https://rust-for-linux.com/contributing#submit-checklist-addendum
-> 
-> (@Deborah: I assume you were testing this with Tyr built-in?)
+Hi Dave and Sima,
 
-Yes, Tyr used to work around this issue by creating a new config
-DRM_TYR_STATIC_DEPS, a bool, which selected DRM_GEM_SHMEM_HELPER.
-When we build DRM_TYR as a module, it selected DRM_TYR_STATIC_DEPS so
-that DRM_GEM_SHMEM_HELPER always ended up built-in even if Tyr was built
-as a module.
+Please pull these DRM Rust changes.
 
-But now Tyr can just select RUST_DRM_GEM_SHMEM_HELPER directly.
+There's quite a lot of stuff in here this time. The highlights are GPU budd=
+y
+and GEM shmem abstractions on the DRM core side; RPC continuation records, =
+the
+missing Turing pieces, exposed GSP log buffers in debugfs, and lots of gene=
+ral
+refactorings and improvements on the nova-core side.
 
-(We still have the same work around for DRM_GPUVM perhaps it could
-use the same solution).
+Among the latter I want to highlight the generic kernel register!() macro a=
+nd
+the DMA improvements.
 
-> 
-> @Lyude, Alice, Miguel: Please have a look at what I came up with below.
-> 
-> commit 2dc69d77944dbd1494d2b10a4b134b7fead1c8e7
-> Author: Asahi Lina <lina+kernel@asahilina.net>
-> Date:   Mon Mar 16 17:16:13 2026 -0400
-> 
->     rust: drm: gem: shmem: Add DRM shmem helper abstraction
-> 
->     The DRM shmem helper includes common code useful for drivers which
->     allocate GEM objects as anonymous shmem. Add a Rust abstraction for
->     this. Drivers can choose the raw GEM implementation or the shmem layer,
->     depending on their needs.
-> 
->     Signed-off-by: Asahi Lina <lina@asahilina.net>
->     Signed-off-by: Daniel Almeida <daniel.almeida@collabora.com>
->     Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
->     Signed-off-by: Lyude Paul <lyude@redhat.com>
->     Tested-by: Deborah Brouwer <deborah.brouwer@collabora.com>
->     Link: https://patch.msgid.link/20260316211646.650074-6-lyude@redhat.com
->     [ * DRM_GEM_SHMEM_HELPER is a tristate; when a module driver selects it,
->         it becomes =m. The Rust kernel crate and its C helpers are always
->         built into vmlinux and can't reference symbols from a module,
->         causing link errors.
-> 
->         Thus, add RUST_DRM_GEM_SHMEM_HELPER bool Kconfig that selects
->         DRM_GEM_SHMEM_HELPER, forcing it built-in when Rust drivers need it;
->         use cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER) for the shmem module.
-> 
->       * Add cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))
->         on pub(crate) use impl_aref_for_gem_obj and BaseObjectPrivate, so
->         that unused warnings are suppressed when shmem is not enabled.
-> 
->       * Enable const_refs_to_static (stabilized in 1.83) to prevent build
->         errors with older compilers.
-> 
->       * Use &raw const for bindings::drm_gem_shmem_vm_ops and add
->         #[allow(unused_unsafe, reason = "Safe since Rust 1.82.0")].
-> 
->       * Fix incorrect C Header path and minor spelling and formatting
->         issues.
-> 
->       * Drop shmem::Object::sg_table() as the current implementation is
->         unsound.
-> 
->         - Danilo ]
->     Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 0d0657dd1b41..0f68446c9122 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -258,6 +258,13 @@ config DRM_GEM_SHMEM_HELPER
->  	help
->  	  Choose this if you need the GEM shmem helper functions
-> 
-> +config RUST_DRM_GEM_SHMEM_HELPER
-> +	bool
-> +	depends on DRM && MMU
-> +	select DRM_GEM_SHMEM_HELPER
-> +	help
-> +	  Choose this if you need the GEM shmem helper functions In Rust
-> +
->  config DRM_SUBALLOC_HELPER
->  	tristate
->  	depends on DRM
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_helper.h
-> index 563863d96d38..eda8f50d3a3c 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -34,6 +34,7 @@
->  #include <drm/drm_drv.h>
->  #include <drm/drm_file.h>
->  #include <drm/drm_gem.h>
-> +#include <drm/drm_gem_shmem_helper.h>
->  #include <drm/drm_ioctl.h>
->  #include <kunit/test.h>
->  #include <linux/auxiliary_bus.h>
-> @@ -63,6 +64,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/io-pgtable.h>
->  #include <linux/ioport.h>
-> +#include <linux/iosys-map.h>
->  #include <linux/jiffies.h>
->  #include <linux/jump_label.h>
->  #include <linux/mdio.h>
-> diff --git a/rust/helpers/drm.c b/rust/helpers/drm.c
-> index fe226f7b53ef..65f3f22b0e1d 100644
-> --- a/rust/helpers/drm.c
-> +++ b/rust/helpers/drm.c
-> @@ -1,6 +1,7 @@
->  // SPDX-License-Identifier: GPL-2.0
-> 
->  #include <drm/drm_gem.h>
-> +#include <drm/drm_gem_shmem_helper.h>
->  #include <drm/drm_vma_manager.h>
-> 
->  #ifdef CONFIG_DRM
-> @@ -21,4 +22,57 @@ rust_helper_drm_vma_node_offset_addr(struct drm_vma_offset_node *node)
->  	return drm_vma_node_offset_addr(node);
->  }
-> 
-> -#endif
-> +#ifdef CONFIG_DRM_GEM_SHMEM_HELPER
-> +__rust_helper void
-> +rust_helper_drm_gem_shmem_object_free(struct drm_gem_object *obj)
-> +{
-> +	return drm_gem_shmem_object_free(obj);
-> +}
-> +
-> +__rust_helper void
-> +rust_helper_drm_gem_shmem_object_print_info(struct drm_printer *p, unsigned int indent,
-> +					    const struct drm_gem_object *obj)
-> +{
-> +	drm_gem_shmem_object_print_info(p, indent, obj);
-> +}
-> +
-> +__rust_helper int
-> +rust_helper_drm_gem_shmem_object_pin(struct drm_gem_object *obj)
-> +{
-> +	return drm_gem_shmem_object_pin(obj);
-> +}
-> +
-> +__rust_helper void
-> +rust_helper_drm_gem_shmem_object_unpin(struct drm_gem_object *obj)
-> +{
-> +	drm_gem_shmem_object_unpin(obj);
-> +}
-> +
-> +__rust_helper struct sg_table *
-> +rust_helper_drm_gem_shmem_object_get_sg_table(struct drm_gem_object *obj)
-> +{
-> +	return drm_gem_shmem_object_get_sg_table(obj);
-> +}
-> +
-> +__rust_helper int
-> +rust_helper_drm_gem_shmem_object_vmap(struct drm_gem_object *obj,
-> +				      struct iosys_map *map)
-> +{
-> +	return drm_gem_shmem_object_vmap(obj, map);
-> +}
-> +
-> +__rust_helper void
-> +rust_helper_drm_gem_shmem_object_vunmap(struct drm_gem_object *obj,
-> +					struct iosys_map *map)
-> +{
-> +	drm_gem_shmem_object_vunmap(obj, map);
-> +}
-> +
-> +__rust_helper int
-> +rust_helper_drm_gem_shmem_object_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
-> +{
-> +	return drm_gem_shmem_object_mmap(obj, vma);
-> +}
-> +
-> +#endif /* CONFIG_DRM_GEM_SHMEM_HELPER */
-> +#endif /* CONFIG_DRM */
-> diff --git a/rust/kernel/drm/gem/mod.rs b/rust/kernel/drm/gem/mod.rs
-> index 527d86f4ce92..58eb0a3d5686 100644
-> --- a/rust/kernel/drm/gem/mod.rs
-> +++ b/rust/kernel/drm/gem/mod.rs
-> @@ -26,6 +26,9 @@
->      ptr::NonNull, //
->  };
-> 
-> +#[cfg(CONFIG_RUST_DRM_GEM_SHMEM_HELPER)]
-> +pub mod shmem;
-> +
->  /// A macro for implementing [`AlwaysRefCounted`] for any GEM object type.
->  ///
->  /// Since all GEM objects use the same refcounting scheme.
-> @@ -60,6 +63,8 @@ unsafe fn dec_ref(obj: core::ptr::NonNull<Self>) {
->          }
->      };
->  }
-> +#[cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), allow(unused))]
-> +pub(crate) use impl_aref_for_gem_obj;
-> 
->  /// A type alias for retrieving a [`Driver`]s [`DriverFile`] implementation from its
->  /// [`DriverObject`] implementation.
-> @@ -216,7 +221,7 @@ fn create_mmap_offset(&self) -> Result<u64> {
->  impl<T: IntoGEMObject> BaseObject for T {}
-> 
->  /// Crate-private base operations shared by all GEM object classes.
-> -#[expect(unused)]
-> +#[cfg_attr(not(CONFIG_RUST_DRM_GEM_SHMEM_HELPER), expect(unused))]
->  pub(crate) trait BaseObjectPrivate: IntoGEMObject {
->      /// Return a pointer to this object's dma_resv.
->      fn raw_dma_resv(&self) -> *mut bindings::dma_resv {
-> diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-> new file mode 100644
-> index 000000000000..d025fb035195
-> --- /dev/null
-> +++ b/rust/kernel/drm/gem/shmem.rs
-> @@ -0,0 +1,228 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! DRM GEM shmem helper objects
-> +//!
-> +//! C header: [`include/linux/drm/drm_gem_shmem_helper.h`](srctree/include/drm/drm_gem_shmem_helper.h)
-> +
-> +// TODO:
-> +// - There are a number of spots here that manually acquire/release the DMA reservation lock using
-> +//   dma_resv_(un)lock(). In the future we should add support for ww mutex, expose a method to
-> +//   acquire a reference to the WwMutex, and then use that directly instead of the C functions here.
-> +
-> +use crate::{
-> +    container_of,
-> +    drm::{
-> +        device,
-> +        driver,
-> +        gem,
-> +        private::Sealed, //
-> +    },
-> +    error::to_result,
-> +    prelude::*,
-> +    types::{
-> +        ARef,
-> +        Opaque, //
-> +    }, //
-> +};
-> +use core::{
-> +    ops::{
-> +        Deref,
-> +        DerefMut, //
-> +    },
-> +    ptr::NonNull,
-> +};
-> +use gem::{
-> +    BaseObjectPrivate,
-> +    DriverObject,
-> +    IntoGEMObject, //
-> +};
-> +
-> +/// A struct for controlling the creation of shmem-backed GEM objects.
-> +///
-> +/// This is used with [`Object::new()`] to control various properties that can only be set when
-> +/// initially creating a shmem-backed GEM object.
-> +#[derive(Default)]
-> +pub struct ObjectConfig<'a, T: DriverObject> {
-> +    /// Whether to set the write-combine map flag.
-> +    pub map_wc: bool,
-> +
-> +    /// Reuse the DMA reservation from another GEM object.
-> +    ///
-> +    /// The newly created [`Object`] will hold an owned refcount to `parent_resv_obj` if specified.
-> +    pub parent_resv_obj: Option<&'a Object<T>>,
-> +}
-> +
-> +/// A shmem-backed GEM object.
-> +///
-> +/// # Invariants
-> +///
-> +/// `obj` contains a valid initialized `struct drm_gem_shmem_object` for the lifetime of this
-> +/// object.
-> +#[repr(C)]
-> +#[pin_data]
-> +pub struct Object<T: DriverObject> {
-> +    #[pin]
-> +    obj: Opaque<bindings::drm_gem_shmem_object>,
-> +    /// Parent object that owns this object's DMA reservation object.
-> +    parent_resv_obj: Option<ARef<Object<T>>>,
-> +    #[pin]
-> +    inner: T,
-> +}
-> +
-> +super::impl_aref_for_gem_obj!(impl<T> for Object<T> where T: DriverObject);
-> +
-> +// SAFETY: All GEM objects are thread-safe.
-> +unsafe impl<T: DriverObject> Send for Object<T> {}
-> +
-> +// SAFETY: All GEM objects are thread-safe.
-> +unsafe impl<T: DriverObject> Sync for Object<T> {}
-> +
-> +impl<T: DriverObject> Object<T> {
-> +    /// `drm_gem_object_funcs` vtable suitable for GEM shmem objects.
-> +    const VTABLE: bindings::drm_gem_object_funcs = bindings::drm_gem_object_funcs {
-> +        free: Some(Self::free_callback),
-> +        open: Some(super::open_callback::<T>),
-> +        close: Some(super::close_callback::<T>),
-> +        print_info: Some(bindings::drm_gem_shmem_object_print_info),
-> +        export: None,
-> +        pin: Some(bindings::drm_gem_shmem_object_pin),
-> +        unpin: Some(bindings::drm_gem_shmem_object_unpin),
-> +        get_sg_table: Some(bindings::drm_gem_shmem_object_get_sg_table),
-> +        vmap: Some(bindings::drm_gem_shmem_object_vmap),
-> +        vunmap: Some(bindings::drm_gem_shmem_object_vunmap),
-> +        mmap: Some(bindings::drm_gem_shmem_object_mmap),
-> +        status: None,
-> +        rss: None,
-> +        #[allow(unused_unsafe, reason = "Safe since Rust 1.82.0")]
-> +        // SAFETY: `drm_gem_shmem_vm_ops` is a valid, static const on the C side.
-> +        vm_ops: unsafe { &raw const bindings::drm_gem_shmem_vm_ops },
-> +        evict: None,
-> +    };
-> +
-> +    /// Return a raw pointer to the embedded drm_gem_shmem_object.
-> +    fn as_raw_shmem(&self) -> *mut bindings::drm_gem_shmem_object {
-> +        self.obj.get()
-> +    }
-> +
-> +    /// Create a new shmem-backed DRM object of the given size.
-> +    ///
-> +    /// Additional config options can be specified using `config`.
-> +    pub fn new(
-> +        dev: &device::Device<T::Driver>,
-> +        size: usize,
-> +        config: ObjectConfig<'_, T>,
-> +        args: T::Args,
-> +    ) -> Result<ARef<Self>> {
-> +        let new: Pin<KBox<Self>> = KBox::try_pin_init(
-> +            try_pin_init!(Self {
-> +                obj <- Opaque::init_zeroed(),
-> +                parent_resv_obj: config.parent_resv_obj.map(|p| p.into()),
-> +                inner <- T::new(dev, size, args),
-> +            }),
-> +            GFP_KERNEL,
-> +        )?;
-> +
-> +        // SAFETY: `obj.as_raw()` is guaranteed to be valid by the initialization above.
-> +        unsafe { (*new.as_raw()).funcs = &Self::VTABLE };
-> +
-> +        // SAFETY: The arguments are all valid via the type invariants.
-> +        to_result(unsafe { bindings::drm_gem_shmem_init(dev.as_raw(), new.as_raw_shmem(), size) })?;
-> +
-> +        // SAFETY: We never move out of `self`.
-> +        let new = KBox::into_raw(unsafe { Pin::into_inner_unchecked(new) });
-> +
-> +        // SAFETY: We're taking over the owned refcount from `drm_gem_shmem_init`.
-> +        let obj = unsafe { ARef::from_raw(NonNull::new_unchecked(new)) };
-> +
-> +        // Start filling out values from `config`
-> +        if let Some(parent_resv) = config.parent_resv_obj {
-> +            // SAFETY: We have yet to expose the new gem object outside of this function, so it is
-> +            // safe to modify this field.
-> +            unsafe { (*obj.obj.get()).base.resv = parent_resv.raw_dma_resv() };
-> +        }
-> +
-> +        // SAFETY: We have yet to expose this object outside of this function, so we're guaranteed
-> +        // to have exclusive access - thus making this safe to hold a mutable reference to.
-> +        let shmem = unsafe { &mut *obj.as_raw_shmem() };
-> +        shmem.set_map_wc(config.map_wc);
-> +
-> +        Ok(obj)
-> +    }
-> +
-> +    /// Returns the `Device` that owns this GEM object.
-> +    pub fn dev(&self) -> &device::Device<T::Driver> {
-> +        // SAFETY: `dev` will have been initialized in `Self::new()` by `drm_gem_shmem_init()`.
-> +        unsafe { device::Device::from_raw((*self.as_raw()).dev) }
-> +    }
-> +
-> +    extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
-> +        // SAFETY:
-> +        // - DRM always passes a valid gem object here
-> +        // - We used drm_gem_shmem_create() in our create_gem_object callback, so we know that
-> +        //   `obj` is contained within a drm_gem_shmem_object
-> +        let this = unsafe { container_of!(obj, bindings::drm_gem_shmem_object, base) };
-> +
-> +        // SAFETY:
-> +        // - We're in free_callback - so this function is safe to call.
-> +        // - We won't be using the gem resources on `this` after this call.
-> +        unsafe { bindings::drm_gem_shmem_release(this) };
-> +
-> +        // SAFETY:
-> +        // - We verified above that `obj` is valid, which makes `this` valid
-> +        // - This function is set in AllocOps, so we know that `this` is contained within a
-> +        //   `Object<T>`
-> +        let this = unsafe { container_of!(Opaque::cast_from(this), Self, obj) }.cast_mut();
-> +
-> +        // SAFETY: We're recovering the Kbox<> we created in gem_create_object()
-> +        let _ = unsafe { KBox::from_raw(this) };
-> +    }
-> +}
-> +
-> +impl<T: DriverObject> Deref for Object<T> {
-> +    type Target = T;
-> +
-> +    fn deref(&self) -> &Self::Target {
-> +        &self.inner
-> +    }
-> +}
-> +
-> +impl<T: DriverObject> DerefMut for Object<T> {
-> +    fn deref_mut(&mut self) -> &mut Self::Target {
-> +        &mut self.inner
-> +    }
-> +}
-> +
-> +impl<T: DriverObject> Sealed for Object<T> {}
-> +
-> +impl<T: DriverObject> gem::IntoGEMObject for Object<T> {
-> +    fn as_raw(&self) -> *mut bindings::drm_gem_object {
-> +        // SAFETY:
-> +        // - Our immutable reference is proof that this is safe to dereference.
-> +        // - `obj` is always a valid drm_gem_shmem_object via our type invariants.
-> +        unsafe { &raw mut (*self.obj.get()).base }
-> +    }
-> +
-> +    unsafe fn from_raw<'a>(obj: *mut bindings::drm_gem_object) -> &'a Object<T> {
-> +        // SAFETY: The safety contract of from_gem_obj() guarantees that `obj` is contained within
-> +        // `Self`
-> +        unsafe {
-> +            let obj = Opaque::cast_from(container_of!(obj, bindings::drm_gem_shmem_object, base));
-> +
-> +            &*container_of!(obj, Object<T>, obj)
-> +        }
-> +    }
-> +}
-> +
-> +impl<T: DriverObject> driver::AllocImpl for Object<T> {
-> +    type Driver = T::Driver;
-> +
-> +    const ALLOC_OPS: driver::AllocOps = driver::AllocOps {
-> +        gem_create_object: None,
-> +        prime_handle_to_fd: None,
-> +        prime_fd_to_handle: None,
-> +        gem_prime_import: None,
-> +        gem_prime_import_sg_table: Some(bindings::drm_gem_shmem_prime_import_sg_table),
-> +        dumb_create: Some(bindings::drm_gem_shmem_dumb_create),
-> +        dumb_map_offset: None,
-> +    };
-> +}
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index e0837ffc91bf..40de00ce4f97 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -38,6 +38,7 @@
->  #![feature(const_option)]
->  #![feature(const_ptr_write)]
->  #![feature(const_refs_to_cell)]
-> +#![feature(const_refs_to_static)]
->  //
->  // Stable since Rust 1.84.0.
->  #![feature(strict_provenance)]
+There are also quite a few external dependencies in here. Besides a few Rus=
+t
+core and minor workqueue changes, I took all the DMA changes through this t=
+ree
+for this cycle and merged a shared signed tag from the driver-core tree for
+register!() and other I/O improvements.
+
+(I plan to send an early driver-core PR to Linus for this cycle, since I al=
+so
+gave out two other signed tags for other trees.)
+
+All changes have been in linux-next for at least one round -- no conflicts
+expected.
+
+- Danilo
+
+The following changes since commit f338e77383789c0cae23ca3d48adcc5e9e137e3c=
+:
+
+  Linux 7.0-rc4 (2026-03-15 13:52:05 -0700)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/rust/kernel.git tags/drm-rust-next-202=
+6-03-30
+
+for you to fetch changes up to 7c50d748b4a635bc39802ea3f6b120e66b1b9067:
+
+  gpu: nova-core: firmware: factor out an elf_str() function (2026-03-30 14=
+:01:53 +0900)
+
+----------------------------------------------------------------
+DRM Rust changes for v7.1-rc1
+
+- DMA:
+  - Rework the DMA coherent API: introduce Coherent<T> as a generalized
+    container for arbitrary types, replacing the slice-only
+    CoherentAllocation<T>. Add CoherentBox for memory initialization
+    before exposing a buffer to hardware (converting to Coherent when
+    ready), and CoherentHandle for allocations without kernel mapping.
+
+  - Add Coherent::init() / init_with_attrs() for one-shot initialization
+    via pin-init, and from-slice constructors for both Coherent and
+    CoherentBox
+
+  - Add uaccess write_dma() for copying from DMA buffers to userspace
+    and BinaryWriter support for Coherent<T>
+
+- DRM:
+  - Add GPU buddy allocator abstraction
+
+  - Add DRM shmem GEM helper abstraction
+
+  - Allow drm::Device to dispatch work and delayed work items to driver
+    private data
+
+  - Add impl_aref_for_gem_obj!() macro to reduce GEM refcount
+    boilerplate, and introduce DriverObject::Args for constructor
+    context
+
+  - Add dma_resv_lock helper and raw_dma_resv() accessor on GEM objects
+
+  - Clean up imports across the DRM module
+
+- I/O:
+  - Merged via a signed tag from the driver-core tree: register!() macro
+    and I/O infrastructure improvements (IoCapable refactor, RelaxedMmio
+    wrapper, IoLoc trait, generic accessors, write_reg /
+    LocatedRegister)
+
+- Nova (Core):
+  - Fix and harden the GSP command queue: correct write pointer
+    advancing, empty slot handling, and ring buffer indexing; add mutex
+    locking and make Cmdq a pinned type; distinguish wait vs no-wait
+    commands
+
+  - Add support for large RPCs via continuation records, splitting
+    oversized commands across multiple queue slots
+
+  - Simplify GSP sequencer and message handling code: remove unused
+    trait and Display impls, derive Debug and Zeroable where applicable,
+    warn on unconsumed message data
+
+  - Refactor Falcon firmware handling: create DMA objects lazily, add
+    PIO upload support, and use the Generic Bootloader to boot FWSEC on
+    Turing
+
+  - Convert all register definitions (PMC, PBUS, PFB, GC6, FUSE, PDISP,
+    Falcon) to the kernel register!() macro; add bounded_enum macro to
+    define enums usable as register fields
+
+  - Migrate all DMA usage to the new Coherent, CoherentBox, and
+    CoherentHandle APIs
+
+  - Harden firmware parsing with checked arithmetic throughout FWSEC,
+    Booter, RISC-V parsing paths
+
+  - Add debugfs support for reading GSP-RM log buffers; replace
+    module_pci_driver!() with explicit module init to support
+    module-level debugfs setup
+
+  - Fix auxiliary device registration for multi-GPU systems
+
+  - Various cleanups: import style, firmware parsing refactoring,
+    framebuffer size logging
+
+- Rust:
+  - Add interop::list module providing a C linked list interface
+
+  - Extend num::Bounded with shift operations, into_bool(), and const
+    get() to support register bitfield manipulation
+
+  - Enable the generic_arg_infer Rust feature and add EMSGSIZE error
+    code
+
+- Tyr:
+  - Adopt vertical import style per kernel Rust guidelines
+
+  - Clarify driver/device type names and use DRM device type alias
+    consistently across the driver
+
+  - Fix GPU model/version decoding in GpuInfo
+
+- Workqueue:
+  - Add ARef<T> support for work and delayed work
+
+----------------------------------------------------------------
+Alexandre Courbot (50):
+      gpu: nova-core: gsp: warn if data remains after processing a message
+      gpu: nova-core: gsp: remove unnecessary Display impls
+      gpu: nova-core: gsp: simplify sequencer opcode parsing
+      gpu: nova-core: gsp: remove unneeded sequencer trait
+      gpu: nova-core: gsp: derive `Debug` on more sequencer types
+      gpu: nova-core: gsp: derive Zeroable for GspStaticConfigInfo
+      gpu: nova-core: use core library's CStr instead of kernel one
+      gpu: nova-core: create falcon firmware DMA objects lazily
+      gpu: nova-core: falcon: add constant for memory block alignment
+      gpu: nova-core: falcon: rename load parameters to reflect DMA depende=
+ncy
+      gpu: nova-core: falcon: remove FalconFirmware's dependency on FalconD=
+maLoadable
+      gpu: nova-core: move brom_params and boot_addr to FalconFirmware
+      gpu: nova-core: falcon: remove unwarranted safety check in dma_load
+      gpu: nova-core: make Chipset::arch() const
+      gpu: nova-core: add gen_bootloader firmware to ModInfoBuilder
+      gpu: nova-core: firmware: add comments to justify v3 header values
+      gpu: nova-core: firmware: fix and explain v2 header offsets computati=
+ons
+      rust: io: turn IoCapable into a functional trait
+      rust: io: mem: use non-relaxed I/O ops in examples
+      rust: io: provide Mmio relaxed ops through a wrapper type
+      rust: io: remove legacy relaxed accessors of Mmio
+      rust: pci: io: remove overloaded Io methods of ConfigSpace
+      rust: io: remove overloaded Io methods of Mmio
+      rust: enable the `generic_arg_infer` feature
+      rust: num: add `shr` and `shl` methods to `Bounded`
+      rust: num: add `into_bool` method to `Bounded`
+      rust: num: make Bounded::get const
+      rust: io: add IoLoc type and generic I/O accessors
+      rust: io: use generic read/write accessors for primitive accesses
+      rust: io: add `register!` macro
+      rust: io: introduce `write_reg` and `LocatedRegister`
+      sample: rust: pci: use `register!` macro
+      gpu: nova-core: gsp: move Cmdq's DMA handle to a struct member
+      gpu: nova-core: introduce `bounded_enum` macro
+      gpu: nova-core: convert PMC registers to kernel register macro
+      gpu: nova-core: convert PBUS registers to kernel register macro
+      gpu: nova-core: convert PFB registers to kernel register macro
+      gpu: nova-core: convert GC6 registers to kernel register macro
+      gpu: nova-core: convert FUSE registers to kernel register macro
+      gpu: nova-core: convert PDISP registers to kernel register macro
+      gpu: nova-core: convert falcon registers to kernel register macro
+      gpu: nova-core: remove `io::` qualifier to register macro invocations
+      Documentation: nova: remove register abstraction task
+      rust: dma: add from-slice constructors for Coherent and CoherentBox
+      gpu: nova-core: firmware: riscv: use dma::Coherent
+      gpu: nova-core: firmware: fwsec: use dma::Coherent
+      gpu: nova-core: falcon: use dma::Coherent
+      gpu: nova-core: fb: use dma::CoherentHandle
+      gpu: nova-core: firmware: gsp: use dma::Coherent for signatures
+      gpu: nova-core: firmware: gsp: use dma::Coherent for level0 table
+
+Alice Ryhl (2):
+      rust: workqueue: use new sync::aref path for imports
+      rust: drm: use new sync::aref path for imports
+
+Asahi Lina (2):
+      rust: helpers: Add bindings/wrappers for dma_resv_lock
+      rust: drm: gem: shmem: Add DRM shmem helper abstraction
+
+Daniel Almeida (4):
+      rust: workqueue: add support for ARef<T>
+      rust: drm: dispatch work items to the private data
+      rust: workqueue: add delayed work support for ARef<T>
+      rust: drm: dispatch delayed work items to the private data
+
+Danilo Krummrich (14):
+      Merge tag 'v7.0-rc4' into drm-rust-next
+      Merge tag 'rust_io-7.1-rc1' of git://git.kernel.org/pub/scm/linux/ker=
+nel/git/driver-core/driver-core into drm-rust-next
+      Merge tag 'drm-misc-next-2026-03-12' into drm-rust-next
+      rust: dma: use "kernel vertical" style for imports
+      rust: dma: introduce dma::CoherentBox for memory initialization
+      rust: dma: add Coherent:init() and Coherent::init_with_attrs()
+      gpu: nova-core: use Coherent::init to initialize GspFwWprMeta
+      gpu: nova-core: convert Gsp::new() to use CoherentBox
+      rust: dma: remove dma::CoherentAllocation<T>
+      rust: uaccess: generalize write_dma() to accept any Coherent<T>
+      rust: dma: generalize BinaryWriter impl for Coherent<T>
+      gpu: nova-core: use sized array for GSP log buffers
+      rust: dma: remove DMA_ATTR_NO_KERNEL_MAPPING from public attrs
+      rust: dma: add CoherentHandle for DMA allocations without kernel mapp=
+ing
+
+Deborah Brouwer (3):
+      drm/tyr: Use vertical style for imports
+      drm/tyr: Clarify driver/device type names
+      drm/tyr: Use DRM device type alias across driver
+
+Eliot Courtney (19):
+      gpu: nova-core: gsp: fix incorrect advancing of write pointer
+      gpu: nova-core: gsp: clarify comments about invariants and pointer ro=
+les
+      gpu: nova-core: gsp: use empty slices instead of [0..0] ranges
+      gpu: nova-core: gsp: fix improper handling of empty slot in cmdq
+      gpu: nova-core: gsp: fix improper indexing in driver_read_area
+      gpu: nova-core: gsp: sort `MsgFunction` variants alphabetically
+      gpu: nova-core: gsp: add mechanism to wait for space on command queue
+      rust: add EMSGSIZE error code
+      gpu: nova-core: gsp: add checking oversized commands
+      gpu: nova-core: gsp: clarify invariant on command queue
+      gpu: nova-core: gsp: unconditionally call variable payload handling
+      gpu: nova-core: gsp: add `size` helper to `CommandToGsp`
+      gpu: nova-core: gsp: support large RPCs via continuation record
+      gpu: nova-core: gsp: add tests for continuation records
+      gpu: nova-core: gsp: fix stale doc comments on command queue methods
+      gpu: nova-core: gsp: add `RECEIVE_TIMEOUT` constant for command queue
+      gpu: nova-core: gsp: add reply/no-reply info to `CommandToGsp`
+      gpu: nova-core: gsp: make `Cmdq` a pinned type
+      gpu: nova-core: gsp: add mutex locking to Cmdq
+
+Gary Guo (4):
+      gpu: nova-core: remove redundant `.as_ref()` for `dev_*` print
+      rust: dma: add generalized container for types other than slices
+      rust: dma: add zeroed constructor to `Coherent`
+      gpu: nova-core: convert to new dma::Coherent API
+
+Joel Fernandes (9):
+      gpu: nova-core: use checked arithmetic in FWSEC firmware parsing
+      gpu: nova-core: use checked arithmetic in Booter signature parsing
+      gpu: nova-core: use checked arithmetic in frombytes_at helper
+      gpu: nova-core: use checked arithmetic in BinFirmware::data
+      gpu: nova-core: use checked arithmetic in RISC-V firmware parsing
+      gpu: nova-core: Kconfig: Sort select statements alphabetically
+      rust: interop: Add list module for C linked list interface
+      rust: gpu: Add GPU buddy allocator bindings
+      MAINTAINERS: gpu: buddy: Update reviewer
+
+John Hubbard (6):
+      gpu: nova-core: fix aux device registration for multi-GPU systems
+      gpu: nova-core: print FB sizes, along with ranges
+      gpu: nova-core: add FbRange.len() and use it in boot.rs
+      gpu: nova-core: apply the one "use" item per line policy to commands.=
+rs
+      gpu: nova-core: firmware: move firmware image parsing code to firmwar=
+e.rs
+      gpu: nova-core: firmware: factor out an elf_str() function
+
+Lyude Paul (5):
+      rust/drm: Fixup import styles
+      rust/drm: Remove imports covered by prelude::*
+      rust: drm: Add gem::impl_aref_for_gem_obj!
+      rust: gem: Introduce DriverObject::Args
+      rust: drm: gem: Add raw_dma_resv() function
+
+Onur =C3=96zkan (1):
+      drm/tyr: gpu: fix GpuInfo::log model/version decoding
+
+Timur Tabi (8):
+      gpu: nova-core: add PIO support for loading firmware images
+      gpu: nova-core: use the Generic Bootloader to boot FWSEC on Turing
+      rust: device: add device name method
+      rust: uaccess: add write_dma() for copying from DMA buffers to usersp=
+ace
+      rust: dma: implement BinaryWriter for Coherent<[u8]>
+      gpu: nova-core: Replace module_pci_driver! with explicit module init
+      gpu: nova-core: create debugfs root in module init
+      gpu: nova-core: create GSP-RM logging buffers debugfs entries
+
+ Documentation/gpu/nova/core/todo.rst               |   76 ------
+ MAINTAINERS                                        |   18 +-
+ drivers/gpu/drm/Kconfig                            |    7 +
+ drivers/gpu/drm/nova/gem.rs                        |    5 +-
+ drivers/gpu/drm/tyr/driver.rs                      |  100 ++++----
+ drivers/gpu/drm/tyr/file.rs                        |   36 +--
+ drivers/gpu/drm/tyr/gem.rs                         |   18 +-
+ drivers/gpu/drm/tyr/gpu.rs                         |   58 ++---
+ drivers/gpu/drm/tyr/regs.rs                        |   16 +-
+ drivers/gpu/drm/tyr/tyr.rs                         |    4 +-
+ drivers/gpu/nova-core/Kconfig                      |    2 +-
+ drivers/gpu/nova-core/dma.rs                       |   54 -----
+ drivers/gpu/nova-core/driver.rs                    |   17 +-
+ drivers/gpu/nova-core/falcon.rs                    |  789 ++++++++++++++++=
++++++++++++++++++++---------------------------
+ drivers/gpu/nova-core/falcon/gsp.rs                |   27 ++-
+ drivers/gpu/nova-core/falcon/hal.rs                |    6 +-
+ drivers/gpu/nova-core/falcon/hal/ga102.rs          |   70 +++---
+ drivers/gpu/nova-core/falcon/hal/tu102.rs          |   12 +-
+ drivers/gpu/nova-core/falcon/sec2.rs               |   17 +-
+ drivers/gpu/nova-core/fb.rs                        |  101 ++++++--
+ drivers/gpu/nova-core/fb/hal/ga100.rs              |   37 +--
+ drivers/gpu/nova-core/fb/hal/ga102.rs              |    7 +-
+ drivers/gpu/nova-core/fb/hal/tu102.rs              |   17 +-
+ drivers/gpu/nova-core/firmware.rs                  |  194 ++++++++++++----
+ drivers/gpu/nova-core/firmware/booter.rs           |   87 +++----
+ drivers/gpu/nova-core/firmware/fwsec.rs            |  181 +++++++--------
+ drivers/gpu/nova-core/firmware/fwsec/bootloader.rs |  350 ++++++++++++++++=
+++++++++++++
+ drivers/gpu/nova-core/firmware/gsp.rs              |  118 ++--------
+ drivers/gpu/nova-core/firmware/riscv.rs            |   10 +-
+ drivers/gpu/nova-core/gfw.rs                       |   11 +-
+ drivers/gpu/nova-core/gpu.rs                       |   66 +++---
+ drivers/gpu/nova-core/gsp.rs                       |  118 ++++++----
+ drivers/gpu/nova-core/gsp/boot.rs                  |   82 +++----
+ drivers/gpu/nova-core/gsp/cmdq.rs                  |  397 ++++++++++++++++=
+++++++---------
+ drivers/gpu/nova-core/gsp/cmdq/continuation.rs     |  307 ++++++++++++++++=
+++++++++
+ drivers/gpu/nova-core/gsp/commands.rs              |   23 +-
+ drivers/gpu/nova-core/gsp/fw.rs                    |  309 ++++++++++------=
+---------
+ drivers/gpu/nova-core/gsp/fw/commands.rs           |   17 +-
+ drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs  |    1 +
+ drivers/gpu/nova-core/gsp/sequencer.rs             |   22 +-
+ drivers/gpu/nova-core/nova_core.rs                 |   54 ++++-
+ drivers/gpu/nova-core/num.rs                       |   80 +++++++
+ drivers/gpu/nova-core/regs.rs                      |  549 ++++++++++++++++=
++++++++++------------------
+ drivers/gpu/nova-core/regs/macros.rs               |  739 ----------------=
+------------------------------------------
+ rust/bindings/bindings_helper.h                    |   14 ++
+ rust/helpers/device.c                              |    5 +
+ rust/helpers/dma-resv.c                            |   14 ++
+ rust/helpers/drm.c                                 |   56 ++++-
+ rust/helpers/gpu.c                                 |   17 ++
+ rust/helpers/helpers.c                             |    3 +
+ rust/helpers/list.c                                |   17 ++
+ rust/kernel/device.rs                              |   15 +-
+ rust/kernel/dma.rs                                 |  899 ++++++++++++++++=
++++++++++++++++++++++++++++++++++++++-----------------
+ rust/kernel/drm/device.rs                          |   87 ++++++-
+ rust/kernel/drm/driver.rs                          |   10 +-
+ rust/kernel/drm/file.rs                            |    8 +-
+ rust/kernel/drm/gem/mod.rs                         |  104 +++++++--
+ rust/kernel/drm/gem/shmem.rs                       |  228 ++++++++++++++++=
+++
+ rust/kernel/error.rs                               |    1 +
+ rust/kernel/gpu.rs                                 |    6 +
+ rust/kernel/gpu/buddy.rs                           |  614 ++++++++++++++++=
+++++++++++++++++++++++++++++++++
+ rust/kernel/interop.rs                             |    9 +
+ rust/kernel/interop/list.rs                        |  339 ++++++++++++++++=
++++++++++++
+ rust/kernel/io.rs                                  |  780 ++++++++++++++++=
+++++++++++++++++++++++-----------------------
+ rust/kernel/io/mem.rs                              |   10 +-
+ rust/kernel/io/register.rs                         | 1260 ++++++++++++++++=
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++=
+++++++++
+ rust/kernel/lib.rs                                 |    8 +
+ rust/kernel/num/bounded.rs                         |   70 +++++-
+ rust/kernel/pci/io.rs                              |   99 +++-----
+ rust/kernel/uaccess.rs                             |   91 +++++++-
+ rust/kernel/workqueue.rs                           |  104 ++++++++-
+ samples/rust/rust_dma.rs                           |   13 +-
+ samples/rust/rust_driver_pci.rs                    |   90 ++++++--
+ scripts/Makefile.build                             |    3 +-
+ 74 files changed, 7125 insertions(+), 3058 deletions(-)
+ delete mode 100644 drivers/gpu/nova-core/dma.rs
+ create mode 100644 drivers/gpu/nova-core/firmware/fwsec/bootloader.rs
+ create mode 100644 drivers/gpu/nova-core/gsp/cmdq/continuation.rs
+ delete mode 100644 drivers/gpu/nova-core/regs/macros.rs
+ create mode 100644 rust/helpers/dma-resv.c
+ create mode 100644 rust/helpers/gpu.c
+ create mode 100644 rust/helpers/list.c
+ create mode 100644 rust/kernel/drm/gem/shmem.rs
+ create mode 100644 rust/kernel/gpu.rs
+ create mode 100644 rust/kernel/gpu/buddy.rs
+ create mode 100644 rust/kernel/interop.rs
+ create mode 100644 rust/kernel/interop/list.rs
+ create mode 100644 rust/kernel/io/register.rs
