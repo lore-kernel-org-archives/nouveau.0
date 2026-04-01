@@ -4,154 +4,178 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76A91D2ED0A
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 13:31:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1320DD2ED08
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 13:44:12 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3FD5310E540;
-	Wed,  1 Apr 2026 13:31:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E30C010EB47;
+	Wed,  1 Apr 2026 13:44:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ItxiVNpT";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="FoFDH+k3";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D6E5E453A8;
-	Wed,  1 Apr 2026 13:20:31 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 864DA45436;
+	Wed,  1 Apr 2026 13:32:49 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775049631;
- b=l0SRrplRZ2zm2MmraTs+VKx/hnSaLf07Kw+ZFXPRGRoaizGveKcPrZ/ibKsh0cMG3n+UZ
- zYO4olxfiMG+G4MW50r+ySNJawMs06jULdjyJVvoMB9zHEVo0TD5c1b+Pi9JCRJ4awL1dbs
- B4qxxlMGSqrRG+ONzDguQwpKF+4oEs5BWTzRP0waDKlUEGQ/12CNQSXyppXFOPgjptc0m/5
- zT1gezJ+RoB8Yp85C2s1NEdgxF6JO9zS4h3pj6KP9Ufot46EY9gxKrJwYHwSuNxq0lbOr2O
- 7jZAVIG2BcQsD+0la5DMJgBcQqNgAc8NO7tk4eJyYXAS7tbgUhqoO5RDErwQ==
+ s=20240201; t=1775050369;
+ b=PoLbaeoUUoXZ6WRyV9v1welWBNihqINpo11Fih6XhutduCDwtgh3+uoCgnn6KMn9rs0l4
+ AvkyopY++BACwwPBt3nJyxrXqNY3rFduQWbPU+s5xjfBKq5tqkM/41ITUugQTmBvZJxt6VS
+ TyzTdzgStWGMzEGgVj9l2Ou9zXYS79O2kH++XmgPmQIFNlKeVyyKrGh7xU+y0DD+k8SQAUd
+ vJqydM0zPOtyB9fkKWsXiJSW1zzLPEGDCULHd1wL/BhsoomyToRkJB/ts+jN39KrUdjXiE6
+ 4BvZZC0GtPA2Wor6UPTEuGiBP6ZSLRVpzrtY86klH79Ecb6urgxAfuj7FpCg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775049631; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775050369; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Pxwyobpuf86TQi+f2j4+wIWXBQigp/e8eZSaPuRG5TU=;
- b=bDHVQfSDceQqffDfebHV9iKT1Jm8VpM0ElD7Mbt9TtPvNkHhay/XyDdg0j42x22UOGoo4
- q4PyjmPDNikqZWbTxWrDRYez67fZniFH3IWLvVUuBfDJeN/6BxoI2ZlaA8w8VTjjcEq57TJ
- PqYjcntMQRWc8MNGH0wfox75RQ3Job2I4w46P9+95VgoC/iHy684dk4/4bxwyEBFtJZi+oO
- Q9nYKACxWil87kVfASDu5m9gOYWZ2/4bM0ipdM6wjcW6IvV02rW5sU+6zv9si1yAhuSxuSF
- /kKx6YvSMbat/67mxdjMruW9rA+JsMxHtRJBZFuKFTnYX/O/rmqqOrtpLiww==
+ bh=TjRn4EzOh7HkP7tfYe2eSZejWt9ikfWqt3074xu5+kc=;
+ b=nmTbh+L/6WeL17mgjA7OEjzO4u5RcLiJv4Ff2x5FhcxIJ09M98faIQeCGhYMdZLnsUm6h
+ +A8sM0ISskaF5fMVcd5e3EeVPN0dbkAQb14kTgCmZBh/WeMlEyZ4gr6zds9n/6UgKpOhgMj
+ biJqhENUik6DdLVESSysbh9VJcnQxY2xd2dMu+4PentPlOU4IcWtr2hAKUgbJo9J61O1P8U
+ 3u19mSLHAZdquJ+B3P7zKr/sFEtk/OTbGSJnxp6rLJw/tqGSjU2tuSv0mrjdOBlCi0DB7yc
+ SgUHJJwpBFjSlt0iQB9A6nkPDN3qxSoiGoBQZqfuWGe36ub445spjDMbIUPw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=gmail.com;
+ dkim=pass header.d=garyguo.net;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2D81B453A8
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 13:20:29 +0000 (UTC)
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com
- [74.125.82.182])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1BF6B10E330
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 13:31:51 +0000 (UTC)
-Received: by mail-dy1-f182.google.com with SMTP id
- 5a478bee46e88-2c6f5574d07so109609eec.0
-        for <nouveau@lists.freedesktop.org>;
- Wed, 01 Apr 2026 06:31:51 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775050310; cv=none;
-        d=google.com; s=arc-20240605;
-        b=jT5VK+8qtwSlkQCJyTDQ2YqoVYmDmYl7lPgkkbB8MbF896NA6qJV5SaeuPMPfEIKx8
-         lrP9bz2HjqKswtqahLcqU5cMDWT0eRtrzIcoQ2QK2yU7GyKib6OpDKiWy7h+usy9zcnt
-         9bf1iO6vYH3VDy8+x1l6Cjoiulwyw9An8pjJt6JRwL0Y/w84+JpjoC1qceCZZBN182fE
-         +XAcLdMZJ6EpDFdUbS39iL3xE2ZLeFNuPkewEoYio4rVYYhtqNmoOj+7yTzSnzQ3twKZ
-         CwUEepBQ6rOR95KzB2a01tjfyWR4bgzNNYFuuqCxsgPbgkleE6g5O9L13xbz9/OKucnn
-         Fweg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:dkim-signature;
-        bh=Pxwyobpuf86TQi+f2j4+wIWXBQigp/e8eZSaPuRG5TU=;
-        fh=mPgDtK5LwXn5wPUrVeAURlJ7ejyIE/HRqRqW7LevPgY=;
-        b=CBfCLS3CMTGhSENx62OweHqgG/3esZzjw4kba9lvALcRkoCeTez7WsmBTdHtZB62x+
-         ocuMUKoMkbq3YVbpbrYRBLoNrLG/CVfOqooS8KgLwz31d/2cEKQUJ2RpytUEcuwQZ1+K
-         QguO7Yqm/c3GIeFCs0007iscsgMzENUELCCPEcYhzFmkuyq926ecrmqjbsOvEjsLawtH
-         nI6LKlyJZl339PMP5oRzda25XDPw3HXR+SpXLVL5qPXiTI0zq0LdKuWufW4EF1O0komc
-         8NLVYE9QuRJ9KDx7dFbIwuK4VbNVFLE90O9oTVotTak8pKWdyuh0+yXuEbOw4UXOdBRj
-         H1tA==;
-        darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775050310; x=1775655110;
- darn=lists.freedesktop.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pxwyobpuf86TQi+f2j4+wIWXBQigp/e8eZSaPuRG5TU=;
-        b=ItxiVNpT4xbfWP8Wr427Cmu19/dn2btuLUjkjP0eLcwv/K/9tXp2D7DwuI0cPqSljd
-         mo5inN8jOVMrnjRT0A+3UuWTxSVu0SN4FkO1a1AgIjbyuVXdCLiA0hXwkbC1KXXsA50j
-         qNl4HOihioMjyu2NNXy9aDslI5+DCEq2+4FUQ5xBiPq1nAL26ER9TPPG8A6DB7UWOAi2
-         2N597jDcd16iC8oBtDsUMCDJORsrwCTiz3qX3Wts2L99w5ZeQK6chn8E1kEtDz+uh2dm
-         9CIoBQlOygMJC7dED6giPQ8lIiAc8mQulIAVczyJQMmpA1F+A56MjP6072ZP5KyveNC/
-         8LGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775050310; x=1775655110;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=Pxwyobpuf86TQi+f2j4+wIWXBQigp/e8eZSaPuRG5TU=;
-        b=WqGO4QHQmOhqomfN2FKOn2eBJwz6MmqSyB4k7K18uWE12qVkHSF4UmvNkcNbZVCbPW
-         MxClAwVm6mNbs23YEkGf21FZV1rAnPLjqGBOCwASpwe48JYxhFg7+I7KRGrM7LSKMZi3
-         pcYKTXCcbBLVvSzGckmw1W2D+DB6e9d2+YaGW7Y0QXtd1TlP2hv7SPZ24Pz+ybDz2O31
-         IekVK3YzoC6WACPmOY8dYCFcWa/fpO7z3zypZ0vns1HThXuZH/gDQDch8VyniRy00y2r
-         lRt9BfPq8WZBtACnYu5paYQee9akjSIXl059GykDcQMP9h7NHsgqVx9GDp0Ej7J173MB
-         yZyA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXDK9UrqKaWuarI9qXo3x8EPS+5Di+7lYhCgjuFZyVVcpWoa57pllt2f2aR1TfbIi11Awe0xGOP@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxpzF1WJl5F34IwyYytimkv2pfj9aUK8rz1e3c6mv2q/QdhQBEP
-	AV/McnuR4aISMCQzlWV3rJdMizoDP6H9EvOJiyTYIx4kSGoPi1IL8paxN+87feqTfQQRjglS6nN
-	FFwbFFNtc4TeQIyedx05jcNubyrTXFLA=
-X-Gm-Gg: ATEYQzxSXbUg/bk0Nv3tuIf1d9rA6aAtyis3TETYO+pmyliBQfZVey7g9xddkY7e6bJ
-	6Plo3HfTptvtUg8KJhcOTdQawHq2A67chbBV6NDRDHD5AP7Q6Ena8RMyDQblsbKAakP2i38SDtL
-	xj9/I2DY3E1j7R2Rb4L2RWOO9YQHjC9CoA7FuTgj0BX5Qpw26+vZ0/nL8bHjYMepU8c3qfciEQa
-	8Bl/KZZURd2uTZTd1RzuvqdlmleayFKcHV/DNs4fHhi1QhC4CxkUTLL1wm2z9YDi1NJ2R/I9p90
-	wOptjvPMaLx5/d7mzTyiOZB26eSt3Pjch2+ngeZMejcGzD4Fmq8bgGMAKU8GS3ztDS2C+xRMfzM
-	CtI2UL46/bGi06I/OxTt1Xm3F2DSSD07MPw==
-X-Received: by 2002:a05:7300:fd16:b0:2c4:6ec:141e with SMTP id
- 5a478bee46e88-2c932bab66bmr849425eec.7.1775050310241; Wed, 01 Apr 2026
- 06:31:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260401114540.30108-1-ojeda@kernel.org>
- <20260401114540.30108-2-ojeda@kernel.org>
- <DHHUQRB9ZL54.VQZ7OUZNSYDS@garyguo.net>
-In-Reply-To: <DHHUQRB9ZL54.VQZ7OUZNSYDS@garyguo.net>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 1 Apr 2026 15:31:36 +0200
-X-Gm-Features: AQROBzD4KmXruNHpjUyy0X5nLhLhXQUuTTY9eP3fb4LBTyRyQ4wVkUjvlUGGI0w
-Message-ID: 
- <CANiq72=FBbJ--jrzYyKe3T56YqT5eU+0DXzPG3Ho7a+D9rfu=Q@mail.gmail.com>
-Subject: Re: [PATCH 01/33] rust: bump Rust minimum supported version to 1.85.0
- (Debian Trixie)
-To: Gary Guo <gary@garyguo.net>
-Content-Type: text/plain; charset="UTF-8"
+	by kara.freedesktop.org (Postfix) with ESMTPS id AD9B54534A
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 13:32:47 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022122.outbound.protection.outlook.com [52.101.101.122])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AE03B10EB8A;
+	Wed,  1 Apr 2026 13:44:09 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Nmm2x4HpWC8bXMReExX6oLjACA+Ntwkmzfw3uI3z4+txNe9s27Ph6vlMqKpAk3IgBh51eWjtrYd9GU22DX5bBxgiNjb8YqCtmKUaQ6XdVpaXI1LdInXzEAHXmTEMMJq0M0Wp77LnhBzokCHe8zEVNfK7R0yI4fQ7mxRKqrdR8IedUVMawrooEciTbAh2pFS1YtkAKYaHzSVftLOgRC3pOyRvG1OwpaGYq5mK5OLaFah/2wKZ41q5I7WGiPH+o6d+7hBDD6jLD19wphYsRnCfGcfypd9wd6FQ1vKMB8dufMY70/PPAWz43UqNcsV7XCOIkvf56HDxM5M9a9XzC1/RKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TjRn4EzOh7HkP7tfYe2eSZejWt9ikfWqt3074xu5+kc=;
+ b=phvsLXqkDiYRpB0j9AcIZ0eWZo8zY+X3P+vNiOz19COmEvoyiK9HFa1XsYE+fCiv9SQDiNIxjieEceDyQesn9wVESlwSPXyPTF00je+SDeZxpxFm7QZxvG/Mey+Tt7quOeoVbajBTKG2nhIBbj5V91zk9MmjBwiIPZ4ysUBb5kmzUbieH6Cp1zwPp/XxE22ZAEdWtCPG2ifRRN6vmeF1n0poWe8CbH4Kn7437xTBoe5mdjUeihF2qyEFxBWpsEj/n5q6eFSWMglLxBkipkHfJYJYb+X7N9DZmK8XaJbkpbr132pHemSYfF8C0oFZnCPyZkNgrYmRZnXwJBoCu4iruQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TjRn4EzOh7HkP7tfYe2eSZejWt9ikfWqt3074xu5+kc=;
+ b=FoFDH+k356z7LfNUDRMDzJYA9rZWq0PnRcZpIAHiDLUXomGrvYvoFTviVhhW//ycOqqNGzSzQT2ZHTyUJqcrZAyy1dg6QkhQjcQeOpf340cYGaVKTOcSXGEioDpEqX7xGstKZYCrGz4oI9/sRe0aZSpdi/Ea5mRQ8SNCZzPXHEQ=
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+ by LO8P265MB7687.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:3cb::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 1 Apr
+ 2026 13:44:05 +0000
+Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9769.014; Wed, 1 Apr 2026
+ 13:44:05 +0000
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: HYVYUKBWATNIVV6NWUNOJBNKQHHKNV34
-X-Message-ID-Hash: HYVYUKBWATNIVV6NWUNOJBNKQHHKNV34
-X-MailFrom: miguel.ojeda.sandonis@gmail.com
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 01 Apr 2026 14:44:04 +0100
+Message-Id: <DHHV2WHMUS8E.2UVRYJW75PXUG@garyguo.net>
+Subject: Re: [PATCH 05/33] rust: remove `RUSTC_HAS_COERCE_POINTEE` and
+ simplify code
+From: "Gary Guo" <gary@garyguo.net>
+To: "Miguel Ojeda" <ojeda@kernel.org>, "Nathan Chancellor"
+ <nathan@kernel.org>, "Nicolas Schier" <nsc@kernel.org>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Catalin
+ Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>, "Paul
+ Walmsley" <pjw@kernel.org>, "Palmer Dabbelt" <palmer@dabbelt.com>, "Albert
+ Ou" <aou@eecs.berkeley.edu>, "Alexandre Courbot" <acourbot@nvidia.com>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Brendan Higgins" <brendan.higgins@linux.dev>, "David Gow"
+ <david@davidgow.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ =?utf-8?q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>, "Todd Kjos"
+ <tkjos@android.com>, "Christian Brauner" <christian@brauner.io>, "Carlos
+ Llamas" <cmllamas@google.com>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Jonathan Corbet" <corbet@lwn.net>
+X-Mailer: aerc 0.21.0
+References: <20260401114540.30108-1-ojeda@kernel.org>
+ <20260401114540.30108-6-ojeda@kernel.org>
+In-Reply-To: <20260401114540.30108-6-ojeda@kernel.org>
+X-ClientProxiedBy: LO4P302CA0044.GBRP302.PROD.OUTLOOK.COM
+ (2603:10a6:600:317::10) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:488::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO8P265MB7687:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5643830c-c5d4-44af-47a2-08de8ff4bdec
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|10070799003|1800799024|376014|7416014|921020|56012099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 
+	v21NZrSrfvtq2tcr7x4HQBrB6EAbPyv5yNXUMUUXLUimWS/+upcNjwGfL5Dsxd0vvD71wkTdSXl6/ezI4FdKUlfmBDS5eTViQTrbEwYEIVA01pc9wN+u2Aisgufy295DR3N4ICbA13AUGTCDn3GB1gm8HkNrgxVe9pF6b3Tj9q7cN87BHpH7z4zuTPFjdLCyFxvMRzYHr5qDGNvKMQ2A9ik2guoNs39R4PoOXpdeuQ+atOOQHvuLO+ZjPR9QM8KPBymDUbaPi/ZEwm2sj/BQv16U/0gsPkUsIMC686pB7+zzArCzFXNzZLeEaR75EEN/2DUYlyVZBXtAHGhSIxPeo49BHAicparsLOAmJKGLCagU98NZMLwvBeCMmXsvVrLHns/bKF0HRmBUVMT3mzipbShPPK/ZK6Hj4qXeTT5PS7qXupv7UYbDDEb/sMwa/CNYXMntG9RgDjpURLQG3qLJat8XOOT2P2XKfFivv7OxKUCjQIwvlAGAe38zV6+UTrzfpxjuhLGHN7x2tKBd316D4UhkN2a/mUMcwO6fmU9ubVbaq3t/B+qfAG9PPuTbZysL/rqF9ZZs1l7N/mCRYJE+ZVolfhzNiL1byb+z0djreKW6BXQfzYEwJZ9xn4fHjfFgb9uW9w3rCRAPiY8UGSgBrHNu48elAu0fqyXJgbmEB71sltBCkskckRzZm29rygtfa9Zc0CruWJY8nYNuOV4xNciFN+EilmTTITtDcCd9Wv/RtoH2vfN9ij4+1Zi0qGTAkq7YH6scWeggr9p3IOeWKg==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(1800799024)(376014)(7416014)(921020)(56012099003)(18002099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?YnV0MTZRSTdPVll0VGJKMW9EMUlPSW9WK0hrWmorTEVxTGJHOG5UZkZGdGI1?=
+ =?utf-8?B?cUhDeUF6NzNkSXZQYWp5VHAyUUJveTlUWTB5SXMxS3RURUFNK255YWhuTXZ3?=
+ =?utf-8?B?ajU2emFYS1JXZWlpT056dGtoUm81ZmthRFdVODhlQVJCZEZKVnR4QlJ4cVJU?=
+ =?utf-8?B?bURmWDRFblZXYjJMai9wVE05MUdGQnB2ckxrNWt1QmgvVUlkYlVGNnpWZDU2?=
+ =?utf-8?B?dFdGSURWRUM3bkdudE5jT2Q0UGtFYjYrNURTSXhnUmxqSGRkSXFJREdTdmFI?=
+ =?utf-8?B?T0FEZnJGZEdGR3pFcGhYQU40ZUVBVlJRK2tZZ05sdTRRaHl3NFpYNkIyMTM1?=
+ =?utf-8?B?SG9GeTJrak5RWU1SZ3VqQitSVlc2WUl2ckp3UFh3WURjSmkyaFRzd01TcWsr?=
+ =?utf-8?B?aTZpM1l5SWdLY1RVRWczaUo3OWhkRGRxdWhXSjk0OTB4VWU4OEFjaWx0Zmls?=
+ =?utf-8?B?d1ZUei9OUHVNNktXVHIwY0RXdEVzTm0rSUZXWExhQ3pUQTdiWGpVNUZhT0tJ?=
+ =?utf-8?B?NHl2Q0U0dG9RYjVueC9vVTdJVkF0NFk1clF4anRYK2RmbzR2WXhEUjZlT01J?=
+ =?utf-8?B?TzFDcm1lZnpiUy9xY1Q2Zkg2UGJ1a21xWTlDbzRrVjgvSjd6VVBkM3BtcDVy?=
+ =?utf-8?B?Z1BmUHQyWitkb0J1eHY3VkV1Vm9XV3hVMStiZ0FFWEZHTUxsMmpMeXNvd2pv?=
+ =?utf-8?B?cnVLalVCVk5vYnQzOXM3N2JmRURuUis1MjU1aDB3OTdxVzRLalhhaDRCQlVk?=
+ =?utf-8?B?MCtGZVRkaG5wSjlPcVowdE1KVGUxR1U2RHc2WUMvNFNWRjBzekNlckM3ZWY5?=
+ =?utf-8?B?R2xJWHB0UStWOGlhbHV2WnpWSjlsUEN6azBNUk1LZnR4Z29GUEY5emJMQSti?=
+ =?utf-8?B?aWlTMkU4R3V5bU82WVlQQXJrd1o3VEc4a1h2cUVab0VDeXJNTmxBcVFUamh5?=
+ =?utf-8?B?SmJNRnYzTmtOdkI1ZjdTZHNpazNIVmVCTC8zdXNPL1dRMjBZU2I1TzM1YTVm?=
+ =?utf-8?B?WWlVZXpTZ0NLQWZYUnFmN0twZmZiU1U2ZExUODBaUHcxU0swMXFCV1I2OE5k?=
+ =?utf-8?B?a3JPL2xnTDMvbWZsc21jbjEzQld1aHFrUG14U1ZCUmhCNzN1ZDJIL2VtN2Z5?=
+ =?utf-8?B?OHk4dDBwZWtVN0o3eFhoVWdPZ2E1ZVFPbG1HMm5sSmRsOGttc3p4Q2t3a0lD?=
+ =?utf-8?B?cys2MTl6eDRmWUMrYS9jdjdIK0NUTytWemkxMW44bk1PSjNMdXRnVWtaLzJV?=
+ =?utf-8?B?dE5pWnZIUXNZUTk5bnBrYWpGdDhaM3o0SmxUdEM2bkZIenk5dmZyYm5zOElB?=
+ =?utf-8?B?TWVlNTgrT01DaVNEYzlTbk9Ba1lDWVcrbE5uNFgzRDBkclJqQjhJZ2J0Z0ha?=
+ =?utf-8?B?YkpmazN3bnpoUEtUQk5kNjdkZ2hScldwb2JzVEE2TEh6ckkzcE1zamR5MlZP?=
+ =?utf-8?B?TTdwMjBPbEZzMDcyOSttcnNyVXNrSUpKaFplUGpjMm9QdnBoMXJQS2RSYUdV?=
+ =?utf-8?B?b1V1NXcxRWEwcWwxZE43SDlzZ1hSNnpsWk9rdDVaVk9MWlFsbzlGMU9JeG56?=
+ =?utf-8?B?WlJwbjdnTzNkdklwRFlIcmMrb2JkdFo4QlRhYk1qYWVVdEg4WkdzUUZqZlJQ?=
+ =?utf-8?B?elNISWlLYVlMYVZMWXZmK2ZsVGFsOVVjNG43Z091Z2hZbS9VM2t0QjYzZHBZ?=
+ =?utf-8?B?dkNERlVBdGtjRmlRQld6Qy9ScmZ5NEc3RHUvMitNYmdTYWhrclJqTUxxcG51?=
+ =?utf-8?B?NDhsUlcxZmlDQTA4eE5YOVBCSnpDRUF2UlJraGVhUDV6S3VKUkpaUVJBcUZ4?=
+ =?utf-8?B?VVFOdmI3bk5SeGh3VkRtSTRXTm9kRkplZmxUTFBMMU5uV1IzTDcvV2NLRmJM?=
+ =?utf-8?B?aDdUaEYvNVlRNGtWdXZlS3B0NHhMZEpOUGVNaEpjUTFRdVdLVm10d29jdlc3?=
+ =?utf-8?B?YmMyd0cxdmNwNkpEWFFJOE1IekZuSERLZ2FWTmdrS3dVWnpNblByWmsyTE8w?=
+ =?utf-8?B?b2kyaWl1YkxFZ1J3ZkMyTzBraDVucW80aWUrQk5Uak1rcGRrMVpFeG5lM0ZY?=
+ =?utf-8?B?SjVYd2VtejI1aStxNkdLa1ZyWGxVY2svTzczNXVVcHRMVzBkMDFiZ0Z0ZEZH?=
+ =?utf-8?B?ekxsT245NHB0S3cwYVBJSE9iMUVmeEJ3QmtNQjBTS2lRbFB2Ymk4RXZ2SnNw?=
+ =?utf-8?B?VUNCV3ZtaDV3UGIxZWJWZWQvZ2J1cFhPRVpWNTNidDdHY1VQYnR2SDl1VitZ?=
+ =?utf-8?B?VDBDa2NvaFZnL2JaTno0aHZLYjllWFU2N1lyQW1KQUVLYWp3eDhrcHo1Zkxk?=
+ =?utf-8?B?VDhkcUg2Z0JiK3FaVHBIWDR4Zlp2Z2YxcnFaUTcxZ3paM0UvVWRyUT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 5643830c-c5d4-44af-47a2-08de8ff4bdec
+X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2026 13:44:05.5207
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ OHZ+Vq/Cl/Fxa6b8zJlMLN3OgAh/JS8pZmmbSQR2sR78k0mEQUKKVBZEQe1WqJJU0YN3LgywGGbT6UTM6yBNAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO8P265MB7687
+Message-ID-Hash: UHN5JYTMVU3RXJMPS6ZLJXITCACMZ4KM
+X-Message-ID-Hash: UHN5JYTMVU3RXJMPS6ZLJXITCACMZ4KM
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Miguel Ojeda <ojeda@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
- Nicolas Schier <nsc@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Courbot <acourbot@nvidia.com>,
- Simona Vetter <simona@ffwll.ch>, Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <david@davidgow.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?B?QXJ2ZSBIasO4bm5ldsOlZw==?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Christian Brauner <christian@brauner.io>,
- Carlos Llamas <cmllamas@google.com>, Alice Ryhl <aliceryhl@google.com>,
- Jonathan Corbet <corbet@lwn.net>, Boqun Feng <boqun@kernel.org>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ loop; banned-address; member-moderation
+CC: Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Trevor Gross <tmgross@umich.edu>,
  rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
@@ -171,9 +195,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HYVYUKBWATNIVV6NWUNOJBNKQHHKNV34/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UHN5JYTMVU3RXJMPS6ZLJXITCACMZ4KM/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72=FBbJ--jrzYyKe3T56YqT5eU+0DXzPG3Ho7a+D9rfu=Q@mail.gmail.com/>
+ <https://lore.freedesktop.org/DHHV2WHMUS8E.2UVRYJW75PXUG@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -183,17 +207,26 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Apr 1, 2026 at 3:28=E2=80=AFPM Gary Guo <gary@garyguo.net> wrote:
->
-> This diff fails to apply on linux-next, due to conflict with ece7e57afd51
-> ("docs: changes.rst and ver_linux: sort the lists").
+On Wed Apr 1, 2026 at 12:45 PM BST, Miguel Ojeda wrote:
+> With the Rust version bump in place, the `RUSTC_HAS_COERCE_POINTEE`
+> Kconfig (automatic) option is always true.
+>=20
+> Thus remove the option and simplify the code.
+>=20
+> In particular, this includes removing our use of the predecessor unstable
+> features we used with Rust < 1.84.0 (`coerce_unsized`, `dispatch_from_dyn=
+`
+> and `unsize`).
+>=20
+> Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 
-Yeah, sorry, I should have added `--base-commit` -- it is `rust-next`,
-i.e. 3a2486cc1da5 ("kbuild: rust: provide an option to inline C
-helpers into Rust").
+Reviewed-by: Gary Guo <gary@garyguo.net>
 
-There will be other conflicts too, e.g. in the list of features in
-`scripts/Makefile.build`.
+> ---
+>  init/Kconfig              |  3 ---
+>  rust/kernel/alloc/kbox.rs | 29 ++---------------------------
+>  rust/kernel/lib.rs        |  8 +-------
+>  rust/kernel/list/arc.rs   | 22 +---------------------
+>  rust/kernel/sync/arc.rs   | 21 ++-------------------
+>  5 files changed, 6 insertions(+), 77 deletions(-)
 
-Cheers,
-Miguel
