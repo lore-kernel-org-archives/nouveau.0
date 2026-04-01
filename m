@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC1EED35177
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:47:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0665D35162
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:47:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBBA10F04C;
-	Wed,  1 Apr 2026 11:47:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D062110F055;
+	Wed,  1 Apr 2026 11:47:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sflZSueu";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="bw0XQFM9";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 695C245353;
-	Wed,  1 Apr 2026 11:36:19 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id AC33545357;
+	Wed,  1 Apr 2026 11:36:31 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043379;
- b=eCmvb61zzkGCqFaTbvXl/Buvc3hOi/Bkkf/CdfPMa8pcuvv2S9ISvbgE/I/U1gzAlYYTV
- fX4peI/VUHbsULufup9JG8eq3yIwsHSDkSAHPOklSDkKXQAIxUR9Wf/FCgpWXq2RMj7qf2y
- VObUVQ5GJljiB6Iy4HgpyaAbAf34nUhtU9w79/0yqZPb6QXypKQIsSCNykTk4+pOQOxcAfV
- 14XlDZeRQWkKrNAeVmAUWlP9AQlVIXF+yt/fvGwqjCCkOD3umbB4muDLPB89LeyhQu9z8Ho
- LJ50fBHg1X1zmgUBV9Qn551ulZlpuNtbPg/clVxQeo6lDKvcdlSlhlvlqS/w==
+ s=20240201; t=1775043391;
+ b=lLK0vP68ffN3qBvtqhkrMGcgDL93SvUi5wHAluOmFgssRpmJGuhkYwW4x2nQITeN/jlC+
+ ildtGikqxNoGbz9L1vYx+4ZX5GtV5UrJH2WqC8QguarCdREGiVkED2tyje+yU/kV2aekxJn
+ cMrdDDZ3BjxeK/hruqnqYuiPT+8Fvr8byyEsjOM47cIxx6/4Bd+ljqgXMajJ7NJIZJtMcLE
+ 0Dgg1X+lm6TR9BEDVfB2jVoVBOSmrv3sgIHnrQTCD4kEJQtKtweEomiMotmuHpJuK88P51q
+ lw0c11DlM+f0SlB0hQ3VJlksZxcLWbznaw78i/FMa/VIAwTPH+APBl00O3HA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043379; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043391; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yTeSXJIV15+YIzApGV5p2ZZ/rLaORlv+t31tOaQLP1Q=;
- b=oM/LX0gIS1hFDINwShgX7e23oX+u+b+42ZxlEJhJQd6etZoa4UHkA7vziANrRC95KBOQ5
- Dtw1e6XXJqPO0Gfk9/24azb5VcylL2Q8TfMeSZLgB/NwvoQa4y9i/9xEYxQvIOQPzdSJauU
- JaPLQdG/yE7eu28/DViU1hjxHKAP1Vvtw8jZ/S7Bo4FMNM4kREFvSmEQ6nwu9FyHlWgc2p7
- BFF0xpyRXpj/WSblqgE81RmZb2Kax4FpN0WcqiX+Pey80zQqTJ6km1l4Simt0lBuxATERyi
- PzNGALSTw2979Qu5N+v6oHPPsqUEzrSNneUzgGcH2XIKIWn5ewQoJbgrkBkQ==
+ bh=slHoneWmzovcsbVXKddjqYahErRjB0L+YAy9hgQnM2o=;
+ b=R95SXexQMgyiTZ10xXMR6H3FqBn6ItH0v+Db9DWnPA1O/b8/FLrFcSutM8UaClYoJ1A4T
+ a90pAq3z6Mws0yARsO/6WLMZIuTJdzOnYk6UqFE3azeK/EZB1+0qnpgHALpSQlL6U9fy+kj
+ n7kLKVFkx0mP5/pyADwbu2WTQ/d9ob7zQ6AeQhxOmh4kQi+5G9dfbHZZK5H2QQNHDQSm9rq
+ Py6z7IA7ikB8tuG5cFhMPH3HEVICzgJ0bMsPoIDR5Nu2hWKsJ9SkNbw4VGypyPCqc/LykwG
+ xkg/hrFed1GQQaBkrkU2tfqcv7uTXUGDgWkrWFQIK5yJNmrwwry5qgXYzZHg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F13FE40545
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:36:16 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D6D9A10F00A;
-	Wed,  1 Apr 2026 11:47:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 164A540545
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:36:28 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 172F710F031;
+	Wed,  1 Apr 2026 11:47:50 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 5BB2860154;
+	by sea.source.kernel.org (Postfix) with ESMTP id F1C8B40912;
+	Wed,  1 Apr 2026 11:47:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98766C116C6;
 	Wed,  1 Apr 2026 11:47:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0309C4CEF7;
-	Wed,  1 Apr 2026 11:47:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044058;
-	bh=ry8aHALQKoUAVgl8vkVGGnGKhW3biqQ3zE20M4qwJgI=;
+	s=k20201202; t=1775044069;
+	bh=xsU9IffmhOUWeURxd1cBn+xx+oWcdYdxyuUvVgPmku0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sflZSueuLuu1bWL2KEvq3OCBI7g2AOgQPjJLOPksg31c1MoUcPjU3PoOhqsrY78NL
-	 qLTZ5oOs5TEYly4ggal/VwhAsfF451NsyaNr6GAdAbOY/JzOwZeaDZ9elT0AfNQS7D
-	 mARg0SQMYwQv2vNVOe3YsrTYDZEK2B9QqRmx5l0suW3yJQKno/WpxtQkmgksvMwzck
-	 Ma796ZKDd5Ou4YuvDUAv86QHFr3dqOr1gMbbh0EOfUXAbhTkB6IantJJ9aOIrNopN8
-	 GeHT6XQFerRjV/gPrSVDV7wN8GmQU1oXsIBd7ARAcLgUwzDJtoq//xQFaYbBbif1av
-	 AKvnVswAymJZg==
+	b=bw0XQFM9BtXzltVVfX1cRyS5Ny7916Ny6Nrc3TLq9KJZYh0JtBh+ukTFEyx8Z85t8
+	 /vt7Jbc/zq1y9bQ1shJhG3VR8TxOtBZF4NjJHMa7mU/xZAlefh37LD+NPTu+Ydfi49
+	 JZ53a+OUpRjXBEozckaDoUhJgDDxIg+j6uv+ZggEvUq3It6rUqjdZ6bh+lQmBq+fnd
+	 qgyPYo7kcXdNsMmw1yjq21a8J89cwAmGQvzQVu5nFumVK/lfkLoYnqg7V/B3EDnv2S
+	 Uy6UH8O6mHui9UIcrilZWtiKbbK/WhNF71Bx912WmOVg7CuvV4vNq3M2vlDeu6Xlr9
+	 RAOV3bDFHx0ZA==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,15 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 08/33] rust: kbuild: simplify `--remap-path-prefix` workaround
-Date: Wed,  1 Apr 2026 13:45:15 +0200
-Message-ID: <20260401114540.30108-9-ojeda@kernel.org>
+Subject: [PATCH 09/33] rust: kbuild: make `--remap-path-prefix` workaround
+ conditional
+Date: Wed,  1 Apr 2026 13:45:16 +0200
+Message-ID: <20260401114540.30108-10-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: 26UND253MRTYIBUTNC3XNNY3FNRFASBA
-X-Message-ID-Hash: 26UND253MRTYIBUTNC3XNNY3FNRFASBA
+Message-ID-Hash: LGU6E5PENNCK6GJ7ZRD2DEJUI3KQHM4U
+X-Message-ID-Hash: LGU6E5PENNCK6GJ7ZRD2DEJUI3KQHM4U
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/26UND253MRTYIBUTNC3XNNY3FNRFASBA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/LGU6E5PENNCK6GJ7ZRD2DEJUI3KQHM4U/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-9-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-10-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,58 +137,41 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-With the minimum version bump in place, `rustdoc` now always recognizes
-the `--remap-path-prefix` flag.
+The Internal Compiler Error that the comment mentions [1] was fixed in
+Rust 1.87.0 [2]. And, for other workarounds, we plan on limiting where
+we apply them [3].
 
-In addition, the Internal Compiler Error that the comment mentions [1]
-was fixed in Rust 1.87.0 [2], so we still need to skip the flag for
-the normal `rustdoc` case, but not for `--test` since the ICE does not
-reproduce there -- please see commit 2c8725c1dca3 ("rust: kbuild: skip
-`--remap-path-prefix` for `rustdoc`").
+Thus limit the ICE one too.
 
-Thus update the comment and remove the skipping of the flag for the
-`--test` case.
-
-Note that commit dda135077ecc ("rust: build: remap path to avoid
-absolute path") re-landed the `--remap-path-prefix` flag (together with
-`--remap-path-scope`), so we keep the workaround, i.e. an alternative
-could have been to simply delete the skip entirely, but since we still
-have it and it will be needed when this gets merged, let's keep it.
+This will help to make sure the workaround is not needed anymore on
+newer versions.
 
 Link: https://github.com/rust-lang/rust/issues/138520 [1]
 Link: https://github.com/rust-lang/rust/pull/138556 [2]
+Link: https://lore.kernel.org/rust-for-linux/20260205131815.2943152-2-mlksvender@gmail.com/ [3]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- rust/Makefile | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ rust/Makefile | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/rust/Makefile b/rust/Makefile
-index 193cf06eea64..708530ee3613 100644
+index 708530ee3613..163d2258e93f 100644
 --- a/rust/Makefile
 +++ b/rust/Makefile
-@@ -142,10 +142,9 @@ rustdoc_modifiers_workaround := $(if $(call rustc-min-version,108800),-Cunsafe-a
- # Similarly, for doctests (https://github.com/rust-lang/rust/issues/146465).
- doctests_modifiers_workaround := $(rustdoc_modifiers_workaround)$(if $(call rustc-min-version,109100),$(comma)sanitizer)
- 
--# `rustc` recognizes `--remap-path-prefix` since 1.26.0, but `rustdoc` only
--# since Rust 1.81.0. Moreover, `rustdoc` ICEs on out-of-tree builds since Rust
--# 1.82.0 (https://github.com/rust-lang/rust/issues/138520). Thus workaround both
--# issues skipping the flag. The former also applies to `RUSTDOC TK`.
-+# `rustdoc` ICEs on out-of-tree builds in Rust < 1.87.0
-+# (https://github.com/rust-lang/rust/issues/138520). Thus workaround the
-+# issue skipping the flag.
+@@ -145,10 +145,12 @@ doctests_modifiers_workaround := $(rustdoc_modifiers_workaround)$(if $(call rust
+ # `rustdoc` ICEs on out-of-tree builds in Rust < 1.87.0
+ # (https://github.com/rust-lang/rust/issues/138520). Thus workaround the
+ # issue skipping the flag.
++rustdoc_remap_workaround := $(if $(call rustc-min-version,108700),,--remap-path-prefix=%)
++
  quiet_cmd_rustdoc = RUSTDOC $(if $(rustdoc_host),H, ) $<
        cmd_rustdoc = \
  	OBJTREE=$(abspath $(objtree)) \
-@@ -333,7 +332,7 @@ quiet_cmd_rustdoc_test_kernel = RUSTDOC TK $<
- 	rm -rf $(objtree)/$(obj)/test/doctests/kernel; \
- 	mkdir -p $(objtree)/$(obj)/test/doctests/kernel; \
- 	OBJTREE=$(abspath $(objtree)) \
--	$(RUSTDOC) --test $(filter-out --remap-path-prefix=%,$(rust_flags)) \
-+	$(RUSTDOC) --test $(rust_flags) \
- 		-L$(objtree)/$(obj) --extern ffi --extern pin_init \
- 		--extern kernel --extern build_error --extern macros \
- 		--extern bindings --extern uapi \
+-	$(RUSTDOC) $(filter-out $(skip_flags) --remap-path-prefix=%,$(if $(rustdoc_host),$(rust_common_flags),$(rust_flags))) \
++	$(RUSTDOC) $(filter-out $(skip_flags) $(rustdoc_remap_workaround),$(if $(rustdoc_host),$(rust_common_flags),$(rust_flags))) \
+ 		$(rustc_target_flags) -L$(objtree)/$(obj) \
+ 		-Zunstable-options --generate-link-to-definition \
+ 		--output $(rustdoc_output) \
 -- 
 2.53.0
 
