@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A2F0D3517A
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CD4AD35162
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:47:29 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E1C0110F02C;
-	Wed,  1 Apr 2026 11:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E65210F043;
+	Wed,  1 Apr 2026 11:47:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ht/pJf8b";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GlBQ6KPS";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id BD8EF4534E;
-	Wed,  1 Apr 2026 11:35:56 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 2D33C45350;
+	Wed,  1 Apr 2026 11:36:07 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043356;
- b=BJQ4T+3D242pKc0lQOxiei0dwDfnd17NqzivWa4q5WoeyfLlkd05ZosmRv3J9zsZIZFuH
- YbHRGrdM5lIfrLX8weaY6UeWtWDYsVn/U2c5PZwL/ssf+dEEJO4kji2PT5BrV5yVdxrqshW
- dWa5K3iKWFVPn8ViYwF9+WO7kQuzo75NP7YPz++uX+yg0nwnriujeZFWm7+eBRGVcpcL71U
- L4YSeBZc1MYOCP4QBMKWZHO8k3gamN1uzEOJvRmReOYzZwlf7eYqFQ2P4DJYBy42HD/0rhS
- ys5K8ro830zLkg+JeBiljI/lA8aV3Oiv8iLAJchljEBBzup/2yb6+DzzPEug==
+ s=20240201; t=1775043367;
+ b=OfASGdfo7MlRVYFTuXD5///WN5E2zFMo4LEncHON+plsTQDWBXzgkapaYeIHo0Ayplzx4
+ C6SAHye9hRybcJnzIROeBOZucHhHwhaYLoVRUuVGW5hMey+yk+a9L+LmTzFHHCXNkkTwdRv
+ EBcQqSU8BcGSxvucsZ/yPjmk8mLeE3xw5atfenH/bedaFjaFj0mqUAZjxd3p1eRY55Hyy/D
+ 49Yk6/4EUzfrMuXahezIcfSEi838Q5HVeKXPy5+1M0VuZz0vWZwsP3K7A4jtX7AZ5cU82kQ
+ KMgKeWYoxilioIqvto9BoRw5obtA6SUVrmgEePbxc34HkFjYdZVI+JPAaiZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043356; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043367; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=JUc5PgEsOu2wBoY2axOQZUDM+mPR0xknbziR5iYRFDo=;
- b=HLMM3v3r5tcsbhyYV/dVhZvG5obf+hAYM1JTJ+urHHFuangFk3I2Oaoefr9luFUVA5tu4
- zbbcTPVAl2gR/sdVN0Z1FEqTisBa659lcEhoEv6yrs/Wh/mWIs9zieGSKd8zYvkdTHrOSaS
- EA2NT6OYeS+xevBZ4LkmEB6OW20mNctcfGE+hB7J5FpgGyVyNLqimmrED6bYqDOcZAYbCTp
- VHhw7PiwgivXpssh81g68Zco3q7BvKQKDD6adlyO32Cd+C4buHLmY5PYYqQsp+1ZRiT4F7D
- WJWOmKKLjRcrjou+g8yFl87eTBrmcXH/kxIehcb6EcnY3zMwSfTq5NhxVlww==
+ bh=pfPoImr2dP3I+BqXwBKXcD/sQ54cHnZNdFF7SThe7DM=;
+ b=rG0nDy8V+YNo+ZCBT0osU5PuyLzb6SzfHA8Y9pt7HFgjqjsBOW6qlf8wWSoMiUZf3+d2e
+ 7F0kZrfMw9uJINo8ghMMa45CraQ8SxT+gKl0M9iVM5Gq7AEYSYzoile2Vx1fnfi0GpFYDAC
+ sW7mN6SFrxpAPVs3OR1mugMcrbyzO27QdP1ZLKa5/Q9j4dkAesVwj/74fUTRLOT9q1FwL/a
+ qPB9KKfYAFLaZzb6UtG5ZX/+lzoZx3GC+CkFIFa5k+HtuJuP8HYopQx8LbxYaKT7R2O5GIb
+ ontJ1BmRrMAQNGBpBHzWzXseyYfW9jRn2Z4tBy7scHD1wZEMvZJnLLIfE/MA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6451540545
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:35:53 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 32F0840545
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:36:05 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4D16D10EFF9;
-	Wed,  1 Apr 2026 11:47:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1CB1910EFF9;
+	Wed,  1 Apr 2026 11:47:27 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id C4DB160142;
+	by tor.source.kernel.org (Postfix) with ESMTP id 947E360142;
+	Wed,  1 Apr 2026 11:47:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 118C5C2BCB2;
 	Wed,  1 Apr 2026 11:47:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 439C6C4CEF7;
-	Wed,  1 Apr 2026 11:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044034;
-	bh=4gM8Ng4dI5voGspd2MW/G8qAzYExygP7OS8buaoRZDg=;
+	s=k20201202; t=1775044046;
+	bh=iwZQRTkxE8SQciPkkFIQK+sANJEDd5bGQ1OGAUaLfG4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ht/pJf8bo8MwxgismJjbcH0DxRn7Lj//fl6ay0HnlmCjRYtIgG8EVgO1pndmfJvmX
-	 knXYuXYh9VlrrWlM4STAZn3sQOBumFGD85l8NUcLqK6B4M8x67BxO2fXILzhN4B2BU
-	 awW9tkXIImmGo6T6kf3CMLsydwKRFrCShSbshmJZdMTwdZlS8hx070+c6T0k/sjoJA
-	 qrli+3YzdEjOuYYWmi7/eX+fS3nR0X9qLxqa7lkA0sqbxR7ZpQRP16hFBijOa7+Glw
-	 UKfSOaXg7JBTS7dRCgMgcJxLilLRa8EraZkF2TMfGDuB2LngUIWnuMKHmQ5S0tMkkv
-	 QSVzdTlSUbKJw==
+	b=GlBQ6KPSTWHT4VISiYn97ivYhVXKefSUh2Q6bRU8+77PgyLwWn4NjnF93DIByady8
+	 9SycbuA1ixu1mts+5r+nkNfbaww5zykSVdLdjv0lucrgKWqE4LAJ/QBIU+Cn4gwg0z
+	 bCuzNQUeDVBg3CE437u5n2f4ONxdL5gjciyeyJ3Mv40G41XzXthovIXxTWAenLWWh0
+	 dfBE9IaiPg3o/GFFlOAh2uMAxZCD1G5wgyJMXmyO54m6lEhFY+P8aMpO3le2CgbKCU
+	 lSBH/R9RSHx/v6cF2EdoL2fKcEK9jg29eFoS1fliq8sw58kmNUYk+Y6sTjQIl0q2Mr
+	 LdUgb8hbudc9A==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 06/33] rust: kbuild: remove skipping of
- `-Wrustdoc::unescaped_backticks`
-Date: Wed,  1 Apr 2026 13:45:13 +0200
-Message-ID: <20260401114540.30108-7-ojeda@kernel.org>
+Subject: [PATCH 07/33] rust: kbuild: remove `feature(...)`s that are now
+ stable
+Date: Wed,  1 Apr 2026 13:45:14 +0200
+Message-ID: <20260401114540.30108-8-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: XW3OCXIWNRNXEF27H4YOXJAEHZQGYPD3
-X-Message-ID-Hash: XW3OCXIWNRNXEF27H4YOXJAEHZQGYPD3
+Message-ID-Hash: D4WRLDG3VB7XBEWT4OXCVUDLBNNTXTOD
+X-Message-ID-Hash: D4WRLDG3VB7XBEWT4OXCVUDLBNNTXTOD
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -125,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XW3OCXIWNRNXEF27H4YOXJAEHZQGYPD3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/D4WRLDG3VB7XBEWT4OXCVUDLBNNTXTOD/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-7-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-8-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,40 +137,88 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Back in Rust 1.82.0, I cleaned the `rustdoc::unescaped_backticks` lint in
-upstream Rust and added tests so that hopefully it would not regress [1].
+Now that the Rust minimum version is 1.85.0, there is no need to enable
+certain features that are stable.
 
-Thus we can remove it from our side given the Rust minimum version bump.
+Thus clean them up.
 
-Link: https://github.com/rust-lang/rust/pull/128307 [1]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- rust/Makefile | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+ rust/Makefile          |  2 --
+ rust/kernel/lib.rs     | 21 ---------------------
+ scripts/Makefile.build |  6 +-----
+ 3 files changed, 1 insertion(+), 28 deletions(-)
 
 diff --git a/rust/Makefile b/rust/Makefile
-index 5eca6a817966..212759b5eb7d 100644
+index 212759b5eb7d..193cf06eea64 100644
 --- a/rust/Makefile
 +++ b/rust/Makefile
-@@ -75,8 +75,7 @@ core-edition := $(if $(call rustc-min-version,108700),2024,2021)
+@@ -86,10 +86,8 @@ proc_macro2-cfgs := \
+     wrap_proc_macro \
+     $(if $(call rustc-min-version,108800),proc_macro_span_file proc_macro_span_location)
  
- core-skip_flags := \
-     --edition=2021 \
--    -Wunreachable_pub \
--    -Wrustdoc::unescaped_backticks
-+    -Wunreachable_pub
+-# Stable since Rust 1.79.0: `feature(proc_macro_byte_character,proc_macro_c_str_literals)`.
+ proc_macro2-flags := \
+     --cap-lints=allow \
+-    -Zcrate-attr='feature(proc_macro_byte_character,proc_macro_c_str_literals)' \
+     $(call cfgs-to-flags,$(proc_macro2-cfgs))
  
- core-flags := \
-     --edition=$(core-edition) \
-@@ -213,8 +212,6 @@ rustdoc-macros: $(src)/macros/lib.rs rustdoc-clean rustdoc-proc_macro2 \
-     rustdoc-quote rustdoc-syn FORCE
- 	+$(call if_changed,rustdoc)
+ quote-cfgs := \
+diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+index 66a09d77a2c4..b48221a5b4ec 100644
+--- a/rust/kernel/lib.rs
++++ b/rust/kernel/lib.rs
+@@ -16,27 +16,6 @@
+ // Please see https://github.com/Rust-for-Linux/linux/issues/2 for details on
+ // the unstable features in use.
+ //
+-// Stable since Rust 1.79.0.
+-#![feature(generic_nonzero)]
+-#![feature(inline_const)]
+-#![feature(pointer_is_aligned)]
+-//
+-// Stable since Rust 1.80.0.
+-#![feature(slice_flatten)]
+-//
+-// Stable since Rust 1.81.0.
+-#![feature(lint_reasons)]
+-//
+-// Stable since Rust 1.82.0.
+-#![feature(raw_ref_op)]
+-//
+-// Stable since Rust 1.83.0.
+-#![feature(const_maybe_uninit_as_mut_ptr)]
+-#![feature(const_mut_refs)]
+-#![feature(const_option)]
+-#![feature(const_ptr_write)]
+-#![feature(const_refs_to_cell)]
+-//
+ // Expected to become stable.
+ #![feature(arbitrary_self_types)]
+ #![feature(derive_coerce_pointee)]
+diff --git a/scripts/Makefile.build b/scripts/Makefile.build
+index a6d1a2b210aa..d71193a45e1c 100644
+--- a/scripts/Makefile.build
++++ b/scripts/Makefile.build
+@@ -310,17 +310,13 @@ $(obj)/%.lst: $(obj)/%.c FORCE
  
--# Starting with Rust 1.82.0, skipping `-Wrustdoc::unescaped_backticks` should
--# not be needed -- see https://github.com/rust-lang/rust/pull/128307.
- rustdoc-core: private skip_flags = $(core-skip_flags)
- rustdoc-core: private rustc_target_flags = $(core-flags)
- rustdoc-core: $(RUST_LIB_SRC)/core/src/lib.rs rustdoc-clean FORCE
+ # The features in this list are the ones allowed for non-`rust/` code.
+ #
+-#   - Stable since Rust 1.79.0: `feature(inline_const)`.
+-#   - Stable since Rust 1.81.0: `feature(lint_reasons)`.
+-#   - Stable since Rust 1.82.0: `feature(asm_const)`,
+-#     `feature(offset_of_nested)`, `feature(raw_ref_op)`.
+ #   - Stable since Rust 1.87.0: `feature(asm_goto)`.
+ #   - Expected to become stable: `feature(arbitrary_self_types)`.
+ #   - To be determined: `feature(used_with_arg)`.
+ #
+ # Please see https://github.com/Rust-for-Linux/linux/issues/2 for details on
+ # the unstable features in use.
+-rust_allowed_features := asm_const,asm_goto,arbitrary_self_types,inline_const,lint_reasons,offset_of_nested,raw_ref_op,used_with_arg
++rust_allowed_features := arbitrary_self_types,asm_goto,used_with_arg
+ 
+ # `--out-dir` is required to avoid temporaries being created by `rustc` in the
+ # current working directory, which may be not accessible in the out-of-tree
 -- 
 2.53.0
 
