@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 651F11112240
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 23:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BAD151112242
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 23:00:53 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3BE9510EF46;
-	Wed,  1 Apr 2026 23:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 98C2810EF53;
+	Wed,  1 Apr 2026 23:00:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZJatFFFk";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XQSUAheh";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 15A394549D;
-	Wed,  1 Apr 2026 22:49:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 71AD14549D;
+	Wed,  1 Apr 2026 22:49:30 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775083764;
- b=kXpEG+H/P1b5vF8ujFZjdKSRPlJF3GqotsHDpdFUtmMNx86s3w1aMkAiLCQupxKhW0feQ
- //5RtTUJdbO2/yMbB+VC/Ww+8qUHpu5AD2bZo08WTGL6pwAj4o085WhDLqwtAuTk4G29yLu
- Zfh5KJ96983rsRcLMeieCUs9zxvNLdkC4MUx9b2VrqhSgt+nVIDofAIm1Iz4H8erBp4Bkol
- FfbUCCHOQHfzlz7bHWnMxkWQ/gj82vFe0ZJAyjm1T0DNb1MuORTfjlkYoiXhnQQXd+kctC5
- wNheaaENGE8A8DNhHlV0xVRLjsJZo6GLizR8pzDqqUHXnEiJSuX+EEQIqVYA==
+ s=20240201; t=1775083770;
+ b=vqfpp51CpnsFqbTOwqz30IsJc4UvL7FF8njedd//6dxt2YvPRNBfakPQKtPs6z1jUUDsp
+ SqIBk7OfNBx/z/mUWTeTFA8MQqNUTYq+kO+WV+gqNMbY8Z9MftO8cclKCsSe2B7cPgDcFDY
+ t3vl/mMA27fLUF1EfTA94a4NIV5ot0dmSZGLCnX5o2SDQkQQ7QJs4RZUefvy1vHobolJoC4
+ tNrPemYyLVA2oaEh1zm+juw93nKLp2QdeYzbrmSvZlwlLT9kBiXrubPCLwt1S2kKdysvNMx
+ kPjoDlaMfW6Xq6iB/CAvOjc9cqV5F/+oRwCnFa1T4egYfXsNnaJYyodAiL0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775083764; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775083770; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=McLF2sdtUokmlMpfv7AGz7lZKpzhwFQcwtADgn2/2U8=;
- b=LUNmJj6vrV0L2q4Fvtm8GjSg1qoB/97NzWhkOdy4S3YneoCtiSaGN3OdccQFG+zo6krJP
- NmhkcdDuyy5Q/Vg6JEVp3S2g7+AJ9NRoFE6ULVj7z2vt2m8jm7tlENiC16XBOw9u+r5SFvG
- chcF7yU5d3qrDZLK/R9ofTPh6ChMl6LYiXo5tmjtTnbn35HnVhwh5MxBHNTkarMpnjVSDzu
- 0lRhA4BhGD2sPSDZjkvtPTDhkK0n3wDjq9qAgvzzwDH0Cd3LA5EuUfo3sgvstIaTuhFdYVZ
- theVG1yC+OCfmI0JVjsUbw18qcuQPiEETNuSSHtJPa/uLzUoUXFWPI0mb8Zw==
+ bh=0BNeyTKVO6TAfRT6da+L5Y93BPVFp4AkkIZP5BV1Ee8=;
+ b=JyHTJC3JMkt53apMfuLy4I0dZbXuHknP542rQLD51Dx4vFk9uwK2L4oNnnLv56gZP4SXH
+ 1Xwn22eRWFHnfhdlqc6sw1IPnb1nxPOsibRioEU/kQUal1iSxd3LSVqAJUFQ4Y87s3XlyvF
+ B3yrIvvDr3fjiLMpOQ/67ABnB1JpNR5nCfYkM6RqzkzyTzmPBSfaJ1zzt5n+/D2F0nzG8yE
+ 3PAN8PZ2Wlat3X+Xr/arWKtuUfiWt6Q0W9lWDx/Sy3E30rleTN+8bR+YlkVJkCpOIovRAld
+ kzwpnrFOnG3cZb0R7WvJOoOzpCb/wT9Lp29nDX6esa66Qk2Sj2nwCllWAoLw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,49 +46,49 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B139845476
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 22:49:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id CFAC045476
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 22:49:27 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id BB98510EF3F;
-	Wed,  1 Apr 2026 23:00:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D842610EF52;
+	Wed,  1 Apr 2026 23:00:50 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id A0226418AA;
+	by sea.source.kernel.org (Postfix) with ESMTP id B0BE243B01;
+	Wed,  1 Apr 2026 23:00:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1F8BC2BCB3;
 	Wed,  1 Apr 2026 23:00:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D37C2BCB2;
-	Wed,  1 Apr 2026 23:00:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775084445;
-	bh=PBFIVlb3y/4+vIcT00tcSiDAg1EkUAKYUzmV5YKhJnM=;
+	s=k20201202; t=1775084450;
+	bh=L8JME5DgePBPrx4n+T2YtWB9P6u86oez5ABp2z3CNBA=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
-	b=ZJatFFFkz2ZScBb/S4TpqCqmlU5CEjZqBFSOV2A6WNBXX8frktEMOQxLuaJ2zui7K
-	 TxLAQ++0MI0i/ejdo+T8y3DBO4V58gFNwTbymjm5fDwu6axUpsx0S626SSYNAzrXui
-	 e1eIupdeP7FHJUCMfFMrQDaczv1/dJhrNI7saTL0pBZvrmcWTrW0nafC7OliJNtKOF
-	 AuSpTcBjZLGhiHOQICoxolcyoBXDzybeR0miWUG0/UGrBi/GbuRVRt8SPH6kA2Tus8
-	 oRRSlmlRfvrM80vHQZInm2Y0P7R7TlqrqSzkmPpxE9E4S4Z+eVpQiiDUtv9UUCP830
-	 eMM7ek2JPRPYw==
+	b=XQSUAhehK0geqbt+sp4fwR2MHzqQqgmyyza2UnqK99FLKtZPX8PbhFgagoLwnWdAi
+	 A9uW7qhg1C+WKQNNQJ4vNBoC8JXS68HsTSryHtezbW548hEJOquK/PM01kl/j89c/f
+	 ih8g3oNWTWFO1MaLODitg52leiBGTbkxz6aYWXplYU8puqoYtpqPyG7/ywmv6jdkg4
+	 AyB4hcxDwgZeGNJgnI9m68RvOZW/AzDoZ8pLjYB1WsSkifuvQnIeNfN/pFZtBdF4K6
+	 0PalwENmSLkuvFHYnm6l5DnOL2jZ9sMtoZUArx9XSiQcwfnoLzFHlQYB3YabNlWmEO
+	 jrlC7XHARUJRw==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH 17/33] rust: kbuild: update `bindgen --rust-target`
- version and replace comment
+Subject: Re: [PATCH 18/33] rust: kbuild: remove "dummy parameter"
+ workaround for `bindgen` < 0.71.1
 From: Tamir Duberstein <tamird@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>
-In-Reply-To: <20260401114540.30108-18-ojeda@kernel.org>
+In-Reply-To: <20260401114540.30108-19-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
- <20260401114540.30108-18-ojeda@kernel.org>
+ <20260401114540.30108-19-ojeda@kernel.org>
 Date: Wed, 01 Apr 2026 18:59:04 -0400
-Message-Id: <177508434455.73816.15756486388132647025.b4-review@b4>
+Message-Id: <177508434456.73816.17651402081142880831.b4-review@b4>
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=637; i=tamird@kernel.org;
- h=from:subject:message-id; bh=PBFIVlb3y/4+vIcT00tcSiDAg1EkUAKYUzmV5YKhJnM=;
- b=owGbwMvMwCV2wYdPVfy60HTG02pJDJlnFzs3fD173aT8/5+Ovnr2PRYiG1bqrWPgMY6xttK4q
- /CrtKSxYyILgxgXg6WYIkui6KG96am398hmvjsOM4eVCWSItEgDAxCwMPDlJuaVGukY6ZlqG+oZ
- GukY6BgzcHEKwFQ/LWD4w7kwWW/VxU2zXts438gISVTrqop+9/KT1f6iG8v5bDV9exkZurQMMt7
- 6i16cW2b/YP3LZT9l/vRpFWZm6OW9Dvo5UTiIFQA=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=315; i=tamird@kernel.org;
+ h=from:subject:message-id; bh=L8JME5DgePBPrx4n+T2YtWB9P6u86oez5ABp2z3CNBA=;
+ b=owGbwMvMwCV2wYdPVfy60HTG02pJDJlnF7tsuPi/M7kgl+fS9lvTjjNurz7ibmbL2VVoZaIdt
+ un9n7tMHRNZGMS4GCzFFFkSRQ/tTU+9vUc2891xmDmsTCBDpEUaGICAhYEvNzGv1EjHSM9U21DP
+ 0EjHQMeYgYtTAKb6VCgjw4v/PZN5Nk0NjzqeHyr4dklm/dxVmTFP/8cu6j8cxxydxMHI8DJEqva
+ J+w4L6+f+33+wndDmXuhZ3uDQ1f5l0UW7+TdO8QIA
 X-Developer-Key: i=tamird@kernel.org; a=openpgp;
  fpr=5A6714204D41EC844C50273C19D6FF6092365380
-Message-ID-Hash: FG4LJ53Q3JA77WUDG6X4N5LVTUNVYBQB
-X-Message-ID-Hash: FG4LJ53Q3JA77WUDG6X4N5LVTUNVYBQB
+Message-ID-Hash: 4LCUFVDWFHO37AFO2UU6TZTMQV5LH3HG
+X-Message-ID-Hash: 4LCUFVDWFHO37AFO2UU6TZTMQV5LH3HG
 X-MailFrom: tamird@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -126,9 +126,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FG4LJ53Q3JA77WUDG6X4N5LVTUNVYBQB/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4LCUFVDWFHO37AFO2UU6TZTMQV5LH3HG/>
 Archived-At: 
- <https://lore.freedesktop.org/177508434455.73816.15756486388132647025.b4-review@b4/>
+ <https://lore.freedesktop.org/177508434456.73816.17651402081142880831.b4-review@b4/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,18 +138,11 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, 01 Apr 2026 13:45:24 +0200, Miguel Ojeda <ojeda@kernel.org> wrote:
-> As the comment in the `Makefile` explains, previously, we needed to
-> limit ourselves to the list of Rust versions known by `bindgen` for its
-> `--rust-target` option.
+On Wed, 01 Apr 2026 13:45:25 +0200, Miguel Ojeda <ojeda@kernel.org> wrote:
+> Until the version bump of `bindgen`, we needed to pass a dummy parameter
+> to avoid failing the `--version` call.
 > 
-> In other words, we needed to consult the versions known by the minimum
-> version of `bindgen` that we supported.
-> 
-> Now that we bumped the minimum version of `bindgen`, that limitation
-> does not apply anymore.
-
-Some citations pointing to the upstream changes would be good.
+> Thus remove it.
 
 Reviewed-by: Tamir Duberstein <tamird@kernel.org>
 
