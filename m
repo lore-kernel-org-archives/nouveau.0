@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55477D35177
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:50:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9581CD35162
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:51:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD4710F07D;
-	Wed,  1 Apr 2026 11:50:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 74C9110F086;
+	Wed,  1 Apr 2026 11:51:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="O+Hhh1an";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fYUKktNt";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 16F2745392;
-	Wed,  1 Apr 2026 11:39:29 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 5486E45394;
+	Wed,  1 Apr 2026 11:39:39 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043568;
- b=DiszsrgvJhEthX7KKKW7xLkm65KOaAZzqxEawKBj4qZqmipxj0qkqVzGYNyt6qPhs60RO
- 0YIWSPh7tK2HzsZ3luggMiuqEyTxxazrwVrpuO9G7Ex5cRt0pXhK/WwxmATAkKJ5sEFW9vX
- 0rCsa3brj1b9XdFfHjDY2voKy5TROidLW7pgwVa+L7vdy2319tsQQtDSdvdMFbrUFufvpYB
- K1ChXT0ZwgxoAkkHiLvJA4hNtBMSuVhZ0nhLkeXnV15kUrRhiN7iUAnZrsj6oAIYuJMLR4A
- aCOZ9t3KhUzCaDbBSPrV6nhMEFf/EZc1k3vjhQ+YtBvJ2SdxU0ie/FLOwHyg==
+ s=20240201; t=1775043579;
+ b=gYG9i7n0CyPRJdctBR/8TXnc3fhtWARGQEwPmf4XWy8Wh2RFkD9vCTpyZLPPLBVKoVptF
+ upMrxBpTEe/elxJhCnKhDbafSCzOx0RSP4y+6o9Mi2G/iqTLDa1rIRRc2+R/IJMalxLFv28
+ PBNC37lGnLp0X6S5I4fFJc+d5T43nuu1AvP/vbYZCSnTA84Q0JStKy/07/thbuVubgtt4K1
+ 1t6zpbxmRTFDcVdQuWekfBVZQcXi+tFOJr2xS6HUApvleMtlmJXpI/+aL/vRKgXzhk/vVKP
+ LwVR8qQbMFtijMTKdrULUSq1Ch2lSZPsv/DOXmmAOIFGcOI+irjtSFuTDnvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043568; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043579; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=yl4kaUo5EhUy76Kcecx7vXM9xwtxsuf0q/t4EkT8+jE=;
- b=bLqfQfFDaRxx0Jq2cpVtAopBCDvDUKxltglRbHve4Zz4Q7yPT/64RpaFnxpDh81e6lcfq
- jh83vCXGyPjSg8YhIIjA3sKMjyzfh8NBEN/GhaVWhF41UY76QKUOUQkIC/FT/C/onwqEI3/
- B0um5pYsnbFirIv8M2zYD2yHyno31U32JcBHBXJ2VXsa9XZhvD1rwqpI07OHfbQ0ywgh3gO
- voFGMA0Ip2VulqoOZf8qBnihFChB4qP2GRtFV4FAdZ6LdqWcWYwYNsLFGu5sWEE7T83MtCZ
- 6rNjqjyX/A2KWc633opikZnqkSuP/FC/k2TehEt9ra+UCinoXy98vjf1dHzg==
+ bh=BU4NwWDia/vOxJ1aLikEN7w3TbIx4erGZnWp+4ITe+0=;
+ b=08ra3wnf0K0EEmeWv6CxT9xELq4E8S4UNvG9AoaFq+NUK6laMVzFdRfbyO/mGU7fMNPTq
+ FoSvhTizHbqJwI004qhLuRS8buh2G/5EsS4eBV8nH763LEGYu9PPoEwNq0z8iOWOkrWhH4m
+ Xeaq3xcpktikhgvdiKAMbgDixG+4jbfAy3g8qwx0YseGJUb2UXFi++UVcp6wGkxtI1EwGGB
+ sYtMoXHzaX5+kEKauULjDggTfBTNgXAIr57xNKG/zGuQXFE/YeBmVIIJ3PhoVfkWaBsidjG
+ LiPMM7l5x8UEeZimQA+DMZNfq779KAm8AlGSJzHgYY0uomtlcf/Jc6c1Qp+A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 28AAB45374
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:39:26 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 08FF010EDAF;
-	Wed,  1 Apr 2026 11:50:48 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0EA1345374
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:39:37 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F28C10F07B;
+	Wed,  1 Apr 2026 11:50:59 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 4EB9760180;
+	by sea.source.kernel.org (Postfix) with ESMTP id E972E40552;
+	Wed,  1 Apr 2026 11:50:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A793C4CEF7;
 	Wed,  1 Apr 2026 11:50:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7DB0C4CEF7;
-	Wed,  1 Apr 2026 11:50:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044247;
-	bh=gdqep/CIy3f2tHlGVIduJ54heItiKNgLxJWrndWddZg=;
+	s=k20201202; t=1775044258;
+	bh=ZrS7YCyshnbs/lG/9j9L7W/ZUrAuF338JPwI0nwq6Ho=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=O+Hhh1anJc+19GFocBbrXlmEQQSkj943VY8/0XHji23fuRQZsWqQAH+1TSazaKmiL
-	 qIo6GTr7gQXcIVZ17+Mt5jLGu8cpZaFYiedii3pg0W6olOnWbfza9XhlEVRwZ98yx0
-	 LcXVWwJgYRdsT/s5pj5faIm2xA8SiH42BTO7/qQTMkiUf3alp8Cdu8qqXXHghDJdG/
-	 ZqKeehF27SbWaYSWGlBEsyIr+orFdLth2J7uIk+9AfP92IrtdGMKAQRdG/dhvr8O8B
-	 TOGYY/rqEnbd4s7uEUlRNJC+4aYbShoioRKpA/J5CM4OvzM/TxjoPZsAOk1Hqu0iFq
-	 UYI5ugbEIjfxg==
+	b=fYUKktNtjBtnO2jEekVdFzAXCPxvMmq8cOZ/wimER2kJOuz26TYi2q5bk91NF6CFY
+	 V3uRQuToa4yd5/BlRrJuDUAvl/Ng8LmL71ojncQB2XFtcInSO8RsXWX1UcDolbNEKf
+	 Vr7CCsu4JLP8hJ8Kq7urO0JEocaF0r6VbZa+42Sdln5aiR3/s6R5CaAOkIYDTOBYFN
+	 jQ19XQq/9YUv1eHqK24bolOhTgYGxRPfjpfeAX42W17zK+3HMCGkzXRWdt2m3/51bF
+	 jzN98RjCjBcK57ESqOPlvU09ERPYNtXiyClFAHc+QnLlv5x2uSLTqHwOePbncyE2kZ
+	 tpwl4A5SNvXTg==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,15 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 24/33] docs: rust: quick-start: update minimum Ubuntu version
-Date: Wed,  1 Apr 2026 13:45:31 +0200
-Message-ID: <20260401114540.30108-25-ojeda@kernel.org>
+Subject: [PATCH 25/33] docs: rust: quick-start: add Ubuntu 26.04 LTS and
+ remove subsection title
+Date: Wed,  1 Apr 2026 13:45:32 +0200
+Message-ID: <20260401114540.30108-26-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: NCQRELBYLQO3QFTYQ4WZLWZTISOHQKI5
-X-Message-ID-Hash: NCQRELBYLQO3QFTYQ4WZLWZTISOHQKI5
+Message-ID-Hash: YM6SNFFMWTM75BBAN7SK4SUYPHF2KHAP
+X-Message-ID-Hash: YM6SNFFMWTM75BBAN7SK4SUYPHF2KHAP
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NCQRELBYLQO3QFTYQ4WZLWZTISOHQKI5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/YM6SNFFMWTM75BBAN7SK4SUYPHF2KHAP/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-25-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-26-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,34 +137,43 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Ubuntu 25.04 is out of support [1], and Ubuntu 25.10 is the latest
-supported one.
+Ubuntu 26.04 LTS (Resolute Raccoon) is scheduled to be released in a few
+weeks [1], and it has a recent enough Rust toolchain, just like Ubuntu
+25.10 has [2][3].
 
-Moreover, Ubuntu 25.10 is the first that provides a recent enough Rust
-given the minimum bump -- they provide 1.85.1 [2].
+We could update the title and the paragraph, but to simplify and to
+make it more consistent with the other distributions' sections, let's
+instead just remove that title. It will also reduce the differences
+later on to keep it updated. Eventually, when we remove the remaining
+subsection for older LTSs, Ubuntu should be a small section like the
+other distributions.
 
-Thus update it.
+Thus remove the title and add the mention of Ubuntu 26.04 LTS.
 
-Link: https://ubuntu.com/about/release-cycle [1]
+Link: https://documentation.ubuntu.com/release-notes/26.04/schedule/#resolute-raccoon-schedule [1]
 Link: https://packages.ubuntu.com/search?keywords=rustc&searchon=names&exact=1&suite=all&section=all [2]
+Link: https://packages.ubuntu.com/search?keywords=bindgen&searchon=names&exact=1&suite=all&section=all [3]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- Documentation/rust/quick-start.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/rust/quick-start.rst | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/Documentation/rust/quick-start.rst b/Documentation/rust/quick-start.rst
-index 54fe491deb7d..34c39f208333 100644
+index 34c39f208333..db08c3a03a4f 100644
 --- a/Documentation/rust/quick-start.rst
 +++ b/Documentation/rust/quick-start.rst
-@@ -90,7 +90,7 @@ they should generally work out of the box, e.g.::
+@@ -90,10 +90,7 @@ they should generally work out of the box, e.g.::
  Ubuntu
  ******
  
--25.04
-+25.10
- ~~~~~
+-25.10
+-~~~~~
+-
+-The latest Ubuntu releases provide recent Rust releases and thus they should
++Ubuntu 25.10 and 26.04 LTS provide recent Rust releases and thus they should
+ generally work out of the box, e.g.::
  
- The latest Ubuntu releases provide recent Rust releases and thus they should
+ 	apt install rustc rust-src bindgen rustfmt rust-clippy
 -- 
 2.53.0
 
