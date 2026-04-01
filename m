@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDDAED35162
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:51:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201D3D35162
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:52:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B58DD10F092;
-	Wed,  1 Apr 2026 11:51:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id F012010F0A4;
+	Wed,  1 Apr 2026 11:52:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Rzw1kaCE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a2tJ6c9W";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8D46C453A7;
-	Wed,  1 Apr 2026 11:40:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id CA061453A8;
+	Wed,  1 Apr 2026 11:40:38 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043627;
- b=UlBwQ/5M9MubKflRs/3oPQEas6ASfjfMhf0TWjiHU7BQfHH28X2g0zetmrcSnmRQGGQ0v
- y51Mz6oLSnVOjnjMsZWu3QxgPThCJv/JgdrZFUCyV9tdD8JdDScN71YuzEi16TZx0GbPOE7
- u543MtQ1GhRvPJvo+MW8IO8xHshrv17zNhn/5slzj/2xpxbZiah22lLcRJtKXm1Nvln65zD
- an9OY+g/9PVjNNcsI5eEnUJAtHjFPzSNLEbWdytRmjvcbx1at+sRinw/bUDF0v+/nOEYV8m
- TaPFfmtMV8AGUMPVlszYucONBmGnP16P0wwo3SEXNU2eet9MQ83dhUMneErQ==
+ s=20240201; t=1775043638;
+ b=IMKd3K1AOfx3ptcwKg6m7ChUE4C2PpbPPQPbGjYTUE/A5uX/0KqLDqip3S6Jcm4w2twQA
+ 7f1ms2ygJLBhAAhr40lVaGrbyAf00MO+qdISI1hk19Ml0B96LM4h0QlF3a5wCMyEgWfzbEO
+ LB0Gq4ddvH0pRnmrC9hIjfsyjEJx8L0CORKR6fPQ8fe01SZ719EAN9CGm4odOYib4wgP7Iu
+ xsciUsFUiEcnmY816ZOvjACCSjVsfcDTx20vVAC8ZS3LfHdZ4za3LW23CVOlrIlt0MN002V
+ P5evfxI8BkYI+S1Qdk03bo03WaAt4oACDhMc+lQWj+KHT7ntzuk8AwHzjAQw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043627; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043638; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=5BoduCRxrhl1ZN6wyFIsKfipd4p3VQ5yQxQKGfI7zC8=;
- b=bP6w40fobjY/dYeMG7nAVi/8yLBm22vp5Y4uyFzlxDs5DLpUsT9bznd3yRskYda7gf3Cz
- Q5nmmkdE/KlVtfkzv8LZ5wqdER3xDUeXi+BwhRL7sdz+tJpILawS7tcrpj5yT+8nVHH0iIk
- 2bWyfSSVPRhGNkccLe5TJkLsnSUY5XTC3B8RdAqb4RaAt8d1PYpd9mGO75cxnXOOdFXJJdv
- 0xQ/sSruzLkv2YroDFOcscBWk9iQ2OJVr+5FlV+cilnY4MCVAgqhCOlROy8sToMn3OzMtzb
- 30D0rklzyuFIBeHhamTz/VQ1uye/G32aUQIr+Gs/ZIxX+KGVdt02DMp2uNMA==
+ bh=r3mxjFFO2Y93Wv3FsX31SAqouVteB5Kqt+bvkPFKp+0=;
+ b=tULivakx1/GloIsyqONOWFbdFieTwdardKF93lscQCEVH8JPJt098Ep+6vN0eM9qvaMoO
+ QW9QTEeQT7Ud/WCM6WxbufHsYiE1saAGBAEwlJ5FY5m2GMpz3PWV7WaLHDUvup++cHvUyLT
+ Wa26fsGE6S6ObVI8rQMh7xl+up7+xRSPlz40v2/Pb6miRWkKesOVUTnTQnhFuqu/2NMYyzL
+ 4PRwn6/UWeg16E2OCL0l+FW5CX6ZnFzqWoRzJF632QhduRhCjT/uVUlEWNBn3RhcCy3RfSD
+ RXh8c/91+9WhEtGK1YRzBKrRaXejARiwo9SGuwu23ZrWaxdtaQFKGIaMSUjQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E697B45374
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:40:24 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DD4F910F088;
-	Wed,  1 Apr 2026 11:51:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id A82EA45374
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:40:36 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1EC7E10F0A4;
+	Wed,  1 Apr 2026 11:51:58 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 60A056013F;
+	by sea.source.kernel.org (Postfix) with ESMTP id 04B9C408B9;
+	Wed,  1 Apr 2026 11:51:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C070C4CEF7;
 	Wed,  1 Apr 2026 11:51:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC33FC4CEF7;
-	Wed,  1 Apr 2026 11:51:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044306;
-	bh=hwrpFVeGAL5GC09atZjTVNJE6Ow3imO9X2morwqR56Y=;
+	s=k20201202; t=1775044317;
+	bh=aZ7CkV02m73TgymHW6id2ohHebQcMp+UooNV/WCpxYw=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Rzw1kaCEQHUMV8e2JhQRZ0slowyGy7FMm4tP6h9JKv2f1/pjKA/CgbLPmqJSfwYW9
-	 XpjqdVAQSA7tGhxbEGXHSOp/b4ykgFgY9+afWac2nDN+7rfydkcDZpWR8hxb/XS02j
-	 LNBRkTa0ZCJ8Ct7VSdEoSy0AjoAeVUdW2NIf9cHqHXqPRJVw10D2vW/WD8KAcd4+X9
-	 adeYuW0+L8tLudnViZX5MEfIqqFc301C2pW4Ki+5taOqHHUTBnQwc2GJaFeET7o+/8
-	 HquRyfA0XF2MWJo5hgtDXCWTUfmcnrUxW/us7Td3H6gTg1P4obsqnA35gxHSgJmIa7
-	 NPNA/tvRJKfsA==
+	b=a2tJ6c9W9iABHNjYNfL/0mBtFgGwAUtGo9jT4oJbjkTLOc0Yo+AEpPKIParMZ1LNj
+	 0sANrmLte5HVlY/RSowfUU1n6HJVpsbzGcrRxFYwfBYM+mr5AsX8sQv1gk5sj4H7wt
+	 Dw7M4GzLoUzHr41RJA4HSozfVBTZlvmb01WCmT7Cpg4oqA0MoM9u8F3rYEJ84ZlHa/
+	 l6ZHQwkSMoXTmsP6WHnxky2MzbKxBsA9VRTh/QtS8r/wLVDjLYI1nc1ywv3yacbrWe
+	 OUhyb3YotIxHBUCZq8fmNmrB8uzKk1sfz69jzjTz+KCMR7GzlinoB3zsZ7EklUMIKY
+	 cppDn06YQZSHg==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,15 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 29/33] docs: rust: general-information: simplify Kconfig
- example
-Date: Wed,  1 Apr 2026 13:45:36 +0200
-Message-ID: <20260401114540.30108-30-ojeda@kernel.org>
+Subject: [PATCH 30/33] docs: rust: general-information: use real example
+Date: Wed,  1 Apr 2026 13:45:37 +0200
+Message-ID: <20260401114540.30108-31-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: Y5FGB5MCUOMRTAPLOKVTZZQ23XHKTAX3
-X-Message-ID-Hash: Y5FGB5MCUOMRTAPLOKVTZZQ23XHKTAX3
+Message-ID-Hash: BAIX7Q7YYU57XH4BMBCYUHMW23V2ZUVB
+X-Message-ID-Hash: BAIX7Q7YYU57XH4BMBCYUHMW23V2ZUVB
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -125,9 +124,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Y5FGB5MCUOMRTAPLOKVTZZQ23XHKTAX3/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BAIX7Q7YYU57XH4BMBCYUHMW23V2ZUVB/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-30-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-31-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,29 +136,43 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-There is no need to use `def_bool y if <expr>` -- one can simply write
-`def_bool <expr>`.
+Currently the example in the documentation shows a version-based name
+for the Kconfig example:
 
-In fact, the simpler form is how we actually use them in practice in
-`init/Kconfig`.
+    RUSTC_VERSION_MIN_107900
 
-Thus simplify the example.
+The reason behind it was to possibly avoid repetition in case several
+features used the same minimum.
+
+However, we ended up preferring to give them a descriptive name for each
+feature added even if that could lead to some repetition. In practice,
+the repetition has not happened so far, and even if it does at some point,
+it is not a big deal.
+
+Thus replace the example in the documentation with one of our current
+examples (after removing previous ones from the bump), to show how they
+actually look like, and in case someone `grep`s for it.
+
+In addition, it has the advantage that it shows the `RUSTC_HAS_*`
+pattern we follow in `init/Kconfig`, similar to the C side.
 
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- Documentation/rust/general-information.rst | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/rust/general-information.rst | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Documentation/rust/general-information.rst b/Documentation/rust/general-information.rst
-index 6146b49b6a98..91535b2306ed 100644
+index 91535b2306ed..09234bed272c 100644
 --- a/Documentation/rust/general-information.rst
 +++ b/Documentation/rust/general-information.rst
-@@ -158,4 +158,4 @@ numerical comparisons, one may define a new Kconfig symbol:
+@@ -157,5 +157,5 @@ numerical comparisons, one may define a new Kconfig symbol:
+ 
  .. code-block:: kconfig
  
- 	config RUSTC_VERSION_MIN_107900
--		def_bool y if RUSTC_VERSION >= 107900
-+		def_bool RUSTC_VERSION >= 107900
+-	config RUSTC_VERSION_MIN_107900
+-		def_bool RUSTC_VERSION >= 107900
++	config RUSTC_HAS_SPAN_FILE
++		def_bool RUSTC_VERSION >= 108800
 -- 
 2.53.0
 
