@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E98D35177
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0713D35162
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:49:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 48AFE10F079;
-	Wed,  1 Apr 2026 11:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 93CE610F079;
+	Wed,  1 Apr 2026 11:49:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Sl4V3Ob2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="au78Fn5P";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 26DF845371;
-	Wed,  1 Apr 2026 11:37:30 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 705A845374;
+	Wed,  1 Apr 2026 11:37:42 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043450;
- b=swDZN/G6Vo6LmzTfj4pL012TTbWcN9dXRGH9ay75So2bCMeDmGGxa+Jd32k2l9i6TVhnQ
- oyDGF2EBMODg2aCBCKi/6p5jB+VD2yhHd78L44nS7bh9C4VT2AH43R8cEL5qKkByHt3xA0u
- SfWdYMU+Gf2LUYU7Ew2iY8SePtuWM9wn8MSPllG69zNeWwBUqNqAquw3IwWCfE8HxK3FWAy
- 0lRvhUAHYsP+ofhKh23iWXfXoA5GsWIGDcHLTbJU7kAgCS9qPGGnb48S27Slcf/w3rJ85to
- MD2VQnlG21IUkn+j4b+aqkPXYhYpoEzOiI9BQWjz3Tsw4rMciRQMqhACRGNQ==
+ s=20240201; t=1775043462;
+ b=Q3zsLnycIWbBoG2LzFlCq1Bb5EBgKMIT86oZMunwSVfVVKT57zsLD8SKN4EG0OTJlZKrQ
+ Azj0yJlU0IC0lW32kNBqZwfijjYOh1Mdd8xnu0bKbWdkIjYI1XS9kUL09AO3fCob6MWjSW4
+ AUE3eDKl2u0NalT9d4jV+V6Fg1pf7WAhh5aX6Hwl4RqN8peOndIBI+2ZuKvYuT7wwbaf3AS
+ ymByqb8z2l94sS7PD4u305Xer7Ggus0M+qPOqQJGJ51OYYEvSMnW9A341RGkTdGHMdBdqcQ
+ JwFUT7OFw1DW1Mzp9bImdVKdgJduTTNZWPxQUEOf8arf39+r+cMvokoq0qdw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043450; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043462; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RD/uFE84GVJBm1fG6G5Zih8/7uf3alepVPmrupsjX7E=;
- b=q/7whhg18JdTG8vMXJGteGJgwMmyo5eO/ax0laFEWa0NZyN7MQ2dnvY/3qJC3CyRg3CIP
- U494BCNH92BNReSH0i1I5rgJqFMaDfZFrK7Rh8c6ssa7h3eus2QUN/64L6+UJT/CKsX+4ZO
- aZTiiDQnTDNw2Qa17OaU466hxoLJYE2y8XaFc6xgn2aCLBS1qxIL8MDFm/IKfSoLA6f8yX0
- Chw49LH8swGidKhr9IfRUV/y6tdCQGovFAoAOpvNG1w6i8YNhg0N+FildB7fjcQU5f2FZsM
- mpJkHJ68tEgIBLh1EhjMVAsRTkxKkSIKI46DTc48c4Tad0v49hQGHQMZJW+g==
+ bh=9j4SsN4hA9bE27nw0WRFSah6/TXMNvJhLGGk7eEpCg8=;
+ b=Qt2IeWnM+W+9QhV5j8rpe2fdJk9Li9wp8t5xlUgTpH9SUiVhzLM66LhY+KL+yYRF+ccL/
+ xm3rFqT6dJBYLMHRD/nLVChbzqKyxXAwSl54qrJJdtrvvHUY1jUDNgdEBpMqNJbzq2ZTkLi
+ z6HWVSl1NmVEraxl9cGua4wUxyoUo0tEQFExzfNCTZy0AwhtZi380iQtlvhpka482a69XdL
+ fhO1oyiC+HsPVaaBzZ6PnMR4SCX66gC3KLwQpUiV4Hcgr2gjWC+nsNrqJepNq1476texNM9
+ wj5+x3PgRL9YVs7kBMbEyhqi7gTDUW0U/wa/UpNWdCak277a9eiicY5hNE1g==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9154540545
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:37:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6604A40545
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:37:39 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA5610F065;
-	Wed,  1 Apr 2026 11:48:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4E30810F068;
+	Wed,  1 Apr 2026 11:49:01 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id F3E5D6015B;
-	Wed,  1 Apr 2026 11:48:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73A4EC4CEF7;
-	Wed,  1 Apr 2026 11:48:37 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id C549260154;
+	Wed,  1 Apr 2026 11:49:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C824C116C6;
+	Wed,  1 Apr 2026 11:48:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044128;
-	bh=ARQPdLFNgLGMMD7Hlk1KS8FPcB6q/KuXKhlNKcpj/sM=;
+	s=k20201202; t=1775044140;
+	bh=ItfdI64Ks8gXoHtrpj58RCfjp1hysM7VxfqZvaewK7E=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Sl4V3Ob2163+RRCKSkLp4ZUuMaSDTTdLiFNQWuFCXKv1Krlrxuela9RxhT+4wUwjt
-	 yhYttjDbZQxVHrAv8b/esKNF8VdheRCH3Oqdk/2NAgGn2nejx2h4jXPJbvv4jYQuaV
-	 TjMZ/sfmInsww6vddePv9CyGl3rBljLG5MSbIM1HplnFVuq2+FuvEOKtxe7XZRnNrz
-	 CMgzmsPy7rtZc6T52JJnndKutrM/pbY6DTPy3eV6rHBgOeGBKJj34eqEze+SU45zwb
-	 4y3EKNzMX7CayXffABQD13PIYCldiSPMdtIKe0RW2wa3PA3X1DcERUC8zGiKtwfVVr
-	 pDCwDzyZt9PIQ==
+	b=au78Fn5P62QtKs+AJuvGHcFWbjilw5jy6hHRniP49H+mzNx6g15OrAt4rwU2g+0Bf
+	 tgBzQ7o2EUJfMYGsWaaiWncgiCJA8DMzQeG5Hxb97hWVuDNmyp7CXYxa9h9XPB0+72
+	 HyKrGNgOra2twsMAAIbGarVaeaCvYqs9UnC3BNpHx/ooTRBNddV7XrpahshUBA5t4A
+	 bLhkkMuXgTC/ps+59WFJ9qjuX446UCiCI1TqDu41k8PyOf4qsSJ8c0PqM5AyOiXO5C
+	 sy02Wxq7FBpUPdnBPZ+g6kYQbEU5X+6ye5V4xHtrAdpwNgn4H15Rym/SXtIaEDW5wK
+	 btGTVejLETUPg==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 14/33] rust: bump `bindgen` minimum supported version to
- 0.71.1 (Debian Trixie)
-Date: Wed,  1 Apr 2026 13:45:21 +0200
-Message-ID: <20260401114540.30108-15-ojeda@kernel.org>
+Subject: [PATCH 15/33] rust: rust_is_available: remove warning for 0.66.[01]
+ buggy versions
+Date: Wed,  1 Apr 2026 13:45:22 +0200
+Message-ID: <20260401114540.30108-16-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: ADWXHZO53PSRI2UNMZ5RNON7ZUXUN4K7
-X-Message-ID-Hash: ADWXHZO53PSRI2UNMZ5RNON7ZUXUN4K7
+Message-ID-Hash: FKADFJIYY2ZSNVD2H5I3T43XZRXTGPRV
+X-Message-ID-Hash: FKADFJIYY2ZSNVD2H5I3T43XZRXTGPRV
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -125,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ADWXHZO53PSRI2UNMZ5RNON7ZUXUN4K7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FKADFJIYY2ZSNVD2H5I3T43XZRXTGPRV/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-15-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-16-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,63 +137,114 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-As proposed in the past in e.g. LPC 2025 and the Maintainers Summit [1],
-we are going to follow Debian Stable's `bindgen` versions as our minimum
-supported version.
+It is not possible anymore to fall into the issue that this warning was
+alerting about given the `bindgen` version bump.
 
-Debian Trixie was released with `bindgen` 0.71.1, which it still uses
-to this day [2].
+Thus simplify by removing the machinery behind it, including tests.
 
-Debian Trixie's release happened on 2025-08-09 [3], which means that a
-fair amount of time has passed since its release for kernel developers
-to upgrade.
-
-Thus bump the minimum to the new version.
-
-Then, in later commits, clean up most of the workarounds and other bits
-that this upgrade of the minimum allows us.
-
-Ubuntu 25.10 also has a recent enough `bindgen` [4] (even the already
-unsupported Ubuntu 25.04 had it), and they also provide versioned packages
-with `bindgen` 0.71.1 back to Ubuntu 24.04 LTS [5].
-
-Link: https://lwn.net/Articles/1050174/ [1]
-Link: https://packages.debian.org/trixie/bindgen [2]
-Link: https://www.debian.org/releases/trixie/ [3]
-Link: https://packages.ubuntu.com/search?suite=all&searchon=names&keywords=bindgen [4]
-Link: https://launchpad.net/ubuntu/+source/rust-bindgen-0.71 [5]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- Documentation/process/changes.rst | 2 +-
- scripts/min-tool-version.sh       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ scripts/rust_is_available.sh             | 13 ------------
+ scripts/rust_is_available_bindgen_0_66.h |  2 --
+ scripts/rust_is_available_test.py        | 26 +++---------------------
+ 3 files changed, 3 insertions(+), 38 deletions(-)
+ delete mode 100644 scripts/rust_is_available_bindgen_0_66.h
 
-diff --git a/Documentation/process/changes.rst b/Documentation/process/changes.rst
-index 474594bd4831..84156d031365 100644
---- a/Documentation/process/changes.rst
-+++ b/Documentation/process/changes.rst
-@@ -32,7 +32,7 @@ you probably needn't concern yourself with pcmciautils.
- GNU C                  8.1              gcc --version
- Clang/LLVM (optional)  15.0.0           clang --version
- Rust (optional)        1.85.0           rustc --version
--bindgen (optional)     0.65.1           bindgen --version
-+bindgen (optional)     0.71.1           bindgen --version
- GNU make               4.0              make --version
- bash                   4.2              bash --version
- binutils               2.30             ld -v
-diff --git a/scripts/min-tool-version.sh b/scripts/min-tool-version.sh
-index a270ec761f64..b96ec2d379b6 100755
---- a/scripts/min-tool-version.sh
-+++ b/scripts/min-tool-version.sh
-@@ -34,7 +34,7 @@ rustc)
- 	echo 1.85.0
- 	;;
- bindgen)
--	echo 0.65.1
-+	echo 0.71.1
- 	;;
- *)
- 	echo "$1: unknown tool" >&2
+diff --git a/scripts/rust_is_available.sh b/scripts/rust_is_available.sh
+index d2323de0692c..77896e31dab5 100755
+--- a/scripts/rust_is_available.sh
++++ b/scripts/rust_is_available.sh
+@@ -163,19 +163,6 @@ if [ "$rust_bindings_generator_cversion" -lt "$rust_bindings_generator_min_cvers
+ 	echo >&2 "***"
+ 	exit 1
+ fi
+-if [ "$rust_bindings_generator_cversion" -eq 6600 ] ||
+-	[ "$rust_bindings_generator_cversion" -eq 6601 ]; then
+-	# Distributions may have patched the issue (e.g. Debian did).
+-	if ! "$BINDGEN" $(dirname $0)/rust_is_available_bindgen_0_66.h >/dev/null; then
+-		echo >&2 "***"
+-		echo >&2 "*** Rust bindings generator '$BINDGEN' versions 0.66.0 and 0.66.1 may not"
+-		echo >&2 "*** work due to a bug (https://github.com/rust-lang/rust-bindgen/pull/2567),"
+-		echo >&2 "*** unless patched (like Debian's)."
+-		echo >&2 "***   Your version:     $rust_bindings_generator_version"
+-		echo >&2 "***"
+-		warning=1
+-	fi
+-fi
+ 
+ # Check that the `libclang` used by the Rust bindings generator is suitable.
+ #
+diff --git a/scripts/rust_is_available_bindgen_0_66.h b/scripts/rust_is_available_bindgen_0_66.h
+deleted file mode 100644
+index c0431293421c..000000000000
+--- a/scripts/rust_is_available_bindgen_0_66.h
++++ /dev/null
+@@ -1,2 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-#define A "\0"
+diff --git a/scripts/rust_is_available_test.py b/scripts/rust_is_available_test.py
+index 4fcc319dea84..b66fa5933844 100755
+--- a/scripts/rust_is_available_test.py
++++ b/scripts/rust_is_available_test.py
+@@ -54,17 +54,12 @@ else:
+ """)
+ 
+     @classmethod
+-    def generate_bindgen(cls, version_stdout, libclang_stderr, version_0_66_patched=False, libclang_concat_patched=False):
++    def generate_bindgen(cls, version_stdout, libclang_stderr, libclang_concat_patched=False):
+         if libclang_stderr is None:
+             libclang_case = f"raise SystemExit({cls.bindgen_default_bindgen_libclang_failure_exit_code})"
+         else:
+             libclang_case = f"print({repr(libclang_stderr)}, file=sys.stderr)"
+ 
+-        if version_0_66_patched:
+-            version_0_66_case = "pass"
+-        else:
+-            version_0_66_case = "raise SystemExit(1)"
+-
+         if libclang_concat_patched:
+             libclang_concat_case = "print('pub static mut foofoo: ::std::os::raw::c_int;')"
+         else:
+@@ -74,8 +69,6 @@ else:
+ import sys
+ if "rust_is_available_bindgen_libclang.h" in " ".join(sys.argv):
+     {libclang_case}
+-elif "rust_is_available_bindgen_0_66.h" in " ".join(sys.argv):
+-    {version_0_66_case}
+ elif "rust_is_available_bindgen_libclang_concat.h" in " ".join(sys.argv):
+     {libclang_concat_case}
+ else:
+@@ -83,8 +76,8 @@ else:
+ """)
+ 
+     @classmethod
+-    def generate_bindgen_version(cls, stdout, version_0_66_patched=False):
+-        return cls.generate_bindgen(stdout, cls.bindgen_default_bindgen_libclang_stderr, version_0_66_patched)
++    def generate_bindgen_version(cls, stdout):
++        return cls.generate_bindgen(stdout, cls.bindgen_default_bindgen_libclang_stderr)
+ 
+     @classmethod
+     def generate_bindgen_libclang_failure(cls):
+@@ -245,19 +238,6 @@ else:
+         result = self.run_script(self.Expected.FAILURE, { "BINDGEN": bindgen })
+         self.assertIn(f"Rust bindings generator '{bindgen}' is too old.", result.stderr)
+ 
+-    def test_bindgen_bad_version_0_66_0_and_0_66_1(self):
+-        for version in ("0.66.0", "0.66.1"):
+-            with self.subTest(version=version):
+-                bindgen = self.generate_bindgen_version(f"bindgen {version}")
+-                result = self.run_script(self.Expected.SUCCESS_WITH_WARNINGS, { "BINDGEN": bindgen })
+-                self.assertIn(f"Rust bindings generator '{bindgen}' versions 0.66.0 and 0.66.1 may not", result.stderr)
+-
+-    def test_bindgen_bad_version_0_66_0_and_0_66_1_patched(self):
+-        for version in ("0.66.0", "0.66.1"):
+-            with self.subTest(version=version):
+-                bindgen = self.generate_bindgen_version(f"bindgen {version}", True)
+-                result = self.run_script(self.Expected.SUCCESS, { "BINDGEN": bindgen })
+-
+     def test_bindgen_libclang_failure(self):
+         bindgen = self.generate_bindgen_libclang_failure()
+         result = self.run_script(self.Expected.FAILURE, { "BINDGEN": bindgen })
 -- 
 2.53.0
 
