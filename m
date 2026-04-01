@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC0CED35177
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:52:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FBFD35177
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:52:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A588510F0A6;
-	Wed,  1 Apr 2026 11:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E316810F0B0;
+	Wed,  1 Apr 2026 11:52:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="TcBvoubs";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="P4KiRkYx";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 80C90453AB;
-	Wed,  1 Apr 2026 11:41:02 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id C1EB6453AC;
+	Wed,  1 Apr 2026 11:41:14 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043662;
- b=eLEKKbdgcUOZpras07bZgjy5ydUGW8CLwU+rSksIg3pHr771YQas26BrdC6+Fua5uVP5g
- WM2WtX7veq4yG7x9nDEL59qgzlP/EVxtcHl4HtLo/sMb4JBsavjLe2d237IJZSRCP0MkLkE
- xfyTL0iOCJ3xGli7TjawIrX1P9vU5KYBReUqJwit+Qx5UZFOQZFHgYoCHKFb1LPQcLFOe/s
- w5dMhGxkeVN64lDRGon5dcSz7U4r1APcnuSbxPnkzNuT7RUtGcu1ni6IN2amen/6BlLZie7
- tUKS8vgrxMjjkwEChK/vP2j2N75eiizmYvekTEdxU5AY5fqmfrTjk1vk1uXw==
+ s=20240201; t=1775043674;
+ b=qMwDan5NVw41pbU5hlHqcrci5XwthHywJm63ig4sUkMAbwmxnXU6DVkmGAzYSF6mu3LoT
+ O8zseId5PaKL9sMsKco+7mW4lq1Pu643bU4PsrU1F5x2K8z3iSd8Jr3tUFOznFIu2jfloV5
+ JNpIz2SkfDuDaHf9jKxyYlDPDapU/Kh5Q4j9s2fxjSieFhToyEFyVF3PHODH7Q4Wcr5bOnf
+ 2FKv6a4TtNtxkE8HAklxtsjaW0Hh+C1ricakIeW/o87qdV1XUt43qd7JJdkBDp+mrvFmxx9
+ kSCx3EfPW/AyLW9Ly3XOOR15phgN0bECoaOPjfhpKmBwfRmyjSVXb/nbYmTA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043662; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043674; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=8kT8s722ovhtbxKm8S2E/sotY5kh18huBCi/mWGnKIk=;
- b=FY0x1WnKLk5ltkLkiUf9VhJzGt9VMAkwN5dCizrMioUbsBpjLLH+ZqQ7FNTbBhM8aUpSB
- ROIF9bKZnL1RkLGT/Y+/wTgxsRF8Ndpy3RyjaSjYLokgGR7yPmZJHwHj/mePVPzk64nBV0x
- NjTG7y/T/TIG+3VT3lV7bhxnNRNti5BVaRimFQFeeCAHJZNgrt9y/Gf5myWMungn3kGoPTh
- T3TKidkdZVMB1ts3mJzucZCIgTMoicgK9AYWjUFfKOJU+mey3HAxdy50FgohWqfvYQENs3Z
- qYjVW7RTmLnVZLpivLghonyy+S2pmv0Yr08yluH243FxOR5Df+uzyZlNFRRg==
+ bh=HE89pqyRZix4hwK5R5aBac1yReoh+t6e8O8dTFuGWvU=;
+ b=qMPSS16HN4Po01lqQnfk/+Ct2JPSg3R2seGBB1m7Ob3rptuDEJKttwQ8M8Y0KSiP0eF8f
+ 1kiwpgDi5kr1k7i1eFq8BJNgiF9YbWEYEhtKDYuwyiimLMLxAXcAGBuYqr8mFI2h6Aji+0J
+ MZOhBRoHKIcJKPJMASL25ouaTrnSvz5cc+Q8F9RNwhy92Eav9w8ldIT9+ostflNlCNaq+d9
+ kZO/HR1ly5ldRpLpdJzyPWcsTiHz3OnY2+Q8KWlAYwt49lDnIHc6QRmb0AJE6J1+x7ozX23
+ YQihFyca4QMljbMm7fjhd64wM4K6539swn1a261wt2eehXQwvYnYASxyfHYw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E0DA845374
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:40:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EB10D45374
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:41:11 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id D308A10F0BE;
-	Wed,  1 Apr 2026 11:52:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EC9B710F0BE;
+	Wed,  1 Apr 2026 11:52:33 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id B15BE40919;
+	by sea.source.kernel.org (Postfix) with ESMTP id C15FF40914;
+	Wed,  1 Apr 2026 11:52:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D18AC116C6;
 	Wed,  1 Apr 2026 11:52:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45C32C2BCB2;
-	Wed,  1 Apr 2026 11:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044341;
-	bh=rmbcm0lGdPnutdStnqg0waumItTikO0U9rMNdtnv3yc=;
+	s=k20201202; t=1775044353;
+	bh=63eNaBb7HhBHNGZHs2ck4m5j8n+byLJscGHPx3NKsmQ=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=TcBvoubspcdQyo/6SD8RpK23KLdBlZmlyr+Q8oe4E3dFkmpEEorBsmt3GesO7Nl9q
-	 YWS4m1in4cZ+dOT++Q1J8Ig3gXZ3l/Hig5Eq0rMW9FYKtKQyhyMus1JqK0WZx6+cBF
-	 JUayEvXxkm9IOj16k6bywJiawbKZPnONK55YY01FSqb/NrgkEyVGWBIPdo/SvIYWic
-	 U4AVc/BrZqDX7suU+KqtSQ4Q52UqYwQ2LYV11NVcOdsn5R4QiS61WDhULH+KewBvAe
-	 /h+DQTiY+hPt11we7Vp7ycNYeVm2Tn/oACaSi3eP098GkbftxBkTZa4EkAWaXiFg9t
-	 Bec4c3Sfzej1A==
+	b=P4KiRkYx+9pR8FcDn58eZ58Tl+l8DaXIaKnBFFMxFh3P+IXQUnqgEGZH8vAunNvs4
+	 BLd1TybjNwHbXADCPR4z7Vj6dtmKy7ji1oU2bzwWLnPbbnFVZYCEMjSB2UQpls/Ouo
+	 pYPJfGFA7EPUSZecOxj+EVb7CtgpF1zN5Tw8IewblUNyc/Ie7LYX5Lt+C5FMZplSJ6
+	 xbIWlfeyv6YRSlqqa7C9IoWKbjP/NbQH9T4QOWe/CgvypooqpdHo0TWO2wHyf2zcvI
+	 RVJtUt/y5WBbMgeocVhCwVhlVD3aiintQfQGjzicRa8XTpUjFXmucwr/KWim4JVpaV
+	 E6XIy24XYnOiA==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,15 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 32/33] rust: kbuild: support global per-version flags
-Date: Wed,  1 Apr 2026 13:45:39 +0200
-Message-ID: <20260401114540.30108-33-ojeda@kernel.org>
+Subject: [PATCH 33/33] rust: kbuild: allow `clippy::precedence` for Rust <
+ 1.86.0
+Date: Wed,  1 Apr 2026 13:45:40 +0200
+Message-ID: <20260401114540.30108-34-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: NOQNWSUXNJMZM6UCW23TEOSWKDW2TYFQ
-X-Message-ID-Hash: NOQNWSUXNJMZM6UCW23TEOSWKDW2TYFQ
+Message-ID-Hash: AX7LYCA6V3CUXFZY6L74LQRGVST65FBU
+X-Message-ID-Hash: AX7LYCA6V3CUXFZY6L74LQRGVST65FBU
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NOQNWSUXNJMZM6UCW23TEOSWKDW2TYFQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AX7LYCA6V3CUXFZY6L74LQRGVST65FBU/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-33-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-34-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,50 +137,84 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Sometimes it is useful to gate global Rust flags per compiler version.
-For instance, we may want to disable a lint that has false positives in
-a single version [1].
+The Clippy `precedence` lint was extended in Rust 1.85.0 to include
+bitmasking and shift operations [1]. However, because it generated
+many hits, in Rust 1.86.0 it was split into a new `precedence_bits`
+lint which is not enabled by default [2].
 
-We already had helpers like `rustc-min-version` for that, which we use
-elsewhere, but we cannot currently use them for `rust_common_flags`,
-which contains the global flags for all Rust code (kernel and host),
-because `rustc-min-version` depends on `CONFIG_RUSTC_VERSION`, which
-does not exist when `rust_common_flags` is defined.
+In other words, only Rust 1.85 has a different behavior. For instance,
+it reports:
 
-Thus, to support that, introduce `rust_common_flags_per_version`,
-defined after the `include/config/auto.conf` inclusion (where
-`CONFIG_RUSTC_VERSION` becomes available), and append it to
-`rust_common_flags`, `KBUILD_HOSTRUSTFLAGS` and `KBUILD_RUSTFLAGS`.
+    warning: operator precedence can trip the unwary
+      --> drivers/gpu/nova-core/fb/hal/ga100.rs:16:5
+       |
+    16 | /     u64::from(regs::NV_PFB_NISO_FLUSH_SYSMEM_ADDR::read(bar).adr_39_08()) << FLUSH_SYSMEM_ADDR_SHIFT
+    17 | |         | u64::from(regs::NV_PFB_NISO_FLUSH_SYSMEM_ADDR_HI::read(bar).adr_63_40())
+    18 | |             << FLUSH_SYSMEM_ADDR_SHIFT_HI
+       | |_________________________________________^
+       |
+       = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#precedence
+       = note: `-W clippy::precedence` implied by `-W clippy::all`
+       = help: to override `-W clippy::all` add `#[allow(clippy::precedence)]`
+    help: consider parenthesizing your expression
+       |
+    16 ~     (u64::from(regs::NV_PFB_NISO_FLUSH_SYSMEM_ADDR::read(bar).adr_39_08()) << FLUSH_SYSMEM_ADDR_SHIFT) | (u64::from(regs::NV_PFB_NISO_FLUSH_SYSMEM_ADDR_HI::read(bar).adr_63_40())
+    17 +             << FLUSH_SYSMEM_ADDR_SHIFT_HI)
+       |
 
-An alternative is moving all those three down, but that would mean
-separating them from the other `KBUILD_*` variables.
+    warning: operator precedence can trip the unwary
+       --> drivers/gpu/nova-core/vbios.rs:511:17
+        |
+    511 | /                 u32::from(data[29]) << 24
+    512 | |                     | u32::from(data[28]) << 16
+    513 | |                     | u32::from(data[27]) << 8
+        | |______________________________________________^
+        |
+        = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#precedence
+    help: consider parenthesizing your expression
+        |
+    511 ~                 u32::from(data[29]) << 24
+    512 +                     | u32::from(data[28]) << 16 | (u32::from(data[27]) << 8)
+        |
 
-Link: https://lore.kernel.org/rust-for-linux/CANiq72mWdFU11GcCZRchzhy0Gi1QZShvZtyRkHV2O+WA2uTdVQ@mail.gmail.com/ [1]
-Link: https://patch.msgid.link/20260307170929.153892-1-ojeda@kernel.org
+    warning: operator precedence can trip the unwary
+       --> drivers/gpu/nova-core/vbios.rs:511:17
+        |
+    511 | /                 u32::from(data[29]) << 24
+    512 | |                     | u32::from(data[28]) << 16
+        | |_______________________________________________^ help: consider parenthesizing your expression: `(u32::from(data[29]) << 24) | (u32::from(data[28]) << 16)`
+        |
+        = help: for further information visit https://rust-lang.github.io/rust-clippy/master/index.html#precedence
+
+While so far we try our best to keep all versions Clippy-clean, the
+minimum (which is now Rust 1.85.0 after the bump) and the latest stable
+are the most important ones; and this may be considered "false positives"
+with respect to the behavior in other versions.
+
+Thus allow this lint for this version using the per-version flags
+mechanism introduced in the previous commit.
+
+Link: https://github.com/rust-lang/rust-clippy/issues/14097 [1]
+Link: https://github.com/rust-lang/rust-clippy/pull/14115 [2]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- Makefile | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/Makefile b/Makefile
-index 1a219bf1c771..20c8179d96ee 100644
+index 20c8179d96ee..a0d6ed050c8a 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -834,6 +834,14 @@ endif # CONFIG_TRACEPOINTS
+@@ -836,7 +836,8 @@ export WARN_ON_UNUSED_TRACEPOINTS
  
- export WARN_ON_UNUSED_TRACEPOINTS
+ # Per-version Rust flags. These are like `rust_common_flags`, but may
+ # depend on the Rust compiler version (e.g. using `rustc-min-version`).
+-rust_common_flags_per_version :=
++rust_common_flags_per_version := \
++    $(if $(call rustc-min-version,108600),,-Aclippy::precedence)
  
-+# Per-version Rust flags. These are like `rust_common_flags`, but may
-+# depend on the Rust compiler version (e.g. using `rustc-min-version`).
-+rust_common_flags_per_version :=
-+
-+rust_common_flags += $(rust_common_flags_per_version)
-+KBUILD_HOSTRUSTFLAGS += $(rust_common_flags_per_version)
-+KBUILD_RUSTFLAGS += $(rust_common_flags_per_version)
-+
- include $(srctree)/arch/$(SRCARCH)/Makefile
- 
- ifdef need-config
+ rust_common_flags += $(rust_common_flags_per_version)
+ KBUILD_HOSTRUSTFLAGS += $(rust_common_flags_per_version)
 -- 
 2.53.0
 
