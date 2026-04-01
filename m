@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C40EA1076389
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 17:36:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC96D1076387
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 17:39:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F88E10ECFA;
-	Wed,  1 Apr 2026 17:36:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA2710ED70;
+	Wed,  1 Apr 2026 17:39:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ffeo3cdA";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hWUQ4/mD";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6501B45471;
-	Wed,  1 Apr 2026 17:25:20 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id BC93145473;
+	Wed,  1 Apr 2026 17:28:27 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775064320;
- b=OYqQsfF+JUERkqZaJNDwV1FB1b5OFYzU+6ZD510fX4bNKzoWemHfBXzW9ugj9F8ncyw7q
- vrF3b0E2Eo72VLIndRC2k2MF5aBZ/4vyX9SYJAdZNUkEbGKRV22HU/VRVYdu3IEdJcyqg3g
- 3bv34d4dYfHqC8hATrETA89q2oDD1LdGOzRjZE4uAhMXN+msOjITMxam+TAwx5H1XFC+mi0
- y+5DwzGcYdXS72aMS27sgFRJVA0R6gei/LhUmOrgvM3ZasTbmHHdTSWdEHhEerEkzmEBJAc
- 7H/qPMZFDyN0kbBPOrLNozZYxcm6kFr/Pld+5tufuQHlHNvO3wSqfO/76QYw==
+ s=20240201; t=1775064507;
+ b=jkB/WKj6oUMB9n6htxe9JB+OzEeYtbi06iJGgPZp/NchD9ZJ50ViA8e8iVtTeB0KMbFHa
+ cbNvuAjbyO9/SCnMivY9CnwZ5femkciRz1L10I4KaBQYhKNeAiQmf58Ww5JzHXZwOCGCREO
+ fcwcF0FuKcP9KpR0DWCPacwI/IkpDM490DGNbI5UUwp1W7Y6RDlb7wUkrBJSQHn5ZsuwzLB
+ jgv1lb9vmcfSg6KyHcT9DMyodNhRzadYziQ882o+llGFf9M3QcVXTXxQbJtIfj/H1q8BUcm
+ 4CEvZ/fCkkUffITxyeN4A6MkKY9yCz5RXjno60N0/Ne3ieUmBh/wxDtJDV6g==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775064320; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775064507; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Madpyzu+7zvyLSmbgHorRXu83g1kA3bqkxQ/QKvvzXA=;
- b=C400OmBdIqSSYdsliqy02BxVmIXLonZJz3W9sQO0wYjWnXXpojkJ7fY8lnmHmjywIFvFr
- A8yYkHdZZ0utB3Tdq3MwIiqOJzya3VP2O5wTIKLZho4PBkE6byPF4g20hnWle1znWl//Itj
- ipYa19Zpx+8APZykBSRGU3znuv3PNte3tqF2OkAVnv7EZZyHpPEDGaG/mHhcAnlmpCLTCzz
- kzyYGemQYRO0cLXt07pwc3sD9axdkXSd03MxPMyZCpNGFSbsgk/nHJ7V7YT5pzFeKNprf6P
- Efc+fk62LIEbbU9rWFO0qtc8MxrP7yoUDnUyGFNbdFQVDmYfsvq59LVt2mwQ==
+ bh=jYUaVSUk5Sb3SOTuQeoUN5R4tL+13WiT/Hvm7LoUgnk=;
+ b=MKKBHmGRcL0hF1FJXWCx12G34RcviEdwETiJFO66CKV5vTiSKRDHut42CkdF75MYJDXNF
+ BjV1AiRjs2/J99uNJ5sgNczVpD2k1ZA2JMEwzdLXSXNcOHvY6PED07Up4KvJ+sTyBXpCMxH
+ KQH1a+Uq+tF9uVpKYMYXm3JNjzj1bLQZ+HflgLM5MeHSSCnd2PRcZp8/rONtOxm4U/EgOAV
+ JwnetUrgvHTdiWGniVQxinaX1Tt2vDK0OwiwIIOhdYG72Hoh/vuk8aZwyokawIQfpOFYkOp
+ /U8W/bRIeBUToWS/Gangdi3uegRWmifWhzh5nam53BRfwPO5ZnySY1cmauAw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=pass;
@@ -45,94 +45,94 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 24BE64534A
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 17:25:17 +0000 (UTC)
-Received: from mail-dl1-f49.google.com (mail-dl1-f49.google.com
- [74.125.82.49])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0F05410E7FD
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 17:36:39 +0000 (UTC)
-Received: by mail-dl1-f49.google.com with SMTP id
- a92af1059eb24-127337e3870so2889c88.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id D99DE4534A
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 17:28:24 +0000 (UTC)
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com
+ [74.125.82.169])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 66BD610E756
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 17:39:47 +0000 (UTC)
+Received: by mail-dy1-f169.google.com with SMTP id
+ 5a478bee46e88-2bda3b4318dso4976eec.1
         for <nouveau@lists.freedesktop.org>;
- Wed, 01 Apr 2026 10:36:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775064998; cv=none;
+ Wed, 01 Apr 2026 10:39:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775065187; cv=none;
         d=google.com; s=arc-20240605;
-        b=j8P+asf4HxjOR60Qw43ahPwLsEPE1TIm9v9IvqREIjl5kLHukCu3DH7Z8ucmss8kNU
-         Ics+IBH6052cHTWQIlOnYrOu1hhXDkDp5V7qjSpeOfVcbK3EleOx2Qp6wiM+T0/EuOmh
-         NR7tmdHAWrzRdlB+a3gQXuVYE5tvGg0KSEE1PyEcow7pDxmVOV5C1medrtKopnh4IIbx
-         tTZIFl+NAA6BQ5jOX/sk2w/p3ur5eRXd1CuuTCVg4HXCT/CVYrkToKgUcIOqG0ywcUJl
-         rUrNILIJztGTGTXES1YBXEXqkF1q0R8OzqtkeHZaS29gzf1dD5kHm5FOrdukGVEAp57N
-         C3+w==
+        b=XZJYbKRZx2LNIgT1+yJGhTCBMV/+Sla2VCnf6ShrdK2PUA56nFQ0uFTbmDt8O9QYRh
+         bQj4+lACT7aUG9en/BdejDIw/BszEbEabL6JgzmWoZvK/pNLx2kLOJ2ArCgjdj7MIFoU
+         msjZUAbFVAzh/MD8H/oIdsbQ6kxppBjy5/FyM52ZVxu/dotBiRJR5KadrzD0DzmiPMqk
+         YvNV2ZEWxHUpb9Y7U7/ut8Y0piThphGPBDXVNdDZQiqpsrV7foIpuLPq9u5+g1uFSP5x
+         AuPpLJc0TSIPd+YEJaBNQINJpns5VOp3yzIP9zvWE7+0qGJl8vJS1ldBK6hXHrzpLD4L
+         vVRw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=Madpyzu+7zvyLSmbgHorRXu83g1kA3bqkxQ/QKvvzXA=;
-        fh=/hbenESgzwVLRdpL5v+li6+9lBwS/qYFWSa7ZRj2jf0=;
-        b=UuVEnXf4Lwjhdi6ND/8SRnIyLuZ8AcP7EL4GE2d/hM81X1CDJ1FG391I3r6s8wL5zc
-         k/0lgOT2bITplVW3YetwYVMiIMylPFDhAyABcYOzFQ2bk71xnNQhi4DDbZgEpzDvCnWQ
-         L3LtQeA/GIm3qv+aoEFP9sgj8TjPlqln+JRoh9iRsQaTinjgzMgUKfoA0f8i488aG/p8
-         tLDMNzYSywicnmzKDmbe5Ptek+ueJpbyEWqlGR7Jc29nbs5BWn9pimQfsue70DWZ1+Ua
-         Qz0Xvdojk0EZNpGSVdlOIS2+EhjPh+xtLwQ+YcoN00Ibf+bA4/457qx8pg5MjRwmMnxn
-         COvw==;
+        bh=jYUaVSUk5Sb3SOTuQeoUN5R4tL+13WiT/Hvm7LoUgnk=;
+        fh=RbSr4LvzvSJ4c5I2HiZedmm7+5TrPh+Q6MHD7VWgAbM=;
+        b=PqLiA38OHRlmBj9g5g1xxT6roRj/Fm05fJ+AWXaFV+Htrh8IZfegWtTVuX13hThOp1
+         6orKTA8ScejdkuyY8byRioqrvoMxqer9szt55Q7os5ntb/pTEawf6cxpKrKAtk+dSSfW
+         IUKsAMRj9t9YeDmabKd60ZFGvo7HufFeCyVqq0DHz8HrQORwDw4s2H/0avBQwRaf5ZKj
+         6cOVAFnGi0J6J0G42kRvKVvpGuYKVg6WbSK4Rv5JS9AReGHUVI+qlIOs0j2/Ry47lQIt
+         dEfvvfRCTpKRa5C4YpK9GJbB+m7pn83HCySOIiCAWNApE5xinfkA69RTtpy7yUTru8Ko
+         L2mA==;
         darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775064998; x=1775669798;
+        d=gmail.com; s=20251104; t=1775065186; x=1775669986;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Madpyzu+7zvyLSmbgHorRXu83g1kA3bqkxQ/QKvvzXA=;
-        b=ffeo3cdAsPx0AQnVdPUMGxjSjMFpsW8Qe9nlok5MNma0xS7koP4AZDSsDAaTiYMqQm
-         HBP7PqOglC9COIXpnKBnk+JeNSY0duWiCaZwddNHaqeHVO27a3VTlZ4I9HGqMYbyjD6o
-         igras4rVWBz1L8bZDQ9xnEgXH+DWKqpJsCl5D2VohsDqQGUcB8PP98cIzUaME+jfefYH
-         t1h/exWS2ZNljqVI4mnlSlFntMEOxg6XkI3B93lLKUNJV5qs3P79BsniIx6cHfg5PzlQ
-         SJ8Yn8KpMoiWVsAXXIDG/9U7WVH7SwyQxxQX6oPo2hAZKPGtK9lcPgwDRBLfXcN6KL1y
-         /0GQ==
+        bh=jYUaVSUk5Sb3SOTuQeoUN5R4tL+13WiT/Hvm7LoUgnk=;
+        b=hWUQ4/mDCNNpbFCn4bI5SYdjvD6naFeFDgjqLJPXbUHA3TlyQ1d6BK7gcqlFh37roA
+         2MxtOwTxxuDn2++yzCPCQWxZAFPA/iY1IAWUyAMRBF2bn+SovsmZpdn4IRp5JXwehgL/
+         WlnF/9Sae4cWG+OI5JJX3gYDgUUfDtqvfMsc1NjEbtg+AJfKTpIlsy7Ox3+TjQ+kJ6fg
+         jFlcjgko8bNDQLDL+8xv5yaHSW2WAQHvyyEbVANhlhT1afzHJQ8/7EMK6y44DN5yF8sr
+         52Zh5Xod26wN1Trug+MNOOERyFy/VV87Oz6cLyQbhXDzpRmWVFUpIy9RNsg2TABotTwD
+         moPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775064998; x=1775669798;
+        d=1e100.net; s=20251104; t=1775065187; x=1775669987;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=Madpyzu+7zvyLSmbgHorRXu83g1kA3bqkxQ/QKvvzXA=;
-        b=PP8uTcp8vkdsRRuX7ZtO0IslJTQoo3AohtkogD6CuM3V21Ib4GJx143bNZyxwTvKmn
-         uPsf1bASPDQRHySFhiWfdDIPEeb+oYf2M/HC6Sw54tvZJYi29DkM3eiI6FbcLYcNaxbc
-         wHefKb9OVddyonRhpYsdujfNh9r3wpWDEhv+Tqs23fB5C7r7yuWF7ImsYRPRx2N1KbM/
-         7iDdnZQky5kM9KeV0TurohlJtcF3jsH+4ygIfJ7Xy6JzWZWPGRGrQqFbtnDB4WbEtl5i
-         2e3XZg++hIrZRbATC4oUWX8G2AvAbGfH6y8EsTaz5muKfKpj7cFhzeoErxY3OxeoWO44
-         DhYg==
+        bh=jYUaVSUk5Sb3SOTuQeoUN5R4tL+13WiT/Hvm7LoUgnk=;
+        b=b1rYp4uGM2SWofjpHAZsXJMpBoLupDrdfwI+hqCyz84Uv5AOXadQdziUWWV45H20fW
+         KP+w21TF/C3wNHRCy4oKLpY+K6VurdkK5UJHfrGlYS1WSdDFSNfLbyUH+5u188nUI0A+
+         hp1aKWBjhM9brKrDg5jT72ooBBLw4zoPZ2oVrgSGa350/+C0G1kzjv2W1SQip1E1gj7s
+         RbL2gQTNPPtS5SlvEAsNMPcTFYVP7ID8MUt0uhm+kLJsghi2SnCadpFhxhqesozEXcSL
+         STUziws2nIIYJB3zK+lqLF7d+DSTn4LERhlMNx9v7JIVniEzIjshex6TsrhWKwaOHPBm
+         Ugdg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX+bKS/X+dLE4tVGRJ3FieFmQuISHtzXEjcdpXRN4aCWBqxJbx5kSloThr6KrGtFLO+QU6HeV1r@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyHIAqoz5fBXGokRwt5JzFjkkzH6BRe3tI8eKYub1uFZDe1QMqo
-	157maq0vypGG4LUN62AJos2DeVX+Ly23vs4YEfhybLtXJJiob/P/Sae49SjoFYnwj/Kysqx1+dq
-	62zZjpn7BtBxiXFxIlOZ8ybFekzCxhaU=
-X-Gm-Gg: ATEYQzz9lAMWmJmkXLx4ArO+q7W1INrKAX2PPK6r+NkwN5n284AMYITw20eknrnnE4a
-	vTXUUalItLj2D07P7x3iTkZIt/JVBMhbrHibp/T0w4IyM9cdCwNMrRJly/gI7b8DleKvPLGbNqQ
-	XCX3XNW/AGFwx7I/7aXmBI9zGLY3D9m5TpJ+Z52VVSmSMmn2pheULleWXQ+b2TuLynSNWJ12PBX
-	N/xvgGISTCTT9tgeqWDaLI4KdXRVAIPWL6lR7R995MdmijLewU77bgejo1T/TFn/QErJqk3zTsn
-	plrZ+5k9U7DWcwmUqfn+HgwY01B14WgQ7iNJlbyrS3O1JVrXUKWjgVWSUXJWGmHPEC5GLTRBCst
-	YSN8rAuQAqyPJXbJmEZRLq8g=
-X-Received: by 2002:a05:693c:2c97:b0:2c7:2cac:8162 with SMTP id
- 5a478bee46e88-2c9326aa500mr1010168eec.5.1775064998156; Wed, 01 Apr 2026
- 10:36:38 -0700 (PDT)
+ AJvYcCUlsscMQu7fqetpma5pvLDExGqoAJlhLSm/9AfMzko+nHEdom7Jcf7Ci30BGDCA4PB7cm+ibORg@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyPlLl+0OUyT/q454dlEONo+tQBGBCMziMcf66Wv6ES8PxJ/fkX
+	PUXoCLuzV/9J71bFf+E+GFr+Ps/hOVUoCF8Zucf7cCS06FbnCRMEIezCarKxOrn7TMP6mYuzy6N
+	4cIcWFRUo3VS62M2InnZQScQfSiuO6IE=
+X-Gm-Gg: ATEYQzwjVNK7ukzqe/vgOud1L+R/jKcAgRTblXyATbmWibWsXSRHkqeW2NW4kG7FKfP
+	+AyzMH9prYY8U1YGMKzjQBtvloc+E+5DmOM26jAxhTRsw2uzKjAX9AiW9FeMx6PN1GJqLdLX9/D
+	u5Hrdg4VQ+Sc+g6JXbgjY37Qwu0om1mvZwwe4Fmvn10CJd9V7TR0vgzOPlQzLLLZQopwv9T1O+O
+	1XsfenhFkV0hi62aYUCKIAdGZZZ/p80y99YFNmlN3S6yFo18j2zgErpLrBCPJVnteCQNzKIHQZZ
+	n/YgSJ+dX8jsocxyqXzRFHVwGqa2bHRHcZ6dkwZD0SsSGMtGE3Bhi11WcW7XUhrr4IxVnRKRytd
+	j+k3oaZGu8MXbXSXadc3OXF/U7GdIpLwWVg==
+X-Received: by 2002:a05:7301:4586:b0:2c7:2cac:8147 with SMTP id
+ 5a478bee46e88-2c932cb3abamr970192eec.5.1775065186457; Wed, 01 Apr 2026
+ 10:39:46 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260401114540.30108-1-ojeda@kernel.org>
- <20260401114540.30108-9-ojeda@kernel.org>
- <DHHVEPJHLGDW.1E6KDP9BUFG5U@garyguo.net>
-In-Reply-To: <DHHVEPJHLGDW.1E6KDP9BUFG5U@garyguo.net>
+ <20260401114540.30108-10-ojeda@kernel.org>
+ <DHHVLQAOMLWB.3FHHSYKNM5TNP@garyguo.net>
+In-Reply-To: <DHHVLQAOMLWB.3FHHSYKNM5TNP@garyguo.net>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Wed, 1 Apr 2026 19:36:25 +0200
-X-Gm-Features: AQROBzBeO_yfCUmMruxpBPrHPRt9Z-RBtWsQqT4MIRVUyc-eOkOj6bAx0WG8aNs
+Date: Wed, 1 Apr 2026 19:39:33 +0200
+X-Gm-Features: AQROBzBO7Aafw_pbzha_JEZl4Ht2QE7dpytXYa0WjnL8RQv-FxGnezpSMqEOLn0
 Message-ID: 
- <CANiq72mnnro6UD3SYgTOG+kipwkTBvbEAGH+jXUa3kLTUNje2A@mail.gmail.com>
-Subject: Re: [PATCH 08/33] rust: kbuild: simplify `--remap-path-prefix`
- workaround
+ <CANiq72kSYFiS6zN+VLs2URhAeHy8_-aEXki1pyR0qoj7jO-qSQ@mail.gmail.com>
+Subject: Re: [PATCH 09/33] rust: kbuild: make `--remap-path-prefix` workaround
+ conditional
 To: Gary Guo <gary@garyguo.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: AE3VZFMJEEBFK4Z4U6QKFL2K4LKCFOMI
-X-Message-ID-Hash: AE3VZFMJEEBFK4Z4U6QKFL2K4LKCFOMI
+Message-ID-Hash: ELLTL2BIVIPPBJ3SEHWZBH2T6MYPJCTD
+X-Message-ID-Hash: ELLTL2BIVIPPBJ3SEHWZBH2T6MYPJCTD
 X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -171,9 +171,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/AE3VZFMJEEBFK4Z4U6QKFL2K4LKCFOMI/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ELLTL2BIVIPPBJ3SEHWZBH2T6MYPJCTD/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72mnnro6UD3SYgTOG+kipwkTBvbEAGH+jXUa3kLTUNje2A@mail.gmail.com/>
+ <https://lore.freedesktop.org/CANiq72kSYFiS6zN+VLs2URhAeHy8_-aEXki1pyR0qoj7jO-qSQ@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -183,39 +183,18 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Apr 1, 2026 at 3:59=E2=80=AFPM Gary Guo <gary@garyguo.net> wrote:
+On Wed, Apr 1, 2026 at 4:08=E2=80=AFPM Gary Guo <gary@garyguo.net> wrote:
 >
-> I'm not sure that I parse this. You do remove the filter-out completely b=
-elow?
+> Okay, I see what the comments mean now. Perhaps squash this to the previo=
+us
+> commit?
 
-(I see you saw the other commit)
+This one was mostly to ensure the workaround was not needed anymore,
+i.e. it is more "optional" than the other.
 
-> Looks like this is going to conflict with rust-fixes (which adds the
-> --remap-path-scope). Perhaps worth doing a back merge?
-
-It would be only a couple lines conflicting, so it should be fine.
-
-Having said that, when I was doing this, I wondered if we should even
-consider keeping the workaround. In other words, locally for
-`rust-next`, the "normal" commit would be to remove the workaround
-entirely because there the flag doesn't exist to begin with (i.e. the
-workaround should have been removed back when the revert landed).
-
-Then, when conflict happens in linux-next, we can just keep the
-addition of the flag from your commit -- the rest can say as-is, i.e.
-no workaround needed, because you only enable both flags in a version
-(1.95.0) where there is no need for the workaround (which was for <
-1.87.0).
-
-It is also why I added the second commit here, i.e. the "make it
-conditional", because I was testing that indeed we didn't need the
-workaround anymore.
-
-So it may just simpler to do that. What I thought was that perhaps the
-workaround is good even if we ourselves don't pass the flag, e.g.
-someone else may be passing it. But the chances are very low,
-restricted to a couple versions, and the error is obvious and at build
-time anyway.
+In fact, we may want to just not have neither of the patches, i.e. we
+could just remove the workaround given the timelines of the branches
+-- please see my reply on the previous one on this.
 
 Cheers,
 Miguel
