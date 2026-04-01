@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 640F4D3517B
-	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:48:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82C6ED35177
+	for <nouveau@archiver.kernel.org>; Wed,  1 Apr 2026 11:48:17 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1945410F064;
-	Wed,  1 Apr 2026 11:48:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6111110F068;
+	Wed,  1 Apr 2026 11:48:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W7RUQV2H";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BctafedQ";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id EDC754535A;
-	Wed,  1 Apr 2026 11:36:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3E1FF4536C;
+	Wed,  1 Apr 2026 11:36:55 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775043401;
- b=zah8ekFElmJUSLMWKx/Ga2F6BO0ZyINl8soTSRdV0HwM1+jVMjBD2TRT5HPvbNFlJvChI
- N5/yi0VFzCZe3Hk7QcDfnC6N2+p9UfJTTUAwRs/81cKpMhwCaiQ1+8A0jp1WuAodAHc9Ewp
- 0JUIHgpQK/Bev0e64f/+5UYhTObsAZg6hcaYnPhlIg55Yzl1lW3JWHTbh0sblOPzOhf+Bgk
- 1shW0+V15FjsL9jS1BWl3bA8ii1WyMzMG1KkOKvJW5OIkwOwQpf9KJNp0lkrbiYp1WLYpnD
- +fGgyaQ8wWsoTAuvump8T3drqa1IacImBu5/z6ldFddX4rnOQzWMtpk7yWnQ==
+ s=20240201; t=1775043415;
+ b=kOR1E1MnxM02/zZ+fDpI4vb42Jmz0UEYsQYrHwr1y3dIMdNsCOa2TJoIln7VB9vR9h9FT
+ 21EAa0Q164q9/c+t+6sV1kZG/upOovP+5dsX3O7B9zs0wu8Zx3Vb9BoN6hhkm16iJdHkczs
+ zWfFu8hklwOH+fsLjOkMxJjQ3MWJX9CGINpcERFS0LfxhEZ1JV073Lt6fwF5OWZb4PP+jOj
+ VmYGEdWOhc9Reqg0oLZ5x2Bu5uTFG8BoV1E5oxUzpNlWFZOP2eb7RZnbg0S7m/EGaa/v+nO
+ L4HMf+tQ4IdeuJjpvARTUaF2ro38Spbo9HddVOWJNIVaMUiWfUQYd5ys2EIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775043401; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775043415; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=vWEKmqVBjTEpQwDIjVnmDz4c+/yDDPJZ0EI/QhjWeUI=;
- b=ZHDcaTisSivYIuYJacgOFckPAz7j4SZX5vyizwlpP3ZBI6PxkJP+Z88zGhIMjQYMp1k7s
- S7q+fPzjGNQjffIfgbB27LY+/LSZnWldPP44b+yl1JKz1D0zjIjxu6KNH3DGQZ9Zsl7XPFf
- XEptSaBWDq7JixGNepeiepNnXER7vHI/IhCSbgS+UxmJdisZ01jV/bDS9h04nBbDsOy2iho
- UdZXEFdSN+RkfhxMjRZ98fl51DL3RhaVG9BEQxnJCfwDovcok/RtsiKoRzYPgtXeWZstx4i
- zI7sortXDy9rufNxMFTykyncA/Xblu1gR1g3fbo6ZuK70S3PJdGDJWIXIFdw==
+ bh=EZjiSKXVmjcHn9YoZ/yHco4+/3fGMxFZwKbyij6mW+4=;
+ b=Ig0h0xva4C/kDt31QSwJUUpffPg8ESZjipY2cZ+pYnRr5QebItwvFk3fWkoUDe6I7zVBP
+ NjfG7eXXhTRQ6XPYqMeppe3s6n6mp0BxLsBRqIe1+M540JWgT40p5Zxji41V6pwYJpIlQNd
+ k+pwqdsgPPm18C83qfnlhYTl7Dcvq3oD1Ua40VUiq//vmYoR0/dGuRzS52HNahQMCVjbEU9
+ PKO0I5+VfiWlDio+2yU4UCPK2vHIgQox6oTt/B9A998RBnYMPVOIFzBO1MmpPSi4qgZ/jHT
+ TZV/rGhFtipd3w9f8UgmLit0633xdNyqxWtrWpp4MxYChz+cldNagMW05f+w==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id E96FC40545
-	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:36:39 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E789F10F027;
-	Wed,  1 Apr 2026 11:48:01 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B3D9140545
+	for <nouveau@lists.freedesktop.org>; Wed,  1 Apr 2026 11:36:52 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9C24710F055;
+	Wed,  1 Apr 2026 11:48:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id C293E40914;
+	by tor.source.kernel.org (Postfix) with ESMTP id B495060180;
+	Wed,  1 Apr 2026 11:48:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F73C4CEF7;
 	Wed,  1 Apr 2026 11:48:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60409C4CEF7;
-	Wed,  1 Apr 2026 11:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775044081;
-	bh=adABYvIqd3NTguvnrLCuC9umM1YlmwtHIfAtv/sMMlY=;
+	s=k20201202; t=1775044093;
+	bh=Pc5ewSafnPFxKHksepcgeyeiYuBuOzddWiUYOLo44fc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=W7RUQV2HZDvpt7cb2QLkpsSjIXygeJXHzglkI2wvWnPnI2M1b6re/EbnmI0XwokyF
-	 wrrwYxN+/b+ugyMYmH9z5Umd525lrDMMtI1jgyazypmGOGTbjEKg2Uf67p5z3f9Bmg
-	 c6SqSWS5dXNcFVk9QuiGQs+D+hKuqndvN5lUWvCrCbINYOm3WsPZfDOtxulUNeWqbM
-	 y89bDoxVl41VBEb3zkJMUAunBi8T9StVC/clbVAz8kgUAUUzxcNf8AJj/euaS7+TKs
-	 GxDpNxLDh92OcnV4pmrI+T0sPk26QqFNokBc1fpaibHISln0xBEqZ/Iba9ePZXRZ+o
-	 QQE6E4BNPh56g==
+	b=BctafedQl739LjER8MXut5f/UHQmwOMgY8eiBY9GPjZTa6UhwF33xTqKAsv/k9Jpr
+	 UXZVhOtcmmlzZOYf7Vb8QT5b+Sj/g3QrIBGXZxTM3uNlk/xWwz3doBmOs5UrfpKtV3
+	 BYeIBH88Jfn81A8lOQUe/b7L+LFkxTKWrdN5PeuA4bvB3G5atuDiVtTQLpJHRcGIi8
+	 078hXEr/7kYFNT7XsI7KvwhnIDxnv/Nf9IHI6ZwVq+LPtCR1GNMcpgdXOerf3ytBI9
+	 Tm7z4+ydsRwNHDCQkzUS7eKrnLuo9suwO47RZoBJZ7m1nD1AfOYKE0TTcQdbVpDSUj
+	 Rk7BTlqek9WZw==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH 10/33] rust: transmute: simplify code with Rust 1.80.0
- `split_at_*checked()`
-Date: Wed,  1 Apr 2026 13:45:17 +0200
-Message-ID: <20260401114540.30108-11-ojeda@kernel.org>
+Subject: [PATCH 11/33] rust: alloc: simplify with `NonNull::add()` now that it
+ is stable
+Date: Wed,  1 Apr 2026 13:45:18 +0200
+Message-ID: <20260401114540.30108-12-ojeda@kernel.org>
 In-Reply-To: <20260401114540.30108-1-ojeda@kernel.org>
 References: <20260401114540.30108-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: EE6EU4GEV2YUPSZTIDI3VSGATPLMENXR
-X-Message-ID-Hash: EE6EU4GEV2YUPSZTIDI3VSGATPLMENXR
+Message-ID-Hash: I3YF6TTSVQ4QQR5OF66MPNLEY5GBY3XF
+X-Message-ID-Hash: I3YF6TTSVQ4QQR5OF66MPNLEY5GBY3XF
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -125,9 +125,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EE6EU4GEV2YUPSZTIDI3VSGATPLMENXR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I3YF6TTSVQ4QQR5OF66MPNLEY5GBY3XF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260401114540.30108-11-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260401114540.30108-12-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -137,79 +137,38 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-`feature(split_at_checked)` [1] has been stabilized in Rust 1.80.0 [2],
-which is beyond our new minimum Rust version (Rust 1.85.0).
+Currently we need to go through raw pointers and then re-create the
+`NonNull` from the result of offsetting the raw pointer.
 
-Thus simplify the code using `split_at_*checked()`.
+Thus, now that we bump the Rust minimum version, simplify using
+`NonNull::add()` and clean the TODO note.
 
-Link: https://github.com/rust-lang/rust/issues/119128 [1]
-Link: https://github.com/rust-lang/rust/pull/124678 [2]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- rust/kernel/transmute.rs | 33 ++++++---------------------------
- 1 file changed, 6 insertions(+), 27 deletions(-)
+ rust/kernel/alloc/allocator/iter.rs | 8 +-------
+ 1 file changed, 1 insertion(+), 7 deletions(-)
 
-diff --git a/rust/kernel/transmute.rs b/rust/kernel/transmute.rs
-index b9e6eadc08f5..654b5ede2fe2 100644
---- a/rust/kernel/transmute.rs
-+++ b/rust/kernel/transmute.rs
-@@ -66,16 +66,9 @@ fn from_bytes_prefix(bytes: &[u8]) -> Option<(&Self, &[u8])>
-     where
-         Self: Sized,
-     {
--        if bytes.len() < size_of::<Self>() {
--            None
--        } else {
--            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at` cannot
--            // panic.
--            // TODO: replace with `split_at_checked` once the MSRV is >= 1.80.
--            let (prefix, remainder) = bytes.split_at(size_of::<Self>());
-+        let (prefix, remainder) = bytes.split_at_checked(size_of::<Self>())?;
+diff --git a/rust/kernel/alloc/allocator/iter.rs b/rust/kernel/alloc/allocator/iter.rs
+index 5759f86029b7..e0a70b7a744a 100644
+--- a/rust/kernel/alloc/allocator/iter.rs
++++ b/rust/kernel/alloc/allocator/iter.rs
+@@ -42,15 +42,9 @@ fn next(&mut self) -> Option<Self::Item> {
+             return None;
+         }
  
--            Self::from_bytes(prefix).map(|s| (s, remainder))
--        }
-+        Self::from_bytes(prefix).map(|s| (s, remainder))
-     }
+-        // TODO: Use `NonNull::add()` instead, once the minimum supported compiler version is
+-        // bumped to 1.80 or later.
+-        //
+         // SAFETY: `offset` is in the interval `[0, (self.page_count() - 1) * page::PAGE_SIZE]`,
+         // hence the resulting pointer is guaranteed to be within the same allocation.
+-        let ptr = unsafe { self.buf.as_ptr().add(offset) };
+-
+-        // SAFETY: `ptr` is guaranteed to be non-null given that it is derived from `self.buf`.
+-        let ptr = unsafe { NonNull::new_unchecked(ptr) };
++        let ptr = unsafe { self.buf.add(offset) };
  
-     /// Converts a mutable slice of bytes to a reference to `Self`.
-@@ -108,16 +101,9 @@ fn from_bytes_mut_prefix(bytes: &mut [u8]) -> Option<(&mut Self, &mut [u8])>
-     where
-         Self: AsBytes + Sized,
-     {
--        if bytes.len() < size_of::<Self>() {
--            None
--        } else {
--            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at_mut` cannot
--            // panic.
--            // TODO: replace with `split_at_mut_checked` once the MSRV is >= 1.80.
--            let (prefix, remainder) = bytes.split_at_mut(size_of::<Self>());
-+        let (prefix, remainder) = bytes.split_at_mut_checked(size_of::<Self>())?;
- 
--            Self::from_bytes_mut(prefix).map(|s| (s, remainder))
--        }
-+        Self::from_bytes_mut(prefix).map(|s| (s, remainder))
-     }
- 
-     /// Creates an owned instance of `Self` by copying `bytes`.
-@@ -147,16 +133,9 @@ fn from_bytes_copy_prefix(bytes: &[u8]) -> Option<(Self, &[u8])>
-     where
-         Self: Sized,
-     {
--        if bytes.len() < size_of::<Self>() {
--            None
--        } else {
--            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at` cannot
--            // panic.
--            // TODO: replace with `split_at_checked` once the MSRV is >= 1.80.
--            let (prefix, remainder) = bytes.split_at(size_of::<Self>());
-+        let (prefix, remainder) = bytes.split_at_checked(size_of::<Self>())?;
- 
--            Self::from_bytes_copy(prefix).map(|s| (s, remainder))
--        }
-+        Self::from_bytes_copy(prefix).map(|s| (s, remainder))
-     }
- }
- 
+         // SAFETY:
+         // - `ptr` is a valid pointer to a `Vmalloc` allocation.
 -- 
 2.53.0
 
