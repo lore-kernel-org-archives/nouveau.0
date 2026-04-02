@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F8ED3943A
-	for <nouveau@archiver.kernel.org>; Thu,  2 Apr 2026 15:25:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 841BACC6B3E
+	for <nouveau@archiver.kernel.org>; Thu,  2 Apr 2026 15:25:45 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7792A10F2CA;
-	Thu,  2 Apr 2026 15:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 045C910F2C8;
+	Thu,  2 Apr 2026 15:25:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dT7bUylh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WWFy+j0h";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C327145528;
-	Thu,  2 Apr 2026 15:14:16 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 523D845528;
+	Thu,  2 Apr 2026 15:14:20 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775142856;
- b=Ar42WjZcSLYgUHENR2GzRZEu0rXXDIWM57A4fZi36bj1+hgBX6PUvk9FBetLWBUOIhmvJ
- kHou6GJVBLVSp59nTS5TE+PZPMZr4Wo3EB+zmwUISFuF2EVHZUqJ8Yk1YLhKnivXCtdAhQs
- /1N3TnWKpez5hJl11Ony9BsYy/Vfmq+/lsx9aCdSeFHbL/UExlZl9qUJBcAqkk1ZAvCxXiy
- iqmNHGYauvq+sskMhsi0E44nvB/hOq4mr544OdCeZvkz3ezQim3NTZTDrg22ApIjrMIqlXb
- o1Rgv1IVdDTnwyAE/fSxfSnp3stXekkOGXbBE6id/IMHNdSPN1f8LzrC7EJg==
+ s=20240201; t=1775142860;
+ b=XlBIew4dnEvueE5PGqNG7rXbEGzsChWZc2bhIrlETOGJJB57yvaaMAKzeQCl0HJgQ3nKm
+ acWb/NJY4lqgQ/yIf7G52hC3OESah5J8Qr1uPdhqm0RDM8iOAg1lTMnhdkA2T1W9j73xScg
+ hX8Gum4GmiqtrsAQrMf7aIrt1j3MVjJvmejPTii6RP7kHJw/WJ9wd1cuKu5mOV6X7ZR7eee
+ dHTdJCqsQ8j3so24lPEfDAweQkrIUlk5vdp0+EllvxAgt18bfyLXwM8UT6FiCtRFDEQzSlS
+ rHbwHazcrpRVciqBGKRfxBZCvRiA5uGj/GfcyDeY4liW1q2082Y7e+LukoWA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775142856; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775142860; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jsZqXMOA6+08+1e/1wfJ3sIL2/JkhHAN1KgfUmJrvNo=;
- b=l1Bx8xT+FzlMAKAiMe5+CLtnCtW1yiK5WURTY6b3dze1nhUBbhU7mT4aOHgnbP/GiVGe0
- 5w+n8ntuTcUtYUR/3kyoIhJyFHVhCLWH4kofuxNInku5SyaCqx8nDBLn8Q+km0NiNRsg+Gd
- Il4XLVNLo7C2/bPPq6itE3Ez+8VnB5k+hyH+jefTvtaE7szRp05N0o5p60xY4MAOo5P+uq5
- H+OfPmphfQOSg5a2fdSs009cjWbivupSR/Jm3o8F/FvG1sMwh1eOtGeiEKMJ+mmqrv9ok2X
- e5mp45I/hYs0xJl1gJIB9ddKZV1PmjfjWqSK7IZhve0jfbSf0npK/VJDjtgQ==
+ bh=PSjKvVwbVDDtiCwFIfE4ZTPdZ1Vl8700F3Zw1O4JS1Q=;
+ b=ITfFQ3NnkQxbxrU6/PpyVHOoIlwEuc2HFWWMCdFWc+r7ikFXTFuifqreDbTt2/0Immd5S
+ 0E+dOy0HB8nA6hWzF9eDhqnHIQ9sHZsLoP40nc9G5/1biRbO5sJzMM0gK1Z/YjipIh7JnzV
+ bpOx7LH14j3OkV8wfCxISI7xcnRndJGNfqr0exjYxkz1hNDEyvw8Ymu5zJyxXsxN99mcZ6f
+ EG3Q2gjFzAuMnxJ0LWymFLlPj5cGoYofRO/dne94Tkk+SlQ8TC8ZiHQ3AF/8Go2Db9yr1FC
+ +ADaxoj3LfO0F8kUU5CLOUyxD+anwIpU7n9hhfjDR4Z8MxluuBQyTffE7Vuw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 908D744FE2
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Apr 2026 15:14:13 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C2E1B10F2BB
-	for <nouveau@lists.freedesktop.org>; Thu,  2 Apr 2026 15:25:35 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id CD16C45534
+	for <nouveau@lists.freedesktop.org>; Thu,  2 Apr 2026 15:14:16 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 49A7F10F2BD;
+	Thu,  2 Apr 2026 15:25:41 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 46CB660121;
+	by sea.source.kernel.org (Postfix) with ESMTP id 2E73843ABE;
+	Thu,  2 Apr 2026 15:25:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3369C116C6;
 	Thu,  2 Apr 2026 15:25:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64591C2BC9E;
-	Thu,  2 Apr 2026 15:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775143535;
-	bh=66uKRPN7TVakVzjWrjwY/JAdlsLoFP/ckXmV7Ra6ork=;
+	s=k20201202; t=1775143541;
+	bh=H/ah7c8QblLITP8uZx6rQ0un/4q3xoSn//XPdWvMKg4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:Reply-To:From;
-	b=dT7bUylhcLGIhM0cbOLbGLRV8WWLhBG1Ar1m29AbnL6B+dCXpAeh6ozZZ99KhHU1Q
-	 uuw6vC6DfppBVs8KZ50/VjuREnYlS51X/brvUBc/GWHLETsJQQNIY6n0H1Z56df6bk
-	 3cvw9BTVEGe8h9B/ofqM70svhn1f3SCT1ySHQ7gA2Q66ejQDrk+KBeAk9mYmibbS56
-	 ePrEp2egISOrZ3ow5V5e8IVP9JViwnHKg9SZfmUzXt1PvFwcSBN/pVQv0++HhqtD80
-	 +sMc/4isBdYqxL1ZISpX9duGpNtzc6/rsUqov12j6pmFzacQOdunhXXYownnoNP5Cw
-	 RmYsJ9QcbRgHA==
+	b=WWFy+j0hRa4F4bO2EyJSlQJHcjpjpFFyjoTGDTtQjbjJzxTkfZTuhsSiTyyWfX0O6
+	 g8vteUT5Rt/P+nSlO8IOZsb+5RgeXoASrPj02F/QUpNaVWyonQeoCTK9x4dhl1XXbs
+	 jfZ5iC7mVVQxOEJ7Oxyyam5pxByJzK8iKhMs07MX/0bItN4OcZZPImdZqt6HGC7kk6
+	 k1DslyAQTlkKWRLMW/s0H9WLkaxQtKFuZ2+GXcIanu5Y7IzXiD3HdRl/3lW8+iDFO8
+	 eYEYAdmUgrqDX7WspZto8eIeJbVIsour5bzkBTq/QAEZZOebr9ozUc6D3ldNaWNAzo
+	 GYbFhHKTSAcFw==
 From: Gary Guo <gary@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Boqun Feng <boqun@kernel.org>,
@@ -76,41 +76,42 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Trevor Gross <tmgross@umich.edu>,
 	Danilo Krummrich <dakr@kernel.org>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Mark Rutland <mark.rutland@arm.com>
-Subject: [PATCH 2/3] rust: sync: generic memory barriers
-Date: Thu,  2 Apr 2026 16:24:35 +0100
-Message-ID: <20260402152443.1059634-4-gary@kernel.org>
+	Alexandre Courbot <acourbot@nvidia.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH 3/3] gpu: nova-core: fix wrong use of barriers in GSP code
+Date: Thu,  2 Apr 2026 16:24:36 +0100
+Message-ID: <20260402152443.1059634-5-gary@kernel.org>
 X-Mailer: git-send-email 2.51.2
 In-Reply-To: <20260402152443.1059634-2-gary@kernel.org>
 References: <20260402152443.1059634-2-gary@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: BZTFNQ5YUOW3MW7VLMKRP3XSDAUHL2XS
-X-Message-ID-Hash: BZTFNQ5YUOW3MW7VLMKRP3XSDAUHL2XS
+Message-ID-Hash: 7PY6SWQWTKDYV7EBB2TIRSQI7SDST7DB
+X-Message-ID-Hash: 7PY6SWQWTKDYV7EBB2TIRSQI7SDST7DB
 X-MailFrom: gary@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: Alan Stern <stern@rowland.harvard.edu>,
- Andrea Parri <parri.andrea@gmail.com>, Nicholas Piggin <npiggin@gmail.com>,
+ Andrea Parri <parri.andrea@gmail.com>, Will Deacon <will@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>, Nicholas Piggin <npiggin@gmail.com>,
  David Howells <dhowells@redhat.com>, Jade Alglave <j.alglave@ucl.ac.uk>,
  Luc Maranget <luc.maranget@inria.fr>,
  "Paul E. McKenney" <paulmck@kernel.org>, Akira Yokosawa <akiyks@gmail.com>,
  Daniel Lustig <dlustig@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
  rust-for-linux@vger.kernel.org, nouveau@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
- lkmm@lists.linux.dev
+ lkmm@lists.linux.dev, dri-devel@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 Reply-To: Gary Guo <gary@garyguo.net>
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BZTFNQ5YUOW3MW7VLMKRP3XSDAUHL2XS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/7PY6SWQWTKDYV7EBB2TIRSQI7SDST7DB/>
 Archived-At: 
- <https://lore.freedesktop.org/20260402152443.1059634-4-gary@kernel.org/>
+ <https://lore.freedesktop.org/20260402152443.1059634-5-gary@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -122,266 +123,120 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 From: Gary Guo <gary@garyguo.net>
 
-Implement a generic interface for memory barriers (full system/DMA/SMP).
-The interface uses a parameter to force user to specify their intent with
-barriers.
+Currently, in the GSP->CPU messaging path, the current code misses a read
+barrier before data read. The barrier after read is updated to a DMA
+barrier (with release ordering desired), instead of the existing (Rust)
+SeqCst SMP barrier; the location of barrier is also moved to the beginning
+of function, because the barrier is needed to synchronizing between data
+and ring-buffer pointer, the RMW operation does not internally need a
+barrier (nor it has to be atomic, as CPU pointers are updated by CPU only).
 
-It provides `Read`, `Write`, `Full` orderings which map to the existing
-`rmb()`, `wmb()` and `mb()`, but also `Acquire` and `Release` which is
-documented to have `LOAD->{LOAD,STORE}` ordering and `{LOAD,STORE}->WRITE`
-ordering, although for now they're still mapped to a full `mb()`. But in
-the future it could be mapped to a more efficient form depending on the
-architecture. I included them as many users do not need the STORE->LOAD
-ordering, and having them use `Acquire`/`Release` is more clear on their
-intent in what reordering is to be prevented.
-
-Generic is used here instead of providing individual standalone functions
-to reduce code duplication. For example, the `Acquire` -> `Full` upgrade
-here is uniformly implemented for all three types. The `CONFIG_SMP` check
-in `smp_mb` is uniformly implemented for all SMP barriers. This could
-extend to `virt_mb`'s if they're introduced in the future.
+In the CPU->GSP messaging path, the current code misses a write barrier
+after data write and before updating the CPU write pointer. Barrier is not
+needed before data write due to control dependency, this fact is documented
+explicitly. This could be replaced with an acquire barrier if needed.
 
 Signed-off-by: Gary Guo <gary@garyguo.net>
 ---
- rust/kernel/sync/atomic/ordering.rs |   2 +-
- rust/kernel/sync/barrier.rs         | 194 ++++++++++++++++++++++++----
- 2 files changed, 168 insertions(+), 28 deletions(-)
+ drivers/gpu/nova-core/gsp/cmdq.rs | 19 +++++++++++++++++++
+ drivers/gpu/nova-core/gsp/fw.rs   | 12 ------------
+ 2 files changed, 19 insertions(+), 12 deletions(-)
 
-diff --git a/rust/kernel/sync/atomic/ordering.rs b/rust/kernel/sync/atomic/ordering.rs
-index 3f103aa8db99..c4e732e7212f 100644
---- a/rust/kernel/sync/atomic/ordering.rs
-+++ b/rust/kernel/sync/atomic/ordering.rs
-@@ -15,7 +15,7 @@
- //!   - It provides ordering between the annotated operation and all the following memory accesses.
- //!   - It provides ordering between all the preceding memory accesses and all the following memory
- //!     accesses.
--//!   - All the orderings are the same strength as a full memory barrier (i.e. `smp_mb()`).
-+//!   - All the orderings are the same strength as a full memory barrier (i.e. `smp_mb(Full)`).
- //! - [`Relaxed`] provides no ordering except the dependency orderings. Dependency orderings are
- //!   described in "DEPENDENCY RELATIONS" in [`LKMM`]'s [`explanation`].
- //!
-diff --git a/rust/kernel/sync/barrier.rs b/rust/kernel/sync/barrier.rs
-index 8f2d435fcd94..0331bb353a76 100644
---- a/rust/kernel/sync/barrier.rs
-+++ b/rust/kernel/sync/barrier.rs
-@@ -7,6 +7,23 @@
- //!
- //! [`LKMM`]: srctree/tools/memory-model/
+diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
+index 2224896ccc89..7e4315b13984 100644
+--- a/drivers/gpu/nova-core/gsp/cmdq.rs
++++ b/drivers/gpu/nova-core/gsp/cmdq.rs
+@@ -19,6 +19,12 @@
+     prelude::*,
+     sync::{
+         aref::ARef,
++        barrier::{
++            dma_mb,
++            Read,
++            Release,
++            Write, //
++        },
+         Mutex, //
+     },
+     time::Delta,
+@@ -258,6 +264,9 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
+         let tx = self.cpu_write_ptr() as usize;
+         let rx = self.gsp_read_ptr() as usize;
  
-+#![expect(private_bounds, reason = "sealed implementation")]
++        // ORDERING: control dependency provides necessary LOAD->STORE ordering.
++        // `dma_mb(Acquire)` may be used here if we don't want to rely on control dependency.
 +
-+pub use super::atomic::ordering::{
-+    Acquire,
-+    Full,
-+    Release, //
-+};
+         // SAFETY:
+         // - We will only access the driver-owned part of the shared memory.
+         // - Per the safety statement of the function, no concurrent access will be performed.
+@@ -311,6 +320,9 @@ fn driver_write_area_size(&self) -> usize {
+         let tx = self.gsp_write_ptr() as usize;
+         let rx = self.cpu_read_ptr() as usize;
+ 
++        // ORDERING: Ensure data load is ordered after load of GSP write pointer.
++        dma_mb(Read);
 +
-+/// The annotation type for read operations.
-+pub struct Read;
+         // SAFETY:
+         // - We will only access the driver-owned part of the shared memory.
+         // - Per the safety statement of the function, no concurrent access will be performed.
+@@ -408,6 +420,10 @@ fn cpu_read_ptr(&self) -> u32 {
+ 
+     // Informs the GSP that it can send `elem_count` new pages into the message queue.
+     fn advance_cpu_read_ptr(&mut self, elem_count: u32) {
++        // ORDERING: Ensure read pointer is properly ordered.
++        //
++        dma_mb(Release);
 +
-+/// The annotation type for write operations.
-+pub struct Write;
+         super::fw::gsp_mem::advance_cpu_read_ptr(&self.0, elem_count)
+     }
+ 
+@@ -422,6 +438,9 @@ fn cpu_write_ptr(&self) -> u32 {
+ 
+     // Informs the GSP that it can process `elem_count` new pages from the command queue.
+     fn advance_cpu_write_ptr(&mut self, elem_count: u32) {
++        // ORDERING: Ensure all command data is visible before updateing ring buffer pointer.
++        dma_mb(Write);
 +
-+struct Smp;
-+struct Dma;
-+
- /// A compiler barrier.
- ///
- /// A barrier that prevents compiler from reordering memory accesses across the barrier.
-@@ -19,43 +36,166 @@ pub(crate) fn barrier() {
-     unsafe { core::arch::asm!("") };
+         super::fw::gsp_mem::advance_cpu_write_ptr(&self.0, elem_count)
+     }
  }
+diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
+index 0c8a74f0e8ac..62c2cf1b030c 100644
+--- a/drivers/gpu/nova-core/gsp/fw.rs
++++ b/drivers/gpu/nova-core/gsp/fw.rs
+@@ -42,11 +42,6 @@
  
--/// A full memory barrier.
--///
--/// A barrier that prevents compiler and CPU from reordering memory accesses across the barrier.
--#[inline(always)]
--pub fn smp_mb() {
--    if cfg!(CONFIG_SMP) {
--        // SAFETY: `smp_mb()` is safe to call.
--        unsafe { bindings::smp_mb() };
--    } else {
--        barrier();
-+trait MemoryBarrier<Flavour = ()> {
-+    fn run();
-+}
-+
-+// Currently kernel only support `rmb`, `wmb` and full `mb`.
-+// Upgrade `Acquire`/`Release` barriers to full barriers.
-+
-+impl<F> MemoryBarrier<F> for Acquire
-+where
-+    Full: MemoryBarrier<F>,
-+{
-+    #[inline]
-+    fn run() {
-+        Full::run();
+ // TODO: Replace with `IoView` projections once available.
+ pub(super) mod gsp_mem {
+-    use core::sync::atomic::{
+-        fence,
+-        Ordering, //
+-    };
+-
+     use kernel::{
+         dma::Coherent,
+         dma_read,
+@@ -72,10 +67,6 @@ pub(in crate::gsp) fn cpu_read_ptr(qs: &Coherent<GspMem>) -> u32 {
+ 
+     pub(in crate::gsp) fn advance_cpu_read_ptr(qs: &Coherent<GspMem>, count: u32) {
+         let rptr = cpu_read_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
+-
+-        // Ensure read pointer is properly ordered.
+-        fence(Ordering::SeqCst);
+-
+         dma_write!(qs, .cpuq.rx.0.readPtr, rptr);
+     }
+ 
+@@ -87,9 +78,6 @@ pub(in crate::gsp) fn advance_cpu_write_ptr(qs: &Coherent<GspMem>, count: u32) {
+         let wptr = cpu_write_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
+ 
+         dma_write!(qs, .cpuq.tx.0.writePtr, wptr);
+-
+-        // Ensure all command data is visible before triggering the GSP read.
+-        fence(Ordering::SeqCst);
      }
  }
  
--/// A write-write memory barrier.
--///
--/// A barrier that prevents compiler and CPU from reordering memory write accesses across the
--/// barrier.
--#[inline(always)]
--pub fn smp_wmb() {
--    if cfg!(CONFIG_SMP) {
-+impl<F> MemoryBarrier<F> for Release
-+where
-+    Full: MemoryBarrier<F>,
-+{
-+    #[inline]
-+    fn run() {
-+        Full::run();
-+    }
-+}
-+
-+// Specific barrier implementations.
-+
-+impl MemoryBarrier for Read {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `rmb()` is safe to call.
-+        unsafe { bindings::rmb() };
-+    }
-+}
-+
-+impl MemoryBarrier for Write {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `wmb()` is safe to call.
-+        unsafe { bindings::wmb() };
-+    }
-+}
-+
-+impl MemoryBarrier for Full {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `mb()` is safe to call.
-+        unsafe { bindings::mb() };
-+    }
-+}
-+
-+impl MemoryBarrier<Dma> for Read {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `dma_rmb()` is safe to call.
-+        unsafe { bindings::dma_rmb() };
-+    }
-+}
-+
-+impl MemoryBarrier<Dma> for Write {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `dma_wmb()` is safe to call.
-+        unsafe { bindings::dma_wmb() };
-+    }
-+}
-+
-+impl MemoryBarrier<Dma> for Full {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `dma_mb()` is safe to call.
-+        unsafe { bindings::dma_mb() };
-+    }
-+}
-+
-+impl MemoryBarrier<Smp> for Read {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `smp_rmb()` is safe to call.
-+        unsafe { bindings::smp_rmb() };
-+    }
-+}
-+
-+impl MemoryBarrier<Smp> for Write {
-+    #[inline]
-+    fn run() {
-         // SAFETY: `smp_wmb()` is safe to call.
-         unsafe { bindings::smp_wmb() };
--    } else {
--        barrier();
-     }
- }
- 
--/// A read-read memory barrier.
-+impl MemoryBarrier<Smp> for Full {
-+    #[inline]
-+    fn run() {
-+        // SAFETY: `smp_mb()` is safe to call.
-+        unsafe { bindings::smp_mb() };
-+    }
-+}
-+
-+/// Memory barrier.
- ///
--/// A barrier that prevents compiler and CPU from reordering memory read accesses across the
--/// barrier.
--#[inline(always)]
--pub fn smp_rmb() {
-+/// A barrier that prevents compiler and CPU from reordering memory accesses across the barrier.
-+///
-+/// The specific forms of reordering can be specified using the parameter.
-+/// - `mb(Read)` provides a read-read barrier.
-+/// - `mb(Write)` provides a write-write barrier.
-+/// - `mb(Full)` provides a full barrier.
-+/// - `mb(Acquire)` prevents preceding read from being ordered against succeeding memory
-+///    operations.
-+/// - `mb(Release)` prevents preceding memory operations from being ordered against succeeding
-+///    writes.
-+///
-+/// # Examples
-+///
-+/// ```
-+/// # use kernel::sync::barrier::*;
-+/// mb(Read);
-+/// mb(Write);
-+/// mb(Acquire);
-+/// mb(Release);
-+/// mb(Full);
-+/// ```
-+#[inline]
-+#[doc(alias = "rmb")]
-+#[doc(alias = "wmb")]
-+pub fn mb<T: MemoryBarrier>(_: T) {
-+    T::run()
-+}
-+
-+/// Memory barrier between CPUs.
-+///
-+/// A barrier that prevents compiler and CPU from reordering memory accesses across the barrier.
-+/// Does not prevent re-ordering with respect to other bus-mastering devices.
-+///
-+/// Prefer using `Acquire` [loads](super::atomic::Atomic::load) to `Acquire` barriers, and `Release`
-+/// [stores](super::atomic::Atomic::store) to `Release` barriers.
-+///
-+/// See [`mb`] for usage.
-+#[inline]
-+#[doc(alias = "smp_rmb")]
-+#[doc(alias = "smp_wmb")]
-+pub fn smp_mb<T: MemoryBarrier<Smp>>(_: T) {
-     if cfg!(CONFIG_SMP) {
--        // SAFETY: `smp_rmb()` is safe to call.
--        unsafe { bindings::smp_rmb() };
-+        T::run()
-     } else {
--        barrier();
-+        barrier()
-     }
- }
-+
-+/// Memory barrier between local CPU and bus-mastering devices.
-+///
-+/// A barrier that prevents compiler and CPU from reordering memory accesses across the barrier.
-+/// Does not prevent re-ordering with respect to other CPUs.
-+///
-+/// See [`mb`] for usage.
-+#[inline]
-+#[doc(alias = "dma_rmb")]
-+#[doc(alias = "dma_wmb")]
-+pub fn dma_mb<T: MemoryBarrier<Dma>>(_: T) {
-+    T::run()
-+}
 -- 
 2.51.2
 
