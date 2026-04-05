@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79BFCE9D812
-	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 19:32:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F9E7E9D800
+	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 19:36:03 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D64610E1FB;
-	Sun,  5 Apr 2026 19:32:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id C008510E220;
+	Sun,  5 Apr 2026 19:36:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="G5tkb/uE";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="iiyvQZWw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 70BFA45595;
-	Sun,  5 Apr 2026 19:20:41 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id F249A45599;
+	Sun,  5 Apr 2026 19:24:29 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775416841;
- b=tXdcioWziQqKlYdNxrpJs5aj5LX19+5F7k/pM3sbCq0f8Yihp7feFmSa5cYhkSqL6rrLN
- 5qipLtJOkGNe9PEGYaqHMAH/91tNzJ0r/LvO4EgGq3ibikWj+zzduVHDt2d4XbslTRxvK7G
- zgZMC0Nc6FhJAykN9FNXJZ1Ttu4wycqmXM82KUe+XcGJLgarEs5ec1Sbf/bb/bmn2IV6xDQ
- B+pTbGSPRyLlmyeIIu/9O/a2f2dBUq3gycHN0iDnYrHwPLqdlU7eJAxxtES+FSqdxvgATD7
- azPFfjTz6jvhi8rVBlAsjov3kpPTbpwaZBjEBsv6s7ceazCXF6ntJsPPqS5g==
+ s=20240201; t=1775417069;
+ b=mA2FRZgft3EZ1uOym/KhBNeCSuwsemfWXLryXdCLv7jDVV2kNQcPEpMzqpsllj0FYp2os
+ 2vpgIOaJXqyOsnv6jccmHKv0DQFh7RjDbRImKKNIks/ukyoj79HjE3k4AgeXnErGiSHQcSx
+ bKQf95y1o1aEWOZ09oFPjzyW27ofleOQjg5bmZSRR+wtkXVmYAWqUdeQjlVFCt44QM+7vrR
+ fI+gsvrVzhPTL835eklBLv8GhQ8CtNh8g+HPJP5j8mrQCGeWd4YRx4YQIbzedmNarh7eNQ8
+ IXsMYGA3+asFKgYXpxF8V2Lw5lZVD0rC7QPOCTKSK5Fy/ydsqDU0wOUc2Tow==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775416841; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775417069; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uj4oJAcIVuVW575tTJ/+8h74lmRr+UIi6+RvtopYiMw=;
- b=nPqUrDSGzqZlHEDY9x3exQ2HYv2Gmenk6rwN2noaSQTWICkQ9/10zZJafSes6xZELn2UO
- Rz1S0cbFqX8Zmr2FZOKyJBSLRNV4KLzsIZGijOS2+w9Yrq8x43i/5xNq52PiZWpTHzYPAKM
- YyXL8u+wXCxmX1Qpz5whVNuXbbmPJyR+Vy1RkD062zt4styGTVTqUb4nqWxyqVaTvouorrw
- UmFnJ62tz07MXIh1rzxQ8lDEkrHU+zuYNPWSB6aAOHp5RxCco/ccZGnpO6jwG1fM9VhFtMt
- M/+XqgNAkq1Sw/RPiIPPcazh8HY+klQhXxSbVU5X8w21/WKn1nDCVfHeiI9g==
+ bh=BfjKSt6DEr7n25ZH5xS/6Npl1F2WZyz5JjVGM21RHvg=;
+ b=etkgqT8wVZfqjG38anxqIn6TYHaCFUpiBo4yZWr1A7vUxaPu4IOJmzMqXCsdgz4OiujQV
+ idEZcV+JLf1x2tGKrObhQdm1ROVR7J5QmFVwy/Efpk0PKhIbhker76XU80ZiASflWrCDTnw
+ 953X8O8xzS2vodfqUuc9zai80rpATg2cL1GPKcVL4JAr0tqf9Dg/OsSmw35uf+ZoOJhs9C4
+ Ck1hGTCF+2J8Vm51qg0UjkGy8/e0q6N7j0wQs1yAoBtonKT7lHc9t05a0zUa1HEhDqPlOiE
+ Qy4IjyXb695VHioflYLvWZjpFaI/sf+RSNxZ5Ewc43SoxAkQ1dmVrHWUzcFw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=pass;
@@ -45,94 +45,94 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id BE63E42DA9
-	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 19:20:38 +0000 (UTC)
-Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
- [74.125.82.174])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5BF6710E1B9
-	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 19:32:10 +0000 (UTC)
-Received: by mail-dy1-f174.google.com with SMTP id
- 5a478bee46e88-2b8095668ebso238000eec.2
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7B50942DA9
+	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 19:24:27 +0000 (UTC)
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
+ [74.125.82.173])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 142EB10E1CB
+	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 19:35:59 +0000 (UTC)
+Received: by mail-dy1-f173.google.com with SMTP id
+ 5a478bee46e88-2cb19ddda43so250267eec.3
         for <nouveau@lists.freedesktop.org>;
- Sun, 05 Apr 2026 12:32:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1775417530; cv=none;
+ Sun, 05 Apr 2026 12:35:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775417758; cv=none;
         d=google.com; s=arc-20240605;
-        b=QMM5d3hzIZWrzyu9rLmnsZ3D6kHD8X8T3blPzs4QbYjYS7+RamnauG4x2PbWmOVbqo
-         C4TP5DjFney3s08Y+jQLjByh05n2JptZax1zXsG2q4l7BgKgj4KI2z+V3WNYSS2pphMZ
-         2fsaXiJv3zJ6qdqATHdGGhrNi+Wf3IDRFmKOUOMhX+at4drnIBY7or82/LybGS4X2ED8
-         zaDT5kHUkJ2qRS818aqZpqQWvl8LnWDaymWBvF97iN/xV7tiPoqw+jlDUnV0znKZ7jBL
-         kEUkC9O49LpCxzV6mqidaCsMK0WRfvDeOdtn6VRl7+OwCUaHeeNC9K1WgckSqKcrNcMJ
-         NQtA==
+        b=h2lSNFNguMBQ866QDFvFJOeoxmGWloUGRj2mvE9U33Pf0GmYtqh78gkkyySEV4WiKS
+         lDnORRlgCzwYBH20kdC2wd1tsEcFEAO5sLcS51M+ID+WUJvD14+Ku9s8UQ4+VzN+dXz5
+         nBhYk1aeiKtE1yuGp8KDUfcczQwOfDAz683bPuCu8PskkftsNUZt0pyp+f2AZtM4TH8l
+         w0tzai1BQ3QDpIqLbYxGMdguqE4JKipvFC4vc6evrX18/cxY8Jp5SoZxGQNX8eTqQkKX
+         3UbrgMRARF965qF2fIesDj9fEal1SOfxkj51f8HGX8kt9Dlq3wRk5yDmtFkleXH7pxxu
+         RYIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:dkim-signature;
-        bh=uj4oJAcIVuVW575tTJ/+8h74lmRr+UIi6+RvtopYiMw=;
-        fh=39U0ZYPo+bHVleHBktGfrWopmFakJLpV1rwdz56WpkQ=;
-        b=kcedj3SBYfQvzUUy1OiClt8tpx/+YhOTb7822pth7SyYg/n54S+ladQUZvS2X34dWX
-         tVZCYKjr7PHlJ56RbBSnEbrswA9cGAcsz4jf5zLCiIQ90O9h9Mh2tVSfewe+MzbS9xro
-         pZG5zOxQrtLir9GUW43/75j3BeOzDz2NFFunZqj/53Q6HmcP54wE7xMThgLfPe3wpSWi
-         qm6+zlJnEMt6ZlAzgSt3yqKBRZgxA8RKv4Ku5dZpar+j/TV4usKo1Ov+mX6ne+GVusJG
-         XssbJIR2zpTe84dawoaATQ2nSp5SwO5ZKAGTj+ZTxD8Jv1eCmHaprPH7A1wcGWBPwhLW
-         c4ow==;
+        bh=BfjKSt6DEr7n25ZH5xS/6Npl1F2WZyz5JjVGM21RHvg=;
+        fh=W9NR8IR4vtXMOehFmY23YJ9a4Gj3XJNfGp3EIMRicKQ=;
+        b=aGDDCKQJsyHnpSMKsWDnPH9Ru6lxoYmJYI7v+mu3YfoKoMeRxKo6AmddVkcwWAmuAt
+         b+l+m8DFl6diXNuJ5XkoIkNswN/LftCwt57ps1VSa6VhGdRzTf3j9/ijQU+X9gAswyVx
+         xrzk/1HfRGSx+nYlZ7aUjR7NyYA3yxt/JbRp9K3BCIvmEISvnJbX3qwMGE2wHwTYdnPw
+         554xViqhjXjRlrWj/ZypyPBN9X5TppYgGX/3gD/SsmFetJhjfYNki3nYnJEHVgQveRP7
+         NZl6XQWLmqfeL0cbFO0z1y8Zxir3WAbj/umM4l8bIyX8u3rRYBhq+T+iPJz67IHRUBJT
+         9vsQ==;
         darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775417530; x=1776022330;
+        d=gmail.com; s=20251104; t=1775417758; x=1776022558;
  darn=lists.freedesktop.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uj4oJAcIVuVW575tTJ/+8h74lmRr+UIi6+RvtopYiMw=;
-        b=G5tkb/uEWh6iw73jdTqX0G50RMULWWUbFusnue9eDEtWwbXa7/rUUXLvg/PAKIw00I
-         vPW00VdyQRgrHIQyiuQ6cZz2v18xkv1i+7jUJnvH4rzqbeSRDSE9W/99jCS62acQfCVB
-         Ta4wF5aIlrsoUsrSncf6HPtfTydnCOSZqMhWm+Nt2g/cbsIlwpLJ52jafdgUdJuQ8zBj
-         619JJqpTQ2wlUAoaDLZZtFCTtXgcLBAWvFjeerDUFdyl+QsvIKGv5FKqlucUnEs87Bty
-         denf3ChB7lic7EQI87mATLN61ceI8IKqy4ihUeMBIX2fL9dGLdLspXKN4NprXsjL2U7i
-         A86A==
+        bh=BfjKSt6DEr7n25ZH5xS/6Npl1F2WZyz5JjVGM21RHvg=;
+        b=iiyvQZWwcjQKaxyaxGPnNiu8f0sSJagijPvY0K9SOk33fbrQjsXvQBIlcAoB0IFvXP
+         7vnRS7WFhiPKIkjSJrxZtBlmR/V2SkFgckwkjcUCZqPxBdLImyE5wRdUylqBNlBNuoTV
+         vaM7EEW1IbLOsyTAK0QCaTDSHJyXop1HUnLqeQUIq9NHhfEEDgRJkuDcVqjn0/TIDI3f
+         usJSiUeEBNxr8+Kseone2NwOyknNBobNw6m1Ov5goWIEDeXjK+L5LNnulPdWWIWaBCft
+         GfGc8dl+jipQx25MbJoFNxImYdWTIQ9T+GPbdnvkuZOSQvs0ggYhBgnNjMtHt9TPetNC
+         Ajpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775417530; x=1776022330;
+        d=1e100.net; s=20251104; t=1775417758; x=1776022558;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
          :to:cc:subject:date:message-id:reply-to;
-        bh=uj4oJAcIVuVW575tTJ/+8h74lmRr+UIi6+RvtopYiMw=;
-        b=MnvZJ3zOUAjkwcNdoNrdE6bHk1TJan86ffpS6wpSRiAjI/Hftuc+sdxz182h24Ado/
-         K5TTB6fmHeOeAABx1NWwMU45KAUL2eriWko9ISF32uJj/9iIie70bvHXvB1YFs+WgKIJ
-         hC6SsXaTUoEc+7/XwVcYGnDGa/k8Qz7rEYCUexTS0flnc+KXHJnEiFcaEhQUBNdWiEkM
-         FxDSSx7eSh6Wz2IJ7UsDjNT3JAIDqePA86jXYyqoGYx9PAapA86p8MCNtw8XOsKg2mPw
-         6bXqy99hcxfs9G+wN4jmm2w8wLk5X+w5HMSfGI1ztqQtGMiySNnzMrcCAHJSyzKDa7Jx
-         bBlQ==
+        bh=BfjKSt6DEr7n25ZH5xS/6Npl1F2WZyz5JjVGM21RHvg=;
+        b=AJ6JLwZe8taQJTedRo2tLQrUo7NSOy1/bTYe1QCmSHywK9vQpdviad1XrUmBeRsKwe
+         OXVC5Im9KZ3t9BLTxbFGPOO4ElPWpHcgTh0jQSUZXE/dWNhIlxGTfnksKl4mecR00zLy
+         rZCmcwASJFd11cfhs18RpBMv0IDjJWsbnDNb76SELImAbfLqj6agYD3DNDmHLq8TZNx4
+         OjYGpnfKpCaXy0FNUklBbBHrKGfGqQyg6+2ztZIOFOHQlco4lfzPpHX+cVSWv7juRm4c
+         KavCe5h6GDlw0xSChv+sFe4ypDSZwasZMUqHyhI+GgSIFt2fbmg8K8Dq1a12YTukcsPb
+         zzuQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXoQv+Ek7BVSXxsXH2wgLxmkaM8KoSMs0aBxSvszbp8+llIro8jI6MnJaqCeV5xwniKyy0sT3Rm@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxeXwL7GVCaEILYm6g/QuTu6VK0GwR/xCwbbS0fhvpkxlWbJ73d
-	yoGDBOPYSRjagc5cv3P+oWi04LP3t8zvSoTEGDu4Y1pbMt0Oe2xH+HTMucl/DUWG9HCt4i7beWk
-	vBVZsICDMG8+H1M7dcbX4oq/m66KfGLw=
-X-Gm-Gg: AeBDies2aImmw0l5wFkfUzsBkVlTw4yMxUxq7cjcGucxRHV0+YW7/enibicAY2r524t
-	ugQU4Ozf3d87xqtSTvT3VgPbFCjkPPT0xyrZ1rTl3DqQ0DCFyFg3+PQJoCYFiBmWiD68Q69X2kG
-	/0t/o07uf6fZx5TBC82vnP6hvw6j3OwfbrMZ5hj/7S7YRRUU0HyTn9cX0djgydzZQpIKdgI6b53
-	6o0rsJkU7h/TW9ZMAMdYvf39HEffL1Y8V/X87kPzt/Lr//CRszD4jhR6SQWnaXrT12rehRsAoPy
-	HDiNi4mFGa0Mt0K5ZB8F7eNnm5x21CSg7sA2146SZeOw+SRNeZkDEbn3J51YfkRtczwa685SYE4
-	URu8cvIvU5NZyjPWqSNYEXLM=
-X-Received: by 2002:a05:7300:cd86:b0:2b7:e929:856b with SMTP id
- 5a478bee46e88-2cbfc768bbdmr2210515eec.5.1775417529556; Sun, 05 Apr 2026
- 12:32:09 -0700 (PDT)
+ AJvYcCUyxrHevD+/ZEJ39XWSWcfts6iESNEkJz3YcA0lxRZh8FytcMAhm5teOAEc19w1Mc7SqsQ7zCwk@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwTTRjM6t4gJ9c/3Wn9/X7+71TrqdH4YtOguji4EKyoD2whhQIO
+	n9ucGdw0hvHMbIv6UdlimO29dwKHosiBsF0acj7qOcUDYILg/v/TykkO+A9vc0LANQmE7zVMvzl
+	Q2m06qqTAgdEYBAaEst+vnSxnRPdDuhU=
+X-Gm-Gg: AeBDievGR3NCByyCjh4F2B7jyFH9OCvbJd0VkuePAm7+MguX+RSHIu4mM6qnElz3JCD
+	miTgVAq5mazjbOrvedGg9QYo9P1kqn0TDuyD2MQcopRvKHW4k6H9l8gQncOBJZmfw23CRQAHknQ
+	MvxoZyvm+pUSTffOsWkTFZFejq3ehie9SthruG+2LurTVnPFXX9SZe22wC0JNsKq0tEUUE1HYLR
+	oifjohsNfxhF711uQ8JDKURskoVrKxSsWVFzq/54ty1mWirdvrANsx24LxNN6ySZbUD1MBrQYRu
+	W8T9JB7sR5NCG/OQcepBBugwDY4b33vMkCbfsCngTEolKbbncj/ysLplRF1A+HiMC+DJ+TgLYPC
+	CM/aySLh4Idvkxj/d4GXR1rA=
+X-Received: by 2002:a05:7300:dc88:b0:2c6:7f49:a862 with SMTP id
+ 5a478bee46e88-2cbf9afb2abmr2166610eec.2.1775417758303; Sun, 05 Apr 2026
+ 12:35:58 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260401114540.30108-1-ojeda@kernel.org>
- <20260401114540.30108-21-ojeda@kernel.org>
- <177508434460.73816.4231801886718165891.b4-review@b4>
-In-Reply-To: <177508434460.73816.4231801886718165891.b4-review@b4>
+ <20260401114540.30108-24-ojeda@kernel.org>
+ <177508434465.73816.4492182082440539007.b4-review@b4>
+In-Reply-To: <177508434465.73816.4492182082440539007.b4-review@b4>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Sun, 5 Apr 2026 21:31:57 +0200
-X-Gm-Features: AQROBzDsQvgh2EDKUg3LiGNTUf-8TUQBnEeLR3UEGt8KzpEPnOxtdZC7xsmuU3c
+Date: Sun, 5 Apr 2026 21:35:45 +0200
+X-Gm-Features: AQROBzAMmQ2fYtLyUeAFSvUDsVE_iEOg6GKNUQ48f6LlPWNoSXcMUKGWx0A_W0I
 Message-ID: 
- <CANiq72m9bsXZnMJv2w9eszV5DGUG1Cq0NCEUqv60=4Op__Uong@mail.gmail.com>
-Subject: Re: [PATCH 20/33] rust: kbuild: remove unneeded old `allow`s for
- generated layout tests
+ <CANiq72nqenC30r7QQAmdKxS8ehGU2SoSGr+LCnoTAGLegH-KnA@mail.gmail.com>
+Subject: Re: [PATCH 23/33] docs: rust: quick-start: update Ubuntu versioned
+ packages
 To: Tamir Duberstein <tamird@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-ID-Hash: V6YLWB7CWWXMEZK2CUXZNMWUMNZG5SSZ
-X-Message-ID-Hash: V6YLWB7CWWXMEZK2CUXZNMWUMNZG5SSZ
+Message-ID-Hash: X4IGXKNMV2UDZUR4KFAYPQFB6756R23H
+X-Message-ID-Hash: X4IGXKNMV2UDZUR4KFAYPQFB6756R23H
 X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -171,9 +171,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/V6YLWB7CWWXMEZK2CUXZNMWUMNZG5SSZ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/X4IGXKNMV2UDZUR4KFAYPQFB6756R23H/>
 Archived-At: 
- <https://lore.freedesktop.org/CANiq72m9bsXZnMJv2w9eszV5DGUG1Cq0NCEUqv60=4Op__Uong@mail.gmail.com/>
+ <https://lore.freedesktop.org/CANiq72nqenC30r7QQAmdKxS8ehGU2SoSGr+LCnoTAGLegH-KnA@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -186,10 +186,21 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 On Thu, Apr 2, 2026 at 1:01=E2=80=AFAM Tamir Duberstein <tamird@kernel.org>=
  wrote:
 >
-> How about ordering this, the previous patch, and the next patch ahead of
-> the version bump to avoid the need to mention it here?
+> RUST_LIB_SRC is also mentioned in the nix section, do you know if it is
+> still needed there?
 
-That is reasonable, yeah.
+Yeah, that would be nice to know.
+
+I tried on my own, and it does seem still required (at least with
+those packages mentioned in the example). But perhaps a Nix user knows
+of a better way to do it, anyway.
+
+So I kept it.
+
+By the way, I think it would be nice to have a "standard",
+well-maintained `shell.nix` (or a flake or whatever is best nowadays)
+in the kernel tree somewhere, i.e. one that is known to work, that
+covers most tooling used in the kernel, etc.
 
 Cheers,
 Miguel
