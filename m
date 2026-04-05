@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B753E9D82C
-	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 23:55:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00293E9D826
+	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 23:55:57 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 6696210E1A1;
-	Sun,  5 Apr 2026 23:55:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id BB38310E1A6;
+	Sun,  5 Apr 2026 23:55:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="k9uNPKIn";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pFKlWdbI";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 35315455DC;
-	Sun,  5 Apr 2026 23:44:14 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8F954455E3;
+	Sun,  5 Apr 2026 23:44:25 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775432653;
- b=MDZKv1TCWLQp9BL/OQ64r2zI97on9CuPfpTHkwwMoJCXb1pLcPooCZQF9pE3o1R3oZ46x
- sXOrNIZRF2nJRiUDSOtJXiLkBRkZtuaX7CPtf2lgcW0pYku/ZfDfWv1UjPK7Q+77GtlTlVe
- Ggrw0syVo7j4n1KC7hqc5GLLu2ku4zT6TZ58h+tM5lD6RtXx1XTfN0sy/J/xus1KHdVVBeK
- H8dCPQXUxIUs8yd/3AQiHoBI116fT9FWQL2CkBvj1iJybeQTzXufciKEfD2xEkpCCapMmGS
- FeMYtYaS5prPkzuw3XA1YK9bfaK4nL9kLWlhjtuuDm96l4l7EV9d626P3WPg==
+ s=20240201; t=1775432665;
+ b=IVQTN6f4AX+knjshbZ78fDGUteF/mGGeceKfCdnfJCD4BfhQtYy5wJcm8ZNJC/tAK+U/9
+ profboIK0EtWVk2K8aF1cy4FM4Q9rkSiZwwYFzvV3Ud1kii4OUJWo3hViPxp+oERWxN6u5K
+ hgWuSP8bS+PgX8VLkQJTFbBOMw5U+empBkuFWpc7AmYlnFl6C7Ek4jIxO3RyL2ex5bjAtc9
+ 06+59GBtRnvl6udbuA1/ptWT+OwonS6wnUfZTKSPnQ1+POB4OEuh9vNdL9yZPhLUGSv+9TK
+ B4XECL68P4ktbueaENLSSFk6C9o7XT8vmXxTeGh8RJ+TbgZnfqf0eepRS1vA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775432653; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775432665; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=GkhfMHL08KqZmqGqWLLFbbwwtTLsd5YDkNmaV9XwEPQ=;
- b=kjfoG+Ic9CzzqWhGrtjhqjWDi3LItOOJZ8eATUba+0Cnc2iWEszwJrjhiea3fyQdSxJ5T
- DkiOncTeHhuWecDv/c3TId0q76s+nco/ERT83S666yaWaGs4x8TOqE2oQc6V0XC3RfmIPxi
- NalDurB2+l+e/nwWBrB6tP8Jd2hF/b3A/P76fwxUxUd0NFIXPIE8DFFEhnDrFOI4QW5OvHC
- H747et9KepmaCTkCFKLOsu9pxBXqaFT91qO+gRg1JrM3wjOYFpe4B+K6o2/nKi3JthZtLHq
- pvmYb9scqbMrzTL+p1q1qdTLSd2jwn2GGyfERD41pQnJYqfwtjDdNH6pezuw==
+ bh=9NPyZHhWeqCNKKZLSFGdK0W1C48Vt8aHQa5VkkBGICc=;
+ b=C/8/ovJXpzOcr6xFyht7bDYOpmaXwOwxCSDUz+I2BW/AX2WzK0wcrGWviCflKh3bPGy/j
+ QnUEMu+uBIgt4u524Xvp2L+SzzE2m5zEg79Hy5nSAJ6CJXDcM/iVt0iZZUFP6hPth4YpQtX
+ FBv0Z5GdlUCbSr+jGUF8/89jDo0Vkx05fjr9SWN3e4hStRn/2bbHA/vRoA/yKDfmhpkmNsp
+ HsZOcVqKTI1Zg+VDc8+L1nkTLyaPN5FK9+1h/ze6YwNcvfp7DOKetlWqRCIjwBLjtyo02sU
+ AUjC4pNyz2PAqiWM9Eus7dkDousDfvcV8VyjaBMRQ5jEYXwMWfU5mvPQ9/AA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 73511448E7
-	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 23:44:11 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 89770448E7
+	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 23:44:22 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 59F0B10E167;
-	Sun,  5 Apr 2026 23:55:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6F06310E1A0;
+	Sun,  5 Apr 2026 23:55:54 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id C4F4D60103;
+	by tor.source.kernel.org (Postfix) with ESMTP id E6F47600CB;
+	Sun,  5 Apr 2026 23:55:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03DC7C116C6;
 	Sun,  5 Apr 2026 23:55:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2C13C19425;
-	Sun,  5 Apr 2026 23:55:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775433342;
-	bh=rhX3GqYQx8Jl+4tNpW2dKwQfeZlDw97dCDSWyN1kX4M=;
+	s=k20201202; t=1775433353;
+	bh=5w/hrnObbKhvO+jKV9Ekcn8KO5lrvAgEuh7kkEvfcjs=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=k9uNPKIn7BIlbZBmyZCrn8YA4s8vt211ZS4DryUsRUPtxc5Ce8n1gRoz4IJwAZAOM
-	 Dqp6WAkHoyNQ5zLX/rFldY3wmp5C0ZX9hMiMmyPCl23fRGYclj6I0liqouATnE4LD5
-	 pcFG9FLiF8HJvJFDEPMbFqVuOs1Sev37pt+zIjJGlujkwagUUjAkqve/cRsglEd1ZT
-	 YiS3IliuGDO6QuzIfUhTNpdbpp9ewjzWfepATKG30fXTF2uazRnxese4dQeQwSvagT
-	 fgaN2tp5c1O58eBWINvTswa4V0NA7jTUtPANRuwj1H8I0rNnXGdb+lFXnGYIzYtfvK
-	 caK/MHh2zv9WQ==
+	b=pFKlWdbIbGq0s7ECR/XX4/m1j5ueBsd37sKXJ5uePknRDz52bcxRKKdQUe1jTopVz
+	 My33xj+WU7MHbje6Gh0L7CxJ3KxzvwAzOCWOcACpPEKqFS6mcKRf8vZJADvLXmZb8Y
+	 o52+2gns0KIFCn54pt8VBrZ+FWo9rC1to0WiGTYC13dYbxzXvTcpelifn0bJwujKk8
+	 86EYB1I8NJU19juZwmDdg9wxjSeTqxQvMdO4C+IKLVR+fihXZU6p1+0tn/pIcBpd8O
+	 l9nnLvpiSxsgD13f15cAIkVKNBh1pZpZ73szNIqI8iXIz7LHd1T89xgFnRcsHNKyFY
+	 9vVjtBOKjhKqQ==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v2 12/33] rust: kbuild: remove `feature(...)`s that are now
- stable
-Date: Mon,  6 Apr 2026 01:52:48 +0200
-Message-ID: <20260405235309.418950-13-ojeda@kernel.org>
+Subject: [PATCH v2 13/33] rust: transmute: simplify code with Rust 1.80.0
+ `split_at_*checked()`
+Date: Mon,  6 Apr 2026 01:52:49 +0200
+Message-ID: <20260405235309.418950-14-ojeda@kernel.org>
 In-Reply-To: <20260405235309.418950-1-ojeda@kernel.org>
 References: <20260405235309.418950-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: XBGENDKTKQUFZK3BYK35PJ3PCYEYOOR5
-X-Message-ID-Hash: XBGENDKTKQUFZK3BYK35PJ3PCYEYOOR5
+Message-ID-Hash: DDIPMCC547P3HTTGXDQW6NI2ENLQVV7U
+X-Message-ID-Hash: DDIPMCC547P3HTTGXDQW6NI2ENLQVV7U
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -126,9 +126,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XBGENDKTKQUFZK3BYK35PJ3PCYEYOOR5/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DDIPMCC547P3HTTGXDQW6NI2ENLQVV7U/>
 Archived-At: 
- <https://lore.freedesktop.org/20260405235309.418950-13-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260405235309.418950-14-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,90 +138,81 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Now that the Rust minimum version is 1.85.0, there is no need to enable
-certain features that are stable.
+`feature(split_at_checked)` [1] has been stabilized in Rust 1.80.0 [2],
+which is older than our new minimum Rust version (Rust 1.85.0).
 
-Thus clean them up.
+Thus simplify the code using `split_at_*checked()`.
 
+Link: https://github.com/rust-lang/rust/issues/119128 [1]
+Link: https://github.com/rust-lang/rust/pull/124678 [2]
 Reviewed-by: Tamir Duberstein <tamird@kernel.org>
 Reviewed-by: Gary Guo <gary@garyguo.net>
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- rust/Makefile          |  2 --
- rust/kernel/lib.rs     | 21 ---------------------
- scripts/Makefile.build |  6 +-----
- 3 files changed, 1 insertion(+), 28 deletions(-)
+ rust/kernel/transmute.rs | 33 ++++++---------------------------
+ 1 file changed, 6 insertions(+), 27 deletions(-)
 
-diff --git a/rust/Makefile b/rust/Makefile
-index 5dc8b4cc89d1..54498cb5b851 100644
---- a/rust/Makefile
-+++ b/rust/Makefile
-@@ -86,10 +86,8 @@ proc_macro2-cfgs := \
-     wrap_proc_macro \
-     $(if $(call rustc-min-version,108800),proc_macro_span_file proc_macro_span_location)
+diff --git a/rust/kernel/transmute.rs b/rust/kernel/transmute.rs
+index b9e6eadc08f5..654b5ede2fe2 100644
+--- a/rust/kernel/transmute.rs
++++ b/rust/kernel/transmute.rs
+@@ -66,16 +66,9 @@ fn from_bytes_prefix(bytes: &[u8]) -> Option<(&Self, &[u8])>
+     where
+         Self: Sized,
+     {
+-        if bytes.len() < size_of::<Self>() {
+-            None
+-        } else {
+-            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at` cannot
+-            // panic.
+-            // TODO: replace with `split_at_checked` once the MSRV is >= 1.80.
+-            let (prefix, remainder) = bytes.split_at(size_of::<Self>());
++        let (prefix, remainder) = bytes.split_at_checked(size_of::<Self>())?;
  
--# Stable since Rust 1.79.0: `feature(proc_macro_byte_character,proc_macro_c_str_literals)`.
- proc_macro2-flags := \
-     --cap-lints=allow \
--    -Zcrate-attr='feature(proc_macro_byte_character,proc_macro_c_str_literals)' \
-     $(call cfgs-to-flags,$(proc_macro2-cfgs))
+-            Self::from_bytes(prefix).map(|s| (s, remainder))
+-        }
++        Self::from_bytes(prefix).map(|s| (s, remainder))
+     }
  
- quote-cfgs := \
-diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-index 66a09d77a2c4..b48221a5b4ec 100644
---- a/rust/kernel/lib.rs
-+++ b/rust/kernel/lib.rs
-@@ -16,27 +16,6 @@
- // Please see https://github.com/Rust-for-Linux/linux/issues/2 for details on
- // the unstable features in use.
- //
--// Stable since Rust 1.79.0.
--#![feature(generic_nonzero)]
--#![feature(inline_const)]
--#![feature(pointer_is_aligned)]
--//
--// Stable since Rust 1.80.0.
--#![feature(slice_flatten)]
--//
--// Stable since Rust 1.81.0.
--#![feature(lint_reasons)]
--//
--// Stable since Rust 1.82.0.
--#![feature(raw_ref_op)]
--//
--// Stable since Rust 1.83.0.
--#![feature(const_maybe_uninit_as_mut_ptr)]
--#![feature(const_mut_refs)]
--#![feature(const_option)]
--#![feature(const_ptr_write)]
--#![feature(const_refs_to_cell)]
--//
- // Expected to become stable.
- #![feature(arbitrary_self_types)]
- #![feature(derive_coerce_pointee)]
-diff --git a/scripts/Makefile.build b/scripts/Makefile.build
-index 0b0245106d01..57cff77c2897 100644
---- a/scripts/Makefile.build
-+++ b/scripts/Makefile.build
-@@ -310,17 +310,13 @@ $(obj)/%.lst: $(obj)/%.c FORCE
+     /// Converts a mutable slice of bytes to a reference to `Self`.
+@@ -108,16 +101,9 @@ fn from_bytes_mut_prefix(bytes: &mut [u8]) -> Option<(&mut Self, &mut [u8])>
+     where
+         Self: AsBytes + Sized,
+     {
+-        if bytes.len() < size_of::<Self>() {
+-            None
+-        } else {
+-            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at_mut` cannot
+-            // panic.
+-            // TODO: replace with `split_at_mut_checked` once the MSRV is >= 1.80.
+-            let (prefix, remainder) = bytes.split_at_mut(size_of::<Self>());
++        let (prefix, remainder) = bytes.split_at_mut_checked(size_of::<Self>())?;
  
- # The features in this list are the ones allowed for non-`rust/` code.
- #
--#   - Stable since Rust 1.79.0: `feature(inline_const)`.
--#   - Stable since Rust 1.81.0: `feature(lint_reasons)`.
--#   - Stable since Rust 1.82.0: `feature(asm_const)`,
--#     `feature(offset_of_nested)`, `feature(raw_ref_op)`.
- #   - Stable since Rust 1.87.0: `feature(asm_goto)`.
- #   - Expected to become stable: `feature(arbitrary_self_types)`.
- #   - To be determined: `feature(used_with_arg)`.
- #
- # Please see https://github.com/Rust-for-Linux/linux/issues/2 for details on
- # the unstable features in use.
--rust_allowed_features := asm_const,asm_goto,arbitrary_self_types,inline_const,lint_reasons,offset_of_nested,raw_ref_op,used_with_arg
-+rust_allowed_features := arbitrary_self_types,asm_goto,used_with_arg
+-            Self::from_bytes_mut(prefix).map(|s| (s, remainder))
+-        }
++        Self::from_bytes_mut(prefix).map(|s| (s, remainder))
+     }
  
- # `--out-dir` is required to avoid temporaries being created by `rustc` in the
- # current working directory, which may be not accessible in the out-of-tree
+     /// Creates an owned instance of `Self` by copying `bytes`.
+@@ -147,16 +133,9 @@ fn from_bytes_copy_prefix(bytes: &[u8]) -> Option<(Self, &[u8])>
+     where
+         Self: Sized,
+     {
+-        if bytes.len() < size_of::<Self>() {
+-            None
+-        } else {
+-            // PANIC: We checked that `bytes.len() >= size_of::<Self>`, thus `split_at` cannot
+-            // panic.
+-            // TODO: replace with `split_at_checked` once the MSRV is >= 1.80.
+-            let (prefix, remainder) = bytes.split_at(size_of::<Self>());
++        let (prefix, remainder) = bytes.split_at_checked(size_of::<Self>())?;
+ 
+-            Self::from_bytes_copy(prefix).map(|s| (s, remainder))
+-        }
++        Self::from_bytes_copy(prefix).map(|s| (s, remainder))
+     }
+ }
+ 
 -- 
 2.53.0
 
