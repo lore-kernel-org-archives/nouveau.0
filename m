@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55FE0E9D827
-	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 23:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 984E0E9D827
+	for <nouveau@archiver.kernel.org>; Sun,  5 Apr 2026 23:56:18 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3192710E1A6;
-	Sun,  5 Apr 2026 23:56:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 76EB810E1AA;
+	Sun,  5 Apr 2026 23:56:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QWwho++C";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ZaVpVUGO";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1166E455E3;
-	Sun,  5 Apr 2026 23:44:37 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 54591455E5;
+	Sun,  5 Apr 2026 23:44:46 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775432676;
- b=RV4rcKqZZXPMEZ6suy5l6mNVDoKsAOWTZdXgQi9w6cyd6mg/5fe+3kIJCN5H10VMHKYzv
- r1NMYUZRhpar9lhChihK4Q8ksUnajq+4Lmym0qmErcz7rVRUyLKmiZnlpvgg3dmbYSbdXb9
- 9HbwI9jAKcaudFadRpud/X44gox/4pTMFrOwEUxAaajDi+dmZQrACsj+bWjFUlnX/2VIFBs
- cQe8n7VJ59NEEFjaNpisAtAPpOq8KK+dXCvSPWskJh5vxmWFYFAVmHsIxt9wDmSMJatknHu
- dt15beeKsg56jf83VFM8UaskwWYbJAWuOT34bTki+M6amFt/J/DlKkrnPHUA==
+ s=20240201; t=1775432686;
+ b=Zq3fJb+opV0OiscJ0SBrQWz7ITp604GAb+W4j6WELejE4nsV+/Gaakjx4lyhh1ycTW0cI
+ KL6oQBuEgzilTHDcqa61qyed7KccjgRZvlXy+xsopwjQDUUumJshP9p2bCDoBk17e8P+8Jq
+ HGkJWYN+rqxCXNaDnds9peViaj47ybtnvHYGqF7ZB2zQJZByf6f+YWZw3WumgzMsDUH+XJt
+ DEGyZ1TVqMHUpBlBOELW3QEsdJmf3y4Zhrp9bBkJrJj8tXsTg+m+zs8/2lJ6qy9OJfb7T56
+ nDSfRJ0HOZ4o4VXx9KcIEuNhj1Zx+PKlQ+EdjL7BAuuN1FmBBIJRnkm8sJrg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775432676; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775432686; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Ao5HuNNgu8GyNLR5yoqLUQbdm3ZNaNRIYyCEwCnTf+0=;
- b=gTgh34yb+fmodl1UJvVJm4NXwOLcJBoPAdNqPJjHBpE5QskgOEsN8ODXnGESwTiJeWmz1
- Lr7KpWIEiIynAHTTRlzPn95U6uOLMS3rh+q/mMM81q/s6G7gKdk8HXbrXYY9cyIuOmx/bif
- gUHXWYTqBqRU7CF93K6jpJFzgxbiSpb20uy5AJZFJ52aKWKsQCnAAFjkn5Bwtduv+rb/IEI
- 5WdYbvxROfR+CyQ2JjETn1N/5bn2OluiGuhF49T/LnBEXGZaY1zcJWRjqu48A+k/7zGvXpo
- 6WIpKNshw+KMZ8qoTHtREwNixXrEPQsSPHTmNJtVRTs5OPEWJL7bfuxNbgwA==
+ bh=x+7TAYOgTbawp+VUyk8RMZ3LzNgzoO9sNdptEQ5bi4A=;
+ b=vhHlaEUBxdezRsNy3JzxnE235/Yg3fMIM0k19NtjxQX3pH85umB1CdeNEB1zvZLUBf46G
+ FooU+jUKiZHn+E/OAsCkTOGtyOLlns9m35FZAUGr0lYVNR+RloYpvy92XvBtwySzLW76XXV
+ xfiMOyFVMMHdxe1Y/8N5zme0HyvKMVSksczCIPN54iVuXPNN4y4JSoLSBoLmJ/MT/MlOdA1
+ CqYs+ZX+jovrVi9XNgifzHFcqkgbF/9NDwXLt/WM9kHV/G/IXGVL3XyPoHaib2wF6SZyoOl
+ LmTZYJitgKG0q0B6SfPH0k1uolqy8srWyHJAuN2AnhNIo9BY7cF/aBaLVMaA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id AD2BD448E7
-	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 23:44:33 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 92DCD10E179;
-	Sun,  5 Apr 2026 23:56:05 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 16F87448E7
+	for <nouveau@lists.freedesktop.org>; Sun,  5 Apr 2026 23:44:44 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 14E9C10E1A0;
+	Sun,  5 Apr 2026 23:56:16 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 16814600AC;
+	by sea.source.kernel.org (Postfix) with ESMTP id DE4F9417BD;
+	Sun,  5 Apr 2026 23:56:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AA99C116C6;
 	Sun,  5 Apr 2026 23:56:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27803C2BC9E;
-	Sun,  5 Apr 2026 23:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775433364;
-	bh=H/Ay6Jkav43FJVWalNMqy1drrqBC5z0jZaYEliYSxsg=;
+	s=k20201202; t=1775433375;
+	bh=k9fgvKqzt3CcMjpByOnUKIVw60bYTXCQ8WCT/cyECdY=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=QWwho++CAQHqbiJSHYjIFW+3zbIRsYkzI2NhaXD915XErZ5bX8D0JSqumwCvnboQC
-	 JA2kZyy0PbupBQQ6NzUS0I5RoleMORu4/mJ8QJHPf8WuIxsJK2BntYwSEFYuKrHgs5
-	 VPKZomQQHZR70NsihUxiVAScWTSo2yfHf8uJ/qsMQd0mTZH9HvJHft2Dn5JgiAXnIO
-	 3PdrXjw1Cnt6FYPbyK/FBO1nONRhPiI30ad4Kc7dhk4L7g63i4MoWAU0uWhs56aoAB
-	 o0/TRdl5mjZSVEIann5jDzC12StU6bGXcn2XxNGHneIkfSLv34y3M6cbP04LdQktPx
-	 m2gUzuUeHkCMQ==
+	b=ZaVpVUGO29xolVVSHHDaY6zc64XoWTVURD4wmowEYx41c+Wyvxg2ZvbRUDBr5NSQM
+	 qnQ7znq5xPGmdnTPdcYVaZC7vnG5CdMVAK8esq+ZQUqP5fhEE9eEYKap4bE1TE6jn4
+	 tBmF/lQcMvqLIbmPK7hFkihBrJN3xVu01fVsz+MN4SzEjt8l16fIDNn69GQncl9Yl+
+	 Iz0ORhzjuBLkOlJxT/Q92ItzFvNRq1IEAlPAFGwQoUdailI/ja4qppsGHHJ+cazKlw
+	 zeuH4jXdUNlzyLPBG4DfcSUb8nvgueaNnyXHPAthjZQRgSoxFxQLDP6Ba6EFq9edcZ
+	 rD1Bo7j0WdTjg==
 From: Miguel Ojeda <ojeda@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>,
 	Nathan Chancellor <nathan@kernel.org>,
@@ -89,16 +89,16 @@ To: Miguel Ojeda <ojeda@kernel.org>,
 	Carlos Llamas <cmllamas@google.com>,
 	Alice Ryhl <aliceryhl@google.com>,
 	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v2 14/33] rust: alloc: simplify with `NonNull::add()` now that
- it is stable
-Date: Mon,  6 Apr 2026 01:52:50 +0200
-Message-ID: <20260405235309.418950-15-ojeda@kernel.org>
+Subject: [PATCH v2 15/33] rust: macros: simplify code using
+ `feature(extract_if)`
+Date: Mon,  6 Apr 2026 01:52:51 +0200
+Message-ID: <20260405235309.418950-16-ojeda@kernel.org>
 In-Reply-To: <20260405235309.418950-1-ojeda@kernel.org>
 References: <20260405235309.418950-1-ojeda@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: M4O5J5TLPTPQSWHBRGLDHNTT6HSM7CTR
-X-Message-ID-Hash: M4O5J5TLPTPQSWHBRGLDHNTT6HSM7CTR
+Message-ID-Hash: ORHYOUU2J3KGA6JQ4GP3F3ADNBLIZ7UF
+X-Message-ID-Hash: ORHYOUU2J3KGA6JQ4GP3F3ADNBLIZ7UF
 X-MailFrom: ojeda@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -120,15 +120,14 @@ CC: Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
  Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
  Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
  llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org,
- Tamir Duberstein <tamird@kernel.org>
+ Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/M4O5J5TLPTPQSWHBRGLDHNTT6HSM7CTR/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ORHYOUU2J3KGA6JQ4GP3F3ADNBLIZ7UF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260405235309.418950-15-ojeda@kernel.org/>
+ <https://lore.freedesktop.org/20260405235309.418950-16-ojeda@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,47 +137,59 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Currently, we need to go through raw pointers and then re-create the
-`NonNull` from the result of offsetting the raw pointer.
+`feature(extract_if)` [1] was stabilized in Rust 1.87.0 [2], and the last
+significant change happened in Rust 1.85.0 [3] when the range parameter
+was added.
 
-`feature(non_null_convenience)` [1] has been stabilized in Rust
-1.80.0 [2], which is older than our new minimum Rust version
-(Rust 1.85.0).
+That is, with our new minimum version, we can start using the feature.
 
-Thus, now that we bump the Rust minimum version, simplify using
-`NonNull::add()` and clean the TODO note.
+Thus simplify the code using the feature and remove the TODO comment.
 
-Link: https://github.com/rust-lang/rust/issues/117691 [1]
-Link: https://github.com/rust-lang/rust/pull/124498 [2]
-Reviewed-by: Tamir Duberstein <tamird@kernel.org>
-Reviewed-by: Gary Guo <gary@garyguo.net>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
+Suggested-by: Gary Guo <gary@garyguo.net>
+Link: https://lore.kernel.org/rust-for-linux/DHHVSX66206Y.3E7I9QUNTCJ8I@garyguo.net/
+Link: https://github.com/rust-lang/rust/issues/43244 [1]
+Link: https://github.com/rust-lang/rust/pull/137109 [2]
+Link: https://github.com/rust-lang/rust/pull/133265 [3]
 Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
 ---
- rust/kernel/alloc/allocator/iter.rs | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ rust/macros/kunit.rs | 9 +++++----
+ rust/macros/lib.rs   | 3 +++
+ 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/rust/kernel/alloc/allocator/iter.rs b/rust/kernel/alloc/allocator/iter.rs
-index 5759f86029b7..e0a70b7a744a 100644
---- a/rust/kernel/alloc/allocator/iter.rs
-+++ b/rust/kernel/alloc/allocator/iter.rs
-@@ -42,15 +42,9 @@ fn next(&mut self) -> Option<Self::Item> {
-             return None;
+diff --git a/rust/macros/kunit.rs b/rust/macros/kunit.rs
+index 6be880d634e2..ae20ed6768f1 100644
+--- a/rust/macros/kunit.rs
++++ b/rust/macros/kunit.rs
+@@ -87,10 +87,11 @@ pub(crate) fn kunit_tests(test_suite: Ident, mut module: ItemMod) -> Result<Toke
+             continue;
+         };
+ 
+-        // TODO: Replace below with `extract_if` when MSRV is bumped above 1.85.
+-        let before_len = f.attrs.len();
+-        f.attrs.retain(|attr| !attr.path().is_ident("test"));
+-        if f.attrs.len() == before_len {
++        if f.attrs
++            .extract_if(.., |attr| attr.path().is_ident("test"))
++            .count()
++            == 0
++        {
+             processed_items.push(Item::Fn(f));
+             continue;
          }
+diff --git a/rust/macros/lib.rs b/rust/macros/lib.rs
+index 0c36194d9971..2cfd59e0f9e7 100644
+--- a/rust/macros/lib.rs
++++ b/rust/macros/lib.rs
+@@ -6,6 +6,9 @@
+ // and thus add a dependency on `include/config/RUSTC_VERSION_TEXT`, which is
+ // touched by Kconfig when the version string from the compiler changes.
  
--        // TODO: Use `NonNull::add()` instead, once the minimum supported compiler version is
--        // bumped to 1.80 or later.
--        //
-         // SAFETY: `offset` is in the interval `[0, (self.page_count() - 1) * page::PAGE_SIZE]`,
-         // hence the resulting pointer is guaranteed to be within the same allocation.
--        let ptr = unsafe { self.buf.as_ptr().add(offset) };
--
--        // SAFETY: `ptr` is guaranteed to be non-null given that it is derived from `self.buf`.
--        let ptr = unsafe { NonNull::new_unchecked(ptr) };
-+        let ptr = unsafe { self.buf.add(offset) };
- 
-         // SAFETY:
-         // - `ptr` is a valid pointer to a `Vmalloc` allocation.
++// Stable since Rust 1.87.0.
++#![feature(extract_if)]
++//
+ // Stable since Rust 1.88.0 under a different name, `proc_macro_span_file`,
+ // which was added in Rust 1.88.0. This is why `cfg_attr` is used here, i.e.
+ // to avoid depending on the full `proc_macro_span` on Rust >= 1.88.0.
 -- 
 2.53.0
 
