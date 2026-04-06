@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61AF3F46C47
-	for <nouveau@archiver.kernel.org>; Mon,  6 Apr 2026 14:29:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1877F46C49
+	for <nouveau@archiver.kernel.org>; Mon,  6 Apr 2026 14:29:24 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 438B410E25D;
-	Mon,  6 Apr 2026 14:29:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 85FE410E267;
+	Mon,  6 Apr 2026 14:29:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dRSvnYgZ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e+As036J";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C110F45661;
-	Mon,  6 Apr 2026 14:17:46 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 1464C45665;
+	Mon,  6 Apr 2026 14:17:51 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775485066;
- b=PGbRkMTG6XPcNoX/mccYDR16zPfG1bOPuun4qDB7UpPyIY+rEoAhJVcT8beFZO6IptUT5
- /ypl/yCFiyNvHGoKLfKGZ/bsKFK8ZJZA42O+BEKGmCwY81vDep0EAQ2aqDB4kUWrfQ6v/o/
- 79KoFyOxkuccxbXQ1gUzZyUmSdWarlKhxWCyiv1NAuwsfEdy+q4Y0b7TWseh46OT4T/Vxjc
- sl78Q3jfVsYD24hZRTqXhFlNr+HJ/aiL8CYkvISZeAJ2WmGLu8DLzx5UWB6BQM3fT8rcy7h
- 7mPMCpwWOswyGkg3wT19DRuMWXAAnh0+6j+SV569mSWnCkzDT9ZwLfIRcHHw==
+ s=20240201; t=1775485070;
+ b=B+0QRkE0ZmNo2xN/RrsCsownSoXGxi7ko2MVMoxkg7lQrLL/vKAzw0ryIbltYdqr6xqGI
+ rC091hvUYaXzotdxx2NrOxRjpeYZy77ti4odX7UHKHjTH8/pisNqBD/ifz1SRhIvlWZ/9pG
+ XeVF5YNCkQ89znP+2NA8YsJaZN/6P1RgR17AVaV2tVkdyLDPcAXfRONnpxfhIzDjwBB/+ek
+ jPbc1v4QbDVQop9ajt2womb7GY4wVvjH/umuMaQRMtq3TUL6cFNW/zcdydsEJZz7TlcpvQT
+ VyaIhsfMl1ezdSdKTMXYzIl0ftXB4+xqXlBo2PSn7iM/n75OGS2k9lAuY12w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775485066; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775485070; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=EkNm9wFfp98jb1LRjOKmI7vefuruoaGtzyUv1N7ItVU=;
- b=DIEQi+Y8vhnYZt9PK2WMtJGAN2NTYSh+cZOyh6PZOZ1yPo0+75NqaLTbLBZzT0ej0STJA
- AcD9SI0SwEQsa9X/OFiUaqT/ZMTe6sxnB6a0qKTjcdeDQh7DKjgdv3vPrzIn9mYLNDI8pfa
- Qwix4Kqs7PQK/huBLjz3OxA76jr6OdhoRK94WzslSwSZHruqdDvHDdA5p7i/EmRxzQFdgs5
- YXjnDbDDnx/qzSs3hQbuJf2cg/uWSOCYREER25H1eyF9vzaKZNlOqFUPsv3M4eCC030E/wf
- MZrrNBB+YTeAzskVpjLXEojHGPKLiKDjVP7YzlpoouTUG8w739iQZJAnBhCw==
+ bh=YL71vnLj9QpiyZ0wn2k6qRLWCKTBHQ5qGJXoAsI/k7Y=;
+ b=rt43A/IHNPAMw51Jb4QtitvX9TNJmdgWp07BxS/0GXmpcKBLScoyLp0wTbjG+EouMSI4v
+ ldM0+whE1b2L8J5VeDZbnQM+GlSNU2Z7gOqnaIvAgk4VL7mb90euZrmm43SNu6pkAQWAP4m
+ DttXBYH7lY6ZTq3Pdb0ffx30WobU+4AiEa+eP2eQv3CEkIWuS594AmlRF9LGb5JjLQiQBcm
+ stnm/815UI+04n4a9thFDSFUsg5q5BO8QLlxjOyUntaHNuNgqBPk901lMy0OyQ68V5w2g5n
+ JtGAngoyiYdP1mfHtFta1+5Uh3yPAxNia9GjqxX8KhjR7yAwYmnSQXimwUqA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,49 +46,49 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C284645582
-	for <nouveau@lists.freedesktop.org>; Mon,  6 Apr 2026 14:17:43 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2149010E269;
-	Mon,  6 Apr 2026 14:29:17 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id EF2CD45582
+	for <nouveau@lists.freedesktop.org>; Mon,  6 Apr 2026 14:17:48 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3629310E261;
+	Mon,  6 Apr 2026 14:29:22 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id EDC7642A61;
-	Mon,  6 Apr 2026 14:29:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 976F9C2BC9E;
-	Mon,  6 Apr 2026 14:29:12 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id AF2D860128;
+	Mon,  6 Apr 2026 14:29:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18640C4CEF7;
+	Mon,  6 Apr 2026 14:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775485756;
-	bh=hQs1Tn9TC/fuoSSmmMaVRc8aMtneqBIGGyK2dnscFmo=;
+	s=k20201202; t=1775485761;
+	bh=mq7jaFSupKdEJsnxgCQqUuadHGtAR9I1r4rs0c7hHHQ=;
 	h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
-	b=dRSvnYgZ8y+9NiMZOjUfwe4OjJV72M3gHcEolR8tMg0+XKG0e7wy8sJJa1vgsFLdw
-	 c5CFD3Xucwz/io7Rpsfq1thQFQcPIRkLYLUPP7Y1y4I9b9KPB/G7mQhVM5TuGcd6gm
-	 6j4o/t5E0/msw22ksl7ZTZX5i+G9zAy7YYwtPYx221YGT0Z9FD9uUy74kjVaXqtm3Y
-	 n2mq1cThIix8w3e/hkBH9UlVKC3bY2TG7D15bvqQZPmyIzlg6q00tW5pIHF305QHMZ
-	 T98GigKLXQQCyZiVCE86iP0fUgWjV2j28zjziqxOJTxW4KHZ7g2VhFATQ86+Kfh3KS
-	 phsh/0bbvPSlQ==
+	b=e+As036J1OE0LRbTE+udyTNDvuoDowrAh30WCvKKTZxym8JYzXrGS3G26uVdSwDP6
+	 mK3MA9FuaKrw2yn6f4O66Z1zhBrF83QZGaW2/46S36F1e6+tbLI+XC7JYbZzu9Ff2r
+	 Vc9MuNOWNw+/xBZ4JS1jso2x8nUy5yuCaECtI4kKEB+tx7ukCV87lbA0JAlLkDmp68
+	 5qUbmQ7T+w79KOxCzYtbCnYkoItoAf9EdIcuSMqk4t18yFBWMycOAV32nSBypHspnL
+	 g2OeTE7e+5JZx9HvznWqHMpzI2q+cViUAFIk3S0nmqEP7lP8RFEUbEhMLbJzveYwbK
+	 H+dQk2i2obNKw==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 15/33] rust: macros: simplify code using
- `feature(extract_if)`
+Subject: Re: [PATCH v2 32/33] rust: kbuild: support global per-version
+ flags
 From: Tamir Duberstein <tamird@kernel.org>
 To: Miguel Ojeda <ojeda@kernel.org>
-In-Reply-To: <20260405235309.418950-16-ojeda@kernel.org>
+In-Reply-To: <20260405235309.418950-33-ojeda@kernel.org>
 References: <20260405235309.418950-1-ojeda@kernel.org>
- <20260405235309.418950-16-ojeda@kernel.org>
-Date: Mon, 06 Apr 2026 10:28:56 -0400
-Message-Id: <177548573698.95472.15531781806867412060.b4-review@b4>
+ <20260405235309.418950-33-ojeda@kernel.org>
+Date: Mon, 06 Apr 2026 10:28:57 -0400
+Message-Id: <177548573700.95472.352775942128786057.b4-review@b4>
 X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=508; i=tamird@kernel.org;
- h=from:subject:message-id; bh=hQs1Tn9TC/fuoSSmmMaVRc8aMtneqBIGGyK2dnscFmo=;
- b=owGbwMvMwCV2wYdPVfy60HTG02pJDJmXD+u/jDBy4Oa9bJk4w2M9B7fk4YfP510ojuW9dtlDK
- 8//gb11x0QWBjEuBksxRZZE0UN701Nv75HNfHccZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
- NNIx0DFm4OIUgKnWM2JkmPtPyHGS6crEmrgGbgvtnyq6OeqXoizabv3atXTD0XW/fzEyfK7+xT2
- 9UPeX0uOlbpUiO+eET1rG+2bCuhV3GffYBAk+5AMA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=710; i=tamird@kernel.org;
+ h=from:subject:message-id; bh=mq7jaFSupKdEJsnxgCQqUuadHGtAR9I1r4rs0c7hHHQ=;
+ b=owGbwMvMwCV2wYdPVfy60HTG02pJDJmXD+tzWYj+6dTpkBWbUfp7wsO/m/iYktnfTG+7aHHYb
+ GZpoV1Bx0QWBjEuBksxRZZE0UN701Nv75HNfHccZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
+ NNIx0DFm4OIUgKl+5czwP+PqFPMTQeFWGn039hd23v20JE567dHFIme6jpjbVEjwr2RkuOrsmlm
+ kEVS0PyKl+13SNTPpN+1S8XIH9s/y+Sn8aJMrFwA=
 X-Developer-Key: i=tamird@kernel.org; a=openpgp;
  fpr=5A6714204D41EC844C50273C19D6FF6092365380
-Message-ID-Hash: FTE7FGS3WQXMFJFVW63AUIBLMQKPZOFO
-X-Message-ID-Hash: FTE7FGS3WQXMFJFVW63AUIBLMQKPZOFO
+Message-ID-Hash: ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH
+X-Message-ID-Hash: ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH
 X-MailFrom: tamird@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -126,9 +126,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/FTE7FGS3WQXMFJFVW63AUIBLMQKPZOFO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH/>
 Archived-At: 
- <https://lore.freedesktop.org/177548573698.95472.15531781806867412060.b4-review@b4/>
+ <https://lore.freedesktop.org/177548573700.95472.352775942128786057.b4-review@b4/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,14 +138,16 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, 06 Apr 2026 01:52:51 +0200, Miguel Ojeda <ojeda@kernel.org> wrote:
-> `feature(extract_if)` [1] was stabilized in Rust 1.87.0 [2], and the last
-> significant change happened in Rust 1.85.0 [3] when the range parameter
-> was added.
+On Mon, 06 Apr 2026 01:53:08 +0200, Miguel Ojeda <ojeda@kernel.org> wrote:
+> Sometimes it is useful to gate global Rust flags per compiler version.
+> For instance, we may want to disable a lint that has false positives in
+> a single version [1].
 > 
-> That is, with our new minimum version, we can start using the feature.
-> 
-> Thus simplify the code using the feature and remove the TODO comment.
+> We already had helpers like `rustc-min-version` for that, which we use
+> elsewhere, but we cannot currently use them for `rust_common_flags`,
+> which contains the global flags for all Rust code (kernel and host),
+> because `rustc-min-version` depends on `CONFIG_RUSTC_VERSION`, which
+> does not exist when `rust_common_flags` is defined.
 > 
 > [...]
 
