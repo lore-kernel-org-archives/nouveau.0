@@ -4,110 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1877F46C49
-	for <nouveau@archiver.kernel.org>; Mon,  6 Apr 2026 14:29:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75EC9F46C47
+	for <nouveau@archiver.kernel.org>; Mon,  6 Apr 2026 14:38:10 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 85FE410E267;
-	Mon,  6 Apr 2026 14:29:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 304AD10E269;
+	Mon,  6 Apr 2026 14:38:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e+As036J";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fMeehR+q";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 1464C45665;
-	Mon,  6 Apr 2026 14:17:51 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775485070;
- b=B+0QRkE0ZmNo2xN/RrsCsownSoXGxi7ko2MVMoxkg7lQrLL/vKAzw0ryIbltYdqr6xqGI
- rC091hvUYaXzotdxx2NrOxRjpeYZy77ti4odX7UHKHjTH8/pisNqBD/ifz1SRhIvlWZ/9pG
- XeVF5YNCkQ89znP+2NA8YsJaZN/6P1RgR17AVaV2tVkdyLDPcAXfRONnpxfhIzDjwBB/+ek
- jPbc1v4QbDVQop9ajt2womb7GY4wVvjH/umuMaQRMtq3TUL6cFNW/zcdydsEJZz7TlcpvQT
- VyaIhsfMl1ezdSdKTMXYzIl0ftXB4+xqXlBo2PSn7iM/n75OGS2k9lAuY12w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775485070; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 9E9A745675;
+	Mon,  6 Apr 2026 14:26:35 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1775485595;
+ b=wSmnvp2wiL2ZEpSKHO+JCcQSm8qHxnCTygxBPAr9nFtRXGunj36y4PWSIwz/YHld3f0Ar
+ DcFOuvt5R46rGT9zaq6mnGGVb6t4PU4zSrFv535dVHcs9Rhx0O15PKOHs+b4dbofawfVUV3
+ gGBoPBgeYQHVZRZMWnU2vqenOgg/09PGl0DrTIQrY+G3YjYUcePnpMdlDTFGKhDwGl0PBe/
+ /Hs+Y2H5DgzAm4hi3VHXk9sFb37vcx5n65X6sxXJ0o85pxjV6zKDABhb6a0FtH9vD1s8FJm
+ sv5Ngmsq3HrUAipklu3ozKKyUyzacELNJjXrsq3fvCT+y0Rt4IY5/hVwNQdg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1775485595; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=YL71vnLj9QpiyZ0wn2k6qRLWCKTBHQ5qGJXoAsI/k7Y=;
- b=rt43A/IHNPAMw51Jb4QtitvX9TNJmdgWp07BxS/0GXmpcKBLScoyLp0wTbjG+EouMSI4v
- ldM0+whE1b2L8J5VeDZbnQM+GlSNU2Z7gOqnaIvAgk4VL7mb90euZrmm43SNu6pkAQWAP4m
- DttXBYH7lY6ZTq3Pdb0ffx30WobU+4AiEa+eP2eQv3CEkIWuS594AmlRF9LGb5JjLQiQBcm
- stnm/815UI+04n4a9thFDSFUsg5q5BO8QLlxjOyUntaHNuNgqBPk901lMy0OyQ68V5w2g5n
- JtGAngoyiYdP1mfHtFta1+5Uh3yPAxNia9GjqxX8KhjR7yAwYmnSQXimwUqA==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
+ bh=hIhNt0MJcuiCREyJL4elAnSUfXIEbP8C+cm2AS/TYZc=;
+ b=k2hy5u17ue2/qO+T99e5GdeenIjo88vOut9qKO7m/oN7m37kqr0AlFcTw/YEz5AcKsV9w
+ pzTREg8YVDTrFTq9D69ZcxHNZMKhU/NxsotKKpDr3jfb4vI54zG3hmKlYIGJFI7xYEBiAfS
+ THAcMEW+QCGey8slMijEtsSv+oXjyp/t49QAeAB0KfiA8d6obzM/2C75yg9kbhIXypCM3Oo
+ 2cL4VGtegyI3jR88vCn781iPootiv4mScPEVh9sar50bIChqdH7eoCn+d9MGerX6D8uBrEx
+ 1t6fKD8UHxGGSQvrWuudqorT09lXNKhLAdoByacqtI6Ds4oD18RX/46oC7ZQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=gmail.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EF2CD45582
-	for <nouveau@lists.freedesktop.org>; Mon,  6 Apr 2026 14:17:48 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3629310E261;
-	Mon,  6 Apr 2026 14:29:22 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id AF2D860128;
-	Mon,  6 Apr 2026 14:29:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18640C4CEF7;
-	Mon,  6 Apr 2026 14:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775485761;
-	bh=mq7jaFSupKdEJsnxgCQqUuadHGtAR9I1r4rs0c7hHHQ=;
-	h=Subject:From:To:Cc:In-Reply-To:References:Date:From;
-	b=e+As036J1OE0LRbTE+udyTNDvuoDowrAh30WCvKKTZxym8JYzXrGS3G26uVdSwDP6
-	 mK3MA9FuaKrw2yn6f4O66Z1zhBrF83QZGaW2/46S36F1e6+tbLI+XC7JYbZzu9Ff2r
-	 Vc9MuNOWNw+/xBZ4JS1jso2x8nUy5yuCaECtI4kKEB+tx7ukCV87lbA0JAlLkDmp68
-	 5qUbmQ7T+w79KOxCzYtbCnYkoItoAf9EdIcuSMqk4t18yFBWMycOAV32nSBypHspnL
-	 g2OeTE7e+5JZx9HvznWqHMpzI2q+cViUAFIk3S0nmqEP7lP8RFEUbEhMLbJzveYwbK
-	 H+dQk2i2obNKw==
+	by kara.freedesktop.org (Postfix) with ESMTPS id CED7645657
+	for <nouveau@lists.freedesktop.org>; Mon,  6 Apr 2026 14:26:31 +0000 (UTC)
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com
+ [74.125.82.170])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2A61210E24D
+	for <nouveau@lists.freedesktop.org>; Mon,  6 Apr 2026 14:38:05 +0000 (UTC)
+Received: by mail-dy1-f170.google.com with SMTP id
+ 5a478bee46e88-2bd801b4078so411738eec.2
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 06 Apr 2026 07:38:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775486284; cv=none;
+        d=google.com; s=arc-20240605;
+        b=RA3PaNV/ohV8fDq8epm+/ry2Y6Mmz+6S2ELN5d/aoVgBTsmAbCc7wtoBG3fvW+typq
+         2w7ZyUI0B11MKzNfgc6icm/9NrK1K9ig6rg+QRm6ihL8sJE8+bJ2p+2kMsFNtSdlqpgL
+         wA13FNJvvru1jheZL42Vgv1hBhv5hOzGz78t1A8amQXo4HlA6Pu/MkQvldW+1IZ6zFcw
+         U0Ls3pAgbA1qA2AU2AE2fSDSOjkHRMlS64w323MhmbwlzloVvxuuVISYUL5wn0zcXMfZ
+         ImrIwOA5veeZu7i8SPwivyAaR5PGip6I5tmHGGN9UK1ON/CwutWdoiYiajOTfPqHGw5R
+         Czgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=hIhNt0MJcuiCREyJL4elAnSUfXIEbP8C+cm2AS/TYZc=;
+        fh=D//lLXVLeFdNbO2LK/4z+B/EkPwJL0L13MlGp227BvU=;
+        b=KyfEDvw3ojFTxvuXY1XpnqlYKIAyIudf38vKtcLjvjwx7EuFS7IZuEgRT9UAjm4z9I
+         lBeS//kiySGDtw2lhPkEfpPpNKWWEJA/HzMSL/2Jtkq/PgP5LVFzMN+da+OUtc2Cn/8/
+         Qbi6ISqxRRKyHSUXMILvF3pNnSsN3qBcTNTeJuf0KvyxE+haN6vqrJMzv59x6MLdfnJn
+         VlpcxYAixwCWT4SkxwM/6GF4q/KBnCsTI3gQwTZwrZKYWkFC52AqW/h0xLcD+6vhZ90D
+         cMlUGcCA7sZDRYENqEXM7oRUU52ymvXt9wirevRgP1cBpelEo9q6D9n+1H/KHcyClanI
+         zd8w==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775486284; x=1776091084;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hIhNt0MJcuiCREyJL4elAnSUfXIEbP8C+cm2AS/TYZc=;
+        b=fMeehR+qalZQpVp3KTvGTubjSnHIdQW6PXCFXtCfyCIggZOWLKZWbZMUDlBRj3YRDv
+         R7lg4xrai7ZsFgETc5y7MXkwCCunn8CXRKZatAlnQPFuCyUAjEYrB9IVLzhFZfz9xNNh
+         MB9pP4F9JRM571uC9IAa8dloxKxC5qpXfmkv79rAbw6aJ84Q7NCq/fhbnnfW5V0LbqGg
+         AiYtBdW5hvRrrhM20GxKkKceLH8khpSj62xwsmImuIFROuCwS9ujVPDBa53xXmmoXxPR
+         mGFokFsXwr1p3sBnZkH5tM4/x+5c+kMllhtLZGA8DYEW6wBidOn4LAsoDbZw4WqkZGvr
+         8bKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775486284; x=1776091084;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=hIhNt0MJcuiCREyJL4elAnSUfXIEbP8C+cm2AS/TYZc=;
+        b=WkaGVd2spzr+f8/Ou3WX8J6jM5dC8CxM1WhmHsCx5Zuf5YwYfz3PXzUpWx1TUufEEz
+         XTpSRtmPHSVK+pqzw2bERl/PT0UcHI4P5fUaMFCVf+sHqXN5J7NpUfYeCDgjp3+mNQwS
+         OrDHDhdATOFaIC/KCWB9LYxOfnV27ug5kDvg6USaFe0gyHvSaE3Cx+sdd0MFN5JyJ0j0
+         9wkc57CJavLkMl8T7norRS81QNa0dFFAu+1IV0JWznQ3MHxKXTiDGFX4cvabqLAdAjia
+         kzeeO4A+zVMVfqqjnvOcuzR7BobmFMrWCG1/DOH3mifxv2VTtlFiLQHDxLExjdQasPcO
+         urBQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVKRbZH8yIIKjlFsyVPAJQQR0wbHEWsVfKXwGz/EtJtYlhQqE7+4osig8JRAap6y95vYHxQLqne@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzCpx+TBj5MWoXTr8io4ylpZ4jVBqGOM3eUyPxbvyMtWWTB3cw5
+	2XDqk2R45qQrbVceJ4PITSeQ7LASbi8pTiQ9wP0fz5+YPj1lgysDsFdz9D4soE21n4Q6/j4jy+r
+	MaZpwPab+w6HS8B64/KGVHMfLdUMAA74=
+X-Gm-Gg: AeBDiese2mToQR8V300tE+H3AMvfs3dlI34GvsbWkiPdQe8cQg+1Kz5dgCG4aE5GtRr
+	m5dRy4aRLJp+K7Ph3jtNw7isoY6ndf8MffNL7ORlpluc+qWQ/nagUVJybU5C6z1vNrSehmhjLuo
+	4h10bNsX/PO/HYioMCDAV2qJP3faV+7kOMeU8HiDAQuh3tVkzq6Hi/B8mFBQdAql0w84G23Z2p0
+	uBT0+y5XHozroJ7aO3eJrYQhzVGq/9nQvBQrev98aYn6iaIPnKwuOufaFTLaXUdZYmLdtnlIUr7
+	Ax2JO+vXx1Xy7enlHmrdTDbM0WlH1bIoubO82I2Bt/j0V+zvBhGG8uLkOcbxyFKGnnUErbDR8iJ
+	4F5vdSTlr928XZnQtMHG5WQyfptGQjlyH0Q==
+X-Received: by 2002:a05:693c:2c06:b0:2be:2912:ff65 with SMTP id
+ 5a478bee46e88-2cbfbc7d828mr3020598eec.3.1775486284289; Mon, 06 Apr 2026
+ 07:38:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2 32/33] rust: kbuild: support global per-version
- flags
-From: Tamir Duberstein <tamird@kernel.org>
-To: Miguel Ojeda <ojeda@kernel.org>
-In-Reply-To: <20260405235309.418950-33-ojeda@kernel.org>
 References: <20260405235309.418950-1-ojeda@kernel.org>
- <20260405235309.418950-33-ojeda@kernel.org>
-Date: Mon, 06 Apr 2026 10:28:57 -0400
-Message-Id: <177548573700.95472.352775942128786057.b4-review@b4>
-X-Mailer: b4 0.16-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=710; i=tamird@kernel.org;
- h=from:subject:message-id; bh=mq7jaFSupKdEJsnxgCQqUuadHGtAR9I1r4rs0c7hHHQ=;
- b=owGbwMvMwCV2wYdPVfy60HTG02pJDJmXD+tzWYj+6dTpkBWbUfp7wsO/m/iYktnfTG+7aHHYb
- GZpoV1Bx0QWBjEuBksxRZZE0UN701Nv75HNfHccZg4rE8gQaZEGBiBgYeDLTcwrNdIx0jPVNtQz
- NNIx0DFm4OIUgKl+5czwP+PqFPMTQeFWGn039hd23v20JE567dHFIme6jpjbVEjwr2RkuOrsmlm
- kEVS0PyKl+13SNTPpN+1S8XIH9s/y+Sn8aJMrFwA=
-X-Developer-Key: i=tamird@kernel.org; a=openpgp;
- fpr=5A6714204D41EC844C50273C19D6FF6092365380
-Message-ID-Hash: ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH
-X-Message-ID-Hash: ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH
-X-MailFrom: tamird@kernel.org
+ <20260405235309.418950-8-ojeda@kernel.org>
+ <177548573697.95472.13544191227699996309.b4-review@b4>
+In-Reply-To: <177548573697.95472.13544191227699996309.b4-review@b4>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Mon, 6 Apr 2026 16:37:52 +0200
+X-Gm-Features: AQROBzAshONAZRL6Bf4qdEX94VdiVWUdtgExWPcnxvz_Z_wjuLZH7VazFmpsU7M
+Message-ID: 
+ <CANiq72ne_JYPodnROckyNto10ZF0PqadRxSrng5-mZyqVovxFg@mail.gmail.com>
+Subject: Re: [PATCH v2 07/33] rust: allow globally `clippy::incompatible_msrv`
+To: Tamir Duberstein <tamird@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: EWD65B6YV6ZMCM6XGC4EBDOV6CTZTYDM
+X-Message-ID-Hash: EWD65B6YV6ZMCM6XGC4EBDOV6CTZTYDM
+X-MailFrom: miguel.ojeda.sandonis@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: Nathan Chancellor <nathan@kernel.org>, Nicolas Schier <nsc@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+CC: Miguel Ojeda <ojeda@kernel.org>, Nathan Chancellor <nathan@kernel.org>,
+ Nicolas Schier <nsc@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>,
  Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
  Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
  Albert Ou <aou@eecs.berkeley.edu>, Alexandre Courbot <acourbot@nvidia.com>,
  Simona Vetter <simona@ffwll.ch>, Brendan Higgins <brendan.higgins@linux.dev>,
  David Gow <david@davidgow.net>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?utf-8?q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ =?UTF-8?B?QXJ2ZSBIasO4bm5ldsOlZw==?= <arve@android.com>,
  Todd Kjos <tkjos@android.com>, Christian Brauner <christian@brauner.io>,
  Carlos Llamas <cmllamas@google.com>, Alice Ryhl <aliceryhl@google.com>,
  Jonathan Corbet <corbet@lwn.net>, Boqun Feng <boqun@kernel.org>,
  Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
  Benno Lossin <lossin@kernel.org>, Trevor Gross <tmgross@umich.edu>,
  rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
@@ -126,9 +170,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ACRAKG46SHA4ZPITWTZ6G75LK7QQCXRH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/EWD65B6YV6ZMCM6XGC4EBDOV6CTZTYDM/>
 Archived-At: 
- <https://lore.freedesktop.org/177548573700.95472.352775942128786057.b4-review@b4/>
+ <https://lore.freedesktop.org/CANiq72ne_JYPodnROckyNto10ZF0PqadRxSrng5-mZyqVovxFg@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -138,20 +182,12 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, 06 Apr 2026 01:53:08 +0200, Miguel Ojeda <ojeda@kernel.org> wrote:
-> Sometimes it is useful to gate global Rust flags per compiler version.
-> For instance, we may want to disable a lint that has false positives in
-> a single version [1].
-> 
-> We already had helpers like `rustc-min-version` for that, which we use
-> elsewhere, but we cannot currently use them for `rust_common_flags`,
-> which contains the global flags for all Rust code (kernel and host),
-> because `rustc-min-version` depends on `CONFIG_RUSTC_VERSION`, which
-> does not exist when `rust_common_flags` is defined.
-> 
-> [...]
+On Mon, Apr 6, 2026 at 4:29=E2=80=AFPM Tamir Duberstein <tamird@kernel.org>=
+ wrote:
+>
+> Could you add a reference to the upstream bug report [0] here?
 
-Reviewed-by: Tamir Duberstein <tamird@kernel.org>
+Of course, thanks for the tags!
 
--- 
-Tamir Duberstein <tamird@kernel.org>
+Cheers,
+Miguel
