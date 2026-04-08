@@ -4,159 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A0ECFF5136
-	for <nouveau@archiver.kernel.org>; Tue,  7 Apr 2026 19:40:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CA9210F9940
+	for <nouveau@archiver.kernel.org>; Wed,  8 Apr 2026 14:22:06 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF0310E4D7;
-	Tue,  7 Apr 2026 19:40:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6BDFC10E68A;
+	Wed,  8 Apr 2026 14:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="sDMsUKs1";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="C5svZ9wT";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id D2FC5456E5;
-	Tue,  7 Apr 2026 19:28:30 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775590110;
- b=jhm4w3ouVrHZ1tKqqZkUl8J37yfAX3YgwY4s8BcWcuJ1bQnVJgJob5mo8Umxj55cT2aEU
- 1lIg7uSSkUsDiVPpTNjvpKD4TbJ8CRAlFSHxednHmvWPkonhyMzG3R/j2/eIffB7upwj7AH
- O2xf0H1v9daBZ/k56tW7ET78MuefdrXS7hBdtOmfnYsYPICSJf5Da+bajP7N7MaCHLeXc+s
- hcPrrfxuQ2U00Bgax1ZtJPZLREudp8+B8dRlK3opqYHKADRJLS25TW8vjhuNua2xMTqetoX
- OtnGu8CHLY4zmPJQxLaFcG/1SqEPrJJ4+grLRDSSxRjqr0p0jVePLqUGk4Pw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775590110; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 6C27145644;
+	Wed,  8 Apr 2026 14:10:28 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1775657428;
+ b=ghv0PFnENUedrqIAI7FmSNI415+AUidwKOm7at5vidMDULgcxjhBqYrYWr+WbKaroTaZ2
+ 59iqMt3TV6TrTHDD+mvpXgUavAIHMDABPF5H4KKm/nboZqyXM5LYzrh8AyIXjsyObkDQY2F
+ LFMxu5KTZVL9mx45U2Psw7uEB9jDdAiUKc0nPg8jl1W9x12AGhJ9PE6H3/SJHTEm3orDlr6
+ RqqkmiVL8ISypLC2q9zsjrd7Q1pHTG29AqnI8UXP4wXHNT+XH6vm4idibHq9Brrd12OYNY3
+ Yqfb0jnv1LaK+kHZBMKg4fj5SbGL9pubgNS9lO0P1jHHJPAuABJFf8845Gzw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1775657428; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=zfB2Vo9vdLlwf+b5CQXtw7Z//lquULPDQoRNbd6Zh9Y=;
- b=u+5wpIDG5p/Lw5wsZzjgZA6OpVpdJRmicnHHosMp27MlCW+DwvIV0SnFlORpeWEWu+H1E
- 2f1o2PaYhe+9B0YP7mYP+cwT+/N5qvsPgpElzT5npGjgp/ttnLziX5JW4od8IVHMutA3jAi
- 61Bv0uiLrxRCfEEbXEskDvNuH0iCyMr+87SlY7D6RX8gWtxEfp+/HVt9yyDaElIsQRD/a7Z
- Ez3mjkNMQfeJP/n8j9adyLeDqQQlwn/RJGGmSw9hV8OAsCS7m1A2NEaWxS3hJR6To0My5Os
- Xn8EQMRB4SLQjiCFk27eqjL0x4daDgB4CbOa0Y/+97YYEr6ZrjQr2trGooSQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=kernel.org;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=kernel.org
- policy.dmarc=quarantine
+ bh=rLEMBirTW2lkQ8q+ZVVWRUffdjURbMOVLQyVnnYEQ0Q=;
+ b=uBdz6i0/2PzXvIAjFtRYDdlGfBFvVvGqKabXGv1JzUPF9UwSsxY1QceGx6x+MAV5Tnfk3
+ yoyLC0/GApt+e4ubuyAUXbiAV+5NQH0f2oAj/rULxBJhKqCHRE6cFpvk0xDuzK+sslM+QlI
+ aDTZ2Wl6dm41RyieYg7CpRakAoVCCpEWZBfIBS4S/IbsXqRjjFtGC3oZTM6UlMPs4zLXT75
+ EX9S+NnyA1dVvu5GQ+Mp09eF2WCoGTBPyWuucZiVo7Y0fDY/2CvdSCz7A4HpElUtm0DLaca
+ 7kBNd5hNGkNoUkJlCY8EJHsTjiUxmCMb8EJugm7nqvsSm0Fsow2hGErXBriQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DDC58456DE
-	for <nouveau@lists.freedesktop.org>; Tue,  7 Apr 2026 19:28:27 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id C76D810E4D5;
-	Tue,  7 Apr 2026 19:40:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id 3BB9C60139;
-	Tue,  7 Apr 2026 19:40:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F94C2BC9E;
-	Tue,  7 Apr 2026 19:40:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1775590802;
-	bh=G6kWDg5ZKjWvzVWKZlcYhQ5fam5iGV3sa+XLqVTs0uY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sDMsUKs11clmLqRSYOHdYemC/6eCCuTs/nd+pMdQ4HYBrZ2RMECvxE6SXi3Cq7Qt2
-	 Vq2KJvfW5GfXXZgHejEo9PnFH8x8Op63ZSvbJ0vvCU+be1qdWGNKDkx6MVC2iXkJUM
-	 qJwNyNeAg2v+RkrnDQoXDazkT2Endo1x/TFg5/uKx/qUeKnEug+ZIa1nMoI5aLlOEY
-	 qeo71REji+J04wTIEZliW+iwogjU+a6RnJJQAR1UJJBmXx/1Uxx/C0aQtgyu1LZY3r
-	 MsOztoq00b7hebIqtbESUzLc+vPI1CSIyx11Yg+4g+gy6/+6M0uFALPOC0AaMDWpzZ
-	 Kfy0Fs+ExLZRQ==
-Date: Tue, 7 Apr 2026 21:39:30 +0200
-From: Nicolas Schier <nsc@kernel.org>
-To: Miguel Ojeda <ojeda@kernel.org>
-Subject: Re: [PATCH v2 01/33] rust: kbuild: remove `--remap-path-prefix`
- workarounds
-Message-ID: <adVdctvoln3uRnSH@levanger>
-Mail-Followup-To: Nicolas Schier <nsc@kernel.org>,
-	Miguel Ojeda <ojeda@kernel.org>,
-	Nathan Chancellor <nathan@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Andreas Hindborg <a.hindborg@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Paul Walmsley <pjw@kernel.org>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Courbot <acourbot@nvidia.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Brendan Higgins <brendan.higgins@linux.dev>,
-	David Gow <david@davidgow.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arve =?iso-8859-1?B?SGr4bm5lduVn?= <arve@android.com>,
-	Todd Kjos <tkjos@android.com>,
-	Christian Brauner <christian@brauner.io>,
-	Carlos Llamas <cmllamas@google.com>,
-	Alice Ryhl <aliceryhl@google.com>, Jonathan Corbet <corbet@lwn.net>,
-	Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
-	=?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
-	Benno Lossin <lossin@kernel.org>, Trevor Gross <tmgross@umich.edu>,
-	rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Vlastimil Babka <vbabka@kernel.org>,
-	"Liam R . Howlett" <Liam.Howlett@oracle.com>,
-	Uladzislau Rezki <urezki@gmail.com>, linux-block@vger.kernel.org,
-	moderated for non-subscribers <linux-arm-kernel@lists.infradead.org>,
-	Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org,
-	nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
-	Rae Moar <raemoar63@gmail.com>, linux-kselftest@vger.kernel.org,
-	kunit-dev@googlegroups.com,
-	Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
-	Bill Wendling <morbo@google.com>,
-	Justin Stitt <justinstitt@google.com>, llvm@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org
-References: <20260405235309.418950-1-ojeda@kernel.org>
- <20260405235309.418950-2-ojeda@kernel.org>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 08D4941B05
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Apr 2026 14:10:25 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010013.outbound.protection.outlook.com [52.101.61.13])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A1A4D10E687
+	for <nouveau@lists.freedesktop.org>; Wed,  8 Apr 2026 14:22:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ssJ3z7yDtFqPM82m5Zz5z5vlci/HgAfJShReJrQ4TicELHCHJ0KRpirrkIK25uO7sFUmwMhhKQchPxXikShQS8tbg3VfTcP1dbVGSv3+trokGb7SOSgds2epLVABuzeNCjpgcqGNDWxE7OXG1gxnNLgSw+ikI/k163DesrtxgdTAyLH1PsvWNH4EC6bcHJmBN+Jw5Ta2211uXASSzkr519JloLfaZTJqviWFBklhdLYYU8T3dGfC3nS5xdymKkTrCUmaGKmQvfQulqV+b9aumuA5qkJqrSnGiV4XZsbkm0Yd1NDeNPpdnjRMzva5tTMe4/t3XVwpmthVQKg1oeoGOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rLEMBirTW2lkQ8q+ZVVWRUffdjURbMOVLQyVnnYEQ0Q=;
+ b=bwW80nS0TuGwr3j+aPzR9oNM+HdjPRYcWC1c457czAqFEFyQ4/Cnd7hu9hmveksri2WF9S2wy/kgH4nI7d1fKq8pUZwJolK0qKZF8SxBX0wyxWLwQJ0IBx3rhkyrt094N9MUOrNZrgOnXTb4O8JZltxL4W8jWM+q6iypUVcziZpTvWoE4Pz/SaXASQp2syyxZnAnj/q8OaAGtEVBLxEibZQ1W0T14aZtK+PCBiMzXHBLUb9tSzFvMd6v6Z/VKbEEuZq7SlVutw/p+0DrIVIRNeiYJqDJnLJ/z7ZjwZlIOctWCRNQqcr7d6If9NnaLz75CdKTy0kUFBJNp89vIY4bWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rLEMBirTW2lkQ8q+ZVVWRUffdjURbMOVLQyVnnYEQ0Q=;
+ b=C5svZ9wTuMEq3sIw+W8hQ1hUiEa99JSYc8sW2KegLHAJDldkQEFBphD+kr4cAAQi0nbRlt8Gijx29g/JUNGkfQs+xZtwbl7Um+GltLSdVbT/vjWPE/ePJMuuDIPb19ej26EjEx6rIsalZNuoPEm9k695ZHD0Whgz9HeRJxdU5r6pCyRITSqFk2sS2JAMjLwC5g108rcyXrd3ZLEP/Ys5fDc5EkqbNnCW3m5J3aOm8GezM9JaGb0eq1koJZyQm9gfpsV84BjBkau9mNYS7Gxrv2e1oK5wZLHG/00glvN8qLH1Zt/Mt9W1Bvz0/swGahSipQ8pYXu+jrxXxHfDXPm6jQ==
+Received: from CH5PR05CA0003.namprd05.prod.outlook.com (2603:10b6:610:1f0::16)
+ by LV8PR12MB9154.namprd12.prod.outlook.com (2603:10b6:408:190::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.16; Wed, 8 Apr
+ 2026 14:21:54 +0000
+Received: from DS3PEPF0000C380.namprd04.prod.outlook.com
+ (2603:10b6:610:1f0:cafe::de) by CH5PR05CA0003.outlook.office365.com
+ (2603:10b6:610:1f0::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9769.38 via Frontend Transport; Wed,
+ 8 Apr 2026 14:21:53 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.160) by
+ DS3PEPF0000C380.mail.protection.outlook.com (10.167.23.10) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17 via Frontend Transport; Wed, 8 Apr 2026 14:21:53 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 8 Apr
+ 2026 07:21:44 -0700
+Received: from ttabi.nvidia.com (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 8 Apr
+ 2026 07:21:43 -0700
+From: Timur Tabi <ttabi@nvidia.com>
+To: Danilo Krummrich <dakr@kernel.org>, Alexandre Courbot
+	<acourbot@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+	<airlied@redhat.com>, <jhubbard@nvidia.com>, <nouveau@lists.freedesktop.org>,
+	<rust-for-linux@vger.kernel.org>
+Subject: [PATCH] Documentation: gpu: nova-core: document the IFR header layout
+Date: Wed, 8 Apr 2026 09:21:32 -0500
+Message-ID: <20260408142132.3911466-1-ttabi@nvidia.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260405235309.418950-2-ojeda@kernel.org>
-Message-ID-Hash: O4MELSLODXFKFFNILU7HLHI7K54JQG65
-X-Message-ID-Hash: O4MELSLODXFKFFNILU7HLHI7K54JQG65
-X-MailFrom: nsc@kernel.org
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF0000C380:EE_|LV8PR12MB9154:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5814ef36-a855-45c1-dee1-08de957a2edc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|82310400026|36860700016|376014|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 
+	gTlCMQp6qpClz7iufgquyqVmNWUuqQT+6nYW0yIa4FYFrL6zwd/TySCHMu9sKSFXN4DGC5Cnxd3b18GMZKHLq/r619zDPKmhyGY6flX0SfUHgLS7y1Oopwo3nkq7pJhxMtBL1VLbWY7RGgcvrVW2fpEUGRDTkyC39eA1E92kHUVKPLsLqgcqI/rgjR8dI4hj+EdnFFfEpFAnqJSXKtRrblYBB4fJYtargxuVNcd/R11qsJeFSdc8E3aU755LfGToqKu4AI9k0zb5r2koocyM+B440g1E3cQ1iQlNnAtOvbv39gO4qodBCEfFBjJMl+9HPFqbX/xVxOUiNneuu9heAyrYvBeNTmvsx/IqPWZZM1CUE4XDxOtk89cNtL729aejyeuL/xoIumeZb6aH7yJ1EgGsYkJJhFDjuAM6uzENgfJN7pUSQOdCweXgdok/qegdHtfDeTQOp17AZQfOda/vY18Et7X+XeCHwoppfsu4izIo7xIg7jingGgZWymesLXjKd/FjQkZNGnkVsnWYChgiCPh0PlS0p8rQENp//IMNB2hHyK0mVlyeiPzeFw18kFQZyLk1j66mDIuYN7kPhJ8/OVVDkBSKlTwZtitvRN/RuZXNyS06vhuq1NO2bxHombEUW9iGP1pdXxF5Scu7uxWeSXrPk/oa+g1CY+F9YXkGxBMHeA7O33bMjRmO6+D0ZGRG9mcmSlTSRSMvOoSfq9YJaD6Pjjtn3iB1i1FzMUdOEviYXJBXTT+1xpvCkiUouvMFqcglEFEsRQMCR1vmxqhNg==
+X-Forefront-Antispam-Report: 
+	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(82310400026)(36860700016)(376014)(1800799024)(56012099003)(18002099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	OZu9EpBHWYl6bnHPgOdvKtz5mDn14nylczkD7pcEemVaCX4dSOFxf6bVOxTY3iN1F7un5ts8WNAkyMQmI3J4h6xKnwhsDe+hSuE7sGtd7w34iZv08P/YMhT52P8ObROfNZg7Q/K3NIoOzeHvSk/Yiyiy510gUlJHdjqWqMNV1h4bPyI5SZXKVmB0zN07Z3IkoebRVgLOKMCCFqSLwhOY0J87p8BJVy5qYCGg+80XX4U9zn8f+6+1mch/OojXm3Q29+mBntf16Il4r9OVa3XtDt5De6jCed7uYeCAZ1S/95T9Z+k/k0ceyCSjwCD3Fhyd9hfABU3Prl9Xckhk+7s6lixZDuf5ipIQI1jXElJQAVBRXP5wsgyecATPqweoJIgAbD5JsOI8oTWB+4x85XtB2GmyfQdNoGCfbiF+soW8Ds4V3XwXGDE44raa4wX1Uwox
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 14:21:53.6476
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 5814ef36-a855-45c1-dee1-08de957a2edc
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: 
+ TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: 
+	DS3PEPF0000C380.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9154
+Message-ID-Hash: PAF2CZ3URXH55BYQSUZC4MV4SUDGAH3V
+X-Message-ID-Hash: PAF2CZ3URXH55BYQSUZC4MV4SUDGAH3V
+X-MailFrom: ttabi@nvidia.com
+X-Mailman-Rule-Hits: member-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Nathan Chancellor <nathan@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Paul Walmsley <pjw@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Courbot <acourbot@nvidia.com>,
- Simona Vetter <simona@ffwll.ch>, Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <david@davidgow.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Arve =?iso-8859-1?B?SGr4bm5lduVn?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Christian Brauner <christian@brauner.io>,
- Carlos Llamas <cmllamas@google.com>, Alice Ryhl <aliceryhl@google.com>,
- Jonathan Corbet <corbet@lwn.net>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Trevor Gross <tmgross@umich.edu>,
- rust-for-linux@vger.kernel.org, linux-kbuild@vger.kernel.org,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>,
- "Liam R . Howlett" <Liam.Howlett@oracle.com>,
- Uladzislau Rezki <urezki@gmail.com>, linux-block@vger.kernel.org,
- moderated for non-subscribers <linux-arm-kernel@lists.infradead.org>,
- Alexandre Ghiti <alex@ghiti.fr>, linux-riscv@lists.infradead.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Rae Moar <raemoar63@gmail.com>, linux-kselftest@vger.kernel.org,
- kunit-dev@googlegroups.com,
- Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- llvm@lists.linux.dev, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org
+ loop; banned-address
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/O4MELSLODXFKFFNILU7HLHI7K54JQG65/>
-Archived-At: <https://lore.freedesktop.org/adVdctvoln3uRnSH@levanger/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PAF2CZ3URXH55BYQSUZC4MV4SUDGAH3V/>
+Archived-At: 
+ <https://lore.freedesktop.org/20260408142132.3911466-1-ttabi@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -166,55 +161,113 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon, Apr 06, 2026 at 01:52:37AM +0200, Miguel Ojeda wrote:
-> Commit 8cf5b3f83614 ("Revert "kbuild, rust: use -fremap-path-prefix
-> to make paths relative"") removed `--remap-path-prefix` from the build
-> system, so the workarounds are not needed anymore.
-> 
-> Thus remove them.
-> 
-> Note that the flag has landed again in parallel in this cycle in
-> commit dda135077ecc ("rust: build: remap path to avoid absolute path"),
-> together with `--remap-path-scope=macro` [1]. However, they are gated on
-> `rustc-option-yn, --remap-path-scope=macro`, which means they are both
-> only passed starting with Rust 1.95.0 [2]:
-> 
->   `--remap-path-scope` is only stable in Rust 1.95, so use `rustc-option`
->   to detect its presence. This feature has been available as
->   `-Zremap-path-scope` for all versions that we support; however due to
->   bugs in the Rust compiler, it does not work reliably until 1.94. I opted
->   to not enable it for 1.94 as it's just a single version that we missed.
-> 
-> In turn, that means the workarounds removed here should not be needed
-> again (even with the flag added again above), since:
-> 
->   - `rustdoc` now recognizes the `--remap-path-prefix` flag since Rust
->     1.81.0 [3] (even if it is still an unstable feature [4]).
-> 
->   - The Internal Compiler Error [5] that the comment mentions was fixed in
->     Rust 1.87.0 [6]. We tested that was the case in a previous version
->     of this series by making the workaround conditional [7][8].
-> 
-> ...which are both older versions than Rust 1.95.0.
-> 
-> We will still need to skip `--remap-path-scope` for `rustdoc` though,
-> since `rustdoc` does not support that one yet [4].
-> 
-> Link: https://github.com/rust-lang/rust/issues/111540 [1]
-> Link: https://github.com/rust-lang/rust/pull/147611 [2]
-> Link: https://github.com/rust-lang/rust/pull/107099 [3]
-> Link: https://doc.rust-lang.org/nightly/rustdoc/unstable-features.html#--remap-path-prefix-remap-source-code-paths-in-output [4]
-> Link: https://github.com/rust-lang/rust/issues/138520 [5]
-> Link: https://github.com/rust-lang/rust/pull/138556 [6]
-> Link: https://lore.kernel.org/rust-for-linux/20260401114540.30108-9-ojeda@kernel.org/ [7]
-> Link: https://lore.kernel.org/rust-for-linux/20260401114540.30108-10-ojeda@kernel.org/ [8]
-> Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
-> ---
->  rust/Makefile | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
-> 
+Init-from-ROM (IFR) is a special GPU feature used for power management
+on some Nvidia GPUs.  It references data in the VBIOS for its operation,
+but for drivers the important piece is the header that precedes the
+VBIOS PCI Expansion ROM.  Parsing VBIOS is necessary to boot GSP-RM on
+Turing, Ampere, and Ada GPUs.
 
-Acked-by: Nicolas Schier <nsc@kernel.org>
+Most such GPUs do not need to parse the IFR header in order to find the
+VBIOS, but the Nvidia GA100 is the exception.  GA100 lacks a display
+engine, so the PRAMIN method (which reads the VBIOS from VRAM via
+display hardware) is unavailable, forcing the driver to read the ROM
+directly via PROM.  On other similar GPUs, either PRAMIN succeeds before
+PROM is tried, or the IFR hardware has already applied the ROM offset
+so that PROM reads transparently skip the IFR header.
 
+Note that GH100 also does not have a display engine, but it uses a
+completely different method to boot GSP-RM.
+
+This information is derived from NVIDIA's open-source GPU kernel module
+driver (aka OpenRM), specifically the NV_PBUS_IFR_FMT_FIXEDx definitions
+in dev_bus.h and the parsing logic in s_romImgFindPciHeader_TU102().
+
+Signed-off-by: Timur Tabi <ttabi@nvidia.com>
+Reviewed-by: Joel Fernandes <joelagnelf@nvidia.com>
+---
+ Documentation/gpu/nova/core/vbios.rst | 63 ++++++++++++++++++++++++++-
+ 1 file changed, 61 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/gpu/nova/core/vbios.rst b/Documentation/gpu/nova/core/vbios.rst
+index efd40087480c..c9c25264f45d 100644
+--- a/Documentation/gpu/nova/core/vbios.rst
++++ b/Documentation/gpu/nova/core/vbios.rst
+@@ -46,12 +46,71 @@ region is only accessible to heavy-secure ucode.
+    are of type 0xE0 and can be identified as such. This could be subject to change
+    in future generations.
+ 
++IFR Header
++----------
++On Kepler and later GPUs, the ROM begins with an Init-from-ROM (IFR) header
++rather than a standard PCI ROM signature (0xAA55). The driver must parse the
++IFR header to find where the PCI ROM images actually start.
++
++Init-from-ROM (IFR) is a special GPU feature used for power management
++on some Nvidia GPUs.  It references data in the VBIOS for its operation,
++but for drivers the important piece is a header that precedes the
++VBIOS PCI Expansion ROM.
++
++Most such GPUs do not need to parse the IFR header in order to find the
++VBIOS, but the Nvidia GA100 is the exception.  GA100 lacks a display engine,
++so the PRAMIN method (which reads the VBIOS from VRAM via display hardware)
++is unavailable, forcing the driver to read the ROM directly via PROM.
++On other similar GPUs, either PRAMIN succeeds before PROM is tried, or the
++IFR hardware has already applied the ROM offset so that PROM reads
++transparently skip the IFR header.
++
++The driver should first check for the standard 0xAA55 signature at offset 0.
++If found, there is no IFR header and the PCI ROM images start at
++offset 0. If not found, check for the IFR signature and parse the header to
++determine the PCI ROM image offset.
++
++Fixed Header Format
++~~~~~~~~~~~~~~~~~~~
++
++The IFR header begins with four 32-bit words at fixed offsets::
++
++    Offset  Name     Fields
++    ------  -------  ------
++    0x00    FIXED0   bits 31:0  - Signature (must be 0x4947564E, ASCII "NVGI")
++    0x04    FIXED1   bit  31    - Reserved
++                     bits 30:16 - FIXED_DATA_SIZE Fixed data size (offset to extended section)
++                     bits 15:8  - VERSIONSW Software version
++                     bits 7:0   - Reserved
++    0x08    FIXED2   bit  31    - Reserved
++                     bits 30:20 - Reserved (zero)
++                     bits 19:0  - Total data size
++
++Finding the PCI ROM Image Offset
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++The method to find this offset depends on `VERSIONSW`.
++
++- **Version 1 and 2**: Read `FIXED_DATA_SIZE` from `FIXED1` to get the extended
++  section offset. The PCI ROM image is the 32-bit value at `FIXED_DATA_SIZE + 4`.
++
++- **Version 3**: Read `TOTAL_DATA_SIZE` from `FIXED2`. The 32-bit value at that
++  offset is a flash status offset. Add 4096 to get the ROM directory offset,
++  `ROM_DIRECTORY_OFFSET`.  The ROM directory must have signature 0x44524652
++  (ASCII "RFRD"). The PCI ROM image offset is the 32-bit value at
++  `ROM_DIRECTORY_OFFSET + 8`.
++
++The PCI ROM image offset must be 4-byte aligned. All offsets are relative to the
++start of ROM (BAR0 + 0x300000).
++
+ VBIOS ROM Layout
+ ----------------
+-The VBIOS layout is roughly a series of concatenated images laid out as follows::
++The VBIOS (PCI Expansion ROM) is a series of concatenated images laid out as
++follows. On GPUs with an IFR header, this layout begins at the image offset
++determined by parsing the IFR header. On older GPUs, it begins at offset 0::
+ 
+     +----------------------------------------------------------------------------+
+-    | VBIOS (Starting at ROM_OFFSET: 0x300000)                                   |
++    | VBIOS (Starting at ROM_OFFSET: 0x300000 + IFR image offset)                |
+     +----------------------------------------------------------------------------+
+     | +-----------------------------------------------+                          |
+     | | PciAt Image (Type 0x00)                       |                          |
+
+base-commit: b20a9b5f9c4baeae0b2e143046b195b910c59714
 -- 
-Nicolas
+2.53.0
+
