@@ -4,128 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D68310FC464
-	for <nouveau@archiver.kernel.org>; Thu,  9 Apr 2026 00:17:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77ACFEA3C20
+	for <nouveau@archiver.kernel.org>; Thu,  9 Apr 2026 09:59:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5B5510E72D;
-	Thu,  9 Apr 2026 00:17:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 21D0410E77D;
+	Thu,  9 Apr 2026 09:59:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="elb0gje0";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="WGwtQzZp";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2067D457BD;
-	Thu,  9 Apr 2026 00:05:33 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775693133;
- b=BB76iU4Ryc2AQNLG+LSUxLNgR/ToawoqqV73io1tSNbxyi1zSwuLXrXNBh74czKRvGR5J
- 5Ly1M0oEvy5SEemCsh+AEeAujAmfJ6O4E1oFZhXVskhO1Mw3gpz9hcBCJzOaDuqjd6In//+
- ycDtnkb/y+ZYQRG5BB/DA81JI7Mtf5BQpXg5P7Mo4fWjHTvCaIvAMFFrsoPRx818uT96Geh
- dv4QAC/19uL/1Oh5+4wFf/7H4eySl4zJpRWxOtvVrWzTTsymzxrZ6KyZZGVxwoIuLMsBl9L
- i8OwxboQ/Xas/kuP0PAAyi2ZK20D2ff42m3CpV5ToFQnsO7+w2lFW7C9V4qA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775693133; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 4DB45457C9;
+	Thu,  9 Apr 2026 09:48:06 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1775728086;
+ b=evCivG6QBYUNWIW+jqZhIQPfx4qAM5DucUwjXrOXKuuFJJ76vIe94JJ1USfsNoWC86qzi
+ CgRsxKKVvLaldi7HLrZFui5QyhLTXymGoh0Kd5D4rvtNOoNFWrnENXro2b+XDmgBP4cp+35
+ Y6U67JWliED1/YqNZ7DmyIanKnc1L9LEdzuqtCAXr/c1IGXJw5b0zFPyE+2LlbTZn3eku3N
+ eiuPfRDbiPV+IuMzLJj37zI6/4a1WfCohv3tJkPzLHwUrgitrbc9HAyn+MmJ1U9tGG+GdOS
+ xdeTyUTht1SVOOfeCyWQokJWmQDkWgSDGJQfYKnrFr4iU+un7D53Ht9so8Lw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1775728086; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=v84/L+49ZA1uAG2yI2PO3Lh2LKOCLvufu7qPSjG196s=;
- b=OOkKakKTWLw3E90C7XM7ao9fg03ZKo5Xu5hnmou+mUf074M+hkW4JV18PmuzL8NXQd+dy
- LE4diPcjiOGh/ugtSWt3x/VHQ5IwhmF/RCGLb5wYCmM31+YTnbbJ3pUHH1+aFd2lu6viNpe
- 98zIDbqFKvsEP7I0b0wWHM2dFX/QbASxod/V2WSD0Da8IKkE6BrB5OcdsZ1HU2s4dv3Bda3
- DvXnxCPabMdIT2ukK2hfcScaLuSpotjS5OP6RL5TQXqK+aqF319bBlSTINIzIalpiNDv1g3
- Rnq8LP+p324I4b/qxph4erYnP0Xx0M9agPFqowOLw2nrI2lw4ObsBnx/bT0g==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ bh=jt+KgaptQwnbiIvGQXs1XTKytg2nwifhp2nHDe/NS+I=;
+ b=sUkaEA6cGp3KOmCVnJG6iPYWYrFJsQoY+KbYjs1mO6L8jlED2nLE3IR+ERwZeqrSTBpxp
+ YEJP+AerBXtQP7ymCCQtSDkRTTuiGMx3qWRlDW28n8jVbsUu/FzcXym2koJUxGm8swWMp2f
+ Z9pzxD4gsosmrK+2jWFNrxnLs6kk2AdDU9H8T2qHw5BHRwxChyLXEVzIOATammO/cYY4q4J
+ rFeh2eut10fq+3gPTaI0mTvMqMEzgdYtfJDKd8kA0/EkDqSeRrHeJDr7lvNqdmnEtmTCAIm
+ GOb4fI1/Bb/OrlpKus9fpik7Pc8CSiW1wf3cvXcJf3/0hiC0d+cWHb1l10YQ==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=suse.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=suse.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=suse.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=suse.com policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 6E0BF45644
-	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 00:05:30 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F1E0010E720
-	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 00:17:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1775693828;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=v84/L+49ZA1uAG2yI2PO3Lh2LKOCLvufu7qPSjG196s=;
-	b=elb0gje0hPFKY2wM4UkkPlLSDReXxe3GvimL0WlEPa7/DbfTB5KDuYH2zWCysYYNWrEjcD
-	I2rm7X65qS1b5hhsMu0vBXTdzh9PI8Le2z/1wK80VFRNrHyMBKS39JZL/z+C8Nv2pUztds
-	NwongLxlvk+5cxqHSqcXj8Ge8SqroNg=
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-645-KkHRVFXjPYO75nkp0m6NmA-1; Wed,
- 08 Apr 2026 20:16:17 -0400
-X-MC-Unique: KkHRVFXjPYO75nkp0m6NmA-1
-X-Mimecast-MFC-AGG-ID: KkHRVFXjPYO75nkp0m6NmA_1775693773
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 1FA8219560B0;
-	Thu,  9 Apr 2026 00:16:13 +0000 (UTC)
-Received: from GoldenWind.redhat.com (unknown [10.22.80.49])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 5AC653000203;
-	Thu,  9 Apr 2026 00:16:07 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: nouveau@lists.freedesktop.org,
-	Gary Guo <gary@garyguo.net>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	rust-for-linux@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v10 1/5] rust: drm: gem: s/device::Device/Device/ for shmem.rs
-Date: Wed,  8 Apr 2026 20:12:47 -0400
-Message-ID: <20260409001559.622026-2-lyude@redhat.com>
-In-Reply-To: <20260409001559.622026-1-lyude@redhat.com>
-References: <20260409001559.622026-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id C3A62451BD
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 09:48:03 +0000 (UTC)
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com
+ [209.85.167.41])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A98C10E74A
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 09:59:43 +0000 (UTC)
+Received: by mail-lf1-f41.google.com with SMTP id
+ 2adb3069b0e04-5a2a70bb66aso765995e87.0
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 09 Apr 2026 02:59:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775728782; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hMA5mo6aKISGpCofVNen1Kjyhn6foP1bZ697BJtQD5aoBRSyO2O/yGsRXEf4XWG3Cj
+         E5RkID5qmnM0hVBSM1RRyqrfLKlSN3c0By4RXvhk/9FixODeaK3aZHfFZIPWkrIo/tvX
+         8Ml+FoiWkfDd3TxRCajuOcyvV6xGbKhKi1dRk0bItfg48Hxw+xkPKrsRITurnEnv1pyG
+         1G1B0/b5OuY0/9ejs49NNSDuZI0M53JVDl7LR7pw4so5IR2ufOPyk8bzl379pvanky7C
+         YkWYbCAZy0mWCOXzpcMaJ6LVK3I2Oknlmb4nG2nj2/+6NV5/LOIYcppSDVMz07b5QqRt
+         lpbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:dkim-signature;
+        bh=jt+KgaptQwnbiIvGQXs1XTKytg2nwifhp2nHDe/NS+I=;
+        fh=9JaCPDBxNVLSHOQlEEz0Ch+Ibi7QFNGlN6oBXEyvVCk=;
+        b=dd8s0urrU0EdTAnDHqx/MhDQKw8oBg7w0XD/P5IedKWpNadkHUw449cASut6JTItAm
+         R755o84znfQSeyrLO+4KL2zCn6qICGO2vjSt65CoehaxeQhDPnTY8V/0ldVaTFaDnrph
+         IDhJEZ7i0wW+Y4I0WAUc0vmx/HHjy2lgfKjiKXx89CIBNzvMJxNM+gyCIQz7tU31+Y3E
+         dP34oME90KpWuZudcOaE2XoBU0UHuMVFA3nTVeExXeugcUoLmaLZ7GJMPPL2mQFTeeNq
+         2tgA6UpFuHiklrDEoA8zb8He/LLuRlxbsbc4oHijJQtGCrb1X2TsSgm6tAMsCIKUqVHX
+         Qddw==;
+        darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1775728782; x=1776333582;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jt+KgaptQwnbiIvGQXs1XTKytg2nwifhp2nHDe/NS+I=;
+        b=WGwtQzZpDrxeM04FT3lSsiGynKNl9tV6fr5Mf3cQ0dhRdxBrMdX9YjQoRGrA5Hn1hu
+         fIZKjxNQ9AJdqxSdOfaRMyq1hYGinsrU3nC694GHI+qRovvY9WP4E0RcIYZsxFuphzlc
+         wWItrfDq9IPpPhH+Cf4CHDOViOcEBMVqoPaQ4Ey+JjvS750jiNoy809AmnE+AHWKmma5
+         Cr4mjjhgF2oEuNAQG25s5ZK/ncluxn1xcnHty9PM99MsgXxtQ9KY0+77EGIig/3dOD77
+         nT6T0jLuI5ehKnh1ft6bQ+qu7yvnuQap3DPyZhSP9XhjD2tJi/bhFBDjHmOPVSnoUNCP
+         fUyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775728782; x=1776333582;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=jt+KgaptQwnbiIvGQXs1XTKytg2nwifhp2nHDe/NS+I=;
+        b=NEgqKquRofxeyQ2JfXlXSktxxF9R5xCS9PTTAm0gAkE5mvIrCnRUwfdobRs8XB7Y58
+         M/f6iVB9DXyLptS1qQvJbTbdYiMXl3N0j0hz6f+XqkKRtPoiR7rbOfLpv4bDuDLczpHl
+         VjulJe3d72ifAg1KzxvBNgo0w7jKjoLK7BqwbRLgjlpPSaqU0xs95U99Qt0pcT1OitJe
+         /LG/Tfoe5FVSu2WXGtQrxjxImVCGCOIBpYyl0CFtK6n/iy7+pHuYg9hXN1zF68rqL+0L
+         5QnGCM4e/CaLTepqwuRYf39ysHw2wfTkki017eCw1ymYG/COFZLhHk4Nx3FoIEXrI7XF
+         QI4w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUTwxmLkE0kNMg1lDG6R8VdxAjOieKRIvJnZHcRRXKXjuaX6/WxXXTOX1O6btX0iVjqZHJ6SOSb@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxrRT59KJuV5XhWgPoW1uWAT91gFTK6S++9+a8YG9/ooPyh3J6r
+	rLFnhrVNoMaCepzjV2OLvl8RaQqK6W0bW5GBwFD2efyASbVEWcwEvXvvZEj6cC2BgLbIHAsD9c5
+	kcy/GV7nkOW8tKLvLWZEuCjpI7HQHTlCbGiY71ymKHA==
+X-Gm-Gg: AeBDieviMAXeL5LoKEWDy9p39AC954sGu43RaYdkSdcRlxZDsbU2bcaWGfuRtTexmK0
+	oQFWeiW8DFoECtBjhqNSTSCM0QXLiYYwaxjGuCsWKeCnwy/A9xTpNzW7Yd9AfRYLkwU4NUaVDDu
+	nGHA69rWgLeEBoF6GpQqOynB3dIr8x2wesVz5GSqJOyPjLG9ztOPKCGXHw43mMENCxnoC+MmX6G
+	WyDpk6t4CCyk7miWPsT5AikdjMv2QlprZ6yDJdWjtIjP5uvl6l/WIVILQ6nBD03n4JIDVVTCnY7
+	uwO+xPTY9rAhtKyySJQpZSczpkx+WFtwdzw2KEDxxXHTV0Yz/xY=
+X-Received: by 2002:a05:6512:2201:b0:5a1:3d21:7b55 with SMTP id
+ 2adb3069b0e04-5a33778569amr7413966e87.43.1775728781591; Thu, 09 Apr 2026
+ 02:59:41 -0700 (PDT)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-MFC-PROC-ID: xc9W1i6IYxPU38YRT6-HM3eaK7FBd0_zSYVexGguMzg_1775693773
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: XE63KNRRKMPV5OFI755ZLG6AT5JLWSWO
-X-Message-ID-Hash: XE63KNRRKMPV5OFI755ZLG6AT5JLWSWO
-X-MailFrom: lyude@redhat.com
+References: <20251031102020.95349-1-marco.crivellari@suse.com>
+In-Reply-To: <20251031102020.95349-1-marco.crivellari@suse.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Thu, 9 Apr 2026 11:59:29 +0200
+X-Gm-Features: AQROBzBqe7bIwFZ6E3imviQffF2vEGLSChI_VwvP5fAtQWlwxHZL3ZF5baJtnx8
+Message-ID: 
+ <CAAofZF6QF9fY3U9sF2FT6XZ37hfyvZ20+canggyOskWynKG+Sw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] replaced old wq name,
+ added WQ_PERCPU to alloc_workqueue
+To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	nouveau@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: 5STWBKNTNMO4RJRY5P7EEZ6P3SWS4RIK
+X-Message-ID-Hash: 5STWBKNTNMO4RJRY5P7EEZ6P3SWS4RIK
+X-MailFrom: marco.crivellari@suse.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Michal Hocko <mhocko@suse.com>, Danilo Krummrich <dakr@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XE63KNRRKMPV5OFI755ZLG6AT5JLWSWO/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/5STWBKNTNMO4RJRY5P7EEZ6P3SWS4RIK/>
 Archived-At: 
- <https://lore.freedesktop.org/20260409001559.622026-2-lyude@redhat.com/>
+ <https://lore.freedesktop.org/CAAofZF6QF9fY3U9sF2FT6XZ37hfyvZ20+canggyOskWynKG+Sw@mail.gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -135,52 +157,26 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-We're about to start explicitly mentioning kernel devices as well in this
-file, so this makes it easier to differentiate the two by allowing us to
-import `device` as `kernel::device`.
+On Fri, Oct 31, 2025 at 11:20=E2=80=AFAM Marco Crivellari
+<marco.crivellari@suse.com> wrote:
+> [...]
+> Marco Crivellari (2):
+>   drm/nouveau: replace use of system_unbound_wq with system_dfl_wq
+>   drm/nouveau: WQ_PERCPU added to alloc_workqueue users
+>
+>  drivers/gpu/drm/nouveau/dispnv50/disp.c | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_drm.c   | 2 +-
+>  drivers/gpu/drm/nouveau/nouveau_sched.c | 3 ++-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
----
- rust/kernel/drm/gem/shmem.rs | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Hi,
 
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index d025fb0351954..c643f18b20838 100644
---- a/rust/kernel/drm/gem/shmem.rs
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -12,10 +12,10 @@
- use crate::{
-     container_of,
-     drm::{
--        device,
-         driver,
-         gem,
-         private::Sealed, //
-+        Device,
-     },
-     error::to_result,
-     prelude::*,
-@@ -108,7 +108,7 @@ fn as_raw_shmem(&self) -> *mut bindings::drm_gem_shmem_object {
-     ///
-     /// Additional config options can be specified using `config`.
-     pub fn new(
--        dev: &device::Device<T::Driver>,
-+        dev: &Device<T::Driver>,
-         size: usize,
-         config: ObjectConfig<'_, T>,
-         args: T::Args,
-@@ -150,9 +150,9 @@ pub fn new(
-     }
- 
-     /// Returns the `Device` that owns this GEM object.
--    pub fn dev(&self) -> &device::Device<T::Driver> {
-+    pub fn dev(&self) -> &Device<T::Driver> {
-         // SAFETY: `dev` will have been initialized in `Self::new()` by `drm_gem_shmem_init()`.
--        unsafe { device::Device::from_raw((*self.as_raw()).dev) }
-+        unsafe { Device::from_raw((*self.as_raw()).dev) }
-     }
- 
-     extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
--- 
-2.53.0
+Gentle ping.
 
+Thanks!
+
+--=20
+
+Marco Crivellari
+
+SUSE Labs
