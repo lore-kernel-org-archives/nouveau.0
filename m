@@ -4,178 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD902F459F7
-	for <nouveau@archiver.kernel.org>; Fri, 10 Apr 2026 17:36:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50C21F459F7
+	for <nouveau@archiver.kernel.org>; Fri, 10 Apr 2026 17:37:04 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id E5D3310E9AB;
-	Fri, 10 Apr 2026 17:36:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 22B0810E9AD;
+	Fri, 10 Apr 2026 17:37:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=gmx.de header.i=natalie.vock@gmx.de header.b="saeM88dG";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="DLMbyOxD";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 3DBDE457EE;
-	Fri, 10 Apr 2026 17:24:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 7B93A457EF;
+	Fri, 10 Apr 2026 17:25:21 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1775841899;
- b=omf78XcHgLW6FTpo9j/XDo8sZ3UzVK4rNLpQbJXPrqx6bKV6PRgdn0qjNhETGnZUrCl7T
- gO5EdjoXEIovcRAaHmXUncj5+DY7RwJfjxm7q0o8U9pezvPs2La1qh6wqpyj9fA9qDySM0F
- SV4c2oTq7na0uovWkgWbzSxiJ06AIP/4HuC0ph+1qx9g3izpR+1CEd1jsF9d2kUAfYT1Yzq
- nhape2PhR9Lb+yKjRgh3a3GWy+yFMV+AdTVhKJhtNTPFr46V8xubvwjw6lw1QSZt5u3HbpP
- Y3akC4p5dp/sPyrm4rUefr0XsBtXBhiKw5g9/118GlMROZodbz2Fd5AqXE4Q==
+ s=20240201; t=1775841921;
+ b=qsmiTIr6JYuWYdhBTgaS7OaUyPpcObTCTmyyr0rLHS4uQkOco4hKP82DyQ10Xo6ZM7VsX
+ x6TNfYmPbVPIrlXFJaTYaaZPbqhOFVcPR/Q5AWBUACRCitcnyAPJbp8a6cd6OflEbZVZ0Oi
+ 97ZGT6DAjS9fiGIpcp6CDsIxxDHFfxX16+i00Hjzuke1fN3adibpExUp3OLr3T139/FoMr3
+ QAaRmTFMjIO1YU9WWLoCy/ujUSLWMca0yUkiuI2Fm05nHqmYzz5DCiGyS3mm5DZspfWc/ri
+ gpnXKUlVNvStS7kvZ+85oKR9+ONqEANJysHwyV9mKvowNWSbinMwEYeHfndw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1775841899; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1775841921; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Vn1UGNBs1QyV7pxaDRuQ2btI1igmoxTSy+0hWWgfu/8=;
- b=q8kPl8civljVNMwaZYF17YJ8umbZvSQeVo0pFEei2r7Sbnqh3rCAyG4KeJFMbbc9ZuiJh
- RXwMjBJcsGQd1eG47vPiKjrfh2wz8/P6GBt1k/jEiP8qs8gXynZ5crzZN6XUkNDON6nOhKZ
- TfOjYk3rJz21qtGyXme82VQfZdhzVmFfD7XjrQZRIbokCOepTSRu2Y8v3LTd13KyRZJ5eNd
- LJcxPFRWutFA6in6W1N+xBmeURIt/2jZ9Qru1Qfc7vPzgPUjizHxQOKRwBqX9PTIo3f68wz
- GkVl+SWnFzEUSOrwklCkq7TzXKNH6B/hs1SEUeHpY7Jg7z+9DNdMQeH9xo+A==
+ bh=VouOEuCnHvjyu2RFuR8oBB76e+Jzifx7Gza9ra+kGWE=;
+ b=CuX/AdVNTsgVHv5bEnk9pQyrAZcUmI75o7menb+f2QQzlkJI2MGsc85XoOL0r42GfUpYT
+ q42m5/LTGokkZeRqjk3rREMH+5c0mIWvQGFl2aLkPnD0TBAb6/LUNUhbAdpgn6SIeHo1Oxy
+ n++ldqdf8ataoFWaudbiMXIsnJWcLkGg5FMLwhmBWLC5VlBVo65VGYog+5gczq5K8p52cwZ
+ ymNG19fUbvSSXnPKcf1HZW+a8LNWMPKf/96I/kDan2l8nKKi6+udiujBpEuuz2JXIA/Elwk
+ CngXt5LtLU5U1HU2q8Hl1TPAgXl698MepCtBZ4y/zSKmEDvdWE8mGa7OVq6A==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=fail header.d=gmx.de header.i=natalie.vock@gmx.de;
+ dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmx.de
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org;
- dkim=fail header.d=gmx.de header.i=natalie.vock@gmx.de;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmx.de
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DF07F457DB
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Apr 2026 08:01:57 +0000 (UTC)
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AE32810E8E9;
-	Fri, 10 Apr 2026 08:13:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1775808815; x=1776413615; i=natalie.vock@gmx.de;
-	bh=Vn1UGNBs1QyV7pxaDRuQ2btI1igmoxTSy+0hWWgfu/8=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
-	 MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=saeM88dGWOGznfPCtMwzTLIK60jaBjvemVrw6BvMnzYxaSl5/h0bg3twx22VeUUz
-	 J0mYxKaWMRMQfLlUSVxxKmpTWUy6H/XcNXYCmAh9low7bTE+qoGHLhsmUFINDg1QO
-	 iiY1SF+Chfb1eez8fA4d88C+6r/oYQV/qFgW2TKRH5RFrkausD8OGhuV/SW2GLXd8
-	 mFGBy3dUyFR3YaO5HcJnMKIfT4PE+UwnpvxU3WhHLQcGCCddF5EB8rm9Z4JFV752c
-	 TNq8XSziBnog0yULwEDIJ1X/wORpF8QQJ/G5AWK8RIiH8EJjoOhjRfec0ZYnbVewo
-	 iQ5SE81KhyRT4d+ulQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from client.hidden.invalid by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MWzjt-1vw0qV3siH-00UJx7; Fri, 10
- Apr 2026 10:13:35 +0200
-From: Natalie Vock <natalie.vock@gmx.de>
-To: Lyude Paul <lyude@redhat.com>,
-	Danilo Krummrich <dakr@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH] drm/nouveau: Wire up dmem cgroups
-Date: Fri, 10 Apr 2026 10:13:22 +0200
-Message-ID: <20260410081322.5577-1-natalie.vock@gmx.de>
-X-Mailer: git-send-email 2.53.0
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5F044451BD
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 17:09:50 +0000 (UTC)
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
+ [209.85.128.53])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9C6A710E04B
+	for <nouveau@lists.freedesktop.org>; Thu,  9 Apr 2026 17:21:30 +0000 (UTC)
+Received: by mail-wm1-f53.google.com with SMTP id
+ 5b1f17b1804b1-488822b93c7so1263875e9.1
+        for <nouveau@lists.freedesktop.org>;
+ Thu, 09 Apr 2026 10:21:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1775755289; x=1776360089;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VouOEuCnHvjyu2RFuR8oBB76e+Jzifx7Gza9ra+kGWE=;
+        b=DLMbyOxD8QPzq1n1V1m+xswI+8ssq69vQWm9zzfrnppoLGs1SsssYU4KD+U3taOz6Y
+         pKRoRYcU7IuHK1HwXhlmXelCzSNoTnwZM1hn9lLABous54Lj5nfE9yj7W3+L+/TlMQrJ
+         Te4sPw16v1zBMjhnYiCPEhXoObKHeyM9isNfCpeDowHPOdBH7ipliqquT28Dmme10l05
+         FSF08K9wdffMAc/mV87IYOy6r+T5CUfNc0h8mT0yRh832AvQPm4YVEI8KTwAV8A+4JHe
+         WqKNsL86idm5Oz/OoBDn9vX7bFjcDglT6VaHqiodWmxfUU913Nq9O6Bgb+40kj2EtMLC
+         8MVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775755289; x=1776360089;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VouOEuCnHvjyu2RFuR8oBB76e+Jzifx7Gza9ra+kGWE=;
+        b=MAX7LmCvjEBIiI2thewrX/H3lJFXPFXV95RQFiTrO7fQUGPB3FxBYq4bjCVf56+AQU
+         Txz4NDJx5McTaw1gguGn2LvS1jBcLAbcsSERwjYOTAWwMIEipmFxT7/LGjPEHk4X8rGF
+         5ajX2T0FdZ9ZlOARcmoPRN3T6F9m7VkL0Ipt/WDmi3r9kHOSHZAiXyn6lBInY/rKoTka
+         fp2mPt+KG/kBkZ0/0rgJR2v6xhakCO5x0DRojOqzsfXe5uRih62RQCUOdo3cvdL3TQk5
+         gLJqnpzKN5TDp+EEXiyPxXo0eh01aE+hmQ+qZRNDcWzl1/al0GmObuy04bzuexT4fVWS
+         Y61w==
+X-Gm-Message-State: AOJu0YxLZzfwngF+dWtWfvPD2h69cPhMvnPZ1B/rId+IgrQZrUak4gQG
+	I1yGB9uHlFlO+gKhkTNFMsfJF6820vUsCtU0eFNjpMtf4jYcMhwO2ZE6M7rebxsxq0o=
+X-Gm-Gg: AeBDiesfJKO/6Zd+81mwDYlAKNCWqcWDssEaYGnTwd3Oyuurie43vmrRptsJS3Ajxlt
+	IyP93kTV4BUOeAUYKTvhV8YuR/ZMTgucXIg0rlYmUcPWo71jJzjswZCNF8ABy8ZZVApWDJSYhl6
+	gvVZ7e8+LGH6fJkeAfhBkAvT0+Phg4crJfyckplAk890xb4y0jURswJ91ROJP/Ko2zIb2Ao2jU2
+	j/Zb6BvAUhhfPSpdZ1ee0APubs30a9XkBIgUCOaaEEjWI/8K/krsRJzOaMCV4xxnNLeNP/zOHE7
+	zbK04fA3DIB1TlVh1jF+l02vhFaIOcZrWmX2dnFjyQ022pdStlMjnIvSJxYx3mtLv2BaQUTcqct
+	+MEf4ykMVLF9zv15k3gQ4HDbCV2nCO80mB3skQEtCbdRh3ix6sSuCs8Ty1z9Aub/6dhDoTsOrny
+	Tpp85MAj9FiRStqGYGMGgbpc6vRRU55Z+ePidS4ou7eqyS9wBcsw2903kfoAL0PS7dR/EIwVudw
+	N4jjwAVsYmyX6y98xsxWRZZ
+X-Received: by 2002:a05:600c:524d:b0:485:c456:5e4f with SMTP id
+ 5b1f17b1804b1-488c52b42a8mr64500175e9.0.1775755288741;
+        Thu, 09 Apr 2026 10:21:28 -0700 (PDT)
+Received: from localhost.localdomain
+ (ip-078-043-200-145.um18.pools.vodafone-ip.de. [78.43.200.145])
+        by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-43d63dec090sm367345f8f.12.2026.04.09.10.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Apr 2026 10:21:27 -0700 (PDT)
+From: Marek Czernohous <mczernohous@gmail.com>
+X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
+To: nouveau@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/nouveau: stability fixes for NVAC (MCP79/MCP7A)
+Date: Thu,  9 Apr 2026 19:21:23 +0200
+Message-ID: <20260409172126.115441-1-marek@czernohous.de>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:nz7T+bG1UobiYQlCbJ7EJ2UUyAb0CMBG4HG9VTf4za5vcqoX0yZ
- kw4TcswMnPCzjSVz/MyZ72tkI7t4MP3JaejWWB5ilo5ejDNssz2ApUORC+GqXG/b591ndJW
- JD3AVoM32ps2VXJPM778LKf7Ytjr0+dEVL+TpGabdrQj/5lNoObnMjZt0lnSw4JRPOVHuOp
- 2E4mGlCB4tSy0rGY8t5Tw==
-UI-OutboundReport: notjunk:1;M01:P0:g95ZQpXfjXc=;UmA5WVCoxJbJMMcIL995pr6s4gc
- 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
- Mc8MxbtORXOQ+Nhb/lbSWtUzE9lRvrylQ==
-X-MailFrom: natalie.vock@gmx.de
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: HGLZQL3CC5ACGH2CZ33GKFIYWOZLE5RH
-X-Message-ID-Hash: HGLZQL3CC5ACGH2CZ33GKFIYWOZLE5RH
-X-Mailman-Approved-At: Fri, 10 Apr 2026 17:24:58 +0000
-CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org
+Message-ID-Hash: PN6QRTLRTW73MRSUUOJWSKGBW4R6PY7W
+X-Message-ID-Hash: PN6QRTLRTW73MRSUUOJWSKGBW4R6PY7W
+X-Mailman-Approved-At: Fri, 10 Apr 2026 17:25:18 +0000
+CC: dri-devel@lists.freedesktop.org, Marek Czernohous <marek@czernohous.de>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/HGLZQL3CC5ACGH2CZ33GKFIYWOZLE5RH/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PN6QRTLRTW73MRSUUOJWSKGBW4R6PY7W/>
 Archived-At: 
- <https://lore.freedesktop.org/20260410081322.5577-1-natalie.vock@gmx.de/>
+ <https://lore.freedesktop.org/20260409172126.115441-1-marek@czernohous.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -185,35 +133,48 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Userspace can now make use of memory protection via dmem cgroups. Let
-nouveau benefit from this as well by registering the vram region with
-the dmem cgroup controller.
+Hi,
 
-This patch adapts the approach amdgpu and Xe have taken for enabling
-dmem cgroups.
+this is my first patch series for the kernel. I'm running an Apple Mac
+Mini with an NVAC (MCP79) chipset and DisplayPort output, and hit three
+separate stability issues with the nouveau driver on kernel 6.18.
 
-Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-=2D--
- drivers/gpu/drm/nouveau/nouveau_ttm.c | 5 +++++
- 1 file changed, 5 insertions(+)
+The patches are independent but together they bring the NVAC from
+"needs NvMSI=0 workaround and can't run Wayland" to fully stable
+operation with MSI enabled, working DPMS, and functional Wayland
+(tested with Weston).
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouve=
-au/nouveau_ttm.c
-index ad01f922aa86a..860bca7e3ce28 100644
-=2D-- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
-@@ -188,6 +188,11 @@ nouveau_ttm_init_vram(struct nouveau_drm *drm)
-=20
- 		man->func =3D &nouveau_vram_manager;
-=20
-+		man->cg =3D drmm_cgroup_register_region(drm->dev, "vram",
-+						      drm->gem.vram_available);
-+		if (IS_ERR(man->cg))
-+			return PTR_ERR(man->cg);
-+
- 		ttm_resource_manager_init(man, &drm->ttm.bdev,
- 					  drm->gem.vram_available >> PAGE_SHIFT);
- 		ttm_set_driver_manager(&drm->ttm.bdev, TTM_PL_VRAM, man);
-=2D-=20
-2.53.0
+Patch 1: The MSI re-arm function for G94 uses memory-mapped register
+access (nv40), which is unreliable on NVAC — the sister chipset NVAA
+already has MSI disabled entirely for this reason. Switching to the
+PCI config space method (nv46) fixes sporadic FIFO errors and hangs.
+
+Patch 2: nv50_sor_atomic_disable() dereferences nv_encoder->crtc
+unconditionally via container_of(). Under Wayland atomic modesetting,
+the CRTC can become NULL between check and commit, causing a kernel
+crash. Adding a NULL guard fixes Wayland session teardown.
+
+Patch 3: Transient DisplayPort link glitches on NVAC cause unnecessary
+disconnect/reconnect cycles. A single 100ms retry in the HPD IRQ
+handler catches these without affecting real unplug detection.
+
+All three patches were tested on the same machine (NVAC 0xac080b1,
+DP output) over multiple days with DPMS cycling, VT switching, and
+Wayland sessions.
+
+Thanks,
+Marek
+
+Marek Czernohous (3):
+  drm/nouveau/pci: use nv46 MSI rearm for G94 (NVAC/MCP79)
+  drm/nouveau/kms: add NULL check for CRTC in nv50_sor_atomic_disable
+  drm/nouveau/dp: retry link check once on HPD IRQ before disconnect
+
+ drivers/gpu/drm/nouveau/dispnv50/disp.c       | 8 +++++++-
+ drivers/gpu/drm/nouveau/nouveau_display.c     | 4 ++++
+ drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c | 2 +-
+ 3 files changed, 12 insertions(+), 2 deletions(-)
+
+-- 
+2.52.0
 
