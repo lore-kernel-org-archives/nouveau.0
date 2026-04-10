@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3FFA1F459F7
-	for <nouveau@archiver.kernel.org>; Fri, 10 Apr 2026 17:37:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B0DEF45A0B
+	for <nouveau@archiver.kernel.org>; Fri, 10 Apr 2026 17:37:19 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1A010E9C9;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8ED7B10E9D4;
 	Fri, 10 Apr 2026 17:37:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fozFd+2E";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="br1rhlge";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 85494457F2;
+	by kara.freedesktop.org (Postfix) with ESMTP id DECE0457D9;
 	Fri, 10 Apr 2026 17:25:34 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1775841934;
- b=R6v3kmE7RZ5m/51SZ4QjcCuY8lJl70DgTyyrGXQsCdeFltDWV+XaBAcAdHPJJoPJ/ypD0
- b9OAh6UXiGxSuSLxfzPB/85hUJViJSIXvPVjqU7fp3tqEmfjZA2XuduWTV1+SOyNo/4yQ3I
- sDl+drtOv8n4X70S/sGV9Wh3mi+Zyokmbvdfr0hfcTt0j31si7iqXAAjr75TV725Yh7yyGm
- Dm/Q0ISf2slV8yXHHSzHdWsMMQb1bU9wsIU3QePihWigVyAfrhH/jqTLCPQttoL6DWZZv5Y
- w8EfkzwElZKWrJkaLTH6TmlUuyGmW/pqpeWoy/muYt3LMzhaQp/YllnlkVAA==
+ b=WqD+k2wdecz+2ZHSgliiqyTdVmgQwjEUf6E39QN1MgLkrfDcKFhgPhRtSo809CiDfikCe
+ tmPQuZzTHZF5koRxKQXqvidKetw7lIfR7JqBjPLCyfLymMY4eVJvFX1ANsUcdeuraN55D3T
+ ERH0uvFV3bXdMmr3KXiwq4yRHmdwvs7bi3613zbJ0bu0Aq4dVHcsRiKZ1gxQjInV2FDYhzN
+ p56b8FZ9dd4vSdkEMgcBnf+vjRxZSvHDWxCkvxtdAOHyeN8d6ZC8soUp3oox+76oOZ6yVnB
+ mmeyikKDfyJxi1o1JGiIf6WS5z2puedidUk2t8lflVLoaDjOKqq7Vdt5xRrw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1775841934; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -30,12 +30,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uSjn24L98hphx3W4Kt1Sy+XjH05WXGXcx5CVk5R26MI=;
- b=RdsG7PLsexsrzdINyKP2JAWC9HVPPIf/PzurY+kmC/NXub8lh2INffzyaB3OYb9fEYzAa
- yWeqQ54JXDCTONNJDlrsxZQGYZ9n3PniylcX/VozC6fJdD4P9jDgr2+OEPbAw47C3xsgSP9
- 0hoOBvMnDfoNOBP3IlGIiMmspjdC8s7MHqIKfBY8gUFbDtZLfZhkCT4bgNKd2Hf6LGnvoO4
- Z5/J2CIl+kQS60jXYSuFJ2tYi4DnEKOsjXPdsdZyyrxceISRqQdXEUc45wTHYEhpA/PWiyY
- zwHsoWfe7OAVBLD3ykB6JqTvpVlz3p+AHu+6UATg9iD0f0HzKWmzfsF4FUZg==
+ bh=cjo43meNd5ZF9rDDbLS97J26FxqDt/TB0OImD2ifO6U=;
+ b=m6Xt5JrPl0i+SrxYt5MY0MpECY3wso9C0+HQogQNIWZobUy4BIJtjP9b+9lzLIm87sSO8
+ QdrqrPBjvKRsc+R0LL3C1234MHQj9ZIb+2t3nLESYNAzF4QkIpf0I/knS5pyqb4JKhdm3Ex
+ z95/UUO9FtqqplFusn77ZPwMSXi2xCXVjs9u+KDk0KLkUAtVHMr2ylvJlPWrYeA5sz0vc/H
+ IWMn7A7SYwEV8KV8zRx9VVt/LglBwTQqKU6emntcZHnwdGBqc3aa4gs/VBtVyB9l5Idp8rq
+ N3cigDo6f1QqUXZ4czLmiRKHda3PzCkR1IDI+1BD2RJmtua46EmYgIgZjYhQ==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=gmail.com;
   arc=none (Message is not ARC signed);
@@ -46,83 +46,88 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
  dmarc=pass (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C8AA841B05
-	for <nouveau@lists.freedesktop.org>; Fri, 10 Apr 2026 06:04:14 +0000 (UTC)
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
- [209.85.128.45])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 28C8D10E897
+	by kara.freedesktop.org (Postfix) with ESMTPS id 5A7AF41B05
+	for <nouveau@lists.freedesktop.org>; Fri, 10 Apr 2026 06:04:15 +0000 (UTC)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+ [209.85.128.46])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CD8BB10E896
 	for <nouveau@lists.freedesktop.org>; Fri, 10 Apr 2026 06:15:56 +0000 (UTC)
-Received: by mail-wm1-f45.google.com with SMTP id
- 5b1f17b1804b1-483708b697cso2178885e9.3
+Received: by mail-wm1-f46.google.com with SMTP id
+ 5b1f17b1804b1-483708b697cso2178905e9.3
         for <nouveau@lists.freedesktop.org>;
  Thu, 09 Apr 2026 23:15:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20251104; t=1775801754; x=1776406554;
+        d=gmail.com; s=20251104; t=1775801755; x=1776406555;
  darn=lists.freedesktop.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=uSjn24L98hphx3W4Kt1Sy+XjH05WXGXcx5CVk5R26MI=;
-        b=fozFd+2E440odaZC8PGgR90MUnHjGZrXc1cs82YEnbTaDJ/ewfvWdxkqlAi+w7tdI5
-         SmrTII2ed4FY8bUa0vqO/WZmXNSlZGSZ05t2aOyXQJwU3Tv94v5FNUWfsVir4TF2WsN2
-         X6RDX7TnLXRi05ZBWe1XUinDMhSgP+uWikNzQ/RqhJ0IIa2NyEO/RGiayX+Y9E0YV+iU
-         75OYDSnttx8txK8u3hRGw7Fc0luvW3qecSQZo+OeKuBu/eNZR3Dr+i1GzsNTx+61AFuB
-         DMeus2uqRAm2eWRlUQ7FsxK52+lN69+Nw61DQTfzm2XF9+RqhE5DQDGNn5mlJ0HxqlX3
-         2G5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1775801754; x=1776406554;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uSjn24L98hphx3W4Kt1Sy+XjH05WXGXcx5CVk5R26MI=;
-        b=Lffh23dsCaRuApDL9fQjIilxZtoefhzu7ew1iX5oO36ZN/NwvJzQabAIfuK76uh0iS
-         YR8TfGBoYA8E+FtbDwZPIJs0VI9eAldGdKt9Acs1Gt/okxxqMOZEkfXZ4+SWWm6Sttuf
-         mEMloXMZFdid701YA2VLazeW/Xg63jW+BqK90bYwrHFwkF6xjJiZ852QpB6XNMk91ce3
-         OaBApjV6WUUqLkcJGSjESFsu72AWIh46ATCtqREcNoCgr3p6O3MjrYO/tNIv7xL2YEFf
-         OVdabMcJi13c4exHNnI2dR8GN5t4s2Dm4bGbY6VVnd/8ZD57bUftv++/7HrjsM4zbv6k
-         46gA==
-X-Gm-Message-State: AOJu0Yzpc/8RD4jUF9BtMi9mkBWuCNJMUa/L1StgZZ9ROEkpKKnqOMi5
-	WGsQ69f/+wYZjDg+DHpw9zPxzZpQviR6amLCd3FImAi9OSpG0n7SlSS6MZ6aBPnK
-X-Gm-Gg: AeBDiesV9wK4AcAjHjQ1yObw6Ca6i2ffiC8IVuD2Y1zOeiTWDih1kijdbojxLQTzcnU
-	O1F8XnQZK9T9v4Xh3iqkRXhfg/sZuFskwlo54jBe5iB2I1io+0w0vgMl2WwSnusVDKuwZ4Qxfa/
-	16vzvxsgBcWsGxMGEXgqSdCtsuf0C/yE6UjdRpxtQlzOimmaoSsqKlgzmCmqXWuBQZqvxe/HM+N
-	h8CWb/2tSDQG2f5u73TFZzbibpl4PRVVa192hZas6ubXuA6iOEDSK+js+0TAAP+NXZ6nBjB7BV1
-	/tCvpOpm/tg9pyO+HcrXUn5/iONW42CzEVH6nmo6eX8X/JrnlnHVpP4GNBkpHwJmXmg2RNw1D7r
-	BBj/SuNra8+UlWE1ZrzDzL94j4RZucZ4xeqq9jZGhybOJa8r02sk7kfhvNK/9fJ5sSxZQ+CkNPY
-	oWN6m/RBBtDdi4ilad5C/mnCF15sWEgzLB4TjHB4S8t4pFecQrQPHK/cuL7wq4Ym5oEidi+HOmU
-	xrM9CIHmVEuRg==
-X-Received: by 2002:a05:600c:b85:b0:486:fb8a:fed with SMTP id
- 5b1f17b1804b1-488d68a0975mr10827815e9.8.1775801754397;
-        Thu, 09 Apr 2026 23:15:54 -0700 (PDT)
+        bh=cjo43meNd5ZF9rDDbLS97J26FxqDt/TB0OImD2ifO6U=;
+        b=br1rhlgeETPSImEbYo9W3k6yfrvsztmf1TRMiQaaH6wIZ8KHHZ7+/uiK1tfkiOskBK
+         PFG73VadmXtS1nXSagXBM8/a1pqTsJ4TkA/XnqA+0kSoWt+41MJXuVVc2JhMzx5uCiKx
+         KtyL6OheQPEvb7igMWjW5mREKisJHK19T+tE6tEYssSQyPGB3JU4iNAGiyON01Roj6qC
+         aKAgKAiBKO0S4qduRv4Kkg2omCm5+l3hnwi2kWrcDmwJpOcGk1gCkJ7V0aSMO0whi0rG
+         m0V63AmvJzsCb5hSScjDL+CRZiuP1Uw+h/bqF8bo0u4Qz2wVJQDCA4xzKPByBVqW1uq4
+         Blkg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1775801755; x=1776406555;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=cjo43meNd5ZF9rDDbLS97J26FxqDt/TB0OImD2ifO6U=;
+        b=TAQilbnlFVZq20hUDeh+UH185ajkri7yo1ZqkOfQ1nTWQZ9lyUXvYSCZswkEJl4yML
+         +v0QZpHzBDXGOwKwFeD7/I/cG7hVKW6FlH0NpDX1RCt2BD2AaBiVyw/1KXxsJ7fI1bIc
+         YHN1U5eFRXeOWsccPf9rCiUnR3PyiD+98fFSi3nSokhqVXkN9jGXDU2+QQv+vEb6r0ov
+         FyjzR8tpKjKY7j/uz9LTvmqdkcgXM74s9o43R/gnOgPxXzI2d3SCbkkQD5zS4h5N8Oxw
+         HKYn2SMgtnx1E2YJM/eQxv7qPB9BrWEU+IKu2Mcikh8nwVJGFhO8nPozjh1wP5H+MI2m
+         yP1g==
+X-Gm-Message-State: AOJu0YwCq2nDOSpRGO+rAmOs92+mMkbyIwQCtKWvHo07dnw4/OuV6JTb
+	OrFcEq0RMEkLn2BX5eu7nscNO/hImy2ziXM+Mz7VkCEA7uU+FWKwbV60rRSpH8D7
+X-Gm-Gg: AeBDiesBMojMzXxqpIs+GhoImmiBM6DsbZiPSMoPNnXws8Xc/R5khrt6qYD//5o9X8D
+	V36nRZsLPFxqDAU0CRHbrFx1RumStH+dzUZM8AQ0DujE+V9LPa2r5LaUTgnP2nfYTXnYKEl90+r
+	5akqlq90cqyZpKNzjddmirAzPcKEG5Pzs9vyiWccBVOV1MlMuiDPv7UcoqMs/ARdGfwwSU9zdF5
+	IwmdXqH1iohDqBOGqoYoUPkMjIDqdRgPLUxzy2VvmFkHBHw6Op7xDYf8MaCbqcuAotr2+HR/4DU
+	j/JTORNkDjAkaEraogUZb4bbXe8IY02vDBk25K4tx5zIKKkgspqgEkdg4NKN0hUeapqDn25iDaF
+	GYxj/gx+dWPh1uC7OrsASwjYXimAoOZRR87uz86bQhoCLLJz0uq6uHo6ZMWvW4VIhMOjixbc/so
+	VIyEh98SZ/YNRnJFP8/Q5X5yCsRtX9wzNRvMJ4UMheJpPPq2bioI9m1aN+JyPjtM4ahC0N/xIxK
+	V4Q0St95U4VdhN6HmXmrKSF
+X-Received: by 2002:a05:600c:c4a2:b0:485:3bc7:a224 with SMTP id
+ 5b1f17b1804b1-488d68609e0mr11649685e9.6.1775801755183;
+        Thu, 09 Apr 2026 23:15:55 -0700 (PDT)
 Received: from localhost.localdomain
  (ip-078-043-200-145.um18.pools.vodafone-ip.de. [78.43.200.145])
         by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-488d5888c12sm55473955e9.3.2026.04.09.23.15.53
+ 5b1f17b1804b1-488d5888c12sm55473955e9.3.2026.04.09.23.15.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Apr 2026 23:15:53 -0700 (PDT)
+        Thu, 09 Apr 2026 23:15:54 -0700 (PDT)
 From: Marek Czernohous <mczernohous@gmail.com>
 X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
 To: nouveau@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/nouveau/pci: use nv46 MSI rearm for G94 (NVAC/MCP79)
-Date: Fri, 10 Apr 2026 08:15:50 +0200
-Message-ID: <20260410061552.19056-1-marek@czernohous.de>
+Subject: [PATCH 2/3] drm/nouveau/kms: add NULL check for CRTC in
+ nv50_sor_atomic_disable
+Date: Fri, 10 Apr 2026 08:15:51 +0200
+Message-ID: <20260410061552.19056-2-marek@czernohous.de>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260410061552.19056-1-marek@czernohous.de>
+References: <20260410061552.19056-1-marek@czernohous.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-Message-ID-Hash: 3MJ7GPAHLRQYF5LGGACQ2AYE3BVSQVA7
-X-Message-ID-Hash: 3MJ7GPAHLRQYF5LGGACQ2AYE3BVSQVA7
+Message-ID-Hash: XF7LXI52DLD4QXUN3RQDTZXVOLQF23VF
+X-Message-ID-Hash: XF7LXI52DLD4QXUN3RQDTZXVOLQF23VF
 X-Mailman-Approved-At: Fri, 10 Apr 2026 17:25:31 +0000
 CC: dri-devel@lists.freedesktop.org, Marek Czernohous <marek@czernohous.de>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3MJ7GPAHLRQYF5LGGACQ2AYE3BVSQVA7/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/XF7LXI52DLD4QXUN3RQDTZXVOLQF23VF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260410061552.19056-1-marek@czernohous.de/>
+ <https://lore.freedesktop.org/20260410061552.19056-2-marek@czernohous.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -132,45 +137,52 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-The G94 PCI function uses nv40_pci_msi_rearm(), which re-arms MSI
-interrupts via memory-mapped register access. On NVAC (MCP79/MCP7A)
-chipsets this method is unreliable, causing sporadic FIFO errors and
-GPU hangs.
+nv50_sor_atomic_disable() calls nv50_head(nv_encoder->crtc) without
+checking whether nv_encoder->crtc is NULL. Under Wayland compositors
+that use atomic modesetting, a race condition can occur between
+atomic_check and atomic_commit: the encoder's CRTC reference may
+become NULL after validation but before the disable callback runs.
 
-The closely related NVAA (MCP77/MCP73) chipset has MSI disabled
-entirely in the driver (.msi_rearm is not set), with a comment marking
-it as "reported broken". NVAC shares the same integrated GPU
-architecture (both are NV50/Tesla family, memory-mapped through the
-host bridge) but was not given the same treatment.
+When this happens, nv50_head() receives a NULL drm_crtc pointer,
+and container_of() produces a garbage pointer, leading to a kernel
+crash (NULL pointer dereference or page fault).
 
-Switch to nv46_pci_msi_rearm(), which re-arms MSI via direct PCI
-config space access (pci_write_config_byte at offset 0x68). This
-method bypasses the memory-mapped register path that is problematic on
-these integrated chipsets.
+Add an explicit NULL check for nv_encoder->crtc before dereferencing.
+If the CRTC is already gone, release the output resource and return
+early — there is nothing left to disable.
 
-Tested on Apple Mac Mini (MCP79, NVAC 0xac080b1) with DisplayPort
-output. System is stable with MSI enabled (no NvMSI=0 workaround
-needed), zero FIFO errors observed over extended operation including
-DPMS cycles.
+Note: checking nv50_head()'s return value would not work here because
+container_of(NULL, ...) never returns NULL; the bogus pointer must be
+prevented at the source.
+
+Tested on NVAC (MCP79) with Weston --backend=drm. Without this patch,
+switching VTs or closing a Wayland session triggers a kernel oops.
+With this patch, Wayland session teardown and DPMS cycles are stable.
 
 Signed-off-by: Marek Czernohous <marek@czernohous.de>
 ---
- drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/dispnv50/disp.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c
-index df745d069..9dc28a4bc 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/pci/g94.c
-@@ -28,7 +28,7 @@ g94_pci_func = {
- 	.cfg = { .addr = 0x088000, .size = 0x1000 },
- 
- 	.init = g84_pci_init,
--	.msi_rearm = nv40_pci_msi_rearm,
-+	.msi_rearm = nv46_pci_msi_rearm,
- 
- 	.pcie.init = g84_pcie_init,
- 	.pcie.set_link = g84_pcie_set_link,
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index 6c3a8712d..42080874a 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1565,7 +1565,13 @@ static void
+ nv50_sor_atomic_disable(struct drm_encoder *encoder, struct drm_atomic_state *state)
+ {
+ 	struct nouveau_encoder *nv_encoder = nouveau_encoder(encoder);
+-	struct nv50_head *head = nv50_head(nv_encoder->crtc);
++	struct nv50_head *head;
++
++	if (!nv_encoder->crtc) {
++		nvif_outp_release(&nv_encoder->outp);
++		return;
++	}
++	head = nv50_head(nv_encoder->crtc);
+ #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
+ 	struct nouveau_connector *nv_connector = nv50_outp_get_old_connector(state, nv_encoder);
+ 	struct nouveau_drm *drm = nouveau_drm(nv_encoder->base.base.dev);
 -- 
 2.52.0
 
