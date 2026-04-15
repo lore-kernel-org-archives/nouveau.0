@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A44F43830
-	for <nouveau@archiver.kernel.org>; Wed, 15 Apr 2026 14:50:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06BE4F43832
+	for <nouveau@archiver.kernel.org>; Wed, 15 Apr 2026 14:50:21 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8C31B10E6FD;
-	Wed, 15 Apr 2026 14:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B4D5710E703;
+	Wed, 15 Apr 2026 14:50:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="XSpdZIxJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Npmb+p4u";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E85E245827;
-	Wed, 15 Apr 2026 14:38:22 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 3FAF145827;
+	Wed, 15 Apr 2026 14:38:26 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776263902;
- b=TimnfUpGc86yj7YD0CjlnsMgQNr4duQWuwT2DcEt2jURkUwuUOztAR/tqjYvEYZw8Jb3L
- +k0tF9MjVxfeWzJ33vRiRCn69pNrwCSVKHCGhQjFAPWEzvtRFVJMV4jtJoFpi2aUZl5Uh04
- 3Hy8zlKp/La2QW7s8hs5EBUpH7NVGz1EJqs96evExXPTYQrhr4jPTdEXvsiiC9lsRAUeBO9
- EPIhdt0kYHkv187vJescXNTENB1VlcoUBFI6UoWRUfoyx60tOdjsataOnOI/7JSrHDqB+DU
- dtB+R4LLGzFMybalOLBQbQLAonfolKnImW7+UDaDYzikxqnOmWiuZoKDQ1Xw==
+ s=20240201; t=1776263906;
+ b=wUWciP6oSH++vwa+bp6IWS881xHny4aBe6BkPqrO8mf9OBxAoNCSceRW/2lD5iKxl1uKa
+ UfMdrt71Ddy40ZnF2v3r/mf0/jYmBA9T8uuMAxcOyGhrn0iK6VhTL3Pz7tyBrVeyxZA/TiE
+ b6oau/TmSJ/cJj7QK3kqs2FE2P2ofZPqcKSPr1gwR8t7K6VOyIG+R6Ctl462RFws7a7i3He
+ Q6bVpPxGNBEskGjBqGvzJEsXQL5prEpY/EjJzTpHzXQro6XpAp0uQ2Wxm8RGaetDXY0TtNB
+ v5/1txX13LdJUbsKVFVLUsNCjGvmX83Zopci9NEP4ehvasc7Ygyw70Za8gmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776263902; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776263906; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=q6qMb9dCF1sS3WFYvRP3wWm5yF8xdmNnBRnh0ZaaHpc=;
- b=zAAFtGibF9ZtbUCmenR6AAlXi8iJEbfBBiVJIZ4TrdL1nlea/tH5vbWxGRKOJI4FprZ7N
- 7d22uCN/wPqyL/6ed4uedH8FU/GTYkhyuygddeLPBcBdvTb+e8ZZsIcuTjX8sn5xn2sJeUP
- sdsu97U2y4ZmJdu3cNeMjIjghnhgqpMa297PhylxYzO+EePKayoYIvIxxFTYY2cX4kjbVMJ
- MFNW3imu9pBR4aKxL/GrDh/E+bM/i+OzkMnlOrrYqbMQpYqgRjgK3bLG3BFoZhFUOOqGtVH
- dGvqy7xZxd3QEqOXRhDg/1JFKwcCMLyj+/p3N0TIJcv/mAqqQocT2GrT1wow==
+ bh=vfKP33/LOBCXSzOdhgMlPtmvszDnS3wiHtztjSPKg44=;
+ b=VGU9/fGRMRVNwwXjPIqZNRNZtCcCbN/iUS0gEqzZVAyDUcK6y42rVdUozkkZ/FQ4qFrvw
+ xXSYvylyNvNjOari1xBZ96qaPbAwSk6u9/FYxIwwbZYNEXrlnnF+auhu/nYaJx4thzt1DHu
+ Z77FRjheZLJC2Qd6uQbCNA1+d1JYK660jEh9ix5yXct70KxvgTxdV+9M1kLwnMwRFCh3iDC
+ s7nYSnxexAj2XtNuVYVLCoqTIR4Gm80IRyPfSIIgXeU62pC9dWqjouGbiRWNYhQHZunLvji
+ GShmxy6MoA0yUnGE7Aza4pO6nHnJOU6JMNLTFs6yP0zm1WFZFEGT/PfO26uw==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,26 +46,26 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id CBB3D402CF
-	for <nouveau@lists.freedesktop.org>; Wed, 15 Apr 2026 14:38:19 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1026B10E249;
-	Wed, 15 Apr 2026 14:50:13 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id DB86640512
+	for <nouveau@lists.freedesktop.org>; Wed, 15 Apr 2026 14:38:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 106B510E700;
+	Wed, 15 Apr 2026 14:50:17 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by sea.source.kernel.org (Postfix) with ESMTP id 8627140852;
+	by tor.source.kernel.org (Postfix) with ESMTP id 008B5600CB;
+	Wed, 15 Apr 2026 14:50:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB378C2BCB3;
 	Wed, 15 Apr 2026 14:50:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A756FC19424;
-	Wed, 15 Apr 2026 14:50:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1776264612;
-	bh=bTj679hg+QgqNHfBXLngWCLfh/g/zoJF5btZjg6oR+E=;
-	h=From:To:Cc:Subject:Date:From;
-	b=XSpdZIxJDfqWq2HVGDNhVjue3SP7VIOr+CBuu6YdW+LAozl/CLXj+pcTTBoXh/gsG
-	 nuTQlnf08v+xdmKJrrlvxmo+dB3+9ewc1xpwThXIUHGppDkuXK/yFTt1S+bQHLduIb
-	 o+Tag1mnPSckwojhVE3CfrFciPLHoXD8Nk1+GEDAFZRbqqm11FmS/YpX4O/BYgIIVc
-	 Myy7y2NJk7f3pScmD1fY65j7AcqoqnLnuPErcM6fYgE+kC6h4GYJzrXs4mmACERPPI
-	 vM05JyYVhFYyhWy6Gsa25qyR4Gd50FfYTcQIGJHOKYwp/9CrPp2nRsozHoew/G1EED
-	 /8gE0SZ2xbv2A==
+	s=k20201202; t=1776264615;
+	bh=6+yxKnNGGhecpmezEx7/XdS6MBkimFgFRi3mEAypiVo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=Npmb+p4uVMIZCdV/T3zYw6MCZk5fcxondB+Jov2zQfMn8+AVhQa/ftu4spz5pjaup
+	 WQyKFBB5LhneQqfq29qx5UdDUKTltHF8JxFD30JhVgPulUGcY9erhKExIlyoTJ0o6x
+	 O4TkT4abMWhyJyZ+EfbbWrGan5y9rRnJLpK7r+I4+VxZR+6xWVjUhyMTTshwx01CTS
+	 iS87RM/zwnmoLKzfqcntNc3PJZdMu0JRPQ4mqi0tCz/dd0vURESP6ZptHGrM+qhNfU
+	 TzEKcEH/7uvmemGk4PVbq9SkaKDlm+nCWQ9vcEVOzAHDDTz4P9DAekBWrCuX2BQGVP
+	 JJKmF5N+PiYBA==
 From: Philipp Stanner <phasta@kernel.org>
 To: Lyude Paul <lyude@redhat.com>,
 	Danilo Krummrich <dakr@kernel.org>,
@@ -79,29 +79,31 @@ To: Lyude Paul <lyude@redhat.com>,
 	=?UTF-8?q?Christian=20K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
 	Dave Airlie <airlied@redhat.com>,
 	Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: [PATCH v2 1/2] drm/sched: Make drm_sched_entity_kill() a public
- function
-Date: Wed, 15 Apr 2026 16:49:56 +0200
-Message-ID: <20260415144956.272506-2-phasta@kernel.org>
+Subject: [PATCH v2 2/2] drm/nouveau: Fix double call to
+ drm_sched_entity_fini()
+Date: Wed, 15 Apr 2026 16:49:57 +0200
+Message-ID: <20260415144956.272506-3-phasta@kernel.org>
 X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20260415144956.272506-2-phasta@kernel.org>
+References: <20260415144956.272506-2-phasta@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Message-ID-Hash: CSMDRJOIFHCMSZAVX54D2JMXARPG4VQF
-X-Message-ID-Hash: CSMDRJOIFHCMSZAVX54D2JMXARPG4VQF
+Message-ID-Hash: Y74E6ODJRRJISJL7RDNHG4KCT2ZU32VB
+X-Message-ID-Hash: Y74E6ODJRRJISJL7RDNHG4KCT2ZU32VB
 X-MailFrom: phasta@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
 CC: dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
+ linux-kernel@vger.kernel.org, stable@kernel.vger.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CSMDRJOIFHCMSZAVX54D2JMXARPG4VQF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Y74E6ODJRRJISJL7RDNHG4KCT2ZU32VB/>
 Archived-At: 
- <https://lore.freedesktop.org/20260415144956.272506-2-phasta@kernel.org/>
+ <https://lore.freedesktop.org/20260415144956.272506-3-phasta@kernel.org/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -111,67 +113,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Some drivers do not care on teardown whether the last jobs pending in an
-entity are actually executed before teardown completed. For such
-scenarios, drm_sched_entity_flush() is not the ideal function since it's
-intended to wait for jobs to complete.
+nouveau_abi16_chan_fini() does invoke drm_sched_entity_fini() twice:
+Once directly, and a second time through nouveau_sched_destroy().
 
-Make drm_sched_entity_kill() public for that use-case and update the
-documentation.
+That's likely undesired behavior and might be a bug since
+drm_sched_entity_fini() decrements reference counts.
 
+Fix the issue by using the appropriate function,
+drm_sched_entity_kill(), to kill all remaining jobs within the entity.
+
+Cc: stable@kernel.vger.org
+Fixes: 9a0c32d698c1 ("drm/nouveau: don't fini scheduler if not initialized")
 Suggested-by: Danilo Krummrich <dakr@kernel.org>
 Signed-off-by: Philipp Stanner <phasta@kernel.org>
 ---
 Changes in v2:
-  - Improve wording, fix typo.
+  - Fix commit message (wrong named function). (Guys on IRC, M Henning)
 ---
- drivers/gpu/drm/scheduler/sched_entity.c | 13 +++++++++++--
- include/drm/gpu_scheduler.h              |  1 +
- 2 files changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/nouveau/nouveau_abi16.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 61a4818cc87b..7be5811b90cd 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -267,8 +267,16 @@ static void drm_sched_entity_kill_jobs_cb(struct dma_fence *f,
- 	schedule_work(&job->work);
- }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_abi16.c b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+index 7860877d909b..291203121f0c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_abi16.c
++++ b/drivers/gpu/drm/nouveau/nouveau_abi16.c
+@@ -176,7 +176,7 @@ nouveau_abi16_chan_fini(struct nouveau_abi16 *abi16,
  
--/* Remove the entity from the scheduler and kill all pending jobs */
--static void drm_sched_entity_kill(struct drm_sched_entity *entity)
-+/**
-+ * drm_sched_entity_kill - kill an entity's pending jobs and remove it
-+ * @entity: the entity to remove
-+ *
-+ * Removes the entity from the scheduler's run queue and kills all pending jobs.
-+ *
-+ * This function should be used over drm_sched_entity_flush() if it is not
-+ * desired to actually wait for all pending jobs to finish.
-+ */
-+void drm_sched_entity_kill(struct drm_sched_entity *entity)
- {
- 	struct drm_sched_job *job;
- 	struct dma_fence *prev;
-@@ -306,6 +314,7 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
- 	}
- 	dma_fence_put(prev);
- }
-+EXPORT_SYMBOL(drm_sched_entity_kill);
+ 	/* Cancel all jobs from the entity's queue. */
+ 	if (chan->sched)
+-		drm_sched_entity_fini(&chan->sched->entity);
++		drm_sched_entity_kill(&chan->sched->entity);
  
- /**
-  * drm_sched_entity_flush - Flush a context entity
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 53417baebd49..d61c19e78182 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -693,6 +693,7 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
- 			  unsigned int num_sched_list,
- 			  atomic_t *guilty);
- long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout);
-+void drm_sched_entity_kill(struct drm_sched_entity *entity);
- void drm_sched_entity_fini(struct drm_sched_entity *entity);
- void drm_sched_entity_destroy(struct drm_sched_entity *entity);
- void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
+ 	if (chan->chan)
+ 		nouveau_channel_idle(chan->chan);
 -- 
 2.49.0
 
