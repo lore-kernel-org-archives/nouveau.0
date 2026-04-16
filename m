@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16025F88090
-	for <nouveau@archiver.kernel.org>; Thu, 16 Apr 2026 07:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC061F88092
+	for <nouveau@archiver.kernel.org>; Thu, 16 Apr 2026 07:14:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 66C9D10E823;
-	Thu, 16 Apr 2026 07:08:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id CFAF510E822;
+	Thu, 16 Apr 2026 07:14:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="LmT4VTtK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="G4TlGwnr";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 67A624595D;
-	Thu, 16 Apr 2026 06:56:28 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id BD7054596C;
+	Thu, 16 Apr 2026 07:02:40 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776322588;
- b=OmMEEBclOUoxBWnmfkZ5LyizfkGcvHWylKmwwbS2fRtFaBxFNuA6Jt1JIhKlRaE0XaTnW
- 8SbEO4rxub4LHckMiCVEfgUXKQB+ijAqd6x+DuwsRy9OwQmB5oJV0b573UtJ4raksqLFM2/
- BESUo3QmK+V4tQexb6gzALIPgqMrgUBpq40Bzr+f6duouml8PTRaRTF/7yN4r64VSphWLCp
- 4jM6+/+0rjQtvdF7ftMFvVaJC+Ao6UGPVfYVaRSh7yMyr235zq4kjBOhqpepn1ZUVSZzwXS
- FMycu6lfQ6c48JkD67WpR34N3W2RiocxW5r8AgSM6ZGBvbB6uAKnj+/7XS7Q==
+ s=20240201; t=1776322960;
+ b=mTpYTX+2gM7zE+xZj4eDS+XyZ27n+LDByvuMM/x1PzAknX+B7VHHPxIMqtTw4TLBwuXOM
+ DD8zxRF5tfDomt0V4C5HpnQE1NonYil4uATotwxeshKNUQSL/xA2BPOySXy5Q+qdpa2V1OO
+ pIDyBDjQfzNCGRLgF3gTomeBqwPE9FYwrDjMfzJNkm9qWWN/rYykAa+ncaOU3pWL0cPE7Mp
+ UmYswYwQX4okMOK2jRaxtSByPCpu1UN3mbaS9AjazwU/+r1ZbjKBRE41VCLiEF5yzxMwI0g
+ FPRluYtqteZHXf4R2lOz91JixiXpI8AUbEhtoSj0UuIMGoEikSps7VzP3Mfw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776322588; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776322960; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jl2zYP8ItHo8A1Pr9lCgwMtrzp2rEjUaJnpjqviDWB0=;
- b=fsZ04Jexn6eAJtkkYmpvqsYen+znZI8CCdkx1lYTzJEr8F85+/9RzQF93UZw8Kn7wqY9N
- 2JOxY1TL5OoAG325Joc4VH1wKaXwFaaW/RDUzmjfoRPmdKfAVmbmWvVokw3rY1WQehnnijB
- GWgcVkD5gOFG4S5qdVRbNR/pm9gHa+64cSOTCH5SeZgeLmHyFnFoOWHYipkW1ibpl4KvTeJ
- 1Nj26PuNF8GROrLxniruZlO1ZUID5vAHdWIfN7D3s2OffA+HrrcPtuR1HBMI0lRzCdHVsux
- bTZBsi+JIlP9dTqlQhnbVgVf5BcTAmTHy+OYykhnmMtqE75S8KtbVn1Zhw6A==
+ bh=GtvMyyx9perCSSdK6F2JuwmKCFC8HVERv4ogEceJbg0=;
+ b=eV1GMdzxHsu7Zvk3ptflQZfFA8WTSp8Lbi6Sz58WOfZPHfCb03fTWGXHYZTQLDzYS+MRi
+ Vqt8ZYCsBqtF6wQKaevmBUx1XBNcKdKiJfORKOQ1XhWL3CR5oO0KVc0oTdNLUviQQ+7RBA2
+ 9wWfDeKI+NplqjpzxYK3Op63GU3TuDR6yoD0ATp5tkkuH6wvhDrKQT6NVFrzghQablqaBxO
+ ctAbQBa8Vrg2tz1Shxc34ccmg61g4MCs+fI4cSpKJE3bQcHK4iGwhoa71FLylri7FypIul1
+ tmQra+ZlWqRfC32iB+dttccwEPAjqIdkjEwi34K00FJwzge9fJtO2Rf3KwHA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=google.com;
   arc=none (Message is not ARC signed);
@@ -46,64 +46,64 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=google.com;
  dmarc=pass (Used From Domain Record) header.from=google.com
  policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id EE1FF405FF
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Apr 2026 06:56:25 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id C24F243F8A
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Apr 2026 07:02:38 +0000 (UTC)
 Received: from mail-ej1-f73.google.com (mail-ej1-f73.google.com
  [209.85.218.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id CF0B510E81E
-	for <nouveau@lists.freedesktop.org>; Thu, 16 Apr 2026 07:08:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9D89710E81D
+	for <nouveau@lists.freedesktop.org>; Thu, 16 Apr 2026 07:14:33 +0000 (UTC)
 Received: by mail-ej1-f73.google.com with SMTP id
- a640c23a62f3a-b94062e85f9so699092166b.2
+ a640c23a62f3a-ba24fa76ad8so78957066b.0
         for <nouveau@lists.freedesktop.org>;
- Thu, 16 Apr 2026 00:08:20 -0700 (PDT)
+ Thu, 16 Apr 2026 00:14:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20251104; t=1776323299; x=1776928099;
+        d=google.com; s=20251104; t=1776323672; x=1776928472;
  darn=lists.freedesktop.org;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jl2zYP8ItHo8A1Pr9lCgwMtrzp2rEjUaJnpjqviDWB0=;
-        b=LmT4VTtKac3ErlJMdFV8lAPOkG5Nsw9aGZMo+CBVzvZw3mXEHhU84A30LhuHfKyVwl
-         +Z+f6rpE7ia6ElepwGXKxWueia6+47V/COkBZSYY2tY/I5kDGsqs39tXwOhAwYjfkD1L
-         ECxzlaEznAmS2zj5wSsTIJbuzqE/nQPSnL17KHaro3jVujjBiBUV/H3HHKjKQZiWg+Ik
-         JgRHa5S+yvqOjdJARh+SH2gIT9KpYohpQwnnleUI6K0HtXB1bwTw3/YRyx8P1DwTm0R8
-         iYqRt0imQAMN8aoW4hP/X1ul50yUve74TvDeOWOLFlT1/QCp9nwoJ1Ww4rw+Hf8jcdvf
-         twAA==
+        bh=GtvMyyx9perCSSdK6F2JuwmKCFC8HVERv4ogEceJbg0=;
+        b=G4TlGwnrAPOp/UZjgsuPG6u7TNaSI0dd9/s+OKoMuoWV4HyNH1XnZ8AzhJZnkkztKn
+         AMDEaM75bfGGScX1WZ0bPXLIw1m6L5lfE9elUpj57m26JRIpCY54qIO2Gbw8PlF2hPll
+         gN8/INzPJ/px5ZMwrTjSFIzSQGENJ77i8TkbF76GExLPnUG+ZdAB9HUEtu/5wizv62/s
+         qwE9QzDOUP+rPpIKGAbJ6Zg5a70VGCsR0vIr/IUOVfvIPCytPKM3nTJcyL2duAtv84f4
+         2b7urShoZTr4Ry/Bxp59NILYlMQ4aWpgFOGTMEfMHN9RPEmjHBdDLHv95k1e9DAsFI0Z
+         FHow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20251104; t=1776323299; x=1776928099;
+        d=1e100.net; s=20251104; t=1776323672; x=1776928472;
         h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
          :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jl2zYP8ItHo8A1Pr9lCgwMtrzp2rEjUaJnpjqviDWB0=;
-        b=cwk3rNbRzLrVFhwMIPv78HGyUGqnX0LmuA7Gm0phvKXOu1Me9NlaGq+vH+ylLMO7hn
-         miPT2jUaajHNJ06UlDQCTtbPjsYBT0ZMdMyZUVZV4iFpO0F+dM4mbOLeYCRrt0N7+o/Z
-         JyH6hYXDPvUuPwAkFJT9hY1AH35LihuEaDnQru1kLrUzqbSYxr9dI1CNL7TdeW32PMBJ
-         whgos3JvEDeCawYDlhQPZd6ycjnPNJwrOmKcC8aNXT9hlRWnsoEkJe+BRnV55T18tPuH
-         JU8GEzrQW0G9+GzTFIYAjutXeWTLkFvD5IE6woq5Oelm5AgmVCS3yYHsr6JIfS5ejG19
-         ePzw==
+        bh=GtvMyyx9perCSSdK6F2JuwmKCFC8HVERv4ogEceJbg0=;
+        b=TPX+Y4u862m4WzR3jdJrHW9kUwzFl7oMj22zKTjiBTHtJXEI7JzNBROPRjLCq02GYm
+         3LzGh+MDaeljRC67LtWScs9xrLx+2eTtmRed71t/z4aoz6UtkuvLYjk/cl497mA9oZMn
+         9kuhoz6bYYAq6hmhacfO3T5oHxDW5zELW8f7EYuWNWt++imixhQycc6pAHJkM/oesFFV
+         MEi6YKjPyNFs03y/dXgKqP2av+rMX4b+HiJiK+aha2HBDCCoqcTtnpmNSg4IFsR6eUlS
+         g5Wo477xJ+169XiBPKnmV+FWj39/2jdCoic5D91glXYc45lv66YMAlv8YJfj9uajnXWh
+         iUXA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+e0VpZCcB5CB7rlX7+olovZcXQ2bHhDYNUEG06onJE08M5QwFRrx3bwYuONhWN11Ga82YOOeqg@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxfxGuGCweOkU6VgHXl34WEW9Ng2fvLdrUJjB6lO/2ocYPIAf1J
-	oMBHYZCtXdyJQLwwmSG4KJim0sMdHoANhFdQawbolrO3CJ+yLNc3NXD1ytf5Bzn74cxL8DN8jZ+
-	CGCw9huNVn8fXDAZU0A==
-X-Received: from ejdcm6.prod.google.com ([2002:a17:906:f586:b0:b9c:5eae:2e29])
+ AFNElJ/WzTKypo+y80Z+ogeWzZRRnBJTiAzoNr8hlsQCQUpWsTcNLNmfo0b2p/H8usOxEY58NRQrLMYo@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyvUpZCix7rYUJ+2XVXorBK26Z/Q/tFVOkbc+eeUAFxm1ZsfSk8
+	GjjE7q3xuDhM9iCaRB0VY5C3CrUlkFxiDFINv+LrJQ+sOZY+FRVJ8wVdsADudWURmDtqBT/0CoF
+	+tNd/Y/NbaiEpd94gXA==
+X-Received: from edwo26.prod.google.com ([2002:aa7:dd5a:0:b0:671:2fcb:edb8])
  (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a17:907:86a2:b0:b98:7e20:b25 with SMTP id
- a640c23a62f3a-b9d724c8f5cmr1366009766b.20.1776323298770;
- Thu, 16 Apr 2026 00:08:18 -0700 (PDT)
-Date: Thu, 16 Apr 2026 07:08:17 +0000
-In-Reply-To: <20260415-projection-syntax-rework-v1-3-450723cb3727@garyguo.net>
+ 2002:a05:6402:4544:b0:66b:aa56:ee5b with SMTP id
+ 4fb4d7f45d1cf-6707b1067d0mr8867411a12.28.1776323671860;
+ Thu, 16 Apr 2026 00:14:31 -0700 (PDT)
+Date: Thu, 16 Apr 2026 07:14:31 +0000
+In-Reply-To: <20260415-projection-syntax-rework-v1-4-450723cb3727@garyguo.net>
 Mime-Version: 1.0
 References: <20260415-projection-syntax-rework-v1-0-450723cb3727@garyguo.net>
- <20260415-projection-syntax-rework-v1-3-450723cb3727@garyguo.net>
-Message-ID: <aeCK4cLHsM7jbWEl@google.com>
-Subject: Re: [PATCH 3/5] gpu: nova-core: convert to keyworded projection
- syntax
+ <20260415-projection-syntax-rework-v1-4-450723cb3727@garyguo.net>
+Message-ID: <aeCMV-5V6__ptj5N@google.com>
+Subject: Re: [PATCH 4/5] gpu: nova-core: use pointer projection for command
+ queue code
 From: Alice Ryhl <aliceryhl@google.com>
 To: Gary Guo <gary@garyguo.net>
 Content-Type: text/plain; charset="utf-8"
-Message-ID-Hash: K3HERRYUGE7BAQ6JN3KMVGMFG6E5IPWK
-X-Message-ID-Hash: K3HERRYUGE7BAQ6JN3KMVGMFG6E5IPWK
+Message-ID-Hash: NQMLJLBY3XQ6OQIWFDF3UNLG7OCIE7P2
+X-Message-ID-Hash: NQMLJLBY3XQ6OQIWFDF3UNLG7OCIE7P2
 X-MailFrom: 
- 34orgaQkKB88v63xzCJ2619916z.x9789FGzvF63DED.0CzzyzD5E9A.9C1@flex--aliceryhl.bounces.google.com
+ 3V4zgaQkKB0gkvsmo18rvqyyqvo.mywxy45ok4vs232.p1oono2u3yz.y1q@flex--aliceryhl.bounces.google.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
@@ -124,8 +124,8 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/K3HERRYUGE7BAQ6JN3KMVGMFG6E5IPWK/>
-Archived-At: <https://lore.freedesktop.org/aeCK4cLHsM7jbWEl@google.com/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NQMLJLBY3XQ6OQIWFDF3UNLG7OCIE7P2/>
+Archived-At: <https://lore.freedesktop.org/aeCMV-5V6__ptj5N@google.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -135,10 +135,15 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed, Apr 15, 2026 at 08:57:14PM +0100, Gary Guo wrote:
-> Use "build" to denote that the index bounds checking here is performed at
-> build time.
+On Wed, Apr 15, 2026 at 08:57:15PM +0100, Gary Guo wrote:
+> From: Alexandre Courbot <acourbot@nvidia.com>
 > 
+> This has been previously attempted but missing compiler optimisations for
+> older LLVM versions cause build errors. With the panicking index projection
+> variant implemented, replace the manual pointer arithmetic with projection.
+> 
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> Co-developed-by: Gary Guo <gary@garyguo.net>
 > Signed-off-by: Gary Guo <gary@garyguo.net>
 
 Reviewed-by: Alice Ryhl <aliceryhl@google.com>
