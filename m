@@ -4,185 +4,104 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47720F327AD
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 07:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3753F327C2
+	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 08:47:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2296E10E801;
-	Tue, 21 Apr 2026 07:09:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7F83310EBD9;
+	Tue, 21 Apr 2026 08:47:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="kfRZpILV";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="oRVUc6Ag";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0F77545A81;
-	Tue, 21 Apr 2026 06:57:22 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776754641;
- b=v6/4NZYNPWa8ZMVFlogtOUSIvCwoayQU6gVIIOx2kvSwcbO+Mc9geUUALS1t0hw+L/Zin
- dyg45jBz1/xDdtPt6vvyH7pMehLm9gKsUz2N6YSVs8OexiBjhTHEwxsarlRXSuvFJbZMteN
- YBI1eMWtRB8FGVJOLjY+WruNSuCJlHINdMKlpdIAoOc+j30UOKg6aFEXT9W8E0J21dvadwA
- m2CJ9o9cxbWm3jDT2dMhJ/luyZkRpY7ez8vDPeWR3utMOBKdCxm4me58bNNChTROj4Y2dGl
- 2VDzD7KaLikb4ZF9y8dgCIcnF3qE6VvvAyRtleDYpW7J7gA0Y0q1gcraIIvw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776754641; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 3450E45A8C;
+	Tue, 21 Apr 2026 08:35:07 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776760507;
+ b=SeQ9Ilru6jCactl9F+aRovlMk6u0k4EwSSM5gG6Y/Xif8p9BNr31uNbD+B8cVCE7Ul2y/
+ SpY0ua55f767SZTGFMjN6F80KpeLLMJHpz6xk+VwfHNus4mOcQtXDPZ8wIFUP5rNn0piz+7
+ 1NrVqn3hNDue/Xo+1QXvaFaAeyEP3s3n3jU/LfNASmLcWh7VDwoTbZxbKXB9QSTgEU4vmtL
+ XXGvTbgfa7HCEahkTzKHrWBkparPQ2ZyxPYetooXTcrYtmtv9dP5ivmcfx3Ow0JU9jsV1l5
+ XYVdpXhiMOpMx/GujW97TLrogqRaKOt1BczUQyeqShIUmAo+P+zw1HSW1xmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776760507; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=uIoJtRLrxX5tEDL2I0z7cJLH6JZn4XzWQ/42/UC6JaQ=;
- b=eHywkOjuXcMF7j0ca7ZPgVvxSX2Fb5xRqZYtIkHdz02GVXWSj4BlPqcgb4WyQFMtL0jgU
- He/bSUzO8f1NDLRgJ2bFfUsIrZqjUOKX70FLIFk24E/IUo4OSBtOCakFbdjphzkYxBrZ1Rg
- aLEJXhHA6fVWUSb7y0CoVrlmUvpeQBJEAngFCFjDpjj0HGaUs37qKLSj15iWiCWZfbCQnuq
- ZO3erhyAhH7/2zZFRii9+rHOqooiF3U6EbSjpBYC4tmzN07a/gfrMK9TNAjOzTkCS1HB0GW
- dzHNdEXYx1ukxnb+YDvgAudo3AcwoZaIFLNmJuKyMTvuyYO0o5JC8ZAuOHsQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=/z8/QgI0OA+4sP+67wAvASnHjo+0qo3vHJr1Aep5zOg=;
+ b=eH3pU17MwT5lNAgOXp/YdV6tSgBvLlAoWKrKwaTltpExh30USUupsIpdv9IXoK0oeis6k
+ ssRWaqVUGU1wvQ1slqtP07k8emjri/mJgVLf4SdjhBlKMU5ZzthdWIQfhK1RyH+Rx8Fq4OF
+ 7hXJSuQOlFJpMifK0F4720ci3al1+bHWCbB+8BIUyjcR5kpimuD7bpET2liNRqwsrxzoL4n
+ 90S/L+SJskg0DVArI8muF3S6RkI7dSJAl2gq8p4UAoGKxy5870OSrohpij2oF8KCxzfM9ZB
+ vPXFtlCUZw+iwjN/gcOik8QoLDM7NyarOiFiuyWZGl5iX5fjygUWX6/UW6SQ==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=collabora.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=collabora.com; arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=collabora.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3486945A58
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 06:57:19 +0000 (UTC)
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010049.outbound.protection.outlook.com [52.101.85.49])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2387D10E18C;
-	Tue, 21 Apr 2026 07:09:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JoKs2YqtvcEXXdPDAmDbmCrwW8TbrIORw+Av3fa1qh5XSuqmZ7D3v7fJBSvBGsoq0DWEieR14xAYSzhyMvk/WUbWqtEwErslDURdohjbTGJgWvE03xQVmLM+UvSs7qV0IIoNMxyD0FoT2ALCMXr28DESKxHS5SNPS5PeiBQPj5nOkqUdnnS2reqTj8kVzvtT8foU0P6iFGbMOmWks+qk/B9TFwmC5LdzzkEppzrvzeJZZntAnfAnuGxuEvvaap4WZ4EvnUXyzRxLZS1nmW9sWf0RvRWLY5BwMAuf3SPrMFuWscfw/vKxr4DY7VgMGtNu6cv3r79alKvduEhZ20BiQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uIoJtRLrxX5tEDL2I0z7cJLH6JZn4XzWQ/42/UC6JaQ=;
- b=jshF5P4eLylDgRDq4gai7qlRc23oub3MSRu4s0Qcw4VZyyMOZgVChvJh7jUZZVc2CUtrhUEW3lql9tMBBtpnj6p4GYX0zkxBLELK0XVE7cGXL6AoRWVKGsRA5xoQ5jfG0taHvOcqbb0iCjGRvn+RhZqDU0Jvdao6bEk3uR2okvE0HGJjuwPu5eOUbfQqvpjF0TnVJmKpmo1Ok++FR+WivJQpz/ypg8oLn4hzWYQ3c3Qr9pkADBbO8zRzgsN316zIWmhHsf4Btwc4zZJuLbNEv4OSoj1/6xLjx8GCje9NOewACrYRkS6air+P8TVLIR2CRuAI9DvU+5jTP7O+bOaobA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uIoJtRLrxX5tEDL2I0z7cJLH6JZn4XzWQ/42/UC6JaQ=;
- b=kfRZpILV/9uvaAOexT/tF2knZOmuIabuzeqJTSuCmgrYd4mA9qLcSoMd0+DerSStql/6uW4eB2hpqTE8P1l6mfAOwPELJYFJ8Oo/ROt7D4P2Q3HREo6MFJjywLdIA+Fx488B8AHiU3ff19J0JDCwuhwCVdX265fIlAjWj0aGSm9EdEuvMoDYpqlXCh5HNp78bEU89TEW+XTsWcZL4JtzfmasAnrwmo96z6Y9dTQB8+H6I2XZe1Fh1gmgo3EV0K/c/cs0Ii4ZK7qLxzm0S+Ux52r5ZHRTA8x+uzzDV9dpzunTX/R9xY93/Rs0tv+UvGPY4ei2eQ+va5F1MEVzIr4DCw==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by PH8PR12MB6772.namprd12.prod.outlook.com (2603:10b6:510:1c7::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 07:09:20 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 07:09:20 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 21 Apr 2026 16:09:17 +0900
-Message-Id: <DHYN7ITVLK8S.ZIYFGZ2GVPPV@nvidia.com>
-Subject: Re: [PATCH v2 2/5] gpu: nova-core: use warn_on_err macro
-From: "Eliot Courtney" <ecourtney@nvidia.com>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
- "Boqun Feng" <boqun@kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-2-2fe54963af8b@nvidia.com>
-In-Reply-To: <20260421-nova-unload-v2-2-2fe54963af8b@nvidia.com>
-X-ClientProxiedBy: TY4P301CA0052.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:36b::15) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3DD3545A58
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 08:35:05 +0000 (UTC)
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2293810E1A6;
+	Tue, 21 Apr 2026 08:47:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1776761229;
+	bh=34lHlm6042teYF9Tjdkaw0RBPEb0m8BWxtxXJb5KbFI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=oRVUc6AgYeYqD6tGULwJ4z4eqrztHJF++HoYRCKiSCe233lHMLucO9I45TmUvTYOC
+	 JEBtp6nBBJG3XTxn+YCVUzB/Dl6UiFViss7JOvPwOM8Q/6Ka5z2hXDAxTKH12S6SDq
+	 Fxdz5o62xJl8gyyQia/Jk/aWv47wHUOIiSAL8VqTnQwkI+Cjp3v+uu2wRMIjQQbzy4
+	 PdNQoNKdDJ4almA5x7ztLhjHadqz1ONLeqgIKNSDzVgKEH+miKpLtiNsL+nF/D4A1n
+	 4VkDWo/RdLm1KStAqmSUIlWPsfb2A7PNT810KKQq0WWtgC0/F29nUX0N6LLDB4A85m
+	 vGirGu97UdBCw==
+Received: from laura.lan (unknown [100.64.0.215])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laura.nao)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B13FD17E13DE;
+	Tue, 21 Apr 2026 10:47:08 +0200 (CEST)
+From: Laura Nao <laura.nao@collabora.com>
+To: dakr@kernel.org,
+	boris.brezillon@collabora.com,
+	steven.price@arm.com,
+	liviu.dudau@arm.com,
+	matthew.brost@intel.com,
+	thomas.hellstrom@linux.intel.com,
+	rodrigo.vivi@intel.com
+Subject: [PATCH] drm: Remove DRIVER_GEM_GPUVA feature flag
+Date: Tue, 21 Apr 2026 10:47:01 +0200
+Message-Id: <20260421084701.24227-1-laura.nao@collabora.com>
+X-Mailer: git-send-email 2.39.5
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|PH8PR12MB6772:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9fdf71cd-0f2f-4fb7-684a-08de9f74e8e8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|366016|10070799003|7416014|921020|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 
-	6MHgLnYnDCh6CBBPJBQ3+aJiSM5oU7+uXqVPrH+BZKexgouZV4g+qGIjTWj3+gd0WKOjcfgNPLRdnD9gEbrMvsV32SHXBr4k6f7n4MWXbGdqccvdOoeJ2nClmVxqSfSDrDFOz9Ej/ky27IkCPJEUHnmLNYmiYwjMJv1/73ICC4IenZvZVp1f7l8a2u9SKZapatCJfLPC+kTliG0lCEWQijZt9wYI3HpMtK98DcQ20bKNbMOrFj5thp9HF1uGhOtW9qTWx2rgpJTr2Dd4/lEOl5nAtZcfQs00q8wcTmIsaAycc3BxinkTedOAQQSqEgq0dv+wKUYnS0kCLPxJShr9LpL3O3xEeRg5DZCh/TD1suTbX4eelmxJcgetVTQR9+cZevzzDO8j5+78wkJQCbGJ7KX4babCey5Xa1f7t12BG/V0twJf07LzJtgT9P+kK9mZJNZ7GR+hKOZZoQzglHNKaEYzHmv8asEVo6C6xY+CtbaFtaCuj6x8lVL43nqmQEzJUgj5xiZdG+4ocRG+zTz9/n3uE7M6GoITGGXEMhgKTI/O21EYbNCybLHo8I3VDKejdS/e/IQk4CLAbM4qKUPnsf3pw7e3S8imKJDgEl032OgyoLS3np4V6oE87bXdrjdCcaltEaIs3rHZSFBcleeDtGdhef0G6tztuySweA408DmePbGZFEZWXmdqM6xW6eg6Uw8V74sBXq6CgquDS2Vl/UO/VUdhM1W806P21EY4CR4KKs1BvXyVhLEyGTpoXJPrs7mJqA92QoQBf9twE607gg==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(10070799003)(7416014)(921020)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?MnF2d283K0JSeGlCSWlMenc3dmxOU2dmZ1ltb2NxM3dFNUZYL052SWFhbkFZ?=
- =?utf-8?B?WCs4R2VRSjlQV2hQUUhuOC9GalFyc0tQZTY5WTQ4YVUyYzN2NXhQRWppblA0?=
- =?utf-8?B?RGgwYWNlWE92VU9yNm9DUDJHV3RVV2IrdlMvcW9QNGx4bmt4U25JZDIrVUZr?=
- =?utf-8?B?ZlFTdktHOURjc0ZpQzJUdVM5eGplaFhrdzBBR3pzRDUvL1Y3cHQ0YjlBVXcz?=
- =?utf-8?B?RGpGbnh5bGtmTlFtOGR2MTBpcjFIT0FpTkw1bmFVeXNDeEJLTE4xdmkzdjY3?=
- =?utf-8?B?THgxSWw0dWRwLzhFOGFVb29pMklTTHluekJiSFBnQVJ3N21HSUhQNkJ3N3ha?=
- =?utf-8?B?R1ZZdEI2V1lFdTgzLzFySzEyZW8wbHFLaHBnR0dtKzZkN1MvemJtSnU4dE5i?=
- =?utf-8?B?MWVsUkxuS2JhanFkeFVSWWhZWWJrTkU2am1LcjZJSVpodXZTRnNBRlJxT24r?=
- =?utf-8?B?M3BlSXNQM3pBaGFjL1BLcWtLUlJUcmZ0K1dFYUEvbnFiWnRLckxZaFJxUDgx?=
- =?utf-8?B?QnIzZjhscUszaEdTN2FZcXNUaStCZUFJTDYyMDMvcUZnaUljUDB3cDBIY0JV?=
- =?utf-8?B?WUtXVCtLdkpyR3JOTDJ0ck1acnpFaW5HZ3JhWmpBekRnUmpOdFRLTE1Mb1F5?=
- =?utf-8?B?SUVXcmtXc0RTTnFTdzNwN2JBbjYyWGlxZkRqZFdUckVuaVY1OUlKMnhhbnFR?=
- =?utf-8?B?SUFvRjMzamdWVkxmeFRzS2xUQkpBcEpkNDNyQlg4RGxsVFkrVVdlZzJKS3d4?=
- =?utf-8?B?ODVPWnowcFVCS1ZwSklTVjMyUm54Q3A5dlFJUmRVWDU3VjZjYjZ4eHBrcENL?=
- =?utf-8?B?Y0k4OGNjZjkya1ZJR08wUXd6eS82eC9MTjlieGNycWw2YmNURnRsQ0NpeHQv?=
- =?utf-8?B?MUFUZGpFZkxJaHhBQzRmek1zSTMwZWg1VzRBWlUyT2MvcTNtbzBqYVFhV3kr?=
- =?utf-8?B?NFR2QXVya015NFo2REdwMUZVQ1BNaDVOZ1hvYTlUZWthT09oRXp6WkNsRWpE?=
- =?utf-8?B?UGMwcmJtTDJLN2c5SGgrTTVvanI4L3E3ZDVrOXRxcjZLNEc5V2dSR3Iyb3lp?=
- =?utf-8?B?cjJLbU5wa3ByVVpRM2xLKzhWbEc4OUVVRVM4NTdXLzBFbThCcXAzY3R5c1hY?=
- =?utf-8?B?RndRd0p5aWowc2h6SnpIU1ZWbFo5VEZYSFJYalhVbUNrOWV3MzVSNVpnYzBV?=
- =?utf-8?B?OXV1ZDRVN0h2WDN1S1dNYnhtZm9Vckg4WXZyaEVTOUl2WDhHdlNZNEdYVXlm?=
- =?utf-8?B?UThHdmdoQXR0N010L0hMbU5ZY25TbmhTT3MrRU1ldzZSSzcwckNTUWNYR1l1?=
- =?utf-8?B?dnlUUUpicVljb3R4dmFjeGFxZm1KbFNjemd4anhSSU0rQ0swcXNUQ3dzZjB6?=
- =?utf-8?B?b3YwUDBHaTNBdkY4SnhFV1cxYVZ5d2xIcFJ0bVpxZHc1d0NhdXV1VDhOeHRN?=
- =?utf-8?B?SW9OV2tMN1hvMkRjZzg2bUl1SExDRDRzUEU4SkJRQmdTSjB0QlYvMFdBUWQr?=
- =?utf-8?B?Mm92R3JOZldKV1kvMUZyRFIxSnZLOGt2cGpuaFZPbUtNYm1KTUQ1dW5ZR3NH?=
- =?utf-8?B?T2JzUDZwNUVQRXhKMlVqTTNkVFZ6V3VaRXdVRkRhSTk2RlZQQ2FEWFlOWVBF?=
- =?utf-8?B?d3hRQ0pVd1AzdnhSSytSc3hXRlY3bS9KU2c4aFRBT3pyYXViNTQ3NWViQUZl?=
- =?utf-8?B?ODZxRXlCT0thSzAzUCtWN3JBbGJFcWl3YjI3OWZWMHhvVzl1YjlLUzUxK0h6?=
- =?utf-8?B?MDBOamN2QmZGa0RwZ0svUmZwd1BPaFd2clc5cVZaeEZ3eVczN0x6dDVHSXNR?=
- =?utf-8?B?UE5VREZzVjNDd053YzRpRTlCcW4wUXZrYXBhdGZQbG92WElsWmxkbUZvZFJ1?=
- =?utf-8?B?V2JXUUdmdW9yT3pCSHB4S2U5U1hweVZVelpHS1hqcjZNY2RxY2UvRnJLWHZX?=
- =?utf-8?B?UU9sYXFZbjhhbTVETVJTNHBiWnpEM08rVkRXL2xLUnJPU0kyQVRiaVo0c0xK?=
- =?utf-8?B?Y2NwNEVDdjYyb0k0MDA5KzNJdmxxOS8rOWF0Nkg3NThHZllSTUJFb1Yzd1d3?=
- =?utf-8?B?WTV2Mi82bnk4LzVpQmJuODZJT3BvSWRPdzVvaGtZZlBZZWhLSG5ubkI3VjQw?=
- =?utf-8?B?WGtxekRONTc3L1RUQWd3N2d1TWo1L2Iza3pZZ1RXRUFtM2M2OWJTK3VaRlgv?=
- =?utf-8?B?THdKekZLZ1hUcm9wSTVsTk0yMnJaWlFJMTlSUzVGQ09nS1lraEtoVzVXdzZN?=
- =?utf-8?B?bGV1b3lJT2ZuOU5aQmhwM2pteG1VNjBjbFUxSTA4VVdXTTNaMXBtcjdaUUVx?=
- =?utf-8?B?NDBZUW9hQXpjRWI5N2NlSVU5Q3JkMXgvSFdMZ05EVEh4OGhONDd2RW43eTFZ?=
- =?utf-8?Q?YaURp+OEkUn/6FNeNmND0hqCLhFI6p6zeYYzTBPK9dpXQ?=
-X-MS-Exchange-AntiSpam-MessageData-1: XMJgEjdKF4onpQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 9fdf71cd-0f2f-4fb7-684a-08de9f74e8e8
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 07:09:20.6982
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- KRxUTgNo81n1ETdEYob1bNwv2RBTV8B9qZwfqgzViwVTprKqzJjo5H7kUmqefVYYTA4MBURcp08WY8rXxC0cCA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6772
-Message-ID-Hash: 6PCAUR3YGAXB5VLUPAUOSMQI6XFOF3IX
-X-Message-ID-Hash: 6PCAUR3YGAXB5VLUPAUOSMQI6XFOF3IX
-X-MailFrom: ecourtney@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: ZE6YEHQOQEPLH2CYRGOQHO7L6UP6BLFH
+X-Message-ID-Hash: ZE6YEHQOQEPLH2CYRGOQHO7L6UP6BLFH
+X-MailFrom: laura.nao@collabora.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ kernel@collabora.com, Laura Nao <laura.nao@collabora.com>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6PCAUR3YGAXB5VLUPAUOSMQI6XFOF3IX/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ZE6YEHQOQEPLH2CYRGOQHO7L6UP6BLFH/>
 Archived-At: 
- <https://lore.freedesktop.org/DHYN7ITVLK8S.ZIYFGZ2GVPPV@nvidia.com/>
+ <https://lore.freedesktop.org/20260421084701.24227-1-laura.nao@collabora.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,13 +111,165 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Apr 21, 2026 at 3:16 PM JST, Alexandre Courbot wrote:
-> Use the warn_on_err macro in the unbind sequence, and refactor it to
-> early-exit on the failure path as we will need to use the bar for other
-> purposes.
->
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
-> ---
+The DRIVER_GEM_GPUVA feature flag is currently only used to control two
+behaviors within the DRM core:
+- calling  drm_gem_gpuva_init() during
+  GEM object initialization
+- creating the "gpuvas" debugfs entry
 
-Reviewed-by: Eliot Courtney <ecourtney@nvidia.com>
+drm_gem_gpuva_init() is a plain INIT_LIST_HEAD() and therefore is cheap
+to run for every GEM object. The DRM_DEBUGFS_GPUVA_INFO macro is only
+referenced by GPU-VA capable drivers, so clearing the feature bit does
+not cause any unrelated drivers to get the "gpuvas" debugfs node. The
+flag doesn't have any relevant purpose (e.g. gating ioctl handlers or MM
+logic) and doesn't provide any practical benefit.
+
+Remove the flag definition and drop it from all drivers that use it,
+call drm_gem_gpuva_init() unconditionally and clear the driver features
+bit in DRM_DEBUGFS_GPUVA_INFO.
+
+Signed-off-by: Laura Nao <laura.nao@collabora.com>
+---
+ drivers/gpu/drm/drm_gem.c             | 3 +--
+ drivers/gpu/drm/imagination/pvr_drv.c | 2 +-
+ drivers/gpu/drm/msm/msm_drv.c         | 2 --
+ drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+ drivers/gpu/drm/panthor/panthor_drv.c | 2 +-
+ drivers/gpu/drm/xe/xe_device.c        | 2 +-
+ include/drm/drm_debugfs.h             | 2 +-
+ include/drm/drm_drv.h                 | 6 ------
+ include/drm/drm_gem.h                 | 3 ---
+ 9 files changed, 5 insertions(+), 18 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+index 0377a5fd402d..cb703d0072aa 100644
+--- a/drivers/gpu/drm/drm_gem.c
++++ b/drivers/gpu/drm/drm_gem.c
+@@ -232,8 +232,7 @@ void drm_gem_private_object_init(struct drm_device *dev,
+ 	if (!obj->resv)
+ 		obj->resv = &obj->_resv;
+ 
+-	if (drm_core_check_feature(dev, DRIVER_GEM_GPUVA))
+-		drm_gem_gpuva_init(obj);
++	drm_gem_gpuva_init(obj);
+ 
+ 	drm_vma_node_reset(&obj->vma_node);
+ 	INIT_LIST_HEAD(&obj->lru_node);
+diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
+index 268900464ab6..80033d4cb66a 100644
+--- a/drivers/gpu/drm/imagination/pvr_drv.c
++++ b/drivers/gpu/drm/imagination/pvr_drv.c
+@@ -1375,7 +1375,7 @@ pvr_drm_driver_postclose(__always_unused struct drm_device *drm_dev,
+ DEFINE_DRM_GEM_FOPS(pvr_drm_driver_fops);
+ 
+ static struct drm_driver pvr_drm_driver = {
+-	.driver_features = DRIVER_GEM | DRIVER_GEM_GPUVA | DRIVER_RENDER |
++	.driver_features = DRIVER_GEM | DRIVER_RENDER |
+ 			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE,
+ 	.open = pvr_drm_driver_open,
+ 	.postclose = pvr_drm_driver_postclose,
+diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+index 195f40e331e5..ee38c18715f0 100644
+--- a/drivers/gpu/drm/msm/msm_drv.c
++++ b/drivers/gpu/drm/msm/msm_drv.c
+@@ -825,7 +825,6 @@ static const struct file_operations fops = {
+ 
+ #define DRIVER_FEATURES_GPU ( \
+ 		DRIVER_GEM | \
+-		DRIVER_GEM_GPUVA | \
+ 		DRIVER_RENDER | \
+ 		DRIVER_SYNCOBJ | \
+ 		DRIVER_SYNCOBJ_TIMELINE | \
+@@ -833,7 +832,6 @@ static const struct file_operations fops = {
+ 
+ #define DRIVER_FEATURES_KMS ( \
+ 		DRIVER_GEM | \
+-		DRIVER_GEM_GPUVA | \
+ 		DRIVER_ATOMIC | \
+ 		DRIVER_MODESET | \
+ 		0 )
+diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+index 5d8475e4895e..0f5f662e5429 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_drm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+@@ -1364,7 +1364,6 @@ static struct drm_driver
+ driver_stub = {
+ 	.driver_features = DRIVER_GEM |
+ 			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE |
+-			   DRIVER_GEM_GPUVA |
+ 			   DRIVER_MODESET |
+ 			   DRIVER_RENDER,
+ 	.open = nouveau_drm_open,
+diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+index 87d27c3c1456..1a1d40a744db 100644
+--- a/drivers/gpu/drm/panthor/panthor_drv.c
++++ b/drivers/gpu/drm/panthor/panthor_drv.c
+@@ -1805,7 +1805,7 @@ static void panthor_debugfs_init(struct drm_minor *minor)
+  */
+ static const struct drm_driver panthor_drm_driver = {
+ 	.driver_features = DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ |
+-			   DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
++			   DRIVER_SYNCOBJ_TIMELINE,
+ 	.open = panthor_open,
+ 	.postclose = panthor_postclose,
+ 	.show_fdinfo = panthor_show_fdinfo,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index ffea4a453c01..b3acc202df76 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -393,7 +393,7 @@ static struct drm_driver driver = {
+ 	.driver_features =
+ 	    DRIVER_GEM |
+ 	    DRIVER_RENDER | DRIVER_SYNCOBJ |
+-	    DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
++	    DRIVER_SYNCOBJ_TIMELINE,
+ 	.open = xe_file_open,
+ 	.postclose = xe_file_close,
+ 
+diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+index ea8cba94208a..eb93512b0f23 100644
+--- a/include/drm/drm_debugfs.h
++++ b/include/drm/drm_debugfs.h
+@@ -48,7 +48,7 @@
+  * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
+  * their @show callback.
+  */
+-#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
++#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, 0, data}
+ 
+ /**
+  * struct drm_info_list - debugfs info list entry
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index 42fc085f986d..e09559495c5b 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -107,12 +107,6 @@ enum drm_driver_feature {
+ 	 * acceleration should be handled by two drivers that are connected using auxiliary bus.
+ 	 */
+ 	DRIVER_COMPUTE_ACCEL            = BIT(7),
+-	/**
+-	 * @DRIVER_GEM_GPUVA:
+-	 *
+-	 * Driver supports user defined GPU VA bindings for GEM objects.
+-	 */
+-	DRIVER_GEM_GPUVA		= BIT(8),
+ 	/**
+ 	 * @DRIVER_CURSOR_HOTSPOT:
+ 	 *
+diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+index 86f5846154f7..996aa418dce9 100644
+--- a/include/drm/drm_gem.h
++++ b/include/drm/drm_gem.h
+@@ -663,9 +663,6 @@ static inline bool drm_gem_is_imported(const struct drm_gem_object *obj)
+  *
+  * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
+  *
+- * Calling this function is only necessary for drivers intending to support the
+- * &drm_driver_feature DRIVER_GEM_GPUVA.
+- *
+  * See also drm_gem_gpuva_set_lock().
+  */
+ static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
+-- 
+2.39.5
 
