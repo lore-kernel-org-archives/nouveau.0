@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A728EF8FA91
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 14:56:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E72F8FA90
+	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 14:56:46 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 44BE710ED18;
-	Tue, 21 Apr 2026 14:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 605A810ED35;
+	Tue, 21 Apr 2026 14:56:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="cm+4JCk3";
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="W261OWEU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 6A7FA45AAC;
-	Tue, 21 Apr 2026 14:44:32 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 8D2DD45AA9;
+	Tue, 21 Apr 2026 14:44:34 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776782672;
- b=cSOzxgTpqHaBMzHG5tPNdpcndoXfg3ZRF5qE+2s8DCucLRS/C12TSSGH1/mzS6urYqNCo
- mANvl1NSOJ2Z6SE7sqTOx31c83OvbVm0pZ4FW5/PFzGOkzdpu+XYyyNsuBONIJeSSDJG5Kh
- xZfcBvilhZ2KRNKP+oX4zX1EwM4vjGm0ZF7/dF3/aSIyNB3dNnsrEo4JSjPkNKk11FcAftj
- 6MuK9cKzcwKGTBwA9k7oSZRhOMvUz+16t5v/l14ABJzeh5D1SnPKlwuN85whajdD9H290fd
- 5adj8gg/RNnfIcxyp5n0YMcb3mhrBTSvSy6rwDXvDm+CvZ2xd7tJ+vWSzPug==
+ s=20240201; t=1776782674;
+ b=cn6yR2G5TF9UHHczcPnWtg0L1x4yTHmSpeNwPUB62up1ke1z5IEUsad9vfFNgXhVOwNAx
+ To/njWIooU6nT0Vi0xc4ifQjpt25vXJUMj1XsntAEii3hbya3IjFYQ0oX/ff65lJHIxQP4j
+ asy3jniAaex0+Df43totD0lbJ4R7V3JeRxmiiKoRKzZGJE+rgvtulY2YDIfou/lyiGm1brn
+ neaoHU9TcPyUaWsK+0phfTwNszOfPFHCFqV/DLH4R2AsMy9xBpmV6YdwxB4phgT+GZBLbrg
+ v77P4oP+cZBbVHWberK3rqdGl3Z3+IRqHB7PveEytaa7fjD13WoTbwsY5yBQ==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776782672; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776782674; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=gz3InflAKtslVQJSJgHeMm1kKTjdd/kLAIC9qXKn59Q=;
- b=iZy/nRSd0T/izozyRP2AttAucTakzL8LC6Gq/dJCfaqXXKbFYS8iyoDVC6HuMDgh0qec+
- etWXb/jloOXEjw7yvQ3SE+4Jx2bhM2RE6p1n0vQj9CQcHbY8hswgdbZDmwBgb6Z40LNSs7f
- PiDv3ALACSZdasAsJgGMU20B9sqp0ct5TOavltbTg7M17JCkhnhdqd3IY80YB59EgLUU1KX
- 8dcKvIqYDofy4astF0gjOQgnKpcWoLrYeKTSlc2//ljULmnTx5ET+bQl2rT2F1gkDjSixjK
- 5YnLLGy6zbjlWyhbvZrN4Jp6lHXpl2MrgdgyNCMBPnndoONKCT+/+OTL4neA==
+ bh=vXLe8WC7UCzcv5FezZO2TXpBmQPZnCQW8VAR9ImGU28=;
+ b=yG+Ua5T7G6eR+aKEuBPZxwecu11sIQwg4fU3+qNoECYUQOPg3696keQiZo/OVRxjtAdqE
+ bYwGol5LLyH1NKh5p5x+gh2gyH1l5bdKSoPqblvMF00Ng8f9JkCo0i9cSBpxgoCC/7gK+dF
+ sPPoK9ZqbMxR4n8AMqdXgp+TE5ERb8w+2QeG9VaKM6E1G/mmdQpaBg0Bv9fgt+Pe4hh5KsW
+ A0wR5b35WVvyM984jAsks0fWM2Z+QMZhc9ilENuz3mujs0VARDwjs15HPJDW/9tgrNs5PYl
+ BD/a40cQlK0OpviK27/zGJbb33rTs6rrVTJSCFyjtLIL3hBry4OgNSUQtLuw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
  dkim=pass header.d=garyguo.net;
   arc=pass;
@@ -45,43 +45,43 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
  arc=pass;
  dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 00EC445A9E
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 14:44:27 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6B35B45AA1
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 14:44:29 +0000 (UTC)
 Received: from CWXP265CU010.outbound.protection.outlook.com
  (mail-ukwestazon11022073.outbound.protection.outlook.com [52.101.101.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 5A8FC10ECC2;
-	Tue, 21 Apr 2026 14:56:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B2A7810ED09;
+	Tue, 21 Apr 2026 14:56:35 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=S1JnXNn4Zb26InXVpjl6gmdj4bUlVRvWJieswDgDL03Bp3gc61Qi/MGW/fgKc6wGd5tBwZP6tmnWCMJu+vFbL+ddc2bHrCvLG6fUCpp5VLZBbHz6qgX4VIB3PbwfiUrmw166gTRp2HoGMMzRHXTr7zXxgTpjI0HdzVNE0aNNBYfGJ0eXefJHO5jz+nBTpOEfhxdw/c2J/Pv8UQGD1FqaOAHvV90DyysydBLFmJTBJ+3MRllDu3M4D9iXaGHr0ecbJzExN3PY0MEqZdlYPALLtggKSwahLuXd0wMNlf6V+V9zNEzupvLySQ0DYNaum0tFFytfQ+TkaDyNLkbsr0F3/A==
+ b=G5Z9y3acjMC+zGKZnH1pF9j3SwpJCGv0tc8M702z9xfxEx8kweG1NVxsRAoWJUmMkWjiv9H+KBDxDY3rqHAR+8p117jyaPt6p/GBZfL+YQcMgkffx+7rhb5QiNdefOLh2B50csWjJr/d+HpnvKeOXF+Y7EEUZhzf9V8WcSzJvi5P6/44v7bsXB6WT8JjQD9I9O1B8tnEvqNmY+D9MC3HWLBAgH+TaCaQT3UToexpw5lnD8y83MfW1XVgbUovCRXdZL6gznaCZ6+jxVVMyg8WfBo8pPtcIUFhJ3GZFG1r/wnRW39g06NFFO2tniTKpG1SYuRPrCADxt8TlNAn9MmVXQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gz3InflAKtslVQJSJgHeMm1kKTjdd/kLAIC9qXKn59Q=;
- b=h8BP9FqLKnS33bacO6FUK3uryFXX/cTLkv3g1myeFfRCscTURDnbH+ERuzKZc8bRxf9ngMKwLIPWWg/EyNKegN/E+AP83YQrywVJVUHijUYZiqRRLhDZiwsqkkhogJkooqyHEs9ng7f2DlDwQ9GrS4R7ldKHlpUh0F18VcTRvEoLyP7McufxP2016QEXXieNxj6lA0z1Ks499lcrzobH0FJwfEpMv5EOLn03G+PggWcj7LDmoG8PB/bJudK/hXzDc1ltAKofNyvFhohqzGNXfMCHmG2u6/B/A2nSlwkAodJ7yS0b0XlOyKe7mUTw1JkJAEZz4ENW+7hsERsrag9kwA==
+ bh=vXLe8WC7UCzcv5FezZO2TXpBmQPZnCQW8VAR9ImGU28=;
+ b=hEOu2tEvK29BwVWqsEUwM4bXxoxCyzKCbzn7x/xXx52iTa7hvesMziyD3Au/YEneX/+hX4yK8uEWTnAfwvVRZqVljJVJXlRbP/12c2lf+7foL1bbSyYdX/ji8H+IAKkG/IqMdVTaNDfmJ8x8QH6ALcbhl8Eab2o0qpYizXECujSb7qf6QeEcr3FykxImSh1pmwAtwWk7KdKZvFbg0iI95sdKQRingJRU4kwFd6xZ2+YetfraFB9Q+6Jff/i5Byo/qS+9we9clD7gTodHIYo5TpJfnkDXCOHU9xlpruAnbOg3XNiWlmdEqOD7lRYkpw2TICQfBZG6lmzCEmo41r/hWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
  dkim=pass header.d=garyguo.net; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gz3InflAKtslVQJSJgHeMm1kKTjdd/kLAIC9qXKn59Q=;
- b=cm+4JCk3ICMruZutIeOuFVyPP3lgT6qN4jJGEwjpooGYqVBbloLK0IwK1YBygtpTsJWIejCvd5/HXksoz8IL5iXDl9hoqGQFrgNh5a214o/qRNr2mdwYW3hWgKZ8bczytII6y1cbtkW0P+0dc3QmZogYxSHZUtXeAoe5JKE1AO0=
+ bh=vXLe8WC7UCzcv5FezZO2TXpBmQPZnCQW8VAR9ImGU28=;
+ b=W261OWEU8baWiolRoGviCQDonJGZ57t28SUEd35/0TjcHPvRblye6nLkeGpQSEy4Q72GzClM8NDQLupe2qrm/jkVmhmkJMV7v5N6mE20fw6IJ58+Lm4BZDTOEeQcGdmRwvHf4z9tKtVoie8uoXrVljRKIgTUtbmUGhLq5tOOU3U=
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
  by CWLP265MB5674.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1b0::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 14:56:29 +0000
+ 2026 14:56:30 +0000
 Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
  ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 14:56:29 +0000
+ 14:56:30 +0000
 From: Gary Guo <gary@garyguo.net>
-Date: Tue, 21 Apr 2026 15:56:16 +0100
-Subject: [PATCH v2 05/11] rust: io: restrict untyped IO access and
- `register!` to `Region`
+Date: Tue, 21 Apr 2026 15:56:18 +0100
+Subject: [PATCH v2 07/11] rust: dma: add methods to unsafely create
+ reference from subview
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260421-io_projection-v2-5-4c251c692ef4@garyguo.net>
+Message-Id: <20260421-io_projection-v2-7-4c251c692ef4@garyguo.net>
 References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
 In-Reply-To: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
 To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -99,11 +99,11 @@ To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
  Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776783386; l=13259;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776783386; l=3238;
  i=gary@garyguo.net; s=20221204; h=from:subject:message-id;
- bh=5GVZfqmlRD7YS7IuSASRsDrAHqXip3Elc7FIgJl4J90=;
- b=c1qQ5DpiFXu6Q0zRPZm7320fqpB78rfHQksb0sudcivMAAKQYhzpxwNBIUibr1/TiYsVppY+p
- 7AbPH/XqylgBDkvynB8TgT9tMoNc/xeftqQZz0KLpoay1KVl9dinsf4
+ bh=aOfLPip234jwbtfUDxAEqballSOb6fOW5cF0Oh7xboU=;
+ b=9cwJCopkLJXLfv+fchvQXU2DAVsu9tkTmCIoRC61SlzZ7JqVJKLjnY7m9FcMHshN3o/tpWmGu
+ eece+sVYDhlCTmfdJvjXTSH38fFJxTltLkHqs8un0ekriNLG//JKnNR
 X-Developer-Key: i=gary@garyguo.net; a=ed25519;
  pk=vB3uIX95SM4eVrIqo1DWNWKDKD2xzB+yLLLr0yOPYMo=
 X-ClientProxiedBy: LO4P123CA0142.GBRP123.PROD.OUTLOOK.COM
@@ -112,71 +112,71 @@ X-ClientProxiedBy: LO4P123CA0142.GBRP123.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB5674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a6122e1-0478-49c1-b797-08de9fb62b1e
+X-MS-Office365-Filtering-Correlation-Id: 0e47ee9d-3303-49aa-75ad-08de9fb62b99
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|7416014|10070799003|366016|921020|22082099003|18002099003|56012099003|18096099003;
+	BCL:0;ARA:13230040|1800799024|376014|7416014|10070799003|366016|921020|22082099003|18002099003|56012099003;
 X-Microsoft-Antispam-Message-Info: 
-	w9F7UZYmeXl2Nk4FbIOOuMmyidCSMmgu6s8FekySQxwyaQ6ELAipScnds2x+DwaHZqXtMr/1dcOh+wujm9wZu49HsOAipnwTavvgFJoNLxpExu9FQwJeaOBOBYQsHeOR2a9Br5ig7WzBgblqAYBfkmSwxpqwEocJ6JlN2C1Jmpoh56fKWse/gaaqy1e/GU06bzY5ii4+MVTTZvi9wYNfLXY3LrVjR/T0SjfdDpoj89ee1PqxQyLUT2MON/QczapouZ1agggk0ANcFscc3A24OORaw/nC6OAzSe3w6+vbzlBtmzORo5q9a6Nar+Ffv12vMbEfUNbRFb5iGNm/eIoEtcs3R+8vdtdwbpe0f7utuz2ya7taPX3G5QdPB9W/K0kUOnMUwpCHEcQ2WjtE8W6+f9O07BvPZXEuKNLG4JKHqjZYL/+FwDedWUVai1+tFgQPqo9vk9sy5zo/tQ3M4+iPmL2MnQuNTyWPhAkx2/1vD/T8sI41AVfNtwM93csiRCEAkix43j2bk7jJJatEvgBMez+ln2CCUZSjSX8V8kabICdA5PuLHOA8LQJFrqq22suOvjOgMw6cLisllYpmoynEiJilXwgMR/+f6PXR0rjuq2R7GqNMm4Zje018TdnymwPmvEchooVfA68Z/2wjIYvrJcJlNN4AiUltn1RTsnv7DlUdaMhWAohyTnRsDAknLag52saWmzY+PkDSNyQKzd4wFROksSKIQDznzQyhQ64j90GKiH3hIjkmfDcIldEZFNRcvSQZ6iH8LND9r2clqzUueQ==
+	PKeaGTdBH7YXZxXtJ+UU8G4qrqRLQvvlFf4rvHURRzJ6pwaVlmtlM2LUlocHjvBIHkcS6+12VOEcWWXrGZQDOc+w2CwPx3k6v1QiecJpVmwqsExdb/dIxpmITMiw5ZCxQUBO6R/sGSZol5qmGXRBxNrfuQwQDE6sLvesOZ0iEzVr5jLHVRPtuCYMJgisDlcHxt+oCM7xIcNnf5PEfXK2F+mTti3iTHfR/r5fDfOeE3qhU2RR5R47MPUDcEG3nvWLTuyoWuSiu8iwdgMreCmw0Sy8MrG6MIVQ8wA83H7VqiCQElFTFX8Q2DVkXToSINl7XHFOVylS49GWlJT2PSMg3AZ0JdZZo6MMknCoiaC/U1bqdlyeG2LL2n/0MxHkOWC3aJaIfF6IPOLOlPRjijnd7x3S13as0a0dPvQ6HFMNmCuKcmG/kuV20tngjhpmVkbSwAdIPx/ROvxlcpLUAqLlw26DMZXklQNbR0Yn63bzp9UPx1+lkCDHlWEVQ7QvPPMjt8T3PI+9/FxDybX/GIGBJxcEM/1xNe0HzQaSv5HtADU5FKjNLAJaW5Wv9sxILd9B/FT34wPCh1v+VwtwLNCbI0Ye6SxCMiRq+BRpxNqD6Njvpq8R7LZ9C6GONozjsHirPThODHDV/SNTABuLOmnFGHrukc3ixHfU4ru6gf4aBbwjNXmIaqCv8DsX78lyynECtI+An965Q+2rjJjpE2tcTppQLEm5wnW0OqmZr6oBgL0AOvb9RC4QxmVrwNXdhs962XER8Rm89OYxbD3UFRawZQ==
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(10070799003)(366016)(921020)(22082099003)(18002099003)(56012099003)(18096099003);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(10070799003)(366016)(921020)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ZmI1ZURDdU5UUjU4ZW5ZU2h1M1ZuOEpHOUtoL1lBTUk4NlhrbFU1d0ZRTFFa?=
- =?utf-8?B?M2FodE00TWJqR3BzSUQ4ZDlPSWRZUDlhTWU5ZzhrUy9nV1ZWMHhtREl3M256?=
- =?utf-8?B?M2VHNllITjBZMjR5RDkzcEk1MnpKRElySFoycWEwV0JUVkZDNlpCRlhzYjJu?=
- =?utf-8?B?THhRM0NsNVAyMXlSRzNaWkwzL0w1eUMxNGdmVUI2aFBhUkRGcXJSQUJqekRD?=
- =?utf-8?B?dWNVNHlOMzkxbUFKZVBoREFGeVRLcGI1SHJRR2hWZlI5NGJQQU1wRnJzYUM4?=
- =?utf-8?B?UWl0NzVOZE95RWh3OHoyYXRDZW9OOWlTQ0g5eStVNWoxM1J3ekw2Zmo5NjJ3?=
- =?utf-8?B?UDh0dE9TNDF6cUVBMVpWS29temxaN1RyRFNhd1djTTFOVkd3TzlzTTVacEp2?=
- =?utf-8?B?RU5BdE1kSFFYMk1UNS80RThsODlPNnZ4SldPNVZZQUd4QUpqMDNKQi9NYmVC?=
- =?utf-8?B?NDRwZCtJd1BZbnhld25tK2RWNC9mdTNCRnlDMnB1bHF1Yll4cDZobHBDMXB0?=
- =?utf-8?B?TkJVSFlScUE3SjFra3haR2FvN291M1IyRFZJQ0luclU4UmZxWkRCRTRIREhW?=
- =?utf-8?B?N05NZTZIbWdUU0R4c0VQa2RRQjIyd2x6STBQQitFVEZtNGt0a3VaUDJ4UXNX?=
- =?utf-8?B?dEY5Q0FIQmY4WmFyTHJOM0tSSFVpWFFJMGNHNWtUckloQjF5N05YazhRWlNO?=
- =?utf-8?B?Z1NSVVJPL3JIbmdaY2NpblNNa0FjSHR1M3dXaU56YWpiZEdhTmNYY205eGpa?=
- =?utf-8?B?QlFidzNFU3JBODlBc0ZIK2Frd1ZBVEk1VEZqTzBLT1U0dWtNQ2VuQVI5dHlE?=
- =?utf-8?B?cm15NEEyc0FnL3ZSWXMyeFdoekgrUzJBMkwxQ01JWHk1U0JwNWpFMFZxNTVN?=
- =?utf-8?B?RUVrQ0FzS3hFSkY3SmxQS2RNOWhuclIvWDVrQlpQTmI2cTBNNFdlSTNYVnAr?=
- =?utf-8?B?ODgwN2hqdkdqbXV6K1A1YzhBQXlVK0tNUjR3YTdld1RZdDVTeVFsUkRMWjVR?=
- =?utf-8?B?VDd6a3VxUFBCVXFibWoxcDRvOTJLdVdyTGR6K2l4aGRaQTZBMkd4M1hkM0Ev?=
- =?utf-8?B?OWw3NEd3Z2lXV004RWxLYlhGR2RWV3VHZDRXNmZOMFNpQytjK1c1cUcyRXVr?=
- =?utf-8?B?N2tubFBMTDBoWmJDTFdZMzFuMlZNYzRyRXpFQ3JOVG4vLzBFVVZNTk5SQnJG?=
- =?utf-8?B?YUcvbGZkRGJvc2FtczZNSjNoejRnSDhBNGlWc1Q2UFpTUFBvYlIwYk54WlZl?=
- =?utf-8?B?SW1NUTVMeUNER1IyNzB1SUoyZjU1VHBBMXNLcjZiUStwTWdHTFFhUFJJam5J?=
- =?utf-8?B?QWJaT0ZHOUlhV29hU2x6bUxBbjNHYlM5QytSMFlVMVY0QSsxWVV2d3RYTVl6?=
- =?utf-8?B?bzVuUXQyV25naVVNclYwZVNQRmRNTGtjazIrRGplVldwSXRkMHR0MGNvYkho?=
- =?utf-8?B?QkNGd0V0MTk4Q3NrVUJHYTRiSDlmTHhxK2RzdzBveEdkenBjblo5bHpNWTNW?=
- =?utf-8?B?TTF3YnFRN2FXcHlnUWpJTGtlQnMrc3NhbnRjWVlsRXFNTTVEUWR0MmxvNHZB?=
- =?utf-8?B?dUJZWWUrRjhtcyt2QmFjbm91cHlCMWh0T3Z3d0hDQjN1MVpjQVRBSC96RVdy?=
- =?utf-8?B?WGI0M3VENFJldW4wZVB2RkdjdURWSndmd1h5cE0vZmVHZHlmTGoxM0lIdG1N?=
- =?utf-8?B?QWlQOXhmcVowMmNpUUorcmwwUnFmSUZidW1iVzREU3BnV05tSzVRZmJMWHVE?=
- =?utf-8?B?T2FwcDRKZDAzb2x0N2ttUHdFeCtnOVNDMDIwZ1hNMjZpUFJaN1VDRlk3TEVa?=
- =?utf-8?B?OVdYMGJ0SWNtcXVZNDNpc2VxOTRiVVhyVlI4N2pmVDZVd3dkOFh4bVlsQXZI?=
- =?utf-8?B?TjlIUE52aDZUTWo3RTBwS2hqYlhSNlVrdWdoNzBoZEtiUENBdVVndGFsYm4v?=
- =?utf-8?B?Qk4wTk4zazFKeS9Ka3dSa2x5bUQyMVptV1A4b1ZPZ25qdlhVWmQzV29FZVYy?=
- =?utf-8?B?cFQ1WUtMaXZnVHpKdW5uVFNCK0F1OStadEFvQUwxeVVQdUNTTFcxcjc2YmV6?=
- =?utf-8?B?cTVrMmNlMFJxcjA1cXN1RktSZ1Q0c2dsU3NIUmxxNG8rcXowOTRwa25uZ1Na?=
- =?utf-8?B?K2Y4MkdUcjRwRVoycFdjWkpLemRoeFcwV2ptcDB4Vzd2NmVmUlhKQUhreHph?=
- =?utf-8?B?N05NODYxOUtIWFMvTEZ3ZFZPK01MNnErN2RZYXdmbTZGL29tZHVZS0NBR2Va?=
- =?utf-8?B?SGVOWkh1a2JVQnE0K1VnbGVyZHhWcGt5d2NzMVFwZ0ZyT3NVVHhVQXIwRWF5?=
- =?utf-8?B?TVQzYmNDWGdlcGxQQ04zclFEMTBMaEJMTnpHekxtTWJNNVl1ODE4UT09?=
+	=?utf-8?B?OTc3L2dBQnJkemNybXNOQjZ4YVFvL2UzSklVMHJtU1ZVV0lvOW1lVktWUmFW?=
+ =?utf-8?B?ekMyZzBVTzl0dk5JaTZIK05GQjBnK2FZWjFUZGtOdGM2YmEwby9Wc2RHRkMw?=
+ =?utf-8?B?c0V2cWd6MWhCdVFXek9qMzYzVmgyNFdqQ0ZxMmd6VThhbDU2T0tZS05Pa21H?=
+ =?utf-8?B?aUluZm9aQlBCdWl4OGorZVNDR2EvUEE2dzQ1SGo4LzZCSWVkdy9IbDRmZWUy?=
+ =?utf-8?B?SU5taERJaVNMNi95SlFiKzZNWDZUOWZXOWdzZk1DelVXNWdhdTZHQWhIS0FB?=
+ =?utf-8?B?dW5oNmh5eWZLQ2x4MEpKSHVZRDBNVGVOaFRCSWlES2txSHhRbDhhSEoxQmVv?=
+ =?utf-8?B?RkRLQ0xPdnhpRll1dm1ZOVZQUGMyUS9MSllqVGxiK2Q3UWY1ak1RNHFhdHdq?=
+ =?utf-8?B?bGpQL3pLRGliU2VLOGU1S1N2Q3M3RklFY2xQNzdENDMzb3dWT3lMdmZLMXNS?=
+ =?utf-8?B?ZTJaRWNKTDhrMDNIVlYzN3ZuVmZtbnVDMGNlbkF1WXJURm9jOVdQQ3ZUZzNN?=
+ =?utf-8?B?Nm05Q05sK1BBenhkTXRVMHFqaTJzb3o4QVpoN1B1akFjL0VEUkhtRFFHS2Ns?=
+ =?utf-8?B?QVRoWjNjSHV4b2xMWmowNmJiM1M5SjZURndYMUlBejYycm8wV3lLWkFUaW9V?=
+ =?utf-8?B?VkNVVFhRckc2OEtTTzdKbHlFNXZsQUVIYjAxT2lVdTk0RzVKQSs2Q1lVKzc0?=
+ =?utf-8?B?aXd1dmlNdndVZmx3OXIxakczR1VSMW92bzdPOUhCUmVhOEE5MHBEeDVUdExI?=
+ =?utf-8?B?TW51RFpGbUlxb2Z4NUZCalhYVFhQdXppTnpiajh6a0wxRlBEOTEyVEQ3WHI5?=
+ =?utf-8?B?V3dXNkVRaTN4eEg5MDAwcTJleng4U2lTeTE3dGE3M3B0NHhscGwxUHRPcVNq?=
+ =?utf-8?B?OXZKOTNoeVZVNUIzR1kxNHZQZzFKb0svMmUrWVZsbGxVWGNsUDl3Q0ZGQjRK?=
+ =?utf-8?B?TmRTbjZWLzRWVHNsNUFHQTE4RzVrV0txRGF0V3VPK2pJbWo1RlVvempPY1JV?=
+ =?utf-8?B?bWhCaHI3MlhxTjI3R0RyanJzbEVHU3lMMnkxdVVUWE1XY3c0QkR0c1phdXE2?=
+ =?utf-8?B?RkRORDdDZFIvSjc5MFV4dWYxcFQxRVdrL1FBZlBUS2h4S1l3WVB5d3Fqc1F6?=
+ =?utf-8?B?Nm5nMERGYzllYmNHaWR0MzJQemdWL1NjaVdkWW5CMU9QRU9DU1NGbVVwNnB2?=
+ =?utf-8?B?RUw0TURJNlZGWm1tcFdxN0ltK1lzeTNzdU9DZmttRW1ENXIvc0tYWUxNWTdH?=
+ =?utf-8?B?TWk1azNoblFhUlY5U0FjRHowTUZoazB2a0hUSVE2R3YveFVlZFg0bWNIN0ps?=
+ =?utf-8?B?cGRsQXBsQmVkbmpuK0UwaGdEMnVzaC9IWEc4OEZaSUpNU0xzUFBYcUtUcDUw?=
+ =?utf-8?B?YklpUzBLRCtSUk5sUElWT2RMTi9JSDl0Z0ZVYUtsVVUxS2w4emtYRDlTTVQy?=
+ =?utf-8?B?am5kNnMxMS9oL2JrTHdDeGM2QTB6ZDZYbEROeDdaOEUvL1M1M1FPYUoxOU9E?=
+ =?utf-8?B?UGQyTjRTd012clNIVG1Zem9oTVFoUEpxMy9ZWUI2TFA5TGZmU0pTdkttZXBz?=
+ =?utf-8?B?TTNYVXk3ZysyWVJIbWFXTkptNUE3bkdZUGw4L2czdTg3aGY2em1kWFN1dlgv?=
+ =?utf-8?B?SkNLNW4zVDhHcXVYM0dXVHI4K0R5V09MSlFyc3dEOUhRcGNkSW1ib2I3Y2Qw?=
+ =?utf-8?B?ZXEvMEJjeTdibDZJOS9BbWcvdUJSZk5iaXBsVFJKVGtwaEh1dkI4MlFFZlBK?=
+ =?utf-8?B?Q09jRStYNkNPclZyUEZDOEt4bzRLcWZLUW5TNU1NVkdBRFVKTGxXL3BRZ1Vz?=
+ =?utf-8?B?bXEwaVNnQ0VSRk5xcjdvUWJCaTlseHJZMkNlekxlSFhmcUwzdzMrYlc2Skpr?=
+ =?utf-8?B?ZHAxZUI3NWJudGJEbnorVjNZQkFUZnl1Rk5FWldCSzlETVN6bnlwdGZkYXha?=
+ =?utf-8?B?R0F4L3VMV3RmY3lFQU1XcE5Oak5pV2h0cmJzNlh3ZVR6N094SmdEWjdscW9j?=
+ =?utf-8?B?bjJvN0lHTklKVHd2ODlXcXV0ZGFFNWp2S0xLeEowZzdMUEI1WStGSWM1ek96?=
+ =?utf-8?B?N1RzOFVVTTR4ZXU4QnRDMHhlTEpwMlliR2hIN0hnY2NJZWt0NWhhdmd4R2tX?=
+ =?utf-8?B?YTBxdHl0cU1xcTI0dHRlb2U5LzhqcFBHSTljZUhjRm1ob01SMDNWZVBOUTNI?=
+ =?utf-8?B?YUNyaytrTkZzMVo3b0tFUy96WWVjSFhLekVoY0hmRytveW9qKzRZUUdlWFdW?=
+ =?utf-8?B?bjZDdmtjWHB2VzY4S1BqS3Y0YndBZmpQZkdPV2p3dURBWVYzWldUSGp6YXQ0?=
+ =?utf-8?B?TTJiazZ5TmU0bUpETTJvbGEwaXdWT2IrYzI2TGIzZnJtZTBtbmU3dz09?=
 X-OriginatorOrg: garyguo.net
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 8a6122e1-0478-49c1-b797-08de9fb62b1e
+ 0e47ee9d-3303-49aa-75ad-08de9fb62b99
 X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 14:56:29.0683
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 14:56:29.8300
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- 6vlJU61SMvVn1TYtMLIxUaMkpVCJ4xodcqxXU3/UsitaErlu79WNV+uwfUMdnb8hZTwGpTeq5urd7eoD2N4Xwg==
+ vQ1NfKZA/lhJvrbTUcgVxAwapgPD+yibre5kogvYC4UTqBmW1rlObAfVSfaU8KPS3AE0rr46h4vEPCZ53HQHMw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5674
-Message-ID-Hash: I2JNGU2RYFXI6HKYNBUVAWNZPU4BFPUA
-X-Message-ID-Hash: I2JNGU2RYFXI6HKYNBUVAWNZPU4BFPUA
+Message-ID-Hash: 36MEOUUBBKQSJCVIOBIQFFN5VZKEQXQL
+X-Message-ID-Hash: 36MEOUUBBKQSJCVIOBIQFFN5VZKEQXQL
 X-MailFrom: gary@garyguo.net
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
@@ -188,9 +188,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/I2JNGU2RYFXI6HKYNBUVAWNZPU4BFPUA/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/36MEOUUBBKQSJCVIOBIQFFN5VZKEQXQL/>
 Archived-At: 
- <https://lore.freedesktop.org/20260421-io_projection-v2-5-4c251c692ef4@garyguo.net/>
+ <https://lore.freedesktop.org/20260421-io_projection-v2-7-4c251c692ef4@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -200,363 +200,92 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Currently the `Io` trait exposes a bunch of untyped IO accesses, but if the
-`Io` region itself is typed, then it might be weird to have
+Implement `Io` for `Coherent`, so now `dma::Coherent` can be used with I/O
+projections.
 
-    let io: Mmio<u32> = /* ... */;
-    io.read8(1);
+This allows the `as_ref()` and `as_mut()` API to be used in smaller region
+than the whole DMA allocation itself. For example, if a ring buffer is
+shared between GPU and CPU, users may now use the `io_project!` API to
+obtain a view of the buffer that is uniquely owned by the CPU and get a
+reference.
 
-while not unsound, it is surely strange. Thus, restrict the untyped methods
-and also the register macro to `Region` type only.
-
-The way it is implemented is by adding a generic type to `IoLoc`. This also
-paves the way to add typed register blocks in the future; for example, we
-could use this mechanism to block driver A's `register!()` generated macro
-from being used on driver B's MMIO. The same mechanism could be used for
-relative IO registers. These are future opoortunities, and for this patch I
-just restricted everything to require `IoLoc<Region<SIZE>, _>`.
-
-Suggested-by: Alexandre Courbot <acourbot@nvidia.com>
-Link: https://lore.kernel.org/rust-for-linux/DHLB3RO3OSF5.2R7F27U99BKLN@nvidia.com/
 Signed-off-by: Gary Guo <gary@garyguo.net>
 ---
- rust/kernel/io.rs          | 47 +++++++++++++++++++++++++++++++---------------
- rust/kernel/io/register.rs | 21 ++++++++++++---------
- 2 files changed, 44 insertions(+), 24 deletions(-)
+ rust/kernel/dma.rs | 54 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
-index c6d30c5b4e10..a13be8c5fd2d 100644
---- a/rust/kernel/io.rs
-+++ b/rust/kernel/io.rs
-@@ -238,15 +238,16 @@ pub trait IoCapable<T> {
- /// (for primitive types like [`u32`]) and typed ones (like those generated by the [`register!`]
- /// macro).
- ///
--/// An `IoLoc<T>` carries three pieces of information:
-+/// An `IoLoc<Base, T>` carries the following pieces of information:
- ///
-+/// - The valid `Base` to operate on. For most registers, this should be [`Region`].
- /// - The offset to access (returned by [`IoLoc::offset`]),
- /// - The width of the access (determined by [`IoLoc::IoType`]),
- /// - The type `T` in which the raw data is returned or provided.
- ///
- /// `T` and `IoLoc::IoType` may differ: for instance, a typed register has `T` = the register type
- /// with its bitfields, and `IoType` = its backing primitive (e.g. `u32`).
--pub trait IoLoc<T> {
-+pub trait IoLoc<Base: ?Sized, T> {
-     /// Size ([`u8`], [`u16`], etc) of the I/O performed on the returned [`offset`](IoLoc::offset).
-     type IoType: Into<T> + From<T>;
+diff --git a/rust/kernel/dma.rs b/rust/kernel/dma.rs
+index 642ccff465c8..92db0e58f364 100644
+--- a/rust/kernel/dma.rs
++++ b/rust/kernel/dma.rs
+@@ -14,6 +14,7 @@
+     },
+     error::to_result,
+     fs::file,
++    io::Io,
+     prelude::*,
+     ptr::KnownSize,
+     sync::aref::ARef,
+@@ -989,6 +990,59 @@ unsafe impl<T: KnownSize + Send + ?Sized> Send for Coherent<T> {}
+ // The safe methods only return metadata or raw pointers whose use requires `unsafe`.
+ unsafe impl<T: KnownSize + ?Sized + AsBytes + FromBytes + Sync> Sync for Coherent<T> {}
  
-@@ -254,12 +255,12 @@ pub trait IoLoc<T> {
-     fn offset(self) -> usize;
- }
- 
--/// Implements [`IoLoc<$ty>`] for [`usize`], allowing [`usize`] to be used as a parameter of
--/// [`Io::read`] and [`Io::write`].
-+/// Implements [`IoLoc<Region<SIZE>, $ty>`] for [`usize`], allowing [`usize`] to be used as a
-+/// parameter of [`Io::read`] and [`Io::write`].
- macro_rules! impl_usize_ioloc {
-     ($($ty:ty),*) => {
-         $(
--            impl IoLoc<$ty> for usize {
-+            impl<const SIZE: usize> IoLoc<Region<SIZE>, $ty> for usize {
-                 type IoType = $ty;
- 
-                 #[inline(always)]
-@@ -328,6 +329,7 @@ fn io_addr<U>(&self, offset: usize) -> Result<*mut U> {
-     #[inline(always)]
-     fn try_read8(&self, offset: usize) -> Result<u8>
-     where
-+        usize: IoLoc<Self::Type, u8, IoType = u8>,
-         Self: IoCapable<u8>,
-     {
-         self.try_read(offset)
-@@ -337,6 +339,7 @@ fn try_read8(&self, offset: usize) -> Result<u8>
-     #[inline(always)]
-     fn try_read16(&self, offset: usize) -> Result<u16>
-     where
-+        usize: IoLoc<Self::Type, u16, IoType = u16>,
-         Self: IoCapable<u16>,
-     {
-         self.try_read(offset)
-@@ -346,6 +349,7 @@ fn try_read16(&self, offset: usize) -> Result<u16>
-     #[inline(always)]
-     fn try_read32(&self, offset: usize) -> Result<u32>
-     where
-+        usize: IoLoc<Self::Type, u32, IoType = u32>,
-         Self: IoCapable<u32>,
-     {
-         self.try_read(offset)
-@@ -355,6 +359,7 @@ fn try_read32(&self, offset: usize) -> Result<u32>
-     #[inline(always)]
-     fn try_read64(&self, offset: usize) -> Result<u64>
-     where
-+        usize: IoLoc<Self::Type, u64, IoType = u64>,
-         Self: IoCapable<u64>,
-     {
-         self.try_read(offset)
-@@ -364,6 +369,7 @@ fn try_read64(&self, offset: usize) -> Result<u64>
-     #[inline(always)]
-     fn try_write8(&self, value: u8, offset: usize) -> Result
-     where
-+        usize: IoLoc<Self::Type, u8, IoType = u8>,
-         Self: IoCapable<u8>,
-     {
-         self.try_write(offset, value)
-@@ -373,6 +379,7 @@ fn try_write8(&self, value: u8, offset: usize) -> Result
-     #[inline(always)]
-     fn try_write16(&self, value: u16, offset: usize) -> Result
-     where
-+        usize: IoLoc<Self::Type, u16, IoType = u16>,
-         Self: IoCapable<u16>,
-     {
-         self.try_write(offset, value)
-@@ -382,6 +389,7 @@ fn try_write16(&self, value: u16, offset: usize) -> Result
-     #[inline(always)]
-     fn try_write32(&self, value: u32, offset: usize) -> Result
-     where
-+        usize: IoLoc<Self::Type, u32, IoType = u32>,
-         Self: IoCapable<u32>,
-     {
-         self.try_write(offset, value)
-@@ -391,6 +399,7 @@ fn try_write32(&self, value: u32, offset: usize) -> Result
-     #[inline(always)]
-     fn try_write64(&self, value: u64, offset: usize) -> Result
-     where
-+        usize: IoLoc<Self::Type, u64, IoType = u64>,
-         Self: IoCapable<u64>,
-     {
-         self.try_write(offset, value)
-@@ -400,6 +409,7 @@ fn try_write64(&self, value: u64, offset: usize) -> Result
-     #[inline(always)]
-     fn read8(&self, offset: usize) -> u8
-     where
-+        usize: IoLoc<Self::Type, u8, IoType = u8>,
-         Self: IoCapable<u8>,
-     {
-         self.read(offset)
-@@ -409,6 +419,7 @@ fn read8(&self, offset: usize) -> u8
-     #[inline(always)]
-     fn read16(&self, offset: usize) -> u16
-     where
-+        usize: IoLoc<Self::Type, u16, IoType = u16>,
-         Self: IoCapable<u16>,
-     {
-         self.read(offset)
-@@ -418,6 +429,7 @@ fn read16(&self, offset: usize) -> u16
-     #[inline(always)]
-     fn read32(&self, offset: usize) -> u32
-     where
-+        usize: IoLoc<Self::Type, u32, IoType = u32>,
-         Self: IoCapable<u32>,
-     {
-         self.read(offset)
-@@ -427,6 +439,7 @@ fn read32(&self, offset: usize) -> u32
-     #[inline(always)]
-     fn read64(&self, offset: usize) -> u64
-     where
-+        usize: IoLoc<Self::Type, u64, IoType = u64>,
-         Self: IoCapable<u64>,
-     {
-         self.read(offset)
-@@ -436,6 +449,7 @@ fn read64(&self, offset: usize) -> u64
-     #[inline(always)]
-     fn write8(&self, value: u8, offset: usize)
-     where
-+        usize: IoLoc<Self::Type, u8, IoType = u8>,
-         Self: IoCapable<u8>,
-     {
-         self.write(offset, value)
-@@ -445,6 +459,7 @@ fn write8(&self, value: u8, offset: usize)
-     #[inline(always)]
-     fn write16(&self, value: u16, offset: usize)
-     where
-+        usize: IoLoc<Self::Type, u16, IoType = u16>,
-         Self: IoCapable<u16>,
-     {
-         self.write(offset, value)
-@@ -454,6 +469,7 @@ fn write16(&self, value: u16, offset: usize)
-     #[inline(always)]
-     fn write32(&self, value: u32, offset: usize)
-     where
-+        usize: IoLoc<Self::Type, u32, IoType = u32>,
-         Self: IoCapable<u32>,
-     {
-         self.write(offset, value)
-@@ -463,6 +479,7 @@ fn write32(&self, value: u32, offset: usize)
-     #[inline(always)]
-     fn write64(&self, value: u64, offset: usize)
-     where
-+        usize: IoLoc<Self::Type, u64, IoType = u64>,
-         Self: IoCapable<u64>,
-     {
-         self.write(offset, value)
-@@ -494,7 +511,7 @@ fn write64(&self, value: u64, offset: usize)
-     #[inline(always)]
-     fn try_read<T, L>(&self, location: L) -> Result<T>
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let address = self.io_addr::<L::IoType>(location.offset())?;
-@@ -529,7 +546,7 @@ fn try_read<T, L>(&self, location: L) -> Result<T>
-     #[inline(always)]
-     fn try_write<T, L>(&self, location: L, value: T) -> Result
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let address = self.io_addr::<L::IoType>(location.offset())?;
-@@ -576,8 +593,8 @@ fn try_write<T, L>(&self, location: L, value: T) -> Result
-     #[inline(always)]
-     fn try_write_reg<T, L, V>(&self, value: V) -> Result
-     where
--        L: IoLoc<T>,
--        V: LocatedRegister<Location = L, Value = T>,
-+        L: IoLoc<Self::Type, T>,
-+        V: LocatedRegister<Self::Type, Location = L, Value = T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let (location, value) = value.into_io_op();
-@@ -610,7 +627,7 @@ fn try_write_reg<T, L, V>(&self, value: V) -> Result
-     #[inline(always)]
-     fn try_update<T, L, F>(&self, location: L, f: F) -> Result
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-         F: FnOnce(T) -> T,
-     {
-@@ -650,7 +667,7 @@ fn try_update<T, L, F>(&self, location: L, f: F) -> Result
-     #[inline(always)]
-     fn read<T, L>(&self, location: L) -> T
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let address = self.io_addr_assert::<L::IoType>(location.offset());
-@@ -683,7 +700,7 @@ fn read<T, L>(&self, location: L) -> T
-     #[inline(always)]
-     fn write<T, L>(&self, location: L, value: T)
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let address = self.io_addr_assert::<L::IoType>(location.offset());
-@@ -727,8 +744,8 @@ fn write<T, L>(&self, location: L, value: T)
-     #[inline(always)]
-     fn write_reg<T, L, V>(&self, value: V)
-     where
--        L: IoLoc<T>,
--        V: LocatedRegister<Location = L, Value = T>,
-+        L: IoLoc<Self::Type, T>,
-+        V: LocatedRegister<Self::Type, Location = L, Value = T>,
-         Self: IoCapable<L::IoType>,
-     {
-         let (location, value) = value.into_io_op();
-@@ -761,7 +778,7 @@ fn write_reg<T, L, V>(&self, value: V)
-     #[inline(always)]
-     fn update<T, L, F>(&self, location: L, f: F)
-     where
--        L: IoLoc<T>,
-+        L: IoLoc<Self::Type, T>,
-         Self: IoCapable<L::IoType>,
-         F: FnOnce(T) -> T,
-     {
-diff --git a/rust/kernel/io/register.rs b/rust/kernel/io/register.rs
-index 1a407fc35edc..5a7d44c51477 100644
---- a/rust/kernel/io/register.rs
-+++ b/rust/kernel/io/register.rs
-@@ -113,6 +113,8 @@
- 
- use kernel::build_assert;
- 
-+use super::Region;
++impl<T: ?Sized + KnownSize> Io for Coherent<T> {
++    type Type = T;
 +
- /// Trait implemented by all registers.
- pub trait Register: Sized {
-     /// Backing primitive type of the register.
-@@ -129,7 +131,7 @@ pub trait FixedRegister: Register {}
- 
- /// Allows `()` to be used as the `location` parameter of [`Io::write`](super::Io::write) when
- /// passing a [`FixedRegister`] value.
--impl<T> IoLoc<T> for ()
-+impl<const SIZE: usize, T> IoLoc<Region<SIZE>, T> for ()
- where
-     T: FixedRegister,
- {
-@@ -143,7 +145,7 @@ fn offset(self) -> usize {
- 
- /// A [`FixedRegister`] carries its location in its type. Thus `FixedRegister` values can be used
- /// as an [`IoLoc`].
--impl<T> IoLoc<T> for T
-+impl<const SIZE: usize, T> IoLoc<Region<SIZE>, T> for T
- where
-     T: FixedRegister,
- {
-@@ -168,7 +170,7 @@ pub const fn new() -> Self {
-     }
- }
- 
--impl<T> IoLoc<T> for FixedRegisterLoc<T>
-+impl<const SIZE: usize, T> IoLoc<Region<SIZE>, T> for FixedRegisterLoc<T>
- where
-     T: FixedRegister,
- {
-@@ -239,7 +241,8 @@ const fn offset(self) -> usize {
-     }
- }
- 
--impl<T, B> IoLoc<T> for RelativeRegisterLoc<T, B>
-+// FIXME: Make use of `Base` type parameter of `Region` directly.
-+impl<const SIZE: usize, T, B> IoLoc<Region<SIZE>, T> for RelativeRegisterLoc<T, B>
- where
-     T: RelativeRegister,
-     B: RegisterBase<T::BaseFamily> + ?Sized,
-@@ -283,7 +286,7 @@ pub fn try_new(idx: usize) -> Option<Self> {
-     }
- }
- 
--impl<T> IoLoc<T> for RegisterArrayLoc<T>
-+impl<const SIZE: usize, T> IoLoc<Region<SIZE>, T> for RegisterArrayLoc<T>
- where
-     T: RegisterArray,
- {
-@@ -370,7 +373,7 @@ pub fn try_at(self, idx: usize) -> Option<RelativeRegisterArrayLoc<T, B>> {
-     }
- }
- 
--impl<T, B> IoLoc<T> for RelativeRegisterArrayLoc<T, B>
-+impl<const SIZE: usize, T, B> IoLoc<Region<SIZE>, T> for RelativeRegisterArrayLoc<T, B>
- where
-     T: RelativeRegisterArray,
-     B: RegisterBase<T::BaseFamily> + ?Sized,
-@@ -387,18 +390,18 @@ fn offset(self) -> usize {
- /// which to write it.
- ///
- /// Implementors can be used with [`Io::write_reg`](super::Io::write_reg).
--pub trait LocatedRegister {
-+pub trait LocatedRegister<Base: ?Sized> {
-     /// Register value to write.
-     type Value: Register;
-     /// Full location information at which to write the value.
--    type Location: IoLoc<Self::Value>;
-+    type Location: IoLoc<Base, Self::Value>;
- 
-     /// Consumes `self` and returns a `(location, value)` tuple describing a valid I/O write
-     /// operation.
-     fn into_io_op(self) -> (Self::Location, Self::Value);
- }
- 
--impl<T> LocatedRegister for T
-+impl<const SIZE: usize, T> LocatedRegister<Region<SIZE>> for T
- where
-     T: FixedRegister,
- {
++    #[inline]
++    fn as_ptr(&self) -> *mut Self::Type {
++        self.as_mut_ptr()
++    }
++}
++
++impl<'a, B: ?Sized + KnownSize, T: ?Sized> crate::io::View<'a, Coherent<B>, T> {
++    /// Returns a DMA handle which may be given to the device as the DMA address base of
++    /// the region.
++    #[inline]
++    pub fn dma_handle(&self) -> DmaAddress {
++        let base = self.io();
++        let offset = self.as_ptr().addr() - base.as_ptr().addr();
++        // CAST: The offseted DMA address can never overflow.
++        base.dma_handle() + offset as DmaAddress
++    }
++
++    /// Returns a reference to the data in the region.
++    ///
++    /// # Safety
++    ///
++    /// * Callers must ensure that the device does not read/write to/from memory while the returned
++    ///   slice is live.
++    /// * Callers must ensure that this call does not race with a write to the same region while
++    ///   the returned slice is live.
++    #[inline]
++    pub unsafe fn as_ref(self) -> &'a T {
++        let ptr = self.as_ptr();
++        // SAFETY: pointer is aligned and valid per type invariant of `View`. Aliasing rule is
++        // satisfied per safety requirement.
++        unsafe { &*ptr }
++    }
++
++    /// Returns a mutable reference to the data in the region.
++    ///
++    /// # Safety
++    ///
++    /// * Callers must ensure that the device does not read/write to/from memory while the returned
++    ///   slice is live.
++    /// * Callers must ensure that this call does not race with a read or write to the same region
++    ///   while the returned slice is live.
++    #[inline]
++    pub unsafe fn as_mut(self) -> &'a mut T {
++        let ptr = self.as_ptr();
++        // SAFETY: pointer is aligned and valid per type invariant of `View`. Aliasing rule is
++        // satisfied per safety requirement.
++        unsafe { &mut *ptr }
++    }
++}
++
+ impl<T: KnownSize + AsBytes + ?Sized> debugfs::BinaryWriter for Coherent<T> {
+     fn write_to_slice(
+         &self,
 
 -- 
 2.51.2
