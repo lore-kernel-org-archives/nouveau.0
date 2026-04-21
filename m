@@ -4,187 +4,116 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22092F327CE
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 09:42:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AABD1F8FA71
+	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 13:01:31 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 367AA10E85C;
-	Tue, 21 Apr 2026 09:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 84AA610ECA2;
+	Tue, 21 Apr 2026 13:01:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="OhFGH/Jd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lV3Yid/B";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id C966A45A8F;
-	Tue, 21 Apr 2026 09:30:19 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776763819;
- b=HsNjQBUJigqmOlCXl5VSjjwiN8VjOK37kUYICUZpdOUYuRI8gdfOShjJ1JI8TBI90bQLX
- t88oAM8Z/bf7NzGSNzbJS8xaACCD5PxKtoZKXqyuLlM+Dj1G/FaTzCW0uvs5GHAFk1I9Wqb
- ym67/SWY0PhK1pii/gkocsyEtAdMVVZi7f1MFNlUN5/9d4S/aCc1lhotm/FUY3gFmkD4hVb
- PpMRvqRM73WAs53wv2rNR++y2UwL5nRIkrBuWGNTl3dYy4G9XD/0Csd/bMofhl47h9emmcA
- tGlJgVrOaJQiVT1KGHegRIoyET6KbhA3ESRTZurGdclY9fCBuNp3sPB0jl3A==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776763819; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D465A45A95;
+	Tue, 21 Apr 2026 12:49:24 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776775764;
+ b=PsM6BgCxfLr7xnX28ulE98PCmUwLIm7IJhBkKPtmrYCpbDBkb/K+png674kO7aE96H88O
+ irSJwNO/ihYLxQtBv6xsbFoJJrvJ/8VVQsUJXHOpq+pNfnmjmXwYZgYm6SuYL1LGKUpNlm+
+ se4k6zpvi0Vk2jOMfa12nR0xSTyGlpKrkHXRrUputhwHy5IAL01WkvLlySCxbFg5fd7JSgM
+ KXPduOeIzKw9ttV/9wvY3FOBhSJDjKlg+r+5pkhBEkECGVj6rv5QhR0XUj+U/WHrmRzCXjW
+ 1oQjiiE7fFGPzMbVrkncErTY+urZXF3P/Mtl7IOENfhXQ6f4Geq1JJUII8qg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776775764; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=kah2V0EgyuRmauLyhNZvK0heFPDdTXc5vGeUFP6//os=;
- b=m1MmCdVQk+LGXU1p0ng1dD8sxh6pV/TM+3kykX18MvAQU3lpm867aTvaUKDwD4StRSF5F
- kRyAmhrCZlN5AVsdPw9nmNYrY1oo7zIvDvaYEb+2q3jsilHEDU7wWqSmHw8dkXn6iGwOVEP
- ypKYq2WydVJ34DG6VlymINfz30wvi4mUdQov8kM54+FwwYZNsJkyWkQ4uPILXzFfWw5pdyA
- 6xAkqg46U+HK8lC3a5rESGKBqOiA56ql40uq+ZKJ9WdPbu23G/U5hzpi26wSdEjZ+r9NOjd
- NjiBD3sVv7u/u/pm1BnUiVJeWEEyFe/cJGW5z0/O+U/5tq5XNCrBWdJUvF4A==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=f/SLkl4sVzddpALXL9AR/pB/ekMKMfRb+t40dHVlfio=;
+ b=lEe6C5TjT+lv2fX7EkHvN1biLdadtPO8qb/ZLkCmh4gNDhyHYWlxy/PmNcDZyAty70A0v
+ NZs8GTNBAOrrSC0SE7DMva7F8Sr8tkeIysGMUMhCpwsLpkIMBLS/o0K3xxpM07Z3L0ybexo
+ BTFGe0ZGZv8+k9wzUnXndCJufKJDhzinMSQ9im4AFX5zW07ZYphevWFPbXwYQQyiM+WOehh
+ yo6A8n2JLejQ1ZhsQKqS9rwUIApflHzlhnFqGgikNrtEoU15l9jLiZ6W/nz50LYGV3sN3F2
+ rfQ3iNLhdn+JSuNRollMC7eP2G8E1vz4O8t2zFrzjfLwTRqnrSMno0ifN6Pg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org;
+ dkim=pass header.d=intel.com header.i=@intel.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used Org Domain Record) header.from=linux.intel.com
+ policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id A189A45A7D
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 09:30:17 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011011.outbound.protection.outlook.com
- [40.93.194.11])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A000410E83B;
-	Tue, 21 Apr 2026 09:42:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f5uuLls2fQ5a3aj554Xk//ZNh7VcgxBEC7G4OPPLU7aqJCcISwVV9vqjWTQfruXhq9LGgf/DqT0UI0Q5cM36onuHFPRUF71Ca1n09YG8V74HnUnrySKweLzjTHO7JE2RKveITq1LcYdshatviv7lssxKhLrzOrU2GBIJc3spYQoVcKiZ1pwbJ9kU2bJNhlZvC7oe6BAxJs3kg3EqhSKWL36t3ejbiTDcULfoo1Kbn+FSh+vaFJQlbYE/Zjs+rUBaeiHzrH4CQZAed9zq4DDaTRqE/fA/83QWXzOh1aEA5W4Pm8G18itBZQnZr8ql9KUrwTa6qHRkpmg0p5Sh+Sq99w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kah2V0EgyuRmauLyhNZvK0heFPDdTXc5vGeUFP6//os=;
- b=NYPTpC2JD9L5kj6z78CnLs2/WCxQIVfYFcnv15HHtud1bAvzq2MDrllUbSrVrEJA/mnWEeEyUTOwC7P/DAQ1Dln1AJqZ9iLnXpY9SQpjXE6B+TucP1868cqzCj5pWIz9XGGmiQfedBKjdnq33lHKG6ttPRKqO5HzTe1k0LAOPGavSbG0+5q6uzX3cud8CkdAq9EujKiiBS868Sd94TP7k1z7Ye+7dPAet6ppJKQt/wEWIQR1hH7TNpfcXfiujOUn1QJckjzjgzrQ4P0T3iXUEsgk1loG4766x7Ypf++IceOplce5PbICGwyK3nSHjZQGrijL5WBgwefEa3yCucQOsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kah2V0EgyuRmauLyhNZvK0heFPDdTXc5vGeUFP6//os=;
- b=OhFGH/JdrYk0krtDauvFSDaoqFxx7patDdbiUWfSiC2PrhRs0lpI/NOzdSavAn3z5tG1Eoqxk/X9UOcRCkBaIHTSvIvFhHh8qMs+A0YGYKaJkTjLskMybr/1AGRG+jOYj8MJA8zVfKskMRR5PQQ6sZmEQYP0K2nM+pmuAhPu9DmIG5CPoekaP9gLKa81RmveclOCggcuJLR672RSKWLVcltaCmdCMySVnCbdOnXiV2HjCNHGlE7J4TQTYQJWP+BkSjvQsZah7BNzl7likCtQdZGb40KmOB2SUXvdfJ8x3mrM9GfSXWB0MCXDfdYLICyOuY1PmcAQCFwlXwMxlDVMKA==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by SA0PR12MB4413.namprd12.prod.outlook.com (2603:10b6:806:9e::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 09:42:16 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 09:42:16 +0000
+	by kara.freedesktop.org (Postfix) with ESMTPS id 92FEC457F6
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 12:49:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id EAE4710EC9E;
+	Tue, 21 Apr 2026 13:01:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1776776487; x=1808312487;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=ExQH+zV+8U/927CEGo05bwJx79KV6l1JOmKPtBkTdK0=;
+  b=lV3Yid/B9WFR01vZnE3wm6CIgjb6enY3AflKIOUxTuU8adj+AhF0FQNO
+   2rCoElr3bTjUjaph3CTXwy37FnDc8Z52lry/IdV+G8o2Z6ylh+fP71NAR
+   64AkFKWgOnzzs2LrVYDOISKEAq657e2N203ast5XRM3BpwY48jSP+J3Tv
+   AW++4w6VZD1YWG5H4AzqElTVSxnVY+rYvJ9HiylJ9b8Y0dwHyvrPFuSgd
+   ZFQxn2rYc7iFyYoou4Xy5QgQq/2DuTKZF7hLcm7vOqQSdWp1/Y+2xprAs
+   Mc9Ot3jE638e9hduGNdTLU9iABMEMgiVqia7I2NKg+MXNQmQ9OgGgeZI+
+   g==;
+X-CSE-ConnectionGUID: hhhcTdM+R7WyTYfKsFrPhA==
+X-CSE-MsgGUID: qZVOJBX4SRSZinCMu6oPmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="76869298"
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000";
+   d="scan'208";a="76869298"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 06:01:27 -0700
+X-CSE-ConnectionGUID: 0W+zIImbQ2mnXN6mz3nlYQ==
+X-CSE-MsgGUID: kVhuQxrbR5WsgiO3/e8znA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,191,1770624000";
+   d="scan'208";a="232312278"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.31])
+ ([10.245.245.31])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 06:01:23 -0700
+Message-ID: <b205e3410cfe0086b02013ffb1a46f1f37d6f2a3.camel@linux.intel.com>
+Subject: Re: [PATCH] drm: Remove DRIVER_GEM_GPUVA feature flag
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Laura Nao <laura.nao@collabora.com>, dakr@kernel.org,
+	boris.brezillon@collabora.com, steven.price@arm.com, liviu.dudau@arm.com,
+	matthew.brost@intel.com, rodrigo.vivi@intel.com
+Date: Tue, 21 Apr 2026 15:01:21 +0200
+In-Reply-To: <20260421084701.24227-1-laura.nao@collabora.com>
+References: <20260421084701.24227-1-laura.nao@collabora.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 21 Apr 2026 18:42:12 +0900
-Message-Id: <DHYQGLYYXEN6.11Q3FQGZMWCJ6@nvidia.com>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
- "Boqun Feng" <boqun@kernel.org>
-Subject: Re: [PATCH v2 4/5] gpu: nova-core: send UNLOADING_GUEST_DRIVER GSP
- command upon unloading
-From: "Eliot Courtney" <ecourtney@nvidia.com>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-4-2fe54963af8b@nvidia.com>
-In-Reply-To: <20260421-nova-unload-v2-4-2fe54963af8b@nvidia.com>
-X-ClientProxiedBy: TYCP301CA0079.JPNP301.PROD.OUTLOOK.COM
- (2603:1096:405:7b::15) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|SA0PR12MB4413:EE_
-X-MS-Office365-Filtering-Correlation-Id: c91402b2-abe9-4d6c-9582-08de9f8a45d6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|10070799003|366016|7416014|376014|1800799024|921020|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	Cjoy2uU26uDN5Yb1AVRQV8Qm6Z6K8QmNx6QXlY8hcsz25EL59AuEXNUS1B8o2ONFQQFB4/wn9nGwMoLbVzQTq9k5KDUSCtJOJ+QoAM9BTQ2I54rb1Rg1fZp7cF1kPbiXYaQc0MVwSZRLqLIzs1Q+ak2paS+t5ISvf7F8W/ee2zP6iVYrxwnb7j/NeQnTZHmTvyg/WKP1a/DlMwQeavjWfO88EwzOajuOReKqcJasunAv/aSHx6hIeXMlWgzn3LBdi/x8suHQtkR+DyWwFduI9D9CEiF1fFfqNnC4+bS4Udf6YrPSkBQiqSaq85tLLw+0odr8zMcfqYcmwyOs+j2kMvRTtDe7j3AmCn4O9K5Sj/Tysn1K4gJF6VYzyhRcc/l2HhQ74ArXxQIAr4hIrKqPVN7qtQMDGNJoqK8pAzWqkvcYRZDRYKHutqNfhWlCg0k0/8GogkK3UiTFbo31FHCUWUg/GhR3Zv66ok9TdZbOD9CYJo5x33p1TbF5Ge+cmpyRyqKbDF2XU0jFwFToH4TA0v8ZMt4uZ/ZMjfXYWZz6ONae8ufF/HotYRLtCJqJ85Jku8vgSL40KWOC/kKodEeUs7pWI5SuidYhdNfI7ZDgFwlXYyx3n9zB4gfU9MDMCU67VV58pQH+X6Bkc0Na1RD5afxNYC1Jor/yIz30UxY0mgfNuQJRUleybjPjsiZKsdShgo1NtlTliUBU4VYdx3OKhKz9WhKnbNeE/nldtzkuAim3qZ0uSOy7grvdvt8NrItzrBGFAo4yCkZCB1FQO2B2aQ==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(7416014)(376014)(1800799024)(921020)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Q3l2ZkQxTGNrVkRBRlM2bmFwNDV1a2g5QU9IYnFFWE5jdnlWbDhkOFhOSko3?=
- =?utf-8?B?N1JhVmRxcCtJMEVpQjVQWW9lNFZlSVlSZk8xcXg5Qk9xS0Rmd21RL01hSmJz?=
- =?utf-8?B?cU1PckNRMHVLTHAyYTJDa3RUWFcvZHVrQzF0WnE4Y3V3OU5FV0c0bzVJVkl1?=
- =?utf-8?B?WllmckpRS1krU1gvRTFPdzB4QituL21XZWxWSjgzREZLSlBpbEk1N3dwZkNH?=
- =?utf-8?B?Z0wxdkdoQm9iY3p0MStUaUNwRmttTSs3elk4N0Y0RmdCL2t3UjU3eVpVMVlu?=
- =?utf-8?B?dHVDZFZHT3R6U3I0VzFqWjkwck40cno3L0NBajNvOWwycy9IUmE1ZjBJQ3Uw?=
- =?utf-8?B?VWVoblA3QzZ4Ym1aWERBWmxWNHlKd203eUFteEVhcEg2NUE4cGphUkx5eWI2?=
- =?utf-8?B?QzhYUXA0UFBTOFVpWmpZUmRJRVBpNG9lcDREdnE0SGVvczVKcHZ6MDVnYVZ1?=
- =?utf-8?B?czhLbHVZWWhwVngzM0prc3VZb0tleHI3Wi9GUERIS293ZUdkYWRGY3R4dUpy?=
- =?utf-8?B?cWxCTGRuMUpoTGN0NEhkZHhIdWk5TURpYUZiVElhNlZpUWMvaFNVODlDZ0RN?=
- =?utf-8?B?WkVzbk94M1hhaUV6NHpGUGQwbnhnaUVUY2hiQmFFYmFSYVdscnB4SVNnZy9m?=
- =?utf-8?B?dkF3Ykh1N1hNYWd1VFlJOXc2SlZjMWhPU0ZSRGRLOWFHUnR6dmJnR1l0a291?=
- =?utf-8?B?MWVCMldickpKRytpOWJqYWlocFFBcjVGV3IxLzdSOHM2QWFST3ZRcVRxekRw?=
- =?utf-8?B?V1V0NDdVaFVVMUVZNGpHQmp3eWRPZUM2ZU16WWxLbTF2RlBmcHorWHB4Z1Mr?=
- =?utf-8?B?aCtHZTJJSHhKeldNMW55bjFiVkdMZ2wwRVZRby8vaUhnLzUxZkpuRGhtR0hy?=
- =?utf-8?B?UllHd3JzNnNRNlRXeGZDYUdURW9lVlp2OGtDZVIxd3VMbGR2VFRNTWJjY3A2?=
- =?utf-8?B?ekc1UWh1YXpqQmliV0NIeW1hRTZBVTFhQUpsRXU0OE82Z0lqRWIzZ1pzclNG?=
- =?utf-8?B?eFNoczBBR2VpY0dtbjA2emM5WVlrcGNkNVZuK2ZTWUJMWXhrTkhnc0I4OG50?=
- =?utf-8?B?OWlHaFIwaTY3R2pSWjZIMGs0bXMrWUlwOG1xK0kwUzR6NEVzVldJbGVOT1BP?=
- =?utf-8?B?aG5KU0Z3OTVHdjE1cExBZ05PMXhnamNwcXVaV2U5Q0grQVFYOEg0NjlKcnhG?=
- =?utf-8?B?R0pCdkt4S1NWTzZpVzhPbjlhM0RTNXdoSTdIZVZ6OVdlU09MRkgwNXpBT0Er?=
- =?utf-8?B?ZE1SOG8rb3dja1NEWWpvSXlmWXJLWmlvWjhOQ001eDkxdkdhTCtuTE0rZjlX?=
- =?utf-8?B?cWp0dTh1a3RLaU5ueldoaHA5aDU4TWJyM0pKa3h1S0ZsYWNCbCtzdi9ZN0ZR?=
- =?utf-8?B?alA0bjRTQkVKK0YyZVBkTHh5ekNTOWdqa3JISDRQRHk4OFV6eXpuMW1WMlhO?=
- =?utf-8?B?VXJqTEJ6anoxSVlOM2lyY0J4Q2loUTJqMGtsdk44YVorUjNpVURaWnN0Q0p0?=
- =?utf-8?B?Zk9lQlE2V1FFRVRUK1l1UHRrc1RYd0FJZGFsYTJWbXcwcjhjVDA3K29FdE4v?=
- =?utf-8?B?ek9scUd0cmhSQnNGK3ZxZXYyMnZSZFFCbXNKekFqUFRlaGdsdG9sTVl6Q3k5?=
- =?utf-8?B?eWtGeWFWVWxJb1JUTjdvZUVHWDlyaW9YZ2hRa3lpdkIvVkpWckhJeHhibDFB?=
- =?utf-8?B?QWFDcjBiKzJuQS9RNis1cG5qWUhHTGNHRmZxTlVRdUlIY29IemFpYmxjYWlq?=
- =?utf-8?B?R3U0UjdHUUxOL2ZGamZhQ042STJxRUh5Y0daWXdZWU9DK1piN3h2R25pdHBa?=
- =?utf-8?B?ZXJidzB5SXB2TWk2Uktrb0FnNlJ6cXN1VmlubXYxNVdaRjdUWVdsWUFEb1l0?=
- =?utf-8?B?VFR4ekpyR3o5dUliKzJvekViWVRZTkJDKy9xRERpNkZiN05uWW4xOXVyWDZX?=
- =?utf-8?B?aTBza0dZdFpxUm5qUCtyaHNaUXRVWElGS1ZyRTUyVE10WWw0YUc4MWlIcitZ?=
- =?utf-8?B?VjBxWGsxRzVXTjdLVzR1N0dLekR6eGNrR1dCbll0UzNxbFdYeERoTFdsNWlo?=
- =?utf-8?B?dFdkMlJ2N0lLR1FWL3VwRkExR0VyOE1VbGZZTXZlTlYrbUZwYitQWStwdk9n?=
- =?utf-8?B?c1ZaZG1NQlFlVGxRYWcvcS9ab1BJeGZTUGt6NFRhcndUU1VSZ3VOVEt1czRx?=
- =?utf-8?B?NExndE1pY3VWUXJpNG1ObFZ2a0NLcjhicEVoU0ZMZXhLVTRyeVBFZlo2dUJt?=
- =?utf-8?B?ckNnTjdQdGFoSlJkdkgyaHVwNDlpSFZZR0dwWUp4SDByUkMyYmxHZlVqdWQz?=
- =?utf-8?B?czNmYlI5d1NtbmUzY3dQZTZUbFpOMWdaTjJlWllGYVpSKzM3c00xUzNrVDN5?=
- =?utf-8?Q?rTt15YGWkX3I3/XRsHJIM5CsC1aL5wMzlj0lRC5bGV/H9?=
-X-MS-Exchange-AntiSpam-MessageData-1: Nj+k8BGagP/F3Q==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- c91402b2-abe9-4d6c-9582-08de9f8a45d6
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 09:42:16.0977
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- IGi6dX/KyAn8+VJResL8Jjg9dOF4KGPV6gYcarkOOQ/8Gw6BDReOzdySGkU+4L79zIr3GMXxO2oxKDTHIGuirA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4413
-Message-ID-Hash: NBRZZH2LMUCMEKYPRRGUKNUNKZOQBKFY
-X-Message-ID-Hash: NBRZZH2LMUCMEKYPRRGUKNUNKZOQBKFY
-X-MailFrom: ecourtney@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+Message-ID-Hash: DOSTGH5PMX6XJE4MPQ3CPSZBEM36BR55
+X-Message-ID-Hash: DOSTGH5PMX6XJE4MPQ3CPSZBEM36BR55
+X-MailFrom: thomas.hellstrom@linux.intel.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ kernel@collabora.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NBRZZH2LMUCMEKYPRRGUKNUNKZOQBKFY/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/DOSTGH5PMX6XJE4MPQ3CPSZBEM36BR55/>
 Archived-At: 
- <https://lore.freedesktop.org/DHYQGLYYXEN6.11Q3FQGZMWCJ6@nvidia.com/>
+ <https://lore.freedesktop.org/b205e3410cfe0086b02013ffb1a46f1f37d6f2a3.camel@linux.intel.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -194,272 +123,198 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Apr 21, 2026 at 3:16 PM JST, Alexandre Courbot wrote:
-> Currently, the GSP is left running after the driver is unbound. This is
-> not great for several reasons, notably that it can still access shared
-> memory areas that the kernel will now reclaim (especially problematic on
-> setups without an IOMMU).
->
-> Fix this by sending the `UNLOADING_GUEST_DRIVER` GSP command when
-> unbinding. This stops the GSP and lets us proceed with the rest of the
-> unbind sequence in the next patch.
->
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+On Tue, 2026-04-21 at 10:47 +0200, Laura Nao wrote:
+> The DRIVER_GEM_GPUVA feature flag is currently only used to control
+> two
+> behaviors within the DRM core:
+> - calling=C2=A0 drm_gem_gpuva_init() during
+> =C2=A0 GEM object initialization
+> - creating the "gpuvas" debugfs entry
+>=20
+> drm_gem_gpuva_init() is a plain INIT_LIST_HEAD() and therefore is
+> cheap
+> to run for every GEM object. The DRM_DEBUGFS_GPUVA_INFO macro is only
+> referenced by GPU-VA capable drivers, so clearing the feature bit
+> does
+> not cause any unrelated drivers to get the "gpuvas" debugfs node. The
+> flag doesn't have any relevant purpose (e.g. gating ioctl handlers or
+> MM
+> logic) and doesn't provide any practical benefit.
+>=20
+> Remove the flag definition and drop it from all drivers that use it,
+> call drm_gem_gpuva_init() unconditionally and clear the driver
+> features
+> bit in DRM_DEBUGFS_GPUVA_INFO.
+>=20
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+
+For the xe changes:
+Acked-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
+
 > ---
->  drivers/gpu/nova-core/gpu.rs                      |  5 +++
->  drivers/gpu/nova-core/gsp/boot.rs                 | 40 +++++++++++++++++=
-++++++
->  drivers/gpu/nova-core/gsp/commands.rs             | 36 +++++++++++++++++=
-+++
->  drivers/gpu/nova-core/gsp/fw.rs                   |  4 +++
->  drivers/gpu/nova-core/gsp/fw/commands.rs          | 23 +++++++++++++
->  drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs |  8 +++++
->  6 files changed, 116 insertions(+)
->
-> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-> index 1701c2600538..8f2ae9e8a519 100644
-> --- a/drivers/gpu/nova-core/gpu.rs
-> +++ b/drivers/gpu/nova-core/gpu.rs
-> @@ -277,12 +277,17 @@ pub(crate) fn new<'a>(
-> =20
->      /// Called when the corresponding [`Device`](device::Device) is unbo=
-und.
->      ///
-> +    /// Prepares the GPU for unbinding by shutting down the GSP and unre=
-gistering the sysmem flush
-> +    /// memory page.
-> +    ///
->      /// Note: This method must only be called from `Driver::unbind`.
->      pub(crate) fn unbind(&self, dev: &device::Device<device::Core>) {
->          let Ok(bar) =3D kernel::warn_on_err!(self.bar.access(dev)) else =
-{
->              return;
->          };
-> =20
-> +        let _ =3D kernel::warn_on_err!(self.gsp.unload(dev, bar, &self.g=
-sp_falcon));
-> +
-
-If I remember correctly, at least on blackwell, doing the full unloading
-procedure here actually resets the sysmem flush register, so you get a
-spurious warning. In my local branch I actually swapped the order of
-this and unregister to get rid of it (not sure if this is correct though).
-My sysmem flush patch that skips printing the warning if the value is 0
-would also fix this, if we care. Have you noticed this happening too?
-
->          self.sysmem_flush.unregister(bar);
->      }
->  }
-> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
-p/boot.rs
-> index 18f356c9178e..3f4e99b2497b 100644
-> --- a/drivers/gpu/nova-core/gsp/boot.rs
-> +++ b/drivers/gpu/nova-core/gsp/boot.rs
-> @@ -33,6 +33,7 @@
->      },
->      gpu::Chipset,
->      gsp::{
-> +        cmdq::Cmdq,
->          commands,
->          sequencer::{
->              GspSequencer,
-> @@ -237,4 +238,43 @@ pub(crate) fn boot(
-> =20
->          Ok(())
->      }
-> +
-> +    /// Shut down the GSP and wait until it is offline.
-> +    fn shutdown_gsp(
-> +        cmdq: &Cmdq,
-> +        bar: &Bar0,
-> +        gsp_falcon: &Falcon<Gsp>,
-> +        suspend: bool,
-> +    ) -> Result<()> {
-> +        // Send command to shutdown GSP and wait for response.
-> +        cmdq.send_command(bar, commands::UnloadingGuestDriver::new(suspe=
-nd))?;
-> +
-> +        // Wait until GSP signals it is suspended.
-> +        const LIBOS_INTERRUPT_PROCESSOR_SUSPENDED: u32 =3D 0x8000_0000;
-
-If this can change based on firmware, should it be taken in via
-bindings? I also noticed in openrm 595, this is waited on by checking the
-bit rather than by strict equality (see _kgspIsProcessorSuspended). So
-it may be more defensive to check the bit rather than strict equality
-(even though that is correct for 570 according to openrm code).
-
-> +        read_poll_timeout(
-> +            || Ok(gsp_falcon.read_mailbox0(bar)),
-> +            |&mb0| mb0 =3D=3D LIBOS_INTERRUPT_PROCESSOR_SUSPENDED,
-> +            Delta::from_millis(10),
-> +            Delta::from_secs(5),
-> +        )
-> +        .map(|_| ())
-> +    }
-> +
-> +    /// Attempts to unload the GSP firmware.
-> +    ///
-> +    /// This stops all activity on the GSP.
-> +    pub(crate) fn unload(
-> +        &self,
-> +        dev: &device::Device<device::Bound>,
-> +        bar: &Bar0,
-> +        gsp_falcon: &Falcon<Gsp>,
-> +    ) -> Result {
-> +        // Shut down the GSP.
-> +
-> +        Self::shutdown_gsp(&self.cmdq, bar, gsp_falcon, false)
-> +            .inspect_err(|e| dev_err!(dev, "unload guest driver failed: =
-{:?}", e))?;
-
-It looks like "suspend" is only ever false here? Will this be used
-later? If we want to keep this, it may be nice to use a 2 discriminant
-enum so we don't have misc boolean parameters hanging around.
-
-nit: dev_err! should have \n?
-
-> +        dev_dbg!(dev, "GSP shut down\n");
-> +
-> +        Ok(())
-> +    }
->  }
-> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-cor=
-e/gsp/commands.rs
-> index c80df421702c..fb94460c451e 100644
-> --- a/drivers/gpu/nova-core/gsp/commands.rs
-> +++ b/drivers/gpu/nova-core/gsp/commands.rs
-> @@ -237,3 +237,39 @@ pub(crate) fn gpu_name(&self) -> core::result::Resul=
-t<&str, GpuNameError> {
->  pub(crate) fn get_gsp_info(cmdq: &Cmdq, bar: &Bar0) -> Result<GetGspStat=
-icInfoReply> {
->      cmdq.send_command(bar, GetGspStaticInfo)
->  }
-> +
-> +pub(crate) struct UnloadingGuestDriver {
-> +    suspend: bool,
-> +}
-
-This feels like it only makes sense to call from within the gsp module,
-so I wonder if it can be pub(super) (prolly a few others in this file
-could be too, ofc not relevant for this series).
-
-nit: Should this have doc comment?
-
-> +
-> +impl UnloadingGuestDriver {
-> +    pub(crate) fn new(suspend: bool) -> Self {
-> +        Self { suspend }
-> +    }
-> +}
-> +
-> +impl CommandToGsp for UnloadingGuestDriver {
-> +    const FUNCTION: MsgFunction =3D MsgFunction::UnloadingGuestDriver;
-> +    type Command =3D fw::commands::UnloadingGuestDriver;
-> +    type Reply =3D UnloadingGuestDriverReply;
-> +    type InitError =3D Infallible;
-> +
-> +    fn init(&self) -> impl Init<Self::Command, Self::InitError> {
-> +        fw::commands::UnloadingGuestDriver::new(self.suspend)
-> +    }
-> +}
-> +
-> +pub(crate) struct UnloadingGuestDriverReply;
-> +
-> +impl MessageFromGsp for UnloadingGuestDriverReply {
-> +    const FUNCTION: MsgFunction =3D MsgFunction::UnloadingGuestDriver;
-> +    type InitError =3D Infallible;
-> +    type Message =3D ();
-> +
-> +    fn read(
-> +        _msg: &Self::Message,
-> +        _sbuffer: &mut SBufferIter<array::IntoIter<&[u8], 2>>,
-> +    ) -> Result<Self, Self::InitError> {
-> +        Ok(UnloadingGuestDriverReply)
-> +    }
-> +}
-> diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/=
-fw.rs
-> index 0c8a74f0e8ac..59b4c4883185 100644
-> --- a/drivers/gpu/nova-core/gsp/fw.rs
-> +++ b/drivers/gpu/nova-core/gsp/fw.rs
-> @@ -278,6 +278,7 @@ pub(crate) enum MsgFunction {
->      Nop =3D bindings::NV_VGPU_MSG_FUNCTION_NOP,
->      SetGuestSystemInfo =3D bindings::NV_VGPU_MSG_FUNCTION_SET_GUEST_SYST=
-EM_INFO,
->      SetRegistry =3D bindings::NV_VGPU_MSG_FUNCTION_SET_REGISTRY,
-> +    UnloadingGuestDriver =3D bindings::NV_VGPU_MSG_FUNCTION_UNLOADING_GU=
-EST_DRIVER,
-> =20
->      // Event codes
->      GspInitDone =3D bindings::NV_VGPU_MSG_EVENT_GSP_INIT_DONE,
-> @@ -322,6 +323,9 @@ fn try_from(value: u32) -> Result<MsgFunction> {
->                  Ok(MsgFunction::SetGuestSystemInfo)
->              }
->              bindings::NV_VGPU_MSG_FUNCTION_SET_REGISTRY =3D> Ok(MsgFunct=
-ion::SetRegistry),
-> +            bindings::NV_VGPU_MSG_FUNCTION_UNLOADING_GUEST_DRIVER =3D> {
-> +                Ok(MsgFunction::UnloadingGuestDriver)
-> +            }
-> =20
->              // Event codes
->              bindings::NV_VGPU_MSG_EVENT_GSP_INIT_DONE =3D> Ok(MsgFunctio=
-n::GspInitDone),
-> diff --git a/drivers/gpu/nova-core/gsp/fw/commands.rs b/drivers/gpu/nova-=
-core/gsp/fw/commands.rs
-> index db46276430be..71c8690c9322 100644
-> --- a/drivers/gpu/nova-core/gsp/fw/commands.rs
-> +++ b/drivers/gpu/nova-core/gsp/fw/commands.rs
-> @@ -129,3 +129,26 @@ unsafe impl AsBytes for GspStaticConfigInfo {}
->  // SAFETY: This struct only contains integer types for which all bit pat=
-terns
->  // are valid.
->  unsafe impl FromBytes for GspStaticConfigInfo {}
-> +
-> +/// Payload of the `UnloadingGuestDriver` command and message.
-> +#[repr(transparent)]
-> +#[derive(Clone, Copy, Debug, Zeroable)]
-> +pub(crate) struct UnloadingGuestDriver(bindings::rpc_unloading_guest_dri=
-ver_v1F_07);
-> +
-> +impl UnloadingGuestDriver {
-> +    pub(crate) fn new(suspend: bool) -> Self {
-> +        Self(bindings::rpc_unloading_guest_driver_v1F_07 {
-> +            bInPMTransition: u8::from(suspend),
-> +            bGc6Entering: 0,
-> +            newLevel: if suspend { 3 } else { 0 },
-
-Why '3'? Is there a binding that it makes sense to use for this?
-
-> +            ..Zeroable::zeroed()
-> +        })
-> +    }
-> +}
-> +
-> +// SAFETY: Padding is explicit and will not contain uninitialized data.
-> +unsafe impl AsBytes for UnloadingGuestDriver {}
-> +
-> +// SAFETY: This struct only contains integer types for which all bit pat=
-terns
-> +// are valid.
-> +unsafe impl FromBytes for UnloadingGuestDriver {}
-> diff --git a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs b/drivers/=
-gpu/nova-core/gsp/fw/r570_144/bindings.rs
-> index 334e8be5fde8..5d8e4c0ad904 100644
-> --- a/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-> +++ b/drivers/gpu/nova-core/gsp/fw/r570_144/bindings.rs
-> @@ -880,6 +880,14 @@ fn default() -> Self {
->      }
->  }
->  #[repr(C)]
-> +#[derive(Debug, Default, Copy, Clone, MaybeZeroable)]
-> +pub struct rpc_unloading_guest_driver_v1F_07 {
-> +    pub bInPMTransition: u8_,
-> +    pub bGc6Entering: u8_,
-> +    pub __bindgen_padding_0: [u8; 2usize],
-> +    pub newLevel: u32_,
-> +}
-> +#[repr(C)]
->  #[derive(Debug, Default, MaybeZeroable)]
->  pub struct rpc_run_cpu_sequencer_v17_00 {
->      pub bufferSizeDWord: u32_,
-
+> =C2=A0drivers/gpu/drm/drm_gem.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 3 +--
+> =C2=A0drivers/gpu/drm/imagination/pvr_drv.c | 2 +-
+> =C2=A0drivers/gpu/drm/msm/msm_drv.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 2 --
+> =C2=A0drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+> =C2=A0drivers/gpu/drm/panthor/panthor_drv.c | 2 +-
+> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 2 +-
+> =C2=A0include/drm/drm_debugfs.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 2 +-
+> =C2=A0include/drm/drm_drv.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 6 ------
+> =C2=A0include/drm/drm_gem.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 3 ---
+> =C2=A09 files changed, 5 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 0377a5fd402d..cb703d0072aa 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -232,8 +232,7 @@ void drm_gem_private_object_init(struct
+> drm_device *dev,
+> =C2=A0	if (!obj->resv)
+> =C2=A0		obj->resv =3D &obj->_resv;
+> =C2=A0
+> -	if (drm_core_check_feature(dev, DRIVER_GEM_GPUVA))
+> -		drm_gem_gpuva_init(obj);
+> +	drm_gem_gpuva_init(obj);
+> =C2=A0
+> =C2=A0	drm_vma_node_reset(&obj->vma_node);
+> =C2=A0	INIT_LIST_HEAD(&obj->lru_node);
+> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c
+> b/drivers/gpu/drm/imagination/pvr_drv.c
+> index 268900464ab6..80033d4cb66a 100644
+> --- a/drivers/gpu/drm/imagination/pvr_drv.c
+> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
+> @@ -1375,7 +1375,7 @@ pvr_drm_driver_postclose(__always_unused struct
+> drm_device *drm_dev,
+> =C2=A0DEFINE_DRM_GEM_FOPS(pvr_drm_driver_fops);
+> =C2=A0
+> =C2=A0static struct drm_driver pvr_drm_driver =3D {
+> -	.driver_features =3D DRIVER_GEM | DRIVER_GEM_GPUVA |
+> DRIVER_RENDER |
+> +	.driver_features =3D DRIVER_GEM | DRIVER_RENDER |
+> =C2=A0			=C2=A0=C2=A0 DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE,
+> =C2=A0	.open =3D pvr_drm_driver_open,
+> =C2=A0	.postclose =3D pvr_drm_driver_postclose,
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c
+> b/drivers/gpu/drm/msm/msm_drv.c
+> index 195f40e331e5..ee38c18715f0 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -825,7 +825,6 @@ static const struct file_operations fops =3D {
+> =C2=A0
+> =C2=A0#define DRIVER_FEATURES_GPU ( \
+> =C2=A0		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+> =C2=A0		DRIVER_RENDER | \
+> =C2=A0		DRIVER_SYNCOBJ | \
+> =C2=A0		DRIVER_SYNCOBJ_TIMELINE | \
+> @@ -833,7 +832,6 @@ static const struct file_operations fops =3D {
+> =C2=A0
+> =C2=A0#define DRIVER_FEATURES_KMS ( \
+> =C2=A0		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+> =C2=A0		DRIVER_ATOMIC | \
+> =C2=A0		DRIVER_MODESET | \
+> =C2=A0		0 )
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 5d8475e4895e..0f5f662e5429 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -1364,7 +1364,6 @@ static struct drm_driver
+> =C2=A0driver_stub =3D {
+> =C2=A0	.driver_features =3D DRIVER_GEM |
+> =C2=A0			=C2=A0=C2=A0 DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE
+> |
+> -			=C2=A0=C2=A0 DRIVER_GEM_GPUVA |
+> =C2=A0			=C2=A0=C2=A0 DRIVER_MODESET |
+> =C2=A0			=C2=A0=C2=A0 DRIVER_RENDER,
+> =C2=A0	.open =3D nouveau_drm_open,
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c
+> b/drivers/gpu/drm/panthor/panthor_drv.c
+> index 87d27c3c1456..1a1d40a744db 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -1805,7 +1805,7 @@ static void panthor_debugfs_init(struct
+> drm_minor *minor)
+> =C2=A0 */
+> =C2=A0static const struct drm_driver panthor_drm_driver =3D {
+> =C2=A0	.driver_features =3D DRIVER_RENDER | DRIVER_GEM |
+> DRIVER_SYNCOBJ |
+> -			=C2=A0=C2=A0 DRIVER_SYNCOBJ_TIMELINE |
+> DRIVER_GEM_GPUVA,
+> +			=C2=A0=C2=A0 DRIVER_SYNCOBJ_TIMELINE,
+> =C2=A0	.open =3D panthor_open,
+> =C2=A0	.postclose =3D panthor_postclose,
+> =C2=A0	.show_fdinfo =3D panthor_show_fdinfo,
+> diff --git a/drivers/gpu/drm/xe/xe_device.c
+> b/drivers/gpu/drm/xe/xe_device.c
+> index ffea4a453c01..b3acc202df76 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -393,7 +393,7 @@ static struct drm_driver driver =3D {
+> =C2=A0	.driver_features =3D
+> =C2=A0	=C2=A0=C2=A0=C2=A0 DRIVER_GEM |
+> =C2=A0	=C2=A0=C2=A0=C2=A0 DRIVER_RENDER | DRIVER_SYNCOBJ |
+> -	=C2=A0=C2=A0=C2=A0 DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
+> +	=C2=A0=C2=A0=C2=A0 DRIVER_SYNCOBJ_TIMELINE,
+> =C2=A0	.open =3D xe_file_open,
+> =C2=A0	.postclose =3D xe_file_close,
+> =C2=A0
+> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+> index ea8cba94208a..eb93512b0f23 100644
+> --- a/include/drm/drm_debugfs.h
+> +++ b/include/drm/drm_debugfs.h
+> @@ -48,7 +48,7 @@
+> =C2=A0 * For each DRM GPU VA space drivers should call
+> drm_debugfs_gpuva_info() from
+> =C2=A0 * their @show callback.
+> =C2=A0 */
+> -#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show,
+> DRIVER_GEM_GPUVA, data}
+> +#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, 0, data}
+> =C2=A0
+> =C2=A0/**
+> =C2=A0 * struct drm_info_list - debugfs info list entry
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 42fc085f986d..e09559495c5b 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -107,12 +107,6 @@ enum drm_driver_feature {
+> =C2=A0	 * acceleration should be handled by two drivers that are
+> connected using auxiliary bus.
+> =C2=A0	 */
+> =C2=A0	DRIVER_COMPUTE_ACCEL=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D BIT(7),
+> -	/**
+> -	 * @DRIVER_GEM_GPUVA:
+> -	 *
+> -	 * Driver supports user defined GPU VA bindings for GEM
+> objects.
+> -	 */
+> -	DRIVER_GEM_GPUVA		=3D BIT(8),
+> =C2=A0	/**
+> =C2=A0	 * @DRIVER_CURSOR_HOTSPOT:
+> =C2=A0	 *
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 86f5846154f7..996aa418dce9 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -663,9 +663,6 @@ static inline bool drm_gem_is_imported(const
+> struct drm_gem_object *obj)
+> =C2=A0 *
+> =C2=A0 * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
+> =C2=A0 *
+> - * Calling this function is only necessary for drivers intending to
+> support the
+> - * &drm_driver_feature DRIVER_GEM_GPUVA.
+> - *
+> =C2=A0 * See also drm_gem_gpuva_set_lock().
+> =C2=A0 */
+> =C2=A0static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
