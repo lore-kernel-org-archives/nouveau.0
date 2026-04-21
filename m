@@ -4,193 +4,93 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0CECF8FA91
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 14:56:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94BCDF8FA94
+	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 15:32:37 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1F65510ED21;
-	Tue, 21 Apr 2026 14:56:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2F70C10ED12;
+	Tue, 21 Apr 2026 15:32:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="gzRkEzbu";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=arm.com header.i=@arm.com header.b="cTC+6LX4";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 4D61245AA7;
-	Tue, 21 Apr 2026 14:44:35 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776782675;
- b=ucaUgvhdaAi4mq5fZwfWz62SRaZtftIWCZVTvU6rGevn8aBmBofMfXBLKyYrrVnnH+CCC
- aTHWALR7vpTgN7DMvUnL4WSk4KNvv1tdb9saD2fLJhdHhpRSoXIYVynVnMvoeghMq9mwqht
- IUyJc3MEx92hDuQBBW1xQoLvJ8HGlC4/FoiS+ri5wd0EQgDQATWjHOhi1A671CpxNCuuP+k
- q9L1H460Jlipw851WneS/LJYsqAIiT4fEQ3JzkqiPbv6v5eQ8Cgbrfxt/R9euFrlzKuFSPo
- rA4L6UyQAIcjl5+Eo7XAsyYHqyYAjJM5SiCIyOGQBAZ+sMIKDNiLKEGNHU/w==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776782675; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 444B745AAC;
+	Tue, 21 Apr 2026 15:20:30 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776784830;
+ b=eTgS6QyTXp3GMA/OAwapv3ZCO3CGuBVDulYpMVVmNNmGP3Zwr5/hEEL0cR91CZtBV958o
+ E0CE5L/n8zSskstXaos1y2nEvetTy5xigoiB/MDUWNOnSSffF1P+WHEJBUnlBDv7lR8O/rF
+ dy5DneNeakjJrb+i7dygjhA7dKSf6HvMLO5ojB0vKjBp1mfE20knXPbZM48nUX3hu0QuCJO
+ vVriuVjKrPW2fnnOkxOf5Ful8UFCiwnMirTlb/lyG6Jw1ADguSBV816y4M6ayZKg/I+XcAi
+ Ky44wkkK7YxO2Qv0oPJ+DaWXuVBgbY/pzYTBaJY5SR7jCAuvB7n6zGzW7b5A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776784830; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=ih550/9B0Kfc6sJ+DPgQPhZ40972fjfe4eGDtLBMZLU=;
- b=gJi9lpAImxc0UTjTCkjTndF1kGN16aDM4ZNveRYnuJ5rVLdlSIgn/PTcBLQoV0pUafUJg
- LV78DgfUlzXpBOa0F8fz2ZTKROT77AWtqOVIgqCjwbU6YGC6bfKRlj7OyhgdP4s0DuzJAvo
- fe73egeB0ENBqvtaxlKmQM76MXAyg+mhJm+G78ws8xuJn4zistvMOVl7Rxq4oXMf8cuT7aD
- NTxF6MtNKhk+gD72zdfYAXbf3/AbSp+iZN+B3cqPS0eYCQ6OtMNTBR5jdDljGtrPLkoFx2h
- BUWxVk5lKLLHC4jvyYmjZUN51FEFJZOIdib8dD7BwEXdLgIFR9JInIX2RSjg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=gtUu2+HHMoqhkHAJuzGX7yUs2OZwRdwzYeonihj9Dbg=;
+ b=Ai9HH7C9L8BPNp9/fGNupBbTX0/sNtjTQehVyyNsOk/4MWTUrbB2FQ+/BAj1ZdpiVYnZT
+ ijN1GA7EKuVysMQJphL58NbkO1D5VQyPt3kUnGXFfsr1nFqrPjFitjf5g4fZq5CjgmW6CZ7
+ P1mefSKzX6ttBMG8eiNkNIr8XJflsDl7qQWhr7asm2g/Z0RAVAQRhLgTGYEpfr46yVurbeT
+ Ww+8izAdYOlEh3qG8jrzQzEXH94/5nttvztA776p7i+JAWUzOvTa7Ov9MHW3wShcKaYuNJx
+ KGIT2nax+gyHwO4iPPNa5kA02UW5gJ7IBRGKVrL6Gse633ONlpiWn1vRNJLg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=arm.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=arm.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=arm.com policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2B69445AA4
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 14:44:30 +0000 (UTC)
-Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022073.outbound.protection.outlook.com [52.101.101.73])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9DD1D10ECF5;
-	Tue, 21 Apr 2026 14:56:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w0fPmim77OhMy/AArBYuqxQN+roqyR9l9RZuxFmzceM4woWHVcpwnUweobxWBpZ27xC/LM0U2LEQ3wYkXgsJqor+OZU5MDtjtsr0VZUylyer/u72k4NZcxxjx6BBhhkRrJUsMfVSxPpawEM7i/v4IKZ/AFkEIZBNYxzIVIozEoJbrZG0XJGvuri3qNoRNCLe+JUOWj6Lf041AMvOnch6ETlBsUxJ54Cs7rGf/nOT749db1JFJ3I4bT48kjxD8/zsvDBtTItg9Sx+trB0oEPSK9DI4DMz+Kz0pYE09KUsnWOAVWGs5WbWBWJaz+EkwJteCb2t/0bBQ4Oa5AnDuo9rLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ih550/9B0Kfc6sJ+DPgQPhZ40972fjfe4eGDtLBMZLU=;
- b=QZX9Bk6RFon8KQFFhURnPSRlWLyeMuBeVCRmY3XaU7CIziPmen5+HuW+OQYhz++VBFfjgeUKJTf8Zp0Vki/ZUehgitHdmuaNWuANL2XuG0W3NqLdS7ARt/a+ux4cQFrQGUeaKlvxpeoulmkoAC3IAXnO1XWO62A18Nymd6YUnYgg1atRq9guzN+jM93ufcf/+ZNr3LhjrqHU/q039xJNOljygOqsAHG0urapmNFKDmZY0eyU5eZj16tVAKj5j2y+6vCToJ87N/nVNbrvkQ/AVaNxubkFSaHqipUDuyRHv4TpqV2evS8JpHTfrYbMXVTCc0oamvsbtb73umNwlhDjiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ih550/9B0Kfc6sJ+DPgQPhZ40972fjfe4eGDtLBMZLU=;
- b=gzRkEzbut50jJjaAtXlaQT52b+cu4acFYGMZT0fQ9Cof3hSOVXO9+HuqvCTgD9PV8t+NJZxeloPPVIS4UBRiFpfM6vJq5VT8wxIR+cIW8lTOPugP6ACz2I5X3VtjaxGgtfLq/TOfisp9ZjdlkKbWhM+C1ZOCuvaQD7XTP0oDsQc=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CWLP265MB5674.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1b0::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.16; Tue, 21 Apr
- 2026 14:56:30 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9846.016; Tue, 21 Apr 2026
- 14:56:30 +0000
-From: Gary Guo <gary@garyguo.net>
-Date: Tue, 21 Apr 2026 15:56:20 +0100
-Subject: [PATCH v2 09/11] gpu: nova-core: use I/O projection for cleaner
- encapsulation
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260421-io_projection-v2-9-4c251c692ef4@garyguo.net>
-References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
-In-Reply-To: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Bjorn Helgaas <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Abdiel Janulgue <abdiel.janulgue@gmail.com>,
- Robin Murphy <robin.murphy@arm.com>,
- Alexandre Courbot <acourbot@nvidia.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776783386; l=12845;
- i=gary@garyguo.net; s=20221204; h=from:subject:message-id;
- bh=PRmb1wvZ+Pmwck3wqC2xoPHaVRyQSptHTYjFPqcyZSo=;
- b=FV6fQMw8SBB/uXwMUfB7l1WdZJo0rqbdRde/svIF1wTqDb8Z85lNZJp73GsxFDTvZl3IGtCHr
- wLXxVRg4vQGDJ5jxA7jGTbfAA6dYLmUsS+8+XnTsMdWcI2Vp7r6Q0Lp
-X-Developer-Key: i=gary@garyguo.net; a=ed25519;
- pk=vB3uIX95SM4eVrIqo1DWNWKDKD2xzB+yLLLr0yOPYMo=
-X-ClientProxiedBy: LO4P123CA0142.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:193::21) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 4F7BC45AA5
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 15:20:28 +0000 (UTC)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by gabe.freedesktop.org (Postfix) with ESMTP id E025310E20B
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 15:32:34 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DDF92263D
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 08:32:28 -0700 (PDT)
+Received: from [10.2.11.34] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 3405A3FAF5
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 08:32:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+	t=1776785554; bh=fhBy7ZTDUwKSbf3HhFiViEZekUwSlWT1MQ0rYA5c8Qg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cTC+6LX4iLQbeK+lKhuGIHu1y92gdCX2NBm4Nsa6XvN8o7X6Z23lW4L0uk0/bTIB3
+	 dvLNcrXhDmHwN36ts35VkUux+wBNlxL5mpp/uqfpckUa8AXaDimFA6YyxPaJq4fPsl
+	 95Ii2Xj4p39y+BkvoX6WKcO3OmESxpjGTeLKFx5A=
+Date: Tue, 21 Apr 2026 16:32:21 +0100
+From: Liviu Dudau <liviu.dudau@arm.com>
+To: Laura Nao <laura.nao@collabora.com>
+Subject: Re: [PATCH] drm: Remove DRIVER_GEM_GPUVA feature flag
+Message-ID: <aeeYhWsRqXqfnzge@e142607>
+References: <20260421084701.24227-1-laura.nao@collabora.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB5674:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c296a16-dfaa-4fd9-dd00-08de9fb62c0d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|1800799024|376014|7416014|10070799003|366016|921020|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 
-	pPPf7xu8o1wlcW90ZLLmV7T2nyzZOFxz9kQ0sX6ZolZTDltS0shpan5e83CdWh/rF1Ue7iDW2VnRrefe2wzTgbbzjhG7Y5dtcQLZ0F0GN5CfrKJX/PhibZuJibJ4BcLLIZDJDbiZi/cFLO2WcBY6t043E6UneIRdgaEw2T44afk3eN3ngXpcptUDdZQjEJxsXVYYzHNRu+RjPP161V1yIQh3YCYRxAChcN4HzdJhEWtTDmzJV98VIuD1uLjEBCEf3C0na9Y2eT/C/NMeu1BSG8CQYpxB7UwZ8I/hGpz/mRgtzTtD6wa2KZEEodoBXA7OAN/UbKeFlKl0w3YbByST8LvUCQj1M1JDIE7ibvuMN2HRAk/agq7jYjWvjKb0HXn7myTZWK7WjP9BZFY0Bc50MOY4p+IAF8Nr2Cf4AZkMD6P9SmWkMzdqKwT2kx+IOD5X3USJASxRvzvdyeJprMJpOI1RjCSjdeDq7oKgXID4moWQtujROl3/+QrOlCQb9sFstZM93v4uMcOk6AkPD1xCIFGiRLLeHngGDMfoGDe063PIKSLjfoVtjrmp2L+Essz7rj0cf5LhWOpSjNiZdkpZfNH7u/6DW7JiRtlaCO/ypw8IvtGvwBlBeHL5wLXZJT4GeIAQmp7oYUsSbYqmFWk9HO8eLWkY2XXuvY6R0JHw7Gw1IvFM4kEU6uIqm8ZHDQrWCdDEbs/aIRddxhHx3ckMrQizihEtfWq5R8ZmOJbNiNTt2Ab/A2I2NGK33CouX+FZSvt+7t82u6jEEBp7YGaVHg==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(10070799003)(366016)(921020)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?T1hySG1MUlNDcXlNQVUwdmkzUE5YSGQzajJwdWdvOWs5L3AzQXhkUSs2eTA3?=
- =?utf-8?B?dVdRSVZwLzNPOU1xZzFkMktqS0ozVnRuZzJYUUVKTldsVXlaUFdMOUtGU1Vn?=
- =?utf-8?B?MCtUemtYZ2pZc2hUZldMTTVMTU5jdWpPMUpqV1M1aU9ITnE3U2RjcW11WFNE?=
- =?utf-8?B?V3FGQUtldWRaeFZPaDgydzQ1dHdVVnRMcFhmOHYxKzE5Q2h1a3o3emFOVWw3?=
- =?utf-8?B?Y3NBbUpQdC9mMWFweWY5RllVTjl6YXN4U01vak0rdm9xRy9RaGNrMDlpbU4v?=
- =?utf-8?B?MC9TczVHTWFBSHlveTJSOUZ3WERlQnlpaEVaUTJSY3MxVjdlM1llbDNyVDRh?=
- =?utf-8?B?OUFpb25CNGxFZ0ljeVMxVDVsYjMxZmZuWDJScktGU3pmWU52Ylo2c1J0YjdR?=
- =?utf-8?B?U2ZMZjd1akRjNE5NcFczM0N1cXk4ckhvSm5OcjhFcmxqN2JzdFlQQmJEOEhv?=
- =?utf-8?B?cGdReElXWnF6Q1llM25GbjdkczducjhvNlgwMXRSVWVITUErMFhVcnVWNFl6?=
- =?utf-8?B?RVJ2allKd09XSkk1bjlZMkZPT3hldkZPMUpMQ0pDZEhsaE9ER0lQc3FGa2Y1?=
- =?utf-8?B?QzVYZVJSTFJuRVhlSkR1YWFQMm44Z2lNcEZHdEw4TXFka3ZOOVF0L1RZcWtV?=
- =?utf-8?B?OWlLZVh2dWhIcEFVNXh6NGJVdGdqT21wcVlkQ1drYy83eFBGZmd2anhnQ1pJ?=
- =?utf-8?B?aFlnaFN2VEM0Ti9ieXBhMnZYZnAxQ21nM3diZWNlS2VReHQ0dTJQekRyYU9s?=
- =?utf-8?B?UVpodjliUytEd0U1NStYWW9yN1hSSzVZeTJlalRhN2JCWDVUWXFudWxBMnlz?=
- =?utf-8?B?MFArb3lGa1Z2MTdKYkNUQnUrSDI4Q2VndEpRMVJrZDgxcFFMaHh4ajRrbHpF?=
- =?utf-8?B?ZE16STFBcW1jcWlvbGxwV1NKV3BJcXNpUUg5WHRJODBNa05HSEg4bXRhd0hI?=
- =?utf-8?B?V2k3MUw2K01JZHppRXk2aHVsNGd4QTFrb3ZuTkFxWkdDeVljTUdHZkx5Yzg0?=
- =?utf-8?B?RXNZSWRxaWd4YjZFajZ4VGhGdzJEaW83NTdycndGQnBEdVFXUW5wNnRPaW1J?=
- =?utf-8?B?c1dvd2VMZ0Z1OEYzSWw4UW4rdXo2bDhIVUpXMkpkdXY0UXo3SGMzZlZ3RWk0?=
- =?utf-8?B?Y3NNazdCZ2FqSkRqZWc1T3Y0RTlUdU1jL1JaVnpwSEhiVTJXeU9LTnBpOExN?=
- =?utf-8?B?cWg5cTM1V2NzRlo5bTAzUEM3NStwc2NSTjc2V3FldC9VV05hT2NDekkyNGl4?=
- =?utf-8?B?aFRuUFV6M0p4bE03QkxpaExpQk96cGFrYjJUSENNdkY1WjdoUkVYUmEvNlRp?=
- =?utf-8?B?WDErNFlUK3JoK2lSTzdoMDNSbFFYb3MzcWUyT3hLT1JHVUJuOW16Wk1DVXRh?=
- =?utf-8?B?Z2xCOVVhc25hTEdMemdwR0tlSVFuenU0SmJpSUNRZ1BSTXNKeWxhWGdnOGRQ?=
- =?utf-8?B?ZTE3T09Xb1VXd3kyeG42cUI2a1JkMXp0Y0pxWlY3d1JNNmNDakFKVXIvdnNz?=
- =?utf-8?B?Qmc2MS9zaVZ6cGtRa0VoYW1YdXVrSU0xd0xjZjJwRXJiaDRCYmRKVWRRU3J1?=
- =?utf-8?B?cUtrQ0FMUzVKa3ErckRSelVwSHE2aWM0OVBFaTJSSGFXOVZFTjNrT0NlOWxB?=
- =?utf-8?B?QkM0ZmM1cjk2dG5mazhMWGtyOVcrOTYweCtUQjIzd0pkZkNZMlZIeW15UmFN?=
- =?utf-8?B?Nk9HaE1MVURrZ0k2V01vUlpTZkFDT1k2dlRNbXM1WDdFRHVDM01hOVRYVC9k?=
- =?utf-8?B?bStvTDR1d1lhYmp6TUJUb1NVdDlSaFhHOHNRM3hZN25YTEQxUmtjUzVDNzB0?=
- =?utf-8?B?cmFpWU9ZZWhQRDdzZlM0VlZhSllPZENUZVZMY25sbDN6ME1aV0hyeGN3WWtR?=
- =?utf-8?B?U05yR0FOVUpWWWc5UmRBMTlHemozM01waVpHQTJYdWoyNWVJdHk4MTkvSDhm?=
- =?utf-8?B?ZlpTMUdkdTgwb3dxc21VNW83TWNqZTg3Mm9CTnY4NitBUGZMMks5T0pPbVVE?=
- =?utf-8?B?L2tIRGZoQ2JRV1dKNG9JSU1VOHZGVzdhc2VDKzdEbmdpd09QS2tJSGJTY3Ix?=
- =?utf-8?B?d2JLdSs2M0VvMDY4VFJ4bXd1dlFOcXd2MTQwUmp4cHB6VUVjN1RjVVlkaEhC?=
- =?utf-8?B?K2ZqaWhiZ2luYXFza0ptRVNsSldUZS9RMG1wZWpJQ1orcFVJMHhDSDhvSXZt?=
- =?utf-8?B?R1o4VVpoNTRjRDAreEd3MDJRVHhNRzFhYStrYkc4bzhSMnFLdHYxUVNSOFJU?=
- =?utf-8?B?eUVHOGczS2MzL2E4akozNndQS0FFY1o0OVdick9aQ0VlK0tSM1pyK01Pdnd6?=
- =?utf-8?B?YWFFL2NVVW1BQmRnZUhjQUg3Q3lLa0p6YldqcHhIRlVsSXg1NG1lQT09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 5c296a16-dfaa-4fd9-dd00-08de9fb62c0d
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Apr 2026 14:56:30.5875
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- Gg69nrHXe4QMRqc7yH4sTiMLuBCps5XOEV1dwENujYmYhwC78E5xtjZVSJMtQ2GPyj1qkMRusR2Ckh3s/6G2Aw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5674
-Message-ID-Hash: 66XOTRXWIXCFA6ZVA2RZP2RL7B3HNOEJ
-X-Message-ID-Hash: 66XOTRXWIXCFA6ZVA2RZP2RL7B3HNOEJ
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260421084701.24227-1-laura.nao@collabora.com>
+Message-ID-Hash: 4JVXB2FTX6QC3ZKWH2HPFXXTIT32PQ6I
+X-Message-ID-Hash: 4JVXB2FTX6QC3ZKWH2HPFXXTIT32PQ6I
+X-MailFrom: liviu.dudau@arm.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: dakr@kernel.org, boris.brezillon@collabora.com, steven.price@arm.com,
+ matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, kernel@collabora.com
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/66XOTRXWIXCFA6ZVA2RZP2RL7B3HNOEJ/>
-Archived-At: 
- <https://lore.freedesktop.org/20260421-io_projection-v2-9-4c251c692ef4@garyguo.net/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/4JVXB2FTX6QC3ZKWH2HPFXXTIT32PQ6I/>
+Archived-At: <https://lore.freedesktop.org/aeeYhWsRqXqfnzge@e142607/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -200,363 +100,184 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-Use `io_project!` for PTE array and message queues to remove the
-break off encapsulation.
+On Tue, Apr 21, 2026 at 10:47:01AM +0200, Laura Nao wrote:
+> The DRIVER_GEM_GPUVA feature flag is currently only used to control two
+> behaviors within the DRM core:
+> - calling  drm_gem_gpuva_init() during
+>   GEM object initialization
+> - creating the "gpuvas" debugfs entry
+> 
+> drm_gem_gpuva_init() is a plain INIT_LIST_HEAD() and therefore is cheap
+> to run for every GEM object. The DRM_DEBUGFS_GPUVA_INFO macro is only
+> referenced by GPU-VA capable drivers, so clearing the feature bit does
+> not cause any unrelated drivers to get the "gpuvas" debugfs node. The
+> flag doesn't have any relevant purpose (e.g. gating ioctl handlers or MM
+> logic) and doesn't provide any practical benefit.
+> 
+> Remove the flag definition and drop it from all drivers that use it,
+> call drm_gem_gpuva_init() unconditionally and clear the driver features
+> bit in DRM_DEBUGFS_GPUVA_INFO.
+> 
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
+> ---
+>  drivers/gpu/drm/drm_gem.c             | 3 +--
+>  drivers/gpu/drm/imagination/pvr_drv.c | 2 +-
+>  drivers/gpu/drm/msm/msm_drv.c         | 2 --
+>  drivers/gpu/drm/nouveau/nouveau_drm.c | 1 -
+>  drivers/gpu/drm/panthor/panthor_drv.c | 2 +-
 
-The remaining `dma_read!` and `dma_write!` is now only acting on
-primitives; thus replace by `io_read!` and `io_write!`.
+For panthor changes:
 
-Signed-off-by: Gary Guo <gary@garyguo.net>
----
- drivers/gpu/nova-core/gsp.rs      | 44 +++++++++++---------
- drivers/gpu/nova-core/gsp/cmdq.rs | 65 +++++++++++++++++-------------
- drivers/gpu/nova-core/gsp/fw.rs   | 84 +++++++++++++++------------------------
- 3 files changed, 94 insertions(+), 99 deletions(-)
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 
-diff --git a/drivers/gpu/nova-core/gsp.rs b/drivers/gpu/nova-core/gsp.rs
-index ba5b7f990031..225a77a2f464 100644
---- a/drivers/gpu/nova-core/gsp.rs
-+++ b/drivers/gpu/nova-core/gsp.rs
-@@ -10,8 +10,14 @@
-         CoherentBox,
-         DmaAddress, //
-     },
-+    io::{
-+        self,
-+        io_project,
-+        io_write, //
-+    },
-     pci,
-     prelude::*,
-+    ptr::KnownSize,
-     transmute::{
-         AsBytes,
-         FromBytes, //
-@@ -55,12 +61,20 @@ unsafe impl<const NUM_ENTRIES: usize> FromBytes for PteArray<NUM_ENTRIES> {}
- unsafe impl<const NUM_ENTRIES: usize> AsBytes for PteArray<NUM_ENTRIES> {}
- 
- impl<const NUM_PAGES: usize> PteArray<NUM_PAGES> {
--    /// Returns the page table entry for `index`, for a mapping starting at `start`.
--    // TODO: Replace with `IoView` projection once available.
--    fn entry(start: DmaAddress, index: usize) -> Result<u64> {
--        start
--            .checked_add(num::usize_as_u64(index) << GSP_PAGE_SHIFT)
--            .ok_or(EOVERFLOW)
-+    /// Initialize a new page table array mapping `NUM_PAGES` GSP pages starting at address `start`.
-+    fn init<T: KnownSize + ?Sized>(
-+        view: io::View<'_, Coherent<T>, Self>,
-+        start: DmaAddress,
-+    ) -> Result<()> {
-+        for i in 0..NUM_PAGES {
-+            io_write!(view, .0[build: i],
-+                start
-+                    .checked_add(num::usize_as_u64(i) << GSP_PAGE_SHIFT)
-+                    .ok_or(EOVERFLOW)?
-+            );
-+        }
-+
-+        Ok(())
-     }
- }
- 
-@@ -86,18 +100,12 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
-         let obj = Self(Coherent::zeroed(dev, GFP_KERNEL)?);
- 
-         let start_addr = obj.0.dma_handle();
--
--        // SAFETY: `obj` has just been created and we are its sole user.
--        let pte_region = unsafe {
--            &mut obj.0.as_mut()[size_of::<u64>()..][..RM_LOG_BUFFER_NUM_PAGES * size_of::<u64>()]
--        };
--
--        // Write values one by one to avoid an on-stack instance of `PteArray`.
--        for (i, chunk) in pte_region.chunks_exact_mut(size_of::<u64>()).enumerate() {
--            let pte_value = PteArray::<0>::entry(start_addr, i)?;
--
--            chunk.copy_from_slice(&pte_value.to_ne_bytes());
--        }
-+        let pte_view = io_project!(
-+            obj.0,
-+            [build: size_of::<u64>()..][build: ..RM_LOG_BUFFER_NUM_PAGES * size_of::<u64>()]
-+        )
-+        .try_cast::<PteArray<RM_LOG_BUFFER_NUM_PAGES>>()?;
-+        PteArray::init(pte_view, start_addr)?;
- 
-         Ok(obj)
-     }
-diff --git a/drivers/gpu/nova-core/gsp/cmdq.rs b/drivers/gpu/nova-core/gsp/cmdq.rs
-index 0b51e10e2cfc..d424d047c970 100644
---- a/drivers/gpu/nova-core/gsp/cmdq.rs
-+++ b/drivers/gpu/nova-core/gsp/cmdq.rs
-@@ -2,16 +2,23 @@
- 
- mod continuation;
- 
--use core::mem;
-+use core::{
-+    mem,
-+    sync::atomic::{
-+        fence,
-+        Ordering, //
-+    },
-+};
- 
- use kernel::{
-     device,
-     dma::{
-         Coherent,
-+        CoherentBox,
-         DmaAddress, //
-     },
--    dma_write,
-     io::{
-+        io_project,
-         poll::read_poll_timeout,
-         Io, //
-     },
-@@ -171,20 +178,18 @@ struct MsgqData {
- #[repr(C)]
- // There is no struct defined for this in the open-gpu-kernel-source headers.
- // Instead it is defined by code in `GspMsgQueuesInit()`.
--// TODO: Revert to private once `IoView` projections replace the `gsp_mem` module.
--pub(super) struct Msgq {
-+struct Msgq {
-     /// Header for sending messages, including the write pointer.
--    pub(super) tx: MsgqTxHeader,
-+    tx: MsgqTxHeader,
-     /// Header for receiving messages, including the read pointer.
--    pub(super) rx: MsgqRxHeader,
-+    rx: MsgqRxHeader,
-     /// The message queue proper.
-     msgq: MsgqData,
- }
- 
- /// Structure shared between the driver and the GSP and containing the command and message queues.
- #[repr(C)]
--// TODO: Revert to private once `IoView` projections replace the `gsp_mem` module.
--pub(super) struct GspMem {
-+struct GspMem {
-     /// Self-mapping page table entries.
-     ptes: PteArray<{ Self::PTE_ARRAY_SIZE }>,
-     /// CPU queue: the driver writes commands here, and the GSP reads them. It also contains the
-@@ -192,13 +197,13 @@ pub(super) struct GspMem {
-     /// index into the GSP queue.
-     ///
-     /// This member is read-only for the GSP.
--    pub(super) cpuq: Msgq,
-+    cpuq: Msgq,
-     /// GSP queue: the GSP writes messages here, and the driver reads them. It also contains the
-     /// write and read pointers that the GSP updates. This means that the read pointer here is an
-     /// index into the CPU queue.
-     ///
-     /// This member is read-only for the driver.
--    pub(super) gspq: Msgq,
-+    gspq: Msgq,
- }
- 
- impl GspMem {
-@@ -232,20 +237,13 @@ fn new(dev: &device::Device<device::Bound>) -> Result<Self> {
-         const MSGQ_SIZE: u32 = num::usize_into_u32::<{ size_of::<Msgq>() }>();
-         const RX_HDR_OFF: u32 = num::usize_into_u32::<{ mem::offset_of!(Msgq, rx) }>();
- 
--        let gsp_mem = Coherent::<GspMem>::zeroed(dev, GFP_KERNEL)?;
-+        let mut gsp_mem = CoherentBox::<GspMem>::zeroed(dev, GFP_KERNEL)?;
-+        gsp_mem.cpuq.tx = MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES);
-+        gsp_mem.cpuq.rx = MsgqRxHeader::new();
- 
-+        let gsp_mem: Coherent<_> = gsp_mem.into();
-         let start = gsp_mem.dma_handle();
--        // Write values one by one to avoid an on-stack instance of `PteArray`.
--        for i in 0..GspMem::PTE_ARRAY_SIZE {
--            dma_write!(gsp_mem, .ptes.0[build: i], PteArray::<0>::entry(start, i)?);
--        }
--
--        dma_write!(
--            gsp_mem,
--            .cpuq.tx,
--            MsgqTxHeader::new(MSGQ_SIZE, RX_HDR_OFF, MSGQ_NUM_PAGES)
--        );
--        dma_write!(gsp_mem, .cpuq.rx, MsgqRxHeader::new());
-+        PteArray::init(io_project!(gsp_mem, .ptes), start)?;
- 
-         Ok(Self(gsp_mem))
-     }
-@@ -420,7 +418,7 @@ fn allocate_command(&mut self, size: usize, timeout: Delta) -> Result<GspCommand
-     //
-     // - The returned value is within `0..MSGQ_NUM_PAGES`.
-     fn gsp_write_ptr(&self) -> u32 {
--        super::fw::gsp_mem::gsp_write_ptr(&self.0)
-+        MsgqTxHeader::write_ptr(io_project!(self.0, .gspq.tx)) % MSGQ_NUM_PAGES
-     }
- 
-     // Returns the index of the memory page the GSP will read the next command from.
-@@ -429,7 +427,7 @@ fn gsp_write_ptr(&self) -> u32 {
-     //
-     // - The returned value is within `0..MSGQ_NUM_PAGES`.
-     fn gsp_read_ptr(&self) -> u32 {
--        super::fw::gsp_mem::gsp_read_ptr(&self.0)
-+        MsgqRxHeader::read_ptr(io_project!(self.0, .gspq.rx)) % MSGQ_NUM_PAGES
-     }
- 
-     // Returns the index of the memory page the CPU can read the next message from.
-@@ -438,12 +436,18 @@ fn gsp_read_ptr(&self) -> u32 {
-     //
-     // - The returned value is within `0..MSGQ_NUM_PAGES`.
-     fn cpu_read_ptr(&self) -> u32 {
--        super::fw::gsp_mem::cpu_read_ptr(&self.0)
-+        MsgqRxHeader::read_ptr(io_project!(self.0, .cpuq.rx)) % MSGQ_NUM_PAGES
-     }
- 
-     // Informs the GSP that it can send `elem_count` new pages into the message queue.
-     fn advance_cpu_read_ptr(&mut self, elem_count: u32) {
--        super::fw::gsp_mem::advance_cpu_read_ptr(&self.0, elem_count)
-+        let rx = io_project!(self.0, .cpuq.rx);
-+        let rptr = MsgqRxHeader::read_ptr(rx).wrapping_add(elem_count) % MSGQ_NUM_PAGES;
-+
-+        // Ensure read pointer is properly ordered.
-+        fence(Ordering::SeqCst);
-+
-+        MsgqRxHeader::set_read_ptr(rx, rptr)
-     }
- 
-     // Returns the index of the memory page the CPU can write the next command to.
-@@ -452,12 +456,17 @@ fn advance_cpu_read_ptr(&mut self, elem_count: u32) {
-     //
-     // - The returned value is within `0..MSGQ_NUM_PAGES`.
-     fn cpu_write_ptr(&self) -> u32 {
--        super::fw::gsp_mem::cpu_write_ptr(&self.0)
-+        MsgqTxHeader::write_ptr(io_project!(self.0, .cpuq.tx)) % MSGQ_NUM_PAGES
-     }
- 
-     // Informs the GSP that it can process `elem_count` new pages from the command queue.
-     fn advance_cpu_write_ptr(&mut self, elem_count: u32) {
--        super::fw::gsp_mem::advance_cpu_write_ptr(&self.0, elem_count)
-+        let tx = io_project!(self.0, .cpuq.tx);
-+        let wptr = MsgqTxHeader::write_ptr(tx).wrapping_add(elem_count) % MSGQ_NUM_PAGES;
-+        MsgqTxHeader::set_write_ptr(tx, wptr);
-+
-+        // Ensure all command data is visible before triggering the GSP read.
-+        fence(Ordering::SeqCst);
-     }
- }
- 
-diff --git a/drivers/gpu/nova-core/gsp/fw.rs b/drivers/gpu/nova-core/gsp/fw.rs
-index 0c8a74f0e8ac..f2ba2f13e415 100644
---- a/drivers/gpu/nova-core/gsp/fw.rs
-+++ b/drivers/gpu/nova-core/gsp/fw.rs
-@@ -10,6 +10,11 @@
- 
- use kernel::{
-     dma::Coherent,
-+    io::{
-+        self,
-+        io_read,
-+        io_write, //
-+    },
-     prelude::*,
-     ptr::{
-         Alignable,
-@@ -40,59 +45,6 @@
-     },
- };
- 
--// TODO: Replace with `IoView` projections once available.
--pub(super) mod gsp_mem {
--    use core::sync::atomic::{
--        fence,
--        Ordering, //
--    };
--
--    use kernel::{
--        dma::Coherent,
--        dma_read,
--        dma_write, //
--    };
--
--    use crate::gsp::cmdq::{
--        GspMem,
--        MSGQ_NUM_PAGES, //
--    };
--
--    pub(in crate::gsp) fn gsp_write_ptr(qs: &Coherent<GspMem>) -> u32 {
--        dma_read!(qs, .gspq.tx.0.writePtr) % MSGQ_NUM_PAGES
--    }
--
--    pub(in crate::gsp) fn gsp_read_ptr(qs: &Coherent<GspMem>) -> u32 {
--        dma_read!(qs, .gspq.rx.0.readPtr) % MSGQ_NUM_PAGES
--    }
--
--    pub(in crate::gsp) fn cpu_read_ptr(qs: &Coherent<GspMem>) -> u32 {
--        dma_read!(qs, .cpuq.rx.0.readPtr) % MSGQ_NUM_PAGES
--    }
--
--    pub(in crate::gsp) fn advance_cpu_read_ptr(qs: &Coherent<GspMem>, count: u32) {
--        let rptr = cpu_read_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
--
--        // Ensure read pointer is properly ordered.
--        fence(Ordering::SeqCst);
--
--        dma_write!(qs, .cpuq.rx.0.readPtr, rptr);
--    }
--
--    pub(in crate::gsp) fn cpu_write_ptr(qs: &Coherent<GspMem>) -> u32 {
--        dma_read!(qs, .cpuq.tx.0.writePtr) % MSGQ_NUM_PAGES
--    }
--
--    pub(in crate::gsp) fn advance_cpu_write_ptr(qs: &Coherent<GspMem>, count: u32) {
--        let wptr = cpu_write_ptr(qs).wrapping_add(count) % MSGQ_NUM_PAGES;
--
--        dma_write!(qs, .cpuq.tx.0.writePtr, wptr);
--
--        // Ensure all command data is visible before triggering the GSP read.
--        fence(Ordering::SeqCst);
--    }
--}
--
- /// Maximum size of a single GSP message queue element in bytes.
- pub(crate) const GSP_MSG_QUEUE_ELEMENT_SIZE_MAX: usize =
-     num::u32_as_usize(bindings::GSP_MSG_QUEUE_ELEMENT_SIZE_MAX);
-@@ -706,6 +658,19 @@ pub(crate) fn new(msgq_size: u32, rx_hdr_offset: u32, msg_count: u32) -> Self {
-             entryOff: num::usize_into_u32::<GSP_PAGE_SIZE>(),
-         })
-     }
-+
-+    /// Returns the value of the write pointer for this queue.
-+    pub(crate) fn write_ptr<T: KnownSize + ?Sized>(this: io::View<'_, Coherent<T>, Self>) -> u32 {
-+        io_read!(this, .0.writePtr)
-+    }
-+
-+    /// Sets the value of the write pointer for this queue.
-+    pub(crate) fn set_write_ptr<T: KnownSize + ?Sized>(
-+        this: io::View<'_, Coherent<T>, Self>,
-+        val: u32,
-+    ) {
-+        io_write!(this, .0.writePtr, val)
-+    }
- }
- 
- // SAFETY: Padding is explicit and does not contain uninitialized data.
-@@ -721,6 +686,19 @@ impl MsgqRxHeader {
-     pub(crate) fn new() -> Self {
-         Self(Default::default())
-     }
-+
-+    /// Returns the value of the read pointer for this queue.
-+    pub(crate) fn read_ptr<T: KnownSize + ?Sized>(this: io::View<'_, Coherent<T>, Self>) -> u32 {
-+        io_read!(this, .0.readPtr)
-+    }
-+
-+    /// Sets the value of the read pointer for this queue.
-+    pub(crate) fn set_read_ptr<T: KnownSize + ?Sized>(
-+        this: io::View<'_, Coherent<T>, Self>,
-+        val: u32,
-+    ) {
-+        io_write!(this, .0.readPtr, val)
-+    }
- }
- 
- // SAFETY: Padding is explicit and does not contain uninitialized data.
+Best regards,
+Liviu
+
+>  drivers/gpu/drm/xe/xe_device.c        | 2 +-
+>  include/drm/drm_debugfs.h             | 2 +-
+>  include/drm/drm_drv.h                 | 6 ------
+>  include/drm/drm_gem.h                 | 3 ---
+>  9 files changed, 5 insertions(+), 18 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index 0377a5fd402d..cb703d0072aa 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -232,8 +232,7 @@ void drm_gem_private_object_init(struct drm_device *dev,
+>  	if (!obj->resv)
+>  		obj->resv = &obj->_resv;
+>  
+> -	if (drm_core_check_feature(dev, DRIVER_GEM_GPUVA))
+> -		drm_gem_gpuva_init(obj);
+> +	drm_gem_gpuva_init(obj);
+>  
+>  	drm_vma_node_reset(&obj->vma_node);
+>  	INIT_LIST_HEAD(&obj->lru_node);
+> diff --git a/drivers/gpu/drm/imagination/pvr_drv.c b/drivers/gpu/drm/imagination/pvr_drv.c
+> index 268900464ab6..80033d4cb66a 100644
+> --- a/drivers/gpu/drm/imagination/pvr_drv.c
+> +++ b/drivers/gpu/drm/imagination/pvr_drv.c
+> @@ -1375,7 +1375,7 @@ pvr_drm_driver_postclose(__always_unused struct drm_device *drm_dev,
+>  DEFINE_DRM_GEM_FOPS(pvr_drm_driver_fops);
+>  
+>  static struct drm_driver pvr_drm_driver = {
+> -	.driver_features = DRIVER_GEM | DRIVER_GEM_GPUVA | DRIVER_RENDER |
+> +	.driver_features = DRIVER_GEM | DRIVER_RENDER |
+>  			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = pvr_drm_driver_open,
+>  	.postclose = pvr_drm_driver_postclose,
+> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> index 195f40e331e5..ee38c18715f0 100644
+> --- a/drivers/gpu/drm/msm/msm_drv.c
+> +++ b/drivers/gpu/drm/msm/msm_drv.c
+> @@ -825,7 +825,6 @@ static const struct file_operations fops = {
+>  
+>  #define DRIVER_FEATURES_GPU ( \
+>  		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+>  		DRIVER_RENDER | \
+>  		DRIVER_SYNCOBJ | \
+>  		DRIVER_SYNCOBJ_TIMELINE | \
+> @@ -833,7 +832,6 @@ static const struct file_operations fops = {
+>  
+>  #define DRIVER_FEATURES_KMS ( \
+>  		DRIVER_GEM | \
+> -		DRIVER_GEM_GPUVA | \
+>  		DRIVER_ATOMIC | \
+>  		DRIVER_MODESET | \
+>  		0 )
+> diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> index 5d8475e4895e..0f5f662e5429 100644
+> --- a/drivers/gpu/drm/nouveau/nouveau_drm.c
+> +++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
+> @@ -1364,7 +1364,6 @@ static struct drm_driver
+>  driver_stub = {
+>  	.driver_features = DRIVER_GEM |
+>  			   DRIVER_SYNCOBJ | DRIVER_SYNCOBJ_TIMELINE |
+> -			   DRIVER_GEM_GPUVA |
+>  			   DRIVER_MODESET |
+>  			   DRIVER_RENDER,
+>  	.open = nouveau_drm_open,
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+> index 87d27c3c1456..1a1d40a744db 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -1805,7 +1805,7 @@ static void panthor_debugfs_init(struct drm_minor *minor)
+>   */
+>  static const struct drm_driver panthor_drm_driver = {
+>  	.driver_features = DRIVER_RENDER | DRIVER_GEM | DRIVER_SYNCOBJ |
+> -			   DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
+> +			   DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = panthor_open,
+>  	.postclose = panthor_postclose,
+>  	.show_fdinfo = panthor_show_fdinfo,
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index ffea4a453c01..b3acc202df76 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -393,7 +393,7 @@ static struct drm_driver driver = {
+>  	.driver_features =
+>  	    DRIVER_GEM |
+>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
+> -	    DRIVER_SYNCOBJ_TIMELINE | DRIVER_GEM_GPUVA,
+> +	    DRIVER_SYNCOBJ_TIMELINE,
+>  	.open = xe_file_open,
+>  	.postclose = xe_file_close,
+>  
+> diff --git a/include/drm/drm_debugfs.h b/include/drm/drm_debugfs.h
+> index ea8cba94208a..eb93512b0f23 100644
+> --- a/include/drm/drm_debugfs.h
+> +++ b/include/drm/drm_debugfs.h
+> @@ -48,7 +48,7 @@
+>   * For each DRM GPU VA space drivers should call drm_debugfs_gpuva_info() from
+>   * their @show callback.
+>   */
+> -#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, DRIVER_GEM_GPUVA, data}
+> +#define DRM_DEBUGFS_GPUVA_INFO(show, data) {"gpuvas", show, 0, data}
+>  
+>  /**
+>   * struct drm_info_list - debugfs info list entry
+> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+> index 42fc085f986d..e09559495c5b 100644
+> --- a/include/drm/drm_drv.h
+> +++ b/include/drm/drm_drv.h
+> @@ -107,12 +107,6 @@ enum drm_driver_feature {
+>  	 * acceleration should be handled by two drivers that are connected using auxiliary bus.
+>  	 */
+>  	DRIVER_COMPUTE_ACCEL            = BIT(7),
+> -	/**
+> -	 * @DRIVER_GEM_GPUVA:
+> -	 *
+> -	 * Driver supports user defined GPU VA bindings for GEM objects.
+> -	 */
+> -	DRIVER_GEM_GPUVA		= BIT(8),
+>  	/**
+>  	 * @DRIVER_CURSOR_HOTSPOT:
+>  	 *
+> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
+> index 86f5846154f7..996aa418dce9 100644
+> --- a/include/drm/drm_gem.h
+> +++ b/include/drm/drm_gem.h
+> @@ -663,9 +663,6 @@ static inline bool drm_gem_is_imported(const struct drm_gem_object *obj)
+>   *
+>   * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
+>   *
+> - * Calling this function is only necessary for drivers intending to support the
+> - * &drm_driver_feature DRIVER_GEM_GPUVA.
+> - *
+>   * See also drm_gem_gpuva_set_lock().
+>   */
+>  static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
+> -- 
+> 2.39.5
+> 
 
 -- 
-2.51.2
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
