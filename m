@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEC51F94CB9
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 23:43:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19468F94CB6
+	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 23:43:13 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 8438210EDED;
-	Tue, 21 Apr 2026 23:43:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E9B9910EDF6;
+	Tue, 21 Apr 2026 23:43:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="YoqeNwCM";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HH8L8fzU";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E22D845AB4;
-	Tue, 21 Apr 2026 23:30:59 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 525DA45AB0;
+	Tue, 21 Apr 2026 23:31:05 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776814259;
- b=WRf2jKwuhpXtPLXEqslzbcWzk9ZFHA94tOAyQHlgRUpQZTZrrH+SCYLDBf6Kw3VlchxMp
- F9KAfHXI8aOcaABIeYmyKvf5MJjZFGIXD/rxR/2Vf4u4MmimcofzlhqTDWGC6OouRzmwFfE
- msQsWNMbeRM766/yfNL8CxPcHRrYXLUIkQ9oK3cl8IQeFQU8AzKBcCbfX0hNEAnAzDqOxwI
- XCY85JddHt9RvbNLIRSiUZMeThexCOOtPW8FVyuX0gXStFWvteVq+vXLVGi9yrq6kyghL56
- L4upoSTjflRekogYmW3PWdoY5MQoLwp0x1qv2ZIQvCd3Lrn7PRmwjpE2sKlQ==
+ s=20240201; t=1776814265;
+ b=Tamkgr93Y1qQotZLhQuQqOEai6xj1vEl8YaLJ7XdXkIZnVmSNBSwoAD26OzrhT6abszNH
+ 89TyccWdim5yWM7bqNE+I1gP5t3m5gb7QTZ6dmHsIQ2xEiOAjNkqZCX1ClNSRwDSRDeukJJ
+ G/qSCyZNVf2PeE0k3bmyVlDTB28unmGSd/WWLGqc3OU7rSwpjI0RefI2zNOi+AF2Jq6VM6q
+ YmihMdmQRRl31FtDVbNWmTNSzsyglw/rBuItqPVZ23IR97EFzGoZmBsOGtzH+kd0I0QcP9M
+ C+wZSpZTcChAoE3dltpycH84ytb/tO7rrq7IT3BRx4k+yB2ZD3xrU8hPMC1A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776814259; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776814265; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=jUJoaX13jdWIu45OjLeDEbOktd/ZqhMBliQGf0/hzm0=;
- b=ZaWsFqdg/DleDI/VtybvPQ+QpUmxi9NaviKautwjq4cbk1u6ZMJ1U0Y0ucLNLF0RNmE76
- CxYAgW7kOg1kzE6vuNtJYOvFTIMz3FYmQFESWj/jzUZZn3X3M4vz+qjGtu8LzKDfEiSEEks
- GsiZJ+LH+Tggpvt4BUFcwOd9OB+Ug/LMGGhn80B4nOdRqvEs02K9LWYko2UteuveSoPeDsu
- T9UQB8nimP9H8CDsBndNv3hUTA9fnq9QUbyfGhPDaSwGpolkavK/lek1rgqPHo0q9YCm416
- NE2U5WOByO57H5PSnaTDnYA9N8tOjoJK41TituZRs11JO2l7Jal50JSYm5iQ==
+ bh=PbF9krt16odOiEDlXPUybCqvT/Suic4UTEO0mD2+h4c=;
+ b=ey0btOj3fqjg/nTYMduQ09Q34PhpMWU2XE0BpST1G8ylXx/NPk9Tgc9ISOsgmAvQjCKUs
+ EIYzXyMZwf80YRx39imtnbgBV/7514WmHHKK7AZnQ7m7oHh9QaPn6ZaVtdS4afMwA7X56re
+ YzBTwFIKlER0smPZhAJ1ksyzuZOrob0UUW6/QBqG9sp70vAYxDKB6huL/xYUWGOQCnoiDb/
+ SN51NASJO7CzLIlaTx8tSm8+5iI6wwLuTfxDSGoZX3S/aBWwAHGa2ZpuY4hClPKmSRuwNq2
+ qk7I9YwIqi9XflFw6c6nxH5I/GL2gFDg24JVwRiXZv5MgyXwfX2ulL4u0USA==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
@@ -46,42 +46,42 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id D83A645AA5
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:30:57 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 51D9545A9A
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:31:02 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3E0FD10EDFF
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:43:05 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 9451310EDE7
+	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:43:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1776814984;
+	s=mimecast20190719; t=1776814988;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=jUJoaX13jdWIu45OjLeDEbOktd/ZqhMBliQGf0/hzm0=;
-	b=YoqeNwCMRSOm6vENUZapdhSRN12eROkn6h98ux4QEVgCxnVkP1zXSbCLM3KTLmKqNVoKNZ
-	aLdlb4ACixtLZvOcNFWV8qLjDni0dgESQKFz+mWpFx9svt05Wut02FsrMkRcvGtpr3URjM
-	gslth0DTPABYlxic6TGDMCVsUWKJi8c=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+	bh=PbF9krt16odOiEDlXPUybCqvT/Suic4UTEO0mD2+h4c=;
+	b=HH8L8fzUQ5uZh5/uPjnT1PzhX7Ak2Wj/GfuvunxiyLm2jQ3MEVlEPvvKBqxBI/78k3tIUK
+	Iouvvl+uJA9lDcd2SANgUHBXh6WT9gqJYhu6hyQ0kJHWSUvAYCqZpcChUTE8yoL3kgz4d/
+	vUXPZmYXcyJZy+DWOft2PjJTcTM47dM=
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-215-F01FVtCJOoO8pRpzXhg6vw-1; Tue,
- 21 Apr 2026 19:42:59 -0400
-X-MC-Unique: F01FVtCJOoO8pRpzXhg6vw-1
-X-Mimecast-MFC-AGG-ID: F01FVtCJOoO8pRpzXhg6vw_1776814976
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-262-6l3qxahBNsOrPwb8jMB3-A-1; Tue,
+ 21 Apr 2026 19:43:03 -0400
+X-MC-Unique: 6l3qxahBNsOrPwb8jMB3-A-1
+X-Mimecast-MFC-AGG-ID: 6l3qxahBNsOrPwb8jMB3-A_1776814980
 Received: from mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.111])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 6E1221800366;
-	Tue, 21 Apr 2026 23:42:56 +0000 (UTC)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 384751956080;
+	Tue, 21 Apr 2026 23:43:00 +0000 (UTC)
 Received: from GoldenWind.lan (unknown [10.22.80.14])
 	by mx-prod-int-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id E959F180045E;
-	Tue, 21 Apr 2026 23:42:52 +0000 (UTC)
+ id 9F2B4180045E;
+	Tue, 21 Apr 2026 23:42:56 +0000 (UTC)
 From: Lyude Paul <lyude@redhat.com>
 To: nouveau@lists.freedesktop.org,
 	Gary Guo <gary@garyguo.net>,
@@ -89,20 +89,19 @@ To: nouveau@lists.freedesktop.org,
 	rust-for-linux@vger.kernel.org,
 	Danilo Krummrich <dakr@kernel.org>,
 	dri-devel@lists.freedesktop.org
-Subject: [PATCH v11 3/5] drm/gem/shmem: Export
- drm_gem_shmem_get_pages_sgt_locked()
-Date: Tue, 21 Apr 2026 19:40:39 -0400
-Message-ID: <20260421234234.638503-4-lyude@redhat.com>
+Subject: [PATCH v11 4/5] rust: drm: gem: Introduce shmem::SGTable
+Date: Tue, 21 Apr 2026 19:40:40 -0400
+Message-ID: <20260421234234.638503-5-lyude@redhat.com>
 In-Reply-To: <20260421234234.638503-1-lyude@redhat.com>
 References: <20260421234234.638503-1-lyude@redhat.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.111
-X-Mimecast-MFC-PROC-ID: cOOkdgYS08GYnNHV5eumpcjjYfhCm8mXUTNXjq1P5T4_1776814976
+X-Mimecast-MFC-PROC-ID: XdO7smJpLv68wTxVhw1btV2gY9ufZNXhGxKjUwjdfL4_1776814980
 X-Mimecast-Originator: redhat.com
 Content-Transfer-Encoding: 8bit
 content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: PLTF2PWAV7DZJAK3LC4G4CKJZUKTZH6A
-X-Message-ID-Hash: PLTF2PWAV7DZJAK3LC4G4CKJZUKTZH6A
+Message-ID-Hash: VADYRPL2MLFMJ2X3RFANTGGN4MZKNVFX
+X-Message-ID-Hash: VADYRPL2MLFMJ2X3RFANTGGN4MZKNVFX
 X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -124,9 +123,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PLTF2PWAV7DZJAK3LC4G4CKJZUKTZH6A/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VADYRPL2MLFMJ2X3RFANTGGN4MZKNVFX/>
 Archived-At: 
- <https://lore.freedesktop.org/20260421234234.638503-4-lyude@redhat.com/>
+ <https://lore.freedesktop.org/20260421234234.638503-5-lyude@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -136,68 +135,288 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-We will need this for implementing a set of SGTable bindings in Rust for
-gem shmem objects, so that we can use the dma_resv lock to protect
-additional resources in the shmem object.
+In order to do this, we need to be careful to ensure that any interface we
+expose for scatterlists ensures that any mappings created from one are
+destroyed on driver-unbind. To do this, we introduce a Devres resource into
+shmem::Object that we use in order to ensure that we release any SGTable
+mappings on driver-unbind. We store this in an UnsafeCell and protect
+access to it using the dma_resv lock that we already have from the shmem
+gem object, which is the same lock that currently protects
+drm_gem_object_shmem->sgt.
+
+We also provide two different methods for acquiring an sg table:
+self.sg_table(), and self.owned_sg_table(). The first function is for
+short-term uses of mapped SGTables, the second is for callers that need to
+hold onto the mapped SGTable for an extended period of time. The second
+variant uses Devres of course, whereas the first simply relies on rust's
+borrow checker to prevent driver-unbind when using the mapped SGTable.
 
 Signed-off-by: Lyude Paul <lyude@redhat.com>
-Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
----
- drivers/gpu/drm/drm_gem_shmem_helper.c | 16 +++++++++++++++-
- include/drm/drm_gem_shmem_helper.h     |  1 +
- 2 files changed, 16 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
-index d2c34a0e573a1..8003ede197eba 100644
---- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-+++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-@@ -786,12 +786,25 @@ struct sg_table *drm_gem_shmem_get_sg_table(struct drm_gem_shmem_object *shmem)
+---
+V3:
+* Rename OwnedSGTable to shmem::SGTable. Since the current version of the
+  SGTable abstractions now has a `Owned` and `Borrowed` variant, I think
+  renaming this to shmem::SGTable makes things less confusing.
+  We do however, keep the name of owned_sg_table() as-is.
+V4:
+* Clarify safety comments for SGTable to explain why the object is
+  thread-safe.
+* Rename from SGTableRef to SGTable
+V10:
+* Use Devres in order to ensure that SGTables are revocable, and are
+  unmapped on driver-unbind.
+V11:
+* s/create_sg_table()/get_sg_table()
+* Get rid of extraneous `ret = ` in shmem::Object::get_sg_table()
+
+ rust/kernel/drm/gem/shmem.rs | 191 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 189 insertions(+), 2 deletions(-)
+
+diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
+index 11749c36e8695..ca9d66900f8ac 100644
+--- a/rust/kernel/drm/gem/shmem.rs
++++ b/rust/kernel/drm/gem/shmem.rs
+@@ -11,25 +11,38 @@
+ 
+ use crate::{
+     container_of,
++    device::{
++        self,
++        Bound, //
++    },
++    devres::*,
+     drm::{
+         driver,
+         gem,
+         private::Sealed,
+         Device, //
+     },
+-    error::to_result,
++    error::{
++        from_err_ptr,
++        to_result, //
++    },
+     prelude::*,
++    scatterlist,
+     types::{
+         ARef,
+         Opaque, //
+     }, //
+ };
+ use core::{
++    cell::UnsafeCell,
+     ops::{
+         Deref,
+         DerefMut, //
+     },
+-    ptr::NonNull,
++    ptr::{
++        self,
++        NonNull, //
++    },
+ };
+ use gem::{
+     BaseObjectPrivate,
+@@ -65,6 +78,10 @@ pub struct Object<T: DriverObject> {
+     obj: Opaque<bindings::drm_gem_shmem_object>,
+     /// Parent object that owns this object's DMA reservation object.
+     parent_resv_obj: Option<ARef<Object<T>>>,
++    /// Devres object for unmapping any SGTable on driver-unbind.
++    ///
++    /// This is protected by the object's dma_resv lock.
++    sgt_res: UnsafeCell<Option<Devres<SGTableMap<T>>>>,
+     #[pin]
+     inner: T,
  }
- EXPORT_SYMBOL_GPL(drm_gem_shmem_get_sg_table);
- 
--static struct sg_table *drm_gem_shmem_get_pages_sgt_locked(struct drm_gem_shmem_object *shmem)
-+/**
-+ * drm_gem_shmem_get_pages_sgt_locked - Under dma_resv lock, provide a scatter/gather table of
-+ *				        pinned pages for an shmem GEM object.
-+ * @shmem: shmem GEM object
-+ *
-+ * This function is the same as drm_gem_shmem_get_pages_sgt, except that the caller is expected to
-+ * already hold the dma_resv lock for @shmem.
-+ *
-+ * Returns:
-+ * A pointer to the scatter/gather table of pinned pages, or error pointer on failure.
-+ */
-+struct sg_table *drm_gem_shmem_get_pages_sgt_locked(struct drm_gem_shmem_object *shmem)
- {
- 	struct drm_gem_object *obj = &shmem->base;
- 	int ret;
- 	struct sg_table *sgt;
- 
-+	dma_resv_assert_held(shmem->base.resv);
+@@ -117,6 +134,7 @@ pub fn new(
+             try_pin_init!(Self {
+                 obj <- Opaque::init_zeroed(),
+                 parent_resv_obj: config.parent_resv_obj.map(|p| p.into()),
++                sgt_res: UnsafeCell::new(None),
+                 inner <- T::new(dev, size, args),
+             }),
+             GFP_KERNEL,
+@@ -176,6 +194,100 @@ extern "C" fn free_callback(obj: *mut bindings::drm_gem_object) {
+         // SAFETY: We're recovering the Kbox<> we created in gem_create_object()
+         let _ = unsafe { KBox::from_raw(this) };
+     }
 +
- 	if (shmem->sgt)
- 		return shmem->sgt;
- 
-@@ -822,6 +835,7 @@ static struct sg_table *drm_gem_shmem_get_pages_sgt_locked(struct drm_gem_shmem_
- 	drm_gem_shmem_put_pages_locked(shmem);
- 	return ERR_PTR(ret);
++    // If necessary, create an SGTable for the gem object and register a Devres for it to ensure
++    // that it is unmapped on driver unbind.
++    fn get_sg_table<'a>(
++        &'a self,
++        dev: &'a device::Device<Bound>,
++    ) -> Result<&'a Devres<SGTableMap<T>>> {
++        let sgt_res_ptr = self.sgt_res.get();
++
++        // SAFETY: This lock is initialized throughout the lifetime of the gem object
++        unsafe { bindings::dma_resv_lock(self.raw_dma_resv(), ptr::null_mut()) };
++
++        // SAFETY: We just grabbed the lock required for reading this data above.
++        let sgt_res = unsafe { (*sgt_res_ptr).as_ref() };
++
++        let ret = if let Some(sgt_res) = sgt_res {
++            // We already have a Devres object for this sg table, return it
++            Ok(sgt_res)
++        } else {
++            // SAFETY: We grabbed the lock required for calling this function above */
++            let sgt = from_err_ptr(unsafe {
++                bindings::drm_gem_shmem_get_pages_sgt_locked(self.as_raw_shmem())
++            });
++
++            if let Err(e) = sgt {
++                Err(e)
++            } else {
++                // INVARIANT:
++                // - We called drm_gem_shmem_get_pages_sgt_locked above and checked that it
++                //   succeeded, fulfilling the invariant of SGTableRef that the object's `sgt` field
++                //   is initialized.
++                // - We store this Devres in the object itself and don't move it, ensuring that the
++                //   object it points to remains valid for the lifetime of the SGTableRef.
++                let devres = Devres::new(dev, init!(SGTableMap { obj: self.into() }));
++                match devres {
++                    Ok(devres) => {
++                        // SAFETY: We acquired the lock protecting this data above, making it safe
++                        // to write into here
++                        unsafe { (*sgt_res_ptr) = Some(devres) };
++
++                        // SAFETY: We just write Some() into *sgt_res_ptr above
++                        Ok(unsafe { (&*sgt_res_ptr).as_ref().unwrap_unchecked() })
++                    }
++                    Err(e) => {
++                        // We can't make sure that the pages for this object are unmapped on
++                        // driver-unbind, so we need to release the sgt
++                        // SAFETY:
++                        // - We grabbed the lock required for calling this function above
++                        // - We checked above that get_pages_sgt_locked() was successful
++                        unsafe { bindings::__drm_gem_shmem_free_sgt_locked(self.as_raw_shmem()) };
++
++                        Err(e)
++                    }
++                }
++            }
++        };
++
++        // SAFETY: We're releasing the lock that we grabbed above.
++        unsafe { bindings::dma_resv_unlock(self.raw_dma_resv()) };
++
++        ret
++    }
++
++    /// Creates (if necessary) and returns an immutable reference to a scatter-gather table of DMA
++    /// pages for this object.
++    ///
++    /// This will pin the object in memory.
++    #[inline]
++    pub fn sg_table<'a>(
++        &'a self,
++        dev: &'a device::Device<Bound>,
++    ) -> Result<&'a scatterlist::SGTable> {
++        let sgt = self.get_sg_table(dev)?;
++
++        Ok(sgt.access(dev)?.deref())
++    }
++
++    /// Creates (if necessary) and returns an owned reference to a scatter-gather table of DMA pages
++    /// for this object.
++    ///
++    /// This is the same as [`sg_table`](Self::sg_table), except that it instead returns an
++    /// [`shmem::SGTable`] which holds a reference to the associated gem object, instead of a
++    /// reference to an [`scatterlist::SGTable`].
++    ///
++    /// This will pin the object in memory.
++    ///
++    /// [`shmem::SGTable`]: SGTable
++    pub fn owned_sg_table(&self, dev: &device::Device<Bound>) -> Result<SGTable<T>> {
++        self.get_sg_table(dev)?;
++
++        // INVARIANT: We just ensured above that `self.sgt_res` is initialized with
++        // `Some(Devres<SGTableMap<T>>)`.
++        Ok(SGTable(self.into()))
++    }
  }
-+EXPORT_SYMBOL_GPL(drm_gem_shmem_get_pages_sgt_locked);
  
- /**
-  * drm_gem_shmem_get_pages_sgt - Pin pages, dma map them, and return a
-diff --git a/include/drm/drm_gem_shmem_helper.h b/include/drm/drm_gem_shmem_helper.h
-index b2c23af628e1a..682207ce9d1b5 100644
---- a/include/drm/drm_gem_shmem_helper.h
-+++ b/include/drm/drm_gem_shmem_helper.h
-@@ -138,6 +138,7 @@ void drm_gem_shmem_purge_locked(struct drm_gem_shmem_object *shmem);
- 
- struct sg_table *drm_gem_shmem_get_sg_table(struct drm_gem_shmem_object *shmem);
- struct sg_table *drm_gem_shmem_get_pages_sgt(struct drm_gem_shmem_object *shmem);
-+struct sg_table *drm_gem_shmem_get_pages_sgt_locked(struct drm_gem_shmem_object *shmem);
- 
- void drm_gem_shmem_print_info(const struct drm_gem_shmem_object *shmem,
- 			      struct drm_printer *p, unsigned int indent);
+ impl<T: DriverObject> Deref for Object<T> {
+@@ -226,3 +338,78 @@ impl<T: DriverObject> driver::AllocImpl for Object<T> {
+         dumb_map_offset: None,
+     };
+ }
++
++/// A reference to a GEM object that is known to have a mapped [`SGTable`].
++///
++/// This is used by the Rust bindings with [`Devres`] in order to ensure that mappings for SGTables
++/// on GEM shmem objects are revoked on driver-unbind.
++///
++/// # Invariants
++///
++/// - `self.obj` always points to a valid GEM object.
++/// - This object is proof that `self.0.owner.sgt` has an initialized and valid SGTable.
++pub struct SGTableMap<T: DriverObject> {
++    obj: NonNull<Object<T>>,
++}
++
++impl<T: DriverObject> Deref for SGTableMap<T> {
++    type Target = scatterlist::SGTable;
++
++    fn deref(&self) -> &Self::Target {
++        // SAFETY:
++        // - The NonNull is guaranteed to be valid via our type invariants.
++        // - The sgt field is guaranteed to be initialized and valid via our type invariants.
++        unsafe { scatterlist::SGTable::from_raw((*self.obj.as_ref().as_raw_shmem()).sgt) }
++    }
++}
++
++impl<T: DriverObject> Drop for SGTableMap<T> {
++    fn drop(&mut self) {
++        // SAFETY: `obj` is always valid via our type invariants
++        let obj = unsafe { self.obj.as_ref() };
++
++        // SAFETY: The dma_resv for GEM objects is initialized throughout its lifetime
++        unsafe { bindings::dma_resv_lock(obj.raw_dma_resv(), ptr::null_mut()) };
++
++        // SAFETY: We acquired the lock needed for calling this function above
++        unsafe { bindings::__drm_gem_shmem_free_sgt_locked(obj.as_raw_shmem()) };
++
++        // SAFETY: We are releasing the lock we acquired above.
++        unsafe { bindings::dma_resv_unlock(obj.raw_dma_resv()) };
++    }
++}
++
++// SAFETY: The NonNull in SGTableRef is guaranteed valid by our type invariants, and the GEM object
++// it points to is guaranteed to be thread-safe.
++unsafe impl<T: DriverObject> Send for SGTableMap<T> {}
++// SAFETY: The NonNull in SGTableRef is guaranteed valid by our type invariants, and the GEM object
++// it points to is guaranteed to be thread-safe.
++unsafe impl<T: DriverObject> Sync for SGTableMap<T> {}
++
++/// An owned reference to a scatter-gather table of DMA address spans for a GEM shmem object.
++///
++/// This object holds an owned reference to the underlying GEM shmem object, ensuring that the
++/// [`scatterlist::SGTable`] referenced by this type remains valid for the lifetime of this object.
++///
++/// # Invariants
++///
++/// - This type is proof that `self.0.sgt_res` is initialized with a `Some(Devres<SGTableMap<T>>)`.
++/// - This object is only exposed in situations where we know the underlying `SGTable` will not be
++///   modified for the lifetime of this object. Thus, it is safe to send/access this type across
++///   threads.
++pub struct SGTable<T: DriverObject>(ARef<Object<T>>);
++
++// SAFETY: This object is thread-safe via our type invariants.
++unsafe impl<T: DriverObject> Send for SGTable<T> {}
++// SAFETY: This object is thread-safe via our type invariants.
++unsafe impl<T: DriverObject> Sync for SGTable<T> {}
++
++impl<T: DriverObject> Deref for SGTable<T> {
++    type Target = Devres<SGTableMap<T>>;
++
++    fn deref(&self) -> &Self::Target {
++        // SAFETY: `self.owner.sgt_res` is guaranteed to be initialized with
++        // `Some(Devres<SGTableMap<T>>)` via our type invariants
++        unsafe { (*self.0.sgt_res.get()).as_ref().unwrap_unchecked() }
++    }
++}
 -- 
 2.53.0
 
