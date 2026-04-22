@@ -4,128 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C91D4F94CBA
-	for <nouveau@archiver.kernel.org>; Tue, 21 Apr 2026 23:54:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9442BF94CC7
+	for <nouveau@archiver.kernel.org>; Wed, 22 Apr 2026 06:01:39 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A934C10EE0D;
-	Tue, 21 Apr 2026 23:54:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 251D710EEE8;
+	Wed, 22 Apr 2026 06:01:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="FzFnMXtE";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="X9mm7mqv";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 0E53A45ABB;
-	Tue, 21 Apr 2026 23:42:19 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776814938;
- b=cK/sYLCVN+6LTIRKfa3uERnYdGxakhsWyZA1Ln6mU5QL59QKql/0By1+1ve6qJafd26rY
- ENZ86kiVwJlhWLvLEr/04akCvIviUa1lHrg+9cT1hC4rEz0YGdOIah9xJjSEauaMDaLRq+6
- aZSRpyMVpFvxxbyNps0dfiahCPmS8RqwYQuNGaAy1RWPZbfo5MRMrB87kgWLn06FizGY2gQ
- S8bpGR2h166v9Dm+QjSYJES+SBBc6CpETVjo/SGnglsdDBA/tp5D4LFRpi+FU2M5ong+qtQ
- 0ms0G9dVKOz5cb2uTqEeMebXBk/3mE2L1STJiudau3nRbnisjMtLf/QTkjcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776814938; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D0EA845AC3;
+	Wed, 22 Apr 2026 05:49:30 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776836970;
+ b=lirgiwlk6FyK6Y78ozIK/xogfgWQAxL1/6+3n/DRn/M00m+os6zt4tsnoieMOYOFRe3Fz
+ tdMnqiYqIJZU/ZViDIhMUsA4Uyi+YQrqjjtUa89iIWoOG/Ewx1w/rfM3GRIMy0jJ0rP6RqV
+ 635I4/1Fy2OKkJ+IB1Y4mSlZZKd3+Fe7LyUqiGviNjs1HeMrABH2+hP0N4WF74wArnWIF4h
+ VNiCDYOCrhianCoyFdlxunsoVG6iPQfxgKeSU22yXF1BotNvIn8phdsH0xQPANlb7IDOEYn
+ zbxpYV6BSOM9GsoCV/G2cxxwlJafboKOibnyxRuBtGsqGIA1U53n0YUviiWA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776836970; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=Mvhp8UPrHSCfYqJDJE0NZgKZLDktaAjMcQmUCnAo7Nw=;
- b=aQ7jLPNeiBLeBU6d5JWbaFWmNk9Kgo5fJTrWPCPwX17BFDZDZlOy7lsYrcp6kePreBMWs
- e3XjeZMSMZNhhU1r9OW3jHb3uzJEArYKlUirYM27Gl7ACYZPpvJ2lhqpuaIZlh/SOLqYahx
- KivnHOxi89z/x1DvKEUyGWlgXunTIuKTns9SD2Tzef1vLh85vZIr/WW5+eUFXN1FG8Xg+lb
- SYum4l9k6noUPs3fAU0OaW+0w5kgwFx8x44mxd9Nc9M3D2IlCn1KWGfpX8Nia5U7AXTuaYT
- gFEMaFHMwl57Jx5Apv6Y/RmDCSVf2J4LQpG4Cuai3eDaP+lrPf3m2pP8Ijeg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org;
- dkim=pass header.d=redhat.com;
-  arc=none (Message is not ARC signed);
-  dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
- arc=none (Message is not ARC signed);
- dmarc=pass (Used From Domain Record) header.from=redhat.com
- policy.dmarc=quarantine
+ bh=R8PJZBvzIQB5fmT8SJT1BSG/TgjTM6uErsrY+GygjEE=;
+ b=EXcKVMyt5hvUVvxGlAnguyx+21dC9IWOPQIEfQ/XUzXWzEJ/Gywlu29ZdnTvw7LTBBEV1
+ z+769WIV2nH8K5y8t1lzne6ek3XV67KWTbEFuh1lKtJGMHtFrBCemcvdtW7/xiDuxzdiYa4
+ J3IyCltF2OS7n4k4RGc3qS6DWEq2TYHIOuJRPWp1TMpV4IIOCCGUTjrjStvAsipIspO1XL+
+ oLw8UGVXaoxJ6cpaAyshsZXfoNcxN5imx5bF0MCdC2OdxYLfMxkUtd1p/lHfZ3BnVAGI/rE
+ w1tyATT52HOEisqMtX/quVADBGxx3kRsxRcY5d7MfZRK2P2NbmVwevt8uJrg==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=Nvidia.com;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2DC0A45A9A
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:42:17 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7432610EDFA
-	for <nouveau@lists.freedesktop.org>; Tue, 21 Apr 2026 23:54:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1776815663;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mvhp8UPrHSCfYqJDJE0NZgKZLDktaAjMcQmUCnAo7Nw=;
-	b=FzFnMXtE7QrGtURO7Km+GjikIvjm/O0qONj8OapFEBvs7U4tqPwpSd0twFd4dqZZEAgzM3
-	Km4pQTqknzyYMEKhZbSXUN9gSOrg9HHjZoB91pujV3d/BdFxGFfo7sXKiBnTK0Hqk27M6b
-	nkT34k7VRRx0Pi3j1MJiOxNiCbtUWRk=
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-216-aHXJVetXO-ur_XGsJlTt4Q-1; Tue,
- 21 Apr 2026 19:54:19 -0400
-X-MC-Unique: aHXJVetXO-ur_XGsJlTt4Q-1
-X-Mimecast-MFC-AGG-ID: aHXJVetXO-ur_XGsJlTt4Q_1776815656
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id BD48F195608B;
-	Tue, 21 Apr 2026 23:54:16 +0000 (UTC)
-Received: from GoldenWind.lan (unknown [10.22.80.14])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 6CFA819560AB;
-	Tue, 21 Apr 2026 23:54:13 +0000 (UTC)
-From: Lyude Paul <lyude@redhat.com>
-To: nouveau@lists.freedesktop.org,
-	Gary Guo <gary@garyguo.net>,
-	Daniel Almeida <daniel.almeida@collabora.com>,
-	rust-for-linux@vger.kernel.org,
-	Danilo Krummrich <dakr@kernel.org>,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v12 5/5] rust: drm: gem: Add vmap functions to shmem bindings
-Date: Tue, 21 Apr 2026 19:52:17 -0400
-Message-ID: <20260421235346.672794-6-lyude@redhat.com>
-In-Reply-To: <20260421235346.672794-1-lyude@redhat.com>
-References: <20260421235346.672794-1-lyude@redhat.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id A90CF4532D
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Apr 2026 05:49:27 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010003.outbound.protection.outlook.com [52.101.201.3])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8FD10EEE2;
+	Wed, 22 Apr 2026 06:01:35 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bV0FvVIARNT9zkvm0X2Zfv6pGjH9Hic70oBNl6a98G9Sx5UmzC8QPdUXUStuuv91t6QYuPJex/q0HyWzfDFAUenHPLiXAOlDayfFrkZu6x8LHsnPgf0yHeZnjcmn8KPCjdNAJnNkR1/b7brNPFwpIne33q5pPK4uAbG79OIRfKEn60oItkJADNdt9DUddE5KanFQUfB6ojU5mQpO6NvV06ZBjYL2k5GEGISOgHesyZ/J4yOrSp/XfC2rWyRg9cH2zO8J7TUOdSXqfGXu4wkX8gvakN9rUTIMeV+w2syhp0t657YRIJfxr/gwnh8vlXgzE+UDP0/ajwKebGfyHM1Lvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R8PJZBvzIQB5fmT8SJT1BSG/TgjTM6uErsrY+GygjEE=;
+ b=bTHBOjt25g7XVF9g4n1Th2KeusrKtgp2byWNYCLgTnIKDKOsgOXq0cc4w/QG0zSuZWun/8nTaeoAeIZYJv4H2yPWmFIQLg3qYaoWne8guTWq8Wcvb/62rOabSDathRDphADv8s51Es/BuSTxXQEDdQhcQaUsBMW/H+DHP+lqpXtrBYsiVSsQFOSCRWbIaMFAXT+NwN6bYSzFvTEzKHptVqRGM8RrNeoRhfZnHWnNlC+W9pePxuJI02AJ/W7D1SH6CLAkdQr6vEKRXJXHJIT+iJ9RzYRWrj+uaNMPrmWyROHnXo21pc/5yEUBvl462v937pO2vGlibDyNXgR1PHPtqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R8PJZBvzIQB5fmT8SJT1BSG/TgjTM6uErsrY+GygjEE=;
+ b=X9mm7mqv1Io2QUJX3Secj221ytq8rDDuq0aR0+6TIiQxw28QNt+NpiBfMJo959c2UfFKlMG6MSTwW2TF2SD0vUYMc0jSBYI8n4U+PUjE6HpzkWGu6iWvaqRT7Eg0a98L/Leg8Qt3MuTrFmtPNCjeGMxqSxIYzFvtW4Aq83io7sCW6zJS8z53tQJvXEhVHXiGzvmVlbpC71T9XcDkAWTHKkoZ20o9uCv9/qsLrajTduLfw+h9VA/pFxKuDZSOGxc+LXw+PCWKp/A5yYF6glRhum80fE5C9rlrzGOj1aUMPU39fR0I4J3sWByzVezBnYXWUEO8kMJHikiNyYqJnaRwqA==
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by DM4PR12MB7720.namprd12.prod.outlook.com (2603:10b6:8:100::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.17; Wed, 22 Apr
+ 2026 06:01:26 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9846.016; Wed, 22 Apr 2026
+ 06:01:26 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 22 Apr 2026 15:01:22 +0900
+Message-Id: <DHZGE2KGUBJB.3LDRIKUMDMSRN@nvidia.com>
+Subject: Re: [PATCH v2 5/5] gpu: nova-core: run Booter Unloader and FWSEC-SB
+ upon unbinding
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
+ <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "Boqun Feng" <boqun@kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
+ <20260421-nova-unload-v2-5-2fe54963af8b@nvidia.com>
+In-Reply-To: <20260421-nova-unload-v2-5-2fe54963af8b@nvidia.com>
+X-ClientProxiedBy: TY4P286CA0136.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:37f::13) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
-X-Mimecast-MFC-PROC-ID: 57mQjmgKyAnKJdM58KMFjnlowFYBzW1ZVED6GsHcBTY_1776815656
-X-Mimecast-Originator: redhat.com
-Content-Transfer-Encoding: 8bit
-content-type: text/plain; charset="US-ASCII"; x-default=true
-Message-ID-Hash: 3TCDPCPZ7BFRM3OWVU5Z23QK5RVU6NKQ
-X-Message-ID-Hash: 3TCDPCPZ7BFRM3OWVU5Z23QK5RVU6NKQ
-X-MailFrom: lyude@redhat.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|DM4PR12MB7720:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83e2027c-e740-409a-b96d-08dea03496c3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|366016|376014|7416014|1800799024|10070799003|56012099003|18002099003|921020|22082099003;
+X-Microsoft-Antispam-Message-Info: 
+	NeJQ419T566Zk9+Gdae+N54j2fgsuSzFhSSBoRrTfrxjN2J4w4BTYVWSuU8ZHho4aExuXkZcn4JY/Jg161dB+gtxLEMSHmdtpTHosUMsZEQpDmKTpjMrLidukzWQ/t1e2dL8XAp/kWp7/1GLtVIuBjlisFAn6vptTsAp5eAznw/fJiTt0pT2RGTmy3WgFBD7Uk2/txuXR/qxVqj8W/E64cXwq/UqgJxMaa7TnTDPrcHtn+QHCKjXOhTWQQb6d2kiMmiN2BsBAMGXr8Tdw21kp8A+k11+m3F+hkd2jXZRkNlJGMaSSshEc35wBojORdXeKZ7p8cRRWpq/29cORfUX5Tr9Ew2TrSq76Vq/mTw5+5J6p10RqCGPTYXUs9P4LKFHbRQy6os1IM/d6biAgJJQKGn2Pftg+0n1YbvYORuBnGjdy9SUs/QWuRm4Y8qUVz59oZKY5rQkc9jpWBjT8FLeEawMi7U9mIG8zog5qm2ZG0Pz/+Pxhy6uEVd1EiYTJrnkPRr55pOmU0a2mO2Cf8AsJedNPrhjimSXRDxm/Aug4WyCK6PNH3onQ8W9efm6c+PH5tCnDNnZYTWAyueFynzcBj/l4dfYkip1UaGNMJg4wq5cZNCZ64tHFaOy13PpUGE/o14lz+OcyZuRoHbIZ8LbUIXItdW6bZc2/EI/iCYTJNO65qjNX2Ub73glbGQWGjzzIxsY7FVE2KpVUZLWPl00cxPUfa47RqOnnn9v3vvyB8wHfZh6YL71rVWvM4dvZQDtEbItL5djiYPFXIvQ0MdQ4A==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(10070799003)(56012099003)(18002099003)(921020)(22082099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?L2VGekIzYU9MVUhUdmI2WGtSQkdDQ0RNWlRHSFZJOWU1QmJhcitXYUhZTmNE?=
+ =?utf-8?B?NU0ySjBINTBwU25KNXJBNUdwN2RRZ1pQZGVta0ZsNHJKd1M3N1Fmc1M2VmVW?=
+ =?utf-8?B?VktTcWh5bkZoc1pEYnoxR2Q5d0FXcnZOR0JETkNOeGRvcldDM3o4S2hZUnVn?=
+ =?utf-8?B?dFdnRnErSmc1cnF2VHArenNYQjhMZ2VLNS9KNGs0REF6YXJKbEc0KysrYi9J?=
+ =?utf-8?B?VkNJdUxjVFBrS2toR29KTlNrQzVrb3hzOHM0WHJQSWQzRTI0WFR4SjdoTHg1?=
+ =?utf-8?B?UTRtMjlibmJXNmxuYTZrKzNOdVdSRkw2K3AxbXhsZTRCbzZ3bGFLYllHWkdC?=
+ =?utf-8?B?VEhMcXp1dGVSa3JDalNObWtnbU53bnNvOXV1YWRDcEdEcjV4TnVNR0RqTUFK?=
+ =?utf-8?B?bmZaaU9tNkJqV0hWbHRtdVhBRFRDcnJVZE9uYzB5bDhlU1U4TWxXc25OMWEv?=
+ =?utf-8?B?ay9CL2FrK1BjdkthZGNxVUVyR2VjR3RDZmhyNGF6bzZsbjdtamQydFFCblIr?=
+ =?utf-8?B?a1Nqck9hMHVpckgrWVE4SnJURjBsQ3pLRzlyakxNaHZ5anVBampYQVRoZlpm?=
+ =?utf-8?B?azEwc0N6OUkxVHJQakZSbjc1SGRIcmZOOUt2cW1MMnduZHhGSUpDK2VaZFFh?=
+ =?utf-8?B?MG1kbjcwVVNuMDNEQVcwc0JFNnhxZ2lDUUtBdUkyZkZkZURWc0wrRitqM2tL?=
+ =?utf-8?B?RHllRlY3SW8xbXFaUkFRZmVEbnlydUFGeDFxWWx1VTNqbDFWSFhROXl4UmlK?=
+ =?utf-8?B?MUZsMEpWTXYzTTVJYXdIcCsrUi84ZXdBRkljUGVMeG1tNU83MmhMdEZZTis1?=
+ =?utf-8?B?UEE3R1NUYzJGTHZLS3Y2TUNoaEIrNkVOdGFuNWlvWXZhNEtUdEhOSnFxc0dP?=
+ =?utf-8?B?bURsZ3d0QW82d0x5YkNyV3BPQW8rVDhFRC9MalBDRGNTeXF1aUtTTndXdEJW?=
+ =?utf-8?B?UXRkN1FVMzU5UzhvWnVxK3NEZnAwbTRTb2tzcVJ0V1ZGYTZYVVR2bHBiWDh6?=
+ =?utf-8?B?QlI4RkZvcmtuSy9KLzhJVlhFeHg5eFFWOGZqQUM1c0NvOFpaTjlMSG9NSjVm?=
+ =?utf-8?B?MC9FWWJDZG9JMnpvckJJbEszaEV4VjFncW8zQTJEWW5wUGJIMzU1TWRwaGhM?=
+ =?utf-8?B?dGhGV2R6YWV6bHIvNkF1QklQdG1nMmh6MjZzTW4wbTdYODBob3BTNzROTVd1?=
+ =?utf-8?B?UlZMWjJ5VmZJYkZMMkpLK1duZEN3ZHpBRlBrdlV3b25wdnFDdWZJcEJSTmk5?=
+ =?utf-8?B?bGkvdkRLdVVWWWJtVlNsN0V5S0cwYWt1K1pXUlBwUzF4Y2JPRzVNVjUvQldu?=
+ =?utf-8?B?ZEpiQmdRdldQRE0zTHpCcmJDaE83TTdLS05mUlZRdnBGVGt2cWRqZFJRV05O?=
+ =?utf-8?B?TitrUkZHVHYyUXNhbUg0WThqNklJZ1FuQm84Zjk2TWJqUUFJeEtXWUVYb1l4?=
+ =?utf-8?B?RHZnNmEydjB1V3k3bC8vSG1qaS9HZ0J3QjZob0UvRVduRkRuMHVmSlJxUGR6?=
+ =?utf-8?B?UGgzc0xreHVGVDdSbFdzS21kcHBnOEcrNks2SnpHNjlHd20xajUrbnpSMmFh?=
+ =?utf-8?B?WElPNHpTbXVxNlYrWmxuNXhkdkdFZ1JITGRibnlUbmxCaVkxb0toWEJjbEx5?=
+ =?utf-8?B?ZHl6SHJVWm4rdmdCNEJJTU93U1Q2K3I5VDlaWTdCOTdPU091d1JzZFdINVJR?=
+ =?utf-8?B?Y05KS1plU2R5Zk5CVE9iSVZNQmdlRHk5V1dwQWR2V2VLWmFNamlFbERFNVFE?=
+ =?utf-8?B?SWcwdVNTUjQ5cERIa0JHNFRPSjBvU1dvZjlpL1ZLTi9FNzBaT1BCNmtDaENq?=
+ =?utf-8?B?enpEL051UTJKUjFqaUNlcE9jZ21XTUFoSkFFOTB1bXpNZk1HWmE1Rm1aWU9V?=
+ =?utf-8?B?YnJ1eUNTRGgyM1kyTXpxcU5ncFVkV0dBVU8xR1B6OWZ0Y3hJQSszUFdidVh3?=
+ =?utf-8?B?eXRHeVpCUy96SDYzYkt6b2VTcXBNbjRJa094c29uek9HUjV0eEpNbHNWYTJQ?=
+ =?utf-8?B?Z3JQRlZ3eFRvbTlObnhoU1VtRHdMNU9KLzZTUGVXb2RnSGJXdVhKaEc1b2Y2?=
+ =?utf-8?B?Nm5tb1BPNkp5OFRNR3BUSGZESFBVNnJTTzhTd1EyOW9ERm15ZTU5TFMrRXJ2?=
+ =?utf-8?B?L2Y2SDN2TU0yYmwrRHlSR1Z4ajcyZCtmTWtFSlRBUGJ0SVBxdTZMeEM0aXNH?=
+ =?utf-8?B?Y3htYllRV3lwdFJWV0h5akVqOWd5VmJPRGtBdVBZZnpaZ0lYb21ucHJnYmNr?=
+ =?utf-8?B?dDJyRmtrZ0Zjclh6bC9pQXFGS2R0OWlMMmQwYVNLcXh0aVhqQlRzUlVpU2JS?=
+ =?utf-8?B?V1V6TEQydkx5MWxOWUxwejVocUpId3hDc0pFaW1MWGs0cU1TRU5RelFOZUpx?=
+ =?utf-8?Q?Fkos+rw80aiE5S9T5RCOq8m3LQ/VybSHfNC5ulKH/LKKz?=
+X-MS-Exchange-AntiSpam-MessageData-1: NIBT9HO49Hm7Vg==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 83e2027c-e740-409a-b96d-08dea03496c3
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2026 06:01:26.5339
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ xMb0v1W/TyOln7U80Jq9ZYXLhfKgCQFWc9/wo0/RQrJcgc6GZ1d5mBype+EI0qouSCKgU+A6srJhWjaD8w/Ijg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB7720
+Message-ID-Hash: ORU2XYHJNHRER4TZRIVGEYACJEKTYUWG
+X-Message-ID-Hash: ORU2XYHJNHRER4TZRIVGEYACJEKTYUWG
+X-MailFrom: ecourtney@nvidia.com
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: Matthew Maurer <mmaurer@google.com>,
- FUJITA Tomonori <fujita.tomonori@gmail.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
- Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
- Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
- Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
- Asahi Lina <lina+kernel@asahilina.net>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
+ loop; banned-address; member-moderation
+CC: Alistair Popple <apopple@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/3TCDPCPZ7BFRM3OWVU5Z23QK5RVU6NKQ/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ORU2XYHJNHRER4TZRIVGEYACJEKTYUWG/>
 Archived-At: 
- <https://lore.freedesktop.org/20260421235346.672794-6-lyude@redhat.com/>
+ <https://lore.freedesktop.org/DHZGE2KGUBJB.3LDRIKUMDMSRN@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -135,444 +193,169 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-One of the more obvious use cases for gem shmem objects is the ability to
-create mappings into their contents. So, let's hook this up in our rust
-bindings.
+On Tue Apr 21, 2026 at 3:16 PM JST, Alexandre Courbot wrote:
+> When probing the driver, the FWSEC-FRTS firmware creates a WPR2 secure
+> memory region to store the GSP firmware, and the Booter Loader loads and
+> starts that firmware into the GSP, making it run in RISC-V mode.
+>
+> These operations need to be reverted upon unloading, particularly the
+> WPR2 secure region creation, as its presence prevents the driver from
+> subsequently probing.
+>
+> Thus, load and run the Booter Unloader and FWSEC-SB firmwares at unbind
+> time to put the GPU into a state where it can be probed again.
+>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  drivers/gpu/nova-core/firmware/booter.rs |  1 -
+>  drivers/gpu/nova-core/firmware/fwsec.rs  |  1 -
+>  drivers/gpu/nova-core/gpu.rs             |  8 +++++-
+>  drivers/gpu/nova-core/gsp/boot.rs        | 43 ++++++++++++++++++++++++++=
+++++++
+>  drivers/gpu/nova-core/regs.rs            |  5 ++++
+>  5 files changed, 55 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/nova-core/firmware/booter.rs b/drivers/gpu/nova-=
+core/firmware/booter.rs
+> index de2a4536b532..771b018ba580 100644
+> --- a/drivers/gpu/nova-core/firmware/booter.rs
+> +++ b/drivers/gpu/nova-core/firmware/booter.rs
+> @@ -280,7 +280,6 @@ fn new_booter(data: &[u8]) -> Result<Self> {
+>  #[derive(Copy, Clone, Debug, PartialEq)]
+>  pub(crate) enum BooterKind {
+>      Loader,
+> -    #[expect(unused)]
+>      Unloader,
+>  }
+> =20
+> diff --git a/drivers/gpu/nova-core/firmware/fwsec.rs b/drivers/gpu/nova-c=
+ore/firmware/fwsec.rs
+> index 8810cb49db67..4108f28cd338 100644
+> --- a/drivers/gpu/nova-core/firmware/fwsec.rs
+> +++ b/drivers/gpu/nova-core/firmware/fwsec.rs
+> @@ -144,7 +144,6 @@ pub(crate) enum FwsecCommand {
+>      /// image into it.
+>      Frts { frts_addr: u64, frts_size: u64 },
+>      /// Asks [`FwsecFirmware`] to load pre-OS apps on the PMU.
+> -    #[expect(dead_code)]
+>      Sb,
+>  }
+> =20
+> diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
+> index 8f2ae9e8a519..37d0e4587ed3 100644
+> --- a/drivers/gpu/nova-core/gpu.rs
+> +++ b/drivers/gpu/nova-core/gpu.rs
+> @@ -286,7 +286,13 @@ pub(crate) fn unbind(&self, dev: &device::Device<dev=
+ice::Core>) {
+>              return;
+>          };
+> =20
+> -        let _ =3D kernel::warn_on_err!(self.gsp.unload(dev, bar, &self.g=
+sp_falcon));
+> +        let _ =3D kernel::warn_on_err!(self.gsp.unload(
+> +            dev,
+> +            bar,
+> +            self.spec.chipset,
+> +            &self.gsp_falcon,
+> +            &self.sec2_falcon,
+> +        ));
+> =20
+>          self.sysmem_flush.unregister(bar);
+>      }
+> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
+p/boot.rs
+> index 3f4e99b2497b..e00cfebe5d11 100644
+> --- a/drivers/gpu/nova-core/gsp/boot.rs
+> +++ b/drivers/gpu/nova-core/gsp/boot.rs
+> @@ -267,7 +267,9 @@ pub(crate) fn unload(
+>          &self,
+>          dev: &device::Device<device::Bound>,
+>          bar: &Bar0,
+> +        chipset: Chipset,
+>          gsp_falcon: &Falcon<Gsp>,
+> +        sec2_falcon: &Falcon<Sec2>,
+>      ) -> Result {
+>          // Shut down the GSP.
+> =20
+> @@ -275,6 +277,47 @@ pub(crate) fn unload(
+>              .inspect_err(|e| dev_err!(dev, "unload guest driver failed: =
+{:?}", e))?;
+>          dev_dbg!(dev, "GSP shut down\n");
+> =20
+> +        // Run FWSEC-SB to reset the GSP falcon to its pre-libos state.
+> +
+> +        let bios =3D Vbios::new(dev, bar)?;
+> +        let fwsec_sb =3D FwsecFirmware::new(dev, gsp_falcon, bar, &bios,=
+ FwsecCommand::Sb)?;
+> +
+> +        if chipset.needs_fwsec_bootloader() {
+> +            let fwsec_sb_bl =3D FwsecFirmwareWithBl::new(fwsec_sb, dev, =
+chipset)?;
+> +            // Load and run the bootloader, which will load FWSEC-SB and=
+ run it.
+> +            fwsec_sb_bl.run(dev, gsp_falcon, bar)?;
+> +        } else {
+> +            // Load and run FWSEC-SB directly.
+> +            fwsec_sb.run(dev, gsp_falcon, bar)?;
+> +        }
+> +        dev_dbg!(dev, "FWSEC SB completed\n");
+> +
+> +        // Remove WPR2 region if set.
+> +
+> +        let wpr2_hi =3D bar.read(regs::NV_PFB_PRI_MMU_WPR2_ADDR_HI);
+> +        if wpr2_hi.is_wpr2_set() {
+> +            let booter_unloader =3D BooterFirmware::new(
+> +                dev,
+> +                BooterKind::Unloader,
+> +                chipset,
+> +                FIRMWARE_VERSION,
+> +                sec2_falcon,
+> +                bar,
+> +            )?;
+> +
+> +            sec2_falcon.reset(bar)?;
+> +            sec2_falcon.load(dev, bar, &booter_unloader)?;
+> +            let _ =3D sec2_falcon.boot(bar, Some(0xff), Some(0xff))?;
 
-Similar to how we handle SGTables, we make sure there's two different types
-of mappings: owned mappings (kernel::drm::gem::shmem::VMap) and borrowed
-mappings (kernel::drm::gem::shmem::VMapRef).
+What about a named constant if you can think of a good name for 0xff or
+a comment explaining why we need to write 0xff into the two mailboxes?
+Presumably we don't care about the return value here since we check
+success using the register read below.
 
-Signed-off-by: Lyude Paul <lyude@redhat.com>
+Thanks for working on this, this will be a great help for avoiding
+reboots during development (since pcie reset sometimes has issues).
 
----
-V7:
-* Switch over to the new iosys map bindings that use the Io trait
-V8:
-* Get rid of iosys_map bindings for now, only support non-iomem types
-* s/as_shmem()/as_raw_shmem()
-V9:
-* Get rid of some outdated comments I missed
-* Add missing SIZE check to raw_vmap()
-* Add a proper unit test that ensures that we actually validate SIZE at
-  compile-time.
-  Turns out it takes only 34 lines to make a boilerplate DRM driver for a
-  kunit test :)
-* Add unit tests
-* Add some missing #[inline]s
-V10:
-* Correct issue with iomem error path
-  We previously called raw_vunmap() if we got an iomem allocation, but
-  raw_vunmap() was written such that it assumed all allocations were sysmem
-  allocations. Fix this by just making raw_vunmap() accept a iosys_map.
-V11:
-* Use Alexandre's clever solution to remove the macros we were using for
-  maintaining two different VMap types.
-* Change the order of items in Object<T> to ensure that sgt_res is always
-  dropped before obj.
-* Fix typo in Object.raw_vmap()
+Reviewed-by: Eliot Courtney <ecourtney@nvidia.com>
 
- rust/kernel/drm/gem/shmem.rs | 355 +++++++++++++++++++++++++++++++++++
- 1 file changed, 355 insertions(+)
-
-diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
-index a477312c8a09b..b96de8d33141d 100644
---- a/rust/kernel/drm/gem/shmem.rs
-+++ b/rust/kernel/drm/gem/shmem.rs
-@@ -26,6 +26,11 @@
-         from_err_ptr,
-         to_result, //
-     },
-+    io::{
-+        Io,
-+        IoCapable,
-+        IoKnownSize, //
-+    },
-     prelude::*,
-     scatterlist,
-     types::{
-@@ -35,6 +40,11 @@
- };
- use core::{
-     cell::UnsafeCell,
-+    ffi::c_void,
-+    mem::{
-+        self,
-+        MaybeUninit, //
-+    },
-     ops::{
-         Deref,
-         DerefMut, //
-@@ -45,6 +55,7 @@
-     },
- };
- use gem::{
-+    BaseObject,
-     BaseObjectPrivate,
-     DriverObject,
-     IntoGEMObject, //
-@@ -289,6 +300,84 @@ pub fn owned_sg_table(&self, dev: &device::Device<Bound>) -> Result<SGTable<T>>
-         // `Some(Devres<SGTableMap<T>>)`.
-         Ok(SGTable(self.into()))
-     }
-+
-+    /// Attempt to create a vmap from the gem object, and confirm the size of said vmap.
-+    fn raw_vmap(&self, min_size: usize) -> Result<*mut c_void> {
-+        if self.size() < min_size {
-+            return Err(ENOSPC);
-+        }
-+
-+        let mut map: MaybeUninit<bindings::iosys_map> = MaybeUninit::uninit();
-+
-+        // SAFETY: drm_gem_shmem_vmap can be called with the DMA reservation lock held
-+        to_result(unsafe {
-+            // TODO: see top of file
-+            bindings::dma_resv_lock(self.raw_dma_resv(), ptr::null_mut());
-+            let ret = bindings::drm_gem_shmem_vmap_locked(self.as_raw_shmem(), map.as_mut_ptr());
-+            bindings::dma_resv_unlock(self.raw_dma_resv());
-+            ret
-+        })?;
-+
-+        // SAFETY: The call to drm_gem_shmem_vmap_locked succeeded above, so we are guaranteed that
-+        // map is properly initialized.
-+        let map = unsafe { map.assume_init() };
-+
-+        // XXX: We don't currently support iomem allocations
-+        if map.is_iomem {
-+            // SAFETY:
-+            // - The vmap operation above succeeded, guaranteeing that `map` points to a valid
-+            //   memory mapping.
-+            // - We checked that this is an iomem allocation, making it safe to read vaddr_iomem
-+            unsafe { self.raw_vunmap(map) };
-+
-+            Err(ENOTSUPP)
-+        } else {
-+            // SAFETY: We checked that this is not an iomem allocation, making it safe to read vaddr
-+            Ok(unsafe { map.__bindgen_anon_1.vaddr })
-+        }
-+    }
-+
-+    /// Unmap a vmap from the gem object.
-+    ///
-+    /// # Safety
-+    ///
-+    /// - The caller promises that `map` is a valid vmap on this gem object.
-+    /// - The caller promises that the memory pointed to by map will no longer be accesed through
-+    ///   this instance.
-+    unsafe fn raw_vunmap(&self, mut map: bindings::iosys_map) {
-+        let resv = self.raw_dma_resv();
-+
-+        // SAFETY:
-+        // - This function is safe to call with the DMA reservation lock held
-+        // - Our `ARef` is proof that the underlying gem object here is initialized and thus safe to
-+        //   dereference.
-+        unsafe {
-+            // TODO: see top of file
-+            bindings::dma_resv_lock(resv, ptr::null_mut());
-+            bindings::drm_gem_shmem_vunmap_locked(self.as_raw_shmem(), &mut map);
-+            bindings::dma_resv_unlock(resv);
-+        }
-+    }
-+
-+    /// Creates and returns a virtual kernel memory mapping for this object.
-+    #[inline]
-+    pub fn vmap<const SIZE: usize>(&self) -> Result<VMapRef<'_, T, SIZE>> {
-+        Ok(VMap {
-+            // INVARIANT: `raw_vmap()` checks that the gem object is at least as large as `SIZE`.
-+            addr: self.raw_vmap(SIZE)?,
-+            owner: self,
-+        })
-+    }
-+
-+    /// Creates and returns an owned reference to a virtual kernel memory mapping for this object.
-+    #[inline]
-+    pub fn owned_vmap<const SIZE: usize>(&self) -> Result<VMapOwned<T, SIZE>> {
-+        Ok(VMap {
-+            // INVARIANT: `raw_vmap()` checks that the gem object is at least as large as `SIZE`.
-+            addr: self.raw_vmap(SIZE)?,
-+            owner: self.into(),
-+        })
-+    }
- }
- 
- impl<T: DriverObject> Deref for Object<T> {
-@@ -387,6 +476,155 @@ unsafe impl<T: DriverObject> Send for SGTableMap<T> {}
- // it points to is guaranteed to be thread-safe.
- unsafe impl<T: DriverObject> Sync for SGTableMap<T> {}
- 
-+macro_rules! impl_vmap_io_capable {
-+    ($impl:ident, $ty:ty) => {
-+        impl<D, R, const SIZE: usize> IoCapable<$ty> for $impl<D, R, SIZE>
-+        where
-+            D: DriverObject,
-+            R: Deref<Target = Object<D>>,
-+        {
-+            #[inline(always)]
-+            unsafe fn io_read(&self, address: usize) -> $ty {
-+                let ptr = address as *mut $ty;
-+
-+                // SAFETY: The safety contract of `io_read` guarantees that address is a valid
-+                // address within the bounds of `Self` of at least the size of $ty, and is properly
-+                // aligned.
-+                unsafe { ptr::read(ptr) }
-+            }
-+
-+            #[inline(always)]
-+            unsafe fn io_write(&self, value: $ty, address: usize) {
-+                let ptr = address as *mut $ty;
-+
-+                // SAFETY: The safety contract of `io_write` guarantees that address is a valid
-+                // address within the bounds of `Self` of at least the size of $ty, and is properly
-+                // aligned.
-+                unsafe { ptr::write(ptr, value) }
-+            }
-+        }
-+    };
-+}
-+
-+/// A reference to a virtual mapping for an shmem-based GEM object in kernel address space.
-+///
-+/// # Invariants
-+///
-+/// - The size of `owner` is >= SIZE.
-+/// - The memory pointed to by addr remains valid at least until this object is dropped.
-+pub struct VMap<D, R, const SIZE: usize = 0>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    addr: *mut c_void,
-+    owner: R,
-+}
-+
-+/// An alias type for a reference to a shmem-based GEM object's VMap.
-+pub type VMapRef<'a, D, const SIZE: usize = 0> = VMap<D, &'a Object<D>, SIZE>;
-+
-+/// An alias type for an owned reference to a shmem-based GEM object's VMap.
-+pub type VMapOwned<D, const SIZE: usize = 0> = VMap<D, ARef<Object<D>>, SIZE>;
-+
-+impl<D, R, const SIZE: usize> VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    /// Borrows a reference to the object that owns this virtual mapping.
-+    #[inline(always)]
-+    pub fn owner(&self) -> &Object<D> {
-+        &self.owner
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> Drop for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    #[inline(always)]
-+    fn drop(&mut self) {
-+        // SAFETY:
-+        // - Our existence is proof that this map was previously created using self.owner.
-+        // - Since we are in Drop, we are guaranteed that no one will access the memory
-+        //   through this mapping after calling this.
-+        unsafe {
-+            self.owner.raw_vunmap(bindings::iosys_map {
-+                is_iomem: false,
-+                __bindgen_anon_1: bindings::iosys_map__bindgen_ty_1 { vaddr: self.addr },
-+            })
-+        };
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> Io for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    #[inline(always)]
-+    fn addr(&self) -> usize {
-+        self.addr as usize
-+    }
-+
-+    #[inline(always)]
-+    fn maxsize(&self) -> usize {
-+        self.owner.size()
-+    }
-+}
-+
-+impl<D, R, const SIZE: usize> IoKnownSize for VMap<D, R, SIZE>
-+where
-+    D: DriverObject,
-+    R: Deref<Target = Object<D>>,
-+{
-+    const MIN_SIZE: usize = SIZE;
-+}
-+
-+impl_vmap_io_capable!(VMap, u8);
-+impl_vmap_io_capable!(VMap, u16);
-+impl_vmap_io_capable!(VMap, u32);
-+#[cfg(CONFIG_64BIT)]
-+impl_vmap_io_capable!(VMap, u64);
-+
-+impl<D: DriverObject, const SIZE: usize> Clone for VMapOwned<D, SIZE> {
-+    #[inline]
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail.
-+        unsafe { self.owner.owned_vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> Clone for VMapRef<'a, D, SIZE> {
-+    #[inline]
-+    fn clone(&self) -> Self {
-+        // SAFETY: We have a successful vmap already, so this can't fail.
-+        unsafe { self.owner.vmap().unwrap_unchecked() }
-+    }
-+}
-+
-+impl<'a, D: DriverObject, const SIZE: usize> From<VMapRef<'a, D, SIZE>> for VMapOwned<D, SIZE> {
-+    #[inline]
-+    fn from(value: VMapRef<'a, D, SIZE>) -> Self {
-+        let this = Self {
-+            addr: value.addr,
-+            owner: value.owner.into(),
-+        };
-+
-+        mem::forget(value);
-+        this
-+    }
-+}
-+
-+// SAFETY: VMap is thread-safe, and the fact that this VMap has an owned reference to the object
-+// means this object will remain valid until dropped.
-+unsafe impl<D: DriverObject, const SIZE: usize> Send for VMapOwned<D, SIZE> {}
-+// SAFETY: VMap is thread-safe, and the fact that this VMap has an owned reference to the object
-+// means this object will remain valid until dropped.
-+unsafe impl<D: DriverObject, const SIZE: usize> Sync for VMapOwned<D, SIZE> {}
-+
- /// An owned reference to a scatter-gather table of DMA address spans for a GEM shmem object.
- ///
- /// This object holds an owned reference to the underlying GEM shmem object, ensuring that the
-@@ -414,3 +652,120 @@ fn deref(&self) -> &Self::Target {
-         unsafe { (*self.0.sgt_res.get()).as_ref().unwrap_unchecked() }
-     }
- }
-+
-+#[kunit_tests(rust_drm_gem_shmem)]
-+mod tests {
-+    use super::*;
-+    use crate::{
-+        drm,
-+        faux,
-+        page::PAGE_SIZE, //
-+    };
-+
-+    // The bare minimum needed to create a fake drm driver for kunit
-+
-+    #[pin_data]
-+    struct KunitData {}
-+    struct KunitDriver;
-+    struct KunitFile;
-+    #[pin_data]
-+    struct KunitObject {}
-+
-+    const INFO: drm::DriverInfo = drm::DriverInfo {
-+        major: 0,
-+        minor: 0,
-+        patchlevel: 0,
-+        name: c"kunit",
-+        desc: c"Kunit",
-+    };
-+
-+    impl drm::file::DriverFile for KunitFile {
-+        type Driver = KunitDriver;
-+
-+        fn open(_dev: &drm::Device<KunitDriver>) -> Result<Pin<KBox<Self>>> {
-+            Ok(KBox::new(Self, GFP_KERNEL)?.into())
-+        }
-+    }
-+
-+    impl gem::DriverObject for KunitObject {
-+        type Driver = KunitDriver;
-+        type Args = ();
-+
-+        fn new(
-+            _dev: &drm::Device<KunitDriver>,
-+            _size: usize,
-+            _args: Self::Args,
-+        ) -> impl PinInit<Self, Error> {
-+            try_pin_init!(KunitObject {})
-+        }
-+    }
-+
-+    #[vtable]
-+    impl drm::Driver for KunitDriver {
-+        type Data = KunitData;
-+        type File = KunitFile;
-+        type Object = Object<KunitObject>;
-+
-+        const INFO: drm::DriverInfo = INFO;
-+        const IOCTLS: &'static [drm::ioctl::DrmIoctlDescriptor] = &[];
-+    }
-+
-+    fn create_drm_dev() -> Result<(faux::Registration, ARef<drm::Device<KunitDriver>>)> {
-+        // Create a faux DRM device so we can test gem object creation.
-+        let data = try_pin_init!(KunitData {});
-+        let dev = faux::Registration::new(c"Kunit", None)?;
-+        let drm = drm::Device::<KunitDriver>::new(dev.as_ref(), data)?;
-+
-+        Ok((dev, drm))
-+    }
-+
-+    #[test]
-+    fn compile_time_vmap_sizes() -> Result {
-+        let (_dev, drm) = create_drm_dev()?;
-+
-+        // Create a gem object to test with
-+        let cfg_ = ObjectConfig::<KunitObject> {
-+            map_wc: false,
-+            parent_resv_obj: None,
-+        };
-+        let obj = Object::<KunitObject>::new(&drm, PAGE_SIZE, cfg_, ())?;
-+
-+        // Try creating a normal vmap
-+        obj.vmap::<PAGE_SIZE>()?;
-+
-+        // Try creating a vmap that's smaller then the size we specified
-+        obj.vmap::<{ PAGE_SIZE - 100 }>()?;
-+
-+        // Make sure creating a vmap that's too large fails
-+        assert!(obj.vmap::<{ PAGE_SIZE + 200 }>().is_err());
-+
-+        Ok(())
-+    }
-+
-+    #[test]
-+    fn vmap_io() -> Result {
-+        let (_dev, drm) = create_drm_dev()?;
-+
-+        // Create a gem object to test with
-+        let cfg_ = ObjectConfig::<KunitObject> {
-+            map_wc: false,
-+            parent_resv_obj: None,
-+        };
-+        let obj = Object::<KunitObject>::new(&drm, PAGE_SIZE, cfg_, ())?;
-+
-+        let vmap = obj.vmap::<PAGE_SIZE>()?;
-+
-+        vmap.write8(0xDE, 0x0);
-+        assert_eq!(vmap.read8(0x0), 0xDE);
-+        vmap.write32(0xFFFFFFFF, 0x20);
-+
-+        assert_eq!(vmap.read32(0x20), 0xFFFFFFFF);
-+
-+        assert_eq!(vmap.read8(0x20), 0xFF);
-+        assert_eq!(vmap.read8(0x21), 0xFF);
-+        assert_eq!(vmap.read8(0x22), 0xFF);
-+        assert_eq!(vmap.read8(0x23), 0xFF);
-+
-+        Ok(())
-+    }
-+}
--- 
-2.53.0
+> +
+> +            let wpr2_hi =3D bar.read(regs::NV_PFB_PRI_MMU_WPR2_ADDR_HI);
+> +            if wpr2_hi.is_wpr2_set() {
+> +                dev_err!(dev, "WPR2 region still set after Booter Unload=
+er ran\n");
+> +                return Err(EBUSY);
+> +            }
+> +        }
+> +
+> +        dev_info!(dev, "successfully unloaded\n");
+> +
+>          Ok(())
+>      }
+>  }
+> diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.r=
+s
+> index 2f171a4ff9ba..21ff5d15f648 100644
+> --- a/drivers/gpu/nova-core/regs.rs
+> +++ b/drivers/gpu/nova-core/regs.rs
+> @@ -176,6 +176,11 @@ impl NV_PFB_PRI_MMU_WPR2_ADDR_HI {
+>      pub(crate) fn higher_bound(self) -> u64 {
+>          u64::from(self.hi_val()) << 12
+>      }
+> +
+> +    /// Returns whether the WPR2 region is currently set.
+> +    pub(crate) fn is_wpr2_set(self) -> bool {
+> +        self.hi_val() !=3D 0
+> +    }
+>  }
+> =20
+>  // PGSP
 
