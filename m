@@ -4,102 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80B71FAD3F0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E970DFAD3F2
 	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:27 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 0A3F610EF94;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE1C10EF9A;
 	Thu, 23 Apr 2026 02:55:21 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UlSkP8yL";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id E0D7245B05;
-	Thu, 23 Apr 2026 02:43:10 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 201F745AFC;
+	Thu, 23 Apr 2026 02:43:11 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776912190;
- b=QYxyFK4mujmRNA7QQm62glaxaBKzla044JB5TFzYn73TVKRCnsvXlUt4fg/h6u/AI0Q/w
- adDb3lwRlhAmBYvtDYpwhNVaHuj7SiOlA/yMzqJruoH8r8FHYHweEhR4wIgHhLRodYEofud
- Y2YGLCLbW+HHRHYv7i1kBZHQEPi1bVigC3rOvd2Axe+IYXussfJdJkFXQUiJK7XoGAF5B8R
- 6vR9ByfGtD/aCuedRUSub8UFezy6nNPSucb317X+R1pQ6ZFFlgxXg0AVa+vzLmo3xJ9yCZU
- jnWKbQ1hGeoY34Y6Vz7NMs9OEzuQ5UsFO/S4T80zXC2SJOUVF42JifZuxVBA==
+ s=20240201; t=1776912191;
+ b=KEFWvixj/XwIfyR6MObfc/xnUWMuKiSAOYxghBTKPBcUjDcdqhrxREsf4v9jvJ/JEh160
+ ixAcvUjP1ADiMZ0vrnfOQMTiJm3gTKn50JvGUV87jSnuofYdxTTMut2JMmnxUdRsuDn7t5y
+ tgwLHF69/Ldel01+MIfjc7oaztQSW94iQTWhhCxUAX8mWfuwvdlMM/vCXMGzD7yvUl2MHXj
+ o9ZCo40X4u9u+C1zFXQW9NU1OKtOveG3gIcvS1lVN/37YOzrgFt4TqkCkLd8Jj2VyUbbIl+
+ saFqVf4vzhkAF19rmfuTqmq0XuJG2NsAtoAfiinUOzAXKtDwZYKRxPf8WLMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776912190; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776912191; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=RjL5OPyQb+/Xz0boRcRy5js/wpN+kYp/jEmHxe+DWTw=;
- b=ES6sSjbZ7MvnVHyiFV65/O1T49w1N10kvy1Rxiotwb4fjXtxV/WSIbCGkRU7AzqmeKm35
- rDGI/vnRg3EDxM8Z269fOH0V7+rHjp32JWJz2jtx+cp0PEqm1pwbGAZTNNvBSLcZf8J97iN
- tnMkxCqh6PGO8Glv+97cicUs5XJAP1dOV1fPa4QTuy3lYqbmeMOnNsbgc91EiKd5JxUfJef
- u3nJyiWWyg08higLFxRn7etEcRJ1Xq6IXf+uOiFj7lo2mQv5vOZrjwYYQzZlaY1kbDmWDsf
- z+2kCWYEvyqlOlg7q316Q2/sfYp31WnXas+GZDirlozUq7IGSvYDOUNlXcsQ==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+ bh=LNEiiKAr8tGgxUxPcWc2lJsVUeALFhcpoNoEGS7JOyc=;
+ b=S3Czj43LP2j6rYuxQan8QEJotAAJRK8BL+pe0D7ZgwoSFYfvnQ3MlHAiys5j21T79W/MO
+ gjnIx3XIbAqprG5K8urlJbX3xB6UbCDvslhmdDpg67lcW/rnhE0vYFc6cK1mpYYOYc0n4fm
+ WuznvKraQOa+MCCakKsca5+l93uegVYrTcQBKV6NuWBf7mWfnk1tyHnafl6ETgqB8l/4gZ4
+ Y8f0klgH7dP0gbbwZ/PFRQMY3bAICrqTdXJFaBpnW260GBOz84wKGp2Hu+gJgraL3ZnlIJt
+ GhjIBdpmu040XspNzYHvU5AhxKGrJBrXwPTnrooS18yky9QDYVgKuVwG/KNg==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
   arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
  arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id F012E45A6E
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:06 +0000 (UTC)
-X-Greylist: delayed 370 seconds by postgrey-1.36 at gabe;
- Thu, 23 Apr 2026 00:52:16 UTC
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 874B810E2EA
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:52:16 +0000 (UTC)
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-418-aJ9JTpKpP3-9pcqZTqUDAw-1; Wed,
- 22 Apr 2026 20:46:04 -0400
-X-MC-Unique: aJ9JTpKpP3-9pcqZTqUDAw-1
-X-Mimecast-MFC-AGG-ID: aJ9JTpKpP3-9pcqZTqUDAw_1776905164
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 20EED1956080;
-	Thu, 23 Apr 2026 00:46:04 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.53])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 51F7530001A1;
-	Thu, 23 Apr 2026 00:46:01 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/4] nouveau: add FRL and DSC parameters to HDMI sink caps
- interface
-Date: Thu, 23 Apr 2026 10:42:14 +1000
-Message-ID: <20260423004552.3289884-3-airlied@gmail.com>
-In-Reply-To: <20260423004552.3289884-1-airlied@gmail.com>
-References: <20260423004552.3289884-1-airlied@gmail.com>
+	by kara.freedesktop.org (Postfix) with ESMTPS id 6B20745A6E
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Apr 2026 22:40:53 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id E15A610E2D4
+	for <nouveau@lists.freedesktop.org>; Wed, 22 Apr 2026 22:53:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1776898381;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=LNEiiKAr8tGgxUxPcWc2lJsVUeALFhcpoNoEGS7JOyc=;
+	b=UlSkP8yLGSSqGxDJ1XOe9SuMcKE4g22tQT5kqxy7BE0VmRNR4Mn4xrHua2iVx1UeqNeAYa
+	KTh9qC02BTWPomaLemDqSLtstti6gCMOQ9R/t5bcBq+OWZ5UGgD5fZiE5byG62oLpb4NaC
+	22FeXr+/kbZ4XBtbhTE0llx3n4aPLlE=
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
+ [209.85.160.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-12-YOBeRDZDMQuGWzdyUacqTg-1; Wed, 22 Apr 2026 18:53:00 -0400
+X-MC-Unique: YOBeRDZDMQuGWzdyUacqTg-1
+X-Mimecast-MFC-AGG-ID: YOBeRDZDMQuGWzdyUacqTg_1776898380
+Received: by mail-qt1-f198.google.com with SMTP id
+ d75a77b69052e-50da31af14cso164780121cf.1
+        for <nouveau@lists.freedesktop.org>;
+ Wed, 22 Apr 2026 15:53:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1776898380; x=1777503180;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mDXm7aAVELWsp3pvLIzbso12bneOyuVrRAMZreDRWg0=;
+        b=BR58lwdKhLe2aoDgg4ADQxs2cgN6CZDcK/gv51xn+cRgAf7qertLuQwVMSHBHd0uOQ
+         fgyJcC21cZioR5AqlCzoaxUn1egym4ZxLZa3uEcwt2lOAcJQXO8U1tHTQiV3td2Lw7ap
+         GaMWsRyUIVsNsH/2NNvOHzSVKPFsrmu4oVfAHjwyoESqA//5QRUSMDKWU43qPPIope9N
+         mYG5bECBr4pewAjtT/CdXZk0D1mhuWByEVJIoT816Cn4Iz6EK7VXkCsPYgP1TAGjnjci
+         rmen4MKjbtYZ5AwsTavkUyhT4dUrgSaHRFMzvIE0WEWfXTeYfiIm32kkq4xN0oc6ACeu
+         QPmg==
+X-Gm-Message-State: AOJu0YwqWU9LCVBQZvZJI4Bwaq109DjFYf9jskGn1z5Xt7QMPjG3P5ku
+	VSPDNIAGh6z0QJtKupefXLDiBS9izqVt3HnrpUfy0oEqN6f2rX2wWW+ob92HE9HeFx9O9qO5RQK
+	LAEPhsCctnBCaEn/Wd5d+el1oC6foQyLFSvnUrK8GKD4L9qSuXn1ltuKBBpJMJ+g0fghcLj4tJv
+	Z3y4X9pM1HFZbAb6O3BMMeEfXxE0Fq1geeH/y04mwEgl2VLPk=
+X-Gm-Gg: AeBDietHI+xlOXA4+JSAjbV1GFGob6OPy4TPEPF73C7p9cNcd/wZd1o9Uh5bZWdfy9g
+	7+OEFP0EAi/fYuDks2DV8DW4iBTZSqvUag7lU/j/gcf05GoRLzzg+0R2QHsw/csIonnLdk5B48R
+	BdsrYzqTsA1NphUo7CD+2Om9K4OSMc/U9rVqVZ9nPtBjZLj1uW97yQ6S3mmG6uX6Ym1IcHq9zsL
+	5ViXZNl9g3LvrcBGvdFeIu11js7V5wqrSW0shCDlXNLWKVBgegHkDD1JPpSJggq344vPdf94W70
+	0UCbbgXy5IMNkakFIHdX6EeWi1lF1lRJ7CEMsq/zdQ1ufT7kyaGvm+FNQfDr9w3NjzP3AJGi0Jp
+	gL1zzciOokabJiAWqhQ0t5raoJUSs
+X-Received: by 2002:a05:622a:4086:b0:50b:2876:586 with SMTP id
+ d75a77b69052e-50e36820d3emr367722261cf.5.1776898379434;
+        Wed, 22 Apr 2026 15:52:59 -0700 (PDT)
+X-Received: by 2002:a05:622a:4086:b0:50b:2876:586 with SMTP id
+ d75a77b69052e-50e36820d3emr367721591cf.5.1776898378914;
+        Wed, 22 Apr 2026 15:52:58 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-50e394c1fddsm151910251cf.30.2026.04.22.15.52.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Apr 2026 15:52:58 -0700 (PDT)
+Message-ID: <1b2d926b919471fd3fbaf5b79d47e1110f6c4797.camel@redhat.com>
+Subject: Re: [PATCH v12 2/5] drm/gem/shmem: Introduce
+ __drm_gem_shmem_free_sgt_locked()
+From: lyude@redhat.com
+To: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>, Daniel
+ Almeida	 <daniel.almeida@collabora.com>, rust-for-linux@vger.kernel.org,
+ Danilo Krummrich <dakr@kernel.org>, dri-devel@lists.freedesktop.org
+Date: Wed, 22 Apr 2026 18:52:57 -0400
+In-Reply-To: <20260421235346.672794-3-lyude@redhat.com>
+References: <20260421235346.672794-1-lyude@redhat.com>
+	 <20260421235346.672794-3-lyude@redhat.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: KqObaPhnZVSL2pA-6nZofcXJDYIwoGqxRVo8pvdUPxE_1776905164
-X-Mimecast-Originator: gmail.com
+X-Mimecast-MFC-PROC-ID: zuhGtCSigL_mDorp118YP0Lzsrf9PjpG-y2H4HWGhsI_1776898380
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: 6B7L6GTWFT6IRSURTYV6TKXDXQBFYP3H
-X-Message-ID-Hash: 6B7L6GTWFT6IRSURTYV6TKXDXQBFYP3H
-X-MailFrom: airlied@gmail.com
+Message-ID-Hash: WN22KAOVEOWIGFBZGGR7AGJ352MXOG7O
+X-Message-ID-Hash: WN22KAOVEOWIGFBZGGR7AGJ352MXOG7O
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
  implicit-dest; max-recipients; max-size; news-moderation; no-subject;
  digests; suspicious-header
-CC: nouveau@lists.freedesktop.org
+CC: Matthew Maurer <mmaurer@google.com>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
+ Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/6B7L6GTWFT6IRSURTYV6TKXDXQBFYP3H/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/WN22KAOVEOWIGFBZGGR7AGJ352MXOG7O/>
 Archived-At: 
- <https://lore.freedesktop.org/20260423004552.3289884-3-airlied@gmail.com/>
+ <https://lore.freedesktop.org/1b2d926b919471fd3fbaf5b79d47e1110f6c4797.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -109,232 +158,40 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Tue, 2026-04-21 at 19:52 -0400, Lyude Paul wrote:
+> +/**
+> + * __drm_gem_shmem_release_sgt_locked - Unpin and DMA unmap pages,
+> and release the
+> + * cached scatter/gather table for an shmem GEM object.
 
-Extend the outp-level hdmi_sink_caps method with max_frl_rate and
-dsc_1p2 parameters so GSP firmware can be informed about the sink's
-HDMI 2.1 FRL and DSC capabilities at detect time.
+It appears that I misnamed the function in this somehow still, so I
+will make note of this and make sure that it gets fixed in the next
+respin of this series
 
-Add nouveau_hdmi_get_frl_rate() helper to convert drm_hdmi_info
-lane count and per-lane rate into the FRL rate index (1-6) expected
-by the RM SET_HDMI_SINK_CAPS command.
-
-This was claude code assisted.
-
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/include/nvif/if0012.h |  4 +++-
- drivers/gpu/drm/nouveau/include/nvif/outp.h   |  2 +-
- drivers/gpu/drm/nouveau/nouveau_connector.c   | 24 ++++++++++++++++++-
- drivers/gpu/drm/nouveau/nvif/outp.c           |  9 ++++---
- .../gpu/drm/nouveau/nvkm/engine/disp/outp.h   |  2 +-
- .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  |  3 ++-
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 22 ++++++++++++++++-
- 7 files changed, 57 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0012.h b/drivers/gpu/dr=
-m/nouveau/include/nvif/if0012.h
-index 89cfac7ef3a54..dc0a5c372f511 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-@@ -172,7 +172,9 @@ union nvif_outp_hdmi_sink_caps_args {
- =09=09__u8 scdc;
- =09=09__u8 scdc_scrambling;
- =09=09__u8 scdc_low_rates;
--=09=09__u8 pad04[4];
-+=09=09__u8 max_frl_rate;
-+=09=09__u8 dsc_1p2;
-+=09=09__u8 pad06[2];
- =09} v0;
- };
-=20
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/=
-nouveau/include/nvif/outp.h
-index 240e1f80ed539..55c02a34f381e 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-@@ -67,7 +67,7 @@ enum nvif_outp_detect_status {
- enum nvif_outp_detect_status nvif_outp_detect(struct nvif_outp *);
- int nvif_outp_edid_get(struct nvif_outp *, u8 **pedid);
- int nvif_outp_hdmi_sink_caps(struct nvif_outp *, bool scdc, bool scdc_scra=
-mbling,
--=09=09=09     bool scdc_low_rates);
-+=09=09=09     bool scdc_low_rates, int max_frl_rate, int dsc_1p2);
-=20
- int nvif_outp_load_detect(struct nvif_outp *, u32 loadval);
- int nvif_outp_acquire_dac(struct nvif_outp *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/=
-nouveau/nouveau_connector.c
-index eae37d938f3bc..870b467d35e17 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -560,6 +560,23 @@ nouveau_connector_set_edid(struct nouveau_connector *n=
-v_connector,
- =09}
- }
-=20
-+static int
-+nouveau_hdmi_get_frl_rate(u8 max_frl_rate_per_lane, u8 max_lanes)
-+{
-+=09switch (max_lanes) {
-+=09case 3:
-+=09=09switch (max_frl_rate_per_lane) {
-+=09=09case 3: return 1;
-+=09=09case 6: return 2;
-+=09=09}
-+=09=09return 0;
-+=09case 4:
-+=09=09return max_frl_rate_per_lane / 2;
-+=09default:
-+=09=09return 0;
-+=09}
-+}
-+
- static enum drm_connector_status
- nouveau_connector_detect(struct drm_connector *connector, bool force)
- {
-@@ -645,7 +662,12 @@ nouveau_connector_detect(struct drm_connector *connect=
-or, bool force)
- =09=09=09nvif_outp_hdmi_sink_caps(&nv_encoder->outp,
- =09=09=09=09=09=09hdmi->scdc.supported,
- =09=09=09=09=09=09hdmi->scdc.scrambling.supported,
--=09=09=09=09=09=09hdmi->scdc.scrambling.low_rates);
-+=09=09=09=09=09=09hdmi->scdc.scrambling.low_rates,
-+=09=09=09=09=09=09nouveau_hdmi_get_frl_rate(hdmi->max_frl_rate_per_lane,
-+=09=09=09=09=09=09=09=09=09 hdmi->max_lanes),
-+=09=09=09=09=09=09hdmi->dsc_cap.v_1p2 ?
-+=09=09=09=09=09=09=09nouveau_hdmi_get_frl_rate(hdmi->dsc_cap.max_frl_rate_=
-per_lane,
-+=09=09=09=09=09=09=09=09=09=09  hdmi->dsc_cap.max_lanes) : 0);
- =09=09}
-=20
- =09=09if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_DP)
-diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/=
-nvif/outp.c
-index d66f437587ff3..60479c884b2dc 100644
---- a/drivers/gpu/drm/nouveau/nvif/outp.c
-+++ b/drivers/gpu/drm/nouveau/nvif/outp.c
-@@ -463,7 +463,7 @@ nvif_outp_edid_get(struct nvif_outp *outp, u8 **pedid)
-=20
- int
- nvif_outp_hdmi_sink_caps(struct nvif_outp *outp, bool scdc, bool scdc_scra=
-mbling,
--=09=09=09 bool scdc_low_rates)
-+=09=09=09 bool scdc_low_rates, int max_frl_rate, int dsc_1p2)
- {
- =09struct nvif_outp_hdmi_sink_caps_v0 args;
- =09int ret;
-@@ -472,11 +472,14 @@ nvif_outp_hdmi_sink_caps(struct nvif_outp *outp, bool=
- scdc, bool scdc_scrambling
- =09args.scdc =3D scdc;
- =09args.scdc_scrambling =3D scdc_scrambling;
- =09args.scdc_low_rates =3D scdc_low_rates;
-+=09args.max_frl_rate =3D max_frl_rate;
-+=09args.dsc_1p2 =3D dsc_1p2;
-=20
- =09ret =3D nvif_mthd(&outp->object, NVIF_OUTP_V0_HDMI_SINK_CAPS, &args, si=
-zeof(args));
- =09NVIF_ERRON(ret, &outp->object,
--=09=09   "[HDMI_SINK_CAPS scdc:%d scrambling:%d low_rates:%d]",
--=09=09   args.scdc, args.scdc_scrambling, args.scdc_low_rates);
-+=09=09   "[HDMI_SINK_CAPS scdc:%d scrambling:%d low_rates:%d max_frl_rate:=
-%d dsc_1p2:%d]",
-+=09=09   args.scdc, args.scdc_scrambling, args.scdc_low_rates,
-+=09=09   args.max_frl_rate, args.dsc_1p2);
- =09return ret;
- }
-=20
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h b/drivers/gpu/=
-drm/nouveau/nvkm/engine/disp/outp.h
-index fd54c17ba4d6d..17698b9ea7186 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
-@@ -96,7 +96,7 @@ struct nvkm_outp_func {
- =09int (*detect)(struct nvkm_outp *);
- =09int (*edid_get)(struct nvkm_outp *, u8 *data, u16 *size);
- =09void (*hdmi_sink_caps)(struct nvkm_outp *, bool scdc, bool scrambling,
--=09=09=09       bool low_rates);
-+=09=09=09       bool low_rates, int max_frl_rate, int dsc_1p2);
-=20
- =09struct nvkm_ior *(*inherit)(struct nvkm_outp *);
- =09int (*acquire)(struct nvkm_outp *, bool hda);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu=
-/drm/nouveau/nvkm/engine/disp/uoutp.c
-index 84381ba71ebaf..202fdc73f7cab 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-@@ -483,7 +483,8 @@ nvkm_uoutp_mthd_hdmi_sink_caps(struct nvkm_outp *outp, =
-void *argv, u32 argc)
- =09=09return -EINVAL;
-=20
- =09outp->func->hdmi_sink_caps(outp, args->v0.scdc, args->v0.scdc_scramblin=
-g,
--=09=09=09=09   args->v0.scdc_low_rates);
-+=09=09=09=09   args->v0.scdc_low_rates, args->v0.max_frl_rate,
-+=09=09=09=09   args->v0.dsc_1p2);
- =09return 0;
- }
-=20
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drive=
-rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index fa20a0c633653..2fb7cc83852f9 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -1218,7 +1218,7 @@ r535_tmds_edid_get(struct nvkm_outp *outp, u8 *data, =
-u16 *psize)
-=20
- static void
- r535_outp_hdmi_sink_caps(struct nvkm_outp *outp, bool scdc, bool scramblin=
-g,
--=09=09=09 bool low_rates)
-+=09=09=09 bool low_rates, int max_frl_rate, int dsc_1p2)
- {
- =09struct nvkm_disp *disp =3D outp->disp;
- =09NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS_PARAMS *ctrl;
-@@ -1236,7 +1236,27 @@ r535_outp_hdmi_sink_caps(struct nvkm_outp *outp, boo=
-l scdc, bool scrambling,
- =09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-GT_340MHZ_CLOCK_SUPPORTED, TRUE);
- =09if (low_rates)
- =09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-LTE_340MHZ_SCRAMBLING_SUPPORTED, TRUE);
-+=09switch (max_frl_rate) {
-+=09case 1: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 3LANES_3G); break;
-+=09case 2: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 3LANES_6G); break;
-+=09case 3: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 4LANES_6G); break;
-+=09case 4: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 4LANES_8G); break;
-+=09case 5: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 4LANES_10G); break;
-+=09case 6: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_C=
-APS, MAX_FRL_RATE_SUPPORTED, 4LANES_12G); break;
-+=09default: break;
-+=09}
-=20
-+=09if (dsc_1p2) {
-+=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-DSC_12_SUPPORTED, TRUE);
-+=09=09switch (dsc_1p2) {
-+=09=09case 1: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 3LANES_3G); break;
-+=09=09case 2: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 3LANES_6G); break;
-+=09=09case 3: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 4LANES_6G); break;
-+=09=09case 4: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 4LANES_8G); break;
-+=09=09case 5: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 4LANES_10G); break;
-+=09=09case 6: ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SIN=
-K_CAPS, DSC_MAX_FRL_RATE_SUPPORTED, 4LANES_12G); break;
-+=09=09}
-+=09}
- =09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
- }
-=20
---=20
-2.53.0
+> + * @shmem: shmem GEM object
+> + *
+> + * If the passed shmem object has an active scatter/gather table for
+> driver
+> + * usage, this function will unmap it and release the memory
+> associated with it.
+> + * It is the responsibility of the caller to ensure it holds the
+> dma_resv_lock
+> + * for this object.
+> + *
+> + * Drivers should not need to call this function themselves, it is
+> mainly
+> + * intended for usage in the Rust shmem bindings.
+> + */
+> +void __drm_gem_shmem_free_sgt_locked(struct drm_gem_shmem_object
+> *shmem)
+> +{
+> +=09dma_resv_assert_held(shmem->base.resv);
+> +
+> +=09dma_unmap_sgtable(shmem->base.dev->dev, shmem->sgt,
+> DMA_BIDIRECTIONAL, 0);
+> +=09sg_free_table(shmem->sgt);
+> +=09kfree(shmem->sgt);
+> +=09shmem->sgt =3D NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(__drm_gem_shmem_free_sgt_locked);
 
