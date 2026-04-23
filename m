@@ -4,183 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55B06F99370
-	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 11:34:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA4AFFC0342
+	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 15:01:55 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 2462710F0BD;
-	Thu, 23 Apr 2026 11:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 940D110F18C;
+	Thu, 23 Apr 2026 15:01:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="tTFsGxiv";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ffgt8QB9";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 2722945B26;
-	Thu, 23 Apr 2026 11:22:38 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id 4968445B28;
+	Thu, 23 Apr 2026 14:49:42 +0000 (UTC)
 ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776943358;
- b=O2/rLZ84S4IW1FKVZ805ZGQqGeuJyuvqVYttiUbbT2ww9wsNeDUs6f8kOuVrKBVk25LVF
- GiYQ1grjkpJrISmy0Nl4IVIZeXAHTtvOdu3ox8PhCxpI4A3DHc8nGFUGxCvKFoXrb3VddN/
- Ro9QY8FlXNcxhSV8LC0zKvZKhxjhZ6Mb6o3HLId6uFlK6/X24Un16qNt34s1oM+Kba6QpfY
- U0LQvarhvBcdoQBQkTejQu223BJ0Z813goXI6dnWZtqwgfrttaCvdBWD+EJ8HuOyphBGswP
- 5o/eS0N/hgCsEAu9xetCo7kKvQneTrVOenyDBDRm2rtUlUxWyWIRPJq4dT1g==
+ s=20240201; t=1776955782;
+ b=iiHUD06L110Z+cnS7NxVs32BtVS1nFw+1qXyVOvh17+TTkFMyYF5nSndwk/o5UxY6G/vc
+ X+oy9BCYWxGUjnO8d8KdQnYydSwNKCZn+fgFeAwrV2kCdpyZTibyIFIxnenepDUoSKmQ6Ah
+ ICyhHYMRIRaEesd5E8tlhucj0YAx7mC9OsS1adgTuOIj+U6XxEmSanWlTzk2kImv2NhFTqV
+ DA4Wyg86QsUlxq+9zHNAQOxksv8nDd/43KGuZGCL13rgiZsSwlDvSGusv+lnrbljsL12Ghf
+ 8uX2NPqord659ZRM0PsD/hqH+dMWTWIw0zR3feWKfj5wlOA+E5fCrZVOKLeg==
 ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776943358; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1776955782; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
- b=vbN+fHmDmNnMdT2RboIfwJEYnQuGD6b5eayRUb90JH1oBCcpt0OqI9FWYEjbupJ+kWOu0
- eihZuMzdwb0lLdCLd0X4pfHAoYt8uqpWMSgw7wRBo5G0x41dVUfdnXAKDs0q91sZ8kk5YlH
- EOo7CXFCnaLzEHfBkQr/GG3Vti+u2VbvxxKqirtb0nKcUfKaA/aJx6gmCiUrank203kHbnV
- BmHbHUA3Dr4o9fcjX4LmNzsmvMTbhlY9dGbAx3KQ2TaNva9wIgyLnec7KQfZLT8/DSNtq0U
- b8+zOZlZU27Rs8oVNXaoPR6p90vepqa/3BcAW8+slOgq2VE1dJP/FpnBSYAA==
+ bh=Se2cr73zYuDZrMy0gGi4qB4ITA6KTGzonu0RZjnU+4I=;
+ b=ZzpjJhDH5/tdLDUG/0XDZk/+ObU82eQSBjHv0Qr+8unIIC+3+1AXImLDBVJDVVd/84isG
+ Cckvo2tWQnyK96YUYGZ2wKDnA4wYrxd0lsjNrC8godtultAhkoxz4XH2dHk+SXK0zTz4JAf
+ rClauatxVBhkUQ61CWwbdiYKqaL6TA+o6uPyXQLPwwXtsQTMGmO3v2NP+VTEy1saJVf5nVa
+ ZzTbvwwXlrMtUFC5TfgsnzwVIzKg6RRaWoYSmFSCjZ3MRPnHa8jD+i6YCOKLHtowQK34ky4
+ eDiIB51gIDZmJkovKCcjlTo2ggK2Xio2uJ3ROw6CIQX2iMjX/zUp2wEuMFbw==
 ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
+ dkim=pass header.d=Nvidia.com;
   arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+  dmarc=pass (Used From Domain Record) header.from=nvidia.com
+ policy.dmarc=reject
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
  arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 3648D40330
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 11:22:35 +0000 (UTC)
-Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022122.outbound.protection.outlook.com [52.101.101.122])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id A7CC310EF99;
-	Thu, 23 Apr 2026 11:34:45 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 0DE1840330
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 14:49:40 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012025.outbound.protection.outlook.com [52.101.43.25])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 1581410E338;
+	Thu, 23 Apr 2026 15:01:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=d8HC/UMaKQIaiYAK9ehiBlBSVYRmXqspVhFEIHgsiiC8T9GxXuKdSo7EdB5uy94AW7WnEpMyOP1jnf+SNm+6PGxc0kv7+nEUxJE+/6hUwNEZ/39wNV9eLXgz6W5n0sXhVl+wQWmInHRRxUduEysLji6IWZd5qgq1D8WC9VFXi+8ccL+OO30MKqGnNR8Yd2ruaVHnTFaQ3zStPh6dSdeT/QJPO9apbIuVKhUrPx/uxzLEBwsUYaQM9i5v9YjqZeAGVhXZ7yAVNofYRTLvVDDiEgkc8bVPEBMY4urUBf8HL+dulqa60a1WMdUUMEVzK72BKl2I8gyUZMi8VQPbuOFxtw==
+ b=ZK7Yu3gIgqDIvdetILvmNn8aMpqXMGga9mMvpFiU4Lvs4AuMqQ+vyAONil1NU8/YFdvwSrNJ1HoI7+hy1CKASkRtwoDVUCIEGaQuU3CgTDoGoSSjlz2nPrOA8eFaGiiPCU7N+DkmtWf96P7gROJTAt7WCXRRHRi1bTQUnvxLYLdaqSQv0X8ozKcQ49qiCp4SWo2mlw92G8aZo2F4dJtOzaeRh3yjbv8oUrjx0H54NPv111knwU7p51gtZNnlM0VyQBuci5D/5rYnzbcGfvZtHO+oujUQzP2px/79B5nUd4cChgh7//oLXvmpOzW+f61he7MGbqsk2o5STXjkzcADRA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
- b=jX2o6Y6RdYdwLFhI+3ZRD90aySDqmsZaFXp+vTRhmZhGxOcBrw/oQVcGNN5v+ctwDIWcG5apvIpjlaDiCZVsnQQmPrS3la5vHD+8/C7Lx8HqTr4c6HXpNNl4L7EEpP+Twp/CqeR+f3PH+vS3PiwOQ9mTT5TrPcJKkXmpu1deqKI33oZYfvpuEVzP6Daw6Pp2M+sfvgktVEJYQJcIJYajDqmBGyMmR9f1znuHFYiBJ2wM/0y33qgxcU4mWkn6eR1PN2d8OzKOD/yxBBMMQq+mXrgZgdmG6u/M8MB+bu7DKa+tPyNl5yAZiFhe+VM9zFy4k30kTL+OEWLJXYdLNBDyCA==
+ bh=Se2cr73zYuDZrMy0gGi4qB4ITA6KTGzonu0RZjnU+4I=;
+ b=grME9haISduVs5Oi+bJScVlTVq0wRXYfdohOVIGWAyyhxaMEOxxZ29cz9/5fYuEZh5RWyKP48g1X9k+XCBT6g7975kTv/nP82IqsB6Dqx5OrSovp8QlRYKzIhPnLfb+IN/o6zHtCp4zOVQXYg4Gw3NmCWl1Vwbglczu2c1FZH0DM+mnXc+GGEwKQuta2n3wegTk893Opy0WYiBgcv2Dkadv7FBhEldFRP44Ym5tO/6AnFsyEVhnhguaBvMBz8M699bvZy/Iee2T2RMl3Vjzp+BYSuysw+q1foUmoQQTb1fPXnfSy32s86fUvjdieuzScufuItg/dDiVZ1utQhnUEdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
- b=tTFsGxivf5dWYm2kIha8869MgP3HgkRQDcAQzA2Je8AvcH/vTkLiMy/OXdxVmqe1/C8J5hoqoONLNjKaTr+2M++e0AQXUQkUkEWYiCaEy5vvWWuPrFJPuFqZwYwm2zZDetyvSSnV0EPKhDYX7O5A6F65RGqvGgc+8JaP2HctSmE=
-Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:27c::13)
- by CWXP265MB5180.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:193::7) with
+ bh=Se2cr73zYuDZrMy0gGi4qB4ITA6KTGzonu0RZjnU+4I=;
+ b=ffgt8QB9nVw2UUYNUOkzmasq/D2SUbXTHhjScPYm8/qXFRIOfpot+PxmdwsjrEcwC1MQP7O7vqWWX02iiMXmnhc3J5yMzYPgqrqTse/qfZqQfubesh/tT7TDBZLl4wngohJnXRGGyA799cHlTTJTzuM5JlTjaHqKV7CgrBFubHPtFV1E1KXpoTcOQTAhjyeo8xaRcissq+zrRJEVNkF/8AD00zh1eZt0lrXbIzAN61ja+vkJrfvrhbQ4qRuvU49rS5wvkN6wpUwNrQW0N5v/vIN9iVDfnZ2gU+DGg7CiPfjexnvM4PHD68AJHnlqebZGjk11Ti3lNGKN3e5DRryNlA==
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by DS5PPF482CFEB7D.namprd12.prod.outlook.com (2603:10b6:f:fc00::64a) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.21; Thu, 23 Apr
- 2026 11:34:41 +0000
-Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6c9e:93c8:10db:e995]) by CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6c9e:93c8:10db:e995%6]) with mapi id 15.20.9846.016; Thu, 23 Apr 2026
- 11:34:41 +0000
-Content-Transfer-Encoding: quoted-printable
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Thu, 23 Apr
+ 2026 15:01:35 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%4]) with mapi id 15.20.9846.019; Thu, 23 Apr 2026
+ 15:01:35 +0000
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 23 Apr 2026 12:34:41 +0100
-Message-Id: <DI0I3TH8B8ZZ.2118S8MDUHG@garyguo.net>
-Subject: Re: [PATCH v2 1/5] rust: add warn_on_err macro
-From: "Gary Guo" <gary@garyguo.net>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
- <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
- "Boqun Feng" <boqun@kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-1-2fe54963af8b@nvidia.com>
-In-Reply-To: <20260421-nova-unload-v2-1-2fe54963af8b@nvidia.com>
-X-ClientProxiedBy: LO3P265CA0002.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:bb::7) To CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:400:27c::13)
+Date: Fri, 24 Apr 2026 00:01:31 +0900
+Message-Id: <DI0MI6UF325Y.2TDWZGCN3WGIG@nvidia.com>
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Lyude Paul" <lyude@redhat.com>
+Subject: Re: [PATCH v12 4/5] rust: drm: gem: Introduce shmem::SGTable
+Content-Transfer-Encoding: quoted-printable
+References: <20260421235346.672794-1-lyude@redhat.com>
+ <20260421235346.672794-5-lyude@redhat.com>
+In-Reply-To: <20260421235346.672794-5-lyude@redhat.com>
+X-ClientProxiedBy: TYCP286CA0344.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:38e::16) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CW1P265MB8877:EE_|CWXP265MB5180:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0c8d6c5f-370b-4857-ed36-08dea12c4f7a
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|DS5PPF482CFEB7D:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90323fa4-0463-485b-cca9-08dea1493665
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|7416014|376014|10070799003|366016|1800799024|18002099003|921020|56012099003|22082099003;
+	BCL:0;ARA:13230040|10070799003|7416014|376014|1800799024|366016|18002099003|22082099003|56012099003;
 X-Microsoft-Antispam-Message-Info: 
-	dmnucVv3RvQrvaiFg1A12ABJC5zaKu7Olgf56p6jOVIAUBb3p5yFwzohBIrHWBDv30MaZBSEuCoWCnmurdaWmhQh75sCgV/5LELw2mEmvBxggBB4Xss9h0k3Dgb+G2x6WekhWnLmHkguFQ39cUSxpgx8pL3BfdLcGqEjzM654qBwgPlHs0H7ijcIP3bXVp1TD2W4cl5XdDIRW3a5x+QmzLoUH7LiyQzrHziw71ch3ypR5V5hHAKWzgR3wxGdkCZ15OISnE+/sbxNX2bZOi3VpMaoolrcAjFm962zExnOChxBv4UMpVkD1Q69SUHPr0jbLjdHhtgBSpmvfoR1momdOhGcfGa8+ihKIqn3BcYZyAny+2HythvrXJCox3eF3Y/HEpvX1H1ojAeQgWsKT4YRq5W3Cx2Fx4tdCi5FmV0OwqhXvwn+fgb1WJTzEGJhPzcKDaimy/SFLz1Kw7Eq/yK1ORoWhMDXSCb3A9eIzhiE1H5ZUiRnm4A6vA4W5wqbxX4pSbkl91Jv4h/K0p6UGGAtrdQ89i+tEuCz4g/ZQrUpH1LgQ1ar93bHW+VXZ8pvvqIgLakWs3gUGLnqRjcf+uLNruxWwdnb9g9lgTxdFHaYpMuCg6++BDCglH4WUhZAfxBVBJKtKti3nrOtKDNFhpKIQSVMrq+S5ASxd6+Y6rQkY/Dv4DUaYUDybEIR5t9eSB1NOUFWe02WSf362lln7nmCnMtTp6+IUzYymYMDgupG0x1qxdfECxjYXLXV4Vm19+Kccmh4zE/ol+9Z2o1J+u91Uw==
+	L3GUQcTPe2EJYgdGCoNKKvC/o5R0CRDQggz2D99yqialvsp4fU8TYBmPDMxoGMHfiHil5ZEql+9zu08uvZvVnEYVb0fsls6idKw1W1ZA7zZfTG95t1wG4En4IFViWzTiKoCA/ByMw40oWGbimom7AkIwHM1Eb0RyuUnFKvclmdonPT/MAhTcH1x+DCQ/b97W2qigSVUtvEsjRDAiUf+6mNgpke3bh7cCw5byefU8DBdJsncnmXb3/C2C8FHDcwhWpNbbkHOdFzjU7Zjo4Vr4forJAepMxfi+vfJOLxS5yLcQ+RaJv0xZBRMs80sQ9l9F/bWdSOmXWSka0o2faBvFTzbHPTveWgqfK2vAraTrWsWq5hy/WehszM63as50R6JwqCtR0fW69AGkzFzr91bqRNZLfgDlzFiprQb34fIkE/a3LAaEFnFUrda5xjAMTmsR0mG55mr2jMK83byMk068FKfpf+mwTK7V8MSAzMVNylPIqDLwuhwi76x4xIBDQsq9c2CC15eC9xWGi1+27jQN2iHc3g1/AuUaKHB39Uc9JOAE3seEj0iMSsSpiNdcqXdQienRHhSs9JNuQSK582Mb17TWqXdO3dRLlZvxXZ0+uBW0K7ZZ96Po8aSLNaEIfIho4JVYHejlAGmV0f8yAcoZvP37x7hwdpdcR03hXVWhpfo3xY2HL3JcgkkTeNmZJ1LmTMgH5Z6xrk5kuTNXPqj149l0mYjNOyKKT8YdfyWQFWs=
 X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(10070799003)(366016)(1800799024)(18002099003)(921020)(56012099003)(22082099003);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(7416014)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
 X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?YXovTTJsTGI3M3BpblZxSDg5a3drT2RiZzFjQnBmRFBDMW9zNWVDa2xZYzhw?=
- =?utf-8?B?cFJGUDluUzgyNjExQ1VqVnpZTHErSHB5anBYVy8zYUI4VGRkQ3ZjOEVBMkIx?=
- =?utf-8?B?Wml4SFBRWi9rRVNHbE1XZEhNSVMzaFkwMmxseDZxenhUc0kzbHhDZlFBb01n?=
- =?utf-8?B?YXVwb282dS9UMFAzZW11b0UvYSs0TmVsQ282aXJHUXlNSVNGeFZYUWowcFJJ?=
- =?utf-8?B?aVZGaUIzVUkrM1RIUDJqOVhkVlZBMEhZaEpDTHZmaWdwMm5KeTNoUGZNVzlj?=
- =?utf-8?B?cDF0SVdMUkhxNjF0RHpGZjhocW40NjR6eGxIZXE1V09Ub0FRV1FlMVp5cHpF?=
- =?utf-8?B?NXBYbExzcDBVZDJaMWpIMDI2cGF2ZlVBWTIzQ0lCc2FFSytJNktZVndOcEFZ?=
- =?utf-8?B?YUN2MzFXazNJNUZnVTAzOTBYZmE0SklJZmxTRzArKzZMakJoUDZBbkg4ZVRL?=
- =?utf-8?B?YWJDc1Q5S0VyVmhJMzZGWE9vTm5UUmYwRXNiRURXZk92ZWV0VlJLWXdubmw0?=
- =?utf-8?B?UXJSK0J2SldONk4zTjBKaXR4TEZYNFVHK0I2dzVpbDdaMTA4R1pOSUJZSnVP?=
- =?utf-8?B?WjV2L2dEMWJSejVndHpQai9LR2dKUDhhSTY5TGVoVWU2bGROeXhxRk5tZ3FP?=
- =?utf-8?B?YzFqZHVVRFVzNEwydFdWUHNIWllqUVhDSGtIZTVYQXYzOVBBK01XZ0FqYk5v?=
- =?utf-8?B?dHFPV1RvUTZuZlRScGhEV3gyUUNCMVBFc2tyODdvcG90SUYzeDFybUc1aW56?=
- =?utf-8?B?TEd1Y25FS0kxMkIxNHBqeHlscDdHVmdQVkl5SFRPeFhWSlFOMzdid09KSytS?=
- =?utf-8?B?VnI5NFVTVHBwWlB3bjU0OTNlb21rOVBoclRCcWJ5enBRRDdyVzYzM0FPY0dx?=
- =?utf-8?B?RVlaUDZwa0hRRDRLZFdDS0RZaHRrNEg3cVJTQ2ZKbG9tSGppWW52YVFnSkVG?=
- =?utf-8?B?OHZiVm5sQzJWQ1RwQ1NydWhTVk0vejVQUTg2YldBcFBkQWE4Nkx3NW9DcnlZ?=
- =?utf-8?B?Y3NyRldubWpVWk51cm42VDY3K21oSkNPTlIrYXZiUWwzbHY3d2NaeFprVzBO?=
- =?utf-8?B?VFM0OFJLZHpOZ0QzZTJZeWUwdVF5M0s3L1NlUXhmZEl0UllPN3ZkblNyTHpJ?=
- =?utf-8?B?WE9hVmJtM2NHRCtYR3ZONGhvbUxuUkorRnI1NUlMMk9qV0RQd0tSM0RJZ0VM?=
- =?utf-8?B?WnFpNUsvSm1jUTZKd0xOaFFReUxXNVFnMU4yVW1EMjlyWmhYQUpYUE1nYmIx?=
- =?utf-8?B?TVlKaDB1MnczdzFSWnNnQVU0RlpOOEZqSlE2VjlDRmZyRW1uWW51TzRXZWJD?=
- =?utf-8?B?cktIeXhENmtiNThqeDZ5Y1NiWXYzaE5yTmFiVlVJdzA1R3VoNXhMUldmbklO?=
- =?utf-8?B?czd0SUVOOHZOcCtubVNVSUg0S0hJZWZ1N2orOXB3NSswQWUvYVEwdmQvU3pJ?=
- =?utf-8?B?Y2VTcG02VDROM09TWnRQYjkwSG9XN3FQMFpPSVQrZ2FOWEVVdlczUy9nRkR5?=
- =?utf-8?B?OUxhN05tVm1jbUZ5d05ScmVhbFVwMi9lanJIc2Vob1l4Yithak5ROG5yendZ?=
- =?utf-8?B?VUZJRVNQM25KS1dTc1VRNUhCdDVGUzZUWjhpUlB1SzE1Z3ovKzZtUkNONEha?=
- =?utf-8?B?Ni9hSVFkMjVyd0x5bG95cGxTeUREWFVhSndKN1N1TE1KVkorbkpPMCtOQTVx?=
- =?utf-8?B?dGYwN3ZQUjMrQjk4Qk0xQlBBMnYzN0svZzV2dUlQS0Y2V2U0SDQ0QXUrNFp2?=
- =?utf-8?B?QVBZUWtDbTRPM2QvNVRDckJkOG8wSUs2aGwvNjB1Y0VyMlowNWR1RFplaVJN?=
- =?utf-8?B?RWxYZWpGcjEwcEZjQWFsSEtiODF4eFd2WFF6WjhveGhpeU5Rbzh4L1RqOURT?=
- =?utf-8?B?a3NmOE1uelZNQU91Y1hLOWF1TFJZUnRFb0hkMUFmWDR3VVhBM2orUU1vZ096?=
- =?utf-8?B?S3RSL1FDN0RaaU5mZERrNzB1Z2oyNW1zcFgrNEV3S013aEErSW1MVVpWLzlh?=
- =?utf-8?B?eWZBcjJtZWdhVjVuWGk5eUthWUVGMzVqbE5VWHdmZ1MrQStqTXNPNVhNWTFN?=
- =?utf-8?B?Vkg5bkVTbWdNK3B5eTltT1pnQnZKSHRkellnTGJiaVFKK2NSaXM0bDdSNFow?=
- =?utf-8?B?Z0VaOXd6NVpJWUdaSWZoL0lOUGd5RkYyNUsyVHVYZ29acVlDQWVvTG03Q3E0?=
- =?utf-8?B?c3d2YlFLNWlVQWVWY0E5T2p4VW04d2t3cTVHelRobTFGVmdUa2FRM25zWGJK?=
- =?utf-8?B?Wit2c096TERkbjNKNG1HeFlwazNKWFdQZlJFcDJLQUllRzNCODhSU2tLM0ln?=
- =?utf-8?B?TFIwYU03amVKYjkxcXhmeEhibHBGMnMzcWRmMzcvVVRRb3VOWTRvUT09?=
-X-OriginatorOrg: garyguo.net
+	=?utf-8?B?dFlHcnZhTEdOZE5tRVpwMVNHRmduN0ZsU1o1aUljTWsyRkRnK1Q5OVdJSWMv?=
+ =?utf-8?B?UFh1Y1RyK2hsU3VpWHhFUnk4QTRqNEVnbitzcU11cTZoTk5qN3pKWkQ5ZE1M?=
+ =?utf-8?B?Z1psTlpzRGhmQzNYQ2NvZFhrblhYM0FCUmlsaVNYWUo3VTNDUHU0Qm9WVE5a?=
+ =?utf-8?B?SlJlOU02YS8vRnR5ODhxbkJSdXQvVVZhVFZTa2pyYnhYSXR6bnV1Q1JRNEZs?=
+ =?utf-8?B?QVNDUzdiMkhIVUhGV1JtZzdNN3RweUttZFU0UUZNYnVtVFk2d2EvN0xXKzhV?=
+ =?utf-8?B?R3JacUJMVGsrSHhBK0dsNUdJWlBMcUV6ejFJWEwxZjN0bm1DdjZjT2RGQmtu?=
+ =?utf-8?B?aXpyRzJqaTdHYTNFTG0wK2hVSXluQURGd29kMjNldWdTNWh6V2g2dEgxWjNI?=
+ =?utf-8?B?L3lWSGgwZ0cwMVllZ3R2eFJFNmZrMVhER3lkRnBGS1I3d0VYZnIwQ0djUmJ6?=
+ =?utf-8?B?cG03dlA5RXU4ZjVsVjBtN1IrNndNUmFEVFBqSkFZQmJocktLK1BCMnNCMUhr?=
+ =?utf-8?B?RldnN0k3aWRCZGVsbkNkVy93MUhXdG12bVgvTjZFTFhhQXl0Q0pCR1JNakh4?=
+ =?utf-8?B?aUlMb3ZwZkF0NkJCa0w0OXI4Wlh1bllQQ1daQVZsaUJzTmc5VVB2UVh6bEM0?=
+ =?utf-8?B?VEovbHpYNnlpUVI1a2dESHhKZEpRdjhBZjBlbDVtSXlxTVJ3RFU4a216ZXBa?=
+ =?utf-8?B?VUpvc3dtMzFQYnVCSzdFUEtuN1A5NFF2SXV2NmsvNUMzN0N2VDQvV29PdXlx?=
+ =?utf-8?B?akhrTWVORU5DcWFySHBjakN4MnJrcVpZZU5PNzlMcHFIb0RyNmdVTkRnTXlt?=
+ =?utf-8?B?QzZUT1FZMS9MeHVpQUhIOG1YL0ZmVURuanZoM1JBSzlYVVJMZk84Z3JiVDFG?=
+ =?utf-8?B?V0NyNXFTNEwyQUdrekxQOUxFRkNsaTFWbEVFRGZUZ1BqQkxkcGdYc0phTksw?=
+ =?utf-8?B?bzl4a2xlYnJCc0YxNmlxbDBUVmRIcm9EVGFIWWVFb1M2ZzZ1cExaQUZ0N1py?=
+ =?utf-8?B?Z0RqRXdmZkNPQmdiMFQ2Z3J1d0RMbU9UaWUzdzJDZ3o5Z2t2L2xIdUtaaVlW?=
+ =?utf-8?B?K2I0M0VwN1FSRnBlTlA5ZW1KdG85QVNEMXEwQjV6blJPamxRU1hFZkpXdThz?=
+ =?utf-8?B?U09MM0hYK2htYVIrSUFhbHcyOXZZaC9EWStGL3B6WkJpWjVBVFVGOWZjTEt4?=
+ =?utf-8?B?SmowTnN0RzhIQVJaM2dOam1vSERyTHdGYlhZbk9sem95NCtQN291OFVweWsz?=
+ =?utf-8?B?K2w1N2M3Qmw3L0ZyT0JtTUcvR0hTMU8xTnVkc1d3V1BYQnBGVXNnRE1FVEsy?=
+ =?utf-8?B?NFNqRzdhRjR6ZjNlWHFvT0RBK1E3ZjRyR2NxSzlidFJQcW13MzNHL2VOV1pa?=
+ =?utf-8?B?UzhSdk1EdHZGdjBiR2lZQTlBVG1yNHpkMHMyL20vTmdRUjYrK2pRQmdsaG9z?=
+ =?utf-8?B?d2tBNmxRQk96UEhXcmFaVG43STlBZ0IzcE1URmhqaDZIbUxFZit2RU5MVFhw?=
+ =?utf-8?B?eDVqYmNaUnF3UDlhNHFtVHhxOUZnNUk0QmV4anFnaDNUNGlGbm1acVFsdGIr?=
+ =?utf-8?B?YzRLNE1nQnJML3hFME9DZlVuMGo3K0poT1B5aDdBZzU2T2ljMHVJYysxaVRC?=
+ =?utf-8?B?RUZtNGdSUXp1V1J1aTQ3TzZqWE80YTFrbFNJZjlsNUNpYnB2ci9jWDF6aG1O?=
+ =?utf-8?B?eDdQT3VNZzNESnkwWEpQeTUwbFc1eFc1eWt1b2dYcm9DL2p2dFBxREJzSk9w?=
+ =?utf-8?B?VmsvNWV6V2pyZTFmYis3Uys0MmtabVNkYmFUcjFmSmxUU0NkK3BOU2lxZlhE?=
+ =?utf-8?B?RllzRWhiYWVNcERJWDZCQVIxTGE5VWMydm1jMTZUT3dIbEkxbDlLeGpPdUxC?=
+ =?utf-8?B?SHhTVnRSVy9KWERES2JiOGYvdlhIcm9BeWVjVTBGWFBQbFZ0TGVRU1U2K3Fq?=
+ =?utf-8?B?RUV6ZnBFbGplQ2p6QnpDb29LWGFTcjgvSENISnV0eDJNcFJ4Q0xJYlRkU2pu?=
+ =?utf-8?B?V2pxNloyWnhBRFN1bGFxZ21LSkRvOUFYeTVGY3l1WCtSYWRJMlhMNnpzZ0k0?=
+ =?utf-8?B?dFdVSGEzNmdDMkpSL1VkYWVIaC9ZOUMrZDZYNDdLMnJZTmd1UFlhRXlQTGts?=
+ =?utf-8?B?TXVwanN0Z3BXOTJMUXVuQk85OHhZQTdtR0wxOUI0Z01lSzZHSzh3NFVDVnhU?=
+ =?utf-8?B?YkVqL2YwWFZyN1ZLRHVaRWZNdjZNZElVSXhoN0xxL1A3WXlxTlFZN1lMckJt?=
+ =?utf-8?B?eWIwWFhPTXJQODAwM0lPOXV3TXJybTRpZWJsTlB4RmNaMFBqdzJjWjNxcisz?=
+ =?utf-8?B?RnpIcmduemlKOWV6aXRTQ0U3d2VIdDAzZWlNV2JrRU1NOVVKeWE3SkdRbFBp?=
+ =?utf-8?Q?olUvXdb4xYzUdexL4pKB9HP76DA5FqFZEefTxYTtt9cdo?=
+X-MS-Exchange-AntiSpam-MessageData-1: D+oDKuMdfnsUlQ==
+X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-Network-Message-Id: 
- 0c8d6c5f-370b-4857-ed36-08dea12c4f7a
-X-MS-Exchange-CrossTenant-AuthSource: CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ 90323fa4-0463-485b-cca9-08dea1493665
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 11:34:41.8296
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 15:01:35.4222
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
 X-MS-Exchange-CrossTenant-UserPrincipalName: 
- us2Hgn3qe/+Fk7ICmqizx5qWCA0L++4sAN3Y0yBTfiorNm8isBkwvxsp88MukQrFwiBOCjTKwS76bFDV9ffz4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB5180
-Message-ID-Hash: R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF
-X-Message-ID-Hash: R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF
-X-MailFrom: gary@garyguo.net
+ eg3dxs+CTizuvQJwrAbsuZeTkCFzazvyO076wn/lrIdM1lCiwFHo7SJjgPogE51wlaJx8IruqVshI0EcTYYAaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPF482CFEB7D
+Message-ID-Hash: KVMK2LXCAIKF6LSWIKVNRNVYNO6JXRR5
+X-Message-ID-Hash: KVMK2LXCAIKF6LSWIKVNRNVYNO6JXRR5
+X-MailFrom: acourbot@nvidia.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Alistair Popple <apopple@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
+CC: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ dri-devel@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
+ Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/KVMK2LXCAIKF6LSWIKVNRNVYNO6JXRR5/>
 Archived-At: 
- <https://lore.freedesktop.org/DI0I3TH8B8ZZ.2118S8MDUHG@garyguo.net/>
+ <https://lore.freedesktop.org/DI0MI6UF325Y.2TDWZGCN3WGIG@nvidia.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -190,39 +193,452 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Apr 21, 2026 at 7:16 AM BST, Alexandre Courbot wrote:
-> While we already have the `warn_on` macro, a common usage pattern in
-> Rust is to check whether a `Result` is an error. Add a helper macro that
-> allows this.
+Hi Lyude,
+
+On Wed Apr 22, 2026 at 8:52 AM JST, Lyude Paul wrote:
+> In order to do this, we need to be careful to ensure that any interface w=
+e
+> expose for scatterlists ensures that any mappings created from one are
+> destroyed on driver-unbind. To do this, we introduce a Devres resource in=
+to
+> shmem::Object that we use in order to ensure that we release any SGTable
+> mappings on driver-unbind. We store this in an UnsafeCell and protect
+> access to it using the dma_resv lock that we already have from the shmem
+> gem object, which is the same lock that currently protects
+> drm_gem_object_shmem->sgt.
 >
-> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> We also provide two different methods for acquiring an sg table:
+> self.sg_table(), and self.owned_sg_table(). The first function is for
+> short-term uses of mapped SGTables, the second is for callers that need t=
+o
+> hold onto the mapped SGTable for an extended period of time. The second
+> variant uses Devres of course, whereas the first simply relies on rust's
+> borrow checker to prevent driver-unbind when using the mapped SGTable.
+>
+> Signed-off-by: Lyude Paul <lyude@redhat.com>
+>
 > ---
->  rust/kernel/bug.rs | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> V3:
+> * Rename OwnedSGTable to shmem::SGTable. Since the current version of the
+>   SGTable abstractions now has a `Owned` and `Borrowed` variant, I think
+>   renaming this to shmem::SGTable makes things less confusing.
+>   We do however, keep the name of owned_sg_table() as-is.
+> V4:
+> * Clarify safety comments for SGTable to explain why the object is
+>   thread-safe.
+> * Rename from SGTableRef to SGTable
+> V10:
+> * Use Devres in order to ensure that SGTables are revocable, and are
+>   unmapped on driver-unbind.
+> V11:
+> * s/create_sg_table()/get_sg_table()
+> * Get rid of extraneous `ret =3D ` in shmem::Object::get_sg_table()
+> V12:
+> * Actually move sgt_res in this patch and not the next one
 >
-> diff --git a/rust/kernel/bug.rs b/rust/kernel/bug.rs
-> index ed943960f851..2fefc0aeef81 100644
-> --- a/rust/kernel/bug.rs
-> +++ b/rust/kernel/bug.rs
-> @@ -130,3 +130,13 @@ macro_rules! warn_on {
->          cond
->      }};
+>  rust/kernel/drm/gem/shmem.rs | 192 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 190 insertions(+), 2 deletions(-)
+>
+> diff --git a/rust/kernel/drm/gem/shmem.rs b/rust/kernel/drm/gem/shmem.rs
+> index 11749c36e8695..a477312c8a09b 100644
+> --- a/rust/kernel/drm/gem/shmem.rs
+> +++ b/rust/kernel/drm/gem/shmem.rs
+> @@ -11,25 +11,38 @@
+> =20
+>  use crate::{
+>      container_of,
+> +    device::{
+> +        self,
+> +        Bound, //
+> +    },
+> +    devres::*,
+>      drm::{
+>          driver,
+>          gem,
+>          private::Sealed,
+>          Device, //
+>      },
+> -    error::to_result,
+> +    error::{
+> +        from_err_ptr,
+> +        to_result, //
+> +    },
+>      prelude::*,
+> +    scatterlist,
+>      types::{
+>          ARef,
+
+This fails on master:
+
+    error[E0432]: unresolved import `crate::sync::ARef`
+      --> ../rust/kernel/drm/gem/shmem.rs:36:5
+      |
+    36 |     sync::ARef,
+      |     ^^^^^^^^^^ no `ARef` in `sync`
+
+Importing `sync::aref::ARef` seems to be the correct way now.
+
+>          Opaque, //
+>      }, //
+>  };
+>  use core::{
+> +    cell::UnsafeCell,
+>      ops::{
+>          Deref,
+>          DerefMut, //
+>      },
+> -    ptr::NonNull,
+> +    ptr::{
+> +        self,
+> +        NonNull, //
+> +    },
+>  };
+>  use gem::{
+>      BaseObjectPrivate,
+> @@ -61,6 +74,11 @@ pub struct ObjectConfig<'a, T: DriverObject> {
+>  #[repr(C)]
+>  #[pin_data]
+>  pub struct Object<T: DriverObject> {
+> +    /// Devres object for unmapping any SGTable on driver-unbind.
+> +    ///
+> +    /// This is protected by the object's dma_resv lock. It needs to be =
+before `obj` to ensure that
+> +    /// it is destroyed before `obj` on `Drop`.
+> +    sgt_res: UnsafeCell<Option<Devres<SGTableMap<T>>>>,
+
+I didn't like this `UnsafeCell<Option>` since the last time, but only figur=
+ed how to replace it now:
+
+    sgt_res: SetOnce<Devres<SGTableMap<T>>>,
+
+It's actually designed for that! And lets you remove at least one unsafe
+statement, while simplifying `get_sg_table` quite a bit. With the other
+suggestions I have below, here is my version of `get_sg_table` for
+reference:
+
+    fn get_sg_table<'a>(
+        &'a self,
+        dev: &'a device::Device<Bound>,
+    ) -> Result<&'a Devres<SGTableMap<T>>> {
+        let _dma_resv =3D DmaResvGuard::new(self);
+
+        if let Some(devres) =3D self.sgt_res.as_ref() {
+            Ok(devres)
+        } else {
+            // Only called for the side-effect of populating the GEM SG tab=
+le.
+            // SAFETY: We grabbed the lock required for calling this functi=
+on above.
+            from_err_ptr(unsafe {
+                bindings::drm_gem_shmem_get_pages_sgt_locked(self.as_raw_sh=
+mem())
+            })?;
+
+            // INVARIANT:
+            // - We called drm_gem_shmem_get_pages_sgt_locked above and che=
+cked that it
+            //   succeeded, fulfilling the invariant of `SGTableMap` that t=
+he object's `sgt` field
+            //   is initialized.
+            // - We store this Devres in the object itself and don't move i=
+t, ensuring that the
+            //   object it points to remains valid for the lifetime of the =
+`SGTableMap`.
+            let devres =3D
+                Devres::new(dev, init!(SGTableMap { obj: self.into() })).in=
+spect_err(|_| {
+                    // We can't make sure that the pages for this object ar=
+e unmapped on
+                    // driver-unbind, so we need to release the sgt
+                    // SAFETY:
+                    // - We grabbed the lock required for calling this func=
+tion above
+                    // - We checked above that get_pages_sgt_locked() was s=
+uccessful
+                    unsafe { bindings::__drm_gem_shmem_free_sgt_locked(self=
+.as_raw_shmem()) }
+                })?;
+
+            self.sgt_res.populate(devres);
+
+            // PANIC: `populate` has just succeeded, guaranteeing that `sgt=
+_res` is populated.
+            Ok(self.sgt_res.as_ref().unwrap())
+        }
+    }
+
+And if only we could populate the `SetOnce` with a `impl Init<T, E>`,
+then we could even remove the DMA reservation acquisition on the fast
+path, because `SetOnce` comes with its own locking and the DMA lock here
+is used outside of its intended scope. I'll try to push the necessary
+work for `SetOnce` and maybe we can do that as a follow-up patch.
+
+>      #[pin]
+>      obj: Opaque<bindings::drm_gem_shmem_object>,
+>      /// Parent object that owns this object's DMA reservation object.
+> @@ -117,6 +135,7 @@ pub fn new(
+>              try_pin_init!(Self {
+>                  obj <- Opaque::init_zeroed(),
+>                  parent_resv_obj: config.parent_resv_obj.map(|p| p.into()=
+),
+> +                sgt_res: UnsafeCell::new(None),
+>                  inner <- T::new(dev, size, args),
+>              }),
+>              GFP_KERNEL,
+> @@ -176,6 +195,100 @@ extern "C" fn free_callback(obj: *mut bindings::drm=
+_gem_object) {
+>          // SAFETY: We're recovering the Kbox<> we created in gem_create_=
+object()
+>          let _ =3D unsafe { KBox::from_raw(this) };
+>      }
+> +
+> +    // If necessary, create an SGTable for the gem object and register a=
+ Devres for it to ensure
+> +    // that it is unmapped on driver unbind.
+> +    fn get_sg_table<'a>(
+> +        &'a self,
+> +        dev: &'a device::Device<Bound>,
+> +    ) -> Result<&'a Devres<SGTableMap<T>>> {
+> +        let sgt_res_ptr =3D self.sgt_res.get();
+> +
+> +        // SAFETY: This lock is initialized throughout the lifetime of t=
+he gem object
+> +        unsafe { bindings::dma_resv_lock(self.raw_dma_resv(), ptr::null_=
+mut()) };
+
+There are 4 sites where we acquire and release the DMA resv lock, each
+of which require unsafe blocks and carrying the risk that we forget
+releasing the lock in the end. For this method in particular we need to
+jump through hoops a bit and store the return value into a temporary
+variable so we can unlock the DMA reservation.
+
+Let's do ourselves a favor and implement a small, private guard type:
+
+    struct DmaResvGuard<'a, T: DriverObject>(&'a Object<T>);
+
+    impl<'a, T: DriverObject> DmaResvGuard<'a, T> {
+        fn new(object: &'a Object<T>) -> Self {
+            // SAFETY: This lock is initialized throughout the lifetime of =
+`object`
+            unsafe { bindings::dma_resv_lock(object.raw_dma_resv(), ptr::nu=
+ll_mut()) };
+
+            Self(object)
+        }
+    }
+
+    impl<'a, T> Drop for DmaResvGuard<'a, T>
+    where
+        T: DriverObject,
+    {
+        fn drop(&mut self) {
+            // SAFETY: We are releasing the lock grabbed during the creatio=
+n of this object.
+            unsafe { bindings::dma_resv_unlock(self.0.raw_dma_resv()) };
+        }
+    }
+
+There here you would just do
+
+    let _dma_resv =3D DmaResvGuard::new(self);
+
+and write the rest of the method without without having to worry about
+not returning early. It also let's you improve the flow of the code a
+bit, and requires less unsafe blocks overall.
+
+I am not sure how much of the TODO at the beginning of the file this
+solves, but it should also make it easier to switch to something that
+acquires a reference to a Wwmutex.
+
+> +
+> +        // SAFETY: We just grabbed the lock required for reading this da=
+ta above.
+> +        let sgt_res =3D unsafe { (*sgt_res_ptr).as_ref() };
+> +
+> +        let ret =3D if let Some(sgt_res) =3D sgt_res {
+> +            // We already have a Devres object for this sg table, return=
+ it
+> +            Ok(sgt_res)
+> +        } else {
+> +            // SAFETY: We grabbed the lock required for calling this fun=
+ction above */
+> +            let sgt =3D from_err_ptr(unsafe {
+> +                bindings::drm_gem_shmem_get_pages_sgt_locked(self.as_raw=
+_shmem())
+> +            });
+> +
+> +            if let Err(e) =3D sgt {
+> +                Err(e)
+> +            } else {
+> +                // INVARIANT:
+> +                // - We called drm_gem_shmem_get_pages_sgt_locked above =
+and checked that it
+> +                //   succeeded, fulfilling the invariant of SGTableRef t=
+hat the object's `sgt` field
+
+s/SGTableRef/SGTableMap? (several like this through the patch).
+
+> +                //   is initialized.
+> +                // - We store this Devres in the object itself and don't=
+ move it, ensuring that the
+> +                //   object it points to remains valid for the lifetime =
+of the SGTableRef.
+> +                let devres =3D Devres::new(dev, init!(SGTableMap { obj: =
+self.into() }));
+> +                match devres {
+> +                    Ok(devres) =3D> {
+> +                        // SAFETY: We acquired the lock protecting this =
+data above, making it safe
+> +                        // to write into here
+> +                        unsafe { (*sgt_res_ptr) =3D Some(devres) };
+> +
+> +                        // SAFETY: We just write Some() into *sgt_res_pt=
+r above
+> +                        Ok(unsafe { (&*sgt_res_ptr).as_ref().unwrap_unch=
+ecked() })
+> +                    }
+> +                    Err(e) =3D> {
+> +                        // We can't make sure that the pages for this ob=
+ject are unmapped on
+> +                        // driver-unbind, so we need to release the sgt
+> +                        // SAFETY:
+> +                        // - We grabbed the lock required for calling th=
+is function above
+> +                        // - We checked above that get_pages_sgt_locked(=
+) was successful
+> +                        unsafe { bindings::__drm_gem_shmem_free_sgt_lock=
+ed(self.as_raw_shmem()) };
+> +
+> +                        Err(e)
+> +                    }
+> +                }
+> +            }
+> +        };
+> +
+> +        // SAFETY: We're releasing the lock that we grabbed above.
+> +        unsafe { bindings::dma_resv_unlock(self.raw_dma_resv()) };
+> +
+> +        ret
+> +    }
+> +
+> +    /// Creates (if necessary) and returns an immutable reference to a s=
+catter-gather table of DMA
+> +    /// pages for this object.
+> +    ///
+> +    /// This will pin the object in memory.
+> +    #[inline]
+> +    pub fn sg_table<'a>(
+> +        &'a self,
+> +        dev: &'a device::Device<Bound>,
+> +    ) -> Result<&'a scatterlist::SGTable> {
+> +        let sgt =3D self.get_sg_table(dev)?;
+> +
+> +        Ok(sgt.access(dev)?.deref())
+> +    }
+> +
+> +    /// Creates (if necessary) and returns an owned reference to a scatt=
+er-gather table of DMA pages
+> +    /// for this object.
+> +    ///
+> +    /// This is the same as [`sg_table`](Self::sg_table), except that it=
+ instead returns an
+> +    /// [`shmem::SGTable`] which holds a reference to the associated gem=
+ object, instead of a
+> +    /// reference to an [`scatterlist::SGTable`].
+> +    ///
+> +    /// This will pin the object in memory.
+> +    ///
+> +    /// [`shmem::SGTable`]: SGTable
+> +    pub fn owned_sg_table(&self, dev: &device::Device<Bound>) -> Result<=
+SGTable<T>> {
+> +        self.get_sg_table(dev)?;
+> +
+> +        // INVARIANT: We just ensured above that `self.sgt_res` is initi=
+alized with
+> +        // `Some(Devres<SGTableMap<T>>)`.
+> +        Ok(SGTable(self.into()))
+> +    }
+>  }
+> =20
+>  impl<T: DriverObject> Deref for Object<T> {
+> @@ -226,3 +339,78 @@ impl<T: DriverObject> driver::AllocImpl for Object<T=
+> {
+>          dumb_map_offset: None,
+>      };
 >  }
 > +
-> +/// Report a warning if `res` is an error and return it unmodified.
-> +#[macro_export]
-> +macro_rules! warn_on_err {
-> +    ($res:expr) =3D> {{
-> +        let res =3D $res;
-> +        let _ =3D $crate::warn_on!(res.is_err());
-> +        res
-> +    }};
+> +/// A reference to a GEM object that is known to have a mapped [`SGTable=
+`].
+> +///
+> +/// This is used by the Rust bindings with [`Devres`] in order to ensure=
+ that mappings for SGTables
+> +/// on GEM shmem objects are revoked on driver-unbind.
+> +///
+> +/// # Invariants
+> +///
+> +/// - `self.obj` always points to a valid GEM object.
+> +/// - This object is proof that `self.0.owner.sgt` has an initialized an=
+d valid SGTable.
+
+The comment mentions `self.0` and "a valid SGTable", which don't seem to
+apply to this type.
+
+> +pub struct SGTableMap<T: DriverObject> {
+> +    obj: NonNull<Object<T>>,
 > +}
+> +
+> +impl<T: DriverObject> Deref for SGTableMap<T> {
+> +    type Target =3D scatterlist::SGTable;
+> +
+> +    fn deref(&self) -> &Self::Target {
+> +        // SAFETY:
+> +        // - The NonNull is guaranteed to be valid via our type invarian=
+ts.
+> +        // - The sgt field is guaranteed to be initialized and valid via=
+ our type invariants.
+> +        unsafe { scatterlist::SGTable::from_raw((*self.obj.as_ref().as_r=
+aw_shmem()).sgt) }
+> +    }
+> +}
+> +
+> +impl<T: DriverObject> Drop for SGTableMap<T> {
+> +    fn drop(&mut self) {
+> +        // SAFETY: `obj` is always valid via our type invariants
+> +        let obj =3D unsafe { self.obj.as_ref() };
+> +
+> +        // SAFETY: The dma_resv for GEM objects is initialized throughou=
+t its lifetime
+> +        unsafe { bindings::dma_resv_lock(obj.raw_dma_resv(), ptr::null_m=
+ut()) };
+> +
+> +        // SAFETY: We acquired the lock needed for calling this function=
+ above
+> +        unsafe { bindings::__drm_gem_shmem_free_sgt_locked(obj.as_raw_sh=
+mem()) };
 
+For symmetry, I wanted to suggest moving the call to
+`drm_gem_shmem_get_pages_sgt_locked` to a (fallible) constructor of
+`SGTableMap`.
 
-I think `warn_on_err` could just be expressed as
+It's not only for cosmetic and code proximity reasons - once you bind
+the call to `drm_gem_shmem_get_pages_sgt_locked` to the successful
+creation of the `SGTableMap` object, you can remove the custom error
+path of `get_sg_table` that called `__drm_gem_shmem_free_sgt_locked` if
+`Devres::new` failed since the destructor of `SGTableMap` will now take
+care of this for us. This simplifies the last complex bit of
+`get_sg_table`.
 
-    res.inspect_err(|_| warn_on!(true))
+The problem is that it would also normally require `SGTableMap::new` to
+acquire the DMA reservation lock in order to call
+`drm_gem_shmem_get_pages_sgt_locked`, but we already have it in
+`get_sg_table`.
 
-Best,
-Gary
+If we stopped using the DMA reservation lock as a lock for population
+`sgt_res` and instead switched to a regular Mutex, we could then move
+the DMA reservation acquisition to the constructor, attain symmetry, and
+simplify `get_sg_table` to the point where it becomes trivial. That use
+is also fragile as the `SGTableMap` destructor acquires it, so we must
+be very careful to never drop it in `get_sg_table`.
+
+I think that would be a good tradeoff for the time until we make
+`SetOnce` capable of being populated using an `impl Init`.
