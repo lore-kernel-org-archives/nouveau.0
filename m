@@ -4,21 +4,21 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C698FAD3F1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88AD9FAD3F3
 	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:30 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABF010EFBB;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id B62B310EFC0;
 	Thu, 23 Apr 2026 02:55:22 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 5D27645AC9;
+	by kara.freedesktop.org (Postfix) with ESMTP id 987884562F;
 	Thu, 23 Apr 2026 02:43:12 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1776912192;
- b=JQ6xdSBYHwc4Zxtw9VdLSjcoZgnm6hmFGSnGSeTJ6HesG1iCPEvNoSzdlRnCT+E/l8dY1
- V7iAgpvBENXUk8Y1/sX64ANBZ4xWOieOtWQoA7YdHPGrTtkvamG3aDwnWozE4V1vcm7b9KT
- c6Q2z/bwDNDPx1Pi7yFzVE7QDBgAW4aNEeILK2xTAbXDd5g7soIDL2DjnurfMeMjH8vUZhC
- zUosHVDdNwNCrV9oYkw4MFPaymLhPA0wml7+lYj5+2PjaN5jkDon/s3F8mla1HE2ybHEYYx
- 2H0G4SFmFBhd1mh1scCVIctslC61H0owBA7cf7vYz0kBDc0im4NkHwvfJc0A==
+ b=XWpqrgqIdSpuC3UCHVQj8jJ/fqY60RBqsr4xSSKXshm0SkzIcE1N+PhNqetcQCpBbhFEZ
+ nbzw2NrEh74iUp1EDE/6llIhCaGYCaHMAT13FMAoMvZLDjsW6LVoUxJiSVe6Y1nPJSOcxck
+ uKryRio9fXdYD9Y+wKIl8Ihd+cDJf8oDQZe8Jo4awiB+lEVV2P+UBVGDA5T2SPonXN5NJE4
+ rBwbDR8GVBFExEz4FGuW7mQKRbevOyM9uQTAMYs58XUlixinS/xb0ZvUJ0anTYc+Ii9m42Z
+ sL2Z5SGiOBwClAHnDzyqngO8foB0GMKWBqcjKDbdiaGWSlkEBAGjt7kXJiuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1776912192; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
@@ -27,12 +27,12 @@ ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=0wNSLtsjD5jH3JNkfeBvXz7m6FTGNrgqXfGU6s+BvXY=;
- b=J80yXH2xS2QhQsIh4Tmj4HZXcZjzyVjEb6xRaMROi4P8BgC+3TKGbsPLmJbeWFP+rT6du
- lWCwYfzS8oI4XXqH2c9vZO+rdGez7zf/y1qBP01OvcmabWoFO7nkLJtUS9JX99UTvNXCw9v
- FWfZudggks/ce3u2xFKwXmKeWwnVvcGenU+vTOAgpabna1iVICSGqTCRRlzYqtfUO3swt4m
- r5T8kQ5fTnZWF2g+kDRLP5XiESahof/iYpfrhYXXPL6SX8SQ002DzT7c0Z5/1hfOQj9T3PJ
- kf9Yx0pWGv4481C8IDJYJvTA08cm4OTO0pJjDMycGMnRJ/SsC5ujmddEs9pA==
+ bh=iTy0bpU+vhzGUwty+6IzVftc3Tivovm8Sz37JoiMNPY=;
+ b=hJ7RjgDlf2YUnSxCt9CXmdYuhmpGbd9YTlbN80sZ7K4bopvKmdVgRjLTmbrzGXSnCXRXN
+ ljMw5X2EtCawc9MEQMWRWRSX9lfFhwMkYvdBoIKPdTVKI11GQLO8Kk1FVgXfhWofPboDlMX
+ QQFDCjOAc0oQtVGeflzbnbRn+rag85UEp0OKL0py/XWZZ4zTdx3OWhRBKxHmi8GOhNchlu/
+ AKdpvut7/DIGrCAQvsr+9XGe2kqshZzk0r23cRdwQMb78/I+qWICL5Bq7Ll5IndgBhSrei4
+ KXyLPrTiimx2yyEMTe/tZ3SqoIDtAYshzHuUPanx4QLhmXVraVY4fv0LYogg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
   arc=none (Message is not ARC signed);
   dmarc=fail (Used From Domain Record) header.from=gmail.com
@@ -42,50 +42,49 @@ Authentication-Results: mail.freedesktop.org; dkim=fail;
  dmarc=fail (Used From Domain Record) header.from=gmail.com
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id B6FBC40497
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:04 +0000 (UTC)
-X-Greylist: delayed 371 seconds by postgrey-1.36 at gabe;
- Thu, 23 Apr 2026 00:52:14 UTC
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9B79045B13
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:07 +0000 (UTC)
 Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [205.139.111.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 4573B10EA43
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:52:14 +0000 (UTC)
-Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 3365810EA43
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:52:17 +0000 (UTC)
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
  (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
  relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-261--SG59XNgNfeJCjA3UyWvKw-1; Wed,
- 22 Apr 2026 20:46:02 -0400
-X-MC-Unique: -SG59XNgNfeJCjA3UyWvKw-1
-X-Mimecast-MFC-AGG-ID: -SG59XNgNfeJCjA3UyWvKw_1776905161
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-512-Rk-ZGCMvPuGIX5EMFfqjjw-1; Wed,
+ 22 Apr 2026 20:46:07 -0400
+X-MC-Unique: Rk-ZGCMvPuGIX5EMFfqjjw-1
+X-Mimecast-MFC-AGG-ID: Rk-ZGCMvPuGIX5EMFfqjjw_1776905167
 Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
  (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
  SHA256)
 	(No client certificate requested)
-	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id 8B221195608E;
-	Thu, 23 Apr 2026 00:46:01 +0000 (UTC)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id E243E1956089;
+	Thu, 23 Apr 2026 00:46:06 +0000 (UTC)
 Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.53])
 	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 75BCC30001A1;
-	Thu, 23 Apr 2026 00:45:59 +0000 (UTC)
+ id 0759B30001A1;
+	Thu, 23 Apr 2026 00:46:04 +0000 (UTC)
 From: Dave Airlie <airlied@gmail.com>
 To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 1/4] nouveau: move HDMI sink caps to outp level for GSP-RM
-Date: Thu, 23 Apr 2026 10:42:13 +1000
-Message-ID: <20260423004552.3289884-2-airlied@gmail.com>
+Subject: [PATCH 3/4] nouveau: add HDMI FRL training API and retrain event
+ handling
+Date: Thu, 23 Apr 2026 10:42:15 +1000
+Message-ID: <20260423004552.3289884-4-airlied@gmail.com>
 In-Reply-To: <20260423004552.3289884-1-airlied@gmail.com>
 References: <20260423004552.3289884-1-airlied@gmail.com>
 MIME-Version: 1.0
 X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: ACEezZf2bXWAXL0Rdfs6RlYcKMQ5rRbSQ-Z4JDXBVNE_1776905161
+X-Mimecast-MFC-PROC-ID: JVKRfx5E4_Ye6PxGb7HrgsD_YWa3BmYBBI7oShAO72U_1776905167
 X-Mimecast-Originator: gmail.com
 Content-Transfer-Encoding: quoted-printable
 content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED
-X-Message-ID-Hash: QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED
+Message-ID-Hash: BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4
+X-Message-ID-Hash: BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4
 X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation; nonmember-moderation; administrivia;
@@ -96,9 +95,9 @@ X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4/>
 Archived-At: 
- <https://lore.freedesktop.org/20260423004552.3289884-2-airlied@gmail.com/>
+ <https://lore.freedesktop.org/20260423004552.3289884-4-airlied@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -110,311 +109,423 @@ List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
 From: Dave Airlie <airlied@redhat.com>
 
-NVIDIA's driver sends SET_HDMI_SINK_CAPS during connector detection
-(ApplyNewEdid), not during modeset. Move this RM call from the IOR-level
-scdc callback to a new outp-level hdmi_sink_caps method that doesn't
-require an acquired SOR.
+Add the nvif/nvkm plumbing for HDMI 2.1 Fixed Rate Link training and
+FRL retrain event notification from GSP-RM firmware.
 
-Add nvif_outp_hdmi_sink_caps() routed through the noacquire dispatch
-table and call it from nouveau_connector_detect() for TMDS outputs on
-Turing+. Remove r535_sor_hdmi_scdc and its .scdc entry from r535_sor_hdmi
-since GSP now gets sink caps at detect time. The gm200 hardware scdc
-callback is preserved for direct register writes on pre-GSP chips.
+Wire format: NVIF_OUTP_V0_HDMI_FRL (0x51) method with head and frl_rate
+parameters, dispatched through the acquired IOR table in uoutp.c.
+
+Backend: r535 GSP-RM implementation using SET_HDMI_FRL_CONFIG (0x73029a)
+RM control with NVVAL-encoded FRL rate. Training attempts real link
+training first, falling back to fake LT on failure.
+
+Events: Register for NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST (18)
+from GSP, propagated as NVKM_DPYID_FRL_RETRAIN / NVIF_CONN_EVENT_V0_FRL
+through the existing connector event infrastructure.
+
+FRL is automatically cleared when HDMI output is disabled.
 
 This was claude code assisted.
 
 Signed-off-by: Dave Airlie <airlied@redhat.com>
 ---
- drivers/gpu/drm/nouveau/include/nvif/if0012.h | 11 ++++
- drivers/gpu/drm/nouveau/include/nvif/outp.h   |  2 +
- drivers/gpu/drm/nouveau/nouveau_connector.c   | 11 ++++
- drivers/gpu/drm/nouveau/nvif/outp.c           | 19 +++++++
- .../gpu/drm/nouveau/nvkm/engine/disp/outp.h   |  2 +
- .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 23 +++++++--
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 51 +++++++++----------
- 7 files changed, 89 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/nouveau/include/nvif/if0011.h |  1 +
+ drivers/gpu/drm/nouveau/include/nvif/if0012.h | 10 +++
+ drivers/gpu/drm/nouveau/include/nvif/outp.h   |  1 +
+ .../drm/nouveau/include/nvkm/engine/disp.h    |  8 ++-
+ drivers/gpu/drm/nouveau/nvif/outp.c           | 16 +++++
+ .../gpu/drm/nouveau/nvkm/engine/disp/ior.h    |  1 +
+ .../gpu/drm/nouveau/nvkm/engine/disp/uconn.c  |  3 +
+ .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 20 ++++++
+ .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 65 ++++++++++++++++++-
+ .../nvkm/subdev/gsp/rm/r535/nvrm/disp.h       | 26 ++++++++
+ 10 files changed, 147 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0011.h b/drivers/gpu/dr=
+m/nouveau/include/nvif/if0011.h
+index 3ed0ddd75bd8f..3dfbcd1238fc0 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/if0011.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/if0011.h
+@@ -26,6 +26,7 @@ union nvif_conn_event_args {
+ #define NVIF_CONN_EVENT_V0_PLUG   0x01
+ #define NVIF_CONN_EVENT_V0_UNPLUG 0x02
+ #define NVIF_CONN_EVENT_V0_IRQ    0x04
++#define NVIF_CONN_EVENT_V0_FRL    0x08
+ =09=09__u8 types;
+ =09=09__u8 pad02[6];
+ =09} v0;
 diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0012.h b/drivers/gpu/dr=
 m/nouveau/include/nvif/if0012.h
-index bde9bfae8d11f..89cfac7ef3a54 100644
+index dc0a5c372f511..84145d22c2593 100644
 --- a/drivers/gpu/drm/nouveau/include/nvif/if0012.h
 +++ b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-@@ -43,6 +43,7 @@ union nvif_outp_args {
+@@ -57,6 +57,7 @@ union nvif_outp_args {
+ #define NVIF_OUTP_V0_LVDS          0x40
 =20
- #define NVIF_OUTP_V0_DETECT        0x00
- #define NVIF_OUTP_V0_EDID_GET      0x01
-+#define NVIF_OUTP_V0_HDMI_SINK_CAPS 0x02
+ #define NVIF_OUTP_V0_HDMI          0x50
++#define NVIF_OUTP_V0_HDMI_FRL      0x51
 =20
- #define NVIF_OUTP_V0_INHERIT       0x10
- #define NVIF_OUTP_V0_ACQUIRE       0x11
-@@ -165,6 +166,16 @@ union nvif_outp_lvds_args {
+ #define NVIF_OUTP_V0_INFOFRAME     0x60
+ #define NVIF_OUTP_V0_HDA_ELD       0x61
+@@ -192,6 +193,15 @@ union nvif_outp_hdmi_args {
  =09} v0;
  };
 =20
-+union nvif_outp_hdmi_sink_caps_args {
-+=09struct nvif_outp_hdmi_sink_caps_v0 {
++union nvif_outp_hdmi_frl_args {
++=09struct nvif_outp_hdmi_frl_v0 {
 +=09=09__u8 version;
-+=09=09__u8 scdc;
-+=09=09__u8 scdc_scrambling;
-+=09=09__u8 scdc_low_rates;
-+=09=09__u8 pad04[4];
++=09=09__u8 head;
++=09=09__u8 frl_rate;
++=09=09__u8 pad03[5];
 +=09} v0;
 +};
 +
- union nvif_outp_hdmi_args {
- =09struct nvif_outp_hdmi_v0 {
+ union nvif_outp_infoframe_args {
+ =09struct nvif_outp_infoframe_v0 {
  =09=09__u8 version;
 diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/=
 nouveau/include/nvif/outp.h
-index bc122a5ba7df7..240e1f80ed539 100644
+index 55c02a34f381e..22681b14add4f 100644
 --- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
 +++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-@@ -66,6 +66,8 @@ enum nvif_outp_detect_status {
+@@ -93,6 +93,7 @@ int nvif_outp_lvds(struct nvif_outp *, bool dual, bool bp=
+c8);
 =20
- enum nvif_outp_detect_status nvif_outp_detect(struct nvif_outp *);
- int nvif_outp_edid_get(struct nvif_outp *, u8 **pedid);
-+int nvif_outp_hdmi_sink_caps(struct nvif_outp *, bool scdc, bool scdc_scra=
-mbling,
-+=09=09=09     bool scdc_low_rates);
+ int nvif_outp_hdmi(struct nvif_outp *, int head, bool enable, u8 max_ac_pa=
+cket, u8 rekey, u32 khz,
+ =09=09   bool scdc, bool scdc_scrambling, bool scdc_low_rates);
++int nvif_outp_hdmi_frl(struct nvif_outp *, int head, int frl_rate);
 =20
- int nvif_outp_load_detect(struct nvif_outp *, u32 loadval);
- int nvif_outp_acquire_dac(struct nvif_outp *);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/=
-nouveau/nouveau_connector.c
-index cc239492c7f0b..eae37d938f3bc 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -48,6 +48,7 @@
+ int nvif_outp_infoframe(struct nvif_outp *, u8 type, struct nvif_outp_info=
+frame_v0 *, u32 size);
+ int nvif_outp_hda_eld(struct nvif_outp *, int head, void *data, u32 size);
+diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h b/drivers/g=
+pu/drm/nouveau/include/nvkm/engine/disp.h
+index 7903d7470d194..4736f07a266b9 100644
+--- a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
++++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
+@@ -18,12 +18,14 @@ struct nvkm_disp {
+ =09=09struct nvkm_gsp_object objcom;
+ =09=09struct nvkm_gsp_object object;
 =20
- #include <nvif/class.h>
- #include <nvif/if0011.h>
-+#include <nvif/outp.h>
+-#define NVKM_DPYID_PLUG   BIT(0)
+-#define NVKM_DPYID_UNPLUG BIT(1)
+-#define NVKM_DPYID_IRQ    BIT(2)
++#define NVKM_DPYID_PLUG       BIT(0)
++#define NVKM_DPYID_UNPLUG     BIT(1)
++#define NVKM_DPYID_IRQ        BIT(2)
++#define NVKM_DPYID_FRL_RETRAIN BIT(3)
+ =09=09struct nvkm_event event;
+ =09=09struct nvkm_gsp_event hpd;
+ =09=09struct nvkm_gsp_event irq;
++=09=09struct nvkm_gsp_event frl_retrain;
 =20
- struct drm_display_mode *
- nouveau_conn_native_mode(struct drm_connector *connector)
-@@ -637,6 +638,16 @@ nouveau_connector_detect(struct drm_connector *connect=
-or, bool force)
- =09=09nouveau_connector_set_encoder(connector, nv_encoder);
- =09=09conn_status =3D connector_status_connected;
-=20
-+=09=09if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_TMDS &&
-+=09=09    drm->client.device.info.family >=3D NV_DEVICE_INFO_V0_TURING) {
-+=09=09=09struct drm_hdmi_info *hdmi =3D &connector->display_info.hdmi;
-+
-+=09=09=09nvif_outp_hdmi_sink_caps(&nv_encoder->outp,
-+=09=09=09=09=09=09hdmi->scdc.supported,
-+=09=09=09=09=09=09hdmi->scdc.scrambling.supported,
-+=09=09=09=09=09=09hdmi->scdc.scrambling.low_rates);
-+=09=09}
-+
- =09=09if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_DP)
- =09=09=09drm_dp_cec_set_edid(&nv_connector->aux, nv_connector->edid);
-=20
+ =09=09u32 assigned_sors;
+ =09} rm;
 diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/=
 nvif/outp.c
-index 8cf4775a0a1eb..d66f437587ff3 100644
+index 60479c884b2dc..828c312536d41 100644
 --- a/drivers/gpu/drm/nouveau/nvif/outp.c
 +++ b/drivers/gpu/drm/nouveau/nvif/outp.c
-@@ -461,6 +461,25 @@ nvif_outp_edid_get(struct nvif_outp *outp, u8 **pedid)
+@@ -222,6 +222,22 @@ nvif_outp_infoframe(struct nvif_outp *outp, u8 type, s=
+truct nvif_outp_infoframe_
  =09return ret;
  }
 =20
 +int
-+nvif_outp_hdmi_sink_caps(struct nvif_outp *outp, bool scdc, bool scdc_scra=
-mbling,
-+=09=09=09 bool scdc_low_rates)
++nvif_outp_hdmi_frl(struct nvif_outp *outp, int head, int frl_rate)
 +{
-+=09struct nvif_outp_hdmi_sink_caps_v0 args;
++=09struct nvif_outp_hdmi_frl_v0 args;
 +=09int ret;
 +
 +=09args.version =3D 0;
-+=09args.scdc =3D scdc;
-+=09args.scdc_scrambling =3D scdc_scrambling;
-+=09args.scdc_low_rates =3D scdc_low_rates;
++=09args.head =3D head;
++=09args.frl_rate =3D frl_rate;
 +
-+=09ret =3D nvif_mthd(&outp->object, NVIF_OUTP_V0_HDMI_SINK_CAPS, &args, si=
-zeof(args));
-+=09NVIF_ERRON(ret, &outp->object,
-+=09=09   "[HDMI_SINK_CAPS scdc:%d scrambling:%d low_rates:%d]",
-+=09=09   args.scdc, args.scdc_scrambling, args.scdc_low_rates);
++=09ret =3D nvif_mthd(&outp->object, NVIF_OUTP_V0_HDMI_FRL, &args, sizeof(a=
+rgs));
++=09NVIF_ERRON(ret, &outp->object, "[HDMI_FRL head:%d frl_rate:%d]",
++=09=09   args.head, args.frl_rate);
 +=09return ret;
 +}
 +
- enum nvif_outp_detect_status
- nvif_outp_detect(struct nvif_outp *outp)
- {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h b/drivers/gpu/=
-drm/nouveau/nvkm/engine/disp/outp.h
-index ebd2f499b4b1d..fd54c17ba4d6d 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
-@@ -95,6 +95,8 @@ struct nvkm_outp_func {
+ int
+ nvif_outp_hdmi(struct nvif_outp *outp, int head, bool enable, u8 max_ac_pa=
+cket, u8 rekey,
+ =09       u32 khz, bool scdc, bool scdc_scrambling, bool scdc_low_rates)
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h b/drivers/gpu/d=
+rm/nouveau/nvkm/engine/disp/ior.h
+index 3ba04bead2f9c..fba24625b6882 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
+@@ -75,6 +75,7 @@ struct nvkm_ior_func {
+ =09=09void (*infoframe_avi)(struct nvkm_ior *, int head, void *data, u32 s=
+ize);
+ =09=09void (*infoframe_vsi)(struct nvkm_ior *, int head, void *data, u32 s=
+ize);
+ =09=09void (*audio)(struct nvkm_ior *, int head, bool enable);
++=09=09void (*frl_train)(struct nvkm_ior *, int head, int frl_rate);
+ =09} *hdmi;
 =20
- =09int (*detect)(struct nvkm_outp *);
- =09int (*edid_get)(struct nvkm_outp *, u8 *data, u16 *size);
-+=09void (*hdmi_sink_caps)(struct nvkm_outp *, bool scdc, bool scrambling,
-+=09=09=09       bool low_rates);
+ =09const struct nvkm_ior_func_dp {
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c b/drivers/gpu=
+/drm/nouveau/nvkm/engine/disp/uconn.c
+index 23d1e5c27bb1e..e1e2760833ad5 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
+@@ -43,6 +43,8 @@ nvkm_uconn_uevent_gsp(struct nvkm_object *object, u64 tok=
+en, u32 bits)
+ =09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_UNPLUG;
+ =09if (bits & NVKM_DPYID_IRQ)
+ =09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_IRQ;
++=09if (bits & NVKM_DPYID_FRL_RETRAIN)
++=09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_FRL;
 =20
- =09struct nvkm_ior *(*inherit)(struct nvkm_outp *);
- =09int (*acquire)(struct nvkm_outp *, bool hda);
+ =09return object->client->event(token, &args, sizeof(args.v0));
+ }
+@@ -122,6 +124,7 @@ nvkm_uconn_uevent(struct nvkm_object *object, void *arg=
+v, u32 argc, struct nvkm_
+ =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_PLUG  ) bits |=3D NVKM_DPYID=
+_PLUG;
+ =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_UNPLUG) bits |=3D NVKM_DPYID=
+_UNPLUG;
+ =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_IRQ   ) bits |=3D NVKM_DPYID=
+_IRQ;
++=09=09if (args->v0.types & NVIF_CONN_EVENT_V0_FRL   ) bits |=3D NVKM_DPYID=
+_FRL_RETRAIN;
+=20
+ =09=09return nvkm_uevent_add(uevent, &disp->rm.event, outp->index, bits,
+ =09=09=09=09       nvkm_uconn_uevent_gsp);
 diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu=
 /drm/nouveau/nvkm/engine/disp/uoutp.c
-index 377d0e0cef848..84381ba71ebaf 100644
+index 202fdc73f7cab..2245fbd2d1e94 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-@@ -253,8 +253,7 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv=
-, u32 argc)
-=20
- =09if (!ior->func->hdmi ||
- =09    args->v0.max_ac_packet > 0x1f ||
--=09    args->v0.rekey > 0x7f ||
--=09    (args->v0.scdc && !ior->func->hdmi->scdc))
-+=09    args->v0.rekey > 0x7f)
- =09=09return -EINVAL;
-=20
- =09if (!args->v0.enable) {
-@@ -473,6 +472,21 @@ nvkm_uoutp_mthd_edid_get(struct nvkm_outp *outp, void =
-*argv, u32 argc)
- =09return outp->func->edid_get(outp, args->v0.data, &args->v0.size);
+@@ -239,6 +239,23 @@ nvkm_uoutp_mthd_infoframe(struct nvkm_outp *outp, void=
+ *argv, u32 argc)
+ =09return -EINVAL;
  }
 =20
 +static int
-+nvkm_uoutp_mthd_hdmi_sink_caps(struct nvkm_outp *outp, void *argv, u32 arg=
-c)
++nvkm_uoutp_mthd_hdmi_frl(struct nvkm_outp *outp, void *argv, u32 argc)
 +{
-+=09union nvif_outp_hdmi_sink_caps_args *args =3D argv;
++=09union nvif_outp_hdmi_frl_args *args =3D argv;
++=09struct nvkm_ior *ior =3D outp->ior;
 +
 +=09if (argc !=3D sizeof(args->v0) || args->v0.version !=3D 0)
 +=09=09return -ENOSYS;
-+=09if (!outp->func->hdmi_sink_caps)
++=09if (!ior->func->hdmi || !ior->func->hdmi->frl_train)
++=09=09return -EINVAL;
++=09if (!nvkm_head_find(outp->disp, args->v0.head))
 +=09=09return -EINVAL;
 +
-+=09outp->func->hdmi_sink_caps(outp, args->v0.scdc, args->v0.scdc_scramblin=
-g,
-+=09=09=09=09   args->v0.scdc_low_rates);
++=09ior->func->hdmi->frl_train(ior, args->v0.head, args->v0.frl_rate);
 +=09return 0;
 +}
 +
  static int
- nvkm_uoutp_mthd_detect(struct nvkm_outp *outp, void *argv, u32 argc)
+ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv, u32 argc)
  {
-@@ -522,8 +536,9 @@ static int
- nvkm_uoutp_mthd_noacquire(struct nvkm_outp *outp, u32 mthd, void *argv, u3=
-2 argc, bool *invalid)
- {
- =09switch (mthd) {
--=09case NVIF_OUTP_V0_DETECT     : return nvkm_uoutp_mthd_detect     (outp,=
- argv, argc);
--=09case NVIF_OUTP_V0_EDID_GET   : return nvkm_uoutp_mthd_edid_get   (outp,=
- argv, argc);
-+=09case NVIF_OUTP_V0_DETECT         : return nvkm_uoutp_mthd_detect       =
-  (outp, argv, argc);
-+=09case NVIF_OUTP_V0_EDID_GET       : return nvkm_uoutp_mthd_edid_get     =
-  (outp, argv, argc);
-+=09case NVIF_OUTP_V0_HDMI_SINK_CAPS : return nvkm_uoutp_mthd_hdmi_sink_cap=
-s (outp, argv, argc);
- =09case NVIF_OUTP_V0_INHERIT    : return nvkm_uoutp_mthd_inherit    (outp,=
- argv, argc);
- =09case NVIF_OUTP_V0_ACQUIRE    : return nvkm_uoutp_mthd_acquire    (outp,=
- argv, argc);
- =09case NVIF_OUTP_V0_LOAD_DETECT: return nvkm_uoutp_mthd_load_detect(outp,=
- argv, argc);
+@@ -257,6 +274,8 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv=
+, u32 argc)
+ =09=09return -EINVAL;
+=20
+ =09if (!args->v0.enable) {
++=09=09if (ior->func->hdmi->frl_train)
++=09=09=09ior->func->hdmi->frl_train(ior, args->v0.head, 0);
+ =09=09ior->func->hdmi->infoframe_avi(ior, args->v0.head, NULL, 0);
+ =09=09ior->func->hdmi->infoframe_vsi(ior, args->v0.head, NULL, 0);
+ =09=09ior->func->hdmi->ctrl(ior, args->v0.head, false, 0, 0);
+@@ -518,6 +537,7 @@ nvkm_uoutp_mthd_acquired(struct nvkm_outp *outp, u32 mt=
+hd, void *argv, u32 argc)
+ =09case NVIF_OUTP_V0_RELEASE      : return nvkm_uoutp_mthd_release      (o=
+utp, argv, argc);
+ =09case NVIF_OUTP_V0_LVDS         : return nvkm_uoutp_mthd_lvds         (o=
+utp, argv, argc);
+ =09case NVIF_OUTP_V0_HDMI         : return nvkm_uoutp_mthd_hdmi         (o=
+utp, argv, argc);
++=09case NVIF_OUTP_V0_HDMI_FRL     : return nvkm_uoutp_mthd_hdmi_frl     (o=
+utp, argv, argc);
+ =09case NVIF_OUTP_V0_INFOFRAME    : return nvkm_uoutp_mthd_infoframe    (o=
+utp, argv, argc);
+ =09case NVIF_OUTP_V0_HDA_ELD      : return nvkm_uoutp_mthd_hda_eld      (o=
+utp, argv, argc);
+ =09case NVIF_OUTP_V0_DP_TRAIN     : return nvkm_uoutp_mthd_dp_train     (o=
+utp, argv, argc);
 diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drive=
 rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 6e63df816d855..fa20a0c633653 100644
+index 2fb7cc83852f9..a4a9462d59027 100644
 --- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
 +++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -468,31 +468,6 @@ r535_sor_dp =3D {
- =09.audio =3D r535_sor_dp_audio,
- };
+@@ -552,6 +552,46 @@ r535_sor_hdmi_ctrl(struct nvkm_ior *sor, int head, boo=
+l enable, u8 max_ac_packet
+ =09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
+ }
 =20
--static void
--r535_sor_hdmi_scdc(struct nvkm_ior *sor, u32 khz, bool support, bool scram=
-bling,
--=09=09   bool scrambling_low_rates)
--{
--=09struct nvkm_outp *outp =3D sor->asy.outp;
--=09struct nvkm_disp *disp =3D outp->disp;
--=09NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS_PARAMS *ctrl;
--
--=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
--=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS, sizeof(*ctrl)=
++static int
++r535_sor_frl_train_one(struct nvkm_ior *sor, int frl_rate, bool fake_lt)
++{
++=09struct nvkm_disp *disp =3D sor->disp;
++=09NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS *ctrl;
++=09int ret;
++
++=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
++=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_FRL_CONFIG,
++=09=09=09=09    sizeof(*ctrl));
++=09if (IS_ERR(ctrl))
++=09=09return PTR_ERR(ctrl);
++
++=09ctrl->displayId =3D BIT(sor->asy.outp->index);
++=09ctrl->data =3D NVVAL(NV0073_CTRL, HDMI_FRL_DATA, SET_FRL_RATE, frl_rate=
 );
--=09if (WARN_ON(IS_ERR(ctrl)))
--=09=09return;
--
--=09ctrl->displayId =3D BIT(outp->index);
--=09ctrl->caps =3D 0;
--=09if (support)
--=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-SCDC_SUPPORTED, TRUE);
--=09if (scrambling)
--=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-GT_340MHZ_CLOCK_SUPPORTED, TRUE);
--=09if (scrambling_low_rates)
--=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-LTE_340MHZ_SCRAMBLING_SUPPORTED, TRUE);
--
--=09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
--}
--
- static void
- r535_sor_hdmi_ctrl_audio_mute(struct nvkm_outp *outp, bool mute)
- {
-@@ -580,7 +555,6 @@ r535_sor_hdmi_ctrl(struct nvkm_ior *sor, int head, bool=
- enable, u8 max_ac_packet
++=09ctrl->bFakeLt =3D fake_lt;
++=09ctrl->bDoNotSkipLt =3D true;
++
++=09ret =3D nvkm_gsp_rm_ctrl_push(&disp->rm.objcom, &ctrl, sizeof(*ctrl));
++=09if (ret) {
++=09=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
++=09=09return ret;
++=09}
++
++=09ret =3D ctrl->bLtSkipped ? -EIO : 0;
++
++=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
++=09return ret;
++}
++
++static void
++r535_sor_frl_train(struct nvkm_ior *sor, int head, int frl_rate)
++{
++=09if (!frl_rate)
++=09=09return;
++
++=09if (r535_sor_frl_train_one(sor, frl_rate, false))
++=09=09r535_sor_frl_train_one(sor, frl_rate, true);
++}
++
  static const struct nvkm_ior_func_hdmi
  r535_sor_hdmi =3D {
  =09.ctrl =3D r535_sor_hdmi_ctrl,
--=09.scdc =3D r535_sor_hdmi_scdc,
- =09/*TODO: SF_USER -> KMS. */
+@@ -559,6 +599,7 @@ r535_sor_hdmi =3D {
  =09.infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
  =09.infoframe_vsi =3D gv100_sor_hdmi_infoframe_vsi,
-@@ -1242,6 +1216,30 @@ r535_tmds_edid_get(struct nvkm_outp *outp, u8 *data,=
- u16 *psize)
- =09return ret;
+ =09.audio =3D r535_sor_hdmi_audio,
++=09.frl_train =3D r535_sor_frl_train,
+ };
+=20
+ static const struct nvkm_ior_func
+@@ -1383,6 +1424,21 @@ r535_outp_new(struct nvkm_disp *disp, u32 id)
+ =09return 0;
  }
 =20
 +static void
-+r535_outp_hdmi_sink_caps(struct nvkm_outp *outp, bool scdc, bool scramblin=
-g,
-+=09=09=09 bool low_rates)
++r535_disp_frl_retrain(struct nvkm_gsp_event *event, void *repv, u32 repc)
 +{
-+=09struct nvkm_disp *disp =3D outp->disp;
-+=09NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS_PARAMS *ctrl;
++=09struct nvkm_disp *disp =3D container_of(event, typeof(*disp), rm.frl_re=
+train);
++=09Nv2080HdmiFrlRetrainingRequestNotification *frl =3D repv;
 +
-+=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
-+=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS, sizeof(*ctrl)=
-);
-+=09if (WARN_ON(IS_ERR(ctrl)))
++=09if (WARN_ON(repc < sizeof(*frl)))
 +=09=09return;
 +
-+=09ctrl->displayId =3D BIT(outp->index);
-+=09ctrl->caps =3D 0;
-+=09if (scdc)
-+=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-SCDC_SUPPORTED, TRUE);
-+=09if (scrambling)
-+=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-GT_340MHZ_CLOCK_SUPPORTED, TRUE);
-+=09if (low_rates)
-+=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
-LTE_340MHZ_SCRAMBLING_SUPPORTED, TRUE);
++=09nvkm_debug(&disp->engine.subdev, "event: frl retrain displayId %08x\n",=
+ frl->displayId);
 +
-+=09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
++=09if (frl->displayId)
++=09=09nvkm_event_ntfy(&disp->rm.event, fls(frl->displayId) - 1, NVKM_DPYID=
+_FRL_RETRAIN);
 +}
 +
- static const struct nvkm_outp_func
- r535_tmds =3D {
- =09.detect =3D r535_outp_detect,
-@@ -1249,6 +1247,7 @@ r535_tmds =3D {
- =09.acquire =3D r535_outp_acquire,
- =09.release =3D r535_outp_release,
- =09.edid_get =3D r535_tmds_edid_get,
-+=09.hdmi_sink_caps =3D r535_outp_hdmi_sink_caps,
- };
+ static void
+ r535_disp_irq(struct nvkm_gsp_event *event, void *repv, u32 repc)
+ {
+@@ -1465,6 +1521,7 @@ r535_disp_fini(struct nvkm_disp *disp, bool suspend)
+ =09nvkm_gsp_rm_free(&disp->rm.object);
 =20
- static int
+ =09if (!suspend) {
++=09=09nvkm_gsp_event_dtor(&disp->rm.frl_retrain);
+ =09=09nvkm_gsp_event_dtor(&disp->rm.irq);
+ =09=09nvkm_gsp_event_dtor(&disp->rm.hpd);
+ =09=09nvkm_event_fini(&disp->rm.event);
+@@ -1706,7 +1763,7 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+ =09=09=09return ret;
+ =09}
+=20
+-=09ret =3D nvkm_event_init(&r535_disp_event, &gsp->subdev, 3, 32, &disp->r=
+m.event);
++=09ret =3D nvkm_event_init(&r535_disp_event, &gsp->subdev, 4, 32, &disp->r=
+m.event);
+ =09if (WARN_ON(ret))
+ =09=09return ret;
+=20
+@@ -1720,6 +1777,12 @@ r535_disp_oneinit(struct nvkm_disp *disp)
+ =09if (ret)
+ =09=09return ret;
+=20
++=09ret =3D nvkm_gsp_device_event_ctor(&disp->rm.device, 0x007e0002,
++=09=09=09=09=09 NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST,
++=09=09=09=09=09 r535_disp_frl_retrain, &disp->rm.frl_retrain);
++=09if (ret)
++=09=09return ret;
++
+ =09/* RAMHT. */
+ =09ret =3D nvkm_ramht_new(device, disp->func->ramht_size ? disp->func->ram=
+ht_size :
+ =09=09=09     0x1000, 0, disp->inst, &disp->ramht);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h b/=
+drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
+index 7b7539639540a..f6c7f0b96a48b 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
+@@ -184,6 +184,12 @@ typedef struct Nv2080DpIrqNotificationRec {
+     NvU32 displayId;
+ } Nv2080DpIrqNotification;
+=20
++#define NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST               (18)
++
++typedef struct {
++    NvU32 displayId;
++} Nv2080HdmiFrlRetrainingRequestNotification;
++
+ #define NV0073_CTRL_CMD_SYSTEM_GET_CONNECT_STATE (0x730122U) /* finn: Eval=
+uated from "(FINN_NV04_DISPLAY_COMMON_SYSTEM_INTERFACE_ID << 8) | NV0073_CT=
+RL_SYSTEM_GET_CONNECT_STATE_PARAMS_MESSAGE_ID" */
+ typedef struct NV0073_CTRL_SYSTEM_GET_CONNECT_STATE_PARAMS {
+     NvU32 subDeviceInstance;
+@@ -393,6 +399,26 @@ typedef struct NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS=
+_PARAMS {
+ #define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS_DSC_MAX_FRL_RATE_SUPPO=
+RTED_4LANES_10G (0x00000005U)
+ #define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS_DSC_MAX_FRL_RATE_SUPPO=
+RTED_4LANES_12G (0x00000006U)
+=20
++#define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_FRL_CONFIG (0x73029aU)
++#define NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS_MESSAGE_ID (0=
+x9AU)
++typedef struct NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS {
++    NvU32  subDeviceInstance;
++    NvU32  displayId;
++    NvU32  data;
++    NvBool bFakeLt;
++    NvBool bDoNotSkipLt;
++    NvBool bLtSkipped;
++    NvBool bLinkAssessmentOnly;
++} NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS;
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE                            =
+               2:0
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_NONE       (0x00000000U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_3LANES_3G  (0x00000001U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_3LANES_6G  (0x00000002U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_6G  (0x00000003U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_8G  (0x00000004U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_10G (0x00000005U)
++#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_12G (0x00000006U)
++
+ #define NV0073_CTRL_SET_OD_MAX_PACKET_SIZE     36U
+=20
+ #define NV0073_CTRL_CMD_SPECIFIC_SET_OD_PACKET (0x730288U) /* finn: Evalua=
+ted from "(FINN_NV04_DISPLAY_COMMON_SPECIFIC_INTERFACE_ID << 8) | NV0073_CT=
+RL_SPECIFIC_SET_OD_PACKET_PARAMS_MESSAGE_ID" */
 --=20
 2.53.0
 
