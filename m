@@ -4,100 +4,183 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88AD9FAD3F3
-	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55B06F99370
+	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 11:34:51 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id B62B310EFC0;
-	Thu, 23 Apr 2026 02:55:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 2462710F0BD;
+	Thu, 23 Apr 2026 11:34:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="tTFsGxiv";
+	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 987884562F;
-	Thu, 23 Apr 2026 02:43:12 +0000 (UTC)
-ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776912192;
- b=XWpqrgqIdSpuC3UCHVQj8jJ/fqY60RBqsr4xSSKXshm0SkzIcE1N+PhNqetcQCpBbhFEZ
- nbzw2NrEh74iUp1EDE/6llIhCaGYCaHMAT13FMAoMvZLDjsW6LVoUxJiSVe6Y1nPJSOcxck
- uKryRio9fXdYD9Y+wKIl8Ihd+cDJf8oDQZe8Jo4awiB+lEVV2P+UBVGDA5T2SPonXN5NJE4
- rBwbDR8GVBFExEz4FGuW7mQKRbevOyM9uQTAMYs58XUlixinS/xb0ZvUJ0anTYc+Ii9m42Z
- sL2Z5SGiOBwClAHnDzyqngO8foB0GMKWBqcjKDbdiaGWSlkEBAGjt7kXJiuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776912192; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 2722945B26;
+	Thu, 23 Apr 2026 11:22:38 +0000 (UTC)
+ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776943358;
+ b=O2/rLZ84S4IW1FKVZ805ZGQqGeuJyuvqVYttiUbbT2ww9wsNeDUs6f8kOuVrKBVk25LVF
+ GiYQ1grjkpJrISmy0Nl4IVIZeXAHTtvOdu3ox8PhCxpI4A3DHc8nGFUGxCvKFoXrb3VddN/
+ Ro9QY8FlXNcxhSV8LC0zKvZKhxjhZ6Mb6o3HLId6uFlK6/X24Un16qNt34s1oM+Kba6QpfY
+ U0LQvarhvBcdoQBQkTejQu223BJ0Z813goXI6dnWZtqwgfrttaCvdBWD+EJ8HuOyphBGswP
+ 5o/eS0N/hgCsEAu9xetCo7kKvQneTrVOenyDBDRm2rtUlUxWyWIRPJq4dT1g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776943358; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=iTy0bpU+vhzGUwty+6IzVftc3Tivovm8Sz37JoiMNPY=;
- b=hJ7RjgDlf2YUnSxCt9CXmdYuhmpGbd9YTlbN80sZ7K4bopvKmdVgRjLTmbrzGXSnCXRXN
- ljMw5X2EtCawc9MEQMWRWRSX9lfFhwMkYvdBoIKPdTVKI11GQLO8Kk1FVgXfhWofPboDlMX
- QQFDCjOAc0oQtVGeflzbnbRn+rag85UEp0OKL0py/XWZZ4zTdx3OWhRBKxHmi8GOhNchlu/
- AKdpvut7/DIGrCAQvsr+9XGe2kqshZzk0r23cRdwQMb78/I+qWICL5Bq7Ll5IndgBhSrei4
- KXyLPrTiimx2yyEMTe/tZ3SqoIDtAYshzHuUPanx4QLhmXVraVY4fv0LYogg==
-ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
-  arc=none (Message is not ARC signed);
-  dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
-Authentication-Results: mail.freedesktop.org; dkim=fail;
- arc=none (Message is not ARC signed);
- dmarc=fail (Used From Domain Record) header.from=gmail.com
- policy.dmarc=quarantine
+ bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
+ b=vbN+fHmDmNnMdT2RboIfwJEYnQuGD6b5eayRUb90JH1oBCcpt0OqI9FWYEjbupJ+kWOu0
+ eihZuMzdwb0lLdCLd0X4pfHAoYt8uqpWMSgw7wRBo5G0x41dVUfdnXAKDs0q91sZ8kk5YlH
+ EOo7CXFCnaLzEHfBkQr/GG3Vti+u2VbvxxKqirtb0nKcUfKaA/aJx6gmCiUrank203kHbnV
+ BmHbHUA3Dr4o9fcjX4LmNzsmvMTbhlY9dGbAx3KQ2TaNva9wIgyLnec7KQfZLT8/DSNtq0U
+ b8+zOZlZU27Rs8oVNXaoPR6p90vepqa/3BcAW8+slOgq2VE1dJP/FpnBSYAA==
+ARC-Authentication-Results: i=2; mail.freedesktop.org;
+ dkim=pass header.d=garyguo.net;
+  arc=pass;
+  dmarc=pass (Used From Domain Record) header.from=garyguo.net
+ policy.dmarc=none
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
+ arc=pass;
+ dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9B79045B13
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:07 +0000 (UTC)
-Received: from us-smtp-delivery-44.mimecast.com
- (us-smtp-delivery-44.mimecast.com [207.211.30.44])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3365810EA43
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:52:17 +0000 (UTC)
-Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-512-Rk-ZGCMvPuGIX5EMFfqjjw-1; Wed,
- 22 Apr 2026 20:46:07 -0400
-X-MC-Unique: Rk-ZGCMvPuGIX5EMFfqjjw-1
-X-Mimecast-MFC-AGG-ID: Rk-ZGCMvPuGIX5EMFfqjjw_1776905167
-Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
- (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
- SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
- id E243E1956089;
-	Thu, 23 Apr 2026 00:46:06 +0000 (UTC)
-Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.53])
-	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
- id 0759B30001A1;
-	Thu, 23 Apr 2026 00:46:04 +0000 (UTC)
-From: Dave Airlie <airlied@gmail.com>
-To: dri-devel@lists.freedesktop.org
-Subject: [PATCH 3/4] nouveau: add HDMI FRL training API and retrain event
- handling
-Date: Thu, 23 Apr 2026 10:42:15 +1000
-Message-ID: <20260423004552.3289884-4-airlied@gmail.com>
-In-Reply-To: <20260423004552.3289884-1-airlied@gmail.com>
-References: <20260423004552.3289884-1-airlied@gmail.com>
-MIME-Version: 1.0
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: JVKRfx5E4_Ye6PxGb7HrgsD_YWa3BmYBBI7oShAO72U_1776905167
-X-Mimecast-Originator: gmail.com
+	by kara.freedesktop.org (Postfix) with ESMTPS id 3648D40330
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 11:22:35 +0000 (UTC)
+Received: from CWXP265CU010.outbound.protection.outlook.com
+ (mail-ukwestazon11022122.outbound.protection.outlook.com [52.101.101.122])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id A7CC310EF99;
+	Thu, 23 Apr 2026 11:34:45 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=d8HC/UMaKQIaiYAK9ehiBlBSVYRmXqspVhFEIHgsiiC8T9GxXuKdSo7EdB5uy94AW7WnEpMyOP1jnf+SNm+6PGxc0kv7+nEUxJE+/6hUwNEZ/39wNV9eLXgz6W5n0sXhVl+wQWmInHRRxUduEysLji6IWZd5qgq1D8WC9VFXi+8ccL+OO30MKqGnNR8Yd2ruaVHnTFaQ3zStPh6dSdeT/QJPO9apbIuVKhUrPx/uxzLEBwsUYaQM9i5v9YjqZeAGVhXZ7yAVNofYRTLvVDDiEgkc8bVPEBMY4urUBf8HL+dulqa60a1WMdUUMEVzK72BKl2I8gyUZMi8VQPbuOFxtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
+ b=jX2o6Y6RdYdwLFhI+3ZRD90aySDqmsZaFXp+vTRhmZhGxOcBrw/oQVcGNN5v+ctwDIWcG5apvIpjlaDiCZVsnQQmPrS3la5vHD+8/C7Lx8HqTr4c6HXpNNl4L7EEpP+Twp/CqeR+f3PH+vS3PiwOQ9mTT5TrPcJKkXmpu1deqKI33oZYfvpuEVzP6Daw6Pp2M+sfvgktVEJYQJcIJYajDqmBGyMmR9f1znuHFYiBJ2wM/0y33qgxcU4mWkn6eR1PN2d8OzKOD/yxBBMMQq+mXrgZgdmG6u/M8MB+bu7DKa+tPyNl5yAZiFhe+VM9zFy4k30kTL+OEWLJXYdLNBDyCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
+ dkim=pass header.d=garyguo.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c7DplJiGF3GFUHZwQB9/ZjsSCLIFOsIFt5Q424beC5U=;
+ b=tTFsGxivf5dWYm2kIha8869MgP3HgkRQDcAQzA2Je8AvcH/vTkLiMy/OXdxVmqe1/C8J5hoqoONLNjKaTr+2M++e0AQXUQkUkEWYiCaEy5vvWWuPrFJPuFqZwYwm2zZDetyvSSnV0EPKhDYX7O5A6F65RGqvGgc+8JaP2HctSmE=
+Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:27c::13)
+ by CWXP265MB5180.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:193::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.21; Thu, 23 Apr
+ 2026 11:34:41 +0000
+Received: from CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::6c9e:93c8:10db:e995]) by CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::6c9e:93c8:10db:e995%6]) with mapi id 15.20.9846.016; Thu, 23 Apr 2026
+ 11:34:41 +0000
 Content-Transfer-Encoding: quoted-printable
-content-type: text/plain; charset=WINDOWS-1252; x-default=true
-Message-ID-Hash: BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4
-X-Message-ID-Hash: BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4
-X-MailFrom: airlied@gmail.com
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 23 Apr 2026 12:34:41 +0100
+Message-Id: <DI0I3TH8B8ZZ.2118S8MDUHG@garyguo.net>
+Subject: Re: [PATCH v2 1/5] rust: add warn_on_err macro
+From: "Gary Guo" <gary@garyguo.net>
+To: "Alexandre Courbot" <acourbot@nvidia.com>, "Danilo Krummrich"
+ <dakr@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Bjorn Helgaas"
+ <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Gary Guo"
+ <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "Boqun Feng" <boqun@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
+ <20260421-nova-unload-v2-1-2fe54963af8b@nvidia.com>
+In-Reply-To: <20260421-nova-unload-v2-1-2fe54963af8b@nvidia.com>
+X-ClientProxiedBy: LO3P265CA0002.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:bb::7) To CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:400:27c::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CW1P265MB8877:EE_|CWXP265MB5180:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0c8d6c5f-370b-4857-ed36-08dea12c4f7a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: 
+	BCL:0;ARA:13230040|7416014|376014|10070799003|366016|1800799024|18002099003|921020|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 
+	dmnucVv3RvQrvaiFg1A12ABJC5zaKu7Olgf56p6jOVIAUBb3p5yFwzohBIrHWBDv30MaZBSEuCoWCnmurdaWmhQh75sCgV/5LELw2mEmvBxggBB4Xss9h0k3Dgb+G2x6WekhWnLmHkguFQ39cUSxpgx8pL3BfdLcGqEjzM654qBwgPlHs0H7ijcIP3bXVp1TD2W4cl5XdDIRW3a5x+QmzLoUH7LiyQzrHziw71ch3ypR5V5hHAKWzgR3wxGdkCZ15OISnE+/sbxNX2bZOi3VpMaoolrcAjFm962zExnOChxBv4UMpVkD1Q69SUHPr0jbLjdHhtgBSpmvfoR1momdOhGcfGa8+ihKIqn3BcYZyAny+2HythvrXJCox3eF3Y/HEpvX1H1ojAeQgWsKT4YRq5W3Cx2Fx4tdCi5FmV0OwqhXvwn+fgb1WJTzEGJhPzcKDaimy/SFLz1Kw7Eq/yK1ORoWhMDXSCb3A9eIzhiE1H5ZUiRnm4A6vA4W5wqbxX4pSbkl91Jv4h/K0p6UGGAtrdQ89i+tEuCz4g/ZQrUpH1LgQ1ar93bHW+VXZ8pvvqIgLakWs3gUGLnqRjcf+uLNruxWwdnb9g9lgTxdFHaYpMuCg6++BDCglH4WUhZAfxBVBJKtKti3nrOtKDNFhpKIQSVMrq+S5ASxd6+Y6rQkY/Dv4DUaYUDybEIR5t9eSB1NOUFWe02WSf362lln7nmCnMtTp6+IUzYymYMDgupG0x1qxdfECxjYXLXV4Vm19+Kccmh4zE/ol+9Z2o1J+u91Uw==
+X-Forefront-Antispam-Report: 
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(10070799003)(366016)(1800799024)(18002099003)(921020)(56012099003)(22082099003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: 
+	=?utf-8?B?YXovTTJsTGI3M3BpblZxSDg5a3drT2RiZzFjQnBmRFBDMW9zNWVDa2xZYzhw?=
+ =?utf-8?B?cFJGUDluUzgyNjExQ1VqVnpZTHErSHB5anBYVy8zYUI4VGRkQ3ZjOEVBMkIx?=
+ =?utf-8?B?Wml4SFBRWi9rRVNHbE1XZEhNSVMzaFkwMmxseDZxenhUc0kzbHhDZlFBb01n?=
+ =?utf-8?B?YXVwb282dS9UMFAzZW11b0UvYSs0TmVsQ282aXJHUXlNSVNGeFZYUWowcFJJ?=
+ =?utf-8?B?aVZGaUIzVUkrM1RIUDJqOVhkVlZBMEhZaEpDTHZmaWdwMm5KeTNoUGZNVzlj?=
+ =?utf-8?B?cDF0SVdMUkhxNjF0RHpGZjhocW40NjR6eGxIZXE1V09Ub0FRV1FlMVp5cHpF?=
+ =?utf-8?B?NXBYbExzcDBVZDJaMWpIMDI2cGF2ZlVBWTIzQ0lCc2FFSytJNktZVndOcEFZ?=
+ =?utf-8?B?YUN2MzFXazNJNUZnVTAzOTBYZmE0SklJZmxTRzArKzZMakJoUDZBbkg4ZVRL?=
+ =?utf-8?B?YWJDc1Q5S0VyVmhJMzZGWE9vTm5UUmYwRXNiRURXZk92ZWV0VlJLWXdubmw0?=
+ =?utf-8?B?UXJSK0J2SldONk4zTjBKaXR4TEZYNFVHK0I2dzVpbDdaMTA4R1pOSUJZSnVP?=
+ =?utf-8?B?WjV2L2dEMWJSejVndHpQai9LR2dKUDhhSTY5TGVoVWU2bGROeXhxRk5tZ3FP?=
+ =?utf-8?B?YzFqZHVVRFVzNEwydFdWUHNIWllqUVhDSGtIZTVYQXYzOVBBK01XZ0FqYk5v?=
+ =?utf-8?B?dHFPV1RvUTZuZlRScGhEV3gyUUNCMVBFc2tyODdvcG90SUYzeDFybUc1aW56?=
+ =?utf-8?B?TEd1Y25FS0kxMkIxNHBqeHlscDdHVmdQVkl5SFRPeFhWSlFOMzdid09KSytS?=
+ =?utf-8?B?VnI5NFVTVHBwWlB3bjU0OTNlb21rOVBoclRCcWJ5enBRRDdyVzYzM0FPY0dx?=
+ =?utf-8?B?RVlaUDZwa0hRRDRLZFdDS0RZaHRrNEg3cVJTQ2ZKbG9tSGppWW52YVFnSkVG?=
+ =?utf-8?B?OHZiVm5sQzJWQ1RwQ1NydWhTVk0vejVQUTg2YldBcFBkQWE4Nkx3NW9DcnlZ?=
+ =?utf-8?B?Y3NyRldubWpVWk51cm42VDY3K21oSkNPTlIrYXZiUWwzbHY3d2NaeFprVzBO?=
+ =?utf-8?B?VFM0OFJLZHpOZ0QzZTJZeWUwdVF5M0s3L1NlUXhmZEl0UllPN3ZkblNyTHpJ?=
+ =?utf-8?B?WE9hVmJtM2NHRCtYR3ZONGhvbUxuUkorRnI1NUlMMk9qV0RQd0tSM0RJZ0VM?=
+ =?utf-8?B?WnFpNUsvSm1jUTZKd0xOaFFReUxXNVFnMU4yVW1EMjlyWmhYQUpYUE1nYmIx?=
+ =?utf-8?B?TVlKaDB1MnczdzFSWnNnQVU0RlpOOEZqSlE2VjlDRmZyRW1uWW51TzRXZWJD?=
+ =?utf-8?B?cktIeXhENmtiNThqeDZ5Y1NiWXYzaE5yTmFiVlVJdzA1R3VoNXhMUldmbklO?=
+ =?utf-8?B?czd0SUVOOHZOcCtubVNVSUg0S0hJZWZ1N2orOXB3NSswQWUvYVEwdmQvU3pJ?=
+ =?utf-8?B?Y2VTcG02VDROM09TWnRQYjkwSG9XN3FQMFpPSVQrZ2FOWEVVdlczUy9nRkR5?=
+ =?utf-8?B?OUxhN05tVm1jbUZ5d05ScmVhbFVwMi9lanJIc2Vob1l4Yithak5ROG5yendZ?=
+ =?utf-8?B?VUZJRVNQM25KS1dTc1VRNUhCdDVGUzZUWjhpUlB1SzE1Z3ovKzZtUkNONEha?=
+ =?utf-8?B?Ni9hSVFkMjVyd0x5bG95cGxTeUREWFVhSndKN1N1TE1KVkorbkpPMCtOQTVx?=
+ =?utf-8?B?dGYwN3ZQUjMrQjk4Qk0xQlBBMnYzN0svZzV2dUlQS0Y2V2U0SDQ0QXUrNFp2?=
+ =?utf-8?B?QVBZUWtDbTRPM2QvNVRDckJkOG8wSUs2aGwvNjB1Y0VyMlowNWR1RFplaVJN?=
+ =?utf-8?B?RWxYZWpGcjEwcEZjQWFsSEtiODF4eFd2WFF6WjhveGhpeU5Rbzh4L1RqOURT?=
+ =?utf-8?B?a3NmOE1uelZNQU91Y1hLOWF1TFJZUnRFb0hkMUFmWDR3VVhBM2orUU1vZ096?=
+ =?utf-8?B?S3RSL1FDN0RaaU5mZERrNzB1Z2oyNW1zcFgrNEV3S013aEErSW1MVVpWLzlh?=
+ =?utf-8?B?eWZBcjJtZWdhVjVuWGk5eUthWUVGMzVqbE5VWHdmZ1MrQStqTXNPNVhNWTFN?=
+ =?utf-8?B?Vkg5bkVTbWdNK3B5eTltT1pnQnZKSHRkellnTGJiaVFKK2NSaXM0bDdSNFow?=
+ =?utf-8?B?Z0VaOXd6NVpJWUdaSWZoL0lOUGd5RkYyNUsyVHVYZ29acVlDQWVvTG03Q3E0?=
+ =?utf-8?B?c3d2YlFLNWlVQWVWY0E5T2p4VW04d2t3cTVHelRobTFGVmdUa2FRM25zWGJK?=
+ =?utf-8?B?Wit2c096TERkbjNKNG1HeFlwazNKWFdQZlJFcDJLQUllRzNCODhSU2tLM0ln?=
+ =?utf-8?B?TFIwYU03amVKYjkxcXhmeEhibHBGMnMzcWRmMzcvVVRRb3VOWTRvUT09?=
+X-OriginatorOrg: garyguo.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 
+ 0c8d6c5f-370b-4857-ed36-08dea12c4f7a
+X-MS-Exchange-CrossTenant-AuthSource: CW1P265MB8877.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 11:34:41.8296
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 
+ us2Hgn3qe/+Fk7ICmqizx5qWCA0L++4sAN3Y0yBTfiorNm8isBkwvxsp88MukQrFwiBOCjTKwS76bFDV9ffz4Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP265MB5180
+Message-ID-Hash: R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF
+X-Message-ID-Hash: R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF
+X-MailFrom: gary@garyguo.net
+X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation; nonmember-moderation; administrivia;
- implicit-dest; max-recipients; max-size; news-moderation; no-subject;
- digests; suspicious-header
-CC: nouveau@lists.freedesktop.org
+ loop; banned-address; member-moderation
+CC: Alistair Popple <apopple@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/BDKMGK344WQRDFOIY2IA6NE7MSLXMEK4/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/R6KNR4T3C74MC5BTVD4LDBSHQXI5Z6RF/>
 Archived-At: 
- <https://lore.freedesktop.org/20260423004552.3289884-4-airlied@gmail.com/>
+ <https://lore.freedesktop.org/DI0I3TH8B8ZZ.2118S8MDUHG@garyguo.net/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -107,425 +190,39 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-From: Dave Airlie <airlied@redhat.com>
+On Tue Apr 21, 2026 at 7:16 AM BST, Alexandre Courbot wrote:
+> While we already have the `warn_on` macro, a common usage pattern in
+> Rust is to check whether a `Result` is an error. Add a helper macro that
+> allows this.
+>
+> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
+> ---
+>  rust/kernel/bug.rs | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
+> diff --git a/rust/kernel/bug.rs b/rust/kernel/bug.rs
+> index ed943960f851..2fefc0aeef81 100644
+> --- a/rust/kernel/bug.rs
+> +++ b/rust/kernel/bug.rs
+> @@ -130,3 +130,13 @@ macro_rules! warn_on {
+>          cond
+>      }};
+>  }
+> +
+> +/// Report a warning if `res` is an error and return it unmodified.
+> +#[macro_export]
+> +macro_rules! warn_on_err {
+> +    ($res:expr) =3D> {{
+> +        let res =3D $res;
+> +        let _ =3D $crate::warn_on!(res.is_err());
+> +        res
+> +    }};
+> +}
 
-Add the nvif/nvkm plumbing for HDMI 2.1 Fixed Rate Link training and
-FRL retrain event notification from GSP-RM firmware.
 
-Wire format: NVIF_OUTP_V0_HDMI_FRL (0x51) method with head and frl_rate
-parameters, dispatched through the acquired IOR table in uoutp.c.
+I think `warn_on_err` could just be expressed as
 
-Backend: r535 GSP-RM implementation using SET_HDMI_FRL_CONFIG (0x73029a)
-RM control with NVVAL-encoded FRL rate. Training attempts real link
-training first, falling back to fake LT on failure.
+    res.inspect_err(|_| warn_on!(true))
 
-Events: Register for NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST (18)
-from GSP, propagated as NVKM_DPYID_FRL_RETRAIN / NVIF_CONN_EVENT_V0_FRL
-through the existing connector event infrastructure.
-
-FRL is automatically cleared when HDMI output is disabled.
-
-This was claude code assisted.
-
-Signed-off-by: Dave Airlie <airlied@redhat.com>
----
- drivers/gpu/drm/nouveau/include/nvif/if0011.h |  1 +
- drivers/gpu/drm/nouveau/include/nvif/if0012.h | 10 +++
- drivers/gpu/drm/nouveau/include/nvif/outp.h   |  1 +
- .../drm/nouveau/include/nvkm/engine/disp.h    |  8 ++-
- drivers/gpu/drm/nouveau/nvif/outp.c           | 16 +++++
- .../gpu/drm/nouveau/nvkm/engine/disp/ior.h    |  1 +
- .../gpu/drm/nouveau/nvkm/engine/disp/uconn.c  |  3 +
- .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 20 ++++++
- .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 65 ++++++++++++++++++-
- .../nvkm/subdev/gsp/rm/r535/nvrm/disp.h       | 26 ++++++++
- 10 files changed, 147 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0011.h b/drivers/gpu/dr=
-m/nouveau/include/nvif/if0011.h
-index 3ed0ddd75bd8f..3dfbcd1238fc0 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/if0011.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/if0011.h
-@@ -26,6 +26,7 @@ union nvif_conn_event_args {
- #define NVIF_CONN_EVENT_V0_PLUG   0x01
- #define NVIF_CONN_EVENT_V0_UNPLUG 0x02
- #define NVIF_CONN_EVENT_V0_IRQ    0x04
-+#define NVIF_CONN_EVENT_V0_FRL    0x08
- =09=09__u8 types;
- =09=09__u8 pad02[6];
- =09} v0;
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0012.h b/drivers/gpu/dr=
-m/nouveau/include/nvif/if0012.h
-index dc0a5c372f511..84145d22c2593 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
-@@ -57,6 +57,7 @@ union nvif_outp_args {
- #define NVIF_OUTP_V0_LVDS          0x40
-=20
- #define NVIF_OUTP_V0_HDMI          0x50
-+#define NVIF_OUTP_V0_HDMI_FRL      0x51
-=20
- #define NVIF_OUTP_V0_INFOFRAME     0x60
- #define NVIF_OUTP_V0_HDA_ELD       0x61
-@@ -192,6 +193,15 @@ union nvif_outp_hdmi_args {
- =09} v0;
- };
-=20
-+union nvif_outp_hdmi_frl_args {
-+=09struct nvif_outp_hdmi_frl_v0 {
-+=09=09__u8 version;
-+=09=09__u8 head;
-+=09=09__u8 frl_rate;
-+=09=09__u8 pad03[5];
-+=09} v0;
-+};
-+
- union nvif_outp_infoframe_args {
- =09struct nvif_outp_infoframe_v0 {
- =09=09__u8 version;
-diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/=
-nouveau/include/nvif/outp.h
-index 55c02a34f381e..22681b14add4f 100644
---- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
-@@ -93,6 +93,7 @@ int nvif_outp_lvds(struct nvif_outp *, bool dual, bool bp=
-c8);
-=20
- int nvif_outp_hdmi(struct nvif_outp *, int head, bool enable, u8 max_ac_pa=
-cket, u8 rekey, u32 khz,
- =09=09   bool scdc, bool scdc_scrambling, bool scdc_low_rates);
-+int nvif_outp_hdmi_frl(struct nvif_outp *, int head, int frl_rate);
-=20
- int nvif_outp_infoframe(struct nvif_outp *, u8 type, struct nvif_outp_info=
-frame_v0 *, u32 size);
- int nvif_outp_hda_eld(struct nvif_outp *, int head, void *data, u32 size);
-diff --git a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h b/drivers/g=
-pu/drm/nouveau/include/nvkm/engine/disp.h
-index 7903d7470d194..4736f07a266b9 100644
---- a/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
-+++ b/drivers/gpu/drm/nouveau/include/nvkm/engine/disp.h
-@@ -18,12 +18,14 @@ struct nvkm_disp {
- =09=09struct nvkm_gsp_object objcom;
- =09=09struct nvkm_gsp_object object;
-=20
--#define NVKM_DPYID_PLUG   BIT(0)
--#define NVKM_DPYID_UNPLUG BIT(1)
--#define NVKM_DPYID_IRQ    BIT(2)
-+#define NVKM_DPYID_PLUG       BIT(0)
-+#define NVKM_DPYID_UNPLUG     BIT(1)
-+#define NVKM_DPYID_IRQ        BIT(2)
-+#define NVKM_DPYID_FRL_RETRAIN BIT(3)
- =09=09struct nvkm_event event;
- =09=09struct nvkm_gsp_event hpd;
- =09=09struct nvkm_gsp_event irq;
-+=09=09struct nvkm_gsp_event frl_retrain;
-=20
- =09=09u32 assigned_sors;
- =09} rm;
-diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/=
-nvif/outp.c
-index 60479c884b2dc..828c312536d41 100644
---- a/drivers/gpu/drm/nouveau/nvif/outp.c
-+++ b/drivers/gpu/drm/nouveau/nvif/outp.c
-@@ -222,6 +222,22 @@ nvif_outp_infoframe(struct nvif_outp *outp, u8 type, s=
-truct nvif_outp_infoframe_
- =09return ret;
- }
-=20
-+int
-+nvif_outp_hdmi_frl(struct nvif_outp *outp, int head, int frl_rate)
-+{
-+=09struct nvif_outp_hdmi_frl_v0 args;
-+=09int ret;
-+
-+=09args.version =3D 0;
-+=09args.head =3D head;
-+=09args.frl_rate =3D frl_rate;
-+
-+=09ret =3D nvif_mthd(&outp->object, NVIF_OUTP_V0_HDMI_FRL, &args, sizeof(a=
-rgs));
-+=09NVIF_ERRON(ret, &outp->object, "[HDMI_FRL head:%d frl_rate:%d]",
-+=09=09   args.head, args.frl_rate);
-+=09return ret;
-+}
-+
- int
- nvif_outp_hdmi(struct nvif_outp *outp, int head, bool enable, u8 max_ac_pa=
-cket, u8 rekey,
- =09       u32 khz, bool scdc, bool scdc_scrambling, bool scdc_low_rates)
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h b/drivers/gpu/d=
-rm/nouveau/nvkm/engine/disp/ior.h
-index 3ba04bead2f9c..fba24625b6882 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/ior.h
-@@ -75,6 +75,7 @@ struct nvkm_ior_func {
- =09=09void (*infoframe_avi)(struct nvkm_ior *, int head, void *data, u32 s=
-ize);
- =09=09void (*infoframe_vsi)(struct nvkm_ior *, int head, void *data, u32 s=
-ize);
- =09=09void (*audio)(struct nvkm_ior *, int head, bool enable);
-+=09=09void (*frl_train)(struct nvkm_ior *, int head, int frl_rate);
- =09} *hdmi;
-=20
- =09const struct nvkm_ior_func_dp {
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c b/drivers/gpu=
-/drm/nouveau/nvkm/engine/disp/uconn.c
-index 23d1e5c27bb1e..e1e2760833ad5 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uconn.c
-@@ -43,6 +43,8 @@ nvkm_uconn_uevent_gsp(struct nvkm_object *object, u64 tok=
-en, u32 bits)
- =09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_UNPLUG;
- =09if (bits & NVKM_DPYID_IRQ)
- =09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_IRQ;
-+=09if (bits & NVKM_DPYID_FRL_RETRAIN)
-+=09=09args.v0.types |=3D NVIF_CONN_EVENT_V0_FRL;
-=20
- =09return object->client->event(token, &args, sizeof(args.v0));
- }
-@@ -122,6 +124,7 @@ nvkm_uconn_uevent(struct nvkm_object *object, void *arg=
-v, u32 argc, struct nvkm_
- =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_PLUG  ) bits |=3D NVKM_DPYID=
-_PLUG;
- =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_UNPLUG) bits |=3D NVKM_DPYID=
-_UNPLUG;
- =09=09if (args->v0.types & NVIF_CONN_EVENT_V0_IRQ   ) bits |=3D NVKM_DPYID=
-_IRQ;
-+=09=09if (args->v0.types & NVIF_CONN_EVENT_V0_FRL   ) bits |=3D NVKM_DPYID=
-_FRL_RETRAIN;
-=20
- =09=09return nvkm_uevent_add(uevent, &disp->rm.event, outp->index, bits,
- =09=09=09=09       nvkm_uconn_uevent_gsp);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu=
-/drm/nouveau/nvkm/engine/disp/uoutp.c
-index 202fdc73f7cab..2245fbd2d1e94 100644
---- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
-@@ -239,6 +239,23 @@ nvkm_uoutp_mthd_infoframe(struct nvkm_outp *outp, void=
- *argv, u32 argc)
- =09return -EINVAL;
- }
-=20
-+static int
-+nvkm_uoutp_mthd_hdmi_frl(struct nvkm_outp *outp, void *argv, u32 argc)
-+{
-+=09union nvif_outp_hdmi_frl_args *args =3D argv;
-+=09struct nvkm_ior *ior =3D outp->ior;
-+
-+=09if (argc !=3D sizeof(args->v0) || args->v0.version !=3D 0)
-+=09=09return -ENOSYS;
-+=09if (!ior->func->hdmi || !ior->func->hdmi->frl_train)
-+=09=09return -EINVAL;
-+=09if (!nvkm_head_find(outp->disp, args->v0.head))
-+=09=09return -EINVAL;
-+
-+=09ior->func->hdmi->frl_train(ior, args->v0.head, args->v0.frl_rate);
-+=09return 0;
-+}
-+
- static int
- nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv, u32 argc)
- {
-@@ -257,6 +274,8 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv=
-, u32 argc)
- =09=09return -EINVAL;
-=20
- =09if (!args->v0.enable) {
-+=09=09if (ior->func->hdmi->frl_train)
-+=09=09=09ior->func->hdmi->frl_train(ior, args->v0.head, 0);
- =09=09ior->func->hdmi->infoframe_avi(ior, args->v0.head, NULL, 0);
- =09=09ior->func->hdmi->infoframe_vsi(ior, args->v0.head, NULL, 0);
- =09=09ior->func->hdmi->ctrl(ior, args->v0.head, false, 0, 0);
-@@ -518,6 +537,7 @@ nvkm_uoutp_mthd_acquired(struct nvkm_outp *outp, u32 mt=
-hd, void *argv, u32 argc)
- =09case NVIF_OUTP_V0_RELEASE      : return nvkm_uoutp_mthd_release      (o=
-utp, argv, argc);
- =09case NVIF_OUTP_V0_LVDS         : return nvkm_uoutp_mthd_lvds         (o=
-utp, argv, argc);
- =09case NVIF_OUTP_V0_HDMI         : return nvkm_uoutp_mthd_hdmi         (o=
-utp, argv, argc);
-+=09case NVIF_OUTP_V0_HDMI_FRL     : return nvkm_uoutp_mthd_hdmi_frl     (o=
-utp, argv, argc);
- =09case NVIF_OUTP_V0_INFOFRAME    : return nvkm_uoutp_mthd_infoframe    (o=
-utp, argv, argc);
- =09case NVIF_OUTP_V0_HDA_ELD      : return nvkm_uoutp_mthd_hda_eld      (o=
-utp, argv, argc);
- =09case NVIF_OUTP_V0_DP_TRAIN     : return nvkm_uoutp_mthd_dp_train     (o=
-utp, argv, argc);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drive=
-rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-index 2fb7cc83852f9..a4a9462d59027 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
-@@ -552,6 +552,46 @@ r535_sor_hdmi_ctrl(struct nvkm_ior *sor, int head, boo=
-l enable, u8 max_ac_packet
- =09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
- }
-=20
-+static int
-+r535_sor_frl_train_one(struct nvkm_ior *sor, int frl_rate, bool fake_lt)
-+{
-+=09struct nvkm_disp *disp =3D sor->disp;
-+=09NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS *ctrl;
-+=09int ret;
-+
-+=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
-+=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_FRL_CONFIG,
-+=09=09=09=09    sizeof(*ctrl));
-+=09if (IS_ERR(ctrl))
-+=09=09return PTR_ERR(ctrl);
-+
-+=09ctrl->displayId =3D BIT(sor->asy.outp->index);
-+=09ctrl->data =3D NVVAL(NV0073_CTRL, HDMI_FRL_DATA, SET_FRL_RATE, frl_rate=
-);
-+=09ctrl->bFakeLt =3D fake_lt;
-+=09ctrl->bDoNotSkipLt =3D true;
-+
-+=09ret =3D nvkm_gsp_rm_ctrl_push(&disp->rm.objcom, &ctrl, sizeof(*ctrl));
-+=09if (ret) {
-+=09=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
-+=09=09return ret;
-+=09}
-+
-+=09ret =3D ctrl->bLtSkipped ? -EIO : 0;
-+
-+=09nvkm_gsp_rm_ctrl_done(&disp->rm.objcom, ctrl);
-+=09return ret;
-+}
-+
-+static void
-+r535_sor_frl_train(struct nvkm_ior *sor, int head, int frl_rate)
-+{
-+=09if (!frl_rate)
-+=09=09return;
-+
-+=09if (r535_sor_frl_train_one(sor, frl_rate, false))
-+=09=09r535_sor_frl_train_one(sor, frl_rate, true);
-+}
-+
- static const struct nvkm_ior_func_hdmi
- r535_sor_hdmi =3D {
- =09.ctrl =3D r535_sor_hdmi_ctrl,
-@@ -559,6 +599,7 @@ r535_sor_hdmi =3D {
- =09.infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
- =09.infoframe_vsi =3D gv100_sor_hdmi_infoframe_vsi,
- =09.audio =3D r535_sor_hdmi_audio,
-+=09.frl_train =3D r535_sor_frl_train,
- };
-=20
- static const struct nvkm_ior_func
-@@ -1383,6 +1424,21 @@ r535_outp_new(struct nvkm_disp *disp, u32 id)
- =09return 0;
- }
-=20
-+static void
-+r535_disp_frl_retrain(struct nvkm_gsp_event *event, void *repv, u32 repc)
-+{
-+=09struct nvkm_disp *disp =3D container_of(event, typeof(*disp), rm.frl_re=
-train);
-+=09Nv2080HdmiFrlRetrainingRequestNotification *frl =3D repv;
-+
-+=09if (WARN_ON(repc < sizeof(*frl)))
-+=09=09return;
-+
-+=09nvkm_debug(&disp->engine.subdev, "event: frl retrain displayId %08x\n",=
- frl->displayId);
-+
-+=09if (frl->displayId)
-+=09=09nvkm_event_ntfy(&disp->rm.event, fls(frl->displayId) - 1, NVKM_DPYID=
-_FRL_RETRAIN);
-+}
-+
- static void
- r535_disp_irq(struct nvkm_gsp_event *event, void *repv, u32 repc)
- {
-@@ -1465,6 +1521,7 @@ r535_disp_fini(struct nvkm_disp *disp, bool suspend)
- =09nvkm_gsp_rm_free(&disp->rm.object);
-=20
- =09if (!suspend) {
-+=09=09nvkm_gsp_event_dtor(&disp->rm.frl_retrain);
- =09=09nvkm_gsp_event_dtor(&disp->rm.irq);
- =09=09nvkm_gsp_event_dtor(&disp->rm.hpd);
- =09=09nvkm_event_fini(&disp->rm.event);
-@@ -1706,7 +1763,7 @@ r535_disp_oneinit(struct nvkm_disp *disp)
- =09=09=09return ret;
- =09}
-=20
--=09ret =3D nvkm_event_init(&r535_disp_event, &gsp->subdev, 3, 32, &disp->r=
-m.event);
-+=09ret =3D nvkm_event_init(&r535_disp_event, &gsp->subdev, 4, 32, &disp->r=
-m.event);
- =09if (WARN_ON(ret))
- =09=09return ret;
-=20
-@@ -1720,6 +1777,12 @@ r535_disp_oneinit(struct nvkm_disp *disp)
- =09if (ret)
- =09=09return ret;
-=20
-+=09ret =3D nvkm_gsp_device_event_ctor(&disp->rm.device, 0x007e0002,
-+=09=09=09=09=09 NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST,
-+=09=09=09=09=09 r535_disp_frl_retrain, &disp->rm.frl_retrain);
-+=09if (ret)
-+=09=09return ret;
-+
- =09/* RAMHT. */
- =09ret =3D nvkm_ramht_new(device, disp->func->ramht_size ? disp->func->ram=
-ht_size :
- =09=09=09     0x1000, 0, disp->inst, &disp->ramht);
-diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h b/=
-drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
-index 7b7539639540a..f6c7f0b96a48b 100644
---- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
-+++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/nvrm/disp.h
-@@ -184,6 +184,12 @@ typedef struct Nv2080DpIrqNotificationRec {
-     NvU32 displayId;
- } Nv2080DpIrqNotification;
-=20
-+#define NV2080_NOTIFIERS_HDMI_FRL_RETRAINING_REQUEST               (18)
-+
-+typedef struct {
-+    NvU32 displayId;
-+} Nv2080HdmiFrlRetrainingRequestNotification;
-+
- #define NV0073_CTRL_CMD_SYSTEM_GET_CONNECT_STATE (0x730122U) /* finn: Eval=
-uated from "(FINN_NV04_DISPLAY_COMMON_SYSTEM_INTERFACE_ID << 8) | NV0073_CT=
-RL_SYSTEM_GET_CONNECT_STATE_PARAMS_MESSAGE_ID" */
- typedef struct NV0073_CTRL_SYSTEM_GET_CONNECT_STATE_PARAMS {
-     NvU32 subDeviceInstance;
-@@ -393,6 +399,26 @@ typedef struct NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS=
-_PARAMS {
- #define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS_DSC_MAX_FRL_RATE_SUPPO=
-RTED_4LANES_10G (0x00000005U)
- #define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS_DSC_MAX_FRL_RATE_SUPPO=
-RTED_4LANES_12G (0x00000006U)
-=20
-+#define NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_FRL_CONFIG (0x73029aU)
-+#define NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS_MESSAGE_ID (0=
-x9AU)
-+typedef struct NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS {
-+    NvU32  subDeviceInstance;
-+    NvU32  displayId;
-+    NvU32  data;
-+    NvBool bFakeLt;
-+    NvBool bDoNotSkipLt;
-+    NvBool bLtSkipped;
-+    NvBool bLinkAssessmentOnly;
-+} NV0073_CTRL_SPECIFIC_SET_HDMI_FRL_LINK_CONFIG_PARAMS;
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE                            =
-               2:0
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_NONE       (0x00000000U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_3LANES_3G  (0x00000001U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_3LANES_6G  (0x00000002U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_6G  (0x00000003U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_8G  (0x00000004U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_10G (0x00000005U)
-+#define NV0073_CTRL_HDMI_FRL_DATA_SET_FRL_RATE_4LANES_12G (0x00000006U)
-+
- #define NV0073_CTRL_SET_OD_MAX_PACKET_SIZE     36U
-=20
- #define NV0073_CTRL_CMD_SPECIFIC_SET_OD_PACKET (0x730288U) /* finn: Evalua=
-ted from "(FINN_NV04_DISPLAY_COMMON_SPECIFIC_INTERFACE_ID << 8) | NV0073_CT=
-RL_SPECIFIC_SET_OD_PACKET_PARAMS_MESSAGE_ID" */
---=20
-2.53.0
-
+Best,
+Gary
