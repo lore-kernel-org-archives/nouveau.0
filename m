@@ -4,25 +4,22 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D30B1FAD3F0
-	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C698FAD3F1
+	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:30 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 44C4E10EFB5;
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7ABF010EFBB;
 	Thu, 23 Apr 2026 02:55:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="V8zfvEt6";
-	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 262A345AC9;
+	by kara.freedesktop.org (Postfix) with ESMTP id 5D27645AC9;
 	Thu, 23 Apr 2026 02:43:12 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
  s=20240201; t=1776912192;
- b=gycQpD1BYPGBvmkB4W6aiGiljg3swPqtQEPpr0lPri2LeTv9uv14wyrVMWWstQgX+NpJ8
- TR/i5bHL1GCN5IgP2/GHoVsTMeqrRD4+8FAju1uibMMCnktmQZ4CLzOOtro4or1eKYRT8Kq
- 8H1875NttocDiUoGy7DdU0JjELQ/Dgx1f2CaaJl4pm6R+rAk5EiTdyvbvAbC4HnmxvMYxpK
- 4BhKRq5gpVPOu/zYuhozwtvcoH6F/q3X0BkqDZTt01s6Cxi5KRMBEIk1qC5BjdOIE9jDGo7
- 93AFCDzK6X+MObeE9AVIi7lQIB78RmbI5xh64CT2z8LfKCac3PKd7Hb5F2FQ==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
+ b=JQ6xdSBYHwc4Zxtw9VdLSjcoZgnm6hmFGSnGSeTJ6HesG1iCPEvNoSzdlRnCT+E/l8dY1
+ V7iAgpvBENXUk8Y1/sX64ANBZ4xWOieOtWQoA7YdHPGrTtkvamG3aDwnWozE4V1vcm7b9KT
+ c6Q2z/bwDNDPx1Pi7yFzVE7QDBgAW4aNEeILK2xTAbXDd5g7soIDL2DjnurfMeMjH8vUZhC
+ zUosHVDdNwNCrV9oYkw4MFPaymLhPA0wml7+lYj5+2PjaN5jkDon/s3F8mla1HE2ybHEYYx
+ 2H0G4SFmFBhd1mh1scCVIctslC61H0owBA7cf7vYz0kBDc0im4NkHwvfJc0A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
  d=lists.freedesktop.org; s=20240201; t=1776912192; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
@@ -30,163 +27,78 @@ ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=fSG6BgYyMI5Qoj4e7kg83fw7rkvk35lyoBn8XjymU0k=;
- b=ZCFnsGGoQcaqgPba9BhtrM7LBoipsTQro/psSJJAGzeEcMnZT3JG7sJ/aS1gaQGgr0y6a
- DGCqtg/nlJOAC65PSb1RorBNgRJM58Bar4SQrOPXyWDRqbKxSThvKSnjex+EzuXhe59mNrr
- a/1L6nzMtIhV0RvUd49QDRhEJJmnpWvZla6CEhBzEl8+gYtMhX84pV8FsluAIoD4ZO04Jkb
- E/mh25bW+rLed9rm7FHmsntuQ3rDeyxZFJH4zyUS5+Nn03nY7kt53UmleM6VyVL+0fwAKpJ
- sxyUlam1G1bMQg7Qag60vw5WnQTbcoy+aQTazrbe3kN6we0Ydd6s1bgUwU/A==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=0wNSLtsjD5jH3JNkfeBvXz7m6FTGNrgqXfGU6s+BvXY=;
+ b=J80yXH2xS2QhQsIh4Tmj4HZXcZjzyVjEb6xRaMROi4P8BgC+3TKGbsPLmJbeWFP+rT6du
+ lWCwYfzS8oI4XXqH2c9vZO+rdGez7zf/y1qBP01OvcmabWoFO7nkLJtUS9JX99UTvNXCw9v
+ FWfZudggks/ce3u2xFKwXmKeWwnVvcGenU+vTOAgpabna1iVICSGqTCRRlzYqtfUO3swt4m
+ r5T8kQ5fTnZWF2g+kDRLP5XiESahof/iYpfrhYXXPL6SX8SQ002DzT7c0Z5/1hfOQj9T3PJ
+ kf9Yx0pWGv4481C8IDJYJvTA08cm4OTO0pJjDMycGMnRJ/SsC5ujmddEs9pA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+  arc=none (Message is not ARC signed);
+  dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 2C59F45AC9
-	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 02:20:08 +0000 (UTC)
-Received: from SN4PR0501CU005.outbound.protection.outlook.com
- (mail-southcentralusazon11011004.outbound.protection.outlook.com
- [40.93.194.4])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id F025510E16C;
-	Thu, 23 Apr 2026 02:32:17 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FebXwFCdVx3dZKlVtEED0lSzLSzyAwKTkTnF0wHslng+IdTh4us3qhkLGuYPNvnB7WjQqjB2pb8XtEO7tMfxJjoozoC7YQ5U5fNdeykgDt0wK1vEeoAM1qt7nzRl4XRF/UPIyk0EdDV36/XmeCbBRQdH/Ex3Rgq9OMOqkI7MCYyLlHm916Wu9ZQr/oPiF6iB3Pl5qMXENYrIX+VveslJiC28r8C269nFe5W4YbmjEWE/2NoM8xRgvLdJqGZFLDeJgANoOat4v6Xbt4wyp6Xnb/VHEheN5aoAiJGyS7B8j8EVAJdbp07pP8yp8Z5iKZpTClo27c1zMDvPtVkib7ba5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fSG6BgYyMI5Qoj4e7kg83fw7rkvk35lyoBn8XjymU0k=;
- b=f9xwF1sASI32pAdpE239A98gqJ0DJ1X9laYvM4UFLT7YHCTqp/9d2rvuPHZY+z8QYkZ7lIHF25P97jOitOl3YaaG7j7MNBft+nCO8kzhmFs9MqwdiEWmh6nWe4OTy2RM+zNnzgoKK5f4LOuTHELn6lDKexsakt/4vzNmvCVQGa21eZcsDNXNjfJv7DzCfOhGjkgT86ScIxbqP+16DKS+w9eU/qXjHQ+gBqC/T7iWa1llgVJJ2sb6IwXlUPEiH5EIsYYLbU4LDNZ/c1odz2RxOQzdNevd1+QyEUmX2yM3D3QYXYw1QSbtWRK6qL8btCVjx1AZWw8tFm88cRBgeULOxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fSG6BgYyMI5Qoj4e7kg83fw7rkvk35lyoBn8XjymU0k=;
- b=V8zfvEt6WUgludypxhaNOXgIC0lG/e6MnSiXOfAjp2IwtbYNjjrVhB6ukn0DVT2FsY7iXnTAnP5kAePDD5RFAYNZb3nhQ7/mfopbwY4YZl4MCG/knoiXhHPwl+rfizu2XIzPBcwHORtonNVxyAeemijs44BgXN4Jkp16+BUU6T0yWBkO+faySZmBRR8sYVMojEIrEbNfUuPl1NVifQKPusFA4/Ljq50lxNMJmMb+90YRfBx0p7onU906oAtZDadiymCMjAtYER1OJMzGeYhwu+qhnTIiWn7Bsh/Na/ro8/eNj66C7+Svx6ahRxAgnYUN/SFrylu75FymU1MfOazIfg==
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by CH2PR12MB4280.namprd12.prod.outlook.com (2603:10b6:610:ac::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.46; Thu, 23 Apr
- 2026 02:32:12 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9846.019; Thu, 23 Apr 2026
- 02:32:12 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 23 Apr 2026 11:32:09 +0900
-Message-Id: <DI06KFG7C6P7.1NR2L62JY2RSF@nvidia.com>
-From: "Eliot Courtney" <ecourtney@nvidia.com>
-To: "Alexandre Courbot" <acourbot@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>
-Subject: Re: [PATCH v2 4/5] gpu: nova-core: send UNLOADING_GUEST_DRIVER GSP
- command upon unloading
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-4-2fe54963af8b@nvidia.com>
- <DHYQGLYYXEN6.11Q3FQGZMWCJ6@nvidia.com>
- <DHYWJ32M02N4.2954OSJXFGD1G@nvidia.com>
- <DHZMHF1YVBI4.F11YKDDKBNTQ@nvidia.com>
-In-Reply-To: <DHZMHF1YVBI4.F11YKDDKBNTQ@nvidia.com>
-X-ClientProxiedBy: DM6PR10CA0031.namprd10.prod.outlook.com
- (2603:10b6:5:60::44) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+	by kara.freedesktop.org (Postfix) with ESMTPS id B6FBC40497
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:04 +0000 (UTC)
+X-Greylist: delayed 371 seconds by postgrey-1.36 at gabe;
+ Thu, 23 Apr 2026 00:52:14 UTC
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [205.139.111.44])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4573B10EA43
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:52:14 +0000 (UTC)
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-261--SG59XNgNfeJCjA3UyWvKw-1; Wed,
+ 22 Apr 2026 20:46:02 -0400
+X-MC-Unique: -SG59XNgNfeJCjA3UyWvKw-1
+X-Mimecast-MFC-AGG-ID: -SG59XNgNfeJCjA3UyWvKw_1776905161
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 8B221195608E;
+	Thu, 23 Apr 2026 00:46:01 +0000 (UTC)
+Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.53])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 75BCC30001A1;
+	Thu, 23 Apr 2026 00:45:59 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: [PATCH 1/4] nouveau: move HDMI sink caps to outp level for GSP-RM
+Date: Thu, 23 Apr 2026 10:42:13 +1000
+Message-ID: <20260423004552.3289884-2-airlied@gmail.com>
+In-Reply-To: <20260423004552.3289884-1-airlied@gmail.com>
+References: <20260423004552.3289884-1-airlied@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|CH2PR12MB4280:EE_
-X-MS-Office365-Filtering-Correlation-Id: e26a563d-1f10-446b-bb5e-08dea0e08654
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|376014|7416014|366016|1800799024|10070799003|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: 
-	1vnkujns5nCh3QxbeJIQB6J47yb91A1Owlp6Ng28Fy3UEm+Nj5ljkv5ree5MPLdvHtiYrjvC6y5fW19j3es2ejWExxZo+SYX4v4jC83aHiMKEAbAQGZw2xlaXEvLtftYyjaPo3kcPc/kBrNla5mfKcNyzc3c6hDVVYcO8SC2O/hMGcpEK7cMbmC7vh7yo+FKkYIOQENOa4EMuaU6zI/NjR9LLrihJpIFNcNXebr+9b0Kvz/IG2s5FihVwA9BIV5mz3r24mszflJBODbbzG87uoZWER7i38P4bkrnseJkPeityNkk4ewBh1gVnuBc2nzPPu1fVFkH5WDhKrzhVwNibG6bsUG9aqACBHIt1KjTWosoo03H2st434GXIkiu1J1dy2dWQNTT2IjLt9ItjsIUk8e4Xu/5Y04QHxU4nE2w1FCPq2jvCd43mxJrExBa4dBb5JiwZkzmdnqy78l3Mc45e/08fxxYqmJdhUoGGhspNftf4eFE18zGgNJsMzYABS2MT7mtyWB8xafbrf/dtJCOX1Lcu0EM0/AxHc/RzUdYYOuGrSIqwP0Bje9ea69B+lWiG+GCL0buHfwmaehlWotCRdJaU1ejr1K02FknHDNNKrXRxs7cC/wBkRqm1vFQ6X2iRHt13FSMeDgPsESgmZd4ghb/muPZ/MVIovImn6RG/c4uKprzQFQ/Aeh7CLQT52OLNao8BIfL2T4s9uQJ2f1VHOIb6CCOGzlA3nTl8+O41wo=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR12MB2353.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(10070799003)(22082099003)(18002099003)(56012099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?Z1V3cExDRTRQRmdLOU5NWkNBZVIrdm5wRStjeUZuMXYwZG9Qaklxb1dnQWxq?=
- =?utf-8?B?TVlFWFUvTlQ4U01EL2lkK0FxbW9URjBSR1JmUFp3N3VrejJUcjd5ejlMZGsv?=
- =?utf-8?B?K05UcmR0bFFJZDBhMytSNGVZYUFReXE3RnhwTlpYR0JrM1loZ2VWQWdXS0VY?=
- =?utf-8?B?ZFdqeDdzRWd6UlpybnJkb1FvVkYrc1EzSzQ2T2doY2xMZDJPamZWakNKb09T?=
- =?utf-8?B?MTdtM2JsY0xOLzlUUlRZNmFjb1JuSm1RSmZOL3pnVGVBeEtSeEhRcUE4KzZo?=
- =?utf-8?B?Wkd6bjhrVWMzSlNoaVU4QzF3RFZsNGgyaS9MYUs2enptZFEvMWhDZm1FdzM4?=
- =?utf-8?B?Vml1dDFzeTJTZTR0bEJxUldjb0FMcC93SlNqcWRGNjdsVkVOejRkTVQzUU9y?=
- =?utf-8?B?aWtFY0s2dmUwUmZ0ZlJmTlhHaHFIcWxvMm4wRzFldTFYU3ZLRTZzSVVNUGFn?=
- =?utf-8?B?eXB0Z3BDQ1g2c0I3b2tIc05URjllcHo5cS9ZZTlxQUZUdWlCTmE5Qk5VR0or?=
- =?utf-8?B?VHJuWXg1UHhQRE9zejJuN2M4WjNrNlI4OWplR2dmVEFrbktRQ2JjUXp1dU5T?=
- =?utf-8?B?a2lYQWoxa09pS2t1V3BEYjNyOXpxaXU3eXgyVEVSUHpzQXdjV3FWQkYyOEhH?=
- =?utf-8?B?bVlBNVgrUDhuRTZhS00rZUF0YUlBR1kvUFUzOUxTOWJWTDBkdFFtN3lSOEp0?=
- =?utf-8?B?SG5oenNCUzZkL3RUNzVHajRvbHJCRmsyT2pnMHlVbVdyL1p5bDYzU090c3J1?=
- =?utf-8?B?NU5RajZiZkJXMzhZSmlDWXJXUFUxVTl4Yml0QUw2bU5zSzc3a1lJcGNwZ2dY?=
- =?utf-8?B?dGJ0aFJuZjd6bFFCMVByWndBRUJNK1JNK2luVC9DbEc3TUowVTRHVUVPa3No?=
- =?utf-8?B?NzJEVGZPcUVPdFpUYTJHcDZWL2pyYWFlN2FLd0M4dUVEbzZHaVFtKzVMVHZH?=
- =?utf-8?B?TWNsQTBRR2NrT0Y3aThSNFEvVGdZaXZIUmJKYkIyeENCV0tNV2hRdmFoZDlO?=
- =?utf-8?B?S0Z3Qm1HM2MxZER3WE8yTENOZVBPUmdsMTFNMGVCQmdEcWRRd2tKY3FLZG1Z?=
- =?utf-8?B?cENvR0phREl5M2poczA2Z01WMmFzbWhPbHIyamk0bHlGbURUVEx1MkcraGJt?=
- =?utf-8?B?dzRJeVh4T3NZRmZRSHo4MW9HRUpVUlJOamY4OVJ2VytQRHlZUFZrQW0vbEl0?=
- =?utf-8?B?REI5YmpqdkRmMG1VSnZaNEZWanFkWE1mMTVnQVZJOEhCTGZSbDhwMEd6Q3oy?=
- =?utf-8?B?dGJYeG1GaGxBN1duS2d6YWx1aG5nbXM3cHZYNG92MlVxbDFwN1RsUUw5Q2k4?=
- =?utf-8?B?OUxTWGNnWWxVM3N6NWtaWlhoLy9xdlltRks5QVFWWWkyam5HQkZ1eEdqcUdX?=
- =?utf-8?B?UHFLeDNlWXlVQmJmRXpwTERYeTQ2ZGlvcStwa3lBakJSNU5xa2Z0ZlAxdDlM?=
- =?utf-8?B?YnRObGZDZ3k1YnJPVG9FTTZVcWxQNnFQaE1yOG5DaDcwZGpOWSsvL0tpdzd4?=
- =?utf-8?B?RHZOa0J6b2ZLWEVqRExvVGl5QjNlNzBPdFk5azJkT2pQcU8vL2tqMTdRSURo?=
- =?utf-8?B?bnJJWDhwKzZxUGhXM1ZlelRFdWxINmkxUHZlOE1wUUxiVXJVQ2J0MVpuZmpG?=
- =?utf-8?B?MlBiMVNlSFJZYTE1SmdxUEJuWDFHTGt6UElJY3dkMzA1NS9qWlUyUXNVVTE2?=
- =?utf-8?B?YTVWeW9IU1pMdWNqVndPTUxwQ0cwaHVUWUhrbk1yYXBTbkxNMUJ6MWpDZlBv?=
- =?utf-8?B?RjlmbC9zbXJmK0dsa3Rjb29TZHVRa3NlY3prdTF3VFFlWVpSTHVqMExjVEp2?=
- =?utf-8?B?MnFKOFBvTkY4MG53ME9iaGlWZkJxdW1UamQ2eTNHd2FCcitlL1dvZzVqWEFN?=
- =?utf-8?B?aGkyeHhQWVBFVHVHTHBuRGs1ek0xTTNIdGdQd3RTVksvaXQyb3I3MnowajdG?=
- =?utf-8?B?cXJtcWVqdHkxU2tLSEc3QzBVajI4aTlOMUQ4VHFlT29NRFcyb0c1aVR0Wk80?=
- =?utf-8?B?b0dSNE92Z1NHQUVMU25lM3ZXVENOWDkyN2VPK0U2Q1hPZU1McnJrMlBJa29x?=
- =?utf-8?B?eDV5R3k0ZXdkRGU1Wkh3djRSTHlsSEcySUFqSmtvMExGa3lFWnFMeVczMk9H?=
- =?utf-8?B?SFpJbDE1SWRmZi9KS2JZemZYRmZQNDJ5MWo4Tis4M1ZjYVluK0JNbHM5WTg5?=
- =?utf-8?B?THpkbmJsZDA4UURJZEdSdUs0YStxdGM1NTNmcTNGRnJ5QUh4ZkhPZVNucERI?=
- =?utf-8?B?QU5GUHJIV3ZyNGN0MnhicTdvWVc4UjByWDVDdEtOZzJWRHJNaUVtQm9HaXFj?=
- =?utf-8?B?cW5lVkJXdmtyenFweE5LYlUvOWtlSHdVUHRMckMvcGU5cVBrQStxZndRbDNG?=
- =?utf-8?Q?+EoMHLhvfaUfhJWj/GsTIj04Y1Ahblp6WUY1o9UJjRJfM?=
-X-MS-Exchange-AntiSpam-MessageData-1: 1PSClHCN2aYXhQ==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- e26a563d-1f10-446b-bb5e-08dea0e08654
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Apr 2026 02:32:12.2703
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- Loq+dBwL46O89A1jliE3yiPOQtm0iRRsJkIqYwo8KxgvZEe0CfyXgnyHAgwFy8l/L1l2qZO2Mh8haAhdhyl8BA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4280
-Message-ID-Hash: SGM4AAE2OQRNHL26C2LQFDU2CQTOFIMM
-X-Message-ID-Hash: SGM4AAE2OQRNHL26C2LQFDU2CQTOFIMM
-X-MailFrom: ecourtney@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: ACEezZf2bXWAXL0Rdfs6RlYcKMQ5rRbSQ-Z4JDXBVNE_1776905161
+X-Mimecast-Originator: gmail.com
+Content-Transfer-Encoding: quoted-printable
+content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Message-ID-Hash: QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED
+X-Message-ID-Hash: QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED
+X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Boqun Feng <boqun@kernel.org>,
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/SGM4AAE2OQRNHL26C2LQFDU2CQTOFIMM/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/QSKVJPNJMUI4LTQJFTC4MAVW5H4XUPED/>
 Archived-At: 
- <https://lore.freedesktop.org/DI06KFG7C6P7.1NR2L62JY2RSF@nvidia.com/>
+ <https://lore.freedesktop.org/20260423004552.3289884-2-airlied@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -196,44 +108,313 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Wed Apr 22, 2026 at 7:47 PM JST, Alexandre Courbot wrote:
-> On Tue Apr 21, 2026 at 11:27 PM JST, Alexandre Courbot wrote:
-> <snip>
->>>> +        dev_dbg!(dev, "GSP shut down\n");
->>>> +
->>>> +        Ok(())
->>>> +    }
->>>>  }
->>>> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-=
-core/gsp/commands.rs
->>>> index c80df421702c..fb94460c451e 100644
->>>> --- a/drivers/gpu/nova-core/gsp/commands.rs
->>>> +++ b/drivers/gpu/nova-core/gsp/commands.rs
->>>> @@ -237,3 +237,39 @@ pub(crate) fn gpu_name(&self) -> core::result::Re=
-sult<&str, GpuNameError> {
->>>>  pub(crate) fn get_gsp_info(cmdq: &Cmdq, bar: &Bar0) -> Result<GetGspS=
-taticInfoReply> {
->>>>      cmdq.send_command(bar, GetGspStaticInfo)
->>>>  }
->>>> +
->>>> +pub(crate) struct UnloadingGuestDriver {
->>>> +    suspend: bool,
->>>> +}
->>>
->>> This feels like it only makes sense to call from within the gsp module,
->>> so I wonder if it can be pub(super) (prolly a few others in this file
->>> could be too, ofc not relevant for this series).
->>
->> I'll review that, we do want to limit visibility as much as possible.
->
-> Mmm looking more closely I am not sure this is something we want/can do.
-> As the driver expands, it looks likely that some of these types will be
-> used outside of the `gsp` module - in particular some of the responses
-> can be used outside, I think this actually happens with the MM series.
->
-> So I think I will keep the visibility as-is for now.
+From: Dave Airlie <airlied@redhat.com>
 
-I think some will be used outside yeah. For UnloadingGuestDriver do you
-reckon it makes sense for it to be called outside of the gsp module? It
-looks like it should only happen on unload and needs to be a part of a
-bunch of other tear down code to work.
+NVIDIA's driver sends SET_HDMI_SINK_CAPS during connector detection
+(ApplyNewEdid), not during modeset. Move this RM call from the IOR-level
+scdc callback to a new outp-level hdmi_sink_caps method that doesn't
+require an acquired SOR.
+
+Add nvif_outp_hdmi_sink_caps() routed through the noacquire dispatch
+table and call it from nouveau_connector_detect() for TMDS outputs on
+Turing+. Remove r535_sor_hdmi_scdc and its .scdc entry from r535_sor_hdmi
+since GSP now gets sink caps at detect time. The gm200 hardware scdc
+callback is preserved for direct register writes on pre-GSP chips.
+
+This was claude code assisted.
+
+Signed-off-by: Dave Airlie <airlied@redhat.com>
+---
+ drivers/gpu/drm/nouveau/include/nvif/if0012.h | 11 ++++
+ drivers/gpu/drm/nouveau/include/nvif/outp.h   |  2 +
+ drivers/gpu/drm/nouveau/nouveau_connector.c   | 11 ++++
+ drivers/gpu/drm/nouveau/nvif/outp.c           | 19 +++++++
+ .../gpu/drm/nouveau/nvkm/engine/disp/outp.h   |  2 +
+ .../gpu/drm/nouveau/nvkm/engine/disp/uoutp.c  | 23 +++++++--
+ .../nouveau/nvkm/subdev/gsp/rm/r535/disp.c    | 51 +++++++++----------
+ 7 files changed, 89 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/if0012.h b/drivers/gpu/dr=
+m/nouveau/include/nvif/if0012.h
+index bde9bfae8d11f..89cfac7ef3a54 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/if0012.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/if0012.h
+@@ -43,6 +43,7 @@ union nvif_outp_args {
+=20
+ #define NVIF_OUTP_V0_DETECT        0x00
+ #define NVIF_OUTP_V0_EDID_GET      0x01
++#define NVIF_OUTP_V0_HDMI_SINK_CAPS 0x02
+=20
+ #define NVIF_OUTP_V0_INHERIT       0x10
+ #define NVIF_OUTP_V0_ACQUIRE       0x11
+@@ -165,6 +166,16 @@ union nvif_outp_lvds_args {
+ =09} v0;
+ };
+=20
++union nvif_outp_hdmi_sink_caps_args {
++=09struct nvif_outp_hdmi_sink_caps_v0 {
++=09=09__u8 version;
++=09=09__u8 scdc;
++=09=09__u8 scdc_scrambling;
++=09=09__u8 scdc_low_rates;
++=09=09__u8 pad04[4];
++=09} v0;
++};
++
+ union nvif_outp_hdmi_args {
+ =09struct nvif_outp_hdmi_v0 {
+ =09=09__u8 version;
+diff --git a/drivers/gpu/drm/nouveau/include/nvif/outp.h b/drivers/gpu/drm/=
+nouveau/include/nvif/outp.h
+index bc122a5ba7df7..240e1f80ed539 100644
+--- a/drivers/gpu/drm/nouveau/include/nvif/outp.h
++++ b/drivers/gpu/drm/nouveau/include/nvif/outp.h
+@@ -66,6 +66,8 @@ enum nvif_outp_detect_status {
+=20
+ enum nvif_outp_detect_status nvif_outp_detect(struct nvif_outp *);
+ int nvif_outp_edid_get(struct nvif_outp *, u8 **pedid);
++int nvif_outp_hdmi_sink_caps(struct nvif_outp *, bool scdc, bool scdc_scra=
+mbling,
++=09=09=09     bool scdc_low_rates);
+=20
+ int nvif_outp_load_detect(struct nvif_outp *, u32 loadval);
+ int nvif_outp_acquire_dac(struct nvif_outp *);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/=
+nouveau/nouveau_connector.c
+index cc239492c7f0b..eae37d938f3bc 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -48,6 +48,7 @@
+=20
+ #include <nvif/class.h>
+ #include <nvif/if0011.h>
++#include <nvif/outp.h>
+=20
+ struct drm_display_mode *
+ nouveau_conn_native_mode(struct drm_connector *connector)
+@@ -637,6 +638,16 @@ nouveau_connector_detect(struct drm_connector *connect=
+or, bool force)
+ =09=09nouveau_connector_set_encoder(connector, nv_encoder);
+ =09=09conn_status =3D connector_status_connected;
+=20
++=09=09if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_TMDS &&
++=09=09    drm->client.device.info.family >=3D NV_DEVICE_INFO_V0_TURING) {
++=09=09=09struct drm_hdmi_info *hdmi =3D &connector->display_info.hdmi;
++
++=09=09=09nvif_outp_hdmi_sink_caps(&nv_encoder->outp,
++=09=09=09=09=09=09hdmi->scdc.supported,
++=09=09=09=09=09=09hdmi->scdc.scrambling.supported,
++=09=09=09=09=09=09hdmi->scdc.scrambling.low_rates);
++=09=09}
++
+ =09=09if (nv_encoder->dcb->type =3D=3D DCB_OUTPUT_DP)
+ =09=09=09drm_dp_cec_set_edid(&nv_connector->aux, nv_connector->edid);
+=20
+diff --git a/drivers/gpu/drm/nouveau/nvif/outp.c b/drivers/gpu/drm/nouveau/=
+nvif/outp.c
+index 8cf4775a0a1eb..d66f437587ff3 100644
+--- a/drivers/gpu/drm/nouveau/nvif/outp.c
++++ b/drivers/gpu/drm/nouveau/nvif/outp.c
+@@ -461,6 +461,25 @@ nvif_outp_edid_get(struct nvif_outp *outp, u8 **pedid)
+ =09return ret;
+ }
+=20
++int
++nvif_outp_hdmi_sink_caps(struct nvif_outp *outp, bool scdc, bool scdc_scra=
+mbling,
++=09=09=09 bool scdc_low_rates)
++{
++=09struct nvif_outp_hdmi_sink_caps_v0 args;
++=09int ret;
++
++=09args.version =3D 0;
++=09args.scdc =3D scdc;
++=09args.scdc_scrambling =3D scdc_scrambling;
++=09args.scdc_low_rates =3D scdc_low_rates;
++
++=09ret =3D nvif_mthd(&outp->object, NVIF_OUTP_V0_HDMI_SINK_CAPS, &args, si=
+zeof(args));
++=09NVIF_ERRON(ret, &outp->object,
++=09=09   "[HDMI_SINK_CAPS scdc:%d scrambling:%d low_rates:%d]",
++=09=09   args.scdc, args.scdc_scrambling, args.scdc_low_rates);
++=09return ret;
++}
++
+ enum nvif_outp_detect_status
+ nvif_outp_detect(struct nvif_outp *outp)
+ {
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h b/drivers/gpu/=
+drm/nouveau/nvkm/engine/disp/outp.h
+index ebd2f499b4b1d..fd54c17ba4d6d 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/outp.h
+@@ -95,6 +95,8 @@ struct nvkm_outp_func {
+=20
+ =09int (*detect)(struct nvkm_outp *);
+ =09int (*edid_get)(struct nvkm_outp *, u8 *data, u16 *size);
++=09void (*hdmi_sink_caps)(struct nvkm_outp *, bool scdc, bool scrambling,
++=09=09=09       bool low_rates);
+=20
+ =09struct nvkm_ior *(*inherit)(struct nvkm_outp *);
+ =09int (*acquire)(struct nvkm_outp *, bool hda);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c b/drivers/gpu=
+/drm/nouveau/nvkm/engine/disp/uoutp.c
+index 377d0e0cef848..84381ba71ebaf 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/engine/disp/uoutp.c
+@@ -253,8 +253,7 @@ nvkm_uoutp_mthd_hdmi(struct nvkm_outp *outp, void *argv=
+, u32 argc)
+=20
+ =09if (!ior->func->hdmi ||
+ =09    args->v0.max_ac_packet > 0x1f ||
+-=09    args->v0.rekey > 0x7f ||
+-=09    (args->v0.scdc && !ior->func->hdmi->scdc))
++=09    args->v0.rekey > 0x7f)
+ =09=09return -EINVAL;
+=20
+ =09if (!args->v0.enable) {
+@@ -473,6 +472,21 @@ nvkm_uoutp_mthd_edid_get(struct nvkm_outp *outp, void =
+*argv, u32 argc)
+ =09return outp->func->edid_get(outp, args->v0.data, &args->v0.size);
+ }
+=20
++static int
++nvkm_uoutp_mthd_hdmi_sink_caps(struct nvkm_outp *outp, void *argv, u32 arg=
+c)
++{
++=09union nvif_outp_hdmi_sink_caps_args *args =3D argv;
++
++=09if (argc !=3D sizeof(args->v0) || args->v0.version !=3D 0)
++=09=09return -ENOSYS;
++=09if (!outp->func->hdmi_sink_caps)
++=09=09return -EINVAL;
++
++=09outp->func->hdmi_sink_caps(outp, args->v0.scdc, args->v0.scdc_scramblin=
+g,
++=09=09=09=09   args->v0.scdc_low_rates);
++=09return 0;
++}
++
+ static int
+ nvkm_uoutp_mthd_detect(struct nvkm_outp *outp, void *argv, u32 argc)
+ {
+@@ -522,8 +536,9 @@ static int
+ nvkm_uoutp_mthd_noacquire(struct nvkm_outp *outp, u32 mthd, void *argv, u3=
+2 argc, bool *invalid)
+ {
+ =09switch (mthd) {
+-=09case NVIF_OUTP_V0_DETECT     : return nvkm_uoutp_mthd_detect     (outp,=
+ argv, argc);
+-=09case NVIF_OUTP_V0_EDID_GET   : return nvkm_uoutp_mthd_edid_get   (outp,=
+ argv, argc);
++=09case NVIF_OUTP_V0_DETECT         : return nvkm_uoutp_mthd_detect       =
+  (outp, argv, argc);
++=09case NVIF_OUTP_V0_EDID_GET       : return nvkm_uoutp_mthd_edid_get     =
+  (outp, argv, argc);
++=09case NVIF_OUTP_V0_HDMI_SINK_CAPS : return nvkm_uoutp_mthd_hdmi_sink_cap=
+s (outp, argv, argc);
+ =09case NVIF_OUTP_V0_INHERIT    : return nvkm_uoutp_mthd_inherit    (outp,=
+ argv, argc);
+ =09case NVIF_OUTP_V0_ACQUIRE    : return nvkm_uoutp_mthd_acquire    (outp,=
+ argv, argc);
+ =09case NVIF_OUTP_V0_LOAD_DETECT: return nvkm_uoutp_mthd_load_detect(outp,=
+ argv, argc);
+diff --git a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c b/drive=
+rs/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+index 6e63df816d855..fa20a0c633653 100644
+--- a/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
++++ b/drivers/gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/disp.c
+@@ -468,31 +468,6 @@ r535_sor_dp =3D {
+ =09.audio =3D r535_sor_dp_audio,
+ };
+=20
+-static void
+-r535_sor_hdmi_scdc(struct nvkm_ior *sor, u32 khz, bool support, bool scram=
+bling,
+-=09=09   bool scrambling_low_rates)
+-{
+-=09struct nvkm_outp *outp =3D sor->asy.outp;
+-=09struct nvkm_disp *disp =3D outp->disp;
+-=09NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS_PARAMS *ctrl;
+-
+-=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
+-=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS, sizeof(*ctrl)=
+);
+-=09if (WARN_ON(IS_ERR(ctrl)))
+-=09=09return;
+-
+-=09ctrl->displayId =3D BIT(outp->index);
+-=09ctrl->caps =3D 0;
+-=09if (support)
+-=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+SCDC_SUPPORTED, TRUE);
+-=09if (scrambling)
+-=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+GT_340MHZ_CLOCK_SUPPORTED, TRUE);
+-=09if (scrambling_low_rates)
+-=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+LTE_340MHZ_SCRAMBLING_SUPPORTED, TRUE);
+-
+-=09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
+-}
+-
+ static void
+ r535_sor_hdmi_ctrl_audio_mute(struct nvkm_outp *outp, bool mute)
+ {
+@@ -580,7 +555,6 @@ r535_sor_hdmi_ctrl(struct nvkm_ior *sor, int head, bool=
+ enable, u8 max_ac_packet
+ static const struct nvkm_ior_func_hdmi
+ r535_sor_hdmi =3D {
+ =09.ctrl =3D r535_sor_hdmi_ctrl,
+-=09.scdc =3D r535_sor_hdmi_scdc,
+ =09/*TODO: SF_USER -> KMS. */
+ =09.infoframe_avi =3D gv100_sor_hdmi_infoframe_avi,
+ =09.infoframe_vsi =3D gv100_sor_hdmi_infoframe_vsi,
+@@ -1242,6 +1216,30 @@ r535_tmds_edid_get(struct nvkm_outp *outp, u8 *data,=
+ u16 *psize)
+ =09return ret;
+ }
+=20
++static void
++r535_outp_hdmi_sink_caps(struct nvkm_outp *outp, bool scdc, bool scramblin=
+g,
++=09=09=09 bool low_rates)
++{
++=09struct nvkm_disp *disp =3D outp->disp;
++=09NV0073_CTRL_SPECIFIC_SET_HDMI_SINK_CAPS_PARAMS *ctrl;
++
++=09ctrl =3D nvkm_gsp_rm_ctrl_get(&disp->rm.objcom,
++=09=09=09=09    NV0073_CTRL_CMD_SPECIFIC_SET_HDMI_SINK_CAPS, sizeof(*ctrl)=
+);
++=09if (WARN_ON(IS_ERR(ctrl)))
++=09=09return;
++
++=09ctrl->displayId =3D BIT(outp->index);
++=09ctrl->caps =3D 0;
++=09if (scdc)
++=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+SCDC_SUPPORTED, TRUE);
++=09if (scrambling)
++=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+GT_340MHZ_CLOCK_SUPPORTED, TRUE);
++=09if (low_rates)
++=09=09ctrl->caps |=3D NVDEF(NV0073_CTRL_CMD_SPECIFIC, SET_HDMI_SINK_CAPS, =
+LTE_340MHZ_SCRAMBLING_SUPPORTED, TRUE);
++
++=09WARN_ON(nvkm_gsp_rm_ctrl_wr(&disp->rm.objcom, ctrl));
++}
++
+ static const struct nvkm_outp_func
+ r535_tmds =3D {
+ =09.detect =3D r535_outp_detect,
+@@ -1249,6 +1247,7 @@ r535_tmds =3D {
+ =09.acquire =3D r535_outp_acquire,
+ =09.release =3D r535_outp_release,
+ =09.edid_get =3D r535_tmds_edid_get,
++=09.hdmi_sink_caps =3D r535_outp_hdmi_sink_caps,
+ };
+=20
+ static int
+--=20
+2.53.0
+
