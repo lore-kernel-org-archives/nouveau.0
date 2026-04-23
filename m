@@ -4,185 +4,97 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C451F9B615
-	for <nouveau@archiver.kernel.org>; Wed, 22 Apr 2026 10:48:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBC1EFAD3F0
+	for <nouveau@archiver.kernel.org>; Thu, 23 Apr 2026 02:55:23 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA5A10E9D4;
-	Wed, 22 Apr 2026 10:48:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Id+YpQnz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTPS id D79C310EF69;
+	Thu, 23 Apr 2026 02:55:19 +0000 (UTC)
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 76C3745AC6;
-	Wed, 22 Apr 2026 10:35:56 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1776854156;
- b=tlzKY+8cF+P8ImN/dNfgR5YKfvGKCIm9PcYYCEHAtHTLBgPmfzfpL0ea0PVtZDscvyZH5
- xW1yC/uVz4Xg/2EUaV8CO5QEYxzBMltlO0NNogwuCzpKPfyMJ0mhISH0YD18CVz22oW2DB3
- hMtUrLrswVdcTpo2yh6Ixvaq/O0hP8uF5KZPenCwbd5sowUIshSsnZ4jZUbaUxtZ9UITjsu
- w+4M6TX7ibhePzI9cc6/Vl48wfSbp7LLwx8tWGpBKcixtO/XMxhZ09hWXY+k9MpMqBuNlQM
- qEvl5HIRlL54YrvErccXb8LuuseS1cbTAPTjDWFo6GqZlM6g7Bclh7/NGGFw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1776854156; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id B6DE745B1B;
+	Thu, 23 Apr 2026 02:43:09 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1776912189;
+ b=mPO7EKT+g+4jgdk8h7IhLSQDkN/l8AWselyocL9kAu3DEwro/uvgyHyT1zWvzM41YNVR0
+ 9Hd5e52kZ6NJA/NUX+9HBMfpAduuRWH5aISnluOwSVlj2Z/OPkCuPbXLKjY9kYkzYc4aRYA
+ EdSUe7l94AMexcNAfpav8wb7LG76OVR73sQ9kqPhhJEF3Sawn74pNYW4kTiSp2+zNRXeIkY
+ gNQfLORE9yZ9n7cheYyYd77kFVp6e8jkBcz6pV8AKPLNxKDJ/O8Bik5M6lERGywLxz35CjO
+ GHsqPTwwP/mfO37tpA2wCD3wwfCUH0JQvb3QwF5T0OHKQtTfaFSX3uLom+Tw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1776912189; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=wdnHCuDpVi+lIW0L9JskM5kgeRaRFqLC4IEKxq4ZtnU=;
- b=bgAFOpTOg5AVIryWbSttdmdzQcbpbsUBYzbx0D8ZK5ZC8Z0eF9TiBdutay9ANGcgh4JM5
- W88QakfhYNasO+ONG4eS+HxRO7tnuI83uYpTIpr5dCeRwxRZ1e74I1S7FOoxUFJpBhWPZEg
- uGfcCaLfDiMx5Y5zKpTgCeB84ey7ixkMhc62KxgYgEuqtxfjiKAPsI1/eSzjZMqy0T0tVwt
- JYexkTom91Om9J7MLChDKaqSc0K3FgKDBbThpfyI9Z9i/xTMvrM9OYgowX1EYON8jDXfPy7
- rXJboV/MZyRTZAOhgtPA+zKq7KuKWh8AluL2a2wsnuGgNi1TwB6RpyUdo4yQ==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=duffMU1D/28NFG/a9L4qPLN18b33+z4YPLXQ92WKiAE=;
+ b=uIXAOm3MkCBkgt+txiPe5QL/JJemwVBFC8Je838e2Ig6l02NTotlnfw7koADLpB3U7MEc
+ 0PUiFBDHDh9k2YtEUMmArpUp9/xP/KIh9nnaBK8VGO+E4OCXEUGpRLWRnVmnOialJbueAtl
+ 7UBlsQN378AE02gWLzr6MhBVGJX7bqL//nseigeiS3JXOe2zHyHOuFYNMp1MMu0kBvFrtql
+ vcFbTqbk6cMC5xr0Sfv20Ak8MKAJHyFbOB/LWDt54RjtWI1I0DohH3x4Thw5xKE36hTsHHM
+ KrFUgOI85l0knj9nC326Thjn4oDWDGFI4oYBHoKP+tkMcgvQxvOUKbyEy+VA==
+ARC-Authentication-Results: i=1; mail.freedesktop.org; dkim=fail;
+  arc=none (Message is not ARC signed);
+  dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=fail;
+ arc=none (Message is not ARC signed);
+ dmarc=fail (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id C28BD452B0
-	for <nouveau@lists.freedesktop.org>; Wed, 22 Apr 2026 10:35:53 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012014.outbound.protection.outlook.com [52.101.48.14])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3846D10E9B0;
-	Wed, 22 Apr 2026 10:48:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZTTrs0sSJENrQOiPVmSY8n7+Mnm9S/Xfz84KGchbm6OYxcA6SQSklS4knE4GgO5wWl2odJLa21MUr1T1YcZ7NsGLow+lV1AGMl9eWmMa4aE1OxEwiVW2sNiXz7XjouFZ0a+3CFd9whoXYLToQruaIsSHLQR/XzmWCMvoPVkE3x561KSWUbONHl6+4Une9M4n4caOh1FW8aadB3HSEcVDTrLaYCJu46hoacsc1QH8KfUTpCLCukDJCrAvl36E0QrKbsJZepc2yH0UstHC9iItiGvxya6W3OhYDunBvxoZBmEg4ej5INV4sKgAcBcuD2aD8V24wmKs7n3sGK/3Y0EMQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wdnHCuDpVi+lIW0L9JskM5kgeRaRFqLC4IEKxq4ZtnU=;
- b=kwaPTrH1kUhxnH3IJja4vk2zgKAAo4pMnITOTKdGyvjeTFdllP7Mz1CjjSFEqE5bdAzvjIhmmcGidTi/g+zL5p+2tgitOZerj8qLlN9geZV0bnvVB+1zJhWx5ZOLbdOSZFWU0XSz3XF9FM6trPnnmD03WEQV0fWBC57Jh2IHrCLcsRQ6sxOO+DJLQZarmq8rVihlTJWhbzLqMHS9OBXo5usiZUSmx5Yca4Nf4VSAIUOHnmFYW+IyNpLv5BVC9S3jSKL3ZcBPUwg861lhICvjPY1sZuzwJ6HbjRGP4djFt3k4M9ffkSCkYoKYMavIWC4gie3wGTUDn9XIaJakkJh9rQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wdnHCuDpVi+lIW0L9JskM5kgeRaRFqLC4IEKxq4ZtnU=;
- b=Id+YpQnzu2WF0anmn/Yo5DxYdTrXiTck3XlMbrjCgvgHosKcRPyWBPnpvPvrR5lhqyovahWhgR09Zcat54zeB6vyj3RhjahWWg5fNILC3dzq42m8YnfA6BXdrk6IpI8jHIDgT/yOOlUSkwF4DoemVsdokz19C2RPb0+aL9jM6eYB5KjlMMZ+ZJgI8a/qVVxOMq/qOeMwQoNkK1ZxJVVymuUAVwANeZi3OYmv3dC/VB7DbrSxsv/6y0l94G9BWJyq67YeKduBSJH9ToWkViYdFi/V0h8CwAcZwKG76T3bpk1EqzpK5wOMq/sXaLdPDrNRDJbiyM+IaUYZKHaiJMe47w==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by MN0PR12MB6125.namprd12.prod.outlook.com (2603:10b6:208:3c7::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.19; Wed, 22 Apr
- 2026 10:47:56 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%4]) with mapi id 15.20.9846.019; Wed, 22 Apr 2026
- 10:47:56 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 22 Apr 2026 19:47:51 +0900
-Message-Id: <DHZMHF1YVBI4.F11YKDDKBNTQ@nvidia.com>
-Subject: Re: [PATCH v2 4/5] gpu: nova-core: send UNLOADING_GUEST_DRIVER GSP
- command upon unloading
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Eliot Courtney" <ecourtney@nvidia.com>
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-4-2fe54963af8b@nvidia.com>
- <DHYQGLYYXEN6.11Q3FQGZMWCJ6@nvidia.com>
- <DHYWJ32M02N4.2954OSJXFGD1G@nvidia.com>
-In-Reply-To: <DHYWJ32M02N4.2954OSJXFGD1G@nvidia.com>
-X-ClientProxiedBy: TYWP286CA0015.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:178::13) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id CDC2C45B18
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:40:53 +0000 (UTC)
+Received: from us-smtp-delivery-44.mimecast.com
+ (us-smtp-delivery-44.mimecast.com [207.211.30.44])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 6809310EA43
+	for <nouveau@lists.freedesktop.org>; Thu, 23 Apr 2026 00:53:03 +0000 (UTC)
+Received: from mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-320-WlvI2kkfMdC2OwfZqhq63Q-1; Wed,
+ 22 Apr 2026 20:45:59 -0400
+X-MC-Unique: WlvI2kkfMdC2OwfZqhq63Q-1
+X-Mimecast-MFC-AGG-ID: WlvI2kkfMdC2OwfZqhq63Q_1776905158
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com
+ (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
+ SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS
+ id 974EE195608B;
+	Thu, 23 Apr 2026 00:45:58 +0000 (UTC)
+Received: from dreadlord.taild9177d.ts.net (unknown [10.67.32.53])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP
+ id 932CA30001A1;
+	Thu, 23 Apr 2026 00:45:56 +0000 (UTC)
+From: Dave Airlie <airlied@gmail.com>
+To: dri-devel@lists.freedesktop.org
+Subject: nouveau: add HDMI FRL support for GSP enabled GPUs
+Date: Thu, 23 Apr 2026 10:42:12 +1000
+Message-ID: <20260423004552.3289884-1-airlied@gmail.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|MN0PR12MB6125:EE_
-X-MS-Office365-Filtering-Correlation-Id: a62d6df8-147b-40db-11cc-08dea05c9cc7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|7416014|1800799024|10070799003|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 
-	FaYNQkJejaxFnf0KmCyl1VhifR7VZGrNbml9KjvEriH7QhQTgig6W4CVJ16EpjKyBSlUa0to768Y4JIce2SR9KsXq/8e4ujcmBfr3iuTU8v/z13Rl9q1u2dyBFNEovhjAR+YxSvO4WE746n0dnSiJ4kVra3GrY4jlQn5DPv0epB9p6yId9ii8M8KTwu56yWwLDxPd5EhdyeQFi8rbA86rJwBFvXHIl/GxYZfIspIXtPNmieH1nf5UX4pzC7ipD1L+xwmKTDLNSVHhxjjycmiim9/H919CAzM/8KlYodNjMCIbHqzpoZbz1kkX7T12CHZV/qpuqj7CJgm46mibc5sG2bmaO86PG2PwG8h/Z+QQzX8mkn+Ddw13Gxb+cFoZuMW7M091hSnH+MykzbWVHu4eVAgKqgSxah/Gmwyy6LbrvXVB0N/eRfI8fRuOcFRJNrXgqUvyBRPbkNPkEaXFTL4flC6dLW2Bv/ImToClAEcQwzDB8/hIQZipT3/8ZKu1PTAEgD/01ZKuG5r+2Nb7w4jTqCtPNZPdWDieBHLqcsw3CfQi6oBTWSwxmEkHaQc4vedrUAGiQGSnaZfMyfwi6f4M1WXFHxmO7zFLC+JTk8rmcw3hqEZu8VTBINrlKqsfvTC5VhWSSCbsOzLJKgr28qE4eRo9aXhswJp59yUOkzlWBmy4qAOoKzsYLKjUKx+BxiOgR+WMveiCGFFd06oJfD21weomfVGOHmbhyLOeqXH/x4=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(1800799024)(10070799003)(376014)(18002099003)(56012099003)(22082099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?ZUFFckg5T09QWU55bWhnSlVNZkthSk1RdG1JcER4VDJjdFV3WnRqZlE0THZD?=
- =?utf-8?B?THdKOVpVTWtxSDk5Y0VDc2xXRHAraHVoQUVlU1Babkx3QnZpYndiMk82OXVz?=
- =?utf-8?B?UEdXTGhzd08ycnJ5emNoZ0dveC9NeDVMWU1PK3JtanpjV2xNalNCNTVFMERJ?=
- =?utf-8?B?OEk1Sm1qazhoQUlyOGF4SWxCeXI1SjE4MXYxR1FxeDVLdFRUK3ArbTNVUWtj?=
- =?utf-8?B?SFlYUlUzWWo0RUZOY01vUElTOFB3bFFxY21FNWIxWUkybWg2UlE2Yy9sWnVa?=
- =?utf-8?B?YWNXUDNwU2NjQmk0Zk9iU1JuWjVtN3BQK2VSUXlDSVFkNlNGeDhYQVNORTNH?=
- =?utf-8?B?T1cvSWlIZUt1cEVtVXFNVTM4MmRUVjRkanpjckJFbFZYbnp2SjZGY2ZjTzh1?=
- =?utf-8?B?SHk5SVFpbE94L0pGU1RWandoZ0NvcnJMeUhKclNBMzlZWmRpdGtZL1RiUVEv?=
- =?utf-8?B?VExrazhpeWl3Q25MOUYydURJUmY3OHkxMjl3NHhId0Y2ZS9XK0kzaWNvRmR3?=
- =?utf-8?B?TERCa3RXUnJnc2hVNnFuZ05tTk1nQXhtQjBtQzJ2djF5UjJGVlg5MWVzd2RO?=
- =?utf-8?B?TjRoMCtEWlNCZEYxUEowMTUzc3diMDgrOG9WNGtNNEt5dmVHcDBMTm5NZ3Az?=
- =?utf-8?B?MytRRDIreGJCWW9mWHdSaDRlR3Q3UEdGdS9GcCsxTjVsVFF4TmJ3WDBzVTVu?=
- =?utf-8?B?VG5mWXBvSTVTR3J2eXVHNWlGR1k3cFZ4Mys0V2FSNEFlbG5HUVU3V0pTNzY4?=
- =?utf-8?B?MFpZVUo1VkpIM080WFVWSDd5V0w5cnBFbmNhMitsVWx1Z0l1SUlOZ0phSk81?=
- =?utf-8?B?MXRSTTNlOEV2TUVHSXpyYndseWx2QXBPcXh0Ky9pSVF1YkJ5N0oycUovVHh6?=
- =?utf-8?B?dVpVM210MFY1VWg5Sk5LZjVXODdRSzhMcFJRbkdLaXlKWG5NbG04RWhGWDVO?=
- =?utf-8?B?enJGam9zNFMyMUg1bEZseS9QemxLemlhK3BKVnl2dGgrenVvY2hkWmswY1g4?=
- =?utf-8?B?MGlPei92T05yWHFIQ0hkREFseDZrRmI0aW5YN0FtaUxvd2pyWVlIanFCYlVL?=
- =?utf-8?B?UUJ3S1M5ZE83Qk50UG1QeXhROXA2ZUVMbk1iTmJsRkxtVGhNck9DWTd3Zlkv?=
- =?utf-8?B?RFJ6YVJJUjFmNzArSUJITjdSRlBSRkNMc1M5ai8xbURtTk1JWWJkR3pMcFN3?=
- =?utf-8?B?N1dpK2h5MG9sSGFuM21paUNWRGJpeE9TMmdRNlhaOEpENXlSWGJlU2duQTJC?=
- =?utf-8?B?VmJIL1JjNmovTjAyb3d6cHhFUkRsV1RhVGZNeUVEeDlobkwxL0N3QnNTYzhU?=
- =?utf-8?B?cXZwK093QWw1MXJUWVlCVnc1d1lZLzc4MUF0WGZqT1VTWEZQbVlFRG5HQXk1?=
- =?utf-8?B?RUVMTWhtT1owV3BhWFdMMTBLZkpRaVNuSmxYMEc4TFFqUEJPRzlFK1ltUXNY?=
- =?utf-8?B?NFlmN005cERWK3Z1b1lPWjNJZHREQXhnZzB0MHkrWGdObDh1QUR1bDVrSUN3?=
- =?utf-8?B?TnQ5QXlvd1d0WTAzam9teHB3R1U4NWVwWmF4YlJLKzhxODhrMU13bXNrcitW?=
- =?utf-8?B?MVF0bnB1amlTdTYwWjNPcW5yRllDalBPWEozSGozdy9kdU5oNWRxanZnaTFG?=
- =?utf-8?B?QUJ3Y0FUNythM0cxTEFWMmgxditCUmxLdkwvZFpHRWtQVDY2NXljUTZvcDMz?=
- =?utf-8?B?Ym8zcm5iSndXclhYMGJNSXk5STRKRTVvNHZVOUVaaXlFdjhVNVRsVWQvbGlS?=
- =?utf-8?B?OVBWWEhCT2J6TWRsYUhrQlRHWTFTZHl4L05rR2pTL2dGa2NHb2huUGk0aEdp?=
- =?utf-8?B?REM2OHdQdEYzbXJQeWVUMzZtOXhIeHVzSGRPeVM5TmJpWXRGVVZsdUo5aXRC?=
- =?utf-8?B?b3dBdlJKWDdIWC80MWdHaGFxcmVPODNxSmFkbDJMUWtXeXUremtQRG0xcUtl?=
- =?utf-8?B?WEQwWC9VYm81c1NUMUU2aFJ3bHM2U2dtcWpPeWpwVlRUV1dLem9FOHJUWmxC?=
- =?utf-8?B?cjJBNk1HYmhUaUVNRW1ISU82ZmwycFAxUHRzSjdGenU4MUo3eVRYYlhpU3Iz?=
- =?utf-8?B?dXh1YmVPSjhCRzQ0cE9WOEVKMWptcFR0M0RGTFVBcTQ4dC80cVo4UDJjQjBa?=
- =?utf-8?B?cmsxSlYydFA3cVFNVDNGR0RFUEJodVZyQW5SeTIwelNXUnBZWnROYVFvb0dY?=
- =?utf-8?B?Zm03VjJYaG9EZndpQi8zM1p2SVAyaWkrTCsxcE5leHE3S1cxR2RjSk55NkRS?=
- =?utf-8?B?cmliVkJ0NkpQa1BtWWhsUiswZkU0S20wdkY2ZXR1WlM3RGM5bkZ3ZDMzTitq?=
- =?utf-8?B?c09JYzZwL2swZStldWI1dHhVTlhqSDBOVlZzMCtKVmNVYkFOK0FpME5YVktq?=
- =?utf-8?Q?5ScHQ3bYlDvtJUGgZPu5ygE6y88e3YtNUGyUnBIzJVUz+?=
-X-MS-Exchange-AntiSpam-MessageData-1: 8LdU0nQHXnD0OA==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a62d6df8-147b-40db-11cc-08dea05c9cc7
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2026 10:47:56.2836
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- LWRcH0zgQTuCHcyIKIIeGqk7oPh7AxpTbp2zcuenK7aGnFEd2M4J9ghNQ3/ESngLjujwVl4/M8r2gj8wdruRZw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB6125
-Message-ID-Hash: PSSWH26CMZOTVXDQGUKUNCOUK6CXIMYW
-X-Message-ID-Hash: PSSWH26CMZOTVXDQGUKUNCOUK6CXIMYW
-X-MailFrom: acourbot@nvidia.com
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 6xnB-0Tvl9a-SHuXqqqtblXoO8JQ6q1PhxQ5IiYrxas_1776905158
+X-Mimecast-Originator: gmail.com
+Content-Transfer-Encoding: quoted-printable
+content-type: text/plain; charset=WINDOWS-1252; x-default=true
+Message-ID-Hash: Q5RD6JXB5KT4JZLCSG2QED43JDAZHC3L
+X-Message-ID-Hash: Q5RD6JXB5KT4JZLCSG2QED43JDAZHC3L
+X-MailFrom: airlied@gmail.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Boqun Feng <boqun@kernel.org>,
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- rust-for-linux@vger.kernel.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/PSSWH26CMZOTVXDQGUKUNCOUK6CXIMYW/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/Q5RD6JXB5KT4JZLCSG2QED43JDAZHC3L/>
 Archived-At: 
- <https://lore.freedesktop.org/DHZMHF1YVBI4.F11YKDDKBNTQ@nvidia.com/>
+ <https://lore.freedesktop.org/20260423004552.3289884-1-airlied@gmail.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,38 +104,22 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Tue Apr 21, 2026 at 11:27 PM JST, Alexandre Courbot wrote:
-<snip>
->>> +        dev_dbg!(dev, "GSP shut down\n");
->>> +
->>> +        Ok(())
->>> +    }
->>>  }
->>> diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-c=
-ore/gsp/commands.rs
->>> index c80df421702c..fb94460c451e 100644
->>> --- a/drivers/gpu/nova-core/gsp/commands.rs
->>> +++ b/drivers/gpu/nova-core/gsp/commands.rs
->>> @@ -237,3 +237,39 @@ pub(crate) fn gpu_name(&self) -> core::result::Res=
-ult<&str, GpuNameError> {
->>>  pub(crate) fn get_gsp_info(cmdq: &Cmdq, bar: &Bar0) -> Result<GetGspSt=
-aticInfoReply> {
->>>      cmdq.send_command(bar, GetGspStaticInfo)
->>>  }
->>> +
->>> +pub(crate) struct UnloadingGuestDriver {
->>> +    suspend: bool,
->>> +}
->>
->> This feels like it only makes sense to call from within the gsp module,
->> so I wonder if it can be pub(super) (prolly a few others in this file
->> could be too, ofc not relevant for this series).
->
-> I'll review that, we do want to limit visibility as much as possible.
+This adds higher refresh and resolution modes that need FRL support
+on HDMI.
 
-Mmm looking more closely I am not sure this is something we want/can do.
-As the driver expands, it looks likely that some of these types will be
-used outside of the `gsp` module - in particular some of the responses
-can be used outside, I think this actually happens with the MM series.
+With GSP the firmware handles most of the hard work, just need to
+send things in the correct order and handle the link training at the
+right points.
 
-So I think I will keep the visibility as-is for now.
+The first commit reorders current SCDC support on GSP to do things
+in the same order as NVIDIA open driver. Then it builds on that to add
+FRL pieces in the backend, and the final patch adds all the frontend
+pieces.
+
+I've tested this on Ampere GA106 + a HDMI 2.1 capture card (Elgato X).
+
+I used claude code to iterate on this a bunch to solve the ordering
+issues and align with NVIDIA programming sequences.
+
+Dave.
+
