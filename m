@@ -4,185 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BED0FF8850
-	for <nouveau@archiver.kernel.org>; Sat, 25 Apr 2026 03:04:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0CF2FF885D
+	for <nouveau@archiver.kernel.org>; Sun, 26 Apr 2026 09:16:01 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 3230510E0CF;
-	Sat, 25 Apr 2026 03:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4ABD810E52D;
+	Sun, 26 Apr 2026 09:16:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="t0pgXml0";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Bw39loPX";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 8DAF345C3D;
-	Sat, 25 Apr 2026 02:52:28 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777085548;
- b=Vy1wzlqXGae74DvfmF9SPJhei5TDC/z06N4AImF6PqPGL6BwNOq4Vc5uod2toYVgkVBTT
- IoZFBpv+jsc8PWASMXeToSm0Jcf4Raj8nGOegRKrP0k0nI7h2qIXGNx+RNxULWX3PUtA0jL
- fZcwj2N6mmmaZtbmvI3rpCQtRzwOKjJ4DV3Bw55Ozn58P2Qpc4EFYnUEb2JcDJU7Zcin5VN
- OPU2WL5g5RQ+OQJNHbcE/enfiAbjAHhc+r+4B35pg9wRV+NWM6jZ6ml2HuI/2I8OwGYRy7E
- /CdW3l16IvwIvihAI8sgy69cndngBoQ79L2iRp/V1NSu16slk9CY26XKpgmg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777085548; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id D91C945C55;
+	Sun, 26 Apr 2026 09:03:43 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1777194223;
+ b=nVceuQDPWQ3zybCGI3nMM+lVqeh2QneEv0Jw/V+hLFFQoJqMuxyfWGfj+A3TG0F+lYW4K
+ stuBshRxD9Ro3rg5gAiDMxVVcL4jkhhPAud2dxV5/DDZ3Ffh/E8g/2ZRJwpLDtl36v88EQX
+ L0G21FTf1PUh5HLwXWMYuZleVQCFrNNZn0fIIW5LJbYmE3/tAadbMjE0QwDyy+m256KIFD9
+ 7sAuGSzEcxZdShiWCSr43gYQF/Lazu1rGxFnJd7e2qqWyYeupsX7j4tokqTnv1nygyruGo9
+ /WFqseccG0tkxyDqoQ+J+uII5Jy2GzdwVq5/NeZgf87G0TXqhwOQQbcD6lKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1777194223; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=A/lK4OdSG94mynKu3rxlAnSioq1OI5QH3kyBbQe7Dbo=;
- b=ZxE8l9zXPXVCvw85svIpUX2Ds9/GHN8uCUuWx5Izi/Us9qeKFqCgLK7eTaF+FWzGlZUCh
- NU3v72hAVYxc+RCljUrm+NPcCloCIYmwPIDrSD2L6P7oe4PeA1QU1FDJGv4HivA1L4GvZPs
- ERUhg9LHzF8K5uS+/7HjOcu1vmHa1WhU088JU+Nusmek/6Z9R4P+wGCz8KKEfxW7mliTY5j
- kwiyQBjfjcOwnoa6dYb1lkSPrV1lguCtYgT8ZZgUIR0fbH5HFB5tt2nMMojquT5nNeIoP4Q
- UDHC+IbcWUokeXldBroonyK9In7HSQu1/pMpLZUr0MM6daQW11Z+123rXFJw==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=Nvidia.com;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=nvidia.com
- policy.dmarc=reject
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=Nvidia.com;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=nvidia.com policy.dmarc=reject
+ bh=MpyPL5TyTayqbvU2HEjTYaipnvh2LNQ+6cgKsY26UEw=;
+ b=wtodbJA9CoV5t/y5t7Kufbsl2e+VL/vt+S3EgIXUwwRHFwMwqzrxFoMJ7LvbCWE7kMi5a
+ iR13NT7Lwp+NOg7+EqUWdc8m+S0MFYzAig7sw4KNz2FTMt/QcbhPMJX6DvWdYColIvK2dNc
+ n1j7+p/6gBqpPyipA0GLuHjAHLFHabGoXhfh/SiLinC+YOzLbyZlqabK6JmZ3jEvoiYdO4c
+ nPR2VNndCkEyITa1PTl7zMAw6cXIkfSzQ9RMY/u5WIsHWabQlPciZ0ZnXeRtFP8Jm4xbj3r
+ Sd16uVEIMT2CHyMUeS/JtMJs2tpfW7z1mrI8Kl31W+3uqMFGv5CVSVUrBAKw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=gmail.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=gmail.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=gmail.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 4315D45539
-	for <nouveau@lists.freedesktop.org>; Sat, 25 Apr 2026 02:52:26 +0000 (UTC)
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011064.outbound.protection.outlook.com [52.101.62.64])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 9963510E096;
-	Sat, 25 Apr 2026 03:04:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DWaBlWDHINybrRsVQ9uJgD3jDlc4SBRGA06Q/sJauLJaTRS/I9PdGGITYkTf9BEciEzEjuDzTrgwF9CBnNKAQBJbPOtcwRhQXO2lxoQBkP01XuQFR/qd6YORua/k5sn9KmlFTY1lYRmtV9LOuMwsrmF4vgmIcVW/pkqEAkSrpOtj2G+Wg90dEgQXWn3QY/0vhLt82KjaQX1r/ZPbNPCCb/NlV2SGJA0BWFWbxVQJ1ehyUsrHQU7Wp+vgVhofl/pHay192olfzHNs6YnN1AE7d1CoFMFwOvCscWHeDKVjYGM56tfE5/jmyEhAxw6wIUCRB9nlaL5/+1hANme6XPrlTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A/lK4OdSG94mynKu3rxlAnSioq1OI5QH3kyBbQe7Dbo=;
- b=iHikALCCcSY+/tqjBhjV8Yv70FAoQxlM1x/8owS2nrMDTZPmUjr+l4tDfzWUAXQw7yb1uKuBrYtgqlxf2CCaLlO9e8gGxYcXIve7orYuX7qxOj2LCoB+uXcOb1YJyFZ47cPYXyq9U8lLNxGrqxJg6d7Hk+2SPCQrz2sFi3B5LLkNdpF8mKh72ulYRj4nNRe8N9/HPFHNY73n0VDRUXQChImqqbKZnFiw33DjK4FWuCByGfH9/OIGvq5u0BKhMnA0Uzy5AAbGiJFa73TdnkvfkM3pNuj8tTEEWxm2Kz/zrxLj6GaR7X5rYs+5SVukvo1Fa6llpovSFZGGOq3hvw+W1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A/lK4OdSG94mynKu3rxlAnSioq1OI5QH3kyBbQe7Dbo=;
- b=t0pgXml0vaeD0Rqd+CCxlhUijH2YwYBt6I6l3pPwlcSc3/Me2yF0hNr93xIhBRR7Lzta4w8Qdavm6XQDpG+J/DIVzZYy75CyULZg/UCvGJqeYMM7+7x3Rnk0W/kGfQm3Wb/W2rqgucSGyp7lFWNinqnSfPy/HEpImMBCSLR9ySkoF/eQ2AyOKhyIBPdUc6KOE0uGjmdRVPgK5HUSVzNz1n3vBcT+WkpurpPhl2e5Mi2a23LHh/aw6whB1jumqJjKoHWfuKkAiCdhjbtlAQ/hhKaztScPS5HYTMw1grHTrQz+vhcl0HV5UncsDR/FvtJPXyOHIaz1AE2yHAVvPGSBGg==
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by MW6PR12MB8868.namprd12.prod.outlook.com (2603:10b6:303:242::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.20; Sat, 25 Apr
- 2026 03:04:35 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%4]) with mapi id 15.20.9870.012; Sat, 25 Apr 2026
- 03:04:35 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 25 Apr 2026 12:04:31 +0900
-Message-Id: <DI1WIAT4LTYW.2KJ4WWQTWTDJ2@nvidia.com>
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Gary Guo" <gary@garyguo.net>
-Subject: Re: [PATCH v2 1/5] rust: add warn_on_err macro
-References: <20260421-nova-unload-v2-0-2fe54963af8b@nvidia.com>
- <20260421-nova-unload-v2-1-2fe54963af8b@nvidia.com>
- <DI0I3TH8B8ZZ.2118S8MDUHG@garyguo.net>
- <DI1GL1FIGHO1.12VSIIQQN365T@nvidia.com>
- <DI1IQE7MDV4O.5B2DVIXMX2OT@garyguo.net>
-In-Reply-To: <DI1IQE7MDV4O.5B2DVIXMX2OT@garyguo.net>
-X-ClientProxiedBy: TYCP286CA0128.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:2b6::18) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 1DBC144F60
+	for <nouveau@lists.freedesktop.org>; Sun, 26 Apr 2026 09:03:41 +0000 (UTC)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
+ [209.85.221.41])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 4452B10E19E
+	for <nouveau@lists.freedesktop.org>; Sun, 26 Apr 2026 09:15:58 +0000 (UTC)
+Received: by mail-wr1-f41.google.com with SMTP id
+ ffacd0b85a97d-43fe7c6f61fso912634f8f.2
+        for <nouveau@lists.freedesktop.org>;
+ Sun, 26 Apr 2026 02:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1777194957; x=1777799757;
+ darn=lists.freedesktop.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MpyPL5TyTayqbvU2HEjTYaipnvh2LNQ+6cgKsY26UEw=;
+        b=Bw39loPXn+C37IRnR7yaW1dfyhP8PdvPK4rBE06IJnZQXDMpGcMczgw80fIh3gYE/A
+         EC0HLsKWPqJKd5uFi/EvhK+skgAZqVdBK3eY7T5kT0oJke+8mk/yFXDmwgeTcGjCJxQf
+         B9plMLZyVrky2/vyRM0mSSjRItRkK/0hfojeFG6c2R3y2RvoPaSoJNBnkxGfPgctcVL6
+         FK3lzEKNLj97Lo/Gc+SE0m/hDm0I3dp51RhYWcrHEgB+ZUrslzRViD6OZXwxfXgUzpbL
+         9nsZ6zjFIpAQs5ISQGX5QWKKczo8xGVMda3leyImGLD1u0Gq8DjMI2UoG8rpODU7G0p3
+         r5Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777194957; x=1777799757;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=MpyPL5TyTayqbvU2HEjTYaipnvh2LNQ+6cgKsY26UEw=;
+        b=qMXmk3ZZU6jLktBz7ef9nTr/0KSXMaMd3QT7EQGHCQ88eAkaYV9c3Db3AVIg77TVes
+         Qana+rFHjU2HHjs3uAk3GUIOja9E20rSWz7z+NeQdSofSo+d9EUdxgjRH3G7gRi4JVCz
+         3l58p3bR9Bbqicw5AStt5YNCJeihfIbIEWMH5n0ATXngbsgDZYrIaBdFZrb0ljs1slP3
+         cHHwg/6rgoX3fSROU6896ICseKQ+1NagTzx1dtSbkQt58JM1++frbKUUqVRZoqP3oIPy
+         AI0YvpdTXUgWNyDrlm2X6CB1CP0Epj/wNjleQ8RaRJoWQL0C8HB2U3IqoFotnG3i6lSx
+         q1ZA==
+X-Gm-Message-State: AOJu0Yw38bv4Z9EW/UlJ8cWKmq1hfKX21jTUAfOUvhnAHo2EaZfTTpgH
+	Se4uT2Zq8MBog5GsBSmzQHMjni6FGrfvGBOW/FW3STv9CaH7loyQ81m7RCRcWuzT
+X-Gm-Gg: AeBDietpfh0euQQ8LwWnd0maV6Lo+ppW2ibe1V2PvthPd1zNIsHFlGsBi/jR7vCoAzW
+	ny1QMkLvO+z7PzqNpAldkWUWyYBWzUiVDKWigm7jMANXtj4EkzWO3OWij/Mp4kCqwVbgqzb2vUM
+	lWdjBa0EPPce9R+0lUbBeKJftxkq2JN/lv94w2cgKCzf8i8JqQsRi3f0TpXiFo42anPL+GedmxV
+	iQ2tdl8MiCKKGLZLC0UIVrEKK24+cZL+rXHydbNARWW8QghRzjrUXjvSb4QLaJPhvuUNtUYNmu0
+	bdoazEYhcVV/hP49jTLAwYTEB0SvfdlDWkIFoApYT24rek3S/EkZHxqisq93/Uy5N3GSOFU/Aca
+	V/526Ss3Xj8b1uUhhSWKmouVecYaJLimllUr6lWfnljeez/Qu8/I3sgSEVs8/huuBnqp36Ukkaw
+	0O+00PW+IZvtpZzeWAYDRxp9CPbK4QRgt+fQfOW7Nvq7bd7t/YIEMiTc9EvaL0CafMTWz5CIVSb
+	ptLkUas2hcDvzl05KQWF1Yh1lyTuWQEbRw=
+X-Received: by 2002:a05:600c:4686:b0:489:6c28:dbb4 with SMTP id
+ 5b1f17b1804b1-4896c28dccbmr204731515e9.5.1777194956440;
+        Sun, 26 Apr 2026 02:15:56 -0700 (PDT)
+Received: from Neo.taile6b6ba.ts.net
+ (ip-078-043-200-145.um18.pools.vodafone-ip.de. [78.43.200.145])
+        by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488ffc558f2sm552070085e9.1.2026.04.26.02.15.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Apr 2026 02:15:55 -0700 (PDT)
+From: Marek Czernohous <mczernohous@gmail.com>
+X-Google-Original-From: Marek Czernohous <marek@czernohous.de>
+To: nouveau@lists.freedesktop.org
+Subject: Re: [PATCH 0/3] drm/nouveau: stability fixes for NVAC (MCP79/MCP7A)
+ -- 3 weeks soak report
+Date: Sun, 26 Apr 2026 11:15:54 +0200
+Message-ID: <20260426091554.21272-1-marek@czernohous.de>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260409172126.115441-1-marek@czernohous.de>
+References: <20260409172126.115441-1-marek@czernohous.de>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|MW6PR12MB8868:EE_
-X-MS-Office365-Filtering-Correlation-Id: a00be8eb-c911-433a-c424-08dea277611c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|10070799003|7416014|376014|1800799024|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 
-	+io/A7O1WDS0Xb3Ev4yIKSEQCOU7eo447/guzC2QhVMW6IG5MWer4Q6FcG2N7/wgDxz+XzNLSI4dqFjC9SqnGyMQWc4vxKQVWTWIWAVDRFMifR8/uyW+NwDJKc2iTscrhhdCNGZlu0lPFNqCHLDAU92EzfRgjzuodo2RD15h3FwacdQ9NRUjxz1s9peAAWlK7dzb7WXdctjKoaAnoDgPaIwxH6wOd7stlI5kWy+5ma9njeh7eHSIzKuMlqxDagMeWt6Qi9WOAffqWMqcA4ESLKa5CiEL7dGkxCjU3aj5GfvAHTFYSJY/Fie2Uj+fxks7ol7kfTZC/uAL0L8ejHItw/J/lGUVJMj9P2/lV6N3VA63ehufoLHNfRCp3Hz6SSBDQUMpgVaDr1W0IVH38DTqtEEMhVq+Rlw/7wTEALIugqPaPsKXRm3khK94RyjuYGOWaoQzGTC+cSFizbPnmNIcY8fcoOlRWVAFcYQaA5sPZ1CBuK+icFvDI47uxMEp5soaduAAg5c4Vg0G3/wlxewNmqjEqBWztBtMFtiggPymZ5CfvO8XfrLQCgsnWgg7vQj7Je1keyz+Q3+ehrRmNHSNBASpG+UG39vNvxYjwNkpvFzPD4mvtabHvD+A8wPQVFsTTQw5+AaV6r3uOhZcWFb2LL/sisnc9wF5gvpWI1FQ9hWuy/HdCEHH5zQ23R6EDWs4i6Mkm21uEi7SlT7EazjEHNFK1XFETYi4A9Tid/xXZrY=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CH2PR12MB3990.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(7416014)(376014)(1800799024)(56012099003)(22082099003)(18002099003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?bkxyTEpFWnpuSmJJcTFnUFBOQkFVSnlZb3dyYkZwMEJIbEJVOHl0ZyswS3pv?=
- =?utf-8?B?SmlkWjhHcjZ1ZXgyVE5IY05RKytDOWFCYTNjcFNaQU9YRW04aXdwNjF5eW0v?=
- =?utf-8?B?TjVadHZNM29QRlNoNWg1QmFGaHp1ckI5TU1qNG1FdGpxV0Fnb20zSkhGalpq?=
- =?utf-8?B?S2djRGRrc1JZZFEydUJLdXFGQzRyT2lnUUxkSmpsd2pFaVdwdmE5TGZFZklR?=
- =?utf-8?B?d3JCRkQ1WFlsVUFyQm45Y1pTRm5GS2ZBeFZkeGdYSGtQenNEUWxLV05Id1ph?=
- =?utf-8?B?cmxYVXk0VzdsTmQ3NGExSlhFcElkcHJ0MVNjVm5iNkM4dzNBZ3h3RkJHMGVS?=
- =?utf-8?B?c0ZOWURFNlZKbll6MHZLOTMxSlE3NDByamk0ZkNBb2xZeCtjdTFwTmw5MGk2?=
- =?utf-8?B?dFc1eG9rOWZwajlKc0ZadEdWMmZlV2prYzRITTMwOEFWbmluU1o5R1U4QzVn?=
- =?utf-8?B?b1huQW5DT3RpeUdiMUVqVWhJQWZFTnV3SzNLNFNPSlQyYldaVlovWmlUR1pB?=
- =?utf-8?B?YlRXMStuVVVQN3VRR2ovV0ptNDYySTZnOG5EVE1neGdFR2NlUDhUcmVJby9s?=
- =?utf-8?B?Z3dYS2lIV0ptOUFVZnBLbURkQmF2cHVxSHhudHNBbFhlVThvQWUwMHFSVUpG?=
- =?utf-8?B?QWgraEM1M0VNMEo1ZWRMSUpnZm55bkpiejZDaFc4WGdQQXJYUlNHUXdlSDZz?=
- =?utf-8?B?VW5aSCtxZWlkWnp1a1pjUnBINTlPaThOSlF0TnRUSWlldnYvaFF6VzZoRS9X?=
- =?utf-8?B?N2xPZmFUVzkxNm03WUN2UEpsY1hDcjYxdlM2L0NTQk5td1R3bDY3eG5JWE44?=
- =?utf-8?B?c1FlNGZhTkVWQXlVYUtEQXhydnFxU3N0Z0p3YUVocFFVL2FLQnJhdkdqaUR0?=
- =?utf-8?B?aVlWWUZaSFBkMk9tMzgrT0xUSGZyRENsckZYUnlJcDV3d1IydnFHdWZkMzhi?=
- =?utf-8?B?WjBOM1FMQ0Nkd1ZDYWdpaVg2cHc5V3JMcXBXN3Rtems2SlozZjdBQnIrY3Jo?=
- =?utf-8?B?YjFWVUF1aEZobmlYcCt2ZkFSbTRqYytNa2JieDlRRXllWDI2dzZHc1VPNzhq?=
- =?utf-8?B?Y1JYNVFIWGhsRFF5THMwV3JRN2FQdlZuL0Yvc2VuOVg3S0FqQi91bjFBTmVa?=
- =?utf-8?B?L0s3dXBQUjdKQ3VxUUFWUDc5ektzTkR3MlFkRUsxd3pFZERpVHFYTFQrNFJP?=
- =?utf-8?B?OXQ0RzJoRi9CREpWMFJDbjZzaG9oeXl4WFJXc0Y1TG4wZVUwdmtGdG43dDNX?=
- =?utf-8?B?TmxKWXgrbnB4MlBKT2libVpHVUducnQ2SnowalR0dGlVVkh3aVVYajVrQ3U1?=
- =?utf-8?B?WjRjTGQrSjRQVDRqWEs1WjhuR0FObUl1SVU4em9uUnVtczBMYW51cnByYy9z?=
- =?utf-8?B?cGRIRTBtUXVQeGVycGhFTnl2a3UrbHVzbldoNSs1eUhGSnMrZ3FYOUVYTnEy?=
- =?utf-8?B?U2s0aWhvbzVZd29Hc05JR0doWld1Y3kvTlJ4SW1yRTN3R3B6cGI3MytoRjBS?=
- =?utf-8?B?bjFyQnpuZDE4Wm02Y1dORGVQK0MwWTFNOGlubzNxam1iVXNCSUJCL1pCOVcw?=
- =?utf-8?B?Mkk5UXNpMnZjb2wwSlFsa29DSXAzYk5HVjR4SjB0UVRoVVl1TzJMWmEwUzcx?=
- =?utf-8?B?Y1loL0F3bFdZOEdwd1ZSRzRrWG5lbzhSb3QyQ0lhVDNLM2tGM25mL0ZRdHRN?=
- =?utf-8?B?SG1teGRhN3hJZTNwdEJoWHpCa2VqekdBelZZc1dhb0E5YmJZcWE2Ymx4NjR5?=
- =?utf-8?B?b25pbEM3T0hDemVWNmVwSkl6SHZvUjJ0Tzd1TGErenRpVjFMcWV1RnZaN29B?=
- =?utf-8?B?aUgvZFB5VUE2S0tMYkk3N25xWkpHcEQ2OHdENWRxWitlakdJaTlTdWtERG1W?=
- =?utf-8?B?c2JZMWFZK2hLRVFnMFBJdVVRNEh1bHpFZXJmSXhGTVU0Q0xESFM2cE9tejhX?=
- =?utf-8?B?NlRXMGNuR1NoLzFna2hGWDdpY3p1NE02SDhISVdVWk1iR3RrclhVSWlvREdm?=
- =?utf-8?B?S0VpMUg3RUVwWjdnTFNxSTZaeVlmWXhBRXBDMGNLc3o0Zi9kM2Yrb21Mekor?=
- =?utf-8?B?K0FnOHpxN0paRjd1MGhjYXVoU04vblpDUjNiL0M2SFJtWWZSbkd1dE4wUEZj?=
- =?utf-8?B?UDdKdkRkMGIrdGZJWk8vaHF5Z0RaVlNFaDVONCt5ZXZXMEl1RittM0ZkR2J6?=
- =?utf-8?B?a0U2U0FhTFhTM0pxaVlXYkhtWlpjZzlLUDJQYVRjcWVLZEp5dUJldnErYUVG?=
- =?utf-8?B?OUpzVStaNGdwMjZkVjB2MmVieGtVbDlNRVEzbHZpTTNxakMrSTV0ZXFlOHdL?=
- =?utf-8?B?d1BCODdUTjhxYzJFUkZqeE90Q1dyeW4vditTV0tKT2F4Wk1nZXFuK3hlMmVv?=
- =?utf-8?Q?pc8Ch/0CH9bkKknmtxm0xpFIgS513o4q1dqJmmjHYyJvb?=
-X-MS-Exchange-AntiSpam-MessageData-1: Fa6krGHKJ1ZAww==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- a00be8eb-c911-433a-c424-08dea277611c
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2026 03:04:35.2926
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- PxoaGT+cYj7A+rCqT6u3Kv3eaDc9FLVIbbOHRvqUhY9TFjKTDNc7RGuzIiW75YYKhg+Vl166isFX4fRA1r/yQQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8868
-Message-ID-Hash: VRPFYNANAEMPTEOJ3EQXDOQTYOA2TCR6
-X-Message-ID-Hash: VRPFYNANAEMPTEOJ3EQXDOQTYOA2TCR6
-X-MailFrom: acourbot@nvidia.com
+Content-Transfer-Encoding: 8bit
+Message-ID-Hash: CKDTN3HTIXSWKVWAUMWNLX6YEYJEOUOG
+X-Message-ID-Hash: CKDTN3HTIXSWKVWAUMWNLX6YEYJEOUOG
+X-MailFrom: mczernohous@gmail.com
 X-Mailman-Rule-Hits: nonmember-moderation
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
  loop; banned-address; member-moderation
-CC: Danilo Krummrich <dakr@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Simona Vetter <simona@ffwll.ch>, Bjorn Helgaas <bhelgaas@google.com>,
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Miguel Ojeda <ojeda@kernel.org>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Boqun Feng <boqun@kernel.org>,
- Alistair Popple <apopple@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, rust-for-linux@vger.kernel.org
+CC: dri-devel@lists.freedesktop.org, Marek Czernohous <marek@czernohous.de>
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/VRPFYNANAEMPTEOJ3EQXDOQTYOA2TCR6/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/CKDTN3HTIXSWKVWAUMWNLX6YEYJEOUOG/>
 Archived-At: 
- <https://lore.freedesktop.org/DI1WIAT4LTYW.2KJ4WWQTWTDJ2@nvidia.com/>
+ <https://lore.freedesktop.org/20260426091554.21272-1-marek@czernohous.de/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,94 +135,21 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Sat Apr 25, 2026 at 1:16 AM JST, Gary Guo wrote:
-> On Fri Apr 24, 2026 at 3:35 PM BST, Alexandre Courbot wrote:
->> On Thu Apr 23, 2026 at 8:34 PM JST, Gary Guo wrote:
->>> On Tue Apr 21, 2026 at 7:16 AM BST, Alexandre Courbot wrote:
->>>> While we already have the `warn_on` macro, a common usage pattern in
->>>> Rust is to check whether a `Result` is an error. Add a helper macro th=
-at
->>>> allows this.
->>>>
->>>> Signed-off-by: Alexandre Courbot <acourbot@nvidia.com>
->>>> ---
->>>>  rust/kernel/bug.rs | 10 ++++++++++
->>>>  1 file changed, 10 insertions(+)
->>>>
->>>> diff --git a/rust/kernel/bug.rs b/rust/kernel/bug.rs
->>>> index ed943960f851..2fefc0aeef81 100644
->>>> --- a/rust/kernel/bug.rs
->>>> +++ b/rust/kernel/bug.rs
->>>> @@ -130,3 +130,13 @@ macro_rules! warn_on {
->>>>          cond
->>>>      }};
->>>>  }
->>>> +
->>>> +/// Report a warning if `res` is an error and return it unmodified.
->>>> +#[macro_export]
->>>> +macro_rules! warn_on_err {
->>>> +    ($res:expr) =3D> {{
->>>> +        let res =3D $res;
->>>> +        let _ =3D $crate::warn_on!(res.is_err());
->>>> +        res
->>>> +    }};
->>>> +}
->>>
->>>
->>> I think `warn_on_err` could just be expressed as
->>>
->>>     res.inspect_err(|_| warn_on!(true))
->>
->> This would turn the verbose error message into something like
->>
->>   [true] module.rs
->>
->> I.e. the expression passed as argument won't be printed.
->>
->> That being said, my version has the exact same problem and I don't see
->> how we can fix this without splitting `warn_on` and making it more
->> complex.
->>
->> Since this was done as a small convenience, I think I will just remove
->> this from this patchset and revisit later as a separate series.
->
-> Something like this?
->
-> #[macro_export]
-> macro_rules! warn {
->     () =3D> {{
->         const WARN_ON_FLAGS: u32 =3D $crate::bug::bugflag_taint($crate::b=
-indings::TAINT_WARN);
->
->         $crate::warn_flags!(file!(), WARN_ON_FLAGS);
->     }}
->     ($msg:expr) =3D> {{
->         #[cfg(CONFIG_DEBUG_BUGVERBOSE_DETAILED)]
->         const _COND_STR: &str =3D concat!("[", $msg, "] ", file!());
->         #[cfg(not(CONFIG_DEBUG_BUGVERBOSE_DETAILED))]
->         const _COND_STR: &str =3D file!();
->
->         const WARN_ON_FLAGS: u32 =3D $crate::bug::bugflag_taint($crate::b=
-indings::TAINT_WARN);
->
->         $crate::warn_flags!(_COND_STR, WARN_ON_FLAGS);
->     }};
-> }
->
-> #[macro_export]
-> macro_rules! warn_on {
->     ($cond:expr) =3D> {{
->         let cond =3D $cond;
->         if cond {
->             warn!(stringify!($cond));
->         }
->         cond
->     }};
-> }
->
-> Then you can just use a `warn!()` with custom message.
+Hi,
 
-Exactly. But this is getting more involved than I initially thought and
-will likely require more review, for a marginal improvement on the Nova
-unload code - so let's do that as a separate series (that will also
-allow us to merge it through the Rust tree).
+just a soak-test follow-up on this series (submitted 2026-04-09).
+
+The three patches have been running on my Mac mini (Late 2009), MCP79
+chipset with the integrated GeForce 9400M / NVAC, as my daily-driver
+graphics stack across 17 reboots on the patched kernels (14 boots on
+v6.18.18 and 3 boots on v6.18.22) since 2026-04-09. No regressions and
+no new failure modes attributable to the series:
+
+  - No FIFO errors (PATCH 1/3, nv46 MSI rearm)
+  - No NULL deref under labwc/Wayland atomic modesetting (PATCH 2/3,
+    CRTC NULL check)
+  - No spurious DisplayPort disconnects on HPD IRQ glitches (PATCH 3/3,
+    DP retry link check)
+
+Regards,
+Marek
