@@ -4,185 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 290CFFF8860
-	for <nouveau@archiver.kernel.org>; Mon, 27 Apr 2026 15:27:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D39B8FF8860
+	for <nouveau@archiver.kernel.org>; Mon, 27 Apr 2026 17:29:43 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id DB42A10E7C1;
-	Mon, 27 Apr 2026 15:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AD74810E870;
+	Mon, 27 Apr 2026 17:29:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="UAXin7wT";
+	dkim=fail reason="signature verification failed" (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gmTgAPEc";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 9E4E145C7F;
-	Mon, 27 Apr 2026 15:15:10 +0000 (UTC)
-ARC-Seal: i=2; cv=pass; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777302910;
- b=EdaxRDJWt+6H0SYAEI+4TLkjCyPxR49tPhMDyFILIfd/rFb2FGfQl/QJv4sN+Yv7t9hpP
- Jc+RS6RxE+4JykfuIPvHCR0gBC89nDHbxxvRKZGAOfyiQbUF/yFunldQg5+S2ldozFZhvYQ
- 6jKPmFBFNCmVw9jiDf1m8wxgVGADCWb46GmqsdS9vkqHxT2k8HQ1dXKzXLYfRj0NPAGp5Qy
- wUgTGeOWqMqFVM72dD0mJvosAOEmOBNUsYweXT+CJW+HgR0Y7MlqZy4zccouePbPBWWxZJi
- GoiWl/bT5Q/xWu7ZdGxfzX3f0TaMKY8neFU9X7m9FV43L7hCMOq1P6txLfEg==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777302910; h=from : sender :
+	by kara.freedesktop.org (Postfix) with ESMTP id 318E845C7D;
+	Mon, 27 Apr 2026 17:17:23 +0000 (UTC)
+ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
+ s=20240201; t=1777310243;
+ b=A7lmN/b1YBEqab9PBo6nFTWwhMSDNUuoycqYq4dP4Y3DUs56q9A5pJcxVQ0Vyo2lbjyVm
+ Yub/MC4sTyG4jyHbXTSG3YnKMTpMiHLCDrRMGpa1W4VDY+QIDjfhb2ulkjqRVEu4jAS6E05
+ L912Wteud5QBhkwMy0Soh2cot1T21g+ds+RmSq7Le2aJyMWNj+jk7MFHmbzRjWLPitOURm4
+ T97uz7hoI6V6xTJ/3KtcPXH5m+eEqQvTjzfDGjbJ99mYcANOt3P0Ff7nOVj2nkoySyICyed
+ WpUGK815VlPUcUhcrga/Ed9rxph5wzbc8KgVnkRVPhSmrUryhzvqTdodJ3HQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=lists.freedesktop.org; s=20240201; t=1777310243; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=iNZmHTGe471kIVIL4xdxKcZDsUrytI9jitdwsfdKkRE=;
- b=PTYtZZ0GZeImG6k43v+hdT3facI8u1hrsJ4lLx5YCOqmC1aoVQEBVxcCWOUrOqth98ffo
- NCrHBavdKDSnDKqzV16fB+TleimKD1osnm4lDCZEwYypPtHsh/FAm1sjb2u6lZizGor26oU
- 9m2sDhkNge8IeMKnm8dOAMW/EayE6nWGYwVxLmzQdNBEpAzzbkc9BmJmlDpLP4IctgAtp57
- IIm9qZJ0AiDLvY3wG7vbRSA2Y/hqkFquQqNzj8FgDTx2V9uuTi0wR1rAHHCnauYZ7QAm6XS
- eq/AILPJRb97Me+AfuvnOSdb1WpW1ryTcESqSVowHjD30mqpBCssxlSrerdg==
-ARC-Authentication-Results: i=2; mail.freedesktop.org;
- dkim=pass header.d=garyguo.net;
-  arc=pass;
-  dmarc=pass (Used From Domain Record) header.from=garyguo.net
- policy.dmarc=none
-Authentication-Results: mail.freedesktop.org; dkim=pass header.d=garyguo.net;
- arc=pass;
- dmarc=pass (Used From Domain Record) header.from=garyguo.net policy.dmarc=none
+ bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
+ b=JG8wYFGEgD1CIq1vxA9E8+lwXIr9ytuoSXF0J5ZjVNLuJfx5ForRRkQJHI3ONHroi3oLS
+ i/1SIeTCMlw7aScaReD4ynybbCD5+Y1GytyZPAB8hExuxSlfaLcsQBT3wPwtBWdVSo+ZQ90
+ tlp4fOkDVbvMQT8Q4c9NqOLcom951ScA69CNAshn2TUSyTAiyWUt41KPBwJKU+QbXBz7YOF
+ vP8YFxwGMfqyR3VYhVPi3XFsJY5k9ksT4KpKHmFTwKvCv/FrIZWUpEN83Gp9McXRRMUC+yv
+ rs/shZ0jSsc14gSGsWMVrVb+4G08UEYRvhVxXI6Y9o4uw4ROyM1Zd2h3GOzw==
+ARC-Authentication-Results: i=1; mail.freedesktop.org;
+ dkim=pass header.d=redhat.com;
+  arc=none (Message is not ARC signed);
+  dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
+Authentication-Results: mail.freedesktop.org; dkim=pass header.d=redhat.com;
+ arc=none (Message is not ARC signed);
+ dmarc=pass (Used From Domain Record) header.from=redhat.com
+ policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id DDA7C45C79
-	for <nouveau@lists.freedesktop.org>; Mon, 27 Apr 2026 15:15:08 +0000 (UTC)
-Received: from LO2P265CU024.outbound.protection.outlook.com
- (mail-uksouthazon11021079.outbound.protection.outlook.com [52.101.95.79])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 052C310E7B3;
-	Mon, 27 Apr 2026 15:27:26 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XXRLok/2HoWqb5OP6VqjkayyKHG4yQdCzZt8Lu75ux4KOJuqaMh7tUspVR8SPljpsCNyHK3XG0O3K5F+DF/+yV0gJZsw3DXOW9q6ceS4r1sQWlFpk/x+LMe/s/suOA2mfa+IStn4f/C4LOTLC/jSjn7xStuw1IwlgFET1nbOub5BjAUepv+sCN0FqqT3KuQIMq9pYxNXYYOEp7rI3SyJlRadpnfhjYHUUp6QXbG/PyKCtuQpt4uKpXXASMRoFfr3Gq6Uy+C49ueAkycndF/yF5dV6pVyPn/wZsgIb3qxle3EP6cATkcmxWL13ECgVrtf8RYy+xTDXnI6Vpr7PvDH/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iNZmHTGe471kIVIL4xdxKcZDsUrytI9jitdwsfdKkRE=;
- b=tCBiaEtqEvDAActNQfrkurB//Me19xYheZZhL2czT24BVORxDO6JPbcyovijAHg3tEQ6/q42SYDUr74/qo8F+hnRy+DtdMWI2JLqtnj1dirRWl2RW6EKpaiGv11J66sahIc4ZA8l85C8NCT+1dR+XaIA25HjwjwaRq3KGUBahIQn8sn9bTIv/Z7YeKefUyGFofKt/vkdfPyNtTIs1sjGakgziZcums/p3xnCGGepC6QiRdn3OQF9kt3TgWYPEXGd+QOL20oQ5z7VZqh1puAoQrGCibk66sg6FLHiRxBzw4qao4fG1iw4PGL+0pctODTcVzfsV4zvyZFRMnA5acFR5A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=iNZmHTGe471kIVIL4xdxKcZDsUrytI9jitdwsfdKkRE=;
- b=UAXin7wTZmshiPQHnZ4S6x3zBENPO2l6iQkjGugc0jvFu9HdYtulx2lthBAk5/MduT8kuzWt9YrOeonz3+uL92ZwpkZKUJucvJ6zIPYZRyttvyWWsBr5gA3IAPM+88S1JNjmprBF97BCnQ6QoZ20ggtHt9ikguJ2ohAALgu1zdM=
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by LO8P265MB7935.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:3a8::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.26; Mon, 27 Apr
- 2026 15:27:23 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%4]) with mapi id 15.20.9846.025; Mon, 27 Apr 2026
- 15:27:22 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 27 Apr 2026 16:27:22 +0100
-Message-Id: <DI41K5J2FKE1.DF81VQ146J5T@garyguo.net>
-Subject: Re: [PATCH v2 03/11] rust: io: use pointer types instead of address
-From: "Gary Guo" <gary@garyguo.net>
-To: "Andreas Hindborg" <a.hindborg@kernel.org>, "Gary Guo"
- <gary@garyguo.net>, "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, "Danilo Krummrich"
- <dakr@kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng"
- <boqun@kernel.org>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Bjorn Helgaas"
- <bhelgaas@google.com>, =?utf-8?q?Krzysztof_Wilczy=C5=84ski?=
- <kwilczynski@kernel.org>, "Abdiel Janulgue" <abdiel.janulgue@gmail.com>,
- "Robin Murphy" <robin.murphy@arm.com>, "Alexandre Courbot"
- <acourbot@nvidia.com>, "David Airlie" <airlied@gmail.com>, "Simona Vetter"
- <simona@ffwll.ch>
-X-Mailer: aerc 0.21.0
-References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
- <20260421-io_projection-v2-3-4c251c692ef4@garyguo.net>
- <87cxzkqybd.fsf@t14s.mail-host-address-is-not-set>
-In-Reply-To: <87cxzkqybd.fsf@t14s.mail-host-address-is-not-set>
-X-ClientProxiedBy: LO2P123CA0030.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600::18)
- To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 7448E40F62
+	for <nouveau@lists.freedesktop.org>; Mon, 27 Apr 2026 17:17:19 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAD810E861
+	for <nouveau@lists.freedesktop.org>; Mon, 27 Apr 2026 17:29:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1777310978;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
+	b=gmTgAPEcpbuCgYDJs8VxFmdPHbiS3t5mmZTww+MSTu3T6v92Dim+UMcperz8kog9w9BfcI
+	2MNyCRxcBSysNPJnd/v/VyZWrAi9h74XmUMeGEEvpG35hsoTZbG2sP3HuC71XFGq6Wn3nK
+	c9GbRN8kX4Mv5oDb0M34mpnqwAqw6ZM=
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-489-2jS8JyYxONaqxFeT1NXQbQ-1; Mon, 27 Apr 2026 13:29:37 -0400
+X-MC-Unique: 2jS8JyYxONaqxFeT1NXQbQ-1
+X-Mimecast-MFC-AGG-ID: 2jS8JyYxONaqxFeT1NXQbQ_1777310974
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50faf575af4so49671891cf.0
+        for <nouveau@lists.freedesktop.org>;
+ Mon, 27 Apr 2026 10:29:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1777310974; x=1777915774;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KF7u6ZoNxfK3+BpCCoO5erH9nqzrz/OiFIJaWAx89LM=;
+        b=kO3ObeQcyi4cmAISgzmzJpP9BLJbgDIml+QpEPNW4EyuUhKByTBk4uyQrCiy6BUsDz
+         WjSYEalMrWtMAZPqnKXfbRPZoOXabeB/TgoQF2Nn4roRWavR8rm27uN1qrzPKTatoRrn
+         3ObwYzPr8b8h8txHfcEK1da+m2+7I7fWcK4msyxn9rthIhFJL82bbGtZ9QukTYpqJ6f4
+         Kq+qf/o84UQ7BKjNVlmde4kkkPbQ8pHkCiCJGqr42464FEOvpOu83hL34NTejUF2pk9o
+         ePo30GHO1XLcacwXOKC13Y2V9zxGS4jD2K/S+919NvoQpUXPVwCKeB++AN1sEffA94QY
+         bkiQ==
+X-Gm-Message-State: AOJu0YwEvBRowbSuYmWkJqaFlSt3EHD3op55+ToJGPXYJ2vitHEP+bTy
+	u8t/sOQoJ0duLp4CJC36UrY+iVjs//KjaR1A5PaqA9keNxlfQhvd8igaeaa6IisBh4Auj1iZAwQ
+	nUD7tdwAeElYC36INT16VkITN2BemkWOGu5yl5FpDhDYG1Apt8U0Im9fADLt0zk0reBM=
+X-Gm-Gg: AeBDietrCEUDqR8Ff+PkY4dqmX8HYwy1twee4MHnqLMS33vSNUKetldm2+qwovVn2Jl
+	QbgzvukXbF1YSJion7InSwP3aQlKGhx4vupcPdw7uUiunGEzi9zEYEdF4iSBzAiFPLsUT2aC002
+	yWYV7Pk0xUGkAHFI5QybolGKW+HshZSLGIPxdLfLfcA3JJKfg3SMFcWF92gRrne6XONUyJdJI8b
+	j/kjHstEbyRugKezo0X5Lm8IVl6c+rA6GRBS+nTP3qph8Z/KZEz0w8/JOUEPPKo/6/8bVNoTYSC
+	r4F6DL12xtOTznuWJ5d07NOADOTCz4ImKSqmwS2bf6KJWI9ebPTtwjSDZXGeLgCGFle78DsqtJM
+	NwQrqL1ug2jsJUnNRDx4yj1XdZ7iS
+X-Received: by 2002:a05:622a:486:b0:509:1009:e7a6 with SMTP id
+ d75a77b69052e-5100c97933emr2571131cf.43.1777310973781;
+        Mon, 27 Apr 2026 10:29:33 -0700 (PDT)
+X-Received: by 2002:a05:622a:486:b0:509:1009:e7a6 with SMTP id
+ d75a77b69052e-5100c97933emr2570391cf.43.1777310973161;
+        Mon, 27 Apr 2026 10:29:33 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93])
+        by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8b3e29932fasm285886d6.45.2026.04.27.10.29.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Apr 2026 10:29:32 -0700 (PDT)
+Message-ID: <2f8a8b96473d99cee6f33075532a97f956ce21bc.camel@redhat.com>
+Subject: Re: [PATCH v12 5/5] rust: drm: gem: Add vmap functions to shmem
+ bindings
+From: lyude@redhat.com
+To: Alexandre Courbot <acourbot@nvidia.com>
+Date: Mon, 27 Apr 2026 13:29:31 -0400
+In-Reply-To: <DI0MII8J4P2Y.309VKYVMQJNVK@nvidia.com>
+References: <20260421235346.672794-1-lyude@redhat.com>
+	 <20260421235346.672794-6-lyude@redhat.com>
+	 <DI0MII8J4P2Y.309VKYVMQJNVK@nvidia.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|LO8P265MB7935:EE_
-X-MS-Office365-Filtering-Correlation-Id: e3b3877c-05cd-41ca-ff88-08dea4717a97
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: 
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|10070799003|56012099003|18002099003|22082099003|921020;
-X-Microsoft-Antispam-Message-Info: 
-	t/KhFymq8ftn1YMzvdrNMm7d213u337G21EHc93nQdPmPE74Hp7oVhUARH7/0IWbs0X+q2FYXMZoq5OUx4IGOaEId1ZH4pcQ2IT3hhc9bWuJsmBSauijpFRjPRxwPcyJch2jiFgweC8FZXzMEpx9Ol3JVW7UMluHUxlyzSiDoy0RSx6GaXnPthrLyQaIVnQZK4ODnRkVG+UhOFlg3rbwklGvHr0qsPfqHLXTu1REbxK4CmnrcrwsBqtGBcpK9UwTrNZl+L4syhZjjoloiRnc/VVIAX+K66htzIITY9V52kAVpVVd6dCBGtiZDMS1PdmIFVaAFt2TLX/cSsCSeoOJyyCsEgDhHBu+PxZUw4SHJ/LnNaSwW6PEzVGRVhhux+IETQq7tuQl+/rD2IVkXqfRLRwLN0P1UmILFLVq2iBlZZcj4plADzBinmJrpBS4qSRtI3m+Pm16fqh/oCroY7RmHlEMPrTflk1skRLPtbe9pvD/8d6neDzIFelznXkGyHbxwvKg/l8HjbHdYtfYuyISRvCdSd3kUeXhT12pXz+kbPl2K7vFCcoIDafwB16Pk8iSyzdS0FwD0mtUV9/wW3cBs5RCsC4RM+ubuf53QZFmdNRngeacXDz0bPDcXfI7OAXl3vBbHqGQjeUhwYDZmOLp6umwxx474SawkVYMNRCm3AcHBiI+JGCEgm7DSqqazzkjoxZ1PoIu+PErlt1u8+QyTWiLZLEqVgadnFNkC6tAw8Fj5qe99vyNVVBol0L86jwWMNYVXMiy1umM8lesKmMCOA==
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(10070799003)(56012099003)(18002099003)(22082099003)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: 
-	=?utf-8?B?cDcxeHJXVkZyZERLZ1d1MTVwNkJGaVk0MnNTejA0ZXVIVS9zZldJR3d4WFRo?=
- =?utf-8?B?a01xWEdFSzlDT3JvTkQrTlM4TFVTK1l1QnZYL1dhZ0ViZTIzM2RqUWVsVG9W?=
- =?utf-8?B?R3BZUjk4b3cwLzJBR1pwTks1RmRMY3B6QTRLbkdGVGJqZ0cwaStkVkJBZUQr?=
- =?utf-8?B?T0FFT3FGQkFOWEhaVnh0VkNtU05XYUF6R3JMRjVTNjZkckx2ck1ubFRHV0tH?=
- =?utf-8?B?THVwcGNLeDhESlJhMit6WWhZdDF4SUZqR3ZMalRDMmZIRDgvNmR1eTVld3oy?=
- =?utf-8?B?NDBaSlgxQ0N4eWtkc1VMNXIyNGZmakIzMmtNd2h2cmRHZmZvM0FYb21qd2s0?=
- =?utf-8?B?SDI4OWprNm04aHFIUnFDWWNMOFRlalpGZGpidllsRUw4eEtTQXEvYnZlY3Yx?=
- =?utf-8?B?ZHpIdFpSeTlWSUNUTklKbnU3NHVBb3NNVVhaSFJSZEEySnhEQkZUdGtXVlZX?=
- =?utf-8?B?TlZ3NTMydWR4aFlQamJnb0RCUm1rek1ySXcvdFk0NDJtRC9oSTJUZzIrUmVa?=
- =?utf-8?B?dDYrSEtTOTZpalpmOG5pMjBEbE9qakx6dS83RUR2ZXpRWE9tM1NwWkRrNm93?=
- =?utf-8?B?cnZMOXUyRkFqU01LRGhZQ2IvUW1KeUNEb3pMNk5aNUhHR0ZFd0lXMk01dGlo?=
- =?utf-8?B?UlhJRStuY2dITFRoeXhwS0dPNjNpdzkwQWFWTlhPeHJsdlZJUFNISFJ2b3Aw?=
- =?utf-8?B?MExtaDRYY01xTExjNGlmQWpRR2pWOHNMYXJreWFwUFRMSFpWZ2JGZ1JqKzVl?=
- =?utf-8?B?WmRMRTZvK210cTZadWZEMUdnRzlQdERRY1I1NzZtSVRsVElDbEdoVXdlSjE2?=
- =?utf-8?B?OVN4TUhLQ1huMUxnVFc2RG9nakJuMkRkblkxa3Q5QU16R0E1WlRkZjRwVlU5?=
- =?utf-8?B?M2dONE05blhVMFc5d3NZQ2V4TjZEWWZLYzExTllnSk11dWNkdk9yNGx6bnVj?=
- =?utf-8?B?VU9LR1ZsRkowcHZrNHUrMnp5V01uOWYycTVZeHJJR2FuU2didHV3Szc2ZEwz?=
- =?utf-8?B?d3dtQTV2TDl3dlJseXIxY3d6MXRLSnBUajMrRzdiMU1CRWtDbDhOWmxaRUI4?=
- =?utf-8?B?aDhwL0orSHlOc2VMQzliRVN0b3ZaN2dSczdiUS9OZ2ZIZERWUW1GNS9oRnds?=
- =?utf-8?B?dkozRmJlVVJydnJDMTlvZVZUa3hibUQ1a2J3L3QxdTFSb092cXQ2TWswZ1BO?=
- =?utf-8?B?NHg3aVZ5T2k3dUpkMElVLzRqbExhTnZ3YWwrNWFCdkxuaEp3ZGVGc0tXSHMw?=
- =?utf-8?B?UUdscUtMSWFheW9tTk9WWkl3TFZaZ2srUTV6WWZSdFFIZmN3TWRrVXNzQ241?=
- =?utf-8?B?QnFhc0ZxenBybUtpN2txSUVQMTB5Rm15c3pMamZkQ0IyOGc5U00zeTVHZXRP?=
- =?utf-8?B?WmhqSjBKK2JDYndGUGxSbzRmcEJWeWo5YTJ0UjVaWUh1d01xamFMSGlUMEZP?=
- =?utf-8?B?ZXF2Mlg0WkFMbFBRNWs1dU0vR0FFcWd1VDRPYkZPaWk4S2JuNGhVNGhleXlQ?=
- =?utf-8?B?SFlaR0N1SXJDY2lkR3UrSVM0N29wQXprYTl1RTFEengwenR2RE9VdWZ2cGQ3?=
- =?utf-8?B?MVlWUGNyemg3MHlkT1NDSWhnRVM2dzNNQ2lqUDhQbVAyd0pvc3JOREo4enI0?=
- =?utf-8?B?N2hhMG15SUNxazF1U3U4MERJa1BGNzZEVURRa2ZuZkZGamI2NEhIZGRnL3ha?=
- =?utf-8?B?dXhvZFI4cFcxK1JjU21ISlcybE9FNkU5NzVZcFYzcGcrY3V2WllHVTVwei90?=
- =?utf-8?B?Rnc5Y2RrcTl0a2pZb1paTmZaMnZibmZUb1FXc082b1d1eFZSL3BxMm9FWEZQ?=
- =?utf-8?B?QWpTNVRUZjVONnBjNklGK01pYVZZYUdablgyNXJuUEUxbm50ekg0eTF5Sm9S?=
- =?utf-8?B?TG9mMHo4WnVLeWJsRnY5aHJ1T0ExNW5PM2lqK3RWS1lyamkxaVRVb2laT01G?=
- =?utf-8?B?R29HQUhlWVRFRGZrakZHWEVQSkZyYXdXUlB5R0pTQUIwT1p4K0F6cktmdzZz?=
- =?utf-8?B?YjhXeXpSUDVqb2ZtdTZyZ3N6N3NnMFIvUjJIWnNVVkhKWXhNUGV3Z0I0aFVk?=
- =?utf-8?B?bUMyazl3OEJqQmZKeUgzTG05cnhzSE1qM1lETFpjMlI0VHBMUXZZc1oybVFQ?=
- =?utf-8?B?WHo2aVpWKzNLSDIxVVllNnJ6aVY4ZDFsOG02ZVhGK01iS2UyY0RNcUhWczdX?=
- =?utf-8?B?M1kxMnBFdXdwUjFsM3RLU0h6OXJONXk0VG01cUlSVUlsMkZJOHlFT2lvSGNa?=
- =?utf-8?B?WFU3cHNFa1hDR24xR2Jlam9wSEY3bi9CVzJqbVp0NUxyQ2wvWTZNVGwvZVpx?=
- =?utf-8?B?WkNNSWtFdkhRQXRBdEpOSjc1eStiYSt0QXgvSDZ0bEpLSHd3amdtZz09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 
- e3b3877c-05cd-41ca-ff88-08dea4717a97
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 15:27:22.9155
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 
- zpyA+8xOjESN2t4CSL63BiSBpkZCRmdfGn1FLWfroH/hxc4vz7xEB7Gi/H8AxMX5ke9RFBuj79itQdqjHtMgBw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO8P265MB7935
-Message-ID-Hash: N7MJSHRLZ3XNU2DB2JK6BLAOBRL5FXIF
-X-Message-ID-Hash: N7MJSHRLZ3XNU2DB2JK6BLAOBRL5FXIF
-X-MailFrom: gary@garyguo.net
-X-Mailman-Rule-Hits: nonmember-moderation
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: 3WHRFDl3re9_QXlpyntEltsOS2jq_8eGFp6G1fJ3jBE_1777310974
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L
+X-Message-ID-Hash: NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L
+X-MailFrom: lyude@redhat.com
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: nouveau@lists.freedesktop.org, Gary Guo <gary@garyguo.net>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ rust-for-linux@vger.kernel.org, Danilo Krummrich <dakr@kernel.org>,
+ dri-devel@lists.freedesktop.org, Matthew Maurer <mmaurer@google.com>,
+ FUJITA Tomonori <fujita.tomonori@gmail.com>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, christian.koenig@amd.com,
+ Asahi Lina <lina@asahilina.net>, Miguel Ojeda <ojeda@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Alice Ryhl <aliceryhl@google.com>, Boqun Feng <boqun@kernel.org>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Krishna Ketan Rai <prafulrai522@gmail.com>, linux-media@vger.kernel.org,
+ Shankari Anand <shankari.ak0208@gmail.com>, Benno Lossin <lossin@kernel.org>,
+ Viresh Kumar <viresh.kumar@linaro.org>, linaro-mm-sig@lists.linaro.org,
+ Asahi Lina <lina+kernel@asahilina.net>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, kernel@vger.kernel.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/N7MJSHRLZ3XNU2DB2JK6BLAOBRL5FXIF/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/NBIOWIPBXOQJMSHNGXECSAOLEJ2YHH6L/>
 Archived-At: 
- <https://lore.freedesktop.org/DI41K5J2FKE1.DF81VQ146J5T@garyguo.net/>
+ <https://lore.freedesktop.org/2f8a8b96473d99cee6f33075532a97f956ce21bc.camel@redhat.com/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -192,108 +159,32 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On Mon Apr 27, 2026 at 3:20 PM BST, Andreas Hindborg wrote:
-> Gary Guo <gary@garyguo.net> writes:
->
->> This carries the size information with the pointer type and metadata, ma=
-kes
->> it possible to use I/O projections and paves the way for IO view types.
->>
->> With this change, minimum size information becomes available through typ=
-es;
->> so `KnownSize::MIN_SIZE` can be used and `IoKnownSize` trait is no longe=
-r
->> necessary. The trait is kept for compatibility and can be removed when
->> users stop using it for bounds.
->>
->> PCI config space uses only offsets and not pointers like MMIO; for this
->> null pointers (with proper size metadata) is used. This is okay as I/O
->> trait impl and I/O projections can operate on invalid pointers, and for =
-PCI
->> config space we will only use address info and ignore the provenance.
->>
->> Signed-off-by: Gary Guo <gary@garyguo.net>
->> ---
->>  rust/kernel/devres.rs |   2 +-
->>  rust/kernel/io.rs     | 123 +++++++++++++++++++++----------------------=
--------
->>  rust/kernel/io/mem.rs |   2 +-
->>  rust/kernel/pci/io.rs |  74 ++++++++++++++++++------------
->>  4 files changed, 99 insertions(+), 102 deletions(-)
->>
->> diff --git a/rust/kernel/devres.rs b/rust/kernel/devres.rs
->> index 3e22c63efb98..ea86e9c62cdf 100644
->> --- a/rust/kernel/devres.rs
->> +++ b/rust/kernel/devres.rs
->> @@ -101,7 +101,7 @@ struct Inner<T> {
->>  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
->>  ///     fn drop(&mut self) {
->>  ///         // SAFETY: `self.0.addr()` is guaranteed to be properly map=
-ped by `Self::new`.
->> -///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); }=
-;
->> +///         unsafe { bindings::iounmap(self.0.as_ptr().cast()); };
->>  ///     }
->>  /// }
->>  ///
->> diff --git a/rust/kernel/io.rs b/rust/kernel/io.rs
->> index 0b9c97c0a1d7..1682f2a0d20d 100644
->> --- a/rust/kernel/io.rs
->> +++ b/rust/kernel/io.rs
->> @@ -105,8 +105,8 @@ pub fn new_region(addr: usize, size: usize) -> Resul=
-t<Self> {
->>  impl<T: ?Sized + KnownSize> MmioRaw<T> {
->>      /// Returns the base address of the MMIO region.
->>      #[inline]
->> -    pub fn addr(&self) -> usize {
->> -        self.addr.addr()
->> +    pub fn as_ptr(&self) -> *mut T {
->> +        self.addr
->>      }
->> =20
->>      /// Returns the size of the MMIO region.
->> @@ -166,7 +166,7 @@ pub fn size(&self) -> usize {
->>  /// impl<const SIZE: usize> Drop for IoMem<SIZE> {
->>  ///     fn drop(&mut self) {
->>  ///         // SAFETY: `self.0.addr()` is guaranteed to be properly map=
-ped by `Self::new`.
->> -///         unsafe { bindings::iounmap(self.0.addr() as *mut c_void); }=
-;
->> +///         unsafe { bindings::iounmap(self.0.as_ptr().cast()); };
->>  ///     }
->>  /// }
->>  ///
->> @@ -217,14 +217,14 @@ pub trait IoCapable<T> {
->>      /// # Safety
->>      ///
->>      /// The range `[address..address + size_of::<T>()]` must be within =
-the bounds of `Self`.
->> -    unsafe fn io_read(&self, address: usize) -> T;
->> +    unsafe fn io_read(&self, address: *mut T) -> T;
->> =20
->>      /// Performs an I/O write of `value` at `address`.
->>      ///
->>      /// # Safety
->>      ///
->>      /// The range `[address..address + size_of::<T>()]` must be within =
-the bounds of `Self`.
->> -    unsafe fn io_write(&self, value: T, address: usize);
->> +    unsafe fn io_write(&self, value: T, address: *mut T);
->>  }
->> =20
->
-> In v1 you had a requirement for `address` to be aligned. Why did you
-> drop that?
+On Fri, 2026-04-24 at 00:01 +0900, Alexandre Courbot wrote:
+> > =C2=A0=C2=A0 dropped before obj.
+>=20
+> I am not sure this is enough to solve the double-free issue -
+> although my GEM
+> knowledge is lacking, so please take this with a grain of salt.
+>=20
+> Take an object where we called `sg_table`, so the SGT has been
+> created.
+>=20
+> When the object is dropped by DRM, `free_callback` is first called.
+> It
+> calls `drm_gem_shmem_release`, which frees the SGT.
+>=20
+> Then, the `Drop` implementation of `Object` is called, and `sgt_res`
+> is
+> dropped... which attempts to free the SGT again.
+>=20
+> I haven't tested that and rely only on a quick look at the code and
+> my
+> partial understanding, but the correct fix appears to be to clearing
+> `sgt_res` in `free_callback`.
 
-In v1 Alex wants me to split this part to a separate commit as this is a
-pre-existing requirement that is just not documented. The patch 4 is that
-change.
-
-Best,
-Gary
-
->
->
-> Best regards,
-> Andreas Hindborg
+Whoops! No you're right, and so is Deborah (she mentioned this
+previously, but when reading through it I completely forgot that
+free_callback() was in the picture). We can't clear SetOnce, but we can
+use mem::take() which should be essentially the same thing. Will fix in
+the next respin
 
