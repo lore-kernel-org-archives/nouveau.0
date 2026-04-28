@@ -4,38 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AEDDFF885A
-	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 14:12:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D262FF8868
+	for <nouveau@archiver.kernel.org>; Tue, 28 Apr 2026 14:42:08 +0000 (UTC)
 Received: from kara.freedesktop.org (unknown [131.252.210.166])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id 661B110EBC3;
-	Tue, 28 Apr 2026 14:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id 46C6B10ECDE;
+	Tue, 28 Apr 2026 14:42:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="guYXAESG";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="L86izWPw";
 	dkim-atps=neutral
 Received: from kara.freedesktop.org (localhost [127.0.0.1])
-	by kara.freedesktop.org (Postfix) with ESMTP id 143F745C9B;
-	Tue, 28 Apr 2026 13:59:55 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTP id DBABB45C9E;
+	Tue, 28 Apr 2026 14:29:44 +0000 (UTC)
 ARC-Seal: i=1; cv=none; a=rsa-sha256; d=lists.freedesktop.org;
- s=20240201; t=1777384794;
- b=ovRgkFJG0nwj2HtrNhdxiGaS+qJd69GTdAunA5QKcfHM+fGN9ypDJqlgbD10kMFOCF/9N
- QNEMgoxaAPtuxpl6Td10xI11e25Y+UvQhAUl9qoIc57BYIpdBLP1rSnq+GfXqhmnBDRoEfK
- hcn6n8qgSkQOIYynEXeS8ga6j15A011+3JuUvkDOEuujWkboHcp+qbfLOkdqZkWI02+1tc3
- WGfhUxDBUjpymbkRb6SGnJrG258NeCfvQgGoS1XeMI7Y87+lJu9l3vZcSj9kHJmEsh9LQYA
- vAG5uxZ5RZtLx/jD1r5i6uM+maw7oikPqmtGreGdYX5IQe8z+X1xZpc0dPqg==
+ s=20240201; t=1777386584;
+ b=l5YQGaKzvKJchGStOM4qHopcY9sJ+mnblY410qHYSPZoO5fJIN9SAfZgIHVMGg4II4lUd
+ y/XlKazA+ljCn6ri4wFF6GYftpRyKjynF1eXdlAfXoRHSKXlgRcgkM3gIYVGSD1lNIyA9we
+ 6VaDJ/PCYBiCQzPIPEOFaqGJqp0bwCYoCBIG4Iw1z4cNddZRQ8wmsPp2z5N6fvuc3i5vbbU
+ PFMusKC+mgD6NIVd1EOkg/t/BsZsIC3Ay7kD/yzxEy6DiTyYgQOZMF4OyXyPzHB9dYkbV4O
+ 9UTUjA4Tu92FcHJjqDKyqtwca3CCS2FS7xrRbIzKlx2u2WhhPpWId/lCc3nw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
- d=lists.freedesktop.org; s=20240201; t=1777384794; h=from : sender :
+ d=lists.freedesktop.org; s=20240201; t=1777386584; h=from : sender :
  reply-to : subject : date : message-id : to : cc : mime-version :
  content-type : content-transfer-encoding : content-id :
  content-description : resent-date : resent-from : resent-sender :
  resent-to : resent-cc : resent-message-id : in-reply-to : references :
  list-id : list-help : list-unsubscribe : list-subscribe : list-post :
  list-owner : list-archive;
- bh=/MX7FELy0e3bx3AXoymY1I8eLCyCg3EHSMWIvZrlPcs=;
- b=LQRsd52V1ZEPopsus1ayH2mz8obe03DXB7ujfzmsWkJjtneI+2PrDOM8WwITTRWyCnJJb
- luo1uxbDhKoPCikf1+0tD0Vxm/fDr88GQTkR8QEjqnspR0j68sJ44KiX1xmIktGiaIbnbQm
- 9e0GCH372m3MDiX5tMakXqeFYu6AoITiH487VY2tj/ujV5NUQ3NIWqdvg7BBEUwp+h9h5SK
- mYdeYjLtq0yJwZLumQlPNKmslM0X4Zds+8tx3BP2teXlnLjxTkfrAef+xQppOmQhecLLydY
- pqaomwYFaVTVxl6//T8kcd4JZVlJuogEbmGpd1qo9pczfnHgLXAHfPteOMUQ==
+ bh=ZMOTWHw3xFPjQhDVjAJL6lscujxQPVyZa9V3FU3l114=;
+ b=SxPp/ath7MSGuN5RlgZ9wK0c6xY4PbBLm+H75LXZvE2xxbtbdx/MaBfTKNkFtNIMJYQ2/
+ iHEkHl1X0TrrH4vcWcymhu3ekDefnSCdB+nN6VuZOcwiBhxU8ufUxURJ++VJCaaSeC3SkFt
+ IeuCr03OyAMCThRBp8K+wFrsuAvs8EF1ZUche9IcopC1XogldhK1D3WEDmmmhF+Uha++i7k
+ HJDruT0aq3MPogRaqBqaLNNVoiCFZkbln4FABeh7RYkCcA4jwexnIMQtDuKUWGr+PvqlIOA
+ pUl+jn7vxL8vTQmfZ+FteJev7HEzlLX9G+Y6197c6VTztm12DeqymoyZc5Fg==
 ARC-Authentication-Results: i=1; mail.freedesktop.org;
  dkim=pass header.d=kernel.org;
   arc=none (Message is not ARC signed);
@@ -46,63 +46,72 @@ Authentication-Results: mail.freedesktop.org; dkim=pass header.d=kernel.org;
  dmarc=pass (Used From Domain Record) header.from=kernel.org
  policy.dmarc=quarantine
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by kara.freedesktop.org (Postfix) with ESMTPS id 9783145560
-	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 13:59:52 +0000 (UTC)
+	by kara.freedesktop.org (Postfix) with ESMTPS id 9CB8B45C91
+	for <nouveau@lists.freedesktop.org>; Tue, 28 Apr 2026 14:29:41 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
-	by gabe.freedesktop.org (Postfix) with ESMTPS id AC58110E34B;
-	Tue, 28 Apr 2026 14:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTPS id AC5A210E2B5;
+	Tue, 28 Apr 2026 14:42:03 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
-	by tor.source.kernel.org (Postfix) with ESMTP id D237E61340;
-	Tue, 28 Apr 2026 14:12:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 392CDC2BCB5;
-	Tue, 28 Apr 2026 14:12:11 +0000 (UTC)
+	by tor.source.kernel.org (Postfix) with ESMTP id F363861119;
+	Tue, 28 Apr 2026 14:42:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD327C2BCB8;
+	Tue, 28 Apr 2026 14:41:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1777385533;
-	bh=/MX7FELy0e3bx3AXoymY1I8eLCyCg3EHSMWIvZrlPcs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=guYXAESGSJOjs04GB6idZhHjnVzj5Z7R2i7a44jdAjWMtbjE5QsukQYQphFqFCaNR
-	 +LTHFqcQ/gHXZXlkmF7aSHuS794RnyMbARdSR/r8zssA/FecJJsKA6KQnB+2Xmj44c
-	 aB7oWbA/tpyHymueC9EbeXBk/TxoFX0GgGm9i7YYiTqyJ0PWBM7ieDOQWF+MscXW+2
-	 cJ2OzWrJ2S28q+Apf0m6Td9pKasQIX5NIysZnhsuIyUjFaUhd/hG5ICEFTg+IB0G2/
-	 E1MXXHWgO8NjLPG+O2gJj8tUhsl9u+2zRbCaggI/ktihUsIS3k7KrU4v0HkjCRfwzW
-	 lFtplVxeor6fw==
-Message-ID: <45d3f3c8-60c7-4977-9b30-70948b912c03@kernel.org>
-Date: Tue, 28 Apr 2026 16:12:09 +0200
+	s=k20201202; t=1777387322;
+	bh=j9TDaxTAxDjeJyvR+byZsADBd2oV8lsBN3Q0InXYURY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=L86izWPwCrWDdFrBS97EC2ayPfon6jIRd1JRHdDR5ndn3D/TUCpsnn+i+Sl83l4HY
+	 o2IR+/XduPzcgLd/kuYM79Atz2Fr7WKOJw0Xcn4PBxVD2A+S9VQM+rVLos/E3Kd+Ll
+	 0+fTEPViNfywYfzwRj34MpdW+HGTfMRRHEPdJDq59u706zq4qbeq0UUUJeYr2kJN0X
+	 uGcl3sU3n7e4Ilq0n/MvPQ2BtepjIL1rjef/wekTkO7QUmgOEIpugmZalznvKa09Z1
+	 pOYfsCcAhPPIOWV6S4wKtJOEd9P+nfRnrr8kmwUCgoW2SSzLpTKxxeFRqgCmuVxAcI
+	 fUlfAbrfUuwjQ==
+From: Andreas Hindborg <a.hindborg@kernel.org>
+To: Gary Guo <gary@garyguo.net>, Gary Guo <gary@garyguo.net>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Danilo Krummrich <dakr@kernel.org>, Miguel Ojeda
+ <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>, =?utf-8?Q?Bj=C3=B6rn?=
+ Roy Baron
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, Alice
+ Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, Daniel
+ Almeida <daniel.almeida@collabora.com>, Bjorn Helgaas
+ <bhelgaas@google.com>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?=
+ <kwilczynski@kernel.org>,
+ Abdiel Janulgue <abdiel.janulgue@gmail.com>, Robin Murphy
+ <robin.murphy@arm.com>, Alexandre Courbot <acourbot@nvidia.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Subject: Re: [PATCH v2 05/11] rust: io: restrict untyped IO access and
+ `register!` to `Region`
+In-Reply-To: <DI4SY1NXU1XW.2VHPFEKIFBQVW@garyguo.net>
+References: <20260421-io_projection-v2-0-4c251c692ef4@garyguo.net>
+ <20260421-io_projection-v2-5-4c251c692ef4@garyguo.net>
+ <874ikvqwyd.fsf@t14s.mail-host-address-is-not-set>
+ <vYp32vOGPut322JQ-5jSBZQNd6eXvnOvg8b6YDhYcYzBqTBVUvSajCJng33oXSQ9wiMvb62VLERzLYSa4g2pJQ==@protonmail.internalid>
+ <DI4QT2U1098S.3K9K7INQ86M0Q@garyguo.net>
+ <87tssvp9sq.fsf@t14s.mail-host-address-is-not-set>
+ <DI4SY1NXU1XW.2VHPFEKIFBQVW@garyguo.net>
+Date: Tue, 28 Apr 2026 16:41:51 +0200
+Message-ID: <87ik9bp2og.fsf@t14s.mail-host-address-is-not-set>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] replaced old wq name, added WQ_PERCPU to
- alloc_workqueue
-To: Marco Crivellari <marco.crivellari@suse.com>
-References: <20251031102020.95349-1-marco.crivellari@suse.com>
- <20260428105916.6108-1-dakr@kernel.org>
- <CAAofZF7QuYZOQEiOdU7FEP4+-WngGMCt3svQhMXaiF77J7dkJg@mail.gmail.com>
-From: Danilo Krummrich <dakr@kernel.org>
-Content-Language: en-US
-In-Reply-To: 
- <CAAofZF7QuYZOQEiOdU7FEP4+-WngGMCt3svQhMXaiF77J7dkJg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Message-ID-Hash: UJ4FCBAE6C6X37X32ENL5ODDMNHNVEIS
-X-Message-ID-Hash: UJ4FCBAE6C6X37X32ENL5ODDMNHNVEIS
-X-MailFrom: dakr@kernel.org
-X-Mailman-Rule-Hits: nonmember-moderation
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Message-ID-Hash: ENWPZYDVRETFHECM4LSZP7LMOYZ4OHBW
+X-Message-ID-Hash: ENWPZYDVRETFHECM4LSZP7LMOYZ4OHBW
+X-MailFrom: a.hindborg@kernel.org
 X-Mailman-Rule-Misses: dmarc-mitigation; no-senders; approved; emergency;
- loop; banned-address; member-moderation
-CC: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, Tejun Heo <tj@kernel.org>,
- Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Michal Hocko <mhocko@suse.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>
+ loop; banned-address; member-moderation; nonmember-moderation; administrivia;
+ implicit-dest; max-recipients; max-size; news-moderation; no-subject;
+ digests; suspicious-header
+CC: driver-core@lists.linux.dev, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 X-Mailman-Version: 3.3.8
 Precedence: list
 List-Id: Nouveau development list <nouveau.lists.freedesktop.org>
 Archived-At: 
- <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/UJ4FCBAE6C6X37X32ENL5ODDMNHNVEIS/>
+ <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/message/ENWPZYDVRETFHECM4LSZP7LMOYZ4OHBW/>
 Archived-At: 
- <https://lore.freedesktop.org/45d3f3c8-60c7-4977-9b30-70948b912c03@kernel.org/>
+ <https://lore.freedesktop.org/87ik9bp2og.fsf@t14s.mail-host-address-is-not-set/>
 List-Archive: 
  <https://lists.freedesktop.org/hyperkitty/list/nouveau@lists.freedesktop.org/>
 List-Archive: <https://lore.freedesktop.org/nouveau>
@@ -112,8 +121,80 @@ List-Post: <mailto:nouveau@lists.freedesktop.org>
 List-Subscribe: <mailto:nouveau-join@lists.freedesktop.org>
 List-Unsubscribe: <mailto:nouveau-leave@lists.freedesktop.org>
 
-On 4/28/26 1:19 PM, Marco Crivellari wrote:
-> Many thanks!
-No worries, sorry for the delay.
+"Gary Guo" <gary@garyguo.net> writes:
 
-- Danilo
+> On Tue Apr 28, 2026 at 1:08 PM BST, Andreas Hindborg wrote:
+>> "Gary Guo" <gary@garyguo.net> writes:
+>>
+>>> On Tue Apr 28, 2026 at 10:02 AM BST, Andreas Hindborg wrote:
+>>>> Gary Guo <gary@garyguo.net> writes:
+>>>>
+>>>>> Currently the `Io` trait exposes a bunch of untyped IO accesses, but =
+if the
+>>>>> `Io` region itself is typed, then it might be weird to have
+>>>>>
+>>>>>     let io: Mmio<u32> =3D /* ... */;
+>>>>>     io.read8(1);
+>>>>>
+>>>>> while not unsound, it is surely strange. Thus, restrict the untyped m=
+ethods
+>>>>> and also the register macro to `Region` type only.
+>>>>>
+>>>>> The way it is implemented is by adding a generic type to `IoLoc`. Thi=
+s also
+>>>>> paves the way to add typed register blocks in the future; for example=
+, we
+>>>>> could use this mechanism to block driver A's `register!()` generated =
+macro
+>>>>> from being used on driver B's MMIO. The same mechanism could be used =
+for
+>>>>> relative IO registers. These are future opoortunities, and for this p=
+atch I
+>>>>> just restricted everything to require `IoLoc<Region<SIZE>, _>`.
+>>>>
+>>>> Does this not prevent `usize` from being used to index anything but
+>>>> `Mmio<Region<_>>`?
+>>>>
+>>>> It is my understanding that the following would work before this patch:
+>>>>
+>>>>    fn do_read(io: &Mmio<u32>) -> Result {
+>>>>        let v: u32 =3D io.try_read(8usize)?;
+>>>>        Ok(())
+>>>>    }
+>>>>
+>>>> But I think this will no longer work with this patch. Is that the inte=
+ntion?
+>>>
+>>> Your example would always fail, as you're reading 4 bytes from offset 4=
+ from a
+>>> region that is only 4 bytes in size. I suppose you're trying to say
+>>>
+>>>     fn do_read(io: &Mmio<[u32]>) -> Result {
+>>>         let v: u32 =3D io.try_read(8usize)?;
+>>>         Ok(())
+>>>     }
+>>
+>> Yep, that was my intention, with the assumption that final offset
+>> becomes 8*4. I think that is also what would happen here as we would
+>> invoke `try_read::<u32, usize>(&Mmio<[u32]>, usize) -> Result<u32>` with
+>>
+>>   usize: IoLoc<u32>
+>>   Mmio<[u32]>: IoCapable<u32>
+>
+> No, these methods behave the same as the old try_read32 macros, so these =
+are
+> absolute byte offsets. I think the fact you're confused is a good indicat=
+ion
+> that we probably want to remove these methods, or at least make them as
+> inaccessible as possible :)
+
+That is probably a good call =F0=9F=98=85 Going over the pieces again, I am=
+ not
+sure when and where I decided this was an index rather than a byte
+offset.
+
+
+Best regards,
+Andreas Hindborg
+
+
